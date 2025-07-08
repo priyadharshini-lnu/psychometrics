@@ -10,7 +10,7 @@ RSpec.describe Administration::ImportProficiencyLevels do
     [
       ['ID', 'Project', 'ProficiencyType', 'SkillCategory', 'SkillName', 'TotalLevels', 'Level1', 'Name1',
        'Description1', 'Level2', 'Name2', 'Description2', 'Level3', 'Name3', 'Description3'],
-      ['', project.id, 'all_skills', '', '', 3, 1, 'Basic', 'Basic level description', 2, 'Intermediate',
+      ['', project.id, 'default', '', '', 3, 1, 'Basic', 'Basic level description', 2, 'Intermediate',
        'Intermediate level description', 3, 'Advanced', 'Advanced level description']
     ]
   end
@@ -33,7 +33,7 @@ RSpec.describe Administration::ImportProficiencyLevels do
 
         expect(proficiency_level).to have_attributes(
           project_id: project.id,
-          proficiency_type: 'all_skills',
+          proficiency_type: 'default',
           level: 3
         )
 
@@ -107,7 +107,7 @@ RSpec.describe Administration::ImportProficiencyLevels do
         [
           ['ID', 'Project', 'ProficiencyType', 'SkillCategory', 'SkillName', 'TotalLevels', 'Level1', 'Name1',
            'Description1', 'Level2', 'Name2', 'Description2', 'Level3', 'Name3', 'Description3'],
-          [existing_level.id, project.id, 'all_skills', '', '', 3, 1, 'Basic', 'Basic level description', 2,
+          [existing_level.id, project.id, 'default', '', '', 3, 1, 'Basic', 'Basic level description', 2,
            'Intermediate',
            'Intermediate level description', 3, 'Advanced', 'Advanced level description']
         ]
@@ -119,7 +119,7 @@ RSpec.describe Administration::ImportProficiencyLevels do
         existing_level.reload
         expect(existing_level).to have_attributes(
           project_id: project.id,
-          proficiency_type: 'all_skills',
+          proficiency_type: 'default',
           level: 3
         )
       end
@@ -132,7 +132,7 @@ RSpec.describe Administration::ImportProficiencyLevels do
         [
           ['ID', 'Project', 'ProficiencyType', 'SkillCategory', 'SkillName', 'TotalLevels', 'Level1', 'Name1',
            'Description1', 'Level2', 'Name2', 'Description2', 'Level3', 'Name3', 'Description3'],
-          ['', project.id, 'all_skills', '', skill_name, 3, 1, 'Basic', 'Basic level description', 2, 'Intermediate',
+          ['', project.id, 'default', '', skill_name, 3, 1, 'Basic', 'Basic level description', 2, 'Intermediate',
            'Intermediate level description', 3, 'Advanced', 'Advanced level description']
         ]
       end

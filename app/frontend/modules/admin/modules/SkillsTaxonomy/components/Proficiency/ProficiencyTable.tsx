@@ -123,11 +123,11 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
         sorter
       />
       <Resource.Column<ProficiencyLevel>
-        title={I18n.t('administration.proficiency_levels.fields.skill_category')}
-        id="skill_category"
+        title={I18n.t('administration.proficiency_levels.fields.skill_type')}
+        id="skill_type"
         render={(_, proficiencyLevel) => (
           <div>
-            <Typography.Text>{proficiencyLevel.skillCategory}</Typography.Text>
+            <Typography.Text>{proficiencyLevel.skillType}</Typography.Text>
           </div>
         )}
         sorter
@@ -135,7 +135,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
           Object.values(convertEnumToObject(SkillTypeEnum))
             .map(([key, value]) => ({ text: key, value }))
         }
-        filteredValue={resource.getFilteredValue('skill_category_in') as string[]}
+        filteredValue={resource.getFilteredValue('skill_type_in') as string[]}
       />
 
       <Resource.Column<ProficiencyLevel>

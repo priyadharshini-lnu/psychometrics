@@ -40,7 +40,7 @@ RSpec.describe 'Api::V2::Administration::ProficiencyLevelsController',
                 type: :object,
                 properties: {
                   proficiency_type: { type: :string },
-                  skill_category: { type: :string },
+                  skill_type: { type: :string },
                   level: { type: :integer },
                   level_definition: {
                     type: :array,
@@ -55,7 +55,7 @@ RSpec.describe 'Api::V2::Administration::ProficiencyLevelsController',
                     }
                   }
                 },
-                required: %w[proficiency_type skill_category level level_definition]
+                required: %w[proficiency_type skill_type level level_definition]
               },
               relationships: {
                 type: :object,
@@ -110,7 +110,7 @@ RSpec.describe 'Api::V2::Administration::ProficiencyLevelsController',
                        type: :object,
                        properties: {
                          proficiency_type: { type: :string },
-                         skill_category: { type: :string },
+                         skill_type: { type: :string },
                          level: { type: :integer },
                          level_definition: {
                            type: :array,
@@ -136,7 +136,7 @@ RSpec.describe 'Api::V2::Administration::ProficiencyLevelsController',
               type: 'proficiency_levels',
               attributes: {
                 proficiency_type: 'by_skill',
-                skill_category: 'other',
+                skill_type: 'other',
                 level: 3,
                 level_definition: [
                   {

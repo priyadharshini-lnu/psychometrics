@@ -2679,9 +2679,9 @@ zh:
           level_definition_must_match_level: 必须完全包含 %{expected}水平，但给出了 %{actual}水平。
           must_be_unique: 必须独一无二
           proficiency_level_exists: 已存在具有该技能和项目的 ProficiencyLevel
-          proficiency_level_exists_for_all_skills: 所有技能的熟练等级已经存在
-          proficiency_level_exists_for_category: 该类别的熟练程度等级已经存在
-          project_level_all_skills_exists: 已存在 "all_skills "能力级别
+          proficiency_level_exists_for_default: 已退出默认设置的熟练级别
+          proficiency_level_exists_for_type: 该类型的熟练级别已经存在
+          project_level_default_exists: 默认 "能力水平已经存在
           skill_must_exist: 技能类型 "by_skill "必须包含技能
       export:
         actions:
@@ -2699,8 +2699,8 @@ zh:
         proficiency_translations: 熟练翻译
         proficiency_type: 能力类型
         skill: 技能
-        skill_category: 技能类别
         skill_name: 技能名称
+        skill_type: 技能类型
         title: 熟练程度
       global: 全球能力是什么？
       import:
@@ -2708,12 +2708,12 @@ zh:
           proficiency: 进口能力
           translations: 进口能力翻译
         errors:
-          all_skills_global_exists: 行 %{row_number}：已存在全局级别 "all_skills"（所有技能）ProficiencyLevel
-          all_skills_project_exists: 行 %{row_number}：已经存在一个项目级别的 "all_skills "熟练级别
-          by_category_exists: 行 %{row_number}：此项目和技能类别已存在 "by_category "熟练级别
-          by_category_missing: 行 %{row_number}：by_category "类型必须有项目和技能类别
           by_skill_exists: 行 %{row_number}：此项目和技能已存在 "by_skill "熟练等级
           by_skill_missing: 行 %{row_number}：by_skill "类型必须有项目和技能
+          by_type_exists: 行 %{row_number}：此项目和技能类型已存在"'by_type'"熟练等级
+          by_type_missing: 行 %{row_number}：by_type''类型必须有项目和技能类型
+          default_global_exists: 行 %{row_number}：已存在全局级别的 "默认 "熟练等级
+          default_project_exists: 行 %{row_number}：已存在项目级别的 "默认 "熟练级别
           invalid_csv_format: CSV 格式无效： %{message}
           invalid_proficiency_type: 行 %{row_number}：无效或缺少 ProficiencyType
           missing_columns: 缺少必填列： %{fields}
@@ -2733,9 +2733,9 @@ zh:
             row_id_blank: 行 %{row}：ID 不能为空
             save_failed: 技能 ID %{id} 处理错误：%{message｝
       type:
-        all_skills: 所有技能
-        by_category: 按类别
         by_skill: 通过技能
+        by_type: 按类型
+        default: 默认值
     profile:
       change_password: 更改密码
       details: 详细信息

@@ -2679,9 +2679,9 @@ fr:
           level_definition_must_match_level: doit contenir exactement %{expected} niveaux, mais %{actual} ont été donnés
           must_be_unique: Doit être unique
           proficiency_level_exists: Un niveau de compétence avec cette compétence et ce projet existe déjà
-          proficiency_level_exists_for_all_skills: Un niveau de compétence pour toutes les compétences existe déjà
-          proficiency_level_exists_for_category: Il existe déjà un niveau de compétence pour cette catégorie.
-          project_level_all_skills_exists: Un niveau de compétence "toutes_compétences" existe déjà
+          proficiency_level_exists_for_default: Un niveau de compétence par défaut existe déjà
+          proficiency_level_exists_for_type: Un niveau de compétence pour ce type existe déjà
+          project_level_default_exists: Il existe déjà un niveau de compétence "par défaut".
           skill_must_exist: La compétence doit être présente pour le type de compétence "by_skill".
       export:
         actions:
@@ -2699,8 +2699,8 @@ fr:
         proficiency_translations: Proficiency Translations
         proficiency_type: Type de compétence
         skill: Compétence
-        skill_category: Catégorie de compétences
         skill_name: Nom de la compétence
+        skill_type: Type de compétence
         title: Compétence
       global: La compétence globale est-elle ?
       import:
@@ -2708,12 +2708,12 @@ fr:
           proficiency: Compétence en matière d'importation
           translations: Traductions de la compétence en matière d'importation
         errors:
-          all_skills_global_exists: 'Ligne %{row_number} : Un niveau de compétence global "all_skills" existe déjà.'
-          all_skills_project_exists: 'Ligne %{row_number} : Un niveau de compétence "all_skills" existe déjà au niveau du projet.'
-          by_category_exists: 'Ligne %{row_number} : Un niveau de compétence "by_category" existe déjà pour ce projet et cette catégorie de compétences.'
-          by_category_missing: 'Ligne %{row_number} : Le projet et la catégorie de compétences doivent être présents pour le type "by_category".'
           by_skill_exists: 'Ligne %{row_number} : Un niveau de compétence "by_skill" existe déjà pour ce projet et cette compétence.'
           by_skill_missing: 'Ligne %{row_number} : Le projet et la compétence doivent être présents pour le type "by_skill".'
+          by_type_exists: 'Ligne %{numéro_de_la_rangée} : Un niveau de compétence ''''par_type'''' existe déjà pour ce projet et ce type de compétence.'
+          by_type_missing: 'Ligne %{numéro_de_la_rangée} : Le projet et le type de compétence doivent être présents pour le type "by_type".'
+          default_global_exists: 'Ligne %{numéro_de_la_rangée} : Un niveau de compétence global ''''par défaut'''' existe déjà.'
+          default_project_exists: 'Ligne %{numéro_de_la_rangée} : Un niveau de compétence ''''par défaut'''' au niveau du projet existe déjà.'
           invalid_csv_format: 'Format CSV non valide : %{message}'
           invalid_proficiency_type: 'Ligne %{row_number} : Type de compétence non valide ou manquant'
           missing_columns: 'Colonnes obligatoires manquantes : %{fields}'
@@ -2733,9 +2733,9 @@ fr:
             row_id_blank: 'Ligne %{row} : ID ne peut pas être vide'
             save_failed: 'Erreur de traitement de l''ID de compétence %{id} : %{message}'
       type:
-        all_skills: Toutes les compétences
-        by_category: Par catégorie
         by_skill: Par compétence
+        by_type: Par type
+        default: Défaut
     profile:
       change_password: Modifier le mot de passe
       details: Détails

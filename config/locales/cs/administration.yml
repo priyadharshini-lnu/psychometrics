@@ -2679,9 +2679,9 @@ cs:
           level_definition_must_match_level: musí obsahovat přesně %{expected} úrovně, ale %{actual} byly dány
           must_be_unique: Musí být jedinečné
           proficiency_level_exists: Již existuje úroveň ProficiencyLevel s touto dovedností a projektem.
-          proficiency_level_exists_for_all_skills: Úroveň způsobilosti pro všechny dovednosti již existuje.
-          proficiency_level_exists_for_category: ProficiencyLevel pro tuto kategorii již existuje
-          project_level_all_skills_exists: Úroveň způsobilosti "all_skills" již existuje
+          proficiency_level_exists_for_default: Úroveň způsobilosti pro výchozí nastavení již existuje
+          proficiency_level_exists_for_type: Úroveň způsobilosti pro tento typ již existuje.
+          project_level_default_exists: Výchozí úroveň způsobilosti již existuje.
           skill_must_exist: Dovednost musí být přítomna pro proficiency_type 'by_skill'
       export:
         actions:
@@ -2699,8 +2699,8 @@ cs:
         proficiency_translations: Odborné překlady
         proficiency_type: Typ odbornosti
         skill: Dovednost
-        skill_category: Kategorie dovedností
         skill_name: Název dovednosti
+        skill_type: Typ dovednosti
         title: Znalost
       global: Je globální odbornost?
       import:
@@ -2708,12 +2708,12 @@ cs:
           proficiency: Znalost importu
           translations: Překlady pro dovozce
         errors:
-          all_skills_global_exists: 'Řádek %{row_number}: již existuje globální úroveň ''all_skills'' ProficiencyLevel'
-          all_skills_project_exists: 'Řádek %{row_number}: Již existuje úroveň způsobilosti ''all_skills'' na úrovni projektu'
-          by_category_exists: 'Řádek %{row_number}: ProficiencyLevel již existuje pro tento projekt a kategorii dovedností ''by_category''.'
-          by_category_missing: 'Řádek %{row_number}: Kategorie projektu a dovednosti musí být přítomny pro typ ''by_category'''
           by_skill_exists: 'Řádek %{row_number}: ProficiencyLevel ''by_skill'' již existuje pro tento projekt a dovednost'
           by_skill_missing: 'Řádek %{row_number}: Projekt a dovednost musí být přítomny pro typ ''by_skill'''
+          by_type_exists: 'Řádek %{číslo_řádku}: ProficiencyLevel ''''by_type'''' již existuje pro tento projekt a typ dovednosti'
+          by_type_missing: 'Řádek %{číslo_řádku}: Typ projektu a dovednosti musí být přítomen pro typ ''''by_type'''''
+          default_global_exists: 'Řádek %{číslo_řádku}: Již existuje ''''výchozí'''' úroveň ProficiencyLevel na globální úrovni'
+          default_project_exists: 'Řádek %{číslo_řádku}: Již existuje ''''výchozí'''' ProficiencyLevel na úrovni projektu'
           invalid_csv_format: 'Nesprávný formát CSV: %{message}'
           invalid_proficiency_type: 'Řádek %{row_number}: Neplatný nebo chybějící ProficiencyType'
           missing_columns: 'Chybějící povinné sloupce: %{fields}'
@@ -2733,9 +2733,9 @@ cs:
             row_id_blank: 'Řádek %{row}: ID nemůže být prázdné'
             save_failed: 'Chyba při zpracování ID dovednosti %{id}: %{message}'
       type:
-        all_skills: Všechny dovednosti
-        by_category: Podle kategorie
         by_skill: Podle dovednosti
+        by_type: Podle typu
+        default: Výchozí
     profile:
       change_password: Změna hesla
       details: Podrobnosti na

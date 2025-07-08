@@ -4902,7 +4902,7 @@ CREATE TABLE public.proficiency_levels (
     id bigint NOT NULL,
     project_id bigint,
     proficiency_type integer NOT NULL,
-    skill_category integer,
+    skill_type integer,
     level integer NOT NULL,
     level_definition jsonb DEFAULT '[]'::jsonb NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
@@ -17407,6 +17407,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250704103208'),
 ('20250703094817'),
 ('20250703072154'),
 ('20250701114237'),

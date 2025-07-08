@@ -2679,9 +2679,9 @@ zh-Hant:
           level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
           must_be_unique: 必須獨一無二
           proficiency_level_exists: 已存在具有此技能和專案的 ProficiencyLevel
-          proficiency_level_exists_for_all_skills: 已存在所有技能的精通等級
-          proficiency_level_exists_for_category: 此類別的 ProficiencyLevel 已經存在
-          project_level_all_skills_exists: 已存在「all_skills」能力等級
+          proficiency_level_exists_for_default: 已退出預設的精通等級
+          proficiency_level_exists_for_type: 此類型的精通等級已經存在
+          project_level_default_exists: 預設」能力等級已經存在
           skill_must_exist: 技能必須存在於 proficiency_type 'by_skill' 中。
       export:
         actions:
@@ -2699,8 +2699,8 @@ zh-Hant:
         proficiency_translations: 能力翻譯
         proficiency_type: 能力類型
         skill: 技術
-        skill_category: 技能類別
         skill_name: 技能名稱
+        skill_type: 技能類型
         title: 能力
       global: 全球能力是嗎？
       import:
@@ -2708,12 +2708,12 @@ zh-Hant:
           proficiency: 進口能力
           translations: 進口能力翻譯
         errors:
-          all_skills_global_exists: 行 %{row_number}：全局層級 'all_skills' 的 ProficiencyLevel 已經存在
-          all_skills_project_exists: 行 %{row_number}：專案層級 'all_skills' 的 ProficiencyLevel 已經存在
-          by_category_exists: 行 %{row_number}：此專案和技能類別已存在 'by_category' ProficiencyLevel
-          by_category_missing: 行 %{row_number}：by_category' 類型必須有專案和技能類別
           by_skill_exists: 行 %{row_number}：此專案與技能已有 'by_skill' ProficiencyLevel。
           by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
+          by_type_exists: 行 %{row_number}：此專案和技能類型已有''by_type''ProficiencyLevel。
+          by_type_missing: 行 %{row_number}：by_type'' 類型的專案和技能類型必須存在
+          default_global_exists: 行 %{row_number}：全局層級的'「預設」'ProficiencyLevel已經存在
+          default_project_exists: 行 %{row_number}：專案層級的 '「預設」 ProficiencyLevel 已經存在
           invalid_csv_format: 無效的 CSV 格式：%{message}。
           invalid_proficiency_type: 行 %{row_number}：無效或遺失 ProficiencyType
           missing_columns: 缺少必填欄位：%{fields}。
@@ -2733,9 +2733,9 @@ zh-Hant:
             row_id_blank: 行 %{row}：ID 不能為空白
             save_failed: 處理技能 ID %{id} 出錯：%{message}
       type:
-        all_skills: 所有技能
-        by_category: 依類別
         by_skill: 按技術
+        by_type: 依類型
+        default: 預設
     profile:
       change_password: 變更密碼
       details: 詳細資訊

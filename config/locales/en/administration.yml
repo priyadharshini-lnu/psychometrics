@@ -2680,9 +2680,9 @@ en:
           level_definition_must_match_level: must contain exactly %{expected} levels, but %{actual} were given
           must_be_unique: Must be unique
           proficiency_level_exists: A Proficiency Level with this skill and project already exists
-          proficiency_level_exists_for_all_skills: A Proficiency Level for all skills already exits
-          proficiency_level_exists_for_category: A Proficiency Level for this category already exists
-          project_level_all_skills_exists: A 'all_skills' proficiency level already exists
+          proficiency_level_exists_for_default: A Proficiency Level for default already exits
+          proficiency_level_exists_for_type: A Proficiency Level for this type already exists
+          project_level_default_exists: A 'default' proficiency level already exists
           skill_must_exist: Skill must be present for proficiency_type 'by_skill'
       export:
         actions:
@@ -2700,8 +2700,8 @@ en:
         proficiency_translations: Proficiency Translations
         proficiency_type: Proficiency Type
         skill: Skill
-        skill_category: Skill Category
         skill_name: Skill name
+        skill_type: Skill Type
         title: Proficiency
       global: Is Global Proficiency?
       import:
@@ -2709,12 +2709,12 @@ en:
           proficiency: Import Proficiency
           translations: Import Proficiency Translations
         errors:
-          all_skills_global_exists: 'Row %{row_number}: A global-level ''all_skills'' ProficiencyLevel already exists'
-          all_skills_project_exists: 'Row %{row_number}: A project-level ''all_skills'' ProficiencyLevel already exists'
-          by_category_exists: 'Row %{row_number}: A ''by_category'' ProficiencyLevel already exists for this project and skill category'
-          by_category_missing: 'Row %{row_number}: Project and Skill Category must be present for ''by_category'' type'
           by_skill_exists: 'Row %{row_number}: A ''by_skill'' ProficiencyLevel already exists for this project and skill'
           by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
+          by_type_exists: 'Row %{row_number}: A ''''by_type'''' ProficiencyLevel already exists for this project and skill type'
+          by_type_missing: 'Row %{row_number}: Project and Skill Type must be present for ''''by_type'''' type'
+          default_global_exists: 'Row %{row_number}: A global-level ''default'' ProficiencyLevel already exists'
+          default_project_exists: 'Row %{row_number}: A project-level ''default'' ProficiencyLevel already exists'
           invalid_csv_format: 'Invalid CSV format: %{message}'
           invalid_proficiency_type: 'Row %{row_number}: Invalid or missing ProficiencyType'
           missing_columns: 'Missing required columns: %{fields}'
@@ -2734,9 +2734,9 @@ en:
             row_id_blank: 'Row %{row}: ID cannot be blank'
             save_failed: 'Error processing Skill ID %{id}: %{message}'
       type:
-        all_skills: All Skills
-        by_category: By Category
         by_skill: By Skill
+        by_type: By Type
+        default: Default
     profile:
       change_password: Change password
       details: Details

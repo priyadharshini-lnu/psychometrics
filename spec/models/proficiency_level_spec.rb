@@ -12,16 +12,16 @@ RSpec.describe ProficiencyLevel, type: :model do
 
       let!(:proficiency_level1) do
         create(:proficiency_level,
-               proficiency_type: 'all_skills',
-               skill_category: 'technical',
+               proficiency_type: 'default',
+               skill_type: 'technical',
                skill: skill1,
                project: project)
       end
 
       let!(:proficiency_level2) do
         create(:proficiency_level,
-               proficiency_type: 'by_category',
-               skill_category: 'technical',
+               proficiency_type: 'by_type',
+               skill_type: 'technical',
                skill: skill2,
                project: project)
       end
@@ -29,18 +29,18 @@ RSpec.describe ProficiencyLevel, type: :model do
       let!(:proficiency_level3) do
         create(:proficiency_level,
                proficiency_type: 'by_skill',
-               skill_category: 'behavioral',
+               skill_type: 'behavioral',
                skill: skill3,
                project: project)
       end
 
       it 'filters by proficiency_type' do
-        result = described_class.filterable_fields('all_skills')
+        result = described_class.filterable_fields('default')
         expect(result).to include(proficiency_level1)
         expect(result).not_to include(proficiency_level2, proficiency_level3)
       end
 
-      it 'filters by skill_category' do
+      it 'filters by skill_type' do
         result = described_class.filterable_fields('technical')
         expect(result).to include(proficiency_level1, proficiency_level2)
         expect(result).not_to include(proficiency_level3)

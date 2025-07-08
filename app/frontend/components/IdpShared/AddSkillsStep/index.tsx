@@ -8,7 +8,7 @@ import _ from 'lodash'
 import { useLocation } from 'react-router-dom'
 import { SelectedSkillsCard } from '~/components/IdpShared/AddSkillsStep/SelectedSkillsCard'
 import { ButtonWithArrow, BoxWithShadow, MediaQueryContext } from '~/glint'
-import { CategoryWithSkillsSummary, UserIdpSkill } from '../DevelopmentActions'
+import { TypeWithSkillsSummary, UserIdpSkill } from '../DevelopmentActions'
 import { SkillsGroupCard } from '~/components/IdpShared/SkillGroupCard'
 
 
@@ -22,7 +22,7 @@ type AddSkillsStepProps = {
   onFinishAddSkill: () => void
   addSkillButtonText: string
   selectedSkills: UserIdpSkill[]
-  skillCategories: CategoryWithSkillsSummary[]
+  skillTypes: TypeWithSkillsSummary[]
   onDeselectSkill: (id: number) => void
   onAddSkill: (skills: { id: number; name: string }[]) => void
   isSubmitting?: boolean
@@ -35,7 +35,7 @@ const { I18n } = window
 
 export const AddSkillsStep: FC<AddSkillsStepProps> = ({
   onFinishAddSkill, addSkillButtonText,
-  skillCategories, selectedSkills, onDeselectSkill, onAddSkill,
+  skillTypes, selectedSkills, onDeselectSkill, onAddSkill,
   isSubmitting = false, searchSkillResource,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
@@ -59,14 +59,14 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
         <Col xs={{ span: 24 }} sm={{ span: 18 }}>
           <Space size={24} className="w-100" direction="vertical">
             {
-            skillCategories.map((skillCategory) => {
-              const skillsAvailableForSelection = skillCategory.skills.filter(
+            skillTypes.map((skillType) => {
+              const skillsAvailableForSelection = skillType.skills.filter(
                 skill => !selectedSkillsNames.includes(skill.name),
               )
               return (
                 <SkillsGroupCard
-                  key={skillCategory.skillType}
-                  skillCategory={{ skillType: skillCategory.skillType, skills: skillsAvailableForSelection }}
+                  key={skillType.skillType}
+                  skillType={{ skillType: skillType.skillType, skills: skillsAvailableForSelection }}
                   onAddSkill={onAddSkill}
                   onRemoveSkill={onDeselectSkill}
                   selectedSkills={selectedSkills}

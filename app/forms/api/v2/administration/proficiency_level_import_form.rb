@@ -9,7 +9,7 @@ module Api
         include ActiveModel::Model
 
         REQUIRED_FIELDS = %w[ProficiencyType TotalLevels].freeze
-        OPTIONAL_FIELDS = %w[SkillName SkillCategory].freeze
+        OPTIONAL_FIELDS = %w[SkillName SkillType].freeze
         ALL_FIELDS = REQUIRED_FIELDS + OPTIONAL_FIELDS
 
         attr_accessor :file, :ignore_duplicates, :project_id
@@ -81,10 +81,10 @@ module Api
           case proficiency_type
             when 'by_skill'
               validate_by_skill_row(row, row_number)
-            when 'by_category'
-              validate_by_category_row(row, row_number)
-            when 'all_skills'
-              validate_all_skills_row(row, row_number)
+            when 'by_type'
+              validate_by_type_row(row, row_number)
+            when 'default'
+              validate_default_row(row, row_number)
             else
               errors.add(:base,
                          I18n.t('administration.proficiency_levels.import.errors.invalid_proficiency_type',
@@ -121,34 +121,34 @@ module Api
           end
         end
 
-        def validate_by_category_row(row, row_number)
-          skill_category = row['SkillCategory'].to_s.strip.presence
+        def validate_by_type_row(row, row_number)
+          skill_type = row['SkillType'].to_s.strip.presence
 
-          if skill_category.blank?
+          if skill_type.blank?
             errors.add(:base,
-                       I18n.t('administration.proficiency_levels.import.errors.by_category_missing',
+                       I18n.t('administration.proficiency_levels.import.errors.by_type_missing',
                               row_number: row_number))
-          elsif ::ProficiencyLevel.exists?(proficiency_type: 'by_category',
+          elsif ::ProficiencyLevel.exists?(proficiency_type: 'by_type',
                                            project_id: project_id,
-                                           skill_category: skill_category)
+                                           skill_type: skill_type)
             errors.add(:base,
-                       I18n.t('administration.proficiency_levels.import.errors.by_category_exists',
+                       I18n.t('administration.proficiency_levels.import.errors.by_type_exists',
                               row_number: row_number))
           end
         end
 
-        def validate_all_skills_row(_row, row_number)
+        def validate_default_row(_row, row_number)
           if project_id.nil?
-            # Check for existing global all_skills proficiency
-            if ::ProficiencyLevel.exists?(proficiency_type: 'all_skills', project_id: nil)
+            # Check for existing global default proficiency
+            if ::ProficiencyLevel.exists?(proficiency_type: 'default', project_id: nil)
               errors.add(:base,
-                         I18n.t('administration.proficiency_levels.import.errors.all_skills_global_exists',
+                         I18n.t('administration.proficiency_levels.import.errors.default_global_exists',
                                 row_number: row_number))
             end
-          elsif ::ProficiencyLevel.exists?(proficiency_type: 'all_skills', project_id: project_id)
-            # Check for project-specific all_skills proficiency
+          elsif ::ProficiencyLevel.exists?(proficiency_type: 'default', project_id: project_id)
+            # Check for project-specific default proficiency
             errors.add(:base,
-                       I18n.t('administration.proficiency_levels.import.errors.all_skills_project_exists',
+                       I18n.t('administration.proficiency_levels.import.errors.default_project_exists',
                               row_number: row_number))
           end
         end

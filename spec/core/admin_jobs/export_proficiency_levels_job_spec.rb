@@ -10,7 +10,7 @@ RSpec.describe AdminJobs::ExportProficiencyLevelsJob, type: :job do
            project_id: project.id,
            skill: skill,
            proficiency_type: 'by_skill',
-           skill_category: 'technical',
+           skill_type: 'technical',
            level: 3,
            level_definition: [
              {
@@ -37,7 +37,7 @@ RSpec.describe AdminJobs::ExportProficiencyLevelsJob, type: :job do
   describe '#headers' do
     it 'returns correct headers with repeated level columns' do
       expected_headers = %w[
-        ID Project ProficiencyType SkillCategory SkillName TotalLevels
+        ID Project ProficiencyType SkillType SkillName TotalLevels
         Level1 Name1 Description1
         Level2 Name2 Description2
         Level3 Name3 Description3
@@ -53,7 +53,7 @@ RSpec.describe AdminJobs::ExportProficiencyLevelsJob, type: :job do
 
       it 'returns only base headers' do
         expected_headers = %w[
-          ID Project ProficiencyType SkillCategory SkillName TotalLevels
+          ID Project ProficiencyType SkillType SkillName TotalLevels
         ]
 
         expect(job.headers).to eq(expected_headers)
@@ -84,7 +84,7 @@ RSpec.describe AdminJobs::ExportProficiencyLevelsJob, type: :job do
                project: project,
                skill: skill,
                proficiency_type: 'by_skill',
-               skill_category: 'technical',
+               skill_type: 'technical',
                level: 3,
                level_definition: [
                  { 'level' => '1', 'name' => 'Beginner', 'description' => 'Basic knowledge' },

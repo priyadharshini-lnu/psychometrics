@@ -2679,9 +2679,9 @@ pt:
           level_definition_must_match_level: deve conter exatamente os níveis %{expected}, mas foram dados %{actual}
           must_be_unique: Deve ser único
           proficiency_level_exists: Já existe um ProficiencyLevel com esta competência e projeto
-          proficiency_level_exists_for_all_skills: Já existe um nível de proficiência para todas as competências
-          proficiency_level_exists_for_category: Já existe um ProficiencyLevel para esta categoria
-          project_level_all_skills_exists: Já existe um nível de proficiência 'all_skills'
+          proficiency_level_exists_for_default: Já existe um nível de proficiência por defeito
+          proficiency_level_exists_for_type: Já existe um Nível de Proficiência para este tipo
+          project_level_default_exists: Já existe um nível de proficiência "por defeito
           skill_must_exist: A competência deve estar presente para o tipo de competência "por competência
       export:
         actions:
@@ -2699,8 +2699,8 @@ pt:
         proficiency_translations: Traduções de Proficiência
         proficiency_type: Tipo de proficiência
         skill: Habilidade
-        skill_category: Categoria de competências
         skill_name: Nome da habilidade
+        skill_type: Tipo de habilidade
         title: Proficiência
       global: A proficiência global é?
       import:
@@ -2708,12 +2708,12 @@ pt:
           proficiency: Proficiência em importação
           translations: Traduções de Proficiência em Importação
         errors:
-          all_skills_global_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''all_skills'' de nível global'
-          all_skills_project_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''all_skills'' ao nível do projeto'
-          by_category_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''by_category'' para este projeto e categoria de competências'
-          by_category_missing: 'Linha %{row_number}: O projeto e a categoria de competência têm de estar presentes para o tipo ''by_category'
           by_skill_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''by_skill'' para este projeto e competência'
           by_skill_missing: 'Linha %{row_number}: O projeto e a competência têm de estar presentes para o tipo ''by_skill'
+          by_type_exists: 'Linha %{número_da_linha}: Já existe um ProficiencyLevel ''''by_type'''' para este projeto e tipo de competência'
+          by_type_missing: 'Linha %{número_da_linha}: O projeto e o tipo de competência têm de estar presentes para o tipo ''''by_type'''''
+          default_global_exists: 'Linha %{número_da_linha}: Já existe um ProficiencyLevel ''''predefinido'''' a nível global'
+          default_project_exists: 'Linha %{número_da_linha}: Já existe um ProficiencyLevel "predefinido" ao nível do projeto'
           invalid_csv_format: 'Formato CSV inválido: %{message}'
           invalid_proficiency_type: 'Linha %{row_number}: ProficiencyType inválido ou em falta'
           missing_columns: 'Colunas obrigatórias em falta: %{fields}'
@@ -2733,9 +2733,9 @@ pt:
             row_id_blank: 'Linha %{row}: O ID não pode estar em branco'
             save_failed: 'Erro ao processar o ID de competência %{id}: %{message}'
       type:
-        all_skills: Todas as competências
-        by_category: Por categoria
         by_skill: Por Habilidade
+        by_type: Por tipo
+        default: Predefinição
     profile:
       change_password: Alterar a palavra-passe
       details: Detalhes

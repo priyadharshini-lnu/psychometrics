@@ -2679,9 +2679,9 @@ ar:
           level_definition_must_match_level: يجب أن يحتوي على %{expected} بالضبط، ولكن تم إعطاء %{actual}
           must_be_unique: يجب أن تكون فريدة من نوعها
           proficiency_level_exists: مستوى الكفاءة مع هذه المهارة والمشروع موجود بالفعل
-          proficiency_level_exists_for_all_skills: مستوى الكفاءة لجميع المهارات الموجودة بالفعل
-          proficiency_level_exists_for_category: مستوى الكفاءة لهذه الفئة موجود بالفعل
-          project_level_all_skills_exists: مستوى كفاءة "جميع_المهارات" موجود بالفعل
+          proficiency_level_exists_for_default: خروج مستوى الكفاءة للتقصير بالفعل
+          proficiency_level_exists_for_type: مستوى الكفاءة لهذا النوع موجود بالفعل
+          project_level_default_exists: مستوى الكفاءة "الافتراضي" موجود بالفعل
           skill_must_exist: يجب أن تكون المهارة موجودة لنوع الكفاءة 'حسب_المهارة'
       export:
         actions:
@@ -2699,8 +2699,8 @@ ar:
         proficiency_translations: ترجمات الكفاءة
         proficiency_type: نوع الكفاءة
         skill: المهارة
-        skill_category: فئة المهارة
         skill_name: اسم المهارة
+        skill_type: نوع المهارة
         title: الكفاءة
       global: هل الكفاءة العالمية؟
       import:
@@ -2708,12 +2708,12 @@ ar:
           proficiency: كفاءة الاستيراد
           translations: استيراد ترجمات الكفاءة في الترجمة
         errors:
-          all_skills_global_exists: 'الصف %{row_number}: مستوى الكفاءة "كل_المهارات" على المستوى العام موجود بالفعل'
-          all_skills_project_exists: 'الصف %{row_number}: مستوى كفاءة "جميع_المهارات" على مستوى المشروع موجود بالفعل'
-          by_category_exists: 'الصف %{row_number}: مستوى الكفاءة "حسب_الفئة" موجود بالفعل لهذا المشروع وفئة المهارة'
-          by_category_missing: 'الصف %{row_number}: يجب أن يكون المشروع وفئة المهارة موجودين لنوع "حسب_الفئة'
           by_skill_exists: 'الصف %{row_number}: مستوى الكفاءة ''حسب_المهارة'' موجود بالفعل لهذا المشروع والمهارة'
           by_skill_missing: 'الصف %{row_number}: يجب أن يكون المشروع والمهارة موجودين لنوع "حسب_المهارة'
+          by_type_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "حسب_النوع" موجود بالفعل لهذا المشروع ونوع المهارة'
+          by_type_missing: 'الصف %{صف_رقم}: يجب أن يكون نوع المشروع ونوع المهارة موجودين لنوع "حسب_النوع'
+          default_global_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "الافتراضي" على المستوى العام موجود بالفعل'
+          default_project_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل'
           invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
           invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
           missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
@@ -2733,9 +2733,9 @@ ar:
             row_id_blank: 'الصف %{row}: لا يمكن أن يكون المعرف فارغاً'
             save_failed: 'خطأ في معالجة معرّف المهارة %{id}: %{message}'
       type:
-        all_skills: جميع المهارات
-        by_category: حسب الفئة
         by_skill: حسب المهارة
+        by_type: حسب النوع
+        default: افتراضي
     profile:
       change_password: Change password
       details: Details

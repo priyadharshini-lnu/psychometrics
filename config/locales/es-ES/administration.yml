@@ -2679,9 +2679,9 @@ es-ES:
           level_definition_must_match_level: debe contener exactamente %{expected} niveles, pero %{actual} se dieron
           must_be_unique: Debe ser único
           proficiency_level_exists: Ya existe un ProficiencyLevel con esta habilidad y proyecto
-          proficiency_level_exists_for_all_skills: Ya existe un nivel de competencia para todas las habilidades
-          proficiency_level_exists_for_category: Ya existe un ProficiencyLevel para esta categoría
-          project_level_all_skills_exists: Ya existe un nivel de competencia 'all_skills
+          proficiency_level_exists_for_default: Ya existe un nivel de competencia por defecto
+          proficiency_level_exists_for_type: Ya existe un nivel de competencia para este tipo.
+          project_level_default_exists: Ya existe un nivel de competencia "por defecto".
           skill_must_exist: La habilidad debe estar presente para el proficiency_type 'by_skill'
       export:
         actions:
@@ -2699,8 +2699,8 @@ es-ES:
         proficiency_translations: Traducciones especializadas
         proficiency_type: Tipo de competencia
         skill: Habilidad
-        skill_category: Categoría de competencias
         skill_name: Nombre de la habilidad
+        skill_type: Tipo de habilidad
         title: Dominio
       global: "¿Es la competencia global?"
       import:
@@ -2708,12 +2708,12 @@ es-ES:
           proficiency: Capacidad de importación
           translations: Importar Traducciones Proficiency
         errors:
-          all_skills_global_exists: 'Fila %{row_number}: Ya existe un ProficiencyLevel de nivel global ''all_skills'
-          all_skills_project_exists: 'Fila %{row_number}: Ya existe un ProficiencyLevel ''all_skills'' a nivel de proyecto.'
-          by_category_exists: 'Fila %{row_number}: Ya existe un ProficiencyLevel ''by_category'' para este proyecto y categoría de habilidad.'
-          by_category_missing: 'Fila %{row_number}: Project y Skill Category deben estar presentes para el tipo ''by_category'
           by_skill_exists: 'Fila %{row_number}: Ya existe un ProficiencyLevel ''by_skill'' para este proyecto y habilidad.'
           by_skill_missing: 'Fila %{row_number}: Project y Skill deben estar presentes para el tipo ''by_skill'
+          by_type_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel ''''by_type'''' para este proyecto y tipo de habilidad'
+          by_type_missing: 'Fila %{número_de_fila}: Project y Skill Type deben estar presentes para el tipo ''''by_type'
+          default_global_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel ''''predeterminado'''' de nivel global.'
+          default_project_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel ''''por defecto'''' a nivel de proyecto.'
           invalid_csv_format: 'Formato CSV no válido: %{message}'
           invalid_proficiency_type: 'Fila %{row_number}: ProficiencyType inválido o faltante'
           missing_columns: 'Faltan columnas obligatorias: %{fields}'
@@ -2733,9 +2733,9 @@ es-ES:
             row_id_blank: 'Fila %{row}: ID no puede estar en blanco'
             save_failed: 'Error al procesar Skill ID %{id}: %{message}'
       type:
-        all_skills: Todas las competencias
-        by_category: Por categoría
         by_skill: Por habilidad
+        by_type: Por tipo
+        default: Por defecto
     profile:
       change_password: Cambiar contraseña
       details: Detalles

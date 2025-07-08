@@ -1,5 +1,5 @@
 export enum ProficiencyTypesEnum {
-  'All Skill' = 'all_skills',
-  'By Category' = 'by_category',
+  'Default' = 'default',
+  'By Type' = 'by_type',
   'By Skill' = 'by_skill',
 }

@@ -2679,9 +2679,9 @@ ko:
           level_definition_must_match_level: 정확히 %{expected} 레벨을 포함해야 하지만 %{actual} 레벨이 제공되었습니다.
           must_be_unique: 고유해야 합니다.
           proficiency_level_exists: 이 스킬과 프로젝트의 숙련도 레벨이 이미 존재합니다.
-          proficiency_level_exists_for_all_skills: 모든 스킬의 숙련도 레벨이 이미 종료되었습니다.
-          proficiency_level_exists_for_category: 이 카테고리에 대한 숙련도 레벨이 이미 존재합니다.
-          project_level_all_skills_exists: "'모든_스킬' 숙련도 수준이 이미 존재합니다."
+          proficiency_level_exists_for_default: 기본 숙련도 레벨은 이미 종료되었습니다.
+          proficiency_level_exists_for_type: 이 유형에 대한 숙련도 레벨이 이미 존재합니다.
+          project_level_default_exists: "'기본' 숙련도 레벨이 이미 존재합니다."
           skill_must_exist: 숙련도_유형 'by_skill'에는 스킬이 있어야 합니다.
       export:
         actions:
@@ -2699,8 +2699,8 @@ ko:
         proficiency_translations: 숙련도 번역
         proficiency_type: 숙련도 유형
         skill: 스킬
-        skill_category: 기술 카테고리
         skill_name: 기술 이름
+        skill_type: 스킬 유형
         title: 숙련도
       global: 글로벌 숙련도란?
       import:
@@ -2708,12 +2708,12 @@ ko:
           proficiency: 가져오기 숙련도
           translations: 숙련도 번역 가져오기
         errors:
-          all_skills_global_exists: '행 %{row_number}: 글로벌 수준의 ''모든_스킬'' 숙련도 레벨이 이미 존재합니다.'
-          all_skills_project_exists: '행 %{row_number}: 프로젝트 수준의 ''모든_스킬'' 숙련도 수준이 이미 존재합니다.'
-          by_category_exists: '행 %{row_number}: 이 프로젝트 및 스킬 카테고리에 대한 ''by_category'' 숙련도 레벨이 이미 존재합니다.'
-          by_category_missing: '행 %{row_number}: ''by_category'' 유형에는 프로젝트 및 스킬 카테고리가 있어야 합니다.'
           by_skill_exists: '행 %{row_number}: 이 프로젝트 및 스킬에 대해 ''by_skill'' 숙련도 레벨이 이미 존재합니다.'
           by_skill_missing: '행 %{row_number}: ''by_skill'' 유형에 대해 프로젝트와 스킬이 있어야 합니다.'
+          by_type_exists: '행 %{행_번호}: 이 프로젝트 및 스킬 유형에 대한 ''''by_type'''' 숙련도 수준이 이미 존재합니다.'
+          by_type_missing: '행 %{행_번호}: ''''by_type'''' 유형에는 프로젝트 및 스킬 유형이 있어야 합니다.'
+          default_global_exists: '행 %{행_번호}: 글로벌 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
+          default_project_exists: '행 %{행_번호}: 프로젝트 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
           invalid_csv_format: '잘못된 CSV 형식: %{message}'
           invalid_proficiency_type: '행 %{row_number}: 잘못되었거나 누락된 숙련도 유형입니다.'
           missing_columns: '누락된 필수 열: %{fields}'
@@ -2733,9 +2733,9 @@ ko:
             row_id_blank: '행 %{row}: ID는 비워 둘 수 없습니다.'
             save_failed: '오류 처리 스킬 ID %{id}: %{message}'
       type:
-        all_skills: 모든 기술
-        by_category: 카테고리별
         by_skill: 기술별
+        by_type: 유형별
+        default: 기본값
     profile:
       change_password: 비밀번호 변경
       details: 세부 정보

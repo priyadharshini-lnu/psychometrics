@@ -14,7 +14,7 @@ module AdminJobs
     end
 
     def headers
-      base_headers = %w[ID Project ProficiencyType SkillCategory SkillName TotalLevels]
+      base_headers = %w[ID Project ProficiencyType SkillType SkillName TotalLevels]
       max_levels = ProficiencyLevel.where(project_id: project&.id).maximum(:level) || 0
       level_headers = if max_levels.positive?
                         Array.new(max_levels) do |i|
@@ -35,7 +35,7 @@ module AdminJobs
         record.id,
         record.project_id,
         record.proficiency_type,
-        record.skill_category,
+        record.skill_type,
         record.skill&.name,
         record.level
       ]

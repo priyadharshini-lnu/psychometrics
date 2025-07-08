@@ -384,10 +384,10 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
             ) : null
           }
           {
-            (form.getFieldValue('proficiencyType') === 'by_category') ? (
+            (form.getFieldValue('proficiencyType') === 'by_type') ? (
               <Form.Item
-                name="skillCategory"
-                label={I18n.t('administration.proficiency_levels.fields.skill_category')}
+                name="skillType"
+                label={I18n.t('administration.proficiency_levels.fields.skill_type')}
                 rules={[{ required: true }]}
               >
                 <Select

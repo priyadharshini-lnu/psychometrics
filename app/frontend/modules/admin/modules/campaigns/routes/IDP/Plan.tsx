@@ -307,7 +307,7 @@ export const Plan = () => {
     </Flex>
   )
 
-  const skillCategories = _.map(_.groupBy(allSkills, 'skillType'), (skills, skillType) => ({
+  const skillTypes = _.map(_.groupBy(allSkills, 'skillType'), (skills, skillType) => ({
     skillType,
     skills,
   }))
@@ -322,7 +322,7 @@ export const Plan = () => {
       />
       <AddSkillsStep
         addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
-        skillCategories={skillCategories}
+        skillTypes={skillTypes}
         onFinishAddSkill={handleFinishAddSkill}
         selectedSkills={selectedSkills}
         onDeselectSkill={handleDeselectSkill}

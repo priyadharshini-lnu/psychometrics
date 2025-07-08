@@ -48,7 +48,7 @@ module Administration
 
       proficiency_level.assign_attributes(
         proficiency_type: row['ProficiencyType'],
-        skill_category: row['SkillCategory'].presence,
+        skill_type: row['SkillType'].presence,
         level: row['TotalLevels'],
         level_definition: level_definitions
       )

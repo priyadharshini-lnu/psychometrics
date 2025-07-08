@@ -2679,9 +2679,9 @@ nl:
           level_definition_must_match_level: moet precies %{expected} niveaus bevatten, maar %{actual} werden gegeven
           must_be_unique: Moet uniek zijn
           proficiency_level_exists: Er bestaat al een ProficiencyLevel met deze vaardigheid en dit project
-          proficiency_level_exists_for_all_skills: Er bestaat al een vaardigheidsniveau voor alle vaardigheden
-          proficiency_level_exists_for_category: Er bestaat al een ProficiencyLevel voor deze categorie
-          project_level_all_skills_exists: Er bestaat al een vaardigheidsniveau 'all_skills
+          proficiency_level_exists_for_default: Er is al een vaardigheidsniveau voor standaardinstellingen
+          proficiency_level_exists_for_type: Er bestaat al een vaardigheidsniveau voor dit type
+          project_level_default_exists: Er bestaat al een 'standaard' vaardigheidsniveau
           skill_must_exist: Vaardigheid moet aanwezig zijn voor vaardigheidstype 'by_skill'.
       export:
         actions:
@@ -2699,8 +2699,8 @@ nl:
         proficiency_translations: Bekwaamheid Vertalingen
         proficiency_type: Type bekwaamheid
         skill: Vaardigheid
-        skill_category: Vaardigheidscategorie
         skill_name: Naam vaardigheid
+        skill_type: Type vaardigheid
         title: Bekwaamheid
       global: Is mondiale vaardigheid?
       import:
@@ -2708,12 +2708,12 @@ nl:
           proficiency: Importvaardigheden
           translations: Vertalingen importeren
         errors:
-          all_skills_global_exists: 'Rij %{row_number}: Er bestaat al een ProficiencyLevel op globaal niveau ''all_skills'
-          all_skills_project_exists: 'Rij %{row_number}: Er bestaat al een ProficiencyLevel op projectniveau ''all_skills'
-          by_category_exists: 'Rij %{row_number}: Er bestaat al een ''by_category'' ProficiencyLevel voor dit project en deze vaardigheidscategorie'
-          by_category_missing: 'Rij %{row_number}: Project en vaardigheidscategorie moeten aanwezig zijn voor ''by_category''-type'
           by_skill_exists: 'Rij %{row_number}: Er bestaat al een ''by_skill'' ProficiencyLevel voor dit project en deze vaardigheid'
           by_skill_missing: 'Rij %{row_number}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
+          by_type_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''by_type'''' ProficiencyLevel voor dit project en vaardigheidstype'
+          by_type_missing: 'Rij %{rij_nummer}: Project en Skill Type moeten aanwezig zijn voor ''''by_type'''' type'
+          default_global_exists: 'Rij %{rij_nummer}: Er bestaat al een globaal niveau ''''standaard'''' ProficiencyLevel'
+          default_project_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''standaard'''' ProficiencyLevel op projectniveau'
           invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
           invalid_proficiency_type: 'Rij %{row_number}: Ongeldig of ontbrekend ProficiencyType'
           missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
@@ -2733,9 +2733,9 @@ nl:
             row_id_blank: 'Rij %{row}: ID kan niet leeg zijn'
             save_failed: 'Fout bij het verwerken van vaardigheid-ID %{id}: %{message}'
       type:
-        all_skills: Alle vaardigheden
-        by_category: Per categorie
         by_skill: Door Behendigheid
+        by_type: Op Type
+        default: Standaard
     profile:
       change_password: Wachtwoord wijzigen
       details: Details
