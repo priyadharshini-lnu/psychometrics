@@ -135,10 +135,16 @@ const SkillRater = ({ model, updateBlockProps }) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { required_validation, not_applicable, ...skillsConfig } = allFormFields
 
+    const notApplicableData = {
+      ...not_applicable,
+      label: not_applicable.label
+        || I18n.t('administration.survey_builder.builder_area.default_not_applicable_label'),
+    }
+
     updateBlockProps(model, {
       skills_config: skillsConfig,
       required_validation,
-      not_applicable,
+      not_applicable: notApplicableData,
     })
   }
 
