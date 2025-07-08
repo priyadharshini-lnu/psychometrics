@@ -1386,6 +1386,7 @@ ja:
       assessor_form: アセッサフォーム
       auto_assign: オートアサイン
       dimension_id: 寸法ID
+      external_user_id: スキルビュー候補者ID
       id: キャンペーン・アセスメントID
       locales: ロケール
       norm: ノーム

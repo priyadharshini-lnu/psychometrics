@@ -4209,6 +4209,3 @@ pt:
       errors:
         update_assessor_for_failure: Os detalhes da reunião não podem ser adicionados porque não existe uma atividade temática associada.
     years: Anos
-  campaign_assessment:
-    column:
-      external_user_id: Skillvue ID do candidato

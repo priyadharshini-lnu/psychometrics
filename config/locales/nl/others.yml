@@ -1373,6 +1373,7 @@ nl:
       assessor_form: Beoordelaarsformulier
       auto_assign: Automatisch toewijzen
       dimension_id: Afmeting ID
+      external_user_id: Skillvue Kandidaat-ID
       id: Campagne Beoordeling ID
       locales: Locaties
       norm: Norm

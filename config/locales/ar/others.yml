@@ -351,6 +351,7 @@ ar:
     assessment_center_heading: تفاصيل مركز التقييم
     assessments_heading: مهامك
     column:
+      external_user_id: هوية المرشح سكيلفيو
       skillvue_email_id: معرف البريد الإلكتروني للمرشح سكيلفيو
       skillvue_external_assessment_id: معرّف تقييم سكيلفيو
     modals:

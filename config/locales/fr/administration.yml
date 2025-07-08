@@ -4209,6 +4209,3 @@ fr:
       errors:
         update_assessor_for_failure: Les détails de la réunion ne peuvent pas être ajoutés car il n'y a pas d'activité liée au sujet.
     years: Années
-  campaign_assessment:
-    column:
-      external_user_id: Skillvue Candidat ID

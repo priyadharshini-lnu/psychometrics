@@ -1374,6 +1374,7 @@ fr:
       assessor_form: Formulaire de l'évaluateur
       auto_assign: Attribution automatique
       dimension_id: Dimension ID
+      external_user_id: Skillvue Candidat ID
       id: ID d'évaluation de la campagne
       locales: Localités
       norm: Norme

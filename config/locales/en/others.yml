@@ -1404,6 +1404,7 @@ en:
       assessor_form: Assessor Form
       auto_assign: Auto Assign
       dimension_id: Dimension ID
+      external_user_id: Skillvue Candidate ID
       id: Campaign Assessment ID
       locales: Locales
       norm: Norm

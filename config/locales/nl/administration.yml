@@ -4209,6 +4209,3 @@ nl:
       errors:
         update_assessor_for_failure: Vergadergegevens kunnen niet worden toegevoegd omdat er geen gekoppelde onderwerpactiviteit is.
     years: Jaren
-  campaign_assessment:
-    column:
-      external_user_id: Skillvue Kandidaat-ID

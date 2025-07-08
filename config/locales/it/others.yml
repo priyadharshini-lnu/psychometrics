@@ -1374,6 +1374,7 @@ it:
       assessor_form: Modulo per il valutatore
       auto_assign: Assegnazione automatica
       dimension_id: Dimensione ID
+      external_user_id: ID candidato Skillvue
       id: ID di valutazione della campagna
       locales: Località
       norm: Norma

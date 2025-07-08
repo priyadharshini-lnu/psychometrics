@@ -1373,6 +1373,7 @@ ko:
       assessor_form: 평가자 양식
       auto_assign: 자동 할당
       dimension_id: 차원 ID
+      external_user_id: 스킬뷰 응시자 ID
       id: 캠페인 평가 ID
       locales: 로캘
       norm: 표준

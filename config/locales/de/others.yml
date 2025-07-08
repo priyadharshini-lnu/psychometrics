@@ -1397,6 +1397,7 @@ de:
       assessor_form: Beisitzer-Formular
       auto_assign: Automatisch zuweisen
       dimension_id: Dimension ID
+      external_user_id: Skillvue-Kandidaten-ID
       id: ID der Kampagnenbewertung
       locales: Lokalitäten
       norm: Norm

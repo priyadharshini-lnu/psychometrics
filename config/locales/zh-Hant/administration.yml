@@ -4209,6 +4209,3 @@ zh-Hant:
       errors:
         update_assessor_for_failure: 由於沒有連結的主題活動，因此無法新增會議詳細資訊。
     years: 年數
-  campaign_assessment:
-    column:
-      external_user_id: Skillvue 候選人 ID
