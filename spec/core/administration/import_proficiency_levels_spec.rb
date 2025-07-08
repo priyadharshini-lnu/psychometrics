@@ -62,7 +62,7 @@ RSpec.describe Administration::ImportProficiencyLevels do
         [
           ['ProficiencyType', 'SkillCategory', 'SkillName', 'TotalLevels', 'Level1', 'Name1',
            'Description1', 'Level2', 'Name2', 'Description2', 'Level3', 'Name3', 'Description3'],
-          ['all_skills', '', '', 3, 1, 'Basic', 'Basic level description', 2, 'Intermediate',
+          ['default', '', '', 3, 1, 'Basic', 'Basic level description', 2, 'Intermediate',
            'Intermediate level description', 3, 'Advanced', 'Advanced level description']
         ]
       end
@@ -77,7 +77,7 @@ RSpec.describe Administration::ImportProficiencyLevels do
 
         expect(proficiency_level).to have_attributes(
           project_id: project.id,
-          proficiency_type: 'all_skills',
+          proficiency_type: 'default',
           level: 3
         )
 

@@ -2734,7 +2734,7 @@ pt:
             save_failed: 'Erro ao processar o ID de competência %{id}: %{message}'
       type:
         by_skill: Por Habilidade
-        by_type: Por tipo
+        by_type: Por tipo de habilidade
         default: Predefinição
     profile:
       change_password: Alterar a palavra-passe

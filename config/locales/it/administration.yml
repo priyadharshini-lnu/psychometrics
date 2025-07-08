@@ -2734,7 +2734,7 @@ it:
             save_failed: 'Errore nell''elaborazione dello Skill ID %{id}: %{message}'
       type:
         by_skill: Da Skill
-        by_type: Per tipo
+        by_type: Per tipo di abilità
         default: Predefinito
     profile:
       change_password: Modifica della password

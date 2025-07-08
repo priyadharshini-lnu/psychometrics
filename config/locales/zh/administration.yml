@@ -2734,7 +2734,7 @@ zh:
             save_failed: 技能 ID %{id} 处理错误：%{message｝
       type:
         by_skill: 通过技能
-        by_type: 按类型
+        by_type: 按技能类型
         default: 默认值
     profile:
       change_password: 更改密码

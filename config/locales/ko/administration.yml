@@ -2734,7 +2734,7 @@ ko:
             save_failed: '오류 처리 스킬 ID %{id}: %{message}'
       type:
         by_skill: 기술별
-        by_type: 유형별
+        by_type: 기술 유형별
         default: 기본값
     profile:
       change_password: 비밀번호 변경

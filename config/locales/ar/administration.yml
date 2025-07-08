@@ -2734,7 +2734,7 @@ ar:
             save_failed: 'خطأ في معالجة معرّف المهارة %{id}: %{message}'
       type:
         by_skill: حسب المهارة
-        by_type: حسب النوع
+        by_type: حسب نوع المهارة
         default: افتراضي
     profile:
       change_password: Change password

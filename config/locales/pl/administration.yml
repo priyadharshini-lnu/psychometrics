@@ -79,8 +79,8 @@ pl:
           level_definition_must_match_level: musi zawierać dokładnie %{oczekiwane} poziomy, ale %{rzeczywiste} zostały podane
           must_be_unique: Musi być unikalny
           proficiency_level_exists: Poziom biegłości z tą umiejętnością i projektem już istnieje
-          proficiency_level_exists_for_category: Poziom ProficiencyLevel dla tej kategorii już istnieje
-          project_level_all_skills_exists: Poziom biegłości "all_skills" już istnieje
+          proficiency_level_exists_for_type: Poziom biegłości dla tego typu już istnieje
+          project_level_default_exists: '"Domyślny" poziom biegłości już istnieje.'
           skill_must_exist: Umiejętność musi być obecna dla proficiency_type 'by_skill'
       export:
         details: Szczegóły
@@ -95,20 +95,20 @@ pl:
         proficiency_translations: Tłumaczenia Proficiency
         proficiency_type: Typ biegłości
         skill: Umiejętność
-        skill_category: Kategoria umiejętności
         skill_name: Nazwa umiejętności
+        skill_type: Typ umiejętności
         title: Biegłość
       import:
         actions:
           proficiency: Biegłość w imporcie
           translations: Tłumaczenia biegłości w imporcie
         errors:
-          all_skills_global_exists: 'Wiersz %{numer_wiersza}: Poziom biegłości "all_skills" na poziomie globalnym już istnieje.'
-          all_skills_project_exists: 'Wiersz %{numer_wiersza}: Poziom biegłości "all_skills" na poziomie projektu już istnieje.'
-          by_category_exists: 'Wiersz %{numer_wiersza}: Poziom biegłości "by_category" już istnieje dla tego projektu i kategorii umiejętności.'
-          by_category_missing: 'Wiersz %{numer_wiersza}: Projekt i kategoria umiejętności muszą być obecne dla typu "by_category".'
           by_skill_exists: 'Wiersz %{numer_wiersza}: Poziom biegłości "by_skill" już istnieje dla tego projektu i umiejętności.'
           by_skill_missing: 'Wiersz %{numer_wiersza}: Projekt i umiejętność muszą być obecne dla typu "by_skill".'
+          by_type_exists: 'Wiersz %{numer_wiersza}: A ''''''''by_type'''''''' ProficiencyLevel już istnieje dla tego projektu i typu umiejętności'
+          by_type_missing: 'Wiersz %{row_number}: Typ projektu i umiejętności musi być obecny dla typu ''''''''by_type'''''''''
+          default_global_exists: 'Wiersz %{numer_wiersza}: Istnieje już ''''domyślny'''' poziom biegłości na poziomie globalnym.'
+          default_project_exists: 'Wiersz %{numer_wiersza}: Istnieje już "domyślny" poziom biegłości na poziomie projektu.'
           invalid_csv_format: 'Nieprawidłowy format CSV: %{komunikat}'
           invalid_proficiency_type: 'Wiersz %{numer_wiersza}: Nieprawidłowy lub brakujący ProficiencyType'
           missing_columns: 'Brakujące wymagane kolumny: %{fields}'
@@ -127,9 +127,9 @@ pl:
             row_id_blank: 'Wiersz %{row}: ID nie może być puste'
             save_failed: 'Błąd przetwarzania identyfikatora umiejętności %{id}: %{komunikat}'
       type:
-        all_skills: Wszystkie umiejętności
-        by_category: Według kategorii
         by_skill: Umiejętności
+        by_type: Według rodzaju umiejętności
+        default: Domyślne
     projects:
       privacy_settings:
         mask_identity_for_skillvue: Dane maski dla Skillvue

@@ -2734,7 +2734,7 @@ de:
             save_failed: 'Fehler bei der Verarbeitung der Skill-ID %{id}: %{message}'
       type:
         by_skill: Durch Geschicklichkeit
-        by_type: Nach Typ
+        by_type: Nach Qualifikationsart
         default: Standard
     profile:
       change_password: Passwort ändern

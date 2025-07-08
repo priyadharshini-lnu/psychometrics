@@ -2734,7 +2734,7 @@ cs:
             save_failed: 'Chyba při zpracování ID dovednosti %{id}: %{message}'
       type:
         by_skill: Podle dovednosti
-        by_type: Podle typu
+        by_type: Podle typu dovednosti
         default: Výchozí
     profile:
       change_password: Změna hesla

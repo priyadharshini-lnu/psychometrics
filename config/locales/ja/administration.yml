@@ -2734,7 +2734,7 @@ ja:
             save_failed: スキル ID %{id} の処理エラーです：メッセージ
       type:
         by_skill: スキル別
-        by_type: タイプ別
+        by_type: スキルタイプ別
         default: デフォルト
     profile:
       change_password: パスワードの変更

@@ -2734,7 +2734,7 @@ es-ES:
             save_failed: 'Error al procesar Skill ID %{id}: %{message}'
       type:
         by_skill: Por habilidad
-        by_type: Por tipo
+        by_type: Por tipo de competencia
         default: Por defecto
     profile:
       change_password: Cambiar contraseña

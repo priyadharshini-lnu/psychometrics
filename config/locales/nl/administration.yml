@@ -2734,7 +2734,7 @@ nl:
             save_failed: 'Fout bij het verwerken van vaardigheid-ID %{id}: %{message}'
       type:
         by_skill: Door Behendigheid
-        by_type: Op Type
+        by_type: Op vaardigheidstype
         default: Standaard
     profile:
       change_password: Wachtwoord wijzigen

@@ -2734,7 +2734,7 @@ zh-Hant:
             save_failed: 處理技能 ID %{id} 出錯：%{message}
       type:
         by_skill: 按技術
-        by_type: 依類型
+        by_type: 依技能類型
         default: 預設
     profile:
       change_password: 變更密碼

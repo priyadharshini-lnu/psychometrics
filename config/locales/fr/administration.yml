@@ -2734,7 +2734,7 @@ fr:
             save_failed: 'Erreur de traitement de l''ID de compétence %{id} : %{message}'
       type:
         by_skill: Par compétence
-        by_type: Par type
+        by_type: Par type de compétence
         default: Défaut
     profile:
       change_password: Modifier le mot de passe

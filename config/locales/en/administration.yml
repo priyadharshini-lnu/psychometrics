@@ -2735,7 +2735,7 @@ en:
             save_failed: 'Error processing Skill ID %{id}: %{message}'
       type:
         by_skill: By Skill
-        by_type: By Type
+        by_type: By Skill Type
         default: Default
     profile:
       change_password: Change password
