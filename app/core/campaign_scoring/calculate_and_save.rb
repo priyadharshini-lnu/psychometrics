@@ -29,11 +29,12 @@ module CampaignScoring
         campaign_factor_value
       end
 
+      campaign_user_attrs = { campaign_scores_calculated_date: Time.current }
       if ::CampaignUsers::CanAutoFinalizeCampaignScores.call!(campaign, campaign_user, user)
-        campaign_user.update!(campaign_scores_finalized: true, campaign_scores_finalized_date: Time.current)
+        campaign_user_attrs[:campaign_scores_finalized] = true
+        campaign_user_attrs[:campaign_scores_finalized_date] = Time.current
       end
-
-      campaign_user.update!(campaign_scores_calculated_date: Time.current)
+      campaign_user.update!(campaign_user_attrs)
 
       broadcast :ok, campaign_factor_values, indexed_factor_values
     end
