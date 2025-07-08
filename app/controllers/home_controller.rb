@@ -4,6 +4,8 @@ class HomeController < ApplicationController
   skip_before_action :authenticate_user!, only: %I[identify upgrade privacy_statement]
   skip_before_action :set_client_by_subdomain, only: %i[privacy_statement]
 
+  AVAILABLE_POLICY_LANGS = %w[en fr de it es-ES bg hr cs hu pl ro sr-Cyrl sk sl vi nl pt].freeze
+
   def survey_instructions
     render layout: 'users_new'
   end
@@ -56,8 +58,7 @@ class HomeController < ApplicationController
 
   def privacy_statement
     locale = params[:lang]
-    locale = 'es-ES' if params[:lang] == 'es-es'
-    I18n.locale = %w[en fr de it es-ES].include?(locale) ? locale : I18n.default_locale
+    I18n.locale = AVAILABLE_POLICY_LANGS.include?(locale) ? locale : I18n.default_locale
     render html: nil, layout: 'policy'
   end
 

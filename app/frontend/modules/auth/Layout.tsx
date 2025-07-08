@@ -88,7 +88,7 @@ export const LayoutComponent = ({ config }) => {
                 <img src={footerLogo} className={styles.footerLogo} alt={I18n.t('auth.lighthouse_logo_alt_text')} />
                 <div dangerouslySetInnerHTML={{
                   __html: I18n.t('auth.terms_link',
-                    { terms_url: `/privacy-statement/${I18n.currentLocale()}` }),
+                    { terms_url: `/privacy-statement?lang=${I18n.currentLocale()}` }),
                 }}
                 />
               </Space>
