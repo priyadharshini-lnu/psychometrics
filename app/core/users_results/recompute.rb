@@ -17,6 +17,7 @@ module UsersResults
       recompute_pearson_assessment if user_assessment.pearson?
       recompute_mettl_assessment if user_assessment.mettl?
       recompute_simulation_assessment if user_assessment.simulation?
+      recompute_skillvue_assessment if user_assessment.skillvue?
 
       UserAssessments::SaveScores.call!(user_assessment)
 
@@ -39,6 +40,10 @@ module UsersResults
 
     def recompute_simulation_assessment
       Simulation::SaveScoresAndReport.call!(user_assessment)
+    end
+
+    def recompute_skillvue_assessment
+      Skillvue::SaveScoresAndReport.call!(user_assessment)
     end
   end
 end

@@ -2,15 +2,16 @@
 
 module Skillvue
   class SaveScoresAndReport < Base
-    private_attr_reader :user_assessment, :scores_and_report
+    private_attr_reader :user_assessment, :retry_count
 
-    def initialize(user_assessment, scores_and_report = nil)
+    def initialize(user_assessment, scores_and_report = nil, retry_count: 0)
       @user_assessment = user_assessment
       @scores_and_report = scores_and_report
+      @retry_count = retry_count
     end
 
     def call
-      return broadcast :ok if scores_and_report.blank?
+      return retry_save_scores if scores_and_report.blank?
 
       user_assessment.users_result.update(external_results: scores_and_report['payload'])
 
@@ -39,6 +40,16 @@ module Skillvue
 
     def generate_internal_reports
       ::UsersResults::GenerateReports.call(user_assessment.users_result, user_assessment.user)
+    end
+
+    def scores_and_report
+      @scores_and_report ||= Skillvue::GetScoresAndReport.call!(user_assessment)
+    end
+
+    def retry_save_scores
+      Skillvue::SaveScoresAndReportJob.
+        set(wait: (2**retry_count).minute).
+        perform_later(user_assessment, retry_count: retry_count + 1)
     end
   end
 end

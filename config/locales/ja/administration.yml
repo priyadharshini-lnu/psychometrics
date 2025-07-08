@@ -4173,3 +4173,6 @@ ja:
       errors:
         update_assessor_for_failure: リンクされた対象アクティビティがないため、ミーティングの詳細を追加することはできません。
     years: 年
+  campaign_assessment:
+    column:
+      external_user_id: スキルビュー候補者ID

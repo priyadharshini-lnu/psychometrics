@@ -52,12 +52,38 @@ RSpec.describe Skillvue::SaveScoresAndReport do
   end
 
   describe '#call' do
-    it 'broadcasts :ok if scores_and_report is blank' do
-      subject = described_class.new(user_assessment, {})
+    context 'when scores_and_report is blank' do
+      let(:retry_count) { 2 }
 
-      expect(subject).to receive(:broadcast).with(:ok)
+      it 'retries with exponential backoff' do
+        subject = described_class.new(user_assessment, nil, retry_count: retry_count)
 
-      subject.call
+        expect(Skillvue::SaveScoresAndReportJob).to receive(:set).with(wait: (2**retry_count).minute).and_return(
+          double(perform_later: true)
+        )
+
+        subject.call
+      end
+
+      it 'enqueues the job with incremented retry count' do
+        subject = described_class.new(user_assessment, nil, retry_count: retry_count)
+        job_double = double('SaveScoresAndReportJob')
+
+        allow(Skillvue::SaveScoresAndReportJob).to receive(:set).and_return(job_double)
+        expect(job_double).to receive(:perform_later).with(user_assessment, retry_count: retry_count + 1)
+
+        subject.call
+      end
+
+      it 'handles initial retry without retry_count' do
+        subject = described_class.new(user_assessment, nil)
+
+        expect(Skillvue::SaveScoresAndReportJob).to receive(:set).with(wait: 1.minute).and_return(
+          double(perform_later: true)
+        )
+
+        subject.call
+      end
     end
 
     it 'updates the user_assessment and users_result with external results' do

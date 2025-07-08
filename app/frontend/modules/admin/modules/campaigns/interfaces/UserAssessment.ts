@@ -21,6 +21,7 @@ interface PearsonUserAssessmentDetails {
 interface SkillvueUserAssessmentDetails {
   email: string | null
   externalAssessmentId: string | null
+  externalUserId: string | null
 }
 
 export default interface UserAssessment {
