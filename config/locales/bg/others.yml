@@ -16,12 +16,12 @@ bg:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'Блокът "%{име_блок}" има дублирани конфигурации: %{дублирани_конфигурации}'
+              duplicate_block: 'Блокът "%{block_name}" има дублирани конфигурации: %{duplicate_configurations}'
         create_one:
           attributes:
             job_role:
               cannot_be_same: Целевата длъжност трябва да е различна от настоящата длъжност.
-              not_found: Ролята на длъжността '%{име}' не е намерена в проекта или глобалните роли
+              not_found: Ролята на длъжността '%{name}' не е намерена в проекта или глобалните роли
         import_one:
           attributes:
             job_role:
@@ -50,11 +50,11 @@ bg:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Ред %{row}: Дублираща се стойност %{стойност} за %{поле}'
+              duplicate_value: 'Ред %{row}: Дублираща се стойност %{value} за %{field}'
               invalid_format: Моля, качете xlsx файл
               missing_headers: "%{sheet_name} липсват задължителните заглавия на листа: %{headers}"
               missing_sheets: 'Липсват необходимите листове: %{sheets}'
-              missing_value: 'Ред %{row}: Липсваща стойност за %{поле}'
+              missing_value: 'Ред %{row}: Липсваща стойност за %{field}'
             project:
               must_exist: Проектът трябва да съществува
   activerecord:

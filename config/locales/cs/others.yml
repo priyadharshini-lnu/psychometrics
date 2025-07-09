@@ -34,7 +34,7 @@ cs:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'Blok "%{název_bloku}" má duplicitní konfigurace: %{duplicate_configurations}'
+              duplicate_block: 'Blok "%{block_name}" má duplicitní konfigurace: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -200,10 +200,10 @@ cs:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: Hodnota %{název_sloupce} nemůže být prázdná na řádku %{číslo_řádku}
+              column_cannot_be_blank: Hodnota %{column_name} nemůže být prázdná na řádku %{row_number}
               invalid_format: Nahrajte prosím soubor CSV
-              invalid_job_role_id: Id na řádku %{číslo_řádku} není platné ID pracovní role
-              invalid_locale: Locale na řádku %{číslo_řádku} není platné locale
+              invalid_job_role_id: Id na řádku %{row_number} není platné ID pracovní role
+              invalid_locale: Locale na řádku %{row_number} není platné locale
               missing_required_columns: 'Chybějící povinné sloupce: %{columns}'
               parsing_failed: 'Chyba při zpracování souboru, chyba: %{error}.'
             project:
@@ -326,7 +326,7 @@ cs:
         skills_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pro %{jméno_bloku} musí být povolena alespoň jedna pracovní role s vybraným typem dovednosti.
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pro %{block_name} musí být povolena alespoň jedna pracovní role s vybraným typem dovednosti.
               invalid_skill_type: 'Neplatný typ dovednosti %{skill_type} pro %{role_name} pro %{block_name}. Platné možnosti: %{valid_options}'
               props_missing: Práce
         skillvue:
@@ -369,11 +369,11 @@ cs:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Řádek %{řádek}: Duplicitní hodnota %{hodnota} pro %{pole}'
+              duplicate_value: 'Řádek %{row}: Duplicitní hodnota %{value} pro %{field}'
               invalid_format: Nahrajte prosím soubor xlsx
-              missing_headers: "%{název_listu} chybí požadované záhlaví: %{záhlaví}"
-              missing_sheets: 'Chybějící požadované listy: %{listy}'
-              missing_value: 'Řádek %{řádek}: Chybějící hodnota pro %{pole}'
+              missing_headers: "%{sheet_name} chybí požadované záhlaví: %{headers}"
+              missing_sheets: 'Chybějící požadované listy: %{sheets}'
+              missing_value: 'Řádek %{row}: Chybějící hodnota pro %{field}'
             project:
               must_exist: Projekt musí existovat
         update_norm:
@@ -1137,7 +1137,7 @@ cs:
         delete:
           cancel: Zrušit
           cannot_delete_with_workshops: Nelze odstranit skupinu obsahující workshopy, nejprve odstraňte workshopy
-          failed: Nepodařilo se odstranit skupinu "%{jméno}", kontaktujte prosím správce
+          failed: Nepodařilo se odstranit skupinu "%{name}", kontaktujte prosím správce
           ok: Ano, vymazat
           text: Opravdu chcete odstranit skupinu "%{name}"?
           title: Odstranit skupinu
@@ -1380,6 +1380,7 @@ cs:
       assessor_form: Formulář hodnotitele
       auto_assign: Automatické přiřazení
       dimension_id: ID rozměru
+      external_user_id: ID kandidáta Skillvue
       id: ID hodnocení kampaně
       locales: Lokality
       norm: Norm

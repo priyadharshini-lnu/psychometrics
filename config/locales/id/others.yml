@@ -16,12 +16,12 @@ id:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'Blok "%{nama_blok}" memiliki konfigurasi duplikat: %{konfigurasi_duplikat}'
+              duplicate_block: 'Blok "%{block_name}" memiliki konfigurasi duplikat: %{duplicate_configurations}'
         create_one:
           attributes:
             job_role:
               cannot_be_same: Peran pekerjaan target harus berbeda dari peran pekerjaan saat ini
-              not_found: Peran pekerjaan '%{nama}' tidak ditemukan dalam peran proyek atau global
+              not_found: Peran pekerjaan '%{name}' tidak ditemukan dalam peran proyek atau global
         import_one:
           attributes:
             job_role:
@@ -29,19 +29,19 @@ id:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: Nilai %{nama_kolom} tidak boleh kosong pada baris %{nomor_baris}
+              column_cannot_be_blank: Nilai %{column_name} tidak boleh kosong pada baris %{row_number}
               invalid_format: Silakan unggah file CSV
-              invalid_job_role_id: Id pada baris %{baris_nomor} bukan merupakan ID peran pekerjaan yang valid
-              invalid_locale: Lokasi di baris %{baris_nomor} bukan merupakan lokasi yang valid
-              missing_required_columns: 'Kolom yang diperlukan tidak ada: %{kolom-kolom}'
+              invalid_job_role_id: Id pada baris %{row_number} bukan merupakan ID peran pekerjaan yang valid
+              invalid_locale: Lokasi di baris %{row_number} bukan merupakan lokasi yang valid
+              missing_required_columns: 'Kolom yang diperlukan tidak ada: %{columns}'
               parsing_failed: 'Kesalahan saat mem-parsing file, kesalahan: %{error}.'
             project:
               must_exist: Proyek harus ada
         skills_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Setidaknya satu peran pekerjaan harus diaktifkan dengan jenis keterampilan yang dipilih untuk %{nama_blok}
-              invalid_skill_type: 'Jenis keterampilan yang tidak valid %{jenis_keterampilan} untuk %{nama_peran} untuk %{nama_blok}. Opsi yang valid: %{valid_options}'
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Setidaknya satu peran pekerjaan harus diaktifkan dengan jenis keterampilan yang dipilih untuk %{block_name}
+              invalid_skill_type: 'Jenis keterampilan yang tidak valid %{skill_type} untuk %{role_name} untuk %{block_name}. Opsi yang valid: %{valid_options}'
               props_missing: Pekerjaan
         skillvue:
           attributes:
@@ -50,11 +50,11 @@ id:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Baris %{baris}: Nilai duplikat %{nilai} untuk %{bidang}'
+              duplicate_value: 'Baris %{row}: Nilai duplikat %{value} untuk %{field}'
               invalid_format: Silakan unggah file xlsx
-              missing_headers: "%{nama_sheet} sheet tidak ada header yang diperlukan: %{header}"
-              missing_sheets: 'Lembar yang diperlukan hilang: %{lembaran}'
-              missing_value: 'Baris %{baris}: Nilai yang hilang untuk %{baris}'
+              missing_headers: "%{sheet_name} sheet tidak ada header yang diperlukan: %{headers}"
+              missing_sheets: 'Lembar yang diperlukan hilang: %{sheets}'
+              missing_value: 'Baris %{row}: Nilai yang hilang untuk %{row}'
             project:
               must_exist: Proyek harus ada
   activerecord:
@@ -1062,11 +1062,10 @@ id:
     least: Jawablah setidaknya %{min} pilihan.
     least_hotspot: Jawablah setidaknya %{min} pilihan.
     max_character: Tanggapan Anda tidak boleh lebih dari %{max} karakter.
-    max_word: Tanggapan Anda tidak boleh lebih dari %{maks} kata.
+    max_word: Tanggapan Anda tidak boleh lebih dari %{max} kata.
     min_character: Tanggapan Anda harus mengandung setidaknya karakter %{min}.
     min_word: Tanggapan Anda harus setidaknya terdiri dari %{min} kata
-    most:
-      other: Pilihlah paling banyak %{maks} pilihan
+    most: Pilihlah paling banyak %{max} pilihan
     must_rank_between: Silakan tetapkan nilai dari %{min} hingga %{max} untuk setiap item. Nilai tidak boleh diulang.
     must_select: Pilih dari pilihan %{min} hingga %{max}
     number: Tanggapan Anda harus berupa angka

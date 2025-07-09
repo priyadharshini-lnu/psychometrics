@@ -382,7 +382,7 @@ de:
               duplicate_value: 'Zeile %{row}: Duplizierter Wert %{value} für %{field}'
               invalid_format: Bitte xlsx-Datei hochladen
               missing_headers: "%{sheet_name} Blatt fehlt erforderliche Kopfzeile: %{headers}"
-              missing_sheets: 'Fehlende erforderliche Blätter: %{Blätter}'
+              missing_sheets: 'Fehlende erforderliche Blätter: %{sheets}'
               missing_value: 'Zeile %{row}: Fehlender Wert für %{field}'
             project:
               must_exist: Projekt muss existieren
@@ -902,7 +902,7 @@ de:
       add_tag:
         success_message: Tag wurde erfolgreich hinzugefügt
       archived:
-        success_message: Die Bewertung "%{Name}" wurde erfolgreich archiviert.
+        success_message: Die Bewertung "%{name}" wurde erfolgreich archiviert.
       assessment_cache:
         remove_cache: Cache entfernen
         success_message: Cache erfolgreich entfernt
@@ -1392,6 +1392,7 @@ de:
       assessor_form: Beisitzer-Formular
       auto_assign: Automatisch zuweisen
       dimension_id: Dimension ID
+      external_user_id: Skillvue-Kandidaten-ID
       id: ID der Kampagnenbewertung
       locales: Lokalitäten
       norm: Norm
@@ -1437,7 +1438,7 @@ de:
       remove:
         helper_text: 'GEFAHR: Wenn Sie dies auswählen, werden alle Antworten der Benutzer auf diese Bewertung in dieser Kampagne gelöscht.'
         msg_text: Sie versuchen, <strong>"%{name}"</strong> zu löschen Bewertung
-        successfully: die Bewertung %{Name} wurde erfolgreich entfernt.
+        successfully: die Bewertung %{name} wurde erfolgreich entfernt.
         title: Bewertung entfernen?
       rescore:
         content: Sind Sie sicher, dass Sie die Bewertung neu bewerten wollen?
@@ -1907,14 +1908,14 @@ de:
     mailer:
       admin_invitation_instructions:
         accept: Klicken Sie hier, um die Einladung anzunehmen.
-        body: 'Hallo %{Name}, Sie wurden eingeladen, auf das Admin-Panel von Lighthouse - The Talent Enterprise Assessment Platform zuzugreifen. %{accept} Oder Sie können diese E-Mail getrost ignorieren. Bitte geben Sie Ihre Zugangsdaten an niemanden weiter.
+        body: 'Hallo %{name}, Sie wurden eingeladen, auf das Admin-Panel von Lighthouse - The Talent Enterprise Assessment Platform zuzugreifen. %{accept} Oder Sie können diese E-Mail getrost ignorieren. Bitte geben Sie Ihre Zugangsdaten an niemanden weiter.
 
           '
         subject: Einladung zum Leuchtturm
       confirmation_instructions:
         subject: Anweisungen zur Bestätigung
       invitation_instructions:
-        body: 'Hallo %{Name}, Du wurdest zu Lighthouse als Admin für den folgenden Bereich hinzugefügt
+        body: 'Hallo %{name}, Du wurdest zu Lighthouse als Admin für den folgenden Bereich hinzugefügt
 
           '
         login: Bei Lighthouse anmelden
@@ -1924,7 +1925,7 @@ de:
           project: 'Projekt: %{section_name}'
         subject: Einladung zum Leuchtturm
       password_change:
-        body: 'Hallo %{Name}, Ihr Passwort wurde geändert. Wenn Sie dies nicht angefordert haben, wenden Sie sich bitte umgehend an den Support unter mte.support@mercer.com
+        body: 'Hallo %{name}, Ihr Passwort wurde geändert. Wenn Sie dies nicht angefordert haben, wenden Sie sich bitte umgehend an den Support unter mte.support@mercer.com
 
           '
         regards: 'Mit freundlichen Grüßen, Lighthouse Team
@@ -1932,7 +1933,7 @@ de:
           '
         subject: Ihr Lighthouse-Passwort hat sich geändert
       reset_password_instructions:
-        body: 'Hallo %{Name}! Jemand hat einen Link angefordert, um Ihr Passwort zu ändern. Sie können dies über den unten stehenden Link tun.
+        body: 'Hallo %{name}! Jemand hat einen Link angefordert, um Ihr Passwort zu ändern. Sie können dies über den unten stehenden Link tun.
 
           '
         change_password: Passwort ändern
@@ -1942,7 +1943,7 @@ de:
           '
         subject: Anweisungen zum Zurücksetzen Ihres Passworts
       unlock_instructions:
-        body: 'Hallo %{Name}! Ihr Konto wurde aufgrund einer zu hohen Anzahl von fehlgeschlagenen Anmeldeversuchen gesperrt. Klicken Sie auf den untenstehenden Link, um Ihr Konto zu entsperren:
+        body: 'Hallo %{name}! Ihr Konto wurde aufgrund einer zu hohen Anzahl von fehlgeschlagenen Anmeldeversuchen gesperrt. Klicken Sie auf den untenstehenden Link, um Ihr Konto zu entsperren:
 
           '
         footer: Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail getrost ignorieren. Ihr Passwort wird sich erst ändern, wenn Sie den obigen Link aufrufen und ein neues Passwort erstellen.
@@ -2193,7 +2194,7 @@ de:
       remove_file: datei entfernen
       send_message: Nachricht senden
       slider_label_instruction: 'min: %{min} und max: %{max}'
-      task_btn_description: aufgabe %{AssessmentName}
+      task_btn_description: aufgabe %{assessmentName}
       task_progress_label: Aufgabenerledigung ist
       write_message: Schreiben Sie Ihre Nachricht
     assessment: Bewertung
@@ -2480,7 +2481,7 @@ de:
       write_here: Hier schreiben...
     initial_steps:
       add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
-      add_skill_group_title: Erkunden Sie Ihre %{Kategorie}-Fähigkeiten
+      add_skill_group_title: Erkunden Sie Ihre %{category}-Fähigkeiten
       add_skills: Hinzufügen
       add_skills_step: Fertigkeiten hinzufügen
       continue_to_rate_skills: Fähigkeiten weiter bewerten
@@ -2783,7 +2784,7 @@ de:
         weekly_stats: 'Statistik der Lizenznutzung der letzten Woche :'
     magic_link:
       body:
-        dear: Lieber %{Name},
+        dear: Lieber %{name},
         greetings: Grüße für den Tag!
         instructions: Klicken Sie auf den unten stehenden Link, um sich bei Lighthouse anzumelden.
         signin_link: Anmeldung Link
@@ -2885,17 +2886,17 @@ de:
       actions:
         add: Neuen Bericht hinzufügen
         remove:
-          confirm_message: Sind Sie sicher, dass Sie den Bericht "%{Name}" aus "%{report_bundle_name}" löschen möchten?
+          confirm_message: Sind Sie sicher, dass Sie den Bericht "%{name}" aus "%{report_bundle_name}" löschen möchten?
           confirm_title: Bestätigung erforderlich
           success_message: Bericht %{name} wurde gelöscht
   reports:
     actions:
       add: hinzufügen Bericht
       archived:
-        success_message: Der Bericht "%{Name}" wurde erfolgreich archiviert.
+        success_message: Der Bericht "%{name}" wurde erfolgreich archiviert.
       back_to_campaign: Zurück zu den Kampagnen
       copy:
-        success_message: Der Bericht "%{Name}" wurde erfolgreich kopiert.
+        success_message: Der Bericht "%{name}" wurde erfolgreich kopiert.
       details: Einzelheiten
       download: Bericht herunterladen
       download_csv: CSV herunterladen
@@ -2906,7 +2907,7 @@ de:
       re_evaluate: Hier klicken, um neu zu bewerten
       reevaluate: Bewerten Sie  neu
       remove:
-        confirm_message: Sind Sie sicher, dass Sie den Bericht "%{Name}" löschen wollen?
+        confirm_message: Sind Sie sicher, dass Sie den Bericht "%{name}" löschen wollen?
         confirm_title: Bestätigung erforderlich
         success_message: Bericht %{name} wurde entfernt
       rescore: Neubewertung
@@ -3704,7 +3705,7 @@ de:
       id: Benutzer-Assessment-ID
       norm_id: Norm-ID
     drawer:
-      copied: "%{Name} in die Zwischenablage kopiert."
+      copied: "%{name} in die Zwischenablage kopiert."
       copy: In die Zwischenablage kopieren
       mettl_schedule_name: Mettl Zeitplan Name
       no_data: Keine Daten verfügbar
@@ -3727,10 +3728,10 @@ de:
         submit_button_name: Push-Webhook
         title: Push-Webhook
       remove:
-        content: Sind Sie sicher, dass Sie die Bewertung "%{Name}" entfernen wollen?
-        successfully: die Bewertung %{Name} wurde erfolgreich entfernt.
+        content: Sind Sie sicher, dass Sie die Bewertung "%{name}" entfernen wollen?
+        successfully: die Bewertung %{name} wurde erfolgreich entfernt.
       reset:
-        content: Sind Sie sicher, dass Sie den Fortschritt "%{Name}" zurücksetzen wollen?
+        content: Sind Sie sicher, dass Sie den Fortschritt "%{name}" zurücksetzen wollen?
       test_webhook:
         submit_button_name: Test senden
         title: Webhook-Ereignis senden Test

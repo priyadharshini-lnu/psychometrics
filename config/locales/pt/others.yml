@@ -34,7 +34,7 @@ pt:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'O bloco "%{nome_do_bloco}" tem configurações duplicadas: %{configurações_duplicadas}'
+              duplicate_block: 'O bloco "%{block_name}" tem configurações duplicadas: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -119,7 +119,7 @@ pt:
               blank: O nome próprio não pode estar em branco
             job_role:
               cannot_be_same: O posto de trabalho pretendido deve ser diferente do posto de trabalho atual
-              not_found: A função "%{nome}" não foi encontrada no projeto ou nas funções globais
+              not_found: A função "%{name}" não foi encontrada no projeto ou nas funções globais
             last_name:
               blank: O apelido não pode estar em branco
             locale:
@@ -167,7 +167,7 @@ pt:
             base:
               code_length: O código deve ter pelo menos 3 caracteres na linha %{index}.
               code_required: O código do fator é necessário na linha %{index}
-              invalid_scoring_strategy: Estratégia de pontuação inválida "%{strategy}" na linha %{índice}. As estratégias permitidas são %{permitidas}.
+              invalid_scoring_strategy: Estratégia de pontuação inválida "%{strategy}" na linha %{index}. As estratégias permitidas são %{allowed}.
               missing_headers: 'Faltam cabeçalhos obrigatórios: %{headers}'
               name_required: O nome do fator é necessário na linha %{index}
               scoring_strategy_required: A estratégia de pontuação é necessária na linha %{index}
@@ -200,12 +200,12 @@ pt:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: O valor %{nome_da_coluna} não pode estar em branco na linha %{número_da_linha}
+              column_cannot_be_blank: O valor %{column_name} não pode estar em branco na linha %{row_number}
               invalid_format: Carregar ficheiro CSV
-              invalid_job_role_id: O ID na linha %{número_da_linha} não é um ID de cargo válido
-              invalid_locale: A localidade na linha %{número_da_linha} não é uma localidade válida
-              missing_required_columns: 'Faltam colunas obrigatórias: %{colunas}'
-              parsing_failed: 'Erro ao analisar o ficheiro, erro: %{erro}.'
+              invalid_job_role_id: O ID na linha %{row_number} não é um ID de cargo válido
+              invalid_locale: A localidade na linha %{row_number} não é uma localidade válida
+              missing_required_columns: 'Faltam colunas obrigatórias: %{columns}'
+              parsing_failed: 'Erro ao analisar o ficheiro, erro: %{error}.'
             project:
               must_exist: O projeto deve existir
         mettl:
@@ -327,7 +327,7 @@ pt:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pelo menos um posto de trabalho deve estar ativado com um tipo de competência selecionado para %{block_name}
-              invalid_skill_type: 'Tipo de habilidade inválido %{skill_type} para %{role_name} para %{block_name}. Opções válidas: %{opções_válidas}'
+              invalid_skill_type: 'Tipo de habilidade inválido %{skill_type} para %{role_name} para %{block_name}. Opções válidas: %{valid_options}'
               props_missing: Emprego
         skillvue:
           attributes:
@@ -744,7 +744,7 @@ pt:
         campaign_factor:
           attributes:
             formula:
-              cyclic_dependency_found: 'Existe uma dependência cíclica na fórmula. Dependência: %{caminho_cíclico}'
+              cyclic_dependency_found: 'Existe uma dependência cíclica na fórmula. Dependência: %{cyclic_path}'
         factors_norm:
           score_from_must_be_number: A pontuação de deve ser um número
           score_to_less_than_score_from: A pontuação para é inferior à pontuação de
@@ -753,7 +753,7 @@ pt:
           attributes:
             used_number:
               overused: A licença utilizada não pode ser superior à soma da licença atribuída e do limite de utilização excessiva.
-          overuse: A licença %{nome} está a ser utilizada em excesso
+          overuse: A licença %{name} está a ser utilizada em excesso
         media_response:
           attributes:
             base:
@@ -892,14 +892,14 @@ pt:
       add_tag:
         success_message: A etiqueta foi adicionada com sucesso
       archived:
-        success_message: A avaliação "%{nome}" foi arquivada com êxito.
+        success_message: A avaliação "%{name}" foi arquivada com êxito.
       assessment_cache:
         remove_cache: Remover cache
         success_message: Remoção bem sucedida da cache
       back_to_campaign: Voltar à Campanha
       back_to_dashboard: Voltar ao painel de controlo
       copy:
-        success_message: A avaliação "%{nome}" foi copiada com êxito.
+        success_message: A avaliação "%{name}" foi copiada com êxito.
       details: Detalhes
       download_csv: Descarregar CSV
       edit: Editar
@@ -928,14 +928,14 @@ pt:
         success_message: A etiqueta foi removida com êxito
       rescore: Reavaliar
       restore:
-        success_message: A avaliação "%{nome}" foi restaurada com êxito
+        success_message: A avaliação "%{name}" foi restaurada com êxito
       show_usage: Mostrar utilização
       submit_another_response: Enviar outra resposta
       submit_evaluation: Apresentar avaliação
       translations:
         success_message: As traduções de avaliação actualizadas
       unarchived:
-        success_message: A avaliação "%{nome}" foi desarquivada com êxito
+        success_message: A avaliação "%{name}" foi desarquivada com êxito
       view: Ver
     active: Ativo
     archived: Arquivado
@@ -1137,9 +1137,9 @@ pt:
         delete:
           cancel: Cancelar
           cannot_delete_with_workshops: Não é possível eliminar o grupo que contém workshops, eliminar primeiro os workshops
-          failed: Falha ao eliminar o grupo "%{nome}", contactar o administrador
+          failed: Falha ao eliminar o grupo "%{name}", contactar o administrador
           ok: Sim, apagar
-          text: Tem a certeza de que pretende eliminar o grupo "%{nome}"?
+          text: Tem a certeza de que pretende eliminar o grupo "%{name}"?
           title: Eliminar grupo
       no_assessments: Arrastar e largar as avaliações
       no_ungrouped_assessments: Arrastar e largar as avaliações aqui para desagrupar
@@ -1155,7 +1155,7 @@ pt:
     assessment_not_in_report: A avaliação com o id %{assessment_id} não faz parte do relatório com o id %{report_id}
     errors:
       not_enought_licenses: O pacote com o id %{bundle_id} não tem licenças
-      user_not_found: 'Linha %{linha}: Utilizador com o e-mail ''%{email}'' não encontrado'
+      user_not_found: 'Linha %{row}: Utilizador com o e-mail ''%{email}'' não encontrado'
     report_bundle_not_found: Relatório O pacote com o id %{bundle_id} não foi encontrado
     report_not_found: O relatório com o id %{report_id} não foi encontrado
     report_not_in_bundle: O relatório com o id %{report_id} não faz parte do pacote de relatórios com o id %{bundle_id}
@@ -1350,7 +1350,7 @@ pt:
       notification: O tempo que lhe foi atribuído para esta tarefa "%{assessmentName}" foi de %{totalAssessmentTime}. Devido ao tempo total decorrido, agora tem apenas %{remainingCampaignTime} como tempo ajustado para concluir esta tarefa.
     timer:
       notification_hours: Você tem %{hours} horas restantes
-      notification_minutes: você tem %{minutos} minutos restantes
+      notification_minutes: você tem %{minutes} minutos restantes
   campaign_assessment:
     actions:
       bulk_download: Transferência em massa
@@ -1380,6 +1380,7 @@ pt:
       assessor_form: Formulário do assessor
       auto_assign: Atribuição automática
       dimension_id: ID da dimensão
+      external_user_id: Skillvue ID do candidato
       id: ID de avaliação da campanha
       locales: Localidades
       norm: Norma
@@ -1424,8 +1425,8 @@ pt:
         title: Regenerar relatórios?
       remove:
         helper_text: 'PERIGO: Se selecionar esta opção, todas as respostas dos utilizadores a esta avaliação serão removidas desta campanha.'
-        msg_text: Está a tentar eliminar <strong>"%{nome}"</strong> Avaliação
-        successfully: a avaliação %{nome} foi removida com êxito.
+        msg_text: Está a tentar eliminar <strong>"%{name}"</strong> Avaliação
+        successfully: a avaliação %{name} foi removida com êxito.
         title: Remover a avaliação?
       rescore:
         content: Tem a certeza de que pretende voltar a classificar a avaliação?
@@ -1512,7 +1513,7 @@ pt:
       bulk_download: Transferência em massa
       export_data: Exportar dados
     bulk_download:
-      error: A transferência em massa está limitada a 1000 ficheiros de relatório. A seleção atual tem %{contagem} de ficheiros de relatório. Ajuste as datas de início e fim para reduzir o número de ficheiros de relatório a transferir.
+      error: A transferência em massa está limitada a 1000 ficheiros de relatório. A seleção atual tem %{count} de ficheiros de relatório. Ajuste as datas de início e fim para reduzir o número de ficheiros de relatório a transferir.
     column:
       assessor_access: Acesso do assessor
       auto_assign: Atribuição automática
@@ -1591,7 +1592,7 @@ pt:
     card:
       duration: Duração
       starts_in: 'Começa em:'
-      starts_on: Começa em %{data}
+      starts_on: Começa em %{date}
       will_start_shortly: A campanha terá início em breve. Aguarde
   change_password_page:
     old_password: Palavra-passe antiga
@@ -1831,9 +1832,9 @@ pt:
   datasheet:
     errors:
       datasheet_column:
-        not_found: Coluna "%{nome_da_coluna}" não encontrada
-        numeric_value_required: A coluna "%{campo}" deve ser um número
-        string_value_required: A coluna "%{campo}" deve ser uma cadeia de caracteres
+        not_found: Coluna "%{column_name}" não encontrada
+        numeric_value_required: A coluna "%{field}" deve ser um número
+        string_value_required: A coluna "%{field}" deve ser uma cadeia de caracteres
       not_configured: A ficha de dados não está configurada
   devise:
     administrators:
@@ -1907,9 +1908,9 @@ pt:
           '
         login: Iniciar sessão no Lighthouse
         sections:
-          campaign: 'Campanha: %{nome_da_secção}'
-          client: 'Arrendamento do cliente: %{nome_da_secção}'
-          project: 'Projeto: %{nome_da_secção}'
+          campaign: 'Campanha: %{section_name}'
+          client: 'Arrendamento do cliente: %{section_name}'
+          project: 'Projeto: %{section_name}'
         subject: Convite para o Lighthouse
       password_change:
         body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em mte.support@mercer.com
@@ -1997,7 +1998,7 @@ pt:
       signed_in: Iniciou sessão com sucesso!
       signed_in_time: A última vez que iniciou sessão foi em %{date_time}
       signed_out: O registo foi efectuado com sucesso.
-      unsuccessful_sign_in_time: A sua última tentativa de início de sessão em %{data_tempo} não foi bem sucedida.
+      unsuccessful_sign_in_time: A sua última tentativa de início de sessão em %{date_time} não foi bem sucedida.
     two_factor_authentication:
       attempt: Insira a OTP que recebeu no seu endereço de e-mail registado
       attempt_failed: OTP incorreto! Tente novamente
@@ -2020,14 +2021,14 @@ pt:
     errors:
       add_edit_project:
         invalid_subdomain_format: Formato de subdomínio incorreto.
-        reserved_subdomain: O subdomínio %{valor} está reservado
+        reserved_subdomain: O subdomínio %{value} está reservado
         uniq_subdomain: O subdomínio deve ser único.
       add_manager:
         manager_not_found: O gestor não foi encontrado ou não faz parte do mesmo projeto
         user_not_found: Utilizador não encontrado ou que não faz parte do mesmo projeto
       admin:
         already_added: Administrador com correio eletrónico já adicionado.
-      already_assigned?: Não é possível ligar esta avaliação - já está atribuída a '%{nome_da_forma_de_avaliador_ligado}'.
+      already_assigned?: Não é possível ligar esta avaliação - já está atribuída a '%{linked_assessor_form_name}'.
       already_invited: Este utilizador já existe no centro de avaliação que está a tentar adicionar.
       assessor_assessment:
         already_added: Avaliação do assessor já adicionada à campanha.
@@ -2082,19 +2083,19 @@ pt:
         less_than_booked: O total de lugares deve ser superior ao reservado
       user_availability_date:
         overlaps_date: Sobrepõe-se a outra disponibilidade %{range}
-        overlaps_time: Intervalo de sobreposições %{intervalo}
+        overlaps_time: Intervalo de sobreposições %{interval}
         start_date_should_be_less: A data de início deve ser inferior à data de fim
         start_time_should_be_less: A hora de início deve ser inferior à hora de fim
       user_idp_plan:
         idp_template_already_assigned_to_user: Este modelo de Idp já foi atribuído a este utilizador e está ativo
       user_saved_filters:
-        limit_exceeded: Só pode ter %{limite} filtros guardados, por favor elimine os filtros guardados para adicionar mais.
+        limit_exceeded: Só pode ter %{limit} filtros guardados, por favor elimine os filtros guardados para adicionar mais.
         unique_name: Já existe um filtro com o mesmo nome.
       workshop_invited_subject_create:
         already_exists: O assunto já existe no convite.
       workshop_subject_create:
         already_exists: O assunto já existe neste centro de avaliação.
-        part_of_other_workshop: O sujeito já é um participante de "%{nome_do_workshop}".
+        part_of_other_workshop: O sujeito já é um participante de "%{workshop_name}".
       workshops:
         no_available_assessor_slots: Não existem faixas horárias disponíveis para o avaliador %{assessor}
         no_available_manager_slots: Não há faixas horárias disponíveis para o gestor %{manager}
@@ -2168,7 +2169,7 @@ pt:
       delete_message: Apagar mensagem
       drag_drop_instructions_desktop: Active o modo de formulários para arrastar e largar os itens com um leitor de ecrã.
       drag_drop_instructions_mobile: Com um leitor de ecrã, toque duas vezes e mantenha premido um botão de arrastar, desloque-se para outro item e levante o dedo para mover o item.
-      enlarge_view_text: Ampliar a vista de %{texto}
+      enlarge_view_text: Ampliar a vista de %{text}
       expand_menu: Expandir o menu
       file_uploaded: Ficheiro carregado
       lang_dropdown_description: mudar de língua
@@ -2386,7 +2387,7 @@ pt:
       increase_font: Aumentar o tamanho da letra
       reset_font: Repor o tamanho do tipo de letra
     input_duration:
-      max_duration: A duração máxima é de %{duração}
+      max_duration: A duração máxima é de %{duration}
     schedule_availability:
       copy_to_all: Copiar para todos
       end_date: Data final
@@ -2465,7 +2466,7 @@ pt:
       write_here: Escreva aqui...
     initial_steps:
       add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
-      add_skill_group_title: Explorar as suas competências de %{categoria}
+      add_skill_group_title: Explorar as suas competências de %{category}
       add_skills: Adicionar
       add_skills_step: Adicionar competências
       continue_to_rate_skills: Continuar a avaliar as competências
@@ -2734,7 +2735,7 @@ pt:
     enabled: Ativado
     end_date: Data final
     not_enough_idp_license: Não existem licenças IDP suficientes, contactar o administrador
-    not_enough_license: "'%{nome_do_cliente}' não tem licenças suficientes para '%{nome_do_relatório}'"
+    not_enough_license: "'%{client_name}' não tem licenças suficientes para '%{report_name}'"
     not_enough_license_count: Não existem licenças suficientes, contacte o administrador
     not_enough_proctoring_credits: Não há créditos suficientes para iniciar a sessão de controlo
     number: Número
@@ -2773,7 +2774,7 @@ pt:
         weekly_stats: 'Estatísticas de utilização de licenças da semana passada :'
     magic_link:
       body:
-        dear: Caro %{nome},
+        dear: Caro %{name},
         greetings: Saudações do dia!
         instructions: Clique na ligação abaixo para iniciar sessão no lighthouse.
         signin_link: Ligação de registo
@@ -2797,7 +2798,7 @@ pt:
         name: Nome
         standard_deviation: Desvio padrão
       messages:
-        failure: 'Erro: %{erro}.'
+        failure: 'Erro: %{error}.'
         success: A norma do fator "%{factorName}" foi actualizada com êxito.
       values:
         empty: Vazio
@@ -2817,7 +2818,7 @@ pt:
     male: Masculino
     mandatory_fields: Indica os campos obrigatórios
     not_disclosed: Prefiro não revelar
-    old_data: Os dados do seu perfil têm %{meses} meses. Confirme os dados para prosseguir
+    old_data: Os dados do seu perfil têm %{months} meses. Confirme os dados para prosseguir
     password: Palavra-passe
     password_confirmation: Confirmação da palavra-passe
     photo: Fotografia
@@ -2840,8 +2841,8 @@ pt:
     invalid_code: Código de campanha inválido
     modals:
       remove:
-        content: Tem a certeza de que pretende remover o código de registo <strong>"%{código}"</strong>?
-        successfully: O código de registo "%{código}" foi removido com êxito.
+        content: Tem a certeza de que pretende remover o código de registo <strong>"%{code}"</strong>?
+        successfully: O código de registo "%{code}" foi removido com êxito.
       title: Código de registo
     one_domain_per_line: Um nome de domínio por linha
     restricted_domains: Domínios restritos
@@ -2857,7 +2858,7 @@ pt:
       created_text: texto acrescentado
       disapproved_text: texto não aprovado
       removed_text: texto removido
-      status_changed: mudou o estado de <i>%{de}</i> para <i>%{para}</i>
+      status_changed: mudou o estado de <i>%{from}</i> para <i>%{to}</i>
       updated_text: texto atualizado
     tabs:
       all: Todos
@@ -2882,10 +2883,10 @@ pt:
     actions:
       add: Adicionar relatório
       archived:
-        success_message: O relatório "%{nome}" foi arquivado com êxito.
+        success_message: O relatório "%{name}" foi arquivado com êxito.
       back_to_campaign: Voltar à campanha
       copy:
-        success_message: O relatório "%{nome}" foi copiado com êxito.
+        success_message: O relatório "%{name}" foi copiado com êxito.
       details: Detalhes
       download: Descarregar relatório
       download_csv: Descarregar CSV
@@ -3673,7 +3674,7 @@ pt:
       import:
         body: Consulte a funcionalidade Exportar para extrair um modelo que pode ser utilizado para Importar aqui.
         imported_reports: Os relatórios e avaliações foram importados
-        imported_users: 'O número de utilizadores importados: %{número}'
+        imported_users: 'O número de utilizadores importados: %{number}'
         success_msg: O ficheiro carregado foi colocado em fila de espera para importação. Verifique o estado nas notificações
         title: Importar utilizadores
         user_with_unchanged_passwords: A lista de utilizadores cujas palavras-passe não foram alteradas
@@ -3693,7 +3694,7 @@ pt:
       id: ID de avaliação do utilizador
       norm_id: ID da norma
     drawer:
-      copied: "%{nome} copiado para a área de transferência."
+      copied: "%{name} copiado para a área de transferência."
       copy: Copiar para a área de transferência
       mettl_schedule_name: Nome do calendário Mettl
       no_data: Não existem dados disponíveis
@@ -3717,7 +3718,7 @@ pt:
         title: Webhook de envio
       remove:
         content: Tem a certeza de que pretende remover a avaliação "%{name}"?
-        successfully: a avaliação %{nome} foi removida com êxito.
+        successfully: a avaliação %{name} foi removida com êxito.
       reset:
         content: Tem a certeza de que pretende repor o progresso "%{name}"?
       test_webhook:
@@ -3799,7 +3800,7 @@ pt:
       remove:
         confirm_message: Tem a certeza de que pretende eliminar o utilizador com um e-mail "%{email}"?
         confirm_title: Confirmação necessária
-        error_message: Não foi possível remover o utilizador devido a um erro - %{erro}
+        error_message: Não foi possível remover o utilizador devido a um erro - %{error}
         success_message: "%{email} foi removido"
         system_error_message: Não foi possível remover o utilizador, tente novamente mais tarde ou contacte o suporte.
       reset_password:

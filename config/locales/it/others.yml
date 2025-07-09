@@ -119,7 +119,7 @@ it:
               blank: Il nome non può essere vuoto
             job_role:
               cannot_be_same: Il ruolo di destinazione deve essere diverso da quello attuale.
-              not_found: Il ruolo lavorativo '%{nome}' non è stato trovato nei ruoli del progetto o globali
+              not_found: Il ruolo lavorativo '%{name}' non è stato trovato nei ruoli del progetto o globali
             last_name:
               blank: Il cognome non può essere vuoto
             locale:
@@ -200,11 +200,11 @@ it:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: Il valore %{nome_colonna} non può essere vuoto alla riga %{numero_riga}.
+              column_cannot_be_blank: Il valore %{column_name} non può essere vuoto alla riga %{row_number}.
               invalid_format: Caricare il file CSV
               invalid_job_role_id: L'ID della riga %{row_number} non è un ID valido per il ruolo lavorativo.
-              invalid_locale: Il locale alla riga %{numero_riga} non è un locale valido
-              missing_required_columns: 'Colonne mancanti: %{colonne}'
+              invalid_locale: Il locale alla riga %{row_number} non è un locale valido
+              missing_required_columns: 'Colonne mancanti: %{columns}'
               parsing_failed: 'Errore durante l''analisi del file, errore: %{error}.'
             project:
               must_exist: Il progetto deve esistere
@@ -327,7 +327,7 @@ it:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Almeno un ruolo lavorativo deve essere abilitato con un tipo di abilità selezionata per %{block_name}
-              invalid_skill_type: 'Tipo di abilità non valido %{skill_type} per %{role_name} per %{block_name}. Opzioni valide: %{opzioni_valide}'
+              invalid_skill_type: 'Tipo di abilità non valido %{skill_type} per %{role_name} per %{block_name}. Opzioni valide: %{valid_options}'
               props_missing: Lavoro
         skillvue:
           attributes:
@@ -369,11 +369,11 @@ it:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Riga %{row}: Valore duplicato %{valore} per %{campo}'
+              duplicate_value: 'Riga %{row}: Valore duplicato %{value} per %{field}'
               invalid_format: Caricare il file xlsx
-              missing_headers: 'Il foglio %{nome_foglio} manca di intestazioni necessarie: %{intestazioni}'
-              missing_sheets: 'Mancano i fogli richiesti: %{fogli}'
-              missing_value: 'Riga %{row}: Valore mancante per %{campo}'
+              missing_headers: 'Il foglio %{sheet_name} manca di intestazioni necessarie: %{headers}'
+              missing_sheets: 'Mancano i fogli richiesti: %{sheets}'
+              missing_value: 'Riga %{row}: Valore mancante per %{field}'
             project:
               must_exist: Il progetto deve esistere
         update_norm:
@@ -1369,6 +1369,7 @@ it:
       assessor_form: Modulo per il valutatore
       auto_assign: Assegnazione automatica
       dimension_id: Dimensione ID
+      external_user_id: ID candidato Skillvue
       id: ID di valutazione della campagna
       locales: Località
       norm: Norma
@@ -2456,7 +2457,7 @@ it:
       write_here: Scrivi qui...
     initial_steps:
       add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
-      add_skill_group_title: Esplorare le proprie capacità di %{categoria}
+      add_skill_group_title: Esplorare le proprie capacità di %{category}
       add_skills: Aggiungi
       add_skills_step: Aggiungi competenze
       continue_to_rate_skills: Continuare a valutare le competenze

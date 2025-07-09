@@ -1383,6 +1383,7 @@ es-ES:
       assessor_form: Formulario para asesores
       auto_assign: Asignación automática
       dimension_id: Dimensión ID
+      external_user_id: Identificación del candidato Skillvue
       id: ID de evaluación de la campaña
       locales: Locales
       norm: Norma

@@ -16,7 +16,7 @@ sk:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'Blok "%{názov_bloku}" má duplicitné konfigurácie: %{duplicate_configurations}'
+              duplicate_block: 'Blok "%{block_name}" má duplicitné konfigurácie: %{duplicate_configurations}'
         create_one:
           attributes:
             job_role:
@@ -29,10 +29,10 @@ sk:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: Hodnota %{názov_stĺpca} nemôže byť prázdna v riadku %{číslo_riadku}
+              column_cannot_be_blank: Hodnota %{column_name} nemôže byť prázdna v riadku %{row_number}
               invalid_format: Nahrajte prosím súbor CSV
-              invalid_job_role_id: Id v riadku %{číslo_riadku} nie je platné ID úlohy
-              invalid_locale: Locale v riadku %{číslo_riadku} nie je platné locale
+              invalid_job_role_id: Id v riadku %{row_number} nie je platné ID úlohy
+              invalid_locale: Locale v riadku %{row_number} nie je platné locale
               missing_required_columns: 'Chýbajúce požadované stĺpce: %{columns}'
               parsing_failed: 'Chyba pri analyzovaní súboru, chyba: %{error}.'
             project:
@@ -40,7 +40,7 @@ sk:
         skills_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pre %{názov_bloku} musí byť povolená aspoň jedna pracovná rola s vybraným typom zručnosti
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pre %{block_name} musí byť povolená aspoň jedna pracovná rola s vybraným typom zručnosti
               invalid_skill_type: 'Neplatný typ zručnosti %{skill_type} pre %{role_name} pre %{block_name}. Platné možnosti: %{valid_options}'
               props_missing: Práca
         skillvue:
@@ -50,11 +50,11 @@ sk:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Riadok %{riadok}: Duplicitná hodnota %{hodnota} pre %{pole}'
+              duplicate_value: 'Riadok %{row}: Duplicitná hodnota %{value} pre %{field}'
               invalid_format: Prosím, nahrajte súbor xlsx
-              missing_headers: "%{názov_listu} chýbajú požadované hlavičky: %{hlavičky}"
-              missing_sheets: 'Chýbajúce požadované listy: %{hárky}'
-              missing_value: 'Riadok %{riadok}: Chýbajúca hodnota pre %{pole}'
+              missing_headers: "%{sheet_name} chýbajú požadované hlavičky: %{headers}"
+              missing_sheets: 'Chýbajúce požadované listy: %{sheets}'
+              missing_value: 'Riadok %{row}: Chýbajúca hodnota pre %{field}'
             project:
               must_exist: Projekt musí existovať
   activerecord:

@@ -21,7 +21,7 @@ ar:
           attributes:
             job_role:
               cannot_be_same: يجب أن يكون الدور الوظيفي المستهدف مختلفاً عن الدور الوظيفي الحالي
-              not_found: دور الوظيفة "%{الاسم}" غير موجود في المشروع أو الأدوار العامة
+              not_found: دور الوظيفة "%{name}" غير موجود في المشروع أو الأدوار العامة
         import_one:
           attributes:
             job_role:
@@ -29,19 +29,19 @@ ar:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: لا يمكن أن تكون القيمة %{اسم_العمود} فارغة في الصف %{رقم_الصف}
+              column_cannot_be_blank: لا يمكن أن تكون القيمة %{column_name} فارغة في الصف %{row_number}
               invalid_format: يُرجى تحميل ملف CSV
               invalid_job_role_id: المعرّف في الصف %{row_number} ليس معرّف دور وظيفي صالح
               invalid_locale: اللغة المحلية في الصف %{row_number} ليست لغة محلية صالحة
-              missing_required_columns: 'الأعمدة المفقودة المطلوبة: %{الأعمدة}'
-              parsing_failed: 'خطأ أثناء تحليل الملف، خطأ: %{خطأ}.'
+              missing_required_columns: 'الأعمدة المفقودة المطلوبة: %{columns}'
+              parsing_failed: 'خطأ أثناء تحليل الملف، خطأ: %{error}.'
             project:
               must_exist: يجب أن يكون المشروع موجوداً
         skills_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: يجب تمكين دور وظيفي واحد على الأقل مع تحديد نوع المهارة لـ %{block_name}
-              invalid_skill_type: 'نوع المهارة غير صالح %{نوع_المهارة} لـ %{اسم_الدور} لـ %{اسم_الحظر}. الخيارات الصالحة: %{الخيارات_الصحيحة} لـ %{الخيارات_الصحيحة}'
+              invalid_skill_type: 'نوع المهارة غير صالح %{skill_type} لـ %{role_name} لـ %{block_name}. الخيارات الصالحة: %{valid_options} لـ %{valid_options}'
               props_missing: الوظيفة
         skillvue:
           attributes:
@@ -50,11 +50,11 @@ ar:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'الصف %{صف}: القيمة المكررة %{القيمة} لـ %{حقل}'
+              duplicate_value: 'الصف %{row}: القيمة المكررة %{value} لـ %{field}'
               invalid_format: يُرجى تحميل ملف xlsx
-              missing_headers: "%{اسم_الورقة} الورقة ناقصة الرؤوس المطلوبة: %{رؤوس}"
-              missing_sheets: 'الأوراق المطلوبة مفقودة: %{الأوراق}'
-              missing_value: 'الصف %{صف}: قيمة مفقودة لـ %{حقل}'
+              missing_headers: "%{sheet_name} الورقة ناقصة الرؤوس المطلوبة: %{headers}"
+              missing_sheets: 'الأوراق المطلوبة مفقودة: %{sheets}'
+              missing_value: 'الصف %{row}: قيمة مفقودة لـ %{field}'
             project:
               must_exist: يجب أن يكون المشروع موجوداً
   activerecord:
@@ -346,6 +346,7 @@ ar:
     assessment_center_heading: تفاصيل مركز التقييم
     assessments_heading: مهامك
     column:
+      external_user_id: هوية المرشح سكيلفيو
       skillvue_email_id: معرف البريد الإلكتروني للمرشح سكيلفيو
       skillvue_external_assessment_id: معرّف تقييم سكيلفيو
     modals:
@@ -366,7 +367,7 @@ ar:
     card:
       duration: المدة الزمنية
       starts_in: 'يبدأ في:'
-      starts_on: يبدأ في %{التاريخ}
+      starts_on: يبدأ في %{date}
       will_start_shortly: ستبدأ الحملة قريباً. يرجى الانتظار
   change_password_page:
     old_password: كلمة المرور القديمة
@@ -681,8 +682,8 @@ ar:
     manage: " إدارة"
     'no': لا
     resource:
-      create_success: تم إنشاؤه بنجاح %{resourceName}
-      update_success: "%{resourceName} تم تحديثه بنجاح"
+      create_success: تم إنشاؤه بنجاح %{readableResourceName}
+      update_success: "%{readableResourceName} تم تحديثه بنجاح"
     session_timeout_modal:
       buttons:
         close: أغلق
@@ -907,7 +908,7 @@ ar:
       answer_later: أجب لاحقًا
       answer_placeholder: اكتب إجابتك هنا...
       errors:
-        max_words: تسمح الإجابة بحد أقصى %{عدد} الكلمات
+        max_words: تسمح الإجابة بحد أقصى %{count} الكلمات
         min_words: تتطلب الإجابة ما لا يقل عن %{count} الكلمات
         required: إجابة السؤال مطلوبة
       max_words: الحد الأقصى للكلمات
@@ -963,7 +964,7 @@ ar:
     male: رجل
     mandatory_fields: يشير إلى الحقول الإلزامية
     not_disclosed: أنا أفضل عدم الإفصاح
-    old_data: بيانات ملفك الشخصي هي %{شهور} من العمر. يرجى تأكيد التفاصيل للمتابعة
+    old_data: بيانات ملفك الشخصي هي %{months} من العمر. يرجى تأكيد التفاصيل للمتابعة
     password: كلمة المرور
     password_confirmation: تأكيد كلمة المرور
     success_update: تم حفظ التفاصيل الخاصة بك بنجاح
@@ -1202,9 +1203,9 @@ ar:
     nomination_help_modal:
       title: مساعدة الترشيح
     nomination_predicates:
-      atleast: ما لا يقل عن %{عدد}
-      atmost: على الأكثر %{عدد}
-      exactly: بالضبط %{العدد}
+      atleast: ما لا يقل عن %{count}
+      atmost: على الأكثر %{count}
+      exactly: بالضبط %{count}
     nominations: الترشيحات
     options:
       global:
@@ -1361,7 +1362,7 @@ ar:
       other: هناك %{count} إجابات مفقودة، يرجى التحقق من إجاباتك
       two: هناك إجابتان مفقودتان، يرجى التحقق من إجاباتك
     word_count: 'عدد الكلمات '
-    word_range: يجب ألا تقل إجابتك عن %{دقيقة} ولا تزيد عن %{حد أقصى} من الكلمات.
+    word_range: يجب ألا تقل إجابتك عن %{min} ولا تزيد عن %{max} من الكلمات.
   'yes': نعم
   your: أنت
   yourself: نفسك

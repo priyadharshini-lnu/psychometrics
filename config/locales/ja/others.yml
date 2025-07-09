@@ -317,7 +317,7 @@ ja:
               invalid_string_value: "<b>行#%{index}</b>列<b>'%{column}'</b>は文字列ではありません。"
               invalid_string_value_size: "<b>行#%{index}</b>列<b>'%{column}'</b>が長すぎます (最大 256)"
               no_email_column: ファイルにEmailカラムが含まれていない
-              non_uniq_column: 以下の非単一列 %{column} があります。
+              non_uniq_column: 以下の非単一列 %{columns} があります。
         sheet_row_form:
           attributes:
             email:
@@ -1381,6 +1381,7 @@ ja:
       assessor_form: アセッサフォーム
       auto_assign: オートアサイン
       dimension_id: 寸法ID
+      external_user_id: スキルビュー候補者ID
       id: キャンペーン・アセスメントID
       locales: ロケール
       norm: ノーム

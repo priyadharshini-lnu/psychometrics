@@ -119,7 +119,7 @@ nl:
               blank: Voornaam kan niet leeg zijn
             job_role:
               cannot_be_same: Doelfunctie moet verschillen van huidige functie
-              not_found: Jobrol '%{naam}' niet gevonden in project of globale rollen
+              not_found: Jobrol '%{name}' niet gevonden in project of globale rollen
             last_name:
               blank: Achternaam kan niet leeg zijn
             locale:
@@ -203,7 +203,7 @@ nl:
               column_cannot_be_blank: Waarde %{column_name} kan niet leeg zijn in rij %{row_number}
               invalid_format: CSV-bestand uploaden
               invalid_job_role_id: Id in rij %{row_number} is geen geldige functierol-ID
-              invalid_locale: Locale bij rij %{rij_nummer} is geen geldige locale
+              invalid_locale: Locale bij rij %{row_number} is geen geldige locale
               missing_required_columns: 'Ontbrekende verplichte kolommen: %{columns}'
               parsing_failed: 'Fout tijdens het parsen van bestand, fout: %{error}.'
             project:
@@ -369,7 +369,7 @@ nl:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Rij %{rij}: Dubbele waarde %{waarde} voor %{veld}'
+              duplicate_value: 'Rij %{row}: Dubbele waarde %{value} voor %{field}'
               invalid_format: Upload xlsx-bestand
               missing_headers: "%{sheet_name} blad mist vereiste koppen: %{headers}"
               missing_sheets: 'Ontbrekende vereiste bladen: %{sheets}'
@@ -1134,7 +1134,7 @@ nl:
         delete:
           cancel: Annuleren
           cannot_delete_with_workshops: Kan groep met workshops niet verwijderen, verwijder eerst workshops
-          failed: Fout bij het verwijderen van "%{naam}" groep, neem contact op met beheerder
+          failed: Fout bij het verwijderen van "%{name}" groep, neem contact op met beheerder
           ok: Ja, verwijderen
           text: Weet je zeker dat je de groep "%{name}" wilt verwijderen?
           title: Groep verwijderen
@@ -1298,7 +1298,7 @@ nl:
       campaign_start_final_instructions: "<p>houd er rekening mee dat er geen manier is om de timer te stoppen of te pauzeren. De campagnetimer blijft lopen, zelfs als je de browser sluit, dus je moet er op geen enkel moment aan denken om de taken tussendoor te verlaten om iets anders te doen. Zorg ervoor dat je zo min mogelijk wordt afgeleid tijdens de taken. Zoek een rustige omgeving, schakel meldingen op je apparaten uit en vermijd multitasking. Houd je concentratie vast en blijf gefocust. Als de campagnetimer is afgelopen, kun je niet meer verder. Als je de bovenstaande instructies hebt doorgelezen, klik dan op start om verder te gaan met de toegewezen taken</p>\n"
       campaign_start_instruction: |
         <h4>Lees de volgende instructies goed door.</h4>
-        <p>de taken die je gaat uitvoeren hebben een tijdslimiet. Zodra je op "Start" klikt, begint de campagnetimer automatisch te lopen. Je hebt %{minuten} minuten om alle activiteiten te voltooien. Probeer de taken binnen de aangegeven tijd te voltooien en ga effectief met je tijd om, zodat je je niet door het evaluatieproces hoeft te haasten. Zorg ervoor dat je de taken in één keer voltooit, dus als je een pauze moet nemen, is dit het juiste moment</p>
+        <p>de taken die je gaat uitvoeren hebben een tijdslimiet. Zodra je op "Start" klikt, begint de campagnetimer automatisch te lopen. Je hebt %{minutes} minuten om alle activiteiten te voltooien. Probeer de taken binnen de aangegeven tijd te voltooien en ga effectief met je tijd om, zodat je je niet door het evaluatieproces hoeft te haasten. Zorg ervoor dat je de taken in één keer voltooit, dus als je een pauze moet nemen, is dit het juiste moment</p>
       common_proctoring_instructions: |
         <h4>Surveilleren</h4>
         <p>als je op de Startknop klikt, word je doorgestuurd naar ons surveillancesysteem. Het zal je camera, microfoon en scherm in de gaten houden tijdens je sessie. Deze sessies worden automatisch gecontroleerd door ons geavanceerde AI-systeem, wat zorgt voor een ononderbroken en soepele gebruikerservaring. Sessies kunnen echter ook worden beoordeeld door menselijke surveillanten. Alle tekenen van wangedrag of onregelmatigheden zullen worden gemarkeerd. Dit wordt gedaan om ervoor te zorgen dat er geen pogingen tot valsspelen worden gedaan. Als er verdenkingen worden gevonden, worden je taken geannuleerd</p>
@@ -1368,6 +1368,7 @@ nl:
       assessor_form: Beoordelaarsformulier
       auto_assign: Automatisch toewijzen
       dimension_id: Afmeting ID
+      external_user_id: Skillvue Kandidaat-ID
       id: Campagne Beoordeling ID
       locales: Locaties
       norm: Norm
@@ -3402,7 +3403,7 @@ nl:
       title: Hulp bij nominaties
     nomination_predicates:
       atleast: Ten minste %{count}
-      atmost: Hoogstens %{telling}
+      atmost: Hoogstens %{count}
       exactly: Precies %{count}
     nominations: Nominaties
     options:

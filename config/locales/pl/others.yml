@@ -16,12 +16,12 @@ pl:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'Blok "%{nazwa_bloku}" ma zduplikowane konfiguracje: %{duplicate_configurations}'
+              duplicate_block: 'Blok "%{block_name}" ma zduplikowane konfiguracje: %{duplicate_configurations}'
         create_one:
           attributes:
             job_role:
               cannot_be_same: Docelowa rola zawodowa musi różnić się od obecnej roli zawodowej.
-              not_found: Rola zadania '%{nazwa}' nie została znaleziona w projekcie lub rolach globalnych
+              not_found: Rola zadania '%{name}' nie została znaleziona w projekcie lub rolach globalnych
         import_one:
           attributes:
             job_role:
@@ -29,11 +29,11 @@ pl:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: Wartość %{nazwa_kolumny} nie może być pusta w wierszu %{numer_wiersza}.
+              column_cannot_be_blank: Wartość %{column_name} nie może być pusta w wierszu %{row_number}.
               invalid_format: Prześlij plik CSV
-              invalid_job_role_id: Identyfikator w wierszu %{numer_wiersza} nie jest prawidłowym identyfikatorem roli zadania
-              invalid_locale: Lokalizacja w wierszu %{numer_wiersza} nie jest prawidłową lokalizacją
-              missing_required_columns: 'Brakujące wymagane kolumny: %{kolumny}'
+              invalid_job_role_id: Identyfikator w wierszu %{row_number} nie jest prawidłowym identyfikatorem roli zadania
+              invalid_locale: Lokalizacja w wierszu %{row_number} nie jest prawidłową lokalizacją
+              missing_required_columns: 'Brakujące wymagane kolumny: %{columns}'
               parsing_failed: 'Błąd podczas analizowania pliku, błąd: %{error}.'
             project:
               must_exist: Projekt musi istnieć
@@ -53,7 +53,7 @@ pl:
               duplicate_value: 'Wiersz %{row}: Zduplikowana wartość %{value} dla %{field}.'
               invalid_format: Prześlij plik xlsx
               missing_headers: 'W arkuszu %{sheet_name} brakuje wymaganych nagłówków: %{headers}'
-              missing_sheets: 'Brakujące wymagane arkusze: %{arkusze}'
+              missing_sheets: 'Brakujące wymagane arkusze: %{sheets}'
               missing_value: 'Wiersz %{row}: Brakująca wartość dla %{field}'
             project:
               must_exist: Projekt musi istnieć
@@ -621,7 +621,7 @@ pl:
       reschedule_reason_placeholder: Aby kontynuować, wprowadź powód zmiany harmonogramu.
       schedule_success: Ta rezerwacja jest zaplanowana
       schedule_success_msg: Wysłaliśmy Tobie i innym uczestnikom zaproszenie do kalendarza ze wszystkimi szczegółami.
-      starts_at: 'Początek: %{data}'
+      starts_at: 'Początek: %{date}'
       starts_in: 'Zaczyna się w:'
       tab_label:
         bookings: Rezerwacje

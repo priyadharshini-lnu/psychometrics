@@ -16,7 +16,7 @@ sl:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'Blok "%{naslov_bloka}" ima podvojene konfiguracije: %{duplicate_configurations}'
+              duplicate_block: 'Blok "%{block_name}" ima podvojene konfiguracije: %{duplicate_configurations}'
         create_one:
           attributes:
             job_role:
@@ -29,10 +29,10 @@ sl:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: Vrednost %{naslov_stolpca} ne more biti prazna v vrstici %{številka_vrstice}
+              column_cannot_be_blank: Vrednost %{column_name} ne more biti prazna v vrstici %{row_number}
               invalid_format: Prenesite datoteko CSV
-              invalid_job_role_id: Id v vrstici %{številka_vrstice} ni veljavni ID vloge delovnega mesta
-              invalid_locale: Locale v vrstici %{številka vrstice} ni veljaven locale
+              invalid_job_role_id: Id v vrstici %{row_number} ni veljavni ID vloge delovnega mesta
+              invalid_locale: Locale v vrstici %{row_number} ni veljaven locale
               missing_required_columns: 'Manjkajo zahtevani stolpci: %{columns}'
               parsing_failed: 'Napaka pri analizi datoteke, napaka: %{error}.'
             project:
@@ -40,7 +40,7 @@ sl:
         skills_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Vsaj ena vloga delovnega mesta mora biti omogočena z izbrano vrsto spretnosti za %{naziv_bloka}
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Vsaj ena vloga delovnega mesta mora biti omogočena z izbrano vrsto spretnosti za %{block_name}
               invalid_skill_type: 'Nepravilna vrsta spretnosti %{skill_type} za %{role_name} za %{block_name}. Veljavne možnosti: %{valid_options}'
               props_missing: Delo
         skillvue:
@@ -50,11 +50,11 @@ sl:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Vrstica %{row}: Podvojena vrednost %{vrednost} za %{polje}'
+              duplicate_value: 'Vrstica %{row}: Podvojena vrednost %{value} za %{field}'
               invalid_format: Prosimo, naložite datoteko xlsx
-              missing_headers: "%{naslov_listov} v listu manjkajo zahtevane glave: %{glave}"
-              missing_sheets: 'Manjkajo zahtevani listi: %{listov}'
-              missing_value: 'Vrstica %{row}: Manjkajoča vrednost za %{polje}'
+              missing_headers: "%{sheet_name} v listu manjkajo zahtevane glave: %{headers}"
+              missing_sheets: 'Manjkajo zahtevani listi: %{sheets}'
+              missing_value: 'Vrstica %{row}: Manjkajoča vrednost za %{field}'
             project:
               must_exist: Projekt mora obstajati
   activerecord:

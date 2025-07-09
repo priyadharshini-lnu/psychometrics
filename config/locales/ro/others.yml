@@ -53,7 +53,7 @@ ro:
               duplicate_value: 'Rând %{row}: Valoare duplicată %{value} pentru %{field}'
               invalid_format: Vă rugăm să încărcați fișierul xlsx
               missing_headers: "%{sheet_name} foii îi lipsesc antetele necesare: %{headers}"
-              missing_sheets: 'Lipsesc foile necesare: %{foaie}'
+              missing_sheets: 'Lipsesc foile necesare: %{sheets}'
               missing_value: 'Rând %{row}: Lipsește valoarea pentru %{field}'
             project:
               must_exist: Proiectul trebuie să existe
@@ -279,7 +279,7 @@ ro:
       campaign_start_final_instructions: "<p>vă rugăm să fiți conștienți de faptul că nu există nicio modalitate de a opri sau de a întrerupe cronometrul. Cronometrul campaniei va continua să ruleze chiar și atunci când închideți browserul, astfel încât nu trebuie să vă gândiți în niciun moment să lăsați sarcinile între ele pentru a face altceva. Asigurați-vă că reduceți la minimum distragerile în timpul sarcinilor. Găsiți un mediu liniștit, dezactivați notificările de pe dispozitivele dvs. și evitați multitasking-ul. Păstrați-vă concentrarea și rămâneți concentrat. Odată ce cronometrul campaniei se termină, nu veți mai putea continua. Dacă ați citit instrucțiunile de mai sus, vă rugăm să faceți clic pe Start pentru a continua sarcinile atribuite</p>\n"
       campaign_start_instruction: |
         <h4>Vă rugăm să citiți corect următoarele instrucțiuni.</h4>
-        <p>sarcinile pe care urmează să le începeți sunt cronometrate. După ce faceți clic pe "Start", cronometrul campaniei va porni automat. Aveți %{minute} minute pentru a finaliza toate activitățile. Vă rugăm să vă propuneți să finalizați sarcinile în intervalul de timp desemnat și să gestionați timpul în mod eficient pentru a evita grăbirea procesului de evaluare. Asigurați-vă că finalizați sarcinile dintr-o dată, astfel încât, dacă trebuie să faceți o pauză, acum este momentul</p>
+        <p>sarcinile pe care urmează să le începeți sunt cronometrate. După ce faceți clic pe "Start", cronometrul campaniei va porni automat. Aveți %{minutes} minute pentru a finaliza toate activitățile. Vă rugăm să vă propuneți să finalizați sarcinile în intervalul de timp desemnat și să gestionați timpul în mod eficient pentru a evita grăbirea procesului de evaluare. Asigurați-vă că finalizați sarcinile dintr-o dată, astfel încât, dacă trebuie să faceți o pauză, acum este momentul</p>
       common_proctoring_instructions: |
         <h4>Proctoring</h4>
         <p>după ce faceți clic pe butonul Start, veți fi redirecționat către sistemul nostru de supraveghere. Acesta vă va monitoriza camera, microfonul și ecranul în timpul sesiunii. Aceste sesiuni sunt supravegheate automat de sistemul nostru sofisticat de inteligență artificială, oferind o experiență de utilizare neîntreruptă și fără probleme. Cu toate acestea, sesiunile pot fi, de asemenea, revizuite de supraveghetori umani. Orice semne de conduită necorespunzătoare sau nereguli vor fi semnalate. Acest lucru se face pentru a ne asigura că nu se fac încercări de înșelăciune. Dacă se constată suspiciuni, sarcina sau sarcinile dvs. vor fi anulate</p>
@@ -313,7 +313,7 @@ ro:
       notification: Timpul alocat pentru această sarcină "%{assessmentName}" a fost %{totalAssessmentTime}. Din cauza timpului total scurs, aveți acum doar %{remainingCampaignTime} ca timp ajustat pentru a finaliza această sarcină.
     timer:
       notification_hours: Mai aveți %{hours} oră
-      notification_minutes: mai aveți %{minute} minute
+      notification_minutes: mai aveți %{minutes} minute
   campaign_assessment:
     assessment_center_heading: Detalii privind centrul de evaluare
     assessments_heading: Sarcinile dvs
@@ -338,7 +338,7 @@ ro:
     card:
       duration: Durată
       starts_in: 'Începe în:'
-      starts_on: Începe la %{data}
+      starts_on: Începe la %{date}
       will_start_shortly: Campania va începe în scurt timp. Vă rugăm să așteptați
   change_password_page:
     old_password: Parolă veche

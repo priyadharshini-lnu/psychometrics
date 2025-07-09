@@ -16,12 +16,12 @@ hu:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'A "%{blokk_név}" blokkban duplikált konfigurációk vannak: %{duplicate_configurations}'
+              duplicate_block: 'A "%{block_name}" blokkban duplikált konfigurációk vannak: %{duplicate_configurations}'
         create_one:
           attributes:
             job_role:
               cannot_be_same: A cél munkakörnek meg kell különböznie a jelenlegi munkakörtől.
-              not_found: A '%{név}' szerepkör nem található a projekt vagy a globális szerepkörök között.
+              not_found: A '%{name}' szerepkör nem található a projekt vagy a globális szerepkörök között.
         import_one:
           attributes:
             job_role:
@@ -29,10 +29,10 @@ hu:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: Az %{oszlop_név} érték nem lehet üres a %{sor_szám} sorban.
+              column_cannot_be_blank: Az %{column_name} érték nem lehet üres a %{row_number} sorban.
               invalid_format: Kérjük, töltse fel a CSV fájlt
-              invalid_job_role_id: A %{sor_szám} sorban lévő azonosító nem érvényes munkakör azonosító
-              invalid_locale: A %{sor_szám} sorban lévő helyi nyelv nem érvényes helyi nyelv
+              invalid_job_role_id: A %{row_number} sorban lévő azonosító nem érvényes munkakör azonosító
+              invalid_locale: A %{row_number} sorban lévő helyi nyelv nem érvényes helyi nyelv
               missing_required_columns: 'Hiányzó kötelező oszlopok: %{columns}'
               parsing_failed: 'Hiba a fájl elemzése közben, hiba: %{error}.'
             project:
@@ -50,11 +50,11 @@ hu:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Sor %{sor}: érték %{value} duplikált értéke %{field}-hez'
+              duplicate_value: 'Sor %{row}: érték %{value} duplikált értéke %{field}-hez'
               invalid_format: Kérjük, töltse fel az xlsx fájlt
               missing_headers: "%{sheet_name} lapról hiányoznak a szükséges fejlécek: %{headers}"
-              missing_sheets: 'Hiányzó kötelező lapok: %{lapok}'
-              missing_value: 'Sor %{sor}: Hiányzó érték %{field}'
+              missing_sheets: 'Hiányzó kötelező lapok: %{sheets}'
+              missing_value: 'Sor %{row}: Hiányzó érték %{field}'
             project:
               must_exist: A projektnek léteznie kell
   activerecord:
@@ -1057,7 +1057,7 @@ hu:
     exact: Kérjük, pontosan válassza ki a %{count} választási lehetőség(eke)t
     file_upload:
       EntityTooLarge: A fájl méretének kevesebbnek kell lennie, mint %{maxFileSize} MB
-      WrongFileType: A fájltípusnak a következő %{engedélyezettFileTípusok} típusok egyikének kell lennie
+      WrongFileType: A fájltípusnak a következő %{allowedFileTypes} típusok egyikének kell lennie
     issue: Kiadvány
     least: Kérjük, válaszoljon legalább %{min} választási lehetőség(ek)re.
     least_hotspot: Kérjük, válaszoljon legalább %{min} választási lehetőség(ek)re.

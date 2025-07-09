@@ -34,7 +34,7 @@ fr:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'Le bloc "%{nom_du_bloc}" a des configurations dupliquées : %{configurations_dupliquées}'
+              duplicate_block: 'Le bloc "%{block_name}" a des configurations dupliquées : %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -119,7 +119,7 @@ fr:
               blank: Le prénom ne peut pas être vide
             job_role:
               cannot_be_same: La fonction visée doit être différente de la fonction actuelle.
-              not_found: Le rôle "%{nom}" n'est pas trouvé dans le projet ou les rôles globaux.
+              not_found: Le rôle "%{name}" n'est pas trouvé dans le projet ou les rôles globaux.
             last_name:
               blank: Le nom de famille ne peut pas être vide
             locale:
@@ -200,10 +200,10 @@ fr:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: La valeur %{nom_de_colonne} ne peut pas être vide à la ligne %{numéro_de_la_rangée}
+              column_cannot_be_blank: La valeur %{column_name} ne peut pas être vide à la ligne %{row_number}
               invalid_format: Veuillez télécharger le fichier CSV
-              invalid_job_role_id: L'identifiant de la ligne %{numéro_de_la_rangée} n'est pas un identifiant de rôle professionnel valide.
-              invalid_locale: La locale à la ligne %{numéro_de_la_rangée} n'est pas une locale valide
+              invalid_job_role_id: L'identifiant de la ligne %{row_number} n'est pas un identifiant de rôle professionnel valide.
+              invalid_locale: La locale à la ligne %{row_number} n'est pas une locale valide
               missing_required_columns: 'Colonnes manquantes : %{columns}'
               parsing_failed: 'Erreur lors de l''analyse du fichier, erreur : %{error}.'
             project:
@@ -326,8 +326,8 @@ fr:
         skills_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Au moins un rôle professionnel doit être activé avec un type de compétence sélectionné pour %{nom_du_bloc}
-              invalid_skill_type: 'Type de compétence non valide %{skill_type} pour %{role_name} pour %{block_name}. Options valides : %{options_valides}'
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Au moins un rôle professionnel doit être activé avec un type de compétence sélectionné pour %{block_name}
+              invalid_skill_type: 'Type de compétence non valide %{skill_type} pour %{role_name} pour %{block_name}. Options valides : %{valid_options}'
               props_missing: Emploi
         skillvue:
           attributes:
@@ -369,10 +369,10 @@ fr:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Ligne %{row} : Valeur en double %{valeur} pour %{champ}'
+              duplicate_value: 'Ligne %{row} : Valeur en double %{value} pour %{field}'
               invalid_format: Veuillez télécharger le fichier xlsx
-              missing_headers: 'La feuille %{nom_de_la_feuille} ne contient pas les en-têtes requis : %{en-têtes}'
-              missing_sheets: 'Feuilles manquantes : %{fiches}'
+              missing_headers: 'La feuille %{sheet_name} ne contient pas les en-têtes requis : %{headers}'
+              missing_sheets: 'Feuilles manquantes : %{sheets}'
               missing_value: 'Ligne %{row} : Valeur manquante pour %{field}'
             project:
               must_exist: Le projet doit exister
@@ -1369,6 +1369,7 @@ fr:
       assessor_form: Formulaire de l'évaluateur
       auto_assign: Attribution automatique
       dimension_id: Dimension ID
+      external_user_id: Skillvue Candidat ID
       id: ID d'évaluation de la campagne
       locales: Localités
       norm: Norme
@@ -2456,7 +2457,7 @@ fr:
       write_here: Écrivez ici...
     initial_steps:
       add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
-      add_skill_group_title: Explorer vos compétences %{catégorie}
+      add_skill_group_title: Explorer vos compétences %{category}
       add_skills: Ajouter
       add_skills_step: Ajouter des compétences
       continue_to_rate_skills: Continuer à évaluer les compétences

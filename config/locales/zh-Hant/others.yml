@@ -1368,6 +1368,7 @@ zh-Hant:
       assessor_form: 評估員表格
       auto_assign: 自動指定
       dimension_id: 尺寸 ID
+      external_user_id: Skillvue 候選人 ID
       id: 活動評估 ID
       locales: 地點
       norm: 標準

@@ -315,7 +315,7 @@ zh:
               invalid_format: 格式无效 (.xlsx)
               invalid_number_value: <b>行#%{index}</b>列<b>"%{column}"</b>不是数字
               invalid_string_value: <b>行#%{index}</b>列<b>"%{column}"</b>不是字符串
-              invalid_string_value_size: <b>行#%{索引}</b>列<b>"%{column}"</b>太长（最多 256）
+              invalid_string_value_size: <b>行#%{index}</b>列<b>"%{column}"</b>太长（最多 256）
               no_email_column: 文件不包含电子邮件列
               non_uniq_column: 有以下非单列 %{columns}
         sheet_row_form:
@@ -1378,6 +1378,7 @@ zh:
       assessor_form: 评估员表格
       auto_assign: 自动分配
       dimension_id: 尺寸 ID
+      external_user_id: Skillvue 候选人 ID
       id: 活动评估 ID
       locales: 地点
       norm: 规范
