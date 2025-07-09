@@ -17,7 +17,7 @@ module AdminJobs
       'campaign_score' => DataReports::FieldHandlers::CampaignScoreHandler
     }.freeze
 
-    def initialize(record)
+    def initialize(record, _stage = nil)
       super
       unless data_report_job
         @data_report_job = data_report.data_report_jobs.create(created_by_id: record.owner_id,
