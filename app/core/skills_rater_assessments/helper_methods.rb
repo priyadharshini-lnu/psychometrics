@@ -72,6 +72,14 @@ module SkillsRaterAssessments
       mapping
     end
 
+    # Proficiency Level
+    def create_proficiency_level_from_global(global_level)
+      duplicated_level = global_level.dup
+      duplicated_level.project_id = project.id
+      duplicated_level.save!
+      duplicated_level
+    end
+
     def normalize_header(header)
       header.to_s.downcase.gsub(/(\d)\s*-\s*/, '\1 - ').squish
     end

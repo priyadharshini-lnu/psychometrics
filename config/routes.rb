@@ -1551,6 +1551,7 @@ as: :simulation_progress_notification
               post :import_translations
               post :export
               post :export_translations
+              get :skill_proficiency
             end
           end
 

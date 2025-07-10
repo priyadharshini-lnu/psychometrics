@@ -47,7 +47,12 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
   end
 
   def self.records(opts = {})
-    super.includes(:translations)
+    project_id = opts.dig(:context, :filter, :project_id_eq)
+    all_skills_filter = opts.dig(:context, :filter, :all_skills)
+
+    scope = super
+    scope = scope.where(project_id: nil) if project_id.nil? && all_skills_filter.nil?
+    scope.includes(:translations)
   end
 
   ransack_filters %i[

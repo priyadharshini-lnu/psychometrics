@@ -14,7 +14,7 @@ class JobGroup < ApplicationRecord
   scope :end_level_groups, lambda { |_value = nil|
     where.not(
       id: where.not(ancestry: nil).
-          select("unnest(string_to_array(ancestry, '/'))::integer AS ancestor_id")
+          select("unnest(string_to_array(ancestry, '/'))::bigint AS ancestor_id")
     )
   }
 

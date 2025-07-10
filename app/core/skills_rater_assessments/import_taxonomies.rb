@@ -19,6 +19,7 @@ module SkillsRaterAssessments
         import_job_group_and_job_roles
         import_skill_group_and_skills
         import_job_role_skills
+        import_global_proficiency_levels if project.present?
       end
     end
 
@@ -121,6 +122,33 @@ module SkillsRaterAssessments
         next if proficiency_level.blank?
 
         create_job_role_skill_mapping(job_role, skill, proficiency_level)
+      end
+    end
+
+    def import_global_proficiency_levels
+      return unless ProficiencyLevel.global.exists?
+
+      import_default_level
+      import_type_levels
+    end
+
+    def import_default_level
+      global_level = ProficiencyLevel.global.default.first
+      return unless global_level
+      return if ProficiencyLevel.exists?(project_id: project.id, proficiency_type: 'default')
+
+      create_proficiency_level_from_global(global_level)
+    end
+
+    def import_type_levels
+      ProficiencyLevel.global.by_type.find_each do |global_level|
+        next if ProficiencyLevel.exists?(
+          project_id: project.id,
+          proficiency_type: 'by_type',
+          skill_type: global_level.skill_type
+        )
+
+        create_proficiency_level_from_global(global_level)
       end
     end
   end

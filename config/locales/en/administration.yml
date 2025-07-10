@@ -174,6 +174,8 @@ en:
             title: IDP Templates
             view: View
           jobRoles:
+            export_translations: Export Job Roles Translations
+            import_translations: Import Job Roles Translations
             manage: Manage
             title: Job Roles
             view: View

@@ -27,21 +27,7 @@ module Api
 
       class Scope < Api::Administration::BasePolicy::Scope
         def resolve
-          return scope unless project_id
-
-          base = scope.joins(:skill, :job_role)
-
-          if filter&.dig(:include_global_skills_job_roles)
-            base.where(
-              skills: { project_id: [nil, project_id] },
-              job_roles: { project_id: [nil, project_id] }
-            )
-          else
-            base.where(
-              skills: { project_id: project_id },
-              job_roles: { project_id: project_id }
-            )
-          end
+          scope.where(project_id: project_id)
         end
       end
     end

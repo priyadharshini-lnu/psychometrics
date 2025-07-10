@@ -180,4 +180,28 @@ RSpec.describe 'Api::V2::Administration::ProficiencyLevelsController',
       end
     end
   end
+
+  path '/proficiency_levels/skill_proficiency' do
+    get 'Fetches Proficiency Level for a Skill' do
+      operationId 'GetSkillProficiencyLevel'
+      description 'Returns the proficiency level associated with a given skill'
+      tags 'ProficiencyLevel'
+      security [basic: []]
+
+      parameter name: :skill_id, in: :query, type: :string, required: true, description: 'ID of the skill'
+
+      response '200', 'Proficiency levels fetched successfully' do
+        let!(:skill) { create(:skill, name: 'Technical Skill', skill_type: 'technical', project_id:) }
+        let!(:skill_id) { skill.id }
+        let!(:global_proficiency_level_by_category) do
+          create(:proficiency_level, project_id: nil, skill_type: 'technical', proficiency_type: 'by_type')
+        end
+
+        run_test! do |response|
+          level = JSON.parse(response.body)
+          expect(level['id']).to eq(global_proficiency_level_by_category.id)
+        end
+      end
+    end
+  end
 end

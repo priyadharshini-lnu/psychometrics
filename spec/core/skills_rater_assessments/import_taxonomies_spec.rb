@@ -101,5 +101,54 @@ RSpec.describe SkillsRaterAssessments::ImportTaxonomies do
         expect { service.call }.not_to(change { JobGroup.where(project_id: nil).count })
       end
     end
+
+    describe '#import_global_proficiency_levels' do
+      let(:project) { create(:project) }
+      let(:service) { described_class.new(file_path: file_path, project: project) }
+
+      context 'when no global proficiency levels exist' do
+        it 'does nothing' do
+          expect(ProficiencyLevel.global).to be_empty
+          expect { service.send(:import_global_proficiency_levels) }.not_to change(ProficiencyLevel, :count)
+        end
+      end
+
+      context 'when global proficiency levels exist' do
+        let!(:global_default) { create(:proficiency_level, project_id: nil, proficiency_type: 'default') }
+        let!(:global_category1) do
+          create(:proficiency_level, project_id: nil, proficiency_type: 'by_type', skill_type: 'technical')
+        end
+        let!(:global_category2) do
+          create(:proficiency_level, project_id: nil, proficiency_type: 'by_type', skill_type: 'behavioral')
+        end
+
+        context 'when project has no proficiency levels' do
+          it 'imports all global levels' do
+            expect { service.send(:import_global_proficiency_levels) }.
+              to change(ProficiencyLevel, :count).by(3)
+
+            expect(ProficiencyLevel.where(project_id: project.id).default).to exist
+            expect(ProficiencyLevel.where(project_id: project.id).by_type.pluck(:skill_type)).to match_array(
+              %w[technical behavioral]
+            )
+          end
+        end
+
+        context 'when project already has default level' do
+          before do
+            create(:proficiency_level, project: project, proficiency_type: 'default')
+          end
+
+          it 'only imports category levels' do
+            expect { service.send(:import_global_proficiency_levels) }.
+              to change(ProficiencyLevel, :count).by(2)
+
+            expect(ProficiencyLevel.where(project_id: project.id).by_type.pluck(:skill_type)).to match_array(
+              %w[technical behavioral]
+            )
+          end
+        end
+      end
+    end
   end
 end

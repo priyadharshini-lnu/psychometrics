@@ -27,6 +27,22 @@ type Props = {
   proficiencyLevel: ProficiencyLevel
 }
 
+interface SkillProficiency {
+  id?: number;
+  projectId?: number;
+  proficiencyType: 'by_skill' | 'by_type' | 'default';
+  skillType?: string;
+  level: number;
+  levelDefinition: Array<{
+    name: string;
+    level: number;
+    description: string;
+  }>;
+  createdAt?: string;
+  updatedAt?: string;
+  skillId?: number | null;
+}
+
 const { I18n } = window
 
 export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) => {
@@ -50,6 +66,8 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   const level = Form.useWatch('level', form)
   const ownerId = Form.useWatch(['ownerId'], form)
   const projectId = Form.useWatch(['projectId'], form)
+  const skillId = Form.useWatch(['skillId'], form)
+  const proficiencyType = Form.useWatch('proficiencyType', form)
 
   const fetchOwnersByValue = (value: string) => fetchOwners({
     apiConfig: {
@@ -109,6 +127,41 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     setSkills([])
     form.resetFields(['skillId'])
   }, [projectId, global])
+
+  const { collectionAction } = useResources<ProficiencyLevel>('proficiency_levels')
+  const [isFetchingProficiency, setIsFetchingProficiency] = useState(false)
+
+  const fetchSkillProficiency = async (skillId: string) => {
+    setIsFetchingProficiency(true)
+    try {
+      const response = await collectionAction({
+        method: 'get',
+        action: 'skill_proficiency',
+        body: { skillId },
+      }) as SkillProficiency
+
+      if (response?.level) {
+        form.setFieldsValue({ level: response.level })
+        setLevelDefinitions(response.levelDefinition || [])
+      }
+    } finally {
+      setIsFetchingProficiency(false)
+    }
+  }
+
+  useEffect(() => {
+    if (skillId) {
+      fetchSkillProficiency(skillId)
+    }
+  }, [skillId])
+
+
+  useEffect(() => {
+    if (proficiencyType) {
+      form.resetFields(['skillId', 'skillType', 'level'])
+      setLevelDefinitions([])
+    }
+  }, [proficiencyType])
 
   const handleProjectSearch = debounce((value) => {
     fetchProjects({
@@ -409,6 +462,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
           >
             <Select
               showSearch
+              disabled={form.getFieldValue('proficiencyType') === 'by_skill' || isFetchingProficiency}
             >
               {Array.from({ length: 9 })?.map((_, index: number) => (
                 <Select.Option key={index + 2} value={index + 2}>{index + 2}</Select.Option>
