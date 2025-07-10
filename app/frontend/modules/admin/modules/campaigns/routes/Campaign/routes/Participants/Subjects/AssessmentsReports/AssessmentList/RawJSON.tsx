@@ -45,6 +45,7 @@ const RawJSON: FC<Props> = ({ I18n, usersResultId }) => {
       apiConfig: {
         fields: { users_results: ['id', 'answers', 'scoring', 'external_results'] },
         include_resource_meta: ['permissions'],
+        camelizeExcept: ['$.scoring.*', '$.answers.*', '$.external_results.*'],
       },
     },
   )
