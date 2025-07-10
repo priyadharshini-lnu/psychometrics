@@ -292,10 +292,8 @@ ko:
       ai_assistants: AI 어시스턴트
       ai_assistants_playground: AI 어시스턴트 플레이그라운드
       column:
-        ai_action: AI 액션
         provider: 공급자
       form:
-        action: 액션
         description: 설명
         name: 이름
         provider: 공급자
@@ -1526,6 +1524,7 @@ ko:
       reset: 초기화
       save: 저장
       select_all: 모두 선택
+      type: 유형
       unselect_all: 모두 선택 취소
     communications:
       create:

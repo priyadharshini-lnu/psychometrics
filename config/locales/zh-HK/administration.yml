@@ -23,6 +23,7 @@ zh-HK:
             skills_rater: 技能評核員
     common:
       minute: 分
+      type: 類型
     communications:
       show:
         assessment_center_group: 評估中心小組：

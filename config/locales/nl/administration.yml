@@ -292,10 +292,8 @@ nl:
       ai_assistants: AI assistenten
       ai_assistants_playground: AI assistent speeltuin
       column:
-        ai_action: AI-Actie
         provider: Aanbieder
       form:
-        action: Actie
         description: Beschrijving
         name: Naam
         provider: Aanbieder
@@ -1526,6 +1524,7 @@ nl:
       reset: Reset
       save: Sla
       select_all: Alles selecteren
+      type: Type
       unselect_all: Alles deselecteren
     communications:
       create:

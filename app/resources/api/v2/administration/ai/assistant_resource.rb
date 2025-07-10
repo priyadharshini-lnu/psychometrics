@@ -5,11 +5,12 @@ module Api
     module Administration
       class AI::AssistantResource < BaseResource
         model_name 'AI::Assistant'
-        attributes :name, :description, :action, :user_prompt, :system_prompt,
-                   :created_at, :updated_at, :model_id
+        attributes :name, :description, :assistant_type, :user_prompt, :system_prompt,
+                   :created_at, :updated_at, :model_id, :status, :dependencies
 
-        has_one :owner, class_name: 'Client', resource: 'Api::V2::Administration::ClientResource'
-        has_one :last_modified_by, class_name: 'User', resource: 'Api::V2::Administration::UserResource'
+        has_one :owner, class_name: 'Client'
+        has_one :last_modified_by, class_name: 'User'
+        has_many :assistant_output_schema_keys, class_name: 'AssistantOutputSchemaKey'
 
         before_save do
           @model.last_modified_by_id = context[:user].id

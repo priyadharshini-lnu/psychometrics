@@ -9,7 +9,16 @@ export const AiAssistantTR = t.intersection([
     modelId: t.string,
     systemPrompt: t.string,
     userPrompt: t.string,
-    action: t.string,
+    assistantType: t.string,
+    assistantOutputSchemaKeys: t.union([
+      t.array(t.type({
+        id: t.string,
+        key: t.string,
+        description: t.string,
+        keyType: t.string,
+      })),
+      t.null,
+    ]),
   })])
 
 export type AiAssistant = t.TypeOf<typeof AiAssistantTR>

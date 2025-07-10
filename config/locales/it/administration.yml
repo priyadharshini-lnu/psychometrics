@@ -292,10 +292,8 @@ it:
       ai_assistants: Assistenti AI
       ai_assistants_playground: Parco giochi per assistenti AI
       column:
-        ai_action: Azione AI
         provider: Fornitore
       form:
-        action: Azione
         description: Descrizione
         name: Nome
         provider: Fornitore
@@ -1526,6 +1524,7 @@ it:
       reset: Reset
       save: Risparmiare
       select_all: Seleziona tutti
+      type: Tipo
       unselect_all: Deselezionare tutti
     communications:
       create:

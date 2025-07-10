@@ -1560,7 +1560,8 @@ as: :simulation_progress_notification
           jsonapi_resources :skill_groups, only: %i[index]
 
           namespace :ai do
-            jsonapi_resources :assistants, relationships: false do
+            jsonapi_resources :assistants do
+              jsonapi_relationships
               member do
                 post :generate
               end

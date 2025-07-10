@@ -292,10 +292,8 @@ es-ES:
       ai_assistants: Asistentes de IA
       ai_assistants_playground: Asistente de inteligencia artificial
       column:
-        ai_action: Acción AI
         provider: Proveedor
       form:
-        action: Acción
         description: Descripción
         name: Nombre
         provider: Proveedor
@@ -1526,6 +1524,7 @@ es-ES:
       reset: Restablecer
       save: Guardar
       select_all: Seleccionar todo
+      type: Tipo
       unselect_all: Deseleccionar todo
     communications:
       create:

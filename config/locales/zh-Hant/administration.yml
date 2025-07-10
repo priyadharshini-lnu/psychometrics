@@ -292,10 +292,8 @@ zh-Hant:
       ai_assistants: AI 助理
       ai_assistants_playground: AI 助理遊樂場
       column:
-        ai_action: AI 行動
         provider: 供應商
       form:
-        action: 行動
         description: 說明
         name: 名稱
         provider: 供應商

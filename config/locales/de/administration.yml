@@ -292,10 +292,8 @@ de:
       ai_assistants: AI-Assistenten
       ai_assistants_playground: AI-Assistent Spielwiese
       column:
-        ai_action: KI-Aktion
         provider: Anbieter
       form:
-        action: Aktion
         description: Beschreibung
         name: Name
         provider: Anbieter
@@ -1526,6 +1524,7 @@ de:
       reset: Zurücksetzen
       save: Speichern Sie
       select_all: Alle auswählen
+      type: Typ
       unselect_all: Alle abwählen
     communications:
       create:

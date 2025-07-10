@@ -302,9 +302,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT campaigns.id,
-    campaigns.name,
-    campaigns.project_id
+ SELECT id,
+    name,
+    project_id
    FROM public.campaigns;
 
 
@@ -1054,6 +1054,40 @@ ALTER SEQUENCE public.ai_assistant_chats_id_seq OWNED BY public.ai_assistant_cha
 
 
 --
+-- Name: ai_assistant_output_schema_keys; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_assistant_output_schema_keys (
+    id bigint NOT NULL,
+    ai_assistant_id bigint NOT NULL,
+    key character varying NOT NULL,
+    key_type integer DEFAULT 0 NOT NULL,
+    description text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_assistant_output_schema_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_assistant_output_schema_keys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_assistant_output_schema_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_assistant_output_schema_keys_id_seq OWNED BY public.ai_assistant_output_schema_keys.id;
+
+
+--
 -- Name: ai_assistant_requests; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1133,7 +1167,6 @@ ALTER SEQUENCE public.ai_assistant_tool_calls_id_seq OWNED BY public.ai_assistan
 CREATE TABLE public.ai_assistants (
     id bigint NOT NULL,
     name character varying NOT NULL,
-    action character varying NOT NULL,
     description character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
@@ -1141,7 +1174,10 @@ CREATE TABLE public.ai_assistants (
     system_prompt text,
     owner_id bigint,
     last_modified_by_id bigint,
-    model_id character varying
+    model_id character varying,
+    assistant_type integer DEFAULT 0 NOT NULL,
+    dependencies jsonb DEFAULT '[]'::jsonb NOT NULL,
+    status integer DEFAULT 0 NOT NULL
 );
 
 
@@ -8130,6 +8166,13 @@ ALTER TABLE ONLY public.ai_assistant_chats ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: ai_assistant_output_schema_keys id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_output_schema_keys ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_output_schema_keys_id_seq'::regclass);
+
+
+--
 -- Name: ai_assistant_requests id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9585,6 +9628,14 @@ ALTER TABLE ONLY public.agiles
 
 ALTER TABLE ONLY public.ai_assistant_chats
     ADD CONSTRAINT ai_assistant_chats_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ai_assistant_output_schema_keys ai_assistant_output_schema_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_output_schema_keys
+    ADD CONSTRAINT ai_assistant_output_schema_keys_pkey PRIMARY KEY (id);
 
 
 --
@@ -11239,6 +11290,13 @@ CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories
 
 
 --
+-- Name: idx_on_ai_assistant_id_key_1d1a169fc1; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_ai_assistant_id_key_1d1a169fc1 ON public.ai_assistant_output_schema_keys USING btree (ai_assistant_id, key);
+
+
+--
 -- Name: idx_on_assessment_id_3b131a93ee; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11488,6 +11546,13 @@ CREATE INDEX index_ai_assistant_chats_on_client_id ON public.ai_assistant_chats 
 --
 
 CREATE INDEX index_ai_assistant_chats_on_user_id ON public.ai_assistant_chats USING btree (user_id);
+
+
+--
+-- Name: index_ai_assistant_output_schema_keys_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_output_schema_keys_on_ai_assistant_id ON public.ai_assistant_output_schema_keys USING btree (ai_assistant_id);
 
 
 --
@@ -14825,6 +14890,14 @@ ALTER TABLE ONLY public.campaign_users
 
 
 --
+-- Name: ai_assistant_output_schema_keys fk_rails_05ae770713; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_output_schema_keys
+    ADD CONSTRAINT fk_rails_05ae770713 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
+
+
+--
 -- Name: idp_template_skills fk_rails_05becee7c5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17407,6 +17480,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250709102014'),
+('20250709100241'),
 ('20250704103208'),
 ('20250703094817'),
 ('20250703072154'),
@@ -18268,4 +18343,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

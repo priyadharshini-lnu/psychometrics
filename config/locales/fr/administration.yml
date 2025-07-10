@@ -292,10 +292,8 @@ fr:
       ai_assistants: Assistants IA
       ai_assistants_playground: Terrain de jeu de l'assistant IA
       column:
-        ai_action: Action IA
         provider: Fournisseur
       form:
-        action: Action
         description: Description
         name: Nom
         provider: Fournisseur
@@ -1526,6 +1524,7 @@ fr:
       reset: Remise à zéro
       save: Économiser
       select_all: Tout sélectionner
+      type: Type
       unselect_all: Désélectionner tout
     communications:
       create:

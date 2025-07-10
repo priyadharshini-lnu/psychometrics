@@ -5,9 +5,9 @@ export const AI_PROVIDERS = {
   },
 }
 
-export const AI_ACTIONS = {
-  report_summary: {
-    id: 'report_summary',
-    name: 'Report Summary',
+export const ASSISTANT_TYPES = {
+  content_writer: {
+    id: 'content_writer',
+    name: 'Content Writer',
   },
 }

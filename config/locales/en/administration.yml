@@ -294,10 +294,8 @@ en:
       ai_assistants: AI Assistants
       ai_assistants_playground: AI Assistant Playground
       column:
-        ai_action: AI Action
         provider: Provider
       form:
-        action: Action
         description: Description
         name: Name
         provider: Provider
@@ -1529,6 +1527,7 @@ en:
       reset: Reset
       save: Save
       select_all: Select all
+      type: Type
       unselect_all: Unselect all
     communications:
       create:

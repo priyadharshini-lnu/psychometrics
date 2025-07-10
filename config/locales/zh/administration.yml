@@ -292,10 +292,8 @@ zh:
       ai_assistants: 人工智能助理
       ai_assistants_playground: 人工智能助理游乐场
       column:
-        ai_action: 人工智能行动
         provider: 提供商
       form:
-        action: 行动
         description: 说明
         name: 名称
         provider: 提供商
@@ -1526,6 +1524,7 @@ zh:
       reset: 重置
       save: 节省
       select_all: 选择所有
+      type: 类型
       unselect_all: 全部取消选择
     communications:
       create:

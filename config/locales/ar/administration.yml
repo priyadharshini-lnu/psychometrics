@@ -292,10 +292,8 @@ ar:
       ai_assistants: مساعدو الذكاء الاصطناعي
       ai_assistants_playground: ملعب مساعد الذكاء الاصطناعي
       column:
-        ai_action: إجراء الذكاء الاصطناعي
         provider: المزود
       form:
-        action: الإجراء
         description: الوصف
         name: الاسم
         provider: المزود
@@ -1526,6 +1524,7 @@ ar:
       reset: إعادة تعيين
       save: حفظ
       select_all: تحديد الكل
+      type: النوع
       unselect_all: إلغاء تحديد الكل
     communications:
       create:

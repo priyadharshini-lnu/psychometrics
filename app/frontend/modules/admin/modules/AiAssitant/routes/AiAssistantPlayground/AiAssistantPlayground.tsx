@@ -16,7 +16,7 @@ import styles from './AiAssistantPlayground.less'
 import { useResources } from '~/hooks/useResources/useResources'
 import { AiAssistantTR, AiAssistant } from '../../core/aiAssistant'
 import ResourceForm from '~/components/ResourceForm'
-import { AI_ACTIONS, AI_PROVIDERS } from '~/modules/admin/modules/AiAssitant/core/constants'
+import { ASSISTANT_TYPES, AI_PROVIDERS } from '~/modules/admin/modules/AiAssitant/core/constants'
 import { getAvailableAiProviders } from '~/core/config'
 
 const { Paragraph } = Typography
@@ -244,9 +244,9 @@ export const AiAssistantPlayground: React.FC = () => {
                       label="Action"
                     >
                       <Select>
-                        {Object.values(AI_ACTIONS).map(action => (
-                          <Select.Option key={action.id} value={action.id}>
-                            {action.name}
+                        {Object.values(ASSISTANT_TYPES).map(type => (
+                          <Select.Option key={type.id} value={type.id}>
+                            {type.name}
                           </Select.Option>
                         ))}
                       </Select>
@@ -300,7 +300,7 @@ export const AiAssistantPlayground: React.FC = () => {
 
                     <div className={styles.settingsSection}>
                       <div className={styles.settingsLabel}>Action</div>
-                      <Paragraph className={styles.promptText}>{selectedAssistant.action}</Paragraph>
+                      <Paragraph className={styles.promptText}>{selectedAssistant.assistantType}</Paragraph>
                     </div>
 
                     <div className={styles.settingsSection}>

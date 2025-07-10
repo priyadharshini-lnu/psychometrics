@@ -292,10 +292,8 @@ cs:
       ai_assistants: Asistenti AI
       ai_assistants_playground: AI Assistant Playground
       column:
-        ai_action: Akce AI
         provider: Poskytovatel
       form:
-        action: Akce
         description: Popis
         name: Název
         provider: Poskytovatel
@@ -1526,6 +1524,7 @@ cs:
       reset: Obnovení
       save: Uložit
       select_all: Vyberte vše
+      type: Typ
       unselect_all: Zrušit výběr všech
     communications:
       create:

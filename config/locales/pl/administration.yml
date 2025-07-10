@@ -24,6 +24,7 @@ pl:
             skills_rater: Ocena umiejętności
     common:
       minute: minuta
+      type: Typ
     communications:
       show:
         assessment_center_group: 'Assessment Center Group:'

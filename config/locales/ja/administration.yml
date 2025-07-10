@@ -292,10 +292,8 @@ ja:
       ai_assistants: AIアシスタント
       ai_assistants_playground: AIアシスタント・プレイグラウンド
       column:
-        ai_action: AIアクション
         provider: プロバイダー
       form:
-        action: アクション
         description: 説明
         name: 名称
         provider: プロバイダー
@@ -1526,6 +1524,7 @@ ja:
       reset: リセット
       save: セーブ
       select_all: すべて選択
+      type: タイプ
       unselect_all: すべて選択解除
     communications:
       create:

@@ -27,6 +27,9 @@ const AiAssistantList: React.FC<PropsFromRedux> = ({ openModal }) => {
   const config = {
     basePath: '/ai',
     responseType: AiAssistantTR,
+    apiConfig: {
+      include: ['assistant_output_schema_keys'],
+    },
   }
 
   const handleOpenModal = (aiAssistant?: AiAssistant) => {
