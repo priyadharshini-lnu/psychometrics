@@ -76,10 +76,13 @@ const EvaluationListComponent = ({
   )
 
   const getPath = (item) => {
+    const assessmentLanguage = item.availableLanguages?.includes(I18n.locale) ? I18n.locale : item.defaultLanguage
+
     if (!isEvaluationCompleted(item) && WizardIsRequired.run(item.assessmentExtra, item.id)) {
       return `/system_checks/${item.assessmentId}/${item.id}`
     }
-    return `/threesixty_campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`
+    // eslint-disable-next-line max-len
+    return `/threesixty_campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}&lang=${assessmentLanguage}`
   }
 
   const handleAssessmentLinkClick = (e, item, href) => {

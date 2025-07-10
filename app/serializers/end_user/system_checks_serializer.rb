@@ -6,12 +6,14 @@ module EndUser
     attributes :url, :checks, :id, :config, :transcribe_supported_locales
     attributes :campaign_id
 
+    delegate :available_languages, :default_language, to: :assessment
+
     def url
       return agile_user_assessment_path(object) if object.assessment.agile?
 
       return pass_user_assessment_path(object) if object.campaign.common?
 
-      campaign_evaluation_path(object, campaign_id: object.threesixty_campaign.id)
+      campaign_evaluation_path(object, campaign_id: object.threesixty_campaign.id, lang: assessment_language)
     end
 
     def campaign_id
@@ -44,6 +46,18 @@ module EndUser
       available_questions = object.assessment.questions.not_deleted.uniq { |q| q[:type] }
 
       available_questions.any? { |q| q[:type] == type }
+    end
+
+    def assessment
+      object.assessment
+    end
+
+    def assessment_language
+      if assessment.available_languages.include?(I18n.locale.to_s)
+        I18n.locale.to_s
+      else
+        assessment.default_language
+      end
     end
   end
 end
