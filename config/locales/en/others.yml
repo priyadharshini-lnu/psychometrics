@@ -2543,6 +2543,7 @@ en:
       submit_plan: Submit Plan
       write_here: Write here...
     edit_plan: Edit Plan
+    edit_progress: Edit Progress
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills

@@ -657,14 +657,242 @@ vi:
         requested_rescheduling_rejected: Yêu cầu lên lịch lại bị từ chối
     'yes': Đúng
   idp:
+    actions: Hành động
+    behavioral: Hành vi
+    board: Bảng
+    comment_details:
+      add_comment: Thêm bình luận
+      add_comment_placeholder: Thêm bình luận...
+      add_reply_placeholder: Thêm trả lời...
+      go_to_skill: Đi tới kỹ năng
+    comments:
+      close: Đóng
+      comments: Bình luận
+      filter_comments: Lọc bình luận
+      mark_as_resolved: Đánh dấu là đã giải quyết
+      mark_as_unresolved: Đánh dấu là chưa giải quyết
+      replied: Đã trả lời
+      replies: Trả lời
+      reply: Trả lời
+      resolve: Giải quyết
+      resolved: Đã giải quyết
+      resolved_message: Bình luận này đã được giải quyết và không thể trả lời thêm.
+      show_only_read: Chỉ hiển thị đã đọc
+      show_only_resolved: Chỉ hiển thị đã giải quyết
+      show_only_unread: Chỉ hiển thị chưa đọc
+      show_only_unresolved: Chỉ hiển thị chưa giải quyết
+      sort_by_date: Sắp xếp theo ngày
+      you: Bạn
+    convert_to_draft: Chuyển thành bản nháp
+    details: Chi tiết
+    development_actions:
+      action_private: Có
+      action_public: Không
+      add_development_action: Thêm hành động phát triển
+      all: Tất cả
+      approved: Đã phê duyệt
+      board_view:
+        completed: Đã hoàn thành
+        in_progress: Đang tiến hành
+        not_started: Chưa bắt đầu
+      completion: Hoàn thành
+      create_my_own: Tạo của riêng tôi
+      date_range: Ngày bắt đầu - Ngày kết thúc
+      generate_by_ai: Tạo bởi AI
+      generate_more: Tạo thêm
+      generating_development_actions: Đang tạo hành động phát triển...
+      heading: Hành động phát triển
+      incomplete_error: Hành động phát triển chưa hoàn thành
+      incomplete_error_message: Một số hành động phát triển chưa hoàn thành. Vui lòng hoàn thành trước khi gửi IDP của bạn.
+      incomplete_warning: Hành động phát triển chưa hoàn thành
+      incomplete_warning_message: Một số hành động phát triển chưa hoàn thành. Bạn có chắc chắn muốn đánh dấu IDP là hoàn thành không?
+      learning_from_others: Học hỏi từ người khác
+      manage_skills: Quản lý kỹ năng
+      marathon: Marathon
+      mark_as_complete: Đánh dấu là hoàn thành
+      no_development_actions: Không có hành động phát triển
+      on_the_job: Trong công việc
+      other: Khác
+      private: Riêng tư
+      publish_plan: Xuất bản kế hoạch
+      remove: Xóa
+      skill: Kỹ năng
+      sprint: Sprint
+      start_plan: Bắt đầu kế hoạch
+      structured_learning: Học tập có cấu trúc
+      submit_plan: Gửi kế hoạch
+      write_here: Viết tại đây...
+    edit_plan: Chỉnh sửa kế hoạch
+    edit_progress: Chỉnh sửa tiến độ
+    initial_steps:
+      add_skill_group_description: Dựa trên kết quả đánh giá, đây là một số lĩnh vực mạnh và cần phát triển của bạn. Chọn các kỹ năng bạn muốn phát triển thêm trong kế hoạch phát triển cá nhân.
+      add_skill_group_title: Khám phá kỹ năng %{category} của bạn
+      add_skills: Thêm
+      add_skills_step: Thêm kỹ năng
+      continue_to_rate_skills: Tiếp tục đánh giá kỹ năng
+      getting_started: Bắt đầu
+      less_skills: Hiển thị ít kỹ năng hơn
+      more_skills: Khám phá thêm kỹ năng
+      next: Tiếp theo
+      no_skills_selected: Chưa chọn kỹ năng nào.
+      rate_skills: Đánh giá kỹ năng
+      rate_skills_description: Sau khi chọn ưu tiên phát triển, vui lòng tự đánh giá từng kỹ năng dưới đây. Hãy đánh giá dựa trên trình độ hiện tại, không phải quá khứ hoặc mong muốn.
+      rate_skills_title: Đánh giá kỹ năng của bạn
+      rating_column_header: Tự đánh giá của bạn
+      reflective_questions: Câu hỏi phản chiếu
+      save: Lưu
+      select_skills: Chọn kỹ năng của bạn
+      select_skills_placeholder: Chọn kỹ năng
+      selected_skills: Kỹ năng đã chọn
+      skill_column_header: Kỹ năng
+      skill_gap_report: Báo cáo khoảng cách kỹ năng
+    list: Danh sách
+    manage_plan: Quản lý kế hoạch
+    mark_as_complete: Đánh dấu là hoàn thành
+    mark_as_incomplete: Đánh dấu là chưa hoàn thành
+    my_plan:
+      development_plan: Kế hoạch phát triển
+      graphs:
+        categories: Danh mục
+      save_skills: Lưu kỹ năng
+    new_comments: Bình luận mới
     pdf:
+      approval_status: Trạng thái phê duyệt
       cover:
         fields:
+          assigned_data: Ngày được giao
           assigned_date: Ngày được giao
+          completion_date: Ngày hoàn thành
+          division: Phòng ban
+          name: Tên
+          publish_date: Ngày xuất bản
+          review_date: Ngày đánh giá
+          role: Vai trò hiện tại
+      guidelines:
+        cards:
+          c1:
+            content: Bao gồm các kỹ năng, kiến thức và năng lực cần phát triển. Đảm bảo chúng cụ thể, đo lường được, khả thi, thực tế và có thể hoàn thành trong thời gian đã đề ra.
+            title: Mục tiêu phát triển
+          c2:
+            content: Dựa trên năng lực cần phát triển từ trải nghiệm đánh giá.
+            title: Năng lực
+          c3:
+            content: Phần này bao gồm các hành động phát triển dựa trên mô hình học tập 70-20-10 dưới đây. Nên chọn kết hợp cả ba yếu tố để đảm bảo phương pháp học tập đa dạng.
+            title: Hoạt động
+          c4:
+            content: Đảm bảo thời gian thực tế dựa trên thời điểm có thể hoàn thành mục tiêu. Hãy điều chỉnh khi cần thiết.
+            title: Thời gian
+          c5:
+            content: Sử dụng phần tiến độ để hỗ trợ theo dõi các lộ trình đã xác định.
+            title: Tiến độ
+        chart:
+          collaboration: "<strong>20%</strong> Học tập hợp tác <br />"
+          job: "<strong>70%</strong> Học tập <br /> trong công việc"
+          learn: "<strong>10%</strong> Học tập chính quy <br />"
+        content:
+          list:
+            r1: Lưu ý danh sách này chỉ mang tính chất tham khảo, bạn có thể cân nhắc các lộ trình phát triển khác dựa trên nguyện vọng cá nhân, đề xuất của quản lý hoặc ưu tiên kinh doanh của tổ chức.
+            r2: Việc triển khai một số lộ trình phát triển này phụ thuộc vào chiến lược đào tạo và học tập toàn tổ chức.
+            r3: Hãy cân nhắc các lộ trình được đề xuất dưới đây khi xây dựng Kế hoạch Phát triển Cá nhân.
+          main: Phần này bao gồm danh sách tổng hợp tất cả các lộ trình phát triển, dựa trên hướng dẫn học tập tốt nhất 70-20-10, kết hợp học tập trên lớp, huấn luyện và học tập trong công việc. Dựa trên kết quả phát triển lãnh đạo và ưu tiên kinh doanh, các lộ trình phát triển phù hợp đã được đề xuất cho bạn.
+        learn_cards:
+          collaboration:
+            list:
+            - Đề nghị huấn luyện hoặc cố vấn cho người khác
+            - Yêu cầu được cố vấn bởi chuyên gia trong lĩnh vực của bạn
+            - Tìm một huấn luyện viên hỗ trợ phát triển của bạn
+            - Thiết lập nhóm làm việc hợp tác để thảo luận các thách thức trong doanh nghiệp
+            - Nhận phản hồi chính thức và không chính thức từ người khác
+            - Tham gia tích cực vào các hiệp hội và mạng lưới ngành
+            - Xây dựng mạng lưới bên ngoài của riêng bạn
+            title: Học tập hợp tác (20%) <br/> Phát triển qua người khác
+          job:
+            list:
+            - Đảm nhận vị trí lãnh đạo trong các ủy ban quản lý hoặc các bên liên quan
+            - Tình nguyện dẫn dắt các dự án quản lý thay đổi cho tổ chức
+            - Xem xét nhận các nhiệm vụ thử thách
+            - Làm việc phối hợp với các phòng ban khác
+            - Dẫn dắt các dự án ngoài tổ chức của bạn
+            - Làm việc chặt chẽ với chuyên gia ngành ngoài trong các dự án chung
+            title: Học tập trong công việc (70%) <br/> Phát triển qua trải nghiệm
+          learn:
+            list:
+            - Đảm nhận vị trí lãnh đạo trong các ủy ban quản lý hoặc các bên liên quan
+            - Tình nguyện dẫn dắt các dự án quản lý thay đổi cho tổ chức
+            - Xem xét nhận các nhiệm vụ thử thách
+            - Làm việc phối hợp với các phòng ban khác
+            - Dẫn dắt các dự án ngoài tổ chức của bạn
+            - Làm việc chặt chẽ với chuyên gia ngành ngoài trong các dự án chung
+            title: Học tập chính quy (10%) <br/> Phát triển qua học tập có cấu trúc
+        title: Hướng dẫn xây dựng IDP của bạn
+      idp:
+        end_date: Ngày kết thúc
+        self_rating: Tự đánh giá
+        start_date: Ngày bắt đầu
+        subtitle:
+          behavioural: Hành vi
+          technical: Kỹ thuật
+        title: Kế hoạch phát triển cá nhân
+      last:
+        end_report: Kết thúc báo cáo
+      reflections:
+        subtitle: Câu hỏi cho phát triển nghề nghiệp tổng thể
+        title: Câu hỏi phản chiếu hướng dẫn IDP
+      skill_categories:
+        behavioral: Hành vi
+        technical: Kỹ thuật
       statuses:
+        approved: Đã xem xét và phê duyệt
+        completed: Đã hoàn thành
         draft: Bản nháp
+        not_reviewed: Chưa xem xét
+        pending_approval: Đang xem xét
+      summary:
+        ai_count: AI tạo sinh
+        collaborative_learn: Học tập hợp tác
+        created_by: Được tạo bởi
+        current_status: Trạng thái hiện tại của IDP
+        custom: Tùy chỉnh
+        custom_count: Tùy chỉnh
+        da_count: Số lượng hành động phát triển
+        formal_learn: Học tập chính quy
+        generated_ai: AI tạo sinh
+        learn_on_job: Học tập trong công việc
+        learn_pathway: Lộ trình học tập
+        lib_count: Thư viện IDP
+        library: Thư viện IDP
+        skills_count: Số lượng kỹ năng
+        title: Tóm tắt báo cáo
+    plan: Kế hoạch
     reflective_questions:
-      already_completed: IDP đã được hoàn thành, bạn không thể trả lời các câu hỏi lúc này.
+      already_completed: IDP đã hoàn thành, bạn không thể trả lời câu hỏi lúc này.
+      answer_later: Trả lời sau
+      answer_placeholder: Viết câu trả lời của bạn tại đây...
+      errors:
+        max_words: Câu trả lời tối đa %{count} từ
+        min_words: Câu trả lời yêu cầu ít nhất %{count} từ
+        required: Câu trả lời cho câu hỏi là bắt buộc
+      max_words: Tối đa từ
+      min_words: Tối thiểu từ
+      title: Câu hỏi phản chiếu
+      update_failed: Đã xảy ra lỗi khi cập nhật
+      updated_successfully: Câu trả lời của bạn đã được cập nhật thành công
+      words: Từ
+    skill_gap_report:
+      title: Báo cáo khoảng cách kỹ năng
+    status: Trạng thái
+    technical: Kỹ thuật
+    user_idp_status:
+      approved: Đã phê duyệt
+      completed: Đã hoàn thành
+      draft: Bản nháp
+      in_progress: Đang tiến hành
+      not_started: Chưa bắt đầu
+      pending_approval: Đang chờ phê duyệt
+      rejected: Bị từ chối
+    users: Người dùng
+    with_reflection_questions: Có câu hỏi phản chiếu
+    without_reflection_questions: Không có câu hỏi phản chiếu
   idp_templates:
     errors:
       user_idp_template_not_found: Bạn chưa được chỉ định mẫu IDP nào.

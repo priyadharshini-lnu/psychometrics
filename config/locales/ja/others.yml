@@ -2483,6 +2483,7 @@ ja:
       submit_plan: プランを提出
       write_here: ここに記入してください...
     edit_plan: プランの編集
+    edit_progress: 進捗を編集
     initial_steps:
       add_skill_group_description: アセスメント結果に基づき、あなたの強みと伸ばすべき分野をご紹介します。 開発プランの一環として、さらに伸ばしたいスキルを選んでください。
       add_skill_group_title: カテゴリー}のスキルを探る

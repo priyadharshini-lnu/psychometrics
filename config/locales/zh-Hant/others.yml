@@ -2464,6 +2464,7 @@ zh-Hant:
       structured_learning: 結構化的學習
       submit_plan: 提交計劃
       write_here: 寫在這裡...
+    edit_progress: 編輯進度
     initial_steps:
       add_skill_group_description: 根據您的評估結果，以下是您的一些優勢和發展領域。 選擇您想要進一步發展的技能，作為您發展計劃的一部分。
       add_skill_group_title: 探索您的 %{category} 技能

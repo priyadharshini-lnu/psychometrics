@@ -657,14 +657,242 @@ th:
         requested_rescheduling_rejected: การขอเลื่อนกำหนดการถูกปฏิเสธ
     'yes': ใช่
   idp:
+    actions: การดำเนินการ
+    behavioral: พฤติกรรม
+    board: กระดาน
+    comment_details:
+      add_comment: เพิ่มความคิดเห็น
+      add_comment_placeholder: เพิ่มความคิดเห็น...
+      add_reply_placeholder: เพิ่มการตอบกลับ...
+      go_to_skill: ไปที่ทักษะ
+    comments:
+      close: ปิด
+      comments: ความคิดเห็น
+      filter_comments: กรองความคิดเห็น
+      mark_as_resolved: ทำเครื่องหมายว่าแก้ไขแล้ว
+      mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ไข
+      replied: ตอบกลับแล้ว
+      replies: การตอบกลับ
+      reply: ตอบกลับ
+      resolve: แก้ไข
+      resolved: แก้ไขแล้ว
+      resolved_message: ความคิดเห็นนี้ได้รับการแก้ไขแล้วและไม่สามารถตอบกลับได้
+      show_only_read: แสดงเฉพาะที่อ่านแล้ว
+      show_only_resolved: แสดงเฉพาะที่แก้ไขแล้ว
+      show_only_unread: แสดงเฉพาะที่ยังไม่ได้อ่าน
+      show_only_unresolved: แสดงเฉพาะที่ยังไม่ได้แก้ไข
+      sort_by_date: เรียงตามวันที่
+      you: คุณ
+    convert_to_draft: แปลงเป็นร่าง
+    details: รายละเอียด
+    development_actions:
+      action_private: ใช่
+      action_public: ไม่ใช่
+      add_development_action: เพิ่มการดำเนินการพัฒนา
+      all: ทั้งหมด
+      approved: อนุมัติแล้ว
+      board_view:
+        completed: เสร็จสมบูรณ์
+        in_progress: กำลังดำเนินการ
+        not_started: ยังไม่ได้เริ่ม
+      completion: เสร็จสมบูรณ์
+      create_my_own: สร้างของฉันเอง
+      date_range: วันที่เริ่มต้น - วันที่สิ้นสุด
+      generate_by_ai: สร้างโดย AI
+      generate_more: สร้างเพิ่มเติม
+      generating_development_actions: กำลังสร้างการดำเนินการพัฒนา...
+      heading: การดำเนินการพัฒนา
+      incomplete_error: การดำเนินการพัฒนาไม่สมบูรณ์
+      incomplete_error_message: มีการดำเนินการพัฒนาบางรายการที่ไม่สมบูรณ์ กรุณาทำให้เสร็จก่อนส่ง IDP ของคุณ
+      incomplete_warning: การดำเนินการพัฒนาไม่สมบูรณ์
+      incomplete_warning_message: มีการดำเนินการพัฒนาบางรายการที่ไม่สมบูรณ์ คุณแน่ใจหรือไม่ว่าต้องการทำเครื่องหมายว่า IDP ของคุณเสร็จสมบูรณ์?
+      learning_from_others: เรียนรู้จากผู้อื่น
+      manage_skills: จัดการทักษะ
+      marathon: มาราธอน
+      mark_as_complete: ทำเครื่องหมายว่าเสร็จสมบูรณ์
+      no_development_actions: ไม่มีการดำเนินการพัฒนา
+      on_the_job: ขณะทำงาน
+      other: อื่นๆ
+      private: ส่วนตัว
+      publish_plan: เผยแพร่แผน
+      remove: ลบ
+      skill: ทักษะ
+      sprint: สปรินท์
+      start_plan: เริ่มแผน
+      structured_learning: การเรียนรู้แบบมีโครงสร้าง
+      submit_plan: ส่งแผน
+      write_here: เขียนที่นี่...
+    edit_plan: แก้ไขแผน
+    edit_progress: แก้ไขความก้าวหน้า
+    initial_steps:
+      add_skill_group_description: จากผลการประเมินของคุณ นี่คือจุดแข็งและจุดที่ควรพัฒนาบางส่วน เลือกทักษะที่คุณต้องการพัฒนาต่อในแผนพัฒนาของคุณ
+      add_skill_group_title: สำรวจทักษะ%{category}ของคุณ
+      add_skills: เพิ่ม
+      add_skills_step: เพิ่มทักษะ
+      continue_to_rate_skills: ดำเนินการให้คะแนนทักษะต่อ
+      getting_started: เริ่มต้นใช้งาน
+      less_skills: แสดงทักษะน้อยลง
+      more_skills: สำรวจทักษะเพิ่มเติม
+      next: ถัดไป
+      no_skills_selected: ยังไม่ได้เลือกทักษะ
+      rate_skills: ให้คะแนนทักษะ
+      rate_skills_description: เมื่อคุณเลือกสิ่งที่ต้องการพัฒนาแล้ว กรุณาให้คะแนนตัวเองในแต่ละข้อ ให้คะแนนตามระดับปัจจุบันของคุณ ไม่ใช่ระดับในอดีตหรือที่ต้องการ
+      rate_skills_title: การให้คะแนนทักษะของคุณ
+      rating_column_header: การประเมินตนเองของคุณ
+      reflective_questions: คำถามสะท้อนคิด
+      save: บันทึก
+      select_skills: เลือกทักษะของคุณ
+      select_skills_placeholder: เลือกทักษะ
+      selected_skills: ทักษะที่เลือก
+      skill_column_header: ทักษะ
+      skill_gap_report: รายงานช่องว่างทักษะ
+    list: รายการ
+    manage_plan: จัดการแผน
+    mark_as_complete: ทำเครื่องหมายว่าเสร็จสมบูรณ์
+    mark_as_incomplete: ทำเครื่องหมายว่ายังไม่สมบูรณ์
+    my_plan:
+      development_plan: แผนพัฒนา
+      graphs:
+        categories: หมวดหมู่
+      save_skills: บันทึกทักษะ
+    new_comments: ความคิดเห็นใหม่
     pdf:
+      approval_status: สถานะการอนุมัติ
       cover:
         fields:
+          assigned_data: วันที่กำหนด
           assigned_date: วันที่กำหนด
+          completion_date: วันที่เสร็จสมบูรณ์
+          division: แผนก
+          name: ชื่อ
+          publish_date: วันที่เผยแพร่
+          review_date: วันที่ตรวจสอบ
+          role: บทบาทปัจจุบัน
+      guidelines:
+        cards:
+          c1:
+            content: รวมทักษะ ความรู้ และความสามารถที่ต้องพัฒนา ให้แน่ใจว่ามีความเฉพาะเจาะจง วัดผลได้ บรรลุได้ สมจริง และสามารถทำได้ภายในระยะเวลาที่กำหนด
+            title: วัตถุประสงค์การพัฒนา
+          c2:
+            content: อ้างอิงจากสมรรถนะที่ต้องพัฒนาตามประสบการณ์การประเมิน
+            title: สมรรถนะ
+          c3:
+            content: ส่วนนี้รวมการดำเนินการพัฒนาของคุณตามโมเดลการเรียนรู้ 70-20-10 ด้านล่าง แนะนำให้เลือกแต่ละองค์ประกอบเพื่อให้แนวทางการเรียนรู้และพัฒนาหลากหลาย
+            title: กิจกรรม
+          c4:
+            content: ให้แน่ใจว่าไทม์ไลน์ของคุณสมจริงตามเวลาที่สามารถบรรลุเป้าหมายได้ ปรับเปลี่ยนได้ตามความเหมาะสม
+            title: ไทม์ไลน์
+          c5:
+            content: ใช้ส่วนความคืบหน้าเพื่อสนับสนุนการเดินทางตามเส้นทางที่กำหนด
+            title: ความคืบหน้า
+        chart:
+          collaboration: "<strong>20%</strong> การเรียนรู้ร่วมกัน <br />"
+          job: "<strong>70%</strong> การเรียนรู้ <br />ขณะทำงาน"
+          learn: "<strong>10%</strong> การเรียนรู้อย่างเป็นทางการ <br />"
+        content:
+          list:
+            r1: โปรดทราบว่ารายการนี้เป็นเพียงตัวอย่างเท่านั้น และอาจมีเส้นทางการพัฒนาเพิ่มเติมตามเป้าหมายส่วนบุคคล คำแนะนำจากผู้จัดการ และความสำคัญขององค์กร
+            r2: โปรดทราบว่าการเปิดตัวเส้นทางการพัฒนาบางรายการขึ้นอยู่กับกลยุทธ์การเรียนรู้ขององค์กร
+            r3: โปรดพิจารณาเส้นทางที่แนะนำด้านล่างเมื่อพัฒนาแผนพัฒนารายบุคคลของคุณ
+          main: ส่วนนี้รวมรายการเส้นทางการพัฒนาทั้งหมด โดยอิงแนวปฏิบัติที่ดีที่สุด (70-20-10) ซึ่งผสมผสานการเรียนรู้ในห้องเรียน การโค้ช และการเรียนรู้ขณะทำงาน ตามผลลัพธ์จากประสบการณ์การพัฒนาภาวะผู้นำและความสำคัญของธุรกิจ มีการแนะนำเส้นทางการพัฒนาที่เป็นไปได้สำหรับคุณ
+        learn_cards:
+          collaboration:
+            list:
+            - เสนอเป็นโค้ชหรือที่ปรึกษาให้ผู้อื่น
+            - ขอรับคำปรึกษาจากผู้เชี่ยวชาญในสายงานของคุณ
+            - หาผู้ฝึกสอนเพื่อสนับสนุนการพัฒนาของคุณ
+            - ตั้งกลุ่มทำงานร่วมกันเพื่อหารือปัญหาทางธุรกิจ
+            - รับข้อเสนอแนะทั้งทางการและไม่เป็นทางการจากผู้อื่น
+            - มีบทบาทในสมาคมหรือเครือข่ายวิชาชีพ
+            - สร้างเครือข่ายภายนอกของคุณเอง
+            title: การเรียนรู้ร่วมกัน (20%) <br/> พัฒนาผ่านผู้อื่น
+          job:
+            list:
+            - รับตำแหน่งผู้นำในคณะกรรมการหรือคณะทำงาน
+            - อาสานำโครงการเปลี่ยนแปลงในองค์กร
+            - รับงานที่ท้าทายมากขึ้น
+            - ทำงานข้ามสายงานกับฝ่ายอื่น
+            - นำโครงการนอกองค์กรของคุณ
+            - ทำงานร่วมกับผู้เชี่ยวชาญภายนอกในโครงการร่วม
+            title: การเรียนรู้ขณะทำงาน (70%) <br/> พัฒนาผ่านประสบการณ์
+          learn:
+            list:
+            - รับตำแหน่งผู้นำในคณะกรรมการหรือคณะทำงาน
+            - อาสานำโครงการเปลี่ยนแปลงในองค์กร
+            - รับงานที่ท้าทายมากขึ้น
+            - ทำงานข้ามสายงานกับฝ่ายอื่น
+            - นำโครงการนอกองค์กรของคุณ
+            - ทำงานร่วมกับผู้เชี่ยวชาญภายนอกในโครงการร่วม
+            title: การเรียนรู้อย่างเป็นทางการ (10%) <br/> พัฒนาผ่านการเรียนรู้แบบมีโครงสร้าง
+        title: แนวทางในการจัดทำ IDP ของคุณ
+      idp:
+        end_date: วันที่สิ้นสุด
+        self_rating: การประเมินตนเอง
+        start_date: วันที่เริ่มต้น
+        subtitle:
+          behavioural: พฤติกรรม
+          technical: เทคนิค
+        title: แผนพัฒนารายบุคคล
+      last:
+        end_report: สิ้นสุดรายงาน
+      reflections:
+        subtitle: คำถามเพื่อการพัฒนาวิชาชีพโดยรวม
+        title: คำถามสะท้อนคิดสำหรับ IDP ของคุณ
+      skill_categories:
+        behavioral: พฤติกรรม
+        technical: เทคนิค
       statuses:
+        approved: ตรวจสอบและอนุมัติแล้ว
+        completed: เสร็จสมบูรณ์
         draft: ร่าง
+        not_reviewed: ยังไม่ได้ตรวจสอบ
+        pending_approval: อยู่ระหว่างตรวจสอบ
+      summary:
+        ai_count: ปัญญาประดิษฐ์
+        collaborative_learn: การเรียนรู้ร่วมกัน
+        created_by: สร้างโดย
+        current_status: สถานะปัจจุบันของ IDP
+        custom: กำหนดเอง
+        custom_count: กำหนดเอง
+        da_count: จำนวนการดำเนินการพัฒนา
+        formal_learn: การเรียนรู้อย่างเป็นทางการ
+        generated_ai: ปัญญาประดิษฐ์
+        learn_on_job: การเรียนรู้ขณะทำงาน
+        learn_pathway: เส้นทางการเรียนรู้
+        lib_count: ห้องสมุด IDP
+        library: ห้องสมุด IDP
+        skills_count: จำนวนทักษะ
+        title: สรุปรายงาน
+    plan: แผน
     reflective_questions:
       already_completed: IDP ได้ดำเนินการเสร็จสิ้นแล้ว คุณไม่สามารถตอบคำถามได้ในขณะนี้
+      answer_later: ตอบภายหลัง
+      answer_placeholder: เขียนคำตอบของคุณที่นี่...
+      errors:
+        max_words: คำตอบอนุญาตสูงสุด %{count} คำ
+        min_words: คำตอบต้องมีอย่างน้อย %{count} คำ
+        required: ต้องตอบคำถามนี้
+      max_words: จำนวนคำสูงสุด
+      min_words: จำนวนคำขั้นต่ำ
+      title: คำถามสะท้อนคิด
+      update_failed: เกิดข้อผิดพลาดระหว่างการอัปเดต
+      updated_successfully: อัปเดตคำตอบของคุณเรียบร้อยแล้ว
+      words: คำ
+    skill_gap_report:
+      title: รายงานช่องว่างทักษะ
+    status: สถานะ
+    technical: เทคนิค
+    user_idp_status:
+      approved: อนุมัติแล้ว
+      completed: เสร็จสมบูรณ์
+      draft: ร่าง
+      in_progress: กำลังดำเนินการ
+      not_started: ยังไม่ได้เริ่ม
+      pending_approval: รอการอนุมัติ
+      rejected: ถูกปฏิเสธ
+    users: ผู้ใช้
+    with_reflection_questions: พร้อมคำถามสะท้อนคิด
+    without_reflection_questions: ไม่มีคำถามสะท้อนคิด
   idp_templates:
     errors:
       user_idp_template_not_found: ไม่ได้รับการกำหนดเทมเพลต IDP ให้กับคุณ

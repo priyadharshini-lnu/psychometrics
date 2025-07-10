@@ -744,6 +744,7 @@ pl:
       structured_learning: Zorganizowane uczenie się
       submit_plan: Prześlij plan
       write_here: Pisz tutaj...
+    edit_progress: Edytuj postęp
     initial_steps:
       add_skill_group_description: Na podstawie wyników Twojej oceny, oto niektóre obszary Twoich mocnych stron i rozwoju. Wybierz umiejętności, które chcesz dalej rozwijać w ramach swojego planu rozwoju.
       add_skill_group_title: Eksploracja Twoich umiejętności %{category}

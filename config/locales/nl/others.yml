@@ -2470,6 +2470,7 @@ nl:
       submit_plan: Plan indienen
       write_here: Schrijf hier...
     edit_plan: Plan bewerken
+    edit_progress: Bewerk voortgang
     initial_steps:
       add_skill_group_description: Op basis van de resultaten van je assessment zijn hier een aantal sterke punten en ontwikkelingsgebieden voor jou. Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
       add_skill_group_title: Je %{category} vaardigheden verkennen

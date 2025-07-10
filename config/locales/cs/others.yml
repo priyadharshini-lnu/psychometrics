@@ -2483,6 +2483,7 @@ cs:
       submit_plan: Odeslat plán
       write_here: Pište zde...
     edit_plan: Upravit plán
+    edit_progress: Upravit pokrok
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností

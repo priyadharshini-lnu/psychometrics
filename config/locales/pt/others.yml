@@ -2475,6 +2475,7 @@ pt:
       structured_learning: Aprendizagem estruturada
       submit_plan: Apresentar plano
       write_here: Escreva aqui...
+    edit_progress: Editar progresso
     initial_steps:
       add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
       add_skill_group_title: Explorar as suas competências de %{category} Competências

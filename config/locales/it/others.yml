@@ -2473,6 +2473,7 @@ it:
       submit_plan: Invia il piano
       write_here: Scrivi qui...
     edit_plan: Modifica piano
+    edit_progress: Modifica il progresso
     initial_steps:
       add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
       add_skill_group_title: Esplorare le proprie capacità di %{category} Competenze

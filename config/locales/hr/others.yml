@@ -577,8 +577,242 @@ hr:
         requested_rescheduling_rejected: Zatraženo premještanje termina odbijeno
     'yes': Da
   idp:
+    actions: Akcije
+    behavioral: Bihevioralne
+    board: Ploča
+    comment_details:
+      add_comment: Dodaj komentar
+      add_comment_placeholder: Dodaj komentar...
+      add_reply_placeholder: Dodaj odgovor...
+      go_to_skill: Idi na vještinu
+    comments:
+      close: Zatvori
+      comments: Komentari
+      filter_comments: Filtriraj komentare
+      mark_as_resolved: Označi kao riješeno
+      mark_as_unresolved: Označi kao neriješeno
+      replied: Odgovoreno
+      replies: Odgovori
+      reply: Odgovori
+      resolve: Riješi
+      resolved: Riješeno
+      resolved_message: Ovaj komentar je riješen i odgovori su onemogućeni.
+      show_only_read: Prikaži samo pročitano
+      show_only_resolved: Prikaži samo riješene
+      show_only_unread: Prikaži samo nepročitane
+      show_only_unresolved: Prikaži samo neriješene
+      sort_by_date: Sortiraj po datumu
+      you: Vi
+    convert_to_draft: Pretvori u nacrt
+    details: Detalji
+    development_actions:
+      action_private: Da
+      action_public: Ne
+      add_development_action: Dodaj razvojnu akciju
+      all: Sve
+      approved: Odobreno
+      board_view:
+        completed: Dovršeno
+        in_progress: U tijeku
+        not_started: Nije započeto
+      completion: Dovršetak
+      create_my_own: Izradi vlastitu
+      date_range: Početni datum - Završni datum
+      generate_by_ai: Generiraj pomoću AI
+      generate_more: Generiraj više
+      generating_development_actions: Generiranje razvojnih akcija...
+      heading: Razvojne akcije
+      incomplete_error: Nedovršene razvojne akcije
+      incomplete_error_message: Neke razvojne akcije nisu dovršene. Molimo dovršite ih prije slanja svog IDP-a.
+      incomplete_warning: Nedovršene razvojne akcije
+      incomplete_warning_message: Neke razvojne akcije nisu dovršene. Jeste li sigurni da želite označiti svoj IDP dovršenim?
+      learning_from_others: Učenje od drugih
+      manage_skills: Upravljaj vještinama
+      marathon: Maraton
+      mark_as_complete: Označi kao dovršeno
+      no_development_actions: Nema razvojnih akcija
+      on_the_job: Na poslu
+      other: Ostalo
+      private: Privatno
+      publish_plan: Objavi plan
+      remove: Ukloni
+      skill: Vještina
+      sprint: Sprint
+      start_plan: Započni plan
+      structured_learning: Strukturirano učenje
+      submit_plan: Pošalji plan
+      write_here: Pišite ovdje...
+    edit_plan: Uredi plan
+    edit_progress: Uredi napredak
+    initial_steps:
+      add_skill_group_description: Na temelju rezultata vaše procjene, ovdje su neka od područja snaga i razvoja za vas. Odaberite vještine koje želite dodatno razvijati kao dio svog razvojnog plana.
+      add_skill_group_title: Istraživanje vaših %{category} vještina
+      add_skills: Dodaj
+      add_skills_step: Dodaj vještine
+      continue_to_rate_skills: Nastavi s ocjenjivanjem vještina
+      getting_started: Početak
+      less_skills: Prikaži manje vještina
+      more_skills: Istraži više vještina
+      next: Sljedeće
+      no_skills_selected: Nema odabranih vještina.
+      rate_skills: Ocijeni vještine
+      rate_skills_description: Sada kada ste odabrali svoje razvojne prioritete, ocijenite se za svaku od sljedećih vještina. Ocijenite se prema svojoj trenutnoj razini, a ne prema prošloj ili željenoj razini.
+      rate_skills_title: Ocjenjivanje vaših vještina
+      rating_column_header: Vaša samoocjena
+      reflective_questions: Refleksivna pitanja
+      save: Spremi
+      select_skills: Odaberite svoje vještine
+      select_skills_placeholder: Odaberite vještine
+      selected_skills: Odabrane vještine
+      skill_column_header: Vještina
+      skill_gap_report: Izvješće o razlici u vještinama
+    list: Popis
+    manage_plan: Upravljaj planom
+    mark_as_complete: Označi kao dovršeno
+    mark_as_incomplete: Označi kao nedovršeno
+    my_plan:
+      development_plan: Razvojni plan
+      graphs:
+        categories: Kategorije
+      save_skills: Spremi vještine
+    new_comments: Novi komentar(i)
+    pdf:
+      approval_status: Status odobrenja
+      cover:
+        fields:
+          assigned_data: Datum dodjele
+          assigned_date: Datum dodjele
+          completion_date: Datum završetka
+          division: Odjel
+          name: Ime
+          publish_date: Datum objave
+          review_date: Datum pregleda
+          role: Trenutna uloga
+      guidelines:
+        cards:
+          c1:
+            content: Uključite vještine, znanja i sposobnosti koje treba razviti. Pobrinite se da budu specifične, mjerljive, ostvarive, realne i moguće za ostvariti u navedenim rokovima.
+            title: Razvojni ciljevi
+          c2:
+            content: Ovo se temelji na kompetenciji koju treba razviti na temelju iskustva procjene.
+            title: Kompetencija
+          c3:
+            content: Ovaj odjeljak uključuje vaše razvojne akcije temeljene na modelu učenja 70-20-10 navedenom u nastavku. Preporučuje se odabrati kombinaciju sva tri elementa za raznolik pristup učenju i razvoju.
+            title: Aktivnost
+          c4:
+            content: Pobrinite se da su vaši rokovi realni na temelju kada se cilj može dovršiti. Prilagodite ih po potrebi.
+            title: Rok
+          c5:
+            content: Koristite odjeljak napretka za praćenje napretka na odabranim stazama.
+            title: Napredak
+        chart:
+          collaboration: "<strong>20%</strong>Saradničko <br /> učenje"
+          job: "<strong>70%</strong>Učenje <br />na poslu"
+          learn: "<strong>10%</strong>Formalno učenje"
+        content:
+          list:
+            r1: Imajte na umu da je ovaj popis samo indikativan, a dodatni razvojni putevi mogu biti razmotreni za vas na temelju individualnih aspiracija, preporuka vašeg menadžera kao i poslovnih prioriteta organizacije.
+            r2: Imajte na umu da će pokretanje nekih od ovih razvojnih puteva ovisiti o strategiji obrazovanja i učenja na razini organizacije.
+            r3: Prilikom izrade svog Individualnog razvojnog plana, razmotrite preporučene puteve označene u nastavku.
+          main: Ovaj odjeljak uključuje kumulativni popis svih razvojnih puteva, imajući na umu najbolje prakse učenja tj. smjernicu 70-20-10, koja pruža progresivno putovanje kombinirajući učenje u učionici, mentorstvo i učenje na poslu. Na temelju rezultata iz iskustva razvoja liderstva i poslovnih prioriteta, preporučeni su mogući razvojni putevi koje možete razmotriti za svoj razvoj.
+        learn_cards:
+          collaboration:
+            list:
+            - Ponudite mentorstvo ili podučavanje drugima
+            - Zatražite mentorstvo od stručnjaka u svom području
+            - Pronađite mentora za podršku svom razvoju
+            - Organizirajte suradničku radnu grupu za raspravu o izazovima u poslovanju
+            - Dobijte povratne informacije formalno i neformalno od drugih
+            - Aktivno sudjelujte u industrijskim udrugama i mrežama
+            - Izgradite vlastite vanjske mreže
+            title: Saradničko učenje (20%) <br/> Razvoj kroz druge
+          job:
+            list:
+            - Preuzmite liderske pozicije u odborima ili upravljačkim tijelima
+            - Volontirajte za vođenje projekata upravljanja promjenama u organizaciji
+            - Razmotrite preuzimanje zahtjevnijih zadataka
+            - Radite međufunkcionalno s drugim odjelima
+            - Razmotrite vođenje projekata izvan vaše organizacije
+            - Tijesno surađujte s vanjskim stručnjacima na zajedničkim projektima
+            title: Učenje na poslu (70%) <br/> Razvoj kroz iskustvo
+          learn:
+            list:
+            - Preuzmite liderske pozicije u odborima ili upravljačkim tijelima
+            - Volontirajte za vođenje projekata upravljanja promjenama u organizaciji
+            - Razmotrite preuzimanje zahtjevnijih zadataka
+            - Radite međufunkcionalno s drugim odjelima
+            - Razmotrite vođenje projekata izvan vaše organizacije
+            - Tijesno surađujte s vanjskim stručnjacima na zajedničkim projektima
+            title: Formalno učenje (10%) <br/> Razvoj kroz strukturirano učenje
+        title: Smjernice za izradu vašeg IDP-a
+      idp:
+        end_date: Datum završetka
+        self_rating: Samoprocjena
+        start_date: Datum početka
+        subtitle:
+          behavioural: Bihevioralne
+          technical: Tehničke
+        title: Individualni razvojni plan
+      last:
+        end_report: Kraj izvješća
+      reflections:
+        subtitle: Pitanja za cjelokupni profesionalni razvoj
+        title: Refleksije za vaš IDP
+      skill_categories:
+        behavioral: Bihevioralne
+        technical: Tehničke
+      statuses:
+        approved: Pregledano i odobreno
+        completed: Dovršeno
+        draft: Nacrt
+        not_reviewed: Nije pregledano
+        pending_approval: U pregledu
+      summary:
+        ai_count: Generativni AI
+        collaborative_learn: Saradničko učenje
+        created_by: Kreirao
+        current_status: Trenutni status IDP-a
+        custom: Prilagođeno
+        custom_count: Prilagođeno
+        da_count: Broj razvojnih akcija
+        formal_learn: Formalno učenje
+        generated_ai: Generativni AI
+        learn_on_job: Učenje na poslu
+        learn_pathway: Put učenja
+        lib_count: IDP knjižnica
+        library: IDP knjižnica
+        skills_count: Broj vještina
+        title: Sažetak izvješća
+    plan: Plan
     reflective_questions:
       already_completed: IDP je već završen, sada ne možete odgovarati na pitanja.
+      answer_later: Odgovori kasnije
+      answer_placeholder: Ovdje napišite svoj odgovor...
+      errors:
+        max_words: Odgovor dopušta maksimalno %{count} riječi
+        min_words: Odgovor zahtijeva najmanje %{count} riječi
+        required: Odgovor na pitanje je obavezan
+      max_words: Maksimalno riječi
+      min_words: Minimalno riječi
+      title: Refleksivna pitanja
+      update_failed: Došlo je do pogreške tijekom ažuriranja
+      updated_successfully: Vaši odgovori su uspješno ažurirani
+      words: Riječi
+    skill_gap_report:
+      title: Izvješće o razlici u vještinama
+    status: Status
+    technical: Tehnički
+    user_idp_status:
+      approved: Odobreno
+      completed: Završeno
+      draft: Nacrt
+      in_progress: U tijeku
+      not_started: Nije započeto
+      pending_approval: Na čekanju odobrenja
+      rejected: Odbijeno
+    users: Korisnici
+    with_reflection_questions: S refleksivnim pitanjima
+    without_reflection_questions: Bez refleksivnih pitanja
   idp_templates:
     errors:
       user_idp_template_not_found: Nije vam dodijeljen nijedan IDP predložak.

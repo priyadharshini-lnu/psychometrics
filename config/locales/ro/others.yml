@@ -664,14 +664,242 @@ ro:
         requested_rescheduling_rejected: Solicitat Reprogramare Respins
     'yes': Da
   idp:
+    actions: Acțiuni
+    behavioral: Comportamental
+    board: Tablă
+    comment_details:
+      add_comment: Adaugă comentariu
+      add_comment_placeholder: Adaugă un comentariu...
+      add_reply_placeholder: Adaugă un răspuns...
+      go_to_skill: Mergi la competență
+    comments:
+      close: Închide
+      comments: Comentarii
+      filter_comments: Filtrează comentariile
+      mark_as_resolved: Marchează ca rezolvat
+      mark_as_unresolved: Marchează ca nerezolvat
+      replied: S-a răspuns
+      replies: Răspunsuri
+      reply: Răspunde
+      resolve: Rezolvă
+      resolved: Rezolvat
+      resolved_message: Acest comentariu a fost rezolvat și răspunsurile sunt dezactivate.
+      show_only_read: Afișează doar citite
+      show_only_resolved: Afișează doar rezolvate
+      show_only_unread: Afișează doar necitite
+      show_only_unresolved: Afișează doar nerezolvate
+      sort_by_date: Sortează după dată
+      you: Tu
+    convert_to_draft: Convertește în ciornă
+    details: Detalii
+    development_actions:
+      action_private: Da
+      action_public: Nu
+      add_development_action: Adaugă acțiune de dezvoltare
+      all: Toate
+      approved: Aprobat
+      board_view:
+        completed: Finalizat
+        in_progress: În curs
+        not_started: Nu a început
+      completion: Finalizare
+      create_my_own: Creează propria mea
+      date_range: Data de început - Data de sfârșit
+      generate_by_ai: Generează cu AI
+      generate_more: Generează mai multe
+      generating_development_actions: Se generează acțiuni de dezvoltare...
+      heading: Acțiuni de dezvoltare
+      incomplete_error: Acțiuni de dezvoltare incomplete
+      incomplete_error_message: Unele acțiuni de dezvoltare sunt incomplete. Vă rugăm să le completați înainte de a trimite IDP-ul.
+      incomplete_warning: Acțiuni de dezvoltare incomplete
+      incomplete_warning_message: Unele acțiuni de dezvoltare sunt incomplete. Sigur doriți să marcați IDP-ul ca finalizat?
+      learning_from_others: Învățare de la alții
+      manage_skills: Gestionează competențele
+      marathon: Maraton
+      mark_as_complete: Marchează ca finalizat
+      no_development_actions: Nicio acțiune de dezvoltare
+      on_the_job: La locul de muncă
+      other: Altele
+      private: Privat
+      publish_plan: Publică planul
+      remove: Elimină
+      skill: Competență
+      sprint: Sprint
+      start_plan: Începe planul
+      structured_learning: Învățare structurată
+      submit_plan: Trimite planul
+      write_here: Scrie aici...
+    edit_plan: Editează planul
+    edit_progress: Editează progresul
+    initial_steps:
+      add_skill_group_description: Pe baza rezultatelor evaluării, iată câteva dintre ariile tale de puncte forte și dezvoltare. Alege competențele pe care dorești să le dezvolți în continuare ca parte a planului tău de dezvoltare.
+      add_skill_group_title: Explorarea competențelor tale %{category}
+      add_skills: Adaugă
+      add_skills_step: Adaugă competențe
+      continue_to_rate_skills: Continuă să evaluezi competențele
+      getting_started: Începe
+      less_skills: Arată mai puține competențe
+      more_skills: Explorează mai multe competențe
+      next: Următorul
+      no_skills_selected: Nicio competență selectată.
+      rate_skills: Evaluează competențele
+      rate_skills_description: Acum că ai selectat prioritățile de dezvoltare, te rugăm să te autoevaluezi pentru fiecare dintre următoarele. Amintește-ți să te evaluezi pe baza nivelului actual, nu pe cel trecut sau dorit.
+      rate_skills_title: Autoevaluarea competențelor
+      rating_column_header: Autoevaluarea ta
+      reflective_questions: Întrebări reflexive
+      save: Salvează
+      select_skills: Selectează competențele tale
+      select_skills_placeholder: Selectează competențe
+      selected_skills: Competențe selectate
+      skill_column_header: Competență
+      skill_gap_report: Raport privind decalajul de competențe
+    list: Listă
+    manage_plan: Gestionează planul
+    mark_as_complete: Marchează ca finalizat
+    mark_as_incomplete: Marchează ca incomplet
+    my_plan:
+      development_plan: Plan de dezvoltare
+      graphs:
+        categories: Categorii
+      save_skills: Salvează competențele
+    new_comments: Comentariu(i) nou(i)
     pdf:
+      approval_status: Stare aprobare
       cover:
         fields:
+          assigned_data: Data atribuirii
           assigned_date: Data atribuirii
+          completion_date: Data finalizării
+          division: Divizie
+          name: Nume
+          publish_date: Data publicării
+          review_date: Data revizuirii
+          role: Rol curent
+      guidelines:
+        cards:
+          c1:
+            content: Include competențe, cunoștințe și abilități care trebuie dezvoltate. Asigură-te că sunt specifice, măsurabile, realizabile, realiste și pot fi îndeplinite în termenele menționate.
+            title: Obiective de dezvoltare
+          c2:
+            content: Aceasta se bazează pe competența care trebuie dezvoltată conform experienței de evaluare.
+            title: Competență
+          c3:
+            content: Această secțiune include acțiunile tale de dezvoltare bazate pe modelul de învățare 70-20-10 de mai jos. Se recomandă să selectezi o combinație din fiecare dintre cele trei elemente pentru a asigura o abordare variată a învățării și dezvoltării.
+            title: Activitate
+          c4:
+            content: Asigură-te că termenele sunt realiste în funcție de când poate fi finalizat obiectivul. Modifică-le după caz.
+            title: Termen
+          c5:
+            content: Folosește secțiunea de progres pentru a urmări progresul pe traseele identificate.
+            title: Progres
+        chart:
+          collaboration: "<strong>20%</strong> Învățare colaborativă <br />"
+          job: "<strong>70%</strong> Învățare <br /> la locul de muncă"
+          learn: "<strong>10%</strong> Învățare formală <br />"
+        content:
+          list:
+            r1: Această listă este doar orientativă, iar alte căi de dezvoltare pot fi luate în considerare în funcție de aspirațiile individuale, recomandările managerului sau prioritățile de afaceri ale organizației.
+            r2: Lansarea unora dintre aceste căi de dezvoltare va depinde de strategia organizațională de educație și învățare.
+            r3: Ia în considerare căile recomandate de mai jos când îți dezvolți Planul Individual de Dezvoltare.
+          main: Această secțiune include o listă cumulativă a tuturor căilor de dezvoltare, având în vedere bunele practici de învățare, adică ghidul 70-20-10, care oferă o călătorie progresivă ce combină învățarea în clasă, coaching-ul și învățarea la locul de muncă. Pe baza rezultatelor experienței de dezvoltare a leadershipului și a priorităților de afaceri, au fost recomandate posibile căi de dezvoltare care pot fi luate în considerare pentru dezvoltarea ta.
+        learn_cards:
+          collaboration:
+            list:
+            - Oferă-te să fii mentor sau coach pentru alții
+            - Solicită să fii mentorat de un expert din domeniul tău
+            - Găsește un coach care să te sprijine în dezvoltare
+            - Creează un grup de lucru colaborativ pentru a discuta provocările curente din afacere
+            - Primește feedback formal și informal de la alții
+            - Joacă un rol activ în asociații și rețele de industrie
+            - Construiește-ți propriile rețele externe
+            title: Învățare colaborativă (20%) <br/> Dezvoltare prin alții
+          job:
+            list:
+            - Preia poziții de conducere în comitete de management sau stakeholderi
+            - Fii voluntar pentru a conduce proiecte de management al schimbării în organizație
+            - Ia în considerare asumarea unor sarcini provocatoare
+            - Lucrează în colaborare cu alte funcții
+            - Condu proiecte în afara organizației tale
+            - Lucrează îndeaproape cu experți externi din industrie la proiecte comune
+            title: Învățare la locul de muncă (70%) <br/> Dezvoltare prin experiență
+          learn:
+            list:
+            - Preia poziții de conducere în comitete de management sau stakeholderi
+            - Fii voluntar pentru a conduce proiecte de management al schimbării în organizație
+            - Ia în considerare asumarea unor sarcini provocatoare
+            - Lucrează în colaborare cu alte funcții
+            - Condu proiecte în afara organizației tale
+            - Lucrează îndeaproape cu experți externi din industrie la proiecte comune
+            title: Învățare formală (10%) <br/> Dezvoltare prin învățare structurată
+        title: Ghid pentru IDP
+      idp:
+        end_date: Data de sfârșit
+        self_rating: Autoevaluare
+        start_date: Data de început
+        subtitle:
+          behavioural: Comportamental
+          technical: Tehnic
+        title: Plan Individual de Dezvoltare
+      last:
+        end_report: Sfârșitul raportului
+      reflections:
+        subtitle: Întrebări pentru dezvoltarea profesională generală
+        title: Reflecții pentru a-ți ghida IDP-ul
+      skill_categories:
+        behavioral: Comportamental
+        technical: Tehnic
       statuses:
-        draft: Proiect
+        approved: Revizuit și aprobat
+        completed: Finalizat
+        draft: Ciornă
+        not_reviewed: Nerevizuit
+        pending_approval: În revizuire
+      summary:
+        ai_count: AI generativ
+        collaborative_learn: Învățare colaborativă
+        created_by: Creat de
+        current_status: Starea curentă a IDP-ului
+        custom: Personalizat
+        custom_count: Personalizat
+        da_count: Număr acțiuni de dezvoltare
+        formal_learn: Învățare formală
+        generated_ai: AI generativ
+        learn_on_job: Învățare la locul de muncă
+        learn_pathway: Cale de învățare
+        lib_count: Bibliotecă IDP
+        library: Bibliotecă IDP
+        skills_count: Număr competențe
+        title: Rezumat raport
+    plan: Plan
     reflective_questions:
       already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
+      answer_later: Răspunde mai târziu
+      answer_placeholder: Scrie răspunsul aici...
+      errors:
+        max_words: Răspunsul permite maximum %{count} cuvinte
+        min_words: Răspunsul necesită cel puțin %{count} cuvinte
+        required: Răspunsul la întrebare este obligatoriu
+      max_words: Max cuvinte
+      min_words: Min cuvinte
+      title: Întrebări reflexive
+      update_failed: A apărut o eroare la actualizare
+      updated_successfully: Răspunsurile tale au fost actualizate cu succes
+      words: Cuvinte
+    skill_gap_report:
+      title: Raport privind decalajul de competențe
+    status: Stare
+    technical: Tehnic
+    user_idp_status:
+      approved: Aprobat
+      completed: Finalizat
+      draft: Ciornă
+      in_progress: În curs
+      not_started: Nu a început
+      pending_approval: În așteptarea aprobării
+      rejected: Respins
+    users: Utilizatori
+    with_reflection_questions: Cu întrebări reflexive
+    without_reflection_questions: Fără întrebări reflexive
   idp_templates:
     errors:
       user_idp_template_not_found: Nu v-a fost atribuit niciun șablon IDP.

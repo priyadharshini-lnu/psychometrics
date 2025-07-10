@@ -669,14 +669,240 @@ bg:
         requested_rescheduling_rejected: Поискано Разсрочване Отхвърлено
     'yes': Да
   idp:
+    actions: Действия
+    behavioral: Поведенчески
+    board: Табло //
+    comment_details:
+      add_comment: Добавяне на коментар
+      add_comment_placeholder: Добавете коментар...
+      add_reply_placeholder: Добавяне на отговор...
+      go_to_skill: Отидете на умението
+    comments:
+      close: Затвори
+      comments: Коментари
+      filter_comments: Филтриране на коментари
+      mark_as_resolved: Маркирай като разрешен
+      mark_as_unresolved: Отбелязване като неразрешено
+      replied: Отговорено
+      replies: Отговори
+      reply: Отговор
+      resolve: Разрешете
+      resolved: Разрешено
+      resolved_message: Този коментар е разрешен и отговорите са деактивирани.
+      show_only_read: Покажи само прочетени
+      show_only_resolved: Показване само на разрешените
+      show_only_unread: Показване само на непрочетени
+      show_only_unresolved: Показване само на нерешени
+      sort_by_date: Сортиране по дата
+      you: Вие
+    convert_to_draft: Преобразуване в чернова
+    details: Подробности
+    development_actions:
+      action_private: Да
+      action_public: Не
+      add_development_action: Добавяне на действие за развитие
+      all: Всички
+      approved: Одобрен
+      board_view:
+        completed: Завършен
+        in_progress: В процес на изпълнение
+        not_started: Не е започнато
+      completion: Завършване
+      create_my_own: Създай собствено
+      date_range: Начална дата - Крайна дата
+      generate_by_ai: Генерирай чрез AI
+      generate_more: Генерирай още
+      generating_development_actions: Генериране на действия за развитие...
+      heading: Действия за развитие
+      incomplete_error: Незавършени действия за развитие
+      incomplete_error_message: Някои действия за развитие са незавършени. Моля, завършете ги, преди да изпратите своя ИДП.
+      incomplete_warning: Незавършени действия за развитие
+      incomplete_warning_message: Някои действия за развитие са незавършени. Сигурни ли сте, че искате да маркирате своя ИДП като завършен?
+      learning_from_others: Обучение от други
+      manage_skills: Управление на умения
+      marathon: Маратон
+      mark_as_complete: Маркирай като завършено
+      no_development_actions: Няма действия за развитие
+      on_the_job: На работното място
+      other: Друго
+      private: Частно
+      publish_plan: Публикувай плана
+      remove: Премахване
+      skill: Умение
+      sprint: Спринт
+      start_plan: Стартирай плана
+      structured_learning: Структурирано обучение
+      submit_plan: Изпрати плана
+      write_here: Пишете тук...
+    edit_plan: Редактиране на плана
+    edit_progress: Редактиране на напредъка
+    initial_steps:
+      add_skill_group_description: На базата на резултатите от вашата оценка, ето някои от областите на силните страни и развитието за вас. Изберете уменията, които искате да развиете допълнително като част от вашия план за развитие.
+      add_skill_group_title: Изследване на вашите %{category} умения
+      add_skills: Добавяне на умения
+      add_skills_step: Добавяне на умения
+      continue_to_rate_skills: Продължете с оценката на уменията
+      getting_started: Започване
+      less_skills: Показване на по-малко умения
+      more_skills: Изследване на повече умения
+      next: Напред
+      no_skills_selected: Не са избрани умения.
+      rate_skills: Оценка на уменията
+      rate_skills_description: Сега, когато сте избрали своите приоритети за развитие, моля, оценете себе си по отношение на всяко от следните умения. Не забравяйте да се оцените въз основа на текущото си ниво, а не на миналото или желаното ниво.
+      rate_skills_title: Оценка на вашите умения
+      rating_column_header: Ваша самооценка
+      reflective_questions: Рефлексивни въпроси
+      save: Запазване
+      select_skills: Изберете вашите умения
+      select_skills_placeholder: Изберете умения
+      selected_skills: Избрани умения
+      skill_column_header: Умение
+      skill_gap_report: Доклад за пропуските в уменията
+    list: Списък
+    manage_plan: Управление на плана
+    mark_as_complete: Маркирай като завършено
+    mark_as_incomplete: Маркирай като незавършено
+    my_plan:
+      development_plan: План за развитие
+      graphs:
+        categories: Категории
+      save_skills: Запазване на умения
+    new_comments: Нов коментар(и)
     pdf:
+      approval_status: Статус на одобрение
       cover:
         fields:
           assigned_date: Присвоена дата
+          completion_date: Дата на завършване
+          division: Дивизия
+          name: Име
+          publish_date: Дата на публикуване
+          review_date: Дата на преглед
+          role: Текуща роля
+      guidelines:
+        cards:
+          c1:
+            content: Включете уменията, знанията и способностите, които трябва да бъдат развити. Уверете се, че са конкретни, измерими, постижими, реалистични и могат да бъдат изпълнени в посочените срокове.
+            title: Цели за развитие
+          c2:
+            content: Това се основава на компетенцията, която трябва да бъде развита въз основа на опита от оценката.
+            title: Компетентност
+          c3:
+            content: Тази секция включва вашите действия за развитие, основани на модела на учене 70-20-10, изброен по-долу. Препоръчително е да изберете комбинация от всеки от трите елемента, за да осигурите разнообразен подход към обучението и развитието.
+            title: Дейност
+          c4:
+            content: Уверете се, че сроковете ви са реалистични, въз основа на това кога целта може да бъде завършена. Направете промени, когато е необходимо.
+            title: Срок
+          c5:
+            content: Използвайте секцията за напредък, за да подкрепите напредъка по идентифицираните пътеки.
+            title: Напредък
+        chart:
+          collaboration: "<strong>20%</strong>Съвместно <br /> Обучение"
+          job: "<strong>70%</strong>Обучение <br />на работното място"
+          learn: "<strong>10%</strong>Формално обучение"
+        content:
+          list:
+            r1: Моля, обърнете внимание, че този списък е само ориентировъчен и могат да бъдат разгледани допълнителни пътища за развитие според индивидуалните ви стремежи, препоръки от вашия мениджър, както и бизнес приоритетите на организацията.
+            r2: Моля, имайте предвид, че стартирането на някои от тези пътища за развитие ще зависи от цялостната стратегия за образование и обучение на организацията.
+            r3: Моля, вземете предвид препоръчаните по-долу пътища при разработването на вашия Индивидуален план за развитие.
+          main: This section includes a cumulative list of all the development pathways, keeping in mind best practice learning i.e., 70-20-10 guideline, which provides a progressive journey combining classroom learning, coaching and on-the job learning. Based on the outcomes from the leadership development experience and business priorities, possible development pathways have been recommended, which can be considered for your development.
+        learn_cards:
+          collaboration:
+            list:
+            - Предложете да бъдете ментор или коуч на други
+            - Поискайте да бъдете наставлявани от експерт във вашата област
+            - Намерете коуч, който да подкрепи вашето развитие
+            - Създайте колаборативна работна група за обсъждане на текущи бизнес предизвикателства
+            - Получавайте обратна връзка формално и неформално от други
+            - Вземете активно участие в индустриални асоциации и мрежи
+            - Изградете свои собствени външни мрежи
+            title: Съвместно обучение (20%) <br/> Развитие чрез другите
+          job:
+            list:
+            - Поемете ръководни позиции в комитети на заинтересовани страни или управленски комитети
+            - Доброволствайте да ръководите проекти за управление на промяната в организацията
+            - Помислете за поемане на предизвикателни задачи
+            - Работете съвместно с други функции
+            - Помислете за ръководене на проекти извън вашата организация
+            - Работете в тясно сътрудничество с външни експерти от индустрията по съвместни проекти
+          learn:
+            list:
+            - Поемете ръководни позиции в комитети на заинтересовани страни или управленски комитети
+            - Доброволствайте да ръководите проекти за управление на промяната в организацията
+            - Помислете за поемане на предизвикателни задачи
+            - Работете съвместно с други функции
+            - Помислете за ръководене на проекти извън вашата организация
+            - Работете в тясно сътрудничество с външни експерти от индустрията по съвместни проекти
+            title: Формално обучение (10%) <br/> Развитие чрез структурирано обучение
+        title: Насоки за насочване на вашия ИПР
+      idp:
+        end_date: Крайна дата
+        self_rating: Самооценка
+        start_date: Начална дата
+        subtitle:
+          behavioural: Поведенчески
+          technical: Технически
+        title: Индивидуален план за развитие
+      last:
+        end_report: Край на доклада
+      reflections:
+        subtitle: Въпроси за цялостно професионално развитие
+        title: Рефлексии за насочване на вашия ИПР
+      skill_categories:
+        behavioral: Поведенчески
+        technical: Технически
       statuses:
-        draft: Проект
+        approved: Прегледан и одобрен
+        completed: Завършен
+        draft: Чернова
+        not_reviewed: Не е прегледан
+        pending_approval: В процес на преглед
+      summary:
+        ai_count: Генеративен ИИ
+        collaborative_learn: Съвместно обучение
+        created_by: Създаден от
+        current_status: Текущ статус на ИПР
+        custom: Персонализиран
+        custom_count: Персонализиран
+        da_count: Брой действия за развитие
+        formal_learn: Формално обучение
+        generated_ai: Генеративен ИИ
+        learn_on_job: Обучение на работното място
+        learn_pathway: Път на обучение
+        lib_count: Библиотека ИПР
+        library: Библиотека ИПР
+        skills_count: Брой умения
+        title: Обобщение на доклада
+    plan: План
     reflective_questions:
       already_completed: ИДП вече е попълнен, не можете да отговаряте на въпросите сега.
+      answer_later: Отговорете по-късно
+      answer_placeholder: Напишете отговора си тук...
+      errors:
+        max_words: Отговорът позволява максимум %{count} думи
+        min_words: Отговорът изисква поне %{count} думи
+        required: Отговорът на въпроса е задължителен
+      max_words: Максимум думи
+      min_words: Минимум думи
+      title: Рефлексивни въпроси
+      update_failed: Възникна грешка по време на актуализацията
+      updated_successfully: Вашите отговори бяха актуализирани успешно
+      words: Думи
+    skill_gap_report:
+      title: Доклад за пропуските в уменията
+    status: Статус
+    technical: Технически
+    user_idp_status:
+      approved: Одобрен
+      completed: Завършен
+      draft: Чернова
+      in_progress: В процес на изпълнение
+      not_started: Не е започнат
+      pending_approval: В процес на одобрение
+      rejected: Отхвърлен
+    users: Потребители
+    with_reflection_questions: С въпроси за размисъл
+    without_reflection_questions: Без въпроси за размисъл
   idp_templates:
     errors:
       user_idp_template_not_found: Не ви е зададен шаблон на IDP.

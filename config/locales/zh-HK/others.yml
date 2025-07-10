@@ -755,6 +755,7 @@ zh-HK:
       structured_learning: 結構化學習
       submit_plan: 提交計劃
       write_here: 在此處寫入...
+    edit_progress: 编辑进度
     initial_steps:
       add_skill_group_description: 基於你的評估結果，以下是你的一些優勢和發展領域。選擇你想作為發展計劃一部分進一步發展的技能。
       add_skill_group_title: 探索你的%{category}技能

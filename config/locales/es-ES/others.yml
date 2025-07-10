@@ -2486,6 +2486,7 @@ es-ES:
       submit_plan: Enviar Plan
       write_here: Escriba aquí...
     edit_plan: Editar plan
+    edit_progress: Editar progreso
     initial_steps:
       add_skill_group_description: Basado en los resultados de su evaluación, aquí hay algunas áreas de fortalezas y desarrollo para usted. Elija las habilidades que desea desarrollar más como parte de su plan de desarrollo.
       add_skill_group_title: Explorando Sus Habilidades de %{category}

@@ -2474,6 +2474,7 @@ zh:
       structured_learning: 结构化学习
       submit_plan: 提交计划
       write_here: 在此处写入...
+    edit_progress: 编辑进度
     initial_steps:
       add_skill_group_description: 根据你的评估结果，以下是你的一些优势和发展领域。 选择你希望进一步发展的技能，作为你发展计划的一部分。
       add_skill_group_title: 探索您的 %{category} 技能

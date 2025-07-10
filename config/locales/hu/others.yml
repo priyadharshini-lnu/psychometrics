@@ -663,12 +663,112 @@ hu:
         requested_rescheduling_rejected: Kérvényezett átütemezés Elutasítva
     'yes': Igen
   idp:
+    actions: Műveletek
+    behavioral: Viselkedési
+    board: Tábla
+    comment_details:
+      add_comment: Megjegyzés hozzáadása
+      add_comment_placeholder: Adjon hozzá egy megjegyzést...
+      add_reply_placeholder: Adjon hozzá egy választ...
+      go_to_skill: Ugrás a készséghez
+    comments:
+      close: Bezárás
+      comments: Megjegyzések
+      filter_comments: Megjegyzések szűrése
+      mark_as_resolved: Megoldásként jelölés
+      mark_as_unresolved: Megoldásként jelölés visszavonása
+      replied: Válaszolt
+      replies: Válaszok
+      reply: Válasz
+      resolve: Megoldás
+      resolved: Megoldva
+      resolved_message: Ez a megjegyzés megoldásra került, és a válaszok le vannak tiltva.
+      show_only_read: Csak olvasottak megjelenítése
+      show_only_resolved: Csak megoldottak megjelenítése
+      show_only_unread: Csak olvasatlanok megjelenítése
+      show_only_unresolved: Csak megoldatlanok megjelenítése
+      sort_by_date: Dátum szerint rendezés
+      you: Ön
+    convert_to_draft: Tervezetbe alakítás
+    details: Részletek
+    development_actions:
+      action_private: Igen
+      action_public: Nem
+      add_development_action: Fejlesztési művelet hozzáadása
+      all: Összes
+      approved: Jóváhagyva
+      board_view:
+        completed: Befejezett
+        in_progress: Folyamatban
+        not_started: Nem indult
+      completion: Befejezés
+      create_my_own: Saját létrehozása
+      date_range: Kezdő dátum - Befejező dátum
+      generate_by_ai: AI általi generálás
+      generate_more: További generálás
+      generating_development_actions: Fejlesztési műveletek generálása...
+      heading: Fejlesztési műveletek
+      incomplete_error: Hiányos fejlesztési műveletek
+      incomplete_error_message: Néhány fejlesztési művelet hiányos. Kérjük, fejezze be őket, mielőtt benyújtja az IDP-jét.
+      incomplete_warning: Hiányos fejlesztési műveletek
+      incomplete_warning_message: Néhány fejlesztési művelet hiányos. Biztosan szeretné befejezettnek jelölni az IDP-jét?
+      learning_from_others: Tanulás másoktól
+      manage_skills: Készségek kezelése
+      marathon: Maraton
+      mark_as_complete: Befejezettnek jelölés
+      no_development_actions: Nincs fejlesztési művelet
+      on_the_job: Munkahelyi
+      other: Egyéb
+      private: Privát
+      publish_plan: Terv közzététele
+      remove: Eltávolítás
+      skill: Készség
+      sprint: Sprint
+      start_plan: Terv indítása
+      structured_learning: Strukturált tanulás
+      submit_plan: Terv benyújtása
+      write_here: Írjon ide...
+    edit_plan: Terv szerkesztése
+    edit_progress: Haladás szerkesztése
+    initial_steps:
+      add_skill_group_description: Az értékelési eredményei alapján itt vannak az Ön erősségei és fejlesztési területei. Válassza ki azokat a készségeket, amelyeket tovább szeretne fejleszteni a fejlesztési terve részeként.
+      add_skill_group_title: Felfedezés a %{category} Készségeiben
+      add_skills: Hozzáadás
+      add_skills_step: Készségek hozzáadása
+      continue_to_rate_skills: Folytassa a készségek értékelését
+      getting_started: Kezdés
+      less_skills: Kevesebb készség megjelenítése
+      more_skills: További készségek felfedezése
+      next: Következő
+      no_skills_selected: Nincs kiválasztott készség.
+      rate_skills: Készségek értékelése
+      rate_skills_description: Most, hogy kiválasztotta fejlesztési prioritásait, kérjük, értékelje magát az alábbiakban. Ne feledje, hogy a jelenlegi szintje alapján értékelje magát, és ne a múltbeli vagy kívánt szintje alapján.
+      rate_skills_title: Készségek Értékelése
+      rating_column_header: Önértékelés
+      reflective_questions: Reflexiós Kérdések
+      save: Mentés
+      select_skills: Készségek kiválasztása
+      select_skills_placeholder: Készségek kiválasztása
+      selected_skills: Kiválasztott Készségek
+      skill_column_header: Készség
+      skill_gap_report: Készség Hiány Jelentés
+    list: Lista
+    manage_plan: Terv kezelése
+    mark_as_complete: Befejezettnek jelölés
+    mark_as_incomplete: Hiányzóként jelölés
+    my_plan:
+      development_plan: Fejlesztési Terv
+      graphs:
+        categories: Kategóriák
+      save_skills: Készségek mentése
+    new_comments: Új megjegyzés(ek)
     pdf:
       cover:
         fields:
           assigned_date: Hozzárendelt dátum
       statuses:
         draft: Tervezet
+    plan: Terv
     reflective_questions:
       already_completed: Az IDP már elkészült, a kérdésekre most nem tud válaszolni.
   idp_templates:

@@ -663,14 +663,242 @@ id:
         requested_rescheduling_rejected: Permintaan Penjadwalan Ulang Ditolak
     'yes': Ya
   idp:
+    actions: Tindakan
+    behavioral: Perilaku
+    board: Papan
+    comment_details:
+      add_comment: Tambahkan Komentar
+      add_comment_placeholder: Tambahkan komentar...
+      add_reply_placeholder: Tambahkan balasan...
+      go_to_skill: Pergi ke keterampilan
+    comments:
+      close: Tutup
+      comments: Komentar
+      filter_comments: Saring komentar
+      mark_as_resolved: Tandai sebagai telah diselesaikan
+      mark_as_unresolved: Tandai sebagai belum diselesaikan
+      replied: Dibalas
+      replies: Balasan
+      reply: Balas
+      resolve: Selesaikan
+      resolved: Diselesaikan
+      resolved_message: Komentar ini telah diselesaikan dan balasan dinonaktifkan.
+      show_only_read: Tampilkan hanya yang sudah dibaca
+      show_only_resolved: Tampilkan hanya yang sudah diselesaikan
+      show_only_unread: Tampilkan hanya yang belum dibaca
+      show_only_unresolved: Tampilkan hanya yang belum diselesaikan
+      sort_by_date: Urutkan berdasarkan tanggal
+      you: Anda
+    convert_to_draft: Ubah ke Konsep
+    details: Detail
+    development_actions:
+      action_private: Ya
+      action_public: Tidak
+      add_development_action: Tambahkan Tindakan Pengembangan
+      all: Semua
+      approved: Disetujui
+      board_view:
+        completed: Selesai
+        in_progress: Sedang Berlangsung
+        not_started: Belum Dimulai
+      completion: Penyelesaian
+      create_my_own: Buat Sendiri
+      date_range: Tanggal Mulai - Tanggal Selesai
+      generate_by_ai: Hasilkan oleh AI
+      generate_more: Hasilkan Lebih Banyak
+      generating_development_actions: Menghasilkan tindakan pengembangan...
+      heading: Tindakan Pengembangan
+      incomplete_error: Tindakan Pengembangan Belum Lengkap
+      incomplete_error_message: Beberapa tindakan pengembangan belum lengkap. Silakan lengkapi sebelum mengirimkan IDP Anda.
+      incomplete_warning: Tindakan Pengembangan Belum Lengkap
+      incomplete_warning_message: Beberapa tindakan pengembangan belum lengkap. Apakah Anda yakin ingin menandai IDP Anda selesai?
+      learning_from_others: Belajar dari orang lain
+      manage_skills: Kelola Keterampilan
+      marathon: Maraton
+      mark_as_complete: Tandai sebagai Selesai
+      no_development_actions: Tidak ada tindakan pengembangan
+      on_the_job: Di tempat kerja
+      other: Lainnya
+      private: Pribadi
+      publish_plan: Publikasikan Rencana
+      remove: Hapus
+      skill: Keterampilan
+      sprint: Sprint
+      start_plan: Mulai Rencana
+      structured_learning: Pembelajaran terstruktur
+      submit_plan: Kirim Rencana
+      write_here: Tulis di sini...
+    edit_plan: Sunting Rencana
+    edit_progress: Mengedit Kemajuan
+    initial_steps:
+      add_skill_group_description: Berdasarkan hasil penilaian Anda, berikut adalah beberapa area kekuatan dan pengembangan untuk Anda. Pilih keterampilan yang ingin Anda kembangkan lebih lanjut sebagai bagian dari rencana pengembangan Anda.
+      add_skill_group_title: Menjelajahi Keterampilan %{category} Anda
+      add_skills: Tambahkan
+      add_skills_step: Tambahkan Keterampilan
+      continue_to_rate_skills: Lanjutkan untuk menilai keterampilan
+      getting_started: Memulai
+      less_skills: Tampilkan lebih sedikit keterampilan
+      more_skills: Jelajahi lebih banyak keterampilan
+      next: Berikutnya
+      no_skills_selected: Tidak ada keterampilan yang dipilih.
+      rate_skills: Nilai Keterampilan
+      rate_skills_description: Sekarang setelah Anda memilih prioritas pengembangan Anda, silakan nilai diri Anda pada masing-masing berikut. Ingatlah untuk menilai diri Anda berdasarkan tingkat saat ini, bukan tingkat masa lalu atau yang diinginkan.
+      rate_skills_title: Menilai Keterampilan Anda
+      rating_column_header: Penilaian diri Anda
+      reflective_questions: Pertanyaan Reflektif
+      save: Simpan
+      select_skills: Pilih keterampilan Anda
+      select_skills_placeholder: Pilih keterampilan
+      selected_skills: Keterampilan Terpilih
+      skill_column_header: Keterampilan
+      skill_gap_report: Laporan Kesenjangan Keterampilan
+    list: Daftar
+    manage_plan: Kelola Rencana
+    mark_as_complete: Tandai sebagai Selesai
+    mark_as_incomplete: Tandai sebagai Belum Selesai
+    my_plan:
+      development_plan: Rencana Pengembangan
+      graphs:
+        categories: Kategori
+      save_skills: Simpan Keterampilan
+    new_comments: Komentar baru
     pdf:
+      approval_status: Status Persetujuan
       cover:
         fields:
+          assigned_data: Tanggal Penugasan
           assigned_date: Tanggal Penugasan
+          completion_date: Tanggal Penyelesaian
+          division: Divisi
+          name: Nama
+          publish_date: Tanggal Publikasi
+          review_date: Tanggal Tinjauan
+          role: Peran Saat Ini
+      guidelines:
+        cards:
+          c1:
+            content: Sertakan keterampilan, pengetahuan, dan kemampuan yang perlu dikembangkan. Pastikan spesifik, terukur, dapat dicapai, realistis, dan dapat diselesaikan dalam waktu yang disebutkan.
+            title: Tujuan Pengembangan
+          c2:
+            content: Ini didasarkan pada kompetensi yang akan dikembangkan berdasarkan pengalaman penilaian.
+            title: Kompetensi
+          c3:
+            content: Bagian ini mencakup tindakan pengembangan Anda berdasarkan model pembelajaran 70-20-10 yang tercantum di bawah ini. Disarankan untuk memilih kombinasi dari ketiga elemen tersebut untuk memastikan pendekatan pembelajaran dan pengembangan yang bervariasi.
+            title: Aktivitas
+          c4:
+            content: Pastikan jadwal Anda realistis berdasarkan kapan tujuan dapat diselesaikan. Ubah sesuai kebutuhan.
+            title: Garis Waktu
+          c5:
+            content: Gunakan bagian kemajuan untuk mendukung perkembangan pada jalur yang diidentifikasi.
+            title: Kemajuan
+        chart:
+          collaboration: "<strong>20%</strong>Pembelajaran Kolaboratif <br />"
+          job: "<strong>70%</strong>Pembelajaran <br />di Tempat Kerja"
+          learn: "<strong>10%</strong>Pembelajaran Formal <br />"
+        content:
+          list:
+            r1: Harap dicatat bahwa daftar ini hanya bersifat indikatif, dan jalur pengembangan tambahan dapat dipertimbangkan untuk Anda berdasarkan aspirasi individu, rekomendasi dari manajer Anda, serta prioritas bisnis organisasi.
+            r2: Harap dicatat bahwa peluncuran beberapa jalur pengembangan ini akan bergantung pada strategi pendidikan dan pembelajaran organisasi secara luas.
+            r3: Harap pertimbangkan jalur yang direkomendasikan seperti yang dicoret di bawah ini, saat mengembangkan Rencana Pengembangan Individu Anda.
+          main: Bagian ini mencakup daftar kumulatif dari semua jalur pengembangan, dengan memperhatikan praktik terbaik pembelajaran yaitu pedoman 70-20-10, yang memberikan perjalanan progresif menggabungkan pembelajaran di kelas, pembimbingan, dan pembelajaran di tempat kerja. Berdasarkan hasil dari pengalaman pengembangan kepemimpinan dan prioritas bisnis, jalur pengembangan yang mungkin telah direkomendasikan, yang dapat dipertimbangkan untuk pengembangan Anda.
+        learn_cards:
+          collaboration:
+            list:
+            - Menawarkan untuk membimbing atau menjadi mentor bagi orang lain
+            - Meminta untuk dibimbing oleh ahli di bidang Anda
+            - Mendapatkan pelatih untuk mendukung pengembangan Anda
+            - Membentuk kelompok kerja kolaboratif untuk mendiskusikan tantangan bisnis yang sedang berlangsung
+            - Mendapatkan umpan balik secara formal dan informal dari orang lain
+            - Berperan aktif dalam asosiasi dan jaringan industri
+            - Membangun jaringan eksternal Anda sendiri
+            title: Pembelajaran Kolaboratif (20%) <br/> Belajar melalui orang lain
+          job:
+            list:
+            - Mengambil posisi kepemimpinan dalam komite pemangku kepentingan atau manajemen
+            - Menjadi sukarelawan untuk memimpin proyek manajemen perubahan untuk organisasi
+            - Pertimbangkan untuk mengambil tugas yang menantang
+            - Bekerja lintas fungsi dengan departemen lain
+            - Pertimbangkan untuk memimpin proyek di luar organisasi Anda
+            - Bekerja sama dengan pakar industri eksternal dalam proyek bersama
+            title: Pembelajaran di Tempat Kerja (70%) <br/> Belajar melalui pengalaman
+          learn:
+            list:
+            - Mengambil posisi kepemimpinan dalam komite pemangku kepentingan atau manajemen
+            - Menjadi sukarelawan untuk memimpin proyek manajemen perubahan untuk organisasi
+            - Pertimbangkan untuk mengambil tugas yang menantang
+            - Bekerja lintas fungsi dengan departemen lain
+            - Pertimbangkan untuk memimpin proyek di luar organisasi Anda
+            - Bekerja sama dengan pakar industri eksternal dalam proyek bersama
+            title: Pembelajaran Formal (10%) <br/> Belajar melalui pembelajaran terstruktur
+        title: Panduan untuk Membimbing IDP Anda
+      idp:
+        end_date: Tanggal Selesai
+        self_rating: Penilaian Diri
+        start_date: Tanggal Mulai
+        subtitle:
+          behavioural: Perilaku
+          technical: Teknis
+        title: Rencana Pengembangan Individu
+      last:
+        end_report: Akhir Laporan
+      reflections:
+        subtitle: Pertanyaan untuk Pengembangan Profesional Keseluruhan
+        title: Refleksi untuk Membimbing IDP Anda
+      skill_categories:
+        behavioral: Perilaku
+        technical: Teknis
       statuses:
+        approved: Ditinjau dan Disetujui
+        completed: Selesai
         draft: Konsep
+        not_reviewed: Belum Ditinjau
+        pending_approval: Dalam Peninjauan
+      summary:
+        ai_count: AI Generatif
+        collaborative_learn: Pembelajaran Kolaboratif
+        created_by: Dibuat oleh
+        current_status: Status IDP Saat Ini
+        custom: Kustom
+        custom_count: Kustom
+        da_count: Jumlah Tindakan Pengembangan
+        formal_learn: Pembelajaran Formal
+        generated_ai: AI Generatif
+        learn_on_job: Belajar di tempat kerja
+        learn_pathway: Jalur Pembelajaran
+        lib_count: Pustaka IDP
+        library: Pustaka IDP
+        skills_count: Jumlah Keterampilan
+        title: Ringkasan Laporan
+    plan: Rencana
     reflective_questions:
       already_completed: IDP telah selesai, Anda tidak dapat menjawab pertanyaan sekarang.
+      answer_later: Jawab Nanti
+      answer_placeholder: Tulis jawaban Anda di sini...
+      errors:
+        max_words: Jawaban maksimal %{count} kata
+        min_words: Jawaban minimal %{count} kata
+        required: Jawaban atas pertanyaan ini wajib diisi
+      max_words: Kata Maksimal
+      min_words: Kata Minimal
+      title: Pertanyaan Reflektif
+      update_failed: Terjadi kesalahan saat memperbarui
+      updated_successfully: Jawaban Anda berhasil diperbarui
+      words: Kata
+    skill_gap_report:
+      title: Laporan Kesenjangan Keterampilan
+    status: Status
+    technical: Teknis
+    user_idp_status:
+      approved: Disetujui
+      completed: Selesai
+      draft: Konsep
+      in_progress: Sedang Berlangsung
+      not_started: Belum Dimulai
+      pending_approval: Menunggu Persetujuan
+      rejected: Ditolak
+    users: Pengguna
+    with_reflection_questions: Dengan Pertanyaan Reflektif
+    without_reflection_questions: Tanpa Pertanyaan Reflektif
   idp_templates:
     errors:
       user_idp_template_not_found: Tidak ada templat IDP yang ditetapkan untuk Anda.

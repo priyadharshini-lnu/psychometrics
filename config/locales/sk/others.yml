@@ -663,14 +663,242 @@ sk:
         requested_rescheduling_rejected: Požadované Presunutie termínu Zamietnuté
     'yes': Áno
   idp:
+    actions: Akcie
+    behavioral: Behaviorálne
+    board: Tabuľa
+    comment_details:
+      add_comment: Pridať komentár
+      add_comment_placeholder: Pridať komentár...
+      add_reply_placeholder: Pridať odpoveď...
+      go_to_skill: Prejsť na zručnosť
+    comments:
+      close: Zatvoriť
+      comments: Komentáre
+      filter_comments: Filtrovať komentáre
+      mark_as_resolved: Označiť ako vyriešené
+      mark_as_unresolved: Označiť ako nevyriešené
+      replied: Odpovedané
+      replies: Odpovede
+      reply: Odpovedať
+      resolve: Vyriešiť
+      resolved: Vyriešené
+      resolved_message: Tento komentár bol vyriešený a odpovede sú zakázané.
+      show_only_read: Zobraziť iba prečítané
+      show_only_resolved: Zobraziť iba vyriešené
+      show_only_unread: Zobraziť iba neprečítané
+      show_only_unresolved: Zobraziť iba nevyriešené
+      sort_by_date: Zoradiť podľa dátumu
+      you: Vy
+    convert_to_draft: Konvertovať na návrh
+    details: Podrobnosti
+    development_actions:
+      action_private: Áno
+      action_public: Nie
+      add_development_action: Pridať rozvojovú akciu
+      all: Všetko
+      approved: Schválené
+      board_view:
+        completed: Dokončené
+        in_progress: Prebieha
+        not_started: Nezačaté
+      completion: Dokončenie
+      create_my_own: Vytvoriť vlastné
+      date_range: Dátum začiatku - Dátum ukončenia
+      generate_by_ai: Generovať pomocou AI
+      generate_more: Generovať viac
+      generating_development_actions: Generovanie rozvojových akcií...
+      heading: Rozvojové akcie
+      incomplete_error: Neúplné rozvojové akcie
+      incomplete_error_message: Niektoré rozvojové akcie sú neúplné. Dokončite ich pred odoslaním svojho IDP.
+      incomplete_warning: Neúplné rozvojové akcie
+      incomplete_warning_message: Niektoré rozvojové akcie sú neúplné. Ste si istí, že chcete označiť svoj IDP ako dokončený?
+      learning_from_others: Učenie sa od iných
+      manage_skills: Spravovať zručnosti
+      marathon: Maratón
+      mark_as_complete: Označiť ako dokončené
+      no_development_actions: Žiadne rozvojové akcie
+      on_the_job: Pri práci
+      other: Iné
+      private: Súkromné
+      publish_plan: Publikovať plán
+      remove: Odstrániť
+      skill: Zručnosť
+      sprint: Šprint
+      start_plan: Spustiť plán
+      structured_learning: Štruktúrované učenie
+      submit_plan: Odoslať plán
+      write_here: Píšte sem...
+    edit_plan: Upraviť plán
+    edit_progress: Upraviť pokrok
+    initial_steps:
+      add_skill_group_description: Na základe výsledkov hodnotenia sú tu niektoré oblasti vašich silných a rozvojových stránok. Vyberte si zručnosti, ktoré chcete ďalej rozvíjať v rámci svojho rozvojového plánu.
+      add_skill_group_title: Preskúmanie vašich %{category} zručností
+      add_skills: Pridať
+      add_skills_step: Pridať zručnosti
+      continue_to_rate_skills: Pokračovať v hodnotení zručností
+      getting_started: Začíname
+      less_skills: Zobraziť menej zručností
+      more_skills: Preskúmať viac zručností
+      next: Ďalej
+      no_skills_selected: Nie sú vybrané žiadne zručnosti.
+      rate_skills: Ohodnotiť zručnosti
+      rate_skills_description: Teraz, keď ste si vybrali svoje rozvojové priority, ohodnoťte sa v každej z nasledujúcich oblastí. Pamätajte, že sa hodnotíte podľa aktuálnej úrovne, nie podľa minulosti alebo želanej úrovne.
+      rate_skills_title: Hodnotenie vašich zručností
+      rating_column_header: Vaše sebahodnotenie
+      reflective_questions: Reflektívne otázky
+      save: Uložiť
+      select_skills: Vyberte svoje zručnosti
+      select_skills_placeholder: Vyberte zručnosti
+      selected_skills: Vybrané zručnosti
+      skill_column_header: Zručnosť
+      skill_gap_report: Správa o medzere v zručnostiach
+    list: Zoznam
+    manage_plan: Spravovať plán
+    mark_as_complete: Označiť ako dokončené
+    mark_as_incomplete: Označiť ako neúplné
+    my_plan:
+      development_plan: Rozvojový plán
+      graphs:
+        categories: Kategórie
+      save_skills: Uložiť zručnosti
+    new_comments: Nový komentár(y)
     pdf:
+      approval_status: Stav schválenia
       cover:
         fields:
+          assigned_data: Pridelený dátum
           assigned_date: Pridelený dátum
+          completion_date: Dátum dokončenia
+          division: Divízia
+          name: Meno
+          publish_date: Dátum zverejnenia
+          review_date: Dátum kontroly
+          role: Aktuálna rola
+      guidelines:
+        cards:
+          c1:
+            content: Zahrňte zručnosti, vedomosti a schopnosti, ktoré je potrebné rozvíjať. Uistite sa, že sú konkrétne, merateľné, dosiahnuteľné, realistické a uskutočniteľné v uvedených termínoch.
+            title: Rozvojové ciele
+          c2:
+            content: Toto je založené na kompetencii, ktorú je potrebné rozvíjať na základe hodnotenia.
+            title: Kompetencia
+          c3:
+            content: Táto sekcia obsahuje vaše rozvojové akcie podľa modelu učenia 70-20-10 uvedeného nižšie. Odporúča sa vybrať kombináciu všetkých troch prvkov pre rôznorodý prístup k učeniu a rozvoju.
+            title: Aktivita
+          c4:
+            content: Uistite sa, že vaše termíny sú realistické podľa toho, kedy môže byť cieľ splnený. Podľa potreby ich upravte.
+            title: Časový rámec
+          c5:
+            content: Použite sekciu pokroku na sledovanie postupu v identifikovaných oblastiach.
+            title: Pokrok
+        chart:
+          collaboration: "<strong>20%</strong>Kolaboratívne <br /> učenie"
+          job: "<strong>70%</strong>Učenie <br /> pri práci"
+          learn: "<strong>10%</strong>Formálne učenie"
+        content:
+          list:
+            r1: Upozorňujeme, že tento zoznam je len orientačný a môžu byť pre vás zvážené aj ďalšie rozvojové cesty na základe individuálnych ambícií, odporúčaní manažéra a obchodných priorít organizácie.
+            r2: Spustenie niektorých z týchto rozvojových ciest bude závisieť od celopodnikovej stratégie vzdelávania a učenia.
+            r3: Pri tvorbe svojho individuálneho rozvojového plánu zvážte odporúčané cesty uvedené nižšie.
+          main: Táto sekcia obsahuje kumulatívny zoznam všetkých rozvojových ciest s ohľadom na najlepšie postupy učenia, t. j. usmernenie 70-20-10, ktoré poskytuje progresívnu cestu kombinujúcu školské učenie, koučing a učenie sa priamo pri práci. Na základe výsledkov rozvoja lídrov a obchodných priorít boli odporučené možné rozvojové cesty, ktoré môžete zvážiť pre svoj rozvoj.
+        learn_cards:
+          collaboration:
+            list:
+            - Ponúknite koučovanie alebo mentorovanie iným
+            - Požiadajte o mentorovanie odborníkom vo vašom odbore
+            - Získajte kouča na podporu vášho rozvoja
+            - Založte pracovnú skupinu na diskusiu o aktuálnych výzvach v podnikaní
+            - Získavajte spätnú väzbu formálne aj neformálne od iných
+            - Aktívne sa zapájajte do priemyselných združení a sietí
+            - Budujte si vlastné externé siete
+            title: Kolaboratívne učenie (20 %) <br/> Rozvoj prostredníctvom iných
+          job:
+            list:
+            - Prevezmite vedúce pozície v komisiách alebo manažérskych výboroch
+            - Dobrovoľne veďte projekty riadenia zmien pre organizáciu
+            - Zvážte prijatie náročných úloh
+            - Spolupracujte s inými oddeleniami
+            - Veďte projekty mimo vašej organizácie
+            - Spolupracujte s externými odborníkmi na spoločných projektoch
+            title: Učenie pri práci (70 %) <br/> Rozvoj prostredníctvom skúseností
+          learn:
+            list:
+            - Prevezmite vedúce pozície v komisiách alebo manažérskych výboroch
+            - Dobrovoľne veďte projekty riadenia zmien pre organizáciu
+            - Zvážte prijatie náročných úloh
+            - Spolupracujte s inými oddeleniami
+            - Veďte projekty mimo vašej organizácie
+            - Spolupracujte s externými odborníkmi na spoločných projektoch
+            title: Formálne učenie (10 %) <br/> Rozvoj prostredníctvom štruktúrovaného učenia
+        title: Usmernenia pre váš IDP
+      idp:
+        end_date: Dátum ukončenia
+        self_rating: Sebahodnotenie
+        start_date: Dátum začiatku
+        subtitle:
+          behavioural: Behaviorálne
+          technical: Technické
+        title: Individuálny rozvojový plán
+      last:
+        end_report: Koniec správy
+      reflections:
+        subtitle: Otázky pre celkový profesionálny rozvoj
+        title: Reflexie pre váš IDP
+      skill_categories:
+        behavioral: Behaviorálne
+        technical: Technické
       statuses:
+        approved: Skontrolované a schválené
+        completed: Dokončené
         draft: Návrh
+        not_reviewed: Neskontrolované
+        pending_approval: V procese kontroly
+      summary:
+        ai_count: Generatívna AI
+        collaborative_learn: Kolaboratívne učenie
+        created_by: Vytvoril
+        current_status: Aktuálny stav IDP
+        custom: Vlastné
+        custom_count: Vlastné
+        da_count: Počet rozvojových akcií
+        formal_learn: Formálne učenie
+        generated_ai: Generatívna AI
+        learn_on_job: Učenie pri práci
+        learn_pathway: Učebná cesta
+        lib_count: Knižnica IDP
+        library: Knižnica IDP
+        skills_count: Počet zručností
+        title: Súhrn správy
+    plan: Plán
     reflective_questions:
       already_completed: IDP už bol dokončený, teraz nemôžete odpovedať na otázky.
+      answer_later: Odpovedať neskôr
+      answer_placeholder: Napíšte svoju odpoveď sem...
+      errors:
+        max_words: Odpoveď môže mať maximálne %{count} slov
+        min_words: Odpoveď vyžaduje aspoň %{count} slov
+        required: Odpoveď na otázku je povinná
+      max_words: Max. slov
+      min_words: Min. slov
+      title: Reflektívne otázky
+      update_failed: Počas aktualizácie došlo k chybe
+      updated_successfully: Vaše odpovede boli úspešne aktualizované
+      words: Slová
+    skill_gap_report:
+      title: Správa o medzere v zručnostiach
+    status: Stav
+    technical: Technické
+    user_idp_status:
+      approved: Schválené
+      completed: Dokončené
+      draft: Návrh
+      in_progress: Prebieha
+      not_started: Nezačaté
+      pending_approval: Čaká na schválenie
+      rejected: Zamietnuté
+    users: Používatelia
+    with_reflection_questions: S reflektívnymi otázkami
+    without_reflection_questions: Bez reflektívnych otázok
   idp_templates:
     errors:
       user_idp_template_not_found: Nebola vám priradená žiadna šablóna IDP.
