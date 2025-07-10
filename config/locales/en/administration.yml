@@ -2072,6 +2072,7 @@ en:
       client_skills: Client Skills
       details_updated: IDP Details updated successfully
       edit_template: Edit IDP Template
+      enter_tag_or_skills_error: Select at least one tag or skill
       enter_template_description: Description
       enter_template_description_error: Template description is required.
       enter_template_name: Name

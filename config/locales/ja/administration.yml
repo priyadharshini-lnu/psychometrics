@@ -2069,6 +2069,7 @@ ja:
       client_skills: クライアント・スキル
       details_updated: IDP詳細の更新に成功
       edit_template: IDPテンプレートの編集
+      enter_tag_or_skills_error: 少なくとも1つのタグまたはスキルを選択してください
       enter_template_description: 説明
       enter_template_description_error: テンプレートの説明が必要です。
       enter_template_name: 名称

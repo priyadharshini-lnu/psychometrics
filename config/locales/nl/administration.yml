@@ -2069,6 +2069,7 @@ nl:
       client_skills: Vaardigheden voor klanten
       details_updated: IDP Details succesvol bijgewerkt
       edit_template: IDP-sjabloon bewerken
+      enter_tag_or_skills_error: Selecteer ten minste één tag of vaardigheid
       enter_template_description: Beschrijving
       enter_template_description_error: Sjabloonbeschrijving is vereist.
       enter_template_name: Naam

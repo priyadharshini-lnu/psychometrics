@@ -2068,6 +2068,7 @@ zh-Hant:
       client_skills: 客戶技能
       details_updated: IDP 詳細資料已成功更新
       edit_template: 編輯 IDP 範本
+      enter_tag_or_skills_error: 選擇至少一個標籤或技能
       enter_template_description: 說明
       enter_template_description_error: 範本描述為必填項目。
       enter_template_name: 名稱

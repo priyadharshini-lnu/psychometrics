@@ -2069,6 +2069,7 @@ it:
       client_skills: Competenze del cliente
       details_updated: Dettagli IDP aggiornati con successo
       edit_template: Modifica del modello IDP
+      enter_tag_or_skills_error: Seleziona almeno un tag o una competenza
       enter_template_description: Descrizione
       enter_template_description_error: La descrizione del modello è necessaria.
       enter_template_name: Nome

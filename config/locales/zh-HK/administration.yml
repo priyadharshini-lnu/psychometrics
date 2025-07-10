@@ -28,6 +28,7 @@ zh-HK:
       show:
         assessment_center_group: 評估中心小組：
     idp:
+      enter_tag_or_skills_error: 至少选择一个标签或技能
       intro_message: 介绍信息
       intro_message_hint: 要修改介绍信息，请先保存 IDP 模板以启用这些设置。
       intro_message_success: 简介信息已成功保存

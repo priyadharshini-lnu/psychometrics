@@ -2069,6 +2069,7 @@ zh:
       client_skills: 客户技能
       details_updated: 成功更新 IDP 详情
       edit_template: 编辑 IDP 模板
+      enter_tag_or_skills_error: 至少选择一个标签或技能
       enter_template_description: 说明
       enter_template_description_error: 需要模板说明。
       enter_template_name: 名称

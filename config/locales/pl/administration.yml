@@ -29,6 +29,7 @@ pl:
       show:
         assessment_center_group: 'Assessment Center Group:'
     idp:
+      enter_tag_or_skills_error: Wybierz co najmniej jeden tag lub umiejętność
       intro_message: Wiadomość wprowadzająca
       intro_message_hint: Aby zmodyfikować wiadomość powitalną, najpierw zapisz szablon IDP i włącz te ustawienia.
       intro_message_success: Wiadomość wprowadzająca została pomyślnie zapisana

@@ -2069,6 +2069,7 @@ es-ES:
       client_skills: Competencias de los clientes
       details_updated: Datos del PDI actualizados correctamente
       edit_template: Editar plantilla IDP
+      enter_tag_or_skills_error: Seleccione al menos una etiqueta o habilidad
       enter_template_description: Descripción
       enter_template_description_error: La descripción de la plantilla es obligatoria.
       enter_template_name: Nombre

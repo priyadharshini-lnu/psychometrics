@@ -2069,6 +2069,7 @@ fr:
       client_skills: Compétences des clients
       details_updated: Mise à jour réussie des détails du PDI
       edit_template: Modifier le modèle de PDI
+      enter_tag_or_skills_error: Sélectionnez au moins une étiquette ou une compétence
       enter_template_description: Description
       enter_template_description_error: La description du modèle est obligatoire.
       enter_template_name: Nom

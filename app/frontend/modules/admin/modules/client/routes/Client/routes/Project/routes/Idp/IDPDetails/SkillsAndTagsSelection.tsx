@@ -66,6 +66,23 @@ const SkillsAndTagsSelection = ({
     .concat(categorizedSkills[`${settingPrefix}Skills`])
     : specificSkillsSearchData
 
+  const checkTagAndSkillsSelected = async () => {
+    const tags = form.getFieldValue(`${settingPrefix}Tags`) || []
+    const skillsSelected = form.getFieldValue(`${settingPrefix}Skills`) || []
+    if (tags.length === 0 && skillsSelected.length === 0) {
+      form.setFields([{
+        name: `${settingPrefix}SkillsAndTags`,
+        errors: [I18n.t('administration.idp.enter_tag_or_skills_error')],
+      }])
+      return Promise.reject()
+    }
+    form.setFields([{
+      name: `${settingPrefix}SkillsAndTags`,
+      errors: [''],
+    }])
+    return Promise.resolve()
+  }
+
   return (
     <div key={type} className="mb8">
       <Form.Item
@@ -78,9 +95,19 @@ const SkillsAndTagsSelection = ({
           <Radio value={SkillsOption.SELECTED}>{I18n.t('administration.idp.selected')}</Radio>
         </Radio.Group>
       </Form.Item>
+
       {selectedSkillOption === SkillsOption.SELECTED && (
-        <>
-          <Form.Item label={I18n.t('administration.idp.select_by_tags')} name={`${settingPrefix}Tags`}>
+        <Form.Item
+          name={`${settingPrefix}SkillsAndTags`}
+          shouldUpdate
+          validateTrigger={['onChange']}
+          dependencies={[`${settingPrefix}Tags`, `${settingPrefix}Skills`]}
+        >
+          <Form.Item
+            label={I18n.t('administration.idp.select_by_tags')}
+            name={`${settingPrefix}Tags`}
+            rules={[{ validator: checkTagAndSkillsSelected }]}
+          >
             <Select
               mode="multiple"
               style={{ width: '100%' }}
@@ -98,6 +125,8 @@ const SkillsAndTagsSelection = ({
           <Form.Item
             label={I18n.t('administration.idp.select_specific_skills')}
             name={`${settingPrefix}Skills`}
+            rules={[{ validator: checkTagAndSkillsSelected }]}
+            style={{ marginBottom: '4px' }}
           >
             <Select
               mode="multiple"
@@ -113,7 +142,7 @@ const SkillsAndTagsSelection = ({
               ))}
             </Select>
           </Form.Item>
-        </>
+        </Form.Item>
       )}
     </div>
   )

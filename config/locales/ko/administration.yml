@@ -2069,6 +2069,7 @@ ko:
       client_skills: 클라이언트 기술
       details_updated: IDP 세부 정보 업데이트 성공
       edit_template: IDP 템플릿 편집
+      enter_tag_or_skills_error: 태그 또는 기술을 하나 이상 선택하세요
       enter_template_description: 설명
       enter_template_description_error: 템플릿 설명은 필수입니다.
       enter_template_name: 이름
