@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   skip_before_action :authenticate_user!, only: %I[identify upgrade privacy_statement]
   skip_before_action :set_client_by_subdomain, only: %i[privacy_statement]
 
-  AVAILABLE_POLICY_LANGS = %w[en fr de it es-ES bg hr cs hu pl ro sr-Cyrl sk sl vi nl pt].freeze
+  AVAILABLE_POLICY_LANGS = %w[en fr de it es-ES bg hr cs hu pl ro sr-Cyrl sk sl vi nl pt id zh zh-Hant ja ko th].freeze
 
   def survey_instructions
     render layout: 'users_new'
