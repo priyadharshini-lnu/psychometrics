@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons'
 import { useResourceContext, Resource } from '~/modules/admin/components/Resource'
 import { MenuItem } from '~/interfaces/Antd'
-import { getLabelForEnumValue } from '~/utils/object'
+import { getLabelForEnumValue, convertEnumToObject } from '~/utils/object'
 import { Skill } from '~/modules/admin/modules/client/core/skills'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TagList } from '~/modules/admin/components/Resource/TagList'
@@ -70,6 +70,12 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           id="skill_type"
           width={200}
           render={skill => <Typography.Text>{getLabelForEnumValue(SkillTypeEnum, skill.skillType)}</Typography.Text>}
+          sorter
+          filters={
+                  Object.values(convertEnumToObject(SkillTypeEnum))
+                    .map(([key, value]) => ({ text: key, value }))
+                }
+          filteredValue={resource.getFilteredValue('skill_type_in') as string[]}
         />
         <Resource.Column<Skill>
           title={I18n.t('administration.skills.columns.skill_group')}

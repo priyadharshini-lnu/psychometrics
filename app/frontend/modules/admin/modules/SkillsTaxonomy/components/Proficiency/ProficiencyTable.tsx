@@ -8,7 +8,7 @@ import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { ProficiencyLevel } from '~/modules/admin/modules/client/core/proficiencyLevels'
-import { convertEnumToObject } from '~/utils/object'
+import { convertEnumToObject, getLabelForEnumValue } from '~/utils/object'
 import { SkillTypeEnum } from '../../constants'
 import { ProficiencyTypesEnum } from './constants'
 import { ProjectFilter } from '~/components/ProjectFilter'
@@ -125,10 +125,10 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('administration.proficiency_levels.fields.skill_type')}
         id="skill_type"
-        render={(_, proficiencyLevel) => (
-          <div>
-            <Typography.Text>{proficiencyLevel.skillType}</Typography.Text>
-          </div>
+        render={proficiencyLevel => (
+          <Typography.Text>
+            {getLabelForEnumValue(SkillTypeEnum, proficiencyLevel.skillType)}
+          </Typography.Text>
         )}
         sorter
         filters={

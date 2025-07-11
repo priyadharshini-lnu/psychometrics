@@ -48,6 +48,10 @@ class ProficiencyLevel < ApplicationRecord
     parent.table[:proficiency_type]
   end
 
+  ransacker :skill_type, formatter: proc { |v| skill_types[v] } do |parent|
+    parent.table[:skill_type]
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[
       proficiency_type
