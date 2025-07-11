@@ -320,6 +320,7 @@ sl:
     assessment_center_heading: Podrobnosti o centru za ocenjevanje
     assessments_heading: Vaše naloge
     column:
+      external_user_id: Skillvue ID kandidata
       skillvue_email_id: Skillvue Kandidat Email ID
       skillvue_external_assessment_id: Skillvue Ocena ID
     modals:
@@ -521,9 +522,9 @@ sl:
       campaign_idps:
         idp_template_not_published: Ta predloga IDP še ni objavljena, objavite jo, preden dodelite kampanjo.
       development_actions:
-        only_global_skills_allowed: Izbrane spretnosti morajo biti globalne spretnosti.
-        skills_not_belong_to_project: Izbrane spretnosti morajo pripadati določenemu projektu.
-        skills_required: Izberite vsaj eno veščino.
+        only_global_skills_allowed: Izbrana znanja in spretnosti morajo biti globalna znanja in spretnosti.
+        skills_not_belong_to_project: Izbrana znanja morajo pripadati določenemu projektu.
+        skills_required: Izberite vsaj eno spretnost.
       job_roles:
         unique_within_job_group: Vloga delovnega mesta z istim imenom že obstaja.
       skills_job_roles:
@@ -733,7 +734,7 @@ sl:
       submit_plan: Oddaj načrt
       write_here: Pišite tukaj...
     edit_plan: Uredi načrt
-    edit_progress: Uredi napredek
+    edit_progress: Urejanje napredka
     initial_steps:
       add_skill_group_description: Na podlagi rezultatov ocenjevanja so tukaj nekatera vaša področja moči in razvoja. Izberite spretnosti, ki jih želite dodatno razvijati v svojem razvojnem načrtu.
       add_skill_group_title: Raziskovanje vaših %{category} spretnosti

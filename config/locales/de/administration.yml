@@ -174,6 +174,8 @@ de:
             title: IDP-Vorlagen
             view: Siehe
           jobRoles:
+            export_translations: Exportieren von Job-Rollen-Übersetzungen
+            import_translations: Importieren von Job-Rollen-Übersetzungen
             manage: Verwalten Sie
             title: Job-Rollen
             view: Siehe
@@ -2069,6 +2071,7 @@ de:
       client_skills: Client-Fähigkeiten
       details_updated: IDP-Details erfolgreich aktualisiert
       edit_template: IDP-Vorlage bearbeiten
+      enter_tag_or_skills_error: Wählen Sie mindestens einen Tag oder eine Fähigkeit
       enter_template_description: Beschreibung
       enter_template_description_error: Die Beschreibung der Vorlage ist erforderlich.
       enter_template_name: Name
@@ -2359,15 +2362,12 @@ de:
       export:
         failure_msg: Fehler beim Exportieren von Übersetzungen
         success_msg: Export von laufenden Entwicklungsmaßnahmen.
-      export_action:
-        translations: Job-Rollen-Übersetzungen exportieren
       form:
         code: Code
         description: Beschreibung
         job_group: Berufsgruppe
         name: Name
         title: Berufsrolle
-      global: Ist Global Job Role?
       import:
         download_example_csv: Download Beispiel csv
         success_msg: Die hochgeladene Datei wurde in die Warteschlange für den Import aufgenommen. Bitte überprüfen Sie den Status in den Benachrichtigungen.
@@ -2683,9 +2683,6 @@ de:
           project_level_default_exists: Es gibt bereits eine "Standard"-Befähigungsstufe
           skill_must_exist: Fertigkeit muss für proficiency_type 'by_skill' vorhanden sein
       export:
-        actions:
-          proficiency: Kompetenz im Export
-          translations: Export Proficiency Translations
         details: Einzelheiten
         failure_msg: Fehler beim Exportieren von Kompetenzstufen
         success_msg: Exportieren laufender Entwicklungsmaßnahmen
@@ -2701,7 +2698,6 @@ de:
         skill_name: Name der Fertigkeit
         skill_type: Fertigkeitstyp
         title: Befähigung
-      global: Ist Global Proficiency?
       import:
         actions:
           proficiency: Importkenntnisse
@@ -3647,12 +3643,8 @@ de:
         details: Einzelheiten
         failure_msg: Fehler beim Exportieren von Übersetzungen
         success_msg: Export von laufenden Entwicklungsmaßnahmen.
-        title: Exportieren
         translations:
           details: Fertigkeitsübersetzungen
-      export_action:
-        skills_title: Exportfähigkeiten
-        skills_translations_title: Exportkompetenzen Übersetzungen
       form:
         client_placeholder: Wählen Sie einen Kunden
         description: Beschreibung
@@ -3661,9 +3653,6 @@ de:
         skill_group: Skill-Gruppe
         skill_type: Fähigkeitstyp
         title: Fertigkeit
-      global: Ist Global Skill?
-      global_skills: Globale Fertigkeiten
-      global_translations: Global Skills Translations
       import:
         download_example_csv: Download Beispiel csv
         info_msg: Die hochgeladene Datei wurde in die Warteschlange für den Import gestellt, bitte prüfen Sie den Status in den Benachrichtigungen.
@@ -3673,8 +3662,6 @@ de:
         skills_translations_title: Importfähigkeiten Übersetzungen
       skill_details: Details zur Fertigkeit
       skill_translations: Fertigkeiten Übersetzungen
-      skill_translations_project: Skill Translations basierend auf dem Projekt
-      skills_project: Fähigkeiten auf Basis des Projekts
       title: Fertigkeiten
       translations:
         import:

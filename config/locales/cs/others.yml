@@ -2055,8 +2055,8 @@ cs:
       create_superadmin:
         uniq_email: E-mail by měl být uniq.
       development_actions:
-        only_global_skills_allowed: Vybrané dovednosti musí být globální dovednosti.
-        skills_not_belong_to_project: Vybrané dovednosti musí patřit do zadaného projektu.
+        only_global_skills_allowed: Vybrané dovednosti musí být globální.
+        skills_not_belong_to_project: Vybrané dovednosti musí patřit k zadanému projektu.
         skills_required: Vyberte alespoň jednu dovednost.
       exceeded_subjects_count: Na jednu pozvánku můžete přidat pouze %{count} subjektů
       filled?: nemůže být prázdný

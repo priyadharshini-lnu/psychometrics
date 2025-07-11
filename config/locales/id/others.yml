@@ -320,6 +320,7 @@ id:
     assessment_center_heading: Rincian Pusat Penilaian
     assessments_heading: Tugas Anda
     column:
+      external_user_id: ID Kandidat Skillvue
       skillvue_email_id: ID Email Kandidat Skillvue
       skillvue_external_assessment_id: ID Penilaian Skillvue
     modals:
@@ -521,9 +522,9 @@ id:
       campaign_idps:
         idp_template_not_published: Template IDP ini belum dipublikasikan, silakan publikasikan sebelum menugaskan kampanye.
       development_actions:
-        only_global_skills_allowed: Keterampilan yang dipilih harus menjadi keterampilan global.
-        skills_not_belong_to_project: Keterampilan yang dipilih harus terkait dengan proyek yang ditentukan.
-        skills_required: Pilih setidaknya satu keterampilan.
+        only_global_skills_allowed: Keterampilan yang dipilih haruslah keterampilan global.
+        skills_not_belong_to_project: Keahlian yang dipilih harus sesuai dengan proyek yang ditentukan.
+        skills_required: Pilihlah setidaknya satu keterampilan.
       job_roles:
         unique_within_job_group: Peran pekerjaan dengan nama yang sama sudah ada.
       skills_job_roles:
@@ -733,7 +734,7 @@ id:
       submit_plan: Kirim Rencana
       write_here: Tulis di sini...
     edit_plan: Sunting Rencana
-    edit_progress: Mengedit Kemajuan
+    edit_progress: Edit Kemajuan
     initial_steps:
       add_skill_group_description: Berdasarkan hasil penilaian Anda, berikut adalah beberapa area kekuatan dan pengembangan untuk Anda. Pilih keterampilan yang ingin Anda kembangkan lebih lanjut sebagai bagian dari rencana pengembangan Anda.
       add_skill_group_title: Menjelajahi Keterampilan %{category} Anda

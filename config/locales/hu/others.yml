@@ -320,6 +320,7 @@ hu:
     assessment_center_heading: Értékelő központ részletei
     assessments_heading: Az Ön feladatai
     column:
+      external_user_id: Skillvue Jelölt azonosítója
       skillvue_email_id: Skillvue Jelölt e-mail azonosítója
       skillvue_external_assessment_id: Skillvue Értékelési ID
     modals:
@@ -522,8 +523,8 @@ hu:
         idp_template_not_published: Ezt az IDP sablont még nem teszik közzé, kérjük, tegye közzé, mielőtt a kampányba hozzárendelné.
       development_actions:
         only_global_skills_allowed: A kiválasztott készségeknek globális készségeknek kell lenniük.
-        skills_not_belong_to_project: A kiválasztott készségeknek a megadott projekthez kell tartaniuk.
-        skills_required: Kérjük, válasszon legalább egy készséget.
+        skills_not_belong_to_project: A kiválasztott készségeknek a megadott projekthez kell tartozniuk.
+        skills_required: Kérjük, válasszon ki legalább egy készséget.
       job_roles:
         unique_within_job_group: Ugyanilyen nevű munkakör már létezik.
       skills_job_roles:

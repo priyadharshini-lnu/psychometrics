@@ -2045,7 +2045,7 @@ fr:
       create_superadmin:
         uniq_email: L'email doit être unique.
       development_actions:
-        only_global_skills_allowed: Les compétences sélectionnées doivent être des compétences mondiales.
+        only_global_skills_allowed: Les compétences sélectionnées doivent être des compétences globales.
         skills_not_belong_to_project: Les compétences sélectionnées doivent appartenir au projet spécifié.
         skills_required: Veuillez sélectionner au moins une compétence.
       exceeded_subjects_count: Vous ne pouvez ajouter que %{count} sujets par invitation
@@ -2477,7 +2477,7 @@ fr:
       submit_plan: Soumettre le plan
       write_here: Écrivez ici...
     edit_plan: Modifier le plan
-    edit_progress: Modifier la progression
+    edit_progress: Modifier l'état d'avancement
     initial_steps:
       add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
       add_skill_group_title: Explorer vos compétences %{category} Compétences

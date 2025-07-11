@@ -2055,9 +2055,9 @@ pt:
       create_superadmin:
         uniq_email: O correio eletrónico deve ser uniq.
       development_actions:
-        only_global_skills_allowed: As habilidades selecionadas devem ser habilidades globais.
-        skills_not_belong_to_project: As habilidades selecionadas devem pertencer ao projeto especificado.
-        skills_required: Selecione pelo menos uma habilidade.
+        only_global_skills_allowed: As competências selecionadas devem ser competências globais.
+        skills_not_belong_to_project: As competências selecionadas devem pertencer ao projeto especificado.
+        skills_required: Selecione pelo menos uma competência.
       exceeded_subjects_count: Só é possível adicionar %{count} temas por convite
       filled?: não pode estar em branco
       idp_template:
@@ -2479,7 +2479,7 @@ pt:
       structured_learning: Aprendizagem estruturada
       submit_plan: Apresentar plano
       write_here: Escreva aqui...
-    edit_progress: Editar progresso
+    edit_progress: Editar o progresso
     initial_steps:
       add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
       add_skill_group_title: Explorar as suas competências de %{category} Competências

@@ -174,6 +174,8 @@ ja:
             title: IDPテンプレート
             view: 表示
           jobRoles:
+            export_translations: 仕事の役割の翻訳をエクスポート
+            import_translations: 仕事の役割の翻訳をインポートする
             manage: 管理
             title: 仕事の役割
             view: 表示
@@ -2069,7 +2071,7 @@ ja:
       client_skills: クライアント・スキル
       details_updated: IDP詳細の更新に成功
       edit_template: IDPテンプレートの編集
-      enter_tag_or_skills_error: 少なくとも1つのタグまたはスキルを選択してください
+      enter_tag_or_skills_error: 少なくとも1つのタグまたはスキルを選択する
       enter_template_description: 説明
       enter_template_description_error: テンプレートの説明が必要です。
       enter_template_name: 名称
@@ -2360,15 +2362,12 @@ ja:
       export:
         failure_msg: 翻訳のエクスポート時のエラー
         success_msg: 進行中の開発アクションをエクスポートする。
-      export_action:
-        translations: 輸出の仕事の役割の翻訳
       form:
         code: コード
         description: 説明
         job_group: 職務グループ
         name: 名称
         title: 仕事の役割
-      global: グローバルな仕事は役割か？
       import:
         download_example_csv: サンプルcsvをダウンロード
         success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
@@ -2684,9 +2683,6 @@ ja:
           project_level_default_exists: デフォルト」の熟練度レベルはすでに存在する
           skill_must_exist: 熟練度タイプ'by_skill'では、スキルが存在しなければならない。
       export:
-        actions:
-          proficiency: 輸出能力
-          translations: 輸出技能翻訳
         details: 詳細
         failure_msg: 熟練度レベルのエクスポート時のエラー
         success_msg: 進行中の開発アクションのエクスポート
@@ -2702,7 +2698,6 @@ ja:
         skill_name: スキル名
         skill_type: スキルの種類
         title: 熟練度
-      global: グローバル・プロフィシェンシーとは何か？
       import:
         actions:
           proficiency: 輸入能力
@@ -3648,12 +3643,8 @@ ja:
         details: 詳細
         failure_msg: 翻訳のエクスポート時のエラー
         success_msg: 進行中の開発アクションをエクスポートする。
-        title: 輸出
         translations:
           details: 技能翻訳
-      export_action:
-        skills_title: 輸出スキル
-        skills_translations_title: 輸出技能翻訳
       form:
         client_placeholder: クライアントの選択
         description: 説明
@@ -3662,9 +3653,6 @@ ja:
         skill_group: スキルグループ
         skill_type: スキルタイプ
         title: スキル
-      global: グローバル・スキルとは何か？
-      global_skills: グローバル・スキル
-      global_translations: グローバル・スキル翻訳
       import:
         download_example_csv: サンプルcsvをダウンロード
         info_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
@@ -3674,8 +3662,6 @@ ja:
         skills_translations_title: 輸入技能翻訳
       skill_details: スキル詳細
       skill_translations: 技能翻訳
-      skill_translations_project: プロジェクトに基づく技能翻訳
-      skills_project: プロジェクトに基づくスキル
       title: スキル
       translations:
         import:

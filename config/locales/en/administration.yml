@@ -2363,15 +2363,12 @@ en:
       export:
         failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress.
-      export_action:
-        translations: Export Job Role Translations
       form:
         code: Code
         description: Description
         job_group: Job Group
         name: Name
         title: Job Role
-      global: Is Global Job Role?
       import:
         download_example_csv: Download Example csv
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
@@ -2687,9 +2684,6 @@ en:
           project_level_default_exists: A 'default' proficiency level already exists
           skill_must_exist: Skill must be present for proficiency_type 'by_skill'
       export:
-        actions:
-          proficiency: Export Proficiency
-          translations: Export Proficiency Translations
         details: Details
         failure_msg: Error while exporting proficiency levels
         success_msg: Exporting development actions in progress
@@ -2705,7 +2699,6 @@ en:
         skill_name: Skill name
         skill_type: Skill Type
         title: Proficiency
-      global: Is Global Proficiency?
       import:
         actions:
           proficiency: Import Proficiency
@@ -3651,12 +3644,8 @@ en:
         details: Details
         failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress.
-        title: Export
         translations:
           details: Skill Translations
-      export_action:
-        skills_title: Export Skills
-        skills_translations_title: Export Skills Translations
       form:
         client_placeholder: Select a Client
         description: Description
@@ -3665,9 +3654,6 @@ en:
         skill_group: Skill Group
         skill_type: Skill Type
         title: Skill
-      global: Is Global Skill?
-      global_skills: Global Skills
-      global_translations: Global Skills Translations
       import:
         download_example_csv: Download Example csv
         info_msg: The uploaded file has been queued for import. Please check the status in the notifications.
@@ -3677,8 +3663,6 @@ en:
         skills_translations_title: Import Skills Translations
       skill_details: Skill Details
       skill_translations: Skills Translations
-      skill_translations_project: Skill Translations based on Project
-      skills_project: Skills based on Project
       title: Skills
       translations:
         import:

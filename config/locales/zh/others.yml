@@ -2053,9 +2053,9 @@ zh:
       create_superadmin:
         uniq_email: 电子邮件应为统一格式。
       development_actions:
-        only_global_skills_allowed: 选定的技能必须是全球技能。
-        skills_not_belong_to_project: 选定的技能必须属于指定的项目。
-        skills_required: 请选择至少一项技能。
+        only_global_skills_allowed: 所选技能必须是全球性技能。
+        skills_not_belong_to_project: 所选技能必须属于指定项目。
+        skills_required: 请至少选择一项技能。
       exceeded_subjects_count: 每次邀请只能添加 %{count} 主题
       filled?: 不能空白
       idp_template:

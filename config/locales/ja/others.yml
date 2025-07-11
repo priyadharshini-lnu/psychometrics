@@ -2056,8 +2056,8 @@ ja:
       create_superadmin:
         uniq_email: 電子メールはユニックでなければならない。
       development_actions:
-        only_global_skills_allowed: 選択されたスキルはグローバルスキルでなければなりません。
-        skills_not_belong_to_project: 選択されたスキルは、指定されたプロジェクトに属する必要があります。
+        only_global_skills_allowed: 選択したスキルはグローバル・スキルでなければならない。
+        skills_not_belong_to_project: 選択されたスキルは、指定されたプロジェクトに属していなければならない。
         skills_required: 少なくとも1つのスキルを選択してください。
       exceeded_subjects_count: 1回の招待で追加できる被写体は %{count} だけです。
       filled?: 空白は許されない
@@ -2487,7 +2487,7 @@ ja:
       submit_plan: プランを提出
       write_here: ここに記入してください...
     edit_plan: プランの編集
-    edit_progress: 進捗を編集
+    edit_progress: 編集プログレス
     initial_steps:
       add_skill_group_description: アセスメント結果に基づき、あなたの強みと伸ばすべき分野をご紹介します。 開発プランの一環として、さらに伸ばしたいスキルを選んでください。
       add_skill_group_title: カテゴリー}のスキルを探る

@@ -174,6 +174,8 @@ zh:
             title: IDP 模板
             view: 查看
           jobRoles:
+            export_translations: 导出工作角色翻译
+            import_translations: 导入工作角色翻译
             manage: 管理
             title: 工作角色
             view: 查看
@@ -2069,7 +2071,7 @@ zh:
       client_skills: 客户技能
       details_updated: 成功更新 IDP 详情
       edit_template: 编辑 IDP 模板
-      enter_tag_or_skills_error: 至少选择一个标签或技能
+      enter_tag_or_skills_error: 选择至少一个标签或技能
       enter_template_description: 说明
       enter_template_description_error: 需要模板说明。
       enter_template_name: 名称
@@ -2360,15 +2362,12 @@ zh:
       export:
         failure_msg: 导出翻译时出错
         success_msg: 导出开发行动正在进行中。
-      export_action:
-        translations: 出口职位角色翻译
       form:
         code: 代码
         description: 说明
         job_group: 工作小组
         name: 名称
         title: 工作角色
-      global: 全球工作角色是什么？
       import:
         download_example_csv: 下载 csv 示例
         success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
@@ -2684,9 +2683,6 @@ zh:
           project_level_default_exists: 默认 "能力水平已经存在
           skill_must_exist: 技能类型 "by_skill "必须包含技能
       export:
-        actions:
-          proficiency: 出口能力
-          translations: 出口能力翻译
         details: 详细信息
         failure_msg: 导出熟练程度时出错
         success_msg: 导出发展中行动
@@ -2702,7 +2698,6 @@ zh:
         skill_name: 技能名称
         skill_type: 技能类型
         title: 熟练程度
-      global: 全球能力是什么？
       import:
         actions:
           proficiency: 进口能力
@@ -3648,12 +3643,8 @@ zh:
         details: 详细信息
         failure_msg: 导出翻译时出错
         success_msg: 导出开发行动正在进行中。
-        title: 出口
         translations:
           details: 技能翻译
-      export_action:
-        skills_title: 出口技能
-        skills_translations_title: 出口技能翻译
       form:
         client_placeholder: 选择客户
         description: 说明
@@ -3662,9 +3653,6 @@ zh:
         skill_group: 技能组
         skill_type: 技能类型
         title: 技能
-      global: 全球技能是什么？
-      global_skills: 全球技能
-      global_translations: 全球技能翻译
       import:
         download_example_csv: 下载 csv 示例
         info_msg: 上传的文件已排队等待导入，请查看通知中的状态。
@@ -3674,8 +3662,6 @@ zh:
         skills_translations_title: 进口技能翻译
       skill_details: 技能详情
       skill_translations: 技能翻译
-      skill_translations_project: 基于项目的技能翻译
-      skills_project: 基于项目的技能
       title: 技能
       translations:
         import:

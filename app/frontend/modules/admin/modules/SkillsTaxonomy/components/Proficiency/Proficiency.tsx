@@ -12,12 +12,10 @@ import { Tabs } from '../Tabs'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { getFeatures } from '~/core/config'
 import { RootState } from '~/core/reducers'
-import { ProficiencyExportModal } from './ProficiencyExportModal'
 
 const MODALS = {
   ProficiencyModal,
   ProficiencyImportModal,
-  ProficiencyExportModal,
 }
 
 const connecter = connect(

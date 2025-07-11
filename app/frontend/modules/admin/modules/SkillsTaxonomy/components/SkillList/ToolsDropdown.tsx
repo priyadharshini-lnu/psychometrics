@@ -2,7 +2,6 @@ import React from 'react'
 import {
   Button, MenuProps,
 } from 'antd'
-import { useParams } from 'react-router'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -31,8 +30,6 @@ export const ToolsDropdown: React.FC<Props> = ({
 )
 
 const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
-  const params = useParams()
-
   const menuItems:MenuItem[] = []
 
   const importMenuItems:MenuItem[] = []
@@ -56,30 +53,14 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.export) {
     exportMenuItems.push({
       key: 'export_skills',
-      label: params.projectId ? I18n.t('administration.skills.title') : I18n.t('administration.skills.skills_project'),
+      label: I18n.t('administration.skills.title'),
     })
   }
-
 
   if (permissions?.exportTranslations) {
     exportMenuItems.push({
       key: 'export_skills_translations',
-      label: params.projectId ? I18n.t('administration.skills.skill_translations')
-        : I18n.t('administration.skills.skill_translations_project'),
-    })
-  }
-
-  if (permissions?.exportGlobal && !params.projectId) {
-    exportMenuItems.push({
-      key: 'export_global_skills',
-      label: I18n.t('administration.skills.global_skills'),
-    })
-  }
-
-  if (permissions?.exportGlobalTranslations && !params.projectId) {
-    exportMenuItems.push({
-      key: 'export_global_skills_translations',
-      label: I18n.t('administration.skills.global_translations'),
+      label: I18n.t('administration.skills.skill_translations'),
     })
   }
 
@@ -96,7 +77,6 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
     label: I18n.t('common.actions.export'),
     children: exportMenuItems,
   })
-
 
   const handleMenuClick = ({ key }) => {
     onClick(key)

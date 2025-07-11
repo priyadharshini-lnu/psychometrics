@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import {
-  Form, Input, Select, Spin, Switch, Table,
+  Form, Input, Select, Spin, Table,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { debounce } from 'lodash'
@@ -11,36 +11,13 @@ import ResourceFormModal from '~/components/ResourceFormModal'
 import { convertEnumToObject } from '~/utils/object'
 import { ProficiencyLevel } from '~/modules/admin/modules/client/core/proficiencyLevels'
 import { SkillTypeEnum } from '../../constants'
-import { Client } from '~/modules/admin/modules/client/core/clients'
-import { Project } from '~/modules/admin/modules/client/core/projects'
 
 import styles from './styles.less'
 import { ProficiencyTypesEnum } from './constants'
 
-type OptionsType = {
-  id: string
-  name: string
-}
-
 type Props = {
   close(): void
   proficiencyLevel: ProficiencyLevel
-}
-
-interface SkillProficiency {
-  id?: number;
-  projectId?: number;
-  proficiencyType: 'by_skill' | 'by_skill_type' | 'default';
-  skillType?: string;
-  level: number;
-  levelDefinition: Array<{
-    name: string;
-    level: number;
-    description: string;
-  }>;
-  createdAt?: string;
-  updatedAt?: string;
-  skillId?: number | null;
 }
 
 const { I18n } = window
@@ -50,9 +27,6 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
 
   const { resource } = useResourceContext<ProficiencyLevel>()
   const [form] = Form.useForm()
-  const {
-    data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
-  } = useResources<Client>('clients')
 
   const [levelDefinitions, setLevelDefinitions] = useState<{
     level: number
@@ -60,34 +34,10 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     description: string
   }[]>([])
 
-  const ownersLoading = isOwnerLoading('fetch')
-
-  const global = Form.useWatch('global', form)
   const level = Form.useWatch('level', form)
-  const ownerId = Form.useWatch(['ownerId'], form)
-  const projectId = Form.useWatch(['projectId'], form)
-  const skillId = Form.useWatch(['skillId'], form)
-  const proficiencyType = Form.useWatch('proficiencyType', form)
-
-  const fetchOwnersByValue = (value: string) => fetchOwners({
-    apiConfig: {
-      filter: {
-        filterable_fields: value,
-      },
-    },
-  })
-
-  const searchAvailableOwners = debounce((value) => {
-    fetchOwnersByValue(value)
-  }, 300)
-
-  const shouldFetchDependent = useCallback(
-    () => (global || params.projectId || projectId),
-    [global, projectId, params],
-  )
 
   const {
-    data: skills, fetch: fetchSkills, isLoading: isSkillsLoading, setData: setSkills,
+    data: skills, fetch: fetchSkills, isLoading: isSkillsLoading,
   } = useResources<Skill>('skills', {
     apiConfig: {
       filter: {
@@ -96,81 +46,12 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     },
   })
 
-  useEffect(() => {
-    form.resetFields(['ownerId'])
-  }, [global])
-
-  const getProjects = (): OptionsType[] => {
-    if (!projects?.length && proficiencyLevel?.project) {
-      return [proficiencyLevel.project] as OptionsType[]
-    }
-    return projects
-  }
-
   const getSkills = (): Skill[] => {
     if (!skills?.length && proficiencyLevel?.skill) {
       return [proficiencyLevel.skill]
     }
     return skills
   }
-
-  const {
-    data: projects, fetch: fetchProjects, isLoading: projectIsLoading, setData: setProjects,
-  } = useResources<Project>('projects', { basePath: `clients/${ownerId}` })
-
-  useEffect(() => {
-    setProjects([])
-    form.resetFields(['projectId'])
-  }, [ownerId])
-
-  useEffect(() => {
-    setSkills([])
-    form.resetFields(['skillId'])
-  }, [projectId, global])
-
-  const { collectionAction } = useResources<ProficiencyLevel>('proficiency_levels')
-  const [isFetchingProficiency, setIsFetchingProficiency] = useState(false)
-
-  const fetchSkillProficiency = async (skillId: string) => {
-    setIsFetchingProficiency(true)
-    try {
-      const response = await collectionAction({
-        method: 'get',
-        action: 'skill_proficiency',
-        body: { skillId },
-      }) as SkillProficiency
-
-      if (response?.level) {
-        form.setFieldsValue({ level: response.level })
-        setLevelDefinitions(response.levelDefinition || [])
-      }
-    } finally {
-      setIsFetchingProficiency(false)
-    }
-  }
-
-  useEffect(() => {
-    if (skillId) {
-      fetchSkillProficiency(skillId)
-    }
-  }, [skillId])
-
-
-  useEffect(() => {
-    if (proficiencyType) {
-      form.resetFields(['skillId', 'skillType', 'level'])
-      setLevelDefinitions([])
-    }
-  }, [proficiencyType])
-
-  const handleProjectSearch = debounce((value) => {
-    fetchProjects({
-      apiConfig: {
-        filter: { filterable_fields: value },
-        fields: { clients: ['name'] },
-      },
-    })
-  }, 300)
 
   const validateUniqueLevel = (_, value) => {
     const list = form.getFieldValue('levelDefinition') || []
@@ -255,20 +136,19 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   ]
 
   const debouncedFetchSkills = useCallback(debounce((value) => {
-    if (!shouldFetchDependent()) return
     fetchSkills({
       apiConfig: {
         filter: {
           name_cont: value,
           ...(
-            params.projectId || proficiencyLevel?.project?.id || projectId
+            params.projectId || proficiencyLevel?.project?.id
               ? { project_id_eq: params.projectId || proficiencyLevel?.project?.id }
               : {}
           ),
         },
       },
     })
-  }, 300), [proficiencyLevel, shouldFetchDependent, params, projectId])
+  }, 300), [proficiencyLevel, params])
 
   useEffect(() => {
     setLevelDefinitions((currLevelDefinitions) => {
@@ -305,71 +185,10 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     form.setFieldValue('levelDefinition', levelDefinitions)
   }, [levelDefinitions])
 
-  const transformValues = (values) => {
-    delete values.global
-    delete values.ownerId
-    return {
-      ...values,
-      ...(params.projectId ? { projectId: params.projectId } : {}),
-    }
-  }
-
-  const renderClientSelector = () => {
-    if (global) return null
-    return (
-      <Form.Item
-        name="ownerId"
-        label={I18n.t('common.column.client')}
-        rules={[{ required: true }]}
-      >
-        <Select
-          showSearch
-          filterOption={false}
-          placeholder={I18n.t('administration.skills.form.client_placeholder')}
-          onSearch={searchAvailableOwners}
-          notFoundContent={ownersLoading ? <Spin size="small" /> : null}
-        >
-          {
-            owners.map(({ id, name }) => (
-              <Select.Option key={id} value={id}>{name}</Select.Option>
-            ))
-          }
-        </Select>
-      </Form.Item>
-    )
-  }
-
-  const renderProjectSelector = () => {
-    if (proficiencyLevel && !proficiencyLevel?.project) {
-      return null
-    }
-
-    if (global) {
-      return null
-    }
-
-    return (
-      <Form.Item
-        name="projectId"
-        label={I18n.t('common.column.project')}
-        rules={[{ required: true }]}
-      >
-        <Select
-          showSearch
-          filterOption={false}
-          disabled={!!proficiencyLevel}
-          onSearch={handleProjectSearch}
-          options={(getProjects() || []).map(p => ({
-            value: p.id,
-            label: p.name,
-          }))}
-          placeholder={I18n.t('administration.skills.form.project_placeholder')}
-          value={form.getFieldValue('projectId')}
-          notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
-        />
-      </Form.Item>
-    )
-  }
+  const transformValues = values => ({
+    ...values,
+    ...(params.projectId ? { projectId: params.projectId } : {}),
+  })
 
   return (
     <ResourceFormModal
@@ -389,22 +208,6 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     >
       {() => (
         <>
-          {!params.projectId && (
-            <>
-              {!proficiencyLevel && (
-                <>
-                  <Form.Item
-                    name="global"
-                    label={I18n.t('administration.proficiency_levels.global')}
-                  >
-                    <Switch />
-                  </Form.Item>
-                  {renderClientSelector()}
-                </>
-              )}
-              {renderProjectSelector()}
-            </>
-          )}
           <Form.Item
             name="proficiencyType"
             label={I18n.t('administration.proficiency_levels.fields.proficiency_type')}
@@ -463,20 +266,23 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
               </Form.Item>
             ) : null
           }
-          <Form.Item
-            name="level"
-            label={I18n.t('administration.proficiency_levels.fields.level')}
-            rules={[{ required: true }]}
-          >
-            <Select
-              showSearch
-              disabled={form.getFieldValue('proficiencyType') === 'by_skill' || isFetchingProficiency}
-            >
-              {Array.from({ length: 9 })?.map((_, index: number) => (
-                <Select.Option key={index + 2} value={index + 2}>{index + 2}</Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
+          {
+            form.getFieldValue('proficiencyType') === 'by_skill' ? (
+              <Form.Item
+                name="level"
+                label={I18n.t('administration.proficiency_levels.fields.level')}
+                rules={[{ required: true }]}
+              >
+                <Select
+                  showSearch
+                >
+                  {Array.from({ length: 9 })?.map((_, index: number) => (
+                    <Select.Option key={index + 2} value={index + 2}>{index + 2}</Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            ) : null
+          }
           {
             form.getFieldValue('level') > 0 ? (
               <Table

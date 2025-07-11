@@ -314,6 +314,7 @@ vi:
     assessment_center_heading: Chi tiết về Trung tâm Đánh giá
     assessments_heading: Nhiệm vụ của bạn
     column:
+      external_user_id: Mã ID ứng viên Skillvue
       skillvue_email_id: ID Email Ứng viên Skillvue
       skillvue_external_assessment_id: Mã đánh giá Skillvue
     modals:
@@ -516,7 +517,7 @@ vi:
         idp_template_not_published: Mẫu IDP này chưa được xuất bản, vui lòng xuất bản nó trước khi gán cho chiến dịch.
       development_actions:
         only_global_skills_allowed: Các kỹ năng được chọn phải là kỹ năng toàn cầu.
-        skills_not_belong_to_project: Các kỹ năng được chọn phải thuộc về dự án được chỉ định.
+        skills_not_belong_to_project: Các kỹ năng được chọn phải thuộc về dự án đã được chỉ định.
         skills_required: Vui lòng chọn ít nhất một kỹ năng.
       job_roles:
         unique_within_job_group: Vị trí công việc có tên tương tự đã tồn tại.

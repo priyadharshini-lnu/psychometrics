@@ -320,6 +320,7 @@ en-US:
     assessment_center_heading: Assessment Center Details
     assessments_heading: Your Tasks
     column:
+      external_user_id: Skillvue Candidate ID
       skillvue_email_id: Skillvue Candidate Email ID
       skillvue_external_assessment_id: Skillvue Assessment ID
     modals:

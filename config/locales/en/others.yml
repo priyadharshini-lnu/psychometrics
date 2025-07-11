@@ -1853,7 +1853,6 @@ en:
       default: Default
       download: Download
       file: File
-      global_export: Is Global Export?
       global_import: Is Global Import?
       minutes: Minutes
       na: N/A

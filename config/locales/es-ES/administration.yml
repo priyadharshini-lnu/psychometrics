@@ -174,6 +174,8 @@ es-ES:
             title: Plantillas de PDI
             view: Ver
           jobRoles:
+            export_translations: Exportar traducciones de funciones
+            import_translations: Importar traducciones de funciones
             manage: Gestione
             title: Funciones
             view: Ver
@@ -2069,7 +2071,7 @@ es-ES:
       client_skills: Competencias de los clientes
       details_updated: Datos del PDI actualizados correctamente
       edit_template: Editar plantilla IDP
-      enter_tag_or_skills_error: Seleccione al menos una etiqueta o habilidad
+      enter_tag_or_skills_error: Selecciona al menos una etiqueta o habilidad
       enter_template_description: Descripción
       enter_template_description_error: La descripción de la plantilla es obligatoria.
       enter_template_name: Nombre
@@ -2360,15 +2362,12 @@ es-ES:
       export:
         failure_msg: Error al exportar traducciones
         success_msg: Exportación de acciones de desarrollo en curso.
-      export_action:
-        translations: Exportar traducciones de funciones
       form:
         code: Código
         description: Descripción
         job_group: Grupo de trabajo
         name: Nombre
         title: Rol de trabajo
-      global: "¿Es Global Job Role?"
       import:
         download_example_csv: Descargar Ejemplo csv
         success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
@@ -2684,9 +2683,6 @@ es-ES:
           project_level_default_exists: Ya existe un nivel de competencia "por defecto".
           skill_must_exist: La habilidad debe estar presente para el proficiency_type 'by_skill'
       export:
-        actions:
-          proficiency: Capacidad de exportación
-          translations: Traducciones para la exportación
         details: Detalles
         failure_msg: Error al exportar niveles de competencia
         success_msg: Exportación de acciones de desarrollo en curso
@@ -2702,7 +2698,6 @@ es-ES:
         skill_name: Nombre de la habilidad
         skill_type: Tipo de habilidad
         title: Dominio
-      global: "¿Es la competencia global?"
       import:
         actions:
           proficiency: Capacidad de importación
@@ -3648,12 +3643,8 @@ es-ES:
         details: Detalles
         failure_msg: Error al exportar traducciones
         success_msg: Exportación de acciones de desarrollo en curso.
-        title: Exportar
         translations:
           details: Traducción de competencias
-      export_action:
-        skills_title: Exportación
-        skills_translations_title: Exportación Traducciones especializadas
       form:
         client_placeholder: Seleccione un cliente
         description: Descripción
@@ -3662,9 +3653,6 @@ es-ES:
         skill_group: Grupo de competencias
         skill_type: Tipo de habilidad
         title: Habilidad
-      global: "¿Es Global Skill?"
-      global_skills: Habilidades globales
-      global_translations: Global Skills Traducciones
       import:
         download_example_csv: Descargar Ejemplo csv
         info_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
@@ -3674,8 +3662,6 @@ es-ES:
         skills_translations_title: Importación de traducciones especializadas
       skill_details: Más información
       skill_translations: Traducción de competencias
-      skill_translations_project: Traducciones especializadas basadas en proyectos
-      skills_project: Competencias basadas en proyectos
       title: Habilidades
       translations:
         import:

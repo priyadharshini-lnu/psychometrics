@@ -1,13 +1,11 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import {
-  Form, Input, Select, Spin, Switch,
+  Form, Input, Select, Spin,
 } from 'antd'
 import { useParams } from 'react-router'
-import { Client } from 'modules/admin/modules/client/core/clients'
 import { Tag } from 'modules/admin/core/tags'
 import { debounce } from 'lodash'
 import { Skill } from '~/modules/admin/modules/client/core/skills'
-import { Project } from '~/modules/admin/modules/client/core/projects'
 import { useResources } from '~/hooks/useResources'
 import { convertEnumToObject } from '~/utils/object'
 import { useResourceContext } from '~/modules/admin/components/Resource'
@@ -18,11 +16,6 @@ import { ApiConfig } from '~/hooks/useResources/interfaces'
 import { SkillGroup } from '~/modules/admin/modules/client/core/skillGroups'
 
 const { Option } = Select
-
-type OptionsType = {
-  id: string
-  name: string
-}
 
 type Props = {
   close(): void
@@ -38,9 +31,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
 
   const { resource } = useResourceContext<Skill>()
   const [form] = Form.useForm()
-  const {
-    data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
-  } = useResources<Client>('clients')
 
   const {
     data: tags, fetch: fetchTags, isLoading: isTagsLoading,
@@ -63,26 +53,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     return skillGroups
   }
 
-  const ownersLoading = isOwnerLoading('fetch')
-
-  const global = Form.useWatch('global', form)
-
-  const fetchOwnersByValue = (value: string) => fetchOwners({
-    apiConfig: {
-      filter: {
-        filterable_fields: value,
-      },
-    },
-  })
-
-  const searchAvailableOwners = debounce((value) => {
-    fetchOwnersByValue(value)
-  }, 300)
-
-  useEffect(() => {
-    form.resetFields(['ownerId'])
-  }, [global])
-
   const debouncedFetchTags = useCallback(debounce((value) => {
     fetchTags({
       apiConfig: {
@@ -102,92 +72,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
       },
     })
   }, 300), [])
-
-  const ownerId = Form.useWatch(['ownerId'], form)
-
-  const getProjects = (): OptionsType[] => {
-    if (!projects?.length && skill?.project) {
-      return [...projects, skill.project] as OptionsType[]
-    }
-    return projects
-  }
-
-  const {
-    data: projects, fetch: fetchProjects, isLoading: projectIsLoading, setData: setProjects,
-  } = useResources<Project>('projects', { basePath: `clients/${ownerId}` })
-
-  useEffect(() => {
-    setProjects([])
-    form.resetFields(['projectId'])
-  }, [ownerId])
-
-  const handleProjectSearch = debounce((value) => {
-    fetchProjects({
-      apiConfig: {
-        filter: { filterable_fields: value },
-        fields: { clients: ['name'] },
-      },
-    })
-  }, 300)
-
-  const renderClientSelector = () => {
-    if (global) return null
-    return (
-      <Form.Item
-        name="ownerId"
-        label={I18n.t('common.column.client')}
-        rules={[{ required: true }]}
-      >
-        <Select
-          showSearch
-          filterOption={false}
-          placeholder={I18n.t('administration.skills.form.client_placeholder')}
-          onSearch={searchAvailableOwners}
-          notFoundContent={ownersLoading ? <Spin size="small" /> : null}
-        >
-          {
-            owners.map(({ id, name }) => (
-              <Option key={id} value={id}>{name}</Option>
-            ))
-          }
-        </Select>
-      </Form.Item>
-    )
-  }
-
-  const renderProjectSelector = () => {
-    // if already existing Skill and doesn't have project, return null
-    if (skill && !skill?.project) {
-      return null
-    }
-
-    // if global skill, return null
-    if (global) {
-      return null
-    }
-
-    return (
-      <Form.Item
-        name="projectId"
-        label={I18n.t('common.column.project')}
-        rules={[{ required: true }]}
-      >
-        <Select
-          showSearch
-          filterOption={false}
-          disabled={!!skill}
-          onSearch={handleProjectSearch}
-          options={(getProjects() || []).map(p => ({
-            value: p.id,
-            label: p.name,
-          }))}
-          placeholder={I18n.t('administration.skills.form.project_placeholder')}
-          value={form.getFieldValue('projectId')}
-          notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
-        />
-      </Form.Item>
-    )
-  }
 
   const transformValues = (values) => {
     delete values.ownerId
@@ -231,22 +115,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
           >
             <Input.TextArea />
           </Form.Item>
-          {!params.projectId && (
-            <>
-              {!skill && (
-                <>
-                  <Form.Item
-                    name="global"
-                    label={I18n.t('administration.skills.global')}
-                  >
-                    <Switch />
-                  </Form.Item>
-                  {renderClientSelector()}
-                </>
-              )}
-              {renderProjectSelector()}
-            </>
-          )}
           <Form.Item
             name="skillType"
             label={I18n.t('administration.skills.form.skill_type')}

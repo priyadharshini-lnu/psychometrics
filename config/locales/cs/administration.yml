@@ -174,6 +174,8 @@ cs:
             title: Šablony IDP
             view: Zobrazit
           jobRoles:
+            export_translations: Export pracovních rolí Překlady
+            import_translations: Import pracovních rolí Překlady
             manage: Správa
             title: Pracovní role
             view: Zobrazit
@@ -2069,6 +2071,7 @@ cs:
       client_skills: Klientské dovednosti
       details_updated: Úspěšná aktualizace údajů IDP
       edit_template: Upravit šablonu IDP
+      enter_tag_or_skills_error: Vyberte alespoň jednu značku nebo dovednost
       enter_template_description: Popis
       enter_template_description_error: Je vyžadován popis šablony.
       enter_template_name: Název
@@ -2359,15 +2362,12 @@ cs:
       export:
         failure_msg: Chyba při exportu překladů
         success_msg: Exportování probíhajících vývojových akcí.
-      export_action:
-        translations: Překlady exportních pracovních rolí
       form:
         code: Kód
         description: Popis
         job_group: Pracovní skupina
         name: Název
         title: Pracovní role
-      global: Je globální pracovní role?
       import:
         download_example_csv: Stáhnout příklad csv
         success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
@@ -2683,9 +2683,6 @@ cs:
           project_level_default_exists: Výchozí úroveň způsobilosti již existuje.
           skill_must_exist: Dovednost musí být přítomna pro proficiency_type 'by_skill'
       export:
-        actions:
-          proficiency: Znalost exportu
-          translations: Překlady pro export
         details: Podrobnosti na
         failure_msg: Chyba při exportu úrovní pokročilosti
         success_msg: Exportování probíhajících vývojových akcí
@@ -2701,7 +2698,6 @@ cs:
         skill_name: Název dovednosti
         skill_type: Typ dovednosti
         title: Znalost
-      global: Je globální odbornost?
       import:
         actions:
           proficiency: Znalost importu
@@ -3647,12 +3643,8 @@ cs:
         details: Podrobnosti na
         failure_msg: Chyba při exportu překladů
         success_msg: Exportování probíhajících vývojových akcí.
-        title: Export
         translations:
           details: Překlady dovedností
-      export_action:
-        skills_title: Exportní dovednosti
-        skills_translations_title: Exportní dovednosti Překlady
       form:
         client_placeholder: Výběr klienta
         description: Popis
@@ -3661,9 +3653,6 @@ cs:
         skill_group: Skupina dovedností
         skill_type: Typ dovednosti
         title: Dovednost
-      global: Je globální dovednost?
-      global_skills: Globální dovednosti
-      global_translations: Překlady globálních dovedností
       import:
         download_example_csv: Stáhnout příklad csv
         info_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
@@ -3673,8 +3662,6 @@ cs:
         skills_translations_title: Importovat dovednosti Překlady
       skill_details: Podrobnosti o dovednostech
       skill_translations: Překlady dovedností
-      skill_translations_project: Překlady dovedností na základě projektu
-      skills_project: Dovednosti založené na projektu
       title: Dovednosti
       translations:
         import:

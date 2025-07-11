@@ -3,14 +3,10 @@ import {
   App,
   Button, MenuProps, Typography,
 } from 'antd'
-import { useParams } from 'react-router-dom'
 import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { JobRoleSkillMapping } from '~/modules/admin/modules/client/core/jobRoleSkillMappings'
-import { FilterFilled } from '~/glint/icons/AccessibleIconsAntDesign'
-import { ProjectFilter } from '~/components/ProjectFilter'
-import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
 const { I18n } = window
 
@@ -21,14 +17,6 @@ export const MappingsTable: React.FC<Props> = ({ openModal }) => {
   const { modal, message } = App.useApp()
 
   const { resource } = useResourceContext()
-
-  const { projectId } = useParams()
-
-  const filter = resource.getAppliedFiltersFromURL()
-
-  const isProjectFilterApplied = (filter?.global || filter?.project_id_eq) ?? false
-
-  const { DEFAULT_PRIMARY_COLOR } = constants
 
   const handleMappingDeletion = (mapping: JobRoleSkillMapping) => {
     modal.confirm({
@@ -95,34 +83,6 @@ export const MappingsTable: React.FC<Props> = ({ openModal }) => {
         )}
         sorter
       />
-      {!projectId && (
-        <Resource.Column<JobRoleSkillMapping>
-          title={I18n.t('common.column.project')}
-          id="project.name"
-          render={mapping => (mapping.project?.id ? (
-            <Typography.Link
-              copyable
-              href={`/admin/projects/${mapping.project?.id}/new_campaigns?filters[statusEq]=active`}
-              target="_blank"
-            >
-              {mapping.project?.name}
-            </Typography.Link>
-          ) : null)}
-          width={200}
-          sorter
-          filterDropdown={() => (
-            <ProjectFilter />
-          )}
-          filterIcon={() => (
-            <FilterFilled
-              style={{
-                color: isProjectFilterApplied
-                  ? DEFAULT_PRIMARY_COLOR : undefined,
-              }}
-            />
-          )}
-        />
-      )}
       <Resource.Column<JobRoleSkillMapping>
         title={I18n.t('common.column.action')}
         id="action"

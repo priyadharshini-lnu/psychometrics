@@ -2,10 +2,6 @@ import React, { useState } from 'react'
 import {
   Button, MenuProps, Typography,
 } from 'antd'
-import { useParams } from 'react-router'
-import {
-  FilterFilled,
-} from '@ant-design/icons'
 import { useResourceContext, Resource } from '~/modules/admin/components/Resource'
 import { MenuItem } from '~/interfaces/Antd'
 import { getLabelForEnumValue, convertEnumToObject } from '~/utils/object'
@@ -13,8 +9,6 @@ import { Skill } from '~/modules/admin/modules/client/core/skills'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TagList } from '~/modules/admin/components/Resource/TagList'
 import { SkillTypeEnum } from '../../constants'
-import { ProjectFilter } from '~/components/ProjectFilter'
-import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 import { DetailsDrawer } from './DetailsDrawer'
 
 const { I18n } = window
@@ -25,15 +19,7 @@ type Props = {
 export const SkillsTable: React.FC<Props> = ({ openModal }) => {
   const [skillDetails, setSkillDetails] = useState<Skill>()
 
-  const { projectId } = useParams()
-
   const { resource } = useResourceContext<Skill>()
-
-  const filter = resource.getAppliedFiltersFromURL()
-
-  const isProjectFilterApplied = (filter?.global || filter?.project_id_eq) ?? false
-
-  const { DEFAULT_PRIMARY_COLOR } = constants
 
   return (
     <>
@@ -83,34 +69,6 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           render={skill => <Typography.Text>{skill.skillGroup?.name}</Typography.Text>}
           sorter
         />
-        {!projectId && (
-          <Resource.Column<Skill>
-            title={I18n.t('common.column.project')}
-            id="project.name"
-            render={skill => (skill.project?.id ? (
-              <Typography.Link
-                copyable
-                href={`/admin/projects/${skill.project?.id}/new_campaigns?filters[statusEq]=active`}
-                target="_blank"
-              >
-                {skill.project?.name}
-              </Typography.Link>
-            ) : null)}
-            width={200}
-            sorter
-            filterDropdown={() => (
-              <ProjectFilter />
-            )}
-            filterIcon={() => (
-              <FilterFilled
-                style={{
-                  color: isProjectFilterApplied
-                    ? DEFAULT_PRIMARY_COLOR : undefined,
-                }}
-              />
-            )}
-          />
-        )}
         <Resource.Column<Skill>
           title={I18n.t('common.column.updated_at')}
           id="updated_at"

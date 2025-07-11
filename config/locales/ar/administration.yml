@@ -174,6 +174,8 @@ ar:
             title: قوالب IDP
             view: عرض
           jobRoles:
+            export_translations: تصدير ترجمات الأدوار الوظيفية
+            import_translations: استيراد ترجمات الأدوار الوظيفية
             manage: الإدارة
             title: الأدوار الوظيفية
             view: عرض
@@ -2069,7 +2071,7 @@ ar:
       client_skills: Client Skills
       details_updated: تم تحديث تفاصيل IDP بنجاح
       edit_template: Edit IDP Template
-      enter_tag_or_skills_error: يرجى اختيار علامة أو مهارة واحدة على الأقل
+      enter_tag_or_skills_error: حدد علامة أو مهارة واحدة على الأقل
       enter_template_description: Description
       enter_template_description_error: Template description is required.
       enter_template_name: Name
@@ -2360,15 +2362,12 @@ ar:
       export:
         failure_msg: خطأ أثناء تصدير الترجمات
         success_msg: تصدير إجراءات التطوير قيد التنفيذ.
-      export_action:
-        translations: ترجمات دور وظيفة التصدير
       form:
         code: الرمز
         description: الوصف
         job_group: مجموعة الوظائف
         name: الاسم
         title: الدور الوظيفي
-      global: هل دور الوظيفة العالمية؟
       import:
         download_example_csv: تنزيل مثال csv
         success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
@@ -2684,9 +2683,6 @@ ar:
           project_level_default_exists: مستوى الكفاءة "الافتراضي" موجود بالفعل
           skill_must_exist: يجب أن تكون المهارة موجودة لنوع الكفاءة 'حسب_المهارة'
       export:
-        actions:
-          proficiency: كفاءة التصدير
-          translations: ترجمات كفاءة التصدير
         details: التفاصيل
         failure_msg: خطأ أثناء تصدير مستويات الكفاءة
         success_msg: تصدير إجراءات التطوير قيد التنفيذ
@@ -2702,7 +2698,6 @@ ar:
         skill_name: اسم المهارة
         skill_type: نوع المهارة
         title: الكفاءة
-      global: هل الكفاءة العالمية؟
       import:
         actions:
           proficiency: كفاءة الاستيراد
@@ -3648,12 +3643,8 @@ ar:
         details: التفاصيل
         failure_msg: خطأ أثناء تصدير الترجمات
         success_msg: تصدير إجراءات التطوير قيد التنفيذ.
-        title: التصدير
         translations:
           details: ترجمات المهارات
-      export_action:
-        skills_title: مهارات التصدير
-        skills_translations_title: ترجمات مهارات التصدير
       form:
         client_placeholder: اختر عميل
         description: Description
@@ -3662,9 +3653,6 @@ ar:
         skill_group: مجموعة المهارات
         skill_type: نوع المهارة
         title: Skill
-      global: هل المهارة العالمية؟
-      global_skills: المهارات العالمية
-      global_translations: ترجمات المهارات العالمية
       import:
         download_example_csv: Download Example csv
         info_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
@@ -3674,8 +3662,6 @@ ar:
         skills_translations_title: ترجمات مهارات الاستيراد
       skill_details: تفاصيل المهارة
       skill_translations: ترجمات المهارات
-      skill_translations_project: ترجمات المهارات على أساس المشروع
-      skills_project: المهارات القائمة على المشروع
       title: المهارات
       translations:
         import:

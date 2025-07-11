@@ -174,6 +174,8 @@ it:
             title: Modelli di IDP
             view: Vista
           jobRoles:
+            export_translations: Esportazione di ruoli lavorativi Traduzioni
+            import_translations: Importazione delle traduzioni dei ruoli lavorativi
             manage: Gestire
             title: Ruoli lavorativi
             view: Vista
@@ -2069,7 +2071,7 @@ it:
       client_skills: Competenze del cliente
       details_updated: Dettagli IDP aggiornati con successo
       edit_template: Modifica del modello IDP
-      enter_tag_or_skills_error: Seleziona almeno un tag o una competenza
+      enter_tag_or_skills_error: Selezionare almeno un'etichetta o un'abilità
       enter_template_description: Descrizione
       enter_template_description_error: La descrizione del modello è necessaria.
       enter_template_name: Nome
@@ -2360,15 +2362,12 @@ it:
       export:
         failure_msg: Errore durante l'esportazione delle traduzioni
         success_msg: Esportazione di azioni di sviluppo in corso.
-      export_action:
-        translations: Esportazione di traduzioni di ruoli lavorativi
       form:
         code: Codice
         description: Descrizione
         job_group: Gruppo di lavoro
         name: Nome
         title: Ruolo lavorativo
-      global: Il ruolo del lavoro è globale?
       import:
         download_example_csv: Scarica l'esempio csv
         success_msg: Il file caricato è stato messo in coda per l'importazione. Controllare lo stato nelle notifiche.
@@ -2684,9 +2683,6 @@ it:
           project_level_default_exists: Esiste già un livello di competenza "predefinito".
           skill_must_exist: L'abilità deve essere presente per il tipo di competenza "by_skill".
       export:
-        actions:
-          proficiency: Competenza nell'esportazione
-          translations: Traduzioni di competenza per l'esportazione
         details: Dettagli
         failure_msg: Errore durante l'esportazione dei livelli di competenza
         success_msg: Esportazione di azioni di sviluppo in corso
@@ -2702,7 +2698,6 @@ it:
         skill_name: Nome dell'abilità
         skill_type: Tipo di abilità
         title: Competenza
-      global: La competenza globale?
       import:
         actions:
           proficiency: Competenza nell'importazione
@@ -3648,12 +3643,8 @@ it:
         details: Dettagli
         failure_msg: Errore durante l'esportazione delle traduzioni
         success_msg: Esportazione di azioni di sviluppo in corso.
-        title: Esportazione
         translations:
           details: Traduzioni di abilità
-      export_action:
-        skills_title: Competenze per l'esportazione
-        skills_translations_title: Traduzioni di competenze per l'esportazione
       form:
         client_placeholder: Selezionare un cliente
         description: Descrizione
@@ -3662,9 +3653,6 @@ it:
         skill_group: Gruppo di abilità
         skill_type: Tipo di abilità
         title: Abilità
-      global: L'abilità globale?
-      global_skills: Competenze globali
-      global_translations: Traduzioni di competenze globali
       import:
         download_example_csv: Scarica l'esempio csv
         info_msg: Il file caricato è stato messo in coda per l'importazione. Controllare lo stato nelle notifiche.
@@ -3674,8 +3662,6 @@ it:
         skills_translations_title: Traduzioni di competenze di importazione
       skill_details: Dettagli sulla competenza
       skill_translations: Traduzioni di competenze
-      skill_translations_project: Traduzioni di competenze in base al progetto
-      skills_project: Competenze basate sul progetto
       title: Competenze
       translations:
         import:

@@ -94,7 +94,7 @@ function CreateSubjectModal ({
 
   return (
     <Modal
-      width={700}
+      width={860}
       title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects')}
       open
       onCancel={closeModal}

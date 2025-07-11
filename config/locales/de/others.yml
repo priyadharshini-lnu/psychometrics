@@ -2067,9 +2067,9 @@ de:
       create_superadmin:
         uniq_email: E-Mail sollte einheitlich sein.
       development_actions:
-        only_global_skills_allowed: Die ausgewählten Fähigkeiten müssen globale Fähigkeiten sein.
-        skills_not_belong_to_project: Die ausgewählten Fähigkeiten müssen zum angegebenen Projekt gehören.
-        skills_required: Bitte wählen Sie mindestens eine Fähigkeit.
+        only_global_skills_allowed: Bei den ausgewählten Fähigkeiten muss es sich um globale Fähigkeiten handeln.
+        skills_not_belong_to_project: Die ausgewählten Fähigkeiten müssen zu dem angegebenen Projekt gehören.
+        skills_required: Bitte wählen Sie mindestens eine Fähigkeit aus.
       exceeded_subjects_count: Sie können nur %{count} Themen pro Einladung hinzufügen
       filled?: kann nicht leer sein
       idp_template:

@@ -4,6 +4,9 @@ zh-HK:
     administrators:
       permissions:
         labels:
+          jobRoles:
+            export_translations: 匯出工作角色翻譯
+            import_translations: 匯入工作角色翻譯
           proficiency_level:
             title: 能力等級
           reflectionQuestions:
@@ -28,7 +31,7 @@ zh-HK:
       show:
         assessment_center_group: 評估中心小組：
     idp:
-      enter_tag_or_skills_error: 至少选择一个标签或技能
+      enter_tag_or_skills_error: 至少選擇一個標籤或技能
       intro_message: 介绍信息
       intro_message_hint: 要修改介绍信息，请先保存 IDP 模板以启用这些设置。
       intro_message_success: 简介信息已成功保存
@@ -46,7 +49,6 @@ zh-HK:
         job_group: 工作群組
         name: 名稱
         title: 工作角色
-      global: 全球工作角色？
       import:
         download_example_csv: 下載範例 csv
         success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
@@ -80,6 +82,7 @@ zh-HK:
           level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
           must_be_unique: 必須獨一無二
           proficiency_level_exists: 已存在具有此技能和專案的 ProficiencyLevel
+          proficiency_level_exists_for_default: 已退出預設的精通等級
           proficiency_level_exists_for_type: 此類型的精通等級已經存在
           project_level_default_exists: 預設」能力等級已經存在
           skill_must_exist: 技能必須存在於 proficiency_type 'by_skill' 中。
@@ -99,7 +102,6 @@ zh-HK:
         skill_name: 技能名稱
         skill_type: 技能類型
         title: 能力
-      global: 全球能力是嗎？
       import:
         actions:
           proficiency: 進口能力

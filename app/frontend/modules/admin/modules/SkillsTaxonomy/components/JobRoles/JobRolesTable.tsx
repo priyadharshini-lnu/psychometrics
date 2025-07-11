@@ -3,14 +3,10 @@ import {
   App,
   Button, MenuProps, Typography,
 } from 'antd'
-import { useParams } from 'react-router-dom'
 import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { JobRole } from '~/modules/admin/modules/client/core/jobRoles'
-import { ProjectFilter } from '~/components/ProjectFilter'
-import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
-import { FilterFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DetailsDrawer } from './DetailsDrawer'
 
 const { I18n } = window
@@ -25,14 +21,6 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
   const { modal, message } = App.useApp()
 
   const { resource } = useResourceContext()
-
-  const { projectId } = useParams()
-
-  const filter = resource.getAppliedFiltersFromURL()
-
-  const isProjectFilterApplied = (filter?.global || filter?.project_id_eq) ?? false
-
-  const { DEFAULT_PRIMARY_COLOR } = constants
 
   const handleJobRoleDeletion = (jobRole: JobRole) => {
     modal.confirm({
@@ -98,35 +86,6 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
           render={jobRole => <Typography.Text>{jobRole.jobGroup?.name}</Typography.Text>}
           sorter
         />
-
-        {!projectId && (
-          <Resource.Column<JobRole>
-            title={I18n.t('common.column.project')}
-            id="project.name"
-            render={jobRole => (jobRole.project?.id ? (
-              <Typography.Link
-                copyable
-                href={`/admin/projects/${jobRole.project?.id}/new_campaigns?filters[statusEq]=active`}
-                target="_blank"
-              >
-                {jobRole.project?.name}
-              </Typography.Link>
-            ) : null)}
-            width={200}
-            sorter
-            filterDropdown={() => (
-              <ProjectFilter />
-            )}
-            filterIcon={() => (
-              <FilterFilled
-                style={{
-                  color: isProjectFilterApplied
-                    ? DEFAULT_PRIMARY_COLOR : undefined,
-                }}
-              />
-            )}
-          />
-        )}
 
         <Resource.Column<JobRole>
           title={I18n.t('common.column.updated_at')}

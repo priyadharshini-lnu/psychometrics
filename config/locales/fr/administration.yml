@@ -174,6 +174,8 @@ fr:
             title: Modèles de PDI
             view: Voir
           jobRoles:
+            export_translations: Exportation Rôles professionnels Traductions
+            import_translations: Importation Rôles professionnels Traductions
             manage: Gérer
             title: Rôles professionnels
             view: Voir
@@ -2069,7 +2071,7 @@ fr:
       client_skills: Compétences des clients
       details_updated: Mise à jour réussie des détails du PDI
       edit_template: Modifier le modèle de PDI
-      enter_tag_or_skills_error: Sélectionnez au moins une étiquette ou une compétence
+      enter_tag_or_skills_error: Sélectionner au moins une étiquette ou une compétence
       enter_template_description: Description
       enter_template_description_error: La description du modèle est obligatoire.
       enter_template_name: Nom
@@ -2360,15 +2362,12 @@ fr:
       export:
         failure_msg: Erreur lors de l'exportation des traductions
         success_msg: Des actions de développement de l'exportation sont en cours.
-      export_action:
-        translations: Exportation Emploi Rôle Traductions
       form:
         code: Code
         description: Description
         job_group: Groupe de travail
         name: Nom
         title: Rôle professionnel
-      global: Le rôle de l'emploi est-il global ?
       import:
         download_example_csv: Télécharger l'exemple csv
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
@@ -2684,9 +2683,6 @@ fr:
           project_level_default_exists: Il existe déjà un niveau de compétence "par défaut".
           skill_must_exist: La compétence doit être présente pour le type de compétence "by_skill".
       export:
-        actions:
-          proficiency: Compétence en matière d'exportation
-          translations: Traductions des compétences à l'exportation
         details: Détails
         failure_msg: Erreur lors de l'exportation des niveaux de compétence
         success_msg: Actions de développement de l'exportation en cours
@@ -2702,7 +2698,6 @@ fr:
         skill_name: Nom de la compétence
         skill_type: Type de compétence
         title: Compétence
-      global: La compétence globale est-elle ?
       import:
         actions:
           proficiency: Compétence en matière d'importation
@@ -3648,12 +3643,8 @@ fr:
         details: Détails
         failure_msg: Erreur lors de l'exportation des traductions
         success_msg: Des actions de développement de l'exportation sont en cours.
-        title: Exportation
         translations:
           details: Traductions des compétences
-      export_action:
-        skills_title: Compétences en matière d'exportation
-        skills_translations_title: Compétences à l'exportation Traductions
       form:
         client_placeholder: Sélectionner un client
         description: Description
@@ -3662,9 +3653,6 @@ fr:
         skill_group: Groupe de compétences
         skill_type: Type de compétence
         title: Compétence
-      global: Est-ce que Global Skill ?
-      global_skills: Compétences globales
-      global_translations: Traductions de compétences globales
       import:
         download_example_csv: Télécharger l'exemple csv
         info_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
@@ -3674,8 +3662,6 @@ fr:
         skills_translations_title: Compétences d'importation Traductions
       skill_details: Détails des compétences
       skill_translations: Compétences Traductions
-      skill_translations_project: Traductions de compétences en fonction du projet
-      skills_project: Compétences basées sur le projet
       title: Compétences
       translations:
         import:

@@ -5,6 +5,9 @@ pl:
     administrators:
       permissions:
         labels:
+          jobRoles:
+            export_translations: Eksportuj tłumaczenia ról zawodowych
+            import_translations: Importowanie tłumaczeń ról zadań
           proficiency_level:
             title: Poziomy biegłości
           reflectionQuestions:
@@ -47,7 +50,6 @@ pl:
         job_group: Grupa zawodowa
         name: Nazwa
         title: Rola zawodowa
-      global: Czy globalna rola w pracy?
       import:
         download_example_csv: Pobierz przykładowy plik csv
         success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
@@ -81,6 +83,7 @@ pl:
           level_definition_must_match_level: musi zawierać dokładnie %{oczekiwane} poziomy, ale %{rzeczywiste} zostały podane
           must_be_unique: Musi być unikalny
           proficiency_level_exists: Poziom biegłości z tą umiejętnością i projektem już istnieje
+          proficiency_level_exists_for_default: Poziom biegłości dla domyślnych ustawień już istnieje
           proficiency_level_exists_for_type: Poziom biegłości dla tego typu już istnieje
           project_level_default_exists: '"Domyślny" poziom biegłości już istnieje.'
           skill_must_exist: Umiejętność musi być obecna dla proficiency_type 'by_skill'

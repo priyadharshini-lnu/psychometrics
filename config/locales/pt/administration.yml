@@ -174,6 +174,8 @@ pt:
             title: Modelos de PDI
             view: Ver
           jobRoles:
+            export_translations: Exportação Funções de trabalho Traduções
+            import_translations: Importar traduções de funções de trabalho
             manage: Gerir
             title: Funções
             view: Ver
@@ -2069,7 +2071,7 @@ pt:
       client_skills: Competências dos clientes
       details_updated: Detalhes do PDI actualizados com êxito
       edit_template: Editar modelo de PDI
-      enter_tag_or_skills_error: Selecione pelo menos uma tag ou habilidade
+      enter_tag_or_skills_error: Selecionar pelo menos uma etiqueta ou competência
       enter_template_description: Descrição
       enter_template_description_error: A descrição do modelo é obrigatória.
       enter_template_name: Nome
@@ -2360,15 +2362,12 @@ pt:
       export:
         failure_msg: Erro ao exportar traduções
         success_msg: Acções de desenvolvimento de exportação em curso.
-      export_action:
-        translations: Exportação Função Traduções
       form:
         code: Código
         description: Descrição
         job_group: Grupo de trabalho
         name: Nome
         title: Função
-      global: O trabalho global é uma função?
       import:
         download_example_csv: Descarregar Exemplo csv
         success_msg: O ficheiro carregado foi colocado em fila de espera para importação. Verifique o estado nas notificações.
@@ -2684,9 +2683,6 @@ pt:
           project_level_default_exists: Já existe um nível de proficiência "por defeito
           skill_must_exist: A competência deve estar presente para o tipo de competência "por competência
       export:
-        actions:
-          proficiency: Proficiência em exportação
-          translations: Traduções para exportação
         details: Detalhes
         failure_msg: Erro ao exportar níveis de proficiência
         success_msg: Exportação de acções de desenvolvimento em curso
@@ -2702,7 +2698,6 @@ pt:
         skill_name: Nome da habilidade
         skill_type: Tipo de habilidade
         title: Proficiência
-      global: A proficiência global é?
       import:
         actions:
           proficiency: Proficiência em importação
@@ -3648,12 +3643,8 @@ pt:
         details: Detalhes
         failure_msg: Erro ao exportar traduções
         success_msg: Acções de desenvolvimento de exportação em curso.
-        title: Exportação
         translations:
           details: Traduções de competências
-      export_action:
-        skills_title: Competências de exportação
-        skills_translations_title: Competências de exportação Traduções
       form:
         client_placeholder: Selecionar um cliente
         description: Descrição
@@ -3662,9 +3653,6 @@ pt:
         skill_group: Grupo de competências
         skill_type: Tipo de habilidade
         title: Habilidade
-      global: A Competência Global?
-      global_skills: Competências globais
-      global_translations: Global Skills Traduções
       import:
         download_example_csv: Descarregar Exemplo csv
         info_msg: O ficheiro carregado foi colocado em fila de espera para importação. Verifique o estado nas notificações.
@@ -3674,8 +3662,6 @@ pt:
         skills_translations_title: Traduções de competências de importação
       skill_details: Detalhes da habilidade
       skill_translations: Competências Traduções
-      skill_translations_project: Traduções de competências com base no projeto
-      skills_project: Competências baseadas no projeto
       title: Competências
       translations:
         import:

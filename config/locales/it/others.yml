@@ -2045,9 +2045,9 @@ it:
       create_superadmin:
         uniq_email: L'e-mail deve essere unica.
       development_actions:
-        only_global_skills_allowed: Le competenze selezionate devono essere competenze globali.
+        only_global_skills_allowed: Le competenze selezionate devono essere globali.
         skills_not_belong_to_project: Le competenze selezionate devono appartenere al progetto specificato.
-        skills_required: Seleziona almeno un'abilità.
+        skills_required: Selezionare almeno un'abilità.
       exceeded_subjects_count: È possibile aggiungere solo %{count} soggetti per ogni invito
       filled?: non può essere vuoto
       idp_template:
@@ -2477,7 +2477,7 @@ it:
       submit_plan: Invia il piano
       write_here: Scrivi qui...
     edit_plan: Modifica piano
-    edit_progress: Modifica il progresso
+    edit_progress: Modifica dei progressi
     initial_steps:
       add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
       add_skill_group_title: Esplorare le proprie capacità di %{category} Competenze

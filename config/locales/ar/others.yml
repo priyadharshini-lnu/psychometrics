@@ -563,7 +563,7 @@ ar:
       development_actions:
         only_global_skills_allowed: يجب أن تكون المهارات المختارة مهارات عالمية.
         skills_not_belong_to_project: يجب أن تنتمي المهارات المحددة إلى المشروع المحدد.
-        skills_required: الرجاء تحديد مهارة واحدة على الأقل.
+        skills_required: يُرجى تحديد مهارة واحدة على الأقل.
       idp_template:
         content_required: المحتوى مطلوب للتعليمات
         tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"
