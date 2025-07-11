@@ -44,7 +44,6 @@ function SubjectList ({
   reportIcon,
   reportName,
   category,
-  features,
 }) {
   const { projectId, campaignId } = useParams()
   const [params] = useSearchParams()
@@ -164,7 +163,7 @@ function SubjectList ({
               render={({ user }) => user.email}
             />
 
-            {features?.skill_rater_enabled && (
+            {isSkillRater && (
               <>
                 <Column
                   title="Current Job Role"

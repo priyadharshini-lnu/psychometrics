@@ -28,10 +28,11 @@ type Props = {
     threesixty_category: string;
   } | null
   assessments: Assessment[]
+  isSubmitting?: boolean
 }
 
 const BaseSettingsForm = ({
-  onFinish, onClose, initialSettings, assessments,
+  onFinish, onClose, initialSettings, assessments, isSubmitting = false,
 }: Props) => {
   const [form] = Form.useForm()
   const category = Form.useWatch('threesixty_category', form)
@@ -39,6 +40,10 @@ const BaseSettingsForm = ({
     && initialSettings.threesixty_type === THREESIXTY_TYPES.EMPTY) ?? true)
   const [isPrevious360, setIsPrevious360] = useState((initialSettings
     && initialSettings.threesixty_type === THREESIXTY_TYPES.PREVIOUS_360) ?? false)
+
+  const assessmentOptions = assessments.filter(assessment => (category === THREESIXTY_CATEGORY.SKILLS_RATER
+    ? assessment.skillRater
+    : !assessment.skillRater))
 
   const handleFinish = (values) => {
     onFinish(values)
@@ -168,7 +173,7 @@ const BaseSettingsForm = ({
                   rules={[{ required: true }]}
                 >
                   <Select
-                    options={_.map(assessments, (assessment: Assessment) => ({
+                    options={_.map(assessmentOptions, (assessment: Assessment) => ({
                       label: assessment.name,
                       value: assessment.id,
                     }))}
@@ -221,13 +226,15 @@ const BaseSettingsForm = ({
           </Flex>
         </Flex>
         <Flex className={`w-100 p-8 ${styles.borderTop}`} gap={8} justify="flex-end">
-          <Button key="back" onClick={onClose}>
+          <Button key="back" onClick={onClose} disabled={isSubmitting}>
             {I18n.t('administration.common.cancel')}
           </Button>
           <Button
             key="submit"
             type="primary"
             htmlType="submit"
+            loading={isSubmitting}
+            disabled={isSubmitting}
           >
             {isCreate ? I18n.t('administration.common.add') : I18n.t('administration.common.next')}
           </Button>

@@ -33,6 +33,7 @@ AllCops:
     - db/migrate/20250429125102_add_api_key_fields_to_webhook_subscriptions.rb
     - db/migrate/20250430135151_add_columns_to_user_idp_plan.rb
     - db/migrate/20250504102702_add_prompt_to_assistant.rb
+    - db/migrate/20250709100241_remove_action_and_add_type_status_and_dependencies_to_ai_assistants.rb
 
   UseCache: true
   CacheRootDirectory: tmp
