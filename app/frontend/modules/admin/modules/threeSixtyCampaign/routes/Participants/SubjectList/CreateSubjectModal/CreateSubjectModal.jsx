@@ -6,6 +6,7 @@ import {
 import { CheckOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import cs from 'classnames'
 import SpreadSheet from '~/components/SpreadSheet'
 import spreadSheetUtils from '~/modules/admin/utils/spreadSheet'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
@@ -14,6 +15,8 @@ import UserAutocomplete from '~/components/UserAutocomplete'
 import { setIn } from '~/utils/immutable'
 import { useResources } from '~/hooks/useResources'
 import { getFeatures } from '~/core/config'
+
+import styles from './CreateSubjectModal.less'
 
 const { I18n } = window
 
@@ -94,7 +97,7 @@ function CreateSubjectModal ({
 
   return (
     <Modal
-      width={860}
+      width="70%"
       title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects')}
       open
       onCancel={closeModal}
@@ -126,6 +129,7 @@ function CreateSubjectModal ({
         entities={subjects}
         fields={getTableFields(jobRoles, (skillRaterEnabled && isSkillRater))}
         updateEntities={fillSubjects}
+        className={cs({ [styles.spreadSheet]: skillRaterEnabled && isSkillRater })}
       />
       <ErrorAlertBox errors={errors} />
     </Modal>

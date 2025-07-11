@@ -13,6 +13,7 @@ export default function Input ({
 
   return (
     <input
+      className={`spreadsheet-input-${field.key}`}
       onKeyDown={({ key }) => onKeyDown(key, number)}
       value={entity[field.key] || ''}
       onChange={onChange}
