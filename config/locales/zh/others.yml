@@ -323,7 +323,7 @@ zh:
             email:
               blank: 电子邮件不能为空
               not_uniq_email: 包含电子邮件的行已经存在
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必须启用至少一个工作角色，并为 %{block_name} 选择一个技能类型。
@@ -837,9 +837,9 @@ zh:
         import_question_translations: 导入问题翻译
         import_raw_data: 导入原始数据
         import_scoring_data: 导入评分数据
+        import_skill_rater_taxonomies: 导入技能评级器分类标准
         import_skill_translations: 进口技能翻译
         import_skills: 进口技能
-        import_skills_rater_taxonomies: 导入技能评级器分类标准
         import_sms_invites: 导入短信邀请
         import_users: 导入用户
         migrate_assessment_translations: 评估 翻译迁移

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SkillsRaterQuestionSchema < BaseSchema
+class SkillRaterQuestionSchema < BaseSchema
   def self.schema(_, _)
     Dry::Schema.JSON do
       config.validate_keys = true

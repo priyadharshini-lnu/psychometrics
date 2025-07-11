@@ -23,10 +23,10 @@ class Dimension < ApplicationRecord
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :owner, presence: true, allow_nil: true
 
-  enum :dimension_type, { regular: 0, skills_rater: 1 }
+  enum :dimension_type, { regular: 0, skill_rater: 1 }
 
   after_commit :invalidate_assessment_cache
-  after_create_commit :sync_skills_rater_entities, if: :skills_rater?
+  after_create_commit :sync_skill_rater_entities, if: :skill_rater?
 
   # Search entity by word
   scope :search_query, lambda { |query|
@@ -74,15 +74,15 @@ class Dimension < ApplicationRecord
     assessments.each(&:invalidate_cache)
   end
 
-  def sync_skills_rater_entities
-    SkillsRater::SyncAssessmentEntitiesJob.perform_later(owner_id)
+  def sync_skill_rater_entities
+    SkillRater::SyncAssessmentEntitiesJob.perform_later(owner_id)
   end
 
-  def self.skills_rater_dimension(project)
+  def self.skill_rater_dimension(project)
     Dimension.find_or_initialize_by(
-      dimension_type: :skills_rater, owner_id: project.id
+      dimension_type: :skill_rater, owner_id: project.id
     ).tap do |dimension|
-      dimension.name = "#{project.name} - Skills Rater"
+      dimension.name = "#{project.name} - Skill Rater"
       dimension.save!
     end
   end

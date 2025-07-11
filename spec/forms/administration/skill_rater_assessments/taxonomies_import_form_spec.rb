@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe Administration::SkillsRaterAssessments::TaxonomiesImportForm do
+RSpec.describe Administration::SkillRaterAssessments::TaxonomiesImportForm do
   let(:project) { create(:project) }
   let(:valid_file) do
-    fixture_file_upload('spec/fixtures/files/skills_rater_assessments/valid_file.xlsx',
+    fixture_file_upload('spec/fixtures/files/skill_rater_assessments/valid_file.xlsx',
                         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
   end
   let(:invalid_file) { fixture_file_upload('spec/fixtures/files/test.csv') }

@@ -960,7 +960,7 @@ zh:
             name: 名称
             normal: 正常
             previous: 上一页
-            skills_rater: 技能评级员
+            skill_rater: 技能评级员
             standard: 标准
             status: 现状
           close:
@@ -2710,8 +2710,8 @@ zh:
         errors:
           by_skill_exists: 行 %{row_number}：此项目和技能已存在 "by_skill "熟练等级
           by_skill_missing: 行 %{row_number}：by_skill "类型必须有项目和技能
-          by_type_exists: 行 %{row_number}：此项目和技能类型已存在"'by_type'"熟练等级
-          by_type_missing: 行 %{row_number}：by_type''类型必须有项目和技能类型
+          by_skill_type_exists: 行 %{row_number}：此项目和技能类型已存在"'by_skill_type'"熟练等级
+          by_skill_type_missing: 行 %{row_number}：by_skill_type''类型必须有项目和技能类型
           default_global_exists: 行 %{row_number}：已存在全局级别的 "默认 "熟练等级
           default_project_exists: 行 %{row_number}：已存在项目级别的 "默认 "熟练级别
           invalid_csv_format: CSV 格式无效： %{message}
@@ -2734,7 +2734,7 @@ zh:
             save_failed: 技能 ID %{id} 处理错误：%{message｝
       type:
         by_skill: 通过技能
-        by_type: 按技能类型
+        by_skill_type: 按技能类型
         default: 默认值
     profile:
       change_password: 更改密码

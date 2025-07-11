@@ -20,7 +20,7 @@ RSpec.describe ProficiencyLevel, type: :model do
 
       let!(:proficiency_level2) do
         create(:proficiency_level,
-               proficiency_type: 'by_type',
+               proficiency_type: 'by_skill_type',
                skill_type: 'technical',
                skill: skill2,
                project: project)

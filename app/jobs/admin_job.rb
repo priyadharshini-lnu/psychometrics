@@ -87,7 +87,7 @@ class AdminJob < ApplicationJob
     export_assessment_questions: AdminJobs::ExportAssessmentQuestions,
     export_dimension_as_json: AdminJobs::ExportDimensionAsJson,
     import_dimension_from_json: AdminJobs::ImportDimensionFromJson,
-    import_skills_rater_taxonomies: AdminJobs::SkillsRater::ImportTaxonomies,
+    import_skill_rater_taxonomies: AdminJobs::SkillRater::ImportTaxonomies,
     export_proficiency_levels: AdminJobs::ExportProficiencyLevelsJob,
     export_proficiency_level_translations: AdminJobs::ExportProficiencyLevelTranslationsJob,
     import_proficiency_level_translations: AdminJobs::ImportProficiencyLevelTranslationsJob,
@@ -97,7 +97,7 @@ class AdminJob < ApplicationJob
     import_reflection_questions: AdminJobs::ImportReflectionQuestionsJob,
     export_dashboard_as_file: AdminJobs::ExportDashboardAsFile,
     bulk_download_idp_reports: AdminJobs::BulkDownloadIdpReports,
-    sync_skills_rater_assessment_entities: AdminJobs::SkillsRater::SyncAssessmentEntities
+    sync_skill_rater_assessment_entities: AdminJobs::SkillRater::SyncAssessmentEntities
   }.freeze
 
   def perform(record, stage = nil)

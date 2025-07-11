@@ -323,7 +323,7 @@ zh-Hant:
             email:
               blank: 電子郵件不能為空白
               not_uniq_email: 包含電子郵件的行已經存在
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必須啟用至少一個工作角色，並選取 %{block_name} 的技能類型。
@@ -837,9 +837,9 @@ zh-Hant:
         import_question_translations: 匯入問題翻譯
         import_raw_data: 匯入原始資料
         import_scoring_data: 匯入評分資料
+        import_skill_rater_taxonomies: 匯入技能評核員分類標準
         import_skill_translations: 輸入技能翻譯
         import_skills: 進口技能
-        import_skills_rater_taxonomies: 匯入技能評核員分類標準
         import_sms_invites: 匯入簡訊邀請
         import_users: 匯入使用者
         migrate_assessment_translations: 評估 翻譯轉移

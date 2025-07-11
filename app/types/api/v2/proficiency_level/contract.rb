@@ -22,11 +22,11 @@ module Api
           end
         end
 
-        # Validate presence and uniqueness for `by_type`
+        # Validate presence and uniqueness for `by_skill_type`
         rule(data: { attributes: :proficiency_type }) do
           attrs = values[:data][:attributes]
           type = attrs[:proficiency_type]
-          next unless type == 'by_type'
+          next unless type == 'by_skill_type'
 
           skill_type = attrs[:skill_type]
           project_id = values.dig(:data, :relationships, :project, :data, :id)&.to_i
@@ -38,7 +38,7 @@ module Api
               )
             )
 
-          elsif ::ProficiencyLevel.exists?(proficiency_type: 'by_type', project_id: project_id,
+          elsif ::ProficiencyLevel.exists?(proficiency_type: 'by_skill_type', project_id: project_id,
                                            skill_type: skill_type)
             key.failure(I18n.t('administration.proficiency_levels.errors.create.proficiency_level_exists_for_type'))
           end

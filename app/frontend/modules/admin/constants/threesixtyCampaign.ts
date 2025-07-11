@@ -9,5 +9,5 @@ export const TYPES = {
 
 export const THREESIXTY_CATEGORY = {
   NORMAL: 'normal',
-  SKILLS_RATER: 'skills_rater',
+  SKILLS_RATER: 'skill_rater',
 }

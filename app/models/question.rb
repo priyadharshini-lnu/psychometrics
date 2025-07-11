@@ -71,7 +71,7 @@ class Question < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
-  scope :skills_rater, -> { where.not(skill_id: nil) }
+  scope :skill_rater, -> { where.not(skill_id: nil) }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name created_at updated_at]
@@ -145,8 +145,8 @@ class Question < ApplicationRecord
     types.include?(props['type'])
   end
 
-  def skills_rater?
-    type == 'SkillsRater'
+  def skill_rater?
+    type == 'SkillRater'
   end
 
   private

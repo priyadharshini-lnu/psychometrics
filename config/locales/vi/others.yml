@@ -37,7 +37,7 @@ vi:
               parsing_failed: 'Lỗi khi phân tích tệp, lỗi: %{error}.'
             project:
               must_exist: Dự án phải tồn tại.
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ít nhất một vị trí công việc phải được kích hoạt với loại kỹ năng được chọn cho %{block_name}
@@ -92,7 +92,7 @@ vi:
         export_job_roles_translations: Dịch các vị trí công việc cho xuất khẩu
         export_proficiency_levels: Cấp độ thành thạo xuất khẩu
         import_job_roles_translations: Nhập bản dịch các vai trò công việc
-        import_skills_rater_taxonomies: Nhập các phân loại đánh giá kỹ năng
+        import_skill_rater_taxonomies: Nhập các phân loại đánh giá kỹ năng
   administration: Sự quản lý
   anonym:
     close: Đóng

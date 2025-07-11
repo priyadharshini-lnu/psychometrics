@@ -37,7 +37,7 @@ sk:
               parsing_failed: 'Chyba pri analyzovaní súboru, chyba: %{error}.'
             project:
               must_exist: Projekt musí existovať
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pre %{názov_bloku} musí byť povolená aspoň jedna pracovná rola s vybraným typom zručnosti
@@ -92,7 +92,7 @@ sk:
         export_job_roles_translations: Export pracovných rolí Preklady
         export_proficiency_levels: Úrovne odbornej spôsobilosti pri exporte
         import_job_roles_translations: Import pracovných rolí Preklady
-        import_skills_rater_taxonomies: Import taxonómií hodnotiteľov zručností
+        import_skill_rater_taxonomies: Import taxonómií hodnotiteľov zručností
   administration: Administratíva
   anonym:
     close: Zatvoriť

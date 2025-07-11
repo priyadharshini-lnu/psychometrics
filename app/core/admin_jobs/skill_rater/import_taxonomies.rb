@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 module AdminJobs
-  module SkillsRater
-    class SyncAssessmentEntities < AdminJobs::Base
+  module SkillRater
+    class ImportTaxonomies < AdminJobs::Base
       def call
-        ::SkillsRater::SyncAssessmentEntities.call!(project.id)
+        ::SkillRaterAssessments::ImportTaxonomies.call!(file_path: record.file.url, project: project)
         broadcast :ok
       end
 
       def generate_title_link
         {
-          href: "/admin/projects/#{project.id}/taxonomy",
+          href: "/admin/projects/#{project.id}/taxonomy/mappings",
           label: project.name
         }
       end

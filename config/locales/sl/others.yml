@@ -37,7 +37,7 @@ sl:
               parsing_failed: 'Napaka pri analizi datoteke, napaka: %{error}.'
             project:
               must_exist: Projekt mora obstajati
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Vsaj ena vloga delovnega mesta mora biti omogočena z izbrano vrsto spretnosti za %{naziv_bloka}
@@ -92,7 +92,7 @@ sl:
         export_job_roles_translations: Izvoz delovnih vlog Prevodi
         export_proficiency_levels: Stopnje strokovnosti pri izvozu
         import_job_roles_translations: Uvoz delovnih vlog Prevodi
-        import_skills_rater_taxonomies: Uvoz taksonomij ocenjevalcev spretnosti
+        import_skill_rater_taxonomies: Uvoz taksonomij ocenjevalcev spretnosti
   administration: Uprava
   anonym:
     close: Zapri

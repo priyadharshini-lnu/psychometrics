@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SkillsRaterAssessments
+module SkillRaterAssessments
   class ImportTaxonomies < BaseCommand
     include HelperMethods
 
@@ -141,10 +141,10 @@ module SkillsRaterAssessments
     end
 
     def import_type_levels
-      ProficiencyLevel.global.by_type.find_each do |global_level|
+      ProficiencyLevel.global.by_skill_type.find_each do |global_level|
         next if ProficiencyLevel.exists?(
           project_id: project.id,
-          proficiency_type: 'by_type',
+          proficiency_type: 'by_skill_type',
           skill_type: global_level.skill_type
         )
 

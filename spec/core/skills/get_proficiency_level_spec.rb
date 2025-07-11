@@ -19,13 +19,13 @@ RSpec.describe Skills::GetProficiencyLevel do
       end
     end
 
-    context 'when project-level by_type proficiency level exists and by_skill does not' do
+    context 'when project-level by_skill_type proficiency level exists and by_skill does not' do
       let!(:proficiency_level) do
         create(:proficiency_level, project_id: project.id, skill_type: skill.skill_type,
-        proficiency_type: 'by_type')
+        proficiency_type: 'by_skill_type')
       end
 
-      it 'falls back to by_type and broadcasts' do
+      it 'falls back to by_skill_type and broadcasts' do
         expect { call_command }.to broadcast(:ok, proficiency_level: proficiency_level)
       end
     end
@@ -50,12 +50,12 @@ RSpec.describe Skills::GetProficiencyLevel do
       end
     end
 
-    context 'when no project-level or global by_skill, but global by_type exists' do
+    context 'when no project-level or global by_skill, but global by_skill_type exists' do
       let!(:proficiency_level) do
-        create(:proficiency_level, project_id: nil, skill_type: skill.skill_type, proficiency_type: 'by_type')
+        create(:proficiency_level, project_id: nil, skill_type: skill.skill_type, proficiency_type: 'by_skill_type')
       end
 
-      it 'returns the global by_type level' do
+      it 'returns the global by_skill_type level' do
         expect { call_command }.to broadcast(:ok, proficiency_level: proficiency_level)
       end
     end

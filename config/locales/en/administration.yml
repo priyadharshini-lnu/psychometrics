@@ -962,7 +962,7 @@ en:
             name: Name
             normal: Normal
             previous: Previous
-            skills_rater: Skills Rater
+            skill_rater: Skill Rater
             standard: Standard
             status: Status
           close:
@@ -2713,8 +2713,8 @@ en:
         errors:
           by_skill_exists: 'Row %{row_number}: A ''by_skill'' ProficiencyLevel already exists for this project and skill'
           by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
-          by_type_exists: 'Row %{row_number}: A ''''by_type'''' ProficiencyLevel already exists for this project and skill type'
-          by_type_missing: 'Row %{row_number}: Project and Skill Type must be present for ''''by_type'''' type'
+          by_skill_type_exists: 'Row %{row_number}: A ''''by_skill_type'''' ProficiencyLevel already exists for this project and skill type'
+          by_skill_type_missing: 'Row %{row_number}: Project and Skill Type must be present for ''''by_skill_type'''' type'
           default_global_exists: 'Row %{row_number}: A global-level ''default'' ProficiencyLevel already exists'
           default_project_exists: 'Row %{row_number}: A project-level ''default'' ProficiencyLevel already exists'
           invalid_csv_format: 'Invalid CSV format: %{message}'
@@ -2737,7 +2737,7 @@ en:
             save_failed: 'Error processing Skill ID %{id}: %{message}'
       type:
         by_skill: By Skill
-        by_type: By Skill Type
+        by_skill_type: By Skill Type
         default: Default
     profile:
       change_password: Change password

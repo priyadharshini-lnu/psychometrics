@@ -9,9 +9,9 @@ import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 import useForceUpdate from '~/hooks/useUpdate'
 
-import { PreviewModel, NOT_APPLICABLE } from '~/modules/survey/interfaces/questions/SkillsRater'
+import { PreviewModel, NOT_APPLICABLE } from '~/modules/survey/interfaces/questions/SkillRater'
 
-import styles from './SkillsRaterPreview.less'
+import styles from './SkillRaterPreview.less'
 
 const connector = connect(({ preview }: RootState) => ({
   I18n: getI18n(preview),
@@ -33,7 +33,7 @@ interface OwnProps {
 }
 type Props = PropsFromRedux & OwnProps
 
-const SkillsRaterPreviewComponent: FC<Props> = ({
+const SkillRaterPreviewComponent: FC<Props> = ({
   model, readOnly, nextPage, singleQuestionFlow, focus,
 }) => {
   const forceUpdate = useForceUpdate()
@@ -172,4 +172,4 @@ const TextChoices: FC<TextChoicesProps> = ({
   )
 }
 
-export const SkillsRaterPreview = connector(SkillsRaterPreviewComponent)
+export const SkillRaterPreview = connector(SkillRaterPreviewComponent)

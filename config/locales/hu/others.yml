@@ -37,7 +37,7 @@ hu:
               parsing_failed: 'Hiba a fájl elemzése közben, hiba: %{error}.'
             project:
               must_exist: A projektnek léteznie kell
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Legalább egy munkakörnek engedélyezettnek kell lennie, és a %{block_name} számára kiválasztott készségtípust kell kiválasztani.
@@ -92,7 +92,7 @@ hu:
         export_job_roles_translations: Exportálás munkakörök fordítások
         export_proficiency_levels: Exportképességi szintek
         import_job_roles_translations: Munkakörök importálása Fordítások
-        import_skills_rater_taxonomies: Képességértékelő taxonómiák importálása
+        import_skill_rater_taxonomies: Képességértékelő taxonómiák importálása
   administration: Adminisztráció
   anonym:
     close: Zárja be a

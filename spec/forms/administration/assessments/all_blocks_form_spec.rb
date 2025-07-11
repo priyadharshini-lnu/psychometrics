@@ -11,7 +11,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
       end
     end
 
-    context 'when blocks contain non-skills_rater types' do
+    context 'when blocks contain non-skill_rater types' do
       let(:regular_blocks) do
         [
           {
@@ -28,11 +28,11 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
       end
     end
 
-    context 'individual skills_rater block validation' do
-      context 'when skills_rater block is valid' do
-        let(:valid_skills_rater_block) do
+    context 'individual skill_rater block validation' do
+      context 'when skill_rater block is valid' do
+        let(:valid_skill_rater_block) do
           {
-            'block_type' => 'skills_rater',
+            'block_type' => 'skill_rater',
             'name' => 'Valid Block',
             'props' => {
               'skills_config' => {
@@ -50,15 +50,15 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
         end
 
         it 'is valid' do
-          form = described_class.new(blocks: [valid_skills_rater_block])
+          form = described_class.new(blocks: [valid_skill_rater_block])
           expect(form).to be_valid
         end
       end
 
-      context 'when skills_rater block is invalid' do
-        let(:invalid_skills_rater_block) do
+      context 'when skill_rater block is invalid' do
+        let(:invalid_skill_rater_block) do
           {
-            'block_type' => 'skills_rater',
+            'block_type' => 'skill_rater',
             'name' => 'Invalid Block',
             'props' => {
               'skills_config' => {
@@ -76,16 +76,16 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
         end
 
         it 'is invalid and includes individual block errors' do
-          form = described_class.new(blocks: [invalid_skills_rater_block])
+          form = described_class.new(blocks: [invalid_skill_rater_block])
           expect(form).not_to be_valid
           expect(form.errors[:base]).to include(match(/at least one skill type must be enabled/i))
         end
       end
 
-      context 'when skills_rater block has missing props' do
+      context 'when skill_rater block has missing props' do
         let(:block_without_props) do
           {
-            'block_type' => 'skills_rater',
+            'block_type' => 'skill_rater',
             'name' => 'No Props Block'
           }
         end
@@ -98,12 +98,12 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
       end
     end
 
-    context 'duplicate skills_rater configurations' do
+    context 'duplicate skill_rater configurations' do
       context 'when there are no duplicates' do
         let(:unique_blocks) do
           [
             {
-              'block_type' => 'skills_rater',
+              'block_type' => 'skill_rater',
               'name' => 'Block 1',
               'props' => {
                 'skills_config' => {
@@ -115,7 +115,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               }
             },
             {
-              'block_type' => 'skills_rater',
+              'block_type' => 'skill_rater',
               'name' => 'Block 2',
               'props' => {
                 'skills_config' => {
@@ -127,7 +127,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               }
             },
             {
-              'block_type' => 'skills_rater',
+              'block_type' => 'skill_rater',
               'name' => 'Block 3',
               'props' => {
                 'skills_config' => {
@@ -151,7 +151,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
         let(:duplicate_blocks) do
           [
             {
-              'block_type' => 'skills_rater',
+              'block_type' => 'skill_rater',
               'name' => 'Block 1',
               'props' => {
                 'skills_config' => {
@@ -163,7 +163,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               }
             },
             {
-              'block_type' => 'skills_rater',
+              'block_type' => 'skill_rater',
               'name' => 'Block 2',
               'props' => {
                 'skills_config' => {
@@ -192,7 +192,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
         let(:multiple_duplicate_block) do
           [
             {
-              'block_type' => 'skills_rater',
+              'block_type' => 'skill_rater',
               'name' => 'Block 1',
               'props' => {
                 'skills_config' => {
@@ -208,7 +208,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
               }
             },
             {
-              'block_type' => 'skills_rater',
+              'block_type' => 'skill_rater',
               'name' => 'Block 2',
               'props' => {
                 'skills_config' => {
@@ -242,7 +242,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
           let(:missing_props_block) do
             [
               {
-                'block_type' => 'skills_rater',
+                'block_type' => 'skill_rater',
                 'name' => 'Block1'
               }
             ]
@@ -252,7 +252,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
             form = described_class.new(blocks: missing_props_block)
             expect(form).not_to be_valid
             expect(form.errors[:base]).to include(
-              I18n.t('activemodel.errors.models.skills_rater_block_form.attributes.base.props_missing',
+              I18n.t('activemodel.errors.models.skill_rater_block_form.attributes.base.props_missing',
                      block_name: 'Block1')
             )
           end
@@ -261,10 +261,10 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
     end
   end
 
-  describe 'integration with SkillsRaterBlockForm' do
-    let(:skills_rater_block) do
+  describe 'integration with SkillRaterBlockForm' do
+    let(:skill_rater_block) do
       {
-        'block_type' => 'skills_rater',
+        'block_type' => 'skill_rater',
         'name' => 'Test Block',
         'props' => {
           'skills_config' => {
@@ -277,11 +277,11 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
       }
     end
 
-    it 'calls SkillsRaterBlockForm and includes its errors' do
-      form = described_class.new(blocks: [skills_rater_block])
+    it 'calls SkillRaterBlockForm and includes its errors' do
+      form = described_class.new(blocks: [skill_rater_block])
       expect(form).not_to be_valid
       expect(form.errors[:base]).to include(
-        I18n.t('activemodel.errors.models.skills_rater_block_form.attributes.base.invalid_job_role_type',
+        I18n.t('activemodel.errors.models.skill_rater_block_form.attributes.base.invalid_job_role_type',
                job_role: 'invalid_role',
                skill_type: 'Technical',
                valid_options: 'current_job_role, target_job_role',
@@ -293,7 +293,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
       let(:no_skill_types_enabled_block) do
         [
           {
-            'block_type' => 'skills_rater',
+            'block_type' => 'skill_rater',
             'name' => 'Valid Block',
             'props' => {
               'skills_config' => {
@@ -305,7 +305,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
             }
           },
           {
-            'block_type' => 'skills_rater',
+            'block_type' => 'skill_rater',
             'name' => 'Invalid Block',
             'props' => {
               'skills_config' => {
@@ -323,7 +323,7 @@ RSpec.describe Administration::Assessments::AllBlocksForm, type: :form do
         form = described_class.new(blocks: no_skill_types_enabled_block)
         expect(form).not_to be_valid
         expect(form.errors[:base]).to include(
-          I18n.t('activemodel.errors.models.skills_rater_block_form.attributes.base.at_least_one_skill_type_must_be_enabled_with_a_job_role_selected', # rubocop:disable Layout/LineLength
+          I18n.t('activemodel.errors.models.skill_rater_block_form.attributes.base.at_least_one_skill_type_must_be_enabled_with_a_job_role_selected', # rubocop:disable Layout/LineLength
                  block_name: 'Invalid Block')
         )
       end

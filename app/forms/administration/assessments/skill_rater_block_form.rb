@@ -2,8 +2,8 @@
 
 module Administration
   module Assessments
-    class SkillsRaterBlockForm < Rectify::Form
-      mimic :skills_rater_block_form
+    class SkillRaterBlockForm < Rectify::Form
+      mimic :skill_rater_block_form
 
       attribute :block, Hash
 

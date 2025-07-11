@@ -14,7 +14,7 @@ describe Api::V2::Administration::JobGroupsController, swagger_doc: 'v2/swagger.
     get 'List Skill Groups' do
       operationId 'getSkillGroups'
       description 'Lists skill groups'
-      tags 'SkillsRater'
+      tags 'SkillRater'
       consumes 'application/vnd.api+json'
       security [basic: []]
 

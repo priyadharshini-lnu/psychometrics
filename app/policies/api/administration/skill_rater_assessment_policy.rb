@@ -2,7 +2,7 @@
 
 module Api
   module Administration
-    class SkillsRaterAssessmentPolicy < BasePolicy
+    class SkillRaterAssessmentPolicy < BasePolicy
       def import_taxonomies?
         @user.is?(:superadmin, :client_admin, :project_admin)
       end

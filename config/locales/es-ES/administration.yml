@@ -960,7 +960,7 @@ es-ES:
             name: Nombre
             normal: Normal
             previous: Anterior
-            skills_rater: Evaluador de competencias
+            skill_rater: Evaluador de competencias
             standard: Estándar
             status: Estado
           close:
@@ -2710,8 +2710,8 @@ es-ES:
         errors:
           by_skill_exists: 'Fila %{row_number}: Ya existe un ProficiencyLevel ''by_skill'' para este proyecto y habilidad.'
           by_skill_missing: 'Fila %{row_number}: Project y Skill deben estar presentes para el tipo ''by_skill'
-          by_type_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel ''''by_type'''' para este proyecto y tipo de habilidad'
-          by_type_missing: 'Fila %{número_de_fila}: Project y Skill Type deben estar presentes para el tipo ''''by_type'
+          by_skill_type_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel ''''by_skill_type'''' para este proyecto y tipo de habilidad'
+          by_skill_type_missing: 'Fila %{número_de_fila}: Project y Skill Type deben estar presentes para el tipo ''''by_skill_type'
           default_global_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel ''''predeterminado'''' de nivel global.'
           default_project_exists: 'Fila %{número_de_fila}: Ya existe un ProficiencyLevel ''''por defecto'''' a nivel de proyecto.'
           invalid_csv_format: 'Formato CSV no válido: %{message}'
@@ -2734,7 +2734,7 @@ es-ES:
             save_failed: 'Error al procesar Skill ID %{id}: %{message}'
       type:
         by_skill: Por habilidad
-        by_type: Por tipo de competencia
+        by_skill_type: Por tipo de competencia
         default: Por defecto
     profile:
       change_password: Cambiar contraseña

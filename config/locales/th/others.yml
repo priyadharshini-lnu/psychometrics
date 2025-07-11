@@ -37,7 +37,7 @@ th:
               parsing_failed: 'เกิดข้อผิดพลาดขณะวิเคราะห์ไฟล์, ข้อผิดพลาด: %{error}.'
             project:
               must_exist: โครงการต้องมีอยู่
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: อย่างน้อยหนึ่งตำแหน่งงานต้องเปิดใช้งานด้วยประเภททักษะที่เลือกสำหรับ %{block_name}
@@ -92,7 +92,7 @@ th:
         export_job_roles_translations: ส่งออกบทบาทงานแปล
         export_proficiency_levels: ระดับความชำนาญในการส่งออก
         import_job_roles_translations: นำเข้าการแปลบทบาทงาน
-        import_skills_rater_taxonomies: นำเข้าหมวดหมู่ผู้ประเมินทักษะภาษี
+        import_skill_rater_taxonomies: นำเข้าหมวดหมู่ผู้ประเมินทักษะภาษี
   administration: การบริหาร
   anonym:
     close: ปิด

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SkillsRater
+module SkillRater
   class SyncAssessmentEntities < BaseCommand
     attr_reader :project, :dimension
 
@@ -10,7 +10,7 @@ module SkillsRater
 
     def call
       ActiveRecord::Base.transaction do
-        @dimension = find_or_create_skills_rater_dimension
+        @dimension = find_or_create_skill_rater_dimension
         sync_question_and_factor_for_skills
 
         broadcast :ok, dimension
@@ -19,9 +19,9 @@ module SkillsRater
 
     private
 
-    def find_or_create_skills_rater_dimension
-      Dimension.find_or_initialize_by(dimension_type: :skills_rater, owner_id: project.id).tap do |dimension|
-        dimension.name = "#{project.name} - Skills Rater"
+    def find_or_create_skill_rater_dimension
+      Dimension.find_or_initialize_by(dimension_type: :skill_rater, owner_id: project.id).tap do |dimension|
+        dimension.name = "#{project.name} - Skill Rater"
         dimension.save!
       end
     end
@@ -31,7 +31,7 @@ module SkillsRater
         question = Question.find_or_initialize_by(skill_id: skill.id)
         question.assign_attributes(
           name: "#{skill.name} Question",
-          type: 'SkillsRater',
+          type: 'SkillRater',
           owner_id: project.id
         )
         question.save!

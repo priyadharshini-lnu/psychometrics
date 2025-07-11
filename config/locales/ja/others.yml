@@ -323,7 +323,7 @@ ja:
             email:
               blank: 電子メールは空白にできない
               not_uniq_email: Eメールを含む行はすでに存在する
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: block_name} で選択されたスキル・タイプで、少なくとも 1 つのジョブ・ロールが有効になっている必要があります。
@@ -837,9 +837,9 @@ ja:
         import_question_translations: 輸入質問翻訳
         import_raw_data: 生データのインポート
         import_scoring_data: 採点データのインポート
+        import_skill_rater_taxonomies: スキル評価者タクソノミーのインポート
         import_skill_translations: 輸入技能翻訳
         import_skills: インポート・スキル
-        import_skills_rater_taxonomies: スキル評価者タクソノミーのインポート
         import_sms_invites: インポートSMS招待
         import_users: インポートユーザー
         migrate_assessment_translations: アセスメント 翻訳移行

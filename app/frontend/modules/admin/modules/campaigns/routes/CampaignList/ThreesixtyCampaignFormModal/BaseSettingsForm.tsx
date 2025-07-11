@@ -126,7 +126,7 @@ const BaseSettingsForm = ({
                     <Radio
                       value={THREESIXTY_CATEGORY.SKILLS_RATER}
                     >
-                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.skills_rater')}
+                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.skill_rater')}
                     </Radio>
                   </Space>
                 </Radio.Group>

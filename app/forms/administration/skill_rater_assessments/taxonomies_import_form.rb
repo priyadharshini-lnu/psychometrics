@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  module SkillsRaterAssessments
+  module SkillRaterAssessments
     class TaxonomiesImportForm < Rectify::Form
       mimic :taxonomies_import_form
 

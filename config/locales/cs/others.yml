@@ -323,7 +323,7 @@ cs:
             email:
               blank: E-mail nemůže být prázdný
               not_uniq_email: Řádek s e-mailem je již přítomen
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pro %{jméno_bloku} musí být povolena alespoň jedna pracovní role s vybraným typem dovednosti.
@@ -837,9 +837,9 @@ cs:
         import_question_translations: Překlady importních otázek
         import_raw_data: Import surových dat
         import_scoring_data: Import dat pro skórování
+        import_skill_rater_taxonomies: Import taxonomií hodnotitelů dovedností
         import_skill_translations: Importovat dovednosti Překlady
         import_skills: Dovednosti pro import
-        import_skills_rater_taxonomies: Import taxonomií hodnotitelů dovedností
         import_sms_invites: Importovat pozvánku SMS
         import_users: Import uživatelů
         migrate_assessment_translations: Hodnocení Překlad migrace

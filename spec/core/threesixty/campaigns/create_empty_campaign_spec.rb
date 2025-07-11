@@ -45,12 +45,12 @@ describe Threesixty::Campaigns::CreateEmptyCampaign do
       expect(threesixty_campaign.assessment.dimension).to be_persisted
     end
 
-    context 'when threesixty_category is skills_rater' do
-      let(:form) { Threesixty::Campaigns::CreateForm.new(name: campaign_name, threesixty_category: 'skills_rater') }
+    context 'when threesixty_category is skill_rater' do
+      let(:form) { Threesixty::Campaigns::CreateForm.new(name: campaign_name, threesixty_category: 'skill_rater') }
 
-      it 'creates a skills_rater dimension' do
+      it 'creates a skill_rater dimension' do
         expect(threesixty_campaign.assessment.dimension).to be_persisted
-        expect(threesixty_campaign.assessment.dimension.dimension_type).to eq('skills_rater')
+        expect(threesixty_campaign.assessment.dimension.dimension_type).to eq('skill_rater')
       end
     end
   end

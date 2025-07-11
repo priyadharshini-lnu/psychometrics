@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SkillsRaterQuestionSerializer < Panko::Serializer
+class SkillRaterQuestionSerializer < Panko::Serializer
   attributes :id, :name, :type, :position, :props, :deleted, :created_at, :block_id,
              :validation, :required_validation, :display_logic, :skip_logic, :template_id, :assessment_id
 

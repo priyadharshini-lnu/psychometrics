@@ -960,7 +960,7 @@ it:
             name: Nome
             normal: Normale
             previous: Precedente
-            skills_rater: Rater delle competenze
+            skill_rater: Rater delle competenze
             standard: Standard
             status: Stato
           close:
@@ -2710,8 +2710,8 @@ it:
         errors:
           by_skill_exists: 'Riga %{row_number}: Esiste già un livello di competenza ''by_skill'' per questo progetto e per questa competenza.'
           by_skill_missing: 'Riga %{row_number}: Il progetto e la competenza devono essere presenti per il tipo ''by_skill''.'
-          by_type_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel ''''by_type'''' per questo progetto e per questo tipo di abilità.'
-          by_type_missing: 'Riga %{numero_riga}: Il progetto e il tipo di competenza devono essere presenti per il tipo ''''by_type''''.'
+          by_skill_type_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel ''''by_skill_type'''' per questo progetto e per questo tipo di abilità.'
+          by_skill_type_missing: 'Riga %{numero_riga}: Il progetto e il tipo di competenza devono essere presenti per il tipo ''''by_skill_type''''.'
           default_global_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel di livello globale ''''predefinito''''.'
           default_project_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel ''''predefinito'''' a livello di progetto.'
           invalid_csv_format: 'Formato CSV non valido: %{message}'
@@ -2734,7 +2734,7 @@ it:
             save_failed: 'Errore nell''elaborazione dello Skill ID %{id}: %{message}'
       type:
         by_skill: Da Skill
-        by_type: Per tipo di abilità
+        by_skill_type: Per tipo di abilità
         default: Predefinito
     profile:
       change_password: Modifica della password

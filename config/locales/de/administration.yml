@@ -960,7 +960,7 @@ de:
             name: Name
             normal: Normal
             previous: Vorherige
-            skills_rater: Skills Rater
+            skill_rater: Skill Rater
             standard: Standard
             status: Status
           close:
@@ -2709,8 +2709,8 @@ de:
         errors:
           by_skill_exists: 'Zeile %{row_number}: Ein ''by_skill'' ProficiencyLevel existiert bereits für dieses Projekt und diesen Skill'
           by_skill_missing: 'Zeile %{row_number}: Projekt und Fertigkeit müssen für den Typ ''by_skill'' vorhanden sein'
-          by_type_exists: 'Zeile %{row_number}: Ein ''''by_type'''' ProficiencyLevel existiert bereits für dieses Projekt und diesen Fähigkeitstyp'
-          by_type_missing: 'Zeile %{row_number}: Projekt und Fertigkeitstyp müssen für den Typ ''''by_type'''' vorhanden sein'
+          by_skill_type_exists: 'Zeile %{row_number}: Ein ''''by_skill_type'''' ProficiencyLevel existiert bereits für dieses Projekt und diesen Fähigkeitstyp'
+          by_skill_type_missing: 'Zeile %{row_number}: Projekt und Fertigkeitstyp müssen für den Typ ''''by_skill_type'''' vorhanden sein'
           default_global_exists: 'Zeile %{row_number}: Ein ''''Standard'''' ProficiencyLevel auf globaler Ebene existiert bereits'
           default_project_exists: 'Zeile %{row_number}: Ein ''''Standard'''' ProficiencyLevel auf Projektebene existiert bereits'
           invalid_csv_format: 'Ungültiges CSV-Format: %{message}'
@@ -2733,7 +2733,7 @@ de:
             save_failed: 'Fehler bei der Verarbeitung der Skill-ID %{id}: %{message}'
       type:
         by_skill: Durch Geschicklichkeit
-        by_type: Nach Qualifikationsart
+        by_skill_type: Nach Qualifikationsart
         default: Standard
     profile:
       change_password: Passwort ändern

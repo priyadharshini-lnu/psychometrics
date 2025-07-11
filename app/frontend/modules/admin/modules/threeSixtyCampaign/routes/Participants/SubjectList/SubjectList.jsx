@@ -52,7 +52,7 @@ function SubjectList ({
   const { message } = App.useApp()
   const [showResetSubjectModal, setShowResetSubjectModal] = useState(false)
   const { width: windowWidth } = useWindowSize()
-  const isSkillsRater = category === 'skills_rater'
+  const isSkillRater = category === 'skill_rater'
   const {
     isAllSelected, excludedKeys, selectedKeys, onSelectionChange, onAllSelect,
   } = useSelectAll(false, subjects)
@@ -249,7 +249,7 @@ function SubjectList ({
           </div>
         </Col>
       </Row>
-      <CreateSubjectModal isSkillsRater={isSkillsRater} />
+      <CreateSubjectModal isSkillRater={isSkillRater} />
       <SubjectImportModal />
       <UserEditModal />
       <ResetSubjectModal open={showResetSubjectModal} />

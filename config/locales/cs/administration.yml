@@ -960,7 +960,7 @@ cs:
             name: Název
             normal: Normální
             previous: Předchozí
-            skills_rater: Hodnocení dovedností
+            skill_rater: Hodnocení dovedností
             standard: Standardní
             status: Stav
           close:
@@ -2709,8 +2709,8 @@ cs:
         errors:
           by_skill_exists: 'Řádek %{row_number}: ProficiencyLevel ''by_skill'' již existuje pro tento projekt a dovednost'
           by_skill_missing: 'Řádek %{row_number}: Projekt a dovednost musí být přítomny pro typ ''by_skill'''
-          by_type_exists: 'Řádek %{číslo_řádku}: ProficiencyLevel ''''by_type'''' již existuje pro tento projekt a typ dovednosti'
-          by_type_missing: 'Řádek %{číslo_řádku}: Typ projektu a dovednosti musí být přítomen pro typ ''''by_type'''''
+          by_skill_type_exists: 'Řádek %{číslo_řádku}: ProficiencyLevel ''''by_skill_type'''' již existuje pro tento projekt a typ dovednosti'
+          by_skill_type_missing: 'Řádek %{číslo_řádku}: Typ projektu a dovednosti musí být přítomen pro typ ''''by_skill_type'''''
           default_global_exists: 'Řádek %{číslo_řádku}: Již existuje ''''výchozí'''' úroveň ProficiencyLevel na globální úrovni'
           default_project_exists: 'Řádek %{číslo_řádku}: Již existuje ''''výchozí'''' ProficiencyLevel na úrovni projektu'
           invalid_csv_format: 'Nesprávný formát CSV: %{message}'
@@ -2733,7 +2733,7 @@ cs:
             save_failed: 'Chyba při zpracování ID dovednosti %{id}: %{message}'
       type:
         by_skill: Podle dovednosti
-        by_type: Podle typu dovednosti
+        by_skill_type: Podle typu dovednosti
         default: Výchozí
     profile:
       change_password: Změna hesla

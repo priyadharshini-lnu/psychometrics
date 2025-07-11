@@ -37,7 +37,7 @@ ar:
               parsing_failed: 'خطأ أثناء تحليل الملف، خطأ: %{خطأ}.'
             project:
               must_exist: يجب أن يكون المشروع موجوداً
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: يجب تمكين دور وظيفي واحد على الأقل مع تحديد نوع المهارة لـ %{block_name}
@@ -105,7 +105,7 @@ ar:
         export_proficiency_levels: مستويات كفاءة التصدير
         import_job_roles_translations: استيراد ترجمات الأدوار الوظيفية
         import_proficiency_level_translations: استيراد الترجمات على مستوى الكفاءة
-        import_skills_rater_taxonomies: استيراد تصنيفات مقيمي المهارات
+        import_skill_rater_taxonomies: استيراد تصنيفات مقيمي المهارات
   anonym:
     close: يغلق
     continue: استمرار

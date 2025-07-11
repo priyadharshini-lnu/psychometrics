@@ -333,7 +333,7 @@ de:
             email:
               blank: E-Mail kann nicht leer sein
               not_uniq_email: Zeile mit E-Mail ist bereits vorhanden
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Für %{block_name} muss mindestens eine Jobrolle mit einer ausgewählten Fertigkeitsart aktiviert sein.
@@ -847,9 +847,9 @@ de:
         import_question_translations: Fragenübersetzungen importieren
         import_raw_data: Rohdaten importieren
         import_scoring_data: Scoring-Daten importieren
+        import_skill_rater_taxonomies: Taxonomien für Skill Rater importieren
         import_skill_translations: Importfähigkeiten Übersetzungen
         import_skills: Import-Fähigkeiten
-        import_skills_rater_taxonomies: Taxonomien für Skill Rater importieren
         import_sms_invites: SMS-Einladung importieren
         import_users: Benutzer importieren
         migrate_assessment_translations: Bewertung Übersetzung Migration

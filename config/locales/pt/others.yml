@@ -323,7 +323,7 @@ pt:
             email:
               blank: O correio eletrónico não pode estar em branco
               not_uniq_email: A linha com o correio eletrónico já está presente
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pelo menos um posto de trabalho deve estar ativado com um tipo de competência selecionado para %{block_name}
@@ -837,9 +837,9 @@ pt:
         import_question_translations: Importar traduções de perguntas
         import_raw_data: Importar dados brutos
         import_scoring_data: Importar dados de avaliação
+        import_skill_rater_taxonomies: Importar taxonomias de avaliadores de competências
         import_skill_translations: Traduções de competências de importação
         import_skills: Competências de importação
-        import_skills_rater_taxonomies: Importar taxonomias de avaliadores de competências
         import_sms_invites: Importar convite SMS
         import_users: Importar utilizadores
         migrate_assessment_translations: Avaliação Tradução migração

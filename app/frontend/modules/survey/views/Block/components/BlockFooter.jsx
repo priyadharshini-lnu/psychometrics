@@ -15,7 +15,7 @@ const BlockFooter = ({
   model, onMinimize, createBlock, addQuestion, openCreateByTemplate, updateBlockProps,
 }) => {
   const [openMenu, setOpenMenu] = useState(false)
-  const isSkillRaterBlock = model.blockType === 'skills_rater'
+  const isSkillRaterBlock = model.blockType === 'skill_rater'
 
   const addBlock = (type) => {
     createBlock(new Block({ position: model.position, blockType: type }))
@@ -106,7 +106,7 @@ const AddBlockMenu = ({ onAddBlock }) => {
     },
     {
       label: I18n.t('administration.survey_builder.models.block_types.skill_rater'),
-      key: 'skills_rater',
+      key: 'skill_rater',
     },
   ]
   return (

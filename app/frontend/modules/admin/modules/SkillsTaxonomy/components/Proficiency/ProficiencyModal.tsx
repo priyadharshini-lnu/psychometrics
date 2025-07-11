@@ -30,7 +30,7 @@ type Props = {
 interface SkillProficiency {
   id?: number;
   projectId?: number;
-  proficiencyType: 'by_skill' | 'by_type' | 'default';
+  proficiencyType: 'by_skill' | 'by_skill_type' | 'default';
   skillType?: string;
   level: number;
   levelDefinition: Array<{
@@ -290,8 +290,16 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   useEffect(() => {
     if (proficiencyLevel) {
       setLevelDefinitions(proficiencyLevel.levelDefinition)
+      form.setFieldsValue({
+        proficiencyType: proficiencyLevel.proficiencyType,
+        skillType: proficiencyLevel.skillType,
+        skillId: proficiencyLevel.skillId,
+        level: proficiencyLevel.level,
+        projectId: proficiencyLevel.project?.id,
+        levelDefinition: proficiencyLevel.levelDefinition,
+      })
     }
-  }, [proficiencyLevel])
+  }, [proficiencyLevel, form, skills])
 
   useEffect(() => {
     form.setFieldValue('levelDefinition', levelDefinitions)
@@ -437,7 +445,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
             ) : null
           }
           {
-            (form.getFieldValue('proficiencyType') === 'by_type') ? (
+            (form.getFieldValue('proficiencyType') === 'by_skill_type') ? (
               <Form.Item
                 name="skillType"
                 label={I18n.t('administration.proficiency_levels.fields.skill_type')}

@@ -21,7 +21,7 @@ pl:
         create_threesixity:
           base_settings:
             normal: Normalny
-            skills_rater: Ocena umiejętności
+            skill_rater: Ocena umiejętności
     common:
       minute: minuta
       type: Typ
@@ -107,8 +107,8 @@ pl:
         errors:
           by_skill_exists: 'Wiersz %{numer_wiersza}: Poziom biegłości "by_skill" już istnieje dla tego projektu i umiejętności.'
           by_skill_missing: 'Wiersz %{numer_wiersza}: Projekt i umiejętność muszą być obecne dla typu "by_skill".'
-          by_type_exists: 'Wiersz %{numer_wiersza}: A ''''''''by_type'''''''' ProficiencyLevel już istnieje dla tego projektu i typu umiejętności'
-          by_type_missing: 'Wiersz %{row_number}: Typ projektu i umiejętności musi być obecny dla typu ''''''''by_type'''''''''
+          by_skill_type_exists: 'Wiersz %{numer_wiersza}: A ''''''''by_skill_type'''''''' ProficiencyLevel już istnieje dla tego projektu i typu umiejętności'
+          by_skill_type_missing: 'Wiersz %{row_number}: Typ projektu i umiejętności musi być obecny dla typu ''''''''by_skill_type'''''''''
           default_global_exists: 'Wiersz %{numer_wiersza}: Istnieje już ''''domyślny'''' poziom biegłości na poziomie globalnym.'
           default_project_exists: 'Wiersz %{numer_wiersza}: Istnieje już "domyślny" poziom biegłości na poziomie projektu.'
           invalid_csv_format: 'Nieprawidłowy format CSV: %{komunikat}'
@@ -130,7 +130,7 @@ pl:
             save_failed: 'Błąd przetwarzania identyfikatora umiejętności %{id}: %{komunikat}'
       type:
         by_skill: Umiejętności
-        by_type: Według rodzaju umiejętności
+        by_skill_type: Według rodzaju umiejętności
         default: Domyślne
     projects:
       privacy_settings:

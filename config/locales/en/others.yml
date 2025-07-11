@@ -329,7 +329,7 @@ en:
             email:
               blank: Email can't be blank
               not_uniq_email: Row with email is already present
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_required: At least one job role is required for %{skill_type} for %{block_name}
@@ -850,9 +850,9 @@ en:
         import_raw_data: Import Raw Data
         import_reflection_questions: Import Reflection Questions
         import_scoring_data: Import Scoring Data
+        import_skill_rater_taxonomies: Import Skill Rater Taxonomies
         import_skill_translations: Import Skills Translations
         import_skills: Import Skills
-        import_skills_rater_taxonomies: Import Skill Rater Taxonomies
         import_sms_invites: Import SMS Invite
         import_users: Import Users
         migrate_assessment_translations: Assessment Translation migration

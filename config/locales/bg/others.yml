@@ -37,7 +37,7 @@ bg:
               parsing_failed: 'Грешка при обработката на файла, грешка: %{error}.'
             project:
               must_exist: Проектът трябва да съществува
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Трябва да е активирана поне една роля за работа с избран тип умения за %{block_name}
@@ -94,7 +94,7 @@ bg:
         export_job_roles_translations: Експорт на работни роли Преводи
         export_proficiency_levels: Нива на владеене на експорт
         import_job_roles_translations: Импортиране на работни роли Преводи
-        import_skills_rater_taxonomies: Импортиране на таксономии за оценяване на уменията
+        import_skill_rater_taxonomies: Импортиране на таксономии за оценяване на уменията
   administration: Администрация
   anonym:
     close: Затвори

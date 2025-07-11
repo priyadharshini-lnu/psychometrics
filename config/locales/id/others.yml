@@ -37,7 +37,7 @@ id:
               parsing_failed: 'Kesalahan saat mem-parsing file, kesalahan: %{error}.'
             project:
               must_exist: Proyek harus ada
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Setidaknya satu peran pekerjaan harus diaktifkan dengan jenis keterampilan yang dipilih untuk %{nama_blok}
@@ -92,7 +92,7 @@ id:
         export_job_roles_translations: Penerjemahan Peran Pekerjaan Ekspor
         export_proficiency_levels: Tingkat Kemahiran Ekspor
         import_job_roles_translations: Impor Terjemahan Peran Pekerjaan
-        import_skills_rater_taxonomies: Impor Taksonomi Penilai Keterampilan
+        import_skill_rater_taxonomies: Impor Taksonomi Penilai Keterampilan
   administration: Administrasi
   anonym:
     close: Tutup

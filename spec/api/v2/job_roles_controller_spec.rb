@@ -15,7 +15,7 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
     get 'List Job Roles' do
       operationId 'getJobRoles'
       description 'Lists all job roles for a project, optionally including global roles'
-      tags 'SkillsRaterJobRoles'
+      tags 'SkillRaterJobRoles'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
@@ -63,7 +63,7 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
     post 'Create Job Role' do
       operationId 'createJobRole'
       description 'Creates a new job role'
-      tags 'SkillsRaterJobRoles'
+      tags 'SkillRaterJobRoles'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
@@ -106,7 +106,7 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
     patch 'Update Job Role' do
       operationId 'updateJobRole'
       description 'Updates a job role'
-      tags 'SkillsRaterJobRoles'
+      tags 'SkillRaterJobRoles'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
@@ -136,7 +136,7 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
     delete 'Delete Job Role' do
       operationId 'deleteJobRole'
       description 'Deletes a job role'
-      tags 'SkillsRaterJobRoles'
+      tags 'SkillRaterJobRoles'
       consumes 'application/vnd.api+json'
       security [basic: []]
 

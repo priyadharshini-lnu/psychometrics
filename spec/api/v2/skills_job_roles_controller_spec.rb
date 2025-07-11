@@ -16,7 +16,7 @@ describe Api::V2::Administration::SkillsJobRolesController, swagger_doc: 'v2/swa
     get 'List Skill Mappings' do
       operationId 'getSkillMappings'
       description 'Lists all skill mappings for a project, optionally including global mappings'
-      tags 'SkillsRaterSkillMappings'
+      tags 'SkillRaterSkillMappings'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
@@ -63,7 +63,7 @@ describe Api::V2::Administration::SkillsJobRolesController, swagger_doc: 'v2/swa
     post 'Create Skill Mapping' do
       operationId 'createSkillMapping'
       description 'Creates a new skill mapping between job role and skill'
-      tags 'SkillsRaterSkillMappings'
+      tags 'SkillRaterSkillMappings'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
@@ -109,7 +109,7 @@ describe Api::V2::Administration::SkillsJobRolesController, swagger_doc: 'v2/swa
     delete 'Delete Skill Mapping' do
       operationId 'deleteSkillMapping'
       description 'Deletes a skill mapping'
-      tags 'SkillsRaterSkillMappings'
+      tags 'SkillRaterSkillMappings'
       consumes 'application/vnd.api+json'
       security [basic: []]
 

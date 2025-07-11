@@ -25,8 +25,8 @@ module Threesixty
       def call # rubocop:disable Metrics/AbcSize
         factor_ids = form.factors.presence || source_assessment.dimension.all_factors.pluck(:id)
 
-        new_dimension = if form.skills_rater?
-                          skills_rater_dimension
+        new_dimension = if form.skill_rater?
+                          skill_rater_dimension
                         else
                           result = Dimensions::Copy.call!(
                             source_assessment.dimension, factor_ids, client, new_dimension_name: form.name
@@ -86,8 +86,8 @@ module Threesixty
 
       private
 
-      def skills_rater_dimension
-        Dimension.skills_rater_dimension(project)
+      def skill_rater_dimension
+        Dimension.skill_rater_dimension(project)
       end
     end
   end

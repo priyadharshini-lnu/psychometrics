@@ -37,7 +37,7 @@ en-US:
               parsing_failed: 'Error while parsing file, error: %{error}.'
             project:
               must_exist: Project must exist
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: At least one job role must be enabled with a skill type selected for %{block_name}
@@ -92,7 +92,7 @@ en-US:
         export_job_roles_translations: Export Job Roles Translations
         export_proficiency_levels: Export Proficiency Levels
         import_job_roles_translations: Import Job Roles Translations
-        import_skills_rater_taxonomies: Import Skill Rater Taxonomies
+        import_skill_rater_taxonomies: Import Skill Rater Taxonomies
   administration: Administration
   anonym:
     close: Close

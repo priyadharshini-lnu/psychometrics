@@ -37,7 +37,7 @@ ro:
               parsing_failed: 'Eroare în timpul analizării fișierului, eroare: %{error}.'
             project:
               must_exist: Proiectul trebuie să existe
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Cel puțin un rol de post trebuie să fie activat cu un tip de competență selectat pentru %{block_name}
@@ -92,7 +92,7 @@ ro:
         export_job_roles_translations: Export Rolul postului Traduceri
         export_proficiency_levels: Niveluri de competență pentru export
         import_job_roles_translations: Import Rolul postului Traduceri
-        import_skills_rater_taxonomies: Importul taxonomiilor evaluatorilor de competențe
+        import_skill_rater_taxonomies: Importul taxonomiilor evaluatorilor de competențe
   administration: Administrație
   anonym:
     close: Închidere

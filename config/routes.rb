@@ -1530,7 +1530,7 @@ as: :simulation_progress_notification
 
           jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
 
-          jsonapi_resources :skills_rater_assessments do
+          jsonapi_resources :skill_rater_assessments do
             collection do
               post :import_taxonomies
             end

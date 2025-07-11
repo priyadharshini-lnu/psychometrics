@@ -960,7 +960,7 @@ ja:
             name: 名称
             normal: ノーマル
             previous: 前へ
-            skills_rater: 技能評価者
+            skill_rater: 技能評価者
             standard: スタンダード
             status: ステータス
           close:
@@ -2710,8 +2710,8 @@ ja:
         errors:
           by_skill_exists: 行 %{row_number}：by_skill'ProficiencyLevelは、このプロジェクトとスキルに既に存在します。
           by_skill_missing: 行 %{row_number}：by_skill'タイプでは、プロジェクトとスキルが存在する必要があります。
-          by_type_exists: 行 %{row_number}：このプロジェクトとスキル・タイプには ''by_type'' ProficiencyLevel が既に存在します。
-          by_type_missing: 行 %{row_number}：by_type''タイプにはプロジェクトとスキル・タイプが存在する必要があります。
+          by_skill_type_exists: 行 %{row_number}：このプロジェクトとスキル・タイプには ''by_skill_type'' ProficiencyLevel が既に存在します。
+          by_skill_type_missing: 行 %{row_number}：by_skill_type''タイプにはプロジェクトとスキル・タイプが存在する必要があります。
           default_global_exists: 行 %{row_number}：グローバル・レベルの ''default'' ProficiencyLevel が既に存在します。
           default_project_exists: 行 %{row_number}：プロジェクト・レベルの ''default'' ProficiencyLevel が既に存在します。
           invalid_csv_format: '無効な CSV 形式: %{message} です。'
@@ -2734,7 +2734,7 @@ ja:
             save_failed: スキル ID %{id} の処理エラーです：メッセージ
       type:
         by_skill: スキル別
-        by_type: スキルタイプ別
+        by_skill_type: スキルタイプ別
         default: デフォルト
     profile:
       change_password: パスワードの変更

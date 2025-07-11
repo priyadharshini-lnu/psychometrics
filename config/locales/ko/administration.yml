@@ -960,7 +960,7 @@ ko:
             name: 이름
             normal: 보통
             previous: 이전 게시물
-            skills_rater: 스킬 평가자
+            skill_rater: 스킬 평가자
             standard: 표준
             status: 상태
           close:
@@ -2710,8 +2710,8 @@ ko:
         errors:
           by_skill_exists: '행 %{row_number}: 이 프로젝트 및 스킬에 대해 ''by_skill'' 숙련도 레벨이 이미 존재합니다.'
           by_skill_missing: '행 %{row_number}: ''by_skill'' 유형에 대해 프로젝트와 스킬이 있어야 합니다.'
-          by_type_exists: '행 %{행_번호}: 이 프로젝트 및 스킬 유형에 대한 ''''by_type'''' 숙련도 수준이 이미 존재합니다.'
-          by_type_missing: '행 %{행_번호}: ''''by_type'''' 유형에는 프로젝트 및 스킬 유형이 있어야 합니다.'
+          by_skill_type_exists: '행 %{행_번호}: 이 프로젝트 및 스킬 유형에 대한 ''''by_skill_type'''' 숙련도 수준이 이미 존재합니다.'
+          by_skill_type_missing: '행 %{행_번호}: ''''by_skill_type'''' 유형에는 프로젝트 및 스킬 유형이 있어야 합니다.'
           default_global_exists: '행 %{행_번호}: 글로벌 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
           default_project_exists: '행 %{행_번호}: 프로젝트 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
           invalid_csv_format: '잘못된 CSV 형식: %{message}'
@@ -2734,7 +2734,7 @@ ko:
             save_failed: '오류 처리 스킬 ID %{id}: %{message}'
       type:
         by_skill: 기술별
-        by_type: 기술 유형별
+        by_skill_type: 기술 유형별
         default: 기본값
     profile:
       change_password: 비밀번호 변경

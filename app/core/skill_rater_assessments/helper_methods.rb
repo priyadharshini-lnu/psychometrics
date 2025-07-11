@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SkillsRaterAssessments
+module SkillRaterAssessments
   module HelperMethods
     delegate :sheet, to: :roo_excel
 

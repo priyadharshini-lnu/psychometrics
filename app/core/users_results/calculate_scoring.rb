@@ -69,8 +69,8 @@ module UsersResults
         end
       end
 
-      if assessment.dimension.skills_rater?
-        calculate_skills_rater_scoring
+      if assessment.dimension.skill_rater?
+        calculate_skill_rater_scoring
       end
 
       broadcast :ok, ::UsersResults::Scoring::Extend.call!(
@@ -88,9 +88,9 @@ module UsersResults
 
     private
 
-    def calculate_skills_rater_scoring
-      skills_rater_scoring = CalculateSkillsRaterScores.new(users_result).call
-      @scoring.merge!(skills_rater_scoring)
+    def calculate_skill_rater_scoring
+      skill_rater_scoring = CalculateSkillRaterScores.new(users_result).call
+      @scoring.merge!(skill_rater_scoring)
     end
 
     attr_reader :users_result, :scoring, :norm_data

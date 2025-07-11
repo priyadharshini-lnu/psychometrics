@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe UsersResults::CalculateSkillsRaterScores do
+RSpec.describe UsersResults::CalculateSkillRaterScores do
   let(:user_result) { create(:users_result) }
   let(:skill) { create(:skill, factor: create(:factor)) }
-  let(:question) { create(:question, type: 'SkillsRater', skill: skill) }
+  let(:question) { create(:question, type: 'SkillRater', skill: skill) }
 
   subject(:calculator) { described_class.new(user_result) }
 
@@ -33,7 +33,7 @@ RSpec.describe UsersResults::CalculateSkillsRaterScores do
         end
 
         before do
-          allow_any_instance_of(Scoring::SkillsRater).to receive(:calculate).
+          allow_any_instance_of(Scoring::SkillRater).to receive(:calculate).
             and_return(scoring_result)
         end
 
@@ -52,7 +52,7 @@ RSpec.describe UsersResults::CalculateSkillsRaterScores do
 
       context 'when scoring calculation returns no value' do
         before do
-          allow_any_instance_of(Scoring::SkillsRater).to receive(:calculate).
+          allow_any_instance_of(Scoring::SkillRater).to receive(:calculate).
             and_return(value: nil)
         end
 

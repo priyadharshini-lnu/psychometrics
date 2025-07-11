@@ -194,7 +194,7 @@ RSpec.describe 'Api::V2::Administration::ProficiencyLevelsController',
         let!(:skill) { create(:skill, name: 'Technical Skill', skill_type: 'technical', project_id:) }
         let!(:skill_id) { skill.id }
         let!(:global_proficiency_level_by_category) do
-          create(:proficiency_level, project_id: nil, skill_type: 'technical', proficiency_type: 'by_type')
+          create(:proficiency_level, project_id: nil, skill_type: 'technical', proficiency_type: 'by_skill_type')
         end
 
         run_test! do |response|

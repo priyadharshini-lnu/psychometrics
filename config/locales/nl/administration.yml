@@ -960,7 +960,7 @@ nl:
             name: Naam
             normal: Normaal
             previous: Vorige
-            skills_rater: Vaardigheden beoordelaar
+            skill_rater: Vaardigheden beoordelaar
             standard: Standaard
             status: Status
           close:
@@ -2710,8 +2710,8 @@ nl:
         errors:
           by_skill_exists: 'Rij %{row_number}: Er bestaat al een ''by_skill'' ProficiencyLevel voor dit project en deze vaardigheid'
           by_skill_missing: 'Rij %{row_number}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
-          by_type_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''by_type'''' ProficiencyLevel voor dit project en vaardigheidstype'
-          by_type_missing: 'Rij %{rij_nummer}: Project en Skill Type moeten aanwezig zijn voor ''''by_type'''' type'
+          by_skill_type_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''by_skill_type'''' ProficiencyLevel voor dit project en vaardigheidstype'
+          by_skill_type_missing: 'Rij %{rij_nummer}: Project en Skill Type moeten aanwezig zijn voor ''''by_skill_type'''' type'
           default_global_exists: 'Rij %{rij_nummer}: Er bestaat al een globaal niveau ''''standaard'''' ProficiencyLevel'
           default_project_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''standaard'''' ProficiencyLevel op projectniveau'
           invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
@@ -2734,7 +2734,7 @@ nl:
             save_failed: 'Fout bij het verwerken van vaardigheid-ID %{id}: %{message}'
       type:
         by_skill: Door Behendigheid
-        by_type: Op vaardigheidstype
+        by_skill_type: Op vaardigheidstype
         default: Standaard
     profile:
       change_password: Wachtwoord wijzigen

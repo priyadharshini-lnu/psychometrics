@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Scoring
-  class SkillsRater
+  class SkillRater
     def calculate(_question, skill, result)
       return empty_response unless valid_answer?(result)
 

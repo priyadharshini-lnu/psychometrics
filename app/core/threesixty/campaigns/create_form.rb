@@ -13,12 +13,12 @@ module Threesixty
       attribute :threesixty_category, String, default: 'normal'
 
       validates :name, :threesixty_type, presence: true
-      validates :threesixty_category, inclusion: { in: %w[normal skills_rater] }
+      validates :threesixty_category, inclusion: { in: %w[normal skill_rater] }
       validates :campaign_template_id, presence: true, if: -> { threesixty_type == Threesixty::Campaign::STANDARD_360 }
       validates :assessment_id, presence: true, if: -> { threesixty_type == Threesixty::Campaign::PREVIOUS_360 }
 
-      def skills_rater?
-        threesixty_category == 'skills_rater'
+      def skill_rater?
+        threesixty_category == 'skill_rater'
       end
     end
   end

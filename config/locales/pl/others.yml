@@ -37,7 +37,7 @@ pl:
               parsing_failed: 'Błąd podczas analizowania pliku, błąd: %{error}.'
             project:
               must_exist: Projekt musi istnieć
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Co najmniej jedna rola zawodowa musi być włączona z typem umiejętności wybranym dla %{block_name}.
@@ -93,7 +93,7 @@ pl:
         export_proficiency_levels: Poziomy biegłości w eksporcie
         import_job_roles_translations: Importowanie tłumaczeń ról zadań
         import_proficiency_level_translations: Importuj tłumaczenia na poziomie biegłości
-        import_skills_rater_taxonomies: Importowanie taksonomii Skill Rater
+        import_skill_rater_taxonomies: Importowanie taksonomii Skill Rater
   anonym:
     close: Zamknij
     continue: Kontynuuj

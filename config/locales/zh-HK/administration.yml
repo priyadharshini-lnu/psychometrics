@@ -20,7 +20,7 @@ zh-HK:
         create_threesixity:
           base_settings:
             normal: 正常
-            skills_rater: 技能評核員
+            skill_rater: 技能評核員
     common:
       minute: 分
       type: 類型
@@ -107,8 +107,8 @@ zh-HK:
         errors:
           by_skill_exists: 行 %{row_number}：此專案與技能已有 'by_skill' ProficiencyLevel。
           by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
-          by_type_exists: 行 %{row_number}：A ''''by_type''''此專案和技能類型已存在 ProficiencyLevel
-          by_type_missing: 行 %{row_number}：''''by_type'''' 類型的專案和技能類型必須存在
+          by_skill_type_exists: 行 %{row_number}：A ''''by_skill_type''''此專案和技能類型已存在 ProficiencyLevel
+          by_skill_type_missing: 行 %{row_number}：''''by_skill_type'''' 類型的專案和技能類型必須存在
           default_global_exists: 行 %{row_number}：全局層級的'「預設」'ProficiencyLevel已經存在
           default_project_exists: 行 %{row_number}：專案層級的 '「預設」 ProficiencyLevel 已經存在
           invalid_csv_format: 無效的 CSV 格式：%{message}。
@@ -130,7 +130,7 @@ zh-HK:
             save_failed: 處理技能 ID %{id} 出錯：%{message}
       type:
         by_skill: 按技術
-        by_type: 依技能類型
+        by_skill_type: 依技能類型
         default: 預設
     projects:
       privacy_settings:

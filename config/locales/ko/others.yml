@@ -323,7 +323,7 @@ ko:
             email:
               blank: 이메일은 비워 둘 수 없습니다
               not_uniq_email: 이메일이 있는 행이 이미 존재합니다
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 블록 이름]에 대해 선택된 스킬 유형으로 하나 이상의 직무 역할이 활성화되어 있어야 합니다.
@@ -837,9 +837,9 @@ ko:
         import_question_translations: 질문 번역 가져오기
         import_raw_data: 원시 데이터 가져오기
         import_scoring_data: 채점 데이터 가져오기
+        import_skill_rater_taxonomies: 스킬 평가자 분류체계 가져오기
         import_skill_translations: 스킬 번역 가져오기
         import_skills: 스킬 가져오기
-        import_skills_rater_taxonomies: 스킬 평가자 분류체계 가져오기
         import_sms_invites: SMS 초대 가져오기
         import_users: 사용자 가져오기
         migrate_assessment_translations: 평가 번역 마이그레이션

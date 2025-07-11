@@ -323,7 +323,7 @@ it:
             email:
               blank: L'e-mail non può essere vuota
               not_uniq_email: La riga con l'e-mail è già presente
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Almeno un ruolo lavorativo deve essere abilitato con un tipo di abilità selezionata per %{block_name}
@@ -837,9 +837,9 @@ it:
         import_question_translations: Importazione di traduzioni di domande
         import_raw_data: Importazione di dati grezzi
         import_scoring_data: Importazione dei dati di punteggio
+        import_skill_rater_taxonomies: Importazione delle tassonomie degli Skill Rater
         import_skill_translations: Traduzioni di competenze di importazione
         import_skills: Importazione di competenze
-        import_skills_rater_taxonomies: Importazione delle tassonomie degli Skill Rater
         import_sms_invites: Importazione di un invito via SMS
         import_users: Importazione di utenti
         migrate_assessment_translations: Valutazione Migrazione di traduzione

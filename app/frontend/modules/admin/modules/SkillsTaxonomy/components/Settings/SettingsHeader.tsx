@@ -16,11 +16,11 @@ export const SettingsHeader: React.FC<Props> = ({
 }) => {
   const { message } = App.useApp()
 
-  const { meta, uploadFileAction } = useResources<User>('skills_rater_assessments/import_taxonomies')
+  const { meta, uploadFileAction } = useResources<User>('skill_rater_assessments/import_taxonomies')
 
   const handleTaxonomyImport = (data:FormData,
     projectId: number, successCallback:()=>void, failureCallback:(error)=>void) => {
-    let action = 'skills_rater_assessments/import_taxonomies'
+    let action = 'skill_rater_assessments/import_taxonomies'
     if (projectId) {
       action += `?project_id=${projectId}`
     }

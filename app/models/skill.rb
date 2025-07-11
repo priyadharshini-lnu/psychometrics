@@ -75,7 +75,7 @@ class Skill < ApplicationRecord
       name: "#{name} Question",
       skill: self,
       owner_id: project_id,
-      type: 'SkillsRater'
+      type: 'SkillRater'
     )
   end
 

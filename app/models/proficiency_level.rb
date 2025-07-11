@@ -9,7 +9,7 @@ class ProficiencyLevel < ApplicationRecord
 
   enum :proficiency_type, {
     default: 0,
-    by_type: 1,
+    by_skill_type: 1,
     by_skill: 2
   }
 

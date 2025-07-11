@@ -1,11 +1,11 @@
 /* eslint-disable prefer-spread */
 import _ from 'lodash'
 
-const SkillsRater = function (result) {
+const SkillRater = function (result) {
   this.result = result
 }
 
-_.extend(SkillsRater.prototype, {
+_.extend(SkillRater.prototype, {
   answer (level) {
     this.result.answers = [{
       level,
@@ -26,4 +26,4 @@ _.extend(SkillsRater.prototype, {
   },
 })
 
-export default SkillsRater
+export default SkillRater

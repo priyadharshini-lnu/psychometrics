@@ -323,7 +323,7 @@ nl:
             email:
               blank: E-mail kan niet leeg zijn
               not_uniq_email: Rij met e-mail is al aanwezig
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
               at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ten minste één functierol moet ingeschakeld zijn met een vaardigheidstype geselecteerd voor %{block_name}
@@ -837,9 +837,9 @@ nl:
         import_question_translations: Vragen importeren Vertalingen
         import_raw_data: Ruwe gegevens importeren
         import_scoring_data: Scoringsgegevens importeren
+        import_skill_rater_taxonomies: Taxonomieën voor vaardigheidsbeoordelaars importeren
         import_skill_translations: Importvaardigheden Vertalingen
         import_skills: Vaardigheden importeren
-        import_skills_rater_taxonomies: Taxonomieën voor vaardigheidsbeoordelaars importeren
         import_sms_invites: SMS-uitnodiging importeren
         import_users: Gebruikers importeren
         migrate_assessment_translations: Beoordeling Vertaalmigratie

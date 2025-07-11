@@ -6,7 +6,7 @@ class BlockSerializer < Panko::Serializer
   def questions
     Panko::ArraySerializer.new(
       question_items,
-      each_serializer: skills_rater? ? ::SkillsRaterQuestionSerializer : ::QuestionSerializer,
+      each_serializer: skill_rater? ? ::SkillRaterQuestionSerializer : ::QuestionSerializer,
       context: {
         piped_text_context: context[:piped_text_context],
         selected_locale: context[:selected_locale],
@@ -17,7 +17,7 @@ class BlockSerializer < Panko::Serializer
   end
 
   def question_items
-    skills_rater? ? skill_questions : object.questions_ams
+    skill_rater? ? skill_questions : object.questions_ams
   end
 
   def deleted
@@ -28,8 +28,8 @@ class BlockSerializer < Panko::Serializer
     I18n.l object.created_at, format: :short
   end
 
-  def skills_rater?
-    object.block_type == 'skills_rater'
+  def skill_rater?
+    object.block_type == 'skill_rater'
   end
 
   def props

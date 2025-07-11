@@ -26,10 +26,10 @@ module Skills
                                                    proficiency_type: :by_skill)
       return proficiency_level if proficiency_level.present?
 
-      # by_skill_category
+      # by_skill_type
       skill_type = skill.skill_type
       proficiency_level = ProficiencyLevel.find_by(project_id: skill.project_id, skill_type: skill_type,
-                                                   proficiency_type: :by_type)
+                                                   proficiency_type: :by_skill_type)
       return proficiency_level if proficiency_level.present?
 
       # default
@@ -49,7 +49,7 @@ module Skills
       skill_type = skill.skill_type
       proficiency_level = ProficiencyLevel.find_by(project_id: nil,
                                                    skill_type:   skill_type,
-                                                   proficiency_type: :by_type)
+                                                   proficiency_type: :by_skill_type)
       return proficiency_level if proficiency_level.present?
 
       # deafult

@@ -24,29 +24,29 @@ RSpec.describe Dimension, type: :model do
     end
   end
 
-  describe '.skills_rater_dimension' do
+  describe '.skill_rater_dimension' do
     let(:project) { create(:project, name: 'My Project') }
 
-    it 'creates a new skills_rater dimension if not existing' do
-      dimension = Dimension.skills_rater_dimension(project)
+    it 'creates a new skill_rater dimension if not existing' do
+      dimension = Dimension.skill_rater_dimension(project)
 
       expect(dimension).to be_persisted
-      expect(dimension.dimension_type).to eq('skills_rater')
+      expect(dimension.dimension_type).to eq('skill_rater')
       expect(dimension.owner_id).to eq(project.id)
-      expect(dimension.name).to eq('My Project - Skills Rater')
+      expect(dimension.name).to eq('My Project - Skill Rater')
     end
 
-    it 'returns existing skills_rater dimension if already present and updates name' do
+    it 'returns existing skill_rater dimension if already present and updates name' do
       existing = Dimension.create!(
-        dimension_type: :skills_rater,
+        dimension_type: :skill_rater,
         owner_id: project.id,
         name: 'Old Name'
       )
 
-      result = Dimension.skills_rater_dimension(project)
+      result = Dimension.skill_rater_dimension(project)
 
       expect(result.id).to eq(existing.id)
-      expect(result.name).to eq('My Project - Skills Rater')
+      expect(result.name).to eq('My Project - Skill Rater')
     end
   end
 end

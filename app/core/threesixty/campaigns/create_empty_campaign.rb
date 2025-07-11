@@ -46,8 +46,8 @@ module Threesixty
       private
 
       def dimension
-        @dimension ||= if form.skills_rater?
-                         Dimension.skills_rater_dimension(project)
+        @dimension ||= if form.skill_rater?
+                         Dimension.skill_rater_dimension(project)
                        else
                          Dimension.create!(
                            name: resource_name,

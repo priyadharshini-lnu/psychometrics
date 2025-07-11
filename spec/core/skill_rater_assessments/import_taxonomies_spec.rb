@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe SkillsRaterAssessments::ImportTaxonomies do
+RSpec.describe SkillRaterAssessments::ImportTaxonomies do
   let(:file_path) do
-    Rails.root.join('spec/fixtures/files/skills_rater_assessments/valid_file.xlsx')
+    Rails.root.join('spec/fixtures/files/skill_rater_assessments/valid_file.xlsx')
   end
 
   describe 'project specific import' do
@@ -116,10 +116,10 @@ RSpec.describe SkillsRaterAssessments::ImportTaxonomies do
       context 'when global proficiency levels exist' do
         let!(:global_default) { create(:proficiency_level, project_id: nil, proficiency_type: 'default') }
         let!(:global_category1) do
-          create(:proficiency_level, project_id: nil, proficiency_type: 'by_type', skill_type: 'technical')
+          create(:proficiency_level, project_id: nil, proficiency_type: 'by_skill_type', skill_type: 'technical')
         end
         let!(:global_category2) do
-          create(:proficiency_level, project_id: nil, proficiency_type: 'by_type', skill_type: 'behavioral')
+          create(:proficiency_level, project_id: nil, proficiency_type: 'by_skill_type', skill_type: 'behavioral')
         end
 
         context 'when project has no proficiency levels' do
@@ -128,7 +128,7 @@ RSpec.describe SkillsRaterAssessments::ImportTaxonomies do
               to change(ProficiencyLevel, :count).by(3)
 
             expect(ProficiencyLevel.where(project_id: project.id).default).to exist
-            expect(ProficiencyLevel.where(project_id: project.id).by_type.pluck(:skill_type)).to match_array(
+            expect(ProficiencyLevel.where(project_id: project.id).by_skill_type.pluck(:skill_type)).to match_array(
               %w[technical behavioral]
             )
           end
@@ -143,7 +143,7 @@ RSpec.describe SkillsRaterAssessments::ImportTaxonomies do
             expect { service.send(:import_global_proficiency_levels) }.
               to change(ProficiencyLevel, :count).by(2)
 
-            expect(ProficiencyLevel.where(project_id: project.id).by_type.pluck(:skill_type)).to match_array(
+            expect(ProficiencyLevel.where(project_id: project.id).by_skill_type.pluck(:skill_type)).to match_array(
               %w[technical behavioral]
             )
           end

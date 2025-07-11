@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module UsersResults
-  class CalculateSkillsRaterScores
+  class CalculateSkillRaterScores
     def initialize(users_result)
       @users_result = users_result
       @scoring = {}
@@ -21,7 +21,7 @@ module UsersResults
     def process_questions
       questions_with_deps.each do |question_id, question|
         result = users_result.answers[question_id.to_s]
-        next unless question.skills_rater?
+        next unless question.skill_rater?
 
         process_question(question, result)
       end
@@ -43,14 +43,14 @@ module UsersResults
     end
 
     def questions_with_deps
-      @questions_with_deps ||= Question.skills_rater.
+      @questions_with_deps ||= Question.skill_rater.
                                includes(skill: :factor).
                                where(id: users_result.answers.keys).
                                index_by(&:id)
     end
 
     def scorer
-      @scorer ||= ::Scoring::SkillsRater.new
+      @scorer ||= ::Scoring::SkillRater.new
     end
   end
 end

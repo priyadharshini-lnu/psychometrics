@@ -8,7 +8,7 @@ module Administration
       attribute :blocks, [Hash]
 
       validate :validate_individual_blocks
-      validate :validate_no_same_skills_rater_blocks
+      validate :validate_no_same_skill_rater_blocks
 
       private
 
@@ -16,19 +16,19 @@ module Administration
         return if blocks.blank?
 
         blocks.each do |block|
-          validate_block_by_type(block)
+          validate_block_by_skill_type(block)
         end
       end
 
-      def validate_block_by_type(block)
+      def validate_block_by_skill_type(block)
         case block['block_type']
-          when 'skills_rater'
-            validate_skills_rater_block(block)
+          when 'skill_rater'
+            validate_skill_rater_block(block)
         end
       end
 
-      def validate_skills_rater_block(block)
-        form = SkillsRaterBlockForm.new(block: block)
+      def validate_skill_rater_block(block)
+        form = SkillRaterBlockForm.new(block: block)
 
         return if form.valid?
 
@@ -37,11 +37,11 @@ module Administration
         end
       end
 
-      def validate_no_same_skills_rater_blocks
+      def validate_no_same_skill_rater_blocks
         seen_configs = Set.new
         conflicts = {}
 
-        skills_rater_blocks.each do |block|
+        skill_rater_blocks.each do |block|
           duplicates = find_duplicate_configs(block, seen_configs)
           conflicts[block['name']] = duplicates if duplicates.any?
         end
@@ -49,8 +49,8 @@ module Administration
         add_conflict_errors(conflicts) if conflicts.any?
       end
 
-      def skills_rater_blocks
-        blocks.select { |b| b['block_type'] == 'skills_rater' }
+      def skill_rater_blocks
+        blocks.select { |b| b['block_type'] == 'skill_rater' }
       end
 
       def find_duplicate_configs(block, seen_configs)

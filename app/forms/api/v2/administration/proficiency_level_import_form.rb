@@ -81,8 +81,8 @@ module Api
           case proficiency_type
             when 'by_skill'
               validate_by_skill_row(row, row_number)
-            when 'by_type'
-              validate_by_type_row(row, row_number)
+            when 'by_skill_type'
+              validate_by_skill_type_row(row, row_number)
             when 'default'
               validate_default_row(row, row_number)
             else
@@ -121,18 +121,18 @@ module Api
           end
         end
 
-        def validate_by_type_row(row, row_number)
+        def validate_by_skill_type_row(row, row_number)
           skill_type = row['SkillType'].to_s.strip.presence
 
           if skill_type.blank?
             errors.add(:base,
-                       I18n.t('administration.proficiency_levels.import.errors.by_type_missing',
+                       I18n.t('administration.proficiency_levels.import.errors.by_skill_type_missing',
                               row_number: row_number))
-          elsif ::ProficiencyLevel.exists?(proficiency_type: 'by_type',
+          elsif ::ProficiencyLevel.exists?(proficiency_type: 'by_skill_type',
                                            project_id: project_id,
                                            skill_type: skill_type)
             errors.add(:base,
-                       I18n.t('administration.proficiency_levels.import.errors.by_type_exists',
+                       I18n.t('administration.proficiency_levels.import.errors.by_skill_type_exists',
                               row_number: row_number))
           end
         end
