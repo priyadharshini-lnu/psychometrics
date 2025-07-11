@@ -73,6 +73,7 @@ export const fetch = (campaignId: string, tableConfig: TableConfig) => ({
     debounce: 500,
     tableConfig,
     url: `/administration/new_campaigns/${campaignId}/users`,
+    loader: true,
   },
 })
 

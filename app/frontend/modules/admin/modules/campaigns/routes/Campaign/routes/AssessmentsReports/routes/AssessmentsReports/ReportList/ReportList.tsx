@@ -22,6 +22,7 @@ const ReportList: React.FC<Props> = ({
     list,
     reportPermissions,
   },
+  isReportsLoading,
   openModal,
   selectRecords,
   toggleAssessorAccess,
@@ -47,6 +48,7 @@ const ReportList: React.FC<Props> = ({
           className="mtm"
           rowKey="id"
           dataSource={list}
+          loading={isReportsLoading}
           pagination={false}
           rowSelection={{ type: 'checkbox', onChange: (ids: number[]) => { selectRecords(ids) } }}
         >

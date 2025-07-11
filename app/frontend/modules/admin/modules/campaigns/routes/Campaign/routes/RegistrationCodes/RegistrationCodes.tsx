@@ -31,6 +31,7 @@ const { I18n } = window
 
 interface Props {
   fetch(campaignId: string, tableConfig: TableConfig): void
+  isLoadingCodes: boolean,
   destroy(campaignId: string, id: number): void
   list: RegistrationCode[],
   permissions: {
@@ -46,6 +47,7 @@ interface Props {
 
 const RegistrationCodes: React.FC<Props> = ({
   fetch,
+  isLoadingCodes,
   list,
   total,
   permissions,
@@ -85,7 +87,14 @@ const RegistrationCodes: React.FC<Props> = ({
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            loading={isLoadingCodes}
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+          >
             <Column
               title={I18n.t('common.column.active')}
               key="active"

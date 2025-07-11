@@ -22,6 +22,7 @@ const AssessmentList: React.FC<Props> = ({
     list,
     permissions,
   },
+  isLoadingAssessmentsAndReports,
   openModal,
   rescoreResponses,
   exportRawResults,
@@ -58,7 +59,13 @@ const AssessmentList: React.FC<Props> = ({
   return (
     <Row>
       <Col span={24}>
-        <Table className="mtm" rowKey="id" dataSource={list} pagination={false}>
+        <Table
+          className="mtm"
+          rowKey="id"
+          loading={isLoadingAssessmentsAndReports}
+          dataSource={list}
+          pagination={false}
+        >
           <Column
             title={I18n.t('common.column.id')}
             dataIndex="assessmentId"

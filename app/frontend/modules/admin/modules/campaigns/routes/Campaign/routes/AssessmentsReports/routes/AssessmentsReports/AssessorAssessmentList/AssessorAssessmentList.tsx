@@ -32,7 +32,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
   const stateManager = useCampaignAssessorAssessmentsStore()
 
   const {
-    data, fetch, removeResource, updateResource, meta,
+    data, fetch, removeResource, updateResource, meta, isLoading: isAssessorAssessmentLoading,
   } = useResources<CampaignAssessorAssessments>(
     'campaign_assessor_assessments',
     {
@@ -77,7 +77,13 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
     <>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={data} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            loading={isAssessorAssessmentLoading('fetch')}
+            dataSource={data}
+            pagination={false}
+          >
             <Column
               title={I18n.t('common.column.id')}
               dataIndex="assessmentId"

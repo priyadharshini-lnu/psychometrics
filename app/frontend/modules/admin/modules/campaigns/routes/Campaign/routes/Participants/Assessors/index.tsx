@@ -7,8 +7,10 @@ import {
   AppstoreOutlined, PlusOutlined, MoreOutlined,
 } from '@ant-design/icons'
 import { Link, useParams } from 'react-router-dom'
+import { isRequestInProgress } from '~/core/request'
 import {
   fetch,
+  FETCH,
   remove,
   get as getAssessors,
 } from '~/modules/admin/modules/campaigns/core/assessors'
@@ -31,6 +33,7 @@ const connecter = connect(
   (state: RootState) => ({
     assessors: getAssessors(state),
     currentUser: getCurrentUser(state) as User,
+    isLoadingAssessors: isRequestInProgress(state, FETCH),
   }),
   {
     fetch,
@@ -63,6 +66,7 @@ const AssessorList: React.FC<Props> = ({
     total,
     permissions,
   },
+  isLoadingAssessors,
   tableConfig: {
     filters,
     page,
@@ -107,7 +111,14 @@ const AssessorList: React.FC<Props> = ({
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            loading={isLoadingAssessors}
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+          >
             <Column
               title={I18n.t('administration.campaigns.users.id')}
               key="id"

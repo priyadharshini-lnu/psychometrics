@@ -36,6 +36,7 @@ export const fetchAssessmentAndReports = (campaignId: string) => ({
   request: {
     method: 'get',
     url: `/administration/new_campaigns/${campaignId}/reports/assessments_and_reports`,
+    loader: true,
   },
 })
 
