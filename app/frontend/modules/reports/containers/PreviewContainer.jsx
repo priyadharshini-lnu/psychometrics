@@ -1,6 +1,5 @@
 /* eslint-disable react/no-find-dom-node */
 import { Component } from 'react'
-import _ from 'lodash'
 import { Provider } from 'react-redux'
 import { findDOMNode } from 'react-dom'
 import { normalize } from 'normalizr'
@@ -17,16 +16,13 @@ class PreviewContainer extends Component {
   componentDidMount () {
     const parent = findDOMNode(this).parentNode
     const {
-      data, results, locales, pdfExport, skipLogic, campaignFactorResults,
+      data, results, pdfExport, skipLogic, campaignFactorResults,
     } = parent.dataset
-    if (locales) {
-      I18nStore.locales = JSON.parse(locales)
-    }
     const { user, campaign } = parent.dataset
     const parsedData = JSON.parse(data)
     const userReportData = humps.camelizeKeys(JSON.parse(parent.dataset.userReportData))
     parsedData.pdfExport = pdfExport === 'true'
-    if (_.isEmpty(I18nStore.locales) && parsedData.locales) {
+    if (parsedData.locales) {
       I18nStore.locales = parsedData.locales
     }
     const { default_language } = parsedData
