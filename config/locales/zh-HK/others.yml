@@ -551,6 +551,10 @@ zh-HK:
     errors:
       campaign_idps:
         idp_template_not_published: 該IDP模板尚未發布，請在分配到廣告系列之前將其發布。
+      development_actions:
+        only_global_skills_allowed: 選定的技能必須是全球技能。
+        skills_not_belong_to_project: 選定的技能必須屬於指定的項目。
+        skills_required: 請選擇至少一項技能。
       idp_template:
         content_required: 說明需要內容
         tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。

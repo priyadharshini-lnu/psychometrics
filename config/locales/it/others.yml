@@ -2044,6 +2044,10 @@ it:
         idp_template_not_published: Questo modello IDP non è ancora stato pubblicato, per favore pubblicarlo prima di assegnare alla campagna.
       create_superadmin:
         uniq_email: L'e-mail deve essere unica.
+      development_actions:
+        only_global_skills_allowed: Le competenze selezionate devono essere competenze globali.
+        skills_not_belong_to_project: Le competenze selezionate devono appartenere al progetto specificato.
+        skills_required: Seleziona almeno un'abilità.
       exceeded_subjects_count: È possibile aggiungere solo %{count} soggetti per ogni invito
       filled?: non può essere vuoto
       idp_template:

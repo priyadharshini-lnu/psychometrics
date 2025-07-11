@@ -534,6 +534,10 @@ pl:
     errors:
       campaign_idps:
         idp_template_not_published: Ten szablon IDP nie jest jeszcze opublikowany, publikuj go przed przypisaniem do kampanii.
+      development_actions:
+        only_global_skills_allowed: Wybrane umiejętności muszą być globalne.
+        skills_not_belong_to_project: Wybrane umiejętności muszą należeć do określonego projektu.
+        skills_required: Wybierz co najmniej jedną umiejętność.
       idp_template:
         content_required: Treść jest wymagana w instrukcjach
         tag_or_skill_required: Jeśli wybierzesz opcję „Wybrane", wybierz tag lub umiejętność.

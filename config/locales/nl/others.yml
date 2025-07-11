@@ -2041,6 +2041,10 @@ nl:
         idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de campagne toewijst.
       create_superadmin:
         uniq_email: E-mail moet uniek zijn.
+      development_actions:
+        only_global_skills_allowed: De geselecteerde vaardigheden moeten wereldwijde vaardigheden zijn.
+        skills_not_belong_to_project: De geselecteerde vaardigheden moeten behoren tot het opgegeven project.
+        skills_required: Selecteer ten minste één vaardigheid.
       exceeded_subjects_count: Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
       filled?: kan niet leeg zijn
       idp_template:

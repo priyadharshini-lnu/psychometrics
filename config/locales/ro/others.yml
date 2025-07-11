@@ -521,6 +521,10 @@ ro:
     errors:
       campaign_idps:
         idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui campaniei.
+      development_actions:
+        only_global_skills_allowed: Abilitățile selectate trebuie să fie abilități globale.
+        skills_not_belong_to_project: Abilitățile selectate trebuie să aparțină proiectului specificat.
+        skills_required: Vă rugăm să selectați cel puțin o abilitate.
       job_roles:
         unique_within_job_group: Un rol de post cu același nume există deja.
       skills_job_roles:

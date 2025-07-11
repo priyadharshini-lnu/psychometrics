@@ -2109,6 +2109,10 @@ en:
         ai_assisted_idp_feature_error: Can't be true if ai assistants feature is disabled
       create_superadmin:
         uniq_email: Email should be uniq.
+      development_actions:
+        only_global_skills_allowed: The selected skills must be global skills.
+        skills_not_belong_to_project: The selected skills must belong to the specified project.
+        skills_required: Please select at least one skill.
       exceeded_subjects_count: You can only add %{count} subjects per invite
       filled?: can't be blank
       idp_template:

@@ -514,6 +514,10 @@ th:
     errors:
       campaign_idps:
         idp_template_not_published: เทมเพลต IDP นี้ยังไม่เผยแพร่โปรดเผยแพร่ก่อนที่จะมอบหมายให้แคมเปญ
+      development_actions:
+        only_global_skills_allowed: ทักษะที่เลือกจะต้องเป็นทักษะระดับโลก
+        skills_not_belong_to_project: ทักษะที่เลือกจะต้องเป็นของโครงการที่ระบุ
+        skills_required: โปรดเลือกทักษะอย่างน้อยหนึ่งทักษะ
       job_roles:
         unique_within_job_group: มีตำแหน่งงานที่มีชื่อเดียวกันอยู่แล้ว
       skills_job_roles:

@@ -2054,6 +2054,10 @@ pt:
         idp_template_not_published: Este modelo de IDP ainda não foi publicado, publique -o antes de atribuir a campanha.
       create_superadmin:
         uniq_email: O correio eletrónico deve ser uniq.
+      development_actions:
+        only_global_skills_allowed: As habilidades selecionadas devem ser habilidades globais.
+        skills_not_belong_to_project: As habilidades selecionadas devem pertencer ao projeto especificado.
+        skills_required: Selecione pelo menos uma habilidade.
       exceeded_subjects_count: Só é possível adicionar %{count} temas por convite
       filled?: não pode estar em branco
       idp_template:

@@ -2044,6 +2044,10 @@ fr:
         idp_template_not_published: Ce modèle de PDI n'est pas encore publié, veuillez le publier avant de s'attaquer à la campagne.
       create_superadmin:
         uniq_email: L'email doit être unique.
+      development_actions:
+        only_global_skills_allowed: Les compétences sélectionnées doivent être des compétences mondiales.
+        skills_not_belong_to_project: Les compétences sélectionnées doivent appartenir au projet spécifié.
+        skills_required: Veuillez sélectionner au moins une compétence.
       exceeded_subjects_count: Vous ne pouvez ajouter que %{count} sujets par invitation
       filled?: ne peut être vide
       invalid_name: seuls l'alphabet, les chiffres, les espaces, les tirets et les points sont autorisés comme caractères valides

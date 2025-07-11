@@ -440,6 +440,10 @@ hr:
     errors:
       campaign_idps:
         idp_template_not_published: Ovaj predložak IDP -a još nije objavljen, objavite ga prije nego što dodijelite kampanju.
+      development_actions:
+        only_global_skills_allowed: Odabrane vještine moraju biti globalne vještine.
+        skills_not_belong_to_project: Odabrane vještine moraju pripadati navedenom projektu.
+        skills_required: Odaberite barem jednu vještinu.
       user_idp_plan:
         idp_template_not_published: Ovaj predložak IDP -a još nije objavljen, objavite ga prije dodjele korisniku.
   emails:

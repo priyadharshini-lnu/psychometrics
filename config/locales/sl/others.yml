@@ -520,6 +520,10 @@ sl:
     errors:
       campaign_idps:
         idp_template_not_published: Ta predloga IDP še ni objavljena, objavite jo, preden dodelite kampanjo.
+      development_actions:
+        only_global_skills_allowed: Izbrane spretnosti morajo biti globalne spretnosti.
+        skills_not_belong_to_project: Izbrane spretnosti morajo pripadati določenemu projektu.
+        skills_required: Izberite vsaj eno veščino.
       job_roles:
         unique_within_job_group: Vloga delovnega mesta z istim imenom že obstaja.
       skills_job_roles:

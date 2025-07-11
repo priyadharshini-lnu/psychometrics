@@ -560,6 +560,10 @@ ar:
         user_not_found: المستخدم غير موجود أو لا ينتمي إلى نفس المشروع
       campaign_idps:
         idp_template_not_published: لم يتم نشر قالب IDP هذا بعد ، يرجى نشره قبل التعيين إلى الحملة.
+      development_actions:
+        only_global_skills_allowed: يجب أن تكون المهارات المختارة مهارات عالمية.
+        skills_not_belong_to_project: يجب أن تنتمي المهارات المحددة إلى المشروع المحدد.
+        skills_required: الرجاء تحديد مهارة واحدة على الأقل.
       idp_template:
         content_required: المحتوى مطلوب للتعليمات
         tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"

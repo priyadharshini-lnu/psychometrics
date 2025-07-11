@@ -520,6 +520,10 @@ sk:
     errors:
       campaign_idps:
         idp_template_not_published: Táto šablóna IDP ešte nie je zverejnená, pred pridelením kampane ju uverejnite.
+      development_actions:
+        only_global_skills_allowed: Vybrané zručnosti musia byť globálne zručnosti.
+        skills_not_belong_to_project: Vybrané zručnosti musia patriť do špecifikovaného projektu.
+        skills_required: Vyberte aspoň jednu zručnosť.
       job_roles:
         unique_within_job_group: Úloha s rovnakým názvom už existuje.
       skills_job_roles:

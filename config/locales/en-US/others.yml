@@ -521,6 +521,10 @@ en-US:
     errors:
       campaign_idps:
         idp_template_not_published: This Idp Template is not published yet, please publish it before assigning to campaign.
+      development_actions:
+        only_global_skills_allowed: The selected skills must be global skills.
+        skills_not_belong_to_project: The selected skills must belong to the specified project.
+        skills_required: Please select at least one skill.
       job_roles:
         unique_within_job_group: A job role with the same name already exists.
       skills_job_roles:

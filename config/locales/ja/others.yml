@@ -2055,6 +2055,10 @@ ja:
         idp_template_not_published: このIDPテンプレートはまだ公開されていません。キャンペーンに割り当てる前に公開してください。
       create_superadmin:
         uniq_email: 電子メールはユニックでなければならない。
+      development_actions:
+        only_global_skills_allowed: 選択されたスキルはグローバルスキルでなければなりません。
+        skills_not_belong_to_project: 選択されたスキルは、指定されたプロジェクトに属する必要があります。
+        skills_required: 少なくとも1つのスキルを選択してください。
       exceeded_subjects_count: 1回の招待で追加できる被写体は %{count} だけです。
       filled?: 空白は許されない
       idp_template:

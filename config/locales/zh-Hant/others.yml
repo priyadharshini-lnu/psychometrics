@@ -2042,6 +2042,10 @@ zh-Hant:
         idp_template_not_published: 該IDP模板尚未發布，請在分配到廣告系列之前將其發布。
       create_superadmin:
         uniq_email: 電子郵件應該是單一的。
+      development_actions:
+        only_global_skills_allowed: 選定的技能必須是全球技能。
+        skills_not_belong_to_project: 選定的技能必須屬於指定的項目。
+        skills_required: 請選擇至少一項技能。
       exceeded_subjects_count: 每次邀請只能新增 %{count} 主題
       filled?: 不能空白
       idp_template:
