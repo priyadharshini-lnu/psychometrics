@@ -90,7 +90,7 @@ export const idpApi = createApi({
         lang, campaignId, id,
       }) => ({
         url: `administration/new_campaigns/${campaignId}/user_idp_reports/${id}.json`,
-        params: { lang },
+        params: { report_lang: lang },
       }),
     }),
   }),

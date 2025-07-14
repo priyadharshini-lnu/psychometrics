@@ -5,6 +5,7 @@ import styles from './IDP.less'
 import Page from '../../Page'
 import techicalIcon from '../../../assets/Technical.svg'
 import { Skill } from './DevelopmentAction'
+import { useI18n } from '~/modules/idpReport/I18nContext'
 
 const { I18n } = window
 I18n.locale = document.body.getAttribute('data-locale')
@@ -16,6 +17,7 @@ const CONTAINER_HEIGHT = 630
 
 const Technical = ({ skills, rtl, status }) => {
   const container = useRef<HTMLElement>(null)
+  const I18n = useI18n()
 
   return (
     <Page rtl={rtl}>

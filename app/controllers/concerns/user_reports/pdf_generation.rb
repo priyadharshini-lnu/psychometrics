@@ -11,7 +11,7 @@ module UserReports::PdfGeneration
 
   def show # rubocop:disable Metrics/AbcSize
     @available_translations = ::Translation.available_translation_for_report(resource.id, nil)
-    @selected_locale = params[:lang] || resource.report.default_language
+    @selected_locale = params[:report_lang] || resource.report.default_language
 
     respond_to do |format| # rubocop:disable Metrics/BlockLength
       format.html do
@@ -38,7 +38,7 @@ module UserReports::PdfGeneration
             campaign: resource.campaign,
             threesixty_campaign: resource.threesixty_campaign,
             options: resource.threesixty_campaign&.option,
-            lang: params[:lang],
+            lang: params[:report_lang],
             campaign_user: resource.campaign_user
           }
         ).serialize(resource)
@@ -48,7 +48,7 @@ module UserReports::PdfGeneration
 
   def download
     options = {
-      lang: params[:lang] || resource.effective_default_language,
+      lang: params[:report_lang] || resource.effective_default_language,
       file_path: Settings.aws.s3.one_day_expiry_folder,
       notify_user: true,
       update_record: false,

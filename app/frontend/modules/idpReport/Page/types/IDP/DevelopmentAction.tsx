@@ -9,9 +9,7 @@ import aiIcon from '../../../assets/GenerativeAi.svg'
 import customIcon from '../../../assets/Custom.svg'
 import libIcon from '../../../assets/IDPLibrary.svg'
 import dayjs from '~/utils/dayjs'
-
-const { I18n } = window
-I18n.locale = document.body.getAttribute('data-locale')
+import { useI18n } from '~/modules/idpReport/I18nContext'
 
 const COLORS = {
   on_the_job: '#009DE0',
@@ -34,6 +32,7 @@ const TYPE_ICONS = {
 
 export const Skill = ({ skill, developmentActions }) => {
   const das = _.groupBy(developmentActions, da => da.custom_action_learning_style || da.learning_style)
+  const I18n = useI18n()
 
   return (
     <div className={styles.skill}>
@@ -59,6 +58,8 @@ export const Skill = ({ skill, developmentActions }) => {
 
 
 const DevelopmentAction = ({ developmentAction }) => {
+  const I18n = useI18n()
+
   const learnStyle = developmentAction.custom_action_learning_style || developmentAction.learning_style
   const color = COLORS[learnStyle]
   const icon = LEARN_STYLE_ICONS[learnStyle]

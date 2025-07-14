@@ -10,7 +10,7 @@ module Administration
       before_action :pundit_authorize
 
       def show
-        Mobility.with_locale(params[:lang]) do
+        Mobility.with_locale(params[:report_lang]) do
           @data = {
             template: IdpTemplateSerializer.new.serialize(resource.idp_template),
             user_idp: UserIdpPlanSerializer.new(
@@ -20,6 +20,7 @@ module Administration
             ).serialize(resource)
           }
         end
+
         respond_to do |format|
           format.json do
             render json: @data
@@ -29,7 +30,7 @@ module Administration
 
       def download
         options = {
-          lang: selected_locale || resource.default_language,
+          lang: params[:report_lang] || resource.default_language,
           file_path: Settings.aws.s3.one_day_expiry_folder,
           notify_user: true,
           update_record: false,
@@ -39,14 +40,6 @@ module Administration
         audit! :download_idp_report, resource, campaign: resource.campaign,
           payload: params.merge(resource.details_to_log)
         respond_to do |format|
-          format.html do
-            if Settings.features.url_to_pdf_faas
-              redirect_to "/admin/projects/#{resource.campaign.project_id}/new_campaigns/#{resource.campaign_id}/user_idp_reports/#{resource.id}?lang=#{params[:lang]}" # rubocop:disable Layout/LineLength
-            else
-              send_file @result[:file_path], type: 'application/pdf', disposition: 'attachment'
-            end
-          end
-
           format.json { head :ok }
         end
       end

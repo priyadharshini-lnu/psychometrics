@@ -11,6 +11,7 @@ html lang="en"
       = stylesheet_link_tag 'test'
     = javascript_include_tag 'administration'
     = javascript_include_tag "administration/i18n/#{load_translation_file}.js"
+    = javascript_include_tag "administration/i18n/#{params[:report_lang]}.js" if params[:report_lang].present?
     = render 'layouts/favicons'
     = vite_client_tag
     = vite_react_refresh_tag

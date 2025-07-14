@@ -10,8 +10,7 @@ import aiIcon from '../../../assets/GenerativeAi.svg'
 import customIcon from '../../../assets/Custom.svg'
 import libIcon from '../../../assets/IDPLibrary.svg'
 import { useAppSelector } from '~/modules/idpReport/hooks/redux'
-
-const { I18n } = window
+import { useI18n } from '~/modules/idpReport/I18nContext'
 
 const COLORS = {
   blue: '#009DE0',
@@ -20,6 +19,8 @@ const COLORS = {
 }
 
 const Card = ({ skill }) => {
+  const I18n = useI18n()
+
   const actions = _.groupBy(skill.user_idp_development_actions,
     da => da.custom_action_learning_style || da.learning_style)
 
@@ -127,6 +128,7 @@ const Card = ({ skill }) => {
 }
 
 const ReportSummary = ({ rtl }) => {
+  const I18n = useI18n()
   const idp = useAppSelector(state => state.idp.userIdp)
   const skills = idp.user_idp_skills
 

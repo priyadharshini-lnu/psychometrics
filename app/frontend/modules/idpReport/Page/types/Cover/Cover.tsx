@@ -6,9 +6,7 @@ import mercer from '../../../assets/MercerLogo.svg'
 import Page from '../../Page'
 import styles from './Cover.less'
 import { useAppSelector } from '~/modules/idpReport/hooks/redux'
-
-const { I18n } = window
-I18n.locale = document.body.getAttribute('data-locale')
+import { useI18n } from '~/modules/idpReport/I18nContext'
 
 const FIELDS = [
   'name',
@@ -32,6 +30,7 @@ const FIELD_TO_DATA = {
 const Cover = ({ rtl }) => {
   const template = useAppSelector(state => state.idp.template)
   const userIdp = useAppSelector(state => state.idp.userIdp)
+  const I18n = useI18n()
   const {
     background, client_logo, logo_type, title_text, subtitle_text,
   } = template

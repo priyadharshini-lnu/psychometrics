@@ -56,9 +56,9 @@ export default function ReportPreview ({
   const skipLogic = params.get('skip_logic') === 'true'
   const { urlToPdfFaas: isUrlToPdfFaasFeatureEnabled } = camelizeKeys(features)
 
-  const lang = new URLSearchParams(location.search).get('lang') || undefined
+  const lang = new URLSearchParams(location.search).get('report_lang') || userReport.report.default_language?.code
   useEffect(() => {
-    fetchReport(parsedCampaignId, parsedId, { lang })
+    fetchReport(parsedCampaignId, parsedId, { reportLang: lang })
 
     return () => {
       clearUseReportDetails()
@@ -108,10 +108,10 @@ export default function ReportPreview ({
 
   const onReportDownloadClick = () => {
     if (isUrlToPdfFaasFeatureEnabled) {
-      asyncDownload(parsedCampaignId, parsedId, { lang })
+      asyncDownload(parsedCampaignId, parsedId, { reportLang: lang })
       message.success(I18n.t('user_reports.messages.async_generation'))
     } else {
-      download(parsedCampaignId, parsedId, { skipLogic, lang })
+      download(parsedCampaignId, parsedId, { skipLogic, reportLang: lang })
     }
   }
 
@@ -196,6 +196,7 @@ export default function ReportPreview ({
         <LangDropdownWithChangeUrl
           locales={userReport.report.available_languages.map(l => l.code)}
           currentLocale={lang}
+          paramName="report_lang"
           key="lang"
         />,
       )

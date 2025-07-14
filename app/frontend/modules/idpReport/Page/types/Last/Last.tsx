@@ -5,12 +5,13 @@ import mercer from '../../../assets/MercerLogo.svg'
 import styles from './Last.less'
 import Page from '../../Page'
 import { useAppSelector } from '~/modules/idpReport/hooks/redux'
+import { useI18n } from '~/modules/idpReport/I18nContext'
 
-const { I18n } = window
 
 const Last = ({ rtl }) => {
   const template = useAppSelector(state => state.idp.template)
   const { background, client_logo, logo_type } = template
+  const I18n = useI18n()
 
   return (
     <Page rtl={rtl}>

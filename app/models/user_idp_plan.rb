@@ -86,7 +86,7 @@ class UserIdpPlan < ApplicationRecord
   end
 
   def default_language
-    @user_idp_plan.campaign.project.available_locales.first || I18n.default_locale
+    campaign.project.available_locales.first || I18n.default_locale
   end
 
   def skill_gap_report

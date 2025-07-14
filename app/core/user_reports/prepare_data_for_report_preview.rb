@@ -25,6 +25,7 @@ module UserReports
                     user_results: user_report.user_results,
                     module_overrides: user_report.text_module_overrides,
                     piped_text_context: user_report.piped_text_context,
+                    lang: options[:locale],
                     include: '**'
                   }
                 ).serialize(report).to_json,
