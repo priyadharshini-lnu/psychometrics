@@ -1,0 +1,108 @@
+name: Translation Bot
+
+on:
+  pull_request:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  generate_translations:
+    if: github.event.label.name == 'translate'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Debug label trigger
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Label name: ${{ github.event.label.name }}"
+          echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "PR head ref: ${{ github.event.pull_request.head.ref }}"
+          echo "PR base ref: ${{ github.event.pull_request.base.ref }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Actor: ${{ github.actor }}"
+          
+      - name: Set PR details
+        id: pr_details
+        run: |
+          echo "pr_number=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          echo "head_ref=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
+          echo "head_sha=${{ github.event.pull_request.head.sha }}" >> $GITHUB_OUTPUT
+          echo "base_ref=${{ github.event.pull_request.base.ref }}" >> $GITHUB_OUTPUT
+
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr_details.outputs.head_ref }}
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: false
+
+      - name: Install DeepL gem
+        run: |
+          gem install deepl-rb
+          echo "DeepL gem installed successfully"
+
+      - name: Find new translation keys
+        id: find_keys
+        env:
+          BASE_REF: ${{ steps.pr_details.outputs.base_ref }}
+        run: |
+          ruby .github/scripts/translation-bot/process-keys.rb "$BASE_REF"
+
+      - name: Generate translations
+        if: steps.find_keys.outputs.new_keys != '[]'
+        env:
+          NEW_KEYS: ${{ steps.find_keys.outputs.new_keys }}
+          DEEPL_AUTH_KEY: ${{ secrets.DEEPL_AUTH_KEY }}
+        run: |
+          ruby .github/scripts/translation-bot/generate-translations.rb "$NEW_KEYS"
+
+      - name: Check if translations were generated
+        id: check_changes
+        run: |
+          ruby .github/scripts/translation-bot/check-changes.rb
+
+      - name: Debug git status before PR creation
+        if: steps.check_changes.outputs.changes_made == 'true'
+        run: |
+          echo "Git status:"
+          git status
+          echo "Git status --porcelain config/locales/:"
+          git status --porcelain config/locales/
+          echo "Git diff --name-only:"
+          git diff --name-only
+
+      - name: Create translation PR
+        if: steps.check_changes.outputs.changes_made == 'true'
+        id: create_pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash .github/scripts/translation-bot/create-translation-pr.sh \
+            "${{ steps.pr_details.outputs.pr_number }}" \
+            "${{ steps.pr_details.outputs.head_ref }}" \
+            "${{ steps.pr_details.outputs.base_ref }}"
+
+      - name: Comment on original PR
+        if: always()
+        env:
+          PR_URL: ${{ steps.create_pr.outputs.pr_url }}
+          TRANSLATION_BRANCH: ${{ steps.create_pr.outputs.translation_branch }}
+          NEW_KEYS: ${{ steps.find_keys.outputs.new_keys }}
+          PR_NUMBER: ${{ steps.pr_details.outputs.pr_number }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ruby .github/scripts/translation-bot/comment-on-pr.rb "$PR_NUMBER" "$NEW_KEYS" "$PR_URL" "$TRANSLATION_BRANCH"
+
+      - name: Cleanup
+        if: always()
+        run: |
+          ruby .github/scripts/translation-bot/cleanup.rb
