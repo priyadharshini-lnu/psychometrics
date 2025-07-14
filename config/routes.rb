@@ -29,13 +29,6 @@ Rails.application.routes.draw do
 
   get '/admin', to: 'administration/app#dashboard', as: :admin
   get '/admin/meet/:room_id', to: 'administration/app#dashboard', as: :admin_meeting
-
-  # TODO: remove this once we move Threesixty use common campaign type route
-  get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id/*all',
-      to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}/%{all}')
-  get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id',
-      to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}')
-  get '/admin/clients/:client_id/*all', to: 'administration/app#dashboard'
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'

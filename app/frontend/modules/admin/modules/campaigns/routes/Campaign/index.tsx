@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { createPortal } from 'react-dom'
-import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campaigns/core/current'
+import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import RouteList from '~/components/RouteList'
 import Breadcrumb from '../../components/Breadcrumb'
@@ -16,25 +16,14 @@ const connector = connect(
   (state: RootState) => ({
     campaignPermissions: getCurrentCampaign(state).permissions,
   }),
-  {
-    fetch,
-  },
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-interface OwnProps {
-  fetch(id: number, projectId: number): Promise<void>
-}
+type Props = PropsFromRedux
 
-type Props = PropsFromRedux & OwnProps
-
-const Campaign: React.FC<Props> = ({ fetch, campaignPermissions }) => {
-  const { campaignId, projectId } = useParams() as { projectId: string, campaignId: string }
-
-  useEffect(() => {
-    fetch(parseInt(campaignId, 10), parseInt(projectId, 10))
-  }, [campaignId])
+const Campaign: React.FC<Props> = ({ campaignPermissions }) => {
+  const { campaignId } = useParams() as { campaignId: string }
   const node = document.getElementById('sub_navigation')
 
 
@@ -57,8 +46,8 @@ const Campaign: React.FC<Props> = ({ fetch, campaignPermissions }) => {
             label: state => state.client.name,
           },
           {
-            link: state => `/admin/projects/${state.project.id}/new_campaigns`,
-            label: state => state.project.name,
+            link: state => `/admin/projects/${state.project?.id}/new_campaigns`,
+            label: state => state.project?.name,
           },
           {
             label: state => state.campaign?.name,

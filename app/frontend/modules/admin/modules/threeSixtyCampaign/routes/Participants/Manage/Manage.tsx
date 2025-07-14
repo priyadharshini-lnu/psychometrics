@@ -10,20 +10,19 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import {
   reset as resetCampaign, resetAllNominations, exportCompletionStatuses, rescoreAssessment,
 } from '~/modules/admin/modules/threeSixtyCampaign/core'
-import { get as getCurrentUser } from '~/core/currentUser'
 import {
-  getCurrentAssessmentId, getCurrentReportId, getCurrentDimensionId,
+  get as getCurrentCampaign, getCurrentAssessmentId, getCurrentReportId, getCurrentDimensionId,
 } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 
 const { I18n } = window
 
 const connector = connect(
   (state: RootState) => ({
-    campaignId: state.threeSixtyCampaign.campaignDetails.campaignId,
+    campaignId: getCurrentCampaign(state).id,
     dimensionId: getCurrentDimensionId(state),
     assessmentId: getCurrentAssessmentId(state),
     reportId: getCurrentReportId(state),
-    currentUser: getCurrentUser(state),
+    campaignPermissions: getCurrentCampaign(state).permissions,
   }),
   {
     resetCampaign, resetAllNominations, openModal, exportCompletionStatuses, rescoreAssessment,
@@ -39,7 +38,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & OwnProps
 
 export const ManageComponent: React.FC<Props> = ({
-  openModal, campaignId, dimensionId, reportId, assessmentId, currentUser,
+  openModal, campaignId, dimensionId, reportId, assessmentId, campaignPermissions,
 }) => (
   <ConditionalDropdown
     menu={getMenuProps({
@@ -48,7 +47,7 @@ export const ManageComponent: React.FC<Props> = ({
       dimensionId,
       reportId,
       assessmentId,
-      currentUser,
+      campaignPermissions,
     })}
     className="mrm"
     hideForEmptyMenu
@@ -65,36 +64,36 @@ export const ManageComponent: React.FC<Props> = ({
 )
 
 const getMenuProps = ({
-  campaignId, dimensionId, reportId, assessmentId, openModal, currentUser,
+  campaignId, dimensionId, reportId, assessmentId, openModal, campaignPermissions,
 }):MenuProps => {
   const menuItems = [
-    currentUser.permissions.editDimension && {
+    campaignPermissions.editDimension && {
       key: 'dimension',
       label: (
         <a href={`/administration/dimensions/${dimensionId}/factors`}>
           {I18n.t('administration.threesixty_campaigns.manage.dimension')}
         </a>),
     },
-    currentUser.permissions.editReport && {
+    campaignPermissions.editReport && {
       key: 'report',
       label: (
         <a href={`/administration/reports/${reportId}`}>
           {I18n.t('administration.threesixty_campaigns.manage.report')}
         </a>),
     },
-    currentUser.permissions.editAssessment && {
+    campaignPermissions.editAssessment && {
       key: 'assessment',
       label: (
         <a href={`/administration/assessments/${assessmentId}`}>
           {I18n.t('administration.threesixty_campaigns.manage.assessment')}
         </a>),
     },
-    currentUser.permissions.manageRelationships && {
+    campaignPermissions.manageRelationships && {
       key: 'manage_relationship',
       label: I18n.t('administration.threesixty_campaigns.manage.manage_relationships'),
     },
     { type: 'divider' },
-    (currentUser.permissions.manageFactorBenchmarkScores || currentUser.permissions.viewFactorBenchmarkScores) && {
+    (campaignPermissions.manageFactorBenchmarkScores || campaignPermissions.viewFactorBenchmarkScores) && {
       key: 'factor_benchmark_score',
       label: I18n.t('campaign_assessment.actions.factor_benchmark_score'),
     },
@@ -105,7 +104,7 @@ const getMenuProps = ({
       openModal('ManageRelationshipsModal')
     }
     if (key === 'factor_benchmark_score') {
-      return openModal('FactorBenchmarkScoreModal', { campaignId, dimensionId, currentUser })
+      return openModal('FactorBenchmarkScoreModal', { campaignId, dimensionId, permissions: campaignPermissions })
     }
   }
 

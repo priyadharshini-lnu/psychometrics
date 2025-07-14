@@ -1,5 +1,5 @@
 const settings = {
-  urlPrefix: '/administration/clients/:clientId/projects/:projectId/threesixty_campaigns/:campaignId',
+  urlPrefix: '/admin/projects/:projectId/new_campaigns/:campaignId',
   pageLimit: 25,
 }
 

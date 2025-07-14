@@ -8,6 +8,8 @@ export const FETCH = 'campaigns/current/FETCH'
 export const UPDATE = 'campaigns/current/UPDATE'
 export const FETCH_ASSESSMENTS_AND_REPORTS = 'campaigns/FETCH_ASSESSMENTS_AND_REPORTS'
 
+export const UPDATE_CAMPAIGN = 'campaigns/current/UPDATE_CAMPAIGN'
+
 export const get = (state: RootState) => _.get(state, ['current'])
 
 const defaultState = {
@@ -20,6 +22,11 @@ export const fetch = (id: number, projectId: number) => ({
     method: 'get',
     url: `/administration/projects/${projectId}/new_campaigns/${id}`,
   },
+})
+
+export const updatePermissions = (payload: Campaign) => ({
+  type: UPDATE_CAMPAIGN,
+  payload,
 })
 
 export const update = (id: number, projectId: number, body: Partial<Campaign>) => ({
@@ -42,9 +49,15 @@ export const fetchAssessmentAndReports = (campaignId: string) => ({
 
 type FetchAction = ApiActionResponse<Campaign>
 
+type UpdateType = ReturnType<typeof updatePermissions>
+
 const HANDLERS = {
   [FETCH]: (state: Campaign, { response }: FetchAction) => ({ ...state, ...response }),
   [UPDATE]: (state: Campaign, { response }: FetchAction) => ({ ...state, ...response }),
+  [UPDATE_CAMPAIGN]: (state: Campaign, { payload }: UpdateType) => ({
+    ...state,
+    ...payload,
+  }),
 }
 
 export default createReducer(HANDLERS, defaultState)

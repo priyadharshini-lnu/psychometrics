@@ -12,11 +12,6 @@ module Administration
       has_many :reports, each_serializer: Administration::Campaigns::ReportSerializer
 
       def campaign_url
-        if object.threesixty?
-          threesixty_url = "threesixty_campaigns/#{object.threesixty_campaign.id}"
-          return "#{admin_path}/clients/#{project.parent_id}/projects/#{project.id}/#{threesixty_url}"
-        end
-
         "#{admin_path}/projects/#{project.id}/new_campaigns/#{object.id}"
       end
 

@@ -35,8 +35,8 @@ const Layout = () => <RouteList routes={routes} urlPrefix="" />
 
 const SkillsRoutes = [
   {
-    path: '/skills_taxonomy/*',
-    component: <Layout />,
+    path: 'skills_taxonomy/*',
+    element: <Layout />,
   },
 ]
 

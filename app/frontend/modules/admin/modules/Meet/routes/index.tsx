@@ -3,14 +3,13 @@ import { lazy } from 'react'
 
 const MeetingRoom = lazy(() => import('./MeetingRoom'))
 const routes = [
-  { redirect: true, from: '/meet', to: '/meet/create' },
   {
-    path: '/meet/create',
-    component: () => <div>create</div>,
+    path: 'meet/create',
+    element: <div>create</div>,
   },
   {
-    path: '/meet/:roomId',
-    component: <MeetingRoom />,
+    path: 'meet/:roomId',
+    element: <MeetingRoom />,
   },
 ]
 

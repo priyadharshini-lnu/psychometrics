@@ -20,8 +20,8 @@ const Layout = () => <RouteList routes={routes} urlPrefix="" />
 
 const ProfileRoutes = [
   {
-    path: '/profile/*',
-    component: <Layout />,
+    path: 'profile/*',
+    element: <Layout />,
   },
 ]
 

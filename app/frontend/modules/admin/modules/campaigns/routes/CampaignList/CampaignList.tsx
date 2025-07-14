@@ -168,11 +168,9 @@ const CampaignListComponent: React.FC<Props> = ({
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
-              render={({ name, isThreesixty, campaignUrl }) => (isThreesixty ? (
-                <a href={campaignUrl}>{name}</a>
-              ) : (
+              render={({ name, campaignUrl }) => (
                 <Link to={campaignUrl}>{name}</Link>
-              ))}
+              )}
             />
             <Column
               title={I18n.t('administration.dates.start')}

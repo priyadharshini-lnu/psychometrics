@@ -5,12 +5,12 @@ const AuditLogInfo = lazy(() => import('./AuditLogInfo'))
 
 const routes = [
   {
-    path: '/audit_logs',
-    component: <AuditLogList />,
+    path: 'audit_logs',
+    element: <AuditLogList />,
   },
   {
-    path: '/audit_logs/:id',
-    component: <AuditLogInfo />,
+    path: 'audit_logs/:id',
+    element: <AuditLogInfo />,
   },
 ]
 

@@ -7,7 +7,7 @@ import store from '~/modules/admin/store'
 import RouteList from '~/components/RouteList'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { Schema } from '~/libs/jsonApi/schema'
-import { routes } from './routes'
+import routes from './routes'
 import { settings } from './settings'
 
 const client = new ApiClient({

@@ -2,10 +2,11 @@ import { Menu } from 'antd'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { useEffect } from 'react'
 import RouteList from '~/components/RouteList'
-import { get as getCurrentUser } from '~/core/currentUser'
-import { set as setSelectedTab, get as getSelectedTab } from '../../core/selectedParticipantTab'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import {
+  get as getCurrentCampaign,
+} from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import routeUtils from '~/utils/route'
 import settings from '../../settings'
 import { PageHeader } from '../../PageHeader'
@@ -42,15 +43,11 @@ const routes = [
   { path: '/evaluators', component: <EvaluatorList /> },
   { path: '/managers', component: <ManagerList /> },
 ]
-function Index ({ currentUser, setSelectedTab, selectedTab }) {
+function Index ({ campaignPermissions }) {
   const navigate = useNavigate()
 
-  useEffect(() => {
-    setSelectedTab(`/participants${routeUtils.getActiveRoutePath(routes)}`)
-  }, [])
-
+  const selectedTab = `/participants${routeUtils.getActiveRoutePath(routes)}`
   const onSelect = ({ key }) => {
-    setSelectedTab(key)
     routeUtils.moveTo(navigate, settings.urlPrefix, key)
   }
   const menuItems = [
@@ -58,7 +55,7 @@ function Index ({ currentUser, setSelectedTab, selectedTab }) {
     { key: '/participants/evaluators', label: 'Evaluators' },
     { key: '/participants/managers', label: 'Managers' },
   ]
-  currentUser.permissions.editParticipantOptions && menuItems.push({
+  campaignPermissions.editParticipantOptions && menuItems.push({
     key: '/participants/options',
     label: 'Options',
   })
@@ -88,9 +85,10 @@ function Index ({ currentUser, setSelectedTab, selectedTab }) {
   )
 }
 
-export default connect(state => ({
-  currentUser: getCurrentUser(state),
-  selectedTab: getSelectedTab(state),
-}), {
-  setSelectedTab,
-})(Index)
+const connector = connect(
+  (state: RootState) => ({
+    campaignPermissions: getCurrentCampaign(state).permissions,
+  }),
+)
+
+export default connector(Index)

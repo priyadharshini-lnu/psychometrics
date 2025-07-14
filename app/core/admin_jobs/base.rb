@@ -108,12 +108,7 @@ module AdminJobs
     end
 
     def build_campaign_url
-      if campaign.threesixty?
-        "/admin/clients/#{campaign.project.client.id}/projects/#{campaign.project_id}/" \
-          "threesixty_campaigns/#{campaign.threesixty_campaign.id}"
-      else
-        "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}"
-      end
+      "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}"
     end
   end
 end

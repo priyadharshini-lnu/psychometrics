@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import 'codemirror/lib/codemirror.css'
 import CodeMirror from 'codemirror'
 import 'codemirror/mode/xml/xml'
@@ -21,6 +21,7 @@ interface Props {
 export const EmailEditor: React.FC<Props> = ({
   content, handleContentChange, type, details, className, withPipedText = false,
 }) => {
+  const [isInitialized, setIsInitialized] = useState(false)
   const config = {
     iconsTemplate: 'font_awesome',
     imageUpload: false,
@@ -110,9 +111,21 @@ export const EmailEditor: React.FC<Props> = ({
     }
   }, [type, details])
 
+  useEffect(() => {
+    async function initPlugins () {
+      // Refer: https://github.com/froala/react-froala-wysiwyg/issues/410#issuecomment-2627465406
+      // Import  Froala Editor plugin lazily;
+      await import('froala-editor/js/plugins.pkgd.min')
+      setIsInitialized(true)
+    }
+    if (!isInitialized) {
+      initPlugins()
+    }
+  })
+
   return (
     <div className={className}>
-      <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
+      {isInitialized && <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />}
     </div>
   )
 }
