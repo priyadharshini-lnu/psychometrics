@@ -35,14 +35,14 @@ export default interface Campaign {
   name: string
   type: string
   status: string
-  startDate: Date | null | string
-  endDate: Date | null | string
+  startDate?: Date | null | string
+  endDate?: Date | null | string
   assessments: Entity[]
   reports: Entity[]
-  isFixedTime: boolean | null
-  isThreesixty: boolean | null
+  isFixedTime?: boolean | null
+  isThreesixty?: boolean | null
   permissions: CommonCampaignPermissions
-  practiceCampaign: boolean | null
+  practiceCampaign?: boolean | null
 }
 
 export interface Entity {
