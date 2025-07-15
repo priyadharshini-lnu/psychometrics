@@ -3,7 +3,7 @@
 module Administration
   class CampaignReportSerializer < Panko::Serializer
     attributes :id, :report_id, :name, :user_access, :assessor_access, :report_family_name, :permissions,
-               :user_dashboard, :main_report, :auto_assign
+               :user_dashboard, :main_report, :auto_assign, :default_language, :available_languages, :report_locales
 
     delegate :name, to: :report
     delegate :name, to: :report_family, prefix: true
@@ -32,6 +32,10 @@ module Administration
 
     def report
       object.report
+    end
+
+    def report_locales
+      [report.default_language] + report.other_languages
     end
 
     def report_family

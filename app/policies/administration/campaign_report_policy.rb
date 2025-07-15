@@ -48,6 +48,10 @@ module Administration
       can_manage_campaign_and_users?
     end
 
+    def update_default_and_available_locales?
+      can_manage_campaign_and_users?
+    end
+
     def regenerate?
       has_permission?(:results, :bulk_regenerate_reports)
     end

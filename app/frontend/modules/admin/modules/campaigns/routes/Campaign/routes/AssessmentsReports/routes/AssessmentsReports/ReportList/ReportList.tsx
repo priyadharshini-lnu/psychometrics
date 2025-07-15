@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
+import Locales from './locales'
 
 const { Column } = Table
 const { I18n } = window
@@ -61,6 +62,7 @@ const ReportList: React.FC<Props> = ({
             title={I18n.t('campaign_report.column.report_name')}
             key="name"
             dataIndex="name"
+            width={200}
           />
           <Column
             title={I18n.t('campaign_report.column.report_bundle')}
@@ -120,6 +122,21 @@ const ReportList: React.FC<Props> = ({
                 checked={mainReport}
                 disabled={!reportPermissions.toggleMainReport}
                 onChange={() => toggleMainReport(parsedCampaignId, id, !mainReport)}
+              />
+            )}
+          />
+          <Column
+            title={I18n.t('campaign_report.column.locales')}
+            key="availableLocales"
+            render={({
+              id, availableLanguages, defaultLanguage, reportLocales,
+            }) => (
+              <Locales
+                id={id}
+                availableLanguages={availableLanguages}
+                defaultLanguage={defaultLanguage}
+                reportLocales={reportLocales}
+                campaignId={campaignId}
               />
             )}
           />

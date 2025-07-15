@@ -230,6 +230,7 @@ Rails.application.routes.draw do
             patch :toggle_auto_assign
             patch :toggle_user_dashboard
             patch :toggle_main_report
+            patch :update_default_and_available_locales
           end
         end
         resources :user_idp_reports do

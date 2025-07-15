@@ -1555,6 +1555,7 @@ en:
     column:
       assessor_access: Assessor Access
       auto_assign: Auto Assign
+      locales: Locales
       main_report: Main Report
       report_bundle: Report Bundle
       report_name: Report name
@@ -1577,6 +1578,13 @@ en:
         apply: Apply this changes to existing users in this campaign.
         msg_text: You are trying to delete <strong>"%{reportName}"</strong> Report
         title: Remove Report?
+      update_languages:
+        default_language: Default Language
+        other_available_languages: Other available Languages
+        select_default_language: Select default Language
+        select_languages: Select Languages
+        success_msg: Languages were updated successfully
+        title: Report Language
       user_access:
         apply: Apply this changes to existing users in this campaign.
         title:

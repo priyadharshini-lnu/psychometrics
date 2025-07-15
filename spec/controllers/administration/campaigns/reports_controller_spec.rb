@@ -150,7 +150,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     report_response = parsed_response['reports'].first
     expect(report_response.keys).to contain_exactly(
       *%w[id report_id name user_access assessor_access report_family_name permissions user_dashboard main_report
-          auto_assign]
+          auto_assign default_language available_languages report_locales]
     )
     expect(report_response).to include({
       'name' => report.name,

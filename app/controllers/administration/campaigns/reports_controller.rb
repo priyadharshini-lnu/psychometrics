@@ -6,7 +6,7 @@ module Administration
   module Campaigns
     class ReportsController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[destroy toggle_user_access toggle_assessor_access toggle_user_dashboard
-                                            toggle_main_report toggle_auto_assign]
+                                            toggle_main_report toggle_auto_assign update_default_and_available_locales]
 
       def create
         form = ::Campaigns::Reports::Form.from_params(resource_params)
@@ -93,6 +93,18 @@ module Administration
             campaign_id: campaign.id
           }
         ).serialize(resource)
+      end
+
+      def update_default_and_available_locales
+        resource.update!(
+          default_language: params[:default_language],
+          available_languages: params[:available_languages] || []
+        )
+
+        render json: {
+          default_language: resource.default_language,
+          available_languages: resource.available_languages
+        }
       end
 
       def export
