@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom'
 import {
-  Button, Space, Dropdown, Select, Alert, Tag,
+  Button, Space, Dropdown, Select, Alert, Tag, notification,
 } from 'antd'
 import {
   EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined, DownOutlined,
@@ -37,13 +37,14 @@ const Header = (props) => {
     openDataSheetModal, openImportQuestionsModal, openSettings, openFlow, createBlock,
     exportQuestions,
     assessment, assessment: {
-      extra, saving, defaultLanguage, translations_migrated,
+      extra, saving, defaultLanguage, translations_migrated, category,
     },
   } = props
 
   const showAssessmentOptions = defaultLanguage === currentLocale
 
   const isAssessmentTimerAdded = extra && Object.prototype.hasOwnProperty.call(extra, 'timer')
+  const isThreesixtyAssessment = category === 'threesixty'
 
   const handleOpenDataSheetModal = () => {
     openDataSheetModal({ columns: assessment.data_sheet_columns, id: assessment.id })
@@ -61,8 +62,8 @@ const Header = (props) => {
     openFlow({ flow: assessment.flow })
   }
 
-  const handleCreateBlock = () => {
-    createBlock(new Block())
+  const handleCreateBlock = (blockType) => {
+    createBlock(new Block({ blockType: blockType || 'regular' }))
   }
 
   const openSearchPopup = () => {
@@ -73,6 +74,23 @@ const Header = (props) => {
     perform('assessment_norms', { without_notification: true }, (data) => {
       openMapNorms({ data })
     })
+  }
+
+  const addBlockMenuProps = isThreesixtyAssessment ? {
+    children: [
+      {
+        key: 'regular',
+        label: I18n.t('administration.survey_builder.models.block_types.regular'),
+        onClick: () => handleCreateBlock('regular'),
+      },
+      {
+        key: 'skill_rater',
+        label: I18n.t('administration.survey_builder.models.block_types.skill_rater'),
+        onClick: () => handleCreateBlock('skill_rater'),
+      },
+    ],
+  } : {
+    onClick: handleCreateBlock,
   }
 
   const exportTranslations = () => {
@@ -104,8 +122,11 @@ const Header = (props) => {
   const save = () => {
     saveAssessment(builder, currentLocale).then(() => {
       NotificationDispatcher.notify({ message: 'Assessment successfully saved' })
-    }).catch(() => {
-      NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
+    }).catch((error) => {
+      const errorMessage = error?.[0] || 'Something went wrong. Contact your administrator.'
+      notification.error({
+        message: errorMessage, placement: 'top', duration: 10, style: { minWidth: '500px' },
+      })
     })
   }
 
@@ -228,7 +249,7 @@ const Header = (props) => {
                         key: 'add-block',
                         icon: <PlusOutlined />,
                         label: 'Add Block',
-                        onClick: handleCreateBlock,
+                        ...addBlockMenuProps,
                       },
                       {
                         key: 'copy-block',

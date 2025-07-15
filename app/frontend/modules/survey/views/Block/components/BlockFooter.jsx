@@ -12,10 +12,11 @@ import styles from './Block.less'
 const { I18n } = window
 
 const BlockFooter = ({
-  model, onMinimize, createBlock, addQuestion, openCreateByTemplate, updateBlockProps,
+  model, onMinimize, createBlock, addQuestion, openCreateByTemplate, updateBlockProps, assessmentCategory,
 }) => {
   const [openMenu, setOpenMenu] = useState(false)
   const isSkillRaterBlock = model.blockType === 'skill_rater'
+  const isThreesixtyAssessment = assessmentCategory === 'threesixty'
 
   const addBlock = (type) => {
     createBlock(new Block({ position: model.position, blockType: type }))
@@ -87,8 +88,16 @@ const BlockFooter = ({
       {blockContent}
       <div className={styles.footerOptions}>
         <div className={styles.footerMinimize} onClick={onMinimize}>Minimize Block</div>
-        <div className={`${styles.footerMinimize} ${styles.footerAddBlock}`}>
-          <AddBlockMenu onAddBlock={addBlock} />
+        <div
+          onClick={() => {
+            !isThreesixtyAssessment && addBlock('regular')
+          }}
+          className={`${styles.footerMinimize} ${styles.footerAddBlock}`}
+        >
+          {isThreesixtyAssessment
+            ? <AddBlockMenu onAddBlock={addBlock} />
+            : 'Add Block'
+          }
         </div>
         <div onClick={openSearchBlockPopup} className={`${styles.footerMinimize} ${styles.footerAddBlock}`}>
           Copy Block From...
@@ -109,6 +118,7 @@ const AddBlockMenu = ({ onAddBlock }) => {
       key: 'skill_rater',
     },
   ]
+
   return (
     <Dropdown
       trigger={['click']}

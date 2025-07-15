@@ -10,6 +10,8 @@ module Skills
     end
 
     def call
+      return broadcast(:ok, questions: []) if campaign_user.blank?
+
       skill_ids = collect_skill_ids
       questions = Question.includes(:skill).where(skill_id: skill_ids)
       broadcast :ok, questions: questions
