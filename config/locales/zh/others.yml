@@ -758,6 +758,12 @@ zh:
           attributes:
             base:
               max_takes_limit_reached: 最大摄入量已达上限
+        register:
+          attributes:
+            mobile_number:
+              blank: 移动电话不能为空
+              invalid: 移动电话无效
+              verification_expired: 验证码已过期，您可以尝试重新验证。
         report:
           assessments_not_hogan: 所有评估必须是霍根类型的
           assessments_not_saville: 所有评估都必须是萨维尔类型
@@ -883,10 +889,10 @@ zh:
         copy: 你已开始填写此问卷调查。你可以选择“继续”或“重新开始”。
         title: 是否继续？
       retake:
-        copy: 您已完成本调查，如需重试，请点击下方的重试按钮。
-        title: 重考？
+        copy: 您已完成本调查，如需重做，请点击下方的重做按钮。
+        title: 重做？
     restart: 重新开始
-    retake: 重考
+    retake: 重做
   assessments:
     actions:
       add_tag:
@@ -896,7 +902,7 @@ zh:
       assessment_cache:
         remove_cache: 删除缓存
         success_message: 成功删除缓存
-      back_to_campaign: 返回至推广活动
+      back_to_campaign: 返回至项目列表
       back_to_dashboard: 返回控制面板
       copy:
         success_message: 已成功复制评估"%{name}"。
@@ -1042,7 +1048,7 @@ zh:
     page:
       back: 返回
       confirm_message: |-
-        #### 系统将提交你的回答，回答提交后无法更改。
+        #### 你的回答将被提交，回答提交后无法更改。
 
         点击**返回**可最后一次检查你的回答；如果已完成填写，也可直接点按**提交**。
       invalid_session:
@@ -1099,7 +1105,7 @@ zh:
       recording_duration_label: 最长记录时间
       recording_stop_label: 录音将在
       requesting_permission: 请求许可...
-      response_recorded: 记录的答复
+      response_recorded: 已记录回答
       save: 保存
       saved:
         label: 已保存
@@ -1179,7 +1185,7 @@ zh:
     login:
       continue_btn: 继续
       description: 请使用你的个人账户信息登录
-      forgot_password: 忘记了密码？
+      forgot_password: 忘记密码？
       hide_password: 隐藏密码
       login_btn: 登录
       magic_link_btn: 通过电子邮件发送登录链接
@@ -1190,7 +1196,7 @@ zh:
       title: 欢迎！
     logout: 退出登录
     magic_link:
-      description: 请输入您的电子邮件地址以接收登录链接
+      description: 请输入您的邮箱以接收登录链接
       invalid_email: 电子邮件无效
       login_with_password: 使用密码登录
       send_me_login_link: 给我发送登录链接
@@ -1201,7 +1207,7 @@ zh:
     otp:
       code: 代码
       code_placeholder: 一次性密码
-      description: 请输入发送至你注册电子邮箱地址的一次性密码。
+      description: 请输入发送至你电子邮箱的一次性密码。
       resend: 重新发送一次性密码
       resend_in: 在 %{timestamp} 秒后重新发送
       resend_success: OTP 将发送至您的手机号码
@@ -1224,7 +1230,7 @@ zh:
       registration_code: 注册码
       registration_code_placeholder: 输入注册码
       terms_notice: 注册即表示你同意我们的<a href="%{terms_url}">服务条款和隐私政策</a>
-      title: 注册
+      title: 登录
     reset_password:
       back_to_sign_in: 返回登录
       description: 输入与你账号关联的电子邮箱
@@ -1262,21 +1268,21 @@ zh:
       message: 请使用最新版本的浏览器
   campaign:
     all_activities_are_completed: 所有活动现已完成。
-    all_activities_are_completed_multiple: 此推广活动的所有活动现已完成。请前往仪表板，检查是否有其他活动分配给你。
+    all_activities_are_completed_multiple: 此项目的所有活动现已完成。请前往仪表板，检查是否有其他活动分配给你。
     already_joined: 您已经参加了这项活动
     begin: 开始你的任务
     begin_btn_msg_before_prework: 在开始计时活动之前，您必须完成以下任务
     begin_campaign_msg: 在接受评估前启动活动
-    campaigns: 推广活动
-    closed_campaign_message: 此推广活动已关闭。你无法参加此推广活动中的任何评估。
+    campaigns: 项目
+    closed_campaign_message: 此项目已关闭。你无法参加此项目中的任何评估。
     code_usage_limit_reached: 代码使用量已达上限，请联系管理员
-    complete_prev: 完成所有先前的评估
+    complete_prev: 完成所有前面的评估
     complete_tasks: 请在执行此操作前完成以下任务。
     continue: 继续你的任务
-    dashboard_instructions: 你被分配了多个需要完成的活动。请确保所有推广活动中的所有已分配活动都已完成。
+    dashboard_instructions: 你被分配了多个需要完成的活动。请确保本项目中所有分配活动的都已完成。
     dashboard_menu:
       bookings: 预订
-      campaign: 推广活动
+      campaign: 项目
       change_password: 更改密码
       development: 发展
       direct_reportees: 直下报告
@@ -1298,26 +1304,26 @@ zh:
     inactive_campaign_message: 你目前尚未被分配任何活动。
     insights_reports: 见解和报告
     instruction_modal:
-      campaign_start_final_instructions: |
+      campaign_start_final_instructions: |-
         <p>
-          请注意，计时器无法停止或暂停。即使你关闭了浏览器，推广活动计时器也会继续运作，因此你不应该在任务期间离开去做其他事情。请确保在任务期间尽量不要分心。找一个安静的环境，关闭你设备上的通知，不要同时处理其他事情。集中精神并保持专注。推广活动计时器计时走完后，你将无法继续。如果你已经阅读了上述说明，请点击“开始”继续已分配的任务。
+          请注意，计时器无法停止或暂停。即使你关闭了浏览器，计时器也会继续运作，因此你不应该在任务期间离开去做其他事情。请确保在任务期间尽量不要分心。找一个安静的环境，关闭你设备上的通知，不要同时处理其他事情。集中精神并保持专注。计时器计时结束后，你将无法继续。如果你已经阅读了上述说明，请点击“开始”继续已分配的任务。
         </p>
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>请认真阅读以下说明。</h4>
         <p>
-          你即将开始的任务是计时任务。点击“开始”后，推广活动计时器将自动开始。你有 %{minutes} 分钟来完成所有活动。请力求在指定的时间内完成任务，并有效管理时间，避免匆忙完成评估流程。务必一次完成任务，如果需要休息，现在正是时候。
+          你即将开始的任务是计时任务。点击“开始”后，计时器将自动开始。你有 %{minutes} 分钟来完成所有活动。请在指定的时间内完成任务，并有效管理时间，避免匆忙完成评估流程。务必一次完成任务，如果需要休息，请在开始前休息。
         </p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>监督</h4><p>
-        点击“开始”按钮后，你将被重定向到我们的监察系统。它将在会话期间监控你的摄像头、麦克风和屏幕。这些会话由我们先进的人工智能系统自动监督，提供不间断且顺畅的用户体验。不过，会话也可能由人工监督员审查。任何不当行为或违规行为的迹象都将被标记。这样做是为了确保不发生作弊。如果发现可疑情况，你的任务将被取消。
+        点击“开始”按钮后，你将被定向到我们的监察系统。它将在会话期间监控你的摄像头、麦克风和屏幕。这些会话由我们先进的人工智能系统自动监督，提供不间断且顺畅的用户体验。不过，会话也可能由人工监督员审查。任何不当行为或违规行为的迹象都将被标记。这样做是为了确保不发生作弊。如果发现可疑情况，你的任务将被取消。
         </p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>正在监督浏览器</h4><p>
           你将需要下载并安装一款特殊的浏览器来完成受监督的任务。请按照下一个画面中的说明操作。你可以在完成所有必需的活动后卸载此浏览器。
         </p>
     instructions:
       collapse_aria_label: 显示更多信息： 虚拟学习中心
-      collapse_link_text: 显示较少
+      collapse_link_text: 显示更少
       expand_aria_label: 显示更少信息： 虚拟学习中心
       expand_link_text: 显示更多
       heading: 开始之前，请查看以下准则。祝你一切顺利！
@@ -1345,10 +1351,10 @@ zh:
     time_left:
       cancel: 取消
       continue: 继续
-      notification: 你的任务“%{assessmentName}”的分配时间为 %{totalAssessmentTime}。由于总消耗时长，你现在只有 %{remainingCampaignTime} 的已调整时间来完成此任务。
+      notification: 你的任务“%{assessmentName}”的分配时间为 %{totalAssessmentTime}。由于总时长有限，你现在只有 %{remainingCampaignTime} 的时间来完成此任务。
     timer:
-      notification_hours: 您還剩 %{hours} 小時
-      notification_minutes: 您還剩 %{minutes} 分鐘
+      notification_hours: 你还剩 %{hours} 小时
+      notification_minutes: 你还剩 %{minutes} 分钟
   campaign_assessment:
     actions:
       bulk_download: 批量下载
@@ -1597,7 +1603,7 @@ zh:
     password: 密码
     password_confirmation: 密码确认
     title: 更改密码
-    warning_message: 重要： 更改密码将退出登录。
+    warning_message: 重要： 更改密码将使你退出登录。
   checking_wizard:
     audio_check:
       access: 权限
@@ -1609,12 +1615,12 @@ zh:
         nine: 如果有疑问，请测试一下这个麦克风是否有效！
         one: 我尖叫，你尖叫，我们都为冰淇淋尖叫！
         seven: 每一天都是新的开始，大声说出来，自豪地说出来！
-        six: 披萨还是意大利面？
+        six: 披萨还是意大利面？这是一个艰难的选择。
         three: 测试，一二三，声音清晰无比
         two: 敏捷的棕狐狸跳过了懒惰的狗。
       record_title: 请读出并重复以下句子 3 次。
-      retake: 不，我想重考
-      run_again: 再跑一次
+      retake: 不，我想重做
+      run_again: 再来一次
       test_message: 很高兴与你交谈
     network_check:
       continue: 继续
@@ -1651,20 +1657,20 @@ zh:
       access: 权限
       camera_preview: 此处将显示相机预览
       continue: 继续
-      description: 此阶段拍摄的任何视频或照片都不会被保存或使用。它会在你的设备上本地使用，以确保摄像头在接下来可能需要录像的问题中正常工作。
+      description: 点击“开始录音”，用朗读下面的文章
       random_phrases:
         eight: 如果你能看到我，视频就成功了。 如果看不到，我们就得排除故障！
         five: 测试您的视频，别担心，无需奥斯卡提名。
         four: 准备、就位、对焦！摄像机就是你的舞台。
         nine: 灿烂的笑容和清晰的视频，让我们把这次测试做好！
         one: 能听到我说话的请举手，或者对着镜头挥挥手！
-        seven: 镜子，屏幕上的镜子，让视频检查干净利落。
+        seven: 镜头，屏幕上的镜头，让视频检查干净利落。
         six: 灯光、镜头、动作，这是你大显身手的时刻！
         ten: 友好地挥挥手，确保一切正常。
-        three: 说 "茄子"！或者试探性地露出完美的微笑。
+        three: 说 "茄子"！或者尝试露出完美的微笑。
         two: 看着镜头，面带微笑，假装自己在拍电影预告片。
-      rec_text: REC
-      retake: 不，我想重考
+      rec_text: 录制
+      retake: 不，我想重做
       run_again: 再次运行
       title: 我们需要确保你的系统可以录制视频
       upload_again: 再次上传
@@ -1777,7 +1783,7 @@ zh:
       admins: 管理员
       assessment: 评估
       assessments: 评估
-      campaigns: 推广活动
+      campaigns: 项目
       completion_statuses: 完成状态
       datasheet: 数据表
       projects: 项目
@@ -2114,8 +2120,8 @@ zh:
       relationship: 关系
       subject_name: 科目名称
     subject_relationship_table:
-      subject_email: 主题电子邮件
-      subject_name: 科目名称
+      subject_email: 电子邮件主题
+      subject_name: 主题名称
       subject_relationship: 主题关系
   empty: 空
   enums:
@@ -2124,7 +2130,7 @@ zh:
         error: 电子邮件正文中的管道文本不正确。
   errors:
     assessments:
-      timed_out: 由于 %{assessment_name} 测评超时，您将无法参加该测评。
+      timed_out: 由于 %{assessment_name} 测评超时，您将无法参加该评估。
     error: 错误
     error_500: 出错了，请联系管理员。
     error_msg: 出错了，请刷新页面，如果问题仍然存在，请联系您的管理员
@@ -2204,9 +2210,9 @@ zh:
       add_to_outlook_calendar: 添加到 Outlook 日历
       add_to_yahoo_calendar: 添加到雅虎日历
       assessment_center_alert:
-        btn_title: 推广活动
+        btn_title: 项目
         message_part1: 在此处完成所有准备工作
-        message_part2: "，然后才能预约名额。"
+        message_part2: 在预约名额之前。
       assessment_center_group_name: 评估中心
       booking_failed_msg: 预约名额失败：%{error}
       buttons:
@@ -2242,7 +2248,7 @@ zh:
       need_changes: 需要更改吗？
       neurodivergence_comment_aria_label: 神经差异评论
       neurodivergence_comment_placeholder: 你的评论
-      neurodivergence_question: 你是否因特殊需要或身障而需要合理的特殊安排或调整才能充分参与评估？
+      neurodivergence_question: 你是否因特殊需要或身体障碍，而需要合理的特殊安排或调整才能充分参与评估？
       no_invites_msg: 您将被添加到评估中心，或收到邀请来预订您的时间段；一旦您成为中心的一员，您就可以点击下面的 "查看详情 "按钮来完成活动。
       or: 或
       other_invite: 查看其他 %{count} 个邀请
@@ -2255,7 +2261,7 @@ zh:
       request_reschedule_failed: 申请改期失败：%{error}
       request_reschedule_success: 已成功申请改期
       reschedule_failed_msg: 改期失败：%{error}
-      reschedule_reason_placeholder: 要继续，请输入改期的原因。
+      reschedule_reason_placeholder: 如需继续，请输入改期的原因。
       schedule_success: 此预订已排定时间
       schedule_success_msg: 我们已通过电子邮件向你和其他与会者发送了包含所有详情的日历邀请。
       starts_at: 开始日期：%{date}
@@ -2264,7 +2270,7 @@ zh:
         bookings: 预订
         invites: 邀请
       what: 事项
-      when: 何时
+      when: 什么时候
       workshop_start_text: 距离评估中心启动还有
     break_time: 休息时间
     campaign:
@@ -2272,7 +2278,7 @@ zh:
         copy:
           success: "%{campaignName} 已成功复制。"
         remove:
-          confirmation: 在下面的文本框中输入目前的推广活动名称以移除推广活动
+          confirmation: 在下面的文本框中输入当前项目的名称以移除项目
           success: 已成功移除 %{campaignName}。
       users:
         actions:
@@ -2306,7 +2312,7 @@ zh:
     error_warning: 哎呀，您的评估出错了，请联系技术支持。
     hogan:
       cannot_start: 您现在无法启动霍根评估，请几分钟后再试。
-    lighthouse_app: 默瑟灯塔
+    lighthouse_app: 美世灯塔
     login: 登录
     maintenance:
       notification: 灯塔将在 60 秒后进行定期维护
@@ -2337,7 +2343,7 @@ zh:
         log_out: 立即退出登录
         re_login: 重新登录
         stay_logged_in: 保持登录状态
-      message: 由于您未登录，您的会话将在 2 分钟后超时，请单击 "保持登录 "继续您的会话，否则您将自动注销。
+      message: 由于长时间未操作，您的会话将在 2 分钟后超时，请单击 "保持登录 "继续您的会话，否则您将自动退出。
       message_after_timeout: 您的会话已超时，请重新登录。
       time_remaining: 剩余时间
       title: 会话超时警告
@@ -2356,9 +2362,9 @@ zh:
       statuses:
         cancelled: 已取消
         requested_cancellation: 已申请的取消
-        requested_cancellation_rejected: 请求取消 拒绝
+        requested_cancellation_rejected: 申请取消已被拒绝
         requested_rescheduling: 已申请的改期
-        requested_rescheduling_rejected: 请求改期 拒绝
+        requested_rescheduling_rejected: 申请改期已被拒绝
     'yes': 是
   glint:
     booking_card:
@@ -2774,8 +2780,8 @@ zh:
     magic_link:
       body:
         dear: 亲爱的 %{name}、
-        greetings: 今天的问候
-        instructions: 点击以下链接登录灯塔。
+        greetings: 希望您拥有美好的一天！
+        instructions: 点击以下链接登录灯塔测评。
         signin_link: 登录链接
       subject: 灯塔登录链接
     users:
@@ -2977,7 +2983,7 @@ zh:
         if: 如果
         label: 标签
         no_conditions: 无条件
-        save: 节省
+        save: 保存
         strengths: 优势
         then: 然后显示以下文字
         title: 标题
@@ -3075,7 +3081,7 @@ zh:
       denied: 已拒绝
       incomplete: 未完成
       not_available: 不可用
-      on_hold: 待决
+      on_hold: 待确定
       released: 已发布
     trash: 垃圾
     update: 更新
@@ -3485,7 +3491,7 @@ zh:
     close_evaluation_modal:
       message: 查看报告后，%{pronoun_or_name} 将无法接收任何进一步的评估
       title: 你是否确定要查看报告？
-    closed_campaign_message: 此 360 推广活动已关闭。你无法提名或评估此推广活动的任何人。
+    closed_campaign_message: " 这个360项目已关闭。你无法提名或评估这个项目中的任何人。"
     completed: 已完成
     confirm: 你确定吗？
     confirmation_for_nomination_removal: 你是否确定要移除提名
@@ -3506,7 +3512,7 @@ zh:
     edit_user: 编辑用户
     email_approve_request: 电子邮箱审批请求
     email_schedules:
-      delete_successful: 已成功移除电子邮箱日程
+      delete_successful: 已成功移除邮箱日程
     evaluate: 评估
     evaluation: 评估
     evaluation_all_closed_message: 当前所有提名正在等待批准
@@ -3549,7 +3555,7 @@ zh:
         cannot_re_edit: 参与者无法编辑评估
         disable_all_evaluations: 禁用所有评估
     or: 或
-    page_title: Signify 360° 评论 - 应用级别
+    page_title: Signify 360°评估 - 应用级别
     participant_list:
       actions:
         approve_report: 批准报告
@@ -3565,7 +3571,7 @@ zh:
         remove_report_hold_release_report: 移除报告暂停/发布
         remove_subject: 移除主题
         reset_password: 重置密码
-        unmark_as_done: 取消标记为完成
+        unmark_as_done: 未标记表示为完成
         view_report: 查看报告
         view_responses: 查看回答
       confirmation_messages:
@@ -3573,10 +3579,10 @@ zh:
         hold_report: 你确定要暂停报告吗？
         mark_evaluation_done: 你确定要将评估标记为完成吗？此主题的评估将关闭。
         release_report: 你确定要发布报告吗？
-        remove_from_campaign: 你确定要从推广活动中移除用户吗？
+        remove_from_campaign: 你确定要从本项目中移除用户吗？
         remove_release_hold: 你确定要移除发布/暂停状态吗？
         remove_report_approval: 你确定要移除报告批准吗？
-        remove_subject: 你确定要从推广活动中移除电子邮件的主题吗？
+        remove_subject: 你确定要移除电子邮件的主题吗？
         umark_evaluation_as_complete: 你确定要将评估取消标记为完成吗？
       report_generation_message: 正在生成报告。报告准备就绪后，我们会通知你。
     processing: 处理中
@@ -3602,8 +3608,8 @@ zh:
     reports: 报告
     reports_help_modal:
       title: 报告帮助
-    reset_campaign_confirmation: 在下面的文本框中输入当前的推广活动名称以重置所有参与者
-    reset_nomination_confirmation: 在下面的文本框中输入当前的推广活动名称以重置所有提名
+    reset_campaign_confirmation: 在下面的文本框中输入当前的项目名称以重置所有参与者
+    reset_nomination_confirmation: 在下面的文本框中输入当前的项目名称以重置所有提名
     save: 保存
     select_relationnship: 选择关系
     select_relationship: 选择关系
@@ -3622,6 +3628,9 @@ zh:
     waiting: 等待中
     you: 你
     yourself: 你自己
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: 点击此框，即表示您已阅读我们的隐私声明和我们客户的隐私声明，并同意我们收集和处理您的个人信息，包括将您的个人信息进行国际转移。
+    privacy_notice: 隐私声明
   time:
     formats:
       date: "%d/%m/%y"
@@ -3727,7 +3736,7 @@ zh:
     normalize_factor_scores:
       no_scoring_data: 由于没有评分数据，无法完成因子得分的标准化。
     progress_label: 评估进展
-    redirect: 如果您想开始评估，请点击继续。
+    redirect: 您将会被转至第三方网站进行本次评估。如果您想开始评估，请点击继续。
     status:
       completed: 已完成
       in_progress: 进行中
@@ -3768,7 +3777,7 @@ zh:
       qc_in_progress: 质量控制进行中
     messages:
       async_generation: 报告生成中，报告生成后会通知您。
-      regenerate_successful: 已成功排定报告重新生成作业
+      regenerate_successful: 已重新生成报告
     modals:
       remove:
         content: 你确定要移除报告 %{userReportName} 吗？
@@ -3887,7 +3896,7 @@ zh:
     text: 你的回答不得包含数字
     title:
       one: 有一个错误，请检查您的答复
-      other: 有 %{count} 错误，请检查您的回复
+      other: 有 %{count} 错误，请检查您的回答
     user_self_skill_rating_disabled: 此模板已禁用自我评级
     word_count: '字数 '
     word_range: 您的回复字数必须至少 %{min}，不超过 %{max}。

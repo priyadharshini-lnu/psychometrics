@@ -758,6 +758,12 @@ cs:
           attributes:
             base:
               max_takes_limit_reached: Dosažený limit pro maximální počet odběrů
+        register:
+          attributes:
+            mobile_number:
+              blank: Vyžaduje se číslo mobilního telefonu
+              invalid: Číslo mobilního telefonu je neplatné
+              verification_expired: Platnost ověřovacího kódu vypršela. Můžete zkusit ověřit znovu.
         report:
           assessments_not_hogan: Všechna hodnocení musí být typu Hogan
           assessments_not_saville: Všechna hodnocení musí být typu Saville
@@ -1194,7 +1200,7 @@ cs:
       invalid_email: E-mail je neplatný
       login_with_password: Přihlaste se pomocí hesla
       send_me_login_link: Odeslat přihlašovací odkaz
-      success: Poslali jsme vám přihlašovací odkaz na „%{email}“. Pro přihlášení klikněte na odkaz v e-mailu, který jste obdrželi
+      success: Poslali jsme vám přihlašovací odkaz na '%{email}'. Pro přihlášení klikněte na odkaz v e-mailu, který jste obdrželi
     mobile_number: Mobilní číslo
     new_password: Nové heslo
     new_password_placeholder: Zadejte nové heslo
@@ -1203,7 +1209,7 @@ cs:
       code_placeholder: Jednorázové heslo
       description: Zadejte jednorázové heslo, které bylo odesláno na vaši registrovanou e-mailovou adresu.
       resend: Znovu odeslat jednorázové heslo
-      resend_in: Znovu odeslat za %{timestamp} sekund/y
+      resend_in: Znovu odeslat za %{timestamp} sekund
       resend_success: Jednorázové heslo bylo odesláno na vaše mobilní číslo
       sms_description: Zadejte jednorázové heslo, které bylo odesláno na vaše mobilní číslo.
       submit: Ověřit
@@ -1298,21 +1304,21 @@ cs:
     inactive_campaign_message: V současné době nemáte přiřazeny žádné aktivity.
     insights_reports: Poznatky a zprávy
     instruction_modal:
-      campaign_start_final_instructions: |
+      campaign_start_final_instructions: |-
         <p>
           Upozorňujeme, že neexistuje žádný způsob, jak zastavit nebo pozastavit časovač. Časovač kampaně poběží i po zavření prohlížeče, takže byste rozhodně neměli nechat úkoly rozdělané a začít pracovat na něčem jiném. Nezapomeňte během úkolů minimalizovat rozptýlení. Najděte si tiché prostředí, vypněte oznámení na všech zařízeních a vyhněte se multitaskingu. Udržujte koncentraci a soustřeďte se. Po vypršení času kampaně už nemůžete pokračovat. Pokud jste si přečetli výše uvedené pokyny, klikněte na tlačítko Start a pokračujte v přiřazených úkolech.
         </p>
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Pozorně si přečtěte následující pokyny.
         </h4><p>
           Úkoly, které se chystáte zahájit, jsou časově omezené. Jakmile kliknete na „Spustit“, automaticky se spustí časovač kampaně. Na dokončení všech aktivit máte %{minutes} minut/y. Snažte se dokončit úkoly v určeném časovém rámci a efektivně hospodařit s časem, abyste proces hodnocení neuspěchali. Úkoly je třeba dokončit najednou, takže pokud si potřebujete udělat přestávku, teď je ten správný čas.
         </p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Dohled</h4>
         <p>
-          Po kliknutí na tlačítko Spustit budete přesměrováni na náš monitorovací systém. Během vaší relace bude sledovat vaši kameru, mikrofon a obrazovku. Tyto relace jsou automaticky kontrolovány naším sofistikovaným systémem umělé inteligence, který zajišťuje nepřerušovaný a plynulý uživatelský zážitek. Relace však mohou monitorovat i lidé k tomu určení. Jakékoli známky nesprávného chování nebo nesrovnalostí budou nahlášeny. Chceme tím zajistit, aby nedocházelo k pokusům o podvádění. V případě zjištění podezření budou vaše úkoly zrušeny.
+          Po kliknutí na tlačítko Spustit budete přesměrováni na náš monitorovací systém. Během vaší relace bude sledovat vaši kameru, mikrofon a obrazovku. Tyto relace jsou automaticky kontrolovány naším sofistikovaným systémem umělé inteligence, který zajišťuje nepřerušovanou a plynulýou uživatelskou zkušenost. Relace však mohou monitorovat i lidé k tomu určení. Jakékoli známky nesprávného chování nebo nesrovnalostí budou nahlášeny. Chceme tím zajistit, aby nedocházelo k pokusům o podvádění. V případě zjištění podezření budou vaše úkoly zrušeny.
         </p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Monitorovací prohlížeč</h4>
         <p>
           K vyplnění testovaných úloh si musíte stáhnout a nainstalovat speciální prohlížeč. Postupujte podle pokynů na další obrazovce. Po dokončení všech požadovaných aktivit jej můžete odinstalovat.
@@ -3624,6 +3630,9 @@ cs:
     waiting: Čekání
     you: Vy
     yourself: Vaše osoba
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Kliknutím na toto políčko souhlasíte s tím, že jste si přečetli naše oznámení o ochraně osobních údajů a oznámení o ochraně osobních údajů našich klientů, a souhlasíte se shromažďováním a zpracováním vašich osobních údajů, jak je v nich popsáno, včetně mezinárodního přenosu vašich osobních údajů.
+    privacy_notice: Oznámení o ochraně osobních údajů
   time:
     formats:
       date: "%d/%m/%y"
@@ -3884,17 +3893,15 @@ cs:
     not_in_past: Vybrané datum by nemělo být v minulosti
     number: Vaše odpověď musí být číslo
     photo: požadované
-    range: 'Odpovězte alespoň na %{min} a ne více než na tolik možností: %{max}.'
+    range: Odpovězte alespoň na %{min} a ne více než %{max} možností.
     required: Odpovězte na tuto otázku
     text: Vaše odpověď nesmí obsahovat čísla
     title:
-      few:
-      many:
       one: Vyskytla se jedna chyba, zkontrolujte své odpovědi
       other: Vyskytlo se %{count} chyb, zkontrolujte prosím své odpovědi.
     user_self_skill_rating_disabled: Vlastní hodnocení je pro tuto šablonu zakázáno
     word_count: 'Počet slov '
-    word_range: Vaše odpověď musí mít alespoň %{min} a ne více %{max} slov.
+    word_range: Vaše odpověď musí mít alespoň %{min} a ne více než %{max} slov.
   'yes': Ano
   your: Vaše
   yourself: Vy

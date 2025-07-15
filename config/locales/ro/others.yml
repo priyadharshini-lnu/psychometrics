@@ -109,7 +109,6 @@ ro:
       extend_time: Extindeți timpul
       goto_dashboard: Faceți clic aici pentru a continua
       pending_tasks:
-        few:
         one: Aveți 1 sarcină în așteptare
         other: Aveți %{count} sarcini în așteptare
       rescore: Rescore
@@ -277,13 +276,13 @@ ro:
     insights_reports: Perspective și rapoarte
     instruction_modal:
       campaign_start_final_instructions: "<p>vă rugăm să fiți conștienți de faptul că nu există nicio modalitate de a opri sau de a întrerupe cronometrul. Cronometrul campaniei va continua să ruleze chiar și atunci când închideți browserul, astfel încât nu trebuie să vă gândiți în niciun moment să lăsați sarcinile între ele pentru a face altceva. Asigurați-vă că reduceți la minimum distragerile în timpul sarcinilor. Găsiți un mediu liniștit, dezactivați notificările de pe dispozitivele dvs. și evitați multitasking-ul. Păstrați-vă concentrarea și rămâneți concentrat. Odată ce cronometrul campaniei se termină, nu veți mai putea continua. Dacă ați citit instrucțiunile de mai sus, vă rugăm să faceți clic pe Start pentru a continua sarcinile atribuite</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Vă rugăm să citiți corect următoarele instrucțiuni.</h4>
         <p>sarcinile pe care urmează să le începeți sunt cronometrate. După ce faceți clic pe "Start", cronometrul campaniei va porni automat. Aveți %{minutes} minute pentru a finaliza toate activitățile. Vă rugăm să vă propuneți să finalizați sarcinile în intervalul de timp desemnat și să gestionați timpul în mod eficient pentru a evita grăbirea procesului de evaluare. Asigurați-vă că finalizați sarcinile dintr-o dată, astfel încât, dacă trebuie să faceți o pauză, acum este momentul</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Proctoring</h4>
         <p>după ce faceți clic pe butonul Start, veți fi redirecționat către sistemul nostru de supraveghere. Acesta vă va monitoriza camera, microfonul și ecranul în timpul sesiunii. Aceste sesiuni sunt supravegheate automat de sistemul nostru sofisticat de inteligență artificială, oferind o experiență de utilizare neîntreruptă și fără probleme. Cu toate acestea, sesiunile pot fi, de asemenea, revizuite de supraveghetori umani. Orice semne de conduită necorespunzătoare sau nereguli vor fi semnalate. Acest lucru se face pentru a ne asigura că nu se fac încercări de înșelăciune. Dacă se constată suspiciuni, sarcina sau sarcinile dvs. vor fi anulate</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Browser de control</h4>
         <p>vi se va solicita să descărcați și să instalați un browser special pentru a îndeplini sarcinile de supraveghere. Vă rugăm să urmați instrucțiunile din ecranul următor. Puteți dezinstala acest browser după finalizarea tuturor activităților necesare</p>
     instructions:
@@ -855,7 +854,8 @@ ro:
     accept_privacy_modal:
       accept: Acceptați
       checkbox: Am citit și am înțeles Politica de confidențialitate menționată mai sus
-      checkbox_with_client_link:
+      checkbox_with_client_link: Făcând clic pe această casetă, sunteți de acord că ați citit declarația noastră de confidențialitate și declarația de confidențialitate a clientului nostru și că sunteți de acord cu colectarea și prelucrarea informațiilor dvs. personale descrise în acestea, inclusiv cu transferul internațional al informațiilor dvs. personale.
+      privacy_notice: Notificare privind confidențialitatea
       title: Consimțământul privind prelucrarea datelor
     action: Acțiune
     add: Adaugă
@@ -1002,6 +1002,9 @@ ro:
     waiting: În așteptare
     you: Tu
     yourself: Tu însuți
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Făcând clic pe această casetă, sunteți de acord că ați citit declarația noastră de confidențialitate și declarația de confidențialitate a clientului nostru și că sunteți de acord cu colectarea și prelucrarea informațiilor dvs. personale descrise în acestea, inclusiv cu transferul internațional al informațiilor dvs. personale.
+    privacy_notice: Notificare privind confidențialitatea
   user:
     fields:
       email: Adresă de e-mail
@@ -1066,9 +1069,7 @@ ro:
     min_character: Răspunsul dvs. trebuie să conțină cel puțin %{min} caractere.
     min_word: Răspunsul dvs. trebuie să fie de cel puțin %{min} cuvinte
     most:
-      few:
       one: Vă rugăm să selectați cel mult %{max} alegere(uri)
-      other:
     must_rank_between: Vă rugăm să atribuiți o valoare de la %{min} la %{max} pentru fiecare element. Valorile nu pot fi repetate.
     must_select: Vă rugăm să selectați de la %{min} la %{max} opțiuni
     number: Răspunsul dvs. trebuie să fie un număr
@@ -1077,7 +1078,6 @@ ro:
     required: Vă rugăm să răspundeți la această întrebare
     text: Răspunsul dumneavoastră nu trebuie să conțină un număr
     title:
-      few:
       one: Există o eroare, vă rugăm să vă verificați răspunsurile
       other: Au existat %{count} erori, vă rugăm să verificați răspunsul.
     word_count: 'Număr de cuvinte '

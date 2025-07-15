@@ -10,18 +10,64 @@ hr:
       scoring:
         select_comparison: Odaberite vrstu usporedbe
         select_factors: Odaberite faktore
-        select_operation: Odaberite operaciju
+        select_operation: Odaberite postupak
+    errors:
+      models:
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Blok %{block_name} ima dvostruku konfiguraciju: %{duplicate_configurations}'
+        create_one:
+          attributes:
+            job_role:
+              cannot_be_same: Željena pozicija mora biti drugačija od trenutne
+              not_found: Pozicija '%{name}' se ne nalazi u projektu ili u globalnim ciljevima
+        import_one:
+          attributes:
+            job_role:
+              cannot_be_same: Željena pozicija mora biti drugačija od trenutne
+        job_roles_translations_form:
+          attributes:
+            file:
+              column_cannot_be_blank: Vrijednost %{column_name} ne može biti prazna u redu %{row_number}
+              invalid_format: Molimo, učitajte CSV datoteku
+              invalid_job_role_id: ID pozicije u redu %{row_number} nije pravilan ID
+              invalid_locale: Lokalizacija u redu %{row_number} nije valjana
+              missing_required_columns: 'Broj stupaca koji nedostaju: %{columns}'
+              parsing_failed: Pogreška %{error} pri obradi datoteke.
+            project:
+              must_exist: Projekt mora postojati
+        skills_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Mora postojati barem jedna pozicija sa sljedećim setom vještina %{block_name}
+              invalid_skill_type: 'Nepravilno unesen tip vještine %{skill_type} za %{role_name} u %{block_name}. Moguće alternative: %{valid_options}'
+              props_missing: Posao
+        skillvue:
+          attributes:
+            name:
+              not_unique: Integracija ovog projekta je u tijeku.
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'Red %{row}: Dvostruka vrijednost %{value} za %{field}'
+              invalid_format: Molimo, prenesite .xlsx datoteku
+              missing_headers: Nedostaju obavezna zaglavlja %{headers} u radnom listu %{sheet_name}
+              missing_sheets: Nedostaju radni listovi %{sheets}
+              missing_value: 'Red %{row}: nedostaje vrijednost za %{field}'
+            project:
+              must_exist: Projekt mora postojati
   activerecord:
     attributes:
       membership:
         first_name: Ime
         last_name: Prezime
       user:
-        email: E-mail adresa
+        email: Email adresa
         first_name: Ime
         last_name: Prezime
       user_form:
-        email: E-mail adresa
+        email: Email adresa
         first_name: Ime
         last_name: Prezime
         password: Lozinka
@@ -32,11 +78,18 @@ hr:
             mobile_number:
               blank: Broj mobitela je obavezan
               invalid: Broj mobitela nije važeći
-              verification_expired: Verifikacijski kod je istekao. Možete pokušati ponovno potvrditi.
+              verification_expired: Verifikacijski kod je istekao. Pokušajte potvrditi ponovno.
         user:
           attributes:
             current_password:
               invalid: Trenutna lozinka je netočna
+  admin_jobs:
+    attrs:
+      operations:
+        export_job_roles_translations: Izdvajanje opisa poslova
+        export_proficiency_levels: Razine stručnosti
+        import_job_roles_translations: Unošenje opisa poslova
+        import_skills_rater_taxonomies: Unošenje klasifikacije ocjenjivača vještina
   administration: Administracija
   anonym:
     close: Zatvoriti
@@ -44,162 +97,168 @@ hr:
     notifications:
       restart:
         copy: Već ste započeli ovu anketu. Možete odabrati Nastavi ili Ponovno pokreni.
-        title: Nastaviti?
+        title: Želite li nastaviti?
       retake:
-        copy: Već ste ispunili ovu anketu. Za ponovno rješavanje kliknite gumb &quot;Ponovno ispuni&quot; ispod.
-        title: Ponoviti?
-    restart: Ponovno pokretanje
-    retake: Ponovno snimi
+        copy: Već ste ispunili ovu anketu. Za ponovno rješavanje kliknite Ponovno riješiti.
+        title: Ponovno riješiti?
+    restart: Ponovno pokrenuti
+    retake: Ponovno riješiti
   assessments:
     actions:
       back_to_campaign: Natrag na kampanju
-      extend_time: Produžite vrijeme
+      extend_time: Produžiti vrijeme
       goto_dashboard: Kliknite ovdje za nastavak
       pending_tasks:
-        few:
+        few: Imate nekoliko zadataka na čekanju
         one: Imate 1 zadatak na čekanju
         other: Imate %{count} zadataka na čekanju
-      rescore: Ponovno ocjenjivanje
+      rescore: Ponovno ocijeniti
     audio_response:
-      permission_denied_message: Molimo omogućite mikrofon u pregledniku kako biste snimili odgovor
-      permission_text: Molimo dopustite korištenje mikrofona za snimanje zvuka
+      permission_denied_message: Molimo, omogućite korištenje mikrofona u pregledniku kako biste snimili svoj odgovor
+      permission_text: Molimo, dopustite korištenje mikrofona za snimanje zvuka
     card_actions:
       begin: Početi
       continue: Nastaviti
+    column:
+      external_settings:
+        skillvue_assessment_name: Naziv Skillvue procjene
+    fields:
+      category:
+        skillvue: Skillvue
     instructions:
       begin_assessment: Početi
       cancel: Otkazati
-      default: Ovo je vremenski ograničena aktivnost, nakon što kliknete Započni procjenu, imat ćete %{time} minuta za dovršetak.
+      default: Ovo je vremenski ograničena aktivnost, što znači da nakon što kliknete "Započeti procjenu", imat ćete %{time} minuta za dovršetak.
       title: Upute
     messages:
-      finish: Hvala vam na vremenu. Vaši su odgovori sada zabilježeni.
+      finish: Hvala Vam na vremenu. Vaši su odgovori sada zabilježeni.
     page:
-      back: Nazad
-      confirm_message: "## Vaši će odgovori biti poslani i nakon toga ih nije moguće mijenjati. Kliknite **Natrag** da biste još jednom pregledali svoje odgovore ili kliknite **Pošalji** ako ste završili."
+      back: Natrag
+      confirm_message: "## Vaši će odgovori biti poslani i nakon toga ih neće biti moguće mijenjati. Kliknite **Natrag** da biste još jednom pregledali svoje odgovore ili kliknite **Pošalji** ako ste završili."
       next: Sljedeći
-      read_only: To je način rada samo za čitanje, ne možete mijenjati nikakve rezultate.
-      save: Uštedjeti
-      submit: Pošalji
+      read_only: Ovo je način rada "Samo za čitanje", ne možete mijenjati odgovore.
+      save: Spremiti
+      submit: Poslati
     pickgrouprank:
       items: Stavke
-    proceed: Svejedno nastavi
-    unknown_error: Došlo je do nepoznate pogreške.
+    proceed: Svejedno nastaviti
+    unknown_error: Došlo je do pogreške.
     video_response:
-      device: Dopusti
+      device: Dopustiti
       device_selection:
-        camera: Fotoaparat
+        camera: Kamera
         mic: Mikrofon
       discard: Odbaciti
-      discard_record_again: Odbaci i ponovno snimi
+      discard_record_again: Odbaciti i ponovno snimiti
       media_recorder:
         failure: Ovaj preglednik ne podržava snimanje videa. Za snimanje videa koristite Chrome ili Firefox.
-        success: Molimo dopustite korištenje kamere i mikrofona za snimanje zvuka i videa
+        success: Molimo, dopustite korištenje kamere i mikrofona za snimanje videa i zvuka
       recording_duration_label: Maksimalno trajanje snimanja
       recording_stop_label: Snimanje će se zaustaviti za
       requesting_permission: Zahtjev za dopuštenje...
-      response_recorded: Odgovor zabilježen
-      save: Uštedjeti
+      response_recorded: Odgovor je zabilježen
+      save: Spremiti
       saved:
         label: Videozapis spremljen
       saving: Spremanje videa...
-      start_recording: Započni snimanje
-      stop_recording: Zaustavi snimanje
+      start_recording: Započeti snimanje
+      stop_recording: Zaustaviti snimanje
       tracker:
-        backward: Preblizu ste ekranu. Molimo vas da se malo pomaknete unatrag.
-        forward: Previše ste udaljeni od zaslona. Molimo vas da se malo približite.
-        frame: Molimo provjerite je li vaše lice poravnato s okvirom
-        ready: Pritisnite gumb za snimanje kada ste spremni za snimanje
+        backward: Preblizu ste zaslonu. Molimo, odmaknite se unatrag.
+        forward: Previše ste udaljeni od zaslona. Molimo, približite se.
+        frame: Molimo, provjerite je li Vaše lice poravnato s okvirom
+        ready: Pritisnite gumb za snimanje kada ste spremni za početak snimanja
     wait: Čekati
   auth:
     current_password: Trenutna lozinka
     current_password_placeholder: Unesite trenutnu lozinku
-    email: E-pošta
-    email_placeholder: Unesite adresu e-pošte
+    email: Email
+    email_placeholder: Unesite email adresu
     expired_password:
       description: Molimo Vas da ispunite sva polja kako biste kreirali novu lozinku
-      submit: Pošalji
+      submit: Poslati
       title: Obnovite svoju lozinku
     login:
-      description: Molimo prijavite se s podacima o svom osobnom računu
+      description: Molimo, prijavite se s osobnim podacima
       forgot_password: Zaboravljena lozinka?
       login_btn: Prijava
-      magic_link_btn: Pošalji mi link za prijavu putem e-pošte
+      magic_link_btn: Pošalji mi link za prijavu putem emaila
       not_member: Niste član?
       or: ILI
-      sso_btn: Prijava putem jednokratne prijave
+      sso_btn: Jednokratna prijava
       title: Dobrodošli!
     logout: Odjava
     magic_link:
-      description: Molimo unesite svoju adresu e-pošte kako biste primili poveznicu za prijavu
+      description: Molimo, unesite svoju email adresu kako biste primili poveznicu za prijavu
       login_with_password: Prijava s lozinkom
       send_me_login_link: Pošalji mi link za prijavu
-      success: Poslali smo vam poveznicu za prijavu na &#39;%{email}&#39;. Kliknite poveznicu u e-poruci koju ste primili za prijavu.
+      success: Poslali smo Vam poveznicu za prijavu na '%{email}'. Po primitku emaila, kliknite na poveznicu
     mobile_number: Broj mobitela
     new_password: Nova lozinka
     new_password_placeholder: Unesite novu lozinku
     otp:
       code: Kodirati
       code_placeholder: Jednokratna lozinka
-      description: Molimo unesite OTP koji je poslan na vašu registriranu adresu e-pošte.
+      description: Molimo unesite OTP koji je poslan na Vaš email.
       resend: Ponovno pošalji OTP
       resend_in: Ponovno pošalji za %{timestamp} sekundi
       resend_success: OTP se šalje na vaš broj mobitela
-      sms_description: Molimo unesite OTP koji je poslan na vaš broj mobitela.
-      submit: Potvrdi
+      sms_description: Molimo unesite OTP koji je poslan na Vaš broj mobitela.
+      submit: Potvrditi
       title: Jednokratna lozinka
     password: Lozinka
-    password_confirmation: Potvrdite lozinku
+    password_confirmation: Potvrditi lozinku
     password_confirmation_placeholder: Unesite potvrdu lozinke
-    password_placeholder: Unesite lozinku
+    password_placeholder: Unijeti lozinku
     registration:
       description: Ispunite podatke u nastavku kako biste se registrirali i kreirali novi račun
-      email_hint: Poštujemo vašu privatnost i ne toleriramo neželjenu poštu. Nikada nećemo dati vaše podatke trećim stranama.
+      email_hint: Poštujemo vašu privatnost i ne toleriramo neželjenu poštu. Nikada nećemo dati Vaše podatke trećim stranama.
       first_name: Ime
       first_name_placeholder: Unesite ime
       have_account: Već imate račun?
       last_name: Prezime
       last_name_placeholder: Unesite prezime
-      login_now: Prijavi se sada!
+      login_now: Prijavite se sada!
       registration_code: Registracijski kod
       registration_code_placeholder: Unesite registracijski kod
       terms_notice: Registracijom prihvaćate naše <a href="%{terms_url}">Uvjete korištenja i Pravila privatnosti</a>
-      title: Prijavi se
+      title: Prijaviti se
     reset_password:
       back_to_sign_in: Natrag na prijavu
-      description: Unesite e-poštu povezanu s vašim računom
-      submit: Poništi lozinku
+      description: Unesite email adresu povezanu s Vašim računom
+      submit: Poništiti lozinku
       title: Zaboravljena lozinka?
     set_password:
       description: Za izradu nove lozinke, unesite svoju novu lozinku u donja polja
-      submit: Pošalji
-      title: Izradi lozinku
+      submit: Poslati
+      title: Izraditi lozinku
     sign_out: Prijava kao drugi korisnik
-    sign_up: Prijavi se
+    sign_up: Prijaviti se
     terms_link: <a href="%{terms_url}">Uvjeti i izjava o privatnosti</a>
     verify_mobile_number:
       error:
         blocked: Ovaj je broj blokiran zbog previše pokušaja.
         invalid_code: Nevažeći kod
-        invalid_number: Broj mobitela je netočan. Molimo vas da ponovno provjerite svoj broj.
+        invalid_number: Broj mobitela je netočan. Molimo, ponovno provjerite svoj broj.
         max_attempts_reached: Previše pokušaja. Pričekajte 10 minuta prije ponovnog pokušaja.
   campaign:
     all_activities_are_completed: Sve aktivnosti su sada završene.
-    all_activities_are_completed_multiple: Sve aktivnosti za ovu kampanju su sada dovršene. Molimo vas da prijeđete na Nadzornu ploču i provjerite imate li dodijeljene još neke aktivnosti.
+    all_activities_are_completed_multiple: Sve aktivnosti za ovu kampanju su sada dovršene. Molimo, vratite se na Nadzornu ploču i provjerite imate li dodijeljene još neke aktivnosti.
     begin: Započnite svoje zadatke
     begin_btn_msg_before_prework: Prije početka vremenski ograničene kampanje morate dovršiti sljedeće zadatke
-    begin_campaign_msg: Započnite kampanju prije polaganja ocjenjivanja
+    begin_campaign_msg: Započnite kampanju prije početka procjene
     campaigns: Kampanje
-    closed_campaign_message: Ova kampanja je zatvorena. Ne možete polagati nikakve ocjene unutar ove kampanje.
+    closed_campaign_message: Ova kampanja je zatvorena. Ne možete ući ni u jednu procjenu unutar ove kampanje.
     complete_prev: Završite sve prethodne procjene
-    complete_tasks: Molimo vas da dovršite zadatke u nastavku prije nego što poduzmete ovu radnju.
+    complete_tasks: Molimo, dovršite zadatke u nastavku prije nego što poduzmete ovu radnju.
     continue: Nastavite svoje zadatke
-    dashboard_instructions: Možda vam je dodijeljeno više aktivnosti koje morate dovršiti. Molimo vas da provjerite jesu li sve dodijeljene aktivnosti dovršene u svim kampanjama.
+    dashboard_instructions: Možda Vam je dodijeljeno više aktivnosti koje morate dovršiti. Molimo, provjerite jeste li dovršili sve dodijeljene aktivnosti u svim kampanjama.
     dashboard_menu:
       bookings: Rezervacije
       campaign: Kampanja
       change_password: Promjena lozinke
       development: Razvoj
-      home: Dom
+      home: Početna stranica
       insights: Uvidi
       my_plan: Moj plan
       profile: Profil
@@ -207,51 +266,66 @@ hr:
       tasks: Zadaci
     details: Detalji
     edit_evaluation:
-      body: Imajte na umu da ćete nakon što kliknete na Ponovno procijeni biti usmjereni na početak ankete gdje možete urediti odgovore. Prethodni odgovori i dalje će biti dostupni, ali ih možete promijeniti prema vlastitom nahođenju. Nakon uređivanja morat ćete ponovno poslati procjenu kako biste dovršili postupak.
-      edit: Ponovno procijenite
-      title: Potvrdi
-      view: Pogledajte procjenu
+      body: Imajte na umu da ćete nakon što kliknete na "Ponovno procijeniti" biti preusmjereni na početak ankete gdje možete urediti svoje odgovore. Prethodni odgovori će i dalje biti dostupni, ali ih možete promijeniti ako želite. Nakon uređivanja morat ćete ponovno poslati procjenu kako biste dovršili postupak.
+      edit: Ponovno procijeniti
+      title: Potvrditi
+      view: Pogledati procjenu
     errors:
       invalid_status: Nevažeći status kampanje
     goto_dashboard: Idi na Nadzornu ploču
-    inactive_campaign_message: Trenutno vam nisu dodijeljene nikakve aktivnosti.
+    inactive_campaign_message: Trenutno Vam nisu dodijeljene nikakve aktivnosti.
     insights_reports: Uvidi i izvješća
     instruction_modal:
-      campaign_start_final_instructions: "<p>Imajte na umu da ne postoji način za zaustavljanje ili pauziranje mjerača vremena. Mjerač vremena kampanje nastavit će raditi čak i kada zatvorite preglednik, stoga ni u kojem trenutku ne biste trebali razmišljati o tome da prekinete zadatke između kako biste radili nešto drugo. Obavezno smanjite ometanja tijekom zadataka. Pronađite mirno okruženje, isključite obavijesti na svojim uređajima i izbjegavajte multitasking. Održavajte koncentraciju i ostanite fokusirani. Nakon što mjerač vremena kampanje istekne, nećete moći nastaviti. Ako ste pročitali gornje upute, kliknite na početak kako biste nastavili s dodijeljenim zadacima.</p>\n"
-      campaign_start_instruction: "<h4>Molimo Vas da pažljivo pročitate sljedeće upute.</h4><p> Zadatak(ci) koje ćete započeti imaju vremenski ograničeno vrijeme. Nakon što kliknete na &quot;Pokreni&quot;, mjerač vremena kampanje automatski će se pokrenuti. Imate %{minutes} minuta za dovršetak svih aktivnosti. Molimo vas da nastojite dovršiti zadatke unutar zadanog vremenskog okvira i učinkovito upravljate vremenom kako biste izbjegli žurbu kroz proces evaluacije. Obavezno dovršite zadatke odjednom, pa ako trebate napraviti pauzu, sada je pravo vrijeme.</p>\n"
-      common_proctoring_instructions: "<h4>Nadzor</h4><p> Klikom na gumb Start bit ćete preusmjereni na naš sustav nadzora. On će nadzirati vašu kameru, mikrofon i zaslon tijekom vaše sesije. Ove sesije automatski nadgleda naš sofisticirani AI sustav, pružajući neprekinuto i glatko korisničko iskustvo. Međutim, sesije mogu pregledavati i ljudski nadzornici. Svi znakovi nedoličnog ponašanja ili nepravilnosti bit će označeni. To se radi kako bi se osiguralo da nema pokušaja varanja. Ako se utvrdi sumnja, vaš(i) zadatak(i) bit će otkazani.</p>\n"
+      campaign_start_final_instructions: '<p>Imajte na umu da ne postoji način za zaustavljanje ili pauziranje mjerača vremena. Mjerač vremena kampanje nastavit će raditi čak i kada zatvorite preglednik, stoga ni u kojem trenutku ne biste trebali prekidati zadatke kako biste napravili nešto drugo. Umanjite ometanja tijekom zadataka. Pronađite mirno okruženje, isključite obavijesti na svojim elektroničkim uređajima i izbjegavajte multitasking. Održavajte koncentraciju i ostanite fokusirani. Nakon što vrijeme kampanje istekne, nećete moći nastaviti. Ako ste pročitali gornje upute, kliknite na "Pokrenuti" kako biste nastavili s dodijeljenim zadacima.</p>
+
+        '
+      campaign_start_instruction: '<h4>Molimo Vas da pažljivo pročitate sljedeće upute.</h4><p> Zadatak(ci) koje ćete započeti su vremenski ograničeni. Nakon što kliknete na "Pokrenuti" mjerač vremena kampanje automatski će se pokrenuti. Imate %{minutes} minuta za dovršetak svih aktivnosti. Molimo, nastojte dovršiti zadatke unutar zadanog vremenskog okvira i učinkovito upravljate svojim vremenom kako biste izbjegli žurbu kroz proces. Obavezno dovršite zadatke bez prekidanja, pa ako trebate pauzu, sada je pravo vrijeme za nju.</p>
+
+        '
+      common_proctoring_instructions: '<h4>Nadzor</h4><p> Klikom na gumb "Pokrenuti" bit ćete preusmjereni na naš nadzorni sustav. On će nadzirati vašu kameru, mikrofon i zaslon tijekom ove sesije koju automatski nadgleda naš sofisticirani AI sustav, pružajući neprekinuto i ugodno korisničko iskustvo. Međutim, sesije mogu pregledavati i ljudi. Svi znakovi nedoličnog ponašanja ili nepravilnosti bit će označeni. To se radi kako bi se osiguralo da nema pokušaja varanja. Ako se utvrdi sumnja u (pokušaj) varanja, vaš(i) zadatak(ci) će biti prekinuti.</p>
+
+        '
       lockdown_browser_instruction: "<h4>Preglednik za nadzor</h4><p> Morat ćete preuzeti i instalirati poseban preglednik kako biste dovršili nadzirane zadatke. Slijedite upute na sljedećem zaslonu. Možete ga deinstalirati nakon što dovršite sve potrebne aktivnosti.</p>\n"
     instructions:
-      collapse_link_text: Prikaži manje
-      expand_link_text: Prikaži više
-      heading: Molimo vas da prije početka pregledate dolje navedene smjernice. Želimo vam sve najbolje!
+      collapse_link_text: Prikazati manje
+      expand_link_text: Prikazati više
+      heading: Molimo da prije početka progledate dolje navedene smjernice. Sretno!
     language:
       content: Ovaj zadatak nije dostupan na trenutno odabranom jeziku. Odaberite jedan od dostupnih jezika za nastavak.
-      single_lang: Ovaj zadatak je dostupan samo u %{lang} jeziku. Kliknite &quot;Nastavi&quot; za nastavak.
-      title: Odaberite jezik
+      single_lang: Ovaj zadatak je dostupan samo u %{lang} jeziku. Kliknite "Nastaviti" za nastavak.
+      title: Odabrati jezik
     panels:
       dashboard: Nadzorna ploča
       reports: Izvješća
     profile:
       complete_heading: Vaš profil je dovršen
-      complete_profile_label: Dovrši sada
-      edit_profile_label: Uredi profil
+      complete_profile_label: Dovršiti sada
+      edit_profile_label: Urediti profil
       incomplete_heading: Ispunite svoj profil
       last_login_text: 'Zadnja prijava:'
       last_updated_text: 'Profil je zadnji put ažuriran:'
       sub_heading: Ispunite sve podatke svog profila
       welcome_text: Dobrodošli,
-    thank_you_for_time: Hvala vam na vremenu
+    thank_you_for_time: Hvala Vam na vremenu
     time_left:
       cancel: Otkazati
       continue: Nastaviti
-      notification: Vaše dodijeljeno vrijeme za ovaj zadatak &quot;%{assessmentName}&quot; bilo je %{totalAssessmentTime}. Zbog ukupnog proteklog vremena, sada vam je preostalo samo %{remainingCampaignTime} kao prilagođeno vrijeme za dovršetak ovog zadatka.
+      notification: Vaše dodijeljeno vrijeme za zadatak %{assessmentName}&quote; %{totalAssessmentTime}. S obzirom na protok vremena, sada Vam je preostalo %{remainingCampaignTime} vremena za dovršetak ovog zadatka.
     timer:
-      notification_hours: Preostao vam je %{hours} sat
+      notification_hours: Preostao vam je %{hours} sat/a/i
       notification_minutes: Preostalo vam je %{minutes} minuta
   campaign_assessment:
-    assessment_center_heading: Detalji centra za procjenu
+    assessment_center_heading: Detalji Razvojnog centra
     assessments_heading: Vaši zadaci
+    column:
+      skillvue_email_id: ID emaila kandidata
+      skillvue_external_assessment_id: ID Skillvue procjene
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Došlo je do pogreške. Molimo, kontaktirajte administratora
+        placeholder: Odabrati grupu Razvojnog centra
+        success_message: Kampanja razvojnog centra za nasljednike je uspješno zadana
+        title: Grupa Razvojnog centra
     statuses:
       completed: Završeno
       in_progress: U tijeku
@@ -259,89 +333,89 @@ hr:
       interrupted: Prekinuto
       not_started: Nije započeto
       timed_out: Isteklo je vrijeme
-      universal_link: Univerzalna veza
+      universal_link: Univerzalna poveznica
   campaigns:
     card:
       duration: Trajanje
       starts_in: 'Počinje za:'
       starts_on: Počinje %{date}
-      will_start_shortly: Kampanja će uskoro započeti. Molimo pričekajte.
+      will_start_shortly: Kampanja će uskoro započeti. Molimo, pričekajte.
   change_password_page:
     old_password: Stara lozinka
     password: Lozinka
     password_confirmation: Potvrda lozinke
     title: Promjena lozinke
-    warning_message: 'Važno: Promjenom lozinke odjavit ćete se.'
+    warning_message: 'Važno: Ako promijenite lozinku, automatski ćete se odjaviti.'
   checking_wizard:
     audio_check:
       access: Pristup
-      continue: Da, u redu je nastaviti
+      continue: Da, nastaviti
       random_phrases:
         eight: Neka vam kava bude jaka, a dan produktivan.
-        five: Život je bolji kad se smiješ. Smiješite se za mikrofon!
-        four: Ona prodaje školjke uz obalu mora.
-        nine: Kada ste u nedoumici, isprobajte ovaj mikrofon, radi li!
-        one: Ja vrištim, ti vrištiš, svi vrištimo za sladoled!
-        seven: Svaki dan je novi početak. Reci to glasno i ponosno!
+        five: Život je bolji kad se smijemo. Nasmiješite se za mikrofon!
+        four: Riba ribi grize rep.
+        nine: Kada ste u nedoumici, isprobajte radi li mikrofon!
+        one: Ja volim, ti voliš, svi volimo sladoled!
+        seven: Svaki dan je novi početak. Recite to glasno i ponosno!
         six: Pizza ili tjestenina? Odluke su teške.
-        three: Testiranje, jedan dva tri, zvuk je jasan koliko god može biti!
-        two: Brza smeđa lisica preskače lijenog psa.
-      record_title: Molim vas, izgovorite i ponovite sljedeću rečenicu 3 puta.
-      retake: Ne, želim ponovno polagati
-      run_again: Trči ponovno
-      test_message: drago mi je razgovarati s tobom
+        three: Testiranje, jedan, dva, tri, zvuk je jasan koliko god može biti!
+        two: Žućkasti đak čita džepnu knjigu s ljubičastim šarenim ćilom.
+      record_title: Molimo, ponovite sljedeću rečenicu 3 puta.
+      retake: Ne, želim ponovno snimati
+      run_again: Pokušati ponovno
+      test_message: bilo mi je drago razgovarati s tobom
     network_check:
       continue: Nastaviti
-      download: Preuzmi
-      please_check_connection: Molimo provjerite svoju internetsku vezu
+      download: Preuzeti
+      please_check_connection: Molimo, provjerite svoju internetsku vezu
       processing: Obrada
-      run_again: Trči ponovno
-      run_again_title: I ponovno provedite ovaj test
-      title: Kliknite na dugme za početak za početak testiranja brzine interneta.
-      upload: Prenesi
+      run_again: Pokušati ponovno
+      run_again_title: Ponovite ovaj test
+      title: Kliknite Započeti za početak testiranja brzine interneta.
+      upload: Prenijeti podatke
     steps:
       audio_check: Test mikrofona
       network_check: Test brzine interneta
       system_check: Provjera sustava
       video_check: Test video kamere
     success:
-      start: Započni procjenu
+      start: Započeti procjenu
       title: Uspješno ste završili sve provjere.
     system_check:
       compatibility: Kompatibilnost sustava
       continue: Nastaviti
       failure:
-        description: Za audio/video pitanja u ovom testu potrebna su dopuštenja za web-kameru i mikrofon.
+        description: Za audio/video pitanja u ovom testu potrebna su dopuštenja za kameru i mikrofon.
         link_text: ovdje
         link_text_action: Klik
         link_text_instruction: i slijedite korake za davanje dozvola
-        refresh: Osvježi preglednik
+        refresh: Osvježiti preglednik
         refresh_text: Kliknite dolje za osvježavanje preglednika i primjenu promjena
         subtitle: Brza rješenja
-        title: Otkazali ste dopuštenja za web-kameru i mikrofon
-      permissions: Dozvole za web-kameru i zvuk
-      title: Prije početka ove procjene, vaš sustav mora proći kroz neke provjere.
+        title: Otkazali ste dopuštenja za kameru i mikrofon
+      permissions: Dozvole za kameru i zvuk
+      title: Prije početka ove procjene, Vaš sustav mora proći kroz neke provjere.
     video_check:
-      access: Pristup
+      access: Pristupiti
       camera_preview: Pregled kamere će se pojaviti ovdje
-      continue: Da, u redu je nastaviti
-      description: Kliknite na Pokreni snimanje i snimite se dok čitate donji odlomak svojim glasom
+      continue: Da, nastaviti
+      description: Kliknite na "Pokrenuti snimanje" i snimite se dok čitate donji odlomak naglas
       random_phrases:
-        eight: Ako me vidite, video je uspješan. Ako ne, rješavamo problem!
-        five: Testiram tvoj video, ne brini, nije potrebna nominacija za Oscara.
-        four: Spremni, pozor, fokus! Kamera je vaša pozornica.
+        eight: Ako me vidite, video je uspješno snimljen. Ako ne, prijavite problem!
+        five: Testiramo video, ne brinite, nećemo Vas nominirati za Oscara.
+        four: Priprema, pozor, sad! Kamera je Vaša pozornica.
         nine: Veliki osmijesi i jasan video, napravimo ovaj test kako treba!
         one: Podignite ruku ako me čujete ili samo mahnite kameri!
         seven: Ogledalce, ogledalce na ekranu, neka video provjera bude čista.
-        six: Svjetla, kamera, akcija, ovo je tvoje vrijeme da zablistaš!
-        ten: Prijateljski mah osigurava da sve bude u redu.
-        three: Reci sir! Ili samo isprobaj taj savršeni osmijeh.
+        six: Svjetla, kamera, akcija, ovo je Vaše vrijeme da zablistate!
+        ten: Prijateljsko mahanje osigurava da sve bude u redu.
+        three: 'Smiješak! '
         two: Pogledajte u objektiv, nasmiješite se i pretvarajte se da ste u filmskoj najavi.
-      rec_text: SNIMI
-      retake: Ne, želim ponovno polagati
-      run_again: Trči ponovno
-      title: Moramo osigurati da vaš sustav može snimati video
-      uploading: Prijenos
+      rec_text: SNIMITI
+      retake: Ne, želim ponovno snimiti
+      run_again: Pokušati ponovno
+      title: Moramo osigurati da Vaš sustav može snimati video
+      uploading: Prenijeti
   common:
     actions:
       add: Dodati
@@ -350,25 +424,26 @@ hr:
       close: Zatvoriti
       copy: Kopirati
       delete: Izbrisati
-      edit: Uredi
+      edit: Urediti
       remove: Ukloniti
-      reset: Resetiraj
-      resolve: Odlučnost
+      reset: Ponovno pokrenuti
+      resolve: Riješiti
       restore: Vratiti
-      save: Uštedjeti
-      search: Pretraživanje
+      save: Spremiti
+      search: Pretražiti
       send: Poslati
-      start: Start
-      unarchive: Poništi arhivu
-      unresolve: Neriješeno
+      start: Započeti
+      unarchive: Poništiti arhiviranje
+      unresolve: Problem nije riješen
       update: Ažurirati
-      upload: Prenesi
-      verify: Potvrdi
+      upload: Prenijeti
+      verify: Potvrditi
       view_all_tasks: Pogledajte sve zadatke
       view_detail: Pogledajte detalje
     column:
-      action: Akcijski
+      action: Akcija
       category: Kategorija
+      code: Kod
       created_at: Kreirano u
       id: ID
       status: Status
@@ -378,12 +453,13 @@ hr:
       reports: Izvješća
     text:
       cancel: Otkazati
-      confirm: Potvrdi
+      confirm: Potvrditi
       continue: Nastaviti
       default: Zadano
-      download: Preuzmi
+      download: Preuzeti
       na: N/A
       ok: U redu
+      refer_export_file: Pogledajte funkciju iznošenja kako biste preuzeli predložak koji se može koristiti za unošenje.
       response: Odgovor
   devise:
     administrators:
@@ -393,134 +469,142 @@ hr:
     failure:
       already_authenticated: Već ste prijavljeni.
       inactive: Vaš račun još nije aktiviran.
-      invalid: Nevažeća e-pošta ili lozinka.
+      invalid: Nevažeća email adresa ili lozinka.
       invited: Imate pozivnicu na čekanju, prihvatite je kako biste dovršili izradu računa.
       magic_link_invalid: Nevažeća ili istekla poveznica za prijavu.
-      not_found_in_database: Nevažeća e-pošta ili lozinka.
-      timeout: Vaša je sesija istekla. Molimo vas da se ponovno prijavite za nastavak.
+      not_found_in_database: Nevažeća email adresa ili lozinka.
+      timeout: Vaša je sesija istekla. Molimo, ponovno se prijavite za nastavak.
       unauthenticated: Morate se prijaviti ili registrirati prije nego što nastavite.
     invitations:
       edit:
         password_label: Lozinka
     passwords:
-      invalid_email: Nevažeća e-pošta
+      invalid_email: Nevažeća email adresa
     registrations:
-      communication_not_setup_error: Komunikacija putem e-pošte za registraciju nije postavljena, obratite se administratoru ovog projekta.
+      communication_not_setup_error: Komunikacija putem emaila za registraciju nije postavljena, obratite se administratoru ovog projekta.
       new:
-        email: E-mail adresa
+        email: Email adresa
         first_name: Ime
         instruction: Ispunite podatke u nastavku kako biste se registrirali i kreirali novi račun
         last_name: Prezime
-        privacy_notice: Poštujemo vašu privatnost i ne toleriramo neželjenu poštu. Nikada nećemo dati vaše podatke trećim stranama.
+        privacy_notice: Poštujemo Vašu privatnost i ne toleriramo neželjenu poštu. Nikada nećemo dati Vaše podatke trećim stranama.
         registration_code: Registracijski kod
-        submit: Registar
+        submit: Registracija
         tabs:
-          register: Registar
+          register: Registracija
           sign_in: Prijava
         terms_notice: Registracijom prihvaćate naše <a href="%{terms_url}">Uvjete korištenja i Pravila privatnosti</a>
-        title: Registriraj se sada
+        title: Registrirajte se sada
       success:
         actions:
           sign_in: Prijava
     sessions:
       new:
-        email: E-mail adresa
+        email: Email adresa
         forgot_password: Zaboravili ste lozinku?
-        instruction: Molimo prijavite se s podacima o svom osobnom računu
+        instruction: Molimo, prijavite se s osobnim podacima
         password_placeholder: Lozinka
         submit: Prijava
         tabs:
-          register: Registar
+          register: Registracija
           sign_in: Prijava
         title: Dobrodošli!
     two_factor_authentication:
-      attempt: Molimo unesite OTP koji ste primili na svoju registriranu adresu e-pošte
-      code_has_been_sent: Vaš novi OTP je poslan na vašu registriranu adresu e-pošte
+      attempt: Molimo, unesite OTP koji ste primili na svoju email adresu
+      code_has_been_sent: Vaš novi OTP je poslan na Vašu email adresu
+  dry_errors:
+    errors:
+      job_roles:
+        unique_within_job_group: Pozicija s ovim imenom već postoji.
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Vještina i pozicija moraju biti dio istog projekta ili postojati na globalnoj razini.
+        unique_mappings: Mapiranje s navedenom vještinom i pozicijom već postoji.
+      uniq_skillvue: Ova Skillvue procjena je već dostupna u sustavu. ID ove procjene je %{id}
   emails:
     subject_relationship_table:
-      subject_email: Predmet e-pošte
-      subject_name: Naziv subjekta
-      subject_relationship: Odnos subjekta
+      subject_email: Email
+      subject_name: Naziv
+      subject_relationship: Odnos
   errors:
     assessments:
-      timed_out: Nećete moći pristupiti procjeni %{assessment_name} jer je isteklo vrijeme.
+      timed_out: Nećete moći pristupiti procjeni %{assessment_name} jer Vam je isteklo vrijeme.
     error: Pogreška
-    error_500: Nešto je pošlo po zlu. Obratite se administratoru.
+    error_500: Došlo je do pogreške. Obratite se administratoru.
     forbidden: Nemate pristup ovoj stranici
     forbidden_action: Nemate dopuštenja za ovu radnju
-    invalid_token: Nešto je pošlo po zlu. Ponovno učitajte stranicu i pokušajte ponovno.
-    module_error: Došlo je do pogreške s ovim modulom, obratite se administraciji.
+    invalid_token: Došlo je do pogreške. Ponovno učitajte stranicu.
+    module_error: Došlo je do pogreške s ovim modulom, obratite se administratoru.
     module_error_editor: Nešto nije u redu s ovim modulom, provjerite postavke modula.
-    module_props_error: Nešto je pošlo po zlu s ovim modulom.
+    module_props_error: Došlo je do pogreške u ovom modulu.
     try_again: Pokušajte ponovno
   factors:
     description: Opis
     factor: Faktor
   frontend:
     activate: Aktivirati
-    are_you_sure: Jesi li siguran/sigurna?
+    are_you_sure: Jeste li sigurni?
     assessment: Procjena
     assessment_groups:
       create_success: Grupa je uspješno kreirana
       update_success: Grupa je uspješno ažurirana
     background_reading: Čitanje u pozadini
     bookings:
-      accept_invite_msg: Primili ste pozivnicu. Molimo vas da rezervirate svoje mjesto.
-      add_to_calendar: Dodaj u kalendar
-      add_to_calendar_tour_description: Dodajte ovu rezervaciju u svoj kalendar
+      accept_invite_msg: Primili ste pozivnicu. Molimo, rezervirate svoje mjesto.
+      add_to_calendar: Dodati u kalendar
+      add_to_calendar_tour_description: Dodati ovu rezervaciju u kalendar
       assessment_center_alert:
         btn_title: Kampanja
-        message_part1: Završite sve predradove u ovome
+        message_part1: Završite sve predradnje
         message_part2: prije rezervacije termina.
       assessment_center_group_name: Centar za procjenu
       booking_failed_msg: 'Rezervacija termina nije uspjela: %{error}'
       buttons:
         book: Rezervirati
-        book_again: Rezerviraj ponovno
+        book_again: Rezervirati ponovno
         cancel: Otkazati
-        cancel_booking: Otkaži rezervaciju
-        confirm_booking: Potvrdi rezervaciju
-        confirm_reschedule: Potvrdi promjenu termina
-        modify: Izmijeni
+        cancel_booking: Otkazati rezervaciju
+        confirm_booking: Potvrditi rezervaciju
+        confirm_reschedule: Potvrditi promjenu termina
+        modify: Izmijeniti
         nevermind: Nema veze
         no_text: Ne
         request_cancel: Zahtjev za otkazivanje
         request_reschedule: Zahtjev za promjenu termina
-        reschedule: Premjesti
-        reserve_spot: Rezervirajte svoje mjesto
+        reschedule: Premjestiti
+        reserve_spot: Rezervirati mjesto
         yes_text: Da
       cancel_booking_confirmation: Jeste li sigurni da želite otkazati ovu rezervaciju?
       cancellation_failed: 'Nije moguće otkazati rezervaciju: %{error}'
       cancellation_success: Rezervacija je uspješno otkazana
-      comments_required_msg: Molimo unesite svoje komentare
-      confirm_booking_description: Molimo Vas da potvrdite točnost ovih podataka prije dovršetka rezervacije.
+      comments_required_msg: Molimo, unesite svoje komentare
+      confirm_booking_description: Molimo, potvrdite točnost ovih podataka prije dovršetka rezervacije.
       confirm_booking_title: Potvrditi ovu rezervaciju?
-      default_failure_msg: Nije moguće obraditi vaš zahtjev. Pokušajte ponovno kasnije.
+      default_failure_msg: Nije moguće obraditi Vaš zahtjev. Pokušajte ponovno kasnije.
       default_requires_msg: "%{name} je obavezno"
       join_activity_meeting: Pridružite se sastanku
       join_workshop_meeting: Pridružite se sastanku
       language: Jezik
       language_placeholder: Odaberite jezik
-      language_preference_question: Imate li jezične preferencije?
-      language_required_msg: Molimo odaberite jezik
+      language_preference_question: Preferirate li neki jezik?
+      language_required_msg: Molimo, odaberite jezik
       meeting_start_text: 'Sastanak će početi za:'
-      need_changes: Trebate li napraviti promjene?
+      need_changes: Trebate li napraviti neke promjene?
       neurodivergence_comment_placeholder: Vaši komentari
-      neurodivergence_question: Trebate li ikakve razumne prilagodbe ili prilagodbe zbog posebnih potreba ili invaliditeta kako biste u potpunosti sudjelovali u procjeni?
-      no_invites_msg: Bit ćete dodani u procjenski centar ili ćete dobiti pozivnicu za rezervaciju mjesta; nakon što postanete dio centra, aktivnosti možete dovršiti klikom na gumb 'Prikaži detalje' u nastavku.
+      neurodivergence_question: Trebate li ikakve prilagodbe zbog posebnih potreba ili invaliditeta kako biste mogli u potpunosti ravnopravno sudjelovati u procjeni?
+      no_invites_msg: Bit ćete dodani u Razvojni centar ili ćete dobiti pozivnicu za rezervaciju mjesta; nakon što uđete u Razvojni centar, aktivnosti možete dovršiti klikom na gumb 'Prikaži detalje' u nastavku.
       other_invite: Pogledajte još %{count} pozivnica
       other_invites: Pogledajte još %{count} pozivnica
       reason: Razlog
       reason_for_cancel: Razlog otkazivanja
       reason_for_reschedule: Razlog za promjenu rasporeda
-      request_cancellation_failed: 'Neuspješno zahitanje otkazivanja: %{error}'
+      request_cancellation_failed: 'Neuspješno zatraženo otkazivanje: %{error}'
       request_cancellation_success: Uspješno zatraženo otkazivanje
-      request_reschedule_failed: 'Nije uspjelo zatražiti promjenu termina: %{error}'
-      request_reschedule_success: Uspješno zatraženo premještanje termina
-      reschedule_failed_msg: 'Premještanje nije uspjelo: %{error}'
+      request_reschedule_failed: 'Neuspješno zatražena promjena termina: %{error}'
+      request_reschedule_success: Uspješno zatražena promjena termina
+      reschedule_failed_msg: 'Promjena termina nije uspjela: %{error}'
       reschedule_reason_placeholder: Za nastavak unesite razlog promjene termina.
       schedule_success: Ova rezervacija je zakazana
-      schedule_success_msg: Vama i ostalim sudionicima poslali smo e-poštom pozivnicu u kalendar sa svim detaljima.
+      schedule_success_msg: Vama i ostalim sudionicima poslali smo emailom pozivnicu sa svim detaljima. Pozivnica će biti u Vašem kalendaru.
       starts_at: 'Počinje u: %{date}'
       starts_in: 'Počinje za:'
       tab_label:
@@ -528,12 +612,12 @@ hr:
         invites: Pozivnice
       what: Što
       when: Kada
-      workshop_start_text: Vaš procjenski centar počet će za
-    break_time: Vrijeme pauze
+      workshop_start_text: Vaš Razvojni centar počet će za
+    break_time: Vrijeme za pauzu
     campaign:
       actions:
         remove:
-          confirmation: Unesite trenutni naziv kampanje naveden u nastavku u tekstualni okvir za uklanjanje kampanje
+          confirmation: Unesite trenutni naziv kampanje (naveden u nastavku) u tekstualni okvir za uklanjanje kampanje
           success: "%{campaignName} je uspješno uklonjena."
       users:
         completion_statuses:
@@ -542,8 +626,8 @@ hr:
           not_started: Nije započeto
     change_password: Promjena lozinke
     delete: Izbrisati
-    edit: Uredi
-    lighthouse_app: Svjetionik Mercer
+    edit: Urediti
+    lighthouse_app: Mercer Lighthouse
     login: Prijava
     manage: Upravljati
     'no': Ne
@@ -553,56 +637,56 @@ hr:
     session_timeout_modal:
       buttons:
         close: Zatvoriti
-        log_out: Odjavi se sada
-        re_login: Prijavi se ponovno
-        stay_logged_in: Ostani prijavljen/a
-      message: Vaša će sesija isteći za 2 minute zbog neaktivnosti. Kliknite &#39;Ostani prijavljen&#39; da biste nastavili sesiju ili ćete se automatski odjaviti.
-      message_after_timeout: Vaša je sesija istekla, molimo vas da se ponovno prijavite.
+        log_out: Odjaviti se sada
+        re_login: Prijaviti se ponovno
+        stay_logged_in: Ostati prijavljen/a
+      message: Vaša će sesija isteći za 2 minute zbog neaktivnosti. Kliknite na "Ostani prijavljen/a" kako biste nastavili sesiju, inače ćete biti automatski odjavljeni.
+      message_after_timeout: Vaša je sesija istekla, molimo, prijavite se ponovno.
       time_remaining: Preostalo vrijeme
-      title: Upozorenje o isteku vremena sesije
+      title: Upozorenje o isteku vremena za završetak sesije
     update: Ažurirati
-    upload: Prenesi
+    upload: Prenijeti
     workshop_invited_subjects:
       statuses:
-        cancelled: Otkazano
+        cancelled: Otkazati
         requested_cancellation: Zatraženo otkazivanje
         requested_cancellation_rejected: Zatraženo otkazivanje odbijeno
-        requested_rescheduling: Zatraženo ponovno zakazivanje
+        requested_rescheduling: Zatraženo premještanje termina
         requested_rescheduling_rejected: Zatraženo premještanje termina odbijeno
     'yes': Da
   idp:
     reflective_questions:
-      already_completed: IDP je već završen, sada ne možete odgovarati na pitanja.
+      already_completed: IDP je već završen, više ne možete odgovarati na pitanja.
   idp_templates:
     errors:
       user_idp_template_not_found: Nije vam dodijeljen nijedan IDP predložak.
   mailer:
     magic_link:
       body:
-        dear: Poštovani %{name},
-        greetings: Pozdrav za današnji dan!
-        instructions: Kliknite na donju poveznicu za prijavu na svjetionik.
-        signin_link: Veza za prijavu
-      subject: Link za prijavu na Lighthouse
+        dear: Dragi/a %{name},
+        greetings: pozdrav!
+        instructions: Kliknite na donju poveznicu za prijavu na Lighthouse.
+        signin_link: Povezanica za prijavu
+      subject: Poveznica za prijavu na Lighthouse
   navigation:
-    logout: Odjava
+    logout: Odjaviti se
   profile:
-    add_field: Dodaj polje
-    add_photo: Dodaj fotografiju
+    add_field: Dodati polje
+    add_photo: Dodati fotografiju
     age: Dob
-    change_password: Promjena lozinke
-    change_photo: Promijeni fotografiju
-    email: E-pošta
-    female: Žena
+    change_password: Promjeniti lozinku
+    change_photo: Promijeniti fotografiju
+    email: Email
+    female: Ženski
     first_name: Ime
-    gender: Spol
-    incomplete: Podaci vašeg profila su nepotpuni. Molimo vas da ispunite podatke svog profila.
+    gender: Rod
+    incomplete: Vaš profil je nepotpun. Molimo, ispunite podatke profilne podatke.
     last_name: Prezime
     locale: Željeni jezik
     male: Muški
     mandatory_fields: Označava obavezna polja
     not_disclosed: Radije ne bih otkrio/la
-    old_data: Podaci vašeg profila stari su %{months} ​​mjeseci. Molimo potvrdite podatke kako biste mogli nastaviti dalje.
+    old_data: Podaci na Vašem profilu su stari %{months} ​​mjeseci. Molimo, potvrdite podatke kako biste mogli nastaviti dalje.
     password: Lozinka
     password_confirmation: Potvrda lozinke
     success_update: Profil je uspješno spremljen
@@ -612,12 +696,14 @@ hr:
     update_required: Potrebna su ažuriranja profila
   reports:
     actions:
-      add: Dodaj izvješće
-      download: Preuzmi izvješće
-      view: Prikaži izvješće
+      add: Dodati izvješće
+      download: Preuzeti izvješće
+      view: Prikazati izvješće
+    form:
+      load_from_skillvue: Učitati iz Skillvue platforme
     modules:
       campaign_factors_table:
-        add_condition: Dodaj uvjet
+        add_condition: Dodati uvjet
         baseline_score: Osnovni rezultat
         blindspots: Slijepe točke
         campaign_factor_conditions: Uvjeti faktora kampanje
@@ -628,26 +714,26 @@ hr:
         if: Ako
         label: Označiti
         no_conditions: Nema uvjeta
-        save: Uštedjeti
+        save: Spremiti
         strengths: Snage
         then: Zatim prikažite sljedeći tekst
-        title: Titula
+        title: Naslov
       factors_table:
         description: Opis
         no_data: Za ovaj odjeljak nema dostupnih podataka.
         rank: Rang
-        score: Postići
+        score: Rezultat
       gap_assessment:
         gap: Razmak
         item: Indikator
-        negative_gap: Negativni praznine
+        negative_gap: Negativne praznine
         no_negative_gaps: Nema negativnih praznina
         no_positive_gaps: Nema pozitivnih praznina
-        positive_gap: Pozitivne razlike
+        positive_gap: Pozitivne praznine
         rank: Rang
         scoring_category: Kompetencija
       highest_lowest:
-        bottom_5: DONJA 5
+        bottom_5: DONJIH 5
         category: Kategorija
         highest_scores: Najviši rezultati
         item: Indikator
@@ -658,11 +744,11 @@ hr:
         sub_competenties: Podkompetencije
         top_5: TOP 5
       potential_career_full:
-        career_strengths_and_results: Snage karijere i vaši rezultati
-        career_sub_tracks: Pod-trakovi karijere
-        key_career_tracks_within: U nastavku je popis potencijalnih radnih mjesta za svako od karijernih područja. Imajte na umu da je ovaj popis samo indikativan i nije iscrpan. Imajte na umu da radna mjesta napisana kurzivom zahtijevaju višu razinu obrazovanja i/ili iskustva.
+        career_strengths_and_results: Vaše karijerne snage i rezultati
+        career_sub_tracks: Pravci razvoja karijere
+        key_career_tracks_within: U nastavku je popis potencijalnih radnih mjesta za svaki od pravaca razvoja Vaše karijere. Imajte na umu da je ovaj popis samo indikativan i nije potpun. Imajte na umu da radna mjesta napisana kurzivom zahtijevaju višu razinu obrazovanja i/ili iskustva.
         potential_areas_of_study: Potencijalna područja istraživanja
-        strength_high: Snaga potpisa
+        strength_high: Specifična snaga
         strength_low: Razvojna snaga
         strength_moderate: Potencijalna snaga
         work_environment: Radno okruženje
@@ -675,23 +761,23 @@ hr:
         developmental_rating: Razvojna ocjena
         questions: Pitanja
       strength_clusters:
-        index_sub_factors_considered: Podfaktori Indeksa uspjeha koji su uzeti u obzir za dobivanje vaše konačne ocjene za radno okruženje %{workstyle}
+        index_sub_factors_considered: Podfaktori Indeksa uspjeha koji su uzeti u obzir za dobivanje Vaše konačne ocjene za radno okruženje %{workstyle}
         possible_roles: Moguće uloge
         work_environments: Očekivana radna okruženja
       three_sixty_default:
         factor:
           items: Stavke
           max: Maksimalna vrijednost
-          mean: Srednja vrijednost
+          mean: Aritmetička sredina
           min: Minimalna vrijednost
           standardDeviation: Standardna devijacija
-          sum: Iznos
+          sum: Zbroj
           totalResponses: Ukupan broj odgovora
           variance: Varijanca
           weightedMean: Ponderirana srednja vrijednost
         question:
           no_response: Nema dostupnog odgovora
-        statistic: Statistički
+        statistic: Statistička
         value: Vrijednost
       three_sixty_report_summary:
         completed: Završeno
@@ -708,30 +794,30 @@ hr:
       approved: Odobreno
       available: Dostupno
       denied: Odbijeno
-      incomplete: Nepotpun
+      incomplete: Nepotpuno
       not_available: Nije dostupno
       on_hold: Na čekanju
       released: Objavljeno
   shared:
     filters:
       clear: Obriši filtere
-    internet_disconnected_message: Pokušavam ponovno povezivanje. Provjerite internetsku vezu.
+    internet_disconnected_message: Pokušavam ponovno povezivanje. Molimo, provjerite svoju internetsku vezu.
     terms_conditions_privacy: Izjava o privatnosti
     tte_terms_and_condition: Uvjeti i privatnost
   simple_form:
     placeholders:
       administrator:
-        email: E-mail adresa
+        email: Email adresa
         last_name: Prezime
       memebrship:
         last_name: Prezime
       user:
-        email: E-mail adresa
+        email: Email adresa
         first_name: Ime
         last_name: Prezime
         password: Lozinka
       user_form:
-        email: E-mail adresa
+        email: Email adresa
         first_name: Ime
         last_name: Prezime
         password: Lozinka
@@ -752,36 +838,36 @@ hr:
       approved: Odobreno
       available: Dostupno
       denied: Odbijeno
-      incomplete: Nepotpun
+      incomplete: Nepotpuno
       not_available: Nije dostupno
       not_prepared: Nije spremno
       on_hold: Na čekanju
-      prepared: Gotovo
+      prepared: Završeno
       released: Objavljeno
     statuses:
       completed: Završeno
       declined: Odbijeno
       denied: Odbijeno
-      done: Gotovo
+      done: Završeno
       not_completed: Nije dovršeno
       waiting: Čekanje
   threesixty:
     accept_privacy_modal:
       accept: Prihvatiti
-      checkbox: Pročitao/la sam i razumio/la sam gore navedenu Politiku privatnosti
-      checkbox_with_client_link: Klikom na ovaj okvir pristajete da ste pročitali našu obavijest o privatnosti i obavijest o privatnosti naših klijenata te pristajete na prikupljanje i obradu vaših osobnih podataka kako je u njima opisano, uključujući međunarodni prijenos vaših osobnih podataka.
+      checkbox: Klikom na ovaj okvir potvrđujete da ste pročitali našu Izjavu o privatnosti te da pristajete na prikupljanje i obradu Vaših osobnih podataka kako je u njoj opisano, uključujući i internacionalni prijenos Vaših osobnih podataka.
+      checkbox_with_client_link: Klikom na ovaj okvir potvrđujete da ste pročitali našu Izjavu o privatnosti te da pristajete na prikupljanje i obradu Vaših osobnih podataka kako je u njoj opisano, uključujući i internacionalni prijenos Vaših osobnih podataka.
       privacy_notice: Obavijest o privatnosti
       title: Privola za obradu i prijenos osobnih podataka
-    action: Akcijski
+    action: Akcija
     add: Dodati
     and: I
-    approve_all: Odobri sve
-    approve_all_successful: Odobrene sve nominacije
-    approve_evaluations: Odobri evaluacije
-    approve_nominations: Odobri nominacije
-    approve_reports: Odobri izvješća
+    approve_all: Odobriti sve
+    approve_all_successful: Odobriti sve nominacije
+    approve_evaluations: Odobriti evaluacije
+    approve_nominations: Odobriti nominacije
+    approve_reports: Odobriti izvješća
     approved: Odobreno
-    approving_mail_sent: Pošta za odobrenje nominacije poslana je menadžerima
+    approving_mail_sent: Pošta za odobrenje nominacije poslana je rukovoditeljima
     as_my: kao moj
     assessment: Procjena
     back_to_tasks: Natrag na zadatke
@@ -792,7 +878,7 @@ hr:
       title: Jeste li sigurni da želite pogledati izvješće?
     closed_campaign_message: Ova 360 kampanja je zatvorena. Ne možete nominirati niti ocjenjivati ​​nikoga za ovu kampanju.
     completed: Završeno
-    confirm: Jesi li siguran/sigurna?
+    confirm: Jeste li sigurni?
     confirmation_for_nomination_removal: Jeste li sigurni da želite ukloniti nominaciju
     confirmation_required: Potrebna je potvrda
     confirmation_text_incorrect: Tekst potvrde je netočan
@@ -800,18 +886,18 @@ hr:
     continue: Nastaviti
     dashboard_title: Dobrodošli %{name}
     decline: Pad
-    decline_invite: Odbij pozivnicu
+    decline_invite: Odbiti pozivnicu
     denied: Odbijeno
-    deny_all: Odbij sve
+    deny_all: Odbiti sve
     deny_all_successful: Odbijene sve nominacije
-    download_pdf: Preuzmi PDF
-    download_report: Preuzmi izvješće
-    download_reports: Preuzimanje izvješća
-    edit_user: Uredi korisnika
-    email_approve_request: Zahtjev za odobrenje e-pošte
+    download_pdf: Preuzeti PDF
+    download_report: Preuzeti izvješće
+    download_reports: Preuzeti izvješća
+    edit_user: Urediti korisnika
+    email_approve_request: Zahtjev za odobrenje emaila
     email_schedules:
-      delete_successful: Raspored e-pošte uspješno je izbrisan
-    evaluate: Procijeni
+      delete_successful: Email koji ste zakazali za slanje je uspješno izbrisan
+    evaluate: Procijeniti
     evaluation: Evaluacija
     evaluation_all_closed_message: Trenutno sve nominacije čekaju odobrenje
     evaluation_closed_nomination_message: Ne možete nominirati za ovaj predmet jer je evaluacija za njega zatvorena
@@ -821,21 +907,21 @@ hr:
     evaluator: Evaluator
     export_pdf: Izvoz PDF-a
     first_name: Ime
-    first_name_error: Molimo unesite ime
+    first_name_error: Molimo, unesite ime
     help: Pomoć
     language: Jezik
     last_name: Prezime
-    last_name_error: Molimo unesite prezime
-    load_results: Učitaj rezultate
+    last_name_error: Molimo, unesite prezime
+    load_results: Učitati rezultate
     mail_history:
       statuses:
         success: Uspjeh
         undelivered: Neisporučeno
     my_projects: Moji projekti
     name_label: Ime
-    nominate: Nominiraj
-    nominate_evaluators: Nominirajte ocjenjivače za
-    nomination: Imenovanje
+    nominate: Nominirati
+    nominate_evaluators: Nominirati ocjenjivače za
+    nomination: Nominacija
     nomination_help_modal:
       title: Pomoć pri nominaciji
     nomination_predicates:
@@ -850,31 +936,31 @@ hr:
     page_title: Signify 360° pregled - Primjena razine
     participant_list:
       actions:
-        approve_report: Odobri izvješće
-        download_report: Preuzmi izvješće
-        edit: Uredi
-        hold_report: Zadrži izvješće
+        approve_report: Odobriti izvješće
+        download_report: Preuzeti izvješće
+        edit: Urediti
+        hold_report: Zadržati izvješće
         login: Prijava
-        mark_as_done: Označi kao gotovo
-        release_report: Izvješće o izdanju
-        remove_campaign: Ukloni iz kampanje
-        remove_report_approval: Ukloni odobrenje izvješća
-        remove_report_hold_release_report: Ukloni zadržavanje/otpuštanje izvješća
-        remove_subject: Ukloni predmet
-        unmark_as_done: Poništi oznaku kao gotovo
-        view_report: Prikaži izvješće
-        view_responses: Prikaži odgovore
+        mark_as_done: Označiti kao gotovo
+        release_report: Obavijest o puštanju u rad
+        remove_campaign: Ukloniti iz kampanje
+        remove_report_approval: Ukloniti odobrenje izvješća
+        remove_report_hold_release_report: Ukloniti zadržavanje/otpuštanje izvješća
+        remove_subject: Ukloniti predmet
+        unmark_as_done: Označiti kao gotovo
+        view_report: Prikazati izvješće
+        view_responses: Prikazati odgovore
       confirmation_messages:
         approve_report: Jeste li sigurni da želite odobriti izvješće?
         hold_report: Jeste li sigurni da želite zadržati izvješće?
         mark_evaluation_done: Jeste li sigurni da želite označiti evaluaciju kao završenu? Evaluacija će biti zatvorena za ovu temu.
         release_report: Jeste li sigurni da želite objaviti izvješće?
         remove_from_campaign: Jeste li sigurni da želite ukloniti korisnika iz kampanje?
-        remove_release_hold: Jeste li sigurni da želite ukloniti status Otpuštanje/Zadržavanje?
+        remove_release_hold: Jeste li sigurni da želite ukloniti status otpuštanje/zadržavanje?
         remove_report_approval: Jeste li sigurni da želite ukloniti odobrenje izvješća?
-        remove_subject: Jeste li sigurni da želite ukloniti predmet s e-poštom iz kampanje?
-        umark_evaluation_as_complete: Jeste li sigurni da želite poništiti oznaku evaluacije kao završene?
-      report_generation_message: Izvješće se generira. Obavijestit ćemo vas kada bude spremno.
+        remove_subject: Jeste li sigurni da želite ukloniti email iz kampanje?
+        umark_evaluation_as_complete: Jeste li sigurni da želite poništiti oznaku da ste završili evaluaciju?
+      report_generation_message: Izvješće se generira. Obavijestit ćemo Vas kada bude spremno.
     processing: Obrada
     processing_report: Izvješće o obradi
     progress_text: "%{completed} od %{total}"
@@ -884,55 +970,58 @@ hr:
       email_type:
         bcc: Skrivena kopija
         cc: Kopija
-        edit: Uredi
+        edit: Urediti
         max_length_warning: Preostalo je %{x} znakova
         message: Vaša poruka
         send: Poslati
-        subject: Predmet
-        successful_message: Uspješno ste poslali e-poruku
-        to: Do
-    remind_all: Podsjeti sve
+        subject: Naslov
+        successful_message: Uspješno ste poslali email
+        to: Za
+    remind_all: Podsjetiti sve
     remind_mail_sent: Podsjetnici poslani evaluatorima koji nisu dovršili evaluaciju
     report_for: Izvješće za
-    report_generation_in_progress: Izvješće se generira. Obavijestit ćemo vas kada bude spremno.
+    report_generation_in_progress: Izvješće se generira. Obavijestit ćemo Vas kada bude spremno.
     reports: Izvješća
     reports_help_modal:
-      title: Pomoć za izvješća
-    reset_campaign_confirmation: Unesite trenutni naziv kampanje naveden u nastavku u tekstualno polje kako biste resetirali sve sudionike
-    reset_nomination_confirmation: Unesite trenutni naziv kampanje naveden u nastavku u tekstualno polje kako biste resetirali sve nominacije
-    save: Uštedjeti
-    select_relationnship: Odaberite odnos
-    select_relationship: Odaberite odnos
+      title: Pomoć za pisanje izvješća
+    reset_campaign_confirmation: Unesite trenutni naziv kampanje (naveden u nastavku) u tekstualno polje kako biste resetirali sve sudionike
+    reset_nomination_confirmation: Unesite trenutni naziv kampanje (naveden u nastavku) u tekstualno polje kako biste resetirali sve nominacije
+    save: Spremiti
+    select_relationnship: Odabrati odnos
+    select_relationship: Odabrati odnos
     self: Ja
-    set_name_for_evaluator: Postavi ime za ocjenjivača
+    set_name_for_evaluator: Postaviti ime ocjenjivača
     setup_nominations: Postavljanje nominacija
-    subject: Predmet
-    submit: Pošalji
+    subject: Naslov
+    submit: Poslati
     total_progress: Ukupni napredak
-    user_name_input_placeholder: upišite ime ili e-mail...
-    validation_errors: Pogreške u validaciji
-    view_my_report: Prikaži moje izvješće
-    view_nominations: Prikaži nominacije
-    view_reports: Prikaži izvješća
-    waiting: Čekanje
+    user_name_input_placeholder: upišite ime ili email...
+    validation_errors: Pogreške u provjeri
+    view_my_report: Prikazati moje izvješće
+    view_nominations: Prikazati nominacije
+    view_reports: Prikazati izvješća
+    waiting: Čekati
     you: Vas
-    yourself: Sami
+    yourself: svoje
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Klikom na ovaj okvir potvrđujete da ste pročitali našu Izjavu o privatnosti te da pristajete na prikupljanje i obradu Vaših osobnih podataka kako je u njoj opisano, uključujući i internacionalni prijenos Vaših osobnih podataka.
+    privacy_notice: Obavijest o privatnosti
   user:
     fields:
-      email: E-mail adresa
+      email: Email adresa
       first_name: Ime
       last_name: Prezime
   user_assessments:
-    redirect: Za ovu procjenu bit ćete preusmjereni na web-mjesto treće strane. Kliknite &quot;nastavi&quot; ako želite započeti procjenu.
+    redirect: Za ovu procjenu bit ćete preusmjereni na web stranicu treće strane. Molimo, kliknite Nastavi ako želite započeti procjenu.
   user_reports:
     actions:
-      regenerate: Regenerirati
+      regenerate: Obnoviti
     messages:
-      regenerate_successful: Posao regeneracije izvješća uspješno je zakazan
+      regenerate_successful: Uspješno je zakazano izdavanje novog izvještaja
     modals:
       remove:
         content: Jeste li sigurni da želite ukloniti izvješće %{userReportName}?
-        successfully: Izvješće %{userReportName} uspješno je uklonjeno
+        successfully: Izvješće %{userReportName} je uspješno uklonjeno
     preview_report: Pregled izvješća
     statuses:
       generating: Generiranje
@@ -941,62 +1030,62 @@ hr:
   validations:
     AudioResponse:
       in_progress:
-        RECORDED: Zvuk je snimljen, ali nije spremljen
-        RECORDING: Snimanje zvuka je u tijeku
-        SAVING: Prijenos snimljenog zvuka je u tijeku
-      required: Molimo snimite i spremite zvuk prije nego što nastavite
+        RECORDED: Audio snimljen, ali nije spremljen
+        RECORDING: Audio snimanje je u tijeku
+        SAVING: Prijenos snimljenog audia je u tijeku
+      required: Molimo, snimite i spremite audio prije nego što nastavite
     FileUpload:
       in_progress:
         SAVING: Prijenos datoteke je u tijeku
-      required: Molimo prenesite datoteku
+      required: Molimo, prenesite datoteku
     TextEntry:
       Email:
-        character_range: Unesena poruka e-pošte mora imati najmanje %{min} i najviše %{max} znakova.
+        character_range: Unesena poruka mora imati najmanje %{min} i najviše %{max} znakova.
         subject:
-          min_length: Polje za predmet treba imati najmanje 10 znakova
+          min_length: Polje za naslov treba imati najmanje 10 znakova
         to:
-          required: Polje &quot;Prima&quot; je obavezno
+          required: Obavezno je popuniti ovo polje
     VideoResponse:
       in_progress:
         recorded: Video je snimljen, ali nije spremljen
         recording: Snimanje videa je u tijeku
         saving: Prijenos snimljenog videa je u tijeku
-      required: Molimo snimite i spremite video prije nego što nastavite
+      required: Molimo, snimite i spremite video prije nego što nastavite
     actions_still_in_progress: U tijeku su sljedeće radnje. Ako nastavite, izgubit ćete ove podatke.
     blank: ne može biti prazno
-    character_count: 'Broj znakova '
-    character_range: Vaš odgovor mora biti dug najmanje %{min} i ne više od %{max} znakova.
+    character_count: Broj znakova
+    character_range: Vaš odgovor mora biti dug najmanje %{min} i najviše %{max} znakova.
     date: Vaš odgovor mora biti valjan datum (dd.mm.gggg.)
     each_group_contains: Svaka grupa mora sadržavati najmanje %{min} i najviše %{max} stavki
-    email: Vaš odgovor mora biti važeća e-mail adresa
+    email: Vaš odgovor mora biti važeća email adresa
     exact: Molimo odaberite točno %{count} izbora
     file_upload:
       EntityTooLarge: Veličina datoteke mora biti manja od %{maxFileSize} MB
       WrongFileType: Vrsta datoteke treba biti jedna od sljedećih %{allowedFileTypes}
     issue: Izdati
-    least: Molimo odgovorite na barem %{min} odgovora.
-    least_hotspot: Molimo odgovorite na barem %{min} odgovora.
+    least: Molimo, odgovorite na barem %{min} pitanja.
+    least_hotspot: Molimo, odgovorite na barem %{min} pitanja.
     max_character: Vaš odgovor ne smije imati više od %{max} znakova.
     max_word: Vaš odgovor ne smije imati više od %{max} riječi.
     min_character: Vaš odgovor mora sadržavati najmanje %{min} znakova.
     min_word: Vaš odgovor mora imati najmanje %{min} riječi
     most:
-      few:
-      one: Molimo odaberite najviše %{max} izbora
-      other:
-    must_rank_between: Molimo dodijelite vrijednost od %{min} do %{max} za svaku stavku. Vrijednosti se ne smiju ponavljati.
-    must_select: Molimo odaberite od %{min} do %{max} opcija
+      few: Molimo, odaberite nekoliko izbora
+      one: Molimo, odaberite jedan od ponuđenih odgovora
+      other: Molimo, odaberite najviše %{max} odgovora
+    must_rank_between: Molimo, dodijelite vrijednost od %{min} do %{max} za svaku stavku. Vrijednosti se ne smiju ponavljati.
+    must_select: Molimo, odaberite od %{min} do %{max} opcija
     number: Vaš odgovor mora biti broj
-    photo: potreban
-    range: Molimo odgovorite na barem %{min} i ne više od %{max} odgovora.
-    required: Molim vas odgovorite na ovo pitanje
+    photo: potrebno
+    range: Molimo, odgovorite na najmanje %{min} i najviše %{max} pitanja.
+    required: Molimo, odgovorite na ovo pitanje
     text: Vaš odgovor ne smije sadržavati brojeve
     title:
-      few:
-      one: Postoji jedna greška, molimo provjerite svoje odgovore
-      other: Ima %{count} pogrešaka, molimo provjerite svoje odgovore.
-    word_count: 'Broj riječi '
+      few: Postoji nekoliko pogrešaka. Molimo, provjerite svoje odgovore
+      one: Postoji jedna pogreška. Molimo, provjerite svoje odgovore
+      other: Postoji %{count} pogrešaka. Molimo, provjerite svoje odgovore
+    word_count: Broj riječi
     word_range: Vaš odgovor mora imati najmanje %{min} i najviše %{max} riječi.
   'yes': Da
   your: Tvoj
-  yourself: Sami
+  yourself: sebi

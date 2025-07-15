@@ -27,6 +27,7 @@ enduser_locales:
   - th
   - vi
   - sr-Cyrl
+  - sr-Latn
 admin_user_locales:  <%= ENV["ADMIN_LOCALES"]%>
 timezone: Abu Dhabi
 domain: <%= ENV["APP_DOMAIN"] || 'tte-lighthouse.com' %> # psychometrics.co.uk

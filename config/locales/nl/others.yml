@@ -758,6 +758,12 @@ nl:
           attributes:
             base:
               max_takes_limit_reached: Limiet bereikt voor maximale opnames
+        register:
+          attributes:
+            mobile_number:
+              blank: Mobiel nummer is vereist
+              invalid: Mobiel nummer is ongeldig
+              verification_expired: De verificatiecode is verlopen. U kunt opnieuw proberen te verifiëren.
         report:
           assessments_not_hogan: Alle beoordelingen moeten van het Hogan-type zijn
           assessments_not_saville: Alle beoordelingen moeten van het type Saville zijn
@@ -1296,13 +1302,13 @@ nl:
     insights_reports: Inzichten en rapporten
     instruction_modal:
       campaign_start_final_instructions: "<p>houd er rekening mee dat er geen manier is om de timer te stoppen of te pauzeren. De campagnetimer blijft lopen, zelfs als je de browser sluit, dus je moet er op geen enkel moment aan denken om de taken tussendoor te verlaten om iets anders te doen. Zorg ervoor dat je zo min mogelijk wordt afgeleid tijdens de taken. Zoek een rustige omgeving, schakel meldingen op je apparaten uit en vermijd multitasking. Houd je concentratie vast en blijf gefocust. Als de campagnetimer is afgelopen, kun je niet meer verder. Als je de bovenstaande instructies hebt doorgelezen, klik dan op start om verder te gaan met de toegewezen taken</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Lees de volgende instructies goed door.</h4>
         <p>de taken die je gaat uitvoeren hebben een tijdslimiet. Zodra je op "Start" klikt, begint de campagnetimer automatisch te lopen. Je hebt %{minutes} minuten om alle activiteiten te voltooien. Probeer de taken binnen de aangegeven tijd te voltooien en ga effectief met je tijd om, zodat je je niet door het evaluatieproces hoeft te haasten. Zorg ervoor dat je de taken in één keer voltooit, dus als je een pauze moet nemen, is dit het juiste moment</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Surveilleren</h4>
         <p>als je op de Startknop klikt, word je doorgestuurd naar ons surveillancesysteem. Het zal je camera, microfoon en scherm in de gaten houden tijdens je sessie. Deze sessies worden automatisch gecontroleerd door ons geavanceerde AI-systeem, wat zorgt voor een ononderbroken en soepele gebruikerservaring. Sessies kunnen echter ook worden beoordeeld door menselijke surveillanten. Alle tekenen van wangedrag of onregelmatigheden zullen worden gemarkeerd. Dit wordt gedaan om ervoor te zorgen dat er geen pogingen tot valsspelen worden gedaan. Als er verdenkingen worden gevonden, worden je taken geannuleerd</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Proctor browser</h4>
         <p>je zult een speciale browser moeten downloaden en installeren om de proctoraatstaken te voltooien. Volg de instructies in het volgende scherm. Je kunt deze verwijderen nadat je alle vereiste activiteiten hebt voltooid</p>
     instructions:
@@ -3486,6 +3492,9 @@ nl:
     waiting: Wachten
     you: U
     yourself: Jezelf
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Door op dit vakje te klikken, stemt u ermee in dat u onze privacyverklaring en de privacyverklaring van onze klant hebt gelezen en stemt u in met het verzamelen en verwerken van uw persoonlijke gegevens zoals daarin beschreven, inclusief de internationale overdracht van uw persoonlijke gegevens.
+    privacy_notice: Privacyverklaring
   time:
     formats:
       date: "%d/%m/%y"

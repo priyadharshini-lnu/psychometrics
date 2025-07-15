@@ -758,6 +758,12 @@ zh-Hant:
           attributes:
             base:
               max_takes_limit_reached: 達到最大拍攝上限
+        register:
+          attributes:
+            mobile_number:
+              blank: 需要手機號碼
+              invalid: 手機號碼無效
+              verification_expired: 驗證碼已過期，您可以嘗試重新驗證。
         report:
           assessments_not_hogan: 所有評估必須為 Hogan 類型
           assessments_not_saville: 所有評估必須是薩維爾型
@@ -917,7 +923,7 @@ zh-Hant:
       next_assessment: 通過下一次評估
       pending_tasks:
         one: 您有 1 個待處理的任務
-        other: 您有 %{count} 待處理任務
+        other: 您有 1 個待處理的任務
       re_evaluate: 按一下這裡重新評估
       reevaluate: 重新評估
       remove:
@@ -1296,13 +1302,13 @@ zh-Hant:
     insights_reports: 洞察與報告
     instruction_modal:
       campaign_start_final_instructions: "<p>請注意，您無法停止或暫停計時器，即使您關閉瀏覽器，活動計時器仍會持續運作，因此您絕對不可以在中間離開任務去做其他事情。 請確保在執行任務時盡量減少分心，尋找一個安靜的環境、關閉裝置上的通知，並避免處理多項任務。 請保持專注力，並保持注意力集中。 一旦活動計時器耗盡，您將無法繼續。 如果您已閱讀上述說明，請按一下開始，以繼續指定的任務。</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>請正確閱讀下列說明。</h4>
         <p>您即將開始的任務是有時間限制的。 一旦您點選「開始」，活動計時器就會自動開始。 您有 %{minutes} 分鐘的時間來完成所有活動。 請務必在指定時間內完成任務，並有效管理時間，避免匆忙完成評估過程。 請務必一次完成任務，如果您需要休息，現在就是時候。</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>監考</h4>
         <p>按下「開始」按鈕後，您會被轉到我們的監考系統，它會在您的測驗過程中監控您的攝影機、麥克風和螢幕。 這些測驗會由我們精密的人工智能系統自動監考，提供不中斷且流暢的使用者體驗。 不過，測驗也可能由人工監考員審查。 任何不當行為或異常跡象都會被標記，這是為了確保沒有作弊企圖。 如果發現懷疑，您的任務將被取消。</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>測驗瀏覽器</h4>
         <p>您需要下載並安裝一個特殊的瀏覽器來完成測驗任務。 請按照下一個畫面的指示進行操作。 您可以在完成所有必要的活動後卸載此軟體。</p>
     instructions:
@@ -3599,6 +3605,9 @@ zh-Hant:
     waiting: 等待
     you: 您
     yourself: 你自己
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: 點選此方塊，即表示您同意您已閱讀我們的隱私權聲明和客戶的隱私權聲明，並同意我們收集和處理其中所述的您的個人資訊，包括您個人資訊的國際傳輸。
+    privacy_notice: 隱私權聲明
   time:
     formats:
       date: "%d/%m/%y"

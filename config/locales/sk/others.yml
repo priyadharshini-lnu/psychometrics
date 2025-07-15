@@ -276,13 +276,13 @@ sk:
     insights_reports: Poznatky a správy
     instruction_modal:
       campaign_start_final_instructions: "<p>upozorňujeme, že časovač nie je možné zastaviť ani pozastaviť. Časovač kampane bude bežať aj po zatvorení prehliadača, takže v žiadnom prípade by ste nemali uvažovať o tom, že medzi úlohami odídete a budete robiť niečo iné. Uistite sa, že počas úloh minimalizujete rozptyľovanie. Nájdite si tiché prostredie, vypnite oznámenia na svojich zariadeniach a vyhýbajte sa multitaskingu. Zachovajte si koncentráciu a zostaňte sústredení. Keď časovač kampane vyprší, nebudete môcť pokračovať. Ak ste si prečítali vyššie uvedené pokyny, kliknite na tlačidlo Spustiť a pokračujte v pridelených úlohách</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Riadne si prečítajte nasledujúce pokyny.</h4>
         <p>úlohy, ktoré sa chystáte začať, sú časovo obmedzené. Po kliknutí na tlačidlo "Spustiť" sa automaticky spustí časovač kampane. Na dokončenie všetkých aktivít máte %{minutes} minút. Snažte sa dokončiť úlohy v určenom časovom rámci a efektívne hospodáriť s časom, aby ste sa vyhli uponáhľanému procesu hodnotenia. Uistite sa, že ste úlohy dokončili v jednom kroku, takže ak si potrebujete urobiť prestávku, Teraz je ten správny čas</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Proctoring</h4>
         <p>po kliknutí na tlačidlo Spustiť budete presmerovaní na náš proktorovací systém. Ten bude počas relácie monitorovať vašu kameru, mikrofón a obrazovku. Tieto relácie automaticky proktorova náš sofistikovaný systém umelej inteligencie, ktorý poskytuje neprerušovaný a plynulý používateľský zážitok. Relácie však môžu skontrolovať aj ľudskí proktori. Akékoľvek známky nesprávneho správania alebo nezrovnalostí budú označené. Robí sa to preto, aby sa zabezpečilo, že nedôjde k žiadnym pokusom o podvádzanie. Ak sa nájde podozrenie, vaša úloha (úlohy) sa zruší</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Prehliadač proktorovania</h4>
         <p>na vykonanie proktorovaných úloh si budete musieť stiahnuť a nainštalovať špeciálny prehliadač. Postupujte podľa pokynov na nasledujúcej obrazovke. Po dokončení všetkých požadovaných činností ho môžete odinštalovať</p>
     instructions:
@@ -852,9 +852,8 @@ sk:
       waiting: Čakanie
   threesixty:
     accept_privacy_modal:
-      accept: Prijať
-      checkbox: Prečítal som si vyššie uvedené zásady ochrany osobných údajov a porozumel som im
-      title: Súhlas so spracovaním údajov
+      checkbox_with_client_link: Kliknutím na toto políčko súhlasíte s tým, že ste si prečítali naše oznámenie o ochrane osobných údajov a oznámenie o ochrane osobných údajov nášho klienta a súhlasíte so zhromažďovaním a spracovaním vašich osobných údajov, ako je v nich uvedené, vrátane medzinárodného prenosu vašich osobných údajov.
+      privacy_notice: Oznámenie o ochrane osobných údajov
     action: Akcia
     add: Pridať
     and: A
@@ -1000,6 +999,9 @@ sk:
     waiting: Čakanie
     you: Vy
     yourself: Sami
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Kliknutím na toto políčko súhlasíte s tým, že ste si prečítali naše oznámenie o ochrane osobných údajov a oznámenie o ochrane osobných údajov nášho klienta a súhlasíte so zhromažďovaním a spracovaním vašich osobných údajov, ako je v nich uvedené, vrátane medzinárodného prenosu vašich osobných údajov.
+    privacy_notice: Oznámenie o ochrane osobných údajov
   user:
     fields:
       email: E-mailová adresa
@@ -1064,10 +1066,7 @@ sk:
     min_character: Vaša odpoveď musí obsahovať aspoň %{min} znakov.
     min_word: Vaša odpoveď musí mať aspoň %{min} slov
     most:
-      few:
-      many:
       one: Vyberte najviac %{max} možností
-      other:
     must_rank_between: Pre každú položku priraďte hodnotu od %{min} do %{max}. Hodnoty sa nesmú opakovať.
     must_select: Prosím, vyberte z možností %{min} až %{max}
     number: Vaša odpoveď musí byť číslo
@@ -1076,8 +1075,6 @@ sk:
     required: Prosím, odpovedzte na túto otázku
     text: Vaša odpoveď nesmie obsahovať čísla
     title:
-      few:
-      many:
       one: Vyskytla sa jedna chyba, skontrolujte svoje odpovede
       other: Vyskytli sa chyby %{count}, skontrolujte si, prosím, svoju odpoveď.
     word_count: 'Počet slov '

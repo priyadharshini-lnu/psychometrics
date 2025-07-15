@@ -191,7 +191,7 @@ vi:
       description: Vui lòng nhập địa chỉ email của bạn để nhận liên kết đăng nhập
       login_with_password: Đăng nhập bằng mật khẩu
       send_me_login_link: Gửi cho tôi liên kết đăng nhập
-      success: Chúng tôi đã gửi cho bạn một liên kết đăng nhập tới &#39;%{email}&#39;. Nhấp vào liên kết trong email mà bạn sẽ nhận được để đăng nhập
+      success: Chúng tôi đã gửi cho bạn một liên kết đăng nhập tới &
     mobile_number: Số điện thoại di động
     new_password: Mật khẩu mới
     new_password_placeholder: Nhập mật khẩu mới
@@ -633,7 +633,7 @@ vi:
         log_out: Đăng xuất ngay
         re_login: Đăng nhập lại
         stay_logged_in: Giữ đăng nhập
-      message: Phiên của bạn sẽ hết hạn sau 2 phút do không hoạt động. Vui lòng nhấp vào &#39;Giữ đăng nhập&#39; để tiếp tục phiên của bạn, nếu không bạn sẽ tự động bị đăng xuất.
+      message: Phiên của bạn sẽ hết hạn sau 2 phút do không hoạt động. Vui lòng nhấp vào &
       message_after_timeout: Phiên làm việc của bạn đã hết thời gian, vui lòng đăng nhập lại.
       time_remaining: Thời gian còn lại
       title: Cảnh báo hết thời gian phiên
@@ -848,6 +848,8 @@ vi:
     accept_privacy_modal:
       accept: Chấp nhận
       checkbox: Tôi đã đọc và hiểu Chính sách bảo mật được đề cập ở trên
+      checkbox_with_client_link: Bằng cách nhấp vào ô này, bạn đồng ý rằng bạn đã đọc thông báo về quyền riêng tư của chúng tôi và thông báo về quyền riêng tư của khách hàng và bạn đồng ý với việc thu thập và xử lý thông tin cá nhân của bạn như được mô tả trong đó, bao gồm cả việc chuyển thông tin cá nhân của bạn ra nước ngoài.
+      privacy_notice: Thông báo về quyền riêng tư
       title: Sự đồng ý xử lý dữ liệu
     action: Hoạt động
     add: Thêm vào
@@ -994,6 +996,9 @@ vi:
     waiting: Chờ
     you: Bạn
     yourself: Bản thân bạn
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Bằng cách nhấp vào ô này, bạn đồng ý rằng bạn đã đọc thông báo về quyền riêng tư của chúng tôi và thông báo về quyền riêng tư của khách hàng và bạn đồng ý với việc thu thập và xử lý thông tin cá nhân của bạn như được mô tả trong đó, bao gồm cả việc chuyển thông tin cá nhân của bạn ra nước ngoài.
+    privacy_notice: Thông báo về quyền riêng tư
   user:
     fields:
       email: Địa chỉ Email
@@ -1058,6 +1063,7 @@ vi:
     min_character: Phản hồi của bạn phải chứa ít nhất %{min} ký tự.
     min_word: Câu trả lời của bạn phải dài ít nhất %{min} từ
     most:
+      one: ''
       other: Vui lòng chọn tối đa %{max} lựa chọn
     must_rank_between: Vui lòng chỉ định giá trị từ %{min} đến %{max} cho mỗi mục. Giá trị không được lặp lại.
     must_select: Vui lòng chọn từ %{min} đến %{max} lựa chọn

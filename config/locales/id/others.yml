@@ -30,11 +30,11 @@ id:
           attributes:
             file:
               column_cannot_be_blank: Nilai %{column_name} tidak boleh kosong pada baris %{row_number}
-              invalid_format: Silakan unggah file CSV
-              invalid_job_role_id: Id pada baris %{row_number} bukan merupakan ID peran pekerjaan yang valid
+              invalid_format: Silakan unggah dokumen CSV
+              invalid_job_role_id: ID pada baris %{row_number} bukan merupakan ID peran pekerjaan yang valid
               invalid_locale: Lokasi di baris %{row_number} bukan merupakan lokasi yang valid
               missing_required_columns: 'Kolom yang diperlukan tidak ada: %{columns}'
-              parsing_failed: 'Kesalahan saat mem-parsing file, kesalahan: %{error}.'
+              parsing_failed: 'Kesalahan saat mengurai file, kesalahan: %{error}.'
             project:
               must_exist: Proyek harus ada
         skills_rater_block_form:
@@ -51,10 +51,10 @@ id:
           attributes:
             file:
               duplicate_value: 'Baris %{row}: Nilai duplikat %{value} untuk %{field}'
-              invalid_format: Silakan unggah file xlsx
-              missing_headers: "%{sheet_name} sheet tidak ada header yang diperlukan: %{headers}"
-              missing_sheets: 'Lembar yang diperlukan hilang: %{sheets}'
-              missing_value: 'Baris %{row}: Nilai yang hilang untuk %{row}'
+              invalid_format: Silakan unggah dokumen xlsx
+              missing_headers: 'Lembar %{sheet_name} tidak memiliki judul yang diperlukan: %{headers}'
+              missing_sheets: 'Lembaran yang diperlukan hilang: %{sheets}'
+              missing_value: 'Baris %{field}: Nilai yang hilang untuk %{field}'
             project:
               must_exist: Proyek harus ada
   activerecord:
@@ -76,7 +76,7 @@ id:
         register:
           attributes:
             mobile_number:
-              blank: Diperlukan nomor ponsel
+              blank: Nomor ponsel diperlukan
               invalid: Nomor ponsel tidak valid
               verification_expired: Kode verifikasi telah kedaluwarsa. Anda dapat mencoba memverifikasi lagi.
         user:
@@ -86,10 +86,10 @@ id:
   admin_jobs:
     attrs:
       operations:
-        export_job_roles_translations: Penerjemahan Peran Pekerjaan Ekspor
+        export_job_roles_translations: Ekspor terjemahan Peran Pekerjaan
         export_proficiency_levels: Tingkat Kemahiran Ekspor
         import_job_roles_translations: Impor Terjemahan Peran Pekerjaan
-        import_skills_rater_taxonomies: Impor Taksonomi Penilai Keterampilan
+        import_skills_rater_taxonomies: Impor Taksonomi Penilaian Keterampilan
   administration: Administrasi
   anonym:
     close: Tutup
@@ -100,9 +100,9 @@ id:
         title: Lanjutkan?
       retake:
         copy: Anda telah menyelesaikan survei ini, untuk mengulangnya kembali, silakan klik tombol Ulangi di bawah ini.
-        title: Mengambil kembali?
-    restart: Mulai ulang
-    retake: Mengambil kembali
+        title: Ulangi?
+    restart: Mulai lagi
+    retake: Ulangi
   assessments:
     actions:
       back_to_campaign: Kembali ke Kampanye
@@ -110,11 +110,14 @@ id:
       goto_dashboard: Klik di sini untuk melanjutkan
       pending_tasks:
         one: Anda memiliki 1 tugas yang tertunda
-        other: Anda memiliki %{count} tugas yang tertunda
-      rescore: Nilai ulang
+        other: |-
+          Anda memiliki 1 tugas yang tertunda
+
+          Anda memiliki %{count} tugas yang tertunda
+      rescore: Menilai ulang
     audio_response:
       permission_denied_message: Aktifkan izin mikrofon di browser Anda untuk merekam jawabannya
-      permission_text: Izinkan penggunaan mikrofon untuk merekam audio
+      permission_text: Mohon izinkan penggunaan mikrofon untuk merekam audio
     card_actions:
       begin: Mulai
       continue: Lanjutkan
@@ -127,7 +130,7 @@ id:
     instructions:
       begin_assessment: Mulai
       cancel: Batal
-      default: Ini adalah aktivitas berjangka waktu, setelah Anda mengklik Mulai Penilaian, Anda akan memiliki %{time} menit untuk menyelesaikannya.
+      default: Aktivitas ini mempunyai batas waktu, setelah Anda mengklik Mulai Penilaian, Anda akan memiliki %{time} menit untuk menyelesaikannya.
       title: Petunjuk
     messages:
       finish: Terima kasih atas waktu Anda, tanggapan Anda telah dicatat.
@@ -135,7 +138,7 @@ id:
       back: Kembali
       confirm_message: "## Klik **Kembali** untuk meninjau tanggapan Anda untuk terakhir kalinya atau klik **Kirim** jika Anda sudah selesai."
       next: Berikutnya
-      read_only: Adalah mode hanya baca, Anda tidak dapat mengubah hasil apa pun.
+      read_only: Ini adalah mode 'Read only', Anda tidak dapat mengubah hasil apa pun.
       save: Simpan
       submit: Kirim
     pickgrouprank:
@@ -148,7 +151,7 @@ id:
         camera: Kamera
         mic: Mikrofon
       discard: Buang
-      discard_record_again: Buang &amp; Rekam Lagi
+      discard_record_again: Buang & Rekam Lagi
       media_recorder:
         failure: Browser ini tidak mendukung Perekaman Video. Silakan gunakan Chrome atau Firefox untuk Perekaman Video
         success: Izinkan penggunaan kamera dan mikrofon untuk merekam audio dan Video
@@ -163,8 +166,8 @@ id:
       start_recording: Mulai merekam
       stop_recording: Berhenti merekam
       tracker:
-        backward: Anda terlalu dekat dengan layar, silakan mundur sedikit
-        forward: Anda terlalu jauh dari layar, silakan bergerak sedikit lebih dekat
+        backward: Anda terlalu dekat dengan layar, mohon mundur sedikit
+        forward: Anda terlalu jauh dari layar, mohon bergerak sedikit lebih dekat
         frame: Pastikan wajah Anda sejajar dengan bingkai
         ready: Tekan tombol Rekam apabila sudah siap untuk merekam
     wait: Tunggu
@@ -176,12 +179,12 @@ id:
     expired_password:
       description: Isi semua kolom untuk membuat kata sandi baru
       submit: Kirim
-      title: Memperbarui kata sandi Anda
+      title: Perbarui kata sandi Anda
     login:
       description: Silakan masuk dengan informasi akun pribadi Anda
       forgot_password: Lupa Kata Sandi?
       login_btn: Masuk
-      magic_link_btn: Email saya tautan masuk
+      magic_link_btn: Emailkan saya tautan masuk
       not_member: Bukan anggota?
       or: ATAU
       sso_btn: Masuk dengan Sistem Masuk Tunggal
@@ -190,8 +193,8 @@ id:
     magic_link:
       description: Masukkan alamat email Anda untuk menerima tautan masuk
       login_with_password: Masuk dengan kata sandi
-      send_me_login_link: Kirimkan saya tautan login
-      success: Kami telah mengirimkan tautan login ke '%{email}'. Klik tautan di email yang Anda terima untuk login
+      send_me_login_link: Kirimkan saya tautan masuk
+      success: Kami telah mengirimkan tautan masuk ke '%{email}'. Klik tautan di email yang Anda terima untuk login
     mobile_number: Nomor ponsel
     new_password: Kata Sandi Baru
     new_password_placeholder: Masukkan kata sandi baru
@@ -217,8 +220,8 @@ id:
       have_account: Sudah memiliki akun?
       last_name: Nama belakang
       last_name_placeholder: Masukkan Nama Belakang
-      login_now: Login Sekarang!
-      registration_code: Kode Pendaftaran
+      login_now: Masuk Sekarang!
+      registration_code: Kode Registrasi
       registration_code_placeholder: Masukkan Kode Registrasi
       terms_notice: Dengan mendaftar, Anda menyetujui <a href="%{terms_url}">Ketentuan Layanan dan Kebijakan Privasi</a> kami
       title: Daftar
@@ -238,16 +241,16 @@ id:
       error:
         blocked: Nomor ini diblokir karena terlalu banyak percobaan.
         invalid_code: Kode tidak valid
-        invalid_number: Nomor ponsel salah, harap periksa kembali nomor Anda
-        max_attempts_reached: Terlalu banyak percobaan, harap tunggu 10 menit sebelum mencoba lagi.
+        invalid_number: Nomor ponsel salah, mohon periksa kembali nomor Anda
+        max_attempts_reached: Terlalu banyak percobaan, mohon tunggu 10 menit sebelum mencoba lagi.
   campaign:
-    all_activities_are_completed: Semua aktivitas sekarang sudah selesai.
+    all_activities_are_completed: Semua aktivitas sekarang telah selesai.
     all_activities_are_completed_multiple: Semua aktivitas untuk kampanye ini sekarang telah selesai. Silakan lanjutkan ke Dasbor dan periksa apakah Anda memiliki aktivitas lain yang telah ditetapkan.
     begin: Mulai tugas Anda
     begin_btn_msg_before_prework: Anda harus menyelesaikan tugas di bawah ini sebelum memulai kampanye berjangka waktu
     begin_campaign_msg: Memulai kampanye sebelum melakukan penilaian
     campaigns: Kampanye
-    closed_campaign_message: Anda tidak dapat melakukan penilaian dalam kampanye ini.
+    closed_campaign_message: Kampanye ini sudah ditutup. Anda tidak dapat melakukan penilaian dalam kampanye ini.
     complete_prev: Menyelesaikan semua penilaian sebelumnya
     complete_tasks: Selesaikan tugas-tugas di bawah ini sebelum melakukan tindakan ini.
     continue: Lanjutkan tugas Anda
@@ -271,24 +274,25 @@ id:
       view: Lihat Penilaian
     errors:
       invalid_status: Status kampanye tidak valid
-    goto_dashboard: Buka Dasbor
+    goto_dashboard: Pergi ke Dasbor
     inactive_campaign_message: Saat ini, Anda belum ditugaskan untuk melakukan aktivitas apa pun.
-    insights_reports: Wawasan &amp; Laporan
+    insights_reports: Wawasan & Laporan
     instruction_modal:
-      campaign_start_final_instructions: "<p>perlu diketahui bahwa tidak ada cara untuk Menghentikan atau Menjeda pengatur waktu. Pengatur waktu kampanye akan terus berjalan meskipun Anda menutup browser, jadi jangan pernah berpikir untuk meninggalkan tugas di sela-sela waktu untuk melakukan hal lain. Pastikan untuk meminimalkan gangguan selama mengerjakan tugas. Cari lingkungan yang tenang, matikan notifikasi pada perangkat Anda, dan hindari melakukan banyak hal sekaligus (multitasking). Pertahankan konsentrasi Anda dan tetaplah fokus. Setelah pengatur waktu kampanye habis, Anda tidak akan bisa melanjutkannya. Jika Anda sudah membaca instruksi di atas, silakan klik mulai untuk melanjutkan tugas yang telah diberikan</p>\n"
-      campaign_start_instruction: |
-        <h4>Harap baca instruksi berikut dengan benar.</h4>
-        <p>tugas yang akan Anda mulai memiliki waktu. Setelah Anda mengklik "Mulai", penghitung waktu kampanye akan dimulai secara otomatis. Anda memiliki waktu %{minutes} menit untuk menyelesaikan semua aktivitas. Harap usahakan untuk menyelesaikan tugas dalam jangka waktu yang telah ditentukan dan kelola waktu secara efektif agar tidak terburu-buru dalam melakukan proses evaluasi. Pastikan untuk menyelesaikan tugas dalam satu kali pengerjaan, sehingga jika Anda perlu beristirahat, Sekaranglah waktunya</p>
-      common_proctoring_instructions: |
+      campaign_start_final_instructions: "<p> Perlu diketahui bahwa tidak ada cara untuk Menghentikan atau Menjeda pengatur waktu. Pengatur waktu kampanye akan terus berjalan meskipun Anda menutup browser, jadi jangan pernah meninggalkan tugas di sela-sela waktu untuk melakukan hal lain. Pastikan untuk meminimalkan gangguan selama mengerjakan tugas. Cari lingkungan yang tenang, matikan notifikasi pada perangkat Anda, dan hindari melakukan banyak hal sekaligus (multitasking). Pertahankan konsentrasi Anda dan tetaplah fokus. Setelah pengatur waktu kampanye habis, Anda tidak akan bisa melanjutkannya. Jika Anda sudah membaca instruksi di atas, silakan klik mulai untuk melanjutkan tugas yang telah diberikan. </p>\n"
+      campaign_start_instruction: |-
+        <h4>Harap baca petunjuk berikut dengan benar.</h4>
+        <p>
+        Tugas yang akan Anda mulai diberi batas waktu. Setelah Anda mengklik "Mulai", pengatur waktu kampanye akan otomatis dimulai. Anda memiliki waktu %{minutes} menit untuk menyelesaikan semua aktivitas. Harap selesaikan tugas dalam jangka waktu yang ditentukan dan kelola waktu secara efektif untuk menghindari tergesa-gesa dalam proses evaluasi. Pastikan untuk menyelesaikan tugas sekaligus, jadi jika Anda perlu istirahat, Sekaranglah waktunya. </p>
+      common_proctoring_instructions: |-
         <h4>Pengawasan</h4>
-        <p>setelah mengklik tombol Mulai, Anda akan diarahkan ke sistem pengawasan kami. Sistem ini akan memantau kamera, mikrofon, dan layar Anda selama sesi berlangsung. Sesi ini secara otomatis diawasi oleh sistem AI kami yang canggih, sehingga memberikan pengalaman pengguna yang lancar dan tanpa gangguan. Namun, sesi juga dapat ditinjau oleh pengawas manusia. Tanda-tanda pelanggaran atau ketidakberesan akan ditandai. Hal ini dilakukan untuk memastikan bahwa tidak ada upaya kecurangan yang dilakukan. Jika ditemukan kecurigaan, tugas Anda akan dibatalkan</p>
-      lockdown_browser_instruction: |
-        <h4>Peramban pengawas</h4>
+        <p>setelah mengklik tombol Mulai, Anda akan diarahkan ke sistem pengawasan kami. Sistem ini akan memantau kamera, mikrofon, dan layar Anda selama sesi berlangsung. Sesi ini secara otomatis diawasi oleh sistem AI kami yang canggih, sehingga memberikan pengalaman pengguna yang lancar dan tanpa gangguan. Namun, sesi juga dapat ditinjau oleh pengawas manusia. Tanda-tanda pelanggaran atau penyimpangan akan ditandai. Hal ini dilakukan untuk memastikan bahwa tidak ada upaya kecurangan yang dilakukan. Jika ditemukan kecurigaan, tugas Anda akan dibatalkan</p>
+      lockdown_browser_instruction: |-
+        <h4>Browser pengawas</h4>
         <p>anda akan diminta untuk mengunduh dan menginstal browser khusus untuk menyelesaikan tugas-tugas yang diawasi. Ikuti petunjuk di layar berikutnya. Anda dapat menghapus instalasinya setelah menyelesaikan semua aktivitas yang diperlukan</p>
     instructions:
       collapse_link_text: Tampilkan lebih sedikit
       expand_link_text: Tampilkan lebih banyak
-      heading: Silakan tinjau panduan di bawah ini sebelum Anda memulai. Kami berharap yang terbaik untuk Anda!
+      heading: Silakan tinjau panduan di bawah ini sebelum Anda memulai. Selamat mengerjakan!
     language:
       content: Tugas ini tidak tersedia dalam bahasa yang dipilih saat ini. Pilih salah satu bahasa yang tersedia untuk melanjutkan.
       single_lang: Tugas ini hanya tersedia di %{lang}. Klik "Lanjutkan" untuk melanjutkan.
@@ -309,7 +313,7 @@ id:
     time_left:
       cancel: Batal
       continue: Lanjutkan
-      notification: Waktu yang dialokasikan untuk tugas "%{assessmentName}" adalah %{totalAssessmentTime}. Karena waktu yang telah berlalu secara keseluruhan, Anda sekarang hanya memiliki %{remainingCampaignTime} sebagai waktu yang telah disesuaikan untuk menyelesaikan tugas ini.
+      notification: Waktu yang dialokasikan untuk tugas  "%{assessmentName}" adalah %{totalAssessmentTime}. Karena waktu yang telah berlalu secara keseluruhan, Anda sekarang hanya memiliki %{remainingCampaignTime} sebagai waktu yang telah disesuaikan untuk menyelesaikan tugas ini.
     timer:
       notification_hours: Anda memiliki sisa waktu %{hours} jam
       notification_minutes: anda memiliki sisa waktu %{minutes} menit
@@ -323,13 +327,13 @@ id:
       assessor_campaign_assessment_group:
         error_message: Ada yang tidak beres. Silakan hubungi administrator
         placeholder: Memilih Grup Pusat Penilaian
-        success_message: Penilai Kelompok Penilai Kampanye berhasil ditugaskan
+        success_message: Kelompok Penilaian Kampanye Penilai berhasil ditugaskan
         title: Kelompok Pusat Penilaian
     statuses:
       completed: Selesai
       in_progress: Sedang Berlangsung
       ineligible: Tidak memenuhi syarat
-      interrupted: Terganggu
+      interrupted: Terputus
       not_started: Tidak Dimulai
       timed_out: Waktu habis
       universal_link: Tautan universal
@@ -350,15 +354,15 @@ id:
       access: Akses
       continue: Ya, Oke untuk melanjutkan
       random_phrases:
-        eight: Semoga kopi Anda kuat dan hari Anda menjadi produktif.
-        five: Hidup akan lebih baik jika Anda tersenyum. Tersenyumlah untuk mikrofon!
-        four: Dia menjual kerang di tepi pantai.
-        nine: Jika ragu, cobalah untuk menguji apakah mikrofon ini berfungsi dengan baik!
-        one: Saya berteriak, Anda berteriak, kita semua berteriak minta es krim!
-        seven: Setiap hari adalah awal yang baru. Katakan dengan lantang dan bangga!
-        six: Pizza atau pasta? Keputusan yang sulit.
-        three: Pengujian, satu dua tiga, suaranya jernih sekali!.
-        two: Rubah coklat yang cepat melompati anjing yang malas.
+        eight: Semoga kopi Anda kuat dan hari Anda menjadi produktif. (May your coffee be strong and your day be productive.)
+        five: Hidup akan lebih baik jika Anda tersenyum. Tersenyumlah ke mikrofon! (Life is better when you smile. Smile for the mic!)
+        four: Dia menjual kerang di tepi pantai (She sells seashells by the seashore.)
+        nine: Jika ragu, cobalah untuk menguji apakah mikrofon ini berfungsi dengan baik! (When in doubt, test it out this mic works!)
+        one: Saya berteriak, Anda berteriak, kita semua berteriak minta es krim! (I scream, you scream, we all scream for ice cream!)
+        seven: Setiap hari adalah awal yang baru. Katakan dengan keras dan bangga! (Every day is a new beginning. Say it loud and proud!)
+        six: Pizza atau pasta? Keputusan yang sulit. (Pizza or pasta? Decisions are hard.)
+        three: Tes, satu dua tiga, suaranya jernih sekali! (Testing, one two three, the sound is clear as can be!)
+        two: Rubah coklat yang cepat melompati anjing yang malas. (The quick brown fox jumps over the lazy dog.)
       record_title: Silakan ucapkan dan ulangi kalimat berikut ini sebanyak 3 kali.
       retake: Tidak, saya ingin mengulang
       run_again: Jalankan lagi
@@ -388,11 +392,11 @@ id:
         link_text: di sini
         link_text_action: Klik
         link_text_instruction: dan ikuti langkah-langkah untuk memberikan izin
-        refresh: Menyegarkan Peramban
-        refresh_text: Klik di bawah ini untuk menyegarkan browser dan menerapkan perubahan
+        refresh: Muat ulang browser
+        refresh_text: Klik di bawah ini untuk memuat ulang browser dan menerapkan perubahan
         subtitle: Perbaikan Cepat
         title: Anda membatalkan izin Webcam dan Mikrofon
-      permissions: Izin Webcam &amp; Audio
+      permissions: Izin Webcam & Audio
       title: Sebelum memulai penilaian ini, sistem Anda perlu menjalani beberapa pemeriksaan.
     video_check:
       access: Akses
@@ -400,15 +404,15 @@ id:
       continue: Ya, Oke untuk melanjutkan
       description: Klik Mulai Merekam dan Rekam diri Anda sambil membaca bagian di bawah ini dengan suara Anda sendiri
       random_phrases:
-        eight: Jika Anda bisa melihat saya, berarti video berhasil, jika tidak, kami akan memecahkan masalahnya!
+        eight: Jika Anda bisa melihat saya, berarti video berhasil, jika tidak, kami akan memperbaikinya!
         five: Menguji video Anda, jangan khawatir, tidak perlu nominasi Oscar.
         four: Siap, siap, fokus! Kamera adalah panggung Anda.
-        nine: Senyum lebar dan video yang jernih, ayo lakukan tes ini dengan benar!
-        one: Angkat tangan Anda jika Anda bisa mendengar saya atau hanya melambaikan tangan ke arah kamera!
-        seven: Cermin, cermin di layar, biarkan pemeriksaan video bersih.
+        nine: Senyum lebar dan video yang jernih, mari selesaikan tes ini dengan baik!
+        one: Angkat tangan Anda jika Anda bisa mendengar saya atau lambaikan tangan ke arah kamera!
+        seven: Cermin, cermin di layar, biarkan pemeriksaan video tidak menemui kendala.
         six: Lampu, kamera, aksi, inilah saatnya Anda bersinar!
-        ten: Lambaian tangan yang ramah memastikan semuanya bekerja dengan baik.
-        three: Katakanlah keju! Atau hanya menguji senyum yang sempurna.
+        ten: Lambaikan tangan dengan ramah untuk memastikan semuanya bekerja dengan baik.
+        three: Senyum! Atau setidaknya uji senyum yang sempurna itu.
         two: Lihatlah ke arah lensa, tersenyumlah, dan berpura-puralah Anda sedang berada dalam cuplikan film.
       rec_text: REC
       retake: Tidak, saya ingin mengulang
@@ -457,7 +461,7 @@ id:
       default: Default
       download: Unduh
       na: N/A
-      ok: Baiklah
+      ok: Ok
       refer_export_file: Lihat fungsi Ekspor untuk mengekstrak template yang dapat digunakan untuk Mengimpor di sini.
       response: Tanggapan
   devise:
@@ -522,7 +526,7 @@ id:
   emails:
     subject_relationship_table:
       subject_email: Email Subjek
-      subject_name: Nama Mata Pelajaran
+      subject_name: Nama Subjek
       subject_relationship: Hubungan Subjek
   errors:
     assessments:
@@ -541,7 +545,7 @@ id:
     factor: Faktor
   frontend:
     activate: Aktifkan
-    are_you_sure: Apa kau yakin?
+    are_you_sure: Apakah Anda yakin?
     assessment: Penilaian
     assessment_groups:
       create_success: Grup berhasil dibuat
@@ -553,19 +557,19 @@ id:
       add_to_calendar_tour_description: Tambahkan pemesanan ini ke kalender Anda
       assessment_center_alert:
         btn_title: Kampanye
-        message_part1: Selesaikan semua pekerjaan awal dalam hal ini
+        message_part1: Selesaikan semua tugas pendahuluan dalam hal ini
         message_part2: sebelum memesan slot.
       assessment_center_group_name: Pusat Penilaian
       booking_failed_msg: 'Gagal memesan slot: %{error}'
       buttons:
-        book: Buku
+        book: Memesan
         book_again: Pesan Lagi
-        cancel: Batal
+        cancel: Batalkan
         cancel_booking: Batalkan Pemesanan
         confirm_booking: Konfirmasi Pemesanan
         confirm_reschedule: Konfirmasi Penjadwalan Ulang
         modify: Memodifikasi
-        nevermind: Sudahlah
+        nevermind: Lupakan
         no_text: Tidak
         request_cancel: Meminta pembatalan
         request_reschedule: Permintaan Penjadwalan Ulang
@@ -580,8 +584,8 @@ id:
       confirm_booking_title: Konfirmasikan pemesanan ini?
       default_failure_msg: Tidak dapat memproses permintaan Anda. Silakan coba lagi nanti.
       default_requires_msg: "%{name} diperlukan"
-      join_activity_meeting: Bergabunglah dengan Rapat
-      join_workshop_meeting: Bergabunglah dengan Rapat
+      join_activity_meeting: Bergabung ke Rapat
+      join_workshop_meeting: Bergabung ke Rapat
       language: Bahasa
       language_placeholder: Pilih Bahasa
       language_preference_question: Apakah Anda memiliki preferensi bahasa?
@@ -608,8 +612,8 @@ id:
       starts_in: 'Mulai masuk:'
       tab_label:
         bookings: Pemesanan
-        invites: Mengundang
-      what: Apa?
+        invites: Undangan
+      what: Apa
       when: Kapan
       workshop_start_text: Pusat Penilaian Anda akan dimulai pada
     break_time: Waktu Istirahat
@@ -626,9 +630,9 @@ id:
     change_password: Mengubah kata sandi
     delete: Menghapus
     edit: Sunting
-    lighthouse_app: Mercusuar Mercer
+    lighthouse_app: Mercer Lighthouse
     login: Masuk
-    manage: Mengelola
+    manage: Kelola
     'no': Tidak
     resource:
       create_success: "%{readableResourceName} berhasil ditambahkan"
@@ -648,9 +652,9 @@ id:
     workshop_invited_subjects:
       statuses:
         cancelled: Dibatalkan
-        requested_cancellation: Pembatalan yang Diminta
+        requested_cancellation: Pembatalan telah diminta
         requested_cancellation_rejected: Pembatalan yang Diminta Ditolak
-        requested_rescheduling: Penjadwalan Ulang yang Diminta
+        requested_rescheduling: Permintaan Penjadwalan Ulang
         requested_rescheduling_rejected: Permintaan Penjadwalan Ulang Ditolak
     'yes': Ya
   idp:
@@ -658,12 +662,12 @@ id:
       already_completed: IDP telah selesai, Anda tidak dapat menjawab pertanyaan sekarang.
   idp_templates:
     errors:
-      user_idp_template_not_found: Tidak ada templat IDP yang ditetapkan untuk Anda.
+      user_idp_template_not_found: Tidak ada kerangka IDP yang ditetapkan untuk Anda.
   mailer:
     magic_link:
       body:
         dear: Kepada %{name} yang terhormat,
-        greetings: Salam untuk hari ini!
+        greetings: Halo!
         instructions: Klik tautan di bawah ini untuk masuk ke lighthouse.
         signin_link: Tautan Masuk
       subject: Tautan masuk untuk Lighthouse
@@ -683,8 +687,8 @@ id:
     last_name: Nama belakang
     locale: Bahasa Pilihan
     male: Laki-laki
-    mandatory_fields: Menunjukkan bidang wajib
-    not_disclosed: Memilih untuk tidak mengungkapkan
+    mandatory_fields: Menunjukkan kolom yang wajib
+    not_disclosed: Memilih tidak mengungkapkan
     old_data: Data profil Anda sudah berumur %{months} bulan. Harap konfirmasi detail untuk melanjutkan
     password: Kata sandi
     password_confirmation: Konfirmasi Kata Sandi
@@ -732,7 +736,7 @@ id:
         rank: Peringkat
         scoring_category: Kompetensi
       highest_lowest:
-        bottom_5: BAWAH 5
+        bottom_5: 5 TERBAWAH
         category: Kategori
         highest_scores: Skor Tertinggi
         item: Indikator
@@ -741,13 +745,13 @@ id:
         rank: Peringkat
         scoring_category: Kompetensi
         sub_competenties: Sub-Kompetensi
-        top_5: TOP 5
+        top_5: 5 TERATAS
       potential_career_full:
         career_strengths_and_results: Kekuatan Karier dan Hasil Anda
         career_sub_tracks: Sub-lintasan Karier
-        key_career_tracks_within: Di bawah ini adalah daftar peran pekerjaan potensial untuk masing-masing jalur karier. Ingatlah bahwa daftar ini hanya bersifat indikatif, dan tidak lengkap. Perhatikan bahwa peran yang dicetak miring membutuhkan tingkat pendidikan dan/atau pengalaman yang lebih tinggi.
+        key_career_tracks_within: Di bawah ini adalah daftar peran pekerjaan yang potensial untuk masing-masing jalur karir. Ingatlah bahwa daftar ini hanya bersifat indikatif, dan tidak lengkap. Perhatikan bahwa peran yang dicetak miring membutuhkan tingkat pendidikan dan/atau pengalaman yang lebih tinggi.
         potential_areas_of_study: Bidang-bidang Studi yang Potensial
-        strength_high: Kekuatan Tanda Tangan
+        strength_high: Kekuatan Khas
         strength_low: Kekuatan Perkembangan
         strength_moderate: Kekuatan Potensial
         work_environment: Lingkungan Kerja
@@ -760,15 +764,15 @@ id:
         developmental_rating: Peringkat Perkembangan
         questions: Pertanyaan
       strength_clusters:
-        index_sub_factors_considered: Sub-faktor Indeks Berkembang yang telah dipertimbangkan untuk memberikan nilai akhir Anda untuk lingkungan kerja %{workstyle}
+        index_sub_factors_considered: Sub-faktor Indeks Perkembangan yang telah dipertimbangkan untuk memberikan nilai akhir Anda untuk lingkungan kerja %{workstyle}
         possible_roles: Peran yang mungkin dilakukan
         work_environments: Lingkungan Kerja yang Diharapkan
       three_sixty_default:
         factor:
           items: Item
-          max: Nilai Maks
-          mean: Berarti
-          min: Nilai Min
+          max: Nilai Maksimum
+          mean: Nilai rata-rata
+          min: Nilai Minimum
           standardDeviation: Standar Deviasi
           sum: Jumlah
           totalResponses: Total Tanggapan
@@ -802,7 +806,7 @@ id:
       clear: Hapus Filter
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
     terms_conditions_privacy: Pernyataan Privasi
-    tte_terms_and_condition: Ketentuan &amp; Privasi
+    tte_terms_and_condition: Ketentuan & Privasi
   simple_form:
     placeholders:
       administrator:
@@ -852,9 +856,9 @@ id:
       waiting: Menunggu
   threesixty:
     accept_privacy_modal:
-      accept: Menerima
-      checkbox: Saya telah membaca dan memahami Kebijakan Privasi yang disebutkan di atas
-      checkbox_with_client_link: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami dan pemberitahuan privasi klien kami dan Anda menyetujui pengumpulan dan pemrosesan informasi pribadi Anda seperti yang dijelaskan di dalamnya, termasuk transfer informasi pribadi Anda secara internasional.
+      accept: Terima
+      checkbox: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami tentang pengumpulan dan pemrosesan informasi pribadi Anda sebagaimana dijelaskan di dalamnya, termasuk transfer internasional atas informasi pribadi Anda.
+      checkbox_with_client_link: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami dan pemberitahuan privasi klien kami dan Anda menyetujui pengumpulan dan pemrosesan informasi pribadi Anda seperti yang dijelaskan di dalamnya, termasuk transfer internasional atas informasi pribadi Anda.
       privacy_notice: Pemberitahuan Privasi
       title: Persetujuan untuk Memproses dan Memindahkan Informasi Pribadi
     action: Tindakan
@@ -866,7 +870,7 @@ id:
     approve_nominations: Menyetujui Nominasi
     approve_reports: Menyetujui Laporan
     approved: Disetujui
-    approving_mail_sent: Surat untuk menyetujui pencalonan telah dikirimkan kepada para manajer
+    approving_mail_sent: Surat untuk menyetujui nominasi telah dikirim ke manajer
     as_my: sebagai saya
     assessment: Penilaian
     back_to_tasks: Kembali ke tugas
@@ -879,7 +883,7 @@ id:
     completed: Selesai
     confirm: Apa kau yakin?
     confirmation_for_nomination_removal: Apakah Anda yakin ingin menghapus nominasi
-    confirmation_required: Diperlukan konfirmasi
+    confirmation_required: Konfirmasi diperlukan
     confirmation_text_incorrect: Teks konfirmasi salah
     confirmation_text_placeholder: Teks konfirmasi di sini
     continue: Lanjutkan
@@ -887,7 +891,7 @@ id:
     decline: Menolak
     decline_invite: Tolak Undangan
     denied: Ditolak
-    deny_all: Menyangkal Semua
+    deny_all: Tolak Semua
     deny_all_successful: Menolak semua nominasi
     download_pdf: Unduh PDF
     download_report: Unduh Laporan
@@ -940,7 +944,7 @@ id:
         edit: Sunting
         hold_report: Tahan laporan
         login: Masuk
-        mark_as_done: Tandai sebagai selesai
+        mark_as_done: Tandai telah selesai
         release_report: Laporan rilis
         remove_campaign: Hapus dari kampanye
         remove_report_approval: Menghapus persetujuan laporan
@@ -951,7 +955,7 @@ id:
         view_responses: Lihat Tanggapan
       confirmation_messages:
         approve_report: Apakah Anda yakin ingin menyetujui laporan?
-        hold_report: Apakah Anda yakin ingin menyimpan laporan?
+        hold_report: Apakah Anda yakin ingin menahan laporan?
         mark_evaluation_done: Apakah Anda yakin ingin menandai evaluasi telah selesai? Evaluasi akan ditutup untuk mata pelajaran ini.
         release_report: Apakah Anda yakin ingin merilis laporan?
         remove_from_campaign: Apakah Anda yakin ingin menghapus pengguna dari kampanye?
@@ -1002,6 +1006,9 @@ id:
     waiting: Menunggu
     you: Anda
     yourself: Diri sendiri
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami dan pemberitahuan privasi klien kami dan Anda menyetujui pengumpulan dan pemrosesan informasi pribadi Anda seperti yang dijelaskan di dalamnya, termasuk transfer internasional atas informasi pribadi Anda.
+    privacy_notice: Pemberitahuan Privasi
   user:
     fields:
       email: Alamat email
@@ -1038,9 +1045,9 @@ id:
       Email:
         character_range: Pesan email yang dimasukkan harus minimal %{min} dan tidak lebih dari %{max} karakter.
         subject:
-          min_length: Kolom subjek harus terdiri dari minimal 10 karakter
+          min_length: Kolom Subjek harus terdiri dari minimal 10 karakter
         to:
-          required: Ke bidang harus diisi
+          required: Kolom Tujuan harus diisi
     VideoResponse:
       in_progress:
         recorded: Video direkam tetapi tidak disimpan
@@ -1051,7 +1058,7 @@ id:
     blank: tidak boleh kosong
     character_count: 'Jumlah karakter '
     character_range: Tanggapan Anda harus minimal %{min} dan tidak lebih dari %{max} karakter.
-    date: Tanggapan Anda harus berupa tanggal yang valid (hh/tt/yyyy)
+    date: Tanggapan Anda harus berupa tanggal yang valid (bulan/tanggal/tahun)
     each_group_contains: Setiap kelompok harus berisi tidak kurang dari %{min} dan tidak lebih dari %{max} item
     email: Tanggapan Anda harus berupa email yang valid
     exact: Pilih dengan tepat pilihan %{count}
@@ -1070,12 +1077,12 @@ id:
     must_select: Pilih dari pilihan %{min} hingga %{max}
     number: Tanggapan Anda harus berupa angka
     photo: diperlukan
-    range: Jawablah setidaknya %{min} dan tidak lebih dari %{max} pilihan.
+    range: Jawablah paling sedikit %{min} dan tidak lebih dari %{max} pilihan.
     required: Mohon jawab pertanyaan ini
     text: Tanggapan Anda tidak boleh berisi angka
     title:
       one: Ada satu kesalahan, mohon periksa tanggapan Anda
-      other: Ada %{count} kesalahan, silakan periksa respons anda.
+      other: Ada %{count} kesalahan, mohon periksa tanggapan Anda
     word_count: 'Jumlah kata '
     word_range: Tanggapan Anda harus minimal %{min} dan tidak lebih dari %{max} kata.
   'yes': Ya

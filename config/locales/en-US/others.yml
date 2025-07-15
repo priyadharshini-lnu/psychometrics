@@ -567,12 +567,12 @@ en-US:
         confirm_reschedule: Confirm Reschedule
         modify: Modify
         nevermind: Nevermind
-        no_text: false
+        no_text: 'false'
         request_cancel: Request cancellation
         request_reschedule: Request for Reschedule
         reschedule: Reschedule
         reserve_spot: Reserve your spot
-        yes_text: true
+        yes_text: 'true'
       cancel_booking_confirmation: Are you sure you want to cancel this booking?
       cancellation_failed: 'Failed to cancel the booking: %{error}'
       cancellation_success: Successfully canceled the booking
@@ -630,7 +630,7 @@ en-US:
     lighthouse_app: Mercer Lighthouse
     login: Login
     manage: Manage
-    'no': false
+    'no': 'false'
     resource:
       create_success: "%{readableResourceName} was added successfully"
       update_success: "%{readableResourceName} was updated successfully"
@@ -653,7 +653,7 @@ en-US:
         requested_cancellation_rejected: Requested Cancellation Rejected
         requested_rescheduling: Requested Rescheduling
         requested_rescheduling_rejected: Requested Rescheduling Rejected
-    'yes': true
+    'yes': 'true'
   idp:
     actions: Actions
     board: Board
@@ -1284,6 +1284,7 @@ en-US:
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.
     must_select: Please select from %{min} to %{max} choices
     number: Your response must be a number
+    photo: ''
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
     text: Your response must not contain a numbers
@@ -1292,6 +1293,6 @@ en-US:
       other: There are %{count} errors, please check your responses
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
-  'yes': true
+  'yes': 'true'
   your: Your
   yourself: Yourself

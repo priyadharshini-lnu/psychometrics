@@ -758,6 +758,12 @@ it:
           attributes:
             base:
               max_takes_limit_reached: Limite raggiunto per le riprese massime
+        register:
+          attributes:
+            mobile_number:
+              blank: È richiesto il numero di cellulare
+              invalid: Il numero di cellulare non è valido
+              verification_expired: Il codice di verifica è scaduto. È possibile riprovare a verificare.
         report:
           assessments_not_hogan: Tutte le valutazioni devono essere di tipo Hogan
           assessments_not_saville: Tutte le valutazioni devono essere di tipo Saville
@@ -916,7 +922,6 @@ it:
       new_response: Nuova risposta
       next_assessment: Passare alla valutazione successiva
       pending_tasks:
-        many:
         one: Avete 1 attività in sospeso
         other: Hai %{count} attività in sospeso
       re_evaluate: Fare clic qui per rivalutare
@@ -1297,13 +1302,13 @@ it:
     insights_reports: Approfondimenti e rapporti
     instruction_modal:
       campaign_start_final_instructions: "<p>il timer della campagna continuerà a scorrere anche quando si chiude il browser, quindi non si deve mai pensare di abbandonare i compiti per dedicarsi ad altro. Assicurarsi di ridurre al minimo le distrazioni durante i compiti. Trovare un ambiente tranquillo, disattivare le notifiche sui dispositivi ed evitare il multitasking. Mantenere la concentrazione e rimanere concentrati. Una volta scaduto il timer della campagna, non sarà più possibile continuare. Se si sono lette le istruzioni di cui sopra, fare clic su Start per continuare i compiti assegnati</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Leggere attentamente le seguenti istruzioni.</h4>
         <p>i compiti che state per iniziare sono a tempo. Una volta cliccato su "Inizia", il timer della campagna partirà automaticamente. Avete %{minutes} minuti per completare tutte le attività. Cercate di completare i compiti entro il tempo stabilito e gestite il tempo in modo efficace per evitare di affrettare il processo di valutazione. Assicuratevi di completare i compiti in una volta sola, quindi se avete bisogno di fare una pausa, questo è il momento giusto</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Proctoring</h4>
         <p>facendo clic sul pulsante Avvia, verrete reindirizzati al nostro sistema di proctoring, che monitorerà la vostra telecamera, il vostro microfono e il vostro schermo durante la sessione. Queste sessioni sono automaticamente controllate dal nostro sofisticato sistema di intelligenza artificiale, che garantisce un'esperienza utente ininterrotta e senza intoppi. Tuttavia, le sessioni possono anche essere esaminate da proctor umani. Qualsiasi segno di cattiva condotta o irregolarità verrà segnalato. Questo viene fatto per garantire che non ci siano tentativi di imbroglio. Se si riscontrano sospetti, i vostri compiti verranno annullati</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Browser per la correzione</h4>
         <p>per completare le attività di verifica è necessario scaricare e installare un browser speciale. Seguire le istruzioni riportate nella schermata successiva. È possibile disinstallare il browser dopo aver completato tutte le attività richieste</p>
     instructions:
@@ -3614,6 +3619,9 @@ it:
     waiting: In attesa
     you: Tu
     yourself: Se stessi
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Facendo clic su questa casella, l'utente accetta di aver letto la nostra informativa sulla privacy e l'informativa sulla privacy del nostro cliente e acconsente alla raccolta e all'elaborazione dei suoi dati personali come descritto in esse, compreso il trasferimento internazionale dei suoi dati personali.
+    privacy_notice: Informativa sulla privacy
   time:
     formats:
       date: "%d/%m/%y"

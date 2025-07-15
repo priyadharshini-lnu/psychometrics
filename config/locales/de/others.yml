@@ -768,6 +768,12 @@ de:
           attributes:
             base:
               max_takes_limit_reached: Grenze für maximale Takes erreicht
+        register:
+          attributes:
+            mobile_number:
+              blank: Handynummer ist erforderlich
+              invalid: Handynummer ist ungültig
+              verification_expired: Der Verifizierungscode ist abgelaufen. Sie können die Verifizierung erneut versuchen.
         report:
           assessments_not_hogan: Alle Beurteilungen müssen vom Typ Hogan sein
           assessments_not_saville: Alle Bewertungen müssen vom Typ Saville sein
@@ -1310,21 +1316,21 @@ de:
     inactive_campaign_message: Derzeit wurden Ihnen keine Aktivitäten zugewiesen.
     insights_reports: Erkenntnisse und Berichte
     instruction_modal:
-      campaign_start_final_instructions: |
+      campaign_start_final_instructions: |-
         <p>
           Bitte beachten Sie, dass es keine Möglichkeit gibt, den Timer zu stoppen oder anzuhalten. Der Kampagnen-Timer läuft auch dann weiter, wenn Sie den Browser schließen. Sie sollten also zu keinem Zeitpunkt daran denken, die Aufgaben zwischendurch zu verlassen, um etwas anderes zu erledigen. Achten Sie darauf, Ablenkungen während der Aufgaben so gering wie möglich zu halten. Suchen Sie sich eine ruhige Umgebung, schalten Sie Benachrichtigungen auf Ihren Geräten aus und vermeiden Sie Multitasking. Behalten Sie Ihre Konzentration bei und bleiben Sie konzentriert. Sobald der Kampagnen-Timer abgelaufen ist, können Sie nicht mehr fortfahren. Wenn Sie die obigen Anweisungen gelesen haben, klicken Sie bitte auf Start, um mit den zugewiesenen Aufgaben fortzufahren.
         </p>
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Bitte lesen Sie die folgenden Anweisungen sorgfältig durch.</h4>
         <p>
           Die Aufgaben, mit denen Sie gerade beginnen, sind zeitlich festgelegt. Sobald Sie auf „Start“ klicken, startet der Kampagnen-Timer automatisch. Sie haben %{minutes} Minuten Zeit, um alle Aktivitäten abzuschließen. Versuchen Sie bitte, die Aufgaben innerhalb des vorgegebenen Zeitrahmens zu erledigen und die Zeit effektiv einzuteilen, um eine Eile durch den Bewertungsprozess zu vermeiden. Stellen Sie sicher, dass Sie die Aufgaben auf einmal erledigen. Wenn Sie also eine Pause brauchen, ist jetzt der richtige Zeitpunkt dafür.
         </p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Überwachung</h4>
         <p>
           Wenn Sie auf die Schaltfläche „Start“ klicken, werden Sie zu unserem Überwachungssystem weitergeleitet. Es überwacht Ihre Kamera, Ihr Mikrofon und Ihren Bildschirm während Ihrer Sitzung. Diese Sitzungen werden automatisch von unserem hochentwickelten KI-System überwacht und sorgen so für ein unterbrechungsfreies und reibungsloses Benutzererlebnis. Allerdings können Sitzungen auch von menschlichen Aufsichtspersonen überprüft werden. Alle Anzeichen von Fehlverhalten oder Unregelmäßigkeiten werden gemeldet. Dies geschieht, um sicherzustellen, dass keine Betrugsversuche unternommen werden. Wenn ein Verdacht vorliegt, werden Ihre Aufgaben abgebrochen.
         </p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Überwachungsbrowser</h4>
         <p>
           Sie müssen einen speziellen Browser herunterladen und installieren, um die überwachten Aufgaben auszuführen. Bitte folgen Sie den Anweisungen im nächsten Bildschirm. Sie können dies deinstallieren, nachdem Sie alle erforderlichen Aktivitäten abgeschlossen haben.
@@ -3475,7 +3481,7 @@ de:
       accept: Annehmen
       checkbox: Durch Anklicken dieses Kästchens erklären Sie sich damit einverstanden, dass Sie unseren Datenschutzhinweis zur Erfassung und Verarbeitung Ihrer persönlichen Daten wie darin beschrieben gelesen haben, einschließlich der internationalen Übermittlung Ihrer persönlichen Daten.
       checkbox_with_client_link: Durch Anklicken dieses Kästchens erklären Sie, dass Sie unseren Datenschutzhinweis und den Datenschutzhinweis unseres Kunden gelesen haben und mit der darin beschriebenen Erfassung und Verarbeitung Ihrer personenbezogenen Daten einverstanden sind, einschließlich der internationalen Übermittlung Ihrer personenbezogenen Daten.
-      privacy_notice: Datenschutzhinweis
+      privacy_notice: Hinweis zum Datenschutz
       title: Zustimmung zur Verarbeitung und Übermittlung persönlicher Daten
     action: Aktion
     add: hinzufügen
@@ -3633,6 +3639,9 @@ de:
     waiting: warten
     you: Sie
     yourself: ihne selbst
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Durch Anklicken dieses Kästchens erklären Sie, dass Sie unseren Datenschutzhinweis und den Datenschutzhinweis unseres Kunden gelesen haben und mit der darin beschriebenen Erfassung und Verarbeitung Ihrer personenbezogenen Daten einverstanden sind, einschließlich der internationalen Übermittlung Ihrer personenbezogenen Daten.
+    privacy_notice: Hinweis zum Datenschutz
   time:
     formats:
       date: "%d/%m/%y"

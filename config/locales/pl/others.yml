@@ -5,12 +5,12 @@ pl:
       condition:
         all_responses: Wszystkie odpowiedzi
       numeric_comparator:
-        enter_value: Wprowadź wartość
+        enter_value: Wprowadź dane
         select_data: Wybierz Dane
       scoring:
         select_comparison: Wybierz typ porównania
         select_factors: Wybierz Czynniki
-        select_operation: Wybierz opcję Operacja
+        select_operation: Wybierz Operację
     errors:
       models:
         all_blocks_form:
@@ -102,18 +102,16 @@ pl:
         copy: Ukończyłeś już tę ankietę. Aby ponownie wziąć w niej udział, kliknij przycisk Ponów poniżej.
         title: Powtórka?
     restart: Restart
-    retake: Retake
+    retake: Powtórka
   assessments:
     actions:
       back_to_campaign: Powrót do kampanii
-      extend_time: Wydłużenie czasu
+      extend_time: Wydłuż czas
       goto_dashboard: Kliknij tutaj, aby kontynuować
       pending_tasks:
-        few:
-        many:
         one: Masz 1 oczekujące zadanie
         other: Masz %{count} oczekujących zadań
-      rescore: Rescore
+      rescore: Ponowne sprawdzenie wyniku testu
     audio_response:
       permission_denied_message: Włącz uprawnienia mikrofonu w przeglądarce, aby nagrać odpowiedź
       permission_text: Zezwól na używanie mikrofonu do nagrywania dźwięku
@@ -127,15 +125,15 @@ pl:
       category:
         skillvue: Skillvue
     instructions:
-      begin_assessment: Początek
+      begin_assessment: Start
       cancel: Anuluj
-      default: Jest to aktywność czasowa, po kliknięciu przycisku Rozpocznij ocenę będziesz mieć %{time} minut na jej ukończenie.
+      default: Jest to ćwiczenie na czas, po kliknięciu przycisku Rozpocznij ocenę - będziesz mieć %{time} minut na jej ukończenie.
       title: Instrukcje
     messages:
       finish: Dziękujemy za poświęcony czas, odpowiedzi zostały zapisane.
     page:
       back: Powrót
-      confirm_message: "## Twoje odpowiedzi zostaną przesłane i nie będzie można ich później zmienić. Kliknij **Back**, aby przejrzeć swoje odpowiedzi po raz ostatni lub kliknij **Submit**, jeśli skończyłeś."
+      confirm_message: "## Twoje odpowiedzi zostaną przesłane i nie będzie można ich później zmienić. Kliknij **Powrót**, aby przejrzeć swoje odpowiedzi po raz ostatni lub kliknij **Prześlij**, jeśli skończyłeś."
       next: Następny
       read_only: Jest to tryb tylko do odczytu, nie można zmienić żadnych wyników.
       save: Zapisz
@@ -152,12 +150,12 @@ pl:
       discard: Odrzucić
       discard_record_again: Odrzuć i nagraj ponownie
       media_recorder:
-        failure: Ta przeglądarka nie obsługuje nagrywania wideo. Do nagrywania wideo użyj przeglądarki Chrome lub Firefox
+        failure: Ta przeglądarka nie umożliwia nagrywania wideo. Do nagrywania wideo użyj przeglądarki Chrome lub Firefox
         success: Zezwól na używanie kamery i mikrofonu do nagrywania dźwięku i wideo
       recording_duration_label: Maksymalny czas nagrywania
-      recording_stop_label: Nagrywanie zostanie zatrzymane w
+      recording_stop_label: Nagrywanie zostanie zatrzymane za
       requesting_permission: Prośba o pozwolenie...
-      response_recorded: Zarejestrowana odpowiedź
+      response_recorded: Odpowiedź zarejestrowana
       save: Zapisz
       saved:
         label: Zapisane wideo
@@ -191,7 +189,7 @@ pl:
       magic_link_btn: Wyślij mi link logowania
       not_member: Nie masz konta?
       or: albo
-      sso_btn: Zaloguj się za pomocą pojedynczego logowania
+      sso_btn: Zaloguj się za pomocą Single Sign-ON
       title: Witamy!
     logout: Wyloguj
     magic_link:
@@ -254,8 +252,8 @@ pl:
     begin_btn_msg_before_prework: Przed rozpoczęciem kampanii czasowej musisz wykonać poniższe zadania
     begin_campaign_msg: Rozpocznij kampanię przed przystąpieniem do oceny
     campaigns: Kampanie
-    closed_campaign_message: Ta kampania jest zamknięta. W ramach tej kampanii nie możesz dokonać żadnej oceny.
-    complete_prev: Ukończ wszystkie poprzednie oceny
+    closed_campaign_message: Ta kampania jest zamknięta. W ramach tej kampanii nie możesz dokonać żadnego działania.
+    complete_prev: Ukończ wszystkie poprzednie działania
     complete_tasks: Przed podjęciem tej czynności wykonaj poniższe zadania.
     continue: Kontynuuj swoje zadania
     dashboard_instructions: Przydzielono Ci wiele działań, które musisz wykonać. Upewnij się, że wszystkie przypisane działania zostały wykonane we wszystkich kampaniach.
@@ -265,8 +263,8 @@ pl:
       change_password: Zmień hasło
       development: Rozwój
       direct_reportees: Direktywni
-      home: Dom
-      insights: Insights
+      home: Strona główna
+      insights: Obserwacje
       my_plan: Mój plan
       profile: Profil
       profile_details: Detale
@@ -275,28 +273,27 @@ pl:
     edit_evaluation:
       body: Uprzejmie informujemy, że po kliknięciu przycisku Oceń ponownie zostaniesz przekierowany na początek ankiety, gdzie będziesz mógł edytować udzielone odpowiedzi. Poprzednie odpowiedzi będą nadal dostępne, ale możesz je zmienić po zapoznaniu się z nimi. Po edycji konieczne będzie ponowne przesłanie oceny, aby zakończyć proces.
       edit: Dokonaj ponownej oceny
-      title: Potwierdzać
-      view: Zobacz ocenę
+      title: Potwierdzenie
+      view: Zobacz działanie
     errors:
       invalid_status: Nieprawidłowy stan kampanii
     goto_dashboard: Przejdź do pulpitu nawigacyjnego
     inactive_campaign_message: Obecnie nie przydzielono Ci żadnych działań.
-    insights_reports: Spostrzeżenia i raporty
+    insights_reports: Wnioski i raporty
     instruction_modal:
-      campaign_start_final_instructions: |
-        <p>  Należy pamiętać, że nie ma możliwości zatrzymania lub wstrzymania timera. Licznik czasu kampanii będzie odliczany nawet po zamknięciu przeglądarki, więc w żadnym momencie nie myśl o pozostawieniu zadań pomiędzy nimi i zajęciu się czymś innym. Pamiętaj, aby zminimalizować czynniki rozpraszające podczas wykonywania zadań. Znajdź ciche otoczenie, wyłącz powiadomienia na swoich urządzeniach i unikaj wielozadaniowości. Utrzymuj koncentrację i bądź skupiony. Gdy skończy się czas kampanii, nie będziesz mógł kontynuować. Jeśli zapoznałeś się z powyższą instrukcją, kliknij przycisk start, aby kontynuować przydzielone zadania.
+      campaign_start_final_instructions: |-
+        <p>  Należy pamiętać, że nie ma możliwości zatrzymania lub wstrzymania licznika czasu. Licznik czasu kampanii będzie działał nawet po zamknięciu przeglądarki, więc w żadnym momencie nie należy zastanawiać się nad opuszczeniem zadań, aby zająć się czymś innym. Upewnij się, że minimalizujesz czynniki rozpraszające podczas wykonywania zadań. Znajdź ciche otoczenie, wyłącz powiadomienia na swoich urządzeniach i unikaj wielozadaniowości. Utrzymuj koncentrację i bądź skupiony7na. Gdy licznik czasu kampanii wyczerpie się, nie będziesz mógł/a kontynuować. Jeśli zapoznałeś/aś się z powyższymi instrukcjami, kliknij przycisk Start, aby kontynuować przydzielone zadania.
         </p>
-      campaign_start_instruction: |
-        <h4>Przeczytaj dokładnie poniższe instrukcje.</h4>
-        <p>  Zadania, które zaraz rozpoczniesz, mają określony czas. Po kliknięciu „Start” licznik kampanii rozpocznie się automatycznie. Masz %{minutes} minut na wykonanie wszystkich czynności. Staraj się realizować zadania w wyznaczonym terminie i efektywnie zarządzać czasem, aby uniknąć pośpiechu w procesie oceny. Pamiętaj, aby wykonać zadania za jednym razem, więc jeśli chcesz zrobić sobie przerwę, teraz jest na to czas.
-        </p>
-      common_proctoring_instructions: |
-        <h4>Opieka</h4>
+      campaign_start_instruction: |-
+        <h4>Przeczytaj dokładnie poniższe instrukcje. </h4>
+        <p> Zadania, które zaraz rozpoczniesz, mają określony czas. Po kliknięciu „Start” licznik rozpocznie się automatycznie. Masz %{minutes} minut na wykonanie wszystkich czynności. Staraj się realizować zadania w wyznaczonym terminie i efektywnie zarządzać czasem, aby uniknąć pośpiechu w procesie oceny. Pamiętaj, aby wykonać zadania za jednym razem, więc jeśli chcesz zrobić sobie przerwę, teraz jest na to czas. </p>
+      common_proctoring_instructions: |-
+        <h4>Nadzorowanie</h4>
         <p>  Po kliknięciu przycisku Start zostaniesz przekierowany do naszego systemu nadzorującego. Będzie monitorować kamerę, mikrofon i ekran podczas sesji. Sesje te są automatycznie nadzorowane przez nasz wyrafinowany system sztucznej inteligencji, zapewniający nieprzerwaną i płynną obsługę użytkownika. Jednakże sesje mogą być również przeglądane przez osoby nadzorujące. Wszelkie oznaki niewłaściwego postępowania lub nieprawidłowości będą sygnalizowane. Ma to na celu zapewnienie, że nie będą podejmowane żadne próby oszustwa. Jeśli zostaną znalezione podejrzenia, Twoje zadania zostaną anulowane.
         </p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Przeglądarka kontrolująca</h4>
-        <p>  Aby wykonać nadzorowane zadania, będziesz musiał pobrać i zainstalować specjalną przeglądarkę. Postępuj zgodnie z instrukcjami na następnym ekranie. Możesz to odinstalować po wykonaniu wszystkich wymaganych czynności.
+        <p>  Aby wykonać nadzorowane zadania, będziesz musiał7a pobrać i zainstalować specjalną przeglądarkę. Postępuj zgodnie z instrukcjami na następnym ekranie. Możesz to odinstalować po wykonaniu wszystkich wymaganych czynności.
         </p>
     instructions:
       collapse_link_text: Pokaż mniej
@@ -310,7 +307,7 @@ pl:
       dashboard: Deska rozdzielcza
       reports: Raporty
     profile:
-      complete_heading: Twój profil jest kompletny
+      complete_heading: Twój profil jest uzupełniony
       complete_profile_label: Ukończ teraz
       edit_profile_label: Edytuj profil
       incomplete_heading: Uzupełnij swój profil
@@ -322,7 +319,7 @@ pl:
     time_left:
       cancel: Anuluj
       continue: Dalej
-      notification: Twój czas przydzielony na to zadanie „%{assessmentName}” wynosił %{totalAssessmentTime}. Ze względu na ogólny czas, który upłynął, masz teraz tylko %{remainingCampaignTime} jako dostosowany czas na wykonanie tego zadania.
+      notification: Twój czas przydzielony na to zadanie „%{assessmentName}” wynosił %{totalAssessmentTime}. Ze względu na czas, który upłynął, masz teraz tylko %{remainingCampaignTime} jako dostosowany czas na wykonanie tego zadania.
     timer:
       notification_hours: Pozostało Ci %{hours} godziny
       notification_minutes: Masz %{minutes} minut i  na ukończenie
@@ -343,7 +340,7 @@ pl:
       in_progress: W trakcie
       ineligible: Nieposiadający kwalifikacji
       interrupted: Przerwano
-      not_started: Nie rozpoczął
+      not_started: Nie rozpoczęto
       timed_out: Przekroczono limit czasu
       universal_link: Łącze uniwersalne
   campaigns:
@@ -369,7 +366,7 @@ pl:
         nine: W razie wątpliwości przetestuj ten mikrofon!
         one: Ja krzyczę, ty krzyczysz, wszyscy krzyczymy o lody!
         seven: Każdy dzień to nowy początek - powiedz to głośno i z dumą!
-        six: Pizza czy makaron? Decyzje są trudne.
+        six: Pizza czy pasta? Decyzje są trudne.
         three: Testowanie, raz dwa trzy, dźwięk jest czysty jak może być!
         two: Szybki brązowy lis przeskakuje leniwego psa.
       record_title: Wypowiedz i powtórz poniższe zdanie 3 razy.
@@ -411,7 +408,7 @@ pl:
       access: Dostęp
       camera_preview: Podgląd kamery pojawi się tutaj
       continue: Tak, można kontynuować
-      description: Kliknij przycisk Rozpocznij nagrywanie i nagraj siebie, czytając poniższy fragment własnym głosem
+      description: Kliknij przycisk "Rozpocznij nagrywanie" i nagraj siebie, czytając poniższy fragment własnym głosem
       random_phrases:
         eight: Jeśli mnie widzisz, wideo jest udane. Jeśli nie, rozwiążemy problem!
         five: Testowanie wideo, bez obaw, nie wymaga nominacji do Oscara.
@@ -420,7 +417,7 @@ pl:
         one: Podnieś rękę, jeśli mnie słyszysz lub po prostu pomachaj do kamery!
         seven: Lustro, lustro na ekranie, niech kontrola wideo będzie czysta.
         six: Światła, kamera, akcja, nadszedł czas, aby zabłysnąć!
-        ten: Przyjazna fala upewnia się, że wszystko działa poprawnie.
+        ten: Przyjazny uśmiech sprawia, że wszystko działa jak należy.
         three: Powiedz ser! Lub po prostu przetestuj ten idealny uśmiech.
         two: Spójrz w obiektyw, uśmiechnij się i udawaj, że jesteś w zwiastunie filmowym.
       rec_text: REC
@@ -431,26 +428,26 @@ pl:
   common:
     actions:
       add: Dodaj
-      archive: Archiwum
+      archive: Archiwuj
       cancel: Anuluj
       close: Zamknij
-      copy: Kopia
-      delete: Kasować
-      edit: Edytować
-      remove: Usunąć
-      reset: Nastawić
-      resolve: Rozwiązać
-      restore: Przywracanie
-      save: Zapisać
+      copy: Kopiuj
+      delete: Kasuj
+      edit: Edytuj
+      remove: Usuń
+      reset: Resetuj
+      resolve: Rozwiąż
+      restore: Przywróć
+      save: Zapisz
       search: Szukaj
-      send: Wysłać
-      start: Początek
+      send: Wyślij
+      start: Start
       submit: Prześlij
       unarchive: Unarchive
       unresolve: Nierozwiązany
-      update: Aktualizacja
-      upload: Przekazać plik
-      verify: Weryfikacja
+      update: Odarchiwizuj
+      upload: Prześlij
+      verify: Zweryfikuj
       view_all_tasks: Wyświetl wszystkie zadania
       view_detail: Zobacz szczegóły
     column:
@@ -466,7 +463,7 @@ pl:
       reports: Raporty
     text:
       cancel: Anuluj
-      confirm: Potwierdzenie
+      confirm: Potwierdź
       continue: Kontynuuj
       default: Domyślne
       download: Pobierz
@@ -502,9 +499,9 @@ pl:
         last_name: Nazwisko
         privacy_notice: Szanujemy Twoją prywatność i nie tolerujemy spamu. Nigdy nie przekażemy Twoich danych osobom trzecim.
         registration_code: Kod rejestracyjny
-        submit: Rejestr
+        submit: Zarejestruj się
         tabs:
-          register: Rejestr
+          register: Rejestracja
           sign_in: Zaloguj się
         terms_notice: Rejestrując się, wyrażasz zgodę na nasze <a href="%{terms_url}">Warunki korzystania z usługi i Politykę prywatności</a>
         title: Zarejestruj się teraz
@@ -519,7 +516,7 @@ pl:
         password_placeholder: Hasło
         submit: Logowanie
         tabs:
-          register: Rejestr
+          register: Rejestracja
           sign_in: Logowanie
         title: Witamy!
     two_factor_authentication:
@@ -538,9 +535,9 @@ pl:
       uniq_skillvue: Ta ocena Skillvue jest już obecna w systemie. Identyfikator tej oceny to %{id}
   emails:
     subject_relationship_table:
-      subject_email: Przedmiot E-mail
-      subject_name: Nazwa przedmiotu
-      subject_relationship: Związek przedmiotowy
+      subject_email: E-mail
+      subject_name: Imię
+      subject_relationship: Relacja
   errors:
     assessments:
       timed_out: Nie będziesz mógł wziąć udziału w ocenie %{assessment_name}, ponieważ upłynął limit czasu.
@@ -575,14 +572,14 @@ pl:
       assessment_center_group_name: Centrum oceny
       booking_failed_msg: 'Nie udało się zarezerwować slotu: %{error}'
       buttons:
-        book: Książka
+        book: Zarezerwuj
         book_again: Zarezerwuj ponownie
         cancel: Anuluj
         cancel_booking: Anuluj rezerwację
         confirm_booking: Potwierdź rezerwację
-        confirm_reschedule: Potwierdź Zmień harmonogram
-        modify: Modyfikacja
-        nevermind: Nevermind
+        confirm_reschedule: Potwierdź zmianę harmonogramu
+        modify: Modyfikuj
+        nevermind: Nieważne
         no_text: Nie
         request_cancel: Wniosek o anulowanie
         request_reschedule: Wniosek o zmianę terminu
@@ -603,10 +600,10 @@ pl:
       language_placeholder: Wybierz język
       language_preference_question: Czy masz preferencje językowe?
       language_required_msg: Wybierz język
-      meeting_start_text: 'Spotkanie rozpocznie się w:'
+      meeting_start_text: 'Spotkanie rozpocznie się za:'
       need_changes: Potrzebujesz wprowadzić zmiany?
       neurodivergence_comment_placeholder: Twój komentarz
-      neurodivergence_question: Czy ze względu na specjalne potrzeby lub niepełnosprawność potrzebujesz racjonalnych udogodnień lub dostosowań, aby w pełni uczestniczyć w ocenie?
+      neurodivergence_question: Czy ze względu na specjalne potrzeby lub niepełnosprawność potrzebujesz jakichkolwiek udogodnień lub dostosowań, aby w pełni uczestniczyć w procesie oceny?
       no_invites_msg: Zostaniesz dodany do centrum oceny lub otrzymasz zaproszenie do zarezerwowania swojego miejsca; po dołączeniu do centrum możesz ukończyć działania, klikając przycisk "Wyświetl szczegóły" poniżej.
       other_invite: Zobacz %{count} więcej zaproszeń
       other_invites: Zobacz %{count} więcej zaproszeń
@@ -619,16 +616,16 @@ pl:
       request_reschedule_success: Pomyślnie złożono wniosek o zmianę harmonogramu
       reschedule_failed_msg: 'Zmiana harmonogramu nie powiodła się: %{error}'
       reschedule_reason_placeholder: Aby kontynuować, wprowadź powód zmiany harmonogramu.
-      schedule_success: Ta rezerwacja jest zaplanowana
+      schedule_success: Ta rezerwacja jest zaplanowana prawidłowo
       schedule_success_msg: Wysłaliśmy Tobie i innym uczestnikom zaproszenie do kalendarza ze wszystkimi szczegółami.
-      starts_at: 'Początek: %{date}'
-      starts_in: 'Zaczyna się w:'
+      starts_at: 'Spotkanie rozpoczynie się: %{date}'
+      starts_in: 'Zaczyna się za:'
       tab_label:
         bookings: Rezerwacje
         invites: Zaproszenia
       what: Co
       when: Kiedy
-      workshop_start_text: Assessment Center rozpocznie się w
+      workshop_start_text: Assessment Center rozpocznie się za
     break_time: Czas przerwy
     campaign:
       actions:
@@ -643,7 +640,7 @@ pl:
     change_password: Zmiana hasła
     delete: Usuń
     edit: Edytuj
-    lighthouse_app: Latarnia morska Mercer
+    lighthouse_app: Mercer Lighthouse
     login: Logowanie
     manage: Zarządzanie
     'no': Nie
@@ -1091,6 +1088,8 @@ pl:
     accept_privacy_modal:
       accept: Akceptuj
       checkbox: Przeczytałem i zrozumiałem Politykę prywatności, o której mowa powyżej
+      checkbox_with_client_link: Klikając to pole, użytkownik potwierdza, że zapoznał się z naszą polityką prywatności i polityką prywatności naszego klienta oraz wyraża zgodę na gromadzenie i przetwarzanie swoich danych osobowych w sposób opisany w tych dokumentach, w tym na międzynarodowe przekazywanie swoich danych osobowych.
+      privacy_notice: Informacja o ochronie prywatności
       title: Zgoda na przetwarzanie danych
     action: Akcja
     add: Dodaj
@@ -1237,6 +1236,9 @@ pl:
     waiting: Oczekiwanie
     you: Ty
     yourself: Sie
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Klikając to pole, użytkownik potwierdza, że zapoznał się z naszą polityką prywatności i polityką prywatności naszego klienta oraz wyraża zgodę na gromadzenie i przetwarzanie swoich danych osobowych w sposób opisany w tych dokumentach, w tym na międzynarodowe przekazywanie swoich danych osobowych.
+    privacy_notice: Informacja o ochronie prywatności
   user:
     fields:
       email: Adres e-mail
@@ -1309,8 +1311,6 @@ pl:
     required: Proszę o odpowiedź na to pytanie
     text: Odpowiedź nie może zawierać liczb
     title:
-      few:
-      many:
       one: Jest jeden błąd, sprawdź swoje odpowiedzi
       other: Występują błędy %{count}, sprawdź swoje odpowiedzi
     word_count: 'Liczba słów '

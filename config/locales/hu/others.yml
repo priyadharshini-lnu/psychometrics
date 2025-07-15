@@ -276,13 +276,13 @@ hu:
     insights_reports: Betekintések és jelentések
     instruction_modal:
       campaign_start_final_instructions: "<p>kérjük, vegye figyelembe, hogy nincs mód az időzítő leállítására vagy szüneteltetésére. A kampány időzítője akkor is tovább fut, ha bezárja a böngészőt, így semmiképpen ne gondoljon arra, hogy a feladatok között elhagyja a feladatokat, hogy valami mást csináljon. Ügyeljen arra, hogy a feladatok alatt minimalizálja a zavaró tényezőket. Keressen csendes környezetet, kapcsolja ki az értesítéseket az eszközökön, és kerülje a multitaskingot. Tartsa fenn a koncentrációját és maradjon koncentrált. Ha a kampány időzítője lejár, nem tudja folytatni. Ha elolvasta a fenti utasításokat, kattintson a start gombra a kijelölt feladatok folytatásához</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Kérjük, olvassa el figyelmesen az alábbi utasításokat.</h4>
         <p>a feladat(ok), amelyeket most fog elkezdeni, időzítettek. Amint a "Start" gombra kattint, a kampány időzítője automatikusan elindul. %{minutes} perc áll rendelkezésére, hogy az összes tevékenységet elvégezze. Kérjük, törekedjen arra, hogy a feladatokat a megadott időkereten belül elvégezze, és hatékonyan gazdálkodjon az idővel, hogy ne rohanjon az értékelési folyamat során. Ügyeljen arra, hogy a feladatokat egy menetben végezze el, így ha szünetet kell tartania, most van itt az ideje</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Proctoring</h4>
         <p>a Start gombra kattintva átirányítjuk Önt a proktoráló rendszerünkhöz. Ez figyeli a kamerát, a mikrofont és a képernyőt a munkamenet alatt. Ezeket a munkameneteket kifinomult AI rendszerünk automatikusan proktorálja, zavartalan és zökkenőmentes felhasználói élményt biztosítva. A munkameneteket azonban emberi proktorok is ellenőrizhetik. A helytelen viselkedésre vagy szabálytalanságra utaló jeleket megjelöljük. Ezt azért tesszük, hogy biztosítsuk, hogy nem történik csalási kísérlet. Ha gyanúsnak találjuk, a feladat(ok) törlésre kerülnek</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Proctoring böngésző</h4>
         <p>a proktori feladatok elvégzéséhez le kell töltenie és telepítenie egy speciális böngészőt. Kérjük, kövesse a következő képernyőn található utasításokat. Ezt az összes szükséges tevékenység elvégzése után eltávolíthatja</p>
     instructions:
@@ -1002,6 +1002,9 @@ hu:
     waiting: Várakozás
     you: Te
     yourself: Önmagad
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Erre a mezőre kattintva Ön elfogadja, hogy elolvasta adatvédelmi nyilatkozatunkat és az ügyfelünk adatvédelmi nyilatkozatát, és hozzájárul személyes adatainak az ott leírtak szerinti gyűjtéséhez és feldolgozásához, beleértve személyes adatainak nemzetközi továbbítását is.
+    privacy_notice: Adatvédelmi nyilatkozat
   user:
     fields:
       email: E-mail cím
@@ -1067,7 +1070,6 @@ hu:
     min_word: A válasznak legalább %{min} szót kell tartalmaznia
     most:
       one: Kérjük, válasszon legfeljebb %{max} választási lehetőség(eke)t
-      other:
     must_rank_between: Kérjük, adjon meg egy értéket %{min} és %{max} között minden egyes elemhez. Az értékek nem ismétlődhetnek.
     must_select: Kérjük, válasszon a %{min} és %{max} közötti lehetőségek közül
     number: A válasznak egy számnak kell lennie

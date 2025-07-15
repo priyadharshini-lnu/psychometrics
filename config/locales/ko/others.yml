@@ -34,7 +34,7 @@ ko:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: '"%{block_name}" 블록에 중복 구성이 있습니다: %{duplicate_configurations}'
+              duplicate_block: '"%{block_name}" 블록에 중복 구성이 있습니다: %{duplicate_configurations}}'
         assessment_question_import_form:
           attributes:
             file:
@@ -758,6 +758,12 @@ ko:
           attributes:
             base:
               max_takes_limit_reached: 최대 테이크 한도 도달
+        register:
+          attributes:
+            mobile_number:
+              blank: 휴대폰 번호 필수 입력
+              invalid: 휴대폰 번호가 유효하지 않습니다
+              verification_expired: 인증 코드가 만료되었습니다. 다시 인증해 보세요.
         report:
           assessments_not_hogan: 모든 평가는 호건 유형이어야 합니다
           assessments_not_saville: 모든 평가는 새빌 유형이어야 합니다
@@ -917,7 +923,7 @@ ko:
       next_assessment: 다음 평가로 넘어가기
       pending_tasks:
         one: 보류 중인 작업이 1개 있습니다.
-        other: 보류 중인 작업이 %{count}개 있습니다.
+        other: 보류 중인 작업이 %{count}개 있습니다
       re_evaluate: 재평가하려면 여기를 클릭하세요
       reevaluate: 재평가
       remove:
@@ -1296,13 +1302,13 @@ ko:
     insights_reports: 인사이트 및 보고서
     instruction_modal:
       campaign_start_final_instructions: "<p>타이머를 중지하거나 일시 중지하는 방법은 없습니다. 브라우저를 닫아도 캠페인 타이머는 계속 실행되므로 중간에 다른 일을 하기 위해 작업을 중단할 생각은 하지 마세요. 작업 중 방해 요소를 최소화하세요. 조용한 환경을 찾고, 기기에서 알림을 끄고, 멀티태스킹을 피하세요. 집중력을 유지하고 집중하세요. 캠페인 타이머가 다 지나면 계속할 수 없습니다. 위의 지침을 모두 읽었다면 시작을 클릭하여 할당된 작업을 계속 진행하시기 바랍니다</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>다음 지침을 잘 읽어주세요.</h4>
         <p>시작하려는 작업에는 시간이 정해져 있습니다. '시작'을 클릭하면 캠페인 타이머가 자동으로 시작됩니다. 모든 활동을 완료하는 데 남은 시간은 %{minutes}입니다. 지정된 시간 내에 작업을 완료하고 평가 과정을 서두르지 않도록 시간을 효율적으로 관리하세요. 한 번에 작업을 완료해야 하므로 잠시 쉬고 싶다면 지금이 바로 그 시간입니다</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>감독</h4>
         <p>시작 버튼을 클릭하면 감독 시스템으로 리디렉션되며, 세션이 진행되는 동안 카메라, 마이크, 화면을 모니터링합니다. 이러한 세션은 정교한 AI 시스템에 의해 자동으로 감독되어 중단 없이 원활한 사용자 경험을 제공합니다. 그러나 세션은 인간 감독자가 검토할 수도 있습니다. 부정 행위나 부정 행위의 징후가 발견되면 플래그가 표시됩니다. 이는 부정 행위 시도를 방지하기 위한 것입니다. 의심이 발견되면 작업은 취소될 수 있습니다</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>감독 브라우저</h4>
         <p>감독하는 작업을 완료하려면 특수 브라우저를 다운로드하여 설치해야 합니다. 다음 화면의 지침을 따르세요. 필요한 모든 활동을 완료한 후 제거할 수 있습니다</p>
     instructions:
@@ -3486,6 +3492,9 @@ ko:
     waiting: 대기 중
     you: 당신
     yourself: 나 자신
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: 이 확인란을 클릭하면 당사의 개인정보 처리방침 및 고객의 개인정보 처리방침을 읽었으며, 개인정보의 국제 전송을 포함하여 여기에 설명된 대로 개인정보를 수집 및 처리하는 데 동의하는 것으로 간주됩니다.
+    privacy_notice: 개인정보 고지
   time:
     formats:
       date: d/%m/%y

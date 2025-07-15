@@ -758,6 +758,12 @@ fr:
           attributes:
             base:
               max_takes_limit_reached: Limite atteinte pour les prises maximales
+        register:
+          attributes:
+            mobile_number:
+              blank: Le numéro de téléphone portable est requis
+              invalid: Le numéro de portable n'est pas valide
+              verification_expired: Le code de vérification a expiré. Vous pouvez essayer de vérifier à nouveau.
         report:
           assessments_not_hogan: Toutes les évaluations doivent être de type Hogan
           assessments_not_saville: Toutes les évaluations doivent être de type Saville
@@ -916,9 +922,8 @@ fr:
       new_response: Nouvelle réponse
       next_assessment: Passage à l'évaluation suivante
       pending_tasks:
-        many:
         one: Vous avez 1 tâche en attente
-        other: Vous avez %{count} tâches en attente
+        other: Il y a %{count} erreurs, veuillez vérifier vos réponses
       re_evaluate: Cliquez ici pour réévaluer
       reevaluate: Réévaluer
       remove:
@@ -1297,13 +1302,13 @@ fr:
     insights_reports: Perspectives et rapports
     instruction_modal:
       campaign_start_final_instructions: "<p>sachez qu'il n'y a aucun moyen d'arrêter ou de mettre en pause le minuteur. Le minuteur de la campagne continuera à fonctionner même si vous fermez le navigateur, vous ne devez donc à aucun moment penser à quitter les tâches entre deux pour faire autre chose. Veillez à minimiser les distractions pendant les tâches. Trouvez un environnement calme, désactivez les notifications sur vos appareils et évitez le multitâche. Restez concentré et concentrez-vous. Une fois le minuteur de la campagne écoulé, vous ne pourrez plus continuer. Si vous avez lu les instructions ci-dessus, veuillez cliquer sur démarrer pour continuer les tâches assignées</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Veuillez lire attentivement les instructions suivantes.</h4>
         <p>les tâches que vous allez commencer sont chronométrées. Lorsque vous cliquez sur "Commencer", le chronomètre de la campagne démarre automatiquement. Vous disposez de %{minutes} minutes pour effectuer toutes les activités. Veillez à effectuer les tâches dans le délai imparti et à gérer votre temps de manière efficace afin d'éviter toute précipitation dans le processus d'évaluation. Veillez à effectuer les tâches en une seule fois, de sorte que si vous avez besoin de faire une pause, c'est le moment</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Surveillance</h4>
         <p>en cliquant sur le bouton "Démarrer", vous serez redirigé vers notre système de surveillance, qui surveillera votre caméra, votre microphone et votre écran pendant votre session. Ces sessions sont automatiquement surveillées par notre système d'intelligence artificielle sophistiqué, ce qui garantit une expérience utilisateur ininterrompue et fluide. Cependant, les sessions peuvent également être examinées par des surveillants humains. Tout signe de mauvaise conduite ou d'irrégularité sera signalé, afin de s'assurer qu'aucune tentative de tricherie n'est effectuée. En cas de soupçon, votre ou vos tâches seront annulées</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Navigateur de contrôle</h4>
         <p>il vous sera demandé de télécharger et d'installer un navigateur spécial pour effectuer les tâches surveillées. Veuillez suivre les instructions de l'écran suivant. Vous pourrez le désinstaller après avoir effectué toutes les activités requises</p>
     instructions:
@@ -3614,6 +3619,9 @@ fr:
     waiting: Attente
     you: Vous
     yourself: Vous-même
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: En cliquant sur cette case, vous reconnaissez avoir lu notre avis de confidentialité et l'avis de confidentialité de nos clients et vous consentez à la collecte et au traitement de vos informations personnelles comme décrit dans ces documents, y compris le transfert international de vos informations personnelles.
+    privacy_notice: Avis de confidentialité
   time:
     formats:
       date: "%d/%m/%y"
@@ -3878,7 +3886,6 @@ fr:
     required: Veuillez répondre à cette question
     text: Votre réponse ne doit pas contenir de chiffres
     title:
-      many:
       one: Il y a une erreur, veuillez vérifier vos réponses
       other: Il y a %{count} erreurs, veuillez vérifier vos réponses
     user_self_skill_rating_disabled: L'auto-évaluation est désactivée pour ce modèle

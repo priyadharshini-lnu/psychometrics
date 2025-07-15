@@ -6,11 +6,11 @@ pt:
         all_responses: Todas as respostas
       numeric_comparator:
         enter_value: Insira o valor
-        select_data: Selecione Dados
+        select_data: Selecione os dados
       scoring:
         select_comparison: Escolha o tipo de comparação
-        select_factors: Selecione Fatores
-        select_operation: Selecione Operação
+        select_factors: Selecione os fatores
+        select_operation: Selecione a operação
       sheet_column:
         accessor_access: Acesso do acessório
         dashboard_use: Utilização do painel de controlo
@@ -201,11 +201,11 @@ pt:
           attributes:
             file:
               column_cannot_be_blank: O valor %{column_name} não pode estar em branco na linha %{row_number}
-              invalid_format: Carregar ficheiro CSV
-              invalid_job_role_id: O ID na linha %{row_number} não é um ID de cargo válido
+              invalid_format: Carregar arquivo CSV
+              invalid_job_role_id: O ID na linha %{row_number} não é um ID de função válido
               invalid_locale: A localidade na linha %{row_number} não é uma localidade válida
               missing_required_columns: 'Faltam colunas obrigatórias: %{columns}'
-              parsing_failed: 'Erro ao analisar o ficheiro, erro: %{error}.'
+              parsing_failed: 'Erro ao analisar o arquivo, error: %{error}.'
             project:
               must_exist: O projeto deve existir
         mettl:
@@ -657,7 +657,7 @@ pt:
         email: Endereço de e-mail
         first_name: Nome próprio
         id: ID
-        last_name: Apelido
+        last_name: Sobrenome
         manage_client_ids: Locação de clientes
         memberships: Locação de clientes
         name: Nome
@@ -704,7 +704,7 @@ pt:
         email: Endereço de e-mail
         first_name: Nome próprio
         id: ID
-        last_name: Apelido
+        last_name: Sobrenome
         parent: Gestor direto
         parent_id: Gestor direto
         password: Palavra-passe
@@ -758,6 +758,12 @@ pt:
           attributes:
             base:
               max_takes_limit_reached: Limite atingido para o máximo de tomadas
+        register:
+          attributes:
+            mobile_number:
+              blank: É necessário um número de telemóvel
+              invalid: O número de telemóvel é inválido
+              verification_expired: O código de verificação expirou. Pode tentar verificar novamente.
         report:
           assessments_not_hogan: Todas as avaliações devem ser do tipo Hogan
           assessments_not_saville: Todas as avaliações devem ser do tipo Saville
@@ -916,8 +922,9 @@ pt:
       new_response: Nova resposta
       next_assessment: Passar para a avaliação seguinte
       pending_tasks:
+        many: ''
         one: Tem 1 tarefa pendente
-        other: Tem %{count} tarefas pendentes
+        other: ''
       re_evaluate: Clique aqui para reavaliar
       reevaluate: Reavaliar
       remove:
@@ -944,7 +951,7 @@ pt:
     audio_response:
       pause: Pausa
       permission_denied_message: Ative a permissão do microfone no seu navegador para gravar a resposta
-      permission_text: Permita o uso do microfone para gravar áudio
+      permission_text: Permita o uso do microfone para gravar o áudio
       resume: Currículo
       saved:
         label: Áudio guardado
@@ -1042,9 +1049,9 @@ pt:
     page:
       back: Voltar
       confirm_message: |-
-        #### As suas respostas serão enviadas e não poderão ser alteradas depois disto.
+        #### As suas respostas serão enviadas e não poderão ser alteradas posteriormente.
 
-        Clique em **Voltar** para rever as suas respostas uma última vez ou clique em **Enviar** se tiver terminado.
+        Clique em **Voltar** para rever as suas respostas pela última vez  ou clique em **Enviar** se tiver terminado.
       invalid_session:
         description: Esta sessão de avaliação foi invalidada, o que pode acontecer se continuar a avaliação num outro separador, navegador ou dispositivo.
         title: Último pedido falhou
@@ -1096,10 +1103,10 @@ pt:
         failure: O seu navegador não suporta gravação de vídeos. Utilize o Chrome ou o Firefox para gravação de vídeos
         success: Permita o uso da câmara e do microfone para gravar áudio e vídeo
         unsupported: Este browser não suporta a gravação de vídeo. Utilize qualquer um dos seguintes browsers,
-      recording_duration_label: Duração máxima do registo
-      recording_stop_label: A gravação pára em
+      recording_duration_label: Duração máxima da gravação
+      recording_stop_label: A gravação irá parar dentro de
       requesting_permission: Pedido de autorização...
-      response_recorded: Resposta registada
+      response_recorded: Resposta registrada
       save: Guardar
       saved:
         label: Guardado
@@ -1108,8 +1115,8 @@ pt:
       start_recording: Iniciar gravação
       stop_recording: Parar a gravação
       tracker:
-        backward: Está muito próximo do ecrã. Afaste-se um pouco.
-        forward: Está muito longe do ecrã. Aproxime-se um pouco.
+        backward: Está muito próximo do ecrã.  Afaste-se um pouco.
+        forward: Está muito longe do ecrã.  Aproxime-se um pouco.
         frame: Certifique-se de que o seu rosto está alinhado com a moldura
         ready: Pressione o botão Gravar quando estiver a postos para gravar
     wait: Aguardar
@@ -1178,11 +1185,11 @@ pt:
     lighthouse_logo_alt_text: Logótipo do farol
     login:
       continue_btn: Continuar
-      description: Inicie sessão com as informações da sua conta pessoal
+      description: Inicie a sessão com as informações da sua conta pessoal
       forgot_password: Esqueceu-se da palavra-passe?
       hide_password: Ocultar palavra-passe
-      login_btn: Iniciar sessão
-      magic_link_btn: Enviar-me por correio eletrónico a ligação de acesso
+      login_btn: Iniciar a sessão
+      magic_link_btn: Envie-me o link de início de sessão por email
       not_member: Não é membro?
       or: OU
       show_password: Mostrar palavra-passe
@@ -1190,18 +1197,18 @@ pt:
       title: Damos-lhe as boas-vindas!
     logout: Terminar sessão
     magic_link:
-      description: Introduza o seu endereço de correio eletrónico para receber uma ligação de acesso
+      description: Introduza o seu endereço de e-mail para receber uma ligação de acesso
       invalid_email: O correio eletrónico é inválido
       login_with_password: Iniciar sessão com a palavra-passe
-      send_me_login_link: Enviar-me a ligação de acesso
-      success: Enviámos-lhe uma ligação de início de sessão para "%{email}". Clique na ligação na mensagem de correio eletrónico que recebeu para iniciar sessão
+      send_me_login_link: Envie-me o link de início de sessão
+      success: Enviámos-lhe um link de início de sessão para "%{email}". Clique na ligação na mensagem de correio eletrónico que recebeu para iniciar sessão
     mobile_number: Número de telemóvel
     new_password: Nova palavra-passe
     new_password_placeholder: Introduzir a nova palavra-passe
     otp:
       code: Código
       code_placeholder: Palavra-passe de uso único
-      description: Insira a OTP que foi enviado para o seu endereço de e-mail registado.
+      description: Insira a OTP que foi enviada para o seu endereço de e-mail registrado.
       resend: Reenviar OTP
       resend_in: Reenviar em %{timestamp} segundos
       resend_success: A OTP é enviada para o seu número de telemóvel
@@ -1209,22 +1216,22 @@ pt:
       submit: Verificar
       title: Palavra-passe de uso único
     password: Palavra-passe
-    password_confirmation: Confirmar palavra-passe
+    password_confirmation: Confirmar a palavra-passe
     password_confirmation_placeholder: Insira a confirmação da palavra-passe
     password_placeholder: Insira a palavra-passe
     registration:
-      description: Preencha os dados abaixo para se registar e criar uma nova conta
+      description: Preencha os dados abaixo para se registrar e criar uma nova conta
       email_hint: Respeitamos a sua privacidade e não toleramos spam. Nunca forneceremos as suas informações a terceiros
       first_name: Nome próprio
       first_name_placeholder: Insira o nome próprio
       have_account: Já tem uma conta?
       last_name: Apelido
       last_name_placeholder: Insira o apelido
-      login_now: Iniciar sessão agora!
-      registration_code: Código de registo
-      registration_code_placeholder: Insira Código de registo
-      terms_notice: Ao efetuar o registo, concorda com os nossos <a href="%{terms_url}">Termos de Serviço e Política de Privacidade</a>
-      title: Registar-se
+      login_now: Iniciar a sessão agora!
+      registration_code: Código de registro
+      registration_code_placeholder: Insira o Código de registo
+      terms_notice: Ao efetuar o registro, concorda com os nossos <a href="%{terms_url}">Termos de Serviço e Política de Privacidade</a>
+      title: Registra-se
     reset_password:
       back_to_sign_in: Voltar ao início de sessão
       description: Insira o e-mail associado à sua conta
@@ -1234,8 +1241,8 @@ pt:
       description: Para criar uma nova palavra-passe, insira a sua nova palavra-passe nas caixas abaixo
       submit: Enviar
       title: Criar palavra-passe
-    sign_out: Iniciar sessão como utilizador diferente
-    sign_up: Registar-se
+    sign_out: Iniciar a sessão como utilizador diferente
+    sign_up: Registrar-se
     terms_link: <a href="%{terms_url}">Termos e Declaração de Privacidade</a>
     verify_mobile_number:
       error:
@@ -1265,7 +1272,7 @@ pt:
     all_activities_are_completed_multiple: Todas as atividades desta campanha estão agora concluídas. Aceda ao Painel e verifique se tem alguma outra atividade atribuída.
     already_joined: Já aderiu a esta campanha
     begin: Comece as suas tarefas
-    begin_btn_msg_before_prework: Tens de completar as tarefas abaixo indicadas antes de iniciares a campanha cronometrada
+    begin_btn_msg_before_prework: Deve completar as tarefas abaixo indicadas antes de iniciar a campanha cronometrada
     begin_campaign_msg: Iniciar a campanha antes de efetuar as avaliações
     campaigns: Campanhas
     closed_campaign_message: Esta campanha está fechada. Não pode realizar nenhuma avaliação nesta campanha.
@@ -1273,7 +1280,7 @@ pt:
     complete_prev: Conclua todas as avaliações anteriores
     complete_tasks: Antes de efetuar esta ação, complete as tarefas abaixo indicadas.
     continue: Continue as suas tarefas
-    dashboard_instructions: Foram-lhe atribuídas a várias atividades que precisa de concluir. Certifique-se de que verifica se todas as atividades atribuídas foram concluídas em todas as campanhas.
+    dashboard_instructions: Foram-lhe atribuídas a várias atividades que precisa de concluir. Por favor confirme verificando se todas as atividades atribuídas foram concluídas em todas as campanhas.
     dashboard_menu:
       bookings: Reservas
       campaign: Campanha
@@ -1288,7 +1295,7 @@ pt:
       tasks: Tarefas
     details: Detalhes
     edit_evaluation:
-      body: Informamos que, ao clicar em Reavaliar, será direcionado para o início do inquérito, onde poderá editar as respostas. As respostas anteriores ainda estarão disponíveis, mas pode alterá-las conforme a sua leitura cuidadosa. Após a edição, terá que reenviar a avaliação para concluir o processo.
+      body: Informamos que, ao clicar em Reavaliar, será direcionado para o início do inquérito, onde poderá editar as respostas. As respostas anteriores ainda estarão disponíveis, poderá alterá-las conforme a sua leitura cuidadosa. Após a revisão, terá que reenviar a avaliação para concluir o processo.
       edit: Reavaliar
       title: Confirmar
       view: Ver avaliação
@@ -1298,24 +1305,24 @@ pt:
     inactive_campaign_message: Atualmente, não tem nenhuma atividade atribuída.
     insights_reports: Informações e relatórios
     instruction_modal:
-      campaign_start_final_instructions: |
+      campaign_start_final_instructions: |-
         <p>
-          Tenha em atenção de que não há forma de parar ou pausar o cronómetro. O cronómetro da campanha continuará a funcionar mesmo quando fechar o navegador, pelo que, em nenhum momento, deve pensar em deixar as tarefas a meio para fazer outra coisa. Certifique-se de que minimiza as distrações durante as tarefas. Encontre um ambiente silencioso, desative as notificações nos seus dispositivos e evite multitarefas. Mantenha a sua concentração e atenção. Quando o cronómetro da campanha chegar ao fim, não poderá continuar. Se leu as instruções acima, clique em iniciar para continuar as tarefas atribuídas.
+          Tenha em atenção de que não há forma de parar ou pausar o cronómetro. O cronómetro da campanha continuará a funcionar mesmo quando fechar o navegador, pelo que, em nenhum momento, deve pensar em deixar as tarefas a metade para fazer outra atividade. Certifique-se de minimizar as distrações durante as tarefas. Encontre um ambiente silencioso, desative as notificações nos seus dispositivos e evite multitarefas. Mantenha a sua concentração e atenção. Quando o cronómetro da campanha chegar ao fim, não poderá continuar. Se leu as instruções acima, clique em iniciar para continuar as tarefas atribuídas.
         </p>
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Leia as instruções a seguir adequadamente.</h4>
         <p>
-          A(s) tarefa(s) que está prestes a iniciar são cronometradas. Depois de clicar em "Iniciar", o cronómetro da campanha começará automaticamente. Tem %{minutes} minutos para concluir todas as atividades. Procure concluir as tarefas dentro do prazo designado e administre o tempo de forma eficaz para evitar pressa no processo de avaliação. Certifique-se de que conclui as tarefas de uma só vez. Por isso, se precisar de fazer uma pausa, agora é a hora.
+          A(s) tarefa(s) que está prestes a iniciar são cronometradas. Depois de clicar em "Iniciar", o cronómetro da campanha começará automaticamente. Tem %{minutes} minutos para concluir todas as atividades. Procure concluir as tarefas dentro do prazo designado e administre o tempo de forma eficaz para evitar pressa no processo de avaliação. Certifique-se de completar as tarefas de uma só vez, por isso, se precisar de fazer uma pausa, este é o momento.
         </p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Supervisão</h4>
         <p>
-          Ao clicar no botão Iniciar, será redirecionado para o nosso sistema de supervisão. O sistema monitorizará a sua câmara, microfone e ecrã durante a sessão. Estas sessões são supervisionadas automaticamente pelo nosso sofisticado sistema de IA, proporcionando uma experiência de utilizador ininterrupta e tranquila. No entanto, as sessões também podem ser analisadas por supervisores humanos. Quaisquer indícios de má conduta ou irregularidades serão sinalizados. Isto está a ser feito para garantir que não ocorre qualquer tentativa de batota. Se forem detetadas suspeitas, as suas tarefas serão canceladas.
+          Ao clicar no botão Iniciar, será redirecionado para o nosso sistema de supervisão. O sistema monitorizará a sua câmara, microfone e ecrã durante a sessão. Estas sessões são supervisionadas automaticamente pelo nosso sofisticado sistema de IA, proporcionando uma experiência de utilizador sem interrupções e tranquila. No entanto, as sessões também podem ser analisadas por supervisores humanos. Quaisquer indícios de má conduta ou irregularidades serão sinalizados. Isto está a ser feito para garantir que não haja tentativas de fraude. Caso sejam detetadas suspeitas, a(s) sua(s) tarefa(s) serão canceladas..
         </p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Navegador de supervisão</h4>
         <p>
-          Para concluir as tarefas supervisionadas, ser-lhe-á solicitado que descarregue e instale um navegador especial. Siga as instruções no ecrã a seguir. Pode desinstalar depois de concluir todas as atividades necessárias.
+          Para concluir as tarefas supervisionadas, ser-lhe-á solicitado que descarregue e instale um navegador especial. Siga as instruções no ecrã a seguir. Poderá desinstalá-lo depois de concluir todas as atividades necessárias.
         </p>
     instructions:
       collapse_aria_label: 'Mostrar mais informações acima: Centro Virtual de Aprendizagem'
@@ -1328,7 +1335,7 @@ pt:
       single_lang: Esta tarefa está disponível apenas em %{lang}. Clique em "Prosseguir" para continuar.
       title: Selecionar idioma
     panels:
-      dashboard: Painel de controlo
+      dashboard: Painel de controle
       reports: Relatórios
     profile:
       complete_heading: O seu perfil está completo
@@ -1406,7 +1413,7 @@ pt:
       scoring_results_export_scheduled: Resultados da avaliação A tarefa de exportação foi agendada com êxito
     modals:
       assessor_campaign_assessment_group:
-        error_message: Algo correu mal. Contacte o administrador
+        error_message: Algo ocorreu mal. Contacte o administrador
         placeholder: Selecionar um grupo de centros de avaliação
         success_message: O Grupo de Avaliação da Campanha de Assessores foi atribuído com sucesso
         title: Grupo do Centro de Avaliação
@@ -1593,7 +1600,7 @@ pt:
       duration: Duração
       starts_in: 'Começa em:'
       starts_on: Começa em %{date}
-      will_start_shortly: A campanha terá início em breve. Aguarde
+      will_start_shortly: A campanha terá início em breve.  Aguarde
   change_password_page:
     old_password: Palavra-passe antiga
     password: Palavra-passe
@@ -1605,12 +1612,12 @@ pt:
       access: Acesso
       continue: Continuar
       random_phrases:
-        eight: Que o vosso café seja forte e que o vosso dia seja produtivo.
+        eight: Que o seu café seja forte e que o seu dia seja produtivo.
         five: A vida é melhor quando se sorri. Sorria para o microfone!
         four: Ela vende conchas à beira-mar.
         nine: Em caso de dúvida, teste-o. Este microfone funciona!
         one: Eu grito, tu gritas, todos nós gritamos por gelado!
-        seven: Cada dia é um novo começo, digam-no alto e bom som!
+        seven: Cada dia é um novo começo, diga-o alto e com orgulho!
         six: Pizza ou massa? As decisões são difíceis.
         three: Testando, um, dois, três, o som é claro como pode ser!
         two: A rápida raposa castanha salta sobre o cão preguiçoso.
@@ -1647,19 +1654,19 @@ pt:
         refresh_text: Clique em baixo para atualizar o browser e aplicar as alterações
         subtitle: Correcções rápidas
         title: Cancelou as permissões de Webcam e Microfone
-      permissions: Permissões de câmara Web e áudio
+      permissions: Permissões de câmara web e áudio
       title: Antes de iniciar esta avaliação, é necessário realizar algumas verificações ao seu sistema.
     video_check:
       access: Acesso
       camera_preview: A pré-visualização da câmara aparecerá aqui
       continue: Continuar
-      description: Qualquer vídeo ou foto capturado nesta fase não será guardado ou usado. É usado localmente no seu dispositivo para garantir que a câmara está a funcionar para uma pergunta futura que possa necessitar de gravação de vídeo.
+      description: Clique em Iniciar Gravação e grave-se a si próprio enquanto lê o texto abaixo com a sua própria voz.
       random_phrases:
-        eight: Se me conseguirem ver, o vídeo é um sucesso. Se não, resolvemos o problema!
-        five: Testar o seu vídeo, não se preocupe, não é necessária uma nomeação para os Óscares.
+        eight: Se conseguir me ver, o vídeo foi um sucesso. Caso contrário, vamos resolver o problema!
+        five: Testar o seu vídeo, não se preocupe, não é necessária uma nomeação para o Óscar.
         four: Preparar, preparar, focar! A câmara é o seu palco.
         nine: Grandes sorrisos e vídeo nítido, vamos fazer este teste bem feito!
-        one: Levantem a mão se me conseguem ouvir ou acenem para a câmara!
+        one: Levantem a mão se me consegue ouvir ou acene para a câmara!
         seven: Espelho, espelho no ecrã, que o controlo de vídeo seja limpo.
         six: Luzes, câmara, ação, este é o seu tempo para brilhar!
         ten: Um aceno amigável garante que tudo funciona bem.
@@ -1812,7 +1819,7 @@ pt:
       na: N/A
       none: Nenhum
       ok: OK
-      refer_export_file: Consulte a funcionalidade Exportar para extrair um modelo que pode ser utilizado para Importar aqui.
+      refer_export_file: Consulte a funcionalidade de Exportação para extrair um modelo que pode ser usado para Importar aqui.
       reference_language: Língua de referência
       response: Resposta
       selected: Selecionado
@@ -1964,12 +1971,12 @@ pt:
         last_name: Apelido
         privacy_notice: Respeitamos a sua privacidade e não toleramos spam. Nunca forneceremos as suas informações a terceiros.
         registration_code: Código de registo
-        submit: Registar
+        submit: Registrar
         tabs:
-          register: Registar
+          register: Registrar
           sign_in: Iniciar sessão
-        terms_notice: Ao efetuar o registo, concorda com os nossos <a href="%{terms_url}">Termos de Serviço e Política de Privacidade</a>
-        title: Registe-se agora
+        terms_notice: Ao efetuar o registro, concorda com os nossos <a href="%{terms_url}">Termos de Serviço e Política de Privacidade</a>
+        title: Registre-se agora
       signed_up: Bem-vindo! A sua inscrição foi efectuada com sucesso.
       signed_up_but_inactive: A sua inscrição foi efectuada com êxito, mas não foi possível iniciar sessão porque a sua conta ainda não está activada.
       signed_up_but_locked: A sua inscrição foi efectuada com êxito, mas não foi possível iniciar sessão porque a sua conta está bloqueada.
@@ -1986,13 +1993,13 @@ pt:
       new:
         email: Endereço de e-mail
         forgot_password: Esqueceu-se da palavra-passe?
-        instruction: Inicie sessão com as informações da sua conta pessoal
+        instruction: Inicie a sessão com as informações da sua conta pessoal
         keep_sign_in: Sim, manter-me ligado
         login_with_sso: Iniciar sessão com o início de sessão único
         password_placeholder: Palavra-passe
         submit: Iniciar sessão
         tabs:
-          register: Registar
+          register: Registrar
           sign_in: Iniciar sessão
         title: Damos-lhe as boas-vindas!
       signed_in: Iniciou sessão com sucesso!
@@ -2127,18 +2134,18 @@ pt:
     assessments:
       timed_out: Não é possível efetuar a avaliação %{assessment_name} porque o tempo limite foi ultrapassado.
     error: Erro
-    error_500: Algo correu mal. Contacte o seu administrador.
+    error_500: Algo ocorreu mal. Contacte o seu administrador.
     error_msg: Algo correu mal. Actualize a página e, se o problema persistir, contacte o seu administrador
     forbidden: Não tem acesso a esta página
     forbidden_action: Não tem permissões para esta ação
     invalid_session_title: Sessão inválida
-    invalid_token: Alguma coisa correu mal. Por favor, recarregue a página e tente novamente.
+    invalid_token: Alguma coisa ocorreu mal. Por favor, recarregue a página e tente novamente.
     max_regeneration_limit: Limite máximo de regeneração excedido, contacte a sua administração.
     messages:
       data_report_blank: Relatório de dados não existe
-    module_error: Algo correu mal com este módulo, contacte a administração.
-    module_error_editor: Algo correu mal com este módulo, verifique as definições do módulo.
-    module_props_error: Algo correu mal com este módulo.
+    module_error: Algo ocorreu mal com este módulo, contacte a administração.
+    module_error_editor: Algo ocorreu mal com este módulo, verifique as definições do módulo.
+    module_props_error: Algo ocorreu mal com este módulo.
     skill_gap_report:
       not_found: Relatório de lacunas de competências não encontrado
     try_again: Tente novamente
@@ -2207,9 +2214,9 @@ pt:
       assessment_center_alert:
         btn_title: Campanha
         message_part1: Conclua todas as atividades prévias nisto
-        message_part2: antes de reservar uma vaga.
+        message_part2: antes de reservar um horário.
       assessment_center_group_name: Centro de avaliação
-      booking_failed_msg: 'Falha ao reservar vaga: %{error}'
+      booking_failed_msg: 'Falha ao reservar o horário: %{error}'
       buttons:
         book: Reservar
         book_again: Reservar novamente
@@ -2244,7 +2251,7 @@ pt:
       neurodivergence_comment_aria_label: Comentários sobre a neurodivergência
       neurodivergence_comment_placeholder: Os seus comentários
       neurodivergence_question: Precisa de alguma adaptação ou ajuste razoável devido a necessidades especiais ou deficiências para participar plenamente na avaliação?
-      no_invites_msg: Será adicionado ao centro de avaliação ou receberá um convite para reservar a sua vaga; assim que fizer parte do centro, pode completar as actividades clicando no botão "Ver detalhes" abaixo.
+      no_invites_msg: Será adicionado ao centro de avaliação ou receberá um convite para reservar a sua vaga; assim que fizer parte do centro, pode completar as atividades clicando no botão "Ver detalhes" abaixo.
       or: ou
       other_invite: Ver mais %{count} convite
       other_invites: Ver mais %{count} convites
@@ -2258,7 +2265,7 @@ pt:
       reschedule_failed_msg: 'Falha ao reagendar: %{error}'
       reschedule_reason_placeholder: Para continuar, insira o motivo do reagendamento.
       schedule_success: Esta reserva está agendada
-      schedule_success_msg: Enviamos por e-mail um convite de calendário com todos os detalhes para si e para outros participantes.
+      schedule_success_msg: Enviamos por e-mail um convite de calendário com todos os detalhes para si e para os outros participantes.
       starts_at: 'Começa a: %{date}'
       starts_in: 'Começa em:'
       tab_label:
@@ -2307,11 +2314,11 @@ pt:
     error_warning: Oops, algo correu mal com a sua avaliação. Contacte o apoio ao cliente.
     hogan:
       cannot_start: Não é possível iniciar a avaliação hogan neste momento. Tente após alguns minutos.
-    lighthouse_app: Farol de Mercer
+    lighthouse_app: Mercer Lighthouse
     login: Iniciar sessão
     maintenance:
       notification: O farol estará inativo para manutenção programada dentro de 60 segundos
-    manage: Gerir
+    manage: Gerenciar
     'no': Não
     passwordSetting:
       update_success: As definições de segurança foram actualizadas com êxito
@@ -2359,7 +2366,7 @@ pt:
         requested_cancellation: Solicitou cancelamento
         requested_cancellation_rejected: Pedido de cancelamento Rejeitado
         requested_rescheduling: Solicitou reagendamento
-        requested_rescheduling_rejected: Solicitado Reagendamento Rejeitado
+        requested_rescheduling_rejected: Pedido de Reagendamento Rejeitado
     'yes': Sim
   glint:
     booking_card:
@@ -2774,7 +2781,7 @@ pt:
         weekly_stats: 'Estatísticas de utilização de licenças da semana passada :'
     magic_link:
       body:
-        dear: Caro %{name},
+        dear: Estimado %{name},
         greetings: Saudações do dia!
         instructions: Clique na ligação abaixo para iniciar sessão no lighthouse.
         signin_link: Ligação de registo
@@ -3025,14 +3032,14 @@ pt:
         work_environment: Ambiente de trabalho
         your_suitability: A sua aptidão
       single_value:
-        factor_name: Categoria da pontuação
+        factor_name: Categoria de pontuação
         question_name: Perguntas
       single_value_cluster:
         competency: Competência
         developmental_rating: Classificação do desenvolvimento
         questions: Perguntas
       strength_clusters:
-        index_sub_factors_considered: Subfatores do Thriving Index que foram considerados para fornecer a sua pontuação final relativamente ao ambiente de trabalho %{workstyle}
+        index_sub_factors_considered: Índices de subfatores do Thriving que foram considerados para fornecer sua pontuação final para o ambiente de trabalho %{workstyle}
         possible_roles: Funções possíveis
         work_environments: Ambientes de trabalho previstos
       three_sixty_default:
@@ -3462,8 +3469,8 @@ pt:
   threesixty:
     accept_privacy_modal:
       accept: Aceitar
-      checkbox: Ao clicar nesta caixa, o utilizador concorda que leu a nossa declaração de privacidade relativa à recolha e ao tratamento das suas informações pessoais, tal como descrito na mesma, incluindo a transferência internacional das suas informações pessoais.
-      checkbox_with_client_link: Ao clicar nesta caixa, o utilizador concorda que leu a nossa declaração de privacidade e a declaração de privacidade do nosso cliente e autoriza a recolha e o tratamento das suas informações pessoais tal como aí descrito, incluindo a transferência internacional das suas informações pessoais.
+      checkbox: Ao clicar nesta caixa, você concorda que leu nosso aviso de privacidade sobre a coleta e o processamento de suas informações pessoais conforme descrito nele, incluindo a transferência internacional de suas informações pessoais.
+      checkbox_with_client_link: Ao clicar nesta caixa, o utilizador concorda que leu a nossa declaração de privacidade e a declaração de privacidade do nosso cliente e autoriza a coleta e o tratamento das suas informações pessoais tal como nele descrito, incluindo a transferência internacional das suas informações pessoais.
       privacy_notice: Aviso de privacidade
       title: Consentimento para processar e transferir informações pessoais
     action: Ação
@@ -3484,11 +3491,11 @@ pt:
     cancel: Cancelar
     close_evaluation_modal:
       message: Depois de ver o relatório, %{pronoun_or_name} não poderá receber mais avaliações
-      title: Tem a certeza de que pretende ver o relatório?
+      title: Tem certeza de que deseja visualizar o relatório?
     closed_campaign_message: Esta campanha 360 está encerrada. Não é possível nomear ou avaliar ninguém para esta campanha.
     completed: Concluído
     confirm: Tem certeza?
-    confirmation_for_nomination_removal: Tem a certeza de que pretende remover a nomeação?
+    confirmation_for_nomination_removal: Tem certeza de que pretende remover a nomeação?
     confirmation_required: Confirmação necessária
     confirmation_text_incorrect: O texto de confirmação está incorreto
     confirmation_text_placeholder: Texto de confirmação aqui
@@ -3555,7 +3562,7 @@ pt:
         approve_report: Aprovar relatório
         download_report: Descarregar relatório
         edit: Editar
-        hold_report: Reter relatório
+        hold_report: Suspender relatório
         login: Iniciar sessão
         mark_as_done: Marcar como enviado
         regenerate_report: Gerar relatório
@@ -3570,7 +3577,7 @@ pt:
         view_responses: Ver respostas
       confirmation_messages:
         approve_report: Tem a certeza de que quer aprovar o relatório?
-        hold_report: Tem a certeza de que quer reter o relatório?
+        hold_report: Tem a certeza de que quer suspender o relatório?
         mark_evaluation_done: Tem a certeza de que pretende marcar a avaliação como concluída? A avaliação será encerrada para este assunto.
         release_report: Tem a certeza de que quer divulgar o relatório?
         remove_from_campaign: Tem a certeza de que pretende remover o utilizador da campanha?
@@ -3596,7 +3603,7 @@ pt:
         successful_message: Enviou o e-mail com sucesso
         to: Para
     remind_all: Lembrar tudo
-    remind_mail_sent: Lembretes enviados aos avaliadores que não concluíram a avaliação
+    remind_mail_sent: Lembretes enviados aos avaliadores que ainda não concluíram a avaliação
     report_for: Relatório para
     report_generation_in_progress: O relatório está a ser gerado. Avisaremos quando o relatório estiver pronto.
     reports: Relatórios
@@ -3622,6 +3629,9 @@ pt:
     waiting: Em espera
     you: Você
     yourself: Você mesmo
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Ao clicar nesta caixa, o utilizador concorda que leu a nossa declaração de privacidade e a declaração de privacidade do nosso cliente e autoriza a coleta e o tratamento das suas informações pessoais tal como nele descrito, incluindo a transferência internacional das suas informações pessoais.
+    privacy_notice: Aviso de privacidade
   time:
     formats:
       date: "%d/%m/%y"
@@ -3831,17 +3841,17 @@ pt:
   validations:
     AudioResponse:
       in_progress:
-        RECORDED: O áudio está gravado mas não está gravado
+        RECORDED: Áudio gravado, mas não salvo
         RECORDING: A gravação áudio está em curso
         SAVING: O carregamento do áudio gravado está em curso
       required: Grave e guarde o áudio antes de continuar
     FileUpload:
       in_progress:
-        SAVING: O carregamento do ficheiro está em curso
-      required: Carregue o ficheiro
+        SAVING: O carregamento do arquivo está em curso
+      required: Carregue o arquivo
     TextEntry:
       Email:
-        character_range: A mensagem de e-mail introduzida tem de ter, no mínimo, %{min} e, no máximo, %{max} caracteres.
+        character_range: A mensagem de e-mail inserida deve ter, no mínimo, %{min} e, no máximo, %{max} caracteres.
         max_character: A mensagem de correio eletrónico introduzida não pode ter mais de %{max} caracteres.
         min_character: A mensagem de correio eletrónico introduzida tem de ter pelo menos %{min} caracteres.
         subject:
@@ -3853,7 +3863,7 @@ pt:
         recorded: O vídeo está gravado mas não está guardado
         recording: A gravação vídeo está em curso
         saving: O carregamento do vídeo gravado está em curso
-      required: Grave e guarde o vídeo antes de continuar
+      required: Grave e salve o vídeo antes de continuar
     actions_still_in_progress: Estão em curso as ações abaixo. Se prosseguir, vai perder estes dados.
     blank: não pode ficar em branco
     character_count: 'Contagem de caracteres '
@@ -3864,8 +3874,8 @@ pt:
     exact: Selecione exatamente a(s) opção(ões) %{count}
     file_upload:
       BadRequest: O ficheiro não foi carregado porque o último pedido falhou. Isto pode dever-se ao facto de a sua Internet não estar a funcionar. Se a sua Internet estiver a funcionar, contacte o administrador
-      EntityTooLarge: O tamanho do ficheiro deverá ser menor que %{maxFileSize} MB
-      WrongFileType: 'O tipo de ficheiro deve ser um dos seguintes: %{allowedFileTypes}'
+      EntityTooLarge: O tamanho do arquivo deverá ser menor que %{maxFileSize} MB
+      WrongFileType: 'O tipo de arquivo deve ser um dos seguintes: %{allowedFileTypes}'
     invalid: é inválido
     issue: Problema
     least: Responda pelo menos %{min} opção(ões).
@@ -3886,7 +3896,6 @@ pt:
     required: Responda a esta questão
     text: A sua resposta não pode conter números
     title:
-      many:
       one: Há um erro, por favor verifique as suas respostas
       other: Existem %{count} erros, por favor verifique as suas respostas
     user_self_skill_rating_disabled: A auto-classificação está desactivada para este modelo
