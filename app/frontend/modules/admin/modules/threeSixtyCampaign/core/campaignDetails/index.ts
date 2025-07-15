@@ -12,6 +12,7 @@ export const getAssessmentPermissions = (state: RootState) => get(state).campaig
 export const getCurrentAssessmentId = (state: RootState) => get(state).assessmentId
 export const getCurrentDimensionId = (state: RootState) => get(state).dimensionId
 export const getCurrentCampaignName = (state: RootState) => get(state).name
+export const getCategory = (state: RootState) => get(state).category
 export const getCampaignId = (state: RootState) => get(state).campaignId
 export const getReportAvailableLanguages = (state: RootState) => get(state).reportAvailableLanguages
 export const getReportDefaultLanguage = (state: RootState) => get(state).reportDefaultLanguage

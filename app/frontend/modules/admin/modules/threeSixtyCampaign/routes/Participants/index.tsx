@@ -2,6 +2,7 @@ import { Menu } from 'antd'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
@@ -27,6 +28,7 @@ import ImportRawModal from './ImportRawModal'
 import BulkDownloadModal from '../../components/BulkDownloadModal'
 import RegenerateReportModal from '../../components/RegenerateReportModal'
 import DownloadReportModal from '../../components/DownloadReportModal'
+import CreateSubjectModal from './SubjectList/CreateSubjectModal'
 
 const MODALS = {
   FactorBenchmarkScoreModal,
@@ -34,6 +36,7 @@ const MODALS = {
   BulkDownloadModal,
   RegenerateReportModal,
   DownloadReportModal,
+  CreateSubjectModal,
 }
 
 const routes = [

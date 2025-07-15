@@ -17,6 +17,7 @@ import { useResources } from '~/hooks/useResources'
 import { getFeatures } from '~/core/config'
 
 import styles from './CreateSubjectModal.less'
+import { getCategory } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 
 const { I18n } = window
 
@@ -138,6 +139,7 @@ function CreateSubjectModal ({
 
 const mapStateToProps = state => ({
   features: getFeatures(state),
+  isSkillRater: getCategory(state) === 'skill_rater',
 })
 
 export default connect(mapStateToProps)(CreateSubjectModal)

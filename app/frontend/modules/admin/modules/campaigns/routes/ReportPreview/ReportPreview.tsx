@@ -225,7 +225,6 @@ export default function ReportPreview ({
 
   const normalizedReport = useMemo(() => normalize(userReport.report, schema), [userReport])
   const isThreesixty = useMemo(() => userReport.report.category === 'threesixty', [userReport])
-  const threesixtyCampaignId = useMemo(() => userReport.threesixtyCampaignId, [userReport])
   return (
     <Layout>
       <Content className={cs('fluid-container', styles.container)}>
@@ -246,15 +245,12 @@ export default function ReportPreview ({
             link: state => (`/admin/projects/${state.project.id}/new_campaigns`),
             label: state => state.project.name,
           }, {
-            link: state => (isThreesixty
-              // eslint-disable-next-line max-len
-              ? `/administration/clients/${state.client.id}/projects/${state.project.id}/threesixty_campaigns/${threesixtyCampaignId}/participants/subjects`
-              : `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}`),
+            link: state => (`/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}`),
             label: state => state.campaign?.name,
           }, {
-            link: state => (reportIsLoaded() && !threesixtyCampaignId
+            link: state => (reportIsLoaded()
               // eslint-disable-next-line max-len
-              ? `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}/participants/subjects/${userReport.user.id}`
+              ? `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}/participants/subjects/${isThreesixty ? '' : userReport.user.id}`
               : ''),
             label: () => (reportIsLoaded() ? userReport.user.email : ''),
           }, {

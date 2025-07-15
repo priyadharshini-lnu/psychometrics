@@ -15,7 +15,6 @@ import { getActionsMenuProps } from './getActionsMenuProps'
 import ToolsDropdown from '../ToolsDropdown'
 import { Manage } from '../Manage'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
-import CreateSubjectModal from './CreateSubjectModal'
 import SubjectImportModal from './SubjectImportModal'
 import Pagination from '../../../components/Pagination'
 import SearchInput from '../SearchInput'
@@ -248,7 +247,6 @@ function SubjectList ({
           </div>
         </Col>
       </Row>
-      { currentCampaignId ? <CreateSubjectModal isSkillRater={isSkillRater} /> : null}
       <SubjectImportModal />
       <UserEditModal />
       <ResetSubjectModal open={showResetSubjectModal} />
