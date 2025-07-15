@@ -2355,9 +2355,9 @@ it:
         rescheduled: Ripianificato
       subject: Soggetto
     job_role:
+      are_you_sure_to_remove: Siete sicuri di poterlo rimuovere?
       column:
         job_group: Gruppo di lavoro
-        skill_id: Id abilità
         skill_name: Nome dell'abilità
       export:
         failure_msg: Errore durante l'esportazione delle traduzioni
@@ -3672,7 +3672,6 @@ it:
             skill_not_found: Abilità con ID %{id} non trovata
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Mappature delle competenze
         job_roles: Ruoli lavorativi
         proficiency: Competenza
         skills: Competenze
@@ -3910,7 +3909,6 @@ it:
         taxonomy: Importazione della tassonomia delle competenze
       job_roles: Ruoli lavorativi
       proficiency: Competenza
-      skill_job_mappings: Mappature delle competenze
       skills: Competenze
       title: Tassonomia delle competenze
     templates:

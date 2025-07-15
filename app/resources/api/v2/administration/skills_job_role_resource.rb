@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::SkillsJobRoleResource < Api::V2::Administration::BaseResource
-  attributes :expected_proficiency_level, :skill_id, :job_role_id, :project_id
+  attributes :expected_proficiency_level, :skill_id, :job_role_id, :project_id, :allowed_proficiency_levels
 
   has_one :skill
   has_one :job_role
@@ -24,6 +24,17 @@ class Api::V2::Administration::SkillsJobRoleResource < Api::V2::Administration::
 
   def job_role_id
     @model.job_role_id.to_s
+  end
+
+  def allowed_proficiency_levels
+    result = Skills::GetProficiencyLevel.call(@model.skill)
+    proficiency_level = result[:ok][:proficiency_level]
+
+    return {} unless proficiency_level && proficiency_level[:level_definition].present?
+
+    proficiency_level[:level_definition].each_with_object({}) do |defn, hash|
+      hash[defn['level']] = defn['name']
+    end
   end
 
   def self.records(opts = {})

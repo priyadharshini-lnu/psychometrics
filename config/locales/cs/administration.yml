@@ -2355,9 +2355,9 @@ cs:
         rescheduled: Přeloženo na
       subject: Předmět
     job_role:
+      are_you_sure_to_remove: Určitě je chcete odstranit?
       column:
         job_group: Pracovní skupina
-        skill_id: Id dovednosti
         skill_name: Název dovednosti
       export:
         failure_msg: Chyba při exportu překladů
@@ -3672,7 +3672,6 @@ cs:
             skill_not_found: Dovednost s ID %{id} nebyla nalezena
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Mapování dovedností
         job_roles: Pracovní role
         proficiency: Proficience
         skills: Dovednosti
@@ -3910,7 +3909,6 @@ cs:
         taxonomy: Import taxonomie dovedností
       job_roles: Pracovní role
       proficiency: Znalost
-      skill_job_mappings: Mapování dovedností
       skills: Dovednosti
       title: Taxonomie dovedností
     templates:

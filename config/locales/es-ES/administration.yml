@@ -2355,9 +2355,9 @@ es-ES:
         rescheduled: Reprogramado
       subject: Sujeto
     job_role:
+      are_you_sure_to_remove: "¿Estás seguro de quitarlo?"
       column:
         job_group: Grupo de trabajo
-        skill_id: Id. de habilidad
         skill_name: Nombre de la habilidad
       export:
         failure_msg: Error al exportar traducciones
@@ -3672,7 +3672,6 @@ es-ES:
             skill_not_found: Habilidad con ID %{id} no encontrada
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Asignación de funciones
         job_roles: Funciones
         proficiency: Dominio
         skills: Habilidades
@@ -3910,7 +3909,6 @@ es-ES:
         taxonomy: Importar taxonomía de competencias
       job_roles: Roles de trabajo
       proficiency: Dominio
-      skill_job_mappings: Asignaciones
       skills: Habilidades
       title: Taxonomía de competencias
     templates:

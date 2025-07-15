@@ -87,11 +87,7 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           width={100}
         />
       </Resource.Table>
-      {
-        skillDetails ? (
-          <DetailsDrawer onClose={() => setSkillDetails(undefined)} skill={skillDetails} />
-        ) : null
-      }
+      <DetailsDrawer onClose={() => setSkillDetails(undefined)} skill={skillDetails} />
     </>
   )
 }

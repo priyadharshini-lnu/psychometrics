@@ -2355,9 +2355,9 @@ zh:
         rescheduled: 改期
       subject: 主题
     job_role:
+      are_you_sure_to_remove: 你确定要删除吗？
       column:
         job_group: 工作小组
-        skill_id: 技能编号
         skill_name: 技能名称
       export:
         failure_msg: 导出翻译时出错
@@ -3672,7 +3672,6 @@ zh:
             skill_not_found: 未找到 ID 为 %{id} 的技能
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: 技能岗位映射
         job_roles: 工作角色
         proficiency: 熟练
         skills: 技能
@@ -3910,7 +3909,6 @@ zh:
         taxonomy: 导入技能分类标准
       job_roles: 工作角色
       proficiency: 熟练程度
-      skill_job_mappings: 技能岗位映射
       skills: 技能
       title: 技能分类法
     templates:

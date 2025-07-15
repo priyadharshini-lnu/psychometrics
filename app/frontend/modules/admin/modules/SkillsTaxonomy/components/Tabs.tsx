@@ -16,7 +16,7 @@ export const Tabs: React.FC<{ featureFlags?: Record<string, boolean> }> = ({ fea
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, settings.urlPrefix, key)
   const pathnameWithoutBasePath = pathname.replace(settings.urlPrefix, '')
   const activeMenu = [
-    '/skills', '/job_roles', '/skill_job_mappings', '/proficiency', '/settings',
+    '/skills', '/job_roles', '/proficiency', '/settings',
   ].find(val => pathnameWithoutBasePath.includes(val))
   const menuItems = [
     {
@@ -26,10 +26,6 @@ export const Tabs: React.FC<{ featureFlags?: Record<string, boolean> }> = ({ fea
     skillRaterEnabled ? {
       key: '/job_roles',
       label: I18n.t('administration.skills_taxonomy.tabs.job_roles'),
-    } : null,
-    skillRaterEnabled ? {
-      key: '/skill_job_mappings',
-      label: I18n.t('administration.skills_taxonomy.tabs.job_role_skill_mapping'),
     } : null,
     skillRaterEnabled ? {
       key: '/proficiency',

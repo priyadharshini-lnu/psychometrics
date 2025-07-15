@@ -2355,9 +2355,9 @@ ja:
         rescheduled: 予定変更
       subject: 対象
     job_role:
+      are_you_sure_to_remove: 本当に外していいのか？
       column:
         job_group: 職務グループ
-        skill_id: スキルID
         skill_name: スキル名
       export:
         failure_msg: 翻訳のエクスポート時のエラー
@@ -3672,7 +3672,6 @@ ja:
             skill_not_found: ID %{id} を持つスキルが見つかりません。
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: スキル・ジョブ・マッピング
         job_roles: 仕事の役割
         proficiency: 熟練度
         skills: スキル
@@ -3910,7 +3909,6 @@ ja:
         taxonomy: スキル分類法のインポート
       job_roles: 仕事の役割
       proficiency: 熟練度
-      skill_job_mappings: スキル・ジョブ・マッピング
       skills: スキル
       title: スキル分類法
     templates:

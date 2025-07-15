@@ -28,7 +28,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
       content: I18n.t(
         'administration.project_tabs.webhooks.remove_webhook.content',
         {
-          description: jobRole.id,
+          description: jobRole.name,
         },
       ),
       okText: I18n.t('administration.administrators.modals.delete.okText'),
@@ -107,11 +107,10 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
           width={100}
         />
       </Resource.Table>
-      {
-        jobRoleDetails ? (
-          <DetailsDrawer onClose={() => setJobRoleDetails(undefined)} jobRole={jobRoleDetails} />
-        ) : null
-      }
+      <DetailsDrawer
+        onClose={() => setJobRoleDetails(undefined)}
+        jobRole={jobRoleDetails}
+      />
     </>
   )
 }

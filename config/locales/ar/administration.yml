@@ -2355,9 +2355,9 @@ ar:
         rescheduled: Rescheduled
       subject: Subject
     job_role:
+      are_you_sure_to_remove: هل أنت متأكد من الإزالة؟
       column:
         job_group: مجموعة الوظائف
-        skill_id: معرّف المهارة
         skill_name: اسم المهارة
       export:
         failure_msg: خطأ أثناء تصدير الترجمات
@@ -3672,7 +3672,6 @@ ar:
             skill_not_found: المهارة ذات المعرف %{id} غير موجودة
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: تعيينات وظائف المهارة
         job_roles: الأدوار الوظيفية
         proficiency: الكفاءة
         skills: المهارات
@@ -3910,7 +3909,6 @@ ar:
         taxonomy: تصنيف مهارات الاستيراد
       job_roles: الأدوار الوظيفية
       proficiency: الكفاءة
-      skill_job_mappings: التعيينات
       skills: المهارات
       title: تصنيف المهارات
     templates:

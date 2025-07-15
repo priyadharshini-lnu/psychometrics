@@ -7,7 +7,6 @@ import RouteList from '~/components/RouteList'
 import routeUtils from '~/utils/route'
 import JobRoles from '~/modules/admin/modules/SkillsTaxonomy/components/JobRoles'
 import Proficiency from '~/modules/admin/modules/SkillsTaxonomy/components/Proficiency'
-import JobRoleSkillMapping from '~/modules/admin/modules/SkillsTaxonomy/components/JobRoleSkillMapping'
 import SkillList from '~/modules/admin/modules/SkillsTaxonomy/components/SkillList'
 import Settings from '~/modules/admin/modules/SkillsTaxonomy/components/Settings'
 import { getFeatures } from '~/core/config'
@@ -39,10 +38,6 @@ const TaxonomyComponent: FC<PropsFromRedux> = ({ features }) => {
       component: <JobRoles />,
     } : null,
     skillRaterEnabled ? {
-      path: '/skill_job_mappings',
-      component: <JobRoleSkillMapping />,
-    } : null,
-    skillRaterEnabled ? {
       path: '/proficiency',
       component: <Proficiency />,
     } : null,
@@ -66,11 +61,6 @@ const TaxonomyComponent: FC<PropsFromRedux> = ({ features }) => {
     menuItems.push({
       key: '/job_roles',
       label: I18n.t('administration.taxonomy.job_roles'),
-    })
-
-    menuItems.push({
-      key: '/skill_job_mappings',
-      label: I18n.t('administration.taxonomy.skill_job_mappings'),
     })
 
     menuItems.push({

@@ -18,7 +18,7 @@ const connector = connect(
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & {
-  skill: Skill
+  skill?: Skill
   onClose: () => void
 }
 
@@ -28,13 +28,15 @@ const DetailsDrawerComponent: FC<Props> = ({
 }) => {
   const {
     data, fetch, isLoading,
-  } = useResources<ProficiencyLevel>(`skills/${skill.id}/proficiency_levels`)
+  } = useResources<ProficiencyLevel>(`skills/${skill?.id}/proficiency_levels`)
 
   const proficiencyLevel = data as unknown as ProficiencyLevel
 
   useEffect(() => {
-    fetch()
-  }, [skill.id])
+    if (skill?.id) {
+      fetch()
+    }
+  }, [skill?.id])
 
   return (
     <Drawer
@@ -43,7 +45,8 @@ const DetailsDrawerComponent: FC<Props> = ({
       placement="right"
       maskClosable
       closable
-      open
+      open={!!skill}
+      destroyOnClose
       width="50%"
     >
       <Row>
@@ -60,7 +63,7 @@ const DetailsDrawerComponent: FC<Props> = ({
             labelStyle={{ width: '30%' }}
             contentStyle={{ width: '70%' }}
           >
-            {skill.id}
+            {skill?.id}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('common.column.name')}
@@ -69,7 +72,7 @@ const DetailsDrawerComponent: FC<Props> = ({
             labelStyle={{ width: '30%' }}
             contentStyle={{ width: '70%' }}
           >
-            {skill.name}
+            {skill?.name}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('common.column.description')}
@@ -78,7 +81,7 @@ const DetailsDrawerComponent: FC<Props> = ({
             labelStyle={{ width: '30%' }}
             contentStyle={{ width: '70%' }}
           >
-            {skill.description}
+            {skill?.description}
           </Descriptions.Item>
         </Descriptions>
         {

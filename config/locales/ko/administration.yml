@@ -2355,9 +2355,9 @@ ko:
         rescheduled: 일정 변경
       subject: 제목
     job_role:
+      are_you_sure_to_remove: 정말 제거하시겠습니까?
       column:
         job_group: 작업 그룹
-        skill_id: 스킬 ID
         skill_name: 기술 이름
       export:
         failure_msg: 번역 내보내기 중 오류 발생
@@ -3672,7 +3672,6 @@ ko:
             skill_not_found: 아이디가 %{id}인 스킬을 찾을 수 없습니다
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: 스킬 직무 매핑
         job_roles: 직무 역할
         proficiency: 숙련도
         skills: 기술
@@ -3910,7 +3909,6 @@ ko:
         taxonomy: 스킬 분류 가져오기
       job_roles: 직무 역할
       proficiency: 숙련도
-      skill_job_mappings: 스킬 직무 매핑
       skills: 기술
       title: 기술 분류
     templates:

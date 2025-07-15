@@ -2355,9 +2355,9 @@ fr:
         rescheduled: Reporté
       subject: Sujet
     job_role:
+      are_you_sure_to_remove: Êtes-vous sûr de vouloir le supprimer ?
       column:
         job_group: Groupe de travail
-        skill_id: Id compétence
         skill_name: Nom de la compétence
       export:
         failure_msg: Erreur lors de l'exportation des traductions
@@ -3672,7 +3672,6 @@ fr:
             skill_not_found: Compétence avec ID %{id} introuvable
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Mises en correspondance des compétences et des emplois
         job_roles: Rôles professionnels
         proficiency: Compétence
         skills: Compétences
@@ -3910,7 +3909,6 @@ fr:
         taxonomy: Importer la taxonomie des compétences
       job_roles: Rôles professionnels
       proficiency: Compétence
-      skill_job_mappings: Mises en correspondance des compétences et des emplois
       skills: Compétences
       title: Taxonomie des compétences
     templates:

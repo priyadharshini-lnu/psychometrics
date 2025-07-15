@@ -2355,9 +2355,9 @@ nl:
         rescheduled: Verpland
       subject: Onderwerp
     job_role:
+      are_you_sure_to_remove: Weet je zeker dat je moet verwijderen?
       column:
         job_group: Functiegroep
-        skill_id: Vaardigheid Id
         skill_name: Naam vaardigheid
       export:
         failure_msg: Fout tijdens het exporteren van vertalingen
@@ -3672,7 +3672,6 @@ nl:
             skill_not_found: Vaardigheid met ID %{id} niet gevonden
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Vaardigheidstaken toewijzingen
         job_roles: Functierollen
         proficiency: Vaardigheid
         skills: Vaardigheden
@@ -3910,7 +3909,6 @@ nl:
         taxonomy: Taxonomie vaardigheden importeren
       job_roles: Functierollen
       proficiency: Bekwaamheid
-      skill_job_mappings: Vaardigheidstaken toewijzingen
       skills: Vaardigheden
       title: Taxonomie van vaardigheden
     templates:

@@ -2355,9 +2355,9 @@ de:
         rescheduled: Umgeplant
       subject: Thema
     job_role:
+      are_you_sure_to_remove: Sind Sie sicher, dass Sie sie entfernen wollen?
       column:
         job_group: Berufsgruppe
-        skill_id: Fertigkeit Id
         skill_name: Skill Name
       export:
         failure_msg: Fehler beim Exportieren von Übersetzungen
@@ -3672,7 +3672,6 @@ de:
             skill_not_found: Skill mit ID %{id} nicht gefunden
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Skill Job Mappings
         job_roles: Job-Rollen
         proficiency: Befähigung
         skills: Fertigkeiten
@@ -3910,7 +3909,6 @@ de:
         taxonomy: Taxonomie der Fertigkeiten importieren
       job_roles: Berufsrollen
       proficiency: Befähigung
-      skill_job_mappings: Zuordnungen
       skills: Fertigkeiten
       title: Taxonomie der Fertigkeiten
     templates:

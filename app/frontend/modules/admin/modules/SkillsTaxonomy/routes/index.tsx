@@ -3,7 +3,6 @@ import RouteList from '~/components/RouteList'
 
 const SkillList = lazy(() => import('../components/SkillList'))
 const JobRoles = lazy(() => import('../components/JobRoles'))
-const JobRoleSkillMapping = lazy(() => import('../components/JobRoleSkillMapping'))
 const Proficiency = lazy(() => import('../components/Proficiency'))
 const Settings = lazy(() => import('../components/Settings'))
 
@@ -16,10 +15,6 @@ export const routes = [
   {
     path: '/job_roles',
     component: <JobRoles />,
-  },
-  {
-    path: '/skill_job_mappings',
-    component: <JobRoleSkillMapping />,
   },
   {
     path: '/proficiency',

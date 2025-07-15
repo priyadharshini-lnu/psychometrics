@@ -2356,9 +2356,9 @@ en:
         rescheduled: Rescheduled
       subject: Subject
     job_role:
+      are_you_sure_to_remove: Are you sure to remove?
       column:
         job_group: Job Group
-        skill_id: Skill Id
         skill_name: Skill Name
       export:
         failure_msg: Error while exporting translations
@@ -3673,7 +3673,6 @@ en:
             skill_not_found: Skill with ID %{id} not found
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Skill Job Mappings
         job_roles: Job Roles
         proficiency: Proficiency
         skills: Skills
@@ -3911,7 +3910,6 @@ en:
         taxonomy: Import Skills Taxonomy
       job_roles: Job Roles
       proficiency: Proficiency
-      skill_job_mappings: Skill Job Mappings
       skills: Skills
       title: Skills Taxonomy
     templates:

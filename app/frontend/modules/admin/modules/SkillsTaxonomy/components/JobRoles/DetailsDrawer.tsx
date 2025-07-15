@@ -1,13 +1,26 @@
-import { FC, useEffect } from 'react'
+import {
+  FC, useCallback, useEffect, useMemo, useState,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
+  App,
+  Button,
   Descriptions,
-  Drawer, Row, Skeleton, Table, Typography,
+  Drawer, Form, Row, Select, Skeleton, Spin, Table, Typography,
 } from 'antd'
+import { debounce } from 'lodash'
+import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import { JobRole } from '~/modules/admin/modules/client/core/jobRoles'
 import { JobRoleSkillMapping } from '~/modules/admin/modules/client/core/jobRoleSkillMappings'
 import { ApiConfig } from '~/hooks/useResources/interfaces'
+import {
+  CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, PlusOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
+import { Skill } from '~/modules/admin/modules/client/core/skills'
+
+import styles from './styles.less'
+import ResourceForm from '~/components/ResourceForm'
 
 const { I18n } = window
 
@@ -18,39 +31,155 @@ const connector = connect(
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & {
-  jobRole: JobRole
+  jobRole?: JobRole
   onClose: () => void
+}
+
+interface ExtendedJobRoleSkillMapping extends JobRoleSkillMapping {
+  allowedProficiencyLevels: {
+    [key: number]: string
+  }
+}
+
+const getAllowedProfLevelsForSkill = (allSkills, skillId) => {
+  const selectedSkill = allSkills.find(skill => skill.id === skillId)
+  return Object.entries(selectedSkill?.allowedProficiencyLevels ?? {}).map(([key, value]) => ({
+    label: value, value: Number(key),
+  }))
 }
 
 const DetailsDrawerComponent: FC<Props> = ({
   jobRole,
   onClose,
 }) => {
+  const [addMapping, setAddMapping] = useState<boolean>()
+  const [editMapping, setEditMapping] = useState<JobRoleSkillMapping>()
+
+  const params = useParams()
+  const [form] = Form.useForm()
+  const { modal, message } = App.useApp()
+
+  const selectedSkill = Form.useWatch(['skillId'], form)
+
   const {
     data: jobRoleSkillMappings, fetch: fetchMappings, isLoading: isMappingsLoading,
-  } = useResources<JobRoleSkillMapping>('skills_job_roles', {
+    createResource, updateResource, removeResource,
+  } = useResources<ExtendedJobRoleSkillMapping>('skills_job_roles', {
     apiConfig: {
       include: ['project', 'skill'],
       fields: { skills: ['name'] },
       filter: {
-        job_role_id_eq: jobRole.id,
+        job_role_id_eq: jobRole?.id,
       },
       ...(jobRole?.project?.id ? { project_id: jobRole?.project?.id } : {}),
     } as ApiConfig,
   })
 
+  const {
+    data: skills,
+    fetch: fetchSkills, isLoading: isSkillsLoading,
+  } = useResources<Skill>('skills', {
+    apiConfig: {
+      filter: {
+        ...(params?.projectId ? { project_id_eq: params?.projectId } : {}),
+      },
+    },
+  })
+
+  const add = () => {
+    form.setFieldsValue({ skillId: '', expectedProficiencyLevel: '' })
+    setAddMapping(true)
+    setEditMapping(undefined)
+  }
+
+  const edit = (record) => {
+    form.setFieldsValue({ skillId: '', expectedProficiencyLevel: '', ...record })
+    setEditMapping(record)
+    setAddMapping(false)
+  }
+
+  const cancel = () => {
+    setEditMapping(undefined)
+    setAddMapping(false)
+  }
+
+  const deleteMapping = (record) => {
+    modal.confirm({
+      title: I18n.t('administration.project_tabs.webhooks.remove_webhook.title'),
+      content: I18n.t('administration.job_role.are_you_sure_to_remove'),
+      okText: I18n.t('administration.administrators.modals.delete.okText'),
+      cancelText: I18n.t(
+        'administration.administrators.modals.delete.cancelText',
+      ),
+      onOk: async () => {
+        removeResource(record.id).then(() => {
+          message.success('Success')
+        }).catch(() => {
+          message.error('Error')
+        })
+      },
+    })
+  }
+
+  const close = () => {
+    cancel()
+    onClose()
+  }
+
+  const mappings = useMemo(() => {
+    const finalMappings = [...jobRoleSkillMappings]
+    if (addMapping) {
+      finalMappings.push({} as ExtendedJobRoleSkillMapping)
+    }
+    return finalMappings
+  }, [jobRoleSkillMappings, addMapping])
+
+  const getSkills = (): Skill[] => {
+    if (!skills?.length && jobRoleSkillMappings[0]?.skill) {
+      return [jobRoleSkillMappings[0].skill]
+    }
+    const set = new Set(jobRoleSkillMappings?.map(item => String(item.skillId)))
+    return skills?.filter(skill => !set.has(skill.id))
+  }
+
+  const debouncedFetchSkills = useCallback(debounce((value) => {
+    fetchSkills({
+      apiConfig: {
+        filter: {
+          name_cont: value,
+          ...((jobRole?.project?.id || params.projectId)
+            ? { project_id_eq: jobRole?.project?.id || params.projectId }
+            : {}
+          ),
+        },
+      },
+    })
+  }, 300), [])
+
   useEffect(() => {
-    fetchMappings()
-  }, [jobRole.id])
+    if (jobRole?.id) {
+      fetchMappings()
+    }
+    fetchSkills()
+  }, [jobRole?.id])
+
+  const transformValues = values => ({
+    ...values,
+    project_id: (params.projectId || jobRole?.project?.id) ? Number(params.projectId || jobRole?.project?.id) : null,
+    job_role_id: Number(jobRole?.id),
+    skill_id: Number(values.skillId || editMapping?.skillId),
+    expected_proficiency_level: Number(values.expectedProficiencyLevel),
+  })
 
   return (
     <Drawer
       title={I18n.t('administration.job_role.job_role_details')}
-      onClose={onClose}
+      onClose={close}
       placement="right"
       maskClosable
       closable
-      open
+      open={!!jobRole}
+      destroyOnClose
       width="50%"
     >
       <Row>
@@ -67,7 +196,7 @@ const DetailsDrawerComponent: FC<Props> = ({
             labelStyle={{ width: '30%' }}
             contentStyle={{ width: '70%' }}
           >
-            {jobRole.id}
+            {jobRole?.id}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('common.column.name')}
@@ -76,7 +205,7 @@ const DetailsDrawerComponent: FC<Props> = ({
             labelStyle={{ width: '30%' }}
             contentStyle={{ width: '70%' }}
           >
-            {jobRole.name}
+            {jobRole?.name}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('common.column.code')}
@@ -85,7 +214,7 @@ const DetailsDrawerComponent: FC<Props> = ({
             labelStyle={{ width: '30%' }}
             contentStyle={{ width: '70%' }}
           >
-            {jobRole.code}
+            {jobRole?.code}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('common.column.description')}
@@ -94,36 +223,143 @@ const DetailsDrawerComponent: FC<Props> = ({
             labelStyle={{ width: '30%' }}
             contentStyle={{ width: '70%' }}
           >
-            {jobRole.description}
+            {jobRole?.description}
           </Descriptions.Item>
         </Descriptions>
         <Typography.Title level={5}>{I18n.t('administration.skills.title')}</Typography.Title>
         <Skeleton loading={isMappingsLoading('fetch')} active>
-          <Table<JobRoleSkillMapping>
+          <ResourceForm
+            resourceName="mapping"
+            resource={(editMapping) ? transformValues(editMapping) : undefined}
+            readableResourceName={I18n.t('administration.job_role_skill_mapping.form.title')}
+            showSuccessMessages
+            storeManager={{ form }}
+            scrollToFirstError
+            request={{
+              createResource,
+              updateResource,
+            }}
+            transformValues={transformValues}
+            onSuccessfulSubmission={cancel}
             style={{ width: '100%' }}
-            dataSource={jobRoleSkillMappings}
-            columns={[
-              {
-                title: I18n.t('administration.job_role.column.skill_id'),
-                key: 'skillId',
-                dataIndex: 'skillId',
-              },
-              {
-                title: I18n.t('administration.job_role.column.skill_name'),
-                key: 'skillName',
-                dataIndex: 'skill.name',
-                render: (_, mapping) => (
-                  <Typography.Text>{mapping.skill?.name}</Typography.Text>
-                ),
-              },
-              {
-                title: I18n.t('administration.job_role_skill_mapping.column.expected_proficiency_level'),
-                key: 'expectedProficiencyLevel',
-                dataIndex: 'expectedProficiencyLevel',
-              },
-            ]}
-            pagination={false}
-          />
+          >
+            {() => (
+              <Table
+                dataSource={mappings}
+                columns={[
+                  {
+                    title: I18n.t('administration.job_role.column.skill_name'),
+                    key: 'skillName',
+                    dataIndex: 'skill.name',
+                    width: '50%',
+                    render: (_, mapping) => (
+                      (!mapping.id && addMapping) ? (
+                        <Form.Item
+                          name="skillId"
+                          rules={[{ required: true }]}
+                          style={{ marginBottom: 0 }}
+                        >
+                          <Select
+                            showSearch
+                            loading={isSkillsLoading('fetch')}
+                            onSearch={(value) => {
+                              debouncedFetchSkills(value)
+                            }}
+                            notFoundContent={isSkillsLoading('fetch') ? <Spin size="small" /> : null}
+                            filterOption={false}
+                            options={getSkills().map(p => ({
+                              value: p.id,
+                              label: p.name,
+                            }))}
+                          />
+                        </Form.Item>
+                      ) : (
+                        <Typography.Text>{mapping.skill?.name}</Typography.Text>
+                      )
+                    ),
+                  },
+                  {
+                    title: I18n.t('administration.job_role_skill_mapping.column.expected_proficiency_level'),
+                    key: 'expectedProficiencyLevel',
+                    dataIndex: 'expectedProficiencyLevel',
+                    width: '100%',
+                    render: (_, mapping) => (
+                      (editMapping?.id === mapping.id || (!mapping.id && addMapping)) ? (
+                        <Form.Item
+                          name="expectedProficiencyLevel"
+                          rules={[{ required: true }]}
+                          style={{ marginBottom: 0 }}
+                        >
+                          <Select
+                            style={{ width: '100%' }}
+                          >
+                            {
+                              getAllowedProfLevelsForSkill(skills, editMapping?.skillId || selectedSkill).map(item => (
+                                <Select.Option key={item.value} value={item.value}>
+                                  {item.label as string}
+                                </Select.Option>
+                              ))
+                            }
+                          </Select>
+                        </Form.Item>
+                      ) : (
+                        <Typography.Text>
+                          {mapping?.allowedProficiencyLevels?.[mapping?.expectedProficiencyLevel]}
+                        </Typography.Text>
+                      )
+                    ),
+                  },
+                  {
+                    title: '',
+                    key: 'action',
+                    className: styles.actionColCel,
+                    render: (_, mapping) => (
+                      <div className={styles.actionsWrapper}>
+                        {
+                          (editMapping?.id === mapping.id || (!mapping.id && addMapping)) ? (
+                            <>
+                              <Button
+                                onClick={() => form.submit()}
+                                size="small"
+                                loading={isMappingsLoading('add')}
+                                disabled={isMappingsLoading('add')}
+                              >
+                                <CheckOutlined />
+                              </Button>
+                              <Button onClick={cancel} size="small" disabled={isMappingsLoading('add')}>
+                                <CloseOutlined />
+                              </Button>
+                            </>
+                          ) : (
+                            <>
+                              <Button onClick={() => edit(mapping)} size="small">
+                                <EditOutlined />
+                              </Button>
+                              <Button onClick={() => deleteMapping(mapping)} size="small">
+                                <DeleteOutlined />
+                              </Button>
+                            </>
+                          )
+                        }
+                      </div>
+                    ),
+                  },
+                ]}
+                pagination={false}
+                footer={() => (
+                  <Button
+                    type="primary"
+                    variant="filled"
+                    icon={<PlusOutlined />}
+                    onClick={add}
+                    disabled={addMapping}
+                  >
+                    Add
+                  </Button>
+                )}
+              />
+            )}
+          </ResourceForm>
         </Skeleton>
       </Row>
     </Drawer>

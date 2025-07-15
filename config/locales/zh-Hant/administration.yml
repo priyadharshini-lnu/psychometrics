@@ -2354,7 +2354,6 @@ zh-Hant:
     job_role:
       column:
         job_group: 工作群組
-        skill_id: 技能 ID
         skill_name: 技能名稱
       export:
         failure_msg: 匯出翻譯時發生錯誤
@@ -3669,7 +3668,6 @@ zh-Hant:
             skill_not_found: 未找到 ID 為 %{id} 的技能
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: 技能工作對應
         job_roles: 工作角色
         proficiency: 精通
         skills: 技能
@@ -3907,7 +3905,6 @@ zh-Hant:
         taxonomy: 匯入技能分類系統
       job_roles: 工作角色
       proficiency: 能力
-      skill_job_mappings: 技能工作對應
       skills: 技術
       title: 技能分類學
     templates:
