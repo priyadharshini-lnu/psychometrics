@@ -248,7 +248,7 @@ function SubjectList ({
           </div>
         </Col>
       </Row>
-      <CreateSubjectModal isSkillRater={isSkillRater} />
+      { currentCampaignId ? <CreateSubjectModal isSkillRater={isSkillRater} /> : null}
       <SubjectImportModal />
       <UserEditModal />
       <ResetSubjectModal open={showResetSubjectModal} />

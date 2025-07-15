@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { takeLatest, put, select } from 'redux-saga/effects'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import dayjs from '~/utils/dayjs'
-import { getCurrentCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { getCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import { createReducer } from '~/utils/redux'
 import { updateIn } from '~/utils/immutable'
 import recipientCriteria from './recipientCriteria'
@@ -108,7 +108,7 @@ export function* genFecthRecipientsByCriteria (options: FetchSchedulableTemplate
     const selectedId = _.get(options, ['requestAction', 'selectedEmailTemplateId'], emailSchedules.selectedId)
     return _.find(emailSchedules.list, ({ id }) => id === selectedId)
   })
-  const campaignId = yield select(getCurrentCampaignId)
+  const campaignId = yield select(getCampaignId)
 
   yield put(fecthRecipientsByCriteria(campaignId, emailSchedule))
 }

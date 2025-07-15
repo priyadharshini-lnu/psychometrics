@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::Threesixty::CampaignResource < Api::V2::Administration::BaseResource
-  attributes :assessment_id, :report_id, :name, :dimension_id
+  attributes :assessment_id, :report_id, :name, :dimension_id, :category
 
   has_one :assessment
   has_one :report
@@ -33,6 +33,7 @@ class Api::V2::Administration::Threesixty::CampaignResource < Api::V2::Administr
           view_factor_benchmark_scores
           regenerate_report
           manage_admins
+          manage_reports_options
         ],
         project_id: context[:project_id],
         campaign_id: context[:campaign_id]

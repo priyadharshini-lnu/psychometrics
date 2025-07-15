@@ -22,7 +22,7 @@ const getCustomMenuProps = ({
       return onExport()
     }
     if (key === 'import_raw') {
-      return openModal('ImportRawModal', { threesixtyCampaignId })
+      return openModal('ImportRawModal', { campaignId: threesixtyCampaignId })
     }
     if (key === 'reset_participant') {
       return resetCampaignWithConfirmation(threesixtyCampaignId)

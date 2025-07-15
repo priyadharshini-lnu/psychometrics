@@ -1,7 +1,7 @@
 import {
   takeLatest, put, select, delay,
 } from 'redux-saga/effects'
-import { getCurrentCampaignId } from '../campaignDetails'
+import { getCampaignId } from '../campaignDetails'
 
 import {
   syncWithServer,
@@ -21,7 +21,7 @@ import { getReportOption } from './selectors'
 function* genSyncWithServer () {
   yield delay(1000)
   const reportOption = yield select(getReportOption)
-  const campaignId = yield select(getCurrentCampaignId)
+  const campaignId = yield select(getCampaignId)
   yield put(syncWithServer(campaignId, reportOption))
 }
 
