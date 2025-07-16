@@ -2,9 +2,12 @@ import { useState } from 'react'
 import {
   Popover, Button, Dropdown, Form,
   Checkbox, Typography, Radio, Input,
+  Divider,
 } from 'antd'
+import cs from 'classnames'
 import Block from '~/modules/survey/models/Block'
 import Menu from '~/modules/survey/components/ModulesMenu'
+import { isRtl } from '~/utils/locales'
 
 import styles from './Block.less'
 
@@ -12,7 +15,8 @@ import styles from './Block.less'
 const { I18n } = window
 
 const BlockFooter = ({
-  model, onMinimize, createBlock, addQuestion, openCreateByTemplate, updateBlockProps, assessmentCategory,
+  model, onMinimize, createBlock, addQuestion, openCreateByTemplate, updateBlockProps, assessmentCategory, showOptions,
+  currentLocale,
 }) => {
   const [openMenu, setOpenMenu] = useState(false)
   const isSkillRaterBlock = model.blockType === 'skill_rater'
@@ -53,8 +57,8 @@ const BlockFooter = ({
     )
 
   const blockContent = isSkillRaterBlock ? (
-    <div className="ms-14 me-14 mt-10 mb-10">
-      <SkillRater updateBlockProps={updateBlockProps} model={model} />
+    <div className={cs('ms-14 me-14 mt-10 mb-10', { rtl: isRtl(currentLocale) })}>
+      <SkillRater showOptions={showOptions} updateBlockProps={updateBlockProps} model={model} />
     </div>
   ) : (
     <div className={styles.footerButtons}>
@@ -86,23 +90,25 @@ const BlockFooter = ({
   return (
     <div className={styles.footer}>
       {blockContent}
-      <div className={styles.footerOptions}>
-        <div className={styles.footerMinimize} onClick={onMinimize}>Minimize Block</div>
-        <div
-          onClick={() => {
-            !isThreesixtyAssessment && addBlock('regular')
-          }}
-          className={`${styles.footerMinimize} ${styles.footerAddBlock}`}
-        >
-          {isThreesixtyAssessment
-            ? <AddBlockMenu onAddBlock={addBlock} />
-            : 'Add Block'
+      {showOptions && (
+        <div className={styles.footerOptions}>
+          <div className={styles.footerMinimize} onClick={onMinimize}>Minimize Block</div>
+          <div
+            onClick={() => {
+              !isThreesixtyAssessment && addBlock('regular')
+            }}
+            className={`${styles.footerMinimize} ${styles.footerAddBlock}`}
+          >
+            {isThreesixtyAssessment
+              ? <AddBlockMenu onAddBlock={addBlock} />
+              : 'Add Block'
           }
+          </div>
+          <div onClick={openSearchBlockPopup} className={`${styles.footerMinimize} ${styles.footerAddBlock}`}>
+            Copy Block From...
+          </div>
         </div>
-        <div onClick={openSearchBlockPopup} className={`${styles.footerMinimize} ${styles.footerAddBlock}`}>
-          Copy Block From...
-        </div>
-      </div>
+      )}
     </div>
   )
 }
@@ -129,7 +135,7 @@ const AddBlockMenu = ({ onAddBlock }) => {
   )
 }
 
-const SkillRater = ({ model, updateBlockProps }) => {
+const SkillRater = ({ model, updateBlockProps, showOptions }) => {
   const initialJobRolesData = model.props?.skills_config
   const initialRequiredValidation = model.props?.required_validation
   const initialNotApplicable = model.props?.not_applicable
@@ -175,6 +181,7 @@ const SkillRater = ({ model, updateBlockProps }) => {
       initialValues={initialValues}
       className={styles.skillRaterForm}
       layout="vertical"
+      disabled={!showOptions}
     >
       <Typography.Title
         className="fs-20"
@@ -212,17 +219,9 @@ const SkillRater = ({ model, updateBlockProps }) => {
         </Checkbox>
       </Form.Item>
       {otherEnabled && <JobRoleFormItem name="other" />}
-
-      <div>
-        <hr style={{ borderColor: '#d9d9d9' }} />
-      </div>
-
+      <Divider />
       <RequiredValidationFormItem requireValidationEnabled={requireValidationEnabled} />
-
-      <div>
-        <hr style={{ borderColor: '#d9d9d9' }} />
-      </div>
-
+      <Divider />
       <NotApplicableFormItem notApplicableEnabled={notApplicableEnabled} />
     </Form>
   )
@@ -274,7 +273,7 @@ const NotApplicableFormItem = ({ notApplicableEnabled }) => (
         name={['not_applicable', 'label']}
         label={I18n.t('administration.survey_builder.builder_area.not_applicable_label')}
       >
-        <Input />
+        <Input disabled={false} />
       </Form.Item>
     )}
   </>
