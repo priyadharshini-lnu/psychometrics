@@ -2378,14 +2378,8 @@ ja:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: 期待される能力レベル
-        job_role: 仕事の役割
-        skill: スキル
       form:
-        expected_proficiency_level: 期待される能力レベル
-        job_role: 仕事の役割
-        skill: スキル
         title: スキル・ジョブ・マッピング
-      global: グローバルスキルはジョブマッピングか？
       import:
         taxonomy: 分類学
     job_roles:

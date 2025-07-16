@@ -2379,14 +2379,8 @@ en:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Expected Proficiency Level
-        job_role: Job Role
-        skill: Skill
       form:
-        expected_proficiency_level: Expected Proficiency Level
-        job_role: Job Role
-        skill: Skill
         title: Skill Job Mapping
-      global: Is Global Skill Job Mapping?
       import:
         taxonomy: Skills Taxonomy
     job_roles:

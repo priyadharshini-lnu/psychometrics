@@ -195,7 +195,6 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     }
   }, [skillId])
 
-
   useEffect(() => {
     if (proficiencyType) {
       form.resetFields(['skillId', 'skillType', 'level'])
@@ -204,35 +203,25 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   }, [proficiencyType])
 
   useEffect(() => {
-    setLevelDefinitions((currLevelDefinitions) => {
-      const newLevelDefinitions = Array.from({ length: level }).map((_, idx: number) => {
-        const currLevelDefinition = currLevelDefinitions?.[idx]
-        if (currLevelDefinition) {
-          return currLevelDefinition
-        }
-        return {
-          name: '',
-          description: '',
-          level: idx + 1,
-        }
-      })
-      return newLevelDefinitions
+    const newLevelDefinitions = Array.from({ length: level }).map((_, idx: number) => {
+      const currLevelDefinition = levelDefinitions?.[idx]
+      if (currLevelDefinition) {
+        return currLevelDefinition
+      }
+      return {
+        name: '',
+        description: '',
+        level: idx + 1,
+      }
     })
+    setLevelDefinitions(newLevelDefinitions)
   }, [level])
 
   useEffect(() => {
     if (proficiencyLevel) {
       setLevelDefinitions(proficiencyLevel.levelDefinition)
-      form.setFieldsValue({
-        proficiencyType: proficiencyLevel.proficiencyType,
-        skillType: proficiencyLevel.skillType,
-        skillId: proficiencyLevel.skillId,
-        level: proficiencyLevel.level,
-        projectId: proficiencyLevel.project?.id,
-        levelDefinition: proficiencyLevel.levelDefinition,
-      })
     }
-  }, [proficiencyLevel, form, skills])
+  }, [proficiencyLevel])
 
   useEffect(() => {
     form.setFieldValue('levelDefinition', levelDefinitions)
@@ -266,7 +255,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
             label={I18n.t('administration.proficiency_levels.fields.proficiency_type')}
             rules={[{ required: true }]}
           >
-            <Select>
+            <Select disabled={!!proficiencyLevel?.proficiencyType}>
               {
                 Object.values(convertEnumToObject(ProficiencyTypesEnum)).map(([, value]) => (
                   <Select.Option key={value} value={value}>

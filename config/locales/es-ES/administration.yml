@@ -2378,14 +2378,8 @@ es-ES:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Nivel de competencia esperado
-        job_role: Rol de trabajo
-        skill: Habilidad
       form:
-        expected_proficiency_level: Nivel de competencia esperado
-        job_role: Rol de trabajo
-        skill: Habilidad
         title: Asignación
-      global: "¿Es Global Skill Job Mapping?"
       import:
         taxonomy: Taxonomía
     job_roles:

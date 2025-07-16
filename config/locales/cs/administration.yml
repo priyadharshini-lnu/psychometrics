@@ -2378,14 +2378,8 @@ cs:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Očekávaná úroveň znalostí
-        job_role: Pracovní role
-        skill: Dovednost
       form:
-        expected_proficiency_level: Očekávaná úroveň znalostí
-        job_role: Pracovní role
-        skill: Dovednost
         title: Mapování dovedností
-      global: Je globální mapování pracovních míst?
       import:
         taxonomy: Taxonomie
     job_roles:

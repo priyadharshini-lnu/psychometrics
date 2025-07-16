@@ -2378,14 +2378,8 @@ fr:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Niveau de compétence attendu
-        job_role: Rôle professionnel
-        skill: Compétence
       form:
-        expected_proficiency_level: Niveau de compétence attendu
-        job_role: Rôle professionnel
-        skill: Compétence
         title: Correspondance
-      global: La cartographie des emplois est-elle une compétence globale ?
       import:
         taxonomy: Taxonomie
     job_roles:

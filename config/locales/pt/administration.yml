@@ -2378,14 +2378,8 @@ pt:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Nível de proficiência esperado
-        job_role: Função
-        skill: Habilidade
       form:
-        expected_proficiency_level: Nível de proficiência esperado
-        job_role: Função
-        skill: Habilidade
         title: Mapeamento de funções de competências
-      global: O Global Skill Job Mapping é um mapeamento de empregos?
       import:
         taxonomy: Taxonomia
     job_roles:

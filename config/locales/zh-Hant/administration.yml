@@ -2374,14 +2374,8 @@ zh-Hant:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: 預期能力等級
-        job_role: 工作角色
-        skill: 技術
       form:
-        expected_proficiency_level: 預期能力等級
-        job_role: 工作角色
-        skill: 技術
         title: 技能工作映射
-      global: 全球技能工作映射嗎？
       import:
         taxonomy: 分類學
     job_roles:

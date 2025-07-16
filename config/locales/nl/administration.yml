@@ -2378,14 +2378,8 @@ nl:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Verwacht vaardigheidsniveau
-        job_role: Functie
-        skill: Vaardigheid
       form:
-        expected_proficiency_level: Verwacht vaardigheidsniveau
-        job_role: Functie
-        skill: Vaardigheid
         title: Vaardigheden Functie in kaart brengen
-      global: Is Global Skill Job Mapping?
       import:
         taxonomy: Taxonomie
     job_roles:

@@ -2378,14 +2378,8 @@ ar:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: مستوى الكفاءة المتوقع
-        job_role: الدور الوظيفي
-        skill: المهارة
       form:
-        expected_proficiency_level: مستوى الكفاءة المتوقع
-        job_role: الدور الوظيفي
-        skill: المهارة
         title: التعيين
-      global: هل تخطيط وظيفة المهارات العالمية؟
       import:
         taxonomy: التصنيف
     job_roles:

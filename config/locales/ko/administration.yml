@@ -2378,14 +2378,8 @@ ko:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: 예상 숙련도 수준
-        job_role: 직무 역할
-        skill: 스킬
       form:
-        expected_proficiency_level: 예상 숙련도 수준
-        job_role: 직무 역할
-        skill: 스킬
         title: 스킬 작업 매핑
-      global: 글로벌 스킬 잡 매핑이란?
       import:
         taxonomy: 분류
     job_roles:

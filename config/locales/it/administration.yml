@@ -2378,14 +2378,8 @@ it:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Livello di competenza previsto
-        job_role: Ruolo lavorativo
-        skill: Competenza
       form:
-        expected_proficiency_level: Livello di competenza previsto
-        job_role: Ruolo lavorativo
-        skill: Competenza
         title: Associazione
-      global: La mappatura delle competenze globali è una mappatura del lavoro?
       import:
         taxonomy: Tassonomia
     job_roles:

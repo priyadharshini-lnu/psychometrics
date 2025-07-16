@@ -2378,14 +2378,8 @@ de:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Erwartetes Kompetenzniveau
-        job_role: Berufsrolle
-        skill: Fähigkeit
       form:
-        expected_proficiency_level: Erwartetes Kompetenzniveau
-        job_role: Berufsrolle
-        skill: Fähigkeit
         title: Zuordnung
-      global: Ist Global Skill Job Mapping?
       import:
         taxonomy: Taxonomie
     job_roles:

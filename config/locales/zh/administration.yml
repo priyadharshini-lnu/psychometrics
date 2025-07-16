@@ -2378,14 +2378,8 @@ zh:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: 预期能力水平
-        job_role: 工作角色
-        skill: 技能
       form:
-        expected_proficiency_level: 预期能力水平
-        job_role: 工作角色
-        skill: 技能
         title: 技能岗位制图
-      global: 全球技能工作图谱是什么？
       import:
         taxonomy: 分类学
     job_roles:
