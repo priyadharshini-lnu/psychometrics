@@ -321,7 +321,7 @@ const DetailsDrawerComponent: FC<Props> = ({
                               <Button
                                 onClick={() => form.submit()}
                                 size="small"
-                                loading={isMappingsLoading('add')}
+                                loading={isMappingsLoading('add') || isMappingsLoading(`update@${editMapping?.id}`)}
                                 disabled={isMappingsLoading('add')}
                               >
                                 <CheckOutlined />
