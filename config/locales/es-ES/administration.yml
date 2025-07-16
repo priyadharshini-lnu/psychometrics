@@ -1770,7 +1770,7 @@ es-ES:
           invalid_id: 'Fila %{row}: ID debe ser un número'
           invalid_id_format: 'Fila %{row}: ID debe estar en el formato "id#campo"'
           missing_columns: 'Faltan columnas obligatorias: %{fields}'
-          save_failed: Guardado fallido
+          save_failed: 'No se pudo guardar: %{message}'
     development_actions:
       create:
         successfully: La acción de desarrollo "%{name}" se ha creado correctamente.
@@ -2140,7 +2140,7 @@ es-ES:
           factor_mismatch: La dimensión %{dimension_name} no tiene el factor %{factor_name}
           not_set_dimension: El nombre de la Dimensión debe escribirse en la segunda celda de la primera fila
         result:
-          answer_invalid: "[La respuesta para qid %{question_id} no es válida: %{error}"
+          answer_invalid: "[Fila %{row}] La respuesta para el qid %{question_id} no es válida: %{error}"
           date_errors:
             both_dates_required: Tanto started_at como completed_at son necesarios para el estado completado
             completed_at_should_be_after_started_at: completed_at debe ser posterior a started_at para el estado completado
@@ -2149,9 +2149,9 @@ es-ES:
             dates_should_be_empty: Las fechas deben estar vacías para el estado not_started
             started_at_required: Se requiere un start_at válido para el estado in_progress
           error: "[Fila %{row}] %{error}"
-          invalid_assign: "[Si desea crear un nuevo resultado, por favor, deje la columna ID de resultado vacía"
+          invalid_assign: "[Fila %{row}] No se encuentra el registro para el ID de resultado especificado. Si desea crear un nuevo resultado, deje la columna ID de resultado vacía."
           invalid_date: "[Fila %{row}] %{error}"
-          question_invalid: "[La pregunta %{question_id} no es válida"
+          question_invalid: "[Fila %{row}] La pregunta %{question_id} no es válida"
           user:
             record_not_found: No se puede encontrar el usuario existente con correo electrónico %{email}.
           user_assessment:

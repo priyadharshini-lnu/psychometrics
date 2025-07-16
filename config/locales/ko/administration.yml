@@ -394,8 +394,8 @@ ko:
         reason: 이유
         reject: 거부
         remove_confirm:
-          content: 대상 이름}에서 %{작업} %{상태}를 원하시겠습니까?
-          success: 대상 이름}의 %{상태}가 %{작업}에 성공했습니다.
+          content: "%{subjectName}에서 %{action} %{status}하시겠습니까?"
+          success: "%{subjectName}의 %{status}이 성공적으로 %{action}되었습니다."
           title: "%{action} %{status}"
         status: 상태
         subject_name: 제목 이름
@@ -440,13 +440,13 @@ ko:
       edit:
         header: 평가 설정
       errors:
-        owner_validation: 클라이언트 이름]에 대한 %{자원_이름} %{권한} 권한이 없습니다
+        owner_validation: "%{client_name}에 대한 %{resource_name} %{permission} 권한이 없습니다."
       export:
         questions: 내보내기 질문
       export_questions_toastr: 질문 내보내기 작업이 성공적으로 예약되었습니다
       flow: 흐름
       linkedAssessment:
-        assessment_title: 이름}에서 질문 선택
+        assessment_title: "%{name}에서 질문 선택"
         title: 연결된 질문 선택
       map_norms: 지도 규범
       menu:
@@ -484,7 +484,7 @@ ko:
             title: 소프트 삭제 <strong>평가</strong>?
           toggle_status:
             body: "<p>이 평가를 %{status}로 하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
       restore:
         successfully: 평가 %{name}을(를) 성공적으로 복원했습니다.
       scoring_strategy:
@@ -609,7 +609,7 @@ ko:
         confirmations:
           delete:
             body: "<p>이 과제를 삭제하시겠습니까?</p>"
-            title: "<strong>이름}</strong> 삭제 ?"
+            title: "<strong>%{name}</strong> 삭제하시겠습니까?"
     assigns_reports:
       edit:
         header: 보고서 할당 편집
@@ -687,7 +687,7 @@ ko:
             title: "<strong>블록</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 블록을 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
     bookings:
       errors:
         already_booked: 이미 좌석을 예약하셨습니다.
@@ -892,7 +892,7 @@ ko:
         confirmations:
           delete:
             body: "<p>이 캠페인 템플릿을 삭제하시겠습니까?</p>\n"
-            title: "<strong>이름}</strong> 삭제 ?"
+            title: "<strong>%{name}</strong> 삭제하시겠습니까?"
         in_progress:
           deleting: 삭제
         tooltips:
@@ -1098,9 +1098,9 @@ ko:
           confirmations:
             toggle_status:
               body: "<p>이 라이선스를 %{status}화하시겠습니까?</p>\n"
-              title: "<strong>상태} %</strong> {이름}에 대한 라이선스?"
+              title: "<strong>%{status}</strong> %{name} 대한 라이센스?"
         show:
-          used_out_of: 사용한_번호} 중 %{번호} 중
+          used_out_of: "%{used_number} %{number} 중"
       new:
         header: 신규 고객
       projects:
@@ -1439,8 +1439,8 @@ ko:
           resource:
             confirmations:
               delete:
-                body: "<p>정말 삭제하시겠습니까?</p> <p>이 작업은 실행 취소할 수 없습니다. 그러면 <strong>%{이름}</strong> 캠페인, 하위 캠페인 및 모든 연결이 영구적으로 삭제됩니다.</p> <p>확인하려면 <strong>%{이름}을</strong> 입력하세요.</p>"
-                title: "<strong>이름}을</strong> 삭제하시겠습니까?"
+                body: "<p>정말 삭제하시겠습니까?</p> <p>이 작업은 실행 취소할 수 없습니다. 그러면 <strong>%{name}</strong> 캠페인, 하위 캠페인 및 모든 연결이 영구적으로 삭제됩니다.</p> <p>확인하려면 <strong>%{name}을</strong> 입력하세요.</p>"
+                title: "<strong>%{name}</strong> 삭제하시겠습니까?"
               disable:
                 body:
                   '0': "<p>정말 아카이브하시겠습니까?</p> <p>모든 캠페인, 하위 캠페인 및 사용자도 보관됩니다</p>"
@@ -1454,7 +1454,7 @@ ko:
                   '1': "<p>정말 아카이브를 취소하시겠습니까?</p>"
                   '2': "<p>정말 아카이브를 취소하시겠습니까?</p>"
                   '3': "<p>정말 아카이브를 취소하시겠습니까?</p>"
-                title: "<strong>이름}</strong> 보관 취소 ?"
+                title: "<strong>%{name}}</strong> 보관 취소 ?"
             export_results: 내보내기 결과
             raw_results: 원시 결과
             tooltips:
@@ -1498,11 +1498,11 @@ ko:
       resource:
         confirmations:
           delete:
-            title: "<strong>이름}</strong> 삭제 ?"
+            title: "<strong>%{name}</strong> 삭제 ?"
           disable:
             title: 아카이브 <strong>%{name}</strong>?
           enable:
-            title: "<strong>이름}</strong> 보관 취소 ?"
+            title: "<strong>%{name}</strong> 보관 취소하시겠습니까?"
       tenancies: 고객 임차
       threesixty_campaign: 쓰리식스티 캠페인
       toggle_status:
@@ -1619,7 +1619,7 @@ ko:
             title: "<strong>커뮤니케이션</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 통신을 %{status}로 하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: 복사
           deleting: 삭제
@@ -1745,7 +1745,7 @@ ko:
       errors:
         blank_field: '행 %{row}: %{field}는 비워 둘 수 없습니다'
         csv_file_required: CSV 파일이어야 합니다
-        image_download_failed: 'URL}에서 이미지를 다운로드하지 못했습니다: %{메시지}'
+        image_download_failed: "%{url}에서 이미지를 다운로드하지 못했습니다 : %{message}"
         invalid_csv_format: '잘못된 CSV 형식: %{message}'
         invalid_date: "%{date}의 날짜 형식은 유효하지 않습니다."
         invalid_date_format: 'Row %{row} : %{field}에 대한 잘못된 날짜 형식 입니다.'
@@ -1770,7 +1770,7 @@ ko:
           invalid_id: '행 %{row}: ID는 숫자여야 합니다'
           invalid_id_format: '행 %{row}: ID는 "id#field" 형식이어야 합니다.'
           missing_columns: '누락된 필수 열: %{fields}'
-          save_failed: 저장 실패
+          save_failed: '저장 실패: %{message}'
     development_actions:
       create:
         successfully: 개발 작업 "%{name}"을 성공적으로 만들었습니다.
@@ -1842,7 +1842,7 @@ ko:
             title: "<strong>개발 작업</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 개발 작업을 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: 개발 작업이 성공적으로 업데이트되었습니다.
       update:
@@ -1851,7 +1851,7 @@ ko:
       copy_scheduled:
         successfully: 차원 %{name}에 대해 복사 예약됨
       create:
-        successfully: 이름} 차원을 성공적으로 만들었습니다
+        successfully: "%{name} 차원이 성공적으로 생성되었습니다."
       destroy:
         successfully: 차원 %{name}을(를) 성공적으로 삭제했습니다.
       edit:
@@ -1899,7 +1899,7 @@ ko:
             title: "<strong>차원</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 차원을 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: 복사
           deleting: 삭제
@@ -1921,7 +1921,7 @@ ko:
         header: 팩터 번역
         import: 가져오기
       update:
-        successfully: 이름} 차원이 성공적으로 업데이트되었습니다
+        successfully: "%{name} 차원이 성공적으로 업데이트되었습니다."
     disable: 비활성화
     document_titles:
       project_assessors: 평가자 | %{project}
@@ -1940,7 +1940,7 @@ ko:
         error: "'%{name}' 인자가 복사되지 않았습니다"
         successfully: "'%{name}' 인수를 성공적으로 복사했습니다."
       create:
-        successfully: 이름} 요소를 성공적으로 만들었습니다.
+        successfully: "%{name} 요소가 성공적으로 생성되었습니다."
       destroy:
         successfully: '"%{name}" 인자를 성공적으로 삭제했습니다.'
       edit:
@@ -2006,7 +2006,7 @@ ko:
             title: "<strong>팩터</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 팩터를 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: 복사
           deleting: 삭제
@@ -2033,7 +2033,7 @@ ko:
       toggle_status:
         successfully: 팩터가 성공적으로 업데이트되었습니다.
       update:
-        successfully: 이름} 요소가 성공적으로 업데이트되었습니다
+        successfully: "%{name} 요소가 성공적으로 업데이트되었습니다."
     genders:
       female: 여성
       male: 남성
@@ -2136,7 +2136,7 @@ ko:
       errors:
         invalid_format: 잘못된 파일 형식
         norm:
-          dimension_not_found: 클라이언트_이름}에 대한 %{차원_이름} 차원을 찾을 수 없습니다
+          dimension_not_found: "%{client_name}에 대한 Dimension %{dimension_name} 찾을 수 없습니다."
           factor_mismatch: 차원 %{dimension_name}에 %{factor_name}요소가 없습니다
           not_set_dimension: 차원 이름은 첫 번째 행의 두 번째 셀에 작성해야 합니다
         result:
@@ -2235,7 +2235,7 @@ ko:
       create:
         successfully: 인자 %{name}을(를) 성공적으로 만들었습니다.
       destroy:
-        successfully: 이름} 팩터를 성공적으로 분리했습니다.
+        successfully: "%{name} 요인이 성공적으로 분리되었습니다."
       edit:
         header: 편집 계수
       index:
@@ -2403,8 +2403,8 @@ ko:
       resource:
         confirmations:
           delete:
-            body: "<p>이름}을 삭제하시겠습니까?</p>\n"
-            title: "<strong>이름}</strong> 삭제 ?"
+            body: "<p>삭제하시겠습니까%{name}?</p>"
+            title: "<strong>%{name}</strong> 삭제하시겠습니까?"
         tooltips:
           delete: 삭제
           edit: 편집
@@ -2424,7 +2424,7 @@ ko:
       spoof:
         successfully: 이름 %{name}으로 로그인했습니다
       toggle_membership_status:
-        successfully: 이름}의 멤버십이 성공적으로 업데이트되었습니다.
+        successfully: "%{name}의 멤버십이 성공적으로 업데이트되었습니다."
       toggle_status:
         successfully: 사용자 %{name}이 업데이트되었습니다.
       update:
@@ -2516,7 +2516,7 @@ ko:
             title: "<strong>규범</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 규범을 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: 복사
           deleting: 삭제
@@ -2582,7 +2582,7 @@ ko:
       create:
         successfully: 인자 %{name}을(를) 성공적으로 만들었습니다.
       destroy:
-        successfully: 이름} 팩터를 성공적으로 분리했습니다.
+        successfully: 요소 %{name}가 성공적으로 분리되었습니다.
       edit:
         header: 편집 계수
       index:
@@ -2841,7 +2841,7 @@ ko:
             label: 사용자 이름
             name: 사용자 이름
         remove_webhook:
-          content: 설명}을 삭제하시겠습니까?
+          content: "%{description} 삭제하시겠습니까?"
           title: 삭제
         title: 웹훅
     project_users:
@@ -3009,7 +3009,7 @@ ko:
             title: "<strong>질문</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 질문을 %{status}로 하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: 업데이트에 성공했습니다.
     reflection_questions:
@@ -3124,7 +3124,7 @@ ko:
             title: "<strong>보고서</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 보고서 번들을 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
         tooltips:
           delete: 보고서 번들 삭제
           edit: 보고서 번들 편집
@@ -3200,17 +3200,17 @@ ko:
             title: 소프트 삭제 <strong>보고서</strong>?
           toggle_status:
             body: "<p>이 보고서를 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
       restore:
         successfully: 보고서 %{name}을(를) 성공적으로 복원했습니다.
       soft_delete:
-        successfully: 이름}을(를) 휴지통으로 이동했습니다.
+        successfully: 보고서 %{name} 휴지통으로 이동되었습니다.
       toggle_archive:
         successfully: 평가 %{name}이 %{status}에 성공했습니다.
       toggle_status:
         successfully: 보고서가 성공적으로 업데이트되었습니다.
       update:
-        successfully: 이름} 보고서를 성공적으로 업데이트했습니다.
+        successfully: 보고서 %{name} 성공적으로 업데이트되었습니다.
     resource:
       remove_confirm:
         message: 이 리소스를 제거하시겠습니까?
@@ -3388,7 +3388,7 @@ ko:
         form_title: 평가 일정 예약
         language: 언어
         language_not_selected: 선택되지 않음
-        mark_cancel_success: Subject_email} 이메일을 사용하는 주체의 참여를 취소했습니다.
+        mark_cancel_success: 이메일 %{subject_email} 주제 참여 취소.
         meeting_link_custom: 사용자 지정
         meeting_link_internal: 내부
         meeting_link_none: 없음
@@ -4130,20 +4130,20 @@ ko:
             title: 비밀번호 변경 <strong>%{name}</strong>?
           delete:
             body: "<p>이 사용자를 삭제하시겠습니까?</p>\n"
-            title: "<strong>이름}</strong> 삭제 ?"
+            title: "<strong>%{name}</strong> 삭제하시겠습니까?"
           membership:
             delete:
               body: "<p>정말 삭제하시겠습니까?</p>\n"
-              title: 클라이언트 테넌트에서 <strong>%{이름}을</strong> (를) 삭제하시겠습니까?
+              title: "%{client_name} 클라이언트 테넌시에서 <strong>%{name}</strong> 삭제하시겠습니까?"
             toggle_status:
               body: "<p>이 멤버십을 %{status}화하시겠습니까?</p>\n"
-              title: "<strong>상태}</strong> %{이름}의 멤버십은 무엇입니까?"
+              title: "<strong>%{status}</strong> %{name} 멤버십?"
           toggle_enable_2fa:
-            body: "<p>이름]에 대해 %{상태} 2FA를 사용하시겠습니까?</p>\n"
-            title: "<strong>상태}</strong> 2FA"
+            body: "<p>%{name} 위해 2FA를 %{status}하시겠습니까?</p>"
+            title: "<strong>%{status}</strong> 2FA"
           toggle_status:
             body: "<p>이 사용자를 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
       spoof:
         successfully: 이름 %{name}으로 로그인했습니다
       toggle_enable_2fa:

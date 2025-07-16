@@ -1,0 +1,4164 @@
+---
+hu:
+  administration:
+    actions: Műveletek
+    active_record_audits:
+      action: Művelet
+      audit_id: Ellenőrzés azonosítója
+      auditable_id: Bejegyzés azonosítója
+      auditable_type: Bejegyzés típusa
+      audited_changes: Auditált változások
+      new_diff:
+        parse_error: Nem sikerült elemezni a JSON-t új módosításokkal
+      old_diff:
+        parse_error: Nem sikerült elemezni a JSON-t a régi módosításokkal
+      title: Ellenőrzött változtatások
+    administrator:
+      sessions:
+        new:
+          forgot_password: Elfelejtette jelszavát?
+          instruction: Kérjük, jelentkezzen be személyes fiókadataival
+          password_placeholder: Jelszó
+          title: Üdvözöljük!
+      shared:
+        simple_design:
+          design: Tervezés
+          or: Vagy
+    administrators:
+      drawers:
+        edit:
+          admin_role_select: Válassza ki az adminisztrátori szerepkört
+          admin_roles: Adminisztrátori szerepkörök
+          create_success: Az adminisztrátori '%{name}' létrehozása sikeresen megtörtént
+          email: E-mail
+          first_name: Keresztnév
+          first_name_required: A keresztnév megadása kötelező
+          last_name: Vezetéknév
+          last_name_required: A vezetéknév megadása kötelező
+          no_edit_permission: Nincs jogosultsága az adminisztátori '%{name}' szerkesztésére
+          save: Mentés
+          update: Frissítés
+          update_success: Az adminisztrátori '%{name}' frissítése sikeresen megtörtént
+        notes:
+          threesixty_permission: 360°-os kampányokra vonatkozó engedélyek
+          title: Megjegyzések
+        view:
+          add_campaign_admin: Kampányadminisztrátor hozzáadása
+          add_client_admin: Ügyfél-adminisztrátor hozzáadása
+          add_project_admin: Projektadminisztrátor hozzáadása
+          add_threesixty_campaign_admin: Kampányadminisztrátor hozzáadása
+          edit_campaign_admin: Kampányadminisztrátor szerkesztése
+          edit_client_admin: Ügyfél-adminisztrátor szerkesztése
+          edit_project_admin: Projektadminisztrátorának szerkesztése
+          edit_threesixty_campaign_admin: Kampányadminisztrátor szerkesztése
+          first_name: Keresztnév
+          last_name: Vezetéknév
+          project_admin: Projektadminisztrátor
+          project_list: Projektlista
+          role: Kampányadminisztrátor
+          title:
+            campaign_admin: Kampányadminisztrátor
+            client_admin: Ügyféladminisztrátor
+            project_admin: Projektadminisztrátor
+      list:
+        actions:
+          api_keys: API-kulcsok
+          cancel_text: Mégse
+          change_password: Jelszó visszaállítása
+          edit: Szerkeszt
+          export_admins_with_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
+          export_success: Az adminisztrátori exportálási feladat ütemezése sikeresen megtörtént. Kérjük, ellenőrizze az értesítései állapotát.
+          login: Bejelentkezés
+          send_email: E-mail küldése
+          spoof:
+            login_successful: A bejelentkezés sikeres.
+          user_report_events: Jelentés jóváhagyási naplók
+        columns:
+          actions: Műveletek
+          created_at: Létrehozva
+          email: E-mail
+          id: Azonosító
+          name: Név
+        header:
+          add_admin: Adminisztrátor hozzáadása
+          search_admins: Adminisztrátorok keresése
+        toolbar:
+          export_admins_with_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
+      modals:
+        delete:
+          cancelText: Mégse
+          content: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
+          okText: Rendben
+          onSuccess: A(z) "%{email}" e-mail-címmel rendelkező adminisztrátor eltávolítása sikeresen megtörtént
+          title: Megerősít
+      permissions:
+        labels:
+          apiKeys:
+            manage: Kezel
+            title: API-kulcsok
+            view: Nézet
+          assessments:
+            manage: Kezel
+            title: Értékelések
+            view: Nézet
+          assessors:
+            manage: Kezel
+            title: Értékelők
+            view: Nézet
+          auditLogs:
+            title: Auditnaplók
+            view: Nézet
+          auditReports:
+            admin_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
+            title: Ellenőrzési jelentések
+            user_report_events: Jelentés jóváhagyási naplók
+          campaignFactors:
+            manage: Kezel
+            title: Kampánytényezők
+            view: Nézet
+          campaigns:
+            bulk_download: Tömeges letöltés
+            bulk_regenerate_reports: Jelentések tömeges újragenerálása
+            manage: Kezel
+            manage_admins: Adminisztrátorok kezelése
+            manage_factor_benchmark_scores: Tényező benchmark pontszámainak kezelése
+            manage_messages: Üzenetek kezelése
+            manage_options: Beállítások kezelése
+            manage_report_approvals: Jelentések jóváhagyásának kezelése
+            manage_users: Felhasználók kezelése
+            participant_options: Résztvevői beállítások
+            report_options: Jelentés beállításai
+            reset_nominations: Jelölések visszaállítása
+            title: Kampányok
+            view: Nézet
+            view_factor_benchmark_scores: Tényező benchmark pontszámainak kezelése
+            view_stats: Statisztikák megtekintése
+          clients:
+            export_data_report: Az adatokat tartalmazó jelentés exportálása
+            manage: Kezel
+            title: Ügyfelek
+            view: Nézet
+            view_licenses: Licencek megtekintése
+          communications:
+            manage: Kezel
+            title: Kommunikáció
+            view: Nézet
+          dashboards:
+            accesssheet_manage: Hozzáférési lap kezelése
+            accesssheet_settings: Hozzáférési lap beállításai
+            accesssheet_view: Hozzáférési lap nézet
+            title: Irányítópultok
+            view: Nézet
+          datasheets:
+            manage: Kezel
+            title: Adatlapok
+            view: Nézet
+          developmentActions:
+            export: Exportál
+            export_global: Globális exportálás
+            export_global_translations: Globális fordítások exportálása
+            export_translations: Fordítások exportálása
+            import: Importál
+            import_global: Globális importálás
+            import_global_translations: Globális fordítások importálása
+            import_translations: Fordítások importálása
+            manage: Kezel
+            title: Fejlesztési tevékenységek
+            view: Nézet
+          dimensions:
+            manage: Kezel
+            title: Méretek
+            view: Nézet
+          idpTemplates:
+            manage: Kezel
+            title: IDP-sablonok
+            view: Nézet
+          jobRoles:
+            manage: Kezel
+            title: Munkakörök
+            view: Nézet
+          mediaLibraries:
+            manage: Kezel
+            title: Médiakönyvtárak
+            view: Nézet
+          messages:
+            email: E-mail
+            instructions: Instrukciók
+            options: Beállítások
+            title: Üzenetek
+          norms:
+            manage: Kezel
+            title: Normák
+            view: Nézet
+          proficiencyLevels:
+            export: Tudásszintek exportálása
+            export_translations: Tudásszintek fordításainak exportálása
+            import: Tudásszintek importálása
+            import_translations: Tudásszintek fordításainak importálása
+            manage: Kezel
+            title: Tudásszintek
+            view: Nézet
+          proficiency_level:
+            title: Tudásszintek
+          projectSettings:
+            assessments: Értékelések
+            design: Tervezés
+            idp: IDP
+            integrations: Integrációk
+            privacy_settings: Adatvédelmi beállítások
+            saml: SAML
+            security: Biztonság
+            smtp: SMTP
+            title: Projekt beállításai
+            webhooks: Webhookok
+          projects:
+            manage: Kezel
+            manage_admins: Adminisztrátorok kezelése
+            manage_users: Felhasználók kezelése
+            title: Projektek
+            view: Nézet
+          questions:
+            manage: Kezel
+            title: Kérdések
+            view: Nézet
+          reflectionQuestions:
+            export: Export
+            import: Import
+            manage: Kezel
+            title: IDP reflexiós kérdések
+            view: Nézet
+          registrationCodes:
+            manage: Kezel
+            title: Regisztrációs kódok
+            view: Nézet
+          registrationSettings:
+            manage: Kezel
+            title: Regisztrációs beállítások
+          reports:
+            manage: Kezel
+            title: Jelentések
+            view: Nézet
+          responseMeta:
+            title: Meta-válasz
+          results:
+            approve_report: Jelentés jóváhagyása
+            bulk_download: Tömeges letöltés
+            bulk_regenerate_reports: Jelentések tömeges újragenerálása
+            bulk_update_evaluation_status: Tömeges frissítés kiértékelési állapota
+            download_report: Jelentés letöltése
+            edit_report: Jelentés szerkesztése
+            export_occupations: Foglalkozások exportálása
+            external_score_import: Külső pontszám importálása
+            finalize_scores: Pontszámok véglegesítése
+            normalize_factor_scores: Faktorpontszámok normalizálása
+            raw_responses: Nyers válaszok
+            regenerate_report: Jelentés újragenerálása
+            report_data: Jelentés adatai
+            report_file_upload: Jelentésfájl feltöltése
+            rescore_responses: Pontozza újra a válaszokat
+            reset_progress: Folyamat visszaállítása
+            reset_responses: Válaszok visszaállítása
+            scores: Pontszámok
+            title: Eredmények
+            view_report: Jelentés megtekintése
+            view_stats: Statisztikák megtekintése
+          skills:
+            export: Készségek exportálása
+            export_translations: Készségek fordításainak exportálása
+            import: Készségek importálása
+            import_translations: Készségek fordításainak importálása
+            manage: Kezel
+            title: Készségek
+            view: Nézet
+          smsHistories:
+            manage: Kezel
+            title: SMS-előzmények
+            view: Nézet
+          smsInvites:
+            manage: Kezel
+            title: SMS-meghívók
+            view: Nézet
+          users:
+            reset_password: Jelszó visszaállítása
+            title: Felhasználók
+          workshops:
+            export_status: Exportálás állapota
+            manage: Kezel
+            title: Workshopok
+            view: Nézet
+    ai_assistants:
+      actions:
+        playground: Játszótér
+      ai_assistants: AI-asszisztensek
+      ai_assistants_playground: AI-asszisztens játszótér
+      column:
+        ai_action: AI-tevékenység
+        provider: Szolgáltató
+      form:
+        action: Tevékenység
+        description: Leírás
+        name: Név
+        provider: Szolgáltató
+        system_prompt: Rendszerkérés
+        title: AI-asszisztens
+        user_prompt: Felhasználói kérés
+    any: " -Bármely- "
+    api:
+      campaigns:
+        validate_form:
+          external_id_taken: A(z) "%{external_id}" külső azonosító már foglalt"
+      users:
+        form:
+          campaign_ids_not_existing: Nem minden kampányazonosító létezik
+    api_keys:
+      form:
+        description: Leírás
+        title: API-kulcs
+    assessment_center:
+      cancel_confirmation:
+        message: Biztos benne, hogy elveti az űrlap eddig kitöltött részeit?
+        title: Űrlap kitöltésének elvetése
+      current: Aktuális
+      invite:
+        add_invite: Meghívó hozzáadása
+        assessment_center: Értékelési központ
+        back: Vissza
+        basic_info:
+          allow_preferred_language: Előnyben részesített nyelv engedélyezése
+          assessment_centers: Értékelési központok
+          assessment_centers_hint: Keresési lekérdezési példa "2023. augusztus 10, 20:06"
+          assessment_centers_placeholder: Értékelési központok kiválasztása
+          description: Adjon ki meghívókat a jelölteknek több értékelési központ kiválasztásával. A jelöltek ezután egyetlen központot választanak a rendelkezésre állók közül.
+          neurodiversity: Tartalmazza a neurodiverzitás kérdését
+          preferred_language: Engedélyezett nyelvek
+          required_error: Nem lehet üres
+          title: Alapinformációk
+        center_group: Értékelési központ csoport
+        confirm_message: Biztosan törölni szeretne egy meghívót?
+        confirm_message_with_title: Biztosan el akarja távolítani a '%{invite_title}' címmel rendelkező meghívót?
+        confirm_title: Megerősít
+        exceeded_subjects_count: A kampánynak %{users} témái vannak. Meghívónként csak %{count} témát adhat hozzá
+        id: AZONOSÍTÓ
+        invites: Meghívók
+        next: Következő
+        not_selected: Nincs kiválasztva
+        requests: Kérelmek
+        save: Mentés és küldés
+        send_invites:
+          add: Hozzáad
+          add_description: A meghívó címét és leírását több nyelvre is lefordíthatja
+          add_language: Nyelv hozzáadása
+          description: Leírás
+          input_label: További nyelv hozzáadása
+          input_placeholder: További nyelv kiválasztása
+          invitation_title: Meghívó címe
+          title: Meghívó (%{lang})
+        steps:
+          add_subjects: Témák hozzáadása
+          basic_info: Alapinformációk
+          has_errors: hibákat tartalmaz
+          send_invitation: Meghívó küldése
+        subjects:
+          cancel: Mégse
+          count: "%{count} Témák"
+          csv_error: 'Row%{index}: a(z) %{email} e-mail-címmel rendelkező felhasználó nem szerepel ebben a kampányban'
+          csv_imported: "%{count} importált témák"
+          description: A témákat egyenként is hozzáadhatja kereséssel vagy tömeges csv-fájl feltöltésével.
+          download: Letöltés
+          file_example: Hivatkozzon a példafájlra a témákra vonatkozó információk feltöltéséhez.
+          import_from_campaign: Összes hozzáadása a kampányból
+          import_title: Témák importálása
+          import_users: Felhasználók importálása
+          search_user: Témák keresése
+          title: Témák
+          upload: Feltölt
+          upload_csv: CSV feltöltése
+        subjects_count_added: A témákat sikeresen hozzáadta
+        success:
+          continue: Tovább
+          message: A meghívók elküldésének feladata várólistára került; a felhasználók hamarosan megkapják őket.
+        success_message: A meghívó sikeresen el lett távolítva.
+        success_message_with_title: A(z) %{invite_title}' címmel ellátott meghívó eltávolítása sikeresen megtörtént.
+        title: Cím
+        workshop:
+          title: Értékelési központok
+        workshop_list:
+          add: Hozzáad
+          name: Név
+          remove_confirm:
+            content: Biztosan el akarja távolítani az a(z) "%{name}" nevű értékelési központot ?
+            success: Az értékelési központot sikeresen eltávolították.
+            title: Megerősít
+      invite_request:
+        accept: Elfogad
+        reason: Ok
+        reject: Elutasít
+        remove_confirm:
+          content: Biztos benne, hogy a %{status} pontot a(z) %{subjectName} témából kívánja %{action}?
+          success: "%{status} a(z) %{subjectName} fájlból a(z) %{action} sikeresen bekerült."
+          title: "%{action} %{status}"
+        status: Állapot
+        subject_name: Téma neve
+        workshop_time: Workshop ideje
+      past: Múlt
+      steps:
+        basic_information: Alapinformációk
+        facilitators: Segítők
+        invite_options: Meghívási beállítások
+        invite_subjects: Meghívó témái
+        send_invitations: Meghívók küldése
+      success:
+        call_send_invitation: Szeretné elküldeni a meghívókat?
+        ok: Igen
+        skip: Egyelőre kihagyás
+        title: Létrehozott értékelési központok
+      upcoming: Közelgő
+    assessment_question_import:
+      errors:
+        doesnt_have_header: A(z) %{sub_header}' nem rendelkezik fejléccel
+        invalid_headers: 'A következő fejlécek érvénytelenek: %{headers}'
+        invalid_scores: A(z) %{factor_name} tényező pontszámai érvénytelenek. A pontszámoknak vesszővel elválasztott numerikus értékeknek kell lenniük
+        invalid_sub_header: A(z) %{sub_header} nem érvényes alfejléc a(z) "%{header}" fejléchez
+        scores_not_allowed: Pontszámok csak feleletválasztós és mátrix típusú kérdések esetén adhatók hozzá
+        unavailable_factors: "%{unavailable_factor_names} tényezők nincsenek jelen egy dimenzióban"
+      modal:
+        download_xls: Példa XLSX fájl letöltése
+        title: Kérdések importálása
+      successfully_scheduled: A kérdésimportálás ütemezése sikeresen megtörtént.
+    assessments:
+      assessment: Értékelés
+      assessment_report: Értékelések
+      copy:
+        copy: másolat
+        copy_assessment: Értékelés másolása
+        name: Név
+        successfully: A(z) "%{name}" értékelés másolása sikeresen megtörtént.
+      create:
+        successfully: A(z) "%{name}" értékelés létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) "%{name}" értékelés törlése sikeresen megtörtént.
+      edit:
+        header: Értékelési beállítások
+      errors:
+        owner_validation: Nincs %{resource_name} %{permission} engedélyed a(z) %{client_name} névre
+      export:
+        questions: Kérdések exportálása
+      export_questions_toastr: A kérdésexportálási feladat ütemezése sikeresen megtörtént
+      flow: Folyik
+      linkedAssessment:
+        assessment_title: 'Válassza ki a kérdéseket innen: %{name}'
+        title: Válassza a csatolt kérdések lehetőséget
+      map_norms: Térképnormák
+      menu:
+        export_questions: Kérdések exportálása
+        import_questions: Kérdések importálása
+        managage_campaign_factors: Kampánytényezők kezelése
+      new:
+        header: Új értékelés
+      preview: Értékelés előzetes verziója
+      randomization:
+        cancel: Mégse
+        no_randomization: Nincs randomizálás
+        no_randomization_order_all: Randomizálja a sorrendet az összesre vonatkozóan
+        of_total: a teljesre vonatkozóan
+        per_page: oldalanként
+        plural:
+          block: blokkok
+          choice: választások
+          question: Kérdések
+        present_only: Csak jelen
+        question_per_factor_and_show: Kérdések tényezőnként és műsoronként
+        save: Mentés
+        select: Kiválaszt
+        select_only: Csak kijelölés
+        single_question_page_warning: Az Aktuális értékelés úgy van konfigurálva, hogy oldalanként egy kérdést jelenítsen meg. Ha oldalanként egynél több kérdést állít be, akkor az oldalanként egy kérdés beállítás automatikusan letiltásra kerül.
+        title: Randomizálás
+      reports: Jelentések
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni szeretné ezt az értékelést?</p>\n"
+            title: "<strong>Értékelés</strong> törlése?"
+          soft_delete:
+            body: "<p>Biztosan törölni szeretné ezt az értékelést?</p>\n"
+            title: Helyreállítható törlés <strong>értékelése</strong>?
+          toggle_status:
+            body: "<p>Biztos vagy benne, hogy %{status} akarod ezt az értékelést?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      restore:
+        successfully: A(z) %{name} értékelés visszaállítása sikeresen megtörtént.
+      scoring_strategy:
+        average: Átlag
+        sum: Összeg
+        title: Pontozási stratégia
+      settings:
+        disable_continue_to_dashboard: Tiltsa le a "Tovább az irányítópultra" gombot
+        disable_nav_btn: Tiltsa le a Vissza navigációs gombot
+        enable_back: Vissza gomb engedélyezése
+        enable_progress: Folyamatjelző sáv engedélyezése
+        enable_save: Mentés engedélyezése gomb
+        enable_single_question_page: Oldalanként egy kérdés megjelenítése
+        enable_single_question_page_confirm: Ez frissíti az oldalankénti blokk randomizálását 1-re. Biztos vagy benne?
+        enable_timer: Időzítő engedélyezése
+        has_randomized_block_warning: A Jelenlegi értékelés véletlenszerűen osztott blokkokkal rendelkezik, oldalanként egynél több kérdéssel. Az "Oldalanként egy kérdés megjelenítése" engedélyezése felülírja az összes véletlenszerű konfigurációt, hogy oldalanként csak egy kérdés legyen.
+        instructions: Utasítások engedélyezése
+        title: Értékelési beállítások
+      soft_delete:
+        successfully: A(z) %{name} értékelés sikeresen átkerült a kukába.
+      toggle_archive:
+        successfully: A(z) %{name} értékelése a(z) %{status} sikeres volt.
+      toggle_status:
+        successfully: A(z) %{name} értékelés frissítése sikeresen megtörtént.
+      update:
+        successfully: A(z) %{name} értékelés frissítése sikeresen megtörtént.
+    assessor:
+      add_subject_modal:
+        assessment: Értékelés
+        mark_as_lead_assessor: Megjelölés vezető értékelőként a fenti téma esetében
+        subject: Téma
+        subject_placeholder: Téma keresése..
+        title: Téma hozzáadása
+      assessments:
+        actions:
+          add_subject: Téma hozzáadása
+          rescore: Újrapontoz
+          reset: Kiértékelés visszaállítása
+          reset_progress: Folyamat visszaállítása
+        bulk_delete_confirmation: Biztosan törölni szeretné a kiválasztott bejegyzéseket?
+        bulk_delete_successful: Az értékelő értékelése sikeresen törölve lett
+        reset_confirmation: Biztos vagy benne, hogy vissza akarod állítani a téme kiértékelését a "%{subjectEmail}" e-maillel?
+        reset_progress_confirmation: Biztos vagy benne, hogy vissza akarod állítani a téma előrehaladását a "%{subjectEmail}" e-mailben?
+        reset_progress_successfully: A téma előrehaladásának visszaállítása a "%{subjectEmail}" e-maillel sikeres volt.
+        reset_successfully: A téma kiértékelésének alaphelyzetbe állítása a "%{subjectEmail}" e-mail-címmel sikeres volt.
+        subject_email: Téma E-mail
+        subject_name: Téma neve
+      completed_at: 'Befejezve:'
+      count: "%{count} Értékelők"
+      create_assessor: Értékelő hozzáadása
+      evaluations: Értékelés
+      mailer:
+        subject: Új témák hozzáadása az értékeléshez
+      modals:
+        create_assessor:
+          add: Hozzáad
+          cancel: Érvénytelenít
+          form:
+            add: Hozzáad
+            add_lead_assessor: Hozzáadás vezető értékelőként
+            add_lead_assessor_hint: Kérjük, először adja hozzá a vezető értékelői űrlapot
+            assessments: Értékelések
+            assessor: Értékelő
+            assessor_placeholder: Értékelő keresése...
+            lead_assessment: Lead értékelése
+            subject: Tárgy
+            subject_placeholder: Keresés tárgya...
+          sheet:
+            assessments: Értékelések
+            assessments_placeholder: Kiválaszt
+            assessor_email: Az értékelő e-mail címe
+            assessor_first_name: Az értékelő keresztneve
+            assessor_last_name: Az értékelő vezetékneve
+            subject_email: A tárgyhoz tartozó e-mail cím
+          title: Értékelő hozzáadása
+        import:
+          body: Az exportálás funkcióban kinyerhet egy sablont, amely az importáláshoz használható.
+          title: Értékelők importálása
+      moderate_score:
+        assessor_evaluations: Értékelő értékelések
+        main_report: Fő jelentés
+        no_completed_assessments: Még nincsenek befejezett értékelések
+        no_results: Nincsenek megválaszolt kérdések
+        other_reports: Egyéb jelentések
+        overall_scoring: Összesített pontozás
+        refresh: Frissít
+        reports: Jelentések
+        reports_count: "%{count} Jelentések"
+      overview: Áttekintés
+      remove_confirmation: Biztos vagy benne, hogy el akarod távolítani a(z) %{email} e-mail címmel rendelkező értékelőt ebből a kampányból?
+      statuses:
+        completed: Befejezett
+        not_completed: Nincs befejezve
+      toolbar:
+        export: Értékelők exportálása
+        import: Értékelők importálása
+        tools: Eszközök
+    assessor_assessment:
+      add: Hozzáad
+      modals:
+        add_assessor_assessment:
+          assessment_placeholder: Értékelés kiválasztása
+      name: Értékelő értékelése
+    assessor_campaigns:
+      statuses:
+        completed: Befejezett
+        in_progress: Folyamatban
+        not_started: Nincs elindítva
+    assessor_subjects:
+      statuses:
+        completed: Befejezett
+        in_progress: Folyamatban
+        not_started: Nincs elindítva
+    assigns:
+      create:
+        successfully: Az értékeléshez az új hozzárendelés  sikeresen létrejött
+      destroy:
+        successfully: Az értékeléshez való hozzárendelés törlése sikeresen megtörtént
+      new:
+        header: Értékelés és jelentések hozzárendelése
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarja ezt a hozzárendelést?</p>"
+            title: Töröld <strong>a(z) %{name}</strong> fájlt?
+    assigns_reports:
+      edit:
+        header: Jelentés hozzárendelésének szerkesztése
+    attention: Figyelem
+    audit_log:
+      action: Tevékenység
+      audit_logs: Auditnaplók
+      campaign: Kampány
+      client: Ügyfél
+      client_ip: Ügyfél IP-címe
+      collapse_filters: Szűrők bezárása
+      dashboard: Irányítópult
+      date_presets:
+        last_30_days: Az elmúlt 30 nap
+        last_7_days: Az elmúlt 7 nap
+        last_month: Múlt hónap
+        last_week: Múlt hét
+        today: Ma
+        yesterday: Tegnap
+      date_range: Dátumtartomány
+      expand_filters: Szűrők kibontása
+      failure_reason: Hiba oka
+      interface: Interfész
+      log_date: Naplózás dátuma
+      outcome: Eredmény
+      payload: Hasznos adat
+      project: Projekt
+      record_id: Bejegyzés azonosítója
+      request_id: Kérés azonosítója
+      reset: Töröl
+      search: Keresés
+      search_campaign: Keresés kampány szerint
+      search_client: Keresés ügyfél szerint
+      search_project: Keresés projekt szerint
+      search_record: Keresés a bejegyzés azonosítója alapján
+      search_user: Keresés felhasználó szerint
+      title: Ellenőrzési napló adatai
+      type: Bejegyzés típusa
+      user: Felhasználó
+      user_agent: Felhasználói ágens
+    back: Vissza
+    base:
+      top_sidebar:
+        sign_out_message:
+          body: "<p>Biztosan ki akar jelentkezni?</p> <p>Nyomja meg a Nem gombot, ha folytatni szeretné a munkát. Nyomja meg az Igen gombot az aktuális felhasználó kijelentkeztetéséhez.</p>"
+          title: "<strong>Kijelentkezés</strong> ?"
+    block_settings:
+      modal:
+        add_layer: Réteg hozzáadása
+        background_color: Háttérszín
+        background_image: Háttérkép
+        base_offse_speed: Alap sebesség offset
+        confirm_msg: Biztosan törli ezt a réteget?
+        confirm_title: A réteg törlése
+        layers: Rétegek
+        main_background_color: Fő háttérszín
+        select_from_lib: Kiválasztás a könyvtárból
+        speed: Sebesség
+        title: Beállítások blokkolása
+    blocks:
+      copy:
+        successfully: A(z) %{name} blokk másolása sikeresen megtörtént.
+      create:
+        successfully: A(z) %{name} blokk létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) %{name} blokk törlése sikeresen megtörtént.
+      edit:
+        header: Blokk szerkesztése
+      new:
+        header: Új blokk
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarja ezt a blokkot?</p>\n"
+            title: "<strong>Blokk</strong> törlése?"
+          toggle_status:
+            body: "<p>Biztos vagy benne, hogy %{status} akarod ezt a blokkot?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+    bookings:
+      errors:
+        already_booked: Már lefoglalt egy helyet rá.
+        booking_deadline_passed: Ez a dátum már nem elérhető, kérjük, válasszon egy másik dátumot az előző képernyőről.
+        cancellation_deadline_passed: A lemondási határidő lejárt.
+        cancelled_and_rebook_deadline_passed: Lemondva és ismét lejárt a könyv határideje.
+        late_cancellation_not_allowed: Késői lemondás nem megengedett.
+        late_rescheduling_not_allowed: Késői átütemezés nem megengedett.
+        prework_not_completed: Kérjük, végezze el az összes előkészítő tevékenységet, mielőtt helyet foglalna az értékelő központba.
+        reschedule_deadline_passed: Az átütemezési határidő lejárt.
+        seats_not_available: Ülőhelyek nem állnak rendelkezésre.
+    breadcrumbs:
+      admins: Adminisztrátorok
+      assessments: Értékelések
+      assessor_dashboard: Értékelő irányítópultja
+      assessors: Értékelők
+      audit_log_info: Auditnapló adatai
+      audit_logs: Auditnaplók
+      audit_reports: Auditjelentések
+      campaign_templates: Kampánysablonok
+      campaigns: Kampányok
+      client: Ügyfél bérleti joga
+      clientAdmins: Ügyféladminisztrátorok
+      client_admins: Ügyféladminisztrátorok
+      clients: Ügyfél bérleti jogai
+      communication_center: Kommunikációs központ
+      create: Létrehoz
+      data_exports: Adatok exportálása
+      data_reports: Adatjelentések
+      datasheets: Adatlapok
+      design: Tervez
+      dimension: Méret
+      dimensions: Méretek
+      factors: Tényezők
+      home: Irányítópult
+      innovation_styles: Innovációs stílusok
+      innovation_styles_factors: Tényezők
+      libraries: Médiatár
+      license_usages: Licenchasználat
+      licenses: Licencek
+      new_campaign: Új kampány
+      norm: Norma
+      norms: Normák
+      norms_editor: Normaszerkesztő
+      occupations: Foglalkozások
+      occupations_factors: Tényezők
+      participants: Résztvevők
+      products: Termékek
+      project_admins: Projektadminisztrátorok
+      projects: Projektek
+      psychometrics: Pszichometria
+      question_center: Kérdésközpont
+      registration_codes: Regisztrációs kódok
+      report_families: Jelentéscsomagok
+      reports: Jelentések
+      settings: Beállítások
+      smtp_settings: SMTP-beállítások
+      statistics: Statisztika
+      sub_campaigns: Alkampányok
+      sub_factors: Altényezők
+      survey: Felmérés
+      surveys: Felmérések
+      users: Felhasználók
+      users_add: Új hozzáadása
+      users_import: Importál
+    bulk_reports:
+      create:
+        no_data: Nincs adat
+        successfully: A jelentések készülnek, és e-mailben értesítjük, ha elkészültek
+      download:
+        removed: Eltávolított
+      form:
+        end_date: Befejezés dátuma
+        start_date: Kezdő dátum
+      mailer:
+        subject: Tömeges jelentések letöltése
+      new:
+        header: Tömeges letöltés
+      reports_unavailable: Jelenleg nem tölthetők le jelentések. Kérjük, ellenőrizze, hogy a letölteni kívánt jelentések elérhetők-e.
+    cable:
+      notification:
+        assessment_factors: A tényezők bekerültek
+        assessment_update: Az értékelés frissült
+        block_clone: A blokk másolása
+        block_create: Létrejött a(z) %{name} blokk
+        block_create_by_template: A blokk sablonból lett betöltve
+        block_destroy: A blokk törölve lett
+        block_move_down: A(z) %{name} blokk lejjebb kerül
+        block_move_up: A(z) %{name} blokk feljebb kerül
+        block_permanent_destroy: A blokk véglegesen törlődik
+        block_rename: A blokk átnevezése
+        block_restore: A blokk helyreáll
+        block_save_as_template: Sablonként mentett blokk
+        block_unlink_template: A blokk nem volt összekapcsolva
+        block_update: A blokk frissül
+        comment_create: Megjegyzés jön létre
+        comment_destroy: A hozzászólás törölve lett
+        geo_filter: Szűrt adatok
+        module_create: Létrejött a(z) %{name} modul
+        module_destroy: A modul törölve lett
+        module_insert_after: A modul az egység mögé kerül behelyezésre
+        module_insert_before: A modul az egység elé kerül behelyezésre
+        module_move_down: A modul lejjebb kerül
+        module_move_up: A modul feljebb kerül
+        module_rename: A modul átnevezése
+        module_update: A modul frissül
+        page_create: Létrejött a(z) %{name} oldal
+        page_destroy: Az oldal törölve lett
+        page_move_down: A(z) %{name} oldal lejjebb kerül
+        page_move_up: A(z) %{name} oldal feljebb kerül
+        page_rename: Az oldal átnevezése
+        page_update: Az oldal frissült
+        question_clone: A kérdés másolásra kerül
+        question_create: Létrejött a(z) %{name} kérdés
+        question_create_by_template: A kérdés sablonból lett betöltve
+        question_create_from_template: A kérdés sablonból jön létre
+        question_destroy: A kérdés törölve lett
+        question_insert_after: A kérdés az egység elé kerül beillesztésre
+        question_insert_before: A kérdés az egység mögé kerül beillesztésre
+        question_move_down: A kérdés lejjebb került
+        question_move_up: A kérdés feljebb került
+        question_permanent_destroy: A kérdés véglegesen törlődik
+        question_rename: A kérdés átnevezése
+        question_restore: A kérdés visszaállt
+        question_save_as_template: Sablonként mentett kérdés
+        question_unlink_template: A kérdés nem volt összekapcsolva
+        question_update: A kérdés frissült
+        report_change_aliases: Az aliasok frissülnek
+        report_change_campaign_factors: A kampánytényezők frissülnek
+        report_change_data_configuration: Az adatjelentés konfigurációjának frissítése sikeresen megtörtént
+        report_change_filters: A szűrők frissülnek
+        report_update: A jelentés frissül
+        scoring_update: Frissült a pontozás
+        trash_empty: A kuka megjegyzés üres
+    campaign_factor_import:
+      errors:
+        assessment_not_found_in_campaign: A(z) %{assessment_id} értékelésazonosító nem található meg a kampányban
+        code_already_exists: Már létezik egy tényező ugyanazzal a kóddal, amelynek kódja "%{code}".
+        factor_not_in_assessment_dimension: '"%{factor_id}" tényezőazonosító nem része az értékelés dimenziójának'
+        invalid_lua_name: A "%{code}" kódnak érvényes lua változónévnek kell lennie
+        invalid_name_format: A "%{name}" névnek meg kell egyeznie a várt formátummal.
+        max_limit_reached: Legfeljebb %{count} számú kampánytényező hozható létre.
+        missing_assessment_id: Az értékelési azonosító megadása kötelező.
+        missing_assessment_score_type: Az értékelési pontszám típusa kötelező.
+        missing_factor_id: A tényezőazonosító megadása kötelező.
+        name_already_exists: Már létezik egy azonos nevű tényező, a(z) %{name}.
+        name_size_exceded: A név nem haladhatja meg a %{size} számú karaktert.
+    campaign_factors:
+      delete:
+        confirm_message:
+          assessor_scoring: Ön törölni készül az Értékelő pontozását. Elveszíti az összes moderált értékelő pontszámot erre a "%{factor_name}" tényezőre. Biztos benne, hogy folytatni akarja?
+          default: Biztosan törölni szeretné a(z) "%{factor_name}" kampánytényezőt?
+          external_score: 'Törli a külső pontozást. Elveszíti azokat a külső pontszámokat, amelyek ehhez a tényezőhöz kapcsolódnak: "%{factor_name}". Biztos benne, hogy folytatni akarja?'
+    campaign_factors_import:
+      errors:
+        invalid_headers: 'A következő fejlécek érvénytelenek: %{headers}'
+    campaign_templates:
+      campaign_templates: Kampánysablonok
+      column:
+        assessment: Értékelés
+        owner: Tulajdonos
+        report: Jelentés
+      copy:
+        successfully: A(z) %{name} ügyfél bérleti jog másolása sikeresen megtörtént.
+      create:
+        successfully: A(z) %{name} ügyfél bérleti jog létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) %{name} ügyfél bérleti jog törlése sikeresen megtörtént.
+      edit:
+        header: Ügyfél szerkesztése
+      errors:
+        owner_invalid: A sablon tulajdonosának meg kell egyeznie az értékelés, a jelentés és a dimenzió tulajdonosaival
+      form:
+        assessment: Értékelés
+        assessment_placeholder: Értékelés kiválasztása
+        name: Név
+        name_placeholder: Írja be a nevet
+        owner: Tulajdonos
+        owner_placeholder: Válasszon tulajdonost
+        report: jelentés
+        report_placeholder: Jelentés kiválasztása
+        title: Kampánysablon
+      image_fields:
+        remove: Eltávolít
+      index:
+        new: Hozzáad
+        title: Kampánysablonok
+      list:
+        admin: Ügyféladminisztrátor
+        client_admins: Ügyféladminisztrátorok
+        created_at: Létrehozás dátuma
+        name: Név
+        report_bundle: Jelentéscsomag
+        updated_at: Frissítés dátuma
+      new:
+        header: Új ügyfél
+      remove_confirm:
+        content: Biztosan el akarja távolítani a(z) "%{name}" kampánysablont?
+        success: A(z) '%{name}'' kampánysablon sikeresen el lett távolítva.
+        title: Kampánysablon eltávolítása
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni szeretné ezt a kampánysablont?</p>\n"
+            title: Törli a  <strong>a(z) %{name}</strong> fájlt?
+        in_progress:
+          deleting: Törlés
+        tooltips:
+          delete: Ügyfél törlése
+          edit: Ügyfél szerkesztése
+      toggle_status:
+        successfully: A(z) %{name} ügyfél bérleti jog frissítése sikeresen megtörtént.
+      update:
+        successfully: A(z) %{name} ügyfél bérleti jog frissítése sikeresen megtörtént.
+    campaigns:
+      actions: Kezel
+      assessment_reports:
+        report_approval:
+          allow_bulk_approve: Tömeges jóváhagyás engedélyezése
+          allow_qc_bulk_submit: Tömeges beküldés engedélyezése
+          approval_notification_users: Jóváhagyási értesítés felhasználói
+          approvers: Jóváhagyók
+          approvers_can_edit: A jóváhagyók szerkeszthetik
+          approvers_not_required: Nincs szükség jóváhagyókra
+          do_not_send_notifications: Ne küldjön e-mailt a felhasználóknak [QC, Jóváhagyók és jóváhagyási értesítés]
+          modal_title: Jelentés jóváhagyási beállításai
+          qc_users: Minőségellenőrző felhasználók
+          remove_modal_success: 'A jelentésazonosító jóváhagyási beállítása: %{reportId} sikeresen törölve lett '
+          remove_modal_text: Biztosan törölni szeretné ezt a beállítást a(z) %{reportId} jelentésazonosítóhoz?
+          report: Jelentés
+          settings: Beállítások
+      assessors:
+        spoof:
+          successfully: Sikeresen bejelentkezett a(z) %{name} néven
+      copy: Másolat
+      delete: Töröl
+      edit: Szerkeszt
+      extend_time_success_message: A kampány időzítője %{minutes} percre bővült
+      filters:
+        active: Aktív
+        all: Összes
+        archived: Archivált
+        closed: Zárt
+        inactive: Inaktív
+        status: Állapot
+      form:
+        name: Név
+        practice_campaign: Gyakorló kampány
+        status: Állapot
+      listing:
+        assessments: Értékelések
+        id: Azonosító
+        name: Név
+        reports: Jelentések
+        status: Állapot
+        type: Típus
+      menus:
+        add_common_campaign: Közös kampány hozzáadása
+        add_multi_rater_campaign: Adjon hozzá Multi Rater kampányt
+      modals:
+        create_threesixity:
+          advance_settings:
+            campaign_template: Kampány sablon
+            factors: Tényezők
+          base_settings:
+            active: Aktív
+            archive: Archívum
+            assessment: Értékelés
+            closed: Zárt
+            empty: Üres
+            inactive: Inaktív
+            name: Név
+            previous: Előző
+            standard: Szabvány
+            status: Állapot
+          close:
+            content: Biztosan be akarja zárni a Multi Rater Campaign Creatort? A nem mentett testreszabási munka elvész. Kérjük, erősítse meg döntését.
+            title: Bezárja a Multi Rater Campaign Creatort?
+          instructions_creation:
+            empty: 'Üres: Kezdje egy üres felméréssel, és szabja testre egyedi igényei szerint.'
+            previous: 'Előző: Válasszon ki egy korábbi értékelést kiindulási pontként, és végezze el a módosításokat.'
+            standard: 'Szabványos: Használjon előre megtervezett sablont a gyakran használt kérdésekkel és mutatókkal.'
+            sub_title: Kérjük, válassza ki a létrehozni kívánt kampány típusát.
+            title: Üdvözöljük a Multi Rater Campaign Creatorben!
+          instructions_customization:
+            sub_title: Válassza ki az értékelésbe belefoglalandó sablont és tényezőket.
+            title: Testreszabhatja értékelését!
+          no_factors:
+            description: Próbáljon ki más keresési kulcsszavakat.
+            title: Nem található tényező
+          questions:
+            select_all: Az összes kijelölése
+            title: Kérdések és mutatók
+          search_factors:
+            description: Kérjük, adjon meg legalább 3 karaktert, hogy megtalálja a keresett tényezőket.
+            title: Kezdje el a keresést
+          success: Sikeresen létrehozták a Multi Rater kampányt.
+          success_job: A Multi Rater kampány létrehozási feladata sikeresen ütemezve volt.
+      options:
+        description:
+          name: Leírás
+          save: Leírás mentése
+          save_success: Leírás sikeresen mentve
+        fixed_time: Rögzített idő
+        instructions:
+          actions:
+            saved: Az utasítások mentése sikeresen
+          enable: Utasítások engedélyezése
+          save: Utasítások mentése
+        prework_required: Ne engedélyezze a központfoglalást, ha az előkészítési feladatok nem fejeződnek be
+        prework_required_for_invite: Csak az előkészítési munka befejezése után küldjön meghívó e-mailt
+        proctoring:
+          allow_on_assessment_center: Felülvizsgálat engedélyezése az értékelési központban
+          enable: Felülvizsgálat engedélyezése
+          identification: Azonosítás
+          identifications:
+            face: Arc
+            face_and_passport: Arc és útlevél
+            passport: Útlevél
+          integration_type: Integráció
+          integration_types:
+            iframe: IFrame
+            ldb: Böngésző zárolása
+          proctoring_types:
+            offline: Offline
+            online: Online
+          rule_types:
+            allow_absence_in_frame: Távollét engedélyezése a keretben
+            allow_to_use_books: A könyvek használatának engedélyezése
+            allow_to_use_calculator: Engedélyezze a számológép használatát
+            allow_to_use_excel: Az Excel használatának engedélyezése
+            allow_to_use_human_assistant: Emberi asszisztens használatának engedélyezése
+            allow_to_use_messengers: Üzenetküldők használatának engedélyezése
+            allow_to_use_paper: Engedélyezze a papír használatát
+            allow_to_use_websites: Webhelyek használatának engedélyezése
+            allow_voices: Hangok engedélyezése
+            allow_wrong_gaze_direction: Rossz tekintetirány engedélyezése
+          rules: Szabályok
+          trial: Vizsgálat felügyelete
+          type: Típus
+        show_watermark: Vízjel megjelenítése
+        watermark_content: Vízjel tartalma
+        watermark_info: Ha nem ad hozzá tartalmat, alapértelmezés szerint a felhasználó e-mailje vízjelként jelenik meg. Az alábbi pipetext bármelyikét használhatja:<br> {{id}} - Résztvevő azonosítója </br> {{first_name}} - A résztvevő keresztneve <br> {{last_name}} - A résztvevő vezetékneve </br> {{email}} - Résztvevő e-mail címe
+      pdf_password: PDF-jelszó
+      types:
+        common: Közös
+        threesixty: Többszörös értékelő
+      users:
+        add_user: Felhasználó hozzáadása
+        completion_status: Befejezési állapot
+        created_by: 'Készítette:'
+        email: E-mail
+        filters:
+          all: Összes
+          anonymous: Névtelen
+          identified: Azonosított
+        id: Azonosító
+        is_active: Aktív
+        name: Név
+        no_permission_message: Nincs engedélye a módosításra
+        updated_by: 'Frissítette:'
+      validations:
+        dates:
+          end: a kezdő dátum után kell lennie
+    campaigns_external_scores_import:
+      errors:
+        invalid_campaign_factor_codes: 'A következő kampány factor_codes kódok érvénytelenek: %{codes}'
+        missing_headers: Hiányzó fejlécek
+        missing_users: 'A következő e-mailek nem léteznek: %{emails}'
+      import:
+        example_csv: csv-példa letöltése
+        success_msg: Az importálás feltöltése sikeresen megtörtént
+      modal:
+        title: Külső kampánypontszámok importálása
+    client_features:
+      client_features: Ügyfélfunkciók
+      form:
+        ai_assistants: AI-asszisztensek
+        ai_assisted_idp: AI által támogatott IDP
+        global_skills: Globális készségek
+        sms_notification: SMS-értesítés
+    clients:
+      api_keys:
+        init_breadcrumbs:
+          breadcrumb: Breadcrumb
+      archive:
+        successfully: Sikeresen
+      base:
+        active: Aktív
+        archived: Archivált
+        disable: Archívál
+        enable: Archiválás visszavonása
+      columns:
+        country: Ország
+        project_manager: Projektmenedzser
+        type: Típus
+        year: Év
+      copy:
+        successfully: A(z) "%{name}" ügyfél bérleti jog másolása sikeresen megtörtént.
+      create:
+        successfully: A(z) "%{name}" ügyfél bérleti jog létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) %{name} ügyfél bérleti jog törlése sikeresen megtörtént.
+      edit:
+        header: Ügyfél szerkesztése
+      licenses:
+        resource:
+          confirmations:
+            toggle_status:
+              body: "<p>Biztos vagy benne, hogy %{status} akarod ezt a licencet használni?</p>\n"
+              title: "<strong>%{status}</strong> Licenc a(z) %{name} számára?"
+        show:
+          used_out_of: "%{used_number} a(z) %{number}"
+      new:
+        header: Új ügyfél
+      projects:
+        actions:
+          archive: Archívál
+          unarchive: Archiválás visszavonása
+        archive:
+          content: Biztosan archiválni akarod a(z) '%{project_name}' fájlt?
+          success: A(z) '%{project_name}' projekt archiválása sikeresen megtörtént.
+          title: Archív projekt
+        assign_assessments:
+          add_assessment: Értékelés hozzáadása
+          assessments: Értékelések
+        assign_reports:
+          add_report: Jelentés hozzáadása
+        campaigns:
+          archive:
+            successfully: A(z) '%{name}' kampány archiválása sikeresen megtörtént.
+          copy:
+            error: A(z) '%{name}' kampány nem lett másolva.
+            successfully: A(z) '%{name}' kampány másolása sikeresen megtörtént.
+          create:
+            successfully: A(z) '%{name}' kampány létrehozása sikeresen megtörtént.
+          destroy:
+            successfully: A(z) '%{name}' kampány törlése sikeresen megtörtént.
+          edit:
+            header: Kampány szerkesztése
+          export:
+            assessments: Értékelések
+            assigned_user: Hozzárendelt felhasználók
+            completed_user: Befejezett felhasználók
+            created_at: Létrehozás dátuma
+            header:
+              actions: Műveletek
+              actual_usage: Jelenlegi használat
+              assessments: Értékelések
+              campaigns: Kampányok
+              name: Név
+              reports: Jelentések
+              sub_campaigns: Alkampányok
+              tests_allocated: Kiosztott vizsgálatok
+              users: Felhasználók
+            id: Azonosító
+            name: Kampány neve
+            reports: Jelentések
+            updated_at: Frissítés dátuma
+          index:
+            export: Kivitel
+            new: Hozzáad
+            title: Kampányok
+          list:
+            assessments: Értékelések
+            assigned_user: Hozzárendelt felhasználók
+            completed_user: Befejezett felhasználók
+            created_at: Létrehozás dátuma
+            header:
+              actions: Műveletek
+              actual_usage: Tényleges használat
+              assessments: Értékelések
+              campaigns: Kampányok
+              name: Név
+              reports: Jelentések
+              sub_campaigns: Alkampányok
+              tests_allocated: Kiosztott vizsgálatok
+              users: Felhasználók
+            id: Azonosító
+            name: Kampány neve
+            reports: Jelentések
+            updated_at: Frissítés dátuma
+          new:
+            header: Új kampány
+          resource:
+            sub_campaign:
+              create: Új alkampány létrehozása
+            tooltips:
+              copy: Kampány másolása
+              create_report: Új jelentés hozzáadása
+              create_user: Új felhasználó hozzáadása
+              delete: Kampány törlése
+              edit: Kampány szerkesztése
+              export: Exportál
+          sidebar:
+            archive: Kampány archiválása
+            copy: Kampány másolása
+            destroy: Kampány törlése
+            disable: Letilt
+            edit: Kampány szerkesztése
+            enable: Engedélyez
+            new: Új kampány
+            title: A kampány lehetőségei
+            view_licenses: Licencek megtekintése
+          sub_campaigns:
+            archive:
+              successfully: A(z) %{name} alkampány archiválása sikeresen megtörtént.
+            copy:
+              error: A(z) %{name} alkampány nem lett másolva.
+              successfully: A(z) %{name} alkampány másolása sikeresen megtörtént.
+            create:
+              successfully: A(z) %{name} alkampány létrehozása sikeresen megtörtént.
+            destroy:
+              successfully: A(z) %{name} alkampány törlése sikeresen megtörtént.
+            edit:
+              header: Alkampány szerkesztése
+            export:
+              assessments: Értékelések
+              assigned_user: Hozzárendelt felhasználók
+              completed_user: Befejezett felhasználók
+              created_at: Létrehozás dátuma
+              header:
+                actions: Műveletek
+                actual_usage: Jelenlegi használat
+                archive_status: Archíválás állapota
+                name: Név
+                sub_campaign: Alkampányok
+                tests_allocated: Kiosztott tesztek
+                users: Felhasználók
+              id: Azonosító
+              name: Alkampány neve
+              reports: Jelentések
+              updated_at: Frissítés dátuma
+            header:
+              actions: Műveletek
+            index:
+              export: Kivitel
+              new: Hozzáad
+              title: Alkampányok
+            list:
+              assessments: Értékelések
+              assigned_user: Hozzárendelt felhasználók
+              completed_user: Korábbi felhasználók
+              created_at: Létrehozás dátuma
+              header:
+                actions: Műveletek
+                actual_usage: Jelenlegi használat
+                archive_status: Archíválás állapota
+                name: Név
+                sub_campaign: Alkampányok
+                tests_allocated: Kiosztott tesztek
+                users: Felhasználók
+              id: Azonosító
+              name: Alkampány neve
+              reports: Jelentések
+              updated_at: Frissítés dátuma
+            new:
+              header: Új alkampány
+            resource:
+              tooltips:
+                copy: Alkampány másolása
+                create_report: Új jelentés hozzáadása
+                create_user: Új felhasználó hozzáadása
+                delete: Alkampány törlése
+                edit: Alkampány szerkesztése
+            sidebar:
+              archive: Alkampány archiválása
+              copy: Alkampány másolása
+              destroy: Alkampány törlése
+              disable: Letilt
+              edit: Alkampány szerkesztése
+              enable: Engedélyez
+              new: Új alkampány
+              title: Az alkampány lehetőségei
+              view_licenses: Licencek megtekintése
+            toggle_status:
+              successfully: A(z) %{name} alkampány frissítése sikeresen megtörtént.
+            update:
+              successfully: A(z) %{name} alkampány frissítése sikeresen megtörtént.
+          toggle_status:
+            successfully: A(z) %{name} kampány frissítése sikeresen megtörtént.
+          update:
+            successfully: A(z) %{name} kampány frissítése sikeresen megtörtént.
+        copy:
+          error: A(z) %{name} projekt nem lett másolva.
+          successfully: A(z) %{name} projekt másolása sikeresen megtörtént.
+        create:
+          successfully: A(z) %{name} projekt létrehozása sikeresen megtörtént.
+        destroy:
+          successfully: A(z) %{name} projekt törlése sikeresen megtörtént.
+        edit:
+          header: Projekt szerkesztése
+        export:
+          2fa_enabled: 2FA engedélyezve
+          actual_usage: Jelenlegi használat
+          admin: Ügyféladminisztrátor
+          applicable_level: Alkalmazandó szint
+          archive_status: Állapot
+          assessments: Értékelések
+          assigned_user: Hozzárendelt felhasználók
+          completed_user: Befejezett felhasználók
+          created_at: Létrehozás dátuma
+          id: Azonosító
+          name: Projekt neve
+          number: Szám
+          project_admin: Projektadminisztrátorok
+          reports: Jelentések
+          tests_allocated: Kiosztott tesztek
+          tte_admin: TTE projektmenedzser
+          updated_at: 'Módosított dátum
+
+            '
+          url: URL-cím
+          users_count: Felhasználók száma
+        form:
+          2fa: 2 faktoros hitelesítés
+          2fa_enable: Engedélyezze a 2 faktoros hitelesítést
+          applicable_levels:
+            campaign: Kampány zárószintje
+            project: Projekt zárószintje
+            sub_campaign: Alkampány zárószintje
+          data_privacy: Adatvédelem
+          enable_live_chat: Élő csevegés engedélyezése
+          enable_privacy_links: Adatvédelmi hivatkozás engedélyezése
+          live_chat_token: Élő chat token
+          optional: Szabadon választható
+          other_settings: Egyéb beállítások
+          privacy_link: Adatvédelmi link
+          privacy_text: Adatvédelmi szöveg
+          project_number: Projekt száma
+          webhook: Webhook
+          webhook_auth_enabled: Webhook-hitelesítés engedélyezése
+          webhook_password: Jelszó
+          webhook_username: Felhasználónév
+        header:
+          actions: Műveletek
+        index:
+          export: Exportálás
+          new: Hozzáad
+          title: Projektek
+          tooltips:
+            create: Látrehoz
+            export: Exportálás
+        list:
+          2fa_enabled: 2FA engedélyezve
+          actual_usage: Jelenlegi használat
+          admin: Ügyféladminisztrátor
+          applicable_level: Alkalmazandó szint
+          archive_status: Állapot
+          assessments: Értékelések
+          assigned_user: Hozzárendelt felhasználók
+          completed_user: Korábbi felhasználók
+          created_at: Létrehozott dátum
+          id: Azonosító
+          name: Projekt neve
+          number: Szám
+          project_admin: Projektadminisztrátorok
+          reports: Jelentések
+          tests_allocated: Kiosztott tesztek
+          tte_admin: TTE projektmenedzser
+          updated_at: Módosítás dátuma
+          url: URL-cím
+          users_count: Felhasználók száma
+        new:
+          header: Új projekt
+        resource:
+          add_assessment: Értékelés hozzáadása
+          add_report: Jelentés hozzáadása
+          assessments: Értékelések
+          tooltips:
+            copy: Projekt másolása
+            create_admin: Projektadminisztrátor létrehozása
+            create_report: Új jelentés hozzáadása
+            create_user: Új felhasználó hozzáadása
+            delete: Projekt törlése
+            edit: Projekt szerkesztése
+        sidebar:
+          admins: Projektadminisztrátorok
+          archive: Projekt archiválása
+          copy: Projekt másolása
+          design: Terv szerkesztése
+          destroy: Projekt törlése
+          disable: Letilt
+          edit: Projekt szerkesztése
+          enable: Engedélyez
+          new: Új projekt
+          title: A projekt beállításai
+          view_licenses: Licencek megtekintése
+        status:
+          active: Aktív
+          archived: Archivált
+        threesixty_campaigns:
+          base:
+            active: Aktív
+            archived: Archivált
+            disable: Archivál
+            enable: Archiválás visszavonása
+          completion_statuses:
+            approved: Jóváhagyott
+            completed: Befejezett
+            denied: Tagadás
+            in_progress: Folyamatban
+            not_started: Nincs elindítva
+          copy:
+            error: A(z) "%{name}" ügyfél bérleti jog nem lett másolva.
+            successfully: A(z) "%{name}" ügyfél bérleti jog másolása sikeresen megtörtént.
+          create:
+            successfully: A(z) "%{name}" ügyfél bérleti jog létrehozása sikeresen megtörtént.
+          designs:
+            form:
+              no_background: Még nincs háttér
+              no_logo: Még nincs logó
+          destroy:
+            error: Nem lehet törölni a(z) '%{name}'-t, mert léteznek függő kapcsolatok az alanyok vagy az értékelők között.
+            successfully: A(z) "%{name}" ügyfél bérleti jog törlése sikeresen megtörtént.
+          edit:
+            header: 360°-os kampány szerkesztése
+          export:
+            admin: Ügyfél rendszergazda
+            assessment: Értékelés
+            client_admins: Ügyféladminisztrátorok
+            created_at: Létrehozva
+            id: Azonosító
+            name: Név
+            report: Jelentés
+            report_bundle: Jelentéscsomag
+            status: Állapot
+          index:
+            export: Kivitel
+            new: 360°-os kampány hozzáadása
+            title: 360°-os kampányok
+          license:
+            header: "%{name} - Licenc szerkesztése"
+          licenses:
+            update:
+              duplicate_licenses: Duplikált licenccel rendelkezik
+              successfully: A licencek frissítése sikeresen megtörtént
+          list:
+            admin: Ügyféladminisztrátor
+            assessment: Értékelés
+            client_admins: Ügyféladminisztrátorok
+            created_at: Létrehozva
+            id: Azonosító
+            name: Név
+            report: Jelentés
+            report_bundle: Jelentéscsomag
+            status: Állapot
+            updated_at: Frissítés dátuma
+          new:
+            header: Új 360°-os kampány
+          resource:
+            confirmations:
+              delete:
+                body: "<p>Biztosan törölni szeretné?</p> <p>Ez a művelet nem vonható vissza. Ezzel véglegesen törli a <strong>(z) %{name}</strong> kampányt, az alkampányokat és az összes kapcsolódó elemet.</p> <p>Kérjük, írja be <strong>a(z) %{name}</strong> parancsot a megerősítéshez.</p>"
+                title: Törölje <strong>a(z) %{name}?</strong>
+              disable:
+                body:
+                  '0': "<p>Biztosan archiválni szeretne?</p> <p>Az összes kampány, alkampány és felhasználó is archiválódik</p>"
+                  '1': "<p>Biztosan archiválni szeretne?</p> <p>Az összes alkampány és felhasználó is archiválódik</p>"
+                  '2': "<p>Biztosan archiválni szeretne?</p> <p>Minden felhasználó archiválódik</p>"
+                  '3': "<p>Biztosan archiválni szeretne?</p> <p>Minden felhasználó archiválódik</p>"
+                title: "<strong>%{name}</strong> archívuma ?"
+              enable:
+                body:
+                  '0': "<p>Biztosan vissza akarja vonni az archiválást?</p>"
+                  '1': "<p>Biztosan vissza akarja vonni az archiválást?</p>"
+                  '2': "<p>Biztosan vissza akarja vonni az archiválást?</p>"
+                  '3': "<p>Biztosan vissza akarja vonni az archiválást?</p>"
+                title: "<strong>%{name}</strong> archiválásának megszüntetése?"
+            export_results: Eredmények exportálása
+            raw_results: Nyers eredmények
+            tooltips:
+              campaigns:
+                delete: Kampány törlése
+              copy: Ügyfél másolása
+              create_admin: Ügyfél-adminisztrátor létrehozása
+              delete: Ügyfél törlése
+              disable: Ügyfél letiltása
+              edit: Ügyfél szerkesztése
+              enable: Ügyfél engedélyezése
+          statistics:
+            index:
+              all_assessments: Minden értékelés
+              assessment_type: Értékelés típusa
+              title: Statisztika
+          toggle_status:
+            successfully: A(z) %{name} ügyfél bérleti jog frissítése sikeresen megtörtént.
+          update:
+            successfully: A(z) %{name} ügyfél bérleti jog frissítése sikeresen megtörtént.
+          url: URL-cím
+        toggle_status:
+          successfully: A(z) %{name} projekt frissítése sikeresen megtörtént.
+        unarchive:
+          content: Biztosan vissza akarod vonni a(z) '%{project_name}' archiválását?
+          success: A(z) '%{project_name}'' projekt archiválása sikeresen megtörtént.
+          title: Projekt archiválásának megszüntetése
+        update:
+          successfully: A(z) %{name} projekt frissítése sikeresen megtörtént.
+      registration_codes:
+        column:
+          code: Kód
+          usage_stats: Használati statisztikák
+        errors:
+          count_invalid: nem lehet kisebb, mint a used_count = %{use_count}
+          criteria: csak alfanumerikus karaktereket, kötőjelet (-) és aláhúzásjelet (_) tartalmazhat.
+          duplicate_code: ebben a projektben használatban van. Próbáljon ki egy másikat.
+          incorrect_domain: Helytelen tartományformátum.
+          invalid_end_date: nagyobbnak kell lennie, mint a kezdő dátumnak
+          license_issue: Nincs elég licenc.
+      resource:
+        confirmations:
+          delete:
+            title: Törli a <strong>a(z) %{name}</strong> fájlt?
+          disable:
+            title: Archiválja a % <strong>%{name}</strong> fájlt ?
+          enable:
+            title: "% <strong>%{name}</strong> archiválásának megszüntetése?"
+      tenancies: Ügyfélbérleti szerződések
+      threesixty_campaign: 360 fokos kampány
+      toggle_status:
+        successfully: A(z) %{name} ügyfél bérleti jog frissítése sikeresen megtörtént.
+      update:
+        successfully: A(z) %{name} ügyfél bérleti jog frissítése sikeresen megtörtént.
+    close: Bezár
+    common:
+      add: Hozzáad
+      back: Vissza
+      cancel: Mégse
+      disabled: Letiltva
+      download_sample_file: Mintafájl letöltése
+      enabled: Engedélyezve
+      import:
+        failure_msg: Hiba a fájl importálása közben.
+      minute: perc
+      next: Következő
+      reset: Visszaállít
+      save: Mentés
+      select_all: Az összes kijelölése
+      unselect_all: Az összes kijelölésének törlése
+    communications:
+      create:
+        successfully: A kommunikáció sikeresen létrejött.
+      destroy:
+        successfully: A(z) %{name} kommunikáció sikeresen törölve lett.
+      edit:
+        header: Kommunikáció szerkesztése
+      edit_translation:
+        body_label: Test
+        copy: Másolat
+        copy_to_code_editor_hint: 'Tipp: Másolja ki a fenti hivatkozási szöveget, és váltson kódszerkesztő módba a könnyebb HTML-szerkesztés érdekében'
+        locale_label: Színhely
+        no_reference_body: Nem áll rendelkezésre referenciatest
+        no_reference_subject: Nincs elérhető referenciatárgy
+        reference_body_label: Referenciatest
+        reference_subject_label: Hivatkozás tárgya
+        subject_label: Tárgy
+        title: Fordítás szerkesztése
+        update_button: Fordítás frissítése
+      form:
+        all: Összes
+        assessment_completion_status_code: Értékelés befejezési állapotkódja
+        assessment_completion_status_code_hint: Ha meg van adva befejezési kód, azt csak akkor küldi el a rendszer, ha a felhasználó értékelése rendelkezik ezzel a befejezési állapotkóddal.
+        body_mustache: |-
+          {{{user_link}}} - Hivatkozás a platformra meglévő felhasználók számára, vagy egyszeri hivatkozás jelszó beállításához az új felhasználók számára
+          {{{user_url}}} - Ugyanaz, mint a user_link, de csak az URL hiperhivatkozás helyett
+          {{{user_link_qrcode}}} - A user_link-ből generált QR-kód beágyazása
+          {{first_name}} - A címzett keresztneve
+          {{last_name}} - Címzett vezetékneve
+          {{email}} - Címzett e-mail címe
+          {{schedule_start_date}} - Ütemezés kezdő dátuma
+          {{schedule_end_date}} - Ütemezés befejezési dátuma
+        completion: Teljesítés
+        delivery_at: Szállítás (GST)
+        delivery_delay_hours: Szállítási késedelem (óra)
+        delivery_rules:
+          in_progress: Ha az értékelés folyamatban van
+          not_competed: Ha az értékelés nem fejeződik be
+          not_started: Ha az értékelés nem indul el
+          send_now: Küldés most
+          specific_datetime: Küldés
+        development_action_deadline_missed: A fejlesztési művelet határideje lejárt
+        idp_deadline_missed: Az IDP határideje lejárt
+        idp_template_approved: IDP jóváhagyva
+        idp_template_assigned: IDP hozzárendelve
+        idp_template_rejected: IDP elutasítva
+        invitation: Meghívás
+        kind: Kommunikációs típusok
+        locale: Színhely
+        magic_link_email: Magic Link e-mail
+        new_assignment: Új feladat
+        new_users: Új felhasználók
+        other: Más
+        reminder: Emlékeztető
+        report_available: Jelentés elérhető
+        selected: Kiválasztott
+        selected_cc_recipients: Kiválasztott CC-címzettek
+        selected_recipients: Kiválasztott címzettek
+        stop_reminder: Emlékeztetők küldésének leállítása
+        stop_reminder_datetime: Emlékeztetők záró dátuma (GST)
+        workshop_booked: Az értékelőközpont foglalási visszaigazolása
+        workshop_cancelled: Az értékelő központ törlése
+        workshop_completed: Elkészült az értékelőközpont
+        workshop_invite: Meghívó az értékelőközpontba
+        workshop_invite_reminder: Értékelőközpont meghívó emlékeztető
+        workshop_upcoming_reminder: Az értékelőközpont közelgő emlékeztetője
+      index:
+        clients: Ügyfelek
+        new: Hozzáad
+        title: Kommunikációs központ
+        type: Típus
+      list:
+        actions: Műveletek
+        author: 'Készítette:'
+        campaign: Kampány
+        client_name: Ügyfél
+        created_at: Létrehozás dátuma
+        creator_first_name: 'Készítette:'
+        delivery_rule: Kézbesítés
+        kind: Kommunikáció típusa
+        project: Projekt
+        recipients: Címzettek
+        sub_campaign: Alkampány
+        subject: Kommunikáció tárgya
+        updated_at: Módosítás dátuma
+      new:
+        header: Új közlemény
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni szeretné ezt a közleményt?</p>\n"
+            title: "<strong>Közlemény</strong> törlése?"
+          toggle_status:
+            body: "<p>Biztosan %{status} szeretné ezt a közleményt?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Másolás
+          deleting: Törlés
+        tooltips:
+          copy: Közlemény másolása
+          delete: Közlemény törlése
+          download: Közlemény előzmények letöltése
+          edit_translation: Fordítás szerkesztése
+          view: Közlemény megtekintése
+      show:
+        assessment: 'Értékelés:'
+        assessment_center_group: 'Értékelési központ csoport:'
+        back: Vissza
+        body: 'Testület:'
+        campaign: 'Kampány:'
+        client: 'Ügyfél:'
+        communication_type: 'Közlemény típusa:'
+        delivery_rule: 'Szállítási szabály:'
+        every_interval: Minden %{interval}
+        owner: 'Tulajdonos:'
+        project: 'Projekt:'
+        recipients: 'Címzettek:'
+        specific_datetime: 'Küldés:'
+        stop_reminder_datetime: Emlékeztetők záró dátuma (GST)
+        sub_campaign: 'Alkampány:'
+        subject: 'Tárgy:'
+        users: 'Felhasználók:'
+      sidebar:
+        copy: Közlemény másolása
+        destroy: Közlemény törlése
+        download: Közlemény előzmények letöltése
+        edit_translation: Fordítás szerkesztése
+        title: A közlemény lehetőségei
+        view: Közlemény megtekintése
+      toggle_status:
+        successfully: A közlemény frissítése sikeresen megtörtént.
+      update_translation:
+        successfully_updated: A fordítás frissítése sikeresen megtörtént.
+    components:
+      input_duration:
+        placeholder: 'Írja be: "1d 2h 3m"'
+    create: Létrehoz
+    dashboard:
+      capacity_name: Kapacitás neve
+      choose_file_format: Fájlformátum kiválasztása
+      dashboard_types:
+        oracle_analytics: Oracle Analytics
+        powerbi: PowerBi
+      dashboards: Irányítópultok
+      export_dashboard_to_file: Irányítópult exportálása fájlba
+      export_job_failure: Nem sikerült elindítani az exportálást
+      export_job_success: Elindult az exportálási feladat. Értesítést kap, amikor befejeződik.
+      get_started: Kezdje el
+      initialize_msg: Irányítópult inicializálása ehhez a kampányhoz
+      loading_failed: Az irányítópult betöltése sikertelen.
+      only_export_current_tab: Csak az aktuális lap exportálása
+      pdf: PDF
+      pptx: PPTX
+      preview:
+        embed_token_error_description: Ellenőrizze, hogy az adatkészlet- és a jelentésazonosító helyes-e a beállításokban.
+        embed_token_error_title: Nem lehet beágyazási token létrehozni.
+      settings:
+        capacity_id: Kapacitás azonosítója
+        details: Részletek
+        refresh: Frissít
+        workspace_id: Munkaterület azonosítója
+      tabs:
+        accesssheet: Hozzáférési lap
+        accesssheet_setting: Hozzáférési lap beállításai
+        dashboard: Irányítópult
+        settings: Beállítások
+    dashboard_form:
+      fields:
+        dataset_id: Adatkészlet azonosítója
+        enabled: Engedélyezve
+        image: Kép
+        project_path: Projekt elérési útja
+        refresh_interval: Frissítési időköz (perc)
+        report_id: Jelentés azonosítója
+        visual_header_visibility: Vizuális fejléc láthatósága
+      image_upload_failed: A képfeltöltés sikertelen.
+      none: Egyik sem
+      refresh_success: Az adatkészlet frissítése sikeresen ütemezve.
+      visual_header_visibility_options:
+        hide_all: Az összes elrejtése
+        keep_original: Eredeti megőrzése
+        show_all: Összes megjelenítése
+    data_exports_modal:
+      title: Dátumtartomány kiválasztása
+    data_reports:
+      columns:
+        created_at: Létrehozva
+        created_by: 'Készítette:'
+        last_updated_by: 'Utoljára frissítette:'
+        name: Név
+        owner: Tulajdonos
+        password: Jelszó
+        status: Állapot
+        udpated_at: Utolsó frissítés dátuma
+      configuration: Konfiguráció
+      errors:
+        factor_not_found: nem található meg az értékelés körében
+        inclusion: 'érvénytelen típus, érvényes típusok: %{values}'
+        not_found: nem található
+        not_owned: nem az ügyfél tulajdonában
+      form:
+        name: Adatjelentés
+      messages:
+        runed: Az adatjelentés futtatása sikeresen megtörtént
+      validations:
+        project_and_campaigns_not_allowed: project_ids és campaign_ids nem együtt kell meghatározni
+        project_not_related_to_client: A(z) %{project_id} nem tartozik az ügyfélhez
+        project_or_campaign_required: project_ids vagy campaign_ids szükséges
+        sections_required: szakaszok szükségesek
+    datasheet:
+      threesixty_warning: Innen nem tölthet fel adatlaposzlopokat a 360°-os jelentéshez. A 360-as jelentés esetében az adatlap oszlopai abból a kampányból töltődnek be, amelyhez a jelentés kapcsolódik
+    dates:
+      completed: 'Befejezve:'
+      end: Befejezés dátuma
+      start: Kezdő dátum
+      started: 'Elkezdődött:'
+    development_action_import:
+      errors:
+        blank_field: "%{row} sor: %{field} nem lehet üres"
+        csv_file_required: CSV-fájlnak kell lennie
+        image_download_failed: 'Nem sikerült letölteni a képet a(z) %{url} webhelyről: %{message}'
+        invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
+        invalid_date: A(z) %{date} dátumformátuma érvénytelen.
+        invalid_date_format: "%{row} sor: Érvénytelen dátumformátum a(z) %{field} esetében."
+        invalid_development_action_type: "%{row} sor: Érvénytelen fejlesztési művelettípus: %{value}. Az érvényes fejlesztési művelettípusok a következők: %{valid_development_action_types}."
+        invalid_duration_format: 'Csak numerikus értékek engedélyezettek az időtartamhoz. A(z) %{row} sor: %{value} nem érvényes időtartam.'
+        invalid_image_file: 'Érvénytelen képfájl: %{message}'
+        invalid_image_url: 'Érvénytelen kép URL-formátuma: %{url}'
+        invalid_languages: Érvénytelen elérhető nyelvek %{invalid_languages} a(z) %{row} sorhoz.
+        invalid_learning_style: '%{row} sor: Érvénytelen tanulási stílus "%{value}". Érvényes típusok: %{valid_types}'
+        languages_only_for_courses: Az elérhető nyelvek csak a "Tanfolyam" típusú fejlesztési tevékenységekhez állíthatók be. Kérjük, távolítsa el a(z) %{row} sor elérhető nyelvét, vagy módosítsa a fejlesztési művelet típusát "Tanfolyamra".
+        missing_columns: 'Hiányoznak a kötelező oszlopok: %{fields}'
+        save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
+        skill_not_found: 'A képesség nem található az azonosítóhoz: %{skill_id}'
+    development_action_translations:
+      import:
+        errors:
+          blank_id: "%{row} sor: Az azonosító nem lehet üres"
+          development_action_not_found: Fejlesztési tevékenység nem található
+          invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
+          invalid_field: '%{row} sor: Érvénytelen "%{field}" mező, "Név" vagy "Leírás" mezőnek kell lennie'
+          invalid_file_format: A fájlnak CSV-fájlnak kell lennie
+          invalid_id: "%{row} sor: Az azonosítónak számnak kell lennie"
+          invalid_id_format: '%{row} sor: Az azonosítónak "id#field" formátumúnak kell lennie'
+          missing_columns: 'Hiányzó kötelező oszlopok: %{fields}'
+          save_failed: 'Nem sikerült menteni: %{message}'
+    development_actions:
+      create:
+        successfully: A(z) "%{name}" fejlesztési akció létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) "%{name}" fejlesztési művelet sikeresen törölve lett.
+      development_action_types:
+        course: Tanfolyam
+        default: Alapértelmezett
+      duration:
+        max_length: Nem lehet hosszabb 1 évnél
+        min_length: Nem lehet kevesebb, mint 1 perc
+      edit:
+        header: Fejlesztési tevékenység szerkesztése
+      export:
+        details: Fájl részletei
+        failure_msg: Hiba a fordítások exportálása során
+        success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása. Kérjük, ellenőrizze az állapotot az értesítésekben.
+        title: Exportál
+        translation_details: Részletek
+      export_actions:
+        development_action_translations_title: Fejlesztési Tevékenységek Fordításainak exportálása
+        development_actions_title: Fejlesztési tevékenységek exportálása
+      export_development_action_translations: Fejlesztési tevékenység fordításai
+      export_development_action_translations_project: Fejlesztési tevékenység fordításai projekt alapján
+      export_development_actions: Fejlesztési tevékenységek
+      export_development_actions_project: Projektalapú fejlesztési tevékenységek
+      export_global_development_actions: Globális fejlesztési tevékenységek
+      export_global_development_actions_translations: Globális fejlesztési tevékenység fordításai
+      form:
+        available_languages: Elérhető nyelvek
+        client_placeholder: Ügyfél kiválasztása
+        course_image: Tanfolyam képe
+        course_link: Tanfolyam linkje
+        description: Leírás
+        development_action_type: Fejlesztési művelet típusa
+        duration: Időtartam
+        end_date: Befejezés dátuma
+        learning_style: Tanulási stílus
+        name: Név
+        project_placeholder: Válasszon ki egy projektet
+        skills: Készségek
+        skills_placeholder: Készségek kiválasztása
+        start_date: Kezdő dátum
+        title: Fejlesztési tevékenység
+        upload: Feltölt
+      global: Globális fejlesztési tevékenység?
+      heading: Fejlesztési tevékenységek
+      import:
+        download_example_csv: csv-példa letöltése
+        failure_msg: Hiba a fájl importálása közben.
+        info_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      import_action:
+        development_actions_title: Fejlesztési tevékenységek importálása
+        development_actions_translations_title: Fejlesztési tevékenységek fordításainak importálása
+      import_development_actions: Fejlesztési tevékenységek
+      import_development_actions_translations: Fejlesztési tevékenységek fordításai
+      learning_styles:
+        cannot_be_blank: Nem lehet üres
+        invalid: Az on_the_job, structured_learning, learning_from_others egyikének kell lennie
+        learning_from_others: Tanulás másoktól [20]
+        on_the_job: Munkában [70]
+        structured_learning: Strukturált tanulás [10]
+      new:
+        header: Új fejlesztési tevékenység
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni szeretné ezt a fejlesztési tevékenységet?</p>\n"
+            title: "<strong>Fejlesztési tevékenység</strong> törlése?"
+          toggle_status:
+            body: "<p>Biztos vagy benne, hogy %{status} akarod ezt a fejlesztési akciót?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      toggle_status:
+        successfully: A fejlesztési tevékenység frissítése sikeresen megtörtént.
+      update:
+        successfully: A(z) "%{name}" fejlesztési tevékenység frissítése sikeresen megtörtént.
+    dimensions:
+      copy_scheduled:
+        successfully: A(z) %{name} dimenzióhoz ütemezett másolás
+      create:
+        successfully: A(z) %{name} dimenzió létrehozása sikeresen megtörtént
+      destroy:
+        successfully: A(z) %{name} dimenzió törlése sikeresen megtörtént.
+      edit:
+        header: Dimenziónév szerkesztése
+      export_json:
+        successfully: A(z) %{name} dimenzióhoz ütemezett JSON exportálása.
+      export_translations_scheduled:
+        successfully: A(z) %{name} dimenzióhoz ütemezett fordítások exportálása.
+      form:
+        enable_innovation_styles: Innovációs stílusok engedélyezése
+        enable_occupations: Foglalkozások engedélyezése
+      import_factors:
+        import: Importál
+        sample_file: Minta fájl
+        successfully: A(z) %{name} dimenzióhoz ütemezett tényezők importálása feladat.
+        title: Importálási tényezők
+      import_modal:
+        cancel: Mégse
+        continue: Folytatás
+        import: Importálás
+        import_dimension: Dimenzió importálása
+      import_translations:
+        error: Hiba történt a(z) %{name} dimenzió fordításainak importálásakor.
+        successfully: A(z) %{name} dimenzióhoz ütemezett fordítások importálása.
+      import_translations_scheduled:
+        error: Hiba
+      index:
+        create_dimension: Dimenzió létrehozása
+        import_dimension: Dimenzió importálása
+        new: Hozzáad
+        owner: Tulajdonos
+        title: Dimenzió
+      list:
+        active: Aktív
+        created_at: Létrehozás dátuma
+        id: Azonosító
+        name: Név
+        updated_at: Módosítás dátuma
+      new:
+        header: Új dimenzió
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarod ezt a dimenziót?</p>\n"
+            title: "<strong>Dimenzió</strong> törlése?"
+          toggle_status:
+            body: "<p>Biztos vagy benne, hogy %{status} akarod ezt a dimenziót?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Másolás
+          deleting: Törlés
+        tooltips:
+          copy: Dimenzió másolása
+          delete: Dimenzió törlése
+          edit: Dimenziónév szerkesztése
+          export_json: JSON exportálása más platformra történő importáláshoz
+      sidebar:
+        copy: Dimenzió másolása
+        destroy: Dimenzió törlése
+        edit: Dimenziónév szerkesztése
+        title: A dimenzió beállításai
+        view: Dimenzió megtekintése
+      toggle_status:
+        successfully: A dimenzió frissítése sikeresen megtörtént.
+      translations:
+        export: Összes exportálása
+        header: Tényezők fordításai
+        import: Importál
+      update:
+        successfully: A(z) %{name} dimenzió frissítése sikeresen megtörtént
+    disable: Letilt
+    document_titles:
+      project_assessors: Értékelők | %{project}
+      project_participants: Résztvevők | %{project}
+    enable: Engedélyez
+    errors:
+      csv_file_required: A fájlnak CSV-fájlnak kell lennie
+      error_msg: Valami elromlott. Kérjük, frissítse az oldalt, és ha a probléma továbbra is fennáll, forduljon az adminisztrátorhoz
+      invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
+      invalid_url: 'Érvénytelen URL: %{message}'
+      invalid_url_format: Érvénytelen URL-formátum
+      missing_columns: 'Hiányzó kötelező oszlopok: %{fields}'
+    errror_msg: Hibaüzenet
+    factors:
+      copy:
+        error: A(z) %{name} tényező nem lett átmásolva
+        successfully: A(z) '%{name}' tényező másolása sikeresen megtörtént.
+      create:
+        successfully: A(z) %{name} tényező létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) "%{name}" tényező törlése sikeresen megtörtént.
+      edit:
+        header: Tényező nevének szerkesztése
+      form:
+        components:
+          ExternalList:
+            add: Hozzáad
+            table:
+              actions: Műveletek
+              jsonpath: JSON elérési út
+              type: Típus
+              types:
+                norm_score: Átlaghoz viszonyított pontszám
+                percentage: Százalék
+                percentile: Percentilis pontszám
+                score: Pontszám
+                zscore: Z pontszám
+            title: JSON-elérési utak pontszámokhoz
+        scoring_strategies:
+          custom_formula: Szokásos képlet
+          external_score: Külső pontszám
+          questions: Kérdések (átlagos)
+          questions_percentage: Kérdések (SUM / MAX összesen)
+          questions_sum: Kérdések (SUM)
+          sub_factor_questions: Egyéb tényezők kérdései (átlagos)
+          sub_factor_questions_sum: Egyéb tényezők kérdései (SUM)
+          sub_factors_average: A tényezők súlyozott átlaga
+          sub_factors_conditional_average: A tényezők feltételes súlyozott átlaga
+          sub_factors_sum: A tényezők súlyozott összege
+        scoring_strategies_tip: "<strong>Kérdések (átlagos):</strong> Ez olyan, mint a jelenlegi pontozási módszer, amikor egy tényezőhöz kapcsolódó kérdések vannak.<br /> <br /><strong>Kérdések (SUM):</strong> Ez olyan, mint a Kérdések (átlag), de a SUM függvényt használja<br /> <br /><strong>Egyéb tényezők kérdései (átlag):</strong> Ez olyan, mint a jelenlegi pontozási módszer, amikor egy tényezőnek vannak altényezői, csak a változás a súlyozás hozzáadása.<br /> <br /><strong>Egyéb tényezők kérdései (SUM):</strong> Ez olyan, mint az Egyéb tényezők (átlag), de a SUM függvényt használja<br /> <br />A <strong>tényezők súlyozott összege:</strong> Itt a kiválasztott egyéb tényezők pontszámait megszorozzuk a súlyukkal."
+        scoring_strategy: Pontozási stratégia
+        use_sub_factor_norm_score: Használja a Tényezők normapontszámát
+      index:
+        icon: Ikon
+        new: Hozzáad
+        scoring_strategies:
+          custom_formula: Szokásos képlet
+          external_score: Külső pontszám
+          questions: Kérdések (átlagos)
+          questions_percentage: Kérdések (SUM / MAX összesen)
+          questions_sum: Kérdések (SUM)
+          sub_factor_questions: Egyéb tényezők kérdései (átlagos)
+          sub_factor_questions_sum: Egyéb tényezők kérdései (SUM)
+          sub_factors_average: A tényezők súlyozott átlaga
+          sub_factors_conditional_average: A tényezők feltételes súlyozott átlaga
+          sub_factors_sum: A tényezők súlyozott összege
+        scoring_strategy: Pontozási stratégia
+        sub_factors: Altényezők
+        title: Tényezők
+      list:
+        active: Aktív
+        created_at: Létrehozás dátuma
+        id: Azonosító
+        name: Név
+        updated_at: Módosítás dátuma
+      new:
+        header: Új tényező
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarja ezt a tényezőt?</p>\n"
+            title: Törlési <strong>tényező</strong> ?
+          toggle_status:
+            body: "<p>Biztos vagy benne, hogy %{status} akarod ezt a faktort?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Másolás
+          deleting: Törlés
+        scoring_strategies:
+          custom_formula: Egyéni képlet
+          external_score: Külső partitúra
+          questions: Kérdések (átlagos)
+          questions_percentage: Kérdések (SUM / MAX összesen)
+          questions_sum: Kérdések (SUM)
+          sub_factor_questions: Egyéb tényezők kérdései (átlagos)
+          sub_factor_questions_sum: Egyéb tényezők kérdései (SUM)
+          sub_factors_average: A tényezők súlyozott átlaga
+          sub_factors_conditional_average: A tényezők feltételes súlyozott átlaga
+          sub_factors_sum: A tényezők súlyozott összege
+        tooltips:
+          copy: Másolási tényező
+          delete: Tényező törlése
+          edit: Szerkesztési tényező
+      sidebar:
+        copy: Másolási tényező
+        destroy: Tényező törlése
+        edit: Szerkesztési tényező
+        title: A tényezőkhöz kapcsolódó lehetőségek
+      toggle_status:
+        successfully: A tényező frissítése sikeresen megtörtént.
+      update:
+        successfully: A(z) %{name} tényező frissítése sikeresen megtörtént
+    genders:
+      female: Nő
+      male: Férfi
+      not_set: Nincs beállítva
+    grants:
+      common:
+        view: Nézet
+      dashboard:
+        name: Irányítópult
+        permissions:
+          accesssheet_manage: Hozzáférési lap kezelése
+          accesssheet_settings: Hozzáférési lap beállításai
+          accesssheet_view: Hozzáférési lap nézet
+    hogan:
+      errors:
+        new_assessment_response_not_allowed:
+          detailed_error_message: A(z) %{assessment_name} hogan értékeléshez nem adható hozzá új válasz, mivel ezt az értékelést a(z) %{email} felhasználó már hozzárendelte és elindította. Létrehozhat egy új hogan-fiókot ehhez a felhasználóhoz, és ez lehetővé teszi a felhasználó számára, hogy újra elvégezze az értékelést.
+          short_error_message: A(z) %{assessment_name} hogan értékeléshez nem adható hozzá új válasz, mivel ezt az értékelést a(z) %{email} felhasználó már hozzárendelte és elindította
+    idp:
+      actions:
+        remove_confirm: Írja be az alábbi sablon nevét a szövegmezőbe a sablon eltávolításához
+        success: A(z) %{idpName} sikeresen el lett távolítva.
+      add_idp_template: IDP-sablon hozzáadása
+      all: Összes
+      appearance: Megjelenés
+      appearance_hint: A megjelenés módosításához először mentse el az IDP-sablont a beállítások engedélyezéséhez.
+      background_image: Háttérkép
+      behavioral_skills: Viselkedési készségek
+      client_skills: Ügyfélkészségek
+      edit_template: IDP sablon szerkesztése
+      enter_template_description: Leírás
+      enter_template_description_error: A sablon leírása kötelező.
+      enter_template_name: Név
+      enter_template_name_error: A sablon neve kötelező
+      errors:
+        update: A frissítés nem engedélyezett, mert az IDP-sablon már társítva van egy felhasználói IDP-csomaghoz. A megjelenés változásai mentésre kerültek.
+      fields:
+        assigned_data: Hozzárendelt adatok
+        completion_date: Befejezés dátuma
+        division: Részleg
+        name: Név
+        publish_date: Közzététel dátuma
+        review_date: Felülvizsgálat dátuma
+        role: Jelenlegi szerepe
+      fields_label: Mezők
+      global_skills: Globális készségek
+      idp: IDP
+      idp_template: IDP-sablon hozzáadása
+      intro_message: Bevezető üzenet
+      intro_message_hint: A bevezető üzenet módosításához először mentse el az IDP-sablont a beállítások engedélyezéséhez.
+      intro_message_success: A bevezető üzenet mentése sikeresen megtörtént
+      locales: Helyszínek
+      logo_image: Logó kép
+      logo_type:
+        both: Mercer- és ügyféllogók
+        client_only: Csak az ügyfél logója
+        mercer_only: Csak Mercer-logó
+        none: Logók nélkül
+      logo_type_label: Logó típusa
+      no_reflection_questions_selected: Nincs kiválasztva reflexiós kérdés
+      none: Egyik sem
+      reference_locale: Referenciahelyszín
+      reflection_questions: Reflexiós kérdések
+      reflection_questions_hint: A reflexiós kérdések módosításához először mentse el az IDP-sablont a beállítások engedélyezéséhez.
+      reflection_questions_updated: A reflexiós kérdések frissítése sikeres.
+      remove: Eltávolít
+      select_by_tags: Kiválasztás címkék szerint
+      select_reflection_question: Kezdjen el gépelni a kereséshez és a kérdés kiválasztásához
+      select_skill_gap_report: Valamilyen készség hiányáról szóló jelentés kiválasztása
+      select_specific_skills: Konkrét készségek kiválasztása
+      selected: Kiválasztva
+      self_rating: Önértékelés engedélyezése
+      show_reflections: Reflexiók megjelenítése
+      skill_gap_report: Valamilyen készség hiányáról szóló jelentés kiválasztása
+      skills: Készségek
+      subtitle_text: Felirat szövege
+      tab:
+        development_actions: Fejlesztési tevékenységek
+        reflection_questions: Reflexiós kérdések
+        settings: Beállítások
+        templates: Sablonok
+      technical_skills: Műszaki készségek
+      template_details: Sablon részletei
+      title_text: Cím szövege
+      update_reflection_questions: Reflexiós kérdések frissítése
+    idp_setting:
+      allow_global_skills: Globális készségek engedélyezése
+      manager_approves_idp: A menedzser jóváhagyja az IDP-t
+      manager_can_edit_idp: A menedzser szerkesztheti az IDP-t
+      require_all_development_actions_complete: Az összes fejlesztési művelet befejezésének megkövetelése
+    import: Importálás
+    imports:
+      assessments:
+        results:
+          form:
+            import: Importálás
+      base:
+        form:
+          import: Importálás
+      errors:
+        invalid_format: Érvénytelen fájlformátum
+        norm:
+          dimension_not_found: A(z) %{dimension_name} dimenzió a(z) %{client_name} esetében nem található
+          factor_mismatch: A(z) %{dimension_name} dimenzió nem rendelkezik a(z) %{factor_name} tényezővel
+          not_set_dimension: A dimenzió nevét az első sor második cellájába kell írni
+        result:
+          answer_invalid: "[%{row} sor] A(z) %{question_id} qid-re adott válasz érvénytelen: %{error}"
+          date_errors:
+            both_dates_required: A befejezett állapothoz started_at és completed_at is szükséges
+            completed_at_should_be_after_started_at: A befejezett állapothoz completed_at résznek a  started_at után kell lennie
+            completed_at_should_be_empty: completed_at résznek üresnek kell lennie az in_progress állapothoz
+            dates_not_in_future: A dátumok nem lehetnek jövőbeniek
+            dates_should_be_empty: A dátumoknak üresnek kell lenniük not_started állapothoz
+            started_at_required: A in_progress állapothoz érvényes started_at szükséges
+          error: "[%{row} sor] %{error}"
+          invalid_assign: "[%{row} sor] Nem található bejegyzés a megadott eredményazonosítóhoz. Ha új eredményt szeretne létrehozni, kérjük, hagyja üresen az eredményazonosító oszlopot"
+          invalid_date: "[%{row} sor] %{error}"
+          question_invalid: "[%{row} sor] A(z) %{question_id} kérdés érvénytelen"
+          user:
+            record_not_found: Nem található a(z) %{email} e-mail címmel rendelkező meglévő felhasználó.
+          user_assessment:
+            record_not_found: Nem található a felhasználóhoz %{assessment_id} azonosítóval rendelkező értékelési bejegyzés.
+        translation:
+          error: "[Fordítás: %{id}] %{error}"
+          invalid_format: Érvénytelen fájlformátum
+        unknown_type: 'Ismeretlen fájltípus: %{filename}'
+      form:
+        description: Az Exportálás funkcióban kinyerhet egy sablont, amely az importáláshoz használható.
+        import: Importálás
+      hris:
+        form:
+          import: Importálás
+      new:
+        header: Importálás
+      users:
+        existing_users_whose_password_not_changed_modal_dialog:
+          header: Azon felhasználók listája, akiknek a jelszava nem változik
+        form:
+          description: Az Exportálás funkcióban kinyerhet egy sablont, amely az importáláshoz használható.
+          import: Importál
+    imports_assessments_result_imports:
+      create:
+        successfully: A nyers eredmények adatainak importálása sikeresen megtörtént
+      modal:
+        header:
+          raw: Nyers eredmények adatainak importálása
+          scoring: Pontozási eredmények adatainak importálása
+      new:
+        header: Új
+    imports_hris_imports:
+      create:
+        successfully: HRIS-adatok importálása sikeresen megtörtént
+      new:
+        header: HRIS-adatok importálása
+    imports_user_imports:
+      create:
+        successfully: A felhasználók importálása sikeresen megtörtént
+      new:
+        header: Felhasználók importálása
+    individual_invite:
+      tabs:
+        assessment_center: Értékelési Központ
+        subjects: Témák
+    innovation_styles:
+      create:
+        successfully: A(z) %{name} innovációs stílus létrehozása sikeres.
+      destroy:
+        successfully: A(z) %{name} innovációs stílusa sikeresen törölve lett.
+      edit:
+        header: Innovációs stílus szerkesztése
+      form:
+        no_icon: Nincs ikon
+      index:
+        new: Hozzáad
+        title: Innovációs stílusok
+      list:
+        created_at: Létrehozás dátuma
+        id: Azonosító
+        name: Név
+        position: Pozíció
+        updated_at: Módosítás dátuma
+      new:
+        header: Új innovációs stílus
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarja ezt az innovációs stílust?</p>\n"
+            title: "<strong>Innovációs stílus</strong> törlése?"
+        tooltips:
+          delete: Innovációs stílus törlése
+          edit: Innovációs stílus szerkesztése
+      sidebar:
+        copy: Innovációs stílus másolása
+        edit: Szerkeszt
+        title: Az innovációs stílus lehetőségei
+      toggle_status:
+        successfully: Az innovációs stílus frissítése sikeresen megtörtént.
+    innovation_styles_factors:
+      create:
+        successfully: A(z) %{name} tényező létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) %{name} tényező leválasztása sikeresen megtörtént.
+      edit:
+        header: Szerkesztési tényező
+      index:
+        new: Hozzáad
+        title: Tényezők
+      list:
+        condition: Feltétel
+        created_at: Létrehozás dátuma
+        id: Azonosító
+        name: Név
+        position: Pozíció
+        updated_at: Módosítás dátuma
+        weight: Súly
+      new:
+        header: Tényezők csatolása
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarja ezt a tényezőt?</p>"
+            title: Törli <strong>tényező</strong> tényezőt ?
+        tooltips:
+          delete: Tényező törlése
+          edit: Szerkesztési tényező
+      sidebar:
+        destroy: Lerombol
+        edit: Szerkeszt
+        title: A tényezők lehetőségei
+      toggle_status:
+        successfully: A tényező frissítése sikeresen megtörtént.
+    integrations:
+      actions:
+        add: Integrációk
+        back: Vissza az integrációkhoz
+        load_mettl_catalog: Mettl értékelési katalógus betöltése
+        load_skillvue_catalog: Skillvue értékelési katalógus betöltése
+      columns:
+        active: Aktív
+        details: Részletek
+        name: Integráció neve
+      details:
+        provider: Szolgáltató neve
+        webhookUrl: Webhook URL-címe
+        webhookUrls: Webhook URL-címek
+      integrations: Integrációk
+      load_mettl_success: A Mettl értékelési feladat sikeresen  a várakozási sorba került
+      load_skillvue_success: A Skillvue értékelési feladat sikeresen a várakozási sorba került
+      modal:
+        hogan:
+          provider: Szolgáltató
+          providers:
+            mercer: Mercer
+            phoenix: Phoenix
+        iiht:
+          password: Jelszó
+          tenancy_name: Bérleti jog elnevezése
+          tenant_id: Bérlő azonosítója
+          user: Felhasználó
+        mettl:
+          apiBaseUrl: API-végpont
+          apiBaseUrlRequired: API-végpontra van szükség.
+          privateKey: Privát kulcs
+          privateKeyRequired: Privát kulcs szükséges.
+          publicKey: Nyilvános kulcs
+          publicKeyRequired: Nyilvános kulcs szükséges.
+          servers:
+            mettl_eu: Európa
+            mettl_india: India
+        skillvue:
+          apiKey: API-kulcs
+          apiKeyRequired: API-kulcs szükséges
+      names:
+        hogan: HOGAN
+        iiht: IIHT
+        mettl: METTL
+        skillvue: Skillvue
+      validations:
+        iiht:
+          tenancy_name_present: A bérleti jog elnevezése már jelen van egy másik projektben
+          tenant_id_present: A bérlőazonosító már jelen van egy másik projektben
+        mettl:
+          public_key_present: A nyilvános kulcs már jelen van egy másik projektben
+        skillvue:
+          api_key_present: Az API-kulcs már jelen van egy másik projektben
+      view_all_schedules: Az összes Mettl-menetrend megtekintése
+    invited_subject:
+      add_btn: Tárgy hozzáadása
+      assessment_center: 'Értékelő központ:'
+      booked_at: 'Foglalás ideje:'
+      column:
+        participant: Résztvevő
+      remove_confirm:
+        content: Biztos vagy benne, hogy el akarod távolítani a tárgyat a(z) "%{subjectEmail}" e-mailben?
+        success: A(z) "%{subjectEmail}" e-mail tárgya sikeresen el lett távolítva.
+        title: Tárgy eltávolítása
+      statuses:
+        accepted: Elfogadott
+        cancelled: Törölt
+        pending: Függő
+        requested_cancellation: Kért lemondás
+        requested_cancellation_rejected: Lemondás elutasítva
+        requested_rescheduling: Kért átütemezés
+        requested_rescheduling_rejected: Átütemezés elutasítva
+        rescheduled: Átütemezve
+      subject: Tárgy
+    job_role:
+      column:
+        job_group: Munkacsoport
+      export:
+        failure_msg: Hiba a fordítások exportálása során
+        success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása.
+      export_action:
+        translations: A Munkakörök fordításának exportálása
+      form:
+        code: Kód
+        description: Leírás
+        job_group: Munkacsoport
+        name: Név
+        title: Munkakör
+      global: Globális munkakör?
+      import:
+        download_example_csv: csv-példa letöltése
+        success_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      import_action:
+        translations: A munkakörök fordításának importálása
+      translations: Munkakörök fordítása
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Elvárt tudásszint
+        job_role: Munkakör
+        skill: Készség
+      form:
+        expected_proficiency_level: Elvárt tudásszint
+        job_role: Munkakör
+        skill: Készség
+        title: Készségek feltérképezése
+      global: Globális készségek feltérképezése?
+      import:
+        taxonomy: Taxonómia
+    job_roles:
+      export:
+        translations:
+          details: Részletek
+    libraries:
+      create:
+        successfully: A(z) %{name} elem létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) %{name} elem törlése sikeresen megtörtént.
+      edit:
+        header: Szerkeszt
+      index:
+        new_folder: Új mappa
+        owner: Tulajdonos
+        title: Médiatár
+        upload: Feltölt
+      list:
+        created_at: Létrehozás dátuma
+        name: Név
+        new_folder: Új mappa
+        root: Médiatár
+        type: Típus
+        updated_at: Módosítás dátuma
+        upload: Új fájl feltöltése
+      new:
+        header: Fájlok feltöltése
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarod a(z) %{name} elemet?</p>\n"
+            title: Töröld <strong>a(z) %{name}</strong> fájlt?
+        tooltips:
+          delete: Töröl
+          edit: Szerkeszt
+      update:
+        successfully: A(z) %{name} elem frissítése sikeresen megtörtént.
+    memberships:
+      admin_chosen:
+        successfully: A rendszergazdai felhasználók frissítése sikeresen megtörtént.
+      create:
+        successfully: A(z) %{name} felhasználó létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) %{name} felhasználó törlése sikeresen megtörtént.
+      new:
+        header: Új felhasználó
+      reset_password:
+        successfully: A(z) %{name} felhasználó néhány percen belül kap egy e-mailt a jelszó visszaállítására vonatkozó utasításokkal.
+      spoof:
+        successfully: Sikeresen bejelentkeztél a(z) %{name} néven
+      toggle_membership_status:
+        successfully: A(z) %{name} tagsága sikeresen frissült.
+      toggle_status:
+        successfully: A(z) %{name} felhasználó frissítése sikeresen megtörtént.
+      update:
+        successfully: A(z) %{name} felhasználó frissítése sikeresen megtörtént.
+    meta_title: Adminisztrációs panel
+    navigation:
+      ai_assistants: AI asszisztensek
+      assessments: Értékelések
+      assessments_reports: Értékelések és jelentések
+      assessor_dashboard: Értékelő irányítópult
+      assessor_workshops: Értékelési központ
+      audit_logs: Auditnaplók
+      availability: Elérhetőség
+      back_to_main: Főmenü
+      campaign_templates: Kampány sablonok
+      change_password: Jelszó módosítása
+      client_admins: Ügyféladminisztrátorok
+      clients: Ügyfél bérleti  jogok
+      communication_center: Kommunikációs központ
+      dashboard: Irányítópult
+      data_reports: Adatjelentések
+      development_actions: Fejlesztési tevékenységek
+      dimensions: Dimenziók
+      factors: Tényezők
+      innovation_styles: Innovációs stílusok
+      libraries: Médiatár
+      norms: Normák
+      occupations: Foglalkozások
+      options: Beállítások
+      participants: Résztvevők
+      profile: Profil
+      profile_details: Részletek
+      project_admins: Projektadminisztrátorok
+      question_center: Kérdésközpont
+      registration_codes: Regisztrációs kódok
+      report_approvals: Jelentés jóváhagyása
+      reports: Jelentések
+      scheduling: Ütemezés
+      show_submenu: Almenü megjelenítése
+      skills_taxonomy: Készségek taxonómiája
+      user_profile_details: Profil részletei
+      user_report_events: Felhasználói jelentés eseményei
+      users: Felhasználók
+    no_data_found: Nem található adat
+    norms:
+      copy:
+        error: 'A #%{id} normát nem másolták.'
+        successfully: A(z) "%{name}" norma másolása sikeresen megtörtént.
+      create:
+        successfully: A "%{name}" norma létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) "%{name}" norma sikeresen törölve lett.
+      edit:
+        header: Norma átnevezése
+      editor:
+        factors: Tényezők
+        inplace_title: Adja meg az értéket
+        title: Norm szerkesztő
+      export:
+        success_msg: A normaexportálási feladat ütemezése sikeres. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      import:
+        download_example_csv: csv-példa letöltése
+        select_file_validation: Kérjük, válasszon ki egy tulajdonost és egy fájlt a beküldés előtt.
+        success_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
+        title: Normák importálása
+      index:
+        import: Importál
+        new: Hozzáad
+        owner: Tulajdonos
+        title: Normák
+      list:
+        active: Aktív
+        created_at: Létrehozás dátuma
+        dimension_id: Dimenzió azonosítója
+        id: Azonosító
+        name: Név
+        updated_at: Módosítás dátuma
+        updated_by: Frissítette
+      new:
+        header: Új norma
+      norms: Normák
+      remove:
+        confirm: A megerősítéshez írja be az alább megadott norma nevét a szövegmezőbe
+        warning: Biztosan törölni akarja a "%{name}" normát?
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarja ezt a normát?</p>\n"
+            title: "<strong>Norm</strong> törlése?"
+          toggle_status:
+            body: "<p>Biztos benne, hogy %{status} akarja ezt a normát?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Másolás
+          deleting: Törlés
+        tooltips:
+          copy: Norma másolása
+          delete: Norma törlése
+          edit: Norma átnevezése
+      score_types:
+        five_scale: Öt skála
+        norm_type: Norma típusa
+        percentage: Százalék
+      sidebar:
+        copy: Norma másolása
+        destroy: Norma törlése
+        edit: Norma átnevezése
+        editor: Normaszerkesztő
+        export: Norma exportálása
+        title: Norma lehetőségei
+      toggle_status:
+        successfully: A norma frissítése sikeresen megtörtént.
+      update:
+        successfully: A(z) %{name} norma frissítése sikeresen megtörtént.
+    notification_bell_icon: Értesítési csengő ikon
+    noty:
+      error_408: Ez a művelet túl sokáig tart. Kérjük, próbálja meg újratölteni az oldalt.
+      error_500: Valami elromlott. Forduljon az adminisztrátorhoz.
+    occupations:
+      create:
+        successfully: A(z) %{name} foglalkozás létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) %{name} foglalkozás sikeresen törölve lett.
+      edit:
+        header: Foglalkozás szerkesztése
+      form:
+        hint:
+          key_career_tracks: '"+" - lista, "*" - félkövér. Példa: + *Biológia* - némi leírás...'
+        no_icon: Nincs ikon
+      index:
+        new: Hozzáad
+        title: Foglalkozások
+      list:
+        created_at: Létrehozás dátuma
+        id: Azonosító
+        name: Név
+        updated_at: Módosítás dátuma
+      new:
+        header: Új foglalkozás
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarja ezt a foglalkozást?</p>\n"
+            title: "<strong>Foglalkozás</strong> törlése?"
+        tooltips:
+          delete: Foglalkozás törlése
+          edit: Foglalkozás szerkesztése
+      sidebar:
+        copy: Foglalkozás másolása
+        edit: Szerkeszt
+        title: Foglalkozási lehetőségek
+      toggle_status:
+        successfully: A foglalkozás frissítése sikeresen megtörtént.
+    occupations_factors:
+      create:
+        successfully: A(z) %{name} tényező létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) %{name} tényező leválasztása sikeresen megtörtént.
+      edit:
+        header: Tényező szerkesztése
+      index:
+        new: Hozzáad
+        title: Tényezők
+      list:
+        condition: Feltétel
+        created_at: Létrehozás dátuma
+        id: Azonosító
+        name: Név
+        position: Pozíció
+        updated_at: Módosítás dátuma
+        weight: Súly
+      new:
+        header: Tényezők csatolása
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarja ezt a tényezőt?</p>"
+            title: " <strong>tényező</strong> törlése ?"
+        tooltips:
+          delete: Tényező törlése
+          edit: Tényező szerkesztése
+      sidebar:
+        destroy: Tényező megsemmisítése
+        edit: Szerkeszt
+        title: A tényezőhöz tartozó lehetőségek
+      toggle_status:
+        successfully: A tényező frissítése sikeresen megtörtént.
+      update:
+        successfully: A(z) %{name} tényező frissítése sikeresen megtörtént.
+    participants:
+      tabs:
+        assessors: Értékelők
+        sms_contacts: SMS-kapcsolatok
+        subjects: Témák
+    piped_text_modal:
+      assessment_id: Értékelési azonosító
+      campaign_id: Kampány azonosítója
+      insight_page_link: Elemzési oldal linkje
+      insight_page_url: Elemzési oldal URL-címe
+      join_link: Csatlakozás link
+      magic_link: Magic link
+      magic_url: Mágikus URL
+      profile_custom_field: Profil egyéni mező
+      report_name: Jelentés neve
+      text: Szöveges üzenet
+      title: Továbbított szöveg hozzáadása
+    proctoring_sessions:
+      columns:
+        comment: Megjegyzés
+        completed_at: 'Befejezve:'
+        conclusion: Következtetés
+        links: Linkek
+        score: Pontszám
+        session_id: Munkamenet azonosítója
+        started_at: Kezdetben
+      links:
+        report: Jelentés
+        review: Áttekintés
+      resource_name: Ellenőrző ülések
+    products:
+      copy:
+        error: Hiba
+      destroy:
+        successfully: Sikeresen
+      toggle_status:
+        successfully: Sikeresen
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: A szintmeghatározásnak meghatározások tömegét kell jelentenie.
+          level_definition_must_match_level: pontosan %{expected} szinteket kell tartalmaznia, de %{actual} meg van adva
+          must_be_unique: Egyedinek kell lennie
+          proficiency_level_exists: Ezzel a készséggel és projekttel már létezik tudásszint
+          proficiency_level_exists_for_all_skills: Valamennyi készséghez tartozik már tudásszint
+          proficiency_level_exists_for_category: Ehhez a kategóriához már létezik tudásszint
+          project_level_all_skills_exists: Már létezik egy "all_skills" tudásszint
+          skill_must_exist: A készségnek jelen kell lennie a proficiency_type "by_skill"
+      export:
+        actions:
+          proficiency: Tudásszint exportálása
+          translations: Tudásszint fordításainak exportálása
+        details: Részletek
+        failure_msg: Hiba a tudásszintekszintek exportálása során
+        success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása
+        translations:
+          details: Tudásszintek fordításai
+      fields:
+        level: Szint
+        level_description: Szint leírása
+        level_name: Szint neve
+        proficiency_translations: Szakértelem fordításai
+        proficiency_type: Szakértelem típusa
+        skill: Készség
+        skill_category: Készség kategória
+        skill_name: Készség neve
+        title: Szakértelem
+      global: Globális szakértelem?
+      import:
+        actions:
+          proficiency: Szakértelem importálása
+          translations: Szakértelem fordításainak importálása
+        errors:
+          all_skills_global_exists: '%{row_number} sor: Már létezik egy globális szintű "all_skills" ProficiencyLevel'
+          all_skills_project_exists: '%{row_number} sor: Már létezik egy projektszintű "all_skills" ProficiencyLevel'
+          by_category_exists: '%{row_number} sor: Ehhez a projekthez és készségkategóriához már létezik egy "by_category" ProficiencyLevel'
+          by_category_missing: '%{row_number} sor: A projektnek és a készségkategóriának jelen kell lennie a "by_category" típushoz'
+          by_skill_exists: '%{row_number} sor: Ehhez a projekthez és készséghez már létezik egy "by_skill" ProficiencyLevel'
+          by_skill_missing: '%{row_number} sor: A projektnek és a készségnek jelen kell lennie a "by_skill" típushoz'
+          invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
+          invalid_json: 'Sor %{line}: Érvénytelen JSON a LevelDefinitionben - %{message}'
+          invalid_json_structure: JSON-objektumnak kell lennie olyan kulcsokkal, mint a "description" és a "summary"
+          invalid_proficiency_type: 'A(z) %{row_number} sor: Érvénytelen vagy hiányzó ProficiencyType'
+          missing_columns: 'Hiányzó kötelező oszlopok: %{fields}'
+          missing_required_fields: "%{line} sor: Hiányzó kötelező mezők (%{fields})"
+          save_failed: "%{line} sor: %{message}"
+          skill_not_found: "%{row_number} sor: Érvénytelen vagy hiányzó készség"
+        job_queued: A tudásszintek importálási feladata várólistára került
+      translations:
+        export:
+          failure_msg: Hiba a fordítások exportálása során
+          success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása.
+        import:
+          errors:
+            invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
+            invalid_locales: Érvénytelen helyszínbeállítás
+            level_not_found: 'A szint nem található az azonosítóhoz: %{level_id}'
+            missing_columns: 'Hiányzó kötelező oszlopok: %{fields}'
+            missing_required_columns: 'Hiányzó kötelező oszlopok: %{columns}'
+            row_id_blank: "%{row} sor: Az azonosító nem lehet üres"
+            save_failed: 'Hiba a(z) %{id} készségazonosító feldolgozásában: %{message}'
+      type:
+        all_skills: Minden készség
+        by_category: Kategória szerint
+        by_skill: Készség szerint
+    profile:
+      change_password: Jelszó módosítása
+      details: Részletek
+      profile: Profil
+    profiles:
+      edit:
+        success: A profil frissítése sikeresen megtörtént.
+        title: Profilszerkesztő
+      update:
+        edit:
+          success: A profil frissítése sikeresen megtörtént.
+    project:
+      tools:
+        workshop_status_export: Workshop állapotának exportálása
+        workshop_status_export_success: A workshop állapotának exportálása sikeresen ütemezésre került.
+    project_participants:
+      cancel: Mégse
+      column_actions: Műveletek
+      column_campaigns: Kampányok
+      column_createdAt: Létrehozva
+      column_created_at: Létrehozva
+      column_email: E-mail
+      column_id: Azonosító
+      column_name: Név
+      delete: Töröl
+      edit: Szerkeszt
+      edit_participant: Résztvevő szerkesztése
+      filter_campaigns: Nincsenek kampányok
+      form_first_name: Keresztnév
+      form_last_name: Vezetéknév
+      reset_password: Jelszó visszaállítása
+      save: Mentés
+      search_user: Felhasználó keresése
+      send_email: E-mail küldése
+    project_tabs:
+      assessments:
+        column:
+          name: Név
+          normalize_factor_scores: Tényezők pontszámainak normalizálása
+          user_result_validity_in_days: Az eredmény érvényessége
+        delete:
+          content: Biztosan törölni akarod a(z) '%{name}' értékelést?
+          success: A(z) "%{name}" értékelés törlése sikeresen megtörtént.
+          title: Értékelés törlése
+        form:
+          assessment_placeholder: Válassza ki az értékelés lehetőséget
+          assessment_required: Értékelés szükséges
+          normalize_factor_scores: Tényezők ponszámainak normalizálása
+          user_result_validity_in_days: Az eredmény érvényessége napokban
+        title: Értékelések
+      design: Tervez
+      general: Általános
+      privacy: Adatvédelem
+      profile: Profil
+      registration: Regisztráció
+      webhooks:
+        actions:
+          delete:
+            key: töröl
+            label: Töröl
+          edit:
+            key: szerkeszt
+            label: Szerkeszt
+          send_test:
+            key: send_test
+            label: Teszt küldése
+        form:
+          acceptable_rate_limit:
+            label: Elfogadható kérések korlátja
+            request_per: kérésenként
+          active:
+            label: Aktív
+            name: aktív
+          auth_type:
+            api_key:
+              label: API-kulcs
+              name: api_key
+              value: api_key_auth
+            api_key_header:
+              format_error: Csak betűk, számok, aláhúzások és kötőjelek engedélyezettek
+              label: API-kulcs fejléc
+              name: apiKeyHeader
+            basic:
+              label: Alapvető
+              value: basic_auth
+            label: Hitelesítés típusa
+            name: auth_type
+            no_auth:
+              label: Egyik sem
+              value: no_auth
+          description:
+            label: Leírás
+            name: leírás
+          include_locales:
+            label: Fordítások belefoglalása
+            name: include_locales
+          password:
+            label: Jelszó
+            name: jelszó
+          topics:
+            label: Események
+            list:
+              assessment_assigned: Hozzárendelt értékelés
+              assessment_completed: Az értékelés befejeződött
+              assessment_started: Megkezdődött az értékelés
+              assessment_timeout: Értékelési időtúllépés
+              campaign_results_available: Elérhető kampányeredmények
+              campaign_user_status: Kampány felhasználói státusza
+              report_available: Jelentés elérhető
+              results_available: Elérhető eredmények
+              scheduling_cancelled: Ütemezés törölve
+              scheduling_invited: Ütemezés meghívva
+              scheduling_rescheduled: Ütemezés átütemezve
+              scheduling_scheduled: Ütemezés ütemezve
+            name: Témák
+          url:
+            label: URL-cím
+            name: URL-cím
+          username:
+            label: Felhasználónév
+            name: felhasználónév
+        remove_webhook:
+          content: Törli a(z) %{description} fájlt?
+          title: Töröl
+        title: Webhookok
+    project_users:
+      cancel: Mégse
+      change_password: Jelszó módosítása
+      column_actions: Műveletek
+      column_campaigns: Kampányok
+      column_created_at: Létrehozva
+      column_email: E-mail
+      column_id: Azonosító
+      column_name: Név
+      confirm_delete: Igen, törlés
+      confirm_send: Igen, küldje el
+      delete: Töröl
+      delete_error: Nem sikerült törölni a(z) '%{name}' értékelőt. Forduljon a rendszergazdához.
+      delete_success: A(z) "%{name}" értékelő sikeresen törölve lett.
+      edit: Szerkeszt
+      edit_assessor: Értékelő szerkesztése
+      filter_campaigns: Kampányok nélkül
+      form_first_name: Keresztnév
+      form_last_name: Vezetéknév
+      modal_delete_content: Biztosan törölni akarja '%{name}' értékelőt?
+      modal_delete_title: Értékelő törlése
+      modal_reset_email_content: Biztos benne, hogy el szeretné küldeni a jelszó-visszaállítási linket a(z) '%{email}' címre?
+      model_reset_email: Az értékelő jelszavának alaphelyzetbe állítása
+      no_edit_permission: Nincs jogosultsága a(z) "%{name}" értékelő szerkesztéséhez
+      reset_mail_error: Nem sikerült elküldeni a jelszó visszaállítására szolgáló linket a(z) %{email}' címre. Forduljon a rendszergazdához.
+      reset_mail_success: A jelszó visszaállítása link sikeresen elküldve a(z) "%{email}" címre
+      save: Mentés
+      search_accessor: Értékelők keresése
+      send_email: E-mail küldése
+    projects:
+      addProject: Projekt hozzáadása
+      assessment_settings:
+        search: Keresés értékelése
+      clients:
+        confirmations:
+          detach_from_project:
+            body: Testület
+            title: Cím
+      columns:
+        project_number: Projekt száma
+      design_settings:
+        alt_text_invalid: Az alt-szöveg nem támogatott karaktereket tartalmaz.
+        alt_text_logo: Logó alt-szöveg
+        alt_text_logo_required: alt-text logó szükséges
+        alt_text_long: Túllépi a 100 karakteres maximális korlátot.
+        background_color: Háttérszín
+        background_label: Háttér
+        background_overlay_label: Háttér kitöltés
+        background_size: Háttér mérete
+        background_size_contain: Tartalmaz
+        background_size_cover: Borítás
+        bg_upload: Feltölt
+        client_logo_label: Ügyféllogó
+        contrast_ratio_warning: 'Megjegyzés: Ennek az elsődleges színnek a használata megsértheti a szöveg olvashatóságára vonatkozó kontrasztarány-követelményt.'
+        contrast_ratio_warning_lighter_color: 'Megjegyzés: Ennek a %{name} színnek a használata megsértheti a szöveg olvashatóságára vonatkozó kontrasztarány-követelményt. Próbáljon meg sötétebb színt használni.'
+        error_color: Hibás szín
+        info_color: Info Szín
+        logo_upload: Feltölt
+        position_auto: Auto
+        position_label: Bejelentkezési mező pozíciója
+        position_left: Balra
+        position_right: Jobbra
+        primary_color: Elsődleges szín
+        reset: Visszaállít
+        sec_logo_label: Másodlagos logó
+        sec_logo_upload: Feltölt
+        secondary_logo_alt_text: Másodlagos logó alt-szöveg
+        secondary_logo_alt_text_required: Másodlagos alt-szöveg logó szükséges
+        success_color: Siker színe
+        success_update: A tervezési beállítások mentése sikeresen megtörtént
+        warning_color: Figyelmeztetés színe
+      general_settings:
+        live_chat: Élő csevegés engedélyezése
+        locales_label: Helyszínek
+        name_label: Név
+        project_number_label: Projekt száma
+        save_changes: Változtatások mentése
+        sub_domain_label: Aldomain
+      mettl_schedule_records:
+        actions:
+          edit: Szerkeszt
+        add: Ütemezés hozzáadása
+        assessment_id: Értékelési azonosító
+        assessment_name: Értékelés neve
+        candidate_authorization: Jelölt engedélyezése
+        candidate_screen_capture: Engedélyezze a jelölt képernyőfelvételét
+        count: Böngészési tűréshatár
+        created_at: Létrehozva
+        schedule_id: Ütemezés azonosítója
+        schedule_name: Ütemezés neve
+        search: Keresés
+        secure_browser_enabled: Biztonságos böngésző engedélyezése
+        settings: Beállítások
+        show_remaining_counts: Hátralévő szám megjelenítésének engedélyezése
+        visual_proctoring_enabled: Vizuális felügyelet engedélyezése
+        web_proctoring_enabled: Webes felügyelet engedélyezése
+      privacy_settings:
+        disable_dp: Ne engedélyezze a további adatfeldolgozást
+        dp_consent: Adatfeldolgozási hozzájárulás engedélyezése
+        dp_consent_custom: Adatfeldolgozási hozzájárulás testreszabása
+        dp_consent_version: Szabályzat verziója
+        errors:
+          policy_version_format: Csak egész számok engedélyezettek
+        mask_identity_for_examus: Adatok maszkolása az Examus Proctoring számára
+        mask_identity_for_hogan: Adatok maszkolása a Hogan számára
+        mask_identity_for_iiht: Adatok maszkolása az IIHT számára
+        mask_identity_for_mettl: Adatok maszkolása a METTL számára
+        mask_identity_for_pearson: Adatok maszkolása a Pearson számára
+        mask_identity_for_saville: Adatok maszkolása a Saville számára
+        mask_identity_for_skillvue: Adatok maszkolása a Skillvue számára
+        privacy_link: Adatvédelmi hivatkozás engedélyezése
+        privacy_link_label: Adatvédelmi hivatkozás
+        privacy_link_placeholder: Adja meg az adatvédelmi hivatkozást
+        privacy_text: Adatvédelmi szöveg
+        privacy_text_placeholder: Adja meg az adatvédelmi szöveget
+      profile_settings:
+        form_fields:
+          enabled: Engedélyezve
+          half_size: Fél méret
+          locked: Zárolt
+          name: Név
+          remove: Eltávolít
+          required: Szükséges
+          sort: Fajta
+        month: Hónap
+        never: Soha
+        update_in: Profilfrissítés értesítése a következőben
+        year: Év
+      registration_settings:
+        hide_signup: Regisztrációs lehetőség elrejtése
+        require_mobile_number: Mobilszám megkövetelése
+      users:
+        confirmations:
+          detach_from_project:
+            body: Testület
+            title: Cím
+      webhook_settings:
+        add: Webhook hozzáadása
+        column_active: Aktív
+        column_created_date: Létrehozás dátuma
+        column_description: Leírás
+        column_manage: Kezel
+        column_updated_date: Módosítás dátuma
+        column_url: URL-cím
+        search: Keresés a Webhoook oldalon
+    questions:
+      copy:
+        successfully: A(z) "%{name}" kérdés másolása sikeresen megtörtént.
+      create:
+        successfully: A(z) "%{name}" kérdés létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) "%{name}" kérdés törlése sikeresen megtörtént.
+      edit:
+        header: Kérdés szerkesztése
+      index:
+        owner: Tulajdonos
+      new:
+        header: Új kérdés
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni akarja ezt a kérdést?</p>\n"
+            title: "<strong>Kérdés</strong> törlése?"
+          toggle_status:
+            body: "<p>Biztos benne, hogy %{status} fel akarja tenni ezt a kérdést?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      toggle_status:
+        successfully: Sikeres frissítés.
+    reflection_questions:
+      delete_confirmation: Biztosan törölni akarja ezt a reflexiós kérdést?
+      export:
+        action: Reflexiós kérdések exportálása
+        details: Fájl részletei
+        failure_msg: Hiba a fájl exportálása közben.
+        success_msg: Folyamatban lévő reflexiós kérdések exportálása. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      form:
+        mandatory: Kötelező
+        max_words: Maximális szószám
+        min_words: Minimális szószám
+        question: Kérdés
+        title: Reflexiós kérdés
+      import:
+        action: Reflexiós kérdések importálása
+        errors:
+          invalid_max_words_column_format: 'Érvénytelen maximális szószám oszlopérték-formátum: %{row}'
+          invalid_min_words_column_format: Érvénytelen minimális szószám oszlopérték-formátum %{row}
+          invalid_required_column_format: 'Érvénytelen kötelező oszlopérték-formátum: %{row}'
+          missing_eng_question: Hiányzó angol kérdés tartalma %{row}
+          save_failed: A(z) %{message} mentése sikertelen
+        failure_msg: Hiba a fájl importálása közben.
+        success_msg: Reflexiós kérdések importálása folyamatban. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      question: Kérdés
+    report_approval:
+      bulk_approve_success: "%{sent_for_approval} jóváhagyásra küldve. %{approved} jelentések jóváhagyva. %{ignored} jelentések manuális jóváhagyást igényelnek a minőségellenőrző módosítások/megjegyzések miatt."
+      columns:
+        actions: Műveletek
+        approval_status: Jóváhagyási állapot
+        approved_by: Jóváhagyta
+        campaign_name: Kampány neve
+        qc_by: A minőségellenőrzést végezte
+        report_name: Jelentés neve
+        user_email: Felhasználói e-mail cím
+        user_name: Felhasználónév
+      dashboard: Irányítópult
+      download: Letöltés
+      report_approvals: Jelentés jóváhagyása
+      review: Ellenőrzés
+      saving_filters:
+        actions:
+          clear_filters: Szűrők eltávolítása
+          delete_filter: Szűrő törlése
+          save_filter: Mentés
+          save_new_filter: 'Szűrő mentése másként '
+          saved_filters: Mentett szűrők
+        delete_saved_filters: Szűrő törölve
+        edit_filter_name: Szűrő neve mentve
+        error_while_deleting: Hiba törlés közben
+        error_while_editing: Hiba szerkesztés közben
+        error_while_fetching: Valami elromlott, próbálja újra
+        error_while_saving: Hiba a szűrő mentése közben
+        filter_updated: Szűrő frissítve
+        no_saved_filters: Nincsenek mentett szűrők
+        save_filter: Szűrő mentve
+        set_favorite: A szűrő kedvencként beállítva
+    report_builder:
+      campaign_factors:
+        add_field: Mező hozzáadása
+        code: Kód
+        code_constraint: A kódnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásjeleket tartalmazhat
+        delete: Töröl
+        import_factors: Import tényezők
+        invalid_factor_params: Érvénytelen a kampánytényezők paraméterformátuma
+        name: Név
+        no_boundary_space: A név nem kezdődhet vagy végződhet szóközzel
+        too_many_factors: Nem hozhat létre %{count} számnál több kampánytényezőt
+        tools: Eszközök
+        type: Típus
+      pagination:
+        edit_frame: Lapszámozási keret szerkesztése
+        hints:
+          frame_settings_off: Letiltott oldalszámozási keret beállításai, a modul a szokásos módon működik
+          frame_settings_on: Engedélyezze az oldalszámozási keret beállításait a modul következő oldalméreteinek beállításához (a keret narancssárga színnel van kiemelve)
+          pagination_disabled: A modul oldalszámozása nem érhető el a modulhoz. Oldalanként csak egy modul oldalszámozása engedélyezett
+          pagination_off: A modulok oldalszámozása le van tiltva
+          pagination_on: A modul oldalszámozása engedélyezve van. A tartalom nem fér bele a modul méreteibe, a rendszer beilleszti az extra oldalt/oldalakat
+          repeat_modules: A kiválasztott modulok megismétlődnek a beillesztett exta oldalakon, a modul nevére utalva
+        module_pagination: Modul oldalszámozása
+        repeat_modules: Modulok ismétlése
+    report_families:
+      create:
+        successfully: A(z) %{name} jelentéscsomag létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) %{name} jelentéscsomag törlése sikeresen megtörtént.
+      edit:
+        header: Jelentéscsomag nevének szerkesztése
+      index:
+        add: Hozzáad
+        title: Jelentéscsomagok
+      new:
+        header: Új jelentéscsomag
+      reports:
+        destroy:
+          successfully: A jelentés sikeresen törölve lett a jelentéscsomagból
+        index:
+          add: Új jelentés hozzáadása
+          title: Jelentések a csomagban
+        resource:
+          confirmations:
+            delete:
+              body: "<p>Biztosan törölni szeretné ezt a jelentést a csomagból?</p>\n"
+              title: "<strong>Jelentés</strong> törlése a csomagból?"
+          tooltips:
+            delete: Jelentés törlése a csomagból
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni szeretné ezt a jelentéscsomagot?</p>\n"
+            title: "<strong>Jelentés</strong> törlése?"
+          toggle_status:
+            body: "<p>Biztos vagy benne, hogy %{status} akarod ezt a jelentéscsomagot?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        tooltips:
+          delete: Jelentéscsomag törlése
+          edit: Jelentéscsomag szerkesztése
+      sidebar:
+        destroy: Jelentéscsomag törlése
+        edit: Jelentéscsomag szerkesztése
+        title: A jelentéscsomag lehetőségei
+      update:
+        successfully: A(z) %{name} jelentéscsomag frissítése sikeresen megtörtént.
+    report_review:
+      abort_qc: Minőségellenőrzés megszakítása
+      approve: Jóváhagy
+      approve_changes: Módosítások jóváhagyása
+      edit: Szerkeszt
+      remove_approval: Jóváhagyás eltávolítása
+      request_changes: Módosítások kérése
+      review: Felülvizsgál
+      send_for_approve: Küldés jóváhagyásra
+      statuses:
+        approved: Jóváhagyva
+        change_requested: Kért változtatások
+        not_ready: Nem áll készen
+        pending_qc: Függőben lévő minőségellenőrzés
+        qc_completed: Minőségellenőrzés befejeződött
+        qc_in_progress: Minőségellenőrzés folyamatban
+    reports:
+      bulk_marked_as_done: A köteg készként megjelölve
+      bulk_upload:
+        choose_file: Válassza ki a fájlt
+        no_file_selected: Nincs kiválasztott fájl
+        sample_file: Mintafájl
+        title: Kampánytényezők tömeges feltöltése
+        upload_success: Sikeresen feltöltve
+      copy:
+        copy: másolás
+        copy_report: Jelentés másolása
+        name: Név
+        successfully: A(z) "%{name}" jelentés másolása sikeresen megtörtént.
+      create:
+        successfully: A(z) "%{name}" jelentés létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) "%{name}" jelentés törlése sikeresen megtörtént.
+      edit:
+        header: Jelentés nevének szerkesztése
+      modals:
+        remap_assessment:
+          new_assessment_name: Új értékelési név
+          old_assessment_name: Régi értékelési név
+          success_message: Az értékelés áttervezése be volt ütemezve, kérjük, frissítse egy idő után. Ne szerkessze a jelentést, és ne mentse az új módosításokat, amíg az áttervezés meg nem történik.
+      name: Jelentések
+      new:
+        header: Válassza a Jelentés lehetőséget
+      preview:
+        comments: Megjegyzések
+        hide_resolved: Elrejtés megoldva
+        history: Előzmények
+        info_to_select_module: Szövegmodul kiválasztása megjegyzéshez
+        title: Előnézet
+      regenerate:
+        successfully: A jelentés sikeresen elküldve újrageneráláshoz
+      regenerated: Újragenerálva
+      regenerated_count: Újragenerált jelentések
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni szeretné ezt a jelentést?</p>\n"
+            title: "<strong>Jelentés</strong> törlése?"
+          detach:
+            body: "<p>Biztosan le akarja választani ezt a jelentést?</p>\n"
+            title: Jelentés leválasztása<strong>?</strong>
+          soft_delete:
+            body: "<p>Biztosan törölni szeretné ezt a jelentést?</p>\n"
+            title: Helyreállítható törlési <strong>jelentés?</strong>
+          toggle_status:
+            body: "<p>Biztos vagy benne, hogy %{status} akarod ezt a jelentést?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      restore:
+        successfully: A(z) %{name} jelentés visszaállítása sikeresen megtörtént.
+      soft_delete:
+        successfully: A(z) %{name} jelentés sikeresen áthelyezve a kukába.
+      toggle_archive:
+        successfully: A(z) %{name} értékelés a(z) %{status} sikeres volt.
+      toggle_status:
+        successfully: A jelentés frissítése sikeresen megtörtént.
+      update:
+        successfully: A(z) %{name} jelentés frissítése sikeresen megtörtént.
+    resource:
+      remove_confirm:
+        message: Biztosan el akarja távolítani ezt a forrást?
+        title: Forrás eltávolítása
+    saml_settings:
+      after_signout_url: Kijelentkezés utáni URL-cím
+      cert: Igazolás
+      config_details:
+        acs_url: Assertion Consumer Service URL-címe
+        copied: Másolt %{element}
+        issuer: Szervezet azonosítója/kibocsátó
+        title: Az Idp konfigurálása a következő információkkal
+      email_pipetext: E-mail küldése a Pipetextnek
+      enabled: Engedélyezve
+      enforced: Az SAML kényszerítése
+      entity_id: Szervezet azonosítója/kibocsátó
+      name_identifier_format: Név azonosító
+      name_identifier_formats:
+        email: urn:oasis:nevek:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:nevek:tc:SAML:2.0:nameid-format:persistent
+      saml: SAML
+      saml_setting: SAML beállítás
+      save: Mentési beállítás
+      sso_service_url: SSO-szolgáltatás URL-címe
+      successfully_saved_msg: Az SAML-beállítás mentése sikeresen megtörtént.
+    save: Mentés
+    scheduling:
+      add_activity: Tevékenység hozzáadása
+      add_assessment_center: Értékelési központ hozzáadása
+      add_assessor_form:
+        assessment: Értékelés
+        assessor: Értékelő
+        schedule_time: Ütemezési idő
+      add_subject: Tárgy hozzáadása
+      assessment_center_form:
+        add_more: Adjon hozzá többet
+        allow_late_cancellation_and_scheduling: Késői lemondás és ütemezés engedélyezése
+        assessment_center_group: Értékelési központ csoport
+        assessment_center_group_placeholder: Értékelési központ csoport kiválasztása
+        assessor_ids_label: Értékelők
+        back: Vissza
+        basic_info_panel:
+          description: Kérjük, adja meg az alábbi ütemezési információkat. Több értékelési központ létrehozásához több dátumot is kiválaszthat.
+          title: Alapinformációk
+        cancellation_lead_time_label: A lemondás átfutási ideje
+        copy_hint: Átmásolja a fenti helyek, központvezetők, értékelők és értekezletek & erőforrások konfigurációt a következő értékelési központokba. A másolás után a folytatás előtt további módosításokat végezhet az egyes értékelőközpontokban.
+        copy_to_all: Másolás más értékelőközpontokba
+        create: Létrehoz
+        dates_label: Dátumok
+        duration_label: Időtartam
+        duration_max_error: Nem lehet hosszabb 16 óránál
+        duration_min_error: Nem lehet kevesebb, mint 15 perc
+        duration_placeholder: Pl. 4 óra 30 perc
+        manager_ids_label: Központvezetők
+        meeting_link: Értekezlet linkje
+        meetings_and_resources: Értekezletek & források
+        name_label: Név
+        next: Következő
+        required_error: Szükséges
+        reschedule_duration_max_error: Nem lehet hosszabb 30 napnál
+        reschedule_duration_min_error: Nem lehet kevesebb, mint 1 perc
+        resources_panel:
+          description: Add hozzá a linkeket minden olyan forráshoz, amelyhez szeretnéd, hogy a facilitátorok hozzáférjenek.
+          resource_name_placeholder: Erőforrás neve
+          resource_url_placeholder: Erőforrás link
+          title: Erőforrások
+          validation_error: Adja meg a nevet és az URL-címet, vagy távolítsa el az erőforrást
+        scheduling_lead_time_label: Az ütemezés átfutási ideje
+        seats_label: Ülőhely
+        time_label: Idő
+        timezone_label: Időzóna
+        url_label: URL-cím
+        video_call_type:
+          custom: Szokás
+          internal: Belső
+          none: Egyik sem
+        video_call_type_label: Videohívás hozzáadása
+      attendance_status:
+        column_name: Részvételi státusz
+        dropped_out: Kiszállt
+        late: Késett
+        no_show: Meg nem jelenés
+        no_status: Nincs állapot
+        on_time: Időben
+      attended:
+        attended: Részt vett
+        not_attended: Nem vett részt
+      campaign_participants: A kampány résztvevői
+      columns:
+        activity: Tevékenység
+        assessor: Értékelő
+        assessors: Értékelők
+        attendance: Részvétel
+        attended: Részt vett
+        booked_at: 'Itt foglalt:'
+        campaign_assessment_group: Étrékelési központ csoport
+        campaign_name: Kampány neve
+        duration: Időtartam
+        managers: Vezetők
+        meeting_link: Értekezlet linkje
+        name: Név
+        participants: Résztvevők
+        prework: Előkészítés
+        resource_link: Link
+        resource_name: Név
+        schedule_time: Ütemezési idő
+        scheduling_status: Ütemezési állapot
+        seats: Ülőhely
+        start_time: Dátum és idő
+        subject: Tárgy
+        title: Cím
+      errors:
+        assessor_already_assigned: Az értékeléshez már van hozzárendelt értékelő. Kérjük, válasszon másik értékelést vagy értékelőt.
+        date_required: Kérjük, válasszon egy dátumot
+        invalid_url: Érvénytelen URL-formátum
+        meeting_link_https: Az értekezlet linkjének a "https://" előtaggal kell kezdődnie
+      id: AZONOSÍTÓ
+      info:
+        allowed: Megengedett
+        assessors: Értékelők
+        booked: Lefoglalt helyek
+        campaign_assessment_group: Értékelési központ csoport
+        cancellation_lead_time: Lemondás átfutási ideje
+        cancellation_tooltip: A felhasználó lemondhatja a foglalást %{date}-ig
+        date: Dátum és idő
+        duration: Időtartam
+        join_meeting: Csatlakozzon a szobához
+        late_cancellation_and_scheduling: Késői lemondás és ütemezés
+        link: Találkozó linkje
+        managers: Központ vezetők
+        none: Egyik sem
+        not_allowed: Nem engedélyezett
+        remaining: Fennmaradó helyek
+        scheduling_lead_time: Átfutási idő ütemezése
+        scheduling_tooltip: A felhasználó %{date}-ig foglalhat helyet
+        search_placehoder: Keresés azonosító, e-mail cím vagy név alapján
+        timezone: Időzóna
+        total_seats: Összes hely
+      resources:
+        confirm_message: Biztosan törölni akarod a(z) '%{resource_name}' erőforrást?
+        confirm_title: Megerősítés szükséges
+        create: Erőforrás létrehozása
+        invalid_url: Érvénytelen URL. Adja meg a teljes URL-címet http vagy https protokollal.
+        resource: Erőforrás
+        successful_remove: Az értékelési központ %{resource_name}  erőforrása sikeresen törölve lett.
+      schedule_assessments: Értékelések ütemezése
+      scheduling_statuses:
+        cancelled: Törölt
+        late_cancelled: Későn lemondva
+        late_rescheduled: Későn átütemezve
+        rescheduled: Átütemezve
+        scheduled: Ütemezett
+      search_participant: Keresési kampány résztvevői
+      status:
+        completed: Befejezett
+        dropped_out: Kiszállt
+        in_progress: Folyamatban
+        late: Késő
+        no_show: Nem jelent meg
+        not_started: Nincs elindítva
+      status_change_modal:
+        content: Az értékelő központ bezárása után a résztvevők nem vehetnek részt a központ semmilyen tevékenységében.
+        title: Az értékelési központ állapotának módosítása
+      subjects:
+        activities: Tevékenységek
+        add_assessor_form: Értékelői űrlap hozzáadása
+        assessments: Értékelések
+        assessor_forms: Értékelői űrlapok
+        confirm_message: Biztosan törölni akraja a témát a '%{subject_email}' e-mail címmel?<br />A töröltként megjelölt téma nem fog szerepelni az értékelő központban.
+        confirm_title: Megerősítés szükséges
+        edit_assessor_form: Értékelő űrlap szerkesztése
+        form_title: Értékelések ütemezése
+        language: Nyelv
+        language_not_selected: Nincs kiválasztva
+        mark_cancel_success: A tárgy a(z) %{subject_email} e-mail címmel való törlése.
+        meeting_link_custom: Szokás
+        meeting_link_internal: Belső
+        meeting_link_none: Egyik sem
+        meeting_link_title: Értekezlet linkje
+        no_change: Nincs változás
+        override_existing: A témák meglévő ütemezésének felülbírálása
+        preworks: Előkészítés
+        schedule: Ütemezés
+        unschedule: Ütemezés törlése
+      tabs:
+        activities: Tevékenységek
+        assessment_center: Értékelési központ
+        invites: Meghív
+        resources: Erőforrások
+        subjects: Témák
+    scoring:
+      action_prohibited: Művelet nem engedélyezett
+      active: Aktív
+      actual_average: Tényleges átlag
+      add_factor: Tényező hozzáadása
+      add_group: Csoport hozzáadása
+      assessment: Értékelés
+      assessment_scoring_type: Értékelési pontozás típusa
+      average: Átlagos
+      campaign_scoring_variables: Kampánypontozási változók
+      code: Kód
+      desc: Túllépte a(z) %{n} kampány tényezőinek maximális korlátját. További tényezők nem adhatók hozzá. Kérjük, tekintse át és kezelje meglévő tényezőit, mielőtt folytatná.
+      description: Leírás
+      dimension: Dimenzió
+      edit_factor: Szerkesztési tényező
+      export:
+        details: Kampány pontozások
+        factors: Kampánytényezők exportálása
+      factor: Tényező
+      factor_group_removed_successfully: A kampánytényező-csoport sikeresen el lett távolítva
+      factor_removal_confirmation: A megerősítéshez írja be az alábbi tényező nevét a szövegmezőbe
+      factor_removed_successfully: A kampánytényező sikeresen el lett távolítva
+      factors_exported_successfully: A kampánytényezők exportálása feladat ütemezése sikeresen megtörtént
+      factors_imported_successfully: A kampánytényezők importálása feladat ütemezése sikeresen megtörtént
+      final: Végső
+      final_score_updated_successfully: A végeredmény frissítése sikeresen megtörtént
+      formula: Képlet
+      get_started: Kezdjük
+      id: Azonosító
+      import:
+        factors: Kampánytényezők importálása
+      name: Név
+      no_groups: Nincsenek csoportok
+      output_type: Kimenet típusa
+      pattern_error: Csak alfanumerikus karakterek, szóközök és kötőjelek engedélyezettek.
+      profile:
+        years: Év
+      public: Nyilvános
+      ranked: Rangsorolt
+      remove_all_campaign_factors:
+        confirmation: Írja be az alább feltüntetett aktuális kampány nevét a szövegmezőben a megerősítéshez
+        error: A kampánytényezők eltávolítása sikertelen volt
+        success: A kampánytényezők sikeresen el lettek távolítva
+        title: Kampánytényezők eltávolítása
+        warning: Hamarosan törli az összes kampánytényezőt és az összes kapcsolódó pontszámot a felhasználók számára. Biztos benne, hogy el akarja végezni ezt a műveletet?
+      remove_factor_group_confirmation_content: Biztosan el akarja távolítani a(z) %{group_name}' tényezőcsoportot?
+      remove_factor_group_confirmation_title: Tényezőcsoport eltávolítása
+      required_error: Nem lehet üres
+      save: Mentés
+      save_all: Összes mentése
+      score_range: Pontszámtartomány
+      score_types:
+        norm_score: Norma pontszám
+        percentage: Százalék
+        percentile: Percentilis
+        score: Pontszám
+        zscore: Z-pontszám
+      scoring: Pontozás
+      scoring_description: A kampánypontozás lehetővé teszi az értékelések közötti jelentést
+      select_all: Az összes %{n} téma kiválasztása
+      select_assessment_first: Először válassza ki az értékelést
+      select_factor: Tényező kiválasztása
+      show_weightages: Súlyozás megjelenítése
+      subject: Téma
+      subject_list:
+        actions: Műveletek
+        bulk_mark_finalized: A tömeges jelölés véglegesítve
+        bulk_mark_finalized_confirm: A kiválasztott felhasználók pontszámának véglegesítése létrehozza a jelentést, amely kampánytényezőt használ a felhasználók számára. Biztos benne, hogy folytatni akarja?
+        bulk_mark_not_finalized: A tömeges jelölés nincs véglegesítve
+        bulk_mark_not_finalized_confirm: A véglegesítés eltávolítása a kiválasztott felhasználóktól eltávolítja a generált jelentést, amely kampánytényezőt használ a felhasználók számára. Biztos benne, hogy folytatni akarja?
+        bulk_rescore: Tömeges újrapontozás
+        bulk_rescore_confirm: A kiválasztott felhasználók újrapontozása. Biztos benne, hogy folytatni akarja?
+        calculated_date: Számított dátum
+        calculation_errors: Számítási hibák
+        export: Pontozások exportálása
+        export_success: A pontszámok exportálása feladat ütemezése sikeresen megtörtént
+        finalized: Véglegesített
+        finalized_date: Véglegesített dátum
+        import_external_scores: Külső pontozások importálása
+        mark_finalized: Jelölés véglegesítve
+        mark_finalized_confirm: A(z) "%{email}" felhasználó pontszámának véglegesítése létrehozza azt a jelentést, amely a felhasználóhoz tartozó kampánytényezőt használja. Biztos benne, hogy folytatni akarja?
+        mark_not_finalized: A jelölés nincs véglegesítve
+        mark_not_finalized_confirm: Ha eltávolítja a véglegesítést a(z) "%{email}" felhasználótól, akkor törlődik a generált jelentés, amely a felhasználóhoz tartozó kampánytényezőt használja. Biztos benne, hogy folytatni akarja?
+        push_webhook: Push webhookok
+        rank: Rangsor
+        rescore: Újrapontozás
+        rescore_confirm: A(z) '%{email}' felhasználó újrapontozása. Biztos benne, hogy folytatni akarja?
+        tools: Eszközök
+      tabs:
+        settings: Beállítások
+        subject_scores: Témához tartozó pontszámok
+      type: Típus
+      variables: Változók
+      weightages:
+        assessorForms: Értékelő űrlapok
+        successful_update: A súlyozások frissítése sikeresen megtörtént
+        tools: Eszközök
+        weightages: Súlyok
+      weighted_average: Súlyozott átlag
+    search: Keresés
+    security_setting:
+      180_days: 180 nap
+      30_days: 30 nap
+      365_days: 365 nap
+      90_days: 90 nap
+      attempts_to_lock: Zárolási kísérletek
+      auto_unlock_time: Automatikus feloldási idő
+      disable_password_reuse: Jelszó újbóli felhasználásának letiltása
+      disallow_password_login: Jelszóval történő bejelentkezés letiltása
+      enable_login_with_magic_link: Bejelentkezés engedélyezése mágikus linkkel
+      enforce_password_policy: Jelszószabályzat kényszerítése a következő bejelentkezéskor
+      enforce_strong: Erős jelszó kényszerítése
+      expiration: Jelszó lejárata
+      lock_account: Fiók zárolása
+      magic_link_expiry_duration: A mágikus link lejárati időtartama
+      min_length: Jelszó minimális hossza
+      never: Soha
+      restrict_sequences: Egymást követő és ismétlődő karakterek korlátozása
+      security: Biztonsági beállítások
+      send_unlock_email: Feloldó e-mail küldése
+      session_timeout_duration: Munkamenet időtúllépésének időtartama
+      tfa_enabled: Kétlépcsős hitelesítés engedélyezése
+    security_settings:
+      security_setting: Biztonsági beállítás
+    settings:
+      admin_roles:
+        admin_role_single: Adminisztrátori szerepkör
+        confirm_message: Biztosan törölni akarod a(z) '%{role_name}' adminisztrátori szerepkört?
+        create: Adminisztrátori szerepkör hozzáadása
+        description: Leírás
+        name: Név
+        successful_remove: A(z) %{role_name} adminisztrátori szerepkör törlése sikeresen megtörtént.
+      siem:
+        description: Leírás
+        destination_type: Rendeltetési hely típusa
+        destination_types:
+          s3: S3
+          s3_compatible: S3-kompatibilis
+        enabled: Engedélyezve
+        readable_resource_name: SIEM-beállítások
+        s3_access_key_id: Hozzáférési kulcs azonosítója
+        s3_bucket_folder: S3-vödörmappa
+        s3_bucket_name: S3-vödör neve
+        s3_endpoint: S3-végpont
+        s3_region: S3-régió
+        s3_secret_access_key: Titkos hozzáférési kulcs
+        send_test_log: Tesztnapló küldése
+        send_test_log_error_message: A tesztnapló nem lett elküldve a gyűjtőbe, ellenőrizze a beállításokat
+        send_test_log_success_message: A tesztnapló sikeresen el lett küldve a gyűjtőbe.
+      skill_aliases:
+        alias: Alias
+        confirm_message: Biztosan törölni akarod a(z) '%{skill_alias}' készség aliasát?
+        create: Készségalias hozzáadása
+        select_skill: Válassza ki a készség
+        skill: Készség
+        skill_alias: Készség aliasa
+        successful_remove: A(z) %{skill_alias}' készség aliasa sikeresen törölve lett.
+      tabs:
+        admin_roles: Adminisztrátori szerepkörök
+        feature_flags: Feature flags
+        siem: SIEM
+        skill_aliases: Készség aliasok
+    sheets:
+      column:
+        add_column: Oszlop hozzáadása
+        not_allowed_for_dashboard_use: Az irányítópulton használható oszlopnak 64 karakternél rövidebbnek kell lennie
+        reorder: Újrarendezés
+        save_order: Rendezés mentése
+      drawers:
+        add_edit:
+          cancelText: Mégse
+          markdown:
+            preview: Előnézet
+            title: Leértékelés
+          save: Mentés
+          saving: Mentés
+          success_message_add: Új jegyzék hozzáadva
+          success_message_edit: Jegyzék frissítve
+          title_add: Laphoz tartozó jegyzék hozzáadása
+          title_edit: Lapsorjegyzék szerkesztése
+          validations:
+            required_email: Kérjük, adja meg az e-mail címet
+        view:
+          campaign_title: Kampányszintű jegyzék
+          edit_button: Szerkeszt
+          project_title: Projektszintű jegyzék
+          title: Lapsorjegyzék részletei
+      list:
+        header:
+          add_record: Jegyzék hozzáadása
+          search_record: Jegyzékek keresése
+      modals:
+        delete_records:
+          cancelText: Mégse
+          content: Biztosan törölni akarja a kiválasztott {{count}} jegyzékeket?
+          okText: Igen, törlés
+          successMessage: "{{count}} jegyzékek törlése sikeresen megtörtént."
+          title: "{{count}} jegyzék törlése"
+        remove_columns:
+          cancelText: Mégse
+          content: Egy oszlop ({{columns}}) törlése eltávolítja az oszlop adatait az összes sorból
+          okText: Igen, törlés
+          successMessage: "{{count}} jegyzék törölve"
+          title: Oszlopok törlése
+      tabs:
+        rows: Sorok
+        settings: Beállítások
+    skills:
+      applicable_proficiency_levels: Alkalmazható tudásszintek
+      columns:
+        skill_group: Készségcsoport
+        skill_type: Készség típusa
+      errors:
+        import:
+          missing_fields_data: "%{line_number} sor: Hiányzó kötelező mezők: %{fields}"
+          save_failed: 'A(z) %{line_number} sor: Nem sikerült menteni a(z) ''%{name}'' készséget: %{message}'
+        search:
+          all_and_project_id_mutually_exclusive: Nem lehet minden igaz, ha project_id_eq megadják
+          invalid_all_value: 'a következők egyikének kell lennie: igaz, hamis'
+          invalid_global_value: 'a következők egyikének kell lennie: igaz, hamis'
+          invalid_skill_type: Érvényes készségtípusnak kell lennie
+          query_too_short: kötelező, és 3 karakternél hosszabbnak kell lennie
+      export:
+        details: Részletek
+        failure_msg: Hiba a fordítások exportálása során
+        success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása.
+        title: Exportál
+        translations:
+          details: Készségek fordításai
+      export_action:
+        skills_title: Készségek exportálása
+        skills_translations_title: Készségek fordításainak exportálása
+      form:
+        client_placeholder: Ügyfél kiválasztása
+        description: Leírás
+        name: Név
+        project_placeholder: Válasszon ki egy projektet
+        skill_group: Készségcsoport
+        skill_type: Készség típusa
+        title: Készség
+      global: Globális készség?
+      global_skills: Globális készségek
+      global_translations: Globális készségek fordításai
+      import:
+        download_example_csv: csv-példa letöltése
+        info_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
+        success_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      import_action:
+        skills_title: Készségek importálása
+        skills_translations_title: Készségek fordításainak importálása
+      skill_details: Készség részletei
+      skill_translations: Készségek fordításai
+      skill_translations_project: Készségek fordításai projektek alapján
+      skills_project: Készségek projektek alapján
+      title: Készségek
+      translations:
+        import:
+          errors:
+            invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
+            missing_columns: 'Hiányzó kötelező oszlopok: %{columns}'
+            save_failed: 'Hiba a(z) %{id} készség feldolgozásában: %{message}'
+            skill_not_found: A(z) %{id} azonosítójú készség nem található
+    skills_taxonomy:
+      tabs:
+        job_role_skill_mapping: Készség-munka feltérképezése
+        job_roles: Munkakörök
+        proficiency: Szakértelem
+        skills: Készségek
+    sms_histories:
+      columns:
+        first_name: Keresztnév
+        last_name: Vezetéknév
+        mobile_no: Mobilszám
+        price: Ár
+        segment_length: Szegmens hossza
+        sent_at: 'Elküldve:'
+      drawer:
+        title: SMS-részletek
+      history: Előzmények
+      statuses:
+        accepted: Elfogadva
+        delivered: Kiszállítva
+        failed: Sikertelen
+        queued: Várólistára
+        scheduled: Ütemezett
+        sent: Elküldött
+        undelivered: Kézbesítetlen
+    sms_invites:
+      actions:
+        add: SMS-névjegy hozzáadása
+      columns:
+        created_at: Létrehozva
+        created_by: 'Létrehozta:'
+        email: E-mail
+        first_name: Keresztnév
+        last_name: Vezetéknév
+        mobile_no: Mobilszám
+      contacts: Kapcsolatok
+      form_modal:
+        first_name: Keresztnév
+        last_name: Vezetéknév
+        locale: Helyszín
+        mobile_no: Mobilszám
+        title: SMS-meghívó
+      import:
+        download_example_csv: CSV-példa letöltése
+        success_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
+        title: SMS-meghívó importálása
+      messages:
+        delete_confirm_text: Biztosan el akarja távolítani a(z) %{mobile_no} mobilszámhoz tartozó SMS-meghívót?
+        delete_success: Az SMS-meghívó törlése sikeresen megtörtént
+        failed_to_sent_invite: Nem sikerült meghívót küldeni a(z) %{mobile_no} számú mobilra
+      send_sms:
+        fields:
+          link_expiry: Link lejárata
+          locale: Helyszín
+          message: Üzenet
+          statuses: Állapotok
+          users: Felhasználók
+        modal:
+          btn_name: SMS küldése
+          title: SMS küldése
+        pipetext_details: "{{{first_name}}} - Címzett keresztneve<br />{{{last_name}}} - Címzett vezetékneve<br />{{{invite_url}}} - Regisztrációs link"
+        segment_length_msg: 'Az üzenet szegmenseinek becsült száma: %{segment_length}.'
+        segment_length_range_msg: Az üzenet szegmenseinek becsült száma %{min_segment_length} és %{max_segment_length} között van.
+      statuses:
+        all: Összes
+        failed: Sikertelen
+        invited: Meghívott
+        not_invited: Nincs meghívva
+        registered: Bejegyzett
+      tools:
+        export: SMS-névjegyek exportálása
+        import: SMS-névjegyek importálása
+        send_sms: SMS küldése
+    sms_records:
+      columns:
+        id: Azonosító
+        message: Üzenet
+    smtp_settings:
+      authentication: Hitelesítés
+      authentication_type: Hitelesítés típusa
+      authentication_types:
+        cram_md5: CRAM MD5
+        login: Bejelentkezés
+        plain: Egyszerű
+      enabled: Engedélyezve
+      encryption: Titkosítás
+      encryption_types:
+        none: Egyik sem
+        ssl: SSL
+        tls: TLS
+      errors:
+        authentication_failed: A felhasználónév vagy a jelszó helytelen
+        host_unreachable: Nem lehet csatlakozni a gazdagéphez. A gazdagép, a port vagy a titkosítás helytelen
+      from_email: E-mailből
+      from_name: Név feladója
+      host: Házigazda
+      password: Jelszó
+      port: Kikötő
+      send_test_email: Teszt e-mail küldése
+      smtp: SMTP
+      test_email_modal:
+        input_hint: Az e-mail-beállítás nem kerül mentésre, amíg a teszt e-mailt sikeresen el nem küldte.
+        input_placeholder: E-mail-azonosító tesztelése
+        title: Tesztelje az e-mail azonosítót
+      test_modal:
+        success_message: "%{email_id} e-mail-címre küldött e-mail-teszt."
+        title: SMTP-beállítás tesztelése
+      update_success_msg: Az SMTP-beállítás frissítése sikeresen megtörtént.
+      use_sender_verification: Feladó-ellenőrzés használata
+      user_name: Felhasználónév
+    stats:
+      assessments:
+        columns:
+          assessment_name: Értékelés neve
+          completed: Befejezett
+          id: AZONOSÍTÓ
+          in_progress: Folyamatban
+          ineligible: Nem jogosult
+          interrupted: Megszakított
+          not_started: Nincs elindítva
+          timed_out: Időtúllépés
+        title: Értékelések
+      title: Statisztika
+      top_metrics:
+        completed: Befejezett
+        in_progress: Folyamatban
+        interrupted: Megszakított
+        not_started: Nincs elindítva
+        timed_out: Időtúllépés
+        users: Felhasználók
+      users:
+        date_presets:
+          last_30_days: Az elmúlt 30 nap
+          last_7_days: Az elmúlt 7 nap
+          last_month: Múlt hónapban
+          last_week: Múlt héten
+          today: Ma
+          yesterday: Tegnap
+        y_title: Felhasználók száma
+    sub_factors:
+      destroy:
+        successfully: A(z) %{name} altényező törlése sikeresen megtörtént.
+      edit:
+        header: Altényező nevének szerkesztése
+      new:
+        header: Új résztényező
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Biztosan törölni szeretné ezt az altényezőt?</p>\n"
+            title: Törölje <strong>a Sub-Factor</strong> ?
+      toggle_status:
+        successfully: A Sub-Factor frissítése sikeresen megtörtént.
+    survey_builder:
+      builder_area:
+        options: Beállítások
+      property_panel:
+        add_n_a_option: N/A opció hozzáadása
+        allow_content_copy: Tartalommásolás engedélyezése
+        answer_type: Válasz típusa
+        cant_change_type: A mentett kérdés típusa nem módosítható
+        date_format: Dátum formátuma
+        date_format_options:
+          dd_mm_yyy: NN-HH-ÉÉÉÉÉ
+          mm_yyyy: HH-ÉÉÉÉ
+          yyyy: ÉÉÉÉ
+          yyyy_mm: ÉÉÉÉ-HH
+          yyyy_mm_dd: ÉÉÉÉ-HH-NN
+        duration_options:
+          '10': 10 másodperc
+          '120': 2 perc
+          '180': 3 perc
+          '30': 30-as évek
+          '300': 5 perc
+          '60': 1 perc
+          '600': 10 perc
+        image_multi_choice_properties:
+          enable: Képekkel
+          preview: Előnézet kattintásra
+          size:
+            large: L
+            medium: M
+            small: S
+            title: Rács mérete
+            x-small: XS
+            xx-small: XXS
+        max_duration: Maximális időtartam
+        multiple_choice_types:
+          dropdown: Legördülő menü
+          multi_answer: Több válasz
+          single_answer: Egyetlen válasz
+        no_of_choices: Nem. választási lehetőségek
+        orientation:
+          horizontal: Horizontális
+          title: Tájékozódás
+          vertical: Függőleges
+        question_description: Sorok leírása
+        validation_response_type: Érvényesítési válasz típusa
+        voice_dictation: Hangdiktálás
+    table:
+      entries:
+        selected: 1 sor kiválasztva
+        total: 'Összesen : 1'
+      more_actions: További műveletek
+    taxonomy:
+      import:
+        download_example_file: Példafájl letöltése
+        success_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      import_action:
+        taxonomy: Import taxonómia
+      job_roles: Munkakörök
+      proficiency: Szakértelem
+      skill_job_mappings: Készség-feladatok leképezése
+      skills: Készségek
+      title: Rendszertan
+    templates:
+      blocks:
+        copy:
+          error: Blokk\
+        destroy:
+          successfully: A(z) %{name} blokk törlése sikeresen megtörtént.
+        edit:
+          header: Blokk szerkesztése
+        index:
+          new: Hozzáad
+          templates:
+            blocks: Blokkok
+            questions: Kérdések
+          title: Blokkok
+          tooltips:
+            create: Alkot
+        list:
+          active: Aktív
+          created_at: Létrehozás dátuma
+          linked_assessments: Összekapcsolt értékelések
+          name: Név
+          updated_at: Módosítás dátuma
+        new:
+          header: Új blokk
+        new_assign:
+          header: Blokk hozzárendelése az értékelésekhez
+        resource:
+          in_progress:
+            copying: Másolás
+            deleting: Törlés
+          tooltips:
+            copy: Blokk másolása
+            delete: Blokk törlése
+            edit: Blokk szerkesztése
+        sidebar:
+          destroy: Blokk törlése
+          disable: Letilt
+          edit: Blokk szerkesztése
+          enable: Engedélyez
+          new: Új blokk
+          new_assign: Blokk hozzárendelése
+          title: A blokk lehetőségei
+        toggle_status:
+          successfully: Sikeresen
+      questions:
+        copy:
+          error: Kérdés
+        destroy:
+          successfully: A(z) %{name} kérdés törlése sikeresen megtörtént.
+        edit:
+          header: Kérdés szerkesztése
+        index:
+          new: Hozzáad
+          templates:
+            blocks: Blokkok
+            questions: Kérdések
+          title: Kérdések
+          tooltips:
+            create: Alkot
+        list:
+          active: Aktív
+          created_at: Létrehozás dátuma
+          linked_assessments: Összekapcsolt értékelések
+          name: Név
+          updated_at: Módosítás dátuma
+        new:
+          header: Új kérdés
+        new_assign:
+          header: Kérdés hozzárendelése az értékelésekhez
+        resource:
+          in_progress:
+            copying: Másolás
+            deleting: Törlés
+          tooltips:
+            copy: Kérdés másolása
+            delete: Kérdés törlése
+            edit: Kérdés szerkesztése
+        sidebar:
+          destroy: Kérdés törlése
+          disable: Letilt
+          edit: Kérdés szerkesztése
+          enable: Engedélyez
+          new: Új kérdés
+          new_assign: Kérdés hozzárendelése
+          title: A kérdés lehetőségei
+        toggle_status:
+          successfully: Sikeresen
+    threesixty_campaigns:
+      email_templates:
+        approve_nomination:
+          description: Ezt az üzenetet akkor küldi el a menedzsernek, ha egy közvetlen beosztott által benyújtott jelölést jóvá kell hagyni
+          name: Jelölés jóváhagyása
+        approve_report:
+          description: Ezt az üzenetet a rendszer elküldi a tulajdonos felettesének, hogy értesítse őket arról, hogy a tulajdonosok jelentése készen áll a jóváhagyásra
+          name: Jelentés jóváhagyása
+        categories:
+          approvals: Jóváhagyások
+          invitations: Meghívások
+          reminders: Emlékeztetők
+          report_ready: Jelentésre kész
+        custom_message:
+          description: Ezt az üzenetet az értékelésben részt vevő bárki megkaphatja
+          name: Egyéni üzenet
+        days_repeated: nap, ismétlődő
+        evaluator_invite:
+          description: Ezt az üzenetet minden résztvevőnek elküldjük, aki értékelő
+          name: Értékelő meghívó
+        evaluator_reminder:
+          description: Ezt az üzenetet küldjük, hogy emlékeztesse az értékelőket a függőben lévő értékelések elvégzésére
+          name: Értékelő emlékeztető
+          rule_description: Szabályok megadása a meghívás ütemezésének automatikus ütemezéséhez
+          rule_name: Értékelő emlékeztető szabályok
+        from: Tól
+        manager_report_ready:
+          description: Ezt az üzenetet a rendszer elküldi a téma felettesének, amint az alany jelentése elkészül
+          name: Menedzseri jelentésre kész
+        nomination_denied:
+          description: Ezt az üzenetet a rendszer elküldi az alanyoknak, ha a jelölést elutasítják
+          name: Jelölés elutasítva
+        reply_to_email: Válasz az e-mailre
+        request_approval:
+          description: Ezt az üzenetet küldjük el a vezetőknek, ha egy tulajdonos jóváhagyást kér
+          name: Jóváhagyás kérése
+        schedule_email: E-mail ütemezése
+        schedule_time: Ütemezési idő
+        send_test_email: Teszt e-mail küldése
+        subject: Tárgy
+        subject_invite:
+          description: Ezt az üzenetet küldjük, hogy meghívjuk a vizsgálati alanyokat az értékelésben való részvételre
+          name: Tárgy meghívó
+        subject_reminder:
+          description: Az egyes résztvevőknek küldött üzenet, amely emlékezteti őket az értékelésben való részvételre
+          name: Tárgy emlékeztető
+          rule_description: Szabályok megadása a meghívás ütemezésének automatikus ütemezéséhez
+          rule_name: Tárgyi emlékeztető szabályok
+        subject_report_ready:
+          description: Ezt az üzenetet a jelentés elkészülte után küldjük el az alanynak
+          name: Tárgyjelentés kész
+        times: szer
+      instruction_templates:
+        evaluate_others:
+          description: Ez az üzenet akkor jelenik meg, amikor a résztvevők a portálon belül értékelnek másokat
+          name: Értékelj másokat
+        evaluate_self:
+          description: Ez az üzenet akkor jelenik meg az alanyok számára, amikor megkezdik az önértékelést
+          name: Értékelő Saját Ügyfél
+        evaluation_help:
+          description: A felhasználó irányítópultján található próbaverziós kártyán megjelenő súgószöveg
+          name: Próbaverzió Súgó
+        evaluator_welcome:
+          description: Ez az üzenet felülírja az "Üdvözlő üzenetet", és csak az értékelőként részt vevő résztvevők számára jelenik meg.
+          name: Értékelő üdvözlendő
+        invite_evaluators:
+          description: Ez az üzenet akkor jelenik meg az alanyok számára, amikor elkezdik az értékelők jelölését
+          name: Értékelők meghívása
+        nomination_help:
+          description: A felhasználó irányítópultján a jelölőkártyán megjelenő súgószöveg
+          name: Jelölési segítség
+        report_help:
+          description: A felhasználó irányítópultján a jelentéskártyán megjelenő súgószöveg
+          name: Jelentések Súgó
+        welcome_message:
+          description: Ez az üzenet akkor jelenik meg az alanyok számára, amikor bejelentkeznek az értékelés megkezdéséhez vagy a feladatlistájuk megtekintéséhez
+          name: Üdvözlő üzenet
+      manage:
+        assessment: Értékelés
+        dimension: Méretek
+        manage_relationships: Kapcsolatok kezelése...
+        report: Jelentés
+        title: Kezel
+      menu:
+        datasheet:
+          title: Adatlap
+        messages:
+          title: Üzenetek
+        participants:
+          subjects:
+            add_subjects: Tárgyak hozzáadása
+            current_job_role: Jelenlegi munkakör
+            email: E-mail
+            first_name: Keresztnév
+            last_name: Vezetéknév
+            locale: Színhely
+            target_job_role: Cél munkakör
+          title: Résztvevők
+        report:
+          menu:
+            report_approval:
+              title: Jelentés jóváhagyási beállításai
+            report_options:
+              title: Jelentés beállításai
+          title: Jelentés
+      messages:
+        email_messages: E-mail üzenetek
+        factor_benchmark_scores_updated: A Factor Benchmark pontszámok frissítése sikeresen
+        instruction_messages: Utasítási üzenetek
+        mail_history: Levelezési előzmények
+        options: Beállítások
+      reports:
+        show:
+          title: Tárgyi jelentés
+    time_zone: Időzóna
+    tools: Eszközök
+    translations:
+      assessments:
+        new:
+          header: Fordítások importálása
+      import:
+        successfully: A fordítások importálása sikeresen megtörtént
+      reports:
+        export: Fordítások exportálása
+        import: Fordítások importálása
+        import_descr: Az Exportálás funkcióban kinyerhet egy sablont, amely az importáláshoz használható.
+    tte: TTE
+    update: Frissít
+    users:
+      create:
+        successfully: A(z) %{name} felhasználó létrehozása sikeresen megtörtént.
+      destroy:
+        successfully: A(z) %{name} felhasználó törlése sikeresen megtörtént.
+      list:
+        email: E-mail
+      modals:
+        download_idp_reports:
+          error: Nem sikerült ütemezni az IDP-jelentések tömeges letöltését.
+          include_reflective_questions: Tartalmazzon reflektív kérdéseket
+          success: Az IDP-jelentések tömeges letöltése feladat ütemezése sikeresen megtörtént.
+          title: IDP-jelentések tömeges letöltése
+      new:
+        header: Új felhasználó
+      reset_password:
+        successfully: A(z) %{name} felhasználó néhány percen belül kap egy e-mailt a jelszó visszaállítására vonatkozó utasításokkal.
+      resource:
+        confirmations:
+          change_password:
+            body: "<p>Biztos benne, hogy utasításokat szeretne küldeni a jelszó megváltoztatásához szükséges linkkel?</p>\n"
+            title: Jelszó módosítása <strong>%{name}</strong> ?
+          delete:
+            body: "<p>Biztosan törölni akarja ezt a felhasználót?</p>\n"
+            title: Töröld <strong>a(z) %{name}</strong> fájlt?
+          membership:
+            delete:
+              body: "<p>Biztosan törölni szeretné?</p>\n"
+              title: Törli <strong>a(z) %{name}</strong> elemet a(z) %{client_name} ügyfélbérletből?
+            toggle_status:
+              body: "<p>Biztos vagy benne, hogy %{status} akarod ezt a tagságot?</p>\n"
+              title: "<strong>%{status}</strong> %{name} tagsága?"
+          toggle_enable_2fa:
+            body: "<p>Biztos vagy benne, hogy %{status} 2FA-t akarsz a(z) %{name} helyett?</p>\n"
+            title: "<strong>%{status}</strong> 2FA"
+          toggle_status:
+            body: "<p>Biztos vagy benne, hogy %{status} akarod ezt a felhasználót?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      spoof:
+        successfully: Sikeresen bejelentkeztél a(z) %{name} néven
+      toggle_enable_2fa:
+        disable: A 2FA letiltása
+        enable: 2FA engedélyezése
+        successfully: A(z) %{name} felhasználó frissítése sikeresen megtörtént.
+      toggle_status:
+        successfully: A(z) %{name} felhasználó frissítése sikeresen megtörtént.
+      toolbar:
+        title: Eszközök
+      update:
+        successfully: A(z) %{name} felhasználó frissítése sikeresen megtörtént.
+      user: Felhasználó
+    webhook:
+      connection_failure: Nem lehet csatlakozni a webhook URL-címéhez. Kérjük, ellenőrizze, hogy a webhook URL-je helyes-e.
+      delete_success: A webhook beállításai sikeresen törölve lettek
+      request_failure: A kérés meghiúsult a(z) %{http_status_code} állapotkóddal.
+    workshop:
+      actions:
+        remove_workshop: A műhely sikeresen eltávolítva
+      errors:
+        remove_workshop_failure: A törölni kívánt műhelynek ütemezett témái vannak. A workshopot törölheti, ha az összes tárgyat töröltként jelöli meg
+      statuses:
+        closed: Zárt
+        open: Nyitott
+    workshop_subjects:
+      errors:
+        update_assessor_for_failure: Az értekezlet részletei nem adhatók meg, mivel nincs összekapcsolt tárgytevékenység.
+    years: Év

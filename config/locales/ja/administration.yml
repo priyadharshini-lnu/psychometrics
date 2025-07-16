@@ -360,9 +360,9 @@ ja:
           send_invitation: 招待状を送る
         subjects:
           cancel: キャンセル
-          count: 件名
+          count: "%{count} 科目"
           csv_error: '行%{index}: 電子メール %{email} を持つユーザはこのキャンペーンに参加していません。'
-          csv_imported: インポートされた被写体数
+          csv_imported: "%{count} 件の科目をインポートしました"
           description: 被写体を個別に検索して追加することも、csvファイルを一括アップロードすることもできます。
           download: ダウンロード
           file_example: サブジェクト情報をアップロードするためのサンプルファイルを参照してください。
@@ -395,8 +395,8 @@ ja:
         reject: 却下
         remove_confirm:
           content: 本当に %{subjectName} から %{action} %{status} したいのですか？
-          success: subjectName} からの %{status} は %{action} に成功しました。
-          title: アクション} %{ステータス
+          success: "%{subjectName} からの %{status} は %{action} に成功しました"
+          title: "%{action} %{status}"
         status: ステータス
         subject_name: 件名
         workshop_time: ワークショップの時間
@@ -440,13 +440,13 @@ ja:
       edit:
         header: アセスメント設定
       errors:
-        owner_validation: クライアント名} %{リソース名} %{パーミッション} の権限がありません。
+        owner_validation: "%{client_name} に対する %{resource_name} %{permission} 権限がありません"
       export:
         questions: 輸出に関する質問
       export_questions_toastr: 質問 エクスポート・ジョブは正常にスケジュールされました。
       flow: フロー
       linkedAssessment:
-        assessment_title: name}から質問を選択します。
+        assessment_title: "%{name}から質問を選択します。"
         title: リンクされた質問を選択
       map_norms: 地図規範
       menu:
@@ -533,7 +533,7 @@ ja:
         subject_email: 件名 電子メール
         subject_name: 件名
       completed_at: 完成
-      count: 査定者
+      count: "%{count}人の査定者"
       create_assessor: アセッサーの追加
       evaluations: 評価
       mailer:
@@ -572,7 +572,7 @@ ja:
         overall_scoring: 総合得点
         refresh: リフレッシュ
         reports: レポート
-        reports_count: レポート数
+        reports_count: "%{count} 件のレポート"
       overview: 概要
       remove_confirmation: このキャンペーンから電子メール%{email}を持つ査定者を本当に削除しますか?
       statuses:
@@ -609,7 +609,7 @@ ja:
         confirmations:
           delete:
             body: "<p>本当にこの割り当てを削除しますか？</p>"
-            title: "<strong>名前}を</strong>削除しますか？"
+            title: "<strong>%{name}</strong>削除しますか？"
     assigns_reports:
       edit:
         header: レポート課題の編集
@@ -892,7 +892,7 @@ ja:
         confirmations:
           delete:
             body: "<p>このキャンペーンテンプレートを削除してもよろしいですか？</p>\n"
-            title: "<strong>名前}を</strong>削除しますか？"
+            title: "<strong>%{name}</strong>削除しますか？"
         in_progress:
           deleting: 削除
         tooltips:
@@ -921,7 +921,7 @@ ja:
           settings: 設定
       assessors:
         spoof:
-          successfully: 名前}としてのログインに成功しました。
+          successfully: "%{name} としてログインしました"
       copy: コピー
       delete: 削除
       edit: 編集
@@ -1098,9 +1098,9 @@ ja:
           confirmations:
             toggle_status:
               body: "<p>本当にこのライセンスを%{status}にしますか？</p>\n"
-              title: "<strong>ステータス} %{</strong>名前}のライセンスは？"
+              title: "<strong>%{status} </strong> %{name} のライセンスですか?"
         show:
-          used_out_of: 数}のうち、%{使用数}を使用。
+          used_out_of: "%{used_number} 個 (%{number} 個中)"
       new:
         header: 新規顧客
       projects:
@@ -1418,7 +1418,7 @@ ja:
             new: 360キャンペーンを追加
             title: 360キャンペーン
           license:
-            header: ライセンスの編集
+            header: "%{name} - ライセンスの編集"
           licenses:
             update:
               duplicate_licenses: ライセンスが重複している
@@ -1440,7 +1440,7 @@ ja:
             confirmations:
               delete:
                 body: "<p>本当に削除しますか？</p> <p>このアクションは元に戻せません。 これにより、<strong>%{name}</strong>キャンペーン、サブキャンペーン、およびすべての関連付けが完全に削除されます。</p> <p>確認のため、<strong>%{name}と</strong>入力してください。</p>"
-                title: "<strong>名前}を</strong>削除しますか？"
+                title: "<strong>%{name}</strong>を削除しますか?"
               disable:
                 body:
                   '0': "<p>本当にアーカイブしますか？</p> <p>すべてのキャンペーン、サブキャンペーン、ユーザーもアーカイブされます。</p>"
@@ -1498,7 +1498,7 @@ ja:
       resource:
         confirmations:
           delete:
-            title: "<strong>名前}を</strong>削除しますか？"
+            title: "<strong>%{name}</strong>を削除しますか?"
           disable:
             title: アーカイブ<strong>%{name}</strong>?
           enable:
@@ -1638,7 +1638,7 @@ ja:
         client: クライアント
         communication_type: 通信タイプ：
         delivery_rule: 配達規則：
-        every_interval: 間隔}ごとに
+        every_interval: すべての%{interval}
         owner: オーナー
         project: プロジェクト
         recipients: 受賞者
@@ -1731,7 +1731,7 @@ ja:
         runed: データレポートが正常にスケジュール実行されました。
       validations:
         project_and_campaigns_not_allowed: project_idsとcampaign_idsは一緒に指定してはならない。
-        project_not_related_to_client: project_id}はクライアントに属していません。
+        project_not_related_to_client: "%{project_id}はクライアントに属していません"
         project_or_campaign_required: project_idsまたはcampaign_idsが必要
         sections_required: セクションが必要
     datasheet:
@@ -1745,17 +1745,17 @@ ja:
       errors:
         blank_field: '行 %{row}: %{field} は空白にできません。'
         csv_file_required: CSVファイルであること
-        image_download_failed: url}からの画像のダウンロードに失敗しました。
+        image_download_failed: "%{url}から画像をダウンロードできませんでした:%{message}"
         invalid_csv_format: '無効な CSV 形式: %{message} です。'
-        invalid_date: "％{date}の日付形式は無効です。"
-        invalid_date_format: row％{row}：％{field}の無効な日付形式。
+        invalid_date: "%{date}の日付形式は無効です。"
+        invalid_date_format: row%{row}：%{field}の無効な日付形式。
         invalid_development_action_type: '行 %{row}: 開発アクションタイプ ''%{value}'' が無効です。有効な開発アクションタイプは次のとおりです: %{valid_development_action_types}'
-        invalid_duration_format: 数値のみが許可されます。row％{row}：％{value}は有効な期間ではありません。
-        invalid_image_file: 無効な画像ファイルです。
+        invalid_duration_format: 数値のみが許可されます。row%{row}：%{value}は有効な期間ではありません。
+        invalid_image_file: 無効な画像ファイル:%{message}
         invalid_image_url: '無効な画像URLフォーマット: %{url}'
-        invalid_languages: row％{row}の利用可能な言語％{invalid_languages}。
+        invalid_languages: row%{row}の利用可能な言語%{invalid_languages}。
         invalid_learning_style: '行 %{row}: 無効な学習スタイル ''%{value}'' です。 有効なタイプは %{valid_types} です。'
-        languages_only_for_courses: 利用可能な言語は、タイプ「コース」の開発アクションにのみ設定できます。row％{row}の利用可能な言語を削除するか、開発アクションのタイプを「コース」に変更してください。
+        languages_only_for_courses: 利用可能な言語は、タイプ「コース」の開発アクションにのみ設定できます。row%{row}の利用可能な言語を削除するか、開発アクションのタイプを「コース」に変更してください。
         missing_columns: '必須列がありません: %{fields}.'
         save_failed: 失敗した開発プロジェクトの復旧： %{message}
         skill_not_found: 'ID: %{skill_id} に対応するスキルが見つかりません。'
@@ -1770,7 +1770,7 @@ ja:
           invalid_id: '行 %{row}: ID は数字でなければなりません。'
           invalid_id_format: 行 %{row}：IDは "id#field "の形式でなければならない。
           missing_columns: '必須列がありません: %{fields}.'
-          save_failed: 保存に失敗
+          save_failed: '保存に失敗しました: %{message}'
     development_actions:
       create:
         successfully: 開発アクション "%{name}" が正常に作成されました。
@@ -1851,7 +1851,7 @@ ja:
       copy_scheduled:
         successfully: ディメンジョン %{name} に対してスケジュールされたコピー。
       create:
-        successfully: ディメンジョンが正常に作成されました。
+        successfully: ディメンションが正常に作成された%{name}
       destroy:
         successfully: ディメンション %{name} は正常に削除されました。
       edit:
@@ -1921,7 +1921,7 @@ ja:
         header: 因子の翻訳
         import: 輸入
       update:
-        successfully: 次元が正常に更新されました。
+        successfully: "%{name}ディメンションが正常に更新されました"
     disable: 無効
     document_titles:
       project_assessors: アセッサ｜%{project}。
@@ -1931,7 +1931,7 @@ ja:
       csv_file_required: ファイルはCSVファイルでなければならない
       error_msg: ページを更新し、それでも問題が解決しない場合は、管理者に連絡してください。
       invalid_csv_format: '無効な CSV 形式: %{message} です。'
-      invalid_url: 無効な URL です：メッセージ
+      invalid_url: 無効なURL:%{message}
       invalid_url_format: 無効なURL形式
       missing_columns: '必須列がありません: %{fields}.'
     errror_msg: エラーメッセージ
@@ -1940,7 +1940,7 @@ ja:
         error: "'%{name}' 要素がコピーされませんでした。"
         successfully: ファクタ '%{name}' は正常にコピーされました。
       create:
-        successfully: ファクターが正常に作成されました。
+        successfully: "%{name}ファクターが正常に作成されました。"
       destroy:
         successfully: ファクタ "%{name}" は正常に削除されました。
       edit:
@@ -2033,7 +2033,7 @@ ja:
       toggle_status:
         successfully: ファクターは正常に更新された。
       update:
-        successfully: ファクターは正常に更新されました。
+        successfully: "%{name}ファクターが正常に更新されました"
     genders:
       female: 女性
       male: 男性
@@ -2055,7 +2055,7 @@ ja:
     idp:
       actions:
         remove_confirm: テンプレートを削除するには、以下のテキストボックスに現在のテンプレート名を入力してください。
-        success: idpName}は正常に削除されました。
+        success: "%{idpName}は正常に削除されました。"
       add_idp_template: IDPテンプレートの追加
       all: すべて
       appearance: 外観
@@ -2136,7 +2136,7 @@ ja:
       errors:
         invalid_format: 無効なファイル形式
         norm:
-          dimension_not_found: クライアント名} の寸法 %{寸法名} が見つかりませんでした。
+          dimension_not_found: "%{client_name} のディメンション %{dimension_name} が見つかりませんでした"
           factor_mismatch: ディメンション %{dimension_name} には要因 %{factor_name} がありません。
           not_set_dimension: ディメンジョンの名前は、最初の行の2番目のセルに書く。
         result:
@@ -2404,7 +2404,7 @@ ja:
         confirmations:
           delete:
             body: "<p>本当に%{name}を削除しますか？</p>\n"
-            title: "<strong>名前}を</strong>削除しますか？"
+            title: "<strong>%{name}</strong>を削除しますか?"
         tooltips:
           delete: 削除
           edit: 編集
@@ -2422,9 +2422,9 @@ ja:
       reset_password:
         successfully: ユーザー %{name} には、数分後にパスワードをリセットする方法が記載されたメールが送信されます。
       spoof:
-        successfully: 名前}としてのログインに成功しました。
+        successfully: "%{name}として正常にログインしました"
       toggle_membership_status:
-        successfully: 名前}のメンバーシップが正常に更新されました。
+        successfully: "%{name}のメンバーシップが正常に更新されました。"
       toggle_status:
         successfully: ユーザ %{name} は正常に更新されました。
       update:
@@ -2699,7 +2699,7 @@ ja:
           invalid_proficiency_type: 行 %{row_number}：ProficiencyTypeが無効または見つかりません。
           missing_columns: '必須列がありません: %{fields}.'
           missing_required_fields: 行 %{line}：必須フィールドがありません (%{fields})
-          save_failed: 行 %{line}：メッセージ
+          save_failed: 回線%{line}:%{message}
           skill_not_found: 行 %{row_number}：無効または見つからないスキル
         job_queued: 技能レベルのインポートジョブがキューに入れられました。
       translations:
@@ -2714,7 +2714,7 @@ ja:
             missing_columns: '必須列がありません: %{fields}.'
             missing_required_columns: '必要な列がありません: %{columns}.'
             row_id_blank: 行 %{row}：IDを空白にすることはできません
-            save_failed: スキル ID %{id} の処理エラーです：メッセージ
+            save_failed: 'スキルID %{id}の処理エラー: %{message}'
       type:
         all_skills: すべてのスキル
         by_category: カテゴリー別
@@ -2841,7 +2841,7 @@ ja:
             label: ユーザー名
             name: ユーザー名
         remove_webhook:
-          content: description}を削除しますか？
+          content: "%{description}を削除しますか?"
           title: 削除
         title: ウェブフック
     project_users:
@@ -3032,7 +3032,7 @@ ja:
           invalid_min_words_column_format: 無効な最小単語列値形式 %{row}.
           invalid_required_column_format: 無効な必須列値形式 %{row}。
           missing_eng_question: 英語の質問内容の欠落 %{row}
-          save_failed: 保存に失敗しました。
+          save_failed: 失敗した%{message}の保存
         failure_msg: ファイルのインポート中にエラーが発生しました。
         success_msg: リフレクション問題のインポートが進行中です。通知で状況を確認してください。
       question: 質問
@@ -4130,22 +4130,22 @@ ja:
             title: パスワードの変更<strong>%{name}</strong>?
           delete:
             body: "<p>本当にこのユーザーを削除しますか？</p>\n"
-            title: "<strong>名前}を</strong>削除しますか？"
+            title: "<strong>%{name}</strong>を削除しますか?"
           membership:
             delete:
               body: "<p>本当に削除しますか？</p>\n"
-              title: client_name}クライアント・テナンシーから<strong>%{name}を</strong>削除しますか？
+              title: クライアントテナンシから<strong>%{name}</strong>を削除しますか%{client_name}
             toggle_status:
               body: "<p>本当にこの会員資格を%{status}にしますか？</p>\n"
-              title: "<strong>ステータス}</strong>%{名前}のメンバーシップは？"
+              title: "<strong>%{status}</strong>%{name}のメンバーシップは?"
           toggle_enable_2fa:
             body: "<p>本当に%{status}に%{name} 2FAをしますか？</p>\n"
-            title: "<strong>ステータス}</strong>2FA"
+            title: "<strong>%{status}</strong> 2FA"
           toggle_status:
             body: "<p>本当にこのユーザを%{status}にしますか？</p>\n"
             title: "<strong>%{status}</strong>%{name}?"
       spoof:
-        successfully: 名前}としてのログインに成功しました。
+        successfully: "%{name}として正常にログインしました"
       toggle_enable_2fa:
         disable: 2FAを無効にする
         enable: 2FAを有効にする

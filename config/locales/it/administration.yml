@@ -1439,7 +1439,7 @@ it:
           resource:
             confirmations:
               delete:
-                body: "<p>Si è sicuri di voler eliminare?</p> <p>Questa azione non può essere annullata e cancellerà definitivamente la campagna <strong>%{nome}</strong>, le sotto-campagne e tutte le associazioni.</p> <p>Digitare <strong>%{nome}</strong> per confermare.</p>"
+                body: "<p>Si è sicuri di voler eliminare?</p> <p>Questa azione non può essere annullata e cancellerà definitivamente la campagna <strong>%{name}</strong>, le sotto-campagne e tutte le associazioni.</p> <p>Digitare <strong>%{name}</strong> per confermare.</p>"
                 title: Cancellare <strong>%{name}</strong>?
               disable:
                 body:
@@ -1770,7 +1770,7 @@ it:
           invalid_id: 'Riga %{row}: l''ID deve essere un numero'
           invalid_id_format: 'Riga %{row}: L''ID deve essere nel formato "id#campo".'
           missing_columns: 'Colonne obbligatorie mancanti: %{fields}'
-          save_failed: Salvataggio fallito
+          save_failed: 'Impossibile salvare: %{message}'
     development_actions:
       create:
         successfully: L'azione di sviluppo "%{name}" è stata creata con successo.

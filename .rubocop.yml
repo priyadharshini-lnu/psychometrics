@@ -262,3 +262,8 @@ Rails/Exit:
   Enabled: true
   Exclude:
     - lib/devtools/**/*.rb
+
+Rails/Output:
+  Enabled: true
+  Exclude:
+    - lib/devtools/**/*.rb

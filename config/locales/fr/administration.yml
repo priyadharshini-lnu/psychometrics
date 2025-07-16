@@ -1439,7 +1439,7 @@ fr:
           resource:
             confirmations:
               delete:
-                body: "<p>Êtes-vous sûr de vouloir supprimer ?</p> <p>Cette action ne peut pas être annulée. La campagne <strong>%{nom}</strong>, les sous-campagnes et toutes les associations seront définitivement supprimées.</p> <p>Veuillez taper <strong>%{nom}</strong> pour confirmer.</p>"
+                body: "<p>Êtes-vous sûr de vouloir supprimer ?</p> <p>Cette action ne peut pas être annulée. La campagne <strong>%{name}</strong>, les sous-campagnes et toutes les associations seront définitivement supprimées.</p> <p>Veuillez taper <strong>%{name}</strong> pour confirmer.</p>"
                 title: Supprimer <strong>%{name}</strong>?
               disable:
                 body:
@@ -1747,13 +1747,13 @@ fr:
         csv_file_required: Doit être un fichier CSV
         image_download_failed: 'Échec du téléchargement de l''image de %{url} : %{message}'
         invalid_csv_format: 'Format CSV non valide : %{message}'
-        invalid_date: Le format de date pour% {date} n'est pas valide.
-        invalid_date_format: 'Row% {row}: format de date non valide pour% {field}.'
+        invalid_date: Le format de date pour %{date} n'est pas valide.
+        invalid_date_format: 'Row %{row}: format de date non valide pour %{field}.'
         invalid_development_action_type: 'Ligne %{row} : Type d''action de développement « %{value} » non valide. Les types d''action de développement valides sont : %{valid_development_action_types}.'
         invalid_duration_format: 'Nur numerische Werte sind für die Dauer zulässig.Row %{row}: %{value} ist keine gültige Dauer. '
         invalid_image_file: 'Fichier image non valide : %{message}'
         invalid_image_url: 'Format d''URL d''image non valide : %{url}'
-        invalid_languages: Nicht -Valid verfügbare Sprachen% {invalid_languages} für die% {row} -Leile.
+        invalid_languages: Nicht -Valid verfügbare Sprachen %{invalid_languages} für die %{row} -Leile.
         invalid_learning_style: 'Rangée %{row} : Style d''apprentissage non valide ''%{value}'' Les types valides sont : %{valid_types}'
         languages_only_for_courses: Verfügbare Sprachen können nur für Entwicklungsaktionen vom Typ "Kurs" eingestellt werden.Bitte entfernen Sie die verfügbare Sprache für Zeilen %{row} oder ändern Sie die Art der Entwicklungsaktion in "Kurs".
         missing_columns: 'Les colonnes requises sont manquantes : %{fields}'
@@ -1770,7 +1770,7 @@ fr:
           invalid_id: 'Ligne %{row} : l''ID doit être un nombre'
           invalid_id_format: 'Ligne %{row} : L''identifiant doit être au format "id#field"'
           missing_columns: 'Colonnes obligatoires manquantes : %{fields}'
-          save_failed: Échec de la sauvegarde
+          save_failed: 'Échec de l''enregistrement : %{message}'
     development_actions:
       create:
         successfully: L'action de développement "%{name}" a été créée avec succès.
@@ -2149,7 +2149,7 @@ fr:
             dates_should_be_empty: Les dates doivent être vides pour le statut not_started
             started_at_required: Une date de début valide est requise pour l'état in_progress
           error: "[Ligne %{row}] %{error}"
-          invalid_assign: "[Si vous souhaitez créer un nouveau résultat, veuillez laisser la colonne Result ID vide"
+          invalid_assign: Ligne %{row}] Impossible de trouver l'enregistrement correspondant à l'ID de résultat spécifié. Pour créer un nouveau résultat, veuillez laisser la colonne ID de résultat vide.
           invalid_date: "[Ligne %{row}] %{error}"
           question_invalid: "[Ligne %{row}] La question %{question_id} n'est pas valide"
           user:

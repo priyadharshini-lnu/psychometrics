@@ -1770,7 +1770,7 @@ pt:
           invalid_id: 'Linha %{row}: o ID tem de ser um número'
           invalid_id_format: 'Linha %{row}: O ID tem de estar no formato "id#campo"'
           missing_columns: 'Colunas obrigatórias em falta: %{fields}'
-          save_failed: Falha na gravação
+          save_failed: 'Falha ao salvar: %{message}'
     development_actions:
       create:
         successfully: A Ação de Desenvolvimento "%{name}" foi criada com êxito.

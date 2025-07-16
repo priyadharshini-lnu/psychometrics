@@ -167,12 +167,17 @@ zh:
             base:
               code_length: 在 %{index} 行，代码长度必须至少为 3 个字符。
               code_required: 第 %{index} 行需要因子代码
+              invalid_csv: 无效的 csv %{error_message}
               invalid_scoring_strategy: 第 %{index} 行的计分策略"%{strategy}"无效。 允许的策略为 %{allowed}。
               missing_headers: 缺少所需的标题： %{headers}
               name_required: 第 %{index} 行需要因子名称
               scoring_strategy_required: 在 %{index} 行需要使用计分策略
             file:
               invalid_format: 请上传 CSV 文件
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: 客户端 SMS 通知已禁用
         hogan:
           attributes:
             name:
@@ -191,6 +196,7 @@ zh:
               blank: 名字不能为空
             job_role:
               cannot_be_same: 目标工作角色必须与当前工作角色不同
+              not_found: 在项目角色或全局角色中找不到作业角色 '%{name}'
             last_name:
               blank: 姓氏不能为空
             locale:
@@ -777,6 +783,8 @@ zh:
           attributes:
             current_password:
               invalid: 当前密码不正确
+        user_idp_comment:
+          reply_to_reply: 无法回复回复（只允许一个级别的嵌套）
         user_idp_plan:
           no_active_plan: 未找到有效的 IDP 计划
   admin_jobs:
@@ -790,6 +798,7 @@ zh:
         assign_idp_to_users: 为用户分配 IDP
         assign_reports_and_assessments: 分配报告和评估
         bulk_create_workshop_invites: 批量发送评估中心邀请函
+        bulk_download_idp_reports: 批量下载 IDP 报告
         bulk_download_reports: 批量下载报告
         bulk_download_user_reports: 批量下载用户报告
         bulk_regenerate_reports: 再生活动报告
@@ -797,6 +806,7 @@ zh:
         bulk_regenerate_user_reports: 重新生成用户报告
         bulk_reports: 批量报告
         bulk_rescore_campaign_factors: 批量重新评分活动因素
+        bulk_update_evaluation_status: 批量更新评估状态
         compact_completion_status_export: 紧凑型完工状态导出
         completion_status_export: 完工状态导出
         copy_dimension: 复制尺寸
@@ -806,6 +816,7 @@ zh:
         export_assessment_questions: 出口评估问题
         export_campaign_factors: 出口活动因素
         export_campaign_scorings: 出口活动扫描
+        export_dashboard_as_file: 将 Dashboard 导出为文件
         export_development_action_translations: 出口发展行动 翻译
         export_development_actions: 出口发展行动
         export_dimension_as_json: 导出尺寸 JSON
@@ -813,7 +824,9 @@ zh:
         export_job_roles_translations: 导出工作角色翻译
         export_norm: 出口规范
         export_occupations: 职业 出口
+        export_proficiency_level_translations: 导出熟练程度翻译
         export_proficiency_levels: 出口能力水平
+        export_reflection_questions: 导出反射问题
         export_report_data: 导出报告数据
         export_reports_and_assessments: 出口报告和评估
         export_skill_translations: 出口技能翻译
@@ -835,8 +848,10 @@ zh:
         import_job_roles_translations: 导入工作角色翻译
         import_norm: 进口规范
         import_proficiency_level_translations: 进口熟练程度翻译
+        import_proficiency_levels: 导入熟练度级别
         import_question_translations: 导入问题翻译
         import_raw_data: 导入原始数据
+        import_reflection_questions: 导入反射问题
         import_scoring_data: 导入评分数据
         import_skill_translations: 进口技能翻译
         import_skills: 进口技能
@@ -866,6 +881,8 @@ zh:
         failed: 失败
         in_progress: 进行中
         scheduled: 计划
+    bulk_download_idp_reports:
+      already_exists: 生成此 IDP 报表的作业已在进行中
     bulk_download_reports:
       content:
         title: 下载报告的链接
@@ -1028,6 +1045,7 @@ zh:
         pearson: 培生评估
         saville: 萨维尔评估
         simulation: 模拟评估
+        skillvue: Skillvue 评估
     flow:
       end_assessment_modal:
         custom_message: 自定义评估结束信息
@@ -1125,6 +1143,7 @@ zh:
       previous_group_required: 要求完成过小组活动
     menu:
       assessment_center: 评估中心
+      assessment_center_invites: 评估中心邀请
       assessments_and_reports: 评估与报告
       idp: IDP
       manage: 管理
@@ -1358,6 +1377,8 @@ zh:
   campaign_assessment:
     actions:
       bulk_download: 批量下载
+      bulk_update_evaluation_as_done: 标记为已完成
+      bulk_update_evaluation_as_undone: 取消标记为已完成
       download: 下载报告
       export_completion_status: 出口完成状态
       export_external: 外部
@@ -1389,9 +1410,15 @@ zh:
       locales: 地点
       norm: 规范
       norm_id: 规范 ID
+      pearson_norm_id: 皮尔逊规范 ID
+      pearson_schedule_id: Pearson 计划 ID
       pearson_variation: 皮尔逊变异
       prework: 前期工作
+      saville_candidate_id: 应聘者 ID
+      saville_data_separator: Saville 数据分隔符
       simulation_content_variation: 模拟内容差异
+      simulation_participant_id: 模拟参与者 ID
+      simulation_time_extension: 仿真时间延长
       skillvue_email_id: Skillvue 候选人电子邮件 ID
       skillvue_external_assessment_id: Skillvue 评估 ID
       universal_link: 通用链接
@@ -1414,6 +1441,10 @@ zh:
         placeholder: 选择评估中心组
         success_message: 成功指派评估员运动评估小组
         title: 评估中心小组
+      bulk_update_evaluation:
+        content: 是否确实要将所有选定的主题标记为 %{status}？
+        successfully: 已成功标记为 %{status}。
+        title: 批量标记为 %{status}？
       import_raw:
         body: 请参阅导出功能，提取可用于此处导入的模板。
         success_msg: 导入已成功上传
@@ -1424,6 +1455,10 @@ zh:
         success_msg: 导入已成功上传
         title: 导入计分结果数据
         upload: 上传
+      prework_setting:
+        disable: 为所有现有用户禁用 prework
+        enable: 为所有现有用户启用 prework
+        title: 前期工作设置表
       regenerate:
         content: 您确定要重新生成可用报告吗？
         title: 重新生成报告？
@@ -1690,21 +1725,27 @@ zh:
       create: 创建
       delete: 删除
       done: 已完成
+      download: 下载
       edit: 编辑
       export: 出口
+      filter: 滤波器
       filter_by_tags: 按标签筛选
+      go_back: 回去
       import: 进口
       insert: 插入
       ok: 好的
+      reject: 拒绝
       remove: 移除
       reset: 重置
       resolve: 解决
       restore: 恢复
+      return_to_home: 返回首页
       run: 运行
       save: 保存
       schedule: 时间安排
       search: 搜索
       send: 发送
+      sign_in: 登录
       start: 开始
       submit: 提交
       unarchive: 取消存档
@@ -1811,6 +1852,7 @@ zh:
       default: 默认
       download: 下载
       file: 文件
+      global_export: 是全球出口吗？
       global_import: 全球进口是什么？
       minutes: 分钟
       na: 不适用
@@ -1819,6 +1861,7 @@ zh:
       refer_export_file: 请参阅导出功能，提取可用于此处导入的模板。
       reference_language: 参考语言
       response: 回答
+      select: 选择
       selected: 精选
       subject: 主题
       total: 总计
@@ -1900,16 +1943,12 @@ zh:
     mailer:
       admin_invitation_instructions:
         accept: 点击此处接受邀请。
-        body: '您好 %{name}，我们已邀请您访问Lighthouse（兆光科技）人才企业测评平台的管理面板。 %{accept}或者您可以安全地忽略此邮件。 请不要与任何人共享您的访问凭证。
-
-          '
+        body: '您好 %{name}，我们已邀请您访问Lighthouse（兆光科技）人才企业测评平台的管理面板。 %{accept}或者您可以安全地忽略此邮件。 请不要与任何人共享您的访问凭证。 '
         subject: 灯塔邀请函
       confirmation_instructions:
         subject: 确认说明
       invitation_instructions:
-        body: '您好 %{name}，您已被添加到莱皓思，成为以下部分的管理员
-
-          '
+        body: '您好 %{name}，您已被添加到莱皓思，成为以下部分的管理员 '
         login: 登录灯塔
         sections:
           campaign: 活动： %{section_name}
@@ -1917,31 +1956,19 @@ zh:
           project: 项目： %{section_name}
         subject: 灯塔邀请函
       password_change:
-        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 mte.support@mercer.com 联系支持部门。
-
-          '
-        regards: '莱皓思团队
-
-          '
+        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 mte.support@mercer.com 联系支持部门。 '
+        regards: '莱皓思团队 '
         subject: 您的灯塔密码已更改
       reset_password_instructions:
-        body: '您好 %{name}！有人请求提供更改密码的链接。 您可以通过下面的链接进行更改。
-
-          '
+        body: '您好 %{name}！有人请求提供更改密码的链接。 您可以通过下面的链接进行更改。 '
         change_password: 更改密码
         footer: 如果您没有要求这样做，您可以放心地忽略这封邮件。 在您访问上面的链接并创建新密码之前，您的密码不会更改。
-        regards: '莱皓思团队
-
-          '
+        regards: '莱皓思团队 '
         subject: 重置密码说明
       unlock_instructions:
-        body: '您好 %{name}！由于登录失败次数过多，您的账户已被锁定。 点击下面的链接解锁您的账户：
-
-          '
+        body: '您好 %{name}！由于登录失败次数过多，您的账户已被锁定。 点击下面的链接解锁您的账户： '
         footer: 如果您没有要求这样做，您可以放心地忽略这封邮件。 在您访问上面的链接并创建新密码之前，您的密码不会更改。
-        regards: '莱皓思团队
-
-          '
+        regards: '莱皓思团队 '
         subject: 账户解锁说明
         unlock_account: 解锁我的账户
     omniauth_callbacks:
@@ -2046,6 +2073,9 @@ zh:
       campaign_factor_group:
         group_already_exists: 已存在同名组。
         last_factor_group: 无法删除最后一个竞选因素组。
+      cant_be_deleted: 无法删除此记录
+      client_feature:
+        ai_assisted_idp_feature_error: 如果禁用 AI 助手功能，则不能为 true
       create_superadmin:
         uniq_email: 电子邮件应为统一格式。
       exceeded_subjects_count: 每次邀请只能添加 %{count} 主题
@@ -2073,7 +2103,9 @@ zh:
         validates_admins: 管理员无法访问活动。
       report_families_reports:
         report_exists: 本报告已是报告包的一部分
-      size?: 大小应小于 %{size｝
+      size?: 大小应小于 %{size}
+      skill:
+        already_added: 已添加同名技能。
       skill_alias:
         unique_alias: 别名应是唯一的
         unique_skill: 技能应独一无二
@@ -2132,6 +2164,8 @@ zh:
     assessments:
       timed_out: 由于 %{assessment_name} 测评超时，您将无法参加该评估。
     error: 错误
+    error_401: 您无权访问此资源。请登录。
+    error_403: 您没有查看此资源的权限。
     error_500: 出错了，请联系管理员。
     error_msg: 出错了，请刷新页面，如果问题仍然存在，请联系您的管理员
     forbidden: 您没有访问该页面的权限
@@ -2183,7 +2217,7 @@ zh:
       profile_progress: 简介完成是
       remove_file: 删除文件
       send_message: 发送信息
-      slider_label_instruction: 最小值：%{min} 最大值：%{max｝
+      slider_label_instruction: 最小值：%{min} 最大值：%{max}
       task_btn_description: 任务 %{assessmentName}
       task_progress_label: 任务完成情况
       write_message: 写下您的信息
@@ -2370,7 +2404,7 @@ zh:
     booking_card:
       aria_available_time: 可用时间
       aria_back_to_time_selection: 返回时间选择
-      aria_desc_current_month: 目前为 %{monthName} %{year｝
+      aria_desc_current_month: 目前为 %{monthName} %{year}
       aria_label_next_month: 转到下个月
       aria_label_previous_month: 转到上个月
       aria_timezone_select: 选择时区
@@ -2455,9 +2489,14 @@ zh:
       generate_more: 生成更多
       generating_development_actions: 生成发展行动...
       heading: 发展行动
+      incomplete_error: 未完成的开发作
+      incomplete_error_message: 某些开发作未完成。请在提交 IDP 之前完成它们。
+      incomplete_warning: 未完成的开发作
+      incomplete_warning_message: 某些开发作未完成。您确定要将 IDP 标记为完整吗？
       learning_from_others: 向他人学习
       manage_skills: 管理技能
       marathon: 马拉松
+      mark_as_complete: 标记为完成
       no_development_actions: 无发展行动
       on_the_job: 工作中
       other: 其他
@@ -2466,9 +2505,11 @@ zh:
       remove: 移除
       skill: 技能
       sprint: 冲刺
+      start_plan: 开始计划
       structured_learning: 结构化学习
       submit_plan: 提交计划
       write_here: 在此处写入...
+    edit_plan: 编辑计划
     initial_steps:
       add_skill_group_description: 根据你的评估结果，以下是你的一些优势和发展领域。 选择你希望进一步发展的技能，作为你发展计划的一部分。
       add_skill_group_title: 探索您的 %{category} 技能
@@ -2485,6 +2526,7 @@ zh:
       rate_skills_title: 评定您的技能
       rating_column_header: 您的自我评分
       reflective_questions: 思考题
+      save: 救
       select_skills: 选择您的技能
       select_skills_placeholder: 选择技能
       selected_skills: 精选技能
@@ -2505,6 +2547,7 @@ zh:
         other: 其他
         technical: 技术
       save_skills: 保存技能
+    new_comments: 新评论
     pdf:
       approval_status: 审批状态
       cover:
@@ -2610,6 +2653,7 @@ zh:
         library: IDP库
         skills_count: 技能数量
         title: 报告摘要
+    plan: 计划
     reflective_questions:
       already_completed: IDP 已经完成，现在不能回答问题。
       answer_later: 稍后回答
@@ -2629,10 +2673,15 @@ zh:
     status: 现状
     user_idp_status:
       approved: 批准
+      completed: 完成
       draft: 草案
+      in_progress: 进行中
       not_started: 未开始
       pending_approval: 待定
+      rejected: 拒绝
     users: 用户
+    with_reflection_questions: 带反思问题
+    without_reflection_questions: 无反射题
   idp_templates:
     assign: 分配
     assign_idp_template: 指定 Idp 模板
@@ -2757,6 +2806,35 @@ zh:
     used_out_of: 在 %{used}中 %{total}。
   mailer:
     from: 人才企业
+    idp:
+      manager_unread_comments:
+        body: |-
+          你好 %{name}，
+          您的 IDP 报告者有新的评论。
+
+          %{dashboard_link}
+
+          在 Direct Reportees 控制面板上，您可以：
+          - 查看成员对其个人计划的新评论
+          - 提供有关其开发目标的反馈
+          - 跟踪 IDP 活动的进度
+          - 支持您团队的成长和发展
+        dashboard_link: 访问控制面板
+        subject: 您有新评论 - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          你好 %{name}，
+          您对您的开发计划有新的评论。
+
+          %{dashboard_link}
+
+          在 My Plan 控制面板上，您可以：
+          - 更新您的开发计划
+          - 阅读新的评论和反馈
+          - 回答经理提出的问题
+          - 更新开发作的进度
+        dashboard_link: 查看我的计划
+        subject: 您对您的开发计划有新的评论 - %{campaign_name}
     license:
       expire:
         subject: 许可证过期
@@ -2855,11 +2933,11 @@ zh:
   report_approvals:
     events:
       approved_text: 核定文本
-      comment_added: 添加评论<i>%{text｝</i>
+      comment_added: 添加评论<i>%{text}</i>
       comment_removed: 已删除评论
       comment_resolved: 已解决的意见
       comment_unresolved: 未解决的意见
-      comment_updated: 将注释<s>%{oldText}</s>更改为<i>%{newText｝</i>
+      comment_updated: 将注释<s>%{oldText}</s>更改为<i>%{newText}</i>
       created_text: 新增文字
       disapproved_text: 反驳文字
       removed_text: 已删除文本
@@ -3691,6 +3769,7 @@ zh:
         body: 请参阅示例文件，提取可用于此处导入的模板。
         title: 分配报告和评估
     toolbar:
+      bulk_download_idp_reports: 批量下载 IDP 报告
       export: 导出用户
       export_compact_completion_status: 紧凑型
       export_detailed_completion_status: 详细
@@ -3875,6 +3954,10 @@ zh:
       BadRequest: 由于最后一次请求失败，文件未上传。 这可能是由于您的网络无法正常工作。 如果您的网络正常工作，请联系管理员
       EntityTooLarge: 文件大小应小于 %{maxFileSize} MB
       WrongFileType: 文件类型应为以下之一 %{allowedFileTypes}
+    idp:
+      reflective_questions_required: IDP 需要回答反思性问题
+      status_not_permitted: 用户不允许。
+      status_not_permitted_by_manager: 当计划处于“%{status}”状态时，Manager 无法更新状态。
     invalid: 无效
     issue: 问题
     least: 请至少回答 %{min} 个选项。

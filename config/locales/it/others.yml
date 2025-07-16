@@ -167,12 +167,17 @@ it:
             base:
               code_length: Il codice deve essere lungo almeno 3 caratteri alla riga %{index}.
               code_required: Il codice del fattore è richiesto alla riga %{index}
+              invalid_csv: Csv non valido %{error_message}
               invalid_scoring_strategy: Strategia di punteggio non valida '%{strategy}' alla riga %{index}. Le strategie consentite sono %{allowed}.
               missing_headers: 'Mancano le intestazioni richieste: %{headers}'
               name_required: Il nome del fattore è richiesto alla riga %{index}
               scoring_strategy_required: La strategia di punteggio è richiesta alla riga %{index}
             file:
               invalid_format: Caricare il file CSV
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: La notifica SMS del client è disabilitata
         hogan:
           attributes:
             name:
@@ -191,6 +196,7 @@ it:
               blank: Il nome non può essere vuoto
             job_role:
               cannot_be_same: Il ruolo di destinazione deve essere diverso da quello attuale.
+              not_found: Ruolo lavorativo '%{name}' non trovato nei ruoli di progetto o globali
             last_name:
               blank: Il cognome non può essere vuoto
             locale:
@@ -777,6 +783,8 @@ it:
           attributes:
             current_password:
               invalid: La password attuale non è corretta
+        user_idp_comment:
+          reply_to_reply: Impossibile rispondere a una risposta (è consentito un solo livello di nidificazione)
         user_idp_plan:
           no_active_plan: Nessun piano IDP attivo trovato
   admin_jobs:
@@ -790,6 +798,7 @@ it:
         assign_idp_to_users: Assegnare IDP agli utenti
         assign_reports_and_assessments: Assegnare rapporti e valutazioni
         bulk_create_workshop_invites: Inviti massivi al centro di valutazione
+        bulk_download_idp_reports: Download in blocco dei rapporti IDP
         bulk_download_reports: Rapporti scaricati in blocco
         bulk_download_user_reports: Scaricamento massivo dei rapporti utente
         bulk_regenerate_reports: Rigenerare i rapporti della campagna
@@ -797,6 +806,7 @@ it:
         bulk_regenerate_user_reports: Rigenerare i rapporti utente
         bulk_reports: Rapporti di massa
         bulk_rescore_campaign_factors: Fattori della campagna Bulk Rescore
+        bulk_update_evaluation_status: Stato di valutazione dell'aggiornamento in blocco
         compact_completion_status_export: Esportazione dello stato di completamento compatto
         completion_status_export: Esportazione dello stato di completamento
         copy_dimension: Copiare la dimensione
@@ -806,6 +816,7 @@ it:
         export_assessment_questions: Domande di valutazione sull'esportazione
         export_campaign_factors: Fattori della campagna di esportazione
         export_campaign_scorings: Esportazione delle Attività
+        export_dashboard_as_file: Esporta dashboard come file
         export_development_action_translations: Azione di sviluppo delle esportazioni Traduzioni
         export_development_actions: Azioni di sviluppo delle esportazioni
         export_dimension_as_json: Esportazione della dimensione JSON
@@ -813,7 +824,9 @@ it:
         export_job_roles_translations: Esportazione di ruoli lavorativi Traduzioni
         export_norm: Norma di esportazione
         export_occupations: Occupazioni Esportazione
+        export_proficiency_level_translations: Esportazione di traduzioni con livello di competenza
         export_proficiency_levels: Livelli di competenza per l'esportazione
+        export_reflection_questions: Esporta domande di riflessione
         export_report_data: Esportazione dei dati del rapporto
         export_reports_and_assessments: Esportazione di rapporti e valutazioni
         export_skill_translations: Traduzioni di competenze per l'esportazione
@@ -835,8 +848,10 @@ it:
         import_job_roles_translations: Importazione delle traduzioni dei ruoli lavorativi
         import_norm: Norma di importazione
         import_proficiency_level_translations: Importazione di traduzioni di livello di competenza
+        import_proficiency_levels: Livelli di competenza per l'importazione
         import_question_translations: Importazione di traduzioni di domande
         import_raw_data: Importazione di dati grezzi
+        import_reflection_questions: Importazione di domande di riflessione
         import_scoring_data: Importazione dei dati di punteggio
         import_skill_translations: Traduzioni di competenze di importazione
         import_skills: Importazione di competenze
@@ -866,6 +881,8 @@ it:
         failed: Fallito
         in_progress: In corso
         scheduled: In programma
+    bulk_download_idp_reports:
+      already_exists: Il processo per generare questo IDP riporta già in corso
     bulk_download_reports:
       content:
         title: Link per scaricare i rapporti
@@ -1028,6 +1045,7 @@ it:
         pearson: Valutazione Pearson
         saville: Valutazione Saville
         simulation: Valutazione della simulazione
+        skillvue: Valutazione Skillvue
     flow:
       end_assessment_modal:
         custom_message: Messaggio di fine valutazione personalizzato
@@ -1122,6 +1140,7 @@ it:
       previous_group_required: È richiesto un precedente completamento del gruppo
     menu:
       assessment_center: Centro di valutazione
+      assessment_center_invites: Inviti al Centro Valutazione
       assessments_and_reports: Valutazioni e rapporti
       idp: IDP
       manage: Gestire
@@ -1348,6 +1367,8 @@ it:
   campaign_assessment:
     actions:
       bulk_download: Scaricamento in blocco
+      bulk_update_evaluation_as_done: Segna come fatto
+      bulk_update_evaluation_as_undone: Deseleziona come fatto
       download: Scarica i rapporti
       export_completion_status: Stato di completamento dell'esportazione
       export_external: Esterno
@@ -1379,9 +1400,15 @@ it:
       locales: Località
       norm: Norma
       norm_id: ID norma
+      pearson_norm_id: ID norma di Pearson
+      pearson_schedule_id: ID pianificazione Pearson
       pearson_variation: Variazione Pearson
       prework: Prelavoro
+      saville_candidate_id: ID candidato
+      saville_data_separator: Separatore di dati Saville
       simulation_content_variation: Variazione del contenuto della simulazione
+      simulation_participant_id: ID partecipante alla simulazione
+      simulation_time_extension: Estensione del tempo di simulazione
       skillvue_email_id: ID e-mail del candidato Skillvue
       skillvue_external_assessment_id: ID valutazione Skillvue
       universal_link: Collegamento universale
@@ -1404,6 +1431,10 @@ it:
         placeholder: Selezionare un gruppo di Assessment Center
         success_message: Il Gruppo di valutazione della campagna di valutazione è stato assegnato con successo
         title: Gruppo Assessment Center
+      bulk_update_evaluation:
+        content: Si è certi di voler contrassegnare tutti gli argomenti selezionati come %{status}?
+        successfully: Contrassegnato correttamente come %{status}.
+        title: Contrassegnare in blocco come %{status}?
       import_raw:
         body: Fare riferimento alla funzionalità Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
         success_msg: L'importazione è stata caricata con successo
@@ -1414,6 +1445,10 @@ it:
         success_msg: L'importazione è stata caricata con successo
         title: Importazione dei dati dei risultati del punteggio
         upload: Caricare
+      prework_setting:
+        disable: Disabilita la pre-lavorazione per tutti gli utenti esistenti
+        enable: Abilita la pre-lavorazione per tutti gli utenti esistenti
+        title: Modulo di impostazione preliminare
       regenerate:
         content: Siete sicuri di voler rigenerare i rapporti disponibili?
         title: Rigenerare i rapporti?
@@ -1680,21 +1715,27 @@ it:
       create: Creare
       delete: Cancellare
       done: Fatto
+      download: Scaricare
       edit: Modifica
       export: Esportazione
+      filter: Filtro
       filter_by_tags: Filtrare per tag
+      go_back: Indietro
       import: Importazione
       insert: Inserire
       ok: OK
+      reject: Rigettare
       remove: Rimuovere
       reset: Reset
       resolve: Risolvere
       restore: Ripristino
+      return_to_home: Torna alla Home
       run: Correre
       save: Salva
       schedule: Programma
       search: Ricerca
       send: Inviare
+      sign_in: Accedi
       start: Inizio
       submit: Invia
       unarchive: Disarchivio
@@ -1801,6 +1842,7 @@ it:
       default: Predefinito
       download: Scaricare
       file: File
+      global_export: L'esportazione è globale?
       global_import: L'importazione globale?
       minutes: Verbale
       na: N/D
@@ -1891,16 +1933,12 @@ it:
     mailer:
       admin_invitation_instructions:
         accept: Fare clic qui per accettare l'invito.
-        body: 'Ciao %{name}, Sei stato invitato ad accedere al pannello di amministrazione di Lighthouse - La piattaforma di valutazione di Talent Enterprise. %{accept} Oppure puoi tranquillamente ignorare questa e-mail. Ti preghiamo di non condividere le tue credenziali di accesso con nessuno.
-
-          '
+        body: 'Ciao %{name}, Sei stato invitato ad accedere al pannello di amministrazione di Lighthouse - La piattaforma di valutazione di Talent Enterprise. %{accept} Oppure puoi tranquillamente ignorare questa e-mail. Ti preghiamo di non condividere le tue credenziali di accesso con nessuno. '
         subject: Invito al Faro
       confirmation_instructions:
         subject: Istruzioni di conferma
       invitation_instructions:
-        body: 'Ciao %{name}, sei stato aggiunto a Lighthouse come Admin per la seguente sezione
-
-          '
+        body: 'Ciao %{name}, sei stato aggiunto a Lighthouse come Admin per la seguente sezione '
         login: Accedi a Lighthouse
         sections:
           campaign: 'Campagna: %{section_name}'
@@ -1908,31 +1946,19 @@ it:
           project: 'Progetto: %{section_name}'
         subject: Invito al Faro
       password_change:
-        body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo mte.support@mercer.com
-
-          '
-        regards: 'Saluti, team Lighthouse
-
-          '
+        body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo mte.support@mercer.com '
+        regards: 'Saluti, team Lighthouse '
         subject: La password di Lighthouse è cambiata
       reset_password_instructions:
-        body: 'Ciao %{name}! Qualcuno ha richiesto un link per cambiare la tua password. Puoi farlo attraverso il link qui sotto.
-
-          '
+        body: 'Ciao %{name}! Qualcuno ha richiesto un link per cambiare la tua password. Puoi farlo attraverso il link qui sotto. '
         change_password: Modifica della password
         footer: Se non l'avete richiesto, potete tranquillamente ignorare questa e-mail. La vostra password non cambierà finché non accederete al link di cui sopra e ne creerete una nuova.
-        regards: 'Saluti, team Lighthouse
-
-          '
+        regards: 'Saluti, team Lighthouse '
         subject: Istruzioni per reimpostare la password
       unlock_instructions:
-        body: 'Salve %{name}! Il suo account è stato bloccato a causa di un numero eccessivo di tentativi di accesso non riusciti. Clicchi sul link sottostante per sbloccare il suo account:
-
-          '
+        body: 'Salve %{name}! Il suo account è stato bloccato a causa di un numero eccessivo di tentativi di accesso non riusciti. Clicchi sul link sottostante per sbloccare il suo account: '
         footer: Se non l'avete richiesto, potete tranquillamente ignorare questa e-mail. La vostra password non cambierà finché non accederete al link di cui sopra e ne creerete una nuova.
-        regards: 'Saluti, team Lighthouse
-
-          '
+        regards: 'Saluti, team Lighthouse '
         subject: Istruzioni per lo sblocco del conto
         unlock_account: Sbloccare il mio account
     omniauth_callbacks:
@@ -2037,6 +2063,9 @@ it:
       campaign_factor_group:
         group_already_exists: Esiste già un gruppo con lo stesso nome.
         last_factor_group: Impossibile eliminare l'ultimo gruppo di fattori della campagna.
+      cant_be_deleted: Questo record non può essere eliminato
+      client_feature:
+        ai_assisted_idp_feature_error: Non può essere vero se la funzione degli assistenti ai è disabilitata
       create_superadmin:
         uniq_email: L'e-mail deve essere unica.
       exceeded_subjects_count: È possibile aggiungere solo %{count} soggetti per ogni invito
@@ -2065,6 +2094,8 @@ it:
       report_families_reports:
         report_exists: Questo Rapporto è già parte del Pacchetto di rapporti
       size?: dovrebbe essere inferiore a %{size}
+      skill:
+        already_added: Skill con lo stesso nome già aggiunta.
       skill_alias:
         unique_alias: L'alias deve essere unico
         unique_skill: L'abilità deve essere unica
@@ -2123,6 +2154,8 @@ it:
     assessments:
       timed_out: Non sarà possibile eseguire la valutazione %{assessment_name} perché il tempo è scaduto.
     error: Errore
+    error_401: Non si è autorizzati ad accedere a questa risorsa. Effettua l'accesso.
+    error_403: Non si dispone dell'autorizzazione per visualizzare questa risorsa.
     error_500: Qualcosa è andato storto. Contattare l'amministratore.
     error_msg: Qualcosa è andato storto. Aggiornare la pagina e, se il problema persiste, contattare l'amministratore
     forbidden: Non avete accesso a questa pagina
@@ -2446,9 +2479,14 @@ it:
       generate_more: Generare di più
       generating_development_actions: Generare azioni di sviluppo...
       heading: Azioni di sviluppo
+      incomplete_error: Azioni di sviluppo incomplete
+      incomplete_error_message: Alcune azioni di sviluppo sono incomplete. Si prega di completarli prima di inviare il tuo IDP.
+      incomplete_warning: Azioni di sviluppo incomplete
+      incomplete_warning_message: Alcune azioni di sviluppo sono incomplete. Sei sicuro di voler contrassegnare il tuo IDP come completato?
       learning_from_others: Imparare dagli altri
       manage_skills: Gestire le competenze
       marathon: Maratona
+      mark_as_complete: Contrassegna come completato
       no_development_actions: Nessuna azione di sviluppo
       on_the_job: Sul lavoro
       other: Altro
@@ -2457,9 +2495,11 @@ it:
       remove: Rimuovere
       skill: Abilità
       sprint: Sprint
+      start_plan: Inizia il piano
       structured_learning: Apprendimento strutturato
       submit_plan: Invia il piano
       write_here: Scrivi qui...
+    edit_plan: Modifica piano
     initial_steps:
       add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
       add_skill_group_title: Esplorare le proprie capacità di %{category}
@@ -2476,6 +2516,7 @@ it:
       rate_skills_title: Valutazione delle competenze
       rating_column_header: La vostra autovalutazione
       reflective_questions: Domande di riflessione
+      save: Salvare
       select_skills: Seleziona le tue competenze
       select_skills_placeholder: Seleziona competenze
       selected_skills: Competenze Selezionate
@@ -2496,6 +2537,7 @@ it:
         other: Altro
         technical: Tecnica
       save_skills: Salvataggio delle competenze
+    new_comments: Nuovi commenti
     pdf:
       approval_status: Stato di Approvazione
       cover:
@@ -2601,6 +2643,7 @@ it:
         library: Libreria PSI
         skills_count: Conteggio Competenze
         title: Riepilogo del Report
+    plan: Piano
     reflective_questions:
       already_completed: L'IDP è già stato completato, non è possibile rispondere alle domande ora.
       answer_later: Risposta successiva
@@ -2620,10 +2663,15 @@ it:
     status: Stato
     user_idp_status:
       approved: Approvato
+      completed: Finito
       draft: Bozza
+      in_progress: In corso
       not_started: Non iniziato
       pending_approval: In attesa
+      rejected: Respinto
     users: Utenti
+    with_reflection_questions: Con domande di riflessione
+    without_reflection_questions: Domande senza riflessione
   idp_templates:
     assign: Assegnazione
     assign_idp_template: Assegnazione del modello Idp
@@ -2748,6 +2796,35 @@ it:
     used_out_of: "%{used} su %{total}"
   mailer:
     from: L'impresa dei talenti
+    idp:
+      manager_unread_comments:
+        body: |-
+          Ciao %{name},
+          Hai nuovi commenti dai tuoi segnalatori IDP.
+
+          %{dashboard_link}
+
+          Sulla dashboard dei Diretti Subordinati, puoi:
+          - Esamina i nuovi commenti dei membri sui loro piani individuali
+          - Fornire feedback sui propri obiettivi di sviluppo
+          - Monitorare i progressi nelle attività degli sfollati interni
+          - Supporta la crescita e lo sviluppo del tuo team
+        dashboard_link: Visita la dashboard
+        subject: Hai nuovi commenti - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          Ciao %{name},
+          Hai nuovi commenti sul tuo piano di sviluppo.
+
+          %{dashboard_link}
+
+          Nella dashboard Il mio piano, puoi:
+          - Aggiorna il tuo piano di sviluppo
+          - Leggi nuovi commenti e feedback
+          - Rispondi alle domande del tuo manager
+          - Aggiorna i tuoi progressi sulle azioni di sviluppo
+        dashboard_link: Visualizza il mio piano
+        subject: Hai nuovi commenti sul tuo piano di sviluppo - %{campaign_name}
     license:
       expire:
         subject: Licenza scaduta
@@ -3682,6 +3759,7 @@ it:
         body: Fare riferimento al file di esempio per estrarre un modello che può essere utilizzato per Importare qui.
         title: Assegnare rapporti e valutazioni
     toolbar:
+      bulk_download_idp_reports: Download in blocco dei rapporti IDP
       export: Esportazione di utenti
       export_compact_completion_status: Compatto
       export_detailed_completion_status: Dettagliato
@@ -3866,6 +3944,10 @@ it:
       BadRequest: Il file non è stato caricato perché l'ultima richiesta non è andata a buon fine. Questo potrebbe essere dovuto al fatto che internet non funziona. Se internet funziona, contattare l'amministratore
       EntityTooLarge: La dimensione del file deve essere inferiore a %{maxFileSize} MB
       WrongFileType: Il tipo di file deve essere uno dei seguenti %{allowedFileTypes}
+    idp:
+      reflective_questions_required: Per l'IDP sono necessarie risposte a domande riflessive
+      status_not_permitted: non è consentito dall'utente.
+      status_not_permitted_by_manager: Manager non può aggiornare lo stato quando il piano è nello stato '%{status}'.
     invalid: non è valido
     issue: Problema
     least: Rispondere ad almeno %{min} scelta/e.

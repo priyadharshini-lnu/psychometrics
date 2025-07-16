@@ -1765,12 +1765,12 @@ cs:
           blank_id: 'Řádek %{row}: ID nemůže být prázdné'
           development_action_not_found: Vývojová akce nebyla nalezena
           invalid_csv_format: 'Nesprávný formát CSV: %{message}'
-          invalid_field: 'Řádek %{řádek}: Musí to být "Název" nebo "Popis".'
+          invalid_field: 'Řádek %{row}: Neplatné pole „%{field}“, musí být „Název“ nebo „Popis“'
           invalid_file_format: Soubor musí být CSV
           invalid_id: 'Řádek %{row}: ID musí být číslo'
           invalid_id_format: 'Řádek %{row}: ID musí být ve formátu "id#pole".'
           missing_columns: 'Chybějící povinné sloupce: %{fields}'
-          save_failed: Uložení se nezdařilo
+          save_failed: 'Nepodařilo se uložit: %{message}'
     development_actions:
       create:
         successfully: Vývojová akce "%{name}" byla úspěšně vytvořena.

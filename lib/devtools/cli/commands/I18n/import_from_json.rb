@@ -264,8 +264,15 @@ module Devtools
               if value.is_a?(Hash)
                 # If it's a nested hash, recurse deeper
                 if existing_hash.key?(key) && !existing_hash[key].is_a?(Hash)
-                  # Key exists but is not a hash (leaf node), skip this branch
-                  skip_branch(value, new_path)
+                  # Check if the existing value is empty (nil, empty string, etc.)
+                  if existing_hash[key].nil? || existing_hash[key] == ''
+                    # Replace empty value with hash and continue
+                    existing_hash[key] = {}
+                    merge_translations(existing_hash[key], value, new_path)
+                  else
+                    # Key exists but is not a hash (leaf node), skip this branch
+                    skip_branch(value, new_path)
+                  end
                 else
                   existing_hash[key] ||= {}
                   merge_translations(existing_hash[key], value, new_path)
@@ -288,8 +295,9 @@ module Devtools
           end
 
           def can_set_translation?(hash, key)
-            # Can set if key doesn't exist or if it exists and is a string (leaf node)
-            !hash.key?(key) || !hash[key].is_a?(Hash)
+            # Can set if key doesn't exist, if it exists and is a string (leaf node),
+            # or if it exists but is empty (nil or empty string)
+            !hash.key?(key) || !hash[key].is_a?(Hash) || hash[key].nil? || hash[key] == ''
           end
 
           def skip_branch(branch_data, current_path)

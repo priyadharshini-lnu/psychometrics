@@ -1439,7 +1439,7 @@ de:
           resource:
             confirmations:
               delete:
-                body: "<p>Sind Sie sicher, dass Sie löschen möchten?</p> <p>Diese Aktion kann nicht rückgängig gemacht werden. Dadurch werden die Kampagne <strong>%{name}</strong>, die Unterkampagnen und alle Verknüpfungen dauerhaft gelöscht.</p> <p>Bitte geben Sie zur Bestätigung <strong>%{Name}</strong> ein.</p>"
+                body: "<p>Sind Sie sicher, dass Sie löschen möchten?</p> <p>Diese Aktion kann nicht rückgängig gemacht werden. Dadurch werden die Kampagne <strong>%{name}</strong>, die Unterkampagnen und alle Verknüpfungen dauerhaft gelöscht.</p> <p>Bitte geben Sie zur Bestätigung <strong>%{name}</strong> ein.</p>"
                 title: "<strong>%{name}</strong> löschen?"
               disable:
                 body:
@@ -1770,7 +1770,7 @@ de:
           invalid_id: 'Zeile %{row}: ID muss eine Zahl sein'
           invalid_id_format: 'Zeile %{row}: Die ID muss das Format "id#field" haben.'
           missing_columns: 'Fehlende erforderliche Spalten: %{fields}'
-          save_failed: Speichern fehlgeschlagen
+          save_failed: 'Speichern fehlgeschlagen: %{message}'
     development_actions:
       create:
         successfully: Entwicklungsaktion "%{name}" wurde erfolgreich erstellt.

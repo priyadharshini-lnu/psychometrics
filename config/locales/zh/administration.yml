@@ -1100,7 +1100,7 @@ zh:
               body: "<p>您确定要 %{status} 该许可证吗？</p>\n"
               title: "<strong>%{status}</strong>%{name} 的许可证？"
         show:
-          used_out_of: "%{used}中的%{total｝"
+          used_out_of: "%{used_number} 出 %{number}"
       new:
         header: 新客户
       projects:
@@ -1638,7 +1638,7 @@ zh:
         client: 客户：
         communication_type: 通信类型：
         delivery_rule: 交货规则：
-        every_interval: 每隔 %{ 间隔｝
+        every_interval: 每 %{interval}
         owner: 业主
         project: 项目：
         recipients: 获奖者：
@@ -1747,30 +1747,30 @@ zh:
         csv_file_required: 必须是 CSV 文件
         image_download_failed: 从 %{url} 下载图像失败： %{message}
         invalid_csv_format: CSV 格式无效： %{message}
-        invalid_date: "％{date}的日期格式无效。"
-        invalid_date_format: 行％{row}：％{field}的无效日期格式。
+        invalid_date: "%{date}的日期格式无效。"
+        invalid_date_format: 第 %{row} 行：%{field}的日期格式无效。
         invalid_development_action_type: 第 %{row} 行：开发行动类型“%{value}”无效。有效的开发行动类型为：%{valid_development_action_types}
-        invalid_duration_format: 持续时间仅允许数字值。行％{row}：％{value}不是有效的持续时间。
-        invalid_image_file: 无效图像文件：%{信息｝
+        invalid_duration_format: '持续时间仅允许数字值。行 %{row}: %{value}不是有效的持续时间。'
+        invalid_image_file: 无效的图片文件： %{message}
         invalid_image_url: 图像 URL 格式无效：%{url} %{url}
-        invalid_languages: 无效的可用语言％{invalid_languages}对于行％{row}。
+        invalid_languages: "%{row} 行的可用语言%{invalid_languages}无效。"
         invalid_learning_style: 行 %{row}：学习类型"%{value}"无效。 有效类型为：%{valid_types}。
-        languages_only_for_courses: 可用语言只能设置为“课程”类型的开发动作。请删除ROW％{row}的可用语言，或将开发操作的类型更改为“课程”。
+        languages_only_for_courses: 可用语言只能设置为“课程”类型的开发动作。请删除ROW%{row}的可用语言，或将开发操作的类型更改为“课程”。
         missing_columns: 缺少必填列： %{fields}
         save_failed: '挽救失败的开发项目: %{message}'
         skill_not_found: 未找到 ID 为 %{skill_id} 的技能
     development_action_translations:
       import:
         errors:
-          blank_id: 行 %{row}：ID 不能为空
+          blank_id: 行 %{row} ID 不能为空
           development_action_not_found: 未找到开发行动
           invalid_csv_format: CSV 格式无效： %{message}
           invalid_field: 行 %{row}：无效字段"%{field}"，必须为 "名称 "或 "描述"
           invalid_file_format: 文件必须是 CSV 文件
-          invalid_id: 行 %{row}：ID 必须是数字
+          invalid_id: '行 %{row}: ID 必须是数字'
           invalid_id_format: 行 %{row}：ID 必须为 "id#字段 "格式
           missing_columns: 缺少必填列： %{fields}
-          save_failed: 保存失败
+          save_failed: 保存失败： %{message}
     development_actions:
       create:
         successfully: 开发行动"%{name}"已成功创建。
@@ -1924,8 +1924,8 @@ zh:
         successfully: "%{name} 维度已成功更新"
     disable: 禁用
     document_titles:
-      project_assessors: 评估员
-      project_participants: 参与者
+      project_assessors: 评估员 |%{project}
+      project_participants: 参与者 |%{project}
     enable: 启用
     errors:
       csv_file_required: 文件必须是 CSV 文件
@@ -1981,10 +1981,10 @@ zh:
           custom_formula: 自定义公式
           external_score: 外部评分
           questions: 问题（平均）
-          questions_percentage: 问题（SUM / MAX 总计）
-          questions_sum: 问题（SUM）
+          questions_percentage: 问题(SUM / MAX 总计）
+          questions_sum: 问题(SUM)
           sub_factor_questions: 其他因素的问题（平均值）
-          sub_factor_questions_sum: 其他因素的问题（SUM）
+          sub_factor_questions_sum: 其他因素的问题(SUM)
           sub_factors_average: 系数加权平均数
           sub_factors_conditional_average: 系数的条件加权平均数
           sub_factors_sum: 系数加权和
@@ -2159,7 +2159,7 @@ zh:
         translation:
           error: "[翻译 %{id}] %{error}"
           invalid_format: 文件格式无效
-        unknown_type: 未知文件类型：%{文件名｝
+        unknown_type: 未知文件类型： %{filename}
       form:
         description: 请参阅 "导出 "功能，提取可用于此处 "导入 "的模板。
         import: 进口
@@ -2714,7 +2714,7 @@ zh:
             missing_columns: 缺少必填列： %{fields}
             missing_required_columns: 缺少必填列： %{columns}
             row_id_blank: 行 %{row}：ID 不能为空
-            save_failed: 技能 ID %{id} 处理错误：%{message｝
+            save_failed: 处理技能 ID %{id}时出错：%{message}
       type:
         all_skills: 所有技能
         by_category: 按类别
@@ -3032,7 +3032,7 @@ zh:
           invalid_min_words_column_format: 最小字数列值格式无效 %{row}
           invalid_required_column_format: 强制列值格式无效 %{row}
           missing_eng_question: 缺少英语问题内容 %{row}
-          save_failed: 保存失败 %{message｝
+          save_failed: 保存失败%{message}
         failure_msg: 导入文件时出错。
         success_msg: 正在导入反思问题。请查看通知中的状态。
       question: 问题
@@ -3220,7 +3220,7 @@ zh:
       cert: 证书
       config_details:
         acs_url: 断言消费者服务 URL
-        copied: 复制了 %{element｝
+        copied: 复制的 %{element}
         issuer: 实体 ID/发行人
         title: 用以下信息配置 Idp
       email_pipetext: 向 Pipetext 发送电子邮件
@@ -3334,7 +3334,7 @@ zh:
         booked: 已预订座位
         campaign_assessment_group: 评估中心小组
         cancellation_lead_time: 取消预订所需时间
-        cancellation_tooltip: 用户可以取消预订，直至 %{ 日期｝
+        cancellation_tooltip: 用户将能够取消预订，直到 %{date}
         date: 日期和时间
         duration: 持续时间
         join_meeting: 加盟房间
@@ -3618,7 +3618,7 @@ zh:
         skill_type: 技能类型
       errors:
         import:
-          missing_fields_data: 行 %{line_number}：缺少必填字段：%{字段｝
+          missing_fields_data: 第 %{line_number} 行：缺少必填字段：%{fields}
           save_failed: 行 %{line_number}：保存技能"%{name}"失败： %{message}
         search:
           all_and_project_id_mutually_exclusive: 当提供 project_id_eq 时，不能全部为真

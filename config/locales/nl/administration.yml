@@ -1439,7 +1439,7 @@ nl:
           resource:
             confirmations:
               delete:
-                body: "<p>Weet je zeker dat je wilt verwijderen?</p> <p>Deze actie kan niet ongedaan worden gemaakt. Hierdoor worden de <strong>%{naam}</strong> campagne, subcampagnes en alle koppelingen permanent verwijderd.</p> <p>Typ <strong>%{naam}</strong> om te bevestigen.</p>"
+                body: "<p>Weet je zeker dat je wilt verwijderen?</p> <p>Deze actie kan niet ongedaan worden gemaakt. Hierdoor worden de <strong>%{name}</strong> campagne, subcampagnes en alle koppelingen permanent verwijderd.</p> <p>Typ <strong>%{name}</strong> om te bevestigen.</p>"
                 title: "<strong>%{name}</strong> verwijderen?"
               disable:
                 body:
@@ -1770,7 +1770,7 @@ nl:
           invalid_id: 'Rij %{row}: ID moet een nummer zijn'
           invalid_id_format: 'Rij %{row}: ID moet het formaat "id#field" hebben.'
           missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
-          save_failed: Opslaan mislukt
+          save_failed: 'Opslaan mislukt: %{message}'
     development_actions:
       create:
         successfully: Ontwikkelactie "%{name}" is succesvol aangemaakt.
@@ -1924,7 +1924,7 @@ nl:
         successfully: "%{name} dimensie is succesvol bijgewerkt"
     disable: Uitschakelen
     document_titles:
-      project_assessors: Beoordelaars
+      project_assessors: Beoordelaars %{project}
       project_participants: Deelnemers %{project}
     enable: Inschakelen
     errors:

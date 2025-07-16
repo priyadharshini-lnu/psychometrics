@@ -1,0 +1,4162 @@
+---
+vi:
+  administration:
+    actions: Hành động
+    active_record_audits:
+      action: Hành động
+      audit_id: Mã kiểm toán
+      auditable_id: Mã hồ sơ
+      auditable_type: Loại hồ sơ
+      audited_changes: Các thay đổi đã được kiểm toán
+      new_diff:
+        parse_error: Không thể phân tích cú pháp JSON với các thay đổi mới
+      old_diff:
+        parse_error: Không thể phân tích cú pháp JSON với các thay đổi cũ
+      title: Các thay đổi đã được kiểm toán
+    administrator:
+      sessions:
+        new:
+          forgot_password: Quên Mật khẩu?
+          instruction: Vui lòng đăng nhập bằng thông tin tài khoản cá nhân của bạn
+          password_placeholder: Mật khẩu
+          title: Chào mừng!
+      shared:
+        simple_design:
+          design: Thiết kế
+          or: Hoặc
+    administrators:
+      drawers:
+        edit:
+          admin_role_select: Chọn vai trò quản trị viên
+          admin_roles: Vai trò quản trị viên
+          create_success: Quản trị viên '%{name}' đã được tạo thành công
+          email: Email
+          first_name: Tên riêng
+          first_name_required: Tên riêng là bắt buộc
+          last_name: Họ
+          last_name_required: Họ là bắt buộc
+          no_edit_permission: Bạn không có quyền chỉnh sửa quản trị viên '%{name}'
+          save: Lưu
+          update: Cập nhật
+          update_success: Quản trị viên '%{name}' đã được cập nhật thành công
+        notes:
+          threesixty_permission: Quyền truy cập dành riêng cho các chiến dịch 360
+          title: Ghi chú
+        view:
+          add_campaign_admin: Thêm quản trị viên chiến dịch
+          add_client_admin: Thêm quản trị viên khách hàng
+          add_project_admin: Thêm quản trị viên dự án
+          add_threesixty_campaign_admin: Thêm quản trị viên chiến dịch
+          edit_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
+          edit_client_admin: Chỉnh sửa quản trị viên khách hàng
+          edit_project_admin: Chỉnh sửa quản trị viên dự án
+          edit_threesixty_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
+          first_name: Tên riêng
+          last_name: Họ
+          project_admin: Quản trị viên dự án
+          project_list: Danh sách dự án
+          role: Quản trị viên chiến dịch
+          title:
+            campaign_admin: Quản trị viên chiến dịch
+            client_admin: Quản trị viên khách hàng
+            project_admin: Quản trị viên dự án
+      list:
+        actions:
+          api_keys: Khóa API
+          cancel_text: Hủy
+          change_password: Đặt lại mật khẩu
+          edit: Chỉnh sửa
+          export_admins_with_permissions: Xuất vai trò và quyền của quản trị viên
+          export_success: Tác vụ xuất dữ liệu quản trị viên đã được lên lịch thành công. Vui lòng kiểm tra thông báo của bạn để biết trạng thái.
+          login: Đăng nhập
+          send_email: Gửi email
+          spoof:
+            login_successful: Đăng nhập thành công.
+          user_report_events: Báo cáo nhật ký phê duyệt
+        columns:
+          actions: Hành động
+          created_at: Được tạo tại
+          email: Email
+          id: Mã định danh
+          name: Tên
+        header:
+          add_admin: Thêm quản trị viên
+          search_admins: Quản trị viên tìm kiếm
+        toolbar:
+          export_admins_with_permissions: Xuất vai trò và quyền hạn của quản trị viên
+      modals:
+        delete:
+          cancelText: Hủy
+          content: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
+          okText: Ok
+          onSuccess: Quản trị viên có email '%{email}' đã bị xóa thành công
+          title: Xác nhận
+      permissions:
+        labels:
+          apiKeys:
+            manage: Điều khiển
+            title: Khóa API
+            view: Xem
+          assessments:
+            manage: Điều khiển
+            title: Đánh giá
+            view: Cảnh
+          assessors:
+            manage: Điều khiển
+            title: Đánh giá viên
+            view: Xem
+          auditLogs:
+            title: Nhật ký kiểm tra
+            view: Xem
+          auditReports:
+            admin_permissions: Xuất vai trò và quyền hạn của quản trị viên
+            title: Báo cáo kiểm toán
+            user_report_events: Nhật ký phê duyệt báo cáo
+          campaignFactors:
+            manage: Điều khiển
+            title: Các yếu tố chiến dịch
+            view: Xem
+          campaigns:
+            bulk_download: Tải xuống hàng loạt
+            bulk_regenerate_reports: Tái tạo hàng loạt báo cáo
+            manage: Điều khiển
+            manage_admins: Quản lý quản trị viên
+            manage_factor_benchmark_scores: Quản lý điểm chuẩn theo yếu tố
+            manage_messages: Quản lý tin nhắn
+            manage_options: Quản lý tùy chọn
+            manage_report_approvals: Quản lý phê duyệt báo cáo
+            manage_users: Quản lý người dùng
+            participant_options: Lựa chọn người tham gia
+            report_options: Tùy chọn báo cáo
+            reset_nominations: Đặt lại đề cử
+            title: Chiến dịch
+            view: Xem
+            view_factor_benchmark_scores: Xem điểm chuẩn yếu tố
+            view_stats: Xem số liệu thống kê
+          clients:
+            export_data_report: Báo cáo dữ liệu xuất
+            manage: Điều khiển
+            title: Khách hàng
+            view: Cảnh
+            view_licenses: Xem giấy phép
+          communications:
+            manage: Điều khiển
+            title: Truyền thông
+            view: Cảnh
+          dashboards:
+            accesssheet_manage: Quản lý bảng truy cập
+            accesssheet_settings: Cài đặt bảng truy cập
+            accesssheet_view: Chế độ xem Accesssheet
+            title: Dashboards
+            view: Cảnh
+          datasheets:
+            manage: Điều khiển
+            title: Bảng dữ liệu
+            view: Cảnh
+          developmentActions:
+            export: Xuất khẩu
+            export_global: Xuất khẩu toàn cầu
+            export_global_translations: Xuất bản dịch toàn cầu
+            export_translations: Xuất bản dịch
+            import: Nhập khẩu
+            import_global: Nhập khẩu toàn cầu
+            import_global_translations: Nhập bản dịch toàn cầu
+            import_translations: Nhập bản dịch
+            manage: Điều khiển
+            title: Hành động phát triển
+            view: Cảnh
+          dimensions:
+            manage: Điều khiển
+            title: Kích thước
+            view: Cảnh
+          idpTemplates:
+            manage: Điều khiển
+            title: Mẫu IDP
+            view: Cảnh
+          jobRoles:
+            manage: Điều khiển
+            title: Vai trò công việc
+            view: Cảnh
+          mediaLibraries:
+            manage: Điều khiển
+            title: Thư viện phương tiện
+            view: Cảnh
+          messages:
+            email: Email
+            instructions: Chỉ thị
+            options: Tùy chọn
+            title: Thư
+          norms:
+            manage: Điều khiển
+            title: Tiêu chuẩn
+            view: Cảnh
+          proficiencyLevels:
+            export: Mức độ thành thạo xuất khẩu
+            export_translations: Bản dịch Trình độ thông thạo xuất khẩu
+            import: Mức độ thành thạo nhập khẩu
+            import_translations: Bản dịch trình độ thành thạo nhập khẩu
+            manage: Điều khiển
+            title: Mức độ thành thạo
+            view: Cảnh
+          proficiency_level:
+            title: Mức độ thành thạo
+          projectSettings:
+            assessments: Đánh giá
+            design: Thiết kế
+            idp: IDP
+            integrations: Tích hợp
+            privacy_settings: Cài đặt quyền riêng tư
+            saml: SAML
+            security: An ninh
+            smtp: SMTP
+            title: Cài đặt dự án
+            webhooks: Webhook
+          projects:
+            manage: Điều khiển
+            manage_admins: Quản lý quản trị viên
+            manage_users: Quản lý người dùng
+            title: Dự án
+            view: Cảnh
+          questions:
+            manage: Điều khiển
+            title: Câu hỏi
+            view: Cảnh
+          reflectionQuestions:
+            export: Xuất khẩu
+            import: Nhập khẩu
+            manage: Điều khiển
+            title: Câu hỏi phản ánh IDP
+            view: Cảnh
+          registrationCodes:
+            manage: Điều khiển
+            title: Mã đăng ký
+            view: Cảnh
+          registrationSettings:
+            manage: Điều khiển
+            title: Cài đặt đăng ký
+          reports:
+            manage: Điều khiển
+            title: Báo cáo
+            view: Cảnh
+          responseMeta:
+            title: Phản hồi Meta
+          results:
+            approve_report: Phê duyệt báo cáo
+            bulk_download: Tải xuống hàng loạt
+            bulk_regenerate_reports: Tạo lại hàng loạt báo cáo
+            bulk_update_evaluation_status: Cập nhật hàng loạt trạng thái đánh giá
+            download_report: Tải xuống báo cáo
+            edit_report: Chỉnh sửa báo cáo
+            export_occupations: Nghề xuất khẩu
+            external_score_import: Nhập điểm bên ngoài
+            finalize_scores: Kết thúc điểm số
+            normalize_factor_scores: Chuẩn hóa điểm số yếu tố
+            raw_responses: Phản hồi thô
+            regenerate_report: Báo cáo tái tạo
+            report_data: Dữ liệu báo cáo
+            report_file_upload: Tải lên tệp báo cáo
+            rescore_responses: Chấm điểm lại câu trả lời
+            reset_progress: Đặt lại tiến trình
+            reset_responses: Đặt lại phản hồi
+            scores: Điểm
+            title: Kết quả
+            view_report: Xem báo cáo
+            view_stats: Xem số liệu thống kê
+          skills:
+            export: Kỹ năng xuất khẩu
+            export_translations: Bản dịch kỹ năng xuất khẩu
+            import: Kỹ năng nhập khẩu
+            import_translations: Bản dịch kỹ năng nhập khẩu
+            manage: Điều khiển
+            title: Kỹ năng
+            view: Cảnh
+          smsHistories:
+            manage: Điều khiển
+            title: Lịch sử SMS
+            view: Cảnh
+          smsInvites:
+            manage: Điều khiển
+            title: Lời mời SMS
+            view: Cảnh
+          users:
+            reset_password: Đặt lại mật khẩu
+            title: Người dùng
+          workshops:
+            export_status: Tình trạng xuất khẩu
+            manage: Điều khiển
+            title: Hội thảo
+            view: Cảnh
+    ai_assistants:
+      actions:
+        playground: Sân chơi
+      ai_assistants: Trợ lý AI
+      ai_assistants_playground: Sân chơi trợ lý AI
+      column:
+        ai_action: Hành động AI
+        provider: Cung cấp
+      form:
+        action: Hành động
+        description: Sự miêu tả
+        name: Tên
+        provider: Cung cấp
+        system_prompt: Nhắc nhở hệ thống
+        title: Trợ lý AI
+        user_prompt: Nhắc nhở người dùng
+    any: " -Bất kì- "
+    api:
+      campaigns:
+        validate_form:
+          external_id_taken: Id bên ngoài '%{external_id}' đã được sử dụng'
+      users:
+        form:
+          campaign_ids_not_existing: Không phải tất cả các mã chiến dịch đều tồn tại
+    api_keys:
+      form:
+        description: Sự miêu tả
+        title: Khóa API
+    assessment_center:
+      cancel_confirmation:
+        message: Bạn có chắc chắn muốn loại bỏ tiến trình biểu mẫu không?
+        title: Tiến trình loại bỏ biểu mẫu
+      current: Dòng
+      invite:
+        add_invite: Thêm lời mời
+        assessment_center: Trung tâm đánh giá
+        back: Lưng
+        basic_info:
+          allow_preferred_language: Cho phép ngôn ngữ ưa thích
+          assessment_centers: Trung tâm đánh giá
+          assessment_centers_hint: Ví dụ về cụm từ tìm kiếm '10 tháng 8 năm 2023, 8:06 tối'
+          assessment_centers_placeholder: Chọn Trung tâm Đánh giá
+          description: Đưa ra lời mời cho ứng viên bằng cách chọn nhiều trung tâm đánh giá. Sau đó, các ứng viên sẽ chọn một trung tâm duy nhất từ những trung tâm có sẵn.
+          neurodiversity: Bao gồm câu hỏi đa dạng thần kinh
+          preferred_language: Ngôn ngữ được phép
+          required_error: Không thể trống rỗng
+          title: Thông tin cơ bản
+        center_group: Nhóm Trung tâm Đánh giá
+        confirm_message: Bạn có chắc chắn muốn xóa lời mời không?
+        confirm_message_with_title: Bạn có chắc chắn muốn xóa Lời mời có tiêu đề '%{invite_title}' không?
+        confirm_title: Xác nhận
+        exceeded_subjects_count: Chiến dịch có %{users} chủ đề. Bạn chỉ có thể thêm %{count} chủ đề cho mỗi lời mời
+        id: ID
+        invites: Mời
+        next: Sau
+        not_selected: Không được chọn
+        requests: Yêu cầu
+        save: Lưu và gửi
+        send_invites:
+          add: Thêm
+          add_description: Bạn có thể dịch tiêu đề và mô tả lời mời sang nhiều ngôn ngữ
+          add_language: Thêm ngôn ngữ
+          description: Sự miêu tả
+          input_label: Thêm ngôn ngữ bổ sung
+          input_placeholder: Chọn ngôn ngữ bổ sung
+          invitation_title: Tiêu đề lời mời
+          title: Lời mời (%{lang})
+        steps:
+          add_subjects: Thêm chủ đề
+          basic_info: Thông tin cơ bản
+          has_errors: chứa lỗi
+          send_invitation: Gửi lời mời
+        subjects:
+          cancel: Hủy
+          count: "%{count} đối tượng"
+          csv_error: 'Row%{index}: người dùng có email %{email} không có trong chiến dịch này'
+          csv_imported: "%{count} đối tượng đã nhập"
+          description: Bạn có thể thêm chủ đề riêng lẻ bằng cách tìm kiếm hoặc tải lên hàng loạt tệp csv.
+          download: Tải xuống
+          file_example: Tham khảo tệp ví dụ để tải lên thông tin subjecs.
+          import_from_campaign: Thêm tất cả từ chiến dịch
+          import_title: Đối tượng nhập khẩu
+          import_users: Nhập người dùng
+          search_user: Đối tượng tìm kiếm
+          title: Đối tượng
+          upload: Tải lên
+          upload_csv: Tải lên CSV
+        subjects_count_added: Các đối tượng được thêm thành công
+        success:
+          continue: Tiếp tục
+          message: Nhiệm vụ gửi lời mời đã được xếp hàng; người dùng sẽ sớm nhận được chúng.
+        success_message: Lời mời đã bị xóa thành công.
+        success_message_with_title: Lời mời có tiêu đề '%{invite_title}' đã bị xóa thành công.
+        title: Tiêu đề
+        workshop:
+          title: Trung tâm đánh giá
+        workshop_list:
+          add: Thêm
+          name: Tên
+          remove_confirm:
+            content: Bạn có chắc chắn muốn xóa Trung tâm Đánh giá có tên '%{name}' không?
+            success: Trung tâm Đánh giá đã được gỡ bỏ thành công.
+            title: Xác nhận
+      invite_request:
+        accept: Chấp nhận
+        reason: Lý do
+        reject: Bác bỏ
+        remove_confirm:
+          content: Bạn có chắc chắn muốn %{action} %{status} từ %{subjectName} không?
+          success: "%{status} từ %{subjectName} là %{action} thành công."
+          title: "%{action} %{status}"
+        status: Tình trạng
+        subject_name: Tên chủ đề
+        workshop_time: Thời gian hội thảo
+      past: Quá khứ
+      steps:
+        basic_information: Thông tin cơ bản
+        facilitators: Điều phối viên
+        invite_options: Tùy chọn mời
+        invite_subjects: Mời các môn học
+        send_invitations: Gửi lời mời
+      success:
+        call_send_invitation: Bạn có muốn gửi lời mời không?
+        ok: Có
+        skip: Bỏ qua ngay bây giờ
+        title: Các trung tâm đánh giá được tạo ra
+      upcoming: Sắp tới
+    assessment_question_import:
+      errors:
+        doesnt_have_header: "'%{sub_header}' không có tiêu đề"
+        invalid_headers: 'Các tiêu đề sau không hợp lệ: %{headers}'
+        invalid_scores: Điểm số cho yếu tố %{factor_name} không hợp lệ. Điểm số phải là các giá trị số được phân tách bằng dấu phẩy
+        invalid_sub_header: "'%{sub_header}' không phải là tiêu đề phụ hợp lệ cho tiêu đề '%{header}'"
+        scores_not_allowed: Điểm chỉ có thể được thêm cho câu hỏi loại MultiChoice và Matrix
+        unavailable_factors: "%{unavailable_factor_names} thừa số không có trong một thứ nguyên"
+      modal:
+        download_xls: Tải xuống tệp XLSX ví dụ
+        title: Câu hỏi nhập khẩu
+      successfully_scheduled: Nhập câu hỏi đã được lên lịch thành công.
+    assessments:
+      assessment: Thuế
+      assessment_report: Đánh giá
+      copy:
+        copy: bản sao
+        copy_assessment: Bản sao đánh giá
+        name: Tên
+        successfully: Đánh giá "%{name}" đã được sao chép thành công.
+      create:
+        successfully: Đánh giá "%{name}" đã được tạo thành công.
+      destroy:
+        successfully: Đánh giá "%{name}" đã bị xóa thành công.
+      edit:
+        header: Cài đặt đánh giá
+      errors:
+        owner_validation: Bạn không có quyền %{resource_name} %{permission} đối với %{client_name}
+      export:
+        questions: Câu hỏi xuất khẩu
+      export_questions_toastr: Tác vụ xuất câu hỏi đã được lên lịch thành công
+      flow: Chảy
+      linkedAssessment:
+        assessment_title: Chọn Câu hỏi từ %{name}
+        title: Chọn câu hỏi được liên kết
+      map_norms: Định mức bản đồ
+      menu:
+        export_questions: Câu hỏi xuất khẩu
+        import_questions: Câu hỏi nhập khẩu
+        managage_campaign_factors: Quản lý các yếu tố chiến dịch
+      new:
+        header: Đánh giá mới
+      preview: Xem trước đánh giá
+      randomization:
+        cancel: Hủy
+        no_randomization: Không ngẫu nhiên
+        no_randomization_order_all: Ngẫu nhiên hóa thứ tự của tất cả
+        of_total: của tổng số
+        per_page: mỗi trang
+        plural:
+          block: Khối
+          choice: Sự lựa chọn
+          question: Câu hỏi
+        present_only: Chỉ có mặt
+        question_per_factor_and_show: câu hỏi cho mỗi yếu tố và hiển thị
+        save: Cứu
+        select: Lựa
+        select_only: Chỉ chọn
+        single_question_page_warning: Đánh giá hiện tại được định cấu hình để hiển thị một câu hỏi trên mỗi trang. Đặt nhiều câu hỏi trên mỗi trang ở đây sẽ tự động tắt cài đặt Câu hỏi đơn trên mỗi trang.
+        title: Ngẫu nhiên
+      reports: Báo cáo
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Đánh giá này không?</p>\n"
+            title: Xóa <strong>đánh giá</strong>?
+          soft_delete:
+            body: "<p>Bạn có chắc chắn muốn xóa mềm Đánh giá này không?</p>\n"
+            title: "<strong>Đánh giá xóa</strong> mềm?"
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Đánh giá này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      restore:
+        successfully: Đánh giá %{name} đã được khôi phục thành công.
+      scoring_strategy:
+        average: Trung bình
+        sum: Tổng
+        title: Chiến lược ghi điểm
+      settings:
+        disable_continue_to_dashboard: Tắt nút "Tiếp tục đến bảng điều khiển"
+        disable_nav_btn: Tắt nút quay lại điều hướng
+        enable_back: Bật nút quay lại
+        enable_progress: Bật thanh tiến trình
+        enable_save: Bật nút lưu
+        enable_single_question_page: Hiển thị một câu hỏi trên mỗi trang
+        enable_single_question_page_confirm: Thao tác này sẽ cập nhật ngẫu nhiên khối trên mỗi trang thành 1. Bạn có chắc không?
+        enable_timer: Bật hẹn giờ
+        has_randomized_block_warning: Đánh giá hiện tại có các khối ngẫu nhiên với nhiều hơn một câu hỏi trên mỗi trang. Bật "Hiển thị một câu hỏi trên mỗi trang" sẽ ghi đè lên tất cả cấu hình ngẫu nhiên để chỉ có một câu hỏi trên mỗi trang.
+        instructions: Bật hướng dẫn
+        title: Cài đặt đánh giá
+      soft_delete:
+        successfully: Đánh giá %{name} đã được chuyển vào thùng rác thành công.
+      toggle_archive:
+        successfully: Đánh giá %{name} là %{status} thành công.
+      toggle_status:
+        successfully: Đánh giá %{name} đã được cập nhật thành công.
+      update:
+        successfully: Đánh giá %{name} đã được cập nhật thành công.
+    assessor:
+      add_subject_modal:
+        assessment: Thuế
+        mark_as_lead_assessor: Đánh dấu là đánh giá viên chính cho môn học trên
+        subject: Chủ đề
+        subject_placeholder: Chủ đề tìm kiếm..
+        title: Thêm chủ đề
+      assessments:
+        actions:
+          add_subject: Thêm chủ đề
+          rescore: Ghi điểm lại
+          reset: Đặt lại đánh giá
+          reset_progress: Đặt lại tiến trình
+        bulk_delete_confirmation: Bạn có chắc chắn muốn xóa các bản ghi đã chọn không?
+        bulk_delete_successful: Đánh giá của người đánh giá đã bị xóa thành công
+        reset_confirmation: Bạn có chắc chắn muốn đặt lại đánh giá cho chủ đề bằng email "%{subjectEmail}" không?
+        reset_progress_confirmation: Bạn có chắc chắn muốn đặt lại tiến trình cho chủ đề bằng email "%{subjectEmail}" không?
+        reset_progress_successfully: Đặt lại tiến trình cho chủ đề có email "%{subjectEmail}" đã thành công.
+        reset_successfully: Đặt lại đánh giá cho chủ đề có email "%{subjectEmail}" đã thành công.
+        subject_email: Email chủ đề
+        subject_name: Tên chủ đề
+      completed_at: Hoàn thành lúc
+      count: "%{count} người đánh giá"
+      create_assessor: Thêm đánh giá viên
+      evaluations: Đánh giá
+      mailer:
+        subject: Các môn học mới được thêm vào để đánh giá của bạn
+      modals:
+        create_assessor:
+          add: Thêm
+          cancel: Hủy
+          form:
+            add: Thêm
+            add_lead_assessor: Thêm làm Giám định viên chính
+            add_lead_assessor_hint: Vui lòng thêm Biểu mẫu đánh giá chính trước
+            assessments: Đánh giá
+            assessor: Giám định viên
+            assessor_placeholder: Tìm kiếm thẩm định viên...
+            lead_assessment: Đánh giá khách hàng tiềm năng
+            subject: Chủ đề
+            subject_placeholder: Chủ đề tìm kiếm...
+          sheet:
+            assessments: Đánh giá
+            assessments_placeholder: Lựa
+            assessor_email: Email của thẩm định viên
+            assessor_first_name: Tên của giám định viên
+            assessor_last_name: Họ của giám định viên
+            subject_email: Email của chủ đề
+          title: Thêm đánh giá viên
+        import:
+          body: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
+          title: Giám định viên nhập khẩu
+      moderate_score:
+        assessor_evaluations: Đánh giá của người đánh giá
+        main_report: Báo cáo chính
+        no_completed_assessments: Chưa có đánh giá hoàn thành
+        no_results: Không có bất kỳ câu hỏi nào được trả lời
+        other_reports: Các báo cáo khác
+        overall_scoring: Điểm tổng thể
+        refresh: Làm tươi
+        reports: Báo cáo
+        reports_count: "%{count} báo cáo"
+      overview: Tổng quan
+      remove_confirmation: Bạn có chắc chắn muốn xóa người đánh giá có email %{email} khỏi chiến dịch này không?
+      statuses:
+        completed: Hoàn thành
+        not_completed: Chưa hoàn thành
+      toolbar:
+        export: Giám định viên xuất khẩu
+        import: Giám định viên nhập khẩu
+        tools: Công cụ
+    assessor_assessment:
+      add: Thêm
+      modals:
+        add_assessor_assessment:
+          assessment_placeholder: Chọn đánh giá
+      name: Đánh giá của người đánh giá
+    assessor_campaigns:
+      statuses:
+        completed: Hoàn thành
+        in_progress: Đang tiến hành
+        not_started: Chưa bắt đầu
+    assessor_subjects:
+      statuses:
+        completed: Hoàn thành
+        in_progress: Đang tiến hành
+        not_started: Chưa bắt đầu
+    assigns:
+      create:
+        successfully: Chỉ định đánh giá mới đã được tạo thành công
+      destroy:
+        successfully: Gán cho đánh giá đã bị xóa thành công
+      new:
+        header: Chỉ định đánh giá và báo cáo
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa nhiệm vụ này không?</p>"
+            title: Xóa <strong>%{name}</strong> ?
+    assigns_reports:
+      edit:
+        header: Chỉnh sửa chỉ định báo cáo
+    attention: Chú ý
+    audit_log:
+      action: Hành động
+      audit_logs: Nhật ký kiểm tra
+      campaign: Chiến dịch
+      client: Khách hàng
+      client_ip: IP khách hàng
+      collapse_filters: Thu gọn bộ lọc
+      dashboard: Bảng điều khiển
+      date_presets:
+        last_30_days: 30 ngày qua
+        last_7_days: 7 ngày qua
+        last_month: Tháng trước
+        last_week: Tuần trước
+        today: Hôm nay
+        yesterday: Hôm qua
+      date_range: Phạm vi ngày
+      expand_filters: Mở rộng bộ lọc
+      failure_reason: Lý do thất bại
+      interface: Giao diện
+      log_date: Ngày ghi nhật ký
+      outcome: Kết quả
+      payload: Tải trọng
+      project: Dự án
+      record_id: Id bản ghi
+      request_id: ID yêu cầu
+      reset: Reset
+      search: Tìm kiếm
+      search_campaign: Tìm kiếm theo chiến dịch
+      search_client: Tìm kiếm theo khách hàng
+      search_project: Tìm kiếm theo dự án
+      search_record: Tìm kiếm theo ID bản ghi
+      search_user: Tìm kiếm theo người dùng
+      title: Thông tin nhật ký kiểm toán
+      type: Loại bản ghi
+      user: Người dùng
+      user_agent: Tác nhân người dùng
+    back: Lưng
+    base:
+      top_sidebar:
+        sign_out_message:
+          body: "<p>Bạn có chắc chắn muốn đăng xuất?</p> <p>Nhấn Không nếu bạn muốn tiếp tục công việc. Nhấn Có để đăng xuất người dùng hiện tại.</p>"
+          title: Đăng <strong>xuất</strong> ?
+    block_settings:
+      modal:
+        add_layer: Thêm lớp
+        background_color: Màu nền
+        background_image: Hình nền
+        base_offse_speed: Tốc độ bù đắp cơ bản
+        confirm_msg: Bạn có chắc chắn xóa lớp này không?
+        confirm_title: Xóa lớp
+        layers: Lớp
+        main_background_color: Màu nền chính
+        select_from_lib: Chọn từ thư viện
+        speed: Tốc độ
+        title: Cài đặt khối
+    blocks:
+      copy:
+        successfully: Khối %{name} đã được sao chép thành công.
+      create:
+        successfully: Khối %{name} đã được tạo thành công.
+      destroy:
+        successfully: Khối %{name} đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa khối
+      new:
+        header: Khối mới
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Khối này không?</p>\n"
+            title: Xóa <strong>chặn</strong> ?
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Khối này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+    bookings:
+      errors:
+        already_booked: Bạn đã đặt chỗ cho nó.
+        booking_deadline_passed: Ngày này không còn nữa, vui lòng chọn một ngày khác từ màn hình trước.
+        cancellation_deadline_passed: Thời hạn hủy đã trôi qua.
+        cancelled_and_rebook_deadline_passed: Đã hủy bỏ và thời hạn đã trôi qua cho sách một lần nữa.
+        late_cancellation_not_allowed: Không được phép hủy muộn.
+        late_rescheduling_not_allowed: Không được phép đổi lịch muộn.
+        prework_not_completed: Vui lòng hoàn thành tất cả các hoạt động trước khi làm việc trước khi đặt chỗ cho trung tâm đánh giá.
+        reschedule_deadline_passed: Hạn chót lên lịch lại đã trôi qua.
+        seats_not_available: Không có chỗ ngồi.
+    breadcrumbs:
+      admins: Quản trị viên
+      assessments: Đánh giá
+      assessor_dashboard: Bảng điều khiển đánh giá viên
+      assessors: Đánh giá viên
+      audit_log_info: Thông tin nhật ký kiểm toán
+      audit_logs: Nhật ký kiểm tra
+      audit_reports: Báo cáo kiểm toán
+      campaign_templates: Mẫu chiến dịch
+      campaigns: Chiến dịch
+      client: Khách hàng thuê nhà
+      clientAdmins: Quản trị viên khách hàng
+      client_admins: Quản trị viên khách hàng
+      clients: Thuê khách hàng
+      communication_center: Trung tâm truyền thông
+      create: Tạo
+      data_exports: Xuất dữ liệu
+      data_reports: Báo cáo dữ liệu
+      datasheets: Bảng dữ liệu
+      design: Thiết kế
+      dimension: Kích thước
+      dimensions: Kích thước
+      factors: Yếu tố
+      home: Bảng điều khiển
+      innovation_styles: Phong cách đổi mới
+      innovation_styles_factors: Yếu tố
+      libraries: Thư viện phương tiện
+      license_usages: Sử dụng giấy phép
+      licenses: Giấy phép
+      new_campaign: Chiến dịch mới
+      norm: Chuẩn
+      norms: Tiêu chuẩn
+      norms_editor: Trình chỉnh sửa định mức
+      occupations: Nghề
+      occupations_factors: Yếu tố
+      participants: Tham gia
+      products: Sản phẩm
+      project_admins: Quản trị viên dự án
+      projects: Dự án
+      psychometrics: Tâm lý học
+      question_center: Trung tâm câu hỏi
+      registration_codes: Mã đăng ký
+      report_families: Gói báo cáo
+      reports: Báo cáo
+      settings: Cài đặt
+      smtp_settings: Cài đặt SMTP
+      statistics: Thống kê
+      sub_campaigns: Chiến dịch phụ
+      sub_factors: Các yếu tố phụ
+      survey: Cuộc khảo sát
+      surveys: Cuộc điều tra
+      users: Người dùng
+      users_add: Thêm mới
+      users_import: Nhập khẩu
+    bulk_reports:
+      create:
+        no_data: Không có dữ liệu
+        successfully: Các báo cáo đang được tạo và bạn sẽ được thông báo qua email khi sẵn sàng
+      download:
+        removed: Gỡ bỏ
+      form:
+        end_date: Ngày kết thúc
+        start_date: Ngày bắt đầu
+      mailer:
+        subject: Tải báo cáo hàng loạt xuống
+      new:
+        header: Tải xuống hàng loạt
+      reports_unavailable: Hiện tại, không có báo cáo nào có sẵn để tải xuống. Vui lòng xác nhận rằng các báo cáo bạn muốn tải xuống đã có sẵn.
+    cable:
+      notification:
+        assessment_factors: Các yếu tố được tìm nạp
+        assessment_update: Đánh giá được cập nhật
+        block_clone: Khối được sao chép
+        block_create: Khối %{name} được tạo
+        block_create_by_template: Khối đã được tải từ mẫu
+        block_destroy: Chặn đã bị xóa
+        block_move_down: Khối %{name} được di chuyển xuống
+        block_move_up: Khối %{name} được chuyển lên
+        block_permanent_destroy: Chặn bị xóa vĩnh viễn
+        block_rename: Khối được đổi tên
+        block_restore: Khối được khôi phục
+        block_save_as_template: Chặn được lưu dưới dạng mẫu
+        block_unlink_template: Chặn đã bị hủy liên kết
+        block_update: Khối được cập nhật
+        comment_create: Nhận xét được tạo
+        comment_destroy: Bình luận đã bị xóa
+        geo_filter: Dữ liệu được lọc
+        module_create: Mô-đun %{name} được tạo
+        module_destroy: Mô-đun đã bị xóa
+        module_insert_after: Mô-đun được chèn sau
+        module_insert_before: Mô-đun được chèn trước
+        module_move_down: Mô-đun được di chuyển xuống
+        module_move_up: Mô-đun được di chuyển lên
+        module_rename: Mô-đun được đổi tên
+        module_update: Mô-đun được cập nhật
+        page_create: Trang %{name} được tạo
+        page_destroy: Trang đã bị xóa
+        page_move_down: Trang %{name} được di chuyển xuống
+        page_move_up: Trang %{name} được di chuyển lên
+        page_rename: Trang được đổi tên
+        page_update: Trang được cập nhật
+        question_clone: Câu hỏi được sao chép
+        question_create: Câu hỏi %{name} được tạo
+        question_create_by_template: Câu hỏi đã được tải từ mẫu
+        question_create_from_template: Câu hỏi được tạo từ mẫu
+        question_destroy: Câu hỏi đã bị xóa
+        question_insert_after: Câu hỏi được chèn sau
+        question_insert_before: Câu hỏi được chèn trước
+        question_move_down: Câu hỏi được chuyển xuống
+        question_move_up: Câu hỏi được chuyển lên
+        question_permanent_destroy: Câu hỏi bị xóa vĩnh viễn
+        question_rename: Câu hỏi được đổi tên
+        question_restore: Câu hỏi được khôi phục
+        question_save_as_template: Câu hỏi được lưu dưới dạng mẫu
+        question_unlink_template: Câu hỏi đã bị hủy liên kết
+        question_update: Câu hỏi được cập nhật
+        report_change_aliases: Bí danh được cập nhật
+        report_change_campaign_factors: Các yếu tố chiến dịch được cập nhật
+        report_change_data_configuration: Cấu hình báo cáo dữ liệu đã được cập nhật thành công
+        report_change_filters: Bộ lọc được cập nhật
+        report_update: Báo cáo được cập nhật
+        scoring_update: Chấm điểm được cập nhật
+        trash_empty: Bình luận thùng rác trống
+    campaign_factor_import:
+      errors:
+        assessment_not_found_in_campaign: Không tìm thấy ID đánh giá '%{assessment_id}' trong chiến dịch
+        code_already_exists: Một thừa số có cùng mã '%{code}' đã tồn tại.
+        factor_not_in_assessment_dimension: ID yếu tố '%{factor_id}' không phải là một phần của thứ nguyên đánh giá
+        invalid_lua_name: Mã '%{code}' phải là tên biến lua hợp lệ
+        invalid_name_format: Tên '%{name}' phải khớp với định dạng mong đợi.
+        max_limit_reached: Không thể tạo quá %{count} yếu tố chiến dịch.
+        missing_assessment_id: ID đánh giá là bắt buộc.
+        missing_assessment_score_type: Loại điểm đánh giá là bắt buộc.
+        missing_factor_id: ID yếu tố là bắt buộc.
+        name_already_exists: Một thừa số có cùng tên '%{name}' đã tồn tại.
+        name_size_exceded: Tên không được vượt quá %{size} ký tự.
+    campaign_factors:
+      delete:
+        confirm_message:
+          assessor_scoring: Bạn sắp xóa tính điểm của Người đánh giá. Bạn sẽ mất tất cả điểm đánh giá được kiểm duyệt cho yếu tố '%{factor_name}' này. Bạn có chắc chắn muốn tiếp tục?
+          default: Bạn có chắc chắn muốn xóa hệ số chiến dịch '%{factor_name}' không?
+          external_score: Bạn sắp xóa Chấm điểm bên ngoài. Bạn sẽ mất điểm bên ngoài liên quan đến yếu tố '%{factor_name}' này. Bạn có chắc chắn muốn tiếp tục?
+    campaign_factors_import:
+      errors:
+        invalid_headers: 'Các tiêu đề sau không hợp lệ: %{headers}'
+    campaign_templates:
+      campaign_templates: Mẫu chiến dịch
+      column:
+        assessment: Thuế
+        owner: Chủ nhân
+        report: Báo cáo
+      copy:
+        successfully: Thuê khách hàng %{name} đã được sao chép thành công.
+      create:
+        successfully: Thuê khách hàng %{name} đã được tạo thành công.
+      destroy:
+        successfully: Thuê khách hàng %{name} đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa khách hàng
+      errors:
+        owner_invalid: Chủ sở hữu mẫu phải giống với chủ sở hữu của đánh giá, báo cáo và thứ nguyên
+      form:
+        assessment: Thuế
+        assessment_placeholder: Chọn đánh giá
+        name: Tên
+        name_placeholder: Nhập tên
+        owner: Chủ nhân
+        owner_placeholder: Chọn chủ sở hữu
+        report: báo cáo
+        report_placeholder: Chọn báo cáo
+        title: Mẫu chiến dịch
+      image_fields:
+        remove: Triệt
+      index:
+        new: Thêm
+        title: Mẫu chiến dịch
+      list:
+        admin: Quản trị viên khách hàng
+        client_admins: Quản trị viên khách hàng
+        created_at: Ngày tạo
+        name: Tên
+        report_bundle: Gói báo cáo
+        updated_at: Ngày cập nhật
+      new:
+        header: Khách hàng mới
+      remove_confirm:
+        content: Bạn có chắc chắn muốn xóa mẫu chiến dịch '%{name}' không?
+        success: Bản mẫu Campaing '%{name}'' đã bị xóa thành công.
+        title: Xóa mẫu chiến dịch
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Mẫu chiến dịch này không?</p>\n"
+            title: Xóa <strong>%{name}</strong> ?
+        in_progress:
+          deleting: Xóa
+        tooltips:
+          delete: Xóa máy khách
+          edit: Chỉnh sửa khách hàng
+      toggle_status:
+        successfully: Khách thuê %{name} đã được cập nhật thành công.
+      update:
+        successfully: Khách thuê %{name} đã được cập nhật thành công.
+    campaigns:
+      actions: Điều khiển
+      assessment_reports:
+        report_approval:
+          allow_bulk_approve: Cho phép phê duyệt hàng loạt
+          allow_qc_bulk_submit: Cho phép gửi hàng loạt QC
+          approval_notification_users: Người dùng thông báo phê duyệt
+          approvers: Người phê duyệt
+          approvers_can_edit: Người phê duyệt có thể chỉnh sửa
+          approvers_not_required: Không yêu cầu người phê duyệt
+          do_not_send_notifications: Không gửi email cho người dùng [QC, Người phê duyệt & Thông báo phê duyệt]
+          modal_title: Cài đặt phê duyệt báo cáo
+          qc_users: Người dùng QC
+          remove_modal_success: 'Cài đặt phê duyệt cho id báo cáo: %{reportId} đã bị xóa thành công '
+          remove_modal_text: 'Bạn có chắc chắn muốn xóa cài đặt này cho id báo cáo: %{reportId} không?'
+          report: Báo cáo
+          settings: Cài đặt
+      assessors:
+        spoof:
+          successfully: Bạn đã đăng nhập thành công dưới dạng %{name}
+      copy: Bản sao
+      delete: Xóa
+      edit: Biên tập
+      extend_time_success_message: Bộ hẹn giờ chiến dịch được mở rộng đến %{minutes} phút
+      filters:
+        active: Hoạt động
+        all: Tất cả
+        archived: Lưu trữ
+        closed: Khép kín
+        inactive: Không hoạt động
+        status: Tình trạng
+      form:
+        name: Tên
+        practice_campaign: Chiến dịch thực hành
+        status: Tình trạng
+      listing:
+        assessments: Đánh giá
+        id: Id
+        name: Tên
+        reports: Báo cáo
+        status: Tình trạng
+        type: Kiểu
+      menus:
+        add_common_campaign: Thêm chiến dịch chung
+        add_multi_rater_campaign: Thêm chiến dịch Multi Rater
+      modals:
+        create_threesixity:
+          advance_settings:
+            campaign_template: Mẫu chiến dịch
+            factors: Yếu tố
+          base_settings:
+            active: Hoạt động
+            archive: Lưu trữ
+            assessment: Thuế
+            closed: Khép kín
+            empty: Trống
+            inactive: Không hoạt động
+            name: Tên
+            previous: Trước
+            standard: Chuẩn
+            status: Tình trạng
+          close:
+            content: Bạn có chắc chắn muốn đóng Multi Rater Campaign Creator không? Mọi công việc tùy chỉnh chưa lưu sẽ bị mất. Vui lòng xác nhận quyết định của bạn.
+            title: Đóng Multi Rater Campaign Creator?
+          instructions_creation:
+            empty: 'Trống: Bắt đầu với một cuộc khảo sát trống và tùy chỉnh nó theo nhu cầu cụ thể của bạn.'
+            previous: 'Trước: Chọn một bài đánh giá trước đó làm điểm bắt đầu và thực hiện các sửa đổi.'
+            standard: 'Tiêu chuẩn: Sử dụng một mẫu được thiết kế sẵn với các câu hỏi và chỉ báo thường được sử dụng.'
+            sub_title: Vui lòng chọn loại chiến dịch bạn muốn tạo.
+            title: Chào mừng bạn đến với Trình tạo chiến dịch Multi Rater!
+          instructions_customization:
+            sub_title: Chọn mẫu và các yếu tố để đưa vào đánh giá.
+            title: Tùy chỉnh đánh giá của bạn!
+          no_factors:
+            description: Vui lòng thử một số từ khóa tìm kiếm khác.
+            title: Không tìm thấy yếu tố nào
+          questions:
+            select_all: Chọn tất cả
+            title: Câu hỏi và chỉ số
+          search_factors:
+            description: Vui lòng nhập ít nhất 3 ký tự để tìm các yếu tố bạn đang tìm kiếm.
+            title: Bắt đầu tìm kiếm của bạn
+          success: Chiến dịch Multi Rater đã được tạo thành công.
+          success_job: Công việc tạo Chiến dịch Multi Rater đã được lên lịch thành công.
+      options:
+        description:
+          name: Sự miêu tả
+          save: Lưu mô tả
+          save_success: Mô tả đã lưu thành công
+        fixed_time: Thời gian cố định
+        instructions:
+          actions:
+            saved: Hướng dẫn được lưu thành công
+          enable: Bật hướng dẫn
+          save: Lưu hướng dẫn
+        prework_required: Không cho phép đặt phòng trung tâm nếu các công việc trước chưa hoàn thành
+        prework_required_for_invite: Chỉ gửi email mời khi hoàn tất Pre-Work
+        proctoring:
+          allow_on_assessment_center: Cho phép giám sát tại trung tâm đánh giá
+          enable: Bật giám sát
+          identification: Xác định
+          identifications:
+            face: Mặt
+            face_and_passport: Mặt và hộ chiếu
+            passport: Hộ chiếu
+          integration_type: Tích hợp
+          integration_types:
+            iframe: IFrame
+            ldb: Trình duyệt khóa
+          proctoring_types:
+            offline: Ngoại tuyến
+            online: Trực tuyến
+          rule_types:
+            allow_absence_in_frame: Cho phép vắng mặt trong khung hình
+            allow_to_use_books: Cho phép sử dụng Sách
+            allow_to_use_calculator: Cho phép sử dụng máy tính
+            allow_to_use_excel: Cho phép sử dụng Excel
+            allow_to_use_human_assistant: Cho phép sử dụng trợ lý con người
+            allow_to_use_messengers: Cho phép sử dụng trình nhắn tin
+            allow_to_use_paper: Cho phép sử dụng Giấy
+            allow_to_use_websites: Cho phép sử dụng trang web
+            allow_voices: Cho phép giọng nói
+            allow_wrong_gaze_direction: Cho phép hướng nhìn sai
+          rules: Quy tắc
+          trial: Phiên tòa giám sát
+          type: Kiểu
+        show_watermark: Hiển thị hình mờ
+        watermark_content: Nội dung hình mờ
+        watermark_info: Nếu bạn không thêm bất kỳ nội dung nào, theo mặc định, email của người dùng sẽ xuất hiện dưới dạng dấu nước. Bạn có thể sử dụng bất kỳ văn bản đường ống nào sau đây -<br> {{id}} - ID người tham gia </br> {{first_name}} - Tên người tham gia <br> {{last_name}} - Họ của người tham gia </br> {{email}} - Email người tham gia
+      pdf_password: Mật khẩu PDF
+      types:
+        common: Thường
+        threesixty: Nhiều người đánh giá
+      users:
+        add_user: Thêm người dùng
+        completion_status: Tình trạng hoàn thành
+        created_by: Tạo bởi
+        email: Email
+        filters:
+          all: Tất cả
+          anonymous: Vô danh
+          identified: Xác định
+        id: Id
+        is_active: Hoạt động
+        name: Tên
+        no_permission_message: Bạn không có quyền sửa đổi
+        updated_by: Cập nhật bởi
+      validations:
+        dates:
+          end: phải sau ngày bắt đầu
+    campaigns_external_scores_import:
+      errors:
+        invalid_campaign_factor_codes: 'Các factor_codes chiến dịch sau không hợp lệ: %{codes}'
+        missing_headers: Thiếu tiêu đề
+        missing_users: 'Các email sau không tồn tại: %{emails}'
+      import:
+        example_csv: Tải xuống ví dụ csv
+        success_msg: Nhập đã được tải lên thành công
+      modal:
+        title: Nhập điểm chiến dịch bên ngoài
+    client_features:
+      client_features: Tính năng khách hàng
+      form:
+        ai_assistants: Trợ lý AI
+        ai_assisted_idp: IDP hỗ trợ AI
+        global_skills: Kỹ năng toàn cầu
+        sms_notification: Thông báo SMS
+    clients:
+      api_keys:
+        init_breadcrumbs:
+          breadcrumb: Vụn bánh mì
+      archive:
+        successfully: Thành công
+      base:
+        active: Hoạt động
+        archived: Lưu trữ
+        disable: Lưu trữ
+        enable: Hủy lưu trữ
+      columns:
+        country: Quốc gia
+        project_manager: Quản lý dự án
+        type: Kiểu
+        year: Năm
+      copy:
+        successfully: Khách thuê '%{name}' đã được sao chép thành công.
+      create:
+        successfully: Khách thuê '%{name}' đã được tạo thành công.
+      destroy:
+        successfully: Thuê khách hàng %{name} đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa khách hàng
+      licenses:
+        resource:
+          confirmations:
+            toggle_status:
+              body: "<p>Bạn có chắc chắn muốn %{status} Giấy phép này không?</p>\n"
+              title: "<strong>%{status}</strong> Giấy phép cho %{name}?"
+        show:
+          used_out_of: "%{used_number} trong số %{number}"
+      new:
+        header: Khách hàng mới
+      projects:
+        actions:
+          archive: Lưu trữ
+          unarchive: Hủy lưu trữ
+        archive:
+          content: Bạn có chắc chắn muốn lưu trữ '%{project_name}' không?
+          success: Dự án '%{project_name}' đã được lưu trữ thành công.
+          title: Dự án lưu trữ
+        assign_assessments:
+          add_assessment: Thêm đánh giá
+          assessments: Đánh giá
+        assign_reports:
+          add_report: Thêm báo cáo
+        campaigns:
+          archive:
+            successfully: Chiến dịch '%{name}' đã được lưu trữ thành công.
+          copy:
+            error: Chiến dịch '%{name}' không được sao chép.
+            successfully: Chiến dịch '%{name}' đã được sao chép thành công.
+          create:
+            successfully: Chiến dịch '%{name}' đã được tạo thành công.
+          destroy:
+            successfully: Chiến dịch '%{name}' đã bị xóa thành công.
+          edit:
+            header: Chỉnh sửa chiến dịch
+          export:
+            assessments: Đánh giá
+            assigned_user: Người dùng được chỉ định
+            completed_user: Người dùng đã hoàn thành
+            created_at: Ngày tạo
+            header:
+              actions: Hành động
+              actual_usage: Sử dụng thực tế
+              assessments: Đánh giá
+              campaigns: Chiến dịch
+              name: Tên
+              reports: Báo cáo
+              sub_campaigns: Chiến dịch phụ
+              tests_allocated: Các xét nghiệm được phân bổ
+              users: Người dùng
+            id: Id
+            name: Tên chiến dịch
+            reports: Báo cáo
+            updated_at: Ngày cập nhật
+          index:
+            export: Xuất khẩu
+            new: Thêm
+            title: Chiến dịch
+          list:
+            assessments: Đánh giá
+            assigned_user: Người dùng được chỉ định
+            completed_user: Người dùng đã hoàn thành
+            created_at: Ngày tạo
+            header:
+              actions: Hành động
+              actual_usage: Sử dụng thực tế
+              assessments: Đánh giá
+              campaigns: Chiến dịch
+              name: Tên
+              reports: Báo cáo
+              sub_campaigns: Chiến dịch phụ
+              tests_allocated: Các xét nghiệm được phân bổ
+              users: Người dùng
+            id: Id
+            name: Tên chiến dịch
+            reports: Báo cáo
+            updated_at: Ngày cập nhật
+          new:
+            header: Chiến dịch mới
+          resource:
+            sub_campaign:
+              create: Tạo chiến dịch phụ mới
+            tooltips:
+              copy: Sao chép chiến dịch
+              create_report: Thêm báo cáo mới
+              create_user: Thêm người dùng mới
+              delete: Xóa chiến dịch
+              edit: Chỉnh sửa chiến dịch
+              export: Xuất khẩu
+          sidebar:
+            archive: Lưu trữ chiến dịch
+            copy: Sao chép chiến dịch
+            destroy: Xóa chiến dịch
+            disable: Vô hiệu hóa
+            edit: Chỉnh sửa chiến dịch
+            enable: Kích hoạt
+            new: Chiến dịch mới
+            title: Các tùy chọn của chiến dịch
+            view_licenses: Xem giấy phép
+          sub_campaigns:
+            archive:
+              successfully: Chiến dịch phụ %{name} đã được lưu trữ thành công.
+            copy:
+              error: Chiến dịch phụ %{name} không được sao chép.
+              successfully: Chiến dịch phụ %{name} đã được sao chép thành công.
+            create:
+              successfully: Chiến dịch phụ %{name} đã được tạo thành công.
+            destroy:
+              successfully: Chiến dịch phụ %{name} đã bị xóa thành công.
+            edit:
+              header: Chỉnh sửa chiến dịch phụ
+            export:
+              assessments: Đánh giá
+              assigned_user: Người dùng được chỉ định
+              completed_user: Người dùng đã hoàn thành
+              created_at: Ngày tạo
+              header:
+                actions: Hành động
+                actual_usage: Sử dụng thực tế
+                archive_status: Trạng thái lưu trữ
+                name: Tên
+                sub_campaign: Chiến dịch phụ
+                tests_allocated: Các bài kiểm tra được phân bổ
+                users: Người dùng
+              id: Id
+              name: Tên chiến dịch phụ
+              reports: Báo cáo
+              updated_at: Ngày cập nhật
+            header:
+              actions: Hành động
+            index:
+              export: Xuất khẩu
+              new: Thêm
+              title: Chiến dịch phụ
+            list:
+              assessments: Đánh giá
+              assigned_user: Người dùng được chỉ định
+              completed_user: Người dùng đã hoàn thành
+              created_at: Ngày tạo
+              header:
+                actions: Hành động
+                actual_usage: Sử dụng thực tế
+                archive_status: Trạng thái lưu trữ
+                name: Tên
+                sub_campaign: Chiến dịch phụ
+                tests_allocated: Các bài kiểm tra được phân bổ
+                users: Người dùng
+              id: Id
+              name: Tên chiến dịch phụ
+              reports: Báo cáo
+              updated_at: Ngày cập nhật
+            new:
+              header: Chiến dịch phụ mới
+            resource:
+              tooltips:
+                copy: Sao chép chiến dịch phụ
+                create_report: Thêm báo cáo mới
+                create_user: Thêm người dùng mới
+                delete: Xóa chiến dịch phụ
+                edit: Chỉnh sửa chiến dịch phụ
+            sidebar:
+              archive: Lưu trữ Chiến dịch phụ
+              copy: Sao chép chiến dịch phụ
+              destroy: Xóa chiến dịch phụ
+              disable: Vô hiệu hóa
+              edit: Chỉnh sửa chiến dịch phụ
+              enable: Kích hoạt
+              new: Chiến dịch phụ mới
+              title: Các tùy chọn của Chiến dịch phụ
+              view_licenses: Xem giấy phép
+            toggle_status:
+              successfully: Chiến dịch phụ %{name} đã được cập nhật thành công.
+            update:
+              successfully: Chiến dịch phụ %{name} đã được cập nhật thành công.
+          toggle_status:
+            successfully: Chiến dịch %{name} đã được cập nhật thành công.
+          update:
+            successfully: Chiến dịch %{name} đã được cập nhật thành công.
+        copy:
+          error: Dự án %{name} không được sao chép.
+          successfully: Dự án %{name} đã được sao chép thành công.
+        create:
+          successfully: Dự án %{name} đã được tạo thành công.
+        destroy:
+          successfully: Dự án %{name} đã bị xóa thành công.
+        edit:
+          header: Chỉnh sửa dự án
+        export:
+          2fa_enabled: Đã bật 2FA
+          actual_usage: Sử dụng thực tế
+          admin: Quản trị viên khách hàng
+          applicable_level: Mức áp dụng
+          archive_status: Tình trạng
+          assessments: Đánh giá
+          assigned_user: Người dùng được chỉ định
+          completed_user: Người dùng đã hoàn thành
+          created_at: Ngày tạo
+          id: Id
+          name: Tên dự án
+          number: Số
+          project_admin: Quản trị viên dự án
+          reports: Báo cáo
+          tests_allocated: Các bài kiểm tra được phân bổ
+          tte_admin: Quản lý dự án TTE
+          updated_at: Ngày sửa đổi
+          url: Địa chỉ
+          users_count: Số lượng người dùng
+        form:
+          2fa: Xác thực 2 yếu tố
+          2fa_enable: Bật xác thực 2 yếu tố
+          applicable_levels:
+            campaign: Cấp độ kết thúc chiến dịch
+            project: Cấp độ kết thúc dự án
+            sub_campaign: Cấp độ kết thúc chiến dịch phụ
+          data_privacy: Quyền riêng tư dữ liệu
+          enable_live_chat: Bật trò chuyện trực tiếp
+          enable_privacy_links: Bật liên kết quyền riêng tư
+          live_chat_token: Mã thông báo trò chuyện trực tiếp
+          optional: Tùy chọn
+          other_settings: Cài đặt khác
+          privacy_link: Liên kết quyền riêng tư
+          privacy_text: Văn bản bảo mật
+          project_number: Số dự án
+          webhook: Webhook
+          webhook_auth_enabled: Bật xác thực Webhook
+          webhook_password: Mật khẩu
+          webhook_username: Tên người dùng
+        header:
+          actions: Hành động
+        index:
+          export: Xuất khẩu
+          new: Thêm
+          title: Dự án
+          tooltips:
+            create: Tạo
+            export: Xuất khẩu
+        list:
+          2fa_enabled: Đã bật 2FA
+          actual_usage: Sử dụng thực tế
+          admin: Quản trị viên khách hàng
+          applicable_level: Mức áp dụng
+          archive_status: Tình trạng
+          assessments: Đánh giá
+          assigned_user: Người dùng được chỉ định
+          completed_user: Người dùng đã hoàn thành
+          created_at: Ngày tạo
+          id: Id
+          name: Tên dự án
+          number: Số
+          project_admin: Quản trị viên dự án
+          reports: Báo cáo
+          tests_allocated: Các bài kiểm tra được phân bổ
+          tte_admin: Quản lý dự án TTE
+          updated_at: Ngày sửa đổi
+          url: Địa chỉ
+          users_count: Số lượng người dùng
+        new:
+          header: Dự án mới
+        resource:
+          add_assessment: Thêm đánh giá
+          add_report: Thêm báo cáo
+          assessments: Đánh giá
+          tooltips:
+            copy: Sao chép dự án
+            create_admin: Tạo quản trị viên dự án
+            create_report: Thêm báo cáo mới
+            create_user: Thêm người dùng mới
+            delete: Xóa dự án
+            edit: Chỉnh sửa dự án
+        sidebar:
+          admins: Quản trị viên dự án
+          archive: Dự án lưu trữ
+          copy: Sao chép dự án
+          design: Chỉnh sửa thiết kế
+          destroy: Xóa dự án
+          disable: Vô hiệu hóa
+          edit: Chỉnh sửa dự án
+          enable: Kích hoạt
+          new: Dự án mới
+          title: Các lựa chọn của dự án
+          view_licenses: Xem giấy phép
+        status:
+          active: Hoạt động
+          archived: Lưu trữ
+        threesixty_campaigns:
+          base:
+            active: Hoạt động
+            archived: Lưu trữ
+            disable: Lưu trữ
+            enable: Hủy lưu trữ
+          completion_statuses:
+            approved: Chấp thuận
+            completed: Hoàn thành
+            denied: Bị từ chối
+            in_progress: Đang tiến hành
+            not_started: Chưa bắt đầu
+          copy:
+            error: Thuê khách hàng '%{name}' không được sao chép.
+            successfully: Khách thuê '%{name}' đã được sao chép thành công.
+          create:
+            successfully: Khách thuê '%{name}' đã được tạo thành công.
+          designs:
+            form:
+              no_background: Chưa có nền tảng
+              no_logo: Chưa có logo
+          destroy:
+            error: Không thể xóa '%{name}' vì một số liên kết phụ thuộc của chủ thể hoặc người đánh giá tồn tại.
+            successfully: Khách thuê '%{name}' đã bị xóa thành công.
+          edit:
+            header: Chỉnh sửa chiến dịch 360
+          export:
+            admin: Quản trị viên khách hàng
+            assessment: Đánh giá
+            client_admins: Quản trị viên khách hàng
+            created_at: Được tạo tại
+            id: Id
+            name: Tên
+            report: Báo cáo
+            report_bundle: Gói báo cáo
+            status: Tình trạng
+          index:
+            export: Xuất khẩu
+            new: Thêm chiến dịch 360
+            title: Chiến dịch 360
+          license:
+            header: "%{name} - Chỉnh sửa giấy phép"
+          licenses:
+            update:
+              duplicate_licenses: Bạn có giấy phép trùng lặp
+              successfully: Giấy phép đã được cập nhật thành công
+          list:
+            admin: Quản trị viên khách hàng
+            assessment: Đánh giá
+            client_admins: Quản trị viên khách hàng
+            created_at: Được tạo tại
+            id: Id
+            name: Tên
+            report: Báo cáo
+            report_bundle: Gói báo cáo
+            status: Tình trạng
+            updated_at: Ngày cập nhật
+          new:
+            header: Chiến dịch 360 mới
+          resource:
+            confirmations:
+              delete:
+                body: "<p>Bạn có chắc chắn muốn xóa không?</p> <p>Hành động này không thể hoàn tác. Thao tác này sẽ xóa vĩnh viễn chiến dịch <strong>%{name}</strong> , chiến dịch phụ và tất cả các liên kết.</p> <p>Vui lòng nhập <strong>%{name}</strong> để xác nhận.</p>"
+                title: Xóa <strong>%{name}</strong>?
+              disable:
+                body:
+                  '0': "<p>Bạn có chắc chắn muốn lưu trữ không?</p> <p>Tất cả Chiến dịch, Chiến dịch phụ và người dùng cũng sẽ được lưu trữ</p>"
+                  '1': "<p>Bạn có chắc chắn muốn lưu trữ không?</p> <p>Tất cả Chiến dịch phụ và người dùng cũng sẽ được lưu trữ</p>"
+                  '2': "<p>Bạn có chắc chắn muốn lưu trữ không?</p> <p>Tất cả người dùng cũng sẽ được lưu trữ</p>"
+                  '3': "<p>Bạn có chắc chắn muốn lưu trữ không?</p> <p>Tất cả người dùng cũng sẽ được lưu trữ</p>"
+                title: Lưu trữ <strong>%{name}</strong> ?
+              enable:
+                body:
+                  '0': "<p>Bạn có chắc chắn muốn hủy lưu trữ không?</p>"
+                  '1': "<p>Bạn có chắc chắn muốn hủy lưu trữ không?</p>"
+                  '2': "<p>Bạn có chắc chắn muốn hủy lưu trữ không?</p>"
+                  '3': "<p>Bạn có chắc chắn muốn hủy lưu trữ không?</p>"
+                title: Hủy lưu trữ <strong>%{name}</strong> ?
+            export_results: Xuất kết quả
+            raw_results: Kết quả thô
+            tooltips:
+              campaigns:
+                delete: Xóa chiến dịch
+              copy: Sao chép khách hàng
+              create_admin: Tạo quản trị viên khách hàng
+              delete: Xóa máy khách
+              disable: Vô hiệu hóa máy khách
+              edit: Chỉnh sửa khách hàng
+              enable: Bật máy khách
+          statistics:
+            index:
+              all_assessments: Tất cả các đánh giá
+              assessment_type: Loại đánh giá
+              title: Thống kê
+          toggle_status:
+            successfully: Khách thuê %{name} đã được cập nhật thành công.
+          update:
+            successfully: Khách thuê %{name} đã được cập nhật thành công.
+          url: Url
+        toggle_status:
+          successfully: Dự án %{name} đã được cập nhật thành công.
+        unarchive:
+          content: Bạn có chắc chắn muốn hủy lưu trữ '%{project_name}' không?
+          success: Dự án '%{project_name}'' đã được hủy lưu trữ thành công.
+          title: Hủy lưu trữ dự án
+        update:
+          successfully: Dự án %{name} đã được cập nhật thành công.
+      registration_codes:
+        column:
+          code: Mã
+          usage_stats: Số liệu thống kê sử dụng
+        errors:
+          count_invalid: không được nhỏ hơn used_count = %{use_count}
+          criteria: chỉ có thể chứa các ký tự chữ và số, dấu gạch nối (-) và dấu gạch dưới (_)
+          duplicate_code: đang được sử dụng trong Dự án này. Hãy thử một cái khác.
+          incorrect_domain: Định dạng miền không chính xác.
+          invalid_end_date: phải lớn hơn ngày bắt đầu
+          license_issue: Không đủ giấy phép.
+      resource:
+        confirmations:
+          delete:
+            title: Xóa <strong>%{name}</strong> ?
+          disable:
+            title: Lưu trữ <strong>%{name}</strong> ?
+          enable:
+            title: Hủy lưu trữ <strong>%{name}</strong> ?
+      tenancies: Thuê khách hàng
+      threesixty_campaign: Chiến dịch Threesixty
+      toggle_status:
+        successfully: Khách thuê %{name} đã được cập nhật thành công.
+      update:
+        successfully: Khách thuê %{name} đã được cập nhật thành công.
+    close: Đóng
+    common:
+      add: Thêm
+      back: Lưng
+      cancel: Hủy
+      disabled: Diasbled
+      download_sample_file: Tải xuống tệp mẫu
+      enabled: Kích hoạt
+      import:
+        failure_msg: Lỗi khi nhập tệp.
+      minute: phút
+      next: Sau
+      reset: Reset
+      save: Cứu
+      select_all: Chọn tất cả
+      unselect_all: Bỏ chọn tất cả
+    communications:
+      create:
+        successfully: Giao tiếp đã được tạo thành công.
+      destroy:
+        successfully: Thông tin liên lạc %{name} đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa giao tiếp
+      edit_translation:
+        body_label: Thân thể
+        copy: Bản sao
+        copy_to_code_editor_hint: 'Mẹo: Sao chép văn bản tham chiếu ở trên và chuyển sang chế độ soạn thảo mã để chỉnh sửa HTML dễ dàng hơn'
+        locale_label: Locale
+        no_reference_body: Không có nội dung tham chiếu
+        no_reference_subject: Không có chủ đề tham khảo
+        reference_body_label: Nội dung tham khảo
+        reference_subject_label: Đối tượng tham khảo
+        subject_label: Chủ đề
+        title: Chỉnh sửa bản dịch
+        update_button: Cập nhật bản dịch
+      form:
+        all: Tất cả
+        assessment_completion_status_code: Mã trạng thái hoàn thành đánh giá
+        assessment_completion_status_code_hint: Nếu mã hoàn thành được chỉ định, mã đó sẽ chỉ được gửi nếu bài đánh giá của người dùng có mã trạng thái hoàn thành này.
+        body_mustache: |-
+          {{{user_link}}} - Liên kết đến Nền tảng cho người dùng hiện tại hoặc liên kết chỉ một lần để đặt mật khẩu cho người dùng mới
+          {{{user_url}}} - Giống như user_link nhưng chỉ URL thay vì siêu liên kết
+          {{{user_link_qrcode}}} - Nhúng Mã QR được tạo từ user_link
+          {{first_name}} - Tên người nhận
+          {{last_name}} - Họ người nhận
+          {{email}} - Email người nhận
+          {{schedule_start_date}} - Ngày bắt đầu lịch trình
+          {{schedule_end_date}} - Ngày kết thúc lịch trình
+        completion: Hoàn thành
+        delivery_at: Giao hàng tại (GST)
+        delivery_delay_hours: Giao hàng chậm trễ (giờ)
+        delivery_rules:
+          in_progress: Nếu đánh giá đang được tiến hành
+          not_competed: Nếu đánh giá không hoàn thành
+          not_started: Nếu đánh giá không được bắt đầu
+          send_now: Gửi ngay
+          specific_datetime: Gửi tại
+        development_action_deadline_missed: Thời hạn hành động phát triển bị bỏ lỡ
+        idp_deadline_missed: Hạn chót IDP bị bỏ lỡ
+        idp_template_approved: IDP đã được phê duyệt
+        idp_template_assigned: IDP được chỉ định
+        idp_template_rejected: IDP bị từ chối
+        invitation: Lời mời
+        kind: Các loại giao tiếp
+        locale: Locale
+        magic_link_email: Email liên kết ma thuật
+        new_assignment: Nhiệm vụ mới
+        new_users: Người dùng mới
+        other: Khác
+        reminder: Nhắc nhở
+        report_available: Báo cáo có sẵn
+        selected: Chọn
+        selected_cc_recipients: Người nhận CC được chọn
+        selected_recipients: Người nhận được chọn
+        stop_reminder: Ngừng gửi lời nhắc
+        stop_reminder_datetime: Ngày kết thúc lời nhắc (GST)
+        workshop_booked: Xác nhận đặt phòng của trung tâm đánh giá
+        workshop_cancelled: Trung tâm đánh giá bị hủy bỏ
+        workshop_completed: Trung tâm đánh giá đã hoàn thành
+        workshop_invite: Lời mời trung tâm đánh giá
+        workshop_invite_reminder: Lời nhắc mời trung tâm đánh giá
+        workshop_upcoming_reminder: Nhắc nhở sắp tới của trung tâm đánh giá
+      index:
+        clients: Khách hàng
+        new: Thêm
+        title: Trung tâm truyền thông
+        type: Kiểu
+      list:
+        actions: Hành động
+        author: Tạo bởi
+        campaign: Chiến dịch
+        client_name: Khách hàng
+        created_at: Ngày tạo
+        creator_first_name: Tạo bởi
+        delivery_rule: Phân phối
+        kind: Loại giao tiếp
+        project: Dự án
+        recipients: Nhận
+        sub_campaign: Chiến dịch phụ
+        subject: Chủ đề truyền thông
+        updated_at: Ngày sửa đổi
+      new:
+        header: Giao tiếp mới
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Thông tin liên lạc này không?</p>\n"
+            title: Xóa <strong>thông tin liên lạc</strong> ?
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Thông tin liên lạc này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Sao chép
+          deleting: Xóa
+        tooltips:
+          copy: Sao chép thông tin liên lạc
+          delete: Xóa thông tin liên lạc
+          download: Tải xuống lịch sử giao tiếp
+          edit_translation: Chỉnh sửa bản dịch
+          view: Xem giao tiếp
+      show:
+        assessment: 'Thuế:'
+        assessment_center_group: 'Nhóm Trung tâm Đánh giá:'
+        back: Lưng
+        body: 'Thân thể:'
+        campaign: 'Chiến dịch:'
+        client: 'Khách hàng:'
+        communication_type: 'Loại giao tiếp:'
+        delivery_rule: 'Quy tắc giao hàng:'
+        every_interval: Mỗi %{interval}
+        owner: 'Chủ nhân:'
+        project: 'Dự án:'
+        recipients: 'Nhận:'
+        specific_datetime: 'Gửi tại:'
+        stop_reminder_datetime: Ngày kết thúc lời nhắc (GST)
+        sub_campaign: 'Chiến dịch phụ:'
+        subject: 'Chủ đề:'
+        users: 'Người dùng:'
+      sidebar:
+        copy: Sao chép thông tin liên lạc
+        destroy: Xóa thông tin liên lạc
+        download: Tải xuống lịch sử giao tiếp
+        edit_translation: Chỉnh sửa bản dịch
+        title: Các tùy chọn của giao tiếp
+        view: Xem giao tiếp
+      toggle_status:
+        successfully: Thông tin liên lạc đã được cập nhật thành công.
+      update_translation:
+        successfully_updated: Bản dịch đã được cập nhật thành công.
+    components:
+      input_duration:
+        placeholder: Nhập là '1d 2h 3m'
+    create: Tạo
+    dashboard:
+      capacity_name: Tên công suất
+      choose_file_format: Chọn định dạng tệp
+      dashboard_types:
+        oracle_analytics: Phân tích Oracle
+        powerbi: PowerBi
+      dashboards: Dashboards
+      export_dashboard_to_file: Xuất Bảng điều khiển sang tệp
+      export_job_failure: Không bắt đầu xuất được
+      export_job_success: Công việc xuất đã bắt đầu. Bạn sẽ được thông báo khi nó hoàn tất.
+      get_started: Bắt đầu
+      initialize_msg: Khởi tạo bảng điều khiển cho chiến dịch này
+      loading_failed: Tải bảng điều khiển không thành công.
+      only_export_current_tab: Chỉ xuất tab hiện tại
+      pdf: PDF
+      pptx: PPTX
+      preview:
+        embed_token_error_description: Vui lòng kiểm tra xem Tập dữ liệu và ID báo cáo trong cài đặt có chính xác không.
+        embed_token_error_title: Không thể tạo mã thông báo nhúng.
+      settings:
+        capacity_id: Id dung lượng
+        details: Chi tiết
+        refresh: Làm tươi
+        workspace_id: ID không gian làm việc
+      tabs:
+        accesssheet: Bảng truy cập
+        accesssheet_setting: Cài đặt bảng truy cập
+        dashboard: Bảng điều khiển
+        settings: Cài đặt
+    dashboard_form:
+      fields:
+        dataset_id: Id tập dữ liệu
+        enabled: Kích hoạt
+        image: Ảnh
+        project_path: Lộ trình dự án
+        refresh_interval: Khoảng thời gian làm mới (phút)
+        report_id: ID báo cáo
+        visual_header_visibility: Khả năng hiển thị tiêu đề trực quan
+      image_upload_failed: Tải lên hình ảnh không thành công.
+      none: Không ai
+      refresh_success: Làm mới tập dữ liệu được lên lịch thành công.
+      visual_header_visibility_options:
+        hide_all: Ẩn tất cả
+        keep_original: Giữ nguyên bản
+        show_all: Hiển thị tất cả
+    data_exports_modal:
+      title: Chọn phạm vi ngày
+    data_reports:
+      columns:
+        created_at: Được tạo tại
+        created_by: Tạo bởi
+        last_updated_by: Cập nhật lần cuối bởi
+        name: Tên
+        owner: Chủ nhân
+        password: Mật khẩu
+        status: Tình trạng
+        udpated_at: Cập nhật lần cuối lúc
+      configuration: Cấu hình
+      errors:
+        factor_not_found: không nằm trong phạm vi đánh giá
+        inclusion: 'loại không hợp lệ, loại hợp lệ: %{values}'
+        not_found: Không tìm thấy
+        not_owned: không thuộc sở hữu của khách hàng
+      form:
+        name: Báo cáo dữ liệu
+      messages:
+        runed: Báo cáo dữ liệu đã được lên lịch chạy thành công
+      validations:
+        project_and_campaigns_not_allowed: project_ids và campaign_ids không nên được chỉ định cùng nhau
+        project_not_related_to_client: "%{project_id} không thuộc về máy khách"
+        project_or_campaign_required: project_ids hoặc campaign_ids là bắt buộc
+        sections_required: các phần là bắt buộc
+    datasheet:
+      threesixty_warning: Bạn không thể tải lên các cột bảng dữ liệu cho báo cáo 360 từ đây. Đối với báo cáo 360, các cột biểu dữ liệu được tải từ chiến dịch mà báo cáo này được liên kết với
+    dates:
+      completed: Hoàn thành lúc
+      end: Ngày kết thúc
+      start: Ngày bắt đầu
+      started: Bắt đầu lúc
+    development_action_import:
+      errors:
+        blank_field: 'Hàng %{row}: %{field} không được để trống'
+        csv_file_required: Phải là tệp CSV
+        image_download_failed: 'Không tải xuống hình ảnh từ %{url}: %{message}'
+        invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
+        invalid_date: Định dạng ngày cho %{date} không hợp lệ.
+        invalid_date_format: 'Hàng %{row}: Định dạng ngày không hợp lệ cho %{field}.'
+        invalid_development_action_type: 'Hàng %{row}: Loại hành động phát triển %{value} không hợp lệ. Các loại hành động phát triển hợp lệ là: %{valid_development_action_types}.'
+        invalid_duration_format: 'Chỉ cho phép các giá trị số trong khoảng thời gian. Hàng %{row}: %{value} không phải là thời lượng hợp lệ.'
+        invalid_image_file: 'Tệp hình ảnh không hợp lệ: %{message}'
+        invalid_image_url: 'Định dạng URL hình ảnh không hợp lệ: %{url}'
+        invalid_languages: Ngôn ngữ khả dụng không hợp lệ %{invalid_languages} cho hàng %{row}.
+        invalid_learning_style: 'Hàng %{row}: Phong cách học tập ''%{value}'' không hợp lệ. Các loại hợp lệ là: %{valid_types}'
+        languages_only_for_courses: Ngôn ngữ khả dụng chỉ có thể được đặt cho các hành động phát triển thuộc loại "Khóa học". Vui lòng xóa ngôn ngữ có sẵn cho hàng %{row} hoặc thay đổi loại hành động phát triển thành "Khóa học".
+        missing_columns: 'Thiếu cột bắt buộc: %{fields}'
+        save_failed: 'Salvataggio dell azione di sviluppo fallito: %{message}'
+        skill_not_found: 'Không tìm thấy kỹ năng cho ID: %{skill_id}'
+    development_action_translations:
+      import:
+        errors:
+          blank_id: 'Hàng %{row}: ID không được để trống'
+          development_action_not_found: Không tìm thấy hành động phát triển
+          invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
+          invalid_field: 'Hàng %{row}: Trường "%{field}" không hợp lệ, phải là "Tên" hoặc "Mô tả"'
+          invalid_file_format: Tệp phải là tệp CSV
+          invalid_id: 'Hàng %{row}: ID phải là một số'
+          invalid_id_format: 'Hàng %{row}: ID phải ở định dạng "id#field"'
+          missing_columns: 'Thiếu cột bắt buộc: %{fields}'
+          save_failed: 'Không lưu được: %{message}'
+    development_actions:
+      create:
+        successfully: Hành động phát triển "%{name}" đã được tạo thành công.
+      destroy:
+        successfully: Hành động phát triển "%{name}" đã bị xóa thành công.
+      development_action_types:
+        course: Khoá
+        default: Mặc định
+      duration:
+        max_length: Không được lớn hơn 1 năm
+        min_length: Không được dưới 1 phút
+      edit:
+        header: Chỉnh sửa hành động phát triển
+      export:
+        details: Chi tiết tệp
+        failure_msg: Lỗi khi xuất bản dịch
+        success_msg: Xuất các hành động phát triển đang được tiến hành. Vui lòng kiểm tra trạng thái trong thông báo.
+        title: Xuất khẩu
+        translation_details: Chi tiết
+      export_actions:
+        development_action_translations_title: Bản dịch hành động phát triển xuất khẩu
+        development_actions_title: Hành động phát triển xuất khẩu
+      export_development_action_translations: Bản dịch hành động phát triển
+      export_development_action_translations_project: Bản dịch hành động phát triển dựa trên dự án
+      export_development_actions: Hành động phát triển
+      export_development_actions_project: Hành động phát triển dựa trên dự án
+      export_global_development_actions: Hành động phát triển toàn cầu
+      export_global_development_actions_translations: Bản dịch Hành động Phát triển Toàn cầu
+      form:
+        available_languages: Ngôn ngữ có sẵn
+        client_placeholder: Chọn một khách hàng
+        course_image: Hình ảnh khóa học
+        course_link: Liên kết khóa học
+        description: Sự miêu tả
+        development_action_type: Loại hành động phát triển
+        duration: Trường độ
+        end_date: Ngày kết thúc
+        learning_style: Phong cách học tập
+        name: Tên
+        project_placeholder: Chọn một dự án
+        skills: Kỹ năng
+        skills_placeholder: Chọn kỹ năng
+        start_date: Ngày bắt đầu
+        title: Hành động phát triển
+        upload: Tải lên
+      global: Phát triển toàn cầu có phải là hành động không?
+      heading: Hành động phát triển
+      import:
+        download_example_csv: Tải xuống ví dụ csv
+        failure_msg: Lỗi khi nhập tệp.
+        info_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+      import_action:
+        development_actions_title: Hành động phát triển nhập khẩu
+        development_actions_translations_title: Bản dịch hành động phát triển nhập khẩu
+      import_development_actions: Hành động phát triển
+      import_development_actions_translations: Bản dịch hành động phát triển
+      learning_styles:
+        cannot_be_blank: Không thể để trống
+        invalid: Phải là một trong những on_the_job, structured_learning, learning_from_others
+        learning_from_others: Học hỏi từ những người khác [20]
+        on_the_job: Trong công việc [70]
+        structured_learning: Học tập có cấu trúc [10]
+      new:
+        header: Hành động phát triển mới
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Hành động phát triển này không?</p>\n"
+            title: Xóa <strong>hành động phát triển</strong> ?
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Hành động phát triển này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      toggle_status:
+        successfully: Hành động phát triển đã được cập nhật thành công.
+      update:
+        successfully: Hành động phát triển "%{name}" đã được cập nhật thành công.
+    dimensions:
+      copy_scheduled:
+        successfully: Sao chép theo lịch trình cho thứ nguyên %{name}
+      create:
+        successfully: "%{name} đã được tạo thành công"
+      destroy:
+        successfully: Thứ nguyên %{name} đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa tên thứ nguyên
+      export_json:
+        successfully: Xuất JSON được lên lịch cho thứ nguyên %{name}.
+      export_translations_scheduled:
+        successfully: Xuất bản dịch được lên lịch cho thứ nguyên %{name}.
+      form:
+        enable_innovation_styles: Cho phép các phong cách đổi mới
+        enable_occupations: Kích hoạt nghề nghiệp
+      import_factors:
+        import: Nhập khẩu
+        sample_file: Tệp mẫu
+        successfully: Tác vụ nhập yếu tố được lên lịch cho thứ nguyên %{name}.
+        title: Các yếu tố nhập khẩu
+      import_modal:
+        cancel: Hủy
+        continue: Tiếp tục
+        import: Nhập khẩu
+        import_dimension: Kích thước nhập khẩu
+      import_translations:
+        error: Lỗi khi nhập bản dịch cho thứ nguyên %{name}.
+        successfully: Nhập bản dịch được lên lịch cho thứ nguyên %{name}.
+      import_translations_scheduled:
+        error: Lỗi
+      index:
+        create_dimension: Tạo thứ nguyên
+        import_dimension: Kích thước nhập khẩu
+        new: Thêm
+        owner: Chủ nhân
+        title: Kích thước
+      list:
+        active: Hoạt động
+        created_at: Ngày tạo
+        id: Id
+        name: Tên
+        updated_at: Ngày sửa đổi
+      new:
+        header: Kích thước mới
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Thứ nguyên này không?</p>\n"
+            title: Xóa <strong>kích thước</strong> ?
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Thứ nguyên này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Sao chép
+          deleting: Xóa
+        tooltips:
+          copy: Sao chép kích thước
+          delete: Xóa thứ nguyên
+          edit: Chỉnh sửa tên thứ nguyên
+          export_json: Xuất JSON để nhập vào nền tảng khác
+      sidebar:
+        copy: Sao chép kích thước
+        destroy: Xóa thứ nguyên
+        edit: Chỉnh sửa tên thứ nguyên
+        title: Các tùy chọn của Dimension
+        view: Xem kích thước
+      toggle_status:
+        successfully: Dimension đã được cập nhật thành công.
+      translations:
+        export: Xuất tất cả
+        header: Dịch thuật yếu tố
+        import: Nhập khẩu
+      update:
+        successfully: Kích thước %{name} đã được cập nhật thành công
+    disable: Vô hiệu hóa
+    document_titles:
+      project_assessors: Thẩm định viên | %{project}
+      project_participants: Đối tượng tham gia | %{project}
+    enable: Kích hoạt
+    errors:
+      csv_file_required: Tệp phải là tệp CSV
+      error_msg: Có điều gì đó không ổn. Vui lòng làm mới trang và nếu sự cố vẫn tiếp diễn, hãy liên hệ với quản trị viên của bạn
+      invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
+      invalid_url: 'URL không hợp lệ: %{message}'
+      invalid_url_format: Định dạng URL không hợp lệ
+      missing_columns: 'Thiếu cột bắt buộc: %{fields}'
+    errror_msg: Thông báo lỗi
+    factors:
+      copy:
+        error: Yếu tố '%{name}' không được sao chép
+        successfully: Yếu tố '%{name}' đã được sao chép thành công.
+      create:
+        successfully: "%{name} đã được tạo thành công."
+      destroy:
+        successfully: Yếu tố "%{name}" đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa tên yếu tố
+      form:
+        components:
+          ExternalList:
+            add: Thêm
+            table:
+              actions: Hành động
+              jsonpath: Đường dẫn JSON
+              type: Kiểu
+              types:
+                norm_score: Điểm chuẩn
+                percentage: Tỷ lệ phần trăm
+                percentile: Điểm phần trăm
+                score: Điểm
+                zscore: Điểm Z
+            title: Đường dẫn JSON cho điểm số
+        scoring_strategies:
+          custom_formula: Công thức tùy chỉnh
+          external_score: Điểm số bên ngoài
+          questions: Câu hỏi (Trung bình)
+          questions_percentage: Câu hỏi (TỔNG / TỔNG TỐI ĐA)
+          questions_sum: Câu hỏi (SUM)
+          sub_factor_questions: Câu hỏi về các yếu tố khác (Trung bình)
+          sub_factor_questions_sum: Câu hỏi về các yếu tố khác (SUM)
+          sub_factors_average: Trung bình gia quyền của các yếu tố
+          sub_factors_conditional_average: Trung bình gia quyền có điều kiện của các yếu tố
+          sub_factors_sum: Tổng các yếu tố có trọng số
+        scoring_strategies_tip: "<strong>Câu hỏi (Trung bình):</strong> Điều này giống như phương pháp chấm điểm hiện tại khi có các câu hỏi liên quan đến một yếu tố.<br /> <br /><strong>Câu hỏi (SUM):</strong> Điều này giống như Câu hỏi (Trung bình), nhưng sử dụng SUM<br /> <br /><strong>Câu hỏi về các yếu tố khác (trung bình):</strong> Điều này giống như phương pháp chấm điểm hiện tại khi có các yếu tố phụ cho một yếu tố, chỉ thay đổi là thêm trọng số.<br /> <br /><strong>Câu hỏi về các yếu tố khác (SUM):</strong> Điều này giống như các yếu tố khác (Trung bình), nhưng sử dụng SUM<br /> <br />Tổng <strong>các yếu tố có trọng số:</strong> Tại đây, điểm số của các yếu tố khác được chọn được nhân với trọng số của chúng được cộng lại."
+        scoring_strategy: Chiến lược tính điểm
+        use_sub_factor_norm_score: Sử dụng điểm định mức Yếu tố
+      index:
+        icon: Biểu tượng
+        new: Thêm
+        scoring_strategies:
+          custom_formula: Công thức tùy chỉnh
+          external_score: Điểm số bên ngoài
+          questions: Câu hỏi (Trung bình)
+          questions_percentage: Câu hỏi (TỔNG / TỔNG TỐI ĐA)
+          questions_sum: Câu hỏi (SUM)
+          sub_factor_questions: Câu hỏi về các yếu tố khác (Trung bình)
+          sub_factor_questions_sum: Câu hỏi về các yếu tố khác (SUM)
+          sub_factors_average: Trung bình gia quyền của các yếu tố
+          sub_factors_conditional_average: Trung bình gia quyền có điều kiện của các yếu tố
+          sub_factors_sum: Tổng các yếu tố có trọng số
+        scoring_strategy: Chiến lược tính điểm
+        sub_factors: Các yếu tố phụ
+        title: Yếu tố
+      list:
+        active: Hoạt động
+        created_at: Ngày tạo
+        id: Id
+        name: Tên
+        updated_at: Ngày sửa đổi
+      new:
+        header: Yếu tố mới
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Yếu tố này không?</p>\n"
+            title: Xóa <strong>yếu tố</strong> ?
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Yếu tố này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Sao chép
+          deleting: Xóa
+        scoring_strategies:
+          custom_formula: Công thức tùy chỉnh
+          external_score: Điểm số bên ngoài
+          questions: Câu hỏi (Trung bình)
+          questions_percentage: Câu hỏi (TỔNG / TỔNG TỐI ĐA)
+          questions_sum: Câu hỏi (SUM)
+          sub_factor_questions: Câu hỏi về các yếu tố khác (Trung bình)
+          sub_factor_questions_sum: Câu hỏi về các yếu tố khác (SUM)
+          sub_factors_average: Trung bình gia quyền của các yếu tố
+          sub_factors_conditional_average: Trung bình gia quyền có điều kiện của các yếu tố
+          sub_factors_sum: Tổng các yếu tố có trọng số
+        tooltips:
+          copy: Sao chép yếu tố
+          delete: Xóa yếu tố
+          edit: Chỉnh sửa yếu tố
+      sidebar:
+        copy: Sao chép yếu tố
+        destroy: Xóa yếu tố
+        edit: Chỉnh sửa yếu tố
+        title: Các lựa chọn của Factor
+      toggle_status:
+        successfully: Factor đã được cập nhật thành công.
+      update:
+        successfully: "%{name} đã được cập nhật thành công"
+    genders:
+      female: Cái
+      male: Đực
+      not_set: Chưa thiết lập
+    grants:
+      common:
+        view: Cảnh
+      dashboard:
+        name: Bảng điều khiển
+        permissions:
+          accesssheet_manage: Quản lý bảng truy cập
+          accesssheet_settings: Cài đặt bảng truy cập
+          accesssheet_view: Chế độ xem Accesssheet
+    hogan:
+      errors:
+        new_assessment_response_not_allowed:
+          detailed_error_message: Không thể thêm Phản hồi mới cho đánh giá hogan %{assessment_name} vì đánh giá này đã được chỉ định và bắt đầu bởi người dùng %{email}. Bạn có thể tạo tài khoản hogan mới cho người dùng này và nó sẽ cho phép người dùng làm lại bài đánh giá.
+          short_error_message: Không thể thêm Phản hồi mới cho đánh giá hogan %{assessment_name} vì đánh giá này đã được chỉ định và bắt đầu bởi người dùng %{email}
+    idp:
+      actions:
+        remove_confirm: Nhập tên mẫu hiện tại được cung cấp bên dưới trong hộp văn bản để xóa mẫu
+        success: "%{idpName} đã bị xóa thành công."
+      add_idp_template: Thêm mẫu IDP
+      all: Tất cả
+      appearance: Bề ngoài
+      appearance_hint: Để sửa đổi giao diện, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
+      background_image: Hình nền
+      behavioral_skills: Kỹ năng hành vi
+      client_skills: Kỹ năng khách hàng
+      edit_template: Chỉnh sửa mẫu IDP
+      enter_template_description: Sự miêu tả
+      enter_template_description_error: Mô tả mẫu là bắt buộc.
+      enter_template_name: Tên
+      enter_template_name_error: Tên mẫu là bắt buộc
+      errors:
+        update: Không được phép cập nhật vì mẫu IDP đã được liên kết với gói IDP của người dùng. Các thay đổi về ngoại hình đã được lưu.
+      fields:
+        assigned_data: Dữ liệu được chỉ định
+        completion_date: Ngày hoàn thành
+        division: Sư đoàn
+        name: Tên
+        publish_date: Ngày xuất bản
+        review_date: Ngày đánh giá
+        role: Vai trò hiện tại
+      fields_label: Lĩnh vực
+      global_skills: Kỹ năng toàn cầu
+      idp: IDP
+      idp_template: Thêm mẫu IDP
+      intro_message: Thông điệp giới thiệu
+      intro_message_hint: Để sửa đổi thông báo giới thiệu, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
+      intro_message_success: Tin nhắn giới thiệu được lưu thành công
+      locales: Địa điểm
+      logo_image: Hình ảnh logo
+      logo_type:
+        both: Logo Mercer và Khách hàng
+        client_only: Chỉ logo khách hàng
+        mercer_only: Chỉ logo Mercer
+        none: Không có logo
+      logo_type_label: Loại logo
+      no_reflection_questions_selected: Không chọn Câu hỏi phản ánh
+      none: Không ai
+      reference_locale: Ngôn ngữ tham khảo
+      reflection_questions: Câu hỏi suy ngẫm
+      reflection_questions_hint: Để sửa đổi các câu hỏi phản ánh, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
+      reflection_questions_updated: Câu hỏi suy ngẫm được cập nhật thành công.
+      remove: Triệt
+      select_by_tags: Chọn theo thẻ
+      select_reflection_question: Bắt đầu nhập để tìm kiếm và chọn câu hỏi
+      select_skill_gap_report: Chọn báo cáo khoảng cách kỹ năng
+      select_specific_skills: Chọn kỹ năng cụ thể
+      selected: Chọn
+      self_rating: Bật tự đánh giá
+      show_reflections: Hiển thị phản chiếu
+      skill_gap_report: Báo cáo khoảng cách kỹ năng
+      skills: Kỹ năng
+      subtitle_text: Văn bản phụ đề
+      tab:
+        development_actions: Hành động phát triển
+        reflection_questions: Câu hỏi suy ngẫm
+        settings: Cài đặt
+        templates: Mẫu
+      technical_skills: Kỹ năng kỹ thuật
+      template_details: Chi tiết mẫu
+      title_text: Văn bản tiêu đề
+      update_reflection_questions: Cập nhật câu hỏi phản ánh
+    idp_setting:
+      allow_global_skills: Cho phép kỹ năng toàn cầu
+      manager_approves_idp: Người quản lý phê duyệt IDP
+      manager_can_edit_idp: Người quản lý có thể chỉnh sửa IDP
+      require_all_development_actions_complete: Yêu cầu hoàn tất tất cả các hành động phát triển
+    import: Nhập khẩu
+    imports:
+      assessments:
+        results:
+          form:
+            import: Nhập khẩu
+      base:
+        form:
+          import: Nhập khẩu
+      errors:
+        invalid_format: Định dạng tệp không hợp lệ
+        norm:
+          dimension_not_found: Không tìm thấy thứ nguyên %{dimension_name} cho %{client_name}
+          factor_mismatch: Thứ nguyên %{dimension_name} không có hệ số %{factor_name}
+          not_set_dimension: Tên của Kích thước phải được viết trong ô thứ hai của hàng đầu tiên
+        result:
+          answer_invalid: "[Hàng %{row}] Câu trả lời cho qid %{question_id} không hợp lệ: %{error}"
+          date_errors:
+            both_dates_required: Cả started_at và completed_at đều được yêu cầu để hoàn thành trạng thái
+            completed_at_should_be_after_started_at: completed_at phải sau khi started_at để hoàn thành trạng thái
+            completed_at_should_be_empty: completed_at nên trống cho trạng thái in_progress
+            dates_not_in_future: Ngày không nên là trong tương lai
+            dates_should_be_empty: Ngày phải trống cho trạng thái not_started
+            started_at_required: Cần có started_at hợp lệ cho trạng thái in_progress
+          error: "[Hàng %{row}] %{error}"
+          invalid_assign: "[Hàng %{row}] Không thể tìm thấy bản ghi cho ID Kết quả được chỉ định. Nếu bạn muốn tạo kết quả mới, vui lòng để trống cột ID kết quả"
+          invalid_date: "[Hàng %{row}] %{error}"
+          question_invalid: "[Hàng %{row}] Câu hỏi %{question_id} không hợp lệ"
+          user:
+            record_not_found: Không thể tìm thấy người dùng hiện tại có email %{email}.
+          user_assessment:
+            record_not_found: Không thể tìm thấy bản ghi đánh giá với id %{assessment_id} được gán cho người dùng.
+        translation:
+          error: "[Dịch %{id}] %{error}"
+          invalid_format: Định dạng tệp không hợp lệ
+        unknown_type: 'Loại tệp không xác định: %{filename}'
+      form:
+        description: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
+        import: Nhập khẩu
+      hris:
+        form:
+          import: Nhập khẩu
+      new:
+        header: Nhập khẩu
+      users:
+        existing_users_whose_password_not_changed_modal_dialog:
+          header: Danh sách người dùng có mật khẩu sẽ không bị thay đổi
+        form:
+          description: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
+          import: Nhập khẩu
+    imports_assessments_result_imports:
+      create:
+        successfully: Dữ liệu Kết quả thô đã được nhập thành công
+      modal:
+        header:
+          raw: Nhập dữ liệu Kết quả thô
+          scoring: Nhập dữ liệu Kết quả tính điểm
+      new:
+        header: Mới
+    imports_hris_imports:
+      create:
+        successfully: Dữ liệu HRIS đã được nhập thành công
+      new:
+        header: Nhập dữ liệu HRIS
+    imports_user_imports:
+      create:
+        successfully: Người dùng đã được nhập thành công
+      new:
+        header: Nhập người dùng
+    individual_invite:
+      tabs:
+        assessment_center: Trung tâm đánh giá
+        subjects: Đối tượng
+    innovation_styles:
+      create:
+        successfully: Kiểu đổi mới %{name} đã được tạo thành công.
+      destroy:
+        successfully: Kiểu đổi mới %{name} đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa phong cách đổi mới
+      form:
+        no_icon: Không có biểu tượng
+      index:
+        new: Thêm
+        title: Phong cách đổi mới
+      list:
+        created_at: Ngày tạo
+        id: Id
+        name: Tên
+        position: Vị trí
+        updated_at: Ngày sửa đổi
+      new:
+        header: Phong cách đổi mới mới
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa phong cách đổi mới này không?</p>\n"
+            title: Xóa <strong>phong cách đổi mới</strong> ?
+        tooltips:
+          delete: Xóa phong cách đổi mới
+          edit: Chỉnh sửa phong cách đổi mới
+      sidebar:
+        copy: Sao chép phong cách đổi mới
+        edit: Biên tập
+        title: Các lựa chọn của Innovation Style
+      toggle_status:
+        successfully: Phong cách đổi mới đã được cập nhật thành công.
+    innovation_styles_factors:
+      create:
+        successfully: Yếu tố %{name} đã được tạo thành công.
+      destroy:
+        successfully: Yếu tố %{name} đã được tách thành công.
+      edit:
+        header: Chỉnh sửa yếu tố
+      index:
+        new: Thêm
+        title: Yếu tố
+      list:
+        condition: Điều kiện
+        created_at: Ngày tạo
+        id: Id
+        name: Tên
+        position: Vị trí
+        updated_at: Ngày sửa đổi
+        weight: Trọng lượng
+      new:
+        header: Đính kèm các yếu tố
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa yếu tố này không?</p>"
+            title: Xóa <strong>yếu tố</strong> ?
+        tooltips:
+          delete: Xóa yếu tố
+          edit: Chỉnh sửa yếu tố
+      sidebar:
+        destroy: Phá
+        edit: Biên tập
+        title: Các lựa chọn của Factor
+      toggle_status:
+        successfully: Factor đã được cập nhật thành công.
+    integrations:
+      actions:
+        add: Tích hợp
+        back: Quay lại tích hợp
+        load_mettl_catalog: Tải danh mục đánh giá Mettl
+        load_skillvue_catalog: Tải danh mục đánh giá Skillvue
+      columns:
+        active: Hoạt động
+        details: Chi tiết
+        name: Tên tích hợp
+      details:
+        provider: Tên nhà cung cấp
+        webhookUrl: Webhook URL
+        webhookUrls: URL Webhook
+      integrations: Tích hợp
+      load_mettl_success: Tải công việc đánh giá mettl được xếp hàng thành công
+      load_skillvue_success: Tải công việc đánh giá skillvue được xếp hàng thành công
+      modal:
+        hogan:
+          provider: Cung cấp
+          providers:
+            mercer: Mercer
+            phoenix: Phượng hoàng
+        iiht:
+          password: Mật khẩu
+          tenancy_name: Tên thuê nhà
+          tenant_id: ID đối tượng thuê
+          user: Người dùng
+        mettl:
+          apiBaseUrl: Điểm cuối API
+          apiBaseUrlRequired: Điểm cuối API là bắt buộc.
+          privateKey: Khóa riêng tư
+          privateKeyRequired: Khóa riêng là bắt buộc.
+          publicKey: Khóa công khai
+          publicKeyRequired: Khóa công khai là bắt buộc.
+          servers:
+            mettl_eu: Châu Âu
+            mettl_india: Ấn Độ
+        skillvue:
+          apiKey: Khóa API
+          apiKeyRequired: Khóa API là bắt buộc
+      names:
+        hogan: HOGAN
+        iiht: IIHT
+        mettl: METTL
+        skillvue: Kỹ năng
+      validations:
+        iiht:
+          tenancy_name_present: Tên thuê nhà đã có trong dự án khác
+          tenant_id_present: Id người thuê đã có trong dự án khác
+        mettl:
+          public_key_present: Khóa công khai đã có trong dự án khác
+        skillvue:
+          api_key_present: Khóa API đã có trong dự án khác
+      view_all_schedules: Xem tất cả lịch trình Mettl
+    invited_subject:
+      add_btn: Thêm chủ đề
+      assessment_center: 'Trung tâm đánh giá:'
+      booked_at: 'Đặt tại:'
+      column:
+        participant: Người tham gia
+      remove_confirm:
+        content: Bạn có chắc chắn muốn xóa chủ đề có email '%{subjectEmail}' không?
+        success: Chủ đề có email '%{subjectEmail}'' đã bị xóa thành công.
+        title: Loại bỏ đối tượng
+      statuses:
+        accepted: Chấp nhận
+        cancelled: Bị hủy bỏ
+        pending: Chờ
+        requested_cancellation: Yêu cầu hủy bỏ
+        requested_cancellation_rejected: Hủy bỏ bị từ chối
+        requested_rescheduling: Yêu cầu lên lịch lại
+        requested_rescheduling_rejected: Lên lịch lại bị từ chối
+        rescheduled: Dời
+      subject: Chủ đề
+    job_role:
+      column:
+        job_group: Nhóm công việc
+      export:
+        failure_msg: Lỗi khi xuất bản dịch
+        success_msg: Xuất các hành động phát triển đang được tiến hành.
+      export_action:
+        translations: Xuất bản dịch vai trò công việc
+      form:
+        code: Mã
+        description: Sự miêu tả
+        job_group: Nhóm công việc
+        name: Tên
+        title: Vai trò công việc
+      global: Vai trò công việc toàn cầu có phải không?
+      import:
+        download_example_csv: Tải xuống ví dụ csv
+        success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+      import_action:
+        translations: Nhập bản dịch vai trò công việc
+      translations: Bản dịch vai trò công việc
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Mức độ thành thạo dự kiến
+        job_role: Vai trò công việc
+        skill: Kỹ năng
+      form:
+        expected_proficiency_level: Mức độ thành thạo dự kiến
+        job_role: Vai trò công việc
+        skill: Kỹ năng
+        title: Lập bản đồ công việc kỹ năng
+      global: Lập bản đồ công việc kỹ năng toàn cầu có phải không?
+      import:
+        taxonomy: Phân loại học
+    job_roles:
+      export:
+        translations:
+          details: Chi tiết
+    libraries:
+      create:
+        successfully: Mục %{name} đã được tạo thành công.
+      destroy:
+        successfully: Mục %{name} đã bị xóa thành công.
+      edit:
+        header: Biên tập
+      index:
+        new_folder: Thư mục mới
+        owner: Chủ nhân
+        title: Thư viện phương tiện
+        upload: Tải lên
+      list:
+        created_at: Ngày tạo
+        name: Tên
+        new_folder: Thư mục mới
+        root: Thư viện phương tiện
+        type: Kiểu
+        updated_at: Ngày sửa đổi
+        upload: Tải lên tệp mới
+      new:
+        header: Tải lên tệp
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc muốn xóa %{name} không?</p>\n"
+            title: Xóa <strong>%{name}</strong> ?
+        tooltips:
+          delete: Xóa
+          edit: Biên tập
+      update:
+        successfully: Mục %{name} đã được cập nhật thành công.
+    memberships:
+      admin_chosen:
+        successfully: Người dùng quản trị viên đã được cập nhật thành công.
+      create:
+        successfully: Người dùng %{name} đã được tạo thành công.
+      destroy:
+        successfully: Người dùng %{name} đã bị xóa thành công.
+      new:
+        header: Người dùng mới
+      reset_password:
+        successfully: Người dùng %{name} sẽ nhận được email hướng dẫn về cách đặt lại mật khẩu của mình sau vài phút.
+      spoof:
+        successfully: Bạn đã đăng nhập thành công dưới dạng %{name}
+      toggle_membership_status:
+        successfully: Tư cách thành viên của %{name} đã được cập nhật thành công.
+      toggle_status:
+        successfully: Người dùng %{name} đã được cập nhật thành công.
+      update:
+        successfully: Người dùng %{name} đã được cập nhật thành công.
+    meta_title: Bảng điều khiển
+    navigation:
+      ai_assistants: Trợ lý AI
+      assessments: Đánh giá
+      assessments_reports: Đánh giá & Báo cáo
+      assessor_dashboard: Bảng điều khiển đánh giá viên
+      assessor_workshops: Trung tâm đánh giá
+      audit_logs: Nhật ký kiểm tra
+      availability: Sẵn sàng
+      back_to_main: Menu chính
+      campaign_templates: Mẫu chiến dịch
+      change_password: Thay đổi mật khẩu
+      client_admins: Quản trị viên khách hàng
+      clients: Thuê khách hàng
+      communication_center: Trung tâm truyền thông
+      dashboard: Bảng điều khiển
+      data_reports: Báo cáo dữ liệu
+      development_actions: Hành động phát triển
+      dimensions: Kích thước
+      factors: Yếu tố
+      innovation_styles: Phong cách đổi mới
+      libraries: Thư viện phương tiện
+      norms: Tiêu chuẩn
+      occupations: Nghề
+      options: Tùy chọn
+      participants: Tham gia
+      profile: Hồ sơ
+      profile_details: Chi tiết
+      project_admins: Quản trị viên dự án
+      question_center: Trung tâm câu hỏi
+      registration_codes: Mã đăng ký
+      report_approvals: Phê duyệt báo cáo
+      reports: Báo cáo
+      scheduling: Lập kế hoạch
+      show_submenu: Hiển thị menu phụ
+      skills_taxonomy: Phân loại kỹ năng
+      user_profile_details: Chi tiết hồ sơ
+      user_report_events: Sự kiện báo cáo người dùng
+      users: Người dùng
+    no_data_found: Không tìm thấy dữ liệu
+    norms:
+      copy:
+        error: 'Định mức #%{id} không được sao chép.'
+        successfully: Định mức "%{name}" đã được sao chép thành công.
+      create:
+        successfully: Định mức "%{name}" đã được tạo thành công.
+      destroy:
+        successfully: Định mức "%{name}" đã bị xóa thành công.
+      edit:
+        header: Đổi tên Norm
+      editor:
+        factors: Yếu tố
+        inplace_title: Nhập giá trị
+        title: Trình chỉnh sửa định mức
+      export:
+        success_msg: Công việc xuất định mức được lên lịch thành công. Vui lòng kiểm tra trạng thái trong thông báo.
+      import:
+        download_example_csv: Tải xuống ví dụ csv
+        select_file_validation: Vui lòng chọn chủ sở hữu và tệp trước khi gửi.
+        success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+        title: Định mức nhập khẩu
+      index:
+        import: Nhập khẩu
+        new: Thêm
+        owner: Chủ nhân
+        title: Tiêu chuẩn
+      list:
+        active: Hoạt động
+        created_at: Ngày tạo
+        dimension_id: Id thứ nguyên
+        id: Id
+        name: Tên
+        updated_at: Ngày sửa đổi
+        updated_by: Cập nhật bởi
+      new:
+        header: Tiêu chuẩn mới
+      norms: Tiêu chuẩn
+      remove:
+        confirm: Nhập tên tiêu chuẩn được cung cấp bên dưới vào hộp văn bản để xác nhận
+        warning: Bạn có chắc chắn muốn xóa tiêu chuẩn "%{name}" không
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Tiêu chuẩn này không?</p>\n"
+            title: Xóa <strong>định mức</strong> ?
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Tiêu chuẩn này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Sao chép
+          deleting: Xóa
+        tooltips:
+          copy: Sao chép định mức
+          delete: Xóa định mức
+          edit: Đổi tên Norm
+      score_types:
+        five_scale: Năm thang đo
+        norm_type: Loại định mức
+        percentage: Tỷ lệ phần trăm
+      sidebar:
+        copy: Sao chép định mức
+        destroy: Xóa định mức
+        edit: Đổi tên Norm
+        editor: Trình chỉnh sửa định mức
+        export: Định mức xuất khẩu
+        title: Các lựa chọn của Norm
+      toggle_status:
+        successfully: Norm đã được cập nhật thành công.
+      update:
+        successfully: Định mức %{name} đã được cập nhật thành công.
+    notification_bell_icon: Biểu tượng chuông thông báo
+    noty:
+      error_408: Hành động này mất quá nhiều thời gian. Vui lòng thử tải lại trang.
+      error_500: Có điều gì đó không ổn. Liên hệ với quản trị viên của bạn.
+    occupations:
+      create:
+        successfully: Nghề nghiệp %{name} đã được tạo thành công.
+      destroy:
+        successfully: Nghề nghiệp %{name} đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa nghề nghiệp
+      form:
+        hint:
+          key_career_tracks: '"+" - danh sách, "*" - in đậm. Ví dụ: + * Sinh học * - một số mô tả...'
+        no_icon: Không có biểu tượng
+      index:
+        new: Thêm
+        title: Nghề
+      list:
+        created_at: Ngày tạo
+        id: Id
+        name: Tên
+        updated_at: Ngày sửa đổi
+      new:
+        header: Nghề nghiệp mới
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa nghề nghiệp này không?</p>\n"
+            title: Xóa <strong>nghề nghiệp</strong> ?
+        tooltips:
+          delete: Xóa Nghề nghiệp
+          edit: Chỉnh sửa nghề nghiệp
+      sidebar:
+        copy: Sao chép nghề nghiệp
+        edit: Biên tập
+        title: Lựa chọn nghề nghiệp
+      toggle_status:
+        successfully: Nghề nghiệp đã được cập nhật thành công.
+    occupations_factors:
+      create:
+        successfully: Yếu tố %{name} đã được tạo thành công.
+      destroy:
+        successfully: Yếu tố %{name} đã được tách thành công.
+      edit:
+        header: Chỉnh sửa yếu tố
+      index:
+        new: Thêm
+        title: Yếu tố
+      list:
+        condition: Điều kiện
+        created_at: Ngày tạo
+        id: Id
+        name: Tên
+        position: Vị trí
+        updated_at: Ngày sửa đổi
+        weight: Trọng lượng
+      new:
+        header: Đính kèm các yếu tố
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa yếu tố này không?</p>"
+            title: Xóa <strong>yếu tố</strong> ?
+        tooltips:
+          delete: Xóa yếu tố
+          edit: Chỉnh sửa yếu tố
+      sidebar:
+        destroy: Yếu tố phá hủy
+        edit: Biên tập
+        title: Các lựa chọn của Factor
+      toggle_status:
+        successfully: Factor đã được cập nhật thành công.
+      update:
+        successfully: Yếu tố %{name} đã được cập nhật thành công.
+    participants:
+      tabs:
+        assessors: Đánh giá viên
+        sms_contacts: Danh bạ SMS
+        subjects: Đối tượng
+    piped_text_modal:
+      assessment_id: ID đánh giá
+      campaign_id: ID chiến dịch
+      insight_page_link: Liên kết trang Insight
+      insight_page_url: URL trang thông tin chi tiết
+      join_link: Liên kết tham gia
+      magic_link: Liên kết ma thuật
+      magic_url: URL ma thuật
+      profile_custom_field: Trường tùy chỉnh hồ sơ
+      report_name: Tên báo cáo
+      text: Nhắn tin
+      title: Thêm văn bản đường ống
+    proctoring_sessions:
+      columns:
+        comment: Bình luận
+        completed_at: Hoàn thành lúc
+        conclusion: Kết thúc
+        links: Liên kết
+        score: Điểm
+        session_id: ID phiên
+        started_at: Bắt đầu lúc
+      links:
+        report: Báo cáo
+        review: Xem xét
+      resource_name: Các buổi giám sát
+    products:
+      copy:
+        error: Lỗi
+      destroy:
+        successfully: Thành công
+      toggle_status:
+        successfully: Thành công
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: Định nghĩa cấp độ phải là một mảng các định nghĩa.
+          level_definition_must_match_level: phải chứa chính xác %{expected} mức, nhưng %{actual} đã được đưa ra
+          must_be_unique: Phải là duy nhất
+          proficiency_level_exists: Mức độ thành thạo với kỹ năng và dự án này đã tồn tại
+          proficiency_level_exists_for_all_skills: Mức độ thành thạo cho tất cả các kỹ năng đã thoát ra
+          proficiency_level_exists_for_category: Mức độ thành thạo cho hạng mục này đã tồn tại
+          project_level_all_skills_exists: Mức độ thành thạo 'all_skills' đã tồn tại
+          skill_must_exist: Kỹ năng phải có mặt cho proficiency_type 'by_skill'
+      export:
+        actions:
+          proficiency: Thành thạo xuất khẩu
+          translations: Bản dịch thông thạo xuất khẩu
+        details: Chi tiết
+        failure_msg: Lỗi khi xuất mức độ thành thạo
+        success_msg: Xuất các hành động phát triển đang được tiến hành
+        translations:
+          details: Bản dịch trình độ thành thạo
+      fields:
+        level: Mức
+        level_description: Mô tả cấp độ
+        level_name: Tên cấp độ
+        proficiency_translations: Dịch thuật thành thạo
+        proficiency_type: Loại thông thạo
+        skill: Kỹ năng
+        skill_category: Danh mục kỹ năng
+        skill_name: Tên kỹ năng
+        title: Thông thạo
+      global: Có phải là thành thạo toàn cầu?
+      import:
+        actions:
+          proficiency: Thành thạo nhập khẩu
+          translations: Bản dịch thành thạo nhập khẩu
+        errors:
+          all_skills_global_exists: 'Hàng %{row_number}: Mức độ ''all_skills'' đã tồn tại'
+          all_skills_project_exists: 'Hàng %{row_number}: Mức độ ''all_skills'' cấp dự án đã tồn tại'
+          by_category_exists: 'Hàng %{row_number}: Mức độ thông thạo ''by_category'' đã tồn tại cho dự án và danh mục kỹ năng này'
+          by_category_missing: 'Hàng %{row_number}: Dự án và Danh mục kỹ năng phải có đối với loại ''by_category'''
+          by_skill_exists: 'Hàng %{row_number}: Mức độ thông thạo ''by_skill'' đã tồn tại cho dự án và kỹ năng này'
+          by_skill_missing: 'Hàng %{row_number}: Dự án và Kỹ năng phải có đối với loại ''by_skill'''
+          invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
+          invalid_json: 'Dòng %{line}: JSON không hợp lệ trong LevelDefinition - %{message}'
+          invalid_json_structure: phải là một đối tượng JSON có các khóa như 'description' và 'summary'
+          invalid_proficiency_type: 'Hàng %{row_number}: Không hợp lệ hoặc thiếu ProficiencyType'
+          missing_columns: 'Thiếu cột bắt buộc: %{fields}'
+          missing_required_fields: 'Dòng %{line}: Thiếu các trường bắt buộc (%{fields})'
+          save_failed: 'Dòng %{line}: %{message}'
+          skill_not_found: 'Hàng %{row_number}: Kỹ năng không hợp lệ hoặc thiếu'
+        job_queued: Công việc nhập trình độ thành thạo đã được xếp hàng
+      translations:
+        export:
+          failure_msg: Lỗi khi xuất bản dịch
+          success_msg: Xuất các hành động phát triển đang được tiến hành.
+        import:
+          errors:
+            invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
+            invalid_locales: Ngôn ngữ không hợp lệ
+            level_not_found: 'Không tìm thấy cấp độ cho ID: %{level_id}'
+            missing_columns: 'Thiếu cột bắt buộc: %{fields}'
+            missing_required_columns: 'Thiếu cột bắt buộc: %{columns}'
+            row_id_blank: 'Hàng %{row}: ID không được để trống'
+            save_failed: 'Lỗi xử lý ID kỹ năng %{id}: %{message}'
+      type:
+        all_skills: Tất cả các kỹ năng
+        by_category: Theo danh mục
+        by_skill: Theo kỹ năng
+    profile:
+      change_password: Thay đổi mật khẩu
+      details: Chi tiết
+      profile: Hồ sơ
+    profiles:
+      edit:
+        success: Hồ sơ đã được cập nhật thành công.
+        title: Trình chỉnh sửa hồ sơ
+      update:
+        edit:
+          success: Hồ sơ đã được cập nhật thành công.
+    project:
+      tools:
+        workshop_status_export: Xuất trạng thái xưởng
+        workshop_status_export_success: Xuất trạng thái xưởng đã được lên lịch thành công.
+    project_participants:
+      cancel: Hủy
+      column_actions: Hành động
+      column_campaigns: Chiến dịch
+      column_createdAt: Được tạo tại
+      column_created_at: Được tạo tại
+      column_email: Email
+      column_id: Id
+      column_name: Tên
+      delete: Xóa
+      edit: Biên tập
+      edit_participant: Chỉnh sửa người tham gia
+      filter_campaigns: Không có chiến dịch
+      form_first_name: Tên thánh
+      form_last_name: Họ
+      reset_password: Đặt lại mật khẩu
+      save: Cứu
+      search_user: Tìm kiếm người dùng
+      send_email: Gửi email
+    project_tabs:
+      assessments:
+        column:
+          name: Tên
+          normalize_factor_scores: Chuẩn hóa điểm số yếu tố
+          user_result_validity_in_days: Hiệu lực của kết quả
+        delete:
+          content: Bạn có chắc chắn muốn xóa đánh giá '%{name}' không?
+          success: Đánh giá '%{name}' đã bị xóa thành công.
+          title: Xóa đánh giá
+        form:
+          assessment_placeholder: Chọn Đánh giá
+          assessment_required: Đánh giá là bắt buộc
+          normalize_factor_scores: Chuẩn hóa điểm số yếu tố
+          user_result_validity_in_days: Hiệu lực kết quả tính bằng ngày
+        title: Đánh giá
+      design: Thiết kế
+      general: Tổng quát
+      privacy: Sự riêng tư
+      profile: Hồ sơ
+      registration: Đăng ký
+      webhooks:
+        actions:
+          delete:
+            key: xóa
+            label: Xóa
+          edit:
+            key: biên tập
+            label: Biên tập
+          send_test:
+            key: send_test
+            label: Gửi bài kiểm tra
+        form:
+          acceptable_rate_limit:
+            label: Giới hạn yêu cầu được chấp nhận
+            request_per: yêu cầu mỗi
+          active:
+            label: Hoạt động
+            name: hoạt động
+          auth_type:
+            api_key:
+              label: Khóa API
+              name: api_key
+              value: api_key_auth
+            api_key_header:
+              format_error: Chỉ cho phép chữ cái, số, dấu gạch dưới và dấu gạch nối
+              label: Tiêu đề khóa API
+              name: Tiêu đề apiKeyHeader
+            basic:
+              label: Cơ bản
+              value: basic_auth
+            label: Loại xác thực
+            name: auth_type
+            no_auth:
+              label: Không ai
+              value: no_auth
+          description:
+            label: Sự miêu tả
+            name: sự miêu tả
+          include_locales:
+            label: Bao gồm bản dịch
+            name: include_locales
+          password:
+            label: Mật khẩu
+            name: mật khẩu
+          topics:
+            label: Sự kiện
+            list:
+              assessment_assigned: Đánh giá được giao
+              assessment_completed: Đánh giá đã hoàn thành
+              assessment_started: Đánh giá bắt đầu
+              assessment_timeout: Thời gian chờ đánh giá
+              campaign_results_available: Kết quả chiến dịch có sẵn
+              campaign_user_status: Trạng thái người dùng chiến dịch
+              report_available: Báo cáo có sẵn
+              results_available: Kết quả có sẵn
+              scheduling_cancelled: Lên lịch bị hủy
+              scheduling_invited: Lên lịch được mời
+              scheduling_rescheduled: Lên lịch lại
+              scheduling_scheduled: Lên lịch lên lịch
+            name: Chủ đề
+          url:
+            label: Url
+            name: Url
+          username:
+            label: Tên người dùng
+            name: Tên người dùng
+        remove_webhook:
+          content: Xóa %{description}?
+          title: Xóa
+        title: Webhook
+    project_users:
+      cancel: Hủy
+      change_password: Thay đổi mật khẩu
+      column_actions: Hành động
+      column_campaigns: Chiến dịch
+      column_created_at: Được tạo tại
+      column_email: Email
+      column_id: Id
+      column_name: Tên
+      confirm_delete: Có, xóa
+      confirm_send: Có, gửi
+      delete: Xóa
+      delete_error: Không thể xóa đánh giá viên '%{name}'. Vui lòng liên hệ với quản trị viên của bạn.
+      delete_success: Người đánh giá '%{name}' đã bị xóa thành công.
+      edit: Biên tập
+      edit_assessor: Chỉnh sửa đánh giá viên
+      filter_campaigns: Không có chiến dịch
+      form_first_name: Tên thánh
+      form_last_name: Họ
+      modal_delete_content: Bạn có chắc chắn muốn xóa người đánh giá '%{name}' không?
+      modal_delete_title: Xóa đánh giá viên
+      modal_reset_email_content: Bạn có chắc chắn muốn gửi liên kết đặt lại mật khẩu đến '%{email}' không?
+      model_reset_email: Đặt lại mật khẩu của người đánh giá
+      no_edit_permission: Bạn không có quyền chỉnh sửa người đánh giá '%{name}'
+      reset_mail_error: Không thể gửi liên kết đặt lại mật khẩu đến '%{email}'. Vui lòng liên hệ với quản trị viên của bạn.
+      reset_mail_success: Đặt lại liên kết mật khẩu được gửi thành công đến '%{email}'
+      save: Cứu
+      search_accessor: Trình truy cập tìm kiếm
+      send_email: Gửi email
+    projects:
+      addProject: Thêm dự án
+      assessment_settings:
+        search: Đánh giá tìm kiếm
+      clients:
+        confirmations:
+          detach_from_project:
+            body: Thân thể
+            title: Tiêu đề
+      columns:
+        project_number: Số dự án
+      design_settings:
+        alt_text_invalid: Văn bản thay thế chứa các ký tự không được hỗ trợ.
+        alt_text_logo: Logo Alt-Text
+        alt_text_logo_required: Logo văn bản thay thế là bắt buộc
+        alt_text_long: Vượt quá giới hạn tối đa là 100 ký tự.
+        background_color: Màu nền
+        background_label: Nền
+        background_overlay_label: Lớp phủ nền
+        background_size: Kích thước nền
+        background_size_contain: Chứa
+        background_size_cover: Che
+        bg_upload: Tải lên
+        client_logo_label: Logo khách hàng
+        contrast_ratio_warning: 'Lưu ý: Việc sử dụng màu cơ bản này có thể vi phạm yêu cầu về tỷ lệ tương phản để dễ đọc văn bản.'
+        contrast_ratio_warning_lighter_color: 'Lưu ý: Sử dụng màu %{name} này có thể vi phạm yêu cầu tỷ lệ tương phản để có thể đọc văn bản. Hãy thử sử dụng một màu tối hơn.'
+        error_color: Màu lỗi
+        info_color: Thông tin Màu sắc
+        logo_upload: Tải lên
+        position_auto: Xe ô tô
+        position_label: Vị trí hộp đăng nhập
+        position_left: Bên trái
+        position_right: Bên phải
+        primary_color: Màu cơ bản
+        reset: Reset
+        sec_logo_label: Logo phụ
+        sec_logo_upload: Tải lên
+        secondary_logo_alt_text: Văn bản thay thế logo phụ
+        secondary_logo_alt_text_required: Logo văn bản thay thế phụ là bắt buộc
+        success_color: Màu sắc thành công
+        success_update: Cài đặt thiết kế đã được lưu thành công
+        warning_color: Màu cảnh báo
+      general_settings:
+        live_chat: Bật trò chuyện trực tiếp
+        locales_label: Địa điểm
+        name_label: Tên
+        project_number_label: Số dự án
+        save_changes: Lưu thay đổi
+        sub_domain_label: Tên miền phụ
+      mettl_schedule_records:
+        actions:
+          edit: Biên tập
+        add: Thêm lịch trình
+        assessment_id: ID đánh giá
+        assessment_name: Tên đánh giá
+        candidate_authorization: Bật ủy quyền ứng viên
+        candidate_screen_capture: Bật chụp màn hình ứng viên
+        count: Số lượng dung sai duyệt web
+        created_at: Được tạo tại
+        schedule_id: ID lịch trình
+        schedule_name: Tên lịch trình
+        search: Tìm kiếm
+        secure_browser_enabled: Bật trình duyệt bảo mật
+        settings: Cài đặt
+        show_remaining_counts: Bật hiển thị số lượng còn lại
+        visual_proctoring_enabled: Bật giám sát trực quan
+        web_proctoring_enabled: Bật giám sát web
+      privacy_settings:
+        disable_dp: Không cho phép xử lý dữ liệu thêm
+        dp_consent: Bật sự đồng ý của Xử lý dữ liệu
+        dp_consent_custom: Tùy chỉnh sự đồng ý về xử lý dữ liệu
+        dp_consent_version: Phiên bản chính sách
+        errors:
+          policy_version_format: Chỉ cho phép các số nguyên
+        mask_identity_for_examus: Dữ liệu mặt nạ cho Examus Proctoring
+        mask_identity_for_hogan: Dữ liệu mặt nạ cho Hogan
+        mask_identity_for_iiht: Dữ liệu mặt nạ cho IIHT
+        mask_identity_for_mettl: Dữ liệu mặt nạ cho METTL
+        mask_identity_for_pearson: Dữ liệu mặt nạ cho Pearson
+        mask_identity_for_saville: Dữ liệu mặt nạ cho Saville
+        mask_identity_for_skillvue: Dữ liệu mặt nạ cho Skillvue
+        privacy_link: Bật liên kết quyền riêng tư
+        privacy_link_label: Liên kết quyền riêng tư
+        privacy_link_placeholder: Nhập liên kết quyền riêng tư
+        privacy_text: Văn bản bảo mật
+        privacy_text_placeholder: Nhập văn bản bảo mật
+      profile_settings:
+        form_fields:
+          enabled: Kích hoạt
+          half_size: Kích thước một nửa
+          locked: Khóa
+          name: Tên
+          remove: Triệt
+          required: Bắt buộc
+          sort: Sắp xếp
+        month: Tháng
+        never: Không bao giờ
+        update_in: Thông báo cập nhật hồ sơ trong
+        year: Năm
+      registration_settings:
+        hide_signup: Ẩn tùy chọn đăng ký
+        require_mobile_number: Yêu cầu số điện thoại di động
+      users:
+        confirmations:
+          detach_from_project:
+            body: Thân thể
+            title: Tiêu đề
+      webhook_settings:
+        add: Thêm Webhook
+        column_active: Hoạt động
+        column_created_date: Ngày tạo
+        column_description: Sự miêu tả
+        column_manage: Điều khiển
+        column_updated_date: Ngày sửa đổi
+        column_url: Địa chỉ
+        search: Tìm kiếm Webhoook
+    questions:
+      copy:
+        successfully: Câu hỏi "%{name}" đã được sao chép thành công.
+      create:
+        successfully: Câu hỏi "%{name}" đã được tạo thành công.
+      destroy:
+        successfully: Câu hỏi "%{name}" đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa câu hỏi
+      index:
+        owner: Chủ nhân
+      new:
+        header: Câu hỏi mới
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Câu hỏi này không?</p>\n"
+            title: Xóa <strong>câu hỏi</strong> ?
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Câu hỏi này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      toggle_status:
+        successfully: Cập nhật thành công.
+    reflection_questions:
+      delete_confirmation: Bạn có chắc chắn muốn xóa Câu hỏi suy ngẫm này không?
+      export:
+        action: Xuất câu hỏi phản ánh
+        details: Chi tiết tệp
+        failure_msg: Lỗi khi xuất tệp.
+        success_msg: Đang xuất các câu hỏi phản ánh. Vui lòng kiểm tra trạng thái trong thông báo.
+      form:
+        mandatory: Bắt buộc
+        max_words: Số từ tối đa
+        min_words: Số từ tối thiểu
+        question: Câu hỏi
+        title: Câu hỏi phản ánh
+      import:
+        action: Nhập câu hỏi phản ánh
+        errors:
+          invalid_max_words_column_format: Định dạng giá trị cột Từ tối đa không hợp lệ %{row}
+          invalid_min_words_column_format: Định dạng giá trị cột Từ tối thiểu không hợp lệ %{row}
+          invalid_required_column_format: Không hợp lệ Định dạng giá trị cột bắt buộc %{row}
+          missing_eng_question: Thiếu nội dung câu hỏi tiếng Anh %{row}
+          save_failed: Lưu không thành công %{message}
+        failure_msg: Lỗi khi nhập tệp.
+        success_msg: Đang tiến hành nhập câu hỏi phản ánh. Vui lòng kiểm tra trạng thái trong thông báo.
+      question: Câu hỏi
+    report_approval:
+      bulk_approve_success: "%{sent_for_approval} đã được gửi để phê duyệt. %{approved} báo cáo đã được phê duyệt. %{ignored} báo cáo yêu cầu phê duyệt thủ công do các thay đổi / nhận xét QC."
+      columns:
+        actions: Hành động
+        approval_status: Trạng thái phê duyệt
+        approved_by: Được chấp thuận bởi
+        campaign_name: Tên chiến dịch
+        qc_by: QC Bởi
+        report_name: Tên báo cáo
+        user_email: Email người dùng
+        user_name: Tên người dùng
+      dashboard: Bảng điều khiển
+      download: Tải xuống
+      report_approvals: Phê duyệt báo cáo
+      review: Xem xét
+      saving_filters:
+        actions:
+          clear_filters: Xóa bộ lọc
+          delete_filter: Xóa bộ lọc
+          save_filter: Cứu
+          save_new_filter: Lưu dưới dạng bộ lọc mới
+          saved_filters: Bộ lọc đã lưu
+        delete_saved_filters: Bộ lọc đã xóa
+        edit_filter_name: Tên bộ lọc đã lưu
+        error_while_deleting: Lỗi khi xóa
+        error_while_editing: Lỗi trong khi chỉnh sửa
+        error_while_fetching: Đã xảy ra sự cố, hãy thử lại
+        error_while_saving: Lỗi khi lưu bộ lọc
+        filter_updated: Đã cập nhật bộ lọc
+        no_saved_filters: Không có bộ lọc được lưu
+        save_filter: Bộ lọc đã lưu
+        set_favorite: Bộ lọc đã được đặt làm yêu thích
+    report_builder:
+      campaign_factors:
+        add_field: Thêm trường
+        code: Mã
+        code_constraint: Mã phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
+        delete: Xóa
+        import_factors: Các yếu tố nhập khẩu
+        invalid_factor_params: Định dạng thông số yếu tố chiến dịch không hợp lệ
+        name: Tên
+        no_boundary_space: Tên không được bắt đầu hoặc kết thúc bằng dấu cách
+        too_many_factors: Không thể tạo nhiều hơn %{count} yếu tố chiến dịch
+        tools: Công cụ
+        type: Kiểu
+      pagination:
+        edit_frame: Chỉnh sửa khung phân trang
+        hints:
+          frame_settings_off: Cài đặt khung phân trang bị vô hiệu hóa, mô-đun hoạt động như bình thường
+          frame_settings_on: Bật cài đặt khung phân trang để đặt kích thước trang tiếp theo cho mô-đun (khung được đánh dấu bằng màu cam)
+          pagination_disabled: Phân trang mô-đun không khả dụng cho mô-đun. Chỉ cho phép phân trang mô-đun trên mỗi trang
+          pagination_off: Phân trang mô-đun bị vô hiệu hóa
+          pagination_on: Phân trang mô-đun được bật. Nội dung không phù hợp với kích thước mô-đun sẽ được chèn vào trang / trang bổ sung
+          repeat_modules: Các mô-đun đã chọn sẽ được lặp lại trên các trang chèn exta, đề cập đến tên mô-đun
+        module_pagination: Phân trang mô-đun
+        repeat_modules: Lặp lại các mô-đun
+    report_families:
+      create:
+        successfully: Báo cáo Gói %{name} đã được tạo thành công.
+      destroy:
+        successfully: Báo cáo Gói %{name} đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa tên gói báo cáo
+      index:
+        add: Thêm
+        title: Gói báo cáo
+      new:
+        header: Gói báo cáo mới
+      reports:
+        destroy:
+          successfully: Báo cáo đã bị xóa thành công khỏi gói báo cáo
+        index:
+          add: Thêm báo cáo mới
+          title: Báo cáo trong gói
+        resource:
+          confirmations:
+            delete:
+              body: "<p>Bạn có chắc chắn muốn xóa Báo cáo này khỏi Gói không?</p>\n"
+              title: Xóa <strong>báo cáo</strong> khỏi gói?
+          tooltips:
+            delete: Xóa báo cáo khỏi gói
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Gói báo cáo này không?</p>\n"
+            title: Xóa <strong>báo cáo</strong> ?
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Gói báo cáo này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        tooltips:
+          delete: Xóa gói báo cáo
+          edit: Chỉnh sửa gói báo cáo
+      sidebar:
+        destroy: Xóa gói báo cáo
+        edit: Chỉnh sửa gói báo cáo
+        title: Các tùy chọn của Gói báo cáo
+      update:
+        successfully: Gói báo cáo %{name} đã được cập nhật thành công.
+    report_review:
+      abort_qc: Hủy bỏ QC
+      approve: Chấp nhận
+      approve_changes: Phê duyệt thay đổi
+      edit: Biên tập
+      remove_approval: Xóa phê duyệt
+      request_changes: Yêu cầu thay đổi
+      review: Xem xét
+      send_for_approve: Gửi để phê duyệt
+      statuses:
+        approved: Chấp thuận
+        change_requested: Thay đổi được yêu cầu
+        not_ready: Chưa sẵn sàng
+        pending_qc: QC đang chờ xử lý
+        qc_completed: QC đã hoàn thành
+        qc_in_progress: QC đang tiến hành
+    reports:
+      bulk_marked_as_done: Hàng loạt được đánh dấu là xong
+      bulk_upload:
+        choose_file: Chọn Tệp
+        no_file_selected: Không có tệp nào được chọn
+        sample_file: Tệp mẫu
+        title: Các yếu tố của chiến dịch tải lên hàng loạt
+        upload_success: Tải lên thành công
+      copy:
+        copy: bản sao
+        copy_report: Sao chép báo cáo
+        name: Tên
+        successfully: Báo cáo '%{name}' đã được sao chép thành công.
+      create:
+        successfully: Báo cáo '%{name}' đã được tạo thành công.
+      destroy:
+        successfully: Báo cáo '%{name}' đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa tên báo cáo
+      modals:
+        remap_assessment:
+          new_assessment_name: Tên đánh giá mới
+          old_assessment_name: Tên đánh giá cũ
+          success_message: Lập bản đồ lại đánh giá đã được lên lịch, vui lòng làm mới sau một thời gian. Không chỉnh sửa báo cáo và không lưu bất kỳ thay đổi mới nào cho đến khi hoàn tất ánh xạ lại.
+      name: Báo cáo
+      new:
+        header: Chọn Báo cáo
+      preview:
+        comments: Ý kiến
+        hide_resolved: Ẩn đã giải quyết
+        history: Lịch sử
+        info_to_select_module: Chọn một mô-đun văn bản để nhận xét
+        title: Download
+      regenerate:
+        successfully: Báo cáo được gửi thành công để tái tạo
+      regenerated: Tái tạo
+      regenerated_count: Báo cáo được tạo lại
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Báo cáo này không?</p>\n"
+            title: Xóa <strong>báo cáo</strong> ?
+          detach:
+            body: "<p>Bạn có chắc chắn muốn tách Báo cáo này ra không?</p>\n"
+            title: Báo <strong>cáo</strong> tách rời ?
+          soft_delete:
+            body: "<p>Bạn có chắc chắn muốn xóa mềm Báo cáo này không?</p>\n"
+            title: Báo <strong>cáo</strong> xóa mềm?
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Báo cáo này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      restore:
+        successfully: Báo cáo %{name} đã được khôi phục thành công.
+      soft_delete:
+        successfully: Báo cáo %{name} đã được chuyển vào thùng rác Thành công.
+      toggle_archive:
+        successfully: Đánh giá %{name} là %{status} thành công.
+      toggle_status:
+        successfully: Báo cáo đã được cập nhật thành công.
+      update:
+        successfully: Báo cáo %{name} đã được cập nhật thành công.
+    resource:
+      remove_confirm:
+        message: Bạn có chắc chắn muốn xóa tài nguyên này không?
+        title: Xóa tài nguyên
+    saml_settings:
+      after_signout_url: Sau khi đăng xuất Url
+      cert: Chứng chỉ
+      config_details:
+        acs_url: URL dịch vụ người tiêu dùng xác nhận
+        copied: Đã sao chép %{element}
+        issuer: ID thực thể/Nhà phát hành
+        title: Định cấu hình Idp với các thông tin sau
+      email_pipetext: Văn bản đường ống email
+      enabled: Kích hoạt
+      enforced: Thực thi SAML
+      entity_id: ID thực thể/Tổ chức phát hành
+      name_identifier_format: Mã định danh tên
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml: SAML
+      saml_setting: Cài đặt SAML
+      save: Lưu cài đặt
+      sso_service_url: URL dịch vụ SSO
+      successfully_saved_msg: Cài đặt SAML đã được lưu thành công.
+    save: Cứu
+    scheduling:
+      add_activity: Thêm hoạt động
+      add_assessment_center: Thêm Trung tâm Đánh giá
+      add_assessor_form:
+        assessment: Thuế
+        assessor: Giám định viên
+        schedule_time: Lịch trình thời gian
+      add_subject: Thêm chủ đề
+      assessment_center_form:
+        add_more: Thêm nhiều hơn
+        allow_late_cancellation_and_scheduling: Cho phép hủy và lên lịch muộn
+        assessment_center_group: Nhóm Trung tâm Đánh giá
+        assessment_center_group_placeholder: Chọn Nhóm Trung tâm Đánh giá
+        assessor_ids_label: Đánh giá viên
+        back: Lưng
+        basic_info_panel:
+          description: Vui lòng nhập thông tin lịch trình bên dưới. Bạn cũng có thể chọn nhiều ngày để tạo nhiều trung tâm đánh giá.
+          title: Thông tin cơ bản
+        cancellation_lead_time_label: Thời gian hủy bỏ
+        copy_hint: Sao chép cấu hình Chỗ ngồi, Quản lý Trung tâm, Đánh giá viên và Cuộc họp & Tài nguyên ở trên cho các Trung tâm Đánh giá sau. Sau khi sao chép, bạn có thể thực hiện các thay đổi khác đối với các Trung tâm Đánh giá riêng lẻ trước khi tiếp tục.
+        copy_to_all: Sao chép đến các Trung tâm Đánh giá khác
+        create: Tạo
+        dates_label: Ngày
+        duration_label: Trường độ
+        duration_max_error: Không được lớn hơn 16 giờ
+        duration_min_error: Không được dưới 15 phút
+        duration_placeholder: 'Ví dụ: 4h 30m'
+        manager_ids_label: Quản lý trung tâm
+        meeting_link: Liên kết cuộc họp
+        meetings_and_resources: Cuộc họp & Tài nguyên
+        name_label: Tên
+        next: Sau
+        required_error: Bắt buộc
+        reschedule_duration_max_error: Không được lớn hơn 30 ngày
+        reschedule_duration_min_error: Không được dưới 1 phút
+        resources_panel:
+          description: Thêm liên kết đến bất kỳ tài nguyên nào bạn muốn người hướng dẫn có quyền truy cập.
+          resource_name_placeholder: Tên tài nguyên
+          resource_url_placeholder: Liên kết tài nguyên
+          title: Tài nguyên
+          validation_error: Nhập cả Tên và URL hoặc xóa tài nguyên
+        scheduling_lead_time_label: Thời gian dẫn để lên lịch
+        seats_label: Ghế
+        time_label: Thời gian
+        timezone_label: Múi giờ
+        url_label: Địa chỉ
+        video_call_type:
+          custom: Phong tục
+          internal: Nội
+          none: Không ai
+        video_call_type_label: Thêm cuộc gọi video
+      attendance_status:
+        column_name: Tình trạng tham dự
+        dropped_out: Bỏ học
+        late: Muộn
+        no_show: Vắng mặt
+        no_status: Không có trạng thái
+        on_time: Đúng giờ
+      attended:
+        attended: Tham dự
+        not_attended: Không tham dự
+      campaign_participants: Người tham gia chiến dịch
+      columns:
+        activity: Hoạt động
+        assessor: Giám định viên
+        assessors: Đánh giá viên
+        attendance: Tham dự
+        attended: Tham dự
+        booked_at: Đặt phòng tại
+        campaign_assessment_group: Nhóm Trung tâm Đánh giá
+        campaign_name: Tên chiến dịch
+        duration: Trường độ
+        managers: Quản lý
+        meeting_link: Liên kết cuộc họp
+        name: Tên
+        participants: Tham gia
+        prework: Làm việc trước
+        resource_link: Liên kết
+        resource_name: Tên
+        schedule_time: Lịch trình thời gian
+        scheduling_status: Trạng thái lập lịch
+        seats: Ghế
+        start_time: Ngày giờ
+        subject: Chủ đề
+        title: Tiêu đề
+      errors:
+        assessor_already_assigned: Người đánh giá đã được chỉ định cho bài đánh giá này. Vui lòng chọn một đánh giá hoặc đánh giá khác.
+        date_required: Vui lòng chọn ngày
+        invalid_url: Định dạng URL không hợp lệ
+        meeting_link_https: Liên kết cuộc họp phải bắt đầu bằng "https://"
+      id: ID
+      info:
+        allowed: Cho phép
+        assessors: Đánh giá viên
+        booked: Chỗ ngồi đã đặt
+        campaign_assessment_group: Nhóm Trung tâm Đánh giá
+        cancellation_lead_time: Thời gian hủy bỏ
+        cancellation_tooltip: Người dùng sẽ có thể hủy đặt chỗ cho đến %{date}
+        date: Ngày giờ
+        duration: Trường độ
+        join_meeting: Tham gia phòng
+        late_cancellation_and_scheduling: Hủy muộn và lên lịch
+        link: Liên kết cuộc họp
+        managers: Quản lý trung tâm
+        none: Không ai
+        not_allowed: Không được phép
+        remaining: Số chỗ còn lại
+        scheduling_lead_time: Lên lịch thời gian thực hiện
+        scheduling_tooltip: Người dùng sẽ có thể đặt một vị trí cho đến %{date}
+        search_placehoder: Tìm kiếm theo id, email hoặc tên
+        timezone: Múi giờ
+        total_seats: Tổng số chỗ ngồi
+      resources:
+        confirm_message: Bạn có chắc chắn muốn xóa tài nguyên '%{resource_name}' không?
+        confirm_title: Yêu cầu xác nhận
+        create: Tạo tài nguyên
+        invalid_url: URL không hợp lệ. Chỉ định url hoàn chỉnh với giao thức http hoặc https trong đó.
+        resource: Tài nguyên
+        successful_remove: Tài nguyên %{resource_name} của Trung tâm Đánh giá đã bị xóa thành công.
+      schedule_assessments: Lên lịch đánh giá
+      scheduling_statuses:
+        cancelled: Bị hủy bỏ
+        late_cancelled: Hủy muộn
+        late_rescheduled: Lên lịch lại muộn
+        rescheduled: Dời
+        scheduled: Dự kiến
+      search_participant: Người tham gia chiến dịch tìm kiếm
+      status:
+        completed: Hoàn thành
+        dropped_out: Bỏ học
+        in_progress: Đang tiến hành
+        late: Muộn
+        no_show: Vắng mặt
+        not_started: Chưa bắt đầu
+      status_change_modal:
+        content: Khi bạn đóng trung tâm đánh giá, người tham gia sẽ không thể tham gia vào bất kỳ hoạt động nào của trung tâm.
+        title: Thay đổi trạng thái trung tâm đánh giá
+      subjects:
+        activities: Hoạt động
+        add_assessor_form: Thêm biểu mẫu đánh giá viên
+        assessments: Đánh giá
+        assessor_forms: Biểu mẫu đánh giá viên
+        confirm_message: Bạn có chắc chắn muốn hủy bỏ sự tham gia của chủ đề với email '%{subject_email}' không?<br />Sau khi được đánh dấu là bị hủy, đối tượng này sẽ không thể tham gia vào trung tâm đánh giá.
+        confirm_title: Yêu cầu xác nhận
+        edit_assessor_form: Chỉnh sửa biểu mẫu đánh giá viên
+        form_title: Lên lịch đánh giá
+        language: Ngôn ngữ
+        language_not_selected: Không được chọn
+        mark_cancel_success: Hủy tham gia chủ đề với email %{subject_email}.
+        meeting_link_custom: Phong tục
+        meeting_link_internal: Nội
+        meeting_link_none: Không ai
+        meeting_link_title: Liên kết cuộc họp
+        no_change: Không thay đổi
+        override_existing: Ghi đè lịch trình hiện có cho các môn học
+        preworks: Làm việc trước
+        schedule: Lịch
+        unschedule: Hủy lên lịch
+      tabs:
+        activities: Hoạt động
+        assessment_center: Trung tâm đánh giá
+        invites: Mời
+        resources: Tài nguyên
+        subjects: Đối tượng
+    scoring:
+      action_prohibited: Hành động bị cấm
+      active: Hoạt động
+      actual_average: Trung bình thực tế
+      add_factor: Thêm yếu tố
+      add_group: Thêm nhóm
+      assessment: Thuế
+      assessment_scoring_type: Loại điểm đánh giá
+      average: Trung bình
+      campaign_scoring_variables: Biến tính điểm chiến dịch
+      code: Mã
+      desc: Bạn đã vượt quá giới hạn tối đa của %{n} yếu tố chiến dịch. Các yếu tố bổ sung không thể được thêm vào. Vui lòng xem xét và quản lý các yếu tố hiện có của bạn trước khi tiếp tục.
+      description: Sự miêu tả
+      dimension: Kích thước
+      edit_factor: Chỉnh sửa yếu tố
+      export:
+        details: Chấm điểm chiến dịch
+        factors: Các yếu tố chiến dịch xuất khẩu
+      factor: Yếu tố
+      factor_group_removed_successfully: Nhóm Yếu tố chiến dịch đã bị xóa thành công
+      factor_removal_confirmation: Nhập tên yếu tố được cung cấp bên dưới trong hộp văn bản để xác nhận
+      factor_removed_successfully: Yếu tố chiến dịch đã bị xóa thành công
+      factors_exported_successfully: Xuất công việc yếu tố chiến dịch đã được lên lịch thành công
+      factors_imported_successfully: Nhập công việc yếu tố chiến dịch đã được lên lịch thành công
+      final: Cuối cùng
+      final_score_updated_successfully: Điểm chung cuộc đã được cập nhật thành công
+      formula: Công thức
+      get_started: Bắt đầu
+      id: Id
+      import:
+        factors: Các yếu tố chiến dịch nhập khẩu
+      name: Tên
+      no_groups: Không có nhóm nào có mặt
+      output_type: Loại đầu ra
+      pattern_error: Chỉ cho phép ký tự chữ và số, dấu cách và dấu gạch ngang.
+      profile:
+        years: Tuổi
+      public: Công cộng
+      ranked: Xếp hạng
+      remove_all_campaign_factors:
+        confirmation: Nhập tên chiến dịch hiện tại được cung cấp bên dưới trong hộp văn bản để xác nhận
+        error: Các yếu tố chiến dịch loại bỏ không thành công
+        success: Các yếu tố chiến dịch đã bị xóa thành công
+        title: Loại bỏ các yếu tố chiến dịch
+        warning: Bạn sắp xóa tất cả các yếu tố chiến dịch và tất cả các điểm liên quan cho người dùng. Bạn có chắc chắn muốn thực hiện hành động này không?
+      remove_factor_group_confirmation_content: Bạn có chắc chắn muốn loại bỏ nhóm thừa số '%{group_name}' không?
+      remove_factor_group_confirmation_title: Loại bỏ nhóm yếu tố
+      required_error: Không thể trống rỗng
+      save: Cứu
+      save_all: Lưu tất cả
+      score_range: Phạm vi điểm số
+      score_types:
+        norm_score: Điểm định mức
+        percentage: Tỷ lệ phần trăm
+        percentile: Phần trăm
+        score: Điểm
+        zscore: Điểm Z
+      scoring: Ghi
+      scoring_description: Campaign Scoring cho phép báo cáo trên các bài đánh giá
+      select_all: Chọn tất cả %{n} chủ đề
+      select_assessment_first: Chọn Đánh giá trước
+      select_factor: Chọn yếu tố
+      show_weightages: Hiển thị trọng số
+      subject: Chủ đề
+      subject_list:
+        actions: Hành động
+        bulk_mark_finalized: Đánh dấu hàng loạt đã hoàn thành
+        bulk_mark_finalized_confirm: Điểm cuối cùng cho những người dùng đã chọn sẽ tạo báo cáo sử dụng yếu tố chiến dịch cho người dùng. Bạn có chắc chắn muốn tiếp tục?
+        bulk_mark_not_finalized: Dấu hàng loạt chưa hoàn tất
+        bulk_mark_not_finalized_confirm: Xóa hoàn tất khỏi người dùng đã chọn sẽ xóa báo cáo được tạo sử dụng yếu tố chiến dịch cho người dùng. Bạn có chắc chắn muốn tiếp tục?
+        bulk_rescore: Chấm điểm lại hàng loạt
+        bulk_rescore_confirm: Chấm điểm lại những người dùng đã chọn. Bạn có chắc chắn muốn tiếp tục?
+        calculated_date: Ngày tính toán
+        calculation_errors: Lỗi tính toán
+        export: Chấm điểm xuất khẩu
+        export_success: Công việc xuất điểm đã được lên lịch thành công
+        finalized: Hoàn thành
+        finalized_date: Ngày hoàn tất
+        import_external_scores: Nhập điểm bên ngoài
+        mark_finalized: Đánh dấu đã hoàn thiện
+        mark_finalized_confirm: Điểm cuối cùng cho người dùng '%{email}' sẽ tạo báo cáo sử dụng yếu tố chiến dịch cho người dùng. Bạn có chắc chắn muốn tiếp tục?
+        mark_not_finalized: Đánh dấu chưa hoàn tất
+        mark_not_finalized_confirm: Xóa finalize khỏi người dùng '%{email}' sẽ xóa báo cáo được tạo sử dụng yếu tố chiến dịch cho người dùng. Bạn có chắc chắn muốn tiếp tục?
+        push_webhook: Webhook đẩy
+        rank: Cấp
+        rescore: Ghi điểm lại
+        rescore_confirm: Chấm điểm lại người dùng '%{email}'. Bạn có chắc chắn muốn tiếp tục?
+        tools: Công cụ
+      tabs:
+        settings: Cài đặt
+        subject_scores: Điểm môn học
+      type: Kiểu
+      variables: Biến
+      weightages:
+        assessorForms: Biểu mẫu đánh giá viên
+        successful_update: Trọng số đã được cập nhật thành công
+        tools: Công cụ
+        weightages: Trọng số
+      weighted_average: Trung bình gia quyền
+    search: Tìm kiếm
+    security_setting:
+      180_days: 180 ngày
+      30_days: 30 ngày
+      365_days: 365 ngày
+      90_days: 90 ngày
+      attempts_to_lock: Cố gắng khóa
+      auto_unlock_time: Thời gian tự động mở khóa
+      disable_password_reuse: Tắt sử dụng lại mật khẩu
+      disallow_password_login: Không cho phép đăng nhập mật khẩu
+      enable_login_with_magic_link: Bật Đăng nhập bằng liên kết ma thuật
+      enforce_password_policy: Thực thi chính sách mật khẩu khi đăng nhập tiếp theo
+      enforce_strong: Thực thi mật khẩu mạnh
+      expiration: Hết hạn mật khẩu
+      lock_account: Khóa tài khoản
+      magic_link_expiry_duration: Thời gian hết hạn liên kết ma thuật
+      min_length: Độ dài mật khẩu tối thiểu
+      never: Không bao giờ
+      restrict_sequences: Hạn chế các ký tự tuần tự và lặp đi lặp lại
+      security: Cài đặt bảo mật
+      send_unlock_email: Gửi email mở khóa
+      session_timeout_duration: Thời gian chờ phiên
+      tfa_enabled: Bật xác thực hai yếu tố
+    security_settings:
+      security_setting: Cài đặt bảo mật
+    settings:
+      admin_roles:
+        admin_role_single: Vai trò quản trị viên
+        confirm_message: Bạn có chắc chắn muốn xóa vai trò quản trị viên '%{role_name}' không?
+        create: Thêm vai trò quản trị viên
+        description: Sự miêu tả
+        name: Tên
+        successful_remove: Vai trò quản trị viên '%{role_name}' đã bị xóa thành công.
+      siem:
+        description: Sự miêu tả
+        destination_type: Loại điểm đến
+        destination_types:
+          s3: S3
+          s3_compatible: Tương thích S3
+        enabled: Kích hoạt
+        readable_resource_name: Cài đặt SIEM
+        s3_access_key_id: ID khóa truy cập
+        s3_bucket_folder: Thư mục vùng lưu trữ S3
+        s3_bucket_name: Tên nhóm S3
+        s3_endpoint: Điểm cuối S3
+        s3_region: Khu vực S3
+        s3_secret_access_key: Khóa truy cập bí mật
+        send_test_log: Gửi nhật ký kiểm tra
+        send_test_log_error_message: Nhật ký thử nghiệm chưa được gửi đến vùng lưu trữ của bạn, hãy kiểm tra cài đặt của bạn
+        send_test_log_success_message: Nhật ký thử nghiệm đã được gửi thành công đến vùng lưu trữ của bạn
+      skill_aliases:
+        alias: Biệt danh
+        confirm_message: Bạn có chắc chắn muốn xóa bí danh kỹ năng '%{skill_alias}' không?
+        create: Thêm bí danh kỹ năng
+        select_skill: Chọn kỹ năng
+        skill: Kỹ năng
+        skill_alias: Bí danh kỹ năng
+        successful_remove: Bí danh kỹ năng '%{skill_alias}' đã bị xóa thành công.
+      tabs:
+        admin_roles: Vai trò quản trị viên
+        feature_flags: Cờ tính năng
+        siem: SIEM
+        skill_aliases: Bí danh kỹ năng
+    sheets:
+      column:
+        add_column: Thêm cột
+        not_allowed_for_dashboard_use: Đối với cột được sử dụng trong bảng điều khiển, nó phải nhỏ hơn 64 ký tự
+        reorder: Reorder
+        save_order: Lưu đơn hàng
+      drawers:
+        add_edit:
+          cancelText: Hủy
+          markdown:
+            preview: Download
+            title: Đánh dấu
+          save: Cứu
+          saving: Tiết kiệm
+          success_message_add: Đã thêm bản ghi mới
+          success_message_edit: Cập nhật hồ sơ
+          title_add: Thêm bản ghi Trang tính
+          title_edit: Chỉnh sửa bản ghi hàng trang tính
+          validations:
+            required_email: Vui lòng nhập email
+        view:
+          campaign_title: Bản ghi cấp chiến dịch
+          edit_button: Biên tập
+          project_title: Hồ sơ cấp dự án
+          title: Chi tiết bản ghi Sheet Row
+      list:
+        header:
+          add_record: Thêm bản ghi
+          search_record: Tìm kiếm bản ghi
+      modals:
+        delete_records:
+          cancelText: Hủy
+          content: Bạn có chắc chắn muốn xóa các bản ghi {{count}} đã chọn không?
+          okText: Có, xóa
+          successMessage: "{{count}} bản ghi đã bị xóa thành công."
+          title: Xóa bản ghi {{count}}
+        remove_columns:
+          cancelText: Hủy
+          content: Xóa một cột ({{columns}}) sẽ xóa dữ liệu trong cột này cho tất cả các hàng
+          okText: Có, xóa
+          successMessage: "{{count}} hồ sơ bị xóa"
+          title: Xóa cột
+      tabs:
+        rows: Hàng
+        settings: Cài đặt
+    skills:
+      applicable_proficiency_levels: Mức độ thông thạo áp dụng
+      columns:
+        skill_group: Nhóm kỹ năng
+        skill_type: Loại kỹ năng
+      errors:
+        import:
+          missing_fields_data: 'Dòng %{line_number}: Thiếu các trường bắt buộc: %{fields}'
+          save_failed: 'Dòng %{line_number}: Không lưu được kỹ năng ''%{name}'': %{message}'
+        search:
+          all_and_project_id_mutually_exclusive: Tất cả không thể đúng khi project_id_eq được cung cấp
+          invalid_all_value: 'phải là một trong các của: đúng, sai'
+          invalid_global_value: 'phải là một trong các của: đúng, sai'
+          invalid_skill_type: Phải là loại kỹ năng hợp lệ
+          query_too_short: là bắt buộc và phải dài hơn 3 ký tự
+      export:
+        details: Chi tiết
+        failure_msg: Lỗi khi xuất bản dịch
+        success_msg: Xuất các hành động phát triển đang được tiến hành.
+        title: Xuất khẩu
+        translations:
+          details: Dịch thuật kỹ năng
+      export_action:
+        skills_title: Kỹ năng xuất khẩu
+        skills_translations_title: Bản dịch kỹ năng xuất khẩu
+      form:
+        client_placeholder: Chọn một khách hàng
+        description: Sự miêu tả
+        name: Tên
+        project_placeholder: Chọn một dự án
+        skill_group: Nhóm kỹ năng
+        skill_type: Loại kỹ năng
+        title: Kỹ năng
+      global: Kỹ năng toàn cầu có phải không?
+      global_skills: Kỹ năng toàn cầu
+      global_translations: Dịch thuật Kỹ năng Toàn cầu
+      import:
+        download_example_csv: Tải xuống ví dụ csv
+        info_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+        success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+      import_action:
+        skills_title: Kỹ năng nhập khẩu
+        skills_translations_title: Bản dịch kỹ năng nhập khẩu
+      skill_details: Chi tiết kỹ năng
+      skill_translations: Kỹ năng dịch thuật
+      skill_translations_project: Dịch thuật kỹ năng dựa trên dự án
+      skills_project: Kỹ năng dựa trên Dự án
+      title: Kỹ năng
+      translations:
+        import:
+          errors:
+            invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
+            missing_columns: 'Thiếu cột bắt buộc: %{columns}'
+            save_failed: 'Lỗi xử lý ID kỹ năng %{id}: %{message}'
+            skill_not_found: Không tìm thấy kỹ năng có ID %{id}
+    skills_taxonomy:
+      tabs:
+        job_role_skill_mapping: Lập bản đồ công việc kỹ năng
+        job_roles: Vai trò công việc
+        proficiency: Thông thạo
+        skills: Kỹ năng
+    sms_histories:
+      columns:
+        first_name: Tên thánh
+        last_name: Họ
+        mobile_no: Số điện thoại di động
+        price: Giá
+        segment_length: Độ dài phân đoạn
+        sent_at: Gửi lúc
+      drawer:
+        title: Chi tiết SMS
+      history: Lịch sử
+      statuses:
+        accepted: Chấp nhận
+        delivered: Gửi
+        failed: Thất bại
+        queued: Đã xếp hàng
+        scheduled: Dự kiến
+        sent: Gửi
+        undelivered: Chưa giao
+    sms_invites:
+      actions:
+        add: Thêm liên hệ SMS
+      columns:
+        created_at: Được tạo tại
+        created_by: Tạo bởi
+        email: Email
+        first_name: Tên thánh
+        last_name: Họ
+        mobile_no: Số điện thoại di động
+      contacts: Liên hệ
+      form_modal:
+        first_name: Tên thánh
+        last_name: Họ
+        locale: Locale
+        mobile_no: Số điện thoại di động
+        title: Lời mời SMS
+      import:
+        download_example_csv: Tải xuống CSV mẫu
+        success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+        title: Nhập lời mời SMS
+      messages:
+        delete_confirm_text: Bạn có chắc chắn muốn xóa Lời mời SMS bằng số điện thoại di động %{mobile_no} không?
+        delete_success: Lời mời SMS đã bị xóa thành công
+        failed_to_sent_invite: Không thể gửi lời mời đến điện thoại di động không có %{mobile_no}
+      send_sms:
+        fields:
+          link_expiry: Hết hạn liên kết
+          locale: Locale
+          message: Thông điệp
+          statuses: Trạng thái
+          users: Người dùng
+        modal:
+          btn_name: Gửi SMS
+          title: Gửi SMS
+        pipetext_details: "{{{first_name}}} - Tên người nhận<br />{{{last_name}}} - Họ người nhận<br />{{{invite_url}}} - Liên kết đăng ký"
+        segment_length_msg: Số phân đoạn ước tính cho thư này là %{segment_length}.
+        segment_length_range_msg: Số phân đoạn ước tính cho thư này nằm trong khoảng từ %{min_segment_length} đến %{max_segment_length}.
+      statuses:
+        all: Tất cả
+        failed: Thất bại
+        invited: Mời
+        not_invited: Không được mời
+        registered: Đăng ký
+      tools:
+        export: Xuất danh bạ SMS
+        import: Nhập danh bạ SMS
+        send_sms: Gửi SMS
+    sms_records:
+      columns:
+        id: Id
+        message: Thông điệp
+    smtp_settings:
+      authentication: Xác thực
+      authentication_type: Loại xác thực
+      authentication_types:
+        cram_md5: Chồi máu MD5
+        login: Đăng nhập
+        plain: Đồng bằng
+      enabled: Kích hoạt
+      encryption: Mã hóa
+      encryption_types:
+        none: Không ai
+        ssl: SSL
+        tls: TLS
+      errors:
+        authentication_failed: Tên người dùng hoặc mật khẩu không chính xác
+        host_unreachable: Không thể kết nối với máy chủ. Máy chủ, cổng hoặc mã hóa không chính xác
+      from_email: Từ email
+      from_name: Từ tên
+      host: Chủ nhà
+      password: Mật khẩu
+      port: Cảng
+      send_test_email: Gửi email thử nghiệm
+      smtp: SMTP
+      test_email_modal:
+        input_hint: Cài đặt email của bạn sẽ không được lưu cho đến khi email thử nghiệm được gửi thành công.
+        input_placeholder: ID email kiểm tra
+        title: ID email thử nghiệm
+      test_modal:
+        success_message: Email thử nghiệm được gửi đến %{email_id}.
+        title: Kiểm tra cài đặt SMTP
+      update_success_msg: Cài đặt SMTP đã được cập nhật thành công.
+      use_sender_verification: Sử dụng xác minh người gửi
+      user_name: Tên người dùng
+    stats:
+      assessments:
+        columns:
+          assessment_name: Tên đánh giá
+          completed: Hoàn thành
+          id: ID
+          in_progress: Đang tiến hành
+          ineligible: Không đủ điều kiện
+          interrupted: Gián đoạn
+          not_started: Chưa bắt đầu
+          timed_out: Hết thời gian chờ
+        title: Đánh giá
+      title: Thống kê
+      top_metrics:
+        completed: Hoàn thành
+        in_progress: Đang tiến hành
+        interrupted: Gián đoạn
+        not_started: Chưa bắt đầu
+        timed_out: Hết thời gian chờ
+        users: Người dùng
+      users:
+        date_presets:
+          last_30_days: 30 ngày qua
+          last_7_days: 7 ngày qua
+          last_month: Tháng trước
+          last_week: Tuần trước
+          today: Hôm nay
+          yesterday: Hôm qua
+        y_title: Số lượng người dùng
+    sub_factors:
+      destroy:
+        successfully: Yếu tố phụ %{name} đã bị xóa thành công.
+      edit:
+        header: Chỉnh sửa tên yếu tố phụ
+      new:
+        header: Yếu tố phụ mới
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Yếu tố phụ này không?</p>\n"
+            title: Xóa <strong>yếu tố phụ</strong> ?
+      toggle_status:
+        successfully: Sub-Factor đã được cập nhật thành công.
+    survey_builder:
+      builder_area:
+        options: Tùy chọn
+      property_panel:
+        add_n_a_option: Thêm tùy chọn N / A
+        allow_content_copy: Cho phép sao chép nội dung
+        answer_type: Loại câu trả lời
+        cant_change_type: Không thể thay đổi loại cho câu hỏi đã lưu
+        date_format: Định dạng ngày
+        date_format_options:
+          dd_mm_yyy: DD-MM-YYYY
+          mm_yyyy: MM-YYYY
+          yyyy: YYYY
+          yyyy_mm: YYYY-MM
+          yyyy_mm_dd: YYYY-MM-DD
+        duration_options:
+          '10': 10 giây
+          '120': 2 phút
+          '180': 3 phút
+          '30': Tuổi 30
+          '300': 5 phút
+          '60': 1 phút
+          '600': 10 phút
+        image_multi_choice_properties:
+          enable: Với hình ảnh
+          preview: Xem trước khi nhấp chuột
+          size:
+            large: L
+            medium: M
+            small: S
+            title: Kích thước lưới
+            x-small: XS
+            xx-small: XXS
+        max_duration: Thời lượng tối đa
+        multiple_choice_types:
+          dropdown: Thả xuống
+          multi_answer: Nhiều câu trả lời
+          single_answer: Câu trả lời duy nhất
+        no_of_choices: Không. của sự lựa chọn
+        orientation:
+          horizontal: Ngang
+          title: Hướng
+          vertical: Thẳng đứng
+        question_description: Mô tả hàng
+        validation_response_type: Loại phản hồi xác thực
+        voice_dictation: Đọc chính tả bằng giọng nói
+    table:
+      entries:
+        selected: 1 hàng đã chọn
+        total: 'Tổng số : 1'
+      more_actions: Hành động khác
+    taxonomy:
+      import:
+        download_example_file: Tải xuống tệp ví dụ
+        success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+      import_action:
+        taxonomy: Phân loại nhập khẩu
+      job_roles: Vai trò công việc
+      proficiency: Thông thạo
+      skill_job_mappings: Lập bản đồ công việc kỹ năng
+      skills: Kỹ năng
+      title: Phân loại học
+    templates:
+      blocks:
+        copy:
+          error: Khối\
+        destroy:
+          successfully: Khối %{name} đã bị xóa thành công.
+        edit:
+          header: Chỉnh sửa khối
+        index:
+          new: Thêm
+          templates:
+            blocks: Khối
+            questions: Câu hỏi
+          title: Khối
+          tooltips:
+            create: Tạo
+        list:
+          active: Hoạt động
+          created_at: Ngày tạo
+          linked_assessments: Đánh giá liên kết
+          name: Tên
+          updated_at: Ngày sửa đổi
+        new:
+          header: Khối mới
+        new_assign:
+          header: Gán khối cho đánh giá
+        resource:
+          in_progress:
+            copying: Sao chép
+            deleting: Xóa
+          tooltips:
+            copy: Sao chép khối
+            delete: Xóa khối
+            edit: Chỉnh sửa khối
+        sidebar:
+          destroy: Xóa khối
+          disable: Vô hiệu hóa
+          edit: Chỉnh sửa khối
+          enable: Kích hoạt
+          new: Khối mới
+          new_assign: Chỉ định khối
+          title: Các tùy chọn của khối
+        toggle_status:
+          successfully: Thành công
+      questions:
+        copy:
+          error: Câu hỏi
+        destroy:
+          successfully: Câu hỏi %{name} đã bị xóa thành công.
+        edit:
+          header: Chỉnh sửa câu hỏi
+        index:
+          new: Thêm
+          templates:
+            blocks: Khối
+            questions: Câu hỏi
+          title: Câu hỏi
+          tooltips:
+            create: Tạo
+        list:
+          active: Hoạt động
+          created_at: Ngày tạo
+          linked_assessments: Đánh giá liên kết
+          name: Tên
+          updated_at: Ngày sửa đổi
+        new:
+          header: Câu hỏi mới
+        new_assign:
+          header: Chỉ định câu hỏi cho đánh giá
+        resource:
+          in_progress:
+            copying: Sao chép
+            deleting: Xóa
+          tooltips:
+            copy: Sao chép câu hỏi
+            delete: Xóa câu hỏi
+            edit: Chỉnh sửa câu hỏi
+        sidebar:
+          destroy: Xóa câu hỏi
+          disable: Vô hiệu hóa
+          edit: Chỉnh sửa câu hỏi
+          enable: Kích hoạt
+          new: Câu hỏi mới
+          new_assign: Chỉ định câu hỏi
+          title: Tùy chọn câu hỏi
+        toggle_status:
+          successfully: Thành công
+    threesixty_campaigns:
+      email_templates:
+        approve_nomination:
+          description: Thông báo này được gửi đến người quản lý khi một đề cử, được thực hiện bởi một báo cáo trực tiếp, cần được phê duyệt
+          name: Phê duyệt đề cử
+        approve_report:
+          description: Thông báo này được gửi đến người quản lý của chủ thể để thông báo cho họ rằng báo cáo của chủ thể đã sẵn sàng để phê duyệt
+          name: Phê duyệt báo cáo
+        categories:
+          approvals: Chấp thuận
+          invitations: Lời mời
+          reminders: Nhắc nhở
+          report_ready: Báo cáo sẵn sàng
+        custom_message:
+          description: Thông báo này có thể được gửi cho bất kỳ ai tham gia đánh giá
+          name: Tin nhắn tùy chỉnh
+        days_repeated: ngày, lặp lại
+        evaluator_invite:
+          description: Tin nhắn này sẽ được gửi đến tất cả những người tham gia là người đánh giá
+          name: Lời mời đánh giá
+        evaluator_reminder:
+          description: Thông báo này sẽ được gửi để nhắc nhở người đánh giá hoàn thành các đánh giá đang chờ xử lý
+          name: Nhắc nhở người đánh giá
+          rule_description: Chỉ định các quy tắc để tự động lên lịch khi lời mời được lên lịch
+          rule_name: Quy tắc nhắc nhở người đánh giá
+        from: Từ
+        manager_report_ready:
+          description: Thông báo này được gửi đến người quản lý của chủ thể sau khi báo cáo của chủ thể đã sẵn sàng
+          name: Báo cáo của người quản lý đã sẵn sàng
+        nomination_denied:
+          description: Thông báo này được gửi đến các đối tượng khi đề cử bị từ chối
+          name: Đề cử bị từ chối
+        reply_to_email: Trả lời email
+        request_approval:
+          description: Thông báo này được gửi đến người quản lý khi một chủ thể yêu cầu phê duyệt
+          name: Yêu cầu phê duyệt
+        schedule_email: Lên lịch email
+        schedule_time: Lịch trình thời gian
+        send_test_email: Gửi email thử nghiệm
+        subject: Chủ đề
+        subject_invite:
+          description: Tin nhắn này sẽ được gửi để mời các đối tượng tham gia đánh giá
+          name: Lời mời đối tượng
+        subject_reminder:
+          description: Tin nhắn gửi đến từng người tham gia để nhắc nhở họ tham gia đánh giá
+          name: Nhắc nhở chủ đề
+          rule_description: Chỉ định các quy tắc để tự động lên lịch khi lời mời được lên lịch
+          rule_name: Quy tắc nhắc nhở chủ đề
+        subject_report_ready:
+          description: Thông báo này được gửi đến một chủ đề sau khi báo cáo của họ đã sẵn sàng
+          name: Báo cáo chủ đề đã sẵn sàng
+        times: lần
+      instruction_templates:
+        evaluate_others:
+          description: Thông báo này sẽ được hiển thị khi người tham gia đánh giá những người khác từ bên trong cổng thông tin
+          name: Đánh giá người khác
+        evaluate_self:
+          description: Thông báo này sẽ được hiển thị cho các đối tượng khi họ bắt đầu tự đánh giá
+          name: Tự đánh giá
+        evaluation_help:
+          description: Văn bản trợ giúp hiển thị trên thẻ đánh giá trên bảng điều khiển của người dùng
+          name: Trợ giúp đánh giá
+        evaluator_welcome:
+          description: Thông báo này sẽ ghi đè "Tin nhắn chào mừng" và chỉ hiển thị cho những người tham gia hiện đang tham gia với tư cách là người đánh giá.
+          name: Chào mừng người đánh giá
+        invite_evaluators:
+          description: Thông báo này sẽ được hiển thị cho các đối tượng khi họ bắt đầu đề cử người đánh giá
+          name: Mời người đánh giá
+        nomination_help:
+          description: Văn bản trợ giúp hiển thị trên thẻ đề cử trên bảng điều khiển của người dùng
+          name: Trợ giúp đề cử
+        report_help:
+          description: Văn bản trợ giúp hiển thị trên thẻ báo cáo trên bảng điều khiển của người dùng
+          name: Reports Trợ giúp
+        welcome_message:
+          description: Thông báo này sẽ được hiển thị cho các đối tượng khi họ đăng nhập để bắt đầu đánh giá hoặc xem danh sách nhiệm vụ của họ
+          name: Thông điệp chào mừng
+      manage:
+        assessment: Thuế
+        dimension: Kích thước
+        manage_relationships: Quản lý các mối quan hệ...
+        report: Báo cáo
+        title: Điều khiển
+      menu:
+        datasheet:
+          title: Bảng dữ liệu
+        messages:
+          title: Thư
+        participants:
+          subjects:
+            add_subjects: Thêm chủ đề
+            current_job_role: Vai trò công việc hiện tại
+            email: Email
+            first_name: Tên thánh
+            last_name: Họ
+            locale: Locale
+            target_job_role: Vai trò công việc mục tiêu
+          title: Tham gia
+        report:
+          menu:
+            report_approval:
+              title: Cài đặt phê duyệt báo cáo
+            report_options:
+              title: Tùy chọn báo cáo
+          title: Báo cáo
+      messages:
+        email_messages: Tin nhắn email
+        factor_benchmark_scores_updated: Điểm chuẩn yếu tố được cập nhật thành công
+        instruction_messages: Thông điệp hướng dẫn
+        mail_history: Lịch sử thư
+        options: Tùy chọn
+      reports:
+        show:
+          title: Báo cáo chủ đề
+    time_zone: Múi giờ
+    tools: Công cụ
+    translations:
+      assessments:
+        new:
+          header: Nhập bản dịch
+      import:
+        successfully: Bản dịch đã được nhập thành công
+      reports:
+        export: Xuất bản dịch
+        import: Nhập bản dịch
+        import_descr: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
+    tte: TTE
+    update: Cập nhật
+    users:
+      create:
+        successfully: Người dùng %{name} đã được tạo thành công.
+      destroy:
+        successfully: Người dùng %{name} đã bị xóa thành công.
+      list:
+        email: Email
+      modals:
+        download_idp_reports:
+          error: Không thể lên lịch công việc Tải xuống hàng loạt Báo cáo IDP không thành công.
+          include_reflective_questions: Bao gồm các câu hỏi suy ngẫm
+          success: Công việc Tải xuống hàng loạt Báo cáo IDP đã được lên lịch thành công.
+          title: Tải xuống hàng loạt báo cáo IDP
+      new:
+        header: Người dùng mới
+      reset_password:
+        successfully: Người dùng %{name} sẽ nhận được email hướng dẫn về cách đặt lại mật khẩu của mình sau vài phút.
+      resource:
+        confirmations:
+          change_password:
+            body: "<p>Bạn có chắc chắn muốn gửi hướng dẫn kèm theo liên kết để thay đổi mật khẩu không?</p>\n"
+            title: Thay đổi mật khẩu <strong>%{name}</strong> ?
+          delete:
+            body: "<p>Bạn có chắc chắn muốn xóa Người dùng này không?</p>\n"
+            title: Xóa <strong>%{name}</strong> ?
+          membership:
+            delete:
+              body: "<p>Bạn có chắc chắn muốn xóa không?</p>\n"
+              title: Xóa <strong>%{name}</strong> khỏi %{client_name} Client Tenancy?
+            toggle_status:
+              body: "<p>Bạn có chắc chắn muốn %{status} Tư cách thành viên này không?</p>\n"
+              title: "<strong>%{status}</strong> %{name} là thành viên?"
+          toggle_enable_2fa:
+            body: "<p>Bạn có chắc chắn muốn %{status} 2FA cho %{name} không?</p>\n"
+            title: "<strong>%{status}</strong> 2FA"
+          toggle_status:
+            body: "<p>Bạn có chắc chắn muốn %{status} Người dùng này không?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      spoof:
+        successfully: Bạn đã đăng nhập thành công dưới dạng %{name}
+      toggle_enable_2fa:
+        disable: Tắt 2FA
+        enable: Bật 2FA
+        successfully: Người dùng %{name} đã được cập nhật thành công.
+      toggle_status:
+        successfully: Người dùng %{name} đã được cập nhật thành công.
+      toolbar:
+        title: Công cụ
+      update:
+        successfully: Người dùng %{name} đã được cập nhật thành công.
+      user: Người dùng
+    webhook:
+      connection_failure: Không thể kết nối với url webhook. Vui lòng xác minh xem url webhook có chính xác không.
+      delete_success: Cài đặt Webhook đã bị xóa thành công
+      request_failure: Yêu cầu không thành công với mã trạng thái %{http_status_code}.
+    workshop:
+      actions:
+        remove_workshop: Xưởng bị loại bỏ thành công
+      errors:
+        remove_workshop_failure: Hội thảo bạn đang cố gắng xóa có các chủ đề đã lên lịch. Bạn có thể xóa workshop bằng cách đánh dấu tất cả chủ đề là đã hủy
+      statuses:
+        closed: Khép kín
+        open: Mở
+    workshop_subjects:
+      errors:
+        update_assessor_for_failure: Không thể thêm chi tiết cuộc họp vì không có hoạt động chủ đề được liên kết.
+    years: Tuổi
