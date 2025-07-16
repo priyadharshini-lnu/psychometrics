@@ -51,8 +51,7 @@ const ReportComponent = ({
   const navigate = useNavigate()
   const params = useParams()
   const [searchParams] = useSearchParams()
-
-  const lang = searchParams.get('lang') || searchParams.get('report_lang') || undefined
+  const lang = searchParams.get('lang') || undefined
   useEffect(() => {
     fetchReport(params.campaignId, params.id, lang)
   }, [])

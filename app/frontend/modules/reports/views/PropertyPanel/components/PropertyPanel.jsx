@@ -33,8 +33,7 @@ const PropertyPanel = (props) => {
   const {
     updateModule, reportStyles, report, modules, defaultLanguage,
   } = props
-  const search = new URLSearchParams(window.location.search)
-  const lang = search.get('lang') || search.get('report_lang') || defaultLanguage.code
+  const lang = new URLSearchParams(window.location.search).get('lang') || defaultLanguage.code
   const isRTL = ['ar', 'he'].includes(lang)
 
   const [popupOpen, setPopupOpen] = useState(false)
