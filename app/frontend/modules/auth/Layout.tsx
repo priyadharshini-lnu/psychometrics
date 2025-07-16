@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import { connect } from 'react-redux'
 import cs from 'classnames'
-import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { isRtl } from '~/utils/locales'
 import routes from './routes'
 import styles from './styles.less'
@@ -15,6 +15,7 @@ import footerLogo from './media/TTE_Logo_Color_Monogram.png'
 import { RootState } from './core/reducers'
 import { DefaultAntThemeWrapper } from '~/glint'
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
+
 
 const { I18n } = window
 const { useToken } = theme
@@ -70,7 +71,7 @@ export const LayoutComponent = ({ config }) => {
               <div className={styles.logoWrapper}>
                 <img alt={config.logo_alt_text} src={config.client_logo || logo} className={styles.logo} />
               </div>
-              {config.id && <LangDropdownWithChangeUrl />}
+              {config.id && <LangDropdownWithChangeLocale />}
             </Layout.Header>
             <Layout.Content className={styles.content}>
               <Routes>
