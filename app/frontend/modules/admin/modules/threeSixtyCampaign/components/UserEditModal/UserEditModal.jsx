@@ -9,6 +9,7 @@ import { isSuperAdmin } from '~/core/currentUser'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 import { getFeatures } from '~/core/config'
 import { useResources } from '~/hooks/useResources'
+import { camelizeKeys } from '~/utils/object'
 
 const { Option } = Select
 
@@ -35,12 +36,13 @@ function UserEditModal ({
     data: jobRoles = [],
     fetch: fetchJobRoles,
   } = useResources(`job_roles?project_id=${projectId}`)
+  const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled
 
   useEffect(() => {
-    if (features?.skill_rater_enabled) {
+    if (skillRaterEnabled) {
       fetchJobRoles()
     }
-  }, [features?.skill_rater_enabled])
+  }, [skillRaterEnabled])
 
   useEffect(() => {
     if (!jobRoles.length) return
@@ -71,7 +73,7 @@ function UserEditModal ({
   const handleSave = () => {
     const userPayload = { ...user }
 
-    if (!features?.skill_rater_enabled) {
+    if (!skillRaterEnabled) {
       delete userPayload.currentJobRole
       delete userPayload.targetJobRole
     }
@@ -121,7 +123,7 @@ function UserEditModal ({
         <Form.Item label="Last Name">
           <Input value={lastName} name="lastName" onChange={handleInputChange} />
         </Form.Item>
-        {features?.skill_rater_enabled && (
+        {skillRaterEnabled && (
           <>
             <Form.Item label="Current Job Role">
               <Select

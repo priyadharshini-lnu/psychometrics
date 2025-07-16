@@ -18,6 +18,7 @@ import { getFeatures } from '~/core/config'
 
 import styles from './CreateSubjectModal.less'
 import { getCategory } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { camelizeKeys } from '~/utils/object'
 
 const { I18n } = window
 
@@ -94,7 +95,7 @@ function CreateSubjectModal ({
   useEffect(() => {
     fetchJobRoles()
   }, [])
-  const skillRaterEnabled = features?.skill_rater_enabled
+  const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled
 
   return (
     <Modal
