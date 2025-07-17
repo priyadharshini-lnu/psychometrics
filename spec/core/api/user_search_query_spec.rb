@@ -7,17 +7,25 @@ describe Api::UserSearchQuery do
   let!(:user1) { create(:user, first_name: 'John', project: project) }
   let!(:user2) { create(:user, first_name: 'Jane', project: project) }
   let!(:sheet) { create(:sheet, project: project) }
+  let!(:column1) do
+    create(:sheet_column, sheet: sheet, name: 'Department', column_type: 'string',
+           accessor_access: true, dashboard_use: true, visible_in_list: true)
+  end
+  let!(:column2) do
+    create(:sheet_column, sheet: sheet, name: 'Sector', column_type: 'string',
+           accessor_access: true, dashboard_use: true, visible_in_list: true)
+  end
   let!(:sheet_row1) do
-    create(:sheet_row, sheet: sheet, email: user1.email, data: {
-      'Department' => 'IT',
-      'Sector' => 'Aerospace'
-    })
+    create(:sheet_row, sheet: sheet, email: user1.email).tap do |row|
+      row.sheet_row_data.create(sheet_column: column1, string_value: 'IT')
+      row.sheet_row_data.create(sheet_column: column2, string_value: 'Aerospace')
+    end
   end
   let!(:sheet_row2) do
-    create(:sheet_row, sheet: sheet, email: user2.email, data: {
-      'Department' => 'IT',
-      'Sector' => 'Consulting'
-    })
+    create(:sheet_row, sheet: sheet, email: user2.email).tap do |row|
+      row.sheet_row_data.create(sheet_column: column1, string_value: 'IT')
+      row.sheet_row_data.create(sheet_column: column2, string_value: 'Consulting')
+    end
   end
 
   it 'searches by sheet' do

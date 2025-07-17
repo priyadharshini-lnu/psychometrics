@@ -5,12 +5,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
   let(:current_user) { create(:superadmin) }
   let(:campaign) { create(:campaign) }
   let(:sheet) do
-    create(:sheet, campaign: campaign, columns: [
-      { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-      { name: 'Name', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-      { name: 'Profile', type: 'Markdown', accessor_access: true, dashboard_use: true, visible_in_list: true },
-      { name: 'Description', type: 'HTML', accessor_access: true, dashboard_use: true, visible_in_list: true }
-    ])
+    create(:sheet, campaign: campaign)
   end
   let!(:columns) do
     sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string',
@@ -61,11 +56,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
 
   describe 'GET show' do
     it 'returns campaign and project data_sheet record with all types' do
-      project_sheet = create(:sheet, project: campaign.project,
-      columns: [
-        { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-        { name: 'Name', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
-      ])
+      project_sheet = create(:sheet, project: campaign.project)
       project_sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string',
                                     accessor_access: true, dashboard_use: true, visible_in_list: true)
       project_sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Name', column_type: 'string',

@@ -6,8 +6,7 @@ describe Threesixty::Participants::CreateForm do
   let(:campaign) { create(:threesixty_campaign) }
   let(:option) { create(:threesixty_option, threesixty_campaign: campaign) }
   let(:datasheet) do
-    create(:datasheet, project_id: campaign.project.id,
-                           columns: { 'Age' => 'Number', 'No.' => 'Number' })
+    create(:datasheet, project_id: campaign.project.id)
   end
   let!(:columns) do
     [

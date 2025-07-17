@@ -5,9 +5,7 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
   let(:current_user) { create(:superadmin) }
   let(:project) { create(:project) }
   let!(:sheet) do
-    create(:sheet, project: project, columns: [{
-      name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true
-    }])
+    create(:sheet, project: project)
   end
   let!(:column1) do
     create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string',
@@ -74,11 +72,6 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
 
   describe 'PUT update_columns_order' do
     it 'should update order of columns' do
-      sheet.update(columns: [
-        { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-        { name: 'Name', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-        { name: 'Profile', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
-      ])
       col_name = create(:sheet_column, sheet: sheet, name: 'Name', column_type: 'string')
       col_profile = create(:sheet_column, sheet: sheet, name: 'Profile', column_type: 'string')
       sheet.sheet_columns << col_name
@@ -104,24 +97,20 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
 
   describe 'DELETE remove_columns' do
     it 'should delete column should delete data from row' do
-      sheet.update(columns: [
-        { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-        { name: 'Name', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-        { name: 'Profile', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
-      ])
       col_name = create(:sheet_column, sheet: sheet, name: 'Name', column_type: 'string')
       col_profile = create(:sheet_column, sheet: sheet, name: 'Profile', column_type: 'string')
       sheet.sheet_columns << col_name
       sheet.sheet_columns << col_profile
 
-      row = create(:sheet_row, sheet: sheet, email: 'james@cc.com',
-        data: { 'Name' => 'James', 'Profile' => 'Software Engineer' })
+      row = create(:sheet_row, sheet: sheet, email: 'james@cc.com')
+      row.sheet_row_data.create(sheet_column: col_name, string_value: 'James')
+      row.sheet_row_data.create(sheet_column: col_profile, string_value: 'Software Engineer')
 
-      expect(row.data.keys).to eq(%w[Name Profile])
-
+      expect(sheet.sheet_columns.map(&:name)).to eq(%w[Email Name Profile])
       delete :remove_columns, params: { project_id: project.id, column_ids: [col_profile.id] }, format: :json
 
-      expect(row.reload.data.keys).to eq(['Name'])
+      expect(sheet.sheet_columns.reload.map(&:name)).to eq(%w[Email Name])
+      expect(row.reload.sheet_row_data.map(&:string_value)).to eq(['James'])
     end
   end
 end
