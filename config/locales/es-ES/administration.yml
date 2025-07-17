@@ -3175,6 +3175,11 @@ es-ES:
         successfully: El informe "%{name}" se ha eliminado correctamente.
       edit:
         header: Editar nombre del informe
+      edit_default_language:
+        confirm_msg: He leído la información anterior y comprendo las implicaciones de cambiar la lengua por defecto.
+        title: Editar idioma por defecto
+        tooltip: Editar idioma por defecto
+        warning: Cambiar el idioma por defecto de rtl a ltr o viceversa afectará al diseño. Si cambia el idioma por defecto, tendrá que volver a realizar las traducciones de los informes. Por favor, descargue una copia de las traducciones antes de realizar este cambio.
       modals:
         remap_assessment:
           new_assessment_name: Nombre de la nueva evaluación

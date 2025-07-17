@@ -3175,6 +3175,11 @@ it:
         successfully: Il rapporto "%{name}" è stato cancellato con successo.
       edit:
         header: Modifica del nome del rapporto
+      edit_default_language:
+        confirm_msg: Ho letto le informazioni di cui sopra e comprendo le implicazioni della modifica della lingua predefinita.
+        title: Modifica della lingua predefinita
+        tooltip: Modifica della lingua predefinita
+        warning: La modifica della lingua predefinita da rtl a ltr o viceversa influisce sul layout. Se si cambia la lingua predefinita, è necessario rielaborare le traduzioni dei report. Scaricare una copia delle traduzioni prima di effettuare questa modifica.
       modals:
         remap_assessment:
           new_assessment_name: Nome della nuova valutazione

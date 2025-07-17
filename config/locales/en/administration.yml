@@ -3176,6 +3176,11 @@ en:
         successfully: Report '%{name}' was deleted successfully.
       edit:
         header: Edit Report Name
+      edit_default_language:
+        confirm_msg: I have read the above information and understand the implications of changing the default language.
+        title: Edit Default Language
+        tooltip: Edit Default Language
+        warning: Changing the default language from rtl to ltr language or vice versa will affect the layout. You would have to rework on report translations if you change the default language. Please download a copy of translations before making this change.
       modals:
         remap_assessment:
           new_assessment_name: New Assessment Name

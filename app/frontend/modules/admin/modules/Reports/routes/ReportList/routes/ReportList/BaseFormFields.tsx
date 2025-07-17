@@ -1,7 +1,8 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import {
-  Form, Input, Select, Spin, Switch,
+  Form, Input, Select, Spin, Switch, Modal, Button, Tooltip, Flex, Alert, Checkbox,
 } from 'antd'
+import { EditOutlined } from '@ant-design/icons'
 import { FormInstance } from 'antd/lib/form'
 import _ from 'lodash'
 import { Tag } from 'modules/admin/core/tags'
@@ -42,7 +43,9 @@ type OptionsType = {
 
 const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
   const { availableLocales } = I18n
+  const [defaultLangForm] = Form.useForm()
   const isEditForm = !!report
+  const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false)
   const {
     data: clients, fetch: fetchClients, isLoading: isClientsLoading,
   } = useResources<Client>('clients')
@@ -62,6 +65,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
   const assessmentIds = Form.useWatch('assessmentIds', form)
   const provider = Form.useWatch('provider', form)
   const externalReportId = Form.useWatch(['externalSettings', 'reportId'], form)
+  const defaultLanguage = Form.useWatch('defaultLanguage', form)
 
   const [assessmentCache, setAssessmentCache] = React.useState<Assessment[]>([])
   const [isCustomUpload, setIsCustomUpload] = React.useState(false || report?.provider === CUSTOM_UPLOAD)
@@ -144,6 +148,30 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
 
   const ExternalReportFieldsComponent = ExternalReportFields[getAssessmentType()]
 
+  const showLanguageModal = () => {
+    defaultLangForm.setFieldValue('tempDefaultLanguage', defaultLanguage || 'en')
+    setIsLanguageModalVisible(true)
+  }
+
+  const handleModalCancel = () => {
+    setIsLanguageModalVisible(false)
+    defaultLangForm.resetFields()
+  }
+
+  const handleModalOk = () => {
+    const tempDefaultLanguage = defaultLangForm.getFieldValue('tempDefaultLanguage')
+    const updatedOtherLanguages = (form.getFieldValue('otherLanguages') || []).filter(
+      lang => lang !== tempDefaultLanguage,
+    )
+
+    form.setFieldsValue({
+      defaultLanguage: tempDefaultLanguage,
+      otherLanguages: updatedOtherLanguages,
+    })
+
+    setIsLanguageModalVisible(false)
+  }
+
   return (
     <>
       <Form.Item
@@ -221,21 +249,32 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
           {ExternalReportFieldsComponent && <ExternalReportFieldsComponent form={form} report={report} />}
         </>
       )}
-      <Form.Item
-        name="defaultLanguage"
-        label={I18n.t('reports.columns.default_language')}
-        initialValue={report?.defaultLanguage || 'en'}
-      >
-        <Select
-          disabled={isEditForm}
-          onChange={value => handleLanguageChange(value)}
-        >
-          {availableLocales.map(locale => (
-            <Select.Option key={locale} value={locale}>
-              {I18n.t(`languages.${locale}`)}
-            </Select.Option>
-          ))}
-        </Select>
+      <Form.Item label={I18n.t('reports.columns.default_language')}>
+        <Flex gap={4}>
+          <Form.Item
+            name="defaultLanguage"
+            initialValue={report?.defaultLanguage || 'en'}
+            style={{ flex: '1 1 auto' }}
+          >
+            <Select
+              disabled={isEditForm}
+              onChange={value => handleLanguageChange(value)}
+            >
+              {availableLocales.map(locale => (
+                <Select.Option key={locale} value={locale}>
+                  {I18n.t(`languages.${locale}`)}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Tooltip title={I18n.t('administration.reports.edit_default_language.tooltip')}>
+            <Button
+              icon={<EditOutlined />}
+              onClick={showLanguageModal}
+              type="text"
+            />
+          </Tooltip>
+        </Flex>
       </Form.Item>
       <Form.Item name="otherLanguages" label={I18n.t('reports.columns.other_available_languages')}>
         <Select mode="multiple">
@@ -268,6 +307,41 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
           ))}
         </Select>
       </Form.Item>
+      <Modal
+        title={I18n.t('administration.reports.edit_default_language.title')}
+        open={isLanguageModalVisible}
+        onOk={() => defaultLangForm.submit()}
+        onCancel={handleModalCancel}
+      >
+        <Form form={defaultLangForm} onFinish={handleModalOk}>
+          <Form.Item
+            name="tempDefaultLanguage"
+          >
+            <Select>
+              {availableLocales.map(locale => (
+                <Select.Option key={locale} value={locale}>
+                  {I18n.t(`languages.${locale}`)}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Alert
+            message={I18n.t('administration.reports.edit_default_language.warning')}
+            type="warning"
+            showIcon
+            className="mb-6"
+          />
+          <Form.Item
+            valuePropName="checked"
+            name="confirmation"
+            rules={[{ required: true }]}
+          >
+            <Checkbox style={{ display: 'flex', alignItems: 'flex-start' }}>
+              {I18n.t('administration.reports.edit_default_language.confirm_msg')}
+            </Checkbox>
+          </Form.Item>
+        </Form>
+      </Modal>
     </>
   )
 }

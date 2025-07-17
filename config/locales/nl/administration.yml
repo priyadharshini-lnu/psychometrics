@@ -3175,6 +3175,11 @@ nl:
         successfully: Rapport '%{name}' is succesvol verwijderd.
       edit:
         header: Rapportnaam bewerken
+      edit_default_language:
+        confirm_msg: Ik heb de bovenstaande informatie gelezen en begrijp de implicaties van het wijzigen van de standaardtaal.
+        title: Standaardtaal bewerken
+        tooltip: Standaardtaal bewerken
+        warning: Als je de standaardtaal wijzigt van rtl naar ltr of omgekeerd, heeft dat invloed op de lay-out. Als je de standaardtaal wijzigt, moet je de rapportvertalingen opnieuw maken. Download een kopie van de vertalingen voordat u deze wijziging aanbrengt.
       modals:
         remap_assessment:
           new_assessment_name: Naam nieuwe beoordeling

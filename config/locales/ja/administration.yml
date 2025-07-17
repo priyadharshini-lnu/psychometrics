@@ -3175,6 +3175,11 @@ ja:
         successfully: レポート '%{name}' は正常に削除されました。
       edit:
         header: レポート名の編集
+      edit_default_language:
+        confirm_msg: 上記の情報を読み、デフォルト言語を変更することの意味を理解しました。
+        title: デフォルト言語の編集
+        tooltip: デフォルト言語の編集
+        warning: デフォルトの言語をrtl言語からltr言語に変更したり、その逆に変更したりすると、レイアウトに影響します。デフォルトの言語を変更した場合、レポートの翻訳をやり直す必要があります。この変更を行う前に、翻訳のコピーをダウンロードしてください。
       modals:
         remap_assessment:
           new_assessment_name: 新しい評価名

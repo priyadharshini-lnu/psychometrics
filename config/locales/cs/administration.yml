@@ -3175,6 +3175,11 @@ cs:
         successfully: Hlášení '%{name}' bylo úspěšně odstraněno.
       edit:
         header: Upravit název zprávy
+      edit_default_language:
+        confirm_msg: Přečetl/a jsem si výše uvedené informace a rozumím důsledkům změny výchozího jazyka.
+        title: Upravit výchozí jazyk
+        tooltip: Upravit výchozí jazyk
+        warning: Změna výchozího jazyka z rtl na ltr nebo naopak ovlivní rozložení. Pokud změníte výchozí jazyk, budete muset překlady sestav přepracovat. Před provedením této změny si prosím stáhněte kopii překladů.
       modals:
         remap_assessment:
           new_assessment_name: Název nového posouzení

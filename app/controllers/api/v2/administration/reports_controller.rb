@@ -2,7 +2,7 @@
 
 module Api
   class V2::Administration::ReportsController < Api::V2::Administration::BaseController
-    validate_crud_requests Api::V2::ReportApprovalSetting::Schema
+    validate_crud_requests Api::V2::Report::Schema
     validates_request_schema :create, :create_contract_based_on_provider
     validates_request_schema :update, :update_contract_based_on_provider
     validates_request_schema :copy, -> { Api::V2::Report::CopyContract.new }

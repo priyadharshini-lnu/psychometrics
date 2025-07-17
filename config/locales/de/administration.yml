@@ -3175,6 +3175,11 @@ de:
         successfully: Der Bericht '%{name}' wurde erfolgreich gelöscht.
       edit:
         header: Berichtsname bearbeiten
+      edit_default_language:
+        confirm_msg: Ich habe die oben genannten Informationen gelesen und verstehe die Auswirkungen einer Änderung der Standardsprache.
+        title: Standardsprache bearbeiten
+        tooltip: Standardsprache bearbeiten
+        warning: Wenn Sie die Standardsprache von rtl in ltr oder umgekehrt ändern, wirkt sich dies auf das Layout aus. Wenn Sie die Standardsprache ändern, müssen Sie die Übersetzungen der Berichte überarbeiten. Bitte laden Sie eine Kopie der Übersetzungen herunter, bevor Sie diese Änderung vornehmen.
       modals:
         remap_assessment:
           new_assessment_name: Neue Bewertung Name

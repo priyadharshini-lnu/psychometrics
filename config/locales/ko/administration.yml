@@ -3175,6 +3175,11 @@ ko:
         successfully: "'%{name}' 보고서를 성공적으로 삭제했습니다."
       edit:
         header: 보고서 이름 수정
+      edit_default_language:
+        confirm_msg: 위의 정보를 읽었으며 기본 언어 변경의 의미를 이해했습니다.
+        title: 기본 언어 편집
+        tooltip: 기본 언어 편집
+        warning: 기본 언어를 rtl 언어에서 ltr 언어로 또는 그 반대로 변경하면 레이아웃에 영향을 미칩니다. 기본 언어를 변경하면 보고서 번역을 다시 작업해야 합니다. 이 변경을 수행하기 전에 번역본을 다운로드하세요.
       modals:
         remap_assessment:
           new_assessment_name: 새 평가 이름

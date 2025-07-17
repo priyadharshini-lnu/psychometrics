@@ -3175,6 +3175,11 @@ ar:
         successfully: Report '%{name}' was deleted successfully.
       edit:
         header: Edit Report Name
+      edit_default_language:
+        confirm_msg: لقد قرأت المعلومات المذكورة أعلاه وأفهم الآثار المترتبة على تغيير اللغة الافتراضية.
+        title: تحرير اللغة الافتراضية
+        tooltip: تحرير اللغة الافتراضية
+        warning: تغيير اللغة الافتراضية من لغة rtl إلى لغة ltr أو العكس سيؤثر على التخطيط. سيتعين عليك إعادة العمل على ترجمات التقارير إذا قمت بتغيير اللغة الافتراضية. يرجى تنزيل نسخة من الترجمات قبل إجراء هذا التغيير.
       modals:
         remap_assessment:
           new_assessment_name: New Assessment Name

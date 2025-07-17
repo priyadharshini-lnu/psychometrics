@@ -3175,6 +3175,11 @@ fr:
         successfully: Le rapport '%{name}' a été supprimé avec succès.
       edit:
         header: Modifier le nom du rapport
+      edit_default_language:
+        confirm_msg: J'ai lu les informations ci-dessus et je comprends les implications du changement de la langue par défaut.
+        title: Modifier la langue par défaut
+        tooltip: Modifier la langue par défaut
+        warning: Le changement de la langue par défaut de rtl à ltr ou vice versa affectera la mise en page. Vous devrez retravailler les traductions des rapports si vous changez la langue par défaut. Veuillez télécharger une copie des traductions avant d'effectuer ce changement.
       modals:
         remap_assessment:
           new_assessment_name: Nouveau nom de l'évaluation

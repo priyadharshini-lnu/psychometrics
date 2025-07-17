@@ -3175,6 +3175,11 @@ pt:
         successfully: O relatório '%{name}' foi eliminado com êxito.
       edit:
         header: Editar nome do relatório
+      edit_default_language:
+        confirm_msg: Li as informações acima e compreendo as implicações de alterar a língua predefinida.
+        title: Editar idioma predefinido
+        tooltip: Editar idioma predefinido
+        warning: Alterar o idioma predefinido de rtl para ltr ou vice-versa afectará a apresentação. Terá de voltar a trabalhar nas traduções dos relatórios se alterar a língua predefinida. Descarregue uma cópia das traduções antes de efetuar esta alteração.
       modals:
         remap_assessment:
           new_assessment_name: Novo nome de avaliação

@@ -3171,6 +3171,11 @@ zh-Hant:
         successfully: 報告 '%{name}' 已成功刪除。
       edit:
         header: 編輯報告名稱
+      edit_default_language:
+        confirm_msg: 我已閱讀上述資訊，並瞭解變更預設語言的影響。
+        title: 編輯預設語言
+        tooltip: 編輯預設語言
+        warning: 將預設語言從 rtl 改為 ltr 語言或反之亦然，都會影響版面。如果變更預設語言，您必須重新處理報告的翻譯。在進行此變更之前，請下載一份翻譯副本。
       modals:
         remap_assessment:
           new_assessment_name: 新評估名稱
