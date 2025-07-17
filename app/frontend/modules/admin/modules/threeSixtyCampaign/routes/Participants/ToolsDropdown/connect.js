@@ -9,11 +9,19 @@ export default connect(
   ({
     threeSixtyCampaign: {
       campaignDetails: {
-        id: threesixtyCampaignId, dimensionId, reportAvailableLanguages, reportDefaultLanguage, reportName, reportIcon,
+        id: threesixtyCampaignId,
+        campaignId,
+        dimensionId, reportAvailableLanguages, reportDefaultLanguage, reportName, reportIcon,
       },
     },
   }) => ({
-    threesixtyCampaignId, dimensionId, reportAvailableLanguages, reportDefaultLanguage, reportName, reportIcon,
+    threesixtyCampaignId,
+    campaignId,
+    dimensionId,
+    reportAvailableLanguages,
+    reportDefaultLanguage,
+    reportName,
+    reportIcon,
   }),
   {
     resetCampaign,

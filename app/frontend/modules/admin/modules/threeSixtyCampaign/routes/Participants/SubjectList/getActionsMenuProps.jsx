@@ -15,7 +15,7 @@ export const getActionsMenuProps = ({
   regenerateReport,
   message,
   setShowResetSubjectModal,
-  currentCampaignId,
+  threeSixtyCampaignId,
   reportAvailableLanguages,
   reportDefaultLanguage,
   reportName,
@@ -32,7 +32,7 @@ export const getActionsMenuProps = ({
   const removeUserWithConfirmation = () => {
     // eslint-disable-next-line no-alert
     if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_from_campaign'))) {
-      removeUser(campaignId, user.id)
+      removeUser(threeSixtyCampaignId, user.id)
     }
   }
 
@@ -179,7 +179,7 @@ export const getActionsMenuProps = ({
   const openResetPasswordModal = () => {
     openModal('ResetPasswordModal', {
       user,
-      campaignId: currentCampaignId,
+      campaignId,
     })
   }
 
@@ -207,7 +207,7 @@ export const getActionsMenuProps = ({
     permissions.viewReport && {
       key: 'view_report',
       label: (
-        <a href={`/admin/projects/${projectId}/new_campaigns/${currentCampaignId}/user_reports/${userReportId}`}>
+        <a href={`/admin/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`}>
           {I18n.t('threesixty.participant_list.actions.view_report')}
         </a>),
     },

@@ -45,8 +45,8 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
     if (pathname.includes('/reports/options')) {
       return ['reports/options']
     }
-    if (pathname.includes('/datasheets')) {
-      return ['datasheets']
+    if (pathname.includes('/datasheet')) {
+      return ['datasheet']
     }
     return undefined
   }
@@ -70,7 +70,7 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
     label: I18n.t('administration.threesixty_campaigns.menu.report.title'),
   })
   menuItems.push({
-    key: 'datasheets',
+    key: 'datasheet',
     icon: <DatabaseOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.datasheet.title'),
   })

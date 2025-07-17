@@ -2,9 +2,10 @@ import { Menu } from 'antd'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-
+import { useEffect } from 'react'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import { set as setSelectedTab, get as getSelectedTab } from '../../core/selectedParticipantTab'
 import {
   get as getCurrentCampaign,
 } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
@@ -46,11 +47,15 @@ const routes = [
   { path: '/evaluators', component: <EvaluatorList /> },
   { path: '/managers', component: <ManagerList /> },
 ]
-function Index ({ campaignPermissions }) {
+function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
   const navigate = useNavigate()
 
-  const selectedTab = `/participants${routeUtils.getActiveRoutePath(routes)}`
+  useEffect(() => {
+    setSelectedTab(`/participants${routeUtils.getActiveRoutePath(routes)}`)
+  }, [])
+
   const onSelect = ({ key }) => {
+    setSelectedTab(key)
     routeUtils.moveTo(navigate, settings.urlPrefix, key)
   }
   const menuItems = [
@@ -91,7 +96,12 @@ function Index ({ campaignPermissions }) {
 const connector = connect(
   (state: RootState) => ({
     campaignPermissions: getCurrentCampaign(state).permissions,
+    selectedTab: getSelectedTab(state),
   }),
+  {
+    setSelectedTab,
+  },
 )
+
 
 export default connector(Index)

@@ -30,21 +30,11 @@ module AdminJobs
     def parent_resource_url
       return administration_project_sheet_rows_path(parent_resource.id) if parent_resource.is_a?(Client)
 
-      return threesixty_datasheet_path if parent_resource.threesixty?
-
       "/admin/projects/#{parent_resource.project_id}/new_campaigns/#{parent_resource.id}/datasheet"
     end
 
     def parent_resource
       record.data['parent_resource_class'].safe_constantize.find_by(id: record.data['parent_resource_id'])
-    end
-
-    def threesixty_datasheet_path
-      project = parent_resource.project
-      client = project.client
-      threesixty_campaign = parent_resource.threesixty_campaign
-
-      "/admin/clients/#{client.id}/projects/#{project.id}/threesixty_campaigns/#{threesixty_campaign.id}/datasheets"
     end
   end
 end

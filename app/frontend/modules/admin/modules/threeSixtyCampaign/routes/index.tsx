@@ -24,7 +24,7 @@ const routes = [
     component: <Reports />,
   },
   {
-    path: 'datasheets/*',
+    path: 'datasheet/*',
     component: <Datasheet />,
   },
 ]

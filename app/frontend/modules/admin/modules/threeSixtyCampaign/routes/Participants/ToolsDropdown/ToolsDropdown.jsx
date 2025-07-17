@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const getCustomMenuProps = ({
-  threesixtyCampaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
+  threesixtyCampaignId, campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
   handleExportThreeSixtyScores, handleBulkDownloads, openModal, isBulk, handleBulkMarkAsDone,
   selectedKeys, excludedKeys, isAllSelected,
@@ -43,7 +43,7 @@ const getCustomMenuProps = ({
       return handleBulkDownloads(threesixtyCampaignId)
     }
     if (key === 'completed' || key === 'in_progress') {
-      return handleBulkMarkAsDone(threesixtyCampaignId, key, isAllSelected, selectedKeys, excludedKeys)
+      return handleBulkMarkAsDone(campaignId, key, isAllSelected, selectedKeys, excludedKeys)
     }
   }
 
@@ -122,7 +122,8 @@ const getCustomMenuProps = ({
 }
 
 export default function ToolsDropdown ({
-  threesixtyCampaignId, dimensionId, resetCampaign, resetAllNominations, openModal, rescoreAssessment, permissions,
+  threesixtyCampaignId, campaignId, dimensionId, resetCampaign, resetAllNominations, openModal,
+  rescoreAssessment, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
   reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys, excludedKeys, title, isAllSelected,
 }) {
@@ -276,6 +277,7 @@ export default function ToolsDropdown ({
           projectId,
           threesixtyCampaignId,
           dimensionId,
+          campaignId,
           resetCampaignWithConfirmation,
           resetAllNominationsWithConfirmation,
           handleRescoreAssessment,

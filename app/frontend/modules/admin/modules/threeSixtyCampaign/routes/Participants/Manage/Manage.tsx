@@ -11,14 +11,14 @@ import {
   reset as resetCampaign, resetAllNominations, exportCompletionStatuses, rescoreAssessment,
 } from '~/modules/admin/modules/threeSixtyCampaign/core'
 import {
-  get as getCurrentCampaign, getCurrentAssessmentId, getCurrentReportId, getCurrentDimensionId,
+  get as getCurrentCampaign, getCurrentAssessmentId, getCurrentReportId, getCurrentDimensionId, getCampaignId,
 } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 
 const { I18n } = window
 
 const connector = connect(
   (state: RootState) => ({
-    campaignId: getCurrentCampaign(state).id,
+    campaignId: getCampaignId(state),
     dimensionId: getCurrentDimensionId(state),
     assessmentId: getCurrentAssessmentId(state),
     reportId: getCurrentReportId(state),

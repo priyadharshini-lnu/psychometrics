@@ -38,10 +38,17 @@ module AdminJobs
     end
 
     def generate_title_link
-      {
-        href: "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/participants/subjects/#{user.id}",
-        label: "#{campaign.name} - #{user.decorate.full_name}"
-      }
+      if record.data['is_threesixty']
+        {
+          href: "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/participants/subjects/",
+          label: "#{campaign.name} Reports"
+        }
+      else
+        {
+          href: "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/participants/subjects/#{user.id}",
+          label: "#{campaign.name} - #{user.decorate.full_name}"
+        }
+      end
     end
 
     def generate_details
