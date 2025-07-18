@@ -844,6 +844,14 @@ fr:
     campaign_factors_import:
       errors:
         invalid_headers: 'Les en-têtes suivants ne sont pas valides : %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Veuillez sélectionner une période
+        modal:
+          subtitle: Sélectionnez une plage de dates, puis la langue requise pour chaque rapport.
+      generate:
+        modal:
+          subtitle: Sélectionner la langue requise pour chaque rapport
     campaign_templates:
       campaign_templates: Modèles de campagne
       column:
@@ -3222,6 +3230,9 @@ fr:
         successfully: Le rapport a été mis à jour avec succès.
       update:
         successfully: Le rapport %{name} a été mis à jour avec succès.
+    reports_language_selection_modal:
+      download: Téléchargement du rapport
+      generate: Générer un rapport
     resource:
       remove_confirm:
         message: Êtes-vous sûr de vouloir supprimer cette ressource ?

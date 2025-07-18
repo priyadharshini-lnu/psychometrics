@@ -1260,8 +1260,6 @@ pl:
   user_assessments:
     redirect: Zostaniesz przekierowany do witryny innej firmy w celu przeprowadzenia tej oceny. Kliknij Kontynuuj, jeśli chcesz rozpocząć ocenę.
   user_reports:
-    actions:
-      regenerate: Regeneracja
     messages:
       regenerate_successful: Zadanie regeneracji raportu zostało zaplanowane pomyślnie
     modals:

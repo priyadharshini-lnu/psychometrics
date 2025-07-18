@@ -3781,7 +3781,6 @@ it:
       add: Aggiungi rapporto
       download: Scaricare
       generate: Generare
-      regenerate: Rigenerare
     approval_statuses:
       approved: Approvato
       change_requested: Modifica richiesta

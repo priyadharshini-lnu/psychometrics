@@ -1248,8 +1248,6 @@ th:
   user_assessments:
     redirect: คุณจะถูกนำไปยังไซต์ของบุคคลที่สามเพื่อทำการประเมินนี้ โปรดคลิกดำเนินการต่อหากคุณต้องการเริ่มการประเมิน
   user_reports:
-    actions:
-      regenerate: สร้างขึ้นใหม่
     messages:
       regenerate_successful: รายงานงานการสร้างใหม่ได้รับการกำหนดตารางสำเร็จแล้ว
     modals:

@@ -3657,7 +3657,6 @@ ko:
       add: 보고서 추가
       download: 다운로드
       generate: 생성
-      regenerate: 재생성
     approval_statuses:
       approved: 승인됨
       change_requested: 변경 요청

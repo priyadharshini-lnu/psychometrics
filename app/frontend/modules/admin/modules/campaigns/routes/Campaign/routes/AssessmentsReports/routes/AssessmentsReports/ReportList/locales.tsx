@@ -12,10 +12,11 @@ type Props = PropsFromRedux & {
   defaultLanguage: string,
   reportLocales: string[]
   campaignId: string,
+  internal: boolean,
 }
 
 export const Locales = ({
-  id, availableLanguages, defaultLanguage, reportLocales, openModal, campaignId,
+  id, availableLanguages, defaultLanguage, reportLocales, openModal, campaignId, internal,
 }: Props) => {
   const otherLanguages = availableLanguages?.filter(locale => locale !== defaultLanguage) || []
   const totalLanguages = (defaultLanguage ? 1 : 0) + otherLanguages.length
@@ -71,14 +72,16 @@ export const Locales = ({
                 <span>{`+${remainingCount}`}</span>
               </Flex>
             ) : null}
-            <Button
-              onClick={() => openModal('UpdateReportLanguagesModal', {
-                campaignId, id, defaultLanguage, availableLanguages, reportLocales,
-              })}
-              size="small"
-              type="link"
-              icon={<EditOutlined />}
-            />
+            { (internal && reportLocales.length > 1) ? (
+              <Button
+                onClick={() => openModal('UpdateReportLanguagesModal', {
+                  campaignId, id, defaultLanguage, availableLanguages, reportLocales,
+                })}
+                size="small"
+                type="link"
+                icon={<EditOutlined />}
+              />
+            ) : null}
           </Flex>
         </Popover>
       )

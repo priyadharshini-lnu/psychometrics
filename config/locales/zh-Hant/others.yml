@@ -3751,7 +3751,6 @@ zh-Hant:
       add: 新增報告
       download: 下載
       generate: 產生
-      regenerate: 再生
     approval_statuses:
       approved: 已核准
       change_requested: 要求變更

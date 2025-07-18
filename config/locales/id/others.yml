@@ -1256,8 +1256,6 @@ id:
   user_assessments:
     redirect: Anda akan diarahkan ke situs pihak ketiga untuk penilaian ini. Silakan klik lanjutkan jika Anda ingin memulai penilaian.
   user_reports:
-    actions:
-      regenerate: Regenerasi
     messages:
       regenerate_successful: Pekerjaan regenerasi laporan berhasil dijadwalkan
     modals:

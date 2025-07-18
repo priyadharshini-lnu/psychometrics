@@ -3782,7 +3782,6 @@ fr:
       add: Ajouter un rapport
       download: Télécharger
       generate: Générer
-      regenerate: Régénérer
     approval_statuses:
       approved: Approuvé
       change_requested: Modification demandée

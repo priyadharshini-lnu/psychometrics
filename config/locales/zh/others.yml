@@ -3774,7 +3774,6 @@ zh:
       add: 添加报告
       download: 下载
       generate: 生成
-      regenerate: 重新生成
     approval_statuses:
       approved: 批准
       change_requested: 要求更改

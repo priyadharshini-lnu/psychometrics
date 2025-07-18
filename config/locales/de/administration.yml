@@ -844,6 +844,14 @@ de:
     campaign_factors_import:
       errors:
         invalid_headers: 'Folgende Header sind ungültig: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Bitte wählen Sie einen Datumsbereich
+        modal:
+          subtitle: Wählen Sie einen Datumsbereich und dann die gewünschte Sprache für jeden Bericht
+      generate:
+        modal:
+          subtitle: Wählen Sie die gewünschte Sprache für jeden Bericht
     campaign_templates:
       campaign_templates: Vorlagen für Kampagnen
       column:
@@ -3222,6 +3230,9 @@ de:
         successfully: Der Bericht wurde erfolgreich aktualisiert.
       update:
         successfully: Bericht %{name} wurde erfolgreich aktualisiert.
+    reports_language_selection_modal:
+      download: Bericht herunterladen
+      generate: Bericht erstellen
     resource:
       remove_confirm:
         message: Sind Sie sicher, dass Sie diese Ressource entfernen möchten?

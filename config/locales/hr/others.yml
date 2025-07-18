@@ -1169,8 +1169,6 @@ hr:
   user_assessments:
     redirect: Za ovu procjenu bit ćete preusmjereni na web-mjesto treće strane. Kliknite &quot;nastavi&quot; ako želite započeti procjenu.
   user_reports:
-    actions:
-      regenerate: Regenerirati
     messages:
       regenerate_successful: Posao regeneracije izvješća uspješno je zakazan
     modals:

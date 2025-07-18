@@ -188,16 +188,20 @@ module Administration
       end
 
       def regenerate
-        AdminJob.call(:bulk_regenerate_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
+        AdminJob.call(
+          :bulk_regenerate_reports,
+          { selected_reports: regenerate_report_params[:selected_reports], campaign_id: campaign.id },
+          current_user
+        )
         audit! :regenerate, nil, record_type: 'CampaignReport', payload: { ids: params[:ids] }, campaign: campaign
 
         head :ok
       end
 
       def bulk_download
-        campaign_reports = campaign.campaign_reports.where(id: params[:ids])
+        campaign_reports = campaign.campaign_reports.where(report_id: params['selected_reports'].keys)
 
-        user_reports = ::Reports::BulkDownloadsQuery.new(campaign_reports, params).query.pluck(:id)
+        user_reports = ::Reports::BulkDownloadsQuery.new(campaign_reports, report_download_params).query.pluck(:id)
 
         report_count = user_reports.count
 
@@ -206,8 +210,9 @@ module Administration
                  status: :unprocessable_entity
         else
           AdminJob.call(:bulk_download_reports,
-                        { ids: params[:ids], campaign_id: campaign.id, start_date: params[:start_date],
-                          end_date: params[:end_date], include_inactive_users: params[:include_inactive_users] },
+                        { selected_reports: params['selected_reports'], campaign_id: campaign.id,
+                          start_date: params[:start_date], end_date: params[:end_date],
+                          include_inactive_users: params[:include_inactive_users] },
                         current_user)
           audit! :bulk_download, nil, record_type: 'CampaignReport', payload: { ids: params[:ids] }, campaign: campaign
 
@@ -281,6 +286,21 @@ module Administration
           :operation,
           report_access: {},
           report_ids: []
+        )
+      end
+
+      def report_download_params
+        params.permit(
+          :start_date,
+          :end_date,
+          :include_inactive_users,
+          selected_reports: {}
+        )
+      end
+
+      def regenerate_report_params
+        params[:data].permit(
+          selected_reports: {}
         )
       end
 

@@ -1273,8 +1273,6 @@ zh-HK:
   user_assessments:
     redirect: 您會被重新導向到第三方網站進行此評估。 如果您要開始評估，請按一下繼續。
   user_reports:
-    actions:
-      regenerate: 重新生成
     messages:
       regenerate_successful: 報告重生成功安排
     modals:

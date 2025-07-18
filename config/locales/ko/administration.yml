@@ -844,6 +844,14 @@ ko:
     campaign_factors_import:
       errors:
         invalid_headers: '다음 헤더가 잘못되었습니다: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: 날짜 범위를 선택하세요.
+        modal:
+          subtitle: 날짜 범위를 선택한 다음 각 보고서에 필요한 언어를 선택합니다.
+      generate:
+        modal:
+          subtitle: 각 보고서에 필요한 언어를 선택하세요.
     campaign_templates:
       campaign_templates: 캠페인 템플릿
       column:
@@ -3222,6 +3230,9 @@ ko:
         successfully: 보고서가 성공적으로 업데이트되었습니다.
       update:
         successfully: 이름} 보고서를 성공적으로 업데이트했습니다.
+    reports_language_selection_modal:
+      download: 보고서 다운로드
+      generate: 보고서 생성
     resource:
       remove_confirm:
         message: 이 리소스를 제거하시겠습니까?

@@ -1254,8 +1254,6 @@ sl:
   user_assessments:
     redirect: Za to oceno boste preusmerjeni na spletno mesto tretje osebe. Če želite začeti oceno, kliknite nadaljevanje.
   user_reports:
-    actions:
-      regenerate: Regeneracija
     messages:
       regenerate_successful: Posel regeneracije poročila je bil uspešno načrtovan
     modals:

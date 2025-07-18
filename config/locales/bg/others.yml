@@ -1260,8 +1260,6 @@ bg:
   user_assessments:
     redirect: Ще бъдете пренасочени към сайт на трета страна за тази оценка. Моля, щракнете върху Продължи, ако искате да започнете оценката.
   user_reports:
-    actions:
-      regenerate: Регенерирайте
     messages:
       regenerate_successful: Задачата за регенериране на отчети е планирана успешно
     modals:

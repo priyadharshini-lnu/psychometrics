@@ -844,6 +844,14 @@ zh:
     campaign_factors_import:
       errors:
         invalid_headers: 以下标头无效： %{headers}
+    campaign_report:
+      bulk_download:
+        data_range_error: 请选择日期范围
+        modal:
+          subtitle: 选择日期范围，然后为每份报告选择所需语言
+      generate:
+        modal:
+          subtitle: 为每份报告选择所需的语言
     campaign_templates:
       campaign_templates: 活动模板
       column:
@@ -3222,6 +3230,9 @@ zh:
         successfully: 报告已成功更新。
       update:
         successfully: 报告 %{name} 已成功更新。
+    reports_language_selection_modal:
+      download: 报告下载
+      generate: 生成报告
     resource:
       remove_confirm:
         message: 您确定要删除此资源吗？

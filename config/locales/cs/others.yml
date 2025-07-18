@@ -3785,7 +3785,6 @@ cs:
       add: Přidat zprávu
       download: Stáhnout
       generate: Generovat
-      regenerate: Znovu vygenerovat
     approval_statuses:
       approved: Schváleno
       change_requested: Požadovaná změna

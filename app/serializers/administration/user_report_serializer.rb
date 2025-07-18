@@ -5,7 +5,7 @@ module Administration
     attributes :id, :permissions, :report_id, :name, :user_access,
                :report_family_name, :status, :internal, :report_url,
                :report_provider, :custom_upload, :comments_count, :edits_count,
-               :hogan_participant_id
+               :hogan_participant_id, :effective_default_language, :available_languages
 
     delegate :name, to: :report
     delegate :provider, to: :report, prefix: true
@@ -39,6 +39,10 @@ module Administration
       return nil unless object.hogan?
 
       object.hogan_credential&.participant_id
+    end
+
+    def available_languages
+      object.campaign_report&.available_languages
     end
 
     def permissions

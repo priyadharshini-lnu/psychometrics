@@ -1256,8 +1256,6 @@ ro:
   user_assessments:
     redirect: Veți fi redirecționat către site-ul unei terțe părți pentru această evaluare. Vă rugăm să faceți clic pe continuare dacă doriți să începeți evaluarea.
   user_reports:
-    actions:
-      regenerate: Regenerare
     messages:
       regenerate_successful: Activitatea de regenerare a rapoartelor a fost programată cu succes
     modals:

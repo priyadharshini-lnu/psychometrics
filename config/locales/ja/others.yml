@@ -3784,7 +3784,6 @@ ja:
       add: レポートを追加
       download: ダウンロード
       generate: 生成する
-      regenerate: 再生成
     approval_statuses:
       approved: 承認済み
       change_requested: 変更要求

@@ -37,6 +37,7 @@ import { AssignManagerFormModal } from './AssignManagerFormModal'
 import UploadFileModal from './AssessmentsReports/UploadFileModal'
 import { getFeatures } from '~/core/config'
 import CreateHoganCredentialsModal from './CreateHoganCredentialsModal'
+import ReportsLanguageSelectionModal from '~/modules/admin/components/ReportsLanguageSelectionModal'
 
 const { I18n } = window
 
@@ -50,6 +51,7 @@ const MODALS = {
   AssignManagerFormModal,
   UploadFileModal,
   CreateHoganCredentialsModal,
+  ReportsLanguageSelectionModal,
 }
 
 export const connecter = connect(

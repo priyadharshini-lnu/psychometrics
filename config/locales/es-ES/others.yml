@@ -3788,7 +3788,6 @@ es-ES:
       add: Añadir informe
       download: Descargar
       generate: Genere
-      regenerate: Volver a generar
     approval_statuses:
       approved: Aprobado
       change_requested: Cambio solicitado

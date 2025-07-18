@@ -3800,7 +3800,6 @@ de:
       add: Bericht hinzufügen
       download: Herunterladen
       generate: Erzeugen Sie
-      regenerate: Regenerieren Sie
     approval_statuses:
       approved: Genehmigt
       change_requested: Gewünschte Änderung

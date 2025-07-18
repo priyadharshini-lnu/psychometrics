@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {
   Row, Col, Button, Space, App,
 } from 'antd'
@@ -15,7 +15,6 @@ import { OtherAssessmentList } from './OtherAssessmentList'
 import { OtherAssessorAssessmentList } from './OtherAssessorAssessmentList'
 import AssessorAssessmentList from './AssessorAssessmentList'
 import AddReportModal from './AddReportModal'
-import { DateRangeSelectorModal } from '~/modules/admin/components/DateRangeSelectorModal'
 import { Strategies } from './AddReportModal/interfaces'
 import UniversalLinkModal from './UniversalLinkModal'
 import ImportRawModal from './ImportRawModal'
@@ -27,6 +26,8 @@ import { AddAssessorAssessmentModal } from './AddAssessorAssessmentModal'
 import RemoveAssessmentModal from './RemoveAssessmentModal'
 import { UpdateExternalConfigModal } from './AssessmentList/UpdateExternalConfigModal'
 import ToggleUserAccessModal from './ToggleUserAccessModal'
+import ReportsLanguageSelectionModal from '~/modules/admin/components/ReportsLanguageSelectionModal'
+import DownloadReportsModal from './DownloadReportsModal'
 import UpdateLocalesModal from './UpdateLocalesModal'
 import { PropsFromRedux } from './connect'
 import styles from './styles.less'
@@ -58,6 +59,8 @@ const MODALS = {
   SchedulingCampaignAssessmentModal,
   UserFilterModal,
   AssessorCampaignAssessmentGroupModal,
+  ReportsLanguageSelectionModal,
+  DownloadReportsModal,
 }
 
 const { I18n } = window
@@ -69,6 +72,7 @@ const Manage: React.FC<Props> = ({
   fetchOtherReports,
   fetchOtherAssessments,
   reports: {
+    list,
     reportPermissions,
   },
   openModal,
@@ -92,39 +96,25 @@ const Manage: React.FC<Props> = ({
   const parsedCampaignId = parseInt(campaignId, 10)
 
   const stateManager = useCampaignAssessorAssessmentsStore()
-  const [downloadModalVisible, setDownloadModalVisible] = useState<boolean>(false)
-
 
   const { message } = App.useApp()
 
-  const handleRegenerateReports = () => {
-    regenerateReports(parsedCampaignId, selectedIds).then(() => {
+  const handleRegenerateReports = (selectedReports: { [key: string]: string[] }) => {
+    regenerateReports(parsedCampaignId, { selectedReports }).then(() => {
       message.success(I18n.t('user_reports.messages.regenerate_successful'))
     })
   }
 
-  const handleDownload = (startDate: dayjs.Dayjs, endDate: dayjs.Dayjs, includeInactiveUsers: boolean) => {
-    if (!startDate || !endDate) return
-    bulkDownload(parsedCampaignId, selectedIds, startDate?.toDate(), endDate?.toDate(), includeInactiveUsers)
+  const handleDownloadReports = (selectedReports: { [key: string]: string[] },
+    startDate: dayjs.Dayjs, endDate: dayjs.Dayjs, includeInactiveUsers: boolean) => {
+    bulkDownload(parsedCampaignId, selectedReports, startDate?.toDate(), endDate?.toDate(), includeInactiveUsers)
       .then(() => {
         message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
-        handleCloseDownloadModal()
       })
       .catch((error) => {
         message.error(error)
-        handleCloseDownloadModal()
       })
   }
-
-
-  const handleOpenDownloadModal = () => {
-    setDownloadModalVisible(true)
-  }
-
-  const handleCloseDownloadModal = () => {
-    setDownloadModalVisible(false)
-  }
-
 
   const {
     createResource, meta: campaignAssessorAssessmentsMeta,
@@ -149,18 +139,14 @@ const Manage: React.FC<Props> = ({
                 <>
                   <Button
                     type="default"
-                    onClick={handleOpenDownloadModal}
+                    onClick={() => openModal(
+                      'DownloadReportsModal', { selectedIds, handleDownloadReports },
+                    )}
                     disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
                     loading={bulkDownloadInProgress}
                   >
                     <span>{I18n.t('campaign_report.actions.bulk_download')}</span>
                   </Button>
-                  <DateRangeSelectorModal
-                    open={downloadModalVisible}
-                    onCancel={handleCloseDownloadModal}
-                    onDownload={handleDownload}
-                    showTime
-                  />
                 </>
               )}
 
@@ -168,11 +154,17 @@ const Manage: React.FC<Props> = ({
                 <>
                   <Button
                     type="default"
-                    onClick={handleRegenerateReports}
+                    onClick={() => openModal(
+                      'ReportsLanguageSelectionModal', {
+                        selectedIds,
+                        handleReportsLanguageSelection: handleRegenerateReports,
+                        reports: list,
+                      },
+                    )}
                     disabled={_.isEmpty(selectedIds) || regenerateInProgress}
                     loading={regenerateInProgress}
                   >
-                    <span>{I18n.t('user_reports.actions.regenerate')}</span>
+                    <span>{I18n.t('user_reports.actions.generate')}</span>
                   </Button>
                 </>
               )}

@@ -1254,8 +1254,6 @@ sk:
   user_assessments:
     redirect: Boli by ste presmerovaní na stránku tretej strany pre toto hodnotenie. Ak chcete začať hodnotenie, kliknite na tlačidlo pokračovať.
   user_reports:
-    actions:
-      regenerate: Regenerujte
     messages:
       regenerate_successful: Úloha regenerácie hlásenia bola úspešne naplánovaná
     modals:

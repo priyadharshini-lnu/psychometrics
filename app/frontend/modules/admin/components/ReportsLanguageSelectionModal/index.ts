@@ -1,0 +1,3 @@
+import ReportsLanguageSelectionModal from './ReportsLanguageSelectionModal'
+
+export default ReportsLanguageSelectionModal

@@ -1128,8 +1128,6 @@ hu:
   user_assessments:
     redirect: Az értékeléshez harmadik fél webhelyére irányítjuk át Önt. Kérjük, kattintson a folytatás gombra, ha el szeretné indítani az értékelést.
   user_reports:
-    actions:
-      regenerate: Regenerálja
     messages:
       regenerate_successful: A jelentés regenerálási feladatot sikeresen ütemezték
     modals:

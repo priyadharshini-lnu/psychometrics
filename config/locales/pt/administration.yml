@@ -844,6 +844,14 @@ pt:
     campaign_factors_import:
       errors:
         invalid_headers: 'Os seguintes cabeçalhos são inválidos: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Selecione o intervalo de datas
+        modal:
+          subtitle: Selecione um intervalo de datas e, em seguida, selecione a língua necessária para cada relatório
+      generate:
+        modal:
+          subtitle: Selecionar a língua necessária para cada relatório
     campaign_templates:
       campaign_templates: Modelos de campanha
       column:
@@ -3222,6 +3230,9 @@ pt:
         successfully: O relatório foi atualizado com êxito.
       update:
         successfully: O relatório %{name} foi atualizado com êxito.
+    reports_language_selection_modal:
+      download: Descarregar relatório
+      generate: Gerar relatório
     resource:
       remove_confirm:
         message: Tem a certeza de que pretende remover este recurso?

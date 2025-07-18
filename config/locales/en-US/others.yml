@@ -1241,8 +1241,6 @@ en-US:
   user_assessments:
     redirect: You would be redirected to third-party site for this assessment. Please click continue if you want to start the assessment.
   user_reports:
-    actions:
-      regenerate: Regenerate
     messages:
       regenerate_successful: Report regeneration job was scheduled successfully
     modals:

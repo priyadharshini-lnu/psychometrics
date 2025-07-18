@@ -3954,7 +3954,6 @@ en:
       add: Add Report
       download: Download
       generate: Generate
-      regenerate: Regenerate
     approval_statuses:
       approved: Approved
       change_requested: Change Requested

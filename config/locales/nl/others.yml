@@ -3657,7 +3657,6 @@ nl:
       add: Rapport toevoegen
       download: Downloaden
       generate: Genereren
-      regenerate: Regenereer
     approval_statuses:
       approved: Goedgekeurd
       change_requested: Aangevraagde wijziging

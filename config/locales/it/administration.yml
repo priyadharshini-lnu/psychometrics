@@ -844,6 +844,14 @@ it:
     campaign_factors_import:
       errors:
         invalid_headers: 'Le seguenti intestazioni non sono valide: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Selezionare un intervallo di date
+        modal:
+          subtitle: Selezionate un intervallo di date e poi selezionate la lingua desiderata per ogni rapporto.
+      generate:
+        modal:
+          subtitle: Selezionare la lingua desiderata per ogni rapporto
     campaign_templates:
       campaign_templates: Modelli di campagna
       column:
@@ -3222,6 +3230,9 @@ it:
         successfully: Il rapporto è stato aggiornato con successo.
       update:
         successfully: Il rapporto %{name} è stato aggiornato con successo.
+    reports_language_selection_modal:
+      download: Scarica il rapporto
+      generate: Generazione del rapporto
     resource:
       remove_confirm:
         message: Sei sicuro di voler rimuovere questa risorsa?

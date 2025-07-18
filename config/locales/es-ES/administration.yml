@@ -844,6 +844,14 @@ es-ES:
     campaign_factors_import:
       errors:
         invalid_headers: 'Las siguientes cabeceras no son válidas: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Seleccione un intervalo de fechas
+        modal:
+          subtitle: Seleccione un intervalo de fechas y, a continuación, el idioma deseado para cada informe.
+      generate:
+        modal:
+          subtitle: Seleccione el idioma deseado para cada informe
     campaign_templates:
       campaign_templates: Plantillas de campaña
       column:
@@ -3222,6 +3230,9 @@ es-ES:
         successfully: El informe se ha actualizado correctamente.
       update:
         successfully: El informe %{name} se ha actualizado correctamente.
+    reports_language_selection_modal:
+      download: Descargar informe
+      generate: Generación de informes
     resource:
       remove_confirm:
         message: "¿Está seguro de que desea eliminar este recurso?"

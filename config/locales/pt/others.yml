@@ -3774,7 +3774,6 @@ pt:
       add: Adicionar relatório
       download: Descarregar
       generate: Gerar
-      regenerate: Regenerar
     approval_statuses:
       approved: Aprovado
       change_requested: Alteração solicitada

@@ -1248,8 +1248,6 @@ vi:
   user_assessments:
     redirect: Bạn sẽ được chuyển hướng đến trang web của bên thứ ba để đánh giá này. Vui lòng nhấp vào tiếp tục nếu bạn muốn bắt đầu đánh giá.
   user_reports:
-    actions:
-      regenerate: Tái tạo
     messages:
       regenerate_successful: Báo cáo công việc tái tạo đã được lên lịch thành công
     modals:
