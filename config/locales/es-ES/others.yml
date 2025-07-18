@@ -511,6 +511,7 @@ es-ES:
         created_at: Fecha de creación
         id: ID
         name: Nombre
+        owner: Propietario
         updated_at: Fecha de modificación
       factor:
         active: Activo
@@ -537,7 +538,11 @@ es-ES:
         updated_at: Fecha de modificación
       library:
         created_at: Fecha de creación
+        description: Descripción
+        files: Archivos
         id: ID
+        name: Nombre
+        owner: Propietario
         type: Miniaturas
         updated_at: Fecha de modificación
       license:
@@ -609,6 +614,7 @@ es-ES:
         created_at: Fecha de creación
         id: ID
         name: Nombre
+        owner: Propietario
         updated_at: Fecha de modificación
       report:
         created_at: Fecha de creación

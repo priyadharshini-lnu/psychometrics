@@ -517,6 +517,7 @@ sl:
         created_at: Datum ustvarjanja
         id: ID
         name: Ime
+        owner: Lastnik
         updated_at: Datum spremembe
       factor:
         active: Dejaven
@@ -543,7 +544,11 @@ sl:
         updated_at: Datum spremembe
       library:
         created_at: Datum ustvarjanja
+        description: Opis
+        files: Datoteke
         id: ID
+        name: Ime
+        owner: Lastnik
         type: Sličica
         updated_at: Datum spremembe
       license:
@@ -615,6 +620,7 @@ sl:
         created_at: Datum ustvarjanja
         id: ID
         name: Ime
+        owner: Lastnik
         updated_at: Datum spremembe
       report:
         created_at: Datum ustvarjanja

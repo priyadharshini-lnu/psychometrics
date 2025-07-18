@@ -1534,6 +1534,7 @@ vi:
       save: Cứu
       select_all: Chọn tất cả
       unselect_all: Bỏ chọn tất cả
+    communication_settings: Cài đặt
     communications:
       create:
         successfully: Giao tiếp đã được tạo thành công.
@@ -1566,9 +1567,16 @@ vi:
           {{email}} - Email người nhận
           {{schedule_start_date}} - Ngày bắt đầu lịch trình
           {{schedule_end_date}} - Ngày kết thúc lịch trình
+        campaign: Chiến dịch
+        campaign_assessment_group: Nhóm Đánh giá Chiến dịch
+        client: Khách hàng
         completion: Hoàn thành
         delivery_at: Giao hàng tại (GST)
         delivery_delay_hours: Giao hàng chậm trễ (giờ)
+        delivery_interval: Thời gian giao hàng
+        delivery_interval_number: Số khoảng thời gian giao hàng
+        delivery_interval_period: Thời gian giao hàng
+        delivery_rule: Quy tắc giao hàng
         delivery_rules:
           in_progress: Nếu đánh giá đang được tiến hành
           not_competed: Nếu đánh giá không hoàn thành
@@ -1580,13 +1588,18 @@ vi:
         idp_template_approved: IDP đã được phê duyệt
         idp_template_assigned: IDP được chỉ định
         idp_template_rejected: IDP bị từ chối
+        insert_piped_text: Chèn văn bản có đường dẫn
         invitation: Lời mời
         kind: Các loại giao tiếp
         locale: Locale
         magic_link_email: Email liên kết ma thuật
+        message_body_placeholder: Nhập tin nhắn của bạn vào đây...
         new_assignment: Nhiệm vụ mới
         new_users: Người dùng mới
         other: Khác
+        owner: Chủ sở hữu
+        project: Dự án
+        recipients: Người nhận
         reminder: Nhắc nhở
         report_available: Báo cáo có sẵn
         selected: Chọn
@@ -1594,6 +1607,7 @@ vi:
         selected_recipients: Người nhận được chọn
         stop_reminder: Ngừng gửi lời nhắc
         stop_reminder_datetime: Ngày kết thúc lời nhắc (GST)
+        subject: Chủ đề
         workshop_booked: Xác nhận đặt phòng của trung tâm đánh giá
         workshop_cancelled: Trung tâm đánh giá bị hủy bỏ
         workshop_completed: Trung tâm đánh giá đã hoàn thành
@@ -1878,10 +1892,24 @@ vi:
         successfully: Tác vụ nhập yếu tố được lên lịch cho thứ nguyên %{name}.
         title: Các yếu tố nhập khẩu
       import_modal:
+        after: Sau
+        before: Trước
         cancel: Hủy
+        change_log_input: Nhật ký thay đổi
         continue: Tiếp tục
+        error: Lỗi
+        error_occurred: Đã xảy ra lỗi
+        errors:
+          file_error: Vui lòng chọn một tệp JSON trước khi tiếp tục.
+          processing_error: Lỗi xử lý tệp
+        field: Trường
         import: Nhập khẩu
         import_dimension: Kích thước nhập khẩu
+        import_scheduled: Nhập theo lịch trình
+        operation: Hoạt động
+        owner_input_validation: Vui lòng chọn chủ sở hữu.
+        owner_select: Chọn chủ sở hữu
+        select_json: Chọn tệp JSON
       import_translations:
         error: Lỗi khi nhập bản dịch cho thứ nguyên %{name}.
         successfully: Nhập bản dịch được lên lịch cho thứ nguyên %{name}.
@@ -2438,6 +2466,7 @@ vi:
         successfully: Người dùng %{name} đã được cập nhật thành công.
       update:
         successfully: Người dùng %{name} đã được cập nhật thành công.
+    message: Thông điệp
     meta_title: Bảng điều khiển
     navigation:
       ai_assistants: Trợ lý AI
@@ -2544,6 +2573,7 @@ vi:
         editor: Trình chỉnh sửa định mức
         export: Định mức xuất khẩu
         title: Các lựa chọn của Norm
+      title: Tiêu chuẩn
       toggle_status:
         successfully: Norm đã được cập nhật thành công.
       update:
@@ -2631,12 +2661,16 @@ vi:
     piped_text_modal:
       assessment_id: ID đánh giá
       campaign_id: ID chiến dịch
+      campaign_name: Tên chiến dịch
+      campaigns: Chiến dịch
       insight_page_link: Liên kết trang Insight
       insight_page_url: URL trang thông tin chi tiết
       join_link: Liên kết tham gia
       magic_link: Liên kết ma thuật
       magic_url: URL ma thuật
       profile_custom_field: Trường tùy chỉnh hồ sơ
+      project_name: Tên dự án
+      projects: Dự án
       report_name: Tên báo cáo
       text: Nhắn tin
       title: Thêm văn bản đường ống

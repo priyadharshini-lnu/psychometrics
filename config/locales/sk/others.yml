@@ -517,6 +517,7 @@ sk:
         created_at: Dátum vytvorenia
         id: ID
         name: Meno
+        owner: Vlastník
         updated_at: Dátum úpravy
       factor:
         active: Aktívny
@@ -543,7 +544,11 @@ sk:
         updated_at: Dátum úpravy
       library:
         created_at: Dátum vytvorenia
+        description: Popis
+        files: Súbory
         id: ID
+        name: Názov
+        owner: Vlastník
         type: Miniatúra
         updated_at: Dátum úpravy
       license:
@@ -615,6 +620,7 @@ sk:
         created_at: Dátum vytvorenia
         id: ID
         name: Meno
+        owner: Vlastník
         updated_at: Dátum úpravy
       report:
         created_at: Dátum vytvorenia

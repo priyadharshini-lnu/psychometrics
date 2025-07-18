@@ -517,6 +517,7 @@ nl:
         created_at: Datum aangemaakt
         id: ID
         name: Naam
+        owner: Eigenaar
         updated_at: Gewijzigde datum
       factor:
         active: Actief
@@ -543,7 +544,11 @@ nl:
         updated_at: Gewijzigde datum
       library:
         created_at: Datum aangemaakt
+        description: Beschrijving
+        files: Bestanden
         id: ID
+        name: Naam
+        owner: Eigenaar
         type: Miniaturen
         updated_at: Gewijzigde datum
       license:
@@ -615,6 +620,7 @@ nl:
         created_at: Datum aangemaakt
         id: ID
         name: Naam
+        owner: Eigenaar
         updated_at: Gewijzigde datum
       report:
         created_at: Datum aangemaakt

@@ -1534,6 +1534,7 @@ th:
       save: ประหยัด
       select_all: เลือกทั้งหมด
       unselect_all: ยกเลิกการเลือกทั้งหมด
+    communication_settings: การตั้งค่า
     communications:
       create:
         successfully: การสื่อสารถูกสร้างขึ้นเรียบร้อยแล้ว
@@ -1566,9 +1567,16 @@ th:
           {{email}} - อีเมลผู้รับ
           {{schedule_start_date}} - วันที่เริ่มต้นกําหนดการ
           {{schedule_end_date}} - วันที่สิ้นสุดกําหนดการ
+        campaign: แคมเปญ
+        campaign_assessment_group: กลุ่มประเมินผลแคมเปญ
+        client: ลูกค้า
         completion: เสร็จ สมบูรณ์
         delivery_at: จัดส่งที่ (GST)
         delivery_delay_hours: ความล่าช้าในการจัดส่ง (ชั่วโมง)
+        delivery_interval: ระยะเวลาการส่งมอบ
+        delivery_interval_number: จำนวนช่วงเวลาการส่งมอบ
+        delivery_interval_period: ช่วงเวลาการส่งมอบ
+        delivery_rule: กฎการส่งมอบ
         delivery_rules:
           in_progress: หากกําลังดําเนินการประเมิน
           not_competed: หากการประเมินไม่เสร็จสมบูรณ์
@@ -1580,13 +1588,18 @@ th:
         idp_template_approved: IDP ได้รับการอนุมัติ
         idp_template_assigned: IDP ที่ได้รับมอบหมาย
         idp_template_rejected: IDP ถูกปฏิเสธ
+        insert_piped_text: แทรกข้อความที่มีเส้นขอบ
         invitation: การเชื้อเชิญ
         kind: ประเภทการสื่อสาร
         locale: สถานที่เกิดเหตุ
         magic_link_email: อีเมลลิงค์เมจิก
+        message_body_placeholder: กรุณาป้อนข้อความของคุณที่นี่...
         new_assignment: งานที่ได้รับมอบหมายใหม่
         new_users: ผู้ใช้ใหม่
         other: อื่นๆ
+        owner: เจ้าของ
+        project: โครงการ
+        recipients: ผู้รับ
         reminder: หมายเหตุ
         report_available: มีรายงาน
         selected: เลือก
@@ -1594,6 +1607,7 @@ th:
         selected_recipients: ผู้รับที่เลือก
         stop_reminder: หยุดส่งการเตือนความจํา
         stop_reminder_datetime: วันที่สิ้นสุดการช่วยเตือน (GST)
+        subject: เรื่อง
         workshop_booked: การยืนยันการจองศูนย์ประเมิน
         workshop_cancelled: ศูนย์ประเมินถูกยกเลิก
         workshop_completed: ศูนย์ประเมินเสร็จสมบูรณ์
@@ -1878,10 +1892,24 @@ th:
         successfully: ตั้งเวลานําเข้าปัจจัยสําหรับมิติ %{name}
         title: ปัจจัยการนําเข้า
       import_modal:
+        after: หลังจาก
+        before: ก่อนหน้า
         cancel: ยกเลิก
+        change_log_input: บันทึกการเปลี่ยนแปลง
         continue: ต่อเนื่อง
+        error: ข้อผิดพลาด
+        error_occurred: เกิดข้อผิดพลาด
+        errors:
+          file_error: กรุณาเลือกไฟล์ JSON ก่อนดำเนินการต่อ
+          processing_error: เกิดข้อผิดพลาดในการประมวลผลไฟล์
+        field: ฟิลด์
         import: นําเข้า
         import_dimension: นำเข้ามิติ
+        import_scheduled: นำเข้าตามกำหนดการ
+        operation: การปฏิบัติการ
+        owner_input_validation: กรุณาเลือกเจ้าของ
+        owner_select: เลือกเจ้าของ
+        select_json: เลือกไฟล์ JSON
       import_translations:
         error: เกิดข้อผิดพลาดขณะนําเข้าคําแปลสําหรับมิติ %{name}
         successfully: ตั้งเวลานําเข้าคำแปลสําหรับมิติ %{name}
@@ -2438,6 +2466,7 @@ th:
         successfully: ผู้ใช้ %{name} อัปเดตเรียบร้อยแล้ว
       update:
         successfully: ผู้ใช้ %{name} อัปเดตเรียบร้อยแล้ว
+    message: ข้อความ
     meta_title: แผงการดูแลระบบ
     navigation:
       ai_assistants: ผู้ช่วย AI
@@ -2544,6 +2573,7 @@ th:
         editor: บรรณาธิการบรรทัดฐาน
         export: บรรทัดฐานการส่งออก
         title: ตัวเลือกของ Norm
+      title: ปกติ
       toggle_status:
         successfully: ค่ามาตรฐานอัปเดตเรียบร้อยแล้ว
       update:
@@ -2631,12 +2661,16 @@ th:
     piped_text_modal:
       assessment_id: รหัสการประเมิน
       campaign_id: รหัสแคมเปญ
+      campaign_name: ชื่อแคมเปญ
+      campaigns: แคมเปญ
       insight_page_link: ลิงค์หน้าข้อมูลเชิงลึก
       insight_page_url: URL ของหน้าข้อมูลเชิงลึก
       join_link: ลิงค์เข้าร่วม
       magic_link: ลิงค์เมจิก
       magic_url: URL เมจิก
       profile_custom_field: โปรไฟล์ฟิลด์ที่กําหนดเอง
+      project_name: ชื่อโครงการ
+      projects: โครงการ
       report_name: ชื่อรายงาน
       text: ข้อความ
       title: เพิ่มข้อความท่อ

@@ -13,18 +13,57 @@ sr-Cyrl:
         select_operation: Изаберите операцију
   activerecord:
     attributes:
+      assessment:
+        description: Опис
+        name: Име
+      block:
+        name: Име
+      client:
+        name: Име
+      dimension:
+        name: Име
+        owner: Власник
+      factor:
+        name: Име
+      innovation_style:
+        description: Опис
+        name: Име
+      innovation_styles_factor:
+        name: Име
+      library:
+        description: Опис
+        files: Фајлови
+        name: Име
+        owner: Власник
       membership:
         first_name: Име
         last_name: Презиме
+      norm:
+        name: Име
+      occupation:
+        description: Опис
+        name: Име
+      occupations_factor:
+        name: Име
+      product:
+        name: Име
+      question:
+        name: Име
+        owner: Власник
+      task:
+        description: Опис
       user:
         email: Адреса е-поште
         first_name: Име
         last_name: Презиме
+        name: Име
       user_form:
         email: Адреса е-поште
         first_name: Име
         last_name: Презиме
         password: Лозинка
+      users_result:
+        name: Име
     errors:
       models:
         register:
@@ -371,7 +410,10 @@ sr-Cyrl:
       action: Акција
       category: Категорија
       created_at: Направљено у
+      description: Опис
       id: ИД
+      name: Име
+      owner: Власник
       status: Статус
     model:
       assessments: Процене
@@ -572,6 +614,10 @@ sr-Cyrl:
         requested_rescheduling_rejected: Захтевано поновно заказивање је одбијено
     'yes': Да
   idp:
+    pdf:
+      cover:
+        fields:
+          name: Име
     reflective_questions:
       already_completed: Интегрисани план (ИПР) је већ завршен, сада не можете одговарати на питања.
   idp_templates:
@@ -589,6 +635,10 @@ sr-Cyrl:
       subject: Линк за пријаву на Lighthouse
   navigation:
     logout: Одјавите се
+  norms:
+    percentile:
+      columns:
+        name: Име
   profile:
     add_field: Додај поље
     add_photo: Додај фотографију
@@ -722,16 +772,37 @@ sr-Cyrl:
     terms_conditions_privacy: Изјава о приватности
     tte_terms_and_condition: Услови и приватност
   simple_form:
+    labels:
+      client:
+        name: Име
     placeholders:
       administrator:
         email: Адреса е-поште
         last_name: Презиме
+        name: Име
+      assessment:
+        description: Опис
+        name: Име
+      block:
+        name: Име
+      client:
+        name: Име
+      dimension:
+        name: Име
+      factor:
+        name: Име
       memebrship:
         last_name: Презиме
+      norm:
+        description: Опис
+        name: Име
+      question:
+        name: Име
       user:
         email: Адреса е-поште
         first_name: Име
         last_name: Презиме
+        name: Име
         password: Лозинка
       user_form:
         email: Адреса е-поште

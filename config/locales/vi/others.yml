@@ -517,6 +517,7 @@ vi:
         created_at: Ngày tạo
         id: ID
         name: Tên
+        owner: Chủ sở hữu
         updated_at: Ngày sửa đổi
       factor:
         active: Hoạt động
@@ -543,7 +544,11 @@ vi:
         updated_at: Ngày sửa đổi
       library:
         created_at: Ngày tạo
+        description: Mô tả
+        files: Tệp tin
         id: ID
+        name: Tên
+        owner: Chủ sở hữu
         type: Thu nhỏ
         updated_at: Ngày sửa đổi
       license:
@@ -615,6 +620,7 @@ vi:
         created_at: Ngày tạo
         id: ID
         name: Tên
+        owner: Chủ sở hữu
         updated_at: Ngày sửa đổi
       report:
         created_at: Ngày tạo

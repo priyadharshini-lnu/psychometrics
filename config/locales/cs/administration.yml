@@ -1534,6 +1534,7 @@ cs:
       save: Uložit
       select_all: Vyberte vše
       unselect_all: Zrušit výběr všech
+    communication_settings: Nastavení
     communications:
       create:
         successfully: Komunikace byla úspěšně vytvořena.
@@ -1566,9 +1567,16 @@ cs:
            {{email}} - E-mail příjemce
            {{schedule_start_date}} - Datum zahájení rozvrhu
            {{schedule_end_date}} - Datum ukončení rozvrhu"
+        campaign: Kampaň
+        campaign_assessment_group: Skupina pro hodnocení kampaní
+        client: Klient
         completion: Dokončení
         delivery_at: Dodání na (GST)
         delivery_delay_hours: Zpoždění dodávky (v hodinách)
+        delivery_interval: Interval dodání
+        delivery_interval_number: Číslo intervalu dodání
+        delivery_interval_period: Období intervalu dodání
+        delivery_rule: Pravidlo doručování
         delivery_rules:
           in_progress: Pokud probíhá hodnocení
           not_competed: Pokud není hodnocení dokončeno
@@ -1580,13 +1588,18 @@ cs:
         idp_template_approved: Schválený IDP
         idp_template_assigned: Přidělený IDP
         idp_template_rejected: IDP Odmítnuto
+        insert_piped_text: Vložení textu s potrubím
         invitation: Pozvánka
         kind: Typy komunikace
         locale: Místní nastavení
         magic_link_email: Kouzelný odkaz E-mail
+        message_body_placeholder: Zde zadejte svůj vzkaz...
         new_assignment: Nové zadání
         new_users: Noví uživatelé
         other: Další
+        owner: Majitel
+        project: Projekt
+        recipients: Příjemci
         reminder: Připomínka
         report_available: Zpráva je k dispozici
         selected: Vybrané stránky
@@ -1594,6 +1607,7 @@ cs:
         selected_recipients: Vybraní příjemci
         stop_reminder: Přestat posílat upomínky
         stop_reminder_datetime: Datum ukončení upomínek (GST)
+        subject: Předmět
         workshop_booked: Potvrzení rezervace hodnotícího centra
         workshop_cancelled: Hodnotící centrum zrušeno
         workshop_completed: Hodnotící centrum dokončeno
@@ -1878,10 +1892,24 @@ cs:
         successfully: Úloha importních faktorů naplánovaná pro dimenzi %{name}.
         title: Faktory dovozu
       import_modal:
+        after: Po
+        before: Před
         cancel: Zrušit
+        change_log_input: Záznam o změnách
         continue: Pokračovat
+        error: Chyba
+        error_occurred: Došlo k chybě
+        errors:
+          file_error: Před pokračováním vyberte soubor JSON.
+          processing_error: Chybné zpracování souboru
+        field: Pole
         import: Import
         import_dimension: Rozměr importu
+        import_scheduled: Plánovaný import
+        operation: Operace
+        owner_input_validation: Vyberte prosím vlastníka
+        owner_select: Výběr vlastníka
+        select_json: Výběr souboru JSON
       import_translations:
         error: Chyba při importu překladů pro rozměr %{name}.
         successfully: Import překladů naplánovaný pro dimenzi %{name}.
@@ -2438,6 +2466,7 @@ cs:
         successfully: Uživatel %{name} byl úspěšně aktualizován.
       update:
         successfully: Uživatel %{name} byl úspěšně aktualizován.
+    message: Zpráva
     meta_title: Administrativní panel
     navigation:
       ai_assistants: Asistenti AI
@@ -2544,6 +2573,7 @@ cs:
         editor: Normální editor
         export: Norma pro vývoz
         title: Normovy možnosti
+      title: Norm
       toggle_status:
         successfully: Norma byla úspěšně aktualizována.
       update:
@@ -2631,12 +2661,16 @@ cs:
     piped_text_modal:
       assessment_id: ID hodnocení
       campaign_id: ID kampaně
+      campaign_name: Název kampaně
+      campaigns: Kampaně
       insight_page_link: Odkaz na stránku Insight
       insight_page_url: Adresa URL stránky Insight
       join_link: Připojte se k odkazu
       magic_link: Magický odkaz
       magic_url: Magická adresa URL
       profile_custom_field: Vlastní pole profilu
+      project_name: Název projektu
+      projects: Projekty
       report_name: Název zprávy
       text: Text
       title: Přidání textu s potrubím

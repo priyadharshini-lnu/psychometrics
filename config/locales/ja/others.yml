@@ -517,6 +517,7 @@ ja:
         created_at: 作成日
         id: 身分証明書
         name: 名称
+        owner: オーナー
         updated_at: 変更日
       factor:
         active: アクティブ
@@ -543,7 +544,11 @@ ja:
         updated_at: 変更日
       library:
         created_at: 作成日
+        description: 説明
+        files: ファイル
         id: 身分証明書
+        name: 名称
+        owner: オーナー
         type: サムネイル
         updated_at: 変更日
       license:
@@ -615,6 +620,7 @@ ja:
         created_at: 作成日
         id: 身分証明書
         name: 名称
+        owner: オーナー
         updated_at: 変更日
       report:
         created_at: 作成日

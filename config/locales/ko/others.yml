@@ -517,6 +517,7 @@ ko:
         created_at: 생성 날짜
         id: ID
         name: 이름
+        owner: 소유자
         updated_at: 수정된 날짜
       factor:
         active: 활성
@@ -543,7 +544,11 @@ ko:
         updated_at: 수정된 날짜
       library:
         created_at: 생성 날짜
+        description: 설명
+        files: 파일
         id: ID
+        name: 이름
+        owner: 소유자
         type: 썸네일
         updated_at: 수정된 날짜
       license:
@@ -615,6 +620,7 @@ ko:
         created_at: 생성 날짜
         id: ID
         name: 이름
+        owner: 소유자
         updated_at: 수정된 날짜
       report:
         created_at: 생성 날짜

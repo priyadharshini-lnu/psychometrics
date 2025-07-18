@@ -517,6 +517,7 @@ th:
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
+        owner: เจ้าของ
         updated_at: วันที่แก้ไข
       factor:
         active: กระปรี้กระเปร่า
@@ -543,7 +544,11 @@ th:
         updated_at: วันที่แก้ไข
       library:
         created_at: วันที่สร้าง
+        description: คำอธิบาย
+        files: ไฟล์
         id: รหัส
+        name: ชื่อ
+        owner: เจ้าของ
         type: รูปขนาดย่อ
         updated_at: วันที่แก้ไข
       license:
@@ -615,6 +620,7 @@ th:
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
+        owner: เจ้าของ
         updated_at: วันที่แก้ไข
       report:
         created_at: วันที่สร้าง

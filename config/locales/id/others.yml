@@ -517,6 +517,7 @@ id:
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
+        owner: Pemilik
         updated_at: Tanggal yang Dimodifikasi
       factor:
         active: Aktif
@@ -543,7 +544,11 @@ id:
         updated_at: Tanggal yang Dimodifikasi
       library:
         created_at: Tanggal Dibuat
+        description: Deskripsi
+        files: File
         id: ID
+        name: Nama
+        owner: Pemilik
         type: Gambar mini
         updated_at: Tanggal yang Dimodifikasi
       license:
@@ -615,6 +620,7 @@ id:
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
+        owner: Pemilik
         updated_at: Tanggal yang Dimodifikasi
       report:
         created_at: Tanggal Dibuat

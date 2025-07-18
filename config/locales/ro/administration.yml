@@ -1534,6 +1534,7 @@ ro:
       save: Salva
       select_all: Selectează tot
       unselect_all: Deselectați tot
+    communication_settings: Setări
     communications:
       create:
         successfully: Comunicarea a fost creată cu succes.
@@ -1566,9 +1567,16 @@ ro:
           {{email}} - Adresa de e-mail a destinatarului
           {{schedule_start_date}} - Data de începere a programului
           {{schedule_end_date}} - Data de încheiere a programului
+        campaign: Campanie
+        campaign_assessment_group: Grupul de evaluare a campaniei
+        client: Client
         completion: Terminare
         delivery_at: Livrare la (GST)
         delivery_delay_hours: Întârziere de livrare (ore)
+        delivery_interval: Interval de livrare
+        delivery_interval_number: Numărul intervalului de livrare
+        delivery_interval_period: Perioada intervalului de livrare
+        delivery_rule: Regula de livrare
         delivery_rules:
           in_progress: Dacă evaluarea este în curs de desfășurare
           not_competed: Dacă evaluarea nu este finalizată
@@ -1580,13 +1588,18 @@ ro:
         idp_template_approved: Aprobat de IDP
         idp_template_assigned: IDP atribuit
         idp_template_rejected: IDP respins
+        insert_piped_text: Inserarea textului cu conducte
         invitation: Invitație
         kind: Tipuri de comunicare
         locale: Setări regionale
         magic_link_email: E-mail Magic Link
+        message_body_placeholder: Introduceți mesajul dvs. aici...
         new_assignment: Misiune nouă
         new_users: Utilizatori noi
         other: Alt
+        owner: Proprietar
+        project: Proiect
+        recipients: Beneficiari
         reminder: Memento
         report_available: Raport disponibil
         selected: Selectat
@@ -1594,6 +1607,7 @@ ro:
         selected_recipients: Destinatari selectați
         stop_reminder: Opriți trimiterea mementourilor
         stop_reminder_datetime: Data de încheiere a mementourilor (GST)
+        subject: Subiect
         workshop_booked: Confirmarea rezervării centrului de evaluare
         workshop_cancelled: Centrul de evaluare anulat
         workshop_completed: Centru de evaluare finalizat
@@ -1878,10 +1892,24 @@ ro:
         successfully: Factori de import programat pentru parametrul %{name}.
         title: Factori de import
       import_modal:
+        after: După
+        before: Înainte de
         cancel: Anula
+        change_log_input: Jurnal de modificări
         continue: Continua
+        error: Eroare
+        error_occurred: A apărut o eroare
+        errors:
+          file_error: Vă rugăm să selectați un fișier JSON înainte de a continua.
+          processing_error: Eroare la procesarea fișierului
+        field: Câmp
         import: Importa
         import_dimension: Dimensiune import
+        import_scheduled: Import programat
+        operation: Funcționare
+        owner_input_validation: Vă rugăm să selectați un proprietar
+        owner_select: Selectați un proprietar
+        select_json: Selectați fișierul JSON
       import_translations:
         error: Eroare la importul traducerilor pentru parametrul %{name}.
         successfully: Importați traduceri programate pentru dimensiunea %{name}.
@@ -2438,6 +2466,7 @@ ro:
         successfully: Utilizatorul %{name} a fost actualizat cu succes.
       update:
         successfully: Utilizatorul %{name} a fost actualizat cu succes.
+    message: Mesaj
     meta_title: Panou de administrare
     navigation:
       ai_assistants: Asistenți AI
@@ -2544,6 +2573,7 @@ ro:
         editor: Editor de norme
         export: Norma de export
         title: Opțiunile lui Norm
+      title: Norma
       toggle_status:
         successfully: Norm a fost actualizat cu succes.
       update:
@@ -2631,12 +2661,16 @@ ro:
     piped_text_modal:
       assessment_id: ID evaluare
       campaign_id: Codul campaniei
+      campaign_name: Numele campaniei
+      campaigns: Campanii
       insight_page_link: Link către pagina Insight
       insight_page_url: Adresa URL a paginii Insight
       join_link: Link alăturați-vă
       magic_link: Legătura magică
       magic_url: Adresa URL magică
       profile_custom_field: Câmp personalizat profil
+      project_name: Numele proiectului
+      projects: Proiecte
       report_name: Numele raportului
       text: Text
       title: Adăugați text canalizat

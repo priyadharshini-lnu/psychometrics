@@ -517,6 +517,7 @@ zh:
         created_at: 创建日期
         id: 身份证
         name: 名称
+        owner: 业主
         updated_at: 修改日期
       factor:
         active: 活跃
@@ -543,7 +544,11 @@ zh:
         updated_at: 修改日期
       library:
         created_at: 创建日期
+        description: 说明
+        files: 文件
         id: 身份证
+        name: 名称
+        owner: 业主
         type: 缩略图
         updated_at: 修改日期
       license:
@@ -615,6 +620,7 @@ zh:
         created_at: 创建日期
         id: 身份证
         name: 名称
+        owner: 业主
         updated_at: 修改日期
       report:
         created_at: 创建日期

@@ -517,6 +517,7 @@ hr:
         created_at: Datum izrade
         id: ID
         name: Ime
+        owner: Vlasnik
         updated_at: Datum izmjene
       factor:
         active: Aktivan
@@ -543,7 +544,11 @@ hr:
         updated_at: Datum izmjene
       library:
         created_at: Datum izrade
+        description: Opis
+        files: Datoteke
         id: ID
+        name: Ime
+        owner: Vlasnik
         type: Minijatura
         updated_at: Datum izmjene
       license:
@@ -615,6 +620,7 @@ hr:
         created_at: Datum izrade
         id: ID
         name: Ime
+        owner: Vlasnik
         updated_at: Datum izmjene
       report:
         created_at: Datum izrade

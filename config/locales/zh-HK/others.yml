@@ -59,18 +59,57 @@ zh-HK:
               must_exist: 專案必須存在
   activerecord:
     attributes:
+      assessment:
+        description: 說明
+        name: 名稱
+      block:
+        name: 名稱
+      client:
+        name: 名稱
+      dimension:
+        name: 名稱
+        owner: 業主
+      factor:
+        name: 名稱
+      innovation_style:
+        description: 說明
+        name: 名稱
+      innovation_styles_factor:
+        name: 名稱
+      library:
+        description: 說明
+        files: 檔案
+        name: 名稱
+        owner: 業主
       membership:
         first_name: 名字
         last_name: 姓氏
+      norm:
+        name: 名稱
+      occupation:
+        description: 說明
+        name: 名稱
+      occupations_factor:
+        name: 名稱
+      product:
+        name: 名稱
+      question:
+        name: 名稱
+        owner: 業主
+      task:
+        description: 說明
       user:
         email: 電郵地址
         first_name: 名字
         last_name: 姓氏
+        name: 名稱
       user_form:
         email: 電郵地址
         first_name: 名字
         last_name: 姓氏
         password: 密碼
+      users_result:
+        name: 名稱
     errors:
       models:
         register:
@@ -477,7 +516,10 @@ zh-HK:
       category: 類別
       code: 代碼
       created_at: 建立時間
+      description: 說明
       id: ID
+      name: 名稱
+      owner: 業主
       status: 狀態
     model:
       assessments: 評估
@@ -921,6 +963,10 @@ zh-HK:
       subject: Lighthouse 的登入連結
   navigation:
     logout: 登出
+  norms:
+    percentile:
+      columns:
+        name: 名稱
   profile:
     add_field: 新增欄位
     add_photo: 新增相片
@@ -1058,16 +1104,37 @@ zh-HK:
     terms_conditions_privacy: 私隱聲明
     tte_terms_and_condition: 條款和私隱
   simple_form:
+    labels:
+      client:
+        name: 名稱
     placeholders:
       administrator:
         email: 電郵地址
         last_name: 姓氏
+        name: 名稱
+      assessment:
+        description: 說明
+        name: 名稱
+      block:
+        name: 名稱
+      client:
+        name: 名稱
+      dimension:
+        name: 名稱
+      factor:
+        name: 名稱
       memebrship:
         last_name: 姓氏
+      norm:
+        description: 說明
+        name: 名稱
+      question:
+        name: 名稱
       user:
         email: 電郵地址
         first_name: 名字
         last_name: 姓氏
+        name: 名稱
         password: 密碼
       user_form:
         email: 電郵地址

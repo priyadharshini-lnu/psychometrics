@@ -517,6 +517,7 @@ fr:
         created_at: Date de création
         id: ID
         name: Nom
+        owner: Propriétaire
         updated_at: Date de modification
       factor:
         active: Actif
@@ -543,7 +544,11 @@ fr:
         updated_at: Date de modification
       library:
         created_at: Date de création
+        description: Description
+        files: Dossiers
         id: ID
+        name: Nom
+        owner: Propriétaire
         type: Vignette
         updated_at: Date de modification
       license:
@@ -615,6 +620,7 @@ fr:
         created_at: Date de création
         id: ID
         name: Nom
+        owner: Propriétaire
         updated_at: Date de modification
       report:
         created_at: Date de création

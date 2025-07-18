@@ -1534,6 +1534,7 @@ sl:
       save: Shraniti
       select_all: Izberi vse
       unselect_all: Počisti izbiro vseh
+    communication_settings: Nastavitve
     communications:
       create:
         successfully: Komunikacija je bila uspešno ustvarjena.
@@ -1566,9 +1567,16 @@ sl:
           {{email}} - Prejemnikov e-poštni naslov
           {{schedule_start_date}} - Začetni datum razporeda
           {{schedule_end_date}} - Končni datum razporeda
+        campaign: Kampanja
+        campaign_assessment_group: Skupina za ocenjevanje kampanj
+        client: Stranka
         completion: Zaključku
         delivery_at: Dostava po (GST)
         delivery_delay_hours: Zamuda pri dostavi (ure)
+        delivery_interval: Interval dostave
+        delivery_interval_number: Interval dostave Številka
+        delivery_interval_period: Obdobje intervala dostave
+        delivery_rule: Pravilo o dostavi
         delivery_rules:
           in_progress: Če ocenjevanje poteka
           not_competed: Če ocenjevanje ni končano
@@ -1580,13 +1588,18 @@ sl:
         idp_template_approved: Odobreno za notranje razseljene osebe
         idp_template_assigned: Dodeljen IDP
         idp_template_rejected: IDP zavrnjen
+        insert_piped_text: Vstavljanje cevastega besedila
         invitation: Vabilo
         kind: Vrste komunikacije
         locale: Locale
         magic_link_email: E-poštni naslov Magic Link
+        message_body_placeholder: Tukaj vnesite svoje sporočilo...
         new_assignment: Nova naloga
         new_users: Novi uporabniki
         other: Drugi
+        owner: Lastnik
+        project: Projekt
+        recipients: Prejemniki
         reminder: Opomnik
         report_available: Poročilo je na voljo
         selected: Izbrane
@@ -1594,6 +1607,7 @@ sl:
         selected_recipients: Izbrani prejemniki
         stop_reminder: Ustavitev pošiljanja opomnikov
         stop_reminder_datetime: Končni datum za opomnike (GST)
+        subject: Zadeva
         workshop_booked: Potrditev rezervacije ocenjevalnega centra
         workshop_cancelled: Ocenjevalni center je bil odpovedan
         workshop_completed: Ocenjevalni center zaključen
@@ -1878,10 +1892,24 @@ sl:
         successfully: Opravilo uvoznih dejavnikov, načrtovano za dimenzijo %{name}.
         title: Dejavniki uvoza
       import_modal:
+        after: Po spletni strani
+        before: Pred
         cancel: Odpovedati
+        change_log_input: Dnevnik sprememb
         continue: Nadaljuj
+        error: Napaka
+        error_occurred: Zgodila se je napaka
+        errors:
+          file_error: Pred nadaljevanjem izberite datoteko JSON.
+          processing_error: Napaka pri obdelavi datoteke
+        field: Polje
         import: Uvoz
         import_dimension: Uvozna razsežnost
+        import_scheduled: Načrtovani uvoz
+        operation: Operacija
+        owner_input_validation: Prosimo, izberite lastnika
+        owner_select: Izberite lastnika
+        select_json: Izberite datoteko JSON
       import_translations:
         error: Napaka pri uvozu prevodov za razsežnost %{name}.
         successfully: Uvozite prevode, razporejene za dimenzijo %{name}.
@@ -2438,6 +2466,7 @@ sl:
         successfully: Uporabnik %{name} je bil uspešno posodobljen.
       update:
         successfully: Uporabnik %{name} je bil uspešno posodobljen.
+    message: Sporočilo
     meta_title: Upravna plošča
     navigation:
       ai_assistants: Pomočniki za umetno inteligenco
@@ -2544,6 +2573,7 @@ sl:
         editor: Urejevalnik norm
         export: Izvozna norma
         title: Normove možnosti
+      title: Norm
       toggle_status:
         successfully: Norm je bil uspešno posodobljen.
       update:
@@ -2631,12 +2661,16 @@ sl:
     piped_text_modal:
       assessment_id: ID ocenjevanja
       campaign_id: ID oglaševalske akcije
+      campaign_name: Ime kampanje
+      campaigns: Kampanje
       insight_page_link: Povezava do strani »Vpogled«
       insight_page_url: URL strani z vpogledi
       join_link: Povezava za pridružitev
       magic_link: Čarobna povezava
       magic_url: Čarobni URL
       profile_custom_field: Polje »Profil po meri«
+      project_name: Ime projekta
+      projects: Projekti
       report_name: Ime poročila
       text: Besedilno sporočilo
       title: Dodajanje besedila v cevi

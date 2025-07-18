@@ -1534,6 +1534,7 @@ ja:
       save: セーブ
       select_all: すべて選択
       unselect_all: すべて選択解除
+    communication_settings: 設定
     communications:
       create:
         successfully: 通信は正常に作成された。
@@ -1566,9 +1567,16 @@ ja:
            {{email}} - 受信者のメールアドレス
            {{schedule_start_date}} - スケジュール開始日
            {{schedule_end_date}} - スケジュール終了日"
+        campaign: キャンペーン
+        campaign_assessment_group: キャンペーン評価グループ
+        client: クライアント
         completion: 完成
         delivery_at: 配送料（GST）
         delivery_delay_hours: 配達遅延（時間）
+        delivery_interval: 配達間隔
+        delivery_interval_number: 配達間隔番号
+        delivery_interval_period: 配達間隔
+        delivery_rule: デリバリー・ルール
         delivery_rules:
           in_progress: 査定が進行中の場合
           not_competed: 評価が完了しない場合
@@ -1580,13 +1588,18 @@ ja:
         idp_template_approved: IDP承認
         idp_template_assigned: 割り当てられたIDP
         idp_template_rejected: IDP却下
+        insert_piped_text: パイプ付きテキストの挿入
         invitation: 招待
         kind: コミュニケーションの種類
         locale: ロケール
         magic_link_email: マジックリンクメール
+        message_body_placeholder: ここにメッセージを入力してください...
         new_assignment: 新しい任務
         new_users: 新規ユーザー
         other: その他
+        owner: オーナー
+        project: プロジェクト
+        recipients: 受賞者
         reminder: リマインダー
         report_available: 報告書あり
         selected: 厳選された
@@ -1594,6 +1607,7 @@ ja:
         selected_recipients: 主な受賞者
         stop_reminder: リマインダーの送信を停止する
         stop_reminder_datetime: リマインダーの終了日（GST）
+        subject: テーマ
         workshop_booked: アセスメントセンター予約確認
         workshop_cancelled: アセスメントセンター中止
         workshop_completed: アセスメント・センター終了
@@ -1878,10 +1892,24 @@ ja:
         successfully: ディメンジョン %{name} に対してスケジュールされたインポート要因ジョブ。
         title: 輸入要因
       import_modal:
+        after: その後
+        before: 前
         cancel: キャンセル
+        change_log_input: 変更履歴
         continue: 続ける
+        error: エラー
+        error_occurred: エラーが発生しました
+        errors:
+          file_error: 続行する前にJSONファイルを選択してください。
+          processing_error: エラー処理ファイル
+        field: フィールド
         import: 輸入
         import_dimension: 輸入寸法
+        import_scheduled: インポート予定
+        operation: オペレーション
+        owner_input_validation: オーナーを選択してください
+        owner_select: オーナーの選択
+        select_json: JSONファイルを選択
       import_translations:
         error: ディメンジョン %{name} の変換のインポート中にエラーが発生しました。
         successfully: ディメンジョン %{name} で予定されているインポート変換。
@@ -2438,6 +2466,7 @@ ja:
         successfully: ユーザ %{name} は正常に更新されました。
       update:
         successfully: ユーザ %{name} は正常に更新されました。
+    message: メッセージ
     meta_title: 管理パネル
     navigation:
       ai_assistants: AIアシスタント
@@ -2544,6 +2573,7 @@ ja:
         editor: ノーム・エディター
         export: 輸出規範
         title: ノームのオプション
+      title: ノーム
       toggle_status:
         successfully: ノームのアップデートは成功した。
       update:
@@ -2631,12 +2661,16 @@ ja:
     piped_text_modal:
       assessment_id: アセスメントID
       campaign_id: キャンペーンID
+      campaign_name: キャンペーン名
+      campaigns: キャンペーン
       insight_page_link: インサイトページリンク
       insight_page_url: インサイトページURL
       join_link: リンク
       magic_link: マジックリンク
       magic_url: マジックURL
       profile_custom_field: プロフィール・カスタム・フィールド
+      project_name: プロジェクト名
+      projects: プロジェクト
       report_name: レポート名
       text: テキスト
       title: パイピング・テキストを追加する

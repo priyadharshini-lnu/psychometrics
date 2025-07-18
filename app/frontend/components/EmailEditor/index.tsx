@@ -17,6 +17,7 @@ interface Props {
   className?: string
   withPipedText?: boolean
 }
+const { I18n } = window
 
 export const EmailEditor: React.FC<Props> = ({
   content, handleContentChange, type, details, className, withPipedText = false,
@@ -26,6 +27,7 @@ export const EmailEditor: React.FC<Props> = ({
     imageUpload: false,
     imageOutputSize: true,
     codeMirror: CodeMirror,
+    placeholderText: I18n.t('administration.communications.form.message_body_placeholder'),
     pluginsEnabled: [
       'image',
       'link',

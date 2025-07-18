@@ -517,6 +517,7 @@ ar:
         created_at: تاريخ الإنشاء
         id: معرف
         name: اسم
+        owner: المالك
         updated_at: تاريخ التعديل
       factor:
         active: نشط
@@ -543,7 +544,11 @@ ar:
         updated_at: تاريخ التعديل
       library:
         created_at: تاريخ الإنشاء
+        description: الوصف
+        files: الملفات
         id: معرف
+        name: الاسم
+        owner: المالك
         type: الصوره المصغره
         updated_at: تاريخ التعديل
       license:
@@ -615,6 +620,7 @@ ar:
         created_at: تاريخ الإنشاء
         id: معرف
         name: اسم
+        owner: المالك
         updated_at: تاريخ التعديل
       report:
         created_at: تاريخ الإنشاء

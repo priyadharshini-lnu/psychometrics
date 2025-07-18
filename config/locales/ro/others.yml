@@ -517,6 +517,7 @@ ro:
         created_at: Data creării
         id: ID
         name: Nume
+        owner: Proprietar
         updated_at: Data modificării
       factor:
         active: Activ
@@ -543,7 +544,11 @@ ro:
         updated_at: Data modificării
       library:
         created_at: Data creării
+        description: Descriere
+        files: Fișiere
         id: ID
+        name: Nume și prenume
+        owner: Proprietar
         type: Miniatură
         updated_at: Data modificării
       license:
@@ -615,6 +620,7 @@ ro:
         created_at: Data creării
         id: ID
         name: Nume
+        owner: Proprietar
         updated_at: Data modificării
       report:
         created_at: Data creării

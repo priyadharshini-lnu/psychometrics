@@ -8,6 +8,8 @@ interface Props {
   onInsert: (value: string) => void
 }
 
+const { I18n } = window
+
 export const SubjectPipedTextButton: React.FC<Props> = ({ communicationKind, onInsert }) => {
   const [modalVisible, setModalVisible] = useState(false)
 
@@ -26,7 +28,7 @@ export const SubjectPipedTextButton: React.FC<Props> = ({ communicationKind, onI
           type="link"
           onClick={openModal}
         >
-          Insert piped text
+          {I18n.t('administration.communications.form.insert_piped_text')}
         </Button>
       </Tooltip>
 

@@ -1534,6 +1534,7 @@ de:
       save: Speichern Sie
       select_all: Alle auswählen
       unselect_all: Alle abwählen
+    communication_settings: Einstellungen
     communications:
       create:
         successfully: Die Kommunikation wurde erfolgreich erstellt.
@@ -1566,9 +1567,16 @@ de:
            {{email}} - E-Mail des Empfängers
            {{schedule_start_date}} - Startdatum des Zeitplans
            {{schedule_end_date}} - Enddatum des Zeitplans"
+        campaign: Kampagne
+        campaign_assessment_group: Gruppe für Kampagnenbewertung
+        client: Kunde
         completion: Fertigstellung
         delivery_at: Lieferung zum (GST)
         delivery_delay_hours: Lieferverzug (Stunden)
+        delivery_interval: Lieferintervall
+        delivery_interval_number: Lieferintervall Nummer
+        delivery_interval_period: Lieferintervall Zeitraum
+        delivery_rule: Zustellungsvorschrift
         delivery_rules:
           in_progress: Wenn die Bewertung im Gange ist
           not_competed: Wenn die Bewertung nicht abgeschlossen ist
@@ -1580,13 +1588,18 @@ de:
         idp_template_approved: IDP Genehmigt
         idp_template_assigned: IDP zugewiesen
         idp_template_rejected: IDP Abgelehnt
+        insert_piped_text: Paspelierten Text einfügen
         invitation: Einladung
         kind: Kommunikationstypen
         locale: Gebietsschema
         magic_link_email: Magischer Link E-Mail
+        message_body_placeholder: Geben Sie hier Ihre Nachricht ein...
         new_assignment: Neue Aufgabe
         new_users: Neue Benutzer
         other: Andere
+        owner: Eigentümer
+        project: Projekt
+        recipients: Empfänger
         reminder: Erinnerung
         report_available: Bericht verfügbar
         selected: Ausgewählte
@@ -1594,6 +1607,7 @@ de:
         selected_recipients: Ausgewählte Begünstigte
         stop_reminder: Keine Mahnungen mehr senden
         stop_reminder_datetime: Enddatum für Mahnungen (GST)
+        subject: Thema
         workshop_booked: Assessment Center Buchungsbestätigung
         workshop_cancelled: Assessment Center abgesagt
         workshop_completed: Assessment Center abgeschlossen
@@ -1878,10 +1892,24 @@ de:
         successfully: Für die Dimension %{name} geplanter Importfaktorenauftrag.
         title: Import-Faktoren
       import_modal:
+        after: Nach
+        before: Vor
         cancel: Abbrechen
+        change_log_input: Änderungsprotokoll
         continue: Weiter
+        error: Fehler
+        error_occurred: Es ist ein Fehler aufgetreten
+        errors:
+          file_error: Bitte wählen Sie eine JSON-Datei aus, bevor Sie fortfahren.
+          processing_error: Fehler bei der Verarbeitung der Datei
+        field: Feld
         import: Importieren
         import_dimension: Dimension importieren
+        import_scheduled: Geplanter Import
+        operation: Operation
+        owner_input_validation: Bitte wählen Sie einen Eigentümer
+        owner_select: Wählen Sie einen Eigentümer
+        select_json: JSON-Datei auswählen
       import_translations:
         error: Fehler beim Importieren von Übersetzungen für die Dimension %{name}.
         successfully: Import von Übersetzungen für Dimension %{name} geplant.
@@ -2438,6 +2466,7 @@ de:
         successfully: Benutzer %{name} wurde erfolgreich aktualisiert.
       update:
         successfully: Benutzer %{name} wurde erfolgreich aktualisiert.
+    message: Nachricht
     meta_title: Verwaltungs-Panel
     navigation:
       ai_assistants: AI-Assistenten
@@ -2544,6 +2573,7 @@ de:
         editor: Norm Editor
         export: Norm exportieren
         title: Norm's Optionen
+      title: Norm
       toggle_status:
         successfully: Norm wurde erfolgreich aktualisiert.
       update:
@@ -2631,12 +2661,16 @@ de:
     piped_text_modal:
       assessment_id: Bewertung ID
       campaign_id: Kampagnen-ID
+      campaign_name: Name der Kampagne
+      campaigns: Kampagnen
       insight_page_link: Insight Page Link
       insight_page_url: URL der Einsichtsseite
       join_link: Link verbinden
       magic_link: Magische Verbindung
       magic_url: Magische URL
       profile_custom_field: Benutzerdefiniertes Profilfeld
+      project_name: Name des Projekts
+      projects: Projekte
       report_name: Bericht Name
       text: Text
       title: Paspelierten Text hinzufügen

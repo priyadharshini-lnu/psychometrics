@@ -1534,6 +1534,7 @@ bg:
       save: Спасявам
       select_all: Изберете всички
       unselect_all: Премахване на избора на всички
+    communication_settings: Настройки
     communications:
       create:
         successfully: Комуникацията беше създадена успешно.
@@ -1566,9 +1567,16 @@ bg:
           {{email}} - Имейл адрес на получателя
           {{schedule_start_date}} - Начална дата на планиране
           {{schedule_end_date}} - Крайна дата на графика
+        campaign: Кампания
+        campaign_assessment_group: Група за оценка на кампанията
+        client: Клиент
         completion: Завършване
         delivery_at: Доставка при (GST)
         delivery_delay_hours: Забавяне на доставката (часове)
+        delivery_interval: Интервал на доставка
+        delivery_interval_number: Номер на интервала на доставка
+        delivery_interval_period: Период на интервала на доставка
+        delivery_rule: Правило за доставка
         delivery_rules:
           in_progress: Ако оценката е в ход
           not_competed: Ако оценката не е завършена
@@ -1580,13 +1588,18 @@ bg:
         idp_template_approved: Одобрен от IDP
         idp_template_assigned: Назначен IDP
         idp_template_rejected: Вътрешно разселените лица са отхвърлени
+        insert_piped_text: Вмъкване на текст с тръби
         invitation: Покана
         kind: Видове комуникация
         locale: Място
         magic_link_email: Имейл на Magic Link
+        message_body_placeholder: Въведете вашето съобщение тук...
         new_assignment: Ново назначение
         new_users: Нови потребители
         other: Друг
+        owner: Собственик
+        project: Проект
+        recipients: Получатели
         reminder: Напомняне
         report_available: Наличен отчет
         selected: Избран
@@ -1594,6 +1607,7 @@ bg:
         selected_recipients: Избрани получатели
         stop_reminder: Спиране на изпращането на напомняния
         stop_reminder_datetime: Крайна дата за напомняния (GST)
+        subject: Тема
         workshop_booked: Потвърждение на резервацията в центъра за оценяване
         workshop_cancelled: Центърът за оценяване е отменен
         workshop_completed: Центърът за оценяване е завършен
@@ -1878,10 +1892,24 @@ bg:
         successfully: Задача за импортиране на фактори, планирана за величина %{name}.
         title: Фактори за внос
       import_modal:
+        after: След
+        before: Преди
         cancel: Отмени
+        change_log_input: Регистър на промените
         continue: Продължавам
+        error: Грешка
+        error_occurred: Възникнала е грешка
+        errors:
+          file_error: Моля, изберете JSON файл, преди да продължите.
+          processing_error: Грешка при обработката на файла
+        field: Поле
         import: Внос
         import_dimension: Величина за импортиране
+        import_scheduled: Планиран внос
+        operation: Операция
+        owner_input_validation: Моля, изберете собственик
+        owner_select: Изберете собственик
+        select_json: Изберете JSON файл
       import_translations:
         error: Грешка при импортиране на преводи за величина %{name}.
         successfully: Импортиране на преводи, планирани за величина %{name}.
@@ -2438,6 +2466,7 @@ bg:
         successfully: Потребител %{name} е актуализиран успешно.
       update:
         successfully: Потребител %{name} е актуализиран успешно.
+    message: Съобщение
     meta_title: Административен панел
     navigation:
       ai_assistants: AI асистенти
@@ -2544,6 +2573,7 @@ bg:
         editor: Редактор на Norm
         export: Норма за износ
         title: Опции на Норма
+      title: Норма
       toggle_status:
         successfully: Норма беше актуализирана успешно.
       update:
@@ -2631,12 +2661,16 @@ bg:
     piped_text_modal:
       assessment_id: Идентификационен номер на оценяването
       campaign_id: Идентификационен номер на кампанията
+      campaign_name: Име на кампанията
+      campaigns: Кампании
       insight_page_link: Връзка към страницата с прозрения
       insight_page_url: URL адрес на страницата Insight
       join_link: Присъединете се към връзката
       magic_link: Вълшебна връзка
       magic_url: Магически URL адрес
       profile_custom_field: Персонализирано поле за профил
+      project_name: Име на проекта
+      projects: Проекти
       report_name: Име на отчета
       text: Текст
       title: Добавяне на тръбопроводен текст

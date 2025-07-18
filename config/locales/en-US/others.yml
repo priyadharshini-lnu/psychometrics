@@ -517,6 +517,7 @@ en-US:
         created_at: Created Date
         id: ID
         name: Name
+        owner: Owner
         updated_at: Modified Date
       factor:
         active: Active
@@ -543,7 +544,11 @@ en-US:
         updated_at: Modified Date
       library:
         created_at: Created Date
+        description: Description
+        files: Files
         id: ID
+        name: Name
+        owner: Owner
         type: Thumbnail
         updated_at: Modified Date
       license:
@@ -615,6 +620,7 @@ en-US:
         created_at: Created Date
         id: ID
         name: Name
+        owner: Owner
         updated_at: Modified Date
       report:
         created_at: Created Date

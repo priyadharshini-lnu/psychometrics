@@ -527,6 +527,7 @@ de:
         created_at: Erstellt am
         id: ID
         name: Name
+        owner: Eigentümer
         updated_at: Geändertes Datum
       factor:
         active: Aktiv
@@ -553,7 +554,11 @@ de:
         updated_at: Geändertes Datum
       library:
         created_at: Erstellt am
+        description: Beschreibung
+        files: Dateien
         id: ID
+        name: Name
+        owner: Eigentümer
         type: Vorschaubild
         updated_at: Geändertes Datum
       license:
@@ -625,6 +630,7 @@ de:
         created_at: Erstellt am
         id: ID
         name: Name
+        owner: Eigentümer
         updated_at: Geändertes Datum
       report:
         created_at: Erstellt am

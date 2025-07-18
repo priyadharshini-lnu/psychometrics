@@ -517,6 +517,7 @@ it:
         created_at: Data di creazione
         id: ID
         name: Nome
+        owner: Proprietario
         updated_at: Data di modifica
       factor:
         active: Attivo
@@ -543,7 +544,11 @@ it:
         updated_at: Data di modifica
       library:
         created_at: Data di creazione
+        description: Descrizione
+        files: File
         id: ID
+        name: Nome
+        owner: Proprietario
         type: Miniatura
         updated_at: Data di modifica
       license:
@@ -615,6 +620,7 @@ it:
         created_at: Data di creazione
         id: ID
         name: Nome
+        owner: Proprietario
         updated_at: Data di modifica
       report:
         created_at: Data di creazione

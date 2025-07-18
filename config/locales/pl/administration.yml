@@ -1534,6 +1534,7 @@ pl:
       save: Zapisać
       select_all: Zaznacz wszystko
       unselect_all: Odznacz wszystko
+    communication_settings: Ustawienia
     communications:
       create:
         successfully: Komunikacja została nawiązana pomyślnie.
@@ -1566,9 +1567,16 @@ pl:
           {{email}} - Adres e-mail odbiorcy
           {{schedule_start_date}} - Data rozpoczęcia harmonogramu
           {{schedule_end_date}} - Data zakończenia harmonogramu
+        campaign: Kampania
+        campaign_assessment_group: Grupa ds. oceny kampanii
+        client: Klient
         completion: Ukończenie
         delivery_at: Dostawa po cenie (GST)
         delivery_delay_hours: Opóźnienie dostawy (godziny)
+        delivery_interval: Interwał dostawy
+        delivery_interval_number: Numer interwału dostawy
+        delivery_interval_period: Okres między dostawami
+        delivery_rule: Zasada dostawy
         delivery_rules:
           in_progress: Jeśli ocena jest w toku
           not_competed: Jeśli ocena nie zostanie zakończona
@@ -1580,13 +1588,18 @@ pl:
         idp_template_approved: Zatwierdzony przez IDP
         idp_template_assigned: Przypisany IDP
         idp_template_rejected: IDP odrzucony
+        insert_piped_text: Wstawianie tekstu potokowego
         invitation: Zaproszenie
         kind: Typy komunikacji
         locale: Ustawień regionalnych
         magic_link_email: Wiadomość e-mail z magicznym linkiem
+        message_body_placeholder: Wpisz swoją wiadomość tutaj...
         new_assignment: Nowe zadanie
         new_users: Nowi użytkownicy
         other: Inny
+        owner: Właściciel
+        project: Projekt
+        recipients: Odbiorcy
         reminder: Przypomnienie
         report_available: Dostępny raport
         selected: Wybrany
@@ -1594,6 +1607,7 @@ pl:
         selected_recipients: Wybrani adresaci
         stop_reminder: Zatrzymywanie wysyłania przypomnień
         stop_reminder_datetime: Data zakończenia przypomnień (GST)
+        subject: Przedmiot
         workshop_booked: Potwierdzenie rezerwacji w centrum oceny
         workshop_cancelled: Assessment center anulowane
         workshop_completed: Assessment center zakończone
@@ -1878,10 +1892,24 @@ pl:
         successfully: Zadanie importu czynników zaplanowane dla wymiaru %{name}.
         title: Czynniki importu
       import_modal:
+        after: Po
+        before: Przed
         cancel: Anuluj
+        change_log_input: Dziennik zmian
         continue: Kontynuować
+        error: Błąd
+        error_occurred: Wystąpił błąd
+        errors:
+          file_error: Przed kontynuowaniem wybierz plik JSON.
+          processing_error: Błąd przetwarzania pliku
+        field: Pole
         import: Import
         import_dimension: Importuj wymiar
+        import_scheduled: Zaplanowany import
+        operation: Działanie
+        owner_input_validation: Wybierz właściciela
+        owner_select: Wybór właściciela
+        select_json: Wybierz plik JSON
       import_translations:
         error: Błąd podczas importowania tłumaczeń dla wymiaru %{name}.
         successfully: Zaimportuj tłumaczenia zaplanowane dla wymiaru %{name}.
@@ -2438,6 +2466,7 @@ pl:
         successfully: Użytkownik %{name} został pomyślnie zaktualizowany.
       update:
         successfully: Użytkownik %{name} został pomyślnie zaktualizowany.
+    message: Wiadomość
     meta_title: Panel administracyjny
     navigation:
       ai_assistants: Asystenci AI
@@ -2544,6 +2573,7 @@ pl:
         editor: Edytor norm
         export: Norma eksportowa
         title: Opcje Normy
+      title: Norma
       toggle_status:
         successfully: Norm został pomyślnie zaktualizowany.
       update:
@@ -2631,12 +2661,16 @@ pl:
     piped_text_modal:
       assessment_id: Identyfikator oceny
       campaign_id: Identyfikator kampanii
+      campaign_name: Nazwa kampanii
+      campaigns: Kampanie
       insight_page_link: Link do strony Insight
       insight_page_url: Adres URL strony statystyk
       join_link: Dołącz do linku
       magic_link: Magiczny link
       magic_url: Magiczny adres URL
       profile_custom_field: Pole niestandardowe profilu
+      project_name: Nazwa projektu
+      projects: Projekty
       report_name: Nazwa raportu
       text: Tekst
       title: Dodawanie tekstu z potoku

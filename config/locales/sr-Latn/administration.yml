@@ -1534,6 +1534,7 @@ sr-Latn:
       save: Sačuvaj
       select_all: Izaberi sve
       unselect_all: Poništi izbor svih
+    communication_settings: Podešavanja
     communications:
       create:
         successfully: Komunikacija je uspešno stvorena.
@@ -1566,9 +1567,16 @@ sr-Latn:
           {{email}} - Imejl primaoca
           {{schedule_start_date}} - Datum početka rasporeda
           {{schedule_end_date}} - Datum završetka rasporeda
+        campaign: Kampanja
+        campaign_assessment_group: Grupa procene kampanje
+        client: Klijent
         completion: Završetak
         delivery_at: Isporuka na (GST)
         delivery_delay_hours: Kašnjenje isporuke (sati)
+        delivery_interval: Interval isporuke
+        delivery_interval_number: Broj intervala isporuke
+        delivery_interval_period: Period intervala isporuke
+        delivery_rule: Pravilo isporuke
         delivery_rules:
           in_progress: Ako je procena u toku
           not_competed: Ako procena nije završena
@@ -1580,13 +1588,18 @@ sr-Latn:
         idp_template_approved: IDP Odobren
         idp_template_assigned: IDP Dodeljen
         idp_template_rejected: IDP odbijen
+        insert_piped_text: Umetni cevni tekst
         invitation: Poziv
         kind: Vrste komunikacije
         locale: Lokal
         magic_link_email: Magični imejl link
+        message_body_placeholder: Unesite vašu poruku ovde...
         new_assignment: Novi zadatak
         new_users: Novi korisnici
         other: Drugo
+        owner: Vlasnik
+        project: Projekat
+        recipients: Primaoci
         reminder: Opomene
         report_available: Izveštaj dostupan
         selected: Izabrano
@@ -1594,6 +1607,7 @@ sr-Latn:
         selected_recipients: Izabrani primaoci
         stop_reminder: Prestani sa slanjem podsetnika
         stop_reminder_datetime: Datum završetka za podsetnike (GST)
+        subject: Predmet
         workshop_booked: Potvrda rezervacije centra za procenu
         workshop_cancelled: Centar za procenu otkazan
         workshop_completed: Centar za procenu završen
@@ -1878,10 +1892,24 @@ sr-Latn:
         successfully: Uvozni faktori posao zakazan za dimenziju%{name}.
         title: Faktori uvoza
       import_modal:
+        after: Posle
+        before: Pre
         cancel: Otkaži
+        change_log_input: Dnevnik promena
         continue: Nastavi
+        error: Greška
+        error_occurred: Došlo je do greške
+        errors:
+          file_error: Molimo izaberite JSON datoteku pre nastavka.
+          processing_error: Greška prilikom obrade datoteke
+        field: Polje
         import: Uvezi
         import_dimension: Uvezi dimenziju
+        import_scheduled: Uvoz zakazan
+        operation: Operacija
+        owner_input_validation: Molimo izaberite vlasnika
+        owner_select: Izaberite vlasnika
+        select_json: Izaberite JSON datoteku
       import_translations:
         error: Greška prilikom uvoza prevoda za dimenziju %{name}.
         successfully: Uvoz prevoda zakazanih za dimenziju %{name}.
@@ -2438,6 +2466,7 @@ sr-Latn:
         successfully: Korisnik %{name} je uspešno ažuriran.
       update:
         successfully: Korisnik %{name} je uspešno ažuriran.
+    message: Poruka
     meta_title: Administrativni panel
     navigation:
       ai_assistants: AI asistenti
@@ -2544,6 +2573,7 @@ sr-Latn:
         editor: Urednik normi
         export: Uvezi normu
         title: Opcije normi
+      title: Norma
       toggle_status:
         successfully: Norma je uspešno ažurirana.
       update:
@@ -2631,12 +2661,16 @@ sr-Latn:
     piped_text_modal:
       assessment_id: Procena ID
       campaign_id: ID kampanje
+      campaign_name: Naziv kampanje
+      campaigns: Kampanje
       insight_page_link: Link na stranicu uvida
       insight_page_url: URL stranice uvida
       join_link: Pridružite se linku
       magic_link: Magični link
       magic_url: Magična URL adresa
       profile_custom_field: Prilagođeno polje profila
+      project_name: Naziv projekta
+      projects: Projekti
       report_name: Naziv izveštaja
       text: Tekst
       title: Dodaj piped tekst

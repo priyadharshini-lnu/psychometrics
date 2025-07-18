@@ -517,6 +517,7 @@ bg:
         created_at: Дата на създаване
         id: Документ за самоличност
         name: Име
+        owner: Собственик
         updated_at: Дата на промяна
       factor:
         active: Активен
@@ -543,7 +544,11 @@ bg:
         updated_at: Дата на промяна
       library:
         created_at: Дата на създаване
+        description: Описание
+        files: Файлове
         id: Документ за самоличност
+        name: Име
+        owner: Собственик
         type: Картинка
         updated_at: Дата на промяна
       license:
@@ -615,6 +620,7 @@ bg:
         created_at: Дата на създаване
         id: Документ за самоличност
         name: Име
+        owner: Собственик
         updated_at: Дата на промяна
       report:
         created_at: Дата на създаване

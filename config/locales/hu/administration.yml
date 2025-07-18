@@ -1536,6 +1536,7 @@ hu:
       save: Mentés
       select_all: Az összes kijelölése
       unselect_all: Az összes kijelölésének törlése
+    communication_settings: Beállítások
     communications:
       create:
         successfully: A kommunikáció sikeresen létrejött.
@@ -1568,9 +1569,16 @@ hu:
           {{email}} - Címzett e-mail címe
           {{schedule_start_date}} - Ütemezés kezdő dátuma
           {{schedule_end_date}} - Ütemezés befejezési dátuma
+        campaign: Kampány
+        campaign_assessment_group: Kampányértékelő csoport
+        client: Ügyfél
         completion: Teljesítés
         delivery_at: Szállítás (GST)
         delivery_delay_hours: Szállítási késedelem (óra)
+        delivery_interval: Szállítási intervallum
+        delivery_interval_number: Szállítási intervallum száma
+        delivery_interval_period: Szállítási időintervallum
+        delivery_rule: Szállítási szabály
         delivery_rules:
           in_progress: Ha az értékelés folyamatban van
           not_competed: Ha az értékelés nem fejeződik be
@@ -1582,13 +1590,18 @@ hu:
         idp_template_approved: IDP jóváhagyva
         idp_template_assigned: IDP hozzárendelve
         idp_template_rejected: IDP elutasítva
+        insert_piped_text: Piped szöveg beillesztése
         invitation: Meghívás
         kind: Kommunikációs típusok
         locale: Színhely
         magic_link_email: Magic Link e-mail
+        message_body_placeholder: Írja be üzenetét itt...
         new_assignment: Új feladat
         new_users: Új felhasználók
         other: Más
+        owner: Tulajdonos
+        project: Projekt
+        recipients: Címzettek
         reminder: Emlékeztető
         report_available: Jelentés elérhető
         selected: Kiválasztott
@@ -1596,6 +1609,7 @@ hu:
         selected_recipients: Kiválasztott címzettek
         stop_reminder: Emlékeztetők küldésének leállítása
         stop_reminder_datetime: Emlékeztetők záró dátuma (GST)
+        subject: 'Tárgy:'
         workshop_booked: Az értékelőközpont foglalási visszaigazolása
         workshop_cancelled: Az értékelő központ törlése
         workshop_completed: Elkészült az értékelőközpont
@@ -1880,10 +1894,24 @@ hu:
         successfully: A(z) %{name} dimenzióhoz ütemezett tényezők importálása feladat.
         title: Importálási tényezők
       import_modal:
+        after: A  után
+        before: A  előtt
         cancel: Mégse
+        change_log_input: Változási napló
         continue: Folytatás
+        error: Hiba
+        error_occurred: Hiba történt
+        errors:
+          file_error: Kérjük, a folytatás előtt válasszon ki egy JSON fájlt.
+          processing_error: Hiba feldolgozási fájl
+        field: Terep
         import: Importálás
         import_dimension: Dimenzió importálása
+        import_scheduled: Tervezett importálás
+        operation: Művelet
+        owner_input_validation: Kérjük, válasszon egy tulajdonost
+        owner_select: Tulajdonos kiválasztása
+        select_json: JSON fájl kiválasztása
       import_translations:
         error: Hiba történt a(z) %{name} dimenzió fordításainak importálásakor.
         successfully: A(z) %{name} dimenzióhoz ütemezett fordítások importálása.
@@ -2440,6 +2468,7 @@ hu:
         successfully: A(z) %{name} felhasználó frissítése sikeresen megtörtént.
       update:
         successfully: A(z) %{name} felhasználó frissítése sikeresen megtörtént.
+    message: Üzenet
     meta_title: Adminisztrációs panel
     navigation:
       ai_assistants: AI asszisztensek
@@ -2546,6 +2575,7 @@ hu:
         editor: Normaszerkesztő
         export: Norma exportálása
         title: Norma lehetőségei
+      title: Norm
       toggle_status:
         successfully: A norma frissítése sikeresen megtörtént.
       update:
@@ -2633,12 +2663,16 @@ hu:
     piped_text_modal:
       assessment_id: Értékelési azonosító
       campaign_id: Kampány azonosítója
+      campaign_name: Kampány neve
+      campaigns: Kampányok
       insight_page_link: Elemzési oldal linkje
       insight_page_url: Elemzési oldal URL-címe
       join_link: Csatlakozás link
       magic_link: Magic link
       magic_url: Mágikus URL
       profile_custom_field: Profil egyéni mező
+      project_name: Projekt neve
+      projects: Projektek
       report_name: Jelentés neve
       text: Szöveges üzenet
       title: Továbbított szöveg hozzáadása

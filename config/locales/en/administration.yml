@@ -1534,6 +1534,7 @@ en:
       save: Save
       select_all: Select all
       unselect_all: Unselect all
+    communication_settings: Settings
     communications:
       create:
         successfully: Communication was created successfully.
@@ -1566,9 +1567,16 @@ en:
           {{email}} - Recipient Email
           {{schedule_start_date}} - Schedule Start Date
           {{schedule_end_date}} - Schedule End Date
+        campaign: Campaign
+        campaign_assessment_group: Campaign Assessment Group
+        client: Client
         completion: Completion
         delivery_at: Delivery at (GST)
         delivery_delay_hours: Delivery delay (hours)
+        delivery_interval: Delivery Interval
+        delivery_interval_number: Delivery Interval Number
+        delivery_interval_period: Delivery Interval Period
+        delivery_rule: Delivery Rule
         delivery_rules:
           in_progress: If assessment is in progress
           not_competed: If assessment is not completed
@@ -1580,13 +1588,18 @@ en:
         idp_template_approved: IDP Approved
         idp_template_assigned: IDP Assigned
         idp_template_rejected: IDP Rejected
+        insert_piped_text: Insert Piped Text
         invitation: Invitation
         kind: Communication Types
         locale: Locale
         magic_link_email: Magic Link Email
+        message_body_placeholder: Enter your message here...
         new_assignment: New Assignment
         new_users: New Users
         other: Other
+        owner: Owner
+        project: Project
+        recipients: Recipients
         reminder: Reminder
         report_available: Report Available
         selected: Selected
@@ -1594,6 +1607,7 @@ en:
         selected_recipients: Selected Recipients
         stop_reminder: Stop sending reminders
         stop_reminder_datetime: End date for reminders (GST)
+        subject: Subject
         workshop_booked: Assessment center booking confirmation
         workshop_cancelled: Assessment center cancelled
         workshop_completed: Assessment center completed
@@ -1878,10 +1892,24 @@ en:
         successfully: Import factors job scheduled for dimension %{name}.
         title: Import Factors
       import_modal:
+        after: After
+        before: Before
         cancel: Cancel
+        change_log_input: Change Log
         continue: Continue
+        error: Error
+        error_occurred: An error occurred
+        errors:
+          file_error: Please select a JSON file before continuing.
+          processing_error: Error processing file
+        field: Field
         import: Import
         import_dimension: Import Dimension
+        import_scheduled: Import scheduled
+        operation: Operation
+        owner_input_validation: Please select an owner
+        owner_select: Select an owner
+        select_json: Select JSON file
       import_translations:
         error: Error while importing translations for dimension %{name}.
         successfully: Import translations scheduled for dimension %{name}.
@@ -2438,6 +2466,7 @@ en:
         successfully: User %{name} was updated successfully.
       update:
         successfully: User %{name} was updated successfully.
+    message: Message
     meta_title: Administration panel
     navigation:
       ai_assistants: AI Assistants
@@ -2544,6 +2573,7 @@ en:
         editor: Norm Editor
         export: Export Norm
         title: Norm's options
+      title: Norm
       toggle_status:
         successfully: Norm was updated successfully.
       update:
@@ -2631,12 +2661,16 @@ en:
     piped_text_modal:
       assessment_id: Assessment ID
       campaign_id: Campaign ID
+      campaign_name: Campaign Name
+      campaigns: Campaigns
       insight_page_link: Insight Page Link
       insight_page_url: Insight Page URL
       join_link: Join Link
       magic_link: Magic Link
       magic_url: Magic URL
       profile_custom_field: Profile Custom Field
+      project_name: Project Name
+      projects: Projects
       report_name: Report Name
       text: Text
       title: Add Piped Text

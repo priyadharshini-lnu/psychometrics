@@ -55,11 +55,11 @@ const AnswerableConfirmationModal: React.FC<Props> = ({
       onCancel={onCancel}
       footer={[
         <Button key="back" onClick={onCancel}>
-          Cancel
+          {I18n.t('common.actions.cancel')}
         </Button>,
         <Button key="submit" type="primary" onClick={handleConfirmation} disabled={loading}>
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
-          Confirm
+          {I18n.t('common.text.confirm')}
         </Button>,
       ]}
     >

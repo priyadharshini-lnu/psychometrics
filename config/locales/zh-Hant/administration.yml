@@ -1534,6 +1534,7 @@ zh-Hant:
       save: 節省
       select_all: 全部選取
       unselect_all: 全部取消選擇
+    communication_settings: 設定
     communications:
       create:
         successfully: 通訊已成功建立。
@@ -1566,9 +1567,16 @@ zh-Hant:
            {{email}} - 接收者的電子郵件
            {{schedule_start_date}} - 排程開始日期
            {{schedule_end_date}} - 排程結束日期"
+        campaign: 活動
+        campaign_assessment_group: 活動評估小組
+        client: 客戶
         completion: 完成
         delivery_at: 運費 (GST)
         delivery_delay_hours: 交貨延遲（小時）
+        delivery_interval: 交貨間隔
+        delivery_interval_number: 交貨間隔號碼
+        delivery_interval_period: 交貨週期
+        delivery_rule: 交貨規則
         delivery_rules:
           in_progress: 如果評估正在進行中
           not_competed: 如果未完成評估
@@ -1580,13 +1588,18 @@ zh-Hant:
         idp_template_approved: IDP 核准
         idp_template_assigned: 指派的 IDP
         idp_template_rejected: 拒絕的 IDP
+        insert_piped_text: 插入管道文字
         invitation: 邀請函
         kind: 溝通類型
         locale: 區域設定
         magic_link_email: Magic Link 電子郵件
+        message_body_placeholder: 在此輸入您的訊息...
         new_assignment: 新任務
         new_users: 新使用者
         other: 其他
+        owner: 業主
+        project: 專案
+        recipients: 收件人
         reminder: 提醒事項
         report_available: 提供報告
         selected: 精選
@@ -1594,6 +1607,7 @@ zh-Hant:
         selected_recipients: 選定受助人
         stop_reminder: 停止傳送提醒訊息
         stop_reminder_datetime: 提醒的結束日期 (GST)
+        subject: 主題
         workshop_booked: 評估中心預約確認
         workshop_cancelled: 評估中心取消
         workshop_completed: 評估中心完成
@@ -1878,10 +1892,24 @@ zh-Hant:
         successfully: 為維度 %{name} 排程的匯入因子工作。
         title: 進口因素
       import_modal:
+        after: 之後
+        before: 之前
         cancel: 取消
+        change_log_input: 變更記錄
         continue: 繼續
+        error: 錯誤
+        error_occurred: 發生錯誤
+        errors:
+          file_error: 請在繼續之前選擇 JSON 檔案。
+          processing_error: 錯誤處理檔案
+        field: 現場
         import: 進口
         import_dimension: 進口尺寸
+        import_scheduled: 輸入排程
+        operation: 操作
+        owner_input_validation: 請選擇物主
+        owner_select: 選擇所有者
+        select_json: 選擇 JSON 檔案
       import_translations:
         error: 匯入尺寸 %{name} 的翻譯時發生錯誤。
         successfully: 預定為維度 %{name} 的匯入翻譯。
@@ -2438,6 +2466,7 @@ zh-Hant:
         successfully: 使用者 %{name} 已成功更新。
       update:
         successfully: 使用者 %{name} 已成功更新。
+    message: 訊息
     meta_title: 管理面板
     navigation:
       ai_assistants: AI 助理
@@ -2544,6 +2573,7 @@ zh-Hant:
         editor: 標準編輯
         export: 出口規範
         title: Norm 的選項
+      title: 標準
       toggle_status:
         successfully: Norm 已成功更新。
       update:
@@ -2631,12 +2661,16 @@ zh-Hant:
     piped_text_modal:
       assessment_id: 評估 ID
       campaign_id: 活動 ID
+      campaign_name: 活動名稱
+      campaigns: 活動
       insight_page_link: 洞察頁連結
       insight_page_url: 洞察頁面 URL
       join_link: 加入連結
       magic_link: 魔術連結
       magic_url: 魔術網址
       profile_custom_field: 個人資料自訂欄位
+      project_name: 專案名稱
+      projects: 專案
       report_name: 報告名稱
       text: 正文
       title: 新增管道文字

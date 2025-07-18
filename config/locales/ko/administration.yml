@@ -1534,6 +1534,7 @@ ko:
       save: 저장
       select_all: 모두 선택
       unselect_all: 모두 선택 취소
+    communication_settings: 설정
     communications:
       create:
         successfully: 커뮤니케이션이 성공적으로 생성되었습니다.
@@ -1566,9 +1567,16 @@ ko:
           {{email}} - 수신자 이메일
           {{schedule_start_date}} - 스케줄 시작 날짜
           {{schedule_end_date}} - 예약 종료일
+        campaign: 캠페인
+        campaign_assessment_group: 캠페인 평가 그룹
+        client: 클라이언트
         completion: 완료
         delivery_at: 배송 (GST)
         delivery_delay_hours: 배송 지연(시간)
+        delivery_interval: 배달 간격
+        delivery_interval_number: 배송 간격 번호
+        delivery_interval_period: 배송 간격 기간
+        delivery_rule: 배달 규칙
         delivery_rules:
           in_progress: 평가가 진행 중인 경우
           not_competed: 평가가 완료되지 않은 경우
@@ -1580,13 +1588,18 @@ ko:
         idp_template_approved: IDP 승인
         idp_template_assigned: 할당된 IDP
         idp_template_rejected: IDP 거부됨
+        insert_piped_text: 파이프 텍스트 삽입
         invitation: 초대
         kind: 커뮤니케이션 유형
         locale: 로케일
         magic_link_email: 매직 링크 이메일
+        message_body_placeholder: 여기에 메시지를 입력하세요...
         new_assignment: 새 과제
         new_users: 신규 사용자
         other: 기타
+        owner: 소유자
+        project: 프로젝트
+        recipients: 수신자
         reminder: 알림
         report_available: 보고서 사용 가능
         selected: 선택됨
@@ -1594,6 +1607,7 @@ ko:
         selected_recipients: 선택한 수신자
         stop_reminder: 미리 알림 보내기 중지
         stop_reminder_datetime: 미리 알림 종료일(GST)
+        subject: 제목
         workshop_booked: 평가 센터 예약 확인
         workshop_cancelled: 평가 센터 취소됨
         workshop_completed: 평가 센터 완료
@@ -1878,10 +1892,24 @@ ko:
         successfully: 차원 %{name}에 대해 예약된 가져오기 요소 작업입니다.
         title: 가져오기 요소
       import_modal:
+        after: 이후
+        before: 이전
         cancel: 취소
+        change_log_input: 변경 로그
         continue: 계속하기
+        error: 오류
+        error_occurred: 오류가 발생했습니다.
+        errors:
+          file_error: 계속하기 전에 JSON 파일을 선택해 주세요.
+          processing_error: 오류 처리 파일
+        field: 필드
         import: 가져오기
         import_dimension: 차원 가져오기
+        import_scheduled: 예약 가져오기
+        operation: 운영
+        owner_input_validation: 소유자를 선택해 주세요.
+        owner_select: 소유자 선택
+        select_json: JSON 파일 선택
       import_translations:
         error: 차원 %{name}에 대한 번역을 가져오는 동안 오류가 발생했습니다.
         successfully: 차원 %{name}에 대해 예약된 번역을 가져옵니다.
@@ -2438,6 +2466,7 @@ ko:
         successfully: 사용자 %{name}이 업데이트되었습니다.
       update:
         successfully: 사용자 %{name}이 업데이트되었습니다.
+    message: 메시지
     meta_title: 관리 패널
     navigation:
       ai_assistants: AI 어시스턴트
@@ -2544,6 +2573,7 @@ ko:
         editor: 규범 편집기
         export: 내보내기 규범
         title: Norm의 옵션
+      title: 표준
       toggle_status:
         successfully: 규범이 성공적으로 업데이트되었습니다.
       update:
@@ -2631,12 +2661,16 @@ ko:
     piped_text_modal:
       assessment_id: 평가 ID
       campaign_id: 캠페인 ID
+      campaign_name: 캠페인 이름
+      campaigns: 캠페인
       insight_page_link: 인사이트 페이지 링크
       insight_page_url: 인사이트 페이지 URL
       join_link: 가입 링크
       magic_link: 매직 링크
       magic_url: 매직 URL
       profile_custom_field: 프로필 사용자 지정 필드
+      project_name: 프로젝트 이름
+      projects: 프로젝트
       report_name: 보고서 이름
       text: 텍스트
       title: 파이프 텍스트 추가

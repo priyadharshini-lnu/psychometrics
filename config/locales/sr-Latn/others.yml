@@ -517,6 +517,7 @@ sr-Latn:
         created_at: Datum kreiranja
         id: ID
         name: Ime
+        owner: Vlasnik
         updated_at: Datum izmene
       factor:
         active: Aktivni
@@ -543,7 +544,11 @@ sr-Latn:
         updated_at: Datum izmene
       library:
         created_at: Datum kreiranja
+        description: Opis
+        files: Datoteke
         id: ID
+        name: Ime
+        owner: Vlasnik
         type: Sličicu
         updated_at: Datum izmene
       license:
@@ -615,6 +620,7 @@ sr-Latn:
         created_at: Datum kreiranja
         id: ID
         name: Ime
+        owner: Vlasnik
         updated_at: Datum izmene
       report:
         created_at: Datum kreiranja

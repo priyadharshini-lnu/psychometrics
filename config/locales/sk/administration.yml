@@ -1534,6 +1534,7 @@ sk:
       save: Zachrániť
       select_all: Vybrať všetko
       unselect_all: Zrušiť výber všetkých
+    communication_settings: Nastavenia
     communications:
       create:
         successfully: Komunikácia bola úspešne vytvorená.
@@ -1566,9 +1567,16 @@ sk:
           {{email}} - E-mail príjemcu
           {{schedule_start_date}} - Dátum začiatku plánovania
           {{schedule_end_date}} - Dátum ukončenia plánu
+        campaign: Kampaň
+        campaign_assessment_group: Skupina pre hodnotenie kampaní
+        client: Klient
         completion: Dokončenie
         delivery_at: Doručenie za (GST)
         delivery_delay_hours: Meškanie doručenia (hodiny)
+        delivery_interval: Interval dodania
+        delivery_interval_number: Číslo intervalu dodania
+        delivery_interval_period: Obdobie intervalu dodania
+        delivery_rule: Pravidlo doručovania
         delivery_rules:
           in_progress: Ak prebieha posudzovanie
           not_competed: Ak sa posúdenie nedokončí
@@ -1580,13 +1588,18 @@ sk:
         idp_template_approved: Schválené IDP
         idp_template_assigned: Pridelený IDP
         idp_template_rejected: IDP odmietnutý
+        insert_piped_text: Vloženie textu s potrubím
         invitation: Pozvanie
         kind: Typy komunikácie
         locale: Locale
         magic_link_email: E-mail Magic Link
+        message_body_placeholder: Tu zadajte svoju správu...
         new_assignment: Nové zadanie
         new_users: Noví používatelia
         other: Iný
+        owner: Vlastník
+        project: Projekt
+        recipients: Príjemcovia
         reminder: Pripomienka
         report_available: Správa k dispozícii
         selected: Vybraný
@@ -1594,6 +1607,7 @@ sk:
         selected_recipients: Vybraní príjemcovia
         stop_reminder: Zastavenie odosielania pripomienok
         stop_reminder_datetime: Dátum ukončenia pripomienok (GST)
+        subject: Predmet
         workshop_booked: Potvrdenie rezervácie hodnotiaceho centra
         workshop_cancelled: Assessment centrum zrušené
         workshop_completed: Assessment centrum dokončené
@@ -1878,10 +1892,24 @@ sk:
         successfully: Úloha importu faktorov naplánovaná pre dimenziu %{name}.
         title: Faktory dovozu
       import_modal:
+        after: Po stránke
+        before: Pred
         cancel: Zrušiť
+        change_log_input: Denník zmien
         continue: Pokračovať
+        error: Chyba
+        error_occurred: Vyskytla sa chyba
+        errors:
+          file_error: Pred pokračovaním vyberte súbor JSON.
+          processing_error: Súbor na spracovanie chýb
+        field: Pole
         import: Import
         import_dimension: Importovať dimenziu
+        import_scheduled: Naplánovaný import
+        operation: Operácia
+        owner_input_validation: Prosím, vyberte vlastníka
+        owner_select: Výber vlastníka
+        select_json: Vyberte súbor JSON
       import_translations:
         error: Chyba pri importe prekladov pre dimenziu %{name}.
         successfully: Importujte preklady naplánované pre dimenziu %{name}.
@@ -2438,6 +2466,7 @@ sk:
         successfully: Používateľ %{name} bol úspešne aktualizovaný.
       update:
         successfully: Používateľ %{name} bol úspešne aktualizovaný.
+    message: Správa
     meta_title: Panel správy
     navigation:
       ai_assistants: Asistenti AI
@@ -2544,6 +2573,7 @@ sk:
         editor: Editor noriem
         export: Exportná norma
         title: Možnosti normy
+      title: Norm
       toggle_status:
         successfully: Norm bol úspešne aktualizovaný.
       update:
@@ -2631,12 +2661,16 @@ sk:
     piped_text_modal:
       assessment_id: Identifikátor hodnotenia
       campaign_id: Identifikátor kampane
+      campaign_name: Názov kampane
+      campaigns: Kampane
       insight_page_link: Prepojenie na stránku Prehľad
       insight_page_url: URL adresa stránky prehľadu
       join_link: Pripojiť sa k odkazu
       magic_link: Čarovné spojenie
       magic_url: Magická URL adresa
       profile_custom_field: Vlastné pole profilu
+      project_name: Názov projektu
+      projects: Projekty
       report_name: Názov zostavy
       text: Text
       title: Pridanie textu s kanálom

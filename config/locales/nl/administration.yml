@@ -1534,6 +1534,7 @@ nl:
       save: Sla
       select_all: Alles selecteren
       unselect_all: Alles deselecteren
+    communication_settings: Instellingen
     communications:
       create:
         successfully: Communicatie is met succes gemaakt.
@@ -1566,9 +1567,16 @@ nl:
           {{email}} - E-mail ontvanger
           {{schedule_start_date}} - Begindatum planning
           {{schedule_end_date}} - Einddatum planning"
+        campaign: Campagne
+        campaign_assessment_group: Campagnebeoordelingsgroep
+        client: Klant
         completion: Voltooiing
         delivery_at: Levering bij (GST)
         delivery_delay_hours: Vertraging bij levering (uren)
+        delivery_interval: Levering Interval
+        delivery_interval_number: Afleverinterval Aantal
+        delivery_interval_period: Levering Intervalperiode
+        delivery_rule: Leveringsregel
         delivery_rules:
           in_progress: Als de beoordeling bezig is
           not_competed: Als de beoordeling niet is voltooid
@@ -1580,13 +1588,18 @@ nl:
         idp_template_approved: IDP Goedgekeurd
         idp_template_assigned: IDP toegewezen
         idp_template_rejected: IDP Afgewezen
+        insert_piped_text: Tekst met pijpen invoegen
         invitation: Uitnodiging
         kind: Soorten communicatie
         locale: Locatie
         magic_link_email: Magische link e-mail
+        message_body_placeholder: Voer hier uw bericht in...
         new_assignment: Nieuwe opdracht
         new_users: Nieuwe gebruikers
         other: Andere
+        owner: Eigenaar
+        project: Project
+        recipients: Ontvangers
         reminder: Herinnering
         report_available: Rapport beschikbaar
         selected: Geselecteerd
@@ -1594,6 +1607,7 @@ nl:
         selected_recipients: Geselecteerde ontvangers
         stop_reminder: Stop met het versturen van herinneringen
         stop_reminder_datetime: Einddatum voor herinneringen (GST)
+        subject: Onderwerp
         workshop_booked: Boekingsbevestiging van het beoordelingscentrum
         workshop_cancelled: Beoordelingscentrum geannuleerd
         workshop_completed: Assessment center voltooid
@@ -1878,10 +1892,24 @@ nl:
         successfully: Taak importfactoren gepland voor dimensie %{name}.
         title: Importfactoren
       import_modal:
+        after: Na
+        before: Voor
         cancel: Annuleren
+        change_log_input: Wijzigingslogboek
         continue: Ga verder
+        error: Fout
+        error_occurred: Er is een fout opgetreden
+        errors:
+          file_error: Selecteer een JSON-bestand voordat je verder gaat.
+          processing_error: Fout bij het verwerken van bestand
+        field: Veld
         import: Importeren
         import_dimension: Dimensie importeren
+        import_scheduled: Geplande import
+        operation: Operatie
+        owner_input_validation: Selecteer een eigenaar
+        owner_select: Selecteer een eigenaar
+        select_json: Selecteer JSON-bestand
       import_translations:
         error: Fout bij het importeren van vertalingen voor dimensie %{name}.
         successfully: Importvertalingen gepland voor dimensie %{name}.
@@ -2438,6 +2466,7 @@ nl:
         successfully: Gebruiker %{name} is succesvol bijgewerkt.
       update:
         successfully: Gebruiker %{name} is succesvol bijgewerkt.
+    message: Bericht
     meta_title: Administratiepaneel
     navigation:
       ai_assistants: AI assistenten
@@ -2544,6 +2573,7 @@ nl:
         editor: Norm-editor
         export: Exportnorm
         title: Norm's opties
+      title: Norm
       toggle_status:
         successfully: Norm is met succes bijgewerkt.
       update:
@@ -2631,12 +2661,16 @@ nl:
     piped_text_modal:
       assessment_id: Beoordeling ID
       campaign_id: Campagne-ID
+      campaign_name: Naam campagne
+      campaigns: Campagnes
       insight_page_link: Inzicht pagina link
       insight_page_url: Inzicht pagina URL
       join_link: Word lid Link
       magic_link: Magische link
       magic_url: Magische URL
       profile_custom_field: Profiel aangepast veld
+      project_name: Naam project
+      projects: Projecten
       report_name: Rapport Naam
       text: Tekst
       title: Tekst met passepoil toevoegen

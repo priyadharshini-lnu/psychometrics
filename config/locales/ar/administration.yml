@@ -1534,6 +1534,7 @@ ar:
       save: حفظ
       select_all: تحديد الكل
       unselect_all: إلغاء تحديد الكل
+    communication_settings: الإعدادات
     communications:
       create:
         successfully: تم إنشاء الاتصال بنجاح.
@@ -1566,9 +1567,16 @@ ar:
           {{email}} - البريد الإلكتروني للمستلم
           {{schedule_start_date}} - تاريخ بدء الجدول
           {{schedule_end_date}} - تاريخ انتهاء الجدول
+        campaign: الحملة
+        campaign_assessment_group: مجموعة تقييم الحملات الانتخابية
+        client: العميل
         completion: الإكمال
         delivery_at: التسليم في (GST)
         delivery_delay_hours: تأخير التسليم (بالساعات)
+        delivery_interval: فترة التسليم
+        delivery_interval_number: رقم الفاصل الزمني للتسليم
+        delivery_interval_period: الفترة الزمنية للتسليم
+        delivery_rule: قاعدة التسليم
         delivery_rules:
           in_progress: إذا كان التقييم قيد التقدم
           not_competed: إذا لم يكتمل التقييم
@@ -1580,13 +1588,18 @@ ar:
         idp_template_approved: تم اعتماد IDP
         idp_template_assigned: تم تعيين IDP
         idp_template_rejected: تم رفض IDP
+        insert_piped_text: إدراج نص مكتوب بالأنابيب
         invitation: دعوة
         kind: أنواع الاتصالات
         locale: اللغة
         magic_link_email: بريد إلكتروني برابط سحري
+        message_body_placeholder: أدخل رسالتك هنا...
         new_assignment: تعيين جديد
         new_users: مستخدمون جدد
         other: أخرى
+        owner: المالك
+        project: المشروع
+        recipients: المستلمون
         reminder: تذكير
         report_available: التقرير متاح
         selected: المحدد
@@ -1594,6 +1607,7 @@ ar:
         selected_recipients: المستلمون المحددون
         stop_reminder: إيقاف إرسال التذكيرات
         stop_reminder_datetime: تاريخ انتهاء التذكيرات (GST)
+        subject: الموضوع
         workshop_booked: تأكيد حجز مركز التقييم
         workshop_cancelled: تم إلغاء مركز التقييم
         workshop_completed: تم إكمال مركز التقييم
@@ -1878,10 +1892,24 @@ ar:
         successfully: مهمة عوامل الاستيراد المجدولة للبعد %{name}.
         title: عوامل الاستيراد
       import_modal:
+        after: بعد
+        before: قبل
         cancel: إلغاء
+        change_log_input: سجل التغيير
         continue: تابع
+        error: خطأ
+        error_occurred: حدث خطأ
+        errors:
+          file_error: يرجى تحديد ملف JSON قبل المتابعة.
+          processing_error: ملف معالجة الأخطاء
+        field: الحقل
         import: الاستيراد
         import_dimension: بُعد الاستيراد
+        import_scheduled: الاستيراد المجدول
+        operation: العملية
+        owner_input_validation: يرجى اختيار المالك
+        owner_select: اختر مالكاً
+        select_json: تحديد ملف JSON
       import_translations:
         error: حدث خطأ أثناء استيراد الترجمات للبعد %{name}.
         successfully: تم جدولة استيراد الترجمات للبعد %{name}.
@@ -2438,6 +2466,7 @@ ar:
         successfully: User %{name} was updated successfully.
       update:
         successfully: User %{name} was updated successfully.
+    message: الرسالة
     meta_title: Administration panel
     navigation:
       ai_assistants: مساعدو الذكاء الاصطناعي
@@ -2544,6 +2573,7 @@ ar:
         editor: Norm Editor
         export: Export Norm
         title: Norm's options
+      title: نورم
       toggle_status:
         successfully: Norm was updated successfully.
       update:
@@ -2631,12 +2661,16 @@ ar:
     piped_text_modal:
       assessment_id: Assessment ID
       campaign_id: Campaign ID
+      campaign_name: اسم الحملة
+      campaigns: الحملات
       insight_page_link: Insight Page Link
       insight_page_url: Insight Page URL
       join_link: Join Link
       magic_link: Magic Link
       magic_url: Magic URL
       profile_custom_field: Profile Custom Field
+      project_name: اسم المشروع
+      projects: المشاريع
       report_name: Report Name
       text: Text
       title: Add Piped Text

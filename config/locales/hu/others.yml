@@ -517,6 +517,7 @@ hu:
         created_at: Létrehozás dátuma
         id: AZONOSÍTÓ
         name: Név
+        owner: Tulajdonos
         updated_at: Módosítás dátuma
       factor:
         active: Aktív
@@ -543,7 +544,11 @@ hu:
         updated_at: Módosítás dátuma
       library:
         created_at: Létrehozás dátuma
+        description: Leírás
+        files: Fájlok
         id: AZONOSÍTÓ
+        name: Név
+        owner: Tulajdonos
         type: Miniatűr
         updated_at: Módosítás dátuma
       license:
@@ -615,6 +620,7 @@ hu:
         created_at: Létrehozás dátuma
         id: AZONOSÍTÓ
         name: Név
+        owner: Tulajdonos
         updated_at: Módosítás dátuma
       report:
         created_at: Létrehozás dátuma

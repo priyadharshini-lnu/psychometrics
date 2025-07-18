@@ -517,6 +517,7 @@ zh-Hant:
         created_at: 建立日期
         id: ID
         name: 名稱
+        owner: 業主
         updated_at: 修改日期
       factor:
         active: 活躍
@@ -543,7 +544,11 @@ zh-Hant:
         updated_at: 修改日期
       library:
         created_at: 建立日期
+        description: 說明
+        files: 檔案
         id: ID
+        name: 名稱
+        owner: 業主
         type: 縮圖
         updated_at: 修改日期
       license:
@@ -615,6 +620,7 @@ zh-Hant:
         created_at: 建立日期
         id: ID
         name: 名稱
+        owner: 業主
         updated_at: 修改日期
       report:
         created_at: 建立日期

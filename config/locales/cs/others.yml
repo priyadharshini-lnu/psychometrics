@@ -517,6 +517,7 @@ cs:
         created_at: Datum vytvoření
         id: ID
         name: Název
+        owner: Majitel
         updated_at: Datum úpravy
       factor:
         active: Aktivní
@@ -543,7 +544,11 @@ cs:
         updated_at: Datum úpravy
       library:
         created_at: Datum vytvoření
+        description: Popis
+        files: Soubory
         id: ID
+        name: Název
+        owner: Majitel
         type: Miniatury
         updated_at: Datum úpravy
       license:
@@ -615,6 +620,7 @@ cs:
         created_at: Datum vytvoření
         id: ID
         name: Název
+        owner: Majitel
         updated_at: Datum úpravy
       report:
         created_at: Datum vytvoření

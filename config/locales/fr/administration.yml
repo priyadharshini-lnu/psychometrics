@@ -1534,6 +1534,7 @@ fr:
       save: Économiser
       select_all: Tout sélectionner
       unselect_all: Désélectionner tout
+    communication_settings: Paramètres
     communications:
       create:
         successfully: La communication a été établie avec succès.
@@ -1566,9 +1567,16 @@ fr:
            {{email}} - Courriel du destinataire
            {{schedule_start_date}} - Date de début de la programmation
            {{schedule_end_date}} - Date de fin de la programmation"
+        campaign: Campagne
+        campaign_assessment_group: Groupe d'évaluation de la campagne
+        client: Client
         completion: Achèvement
         delivery_at: Livraison à (GST)
         delivery_delay_hours: Délai de livraison (heures)
+        delivery_interval: Intervalle de livraison
+        delivery_interval_number: Numéro de l'intervalle de livraison
+        delivery_interval_period: Période d'intervalle de livraison
+        delivery_rule: Règle de livraison
         delivery_rules:
           in_progress: Si l'évaluation est en cours
           not_competed: Si l'évaluation n'est pas terminée
@@ -1580,13 +1588,18 @@ fr:
         idp_template_approved: PDI approuvé
         idp_template_assigned: IDP assigné
         idp_template_rejected: PDI Rejeté
+        insert_piped_text: Insérer un texte pipé
         invitation: Invitation
         kind: Types de communication
         locale: Paramètres régionaux
         magic_link_email: Magic Link Email
+        message_body_placeholder: Saisissez votre message ici...
         new_assignment: Nouvelle affectation
         new_users: Nouveaux utilisateurs
         other: Autres
+        owner: Propriétaire
+        project: Projet
+        recipients: Bénéficiaires
         reminder: Rappel
         report_available: Rapport disponible
         selected: Sélectionné
@@ -1594,6 +1607,7 @@ fr:
         selected_recipients: Bénéficiaires sélectionnés
         stop_reminder: Ne plus envoyer de rappels
         stop_reminder_datetime: Date de fin des rappels (TPS)
+        subject: Sujet
         workshop_booked: Confirmation de réservation du centre d'évaluation
         workshop_cancelled: Centre d'évaluation annulé
         workshop_completed: Centre d'évaluation terminé
@@ -1878,10 +1892,24 @@ fr:
         successfully: Importation de facteurs prévue pour la dimension %{name}.
         title: Facteurs d'importation
       import_modal:
+        after: Après
+        before: Avant
         cancel: Annuler
+        change_log_input: Journal des modifications
         continue: Continuer
+        error: Erreur
+        error_occurred: Une erreur s'est produite
+        errors:
+          file_error: Veuillez sélectionner un fichier JSON avant de continuer.
+          processing_error: Erreur de traitement du fichier
+        field: Champ d'application
         import: Importation
         import_dimension: Dimension de l'importation
+        import_scheduled: Importation programmée
+        operation: Fonctionnement
+        owner_input_validation: Veuillez sélectionner un propriétaire
+        owner_select: Sélectionner un propriétaire
+        select_json: Sélectionner le fichier JSON
       import_translations:
         error: Erreur lors de l'importation des traductions pour la dimension %{name}.
         successfully: Importation de traductions prévue pour la dimension %{name}.
@@ -2438,6 +2466,7 @@ fr:
         successfully: L'utilisateur %{name} a été mis à jour avec succès.
       update:
         successfully: L'utilisateur %{name} a été mis à jour avec succès.
+    message: Message
     meta_title: Panneau d'administration
     navigation:
       ai_assistants: Assistants IA
@@ -2544,6 +2573,7 @@ fr:
         editor: Rédacteur en chef
         export: Norme d'exportation
         title: Les options de Norm
+      title: Norme
       toggle_status:
         successfully: Norm a été mis à jour avec succès.
       update:
@@ -2631,12 +2661,16 @@ fr:
     piped_text_modal:
       assessment_id: ID de l'évaluation
       campaign_id: ID de la campagne
+      campaign_name: Nom de la campagne
+      campaigns: Campagnes
       insight_page_link: Lien vers la page Insight
       insight_page_url: URL de la page Insight
       join_link: Lien d'adhésion
       magic_link: Lien magique
       magic_url: URL magique
       profile_custom_field: Champ personnalisé du profil
+      project_name: Nom du projet
+      projects: Projets
       report_name: Nom du rapport
       text: Texte
       title: Ajout d'un texte en pointillé

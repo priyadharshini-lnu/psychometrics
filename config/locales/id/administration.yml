@@ -1534,6 +1534,7 @@ id:
       save: Simpan
       select_all: Pilih semua
       unselect_all: Batalkan pilihan semua
+    communication_settings: Pengaturan
     communications:
       create:
         successfully: Komunikasi berhasil tercipta.
@@ -1566,9 +1567,16 @@ id:
           {{email}} - Email Penerima
           {{schedule_start_date}} - Jadwalkan Tanggal Mulai
           {{schedule_end_date}} - Jadwalkan Tanggal Akhir
+        campaign: Kampanye
+        campaign_assessment_group: Kelompok Penilai Kampanye
+        client: Klien
         completion: Penyelesaian
         delivery_at: Pengiriman di (GST)
         delivery_delay_hours: Penundaan pengiriman (jam)
+        delivery_interval: Interval Pengiriman
+        delivery_interval_number: Nomor Interval Pengiriman
+        delivery_interval_period: Periode Interval Pengiriman
+        delivery_rule: Aturan Pengiriman
         delivery_rules:
           in_progress: Jika penilaian sedang berlangsung
           not_competed: Jika penilaian tidak selesai
@@ -1580,13 +1588,18 @@ id:
         idp_template_approved: IDP Disetujui
         idp_template_assigned: IDP Ditugaskan
         idp_template_rejected: IDP Ditolak
+        insert_piped_text: Menyisipkan Teks Berpipa
         invitation: Undangan
         kind: Jenis Komunikasi
         locale: Lokal
         magic_link_email: Email Tautan Ajaib
+        message_body_placeholder: Masukkan pesan Anda di sini...
         new_assignment: Tugas Baru
         new_users: Pengguna Baru
         other: Lain
+        owner: Pemilik
+        project: Proyek
+        recipients: Penerima
         reminder: Pengingat
         report_available: Laporan tersedia
         selected: Dipilih
@@ -1594,6 +1607,7 @@ id:
         selected_recipients: Penerima Terpilih
         stop_reminder: Berhenti mengirim pengingat
         stop_reminder_datetime: Tanggal akhir untuk pengingat (GST)
+        subject: Subjek
         workshop_booked: Konfirmasi pemesanan pusat penilaian
         workshop_cancelled: Pusat penilaian dibatalkan
         workshop_completed: Pusat penilaian selesai
@@ -1878,10 +1892,24 @@ id:
         successfully: Impor pekerjaan faktor yang dijadwalkan untuk dimensi %{name}.
         title: Faktor Impor
       import_modal:
+        after: Setelah
+        before: Sebelum
         cancel: Membatalkan
+        change_log_input: Ubah Log
         continue: Terus
+        error: Kesalahan
+        error_occurred: Terjadi kesalahan
+        errors:
+          file_error: Pilih file JSON sebelum melanjutkan.
+          processing_error: File pemrosesan kesalahan
+        field: Bidang
         import: Mengimpor
         import_dimension: Dimensi Impor
+        import_scheduled: Impor terjadwal
+        operation: Operasi
+        owner_input_validation: Pilih pemilik
+        owner_select: Pilih pemilik
+        select_json: Pilih file JSON
       import_translations:
         error: Kesalahan saat mengimpor terjemahan untuk dimensi %{name}.
         successfully: Impor terjemahan yang dijadwalkan untuk dimensi %{name}.
@@ -2438,6 +2466,7 @@ id:
         successfully: Pengguna %{name} berhasil diperbarui.
       update:
         successfully: Pengguna %{name} berhasil diperbarui.
+    message: Pesan
     meta_title: Panel administrasi
     navigation:
       ai_assistants: Asisten AI
@@ -2544,6 +2573,7 @@ id:
         editor: Editor Norma
         export: Norma Ekspor
         title: Opsi Norm
+      title: Norma
       toggle_status:
         successfully: Norm berhasil diperbarui.
       update:
@@ -2631,12 +2661,16 @@ id:
     piped_text_modal:
       assessment_id: ID Penilaian
       campaign_id: ID Kampanye
+      campaign_name: Nama Kampanye
+      campaigns: Kampanye
       insight_page_link: Tautan Halaman Insight
       insight_page_url: URL Halaman Insight
       join_link: Link Bergabung
       magic_link: Tautan Ajaib
       magic_url: URL ajaib
       profile_custom_field: Bidang Kustom Profil
+      project_name: Nama Proyek
+      projects: Proyek
       report_name: Nama Laporan
       text: Teks
       title: Tambahkan Teks Piped

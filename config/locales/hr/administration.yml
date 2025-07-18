@@ -1534,6 +1534,7 @@ hr:
       save: Spremi
       select_all: Odaberi sve
       unselect_all: Poništi odabir svega
+    communication_settings: Postavke
     communications:
       create:
         successfully: Komunikacija je uspješno uspostavljena.
@@ -1566,9 +1567,16 @@ hr:
           {{email}} - E-pošta primatelja
           {{schedule_start_date}} - Datum početka
           {{schedule_end_date}} - Datum završetka
+        campaign: Kampanja
+        campaign_assessment_group: Grupa procjene kampanje
+        client: Klijent
         completion: Završetak
         delivery_at: Dostava po (GST)
         delivery_delay_hours: Kašnjenje isporuke (sati)
+        delivery_interval: Interval dostave
+        delivery_interval_number: Broj intervala dostave
+        delivery_interval_period: Period intervala dostave
+        delivery_rule: Pravilo dostave
         delivery_rules:
           in_progress: Ako je procjena u tijeku
           not_competed: Ako procjena nije dovršena
@@ -1580,13 +1588,18 @@ hr:
         idp_template_approved: Odobreno za interno raseljene osobe
         idp_template_assigned: Dodijeljeno IDP-u
         idp_template_rejected: IDP odbijen
+        insert_piped_text: Umetni povezani tekst
         invitation: Poziv
         kind: Vrste komunikacije
         locale: Poprište
         magic_link_email: E-pošta Magic Link
+        message_body_placeholder: Unesite svoju poruku ovdje...
         new_assignment: Novi zadatak
         new_users: Novi korisnici
         other: Drugi
+        owner: Vlasnik
+        project: Projekt
+        recipients: Primatelji
         reminder: Opomena
         report_available: Dostupno izvješće
         selected: Odabrani
@@ -1594,6 +1607,7 @@ hr:
         selected_recipients: Odabrani primatelji
         stop_reminder: Prestanak slanja podsjetnika
         stop_reminder_datetime: Datum završetka podsjetnika (GST)
+        subject: Predmet
         workshop_booked: Potvrda rezervacije centra za procjenu
         workshop_cancelled: Centar za procjenu otkazan
         workshop_completed: Centar za procjenu završen
@@ -1878,10 +1892,24 @@ hr:
         successfully: Zadatak faktora uvoza zakazan za dimenziju %{name}.
         title: Čimbenici uvoza
       import_modal:
+        after: Nakon
+        before: Prije
         cancel: Otkazati
+        change_log_input: Dnevnik promjena
         continue: Nastaviti
+        error: Greška
+        error_occurred: Dogodila se greška
+        errors:
+          file_error: Molimo odaberite JSON datoteku prije nastavka.
+          processing_error: Greška prilikom obrade datoteke
+        field: Polje
         import: Uvoz
         import_dimension: Dimenzija uvoza
+        import_scheduled: Uvoz zakazan
+        operation: Operacija
+        owner_input_validation: Molimo odaberite vlasnika
+        owner_select: Odaberite vlasnika
+        select_json: Odaberite JSON datoteku
       import_translations:
         error: Pogreška prilikom uvoza prijevoda za dimenziju %{name}.
         successfully: Uvezite prijevode zakazane za dimenziju %{name}.
@@ -2438,6 +2466,7 @@ hr:
         successfully: Korisnik %{name} uspješno je ažuriran.
       update:
         successfully: Korisnik %{name} uspješno je ažuriran.
+    message: Poruka
     meta_title: Administrativna ploča
     navigation:
       ai_assistants: AI pomoćnici
@@ -2544,6 +2573,7 @@ hr:
         editor: Uređivač normi
         export: Izvozna norma
         title: Normove opcije
+      title: Norma
       toggle_status:
         successfully: Norm je uspješno ažuriran.
       update:
@@ -2631,12 +2661,16 @@ hr:
     piped_text_modal:
       assessment_id: ID procjene
       campaign_id: ID kampanje
+      campaign_name: Naziv kampanje
+      campaigns: Kampanje
       insight_page_link: Poveznica na stranicu Uvid
       insight_page_url: URL stranice uvida
       join_link: Veza za pridruživanje
       magic_link: Čarobna veza
       magic_url: Čarobni URL
       profile_custom_field: Prilagođeno polje profila
+      project_name: Naziv projekta
+      projects: Projekti
       report_name: Naziv izvješća
       text: Tekstualna poruka
       title: Dodavanje teksta s cijevima
