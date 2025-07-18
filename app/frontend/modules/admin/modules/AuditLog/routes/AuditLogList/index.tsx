@@ -268,7 +268,7 @@ const AuditLogList: React.FC<Props> = (
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} Audit Logs`}</span>
+          <span className="mlm">{`${total} ${I18n.t('administration.navigation.audit_logs')}`}</span>
         </Col>
       </Row>
       <Row>

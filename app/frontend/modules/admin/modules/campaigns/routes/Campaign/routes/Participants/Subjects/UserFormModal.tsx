@@ -24,7 +24,7 @@ const OPERATIONS_OPTIONS = [
 const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => (
   <ResourceFormModal
     resourceName="user"
-    readableResourceName="User"
+    readableResourceName={I18n.t('administration.users.user')}
     requestScope="campaigns"
     resourceBaseUrl={`/administration/new_campaigns/${campaignId}/users`}
     resource={user}

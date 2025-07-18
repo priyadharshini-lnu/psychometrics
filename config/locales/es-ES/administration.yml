@@ -942,6 +942,7 @@ es-ES:
         inactive: Inactivo
         status: Estado
       form:
+        campaign: Campaña
         name: Nombre
         practice_campaign: Campaña práctica
         status: Estado
@@ -1103,6 +1104,14 @@ es-ES:
         successfully: La tenencia del cliente %{name} se ha eliminado correctamente.
       edit:
         header: Editar cliente
+      form:
+        client: Cliente
+        country: País
+        name: Nombre
+        number: Número
+        project_manager: Jefe de proyecto
+        type: Tipo
+        year: Año
       licenses:
         resource:
           confirmations:
@@ -1783,7 +1792,7 @@ es-ES:
           invalid_id: 'Fila %{row}: ID debe ser un número'
           invalid_id_format: 'Fila %{row}: ID debe estar en el formato "id#campo"'
           missing_columns: 'Faltan columnas obligatorias: %{fields}'
-          save_failed: Guardado fallido
+          save_failed: 'No se pudo guardar: %{message}'
     development_actions:
       create:
         successfully: La acción de desarrollo "%{name}" se ha creado correctamente.
@@ -2162,7 +2171,7 @@ es-ES:
           factor_mismatch: La dimensión %{dimension_name} no tiene el factor %{factor_name}
           not_set_dimension: El nombre de la Dimensión debe escribirse en la segunda celda de la primera fila
         result:
-          answer_invalid: "[La respuesta para qid %{question_id} no es válida: %{error}"
+          answer_invalid: "[Fila %{row}] La respuesta para el qid %{question_id} no es válida: %{error}"
           date_errors:
             both_dates_required: Tanto started_at como completed_at son necesarios para el estado completado
             completed_at_should_be_after_started_at: completed_at debe ser posterior a started_at para el estado completado
@@ -2171,9 +2180,9 @@ es-ES:
             dates_should_be_empty: Las fechas deben estar vacías para el estado not_started
             started_at_required: Se requiere un start_at válido para el estado in_progress
           error: "[Fila %{row}] %{error}"
-          invalid_assign: "[Si desea crear un nuevo resultado, por favor, deje la columna ID de resultado vacía"
+          invalid_assign: "[Fila %{row}] No se encuentra el registro para el ID de resultado especificado. Si desea crear un nuevo resultado, deje la columna ID de resultado vacía."
           invalid_date: "[Fila %{row}] %{error}"
-          question_invalid: "[La pregunta %{question_id} no es válida"
+          question_invalid: "[Fila %{row}] La pregunta %{question_id} no es válida"
           user:
             record_not_found: No se puede encontrar el usuario existente con correo electrónico %{email}.
           user_assessment:
@@ -2778,6 +2787,7 @@ es-ES:
           success: La evaluación "%{name}" se ha eliminado correctamente.
           title: Suprimir evaluación
         form:
+          assessment: Evaluación
           assessment_placeholder: Seleccionar evaluación
           assessment_required: Se requiere evaluación
           normalize_factor_scores: Normalizar las puntuaciones de los factores
@@ -2913,22 +2923,45 @@ es-ES:
         client_logo_label: Logotipo del cliente
         contrast_ratio_warning: 'Nota: El uso de este color primario puede violar el requisito de relación de contraste para la legibilidad del texto.'
         contrast_ratio_warning_lighter_color: 'Nota: El uso de este color %{name} puede infringir el requisito de relación de contraste para la legibilidad del texto. Pruebe a utilizar un color más oscuro.'
+        copy_text: Texto
+        dashed_button: Dashed
+        default_button: Por defecto
         error_color: Error Color
+        hover_options:
+          danger_item: Objeto peligroso
+          first_menu_item: 1er punto del menú
+        hover_text: Pásame por encima
         info_color: Info Color
+        link_text: Enlace
         logo_upload: Cargar
         position_auto: Auto
         position_label: Posición de la casilla de inicio de sesión
         position_left: Izquierda
         position_right: Derecha
+        primary_button: Principal
         primary_color: Color principal
         reset: Restablecer
         sec_logo_label: Logo secundario
         sec_logo_upload: Cargar
         secondary_logo_alt_text: Logotipo secundario Alt-Text
         secondary_logo_alt_text_required: Logotipo secundario Alt-Text obligatorio
+        submenu_options:
+          option_one: Opción 1
+          option_title: Tema 1
+          option_two: Opción 2
         success_color: Éxito Color
         success_update: Los ajustes de diseño se han guardado correctamente
+        tab_text_one: Menú
+        tab_text_two: Submenú
+        text_danger: Texto(peligro)
+        text_success: Texto (éxito)
+        text_warning: Texto(advertencia)
         warning_color: Advertencia Color
+      form:
+        name: Nombre
+        project_number: Número de proyecto
+        subdomain: Subdominio
+        title: Proyecto
       general_settings:
         live_chat: Activar el chat en directo
         locales_label: Locales
@@ -3051,6 +3084,13 @@ es-ES:
         success_msg: Importación de preguntas de reflexión en curso. Compruebe el estado en las notificaciones.
       question: Pregunta
     report_approval:
+      approval_statuses:
+        approved: Aprobado
+        change_requested: Cambio solicitado
+        not_ready: No está listo
+        pending_qc: Pendiente de control de calidad
+        qc_completed: Control de calidad finalizado
+        qc_in_progress: Control de calidad en curso
       bulk_approve_success: "%{sent_for_approval} enviado para aprobación. %{approved} informes aprobados. %{ignored} informes que requieren aprobación manual debido a cambios/comentarios de control de calidad."
       columns:
         actions: Acciones
@@ -3082,6 +3122,7 @@ es-ES:
         no_saved_filters: No hay filtros guardados
         save_filter: Filtro guardado
         set_favorite: El filtro se ha establecido como favorito
+      submit_or_approve_all: Enviar o aprobar todo
     report_builder:
       campaign_factors:
         add_field: Añadir campo

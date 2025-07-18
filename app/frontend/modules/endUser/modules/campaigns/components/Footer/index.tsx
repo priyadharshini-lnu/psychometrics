@@ -93,7 +93,7 @@ const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
       <Button
         className="ps-0 pe-0"
         type="link"
-        href={`/privacy-statement/${I18n.currentLocale()}`}
+        href={`/privacy-statement?lang=${I18n.currentLocale()}`}
         target="_blank"
         rel="noopener noreferrer"
       >

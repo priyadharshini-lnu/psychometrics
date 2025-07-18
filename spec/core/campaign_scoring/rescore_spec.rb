@@ -102,4 +102,16 @@ describe CampaignScoring::Rescore do
     expect(cfv).to_not eq(nil)
     expect(cfv.numeric_value).to eq(100)
   end
+
+  it 'calls publish_campaign_results_available if all scores were calculated and finalized' do
+    campaign_user.update!(campaign_scores_finalized: false)
+    create(
+      :campaign_factor, code: 'factor2', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: 'assessment', assessment_score_type: 'norm_score'
+    )
+    expect_any_instance_of(CampaignUser).to receive(:publish_campaign_results_available).once
+    described_class.call!(campaign, user)
+
+    expect(campaign_user.reload.campaign_scores_finalized).to eq(true)
+  end
 end

@@ -942,6 +942,7 @@ de:
         inactive: Inaktiv
         status: Status
       form:
+        campaign: Kampagne
         name: Name
         practice_campaign: Praxis-Kampagne
         status: Status
@@ -1103,6 +1104,14 @@ de:
         successfully: Client Tenancy %{name} wurde erfolgreich gelöscht.
       edit:
         header: Client bearbeiten
+      form:
+        client: Kunde
+        country: Land
+        name: Name
+        number: Nummer
+        project_manager: Projektleiter
+        type: Typ
+        year: Jahr
       licenses:
         resource:
           confirmations:
@@ -1449,7 +1458,7 @@ de:
           resource:
             confirmations:
               delete:
-                body: "<p>Sind Sie sicher, dass Sie löschen möchten?</p> <p>Diese Aktion kann nicht rückgängig gemacht werden. Dadurch werden die Kampagne <strong>%{name}</strong>, die Unterkampagnen und alle Verknüpfungen dauerhaft gelöscht.</p> <p>Bitte geben Sie zur Bestätigung <strong>%{Name}</strong> ein.</p>"
+                body: "<p>Sind Sie sicher, dass Sie löschen möchten?</p> <p>Diese Aktion kann nicht rückgängig gemacht werden. Dadurch werden die Kampagne <strong>%{name}</strong>, die Unterkampagnen und alle Verknüpfungen dauerhaft gelöscht.</p> <p>Bitte geben Sie zur Bestätigung <strong>%{name}</strong> ein.</p>"
                 title: "<strong>%{name}</strong> löschen?"
               disable:
                 body:
@@ -1783,7 +1792,7 @@ de:
           invalid_id: 'Zeile %{row}: ID muss eine Zahl sein'
           invalid_id_format: 'Zeile %{row}: Die ID muss das Format "id#field" haben.'
           missing_columns: 'Fehlende erforderliche Spalten: %{fields}'
-          save_failed: Speichern fehlgeschlagen
+          save_failed: 'Speichern fehlgeschlagen: %{message}'
     development_actions:
       create:
         successfully: Entwicklungsaktion "%{name}" wurde erfolgreich erstellt.
@@ -2778,6 +2787,7 @@ de:
           success: Die Bewertung '%{name}' wurde erfolgreich gelöscht.
           title: Bewertung löschen
         form:
+          assessment: Bewertung
           assessment_placeholder: Bewertung auswählen
           assessment_required: Bewertung ist erforderlich
           normalize_factor_scores: Faktorwerte normalisieren
@@ -2913,22 +2923,45 @@ de:
         client_logo_label: Kundenlogo
         contrast_ratio_warning: 'Hinweis: Die Verwendung dieser Primärfarbe kann die Anforderungen an das Kontrastverhältnis für die Lesbarkeit von Text verletzen.'
         contrast_ratio_warning_lighter_color: 'Hinweis: Die Verwendung dieser %{name}-Farbe kann die Anforderungen an das Kontrastverhältnis für die Lesbarkeit des Textes verletzen. Versuchen Sie es mit einer dunkleren Farbe.'
+        copy_text: Text
+        dashed_button: Gestrichelt
+        default_button: Standard
         error_color: Fehler Farbe
+        hover_options:
+          danger_item: Gefährlicher Gegenstand
+          first_menu_item: 1. Menüpunkt
+        hover_text: Schwebe mich
         info_color: Info Farbe
+        link_text: Link
         logo_upload: Hochladen
         position_auto: Auto
         position_label: Login-Box Position
         position_left: Links
         position_right: Rechts
+        primary_button: Primäre Seite
         primary_color: Primärfarbe
         reset: Zurücksetzen
         sec_logo_label: Sekundäres Logo
         sec_logo_upload: Hochladen
         secondary_logo_alt_text: Sekundäres Logo Alt-Text
         secondary_logo_alt_text_required: Sekundäres Alt-Text-Logo ist erforderlich
+        submenu_options:
+          option_one: Option 1
+          option_title: Posten 1
+          option_two: Option 2
         success_color: Erfolg Farbe
         success_update: Designeinstellungen wurden erfolgreich gespeichert
+        tab_text_one: Menü
+        tab_text_two: Untermenü
+        text_danger: Text(Gefahr)
+        text_success: Text (Erfolg)
+        text_warning: Text(Warnung)
         warning_color: Warnfarbe
+      form:
+        name: Name
+        project_number: Projektnummer
+        subdomain: Subdomain
+        title: Projekt
       general_settings:
         live_chat: Live-Chat aktivieren
         locales_label: Lokalitäten
@@ -3051,6 +3084,13 @@ de:
         success_msg: Der Import der Reflexionsfragen ist im Gange. Bitte prüfen Sie den Status in den Benachrichtigungen.
       question: Frage
     report_approval:
+      approval_statuses:
+        approved: Genehmigt
+        change_requested: Gewünschte Änderung
+        not_ready: Nicht bereit
+        pending_qc: Ausstehende QC
+        qc_completed: QC Abgeschlossen
+        qc_in_progress: QC in Bearbeitung
       bulk_approve_success: "%{sent_for_approval} zur Genehmigung gesendet. %{approved} Berichte genehmigt. %{ignored} Berichte erfordern manuelle Genehmigung aufgrund von QC-Änderungen/Kommentaren."
       columns:
         actions: Aktionen
@@ -3082,6 +3122,7 @@ de:
         no_saved_filters: Es sind keine Filter gespeichert
         save_filter: Gespeicherte Filter
         set_favorite: Der Filter wurde als Favorit festgelegt
+      submit_or_approve_all: Einreichen oder Genehmigen Alle
     report_builder:
       campaign_factors:
         add_field: Feld hinzufügen

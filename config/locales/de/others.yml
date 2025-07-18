@@ -177,12 +177,17 @@ de:
             base:
               code_length: Der Code muss in der Zeile %{index} mindestens 3 Zeichen lang sein.
               code_required: Der Faktorcode ist in der Zeile %{index} erforderlich
+              invalid_csv: Ungültiger csv %{error_message}
               invalid_scoring_strategy: Ungültige Wertungsstrategie '%{strategy}' in Zeile %{index}. Erlaubte Strategien sind %{allowed}.
               missing_headers: 'Fehlende erforderliche Kopfzeilen: %{headers}'
               name_required: Der Name des Faktors ist in der Zeile %{index} erforderlich
               scoring_strategy_required: Scoring-Strategie ist erforderlich bei Zeile %{index}
             file:
               invalid_format: Bitte CSV-Datei hochladen
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: Client-SMS-Benachrichtigung ist deaktiviert
         hogan:
           attributes:
             name:
@@ -201,6 +206,7 @@ de:
               blank: Der Vorname darf nicht leer sein
             job_role:
               cannot_be_same: Die Zielfunktion muss sich von der aktuellen Funktion unterscheiden
+              not_found: Die Jobrolle '%{name}' wurde in Projekt- oder globalen Rollen nicht gefunden
             last_name:
               blank: Nachname darf nicht leer sein
             locale:
@@ -383,7 +389,7 @@ de:
               duplicate_value: 'Zeile %{row}: Duplizierter Wert %{value} für %{field}'
               invalid_format: Bitte xlsx-Datei hochladen
               missing_headers: "%{sheet_name} Blatt fehlt erforderliche Kopfzeile: %{headers}"
-              missing_sheets: 'Fehlende erforderliche Blätter: %{Blätter}'
+              missing_sheets: 'Fehlende erforderliche Blätter: %{sheets}'
               missing_value: 'Zeile %{row}: Fehlender Wert für %{field}'
             project:
               must_exist: Projekt muss existieren
@@ -769,6 +775,12 @@ de:
           attributes:
             base:
               max_takes_limit_reached: Grenze für maximale Takes erreicht
+        register:
+          attributes:
+            mobile_number:
+              blank: Handynummer ist erforderlich
+              invalid: Handynummer ist ungültig
+              verification_expired: Der Verifizierungscode ist abgelaufen. Sie können die Verifizierung erneut versuchen.
         report:
           assessments_not_hogan: Alle Beurteilungen müssen vom Typ Hogan sein
           assessments_not_saville: Alle Bewertungen müssen vom Typ Saville sein
@@ -784,6 +796,8 @@ de:
               invalid: Aktuelles Passwort ist falsch
             manager_id:
               cannot_be_self: Benutzer kann nicht als sein eigener Manager zugewiesen werden
+        user_idp_comment:
+          reply_to_reply: Auf eine Antwort kann nicht geantwortet werden (nur eine Verschachtelungsebene zulässig)
         user_idp_plan:
           no_active_plan: Kein aktiver IDP-Plan gefunden
   admin_jobs:
@@ -797,6 +811,7 @@ de:
         assign_idp_to_users: IDP den Benutzern zuweisen
         assign_reports_and_assessments: Berichte und Beurteilungen zuweisen
         bulk_create_workshop_invites: Bulk Assessment Center Einladungen senden
+        bulk_download_idp_reports: Massendownload von IDP-Berichten
         bulk_download_reports: Bulk Download Berichte
         bulk_download_user_reports: Bulk-Download von Benutzerberichten
         bulk_regenerate_reports: Kampagnenberichte neu generieren
@@ -804,6 +819,7 @@ de:
         bulk_regenerate_user_reports: Benutzerberichte neu generieren
         bulk_reports: Bulk-Berichte
         bulk_rescore_campaign_factors: Faktoren für Massenwiederholungskampagnen
+        bulk_update_evaluation_status: Evaluierungsstatus der Massenaktualisierung
         compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
         completion_status_export: Fertigstellungsstatus Export
         copy_dimension: Dimension kopieren
@@ -813,6 +829,7 @@ de:
         export_assessment_questions: Fragen zur Exportbewertung
         export_campaign_factors: Faktoren der Exportkampagne
         export_campaign_scorings: Kampagnenscorings exportieren
+        export_dashboard_as_file: Dashboard als Datei exportieren
         export_development_action_translations: Exportentwicklung Aktion Übersetzungen
         export_development_actions: Maßnahmen zur Exportentwicklung
         export_dimension_as_json: Dimension JSON exportieren
@@ -820,7 +837,9 @@ de:
         export_job_roles_translations: Exportieren von Job-Rollen-Übersetzungen
         export_norm: Norm exportieren
         export_occupations: Berufe Export
+        export_proficiency_level_translations: Exportieren von Übersetzungen der Sprachstufen
         export_proficiency_levels: Leistungsniveaus exportieren
+        export_reflection_questions: Exportieren von Reflexionsfragen
         export_report_data: Berichtsdaten exportieren
         export_reports_and_assessments: Berichte und Beurteilungen exportieren
         export_skill_translations: Exportkompetenzen Übersetzungen
@@ -842,8 +861,10 @@ de:
         import_job_roles_translations: Importieren von Job-Rollen-Übersetzungen
         import_norm: Norm importieren
         import_proficiency_level_translations: Importieren von Übersetzungen der Proficiency Level
+        import_proficiency_levels: Importieren von Ausprägungsstufen
         import_question_translations: Fragenübersetzungen importieren
         import_raw_data: Rohdaten importieren
+        import_reflection_questions: Importieren von Reflexionsfragen
         import_scoring_data: Scoring-Daten importieren
         import_skill_rater_taxonomies: Taxonomien für Skill Rater importieren
         import_skill_translations: Importfähigkeiten Übersetzungen
@@ -873,6 +894,8 @@ de:
         failed: Gescheitert
         in_progress: In Arbeit
         scheduled: Geplant
+    bulk_download_idp_reports:
+      already_exists: Der Auftrag zum Generieren dieses IDP-Berichts wird bereits ausgeführt
     bulk_download_reports:
       content:
         title: Links zum Herunterladen von Berichten
@@ -905,7 +928,7 @@ de:
       add_tag:
         success_message: Tag wurde erfolgreich hinzugefügt
       archived:
-        success_message: Die Bewertung "%{Name}" wurde erfolgreich archiviert.
+        success_message: Die Bewertung "%{name}" wurde erfolgreich archiviert.
       assessment_cache:
         remove_cache: Cache entfernen
         success_message: Cache erfolgreich entfernt
@@ -917,6 +940,7 @@ de:
       download_csv: CSV herunterladen
       edit: Bearbeiten
       evaluate: Bewerten Sie
+      export: Exportieren
       export_normed: Genormte Faktor-Scores
       export_raw_labels: Roh (mit Etiketten)
       export_raw_scores: Raw Factor Scores
@@ -1035,6 +1059,7 @@ de:
         pearson: Pearson-Bewertung
         saville: Saville-Bewertung
         simulation: Simulation Bewertung
+        skillvue: Skillvue-Bewertung
     flow:
       end_assessment_modal:
         custom_message: Benutzerdefinierte Meldung zum Ende der Bewertung
@@ -1134,6 +1159,7 @@ de:
       previous_group_required: Vorheriger Abschluss einer Gruppe erforderlich
     menu:
       assessment_center: Assessment Center
+      assessment_center_invites: Einladungen zum Assessment Center
       assessments_and_reports: Beurteilungen und Berichte
       idp: IDP
       manage: Verwalten Sie
@@ -1313,21 +1339,21 @@ de:
     inactive_campaign_message: Derzeit wurden Ihnen keine Aktivitäten zugewiesen.
     insights_reports: Erkenntnisse und Berichte
     instruction_modal:
-      campaign_start_final_instructions: |
+      campaign_start_final_instructions: |-
         <p>
           Bitte beachten Sie, dass es keine Möglichkeit gibt, den Timer zu stoppen oder anzuhalten. Der Kampagnen-Timer läuft auch dann weiter, wenn Sie den Browser schließen. Sie sollten also zu keinem Zeitpunkt daran denken, die Aufgaben zwischendurch zu verlassen, um etwas anderes zu erledigen. Achten Sie darauf, Ablenkungen während der Aufgaben so gering wie möglich zu halten. Suchen Sie sich eine ruhige Umgebung, schalten Sie Benachrichtigungen auf Ihren Geräten aus und vermeiden Sie Multitasking. Behalten Sie Ihre Konzentration bei und bleiben Sie konzentriert. Sobald der Kampagnen-Timer abgelaufen ist, können Sie nicht mehr fortfahren. Wenn Sie die obigen Anweisungen gelesen haben, klicken Sie bitte auf Start, um mit den zugewiesenen Aufgaben fortzufahren.
         </p>
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Bitte lesen Sie die folgenden Anweisungen sorgfältig durch.</h4>
         <p>
           Die Aufgaben, mit denen Sie gerade beginnen, sind zeitlich festgelegt. Sobald Sie auf „Start“ klicken, startet der Kampagnen-Timer automatisch. Sie haben %{minutes} Minuten Zeit, um alle Aktivitäten abzuschließen. Versuchen Sie bitte, die Aufgaben innerhalb des vorgegebenen Zeitrahmens zu erledigen und die Zeit effektiv einzuteilen, um eine Eile durch den Bewertungsprozess zu vermeiden. Stellen Sie sicher, dass Sie die Aufgaben auf einmal erledigen. Wenn Sie also eine Pause brauchen, ist jetzt der richtige Zeitpunkt dafür.
         </p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Überwachung</h4>
         <p>
           Wenn Sie auf die Schaltfläche „Start“ klicken, werden Sie zu unserem Überwachungssystem weitergeleitet. Es überwacht Ihre Kamera, Ihr Mikrofon und Ihren Bildschirm während Ihrer Sitzung. Diese Sitzungen werden automatisch von unserem hochentwickelten KI-System überwacht und sorgen so für ein unterbrechungsfreies und reibungsloses Benutzererlebnis. Allerdings können Sitzungen auch von menschlichen Aufsichtspersonen überprüft werden. Alle Anzeichen von Fehlverhalten oder Unregelmäßigkeiten werden gemeldet. Dies geschieht, um sicherzustellen, dass keine Betrugsversuche unternommen werden. Wenn ein Verdacht vorliegt, werden Ihre Aufgaben abgebrochen.
         </p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Überwachungsbrowser</h4>
         <p>
           Sie müssen einen speziellen Browser herunterladen und installieren, um die überwachten Aufgaben auszuführen. Bitte folgen Sie den Anweisungen im nächsten Bildschirm. Sie können dies deinstallieren, nachdem Sie alle erforderlichen Aktivitäten abgeschlossen haben.
@@ -1369,6 +1395,8 @@ de:
   campaign_assessment:
     actions:
       bulk_download: Massendownload
+      bulk_update_evaluation_as_done: Als erledigt markieren
+      bulk_update_evaluation_as_undone: Markierung als erledigt aufheben
       download: Berichte herunterladen
       export_completion_status: Status des Exportabschlusses
       export_external: Extern
@@ -1400,9 +1428,15 @@ de:
       locales: Lokalitäten
       norm: Norm
       norm_id: Norm-ID
+      pearson_norm_id: Pearson-Norm-ID
+      pearson_schedule_id: Pearson Fahrplan-ID
       pearson_variation: Pearson-Variation
       prework: Vorarbeit
+      saville_candidate_id: Kandidaten-ID
+      saville_data_separator: Saville Datentrenner
       simulation_content_variation: Simulation Inhaltsvariation
+      simulation_participant_id: Teilnehmer-ID der Simulation
+      simulation_time_extension: Verlängerung der Simulationszeit
       skillvue_email_id: Skillvue-Kandidaten-E-Mail-ID
       skillvue_external_assessment_id: Skillvue Bewertung ID
       universal_link: Universeller Link
@@ -1425,6 +1459,10 @@ de:
         placeholder: Wählen Sie eine Assessment Center-Gruppe
         success_message: Assessor Campaign Assessment Group wurde erfolgreich zugewiesen
         title: Assessment Center Gruppe
+      bulk_update_evaluation:
+        content: Sind Sie sicher, dass Sie alle ausgewählten Themen als %{status} markieren möchten?
+        successfully: Erfolgreich als %{status} markiert.
+        title: Massenmarkierung als %{status}?
       import_raw:
         body: Mit der Exportfunktion können Sie eine Vorlage extrahieren, die Sie für den Import verwenden können.
         success_msg: Der Import wurde erfolgreich hochgeladen
@@ -1435,13 +1473,17 @@ de:
         success_msg: Der Import wurde erfolgreich hochgeladen
         title: Importieren von Wertungsergebnisdaten
         upload: Hochladen
+      prework_setting:
+        disable: Deaktivieren der Vorarbeit für alle vorhandenen Benutzer
+        enable: Aktivieren der Vorarbeit für alle vorhandenen Benutzer
+        title: Formular zur Einstellung von Vorarbeiten
       regenerate:
         content: Sind Sie sicher, dass Sie die vorhandenen Berichte neu generieren wollen?
         title: Berichte neu generieren?
       remove:
         helper_text: 'GEFAHR: Wenn Sie dies auswählen, werden alle Antworten der Benutzer auf diese Bewertung in dieser Kampagne gelöscht.'
         msg_text: Sie versuchen, <strong>"%{name}"</strong> zu löschen Bewertung
-        successfully: die Bewertung %{Name} wurde erfolgreich entfernt.
+        successfully: die Bewertung %{name} wurde erfolgreich entfernt.
         title: Bewertung entfernen?
       rescore:
         content: Sind Sie sicher, dass Sie die Bewertung neu bewerten wollen?
@@ -1700,22 +1742,29 @@ de:
       copy: Kopieren
       create: Erstellen
       delete: lösch
+      done: Fertig
+      download: Herunterladen
       edit: Bearbeiten
       export: Exportieren
+      filter: Filter
       filter_by_tags: Nach Tags filtern
+      go_back: Zurück
       import: Importieren
       insert: Einfügen
       ok: OK
       publish: veröffentlichen.
+      reject: Ablehnen
       remove: Entfernen
       reset: Rücksetzen
       resolve: Beschließen
       restore: Wiederherstellen
+      return_to_home: Zurück zur Startseite
       run: Ausführen
       save: sparen
       schedule: Zeitplan
       search: Suchen
       send: Schicken
+      sign_in: Anmelden
       start: Starten
       submit: Einreichen
       unarchive: Dearchivieren
@@ -1913,16 +1962,12 @@ de:
     mailer:
       admin_invitation_instructions:
         accept: Klicken Sie hier, um die Einladung anzunehmen.
-        body: 'Hallo %{Name}, Sie wurden eingeladen, auf das Admin-Panel von Lighthouse - The Talent Enterprise Assessment Platform zuzugreifen. %{accept} Oder Sie können diese E-Mail getrost ignorieren. Bitte geben Sie Ihre Zugangsdaten an niemanden weiter.
-
-          '
+        body: 'Hallo %{name}, Sie wurden eingeladen, auf das Admin-Panel von Lighthouse - The Talent Enterprise Assessment Platform zuzugreifen. %{accept} Oder Sie können diese E-Mail getrost ignorieren. Bitte geben Sie Ihre Zugangsdaten an niemanden weiter. '
         subject: Einladung zum Leuchtturm
       confirmation_instructions:
         subject: Anweisungen zur Bestätigung
       invitation_instructions:
-        body: 'Hallo %{Name}, Du wurdest zu Lighthouse als Admin für den folgenden Bereich hinzugefügt
-
-          '
+        body: 'Hallo %{name}, Du wurdest zu Lighthouse als Admin für den folgenden Bereich hinzugefügt '
         login: Bei Lighthouse anmelden
         sections:
           campaign: 'Kampagne: %{section_name}'
@@ -1930,31 +1975,19 @@ de:
           project: 'Projekt: %{section_name}'
         subject: Einladung zum Leuchtturm
       password_change:
-        body: 'Hallo %{Name}, Ihr Passwort wurde geändert. Wenn Sie dies nicht angefordert haben, wenden Sie sich bitte umgehend an den Support unter mte.support@mercer.com
-
-          '
-        regards: 'Mit freundlichen Grüßen, Lighthouse Team
-
-          '
+        body: 'Hallo %{name}, Ihr Passwort wurde geändert. Wenn Sie dies nicht angefordert haben, wenden Sie sich bitte umgehend an den Support unter mte.support@mercer.com '
+        regards: 'Mit freundlichen Grüßen, Lighthouse Team '
         subject: Ihr Lighthouse-Passwort hat sich geändert
       reset_password_instructions:
-        body: 'Hallo %{Name}! Jemand hat einen Link angefordert, um Ihr Passwort zu ändern. Sie können dies über den unten stehenden Link tun.
-
-          '
+        body: 'Hallo %{name}! Jemand hat einen Link angefordert, um Ihr Passwort zu ändern. Sie können dies über den unten stehenden Link tun. '
         change_password: Passwort ändern
         footer: Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail getrost ignorieren. Ihr Passwort wird sich erst ändern, wenn Sie den obigen Link aufrufen und ein neues Passwort erstellen.
-        regards: 'Mit freundlichen Grüßen, Lighthouse Team
-
-          '
+        regards: 'Mit freundlichen Grüßen, Lighthouse Team '
         subject: Anweisungen zum Zurücksetzen Ihres Passworts
       unlock_instructions:
-        body: 'Hallo %{Name}! Ihr Konto wurde aufgrund einer zu hohen Anzahl von fehlgeschlagenen Anmeldeversuchen gesperrt. Klicken Sie auf den untenstehenden Link, um Ihr Konto zu entsperren:
-
-          '
+        body: 'Hallo %{name}! Ihr Konto wurde aufgrund einer zu hohen Anzahl von fehlgeschlagenen Anmeldeversuchen gesperrt. Klicken Sie auf den untenstehenden Link, um Ihr Konto zu entsperren: '
         footer: Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail getrost ignorieren. Ihr Passwort wird sich erst ändern, wenn Sie den obigen Link aufrufen und ein neues Passwort erstellen.
-        regards: 'Mit freundlichen Grüßen, Lighthouse Team
-
-          '
+        regards: 'Mit freundlichen Grüßen, Lighthouse Team '
         subject: Anweisungen zum Freischalten Ihres Kontos
         unlock_account: Mein Konto freischalten
     omniauth_callbacks:
@@ -2062,6 +2095,9 @@ de:
         last_factor_group: Die letzte Kampagnenfaktorgruppe kann nicht gelöscht werden.
       campaign_idps:
         idp_template_not_published: Diese IDP -Vorlage wird noch nicht veröffentlicht. Bitte veröffentlichen Sie sie, bevor Sie der Kampagne zuweisen.
+      cant_be_deleted: Dieser Datensatz kann nicht gelöscht werden
+      client_feature:
+        ai_assisted_idp_feature_error: Kann nicht wahr sein, wenn die Funktion der KI-Assistenten deaktiviert ist
       create_superadmin:
         uniq_email: E-Mail sollte einheitlich sein.
       development_actions:
@@ -2071,6 +2107,7 @@ de:
       exceeded_subjects_count: Sie können nur %{count} Themen pro Einladung hinzufügen
       filled?: kann nicht leer sein
       idp_template:
+        content_required: Für die Anleitung wird der Inhalt benötigt
         tag_or_skill_required: Bitte wählen Sie entweder ein Tag oder eine Fähigkeit aus, wenn die Option „Ausgewählt“ gewählt ist.
       invalid_name: nur Alphabet, Zahl, Leerzeichen, Bindestrich und Punkt sind als gültige Zeichen erlaubt
       invalid_value: ungültige Anweisung '%{value}' in Zeile Nummer %{row}
@@ -2093,6 +2130,8 @@ de:
       report_families_reports:
         report_exists: Dieser Bericht ist bereits Teil des Berichtspakets
       size?: größe sollte kleiner sein %{size}
+      skill:
+        already_added: Skill mit demselben Namen wurde bereits hinzugefügt.
       skill_alias:
         unique_alias: Alias sollte eindeutig sein
         unique_skill: Die Fähigkeit sollte einzigartig sein
@@ -2155,6 +2194,8 @@ de:
     assessments:
       timed_out: Sie können an der Bewertung %{assessment_name} nicht mehr teilnehmen, da die Zeit abgelaufen ist.
     error: Fehler
+    error_401: Sie sind nicht berechtigt, auf diese Ressource zuzugreifen. Bitte melden Sie sich an.
+    error_403: Sie verfügen nicht über die Berechtigung zum Anzeigen dieser Ressource.
     error_500: Es ist etwas schief gelaufen, wenden Sie sich an Ihren Administrator.
     error_msg: Bitte aktualisieren Sie die Seite und wenden Sie sich an Ihren Administrator, wenn das Problem weiterhin besteht
     forbidden: Sie haben keinen Zugriff auf diese Seite
@@ -2207,7 +2248,7 @@ de:
       remove_file: datei entfernen
       send_message: Nachricht senden
       slider_label_instruction: 'min: %{min} und max: %{max}'
-      task_btn_description: aufgabe %{AssessmentName}
+      task_btn_description: aufgabe %{assessmentName}
       task_progress_label: Aufgabenerledigung ist
       write_message: Schreiben Sie Ihre Nachricht
     assessment: Bewertung
@@ -2478,10 +2519,10 @@ de:
       generate_more: Mehr generieren
       generating_development_actions: Generierung von Entwicklungsmaßnahmen...
       heading: Entwicklungspolitische Maßnahmen
-      incomplete_error: Unvollständige Entwicklungsaktionen
-      incomplete_error_message: Einige Entwicklungsaktionen sind unvollständig. Bitte schließen Sie diese ab, bevor Sie Ihren IDP einreichen.
-      incomplete_warning: Unvollständige Entwicklungsaktionen
-      incomplete_warning_message: Einige Entwicklungsaktionen sind unvollständig. Möchten Sie Ihren IDP wirklich als abgeschlossen markieren?
+      incomplete_error: Unvollständige Entwicklungsmaßnahmen
+      incomplete_error_message: Einige Entwicklungsmaßnahmen sind noch nicht abgeschlossen. Bitte füllen Sie diese aus, bevor Sie Ihren IDP einreichen.
+      incomplete_warning: Unvollständige Entwicklungsmaßnahmen
+      incomplete_warning_message: Einige Entwicklungsmaßnahmen sind noch nicht abgeschlossen. Sind Sie sicher, dass Sie Ihren IDP als abgeschlossen markieren möchten?
       learning_from_others: Von anderen lernen
       manage_skills: Fertigkeiten managen
       marathon: Marathon
@@ -2516,7 +2557,7 @@ de:
       rate_skills_title: Bewertung Ihrer Fertigkeiten
       rating_column_header: Ihre Selbsteinschätzung
       reflective_questions: Reflektierende Fragen
-      save: Speichern
+      save: Retten
       select_skills: Wählen Sie Ihre Fähigkeiten
       select_skills_placeholder: Fähigkeiten auswählen
       selected_skills: Ausgewählte Fertigkeiten
@@ -2532,7 +2573,7 @@ de:
         behavioural: Verhaltensweisen
         categories: Kategorien
       save_skills: Kompetenzen speichern
-    new_comments: Neue(r) Kommentar(e)
+    new_comments: Neuer Kommentar
     pdf:
       approval_status: Genehmigungsstatus
       cover:
@@ -2662,10 +2703,10 @@ de:
       approved: Genehmigt
       completed: Abgeschlossen
       draft: Entwurf
-      in_progress: In Bearbeitung
+      in_progress: Im Gange
       not_started: Nicht gestartet
       pending_approval: Anhängig
-      rejected: Abgelehnt
+      rejected: Zurückgewiesen
     users: Benutzer
     with_reflection_questions: Mit Reflexionsfragen
     without_reflection_questions: Ohne Reflexionsfragen
@@ -2783,6 +2824,7 @@ de:
     overuse_number: Mehrverbrauchsvergütung
     report_family: Berichtsbündel
     start_date: Datum des Beginns
+    title: Lizenz
     type: Typ
     types:
       common: Gemeinsame
@@ -2793,6 +2835,35 @@ de:
     used_out_of: "%{used} von %{total}"
   mailer:
     from: Das Unternehmen Talent
+    idp:
+      manager_unread_comments:
+        body: |-
+          Hallo %{name},
+          Sie haben neue Kommentare von Ihren IDP-Reportern.
+
+          %{dashboard_link}
+
+          Auf Ihrem Dashboard für direkt unterstellte Personen können Sie:
+          - Überprüfen Sie neue Kommentare von Mitgliedern zu ihren individuellen Plänen
+          - Geben Sie Feedback zu ihren Entwicklungszielen
+          - Verfolgen Sie den Fortschritt bei IDP-Aktivitäten
+          - Unterstützen Sie das Wachstum und die Entwicklung Ihres Teams
+        dashboard_link: Zum Dashboard
+        subject: Du hast neue Kommentare - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          Hallo %{name},
+          Sie haben neue Kommentare zu Ihrem Entwicklungsplan.
+
+          %{dashboard_link}
+
+          Auf Ihrem Dashboard "Mein Plan" können Sie:
+          - Aktualisieren Sie Ihren Entwicklungsplan
+          - Neue Kommentare und Feedback lesen
+          - Beantworten Sie Fragen Ihres Vorgesetzten
+          - Aktualisieren Sie Ihren Fortschritt bei Entwicklungsmaßnahmen
+        dashboard_link: Meinen Plan anzeigen
+        subject: Sie haben neue Kommentare zu Ihrem Entwicklungsplan - %{campaign_name}
     license:
       expire:
         subject: Lizenz abgelaufen
@@ -2815,7 +2886,7 @@ de:
         weekly_stats: 'Statistik der Lizenznutzung der letzten Woche :'
     magic_link:
       body:
-        dear: Lieber %{Name},
+        dear: Lieber %{name},
         greetings: Grüße für den Tag!
         instructions: Klicken Sie auf den unten stehenden Link, um sich bei Lighthouse anzumelden.
         signin_link: Anmeldung Link
@@ -2917,17 +2988,17 @@ de:
       actions:
         add: Neuen Bericht hinzufügen
         remove:
-          confirm_message: Sind Sie sicher, dass Sie den Bericht "%{Name}" aus "%{report_bundle_name}" löschen möchten?
+          confirm_message: Sind Sie sicher, dass Sie den Bericht "%{name}" aus "%{report_bundle_name}" löschen möchten?
           confirm_title: Bestätigung erforderlich
           success_message: Bericht %{name} wurde gelöscht
   reports:
     actions:
       add: hinzufügen Bericht
       archived:
-        success_message: Der Bericht "%{Name}" wurde erfolgreich archiviert.
+        success_message: Der Bericht "%{name}" wurde erfolgreich archiviert.
       back_to_campaign: Zurück zu den Kampagnen
       copy:
-        success_message: Der Bericht "%{Name}" wurde erfolgreich kopiert.
+        success_message: Der Bericht "%{name}" wurde erfolgreich kopiert.
       details: Einzelheiten
       download: Bericht herunterladen
       download_csv: CSV herunterladen
@@ -2938,7 +3009,7 @@ de:
       re_evaluate: Hier klicken, um neu zu bewerten
       reevaluate: Bewerten Sie  neu
       remove:
-        confirm_message: Sind Sie sicher, dass Sie den Bericht "%{Name}" löschen wollen?
+        confirm_message: Sind Sie sicher, dass Sie den Bericht "%{name}" löschen wollen?
         confirm_title: Bestätigung erforderlich
         success_message: Bericht %{name} wurde entfernt
       rescore: Neubewertung
@@ -3506,7 +3577,7 @@ de:
       accept: Annehmen
       checkbox: Durch Anklicken dieses Kästchens erklären Sie sich damit einverstanden, dass Sie unseren Datenschutzhinweis zur Erfassung und Verarbeitung Ihrer persönlichen Daten wie darin beschrieben gelesen haben, einschließlich der internationalen Übermittlung Ihrer persönlichen Daten.
       checkbox_with_client_link: Durch Anklicken dieses Kästchens erklären Sie, dass Sie unseren Datenschutzhinweis und den Datenschutzhinweis unseres Kunden gelesen haben und mit der darin beschriebenen Erfassung und Verarbeitung Ihrer personenbezogenen Daten einverstanden sind, einschließlich der internationalen Übermittlung Ihrer personenbezogenen Daten.
-      privacy_notice: Datenschutzhinweis
+      privacy_notice: Hinweis zum Datenschutz
       title: Zustimmung zur Verarbeitung und Übermittlung persönlicher Daten
     action: Aktion
     add: hinzufügen
@@ -3664,6 +3735,9 @@ de:
     waiting: warten
     you: Sie
     yourself: ihne selbst
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Durch Anklicken dieses Kästchens erklären Sie, dass Sie unseren Datenschutzhinweis und den Datenschutzhinweis unseres Kunden gelesen haben und mit der darin beschriebenen Erfassung und Verarbeitung Ihrer personenbezogenen Daten einverstanden sind, einschließlich der internationalen Übermittlung Ihrer personenbezogenen Daten.
+    privacy_notice: Hinweis zum Datenschutz
   time:
     formats:
       date: "%d/%m/%y"
@@ -3724,6 +3798,7 @@ de:
         body: In der Beispieldatei finden Sie eine Vorlage, die Sie für den Import verwenden können.
         title: Berichte und Beurteilungen zuweisen
     toolbar:
+      bulk_download_idp_reports: Massendownload von IDP-Berichten
       export: Benutzer exportieren
       export_compact_completion_status: Kompakt
       export_detailed_completion_status: Ausführlich
@@ -3736,7 +3811,7 @@ de:
       id: Benutzer-Assessment-ID
       norm_id: Norm-ID
     drawer:
-      copied: "%{Name} in die Zwischenablage kopiert."
+      copied: "%{name} in die Zwischenablage kopiert."
       copy: In die Zwischenablage kopieren
       mettl_schedule_name: Mettl Zeitplan Name
       no_data: Keine Daten verfügbar
@@ -3759,10 +3834,10 @@ de:
         submit_button_name: Push-Webhook
         title: Push-Webhook
       remove:
-        content: Sind Sie sicher, dass Sie die Bewertung "%{Name}" entfernen wollen?
-        successfully: die Bewertung %{Name} wurde erfolgreich entfernt.
+        content: Sind Sie sicher, dass Sie die Bewertung "%{name}" entfernen wollen?
+        successfully: die Bewertung %{name} wurde erfolgreich entfernt.
       reset:
-        content: Sind Sie sicher, dass Sie den Fortschritt "%{Name}" zurücksetzen wollen?
+        content: Sind Sie sicher, dass Sie den Fortschritt "%{name}" zurücksetzen wollen?
       test_webhook:
         submit_button_name: Test senden
         title: Webhook-Ereignis senden Test
@@ -3907,6 +3982,10 @@ de:
       BadRequest: Die Datei wurde nicht hochgeladen, da die letzte Anfrage fehlgeschlagen ist. Dies könnte daran liegen, dass Ihr Internet nicht funktioniert. Wenn Ihr Internet funktioniert, wenden Sie sich bitte an den Administrator
       EntityTooLarge: Die Dateigröße sollte weniger als %{maxFileSize} MB betragen
       WrongFileType: Der Dateityp sollte einer der folgenden %{allowedFileTypes} sein
+    idp:
+      reflective_questions_required: Antworten auf reflektierende Fragen sind für IDP erforderlich
+      status_not_permitted: ist vom Nutzer nicht gestattet.
+      status_not_permitted_by_manager: Der Manager kann den Status nicht aktualisieren, wenn sich der Plan im Status "%{status}" befindet.
     invalid: ist ungültig
     issue: Problem
     least: Bitte wählen Sie mindestens %{min} Auswahlmöglichkeit(en).

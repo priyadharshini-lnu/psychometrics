@@ -942,6 +942,7 @@ pt:
         inactive: Inativo
         status: Estado
       form:
+        campaign: Campanha
         name: Nome
         practice_campaign: Campanha prática
         status: Estado
@@ -1103,6 +1104,14 @@ pt:
         successfully: O Aluguer de Cliente %{name} foi eliminado com êxito.
       edit:
         header: Editar cliente
+      form:
+        client: Cliente
+        country: País
+        name: Nome
+        number: Número
+        project_manager: Gestor de projectos
+        type: Tipo
+        year: Ano
       licenses:
         resource:
           confirmations:
@@ -1783,7 +1792,7 @@ pt:
           invalid_id: 'Linha %{row}: o ID tem de ser um número'
           invalid_id_format: 'Linha %{row}: O ID tem de estar no formato "id#campo"'
           missing_columns: 'Colunas obrigatórias em falta: %{fields}'
-          save_failed: Falha na gravação
+          save_failed: 'Falha ao salvar: %{message}'
     development_actions:
       create:
         successfully: A Ação de Desenvolvimento "%{name}" foi criada com êxito.
@@ -2778,6 +2787,7 @@ pt:
           success: A avaliação '%{name}' foi eliminada com êxito.
           title: Eliminar avaliação
         form:
+          assessment: Avaliação
           assessment_placeholder: Selecionar avaliação
           assessment_required: É necessária uma avaliação
           normalize_factor_scores: Normalizar as pontuações dos factores
@@ -2913,22 +2923,45 @@ pt:
         client_logo_label: Logótipo do cliente
         contrast_ratio_warning: 'Nota: A utilização desta cor primária pode violar o requisito de rácio de contraste para a legibilidade do texto.'
         contrast_ratio_warning_lighter_color: 'Nota: A utilização desta cor %{name} pode violar o requisito de relação de contraste para a legibilidade do texto. Tente utilizar uma cor mais escura.'
+        copy_text: Texto
+        dashed_button: A tracejado
+        default_button: Predefinição
         error_color: Cor do erro
+        hover_options:
+          danger_item: Artigo de perigo
+          first_menu_item: 1º item de menu
+        hover_text: Passe-me por cima
         info_color: Info Cor
+        link_text: Ligação
         logo_upload: Carregar
         position_auto: Automóvel
         position_label: Posição da caixa de registo
         position_left: Esquerda
         position_right: Certo
+        primary_button: Primário
         primary_color: Cor primária
         reset: Reiniciar
         sec_logo_label: Logótipo secundário
         sec_logo_upload: Carregar
         secondary_logo_alt_text: Texto alternativo do logótipo secundário
         secondary_logo_alt_text_required: É necessário um logótipo de texto alternativo secundário
+        submenu_options:
+          option_one: Opção 1
+          option_title: Item 1
+          option_two: Opção 2
         success_color: Cor do sucesso
         success_update: As definições de design foram guardadas com sucesso
+        tab_text_one: Menu
+        tab_text_two: Submenu
+        text_danger: Texto(perigo)
+        text_success: Texto (sucesso)
+        text_warning: Texto(aviso)
         warning_color: Cor de aviso
+      form:
+        name: Nome
+        project_number: Número do projeto
+        subdomain: Subdomínio
+        title: Projeto
       general_settings:
         live_chat: Ativar o Chat em direto
         locales_label: Localidades
@@ -3051,6 +3084,13 @@ pt:
         success_msg: Importação de perguntas de reflexão em curso. Verifique o estado nas notificações.
       question: Questão
     report_approval:
+      approval_statuses:
+        approved: Aprovado
+        change_requested: Alteração solicitada
+        not_ready: Não está pronto
+        pending_qc: Pendente de CQ
+        qc_completed: CQ Concluído
+        qc_in_progress: CQ em curso
       bulk_approve_success: "%{sent_for_approval} enviado para aprovação. %{approved} relatórios aprovados. %{ignored} relatórios que requerem aprovação manual devido a alterações/comentários de CQ."
       columns:
         actions: Acções
@@ -3082,6 +3122,7 @@ pt:
         no_saved_filters: Não existem filtros guardados
         save_filter: Filtro guardado
         set_favorite: O filtro foi definido como favorito
+      submit_or_approve_all: Submeter ou aprovar todos
     report_builder:
       campaign_factors:
         add_field: Adicionar campo

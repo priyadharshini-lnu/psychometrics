@@ -10,10 +10,9 @@ describe PowerBi::FileExportService do
       'format' => 'PPTX'
     }
   end
-  let(:service) { described_class.new(parameters) }
+  let(:service) { described_class.new(parameters, { username: 'test@example.com' }) }
   let(:config) do
     {
-      username: 'test@example.com',
       group_id: 'test-group-id'
     }
   end

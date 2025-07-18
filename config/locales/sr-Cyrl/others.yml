@@ -53,6 +53,7 @@ sr-Cyrl:
   assessments:
     actions:
       back_to_campaign: Назад на кампању
+      export: Извоз
       extend_time: Продужи време
       goto_dashboard: Кликните овде да бисте наставили
       pending_tasks:
@@ -350,6 +351,7 @@ sr-Cyrl:
       copy: Копија
       delete: Обриши
       edit: Измени
+      export: Извоз
       remove: Уклони
       reset: Ресетуј
       resolve: Решити
@@ -819,6 +821,8 @@ sr-Cyrl:
   idp_templates:
     errors:
       user_idp_template_not_found: Није вам додељен ниједан шаблон за идентификацију личности.
+  licenses:
+    title: Лиценца
   mailer:
     magic_link:
       body:

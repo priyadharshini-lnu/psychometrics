@@ -9,7 +9,7 @@ import {
 import cs from 'classnames'
 
 import { CopyOutlined } from '@ant-design/icons'
-import dayjs from '~/utils/dayjs'
+import dayjs, { localeMapping } from '~/utils/dayjs'
 import { ScheduleDay } from '~/glint/components/ScheduleAvailability/ScheduleDay'
 import { Panel } from '~/glint/components/Panel/Panel'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
@@ -22,10 +22,11 @@ import {
   dayOptions, defaultCheckedList, getInitialCheckedDayList, parseInitialAvailability,
 } from './utils'
 
+const { I18n } = window
+
 const allDays = dayjs.weekdays()
 const dateDisplayFormat = 'Do MMMM YYYY'
 const dateFormat = 'DD/MM/YYYY'
-const { I18n } = window
 
 type Props = {
   id: string
@@ -58,6 +59,9 @@ export const ScheduleAvailability:FC<Props> = ({
   const isSavedSchedule = !!(initialAvailability?.startDate && initialAvailability?.endDate)
   const [dateSelectionForm] = Form.useForm()
   const [checkedDayList, setCheckedDayList] = useState<number[]>(defaultCheckedList)
+  const localizedWeekdayNames = allDays.map(
+    (_, i) => dayjs().weekday(i).locale(localeMapping[I18n.locale] || I18n.locale).format('dddd'),
+  )
 
   useEffect(() => {
     setCheckedDayList(getInitialCheckedDayList(dateSelectionForm, parsedUserAvailabilities?.availabilityDays))
@@ -228,7 +232,7 @@ export const ScheduleAvailability:FC<Props> = ({
                           formInstance={dateSelectionForm}
                           key={day}
                           day={day}
-                          label={allDays[day]}
+                          label={localizedWeekdayNames[day]}
                           errorMessages={
                             getErrorsForDay(day, errorMessages, dateSelectionForm.getFieldsValue())
                           }

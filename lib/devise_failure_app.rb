@@ -14,7 +14,7 @@ class DeviseFailureApp < Devise::FailureApp
 
   def i18n_locale
     project = GetProjectBySubdomain.call!(request.subdomain)
-    project&.available_locales&.first || I18n.default_locale
+    request.cookies['locale'] || project&.available_locales&.first || I18n.default_locale
   end
 
   def attempted_path

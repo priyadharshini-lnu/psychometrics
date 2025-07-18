@@ -942,6 +942,7 @@ cs:
         inactive: Neaktivní
         status: Stav
       form:
+        campaign: Kampaň
         name: Název
         practice_campaign: Praktická kampaň
         status: Stav
@@ -1103,6 +1104,14 @@ cs:
         successfully: Klientský nájemní vztah %{name} byl úspěšně odstraněn.
       edit:
         header: Upravit klienta
+      form:
+        client: Klient
+        country: Země
+        name: Název
+        number: Číslo
+        project_manager: Projektový manažer
+        type: Typ
+        year: Rok
       licenses:
         resource:
           confirmations:
@@ -1778,12 +1787,12 @@ cs:
           blank_id: 'Řádek %{row}: ID nemůže být prázdné'
           development_action_not_found: Vývojová akce nebyla nalezena
           invalid_csv_format: 'Nesprávný formát CSV: %{message}'
-          invalid_field: 'Řádek %{řádek}: Musí to být "Název" nebo "Popis".'
+          invalid_field: 'Řádek %{row}: Neplatné pole „%{field}“, musí být „Název“ nebo „Popis“'
           invalid_file_format: Soubor musí být CSV
           invalid_id: 'Řádek %{row}: ID musí být číslo'
           invalid_id_format: 'Řádek %{row}: ID musí být ve formátu "id#pole".'
           missing_columns: 'Chybějící povinné sloupce: %{fields}'
-          save_failed: Uložení se nezdařilo
+          save_failed: 'Nepodařilo se uložit: %{message}'
     development_actions:
       create:
         successfully: Vývojová akce "%{name}" byla úspěšně vytvořena.
@@ -2778,6 +2787,7 @@ cs:
           success: Hodnocení '%{name}' bylo úspěšně odstraněno.
           title: Odstranit hodnocení
         form:
+          assessment: Hodnocení
           assessment_placeholder: Vybrat hodnocení
           assessment_required: Vyžaduje se posouzení
           normalize_factor_scores: Normalizace skóre faktorů
@@ -2913,22 +2923,45 @@ cs:
         client_logo_label: Logo klienta
         contrast_ratio_warning: 'Poznámka: Použití této základní barvy může porušit požadavek na kontrastní poměr pro čitelnost textu.'
         contrast_ratio_warning_lighter_color: 'Poznámka: Použití této barvy %{name} může porušit požadavek na kontrastní poměr pro čitelnost textu. Zkuste použít tmavší barvu.'
+        copy_text: Text
+        dashed_button: Čárkovaně
+        default_button: Výchozí
         error_color: Barva chyby
+        hover_options:
+          danger_item: Nebezpečná položka
+          first_menu_item: 1. položka nabídky
+        hover_text: Hover me
         info_color: Informační barva
+        link_text: Odkaz
         logo_upload: Nahrát
         position_auto: Auto
         position_label: Pozice přihlašovacího pole
         position_left: Vlevo
         position_right: Vpravo
+        primary_button: Primární
         primary_color: Základní barva
         reset: Obnovení
         sec_logo_label: Sekundární logo
         sec_logo_upload: Nahrát
         secondary_logo_alt_text: Sekundární logo Alt-Text
         secondary_logo_alt_text_required: Je vyžadováno sekundární logo Alt-Text
+        submenu_options:
+          option_one: Možnost 1
+          option_title: Položka 1
+          option_two: Možnost 2
         success_color: Barva úspěchu
         success_update: Nastavení návrhu byla úspěšně uložena
+        tab_text_one: Nabídka
+        tab_text_two: Podnabídka
+        text_danger: Text(nebezpečí)
+        text_success: Text (úspěch)
+        text_warning: Text(varování)
         warning_color: Varovná barva
+      form:
+        name: Název
+        project_number: Číslo projektu
+        subdomain: Subdoména
+        title: Projekt
       general_settings:
         live_chat: Povolení živého chatu
         locales_label: Lokality
@@ -3051,6 +3084,13 @@ cs:
         success_msg: Probíhá import otázek k zamyšlení. Stav zkontrolujte v oznámeních.
       question: Otázka
     report_approval:
+      approval_statuses:
+        approved: Schváleno
+        change_requested: Požadovaná změna
+        not_ready: Není připraven
+        pending_qc: Čeká se na kontrolu kvality
+        qc_completed: QC Dokončeno
+        qc_in_progress: Probíhající kontrola kvality
       bulk_approve_success: "%{sent_for_approval} odesláno ke schválení. %{approved} zprávy schváleny. %{ignored} zprávy vyžadují ruční schválení kvůli změnám/komentářům QC."
       columns:
         actions: Akce
@@ -3082,6 +3122,7 @@ cs:
         no_saved_filters: Nejsou uloženy žádné filtry
         save_filter: Uložený filtr
         set_favorite: Filtr byl nastaven jako oblíbený
+      submit_or_approve_all: Odeslat nebo schválit vše
     report_builder:
       campaign_factors:
         add_field: Přidat pole

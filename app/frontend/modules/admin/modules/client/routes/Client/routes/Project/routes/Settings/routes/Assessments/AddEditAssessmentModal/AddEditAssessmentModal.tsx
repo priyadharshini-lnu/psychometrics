@@ -52,7 +52,7 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
       <ResourceFormModal
         resourceName="project_assessments"
         resource={projectAssessment}
-        readableResourceName="Assessment"
+        readableResourceName={I18n.t('administration.project_tabs.assessments.form.assessment')}
         showSuccessMessages
         close={close}
         scrollToFirstError
@@ -66,7 +66,7 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
           <>
             <Form.Item
               name="assessmentId"
-              label="Assessment"
+              label={I18n.t('administration.project_tabs.assessments.form.assessment')}
               rules={[{
                 required: true,
                 message: I18n.t('administration.project_tabs.assessments.form.assessment_required'),
