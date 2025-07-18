@@ -332,12 +332,10 @@ fr:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Au moins un rôle professionnel doit être activé avec un type de compétence sélectionné pour %{block_name}
-              at_least_one_job_role_required: Au moins un rôle professionnel est requis pour %{type_de_compétences} pour %{nom_de_bloc}
-              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Au moins un type de compétence doit être activé avec un rôle professionnel sélectionné pour %{nom_du_bloc}
-              invalid_job_role_type: 'Rôle professionnel non valide %{job_role} pour %{skill_type} pour %{block_name}. Options valides : %{options_valides}'
-              invalid_skill_type: 'Type de compétence non valide %{skill_type} pour %{role_name} pour %{block_name}. Options valides : %{valid_options}'
-              props_missing: La configuration des compétences est manquante pour %{nom_du_bloc}
+              at_least_one_job_role_required: Au moins un rôle professionnel est requis pour %{skill_type} pour %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Au moins un type de compétence doit être activé avec un rôle professionnel sélectionné pour %{block_name}
+              invalid_job_role_type: 'Rôle professionnel non valide %{job_role} pour %{skill_type} pour %{block_name}. Options valides : %{valid_options}'
+              props_missing: La configuration des compétences est manquante pour %{block_name}
         skillvue:
           attributes:
             name:
@@ -3858,7 +3856,6 @@ fr:
       add: Ajouter un rapport
       download: Télécharger
       generate: Générer
-      regenerate: Régénérer
     approval_statuses:
       approved: Approuvé
       change_requested: Modification demandée

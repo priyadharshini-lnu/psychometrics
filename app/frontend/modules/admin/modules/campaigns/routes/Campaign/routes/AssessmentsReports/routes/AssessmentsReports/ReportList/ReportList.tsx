@@ -52,17 +52,21 @@ const ReportList: React.FC<Props> = ({
           loading={isReportsLoading}
           pagination={false}
           rowSelection={{ type: 'checkbox', onChange: (ids: number[]) => { selectRecords(ids) } }}
+          scroll={{ x: 'max-content' }}
         >
           <Column
             title={I18n.t('common.column.id')}
             dataIndex="reportId"
             key="reportId"
+            fixed="left"
+            width={50}
           />
           <Column
             title={I18n.t('campaign_report.column.report_name')}
             key="name"
             dataIndex="name"
             width={200}
+            fixed="left"
           />
           <Column
             title={I18n.t('campaign_report.column.report_bundle')}
@@ -129,14 +133,15 @@ const ReportList: React.FC<Props> = ({
             title={I18n.t('campaign_report.column.locales')}
             key="availableLocales"
             render={({
-              id, availableLanguages, defaultLanguage, reportLocales,
+              id, availableLanguages, effectiveDefaultLanguage, reportLocales, internal,
             }) => (
               <Locales
                 id={id}
                 availableLanguages={availableLanguages}
-                defaultLanguage={defaultLanguage}
+                defaultLanguage={effectiveDefaultLanguage}
                 reportLocales={reportLocales}
                 campaignId={campaignId}
+                internal={internal}
               />
             )}
           />
@@ -163,6 +168,8 @@ const ReportList: React.FC<Props> = ({
                 )}
               />
             )}
+            width={50}
+            fixed="right"
           />
         </Table>
       </Col>

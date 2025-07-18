@@ -39,7 +39,7 @@ module Threesixty
           end
 
           def factors
-            context[:assessment].dimension.all_factors.includes(:translations).order(:name)
+            context[:factors] || context[:assessment].dimension.all_factors.includes(:translations).order(:name)
           end
         end
       end

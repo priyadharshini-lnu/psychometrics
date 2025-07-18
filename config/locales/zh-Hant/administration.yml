@@ -842,6 +842,14 @@ zh-Hant:
     campaign_factors_import:
       errors:
         invalid_headers: 下列標頭無效： %{headers}
+    campaign_report:
+      bulk_download:
+        data_range_error: 請選擇日期範圍
+        modal:
+          subtitle: 選擇日期範圍，然後為每份報告選擇所需語言
+      generate:
+        modal:
+          subtitle: 選擇每份報告所需的語言
     campaign_templates:
       campaign_templates: 活動範本
       column:
@@ -3259,6 +3267,9 @@ zh-Hant:
         successfully: 報告已成功更新。
       update:
         successfully: 報告 %{name} 已成功更新。
+    reports_language_selection_modal:
+      download: 報告下載
+      generate: 報告產生
     resource:
       remove_confirm:
         message: 您確定要移除此資源嗎？

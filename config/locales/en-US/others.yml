@@ -332,11 +332,9 @@ en-US:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: At least one job role must be enabled with a skill type selected for %{block_name}
               at_least_one_job_role_required: At least one job role is required for %{skill_type} for %{block_name}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: At least one skill type must be enabled with a job role selected for %{block_name}
               invalid_job_role_type: 'Invalid job role %{job_role} for %{skill_type} for %{block_name}. Valid options: %{valid_options}'
-              invalid_skill_type: 'Invalid skill type %{skill_type} for %{role_name} for %{block_name}. Valid options: %{valid_options}'
               props_missing: Skills configuration is missing for %{block_name}
         skillvue:
           attributes:
@@ -3868,7 +3866,6 @@ en-US:
       add: Add Report
       download: Download
       generate: Generate
-      regenerate: Regenerate
     approval_statuses:
       approved: Approved
       change_requested: Change Requested

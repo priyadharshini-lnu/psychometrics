@@ -157,4 +157,27 @@ describe CampaignReports::BulkDownload do
     )
     described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)
   end
+
+  it 'includes user_reports with locales provided in selected_reports with report_id' do
+    selected_reports = {
+      user_reports_with_pdf[0].report_id.to_s => ['en'],
+      user_reports_with_pdf[1].report_id.to_s => ['en']
+    }
+    job_record.data['selected_reports'] = selected_reports
+    job_record.save!
+
+    expect_any_instance_of(described_class).to receive(:download_report).with(
+      user_reports_with_pdf[0].pdf_url,
+      user_reports_with_pdf[0],
+      'en'
+    )
+
+    expect_any_instance_of(described_class).to receive(:download_report).with(
+      user_reports_with_pdf[1].pdf_url,
+      user_reports_with_pdf[1],
+      'en'
+    )
+
+    described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)
+  end
 end

@@ -83,6 +83,13 @@ module Threesixty
             class_name: 'Threesixty::PipedText::Branches::Factor',
             required_context: %i[assessment],
             allow_html: true
+          },
+          {
+            key: 'skill_factor',
+            name: 'skill_factor',
+            class_name: 'Threesixty::PipedText::Branches::SkillFactor',
+            required_context: %i[subject threesixty_campaign assessment],
+            allow_html: true
           }
         ].freeze
       end

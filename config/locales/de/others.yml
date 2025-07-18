@@ -342,11 +342,9 @@ de:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Für %{block_name} muss mindestens eine Jobrolle mit einer ausgewählten Fertigkeitsart aktiviert sein.
               at_least_one_job_role_required: Mindestens eine Jobrolle ist für %{skill_type} für %{block_name} erforderlich
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Für %{block_name} muss mindestens ein Skilltyp mit einer ausgewählten Jobrolle aktiviert sein.
               invalid_job_role_type: 'Ungültige Jobrolle %{job_role} für %{skill_type} für %{block_name}. Gültige Optionen: %{valid_options}'
-              invalid_skill_type: 'Ungültiger Skilltyp %{skill_type} für %{role_name} für %{block_name}. Gültige Optionen: %{valid_options}'
               props_missing: Die Konfiguration der Fähigkeiten fehlt für %{block_name}
         skillvue:
           attributes:
@@ -3877,7 +3875,6 @@ de:
       add: Bericht hinzufügen
       download: Herunterladen
       generate: Erzeugen Sie
-      regenerate: Regenerieren Sie
     approval_statuses:
       approved: Genehmigt
       change_requested: Gewünschte Änderung

@@ -332,11 +332,9 @@ ar:
         skills_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: يجب تمكين دور وظيفي واحد على الأقل مع تحديد نوع المهارة لـ %{block_name}
-              at_least_one_job_role_required: مطلوب دور وظيفي واحد على الأقل لـ %{نوع_المهارة} لـ %{اسم_الكتلة}
+              at_least_one_job_role_required: مطلوب دور وظيفي واحد على الأقل لـ %{skill_type} لـ %{block_name}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: يجب تمكين نوع مهارة واحدة على الأقل مع تحديد دور وظيفي لـ %{block_name}
-              invalid_job_role_type: 'الدور الوظيفي غير صالح %{job_role} لـ %{نوع_المهارة} لـ %{اسم_الحاجز}. الخيارات الصالحة: %{valid_options}'
-              invalid_skill_type: 'نوع المهارة غير صالح %{skill_type} لـ %{role_name} لـ %{block_name}. الخيارات الصالحة:  %{valid_options}'
+              invalid_job_role_type: 'الدور الوظيفي غير صالح %{job_role} لـ %{skill_type} لـ %{block_name}. الخيارات الصالحة: %{valid_options}'
               props_missing: تكوين المهارات مفقود بالنسبة ل %{block_name}
         skillvue:
           attributes:
@@ -3911,7 +3909,6 @@ ar:
       add: إضافة تقرير
       download: تحميل
       generate: ولد
-      regenerate: تجديد
     approval_statuses:
       approved: مصدق
       change_requested: التغيير المطلوب

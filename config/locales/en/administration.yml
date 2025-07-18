@@ -844,6 +844,14 @@ en:
     campaign_factors_import:
       errors:
         invalid_headers: 'Following headers are invalid: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Please select date range
+        modal:
+          subtitle: Select a date range and then select required language for each report
+      generate:
+        modal:
+          subtitle: Select the required language for each report
     campaign_templates:
       campaign_templates: Campaign Templates
       column:
@@ -3264,6 +3272,9 @@ en:
         successfully: Report was updated successfully.
       update:
         successfully: Report %{name} was updated successfully.
+    reports_language_selection_modal:
+      download: Report download
+      generate: Report generate
     resource:
       remove_confirm:
         message: Are you sure you want to remove this resource?

@@ -1170,8 +1170,6 @@ sr-Cyrl:
   user_assessments:
     redirect: Бићете преусмерени на сајт треће стране за ову процену. Кликните на дугме „Настави“ ако желите да започнете процену.
   user_reports:
-    actions:
-      regenerate: Регенериши
     messages:
       regenerate_successful: Задатак регенерације извештаја је успешно заказан
     modals:

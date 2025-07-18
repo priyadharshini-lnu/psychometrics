@@ -332,11 +332,9 @@ vi:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ít nhất một vị trí công việc phải được kích hoạt với loại kỹ năng được chọn cho %{block_name}
               at_least_one_job_role_required: Ít nhất một vị trí công việc là bắt buộc cho %{skill_type} cho %{block_name}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Ít nhất một loại kỹ năng phải được kích hoạt với một vai trò công việc được chọn cho %{block_name}
               invalid_job_role_type: 'Vị trí công việc không hợp lệ %{job_role} cho %{skill_type} cho %{block_name}. Các tùy chọn hợp lệ: %{valid_options}'
-              invalid_skill_type: 'Loại kỹ năng không hợp lệ %{skill_type} cho %{role_name} cho %{block_name}. Các tùy chọn hợp lệ: %{valid_options}'
               props_missing: Cấu hình kỹ năng còn thiếu cho %{block_name}
         skillvue:
           attributes:
@@ -3869,7 +3867,6 @@ vi:
       add: Thêm báo cáo
       download: Tải xuống
       generate: Đẻ ra
-      regenerate: Tái tạo
     approval_statuses:
       approved: Chấp thuận
       change_requested: Yêu cầu thay đổi

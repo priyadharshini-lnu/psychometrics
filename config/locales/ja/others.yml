@@ -332,12 +332,10 @@ ja:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 少なくとも 1 つのジョブ ロールが、選択したスキル タイプで有効になっている必要があります %{block_name}
-              at_least_one_job_role_required: block_name} の %{skill_type} には少なくとも 1 つのジョブ・ロールが必要です。
+              at_least_one_job_role_required: "%{block_name} の %{skill_type} には少なくとも 1 つのジョブ・ロールが必要です。"
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: 少なくとも 1 つのスキル・タイプが、%{block_name} で選択されたジョブ・ロールで有効になっている必要があります。
-              invalid_job_role_type: 'block_name} の %{skill_type} に対するジョブ・ロール %{job_role} が無効です。有効なオプション: %{valid_options} です。'
-              invalid_skill_type: "%{role_name} for %{block_name}のスキルタイプ%{skill_type}が無効です。有効なオプション: %{valid_options}"
-              props_missing: ブロック名} にスキルの設定がありません。
+              invalid_job_role_type: "%{block_name} の %{skill_type} に対するジョブ・ロール %{job_role} が無効です。有効なオプション: %{valid_options} です。"
+              props_missing: "%{block_name} にスキルの設定がありません。"
         skillvue:
           attributes:
             name:
@@ -3862,7 +3860,6 @@ ja:
       add: レポートを追加
       download: ダウンロード
       generate: 生成する
-      regenerate: 再生成
     approval_statuses:
       approved: 承認済み
       change_requested: 変更要求

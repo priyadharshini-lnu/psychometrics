@@ -5,7 +5,9 @@ module AdminJobs
     def call
       user_reports = campaign_reports.map(&:user_reports).flatten
       options = {
-        low_priority: true
+        low_priority: true,
+        force_regenerate: true,
+        selected_reports: selected_reports
       }
       ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, options, record)
 
@@ -29,8 +31,18 @@ module AdminJobs
       campaign.present? && campaign_reports.present?
     end
 
+    private
+
     def campaign_reports
-      @campaign_reports ||= campaign&.campaign_reports&.includes(:report)&.where(id: record.data['ids'])
+      @campaign_reports ||= campaign&.campaign_reports&.includes(:report)&.where(report_id: report_ids)
+    end
+
+    def report_ids
+      selected_reports.keys
+    end
+
+    def selected_reports
+      @selected_reports ||= record.data['selected_reports'] || {}
     end
   end
 end

@@ -40,11 +40,9 @@ zh-HK:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必須啟用至少一個工作角色，並選取 %{block_name} 的技能類型。
               at_least_one_job_role_required: "%{block_name} 的 %{skill_type} 至少需要一個工作角色"
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: "%{block_name} 的工作角色必須至少啟用一種技能類型。"
               invalid_job_role_type: "%{block_name} 的 %{skill_type} 的工作角色 %{job_role} 無效。有效選項： %{valid_options}"
-              invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能類型無效。有效選項： %{valid_options}"
               props_missing: 缺少 %{block_name} 的技能設定。
         skillvue:
           attributes:
@@ -1279,8 +1277,6 @@ zh-HK:
   user_assessments:
     redirect: 您會被重新導向到第三方網站進行此評估。 如果您要開始評估，請按一下繼續。
   user_reports:
-    actions:
-      regenerate: 重新生成
     messages:
       regenerate_successful: 報告重生成功安排
     modals:

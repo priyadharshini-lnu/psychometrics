@@ -844,6 +844,14 @@ ja:
     campaign_factors_import:
       errors:
         invalid_headers: '以下のヘッダは無効です: %{headers}.'
+    campaign_report:
+      bulk_download:
+        data_range_error: 日付を選択してください
+        modal:
+          subtitle: 日付範囲を選択し、各レポートに必要な言語を選択します。
+      generate:
+        modal:
+          subtitle: 各レポートに必要な言語を選択
     campaign_templates:
       campaign_templates: キャンペーンテンプレート
       column:
@@ -3263,6 +3271,9 @@ ja:
         successfully: レポートは正常に更新されました。
       update:
         successfully: レポート %{name} が正常に更新されました。
+    reports_language_selection_modal:
+      download: レポートダウンロード
+      generate: レポート作成
     resource:
       remove_confirm:
         message: 本当にこのリソースを削除しますか？

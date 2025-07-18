@@ -3839,7 +3839,6 @@ sr-Latn:
       add: Dodaj izveštaj
       download: Preuzimanje
       generate: Generisanje
-      regenerate: Regeneriši
     approval_statuses:
       approved: Odobrio
       change_requested: Zatražena promena

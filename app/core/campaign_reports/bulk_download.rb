@@ -32,8 +32,7 @@ module CampaignReports
 
     def bulk_download_with_faas
       file_details = user_reports_with_pdf.preload_pdf_attachments.each_with_object([]) do |ur, acc|
-        effective_locales = job_record.data['locales'] || [ur.effective_default_language]
-        effective_locales.each do |locale|
+        effective_locales(ur).each do |locale|
           pdf_path = ur.pdf_path(locale: locale)
           pdf_path && (acc << {
             s3FilePath: pdf_path,
@@ -73,8 +72,7 @@ module CampaignReports
 
     def download_user_reports_from_s3
       user_reports_with_pdf.preload_pdf_attachments.each do |user_report|
-        effective_locales = job_record.data['locales'] || [user_report.effective_default_language]
-        effective_locales.each do |locale|
+        effective_locales(user_report).each do |locale|
           pdf_url = user_report.pdf_url(locale: locale)
           next unless pdf_url
 
@@ -82,6 +80,12 @@ module CampaignReports
           job_record.increment_completed_tasks!
         end
       end
+    end
+
+    def effective_locales(user_report)
+      job_record.data.dig('selected_reports', user_report.report_id.to_s) ||
+        job_record.data['locales'] ||
+        [user_report.effective_default_language]
     end
 
     def download_report(pdf_url, user_report, locale)
@@ -137,7 +141,8 @@ module CampaignReports
           {
             start_date: start_date,
             end_date: end_date,
-            include_inactive_users: include_inactive_users
+            include_inactive_users: include_inactive_users,
+            selected_reports: job_record.data['selected_reports']
           }
         ).query.pluck(:id)
         UserReport.

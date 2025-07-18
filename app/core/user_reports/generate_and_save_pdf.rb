@@ -33,9 +33,10 @@ module UserReports
     end
 
     def generate_internal_report(user_report)
-      return generate_and_attach_internal_report_pdf(user_report) if options[:locales].blank?
+      locales = options.dig(:selected_reports, user_report.report_id.to_s) || options[:locales]
+      return generate_and_attach_internal_report_pdf(user_report) if locales.blank?
 
-      options[:locales].each do |locale|
+      locales.each do |locale|
         generate_pdf_for_language(user_report, locale, options[:force_regenerate])
       end
     end

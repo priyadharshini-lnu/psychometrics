@@ -20,6 +20,8 @@ module Administration
         @users_result.current_element = nil
         @users_result.current_page = 0
         piped_text_context = get_piped_text_context
+        campaign_user = CampaignUser.find_by(campaign_id: @users_result.campaign_id, user_id: @participant.subject_id)
+
         @results = UsersResultSerializer.new(
           context: {
             participant: @participant, campaign: threesixty_campaign,
@@ -34,6 +36,7 @@ module Administration
           context: {
             selected_locale: @selected_locale,
             piped_text_context: piped_text_context,
+            campaign_user: campaign_user,
             include: '**'
           }
         ).serialize(threesixty_campaign.assessment)
@@ -93,11 +96,11 @@ module Administration
         label = t('administration.breadcrumbs.clients') if current_user.is?(:superadmin)
         label ||= t('administration.breadcrumbs.home')
         add_breadcrumb label, %i[administration root]
-        add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
-        add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
+        add_breadcrumb client.decorate.display_name, "/admin/clients/#{client.id}"
+        add_breadcrumb project.decorate.display_name, "/admin/projects/#{project.id}"
         add_breadcrumb(
           t('administration.clients.projects.threesixty_campaigns.index.title'),
-          administration_client_project_threesixty_campaigns_path(client, project)
+          "/admin/projects/#{project.id}/new_campaigns"
         )
         if params[:action] == 'show'
           add_breadcrumb resource.campaign.name,

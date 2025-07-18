@@ -7,7 +7,7 @@ module AdminJobs
 
     def call
       result = ::CampaignReports::BulkDownload.call(
-        user_reports: user_reports.with_pdf_attachments,
+        user_reports: user_reports,
         current_user: owner,
         job_record: record
       )
@@ -66,10 +66,28 @@ module AdminJobs
 
     def user_reports
       @user_reports ||= if record.data['is_threesixty']
-                          campaign.user_reports
+                          campaign.user_reports.with_pdf_attachments
                         else
-                          campaign.user_reports.includes(:report).where(id: record.data['ids'])
+                          common_campaign_user_reports
                         end
+    end
+
+    def common_campaign_user_reports
+      selected_reports = record.data['selected_reports'] || {}
+      return campaign.user_reports.none if selected_reports.blank?
+
+      base_query = campaign.user_reports.where(user_id: record.data['user_id']).with_pdf_attachments
+
+      query_parts = selected_reports.filter_map do |report_id, locales|
+        next if locales.blank?
+
+        base_query.where(
+          report_id: report_id.to_i,
+          user_report_pdfs: { locale: locales }
+        )
+      end
+
+      query_parts.reduce { |combined, query| combined.or(query) }.includes(:report).distinct
     end
 
     def user

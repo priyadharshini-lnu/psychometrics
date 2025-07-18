@@ -844,6 +844,14 @@ cs:
     campaign_factors_import:
       errors:
         invalid_headers: 'Následující hlavičky jsou neplatné: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Vyberte prosím rozsah dat
+        modal:
+          subtitle: Zvolte rozsah dat a poté vyberte požadovaný jazyk pro každou zprávu.
+      generate:
+        modal:
+          subtitle: Vyberte požadovaný jazyk pro každou zprávu
     campaign_templates:
       campaign_templates: Šablony kampaní
       column:
@@ -3263,6 +3271,9 @@ cs:
         successfully: Zpráva byla úspěšně aktualizována.
       update:
         successfully: Zpráva %{name} byla úspěšně aktualizována.
+    reports_language_selection_modal:
+      download: Zpráva ke stažení
+      generate: Generování zprávy
     resource:
       remove_confirm:
         message: Opravdu chcete tento zdroj odebrat?

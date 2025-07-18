@@ -19,9 +19,10 @@ module Administration
         end
         required(:user_dashboard).filled(:bool?)
         required(:main_report).filled(:bool?)
-        required(:default_language).maybe(:str?)
         required(:available_languages).maybe(:array?).each(:str?)
         required(:report_locales).array(:str?)
+        required(:effective_default_language).filled(:str?)
+        required(:internal).filled(:bool?)
       end
     end
   end

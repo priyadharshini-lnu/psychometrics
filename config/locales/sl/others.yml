@@ -332,12 +332,10 @@ sl:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Za %{block_name} mora biti omogočena vsaj ena delovna vloga z izbrano veščino
-              at_least_one_job_role_required: Vsaj ena vloga delovnega mesta je potrebna za %{vrsto spretnosti} za %{naslov bloka}
+              at_least_one_job_role_required: Vsaj ena vloga delovnega mesta je potrebna za %{skill_type} za %{block_name}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Vsaj ena vrsta spretnosti mora biti omogočena pri izbrani vlogi delovnega mesta za %{block_name}
-              invalid_job_role_type: 'Nepravilna vloga delovnega mesta %{job_role} za %{vrst_spretnosti} za %{naslov_blokov}. Veljavne možnosti: %{valid_options}'
-              invalid_skill_type: 'Neveljavna vrsta veščine %{skill_type} za vlogo %{role_name} v %{block_name}. Veljavne možnosti: %{valid_options}'
-              props_missing: Manjka konfiguracija veščin za %{naziv_bloka}
+              invalid_job_role_type: 'Nepravilna vloga delovnega mesta %{job_role} za %{skill_type} za %{block_name}. Veljavne možnosti: %{valid_options}'
+              props_missing: Manjka konfiguracija veščin za %{block_name}
         skillvue:
           attributes:
             name:
@@ -3865,7 +3863,6 @@ sl:
       add: Dodajanje poročila
       download: Prenesti
       generate: Ustvariti
-      regenerate: Znova ustvarite
     approval_statuses:
       approved: Odobren
       change_requested: Zahtevana sprememba

@@ -844,6 +844,14 @@ nl:
     campaign_factors_import:
       errors:
         invalid_headers: 'De volgende headers zijn ongeldig: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Selecteer een datumbereik
+        modal:
+          subtitle: Selecteer een datumbereik en vervolgens de gewenste taal voor elk rapport
+      generate:
+        modal:
+          subtitle: Selecteer de gewenste taal voor elk rapport
     campaign_templates:
       campaign_templates: Campagnesjablonen
       column:
@@ -3263,6 +3271,9 @@ nl:
         successfully: Rapport is met succes bijgewerkt.
       update:
         successfully: Rapport %{name} is bijgewerkt.
+    reports_language_selection_modal:
+      download: Downloaden
+      generate: Rapport genereren
     resource:
       remove_confirm:
         message: Weet je zeker dat je deze bron wilt verwijderen?
