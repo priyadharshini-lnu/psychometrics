@@ -195,12 +195,3 @@ export const requestRescheduleBooking = (
     body,
   },
 })
-
-export const downloadIcalUrl = (
-  inviteId?: string | number | null,
-  workshopId?: string | number | null,
-): string | undefined => {
-  if (inviteId == null || workshopId == null) return undefined
-
-  return `/workshop_invites/${inviteId}/download_ical?workshop_id=${workshopId}`
-}

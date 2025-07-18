@@ -28,7 +28,6 @@ import {
   REQUEST_RESCHEDULE_BOOKING,
   REQUEST_CANCEL_BOOKING,
   CANCEL_BOOKING,
-  downloadIcalUrl,
 } from '~/modules/endUser/modules/campaigns/core/bookings'
 import { BookingConfirmationContainer, FullWidthSkeleton } from '~/glint'
 import { RescheduleAndCancel } from './RescheduleAndCancel'
@@ -279,3 +278,12 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
 }
 
 export const BookingsSuccess = connector(BookingsSuccessComponent)
+
+export const downloadIcalUrl = (
+  inviteId?: string | number | null,
+  workshopId?: string | number | null,
+): string | undefined => {
+  if (inviteId == null || workshopId == null) return undefined
+
+  return `/workshop_invites/${inviteId}/download_ical?workshop_id=${workshopId}`
+}
