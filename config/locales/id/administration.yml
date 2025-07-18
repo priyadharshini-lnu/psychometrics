@@ -934,6 +934,7 @@ id:
         inactive: Tidak Aktif
         status: Keadaan
       form:
+        campaign: Kampanye
         name: Nama
         practice_campaign: Kampanye Latihan
         status: Keadaan
@@ -1093,6 +1094,14 @@ id:
         successfully: Penyewaan Klien %{name} berhasil dihapus.
       edit:
         header: Edit Klien
+      form:
+        client: Klien
+        country: Negara
+        name: Nama
+        number: Nomor
+        project_manager: Manajer Proyek
+        type: Jenis
+        year: Tahun
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ id:
           success: Penilaian '%{name}' berhasil dihapus.
           title: Hapus Penilaian
         form:
+          assessment: Penilaian
           assessment_placeholder: Pilih Penilaian
           assessment_required: Penilaian diperlukan
           normalize_factor_scores: Menormalkan Skor Faktor
@@ -2899,22 +2909,45 @@ id:
         client_logo_label: Logo Klien
         contrast_ratio_warning: 'Catatan: Menggunakan warna primer ini dapat melanggar persyaratan rasio kontras untuk keterbacaan teks.'
         contrast_ratio_warning_lighter_color: 'Catatan: Menggunakan warna %{name} ini dapat melanggar persyaratan rasio kontras untuk keterbacaan teks. Coba gunakan warna yang lebih gelap.'
+        copy_text: Teks
+        dashed_button: Dashed
+        default_button: Default
         error_color: Warna Kesalahan
+        hover_options:
+          danger_item: Item bahaya
+          first_menu_item: Item menu pertama
+        hover_text: Arahkan saya
         info_color: Info Warna
+        link_text: Tautan
         logo_upload: Unggah
         position_auto: Auto
         position_label: Posisi Kotak Login
         position_left: Kiri
         position_right: Kanan
+        primary_button: Primer
         primary_color: Warna Primer
         reset: Reset
         sec_logo_label: Logo Sekunder
         sec_logo_upload: Unggah
         secondary_logo_alt_text: Teks Alt Logo Sekunder
         secondary_logo_alt_text_required: Logo Alt-Text Sekunder Diperlukan
+        submenu_options:
+          option_one: Opsi 1
+          option_title: Item 1
+          option_two: Opsi 2
         success_color: Warna Sukses
         success_update: Pengaturan Desain berhasil disimpan
+        tab_text_one: Menu
+        tab_text_two: Submenu
+        text_danger: Teks (bahaya)
+        text_success: Teks (sukses)
+        text_warning: Teks (peringatan)
         warning_color: Warna Peringatan
+      form:
+        name: Nama
+        project_number: Nomor Proyek
+        subdomain: Subdomain
+        title: Proyek
       general_settings:
         live_chat: Aktifkan Obrolan Langsung
         locales_label: Lokal
@@ -3037,6 +3070,13 @@ id:
         success_msg: Mengimpor Pertanyaan Refleksi sedang berlangsung. Silakan periksa status di notifikasi.
       question: Pertanyaan
     report_approval:
+      approval_statuses:
+        approved: Disetujui
+        change_requested: Perubahan Diminta
+        not_ready: Tidak Siap
+        pending_qc: QC tertunda
+        qc_completed: QC Selesai
+        qc_in_progress: QC dalam Proses
       bulk_approve_success: "%{sent_for_approval} dikirim untuk persetujuan. %{approved} disetujui. Laporan %{ignored} memerlukan persetujuan manual karena perubahan/komentar QC."
       columns:
         actions: Tindakan
@@ -3068,6 +3108,7 @@ id:
         no_saved_filters: Tidak ada filter tersimpan
         save_filter: Filter Tersimpan
         set_favorite: Filter telah ditetapkan sebagai favorit
+      submit_or_approve_all: Kirim atau Setujui Semua
     report_builder:
       campaign_factors:
         add_field: Tambahkan Bidang

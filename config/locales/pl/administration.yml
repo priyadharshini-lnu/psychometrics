@@ -934,6 +934,7 @@ pl:
         inactive: Nieaktywny
         status: Stan
       form:
+        campaign: Kampania
         name: Nazwa
         practice_campaign: Kampania treningowa
         status: Stan
@@ -1093,6 +1094,14 @@ pl:
         successfully: Dzierżawa klienta %{name} została pomyślnie usunięta.
       edit:
         header: Edytuj klienta
+      form:
+        client: Klient
+        country: Kraj
+        name: Nazwa
+        number: Liczba
+        project_manager: Kierownik projektu
+        type: Typ
+        year: Rok
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ pl:
           success: Ocena "%{name}" została pomyślnie usunięta.
           title: Usuń ocenę
         form:
+          assessment: Ocena
           assessment_placeholder: Wybierz ocenę
           assessment_required: Wymagana jest ocena
           normalize_factor_scores: Normalizowanie wyników czynników
@@ -2899,22 +2909,45 @@ pl:
         client_logo_label: Logo klienta
         contrast_ratio_warning: 'Uwaga: Użycie tego koloru podstawowego może naruszyć wymagany współczynnik kontrastu dla czytelności tekstu.'
         contrast_ratio_warning_lighter_color: 'Uwaga: Użycie tego koloru %{name} może naruszyć wymagany współczynnik kontrastu dla czytelności tekstu. Spróbuj użyć ciemniejszego koloru.'
+        copy_text: Tekst
+        dashed_button: Kreskowany
+        default_button: Domyślne
         error_color: Kolor błędu
+        hover_options:
+          danger_item: Niebezpieczny przedmiot
+          first_menu_item: 1. pozycja menu
+        hover_text: Unieś mnie
         info_color: Kolor informacji
+        link_text: Link
         logo_upload: Przesyłać
         position_auto: Automatycznie
         position_label: Pozycja pola logowania
         position_left: Lewy
         position_right: Prawy
+        primary_button: Podstawowe
         primary_color: Kolor podstawowy
         reset: Resetować
         sec_logo_label: Dodatkowe logo
         sec_logo_upload: Przesyłać
         secondary_logo_alt_text: Tekst alternatywny logo pomocniczego
         secondary_logo_alt_text_required: Wymagane jest dodatkowe logo w tekście alternatywnym
+        submenu_options:
+          option_one: Opcja 1
+          option_title: Pozycja 1
+          option_two: Opcja 2
         success_color: Kolor sukcesu
         success_update: Ustawienia projektu zostały pomyślnie zapisane
+        tab_text_one: Menu
+        tab_text_two: Podmenu
+        text_danger: Text(danger)
+        text_success: Tekst (sukces)
+        text_warning: Text(warning)
         warning_color: Kolor ostrzegawczy
+      form:
+        name: Nazwa
+        project_number: Numer projektu
+        subdomain: Subdomena
+        title: Projekt
       general_settings:
         live_chat: Włącz czat na żywo
         locales_label: Ustawień regionalnych
@@ -3037,6 +3070,13 @@ pl:
         success_msg: Importowanie pytań do refleksji w toku. Sprawdź status w powiadomieniach.
       question: Pytanie
     report_approval:
+      approval_statuses:
+        approved: Zatwierdzony
+        change_requested: Żądana zmiana
+        not_ready: Niegotowy
+        pending_qc: Oczekuje na QC
+        qc_completed: Kontrola jakości zakończona
+        qc_in_progress: Kontrola jakości w toku
       bulk_approve_success: "%{sent_for_approval} wysłane do zatwierdzenia. Zweryfikowano %{approved} raportów. Raporty %{ignored} wymagają ręcznego zatwierdzenia ze względu na zmiany/komentarze dotyczące kontroli jakości."
       columns:
         actions: Akcje
@@ -3068,6 +3108,7 @@ pl:
         no_saved_filters: Nie ma zapisanych filtrów
         save_filter: Filtr zapisany
         set_favorite: Filtr został ustawiony jako ulubiony
+      submit_or_approve_all: Prześlij lub zatwierdź wszystko
     report_builder:
       campaign_factors:
         add_field: Dodaj pole

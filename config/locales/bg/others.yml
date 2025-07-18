@@ -927,6 +927,7 @@ bg:
       download_csv: Изтегляне на CSV
       edit: Редактирам
       evaluate: Оценявам
+      export: Експорт
       export_normed: Нормирани факторни резултати
       export_raw_labels: Суров (с етикети)
       export_raw_scores: Сурови фактори
@@ -2785,6 +2786,7 @@ bg:
     overuse_number: Надбавка за прекомерна употреба
     report_family: Пакет от отчети
     start_date: Начална дата
+    title: Лиценз
     type: Вид
     types:
       common: Обикновен

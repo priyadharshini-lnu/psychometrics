@@ -927,6 +927,7 @@ hu:
       download_csv: CSV letöltése
       edit: Szerkeszt
       evaluate: Kiértékel
+      export: Exportálás
       export_normed: Normed Factor pontszámok
       export_raw_labels: Nyers (címkékkel)
       export_raw_scores: Nyers faktor pontszámok
@@ -2785,6 +2786,7 @@ hu:
     overuse_number: Túlhasználati engedmény
     report_family: Jelentéscsomag
     start_date: Kezdő dátum
+    title: Licenc
     type: Típus
     types:
       common: Közös

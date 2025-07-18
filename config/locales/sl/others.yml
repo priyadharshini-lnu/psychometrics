@@ -927,6 +927,7 @@ sl:
       download_csv: Prenesite datoteko CSV
       edit: Urediti
       evaluate: Oceni
+      export: Izvoz
       export_normed: Normirani faktorski rezultati
       export_raw_labels: Surovo (z nalepkami)
       export_raw_scores: Ocene surovih faktorjev
@@ -2794,6 +2795,7 @@ sl:
     overuse_number: Nadomestilo za prekomerno uporabo
     report_family: Sveženj poročil
     start_date: Datum začetka
+    title: Licenca
     type: Vrsta
     types:
       common: Običajen

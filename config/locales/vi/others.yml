@@ -927,6 +927,7 @@ vi:
       download_csv: Tải xuống CSV
       edit: Biên tập
       evaluate: Đánh giá
+      export: Xuất khẩu
       export_normed: Điểm yếu tố định mức
       export_raw_labels: Thô (có nhãn)
       export_raw_scores: Điểm yếu tố thô
@@ -2779,6 +2780,7 @@ vi:
     overuse_number: Phụ cấp sử dụng quá mức
     report_family: Gói báo cáo
     start_date: Ngày bắt đầu
+    title: Giấy phép
     type: Kiểu
     types:
       common: Thường

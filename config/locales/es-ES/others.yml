@@ -904,6 +904,7 @@ es-ES:
       download_csv: Descargar CSV
       edit: Editar
       evaluate: Evalúe
+      export: Exportar
       export_normed: Puntuaciones factoriales normalizadas
       export_raw_labels: En bruto (con etiquetas)
       export_raw_scores: Puntuación bruta de los factores
@@ -2740,6 +2741,7 @@ es-ES:
     overuse_number: Indemnización por exceso de uso
     report_family: Paquete de informes
     start_date: Fecha de inicio
+    title: Licencia
     type: Tipo
     types:
       common: Común

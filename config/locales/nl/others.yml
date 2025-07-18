@@ -927,6 +927,7 @@ nl:
       download_csv: CSV downloaden
       edit: Bewerk
       evaluate: Evalueer
+      export: Exporteer
       export_normed: Genormeerde factorscores
       export_raw_labels: Rauw (met labels)
       export_raw_scores: Ruwe factorscores
@@ -2758,6 +2759,7 @@ nl:
     overuse_number: Vergoeding voor overmatig gebruik
     report_family: Verslagbundel
     start_date: Startdatum
+    title: Licentie
     type: Type
     types:
       common: Gewoon

@@ -927,6 +927,7 @@ zh-Hant:
       download_csv: 下載 CSV
       edit: 編輯
       evaluate: 評估
+      export: 出口
       export_normed: 標準化因子分數
       export_raw_labels: 未經處理（帶標籤）
       export_raw_scores: 原始因子分數
@@ -2786,6 +2787,7 @@ zh-Hant:
     overuse_number: 超額使用免稅額
     report_family: 報告束
     start_date: 開始日期
+    title: 許可證
     type: 類型
     types:
       common: 常見問題

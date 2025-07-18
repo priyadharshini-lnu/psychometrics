@@ -927,6 +927,7 @@ ko:
       download_csv: CSV 다운로드
       edit: 편집
       evaluate: 평가
+      export: 내보내기
       export_normed: 표준화된 요인 점수
       export_raw_labels: 원시(레이블 포함)
       export_raw_scores: 원시 요인 점수
@@ -2764,6 +2765,7 @@ ko:
     overuse_number: 초과 사용 허용량
     report_family: 보고서 번들
     start_date: 시작 날짜
+    title: 라이선스
     type: 유형
     types:
       common: 공통

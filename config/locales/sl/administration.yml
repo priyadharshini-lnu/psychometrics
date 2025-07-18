@@ -934,6 +934,7 @@ sl:
         inactive: Neaktiven
         status: Stanje
       form:
+        campaign: Kampanja
         name: Ime
         practice_campaign: Vadbena kampanja
         status: Stanje
@@ -1093,6 +1094,14 @@ sl:
         successfully: Najem odjemalca %{name} je bil uspešno izbrisan.
       edit:
         header: Uredi odjemalca
+      form:
+        client: Stranka
+        country: Država
+        name: Ime
+        number: Številka
+        project_manager: Vodja projekta
+        type: Tip
+        year: Leto
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ sl:
           success: Ocena »%{name}« je bila uspešno izbrisana.
           title: Izbriši oceno
         form:
+          assessment: Ocenjevanje
           assessment_placeholder: Izberite Ocenjevanje
           assessment_required: Ocena je potrebna
           normalize_factor_scores: Normalizirajte rezultate faktorjev
@@ -2899,22 +2909,45 @@ sl:
         client_logo_label: Logotip stranke
         contrast_ratio_warning: 'Opomba: Uporaba te osnovne barve lahko krši zahtevo glede kontrastnega razmerja za berljivost besedila.'
         contrast_ratio_warning_lighter_color: 'Opomba: Uporaba te barve %{name} lahko krši zahtevo glede kontrastnega razmerja za berljivost besedila. Poskusite uporabiti temnejšo barvo.'
+        copy_text: Besedilo
+        dashed_button: Črtkano
+        default_button: Privzeto
         error_color: Barva napake
+        hover_options:
+          danger_item: Nevaren element
+          first_menu_item: 1. element menija
+        hover_text: Hover me
         info_color: Barva informacij
+        link_text: Povezava
         logo_upload: Upload
         position_auto: Auto
         position_label: Položaj polja za prijavo
         position_left: Levo
         position_right: Desno
+        primary_button: Osnovni
         primary_color: Primarna barva
         reset: Ponastavi
         sec_logo_label: Sekundarni logotip
         sec_logo_upload: Upload
         secondary_logo_alt_text: Nadomestno besedilo sekundarnega logotipa
         secondary_logo_alt_text_required: Zahtevan je sekundarni logotip nadomestnega besedila
+        submenu_options:
+          option_one: Možnost 1
+          option_title: Postavka 1
+          option_two: Možnost 2
         success_color: Barva uspeha
         success_update: Nastavitve načrta so bile uspešno shranjene
+        tab_text_one: Meni
+        tab_text_two: Podmenu
+        text_danger: Besedilo(nevarnost)
+        text_success: Besedilo (uspeh)
+        text_warning: Besedilo(opozorilo)
         warning_color: Opozorilna barva
+      form:
+        name: Ime
+        project_number: Številka projekta
+        subdomain: Poddomena
+        title: Projekt
       general_settings:
         live_chat: Omogočanje klepeta v živo
         locales_label: Locales
@@ -3037,6 +3070,13 @@ sl:
         success_msg: Uvoz vprašanj za razmislek v teku. Preverite stanje v obvestilih.
       question: Vprašanje
     report_approval:
+      approval_statuses:
+        approved: Odobreno
+        change_requested: Zahtevana sprememba
+        not_ready: Ni pripravljen
+        pending_qc: V postopku preverjanja kakovosti
+        qc_completed: QC Zaključeno
+        qc_in_progress: QC v teku
       bulk_approve_success: "%{sent_for_approval} poslano v odobritev. %{approved} poročil odobrenih. %{ignored} poročila zahtevajo ročno odobritev zaradi sprememb/komentarjev QC."
       columns:
         actions: Dejanja
@@ -3068,6 +3108,7 @@ sl:
         no_saved_filters: Ni shranjenih filtrov
         save_filter: Filter shranjen
         set_favorite: Filter je nastavljen kot priljubljen
+      submit_or_approve_all: Pošlji ali potrdi vse
     report_builder:
       campaign_factors:
         add_field: Dodajanje polja

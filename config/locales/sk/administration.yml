@@ -934,6 +934,7 @@ sk:
         inactive: Neaktívny
         status: Stav
       form:
+        campaign: Kampaň
         name: Meno
         practice_campaign: Cvičná kampaň
         status: Stav
@@ -1093,6 +1094,14 @@ sk:
         successfully: Klientsky nájom %{name} bol úspešne odstránený.
       edit:
         header: Upraviť klienta
+      form:
+        client: Klient
+        country: Krajina
+        name: Názov
+        number: Číslo
+        project_manager: Projektový manažér
+        type: Typ
+        year: Rok
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ sk:
           success: Hodnotenie %{name} bolo úspešne odstránené.
           title: Odstrániť hodnotenie
         form:
+          assessment: Hodnotenie
           assessment_placeholder: Vyberte položku Hodnotenie
           assessment_required: Vyžaduje sa posúdenie
           normalize_factor_scores: Normalizujte skóre faktorov
@@ -2899,22 +2909,45 @@ sk:
         client_logo_label: Logo klienta
         contrast_ratio_warning: 'Poznámka: Použitie tejto primárnej farby môže porušiť požiadavku na kontrastný pomer pre čitateľnosť textu.'
         contrast_ratio_warning_lighter_color: 'Poznámka: Použitie tejto farby %{name} môže porušiť požiadavku na kontrastný pomer pre čitateľnosť textu. Skúste použiť tmavšiu farbu.'
+        copy_text: Text
+        dashed_button: Čiarkované
+        default_button: Predvolené nastavenie
         error_color: Farba chyby
+        hover_options:
+          danger_item: Nebezpečná položka
+          first_menu_item: 1. položka ponuky
+        hover_text: Hover me
         info_color: Informačná farba
+        link_text: Odkaz
         logo_upload: Nahrať
         position_auto: Auto
         position_label: Pozícia prihlasovacej schránky
         position_left: Vľavo
         position_right: Doprava
+        primary_button: Primárne
         primary_color: Primárna farba
         reset: Vynulovanie
         sec_logo_label: Sekundárne logo
         sec_logo_upload: Nahrať
         secondary_logo_alt_text: Alternatívny text sekundárneho loga
         secondary_logo_alt_text_required: Vyžaduje sa sekundárne logo Alt-Text
+        submenu_options:
+          option_one: Možnosť 1
+          option_title: Položka 1
+          option_two: Možnosť 2
         success_color: Farba úspechu
         success_update: Nastavenia návrhu boli úspešne uložené
+        tab_text_one: Ponuka
+        tab_text_two: Podmenu
+        text_danger: Text(nebezpečenstvo)
+        text_success: Text (úspech)
+        text_warning: Text(varovanie)
         warning_color: Výstražná farba
+      form:
+        name: Názov
+        project_number: Číslo projektu
+        subdomain: Subdoména
+        title: Projekt
       general_settings:
         live_chat: Povoliť živý chat
         locales_label: Locales
@@ -3037,6 +3070,13 @@ sk:
         success_msg: Import prebiehajúcich otázok na zamyslenie. Skontrolujte stav v upozorneniach.
       question: Otázka
     report_approval:
+      approval_statuses:
+        approved: Schválené
+        change_requested: Požadovaná zmena
+        not_ready: Nie je pripravený
+        pending_qc: Čaká sa na QC
+        qc_completed: QC Ukončené
+        qc_in_progress: Kontrola kvality v procese
       bulk_approve_success: "%{sent_for_approval} odoslané na schválenie. %{approved} hlásení schválených. %{ignored} správy vyžadujú manuálne schválenie kvôli zmenám/komentárom QC."
       columns:
         actions: Akcie
@@ -3068,6 +3108,7 @@ sk:
         no_saved_filters: Neexistujú žiadne uložené filtre
         save_filter: Filter uložený
         set_favorite: Filter bol nastavený ako obľúbený
+      submit_or_approve_all: Odoslať alebo schváliť všetky
     report_builder:
       campaign_factors:
         add_field: Pridať pole

@@ -927,6 +927,7 @@ sk:
       download_csv: Stiahnite si CSV
       edit: Editovať
       evaluate: Vyhodnotiť
+      export: Export
       export_normed: Skóre normovaných faktorov
       export_raw_labels: Surové (so štítkami)
       export_raw_scores: Skóre surových faktorov
@@ -2785,6 +2786,7 @@ sk:
     overuse_number: Povolenie na nadmerné používanie
     report_family: Balík zostáv
     start_date: Dátum začiatku
+    title: Licencia
     type: Typ
     types:
       common: Bežný

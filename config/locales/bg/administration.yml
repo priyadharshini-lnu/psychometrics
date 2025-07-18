@@ -934,6 +934,7 @@ bg:
         inactive: Неактивен
         status: Статус
       form:
+        campaign: Кампания
         name: Име
         practice_campaign: Тренировъчна кампания
         status: Статус
@@ -1093,6 +1094,14 @@ bg:
         successfully: Клиент Tenancy %{name} беше изтрит успешно.
       edit:
         header: Редактиране на клиента
+      form:
+        client: Клиент
+        country: Държава
+        name: Име
+        number: Номер
+        project_manager: Ръководител на проект
+        type: Тип
+        year: Година
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ bg:
           success: Оценката "%{name}" беше изтрита успешно.
           title: Изтриване на оценяване
         form:
+          assessment: Оценка
           assessment_placeholder: Изберете оценяване
           assessment_required: Изисква се оценка
           normalize_factor_scores: Нормализиране на факторните резултати
@@ -2899,22 +2909,45 @@ bg:
         client_logo_label: Лого на клиента
         contrast_ratio_warning: 'Забележка: Използването на този основен цвят може да наруши изискването за контрастно съотношение за четливост на текста.'
         contrast_ratio_warning_lighter_color: 'Забележка: Използването на този цвят %{name} може да наруши изискването за контрастно съотношение за четливост на текста. Опитайте да използвате по-тъмен цвят.'
+        copy_text: Текст
+        dashed_button: Прекъснат
+        default_button: По подразбиране
         error_color: Цвят на грешката
+        hover_options:
+          danger_item: Опасен елемент
+          first_menu_item: Първи елемент от менюто
+        hover_text: Повисете над мен
         info_color: Информационен цвят
+        link_text: Връзка
         logo_upload: Качвам
         position_auto: Авто
         position_label: Позиция на полето за вход
         position_left: Ляво
         position_right: Дясно
+        primary_button: Първичен
         primary_color: Основен цвят
         reset: Проучване
         sec_logo_label: Вторично лого
         sec_logo_upload: Качвам
         secondary_logo_alt_text: Вторично лого Alt-текст
         secondary_logo_alt_text_required: Изисква се вторично лого на алтернативен текст
+        submenu_options:
+          option_one: Вариант 1
+          option_title: Позиция 1
+          option_two: Вариант 2
         success_color: Цвят на успеха
         success_update: Настройките за дизайн са запазени успешно
+        tab_text_one: Меню
+        tab_text_two: Подменю
+        text_danger: Текст(опасност)
+        text_success: Текст (успех)
+        text_warning: Текст(предупреждение)
         warning_color: Предупредителен цвят
+      form:
+        name: Име
+        project_number: Номер на проекта
+        subdomain: Поддомейн
+        title: Проект
       general_settings:
         live_chat: Активиране на чат на живо
         locales_label: Локали
@@ -3037,6 +3070,13 @@ bg:
         success_msg: Импортиране на въпроси за размисъл в ход. Моля, проверете статуса в известията.
       question: Въпрос
     report_approval:
+      approval_statuses:
+        approved: Одобрен
+        change_requested: Искана промяна
+        not_ready: Не е готов
+        pending_qc: В очакване на QC
+        qc_completed: Завършена QC
+        qc_in_progress: QC в процес на изпълнение
       bulk_approve_success: "%{sent_for_approval} изпратен за одобрение. %{approved} отчети са одобрени. %{ignored} отчети изискват ръчно одобрение поради промени/коментари на КК."
       columns:
         actions: Действия
@@ -3068,6 +3108,7 @@ bg:
         no_saved_filters: Няма запазени филтри
         save_filter: Филтърът е запазен
         set_favorite: Филтърът е зададен като предпочитан
+      submit_or_approve_all: Подаване или одобрение на всички
     report_builder:
       campaign_factors:
         add_field: Добавяне на поле

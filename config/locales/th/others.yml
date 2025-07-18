@@ -927,6 +927,7 @@ th:
       download_csv: ดาวน์โหลด CSV
       edit: แก้ไข
       evaluate: ประเมิน
+      export: ส่งออก
       export_normed: คะแนนปัจจัยปกติ
       export_raw_labels: ดิบ (พร้อมฉลาก)
       export_raw_scores: คะแนนปัจจัยดิบ
@@ -2782,6 +2783,7 @@ th:
     overuse_number: ค่าเผื่อการใช้งานเกิน
     report_family: ชุดรายงาน
     start_date: วันที่เริ่มต้น
+    title: ใบอนุญาต
     type: ประเภท
     types:
       common: สามัญ

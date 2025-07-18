@@ -927,6 +927,7 @@ ro:
       download_csv: Descărcați CSV
       edit: Editare
       evaluate: Evalua
+      export: Export
       export_normed: Scoruri factoriale normate
       export_raw_labels: Raw (cu etichete)
       export_raw_scores: Scorurile factorului brut
@@ -2785,6 +2786,7 @@ ro:
     overuse_number: Suprautilizare
     report_family: Pachet de rapoarte
     start_date: Data de începere
+    title: Licență
     type: Tip
     types:
       common: Comun

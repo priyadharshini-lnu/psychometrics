@@ -937,6 +937,7 @@ de:
       download_csv: CSV herunterladen
       edit: Bearbeiten
       evaluate: Bewerten Sie
+      export: Exportieren
       export_normed: Genormte Faktor-Scores
       export_raw_labels: Roh (mit Etiketten)
       export_raw_scores: Raw Factor Scores
@@ -2808,6 +2809,7 @@ de:
     overuse_number: Mehrverbrauchsvergütung
     report_family: Berichtsbündel
     start_date: Datum des Beginns
+    title: Lizenz
     type: Typ
     types:
       common: Gemeinsame

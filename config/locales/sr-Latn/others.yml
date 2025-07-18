@@ -927,6 +927,7 @@ sr-Latn:
       download_csv: Preuzeti CSV
       edit: Uređivanje
       evaluate: Procenite
+      export: Izvoz
       export_normed: Normirani faktorski rezultati
       export_raw_labels: Sirovo (sa etiketama)
       export_raw_scores: Rav Factor Rezultati
@@ -2789,6 +2790,7 @@ sr-Latn:
     overuse_number: Dodatak za prekomernu upotrebu
     report_family: Paket izveštaja
     start_date: Datum početka
+    title: Licenca
     type: Tip
     types:
       common: Uobičajena

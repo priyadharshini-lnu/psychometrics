@@ -934,6 +934,7 @@ ko:
         inactive: 비활성
         status: 상태
       form:
+        campaign: 캠페인
         name: 이름
         practice_campaign: 실천 캠페인
         status: 상태
@@ -1093,6 +1094,14 @@ ko:
         successfully: 클라이언트 테넌시 %{name}이(가) 성공적으로 삭제되었습니다.
       edit:
         header: 클라이언트 편집
+      form:
+        client: 클라이언트
+        country: 국가
+        name: 이름
+        number: 번호
+        project_manager: 프로젝트 관리자
+        type: 유형
+        year: 연도
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ ko:
           success: 평가 '%{name}'이(가) 성공적으로 삭제되었습니다.
           title: 평가 삭제
         form:
+          assessment: 평가
           assessment_placeholder: 평가 선택
           assessment_required: 평가가 필요합니다
           normalize_factor_scores: 팩터 점수 정규화
@@ -2899,22 +2909,45 @@ ko:
         client_logo_label: 클라이언트 로고
         contrast_ratio_warning: '참고: 이 기본 색상을 사용하면 텍스트 가독성을 위한 대비 비율 요구 사항을 위반할 수 있습니다.'
         contrast_ratio_warning_lighter_color: '참고: 이 %{name} 색상을 사용하면 텍스트 가독성을 위한 대비 비율 요구 사항을 위반할 수 있습니다. 더 어두운 색상을 사용해 보세요.'
+        copy_text: 텍스트
+        dashed_button: 대시
+        default_button: 기본값
         error_color: 오류 색상
+        hover_options:
+          danger_item: 위험 항목
+          first_menu_item: 첫 번째 메뉴 항목
+        hover_text: 나를 가리키기
         info_color: 정보 색상
+        link_text: 링크
         logo_upload: 업로드
         position_auto: 자동
         position_label: 로그인 상자 위치
         position_left: 왼쪽
         position_right: 오른쪽
+        primary_button: 기본
         primary_color: 기본 색상
         reset: 초기화
         sec_logo_label: 보조 로고
         sec_logo_upload: 업로드
         secondary_logo_alt_text: 보조 로고 대체 텍스트
         secondary_logo_alt_text_required: 보조 대체 텍스트 로고 필수
+        submenu_options:
+          option_one: 옵션 1
+          option_title: 항목 1
+          option_two: 옵션 2
         success_color: 성공 색상
         success_update: 디자인 설정이 성공적으로 저장되었습니다
+        tab_text_one: 메뉴
+        tab_text_two: 하위 메뉴
+        text_danger: 텍스트(위험)
+        text_success: 텍스트(성공)
+        text_warning: 텍스트(경고)
         warning_color: 경고 색상
+      form:
+        name: 이름
+        project_number: 프로젝트 번호
+        subdomain: 하위 도메인
+        title: 프로젝트
       general_settings:
         live_chat: 실시간 채팅 사용
         locales_label: 로캘
@@ -3037,6 +3070,13 @@ ko:
         success_msg: 반영 문제 가져오기가 진행 중입니다. 알림에서 상태를 확인하세요.
       question: 질문
     report_approval:
+      approval_statuses:
+        approved: 승인됨
+        change_requested: 변경 요청
+        not_ready: 준비되지 않음
+        pending_qc: 대기 중인 QC
+        qc_completed: QC 완료
+        qc_in_progress: QC 진행 중
       bulk_approve_success: 승인을 위해 %{sent_for_approval} 보고서를 보냈습니다. 승인된 %{approved} 보고서가 승인되었습니다. 무시된 %{ignored} 보고서는 QC 변경/의견으로 인해 수동 승인이 필요합니다.
       columns:
         actions: 작업
@@ -3068,6 +3108,7 @@ ko:
         no_saved_filters: 저장된 필터가 없습니다
         save_filter: 저장된 필터
         set_favorite: 필터가 즐겨찾기로 설정되었습니다
+      submit_or_approve_all: 모두 제출 또는 승인
     report_builder:
       campaign_factors:
         add_field: 필드 추가

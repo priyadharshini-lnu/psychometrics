@@ -937,6 +937,7 @@ ar:
       download_csv: تنزيل CSV
       edit: حرر
       evaluate: تقييم
+      export: التصدير
       export_normed: درجات العامل المعياري
       export_raw_labels: خام (مع ملصقات)
       export_raw_scores: درجات العامل الخام
@@ -2830,6 +2831,7 @@ ar:
     overuse_number: بدل الاستخدام الزائد
     report_family: حزمة التقارير
     start_date: تاريخ البدء
+    title: الترخيص
     type: نوع
     types:
       common: شائع

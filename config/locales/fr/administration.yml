@@ -934,6 +934,7 @@ fr:
         inactive: Inactif
         status: Statut
       form:
+        campaign: Campagne
         name: Nom
         practice_campaign: Campagne d'entraînement
         status: Statut
@@ -1093,6 +1094,14 @@ fr:
         successfully: Le contrat de location %{name} a été supprimé avec succès.
       edit:
         header: Modifier le client
+      form:
+        client: Client
+        country: Pays
+        name: Nom
+        number: Nombre
+        project_manager: Chef de projet
+        type: Type
+        year: Année
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ fr:
           success: L'évaluation "%{name}" a été supprimée avec succès.
           title: Supprimer l'évaluation
         form:
+          assessment: L'évaluation
           assessment_placeholder: Sélectionner l'évaluation
           assessment_required: Une évaluation est nécessaire
           normalize_factor_scores: Normaliser les scores des facteurs
@@ -2899,22 +2909,45 @@ fr:
         client_logo_label: Logo du client
         contrast_ratio_warning: 'Remarque : l''utilisation de cette couleur primaire peut ne pas respecter le rapport de contraste requis pour la lisibilité du texte.'
         contrast_ratio_warning_lighter_color: 'Note : L''utilisation de cette couleur %{name} peut ne pas respecter le rapport de contraste requis pour la lisibilité du texte. Essayez d''utiliser une couleur plus foncée.'
+        copy_text: Texte
+        dashed_button: En pointillé
+        default_button: Défaut
         error_color: Couleur de l'erreur
+        hover_options:
+          danger_item: Article de danger
+          first_menu_item: 1er élément de menu
+        hover_text: Me survoler
         info_color: Info Couleur
+        link_text: Lien
         logo_upload: Télécharger
         position_auto: Auto
         position_label: Position de la boîte de connexion
         position_left: Gauche
         position_right: Droit
+        primary_button: Primaire
         primary_color: Couleur primaire
         reset: Remise à zéro
         sec_logo_label: Logo secondaire
         sec_logo_upload: Télécharger
         secondary_logo_alt_text: Alt-Text du logo secondaire
         secondary_logo_alt_text_required: Le logo secondaire Alt-Text est requis
+        submenu_options:
+          option_one: Option 1
+          option_title: Point 1
+          option_two: Option 2
         success_color: Couleur du succès
         success_update: Les paramètres de conception ont été sauvegardés avec succès
+        tab_text_one: Menu
+        tab_text_two: Sous-menu
+        text_danger: Texte(danger)
+        text_success: Texte (succès)
+        text_warning: Texte(avertissement)
         warning_color: Couleur d'avertissement
+      form:
+        name: Nom
+        project_number: Numéro du projet
+        subdomain: Sous-domaine
+        title: Projet
       general_settings:
         live_chat: Activer le Live Chat
         locales_label: Localités
@@ -3037,6 +3070,13 @@ fr:
         success_msg: L'importation des questions de réflexion est en cours. Veuillez vérifier l'état d'avancement dans les notifications.
       question: Question
     report_approval:
+      approval_statuses:
+        approved: Approuvé
+        change_requested: Modification demandée
+        not_ready: Pas prêt
+        pending_qc: En attente de QC
+        qc_completed: CQ achevé
+        qc_in_progress: CQ en cours
       bulk_approve_success: "%{sent_for_approval} envoyé pour approbation. %{approved} rapports approuvés. %{ignored} rapports nécessitant une approbation manuelle en raison de modifications/commentaires CQ."
       columns:
         actions: Actions
@@ -3068,6 +3108,7 @@ fr:
         no_saved_filters: Il n'y a pas de filtres enregistrés
         save_filter: Filtre sauvegardé
         set_favorite: Le filtre a été défini comme favori
+      submit_or_approve_all: Soumettre ou approuver tous
     report_builder:
       campaign_factors:
         add_field: Ajouter un champ

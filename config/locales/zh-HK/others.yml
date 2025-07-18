@@ -116,6 +116,7 @@ zh-HK:
   assessments:
     actions:
       back_to_campaign: 返回市場推廣
+      export: 出口
       extend_time: 延長時間
       goto_dashboard: 點擊此處繼續
       pending_tasks:
@@ -454,6 +455,7 @@ zh-HK:
       copy: 複製
       delete: 刪除
       edit: 編輯
+      export: 出口
       remove: 刪除
       reset: 重設
       resolve: 解決
@@ -907,6 +909,8 @@ zh-HK:
   idp_templates:
     errors:
       user_idp_template_not_found: 尚未為您指定 IDP 模版。
+  licenses:
+    title: 許可證
   mailer:
     magic_link:
       body:

@@ -927,6 +927,7 @@ zh:
       download_csv: 下载 CSV
       edit: 编辑
       evaluate: 评估
+      export: 出口
       export_normed: 标准因子得分
       export_raw_labels: 原装（带标签）
       export_raw_scores: 原始因子得分
@@ -2796,6 +2797,7 @@ zh:
     overuse_number: 超额使用津贴
     report_family: 报告包
     start_date: 开始日期
+    title: 许可证
     type: 类型
     types:
       common: 常见问题

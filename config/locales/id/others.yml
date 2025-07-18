@@ -927,6 +927,7 @@ id:
       download_csv: Unduh CSV
       edit: Mengedit
       evaluate: Mengevaluasi
+      export: Ekspor
       export_normed: Skor Faktor Norma
       export_raw_labels: Mentah (dengan label)
       export_raw_scores: Skor Faktor Mentah
@@ -2789,6 +2790,7 @@ id:
     overuse_number: Tunjangan penggunaan berlebih
     report_family: Bundel laporan
     start_date: Tanggal mulai
+    title: Lisensi
     type: Jenis
     types:
       common: Biasa

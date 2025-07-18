@@ -63,7 +63,7 @@ const CommonCampaignFormModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="campaign"
-      readableResourceName="Campaign"
+      readableResourceName={I18n.t('administration.campaigns.form.campaign')}
       resourceBaseUrl={`/administration/projects/${projectId}/new_campaigns`}
       resource={campaign}
       showSuccessMessages
@@ -88,7 +88,10 @@ const CommonCampaignFormModal: React.FC<Props> = ({
           >
             <Select>
               {_.map(STATUSES, (status: string) => (
-                <Option key={status} value={status}>{_.capitalize(status)}</Option>))}
+                <Option key={status} value={status}>
+                  {I18n.t(`administration.campaigns.filters.${status}`)}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item

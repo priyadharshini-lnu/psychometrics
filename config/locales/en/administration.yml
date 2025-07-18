@@ -934,6 +934,7 @@ en:
         inactive: Inactive
         status: Status
       form:
+        campaign: Campaign
         name: Name
         practice_campaign: Practice Campaign
         status: Status
@@ -1093,6 +1094,14 @@ en:
         successfully: Client Tenancy %{name} was deleted successfully.
       edit:
         header: Edit Client
+      form:
+        client: Client
+        country: Country
+        name: Name
+        number: Number
+        project_manager: Project Manager
+        type: Type
+        year: Year
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ en:
           success: Assessment '%{name}' was deleted successfully.
           title: Delete Assessment
         form:
+          assessment: Assessment
           assessment_placeholder: Select Assessment
           assessment_required: Assessment is required
           normalize_factor_scores: Normalize Factor Scores
@@ -2899,22 +2909,45 @@ en:
         client_logo_label: Client Logo
         contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
         contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
+        copy_text: Text
+        dashed_button: Dashed
+        default_button: Default
         error_color: Error Color
+        hover_options:
+          danger_item: Danger item
+          first_menu_item: 1st menu item
+        hover_text: Hover me
         info_color: Info Color
+        link_text: Link
         logo_upload: Upload
         position_auto: Auto
         position_label: Login Box Position
         position_left: Left
         position_right: Right
+        primary_button: Primary
         primary_color: Primary Color
         reset: Reset
         sec_logo_label: Secondary Logo
         sec_logo_upload: Upload
         secondary_logo_alt_text: Secondary Logo Alt-Text
         secondary_logo_alt_text_required: Secondary Alt-Text Logo is Required
+        submenu_options:
+          option_one: Option 1
+          option_title: Item 1
+          option_two: Option 2
         success_color: Success Color
         success_update: Design Settings were saved successfully
+        tab_text_one: Menu
+        tab_text_two: Submenu
+        text_danger: Text(danger)
+        text_success: Text (success)
+        text_warning: Text(warning)
         warning_color: Warning Color
+      form:
+        name: Name
+        project_number: Project Number
+        subdomain: Subdomain
+        title: Project
       general_settings:
         live_chat: Enable Live Chat
         locales_label: Locales
@@ -3037,6 +3070,13 @@ en:
         success_msg: Importing Reflection Questions in progress. Please check the status in the notifications.
       question: Question
     report_approval:
+      approval_statuses:
+        approved: Approved
+        change_requested: Change Requested
+        not_ready: Not Ready
+        pending_qc: Pending QC
+        qc_completed: QC Completed
+        qc_in_progress: QC in Progress
       bulk_approve_success: "%{sent_for_approval} sent for approval. %{approved} reports approved. %{ignored} reports require manual approval due to QC changes/comments."
       columns:
         actions: Actions
@@ -3068,6 +3108,7 @@ en:
         no_saved_filters: There are no saved filters
         save_filter: Filter Saved
         set_favorite: Filter has been set as favorite
+      submit_or_approve_all: Submit or Approve All
     report_builder:
       campaign_factors:
         add_field: Add Field

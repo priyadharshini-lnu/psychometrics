@@ -934,6 +934,7 @@ it:
         inactive: Inattivo
         status: Stato
       form:
+        campaign: Campagna
         name: Nome
         practice_campaign: Campagna pratica
         status: Stato
@@ -1093,6 +1094,14 @@ it:
         successfully: Il contratto di locazione del cliente %{name} è stato cancellato con successo.
       edit:
         header: Modifica del cliente
+      form:
+        client: Cliente
+        country: Paese
+        name: Nome
+        number: Numero
+        project_manager: Responsabile di progetto
+        type: Tipo
+        year: Anno
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ it:
           success: La valutazione "%{name}" è stata cancellata con successo.
           title: Eliminare la valutazione
         form:
+          assessment: Valutazione
           assessment_placeholder: Selezionare la valutazione
           assessment_required: La valutazione è necessaria
           normalize_factor_scores: Normalizzare i punteggi dei fattori
@@ -2899,22 +2909,45 @@ it:
         client_logo_label: Logo del cliente
         contrast_ratio_warning: 'Nota: l''uso di questo colore primario può violare il requisito del rapporto di contrasto per la leggibilità del testo.'
         contrast_ratio_warning_lighter_color: 'Nota: l''uso di questo colore %{name} può violare il requisito del rapporto di contrasto per la leggibilità del testo. Provare a usare un colore più scuro.'
+        copy_text: Testo
+        dashed_button: Tratteggiato
+        default_button: Predefinito
         error_color: Colore dell'errore
+        hover_options:
+          danger_item: Oggetto pericoloso
+          first_menu_item: 1a voce di menu
+        hover_text: Librarsi su di me
         info_color: Info Colore
+        link_text: Collegamento
         logo_upload: Caricare
         position_auto: Auto
         position_label: Posizione della casella di accesso
         position_left: A sinistra
         position_right: Diritto
+        primary_button: Primario
         primary_color: Colore primario
         reset: Reset
         sec_logo_label: Logo secondario
         sec_logo_upload: Caricare
         secondary_logo_alt_text: Logo secondario Alt-Text
         secondary_logo_alt_text_required: È richiesto il logo secondario Alt-Text
+        submenu_options:
+          option_one: Opzione 1
+          option_title: Articolo 1
+          option_two: Opzione 2
         success_color: Colore di successo
         success_update: Le impostazioni di progettazione sono state salvate correttamente
+        tab_text_one: Menu
+        tab_text_two: Sottomenu
+        text_danger: Testo(pericolo)
+        text_success: Testo (successo)
+        text_warning: Testo(avviso)
         warning_color: Avvertenza Colore
+      form:
+        name: Nome
+        project_number: Numero del progetto
+        subdomain: Sottodominio
+        title: Progetto
       general_settings:
         live_chat: Abilitare la chat dal vivo
         locales_label: Località
@@ -3037,6 +3070,13 @@ it:
         success_msg: L'importazione delle domande di riflessione è in corso. Controllare lo stato nelle notifiche.
       question: Domanda
     report_approval:
+      approval_statuses:
+        approved: Approvato
+        change_requested: Modifica richiesta
+        not_ready: Non pronto
+        pending_qc: In attesa del CQ
+        qc_completed: CQ Completato
+        qc_in_progress: CQ in corso
       bulk_approve_success: "%{sent_for_approval} inviato per l'approvazione. %{approved} rapporti approvati. %{ignored} rapporti che richiedono l'approvazione manuale a causa di modifiche/commenti del CQ."
       columns:
         actions: Azioni
@@ -3068,6 +3108,7 @@ it:
         no_saved_filters: Non ci sono filtri salvati
         save_filter: Filtro salvato
         set_favorite: Il filtro è stato impostato come preferito
+      submit_or_approve_all: Invia o approva tutti
     report_builder:
       campaign_factors:
         add_field: Aggiungi campo

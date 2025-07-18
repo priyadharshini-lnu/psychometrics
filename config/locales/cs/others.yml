@@ -927,6 +927,7 @@ cs:
       download_csv: Stáhnout CSV
       edit: Upravit
       evaluate: Vyhodnocení
+      export: Export
       export_normed: Normované skóre faktorů
       export_raw_labels: Surové (s etiketami)
       export_raw_scores: Surové skóre faktorů
@@ -2792,6 +2793,7 @@ cs:
     overuse_number: Příspěvek na nadměrné použití
     report_family: Svazek zpráv
     start_date: Datum zahájení
+    title: Licence
     type: Typ
     types:
       common: Společné

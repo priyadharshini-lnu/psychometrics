@@ -934,6 +934,7 @@ ja:
         inactive: 活動休止中
         status: ステータス
       form:
+        campaign: キャンペーン
         name: 名称
         practice_campaign: 練習キャンペーン
         status: ステータス
@@ -1093,6 +1094,14 @@ ja:
         successfully: クライアント・テナンシー %{name} は正常に削除されました。
       edit:
         header: 編集クライアント
+      form:
+        client: クライアント
+        country: 国名
+        name: 名称
+        number: 番号
+        project_manager: プロジェクトマネージャー
+        type: タイプ
+        year: 年
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ ja:
           success: アセスメント '%{name}' は正常に削除されました。
           title: 評価の削除
         form:
+          assessment: 評価
           assessment_placeholder: セレクト・アセスメント
           assessment_required: 査定が必要
           normalize_factor_scores: 因子スコアを正規化する
@@ -2899,22 +2909,45 @@ ja:
         client_logo_label: クライアント・ロゴ
         contrast_ratio_warning: 注：この原色を使用すると、テキストを読みやすくするためのコントラスト比の要件に違反する可能性があります。
         contrast_ratio_warning_lighter_color: 注意：この%{name}の色を使うと、テキストの読みやすさのためのコントラスト比の要件に違反する可能性があります。 もっと暗い色を使ってみてください。
+        copy_text: テキスト
+        dashed_button: 破線
+        default_button: デフォルト
         error_color: エラーカラー
+        hover_options:
+          danger_item: 危険アイテム
+          first_menu_item: 第1メニュー
+        hover_text: ホバー・ミー
         info_color: インフォ・カラー
+        link_text: リンク
         logo_upload: アップロード
         position_auto: オート
         position_label: ログインボックスの位置
         position_left: 左
         position_right: 右
+        primary_button: プライマリー
         primary_color: 原色
         reset: リセット
         sec_logo_label: セカンダリーロゴ
         sec_logo_upload: アップロード
         secondary_logo_alt_text: セカンダリーロゴ Alt-Text
         secondary_logo_alt_text_required: セカンダリーAlt-Textロゴは必須
+        submenu_options:
+          option_one: オプション1
+          option_title: 項目 1
+          option_two: オプション2
         success_color: サクセス・カラー
         success_update: デザイン設定が正常に保存されました
+        tab_text_one: メニュー
+        tab_text_two: サブメニュー
+        text_danger: テキスト（危険）
+        text_success: テキスト（成功）
+        text_warning: テキスト(警告)
         warning_color: 警告色
+      form:
+        name: 名称
+        project_number: プロジェクト番号
+        subdomain: サブドメイン
+        title: プロジェクト
       general_settings:
         live_chat: ライブチャットを有効にする
         locales_label: ロケール
@@ -3037,6 +3070,13 @@ ja:
         success_msg: リフレクション問題のインポートが進行中です。通知で状況を確認してください。
       question: 質問
     report_approval:
+      approval_statuses:
+        approved: 承認済み
+        change_requested: 変更要求
+        not_ready: 準備不足
+        pending_qc: QC申請中
+        qc_completed: QC完了
+        qc_in_progress: 進行中のQC
       bulk_approve_success: "%{sent_for_approval}は承認のために送信されました。 %{approved}レポートは承認されました。 %{ignored}レポートはQCの変更/コメントにより手動承認が必要です。"
       columns:
         actions: 行動
@@ -3068,6 +3108,7 @@ ja:
         no_saved_filters: 保存されたフィルターはありません
         save_filter: 保存されたフィルター
         set_favorite: フィルターがお気に入りに設定されている
+      submit_or_approve_all: すべてを提出または承認する
     report_builder:
       campaign_factors:
         add_field: フィールドの追加

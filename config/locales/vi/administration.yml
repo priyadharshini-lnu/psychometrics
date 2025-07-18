@@ -934,6 +934,7 @@ vi:
         inactive: Không hoạt động
         status: Tình trạng
       form:
+        campaign: Chiến dịch
         name: Tên
         practice_campaign: Chiến dịch thực hành
         status: Tình trạng
@@ -1093,6 +1094,14 @@ vi:
         successfully: Thuê khách hàng %{name} đã bị xóa thành công.
       edit:
         header: Chỉnh sửa khách hàng
+      form:
+        client: Khách hàng
+        country: Quốc gia
+        name: Tên
+        number: Số
+        project_manager: Quản lý dự án
+        type: Loại
+        year: Năm
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ vi:
           success: Đánh giá '%{name}' đã bị xóa thành công.
           title: Xóa đánh giá
         form:
+          assessment: Đánh giá
           assessment_placeholder: Chọn Đánh giá
           assessment_required: Đánh giá là bắt buộc
           normalize_factor_scores: Chuẩn hóa điểm số yếu tố
@@ -2899,22 +2909,45 @@ vi:
         client_logo_label: Logo khách hàng
         contrast_ratio_warning: 'Lưu ý: Việc sử dụng màu cơ bản này có thể vi phạm yêu cầu về tỷ lệ tương phản để dễ đọc văn bản.'
         contrast_ratio_warning_lighter_color: 'Lưu ý: Sử dụng màu %{name} này có thể vi phạm yêu cầu tỷ lệ tương phản để có thể đọc văn bản. Hãy thử sử dụng một màu tối hơn.'
+        copy_text: Văn bản
+        dashed_button: Gạch ngang
+        default_button: Mặc định
         error_color: Màu lỗi
+        hover_options:
+          danger_item: Vật phẩm nguy hiểm
+          first_menu_item: Món đầu tiên trong thực đơn
+        hover_text: Di chuột lên đây
         info_color: Thông tin Màu sắc
+        link_text: Liên kết
         logo_upload: Tải lên
         position_auto: Xe ô tô
         position_label: Vị trí hộp đăng nhập
         position_left: Bên trái
         position_right: Bên phải
+        primary_button: Cấp 1
         primary_color: Màu cơ bản
         reset: Reset
         sec_logo_label: Logo phụ
         sec_logo_upload: Tải lên
         secondary_logo_alt_text: Văn bản thay thế logo phụ
         secondary_logo_alt_text_required: Logo văn bản thay thế phụ là bắt buộc
+        submenu_options:
+          option_one: Tùy chọn 1
+          option_title: Mục 1
+          option_two: Tùy chọn 2
         success_color: Màu sắc thành công
         success_update: Cài đặt thiết kế đã được lưu thành công
+        tab_text_one: Thực đơn
+        tab_text_two: Thực đơn con
+        text_danger: Văn bản (cảnh báo)
+        text_success: Thông báo thành công
+        text_warning: Văn bản (cảnh báo)
         warning_color: Màu cảnh báo
+      form:
+        name: Tên
+        project_number: Số dự án
+        subdomain: Tên miền con
+        title: Dự án
       general_settings:
         live_chat: Bật trò chuyện trực tiếp
         locales_label: Địa điểm
@@ -3037,6 +3070,13 @@ vi:
         success_msg: Đang tiến hành nhập câu hỏi phản ánh. Vui lòng kiểm tra trạng thái trong thông báo.
       question: Câu hỏi
     report_approval:
+      approval_statuses:
+        approved: Được phê duyệt
+        change_requested: Yêu cầu thay đổi
+        not_ready: Chưa sẵn sàng
+        pending_qc: Đang chờ kiểm tra chất lượng
+        qc_completed: Kiểm tra chất lượng đã hoàn tất
+        qc_in_progress: Kiểm tra chất lượng đang được thực hiện
       bulk_approve_success: "%{sent_for_approval} đã được gửi để phê duyệt. %{approved} báo cáo đã được phê duyệt. %{ignored} báo cáo yêu cầu phê duyệt thủ công do các thay đổi / nhận xét QC."
       columns:
         actions: Hành động
@@ -3068,6 +3108,7 @@ vi:
         no_saved_filters: Không có bộ lọc được lưu
         save_filter: Bộ lọc đã lưu
         set_favorite: Bộ lọc đã được đặt làm yêu thích
+      submit_or_approve_all: Gửi hoặc Phê duyệt tất cả
     report_builder:
       campaign_factors:
         add_field: Thêm trường

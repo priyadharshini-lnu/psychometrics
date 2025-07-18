@@ -934,6 +934,7 @@ nl:
         inactive: Inactief
         status: Status
       form:
+        campaign: Campagne
         name: Naam
         practice_campaign: Praktijk Campagne
         status: Status
@@ -1093,6 +1094,14 @@ nl:
         successfully: Client Tenancy %{name} is succesvol verwijderd.
       edit:
         header: Klant bewerken
+      form:
+        client: Klant
+        country: Land
+        name: Naam
+        number: Aantal
+        project_manager: Projectmanager
+        type: Type
+        year: Jaar
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ nl:
           success: Beoordeling '%{name}' is succesvol verwijderd.
           title: Beoordeling verwijderen
         form:
+          assessment: Beoordeling
           assessment_placeholder: Selecteer beoordeling
           assessment_required: Beoordeling is vereist
           normalize_factor_scores: Factorscores normaliseren
@@ -2899,22 +2909,45 @@ nl:
         client_logo_label: Logo van de klant
         contrast_ratio_warning: 'Opmerking: Het gebruik van deze primaire kleur kan in strijd zijn met de vereiste contrastverhouding voor leesbaarheid van tekst.'
         contrast_ratio_warning_lighter_color: 'Opmerking: Het gebruik van deze %{name} kleur kan in strijd zijn met de vereiste contrastverhouding voor leesbaarheid van tekst. Probeer een donkerdere kleur te gebruiken.'
+        copy_text: Tekst
+        dashed_button: Gestippeld
+        default_button: Standaard
         error_color: Fout Kleur
+        hover_options:
+          danger_item: Gevaarlijk item
+          first_menu_item: 1e menu-item
+        hover_text: Zweef over me
         info_color: Info kleur
+        link_text: Link
         logo_upload: Uploaden
         position_auto: Auto
         position_label: Positie Inlogvak
         position_left: Links
         position_right: Rechts
+        primary_button: Primair
         primary_color: Primaire kleur
         reset: Reset
         sec_logo_label: Secundair logo
         sec_logo_upload: Uploaden
         secondary_logo_alt_text: Secundair logo Alt-tekst
         secondary_logo_alt_text_required: Secundair Alt-Text Logo is vereist
+        submenu_options:
+          option_one: Optie 1
+          option_title: Punt 1
+          option_two: Optie 2
         success_color: Kleur voor succes
         success_update: De ontwerpinstellingen zijn succesvol opgeslagen
+        tab_text_one: Menu
+        tab_text_two: Submenu
+        text_danger: Tekst(gevaar)
+        text_success: Tekst (succes)
+        text_warning: Tekst(waarschuwing)
         warning_color: Waarschuwingskleur
+      form:
+        name: Naam
+        project_number: Projectnummer
+        subdomain: Subdomein
+        title: Project
       general_settings:
         live_chat: Live chat inschakelen
         locales_label: Locaties
@@ -3037,6 +3070,13 @@ nl:
         success_msg: Het importeren van reflectievragen is bezig. Controleer de status in de meldingen.
       question: Vraag
     report_approval:
+      approval_statuses:
+        approved: Goedgekeurd
+        change_requested: Aangevraagde wijziging
+        not_ready: Niet klaar
+        pending_qc: In afwachting van QC
+        qc_completed: QC Voltooid
+        qc_in_progress: QC in uitvoering
       bulk_approve_success: "%{sent_for_approval} verzonden voor goedkeuring. %{approved} rapporten goedgekeurd. %{ignored} rapporten vereisen handmatige goedkeuring vanwege QC wijzigingen/opmerkingen."
       columns:
         actions: Acties
@@ -3068,6 +3108,7 @@ nl:
         no_saved_filters: Er zijn geen opgeslagen filters
         save_filter: Filter opgeslagen
         set_favorite: Filter is ingesteld als favoriet
+      submit_or_approve_all: Alle indienen of goedkeuren
     report_builder:
       campaign_factors:
         add_field: Veld toevoegen

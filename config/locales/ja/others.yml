@@ -927,6 +927,7 @@ ja:
       download_csv: CSVダウンロード
       edit: 編集
       evaluate: 評価
+      export: 輸出
       export_normed: 標準化因子スコア
       export_raw_labels: 生（ラベル付き）
       export_raw_scores: 生のファクタースコア
@@ -2793,6 +2794,7 @@ ja:
     overuse_number: 超過使用手当
     report_family: レポート・バンドル
     start_date: 開始日
+    title: ライセンス
     type: タイプ
     types:
       common: 共通

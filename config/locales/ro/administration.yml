@@ -934,6 +934,7 @@ ro:
         inactive: Inactiv
         status: Stare
       form:
+        campaign: Campanie
         name: Nume
         practice_campaign: Campanie de practică
         status: Stare
@@ -1093,6 +1094,14 @@ ro:
         successfully: Client Tenancy %{name} a fost șters cu succes.
       edit:
         header: Editați clientul
+      form:
+        client: Client
+        country: Țara
+        name: Nume și prenume
+        number: Număr
+        project_manager: Manager de proiect
+        type: Tip
+        year: Anul
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ ro:
           success: Evaluarea '%{name}' a fost ștearsă cu succes.
           title: Ștergeți evaluarea
         form:
+          assessment: Evaluare
           assessment_placeholder: Selectați Evaluare
           assessment_required: Este necesară evaluarea
           normalize_factor_scores: Normalizați scorurile factorilor
@@ -2899,22 +2909,45 @@ ro:
         client_logo_label: Logo-ul clientului
         contrast_ratio_warning: 'Notă: Utilizarea acestei culori primare poate încălca cerința privind raportul de contrast pentru lizibilitatea textului.'
         contrast_ratio_warning_lighter_color: 'Notă: Utilizarea acestei culori %{name} poate încălca cerința privind raportul de contrast pentru lizibilitatea textului. Încercați să utilizați o culoare mai închisă.'
+        copy_text: Text
+        dashed_button: Cu liniuțe
+        default_button: Implicit
         error_color: Culoare eroare
+        hover_options:
+          danger_item: Element periculos
+          first_menu_item: Primul element de meniu
+        hover_text: Hover-mă
         info_color: Info Culoare
+        link_text: Legătură
         logo_upload: Încărca
         position_auto: Automobil
         position_label: Poziția casetei de conectare
         position_left: Stânga
         position_right: Dreapta
+        primary_button: Primare
         primary_color: Culoare primară
         reset: Reseta
         sec_logo_label: Logo-ul secundar
         sec_logo_upload: Încărca
         secondary_logo_alt_text: Logo secundar Alt-Text
         secondary_logo_alt_text_required: Este obligatoriu logo-ul secundar cu text alternativ
+        submenu_options:
+          option_one: Opțiunea 1
+          option_title: Articolul 1
+          option_two: Opțiunea 2
         success_color: Culoare de succes
         success_update: Setările de proiectare au fost salvate cu succes
+        tab_text_one: Meniu
+        tab_text_two: Submeniu
+        text_danger: Text(pericol)
+        text_success: Text (succes)
+        text_warning: Text(avertizare)
         warning_color: Culoare de avertizare
+      form:
+        name: Nume și prenume
+        project_number: Numărul proiectului
+        subdomain: Subdomeniu
+        title: Proiect
       general_settings:
         live_chat: Activați chatul live
         locales_label: Localizări
@@ -3037,6 +3070,13 @@ ro:
         success_msg: Importul întrebărilor de reflecție în curs. Vă rugăm să verificați starea în notificări.
       question: Întrebare
     report_approval:
+      approval_statuses:
+        approved: Aprobat
+        change_requested: Schimbare solicitată
+        not_ready: Nu sunt gata
+        pending_qc: În așteptare QC
+        qc_completed: QC finalizat
+        qc_in_progress: QC în desfășurare
       bulk_approve_success: "%{sent_for_approval} trimis spre aprobare. %{approved} rapoarte aprobate. Rapoartele %{ignored} necesită aprobare manuală din cauza modificărilor/comentariilor QC."
       columns:
         actions: Acțiuni
@@ -3068,6 +3108,7 @@ ro:
         no_saved_filters: Nu există filtre salvate
         save_filter: Filtru salvat
         set_favorite: Filtrul a fost setat ca favorit
+      submit_or_approve_all: Trimiteți sau aprobați toate
     report_builder:
       campaign_factors:
         add_field: Adăugați câmp

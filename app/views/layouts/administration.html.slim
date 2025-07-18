@@ -5,6 +5,7 @@ html lang="en"
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
     = csrf_meta_tags
+    = vite_javascript_tag "entrypoints/locales/#{I18n.locale || 'en'}.ts"
     = render 'layouts/pys_global_state'
     = stylesheet_link_tag 'administration', media: 'all'
     - if Rails.env.test?

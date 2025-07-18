@@ -934,6 +934,7 @@ th:
         inactive: เกียจคร้าน
         status: สถานะ
       form:
+        campaign: แคมเปญ
         name: ชื่อ
         practice_campaign: แคมเปญฝึกหัด
         status: สถานะ
@@ -1093,6 +1094,14 @@ th:
         successfully: การเช่าไคลเอ็นต์ %{name} ถูกลบเรียบร้อยแล้ว
       edit:
         header: แก้ไขไคลเอ็นต์
+      form:
+        client: ลูกค้า
+        country: ประเทศ
+        name: ชื่อ
+        number: หมายเลข
+        project_manager: ผู้จัดการโครงการ
+        type: ประเภท
+        year: ปี
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ th:
           success: การประเมิน '%{name}' ถูกลบเรียบร้อยแล้ว
           title: ลบการประเมิน
         form:
+          assessment: การประเมิน
           assessment_placeholder: เลือก การประเมิน
           assessment_required: จําเป็นต้องมีการประเมิน
           normalize_factor_scores: ทําให้คะแนนปัจจัยเป็นมาตรฐาน
@@ -2899,22 +2909,45 @@ th:
         client_logo_label: โลโก้ลูกค้า
         contrast_ratio_warning: 'หมายเหตุ: การใช้สีหลักนี้อาจละเมิดข้อกําหนดอัตราส่วนคอนทราสต์สําหรับการอ่านข้อความ'
         contrast_ratio_warning_lighter_color: 'หมายเหตุ: การใช้สี %{name} นี้อาจละเมิดข้อกําหนดอัตราส่วนคอนทราสต์สําหรับการอ่านข้อความ ลองใช้สีเข้มกว่า'
+        copy_text: ข้อความ
+        dashed_button: ถูกขีดฆ่า
+        default_button: ค่าเริ่มต้น
         error_color: สีข้อผิดพลาด
+        hover_options:
+          danger_item: สิ่งของอันตราย
+          first_menu_item: รายการเมนูที่ 1
+        hover_text: เลื่อนเมาส์มาเหนือฉัน
         info_color: ข้อมูลสี
+        link_text: ลิงก์
         logo_upload: อัปโหลด
         position_auto: รถ
         position_label: ตําแหน่งกล่องเข้าสู่ระบบ
         position_left: ซ้าย
         position_right: ขวา
+        primary_button: หลัก
         primary_color: สีหลัก
         reset: รี เซ็ต
         sec_logo_label: โลโก้รอง
         sec_logo_upload: อัปโหลด
         secondary_logo_alt_text: โลโก้รอง Alt-Text
         secondary_logo_alt_text_required: จําเป็นต้องมีโลโก้ Alt-Text รอง
+        submenu_options:
+          option_one: ตัวเลือกที่ 1
+          option_title: รายการที่ 1
+          option_two: ตัวเลือกที่ 2
         success_color: สีที่ประสบความสําเร็จ
         success_update: บันทึกการตั้งค่าการออกแบบสําเร็จแล้ว
+        tab_text_one: เมนู
+        tab_text_two: เมนูย่อย
+        text_danger: ข้อความ(อันตราย)
+        text_success: ข้อความ (สำเร็จ)
+        text_warning: ข้อความ (คำเตือน)
         warning_color: สีเตือน
+      form:
+        name: ชื่อ
+        project_number: หมายเลขโครงการ
+        subdomain: ซับโดเมน
+        title: โครงการ
       general_settings:
         live_chat: เปิดใช้งานแชทสด
         locales_label: ตำแหน่ง
@@ -3037,6 +3070,13 @@ th:
         success_msg: กําลังนําเข้าคําถามสะท้อน โปรดตรวจสอบสถานะในการแจ้งเตือน
       question: ปัญหา
     report_approval:
+      approval_statuses:
+        approved: อนุมัติแล้ว
+        change_requested: มีการขอเปลี่ยนแปลง
+        not_ready: ไม่พร้อม
+        pending_qc: กำลังรอการตรวจสอบคุณภาพ
+        qc_completed: QC เสร็จสิ้น
+        qc_in_progress: QC กำลังดำเนินการ
       bulk_approve_success: "%{sent_for_approval} ส่งเพื่อขออนุมัติ %{approved} รายงานได้รับการอนุมัติ %{ignored} รายงานต้องได้รับการอนุมัติด้วยตนเองเนื่องจากการเปลี่ยนแปลง/ความคิดเห็นของ QC"
       columns:
         actions: การดําเนินการ
@@ -3068,6 +3108,7 @@ th:
         no_saved_filters: ไม่มีตัวกรองที่บันทึกไว้
         save_filter: กรองที่บันทึกไว้
         set_favorite: ตัวกรองถูกตั้งค่าเป็นรายการโปรด
+      submit_or_approve_all: ส่งหรืออนุมัติทั้งหมด
     report_builder:
       campaign_factors:
         add_field: เพิ่มฟิลด์

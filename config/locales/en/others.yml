@@ -927,6 +927,7 @@ en:
       download_csv: Download CSV
       edit: Edit
       evaluate: Evaluate
+      export: Export
       export_normed: Normed Factor Scores
       export_raw_labels: Raw (with labels)
       export_raw_scores: Raw Factor Scores
@@ -2888,6 +2889,7 @@ en:
     overuse_number: Over use allowance
     report_family: Report bundle
     start_date: Start date
+    title: License
     type: Type
     types:
       common: Common

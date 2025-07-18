@@ -927,6 +927,7 @@ it:
       download_csv: Scarica il CSV
       edit: Modifica
       evaluate: Valutare
+      export: Esportazione
       export_normed: Punteggi fattoriali normalizzati
       export_raw_labels: Crudo (con etichette)
       export_raw_scores: Punteggi grezzi dei fattori
@@ -2786,6 +2787,7 @@ it:
     overuse_number: Indennità di sovrautilizzo
     report_family: Rapporto fagotto
     start_date: Data di inizio
+    title: Licenza
     type: Tipo
     types:
       common: Comune

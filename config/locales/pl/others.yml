@@ -927,6 +927,7 @@ pl:
       download_csv: Pobierz plik CSV
       edit: Redagować
       evaluate: Oceniać
+      export: Eksport
       export_normed: Unormowane wyniki czynników
       export_raw_labels: Surowe (z etykietami)
       export_raw_scores: Surowe wyniki czynników
@@ -2811,6 +2812,7 @@ pl:
     overuse_number: Dodatek za nadmierne zużycie
     report_family: Pakiet raportów
     start_date: Data rozpoczęcia
+    title: Licencja
     type: Typ
     types:
       common: Wspólny

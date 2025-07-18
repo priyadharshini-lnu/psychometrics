@@ -11,13 +11,15 @@ interface Props {
   close(): void
 }
 
+const { I18n } = window
+
 export const CreateProjectModal: React.FC<Props> = ({
   addProject,
   close,
 }) => (
   <ResourceFormModal
     resourceName="projects"
-    readableResourceName="Project"
+    readableResourceName={I18n.t('administration.projects.form.title')}
     showSuccessMessages
     close={close}
     scrollToFirstError
@@ -28,13 +30,21 @@ export const CreateProjectModal: React.FC<Props> = ({
   >
     {() => (
       <>
-        <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+        <Form.Item name="name" label={I18n.t('administration.projects.form.name')} rules={[{ required: true }]}>
           <Input name="project_name" />
         </Form.Item>
-        <Form.Item name="subdomain" label="Subdomain" rules={[{ required: true }]}>
+        <Form.Item
+          name="subdomain"
+          label={I18n.t('administration.projects.form.subdomain')}
+          rules={[{ required: true }]}
+        >
           <Input />
         </Form.Item>
-        <Form.Item name="number" label="Project Number" rules={[{ required: true }]}>
+        <Form.Item
+          name="number"
+          label={I18n.t('administration.projects.form.project_number')}
+          rules={[{ required: true }]}
+        >
           <Input />
         </Form.Item>
       </>

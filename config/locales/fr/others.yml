@@ -927,6 +927,7 @@ fr:
       download_csv: Télécharger le CSV
       edit: Editer
       evaluate: Évaluer
+      export: Exportation
       export_normed: Scores factoriels normalisés
       export_raw_labels: Brut (avec étiquettes)
       export_raw_scores: Scores factoriels bruts
@@ -2789,6 +2790,7 @@ fr:
     overuse_number: Indemnité de dépassement
     report_family: Rapport sur la liasse
     start_date: Date de début
+    title: Licence
     type: Type
     types:
       common: Communs

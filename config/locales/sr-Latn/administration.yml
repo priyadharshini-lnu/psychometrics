@@ -934,6 +934,7 @@ sr-Latn:
         inactive: Neaktivno
         status: Status
       form:
+        campaign: Kampanja
         name: Ime
         practice_campaign: Kampanja prakse
         status: Status
@@ -1093,6 +1094,14 @@ sr-Latn:
         successfully: Klijent Zakup %{name} je uspešno izbrisan.
       edit:
         header: Uredi klijenta
+      form:
+        client: Klijent
+        country: Država
+        name: Ime
+        number: Broj
+        project_manager: Menadžer projekta
+        type: Tip
+        year: Godina
       licenses:
         resource:
           confirmations:
@@ -2764,6 +2773,7 @@ sr-Latn:
           success: Procena '%{name}' je uspešno obrisana.
           title: Izbriši procenu
         form:
+          assessment: Procena
           assessment_placeholder: Izaberi procenu
           assessment_required: Procena je obavezna
           normalize_factor_scores: Normalizuj rezultate faktora
@@ -2899,22 +2909,45 @@ sr-Latn:
         client_logo_label: Logotip klijenta
         contrast_ratio_warning: 'Napomena: Korišćenje ove primarne boje može narušiti zahtev za odnos kontrasta za čitljivost teksta.'
         contrast_ratio_warning_lighter_color: 'Napomena: Korišćenje ove boje %{name} može narušiti zahtev za odnos kontrasta za čitljivost teksta. Pokušajte da koristite tamniju boju.'
+        copy_text: Tekst
+        dashed_button: Isprekidano
+        default_button: Podrazumevano
         error_color: Boja greške
+        hover_options:
+          danger_item: Opasna stavka
+          first_menu_item: 1. stavka menija
+        hover_text: Pređi preko mene
         info_color: Boja informacije
+        link_text: Link
         logo_upload: Otpremi
         position_auto: auto
         position_label: Pozicija kutije za prijavljivanje
         position_left: Levo
         position_right: Desno
+        primary_button: Primarno
         primary_color: Primarna boja
         reset: Resetuj
         sec_logo_label: Sekundarni logotip
         sec_logo_upload: Otpremi
         secondary_logo_alt_text: Sekundarni logo Alt-Tekst
         secondary_logo_alt_text_required: Sekundarni Alt-Text Logo je obavezan
+        submenu_options:
+          option_one: Opcija 1
+          option_title: Stavka 1
+          option_two: Opcija 2
         success_color: Boja uspeha
         success_update: Podešavanja dizajna su uspešno sačuvana
+        tab_text_one: Meni
+        tab_text_two: Podmeni
+        text_danger: Tekst (opasnost)
+        text_success: Tekst (uspeh)
+        text_warning: Tekst (upozorenje)
         warning_color: Boja upozorenja
+      form:
+        name: Ime
+        project_number: Broj projekta
+        subdomain: Poddomen
+        title: Projekat
       general_settings:
         live_chat: Omogućite ćaskanje uživo
         locales_label: Lokal
@@ -3037,6 +3070,13 @@ sr-Latn:
         success_msg: Uvoz pitanja za razmišljanje u toku. Molimo Vas da proverite status u obaveštenjima.
       question: Pitanje
     report_approval:
+      approval_statuses:
+        approved: Odobreno
+        change_requested: Zatražena izmena
+        not_ready: Nije spremno
+        pending_qc: QC na čekanju
+        qc_completed: QC završen
+        qc_in_progress: QC u toku
       bulk_approve_success: "%{sent_for_approval} poslat na odobrenje. %{approved} izveštaji odobreni. %{ignored} izveštaji zahtevaju ručno odobrenje zbog promena / komentara kontrole kvaliteta."
       columns:
         actions: Radnje
@@ -3068,6 +3108,7 @@ sr-Latn:
         no_saved_filters: Nema sačuvanih filtera
         save_filter: Filter Sačuvan
         set_favorite: Filter je postavljen kao omiljeni
+      submit_or_approve_all: Pošalji ili odobri sve
     report_builder:
       campaign_factors:
         add_field: Dodaj polje

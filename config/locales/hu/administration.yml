@@ -934,6 +934,7 @@ hu:
         inactive: Inaktív
         status: Állapot
       form:
+        campaign: Kampány
         name: Név
         practice_campaign: Gyakorló kampány
         status: Állapot
@@ -1093,6 +1094,14 @@ hu:
         successfully: A(z) %{name} ügyfél bérleti jog törlése sikeresen megtörtént.
       edit:
         header: Ügyfél szerkesztése
+      form:
+        client: Ügyfél
+        country: Ország
+        name: Név
+        number: Szám
+        project_manager: Projektmenedzser
+        type: Típus
+        year: Év
       licenses:
         resource:
           confirmations:
@@ -2766,6 +2775,7 @@ hu:
           success: A(z) "%{name}" értékelés törlése sikeresen megtörtént.
           title: Értékelés törlése
         form:
+          assessment: Értékelés
           assessment_placeholder: Válassza ki az értékelés lehetőséget
           assessment_required: Értékelés szükséges
           normalize_factor_scores: Tényezők ponszámainak normalizálása
@@ -2901,22 +2911,45 @@ hu:
         client_logo_label: Ügyféllogó
         contrast_ratio_warning: 'Megjegyzés: Ennek az elsődleges színnek a használata megsértheti a szöveg olvashatóságára vonatkozó kontrasztarány-követelményt.'
         contrast_ratio_warning_lighter_color: 'Megjegyzés: Ennek a %{name} színnek a használata megsértheti a szöveg olvashatóságára vonatkozó kontrasztarány-követelményt. Próbáljon meg sötétebb színt használni.'
+        copy_text: Szöveg
+        dashed_button: Szaggatott
+        default_button: Alapértelmezett
         error_color: Hibás szín
+        hover_options:
+          danger_item: Veszélyes elem
+          first_menu_item: 1. menüpont
+        hover_text: Hover me
         info_color: Info Szín
+        link_text: Link
         logo_upload: Feltölt
         position_auto: Auto
         position_label: Bejelentkezési mező pozíciója
         position_left: Balra
         position_right: Jobbra
+        primary_button: Elsődleges
         primary_color: Elsődleges szín
         reset: Visszaállít
         sec_logo_label: Másodlagos logó
         sec_logo_upload: Feltölt
         secondary_logo_alt_text: Másodlagos logó alt-szöveg
         secondary_logo_alt_text_required: Másodlagos alt-szöveg logó szükséges
+        submenu_options:
+          option_one: 1. lehetőség
+          option_title: 1. tétel
+          option_two: 2. lehetőség
         success_color: Siker színe
         success_update: A tervezési beállítások mentése sikeresen megtörtént
+        tab_text_one: Menü
+        tab_text_two: Almenü
+        text_danger: Szöveg(veszély)
+        text_success: Szöveg (siker)
+        text_warning: Szöveg(figyelmeztetés)
         warning_color: Figyelmeztetés színe
+      form:
+        name: Név
+        project_number: Projekt száma
+        subdomain: Aldomain
+        title: Projekt
       general_settings:
         live_chat: Élő csevegés engedélyezése
         locales_label: Helyszínek
@@ -3039,6 +3072,13 @@ hu:
         success_msg: Reflexiós kérdések importálása folyamatban. Kérjük, ellenőrizze az állapotot az értesítésekben.
       question: Kérdés
     report_approval:
+      approval_statuses:
+        approved: Jóváhagyva
+        change_requested: Kért változtatás
+        not_ready: Nem kész
+        pending_qc: QC folyamatban
+        qc_completed: QC befejezve
+        qc_in_progress: QC folyamatban
       bulk_approve_success: "%{sent_for_approval} jóváhagyásra küldve. %{approved} jelentések jóváhagyva. %{ignored} jelentések manuális jóváhagyást igényelnek a minőségellenőrző módosítások/megjegyzések miatt."
       columns:
         actions: Műveletek
@@ -3070,6 +3110,7 @@ hu:
         no_saved_filters: Nincsenek mentett szűrők
         save_filter: Szűrő mentve
         set_favorite: A szűrő kedvencként beállítva
+      submit_or_approve_all: Elküldés vagy jóváhagyás Minden
     report_builder:
       campaign_factors:
         add_field: Mező hozzáadása

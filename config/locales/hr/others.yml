@@ -927,6 +927,7 @@ hr:
       download_csv: Preuzmite CSV
       edit: Urediti
       evaluate: Procijeniti
+      export: Izvoz
       export_normed: Rezultati normiranih faktora
       export_raw_labels: Sirovo (s naljepnicama)
       export_raw_scores: Rezultati sirovih faktora
@@ -2786,6 +2787,7 @@ hr:
     overuse_number: Dopuštenje prekomjerne upotrebe
     report_family: Paket izvješća
     start_date: Datum početka
+    title: Licenca
     type: Tip
     types:
       common: Zajedničko
