@@ -10,10 +10,16 @@ module Threesixty
       attribute :factors, Array
       attribute :questions, Array
       attribute :status, String, default: 'active'
+      attribute :threesixty_category, String, default: 'normal'
 
       validates :name, :threesixty_type, presence: true
+      validates :threesixty_category, inclusion: { in: %w[normal skill_rater] }
       validates :campaign_template_id, presence: true, if: -> { threesixty_type == Threesixty::Campaign::STANDARD_360 }
       validates :assessment_id, presence: true, if: -> { threesixty_type == Threesixty::Campaign::PREVIOUS_360 }
+
+      def skill_rater?
+        threesixty_category == 'skill_rater'
+      end
     end
   end
 end

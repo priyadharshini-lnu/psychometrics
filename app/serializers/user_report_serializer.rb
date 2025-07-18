@@ -79,7 +79,11 @@ class UserReportSerializer < Panko::Serializer
   def options
     return unless context[:options]
 
-    Threesixty::CampaignOptionsSerializer.new.serialize(context[:options])
+    Threesixty::CampaignOptionsSerializer.new(
+      context: {
+        current_user: current_user
+      }
+    ).serialize(context[:options])
   end
 
   def evalaution_completed_for_subject
@@ -127,7 +131,8 @@ class UserReportSerializer < Panko::Serializer
         user_results: results,
         piped_text_context: context[:options],
         campaign: object.campaign,
-        lang: context[:lang]
+        lang: context[:lang],
+        campaign_user: context[:campaign_user]
       }
     ).serialize(context[:report])
   end

@@ -11,17 +11,17 @@ module Api
         validate_crud_requests JobRole::Schema
 
         def import_translations
-          form = ::Administration::JobRoles::ImportTranslationsForm.new(
+          form = Api::V2::Administration::JobRoleTranslationImportForm.new(
             file: params[:file],
-            project_id: project&.id
+            project_id: project_id
           )
 
           if form.valid?
             AdminJob.call(
               :import_job_roles_translations,
-              { project_id: project&.id },
+              { project_id: project_id },
               current_user,
-              form.processed_file
+              form.file
             )
 
             render json: :ok
@@ -33,7 +33,7 @@ module Api
         def export_translations
           AdminJob.call(
             :export_job_roles_translations,
-            { project_id: project&.id },
+            { project_id: project_id },
             current_user
           )
 

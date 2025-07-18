@@ -75,8 +75,7 @@ describe Sheets::SheetForm do
 
     context 'failure flow' do
       let(:sheet) do
-        create(:sheet, columns: [{ type: 'String', name: 'Email' },
-                                 { type: 'String', name: 'test' }])
+        create(:sheet)
       end
       let!(:columns) do
         sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string')

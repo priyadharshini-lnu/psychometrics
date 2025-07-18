@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::SkillsJobRoleResource < Api::V2::Administration::BaseResource
-  attributes :expected_proficiency_level, :skill_id, :job_role_id, :project_id
+  attributes :expected_proficiency_level, :skill_id, :job_role_id, :project_id, :allowed_proficiency_levels
 
   has_one :skill
   has_one :job_role
@@ -14,6 +14,10 @@ class Api::V2::Administration::SkillsJobRoleResource < Api::V2::Administration::
     super + %i[skill.name job_role.name project.name]
   end
 
+  def project_id
+    @model.project_id.to_s
+  end
+
   def skill_id
     @model.skill_id.to_s
   end
@@ -22,11 +26,23 @@ class Api::V2::Administration::SkillsJobRoleResource < Api::V2::Administration::
     @model.job_role_id.to_s
   end
 
+  def allowed_proficiency_levels
+    result = Skills::GetProficiencyLevel.call(@model.skill)
+    proficiency_level = result[:ok][:proficiency_level]
+
+    return {} unless proficiency_level && proficiency_level[:level_definition].present?
+
+    proficiency_level[:level_definition].each_with_object({}) do |defn, hash|
+      hash[defn['level']] = defn['name']
+    end
+  end
+
   def self.records(opts = {})
     ::Api::Administration::SkillsJobRolePolicy::Scope.new(
       opts[:context][:user], ::SkillsJobRole,
       { project_id: opts[:context][:project]&.id,
         filter: opts[:context][:filter] }
-    ).resolve
+    ).resolve.
+      includes(job_role: :translations, skill: :translations)
   end
 end

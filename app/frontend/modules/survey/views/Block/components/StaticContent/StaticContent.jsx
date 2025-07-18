@@ -5,6 +5,7 @@ import PropertyPanel from './PropertyPanel'
 import GetBackgroundStyles from './getBackgroundStyles'
 import pipedText from '~/libs/Editor/commands/pipedText'
 import store from '~/modules/survey/store'
+import { isRtl } from '~/utils/locales'
 
 export default function StaticContent (props) {
   const {
@@ -18,12 +19,13 @@ export default function StaticContent (props) {
           backgroundImageOptions,
         },
       },
-    }, updateBlockProps,
+    }, updateBlockProps, currentLocale, defaultLanguage,
   } = props
 
   const [opened, setOpened] = useState(true)
   const editorRef = useRef(null)
   const [isMounted, setIsMounted] = useState(false)
+  const showPropertyPanel = defaultLanguage === currentLocale
 
   useEffect(() => {
     pipedText(store)
@@ -60,6 +62,7 @@ export default function StaticContent (props) {
   }
 
   const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
+  const showInRtl = isRtl(currentLocale)
 
   return (
     <>
@@ -77,9 +80,10 @@ export default function StaticContent (props) {
               handleContentChange={handleContentChange}
               className={styles.editor}
               withPipedText
+              configOverrides={{ direction: showInRtl ? 'rtl' : 'ltr' }}
             />
           ) : null}
-          <PropertyPanel {...props} />
+          {showPropertyPanel && <PropertyPanel {...props} />}
         </div>
       )}
     </>

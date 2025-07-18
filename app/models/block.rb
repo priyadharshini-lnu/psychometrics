@@ -34,7 +34,7 @@ class Block < ApplicationRecord
 
   enum :block_type, {
     regular: 0,
-    skills_rater: 1
+    skill_rater: 1
   }
 
   def self.ransackable_attributes(_auth_object = nil)

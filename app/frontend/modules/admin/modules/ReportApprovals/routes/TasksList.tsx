@@ -169,7 +169,7 @@ const TasksListComponent: React.FC<Props> = ({
             <Input
               prefix={<SearchOutlined />}
               className={styles.input}
-              placeholder="Search"
+              placeholder={I18n.t('common.actions.search')}
               value={searchQuery}
               onChange={e => handleSearch(e.target.value)}
             />
@@ -200,7 +200,7 @@ const TasksListComponent: React.FC<Props> = ({
               size="small"
               onClick={() => filterOk(close)}
             >
-              {searchFilters.includes(filter) ? I18n.t('common.actions.search') : I18n.t('common.actions.ok')}
+              {searchFilters.includes(filter) ? I18n.t('common.actions.search') : I18n.t('common.actions.done')}
             </Button>
           </div>
         </div>
@@ -264,7 +264,9 @@ const TasksListComponent: React.FC<Props> = ({
       <FilterComponent />
       {type === 'myTasks' && (
         <Flex justify="end" align="center" className="m-5">
-          <Button type="primary" onClick={submitAll} disabled={!selected.length}>Submit or Approve All</Button>
+          <Button type="primary" onClick={submitAll} disabled={!selected.length}>
+            {I18n.t('administration.report_approval.submit_or_approve_all')}
+          </Button>
         </Flex>
       )}
       <Table
@@ -346,12 +348,15 @@ const TasksListComponent: React.FC<Props> = ({
           {...filterProps(
             '', 'approval_status_in', 'approval_status_in',
             getFilteredValue('approval_status_in'), [
-              { id: 'not_ready', name: 'Not Ready' },
-              { id: 'pending_qc', name: 'Pending QC' },
-              { id: 'qc_in_progress', name: 'QC in Progress' },
-              { id: 'qc_completed', name: 'QC Completed' },
-              { id: 'change_requested', name: 'Change Requested' },
-              { id: 'approved', name: 'Approved' },
+              { id: 'not_ready', name: I18n.t('administration.report_approval.approval_statuses.not_ready') },
+              { id: 'pending_qc', name: I18n.t('administration.report_approval.approval_statuses.pending_qc') },
+              { id: 'qc_in_progress', name: I18n.t('administration.report_approval.approval_statuses.qc_in_progress') },
+              { id: 'qc_completed', name: I18n.t('administration.report_approval.approval_statuses.qc_completed') },
+              {
+                id: 'change_requested',
+                name: I18n.t('administration.report_approval.approval_statuses.change_requested'),
+              },
+              { id: 'approved', name: I18n.t('administration.report_approval.approval_statuses.approved') },
             ],
           )}
           render={({ approvalStatus }) => I18n.t(`administration.report_review.statuses.${approvalStatus}`)}

@@ -34,7 +34,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
       })
   }
 
-  const handleDevelopmentActionTranslationsImport = (data:FormData, projectId: number, successCallback:()=>void, failureCallback:(error)=>void) => {
+  const handleDevelopmentActionTranslationsImport = (data:FormData, projectId: number | null, successCallback:()=>void, failureCallback:(error)=>void) => {
     const action = projectId ? `development_actions/import_translations?project_id=${projectId}` : 'development_actions/import_global_translations'
 
     resource.uploadFileAction(action, data).then(() => {

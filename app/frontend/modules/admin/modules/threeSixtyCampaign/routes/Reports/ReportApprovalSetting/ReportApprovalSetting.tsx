@@ -4,7 +4,6 @@ import {
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import {
@@ -20,6 +19,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { RemoveReportApprovalSettingModal } from './RemoveReportApprovalModal'
 import { ReportApprovalFormModal } from './ReportApprovalFormModal'
+import { getCurrentCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 
 const { Column } = Table
 const { I18n } = window
@@ -32,15 +32,13 @@ const MODALS = {
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
+    threeSixtyCampaignId: getCurrentCampaignId(state),
   }),
   {
     openModal,
   },
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
-type Params = {
-  campaignId: string
-}
 type Props = PropsFromRedux
 
 interface Meta extends BaseMeta {
@@ -51,14 +49,14 @@ interface Meta extends BaseMeta {
 const ReportApprovalSettingComponent: React.FC<Props> = ({
   openModal,
   currentUser,
+  threeSixtyCampaignId,
 }) => {
-  const { campaignId } = useParams() as Params
   const {
     data, meta, createResource, fetch, isLoading, updateResource, removeResource, requests,
   } = useResources<ReportApprovalSettings, Meta>(
     'report_approval_settings',
     {
-      basePath: `campaigns/${campaignId}/`,
+      basePath: `campaigns/${threeSixtyCampaignId}/`,
       responseType: ReportApprovalSettingsTR,
       apiConfig: {
         include: ['report'],

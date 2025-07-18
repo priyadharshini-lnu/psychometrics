@@ -4,10 +4,11 @@ import { SafeHTML } from '~/components/SafeHTML'
 import { useAppSelector } from '~/modules/idpReport/hooks/redux'
 import styles from './Reflections.less'
 import Page from '../../Page'
+import { useI18n } from '~/modules/idpReport/I18nContext'
 
-const { I18n } = window
 
 const Reflections = ({ rtl }) => {
+  const I18n = useI18n()
   const reflectionQuestions = useAppSelector(state => state.idp.userIdp.reflection_questions)
   const includeQuestions = window.location.search.includes('include_reflective_questions=true')
   if (!includeQuestions) { return null }

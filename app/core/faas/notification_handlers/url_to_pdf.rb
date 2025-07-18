@@ -56,11 +56,9 @@ module Faas
 
       def find_report_pdf(record)
         if record.is_a?(UserIdpPlan)
-          report_pdf = record.report_pdfs.joins(pdf_file_attachment: :blob).
-                       find_by(blob: { key: data['file_path'] })
-          report_pdf&.pdf_file&.purge
-          report_pdf ||= record.report_pdfs.create!(locale: data['lang'] || I18n.locale)
-          report_pdf
+          record.report_pdfs.find_or_create_by!(locale: data['lang'] || I18n.locale,
+                                                include_reflective_questions: data['include_reflective_questions'])
+
         else
           record.report_pdfs.find_or_create_by!(locale: data['lang'] || I18n.locale)
         end
@@ -75,15 +73,6 @@ module Faas
       end
 
       def notify_user(data, record)
-        blob = ActiveStorage::Blob.new(
-          key: data['file_path'],
-          filename: data['file_name'],
-          byte_size: data['file_size'],
-          checksum: data['checksum'],
-          content_type: 'application/pdf',
-          service_name: Settings.storage.private_storage_service
-        )
-
         ActionCable.server.broadcast \
           "notification_channel_for_#{data['notify_user_id']}",
           {
@@ -91,9 +80,7 @@ module Faas
             message: I18n.t('jobs.threesixty.reports.download.message'),
             description: I18n.t(
               'jobs.threesixty.reports.download.description',
-              url: blob.url(
-                expires_in: 10.minutes.to_i, disposition: 'attachment', filename: record.report_name_for_download
-              )
+              url: blob_url(data, record)
             )
           }
       end
@@ -114,11 +101,25 @@ module Faas
         async_response = AsyncResponseRequest::AsyncResponse.new(
           async_request_uuid: data['async_request_uuid'],
           processing_status: :completed,
-          response_data: record.pdf_url(locale: data['lang'],
-                                        include_reflective_questions: data['include_reflective_questions'])
+          response_data: blob_url(data, record)
         )
 
         AsyncResponseRequest::SetAsyncResponse.call!(async_response: async_response)
+      end
+
+      def blob_url(data, record)
+        blob = ActiveStorage::Blob.new(
+          key: data['file_path'],
+          filename: data['file_name'],
+          byte_size: data['file_size'],
+          checksum: data['checksum'],
+          content_type: 'application/pdf',
+          service_name: Settings.storage.private_storage_service
+        )
+
+        blob.url(
+          expires_in: 10.minutes.to_i, disposition: 'attachment', filename: record.report_name_for_download
+        )
       end
 
       def admin_job

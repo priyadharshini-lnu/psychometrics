@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 module Administration
   class CampaignPolicy < Administration::BasePolicy
     def index?
@@ -202,6 +203,14 @@ module Administration
       )
     end
 
+    def view_assessments_and_reports?
+      has_permission?(:campaigns, :view)
+    end
+
+    def manage_report_approval_settings?
+      has_permission?(:campaigns, :manage_report_approvals)
+    end
+
     def assign_user?
       can_manage_campaign_users?
     end
@@ -286,3 +295,4 @@ module Administration
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

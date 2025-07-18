@@ -75,7 +75,7 @@ export const AdminAddSkills = ({
     setSelectedSkills(selectedSkills.filter((userIdpSkill:UserIdpSkills) => userIdpSkill.skillId !== skillId))
   }
 
-  const skillCategories = _.map(_.groupBy(skills, 'skillType'), (skills, skillType) => ({
+  const skillTypes = _.map(_.groupBy(skills, 'skillType'), (skills, skillType) => ({
     skillType,
     skills,
   }))
@@ -100,7 +100,7 @@ export const AdminAddSkills = ({
       addSkillButtonText={I18n.t('idp.initial_steps.save')}
       onAddSkill={handleAddSkill}
       selectedSkills={selectedSkills}
-      skillCategories={skillCategories}
+      skillTypes={skillTypes}
       onDeselectSkill={handleDeselectSkill}
       onFinishAddSkill={handleFinishAddinSkill}
       searchSkillResource={searchSkillResource}

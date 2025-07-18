@@ -39,6 +39,9 @@ const defaultState: State = {
     updateNorm: false,
     updateAssessorForm: false,
     updateAvailableLocales: false,
+    toggleAutoAssign: false,
+    toggleRequireScheduling: false,
+    updatePrework: false,
   },
 }
 
@@ -66,6 +69,9 @@ export interface State {
     updateNorm: boolean
     updateAssessorForm: boolean
     updateAvailableLocales: boolean
+    toggleAutoAssign: boolean
+    toggleRequireScheduling: boolean
+    updatePrework: boolean
   }
 }
 

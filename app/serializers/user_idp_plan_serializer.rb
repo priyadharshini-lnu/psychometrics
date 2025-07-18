@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class UserIdpPlanSerializer < Panko::Serializer
-  attributes :name, :role, :division, :reflection_questions
+  attributes :name, :role, :division, :reflection_questions, :status, :start_date, :assigned_date, :end_date,
+             :completed_date
 
   has_many :user_idp_skills, serializer: UserIdpSkillSerializer
 
@@ -25,5 +26,19 @@ class UserIdpPlanSerializer < Panko::Serializer
     object.user.user_profile.custom_fields['division']
   end
 
-  delegate :assigned_date, to: :object
+  def start_date
+    object.started_at&.strftime('%Y-%m-%d')
+  end
+
+  def end_date
+    object.end_date&.strftime('%Y-%m-%d')
+  end
+
+  def assigned_date
+    object.created_at&.strftime('%Y-%m-%d')
+  end
+
+  def completed_date
+    object.completed_at&.strftime('%Y-%m-%d')
+  end
 end

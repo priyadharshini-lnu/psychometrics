@@ -7,7 +7,7 @@ module AdminJobs
                    RankOrder SideBySide Slider TextEntry Timing FileUpload
                    AudioResponse VideoResponse FactorSelect CampaignFactorFeedback].freeze
 
-    def initialize(_)
+    def initialize(_, _stage = nil)
       super
       @scoring_export = job_record.operation == 'assessment_scoring_export'
     end

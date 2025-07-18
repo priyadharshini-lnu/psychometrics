@@ -292,10 +292,8 @@ zh-Hant:
       ai_assistants: AI 助理
       ai_assistants_playground: AI 助理遊樂場
       column:
-        ai_action: AI 行動
         provider: 供應商
       form:
-        action: 行動
         description: 說明
         name: 名稱
         provider: 供應商
@@ -844,6 +842,14 @@ zh-Hant:
     campaign_factors_import:
       errors:
         invalid_headers: 下列標頭無效： %{headers}
+    campaign_report:
+      bulk_download:
+        data_range_error: 請選擇日期範圍
+        modal:
+          subtitle: 選擇日期範圍，然後為每份報告選擇所需語言
+      generate:
+        modal:
+          subtitle: 選擇每份報告所需的語言
     campaign_templates:
       campaign_templates: 活動範本
       column:
@@ -934,6 +940,7 @@ zh-Hant:
         inactive: 閒置
         status: 狀態
       form:
+        campaign: 活動
         name: 名稱
         practice_campaign: 實踐活動
         status: 狀態
@@ -960,7 +967,9 @@ zh-Hant:
             empty: 空
             inactive: 閒置
             name: 名稱
+            normal: 正常
             previous: 上一頁
+            skill_rater: 技能評核員
             standard: 標準
             status: 狀態
           close:
@@ -1093,6 +1102,14 @@ zh-Hant:
         successfully: 客戶租約 %{name} 已成功刪除。
       edit:
         header: 編輯用戶端
+      form:
+        client: 客戶
+        country: 國家
+        name: 名稱
+        number: 數量
+        project_manager: 專案經理
+        type: 類型
+        year: 年份
       licenses:
         resource:
           confirmations:
@@ -1418,7 +1435,7 @@ zh-Hant:
             new: 新增 360 活動
             title: 360 活動
           license:
-            header: 編輯授權
+            header: "%{name} - 編輯許可證"
           licenses:
             update:
               duplicate_licenses: 您有重複的授權
@@ -1598,6 +1615,7 @@ zh-Hant:
         type: 類型
       list:
         actions: 行動
+        assessment_center_group: 評估中心小組
         author: 創建者
         campaign: 活動
         client_name: 客戶
@@ -1638,7 +1656,7 @@ zh-Hant:
         client: 客戶：
         communication_type: 通訊類型：
         delivery_rule: 交貨規則：
-        every_interval: 每隔 %{ 間隔｝
+        every_interval: 每 %{interval}
         owner: 業主：
         project: 專案：
         recipients: 收件人：
@@ -1745,17 +1763,18 @@ zh-Hant:
       errors:
         blank_field: '行 %{row}: %{field} 不能為空白'
         csv_file_required: 必須是 CSV 檔案
+        development_action_not_in_project: '行 %{row}: 開發動作 ID %{development_action_id} 不屬於此專案'
         image_download_failed: 從 %{url} 下載影像失敗： %{message}
         invalid_csv_format: 無效的 CSV 格式：%{message}。
-        invalid_date: "％{date}的日期格式無效。"
-        invalid_date_format: 行％{row}：％{field}的無效日期格式
+        invalid_date: "%{date}的日期格式無效。"
+        invalid_date_format: '行%{row}: %{field}的無效日期格式'
         invalid_development_action_type: 行 %{row}：無效的開發作業類型「%{value}」。有效的開發行動類型是：%{valid_development_action_types}。
-        invalid_duration_format: 持續時間僅允許數字值。行％{row}：％{value}不是有效的持續時間。
+        invalid_duration_format: '持續時間僅允許數字值。行%{row}: %{value}不是有效的持續時間。'
         invalid_image_file: 無效的影像檔案：%{message}。
         invalid_image_url: 無效的圖片 URL 格式：%{url}。
-        invalid_languages: 無效的可用語言％{invalid_languages}對於行％{row}。
+        invalid_languages: 無效的可用語言%{invalid_languages}對於行%{row}。
         invalid_learning_style: 行 %{row}：無效的學習樣式 '%{value}'。 有效的類型是：%{valid_types}。
-        languages_only_for_courses: 可用語言只能設置為“課程”類型的開發動作。請刪除ROW％{row}的可用語言，或將開發操作的類型更改為“課程”。
+        languages_only_for_courses: 可用語言只能設置為“課程”類型的開發動作。請刪除ROW%{row}的可用語言，或將開發操作的類型更改為“課程”。
         missing_columns: 缺少必填欄位： %{fields}
         save_failed: 搶救失敗的研發項目：%{message}。
         skill_not_found: 未找到 ID 的技能： %{skill_id}
@@ -1770,7 +1789,7 @@ zh-Hant:
           invalid_id: '行 %{row}: ID 必須是數字'
           invalid_id_format: 行 %{row}：ID 格式必須為 "id#field"
           missing_columns: 缺少必填欄位：%{fields}。
-          save_failed: 儲存失敗
+          save_failed: 保存失敗： %{message}
     development_actions:
       create:
         successfully: 開發動作「%{name}」已成功建立。
@@ -2060,18 +2079,22 @@ zh-Hant:
       all: 全部
       appearance: 外觀
       appearance_hint: 若要修改外觀，請先儲存 IDP 模版，以啟用這些設定。
+      appearance_success: 外觀設定已成功儲存
       background_image: 背景圖片
       behavioral_skills: 行為技巧
       client_skills: 客戶技能
+      details_updated: IDP 詳細資料已成功更新
       edit_template: 編輯 IDP 範本
+      enter_tag_or_skills_error: 選擇至少一個標籤或技能
       enter_template_description: 說明
       enter_template_description_error: 範本描述為必填項目。
       enter_template_name: 名稱
       enter_template_name_error: 模板名稱為必填項目
       errors:
-        update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。外觀變更已儲存。
+        update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。
       fields:
         assigned_data: 指定資料
+        assigned_date: 指定日期
         completion_date: 完成日期
         division: 部門
         name: 名稱
@@ -2109,6 +2132,11 @@ zh-Hant:
       show_reflections: 展覽反思
       skill_gap_report: 技能差距報告
       skills: 技術
+      skills_updated: IDP 技能更新成功
+      status:
+        draft: 草案
+        published: 已出版
+      status_updated: IDP 狀態更新成功
       subtitle_text: 字幕文字
       tab:
         development_actions: 發展行動
@@ -2151,7 +2179,7 @@ zh-Hant:
           error: "[行 %{row}] %{error}"
           invalid_assign: "[Row %{row}] 找不到指定結果 ID 的記錄。 如果您要建立新結果，請將結果 ID 欄留空。"
           invalid_date: "[行 %{row}] %{error}"
-          question_invalid: "[問題 %{question_id} 無效"
+          question_invalid: "[第 %{row} 行]問題 %{question_id} 無效"
           user:
             record_not_found: 無法找到電子郵件位址為 %{email} 的現有使用者。
           user_assessment:
@@ -2343,41 +2371,40 @@ zh-Hant:
     job_role:
       column:
         job_group: 工作群組
+        skill_name: 技能名稱
       export:
         failure_msg: 匯出翻譯時發生錯誤
         success_msg: 出口開發行動正在進行中。
-      export_action:
-        translations: 出口工作角色翻譯
       form:
         code: 代碼
         description: 說明
         job_group: 工作群組
         name: 名稱
         title: 工作角色
-      global: 全球工作角色？
       import:
         download_example_csv: 下載範例 csv
         success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
       import_action:
         translations: 匯入工作角色翻譯
+      job_role_details: 工作角色詳情
       translations: 工作角色翻譯
     job_role_skill_mapping:
       column:
         expected_proficiency_level: 預期能力等級
-        job_role: 工作角色
-        skill: 技術
       form:
-        expected_proficiency_level: 預期能力等級
-        job_role: 工作角色
-        skill: 技術
         title: 技能工作映射
-      global: 全球技能工作映射嗎？
       import:
         taxonomy: 分類學
     job_roles:
       export:
         translations:
           details: 詳細資訊
+      translations:
+        import:
+          errors:
+            job_role_not_found: 未找到 ID 為 %{id} 的工作角色
+            missing_columns: 缺少必填欄位：%{columns}。
+            save_failed: 處理工作角色 ID %{id} 出錯：%{message}
     libraries:
       create:
         successfully: 項目 %{name} 已成功建立。
@@ -2658,14 +2685,11 @@ zh-Hant:
           level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
           must_be_unique: 必須獨一無二
           proficiency_level_exists: 已存在具有此技能和專案的 ProficiencyLevel
-          proficiency_level_exists_for_all_skills: 已存在所有技能的精通等級
-          proficiency_level_exists_for_category: 此類別的 ProficiencyLevel 已經存在
-          project_level_all_skills_exists: 已存在「all_skills」能力等級
+          proficiency_level_exists_for_default: 已退出預設的精通等級
+          proficiency_level_exists_for_type: 此類型的精通等級已經存在
+          project_level_default_exists: 預設」能力等級已經存在
           skill_must_exist: 技能必須存在於 proficiency_type 'by_skill' 中。
       export:
-        actions:
-          proficiency: 出口能力
-          translations: 出口能力翻譯
         details: 詳細資訊
         failure_msg: 匯出能力等級時發生錯誤
         success_msg: 輸出開發中的行動
@@ -2678,28 +2702,23 @@ zh-Hant:
         proficiency_translations: 能力翻譯
         proficiency_type: 能力類型
         skill: 技術
-        skill_category: 技能類別
         skill_name: 技能名稱
+        skill_type: 技能類型
         title: 能力
-      global: 全球能力是嗎？
       import:
         actions:
           proficiency: 進口能力
           translations: 進口能力翻譯
         errors:
-          all_skills_global_exists: 行 %{row_number}：全局層級 'all_skills' 的 ProficiencyLevel 已經存在
-          all_skills_project_exists: 行 %{row_number}：專案層級 'all_skills' 的 ProficiencyLevel 已經存在
-          by_category_exists: 行 %{row_number}：此專案和技能類別已存在 'by_category' ProficiencyLevel
-          by_category_missing: 行 %{row_number}：by_category' 類型必須有專案和技能類別
           by_skill_exists: 行 %{row_number}：此專案與技能已有 'by_skill' ProficiencyLevel。
           by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
+          by_skill_type_exists: 行 %{row_number}：此專案和技能類型已有''by_skill_type''ProficiencyLevel。
+          by_skill_type_missing: 行 %{row_number}：by_skill_type'' 類型的專案和技能類型必須存在
+          default_global_exists: 行 %{row_number}：全局層級的'「預設」'ProficiencyLevel已經存在
+          default_project_exists: 行 %{row_number}：專案層級的 '「預設」 ProficiencyLevel 已經存在
           invalid_csv_format: 無效的 CSV 格式：%{message}。
-          invalid_json: 行 %{line}：LevelDefinition 中的 JSON 無效 - %{message}
-          invalid_json_structure: 必須是一個 JSON 物件，具有類似 'description「 和 」summary' 的鍵
           invalid_proficiency_type: 行 %{row_number}：無效或遺失 ProficiencyType
           missing_columns: 缺少必填欄位：%{fields}。
-          missing_required_fields: 行 %{line}：缺少必填欄位 (%{fields})
-          save_failed: 行 %{line}：%{message}
           skill_not_found: 行 %{row_number}：無效或遺失技能
         job_queued: 能力等級匯入工作已排隊
       translations:
@@ -2716,9 +2735,9 @@ zh-Hant:
             row_id_blank: 行 %{row}：ID 不能為空白
             save_failed: 處理技能 ID %{id} 出錯：%{message}
       type:
-        all_skills: 所有技能
-        by_category: 依類別
         by_skill: 按技術
+        by_skill_type: 依技能類型
+        default: 預設
     profile:
       change_password: 變更密碼
       details: 詳細資訊
@@ -2764,6 +2783,7 @@ zh-Hant:
           success: 評估 '%{name}' 已成功刪除。
           title: 刪除評估
         form:
+          assessment: 評估
           assessment_placeholder: 選擇評估
           assessment_required: 需要進行評估
           normalize_factor_scores: 標準化因子分數
@@ -2899,22 +2919,45 @@ zh-Hant:
         client_logo_label: 客戶標誌
         contrast_ratio_warning: 注意：使用此主色可能會違反文字可讀性的對比要求。
         contrast_ratio_warning_lighter_color: 注意：使用此 %{name} 顏色可能會違反文字可讀性的對比要求。 請嘗試使用較深的顏色。
+        copy_text: 正文
+        dashed_button: 虛線
+        default_button: 預設
         error_color: 錯誤顏色
+        hover_options:
+          danger_item: 危險項目
+          first_menu_item: 第 1 個功能表項目
+        hover_text: 懸停我
         info_color: 資訊顏色
+        link_text: 連結
         logo_upload: 上傳
         position_auto: 自動
         position_label: 登入方塊位置
         position_left: 左邊
         position_right: 對
+        primary_button: 初級
         primary_color: 原色
         reset: 重設
         sec_logo_label: 副標誌
         sec_logo_upload: 上傳
         secondary_logo_alt_text: 次要標誌 Alt-Text
         secondary_logo_alt_text_required: 需要副 Alt-Text 標誌
+        submenu_options:
+          option_one: 選項 1
+          option_title: 項目 1
+          option_two: 選項 2
         success_color: 成功顏色
         success_update: 設計設定已成功儲存
+        tab_text_one: 選單
+        tab_text_two: 子選單
+        text_danger: Text(danger)
+        text_success: 文字 (成功)
+        text_warning: Text(warning)
         warning_color: 警告顏色
+      form:
+        name: 名稱
+        project_number: 專案編號
+        subdomain: 子網域
+        title: 專案
       general_settings:
         live_chat: 啟用即時交談
         locales_label: 地點
@@ -3032,11 +3075,18 @@ zh-Hant:
           invalid_min_words_column_format: 無效的最小字元列數值格式 %{row}
           invalid_required_column_format: 強制列值格式無效 %{row}
           missing_eng_question: 缺少英文問題內容 %{row}
-          save_failed: 儲存失敗 %{message｝
+          save_failed: 保存失敗%{message}
         failure_msg: 匯入檔案時發生錯誤。
         success_msg: 正在匯入反省問題。請在通知中查看狀態。
       question: 問題
     report_approval:
+      approval_statuses:
+        approved: 已核准
+        change_requested: 要求變更
+        not_ready: 未就緒
+        pending_qc: 等待 QC
+        qc_completed: QC 已完成
+        qc_in_progress: QC 進行中
       bulk_approve_success: "%{sent_for_approval}已送交審核。%{approved}已核准的報告。%{ignored}因 QC 變更/意見而需要手動核准的報告。"
       columns:
         actions: 行動
@@ -3068,6 +3118,7 @@ zh-Hant:
         no_saved_filters: 沒有儲存的篩選條件
         save_filter: 儲存的篩選條件
         set_favorite: 篩選器已設定為最愛
+      submit_or_approve_all: 提交或批准所有
     report_builder:
       campaign_factors:
         add_field: 新增欄位
@@ -3169,6 +3220,11 @@ zh-Hant:
         successfully: 報告 '%{name}' 已成功刪除。
       edit:
         header: 編輯報告名稱
+      edit_default_language:
+        confirm_msg: 我已閱讀上述資訊，並瞭解變更預設語言的影響。
+        title: 編輯預設語言
+        tooltip: 編輯預設語言
+        warning: 將預設語言從 rtl 改為 ltr 語言或反之亦然，都會影響版面。如果變更預設語言，您必須重新處理報告的翻譯。在進行此變更之前，請下載一份翻譯副本。
       modals:
         remap_assessment:
           new_assessment_name: 新評估名稱
@@ -3211,6 +3267,9 @@ zh-Hant:
         successfully: 報告已成功更新。
       update:
         successfully: 報告 %{name} 已成功更新。
+    reports_language_selection_modal:
+      download: 報告下載
+      generate: 報告產生
     resource:
       remove_confirm:
         message: 您確定要移除此資源嗎？
@@ -3345,7 +3404,7 @@ zh-Hant:
         not_allowed: 不允許
         remaining: 剩餘座位
         scheduling_lead_time: 排程前置時間
-        scheduling_tooltip: 使用者可預約時段至 %{ 日期｝
+        scheduling_tooltip: 使用者可預約時段至 %{date}
         search_placehoder: 依 ID、電子郵件或姓名搜尋
         timezone: 時區
         total_seats: 總座位數
@@ -3620,6 +3679,7 @@ zh-Hant:
         import:
           missing_fields_data: '行 %{line_number}：缺少必填欄位: %{fields}'
           save_failed: 第 %{line_number} 行：儲存技能 '%{name}' 失敗： %{message}
+          skill_not_in_project: 行 %{line_number}：技能 ID %{skill_id} 不屬於此專案
         search:
           all_and_project_id_mutually_exclusive: 當提供 project_id_eq 時，所有項目都不能為真
           invalid_all_value: 必須是其中之一：true、false
@@ -3630,12 +3690,8 @@ zh-Hant:
         details: 詳細資訊
         failure_msg: 匯出翻譯時發生錯誤
         success_msg: 出口開發行動正在進行中。
-        title: 出口
         translations:
           details: 技能翻譯
-      export_action:
-        skills_title: 出口技能
-        skills_translations_title: 出口技能翻譯
       form:
         client_placeholder: 選擇客戶
         description: 說明
@@ -3644,9 +3700,6 @@ zh-Hant:
         skill_group: 技能組
         skill_type: 技能類型
         title: 技術
-      global: 全球技能？
-      global_skills: 全球技能
-      global_translations: 全球技能翻譯
       import:
         download_example_csv: 下載範例 csv
         info_msg: 上傳的檔案已排隊等待匯入，請在通知中查看狀態。
@@ -3656,8 +3709,6 @@ zh-Hant:
         skills_translations_title: 輸入技能翻譯
       skill_details: 技能詳情
       skill_translations: 技能翻譯
-      skill_translations_project: 基於專案的技能翻譯
-      skills_project: 以專案為基礎的技能
       title: 技術
       translations:
         import:
@@ -3668,7 +3719,6 @@ zh-Hant:
             skill_not_found: 未找到 ID 為 %{id} 的技能
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: 技能工作對應
         job_roles: 工作角色
         proficiency: 精通
         skills: 技能
@@ -3826,7 +3876,25 @@ zh-Hant:
         successfully: 子因素已成功更新。
     survey_builder:
       builder_area:
+        current_job: 目前工作
+        default_not_applicable_label: 沒有機會學習或展示技能
+        enable_not_applicable: 啟用不適用選項
+        enable_required_validation: 啟用必要的驗證
+        force_response: 原力回應
+        job_role_required: 請至少選擇一個工作角色
+        not_applicable_label: 不適用 標籤
         options: 選項
+        request_response: 請求回應
+        skill_rater_config: 技能評定員配置
+        target_job: 目標工作
+      models:
+        block_types:
+          regular: 常規
+          skill_rater: 技能評定員
+        skill_types:
+          behavioural: 行為
+          other: 其他
+          technical: 技術
       property_panel:
         add_n_a_option: 新增不適用選項
         allow_content_copy: 允許內容複製
@@ -3885,12 +3953,11 @@ zh-Hant:
         download_example_file: 下載範例檔案
         success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
       import_action:
-        taxonomy: 匯入分類系統
+        taxonomy: 匯入技能分類系統
       job_roles: 工作角色
       proficiency: 能力
-      skill_job_mappings: 技能工作對應
       skills: 技術
-      title: 分類學
+      title: 技能分類學
     templates:
       blocks:
         copy:

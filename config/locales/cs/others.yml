@@ -34,7 +34,7 @@ cs:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'Blok "%{název_bloku}" má duplicitní konfigurace: %{duplicate_configurations}'
+              duplicate_block: 'Blok "%{block_name}" má duplicitní konfigurace: %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -167,12 +167,17 @@ cs:
             base:
               code_length: Kód musí mít na řádku %{index} alespoň 3 znaky.
               code_required: Kód faktoru je vyžadován na řádku %{index}
+              invalid_csv: Neplatný csv %{error_message}
               invalid_scoring_strategy: Neplatná bodovací strategie '%{strategy}' na řádku %{index}. Povolené strategie jsou %{allowed}.
               missing_headers: 'Chybějící požadované hlavičky: %{headers}'
               name_required: Název faktoru je vyžadován na řádku %{index}
               scoring_strategy_required: Bodovací strategie je vyžadována na řádku %{index}
             file:
               invalid_format: Nahrajte prosím soubor CSV
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: Upozornění pomocí SMS klienta je zakázáno
         hogan:
           attributes:
             name:
@@ -191,6 +196,7 @@ cs:
               blank: Křestní jméno nesmí být prázdné
             job_role:
               cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
+              not_found: Pracovní role %{name} nebyla nalezena v projektových nebo globálních rolích
             last_name:
               blank: Příjmení nesmí být prázdné
             locale:
@@ -200,10 +206,10 @@ cs:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: Hodnota %{název_sloupce} nemůže být prázdná na řádku %{číslo_řádku}
+              column_cannot_be_blank: Hodnota %{column_name} nemůže být prázdná na řádku %{row_number}
               invalid_format: Nahrajte prosím soubor CSV
-              invalid_job_role_id: Id na řádku %{číslo_řádku} není platné ID pracovní role
-              invalid_locale: Locale na řádku %{číslo_řádku} není platné locale
+              invalid_job_role_id: Id na řádku %{row_number} není platné ID pracovní role
+              invalid_locale: Locale na řádku %{row_number} není platné locale
               missing_required_columns: 'Chybějící povinné sloupce: %{columns}'
               parsing_failed: 'Chyba při zpracování souboru, chyba: %{error}.'
             project:
@@ -323,12 +329,13 @@ cs:
             email:
               blank: E-mail nemůže být prázdný
               not_uniq_email: Řádek s e-mailem je již přítomen
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pro %{jméno_bloku} musí být povolena alespoň jedna pracovní role s vybraným typem dovednosti.
-              invalid_skill_type: 'Neplatný typ dovednosti %{skill_type} pro %{role_name} pro %{block_name}. Platné možnosti: %{valid_options}'
-              props_missing: Práce
+              at_least_one_job_role_required: Pro %{skill_type} je vyžadována alespoň jedna pracovní role pro %{block_name}.
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Pro %{block_name} musí být povolen alespoň jeden typ dovednosti s vybranou pracovní rolí.
+              invalid_job_role_type: 'Neplatná pracovní role %{job_role} pro %{skill_type} pro %{block_name}. Platné možnosti: %{valid_options}'
+              props_missing: Chybí konfigurace dovedností pro %{block_name}
         skillvue:
           attributes:
             name:
@@ -369,11 +376,11 @@ cs:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Řádek %{řádek}: Duplicitní hodnota %{hodnota} pro %{pole}'
+              duplicate_value: 'Řádek %{row}: Duplicitní hodnota %{value} pro %{field}'
               invalid_format: Nahrajte prosím soubor xlsx
-              missing_headers: "%{název_listu} chybí požadované záhlaví: %{záhlaví}"
-              missing_sheets: 'Chybějící požadované listy: %{listy}'
-              missing_value: 'Řádek %{řádek}: Chybějící hodnota pro %{pole}'
+              missing_headers: "%{sheet_name} chybí požadované záhlaví: %{headers}"
+              missing_sheets: 'Chybějící požadované listy: %{sheets}'
+              missing_value: 'Řádek %{row}: Chybějící hodnota pro %{field}'
             project:
               must_exist: Projekt musí existovat
         update_norm:
@@ -758,6 +765,12 @@ cs:
           attributes:
             base:
               max_takes_limit_reached: Dosažený limit pro maximální počet odběrů
+        register:
+          attributes:
+            mobile_number:
+              blank: Vyžaduje se číslo mobilního telefonu
+              invalid: Číslo mobilního telefonu je neplatné
+              verification_expired: Platnost ověřovacího kódu vypršela. Můžete zkusit ověřit znovu.
         report:
           assessments_not_hogan: Všechna hodnocení musí být typu Hogan
           assessments_not_saville: Všechna hodnocení musí být typu Saville
@@ -771,6 +784,10 @@ cs:
           attributes:
             current_password:
               invalid: Současné heslo je nesprávné
+            manager_id:
+              cannot_be_self: Uživatel nemůže být přiřazen jako svůj vlastní správce
+        user_idp_comment:
+          reply_to_reply: Nelze odpovědět na odpověď (povolena je pouze jedna úroveň vnoření)
         user_idp_plan:
           no_active_plan: Nebyl nalezen žádný aktivní plán IDP
   admin_jobs:
@@ -784,6 +801,7 @@ cs:
         assign_idp_to_users: Přiřazení IDP uživatelům
         assign_reports_and_assessments: Přiřazení zpráv a hodnocení
         bulk_create_workshop_invites: Odesílání pozvánek do hodnotícího centra
+        bulk_download_idp_reports: Hromadné stahování zpráv IDP
         bulk_download_reports: Hromadné stahování zpráv
         bulk_download_user_reports: Hromadné stahování uživatelských zpráv
         bulk_regenerate_reports: Regenerovat zprávy o kampani
@@ -791,6 +809,7 @@ cs:
         bulk_regenerate_user_reports: Regenerovat uživatelské zprávy
         bulk_reports: Hromadné zprávy
         bulk_rescore_campaign_factors: Faktory hromadného obnovení kampaně
+        bulk_update_evaluation_status: Stav vyhodnocení hromadné aktualizace
         compact_completion_status_export: Kompaktní export stavu dokončení
         completion_status_export: Export stavu dokončení
         copy_dimension: Kopírovat rozměr
@@ -800,6 +819,7 @@ cs:
         export_assessment_questions: Otázky pro posouzení vývozu
         export_campaign_factors: Faktory vývozní kampaně
         export_campaign_scorings: Výběry pro exportní kampaně
+        export_dashboard_as_file: Exportovat řídicí panel jako soubor
         export_development_action_translations: Akce pro rozvoj exportu Překlady
         export_development_actions: Akce na rozvoj vývozu
         export_dimension_as_json: Export rozměru JSON
@@ -807,7 +827,9 @@ cs:
         export_job_roles_translations: Export pracovních rolí Překlady
         export_norm: Norma pro vývoz
         export_occupations: Povolání Export
+        export_proficiency_level_translations: Export překladů na úrovni znalostí
         export_proficiency_levels: Úrovně odborné způsobilosti pro export
+        export_reflection_questions: Exportovat otázky k zamyšlení
         export_report_data: Export dat sestavy
         export_reports_and_assessments: Exportní zprávy a hodnocení
         export_skill_translations: Exportní dovednosti Překlady
@@ -829,12 +851,14 @@ cs:
         import_job_roles_translations: Import pracovních rolí Překlady
         import_norm: Importní norma
         import_proficiency_level_translations: Importovat překlady na úrovni pokročilosti
+        import_proficiency_levels: Import úrovní znalostí
         import_question_translations: Překlady importních otázek
         import_raw_data: Import surových dat
+        import_reflection_questions: Import otázek k zamyšlení
         import_scoring_data: Import dat pro skórování
+        import_skill_rater_taxonomies: Import taxonomií hodnotitelů dovedností
         import_skill_translations: Importovat dovednosti Překlady
         import_skills: Dovednosti pro import
-        import_skills_rater_taxonomies: Import taxonomií hodnotitelů dovedností
         import_sms_invites: Importovat pozvánku SMS
         import_users: Import uživatelů
         migrate_assessment_translations: Hodnocení Překlad migrace
@@ -860,6 +884,8 @@ cs:
         failed: Neúspěšný
         in_progress: Probíhá
         scheduled: Plánované
+    bulk_download_idp_reports:
+      already_exists: Úloha na generování tohoto IDP hlásí, že již probíhá
     bulk_download_reports:
       content:
         title: Odkazy ke stažení zpráv
@@ -904,6 +930,7 @@ cs:
       download_csv: Stáhnout CSV
       edit: Upravit
       evaluate: Vyhodnocení
+      export: Export
       export_normed: Normované skóre faktorů
       export_raw_labels: Surové (s etiketami)
       export_raw_scores: Surové skóre faktorů
@@ -1022,6 +1049,7 @@ cs:
         pearson: Hodnocení Pearson
         saville: Hodnocení Saville
         simulation: Hodnocení simulací
+        skillvue: Hodnocení dovedností
     flow:
       end_assessment_modal:
         custom_message: Vlastní zpráva o ukončení hodnocení
@@ -1119,6 +1147,7 @@ cs:
       previous_group_required: Předchozí absolvování skupiny je vyžadováno
     menu:
       assessment_center: Hodnotící centrum
+      assessment_center_invites: Pozvánky do hodnotícího centra
       assessments_and_reports: Hodnocení a zprávy
       idp: IDP
       manage: Správa
@@ -1137,7 +1166,7 @@ cs:
         delete:
           cancel: Zrušit
           cannot_delete_with_workshops: Nelze odstranit skupinu obsahující workshopy, nejprve odstraňte workshopy
-          failed: Nepodařilo se odstranit skupinu "%{jméno}", kontaktujte prosím správce
+          failed: Nepodařilo se odstranit skupinu "%{name}", kontaktujte prosím správce
           ok: Ano, vymazat
           text: Opravdu chcete odstranit skupinu "%{name}"?
           title: Odstranit skupinu
@@ -1194,7 +1223,7 @@ cs:
       invalid_email: E-mail je neplatný
       login_with_password: Přihlaste se pomocí hesla
       send_me_login_link: Odeslat přihlašovací odkaz
-      success: Poslali jsme vám přihlašovací odkaz na „%{email}“. Pro přihlášení klikněte na odkaz v e-mailu, který jste obdrželi
+      success: Poslali jsme vám přihlašovací odkaz na '%{email}'. Pro přihlášení klikněte na odkaz v e-mailu, který jste obdrželi
     mobile_number: Mobilní číslo
     new_password: Nové heslo
     new_password_placeholder: Zadejte nové heslo
@@ -1203,7 +1232,7 @@ cs:
       code_placeholder: Jednorázové heslo
       description: Zadejte jednorázové heslo, které bylo odesláno na vaši registrovanou e-mailovou adresu.
       resend: Znovu odeslat jednorázové heslo
-      resend_in: Znovu odeslat za %{timestamp} sekund/y
+      resend_in: Znovu odeslat za %{timestamp} sekund
       resend_success: Jednorázové heslo bylo odesláno na vaše mobilní číslo
       sms_description: Zadejte jednorázové heslo, které bylo odesláno na vaše mobilní číslo.
       submit: Ověřit
@@ -1298,21 +1327,21 @@ cs:
     inactive_campaign_message: V současné době nemáte přiřazeny žádné aktivity.
     insights_reports: Poznatky a zprávy
     instruction_modal:
-      campaign_start_final_instructions: |
+      campaign_start_final_instructions: |-
         <p>
           Upozorňujeme, že neexistuje žádný způsob, jak zastavit nebo pozastavit časovač. Časovač kampaně poběží i po zavření prohlížeče, takže byste rozhodně neměli nechat úkoly rozdělané a začít pracovat na něčem jiném. Nezapomeňte během úkolů minimalizovat rozptýlení. Najděte si tiché prostředí, vypněte oznámení na všech zařízeních a vyhněte se multitaskingu. Udržujte koncentraci a soustřeďte se. Po vypršení času kampaně už nemůžete pokračovat. Pokud jste si přečetli výše uvedené pokyny, klikněte na tlačítko Start a pokračujte v přiřazených úkolech.
         </p>
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Pozorně si přečtěte následující pokyny.
         </h4><p>
           Úkoly, které se chystáte zahájit, jsou časově omezené. Jakmile kliknete na „Spustit“, automaticky se spustí časovač kampaně. Na dokončení všech aktivit máte %{minutes} minut/y. Snažte se dokončit úkoly v určeném časovém rámci a efektivně hospodařit s časem, abyste proces hodnocení neuspěchali. Úkoly je třeba dokončit najednou, takže pokud si potřebujete udělat přestávku, teď je ten správný čas.
         </p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Dohled</h4>
         <p>
-          Po kliknutí na tlačítko Spustit budete přesměrováni na náš monitorovací systém. Během vaší relace bude sledovat vaši kameru, mikrofon a obrazovku. Tyto relace jsou automaticky kontrolovány naším sofistikovaným systémem umělé inteligence, který zajišťuje nepřerušovaný a plynulý uživatelský zážitek. Relace však mohou monitorovat i lidé k tomu určení. Jakékoli známky nesprávného chování nebo nesrovnalostí budou nahlášeny. Chceme tím zajistit, aby nedocházelo k pokusům o podvádění. V případě zjištění podezření budou vaše úkoly zrušeny.
+          Po kliknutí na tlačítko Spustit budete přesměrováni na náš monitorovací systém. Během vaší relace bude sledovat vaši kameru, mikrofon a obrazovku. Tyto relace jsou automaticky kontrolovány naším sofistikovaným systémem umělé inteligence, který zajišťuje nepřerušovanou a plynulýou uživatelskou zkušenost. Relace však mohou monitorovat i lidé k tomu určení. Jakékoli známky nesprávného chování nebo nesrovnalostí budou nahlášeny. Chceme tím zajistit, aby nedocházelo k pokusům o podvádění. V případě zjištění podezření budou vaše úkoly zrušeny.
         </p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Monitorovací prohlížeč</h4>
         <p>
           K vyplnění testovaných úloh si musíte stáhnout a nainstalovat speciální prohlížeč. Postupujte podle pokynů na další obrazovce. Po dokončení všech požadovaných aktivit jej můžete odinstalovat.
@@ -1354,6 +1383,8 @@ cs:
   campaign_assessment:
     actions:
       bulk_download: Hromadné stahování
+      bulk_update_evaluation_as_done: Označit jako hotovo
+      bulk_update_evaluation_as_undone: Zrušit označení jako hotovo
       download: Zprávy ke stažení
       export_completion_status: Stav dokončení exportu
       export_external: Externí
@@ -1380,13 +1411,20 @@ cs:
       assessor_form: Formulář hodnotitele
       auto_assign: Automatické přiřazení
       dimension_id: ID rozměru
+      external_user_id: ID kandidáta Skillvue
       id: ID hodnocení kampaně
       locales: Lokality
       norm: Norm
       norm_id: ID normy
+      pearson_norm_id: ID Pearsonovy normy
+      pearson_schedule_id: ID Pearsonova rozvrhu
       pearson_variation: Pearsonova variace
       prework: Předpráce
+      saville_candidate_id: ID uchazeče
+      saville_data_separator: Savilleův oddělovač dat
       simulation_content_variation: Varianta obsahu simulace
+      simulation_participant_id: ID účastníka simulace
+      simulation_time_extension: Prodloužení doby simulace
       skillvue_email_id: Skillvue Emailové ID kandidáta
       skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Univerzální odkaz
@@ -1409,6 +1447,10 @@ cs:
         placeholder: Vyberte skupinu Assessment Center
         success_message: Posuzovatel Posuzovací skupina kampaně byla úspěšně přiřazena
         title: Skupina Assessment Center
+      bulk_update_evaluation:
+        content: Opravdu chcete označit všechny vybrané předměty jako %{status}?
+        successfully: Úspěšně označeno jako %{status}.
+        title: Hromadně Označit jako %{status}?
       import_raw:
         body: Viz funkce Export pro získání šablony, kterou lze použít k importu.
         success_msg: Import byl úspěšně nahrán
@@ -1419,6 +1461,10 @@ cs:
         success_msg: Import byl úspěšně nahrán
         title: Import dat výsledků bodování
         upload: Nahrát
+      prework_setting:
+        disable: Zakázat předběžnou práci pro všechny stávající uživatele
+        enable: Povolení předběžných prací pro všechny stávající uživatele
+        title: Formulář pro předpracovní nastavení
       regenerate:
         content: Jste si jisti, že chcete přegenerovat dostupné sestavy?
         title: Regenerovat zprávy?
@@ -1685,24 +1731,32 @@ cs:
       create: Vytvořit
       delete: Smazat
       done: Hotovo
+      download: Stáhnout
       edit: Upravit
       export: Export
+      filter: Filtr
       filter_by_tags: Filtrovat podle značek
+      go_back: Vrať se
       import: Import
       insert: Vložte
       ok: OK
+      publish: Zveřejnit
+      reject: Odmítat
       remove: Odstranit
       reset: Obnovit
       resolve: Vyřešit
       restore: Obnovit
+      return_to_home: Návrat na domovskou stránku
       run: Spustit
       save: Uložit
       schedule: Plán
       search: Hledat
       send: Odeslat
+      sign_in: Přihlásit se
       start: Spustit
       submit: Odeslat
       unarchive: Odebrat z archivu
+      unpublish: Zrušení publikování
       unresolve: Označit jako nevyřešené
       update: Aktualizovat
       upload: Nahrát
@@ -1814,6 +1868,7 @@ cs:
       refer_export_file: Viz funkce Export pro získání šablony, kterou lze použít k importu.
       reference_language: Referenční jazyk
       response: Reakce
+      select: Vybrat
       selected: Vybrané stránky
       subject: Předmět
       total: Celkem
@@ -1895,16 +1950,12 @@ cs:
     mailer:
       admin_invitation_instructions:
         accept: Kliknutím zde přijmete pozvání.
-        body: 'Dobrý den, %{name}, byli jste pozváni k přístupu do panelu správce platformy Lighthouse - The Talent Enterprise assessment. %{accept} Nebo můžete tento e-mail bez obav ignorovat. Prosím, nikomu nesdělujte své přístupové údaje.
-
-          '
+        body: 'Dobrý den, %{name}, byli jste pozváni k přístupu do panelu správce platformy Lighthouse - The Talent Enterprise assessment. %{accept} Nebo můžete tento e-mail bez obav ignorovat. Prosím, nikomu nesdělujte své přístupové údaje. '
         subject: Pozvánka do Lighthouse
       confirmation_instructions:
         subject: Pokyny pro potvrzení
       invitation_instructions:
-        body: 'Dobrý den, %{name}, Byl jste přidán do Lighthouse jako správce následující sekce
-
-          '
+        body: 'Dobrý den, %{name}, Byl jste přidán do Lighthouse jako správce následující sekce '
         login: Přihlášení k Lighthouse
         sections:
           campaign: 'Kampaň: %{section_name}'
@@ -1912,31 +1963,19 @@ cs:
           project: 'Projekt: %{section_name}'
         subject: Pozvánka do Lighthouse
       password_change:
-        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese mte.support@mercer.com
-
-          '
-        regards: 'S pozdravem, tým Lighthouse
-
-          '
+        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese mte.support@mercer.com '
+        regards: 'S pozdravem, tým Lighthouse '
         subject: Vaše heslo k Majáku se změnilo
       reset_password_instructions:
-        body: 'Dobrý den, %{name}! Někdo si vyžádal odkaz na změnu hesla. Můžete tak učinit prostřednictvím níže uvedeného odkazu.
-
-          '
+        body: 'Dobrý den, %{name}! Někdo si vyžádal odkaz na změnu hesla. Můžete tak učinit prostřednictvím níže uvedeného odkazu. '
         change_password: Změna hesla
         footer: Pokud jste o to nepožádali, můžete tento e-mail bez obav ignorovat. Vaše heslo se nezmění, dokud nepřistoupíte na výše uvedený odkaz a nevytvoříte si nové.
-        regards: 'S pozdravem, tým Lighthouse
-
-          '
+        regards: 'S pozdravem, tým Lighthouse '
         subject: Pokyny pro obnovení hesla
       unlock_instructions:
-        body: 'Dobrý den, %{name}! Váš účet byl zablokován z důvodu nadměrného počtu neúspěšných pokusů o přihlášení. Kliknutím na níže uvedený odkaz svůj účet odemknete:
-
-          '
+        body: 'Dobrý den, %{name}! Váš účet byl zablokován z důvodu nadměrného počtu neúspěšných pokusů o přihlášení. Kliknutím na níže uvedený odkaz svůj účet odemknete: '
         footer: Pokud jste o to nepožádali, můžete tento e-mail bez obav ignorovat. Vaše heslo se nezmění, dokud nepřistoupíte na výše uvedený odkaz a nevytvoříte si nové.
-        regards: 'S pozdravem, tým Lighthouse
-
-          '
+        regards: 'S pozdravem, tým Lighthouse '
         subject: Pokyny pro odemknutí účtu
         unlock_account: Odemknutí mého účtu
     omniauth_callbacks:
@@ -2023,6 +2062,7 @@ cs:
         reserved_subdomain: Subdoména %{value} je rezervována
         uniq_subdomain: Subdoména by měla být jedinečná.
       add_manager:
+        cannot_be_self: Uživatel nemůže být přiřazen jako svůj vlastní správce
         manager_not_found: Správce nenalezen nebo není součástí stejného projektu
         user_not_found: Uživatel nebyl nalezen nebo není součástí stejného projektu
       admin:
@@ -2041,8 +2081,17 @@ cs:
       campaign_factor_group:
         group_already_exists: Skupina se stejným názvem již existuje.
         last_factor_group: Nelze odstranit poslední skupinu faktorů kampaně.
+      campaign_idps:
+        idp_template_not_published: Tato šablona IDP dosud není zveřejněna, zveřejněte ji před přiřazením kampaně.
+      cant_be_deleted: Tento záznam nelze smazat
+      client_feature:
+        ai_assisted_idp_feature_error: Nemůže to být pravda, pokud je funkce asistentů ai zakázána
       create_superadmin:
         uniq_email: E-mail by měl být uniq.
+      development_actions:
+        only_global_skills_allowed: Vybrané dovednosti musí být globální.
+        skills_not_belong_to_project: Vybrané dovednosti musí patřit k zadanému projektu.
+        skills_required: Vyberte alespoň jednu dovednost.
       exceeded_subjects_count: Na jednu pozvánku můžete přidat pouze %{count} subjektů
       filled?: nemůže být prázdný
       idp_template:
@@ -2069,6 +2118,8 @@ cs:
       report_families_reports:
         report_exists: Tato zpráva je již součástí balíčku zpráv
       size?: velikost by měla být menší než %{size}
+      skill:
+        already_added: Dovednost se stejným jménem již byla přidána.
       skill_alias:
         unique_alias: Alias by měl být jedinečný
         unique_skill: Dovednost by měla být jedinečná
@@ -2088,6 +2139,7 @@ cs:
         start_time_should_be_less: Čas zahájení by měl být kratší než čas ukončení
       user_idp_plan:
         idp_template_already_assigned_to_user: Tato šablona Idp je již přiřazena tomuto uživateli a je aktivní
+        idp_template_not_published: Tato šablona IDP dosud není zveřejněna, zveřejněte ji před přiřazením uživateli.
       user_saved_filters:
         limit_exceeded: Můžete mít pouze %{limit} uložených filtrů, pokud chcete přidat další, laskavě uložené filtry odstraňte.
         unique_name: Filtr se stejným názvem již existuje.
@@ -2127,6 +2179,8 @@ cs:
     assessments:
       timed_out: Hodnocení uživatele %{assessment_name} nebude možné provést, protože vypršel časový limit.
     error: Chyba
+    error_401: Nemáte oprávnění k přístupu k tomuto zdroji. Přihlaste se prosím.
+    error_403: Nemáte oprávnění k zobrazení tohoto prostředku.
     error_500: Něco se pokazilo. Obraťte se na správce.
     error_msg: Něco se pokazilo. Obnovte prosím stránku a pokud problém přetrvává, kontaktujte správce
     forbidden: Na tuto stránku nemáte přístup
@@ -2470,6 +2524,8 @@ cs:
       structured_learning: Strukturované učení
       submit_plan: Odeslat plán
       write_here: Pište zde...
+    edit_plan: Upravit plán
+    edit_progress: Upravit pokrok
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností
@@ -2486,6 +2542,7 @@ cs:
       rate_skills_title: Hodnocení vašich dovedností
       rating_column_header: Vaše sebehodnocení
       reflective_questions: Reflektivní otázky
+      save: Uložit
       select_skills: Vyberte své dovednosti
       select_skills_placeholder: Vyberte dovednosti
       selected_skills: Vybrané dovednosti
@@ -2500,11 +2557,13 @@ cs:
       graphs:
         categories: Kategorie
       save_skills: Uložit dovednosti
+    new_comments: Nové komentáře(e)
     pdf:
       approval_status: Stav schválení
       cover:
         fields:
           assigned_data: Datum přiřazení
+          assigned_date: Přidělené datum
           completion_date: Datum dokončení
           division: Oddělení
           name: Jméno
@@ -2587,6 +2646,7 @@ cs:
       statuses:
         approved: Zkontrolováno a schváleno
         completed: Dokončeno
+        draft: Návrh
         not_reviewed: Nezkontrolováno
         pending_approval: V kontrole
       summary:
@@ -2605,6 +2665,7 @@ cs:
         library: Knihovna IDP
         skills_count: Počet dovedností
         title: Shrnutí zprávy
+    plan: Plán
     reflective_questions:
       already_completed: IDP již byl dokončen, nyní nemůžete na otázky odpovídat.
       answer_later: Odpověď Později
@@ -2624,10 +2685,15 @@ cs:
     status: Stav
     user_idp_status:
       approved: Schváleno
+      completed: Hotový
       draft: Návrh
+      in_progress: Probíhá
       not_started: Nezahájeno
       pending_approval: Čeká se na
+      rejected: Odmítnutý
     users: Uživatelé
+    with_reflection_questions: S otázkami k zamyšlení
+    without_reflection_questions: Bez otázek k zamyšlení
   idp_templates:
     assign: Přiřazení
     assign_idp_template: Přiřazení šablony Idp
@@ -2742,6 +2808,7 @@ cs:
     overuse_number: Příspěvek na nadměrné použití
     report_family: Svazek zpráv
     start_date: Datum zahájení
+    title: Licence
     type: Typ
     types:
       common: Společné
@@ -2752,6 +2819,35 @@ cs:
     used_out_of: "%{used} z %{total}"
   mailer:
     from: Talentovaný podnik
+    idp:
+      manager_unread_comments:
+        body: |-
+          Dobrý den, %{name},
+          Máte nové komentáře od vašich hlášených IDP.
+
+          %{dashboard_link}
+
+          Na řídicím panelu přímých podřízených můžete:
+          - Kontrola nových komentářů členů k jejich individuálním plánům
+          - Poskytnout zpětnou vazbu k rozvojovým cílům
+          - Sledovat pokrok v aktivitách IDP
+          - Podporovat růst a rozvoj svého týmu
+        dashboard_link: Navštivte Dashboard
+        subject: Máte nové komentáře - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          Dobrý den, %{name},
+          Máte nové připomínky k vašemu plánu rozvoje.
+
+          %{dashboard_link}
+
+          Na řídicím panelu Můj plán můžete:
+          - Aktualizujte svůj plán rozvoje
+          - Přečtěte si nové komentáře a zpětnou vazbu
+          - Odpovídat na otázky svého nadřízeného
+          - Aktualizujte svůj pokrok ve vývojových akcích
+        dashboard_link: Zobrazit můj plán
+        subject: Máte nové připomínky k vašemu plánu rozvoje - %{campaign_name}
     license:
       expire:
         subject: Platnost licence vypršela
@@ -3623,6 +3719,9 @@ cs:
     waiting: Čekání
     you: Vy
     yourself: Vaše osoba
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Kliknutím na toto políčko souhlasíte s tím, že jste si přečetli naše oznámení o ochraně osobních údajů a oznámení o ochraně osobních údajů našich klientů, a souhlasíte se shromažďováním a zpracováním vašich osobních údajů, jak je v nich popsáno, včetně mezinárodního přenosu vašich osobních údajů.
+    privacy_notice: Oznámení o ochraně osobních údajů
   time:
     formats:
       date: "%d/%m/%y"
@@ -3683,6 +3782,7 @@ cs:
         body: V ukázkovém souboru naleznete šablonu, kterou lze použít pro Import sem.
         title: Přiřazení zpráv a hodnocení
     toolbar:
+      bulk_download_idp_reports: Hromadné stahování zpráv IDP
       export: Export uživatelů
       export_compact_completion_status: Kompaktní
       export_detailed_completion_status: Podrobné informace na
@@ -3759,7 +3859,6 @@ cs:
       add: Přidat zprávu
       download: Stáhnout
       generate: Generovat
-      regenerate: Znovu vygenerovat
     approval_statuses:
       approved: Schváleno
       change_requested: Požadovaná změna
@@ -3867,6 +3966,10 @@ cs:
       BadRequest: Soubor nebyl nahrán, protože poslední požadavek selhal. To může být způsobeno tím, že váš internet nefunguje. Pokud váš internet funguje, kontaktujte prosím správce
       EntityTooLarge: Soubor musí být menší než %{maxFileSize} MB
       WrongFileType: Typ souboru by měl být jeden z následujících %{allowedFileTypes}
+    idp:
+      reflective_questions_required: Pro IDP jsou vyžadovány odpovědi na reflektivní otázky
+      status_not_permitted: není povoleno uživatelem.
+      status_not_permitted_by_manager: Manažer nemůže aktualizovat stav, pokud je plán ve stavu %{status}.
     invalid: je neplatný
     issue: Problém
     least: 'Odpovězte alespoň na tolik možností: %{min}.'
@@ -3883,17 +3986,15 @@ cs:
     not_in_past: Vybrané datum by nemělo být v minulosti
     number: Vaše odpověď musí být číslo
     photo: požadované
-    range: 'Odpovězte alespoň na %{min} a ne více než na tolik možností: %{max}.'
+    range: Odpovězte alespoň na %{min} a ne více než %{max} možností.
     required: Odpovězte na tuto otázku
     text: Vaše odpověď nesmí obsahovat čísla
     title:
-      few:
-      many:
       one: Vyskytla se jedna chyba, zkontrolujte své odpovědi
       other: Vyskytlo se %{count} chyb, zkontrolujte prosím své odpovědi.
     user_self_skill_rating_disabled: Vlastní hodnocení je pro tuto šablonu zakázáno
     word_count: 'Počet slov '
-    word_range: Vaše odpověď musí mít alespoň %{min} a ne více %{max} slov.
+    word_range: Vaše odpověď musí mít alespoň %{min} a ne více než %{max} slov.
   'yes': Ano
   your: Vaše
   yourself: Vy

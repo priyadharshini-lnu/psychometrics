@@ -7,7 +7,7 @@ module Api
     module Administration
       module Projects
         class ProficiencyLevelResource < Api::V2::Administration::BaseResource
-          attributes :skill_category, :level, :level_definition, :project_id, :skill_id, :proficiency_type
+          attributes :skill_type, :level, :level_definition, :project_id, :skill_id, :proficiency_type
 
           has_one :project, class_name: 'Client'
           belongs_to :skill

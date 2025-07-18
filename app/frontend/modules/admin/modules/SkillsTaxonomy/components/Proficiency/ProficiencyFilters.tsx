@@ -54,10 +54,10 @@ export const ProficiencyFilters: React.FC<Props> = ({
       })
   }
 
-  const handleProficiencyExport = (selectedProjectId?: number) => {
+  const handleProficiencyExport = () => {
     let action = 'export'
-    if (params.projectId || selectedProjectId) {
-      action += `?project_id=${params.projectId ?? selectedProjectId}`
+    if (params.projectId) {
+      action += `?project_id=${params.projectId}`
     }
     resource.collectionAction({
       action,
@@ -70,10 +70,10 @@ export const ProficiencyFilters: React.FC<Props> = ({
     })
   }
 
-  const handleExportTranslations = (selectedProjectId?: number) => {
+  const handleExportTranslations = () => {
     let action = 'export_translations'
-    if (params.projectId || selectedProjectId) {
-      action += `?project_id=${params.projectId ?? selectedProjectId}`
+    if (params.projectId) {
+      action += `?project_id=${params.projectId}`
     }
     resource.collectionAction({
       action,
@@ -104,24 +104,10 @@ export const ProficiencyFilters: React.FC<Props> = ({
         })
         break
       case 'export_proficiency':
-        if (params.projectId) {
-          handleProficiencyExport()
-        } else {
-          openModal('ProficiencyExportModal', {
-            handleExport: handleProficiencyExport,
-            title: I18n.t('administration.proficiency_levels.export.actions.proficiency'),
-          })
-        }
+        handleProficiencyExport()
         break
       case 'export_translations':
-        if (params.projectId) {
-          handleExportTranslations()
-        } else {
-          openModal('ProficiencyExportModal', {
-            handleExport: handleExportTranslations,
-            title: I18n.t('administration.proficiency_levels.export.actions.translations'),
-          })
-        }
+        handleExportTranslations()
         break
       default:
     }

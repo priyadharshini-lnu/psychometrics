@@ -3,10 +3,13 @@
 module Threesixty::EndUser
   class EvaluationSerializer < Panko::Serializer
     attributes :id, :is_self, :evaluator_id, :campaign_id, :evaluator_nomination_status, :status,
-               :subject_evaluation_closed, :assessment_extra, :assessment_id
+               :subject_evaluation_closed, :assessment_extra, :assessment_id, :available_languages,
+               :default_language
 
     has_one :user, serializer: UserSerializer
     has_one :subject, serializer: UserSerializer
+
+    delegate :available_languages, :default_language, to: :assessment
 
     def campaign_id
       object.campaign.threesixty_campaign.id
@@ -36,6 +39,10 @@ module Threesixty::EndUser
 
     def current_user
       context[:current_user]
+    end
+
+    def assessment
+      object.assessment
     end
   end
 end

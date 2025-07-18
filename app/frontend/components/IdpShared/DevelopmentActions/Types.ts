@@ -51,12 +51,12 @@ export type SkillWithDevelopmentActions = UserIdpSkill & {
     developmentActions: Partial<DevelopmentAction>[];
 }
 
-export type CategoryWithSkills = {
+export type TypeWithSkills = {
     skillType: string;
     skills: SkillWithDevelopmentActions[];
 }
 
-export type CategoryWithSkillsSummary = {
+export type TypeWithSkillsSummary = {
     skillType: string;
     skills: Skill[];
 }

@@ -167,6 +167,8 @@ class Client < ApplicationRecord
   delegate :mask_identity_for_pearson?, :mask_identity_for_saville?, :mask_identity_for_hogan?,
            :mask_identity_for_iiht?, :mask_identity_for_examus?,
            :mask_identity_for_mettl?, :mask_identity_for_skillvue?, :custom_privacy_consent, to: :privacy_setting
+  delegate :idp?, :ai_assistants?, :global_skills?, :sms_notification?,
+           :ai_assisted_idp?, to: :client_feature, allow_nil: true
 
   scope :enabled, -> { where('NOT (clients.disabled = ? AND archived = ?)', true, true) }
   scope :has_integration, ->(name) { joins(:integrations).merge(Integration.where(name: name).active) }
@@ -329,22 +331,6 @@ class Client < ApplicationRecord
     SimulationUserAssessment.joins(:user_assessment).exists?(
       user_assessments: { campaign_id: project_campaigns.ids }
     )
-  end
-
-  def sms_notification?
-    client_feature.sms_notification
-  end
-
-  def ai_assisted_idp?
-    client_feature.ai_assisted_idp
-  end
-
-  def ai_assistants?
-    client_feature.ai_assistants
-  end
-
-  def global_skills?
-    client_feature.global_skills
   end
 
   private

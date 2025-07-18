@@ -7,14 +7,16 @@ import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
-import { openModal } from '~/modules/admin/core/ui/modals'
 import {
   CampaignAssessorAssessments, useCampaignAssessorAssessmentsStore,
 } from '~/modules/admin/modules/client/core/campaignAssessorAssessments'
+import { BaseMeta } from '~/hooks/useResources/interfaces'
 
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { openModal } from '~/modules/admin/core/ui/modals'
 
-const connecter = connect(() => ({}), { openModal })
+const connecter = connect(() => ({}),
+  { openModal })
 
 type PropsFromRedux = ConnectedProps<typeof connecter>
 
@@ -30,7 +32,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
   const stateManager = useCampaignAssessorAssessmentsStore()
 
   const {
-    data, fetch, removeResource, updateResource,
+    data, fetch, removeResource, updateResource, meta, isLoading: isAssessorAssessmentLoading,
   } = useResources<CampaignAssessorAssessments>(
     'campaign_assessor_assessments',
     {
@@ -40,7 +42,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
   )
 
   useEffect(() => {
-    fetch()
+    fetch({ apiConfig: { include_meta: ['permissions'] } })
   }, [])
 
   const chagneAllowMultipleResponses = (resource, value) => {
@@ -75,7 +77,13 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
     <>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={data} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            loading={isAssessorAssessmentLoading('fetch')}
+            dataSource={data}
+            pagination={false}
+          >
             <Column
               title={I18n.t('common.column.id')}
               dataIndex="assessmentId"
@@ -96,6 +104,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
               key="allowMultipleResponses"
               render={resource => (
                 <Switch
+                  disabled={!meta?.permissions?.update}
                   checked={resource.allowMultipleResponses}
                   onChange={(value) => {
                     chagneAllowMultipleResponses(resource, value)
@@ -128,6 +137,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
                     getActionsMenuProps({
                       assessorAssessment,
                       removeAssessorAssessment,
+                      permissions: meta?.permissions,
                     })
                   }
                 />
@@ -142,18 +152,22 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
 
 interface ActionMenuData {
   assessorAssessment: CampaignAssessorAssessments
-  removeAssessorAssessment(assessorAssessment: CampaignAssessorAssessments): void
+  removeAssessorAssessment(assessorAssessment: CampaignAssessorAssessments): void,
+  permissions: BaseMeta['permissions']
 }
 
 const getActionsMenuProps = ({
-  assessorAssessment, removeAssessorAssessment,
+  assessorAssessment, removeAssessorAssessment, permissions,
 }: ActionMenuData): MenuProps => {
-  const menuItems: MenuItem[] = [
-    {
-      key: I18n.t('administration.project_tabs.webhooks.actions.delete.key'),
-      label: I18n.t('administration.project_tabs.webhooks.actions.delete.label'),
-    },
-  ]
+  if (permissions === undefined) { return {} }
+
+  const menuItems: MenuItem[] = []
+  if (permissions.destroy) {
+    menuItems.push({
+      key: 'delete',
+      label: I18n.t('common.actions.delete'),
+    })
+  }
 
   const handleMenuClick = ({ key }) => {
     if (key === 'delete') {

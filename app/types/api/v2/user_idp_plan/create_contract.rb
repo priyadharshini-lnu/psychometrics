@@ -16,6 +16,14 @@ module Api
 
           key.failure(:idp_template_already_assigned_to_user) if existing_record
         end
+
+        rule(data: { attributes: :idp_template_id }) do
+          idp_template = ::IdpTemplate.find_by(id: value)
+
+          unless idp_template&.status_published?
+            key.failure(:idp_template_not_published)
+          end
+        end
       end
     end
   end

@@ -84,18 +84,13 @@ module Users
         paths: [
           { name: client.name, value: "/admin/clients/#{client.id}/projects" },
           { name: project.name, value: "/admin/projects/#{project.id}/new_campaigns" },
-          { name: campaign.name, value: build_campaign_url(client, project, campaign, name) }
+          { name: campaign.name, value: build_campaign_url(project, campaign, name) }
         ]
       }
     end
 
-    def build_campaign_url(client, project, campaign, name)
-      url = if campaign.threesixty?
-              "/admin/clients/#{client.id}/projects/#{project.id}/threesixty_campaigns/#{campaign.threesixty_campaign.id}" # rubocop:disable Layout/LineLength
-            else
-              "/admin/projects/#{project.id}/new_campaigns/#{campaign.id}"
-            end
-
+    def build_campaign_url(project, campaign, name)
+      url = "/admin/projects/#{project.id}/new_campaigns/#{campaign.id}"
       url += '/admins' if name == 'campaign_admin'
       url # return the generated URL
     end

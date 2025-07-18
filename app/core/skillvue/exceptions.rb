@@ -5,5 +5,6 @@ module Skillvue
     class InviteCandidateFailed < StandardError; end
     class GetAssessmentsFailed < StandardError; end
     class SubscribeToWebhookFailed < StandardError; end
+    class GetScoresAndReportFailed < StandardError; end
   end
 end

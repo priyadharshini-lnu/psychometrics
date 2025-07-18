@@ -1,16 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import ApiAction from 'interfaces/ApiAction'
 import {
   Button, Modal, Alert, Form, Input,
-  Switch,
 } from 'antd'
 import { useParams } from 'react-router'
 import Event from 'interfaces/Event'
 import { CheckOutlined, CloudDownloadOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import {
-  OwnerAndProjectDropdown,
-  useClientsAndProjectsResource,
-} from '~/components/OwnerAndProjectDropdown'
 
 const { I18n } = window
 
@@ -20,7 +15,6 @@ interface OwnProps {
     projectId:number | null, successCallback: ()=>void, failureCallback: (error)=>void) => ApiAction<void>,
   csvFilePath: string,
   title: string,
-  allowGlobalImport: boolean,
 }
 
 export const JobRolesImportModal: React.FC<OwnProps> = ({
@@ -28,44 +22,13 @@ export const JobRolesImportModal: React.FC<OwnProps> = ({
   handleImport,
   csvFilePath,
   title,
-  allowGlobalImport,
 }) => {
   const [form] = Form.useForm()
   const [file, setFile] = useState<File | null>(null)
   const [errors, setErrors] = useState([])
   const [loading, setLoading] = useState(false)
 
-  const formRef = useRef<{ resetForm:() => void,
-    setForm: (values: {projectId:string, ownerId: string}) => void }>(null)
-
   const { projectId: projectIdParam } = useParams()
-  const [projectId, setProjectId] = useState<string | null>(projectIdParam || null)
-  const [ownerId, setOwnerId] = useState<string | null>()
-
-  const globalImportSwitch = Form.useWatch('globalImportSwitch', form)
-
-  useEffect(() => {
-    handleOwnersSearch()
-  }, [])
-
-  useEffect(() => {
-    form.resetFields(['ownerId'])
-  }, [globalImportSwitch])
-
-
-  useEffect(() => {
-    if (ownerId) {
-      handleProjectsSearch()
-    }
-  }, [ownerId])
-
-  const {
-    owners,
-    projects,
-    handleProjectsSearch,
-    handleOwnersSearch,
-    isLoading,
-  } = useClientsAndProjectsResource(ownerId || '')
 
   const handleUpload = () => {
     if (!file) return
@@ -74,7 +37,7 @@ export const JobRolesImportModal: React.FC<OwnProps> = ({
     data.append('file', file)
     setLoading(true)
 
-    handleImport(data, projectId ? Number(projectId) : null, () => {
+    handleImport(data, projectIdParam ? Number(projectIdParam) : null, () => {
       form.resetFields()
       close()
       setLoading(false)
@@ -82,51 +45,6 @@ export const JobRolesImportModal: React.FC<OwnProps> = ({
       setErrors(error)
       setLoading(false)
     })
-  }
-
-  const handleValuesChange = (changedValues: Record<string, string>) => {
-    if (changedValues?.ownerId) {
-      setOwnerId(changedValues?.ownerId)
-      setProjectId(null)
-    }
-
-    if (changedValues?.projectId) {
-      setProjectId(changedValues?.projectId)
-    }
-  }
-
-  const renderProjectSelector = () => {
-    if (globalImportSwitch) {
-      return null
-    }
-    return (
-      <>
-        <OwnerAndProjectDropdown
-          ref={formRef}
-          projectOpts={projects}
-          ownerOpts={owners}
-          onProjectsSearch={handleProjectsSearch}
-          onOwnersSearch={handleOwnersSearch}
-          onValuesChange={handleValuesChange}
-          isLoading={isLoading}
-        />
-      </>
-    )
-  }
-
-  const renderScopeSelector = () => {
-    if (!allowGlobalImport && projectIdParam) { return null }
-    return (
-      <>
-        <Form.Item
-          name="globalImportSwitch"
-          label={I18n.t('common.text.global_import')}
-        >
-          <Switch />
-        </Form.Item>
-        {renderProjectSelector()}
-      </>
-    )
   }
 
   return (
@@ -145,7 +63,7 @@ export const JobRolesImportModal: React.FC<OwnProps> = ({
         <Button
           key="submit"
           type="primary"
-          disabled={!file || (!globalImportSwitch && !projectId)}
+          disabled={!file}
           onClick={() => {
             form.submit()
           }}
@@ -180,7 +98,6 @@ export const JobRolesImportModal: React.FC<OwnProps> = ({
         form={form}
         onFinish={handleUpload}
       >
-        {!projectIdParam && renderScopeSelector()}
         <Form.Item name="importData">
           <Input
             type="file"

@@ -377,6 +377,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     extra['timer']&.positive?
   end
 
+  delegate :skill_rater?, to: :dimension
+
   class << self
     # Available role for the filter form
     #
@@ -416,5 +418,10 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     return DEFAULT_SCORE_VALIDITY_PERIOD unless project_id
 
     project_assessments.find_by(project_id: project_id)&.user_result_validity_in_days || DEFAULT_SCORE_VALIDITY_PERIOD
+  end
+
+  def available_languages
+    @available_translations = ::Translation.available_translation_for_assessment(id)
+    @available_translations + [default_language]
   end
 end

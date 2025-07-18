@@ -7,6 +7,7 @@ import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { isRequestInProgress } from '~/core/request'
 import { MenuItem } from '~/interfaces/Antd'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import settings from '~/modules/admin/settings'
@@ -16,6 +17,7 @@ import {
   fetch,
   remove,
   get as getSmsInvites,
+  FETCH,
   STATUSES,
   SmsInvite,
 } from '~/modules/admin/modules/campaigns/core/smsInvites'
@@ -32,6 +34,7 @@ import { FormModal as SmsInviteFormModal } from './FormModal'
 const connecter = connect(
   (state: RootState) => ({
     smsInvites: getSmsInvites(state),
+    isLoadingSMSInvites: isRequestInProgress(state, FETCH),
   }),
   {
     fetch,
@@ -61,6 +64,7 @@ const { I18n } = window
 
 const SmsInvitesComponent: React.FC<Props> = ({
   fetch,
+  isLoadingSMSInvites,
   smsInvites: {
     list,
     total,
@@ -151,7 +155,14 @@ const SmsInvitesComponent: React.FC<Props> = ({
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            loading={isLoadingSMSInvites}
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+          >
             <Column
               title={I18n.t('common.column.id')}
               key="id"

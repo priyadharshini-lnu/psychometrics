@@ -12,8 +12,6 @@ module UserReports
     end
 
     def call
-      translations = Translation.to_hash_for_report(report.id, report.assessment_ids, options[:locale])
-
       broadcast :ok,
                 user: Reports::UserSerializer.new(context: { campaign: user_report.campaign }).
                   serialize(user_report.user).to_json,
@@ -25,10 +23,10 @@ module UserReports
                     user_results: user_report.user_results,
                     module_overrides: user_report.text_module_overrides,
                     piped_text_context: user_report.piped_text_context,
+                    lang: options[:locale],
                     include: '**'
                   }
-                ).serialize(report).to_json,
-                locales: translations.to_json
+                ).serialize(report).to_json
     end
 
     private

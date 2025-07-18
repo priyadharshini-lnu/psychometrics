@@ -37,12 +37,13 @@ zh-HK:
               parsing_failed: 解析檔案時發生錯誤，錯誤：%{error}.
             project:
               must_exist: 專案必須存在
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必須啟用至少一個工作角色，並選取 %{block_name} 的技能類型。
-              invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能類型無效。有效選項： %{valid_options}"
-              props_missing: 工作機會
+              at_least_one_job_role_required: "%{block_name} 的 %{skill_type} 至少需要一個工作角色"
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: "%{block_name} 的工作角色必須至少啟用一種技能類型。"
+              invalid_job_role_type: "%{block_name} 的 %{skill_type} 的工作角色 %{job_role} 無效。有效選項： %{valid_options}"
+              props_missing: 缺少 %{block_name} 的技能設定。
         skillvue:
           attributes:
             name:
@@ -100,7 +101,7 @@ zh-HK:
         export_proficiency_levels: 出口能力等級
         import_job_roles_translations: 匯入工作角色翻譯
         import_proficiency_level_translations: 進口能力等級翻譯
-        import_skills_rater_taxonomies: 匯入技能評核員分類標準
+        import_skill_rater_taxonomies: 匯入技能評核員分類標準
   anonym:
     close: 關閉
     continue: 繼續
@@ -116,6 +117,7 @@ zh-HK:
   assessments:
     actions:
       back_to_campaign: 返回市場推廣
+      export: 出口
       extend_time: 延長時間
       goto_dashboard: 點擊此處繼續
       pending_tasks:
@@ -347,6 +349,7 @@ zh-HK:
     assessment_center_heading: 評估中心詳細資訊
     assessments_heading: 您的任務
     column:
+      external_user_id: Skillvue 候選人 ID
       skillvue_email_id: Skillvue 候選人電子郵件 ID
       skillvue_external_assessment_id: Skillvue 評估 ID
     modals:
@@ -454,6 +457,8 @@ zh-HK:
       copy: 複製
       delete: 刪除
       edit: 編輯
+      export: 出口
+      publish: 發表
       remove: 刪除
       reset: 重設
       resolve: 解決
@@ -464,6 +469,7 @@ zh-HK:
       start: 開始
       submit: 提交
       unarchive: 取消存檔
+      unpublish: 取消出版
       unresolve: 未解決
       update: 更新
       upload: 上載
@@ -544,6 +550,12 @@ zh-HK:
       code_has_been_sent: 您的新單次密碼已發送至您已註冊的電郵地址
   dry_errors:
     errors:
+      campaign_idps:
+        idp_template_not_published: 該IDP模板尚未發布，請在分配到廣告系列之前將其發布。
+      development_actions:
+        only_global_skills_allowed: 選取的技能必須是全球性技能。
+        skills_not_belong_to_project: 選取的技能必須屬於指定的專案。
+        skills_required: 請至少選擇一種技能。
       idp_template:
         content_required: 說明需要內容
         tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
@@ -553,6 +565,8 @@ zh-HK:
         must_belong_to_same_project_or_be_global: 技能和工作角色必須屬於同一個專案，或是全球性的。
         unique_mappings: 具有相同技能和工作角色的映射已經存在。
       uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
+      user_idp_plan:
+        idp_template_not_published: 該IDP模板尚未發布，請在分配給用戶之前將其發布。
   emails:
     subject_relationship_table:
       subject_email: 主題電子郵件
@@ -746,6 +760,7 @@ zh-HK:
       structured_learning: 結構化學習
       submit_plan: 提交計劃
       write_here: 在此處寫入...
+    edit_progress: 編輯進度
     initial_steps:
       add_skill_group_description: 基於你的評估結果，以下是你的一些優勢和發展領域。選擇你想作為發展計劃一部分進一步發展的技能。
       add_skill_group_title: 探索你的%{category}技能
@@ -781,6 +796,7 @@ zh-HK:
       cover:
         fields:
           assigned_data: 分配日期
+          assigned_date: 指定日期
           completion_date: 完成日期
           division: 部門
           name: 姓名
@@ -863,6 +879,7 @@ zh-HK:
       statuses:
         approved: 已審核並批准
         completed: 已完成
+        draft: 草案
         not_reviewed: 未審核
         pending_approval: 審核中
       summary:
@@ -907,6 +924,8 @@ zh-HK:
   idp_templates:
     errors:
       user_idp_template_not_found: 尚未為您指定 IDP 模版。
+  licenses:
+    title: 許可證
   mailer:
     magic_link:
       body:
@@ -1258,8 +1277,6 @@ zh-HK:
   user_assessments:
     redirect: 您會被重新導向到第三方網站進行此評估。 如果您要開始評估，請按一下繼續。
   user_reports:
-    actions:
-      regenerate: 重新生成
     messages:
       regenerate_successful: 報告重生成功安排
     modals:

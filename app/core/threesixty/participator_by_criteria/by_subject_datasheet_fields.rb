@@ -10,7 +10,13 @@ module Threesixty
 
         subject_emails.any? do |subject_email|
           if (datasheet_row = subject_datasheet_rows[subject_email])
-            datasheet_row.data[criteria['sub_field']] == criteria['value']
+            column = datasheet_row.sheet_columns.find_by(name: criteria['sub_field'])
+            return false unless column
+
+            row = datasheet_row.sheet_row_data.find_by(sheet_column_id: column.id)
+            return false unless row
+
+            row.value == criteria['value']
           end
         end
       end

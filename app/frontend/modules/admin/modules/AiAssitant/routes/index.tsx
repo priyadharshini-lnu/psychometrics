@@ -6,7 +6,7 @@ const AiAssistantPlayground = lazy(() => import('./AiAssistantPlayground'))
 
 export const routes = [
   {
-    path: '/',
+    path: '',
     component: <AiAssistantList />,
   },
   {
@@ -19,8 +19,8 @@ const Layout = () => <RouteList routes={routes} urlPrefix="" />
 
 const AiAssistantRoutes = [
   {
-    path: '/ai_assistants/*',
-    component: <Layout />,
+    path: 'ai_assistants/*',
+    element: <Layout />,
   },
 ]
 

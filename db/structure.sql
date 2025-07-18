@@ -10,10 +10,10 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
+-- Name: bi_models; Type: SCHEMA; Schema: -; Owner: -
 --
 
--- *not* creating schema, since initdb creates it
+CREATE SCHEMA bi_models;
 
 
 --
@@ -97,6 +97,649 @@ CREATE TYPE public.user_roles AS ENUM (
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessments (
+    id integer NOT NULL,
+    name character varying,
+    category character varying,
+    dimension_id integer,
+    disabled boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    flow json,
+    norm_rules json,
+    description text,
+    timing character varying,
+    access_reports_at timestamp without time zone,
+    status integer,
+    owner_id integer,
+    type character varying,
+    enable_back boolean DEFAULT false NOT NULL,
+    enable_progress boolean DEFAULT true,
+    extra jsonb DEFAULT '{}'::jsonb NOT NULL,
+    icon character varying,
+    archived boolean DEFAULT false,
+    resources json,
+    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
+    deleted_at timestamp without time zone,
+    deleted_by_id bigint,
+    instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
+    default_norm_id integer,
+    poster character varying,
+    project_id bigint,
+    created_by_id bigint,
+    updated_by_id bigint,
+    external_settings jsonb DEFAULT '{}'::jsonb,
+    linked_assessment_id integer,
+    linked_questions json DEFAULT '{}'::json,
+    default_language character varying DEFAULT 'en'::character varying,
+    campaign_factors_list jsonb DEFAULT '[]'::jsonb,
+    translations_migrated boolean DEFAULT true
+);
+
+
+--
+-- Name: assessments; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.assessments AS
+ SELECT assessments.id,
+    assessments.name,
+    assessments.category
+   FROM public.assessments;
+
+
+--
+-- Name: campaign_factor_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_factor_groups (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    campaign_id bigint NOT NULL,
+    "position" integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_factor_group; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.campaign_factor_group AS
+ SELECT campaign_factor_groups.id,
+    campaign_factor_groups.campaign_id,
+    campaign_factor_groups.name,
+    campaign_factor_groups."position"
+   FROM public.campaign_factor_groups;
+
+
+--
+-- Name: campaign_factor_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_factor_values (
+    id bigint NOT NULL,
+    campaign_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    campaign_factor_id bigint NOT NULL,
+    string_value character varying,
+    numeric_value double precision,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    calculation_type integer DEFAULT 0,
+    label character varying
+);
+
+
+--
+-- Name: campaigns; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaigns (
+    id bigint NOT NULL,
+    project_id bigint,
+    name character varying,
+    type integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    status integer DEFAULT 0,
+    options jsonb DEFAULT '{}'::jsonb,
+    start_date timestamp without time zone,
+    end_date timestamp without time zone,
+    uniq_code character varying,
+    encrypted_pdf_password character varying,
+    encrypted_pdf_password_iv character varying,
+    practice_campaign boolean DEFAULT false,
+    default_idp_template_id bigint
+);
+
+
+--
+-- Name: campaign_factor_values; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.campaign_factor_values AS
+ SELECT campaign_factor_values.id,
+    campaigns.project_id,
+    campaigns.id AS campaign_id,
+    campaign_factor_values.campaign_factor_id,
+    campaign_factor_values.user_id,
+    campaign_factor_values.string_value,
+    campaign_factor_values.numeric_value
+   FROM (public.campaign_factor_values
+     JOIN public.campaigns ON ((campaigns.id = campaign_factor_values.campaign_id)));
+
+
+--
+-- Name: campaign_factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_factors (
+    id bigint NOT NULL,
+    campaign_factor_group_id bigint,
+    "position" integer,
+    name character varying NOT NULL,
+    code character varying NOT NULL,
+    description text,
+    factor_type integer DEFAULT 0 NOT NULL,
+    output_type integer DEFAULT 0 NOT NULL,
+    campaign_id bigint NOT NULL,
+    factor_id bigint,
+    assessment_id bigint,
+    sheet_column_name character varying,
+    public_visibility boolean DEFAULT true NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    assessment_score_type integer DEFAULT 0,
+    formula text,
+    ranked boolean DEFAULT false NOT NULL
+);
+
+
+--
+-- Name: campaign_factors; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.campaign_factors AS
+ SELECT campaign_factors.id,
+    campaigns.project_id,
+    campaign_factors.campaign_id,
+    campaign_factors.name,
+    campaign_factors.code,
+    campaign_factors.campaign_factor_group_id,
+        CASE campaign_factors.factor_type
+            WHEN 1 THEN 'assessment'::text
+            WHEN 2 THEN 'assessor_scoring'::text
+            WHEN 3 THEN 'formula'::text
+            WHEN 4 THEN 'external_score'::text
+            ELSE NULL::text
+        END AS factor_type,
+        CASE campaign_factors.output_type
+            WHEN 0 THEN 'numeric'::text
+            WHEN 1 THEN 'string'::text
+            ELSE NULL::text
+        END AS output_type
+   FROM (public.campaign_factors
+     JOIN public.campaigns ON ((campaigns.id = campaign_factors.campaign_id)));
+
+
+--
+-- Name: campaigns; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.campaigns AS
+ SELECT campaigns.id,
+    campaigns.name,
+    campaigns.project_id
+   FROM public.campaigns;
+
+
+--
+-- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_columns (
+    id bigint NOT NULL,
+    column_type integer,
+    name character varying,
+    "position" integer,
+    dashboard_use boolean DEFAULT false,
+    accessor_access boolean DEFAULT false,
+    visible_in_list boolean DEFAULT false,
+    sheet_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_row_data (
+    id bigint NOT NULL,
+    string_value text,
+    numeric_value double precision,
+    sheet_row_id bigint NOT NULL,
+    sheet_column_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data_deprecated_on_11_07_2025 jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
+);
+
+
+--
+-- Name: sheets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheets (
+    id bigint NOT NULL,
+    project_id bigint,
+    columns_deprecated_on_11_07_2025 jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    campaign_id bigint,
+    type character varying DEFAULT 'Datasheet'::character varying,
+    flat_view_sha character varying
+);
+
+
+--
+-- Name: datasheets; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.datasheets AS
+ SELECT sheet_rows.id,
+    COALESCE(sheets.project_id, campaigns.project_id) AS project_id,
+    sheets.campaign_id,
+    sheet_rows.email,
+    sheet_columns.name AS field_name,
+    sheet_row_data.numeric_value,
+    sheet_row_data.string_value
+   FROM ((((public.sheet_row_data
+     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
+     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
+     JOIN public.sheet_columns ON ((sheet_columns.sheet_id = sheets.id)))
+     LEFT JOIN public.campaigns ON ((campaigns.id = sheets.campaign_id)))
+  WHERE ((sheets.type)::text = 'Datasheet'::text);
+
+
+--
+-- Name: factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.factors (
+    id integer NOT NULL,
+    name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    dimension_id integer NOT NULL,
+    parent_id integer,
+    disabled boolean DEFAULT false,
+    icon character varying,
+    description text,
+    scoring_strategy smallint DEFAULT 0 NOT NULL,
+    code character varying,
+    use_percentage boolean DEFAULT false,
+    use_sub_factor_norm_score boolean,
+    external_scoring jsonb DEFAULT '[]'::jsonb,
+    scale_min double precision,
+    scale_max double precision,
+    custom_formula character varying,
+    "precision" integer,
+    skill_id bigint
+);
+
+
+--
+-- Name: factors; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.factors AS
+ SELECT factors.id,
+    factors.name
+   FROM public.factors;
+
+
+--
+-- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_assessment_factor_scores (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    scores jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_assessments (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    relationship_id bigint,
+    manager_nomination_status integer DEFAULT 0,
+    evaluator_nomination_status integer DEFAULT 0,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    subject_id bigint,
+    evaluator_id bigint,
+    manager_evaluation_status integer DEFAULT 0,
+    assessment_id bigint,
+    users_result_id bigint,
+    norm_id bigint,
+    status integer DEFAULT 0,
+    completed_at timestamp without time zone,
+    completion_reason integer,
+    fixed_norm boolean DEFAULT false,
+    created_by_id integer,
+    reset_count integer DEFAULT 0,
+    expiry_date timestamp without time zone,
+    additional_time integer,
+    selected_locale character varying,
+    started_at timestamp without time zone,
+    last_activity_at timestamp without time zone,
+    progress_reseted boolean DEFAULT false,
+    schedule_time timestamp(6) without time zone,
+    schedule_updated boolean DEFAULT false,
+    meeting_type integer DEFAULT 0,
+    meeting_link character varying,
+    require_scheduling boolean DEFAULT false,
+    completion_status_code character varying,
+    evaluation_session_id character varying,
+    score_calculated boolean DEFAULT false,
+    score_calculated_at timestamp(6) without time zone,
+    prework boolean DEFAULT false NOT NULL
+);
+
+
+--
+-- Name: normalized_factor_scores; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.normalized_factor_scores AS
+ SELECT user_assessment_factor_scores.id,
+    campaigns.project_id,
+    campaigns.id AS campaign_id,
+    user_assessment_factor_scores.user_assessment_id,
+    user_assessment_factor_scores.factor_id,
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+   FROM ((public.user_assessment_factor_scores
+     JOIN public.user_assessments ON ((user_assessments.id = user_assessment_factor_scores.user_assessment_id)))
+     JOIN public.campaigns ON ((campaigns.id = user_assessments.campaign_id)));
+
+
+--
+-- Name: profile_field_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.profile_field_values (
+    id bigint NOT NULL,
+    numeric_value double precision,
+    string_value character varying,
+    user_profile_id bigint NOT NULL,
+    profile_field_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: profile_fields; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.profile_fields (
+    id bigint NOT NULL,
+    required boolean,
+    half_size boolean,
+    "position" integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    question_id bigint NOT NULL,
+    profile_setting_id bigint NOT NULL,
+    locked boolean
+);
+
+
+--
+-- Name: profile_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.profile_settings (
+    id bigint NOT NULL,
+    update_in integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    project_id bigint NOT NULL,
+    required_default_fields json DEFAULT '{}'::json,
+    locked_default_fields json DEFAULT '{}'::json,
+    enabled_default_fields json DEFAULT '{"age":true,"gender":true,"photo":true}'::json
+);
+
+
+--
+-- Name: questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.questions (
+    id integer NOT NULL,
+    name character varying,
+    "position" integer,
+    type character varying,
+    props json,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    block_id integer,
+    deleted_at timestamp without time zone,
+    required_validation json,
+    validation json,
+    display_logic json,
+    skip_logic json,
+    view integer DEFAULT 0,
+    disabled boolean DEFAULT false,
+    template_id integer,
+    assessment_id integer,
+    owner_id integer,
+    created_by_id bigint,
+    updated_by_id bigint,
+    skill_id bigint
+);
+
+
+--
+-- Name: user_profiles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_profiles (
+    id bigint NOT NULL,
+    age integer,
+    age_updated_at timestamp without time zone,
+    gender integer,
+    timezone character varying,
+    photo character varying,
+    locale character varying,
+    custom_fields_deprecated_on_11_07_2025 json,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_id bigint NOT NULL
+);
+
+
+--
+-- Name: profile_fields_values; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.profile_fields_values AS
+ SELECT profile_settings.project_id,
+    user_profiles.user_id,
+    questions.name AS field_name,
+    profile_field_values.numeric_value,
+    profile_field_values.string_value
+   FROM ((((public.profile_settings
+     JOIN public.profile_fields ON ((profile_fields.profile_setting_id = profile_settings.id)))
+     JOIN public.questions ON ((questions.id = profile_fields.question_id)))
+     JOIN public.profile_field_values ON ((profile_field_values.profile_field_id = profile_fields.id)))
+     JOIN public.user_profiles ON ((user_profiles.id = profile_field_values.user_profile_id)));
+
+
+--
+-- Name: relationships; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.relationships (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    name character varying,
+    type integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    assign_type integer DEFAULT 0
+);
+
+
+--
+-- Name: relationships; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.relationships AS
+ SELECT relationships.id,
+    campaigns.project_id,
+    relationships.campaign_id,
+    relationships.name,
+        CASE relationships.type
+            WHEN 0 THEN 'global'::text
+            WHEN 1 THEN 'campaign'::text
+            ELSE NULL::text
+        END AS type
+   FROM (public.relationships
+     JOIN public.campaigns ON ((campaigns.id = relationships.campaign_id)));
+
+
+--
+-- Name: user_assessments; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.user_assessments AS
+ SELECT user_assessments.id,
+    campaigns.project_id,
+    user_assessments.campaign_id,
+    user_assessments.assessment_id,
+    user_assessments.subject_id,
+    user_assessments.evaluator_id,
+    user_assessments.relationship_id,
+    user_assessments.status,
+    user_assessments.started_at,
+    user_assessments.completed_at
+   FROM (public.user_assessments
+     JOIN public.campaigns ON ((campaigns.id = user_assessments.campaign_id)));
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    email public.citext DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    first_name character varying,
+    last_name character varying,
+    disabled boolean DEFAULT false,
+    role character varying DEFAULT 'Users::Regular'::character varying,
+    invitation_token character varying,
+    invitation_created_at timestamp without time zone,
+    invitation_sent_at timestamp without time zone,
+    invitation_accepted_at timestamp without time zone,
+    invitation_limit integer,
+    invited_by_type character varying,
+    invited_by_id integer,
+    invitations_count integer DEFAULT 0,
+    authentication_token character varying(30),
+    is_anonym boolean DEFAULT false,
+    grants jsonb,
+    created_by_id integer,
+    modified_by_id integer,
+    spoof_token character varying,
+    encrypted_invitation_raw character varying,
+    project_id integer,
+    second_factor_attempts_count integer DEFAULT 0,
+    encrypted_otp_secret_key character varying,
+    encrypted_otp_secret_key_iv character varying,
+    encrypted_otp_secret_key_salt character varying,
+    direct_otp character varying,
+    direct_otp_sent_at timestamp without time zone,
+    totp_timestamp timestamp without time zone,
+    settings jsonb DEFAULT '{}'::jsonb,
+    already_invited boolean DEFAULT false,
+    enable_2fa boolean DEFAULT true NOT NULL,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone,
+    password_changed_at timestamp without time zone,
+    timezone character varying,
+    force_password_change boolean DEFAULT false,
+    global_assessor boolean DEFAULT false,
+    last_unsuccessful_attempt timestamp without time zone,
+    mobile_number character varying,
+    mobile_verified boolean DEFAULT false,
+    manager_id bigint,
+    unique_session_id character varying,
+    external_id character varying,
+    disabled_at timestamp(6) without time zone
+);
+
+
+--
+-- Name: users; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.users AS
+ SELECT users.id,
+    users.project_id,
+    users.first_name,
+    users.last_name,
+    users.email
+   FROM public.users;
+
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -404,6 +1047,40 @@ ALTER SEQUENCE public.ai_assistant_chats_id_seq OWNED BY public.ai_assistant_cha
 
 
 --
+-- Name: ai_assistant_output_schema_keys; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_assistant_output_schema_keys (
+    id bigint NOT NULL,
+    ai_assistant_id bigint NOT NULL,
+    key character varying NOT NULL,
+    key_type integer DEFAULT 0 NOT NULL,
+    description text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_assistant_output_schema_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_assistant_output_schema_keys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_assistant_output_schema_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_assistant_output_schema_keys_id_seq OWNED BY public.ai_assistant_output_schema_keys.id;
+
+
+--
 -- Name: ai_assistant_requests; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -483,7 +1160,6 @@ ALTER SEQUENCE public.ai_assistant_tool_calls_id_seq OWNED BY public.ai_assistan
 CREATE TABLE public.ai_assistants (
     id bigint NOT NULL,
     name character varying NOT NULL,
-    action character varying NOT NULL,
     description character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
@@ -491,7 +1167,10 @@ CREATE TABLE public.ai_assistants (
     system_prompt text,
     owner_id bigint,
     last_modified_by_id bigint,
-    model_id character varying
+    model_id character varying,
+    assistant_type integer DEFAULT 0 NOT NULL,
+    dependencies jsonb DEFAULT '[]'::jsonb NOT NULL,
+    status integer DEFAULT 0 NOT NULL
 );
 
 
@@ -597,51 +1276,6 @@ CREATE SEQUENCE public.assessment_translations_id_seq
 --
 
 ALTER SEQUENCE public.assessment_translations_id_seq OWNED BY public.assessment_translations.id;
-
-
---
--- Name: assessments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.assessments (
-    id integer NOT NULL,
-    name character varying,
-    category character varying,
-    dimension_id integer,
-    disabled boolean DEFAULT false,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    flow json,
-    norm_rules json,
-    description text,
-    timing character varying,
-    access_reports_at timestamp without time zone,
-    status integer,
-    owner_id integer,
-    type character varying,
-    enable_back boolean DEFAULT false NOT NULL,
-    enable_progress boolean DEFAULT true,
-    extra jsonb DEFAULT '{}'::jsonb NOT NULL,
-    icon character varying,
-    archived boolean DEFAULT false,
-    resources json,
-    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    deleted_at timestamp without time zone,
-    deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
-    options json DEFAULT '{}'::json,
-    default_norm_id integer,
-    poster character varying,
-    project_id bigint,
-    created_by_id bigint,
-    updated_by_id bigint,
-    external_settings jsonb DEFAULT '{}'::jsonb,
-    linked_assessment_id integer,
-    linked_questions json DEFAULT '{}'::json,
-    default_language character varying DEFAULT 'en'::character varying,
-    campaign_factors_list jsonb DEFAULT '[]'::jsonb,
-    translations_migrated boolean DEFAULT true
-);
 
 
 --
@@ -1176,20 +1810,6 @@ ALTER SEQUENCE public.campaign_assessor_assessments_id_seq OWNED BY public.campa
 
 
 --
--- Name: campaign_factor_groups; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.campaign_factor_groups (
-    id bigint NOT NULL,
-    name character varying NOT NULL,
-    campaign_id bigint NOT NULL,
-    "position" integer,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
 -- Name: campaign_factor_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1209,24 +1829,6 @@ ALTER SEQUENCE public.campaign_factor_groups_id_seq OWNED BY public.campaign_fac
 
 
 --
--- Name: campaign_factor_values; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.campaign_factor_values (
-    id bigint NOT NULL,
-    campaign_id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    campaign_factor_id bigint NOT NULL,
-    string_value character varying,
-    numeric_value double precision,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    calculation_type integer DEFAULT 0,
-    label character varying
-);
-
-
---
 -- Name: campaign_factor_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1243,32 +1845,6 @@ CREATE SEQUENCE public.campaign_factor_values_id_seq
 --
 
 ALTER SEQUENCE public.campaign_factor_values_id_seq OWNED BY public.campaign_factor_values.id;
-
-
---
--- Name: campaign_factors; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.campaign_factors (
-    id bigint NOT NULL,
-    campaign_factor_group_id bigint,
-    "position" integer,
-    name character varying NOT NULL,
-    code character varying NOT NULL,
-    description text,
-    factor_type integer DEFAULT 0 NOT NULL,
-    output_type integer DEFAULT 0 NOT NULL,
-    campaign_id bigint NOT NULL,
-    factor_id bigint,
-    assessment_id bigint,
-    sheet_column_name character varying,
-    public_visibility boolean DEFAULT true NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    assessment_score_type integer DEFAULT 0,
-    formula text,
-    ranked boolean DEFAULT false NOT NULL
-);
 
 
 --
@@ -1529,29 +2105,6 @@ ALTER SEQUENCE public.campaign_users_id_seq OWNED BY public.campaign_users.id;
 
 
 --
--- Name: campaigns; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.campaigns (
-    id bigint NOT NULL,
-    project_id bigint,
-    name character varying,
-    type integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    status integer DEFAULT 0,
-    options jsonb DEFAULT '{}'::jsonb,
-    start_date timestamp without time zone,
-    end_date timestamp without time zone,
-    uniq_code character varying,
-    encrypted_pdf_password character varying,
-    encrypted_pdf_password_iv character varying,
-    practice_campaign boolean DEFAULT false,
-    default_idp_template_id bigint
-);
-
-
---
 -- Name: campaigns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1657,7 +2210,8 @@ CREATE TABLE public.client_features (
     updated_at timestamp(6) without time zone NOT NULL,
     ai_assisted_idp boolean DEFAULT false NOT NULL,
     ai_assistants boolean DEFAULT false NOT NULL,
-    global_skills boolean DEFAULT false NOT NULL
+    global_skills boolean DEFAULT false NOT NULL,
+    idp boolean DEFAULT false NOT NULL
 );
 
 
@@ -2430,7 +2984,8 @@ CREATE TABLE public.dimensions (
     occupations_enabled boolean DEFAULT false NOT NULL,
     innovation_styles_enabled boolean DEFAULT false NOT NULL,
     created_by_id bigint,
-    updated_by_id bigint
+    updated_by_id bigint,
+    dimension_type integer DEFAULT 0
 );
 
 
@@ -2592,32 +3147,6 @@ CREATE SEQUENCE public.factor_translations_id_seq
 --
 
 ALTER SEQUENCE public.factor_translations_id_seq OWNED BY public.factor_translations.id;
-
-
---
--- Name: factors; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.factors (
-    id integer NOT NULL,
-    name character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    dimension_id integer NOT NULL,
-    parent_id integer,
-    disabled boolean DEFAULT false,
-    icon character varying,
-    description text,
-    scoring_strategy smallint DEFAULT 0 NOT NULL,
-    code character varying,
-    use_percentage boolean DEFAULT false,
-    use_sub_factor_norm_score boolean,
-    external_scoring jsonb DEFAULT '[]'::jsonb,
-    scale_min double precision,
-    scale_max double precision,
-    custom_formula character varying,
-    "precision" integer
-);
 
 
 --
@@ -2908,7 +3437,8 @@ CREATE TABLE public.idp_report_pdfs (
     first_generated_at timestamp(6) without time zone,
     last_generated_at timestamp(6) without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    include_reflective_questions boolean DEFAULT false
 );
 
 
@@ -3138,7 +3668,8 @@ CREATE TABLE public.idp_templates (
     fields json DEFAULT '["name","role","assigned_data","division","review_date","publish_date","completion_date"]'::json,
     logo_type integer DEFAULT 3,
     show_reflections boolean DEFAULT true,
-    instructions jsonb DEFAULT '{"content": ""}'::jsonb NOT NULL
+    instructions jsonb DEFAULT '{"content": ""}'::jsonb NOT NULL,
+    status integer DEFAULT 0
 );
 
 
@@ -3830,6 +4361,21 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 
 
 --
+-- Name: normalized_factor_scores; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.normalized_factor_scores AS
+ SELECT user_assessment_factor_scores.id,
+    user_assessment_factor_scores.factor_id,
+    user_assessment_factor_scores.user_assessment_id,
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+   FROM public.user_assessment_factor_scores;
+
+
+--
 -- Name: norms; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4407,7 +4953,7 @@ CREATE TABLE public.proficiency_levels (
     id bigint NOT NULL,
     project_id bigint,
     proficiency_type integer NOT NULL,
-    skill_category integer,
+    skill_type integer,
     level integer NOT NULL,
     level_definition jsonb DEFAULT '[]'::jsonb NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
@@ -4436,21 +4982,6 @@ ALTER SEQUENCE public.proficiency_levels_id_seq OWNED BY public.proficiency_leve
 
 
 --
--- Name: profile_field_values; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.profile_field_values (
-    id bigint NOT NULL,
-    numeric_value double precision,
-    string_value character varying,
-    user_profile_id bigint NOT NULL,
-    profile_field_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
 -- Name: profile_field_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4470,23 +5001,6 @@ ALTER SEQUENCE public.profile_field_values_id_seq OWNED BY public.profile_field_
 
 
 --
--- Name: profile_fields; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.profile_fields (
-    id bigint NOT NULL,
-    required boolean,
-    half_size boolean,
-    "position" integer,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    question_id bigint NOT NULL,
-    profile_setting_id bigint NOT NULL,
-    locked boolean
-);
-
-
---
 -- Name: profile_fields_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4503,22 +5017,6 @@ CREATE SEQUENCE public.profile_fields_id_seq
 --
 
 ALTER SEQUENCE public.profile_fields_id_seq OWNED BY public.profile_fields.id;
-
-
---
--- Name: profile_settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.profile_settings (
-    id bigint NOT NULL,
-    update_in integer,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    project_id bigint NOT NULL,
-    required_default_fields json DEFAULT '{}'::json,
-    locked_default_fields json DEFAULT '{}'::json,
-    enabled_default_fields json DEFAULT '{"age":true,"gender":true,"photo":true}'::json
-);
 
 
 --
@@ -4603,34 +5101,6 @@ CREATE SEQUENCE public.question_recoding_id_seq
 --
 
 ALTER SEQUENCE public.question_recoding_id_seq OWNED BY public.question_recoding.id;
-
-
---
--- Name: questions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.questions (
-    id integer NOT NULL,
-    name character varying,
-    "position" integer,
-    type character varying,
-    props json,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    block_id integer,
-    deleted_at timestamp without time zone,
-    required_validation json,
-    validation json,
-    display_logic json,
-    skip_logic json,
-    view integer DEFAULT 0,
-    disabled boolean DEFAULT false,
-    template_id integer,
-    assessment_id integer,
-    owner_id integer,
-    created_by_id bigint,
-    updated_by_id bigint
-);
 
 
 --
@@ -4792,21 +5262,6 @@ CREATE SEQUENCE public.registration_settings_id_seq
 --
 
 ALTER SEQUENCE public.registration_settings_id_seq OWNED BY public.registration_settings.id;
-
-
---
--- Name: relationships; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.relationships (
-    id bigint NOT NULL,
-    campaign_id bigint,
-    name character varying,
-    type integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    assign_type integer DEFAULT 0
-);
 
 
 --
@@ -5395,24 +5850,6 @@ ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings
 
 
 --
--- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_columns (
-    id bigint NOT NULL,
-    column_type integer,
-    name character varying,
-    "position" integer,
-    dashboard_use boolean DEFAULT false,
-    accessor_access boolean DEFAULT false,
-    visible_in_list boolean DEFAULT false,
-    sheet_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
 -- Name: sheet_columns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -5429,21 +5866,6 @@ CREATE SEQUENCE public.sheet_columns_id_seq
 --
 
 ALTER SEQUENCE public.sheet_columns_id_seq OWNED BY public.sheet_columns.id;
-
-
---
--- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_row_data (
-    id bigint NOT NULL,
-    string_value text,
-    numeric_value double precision,
-    sheet_row_id bigint NOT NULL,
-    sheet_column_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
 
 
 --
@@ -5466,21 +5888,6 @@ ALTER SEQUENCE public.sheet_row_data_id_seq OWNED BY public.sheet_row_data.id;
 
 
 --
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
-);
-
-
---
 -- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -5497,22 +5904,6 @@ CREATE SEQUENCE public.sheet_rows_id_seq
 --
 
 ALTER SEQUENCE public.sheet_rows_id_seq OWNED BY public.sheet_rows.id;
-
-
---
--- Name: sheets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheets (
-    id bigint NOT NULL,
-    project_id bigint,
-    columns jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    campaign_id bigint,
-    type character varying DEFAULT 'Datasheet'::character varying,
-    flat_view_sha character varying
-);
 
 
 --
@@ -5852,7 +6243,8 @@ CREATE TABLE public.skillvue_user_assessments (
     url character varying,
     email character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    external_user_id character varying
 );
 
 
@@ -6179,7 +6571,8 @@ CREATE TABLE public.threesixty_campaigns (
     report_id bigint,
     status integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    category integer DEFAULT 0
 );
 
 
@@ -6635,20 +7028,6 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 
 --
--- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.user_assessment_factor_scores (
-    id bigint NOT NULL,
-    user_assessment_id bigint NOT NULL,
-    factor_id bigint NOT NULL,
-    scores jsonb DEFAULT '{}'::jsonb,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
 -- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -6697,49 +7076,6 @@ CREATE SEQUENCE public.user_assessment_verification_images_id_seq
 --
 
 ALTER SEQUENCE public.user_assessment_verification_images_id_seq OWNED BY public.user_assessment_verification_images.id;
-
-
---
--- Name: user_assessments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.user_assessments (
-    id bigint NOT NULL,
-    campaign_id bigint,
-    relationship_id bigint,
-    manager_nomination_status integer DEFAULT 0,
-    evaluator_nomination_status integer DEFAULT 0,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    subject_id bigint,
-    evaluator_id bigint,
-    manager_evaluation_status integer DEFAULT 0,
-    assessment_id bigint,
-    users_result_id bigint,
-    norm_id bigint,
-    status integer DEFAULT 0,
-    completed_at timestamp without time zone,
-    completion_reason integer,
-    fixed_norm boolean DEFAULT false,
-    created_by_id integer,
-    reset_count integer DEFAULT 0,
-    expiry_date timestamp without time zone,
-    additional_time integer,
-    selected_locale character varying,
-    started_at timestamp without time zone,
-    last_activity_at timestamp without time zone,
-    progress_reseted boolean DEFAULT false,
-    schedule_time timestamp(6) without time zone,
-    schedule_updated boolean DEFAULT false,
-    meeting_type integer DEFAULT 0,
-    meeting_link character varying,
-    require_scheduling boolean DEFAULT false,
-    completion_status_code character varying,
-    evaluation_session_id character varying,
-    score_calculated boolean DEFAULT false,
-    score_calculated_at timestamp(6) without time zone,
-    prework boolean DEFAULT false NOT NULL
-);
 
 
 --
@@ -7014,25 +7350,6 @@ ALTER SEQUENCE public.user_idp_skills_id_seq OWNED BY public.user_idp_skills.id;
 
 
 --
--- Name: user_profiles; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.user_profiles (
-    id bigint NOT NULL,
-    age integer,
-    age_updated_at timestamp without time zone,
-    gender integer,
-    timezone character varying,
-    photo character varying,
-    locale character varying,
-    custom_fields json,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    user_id bigint NOT NULL
-);
-
-
---
 -- Name: user_profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -7268,71 +7585,6 @@ CREATE SEQUENCE public.user_saved_filters_id_seq
 --
 
 ALTER SEQUENCE public.user_saved_filters_id_seq OWNED BY public.user_saved_filters.id;
-
-
---
--- Name: users; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.users (
-    id integer NOT NULL,
-    email public.citext DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    sign_in_count integer DEFAULT 0 NOT NULL,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip inet,
-    last_sign_in_ip inet,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    first_name character varying,
-    last_name character varying,
-    disabled boolean DEFAULT false,
-    role character varying DEFAULT 'Users::Regular'::character varying,
-    invitation_token character varying,
-    invitation_created_at timestamp without time zone,
-    invitation_sent_at timestamp without time zone,
-    invitation_accepted_at timestamp without time zone,
-    invitation_limit integer,
-    invited_by_type character varying,
-    invited_by_id integer,
-    invitations_count integer DEFAULT 0,
-    authentication_token character varying(30),
-    is_anonym boolean DEFAULT false,
-    grants jsonb,
-    created_by_id integer,
-    modified_by_id integer,
-    spoof_token character varying,
-    encrypted_invitation_raw character varying,
-    project_id integer,
-    second_factor_attempts_count integer DEFAULT 0,
-    encrypted_otp_secret_key character varying,
-    encrypted_otp_secret_key_iv character varying,
-    encrypted_otp_secret_key_salt character varying,
-    direct_otp character varying,
-    direct_otp_sent_at timestamp without time zone,
-    totp_timestamp timestamp without time zone,
-    settings jsonb DEFAULT '{}'::jsonb,
-    already_invited boolean DEFAULT false,
-    enable_2fa boolean DEFAULT true NOT NULL,
-    failed_attempts integer DEFAULT 0 NOT NULL,
-    unlock_token character varying,
-    locked_at timestamp without time zone,
-    password_changed_at timestamp without time zone,
-    timezone character varying,
-    force_password_change boolean DEFAULT false,
-    global_assessor boolean DEFAULT false,
-    last_unsuccessful_attempt timestamp without time zone,
-    manager_id bigint,
-    mobile_number character varying,
-    mobile_verified boolean DEFAULT false,
-    unique_session_id character varying,
-    external_id character varying,
-    disabled_at timestamp(6) without time zone
-);
 
 
 --
@@ -7926,6 +8178,13 @@ ALTER TABLE ONLY public.agiles ALTER COLUMN id SET DEFAULT nextval('public.agile
 --
 
 ALTER TABLE ONLY public.ai_assistant_chats ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_chats_id_seq'::regclass);
+
+
+--
+-- Name: ai_assistant_output_schema_keys id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_output_schema_keys ALTER COLUMN id SET DEFAULT nextval('public.ai_assistant_output_schema_keys_id_seq'::regclass);
 
 
 --
@@ -9391,6 +9650,14 @@ ALTER TABLE ONLY public.agiles
 
 ALTER TABLE ONLY public.ai_assistant_chats
     ADD CONSTRAINT ai_assistant_chats_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ai_assistant_output_schema_keys ai_assistant_output_schema_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_output_schema_keys
+    ADD CONSTRAINT ai_assistant_output_schema_keys_pkey PRIMARY KEY (id);
 
 
 --
@@ -11045,6 +11312,13 @@ CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories
 
 
 --
+-- Name: idx_on_ai_assistant_id_key_1d1a169fc1; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_ai_assistant_id_key_1d1a169fc1 ON public.ai_assistant_output_schema_keys USING btree (ai_assistant_id, key);
+
+
+--
 -- Name: idx_on_assessment_id_3b131a93ee; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11294,6 +11568,13 @@ CREATE INDEX index_ai_assistant_chats_on_client_id ON public.ai_assistant_chats 
 --
 
 CREATE INDEX index_ai_assistant_chats_on_user_id ON public.ai_assistant_chats USING btree (user_id);
+
+
+--
+-- Name: index_ai_assistant_output_schema_keys_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_output_schema_keys_on_ai_assistant_id ON public.ai_assistant_output_schema_keys USING btree (ai_assistant_id);
 
 
 --
@@ -12319,6 +12600,13 @@ CREATE INDEX index_factors_on_parent_id ON public.factors USING btree (parent_id
 
 
 --
+-- Name: index_factors_on_skill_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_on_skill_id ON public.factors USING btree (skill_id);
+
+
+--
 -- Name: index_factors_scoring_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12564,6 +12852,13 @@ CREATE INDEX index_job_role_translations_on_name_and_locale ON public.job_role_t
 
 
 --
+-- Name: index_job_roles_on_code_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_job_roles_on_code_and_project_id ON public.job_roles USING btree (code, project_id);
+
+
+--
 -- Name: index_job_roles_on_job_group_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12571,10 +12866,10 @@ CREATE INDEX index_job_roles_on_job_group_id ON public.job_roles USING btree (jo
 
 
 --
--- Name: index_job_roles_on_name; Type: INDEX; Schema: public; Owner: -
+-- Name: index_job_roles_on_name_and_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_job_roles_on_name ON public.job_roles USING btree (name);
+CREATE UNIQUE INDEX index_job_roles_on_name_and_project_id ON public.job_roles USING btree (name, project_id);
 
 
 --
@@ -13047,6 +13342,13 @@ CREATE INDEX index_questions_on_created_by_id ON public.questions USING btree (c
 
 
 --
+-- Name: index_questions_on_skill_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_questions_on_skill_id ON public.questions USING btree (skill_id);
+
+
+--
 -- Name: index_questions_on_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13411,6 +13713,13 @@ CREATE INDEX index_skills_job_roles_on_job_role_id ON public.skills_job_roles US
 
 
 --
+-- Name: index_skills_job_roles_on_job_role_skill_and_project; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_skills_job_roles_on_job_role_skill_and_project ON public.skills_job_roles USING btree (job_role_id, skill_id, project_id);
+
+
+--
 -- Name: index_skills_job_roles_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13422,6 +13731,13 @@ CREATE INDEX index_skills_job_roles_on_project_id ON public.skills_job_roles USI
 --
 
 CREATE INDEX index_skills_job_roles_on_skill_id ON public.skills_job_roles USING btree (skill_id);
+
+
+--
+-- Name: index_skills_on_name_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_skills_on_name_and_project_id ON public.skills USING btree (name, project_id);
 
 
 --
@@ -14596,6 +14912,14 @@ ALTER TABLE ONLY public.campaign_users
 
 
 --
+-- Name: ai_assistant_output_schema_keys fk_rails_05ae770713; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_output_schema_keys
+    ADD CONSTRAINT fk_rails_05ae770713 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
+
+
+--
 -- Name: idp_template_skills fk_rails_05becee7c5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14809,6 +15133,14 @@ ALTER TABLE ONLY public.memberships
 
 ALTER TABLE ONLY public.admin_jobs
     ADD CONSTRAINT fk_rails_1e3a30cff2 FOREIGN KEY (parent_job_id) REFERENCES public.admin_jobs(id) ON DELETE SET NULL;
+
+
+--
+-- Name: questions fk_rails_1e5e392d5a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.questions
+    ADD CONSTRAINT fk_rails_1e5e392d5a FOREIGN KEY (skill_id) REFERENCES public.skills(id);
 
 
 --
@@ -15585,6 +15917,14 @@ ALTER TABLE ONLY public.job_role_translations
 
 ALTER TABLE ONLY public.registration_settings
     ADD CONSTRAINT fk_rails_6dc2196721 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: factors fk_rails_6dd2ac3794; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors
+    ADD CONSTRAINT fk_rails_6dd2ac3794 FOREIGN KEY (skill_id) REFERENCES public.skills(id);
 
 
 --
@@ -17162,17 +17502,32 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250711074243'),
+('20250709102014'),
+('20250709100241'),
+('20250704103208'),
+('20250703094817'),
+('20250703072154'),
+('20250702073753'),
+('20250701114237'),
+('20250628000002'),
+('20250627045222'),
+('20250626102948'),
+('20250625073055'),
 ('20250624125911'),
-('20250612122526'),
+('20250624110503'),
+('20250623090517'),
 ('20250622122302'),
 ('20250622114250'),
 ('20250620104201'),
 ('20250620000000'),
 ('20250619111229'),
 ('20250618100750'),
+('20250616132941'),
 ('20250616122251'),
 ('20250616053812'),
 ('20250613121201'),
+('20250612122526'),
 ('20250611091619'),
 ('20250610070045'),
 ('20250609112516'),

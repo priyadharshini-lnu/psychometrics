@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import {
-  Form, Input, Select, Spin, Switch, Table,
+  Form, Input, Select, Spin, Table,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { debounce } from 'lodash'
@@ -11,15 +11,24 @@ import ResourceFormModal from '~/components/ResourceFormModal'
 import { convertEnumToObject } from '~/utils/object'
 import { ProficiencyLevel } from '~/modules/admin/modules/client/core/proficiencyLevels'
 import { SkillTypeEnum } from '../../constants'
-import { Client } from '~/modules/admin/modules/client/core/clients'
-import { Project } from '~/modules/admin/modules/client/core/projects'
 
 import styles from './styles.less'
 import { ProficiencyTypesEnum } from './constants'
 
-type OptionsType = {
-  id: string
-  name: string
+interface SkillProficiency {
+  id?: number;
+  projectId?: number;
+  proficiencyType: 'by_skill' | 'by_skill_type' | 'default';
+  skillType?: string;
+  level: number;
+  levelDefinition: Array<{
+    name: string;
+    level: number;
+    description: string;
+  }>;
+  createdAt?: string;
+  updatedAt?: string;
+  skillId?: number | null;
 }
 
 type Props = {
@@ -34,9 +43,6 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
 
   const { resource } = useResourceContext<ProficiencyLevel>()
   const [form] = Form.useForm()
-  const {
-    data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
-  } = useResources<Client>('clients')
 
   const [levelDefinitions, setLevelDefinitions] = useState<{
     level: number
@@ -44,26 +50,13 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     description: string
   }[]>([])
 
-  const ownersLoading = isOwnerLoading('fetch')
-
-  const global = Form.useWatch('global', form)
   const level = Form.useWatch('level', form)
-
-  const fetchOwnersByValue = (value: string) => fetchOwners({
-    apiConfig: {
-      filter: {
-        filterable_fields: value,
-      },
-    },
-  })
-
-  const searchAvailableOwners = debounce((value) => {
-    fetchOwnersByValue(value)
-  }, 300)
+  const skillId = Form.useWatch(['skillId'], form)
+  const proficiencyType = Form.useWatch('proficiencyType', form)
 
   const {
-    data: skills, fetch: fetchSkills, isLoading: isSkillsLoading, setData: setSkills,
-  } = useResources('skills', {
+    data: skills, fetch: fetchSkills, isLoading: isSkillsLoading,
+  } = useResources<Skill>('skills', {
     apiConfig: {
       filter: {
         project_id_eq: params.projectId || '',
@@ -71,59 +64,12 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     },
   })
 
-  useEffect(() => {
-    if (proficiencyLevel) {
-      fetchSkills({
-        apiConfig: {
-          filter: {
-            name_cont: proficiencyLevel?.skill?.name ?? '',
-            ...(
-              proficiencyLevel?.project?.id
-                ? { project_id_eq: proficiencyLevel?.project?.id }
-                : {}
-            ),
-          },
-        },
-      })
+  const getSkills = (): Skill[] => {
+    if (!skills?.length && proficiencyLevel?.skill) {
+      return [proficiencyLevel.skill]
     }
-  }, [proficiencyLevel])
-
-  useEffect(() => {
-    form.resetFields(['ownerId'])
-  }, [global])
-
-  const ownerId = Form.useWatch(['ownerId'], form)
-  const projectId = Form.useWatch(['projectId'], form)
-  const getProjects = (): OptionsType[] => {
-    if (!proficiencyLevel || !proficiencyLevel.project) {
-      return projects
-    }
-
-    return [...projects, proficiencyLevel.project] as OptionsType[]
+    return skills
   }
-
-  const {
-    data: projects, fetch: fetchProjects, isLoading: projectIsLoading, setData: setProjects,
-  } = useResources<Project>('projects', { basePath: `clients/${ownerId}` })
-
-  useEffect(() => {
-    setProjects([])
-    form.resetFields(['projectId'])
-  }, [ownerId])
-
-  useEffect(() => {
-    setSkills([])
-    form.resetFields(['skillId'])
-  }, [projectId, global])
-
-  const handleProjectSearch = debounce((value) => {
-    fetchProjects({
-      apiConfig: {
-        filter: { filterable_fields: value },
-        fields: { clients: ['name'] },
-      },
-    })
-  }, 300)
 
   const validateUniqueLevel = (_, value) => {
     const list = form.getFieldValue('levelDefinition') || []
@@ -154,7 +100,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
       key: 'level',
       title: I18n.t('administration.proficiency_levels.fields.level'),
       dataIndex: 'level',
-      width: 100,
+      width: '10%',
       render: (_: unknown, record, index: number) => (
         <Form.Item
           name={['levelDefinition', index, 'level']}
@@ -178,6 +124,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
       key: 'name',
       title: I18n.t('administration.proficiency_levels.fields.level_name'),
       dataIndex: 'name',
+      width: '24%',
       render: (_: unknown, record, index: number) => (
         <Form.Item
           name={['levelDefinition', index, 'name']}
@@ -219,23 +166,55 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
         },
       },
     })
-  }, 300), [])
+  }, 300), [proficiencyLevel, params])
+
+  const { collectionAction } = useResources<ProficiencyLevel>('proficiency_levels')
+  const [isFetchingProficiency, setIsFetchingProficiency] = useState(false)
+
+  const fetchSkillProficiency = async (skillId: string) => {
+    setIsFetchingProficiency(true)
+    try {
+      const response = await collectionAction({
+        method: 'get',
+        action: 'skill_proficiency',
+        body: { skillId },
+      }) as SkillProficiency
+
+      if (response?.level) {
+        form.setFieldsValue({ level: response.level })
+        setLevelDefinitions(response.levelDefinition || [])
+      }
+    } finally {
+      setIsFetchingProficiency(false)
+    }
+  }
 
   useEffect(() => {
-    setLevelDefinitions((currLevelDefinitions) => {
-      const newLevelDefinitions = Array.from({ length: level }).map((_, idx: number) => {
-        const currLevelDefinition = currLevelDefinitions?.[idx]
-        if (currLevelDefinition) {
-          return currLevelDefinition
-        }
-        return {
-          name: '',
-          description: '',
-          level: idx + 1,
-        }
-      })
-      return newLevelDefinitions
+    if (skillId) {
+      fetchSkillProficiency(skillId)
+    }
+  }, [skillId])
+
+  useEffect(() => {
+    if (proficiencyType) {
+      form.resetFields(['skillId', 'skillType', 'level'])
+      setLevelDefinitions([])
+    }
+  }, [proficiencyType])
+
+  useEffect(() => {
+    const newLevelDefinitions = Array.from({ length: level }).map((_, idx: number) => {
+      const currLevelDefinition = levelDefinitions?.[idx]
+      if (currLevelDefinition) {
+        return currLevelDefinition
+      }
+      return {
+        name: '',
+        description: '',
+        level: idx + 1,
+      }
     })
+    setLevelDefinitions(newLevelDefinitions)
   }, [level])
 
   useEffect(() => {
@@ -248,71 +227,10 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     form.setFieldValue('levelDefinition', levelDefinitions)
   }, [levelDefinitions])
 
-  const transformValues = (values) => {
-    delete values.global
-    delete values.ownerId
-    return {
-      ...values,
-      ...(params.projectId ? { projectId: params.projectId } : {}),
-    }
-  }
-
-  const renderClientSelector = () => {
-    if (global) return null
-    return (
-      <Form.Item
-        name="ownerId"
-        label={I18n.t('common.column.client')}
-        rules={[{ required: true }]}
-      >
-        <Select
-          showSearch
-          filterOption={false}
-          placeholder={I18n.t('administration.skills.form.client_placeholder')}
-          onSearch={searchAvailableOwners}
-          notFoundContent={ownersLoading ? <Spin size="small" /> : null}
-        >
-          {
-            owners.map(({ id, name }) => (
-              <Select.Option key={id} value={id}>{name}</Select.Option>
-            ))
-          }
-        </Select>
-      </Form.Item>
-    )
-  }
-
-  const renderProjectSelector = () => {
-    if (proficiencyLevel && !proficiencyLevel?.project) {
-      return null
-    }
-
-    if (global) {
-      return null
-    }
-
-    return (
-      <Form.Item
-        name="projectId"
-        label={I18n.t('common.column.project')}
-        rules={[{ required: true }]}
-      >
-        <Select
-          showSearch
-          filterOption={false}
-          disabled={!!proficiencyLevel}
-          onSearch={handleProjectSearch}
-          options={(getProjects() || []).map(p => ({
-            value: p.id,
-            label: p.name,
-          }))}
-          placeholder={I18n.t('administration.skills.form.project_placeholder')}
-          value={form.getFieldValue('projectId')}
-          notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
-        />
-      </Form.Item>
-    )
-  }
+  const transformValues = values => ({
+    ...values,
+    ...(params.projectId ? { projectId: params.projectId } : {}),
+  })
 
   return (
     <ResourceFormModal
@@ -323,7 +241,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
       close={close}
       storeManager={{ form }}
       scrollToFirstError
-      modalProps={{ width: 720 }}
+      modalProps={{ width: 'min(860px, 80%)' }}
       request={{
         createResource: resource.createResource,
         updateResource: resource.updateResource,
@@ -332,28 +250,12 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     >
       {() => (
         <>
-          {!params.projectId && (
-            <>
-              {!proficiencyLevel && (
-                <>
-                  <Form.Item
-                    name="global"
-                    label={I18n.t('administration.proficiency_levels.global')}
-                  >
-                    <Switch />
-                  </Form.Item>
-                  {renderClientSelector()}
-                </>
-              )}
-              {renderProjectSelector()}
-            </>
-          )}
           <Form.Item
             name="proficiencyType"
             label={I18n.t('administration.proficiency_levels.fields.proficiency_type')}
             rules={[{ required: true }]}
           >
-            <Select>
+            <Select disabled={!!proficiencyLevel?.proficiencyType}>
               {
                 Object.values(convertEnumToObject(ProficiencyTypesEnum)).map(([, value]) => (
                   <Select.Option key={value} value={value}>
@@ -379,19 +281,19 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
                   }}
                   notFoundContent={isSkillsLoading('fetch') ? <Spin size="small" /> : null}
                   filterOption={false}
-                >
-                  {skills?.map((item: Skill) => (
-                    <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>
-                  ))}
-                </Select>
+                  options={getSkills().map(p => ({
+                    value: p.id,
+                    label: p.name,
+                  }))}
+                />
               </Form.Item>
             ) : null
           }
           {
-            (form.getFieldValue('proficiencyType') === 'by_category') ? (
+            (form.getFieldValue('proficiencyType') === 'by_skill_type') ? (
               <Form.Item
-                name="skillCategory"
-                label={I18n.t('administration.proficiency_levels.fields.skill_category')}
+                name="skillType"
+                label={I18n.t('administration.proficiency_levels.fields.skill_type')}
                 rules={[{ required: true }]}
               >
                 <Select
@@ -413,6 +315,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
           >
             <Select
               showSearch
+              disabled={form.getFieldValue('proficiencyType') === 'by_skill' || isFetchingProficiency}
             >
               {Array.from({ length: 9 })?.map((_, index: number) => (
                 <Select.Option key={index + 2} value={index + 2}>{index + 2}</Select.Option>

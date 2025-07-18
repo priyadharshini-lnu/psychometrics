@@ -16,7 +16,7 @@ module UsersResults
 
       def call
         # Do not change this to use dimension.all_factors. It leaks memory.
-        factor_hash = Factor.where(dimension_id: dimension.id).index_by(&:id)
+        factor_hash = Factor.where(dimension_id: dimension.id, skill_id: nil).index_by(&:id)
 
         sub_factor_hash = FactorsSubFactor.
                           where(factor_id: factor_hash.keys, sub_factor_id: factor_hash.keys).

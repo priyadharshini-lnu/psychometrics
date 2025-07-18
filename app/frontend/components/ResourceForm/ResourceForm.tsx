@@ -59,6 +59,7 @@ export type OwnProps = {
   focusOnFirstError?: boolean
   mockRequest?: boolean
   nullifyEmptyString?: boolean
+  style?: React.CSSProperties
 }
 
 const ResourceForm: React.FC<Props> = ({
@@ -81,6 +82,7 @@ const ResourceForm: React.FC<Props> = ({
   // TODO: try antd's built-in feature after upgrade(>=v5.22.0) https://github.com/ant-design/ant-design/releases/tag/5.22.0
   focusOnFirstError = true,
   nullifyEmptyString,
+  style,
 }: Props) => {
   const baseErrorRef = React.createRef<HTMLDivElement>()
   const [form] = Form.useForm()
@@ -244,6 +246,7 @@ const ResourceForm: React.FC<Props> = ({
       initialValues={resource || undefined}
       {...formProps || {}}
       className="resourceForm"
+      style={style}
     >
       {!_.isEmpty(baseErrors) && baseErrors !== undefined
         && (

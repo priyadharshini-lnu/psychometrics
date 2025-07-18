@@ -8,14 +8,14 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
              :technical_global_tags, :technical_client_tags,
              :logo_type, :title_text, :subtitle_text, :fields,
              :background, :client_logo, :show_reflections, :reflection_questions,
-             :instructions, :translations, :available_locales
+             :instructions, :translations, :available_locales, :status, :allow_edit
 
   has_one :project, class_name: 'Client'
   has_one :report
   has_many :idp_template_skills
   has_many :skills, through: :idp_template_skills, class_name: 'Skill'
 
-  ransack_filters %i[filterable_fields]
+  ransack_filters %i[filterable_fields status_eq]
 
   def self.updatable_fields(_)
     super + %i[translations]
@@ -44,6 +44,10 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
         max_words: itrq.max_words
       }
     end
+  end
+
+  def allow_edit
+    !UserIdpPlan.exists?(idp_template_id: @model.id)
   end
 
   def background

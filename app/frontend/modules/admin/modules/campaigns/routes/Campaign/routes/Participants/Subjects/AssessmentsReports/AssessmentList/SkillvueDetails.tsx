@@ -28,6 +28,15 @@ export const SkillvueDetails: FC<Props> = ({
           className="va-t w-30"
           labelStyle={{ width: '40%' }}
           contentStyle={{ width: '60%' }}
+          label={I18n.t('campaign_assessment.column.skillvue_external_assessment_id')}
+          key="skillvue_external_assessment_id"
+        >
+          {assessment.skillvueUserAssessmentDetails?.externalAssessmentId ?? ''}
+        </Descriptions.Item>
+        <Descriptions.Item
+          className="va-t w-30"
+          labelStyle={{ width: '40%' }}
+          contentStyle={{ width: '60%' }}
           label={I18n.t('campaign_assessment.column.skillvue_email_id')}
           key="skillvue_email_id"
         >
@@ -35,12 +44,10 @@ export const SkillvueDetails: FC<Props> = ({
         </Descriptions.Item>
         <Descriptions.Item
           className="va-t w-30"
-          labelStyle={{ width: '40%' }}
-          contentStyle={{ width: '60%' }}
-          label={I18n.t('campaign_assessment.column.skillvue_external_assessment_id')}
-          key="skillvue_external_assessment_id"
+          label={I18n.t('campaign_assessment.column.external_user_id')}
+          key="external_user_id"
         >
-          {assessment.skillvueUserAssessmentDetails?.externalAssessmentId ?? ''}
+          {assessment.skillvueUserAssessmentDetails?.externalUserId ?? ''}
         </Descriptions.Item>
       </Descriptions>
     </>

@@ -6,12 +6,12 @@ import {
 } from 'antd'
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons'
 import { BoxWithShadow, ButtonWithArrow, MediaQueryContext } from '~/glint'
-import { CategoryWithSkillsSummary, UserIdpSkill } from '../DevelopmentActions'
+import { TypeWithSkillsSummary, UserIdpSkill } from '../DevelopmentActions'
 import styles from './SkillsGroupCard.less'
-import { renderSkillCategoryIcon } from '../utils'
+import { renderSkillTypeIcon } from '../utils'
 
 type Props = {
-  skillCategory: CategoryWithSkillsSummary
+  skillType: TypeWithSkillsSummary
   onAddSkill: (skills: { id: number | string; name: string }[]) => void
   onRemoveSkill: (skillId: number) => void
   selectedSkills: UserIdpSkill[],
@@ -24,7 +24,7 @@ const { I18n } = window
 const { Title, Paragraph } = Typography
 
 export const SkillsGroupCard: FC<Props> = ({
-  skillCategory,
+  skillType,
   onAddSkill,
   onRemoveSkill,
   selectedSkills,
@@ -38,7 +38,7 @@ export const SkillsGroupCard: FC<Props> = ({
   const { isMobile } = useContext(MediaQueryContext)
 
   const handleSkillSearch = _.debounce((value) => {
-    handleSearch(value, skillCategory.skillType)
+    handleSearch(value, skillType.skillType)
   }, 300)
 
   const handleSelectSkill = (skillId) => {
@@ -64,13 +64,13 @@ export const SkillsGroupCard: FC<Props> = ({
       <Space className={`${styles.heading} w-100`}>
         <Avatar
           size={64}
-          src={renderSkillCategoryIcon(skillCategory.skillType)}
+          src={renderSkillTypeIcon(skillType.skillType)}
           // API changes not available yet
           // src={skillCategory.iconUrl}
         />
         <div>
           <Title className="mb-0" level={4}>
-            {I18n.t('idp.initial_steps.add_skill_group_title', { category: _.capitalize(skillCategory.skillType) })}
+            {I18n.t('idp.initial_steps.add_skill_group_title', { category: I18n.t(`idp.${skillType.skillType}`) })}
           </Title>
           <Paragraph>
             {/* API changes not available yet */}
@@ -82,7 +82,7 @@ export const SkillsGroupCard: FC<Props> = ({
       <Title level={5}>{I18n.t('idp.initial_steps.select_skills')}</Title>
       <Space className="w-100" size="large" direction="vertical">
         <Space wrap>
-          {skillCategory.skills.map(skill => (
+          {skillType.skills.map(skill => (
             <Button onClick={() => onAddSkill([skill])} size="small" type="primary" key={skill.name} ghost>
               {skill.name}
             </Button>

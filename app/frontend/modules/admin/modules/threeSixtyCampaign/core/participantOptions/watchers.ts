@@ -2,7 +2,7 @@ import {
   takeLatest, takeEvery, put, select, delay,
 } from 'redux-saga/effects'
 import { get as getDatasheetField } from '~/modules/admin/modules/threeSixtyCampaign/core/datasheetFields'
-import { getCurrentCampaignId } from '../campaignDetails'
+import { getCampaignId } from '../campaignDetails'
 
 import {
   syncWithServer,
@@ -20,7 +20,7 @@ import { getParticipantOption } from './selectors'
 function* genSyncWithServer () {
   yield delay(1000)
   const participantOption = { ...yield select(getParticipantOption) }
-  const campaignId = yield select(getCurrentCampaignId)
+  const campaignId = yield select(getCampaignId)
   delete participantOption.relationships
   yield put(syncWithServer(campaignId, participantOption))
 }

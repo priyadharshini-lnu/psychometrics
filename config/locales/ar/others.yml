@@ -11,68 +11,783 @@ ar:
         select_comparison: اختر نوع المقارنة
         select_factors: عوامل الاختيار
         select_operation: حدد العملية
+      sheet_column:
+        accessor_access: وصول الملحق
+        dashboard_use: استخدام لوحة القيادة
+        visible_in_list: مرئي في القائمة
     errors:
       models:
+        admin_edit:
+          attributes:
+            email:
+              blank: لا يمكن أن يكون حقل البريد الإلكتروني فارغا
+              invalid: البريد الإلكتروني غير صالح
+            first_name:
+              blank: لا يمكن أن يكون الاسم الأول فارغا
+            last_name:
+              blank: لا يمكن أن يكون اسم العائلة فارغا
+        agile:
+          answers:
+            blank: لا يمكن أن تكون الإجابات فارغة
+          group_id:
+            blank: لا يمكن أن يكون معرف المجموعة فارغا
         all_blocks_form:
           attributes:
             base:
               duplicate_block: 'يحتوي المكوِّن "%{block_name}" على تكوينات مكررة: %{duplicate_configurations}'
+        assessment_question_import_form:
+          attributes:
+            file:
+              invalid_format: يرجى تحميل ملف xlsx
+        assign_report:
+          attributes:
+            adding_report_ids:
+              not_linked_to_report_family: لقد حددت التقارير غير المرتبطة بحزمة التقارير المحددة
+              report_family_disabled: لقد اخترت حزمة التقارير المعطلة
+              reports_disabled: لقد حددت تقارير/تقارير/تقاريرها المعطلة
+            removing_report_ids:
+              not_linked_to_report_family: لقد حددت التقارير غير المرتبطة بحزمة التقارير المحددة
+        assign_reports_and_assessments:
+          attributes:
+            assessment_id:
+              blank: لا يمكن أن يكون معرف التقييم فارغا
+            bundle_report_id:
+              blank: لا يمكن أن يكون معرف حزمة التقرير فارغا
+            report_id:
+              blank: لا يمكن أن يكون معرف التقرير فارغا
+        campaign_factor_import_form:
+          attributes:
+            file:
+              invalid_format: يرجى تحميل ملف xlsx
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: لا يمكن أن يكون العمود '%{entity}' فارغا في الصف %{index}
+              duplicate_code: الرمز المكرر '%{code}' في الصف %{index}
+              invalid_output_type: غير صالح output_type '%{output_type}' في الصف %{index}
+              max_limit_reached: يتجاوز إجمالي عوامل الحملة الحد الأقصى البالغ %{count}
+              missing_headers: 'الرؤوس المطلوبة مفقودة: %{headers}'
+              type_mismatch: عدم تطابق نوع الإخراج للرمز '%{code}' في الصف %{index}
+            file:
+              invalid_format: يرجى تحميل ملف xlsx
+            resource:
+              must_exist: يجب أن يكون %{resource} موجودا
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: يرجى تحميل ملف CSV
+        column:
+          attributes:
+            name:
+              not_unique: هذا الحقل موجود بالفعل
+        create_all:
+          attributes:
+            assessors:
+              blank: حدد مقيم واحد على الأقل
+              email_duplicated: يتم تكرار رسائل البريد الإلكتروني الخاصة بالموضوع والمقيم
+              multiple_leads_for_subject: تم تعيين العديد من المقيمين الرئيسيين للموضوع
+            evaluators:
+              email_duplicated: يتم تكرار رسائل البريد الإلكتروني الخاصة بالموضوع والمقيم
+            subjects:
+              email_duplicated: بعض الموضوعات لها نفس البريد الإلكتروني
         create_one:
           attributes:
+            assessment_ids:
+              invalid: لا يمكن إرفاق التقييم %{id} بمقيم
+              lead_assessor_already_assigned: يمكن تعيين مقيم رئيسي واحد فقط للموضوع
+            assessor_email:
+              already_exists: الموضوع مع هذا المقيم متصل بالفعل
+              blank: لا يمكن أن يكون البريد الإلكتروني للمقيم فارغا
+              invalid: البريد الإلكتروني للمقيم غير صالح
+            email:
+              already_exists: موضوع يحتوي على نفس البريد الإلكتروني موجود بالفعل
+              blank: لا يمكن أن يكون البريد الإلكتروني فارغا
+              invalid: البريد الإلكتروني غير صالح
+            evaluator_email:
+              already_exists: الموضوع مع هذا المقيم متصل بالفعل
+              blank: لا يمكن أن يكون البريد الإلكتروني للمقيم فارغا
+              invalid: البريد الإلكتروني للمقيم غير صالح
+            evaluator_first_name:
+              blank: لا يمكن أن يكون الاسم الأول للمقيم فارغا
+            evaluator_last_name:
+              blank: لا يمكن أن يكون اسم العائلة للمقيم فارغا
+            evaluator_locale:
+              inclusion: لغة خاطئة
+            evaluator_password:
+              too_short: كلمة مرور المقيم قصيرة جدا (الحد الأدنى هو %{count} أحرف)
+            first_name:
+              blank: لا يمكن أن يكون الاسم الأول فارغا
             job_role:
               cannot_be_same: يجب أن يكون الدور الوظيفي المستهدف مختلفاً عن الدور الوظيفي الحالي
-              not_found: دور الوظيفة "%{الاسم}" غير موجود في المشروع أو الأدوار العامة
+              not_found: دور الوظيفة "%{name}" غير موجود في المشروع أو الأدوار العامة
+            last_name:
+              blank: لا يمكن أن يكون اسم العائلة فارغا
+            locale:
+              inclusion: لغة خاطئة
+            relationship_name:
+              blank: لا يمكن أن تكون العلاقة فارغة
+              invalid: العلاقة %{name} غير صالحة
+            subject_email:
+              blank: لا يمكن أن يكون البريد الإلكتروني للموضوع فارغا
+              invalid: البريد الإلكتروني للموضوع غير صالح
+              not_exists: لم يتم العثور على الموضوع مع عنوان البريد الإلكتروني %{email}
+        email_schedule:
+          attributes:
+            content:
+              blank: لا يمكن أن يكون المحتوى فارغا
+            from:
+              blank: لا يمكن أن يكون الحقل من فارغا
+            reply_to_email:
+              blank: لا يمكن أن يكون حقل الرد على البريد الإلكتروني فارغا
+              invalid: الرد على البريد الإلكتروني غير صالح
+            scheduled_date:
+              blank: لا يمكن أن يكون حقل التاريخ المجدول فارغا
+            subject:
+              blank: لا يمكن أن يكون الموضوع فارغا
+        email_template:
+          attributes:
+            content:
+              blank: لا يمكن أن يكون المحتوى فارغا
+              invalid_consolidated_pipetext: هذه النصوص غير صالحة لدمج الرسائل %{invalid_pipetexts}
+              invalid_unconsolidated_pipetext: هذه النصوص غير صالحة للرسائل غير المجمعة %{invalid_pipetexts}
+            from:
+              blank: لا يمكن أن يكون الحقل من فارغا
+            reply_to_email:
+              blank: لا يمكن أن يكون حقل الرد على البريد الإلكتروني فارغا
+              invalid: الرد على البريد الإلكتروني غير صالح
+            subject:
+              blank: لا يمكن أن يكون الموضوع فارغا
+        email_test_form:
+          attributes:
+            to_email:
+              blank: لا يمكن أن يكون حقل البريد الإلكتروني فارغا
+              invalid: البريد الإلكتروني غير صالح
+        factor_import_form:
+          attributes:
+            base:
+              code_length: يجب أن يتكون الرمز من 3 أحرف على الأقل في الصف %{index}.
+              code_required: رمز العامل مطلوب في الصف %{index}
+              invalid_csv: Csv غير صالح %{error_message}
+              invalid_scoring_strategy: استراتيجية تسجيل النقاط غير الصالحة '%{strategy}' في الصف %{index}. الاستراتيجيات المسموح بها هي %{allowed}.
+              missing_headers: 'الرؤوس المطلوبة مفقودة: %{headers}'
+              name_required: اسم العامل مطلوب في الصف %{index}
+              scoring_strategy_required: استراتيجية تسجيل النقاط مطلوبة في الصف %{index}
+            file:
+              invalid_format: يرجى تحميل ملف CSV
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: تم تعطيل إشعار الرسائل النصية القصيرة للعميل
+        hogan:
+          attributes:
+            name:
+              not_unique: هذا التكامل موجود بالفعل لهذا المشروع
+        iiht:
+          attributes:
+            name:
+              not_unique: هذا التكامل موجود بالفعل لهذا المشروع
         import_one:
           attributes:
+            email:
+              already_exists: موضوع يحتوي على نفس البريد الإلكتروني موجود بالفعل
+              blank: لا يمكن أن يكون البريد الإلكتروني فارغا
+              invalid: البريد الإلكتروني غير صالح
+            first_name:
+              blank: لا يمكن أن يكون الاسم الأول فارغا
             job_role:
               cannot_be_same: يجب أن يكون الدور الوظيفي المستهدف مختلفاً عن الدور الوظيفي الحالي
+              not_found: الدور الوظيفي '%{name}' غير موجود في الأدوار العامة أو المشروع
+            last_name:
+              blank: لا يمكن أن يكون اسم العائلة فارغا
+            locale:
+              inclusion: لغة خاطئة
+            password:
+              too_short: كلمة المرور قصيرة جدا. الحد الأدنى المطلوب من الأحرف %{count}
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: لا يمكن أن تكون القيمة %{اسم_العمود} فارغة في الصف %{رقم_الصف}
+              column_cannot_be_blank: لا يمكن أن تكون القيمة %{column_name} فارغة في الصف %{row_number}
               invalid_format: يُرجى تحميل ملف CSV
               invalid_job_role_id: المعرّف في الصف %{row_number} ليس معرّف دور وظيفي صالح
               invalid_locale: اللغة المحلية في الصف %{row_number} ليست لغة محلية صالحة
-              missing_required_columns: 'الأعمدة المفقودة المطلوبة: %{الأعمدة}'
-              parsing_failed: 'خطأ أثناء تحليل الملف، خطأ: %{خطأ}.'
+              missing_required_columns: 'الأعمدة المفقودة المطلوبة: %{columns}'
+              parsing_failed: 'خطأ أثناء تحليل الملف، خطأ: %{error}.'
             project:
               must_exist: يجب أن يكون المشروع موجوداً
+        mettl:
+          attributes:
+            name:
+              not_unique: هذا التكامل موجود بالفعل لهذا المشروع
+        password_reset:
+          attributes:
+            email:
+              wrong_email: لم نتمكن من العثور على أي مستخدم لديه البريد الإلكتروني الذي قدمته.
+        profile:
+          attributes:
+            first_name:
+              blank: لا يمكن أن يكون الاسم الأول فارغا
+            last_name:
+              blank: لا يمكن أن يكون اسم العائلة فارغا
+            password:
+              contains_repeats: يجب ألا تحتوي كلمة المرور على تكرارات
+              too_short: كلمة المرور قصيرة جدا. الحد الأدنى المطلوب من الأحرف %{count}
+              too_weak: 'يجب أن تحتوي كلمة المرور على: 1 أحرف صغيرة على الأقل ، 1 أحرف كبيرة ، رقم واحد وحرف خاص واحد.'
+        questions_import_block_form:
+          attributes:
+            name:
+              blank: لا يمكن أن يكون اسم الكتلة فارغا
+        questions_import_matrix_table_form:
+          attributes:
+            answersType:
+              blank: لا يمكن أن تكون خاصية سؤال MatrixTable 'answersType' فارغة
+              inclusion: يجب أن تكون خاصية سؤال MatrixTable "answerType" "SingleAnswer" أو "MultipleAnswer"
+            type:
+              blank: لا يمكن أن تكون خاصية سؤال MatrixTable "type" فارغة
+              inclusion: يجب أن يحتوي نوع سؤال MatrixTable على "ليكرت"
+        questions_import_multiple_choice_form:
+          attributes:
+            type:
+              blank: لا يمكن أن تكون خاصية سؤال MultipleChoice "type" فارغة.
+              inclusion: يجب أن تكون خاصية سؤال MultipleChoice "type" هي "SingleAnswer" أو "MultipleAnswer" أو "Droplist"
+        questions_import_question_form:
+          attributes:
+            name:
+              blank: لا يمكن أن يكون اسم السؤال فارغا
+            type:
+              blank: لا يمكن أن يكون عنوان السؤال فارغا
+              inclusion: يجب أن يكون نوع السؤال "TextEntry" أو "MultipleChoice" أو "MatrixTable" أو "StaticContent"
+        questions_import_randomization_property_form:
+          attributes:
+            questions:
+              blank: randomization.questions لا يمكن أن تكون فارغة إذا كان randomization.type هو "بعض"
+            type:
+              inclusion: randomization.type يجب أن يكون إما "الكل" أو "بعض" أو "لا"
+        questions_import_required_validation_form:
+          attributes:
+            type:
+              inclusion: يجب أن يكون نوع التحقق المطلوب إما "إجبار" أو "طلب"
+        questions_import_static_content_form:
+          attributes:
+            type:
+              blank: لا يمكن أن يكون نوع الخاصية سؤال المحتوى الثابت فارغا
+              inclusion: يجب أن يكون نوع خاصية سؤال المحتوى الثابت "نص"
+        questions_import_text_entry_form:
+          attributes:
+            type:
+              blank: لا يمكن أن تكون خاصية سؤال TextEntry "type" فارغة.
+              inclusion: يجب أن تكون خاصية سؤال TextEntry "نوع" "سطر واحد" أو "متعدد الأسطر" أو "مربع نص مقالة"
+        register:
+          attributes:
+            email:
+              blank: عنوان البريد الإلكتروني مطلوب
+              in_use: عنوان البريد الإلكتروني هذا قيد الاستخدام. إذا كان لديك حساب بالفعل، فيرجى تسجيل الدخول.
+              invalid: عنوان البريد الإلكتروني غير صالح
+              too_long: عنوان البريد الإلكتروني طويل جدا
+            first_name:
+              blank: الاسم الأول مطلوب
+              too_long: الاسم الأول طويل جدا
+            last_name:
+              blank: اسم العائلة مطلوب
+              too_long: اسم العائلة طويل جدا
+            mobile_number:
+              blank: رقم الهاتف المحمول مطلوب
+              invalid: رقم الجوال غير صالح
+              verification_expired: انتهت صلاحية رمز التحقق. يمكنك محاولة إثبات الملكية مرة أخرى.
+            registration_code:
+              blank: رمز التسجيل مطلوب
+              incorrect_email_domain: عنوان البريد الإلكتروني هذا غير صالح لرمز التسجيل الذي تم إدخاله
+              invalid: رمز التسجيل غير صالح
+            sms_invite_code:
+              invalid: رمز دعوة الرسائل النصية القصيرة غير صالح
+        saml_setting:
+          invalid_cert: شهادة غير صالحة
+        security_setting_forms:
+          attributes:
+            magic_link_expiry_in_seconds:
+              greater_than_or_equal_to: يجب أن تكون المدة 5 دقائق على الأقل
+            session_inactivity_timeout_in_seconds:
+              greater_than_or_equal_to: يجب أن تكون المدة 60 دقيقة على الأقل
+        sheet:
+          attributes:
+            file:
+              column_type_mismatch: من المتوقع أن يكون العمود <b>%{col}</b> من النوع %{type} ولكن حصل <b>على %{got}</b>
+              email_blank: 'الصف %{row_number}: لا يمكن أن يكون حقل البريد الإلكتروني فارغا'
+              email_duplicate: هناك تكرارات في عمود البريد الإلكتروني
+              email_invalid: 'الصف %{row_number}: البريد الإلكتروني غير صالح'
+              invalid_column: عمود غير صالح %{name}
+              invalid_column_name: العمود <b>"%{column}"</b> غير صالح
+              invalid_column_name_size: اسم العمود <b>"%{column}"</b> طويل جدا (بحد أقصى 64)
+              invalid_column_type: يجب أن يكون نوع العمود String أو Text أو Number أو HTML أو Markdown
+              invalid_format: تنسيق غير صالح (.xlsx)
+              invalid_number_value: '<b>الصف #%{index}</b> العمود <b>"%{column}"</b> ليس رقما'
+              invalid_string_value: الصف <b>#%{index}</b> العمود <b>"%{column}"</b> ليس سلسلة
+              invalid_string_value_size: '<b>الصف #%{index}</b> العمود <b>"%{column}"</b>  طويل جدا (بحد أقصى 256)'
+              no_email_column: لا يحتوي الملف على عمود البريد الإلكتروني
+              non_uniq_column: هناك عمود غير uniq التالي %{columns}
+        sheet_row_form:
+          attributes:
+            email:
+              blank: لا يمكن أن يكون البريد الإلكتروني فارغا
+              not_uniq_email: الصف مع البريد الإلكتروني موجود بالفعل
         skills_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: يجب تمكين دور وظيفي واحد على الأقل مع تحديد نوع المهارة لـ %{block_name}
-              invalid_skill_type: 'نوع المهارة غير صالح %{نوع_المهارة} لـ %{اسم_الدور} لـ %{اسم_الحظر}. الخيارات الصالحة: %{الخيارات_الصحيحة} لـ %{الخيارات_الصحيحة}'
-              props_missing: الوظيفة
+              at_least_one_job_role_required: مطلوب دور وظيفي واحد على الأقل لـ %{skill_type} لـ %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: يجب تمكين نوع مهارة واحدة على الأقل مع تحديد دور وظيفي لـ %{block_name}
+              invalid_job_role_type: 'الدور الوظيفي غير صالح %{job_role} لـ %{skill_type} لـ %{block_name}. الخيارات الصالحة: %{valid_options}'
+              props_missing: تكوين المهارات مفقود بالنسبة ل %{block_name}
         skillvue:
           attributes:
             name:
               not_unique: هذا التكامل موجود بالفعل في هذا المشروع.
+        sms_invites_create:
+          attributes:
+            first_name:
+              blank: لا يمكن أن يكون الاسم الأول فارغا
+            last_name:
+              blank: لا يمكن أن يكون اسم العائلة فارغا
+            locale:
+              inclusion: اللغة الخاطئة.
+            mobile_no:
+              blank: لا يمكن أن يكون رقم الهاتف المحمول فارغا
+              invalid: يجب أن يبدأ رقم الجوال بعلامة الجمع ، متبوعا بالرمز الدولي ثم الرقم
+              invite_exists_in_campaign: دعوة SMS بنفس رقم الهاتف المحمول موجودة بالفعل
+        sms_invites_import:
+          attributes:
+            import_data:
+              duplicated_mobile_numbers: 'أرقام الهواتف المحمولة التالية مكررة في CSV: %{mobile_numbers}'
+              invalid_header: رأس غير صالح. تصدير دعوة SMS للحصول على الرؤوس الصحيحة
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: تنسيق معرف البريد الإلكتروني غير صالح.
+        super_admin_edit:
+          attributes:
+            email:
+              blank: لا يمكن أن يكون حقل البريد الإلكتروني فارغا
+              invalid: البريد الإلكتروني غير صالح
+              starts_with_invalid_characters: لا يمكن أن يبدأ البريد الإلكتروني ب =، |، + ، -، @ ، %
+            first_name:
+              blank: لا يمكن أن يكون الاسم الأول فارغا
+              starts_with_invalid_characters: لا يمكن أن يبدأ الاسم الأول ب =، |، + ، -، @ ، %
+            last_name:
+              blank: لا يمكن أن يكون اسم العائلة فارغا
+              starts_with_invalid_characters: لا يمكن أن يبدأ اسم العائلة ب =، |، + ، -، @ ، %
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'الصف %{صف}: القيمة المكررة %{القيمة} لـ %{حقل}'
+              duplicate_value: 'الصف %{row}: القيمة المكررة %{value} لـ %{field}'
               invalid_format: يُرجى تحميل ملف xlsx
-              missing_headers: "%{اسم_الورقة} الورقة ناقصة الرؤوس المطلوبة: %{رؤوس}"
-              missing_sheets: 'الأوراق المطلوبة مفقودة: %{الأوراق}'
-              missing_value: 'الصف %{صف}: قيمة مفقودة لـ %{حقل}'
+              missing_headers: "%{sheet_name} الورقة ناقصة الرؤوس المطلوبة: %{headers}"
+              missing_sheets: 'الأوراق المطلوبة مفقودة: %{sheets}'
+              missing_value: 'الصف %{row}: قيمة مفقودة لـ %{field}'
             project:
               must_exist: يجب أن يكون المشروع موجوداً
+        update_norm:
+          attributes:
+            norm_type:
+              inclusion: يرجى تحديد نوع المعيار الصحيح
+        user:
+          attributes:
+            email:
+              user_exists_in_campaign: المستخدم الذي يحمل معرف البريد الإلكتروني هذا موجود بالفعل في الحملة
+              user_exists_in_project: المستخدم الذي لديه معرف البريد الإلكتروني هذا موجود بالفعل في المشروع
+            import_data:
+              cant_overwrite_password: ليس لديك إذن بالكتابة فوق كلمة المرور.
+              duplicated_emails: 'يتم تكرار البريد الإلكتروني (رسائل البريد الإلكتروني) التالية في CSV: %{emails}'
+              invalid_email: 'الصف %{row_number}: بريد إلكتروني غير صالح %{email}'
+              invalid_header: رأس غير صالح، خذ رأس من التصدير
+              invalid_reports_header: رأس غير صالح، خذ رأسا من نموذج الملف
+              manager_not_found: 'الصف %{row_number}: مدير يحتوي على بريد إلكتروني %{email} غير موجود في الحملة أو في ملف CSV'
+              user_update_failed: تعذر تحديث المستخدم ل %{email} مع الخطأ '%{error}'
+            locale:
+              inclusion: لغة خاطئة
+            name:
+              starts_with_invalid_characters: لا يمكن البدء ب =، |، + ، -، @ ، %
+            schedule_end_date:
+              invalid_datetime: غير صالح
+            schedule_start_date:
+              invalid_datetime: غير صالح
+        user_assessment:
+          subject_and_assessment_exists: التقييم وزوج الموضوع موجودان بالفعل
+        user_idp_development_action:
+          attributes:
+            end_date_time:
+              invalid_datetime: غير صالح
+            private:
+              inclusion: يجب أن يكون منطقيا
+            start_date_time:
+              invalid_datetime: غير صالح
   activerecord:
     attributes:
+      administration/assessments/assign_form:
+        access_reports: قواعد تقرير الوصول
+        access_reports_at: الوصول إلى التقرير في
+        access_reports_at_date: تاريخ
+        access_reports_at_time: الوقت
+        client_ids: إيجارات العملاء
+        manager_ids: مديرون
+        report_ids: التقارير
+        user_ids: المستعملون
+      assessment:
+        active: نشط
+        categories:
+          '360': حملة 360
+          agile: رشيق
+          assessor_form: نموذج المقيم
+          case_study: دراسات الحالة
+          hogan: هوجان
+          iiht: IIHT
+          meeting: اجتماع
+          organisational: مسوح
+          pearson: بيرسون
+          psychometric: تقييم
+          saville: سافيل
+          threesixty: حملة 360
+        category: باب
+        created_at: تاريخ الإنشاء
+        description: وصف
+        id: معرف
+        name: اسم
+        statuses:
+          finished: منته
+        timing: توقيت
+        types:
+          common: تقييم TTE
+          hogan: هوجان
+          iiht: تقييم IIHT
+          pearson: تقييم بيرسون
+          saville: تقييم سافيل
+        updated_at: تاريخ التعديل
+      assign:
+        completed_at: تاريخ الانتهاء
+        statuses:
+          completed: اكمال
+          in_progress: استأنف
+          ineligible: مؤهلين
+          interrupted: توقف
+          not_started: الجديد
+          overdue: المتاخره
+          timed_out: انتهت مهله
+      block:
+        active: نشط
+        assign_to_assessment_ids: تقييمات
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+      client:
+        applicable_level: المستوى القابل للتطبيق
+        applicable_levels:
+          campaign: حملة
+          project: مشروع
+          sub_campaign: الحملة الفرعية
+        category: باب
+        created_at: تاريخ الإنشاء
+        id: معرف
+        licenses: رقم الترخيص
+        licenses_expire: تاريخ انتهاء صلاحية الترخيص
+        licenses_used: استخدام الترخيص
+        location: مكان
+        logo: شعار العميل
+        memberships_count: المستعملون
+        name: اسم
+        number: رقم العميل
+        privacy_consent: تمكين الموافقة على معالجة البيانات
+        project_manager: مدير مشروع TTE
+        project_manager_id: مدير مشروع TTE
+        report_ids: التقارير
+        strong_password_enabled: تمكين كلمة مرور قوية
+        subdomain: المجال الفرعي
+        types:
+          associate: رفيق
+          corporate: الشركات
+          distributer: موزع
+          other: آخر
+          partner: شريك
+          retail: التجزئه
+          tte: TTE
+        updated_at: تاريخ التعديل
+        year: سنة العميل
+      communication:
+        created_at: تاريخ الإنشاء
+        id: معرف
+        updated_at: تاريخ التعديل
+      dimension:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+      factor:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        parent_id: الوالد
+        questions_count: لا. عدد الأسئلة
+        updated_at: تاريخ التعديل
+      hogan_report_setting:
+        load_report: تقرير التحميل من هوجان
+      innovation_style:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        description: وصف
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+      innovation_styles_factor:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+      library:
+        created_at: تاريخ الإنشاء
+        id: معرف
+        type: الصوره المصغره
+        updated_at: تاريخ التعديل
+      license:
+        id: معرف
+        number: رقم الترخيص
+        overuse_number: بدل الاستخدام الزائد
+        type: ترخيص
+        types:
+          common: شائع
+          proctoring: المراقبة
+          threesixty: تريويكسيكستي
+        unlimited: مطلق
+        used_number: رقم الترخيص المستخدم
       membership:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        disabled: تعطيل
+        email: البريد الإلكتروني
         first_name: الاسم الاول
+        id: معرف
         last_name: إسم العائلة
+        parent: المدير المباشر
+        parent_id: المدير المباشر
+        report_ids: معرفات التقارير
+        roles:
+          campaign_admin: مسؤول الحملة
+          client_admin: مسؤول العميل
+          manager: مدير
+          member: مستخدم
+          project_admin: مسؤول المشروع
+        updated_at: تاريخ التعديل
+        user_access: وصول المستخدم
+      norm:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+        updated_by: حرره
+      occupation:
+        active: نشط
+        bachelors_or_masters_qualification: مؤهل البكالوريوس أو الماجستير
+        created_at: تاريخ الإنشاء
+        description: وصف
+        diploma_qualification: مؤهل الدبلوم
+        full_description: الوصف الكامل
+        high_school_entry_roles: أدوار دخول المدرسة الثانوية
+        id: معرف
+        key_career_tracks: المسارات الوظيفية الرئيسية
+        name: اسم
+        potential_areas_of_study: مجالات الدراسة المحتملة
+        updated_at: تاريخ التعديل
+        work_environment: بيئة العمل
+      occupations_factor:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+      product:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+      question:
+        active: نشط
+        assign_to_assessment_ids: تقييمات
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+      report:
+        created_at: تاريخ الإنشاء
+        id: معرف
+        updated_at: تاريخ التعديل
+      report_family:
+        created_at: تاريخ الإنشاء
+        id: معرف
+        updated_at: تاريخ التعديل
+      task:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        description: وصف
+        description_label: وصف
+        factor_id: الكفاءه
+        factor_id_label: حدد الكفاءة
+        id: معرف
+        membership_id: المتنازل
+        membership_id_label: حدد المحيل
+        name: عنصر الإجراء
+        name_label: بند الإجراء
+        planned_completed_at: تاريخ الاستحقاق
+        planned_completed_at_label: حدد تاريخ الاستحقاق
+        priority: أولوية
+        priority_label: أولوية
+        status: حالة
+        status_label: حدد الحالة
+        statuses:
+          completed: اكمال
+          in_progress: قيد التنفيذ
+          not_started: لم يبدأ
+          overdue: المتاخره
+        updated_at: تاريخ التعديل
+        updated_by: حرره
+      threesixty:
+        users_result:
+          statuses:
+            completed: اكمال
+            in_progress: استأنف
+            not_started: الجديد
       user:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        current_password: كلمة المرور الحالية
+        disabled: تعطيل
         email: البريد الإلكتروني
         first_name: الاسم الاول
+        id: معرف
         last_name: إسم العائلة
+        manage_client_ids: إيجار العميل
+        memberships: إيجار العميل
+        name: اسم
+        password: شعار
+        password_confirmation: تأكيد كلمة المرور
+        role: دور
+        roles:
+          admin: المشرف
+          admins:
+            admin: المشرف
+            campaign_admin: مسؤول الحملة
+            project_admin: مسؤول المشروع
+            regular: مسؤول العميل
+            superadmin: المشرف المتميز
+          agile: رشيق
+          assessor: مقيم
+          assessor_form: نموذج المقيم
+          campaign_admin: مسؤول الحملة
+          case_study: دراسة حالة
+          client_admin: مسؤول العميل
+          hogan: هوجان
+          iiht: IIHT
+          manager: مدير
+          meeting: اجتماع
+          member: مستخدم
+          organisational: التنظيميه
+          pearson: بيرسون
+          project_admin: مسؤول المشروع
+          psychometric: القياس النفسي
+          regular: منتظم
+          saville: سافيل
+          super_admin: المشرف المتميز
+          superadmin: المشرف المتميز
+          threesixty: تريويكسيكستي
+        types:
+          anonymous: مستخدمون مجهولون
+          identified: المستخدمون المحددون
+        updated_at: تاريخ التعديل
       user_form:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        current_password: كلمة المرور الحالية
+        disabled: تعطيل
         email: البريد الإلكتروني
         first_name: الاسم الاول
+        id: معرف
         last_name: إسم العائلة
+        parent: المدير المباشر
+        parent_id: المدير المباشر
         password: كلمه السر
+        password_confirmation: تأكيد كلمة المرور
+        role: دور
+        updated_at: تاريخ التعديل
+      users_result:
+        assessment_name: اسم التقييم
+        assessment_type: نوع التقييم
+        completed_at: تم الانتهاء في
+        completion_reasons:
+          time_out_offline: المهلة / غير متصل بالإنترنت
+          time_out_online: المهلة / عبر الإنترنت
+          user_completed: اكتمل المستخدم
+        email: البريد الإلكتروني
+        name: اسم
+        result_id: معرف النتيجة
+        started_at: بدأت في
+        status: حالة
+        statuses:
+          completed: اكمال
+          in_progress: استأنف
+          ineligible: مؤهلين
+          interrupted: توقف
+          not_started: الجديد
+          timed_out: import_raw موقوتة
     errors:
+      messages:
+        admin_for_another_tte: المستخدم بالفعل المسؤول في tte آخر
+        invalid_http_url: عنوان URL غير صالح. حدد عنوان url الكامل مع بروتوكول http أو https فيه.
+        not_uniqueness: تم التعيين بالفعل
       models:
+        campaign_assessment:
+          attributes:
+            external_config:
+              invalid: يجب أن يكون التكوين الخارجي جوسن صالحا
+        campaign_factor:
+          attributes:
+            formula:
+              cyclic_dependency_found: 'هناك تبعية دورية في الصيغة. التبعية: %{cyclic_path}'
+        factors_norm:
+          score_from_must_be_number: يجب أن تكون النتيجة من رقم
+          score_to_less_than_score_from: النتيجة إلى أقل من النتيجة من
+          score_to_must_be_number: يجب أن تكون النتيجة رقم
+        license:
+          attributes:
+            used_number:
+              overused: لا يمكن أن يكون الترخيص المستخدم أكثر من مجموع الترخيص المخصص وحد الاستخدام الزائد.
+          overuse: الترخيص %{name} مفرط الاستخدام
+        media_response:
+          attributes:
+            base:
+              max_takes_limit_reached: الحد الذي تم الوصول إليه للحد الأقصى للأخذ
+        report:
+          assessments_not_hogan: يجب أن تكون جميع التقييمات من نوع هوجان
+          assessments_not_saville: يجب أن تكون جميع التقييمات من نوع سافيل
+          has_already_assigned: لا يمكن تغيير التقييم لأنه تم تعيينه بالفعل للمستخدم أو المستوى القابل للتطبيق
+          has_dependent_relation: يتم تقييم هذا التقرير على المستخدمين
+          max_assessment_count: لقد وصلت إلى الحد الأقصى لتقييمات %{max}
+          min_assessment_count: الحد الأدنى لعدد التقييمات هو %{min}
+        skill_gap_report:
+          not_found: لم يتم العثور على تقرير فجوة المهارات
+        user_idp_comment:
+          reply_to_reply: لا يمكن الرد على رد (يسمح بمستوى واحد فقط من التداخل)
+        user_idp_plan:
+          no_active_plan: لم يتم العثور على خطة IDP نشطة
+      register:
+        attributes:
+          mobile_number:
+            blank: رقم الجوال مطلوب
+            invalid: رقم الجوال غير صالح
+            verification_expired: لقد انتهت صلاحية رمز التحقق. يمكنك محاولة التحقق مرة أخرى.
+        user:
+          attributes:
+            current_password:
+              invalid: كلمة المرور الحالية غير صحيحة
       taxonomies_import_form:
         attributes:
           file:
@@ -93,17 +808,122 @@ ar:
           attributes:
             current_password:
               invalid: كلمة المرور الحالية غير صحيحة
+            manager_id:
+              cannot_be_self: لا يمكن تعيين المستخدم كمدير لنفسه
   admin_jobs:
     attrs:
       operations:
+        add_campaign_reports: إضافة تقارير الحملة
+        assessment_norm_export: تصدير النتائج المعيارية
+        assessment_raw_factor_export: تصدير درجات العامل الخام
+        assessment_raw_result_export: تصدير النتائج الأولية
+        assessment_scoring_export: تصدير نتائج التسجيل
+        assign_idp_to_users: تعيين IDP للمستخدمين
+        assign_reports_and_assessments: تعيين التقارير والتقييمات
+        bulk_create_workshop_invites: إرسال دعوات مركز التقييم الجماعي
+        bulk_download_idp_reports: تنزيل تقارير IDP بالمجمع
+        bulk_download_reports: تقارير التنزيل الجماعي
+        bulk_download_user_reports: تنزيل تقارير المستخدم بالجملة
+        bulk_regenerate_reports: إعادة إنشاء تقارير الحملة
+        bulk_regenerate_threesixty_reports: إعادة إنشاء تقارير موضوع Threesixty
+        bulk_regenerate_user_reports: إعادة إنشاء تقارير المستخدم
+        bulk_reports: تقارير مجمعة
+        bulk_rescore_campaign_factors: عوامل حملة إعادة النقاط المجمعة
+        bulk_update_evaluation_status: حالة تقييم التحديث المجمع
+        compact_completion_status_export: تصدير حالة الاكتمال المدمجة
+        completion_status_export: تصدير حالة الإنجاز
+        copy_dimension: أبعاد النسخ
+        create_threesixty_campaign: إنشاء حملة Threesixty
+        data_report_export: تصدير تقرير البيانات
+        export_admin_with_permissions: تصدير المسؤول مع الأذونات
+        export_assessment_questions: أسئلة تقييم التصدير
+        export_campaign_factors: عوامل حملة التصدير
+        export_campaign_scorings: حملات التصدير
+        export_dashboard_as_file: تصدير لوحة المعلومات كملف
+        export_development_action_translations: ترجمات إجراءات تطوير التصدير
+        export_development_actions: إجراءات تنمية الصادرات
+        export_dimension_as_json: أبعاد التصدير JSON
+        export_factor_translations: ترجمات عامل التصدير
         export_job_roles_translations: تصدير ترجمات الأدوار الوظيفية
+        export_norm: معيار التصدير
+        export_occupations: تصدير المهن
+        export_proficiency_level_translations: ترجمات مستوى إتقان التصدير
         export_proficiency_levels: مستويات كفاءة التصدير
+        export_reflection_questions: أسئلة انعكاس التصدير
+        export_report_data: تصدير بيانات التقرير
+        export_reports_and_assessments: تقارير التصدير والتقييمات
+        export_skill_translations: ترجمة مهارات التصدير
+        export_skills: مهارات التصدير
+        export_user_report_events: تصدير أحداث تقرير المستخدم
+        export_users: تصدير مستخدمي الحملة
+        external_assessment_export: تصدير النتائج الخارجية
+        import_accesssheet: استيراد الحجز
+        import_assessment_questions: أسئلة تقييم الاستيراد
+        import_assessors: مقيمو الاستيراد
+        import_campaign_factors: استيراد عوامل الحملة
+        import_datasheet: استيراد ورقة البيانات
+        import_development_action_translations: استيراد ترجمات إجراءات التطوير
+        import_development_actions: إجراءات تطوير الاستيراد
+        import_dimension_from_json: استيراد البعد من JSON
+        import_external_campaign_scoring: استيراد نقاط الحملة الخارجية
+        import_factor_translations: ترجمات عامل الاستيراد
+        import_factors: عوامل الاستيراد
         import_job_roles_translations: استيراد ترجمات الأدوار الوظيفية
+        import_norm: معيار الاستيراد
         import_proficiency_level_translations: استيراد الترجمات على مستوى الكفاءة
-        import_skills_rater_taxonomies: استيراد تصنيفات مقيمي المهارات
+        import_proficiency_levels: مستويات إتقان الاستيراد
+        import_question_translations: استيراد ترجمات الأسئلة
+        import_raw_data: استيراد البيانات الأولية
+        import_reflection_questions: استيراد أسئلة التفكير
+        import_scoring_data: استيراد بيانات تسجيل النقاط
+        import_skill_rater_taxonomies: استيراد تصنيفات مقيمي المهارات
+        import_skill_translations: استيراد ترجمات المهارات
+        import_skills: مهارات الاستيراد
+        import_sms_invites: استيراد دعوة SMS
+        import_users: استيراد المستخدمين
+        migrate_assessment_translations: ترحيل ترجمة التقييم
+        normalize_factor_scores: تطبيع درجات العامل
+        regenerate_campaign_reports: إعادة إنشاء تقارير الحملة
+        regenerate_report: إعادة إنشاء التقرير
+        regenerate_threesixty_report: إعادة إنشاء تقرير Threesixty
+        remap_report_assessment: إعادة تعيين تقييم التقرير
+        rescore_assessment: تقييم إعادة التسجيل
+        rescore_user_assessment: إعادة تسجيل تقييم المستخدم
+        send_sms_invites: إرسال دعوات عبر الرسائل النصية القصيرة
+        super_admin_assessment_norm_export: تصدير نتائج معيار المشرف الفائق
+        super_admin_assessment_raw_factor_export: تصدير نتائج عامل المسؤول الخام الفائق
+        super_admin_assessment_raw_result_export: تصدير النتائج الأولية للمسؤول الفائق
+        super_admin_datasheet_export: تصدير ورقة بيانات المشرف المتميز
+        super_admin_external_assessment_export: تصدير التقييم الخارجي للمشرف المتميز
+        threesixty_campaign_export_completion_status: حالة إتمام تصدير حملة Threesixty
+        threesixty_campaign_export_scores: تصدير درجات الحملة Threesixty
+        workshop_status_export: تصدير حالة مركز التقييم
+      statuses:
+        completed: اكمال
+        completed_with_errors: مكتمل بالأخطاء
+        failed: فشل
+        in_progress: قيد التنفيذ
+        scheduled: المقرر
+    bulk_download_idp_reports:
+      already_exists: مهمة إنشاء تقارير IDP هذه قيد التقدم بالفعل
+    bulk_download_reports:
+      content:
+        title: روابط لتنزيل التقارير
+    close: غلق
+    details: التفاصيل
+    errors: اخطاء
+    invalid_job: يتوافق هذا الإشعار مع السجل المحذوف
+    mark_as_read: ضع علامة على الكل مقروءا
+    more: أكثر
+    notifications: الاخطارات
+    results: النتائج
+    super_admin:
+      errors:
+        data_processing_disabled: تم تعطيل معالجة البيانات.
   anonym:
     close: يغلق
     continue: استمرار
+    link_invalid_error_message: الرابط الذي تحاول الوصول إليه غير صالح. يرجى الاتصال بالمسؤول للحصول على عنوان URL الصحيح ومتابعة الاستطلاع.
     notifications:
       restart:
         copy: كنت قد بدأت بالدراسة الإستقصائية. بإمكانك المتابعة أو إعادة البدء
@@ -115,47 +935,205 @@ ar:
     retake: إعادة الالتقاط
   assessments:
     actions:
+      add_tag:
+        success_message: تمت إضافة العلامة بنجاح
+      archived:
+        success_message: تم أرشفة التقييم "%{name}" بنجاح.
+      assessment_cache:
+        remove_cache: إزالة ذاكرة التخزين المؤقت
+        success_message: تمت إزالة ذاكرة التخزين المؤقت بنجاح
       back_to_campaign: العودة إلى الحملة
+      back_to_dashboard: العودة إلى لوحة القيادة
+      copy:
+        success_message: تم نسخ التقييم "%{name}" بنجاح.
+      details: التفاصيل
+      download_csv: تنزيل CSV
+      edit: حرر
+      evaluate: تقييم
+      export: التصدير
+      export_normed: درجات العامل المعياري
+      export_raw_labels: خام (مع ملصقات)
+      export_raw_scores: درجات العامل الخام
+      export_raw_without_labels: خام (بدون ملصقات)
       extend_time: تمديد الوقت
+      external_scores_export: الدرجات الخارجية
       goto_dashboard: اضغط هنا للأستمرار
+      manage_mettl_schedule: إدارة جدول Mettle
+      moderate: درجات معتدلة
+      new_response: استجابة جديدة
+      next_assessment: انتقل إلى التقييم التالي
       pending_tasks:
         one: لديك مهمة واحدة معلقة
         other: لديك %{count} مهام معلقة
         two: لديك مهمتان معلقتان
+      re_evaluate: انقر هنا لإعادة التقييم
+      reevaluate: إعادة التقييم
+      remove:
+        confirm_message: هل أنت متأكد من أنك تريد حذف التقييم "%{name}"؟
+        confirm_title: التأكيد مطلوب
+        success_message: تمت إزالة التقييم %{name}
+      remove_tag:
+        success_message: تمت إزالة العلامة بنجاح
       rescore: إعادة التصحيح
+      restore:
+        success_message: تمت استعادة التقييم "%{name}" بنجاح
+      show_usage: عرض الاستخدام
+      submit_another_response: إرسال رد آخر
+      submit_evaluation: تقديم التقييم
+      translations:
+        success_message: تم تحديث ترجمات التقييم
+      unarchived:
+        success_message: تم إلغاء أرشفة التقييم "%{name}" بنجاح
+      view: منظر
+    active: نشط
+    archived: المؤرشفه
+    assessment: تقييم
+    assessments: تقييمات
     audio_response:
+      pause: تورع
       permission_denied_message: الرجاء تمكين إذن الميكروفون في المتصفح للتمكن من تسجيل إجابتك
       permission_text: الرجاء السماح بإستخدام الميكروفون لتسجيل الصوت
+      resume: استأنف
+      saved:
+        label: الصوت المحفوظ
+      saving: حفظ الصوت
+      start_recording: بدء التسجيل
+      stop: وقف
     card_actions:
       begin: ابدأ
       continue: استمرار
+    categories:
+      redirecting: اعاده توجيه
     column:
+      enable_audio_check: تمكين فحص الصوت
+      enable_network_check: تمكين فحص الشبكة
+      enable_video_check: تمكين التحقق من الفيديو
       external_settings:
+        hogan_assessment_name: اسم تقييم هوجان
+        iiht_assessment_name: اسم تقييم IIHT
+        iiht_schedule_config: الجدول الزمني للتكوين
+        mettl_assessment_name: اسم تقييم METTL
+        pearson_assessment_name: اسم تقييم بيرسون
+        pearson_norm_id: معرف معيار بيرسون
+        saville_assessment_name: اسم تقييم سافيل
+        simulation_assessment_name: اسم تقييم المحاكاة
         skillvue_assessment_name: اسم تقييم المهارات
+      translations_migrated: الترجمة المهاجرة
+    create: خلق
+    dashboard: لوحه القياده
+    dictation:
+      allow_browser_permision: الرجاء السماح بإذن صوت المتصفح لاستخدام الإملاء
+      autostopping_in: الإيقاف التلقائي للإملاء في %{reverseCountdown} ثوان
+      browser_unsupported: متصفحك لا يدعم إدخال الصوت
+      dictation_active: الإملاء نشط الآن
+      dictation_disabled: الإملاء معطل حاليا أو يتم استخدامه بواسطة سؤال آخر
+      dictation_not_started: فشل بدء إملاء الكلام
+      dictation_stopped: توقف إملاء الكلام
+      left: يسار
+      listening: مصغ
+      minutes: محضر
+      no_dictation_url: فشل الخادم في الاستجابة لإمكانية تحويل الكلام إلى نص
+      notifications:
+        autostopped: تم إيقاف الإملاء تلقائيا بسبب استمرار الصمت لمدة %{autocutoff} ثواني
+        refresh_page: تعذر متابعة إملاء الكلام، حاول مرة أخرى عن طريق تحديث الصفحة
+      start_dictation: بدء الإملاء
+      stop_dictation: أوقف الإملاء
+      use_speech_instructions: استخدم إدخال الكلام لكتابة هذه الإجابة
+    drawer:
+      title: تفاصيل التقييم
+    edit: حرر
     fields:
       category:
+        agile: رشيق
+        assessor_form: نموذج المقيم
+        case_study: دراسات الحالة
+        hogan: هوجان
+        iiht: IIHT
+        lead_assessor_form: نموذج المقيم الرئيسي
+        meeting: اجتماع
+        mettl: ميتل
+        organisational: استطلاعات المؤسسة
+        pearson: بيرسون
+        psychometric: القياس النفسي
+        saville: سافيل
+        simulation: محاكاة
         skillvue: سكيلفيو
+        threesixty: حملة 360
+      status:
+        finished: منته
+        in_progress: قيد التنفيذ
+      type:
+        common: تقييم TTE
+        hogan: هوجان
+        iiht: تقييم IIHT
+        mettl: تقييم Mettl
+        pearson: تقييم بيرسون
+        saville: تقييم سافيل
+        simulation: تقييم المحاكاة
+        skillvue: تقييم Skillvue
+    flow:
+      end_assessment_modal:
+        custom_message: نهاية مخصصة لرسالة التقييم
+        default_message: رسالة النهاية الافتراضية للتقييم
+        mark_as_ineligible: وضع علامة على أنه غير مؤهل
+        show_uniq_identifier: إظهار المعرف الفريد للمستجيبين (للاستطلاعات المجهولة)
     instructions:
       begin_assessment: ابدأ
       cancel: إلغاء
       default: هذا نشاط محدد بوقت ، بمجرد النقر فوق بدء التقييم ، سيكون لديك %{time} دقيقة لإكماله
       title: تعليمات
     messages:
+      external_scores_export_scheduled: تمت جدولة مهمة تصدير درجات التقييم بنجاح
       finish: شكراً على وقتك الثمين. لقد تم تسجيل أجوبتك.
+      norm_results_export_scheduled: تمت جدولة مهمة تصدير النتائج المعيارية للتقييم بنجاح
+      raw_factor_export_scheduled: تم جدولة مهمة تصدير العامل الخام للتقييم بنجاح
+      raw_results_export_scheduled: تمت جدولة مهمة تصدير النتائج الأولية للتقييم بنجاح
     page:
       back: عودة
       confirm_message: |-
         #### سيتم إرسال الردود الخاصة بك ولن تتمكن من تغييرها بعد ذلك.
 
         انقر على زر **عودة لمراجعة** ردودك للمرة الأخيرة أو انقر على زر **تسليم** إذا كنت قد انتهيت.
+      invalid_session:
+        description: وقد ألغيت جلسة التقييم هذه. يمكن أن يحدث هذا إذا واصلت التقييم في علامة تبويب أو متصفح أو جهاز منفصل.
+        title: فشل الطلب الأخير
       next: التالي
       read_only: هو وضع القراءة فقط، لا يمكنك تغيير أي نتائج.
       save: حفظ
+      submissionFailedAlert:
+        description: تعذر الاتصال بالخادم. يرجى تحديث الصفحة والمحاولة مرة أخرى. إذا لم يفلح ذلك ، فيرجى الاتصال بالدعم عبر الدردشة المباشرة أو mte.surveys@mercer.com
+        title: فشل الطلب الأخير
       submit: إرسال
+      warning: تحذير
+    pages:
+      edit:
+        assets: أصول
+        general_settings: الإعدادات العامة
+        translations: تراجم
     pickgrouprank:
       items: عناصر
     proceed: سأُتابع على أي حال
+    question_info_bar:
+      select_linked_questions: حدد الأسئلة المرتبطة
+    reset: اعاده تعيين
+    scoring:
+      competency: الكفاءه
+      id: معرف
+      score: نقاط
+    screen_reader_announcements:
+      fifteen_seconds_left: 15 ثانية متبقية
+      five_minutes_left: 5 دقائق متبقية
+      one_minute_left: 1 دقيقة متبقية
+      seconds_left: "%{seconds} ثواني متبقية"
+      thirty_seconds_left: 30 ثانية متبقية
+      time_is_up: انتهى وقتك
+      time_is_up_for_recording: انتهى الوقت وسيتوقف التسجيل الآن
+    single_page:
+      display_linked_questions: عرض الردود المرتبطة بالسؤال المحدد حاليا.
+    trash: مُخَلَّفَات
     unknown_error: حدث خطأ غير معروف
+    update: تحديث
+    upload: رفع
     video_response:
       device: السماح
       device_selection:
@@ -166,6 +1144,7 @@ ar:
       media_recorder:
         failure: هذا المتصفح لا يدعم تسجيل الفيديو، الرجاء استخدام كروم أو فايرفوكس للتمكن من تسجيل الفيديو
         success: يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو
+        unsupported: هذا المتصفح لا يدعم تسجيل الفيديو. يرجى استخدام أي من المتصفحات التالية ،
       recording_duration_label: الحد الأقصى لمدة التسجيل
       recording_stop_label: سيتوقف التسجيل
       requesting_permission: جارٍ طلب الإذن...
@@ -174,6 +1153,7 @@ ar:
       saved:
         label: تم الحفظ
       saving: جاري الحفظ
+      seek: نشد
       start_recording: ابدأ التسجيل
       stop_recording: توقف عن التسجيل
       tracker:
@@ -183,10 +1163,59 @@ ar:
         ready: 'اضغط على زر التسجيل عندما تكون جاهزاً '
     wait: انتظر
   assessments_reports:
+    add_group_form:
+      previous_assessments_required: يتم إجراء التقييمات بالترتيب أدناه
+      previous_group_required: مطلوب إكمال المجموعة السابقة
+    menu:
+      assessment_center: مركز التقييم
+      assessment_center_invites: مركز التقييم يدعو
+      assessments_and_reports: التقييمات والتقارير
+      idp: آي دي بي
+      manage: أدار
+      report_approval: إعدادات الموافقة على التقارير
+      sequencing: التسلسل
+    report_approval:
+      add_settings: إضافة إعداد
+      create_seetings: إنشاء الإعدادات
     sequencing:
+      add_assessment_center: إضافة مركز التقييم
+      add_group: إضافة مجموعة
+      assessments: تقييمات
+      delete_group: حذف المجموعة
+      edit_group_name: تحرير اسم المجموعة
       modal:
         delete:
+          cancel: إلغاء الأمر
           cannot_delete_with_workshops: لا يمكن حذف المجموعة التي تحتوي على ورش عمل، احذف ورش العمل أولاً
+          failed: تعذر حذف المجموعة "%{name}"، يرجى الاتصال بالمسؤول
+          ok: نعم، احذف
+          text: هل أنت متأكد من أنك تريد حذف مجموعة "%{name}"؟
+          title: حذف المجموعة
+      no_assessments: سحب التقييمات وإفلاتها
+      no_ungrouped_assessments: قم بسحب التقييمات وإفلاتها هنا لفك التجميع
+      ungrouped_assessments: التقييمات غير المجمعة
+  assessors:
+    campaigns_list:
+      column:
+        evaluation_count: عدد التقييم
+        evaluation_status: حالة التقييم
+        moderation_count: عدد الإشراف
+        moderation_status: حالة الإشراف
+  assign_reports:
+    assessment_not_in_report: التقييم باستخدام المعرف %{assessment_id} ليس جزءا من التقرير باستخدام المعرف %{report_id}
+    errors:
+      not_enought_licenses: الحزمة التي تحتوي على معرف %{bundle_id} لا تحتوي على تراخيص
+      user_not_found: 'الصف %{row}: لم يتم العثور على مستخدم لديه بريد إلكتروني ''%{email}'''
+    report_bundle_not_found: لم يتم العثور على حزمة التقرير مع المعرف %{bundle_id}
+    report_not_found: لم يتم العثور على تقرير يحتوي على المعرف %{report_id}
+    report_not_in_bundle: التقرير الذي يحتوي على المعرف %{report_id} ليس جزءا من حزمة التقارير باستخدام المعرف %{bundle_id}
+  assigns:
+    decorator:
+      no_description: الوصف فارغ
+  audit_log_failures:
+    invalid_sso_token: رمز SSO غير صالح
+    record_not_found: لم يتم العثور على السجل
+    user_not_authorized: المستخدم غير مصرح له
   auth:
     current_password: كلمة المرور الحالية
     current_password_placeholder: إدخل كلمة السر الحالية
@@ -196,18 +1225,23 @@ ar:
       description: يرجى ملء جميع الحقول لإنشاء كلمة مرور جديدة
       submit: إعادة تعيين كلمة السر
       title: غير كلمة المرور الخاصة بك
+    lighthouse_logo_alt_text: شعار المنارة
     login:
+      continue_btn: استمر
       description: الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية
       forgot_password: هل نسيت كلمة السر؟
+      hide_password: إخفاء كلمة المرور
       login_btn: تسجيل الدخول
       magic_link_btn: أرسل لي رابط تسجيل الدخول عبر البريد الإلكتروني
       not_member: لم تسجل؟
       or: أو
+      show_password: إظهار كلمة المرور
       sso_btn: تسجيل الدخول باستخدام الدخول الموحد
       title: مرحباً
     logout: تسجيل خروج
     magic_link:
       description: يرجى إدخال عنوان بريدك الإلكتروني لتلقي رابط تسجيل الدخول
+      invalid_email: البريد الإلكتروني غير صالح
       login_with_password: تسجيل الدخول باستخدام كلمة المرور
       send_me_login_link: أرسل لي رابط تسجيل الدخول
       success: لقد أرسلنا لك رابط تسجيل الدخول إلى '%{email}'. انقر على الرابط في البريد الإلكتروني الذي تلقيته لتسجيل الدخول
@@ -259,14 +1293,33 @@ ar:
         invalid_code: الرمز المدخل خاطئ
         invalid_number: رقم الجوال المدخل غير صحيح. يرجى التحقق من رقم الهاتف المدخل
         max_attempts_reached: تم إجراء أكثر من محاولة خاطئة الرجاء المحاولة من جديد بعد ١٠ دقائق.
+  browsers:
+    chrome: جوجل كروم
+    download:
+      chrome: https://www.google.com/chrome/
+      edge: https://www.microsoft.com/en-us/edge
+      firefox: https://www.mozilla.org/en-US/firefox/new/
+      instruction: تحميل
+      safari: https://www.apple.com/safari/
+    edge: مايكروسوفت إيدج
+    firefox: موزيلا فايرفوكس
+    safari: أبل سفاري
+    support:
+      instruction: يرجى تنزيل واستخدام أي من المتصفحات التالية.
+      message: المتصفح الذي تستخدمه غير مدعوم من قبل Lighthouse.
+    upgrade:
+      instruction: قم بالترقية الآن
+      message: يرجى استخدام أحدث إصدار من المتصفحات
   campaign:
     all_activities_are_completed: لقد أكملت الآن جميع الأنشطة
     all_activities_are_completed_multiple: جميع الأنشطة لهذه الحملة قد اكتملت الآن. يرجى المتابعة إلى لوحة المعلومات والتحقق مما إذا كان لديك أي أنشطة أخرى تم تعيينها.
+    already_joined: لقد انضممت بالفعل إلى هذه الحملة
     begin: ابدأ مهامك
     begin_btn_msg_before_prework: يجب عليك إكمال المهام التالية قبل بدء الحملة الموقوتة
     begin_campaign_msg: بدء الحملة قبل إجراء التقييمات
     campaigns: الحملات
     closed_campaign_message: هذه الحملة مغلقة. لا يمكنك إجراء أي تقييم ضمن هذه الحملة.
+    code_usage_limit_reached: تم الوصول إلى حد استخدام الكود ، يرجى الاتصال بالمسؤول
     complete_prev: " أكمل جميع التقييمات السابقة"
     complete_tasks: يرجى إكمال المهام أدناه قبل اتخاذ هذا الإجراء.
     continue: الإستمرار في التقييم
@@ -295,27 +1348,29 @@ ar:
     inactive_campaign_message: حاليًا ، لم يتم تعيين أي أنشطة لك.
     insights_reports: رؤى وتقارير
     instruction_modal:
-      campaign_start_final_instructions: |
+      campaign_start_final_instructions: |-
         <p>
         يرجى العلم أنه لا توجد طريقة لإيقاف المؤقت أو إيقافه تماماً. سيستمر مؤقت الحملة في العمل حتى عندما تغلق المتصفح ، لذا لا يجب أن تفكر في أي وقت في ترك المهام  للقيام بشيء آخر. تأكد من تقليل الانحرافات أثناء المهام. ابحث عن بيئة هادئة وأوقف تشغيل الإشعارات على أجهزتك وتجنب تعدد المهام. حافظ على تركيزك. بمجرد نفاد مؤقت الحملة ، لن تتمكن من المتابعة. إذا كنت قد قرأت التعليمات المذكورة أعلاه ، فيرجى النقر "إبدأ" لمتابعة المهام المعينة.
         </p>
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>يرجى قراءة التعليمات التالية بشكل دقيق.</h4>
         <p>
         المهمة (المهام) التي أنت على وشك أن تبدأها محددة بوقت. بمجرد النقر فوق "ابدأ" ، سيبدأ مؤقت الحملة تلقائيًا. لديك %{minutes} دقيقة لإكمال جميع الأنشطة. يرجى أن تهدف إلى إكمال المهام في الإطار الزمني المحدد وإدارة الوقت بشكل فعال لتجنب التسرع في عملية التقييم. تأكد من إكمال المهام دفعة واحدة ، لذلك إذا كنت بحاجة إلى أخذ قسط من الراحة ، فقد حان الوقت الآن.
         </p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>مراقبة</h4>
         <p>
         عند النقر فوق الزر "ابدأ" ، ستتم إعادة توجيهك إلى نظام المراقبة الخاص بنا. ستراقب الكاميرا والميكروفون والشاشة أثناء جلستك. تتم مراقبة هذه الجلسات تلقائيًا بواسطة نظام الذكاء الاصطناعي المتطور لدينا ، مما يوفر تجربة مستخدم سلسة ومتواصلة. ومع ذلك ، يمكن أيضًا مراجعة الجلسات من قبل مراقبي البشر. سيتم الإبلاغ عن أي علامات لسوء السلوك أو المخالفات. يتم القيام بذلك للتأكد من عدم حدوث أي محاولات غش. إذا وجدت شكوكًا ، فسيتم إلغاء مهمتك (مهامك).
         </p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>متصفح المراقبة</h4>
         <p>
         سيُطلب منك تنزيل متصفح خاص وتثبيته لإكمال المهام المراقبة. يرجى اتباع التعليمات في الشاشة التالية. يمكنك إلغاء تثبيت هذا بعد الانتهاء من جميع الأنشطة المطلوبة.
         </p>
     instructions:
+      collapse_aria_label: 'عرض المزيد من المعلومات أعلاه: مركز التعلم الافتراضي'
       collapse_link_text: عرض أقل
+      expand_aria_label: 'عرض معلومات أقل أعلاه: مركز التعلم الافتراضي'
       expand_link_text: عرض المزيد
       heading: يرجى مراجعة الإرشادات أدناه قبل أن تبدأ.
     language:
@@ -334,6 +1389,10 @@ ar:
       last_updated_text: 'تم تحديث ملف التعريف الخاص بك في آخر مرة:'
       sub_heading: أكمل معلومات ملفك الشخصي الكامل
       welcome_text: أهلا وسهلا
+    reset_warning: يمكنك فقط إعادة تشغيل الحملة التي تم وضع علامة عليها كحملة تجريبية.
+    restart_practice: إعادة تشغيل الممارسة
+    restart_practice_confirmation: هل أنت متأكد من أنك تريد إعادة تشغيل الممارسة؟
+    restart_practice_success: إعادة تشغيل الممارسة بنجاح
     thank_you_for_time: شكراً لك على وقتك
     time_left:
       cancel: إلغاء
@@ -343,17 +1402,161 @@ ar:
       notification_hours: لديك %{hours}   لإكمال التقييمات
       notification_minutes: لديك %{minutes}   لإكمال التقييمات
   campaign_assessment:
+    actions:
+      bulk_download: تحميل بالجملة
+      bulk_update_evaluation_as_done: وضع علامة على أنه تم
+      bulk_update_evaluation_as_undone: قم بإلغاء وضع علامة كما تم
+      download: تنزيل التقارير
+      export_completion_status: حالة اكتمال التصدير
+      export_external: خارجي
+      export_normed: درجات العامل المعياري
+      export_occupations: مهن
+      export_raw_labels: خام (مع ملصقات)
+      export_raw_scores: درجات العامل الخام
+      export_raw_without_labels: خام (بدون ملصقات)
+      export_scores: عشرات
+      export_scoring: سجل
+      factor_benchmark_score: النتيجة المعيارية للعامل
+      force_generate: توليد القوة
+      import_raw: نيء
+      import_scoring: سجل
+      regenerate: إنشاء التقارير
+      rescore: تقييم إعادة التسجيل
+      reset_all_nominations: إعادة تعيين جميع الترشيحات
+      reset_participant: إعادة تعيين جميع المشاركين
+    allow_msg_proctoring_workshop_activity: لا تتم مراقبة أنشطة مركز التقييم.
     assessment_center_heading: تفاصيل مركز التقييم
     assessments_heading: مهامك
     column:
+      assessment_name: اسم التقييم
+      assessor_form: نموذج المقيم
+      auto_assign: التعيين التلقائي
+      dimension_id: معرف البعد
+      external_user_id: هوية المرشح سكيلفيو
+      id: معرف تقييم الحملة
+      locales: لغات
+      norm: القاعده
+      norm_id: معرف القاعدة
+      pearson_norm_id: معرف بيرسون نورم
+      pearson_schedule_id: معرف جدول بيرسون
+      pearson_variation: تباين بيرسون
+      prework: ما قبل العمل
+      saville_candidate_id: معرف المرشح
+      saville_data_separator: فاصل بيانات سافيل
+      simulation_content_variation: تباين محتوى المحاكاة
+      simulation_participant_id: معرف مشارك المحاكاة
+      simulation_time_extension: تمديد وقت المحاكاة
       skillvue_email_id: معرف البريد الإلكتروني للمرشح سكيلفيو
       skillvue_external_assessment_id: معرّف تقييم سكيلفيو
+      universal_link: رابط عالمي
+    drawer:
+      mettl_schedule_name: اسم جدول Mettl
+      title: تفاصيل التقييم
+    messages:
+      export_completion_statuses_scheduled: تمت جدولة مهمة تصدير حالات الإكمال بنجاح
+      export_occupations_job_scheduled: تم جدولة وظيفة تصدير المهن بنجاح
+      export_reports_and_assessments_statuses_scheduled: تمت جدولة مهمة تقارير التصدير والتقييمات بنجاح
+      external_results_export_scheduled: تمت جدولة مهمة تصدير التقييم الخارجي بنجاح
+      norm_results_export_scheduled: تمت جدولة مهمة تصدير النتائج المعيارية للتقييم بنجاح
+      normalize_factor_scores_scheduled: تمت جدولة وظيفة تطبيع درجات العامل بنجاح.
+      raw_factor_export_scheduled: تم جدولة مهمة تصدير العامل الخام للتقييم بنجاح
+      raw_results_export_scheduled: تمت جدولة مهمة تصدير النتائج الأولية للتقييم بنجاح
+      scoring_results_export_scheduled: تمت جدولة مهمة تصدير نتائج تسجيل التقييم بنجاح
     modals:
       assessor_campaign_assessment_group:
         error_message: حدث خطأ ما يرجى الاتصال بالمسؤول
         placeholder: اختر مجموعة مركز التقييم
         success_message: تم تعيين مجموعة تقييم حملة المقيم بنجاح
         title: مجموعة مركز التقييم
+      bulk_update_evaluation:
+        content: هل أنت متأكد من أنك تريد وضع علامة على جميع الموضوعات المحددة على أنها %{status}؟
+        successfully: تم وضع علامة على أنها %{status} بنجاح.
+        title: وضع علامة مجمعة على أنها %{status}؟
+      import_raw:
+        body: ارجع إلى وظيفة التصدير لاستخراج قالب يمكن استخدامه للاستيراد هنا.
+        success_msg: تم تحميل الاستيراد بنجاح
+        title: استيراد بيانات النتائج الأولية
+        upload: رفع
+      import_scoring:
+        body: ارجع إلى وظيفة التصدير لاستخراج قالب يمكن استخدامه للاستيراد هنا.
+        success_msg: تم تحميل الاستيراد بنجاح
+        title: استيراد بيانات نتائج تسجيل النقاط
+        upload: رفع
+      prework_setting:
+        disable: تعطيل العمل المسبق لجميع المستخدمين الحاليين
+        enable: تمكين العمل المسبق لجميع المستخدمين الحاليين
+        title: نموذج إعداد ما قبل العمل
+      regenerate:
+        content: هل أنت متأكد من أنك تريد إعادة إنشاء التقارير المتاحة؟
+        title: إعادة إنشاء التقارير؟
+      remove:
+        helper_text: 'خطر: سيؤدي تحديد هذا الخيار إلى إزالة جميع ردود المستخدمين على هذا التقييم في هذه الحملة.'
+        msg_text: أنت تحاول حذف تقييم <strong>"%{name}"</strong>
+        successfully: تمت إزالة تقييم %{name} بنجاح.
+        title: إزالة التقييم؟
+      rescore:
+        content: هل أنت متأكد من أنك تريد إعادة تسجيل التقييم؟
+        successfully: تمت إعادة تسجيل التقييم بنجاح.
+        title: إعادة تقييم التسجيل؟
+      rescore_response:
+        message: إعادة تسجيل النقاط المجدولة للتقييم "%{name}"
+        title: إعادة تسجيل الردود
+      reset:
+        content: هل أنت متأكد من أنك تريد إعادة تعيين النتيجة؟
+        successfully: تمت إعادة تعيين بيانات النتيجة بنجاح.
+        title: إعادة تعيين النتيجة للتقييم %{name}؟
+      update_assessor_form:
+        select_assessor: حدد نموذج المقيم
+        success_msg: تم تحميل نموذج المقيم بنجاح
+        title: تحديث نموذج المقيم
+        update: تحديث
+      update_content_variation:
+        select_schedule: حدد تباين المحتوى
+        success_msg: تم تحديث تباين محتوى المحاكاة بنجاح
+        update: تحديث
+      update_external_config:
+        text_placeholder: تكوين json خارجي
+        title: تحديث التكوين الخارجي
+      update_locales:
+        select_locales: حدد الإعدادات المحلية
+        success_msg: تم تحديث الإعدادات المحلية بنجاح
+        title: تحديث الإعدادات المحلية المتاحة
+      update_mettl_schedule:
+        select_schedule: حدد الجدول الزمني
+        success_msg: تم تحديث جدول Mettl بنجاح
+        update: تحديث
+      update_norm:
+        apply: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
+        cannot_remove_norm: لا يمكن إزالة المعيار للتقييم المكتمل.
+        select_norm: حدد المعيار
+        success_msg: تم تحديث المعايير بنجاح
+        title: تحديث المعيار
+        update: تحديث
+      update_simulation_time_extension:
+        success_msg: تم تحديث تمديد وقت المحاكاة بنجاح
+        title: تمديد الوقت
+        tooltip: تمديد الوقت كعامل (على سبيل المثال ، 1.5 لوقت إضافي بنسبة 50%)
+        update: تحديث
+      update_time:
+        additional_time: الوقت (دقيقة)
+        title: تمديد الوقت
+      workshop_activity_duration:
+        form:
+          duration: المدة بالدقائق
+        title: مدة نشاط ورشة العمل
+    normalize_factor_scores:
+      normalization_not_allowed: يتم حاليا تعطيل تطبيع درجات العوامل لهذا التقييم في إعدادات المشروع. يرجى تمكينه للمتابعة.
+      success: تم الانتهاء من تطبيع درجات العوامل بنجاح
+    not_allow_msg_proctoring_workshop_activity: لا يمكنك القيام بأنشطة مركز التقييم لأنك داخل نافذة مراقبة. للقيام بهذه الأنشطة تحتاج إلى الخروج من نافذة المراقبة.
+    pearson_variation_form:
+      apply_to_existing_users: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
+      select: حدد التباين
+      update: تحديث
+      update_success: تم تحديث تباين بيرسون بنجاح
+    scheduled_successfully: تم تحديد موعد التقييم بنجاح
+    scheduling:
+      update_exists: تجاوز الجدول الزمني الحالي
+    scheduling_time: جدولة وقت التقييم
     statuses:
       completed: تم اكماله
       in_progress: قيد التنفيذ
@@ -362,11 +1565,100 @@ ar:
       not_started: لم يبدأ بعد
       timed_out: انتهت المهلة
       universal_link: رابط عالمي
+    ungrouped_assessments_heading: فك تجميع
+  campaign_join_token:
+    campaign_id: معرف الحملة
+    expire_in: تنتهي الصلاحية في (ثانية)
+    invalid_token: رمز مميز غير صالح
+    text: نص
+  campaign_report:
+    actions:
+      add_reports:
+        enqueue_message: تم إدراج مهمة إضافة التقارير في قائمة الانتظار بنجاح
+        success_message: تمت إضافة التقارير بنجاح
+      bulk_download: تحميل بالجملة
+      export_data: تصدير البيانات
+    bulk_download:
+      error: يقتصر التنزيل المجمع على 1000 ملف تقرير. يحتوي التحديد الحالي على ملفات تقرير %{count}. يرجى ضبط تاريخي البدء والانتهاء لتقليل عدد ملفات التقارير المراد تنزيلها.
+    column:
+      assessor_access: وصول المقيم
+      auto_assign: التعيين التلقائي
+      main_report: التقرير الرئيسي
+      report_bundle: حزمة التقارير
+      report_name: اسم التقرير
+      user_access: وصول المستخدم
+      user_dashboard: لوحة معلومات المستخدم
+    form:
+      operation: عملية
+      operation_options:
+        add_and_allow_new_response: إضافة تقرير إلى مستخدم حالي والسماح باستجابة جديدة
+        add_with_existing_response: إضافة تقرير إلى المستخدم الحالي والاحتفاظ بالاستجابة الحالية
+        skip_existing: تخطي المستخدم الحالي
+      report: تقرير
+      report_bundle_placeholder: حدد حزمة تقارير
+    messages:
+      bulk_download_error: يقتصر التنزيل المجمع على 1000 ملف تقرير. إذا كنت قد اخترت العديد من اللغات ، فيرجى تقليلها.
+      bulk_download_successful: تمت جدولة مهمة تنزيل التقرير المجمع بنجاح
+      export_report_data_scheduled: تمت جدولة مهمة تصدير بيانات التقرير بنجاح
+    modals:
+      remove:
+        apply: قم بتطبيق هذه التغييرات على المستخدمين الحاليين في هذه الحملة.
+        msg_text: أنت تحاول حذف تقرير <strong>"%{reportName}"</strong>
+        title: إزالة التقرير؟
+      user_access:
+        apply: قم بتطبيق هذه التغييرات على المستخدمين الحاليين في هذه الحملة.
+        title:
+          disable: تعطيل وصول المستخدم
+          enable: تمكين وصول المستخدم
+  campaign_users:
+    actions:
+      add_manager: إضافة مدير
+      extend_time: تمديد الوقت
+      search_user: البحث عن المستخدم
+    assessments:
+      progress: ترقى
+    details:
+      additional_time: وقت إضافي
+      assessment_center: مركز التقييم
+      assessment_center_invites: مركز التقييم يدعو
+      completed_at: تم الانتهاء في
+      completion_status: حالة الإنجاز
+      hogan_id: هوجان معرف
+      last_login: آخر تسجيل دخول
+      manager: مدير
+      modals:
+        create_hogan_credentials:
+          assessments: 'تقييمات:'
+          confirmation: أدخل البريد الإلكتروني الوارد أدناه في مربع النص لإضافة بيانات اعتماد هوجان جديدة
+          reports: 'التقارير:'
+          successfully: تمت إضافة بيانات اعتماد hogan جديدة للمستخدم الذي يحتوي على بريد إلكتروني %{email} بنجاح.
+          warning: سيؤدي إنشاء بيانات اعتماد Hogan جديدة إلى إزالة التقييمات والتقارير التالية المقترنة ببيانات اعتماد Hogan القديمة ل %{email}
+        remove:
+          successfully: تمت إزالة المستخدم الذي لديه بريد إلكتروني %{email} بنجاح.
+          title: هل أنت متأكد من أنك تريد إزالة هذا المستخدم من الحملة %{campaignName}؟
+      not_completed_yet: لم يكتمل بعد
+      not_logged_in_yet: لم تقم بتسجيل الدخول بعد
+      not_started_yet: لم تبدأ بعد
+      started_at: بدأت في
+      statuses:
+        completed: اكمال
+        in_progress: قيد التنفيذ
+        ineligible: مؤهلين
+        interrupted: توقف
+        not_started: لم يبدأ
+        timed_out: انتهت مهله
+    modals:
+      remove: هل أنت متأكد من أنك تريد إزالة مستخدم يحمل رسالة إلكترونية "%{email}" من هذه الحملة؟
   campaigns:
+    assessments_and_reports:
+      assessor_assessments: تقييمات المقيم
+      other_assessments: تقييمات أخرى
+      other_assessor_assessments: تقييمات المقيمين الأخرى
+      other_reports: تقارير أخرى
     card:
       duration: المدة الزمنية
       starts_in: 'يبدأ في:'
-      starts_on: يبدأ في %{التاريخ}
+      starts_on: يبدأ في %{date}
       will_start_shortly: ستبدأ الحملة قريباً. يرجى الانتظار
   change_password_page:
     old_password: كلمة المرور القديمة
@@ -443,76 +1735,314 @@ ar:
       retake: لا، أريد أن أستعيد
       run_again: تشغيل مرة أخرى
       title: " نحن بحاجة إلى التأكد من أن النظام الخاص بك يمكنه تسجيل الفيديو"
+      upload_again: تحميل مرة أخرى
       uploading: جاري التحميل
   common:
     actions:
       add: إضافة
+      approve: صدق
       archive: أرشيف
+      back_to_dashboard: العودة إلى لوحة القيادة
+      back_to_responses: العودة إلى الردود
       cancel: إلغاء
+      change: تغيير
       close: إغلاق
       continue: استمرار
       copy: نسخ
+      create: خلق
       delete: حذف
+      done: منجز
+      download: تحميل
       edit: تعديل
+      export: تصدير
+      filter: راووق
+      filter_by_tags: التصفية حسب العلامات
+      go_back: الرجوع للخلف
+      import: استورد
+      insert: أدخل
+      ok: موافق
+      publish: النشر
+      reject: رفض
       remove: إزالة
       reset: إعادة
       resolve: حل
       restore: استرجاع
+      return_to_home: العودة إلى المنزل
+      run: ركض
       save: حفظ
+      schedule: جدول
       search: بحث
       send: إرسال
+      sign_in: تسجيل الدخول
       start: ابدأ
       submit: إرسال
       unarchive: أخرج من الأرشيف
+      unpublish: إلغاء النشر
       unresolve: إلغاء الحل
       update: تحديث
       upload: تحميل
+      upload_file: تحميل الملف
       verify: تحقق
+      view: منظر
       view_all_tasks: عرض جميع المهام
       view_detail: عرض التفاصيل
     column:
       action: نشاط
+      active: نشط
+      allow_multiple_responses: السماح بردود متعددة
+      approval_notification_list: قائمة مستخدمي إشعار الموافقة
+      approvers_list: قائمة الموافقين
+      assessment: تقييم
+      assessment_name: اسم التقييم
+      assessments: تقييمات
+      assessor: مقيم
       category: فئة
+      client: عميل
       code: الرمز
       created_at: تم إنشاؤها في
+      created_by: تم إنشاؤه بواسطة
+      created_date: تاريخ الإنشاء
+      default_language: اللغة الافتراضية
+      description: وصف
+      details: التفاصيل
+      dimension: البعد
+      email: البريد الإلكتروني
+      external_report_id: معرف التقرير الخارجي
+      first_name: الاسم الأول
+      icon: رمز
+      icon_color: لون الرمز
       id: الهوية
+      json:
+        answer: إجابة JSON
+        external_result: النتيجة الخارجية JSON
+        scoring: تسجيل JSON
+      key: مفتاح
+      last_name: اسم العائلة
+      linked_activities: الأنشطة المرتبطة
+      linked_assessment: التقييم المرتبط
+      meeting_link: رابط الاجتماع
+      modified_by: تم التعديل بواسطة
+      modified_date: تاريخ التعديل
       name: اسم
+      owner: مالك
+      package_id: معرف الحزمة
+      poster: ملصق
+      project: مشروع
+      provider: كاسب
+      qc_user_list: قائمة مستخدمي مراقبة الجودة
+      report: تقرير
+      report_id: معرف التقرير
+      require_scheduling: طلب الجدولة
+      responses_count: عدد الردود
+      schedule_time: الجدول الزمني
+      scheduling: جدوله
+      skills: المهارات
       status: حالة
+      tags: العلامات
+      timing: توقيت
+      token: رمز مميز
+      type: نوع
+      unschedule: إلغاء الجدولة
+      updated_at: آخر تحديث
+    errors:
+      csv_injection_validation_error: لا يمكن البدء ب =، |، + ، -، @ ، %
+      something_wrong: حدث خطأ ما. اتصل بالمشرف.
+    messages:
+      leave_message: هل أنت متأكد من أنك تريد مغادرة هذه الصفحة؟ ستفقد أي إجابات غير محفوظة لديك.
     model:
+      admins: المسؤولون
+      assessment: تقييم
       assessments: التقييمات
       campaigns: الحملات
+      completion_statuses: حالات الإنجاز
+      datasheet: ورقة البيانات
+      projects: المشاريع
+      report: تقرير
       reports: التقييم
+      scoring: سجل
+      sms_contact: الاتصال بالرسائل النصية القصيرة
+      threesixty_campaign: درجات حملة Threesixty
+    status:
+      completed: اكمال
+      dropped_out: تسرب الدراسة
+      in_progress: قيد التنفيذ
+      late: متأخر
+      no_show: عدم الحضور
+      not_started: لم يبدأ
+      not_status: لا يوجد حالة
+      on_time: في الموعد
     text:
+      accepted: قبلت
+      all_pages: جميع الصفحات
       cancel: إلغاء
       confirm: تأكيد
       continue: متابعة
+      copied: تم النسخ إلى الحافظة
       default: الافتراضي
       download: تحميل
+      file: ملف
+      global_import: هل الاستيراد العالمي؟
+      minutes: محضر
       na: N / A
+      none: اي
       ok: موافق
       refer_export_file: ارجع إلى وظيفة التصدير لاستخراج قالب يمكن استخدامه للاستيراد هنا.
+      reference_language: اللغة المرجعية
       response: الإجابة
+      select: اختار
+      selected: المحدد
+      subject: موضوع
+      total: مجموع
+      view_as: عرض ك
+    tooltips:
+      hide: أخفى
+      view: منظر
+    validations:
+      select_locale: الرجاء تحديد بعض الإعدادات المحلية
+      should_be_whole_number: يجب أن يكون رقما صحيحا
+  confirmation:
+    delete_comment: هل أنت متأكد من أنك تريد حذف هذا التعليق؟
+  custom_field:
+    field_name: اسم الحقل
+  datasheet:
+    errors:
+      datasheet_column:
+        not_found: لم يتم العثور على العمود '%{column_name}'
+        numeric_value_required: يجب أن يكون العمود '%{field}' رقما
+        string_value_required: يجب أن يكون العمود '%{field}' سلسلة
+      not_configured: لم يتم تكوين ورقة البيانات
   devise:
     administrators:
+      meta_title: تسجيل الدخول إلى لوحة الإدارة
+      passwords:
+        edit:
+          submit: تعيين كلمة مرور جديدة
+          title: تغيير كلمة المرور
+        new:
+          back: العودة
+          submit: أرسل لي تعليمات
+          title: هل نسيت كلمة المرور الخاصة بك؟
       sessions:
         new:
+          forgot_password: هل نسيت كلمة المرور الخاصة بك؟
           submit: تسجيل الدخول
+          title: "<strong>مرحبا بكم</strong> ، يرجى تسجيل الدخول"
+      shared:
+        links:
+          about: عن
+          app_name: "© 2016 اسم التطبيق"
+          contact_us: اتصل بنا
+          privacy: الخصوصيه
+    confirmations:
+      confirmed: تم تأكيد عنوان بريدك الإلكتروني بنجاح.
+      send_instructions: ستتلقى رسالة بريد إلكتروني تحتوي على إرشادات حول كيفية تأكيد عنوان بريدك الإلكتروني في غضون بضع دقائق.
+      send_paranoid_instructions: إذا كان عنوان بريدك الإلكتروني موجودا في قاعدة البيانات الخاصة بنا ، فستتلقى رسالة بريد إلكتروني تحتوي على إرشادات حول كيفية تأكيد عنوان بريدك الإلكتروني في بضع دقائق.
     failure:
       already_authenticated: مرحبا
       inactive: لم يتم تنشيط حسابك بعد.
       invalid: عنوان البريد الإلكتروني غير صحيح أو كلمة المرور غير صالحة
       invited: لديك دعوة معلقة ، يرجى التحقق من بريدك الإلكتروني.
+      last_attempt: لديك محاولة أخرى قبل قفل حسابك.
+      locked: حسابك مقفل.
       magic_link_invalid: رابط تسجيل الدخول غير صالح أو منتهي الصلاحية.
       not_found_in_database: عنوان البريد الإلكتروني غير صحيح أو كلمة المرور غير صالحة
+      saml_user_not_present: المستخدم غير موجود في النظام
       timeout: انتهت جلستك. الرجاء تسجيل الدخول مرة أخرى للمتابعة.
       unauthenticated: تحتاج إلى تسجيل الدخول أو التسجيل قبل المتابعة.
+      unconfirmed: يجب عليك تأكيد عنوان بريدك الإلكتروني قبل المتابعة.
     invitations:
       edit:
+        confirm_password_label: تأكيد كلمة المرور
+        header: تعيين كلمة المرور الخاصة بك
+        instruction: لإنشاء كلمة مرور جديدة ، يرجى إدخال كلمة المرور الجديدة في المربعات أدناه
         password_label: كلمه السر
+        submit: تعيين كلمة مرور جديدة
+        submit_button: تعيين كلمة المرور الخاصة بي
+        title: إنشاء كلمة مرور
+      invitation_removed: تمت إزالة دعوتك.
+      invitation_token_invalid: رمز الدعوة المقدم غير صالح!
+      new:
+        header: إرسال دعوة
+        submit_button: إرسال دعوة
+      no_invitations_remaining: لا توجد دعوات متبقية
+      send_instructions: تم إرسال رسالة بالبريد الإلكتروني للدعوة إلى %{email}.
+      updated: تم تعيين كلمة المرور الخاصة بك بنجاح. لقد قمت الآن بتسجيل الدخول.
+      updated_not_active: تم تعيين كلمة المرور الخاصة بك بنجاح.
+    mailer:
+      admin_invitation_instructions:
+        accept: انقر هنا لقبول الدعوة.
+        body: |-
+          مرحبا %{name},
+          تمت دعوتك للوصول إلى لوحة الإدارة الخاصة بمنصة تقييم Lighthouse - The Talent Enterprise.
+
+          %{accept} أو يمكنك تجاهل هذا البريد الإلكتروني بأمان.
+
+          يرجى عدم مشاركة بيانات اعتماد الوصول الخاصة بك مع أي شخص.
+        subject: دعوة إلى المنارة
+      confirmation_instructions:
+        subject: تعليمات التأكيد
+      invitation_instructions:
+        body: |-
+          مرحبا %{name},
+          تمت إضافتك إلى المنارة كمسؤول للقسم التالي
+        login: تسجيل الدخول إلى المنارة
+        sections:
+          campaign: 'الحملة: %{section_name}'
+          client: 'إيجار العميل: %{section_name}'
+          project: 'المشروع: %{section_name}'
+        subject: دعوة إلى المنارة
+      password_change:
+        body: |-
+          مرحبا %{name}!
+
+          تم تغيير كلمة المرور الخاصة بك.
+
+          إذا لم تقدم هذا الطلب، فيرجى الاتصال بالدعم على الفور على mte.support@mercer.com
+        regards: |-
+          يتعلق
+          فريق المنارة
+        subject: تم تغيير كلمة مرور Lighthouse الخاصة بك
+      reset_password_instructions:
+        body: |-
+          مرحبا %{name}!
+
+          طلب شخص ما رابطا لتغيير كلمة المرور الخاصة بك. يمكنك القيام بذلك من خلال الرابط أدناه.
+        change_password: تغيير كلمة المرور
+        footer: إذا لم تطلب ذلك ، فيمكنك تجاهل هذا البريد الإلكتروني بأمان. لن تتغير كلمة المرور الخاصة بك حتى تصل إلى الرابط أعلاه وإنشاء رابط جديد.
+        regards: |-
+          يتعلق
+          فريق المنارة
+        subject: تعليمات لإعادة تعيين كلمة المرور الخاصة بك
+      unlock_instructions:
+        body: |-
+          مرحبا %{name}!
+
+          تم قفل حسابك بسبب عدد كبير من محاولات تسجيل الدخول الفاشلة.
+
+          انقر على الرابط أدناه لإلغاء قفل حسابك:
+        footer: إذا لم تطلب ذلك ، فيمكنك تجاهل هذا البريد الإلكتروني بأمان. لن تتغير كلمة المرور الخاصة بك حتى تصل إلى الرابط أعلاه وإنشاء رابط جديد.
+        regards: |-
+          يتعلق
+          فريق المنارة
+        subject: تعليمات فتح حسابك
+        unlock_account: فتح حسابي
+    omniauth_callbacks:
+      failure: تعذر المصادقة عليك من %{kind} لأن "%{reason}".
+      success: تمت المصادقة بنجاح من حساب %{kind}.
     passwords:
+      edit:
+        instruction: لإنشاء كلمة مرور جديدة ، يرجى إدخال كلمة المرور الجديدة في المربعات أدناه
+        submit: إرسال
+        title: إنشاء كلمة مرور
       invalid_email: بريد إلكتروني غير صالح
+      no_token: لا يمكنك الوصول إلى هذه الصفحة دون الرجوع إلى رسالة بريد إلكتروني لإعادة تعيين كلمة المرور. إذا كنت قادما من رسالة بريد إلكتروني لإعادة تعيين كلمة المرور، فيرجى التأكد من استخدام عنوان URL الكامل المقدم.
+      send_instructions: ستتلقى رسالة بريد إلكتروني تحتوي على إرشادات حول كيفية إعادة تعيين كلمة المرور الخاصة بك في غضون بضع دقائق.
+      send_paranoid_instructions: إذا كان عنوان بريدك الإلكتروني موجودا في قاعدة البيانات الخاصة بنا ، فستتلقى رابطا لاستعادة كلمة المرور على عنوان بريدك الإلكتروني في غضون بضع دقائق.
+      updated: تم تغيير كلمة المرور الخاصة بك بنجاح. لقد قمت الآن بتسجيل الدخول.
+      updated_not_active: تم تغيير كلمة المرور الخاصة بك بنجاح.
     registrations:
       communication_not_setup_error: لم يتم إعداد مراسلة البريد الإلكتروني للتسجيل ، يرجى الاتصال بمسؤول هذا المشروع.
+      destroyed: وداعًا! تم إلغاء حسابك بنجاح. نأمل أن نراكم مرة أخرى قريبا.
       new:
         email: البريد الإلكتروني
         first_name: الاسم الاول
@@ -526,66 +2056,256 @@ ar:
           sign_in: تسجيل الدخول
         terms_notice: بالتسجيل ، فإنك توافق على <a href="%{terms_url}"> بنود الخدمة وسياسة الخصوصية </a>
         title: التسجيل
+      signed_up: أهلًا وسهلًا! لقد قمت بالتسجيل بنجاح.
+      signed_up_but_inactive: لقد قمت بالتسجيل بنجاح. ومع ذلك، لم نتمكن من تسجيل دخولك لأن حسابك لم يتم تنشيطه بعد.
+      signed_up_but_locked: لقد قمت بالتسجيل بنجاح. ومع ذلك، لم نتمكن من تسجيل دخولك لأن حسابك مقفل.
+      signed_up_but_unconfirmed: تم إرسال رسالة تحتوي على رابط تأكيد إلى عنوان بريدك الإلكتروني. يرجى اتباع الرابط لتفعيل حسابك.
       success:
         actions:
           sign_in: تسجيل الدخول
+        instruction: يرجى التحقق من بريدك الإلكتروني للحصول على مزيد من التعليمات
+        title: الاشتراك بنجاح
+      update_needs_confirmation: لقد قمت بتحديث حسابك بنجاح، لكننا بحاجة إلى التحقق من عنوان بريدك الإلكتروني الجديد. يرجى التحقق من بريدك الإلكتروني واتباع رابط التأكيد لتأكيد عنوان بريدك الإلكتروني الجديد.
+      updated: تم تحديث حسابك بنجاح.
     sessions:
+      already_signed_out: تم تسجيل الخروج بنجاح.
       new:
         email: البريد الإلكتروني
         forgot_password: هل نسيت كلمة السر؟
         instruction: الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية
+        keep_sign_in: نعم، احتفظ بتسجيل الدخول
+        login_with_sso: تسجيل الدخول من خلال تسجيل الدخول الأحادي
         password_placeholder: كلمه السر
         submit: تسجيل الدخول
         tabs:
           register: تسجيل
           sign_in: تسجيل الدخول
         title: مرحباً
+      signed_in: لقد قمت بتسجيل الدخول بنجاح!
+      signed_in_time: آخر مرة سجلت فيها الدخول على %{date_time}
+      signed_out: تم تسجيل الخروج بنجاح.
+      unsuccessful_sign_in_time: لم تنجح آخر محاولة تسجيل دخول على %{date_time}.
     two_factor_authentication:
       attempt: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
+      attempt_failed: كلمة المرور لمرة واحدة غير صحيحة! يرجى المحاولة مرة أخرى
       code_has_been_sent: تم إرسال OTP الجديد الخاص بك إلى عنوان بريدك الإلكتروني المسجل
+      contact_administrator: يرجى الاتصال بمسؤول النظام
+      email:
+        otp:
+          subject: كلمة المرور لمرة واحدة
+      max_login_attempts_reached: لقد وصلت إلى الحد الأقصى لعدد المحاولات لكلمة المرور لمرة واحدة الحالية. انقر فوق إعادة إرسال كلمة المرور لمرة واحدة لتلقي كلمة مرور لمرة واحدة جديدة
+      otp: رمز
+      submit: تثبت
+      success: تم تسجيل الدخول باستخدام المصادقة الثنائية بنجاح.
+      title: كلمة المرور لمرة واحدة
+    unlocks:
+      send_instructions: ستتلقى رسالة بريد إلكتروني تحتوي على إرشادات حول كيفية فتح حسابك في بضع دقائق.
+      send_paranoid_instructions: إذا كان حسابك موجودا ، فستتلقى رسالة بريد إلكتروني تحتوي على إرشادات حول كيفية إلغاء قفله في بضع دقائق.
+      unlocked: تم إلغاء قفل حسابك بنجاح. يرجى تسجيل الدخول للمتابعة.
+      unprocessable_entity: تعذر إلغاء قفل حسابك باستخدام هذا الرابط. يرجى الاتصال بالدعم.
   dry_errors:
     errors:
+      add_edit_project:
+        invalid_subdomain_format: تنسيق النطاق الفرعي خاطئ.
+        reserved_subdomain: النطاق الفرعي %{value} محجوز
+        uniq_subdomain: يجب أن يكون النطاق الفرعي فريدا.
+      add_manager:
+        cannot_be_self: لا يمكن تعيين المستخدم كمدير لنفسه
+        manager_not_found: لم يتم العثور على المدير أو لم يكن جزءا من نفس المشروع
+        user_not_found: لم يتم العثور على المستخدم أو ليس جزءا من نفس المشروع
+      admin:
+        already_added: المسؤول الذي تمت إضافة بريد إلكتروني بالفعل.
+      already_assigned?: لا يمكن ربط هذا التقييم - تم تعيينه بالفعل إلى '%{linked_assessor_form_name}'.
+      already_invited: هذا المستخدم موجود بالفعل في مركز التقييم الذي تحاول إضافته.
+      assessor_assessment:
+        already_added: تمت إضافة تقييم المقيم بالفعل إلى الحملة.
+        lead_already_added: يمكن إضافة تقييم مقيم رئيسي واحد فقط إلى الحملة.
+      campaign_factor:
+        code_already_exists: يوجد بالفعل عامل بنفس التعليمات البرمجية.
+        invalid_lua_name: يجب أن يكون اسم متغير lua صالحا
+        limit_exceeded: لقد وصلت إلى الحد الأقصى لعوامل الحملة %{limit}.
+        name_already_exists: عامل يحمل نفس الاسم موجود بالفعل.
+        rank_not_allowed: يمكن ترتيب العوامل ذات نوع الإخراج الرقمي فقط.
+      campaign_factor_group:
+        group_already_exists: مجموعة تحمل نفس الاسم موجودة بالفعل.
+        last_factor_group: لا يمكن حذف آخر مجموعة عوامل الحملة.
+      campaign_idps:
+        idp_template_not_published: لم يتم نشر قالب IDP هذا بعد ، يرجى نشره قبل التعيين إلى الحملة.
+      cant_be_deleted: لا يمكن حذف هذا السجل
+      client_feature:
+        ai_assisted_idp_feature_error: لا يمكن أن يكون صحيحا إذا تم تعطيل ميزة مساعدي الذكاء الاصطناعي
+      create_superadmin:
+        uniq_email: يجب أن يكون البريد الإلكتروني موحدا.
+      development_actions:
+        only_global_skills_allowed: يجب أن تكون المهارات المختارة مهارات عالمية.
+        skills_not_belong_to_project: يجب أن تنتمي المهارات المحددة إلى المشروع المحدد.
+        skills_required: يُرجى تحديد مهارة واحدة على الأقل.
+      exceeded_subjects_count: يمكنك فقط إضافة %{count} مواضيع لكل دعوة
+      filled?: لا يمكن أن تكون فارغة
       idp_template:
         content_required: المحتوى مطلوب للتعليمات
         tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"
+      invalid_name: يسمح فقط بالحروف الأبجدية والرقم والمسافات والشرطة والنقطة كحرف صالح
+      invalid_value: عبارة غير صالحة '%{value}' في رقم السطر %{row}
       job_roles:
         unique_within_job_group: يوجد دور وظيفي بنفس الاسم بالفعل.
+      json?: يجب أن تكون JSON صالحة
+      key?: لا يمكن أن تكون فارغة
+      match_regexp?: قيمة غير صالحة
+      mettl_schedule_record_create:
+        uniq_schedule_name: يجب أن يكون اسم الجدول فريدا
+      missed?: لا يمكن أن تكون فارغة
+      not_allowed?: غير مسموح بالتغيير
+      not_in_the_list?: تم تمرير قيمة غير صالحة
+      not_uniq_variable: المتغير "%{value}" المعاد تعريفه على رقم السطر %{row}
+      project_assessments:
+        should_be_greater_than_zero: يجب أن تكون صلاحية النتيجة أكبر من 0 يوم
+      report_approval_settings:
+        report_exists: إعداد الموافقة على التقرير لهذا التقرير موجود بالفعل.
+        validates_admins: لا يمكن للمشرفين الوصول إلى الحملة.
+      report_families_reports:
+        report_exists: هذا التقرير هو بالفعل جزء من حزمة التقارير
+      size?: يجب أن يكون الحجم أقل%{size}
+      skill:
+        already_added: مهارة تحمل نفس الاسم تمت إضافتها بالفعل.
+      skill_alias:
+        unique_alias: يجب أن يكون الاسم المستعار فريدا
+        unique_skill: يجب أن تكون المهارة فريدة من نوعها
       skills_job_roles:
         must_belong_to_same_project_or_be_global: يجب أن تنتمي المهارة والدور الوظيفي إلى نفس المشروع أو أن يكونا عالميين.
         unique_mappings: يوجد بالفعل تعيين بنفس المهارة والدور الوظيفي.
+      uniq: تقييم Mettl هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
+      uniq?: يجب أن تكون فريدة من نوعها
+      uniq_simulation: تقييم المحاكاة هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
       uniq_skillvue: تقييم Skillvue هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
+      update_workshop:
+        less_than_booked: يجب أن يكون إجمالي المقاعد أكبر من الحجز
+      user_availability_date:
+        overlaps_date: يتداخل مع توفر آخر %{range}
+        overlaps_time: الفاصل الزمني المتداخل%{interval}
+        start_date_should_be_less: يجب أن يكون تاريخ البدء أقل من تاريخ الانتهاء
+        start_time_should_be_less: يجب أن يكون وقت البدء أقل من وقت الانتهاء
+      user_idp_plan:
+        idp_template_already_assigned_to_user: تم دمج قالب Idp هذا بالفعل لهذا المستخدم وهو نشط
+        idp_template_not_published: لم يتم نشر قالب IDP هذا بعد ، يرجى نشره قبل التعيين للمستخدم.
+      user_saved_filters:
+        limit_exceeded: يمكنك فقط الحصول على الفلاتر المحفوظة %{limit} ، يرجى حذف الفلاتر المحفوظة لإضافة المزيد.
+        unique_name: يوجد بالفعل فلتر يحمل نفس الاسم.
+      workshop_invited_subject_create:
+        already_exists: الموضوع موجود بالفعل في الدعوة.
+      workshop_subject_create:
+        already_exists: الموضوع موجود بالفعل في مركز التقييم هذا.
+        part_of_other_workshop: الموضوع مشارك بالفعل في "%{workshop_name}".
+      workshops:
+        no_available_assessor_slots: لا توجد فتحات متاحة للمقيم %{assessor}
+        no_available_manager_slots: لا توجد فتحات متاحة للمدير %{manager}
+    users:
+      registrations:
+        new:
+          register: سجل
+          sign_in: تسجيل الدخول
+      sessions:
+        new:
+          register: سجل
+          sign_in: تسجيل الدخول
   emails:
+    nomination_approval_table:
+      evaluator_name: اسم المقيم
+      number: لا
+      relationship: علاقة
+      subject_name: اسم الموضوع
     subject_relationship_table:
       subject_email: ايميل المشارك
       subject_name: اسم المشارك
       subject_relationship: العلاقه بالمشارك
+  empty: أجوف
+  enums:
+    communication:
+      body:
+        error: يحتوي نص البريد الإلكتروني على نص غير صحيح.
   errors:
     assessments:
       timed_out: لن تتمكن من إجراء تقييم %{assessment_name} نظرًا لانتهاء المهلة المحددة له.
     error: الخطأ
+    error_401: أنت غير مصرح لك بالوصول إلى هذا المورد. يرجى تسجيل الدخول.
+    error_403: ليس لديك إذن لعرض هذا المورد.
     error_500: هناك خطأ ما. تواصل مع مديرك.
+    error_msg: حدث خطأ ما. يرجى تحديث الصفحة وإذا استمرت المشكلة، فاتصل بالمسؤول
     forbidden: لم يكن لديك الوصول إلى هذه الصفحة
     forbidden_action: ليس لديك أذونات لهذا الإجراء
+    invalid_session_title: جلسة غير صالحة
     invalid_token: هناك خطأ ما. يرجى إعادة تحميل الصفحة والمحاولة مرة أخرى.
+    max_regeneration_limit: تجاوز الحد الأقصى للتجديد ، اتصل بإدارتك.
+    messages:
+      data_report_blank: تقرير البيانات غير موجود
     module_error: حدث خطأ ما في هذه الوحدة، يرجى الاتصال بالإدارة.
     module_error_editor: حدث خطأ ما في هذه الوحدة، يرجى التحقق من إعدادات الوحدة.
     module_props_error: حدث خطأ ما في هذه الوحدة.
+    skill_gap_report:
+      not_found: لم يتم العثور على تقرير فجوة المهارات
     try_again: حاول مرة اخرى
+    user_idp_plan:
+      no_active_plan: لم يتم العثور على خطة IDP نشطة
+    webhooks:
+      multiple_webhook_error: لا يمكن تحديث عنوان URL نظرا لوجود العديد من خطافات الويب لهذا المشروع.
+  evaluators:
+    errors:
+      can_not_processed: لا يمكن معالجتها
+      exists: موجود بالفعل
+      max_evaluators: لديك بالفعل عدد كاف من المقيمين
   factors:
     description: الوصفx
     factor: فئة الدرجات
   frontend:
     activate: تنشيط
     are_you_sure: هل أنت متأكد؟
+    aria:
+      back_to_dashboard: العودة إلى لوحة القيادة
+      back_to_tasks: العودة إلى المهام
+      calendar: تقويم
+      campaign_name_description: ، للحملة "%{campaignName}"
+      change_language: "(تغيير اللغة)"
+      clear_date: تاريخ المسح
+      collapse_menu: طي القائمة
+      confirm_proceed: تأكيد للمتابعة
+      delete_message: حذف الرسالة
+      drag_drop_instructions_desktop: قم بتشغيل وضع النماذج لسحب العناصر وإفلاتها باستخدام قارئ شاشة.
+      drag_drop_instructions_mobile: باستخدام قارئ الشاشة، انقر نقرا مزدوجا مع الاستمرار على زر السحب، وانتقل إلى عنصر آخر وارفع الإصبع لتحريك العنصر.
+      enlarge_view_text: تكبير طريقة العرض %{text}
+      expand_menu: توسيع القائمة
+      file_uploaded: تم تحميل الملف
+      lang_dropdown_description: تغيير اللغة
+      pause: تورع
+      play: لعب
+      profile_progress: إكمال الملف الشخصي هو
+      remove_file: إزالة الملف
+      send_message: إرسال رسالة
+      slider_label_instruction: 'الحد الأدنى: %{min} والحد الأقصى: %{max}'
+      task_btn_description: المهمة %{assessmentName}
+      task_progress_label: إكمال المهمة هو
+      write_message: اكتب رسالتك
     assessment: تقييم
     assessment_groups:
       create_success: تم إنشاء المجموعة بنجاح
       update_success: تم تحديث المجموعة بنجاح
+    availability:
+      add_new_availability: إضافة توفر جديد
+      create_success: تم إنشاء التوفر بنجاح.
+      remove_confirm:
+        content: هل أنت متأكد من أنك تريد إزالة التوافر؟
+        success: تمت إزالة التوفر بنجاح.
+        title: إزالة التوفر
+      update_success: تم تحديث التوفر بنجاح.
     background_reading: قراءة الخلفية
     bookings:
       accept_invite_msg: لقد تلقيت دعوة، يرجى حجز الفتزة الزمنية الخاصة بك.
       add_to_calendar: إضافة إلى التقويم
       add_to_calendar_tour_description: أضف هذا الحجز إلى التقويم الخاص بك
+      add_to_google_calendar: أضف إلى تقويم جوجل
+      add_to_i_calendar: أضف إلى iCalendar
+      add_to_msoffice_calendar: إضافة إلى تقويم Microsoft Office 365
+      add_to_outlook_calendar: إضافة إلى تقويم Outlook
+      add_to_yahoo_calendar: إضافة إلى تقويم ياهو
       assessment_center_alert:
         btn_title: حملة
         message_part1: أكمل جميع الأعمال السابقة في هذا الشأن
@@ -623,9 +2343,11 @@ ar:
       language_required_msg: يرجى تحديد لغة
       meeting_start_text: 'سيبدأ اللقاء في:'
       need_changes: هل تحتاج إلى إجراء التغييرات؟
+      neurodivergence_comment_aria_label: تعليقات الاختلاف العصبي
       neurodivergence_comment_placeholder: تعليقاتك
       neurodivergence_question: هل تحتاج إلى أي تسهيلات أو تعديلات معقولة بسبب الاحتياجات الخاصة أو الإعاقات للمشاركة بشكل كامل في التقييم؟
       no_invites_msg: ستتم إضافتك إلى مركز التقييم أو ستتلقى دعوة لحجز مكانك؛ وبمجرد انضمامك إلى المركز، يمكنك إكمال الأنشطة بالنقر على زر "عرض التفاصيل" أدناه.
+      or: أو
       other_invite: شاهد %{count} دعوة إضافية
       other_invites: عرض %{count} من الدعوات الإضافية
       reason: سبب
@@ -650,10 +2372,18 @@ ar:
     break_time: فترة إستراحة
     campaign:
       actions:
+        copy:
+          success: تم نسخ %{campaignName} بنجاح.
         remove:
           confirmation: 'أدخل الإسم الحالي للحملة في مربع النص أدناة لإزالة الحملة '
           success: تمت إزالة الحملة بنجاح %{campaignName}
       users:
+        actions:
+          export:
+            details: مستخدمو الحملة
+            scheduled: تمت جدولة تصدير المستخدم بنجاح.
+          export_reports_and_assessments:
+            details: التقارير والتقييمات
         completion_statuses:
           completed: تم إكماله
           in_progress: " على قيد التقدم"
@@ -676,13 +2406,34 @@ ar:
             success: تم إزالة المشروع باسم '%{projectName}' بنجاح
     delete: " حذف"
     edit: تعديل
+    error_warning: عفوا ، حدث خطأ ما في تقييمك. يرجى الاتصال بالدعم.
+    hogan:
+      cannot_start: لا يمكنك بدء تقييم هوجان الآن. يرجى المحاولة بعد بضع دقائق.
     lighthouse_app: ميرسر لايتهاوس
     login: تسجيل الدخول
+    maintenance:
+      notification: سيتم تعطيل المنارة للصيانة المجدولة في غضون 60 ثانية
     manage: " إدارة"
     'no': لا
+    passwordSetting:
+      update_success: تم تحديث إعدادات الأمان بنجاح
+    questions:
+      campaign_factor_feedback:
+        add_skill: إضافة مهارة
+        feedback: ردود الفعل
+        max_factors: الحد الأقصى للعوامل
+        min_factors: الحد الأدنى للعوامل
+        skill_factor: عامل المهارة
+    report_error: عفوا ، حدث خطأ ما في تقريرك. يرجى الاتصال بالدعم.
+    request_failed_message_box:
+      message: فشل الطلب الأخير. يرجى تحديث الصفحة وإذا استمرت المشكلة، فاتصل بالمسؤول.
+      refresh: تحديث
     resource:
-      create_success: تم إنشاؤه بنجاح %{resourceName}
-      update_success: "%{resourceName} تم تحديثه بنجاح"
+      create_success: تم إنشاؤه بنجاح %{readableResourceName}
+      update_success: "%{readableResourceName} تم تحديثه بنجاح"
+    restart: اعاده تشغيل
+    restart_progress: كانت هناك بعض التغييرات في التقييم. يرجى تحديث الصفحة لرؤية التغييرات. سيؤدي تحديث الصفحة إلى بدء التقييم من البداية. سيتم ملء الأسئلة التي أجبت عليها بالفعل تلقائيا.
+    saved_results: تم حفظ الإجابات بنجاح.
     session_timeout_modal:
       buttons:
         close: أغلق
@@ -693,6 +2444,15 @@ ar:
       message_after_timeout: انتهت جلستك، يرجى تسجيل الدخول مرة أخرى.
       time_remaining: الوقت المتبقي
       title: تحذير انتهاء الجلسة
+    skip_to_content: تخطي إلى المحتوى
+    smsInvites:
+      create_success: تمت إضافة دعوة الرسائل النصية القصيرة بنجاح
+      update_success: تم تحديث دعوة الرسائل النصية القصيرة بنجاح
+    sms_records:
+      create_success: تمت جدولة مهمة الرسائل القصيرة بنجاح
+    test_webhook:
+      create_success: تم اختبار Webhook بنجاح.
+      success: نجاح
     update: تحديث
     upload: تحميل
     workshop_invited_subjects:
@@ -703,8 +2463,53 @@ ar:
         requested_rescheduling: لقد تم طلب إعادة الجدولة
         requested_rescheduling_rejected: لقد تم رفض طلب إعادة الجدولة
     'yes': نعم
+  glint:
+    booking_card:
+      aria_available_time: الوقت المتاح
+      aria_back_to_time_selection: اختيار العودة إلى الوقت
+      aria_desc_current_month: حاليا على %{monthName} %{year}
+      aria_label_next_month: انتقل إلى الشهر المقبل
+      aria_label_previous_month: الانتقال إلى الشهر السابق
+      aria_timezone_select: حدد المنطقة الزمنية
+    color_picker:
+      copy_success_msg: نسخ الرمز السداسي إلى الحافظة.
+      recent_colors: 'استخدم مؤخرا:'
+      recommended_colors: 'اوصت:'
+    datepicker_with_ranges:
+      all_time: كل الوقت
+      current_month: الشهر الحالي
+      current_week: الأسبوع الحالي
+      last_month: الشهر الماضي
+      last_week: الأسبوع الماضي
+      today: اليوم
+      yesterday: أمس
+    fontsize_modifier:
+      change_font: تغيير حجم الخط
+      decrease_font: تقليل حجم الخط
+      increase_font: زيادة حجم الخط
+      reset_font: إعادة تعيين حجم الخط
+    input_duration:
+      max_duration: المدة القصوى هي %{duration}
+    schedule_availability:
+      copy_to_all: نسخ إلى الكل
+      end_date: تاريخ الانتهاء
+      from: من
+      new_schedule: إضافة جدول جديد
+      new_schedule_description: يجب أن يكون وقت البدء أقدم من وقت الانتهاء
+      no_slots: لم تتم إضافة فتحات
+      required_error: لا يمكن أن تكون فارغة
+      save: أنقذ
+      saved_schedule_description: جدول التوفر المحفوظ للمستخدم
+      start_date: تاريخ البدء
+      timezone_label: المنطقة الزمنية
+      to: ل
+    views_container:
+      aria_grid_view: عرض الشبكة
+      aria_list_view: طريقة عرض القائمة
+      aria_selected: المحدد
   idp:
     actions: الإجراءات
+    behavioral: سلوكية
     board: اللوحة
     comment_details:
       add_comment: إضافة تعليق
@@ -768,9 +2573,11 @@ ar:
       structured_learning: تعلم منظم
       submit_plan: تقديم الخطة
       write_here: اكتب هنا...
+    edit_plan: تعديل الخطة
+    edit_progress: تحرير التقدم
     initial_steps:
       add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
-      add_skill_group_title: استكشاف مهاراتك في %{category}
+      add_skill_group_title: استكشاف مهار %{category} اتك في
       add_skills: إضافة
       add_skills_step: إضافة مهارات
       continue_to_rate_skills: متابعة لتقييم المهارات
@@ -784,6 +2591,7 @@ ar:
       rate_skills_title: تقييم مهاراتك
       rating_column_header: تقييمك الذاتي
       reflective_questions: أسئلة تأملية
+      save: أنقذ
       select_skills: حدد مهاراتك
       select_skills_placeholder: حدد المهارات
       selected_skills: المهارات المحددة
@@ -791,17 +2599,20 @@ ar:
       skill_gap_report: تقرير فجوة المهارات
     list: قائمة
     manage_plan: إدارة الخطة
+    mark_as_complete: وضع علامة على أنها كاملة
     mark_as_incomplete: وضع علامة على أنها غير مكتملة
     my_plan:
       development_plan: خطة التطوير
       graphs:
         categories: الفئات
       save_skills: حفظ المهارات
+    new_comments: تعليق (تعليقات) جديدة
     pdf:
       approval_status: حالة الموافقة
       cover:
         fields:
           assigned_data: تاريخ التعيين
+          assigned_date: تاريخ التعيين
           completion_date: تاريخ الإكمال
           division: القسم
           name: الاسم
@@ -826,9 +2637,9 @@ ar:
             content: استخدم قسم التقدم لدعم التقدم في المسارات المحددة.
             title: التقدم
         chart:
-          collaboration: "<strong>20٪</strong>التعلم <br /> التعاوني"
-          job: "<strong>70٪</strong>التعلم <br />أثناء العمل"
-          learn: "<strong>10٪</strong>التعلم الرسمي"
+          collaboration: "<strong>20%</strong>التعلم <br /> التعاوني"
+          job: "<strong>70%</strong>التعلم <br />أثناء العمل"
+          learn: "<strong>10%</strong>التعلم الرسمي"
         content:
           list:
             r1: يرجى ملاحظة أن هذه القائمة إرشادية فقط، ويمكن النظر في مسارات تطوير إضافية لك بناءً على التطلعات الفردية، وتوصيات مديرك وكذلك أولويات العمل التنظيمية.
@@ -845,7 +2656,7 @@ ar:
             - الحصول على التغذية الراجعة بشكل رسمي وغير رسمي من الآخرين
             - القيام بدور فعال في جمعيات وشبكات الصناعة
             - بناء شبكاتك الخارجية الخاصة
-            title: التعلم التعاوني (20٪) <br/> التطوير من خلال الآخرين
+            title: التعلم التعاوني (20%) <br/> التطوير من خلال الآخرين
           job:
             list:
             - تولي مناصب قيادية في لجان أصحاب المصلحة أو الإدارة
@@ -854,7 +2665,7 @@ ar:
             - العمل بشكل تعاوني مع الوظائف الأخرى
             - النظر في قيادة المشاريع خارج مؤسستك
             - العمل بشكل وثيق مع خبراء الصناعة الخارجيين في المشاريع المشتركة
-            title: التعلم أثناء العمل (70٪) <br/> التطوير من خلال الخبرة
+            title: التعلم أثناء العمل (70%) <br/> التطوير من خلال الخبرة
           learn:
             list:
             - تولي مناصب قيادية في لجان أصحاب المصلحة أو الإدارة
@@ -863,7 +2674,7 @@ ar:
             - العمل بشكل تعاوني مع الوظائف الأخرى
             - النظر في قيادة المشاريع خارج مؤسستك
             - العمل بشكل وثيق مع خبراء الصناعة الخارجيين في المشاريع المشتركة
-            title: التعلم الرسمي (10٪) <br/> التطوير من خلال التعلم المنظم
+            title: التعلم الرسمي (10%) <br/> التطوير من خلال التعلم المنظم
         title: إرشادات لتوجيه خطة التطوير الفردية الخاصة بك
       idp:
         end_date: تاريخ الانتهاء
@@ -884,6 +2695,7 @@ ar:
       statuses:
         approved: تمت المراجعة والموافقة
         completed: مكتمل
+        draft: المسودة
         not_reviewed: لم تتم المراجعة
         pending_approval: قيد المراجعة
       summary:
@@ -902,12 +2714,13 @@ ar:
         library: مكتبة خطة التطوير الفردية
         skills_count: عدد المهارات
         title: ملخص التقرير
+    plan: خطة
     reflective_questions:
       already_completed: لقد تم الانتهاء من IDP بالفعل، ولا يمكنك الإجابة عن الأسئلة الآن.
       answer_later: أجب لاحقًا
       answer_placeholder: اكتب إجابتك هنا...
       errors:
-        max_words: تسمح الإجابة بحد أقصى %{عدد} الكلمات
+        max_words: تسمح الإجابة بحد أقصى %{count} الكلمات
         min_words: تتطلب الإجابة ما لا يقل عن %{count} الكلمات
         required: إجابة السؤال مطلوبة
       max_words: الحد الأقصى للكلمات
@@ -919,12 +2732,18 @@ ar:
     skill_gap_report:
       title: تقرير فجوة المهارات
     status: الحالة
+    technical: اِصطِلاحِيّ
     user_idp_status:
       approved: تمت الموافقة
+      completed: اكمال
       draft: مسودة
+      in_progress: قيد التنفيذ
       not_started: لم يبدأ
       pending_approval: قيد الموافقة
+      rejected: نبيذ
     users: المستخدمون
+    with_reflection_questions: مع أسئلة التفكير
+    without_reflection_questions: بدون أسئلة تفكير
   idp_templates:
     assign: تعيين
     assign_idp_template: تعيين قالب خطة التطوير الفردية
@@ -937,7 +2756,168 @@ ar:
     placeholder: اختر قالب خطة التطوير الفردية
     save_and_assign: حفظ وتعيين
     success_scheduled: تم جدولة مهمة تعيين خطة التطوير الفردية بنجاح
+  jobs:
+    threesixty:
+      bulk_downloads: تمت جدولة مهمة التنزيل المجمع بنجاح
+      export_completion_statuses_scheduled: تمت جدولة مهمة تصدير حالات الإكمال بنجاح
+      export_raw_results_scheduled: تمت جدولة مهمة تصدير النتائج الأولية بنجاح
+      export_scores_scheduled: تمت جدولة مهمة تصدير الدرجات بنجاح
+      reports:
+        download:
+          description: 'لتحميل التقرير، يرجى اتباع الرابط: <a href=''%{url}'' target=''_blank''>تحميل</a>'
+          error: حدث خطأ
+          error_description: فشل إنشاء التقارير. يرجى الاتصال بالمسؤول أو محاولة <b>التنزيل</b> مرة أخرى.
+          message: التقرير جاهز
+  languages:
+    af: الأفريقانية
+    ar: العربية
+    az: الاذربيجانيه
+    bg: البلغارية
+    bs: البوسنية
+    by: البيلاروسية
+    ca: الكتالانية
+    cn: الصينية
+    cs: التشيكية
+    cy: سيمراج
+    da: الدانماركية
+    de: الماني
+    el: اليونانية
+    en: الإنكليزية
+    en-GB: الإنجليزية - المملكة المتحدة
+    en-US: الإنجليزية - الولايات المتحدة
+    eo: إسبرانتو
+    es: الإسبانية (أمريكا اللاتينية)
+    es-ES: الإسبانية (إسبانيا)
+    et: الإستونية
+    fa: فارسي
+    fi: الفنلندية
+    fr: الفرنسية
+    gu: الجوجاراتية
+    he: العبرية
+    hi: الهندية
+    hr: الكرواتية
+    hu: المجرية
+    id: البهاسا إندونيسيا
+    it: الإيطالية
+    ja: اليابانية
+    km: خميرية
+    ko: الكورية
+    lt: الليتوانية
+    lv: اللاتفية
+    mk: مقدوني
+    mn: المنغولية
+    ms: البهاسا ماليزيا
+    my: ميانمار
+    nb: النرويجية بوكمول
+    nl: الهولندية
+    'no': النرويجية ‏
+    pl: البولندية
+    pt: البرتغالية
+    pt-BR: البرتغالية البرازيلية
+    pt-PT: البرتغالية (البرتغال)
+    pt_BR: البرتغالية (البرازيل)
+    ro: الرومانية
+    ru: الروسية
+    sk: السلوفاكية
+    sl: السلوفينية
+    sr-Cyrl: اللغة السيريلية الصربية
+    sr-Latn: اللاتينية الصربية
+    sv: السويدية
+    sw: السواحلية
+    ta: التاميلية
+    th: التايلندية
+    tl: التغالوغيه
+    tr: التركية
+    ua: الأوكرانية
+    uk: الأوكرانية
+    ur: الأوردية
+    vi: الفيتنامية
+    zh: الصينية المبسطة
+    zh-CN: الصينية (جمهورية الصين الشعبية)
+    zh-HK: الصينية (هونغ كونغ)
+    zh-Hant: الصينية - التقليدية
+    zh-TW: الصينية (تايوان)
+  license_usage:
+    active: نشط
+    campaign_name: اسم الحملة
+    inactive: كسلان
+    status_updated_at: آخر تحديث للحالة
+    status_updated_by: آخر تحديث بواسطة
+    subject_email: البريد الإلكتروني للموضوع
+    subject_name: اسم الموضوع
+    usage_overview: عرض استخدام الترخيص
+    usages: استخدامات
+  licenses:
+    enabled: تمكين
+    end_date: تاريخ الانتهاء
+    not_enough_idp_license: لا توجد تراخيص IDP كافية، يرجى الاتصال بالمسؤول
+    not_enough_license: لا يحتوي "%{client_name}" على تراخيص كافية ل "%{report_name}"
+    not_enough_license_count: لا توجد تراخيص كافية، يرجى الاتصال بالمسؤول
+    not_enough_proctoring_credits: لا توجد اعتمادات كافية لبدء جلسة المراقبة
+    number: رقم
+    overuse_number: بدل الاستخدام الزائد
+    report_family: حزمة التقارير
+    start_date: تاريخ البدء
+    title: الترخيص
+    type: نوع
+    types:
+      common: شائع
+      idp: آي دي بي
+      proctoring: المراقبة
+      threesixty: تريويكسيكستي
+    used_number: التراخيص المستخدمة
+    used_out_of: "%{used} من %{total}"
   mailer:
+    from: مؤسسة المواهب
+    idp:
+      manager_unread_comments:
+        body: |-
+          مرحبا %{name},
+          لديك تعليقات جديدة من مراسلي آي دي بي.
+
+          %{dashboard_link}
+
+          في لوحة معلومات المراسلين المباشرين، يمكنك:
+          - مراجعة التعليقات الجديدة من الأعضاء على خططهم الفردية
+          - تقديم ملاحظات حول أهدافهم التنموية
+          - تتبع التقدم المحرز في أنشطة النازحين داخليا
+          - دعم نمو فريقك وتطوره
+        dashboard_link: قم بزيارة لوحة التحكم
+        subject: لديك تعليقات جديدة - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          مرحبا %{name},
+          لديك تعليقات جديدة على خطة التطوير الخاصة بك.
+
+          %{dashboard_link}
+
+          في لوحة معلومات خطتي، يمكنك:
+          - قم بتحديث خطة التطوير الخاصة بك
+          - قراءة التعليقات والملاحظات الجديدة
+          - الرد على أسئلة مديرك
+          - تحديث تقدمك في إجراءات التطوير
+        dashboard_link: عرض خطتي
+        subject: لديك تعليقات جديدة على خطة التطوير الخاصة بك - %{campaign_name}
+    license:
+      expire:
+        subject: انتهت صلاحية الترخيص
+      overuse:
+        subject: الإفراط في استخدام الترخيص
+      weekly_stats:
+        column_headers:
+          client_name: اسم العميل
+          expiry_date: تاريخ انتهاء الصلاحية
+          overuse_limit: حد الإفراط في الاستخدام
+          project_manager: مدير المشروع
+          remaining_count: العد المتبقي
+          type: نوع الترخيص
+          use_count: استخدام العدد
+        expiry_stats: 'التراخيص التي تنتهي صلاحيتها خلال ال 30 يوما القادمة :'
+        no_expiry_stats: لا توجد تراخيص تنتهي صلاحيتها خلال ال 30 يوما القادمة.
+        no_weekly_stats: لا يتم استهلاك التراخيص في آخر 7 أيام.
+        notice: ملاحظة - يمكنك إلغاء الاشتراك في هذا البريد الإلكتروني الأسبوعي من صفحة ملفك الشخصي.
+        subject: إحصائيات استخدام الترخيص الأسبوعية
+        weekly_stats: 'إحصائيات استخدام الترخيص الأسبوع الماضي:'
     magic_link:
       body:
         dear: عزيزي %{name}،
@@ -945,8 +2925,29 @@ ar:
         instructions: انقر على الرابط أدناه لتسجيل الدخول إلى Lighthouse.
         signin_link: رابط تسجيل الدخول
       subject: رابط تسجيل الدخول إلى Lighthouse
+    users:
+      account_disable: تم تعطيل حسابك بسبب عدم النشاط
+      warning: سيتم تعطيل حسابك قريبا بسبب عدم النشاط
+  maintenance_message: سيتم تعطيل Lighthouse للصيانة المجدولة على %{start_date} ولن تكون متاحة %{duration} ساعات
+  maintenance_submessage: يرجى تحديث الصفحة بعد اكتمال الصيانة. ستتم إعادة توجيهك إلى صفحة تسجيل الدخول
+  my: خاصتي
+  myself: ''
   navigation:
     logout: تسجيل خروج
+  'no': لا
+  nominations:
+    approval_email_error: تم إرسال آخر موافقة على البريد الإلكتروني على %{last_sent_at}. يمكنك إرسال بريد التذكير التالي في %{wait_time}
+  norms:
+    percentile:
+      columns:
+        mean: دني
+        name: اسم
+        standard_deviation: الانحراف المعياري
+      messages:
+        failure: 'الخطأ: %{error}.'
+        success: تم تحديث معيار العامل '%{factorName}' بنجاح.
+      values:
+        empty: أجوف
   profile:
     add_field: إضافة حقل
     add_photo: أضف صورتك
@@ -963,21 +2964,153 @@ ar:
     male: رجل
     mandatory_fields: يشير إلى الحقول الإلزامية
     not_disclosed: أنا أفضل عدم الإفصاح
-    old_data: بيانات ملفك الشخصي هي %{شهور} من العمر. يرجى تأكيد التفاصيل للمتابعة
+    old_data: بيانات ملفك الشخصي هي %{months} من العمر. يرجى تأكيد التفاصيل للمتابعة
     password: كلمة المرور
     password_confirmation: تأكيد كلمة المرور
+    photo: الصور
     success_update: تم حفظ التفاصيل الخاصة بك بنجاح
     timezone: المنطقة الزمنية
     title: تفاصيلي
     update: حفظ
     update_required: تحديثات الملف الشخصي المطلوبة
+  profiles:
+    edit:
+      header: إعدادات الملف الشخصي
+    form:
+      username: اسم المستخدم
+    update:
+      successfully: تم تحديث الملف الشخصي بنجاح
+  registration:
+    success_update: تم حفظ التسجيل بنجاح
+  registration_code:
+    allowed_domains: النطاقات المسموح بها
+    invalid_code: رمز الحملة غير صالح
+    modals:
+      remove:
+        content: هل أنت متأكد من أنك تريد إزالة رمز التسجيل <strong>"%{code}"</strong>؟
+        successfully: تمت إزالة رمز التسجيل "%{code}" بنجاح.
+      title: رمز التسجيل
+    one_domain_per_line: اسم نطاق واحد لكل سطر
+    restricted_domains: النطاقات المقيدة
+    token_expired: انتهت صلاحية الرمز المميز
+  report_approvals:
+    events:
+      approved_text: النص المعتمد
+      comment_added: تمت إضافة تعليق <i>%{text}</i>
+      comment_removed: تمت إزالة التعليق
+      comment_resolved: تعليق تم حله
+      comment_unresolved: تعليق لم يتم حله
+      comment_updated: تم تغيير التعليق <s>%{oldText}</s> إلى <i>%{newText}</i>
+      created_text: نص مضاف
+      disapproved_text: نص مردود
+      removed_text: تمت إزالة النص
+      status_changed: تم تغيير الحالة من <i>%{from}</i> إلى <i>%{to}</i>
+      updated_text: النص المحدث
+    tabs:
+      all: كل
+      approved: مصدق
+      my_tasks: مهامي
+  report_bundles:
+    actions:
+      remove:
+        confirm_message: هل أنت متأكد من أنك تريد حذف حزمة التقارير "%{name}"؟
+        confirm_title: التأكيد مطلوب
+        success_message: تم حذف حزمة الإبلاغ %{name}
+    report_bundle: حزمة التقارير
+    report_bundles: باقات التقارير
+    reports:
+      actions:
+        add: إضافة تقرير جديد
+        remove:
+          confirm_message: هل أنت متأكد من أنك تريد حذف التقرير "%{name}" من "%{report_bundle_name}"؟
+          confirm_title: التأكيد مطلوب
+          success_message: تم حذف التقرير %{name}
   reports:
     actions:
       add: إضافة تقرير
+      archived:
+        success_message: تمت أرشفة التقرير "%{name}" بنجاح.
+      back_to_campaign: العودة إلى الحملة
+      copy:
+        success_message: تم نسخ التقرير "%{name}" بنجاح.
+      details: التفاصيل
       download: تحميل التقرير
+      download_csv: تنزيل CSV
+      edit: حرر
+      evaluate: تقييم
+      extend_time: تمديد الوقت
+      goto_dashboard: انقر هنا للمتابعة
+      re_evaluate: انقر هنا لإعادة التقييم
+      reevaluate: إعادة التقييم
+      remove:
+        confirm_message: هل أنت متأكد من أنك تريد حذف التقرير "%{name}"؟
+        confirm_title: التأكيد مطلوب
+        success_message: تمت إزالة التقرير %{name}
+      rescore: إعادة التقييم
+      restore:
+        success_message: تمت استعادة التقرير %{name} بنجاح
+      unarchived:
+        success_message: تم إلغاء أرشفة %{name} بنجاح
+      update_language: تحديث اللغة
       view: عرض التقرير
+    active: نشط
+    archived: المؤرشفه
+    builder:
+      graph:
+        properties:
+          barBorderRadius: شريط الحدود نصف قطرها
+          barWeight: وزن الشريط
+          dataFormat: تنسيق البيانات
+          graphOption3D: 3D
+          graphOptionStandard: معيار
+          graphSubType: النوع الفرعي للرسم البياني
+          graphTypeHorizontal: أفقي
+          graphTypeVertical: عمودي
+          hideEmptyColumns: إخفاء الأعمدة الفارغة
+          hideEmptyFilters: إخفاء الفلاتر الفارغة
+          hideXAxisLine: إخفاء خطوط شبكة المحور X
+          hideXAxisTitle: إخفاء عنوان المحور X
+          hideYAxisLine: إخفاء خطوط شبكة المحور Y
+          hideYAxisTitle: إخفاء عنوان المحور Y
+          hideZeroValueColumns: إخفاء أعمدة القيمة الصفرية
+          legendPosition: موقف وسيلة الإيضاح
+          maxValueLabel: القيمة القصوى (الرقم)
+          maxValueLabelPlaceholder: القيمة القصوى
+          positionBottomLeft: أسفل اليسار
+          positionBottomMiddle: أسفل الوسط
+          positionBottomRight: أسفل اليمين
+          positionTopLeft: أعلى اليسار
+          positionTopMiddle: أعلى وسط
+          positionTopRight: أعلى اليمين
+          reverse: عكس
+          showLegend: عرض وسيلة الإيضاح
+    columns:
+      data_only: البيانات فقط
+      default_language: اللغة الافتراضية
+      external_settings:
+        hogan_report_id: معرف تقرير هوجان
+        saville_report_id: معرف تقرير سافيل
+      other_available_languages: اللغات الأخرى المتاحة
+    create: خلق
+    dashboard: لوحه القياده
+    drawer:
+      title: تفاصيل التقرير
+    fields:
+      provider:
+        custom_upload: تحميل مخصص
+        hogan: هوجان
+        internal: داخلي
+        mettl: ميتل
+        pearson: بيرسون
+        saville: سافيل
+        skillvue: سكيلفيو
     form:
+      load_from_mettl: تحميل من Mettl
+      load_from_pearson: تحميل من بيرسون
       load_from_skillvue: تحميل من سكيلفيو
+      none_external: لا شيء - استخدم منشئ التقارير
+    language: لغة التقرير
+    language_updated: تم تحديث لغة التقرير بنجاح
     modules:
       campaign_factors_table:
         add_condition: إضافة شرط
@@ -995,8 +3128,14 @@ ar:
         strengths: Strengths
         then: ثم اظهر النص التالي
         title: عنوان
+      common:
+        all_factors: جميع العوامل
+        font: الخط
+        table_options: خيارات الجدول
+        table_type: نوع الجدول
       factors_table:
         description: الوصف
+        na: غير متاح
         no_data: لا توجد بيانات متاحة لهذا القسم.
         rank: المرتبة
         score: الدرجة
@@ -1066,6 +3205,14 @@ ar:
         total: الاجمالى
       video_response:
         no_results: لم يتم تسجيل مقاطع فيديو
+    pages:
+      edit:
+        assets: أصول
+        general_settings: الإعدادات العامة
+        translations: تراجم
+    report: تقرير
+    reports: التقارير
+    reset: اعاده تعيين
     show:
       export_pdf: التصدير إلى PDF
       header: تقرير
@@ -1077,29 +3224,358 @@ ar:
       not_available: غير متوفر
       on_hold: في الانتظار
       released: صدر
+    trash: مُخَلَّفَات
+    update: تحديث
+    upload: رفع
+  reset_password_modal:
+    fields:
+      automatically_generate_password: إنشاء كلمة المرور تلقائيا
+      change_password_on_login: تغيير كلمة المرور عند تسجيل الدخول
+      login_link: رابط تسجيل الدخول
+      new_password: كلمة مرور جديدة
+      password_placeholder: أدخل كلمة المرور
+      send_password_email: إرسال كلمة المرور عبر البريد الإلكتروني
+      username: اسم المستخدم
+    messages:
+      reset_password_success: تمت إعادة تعيين كلمة مرور المستخدم %{email} بنجاح.
+      send_password_email_success: إرسال بريد إلكتروني إلى المستخدم %{email} مع كلمة المرور.
+    title: إعادة تعيين كلمة المرور
+  select: اختار
   shared:
     filters:
       clear: امسح المُرشحات
     internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
+    mte_logo_alt_text: شعار Mercer Talent Enterprise
     terms_conditions_privacy: بيان الخصوصية
     tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
+  sheet:
+    import_modal:
+      alert_access_sheet_removal: تحميل ورقة وصول جديدة مع حذف جميع السجلات الموجودة وتحميل سجل جديد من الورقة. يرجى التأكد من وجود جميع سجلات جدول الوصول في جدول البيانات.
+      success_message: تم تحميل الملف بنجاح. استيراد سجل ورقة البيانات قيد التقدم
+      title: استيراد سجلات ورقة
+    menu:
+      export: ورقة التصدير
+      export_info: لا توجد بيانات للتصدير.
+      import: ورقة الاستيراد
+    no_sheet: يجب عليك استيراد الورقة أولا
   simple_form:
+    error_notification:
+      default_message: 'يرجى مراجعة المشاكل أدناه:'
+    labels:
+      client:
+        applicable_level: المستوى القابل للتطبيق
+        applicable_levels:
+          campaign: حملة
+          project: مشروع
+          sub_campaign: الحملة الفرعية
+        category: باب
+        created_at: تاريخ الإنشاء
+        id: معرف
+        licenses: رقم الترخيص
+        licenses_expire: تاريخ انتهاء صلاحية الترخيص
+        licenses_used: استخدام الترخيص
+        location: مكان
+        logo: شعار العميل
+        memberships_count: المستعملون
+        name: اسم
+        number: رقم العميل
+        privacy_consent: تمكين الموافقة على معالجة البيانات
+        project_manager: مدير مشروع TTE
+        project_manager_id: مدير مشروع TTE
+        report_ids: التقارير
+        strong_password_enabled: تمكين كلمة مرور قوية
+        subdomain: المجال الفرعي
+        types:
+          associate: رفيق
+          corporate: الشركات
+          distributer: موزع
+          other: آخر
+          partner: شريك
+          retail: التجزئه
+          tte: TTE
+        updated_at: تاريخ التعديل
+        year: سنة العميل
+      membership:
+        role: دور العضوية
+    'no': لا
     placeholders:
+      administration/assessments/assign_form:
+        access_reports: قواعد تقرير الوصول
+        access_reports_at: الوصول إلى التقرير في
+        access_reports_at_date: تاريخ
+        access_reports_at_time: الوقت
+        client_ids: إيجارات العملاء
+        manager_ids: مديرون
+        report_ids: التقارير
+        user_ids: المستعملون
       administrator:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        current_password: كلمة المرور الحالية
+        disabled: تعطيل
         email: البريد الإلكتروني
+        first_name: الاسم الأول
+        id: معرف
         last_name: إسم العائلة
+        manage_client_ids: إيجار العميل
+        memberships: إيجار العميل
+        name: اسم
+        password: شعار
+        password_confirmation: تأكيد كلمة المرور
+        role: دور
+        roles:
+          admin: المشرف
+          admins:
+            admin: المشرف
+            project_admin: مسؤول المشروع
+            regular: مسؤول العميل
+            superadmin: المشرف المتميز
+          agile: رشيق
+          case_study: دراسة حالة
+          client_admin: مسؤول العميل
+          hogan: هوجان
+          manager: مدير
+          member: مستخدم
+          organisational: التنظيميه
+          project_admin: مسؤول المشروع
+          psychometric: القياس النفسي
+          regular: منتظم
+          saville: سافيل
+          super_admin: المشرف المتميز
+          superadmin: المشرف المتميز
+          threesixty: تريويكسيكستي
+        types:
+          anonymous: مستخدمون مجهولون
+          identified: المستخدمون المحددون
+        updated_at: تاريخ التعديل
+      assessment:
+        active: نشط
+        categories:
+          '360': حملة 360
+          agile: رشيق
+          assessor_form: نموذج المقيم
+          case_study: دراسات الحالة
+          hogan: هوجان
+          meeting: اجتماع
+          organisational: مسوح
+          psychometric: تقييم
+          saville: سافيل
+        category: باب
+        completed_at: تاريخ الانتهاء
+        created_at: تاريخ الإنشاء
+        description: وصف
+        id: معرف
+        name: اسم
+        statuses:
+          completed: اكمال
+          finished: منته
+          in_progress: استأنف
+          interrupted: توقف
+          not_started: الجديد
+          overdue: المتاخره
+        timing: توقيت
+        types:
+          common: تقييم TTE
+          hogan: هوجان
+          saville: تقييم سافيل
+        updated_at: تاريخ التعديل
+      block:
+        active: نشط
+        assign_to_assessment_ids: تقييمات
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+      client:
+        applicable_level: المستوى القابل للتطبيق
+        applicable_levels:
+          campaign: حملة
+          project: مشروع
+          sub_campaign: الحملة الفرعية
+        category: باب
+        created_at: تاريخ الإنشاء
+        id: معرف
+        licenses: رقم الترخيص
+        licenses_expire: تاريخ انتهاء صلاحية الترخيص
+        licenses_used: استخدام الترخيص
+        location: مكان
+        logo: شعار العميل
+        memberships_count: المستعملون
+        name: اسم
+        number: رقم العميل
+        privacy_consent: تمكين الموافقة على معالجة البيانات
+        project_manager: مدير مشروع TTE
+        project_manager_id: مدير مشروع TTE
+        report_ids: التقارير
+        strong_password_enabled: تمكين كلمة مرور قوية
+        subdomain: المجال الفرعي
+        types:
+          associate: رفيق
+          corporate: الشركات
+          distributer: موزع
+          other: آخر
+          partner: شريك
+          retail: التجزئه
+          tte: TTE
+        updated_at: تاريخ التعديل
+        year: سنة العميل
+      communication:
+        created_at: تاريخ الإنشاء
+        id: معرف
+        updated_at: تاريخ التعديل
+      dimension:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+      factor:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        parent_id: الوالد
+        questions_count: لا. عدد الأسئلة
+        updated_at: تاريخ التعديل
+      library:
+        created_at: تاريخ الإنشاء
+        id: معرف
+        type: الصوره المصغره
+        updated_at: تاريخ التعديل
+      license:
+        id: معرف
+        number: رقم الترخيص
+        overuse_number: بدل الاستخدام الزائد
+        type: ترخيص
+        types:
+          common: شائع
+          threesixty: تريويكسيكستي
+        unlimited: مطلق
+        used_number: رقم الترخيص المستخدم
       memebrship:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        disabled: تعطيل
+        email: البريد الإلكتروني
+        first_name: الاسم الأول
+        id: معرف
         last_name: إسم العائلة
+        parent: المدير المباشر
+        parent_id: المدير المباشر
+        report_ids: معرفات التقارير
+        roles:
+          campaign_admin: مسؤول الحملة
+          client_admin: مسؤول العميل
+          manager: مدير
+          member: مستخدم
+          project_admin: مسؤول المشروع
+        updated_at: تاريخ التعديل
+        user_access: وصول المستخدم
+      norm:
+        active: نشط
+        bachelors_or_masters_qualification: مؤهل البكالوريوس أو الماجستير
+        created_at: تاريخ الإنشاء
+        description: وصف
+        description_label: وصف
+        diploma_qualification: مؤهل الدبلوم
+        factor_id: الكفاءه
+        factor_id_label: حدد الكفاءة
+        full_description: الوصف الكامل
+        high_school_entry_roles: أدوار دخول المدرسة الثانوية
+        id: معرف
+        key_career_tracks: المسارات الوظيفية الرئيسية
+        membership_id: المتنازل
+        membership_id_label: حدد المحيل
+        name: اسم
+        name_label: بند الإجراء
+        planned_completed_at: تاريخ الاستحقاق
+        planned_completed_at_label: حدد تاريخ الاستحقاق
+        potential_areas_of_study: مجالات الدراسة المحتملة
+        priority: أولوية
+        priority_label: أولوية
+        status: حالة
+        status_label: حدد الحالة
+        statuses:
+          completed: اكمال
+          in_progress: قيد التنفيذ
+          not_started: لم يبدأ
+          overdue: المتاخره
+        updated_at: تاريخ التعديل
+        updated_by: حرره
+        work_environment: بيئة العمل
+      question:
+        active: نشط
+        assign_to_assessment_ids: تقييمات
+        created_at: تاريخ الإنشاء
+        id: معرف
+        name: اسم
+        updated_at: تاريخ التعديل
+      regenerate_reports:
+        report_ids: التقارير
+      report:
+        created_at: تاريخ الإنشاء
+        id: معرف
+        updated_at: تاريخ التعديل
       user:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        current_password: كلمة المرور الحالية
+        disabled: تعطيل
         email: البريد الإلكتروني
         first_name: الاسم الاول
+        id: معرف
         last_name: إسم العائلة
+        manage_client_ids: إيجار العميل
+        memberships: إيجار العميل
+        name: اسم
+        old_password: كلمة المرور القديمة
         password: كلمه السر
+        password_confirmation: تأكيد كلمة المرور
+        role: دور
+        roles:
+          admin: المشرف
+          admins:
+            admin: المشرف
+            project_admin: مسؤول المشروع
+            regular: مسؤول العميل
+            superadmin: المشرف المتميز
+          agile: رشيق
+          case_study: دراسة حالة
+          client_admin: مسؤول العميل
+          hogan: هوجان
+          manager: مدير
+          member: مستخدم
+          organisational: التنظيميه
+          project_admin: مسؤول المشروع
+          psychometric: القياس النفسي
+          regular: منتظم
+          saville: سافيل
+          super_admin: المشرف المتميز
+          superadmin: المشرف المتميز
+          threesixty: تريويكسيكستي
+        types:
+          anonymous: مستخدمون مجهولون
+          identified: المستخدمون المحددون
+        updated_at: تاريخ التعديل
       user_form:
+        active: نشط
+        created_at: تاريخ الإنشاء
+        current_password: كلمة المرور الحالية
+        disabled: تعطيل
         email: البريد الإلكتروني
         first_name: الاسم الاول
+        id: معرف
         last_name: إسم العائلة
+        parent: المدير المباشر
+        parent_id: المدير المباشر
         password: كلمه السر
+        password_confirmation: تأكيد كلمة المرور
+        role: دور
+        updated_at: تاريخ التعديل
+    required:
+      mark: "*"
+      text: مطلوب
+    'yes': نعم
   subjects:
     approval_statuses:
       approved: معتمد
@@ -1134,10 +3610,13 @@ ar:
     accept_privacy_modal:
       accept: اقبل
       checkbox: لقد قرأت وفهمت سياسة الخصوصية المذكورة أعلاه.
+      checkbox_with_client_link: من خلال النقر على هذا المربع، فإنك توافق على أنك قرأت إشعار الخصوصية الخاص بنا وإشعار خصوصية عميلنا وتوافق على جمع ومعالجة معلوماتك الشخصية على النحو الموضح فيه، بما في ذلك النقل الدولي لمعلوماتك الشخصية.
+      privacy_notice: إشعار الخصوصية
       title: موافقة معالجة البيانات
     action: الإجراء
     add: اضافة
     and: و
+    approve: صدق
     approve_all: الموافقة على جميع ما سبق
     approve_all_successful: الموافقة على جميع الترشيحات
     approve_evaluations: الموافقة على التقييمات
@@ -1165,6 +3644,7 @@ ar:
     decline: رفض
     decline_invite: رفض الدعوة
     denied: رفض
+    deny: أنكر
     deny_all: رفض جميع ما سبق
     deny_all_successful: رفض جميع الترشيحات
     download_pdf: تحميل PDF
@@ -1177,6 +3657,7 @@ ar:
     evaluate: تقييم
     evaluation: التقييم
     evaluation_all_closed_message: حالياً، جميع الترشيحات في انتظار الموافقة
+    evaluation_closed_message: التقييم مغلق لهذا الموضوع
     evaluation_closed_nomination_message: لا يمكنك الترشيح لهذا الموضوع حيث قد تم إغلاق التقييم لهذا الموضوع
     evaluation_help_modal:
       title: مساعدة التقييم
@@ -1194,6 +3675,8 @@ ar:
       statuses:
         success: نجاح
         undelivered: لم يتم تسليمها
+    more_info_evaluation_label: مزيد من المعلومات - التقييمات
+    more_info_nomination_label: مزيد من المعلومات - الترشيحات
     my_projects: مشاريعي
     name_label: الاسم
     nominate: ترشح
@@ -1202,13 +3685,16 @@ ar:
     nomination_help_modal:
       title: مساعدة الترشيح
     nomination_predicates:
-      atleast: ما لا يقل عن %{عدد}
-      atmost: على الأكثر %{عدد}
-      exactly: بالضبط %{العدد}
+      atleast: ما لا يقل عن %{count}
+      atmost: على الأكثر %{count}
+      exactly: بالضبط %{count}
     nominations: الترشيحات
     options:
+      form:
+        value_not_valid: ليس له قيمة صالحة
       global:
         cannot_re_edit: لا يمكن للمشاركين تحرير التقييمات
+        disable_all_evaluations: تعطيل جميع التقييمات
     or: أو
     page_title: Signify 360° مراجعة - مستوى التطبيق
     participant_list:
@@ -1219,11 +3705,13 @@ ar:
         hold_report: "؟؟"
         login: تسجيل الدخول
         mark_as_done: وضع علامة " تم"
+        regenerate_report: إنشاء تقرير
         release_report: إصدار التقرير
         remove_campaign: إزالتة من الحملة
         remove_report_approval: إزالة الموافقة على التقرير
         remove_report_hold_release_report: إزالة التقرير تعليق/إصدار
         remove_subject: إزالة الموضوع
+        reset_password: إعادة تعيين كلمة المرور
         unmark_as_done: إلغاء وضع علامة " تم"
         view_report: عرض التقرير
         view_responses: عرض الاستجابات
@@ -1271,6 +3759,7 @@ ar:
     setup_nominations: إعداد الترشيحات
     subject: الموضوع
     submit: إرسال
+    timed_out: انتهت مهله
     total_progress: مجموع التقدم المحرز
     user_name_input_placeholder: اكتب اسمك أو بريدك الإلكتروني...
     validation_errors: أخطاء التحقق من الصحة
@@ -1280,27 +3769,215 @@ ar:
     waiting: منتظر
     you: أنت
     yourself: ذاتي
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: من خلال النقر على هذا المربع، فإنك توافق على أنك قرأت إشعار الخصوصية الخاص بنا وإشعار خصوصية عميلنا وتوافق على جمع ومعالجة معلوماتك الشخصية على النحو الموضح فيه، بما في ذلك النقل الدولي لمعلوماتك الشخصية.
+    privacy_notice: إشعار الخصوصية
+  time:
+    formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: 'DD / MM / YYYY hh: مم أ'
+      datetimepicker_client_with_timezone: 'د ممم سنة / ح: مم Z'
+      datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: يوم / مم / سنة
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
+      short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:Z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
+  universal_links:
+    active: نشط
+    allow_multiple_respones: السماح للمستخدمين بإرسال ردود متعددة
+    png: بابوا غينيا الجديدة
+    regenerate_link: إعادة إنشاء الرابط
+    successfully_generated: تم إنشاؤه بنجاح
+    successfully_updated: تم التحديث بنجاح
+    svg: SVG
   user:
+    datasheet:
+      attribute: صفة
+      value: قيمة
     fields:
       email: البريد الإلكتروني
       first_name: الاسم الاول
       last_name: إسم العائلة
+    form:
+      email: البريد الإلكتروني
+      first_name: الاسم الأول
+      last_name: اسم العائلة
+      locale: موقع
+      operation: عملية
+      operation_options:
+        add_and_allow_new_response: إضافة مستخدم والسماح باستجابة جديدة
+        add_with_existing_response: إضافة مستخدم باستجابة حالية
+        skip_existing: تخطي المستخدم الحالي
+    modals:
+      exports:
+        export_sign_in_url: التصدير باستخدام عنوان URL لتسجيل الدخول السحري
+        include_inactive_users: التصدير مع المستخدمين غير النشطين
+        title: تصدير المستخدمين
+      import:
+        body: ارجع إلى وظيفة التصدير لاستخراج قالب يمكن استخدامه للاستيراد هنا.
+        imported_reports: تم استيراد التقارير والتقييمات
+        imported_users: 'عدد المستخدمين المستوردين: %{number}'
+        success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات
+        title: استيراد المستخدمين
+        user_with_unchanged_passwords: قائمة المستخدمين الذين لم يتم تغيير كلمات المرور الخاصة بهم
+      import_reports:
+        body: ارجع إلى نموذج الملف لاستخراج قالب يمكن استخدامه للاستيراد هنا.
+        title: تعيين التقارير والتقييمات
+    toolbar:
+      bulk_download_idp_reports: تنزيل تقارير IDP بالمجمع
+      export: تصدير المستخدمين
+      export_compact_completion_status: الاتفاق
+      export_detailed_completion_status: مفصل
+      export_reports_and_assessments: تقارير التصدير والتقييمات
+      import: استيراد المستخدمين
+      import_reports: تقارير الاستيراد والتقييمات
+  user_assessment:
+    column:
+      dimension_id: معرف البعد
+      id: معرف تقييم المستخدم
+      norm_id: معرف القاعدة
+    drawer:
+      copied: "%{name} تم نسخها إلى الحافظة."
+      copy: نسخ إلى الحافظة
+      mettl_schedule_name: اسم جدول Mettl
+      no_data: لا توجد بيانات متوفرة
+      title: تفاصيل التقييم
+      view: منظر
   user_assessments:
+    modals:
+      actions:
+        reset_progress:
+          name: إعادة تعيين التقدم
+          success_message: التقييم %{name} جاهز للتعديل
+      push_test_webhook:
+        copy_request_data_success: تم نسخ Rquest Payload إلى الحافظة بنجاح.
+        copy_response_body_success: تم نسخ نص الاستجابة إلى الحافظة بنجاح.
+        copy_response_headers_success: تم نسخ رؤوس الاستجابة إلى الحافظة بنجاح.
+        event_name_placeholder: اسم الحدث
+        response_body_title: هيئة الاستجابة
+        response_header_title: رؤوس الاستجابة
+      push_webhook:
+        submit_button_name: دفع خطاف الويب
+        title: دفع خطاف الويب
+      remove:
+        content: هل أنت متأكد من أنك تريد إزالة التقييم "%{name}"؟
+        successfully: تمت إزالة تقييم %{name} بنجاح.
+      reset:
+        content: هل أنت متأكد من أنك تريد إعادة تعيين التقدم "%{name}"؟
+      test_webhook:
+        submit_button_name: إرسال الاختبار
+        title: إرسال اختبار حدث Webhook
+    normalize_factor_scores:
+      no_scoring_data: لا يمكن إكمال تطبيع درجات العوامل نظرا لعدم توفر بيانات التسجيل.
+    progress_label: تقدم التقييم
     redirect: سيتم إعادة توجيهك إلى موقع طرف ثالث لإجراء هذا التقييم. يُرجى النقر على متابعة إذا كنت ترغب في بدء التقييم.
+    status:
+      completed: اكمال
+      in_progress: قيد التنفيذ
+      ineligible: مؤهلين
+      interrupted: توقف
+      not_started: لم يبدأ
+      timed_out: انتهت مهله
+    statuses:
+      evaluator_nomination_status:
+        completed: اكمال
+        declined: انخفض
+        waiting: انتظار
+      manager_evaluation_status:
+        approved: مصدق
+        denied: نفي
+        waiting: انتظار
+      manager_nomination_status:
+        approved: مصدق
+        completed: اكمال
+        declined: انخفض
+        denied: نفي
+        waiting: انتظار
+    timer_title:
+      assessment: تقييم
+      campaign: حملة
   user_reports:
     actions:
-      regenerate: تجديد
+      add: إضافة تقرير
+      download: تحميل
+      generate: ولد
+    approval_statuses:
+      approved: مصدق
+      change_requested: التغيير المطلوب
+      not_ready: غير جاهز
+      pending_qc: مراقبة الجودة المعلقة
+      qc_completed: اكتمل مراقبة الجودة
+      qc_in_progress: مراقبة الجودة قيد التنفيذ
     messages:
+      async_generation: إنشاء التقرير قيد التقدم. سيتم إخطارك بمجرد إنشاء التقرير.
       regenerate_successful: تقرير تجديد المهمة تم جدولتة بنجاح
     modals:
       remove:
         content: هل أنت متأكد من أنك تريد إزالة التقرير %{userReportName}؟
+        content_with_counts:
+          both: 'خطر: يحتوي التقرير %{userReportName} على %{commentsCount} تعليق (تعليقات) وتعديلات %{editsCount}. إذا أزلت التقرير من المستخدم، ستفقد هذه التعليقات والتعديلات هذه.'
+          comments: 'خطر: يحتوي التقرير %{userReportName} على %{commentsCount} تعليق (تعليقات). إذا أزلت التقرير من المستخدم، ستفقد هذه التعليقات.'
+          edits: 'خطر: التقرير %{userReportName} يحتوي على %{editsCount} تعديل. إذا أزلت التقرير من المستخدم، فستفقد هذه التعديلات.'
         successfully: تم إزالة تقرير %{userReportName} بنجاح
+      remove_file:
+        content: هل أنت متأكد من أنك تريد إزالة الملف؟
+        successfully: تمت إزالة الملف بنجاح.
+      upload_file:
+        choose_file: اختر ملف
+        success: تم تحميل الملف بنجاح.
+        upload: رفع
     preview_report: تقرير المعاينة
     statuses:
       generating: توليد
       not_prepared: غير متوفر
       prepared: متوفر
+  users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: 2 تم تعطيل مصادقة العامل
+          enabled: 2 تم تمكين مصادقة العامل
+        option_to_disable: تعطيل 2FA
+        option_to_enable: تمكين المصادقة الثنائية (2FA)
+      remove:
+        confirm_message: هل أنت متأكد من أنك تريد حذف المستخدم برسالة إلكترونية "%{email}"؟
+        confirm_title: التأكيد مطلوب
+        error_message: تعذر إزالة المستخدم بسبب خطأ - %{error}
+        success_message: تمت إزالة %{email}
+        system_error_message: تعذر إزالة المستخدم، يرجى المحاولة مرة أخرى لاحقا أو الاتصال بالدعم.
+      reset_password:
+        option: إعادة تعيين كلمة المرور
+      unlock_user_access:
+        message: تم إلغاء قفل وصول المستخدم ل %{email} بنجاح.
+        title: فتح وصول المستخدم
+        tooltip: حساب المستخدم هذا في حالة تأمين
+    admins: المسؤولون
+    create_global_assessor: إنشاء مقيم عالمي
+    create_superadmin: إنشاء مشرف متميز
+    dashboard: لوحه القياده
+    drawer:
+      link: رابط
+      role: دور
+      title: تفاصيل المستخدم
+    global_assessors: المقيمون العالميون
+    password_change_success: تم تغيير كلمة المرور بنجاح. يرجى تسجيل الدخول باستخدام كلمة المرور الجديدة.
+    roles:
+      campaign_admin: مسؤول الحملة
+      campaign_assessor: مقيم الحملة
+      campaign_user: مستخدم الحملة
+      client_admin: مسؤول العميل
+      project_admin: مسؤول المشروع
+      superadmin: المشرف المتميز
+    superadmins: المشرفون المتميزون
+    users: المستعملون
   validations:
     AudioResponse:
       in_progress:
@@ -1315,6 +3992,8 @@ ar:
     TextEntry:
       Email:
         character_range: يجب أن تكون رسالة البريد الإلكتروني التي تم إدخالها %{min} حرف على الأقل ولا تزيد عن %{max} حرف.
+        max_character: يجب ألا تزيد رسالة البريد الإلكتروني التي تم إدخالها عن %{max} أحرف.
+        min_character: يجب أن تكون رسالة البريد الإلكتروني التي تم إدخالها من أحرف %{min} على الأقل.
         subject:
           min_length: يجب أن يكون الموضوع مكون من  10 أحرف كحد أدنى
         to:
@@ -1337,14 +4016,21 @@ ar:
       other: الرجاء التحديد بالضبط %{count}
       two: الرجاء تحديد اثنين بالضبط
     file_upload:
+      BadRequest: لم يتم تحميل الملف حيث فشل الطلب الأخير. قد يكون هذا بسبب عدم عمل الإنترنت لديك. إذا كان الإنترنت الخاص بك يعمل، فيرجى الاتصال بالمسؤول
       EntityTooLarge: يجب أن يكون حجم الملف أقل من %{maxFileSize} ميغابايت
       WrongFileType: يجب أن يكون نوع الملف أحد %{allowedFileTypes}
+    idp:
+      reflective_questions_required: مطلوب إجابات على الأسئلة العاكسة ل IDP
+      status_not_permitted: غير مسموح به من قبل المستخدم.
+      status_not_permitted_by_manager: يتعذر على المدير تحديث الحالة عندما تكون الخطة في حالة "%{status}".
+    invalid: غير صالح
     issue: المسأله
     least: الرجاء الإجابة على الأقل %{min} الاختيار (الخيارات).
     least_hotspot: الرجاء الإجابة على الأقل %{min} الاختيار (الخيارات).
     max_character: يجب ألا تتجاوز الاستجابة %{max} الأحرف.
     max_word: يجب ألا تزيد إجابتك عن %{max}  كلمة.
     min_character: يجب أن تكون الاستجابة على الأقل %{min} حرفاً.
+    min_factor: يجب أن يحتوي ردك على %{min} على الأقل من ملاحظات العوامل.
     min_word: الاجابه لا تقل عن %{min} كلمه
     most:
       one: الرجاء تحديد واحد على الأكثر
@@ -1352,6 +4038,8 @@ ar:
       two: الرجاء تحديد اثنين على الأكثر
     must_rank_between: الرجاء تعيين قيمة من %{min} إلى %{max} لكل عنصر. لا يسمح تكرار القيم.
     must_select: الرجاء تحديد من %{min} إلى %{max} الاختيارات
+    not_in_future: يجب ألا يكون التاريخ المحدد في المستقبل
+    not_in_past: يجب ألا يكون التاريخ المحدد في الماضي
     number: يجب أن يكون ردك عباره عن رقم
     range: الرجاء الإجابة على الأقل %{min} ولا تزيد عن %{max} الاختيار (الخيارات).
     required: يرجى الإجابة على هذا السؤال
@@ -1360,8 +4048,9 @@ ar:
       one: هناك إجابة مفقودة، يرجى التحقق من إجابتك
       other: هناك %{count} إجابات مفقودة، يرجى التحقق من إجاباتك
       two: هناك إجابتان مفقودتان، يرجى التحقق من إجاباتك
+    user_self_skill_rating_disabled: تم تعطيل التصنيف الذاتي لهذا القالب
     word_count: 'عدد الكلمات '
-    word_range: يجب ألا تقل إجابتك عن %{دقيقة} ولا تزيد عن %{حد أقصى} من الكلمات.
+    word_range: يجب ألا تقل إجابتك عن %{min} ولا تزيد عن %{max} من الكلمات.
   'yes': نعم
   your: أنت
   yourself: نفسك

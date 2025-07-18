@@ -64,7 +64,7 @@ const WorkshopList: React.FC = () => {
             render={(_, { workshopInvite }) => (
               <a
               // eslint-disable-next-line max-len
-                href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/scheduling/invites/${workshopInvite.id}/subjects`}
+                href={`/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/invites/${workshopInvite.id}/subjects`}
               >
                 {workshopInvite?.title}
               </a>

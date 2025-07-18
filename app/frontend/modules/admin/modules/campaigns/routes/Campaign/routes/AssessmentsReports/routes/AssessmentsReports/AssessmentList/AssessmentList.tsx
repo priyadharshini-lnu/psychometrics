@@ -22,6 +22,7 @@ const AssessmentList: React.FC<Props> = ({
     list,
     permissions,
   },
+  isLoadingAssessmentsAndReports,
   openModal,
   rescoreResponses,
   exportRawResults,
@@ -41,7 +42,6 @@ const AssessmentList: React.FC<Props> = ({
   updatePearsonVariation,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<Assessment | undefined>()
-
   const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -59,7 +59,13 @@ const AssessmentList: React.FC<Props> = ({
   return (
     <Row>
       <Col span={24}>
-        <Table className="mtm" rowKey="id" dataSource={list} pagination={false}>
+        <Table
+          className="mtm"
+          rowKey="id"
+          loading={isLoadingAssessmentsAndReports}
+          dataSource={list}
+          pagination={false}
+        >
           <Column
             title={I18n.t('common.column.id')}
             dataIndex="assessmentId"
@@ -79,6 +85,7 @@ const AssessmentList: React.FC<Props> = ({
             render={({ autoAssign, id }) => (
               <Switch
                 checked={autoAssign}
+                disabled={!permissions.toggleAutoAssign}
                 onChange={() => toggleAutoAssign(parsedCampaignId, id, !autoAssign)}
               />
             )}
@@ -89,6 +96,7 @@ const AssessmentList: React.FC<Props> = ({
             render={({ requireScheduling, id }) => (
               <Switch
                 checked={requireScheduling}
+                disabled={!permissions.toggleRequireScheduling}
                 onChange={() => {
                   toggleRequireScheduling(parsedCampaignId, id, !requireScheduling)
                 }}
@@ -197,6 +205,7 @@ const AssessmentList: React.FC<Props> = ({
             render={assessment => (
               <Switch
                 checked={assessment.prework}
+                disabled={!permissions.updatePrework}
                 onChange={checked => handleTogglePrework(assessment, parsedCampaignId, checked)}
               />
             )}

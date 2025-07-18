@@ -39,21 +39,13 @@ module Api
         has_permission?('proficiency_levels', 'export_translations', project_id: project_id)
       end
 
+      def skill_proficiency?
+        has_permission?('proficiency_levels', 'manage', project_id: project_id)
+      end
+
       class Scope < Api::Administration::BasePolicy::Scope
         def resolve
-          return scope unless project_id
-
-          if filter&.dig(:include_global)
-            scope.where(project_id: [nil, project_id])
-          else
-            scope.where(project_id: project_id)
-          end
-        end
-
-        private
-
-        def include_global?
-          filter&.dig(:include_global).to_s == 'true'
+          scope.where(project_id: project_id)
         end
       end
     end

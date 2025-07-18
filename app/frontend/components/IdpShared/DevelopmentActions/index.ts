@@ -9,8 +9,8 @@ export type {
   Skill,
   UserIdpSkill,
   SkillWithDevelopmentActions,
-  CategoryWithSkills,
-  CategoryWithSkillsSummary,
+  TypeWithSkills,
+  TypeWithSkillsSummary,
   CategoryWithUserIdpSkills,
   CategoryWithDevelopmentActions,
 } from './Types'

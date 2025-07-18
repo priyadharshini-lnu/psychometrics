@@ -4,6 +4,7 @@ import {
   Table, Row, Col, App, Checkbox,
 } from 'antd'
 import { useParams, useSearchParams } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { CountDisplay } from '~/components/CountDisplay'
 import userPresenter from '~/presenters/user'
 import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
@@ -14,16 +15,16 @@ import { getActionsMenuProps } from './getActionsMenuProps'
 import ToolsDropdown from '../ToolsDropdown'
 import { Manage } from '../Manage'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
-import CreateSubjectModal from './CreateSubjectModal'
 import SubjectImportModal from './SubjectImportModal'
 import Pagination from '../../../components/Pagination'
 import SearchInput from '../SearchInput'
 import { useWindowSize } from '~/hooks/useWindowSize'
 import { useSelectAll } from '~/hooks/useSelectAll'
+import { getFeatures } from '~/core/config'
 
 const { Column } = Table
 
-export default function SubjectList ({
+function SubjectList ({
   fetchSubjects,
   update,
   remove,
@@ -36,11 +37,12 @@ export default function SubjectList ({
   permissions,
   searchTerm,
   editUser,
-  currentCampaignId,
+  threeSixtyCampaignId,
   reportAvailableLanguages,
   reportDefaultLanguage,
   reportIcon,
   reportName,
+  category,
 }) {
   const { projectId, campaignId } = useParams()
   const [params] = useSearchParams()
@@ -48,7 +50,7 @@ export default function SubjectList ({
   const { message } = App.useApp()
   const [showResetSubjectModal, setShowResetSubjectModal] = useState(false)
   const { width: windowWidth } = useWindowSize()
-
+  const isSkillRater = category === 'skill_rater'
   const {
     isAllSelected, excludedKeys, selectedKeys, onSelectionChange, onAllSelect,
   } = useSelectAll(false, subjects)
@@ -159,6 +161,22 @@ export default function SubjectList ({
               key="user_email"
               render={({ user }) => user.email}
             />
+
+            {isSkillRater && (
+              <>
+                <Column
+                  title="Current Job Role"
+                  key="current_job_role"
+                  render={({ user }) => user.currentJobRole || '—'}
+                />
+                <Column
+                  title="Target Job Role"
+                  key="target_job_role"
+                  render={({ user }) => user.targetJobRole || '—'}
+                />
+              </>
+            )}
+
             <Column
               title="Evaluations Received"
               dataIndex="evaluators"
@@ -210,7 +228,7 @@ export default function SubjectList ({
                       regenerateReport,
                       message,
                       setShowResetSubjectModal,
-                      currentCampaignId,
+                      threeSixtyCampaignId,
                       reportAvailableLanguages,
                       reportDefaultLanguage,
                       reportIcon,
@@ -229,7 +247,6 @@ export default function SubjectList ({
           </div>
         </Col>
       </Row>
-      <CreateSubjectModal />
       <SubjectImportModal />
       <UserEditModal />
       <ResetSubjectModal open={showResetSubjectModal} />
@@ -237,3 +254,9 @@ export default function SubjectList ({
     </>
   )
 }
+
+const mapStateToProps = state => ({
+  features: getFeatures(state),
+})
+
+export default connect(mapStateToProps)(SubjectList)

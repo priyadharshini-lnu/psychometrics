@@ -4,12 +4,23 @@ module Devtools
   module CLI
     module Commands
       class Base < Dry::CLI::Command
-        def cli_log(data)
-          puts data # rubocop:disable Rails/Output
+        def cli_log(data, log_type = :info)
+          prefix = case log_type
+                     when :warn
+                       '⚠️  Warning: '
+                     when :error
+                       '❌ Error: '
+                     when :success
+                       '✅ '
+                     else
+                       ''
+                   end
+
+          puts "#{prefix}#{data}"
         end
 
         def cli_error(data)
-          puts data # rubocop:disable Rails/Output
+          cli_log(data, :error)
           exit(1)
         end
 

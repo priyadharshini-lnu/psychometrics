@@ -27829,6 +27829,47 @@
                       },
                       "required": [],
                       "nullable": false
+                    },
+                    "assistant_output_schema_keys": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Must be equal to assistant_output_schema_keys",
+                                "nullable": false
+                              },
+                              "id": {
+                                "type": "string",
+                                "nullable": false
+                              }
+                            },
+                            "required": [],
+                            "nullable": true
+                          },
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [],
+                      "nullable": false
                     }
                   },
                   "required": [],
@@ -27856,19 +27897,19 @@
                     },
                     "description": {
                       "type": "string",
-                      "nullable": false
+                      "nullable": true
                     },
                     "system_prompt": {
                       "type": "string",
-                      "nullable": false
+                      "nullable": true
                     },
                     "user_prompt": {
                       "type": "string",
-                      "nullable": false
+                      "nullable": true
                     },
-                    "action": {
+                    "assistant_type": {
                       "type": "string",
-                      "nullable": false
+                      "nullable": true
                     },
                     "created_at": {
                       "type": "string",
@@ -27877,6 +27918,22 @@
                     "updated_at": {
                       "type": "string",
                       "nullable": false
+                    },
+                    "model_id": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "dependencies": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -27884,9 +27941,12 @@
                     "description",
                     "system_prompt",
                     "user_prompt",
-                    "action",
+                    "assistant_type",
                     "created_at",
-                    "updated_at"
+                    "updated_at",
+                    "model_id",
+                    "status",
+                    "dependencies"
                   ],
                   "nullable": false
                 }
@@ -28016,6 +28076,47 @@
                     },
                     "required": [],
                     "nullable": false
+                  },
+                  "assistant_output_schema_keys": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to assistant_output_schema_keys",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [],
+                          "nullable": true
+                        },
+                        "nullable": true
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [],
+                    "nullable": false
                   }
                 },
                 "required": [],
@@ -28043,19 +28144,19 @@
                   },
                   "description": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "system_prompt": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "user_prompt": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
-                  "action": {
+                  "assistant_type": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "created_at": {
                     "type": "string",
@@ -28064,6 +28165,22 @@
                   "updated_at": {
                     "type": "string",
                     "nullable": false
+                  },
+                  "model_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "dependencies": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -28071,9 +28188,12 @@
                   "description",
                   "system_prompt",
                   "user_prompt",
-                  "action",
+                  "assistant_type",
                   "created_at",
-                  "updated_at"
+                  "updated_at",
+                  "model_id",
+                  "status",
+                  "dependencies"
                 ],
                 "nullable": false
               }
@@ -28116,9 +28236,25 @@
                     "type": "string",
                     "nullable": false
                   },
-                  "action": {
+                  "assistant_type": {
                     "type": "string",
                     "nullable": false
+                  },
+                  "model_id": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "dependencies": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -28126,7 +28262,8 @@
                   "description",
                   "system_prompt",
                   "user_prompt",
-                  "action"
+                  "assistant_type",
+                  "model_id"
                 ],
                 "nullable": false
               }
@@ -28156,19 +28293,35 @@
                   },
                   "description": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "system_prompt": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "user_prompt": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
-                  "action": {
+                  "assistant_type": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "model_id": {
                     "type": "string",
                     "nullable": false
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "dependencies": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "nullable": true
                   }
                 },
                 "required": [],

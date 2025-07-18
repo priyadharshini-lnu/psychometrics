@@ -53,6 +53,32 @@ describe Threesixty::Campaigns::CreateFromAssessmentAndReport do
       expect(threesixty_campaign.assessment.dimension).to be_persisted
     end
 
+    context 'dimension' do
+      let(:skills_form) do
+        Threesixty::Campaigns::CreateForm.new(
+          name: 'Skills Campaign',
+          threesixty_category: 'skill_rater'
+        )
+      end
+
+      it 'creates regular dimension for normal 360 campaign' do
+        threesixty_campaign = described_class.call!(assessment, report, form, project, user)
+
+        expect(threesixty_campaign.assessment.dimension).to be_persisted
+        expect(threesixty_campaign.assessment.dimension.dimension_type).not_to eq('skill_rater')
+      end
+
+      it 'creates a dimension of type skill_rater for skill_rater 360 campaign' do
+        threesixty_campaign = described_class.call!(assessment, report, skills_form, project, user)
+
+        dimension = threesixty_campaign.assessment.dimension
+
+        expect(dimension).to be_persisted
+        expect(dimension.dimension_type).to eq('skill_rater')
+        expect(dimension.name).to eq("#{project.name} - Skill Rater")
+      end
+    end
+
     # rubocop:disable Lint/EmptyBlock
     it 'updates factor_scoring with correct factor_id' do
     end

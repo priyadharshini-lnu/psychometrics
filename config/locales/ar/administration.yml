@@ -174,6 +174,8 @@ ar:
             title: قوالب IDP
             view: عرض
           jobRoles:
+            export_translations: تصدير ترجمات الأدوار الوظيفية
+            import_translations: استيراد ترجمات الأدوار الوظيفية
             manage: الإدارة
             title: الأدوار الوظيفية
             view: عرض
@@ -292,10 +294,8 @@ ar:
       ai_assistants: مساعدو الذكاء الاصطناعي
       ai_assistants_playground: ملعب مساعد الذكاء الاصطناعي
       column:
-        ai_action: إجراء الذكاء الاصطناعي
         provider: المزود
       form:
-        action: الإجراء
         description: الوصف
         name: الاسم
         provider: المزود
@@ -844,6 +844,14 @@ ar:
     campaign_factors_import:
       errors:
         invalid_headers: 'الرؤوس التالية غير صالحة: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: يرجى تحديد نطاق التاريخ
+        modal:
+          subtitle: حدد نطاقاً زمنياً ثم حدد اللغة المطلوبة لكل تقرير
+      generate:
+        modal:
+          subtitle: حدد اللغة المطلوبة لكل تقرير
     campaign_templates:
       campaign_templates: قوالب الحملات
       column:
@@ -934,6 +942,7 @@ ar:
         inactive: غير نشط
         status: الحالة
       form:
+        campaign: الحملة
         name: الاسم
         practice_campaign: حملة تدريبية
         status: الحالة
@@ -960,7 +969,9 @@ ar:
             empty: فارغة
             inactive: غير نشط
             name: الاسم
+            normal: عادي
             previous: السابق
+            skill_rater: مقيّم المهارات
             standard: قياسي
             status: الحالة
           close:
@@ -1093,6 +1104,14 @@ ar:
         successfully: تم حذف عقد العميل %{name} بنجاح.
       edit:
         header: تعديل العميل
+      form:
+        client: العميل
+        country: البلد
+        name: الاسم
+        number: العدد
+        project_manager: مدير المشروع
+        type: النوع
+        year: السنة
       licenses:
         resource:
           confirmations:
@@ -1524,6 +1543,7 @@ ar:
       reset: إعادة تعيين
       save: حفظ
       select_all: تحديد الكل
+      type: النوع
       unselect_all: إلغاء تحديد الكل
     communications:
       create:
@@ -1548,7 +1568,7 @@ ar:
         all: الكل
         assessment_completion_status_code: رمز حالة إكمال التقييم
         assessment_completion_status_code_hint: إذا تم تحديد رمز إكمال، سيتم الإرسال فقط إذا كان تقييم المستخدم يحتوي على رمز حالة الإكمال هذا.
-        body_mustache: |
+        body_mustache: |-
           {{{user_link}}} - رابط إلى المنصة للمستخدمين الحاليين أو رابط لمرة واحدة فقط لتعيين كلمة مرور للمستخدمين الجدد
           {{{user_url}}} - نفس user_link ولكن فقط عنوان URL بدلاً من رابط
           {{{user_link_qrcode}}} - تضمين رمز QR تم إنشاؤه من user_link
@@ -1598,6 +1618,7 @@ ar:
         type: النوع
       list:
         actions: الإجراءات
+        assessment_center_group: مجموعة مركز التقييم
         author: تم الإنشاء بواسطة
         campaign: الحملة
         client_name: العميل
@@ -1745,17 +1766,18 @@ ar:
       errors:
         blank_field: 'الصف %{row}: %{field} لا يمكن أن يكون فارغًا'
         csv_file_required: يجب أن يكون ملف CSV
+        development_action_not_in_project: 'الصف %{row}: معرف إجراء التطوير %{development_action_id} لا ينتمي إلى هذا المشروع'
         image_download_failed: 'فشل تنزيل الصورة من %{url}: %{message}'
         invalid_csv_format: 'تنسيق CSV غير صالح: %{message}'
-        invalid_date: تنسيق التاريخ لـ ٪ {date} غير صالح.
-        invalid_date_format: 'ROW ٪ {row}: تنسيق تاريخ غير صالح لـ ٪ {field}.'
+        invalid_date: تنسيق التاريخ لـ %{date} غير صالح.
+        invalid_date_format: 'ROW %{row}: تنسيق تاريخ غير صالح لـ %{field}.'
         invalid_development_action_type: 'الصف %{row}: نوع إجراء التطوير غير صالح %{value}. أنواع إجراءات التطوير الصالحة هي: %{valid_development_action_types}.'
-        invalid_duration_format: 'يسمح فقط للقيم الرقمية بالمدة.الصف ٪ {row}: ٪ {value} ليس مدة صالحة.'
+        invalid_duration_format: 'يسمح فقط للقيم الرقمية بالمدة.الصف %{row}: %{value} ليس مدة صالحة.'
         invalid_image_file: 'ملف الصورة غير صالح: %{message}'
         invalid_image_url: 'تنسيق عنوان URL للصورة غير صالح: %{url}'
-        invalid_languages: اللغات المتاحة غير صالحة ٪ {invalid_languages} للصف ٪ {row}.
+        invalid_languages: اللغات المتاحة غير صالحة %{invalid_languages} للصف %{row}.
         invalid_learning_style: 'الصف %{row}: نمط تعلم غير صالح ''%{value}''. الأنواع الصالحة هي: %{valid_types}'
-        languages_only_for_courses: لا يمكن تعيين اللغات المتاحة إلا لإجراءات تطوير النوع "الدورة".يرجى إزالة اللغة المتاحة للصف ٪ {row} أو تغيير نوع إجراء التطوير إلى "الدورة".
+        languages_only_for_courses: لا يمكن تعيين اللغات المتاحة إلا لإجراءات تطوير النوع "الدورة".يرجى إزالة اللغة المتاحة للصف %{row} أو تغيير نوع إجراء التطوير إلى "الدورة".
         missing_columns: 'الأعمدة المطلوبة مفقودة: %{fields}'
         save_failed: 'فشل حفظ إجراء التطوير: %{message}'
         skill_not_found: 'لم يتم العثور على المهارة للمعرف: %{skill_id}'
@@ -2060,18 +2082,22 @@ ar:
       all: All
       appearance: المظهر
       appearance_hint: لتعديل المظهر، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
+      appearance_success: تم حفظ إعدادات المظهر بنجاح
       background_image: صورة الخلفية
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
+      details_updated: تم تحديث تفاصيل IDP بنجاح
       edit_template: Edit IDP Template
+      enter_tag_or_skills_error: حدد علامة أو مهارة واحدة على الأقل
       enter_template_description: Description
       enter_template_description_error: Template description is required.
       enter_template_name: Name
       enter_template_name_error: Template name is required
       errors:
-        update: التحديث غير مسموح به لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم. تم حفظ تغييرات المظهر.
+        update: غير مسموح بالتحديث لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم.
       fields:
         assigned_data: البيانات المعينة
+        assigned_date: تاريخ التعيين
         completion_date: تاريخ الانتهاء
         division: الشعبة
         name: الاسم
@@ -2109,6 +2135,11 @@ ar:
       show_reflections: عرض الانعكاسات
       skill_gap_report: Skill Gap Report
       skills: المهارات
+      skills_updated: تم تحديث مهارات المشردين داخلياً بنجاح
+      status:
+        draft: المسودة
+        published: منشورة
+      status_updated: تم تحديث حالة IDP بنجاح
       subtitle_text: نص الترجمة
       tab:
         development_actions: إجراءات التنمية
@@ -2341,43 +2372,43 @@ ar:
         rescheduled: Rescheduled
       subject: Subject
     job_role:
+      are_you_sure_to_remove: هل أنت متأكد من الإزالة؟
       column:
         job_group: مجموعة الوظائف
+        skill_name: اسم المهارة
       export:
         failure_msg: خطأ أثناء تصدير الترجمات
         success_msg: تصدير إجراءات التطوير قيد التنفيذ.
-      export_action:
-        translations: ترجمات دور وظيفة التصدير
       form:
         code: الرمز
         description: الوصف
         job_group: مجموعة الوظائف
         name: الاسم
         title: الدور الوظيفي
-      global: هل دور الوظيفة العالمية؟
       import:
         download_example_csv: تنزيل مثال csv
         success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
       import_action:
         translations: استيراد ترجمات الأدوار الوظيفية
+      job_role_details: تفاصيل الدور الوظيفي
       translations: ترجمات الأدوار الوظيفية
     job_role_skill_mapping:
       column:
         expected_proficiency_level: مستوى الكفاءة المتوقع
-        job_role: الدور الوظيفي
-        skill: المهارة
       form:
-        expected_proficiency_level: مستوى الكفاءة المتوقع
-        job_role: الدور الوظيفي
-        skill: المهارة
         title: التعيين
-      global: هل تخطيط وظيفة المهارات العالمية؟
       import:
         taxonomy: التصنيف
     job_roles:
       export:
         translations:
           details: التفاصيل
+      translations:
+        import:
+          errors:
+            job_role_not_found: دور الوظيفة مع المعرف %{id} غير موجود
+            missing_columns: 'الأعمدة المفقودة المطلوبة: %{الأعمدة}'
+            save_failed: 'خطأ في معالجة معرف دور الوظيفة %{id}: %{الرسالة}'
     libraries:
       create:
         successfully: Item %{name} was created successfully.
@@ -2658,14 +2689,11 @@ ar:
           level_definition_must_match_level: يجب أن يحتوي على %{expected} بالضبط، ولكن تم إعطاء %{actual}
           must_be_unique: يجب أن تكون فريدة من نوعها
           proficiency_level_exists: مستوى الكفاءة مع هذه المهارة والمشروع موجود بالفعل
-          proficiency_level_exists_for_all_skills: مستوى الكفاءة لجميع المهارات الموجودة بالفعل
-          proficiency_level_exists_for_category: مستوى الكفاءة لهذه الفئة موجود بالفعل
-          project_level_all_skills_exists: مستوى كفاءة "جميع_المهارات" موجود بالفعل
+          proficiency_level_exists_for_default: خروج مستوى الكفاءة للتقصير بالفعل
+          proficiency_level_exists_for_type: مستوى الكفاءة لهذا النوع موجود بالفعل
+          project_level_default_exists: مستوى الكفاءة "الافتراضي" موجود بالفعل
           skill_must_exist: يجب أن تكون المهارة موجودة لنوع الكفاءة 'حسب_المهارة'
       export:
-        actions:
-          proficiency: كفاءة التصدير
-          translations: ترجمات كفاءة التصدير
         details: التفاصيل
         failure_msg: خطأ أثناء تصدير مستويات الكفاءة
         success_msg: تصدير إجراءات التطوير قيد التنفيذ
@@ -2678,28 +2706,23 @@ ar:
         proficiency_translations: ترجمات الكفاءة
         proficiency_type: نوع الكفاءة
         skill: المهارة
-        skill_category: فئة المهارة
         skill_name: اسم المهارة
+        skill_type: نوع المهارة
         title: الكفاءة
-      global: هل الكفاءة العالمية؟
       import:
         actions:
           proficiency: كفاءة الاستيراد
           translations: استيراد ترجمات الكفاءة في الترجمة
         errors:
-          all_skills_global_exists: 'الصف %{row_number}: مستوى الكفاءة "كل_المهارات" على المستوى العام موجود بالفعل'
-          all_skills_project_exists: 'الصف %{row_number}: مستوى كفاءة "جميع_المهارات" على مستوى المشروع موجود بالفعل'
-          by_category_exists: 'الصف %{row_number}: مستوى الكفاءة "حسب_الفئة" موجود بالفعل لهذا المشروع وفئة المهارة'
-          by_category_missing: 'الصف %{row_number}: يجب أن يكون المشروع وفئة المهارة موجودين لنوع "حسب_الفئة'
           by_skill_exists: 'الصف %{row_number}: مستوى الكفاءة ''حسب_المهارة'' موجود بالفعل لهذا المشروع والمهارة'
           by_skill_missing: 'الصف %{row_number}: يجب أن يكون المشروع والمهارة موجودين لنوع "حسب_المهارة'
+          by_skill_type_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "حسب_النوع" موجود بالفعل لهذا المشروع ونوع المهارة'
+          by_skill_type_missing: 'الصف %{صف_رقم}: يجب أن يكون نوع المشروع ونوع المهارة موجودين لنوع "حسب_النوع'
+          default_global_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "الافتراضي" على المستوى العام موجود بالفعل'
+          default_project_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل'
           invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
-          invalid_json: 'السطر %{line}: JSON غير صالح في LevelDefinition - %{message}'
-          invalid_json_structure: يجب أن يكون كائن JSON بمفاتيح مثل "الوصف" و"الملخص
           invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
           missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
-          missing_required_fields: 'السطر %{line}: حقول مطلوبة مفقودة (%{fields})'
-          save_failed: 'السطر %{line}: %{message}'
           skill_not_found: 'الصف %{row_number}: مهارة غير صالحة أو مفقودة'
         job_queued: تم وضع مهمة استيراد مستويات الكفاءة في قائمة الانتظار
       translations:
@@ -2716,9 +2739,9 @@ ar:
             row_id_blank: 'الصف %{row}: لا يمكن أن يكون المعرف فارغاً'
             save_failed: 'خطأ في معالجة معرّف المهارة %{id}: %{message}'
       type:
-        all_skills: جميع المهارات
-        by_category: حسب الفئة
         by_skill: حسب المهارة
+        by_skill_type: حسب نوع المهارة
+        default: افتراضي
     profile:
       change_password: Change password
       details: Details
@@ -2764,6 +2787,7 @@ ar:
           success: Assessment '%{name}' was deleted successfully.
           title: Delete Assessment
         form:
+          assessment: التقييم
           assessment_placeholder: Select Assessment
           assessment_required: Assessment is required
           normalize_factor_scores: Normalize Factor Scores
@@ -2899,22 +2923,45 @@ ar:
         client_logo_label: Client Logo
         contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
         contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
+        copy_text: النص
+        dashed_button: متقطع
+        default_button: افتراضي
         error_color: Error Color
+        hover_options:
+          danger_item: عنصر الخطر
+          first_menu_item: 1 عنصر القائمة 1
+        hover_text: مرر لي
         info_color: Info Color
+        link_text: الرابط
         logo_upload: Upload
         position_auto: Auto
         position_label: Login Box Position
         position_left: Left
         position_right: Right
+        primary_button: ابتدائي
         primary_color: Primary Color
         reset: Reset
         sec_logo_label: Secondary Logo
         sec_logo_upload: Upload
         secondary_logo_alt_text: Secondary Logo Alt-Text
         secondary_logo_alt_text_required: Secondary Alt-Text Logo is Required
+        submenu_options:
+          option_one: الخيار 1
+          option_title: البند 1
+          option_two: الخيار 2
         success_color: Success Color
         success_update: Design Settings were saved successfully
+        tab_text_one: قائمة الطعام
+        tab_text_two: القائمة الفرعية
+        text_danger: نص (خطر)
+        text_success: النص (نجاح)
+        text_warning: نص (تحذير)
         warning_color: Warning Color
+      form:
+        name: الاسم
+        project_number: رقم المشروع
+        subdomain: النطاق الفرعي
+        title: المشروع
       general_settings:
         live_chat: Enable Live Chat
         locales_label: Locales
@@ -3037,6 +3084,13 @@ ar:
         success_msg: استيراد أسئلة التفكير قيد التقدم. يرجى التحقق من الحالة في الإشعارات.
       question: سؤال
     report_approval:
+      approval_statuses:
+        approved: معتمد
+        change_requested: التغيير المطلوب
+        not_ready: غير جاهز
+        pending_qc: في انتظار مراقبة الجودة
+        qc_completed: اكتملت مراقبة الجودة
+        qc_in_progress: مراقبة الجودة قيد التنفيذ
       bulk_approve_success: "%{sent_for_approval} تم الإرسال للموافقة. %{approved} تمت الموافقة على التقارير. %{ignored} تقارير تتطلب موافقة يدوية بسبب تغييرات/تعليقات مراقبة الجودة."
       columns:
         actions: Actions
@@ -3068,6 +3122,7 @@ ar:
         no_saved_filters: There are no saved filters
         save_filter: Filter Saved
         set_favorite: Filter has been set as favorite
+      submit_or_approve_all: إرسال الكل أو الموافقة على الكل
     report_builder:
       campaign_factors:
         add_field: Add Field
@@ -3169,6 +3224,11 @@ ar:
         successfully: Report '%{name}' was deleted successfully.
       edit:
         header: Edit Report Name
+      edit_default_language:
+        confirm_msg: لقد قرأت المعلومات المذكورة أعلاه وأفهم الآثار المترتبة على تغيير اللغة الافتراضية.
+        title: تحرير اللغة الافتراضية
+        tooltip: تحرير اللغة الافتراضية
+        warning: تغيير اللغة الافتراضية من لغة rtl إلى لغة ltr أو العكس سيؤثر على التخطيط. سيتعين عليك إعادة العمل على ترجمات التقارير إذا قمت بتغيير اللغة الافتراضية. يرجى تنزيل نسخة من الترجمات قبل إجراء هذا التغيير.
       modals:
         remap_assessment:
           new_assessment_name: New Assessment Name
@@ -3211,6 +3271,9 @@ ar:
         successfully: Report was updated successfully.
       update:
         successfully: Report %{name} was updated successfully.
+    reports_language_selection_modal:
+      download: تنزيل التقرير
+      generate: إنشاء التقرير
     resource:
       remove_confirm:
         message: Are you sure you want to remove this resource?
@@ -3379,7 +3442,7 @@ ar:
         add_assessor_form: Add Assessor Form
         assessments: Assessments
         assessor_forms: Assessor Forms
-        confirm_message: |
+        confirm_message: |-
           Are you sure you want to cancel the participation of the subject with the email '%{subject_email}'?
           <br />
           Once marked as cancelled, this subject will not be able to participate in the assessment center.
@@ -3620,6 +3683,7 @@ ar:
         import:
           missing_fields_data: 'السطر %{line_number}: الحقول المطلوبة ناقصة: %{fields}'
           save_failed: 'السطر %{line_number}: فشل في حفظ المهارة "%{name}": %{message}'
+          skill_not_in_project: 'السطر %{line_number}: معرف المهارة %{skill_id} لا ينتمي إلى هذا المشروع'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'must be one of: true, false'
@@ -3630,12 +3694,8 @@ ar:
         details: التفاصيل
         failure_msg: خطأ أثناء تصدير الترجمات
         success_msg: تصدير إجراءات التطوير قيد التنفيذ.
-        title: التصدير
         translations:
           details: ترجمات المهارات
-      export_action:
-        skills_title: مهارات التصدير
-        skills_translations_title: ترجمات مهارات التصدير
       form:
         client_placeholder: اختر عميل
         description: Description
@@ -3644,9 +3704,6 @@ ar:
         skill_group: مجموعة المهارات
         skill_type: نوع المهارة
         title: Skill
-      global: هل المهارة العالمية؟
-      global_skills: المهارات العالمية
-      global_translations: ترجمات المهارات العالمية
       import:
         download_example_csv: Download Example csv
         info_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
@@ -3656,8 +3713,6 @@ ar:
         skills_translations_title: ترجمات مهارات الاستيراد
       skill_details: تفاصيل المهارة
       skill_translations: ترجمات المهارات
-      skill_translations_project: ترجمات المهارات على أساس المشروع
-      skills_project: المهارات القائمة على المشروع
       title: المهارات
       translations:
         import:
@@ -3668,7 +3723,6 @@ ar:
             skill_not_found: المهارة ذات المعرف %{id} غير موجودة
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: تعيينات وظائف المهارة
         job_roles: الأدوار الوظيفية
         proficiency: الكفاءة
         skills: المهارات
@@ -3726,7 +3780,7 @@ ar:
         modal:
           btn_name: Send SMS
           title: Send SMS
-        pipetext_details: |
+        pipetext_details: |-
           {{{first_name}}} - Recipient First Name
           <br />
           {{{last_name}}} - Recipient Last Name
@@ -3826,7 +3880,25 @@ ar:
         successfully: Sub-Factor was updated successfully.
     survey_builder:
       builder_area:
+        current_job: الوظيفة الحالية
+        default_not_applicable_label: لا توجد فرصة للتعلم أو إظهار المهارة
+        enable_not_applicable: تمكين الخيار غير متاح/غير متاح
+        enable_required_validation: تمكين التحقق من الصحة المطلوبة
+        force_response: استجابة القوة
+        job_role_required: يرجى تحديد دور وظيفي واحد على الأقل
+        not_applicable_label: ملصق غير قابل للتطبيق
         options: Options
+        request_response: الاستجابة للطلب
+        skill_rater_config: تكوين مقيِّم المهارات
+        target_job: الوظيفة المستهدفة
+      models:
+        block_types:
+          regular: عادي
+          skill_rater: مقيّم المهارات
+        skill_types:
+          behavioural: السلوكيات
+          other: أخرى
+          technical: التقنية
       property_panel:
         add_n_a_option: Add N/A option
         allow_content_copy: Allow content copying
@@ -3885,16 +3957,15 @@ ar:
         download_example_file: تنزيل ملف المثال
         success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
       import_action:
-        taxonomy: استيراد التصنيف
+        taxonomy: تصنيف مهارات الاستيراد
       job_roles: الأدوار الوظيفية
       proficiency: الكفاءة
-      skill_job_mappings: التعيينات
       skills: المهارات
-      title: التصنيف
+      title: تصنيف المهارات
     templates:
       blocks:
         copy:
-          error: Block \#%{name} was not copied.
+          error: Block \
         destroy:
           successfully: Block %{name} was deleted successfully.
         edit:
@@ -4067,6 +4138,14 @@ ar:
         messages:
           title: Messages
         participants:
+          subjects:
+            add_subjects: إضافة مواضيع
+            current_job_role: الدور الوظيفي الحالي
+            email: البريد الإلكتروني
+            first_name: الاسم الأول
+            last_name: اسم العائلة
+            locale: موقع
+            target_job_role: الدور الوظيفي المستهدف
           title: Participants
         report:
           menu:

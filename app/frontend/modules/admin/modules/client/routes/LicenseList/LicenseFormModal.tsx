@@ -48,7 +48,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
   return (
     <ResourceFormModal
       resourceName="licenses"
-      readableResourceName="License"
+      readableResourceName={I18n.t('licenses.title')}
       showSuccessMessages
       close={close}
       resource={licenseResource}

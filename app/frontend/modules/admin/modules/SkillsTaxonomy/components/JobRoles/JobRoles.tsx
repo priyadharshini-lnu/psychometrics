@@ -11,12 +11,10 @@ import { Tabs } from '../Tabs'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { getFeatures } from '~/core/config'
 import { RootState } from '~/core/reducers'
-import { JobRolesExportModal } from './JobRolesExportModal'
 
 const MODALS = {
   JobRolesFormModal,
   JobRolesImportModal,
-  JobRolesExportModal,
 }
 
 const connecter = connect(

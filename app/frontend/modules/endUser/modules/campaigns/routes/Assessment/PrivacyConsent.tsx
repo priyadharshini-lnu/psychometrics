@@ -23,7 +23,7 @@ import { SafeHTML } from '~/components/SafeHTML'
 const { I18n } = window
 const { Paragraph } = Typography
 const { Content, Header } = Layout
-const globalLink = `/privacy-statement/${I18n.currentLocale()}`
+const globalLink = `/privacy-statement?lang=${I18n.currentLocale()}`
 
 const connector = connect(
   (state: RootState) => ({

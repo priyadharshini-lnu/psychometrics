@@ -41,6 +41,8 @@ module Administration
           required(:update_pearson_variation).filled(:bool?)
           required(:update_available_locales).filled(:bool?)
           optional(:export_occupations).filled(:bool?)
+          required(:toggle_require_scheduling).filled(:bool?)
+          required(:update_prework).filled(:bool?)
         end
         required(:has_external_norm).filled(:bool?)
         required(:available_locales).maybe(:array?).each(:str?)

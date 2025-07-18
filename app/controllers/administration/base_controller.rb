@@ -45,8 +45,7 @@ module Administration
     end
 
     def set_locale
-      lang = params[:lang].presence || cookies[:locale].presence
-      I18n.locale = lang || I18n.default_locale
+      I18n.locale = cookies[:locale].presence || I18n.default_locale
     end
 
     def init_state

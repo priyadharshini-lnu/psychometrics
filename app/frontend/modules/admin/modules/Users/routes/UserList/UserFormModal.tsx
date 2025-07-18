@@ -25,7 +25,7 @@ export const UserFormModal: React.FC<Props> = ({ close, userTab }) => {
   return (
     <ResourceFormModal
       resourceName="users"
-      readableResourceName="User"
+      readableResourceName={I18n.t('administration.users.user')}
       showSuccessMessages
       close={close}
       scrollToFirstError

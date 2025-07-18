@@ -28,6 +28,8 @@ module Administration
         required(:comments_count).filled(:int?)
         required(:edits_count).filled(:int?)
         required(:hogan_participant_id).maybe(:str?)
+        required(:effective_default_language).filled(:str?)
+        required(:available_languages).maybe(:array?)
       end
     end
   end

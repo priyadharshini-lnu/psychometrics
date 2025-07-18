@@ -17,6 +17,61 @@ module Workshops
       tzid = 'Asia/Dubai'
       tz_info = TZInfo::Timezone.get tzid
       cal.add_timezone tz_info.ical_timezone(start_time)
+      add_event_to_calendar(cal, start_time, end_time, tzid)
+
+      type == :booking ? cal.publish : cal.cancel
+
+      broadcast :ok, cal.to_ical
+    end
+
+    private
+
+    def platform_link_for(user)
+      return assessor_platform_link if user.assessor?
+
+      Utility::Url.generate(:invites_url, subdomain: user.project.subdomain)
+    end
+
+    def assessor_platform_link
+      base_url = Utility::Url.generate(
+        :administration_project_new_campaign_url,
+        project_id: workshop&.campaign&.project,
+        id: workshop&.campaign
+      )
+
+      "#{administration_to_admin_url(base_url)}/scheduling/assessment_center/#{workshop.id}"
+    end
+
+    def generate_event_description(start_time, platform_link)
+      <<~DESC.strip
+        You have a workshop booked.
+
+        Campaign: #{workshop&.campaign&.name}
+        Project: #{workshop&.campaign&.project&.name}
+        Date: #{I18n.l(start_time, format: :long)}
+        Platform Link: #{platform_link}
+      DESC
+    end
+
+    def generate_event_description_html(start_time, platform_link)
+      <<~HTML.strip
+        <html>
+          <body>
+            <p>You have a workshop booked.</p>
+            <p><strong>Campaign:</strong> #{workshop&.campaign&.name}<br/>
+            <strong>Project:</strong> #{workshop&.campaign&.project&.name}<br/>
+            <strong>Date:</strong> #{I18n.l(start_time, format: :long)}<br/>
+            <a href="#{platform_link}">Link to Platform</a></p>
+          </body>
+        </html>
+      HTML
+    end
+
+    def administration_to_admin_url(path)
+      path.gsub('/administration/', '/admin/')
+    end
+
+    def add_event_to_calendar(cal, start_time, end_time, tzid)
       cal.event do |e|
         e.uid = "#{workshop.id}-#{user.id}-facilitators-booking@#{Settings.domain}"
         e.status = type == :booking ? 'CONFIRMED' : 'CANCELLED'
@@ -26,10 +81,15 @@ module Workshops
                                                         role: 'REQ-PARTICIPANT')
         e.summary = "Booked for center on #{I18n.l(start_time, format: :workshop_date)} " \
                     "for campaign #{workshop.campaign.name} and project #{workshop.campaign.project.name}"
-      end
-      type == :booking ? cal.publish : cal.cancel
 
-      broadcast :ok, cal.to_ical
+        platform_link = platform_link_for(user)
+
+        plain_description = generate_event_description(start_time, platform_link)
+        html_description = generate_event_description_html(start_time, platform_link)
+
+        e.description = plain_description
+        e.x_alt_desc = Icalendar::Values::Text.new(html_description, 'FMTTYPE' => 'text/html')
+      end
     end
   end
 end

@@ -2,8 +2,11 @@
 
 module PowerBi
   class FileExportService
-    def initialize(parameters)
+    private_attr_reader :parameters, :identities
+
+    def initialize(parameters, identities)
       @parameters = parameters
+      @identities = identities
     end
 
     def call
@@ -11,8 +14,6 @@ module PowerBi
     end
 
     private
-
-    attr_reader :parameters
 
     def config
       @config ||= Settings.secrets.power_bi
@@ -27,12 +28,13 @@ module PowerBi
         powerBIReportConfiguration: {
           identities: [
             {
-              username: config[:username],
               roles: ['self'],
               datasets: [dataset_id]
-            },
-            settings: {
-              includeHiddenPages: false
+            }.merge(identities),
+            {
+              settings: {
+                includeHiddenPages: false
+              }
             }
           ]
         }.tap do |config|

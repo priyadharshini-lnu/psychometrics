@@ -2,7 +2,7 @@
 
 class AdminJobs::ExportDashboardAsFile < AdminJobs::Base
   def call
-    file_stream = PowerBi::FileExportService.new(record.data).call
+    file_stream = PowerBi::FileExportService.new(record.data, { username: owner.email }).call
     File.binwrite(file_path, file_stream)
     record.file.attach(
       io: File.open(file_path),
@@ -15,6 +15,10 @@ class AdminJobs::ExportDashboardAsFile < AdminJobs::Base
     job_record.complete!
 
     broadcast :ok
+  end
+
+  def valid?
+    dashboard.present?
   end
 
   def file_path
@@ -30,7 +34,7 @@ class AdminJobs::ExportDashboardAsFile < AdminJobs::Base
   end
 
   def file_name
-    "dashboard-#{record.data['dashboard_id']}.#{format.downcase}"
+    "#{dashboard.name.parameterize(preserve_case: true)}-#{dashboard.id}.#{format.downcase}"
   end
 
   def generate_details
@@ -50,5 +54,9 @@ class AdminJobs::ExportDashboardAsFile < AdminJobs::Base
       else
         'application/octet-stream'
     end
+  end
+
+  def dashboard
+    @dashboard = Dashboard.find_by(id: record.data['dashboard_id'])
   end
 end

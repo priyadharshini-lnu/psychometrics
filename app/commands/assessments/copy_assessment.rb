@@ -45,7 +45,7 @@ module Assessments
           # Loop questions to save for the new block
           block_question_ids = block.questions.pluck(:id)
 
-          next unless block_question_ids.intersect?(question_ids)
+          next unless block.skill_rater? || block_question_ids.intersect?(question_ids)
 
           @new_block = make_copy(block, new_assessment)
           @new_block.save!

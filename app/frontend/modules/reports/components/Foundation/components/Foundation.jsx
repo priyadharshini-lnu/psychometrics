@@ -11,7 +11,8 @@ const Foundation = ({
   const selectedIds = useSelector(state => state.report.ui.selection.selected)
   const dispatch = useDispatch()
   const isSelected = selectedIds.includes(module.id)
-  const lang = new URLSearchParams(window.location.search).get('lang') || defaultLanguage.code
+  const search = new URLSearchParams(window.location.search)
+  const lang = search.get('lang') || search.get('report_lang') || defaultLanguage.code
   const isRTL = ['ar', 'he'].includes(lang)
 
   const select = (e) => {

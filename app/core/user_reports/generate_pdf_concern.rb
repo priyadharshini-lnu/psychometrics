@@ -32,11 +32,14 @@ module UserReports::GeneratePdfConcern
   end
 
   def export_pdf_using_faas(record) # rubocop:disable Metrics/AbcSize
+    update_record = options[:update_record] != false
     report_pdf = if record.is_a?(UserIdpPlan)
-                   record.report_pdf(
+                   pdf = record.report_pdfs.find_or_create_by!(
                      locale: options[:lang],
                      include_reflective_questions: options[:include_reflective_questions]
                    )
+                   update_record = true unless pdf.pdf_file.attached?
+                   pdf
                  end
     report_pdf ||= record.report_pdfs.find_or_create_by!(locale: options[:lang])
 
@@ -49,7 +52,7 @@ module UserReports::GeneratePdfConcern
     webhook_message = { record_id: record.id, record_type: record.class.name, file_name: report_file_name,
                         file_path: file_path, lang: options[:lang] }
     webhook_message[:notify_user_id] = current_user.id if options[:notify_user]
-    webhook_message[:update_record] = options[:update_record] != false
+    webhook_message[:update_record] = update_record
     webhook_message[:admin_job_record_id] = options[:admin_job_record_id] if options[:admin_job_record_id]
     webhook_message[:async_request_uuid] = options[:async_request_uuid] if options[:async_request_uuid]
     if options[:include_reflective_questions]

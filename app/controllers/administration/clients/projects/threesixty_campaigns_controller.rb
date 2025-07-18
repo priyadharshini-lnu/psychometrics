@@ -39,6 +39,7 @@ module Administration
               campaignDetails: {
                 id: resource.id,
                 name: resource.name,
+                category: resource.category,
                 campaignId: resource.campaign_id,
                 reportId: resource.report_id,
                 reportName: resource.report.name,

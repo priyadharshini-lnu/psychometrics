@@ -285,7 +285,8 @@ class Block extends Component {
                 className={[styles.content]}
               >
                 <QuestionList block={model} search={search} />
-                {showOptions ? <Footer {...this.props} onMinimize={this.expand} /> : null}
+                {showOptions || model.blockType === 'skill_rater'
+                  ? <Footer showOptions={showOptions} {...this.props} onMinimize={this.expand} /> : null}
               </div>
               <Prompt
                 title={`Copy Block - ${model.name}`}

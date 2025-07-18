@@ -2,7 +2,7 @@
 
 module Administration
   class SkillvueUserAssessmentSerializer < Panko::Serializer
-    attributes :email, :external_assessment_id
+    attributes :email, :external_assessment_id, :external_user_id
 
     def external_assessment_id
       object.user_assessment.assessment.external_assessment_id.to_s

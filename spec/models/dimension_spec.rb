@@ -23,4 +23,30 @@ RSpec.describe Dimension, type: :model do
       expect(active_record_audit).to be_present
     end
   end
+
+  describe '.skill_rater_dimension' do
+    let(:project) { create(:project, name: 'My Project') }
+
+    it 'creates a new skill_rater dimension if not existing' do
+      dimension = Dimension.skill_rater_dimension(project)
+
+      expect(dimension).to be_persisted
+      expect(dimension.dimension_type).to eq('skill_rater')
+      expect(dimension.owner_id).to eq(project.id)
+      expect(dimension.name).to eq('My Project - Skill Rater')
+    end
+
+    it 'returns existing skill_rater dimension if already present and updates name' do
+      existing = Dimension.create!(
+        dimension_type: :skill_rater,
+        owner_id: project.id,
+        name: 'Old Name'
+      )
+
+      result = Dimension.skill_rater_dimension(project)
+
+      expect(result.id).to eq(existing.id)
+      expect(result.name).to eq('My Project - Skill Rater')
+    end
+  end
 end

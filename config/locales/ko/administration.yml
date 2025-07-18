@@ -174,6 +174,8 @@ ko:
             title: IDP 템플릿
             view: 보기
           jobRoles:
+            export_translations: 직무 역할 번역 내보내기
+            import_translations: 직무 역할 번역 가져오기
             manage: 관리
             title: 직무 역할
             view: 보기
@@ -292,10 +294,8 @@ ko:
       ai_assistants: AI 어시스턴트
       ai_assistants_playground: AI 어시스턴트 플레이그라운드
       column:
-        ai_action: AI 액션
         provider: 공급자
       form:
-        action: 액션
         description: 설명
         name: 이름
         provider: 공급자
@@ -394,8 +394,8 @@ ko:
         reason: 이유
         reject: 거부
         remove_confirm:
-          content: 대상 이름}에서 %{작업} %{상태}를 원하시겠습니까?
-          success: 대상 이름}의 %{상태}가 %{작업}에 성공했습니다.
+          content: "%{subjectName}에서 %{action} %{status}하시겠습니까?"
+          success: "%{subjectName}의 %{status}이 성공적으로 %{action}되었습니다."
           title: "%{action} %{status}"
         status: 상태
         subject_name: 제목 이름
@@ -440,13 +440,13 @@ ko:
       edit:
         header: 평가 설정
       errors:
-        owner_validation: 클라이언트 이름]에 대한 %{자원_이름} %{권한} 권한이 없습니다
+        owner_validation: "%{client_name}에 대한 %{resource_name} %{permission} 권한이 없습니다."
       export:
         questions: 내보내기 질문
       export_questions_toastr: 질문 내보내기 작업이 성공적으로 예약되었습니다
       flow: 흐름
       linkedAssessment:
-        assessment_title: 이름}에서 질문 선택
+        assessment_title: "%{name}에서 질문 선택"
         title: 연결된 질문 선택
       map_norms: 지도 규범
       menu:
@@ -484,7 +484,7 @@ ko:
             title: 소프트 삭제 <strong>평가</strong>?
           toggle_status:
             body: "<p>이 평가를 %{status}로 하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
       restore:
         successfully: 평가 %{name}을(를) 성공적으로 복원했습니다.
       scoring_strategy:
@@ -609,7 +609,7 @@ ko:
         confirmations:
           delete:
             body: "<p>이 과제를 삭제하시겠습니까?</p>"
-            title: "<strong>이름}</strong> 삭제 ?"
+            title: "<strong>%{name}</strong> 삭제하시겠습니까?"
     assigns_reports:
       edit:
         header: 보고서 할당 편집
@@ -687,7 +687,7 @@ ko:
             title: "<strong>블록</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 블록을 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
     bookings:
       errors:
         already_booked: 이미 좌석을 예약하셨습니다.
@@ -844,6 +844,14 @@ ko:
     campaign_factors_import:
       errors:
         invalid_headers: '다음 헤더가 잘못되었습니다: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: 날짜 범위를 선택하세요.
+        modal:
+          subtitle: 날짜 범위를 선택한 다음 각 보고서에 필요한 언어를 선택합니다.
+      generate:
+        modal:
+          subtitle: 각 보고서에 필요한 언어를 선택하세요.
     campaign_templates:
       campaign_templates: 캠페인 템플릿
       column:
@@ -892,7 +900,7 @@ ko:
         confirmations:
           delete:
             body: "<p>이 캠페인 템플릿을 삭제하시겠습니까?</p>\n"
-            title: "<strong>이름}</strong> 삭제 ?"
+            title: "<strong>%{name}</strong> 삭제하시겠습니까?"
         in_progress:
           deleting: 삭제
         tooltips:
@@ -934,6 +942,7 @@ ko:
         inactive: 비활성
         status: 상태
       form:
+        campaign: 캠페인
         name: 이름
         practice_campaign: 실천 캠페인
         status: 상태
@@ -960,7 +969,9 @@ ko:
             empty: 비어 있음
             inactive: 비활성
             name: 이름
+            normal: 보통
             previous: 이전 게시물
+            skill_rater: 스킬 평가자
             standard: 표준
             status: 상태
           close:
@@ -1093,14 +1104,22 @@ ko:
         successfully: 클라이언트 테넌시 %{name}이(가) 성공적으로 삭제되었습니다.
       edit:
         header: 클라이언트 편집
+      form:
+        client: 클라이언트
+        country: 국가
+        name: 이름
+        number: 번호
+        project_manager: 프로젝트 관리자
+        type: 유형
+        year: 연도
       licenses:
         resource:
           confirmations:
             toggle_status:
               body: "<p>이 라이선스를 %{status}화하시겠습니까?</p>\n"
-              title: "<strong>상태} %</strong> {이름}에 대한 라이선스?"
+              title: "<strong>%{status}</strong> %{name} 대한 라이센스?"
         show:
-          used_out_of: 사용한_번호} 중 %{번호} 중
+          used_out_of: "%{used_number} %{number} 중"
       new:
         header: 신규 고객
       projects:
@@ -1439,8 +1458,8 @@ ko:
           resource:
             confirmations:
               delete:
-                body: "<p>정말 삭제하시겠습니까?</p> <p>이 작업은 실행 취소할 수 없습니다. 그러면 <strong>%{이름}</strong> 캠페인, 하위 캠페인 및 모든 연결이 영구적으로 삭제됩니다.</p> <p>확인하려면 <strong>%{이름}을</strong> 입력하세요.</p>"
-                title: "<strong>이름}을</strong> 삭제하시겠습니까?"
+                body: "<p>정말 삭제하시겠습니까?</p> <p>이 작업은 실행 취소할 수 없습니다. 그러면 <strong>%{name}</strong> 캠페인, 하위 캠페인 및 모든 연결이 영구적으로 삭제됩니다.</p> <p>확인하려면 <strong>%{name}을</strong> 입력하세요.</p>"
+                title: "<strong>%{name}</strong> 삭제하시겠습니까?"
               disable:
                 body:
                   '0': "<p>정말 아카이브하시겠습니까?</p> <p>모든 캠페인, 하위 캠페인 및 사용자도 보관됩니다</p>"
@@ -1454,7 +1473,7 @@ ko:
                   '1': "<p>정말 아카이브를 취소하시겠습니까?</p>"
                   '2': "<p>정말 아카이브를 취소하시겠습니까?</p>"
                   '3': "<p>정말 아카이브를 취소하시겠습니까?</p>"
-                title: "<strong>이름}</strong> 보관 취소 ?"
+                title: "<strong>%{name}}</strong> 보관 취소 ?"
             export_results: 내보내기 결과
             raw_results: 원시 결과
             tooltips:
@@ -1498,11 +1517,11 @@ ko:
       resource:
         confirmations:
           delete:
-            title: "<strong>이름}</strong> 삭제 ?"
+            title: "<strong>%{name}</strong> 삭제 ?"
           disable:
             title: 아카이브 <strong>%{name}</strong>?
           enable:
-            title: "<strong>이름}</strong> 보관 취소 ?"
+            title: "<strong>%{name}</strong> 보관 취소하시겠습니까?"
       tenancies: 고객 임차
       threesixty_campaign: 쓰리식스티 캠페인
       toggle_status:
@@ -1524,6 +1543,7 @@ ko:
       reset: 초기화
       save: 저장
       select_all: 모두 선택
+      type: 유형
       unselect_all: 모두 선택 취소
     communications:
       create:
@@ -1598,6 +1618,7 @@ ko:
         type: 유형
       list:
         actions: 작업
+        assessment_center_group: 평가 센터 그룹
         author: 만든 사람
         campaign: 캠페인
         client_name: 클라이언트
@@ -1619,7 +1640,7 @@ ko:
             title: "<strong>커뮤니케이션</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 통신을 %{status}로 하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: 복사
           deleting: 삭제
@@ -1745,7 +1766,8 @@ ko:
       errors:
         blank_field: '행 %{row}: %{field}는 비워 둘 수 없습니다'
         csv_file_required: CSV 파일이어야 합니다
-        image_download_failed: 'URL}에서 이미지를 다운로드하지 못했습니다: %{메시지}'
+        development_action_not_in_project: '행 %{row}: 개발 작업 ID %{development_action_id}가 이 프로젝트에 속하지 않습니다'
+        image_download_failed: "%{url}에서 이미지를 다운로드하지 못했습니다 : %{message}"
         invalid_csv_format: '잘못된 CSV 형식: %{message}'
         invalid_date: "%{date}의 날짜 형식은 유효하지 않습니다."
         invalid_date_format: 'Row %{row} : %{field}에 대한 잘못된 날짜 형식 입니다.'
@@ -1770,7 +1792,7 @@ ko:
           invalid_id: '행 %{row}: ID는 숫자여야 합니다'
           invalid_id_format: '행 %{row}: ID는 "id#field" 형식이어야 합니다.'
           missing_columns: '누락된 필수 열: %{fields}'
-          save_failed: 저장 실패
+          save_failed: '저장 실패: %{message}'
     development_actions:
       create:
         successfully: 개발 작업 "%{name}"을 성공적으로 만들었습니다.
@@ -1842,7 +1864,7 @@ ko:
             title: "<strong>개발 작업</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 개발 작업을 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: 개발 작업이 성공적으로 업데이트되었습니다.
       update:
@@ -1851,7 +1873,7 @@ ko:
       copy_scheduled:
         successfully: 차원 %{name}에 대해 복사 예약됨
       create:
-        successfully: 이름} 차원을 성공적으로 만들었습니다
+        successfully: "%{name} 차원이 성공적으로 생성되었습니다."
       destroy:
         successfully: 차원 %{name}을(를) 성공적으로 삭제했습니다.
       edit:
@@ -1899,7 +1921,7 @@ ko:
             title: "<strong>차원</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 차원을 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: 복사
           deleting: 삭제
@@ -1921,7 +1943,7 @@ ko:
         header: 팩터 번역
         import: 가져오기
       update:
-        successfully: 이름} 차원이 성공적으로 업데이트되었습니다
+        successfully: "%{name} 차원이 성공적으로 업데이트되었습니다."
     disable: 비활성화
     document_titles:
       project_assessors: 평가자 | %{project}
@@ -1940,7 +1962,7 @@ ko:
         error: "'%{name}' 인자가 복사되지 않았습니다"
         successfully: "'%{name}' 인수를 성공적으로 복사했습니다."
       create:
-        successfully: 이름} 요소를 성공적으로 만들었습니다.
+        successfully: "%{name} 요소가 성공적으로 생성되었습니다."
       destroy:
         successfully: '"%{name}" 인자를 성공적으로 삭제했습니다.'
       edit:
@@ -2006,7 +2028,7 @@ ko:
             title: "<strong>팩터</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 팩터를 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: 복사
           deleting: 삭제
@@ -2033,7 +2055,7 @@ ko:
       toggle_status:
         successfully: 팩터가 성공적으로 업데이트되었습니다.
       update:
-        successfully: 이름} 요소가 성공적으로 업데이트되었습니다
+        successfully: "%{name} 요소가 성공적으로 업데이트되었습니다."
     genders:
       female: 여성
       male: 남성
@@ -2060,18 +2082,22 @@ ko:
       all: 모두
       appearance: 모양
       appearance_hint: 모양을 수정하려면 먼저 IDP 템플릿을 저장하여 이러한 설정을 활성화하세요.
+      appearance_success: 모양 설정이 성공적으로 저장됨
       background_image: 배경 이미지
       behavioral_skills: 행동 기술
       client_skills: 클라이언트 기술
+      details_updated: IDP 세부 정보 업데이트 성공
       edit_template: IDP 템플릿 편집
+      enter_tag_or_skills_error: 태그 또는 스킬을 하나 이상 선택합니다.
       enter_template_description: 설명
       enter_template_description_error: 템플릿 설명은 필수입니다.
       enter_template_name: 이름
       enter_template_name_error: 템플릿 이름은 필수입니다
       errors:
-        update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다. 모양 변경 사항이 저장되었습니다.
+        update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다.
       fields:
         assigned_data: 할당된 데이터
+        assigned_date: 할당된 날짜
         completion_date: 완료 날짜
         division: 부서
         name: 이름
@@ -2109,6 +2135,11 @@ ko:
       show_reflections: 반사 표시
       skill_gap_report: 기술 격차 보고서
       skills: 기술
+      skills_updated: IDP 스킬 업데이트 성공
+      status:
+        draft: 초안
+        published: 게시됨
+      status_updated: IDP 상태 업데이트 성공
       subtitle_text: 자막 텍스트
       tab:
         development_actions: 개발 작업
@@ -2136,7 +2167,7 @@ ko:
       errors:
         invalid_format: 잘못된 파일 형식
         norm:
-          dimension_not_found: 클라이언트_이름}에 대한 %{차원_이름} 차원을 찾을 수 없습니다
+          dimension_not_found: "%{client_name}에 대한 Dimension %{dimension_name} 찾을 수 없습니다."
           factor_mismatch: 차원 %{dimension_name}에 %{factor_name}요소가 없습니다
           not_set_dimension: 차원 이름은 첫 번째 행의 두 번째 셀에 작성해야 합니다
         result:
@@ -2235,7 +2266,7 @@ ko:
       create:
         successfully: 인자 %{name}을(를) 성공적으로 만들었습니다.
       destroy:
-        successfully: 이름} 팩터를 성공적으로 분리했습니다.
+        successfully: "%{name} 요인이 성공적으로 분리되었습니다."
       edit:
         header: 편집 계수
       index:
@@ -2341,43 +2372,43 @@ ko:
         rescheduled: 일정 변경
       subject: 제목
     job_role:
+      are_you_sure_to_remove: 정말 제거하시겠습니까?
       column:
         job_group: 작업 그룹
+        skill_name: 기술 이름
       export:
         failure_msg: 번역 내보내기 중 오류 발생
         success_msg: 진행 중인 개발 작업 내보내기.
-      export_action:
-        translations: 직무 역할 번역 내보내기
       form:
         code: 코드
         description: 설명
         job_group: 작업 그룹
         name: 이름
         title: 직무 역할
-      global: 글로벌 직무는 무엇인가요?
       import:
         download_example_csv: 예제 파일 다운로드
         success_msg: 업로드한 파일을 가져오기 위해 대기 중입니다. 알림에서 상태를 확인하세요.
       import_action:
         translations: 직무 역할 번역 가져오기
+      job_role_details: 직무 역할 세부 정보
       translations: 직무 역할 번역
     job_role_skill_mapping:
       column:
         expected_proficiency_level: 예상 숙련도 수준
-        job_role: 직무 역할
-        skill: 스킬
       form:
-        expected_proficiency_level: 예상 숙련도 수준
-        job_role: 직무 역할
-        skill: 스킬
         title: 스킬 작업 매핑
-      global: 글로벌 스킬 잡 매핑이란?
       import:
         taxonomy: 분류
     job_roles:
       export:
         translations:
           details: 세부 정보
+      translations:
+        import:
+          errors:
+            job_role_not_found: ID가 %{id}인 작업 역할을 찾을 수 없습니다.
+            missing_columns: '누락된 필수 열: %{열}'
+            save_failed: '작업 역할 ID %{id}를 처리하는 동안 오류가 발생했습니다: %{메시지}'
     libraries:
       create:
         successfully: 항목 %{name}을(를) 성공적으로 만들었습니다.
@@ -2403,8 +2434,8 @@ ko:
       resource:
         confirmations:
           delete:
-            body: "<p>이름}을 삭제하시겠습니까?</p>\n"
-            title: "<strong>이름}</strong> 삭제 ?"
+            body: "<p>삭제하시겠습니까%{name}?</p>"
+            title: "<strong>%{name}</strong> 삭제하시겠습니까?"
         tooltips:
           delete: 삭제
           edit: 편집
@@ -2424,7 +2455,7 @@ ko:
       spoof:
         successfully: 이름 %{name}으로 로그인했습니다
       toggle_membership_status:
-        successfully: 이름}의 멤버십이 성공적으로 업데이트되었습니다.
+        successfully: "%{name}의 멤버십이 성공적으로 업데이트되었습니다."
       toggle_status:
         successfully: 사용자 %{name}이 업데이트되었습니다.
       update:
@@ -2516,7 +2547,7 @@ ko:
             title: "<strong>규범</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 규범을 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: 복사
           deleting: 삭제
@@ -2582,7 +2613,7 @@ ko:
       create:
         successfully: 인자 %{name}을(를) 성공적으로 만들었습니다.
       destroy:
-        successfully: 이름} 팩터를 성공적으로 분리했습니다.
+        successfully: 요소 %{name}가 성공적으로 분리되었습니다.
       edit:
         header: 편집 계수
       index:
@@ -2658,14 +2689,11 @@ ko:
           level_definition_must_match_level: 정확히 %{expected} 레벨을 포함해야 하지만 %{actual} 레벨이 제공되었습니다.
           must_be_unique: 고유해야 합니다.
           proficiency_level_exists: 이 스킬과 프로젝트의 숙련도 레벨이 이미 존재합니다.
-          proficiency_level_exists_for_all_skills: 모든 스킬의 숙련도 레벨이 이미 종료되었습니다.
-          proficiency_level_exists_for_category: 이 카테고리에 대한 숙련도 레벨이 이미 존재합니다.
-          project_level_all_skills_exists: "'모든_스킬' 숙련도 수준이 이미 존재합니다."
+          proficiency_level_exists_for_default: 기본 숙련도 레벨은 이미 종료되었습니다.
+          proficiency_level_exists_for_type: 이 유형에 대한 숙련도 레벨이 이미 존재합니다.
+          project_level_default_exists: "'기본' 숙련도 레벨이 이미 존재합니다."
           skill_must_exist: 숙련도_유형 'by_skill'에는 스킬이 있어야 합니다.
       export:
-        actions:
-          proficiency: 내보내기 숙련도
-          translations: 내보내기 숙련도 번역
         details: 세부 정보
         failure_msg: 숙련도 레벨 내보내기 중 오류 발생
         success_msg: 진행 중인 개발 작업 내보내기
@@ -2678,28 +2706,23 @@ ko:
         proficiency_translations: 숙련도 번역
         proficiency_type: 숙련도 유형
         skill: 스킬
-        skill_category: 기술 카테고리
         skill_name: 기술 이름
+        skill_type: 스킬 유형
         title: 숙련도
-      global: 글로벌 숙련도란?
       import:
         actions:
           proficiency: 가져오기 숙련도
           translations: 숙련도 번역 가져오기
         errors:
-          all_skills_global_exists: '행 %{row_number}: 글로벌 수준의 ''모든_스킬'' 숙련도 레벨이 이미 존재합니다.'
-          all_skills_project_exists: '행 %{row_number}: 프로젝트 수준의 ''모든_스킬'' 숙련도 수준이 이미 존재합니다.'
-          by_category_exists: '행 %{row_number}: 이 프로젝트 및 스킬 카테고리에 대한 ''by_category'' 숙련도 레벨이 이미 존재합니다.'
-          by_category_missing: '행 %{row_number}: ''by_category'' 유형에는 프로젝트 및 스킬 카테고리가 있어야 합니다.'
           by_skill_exists: '행 %{row_number}: 이 프로젝트 및 스킬에 대해 ''by_skill'' 숙련도 레벨이 이미 존재합니다.'
           by_skill_missing: '행 %{row_number}: ''by_skill'' 유형에 대해 프로젝트와 스킬이 있어야 합니다.'
+          by_skill_type_exists: '행 %{행_번호}: 이 프로젝트 및 스킬 유형에 대한 ''''by_skill_type'''' 숙련도 수준이 이미 존재합니다.'
+          by_skill_type_missing: '행 %{행_번호}: ''''by_skill_type'''' 유형에는 프로젝트 및 스킬 유형이 있어야 합니다.'
+          default_global_exists: '행 %{행_번호}: 글로벌 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
+          default_project_exists: '행 %{행_번호}: 프로젝트 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
           invalid_csv_format: '잘못된 CSV 형식: %{message}'
-          invalid_json: '줄 %{line}: LevelDefinition - %{message}에 잘못된 JSON이 있습니다.'
-          invalid_json_structure: 는 'description' 및 'summary'와 같은 키가 있는 JSON 객체여야 합니다.
           invalid_proficiency_type: '행 %{row_number}: 잘못되었거나 누락된 숙련도 유형입니다.'
           missing_columns: '누락된 필수 열: %{fields}'
-          missing_required_fields: '줄 %{line}: 누락된 필수 필드(%{fields})'
-          save_failed: '줄 %{line}: %{message}'
           skill_not_found: '행 %{row_number}: 유효하지 않거나 누락된 스킬입니다.'
         job_queued: 숙련도 수준 가져오기 작업이 대기열에 추가되었습니다.
       translations:
@@ -2716,9 +2739,9 @@ ko:
             row_id_blank: '행 %{row}: ID는 비워 둘 수 없습니다.'
             save_failed: '오류 처리 스킬 ID %{id}: %{message}'
       type:
-        all_skills: 모든 기술
-        by_category: 카테고리별
         by_skill: 기술별
+        by_skill_type: 기술 유형별
+        default: 기본값
     profile:
       change_password: 비밀번호 변경
       details: 세부 정보
@@ -2764,6 +2787,7 @@ ko:
           success: 평가 '%{name}'이(가) 성공적으로 삭제되었습니다.
           title: 평가 삭제
         form:
+          assessment: 평가
           assessment_placeholder: 평가 선택
           assessment_required: 평가가 필요합니다
           normalize_factor_scores: 팩터 점수 정규화
@@ -2841,7 +2865,7 @@ ko:
             label: 사용자 이름
             name: 사용자 이름
         remove_webhook:
-          content: 설명}을 삭제하시겠습니까?
+          content: "%{description} 삭제하시겠습니까?"
           title: 삭제
         title: 웹훅
     project_users:
@@ -2899,22 +2923,45 @@ ko:
         client_logo_label: 클라이언트 로고
         contrast_ratio_warning: '참고: 이 기본 색상을 사용하면 텍스트 가독성을 위한 대비 비율 요구 사항을 위반할 수 있습니다.'
         contrast_ratio_warning_lighter_color: '참고: 이 %{name} 색상을 사용하면 텍스트 가독성을 위한 대비 비율 요구 사항을 위반할 수 있습니다. 더 어두운 색상을 사용해 보세요.'
+        copy_text: 텍스트
+        dashed_button: 대시
+        default_button: 기본값
         error_color: 오류 색상
+        hover_options:
+          danger_item: 위험 항목
+          first_menu_item: 첫 번째 메뉴 항목
+        hover_text: 나를 가리키기
         info_color: 정보 색상
+        link_text: 링크
         logo_upload: 업로드
         position_auto: 자동
         position_label: 로그인 상자 위치
         position_left: 왼쪽
         position_right: 오른쪽
+        primary_button: 기본
         primary_color: 기본 색상
         reset: 초기화
         sec_logo_label: 보조 로고
         sec_logo_upload: 업로드
         secondary_logo_alt_text: 보조 로고 대체 텍스트
         secondary_logo_alt_text_required: 보조 대체 텍스트 로고 필수
+        submenu_options:
+          option_one: 옵션 1
+          option_title: 항목 1
+          option_two: 옵션 2
         success_color: 성공 색상
         success_update: 디자인 설정이 성공적으로 저장되었습니다
+        tab_text_one: 메뉴
+        tab_text_two: 하위 메뉴
+        text_danger: 텍스트(위험)
+        text_success: 텍스트(성공)
+        text_warning: 텍스트(경고)
         warning_color: 경고 색상
+      form:
+        name: 이름
+        project_number: 프로젝트 번호
+        subdomain: 하위 도메인
+        title: 프로젝트
       general_settings:
         live_chat: 실시간 채팅 사용
         locales_label: 로캘
@@ -3009,7 +3056,7 @@ ko:
             title: "<strong>질문</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 질문을 %{status}로 하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: 업데이트에 성공했습니다.
     reflection_questions:
@@ -3037,6 +3084,13 @@ ko:
         success_msg: 반영 문제 가져오기가 진행 중입니다. 알림에서 상태를 확인하세요.
       question: 질문
     report_approval:
+      approval_statuses:
+        approved: 승인됨
+        change_requested: 변경 요청
+        not_ready: 준비되지 않음
+        pending_qc: 대기 중인 QC
+        qc_completed: QC 완료
+        qc_in_progress: QC 진행 중
       bulk_approve_success: 승인을 위해 %{sent_for_approval} 보고서를 보냈습니다. 승인된 %{approved} 보고서가 승인되었습니다. 무시된 %{ignored} 보고서는 QC 변경/의견으로 인해 수동 승인이 필요합니다.
       columns:
         actions: 작업
@@ -3068,6 +3122,7 @@ ko:
         no_saved_filters: 저장된 필터가 없습니다
         save_filter: 저장된 필터
         set_favorite: 필터가 즐겨찾기로 설정되었습니다
+      submit_or_approve_all: 모두 제출 또는 승인
     report_builder:
       campaign_factors:
         add_field: 필드 추가
@@ -3124,7 +3179,7 @@ ko:
             title: "<strong>보고서</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 보고서 번들을 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
         tooltips:
           delete: 보고서 번들 삭제
           edit: 보고서 번들 편집
@@ -3169,6 +3224,11 @@ ko:
         successfully: "'%{name}' 보고서를 성공적으로 삭제했습니다."
       edit:
         header: 보고서 이름 수정
+      edit_default_language:
+        confirm_msg: 위의 정보를 읽었으며 기본 언어 변경의 의미를 이해했습니다.
+        title: 기본 언어 편집
+        tooltip: 기본 언어 편집
+        warning: 기본 언어를 rtl 언어에서 ltr 언어로 또는 그 반대로 변경하면 레이아웃에 영향을 미칩니다. 기본 언어를 변경하면 보고서 번역을 다시 작업해야 합니다. 이 변경을 수행하기 전에 번역본을 다운로드하세요.
       modals:
         remap_assessment:
           new_assessment_name: 새 평가 이름
@@ -3200,17 +3260,20 @@ ko:
             title: 소프트 삭제 <strong>보고서</strong>?
           toggle_status:
             body: "<p>이 보고서를 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
       restore:
         successfully: 보고서 %{name}을(를) 성공적으로 복원했습니다.
       soft_delete:
-        successfully: 이름}을(를) 휴지통으로 이동했습니다.
+        successfully: 보고서 %{name} 휴지통으로 이동되었습니다.
       toggle_archive:
         successfully: 평가 %{name}이 %{status}에 성공했습니다.
       toggle_status:
         successfully: 보고서가 성공적으로 업데이트되었습니다.
       update:
-        successfully: 이름} 보고서를 성공적으로 업데이트했습니다.
+        successfully: 보고서 %{name} 성공적으로 업데이트되었습니다.
+    reports_language_selection_modal:
+      download: 보고서 다운로드
+      generate: 보고서 생성
     resource:
       remove_confirm:
         message: 이 리소스를 제거하시겠습니까?
@@ -3388,7 +3451,7 @@ ko:
         form_title: 평가 일정 예약
         language: 언어
         language_not_selected: 선택되지 않음
-        mark_cancel_success: Subject_email} 이메일을 사용하는 주체의 참여를 취소했습니다.
+        mark_cancel_success: 이메일 %{subject_email} 주제 참여 취소.
         meeting_link_custom: 사용자 지정
         meeting_link_internal: 내부
         meeting_link_none: 없음
@@ -3620,6 +3683,7 @@ ko:
         import:
           missing_fields_data: '줄 %{line_number}: 누락된 필수 필드: %{fields}'
           save_failed: '줄 %{line_number}: 스킬 ''%{name}'': %{message}을(를) 저장하지 못했습니다.'
+          skill_not_in_project: '줄 %{line_number}: 스킬 ID %{skill_id}가 이 프로젝트에 속하지 않습니다'
         search:
           all_and_project_id_mutually_exclusive: Project_id_eq가 제공되면 모두 참일 수 없습니다
           invalid_all_value: 는 참, 거짓 중 하나여야 합니다
@@ -3630,12 +3694,8 @@ ko:
         details: 세부 정보
         failure_msg: 번역 내보내기 중 오류 발생
         success_msg: 진행 중인 개발 작업 내보내기.
-        title: 내보내기
         translations:
           details: 스킬 번역
-      export_action:
-        skills_title: 기술 내보내기
-        skills_translations_title: 기술 번역 내보내기
       form:
         client_placeholder: 클라이언트 선택
         description: 설명
@@ -3644,9 +3704,6 @@ ko:
         skill_group: 스킬 그룹
         skill_type: 스킬 유형
         title: 스킬
-      global: 글로벌 스킬이란?
-      global_skills: 글로벌 기술
-      global_translations: 글로벌 기술 번역
       import:
         download_example_csv: 예제 파일 다운로드
         info_msg: 업로드한 파일이 가져오기 대기열에 추가되었습니다. 알림에서 상태를 확인하세요.
@@ -3656,8 +3713,6 @@ ko:
         skills_translations_title: 스킬 번역 가져오기
       skill_details: 기술 세부 정보
       skill_translations: 기술 번역
-      skill_translations_project: 프로젝트 기반 스킬 번역
-      skills_project: 프로젝트 기반 스킬
       title: 기술
       translations:
         import:
@@ -3668,7 +3723,6 @@ ko:
             skill_not_found: 아이디가 %{id}인 스킬을 찾을 수 없습니다
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: 스킬 직무 매핑
         job_roles: 직무 역할
         proficiency: 숙련도
         skills: 기술
@@ -3826,7 +3880,25 @@ ko:
         successfully: 하위 요소가 성공적으로 업데이트되었습니다.
     survey_builder:
       builder_area:
+        current_job: 현재 작업
+        default_not_applicable_label: 기술을 배우거나 시연할 기회 없음
+        enable_not_applicable: N/A 옵션 사용
+        enable_required_validation: 필수 유효성 검사 사용
+        force_response: 강제 응답
+        job_role_required: 직무를 하나 이상 선택해 주세요.
+        not_applicable_label: 해당 없음 라벨
         options: 옵션
+        request_response: 요청 응답
+        skill_rater_config: 스킬 평가자 구성
+        target_job: 대상 작업
+      models:
+        block_types:
+          regular: 일반
+          skill_rater: 스킬 평가자
+        skill_types:
+          behavioural: 행동
+          other: 기타
+          technical: 기술
       property_panel:
         add_n_a_option: N/A 옵션 추가
         allow_content_copy: 콘텐츠 복사 허용
@@ -3885,12 +3957,11 @@ ko:
         download_example_file: 예제 파일 다운로드
         success_msg: 업로드한 파일을 가져오기 위해 대기 중입니다. 알림에서 상태를 확인하세요.
       import_action:
-        taxonomy: 분류법 가져오기
+        taxonomy: 스킬 분류 가져오기
       job_roles: 직무 역할
       proficiency: 숙련도
-      skill_job_mappings: 스킬 직무 매핑
       skills: 기술
-      title: 분류
+      title: 기술 분류
     templates:
       blocks:
         copy:
@@ -4130,20 +4201,20 @@ ko:
             title: 비밀번호 변경 <strong>%{name}</strong>?
           delete:
             body: "<p>이 사용자를 삭제하시겠습니까?</p>\n"
-            title: "<strong>이름}</strong> 삭제 ?"
+            title: "<strong>%{name}</strong> 삭제하시겠습니까?"
           membership:
             delete:
               body: "<p>정말 삭제하시겠습니까?</p>\n"
-              title: 클라이언트 테넌트에서 <strong>%{이름}을</strong> (를) 삭제하시겠습니까?
+              title: "%{client_name} 클라이언트 테넌시에서 <strong>%{name}</strong> 삭제하시겠습니까?"
             toggle_status:
               body: "<p>이 멤버십을 %{status}화하시겠습니까?</p>\n"
-              title: "<strong>상태}</strong> %{이름}의 멤버십은 무엇입니까?"
+              title: "<strong>%{status}</strong> %{name} 멤버십?"
           toggle_enable_2fa:
-            body: "<p>이름]에 대해 %{상태} 2FA를 사용하시겠습니까?</p>\n"
-            title: "<strong>상태}</strong> 2FA"
+            body: "<p>%{name} 위해 2FA를 %{status}하시겠습니까?</p>"
+            title: "<strong>%{status}</strong> 2FA"
           toggle_status:
             body: "<p>이 사용자를 %{status}화하시겠습니까?</p>\n"
-            title: "<strong>상태} %</strong> {이름}?"
+            title: "<strong>%{status}</strong> %{name}?"
       spoof:
         successfully: 이름 %{name}으로 로그인했습니다
       toggle_enable_2fa:

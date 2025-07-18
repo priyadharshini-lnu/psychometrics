@@ -11,7 +11,9 @@ module UserReports::IdpReportGeneration
 
   # This action is used to generate pdf by puppeter
   def pdf_preview
-    Mobility.with_locale(params[:lang] || resource.campaign.project.available_locales.first) do
+    I18n.locale = params[:lang] || resource.campaign.project.available_locales.first
+
+    Mobility.with_locale(I18n.locale) do
       @data = {
         template: IdpTemplateSerializer.new.serialize(resource.idp_template),
         user_idp: UserIdpPlanSerializer.new(
@@ -21,6 +23,7 @@ module UserReports::IdpReportGeneration
         ).serialize(resource)
       }
     end
+
     @pdf_export = true
 
     render 'administration/campaigns/user_idp_reports/idp_report', layout: 'pdf'

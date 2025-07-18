@@ -9,7 +9,7 @@ module AdminJobs
     private
 
     def headers
-      %w[ID Name Description SkillGroup]
+      %w[ID Name Description SkillType SkillGroup Tag]
     end
 
     def records_for_export
@@ -17,7 +17,14 @@ module AdminJobs
     end
 
     def data_row(skill)
-      [skill.id, skill.name, skill.description, skill.skill_group&.name]
+      [
+        skill.id,
+        skill.name,
+        skill.description,
+        skill.skill_type,
+        skill.skill_group&.name,
+        skill.all_tags_list.join(', ')
+      ]
     end
 
     def file_name

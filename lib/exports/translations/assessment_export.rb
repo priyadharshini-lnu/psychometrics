@@ -68,10 +68,17 @@ module Exports
 
         blocks.each do |block|
           translations = fetch_translations(@assessment.id, block.id, 'Block')
+          filterd_block_props = {}
 
-          next if block.props['staticContent'].blank?
+          if block.props['staticContent'].present?
+            filterd_block_props['staticContent'] =
+              { 'value' => block.props['staticContent']['value'] }
+          end
 
-          filterd_block_props = { 'staticContent' => { 'value' => block.props['staticContent']['value'] } }
+          if block.props['not_applicable'].present?
+            filterd_block_props['not_applicable'] =
+              block.props['not_applicable']
+          end
 
           filterd_block_props.each do |key, translation|
             translation_key = "block:#{block.id}:#{key}"

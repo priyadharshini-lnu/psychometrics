@@ -119,7 +119,7 @@ nl:
               blank: Voornaam kan niet leeg zijn
             job_role:
               cannot_be_same: Doelfunctie moet verschillen van huidige functie
-              not_found: Jobrol '%{naam}' niet gevonden in project of globale rollen
+              not_found: Jobrol '%{name}' niet gevonden in project of globale rollen
             last_name:
               blank: Achternaam kan niet leeg zijn
             locale:
@@ -167,12 +167,17 @@ nl:
             base:
               code_length: De code moet minstens 3 tekens lang zijn op rij %{index}.
               code_required: Factorcode is vereist bij rij %{index}
+              invalid_csv: Ongeldige csv %{error_message}
               invalid_scoring_strategy: Ongeldige scoringsstrategie '%{strategy}' op rij %{index}. Toegestane strategieën zijn %{allowed}.
               missing_headers: 'Verplichte headers ontbreken: %{headers}'
               name_required: Factornaam is vereist bij rij %{index}
               scoring_strategy_required: Scoringsstrategie is vereist bij rij %{index}
             file:
               invalid_format: CSV-bestand uploaden
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: Sms-melding van de client is uitgeschakeld
         hogan:
           attributes:
             name:
@@ -191,6 +196,7 @@ nl:
               blank: Voornaam kan niet leeg zijn
             job_role:
               cannot_be_same: Doelfunctie moet verschillen van huidige functie
+              not_found: Functie '%{name}' komt niet voor in project- of globale rollen
             last_name:
               blank: Achternaam kan niet leeg zijn
             locale:
@@ -203,7 +209,7 @@ nl:
               column_cannot_be_blank: Waarde %{column_name} kan niet leeg zijn in rij %{row_number}
               invalid_format: CSV-bestand uploaden
               invalid_job_role_id: Id in rij %{row_number} is geen geldige functierol-ID
-              invalid_locale: Locale bij rij %{rij_nummer} is geen geldige locale
+              invalid_locale: Locale bij rij %{row_number} is geen geldige locale
               missing_required_columns: 'Ontbrekende verplichte kolommen: %{columns}'
               parsing_failed: 'Fout tijdens het parsen van bestand, fout: %{error}.'
             project:
@@ -323,12 +329,13 @@ nl:
             email:
               blank: E-mail kan niet leeg zijn
               not_uniq_email: Rij met e-mail is al aanwezig
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ten minste één functierol moet ingeschakeld zijn met een vaardigheidstype geselecteerd voor %{block_name}
-              invalid_skill_type: 'Ongeldig vaardigheidstype %{skill_type} voor %{role_name} voor %{block_name}. Geldige opties: %{valid_options}'
-              props_missing: Job
+              at_least_one_job_role_required: Ten minste één functierol is vereist voor %{skill_type} voor %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Minstens één vaardigheidstype moet ingeschakeld zijn met een functierol geselecteerd voor %{block_name}
+              invalid_job_role_type: 'Ongeldige functierol %{job_role} voor %{skill_type} voor %{block_name}. Geldige opties: %{valid_options}'
+              props_missing: Configuratie voor vaardigheden ontbreekt voor %{block_name}
         skillvue:
           attributes:
             name:
@@ -369,7 +376,7 @@ nl:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Rij %{rij}: Dubbele waarde %{waarde} voor %{veld}'
+              duplicate_value: 'Rij %{row}: Dubbele waarde %{value} voor %{field}'
               invalid_format: Upload xlsx-bestand
               missing_headers: "%{sheet_name} blad mist vereiste koppen: %{headers}"
               missing_sheets: 'Ontbrekende vereiste bladen: %{sheets}'
@@ -758,6 +765,12 @@ nl:
           attributes:
             base:
               max_takes_limit_reached: Limiet bereikt voor maximale opnames
+        register:
+          attributes:
+            mobile_number:
+              blank: Mobiel nummer is vereist
+              invalid: Mobiel nummer is ongeldig
+              verification_expired: De verificatiecode is verlopen. U kunt opnieuw proberen te verifiëren.
         report:
           assessments_not_hogan: Alle beoordelingen moeten van het Hogan-type zijn
           assessments_not_saville: Alle beoordelingen moeten van het type Saville zijn
@@ -771,6 +784,10 @@ nl:
           attributes:
             current_password:
               invalid: Huidig wachtwoord is onjuist
+            manager_id:
+              cannot_be_self: Gebruiker kan niet worden toegewezen als zijn eigen manager
+        user_idp_comment:
+          reply_to_reply: Kan niet reageren op een antwoord (slechts één niveau van nesten toegestaan)
         user_idp_plan:
           no_active_plan: Geen actief IDP-plan gevonden
   admin_jobs:
@@ -784,6 +801,7 @@ nl:
         assign_idp_to_users: IDP toewijzen aan gebruikers
         assign_reports_and_assessments: Rapporten en beoordelingen toewijzen
         bulk_create_workshop_invites: Bulk Assessment Center Uitnodigingen versturen
+        bulk_download_idp_reports: IDP-rapporten in bulk downloaden
         bulk_download_reports: Bulkrapporten downloaden
         bulk_download_user_reports: Bulk Download Gebruikersrapporten
         bulk_regenerate_reports: Campagneverslagen opnieuw genereren
@@ -791,6 +809,7 @@ nl:
         bulk_regenerate_user_reports: Gebruikersrapporten opnieuw genereren
         bulk_reports: Bulkrapporten
         bulk_rescore_campaign_factors: Bulk Rescore-campagnefactoren
+        bulk_update_evaluation_status: Evaluatiestatus bulkupdate
         compact_completion_status_export: Export van compacte voltooiingsstatus
         completion_status_export: Export van voltooiingsstatus
         copy_dimension: Dimensie kopiëren
@@ -800,6 +819,7 @@ nl:
         export_assessment_questions: Vragen over exportbeoordeling
         export_campaign_factors: Factoren voor exportcampagnes
         export_campaign_scorings: Campagne scorings exporteren
+        export_dashboard_as_file: Dashboard exporteren als bestand
         export_development_action_translations: Export Ontwikkeling Actie Vertalingen
         export_development_actions: Acties voor exportontwikkeling
         export_dimension_as_json: Dimensie JSON exporteren
@@ -807,7 +827,9 @@ nl:
         export_job_roles_translations: Jobrollen exporteren Vertalingen
         export_norm: Exportnorm
         export_occupations: Beroepen Export
+        export_proficiency_level_translations: Vertalingen op Taalvaardigheidsniveau exporteren
         export_proficiency_levels: Exportvaardigheidsniveaus
+        export_reflection_questions: Reflectievragen exporteren
         export_report_data: Rapportgegevens exporteren
         export_reports_and_assessments: Rapporten en beoordelingen exporteren
         export_skill_translations: Exportvaardigheden Vertalingen
@@ -829,12 +851,14 @@ nl:
         import_job_roles_translations: Jobrollen importeren Vertalingen
         import_norm: Norm importeren
         import_proficiency_level_translations: Vertalingen op vaardigheidsniveau importeren
+        import_proficiency_levels: Vaardigheidsniveaus importeren
         import_question_translations: Vragen importeren Vertalingen
         import_raw_data: Ruwe gegevens importeren
+        import_reflection_questions: Reflectievragen importeren
         import_scoring_data: Scoringsgegevens importeren
+        import_skill_rater_taxonomies: Taxonomieën voor vaardigheidsbeoordelaars importeren
         import_skill_translations: Importvaardigheden Vertalingen
         import_skills: Vaardigheden importeren
-        import_skills_rater_taxonomies: Taxonomieën voor vaardigheidsbeoordelaars importeren
         import_sms_invites: SMS-uitnodiging importeren
         import_users: Gebruikers importeren
         migrate_assessment_translations: Beoordeling Vertaalmigratie
@@ -860,6 +884,8 @@ nl:
         failed: Mislukt
         in_progress: In uitvoering
         scheduled: Gepland
+    bulk_download_idp_reports:
+      already_exists: De taak om deze IDP-rapporten te genereren die al in uitvoering zijn
     bulk_download_reports:
       content:
         title: Koppelingen om rapporten te downloaden
@@ -904,6 +930,7 @@ nl:
       download_csv: CSV downloaden
       edit: Bewerk
       evaluate: Evalueer
+      export: Exporteer
       export_normed: Genormeerde factorscores
       export_raw_labels: Rauw (met labels)
       export_raw_scores: Ruwe factorscores
@@ -1022,6 +1049,7 @@ nl:
         pearson: Pearson Beoordeling
         saville: Beoordeling Saville
         simulation: Simulatie Beoordeling
+        skillvue: Skillvue Assessment
     flow:
       end_assessment_modal:
         custom_message: Aangepast bericht einde beoordeling
@@ -1116,6 +1144,7 @@ nl:
       previous_group_required: Eerdere voltooiing van de groep vereist
     menu:
       assessment_center: Beoordelingscentrum
+      assessment_center_invites: Uitnodigingen voor het assessment
       assessments_and_reports: Beoordelingen en rapporten
       idp: IDP
       manage: Beheer
@@ -1134,7 +1163,7 @@ nl:
         delete:
           cancel: Annuleren
           cannot_delete_with_workshops: Kan groep met workshops niet verwijderen, verwijder eerst workshops
-          failed: Fout bij het verwijderen van "%{naam}" groep, neem contact op met beheerder
+          failed: Fout bij het verwijderen van "%{name}" groep, neem contact op met beheerder
           ok: Ja, verwijderen
           text: Weet je zeker dat je de groep "%{name}" wilt verwijderen?
           title: Groep verwijderen
@@ -1296,13 +1325,13 @@ nl:
     insights_reports: Inzichten en rapporten
     instruction_modal:
       campaign_start_final_instructions: "<p>houd er rekening mee dat er geen manier is om de timer te stoppen of te pauzeren. De campagnetimer blijft lopen, zelfs als je de browser sluit, dus je moet er op geen enkel moment aan denken om de taken tussendoor te verlaten om iets anders te doen. Zorg ervoor dat je zo min mogelijk wordt afgeleid tijdens de taken. Zoek een rustige omgeving, schakel meldingen op je apparaten uit en vermijd multitasking. Houd je concentratie vast en blijf gefocust. Als de campagnetimer is afgelopen, kun je niet meer verder. Als je de bovenstaande instructies hebt doorgelezen, klik dan op start om verder te gaan met de toegewezen taken</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Lees de volgende instructies goed door.</h4>
-        <p>de taken die je gaat uitvoeren hebben een tijdslimiet. Zodra je op "Start" klikt, begint de campagnetimer automatisch te lopen. Je hebt %{minuten} minuten om alle activiteiten te voltooien. Probeer de taken binnen de aangegeven tijd te voltooien en ga effectief met je tijd om, zodat je je niet door het evaluatieproces hoeft te haasten. Zorg ervoor dat je de taken in één keer voltooit, dus als je een pauze moet nemen, is dit het juiste moment</p>
-      common_proctoring_instructions: |
+        <p>de taken die je gaat uitvoeren hebben een tijdslimiet. Zodra je op "Start" klikt, begint de campagnetimer automatisch te lopen. Je hebt %{minutes} minuten om alle activiteiten te voltooien. Probeer de taken binnen de aangegeven tijd te voltooien en ga effectief met je tijd om, zodat je je niet door het evaluatieproces hoeft te haasten. Zorg ervoor dat je de taken in één keer voltooit, dus als je een pauze moet nemen, is dit het juiste moment</p>
+      common_proctoring_instructions: |-
         <h4>Surveilleren</h4>
         <p>als je op de Startknop klikt, word je doorgestuurd naar ons surveillancesysteem. Het zal je camera, microfoon en scherm in de gaten houden tijdens je sessie. Deze sessies worden automatisch gecontroleerd door ons geavanceerde AI-systeem, wat zorgt voor een ononderbroken en soepele gebruikerservaring. Sessies kunnen echter ook worden beoordeeld door menselijke surveillanten. Alle tekenen van wangedrag of onregelmatigheden zullen worden gemarkeerd. Dit wordt gedaan om ervoor te zorgen dat er geen pogingen tot valsspelen worden gedaan. Als er verdenkingen worden gevonden, worden je taken geannuleerd</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Proctor browser</h4>
         <p>je zult een speciale browser moeten downloaden en installeren om de proctoraatstaken te voltooien. Volg de instructies in het volgende scherm. Je kunt deze verwijderen nadat je alle vereiste activiteiten hebt voltooid</p>
     instructions:
@@ -1342,6 +1371,8 @@ nl:
   campaign_assessment:
     actions:
       bulk_download: Bulk downloaden
+      bulk_update_evaluation_as_done: Markeren als voltooid
+      bulk_update_evaluation_as_undone: Markering als voltooid ongedaan maken
       download: Rapporten downloaden
       export_completion_status: Status voltooiing export
       export_external: Extern
@@ -1368,13 +1399,20 @@ nl:
       assessor_form: Beoordelaarsformulier
       auto_assign: Automatisch toewijzen
       dimension_id: Afmeting ID
+      external_user_id: Skillvue Kandidaat-ID
       id: Campagne Beoordeling ID
       locales: Locaties
       norm: Norm
       norm_id: Norm ID
+      pearson_norm_id: Pearson Norm-ID
+      pearson_schedule_id: Pearson-schema-ID
       pearson_variation: Pearson Variatie
       prework: Voorwerk
+      saville_candidate_id: Kandidaat-ID
+      saville_data_separator: Saville Data Separator
       simulation_content_variation: Simulatie Inhoud Variatie
+      simulation_participant_id: Simulatie Deelnemer ID
+      simulation_time_extension: Verlenging van de simulatietijd
       skillvue_email_id: Skillvue Kandidaat Email ID
       skillvue_external_assessment_id: Skillvue Beoordeling ID
       universal_link: Universele link
@@ -1397,6 +1435,10 @@ nl:
         placeholder: Selecteer een Assessment Center-groep
         success_message: Assessor Campagnebeoordelingsgroep is succesvol toegewezen
         title: Assessment Center Groep
+      bulk_update_evaluation:
+        content: Weet u zeker dat u alle geselecteerde onderwerpen wilt markeren als %{status}?
+        successfully: Gemarkeerd als %{status}.
+        title: Bulksgewijs markeren als %{status}?
       import_raw:
         body: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
         success_msg: Het importeren is gelukt
@@ -1407,6 +1449,10 @@ nl:
         success_msg: Het importeren is gelukt
         title: Gegevens scoreresultaten importeren
         upload: Uploaden
+      prework_setting:
+        disable: Schakel voorwerk uit voor alle bestaande gebruikers
+        enable: Voorwerk inschakelen voor alle bestaande gebruikers
+        title: Formulier voor het instellen van het voorwerk
       regenerate:
         content: Weet je zeker dat je beschikbare rapporten opnieuw wilt genereren?
         title: Rapporten opnieuw genereren?
@@ -1673,23 +1719,32 @@ nl:
       create: Maak
       delete: Verwijder
       done: Gedaan
+      download: Downloaden
       edit: Bewerk
       export: Exporteer
+      filter: Filter
       filter_by_tags: Filter op tags
+      go_back: Terug
       import: Importeren
       insert: Invoegen
       ok: OK
+      publish: Publiceer
+      reject: Verwerpen
       remove: Verwijder
       reset: Reset
       resolve: Oplossen
       restore: Herstel
+      return_to_home: Terug naar Home
       run: Ren
       save: Sla
       schedule: Schema
       search: Zoek op
       send: Stuur
+      sign_in: Aanmelden
       start: Start
+      submit: Opslaan
       unarchive: Unarchive
+      unpublish: Verwijder
       unresolve: Niet oplossen
       update: Update
       upload: Uploaden
@@ -1801,6 +1856,7 @@ nl:
       refer_export_file: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
       reference_language: Referentietaal
       response: Reactie
+      select: Selecteren
       selected: Geselecteerd
       subject: Onderwerp
       total: Totaal
@@ -1882,16 +1938,12 @@ nl:
     mailer:
       admin_invitation_instructions:
         accept: Klik hier om de uitnodiging te accepteren.
-        body: 'Hallo %{name}, U bent uitgenodigd om toegang te krijgen tot het beheerpaneel van Lighthouse - The Talent Enterprise assessment platform. %{accept} Of u kunt deze e-mail negeren. Deel uw toegangsgegevens met niemand.
-
-          '
+        body: 'Hallo %{name}, U bent uitgenodigd om toegang te krijgen tot het beheerpaneel van Lighthouse - The Talent Enterprise assessment platform. %{accept} Of u kunt deze e-mail negeren. Deel uw toegangsgegevens met niemand. '
         subject: Uitnodiging voor Lighthouse
       confirmation_instructions:
         subject: Instructies voor bevestiging
       invitation_instructions:
-        body: 'Hallo %{name}, Je bent toegevoegd aan Lighthouse als Admin voor de volgende sectie
-
-          '
+        body: 'Hallo %{name}, Je bent toegevoegd aan Lighthouse als Admin voor de volgende sectie '
         login: Aanmelden bij Lighthouse
         sections:
           campaign: 'Campagne: %{section_name}'
@@ -1899,31 +1951,19 @@ nl:
           project: 'Project: %{section_name}'
         subject: Uitnodiging voor Lighthouse
       password_change:
-        body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via mte.support@mercer.com
-
-          '
-        regards: 'Groeten, Lighthouse Team
-
-          '
+        body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via mte.support@mercer.com '
+        regards: 'Groeten, Lighthouse Team '
         subject: Uw Lighthouse wachtwoord is gewijzigd
       reset_password_instructions:
-        body: 'Hallo %{name}! Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via onderstaande link.
-
-          '
+        body: 'Hallo %{name}! Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via onderstaande link. '
         change_password: Wachtwoord wijzigen
         footer: Als je dit niet hebt aangevraagd, kun je deze e-mail gerust negeren. Je wachtwoord zal pas veranderen als je de bovenstaande link opent en een nieuw wachtwoord aanmaakt.
-        regards: 'Groeten, Lighthouse Team
-
-          '
+        regards: 'Groeten, Lighthouse Team '
         subject: Instructies om je wachtwoord opnieuw in te stellen
       unlock_instructions:
-        body: 'Hallo %{name}! Uw account is vergrendeld vanwege een buitensporig aantal mislukte aanmeldingspogingen. Klik op de onderstaande koppeling om uw account te ontgrendelen:
-
-          '
+        body: 'Hallo %{name}! Uw account is vergrendeld vanwege een buitensporig aantal mislukte aanmeldingspogingen. Klik op de onderstaande koppeling om uw account te ontgrendelen: '
         footer: Als je dit niet hebt aangevraagd, kun je deze e-mail gerust negeren. Je wachtwoord zal pas veranderen als je de bovenstaande link opent en een nieuw wachtwoord aanmaakt.
-        regards: 'Groeten, Lighthouse Team
-
-          '
+        regards: 'Groeten, Lighthouse Team '
         subject: Instructies voor het deblokkeren van je account
         unlock_account: Mijn account deblokkeren
     omniauth_callbacks:
@@ -2010,6 +2050,7 @@ nl:
         reserved_subdomain: Subdomein %{value} is gereserveerd
         uniq_subdomain: Subdomein moet uniek zijn.
       add_manager:
+        cannot_be_self: Gebruiker kan niet worden toegewezen als zijn eigen manager
         manager_not_found: Manager niet gevonden of geen onderdeel van hetzelfde project
         user_not_found: Gebruiker niet gevonden of maakt geen deel uit van hetzelfde project
       admin:
@@ -2028,8 +2069,17 @@ nl:
       campaign_factor_group:
         group_already_exists: Er bestaat al een groep met dezelfde naam.
         last_factor_group: Kan laatste Campagnefactor-groep niet verwijderen.
+      campaign_idps:
+        idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de campagne toewijst.
+      cant_be_deleted: Deze record kan niet worden verwijderd
+      client_feature:
+        ai_assisted_idp_feature_error: Kan niet waar zijn als de functie voor ai-assistenten is uitgeschakeld
       create_superadmin:
         uniq_email: E-mail moet uniek zijn.
+      development_actions:
+        only_global_skills_allowed: De geselecteerde vaardigheden moeten globale vaardigheden zijn.
+        skills_not_belong_to_project: De geselecteerde vaardigheden moeten bij het opgegeven project horen.
+        skills_required: Selecteer minstens één vaardigheid.
       exceeded_subjects_count: Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
       filled?: kan niet leeg zijn
       idp_template:
@@ -2056,6 +2106,8 @@ nl:
       report_families_reports:
         report_exists: Dit rapport maakt al deel uit van Rapportbundel
       size?: grootte moet kleiner zijn %{size}
+      skill:
+        already_added: Vaardigheid met dezelfde naam al toegevoegd.
       skill_alias:
         unique_alias: Alias moet uniek zijn
         unique_skill: Vaardigheden moeten uniek zijn
@@ -2075,6 +2127,7 @@ nl:
         start_time_should_be_less: Starttijd moet korter zijn dan eindtijd
       user_idp_plan:
         idp_template_already_assigned_to_user: Dit Idp-sjabloon is al toegewezen aan deze gebruiker en is actief
+        idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de gebruiker toewijst.
       user_saved_filters:
         limit_exceeded: Je kunt maar %{limit} opgeslagen filters hebben. Verwijder opgeslagen filters om er meer toe te voegen.
         unique_name: Er bestaat al een filter met dezelfde naam.
@@ -2114,6 +2167,8 @@ nl:
     assessments:
       timed_out: Je kunt de %{assessment_name} beoordeling niet doen omdat deze is uitgetimed.
     error: Fout
+    error_401: U bent niet gemachtigd om toegang te krijgen tot deze bron. Gelieve in te loggen.
+    error_403: U hebt geen toestemming om deze bron te bekijken.
     error_500: Er is iets misgegaan. Neem contact op met uw beheerder.
     error_msg: Er is iets misgegaan. Vernieuw de pagina en neem contact op met uw beheerder als het probleem zich nog steeds voordoet
     forbidden: Je hebt geen toegang tot deze pagina
@@ -2437,9 +2492,14 @@ nl:
       generate_more: Meer genereren
       generating_development_actions: Ontwikkelingsacties genereren...
       heading: Ontwikkelingsacties
+      incomplete_error: Onvolledige ontwikkelingsacties
+      incomplete_error_message: Sommige ontwikkelingsacties zijn onvolledig. Vul ze in voordat u uw IDP indient.
+      incomplete_warning: Onvolledige ontwikkelingsacties
+      incomplete_warning_message: Sommige ontwikkelingsacties zijn onvolledig. Weet u zeker dat u uw IDP als voltooid wilt markeren?
       learning_from_others: Leren van anderen
       manage_skills: Vaardigheden beheren
       marathon: Marathon
+      mark_as_complete: Markeren als voltooid
       no_development_actions: Geen ontwikkelingsacties
       on_the_job: Op het werk
       other: Andere
@@ -2448,9 +2508,12 @@ nl:
       remove: Verwijder
       skill: Vaardigheid
       sprint: Sprint
+      start_plan: Start Plan
       structured_learning: Gestructureerd leren
       submit_plan: Plan indienen
       write_here: Schrijf hier...
+    edit_plan: Plan bewerken
+    edit_progress: Vooruitgang bewerken
     initial_steps:
       add_skill_group_description: Op basis van de resultaten van je assessment zijn hier een aantal sterke punten en ontwikkelingsgebieden voor jou. Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
       add_skill_group_title: Je %{category} vaardigheden verkennen
@@ -2466,6 +2529,8 @@ nl:
       rate_skills_description: Nu je je ontwikkelingsprioriteiten hebt geselecteerd, wil ik je vragen jezelf te beoordelen op elk van de volgende punten. Denk eraan jezelf te beoordelen op basis van je huidige niveau en niet op basis van je vroegere of gewenste niveau.
       rate_skills_title: Je vaardigheden beoordelen
       rating_column_header: Je zelfbeoordeling
+      reflective_questions: Reflectieve vragen
+      save: Redden
       select_skills: Selecteer je vaardigheden
       select_skills_placeholder: Selecteer vaardigheden
       selected_skills: Geselecteerde vaardigheden
@@ -2480,17 +2545,121 @@ nl:
       graphs:
         categories: Categorieën
       save_skills: Vaardigheden opslaan
+    new_comments: Nieuwe reactie(s)
+    pdf:
+      approval_status: Status van goedkeuring
+      cover:
+        fields:
+          assigned_data: Toegewezen datum
+          assigned_date: Toegewezen Datum
+          completion_date: Voltooiingsdatum
+          division: Divisie
+          name: Naam
+          publish_date: Publicatiedatum
+          review_date: Datum van beoordeling
+          role: Huidige rol
+      guidelines:
+        cards:
+          c1:
+            content: Neem vaardigheden, kennis en capaciteiten op die moeten worden ontwikkeld. Zorg ervoor dat ze specifiek, meetbaar, haalbaar, realistisch en redelijk in staat zijn om te worden bereikt binnen de genoemde tijdlijnen.
+            title: Ontwikkelingsdoelstellingen
+          c2:
+            content: Dit is gebaseerd op de competentie die moet worden ontwikkeld op basis van de beoordelingservaring.
+            title: Competentie
+          c3:
+            content: Dit gedeelte bevat uw ontwikkelingsacties op basis van het 70-20-10 leermodel dat hieronder wordt vermeld. Het is aan te raden om een combinatie van elk van de drie elementen te kiezen om een gevarieerde leer- en ontwikkelingsaanpak te garanderen.
+            title: Activiteit
+          c4:
+            content: Zorg ervoor dat uw tijdlijnen realistisch zijn op basis van wanneer het doel kan worden voltooid. Wijzig dit indien nodig.
+            title: Tijdlijn
+          c5:
+            content: Gebruik de voortgangssectie om de voortgang op de geïdentificeerde tracks te ondersteunen.
+            title: Vooruitgang
+        chart:
+          collaboration: "<strong>20%</strong>Collaborative <br /> Leren"
+          job: "<strong>70%</strong>Leren <br />op het werk"
+          learn: "<strong>10%</strong>Formeel leren"
+        content:
+          list:
+            r1: Houd er rekening mee dat deze lijst slechts indicatief is en dat aanvullende ontwikkelingstrajecten voor u kunnen worden overwogen op basis van individuele ambities, aanbevelingen van uw manager en zakelijke prioriteiten van de organisatie.
+            r2: Houd er rekening mee dat de lancering van sommige van deze ontwikkelingstrajecten afhangt van de organisatiebrede onderwijs- en leerstrategie.
+            r3: Houd bij het ontwikkelen van uw individuele ontwikkelingsplan rekening met de aanbevolen paden zoals hieronder gekruist.
+          main: Dit gedeelte bevat een cumulatieve lijst van alle ontwikkelingstrajecten, rekening houdend met best practice learning, d.w.z. de 70-20-10-richtlijn, die een progressieve reis biedt die klassikaal leren, coaching en on-the-job leren combineert. Op basis van de resultaten van de ervaring met leiderschapsontwikkeling en zakelijke prioriteiten zijn mogelijke ontwikkelingspaden aanbevolen, die in aanmerking kunnen komen voor uw ontwikkeling.
+        learn_cards:
+          collaboration:
+            title: Samenwerkend leren (20%) <br/> Ontwikkelen door anderen
+          job:
+            title: Leren op de werkplek (70%) <br/> Ontwikkelen door ervaring
+          learn:
+            title: Formeel leren (10%) <br/> Ontwikkelen door gestructureerd leren
+        title: Richtlijnen om uw IDP te begeleiden
+      idp:
+        end_date: Einddatum
+        self_rating: Zelf beoordelen
+        start_date: Startdatum
+        subtitle:
+          behavioural: Gedrags
+          technical: Technisch
+        title: Individueel ontwikkelingsplan
+      last:
+        end_report: Einde van het rapport
+      reflections:
+        subtitle: Vragen voor algemene professionele ontwikkeling
+        title: Reflecties om uw IDP te begeleiden
+      skill_categories:
+        behavioral: Gedrags
+        technical: Technisch
+      statuses:
+        approved: Beoordeeld en goedgekeurd
+        completed: Volbracht
+        draft: Ontwerp
+        not_reviewed: Niet beoordeeld
+        pending_approval: In recensie
+      summary:
+        ai_count: Generatieve AI
+        collaborative_learn: Samenwerkend leren
+        created_by: Gemaakt door
+        current_status: IDP huidige status
+        custom: Gewoonte
+        custom_count: Gewoonte
+        da_count: Aantal ontwikkelingsacties
+        formal_learn: Formeel leren
+        generated_ai: Generatieve AI
+        learn_on_job: Leren op de werkvloer
+        learn_pathway: Leerlijn
+        lib_count: IDP-bibliotheek
+        library: IDP-bibliotheek
+        skills_count: Vaardigheden tellen
+        title: Samenvatting van het rapport
+    plan: Plan
     reflective_questions:
       already_completed: De IDP is al voltooid, u kunt de vragen nu niet beantwoorden.
+      answer_later: Later antwoorden
+      answer_placeholder: Schrijf hier je antwoord...
+      errors:
+        max_words: Het antwoord staat een maximum van %{count} woorden toe
+        min_words: Het antwoord vereist ten minste %{count} woorden
+        required: Het antwoord op de vraag is vereist
+      max_words: Max Woorden
+      min_words: Min woorden
+      title: Reflectieve vragen
+      update_failed: Er is een fout opgetreden tijdens de update
+      updated_successfully: Uw antwoorden zijn met succes bijgewerkt
+      words: Woorden
     skill_gap_report:
       title: Rapport over vaardigheidskloof
     status: Status
     user_idp_status:
       approved: Goedgekeurd
+      completed: Volbracht
       draft: Ontwerp
+      in_progress: In uitvoering
       not_started: Niet gestart
       pending_approval: In afwachting van
+      rejected: Afgekeurd
     users: Gebruikers
+    with_reflection_questions: Met reflectievragen
+    without_reflection_questions: Zonder reflectievragen
   idp_templates:
     assign: Toewijzen
     assign_idp_template: Idp-sjabloon toewijzen
@@ -2605,6 +2774,7 @@ nl:
     overuse_number: Vergoeding voor overmatig gebruik
     report_family: Verslagbundel
     start_date: Startdatum
+    title: Licentie
     type: Type
     types:
       common: Gewoon
@@ -2615,6 +2785,35 @@ nl:
     used_out_of: "%{used} van %{total}"
   mailer:
     from: De talentenonderneming
+    idp:
+      manager_unread_comments:
+        body: |-
+          Hallo %{name},
+          U heeft nieuwe opmerkingen van uw IDP-verslaggevers.
+
+          %{dashboard_link}
+
+          Op het dashboard van Direct Reportees kunt u het volgende doen:
+          - Bekijk nieuwe opmerkingen van leden over hun individuele abonnementen
+          - Feedback geven op hun ontwikkelingsdoelen
+          - Volg de voortgang van IDP-activiteiten
+          - Ondersteun de groei en ontwikkeling van uw team
+        dashboard_link: Bezoek Dashboard
+        subject: U heeft nieuwe reacties - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          Hallo %{name},
+          Je hebt nieuwe opmerkingen over je ontwikkelingsplan.
+
+          %{dashboard_link}
+
+          Op het dashboard van Mijn abonnement kunt u het volgende doen:
+          - Update uw ontwikkelingsplan
+          - Lees nieuwe opmerkingen en feedback
+          - Reageren op vragen van je manager
+          - Update uw voortgang op ontwikkelingsacties
+        dashboard_link: Bekijk mijn abonnement
+        subject: U heeft nieuwe opmerkingen over uw ontwikkelingsplan - %{campaign_name}
     license:
       expire:
         subject: Licentie verlopen
@@ -2820,6 +3019,7 @@ nl:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: Skillvue
     form:
       load_from_mettl: Belasting van Mettl
       load_from_pearson: Laden van Pearson
@@ -3402,7 +3602,7 @@ nl:
       title: Hulp bij nominaties
     nomination_predicates:
       atleast: Ten minste %{count}
-      atmost: Hoogstens %{telling}
+      atmost: Hoogstens %{count}
       exactly: Precies %{count}
     nominations: Nominaties
     options:
@@ -3485,6 +3685,9 @@ nl:
     waiting: Wachten
     you: U
     yourself: Jezelf
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Door op dit vakje te klikken, stemt u ermee in dat u onze privacyverklaring en de privacyverklaring van onze klant hebt gelezen en stemt u in met het verzamelen en verwerken van uw persoonlijke gegevens zoals daarin beschreven, inclusief de internationale overdracht van uw persoonlijke gegevens.
+    privacy_notice: Privacyverklaring
   time:
     formats:
       date: "%d/%m/%y"
@@ -3545,6 +3748,7 @@ nl:
         body: Raadpleeg het voorbeeldbestand om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
         title: Rapporten en beoordelingen toewijzen
     toolbar:
+      bulk_download_idp_reports: IDP-rapporten in bulk downloaden
       export: Gebruikers exporteren
       export_compact_completion_status: Compact
       export_detailed_completion_status: Gedetailleerd
@@ -3621,7 +3825,6 @@ nl:
       add: Rapport toevoegen
       download: Downloaden
       generate: Genereren
-      regenerate: Regenereer
     approval_statuses:
       approved: Goedgekeurd
       change_requested: Aangevraagde wijziging
@@ -3729,6 +3932,10 @@ nl:
       BadRequest: Het bestand is niet geüpload omdat het laatste verzoek is mislukt. Dit kan komen doordat uw internet niet werkt. Als uw internet werkt, neem dan contact op met de beheerder
       EntityTooLarge: De bestandsgrootte moet kleiner zijn dan %{maxFileSize} MB
       WrongFileType: Het bestandstype moet een van de volgende %{allowedFileTypes} zijn
+    idp:
+      reflective_questions_required: Antwoorden op reflectieve vragen zijn vereist voor IDP
+      status_not_permitted: is niet toegestaan door de gebruiker.
+      status_not_permitted_by_manager: De manager kan de status niet bijwerken wanneer het abonnement de status '%{status}' heeft.
     invalid: is ongeldig
     issue: Uitgave
     least: Beantwoord ten minste %{min} keuze(s).

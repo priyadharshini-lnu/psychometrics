@@ -1,6 +1,6 @@
 import { USER_IDP_SKILL } from './constants'
 
-export const renderSkillCategoryIcon = (category, style = {}) => {
+export const renderSkillTypeIcon = (category, style = {}) => {
   const IconComponent = USER_IDP_SKILL[category]?.Icon
 
   return IconComponent && (

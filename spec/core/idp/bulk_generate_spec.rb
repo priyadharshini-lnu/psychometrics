@@ -15,7 +15,8 @@ describe Idp::BulkGenerate do
       manager,
       admin_job_record_id: job_record.id,
       lang: 'en',
-      include_reflective_questions: false
+      include_reflective_questions: false,
+      update_record: false
     )
 
     Idp::BulkGenerate.call(

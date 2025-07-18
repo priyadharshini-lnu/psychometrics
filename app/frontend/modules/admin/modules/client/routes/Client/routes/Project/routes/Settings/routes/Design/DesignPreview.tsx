@@ -7,6 +7,7 @@ import { MailOutlined, SettingOutlined, DownOutlined } from '@ant-design/icons'
 
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
+const { I18n } = window
 interface Props {
   config: {
     primaryColor?: string;
@@ -21,24 +22,24 @@ const menuItems = [
   {
     key: 'mail',
     icon: <MailOutlined />,
-    label: 'Mail',
+    label: I18n.t('administration.projects.design_settings.tab_text_one'),
   },
   {
     key: 'SubMenu',
     icon: <SettingOutlined />,
-    label: 'Submenu',
+    label: I18n.t('administration.projects.design_settings.tab_text_two'),
     children: [
       {
         type: 'group',
-        label: 'Item 1',
+        label: I18n.t('administration.projects.design_settings.submenu_options.option_title'),
         children: [
           {
             key: 'setting:1',
-            label: 'Option 1',
+            label: I18n.t('administration.projects.design_settings.submenu_options.option_one'),
           },
           {
             key: 'setting:2',
-            label: 'Option 2',
+            label: I18n.t('administration.projects.design_settings.submenu_options.option_two'),
           },
         ],
       },
@@ -73,30 +74,36 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
 
         <SplitSpace>
           <Button type="primary" ghost>
-            Primary
+            {I18n.t('administration.projects.design_settings.primary_button')}
           </Button>
           <Button ghost>Default</Button>
           <Button type="dashed" ghost>
-            Dashed
+            {I18n.t('administration.projects.design_settings.dashed')}
           </Button>
           <Button type="primary" ghost danger>
-            Primary
+            {I18n.t('administration.projects.design_settings.primary_button')}
           </Button>
           <Button ghost danger>
-            Default
+            {I18n.t('administration.projects.design_settings.default_button')}
           </Button>
           <Button type="dashed" ghost danger>
-            Dashed
+            {I18n.t('administration.projects.design_settings.dashed')}
           </Button>
         </SplitSpace>
         <SplitSpace>
-          <Typography.Text type="success">Text (success)</Typography.Text>
-          <Typography.Text type="warning">Text(warning)</Typography.Text>
-          <Typography.Text type="danger">Text(danger)</Typography.Text>
+          <Typography.Text type="success">
+            {I18n.t('administration.projects.design_settings.text_success')}
+          </Typography.Text>
+          <Typography.Text type="warning">
+            {I18n.t('administration.projects.design_settings.text_warning')}
+          </Typography.Text>
+          <Typography.Text type="danger">
+            {I18n.t('administration.projects.design_settings.text_danger')}
+          </Typography.Text>
           <Typography.Link href="#" target="_blank">
-            Link
+            {I18n.t('administration.projects.design_settings.link_text')}
           </Typography.Link>
-          <Typography.Text copyable>Text</Typography.Text>
+          <Typography.Text copyable>{I18n.t('administration.projects.design_settings.copy_text')}</Typography.Text>
 
           {/* Dropdown */}
           <Dropdown
@@ -104,11 +111,11 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
               items: [
                 {
                   key: '1',
-                  label: '1st menu item',
+                  label: I18n.t('administration.projects.design_settings.hover_options.first_menu_item'),
                 },
                 {
                   key: '2',
-                  label: 'a danger item',
+                  label: I18n.t('administration.projects.design_settings.hover_options.danger_item'),
                   danger: true,
                 },
               ],
@@ -117,7 +124,7 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
           >
             <a onClick={e => e.preventDefault()}>
               <Space>
-                Hover me
+                {I18n.t('administration.projects.design_settings.hover_text')}
                 <DownOutlined />
               </Space>
             </a>

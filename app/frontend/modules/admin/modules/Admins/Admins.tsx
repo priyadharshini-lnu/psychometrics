@@ -26,7 +26,6 @@ import { CountDisplay } from '~/components/CountDisplay'
 import {
   ProjectAdmin, Admin, AdminPermissions, CurrentUserPermissions, AdminListingTR,
 } from '~/modules/admin/modules/client/core/admin'
-import { getCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
 import Modals from '~/modules/admin/components/Modals/'
 import { DetailsDrawer } from './DetailsDrawer'
@@ -34,7 +33,7 @@ import { AddEditDrawer } from './AddEditDrawer'
 import { useWindowSize } from '~/hooks/useWindowSize'
 import { ActionsMenu } from './ActionsMenu'
 import {
-  DrawerMode, DRAWER_SEARCH_PARAMS, AdminTypes, CampaignTypes,
+  DrawerMode, DRAWER_SEARCH_PARAMS, AdminTypes,
 } from './constants'
 import ToolsDropdown from './ToolsDropdown'
 
@@ -45,7 +44,6 @@ const MODALS = {
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
-    currentCampaignId: getCampaignId(state),
   }),
   {
     openModal,
@@ -69,17 +67,15 @@ export interface Meta extends BaseMeta {
 }
 
 const AdminsComponent: React.FC<Props> = ({
-  adminType, campaignType, currentUser, openModal, currentCampaignId,
+  adminType, campaignType, currentUser, openModal,
 }) => {
   const {
     projectId,
     clientId,
-    campaignId: campaignIdParam,
+    campaignId,
   } = useParams() as { campaignId: string; projectId: string; clientId: string }
   const { modal } = App.useApp()
   const { width: windowWidth } = useWindowSize()
-  const campaignId = campaignType === CampaignTypes.common ? campaignIdParam : currentCampaignId
-
   const filterHash = {
     with_role: adminType,
     project_id_eq: projectId,

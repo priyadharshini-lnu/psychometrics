@@ -5,15 +5,11 @@ module Administration
     include ::Administration::Assessments::CommonPolicy
 
     def update?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      can_manage_campaign_and_users?
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      has_permission?(:campaigns, :manage)
     end
 
     def import_results?
@@ -23,13 +19,11 @@ module Administration
     end
 
     def update_norm?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      can_manage_campaign_and_users?
     end
 
     def update_mettl_schedule?
-      has_permission?(:project_settings, :manage_users, project_id: project_id) && @record.mettl?
+      @record.mettl? && can_manage_campaign_and_users?
     end
 
     def normalize_factor_scores?
@@ -39,13 +33,11 @@ module Administration
     end
 
     def update_assessor_form?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      can_manage_campaign_and_users?
     end
 
     def update_available_locales?
-      update?
+      can_manage_campaign_and_users?
     end
 
     def can_configure_universal_links?
@@ -53,9 +45,7 @@ module Administration
     end
 
     def enable_universal_link?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      @user.is?(:superadmin) || can_manage_campaign_and_users?
     end
 
     def update_positions?
@@ -63,37 +53,27 @@ module Administration
     end
 
     def update_external_config?
-      @record.iiht? && @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      @record.iiht? && can_manage_campaign_and_users?
     end
 
     def update_content_variation?
-      @record.simulation? && @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      @record.simulation? && can_manage_campaign_and_users?
     end
 
     def update_pearson_variation?
-      @record.pearson? && @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      @record.pearson? && can_manage_campaign_and_users?
     end
 
     def update_prework?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      can_manage_campaign_and_users?
     end
 
     def update_workshop_activity?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      can_manage_campaign_and_users?
     end
 
     def toggle_require_scheduling?
-      has_permission?(:campaigns, :manage_users)
+      can_manage_campaign_and_users?
     end
 
     def export_occupations?
@@ -101,9 +81,7 @@ module Administration
     end
 
     def toggle_auto_assign?
-      has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      can_manage_campaign_and_users?
     end
   end
 end

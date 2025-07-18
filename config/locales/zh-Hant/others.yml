@@ -167,12 +167,17 @@ zh-Hant:
             base:
               code_length: 代碼必須至少有 3 個字元長，位於 %{index} 行。
               code_required: 因子代碼必須位於 %{index} 行。
+              invalid_csv: 無效的 csv %{error_message}
               invalid_scoring_strategy: 在 %{index} 行的無效計分策略 '%{strategy}'。 允許的策略是 %{allowed}。
               missing_headers: 缺少所需的標頭： %{headers}
               name_required: 因子名稱必須出現在 %{index} 行中。
               scoring_strategy_required: 在 %{index} 行需要使用計分策略。
             file:
               invalid_format: 請上傳 CSV 檔案
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: 用戶端 SMS 通知已禁用
         hogan:
           attributes:
             name:
@@ -191,6 +196,7 @@ zh-Hant:
               blank: 名字不能為空
             job_role:
               cannot_be_same: 目標工作角色必須與目前工作角色不同
+              not_found: 在專案角色或全域角色中找不到作業角色 '%{name}'
             last_name:
               blank: 姓氏不能為空
             locale:
@@ -313,7 +319,7 @@ zh-Hant:
               invalid_column_name_size: 欄<b>「%{column}」</b>名稱太長 (最多 64)
               invalid_column_type: 欄位類型必須是字串、文字、數字、HTML 或 Markdown
               invalid_format: 無效格式 (.xlsx)
-              invalid_number_value: <b>Row#%{index}</b>Column<b>"</b> <b>%</b> <b>{column}"</b>不是數字
+              invalid_number_value: "<b>行 #%{index}</b>列 <b>「%{column}」</b> 不是數位"
               invalid_string_value: <b>Row#%{index}</b>欄位<b>"%{column}"</b>不是字串
               invalid_string_value_size: <b>Row#%{index} 欄位</b> <b>"%{column}"</b>太長 (max 256)
               no_email_column: 檔案不包含電子郵件列
@@ -323,12 +329,13 @@ zh-Hant:
             email:
               blank: 電子郵件不能為空白
               not_uniq_email: 包含電子郵件的行已經存在
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必須啟用至少一個工作角色，並選取 %{block_name} 的技能類型。
-              invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能類型無效。有效選項： %{valid_options}"
-              props_missing: 工作機會
+              at_least_one_job_role_required: "%{block_name} 的 %{skill_type} 至少需要一個工作角色"
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: "%{block_name} 的工作角色必須至少啟用一種技能類型。"
+              invalid_job_role_type: "%{block_name} 的 %{skill_type} 的工作角色 %{job_role} 無效。有效選項： %{valid_options}"
+              props_missing: 缺少 %{block_name} 的技能設定。
         skillvue:
           attributes:
             name:
@@ -758,6 +765,12 @@ zh-Hant:
           attributes:
             base:
               max_takes_limit_reached: 達到最大拍攝上限
+        register:
+          attributes:
+            mobile_number:
+              blank: 需要手機號碼
+              invalid: 手機號碼無效
+              verification_expired: 驗證碼已過期，您可以嘗試重新驗證。
         report:
           assessments_not_hogan: 所有評估必須為 Hogan 類型
           assessments_not_saville: 所有評估必須是薩維爾型
@@ -771,6 +784,10 @@ zh-Hant:
           attributes:
             current_password:
               invalid: 目前的密碼不正確
+            manager_id:
+              cannot_be_self: 用戶不能被指定為自己的管理員
+        user_idp_comment:
+          reply_to_reply: 無法回覆回覆回覆（只允許一個等級的嵌套）
         user_idp_plan:
           no_active_plan: 未找到有效的 IDP 計劃
   admin_jobs:
@@ -784,6 +801,7 @@ zh-Hant:
         assign_idp_to_users: 將 IDP 指派給使用者
         assign_reports_and_assessments: 指派報告和評估
         bulk_create_workshop_invites: 大量傳送評估中心邀請函
+        bulk_download_idp_reports: 批量下載IDP報告
         bulk_download_reports: 大量下載報告
         bulk_download_user_reports: 大量下載使用者報告
         bulk_regenerate_reports: 再生活動報告
@@ -791,6 +809,7 @@ zh-Hant:
         bulk_regenerate_user_reports: 重新產生使用者報告
         bulk_reports: 大量報告
         bulk_rescore_campaign_factors: 大量重新評分活動因素
+        bulk_update_evaluation_status: 批量更新評估狀態
         compact_completion_status_export: 緊湊型完成狀態匯出
         completion_status_export: 完成狀態匯出
         copy_dimension: 複製尺寸
@@ -800,6 +819,7 @@ zh-Hant:
         export_assessment_questions: 出口評估問題
         export_campaign_factors: 出口活動因素
         export_campaign_scorings: 導出活動縮圖
+        export_dashboard_as_file: 將 Dashboard 匯出為檔
         export_development_action_translations: 出口發展行動翻譯
         export_development_actions: 出口發展行動
         export_dimension_as_json: 匯出尺寸 JSON
@@ -807,7 +827,9 @@ zh-Hant:
         export_job_roles_translations: 匯出工作角色翻譯
         export_norm: 出口規範
         export_occupations: 職業 出口
+        export_proficiency_level_translations: 導出熟練程度翻譯
         export_proficiency_levels: 出口能力等級
+        export_reflection_questions: 匯出反射問題
         export_report_data: 匯出報告資料
         export_reports_and_assessments: 出口報告和評估
         export_skill_translations: 出口技能翻譯
@@ -829,12 +851,14 @@ zh-Hant:
         import_job_roles_translations: 匯入工作角色翻譯
         import_norm: 進口規範
         import_proficiency_level_translations: 進口能力等級翻譯
+        import_proficiency_levels: 導入熟練度級別
         import_question_translations: 匯入問題翻譯
         import_raw_data: 匯入原始資料
+        import_reflection_questions: 導入反射問題
         import_scoring_data: 匯入評分資料
+        import_skill_rater_taxonomies: 匯入技能評核員分類標準
         import_skill_translations: 輸入技能翻譯
         import_skills: 進口技能
-        import_skills_rater_taxonomies: 匯入技能評核員分類標準
         import_sms_invites: 匯入簡訊邀請
         import_users: 匯入使用者
         migrate_assessment_translations: 評估 翻譯轉移
@@ -860,6 +884,8 @@ zh-Hant:
         failed: 失敗
         in_progress: 進行中
         scheduled: 排程
+    bulk_download_idp_reports:
+      already_exists: 生成此 IDP 報表的作業已在進行中
     bulk_download_reports:
       content:
         title: 下載報告的連結
@@ -904,6 +930,7 @@ zh-Hant:
       download_csv: 下載 CSV
       edit: 編輯
       evaluate: 評估
+      export: 出口
       export_normed: 標準化因子分數
       export_raw_labels: 未經處理（帶標籤）
       export_raw_scores: 原始因子分數
@@ -917,7 +944,7 @@ zh-Hant:
       next_assessment: 通過下一次評估
       pending_tasks:
         one: 您有 1 個待處理的任務
-        other: 您有 %{count} 待處理任務
+        other: 您有 %{count} 個待處理任務
       re_evaluate: 按一下這裡重新評估
       reevaluate: 重新評估
       remove:
@@ -1022,6 +1049,7 @@ zh-Hant:
         pearson: 培生評估
         saville: 薩維爾評估
         simulation: 模擬評估
+        skillvue: Skillvue 評估
     flow:
       end_assessment_modal:
         custom_message: 自訂評估結束訊息
@@ -1116,6 +1144,7 @@ zh-Hant:
       previous_group_required: 需要完成過小組
     menu:
       assessment_center: 評估中心
+      assessment_center_invites: 評估中心邀請
       assessments_and_reports: 評估與報告
       idp: IDP
       manage: 管理
@@ -1296,13 +1325,13 @@ zh-Hant:
     insights_reports: 洞察與報告
     instruction_modal:
       campaign_start_final_instructions: "<p>請注意，您無法停止或暫停計時器，即使您關閉瀏覽器，活動計時器仍會持續運作，因此您絕對不可以在中間離開任務去做其他事情。 請確保在執行任務時盡量減少分心，尋找一個安靜的環境、關閉裝置上的通知，並避免處理多項任務。 請保持專注力，並保持注意力集中。 一旦活動計時器耗盡，您將無法繼續。 如果您已閱讀上述說明，請按一下開始，以繼續指定的任務。</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>請正確閱讀下列說明。</h4>
         <p>您即將開始的任務是有時間限制的。 一旦您點選「開始」，活動計時器就會自動開始。 您有 %{minutes} 分鐘的時間來完成所有活動。 請務必在指定時間內完成任務，並有效管理時間，避免匆忙完成評估過程。 請務必一次完成任務，如果您需要休息，現在就是時候。</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>監考</h4>
         <p>按下「開始」按鈕後，您會被轉到我們的監考系統，它會在您的測驗過程中監控您的攝影機、麥克風和螢幕。 這些測驗會由我們精密的人工智能系統自動監考，提供不中斷且流暢的使用者體驗。 不過，測驗也可能由人工監考員審查。 任何不當行為或異常跡象都會被標記，這是為了確保沒有作弊企圖。 如果發現懷疑，您的任務將被取消。</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>測驗瀏覽器</h4>
         <p>您需要下載並安裝一個特殊的瀏覽器來完成測驗任務。 請按照下一個畫面的指示進行操作。 您可以在完成所有必要的活動後卸載此軟體。</p>
     instructions:
@@ -1342,6 +1371,8 @@ zh-Hant:
   campaign_assessment:
     actions:
       bulk_download: 大量下載
+      bulk_update_evaluation_as_done: 標記為已完成
+      bulk_update_evaluation_as_undone: 取消標記為已完成
       download: 下載報告
       export_completion_status: 匯出完成狀態
       export_external: 外部
@@ -1368,13 +1399,20 @@ zh-Hant:
       assessor_form: 評估員表格
       auto_assign: 自動指定
       dimension_id: 尺寸 ID
+      external_user_id: Skillvue 候選人 ID
       id: 活動評估 ID
       locales: 地點
       norm: 標準
       norm_id: 標準 ID
+      pearson_norm_id: 皮爾遜規範ID
+      pearson_schedule_id: Pearson 計劃 ID
       pearson_variation: Pearson 變異
       prework: 前期工作
+      saville_candidate_id: 應聘者ID
+      saville_data_separator: Saville 數據分隔符
       simulation_content_variation: 模擬內容變化
+      simulation_participant_id: 模擬參與者ID
+      simulation_time_extension: 模擬時間延長
       skillvue_email_id: Skillvue 候選人電子郵件 ID
       skillvue_external_assessment_id: Skillvue 評估 ID
       universal_link: 通用連結
@@ -1397,6 +1435,10 @@ zh-Hant:
         placeholder: 選擇評估中心組
         success_message: 成功指派評估員活動評估小組
         title: 評估中心小組
+      bulk_update_evaluation:
+        content: 是否確實要將所有選定的主題標記為 %{status}？
+        successfully: 已成功標記為 %{status}。
+        title: 批量標記為 %{status}？
       import_raw:
         body: 請參閱匯出功能，擷取可用於在此匯入的範本。
         success_msg: 匯入已成功上傳
@@ -1407,6 +1449,10 @@ zh-Hant:
         success_msg: 匯入已成功上傳
         title: 匯入計分結果資料
         upload: 上傳
+      prework_setting:
+        disable: 為所有現有使用者禁用 prework
+        enable: 為所有現有用戶啟用 prework
+        title: 前期工作設置表
       regenerate:
         content: 您確定要重新產生可用的報告嗎？
         title: 重新生成報告？
@@ -1673,24 +1719,32 @@ zh-Hant:
       create: 建立
       delete: 刪除
       done: 完成
+      download: 下載
       edit: 編輯
       export: 出口
+      filter: 濾波器
       filter_by_tags: 依標籤篩選
+      go_back: 回去
       import: 進口
       insert: 插入
       ok: OK
+      publish: 發表
+      reject: 拒絕
       remove: 移除
       reset: 重設
       resolve: 決心
       restore: 還原
+      return_to_home: 返回首頁
       run: 運行
       save: 節省
       schedule: 時間表
       search: 搜尋
       send: 發送
+      sign_in: 登錄
       start: 開始
       submit: 提交
       unarchive: 未歸檔
+      unpublish: 取消出版
       unresolve: 未解決
       update: 更新
       upload: 上傳
@@ -1802,6 +1856,7 @@ zh-Hant:
       refer_export_file: 請參閱匯出功能，擷取可用於在此匯入的範本。
       reference_language: 參考語言
       response: 回應
+      select: 選擇
       selected: 精選
       subject: 主題
       total: 總計
@@ -1883,16 +1938,12 @@ zh-Hant:
     mailer:
       admin_invitation_instructions:
         accept: 點選此處接受邀請。
-        body: '您好 %{name}, 您已被邀請進入 Lighthouse - The Talent Enterprise 評估平台的管理面板。 %{accept} 或者您可以安全地忽略此電子郵件。 請勿與任何人分享您的存取憑證。
-
-          '
+        body: '您好 %{name}, 您已被邀請進入 Lighthouse - The Talent Enterprise 評估平台的管理面板。 %{accept} 或者您可以安全地忽略此電子郵件。 請勿與任何人分享您的存取憑證。 '
         subject: 燈塔邀請函
       confirmation_instructions:
         subject: 確認指示
       invitation_instructions:
-        body: '您好 %{name}，您已被加入 Lighthouse（兆光科技），成為以下部分的管理員
-
-          '
+        body: '您好 %{name}，您已被加入 Lighthouse（兆光科技），成為以下部分的管理員 '
         login: 登入 Lighthouse
         sections:
           campaign: 活動：%{section_name}
@@ -1900,31 +1951,19 @@ zh-Hant:
           project: 專案：%{section_name}
         subject: 燈塔邀請函
       password_change:
-        body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 mte.support@mercer.com
-
-          '
-        regards: 'Lighthouse 團隊
-
-          '
+        body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 mte.support@mercer.com '
+        regards: 'Lighthouse 團隊 '
         subject: 您的 Lighthouse 密碼已變更
       reset_password_instructions:
-        body: '您好，%{name}！有人要求提供變更密碼的連結。 您可以透過以下連結變更密碼。
-
-          '
+        body: '您好，%{name}！有人要求提供變更密碼的連結。 您可以透過以下連結變更密碼。 '
         change_password: 變更密碼
         footer: 如果您沒有要求這樣做，您可以放心地忽略這封郵件。 您的密碼不會更改，直到您訪問上面的鏈接並創建一個新密碼。
-        regards: 'Lighthouse 團隊
-
-          '
+        regards: 'Lighthouse 團隊 '
         subject: 重設密碼的說明
       unlock_instructions:
-        body: '您好 %{name}！您的帳號因登入失敗次數過多而被鎖定。 請點選以下連結解除鎖定您的帳號：
-
-          '
+        body: '您好 %{name}！您的帳號因登入失敗次數過多而被鎖定。 請點選以下連結解除鎖定您的帳號： '
         footer: 如果您沒有要求這樣做，您可以放心地忽略這封郵件。 您的密碼不會更改，直到您訪問上面的鏈接並創建一個新密碼。
-        regards: 'Lighthouse 團隊
-
-          '
+        regards: 'Lighthouse 團隊 '
         subject: 帳戶解鎖說明
         unlock_account: 解鎖我的帳戶
     omniauth_callbacks:
@@ -2011,6 +2050,7 @@ zh-Hant:
         reserved_subdomain: 子網域 %{value} 已保留
         uniq_subdomain: 子網域應該是唯一的。
       add_manager:
+        cannot_be_self: 用戶不能被指定為自己的管理員
         manager_not_found: 未找到管理員或不屬於同一專案
         user_not_found: 使用者未找到或不屬於同一專案
       admin:
@@ -2029,8 +2069,17 @@ zh-Hant:
       campaign_factor_group:
         group_already_exists: 已存在同名的群組。
         last_factor_group: 無法刪除最後一個 Campaign 因子群組。
+      campaign_idps:
+        idp_template_not_published: 該IDP模板尚未發布，請在分配到廣告系列之前將其發布。
+      cant_be_deleted: 無法刪除此記錄
+      client_feature:
+        ai_assisted_idp_feature_error: 如果禁用 AI 助手功能，則不能為 true
       create_superadmin:
         uniq_email: 電子郵件應該是單一的。
+      development_actions:
+        only_global_skills_allowed: 選定的技能必須是全球技能。
+        skills_not_belong_to_project: 選定的技能必須屬於指定的項目。
+        skills_required: 請選擇至少一項技能。
       exceeded_subjects_count: 每次邀請只能新增 %{count} 主題
       filled?: 不能空白
       idp_template:
@@ -2056,7 +2105,9 @@ zh-Hant:
         validates_admins: 管理員無權存取活動。
       report_families_reports:
         report_exists: 此報告已是報告套件的一部分
-      size?: 大小應該小於 %{size｝
+      size?: 大小應小於 %{size}
+      skill:
+        already_added: 已添加同名技能。
       skill_alias:
         unique_alias: 別名應該是唯一的
         unique_skill: 技能應該是獨一無二的
@@ -2076,6 +2127,7 @@ zh-Hant:
         start_time_should_be_less: 開始時間應小於結束時間
       user_idp_plan:
         idp_template_already_assigned_to_user: 此 Idp 範本已指定給此使用者，並已啟用。
+        idp_template_not_published: 該IDP模板尚未發布，請在分配給用戶之前將其發布。
       user_saved_filters:
         limit_exceeded: 您只能擁有 %{limit} 已儲存的篩選條件，請刪除已儲存的篩選條件以新增更多篩選條件。
         unique_name: 已存在同名的篩選器。
@@ -2115,6 +2167,8 @@ zh-Hant:
     assessments:
       timed_out: 您將無法參加 %{assessment_name} 評估，因為它已超時。
     error: 錯誤
+    error_401: 您無權訪問此資源。請登錄。
+    error_403: 您沒有查看此資源的許可權。
     error_500: 出錯了，請聯絡您的管理員。
     error_msg: 出錯了，請重新整理頁面，如果問題仍然存在，請聯絡您的管理員。
     forbidden: 您無法存取此頁面
@@ -2353,7 +2407,7 @@ zh-Hant:
     booking_card:
       aria_available_time: 可用時間
       aria_back_to_time_selection: 回到時間選擇
-      aria_desc_current_month: 目前為 %{monthName} %{year｝
+      aria_desc_current_month: 目前為 %{monthName} %{year}
       aria_label_next_month: 前往下個月
       aria_label_previous_month: 前往上個月
       aria_timezone_select: 選擇時區
@@ -2375,7 +2429,7 @@ zh-Hant:
       increase_font: 增加字體大小
       reset_font: 重設字型大小
     input_duration:
-      max_duration: 最長持續時間為 %{duration｝
+      max_duration: 最長持續時間為 %{duration}
     schedule_availability:
       copy_to_all: 複製到所有
       end_date: 結束日期
@@ -2438,9 +2492,14 @@ zh-Hant:
       generate_more: 產生更多
       generating_development_actions: 產生發展行動...
       heading: 發展行動
+      incomplete_error: 未完成的開發作
+      incomplete_error_message: 某些開發作未完成。請在提交IDP之前完成它們。
+      incomplete_warning: 未完成的開發作
+      incomplete_warning_message: 某些開發作未完成。您確定要將 IDP 標記為完整嗎？
       learning_from_others: 向他人學習
       manage_skills: 管理技能
       marathon: 馬拉松
+      mark_as_complete: 標記為完成
       no_development_actions: 無開發行動
       on_the_job: 在職
       other: 其他
@@ -2449,9 +2508,12 @@ zh-Hant:
       remove: 移除
       skill: 技術
       sprint: 衝刺
+      start_plan: 開始計劃
       structured_learning: 結構化的學習
       submit_plan: 提交計劃
       write_here: 寫在這裡...
+    edit_plan: 編輯計劃
+    edit_progress: 編輯進度
     initial_steps:
       add_skill_group_description: 根據您的評估結果，以下是您的一些優勢和發展領域。 選擇您想要進一步發展的技能，作為您發展計劃的一部分。
       add_skill_group_title: 探索您的 %{category} 技能
@@ -2467,6 +2529,8 @@ zh-Hant:
       rate_skills_description: 現在您已經選擇了您的發展優先順序，請就下列各項為自己評分。 請記住，請根據您目前的水準來評分，而不要根據您過去或期望的水準來評分。
       rate_skills_title: 評估您的技能
       rating_column_header: 您的自我評分
+      reflective_questions: 反思性問題
+      save: 救
       select_skills: 選擇您的技能
       select_skills_placeholder: 選擇技能
       selected_skills: 精選技能
@@ -2487,11 +2551,13 @@ zh-Hant:
         other: 其他
         technical: 技術
       save_skills: 儲存技能
+    new_comments: 新評論
     pdf:
       approval_status: 審批狀態
       cover:
         fields:
           assigned_data: 分配日期
+          assigned_date: 指定日期
           completion_date: 完成日期
           division: 部門
           name: 姓名
@@ -2574,6 +2640,7 @@ zh-Hant:
       statuses:
         approved: 已審核並批准
         completed: 已完成
+        draft: 草案
         not_reviewed: 未審核
         pending_approval: 審核中
       summary:
@@ -2592,17 +2659,35 @@ zh-Hant:
         library: IDP庫
         skills_count: 技能數量
         title: 報告摘要
+    plan: 計劃
     reflective_questions:
       already_completed: IDP 已經完成，您現在無法回答問題。
+      answer_later: 稍後回答
+      answer_placeholder: 在這裡寫下你的答案......
+      errors:
+        max_words: 答案最多允許 %{count} 個單詞
+        min_words: 答案至少需要 %{count} 個單詞
+        required: 問題的答案是必需的
+      max_words: 最大字數
+      min_words: 最小字數
+      title: 反思性問題
+      update_failed: 更新期間出錯
+      updated_successfully: 您的答案已成功更新
+      words: 的話
     skill_gap_report:
       title: 技能差距報告
     status: 狀態
     user_idp_status:
       approved: 已核准
+      completed: 完成
       draft: 草案
+      in_progress: 進行中
       not_started: 未開始
       pending_approval: 待定
+      rejected: 拒絕
     users: 使用者
+    with_reflection_questions: 帶反思問題
+    without_reflection_questions: 無反射題
   idp_templates:
     assign: 指派
     assign_idp_template: 指定 Idp 範本
@@ -2717,6 +2802,7 @@ zh-Hant:
     overuse_number: 超額使用免稅額
     report_family: 報告束
     start_date: 開始日期
+    title: 許可證
     type: 類型
     types:
       common: 常見問題
@@ -2727,6 +2813,35 @@ zh-Hant:
     used_out_of: "%{used}中的%{total}。"
   mailer:
     from: 人才企業
+    idp:
+      manager_unread_comments:
+        body: |-
+          你好 %{name}，
+          您的IDP報告者有新的評論。
+
+          %{dashboard_link}
+
+          在 Direct Reportees 控制面板上，您可以：
+          - 查看成員對其個人計劃的新評論
+          - 提供有關其開發目標的反饋
+          - 追蹤IDP活動的進度
+          - 支援您團隊的成長和發展
+        dashboard_link: 訪問控制面板
+        subject: 您有新評論 - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          你好 %{name}，
+          您對您的開發計畫有新的評論。
+
+          %{dashboard_link}
+
+          在 My Plan 控制面板上，您可以：
+          - 更新您的開發計劃
+          - 閱讀新的評論和反饋
+          - 回答經理提出的問題
+          - 更新開發作的進度
+        dashboard_link: 查看我的計劃
+        subject: 您對您的開發計畫有新的評論 - %{campaign_name}
     license:
       expire:
         subject: 許可證過期
@@ -2825,11 +2940,11 @@ zh-Hant:
   report_approvals:
     events:
       approved_text: 核准文本
-      comment_added: 新增註解<i>%{text｝</i>
+      comment_added: 新增註解<i>%{text}</i>
       comment_removed: 刪除評論
       comment_resolved: 已解決的意見
       comment_unresolved: 未解決的意見
-      comment_updated: 將註解<s>%{oldText}</s>改為<i>%{newText｝</i>
+      comment_updated: 將註解<s>%{oldText}</s>改為<i>%{newText}</i>
       created_text: 新增文字
       disapproved_text: 反對的文字
       removed_text: 已移除的文字
@@ -3557,7 +3672,7 @@ zh-Hant:
       report_generation_message: 報告正在產生中，當報告完成時我們會通知您。
     processing: 處理
     processing_report: 處理報告
-    progress_text: "%{completed}的%{total｝"
+    progress_text: "%{completed}的%{total}"
     question:
       chat_type:
         input_placeholder: 寫下您的訊息...
@@ -3598,6 +3713,9 @@ zh-Hant:
     waiting: 等待
     you: 您
     yourself: 你自己
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: 點選此方塊，即表示您同意您已閱讀我們的隱私權聲明和客戶的隱私權聲明，並同意我們收集和處理其中所述的您的個人資訊，包括您個人資訊的國際傳輸。
+    privacy_notice: 隱私權聲明
   time:
     formats:
       date: "%d/%m/%y"
@@ -3658,6 +3776,7 @@ zh-Hant:
         body: 請參考範例檔案，擷取可用於此處匯入的範本。
         title: 指派報告和評估
     toolbar:
+      bulk_download_idp_reports: 批量下載IDP報告
       export: 匯出使用者
       export_compact_completion_status: 緊湊型
       export_detailed_completion_status: 詳細
@@ -3734,7 +3853,6 @@ zh-Hant:
       add: 新增報告
       download: 下載
       generate: 產生
-      regenerate: 再生
     approval_statuses:
       approved: 已核准
       change_requested: 要求變更
@@ -3842,6 +3960,10 @@ zh-Hant:
       BadRequest: 檔案沒有上傳，因為最後一個請求失敗。 這可能是由於您的網際網路無法正常運作。 如果您的網際網路可以正常運作，請聯絡管理員。
       EntityTooLarge: 檔案大小應小於 %{maxFileSize} MB
       WrongFileType: 檔案類型應為下列其中之一 %{allowedFileTypes}
+    idp:
+      reflective_questions_required: IDP 需要回答反思性問題
+      status_not_permitted: 用戶不允許。
+      status_not_permitted_by_manager: 當計劃處於“%{status}”狀態時，Manager 無法更新狀態。
     invalid: 無效
     issue: 問題
     least: 請至少回答 %{min} 選項。

@@ -3,17 +3,13 @@ import {
   App,
   Button, MenuProps, Table, Typography,
 } from 'antd'
-import { useParams } from 'react-router-dom'
 import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { ProficiencyLevel } from '~/modules/admin/modules/client/core/proficiencyLevels'
-import { convertEnumToObject } from '~/utils/object'
+import { convertEnumToObject, getLabelForEnumValue } from '~/utils/object'
 import { SkillTypeEnum } from '../../constants'
 import { ProficiencyTypesEnum } from './constants'
-import { ProjectFilter } from '~/components/ProjectFilter'
-import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
-import { FilterFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 
@@ -24,14 +20,6 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
   const { modal, message } = App.useApp()
 
   const { resource } = useResourceContext()
-
-  const { projectId } = useParams()
-
-  const filter = resource.getAppliedFiltersFromURL()
-
-  const isProjectFilterApplied = (filter?.global || filter?.project_id_eq) ?? false
-
-  const { DEFAULT_PRIMARY_COLOR } = constants
 
   const handleMappingDeletion = (proficiencyLevel: ProficiencyLevel) => {
     modal.confirm({
@@ -123,19 +111,23 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
         sorter
       />
       <Resource.Column<ProficiencyLevel>
-        title={I18n.t('administration.proficiency_levels.fields.skill_category')}
-        id="skill_category"
-        render={(_, proficiencyLevel) => (
-          <div>
-            <Typography.Text>{proficiencyLevel.skillCategory}</Typography.Text>
-          </div>
+        title={I18n.t('administration.proficiency_levels.fields.skill_type')}
+        id="skill_type"
+        render={proficiencyLevel => (
+          <Typography.Text>
+            {
+              proficiencyLevel.skillType ? (
+                getLabelForEnumValue(SkillTypeEnum, proficiencyLevel.skillType)
+              ) : null
+            }
+          </Typography.Text>
         )}
         sorter
         filters={
           Object.values(convertEnumToObject(SkillTypeEnum))
             .map(([key, value]) => ({ text: key, value }))
         }
-        filteredValue={resource.getFilteredValue('skill_category_in') as string[]}
+        filteredValue={resource.getFilteredValue('skill_type_in') as string[]}
       />
 
       <Resource.Column<ProficiencyLevel>
@@ -152,35 +144,6 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
         }
         filteredValue={resource.getFilteredValue('level_in') as string[]}
       />
-
-      {!projectId && (
-        <Resource.Column<ProficiencyLevel>
-          title={I18n.t('common.column.project')}
-          id="project.name"
-          render={skill => (skill.project?.id ? (
-            <Typography.Link
-              copyable
-              href={`/admin/projects/${skill.project?.id}/new_campaigns?filters[statusEq]=active`}
-              target="_blank"
-            >
-              {skill.project?.name}
-            </Typography.Link>
-          ) : null)}
-          width={200}
-          sorter
-          filterDropdown={() => (
-            <ProjectFilter />
-          )}
-          filterIcon={() => (
-            <FilterFilled
-              style={{
-                color: isProjectFilterApplied
-                  ? DEFAULT_PRIMARY_COLOR : undefined,
-              }}
-            />
-          )}
-        />
-      )}
 
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('common.column.action')}

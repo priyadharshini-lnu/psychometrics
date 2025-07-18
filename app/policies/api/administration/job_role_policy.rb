@@ -20,11 +20,11 @@ module Api
       end
 
       def import_translations?
-        manage?
+        has_permission?(:job_roles, :import_translations, project_id: project_id)
       end
 
       def export_translations?
-        manage?
+        has_permission?(:job_roles, :export_translations, project_id: project_id)
       end
 
       def manage?
@@ -33,13 +33,7 @@ module Api
 
       class Scope < Api::Administration::BasePolicy::Scope
         def resolve
-          return scope unless project_id
-
-          if filter&.dig(:include_global_roles)
-            scope.where(project_id: [nil, project_id])
-          else
-            scope.where(project_id: project_id)
-          end
+          scope.where(project_id: project_id)
         end
       end
     end

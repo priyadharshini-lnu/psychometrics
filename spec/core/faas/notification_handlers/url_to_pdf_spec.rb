@@ -106,7 +106,7 @@ describe Faas::NotificationHandlers::UrlToPdf do
 
     response = AsyncResponseRequest::AsyncResponse.new(processing_status: :completed,
                                                        async_request_uuid: 'abcd',
-                                                       response_data: 'url/to/idp_report.pdf',
+                                                       response_data: 'https://presigned_url.cc',
                                                        response_type: :json)
 
     expect(AsyncResponseRequest::SetAsyncResponse).to receive(:call!).with(

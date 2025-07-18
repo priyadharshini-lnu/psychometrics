@@ -21,6 +21,8 @@ module Api
     def seach_user
       users = User.where(project_id: project_id).filterable_fields(params[:filter][:search_query])
 
+      users = users.where.not(id: params[:filter][:exclude_user_id]) if params.dig(:filter, :exclude_user_id)
+
       jsonapi_render json: users.to_a, options: { resource: Api::V2::Administration::UserResource }
     end
 

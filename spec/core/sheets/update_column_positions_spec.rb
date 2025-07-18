@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Sheets::UpdateColumnPositions do
-  let(:sheet) { create(:sheet, columns: []) }
+  let(:sheet) { create(:sheet) }
   let!(:column1) { create(:sheet_column, sheet: sheet) }
   let!(:column2) { create(:sheet_column, sheet: sheet) }
   let!(:column3) { create(:sheet_column, sheet: sheet) }

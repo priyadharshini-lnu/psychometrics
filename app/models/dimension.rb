@@ -23,7 +23,10 @@ class Dimension < ApplicationRecord
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :owner, presence: true, allow_nil: true
 
+  enum :dimension_type, { regular: 0, skill_rater: 1 }
+
   after_commit :invalidate_assessment_cache
+  after_create_commit :sync_skill_rater_entities, if: :skill_rater?
 
   # Search entity by word
   scope :search_query, lambda { |query|
@@ -67,7 +70,24 @@ class Dimension < ApplicationRecord
     end
   end
 
+  def non_skill_factors
+    all_factors.where(skill_id: nil).order(:id)
+  end
+
   def invalidate_assessment_cache
     assessments.each(&:invalidate_cache)
+  end
+
+  def sync_skill_rater_entities
+    SkillRater::SyncAssessmentEntitiesJob.perform_later(owner_id)
+  end
+
+  def self.skill_rater_dimension(project)
+    Dimension.find_or_initialize_by(
+      dimension_type: :skill_rater, owner_id: project.id
+    ).tap do |dimension|
+      dimension.name = "#{project.name} - Skill Rater"
+      dimension.save!
+    end
   end
 end

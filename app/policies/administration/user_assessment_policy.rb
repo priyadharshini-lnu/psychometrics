@@ -58,7 +58,7 @@ module Administration
     end
 
     def rescore_response?
-      has_permission?(:results, :rescore_responses) && !record.skillvue?
+      has_permission?(:results, :rescore_responses)
     end
 
     def toggle_require_scheduling?

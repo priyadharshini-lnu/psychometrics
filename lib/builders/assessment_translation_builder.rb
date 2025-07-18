@@ -49,12 +49,16 @@ module Builders
     end
 
     def update_block_translations(block, block_params)
-      return if block_params.dig('props', 'staticContent').blank?
+      static_content = block_params.dig('props', 'staticContent', 'value')
+      not_applicable = block_params.dig('props', 'not_applicable', 'label')
+
+      return if static_content.blank? && not_applicable.blank?
 
       translation = find_or_initialize_translation(block.id, 'Block')
 
-      translation.data['props'] =
-        { 'staticContent' => { 'value' => block_params.dig('props', 'staticContent', 'value') } }
+      translation.data['props'] = {}
+      translation.data['props']['staticContent'] = { 'value' => static_content } if static_content.present?
+      translation.data['props']['not_applicable'] = { 'label' => not_applicable } if not_applicable.present?
       translation.save!
     end
 
@@ -67,13 +71,15 @@ module Builders
     end
 
     def find_or_initialize_translation(translateable_id, translateable_type)
-      Translation.find_or_initialize_by(
+      translation = Translation.find_or_initialize_by(
         translateable_id: translateable_id,
         translateable_type: translateable_type,
         resource_id: assessment.id,
         resource_type: assessment.class.name,
         locale: selected_locale
       )
+      translation.data ||= {}
+      translation
     end
   end
 end

@@ -114,9 +114,7 @@ class BaseController < ActionController::Base
   end
 
   def send_tmp_file(file_path, options = {})
-    if file_path.start_with?(Rails.root.join('tmp').to_s)
-      send_file file_path, options
-    else
+    unless Utility::FileSecurity.safe_send_file(self, file_path, Rails.root.join('tmp').to_s, **options)
       head :not_found
     end
   end
