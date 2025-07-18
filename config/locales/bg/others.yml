@@ -40,11 +40,9 @@ bg:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Трябва да е активирана поне една роля за работа с избран тип умения за %{block_name}
               at_least_one_job_role_required: За %{skill_type} се изисква поне една длъжностна роля за %{block_name}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Поне един тип умение трябва да е активиран с избрана роля за работа за %{block_name}
               invalid_job_role_type: 'Невалидна длъжностна роля %{job_role} за %{skill_type} за %{block_name}. Валидни опции: %{valid_options}'
-              invalid_skill_type: 'Невалиден тип умение %{skill_type} за %{role_name} за %{block_name}. Допустими опции: %{valid_options}'
               props_missing: Липсва конфигурация на уменията за %{block_name}
         skillvue:
           attributes:

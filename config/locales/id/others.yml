@@ -40,12 +40,10 @@ id:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Setidaknya satu peran pekerjaan harus diaktifkan dengan jenis keterampilan yang dipilih untuk %{nama_blok}
-              at_least_one_job_role_required: Setidaknya satu peran pekerjaan diperlukan untuk %{jenis_keterampilan} untuk %{nama_blok}
-              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Setidaknya satu jenis keterampilan harus diaktifkan dengan peran pekerjaan yang dipilih untuk %{nama_blok}
-              invalid_job_role_type: 'Peran pekerjaan yang tidak valid %{peran_pekerjaan} untuk %{jenis_keterampilan} untuk %{nama_blok}. Opsi yang valid: %{valid_options}'
-              invalid_skill_type: 'Jenis keterampilan yang tidak valid %{jenis_keterampilan} untuk %{nama_peran} untuk %{nama_blok}. Opsi yang valid: %{valid_options}'
-              props_missing: Konfigurasi keterampilan tidak ada untuk %{nama_blok}
+              at_least_one_job_role_required: Setidaknya satu peran pekerjaan diperlukan untuk %{skill_type} untuk %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Setidaknya satu jenis keterampilan harus diaktifkan dengan peran pekerjaan yang dipilih untuk %{block_name}
+              invalid_job_role_type: 'Peran pekerjaan yang tidak valid %{job_role} untuk %{skill_type} untuk %{block_name}. Opsi yang valid: %{valid_options}'
+              props_missing: Konfigurasi keterampilan tidak ada untuk %{block_name}
         skillvue:
           attributes:
             name:

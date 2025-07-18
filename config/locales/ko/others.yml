@@ -326,12 +326,10 @@ ko:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 블록 이름]에 대해 선택된 스킬 유형으로 하나 이상의 직무 역할이 활성화되어 있어야 합니다.
-              at_least_one_job_role_required: 블록 이름]의 %{스킬 유형}에 대해 하나 이상의 직무 역할이 필요합니다.
-              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: 블록 이름]에 대해 선택한 직무 역할과 함께 하나 이상의 스킬 유형이 활성화되어 있어야 합니다.
-              invalid_job_role_type: '블록 이름에 대한 %{스킬 유형}에 대한 %{직무 역할 %{직무_역할}이(가) 잘못되었습니다. 유효한 옵션: %{valid_options}'
-              invalid_skill_type: '역할_이름]의 %{블록_이름}에 대한 %{스킬 유형 %{스킬_유형}이(가) 잘못되었습니다. 유효한 옵션: %{valid_options}'
-              props_missing: 블록 이름]에 대한 스킬 구성이 없습니다.
+              at_least_one_job_role_required: "%{block_name}의 %{skill_type}에 대해 하나 이상의 직무 역할이 필요합니다."
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: "%{block_name}에 대해 선택한 직무 역할과 함께 하나 이상의 스킬 유형이 활성화되어 있어야 합니다."
+              invalid_job_role_type: "%{block_name}에 대한 %{skill_type}에 대해 %{job_role} 직무 역할이 잘못되었습니다. 유효한 옵션: %{valid_options}"
+              props_missing: "%{block_name}에 대한 스킬 구성이 없습니다."
         skillvue:
           attributes:
             name:

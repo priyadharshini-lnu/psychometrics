@@ -40,11 +40,9 @@ pl:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Co najmniej jedna rola zawodowa musi być włączona z typem umiejętności wybranym dla %{block_name}.
               at_least_one_job_role_required: Co najmniej jedna rola zawodowa jest wymagana dla %{skill_type} dla %{block_name}.
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Co najmniej jeden typ umiejętności musi być włączony z rolą zadania wybraną dla %{block_name}.
               invalid_job_role_type: 'Nieprawidłowa rola %{job_role} dla %{skill_type} dla %{block_name}. Prawidłowe opcje: %{valid_options}'
-              invalid_skill_type: 'Nieprawidłowy typ umiejętności %{skill_type} dla %{role_name} dla %{block_name}. Prawidłowe opcje: %{valid_options}'
               props_missing: Brak konfiguracji umiejętności dla %{block_name}
         skillvue:
           attributes:

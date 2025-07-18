@@ -40,12 +40,10 @@ sk:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pre %{názov_bloku} musí byť povolená aspoň jedna pracovná rola s vybraným typom zručnosti
               at_least_one_job_role_required: Pre %{skill_type} sa vyžaduje aspoň jedna pracovná úloha pre %{block_name}
-              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Pre %{názov_bloku} musí byť povolený aspoň jeden typ zručnosti s vybranou pracovnou rolou
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Pre %{block_name} musí byť povolený aspoň jeden typ zručnosti s vybranou pracovnou rolou
               invalid_job_role_type: 'Neplatná pracovná úloha %{job_role} pre %{skill_type} pre %{block_name}. Platné možnosti: %{valid_options}'
-              invalid_skill_type: 'Neplatný typ zručnosti %{skill_type} pre %{role_name} pre %{block_name}. Platné možnosti: %{valid_options}'
-              props_missing: Chýba konfigurácia zručností pre %{názov_bloku}
+              props_missing: Chýba konfigurácia zručností pre %{block_name}
         skillvue:
           attributes:
             name:

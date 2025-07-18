@@ -326,12 +326,10 @@ cs:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pro %{jméno_bloku} musí být povolena alespoň jedna pracovní role s vybraným typem dovednosti.
               at_least_one_job_role_required: Pro %{skill_type} je vyžadována alespoň jedna pracovní role pro %{block_name}.
-              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Pro %{jméno_bloku} musí být povolen alespoň jeden typ dovednosti s vybranou pracovní rolí.
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Pro %{block_name} musí být povolen alespoň jeden typ dovednosti s vybranou pracovní rolí.
               invalid_job_role_type: 'Neplatná pracovní role %{job_role} pro %{skill_type} pro %{block_name}. Platné možnosti: %{valid_options}'
-              invalid_skill_type: 'Neplatný typ dovednosti %{skill_type} pro %{role_name} pro %{block_name}. Platné možnosti: %{valid_options}'
-              props_missing: Chybí konfigurace dovedností pro %{jméno_bloku}
+              props_missing: Chybí konfigurace dovedností pro %{block_name}
         skillvue:
           attributes:
             name:

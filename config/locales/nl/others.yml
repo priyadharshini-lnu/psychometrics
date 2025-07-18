@@ -326,11 +326,9 @@ nl:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ten minste één functierol moet ingeschakeld zijn met een vaardigheidstype geselecteerd voor %{block_name}
               at_least_one_job_role_required: Ten minste één functierol is vereist voor %{skill_type} voor %{block_name}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Minstens één vaardigheidstype moet ingeschakeld zijn met een functierol geselecteerd voor %{block_name}
               invalid_job_role_type: 'Ongeldige functierol %{job_role} voor %{skill_type} voor %{block_name}. Geldige opties: %{valid_options}'
-              invalid_skill_type: 'Ongeldig vaardigheidstype %{skill_type} voor %{role_name} voor %{block_name}. Geldige opties: %{valid_options}'
               props_missing: Configuratie voor vaardigheden ontbreekt voor %{block_name}
         skillvue:
           attributes:

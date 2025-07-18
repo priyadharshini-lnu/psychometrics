@@ -326,11 +326,9 @@ pt:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pelo menos um posto de trabalho deve estar ativado com um tipo de competência selecionado para %{block_name}
               at_least_one_job_role_required: Pelo menos uma função é necessária para %{skill_type} para %{block_name}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Pelo menos um tipo de competência tem de estar ativado com uma função selecionada para %{block_name}
-              invalid_job_role_type: 'Função de trabalho inválida %{job_role} para %{skill_type} para %{block_name}. Opções válidas: %{opções_válidas}'
-              invalid_skill_type: 'Tipo de habilidade inválido %{skill_type} para %{role_name} para %{block_name}. Opções válidas: %{opções_válidas}'
+              invalid_job_role_type: 'Função de trabalho inválida %{job_role} para %{skill_type} para %{block_name}. Opções válidas: %{valid_options}'
               props_missing: Falta a configuração de competências para %{block_name}
         skillvue:
           attributes:

@@ -40,12 +40,10 @@ sl:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Vsaj ena vloga delovnega mesta mora biti omogočena z izbrano vrsto spretnosti za %{naziv_bloka}
-              at_least_one_job_role_required: Vsaj ena vloga delovnega mesta je potrebna za %{vrsto spretnosti} za %{naslov bloka}
+              at_least_one_job_role_required: Vsaj ena vloga delovnega mesta je potrebna za %{skill_type} za %{block_name}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Vsaj ena vrsta spretnosti mora biti omogočena pri izbrani vlogi delovnega mesta za %{block_name}
-              invalid_job_role_type: 'Nepravilna vloga delovnega mesta %{job_role} za %{vrst_spretnosti} za %{naslov_blokov}. Veljavne možnosti: %{valid_options}'
-              invalid_skill_type: 'Nepravilna vrsta spretnosti %{skill_type} za %{role_name} za %{block_name}. Veljavne možnosti: %{valid_options}'
-              props_missing: Manjka konfiguracija veščin za %{naziv_bloka}
+              invalid_job_role_type: 'Nepravilna vloga delovnega mesta %{job_role} za %{skill_type} za %{block_name}. Veljavne možnosti: %{valid_options}'
+              props_missing: Manjka konfiguracija veščin za %{block_name}
         skillvue:
           attributes:
             name:

@@ -326,11 +326,9 @@ it:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Almeno un ruolo lavorativo deve essere abilitato con un tipo di abilità selezionata per %{block_name}
               at_least_one_job_role_required: Almeno un ruolo lavorativo è richiesto per %{skill_type} per %{block_name}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Almeno un tipo di competenza deve essere abilitato con un ruolo lavorativo selezionato per %{block_name}
-              invalid_job_role_type: 'Ruolo di lavoro non valido %{job_role} per %{skill_type} per %{block_name}. Opzioni valide: %{opzioni_valide}'
-              invalid_skill_type: 'Tipo di abilità non valido %{skill_type} per %{role_name} per %{block_name}. Opzioni valide: %{opzioni_valide}'
+              invalid_job_role_type: 'Ruolo di lavoro non valido %{job_role} per %{skill_type} per %{block_name}. Opzioni valide: %{valid_options}'
               props_missing: Manca la configurazione delle competenze per %{block_name}
         skillvue:
           attributes:
