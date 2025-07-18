@@ -19,6 +19,7 @@ Rails.application.configure do
   # just for the purpose of running a single test. If you are using a tool that
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = ENV.fetch('EAGER_LOAD', '0') == '1'
+  Rails.autoloaders.main.do_not_eager_load(config.root.join('app/types'))
 
   # config.logger = Logger.new($stdout)
   # config.log_level = 'debug'
