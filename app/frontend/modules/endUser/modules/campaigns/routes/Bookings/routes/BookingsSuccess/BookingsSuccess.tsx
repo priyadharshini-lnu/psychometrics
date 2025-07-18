@@ -5,9 +5,6 @@ import _ from 'lodash'
 import {
   Row, Typography, Col, Space, App,
 } from 'antd'
-import {
-  google, outlook, yahoo, ics, office365, CalendarEvent,
-} from 'calendar-link'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
@@ -31,6 +28,7 @@ import {
   REQUEST_RESCHEDULE_BOOKING,
   REQUEST_CANCEL_BOOKING,
   CANCEL_BOOKING,
+  downloadIcalUrl,
 } from '~/modules/endUser/modules/campaigns/core/bookings'
 import { BookingConfirmationContainer, FullWidthSkeleton } from '~/glint'
 import { RescheduleAndCancel } from './RescheduleAndCancel'
@@ -94,13 +92,6 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
       setbookingDetails(response)
     })
   }, [])
-
-  const event:CalendarEvent = {
-    title: bookingDetails?.title || '',
-    description: bookingDetails?.description || '',
-    start: bookedDateTimeMomentObjectTz?.clone().format('YYYY-MM-DD HH:mm:ss ZZ'),
-    duration: (duration > 0) ? [duration / 3600, 'hours'] : [0, 'hours'],
-  }
 
   const handleCancelBooking = (cancel: boolean) => {
     if (allowCancelByUser && bookingId && workshopId) {
@@ -178,7 +169,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
         <div className={styles.inviteDiv} ref={tourRef}>
           <a
             aria-label={I18n.t('frontend.bookings.add_to_google_calendar')}
-            href={google(event)}
+            href={downloadIcalUrl(inviteOrBookingId, workshopId)}
             target="_blank"
             rel="noreferrer noopener"
             onClick={handleAddToCalendarClick}
@@ -187,7 +178,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
           </a>
           <a
             aria-label={I18n.t('frontend.bookings.add_to_yahoo_calendar')}
-            href={yahoo(event)}
+            href={downloadIcalUrl(inviteOrBookingId, workshopId)}
             target="_blank"
             rel="noreferrer noopener"
             onClick={handleAddToCalendarClick}
@@ -196,7 +187,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
           </a>
           <a
             aria-label={I18n.t('frontend.bookings.add_to_outlook_calendar')}
-            href={outlook(event)}
+            href={downloadIcalUrl(inviteOrBookingId, workshopId)}
             target="_blank"
             rel="noreferrer noopener"
             onClick={handleAddToCalendarClick}
@@ -205,7 +196,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
           </a>
           <a
             aria-label={I18n.t('frontend.bookings.add_to_i_calendar')}
-            href={ics(event)}
+            href={downloadIcalUrl(inviteOrBookingId, workshopId)}
             target="_blank"
             rel="noreferrer noopener"
             onClick={handleAddToCalendarClick}
@@ -214,7 +205,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
           </a>
           <a
             aria-label={I18n.t('frontend.bookings.add_to_msoffice_calendar')}
-            href={office365(event)}
+            href={downloadIcalUrl(inviteOrBookingId, workshopId)}
             target="_blank"
             rel="noreferrer noopener"
             onClick={handleAddToCalendarClick}

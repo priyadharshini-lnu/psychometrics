@@ -69,6 +69,21 @@ class EndUser::WorkshopInvitesController < ApplicationController
     end
   end
 
+  def download_ical
+    workshop = Workshop.find_by(id: params[:workshop_id])
+    return render plain: I18n.t('errors.workshop.missing_or_invalid'), status: :bad_request unless workshop
+
+    result = Workshops::GenerateIcal.call(workshop, current_user)
+
+    if result[:ok]
+      send_data result[:ok],
+                filename: "workshop-#{workshop.id}.ics",
+                type: 'text/calendar; charset=utf-8'
+    else
+      render plain: I18n.t('errors.workshop.ical_generation_failed'), status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_resource
