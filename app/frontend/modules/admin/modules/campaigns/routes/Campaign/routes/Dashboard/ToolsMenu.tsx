@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Button, Dropdown, Menu, message, Modal,
+  Button, Dropdown, Menu, message, Modal, Select,
 } from 'antd'
 import {
   DownOutlined, ToolOutlined, FilePdfOutlined, LoadingOutlined,
@@ -8,6 +8,8 @@ import {
 import { useDispatch } from 'react-redux'
 import { Dashboard } from '~/modules/admin/modules/campaigns/core/dashboard'
 import { exportDashboardFile } from '~/modules/admin/modules/campaigns/core/exportDashboardFile'
+
+const { Option } = Select
 
 interface ToolsMenuProps {
   campaignId: string
@@ -75,7 +77,7 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({ campaignId, projectId, das
 
   return (
     <>
-      <Dropdown overlay={menu} trigger={['click']} placement="bottomRight">
+      <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" className="me-4">
         <Button
           type="default"
           icon={isExporting ? <LoadingOutlined /> : <ToolOutlined />}
@@ -99,14 +101,18 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({ campaignId, projectId, das
           <label style={{ display: 'block', marginBottom: 4 }}>
             {I18n.t('administration.dashboard.choose_file_format')}
           </label>
-          <select
+          <Select
             value={exportFormat}
-            onChange={e => setExportFormat(e.target.value as 'PDF' | 'PPTX')}
+            onChange={value => setExportFormat(value)}
             style={{ width: '100%' }}
           >
-            <option value="PDF">{I18n.t('administration.dashboard.pdf')}</option>
-            <option value="PPTX">{I18n.t('administration.dashboard.pptx')}</option>
-          </select>
+            <Option key="PDF" value="PDF">
+              {I18n.t('administration.dashboard.pdf')}
+            </Option>
+            <Option key="PPTX" value="PPTX">
+              {I18n.t('administration.dashboard.pptx')}
+            </Option>
+          </Select>
         </div>
         {/* Checkboxes */}
         <div>

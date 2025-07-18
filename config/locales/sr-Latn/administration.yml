@@ -1,0 +1,4163 @@
+---
+sr-Latn:
+  administration:
+    actions: Radnje
+    active_record_audits:
+      action: Radnje
+      audit_id: Revizija ID
+      auditable_id: Zapis ID
+      auditable_type: Tip zapisa
+      audited_changes: Revidirane promene
+      new_diff:
+        parse_error: Neuspelo parsiranje JSON sa novim promenama
+      old_diff:
+        parse_error: Neuspelo parsiranje JSON sa starim promenama
+      title: Revidirane promene
+    administrator:
+      sessions:
+        new:
+          forgot_password: Zaboravili ste lozinku?
+          instruction: Molimo Vas da se prijavite sa svojim ličnim podacima o nalogu
+          password_placeholder: Lozinka
+          title: Dobrodošli!
+      shared:
+        simple_design:
+          design: Dizajn
+          or: Ili
+    administrators:
+      drawers:
+        edit:
+          admin_role_select: Izaberite ulogu administratora
+          admin_roles: Uloge administratora
+          create_success: Administrator '%{name}' je uspešno kreiran
+          email: Imejl
+          first_name: Ime
+          first_name_required: Ime je obavezno
+          last_name: Prezime
+          last_name_required: Prezime je obavezno
+          no_edit_permission: Nemate dozvolu za uređivanje administratora '%{name}'
+          save: Sačuvaj
+          update: Ažuriraj
+          update_success: Administrator '%{name}' je uspešno ažuriran
+        notes:
+          threesixty_permission: Dozvole specifične za 360 kampanje
+          title: Beleške
+        view:
+          add_campaign_admin: Dodaj administratora kampanje
+          add_client_admin: Dodaj administratora klijenta
+          add_project_admin: Dodaj administrator projekta
+          add_threesixty_campaign_admin: Dodaj administratora kampanje
+          edit_campaign_admin: Uredi administratora kampanje
+          edit_client_admin: Uredi administratora klijenta
+          edit_project_admin: Uredi Administrator projekta
+          edit_threesixty_campaign_admin: Uređivanje administratora kampanje
+          first_name: Ime
+          last_name: Prezime
+          project_admin: Administrator projekta
+          project_list: Lista projekata
+          role: Administrator kampanje
+          title:
+            campaign_admin: Administrator kampanje
+            client_admin: Administrator klijenta
+            project_admin: Administrator projekta
+      list:
+        actions:
+          api_keys: API ključevi
+          cancel_text: Otkaži
+          change_password: Resetuj lozinku
+          edit: Uredi
+          export_admins_with_permissions: Uloge administratora i izvoz dozvola
+          export_success: Administrator izvoz je uspešno zakazan. Molimo Vas da proverite svoje obaveštenje za status.
+          login: Prijava
+          send_email: Pošalji imejl
+          spoof:
+            login_successful: Prijava uspešna.
+          user_report_events: Prijavi evidenciju odobrenja
+        columns:
+          actions: Radnje
+          created_at: Kreirano u
+          email: Imejl
+          id: Id
+          name: Ime
+        header:
+          add_admin: Dodaj administratora
+          search_admins: Pretraga administratora
+        toolbar:
+          export_admins_with_permissions: Uloge administratora i izvoz dozvola
+      modals:
+        delete:
+          cancelText: Otkaži
+          content: Da li ste sigurni da želite da uklonite administratora korisnika sa imejlom '%{email}'?
+          okText: U redu
+          onSuccess: Administrator sa imejlom '%{email}' je uspešno uklonjen
+          title: Potvrdite
+      permissions:
+        labels:
+          apiKeys:
+            manage: Upravljanje
+            title: API ključevi
+            view: Prikaz
+          assessments:
+            manage: Upravljanje
+            title: Procene
+            view: Prikaz
+          assessors:
+            manage: Upravljanje
+            title: Ocenjivači
+            view: Prikaz
+          auditLogs:
+            title: Evidencije revizije
+            view: Prikaz
+          auditReports:
+            admin_permissions: Uloge administratora i izvoz dozvola
+            title: Izveštaji o reviziji
+            user_report_events: Izveštaj Odobrenje evidencije
+          campaignFactors:
+            manage: Upravljanje
+            title: Faktori kampanje
+            view: Prikaz
+          campaigns:
+            bulk_download: Zbirno preuzimanje
+            bulk_regenerate_reports: Zbirno regeneriranje izveštaja
+            manage: Upravljanje
+            manage_admins: Upravljanje administratorima
+            manage_factor_benchmark_scores: Upravljanje rezultatima referentnih tačaka faktora
+            manage_messages: Upravljanje porukama
+            manage_options: Upravljanje opcijama
+            manage_report_approvals: Upravljanje odobrenjima izveštaja
+            manage_users: Upravljanje korisnicima
+            participant_options: Opcije učesnika
+            report_options: Opcije izveštaja
+            reset_nominations: Poništi nominacije
+            title: Kampanje
+            view: Prikaz
+            view_factor_benchmark_scores: Pogledaj rezultate referentnih tački faktora
+            view_stats: Pogledaj statistiku
+          clients:
+            export_data_report: Izvezi izveštaj sa podacima
+            manage: Upravljanje
+            title: Klijenti
+            view: Prikaz
+            view_licenses: Pogledaj licence
+          communications:
+            manage: Upravljanje
+            title: Komunikacije
+            view: Prikaz
+          dashboards:
+            accesssheet_manage: Upravljanje pristupnim listom
+            accesssheet_settings: Podešavanja pristupnog lista
+            accesssheet_view: Pregled prisutpnog lista
+            title: Kontrolne table
+            view: Prikaz
+          datasheets:
+            manage: Upravljanje
+            title: Tehnički listovi
+            view: Prikaz
+          developmentActions:
+            export: Izvoz
+            export_global: Izvezi globalno
+            export_global_translations: Izvezi globalne prevode
+            export_translations: Izvei prevode
+            import: Uvezi
+            import_global: Uvezi globalno
+            import_global_translations: Uvezi globalne prevode
+            import_translations: Uvezi prevode
+            manage: Upravljanje
+            title: Razvojne akcije
+            view: Prikaz
+          dimensions:
+            manage: Upravljanje
+            title: Dimenzije
+            view: Prikaz
+          idpTemplates:
+            manage: Upravljanje
+            title: IDP Šabloni
+            view: Prikaz
+          jobRoles:
+            manage: Upravljanje
+            title: Uloge na poslu
+            view: Prikaz
+          mediaLibraries:
+            manage: Upravljanje
+            title: Medijske biblioteke
+            view: Prikaz
+          messages:
+            email: Imejl
+            instructions: Uputstva
+            options: Opcije
+            title: Poruke
+          norms:
+            manage: Upravljanje
+            title: Norme
+            view: Prikaz
+          proficiencyLevels:
+            export: Izvezi nivoe stručnosti
+            export_translations: Izvezi prevode nivoa stručnosti
+            import: Uvezi nivoe stručnosti
+            import_translations: Uvezi prevode nivoa stručnosti
+            manage: Upravljanje
+            title: Nivoi stručnosti
+            view: Prikaz
+          proficiency_level:
+            title: Nivoi stručnosti
+          projectSettings:
+            assessments: Procene
+            design: Dizajn
+            idp: IDP
+            integrations: Integracije
+            privacy_settings: Podešavanja privatnosti
+            saml: SAML
+            security: Bezbednost
+            smtp: SMTP
+            title: Podešavanja projekta
+            webhooks: Webhooks
+          projects:
+            manage: Upravljanje
+            manage_admins: Upravljanje administratorima
+            manage_users: Upravljanje korisnicima
+            title: Projekti
+            view: Prikaz
+          questions:
+            manage: Upravljanje
+            title: Pitanja
+            view: Prikaz
+          reflectionQuestions:
+            export: Izvoz
+            import: Uvoz
+            manage: Upravljanje
+            title: IDP pitanja za refleksiju
+            view: Prikaz
+          registrationCodes:
+            manage: Upravljanje
+            title: Registracioni kodovi
+            view: Prikaz
+          registrationSettings:
+            manage: Upravljanje
+            title: Podešavanja registracije
+          reports:
+            manage: Upravljanje
+            title: Izveštaji
+            view: Prikaz
+          responseMeta:
+            title: Odgovor Meta
+          results:
+            approve_report: Odobri izveštaj
+            bulk_download: Zbirno preuzimanje
+            bulk_regenerate_reports: Zbirno regeneriranje izveštaja
+            bulk_update_evaluation_status: Bulk Update Evaluation Status
+            download_report: Preuzmi izveštaj
+            edit_report: Uredi izveštaj
+            export_occupations: Izvezi zanimanja
+            external_score_import: Izvezi eksterne skorove
+            finalize_scores: Finalizujte skorove
+            normalize_factor_scores: Normalizujte skorove faktora
+            raw_responses: Sirovi odgovori
+            regenerate_report: Regeneriši izveštaj
+            report_data: Izveštaj o podacima
+            report_file_upload: Otpremi fajl sa izveštajem
+            rescore_responses: Ponovo skoruj odgovore
+            reset_progress: Resetuj napredak
+            reset_responses: Resetuj odgovore
+            scores: Skorovi
+            title: Rezultati
+            view_report: Pogledaj izveštaj
+            view_stats: Pogledaj statistiku
+          skills:
+            export: Izvezi veštine
+            export_translations: Izvezi prevode za veštine
+            import: Uvezi veštine
+            import_translations: Prevodi za uvoz veština
+            manage: Upravljanje
+            title: Veštine
+            view: Prikaz
+          smsHistories:
+            manage: Upravljanje
+            title: SMS istorije
+            view: Prikaz
+          smsInvites:
+            manage: Upravljanje
+            title: SMS pozivnice
+            view: Prikaz
+          users:
+            reset_password: Resetuj lozinku
+            title: Korisnici
+          workshops:
+            export_status: Status izvoza
+            manage: Upravljanje
+            title: Radionice
+            view: Prikaz
+    ai_assistants:
+      actions:
+        playground: Igralište
+      ai_assistants: AI asistenti
+      ai_assistants_playground: AI pomoćnik igralište
+      column:
+        provider: Dobavljač
+      form:
+        description: Opis
+        name: Ime
+        provider: Dobavljač
+        system_prompt: Sistem prompt
+        title: AI pomoćnik
+        user_prompt: Korisnička uputstva
+    any: " - Bilo koji - "
+    api:
+      campaigns:
+        validate_form:
+          external_id_taken: Spoljni ID '%{external_id}' je već zauzet'
+      users:
+        form:
+          campaign_ids_not_existing: Ne postoje svi ID-ovi kampanje
+    api_keys:
+      form:
+        description: Opis
+        title: API ključ
+    assessment_center:
+      cancel_confirmation:
+        message: Da li ste sigurni da želite da odbacite formu napretka?
+        title: Odbaci formu napretka
+      current: Trenutno
+      invite:
+        add_invite: Dodaj poziv
+        assessment_center: Centar za procenu
+        back: Povratak
+        basic_info:
+          allow_preferred_language: Dozvoli željeni jezik
+          assessment_centers: Centri za procenu
+          assessment_centers_hint: Primer upita za pretragu '10. avgust 2023. 20:06'
+          assessment_centers_placeholder: Izaberite centre za procenu
+          description: Izdavanje pozivnica kandidatima odabirom više centara za procenu. Kandidati će zatim izabrati jedan centar od dostupnih.
+          neurodiversity: Uključite pitanje neurodiverziteta
+          preferred_language: Dozvoljeni jezici
+          required_error: Ne može biti prazno
+          title: Osnovne informacije
+        center_group: Grupa centra za procenu
+        confirm_message: Da li ste sigurni da želite da izbrišete poziv?
+        confirm_message_with_title: Da li ste sigurni da želite da uklonite poziv sa naslovom '%{invite_title}'?
+        confirm_title: Potvrdite
+        exceeded_subjects_count: Kampanja ima %{users} subjekata. Možete dodati samo %{count} subjekata po pozivu
+        id: ID
+        invites: Pozivi
+        next: Sledeći
+        not_selected: Nije izabrano
+        requests: Zahtevi
+        save: Sačuvaj i pošalji
+        send_invites:
+          add: Dodaj
+          add_description: Možete prevesti naslov i opis poziva na više jezika
+          add_language: Dodaj jezik
+          description: Opis
+          input_label: Dodaj dodatni jezik
+          input_placeholder: Izaberi dodatni jezik
+          invitation_title: Naslov poziva
+          title: Poziv (%{lang})
+        steps:
+          add_subjects: Dodaj subjekte
+          basic_info: Osnovne informacije
+          has_errors: sadrži greške
+          send_invitation: Pošalji poziv
+        subjects:
+          cancel: Otkaži
+          count: "%{count} subjekata"
+          csv_error: 'Red%{index}: korisnik sa imejlom %{email} nije u ovoj kampanji'
+          csv_imported: "%{count} subjekata uvezeno"
+          description: Subjekte možete dodati pojedinačno pretraživanjem ili masovnim otpremanjem csv datoteke.
+          download: Preuzmi
+          file_example: Pogledaj primer fajla za otpremanje informacija o subjektima
+          import_from_campaign: Dodaj sve iz kampanje
+          import_title: Uvezi subjekte
+          import_users: Uvezi korisnike
+          search_user: Pretraži subjekte
+          title: Subjekti
+          upload: Otpremanje
+          upload_csv: Otpremi CSV
+        subjects_count_added: Subjekti su uspešno dodati
+        success:
+          continue: Nastavi
+          message: Zadatak slanja pozivnica je stavljen u red; korisnici će ih uskoro dobiti.
+        success_message: Poziv je uspešno uklonjen.
+        success_message_with_title: Pozivnica sa naslovom '%{invite_title}' je uspešno uklonjena.
+        title: Naslov
+        workshop:
+          title: Centri za procenu
+        workshop_list:
+          add: Dodaj
+          name: Ime
+          remove_confirm:
+            content: Da li ste sigurni da želite da uklonite Centar za procenu sa imenom '%{name}'?
+            success: Centar za procenu je uspešno uklonjen.
+            title: Potvrdite
+      invite_request:
+        accept: Prihvati
+        reason: Razlog
+        reject: Odbaci
+        remove_confirm:
+          content: Da li ste sigurni da želite da %{action} %{status} iz %{subjectName}?
+          success: "%{status} od %{subjectName} je %{action} uspešno."
+          title: "%{action} %{status}"
+        status: Status
+        subject_name: Ime predmeta
+        workshop_time: Vreme radionice
+      past: Prošlost
+      steps:
+        basic_information: Osnovne informacije
+        facilitators: Facilitatori
+        invite_options: Opcije pozivanja
+        invite_subjects: Pozovite subjekte
+        send_invitations: Pošalji pozivnice
+      success:
+        call_send_invitation: Da li želite da pošaljete pozivnice?
+        ok: Da
+        skip: Preskoči za sada
+        title: Stvoreni centri za procenu
+      upcoming: Predstojeće
+    assessment_question_import:
+      errors:
+        doesnt_have_header: "'%{sub_header}' nema zaglavlje"
+        invalid_headers: 'Sledeći zaglavlja su nevažeća: %{headers}'
+        invalid_scores: Rezultati za faktor %{factor_name} su nevažeći. Rezultati treba da budu numeričke vrednosti odvojene zarezom
+        invalid_sub_header: "'%{sub_header}' nije važeći podnaslov za zaglavlje '%{header}'"
+        scores_not_allowed: Rezultati se mogu dodati samo za MultiChoice i Matrix tip pitanja
+        unavailable_factors: "%{unavailable_factor_names} faktori nisu prisutni u dimenziji"
+      modal:
+        download_xls: Preuzmite primer XLSX datoteku
+        title: Uvezi pitanja
+      successfully_scheduled: Uvoz pitanja je uspešno zakazan.
+    assessments:
+      assessment: Procena
+      assessment_report: Procene
+      copy:
+        copy: kopiranje
+        copy_assessment: Procena kopiranja
+        name: Ime
+        successfully: Procena "%{name}" je uspešno kopirana.
+      create:
+        successfully: Procena "%{name}" je uspešno kreirana.
+      destroy:
+        successfully: Procena "%{name}" je uspešno obrisana.
+      edit:
+        header: Podešavanja procene
+      errors:
+        owner_validation: Nemate %{resource_name} %{permission} dozvolu za %{client_name}
+      export:
+        questions: Pitanja o izvozu
+      export_questions_toastr: Izvoz pitanja je uspešno zakazan
+      flow: Protok
+      linkedAssessment:
+        assessment_title: Izaberite pitanja iz %{name}
+        title: Izaberite povezana pitanja
+      map_norms: Mapa normi
+      menu:
+        export_questions: Izvezi pitanja
+        import_questions: Uvezi pitanja
+        managage_campaign_factors: Upravljajte faktorima kampanje
+      new:
+        header: Nova procena
+      preview: Pregled procene
+      randomization:
+        cancel: Otkaži
+        no_randomization: Bez randomizacije
+        no_randomization_order_all: Randomizujte redosled svih
+        of_total: od ukupnog
+        per_page: po stranici
+        plural:
+          block: blokovi
+          choice: Izbori
+          question: pitanja
+        present_only: Samo prisutno
+        question_per_factor_and_show: Pitanja po faktoru i pokzaivanju
+        save: Sačuvaj
+        select: Izaberite
+        select_only: Izaberi samo
+        single_question_page_warning: Trenutna procena je konfigurisana da prikaže jedno pitanje po stranici. Postavljanje više od jednog pitanja po stranici ovde će automatski onemogućiti podešavanje jednog pitanja po stranici.
+        title: Randomizacija
+      reports: Izveštaji
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovu procenu?</p>\n"
+            title: Izbrisati <strong>procenu</strong>?
+          soft_delete:
+            body: "<p>Da li ste sigurni da želite da meko izbrišete ovu procenu?</p>\n"
+            title: "<strong>Procena</strong> mekog brisanja?"
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovu procenu?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      restore:
+        successfully: Procena %{name} je uspešno obnovljena.
+      scoring_strategy:
+        average: Prosečno
+        sum: Suma
+        title: Strategija bodovanja
+      settings:
+        disable_continue_to_dashboard: Onemogući dugme "Nastavi na kontrolnu tablu"
+        disable_nav_btn: Onemogući dugme za povratak navigacije
+        enable_back: Omogući dugme za povratak
+        enable_progress: Omogući traku napretka
+        enable_save: Omogući dugme za sačuvavanje
+        enable_single_question_page: Pokaži jedno pitanje po stranici
+        enable_single_question_page_confirm: Ovo će ažurirati randomizaciju blokova po stranici na 1. Da li ste sigurni?
+        enable_timer: Omogući tajmer
+        has_randomized_block_warning: Trenutna procena ima nasumične blokove sa više od jednog pitanja po stranici. Omogućavanje polja "Prikaži jedno pitanje po stranici" će prebrisati sve konfiguracije randomizacije da imaju samo jedno pitanje po stranici.
+        instructions: Omogući instrukcije
+        title: Podešavanja procene
+      soft_delete:
+        successfully: Procena %{name} je uspešno premeštena u smeće.
+      toggle_archive:
+        successfully: Procena %{name} je %{status} uspešno.
+      toggle_status:
+        successfully: Procena %{name} je uspešno ažurirana.
+      update:
+        successfully: Procena %{name} je uspešno ažurirana.
+    assessor:
+      add_subject_modal:
+        assessment: Procena
+        mark_as_lead_assessor: Označi kao glavnog ocenjivača za gornju temu
+        subject: Subjekat
+        subject_placeholder: Pretraži subjekta..
+        title: Dodaj subjekta
+      assessments:
+        actions:
+          add_subject: Dodaj subjekta
+          rescore: Ponovno skorovanje
+          reset: Resetuj evaluaciju
+          reset_progress: Resetuj napredak
+        bulk_delete_confirmation: Da li ste sigurni da želite da izbrišete izabrane zapise?
+        bulk_delete_successful: Procene procenjivača su uspešno izbrisane
+        reset_confirmation: Da li ste sigurni da želite da resetujete evaluaciju subjekta sa imejlom "%{subjectEmail}"?
+        reset_progress_confirmation: Da li ste sigurni da želite da resetujete napredak subjekta sa imejlom "%{subjectEmail}"?
+        reset_progress_successfully: Resetovanje napretka za temu sa imejlom "%{subjectEmail}" je bilo uspešno.
+        reset_successfully: Resetovanje evaluacije za predmet sa e-poštom "%{subjectEmail}" je bio uspešno.
+        subject_email: Imejl subjekta
+        subject_name: Ime subjekta
+      completed_at: Završeno u
+      count: "%{count} Procenjivači"
+      create_assessor: Dodaj procenjivača
+      evaluations: Evaluacije
+      mailer:
+        subject: Novi subjekti dodati za vašu evaluaciju
+      modals:
+        create_assessor:
+          add: Dodaj
+          cancel: Otkaži
+          form:
+            add: Dodaj
+            add_lead_assessor: Dodaj kao glavnog procenjivača
+            add_lead_assessor_hint: Molimo Vas da prvo dodate formu za glavnog procenjivača
+            assessments: Procene
+            assessor: Procenjivač
+            assessor_placeholder: Pretraga procenjivača...
+            lead_assessment: Glavni procenjivač
+            subject: Subjekat
+            subject_placeholder: Pretraži subjekta...
+          sheet:
+            assessments: Procene
+            assessments_placeholder: Izaberi
+            assessor_email: Imejl procenjivača
+            assessor_first_name: Ime procenjivača
+            assessor_last_name: Prezime procenjivača
+            subject_email: Imejl subjekta
+          title: Dodaj procenjivača
+        import:
+          body: Pogledajte opciju Izvoz da izvučete šablon koji se može koristiti za Uvoz ovde.
+          title: Uvezi procenjivače
+      moderate_score:
+        assessor_evaluations: Evaluacija procenjivača
+        main_report: Glavni izveštaj
+        no_completed_assessments: Još uvek nema završenih procena
+        no_results: Nema odgovora na pitanja
+        other_reports: Ostali izveštaji
+        overall_scoring: Ukupno bodovanje
+        refresh: Osveži
+        reports: Izveštaji
+        reports_count: "%{count} Izveštaji"
+      overview: Pregled
+      remove_confirmation: Da li ste sigurni da želite da uklonite procenjivača sa imejlom %{email} iz ove kampanje?
+      statuses:
+        completed: Završeno
+        not_completed: Nije završeno
+      toolbar:
+        export: Izvezi procenjivače
+        import: Uvezi procenjivače
+        tools: Alatke
+    assessor_assessment:
+      add: Dodati
+      modals:
+        add_assessor_assessment:
+          assessment_placeholder: Izaberite procenu
+      name: Procena procenjivača
+    assessor_campaigns:
+      statuses:
+        completed: Završeno
+        in_progress: U toku
+        not_started: Nije početo
+    assessor_subjects:
+      statuses:
+        completed: Završeno
+        in_progress: U toku
+        not_started: Nije počelo
+    assigns:
+      create:
+        successfully: Uspešno je kreirano novo dodeljivanje procene
+      destroy:
+        successfully: Dodeljivanje procene je uspešno izbrisano
+      new:
+        header: Dodelite procenu i izveštaje
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovo dodeljivanje?</p>"
+            title: Izbriši <strong>%{name}</strong> ?
+    assigns_reports:
+      edit:
+        header: Uredi zadatak izveštaja
+    attention: Pažnja
+    audit_log:
+      action: Radnja
+      audit_logs: Evidencije revizije
+      campaign: Kampanja
+      client: Klijent
+      client_ip: IP adresa klijenta
+      collapse_filters: Spusti filtere
+      dashboard: Kontrolna tabla
+      date_presets:
+        last_30_days: Poslednjih 30 dana
+        last_7_days: Poslednjih 7 dana
+        last_month: Prošli mesec
+        last_week: Prošla sedmica
+        today: Danas
+        yesterday: Juče
+      date_range: Vremenski opseg
+      expand_filters: Proširi filtere
+      failure_reason: Razlog neuspeha
+      interface: Interfejs
+      log_date: Datum evidencije
+      outcome: Ishod
+      payload: Glavni podaci
+      project: Projekat
+      record_id: Zapis ID
+      request_id: Zahtev ID
+      reset: Poništi
+      search: Pretraži
+      search_campaign: Pretraži po kampanji
+      search_client: Pretraži po klijentu
+      search_project: Pretraži po projektu
+      search_record: Pretraži po ID zapisa
+      search_user: Pretraži po korisniku
+      title: Revizija informacija o evidenciji
+      type: Tip zapisa
+      user: Korisnik
+      user_agent: Korisnički agent
+    back: Povratak
+    base:
+      top_sidebar:
+        sign_out_message:
+          body: "<p>Da li ste sigurni da želite da se odjavite?</p> <p>Pritisnite Ne ako želite da nastavite sa radom. Pritisnite da da odjavite trenutnog korisnika.</p>"
+          title: Odjaviti <strong>se</strong> ?
+    block_settings:
+      modal:
+        add_layer: Dodaj sloj
+        background_color: Boja pozadine
+        background_image: Pozadinska slika
+        base_offse_speed: Ponuđena brzina
+        confirm_msg: Da li ste sigurni da izbrišete ovaj sloj?
+        confirm_title: Izbriši sloj
+        layers: Slojevi
+        main_background_color: Glavna boja pozadine
+        select_from_lib: Izaberite iz biblioteke
+        speed: Brzina
+        title: Blok podešavanja
+    blocks:
+      copy:
+        successfully: Blok %{name} je uspešno kopiran.
+      create:
+        successfully: Blok %{name} je uspešno kreiran.
+      destroy:
+        successfully: Blok %{name} je uspešno obrisan.
+      edit:
+        header: Uredi blok
+      new:
+        header: Novi blok
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovaj blok?</p>\n"
+            title: Izbriši <strong>blok</strong> ?
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovaj blok?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+    bookings:
+      errors:
+        already_booked: Već ste rezervisali mesto za to.
+        booking_deadline_passed: Ovaj datum više nije dostupan, molimo vas da izaberete drugi datum sa prethodnog ekrana.
+        cancellation_deadline_passed: Rok za otkazivanje je prošao.
+        cancelled_and_rebook_deadline_passed: Otkazano i rok je ponovo prošao za bukiranje.
+        late_cancellation_not_allowed: Kasno otkazivanje nije dozvoljeno.
+        late_rescheduling_not_allowed: Kasno pomeranje nije dozvoljeno.
+        prework_not_completed: Molimo vas da završite sve aktivnosti pre nego što rezervišete mesto za centar za procenu.
+        reschedule_deadline_passed: Prošao je rok za pomeranje.
+        seats_not_available: Sedišta nisu dostupna.
+    breadcrumbs:
+      admins: Admini
+      assessments: Procene
+      assessor_dashboard: Kontrolna tabla procenjivača
+      assessors: Ocenjivači
+      audit_log_info: Informacije o reviziji evidencije
+      audit_logs: Evidencija revizije
+      audit_reports: Izveštaji o reviziji
+      campaign_templates: Predlošci kampanje
+      campaigns: Kampanje
+      client: Zakup klijenta
+      clientAdmins: Administratori klijenata
+      client_admins: Administratori klijenata
+      clients: Zakupi klijenata
+      communication_center: Komunikacioni centar
+      create: Kreiraj
+      data_exports: Izvoz podataka
+      data_reports: Izveštaji o podacima
+      datasheets: Listovi sa podacima
+      design: Dizajn
+      dimension: Dimenzija
+      dimensions: Dimenzije
+      factors: Faktori
+      home: Kontrolna tabla
+      innovation_styles: Stilovi inovacija
+      innovation_styles_factors: Faktori
+      libraries: Medijska biblioteka
+      license_usages: Upotreba licenci
+      licenses: Licence
+      new_campaign: Nova kampanja
+      norm: Norma
+      norms: Norme
+      norms_editor: Urednik normi
+      occupations: Zanimanja
+      occupations_factors: Faktori
+      participants: Učesnici
+      products: Proizvodi
+      project_admins: Administratori projekta
+      projects: Projekti
+      psychometrics: Psihometrija
+      question_center: Centar za pitanja
+      registration_codes: Registracioni kodovi
+      report_families: Paketi izveštaja
+      reports: Izveštaji
+      settings: Postavke
+      smtp_settings: SMTP podešavanja
+      statistics: Statistika
+      sub_campaigns: Pod-kampanje
+      sub_factors: Pod-faktori
+      survey: Ankete
+      surveys: Ankete
+      users: Korisnici
+      users_add: Dodaj novo
+      users_import: Uvoz
+    bulk_reports:
+      create:
+        no_data: Nema podataka
+        successfully: Izveštaji se kreiraju i bićete obavešteni putem imejla kada budu spremni
+      download:
+        removed: Uklonjeno
+      form:
+        end_date: Datum završetka
+        start_date: Datum početka
+      mailer:
+        subject: Preuzmite zbirne izveštaje
+      new:
+        header: Zbirno preuzimanje
+      reports_unavailable: U ovom trenutku, nema izveštaja dostupnih za preuzimanje. Molimo Vas da potvrdite da su izveštaji koje želite da preuzmete dostupni.
+    cable:
+      notification:
+        assessment_factors: Faktori su prikupljeni
+        assessment_update: Procena je ažurirana
+        block_clone: Blok je kopiran
+        block_create: Blok %{name} je kreiran
+        block_create_by_template: Blok je učitan iz šablona
+        block_destroy: Blok je obrisan
+        block_move_down: Blok %{name} je pomeren dole
+        block_move_up: Blok %{name} je premešten gore
+        block_permanent_destroy: Blok je trajno izbrisan
+        block_rename: Blok je preimenovan
+        block_restore: Blok je obnovljen
+        block_save_as_template: Blok je sačuvan kao šablon
+        block_unlink_template: Blok je bio nepovezan
+        block_update: Blok je ažuriran
+        comment_create: Komentar je kreiran
+        comment_destroy: Komentar je izbrisan
+        geo_filter: Podaci su filtrirani
+        module_create: Modul %{name} je kreiran
+        module_destroy: Modul je izbrisan
+        module_insert_after: Modul je ubačen posle
+        module_insert_before: Modul je ubačen pre
+        module_move_down: Modul je pomeren nadole
+        module_move_up: Modul je pomeren gore
+        module_rename: Modul je preimenovan
+        module_update: Modul je ažuriran
+        page_create: Stranica %{name} je kreirana
+        page_destroy: Stranica je obrisana
+        page_move_down: Stranica %{name} je pomerena dole
+        page_move_up: Stranica %{name} je premeštena gore
+        page_rename: Stranica je preimenovana
+        page_update: Stranica je ažurirana
+        question_clone: Pitanje je kopirano
+        question_create: Pitanje %{name} je kreirano
+        question_create_by_template: Pitanje je učitano iz šablona
+        question_create_from_template: Pitanje je kreirano iz šablona
+        question_destroy: Pitanje je obrisano
+        question_insert_after: Pitanje se ubacuje posle
+        question_insert_before: Pitanje je ubačeno pre
+        question_move_down: Pitanje je pomereno dole
+        question_move_up: Pitanje je pomereno gore
+        question_permanent_destroy: Pitanje je trajno izbrisano
+        question_rename: Pitanje je preimenovano
+        question_restore: Pitanje je obnovljena
+        question_save_as_template: Pitanje sačuvano kao šablon
+        question_unlink_template: Pitanje je nepovezano
+        question_update: Pitanje je ažurirano
+        report_change_aliases: Aliasi se ažuriraju
+        report_change_campaign_factors: Faktori kampanje se ažuriraju
+        report_change_data_configuration: Konfiguracija izveštaja o podacima je uspešno ažurirana
+        report_change_filters: Filteri se ažuriraju
+        report_update: Izveštaj je ažuriran
+        scoring_update: Bodovanje je ažurirano
+        trash_empty: Komentar u smeću prazan
+    campaign_factor_import:
+      errors:
+        assessment_not_found_in_campaign: ID procene '%{assessment_id}' nije pronađen u kampanji
+        code_already_exists: Faktor sa istim kodom '%{code}' već postoji.
+        factor_not_in_assessment_dimension: Faktor id '%{factor_id}' nije deo dimenzije procene
+        invalid_lua_name: Kod '%{code}' treba da bude validno ime lua variable
+        invalid_name_format: Ime '%{name}' treba da odgovara očekivanom formatu.
+        max_limit_reached: Ne može se kreirati više od %{count} faktora kampanje.
+        missing_assessment_id: ID procene je obavezan.
+        missing_assessment_score_type: Potreban je tip ocene.
+        missing_factor_id: Faktor id je potreban.
+        name_already_exists: Faktor sa istim imenom '%{name}' već postoji.
+        name_size_exceded: Ime ne bi trebalo da prelazi %{size} znakova.
+    campaign_factors:
+      delete:
+        confirm_message:
+          assessor_scoring: Spremate se da izbrišete ocenjivača bodovanja. Izgubićete sve moderirane ocenjivače za ovaj faktor '%{factor_name}'. Da li ste sigurni da želite da nastavite?
+          default: Da li ste sigurni da želite da izbrišete faktor kampanje '%{factor_name}'?
+          external_score: Spremate se da izbrišete spoljno bodovanje. Izgubićete spoljne rezultate koji su povezani sa ovim faktorom '%{factor_name}'. Da li ste sigurni da želite da nastavite?
+    campaign_factors_import:
+      errors:
+        invalid_headers: 'Sledeća zaglavlja su nevažeća: %{headers}'
+    campaign_templates:
+      campaign_templates: Šabloni kampanje
+      column:
+        assessment: Procena
+        owner: Vlasnik
+        report: Izveštaj
+      copy:
+        successfully: Zakup klijenta %{name} je uspešno kopiran.
+      create:
+        successfully: Zakup klijenta %{name} je uspešno kreiran.
+      destroy:
+        successfully: Zakup klijenta %{name} je uspešno izbrisan.
+      edit:
+        header: Uredi klijenta
+      errors:
+        owner_invalid: Vlasnik šablona mora biti isti kao i vlasnici procene, izveštaja i dimenzije
+      form:
+        assessment: Procena
+        assessment_placeholder: Izaberite procenu
+        name: Ime
+        name_placeholder: Unesite ime
+        owner: Vlasnik
+        owner_placeholder: Izaberite vlasnika
+        report: Izveštaj
+        report_placeholder: Izaberite izveštaj
+        title: Šablon kampanje
+      image_fields:
+        remove: Uklonite
+      index:
+        new: Dodaj
+        title: Šabloni kampanje
+      list:
+        admin: Administrator klijenta
+        client_admins: Administratori klijenata
+        created_at: Datum kreiranja
+        name: Ime
+        report_bundle: Paket izveštaja
+        updated_at: Ažurirani datum
+      new:
+        header: Novi klijent
+      remove_confirm:
+        content: Da li ste sigurni da želite da uklonite šablon kampanje '%{name}'?
+        success: Šablon kampanje '%{name}'' je uspešno uklonjen.
+        title: Ukloni šablon kampanje
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovaj šablon kampanje?</p>\n"
+            title: Izbriši <strong>%{name}</strong> ?
+        in_progress:
+          deleting: Brisanje
+        tooltips:
+          delete: Izbriši klijenta
+          edit: Uredi klijenta
+      toggle_status:
+        successfully: Zakup klijenta %{name} je uspešno ažuriran.
+      update:
+        successfully: Zakup klijenta %{name} je uspešno ažuriran.
+    campaigns:
+      actions: Upravljanje
+      assessment_reports:
+        report_approval:
+          allow_bulk_approve: Dozvoli zbirno odobravanje
+          allow_qc_bulk_submit: Dozvolji QC zbirnu predaju
+          approval_notification_users: Korisnici obaveštenja o odobrenju
+          approvers: Odobravači
+          approvers_can_edit: Odobravači mogu da menjaju
+          approvers_not_required: Odobravači nisu potrebni
+          do_not_send_notifications: Ne šaljite imejl korisnicima[KC, odobravači i obaveštenje o odobrenju]
+          modal_title: Podešavanja odobrenja izveštaja
+          qc_users: QC Korisnici
+          remove_modal_success: 'Postavka odobrenja za ID izveštaja: %{reportId} je uspešno obrisana'
+          remove_modal_text: 'Da li ste sigurni da želite da izbrišete ovu postavku za ID izveštaja: %{reportId}?'
+          report: Izveštaj
+          settings: Postavke
+      assessors:
+        spoof:
+          successfully: Uspešno ste se prijavili kao %{name}
+      copy: Kopiraj
+      delete: Izbriši
+      edit: Uredi
+      extend_time_success_message: Tajmer kampanje produžen na %{minutes} minuta
+      filters:
+        active: Aktivno
+        all: Sve
+        archived: Arhivirano
+        closed: Zatvoreno
+        inactive: Neaktivno
+        status: Status
+      form:
+        campaign: Kampanja
+        name: Ime
+        practice_campaign: Kampanja prakse
+        status: Status
+      listing:
+        assessments: Procene
+        id: Id
+        name: Ime
+        reports: Izveštaji
+        status: Status
+        type: Tip
+      menus:
+        add_common_campaign: Dodaj zajedničku kampanju
+        add_multi_rater_campaign: Dodaj kampanju sa više ocenjivača
+      modals:
+        create_threesixity:
+          advance_settings:
+            campaign_template: Šablon kampanje
+            factors: Faktori
+          base_settings:
+            active: Aktivno
+            archive: Arhiva
+            assessment: Procena
+            closed: Zatvoreno
+            empty: Prazno
+            inactive: Neaktivno
+            name: Ime
+            previous: Prethodno
+            standard: Standardno
+            status: Status
+          close:
+            content: Da li ste sigurni da želite da zatvorite kreator kampanja sa više ocenjivača? Bilo koji nesačuvani rad će biti izgubljen. Molimo Vas da potvrdite svoju odluku.
+            title: Zatvori kreator kampanja sa više ocenjivača?
+          instructions_creation:
+            empty: 'Prazno: Počnite sa praznim upitnikom i prilagodite ga u skladu sa vašim specifičnim potrebama.'
+            previous: 'Prethodno: Izaberite prethodnu procenu kao polaznu tačku i napravite izmene.'
+            standard: 'Standardno: Koristite unapred dizajniran šablon sa najčešće korišćenim pitanjima i indikatorima.'
+            sub_title: Izaberite vrstu kampanje koju želite da kreirate.
+            title: Dobrodošli u kreator kampanje sa više ocenjivača!
+          instructions_customization:
+            sub_title: Izaberite šablon i faktore koji će biti uključeni u procenu.
+            title: Prilagodite svoju procenu!
+          no_factors:
+            description: Pokušajte neke druge ključne reči za pretragu.
+            title: Nisu pronađeni faktori
+          questions:
+            select_all: Mapa sajta
+            title: Pitanja i indikatori
+          search_factors:
+            description: Unesite najmanje 3 karaktera da biste pronašli faktore koje tražite.
+            title: Započnite pretragu
+          success: Kampanja sa više ocenjivača je uspešno kreirana.
+          success_job: Kreiranje kampanje sa više ocenjivača je uspešno zakazano.
+      options:
+        description:
+          name: Opis
+          save: Sačuvaj opis
+          save_success: Opis je uspešno sačuvan
+        fixed_time: Fiksno vreme
+        instructions:
+          actions:
+            saved: Instrukcije su uspešno sačuvane
+          enable: Omogući instrukcije
+          save: Sačuvaj instrukcije
+        prework_required: Ne dozvoli rezervaciju centra ako predradovi nisu završeni
+        prework_required_for_invite: Pošalji imejl sa pozivnicom samo kada je pred-rad završen
+        proctoring:
+          allow_on_assessment_center: Dozvolite nadgledanje od strane trećeg lica u centru za procenu (proctoring)
+          enable: Omogućite nadgledanje od strane trećeg lica (proctoring)
+          identification: Identifikacija
+          identifications:
+            face: Lice
+            face_and_passport: Lice i pasoš
+            passport: Pasoš
+          integration_type: Integracija
+          integration_types:
+            iframe: IFrame
+            ldb: Pretraživač za zaključavanje
+          proctoring_types:
+            offline: Offline
+            online: Online
+          rule_types:
+            allow_absence_in_frame: Dozvolite odsustvo u kadru
+            allow_to_use_books: Dozvolite korištenje knjiga
+            allow_to_use_calculator: Dozvolite korištenje kalkulatora
+            allow_to_use_excel: Dozvolite korištenje Excela
+            allow_to_use_human_assistant: Dozvolite korištenje ljudskog asistenta
+            allow_to_use_messengers: Dozvolite korištenje glasnika (messengers)
+            allow_to_use_paper: Dozvolite korištenje papira
+            allow_to_use_websites: Dozvolite korištenje veb stranica
+            allow_voices: Dozvolite glasove
+            allow_wrong_gaze_direction: Dozvolite pogrešan smer pogleda
+          rules: Pravila
+          trial: Proba nadgledanja od strane treće osobe (proktoring)
+          type: Tip
+        show_watermark: Pokaži vodeni žig
+        watermark_content: Sadržaj vodenog žiga
+        watermark_info: Ako ne dodate nikakav sadržaj, podrazumevano će se imejl korisnika pojaviti kao vodeni žig. Možete koristiti bilo koji od sledećih pipetekstova -<br> {{id}} - ID učesnika </br> {{first_name}} - Ime učesnika <br> {{last_name}} - Prezime učesnika </br> {{email}} - Imejl učesnika
+      pdf_password: PDF lozinka
+      types:
+        common: Uobičajeno
+        threesixty: Više ocenjivača
+      users:
+        add_user: Dodaj korisnika
+        completion_status: Status završetka
+        created_by: Kreirano od strane
+        email: Imejl
+        filters:
+          all: Sve
+          anonymous: Anonimno
+          identified: Identifikovano
+        id: Id
+        is_active: Aktivno
+        name: Ime
+        no_permission_message: Nemate dozvolu za modifikaciju
+        updated_by: Ažurirano od strane
+      validations:
+        dates:
+          end: mora biti nakon datuma početka
+    campaigns_external_scores_import:
+      errors:
+        invalid_campaign_factor_codes: 'Sledeće factor_codes kampanje su nevažeće: %{codes}'
+        missing_headers: Nedostaju zaglavlja
+        missing_users: 'Sledeći imejlovi ne postoje: %{emails}'
+      import:
+        example_csv: Preuzmite primer csv
+        success_msg: Uvoz je uspešno otpremljen
+      modal:
+        title: Uvoz skorova eksterne kampanje
+    client_features:
+      client_features: Karakteristike klijenta
+      form:
+        ai_assistants: AI asistenti
+        ai_assisted_idp: AI asistirani IDP
+        global_skills: Globalne veštine
+        sms_notification: SMS obaveštenje
+    clients:
+      api_keys:
+        init_breadcrumbs:
+          breadcrumb: Breadcrumb
+      archive:
+        successfully: Uspešno
+      base:
+        active: Aktivno
+        archived: Arhivirano
+        disable: Arhiviraj
+        enable: Izvadi iz arhive
+      columns:
+        country: Država
+        project_manager: Menadžer projekta
+        type: Tip
+        year: Godine
+      copy:
+        successfully: Zakup klijenta '%{name}' je uspešno kopiran.
+      create:
+        successfully: Zakup klijenta '%{name}' je uspešno kreiran.
+      destroy:
+        successfully: Klijent Zakup %{name} je uspešno izbrisan.
+      edit:
+        header: Uredi klijenta
+      form:
+        client: Klijent
+        country: Država
+        name: Ime
+        number: Broj
+        project_manager: Menadžer projekta
+        type: Tip
+        year: Godina
+      licenses:
+        resource:
+          confirmations:
+            toggle_status:
+              body: "<p>Da li ste sigurni da želite da %{status} ovu licencu?</p>\n"
+              title: "<strong>%{status}</strong> Licenca za %{name}?"
+        show:
+          used_out_of: "%{used_number} od %{number}"
+      new:
+        header: Novi klijent
+      projects:
+        actions:
+          archive: Arhiviraj
+          unarchive: Izvadi iz arhive
+        archive:
+          content: Da li ste sigurni da želite da arhivirate '%{project_name}'?
+          success: Projekat '%{project_name}' je uspešno arhiviran.
+          title: Arhiviraj projekat
+        assign_assessments:
+          add_assessment: Dodaj procenu
+          assessments: Procene
+        assign_reports:
+          add_report: Dodaj izveštaj
+        campaigns:
+          archive:
+            successfully: Kampanja '%{name}' je uspešno arhivirana.
+          copy:
+            error: Kampanja '%{name}' nije kopirana.
+            successfully: Kampanja '%{name}' je uspešno kopirana.
+          create:
+            successfully: Kampanja '%{name}' je uspešno kreirana.
+          destroy:
+            successfully: Kampanja '%{name}' je uspešno obrisana.
+          edit:
+            header: Uredi kampanju
+          export:
+            assessments: Procene
+            assigned_user: Dodeljeni korisnici
+            completed_user: Završeni korisnici
+            created_at: Datum kreiranja
+            header:
+              actions: Radnje
+              actual_usage: Stvarna upotreba
+              assessments: Procene
+              campaigns: Kampanje
+              name: Ime
+              reports: Izveštaji
+              sub_campaigns: Pod-kampanje
+              tests_allocated: Testovi dodeljeni
+              users: Korisnici
+            id: Id
+            name: Naziv kampanje
+            reports: Izveštaji
+            updated_at: Datum ažuriranja
+          index:
+            export: Izvoz
+            new: Dodaj
+            title: Kampanje
+          list:
+            assessments: Procene
+            assigned_user: Dodeljeni korisnici
+            completed_user: Završeni korisnici
+            created_at: Datum kreiranja
+            header:
+              actions: Radnje
+              actual_usage: Stvarna upotreba
+              assessments: Procene
+              campaigns: Kampanje
+              name: Ime
+              reports: Izveštaji
+              sub_campaigns: Pod-kampanje
+              tests_allocated: Testovi dodeljeni
+              users: Korisnici
+            id: Id
+            name: Naziv kampanje
+            reports: Izveštaji
+            updated_at: Datum ažuriranja
+          new:
+            header: Nova kampanja
+          resource:
+            sub_campaign:
+              create: Kreirajte novu pod-kampanju
+            tooltips:
+              copy: Kopiranje kampanju
+              create_report: Dodaj novi izveštaj
+              create_user: Dodaj novog korisnika
+              delete: Izbriši kampanju
+              edit: Uredi kampanju
+              export: Izvoz
+          sidebar:
+            archive: Arhiviraj kampanju
+            copy: Kopiraj kampanju
+            destroy: Izbriši kampanju
+            disable: Onemogući
+            edit: Uredi kampanju
+            enable: Omogući
+            new: Nova kampanja
+            title: Opcije kampanje
+            view_licenses: Pogledaj licence
+          sub_campaigns:
+            archive:
+              successfully: Pod-kampanja %{name} je uspešno arhivirana.
+            copy:
+              error: Pod-Kampanja %{name} nije kopirana.
+              successfully: Pod-Kampanja %{name} je uspešno kopirana.
+            create:
+              successfully: Pod-kampanja %{name} je uspešno kreirana.
+            destroy:
+              successfully: Pod-kampanja %{name} je uspešno obrisana.
+            edit:
+              header: Uredi pod-kampanju
+            export:
+              assessments: Procene
+              assigned_user: Dodeljeni korisnici
+              completed_user: Završeni korisnici
+              created_at: Datum kreiranja
+              header:
+                actions: Radnje
+                actual_usage: Stvarna upotreba
+                archive_status: Arhiva Status
+                name: Ime
+                sub_campaign: Pod-kampanje
+                tests_allocated: Testovi dodeljeni
+                users: Korisnici
+              id: Id
+              name: Ime podkampanje
+              reports: Izveštaji
+              updated_at: Datum ažuriranja
+            header:
+              actions: Radnje
+            index:
+              export: Izvoz
+              new: Dodaj
+              title: Pod-kampanje
+            list:
+              assessments: Procene
+              assigned_user: Dodeljeni korisnici
+              completed_user: Završeni korisnici
+              created_at: Datum kreiranja
+              header:
+                actions: Radnje
+                actual_usage: Stvarna upotreba
+                archive_status: Arhiva Status
+                name: Ime
+                sub_campaign: Pod-kampanje
+                tests_allocated: Testovi dodeljeni
+                users: Korisnici
+              id: Id
+              name: Ime podkampanje
+              reports: Izveštaji
+              updated_at: Ažuriran datum
+            new:
+              header: Nova pod-kampanja
+            resource:
+              tooltips:
+                copy: Kopiraj pod-kampanju
+                create_report: Dodaj novi izveštaj
+                create_user: Dodaj novog korisnika
+                delete: Izbriši pod-kampanju
+                edit: Uredi pod-kampanju
+            sidebar:
+              archive: Arhiva pod-kampanje
+              copy: Kopiraj pod-kampanju
+              destroy: Izbriši pod-kampanju
+              disable: Onemogući
+              edit: Uredi pod-kampanju
+              enable: Omogući
+              new: Nova pod-kampanja
+              title: Opcije pod-kampanje
+              view_licenses: Pogledaj licence
+            toggle_status:
+              successfully: Pod-kampanja %{name} je uspešno ažurirana.
+            update:
+              successfully: Pod-kampanja %{name} je uspešno ažurirana.
+          toggle_status:
+            successfully: Kampanja %{name} je uspešno ažurirana.
+          update:
+            successfully: Kampanja %{name} je uspešno ažurirana.
+        copy:
+          error: Projekat %{name} nije kopiran.
+          successfully: Projekat %{name} je uspešno kopiran.
+        create:
+          successfully: Projekat %{name} je uspešno kreiran.
+        destroy:
+          successfully: Projekat %{name} je uspešno obrisan.
+        edit:
+          header: Uredi projekat
+        export:
+          2fa_enabled: Dvofaktorska autentifikacija omogućena
+          actual_usage: Stvarna upotreba
+          admin: Administrator klijenta
+          applicable_level: Primenljiv nivo
+          archive_status: Status
+          assessments: Procene
+          assigned_user: Dodeljeni korisnici
+          completed_user: Završeni korisnici
+          created_at: Datum kreiranja
+          id: Id
+          name: Naziv projekta
+          number: Broj
+          project_admin: Administratori projekta
+          reports: Izveštaji
+          tests_allocated: Testovi dodeljeni
+          tte_admin: Menadžer projekta TTE
+          updated_at: Datum izmene
+          url: URL
+          users_count: Broj korisnika
+        form:
+          2fa: Dvofaktorska autentifikacija
+          2fa_enable: Omogućite dvofaktorsku autentifikaciju
+          applicable_levels:
+            campaign: Završni nivo kampanje
+            project: Završni nivo projekta
+            sub_campaign: Završni nivo pod-kampanje
+          data_privacy: Privatnost podataka
+          enable_live_chat: Omogućite čet uživo
+          enable_privacy_links: Omogući vezu za privatnost
+          live_chat_token: token za čet uživo
+          optional: Opciono
+          other_settings: Ostala podešavanja
+          privacy_link: Link za privatnost
+          privacy_text: Tekst o privatnosti
+          project_number: Broj projekta
+          webhook: Webhook
+          webhook_auth_enabled: Omogućite Webhook autentifikaciju
+          webhook_password: Lozinka
+          webhook_username: Korisničko ime
+        header:
+          actions: Radnje
+        index:
+          export: Izvoz
+          new: Dodaj
+          title: Projekti
+          tooltips:
+            create: Kreiraj
+            export: Izvoz
+        list:
+          2fa_enabled: Dvofaktorska autentifikacija omogućena
+          actual_usage: Stvarna upotreba
+          admin: Administrator klijenta
+          applicable_level: Primenljiv nivo
+          archive_status: Status
+          assessments: Procene
+          assigned_user: Dodeljeni korisnici
+          completed_user: Završeni korisnici
+          created_at: Datum kreiranja
+          id: Id
+          name: Naziv projekta
+          number: Broj
+          project_admin: Administratori projekta
+          reports: Izveštaji
+          tests_allocated: Testovi dodeljeni
+          tte_admin: Menadžer projekta TTE
+          updated_at: Datum izmene
+          url: URL
+          users_count: Broj korisnika
+        new:
+          header: Novi projekat
+        resource:
+          add_assessment: Dodaj procenu
+          add_report: Dodaj izveštaj
+          assessments: Procene
+          tooltips:
+            copy: Kopiraj projekat
+            create_admin: Kreiraj administratora projekta
+            create_report: Dodaj novi izveštaj
+            create_user: Dodaj novog korisnika
+            delete: Izbriši projekat
+            edit: Uredi projekat
+        sidebar:
+          admins: Administratori projekta
+          archive: Arhiva projekta
+          copy: Kopiraj projekat
+          design: Uređivanje dizajna
+          destroy: Izbriši projekat
+          disable: Onemogući
+          edit: Uredi projekat
+          enable: Omogući
+          new: Novi projekat
+          title: Opcije projekta
+          view_licenses: Pogledaj licence
+        status:
+          active: Aktivno
+          archived: Arhivirano
+        threesixty_campaigns:
+          base:
+            active: Aktivno
+            archived: Arhivirano
+            disable: Arhiviraj
+            enable: Izvadi iz arhive
+          completion_statuses:
+            approved: Odobreno
+            completed: Dovršeno
+            denied: Odbijeno
+            in_progress: U toku
+            not_started: Nije počelo
+          copy:
+            error: Zakup klijenta '%{name}' nije kopiran.
+            successfully: Zakup klijenta '%{name}' je uspešno kopiran.
+          create:
+            successfully: Zakup klijenta '%{name}' je uspešno kreiran.
+          designs:
+            form:
+              no_background: Još uvek nema pozadine
+              no_logo: Još uvek nema logotipa
+          destroy:
+            error: Ne mogu obrisati '%{name}' jer postoje neke zavisne asocijacije subjekata ili evaluatora.
+            successfully: Zakup klijenta '%{name}' je uspešno izbrisan.
+          edit:
+            header: Edit 360 kampanja
+          export:
+            admin: Administrator klijenta
+            assessment: Procena
+            client_admins: Administratori klijenata
+            created_at: Kreiran u
+            id: Id
+            name: Ime
+            report: Izveštaj
+            report_bundle: Paket izveštaja
+            status: Status
+          index:
+            export: Izvoz
+            new: Dodaj 360 kampanju
+            title: 360 Kampanje
+          license:
+            header: "%{name} - Uredi licencu"
+          licenses:
+            update:
+              duplicate_licenses: Imate duplikate licenci
+              successfully: Licence su uspešno ažurirane
+          list:
+            admin: Administrator klijenta
+            assessment: Procena
+            client_admins: Administratori klijenata
+            created_at: Kreirano u
+            id: Id
+            name: Ime
+            report: Izveštaj
+            report_bundle: Paket izveštaja
+            status: Status
+            updated_at: Datum ažuriranja
+          new:
+            header: Nova 360 kampanja
+          resource:
+            confirmations:
+              delete:
+                body: "<p>Da li ste sigurni da želite da izbrišete?</p> <p>Ova akcija se ne može poništiti. Ovo će trajno izbrisati <strong>%{name}</strong> kampanju, pod-kampanje i sve asocijacije.</p> <p>Molimo vas da unesete <strong>%{name}</strong> da potvrdite.</p>"
+                title: Izbriši <strong>%{name}</strong>?
+              disable:
+                body:
+                  '0': "<p>Da li ste sigurni da želite da arhivirate?</p> <p>Sve kampanje, podkampanje i korisnici će takođe biti arhivirane</p>"
+                  '1': "<p>Da li ste sigurni da želite da arhivirate?</p> <p>Sve pod-kampanje i korisnici će takođe biti arhivirani</p>"
+                  '2': "<p>Da li ste sigurni da želite da arhivirate?</p> <p>Svi korisnici će takođe biti arhivirani</p>"
+                  '3': "<p>Da li ste sigurni da želite da arhivirate?</p> <p>Svi korisnici će takođe biti arhivirani</p>"
+                title: Arhiva <strong>%{name}</strong> ?
+              enable:
+                body:
+                  '0': "<p>Da li ste sigurni da želite da izvadite iz arhive?</p>"
+                  '1': "<p>Da li ste sigurni da želite da izvadite iz arhive?</p>"
+                  '2': "<p>Da li ste sigurni da želite da izvadite iz arhive?</p>"
+                  '3': "<p>Da li ste sigurni da želite da izvadite iz arhive?</p>"
+                title: Unarchive <strong>%{name}</strong> ?
+            export_results: Izvezi rezultate
+            raw_results: Sirovi rezultati
+            tooltips:
+              campaigns:
+                delete: Izbriši kampanju
+              copy: Kopiraj klijenta
+              create_admin: Kreiraj administratora klijenta
+              delete: Izbriši klijenta
+              disable: Onemogući klijenta
+              edit: Uredi klijenta
+              enable: Omogući klijenta
+          statistics:
+            index:
+              all_assessments: Sve procene
+              assessment_type: Vrsta procene
+              title: Statistika
+          toggle_status:
+            successfully: Zakup klijenta %{name} je uspešno ažuriran.
+          update:
+            successfully: Zakup klijenta %{name} je uspešno ažuriran.
+          url: URL
+        toggle_status:
+          successfully: Projekat %{name} je uspešno ažuriran.
+        unarchive:
+          content: Da li ste sigurni da želite da poništite arhivu '%{project_name}'?
+          success: Projekat '%{project_name}'' je uspešno dearhiviran.
+          title: Izvadite projekat iz arhive
+        update:
+          successfully: Projekat %{name} je uspešno ažuriran.
+      registration_codes:
+        column:
+          code: Kod
+          usage_stats: Statistika korišćenja
+        errors:
+          count_invalid: ne može biti manje od used_count = %{use_count}
+          criteria: može da sadrži samo alfanumeričke znakove, crticu (-) i podvlaku (_)
+          duplicate_code: je u upotrebi u ovom projektu. Probajte ponovo.
+          incorrect_domain: Netačan format domena.
+          invalid_end_date: mora biti veće od datuma početka
+          license_issue: Nema dovoljno dozvola.
+      resource:
+        confirmations:
+          delete:
+            title: Izbriši <strong>%{name}</strong> ?
+          disable:
+            title: Arhiva <strong>%{name}</strong> ?
+          enable:
+            title: Izvadi iz arhive <strong>%{name}</strong> ?
+      tenancies: Zakupi klijenata
+      threesixty_campaign: 360 kampanja
+      toggle_status:
+        successfully: Zakup klijenta %{name} je uspešno ažuriran.
+      update:
+        successfully: Zakup klijenta %{name} je uspešno ažuriran.
+    close: Zatvori
+    common:
+      add: Dodaj
+      back: Povratak
+      cancel: Otkaži
+      disabled: Onemogućeno
+      download_sample_file: Preuzmi uzorak datoteke
+      enabled: Omogućeno
+      import:
+        failure_msg: Greška prilikom uvoza datoteke.
+      minute: Minut
+      next: Sledeće
+      reset: Resetuj
+      save: Sačuvaj
+      select_all: Izaberi sve
+      unselect_all: Poništi izbor svih
+    communications:
+      create:
+        successfully: Komunikacija je uspešno stvorena.
+      destroy:
+        successfully: Komunikacija %{name} je uspešno obrisana.
+      edit:
+        header: Uredi komunikaciju
+      edit_translation:
+        body_label: Telo teksta
+        copy: Kopija
+        copy_to_code_editor_hint: 'Savet: Kopirajte referentni tekst iznad i prebacite se na režim uređivača koda radi lakšeg uređivanja HTML-a'
+        locale_label: Lokal
+        no_reference_body: Nema referentnog tela na raspolaganju
+        no_reference_subject: Nema dostupnog referentnog subjekta
+        reference_body_label: Referentno telo
+        reference_subject_label: Referentni subjekat
+        subject_label: Subjekat
+        title: Uredi prevod
+        update_button: Ažuriraj prevod
+      form:
+        all: Sve
+        assessment_completion_status_code: Kod statusa završetka procene
+        assessment_completion_status_code_hint: Ako je naveden kod za završetak, on će biti poslat samo ako procena korisnika ima ovaj status kod završetka.
+        body_mustache: |-
+          {{{user_link}}} - Link za platformu za postojeće korisnike ili jednokratni link za postavljanje lozinke za nove korisnike
+          {{{user_url}}} - Isto kao i user_link, ali samo URL umesto hiperlinka
+          {{{user_link_qrcode}}} - Ugradite QR kod generisan iz user_link
+          {{first_name}} - Ime primaoca
+          {{last_name}} - Prezime primaoca
+          {{email}} - Imejl primaoca
+          {{schedule_start_date}} - Datum početka rasporeda
+          {{schedule_end_date}} - Datum završetka rasporeda
+        completion: Završetak
+        delivery_at: Isporuka na (GST)
+        delivery_delay_hours: Kašnjenje isporuke (sati)
+        delivery_rules:
+          in_progress: Ako je procena u toku
+          not_competed: Ako procena nije završena
+          not_started: Ako procena nije započeta
+          send_now: Pošalji odmah
+          specific_datetime: Pošalji na
+        development_action_deadline_missed: Propušten rok za razvojnu akciju
+        idp_deadline_missed: Propušten rok za IDP
+        idp_template_approved: IDP Odobren
+        idp_template_assigned: IDP Dodeljen
+        idp_template_rejected: IDP odbijen
+        invitation: Poziv
+        kind: Vrste komunikacije
+        locale: Lokal
+        magic_link_email: Magični imejl link
+        new_assignment: Novi zadatak
+        new_users: Novi korisnici
+        other: Drugo
+        reminder: Opomene
+        report_available: Izveštaj dostupan
+        selected: Izabrano
+        selected_cc_recipients: Izabrani primaoci CC
+        selected_recipients: Izabrani primaoci
+        stop_reminder: Prestani sa slanjem podsetnika
+        stop_reminder_datetime: Datum završetka za podsetnike (GST)
+        workshop_booked: Potvrda rezervacije centra za procenu
+        workshop_cancelled: Centar za procenu otkazan
+        workshop_completed: Centar za procenu završen
+        workshop_invite: Poziv centra za procenu
+        workshop_invite_reminder: Podsetnik za procenu poziva centar
+        workshop_upcoming_reminder: Predstojeći podsetnik centra za procenu
+      index:
+        clients: Klijenti
+        new: Dodaj
+        title: Komunikacioni centar
+        type: Tip
+      list:
+        actions: Radnje
+        author: Kreirano od strane
+        campaign: Kampanja
+        client_name: Klijent
+        created_at: Datum kreiranja
+        creator_first_name: 'Kreirano od strane '
+        delivery_rule: Isporuka
+        kind: Tip komunikacije
+        project: Projekat
+        recipients: Primaoci
+        sub_campaign: Pod-kampanja
+        subject: Subjekat komunikacije
+        updated_at: Izmenjeni datum
+      new:
+        header: Nova komunikacija
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovu komunikaciju?</p>\n"
+            title: Izbrisati <strong>komunikaciju</strong> ?
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovu komunikaciju?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Kopiranje
+          deleting: Brisanje
+        tooltips:
+          copy: Kopiraj komunikaciju
+          delete: Izbriši komunikaciju
+          download: Preuzmite istoriju komunikacije
+          edit_translation: Uredi prevod
+          view: Pogledaj komunikaciju
+      show:
+        assessment: 'Procena:'
+        assessment_center_group: 'Grupa centra za procenu:'
+        back: Povratak
+        body: 'Telo teksta:'
+        campaign: 'Kampanju:'
+        client: 'Klijent:'
+        communication_type: 'Tip komunikacije:'
+        delivery_rule: 'Pravilo isporuke:'
+        every_interval: Svaki %{interval}
+        owner: 'Vlasnik:'
+        project: 'Projekat:'
+        recipients: 'Primaoci:'
+        specific_datetime: 'Pošalji na:'
+        stop_reminder_datetime: Datum završetka za podsetnike (GST)
+        sub_campaign: 'Pod-kampanja:'
+        subject: 'Subjekat:'
+        users: 'Korisnici:'
+      sidebar:
+        copy: Kopiraj komunikaciju
+        destroy: Izbriši komunikaciju
+        download: Preuzmite istoriju komunikacije
+        edit_translation: Uredi prevod
+        title: Opcije komunikacije
+        view: Pogledaj komunikaciju
+      toggle_status:
+        successfully: Komunikacija je uspešno ažurirana.
+      update_translation:
+        successfully_updated: Prevod je uspešno ažuriran.
+    components:
+      input_duration:
+        placeholder: Unesi kao '1d 2h 3m'
+    create: Kreiraj
+    dashboard:
+      capacity_name: Naziv kapaciteta
+      choose_file_format: Izaberite format datoteke
+      dashboard_types:
+        oracle_analytics: Oracle analitika
+        powerbi: PowerBI
+      dashboards: Dashboard
+      export_dashboard_to_file: Izvoz dashboard table u datoteku
+      export_job_failure: Neuspeo start izvoza
+      export_job_success: Izvoz je počeo. Bićete obavešteni kada se završi.
+      get_started: Počni
+      initialize_msg: Inicijalizujte dashboard za ovu kampanju
+      loading_failed: Učitavanje dashboarda nije uspelo.
+      only_export_current_tab: Samo izvezi trenutni tab
+      pdf: PDF
+      pptx: PPTX
+      preview:
+        embed_token_error_description: Proverite da li je skup podataka i ID izveštaja u podešavanjima tačan.
+        embed_token_error_title: Nije moguće generisati Embed token.
+      settings:
+        capacity_id: ID kapaciteta
+        details: Detalji
+        refresh: Osveži
+        workspace_id: ID radnog prostora
+      tabs:
+        accesssheet: Pristupna lista
+        accesssheet_setting: Podešavanja pristupnog lista
+        dashboard: Dashboard
+        settings: Postavke
+    dashboard_form:
+      fields:
+        dataset_id: ID skupa podataka
+        enabled: Omogućeno
+        image: Slika
+        project_path: Path projekta
+        refresh_interval: Interval osvežavanja (minuti)
+        report_id: ID izveštaja
+        visual_header_visibility: Vizuelna vidljivost zaglavlja
+      image_upload_failed: Učitavanje slike nije uspelo.
+      none: Ništa
+      refresh_success: Osvežite skup podataka uspešno zakazan.
+      visual_header_visibility_options:
+        hide_all: Sakrij sve
+        keep_original: Zadrži original
+        show_all: Pokaži sve
+    data_exports_modal:
+      title: Izaberite vremenski opseg
+    data_reports:
+      columns:
+        created_at: Kreirano u
+        created_by: Kreirano od strane
+        last_updated_by: Poslednje ažurirano od strane
+        name: Ime
+        owner: Vlasnik
+        password: Lozinka
+        status: Status
+        udpated_at: Poslednje ažuriranje u
+      configuration: Konfiguracija
+      errors:
+        factor_not_found: nije pronađen u obimu procene
+        inclusion: 'nevažeći tip, važeći tipovi: %{values}'
+        not_found: nije pronađeno
+        not_owned: nije u vlasništvu klijenta
+      form:
+        name: Izveštaj o podacima
+      messages:
+        runed: Izveštaj o podacima je uspešno zakazan za pokretanje
+      validations:
+        project_and_campaigns_not_allowed: project_ids i campaign_ids ne treba navesti zajedno
+        project_not_related_to_client: "%{project_id} ne pripada klijentu"
+        project_or_campaign_required: project_ids ili campaign_ids je potrebno
+        sections_required: sekcije je potrebno
+    datasheet:
+      threesixty_warning: Ovde ne možete da otpremite kolone datasheet-a za 360 izveštaj. Za 360 izveštaj o podacima, kolone se učitavaju iz kampanje na koju je ovaj izveštaj povezan
+    dates:
+      completed: Završeno u
+      end: Datum završetka
+      start: Datum početka
+      started: Početo u
+    development_action_import:
+      errors:
+        blank_field: 'Red %{row}: %{field} ne može biti prazan'
+        csv_file_required: Mora biti CSV datoteka
+        image_download_failed: 'Neuspelo preuzimanje slike sa %{url}: %{message}'
+        invalid_csv_format: 'Nevažeći CSV format: %{message}'
+        invalid_date: Format datuma za %{date} je nevažeći.
+        invalid_date_format: 'Row %{row}: Nevažeći format datuma za %{field}.'
+        invalid_development_action_type: 'Red %{row}: Nevažeći tip razvojne akcije %{value}. Važeći tipovi razvojnih akcija su: %{valid_development_action_types}.'
+        invalid_duration_format: 'Dozvoljene su samo numeričke vrednosti tokom trajanja. Red %{row}: %{value} nije važeće trajanje.'
+        invalid_image_file: 'Neispravna datoteka slike: %{message}'
+        invalid_image_url: 'Neispravan format URL-a slike: %{url}'
+        invalid_languages: Nevažeći dostupni jezici %{invalid_languages} za red %{row}.
+        invalid_learning_style: 'Row %{row}: Nevažeći stil učenja ''%{value}''. Važeći tipovi su: %{valid_types}'
+        languages_only_for_courses: Dostupni jezici mogu se podesiti samo za razvojne akcije tipa "Kurs". Molimo uklonite raspoloživi jezik za red %{row} ili promenite vrstu razvojne akcije u "Kurs".
+        missing_columns: 'Nedostaju obavezne kolone: %{fields}'
+        save_failed: 'Akcija sačuvavanja razvoja neuspela: %{message}'
+        skill_not_found: 'Veština nije pronađena za ID: %{skill_id}'
+    development_action_translations:
+      import:
+        errors:
+          blank_id: 'Red %{row}: ID ne može biti prazan'
+          development_action_not_found: Razvojna akcija nije pronađena
+          invalid_csv_format: 'Nevažeći CSV format: %{message}'
+          invalid_field: 'Red %{row}: Nevažeće polje "%{field}", mora biti "Ime" ili "Opis"'
+          invalid_file_format: Datoteka mora biti CSV datoteka
+          invalid_id: 'Red %{row}: ID mora biti broj'
+          invalid_id_format: 'Red %{row}: ID mora biti u formatu "id # field"'
+          missing_columns: 'Nedostaju potrebne kolone: %{fields}'
+          save_failed: 'Nije uspelo sačuvavanje: %{message}'
+    development_actions:
+      create:
+        successfully: Razvojna akcija "%{name}" je uspešno kreirana.
+      destroy:
+        successfully: Razvojna akcija "%{name}" je uspešno obrisana.
+      development_action_types:
+        course: Kurs
+        default: Podrazumevano
+      duration:
+        max_length: Ne može biti veći od 1 godine
+        min_length: Ne može biti manje od 1 minuta
+      edit:
+        header: Uredi razvojnu akciju
+      export:
+        details: Detalji o datoteci
+        failure_msg: Greška prilikom izvoza prevoda
+        success_msg: Izvoz razvojnih akcija u toku. Molimo Vas da proverite status u obaveštenjima.
+        title: Izvoz
+        translation_details: Detalji
+      export_actions:
+        development_action_translations_title: Izvezi prevode razvojne akcije
+        development_actions_title: Izvezi razvojne akcije
+      export_development_action_translations: Prevodi razvojnih akcija
+      export_development_action_translations_project: Prevodi razvojnih akcija zasnovani na projektu
+      export_development_actions: Razvojne akcije
+      export_development_actions_project: Razvojne akcije zasnovane na projektu
+      export_global_development_actions: Globalne razvojne akcije
+      export_global_development_actions_translations: Prevodi globalnih razvojnih akcija
+      form:
+        available_languages: Dostupni jezici
+        client_placeholder: Izaberite klijenta
+        course_image: Slika kursa
+        course_link: Link kursa
+        description: Opis
+        development_action_type: Tip razvojne akcije
+        duration: Trajanje
+        end_date: Datum završetka
+        learning_style: Stil učenja
+        name: Ime
+        project_placeholder: Izaberite projekat
+        skills: Veštine
+        skills_placeholder: Izaberite veštine
+        start_date: Datum početka
+        title: Razvojna akcija
+        upload: Otpremanje
+      global: Da li je globalna razvojna akcija?
+      heading: Razvojne akcije
+      import:
+        download_example_csv: Preuzmite primer csv
+        failure_msg: Greška prilikom uvoza datoteke.
+        info_msg: Postavljena datoteka je stavljena u red za uvoz. Molimo Vas da proverite status u obaveštenjima.
+      import_action:
+        development_actions_title: Uvezi razvojne akcije
+        development_actions_translations_title: Uvezi prevode razvojnih akcija
+      import_development_actions: Razvojne akcije
+      import_development_actions_translations: Prevodi razvojnih akcija
+      learning_styles:
+        cannot_be_blank: Ne može biti prazno
+        invalid: Mora biti jedan od on_the_job, structured_learning, learning_from_others
+        learning_from_others: Učenje od drugih [20]
+        on_the_job: Na poslu [70]
+        structured_learning: Strukturno učenje [10]
+      new:
+        header: Nova razvojna akcija
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovu razvojnu akciju?</p>\n"
+            title: Izbriši <strong>razvojnu akciju</strong> ?
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovu razvojnu akciju?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      toggle_status:
+        successfully: Razvojna akcija je uspešno ažurirana.
+      update:
+        successfully: Razvojna akcija "%{name}" je uspešno ažurirana.
+    dimensions:
+      copy_scheduled:
+        successfully: Kopiranje zakazano za dimenziju %{name}
+      create:
+        successfully: "%{name} dimenzija je uspešno kreirana"
+      destroy:
+        successfully: Dimenzija %{name} je uspešno obrisana.
+      edit:
+        header: Izmeni ime dimenzije
+      export_json:
+        successfully: Izvoz JSON zakazan za dimenziju %{name}.
+      export_translations_scheduled:
+        successfully: Izvezi prevode zakazane za dimenziju %{name}.
+      form:
+        enable_innovation_styles: Omogući stilove inovacija
+        enable_occupations: Omogući zanimanja
+      import_factors:
+        import: Uvezi
+        sample_file: Primer datoteke
+        successfully: Uvozni faktori posao zakazan za dimenziju%{name}.
+        title: Faktori uvoza
+      import_modal:
+        cancel: Otkaži
+        continue: Nastavi
+        import: Uvezi
+        import_dimension: Uvezi dimenziju
+      import_translations:
+        error: Greška prilikom uvoza prevoda za dimenziju %{name}.
+        successfully: Uvoz prevoda zakazanih za dimenziju %{name}.
+      import_translations_scheduled:
+        error: Greška
+      index:
+        create_dimension: Kreiraj dimenziju
+        import_dimension: Uvezi dimenziju
+        new: Dodaj
+        owner: Vlasnik
+        title: Dimenzije
+      list:
+        active: Aktivno
+        created_at: Datum kreiranja
+        id: Id
+        name: Ime
+        updated_at: Datum izmene
+      new:
+        header: Nova dimenzija
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovu dimenziju?</p>\n"
+            title: Izbriši <strong>dimenziju</strong> ?
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovu dimenziju?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Kopiranje
+          deleting: Brisanje
+        tooltips:
+          copy: Kopiraj dimenziju
+          delete: Izbriši dimenziju
+          edit: Izmeni ime dimenzije
+          export_json: Izvoz JSON za uvoz na drugoj platformi
+      sidebar:
+        copy: Kopiraj dimenziju
+        destroy: Izbriši dimenziju
+        edit: Izmeni ime dimenzije
+        title: Opcije dimenzija je
+        view: Pogledaj dimenziju
+      toggle_status:
+        successfully: Dimenzija je uspešno ažurirana.
+      translations:
+        export: Izvezi sve
+        header: Prevodi faktora
+        import: Uvoz
+      update:
+        successfully: "%{name} dimenzija je uspešno ažurirana"
+    disable: Onemogući
+    document_titles:
+      project_assessors: Procenjivači | %{project}
+      project_participants: Učesnici | %{project}
+    enable: Omogući
+    errors:
+      csv_file_required: Datoteka mora biti CSV datoteka
+      error_msg: Nešto je pošlo naopako. Molimo Vas da osvežite stranicu i ako problem i dalje postoji, kontaktirajte svog administratora
+      invalid_csv_format: 'Nevažeći CSV format: %{message}'
+      invalid_url: 'Neispravan URL: %{message}'
+      invalid_url_format: Nevažeći URL format
+      missing_columns: 'Nedostaju potrebne kolone: %{fields}'
+    errror_msg: Poruka o grešci
+    factors:
+      copy:
+        error: "'%{name}' faktor nije kopiran"
+        successfully: Faktor '%{name}' je uspešno kopiran.
+      create:
+        successfully: "%{name} faktor je uspešno kreiran."
+      destroy:
+        successfully: Faktor "%{name}" je uspešno obrisan.
+      edit:
+        header: Izmeni ime faktora
+      form:
+        components:
+          ExternalList:
+            add: Dodati
+            table:
+              actions: Radnje
+              jsonpath: JSON Path
+              type: Tip
+              types:
+                norm_score: Normirani skor
+                percentage: Procenat
+                percentile: Percentilni skor
+                score: Skor
+                zscore: Z skor
+            title: JSON path za rezultate
+        scoring_strategies:
+          custom_formula: Prilagođena formula
+          external_score: Spoljni skor
+          questions: Pitanja (prosek)
+          questions_percentage: Pitanja (SUM / MAX Ukupno)
+          questions_sum: Pitanja (SUM)
+          sub_factor_questions: Pitanja drugih faktora (prosek)
+          sub_factor_questions_sum: Pitanja drugih faktora (SUM)
+          sub_factors_average: Ponderisani prosek faktora
+          sub_factors_conditional_average: Uslovni ponderisani prosek faktora
+          sub_factors_sum: Ponderisana suma faktora
+        scoring_strategies_tip: "<strong>Pitanja (prosek):</strong> Ovo je kao trenutna metoda bodovanja kada postoje pitanja vezana za faktor.<br /> <br /><strong>Pitanja (SUM):</strong> Ovo je kao pitanja (prosek), ali koristeći SUM<br /> <br /><strong>Pitanja drugih faktora (prosek):</strong> Ovo je kao trenutna metoda bodovanja kada postoje pod-faktori za faktor, jedina promena je dodavanje pondera.<br /> <br /><strong>Pitanja drugih faktora (SUM):</strong> Ovo je kao drugi faktori (prosek), ali koristeći SUM<br /> <br /><strong>Ponderisani zbir faktora:</strong> Ovde se dodaju skorovi odabranih drugih faktora sa njihovim ponderima."
+        scoring_strategy: Strategija bodovanja
+        use_sub_factor_norm_score: Koristite normirani skor faktora
+      index:
+        icon: Ikona
+        new: Dodaj
+        scoring_strategies:
+          custom_formula: Prilagođena formula
+          external_score: Spoljni rezultat
+          questions: Pitanja (prosek)
+          questions_percentage: Pitanja (SUM / MAX Ukupno)
+          questions_sum: Pitanja (SUM)
+          sub_factor_questions: Pitanja drugih faktora (prosek)
+          sub_factor_questions_sum: Pitanja drugih faktora (SUM)
+          sub_factors_average: Ponderisani prosek faktora
+          sub_factors_conditional_average: Uslovni ponderisani prosek faktora
+          sub_factors_sum: Ponderisana suma faktora
+        scoring_strategy: Strategija bodovanja
+        sub_factors: Pod-faktori
+        title: Faktori
+      list:
+        active: Aktivno
+        created_at: Datum kreiranja
+        id: Id
+        name: Ime
+        updated_at: Datum izmene
+      new:
+        header: Novi faktor
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovaj faktor?</p>\n"
+            title: Izbriši <strong>faktor</strong> ?
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovaj faktor?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Kopiranje
+          deleting: Brisanje
+        scoring_strategies:
+          custom_formula: Prilagođena formula
+          external_score: Spoljni skor
+          questions: Pitanja (prosek)
+          questions_percentage: Pitanja (SUM / MAX Ukupno)
+          questions_sum: Pitanja (SUM)
+          sub_factor_questions: Pitanja drugih faktora (prosek)
+          sub_factor_questions_sum: Pitanja drugih faktora (SUM)
+          sub_factors_average: Ponderisani prosek faktora
+          sub_factors_conditional_average: Uslovni ponderisani prosek faktora
+          sub_factors_sum: Ponderisana suma faktora
+        tooltips:
+          copy: Kopiraj faktor
+          delete: Izbriši faktor
+          edit: Uredi faktor
+      sidebar:
+        copy: Kopiraj faktor
+        destroy: Izbriši faktor
+        edit: Uredi faktor
+        title: Opcije faktora
+      toggle_status:
+        successfully: Faktor je uspešno ažuriran.
+      update:
+        successfully: "%{name} faktor je uspešno ažuriran"
+    genders:
+      female: Žensko
+      male: Muško
+      not_set: Nije postavljeno
+    grants:
+      common:
+        view: Prikaz
+      dashboard:
+        name: Dashboard
+        permissions:
+          accesssheet_manage: Upravljanje pristupnim stranicom
+          accesssheet_settings: Podešavanja pristupne stranice
+          accesssheet_view: Pogledaj pristupnu stranicu
+    hogan:
+      errors:
+        new_assessment_response_not_allowed:
+          detailed_error_message: Novi odgovor se ne može dodati za hogan procenu %{assessment_name} jer je ova procena već dodeljena i pokrenuta od strane korisnika %{email}. Možete kreirati novi hogan nalog za ovog korisnika i to će omogućiti korisniku da ponovo preuzme procenu.
+          short_error_message: Novi odgovor se ne može dodati za hogan procenu %{assessment_name} jer je ova procena već dodeljena i započeta od strane korisnika %{email}
+    idp:
+      actions:
+        remove_confirm: Unesite trenutno ime šablona dato ispod u polje za tekst da biste uklonili predložak
+        success: "%{idpName} je uspešno uklonjen."
+      add_idp_template: Dodaj IDP šablon
+      all: Sve
+      appearance: Izgled
+      appearance_hint: Da biste promenili izgled, prvo sačuvajte IDP šablon da biste omogućili ova podešavanja.
+      background_image: Pozadinska slika
+      behavioral_skills: Veštine ponašanja
+      client_skills: Veštine u vezi sa klijentima
+      edit_template: Uredi IDP šablon
+      enter_template_description: Opis
+      enter_template_description_error: Opis šablona je obavezan.
+      enter_template_name: Ime
+      enter_template_name_error: Naziv šablona je obavezan
+      errors:
+        update: Ažuriranje nije dozvoljeno jer je IDP šablon već povezan sa korisničkim IDP planom. Promene izgleda su sačuvane.
+      fields:
+        assigned_data: Dodeljeni podaci
+        completion_date: Datum završetka
+        division: Odsek
+        name: Ime
+        publish_date: Datum objavljivanja
+        review_date: Datum pregleda
+        role: Trenutna uloga
+      fields_label: Polja
+      global_skills: Globalne veštine
+      idp: IDP
+      idp_template: Dodaj IDP šablon
+      intro_message: Uvodna poruka
+      intro_message_hint: Da biste modifikovali uvodnu poruku, molimo vas da prvo sačuvate IDP šablon da biste omogućili ove postavke.
+      intro_message_success: Uvodna poruka je uspešno sačuvana
+      locales: Lokali
+      logo_image: Slika logotipa
+      logo_type:
+        both: Mercer i klijent logotipi
+        client_only: Samo logotip klijenta
+        mercer_only: Samo Mercer logo
+        none: Bez logotipa
+      logo_type_label: Tip logotipa
+      no_reflection_questions_selected: Nisu izabrana pitanja za razmišljanje
+      none: Ništa
+      reference_locale: Referentni lokal
+      reflection_questions: Pitanja za razmišljanje
+      reflection_questions_hint: Da biste izmeni pitanja refleksije, molimo vas da prvo sačuvate IDP šablon da biste omogućili ove postavke.
+      reflection_questions_updated: Pitanja za razmišljanje uspešno ažurirana.
+      remove: Ukloni
+      select_by_tags: Izaberi po tagovima
+      select_reflection_question: Počnite da kucate da biste pretražili i izaberite pitanje
+      select_skill_gap_report: Izaberite izveštaj o jazu u veštinama
+      select_specific_skills: Izaberite specifične veštine
+      selected: Izabrano
+      self_rating: Omogući samoocenjivanje
+      show_reflections: Pokaži razmišljanja
+      skill_gap_report: Izveštaj o jazu u veštinama
+      skills: Veštine
+      subtitle_text: Tekst podnaslova
+      tab:
+        development_actions: Razvojne akcije
+        reflection_questions: Pitanja za razmišljanje
+        settings: Postavke
+        templates: Šabloni
+      technical_skills: Tehničke veštine
+      template_details: Detalji šablona
+      title_text: Tekst naslova
+      update_reflection_questions: Ažurirajte pitanja o refleksiji
+    idp_setting:
+      allow_global_skills: Dozvolite globalne veštine
+      manager_approves_idp: Menadžer odobrava IDP
+      manager_can_edit_idp: Menadžer može da uređuje IDP
+      require_all_development_actions_complete: Zahtevajte da sve razvojne akcije budu završene
+    import: Uvoz
+    imports:
+      assessments:
+        results:
+          form:
+            import: Uvoz
+      base:
+        form:
+          import: Uvoz
+      errors:
+        invalid_format: Neispravan format datoteke
+        norm:
+          dimension_not_found: Dimenzija %{dimension_name} za %{client_name} nije pronađena
+          factor_mismatch: Dimenzija %{dimension_name} nema faktor %{factor_name}
+          not_set_dimension: Ime dimenzije treba da bude napisano u drugoj ćeliji prvog reda
+        result:
+          answer_invalid: "[Redak %{row}] Odgovor za qid %{question_id} je nevažeći: %{error}"
+          date_errors:
+            both_dates_required: I started_at i completed_at su potrebni za završen status
+            completed_at_should_be_after_started_at: completed_at mora biti posle started_at za završen status
+            completed_at_should_be_empty: completed_at bi trebalo da bude prazan za in_progress status
+            dates_not_in_future: Datumi ne bi trebalo da budu u budućnosti
+            dates_should_be_empty: Datumi bi trebali biti prazni za not_started status
+            started_at_required: Važeći started_at je potreban za in_progress status
+          error: "[Row %{row}] %{error}"
+          invalid_assign: "[Row %{row}] Ne mogu da pronađem zapis za određeni ID rezultata. Ako želite da kreirate novi rezultat, molimo vas da ostavite kolonu ID rezultata praznu"
+          invalid_date: "[Row %{row}] %{error}"
+          question_invalid: "[Redak %{row}] Pitanje %{question_id} je nevažeće"
+          user:
+            record_not_found: Ne mogu da pronađem postojećeg korisnika sa imejlom %{email}.
+          user_assessment:
+            record_not_found: Ne mogu da pronađem zapis o proceni sa id-em %{assessment_id} koji je dodeljen korisniku.
+        translation:
+          error: "[Translation %{id}] %{error}"
+          invalid_format: Neispravan format datoteke
+        unknown_type: 'Nepoznat tip datoteke: %{filename}'
+      form:
+        description: Pogledajte Izvoz opciju da izvučete šablon koji se može koristiti za uvoz ovde.
+        import: Uvoz
+      hris:
+        form:
+          import: Uvoz
+      new:
+        header: Uvoz
+      users:
+        existing_users_whose_password_not_changed_modal_dialog:
+          header: Lista korisnika čije lozinke neće biti promenjene
+        form:
+          description: Pogledajte Izvoz funkcionalnost da izvučete šablon koji se može koristiti za uvoz ovde.
+          import: Uvoz
+    imports_assessments_result_imports:
+      create:
+        successfully: Sirovi rezultati podaci su uspešno uvezeni
+      modal:
+        header:
+          raw: Uvoz sirovih rezultata podataka
+          scoring: Uvoz podataka o rezultatima bodovanja
+      new:
+        header: Novi
+    imports_hris_imports:
+      create:
+        successfully: Podaci HRIS-a uspešno uvezeni
+      new:
+        header: Uvoz HRIS podataka
+    imports_user_imports:
+      create:
+        successfully: Korisnici su uspešno uvezeni
+      new:
+        header: Uvoz korisnika
+    individual_invite:
+      tabs:
+        assessment_center: Centar za procenu
+        subjects: Subjekti
+    innovation_styles:
+      create:
+        successfully: Stil inovacija %{name} je uspešno kreiran.
+      destroy:
+        successfully: Innovation Style %{name} je uspešno obrisan.
+      edit:
+        header: Uredi stil inovacija
+      form:
+        no_icon: Nema ikone
+      index:
+        new: Dodaj
+        title: Stilovi inovacija
+      list:
+        created_at: Datum kreiranja
+        id: Id
+        name: Ime
+        position: Pozicija
+        updated_at: Datum izmene
+      new:
+        header: Novi stil inovacija
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovaj stil inovacije?</p>\n"
+            title: Izbriši <strong>stil inovacija</strong> ?
+        tooltips:
+          delete: Izbriši stil inovacija
+          edit: Uredi stil inovacija
+      sidebar:
+        copy: Kopiraj stil inovacija
+        edit: Uredi
+        title: Opcije stila inovacija
+      toggle_status:
+        successfully: Stil inovacija je uspešno ažuriran.
+    innovation_styles_factors:
+      create:
+        successfully: Faktor %{name} je uspešno kreiran.
+      destroy:
+        successfully: Faktor %{name} je uspešno odvojen.
+      edit:
+        header: Uređivanje faktora
+      index:
+        new: Dodaj
+        title: Faktori
+      list:
+        condition: Stanje
+        created_at: Datum kreiranja
+        id: Id
+        name: Ime
+        position: Pozicija
+        updated_at: Datum izmene
+        weight: Ponder
+      new:
+        header: Priložite faktore
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovaj faktor?</p>"
+            title: Izbriši <strong>faktor</strong> ?
+        tooltips:
+          delete: Izbriši faktor
+          edit: Uređivanje faktora
+      sidebar:
+        destroy: Uništi
+        edit: Uređdi
+        title: Opcije faktora
+      toggle_status:
+        successfully: Faktor je uspešno ažuriran.
+    integrations:
+      actions:
+        add: Integracije
+        back: Nazad na integracije
+        load_mettl_catalog: Pokreni katalog procene Mettl
+        load_skillvue_catalog: Pokreni katalog procene Skillvue
+      columns:
+        active: Aktivno
+        details: Detalji
+        name: Ime integracije
+      details:
+        provider: Ime provajdera
+        webhookUrl: URL adresa webhook-a
+        webhookUrls: Webhook URL-ovi
+      integrations: Integracije
+      load_mettl_success: Pokretanje Mettl procene  je uspešno uvršteno u red
+      load_skillvue_success: Pokretanje Skillvue procene  je uspešno uvršteno u red
+      modal:
+        hogan:
+          provider: Dobavljač
+          providers:
+            mercer: Mercer
+            phoenix: Phoenix
+        iiht:
+          password: Lozinka
+          tenancy_name: Ime i prezime zakupa
+          tenant_id: ID zakupnika
+          user: Korisnik
+        mettl:
+          apiBaseUrl: API Endpoint
+          apiBaseUrlRequired: API Endpoint je obavezan.
+          privateKey: Privatni ključ
+          privateKeyRequired: Potreban je privatni ključ.
+          publicKey: Javni ključ
+          publicKeyRequired: Potreban je javni ključ.
+          servers:
+            mettl_eu: Evropa
+            mettl_india: Indija
+        skillvue:
+          apiKey: API ključ
+          apiKeyRequired: API ključ je potreban
+      names:
+        hogan: HOGAN
+        iiht: IIHT
+        mettl: METTL
+        skillvue: Skillvue
+      validations:
+        iiht:
+          tenancy_name_present: Ime zakupca je već prisutno u drugom projektu
+          tenant_id_present: ID zakupca je već prisutan u drugom projektu
+        mettl:
+          public_key_present: Javni ključ je već prisutan u drugom projektu
+        skillvue:
+          api_key_present: API ključ je već prisutan u drugom projektu
+      view_all_schedules: Pogledaj sve Mettl rasporede
+    invited_subject:
+      add_btn: Dodaj subjekta
+      assessment_center: 'Centar za procenu:'
+      booked_at: 'Rezervisano u:'
+      column:
+        participant: Učesnik
+      remove_confirm:
+        content: Da li ste sigurni da želite da uklonite predmet sa imejlom '%{subjectEmail}'?
+        success: Predmet sa imejlom '%{subjectEmail}'' je uspešno uklonjen.
+        title: Ukloni subjekta
+      statuses:
+        accepted: Prihvaćeno
+        cancelled: Otkazano
+        pending: Neobrađeno
+        requested_cancellation: Traženo otkazivanje
+        requested_cancellation_rejected: Otkazivanje odbijeno
+        requested_rescheduling: Traženo ponovno zakazivanje
+        requested_rescheduling_rejected: Ponovno zakazivanje odbijeno
+        rescheduled: Ponovno zakazano
+      subject: Subjekat
+    job_role:
+      column:
+        job_group: Grupa poslova
+      export:
+        failure_msg: Greška prilikom izvoza prevoda
+        success_msg: Izvoz razvojnih akcija u toku.
+      form:
+        code: Kod
+        description: Opis
+        job_group: Grupa poslova
+        name: Ime
+        title: Radna uloga
+      import:
+        download_example_csv: Preuzmite primer csva
+        success_msg: Postavljena datoteka je stavljena u red za uvoz. Molimo Vas da proverite status u obaveštenjima.
+      import_action:
+        translations: Uvezi prevode radnih uloga
+      translations: Prevodi radnih uloga
+    job_role_skill_mapping:
+      column:
+        expected_proficiency_level: Očekivani nivo stručnosti
+      form:
+        title: Mapiranje veština za poslove
+      import:
+        taxonomy: Taksonomija
+    job_roles:
+      export:
+        translations:
+          details: Detalji
+    libraries:
+      create:
+        successfully: Stavka %{name} je uspešno kreirana.
+      destroy:
+        successfully: Stavka %{name} je uspešno obrisana.
+      edit:
+        header: Uredi
+      index:
+        new_folder: Nova fascikla
+        owner: Vlasnik
+        title: Medijska biblioteka
+        upload: Otpremanje
+      list:
+        created_at: Datum kreiranja
+        name: Ime
+        new_folder: Nova fascikla
+        root: Medijska biblioteka
+        type: Tip
+        updated_at: Datum izmene
+        upload: Otpremi novu datoteku
+      new:
+        header: Otpremi fajlove
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete %{name}?</p>\n"
+            title: Izbriši <strong>%{name}</strong> ?
+        tooltips:
+          delete: Izbriši
+          edit: Uredi
+      update:
+        successfully: Stavka %{name} je uspešno ažurirana.
+    memberships:
+      admin_chosen:
+        successfully: Admin korisnici su uspešno ažurirani.
+      create:
+        successfully: Korisnik %{name} je uspešno kreiran.
+      destroy:
+        successfully: Korisnik %{name} je uspešno obrisan.
+      new:
+        header: Novi korisnik
+      reset_password:
+        successfully: Korisnik %{name} će dobiti imejl sa uputstvima o tome kako da resetuje svoju lozinku za nekoliko minuta.
+      spoof:
+        successfully: Uspešno ste se prijavili kao %{name}
+      toggle_membership_status:
+        successfully: Članstvo %{name} je uspešno ažurirano.
+      toggle_status:
+        successfully: Korisnik %{name} je uspešno ažuriran.
+      update:
+        successfully: Korisnik %{name} je uspešno ažuriran.
+    meta_title: Administrativni panel
+    navigation:
+      ai_assistants: AI asistenti
+      assessments: Procene
+      assessments_reports: Procene i izveštaji
+      assessor_dashboard: Kontrolna tabla procenjivača
+      assessor_workshops: Centar za procenu
+      audit_logs: Evidencije revizije
+      availability: Raspoloživost
+      back_to_main: Glavni meni
+      campaign_templates: Predlošci kampanje
+      change_password: Promeni lozinku
+      client_admins: Administratori klijenata
+      clients: Zakupi klijenata
+      communication_center: Komunikacioni centar
+      dashboard: Dashboard
+      data_reports: Izveštaji o podacima
+      development_actions: Razvojne akcije
+      dimensions: Dimenzije
+      factors: Faktori
+      innovation_styles: Stilovi inovacija
+      libraries: Medijska biblioteka
+      norms: Norme
+      occupations: Zanimanja
+      options: Opcije
+      participants: Učesnici
+      profile: Profil
+      profile_details: Detalji
+      project_admins: Administratori projekta
+      question_center: Centar za pitanja
+      registration_codes: Registracioni kodovi
+      report_approvals: Izveštaj o odobrenju
+      reports: Izveštaji
+      scheduling: Planiranje
+      show_submenu: Prikaži pod-meni
+      skills_taxonomy: Taksonomija veština
+      user_profile_details: Detalji profila
+      user_report_events: Događaji Izveštaja korisnika
+      users: Korisnici
+    no_data_found: Nema pronađenih podataka
+    norms:
+      copy:
+        error: 'Norma #%{id} nije kopirana.'
+        successfully: Norma "%{name}" je uspešno kopirana.
+      create:
+        successfully: Norma "%{name}" je uspešno kreirana.
+      destroy:
+        successfully: Norma "%{name}" je uspešno obrisana.
+      edit:
+        header: Preimenuj normu
+      editor:
+        factors: Faktori
+        inplace_title: Unesite vrednost
+        title: Urednik normi
+      export:
+        success_msg: Norma izvoz posao uspešno zakazan. Molimo Vas da proverite status u obaveštenjima.
+      import:
+        download_example_csv: Preuzmite primer csv
+        select_file_validation: Molimo Vas da izaberete vlasnika i fajl pre slanja.
+        success_msg: Postavljena datoteka je stavljena u red za uvoz. Molimo Vas da proverite status u obaveštenjima.
+        title: Uvoz normi
+      index:
+        import: Uvoz
+        new: Dodaj
+        owner: Vlasnik
+        title: Norme
+      list:
+        active: Aktivno
+        created_at: Datum kreiranja
+        dimension_id: Dimenzija ID
+        id: Id
+        name: Ime
+        updated_at: Datum izmene
+        updated_by: Ažurirano od strane
+      new:
+        header: Nova norma
+      norms: Norme
+      remove:
+        confirm: Unesite ime norme date ispod u tekstualnom polju da biste potvrdili
+        warning: Da li ste sigurni da želite da izbrišete normu "%{name}"
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovu normu?</p>\n"
+            title: Izbriši <strong>normu</strong> ?
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovu normu?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        in_progress:
+          copying: Kopiranje
+          deleting: Brisanje
+        tooltips:
+          copy: Kopiraj normu
+          delete: Izbriši normu
+          edit: Preimenuj normu
+      score_types:
+        five_scale: Skala Five
+        norm_type: Tip norme
+        percentage: Procenat
+      sidebar:
+        copy: Kopiraj normu
+        destroy: Izbriši normu
+        edit: Preimenuj normu
+        editor: Urednik normi
+        export: Uvezi normu
+        title: Opcije normi
+      toggle_status:
+        successfully: Norma je uspešno ažurirana.
+      update:
+        successfully: Norma %{name} je uspešno ažurirana.
+    notification_bell_icon: Ikona zvona obaveštenja
+    noty:
+      error_408: Ova akcija traje predugo. Pokušajte da ponovo učitate stranicu.
+      error_500: Nešto je pošlo naopako. Obratite se svom administratoru.
+    occupations:
+      create:
+        successfully: Zanimanje %{name} je uspešno kreirano.
+      destroy:
+        successfully: Zanimanje %{name} je uspešno obrisano.
+      edit:
+        header: Uredi zanimanje
+      form:
+        hint:
+          key_career_tracks: '"+" - lista, "*" - podebljano. Primer: + *Biologija* - neki opis...'
+        no_icon: Nema ikone
+      index:
+        new: Dodaj
+        title: Zanimanja
+      list:
+        created_at: Datum kreiranja
+        id: Id
+        name: Ime
+        updated_at: Datum izmene
+      new:
+        header: Novo zanimanje
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovo zanimanje?</p>\n"
+            title: Izbriši <strong>zanimanje</strong> ?
+        tooltips:
+          delete: Izbriši zanimanje
+          edit: Uredi Zanimanje
+      sidebar:
+        copy: Kopiraj Zanimanje
+        edit: Uredi
+        title: Opcije zanimanja
+      toggle_status:
+        successfully: Zanimanje je uspešno ažurirano.
+    occupations_factors:
+      create:
+        successfully: Faktor %{name} je uspešno kreiran.
+      destroy:
+        successfully: Faktor %{name} je uspešno odvojen.
+      edit:
+        header: Uredi faktor
+      index:
+        new: Dodaj
+        title: Faktori
+      list:
+        condition: Stanje
+        created_at: Datum kreiranja
+        id: Id
+        name: Ime
+        position: Pozicija
+        updated_at: Datum izmene
+        weight: Ponder
+      new:
+        header: Priloži faktore
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovaj faktor?</p>"
+            title: Izbriši <strong>faktor</strong> ?
+        tooltips:
+          delete: Izbriši faktor
+          edit: Uredi faktor
+      sidebar:
+        destroy: Uništi faktor
+        edit: Uredi
+        title: Opcije faktora
+      toggle_status:
+        successfully: Faktor je uspešno ažuriran.
+      update:
+        successfully: Faktor %{name} je uspešno ažuriran.
+    participants:
+      tabs:
+        assessors: Ocenjivači
+        sms_contacts: SMS kontakti
+        subjects: Subjekti
+    piped_text_modal:
+      assessment_id: Procena ID
+      campaign_id: ID kampanje
+      insight_page_link: Link na stranicu uvida
+      insight_page_url: URL stranice uvida
+      join_link: Pridružite se linku
+      magic_link: Magični link
+      magic_url: Magična URL adresa
+      profile_custom_field: Prilagođeno polje profila
+      report_name: Naziv izveštaja
+      text: Tekst
+      title: Dodaj piped tekst
+    proctoring_sessions:
+      columns:
+        comment: Komentar
+        completed_at: Završeno u
+        conclusion: Zaključak
+        links: Linkovi
+        score: Skor
+        session_id: ID sesije
+        started_at: Početo u
+      links:
+        report: Izveštaj
+        review: Pregledaj
+      resource_name: Sesije sa nadgledanjem trećeg lica (proktoring)
+    products:
+      copy:
+        error: Greška
+      destroy:
+        successfully: Uspešno
+      toggle_status:
+        successfully: Uspešno
+    proficiency_levels:
+      errors:
+        create:
+          invalid_format: Definicija nivoa mora biti niz definicija.
+          level_definition_must_match_level: mora da sadrži tačno %{expected} nivoa, ali %{actual} je dato
+          must_be_unique: Mora biti jedinstveno
+          proficiency_level_exists: Nivo stručnosti sa ovom veštinom i projektom već postoji
+          skill_must_exist: Veština mora biti prisutna za proficiency_type 'by_skill'
+      export:
+        details: Detalji
+        failure_msg: Greška prilikom izvoza nivoa stručnosti
+        success_msg: Izvoz razvojnih akcija u toku
+        translations:
+          details: Prevodi nivoa stručnosti
+      fields:
+        level: Nivo
+        level_description: Opis nivoa
+        level_name: Ime nivoa
+        proficiency_translations: Prevodi stručnosti
+        proficiency_type: Tip stručnosti
+        skill: Veština
+        skill_name: Ime veštine
+        title: Stručnost
+      import:
+        actions:
+          proficiency: Uvezi stručnosti
+          translations: Uvezi prevode stručnosti
+        errors:
+          by_skill_exists: 'Red %{row_number}: Za ovaj projekat i veštinu već postoji nivo znanja "by_skill"'
+          by_skill_missing: 'Red %{row_number}: Projekat i veština moraju biti prisutni za tip ''by_skill'''
+          invalid_csv_format: 'Nevažeći CSV format: %{message}'
+          invalid_proficiency_type: 'Red %{row_number}: Nevažeći ili nedostaje tip stručnosti'
+          missing_columns: 'Nedostaju potrebne kolone: %{fields}'
+          skill_not_found: 'Red %{row_number}: Nevažeća ili nedostajuća veština'
+        job_queued: Uvoz nivoa stručnosti je stavljen u red čekanja
+      translations:
+        export:
+          failure_msg: Greška prilikom izvoza prevoda
+          success_msg: Izvoz razvojnih akcija u toku.
+        import:
+          errors:
+            invalid_csv_format: 'Nevažeći CSV format: %{message}'
+            invalid_locales: Neispravan lokal
+            level_not_found: 'Nivo nije pronađen za ID: %{level_id}'
+            missing_columns: 'Nedostaju potrebne kolone: %{fields}'
+            missing_required_columns: 'Nedostaju potrebne kolone: %{columns}'
+            row_id_blank: 'Red %{row}: ID ne može biti prazan'
+            save_failed: 'Greška u obradi Skill ID %{id}: %{message}'
+      type:
+        by_skill: Po veštini
+    profile:
+      change_password: Promeni lozinku
+      details: Detalji
+      profile: Profil
+    profiles:
+      edit:
+        success: Profil je uspešno ažuriran.
+        title: Urednik profila
+      update:
+        edit:
+          success: Profil je uspešno ažuriran.
+    project:
+      tools:
+        workshop_status_export: Izvoz statusa radionice
+        workshop_status_export_success: Izvoz statusa radionice je uspešno zakazan.
+    project_participants:
+      cancel: Otkaži
+      column_actions: Radnje
+      column_campaigns: Kampanje
+      column_createdAt: Kreirano u
+      column_created_at: Kreirano u
+      column_email: Imejl
+      column_id: Id
+      column_name: Ime
+      delete: Izbriši
+      edit: Uredi
+      edit_participant: Uredi učesnika
+      filter_campaigns: Nema kampanja
+      form_first_name: Ime
+      form_last_name: Prezime
+      reset_password: Resetuj lozinku
+      save: Sačuvaj
+      search_user: Pretraži korisnika
+      send_email: Pošalji imejl
+    project_tabs:
+      assessments:
+        column:
+          name: Ime
+          normalize_factor_scores: Normalizuj skorove faktora
+          user_result_validity_in_days: Validnost rezultata
+        delete:
+          content: Da li ste sigurni da želite da izbrišete procenu '%{name}'?
+          success: Procena '%{name}' je uspešno obrisana.
+          title: Izbriši procenu
+        form:
+          assessment: Procena
+          assessment_placeholder: Izaberi procenu
+          assessment_required: Procena je obavezna
+          normalize_factor_scores: Normalizuj rezultate faktora
+          user_result_validity_in_days: Validnost rezultata u danima
+        title: Procene
+      design: Dizajn
+      general: Opšte
+      privacy: Privatnosti
+      profile: Profil
+      registration: Registracija
+      webhooks:
+        actions:
+          delete:
+            key: Izbriši
+            label: Izbriši
+          edit:
+            key: Uredi
+            label: Uredi
+          send_test:
+            key: send_test
+            label: Pošalji test
+        form:
+          acceptable_rate_limit:
+            label: Prihvatljivo ograničenje zahteva
+            request_per: Zahteva po
+          active:
+            label: Aktivno
+            name: Aktivno
+          auth_type:
+            api_key:
+              label: API ključ
+              name: api_key
+              value: api_key_auth
+            api_key_header:
+              format_error: Dozvoljena su samo slova, brojevi, podvlake i crtice
+              label: API ključ zaglavlja
+              name: API ključ zaglavlja
+            basic:
+              label: Osnovno
+              value: basic_auth
+            label: Tip autentifikacije
+            name: auth_type
+            no_auth:
+              label: Ništa
+              value: no_auth
+          description:
+            label: Opis
+            name: Opis
+          include_locales:
+            label: Uključi prevode
+            name: include_locales
+          password:
+            label: Lozinka
+            name: Lozinka
+          topics:
+            label: Događaji
+            list:
+              assessment_assigned: Procena dodeljena
+              assessment_completed: Procena završena
+              assessment_started: Procena je počela
+              assessment_timeout: Vremensko ograničenje procene
+              campaign_results_available: Dostupni su rezultati kampanje
+              campaign_user_status: Status korisnika kampanje
+              report_available: Izveštaj dostupan
+              results_available: Rezultati su dostupni
+              scheduling_cancelled: Zakazivanje otkazano
+              scheduling_invited: Zakazivanje pozvanih
+              scheduling_rescheduled: Zakazivanje ponovno zakazano
+              scheduling_scheduled: Zakazivanje zakazano
+            name: Teme
+          url:
+            label: URL
+            name: URL
+          username:
+            label: Korisničko ime
+            name: korisničko ime
+        remove_webhook:
+          content: Izbriši %{description}?
+          title: Izbriši
+        title: Webhooks
+    project_users:
+      cancel: Otkaži
+      change_password: Promeni lozinku
+      column_actions: Radnje
+      column_campaigns: Kampanje
+      column_created_at: Kreirano u
+      column_email: Imejl
+      column_id: Id
+      column_name: Ime
+      confirm_delete: Da, izbriši
+      confirm_send: Da, pošalji
+      delete: Izbriši
+      delete_error: Nije moguće obrisati procenjivača '%{name}'. Molimo Vas da kontaktirate svog administratora.
+      delete_success: Ocenjivač '%{name}' je uspešno obrisan.
+      edit: Uređivanje
+      edit_assessor: Uredi procenjivač
+      filter_campaigns: Bez kampanja
+      form_first_name: Ime
+      form_last_name: Prezime
+      modal_delete_content: Da li ste sigurni da želite da izbrišete procenjivača '%{name}'?
+      modal_delete_title: Izbriši procenjivača
+      modal_reset_email_content: Da li ste sigurni da želite da pošaljete vezu za resetovanje lozinke na '%{email}'?
+      model_reset_email: Resetuj lozinku ocenjivača
+      no_edit_permission: Nemate dozvolu za uređivanje procenjivača '%{name}'
+      reset_mail_error: Nije moguće poslati link za resetovanje lozinke na '%{email}'. Molimo Vas da kontaktirate svog administratora.
+      reset_mail_success: Veza za poništavanje lozinke uspešno poslata na '%{email}'
+      save: Sačuvaj
+      search_accessor: Pretraga pristupnika
+      send_email: Pošalji imejl
+    projects:
+      addProject: Dodaj projekat
+      assessment_settings:
+        search: Pretraga procene
+      clients:
+        confirmations:
+          detach_from_project:
+            body: Telo teksta
+            title: Naslov
+      columns:
+        project_number: Broj projekta
+      design_settings:
+        alt_text_invalid: Alt tekst sadrži nepodržane znakove.
+        alt_text_logo: Logo Alt-Tekst
+        alt_text_logo_required: Alt-Tekst Logo je neophodan
+        alt_text_long: Premašuje maksimalnu granicu od 100 znakova.
+        background_color: Boja pozadine
+        background_label: Pozadina
+        background_overlay_label: Preklapanje pozadine
+        background_size: Veličina pozadine
+        background_size_contain: Sadrži
+        background_size_cover: Pokrij
+        bg_upload: Otpremi
+        client_logo_label: Logotip klijenta
+        contrast_ratio_warning: 'Napomena: Korišćenje ove primarne boje može narušiti zahtev za odnos kontrasta za čitljivost teksta.'
+        contrast_ratio_warning_lighter_color: 'Napomena: Korišćenje ove boje %{name} može narušiti zahtev za odnos kontrasta za čitljivost teksta. Pokušajte da koristite tamniju boju.'
+        copy_text: Tekst
+        dashed_button: Isprekidano
+        default_button: Podrazumevano
+        error_color: Boja greške
+        hover_options:
+          danger_item: Opasna stavka
+          first_menu_item: 1. stavka menija
+        hover_text: Pređi preko mene
+        info_color: Boja informacije
+        link_text: Link
+        logo_upload: Otpremi
+        position_auto: auto
+        position_label: Pozicija kutije za prijavljivanje
+        position_left: Levo
+        position_right: Desno
+        primary_button: Primarno
+        primary_color: Primarna boja
+        reset: Resetuj
+        sec_logo_label: Sekundarni logotip
+        sec_logo_upload: Otpremi
+        secondary_logo_alt_text: Sekundarni logo Alt-Tekst
+        secondary_logo_alt_text_required: Sekundarni Alt-Text Logo je obavezan
+        submenu_options:
+          option_one: Opcija 1
+          option_title: Stavka 1
+          option_two: Opcija 2
+        success_color: Boja uspeha
+        success_update: Podešavanja dizajna su uspešno sačuvana
+        tab_text_one: Meni
+        tab_text_two: Podmeni
+        text_danger: Tekst (opasnost)
+        text_success: Tekst (uspeh)
+        text_warning: Tekst (upozorenje)
+        warning_color: Boja upozorenja
+      form:
+        name: Ime
+        project_number: Broj projekta
+        subdomain: Poddomen
+        title: Projekat
+      general_settings:
+        live_chat: Omogućite ćaskanje uživo
+        locales_label: Lokal
+        name_label: Ime
+        project_number_label: Broj projekta
+        save_changes: Sačuvaj izmene
+        sub_domain_label: Pod-domen
+      mettl_schedule_records:
+        actions:
+          edit: Uredi
+        add: Dodaj raspored
+        assessment_id: Procena ID
+        assessment_name: Ime procene
+        candidate_authorization: Omogućite autorizaciju kandidata
+        candidate_screen_capture: Omogućite snimanje ekrana kandidata
+        count: Pretraživanje broja tolerancije
+        created_at: Kreirano u
+        schedule_id: ID rasporeda
+        schedule_name: Ime rasporeda
+        search: Pretraži
+        secure_browser_enabled: Omogući siguran pretraživač
+        settings: Postavke
+        show_remaining_counts: Omogućiti prikazivanje preostalog broja
+        visual_proctoring_enabled: Omogućite vizuelni proktoring
+        web_proctoring_enabled: Omogućite veb Proctoring
+      privacy_settings:
+        disable_dp: Ne dozvoli dalju obradu podataka
+        dp_consent: Omogući saglasnost za obradu podataka
+        dp_consent_custom: Prilagodit saglasnost za obradu podataka
+        dp_consent_version: Verzija politike
+        errors:
+          policy_version_format: Dozvoljeni su samo celi brojevi
+        mask_identity_for_examus: Maskiraj podatke za Examus proktoring
+        mask_identity_for_hogan: Maskiraj podatke za Hogan
+        mask_identity_for_iiht: Maskiraj podatke za IIHT
+        mask_identity_for_mettl: Maskiraj podatke za METTL
+        mask_identity_for_pearson: Maskiraj podatke za Pearson
+        mask_identity_for_saville: Maskiraj podatke za Saville
+        mask_identity_for_skillvue: Maskiraj podatke za Skillvue
+        privacy_link: Omogući link za privatnost
+        privacy_link_label: Link za privatnost
+        privacy_link_placeholder: Unesi vezu za privatnost
+        privacy_text: Tekst o privatnosti
+        privacy_text_placeholder: Unesi tekst privatnosti
+      profile_settings:
+        form_fields:
+          enabled: Omogućeno
+          half_size: Pola veličine
+          locked: Zaključano
+          name: Ime
+          remove: Ukloni
+          required: Potrebno
+          sort: Sortiraj
+        month: Mesec
+        never: Nikad
+        update_in: Obavesti o ažuriranju profila za
+        year: Godina
+      registration_settings:
+        hide_signup: Sakrij opciju za prijavu
+        require_mobile_number: Zahtevaj broj mobilnog telefona
+      users:
+        confirmations:
+          detach_from_project:
+            body: Telo teksta
+            title: Naslov
+      webhook_settings:
+        add: Dodaj Webhook
+        column_active: Aktivno
+        column_created_date: Datum kreiranja
+        column_description: Opis
+        column_manage: Upravljanje
+        column_updated_date: Datum izmene
+        column_url: URL
+        search: Pretraži Webhoook
+    questions:
+      copy:
+        successfully: Pitanje "%{name}" je uspešno kopirano.
+      create:
+        successfully: Pitanje "%{name}" je uspešno kreirano.
+      destroy:
+        successfully: Pitanje "%{name}" je uspešno obrisano.
+      edit:
+        header: Uredi pitanje
+      index:
+        owner: Vlasnik
+      new:
+        header: Novo pitanje
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovo pitanje?</p>\n"
+            title: "<strong>Izbriši pitanje</strong>?"
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovo pitanje?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      toggle_status:
+        successfully: Uspešno ažurirano.
+    reflection_questions:
+      delete_confirmation: Da li ste sigurni da želite da izbrišete ovo pitanje za razmišljanje?
+      export:
+        action: Izvezi pitanja za razmišljanje
+        details: Detalji o datoteci
+        failure_msg: Greška prilikom izvoza datoteke.
+        success_msg: Izvoz pitanja za razmišljanje u toku. Molimo Vas da proverite status u obaveštenjima.
+      form:
+        mandatory: Obavezno
+        max_words: Maksimalni broj reči
+        min_words: Minimalno reči
+        question: Pitanje
+        title: Pitanje za razmišljanje
+      import:
+        action: Uvoz pitanja za razmišljanje
+        errors:
+          invalid_max_words_column_format: Nevažeći format vrednosti kolone maksimalnih reči %{row}
+          invalid_min_words_column_format: Nevažeća vrednost kolone za minimalne reči %{row}
+          invalid_required_column_format: Nevažeći Obavezan format vrednosti kolone %{row}
+          missing_eng_question: Nedostaje sadržaj pitanja na engleskom jeziku %{row}
+          save_failed: Sačuvavanje nije uspelo %{message}
+        failure_msg: Greška prilikom uvoza datoteke.
+        success_msg: Uvoz pitanja za razmišljanje u toku. Molimo Vas da proverite status u obaveštenjima.
+      question: Pitanje
+    report_approval:
+      approval_statuses:
+        approved: Odobreno
+        change_requested: Zatražena izmena
+        not_ready: Nije spremno
+        pending_qc: QC na čekanju
+        qc_completed: QC završen
+        qc_in_progress: QC u toku
+      bulk_approve_success: "%{sent_for_approval} poslat na odobrenje. %{approved} izveštaji odobreni. %{ignored} izveštaji zahtevaju ručno odobrenje zbog promena / komentara kontrole kvaliteta."
+      columns:
+        actions: Radnje
+        approval_status: Status odobrenja
+        approved_by: Odobreno od strane
+        campaign_name: Ime kampanje
+        qc_by: QC od strane
+        report_name: Naziv izveštaja
+        user_email: Imejl korisnika
+        user_name: Korisničko ime
+      dashboard: Dashboard
+      download: Preuzmi
+      report_approvals: Prijavi odobrenja
+      review: Pregledaj
+      saving_filters:
+        actions:
+          clear_filters: Obriši filtere
+          delete_filter: Izbriši filter
+          save_filter: Sačuvaj
+          save_new_filter: Sačuvaj kao novi filter
+          saved_filters: Sačuvani filteri
+        delete_saved_filters: Filter Izbrisan
+        edit_filter_name: Ime filtera sačuvano
+        error_while_deleting: Greška prilikom brisanja
+        error_while_editing: Greška prilikom uređivanja
+        error_while_fetching: Nešto nije u redu, pokušajte ponovo
+        error_while_saving: Greška prilikom sačuvavanja filtera
+        filter_updated: Filter ažuriran
+        no_saved_filters: Nema sačuvanih filtera
+        save_filter: Filter Sačuvan
+        set_favorite: Filter je postavljen kao omiljeni
+      submit_or_approve_all: Pošalji ili odobri sve
+    report_builder:
+      campaign_factors:
+        add_field: Dodaj polje
+        code: Kod
+        code_constraint: Kod mora početi malim slovom i može da sadrži samo mala slova, brojeve i podvlake
+        delete: Izbriši
+        import_factors: Uvezi faktore
+        invalid_factor_params: Nevažeći format parametera faktora kampanje
+        name: Ime
+        no_boundary_space: Ime ne može da počne ili se završava razmakom
+        too_many_factors: Nemoguće kreirati više od%{count} faktora kampanje
+        tools: Alatke
+        type: Tip
+      pagination:
+        edit_frame: Uredi okvir za paginaciju
+        hints:
+          frame_settings_off: Onemogućene postavke paginacionog okvira, modul deluje kao i obično
+          frame_settings_on: Omogućite postavke okvira za paginaciju da biste podesili dimenzije sledeće stranice za modul (okvir je istaknut narandžastom bojom)
+          pagination_disabled: Paginacija modula nije dostupna za modul. Dozvoljena je samo jedna paginacija modula po stranici
+          pagination_off: Paginacija modula je onemogućena
+          pagination_on: Paginacija modula je omogućena. Sadržaj koji ne odgovara dimenzijama modula će biti ubačen na dodatnu stranicu / stranice
+          repeat_modules: Izabrani moduli će se ponoviti na dodatno ubačenim stranicama, odnosi se na ime modula
+        module_pagination: Paginacija modula
+        repeat_modules: Ponovi module
+    report_families:
+      create:
+        successfully: Paket izveštaja %{name} je uspešno kreiran.
+      destroy:
+        successfully: Paket izveštaja %{name} je uspešno obrisan.
+      edit:
+        header: Izmeni ime paketa izveštaja
+      index:
+        add: Dodaj
+        title: Paketi izveštaja
+      new:
+        header: Novi paket izveštaja
+      reports:
+        destroy:
+          successfully: Izveštaj je uspešno izbrisan iz paketa izveštaja
+        index:
+          add: Dodaj novi izveštaj
+          title: Izveštaji u paketu
+        resource:
+          confirmations:
+            delete:
+              body: "<p>Da li ste sigurni da želite da izbrišete ovaj izveštaj iz paketa?</p>\n"
+              title: Izbriši <strong>izveštaj</strong> iz paketa?
+          tooltips:
+            delete: Izbriši izveštaj iz paketa
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovaj paket izveštaja?</p>\n"
+            title: Izbriši <strong>izveštaj</strong> ?
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovaj paket izveštaja?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+        tooltips:
+          delete: Izbriši paket izveštaja
+          edit: Izmeni paket izveštaja
+      sidebar:
+        destroy: Izbriši paket izveštaja
+        edit: Izmeni paket izveštaja
+        title: Opcije paketa izveštaja
+      update:
+        successfully: Paket izveštaja %{name} je uspešno ažuriran.
+    report_review:
+      abort_qc: Prekini QC
+      approve: Odobri
+      approve_changes: Odobri izmene
+      edit: Uredi
+      remove_approval: Ukloni odobrenje
+      request_changes: Zahtevaj izmene
+      review: Pregledaj
+      send_for_approve: Pošalji na odobrenje
+      statuses:
+        approved: Odobreno
+        change_requested: Zatražene izmene
+        not_ready: Nije spremno
+        pending_qc: Čekanje QC
+        qc_completed: QC Završen
+        qc_in_progress: QCC u toku
+    reports:
+      bulk_marked_as_done: Zbirno označi kao urađeno
+      bulk_upload:
+        choose_file: Izaberi datoteku
+        no_file_selected: Nije izabran fajl
+        sample_file: Uzorak datoteke
+        title: Zbirno otpremi faktore kampanje
+        upload_success: Uspešno otpremljen
+      copy:
+        copy: kopiraj
+        copy_report: kopiraj izveštaj
+        name: Ime
+        successfully: Izveštaj '%{name}' je uspešno kopiran.
+      create:
+        successfully: Izveštaj '%{name}' je uspešno kreiran.
+      destroy:
+        successfully: Izveštaj '%{name}' je uspešno obrisan.
+      edit:
+        header: Izmeni ime izveštaja
+      modals:
+        remap_assessment:
+          new_assessment_name: Novo ime procene
+          old_assessment_name: Staro ime procene
+          success_message: Remapiranje procene je zakazano, molimo vas da osvežite nakon nekog vremena. Ne uređujte izveštaj i ne čuvajte nove izmene dok se ne uradi remapiranje.
+      name: Izveštaji
+      new:
+        header: Izaberi izveštaj
+      preview:
+        comments: Komentari
+        hide_resolved: Sakrij rešeno
+        history: Istorija
+        info_to_select_module: Izaberite tekstualni modul za komentar
+        title: Pregled
+      regenerate:
+        successfully: Izveštaj uspešno poslat na regeneraciju
+      regenerated: Regenerisano
+      regenerated_count: Izveštaji regenerisani
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovaj izveštaj?</p>\n"
+            title: Izbriši <strong>izveštaj</strong> ?
+          detach:
+            body: "<p>Da li ste sigurni da želite da odvojite ovaj izveštaj?</p>\n"
+            title: Odvoji <strong>izveštaj</strong> ?
+          soft_delete:
+            body: "<p>Da li ste sigurni da želite da povratno izbrišete ovaj izveštaj?</p>\n"
+            title: "<strong>Izveštaj</strong> o povratnom brisanju?"
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovaj izveštaj?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      restore:
+        successfully: Izveštaj %{name} je uspešno vraćen.
+      soft_delete:
+        successfully: Izveštaj %{name} je uspešno premešten u smeće.
+      toggle_archive:
+        successfully: Procena %{name} je %{status} uspešno.
+      toggle_status:
+        successfully: Izveštaj je uspešno ažuriran.
+      update:
+        successfully: Izveštaj %{name} je uspešno ažuriran.
+    resource:
+      remove_confirm:
+        message: Da li ste sigurni da želite da uklonite ovaj resurs?
+        title: Ukloni resurs
+    saml_settings:
+      after_signout_url: Nakon odjavljivanja URL
+      cert: Certifikat
+      config_details:
+        acs_url: URL adresa korisničkog servisa za aserciju
+        copied: Kopirano %{element}
+        issuer: ID entiteta / izdavaoc
+        title: Konfigurišite Idp sa sledećim informacijama
+      email_pipetext: Imejl pajptekst
+      enabled: Omogućeno
+      enforced: Sprovedi SAML
+      entity_id: ID entiteta / izdavač
+      name_identifier_format: Identifikator imena
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml: SAML
+      saml_setting: SAML podešavanje
+      save: Sačuvaj podešavanje
+      sso_service_url: SSO servis URL
+      successfully_saved_msg: SAML Podešavanje je uspešno sačuvano.
+    save: Sačuvaj
+    scheduling:
+      add_activity: Dodaj aktivnost
+      add_assessment_center: Dodaj centar za procenu
+      add_assessor_form:
+        assessment: Procena
+        assessor: Procenjivač
+        schedule_time: Zakaži vreme
+      add_subject: Dodaj subjekta
+      assessment_center_form:
+        add_more: Dodaj još
+        allow_late_cancellation_and_scheduling: Dozvoli kasno otkazivanje i zakazivanje
+        assessment_center_group: Centar za procenu Grupa
+        assessment_center_group_placeholder: Izaberi grupu centra za procenu
+        assessor_ids_label: Ocenjivači
+        back: Povratak
+        basic_info_panel:
+          description: Molimo Vas da unesete informacije o rasporedu ispod. Takođe možete da izaberete više datuma da biste kreirali više centara za procenu.
+          title: Osnovne informacije
+        cancellation_lead_time_label: Vreme za otkazivanje
+        copy_hint: Kopira gore navedena sedišta, menadžere centara, procenjivače i konfiguraciju sastanaka i resursa u sledeće centre za procenu. Nakon kopiranja, možete napraviti dodatne izmene u pojedinačnim centrima za procenu pre nego što nastavite.
+        copy_to_all: Kopirajte u druge centre za procenu
+        create: Kreirajte
+        dates_label: Datumi
+        duration_label: Trajanje
+        duration_max_error: Ne može biti duže od 16 sati
+        duration_min_error: Ne može biti manje od 15 minuta
+        duration_placeholder: Npr. 4h 30m
+        manager_ids_label: Menadžeri centara
+        meeting_link: Link za sastanak
+        meetings_and_resources: Sastanci i resursi
+        name_label: Ime
+        next: Sledeći
+        required_error: Potrebno
+        reschedule_duration_max_error: Ne može biti više od 30 dana
+        reschedule_duration_min_error: Ne može biti manje od 1 minuta
+        resources_panel:
+          description: Dodajte linkove na sve resurse za koje želite da facilitatori imaju pristup.
+          resource_name_placeholder: Naziv resursa
+          resource_url_placeholder: Link za resurse
+          title: Resursi
+          validation_error: Unesite i ime i URL ili uklonite resurs
+        scheduling_lead_time_label: Vreme za zakazivanje
+        seats_label: Mesta
+        time_label: Vreme
+        timezone_label: Vremenska zona
+        url_label: URL
+        video_call_type:
+          custom: Prilagođeno
+          internal: Unutrašnje
+          none: Ništa
+        video_call_type_label: Dodaj video poziv
+      attendance_status:
+        column_name: Status pohađanja
+        dropped_out: Odustajanje
+        late: Kašnjenje
+        no_show: Bez pojavljivanja
+        no_status: Nema statusa
+        on_time: Na vreme
+      attended:
+        attended: Prisustvo
+        not_attended: Bez prisustva
+      campaign_participants: Učesnici kampanje
+      columns:
+        activity: Aktivnost
+        assessor: Procenjivač
+        assessors: Ocenjivači
+        attendance: Prisustvo
+        attended: Prisustvo
+        booked_at: Rezervisano na
+        campaign_assessment_group: Grupa centra za procenu
+        campaign_name: Ime kampanje
+        duration: Trajanje
+        managers: Menadžeri
+        meeting_link: Link za sastanak
+        name: Ime
+        participants: Učesnici
+        prework: Predrad
+        resource_link: Link
+        resource_name: Ime
+        schedule_time: Vreme rasporeda
+        scheduling_status: Status rasporeda
+        seats: Mesta
+        start_time: Datum i vreme
+        subject: Subjekat
+        title: Naslov
+      errors:
+        assessor_already_assigned: Procenjivač je već dodeljen ovoj proceni. Molimo Vas da izaberete drugu procenu ili procenitelja.
+        date_required: Molimo Vas da izaberete datum
+        invalid_url: Nevažeći URL format
+        meeting_link_https: Link sastanka mora početi sa "https://"
+      id: ID
+      info:
+        allowed: Dozvoljeno
+        assessors: Ocenjivači
+        booked: Mesta rezervisana
+        campaign_assessment_group: Grupa centra za procenu
+        cancellation_lead_time: Vreme otkazivanja
+        cancellation_tooltip: Korisnik će moći da otkaže rezervaciju do %{date}
+        date: Datum i vreme
+        duration: Trajanje
+        join_meeting: Pridružite se sobi
+        late_cancellation_and_scheduling: Kasno otkazivanje i zakazivanje
+        link: Link za sastanak
+        managers: Menadžeri centara
+        none: Ništa
+        not_allowed: Nije dozvoljeno
+        remaining: Preostala mesta
+        scheduling_lead_time: Vreme za zakazivanje
+        scheduling_tooltip: Korisnik bi mogao da rezerviše mesto do %{date}
+        search_placehoder: Pretraga po ID-u, imejlu ili imenu
+        timezone: Vremenska zona
+        total_seats: Ukupno sedišta
+      resources:
+        confirm_message: Da li ste sigurni da želite da izbrišete resurs '%{resource_name}'?
+        confirm_title: Potrebna potvrda
+        create: Kreirajte resurs
+        invalid_url: Neispravan URL. Navedite kompletan URL sa http ili https protokolom u njemu.
+        resource: Resurs
+        successful_remove: Resurs Centra za procenu %{resource_name} je uspešno izbrisan.
+      schedule_assessments: Raspored procene
+      scheduling_statuses:
+        cancelled: Otkazano
+        late_cancelled: Kasno otkazano
+        late_rescheduled: Kasno odloženo
+        rescheduled: Pomereno
+        scheduled: Zakazano
+      search_participant: Učesnici kampanje za pretragu
+      status:
+        completed: Dovršeno
+        dropped_out: Odustao/la
+        in_progress: U toku
+        late: Kasno
+        no_show: Bez pojavljivanja
+        not_started: Nije početo
+      status_change_modal:
+        content: Kada zatvorite centar za procenu, učesnici neće moći da učestvuju u bilo kojim aktivnostima centra.
+        title: Promenite status centra za procenu
+      subjects:
+        activities: Aktivnosti
+        add_assessor_form: Dodaj obrazac za procenjivača
+        assessments: Procene
+        assessor_forms: Obrasci za ocenjivanje
+        confirm_message: Da li ste sigurni da želite da otkažete učešće subjekta sa imejlom '%{subject_email}'?<br />Jednom označen kao otkazan, ovaj subjekt neće moći da učestvuje u centru za procenu.
+        confirm_title: Potrebna potvrda
+        edit_assessor_form: Uredi obrazac za ocenjivača
+        form_title: Raspored procene
+        language: Jezik
+        language_not_selected: Nije izabrano
+        mark_cancel_success: Otkazano učešće subjekta sa imejlom %{subject_email}.
+        meeting_link_custom: Prilagođeno
+        meeting_link_internal: Interno
+        meeting_link_none: Ništa
+        meeting_link_title: Link za sastanak
+        no_change: Nema promene
+        override_existing: Izmeni postojeće rasporede za subjekte
+        preworks: Predrad
+        schedule: Zakaži
+        unschedule: Otkaži
+      tabs:
+        activities: Aktivnosti
+        assessment_center: Centar za procenu
+        invites: Pozivi
+        resources: Resursi
+        subjects: Subjekti
+    scoring:
+      action_prohibited: Akcija zabranjena
+      active: Aktivno
+      actual_average: Stvarni prosek
+      add_factor: Dodaj faktor
+      add_group: Dodaj grupu
+      assessment: Procena
+      assessment_scoring_type: Tip procene bodovanja
+      average: Prosečno
+      campaign_scoring_variables: Varijable bodovanja kampanje
+      code: Kod
+      desc: Prekoračili ste maksimalnu granicu od %{n} faktora kampanje. Dodatni faktori se ne mogu dodati. Molimo vas da pregledate i upravljate postojećim faktorima pre nego što nastavite.
+      description: Opis
+      dimension: Dimenzij
+      edit_factor: Uredi faktor
+      export:
+        details: Skorovanja kampanje
+        factors: Izvezi faktore kampanje
+      factor: Faktor
+      factor_group_removed_successfully: Grupa faktora kampanje je uspešno uklonjena
+      factor_removal_confirmation: Unesite ime faktora u polje za tekst da biste potvrdili
+      factor_removed_successfully: Faktor kampanje je uspešno uklonjen
+      factors_exported_successfully: Izvoz faktora kampanje je uspešno zakazan
+      factors_imported_successfully: Uvoz faktora kampanje je uspešno zakazan
+      final: Konačno
+      final_score_updated_successfully: Konačni skor je uspešno ažuriran
+      formula: Formula
+      get_started: Počni
+      id: Id
+      import:
+        factors: Uvezi faktore kampanje
+      name: Ime
+      no_groups: Nema prisutnih grupa
+      output_type: Tip autputa
+      pattern_error: Dozvoljeni su samo alfanumerički znakovi, razmaci i crtice.
+      profile:
+        years: Godine
+      public: Javnost
+      ranked: Rangirano
+      remove_all_campaign_factors:
+        confirmation: Unesite trenutni naziv kampanje naveden ispod u polje za tekst da biste potvrdili
+        error: Uklanjanje faktora kampanje neuspelo
+        success: Faktori kampanje uspešno uklonjeni
+        title: Uklonite faktore kampanje
+        warning: Spremate se da izbrišete sve faktore kampanje i sve povezane rezultate za korisnike. Da li ste sigurni da želite da izvršite ovu akciju?
+      remove_factor_group_confirmation_content: Da li ste sigurni da želite da uklonite grupu faktora '%{group_name}'?
+      remove_factor_group_confirmation_title: Ukloni grupu faktora
+      required_error: Ne može biti prazno
+      save: Sačuvaj
+      save_all: Sačuvaj sve
+      score_range: Opseg skorova
+      score_types:
+        norm_score: Norma skorova
+        percentage: Procenat
+        percentile: Percentil
+        score: Skor
+        zscore: Z skor
+      scoring: Bodovanje
+      scoring_description: Bodovanje kampanje omogućava izveštavanje kroz procena
+      select_all: Izaberite sve %{n} subjekte
+      select_assessment_first: Prvo izaberite procenu
+      select_factor: Izaberite faktor
+      show_weightages: Prikaži pondere
+      subject: Subjekat
+      subject_list:
+        actions: Radnje
+        bulk_mark_finalized: Zbirno označi kao finalizovano
+        bulk_mark_finalized_confirm: Finaliziranje rezultata za odabrane korisnike će generisati izveštaj koji koristi faktor kampanje za korisnike. Da li ste sigurni da želite da nastavite?
+        bulk_mark_not_finalized: Zbirno markiranje nije finalizirano
+        bulk_mark_not_finalized_confirm: Uklanjanje finalizacije kod izabranih korisnika će ukloniti generisani izveštaj koji koristi faktor kampanje za korisnike. Da li ste sigurni da želite da nastavite?
+        bulk_rescore: Zbirno reskoruj
+        bulk_rescore_confirm: Reskorovanje izabranih korisnika. Da li ste sigurni da želite da nastavite?
+        calculated_date: Izračunati datum
+        calculation_errors: Greške u izračunavanju
+        export: Izvezi skorovanja
+        export_success: Izvoz rezultata je uspešno zakazan
+        finalized: Završeno
+        finalized_date: Datum finalizacije
+        import_external_scores: Uvezi eksterna skorovanja
+        mark_finalized: Označi finalizovano
+        mark_finalized_confirm: Finaliziranje rezultata za korisnika '%{email}' će generisati izveštaj koji koristi faktor kampanje za korisnika. Da li ste sigurni da želite da nastavite?
+        mark_not_finalized: Označi da nije završeno
+        mark_not_finalized_confirm: Uklanjanje finalizacije kod korisnika '%{email}' će ukloniti generisani izveštaj koji koristi faktor kampanje za korisnika. Da li ste sigurni da želite da nastavite?
+        push_webhook: Gurni Webhooks
+        rank: Rang
+        rescore: Reskoruj
+        rescore_confirm: Ponovno ocenjivanje korisnika '%{email}'. Da li ste sigurni da želite da nastavite?
+        tools: Alatke
+      tabs:
+        settings: Postavke
+        subject_scores: Skorobi subjekta
+      type: Tip
+      variables: Varijable
+      weightages:
+        assessorForms: Obrasci za ocenjivanje
+        successful_update: Ponderi su uspešno ažurirani
+        tools: Alatke
+        weightages: Ponderi
+      weighted_average: Ponderisani prosek
+    search: Pretraži
+    security_setting:
+      180_days: 180 dana
+      30_days: 30 dana
+      365_days: 365 dana
+      90_days: 90 dana
+      attempts_to_lock: Pokušaji zaključavanja
+      auto_unlock_time: Vreme automatskog otključavanja
+      disable_password_reuse: Onemogući ponovnu upotrebu lozinke
+      disallow_password_login: Zabrani prijavljivanje lozinkom
+      enable_login_with_magic_link: Omogući prijavu sa magičnim linkom
+      enforce_password_policy: Sprovedi politiku lozinke na sledećem prijavljivanja
+      enforce_strong: Sprovedite jaku lozinku
+      expiration: Istek lozinke
+      lock_account: Zaključaj nalog
+      magic_link_expiry_duration: Trajanje isteka magične veze
+      min_length: Minimalna dužina lozinke
+      never: Nikad
+      restrict_sequences: Ograniči sekvencijalne i ponavljajuće znakove
+      security: Bezbednosna podešavanja
+      send_unlock_email: Pošalji imejl za otključavanje
+      session_timeout_duration: Trajanje vremenskog ograničenja sesije
+      tfa_enabled: Omogući dvofaktorsku autentifikaciju
+    security_settings:
+      security_setting: Bezbednosno podešavanje
+    settings:
+      admin_roles:
+        admin_role_single: Uloga administratora
+        confirm_message: Da li ste sigurni da želite da izbrišete ulogu administratora '%{role_name}'?
+        create: Dodaj ulogu administratora
+        description: Opis
+        name: Ime
+        successful_remove: Uloga administratora '%{role_name}' je uspešno obrisana.
+      siem:
+        description: Opis
+        destination_type: Tip odredišta
+        destination_types:
+          s3: S3
+          s3_compatible: S3 Kompatibilan
+        enabled: Omogućeno
+        readable_resource_name: SIEM podešavanja
+        s3_access_key_id: ID pristupnog ključa
+        s3_bucket_folder: S3 Kanta folder
+        s3_bucket_name: S3 ime kante
+        s3_endpoint: S3 krajnja tačka
+        s3_region: S3 regija
+        s3_secret_access_key: Tajni pristupni ključ
+        send_test_log: Pošalji test evidenciju
+        send_test_log_error_message: Test evidencija nije poslata u vašu kantu, proverite podešavanja
+        send_test_log_success_message: Test evidencija je uspešno poslata u vašu kantu
+      skill_aliases:
+        alias: Pseudonim
+        confirm_message: Da li ste sigurni da želite da izbrišete pseudonim veštine '%{skill_alias}'?
+        create: Dodaj pseudonim veštine
+        select_skill: Izaberi veštinu
+        skill: Veština
+        skill_alias: Pseudonim veštine
+        successful_remove: Pseudonim veštine '%{skill_alias}' je uspešno obrisan.
+      tabs:
+        admin_roles: Uloge administratora
+        feature_flags: Feature flagovi
+        siem: SIEM
+        skill_aliases: Pseudonimi veština
+    sheets:
+      column:
+        add_column: Dodaj kolonu
+        not_allowed_for_dashboard_use: Da bi se kolona koristila na kontrolnoj tabli, trebalo bi da bude manja od 64 karaktera
+        reorder: Promeni raspored
+        save_order: Sačuvaj porudžbinu
+      drawers:
+        add_edit:
+          cancelText: Otkaži
+          markdown:
+            preview: Pregled
+            title: Markdown
+          save: Sačuvaj
+          saving: Čuvanje
+          success_message_add: Dodat je novi zapis
+          success_message_edit: Zapis ažuriran
+          title_add: Dodaj listu zapisa
+          title_edit: Uredi zapis redova liste
+          validations:
+            required_email: Molimo Vas da unesete imejl
+        view:
+          campaign_title: Zapis nivoa kampanje
+          edit_button: Uredi
+          project_title: Zapis nivoa projekta
+          title: Detalji o zapisu reda lista
+      list:
+        header:
+          add_record: Dodaj zapis
+          search_record: Pretraga zapisa
+      modals:
+        delete_records:
+          cancelText: Otkaži
+          content: Da li ste sigurni da želite da izbrišete izabrane {{count}} zapise?
+          okText: Da, izbriši
+          successMessage: "{{count}} zapisi su uspešno obrisani."
+          title: Izbriši {{count}} zapise
+        remove_columns:
+          cancelText: Otkaži
+          content: Brisanje kolone ({{columns}}) će ukloniti podatke u ovoj koloni za sve redove
+          okText: Da, izbriši
+          successMessage: "{{count}} zapisi obrisani"
+          title: Izbriši kolone
+      tabs:
+        rows: Redovi
+        settings: Postavke
+    skills:
+      applicable_proficiency_levels: Primenjivi nivoi stručnosti
+      columns:
+        skill_group: Grupa veština
+        skill_type: Vrsta veštine
+      errors:
+        import:
+          missing_fields_data: 'Linija %{line_number}: Nedostaju obavezna polja: %{fields}'
+          save_failed: 'Linija %{line_number}: Neuspešno sačuvavanje veštine ''%{name}'': %{message}'
+        search:
+          all_and_project_id_mutually_exclusive: Sve navedeno ne može biti istinito kada je project_id_eq obezbeđen
+          invalid_all_value: 'mora biti jedan od: istina, laž'
+          invalid_global_value: 'mora biti jedan od: istina, laž'
+          invalid_skill_type: Mora biti važeći tip veštine
+          query_too_short: je obavezan i mora biti duži od 3 karaktera
+      export:
+        details: Detalji
+        failure_msg: Greška prilikom izvoza prevoda
+        success_msg: Izvoz razvojnih akcija u toku.
+        translations:
+          details: Prevodi veština
+      form:
+        client_placeholder: Izaberi klijenta
+        description: Opis
+        name: Ime
+        project_placeholder: Izaberi projekat
+        skill_group: Grupa veština
+        skill_type: Vrsta veštine
+        title: Veština
+      import:
+        download_example_csv: Preuzmite primer csv
+        info_msg: Postavljena datoteka je stavljena u red za uvoz. Molimo Vas da proverite status u obaveštenjima.
+        success_msg: Postavljena datoteka je stavljena u red za uvoz. Molimo Vas da proverite status u obaveštenjima.
+      import_action:
+        skills_title: Uvezi veštine
+        skills_translations_title: Uvezi prevode veština
+      skill_details: Detalji veština
+      skill_translations: Prevodi veština
+      title: Veštine
+      translations:
+        import:
+          errors:
+            invalid_csv_format: 'Nevažeći CSV format: %{message}'
+            missing_columns: 'Nedostaju potrebne kolone: %{columns}'
+            save_failed: 'Greška u obradi Skill ID %{id}: %{message}'
+            skill_not_found: Veština sa ID %{id} nije pronađena
+    skills_taxonomy:
+      tabs:
+        job_roles: Radne uloge
+        proficiency: Stručnost
+        skills: Veštine
+    sms_histories:
+      columns:
+        first_name: Ime
+        last_name: Prezime
+        mobile_no: Mobilni broj
+        price: Cena
+        segment_length: Dužina segmenta
+        sent_at: Poslato u
+      drawer:
+        title: SMS Detalji
+      history: Istorija
+      statuses:
+        accepted: Prihvaćeno
+        delivered: Isporučeno
+        failed: Nije uspelo
+        queued: U redu čekanja
+        scheduled: Planirano
+        sent: Poslato
+        undelivered: Neisporučeno
+    sms_invites:
+      actions:
+        add: Dodaj SMS kontakt
+      columns:
+        created_at: Kreirano u
+        created_by: Kreirano od strane
+        email: Imejl
+        first_name: Ime
+        last_name: Prezime
+        mobile_no: Mobilni broj
+      contacts: Kontakti
+      form_modal:
+        first_name: Ime
+        last_name: Prezime
+        locale: Lokal
+        mobile_no: Mobilni broj
+        title: SMS poziv
+      import:
+        download_example_csv: Preuzmite primer CSV
+        success_msg: Postavljena datoteka je stavljena u red za uvoz. Molimo Vas da proverite status u obaveštenjima.
+        title: Uvoz SMS poziv
+      messages:
+        delete_confirm_text: Da li ste sigurni da želite da uklonite SMS poziv sa brojem mobilnog telefona %{mobile_no}?
+        delete_success: SMS poziv je uspešno izbrisan
+        failed_to_sent_invite: Neuspelo slanje poziv na broj mobilnog %{mobile_no}
+      send_sms:
+        fields:
+          link_expiry: Istek linka
+          locale: Lokal
+          message: Poruka
+          statuses: Statusi
+          users: Korisnici
+        modal:
+          btn_name: Pošalji SMS
+          title: Pošalji SMS
+        pipetext_details: "{{{first_name}}} - Ime primaoca<br />{{{last_name}}} - Prezime primaoca<br />{{{invite_url}}} - Link za registraciju"
+        segment_length_msg: Procenjeni broj segmenata za ovu poruku je %{segment_length}.
+        segment_length_range_msg: Procenjeni broj segmenata za ovu poruku je između %{min_segment_length} i %{max_segment_length}.
+      statuses:
+        all: Sve
+        failed: Nije uspelo
+        invited: Pozvano
+        not_invited: Nije pozvano
+        registered: Registrovano
+      tools:
+        export: Izvoz SMS kontakata
+        import: Uvoz SMS kontakata
+        send_sms: Pošalji SMS
+    sms_records:
+      columns:
+        id: Id
+        message: Poruka
+    smtp_settings:
+      authentication: Potvrda identiteta
+      authentication_type: Vrsta autentifikacije
+      authentication_types:
+        cram_md5: cram md5
+        login: Prijava
+        plain: Obično
+      enabled: Omogućeno
+      encryption: Enkripcija
+      encryption_types:
+        none: Ništa
+        ssl: SSL
+        tls: TSL
+      errors:
+        authentication_failed: Korisničko ime ili lozinka je netačna
+        host_unreachable: Nije moguće povezati se sa hostom. Ili host, port ili enkripcija je netačno
+      from_email: Iz imejla
+      from_name: Od imena
+      host: Host
+      password: Lozinka
+      port: Port
+      send_test_email: Pošalji test imejl
+      smtp: SMTP
+      test_email_modal:
+        input_hint: Vaša postavka imejla neće biti sačuvana dok se uspešno ne pošalje testni imejl.
+        input_placeholder: Testirajte ID imejla
+        title: Test ID imejla
+      test_modal:
+        success_message: Testiraj imejl poslat na %{email_id}.
+        title: Testirajte podešavanje SMTP-a
+      update_success_msg: SMTP postavka je uspešno ažurirana.
+      use_sender_verification: Koristite verifikaciju pošiljaoca
+      user_name: Korisničko ime
+    stats:
+      assessments:
+        columns:
+          assessment_name: Ime procene
+          completed: Dovršeno
+          id: ID
+          in_progress: U toku
+          ineligible: Neprihvatljivo
+          interrupted: Prekinuto
+          not_started: Nije počelo
+          timed_out: Isteklo vreme
+        title: Procene
+      title: Statistike
+      top_metrics:
+        completed: Dovršeno
+        in_progress: U toku
+        interrupted: Prekinuto
+        not_started: Nije počelo
+        timed_out: Isteklo vreme
+        users: Korisnici
+      users:
+        date_presets:
+          last_30_days: Poslednjih 30 dana
+          last_7_days: Poslednjih 7 dana
+          last_month: Prošli mesec
+          last_week: Prošla sedmica
+          today: Danas
+          yesterday: Juče
+        y_title: Broj korisnika
+    sub_factors:
+      destroy:
+        successfully: Pod-faktor %{name} je uspešno obrisan.
+      edit:
+        header: Izmena imena pod-faktora
+      new:
+        header: Novi pod-faktor
+      resource:
+        confirmations:
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovaj pod-faktor?</p>\n"
+            title: Izbriši <strong>pod-faktor</strong> ?
+      toggle_status:
+        successfully: Pod-faktor je uspešno ažuriran.
+    survey_builder:
+      builder_area:
+        options: Opcije
+      property_panel:
+        add_n_a_option: Dodaj opciju N / A
+        allow_content_copy: Dozvolite kopiranje sadržaja
+        answer_type: Tip odgovora
+        cant_change_type: Tip se ne može promeniti za sačuvano pitanje
+        date_format: Format datuma
+        date_format_options:
+          dd_mm_yyy: DD-MM-GGGG
+          mm_yyyy: MM-GGGG
+          yyyy: GGGG
+          yyyy_mm: GGGG-MM
+          yyyy_mm_dd: GGGG-MM-DD
+        duration_options:
+          '10': 10 sekundi
+          '120': 2 minuta
+          '180': 3 minuta
+          '30': 30 sekundi
+          '300': 5 minuta
+          '60': 1 minut
+          '600': 10 minuta
+        image_multi_choice_properties:
+          enable: Sa slikama
+          preview: Pregled na klik
+          size:
+            large: L
+            medium: M
+            small: S
+            title: Veličina mreže
+            x-small: XS
+            xx-small: XXS
+        max_duration: Maksimalno trajanje
+        multiple_choice_types:
+          dropdown: Padajući meni
+          multi_answer: Višestruki odgovori
+          single_answer: Jedan odgovor
+        no_of_choices: Broj izbora
+        orientation:
+          horizontal: Horizontalno
+          title: Položaj
+          vertical: Vertikalno
+        question_description: Opisi redova
+        validation_response_type: Tip odgovora za validaciju
+        voice_dictation: Glasovno diktiranje
+    table:
+      entries:
+        selected: Izabran 1 red
+        total: 'Ukupno : 1'
+      more_actions: Više akcija
+    taxonomy:
+      import:
+        download_example_file: Preuzmite primernu datoteku
+        success_msg: Postavljena datoteka je stavljena u red za uvoz. Molimo Vas da proverite status u obaveštenjima.
+      import_action:
+        taxonomy: Uvozna taksonomija
+      job_roles: Radne uloge
+      proficiency: Stručnost
+      skills: Veštine
+      title: Taksonomija
+    templates:
+      blocks:
+        copy:
+          error: Blok\
+        destroy:
+          successfully: Blok %{name} je uspešno obrisan.
+        edit:
+          header: Uredi blok
+        index:
+          new: Dodaj
+          templates:
+            blocks: Blokovi
+            questions: Pitanja
+          title: Blokovi
+          tooltips:
+            create: Kreiraj
+        list:
+          active: Aktivno
+          created_at: Datum kreiranja
+          linked_assessments: Povezane procene
+          name: Ime
+          updated_at: Datum izmene
+        new:
+          header: Novi blok
+        new_assign:
+          header: Dodelite blok procenama
+        resource:
+          in_progress:
+            copying: Kopiranje
+            deleting: Brisanje
+          tooltips:
+            copy: Kopiraj blok
+            delete: Izbriši blok
+            edit: Uredi blok
+        sidebar:
+          destroy: Izbriši blok
+          disable: Onemogući
+          edit: Uredi blok
+          enable: Omogući
+          new: Novi blok
+          new_assign: Dodeli blok
+          title: Opcije bloka
+        toggle_status:
+          successfully: Uspešno
+      questions:
+        copy:
+          error: Pitanje
+        destroy:
+          successfully: Pitanje %{name} je uspešno obrisano.
+        edit:
+          header: Uređivanje pitanja
+        index:
+          new: Dodaj
+          templates:
+            blocks: Blokovi
+            questions: Pitanja
+          title: Pitanja
+          tooltips:
+            create: Kreiraj
+        list:
+          active: Aktivno
+          created_at: Datum kreiranja
+          linked_assessments: Povezane procene
+          name: Ime
+          updated_at: Datum izmene
+        new:
+          header: Novo pitanje
+        new_assign:
+          header: Dodelite pitanje procenama
+        resource:
+          in_progress:
+            copying: Kopiranje
+            deleting: Brisanje
+          tooltips:
+            copy: Kopiraj pitanje
+            delete: Izbriši pitanje
+            edit: Uredi pitanje
+        sidebar:
+          destroy: Izbriši pitanje
+          disable: Onemogući
+          edit: Uredi pitanje
+          enable: Omogući
+          new: Novo pitanje
+          new_assign: Dodeli pitanje
+          title: Opcije pitanja
+        toggle_status:
+          successfully: Uspešno
+    threesixty_campaigns:
+      email_templates:
+        approve_nomination:
+          description: Ova poruka se šalje menadžeru kada nominacija, napravljena od strane direktnog izveštaja, treba da bude odobrena
+          name: Odobri nominaciju
+        approve_report:
+          description: Ova poruka se šalje menadžeru subjekta da ih obavesti da je izveštaj subjekta spreman za odobrenje
+          name: Odobri izveštaj
+        categories:
+          approvals: Odobrenja
+          invitations: Pozivnice
+          reminders: Opomene
+          report_ready: Izveštaj spreman
+        custom_message:
+          description: Ova poruka se može poslati svima koji učestvuju u proceni
+          name: Prilagođena poruka
+        days_repeated: dana, ponovljeno
+        evaluator_invite:
+          description: Ova poruka će biti poslata svim učesnicima koji su evaluatori
+          name: Poziv evaluatora
+        evaluator_reminder:
+          description: Ova poruka će biti poslata da podseti evaluatore da završe evaluacije na čekanju
+          name: Podsetnik za evaluatora
+          rule_description: Navedite pravila za automatsko zakazivanje kada je zakazan poziv
+          rule_name: Pravila podsetnika za evaluator
+        from: Iz
+        manager_report_ready:
+          description: Ova poruka se šalje menadžeru subjekta kada je izveštaj subjekta spreman
+          name: Izveštaj menadžera spreman
+        nomination_denied:
+          description: Ova poruka se šalje subjektima kada je nominacija odbijena
+          name: Nominacija odbijena
+        reply_to_email: Odgovori na imejl
+        request_approval:
+          description: Ova poruka se šalje menadžerima kada subjekt zatraži odobrenje
+          name: Zahtev za odobrenje
+        schedule_email: Zakaži imejl
+        schedule_time: Zakaži vreme
+        send_test_email: Pošalji test imejl
+        subject: Subjekat
+        subject_invite:
+          description: Ova poruka će biti poslata da pozove subjekte da učestvuju u proceni
+          name: Poziv subjektu
+        subject_reminder:
+          description: Poruka poslata svakom učesniku da ih podseti da učestvuju u proceni
+          name: Podsetnik za subjekta
+          rule_description: Navedite pravila za automatsko zakazivanje kada je zakazan poziv
+          rule_name: Pravila podsetnika za predmet
+        subject_report_ready:
+          description: Ova poruka se šalje subjektu kada je njihov izveštaj spreman
+          name: Izveštaj za subjekta spreman
+        times: puta
+      instruction_templates:
+        evaluate_others:
+          description: Ova poruka će biti prikazana kada učesnici procenjuju druge unutar portala
+          name: Proceni druge
+        evaluate_self:
+          description: Ova poruka će biti prikazana subjektima kada započnu svoju samoevaluaciju
+          name: Evaluator self
+        evaluation_help:
+          description: Tekst pomoći prikazan na kartici evaluacije na dashboardu korisnika
+          name: Pomoć za evaluaciju
+        evaluator_welcome:
+          description: Ova poruka će promeniti "Poruku dobrodošlice" i biti prikazana učesnicima koji trenutno učestvuju samo kao evaluatori.
+          name: Evaluator je dobrodošao
+        invite_evaluators:
+          description: Ova poruka će biti prikazana subjektima kada počnu da nominuju evaluatore
+          name: Pozovite evaluatore
+        nomination_help:
+          description: Tekst pomoći prikazan na nominacionoj kartici na kontrolnoj tabli korisnika
+          name: Pomoć za nominaciju
+        report_help:
+          description: Tekst pomoći prikazan na izveštajnoj kartici na kontrolnoj tabli korisnika
+          name: Izveštaji Pomoć
+        welcome_message:
+          description: Ova poruka će biti prikazana subjektima kada se prijave da započnu procenu ili pogledaju svoju listu zadataka
+          name: Poruka dobrodošlice
+      manage:
+        assessment: Procena
+        dimension: Dimenzije
+        manage_relationships: Upravljajte odnosima ...
+        report: Izveštaj
+        title: Upravljanje
+      menu:
+        datasheet:
+          title: List sa podacima
+        messages:
+          title: Poruke
+        participants:
+          subjects:
+            add_subjects: Dodaj subjekte
+            current_job_role: Trenutna radna uloga
+            email: Imejl
+            first_name: Ime
+            last_name: Prezime
+            locale: Lokal
+            target_job_role: Ciljna radna uloga
+          title: Učesnici
+        report:
+          menu:
+            report_approval:
+              title: Podešavanja odobrenja izveštaja
+            report_options:
+              title: Opcije izveštaja
+          title: Izveštaj
+      messages:
+        email_messages: Imejl poruke
+        factor_benchmark_scores_updated: Referetne tačke skorova faktora su uspešno ažurirane
+        instruction_messages: Poruke instrukcije
+        mail_history: Istorija pošte
+        options: Opcije
+      reports:
+        show:
+          title: Izveštaj o subjektu
+    time_zone: Vremenska zona
+    tools: Alatke
+    translations:
+      assessments:
+        new:
+          header: Uvezi prevod
+      import:
+        successfully: Prevodi su uspešno uvezeni
+      reports:
+        export: Izvezi prevode
+        import: Uvezi prevod
+        import_descr: Pogledajte Izvoz funkcionalnost da izvučete šablon koji se može koristiti za uvoz ovde.
+    tte: TTE
+    update: Ažuriranje
+    users:
+      create:
+        successfully: Korisnik %{name} je uspešno kreiran.
+      destroy:
+        successfully: Korisnik %{name} je uspešno obrisan.
+      list:
+        email: Imejl
+      modals:
+        download_idp_reports:
+          error: Zbirno preuzimanje neuspešno zakazano
+          include_reflective_questions: Uključite pitanja za razmišljanje
+          success: Zbirno preuyimanje IDP izveštaja je uspešno zakazano.
+          title: Zbirno preuzimanje IDP izveštaja
+      new:
+        header: Novi korisnik
+      reset_password:
+        successfully: Korisnik %{name} će dobiti imejl sa uputstvima o tome kako da resetuje svoju lozinku za nekoliko minuta.
+      resource:
+        confirmations:
+          change_password:
+            body: "<p>Da li ste sigurni da želite da pošaljete uputstva sa linkom za promenu lozinke?</p>\n"
+            title: Promenite lozinku <strong>%{name}</strong> ?
+          delete:
+            body: "<p>Da li ste sigurni da želite da izbrišete ovog korisnika?</p>\n"
+            title: Izbriši <strong>%{name}</strong> ?
+          membership:
+            delete:
+              body: "<p>Da li ste sigurni da želite da izbrišete?</p>\n"
+              title: Izbrišite <strong>%{name}</strong> iz %{client_name} zakupa klijenata?
+            toggle_status:
+              body: "<p>Da li ste sigurni da želite da %{status} ovo članstvo?</p>\n"
+              title: "<strong>%{status}</strong> %{name} je članstvo?"
+          toggle_enable_2fa:
+            body: "<p>Da li ste sigurni da želite da %{status} dvofaktorsku autentifikaciju za %{name}?</p>\n"
+            title:
+          toggle_status:
+            body: "<p>Da li ste sigurni da želite da %{status} ovog korisnika?</p>\n"
+            title: "<strong>%{status}</strong> %{name}?"
+      spoof:
+        successfully: Uspešno ste se prijavili kao %{name}
+      toggle_enable_2fa:
+        disable: Onemogući 2FA
+        enable: Omogući 2FA
+        successfully: Korisnik %{name} je uspešno ažuriran.
+      toggle_status:
+        successfully: Korisnik %{name} je uspešno ažuriran.
+      toolbar:
+        title: Alatke
+      update:
+        successfully: Korisnik %{name} je uspešno ažuriran.
+      user: Korisnik
+    webhook:
+      connection_failure: Nije moguće povezati se sa URL-om webhook-a. Proverite da li je webhook URL tačan..
+      delete_success: Podešavanja Webhook je uspešno izbrisano
+      request_failure: Zahtev nije uspeo sa statusnim kodom %{http_status_code}.
+    workshop:
+      actions:
+        remove_workshop: Radionica uspešno uklonjena
+      errors:
+        remove_workshop_failure: Radionica koju pokušavate da izbrišete ima zakazane teme. Radionicu možete izbrisati tako što ćete sve predmete označiti kao otkazane
+      statuses:
+        closed: Zatvoreno
+        open: Otvoreno
+    workshop_subjects:
+      errors:
+        update_assessor_for_failure: Detalji sastanka se ne mogu dodati jer ne postoji povezana aktivnost predmeta.
+    years: Godina

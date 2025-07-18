@@ -134,7 +134,7 @@ const RegistrationComponent: React.FC<Props> = ({
           <div
             dangerouslySetInnerHTML={{
               __html: I18n.t('auth.registration.terms_notice', {
-                terms_url: `/privacy-statement/${I18n.currentLocale()}`,
+                terms_url: `/privacy-statement?lang=${I18n.currentLocale()}`,
               }),
             }}
           />

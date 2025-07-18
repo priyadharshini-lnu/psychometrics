@@ -34,7 +34,7 @@ fr:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'Le bloc "%{nom_du_bloc}" a des configurations dupliquées : %{configurations_dupliquées}'
+              duplicate_block: 'Le bloc "%{block_name}" a des configurations dupliquées : %{duplicate_configurations}'
         assessment_question_import_form:
           attributes:
             file:
@@ -119,7 +119,7 @@ fr:
               blank: Le prénom ne peut pas être vide
             job_role:
               cannot_be_same: La fonction visée doit être différente de la fonction actuelle.
-              not_found: Le rôle "%{nom}" n'est pas trouvé dans le projet ou les rôles globaux.
+              not_found: Le rôle "%{name}" n'est pas trouvé dans le projet ou les rôles globaux.
             last_name:
               blank: Le nom de famille ne peut pas être vide
             locale:
@@ -167,12 +167,17 @@ fr:
             base:
               code_length: Le code doit comporter au moins 3 caractères à la ligne %{index}.
               code_required: Le code du facteur est requis à la ligne %{index}
+              invalid_csv: Csv %{error_message} non valide
               invalid_scoring_strategy: Stratégie de notation invalide '%{strategy}' à la ligne %{index}. Les stratégies autorisées sont %{allowed}.
               missing_headers: 'En-tête manquant : %{headers}'
               name_required: Le nom du facteur est requis à la ligne %{index}
               scoring_strategy_required: La stratégie de notation est requise à la ligne %{index}
             file:
               invalid_format: Veuillez télécharger le fichier CSV
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: La notification SMS du client est désactivée
         hogan:
           attributes:
             name:
@@ -191,6 +196,7 @@ fr:
               blank: Le prénom ne peut pas être vide
             job_role:
               cannot_be_same: La fonction visée doit être différente de la fonction actuelle.
+              not_found: Le rôle de poste ' %{name}' est introuvable dans les rôles de projet ou globaux
             last_name:
               blank: Le nom de famille ne peut pas être vide
             locale:
@@ -200,10 +206,10 @@ fr:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: La valeur %{nom_de_colonne} ne peut pas être vide à la ligne %{numéro_de_la_rangée}
+              column_cannot_be_blank: La valeur %{column_name} ne peut pas être vide à la ligne %{row_number}
               invalid_format: Veuillez télécharger le fichier CSV
-              invalid_job_role_id: L'identifiant de la ligne %{numéro_de_la_rangée} n'est pas un identifiant de rôle professionnel valide.
-              invalid_locale: La locale à la ligne %{numéro_de_la_rangée} n'est pas une locale valide
+              invalid_job_role_id: L'identifiant de la ligne %{row_number} n'est pas un identifiant de rôle professionnel valide.
+              invalid_locale: La locale à la ligne %{row_number} n'est pas une locale valide
               missing_required_columns: 'Colonnes manquantes : %{columns}'
               parsing_failed: 'Erreur lors de l''analyse du fichier, erreur : %{error}.'
             project:
@@ -326,11 +332,11 @@ fr:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Au moins un rôle professionnel doit être activé avec un type de compétence sélectionné pour %{nom_du_bloc}
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Au moins un rôle professionnel doit être activé avec un type de compétence sélectionné pour %{block_name}
               at_least_one_job_role_required: Au moins un rôle professionnel est requis pour %{type_de_compétences} pour %{nom_de_bloc}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Au moins un type de compétence doit être activé avec un rôle professionnel sélectionné pour %{nom_du_bloc}
               invalid_job_role_type: 'Rôle professionnel non valide %{job_role} pour %{skill_type} pour %{block_name}. Options valides : %{options_valides}'
-              invalid_skill_type: 'Type de compétence non valide %{skill_type} pour %{role_name} pour %{block_name}. Options valides : %{options_valides}'
+              invalid_skill_type: 'Type de compétence non valide %{skill_type} pour %{role_name} pour %{block_name}. Options valides : %{valid_options}'
               props_missing: La configuration des compétences est manquante pour %{nom_du_bloc}
         skillvue:
           attributes:
@@ -372,10 +378,10 @@ fr:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Ligne %{row} : Valeur en double %{valeur} pour %{champ}'
+              duplicate_value: 'Ligne %{row} : Valeur en double %{value} pour %{field}'
               invalid_format: Veuillez télécharger le fichier xlsx
-              missing_headers: 'La feuille %{nom_de_la_feuille} ne contient pas les en-têtes requis : %{en-têtes}'
-              missing_sheets: 'Feuilles manquantes : %{fiches}'
+              missing_headers: 'La feuille %{sheet_name} ne contient pas les en-têtes requis : %{headers}'
+              missing_sheets: 'Feuilles manquantes : %{sheets}'
               missing_value: 'Ligne %{row} : Valeur manquante pour %{field}'
             project:
               must_exist: Le projet doit exister
@@ -761,6 +767,12 @@ fr:
           attributes:
             base:
               max_takes_limit_reached: Limite atteinte pour les prises maximales
+        register:
+          attributes:
+            mobile_number:
+              blank: Le numéro de téléphone portable est requis
+              invalid: Le numéro de portable n'est pas valide
+              verification_expired: Le code de vérification a expiré. Vous pouvez essayer de vérifier à nouveau.
         report:
           assessments_not_hogan: Toutes les évaluations doivent être de type Hogan
           assessments_not_saville: Toutes les évaluations doivent être de type Saville
@@ -774,8 +786,8 @@ fr:
           attributes:
             current_password:
               invalid: Le mot de passe actuel est incorrect
-            manager_id:
-              cannot_be_self: L'utilisateur ne peut pas être assigné comme son propre gestionnaire
+        user_idp_comment:
+          reply_to_reply: Impossible de répondre à une réponse (un seul niveau d’imbrication autorisé)
         user_idp_plan:
           no_active_plan: Aucun plan d'action actif n'a été trouvé
   admin_jobs:
@@ -789,6 +801,7 @@ fr:
         assign_idp_to_users: Affectation de l'IDP aux utilisateurs
         assign_reports_and_assessments: Attribuer des rapports et des évaluations
         bulk_create_workshop_invites: Envoi en masse d'invitations à l'Assessment Center
+        bulk_download_idp_reports: Téléchargement en masse des rapports IDP
         bulk_download_reports: Téléchargement en masse de rapports
         bulk_download_user_reports: Téléchargement en masse de rapports d'utilisateurs
         bulk_regenerate_reports: Régénérer les rapports de campagne
@@ -796,6 +809,7 @@ fr:
         bulk_regenerate_user_reports: Régénérer les rapports des utilisateurs
         bulk_reports: Rapports en bloc
         bulk_rescore_campaign_factors: Facteurs de la campagne de réintégration en bloc
+        bulk_update_evaluation_status: État de l’évaluation de la mise à jour en bloc
         compact_completion_status_export: Exportation de l'état d'achèvement compact
         completion_status_export: Exportation de l'état d'achèvement
         copy_dimension: Copier la dimension
@@ -805,6 +819,7 @@ fr:
         export_assessment_questions: Questions d'évaluation des exportations
         export_campaign_factors: Facteurs de la campagne d'exportation
         export_campaign_scorings: Scores de la campagne d'exportation
+        export_dashboard_as_file: Exporter le tableau de bord sous forme de fichier
         export_development_action_translations: Action pour le développement des exportations Traductions
         export_development_actions: Actions de développement des exportations
         export_dimension_as_json: Exporter la dimension JSON
@@ -812,7 +827,9 @@ fr:
         export_job_roles_translations: Exportation Rôles professionnels Traductions
         export_norm: Norme d'exportation
         export_occupations: Professions Exportation
+        export_proficiency_level_translations: Exporter les traductions de niveau de compétence
         export_proficiency_levels: Niveaux de compétence à l'exportation
+        export_reflection_questions: Questions de réflexion sur l’exportation
         export_report_data: Exporter les données du rapport
         export_reports_and_assessments: Exporter des rapports et des évaluations
         export_skill_translations: Compétences à l'exportation Traductions
@@ -834,8 +851,10 @@ fr:
         import_job_roles_translations: Importation Rôles professionnels Traductions
         import_norm: Norme d'importation
         import_proficiency_level_translations: Traductions du niveau de compétence en matière d'importation
+        import_proficiency_levels: Niveaux de compétence en importation
         import_question_translations: Traductions des questions d'importation
         import_raw_data: Importer des données brutes
+        import_reflection_questions: Importer des questions de réflexion
         import_scoring_data: Importer des données de notation
         import_skill_rater_taxonomies: Importer les taxonomies des évaluateurs de compétences
         import_skill_translations: Compétences d'importation Traductions
@@ -865,6 +884,8 @@ fr:
         failed: Échec
         in_progress: En cours
         scheduled: Prévu
+    bulk_download_idp_reports:
+      already_exists: Le Job de génération de ces rapports IDP est déjà en cours
     bulk_download_reports:
       content:
         title: Liens pour télécharger les rapports
@@ -909,6 +930,7 @@ fr:
       download_csv: Télécharger le CSV
       edit: Editer
       evaluate: Évaluer
+      export: Exportation
       export_normed: Scores factoriels normalisés
       export_raw_labels: Brut (avec étiquettes)
       export_raw_scores: Scores factoriels bruts
@@ -921,9 +943,8 @@ fr:
       new_response: Nouvelle réponse
       next_assessment: Passage à l'évaluation suivante
       pending_tasks:
-        many:
         one: Vous avez 1 tâche en attente
-        other: Vous avez %{count} tâches en attente
+        other: Il y a %{count} erreurs, veuillez vérifier vos réponses
       re_evaluate: Cliquez ici pour réévaluer
       reevaluate: Réévaluer
       remove:
@@ -1028,6 +1049,7 @@ fr:
         pearson: Évaluation de Pearson
         saville: Évaluation de Saville
         simulation: Évaluation de la simulation
+        skillvue: Évaluation de Skillvue
     flow:
       end_assessment_modal:
         custom_message: Message personnalisé de fin d'évaluation
@@ -1122,6 +1144,7 @@ fr:
       previous_group_required: Achèvement préalable d'un groupe requis
     menu:
       assessment_center: Centre d'évaluation
+      assessment_center_invites: Invitations du centre d’évaluation
       assessments_and_reports: Évaluations et rapports
       idp: PDI
       manage: Gérer
@@ -1302,13 +1325,13 @@ fr:
     insights_reports: Perspectives et rapports
     instruction_modal:
       campaign_start_final_instructions: "<p>sachez qu'il n'y a aucun moyen d'arrêter ou de mettre en pause le minuteur. Le minuteur de la campagne continuera à fonctionner même si vous fermez le navigateur, vous ne devez donc à aucun moment penser à quitter les tâches entre deux pour faire autre chose. Veillez à minimiser les distractions pendant les tâches. Trouvez un environnement calme, désactivez les notifications sur vos appareils et évitez le multitâche. Restez concentré et concentrez-vous. Une fois le minuteur de la campagne écoulé, vous ne pourrez plus continuer. Si vous avez lu les instructions ci-dessus, veuillez cliquer sur démarrer pour continuer les tâches assignées</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Veuillez lire attentivement les instructions suivantes.</h4>
         <p>les tâches que vous allez commencer sont chronométrées. Lorsque vous cliquez sur "Commencer", le chronomètre de la campagne démarre automatiquement. Vous disposez de %{minutes} minutes pour effectuer toutes les activités. Veillez à effectuer les tâches dans le délai imparti et à gérer votre temps de manière efficace afin d'éviter toute précipitation dans le processus d'évaluation. Veillez à effectuer les tâches en une seule fois, de sorte que si vous avez besoin de faire une pause, c'est le moment</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Surveillance</h4>
         <p>en cliquant sur le bouton "Démarrer", vous serez redirigé vers notre système de surveillance, qui surveillera votre caméra, votre microphone et votre écran pendant votre session. Ces sessions sont automatiquement surveillées par notre système d'intelligence artificielle sophistiqué, ce qui garantit une expérience utilisateur ininterrompue et fluide. Cependant, les sessions peuvent également être examinées par des surveillants humains. Tout signe de mauvaise conduite ou d'irrégularité sera signalé, afin de s'assurer qu'aucune tentative de tricherie n'est effectuée. En cas de soupçon, votre ou vos tâches seront annulées</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Navigateur de contrôle</h4>
         <p>il vous sera demandé de télécharger et d'installer un navigateur spécial pour effectuer les tâches surveillées. Veuillez suivre les instructions de l'écran suivant. Vous pourrez le désinstaller après avoir effectué toutes les activités requises</p>
     instructions:
@@ -1348,6 +1371,8 @@ fr:
   campaign_assessment:
     actions:
       bulk_download: Téléchargement en masse
+      bulk_update_evaluation_as_done: Marquer comme terminé
+      bulk_update_evaluation_as_undone: Démarquer comme terminé
       download: Télécharger les rapports
       export_completion_status: Statut d'achèvement de l'exportation
       export_external: Externe
@@ -1379,9 +1404,15 @@ fr:
       locales: Localités
       norm: Norme
       norm_id: ID de la norme
+      pearson_norm_id: Pearson Norm ID
+      pearson_schedule_id: ID de l’horaire Pearson
       pearson_variation: Variation de Pearson
       prework: Prétravail
+      saville_candidate_id: ID du candidat
+      saville_data_separator: Séparateur de données Saville
       simulation_content_variation: Variation du contenu de la simulation
+      simulation_participant_id: Simulation Participant ID
+      simulation_time_extension: Prolongation du temps de simulation
       skillvue_email_id: Adresse électronique du candidat Skillvue
       skillvue_external_assessment_id: Évaluation de Skillvue ID
       universal_link: Lien universel
@@ -1404,6 +1435,10 @@ fr:
         placeholder: Sélectionner un groupe de centres d'évaluation
         success_message: Campagne de l'évaluateur Le groupe d'évaluation a été attribué avec succès
         title: Groupe du centre d'évaluation
+      bulk_update_evaluation:
+        content: Êtes-vous sûr de vouloir marquer tous les sujets sélectionnés comme %{status} ?
+        successfully: Marqué avec succès comme %{status}.
+        title: Marquer en bloc comme %{status} ?
       import_raw:
         body: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
         success_msg: L'importation a été téléchargée avec succès
@@ -1414,6 +1449,10 @@ fr:
         success_msg: L'importation a été téléchargée avec succès
         title: Importer les données des résultats de notation
         upload: Télécharger
+      prework_setting:
+        disable: Désactiver le pré-travail pour tous les utilisateurs existants
+        enable: Activer le pré-travail pour tous les utilisateurs existants
+        title: Formulaire de mise en place du travail préparatoire
       regenerate:
         content: Êtes-vous sûr de vouloir régénérer les rapports disponibles ?
         title: Régénérer les rapports ?
@@ -1680,22 +1719,28 @@ fr:
       create: Créer
       delete: Supprimer
       done: Terminé
+      download: Télécharger
       edit: Editer
       export: Exportation
+      filter: Filtre
       filter_by_tags: Filtrer par tags
+      go_back: Retour
       import: Importation
       insert: Insérer
       ok: OK
       publish: Publier
+      reject: Rejeter
       remove: Retirer
       reset: Remise à zéro
       resolve: Résoudre
       restore: Restaurer
+      return_to_home: Retour à l’accueil
       run: Exécuter
       save: Économiser
       schedule: Calendrier
       search: Recherche
       send: Envoyer
+      sign_in: Connexion
       start: Démarrage
       submit: Soumettre
       unarchive: Désarchiver
@@ -1893,16 +1938,12 @@ fr:
     mailer:
       admin_invitation_instructions:
         accept: Cliquez ici pour accepter l'invitation.
-        body: 'Bonjour %{name}, Vous avez été invité à accéder au panneau d''administration de Lighthouse - The Talent Enterprise assessment platform. %{accept} Ou vous pouvez ignorer cet e-mail. Veuillez ne pas partager vos identifiants d''accès avec qui que ce soit.
-
-          '
+        body: 'Bonjour %{name}, Vous avez été invité à accéder au panneau d''administration de Lighthouse - The Talent Enterprise assessment platform. %{accept} Ou vous pouvez ignorer cet e-mail. Veuillez ne pas partager vos identifiants d''accès avec qui que ce soit. '
         subject: Invitation au phare
       confirmation_instructions:
         subject: Instructions de confirmation
       invitation_instructions:
-        body: 'Bonjour %{name}, Vous avez été ajouté à Lighthouse en tant qu''administrateur pour la section suivante
-
-          '
+        body: 'Bonjour %{name}, Vous avez été ajouté à Lighthouse en tant qu''administrateur pour la section suivante '
         login: Se connecter à Lighthouse
         sections:
           campaign: 'Campagne : %{section_name}'
@@ -1910,31 +1951,19 @@ fr:
           project: 'Projet : %{section_name}'
         subject: Invitation au phare
       password_change:
-        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse mte.support@mercer.com
-
-          '
-        regards: 'Cordialement, l''équipe de Lighthouse
-
-          '
+        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse mte.support@mercer.com '
+        regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Votre mot de passe Lighthouse a changé
       reset_password_instructions:
-        body: 'Bonjour %{name} ! Quelqu''un a demandé un lien pour changer votre mot de passe. Vous pouvez le faire en cliquant sur le lien ci-dessous.
-
-          '
+        body: 'Bonjour %{name} ! Quelqu''un a demandé un lien pour changer votre mot de passe. Vous pouvez le faire en cliquant sur le lien ci-dessous. '
         change_password: Modifier le mot de passe
         footer: Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessus et créé un nouveau mot de passe.
-        regards: 'Cordialement, l''équipe de Lighthouse
-
-          '
+        regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Instructions pour réinitialiser votre mot de passe
       unlock_instructions:
-        body: 'Bonjour %{name} ! Votre compte a été verrouillé en raison d''un nombre excessif de tentatives de connexion infructueuses. Cliquez sur le lien ci-dessous pour déverrouiller votre compte :
-
-          '
+        body: 'Bonjour %{name} ! Votre compte a été verrouillé en raison d''un nombre excessif de tentatives de connexion infructueuses. Cliquez sur le lien ci-dessous pour déverrouiller votre compte : '
         footer: Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessus et créé un nouveau mot de passe.
-        regards: 'Cordialement, l''équipe de Lighthouse
-
-          '
+        regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Instructions pour débloquer votre compte
         unlock_account: Débloquer mon compte
     omniauth_callbacks:
@@ -2042,6 +2071,9 @@ fr:
         last_factor_group: Impossible de supprimer le dernier groupe de facteurs de campagne.
       campaign_idps:
         idp_template_not_published: Ce modèle de PDI n'est pas encore publié, veuillez le publier avant de s'attaquer à la campagne.
+      cant_be_deleted: Cet enregistrement ne peut pas être supprimé
+      client_feature:
+        ai_assisted_idp_feature_error: Ne peut pas être vrai si la fonction des assistants d’IA est désactivée
       create_superadmin:
         uniq_email: L'email doit être unique.
       development_actions:
@@ -2050,6 +2082,9 @@ fr:
         skills_required: Veuillez sélectionner au moins une compétence.
       exceeded_subjects_count: Vous ne pouvez ajouter que %{count} sujets par invitation
       filled?: ne peut être vide
+      idp_template:
+        content_required: Le contenu est requis pour les instructions
+        tag_or_skill_required: Veuillez sélectionner une étiquette ou une compétence lorsque l’option « Sélectionné » est sélectionnée.
       invalid_name: seuls l'alphabet, les chiffres, les espaces, les tirets et les points sont autorisés comme caractères valides
       invalid_value: déclaration invalide '%{value}' sur la ligne numéro %{row}
       job_roles:
@@ -2071,6 +2106,8 @@ fr:
       report_families_reports:
         report_exists: Ce rapport fait déjà partie de l'ensemble de rapports
       size?: doit être inférieure à %{size}
+      skill:
+        already_added: Compétence du même nom déjà ajoutée.
       skill_alias:
         unique_alias: L'alias doit être unique
         unique_skill: Les compétences doivent être uniques
@@ -2133,6 +2170,8 @@ fr:
     assessments:
       timed_out: Vous ne pourrez pas passer l'évaluation %{assessment_name} car elle a dépassé le temps imparti.
     error: Erreur
+    error_401: Vous n’êtes pas autorisé à accéder à cette ressource. Veuillez vous connecter.
+    error_403: Vous n’êtes pas autorisé à afficher cette ressource.
     error_500: Contactez votre administrateur.
     error_msg: Veuillez actualiser la page et si le problème persiste, contactez votre administrateur
     forbidden: Vous n'avez pas accès à cette page
@@ -2458,12 +2497,13 @@ fr:
       generating_development_actions: Générer des actions de développement...
       heading: Actions de développement
       incomplete_error: Actions de développement incomplètes
-      incomplete_error_message: Certaines actions de développement sont incomplètes. Veuillez les terminer avant de soumettre votre PDI.
+      incomplete_error_message: Certaines actions de développement sont incomplètes. Veuillez les remplir avant de soumettre votre IDP.
       incomplete_warning: Actions de développement incomplètes
-      incomplete_warning_message: Certaines actions de développement sont incomplètes. Voulez-vous vraiment marquer votre PDI comme terminé ?
+      incomplete_warning_message: Certaines actions de développement sont incomplètes. Êtes-vous sûr de vouloir marquer votre IDP comme terminé ?
       learning_from_others: Apprendre des autres
       manage_skills: Gérer les compétences
       marathon: Marathon
+      mark_as_complete: Marquer comme terminé
       no_development_actions: Aucune action de développement
       on_the_job: Au travail
       other: Autres
@@ -2480,7 +2520,7 @@ fr:
     edit_progress: Modifier l'état d'avancement
     initial_steps:
       add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
-      add_skill_group_title: Explorer vos compétences %{category} Compétences
+      add_skill_group_title: Explorer vos compétences %{category}
       add_skills: Ajouter
       add_skills_step: Ajouter des compétences
       continue_to_rate_skills: Continuer à évaluer les compétences
@@ -2494,7 +2534,7 @@ fr:
       rate_skills_title: Évaluer ses compétences
       rating_column_header: Votre auto-évaluation
       reflective_questions: Questions de réflexion
-      save: Enregistrer
+      save: Sauvegarder
       select_skills: Sélectionnez vos compétences
       select_skills_placeholder: Sélectionner les compétences
       selected_skills: Compétences sélectionnées
@@ -2651,7 +2691,7 @@ fr:
       pending_approval: En attente
       rejected: Rejeté
     users: Utilisateurs
-    with_reflection_questions: Avec questions de réflexion
+    with_reflection_questions: Avec des questions de réflexion
     without_reflection_questions: Sans questions de réflexion
   idp_templates:
     assign: Attribuer
@@ -2767,6 +2807,7 @@ fr:
     overuse_number: Indemnité de dépassement
     report_family: Rapport sur la liasse
     start_date: Date de début
+    title: Licence
     type: Type
     types:
       common: Communs
@@ -2777,6 +2818,35 @@ fr:
     used_out_of: "%{used} sur %{total}"
   mailer:
     from: L'entreprise des talents
+    idp:
+      manager_unread_comments:
+        body: |-
+          Bonjour %{name},
+          Vous avez de nouveaux commentaires de la part de vos déplacés.
+
+          %{dashboard_link}
+
+          Sur votre tableau de bord Direct Reportees, vous pouvez :
+          - Examiner les nouveaux commentaires des participants sur leurs régimes individuels.
+          - Fournir des commentaires sur leurs objectifs de développement
+          - Suivre l’avancement des activités des PDI
+          - Soutenir la croissance et le développement de votre équipe
+        dashboard_link: Visiter le tableau de bord
+        subject: Vous avez de nouveaux commentaires - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          Bonjour %{name},
+          Vous avez de nouveaux commentaires sur votre plan de développement.
+
+          %{dashboard_link}
+
+          Sur le tableau de bord Mon plan, vous pouvez :
+          - Mettre à jour votre plan de développement
+          - Lire les nouveaux commentaires et réactions
+          - Répondre aux questions de votre gestionnaire
+          - Mettre à jour votre avancement sur les actions de développement
+        dashboard_link: Voir mon plan
+        subject: Vous avez de nouveaux commentaires sur votre plan de développement - %{campaign_name}
     license:
       expire:
         subject: Licence expirée
@@ -3648,6 +3718,9 @@ fr:
     waiting: Attente
     you: Vous
     yourself: Vous-même
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: En cliquant sur cette case, vous reconnaissez avoir lu notre avis de confidentialité et l'avis de confidentialité de nos clients et vous consentez à la collecte et au traitement de vos informations personnelles comme décrit dans ces documents, y compris le transfert international de vos informations personnelles.
+    privacy_notice: Avis de confidentialité
   time:
     formats:
       date: "%d/%m/%y"
@@ -3708,6 +3781,7 @@ fr:
         body: Reportez-vous au fichier d'exemple pour extraire un modèle qui peut être utilisé pour Importer ici.
         title: Attribuer des rapports et des évaluations
     toolbar:
+      bulk_download_idp_reports: Téléchargement en masse des rapports IDP
       export: Exporter des utilisateurs
       export_compact_completion_status: Compact
       export_detailed_completion_status: Détaillé
@@ -3892,6 +3966,10 @@ fr:
       BadRequest: Le fichier n'a pas été téléchargé car la dernière demande a échoué. Cela peut être dû au fait que votre internet ne fonctionne pas. Si votre internet fonctionne, veuillez contacter l'administrateur
       EntityTooLarge: La taille du fichier doit être inférieure à %{maxFileSize} MB
       WrongFileType: Le type de fichier doit être l'un des suivants %{allowedFileTypes}
+    idp:
+      reflective_questions_required: Des réponses à des questions de réflexion sont requises pour les PDI
+      status_not_permitted: n’est pas autorisé par l’utilisateur.
+      status_not_permitted_by_manager: Le gestionnaire ne peut pas mettre à jour le statut lorsque le plan est à l’état « %{status} ».
     invalid: n'est pas valide
     issue: Enjeu
     least: Veuillez répondre à au moins %{min} choix.
@@ -3912,7 +3990,6 @@ fr:
     required: Veuillez répondre à cette question
     text: Votre réponse ne doit pas contenir de chiffres
     title:
-      many:
       one: Il y a une erreur, veuillez vérifier vos réponses
       other: Il y a %{count} erreurs, veuillez vérifier vos réponses
     user_self_skill_rating_disabled: L'auto-évaluation est désactivée pour ce modèle

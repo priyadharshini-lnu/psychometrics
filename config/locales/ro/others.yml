@@ -11,21 +11,198 @@ ro:
         select_comparison: Alegeți tipul de comparare
         select_factors: Selectați factorii
         select_operation: Selectați operațiunea
+      sheet_column:
+        accessor_access: Accesul accesorului
+        dashboard_use: Utilizarea tabloului de bord
+        visible_in_list: Vizibil în listă
     errors:
       models:
+        admin_edit:
+          attributes:
+            email:
+              blank: Câmpul de e-mail nu poate fi gol
+              invalid: E-mailul nu este valid
+            first_name:
+              blank: Prenumele nu poate fi gol
+            last_name:
+              blank: Numele de familie nu poate fi gol
+        agile:
+          answers:
+            blank: Răspunsurile nu pot fi goale
+          group_id:
+            blank: Codul de grup nu poate fi gol
         all_blocks_form:
           attributes:
             base:
               duplicate_block: 'Blocul "%{block_name}" are configurații duplicate: %{duplicate_configurations}'
+        assessment_question_import_form:
+          attributes:
+            file:
+              invalid_format: Vă rugăm să încărcați fișierul xlsx
+        assign_report:
+          attributes:
+            adding_report_ids:
+              not_linked_to_report_family: Ați selectat Rapoartele care nu sunt legate de pachetul de rapoarte selectat
+              report_family_disabled: Ați selectat Pachet de rapoarte dezactivat
+              reports_disabled: Ați selectat Rapoartele dezactivate
+            removing_report_ids:
+              not_linked_to_report_family: Ați selectat Rapoartele care nu sunt legate de pachetul de rapoarte selectat
+        assign_reports_and_assessments:
+          attributes:
+            assessment_id:
+              blank: ID-ul de evaluare nu poate fi gol
+            bundle_report_id:
+              blank: ID-ul pachetului de raportare nu poate fi gol
+            report_id:
+              blank: Codul raportului nu poate fi gol
+        campaign_factor_import_form:
+          attributes:
+            file:
+              invalid_format: Vă rugăm să încărcați fișierul xlsx
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: Coloana "%{entity}" nu poate fi necompletată la rândul %{index}
+              duplicate_code: Cod duplicat '%{code}' la rândul %{index}
+              invalid_output_type: Invalid output_type '%{output_type}' la rândul %{index}
+              max_limit_reached: Factorii totali ai campaniei depășesc limita maximă de %{count}
+              missing_headers: 'Lipsesc anteturi obligatorii: %{headers}'
+              type_mismatch: Nepotrivire a tipului de ieșire pentru codul '%{code}' la rândul %{index}
+            file:
+              invalid_format: Vă rugăm să încărcați fișierul xlsx
+            resource:
+              must_exist: "%{resource} trebuie să existe"
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: Vă rugăm să încărcați fișierul CSV
+        column:
+          attributes:
+            name:
+              not_unique: Acest domeniu este deja prezent
+        create_all:
+          attributes:
+            assessors:
+              blank: Selectați cel puțin un evaluator
+              email_duplicated: Subiectul și e-mailurile evaluatorului sunt duplicate
+              multiple_leads_for_subject: Evaluatori principali multipli alocați subiectului
+            evaluators:
+              email_duplicated: Subiectul și e-mailurile evaluatorului sunt duplicate
+            subjects:
+              email_duplicated: Unele subiecte au același e-mail
         create_one:
           attributes:
+            assessment_ids:
+              invalid: Evaluarea %{id} nu poate fi atașată unui evaluator
+              lead_assessor_already_assigned: Subiectului i se poate atribui un singur evaluator principal
+            assessor_email:
+              already_exists: Subiectul cu acest evaluator sunt deja conectate
+              blank: E-mailul evaluatorului nu poate fi gol
+              invalid: E-mailul evaluatorului nu este valid
+            email:
+              already_exists: Un subiect cu același e-mail există deja
+              blank: E-mailul nu poate fi gol
+              invalid: E-mailul nu este valid
+            evaluator_email:
+              already_exists: Subiectul cu acest evaluator este deja conectat
+              blank: E-mailul evaluatorului nu poate fi gol
+              invalid: E-mailul evaluatorului nu este valid
+            evaluator_first_name:
+              blank: Prenumele evaluatorului nu poate fi gol
+            evaluator_last_name:
+              blank: Numele de familie al evaluatorului nu poate fi necompletat
+            evaluator_locale:
+              inclusion: Localizare greșită
+            evaluator_password:
+              too_short: Parola evaluatorului este prea scurtă (minimul este %{count} caractere)
+            first_name:
+              blank: Prenumele nu poate fi gol
             job_role:
               cannot_be_same: Rolul profesional vizat trebuie să fie diferit de rolul profesional actual
               not_found: Rolul postului "%{name}" nu se găsește în rolurile proiectului sau globale
+            last_name:
+              blank: Numele de familie nu poate fi gol
+            locale:
+              inclusion: Localizare greșită
+            relationship_name:
+              blank: Relația nu poate fi goală
+              invalid: Relația %{name} nu este validă
+            subject_email:
+              blank: Subiect E-mailul nu poate fi gol
+              invalid: Subiectul E-mailul nu este valid
+              not_exists: Subiectul nu a fost găsit cu adresa de e-mail %{email}
+        email_schedule:
+          attributes:
+            content:
+              blank: Conținutul nu poate fi gol
+            from:
+              blank: Câmpul From nu poate fi gol
+            reply_to_email:
+              blank: Câmpul Răspuns la e-mail nu poate fi gol
+              invalid: Răspunsul la e-mail nu este valid
+            scheduled_date:
+              blank: Câmpul de dată programat nu poate fi gol
+            subject:
+              blank: Subiectul nu poate fi gol
+        email_template:
+          attributes:
+            content:
+              blank: Conținutul nu poate fi gol
+              invalid_consolidated_pipetext: Aceste pipetext nu sunt valide pentru mesajele de consolidare %{invalid_pipetexts}
+              invalid_unconsolidated_pipetext: Aceste pipetext nu sunt valide pentru mesajele neconsolidate %{invalid_pipetexts}
+            from:
+              blank: Câmpul From nu poate fi gol
+            reply_to_email:
+              blank: Câmpul Răspuns la e-mail nu poate fi gol
+              invalid: Răspunsul la e-mail nu este valid
+            subject:
+              blank: Subiectul nu poate fi gol
+        email_test_form:
+          attributes:
+            to_email:
+              blank: Câmpul de e-mail nu poate fi gol
+              invalid: E-mailul nu este valid
+        factor_import_form:
+          attributes:
+            base:
+              code_length: Codul trebuie să aibă cel puțin 3 caractere la rândul %{index}.
+              code_required: Codul factorului este necesar la rândul %{index}
+              invalid_csv: Csv nevalid %{error_message}
+              invalid_scoring_strategy: Strategia de evaluare nevalidă "%{strategy}" la rândul %{index}. Strategiile permise sunt %{allowed}.
+              missing_headers: 'Lipsesc anteturi obligatorii: %{headers}'
+              name_required: Numele factorului este obligatoriu la rândul %{index}
+              scoring_strategy_required: Strategia de evaluare este necesară la rândul %{index}
+            file:
+              invalid_format: Vă rugăm să încărcați fișierul CSV
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: Notificarea SMS a clientului este dezactivată
+        hogan:
+          attributes:
+            name:
+              not_unique: Această integrare este deja prezentă pentru acest proiect
+        iiht:
+          attributes:
+            name:
+              not_unique: Această integrare este deja prezentă pentru acest proiect
         import_one:
           attributes:
+            email:
+              already_exists: Un subiect cu același e-mail există deja
+              blank: E-mailul nu poate fi gol
+              invalid: E-mailul nu este valid
+            first_name:
+              blank: Prenumele nu poate fi gol
             job_role:
               cannot_be_same: Rolul profesional vizat trebuie să fie diferit de rolul profesional actual
+              not_found: Rolul de post "%{name}" nu a fost găsit în rolurile de proiect sau globale
+            last_name:
+              blank: Numele de familie nu poate fi gol
+            locale:
+              inclusion: Localizare greșită
+            password:
+              too_short: Parola este prea scurtă. Caracterul minim %{count} necesar
         job_roles_translations_form:
           attributes:
             file:
@@ -37,6 +214,121 @@ ro:
               parsing_failed: 'Eroare în timpul analizării fișierului, eroare: %{error}.'
             project:
               must_exist: Proiectul trebuie să existe
+        mettl:
+          attributes:
+            name:
+              not_unique: Această integrare este deja prezentă pentru acest proiect
+        password_reset:
+          attributes:
+            email:
+              wrong_email: Nu am putut găsi niciun utilizator cu adresa de e-mail pe care ați furnizat-o.
+        profile:
+          attributes:
+            first_name:
+              blank: Prenumele nu poate fi gol
+            last_name:
+              blank: Numele de familie nu poate fi gol
+            password:
+              contains_repeats: Parola nu trebuie să conțină repetări
+              too_short: Parola este prea scurtă. Caracterul minim %{count} necesar
+              too_weak: 'Parola trebuie să conțină: Minim 1 minusculă, 1 majusculă, 1 număr și 1 caracter special.'
+        questions_import_block_form:
+          attributes:
+            name:
+              blank: Numele blocului nu poate fi necompletat
+        questions_import_matrix_table_form:
+          attributes:
+            answersType:
+              blank: Proprietatea întrebării MatrixTable 'answersType' nu poate fi necompletată
+              inclusion: Proprietatea întrebării MatrixTable 'answerType' ar trebui să fie 'SingleAnswer' sau 'MultipleAnswer'
+            type:
+              blank: Proprietatea întrebării MatrixTable 'type' nu poate fi necompletată
+              inclusion: Tipul de întrebare MatrixTable ar trebui să aibă 'Likert'
+        questions_import_multiple_choice_form:
+          attributes:
+            type:
+              blank: Proprietatea întrebării MultipleChoice "type" nu poate fi necompletată.
+              inclusion: Proprietatea întrebării MultipleChoice "type" ar trebui să fie "SingleAnswer", "MultipleAnswer" sau "Dropdown"
+        questions_import_question_form:
+          attributes:
+            name:
+              blank: Numele întrebării nu poate fi necompletat
+            type:
+              blank: Titlul întrebării nu poate fi gol
+              inclusion: Tipul de întrebare ar trebui să fie "TextEntry", "MultipleChoice", "MatrixTable" sau "StaticContent"
+        questions_import_randomization_property_form:
+          attributes:
+            questions:
+              blank: randomization.questions nu poate fi gol dacă randomization.type este "Unele"
+            type:
+              inclusion: randomization.type ar trebui să fie fie "Toate", "Unii" sau "Nu"
+        questions_import_required_validation_form:
+          attributes:
+            type:
+              inclusion: Tipul de validare necesar ar trebui să fie "Forță" sau "Solicitare"
+        questions_import_static_content_form:
+          attributes:
+            type:
+              blank: Tipul de proprietate Întrebare conținut static nu poate fi necompletat
+              inclusion: Tipul de proprietate al întrebării Conținut static ar trebui să fie "Text"
+        questions_import_text_entry_form:
+          attributes:
+            type:
+              blank: Proprietatea întrebării TextEntry "type" nu poate fi goală.
+              inclusion: Proprietatea întrebării TextEntry 'type' ar trebui să fie 'Single Line', 'Multi Line' sau 'Essay Text Box'
+        register:
+          attributes:
+            email:
+              blank: Adresa de e-mail este obligatorie
+              in_use: Această adresă de e-mail este utilizată. Dacă aveți deja un cont, vă rugăm să vă conectați.
+              invalid: Adresa de e-mail nu este validă
+              too_long: Adresa de e-mail este prea lungă
+            first_name:
+              blank: Prenumele este obligatoriu
+              too_long: Prenumele este prea lung
+            last_name:
+              blank: Numele de familie este obligatoriu
+              too_long: Numele de familie este prea lung
+            mobile_number:
+              blank: Este necesar un număr de telefon mobil
+              invalid: Numărul de telefon mobil nu este valid
+              verification_expired: Codul de verificare a expirat. Puteți încerca să verificați din nou.
+            registration_code:
+              blank: Este necesar codul de înregistrare
+              incorrect_email_domain: Această adresă de e-mail nu este valabilă pentru codul de înregistrare introdus
+              invalid: Codul de înregistrare nu este valid
+            sms_invite_code:
+              invalid: Codul de invitație SMS nu este valid
+        saml_setting:
+          invalid_cert: Certificat nevalid
+        security_setting_forms:
+          attributes:
+            magic_link_expiry_in_seconds:
+              greater_than_or_equal_to: Durata trebuie să fie de minim 5 minute
+            session_inactivity_timeout_in_seconds:
+              greater_than_or_equal_to: Durata trebuie să fie de minim 60 de minute
+        sheet:
+          attributes:
+            file:
+              column_type_mismatch: Coloana <b>%{col}</b> este de așteptat să fie de tip %{type}, dar a primit <b>%{got}</b>
+              email_blank: 'Rândul %{row_number}: câmpul de e-mail nu poate fi gol'
+              email_duplicate: Există duplicate în coloana E-mail
+              email_invalid: 'Rândul %{row_number}: E-mailul nu este valid'
+              invalid_column: Coloana nevalidă %{name}
+              invalid_column_name: Coloana <b>"%{column}"</b> nu este validă
+              invalid_column_name_size: Numele <b>coloanei "%{column}"</b> este prea lung (max 64)
+              invalid_column_type: Tipul de coloană trebuie să fie Șir, Text, Număr, HTML sau Markdown
+              invalid_format: Format nevalid (.xlsx)
+              invalid_number_value: <b>Rând#%{index}</b> Coloana <b>"%{column}"</b> nu este un număr
+              invalid_string_value: <b>Rând#%{index}</b> coloana <b>"%{column}"</b> nu este un șir
+              invalid_string_value_size: <b>Rând#%{index}</b> coloana <b>"%{column}"</b>  prea lungă (max 256)
+              no_email_column: Fișierul nu conține coloana E-mail
+              non_uniq_column: Există următoarele coloane non-uniq %{columns}
+        sheet_row_form:
+          attributes:
+            email:
+              blank: E-mailul nu poate fi gol
+              not_uniq_email: Rândul cu e-mail este deja prezent
         skill_rater_block_form:
           attributes:
             base:
@@ -50,53 +342,568 @@ ro:
           attributes:
             name:
               not_unique: Această integrare este deja prezentă pentru acest proiect.
+        sms_invites_create:
+          attributes:
+            first_name:
+              blank: Prenumele nu poate fi gol
+            last_name:
+              blank: Numele de familie nu poate fi gol
+            locale:
+              inclusion: Localizare greșită.
+            mobile_no:
+              blank: Numărul de telefon mobil nu poate fi gol
+              invalid: Numărul de telefon mobil ar trebui să înceapă cu plus, urmat de codul internațional și apoi de număr
+              invite_exists_in_campaign: Invitația prin SMS cu același număr de telefon mobil există deja
+        sms_invites_import:
+          attributes:
+            import_data:
+              duplicated_mobile_numbers: 'Următoarele numere de telefon mobil sunt duplicate în CSV: %{mobile_numbers}'
+              invalid_header: Antet nevalid. Exportați invitația SMS pentru a obține anteturile corecte
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: Formatul ID e-mail nu este valid.
+        super_admin_edit:
+          attributes:
+            email:
+              blank: Câmpul de e-mail nu poate fi gol
+              invalid: E-mailul nu este valid
+              starts_with_invalid_characters: E-mailul nu poate începe cu =, |, +, -, @, %
+            first_name:
+              blank: Prenumele nu poate fi gol
+              starts_with_invalid_characters: Prenumele nu poate începe cu =, |, +, -, @, %
+            last_name:
+              blank: Numele de familie nu poate fi gol
+              starts_with_invalid_characters: Numele de familie nu poate începe cu =, |, +, -, @, %
         taxonomies_import_form:
           attributes:
             file:
               duplicate_value: 'Rând %{row}: Valoare duplicată %{value} pentru %{field}'
               invalid_format: Vă rugăm să încărcați fișierul xlsx
               missing_headers: "%{sheet_name} foii îi lipsesc antetele necesare: %{headers}"
-              missing_sheets: 'Lipsesc foile necesare: %{foaie}'
+              missing_sheets: 'Lipsesc foile necesare: %{sheets}'
               missing_value: 'Rând %{row}: Lipsește valoarea pentru %{field}'
             project:
               must_exist: Proiectul trebuie să existe
+        update_norm:
+          attributes:
+            norm_type:
+              inclusion: Vă rugăm să selectați tipul corect de normă
+        user:
+          attributes:
+            email:
+              user_exists_in_campaign: Utilizatorul cu acest ID de e-mail există deja în campanie
+              user_exists_in_project: Utilizatorul cu acest ID de e-mail există deja în proiect
+            import_data:
+              cant_overwrite_password: Nu aveți permisiunea de a suprascrie parola.
+              duplicated_emails: 'Următoarele e-mailuri sunt duplicate în CSV: %{emails}'
+              invalid_email: 'Rândul %{row_number}: E-mail nevalid %{email}'
+              invalid_header: Antet nevalid, preluare antetul de la export
+              invalid_reports_header: Antet nevalid, preluați antetul din fișierul eșantion
+              manager_not_found: 'Rândul %{row_number}: Managerul cu e-mail %{email} nu este prezent în campanie sau în CSV'
+              user_update_failed: Actualizarea utilizatorului a eșuat pentru %{email} cu eroarea '%{error}'
+            locale:
+              inclusion: Localizare greșită
+            name:
+              starts_with_invalid_characters: nu poate începe cu =, |, +, -, @, %
+            schedule_end_date:
+              invalid_datetime: este nevalidă
+            schedule_start_date:
+              invalid_datetime: este nevalidă
+        user_assessment:
+          subject_and_assessment_exists: Evaluarea și perechea de subiecte există deja
+        user_idp_development_action:
+          attributes:
+            end_date_time:
+              invalid_datetime: este nevalidă
+            private:
+              inclusion: trebuie să fie un boolean
+            start_date_time:
+              invalid_datetime: este nevalidă
   activerecord:
     attributes:
+      administration/assessments/assign_form:
+        access_reports: Reguli de acces la raport
+        access_reports_at: Accesați raportul la
+        access_reports_at_date: Dată
+        access_reports_at_time: Oră
+        client_ids: Închirieri pentru clienți
+        manager_ids: Manageri
+        report_ids: Rapoarte
+        user_ids: Utilizatorii
+      assessment:
+        active: Activ
+        categories:
+          '360': Campania 360
+          agile: AGIL
+          assessor_form: Formular evaluator
+          case_study: Studii de caz
+          hogan: Hogan
+          iiht: IIHT
+          meeting: Ședință
+          organisational: Anchete
+          pearson: Pearson
+          psychometric: Evaluare
+          saville: Saville
+          threesixty: Campania 360
+        category: Categorie
+        created_at: Data creării
+        description: Descriere
+        id: ID
+        name: Nume
+        statuses:
+          finished: complet
+        timing: Calendarul
+        types:
+          common: Evaluarea TTE
+          hogan: Hogan
+          iiht: Evaluarea IIHT
+          pearson: Evaluarea Pearson
+          saville: Evaluarea Saville
+        updated_at: Data modificării
+      assign:
+        completed_at: Data finalizării
+        statuses:
+          completed: Completat
+          in_progress: Relua
+          ineligible: Neeligibile
+          interrupted: Întrerupt
+          not_started: Nou
+          overdue: Restante
+          timed_out: Expirat
+      block:
+        active: Activ
+        assign_to_assessment_ids: Evaluări
+        created_at: Data creării
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+      client:
+        applicable_level: Nivel aplicabil
+        applicable_levels:
+          campaign: Campanie
+          project: Proiect
+          sub_campaign: Sub-campanie
+        category: Categorie
+        created_at: Data creării
+        id: ID
+        licenses: Număr de licență
+        licenses_expire: Data de expirare a licenței
+        licenses_used: Utilizarea licenței
+        location: Loc
+        logo: Logo-ul clientului
+        memberships_count: Utilizatorii
+        name: Nume
+        number: Număr de client
+        privacy_consent: Activați consimțământul pentru prelucrarea datelor
+        project_manager: Manager de proiect TTE
+        project_manager_id: Manager de proiect TTE
+        report_ids: Rapoarte
+        strong_password_enabled: Activați parola puternică
+        subdomain: Subdomeniu
+        types:
+          associate: Asociat
+          corporate: Corporatist
+          distributer: Distribuitor
+          other: Alt
+          partner: Partener
+          retail: Vânzare cu amănuntul
+          tte: TTE
+        updated_at: Data modificării
+        year: Anul clientului
+      communication:
+        created_at: Data creării
+        id: ID
+        updated_at: Data modificării
+      dimension:
+        active: Activ
+        created_at: Data creării
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+      factor:
+        active: Activ
+        created_at: Data creării
+        id: ID
+        name: Nume
+        parent_id: Părinte
+        questions_count: Nu. de întrebări
+        updated_at: Data modificării
+      hogan_report_setting:
+        load_report: Încărcați raportul de la Hogan
+      innovation_style:
+        active: Activ
+        created_at: Data creării
+        description: Descriere
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+      innovation_styles_factor:
+        active: Activ
+        created_at: Data creării
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+      library:
+        created_at: Data creării
+        id: ID
+        type: Miniatură
+        updated_at: Data modificării
+      license:
+        id: ID
+        number: Număr de licență
+        overuse_number: Alocație de utilizare excesivă
+        type: Licență pentru
+        types:
+          common: Comun
+          proctoring: Supravegherea
+          threesixty: Treișaizeci
+        unlimited: Nelimitat
+        used_number: Număr de licență folosit
       membership:
+        active: Activ
+        created_at: Data creării
+        disabled: Dezactiva
+        email: E-mail
         first_name: Numele și prenumele
+        id: ID
         last_name: Numele de familie
+        parent: Direct Manager
+        parent_id: Direct Manager
+        report_ids: ID-urile rapoartelor
+        roles:
+          campaign_admin: Administratorul campaniei
+          client_admin: Administrator client
+          manager: Manager
+          member: Utilizator
+          project_admin: Administrator de proiect
+        updated_at: Data modificării
+        user_access: Acces utilizator
+      norm:
+        active: Activ
+        created_at: Data creării
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+        updated_by: Editat de
+      occupation:
+        active: Activ
+        bachelors_or_masters_qualification: Calificare de licență sau master
+        created_at: Data creării
+        description: Descriere
+        diploma_qualification: Diplomă de calificare
+        full_description: Descriere completă
+        high_school_entry_roles: Roluri de intrare în liceu
+        id: ID
+        key_career_tracks: Piste cheie de carieră
+        name: Nume
+        potential_areas_of_study: Domenii potențiale de studiu
+        updated_at: Data modificării
+        work_environment: Mediul de lucru
+      occupations_factor:
+        active: Activ
+        created_at: Data creării
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+      product:
+        active: Activ
+        created_at: Data creării
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+      question:
+        active: Activ
+        assign_to_assessment_ids: Evaluări
+        created_at: Data creării
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+      report:
+        created_at: Data creării
+        id: ID
+        updated_at: Data modificării
+      report_family:
+        created_at: Data creării
+        id: ID
+        updated_at: Data modificării
+      task:
+        active: Activ
+        created_at: Data creării
+        description: Descriere
+        description_label: DESCRIERE
+        factor_id: Competență
+        factor_id_label: SELECTAȚI COMPETENȚA
+        id: ID
+        membership_id: Atribuitor
+        membership_id_label: SELECTEAZĂ ATRIBUITOR
+        name: Element de acțiune
+        name_label: ACȚIUNE
+        planned_completed_at: Scadentă
+        planned_completed_at_label: SELECTAȚI DATA SCADENTĂ
+        priority: Prioritate
+        priority_label: PRIORITATE
+        status: Stare
+        status_label: SELECTAȚI STAREA
+        statuses:
+          completed: Completat
+          in_progress: În curs de desfășurare
+          not_started: Neînceput
+          overdue: Restante
+        updated_at: Data modificării
+        updated_by: Editat de
+      threesixty:
+        users_result:
+          statuses:
+            completed: Completat
+            in_progress: Relua
+            not_started: Nou
       user:
+        active: Activ
+        created_at: Data creării
+        current_password: Parolă curentă
+        disabled: Dezactiva
         email: Adresă de e-mail
         first_name: Numele și prenumele
+        id: ID
         last_name: Numele de familie
+        manage_client_ids: Închirierea clientului
+        memberships: Închirierea clientului
+        name: Nume
+        password: Parolă
+        password_confirmation: Confirmarea parolei
+        role: Rol
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            campaign_admin: Administratorul campaniei
+            project_admin: Administrator de proiect
+            regular: Administrator client
+            superadmin: Super Admin
+          agile: AGIL
+          assessor: Evaluator
+          assessor_form: Formular evaluator
+          campaign_admin: Administratorul campaniei
+          case_study: Studiu de caz
+          client_admin: Administrator client
+          hogan: Hogan
+          iiht: IIHT
+          manager: Manager
+          meeting: Ședință
+          member: Utilizator
+          organisational: Organizatorice
+          pearson: Pearson
+          project_admin: Administrator de proiect
+          psychometric: Psihometrice
+          regular: Regulat
+          saville: Saville
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Treișaizeci
+        types:
+          anonymous: Utilizatori anonimi
+          identified: Utilizatori identificați
+        updated_at: Data modificării
       user_form:
+        active: Activ
+        created_at: Data creării
+        current_password: Parolă curentă
+        disabled: Dezactiva
         email: Adresa de e-mail
         first_name: Numele și prenumele
+        id: ID
         last_name: Numele de familie
+        parent: Direct Manager
+        parent_id: Direct Manager
         password: Parolă
+        password_confirmation: Confirmarea parolei
+        role: Rol
+        updated_at: Data modificării
+      users_result:
+        assessment_name: Numele evaluării
+        assessment_type: Tip de evaluare
+        completed_at: Finalizat la
+        completion_reasons:
+          time_out_offline: Timeout / Offline
+          time_out_online: Timeout / Online
+          user_completed: Utilizator finalizat
+        email: E-mail
+        name: Nume
+        result_id: ID rezultat
+        started_at: A început la
+        status: Stare
+        statuses:
+          completed: Completat
+          in_progress: Relua
+          ineligible: Neeligibile
+          interrupted: Întrerupt
+          not_started: Nou
+          timed_out: import_raw cronometrat
     errors:
+      messages:
+        admin_for_another_tte: Utilizator deja admin într-un alt tte
+        invalid_http_url: URL nevalid. Specificați adresa URL completă cu protocolul http sau https în ea.
+        not_uniqueness: Atribuirea a fost deja luată
       models:
+        campaign_assessment:
+          attributes:
+            external_config:
+              invalid: Configurația externă ar trebui să fie un josn valid
+        campaign_factor:
+          attributes:
+            formula:
+              cyclic_dependency_found: 'Există o dependență ciclică în formulă. Dependență: %{cyclic_path}'
+        factors_norm:
+          score_from_must_be_number: Scorul de la trebuie să fie numărul
+          score_to_less_than_score_from: Scorul la este mai mic decât Scorul de la
+          score_to_must_be_number: Scorul trebuie să fie numărul
+        license:
+          attributes:
+            used_number:
+              overused: Licența utilizată nu poate fi mai mare decât suma licenței alocate și a limitei de utilizare excesivă.
+          overuse: Licența %{name} este folosită în exces
+        media_response:
+          attributes:
+            base:
+              max_takes_limit_reached: Limita atinsă pentru preluări maxime
         register:
           attributes:
             mobile_number:
               blank: Numărul de telefon mobil este necesar
               invalid: Numărul de telefon mobil este invalid
               verification_expired: Codul de verificare a expirat. Puteți încerca să verificați din nou.
+        report:
+          assessments_not_hogan: Toate evaluările trebuie să fie de tip Hogan
+          assessments_not_saville: Toate evaluările trebuie să fie de tip Saville
+          has_already_assigned: Evaluarea nu poate fi modificată, deoarece este deja atribuită utilizatorului sau nivelului aplicabil
+          has_dependent_relation: Acest raport este evaluat pe utilizatori
+          max_assessment_count: Ați atins limita de %{max} evaluări
+          min_assessment_count: Numărul minim de evaluări este %{min}
+        skill_gap_report:
+          not_found: Raportul privind deficitul de competențe nu a fost găsit
         user:
           attributes:
             current_password:
               invalid: Parola curentă este incorectă
+        user_idp_comment:
+          reply_to_reply: nu poate răspunde la un răspuns (este permis un singur nivel de imbricare)
+        user_idp_plan:
+          no_active_plan: Nu s-a găsit niciun plan IDP activ
   admin_jobs:
     attrs:
       operations:
+        add_campaign_reports: Adăugați rapoarte de campanie
+        assessment_norm_export: Exportul rezultatelor normate
+        assessment_raw_factor_export: Exportul scorurilor factorului brut
+        assessment_raw_result_export: Exportul rezultatelor brute
+        assessment_scoring_export: Exportul rezultatelor punctajului
+        assign_idp_to_users: Atribuiți IDP utilizatorilor
+        assign_reports_and_assessments: Atribuiți rapoarte și evaluări
+        bulk_create_workshop_invites: Trimitere în bloc a invitațiilor la Centrul de evaluare
+        bulk_download_idp_reports: Descărcați în bloc rapoarte IDP
+        bulk_download_reports: Rapoarte de descărcare în bloc
+        bulk_download_user_reports: Descărcați în bloc rapoartele utilizatorilor
+        bulk_regenerate_reports: Regenerarea rapoartelor de campanie
+        bulk_regenerate_threesixty_reports: Regenerarea rapoartelor Three6ty Subject
+        bulk_regenerate_user_reports: Regenerarea rapoartelor utilizatorilor
+        bulk_reports: Rapoarte în bloc
+        bulk_rescore_campaign_factors: Factorii campaniei de reevaluare în bloc
+        bulk_update_evaluation_status: Stare evaluare actualizare în bloc
+        compact_completion_status_export: Export compact al stării de finalizare
+        completion_status_export: Exportul stării de finalizare
+        copy_dimension: Copiere parametru
+        create_threesixty_campaign: Creați campania Threesixty
+        data_report_export: Exportul raportului de date
+        export_admin_with_permissions: Exportați administratorul cu permisiuni
+        export_assessment_questions: Întrebări de evaluare a exporturilor
+        export_campaign_factors: Factorii campaniei de export
+        export_campaign_scorings: Exportați scorurile campaniei
+        export_dashboard_as_file: Exportați tabloul de bord ca fișier
+        export_development_action_translations: Traduceri pentru acțiuni de dezvoltare a exporturilor
+        export_development_actions: Acțiuni de dezvoltare a exporturilor
+        export_dimension_as_json: Exportați dimensiunea JSON
+        export_factor_translations: Traduceri cu factor de export
         export_job_roles_translations: Export Rolul postului Traduceri
+        export_norm: Norma de export
+        export_occupations: Ocupații Export
+        export_proficiency_level_translations: Traduceri la nivel de competență de export
         export_proficiency_levels: Niveluri de competență pentru export
+        export_reflection_questions: Întrebări de reflecție pentru export
+        export_report_data: Exportați datele rapoartelor
+        export_reports_and_assessments: Rapoarte și evaluări de export
+        export_skill_translations: Traduceri de abilități de export
+        export_skills: Abilități de export
+        export_user_report_events: Exportați evenimentele din rapoartele utilizatorilor
+        export_users: Exportul utilizatorilor campaniei
+        external_assessment_export: Export rezultate externe
+        import_accesssheet: Import Accessheet
+        import_assessment_questions: Întrebări de evaluare a importurilor
+        import_assessors: Evaluatori de import
+        import_campaign_factors: Importați factori de campanie
+        import_datasheet: Fișa tehnică de import
+        import_development_action_translations: Importul de traduceri pentru acțiuni de dezvoltare
+        import_development_actions: Acțiuni de dezvoltare a importurilor
+        import_dimension_from_json: Importați dimensiunea din JSON
+        import_external_campaign_scoring: Importați scorul campaniei externe
+        import_factor_translations: Traduceri cu factor de import
+        import_factors: Factori de import
         import_job_roles_translations: Import Rolul postului Traduceri
+        import_norm: Norma de import
+        import_proficiency_level_translations: Importați traduceri la nivel de competență
+        import_proficiency_levels: Niveluri de competență de import
+        import_question_translations: Importați traduceri de întrebări
+        import_raw_data: Importați date brute
+        import_reflection_questions: Importați întrebări de reflecție
+        import_scoring_data: Importul datelor de scor
         import_skill_rater_taxonomies: Importul taxonomiilor evaluatorilor de competențe
-  administration: Administrație
+        import_skill_translations: Traduceri de abilități de import
+        import_skills: Abilități de import
+        import_sms_invites: Importați invitația prin SMS
+        import_users: Importați utilizatori
+        migrate_assessment_translations: Migrarea traducerii de evaluare
+        normalize_factor_scores: Normalizați scorurile factorilor
+        regenerate_campaign_reports: Regenerarea rapoartelor de campanie
+        regenerate_report: Regenerarea raportului
+        regenerate_threesixty_report: Regenerarea raportului Threesixty
+        remap_report_assessment: Evaluarea raportului de remapare
+        rescore_assessment: Evaluarea rescorului
+        rescore_user_assessment: Rescorarea evaluării utilizatorului
+        send_sms_invites: Trimiteți invitații prin SMS
+        super_admin_assessment_norm_export: Exportul rezultatelor Super Admin Norm
+        super_admin_assessment_raw_factor_export: Exportul scorurilor Super Admin Raw Factor
+        super_admin_assessment_raw_result_export: Export rezultate brute Super Admin
+        super_admin_datasheet_export: Export fișă tehnică Super Admin
+        super_admin_external_assessment_export: Export de evaluare externă Super Admin
+        threesixty_campaign_export_completion_status: Starea de finalizare a exportului campaniei Threesixty
+        threesixty_campaign_export_scores: Exportul scorurilor campaniei Threesixty
+        workshop_status_export: Exportul stării centrului de evaluare
+      statuses:
+        completed: Completat
+        completed_with_errors: Completat cu erori
+        failed: Eșuat
+        in_progress: În curs de desfășurare
+        scheduled: Programată
+    bulk_download_idp_reports:
+      already_exists: Sarcina de a genera aceste rapoarte IDP deja în curs de desfășurare
+    bulk_download_reports:
+      content:
+        title: Linkuri pentru a descărca rapoartele
+    close: Închide
+    details: Detalii
+    errors: Erori
+    invalid_job: Această notificare corespunde înregistrării șterse
+    mark_as_read: Marcați toate citite
+    more: Mai mult
+    notifications: Notificări
+    results: Rezultatele
+    super_admin:
+      errors:
+        data_processing_disabled: Prelucrarea datelor este dezactivată.
   anonym:
     close: Închidere
     continue: Continuați
+    link_invalid_error_message: Linkul pe care încercați să-l accesați este nevalid. Vă rugăm să contactați administratorul pentru a obține adresa URL corectă și să continuați cu chestionarul.
     notifications:
       restart:
         copy: Ați început deja acest sondaj. Puteți alege să continuați sau să reporniți.
@@ -108,44 +915,201 @@ ro:
     retake: Reluare
   assessments:
     actions:
+      add_tag:
+        success_message: Eticheta a fost adăugată cu succes
+      archived:
+        success_message: Evaluarea "%{name}" a fost arhivată cu succes.
+      assessment_cache:
+        remove_cache: Eliminați memoria cache
+        success_message: Memoria cache eliminată cu succes
       back_to_campaign: Înapoi la campanie
+      back_to_dashboard: Înapoi la tabloul de bord
+      copy:
+        success_message: Evaluarea "%{name}" a fost copiată cu succes.
+      details: Detalii
+      download_csv: Descărcați CSV
+      edit: Editare
+      evaluate: Evalua
+      export: Export
+      export_normed: Scoruri factoriale normate
+      export_raw_labels: Raw (cu etichete)
+      export_raw_scores: Scorurile factorului brut
+      export_raw_without_labels: Raw (fără etichete)
       extend_time: Extindeți timpul
+      external_scores_export: Scoruri externe
       goto_dashboard: Faceți clic aici pentru a continua
+      manage_mettl_schedule: Gestionați programul Mettle
+      moderate: Scoruri moderate
+      new_response: Răspuns nou
+      next_assessment: Treceți la următoarea evaluare
       pending_tasks:
-        few:
         one: Aveți 1 sarcină în așteptare
         other: Aveți %{count} sarcini în așteptare
+      re_evaluate: Faceți clic aici pentru a reevalua
+      reevaluate: Reevaluați
+      remove:
+        confirm_message: Sigur doriți să ștergeți evaluarea "%{name}"?
+        confirm_title: Confirmare necesară
+        success_message: Evaluarea %{name} a fost eliminată
+      remove_tag:
+        success_message: Eticheta a fost eliminată cu succes
       rescore: Rescore
+      restore:
+        success_message: Evaluarea "%{name}" a fost restaurată cu succes
+      show_usage: Afișați utilizarea
+      submit_another_response: Trimiteți un alt răspuns
+      submit_evaluation: Trimiteți evaluarea
+      translations:
+        success_message: Traducerile evaluării actualizate
+      unarchived:
+        success_message: Evaluarea "%{name}" a fost dezarhivată cu succes
+      view: Vedere
+    active: Activ
+    archived: Arhivate
+    assessment: Evaluare
+    assessments: Evaluări
     audio_response:
+      pause: Pauză
       permission_denied_message: Vă rugăm să activați permisiunea de microfon în browserul dvs. pentru a înregistra răspunsul
       permission_text: Vă rugăm să permiteți utilizarea microfonului pentru înregistrarea audio
+      resume: Relua
+      saved:
+        label: Audio salvat
+      saving: Salvarea sunetului
+      start_recording: Începeți înregistrarea
+      stop: Opreşte-te
     card_actions:
       begin: Începeți
       continue: Continuați
+    categories:
+      redirecting: Redirecţionarea
     column:
+      enable_audio_check: Activați verificarea audio
+      enable_network_check: Activați verificarea rețelei
+      enable_video_check: Activați verificarea video
       external_settings:
+        hogan_assessment_name: Numele evaluării Hogan
+        iiht_assessment_name: Evaluare IIHT Nume
+        iiht_schedule_config: Configurarea programării
+        mettl_assessment_name: Numele evaluării METTL
+        pearson_assessment_name: Numele evaluării Pearson
+        pearson_norm_id: ID normă Pearson
+        saville_assessment_name: Evaluare Saville Nume
+        simulation_assessment_name: Nume evaluare simulare
         skillvue_assessment_name: Skillvue Denumire evaluare
+      translations_migrated: Traducere migrată
+    create: Crea
+    dashboard: Tablou
+    dictation:
+      allow_browser_permision: Vă rugăm să permiteți permisiunea audio a browserului pentru a utiliza dictarea
+      autostopping_in: Oprirea automată a dictării în %{reverseCountdown} secunde
+      browser_unsupported: Browserul nu acceptă intrarea audio
+      dictation_active: Dictarea este acum activă
+      dictation_disabled: Dictarea este dezactivată în prezent sau este folosită de o altă întrebare
+      dictation_not_started: Dictarea vorbirii nu a pornit
+      dictation_stopped: Dictarea vorbirii s-a oprit
+      left: Stânga
+      listening: Ascultare
+      minutes: Minute
+      no_dictation_url: Serverul nu a reușit să răspundă pentru capacitatea de vorbire în text
+      notifications:
+        autostopped: Dictarea a fost oprită automat din cauza tăcerii continue timp de %{autocutoff} secunde
+        refresh_page: Nu se poate continua dictarea vorbirii, încercați din nou prin reîmprospătarea paginii
+      start_dictation: Începeți dictarea
+      stop_dictation: Opriți dictarea
+      use_speech_instructions: Utilizați intrarea vocală pentru a scrie acest răspuns
+    drawer:
+      title: Detalii de evaluare
+    edit: Editare
     fields:
       category:
+        agile: AGIL
+        assessor_form: Formular evaluator
+        case_study: Studii de caz
+        hogan: Hogan
+        iiht: IIHT
+        lead_assessor_form: Formular de evaluator principal
+        meeting: Ședință
+        mettl: Mettl
+        organisational: Sondaje organizaționale
+        pearson: Pearson
+        psychometric: Psihometrice
+        saville: Saville
+        simulation: Simulare
         skillvue: Skillvue
+        threesixty: Campania 360
+      status:
+        finished: Complet
+        in_progress: În curs de desfășurare
+      type:
+        common: Evaluarea TTE
+        hogan: Hogan
+        iiht: Evaluarea IIHT
+        mettl: Evaluarea Mettl
+        pearson: Evaluarea Pearson
+        saville: Evaluarea Saville
+        simulation: Evaluarea simulării
+        skillvue: Evaluarea Skillvue
+    flow:
+      end_assessment_modal:
+        custom_message: Mesaj personalizat de sfârșit de evaluare
+        default_message: Mesaj implicit de sfârșit de evaluare
+        mark_as_ineligible: Marcați ca neeligibil
+        show_uniq_identifier: Afișați identificatorul unic respondenților (pentru sondaje anonime)
     instructions:
       begin_assessment: Începeți
       cancel: Anulează
       default: Aceasta este o activitate cronometrată, odată ce faceți clic pe Începe evaluarea, veți avea %{time} minute la dispoziție.
       title: Instrucțiuni
     messages:
+      external_scores_export_scheduled: Lucrarea de export a scorurilor de evaluare a fost programată cu succes
       finish: Vă mulțumim pentru timpul acordat. Răspunsurile dvs. au fost acum înregistrate.
+      norm_results_export_scheduled: Lucrarea de export Rezultate normalizate de evaluare a fost programată cu succes
+      raw_factor_export_scheduled: Evaluarea activității de export Raw Factor a fost programată cu succes
+      raw_results_export_scheduled: Activitatea de export Rezultate brute de evaluare a fost programată cu succes
     page:
       back: Înapoi
       confirm_message: "## Răspunsurile dvs. vor fi trimise și nu vor mai putea fi modificate după această etapă. Faceți clic pe **Back** pentru a vă revizui răspunsurile o ultimă dată sau faceți clic pe **Submit** dacă ați terminat."
+      invalid_session:
+        description: Această sesiune de evaluare a fost invalidată. Acest lucru se poate întâmpla dacă ați continuat evaluarea într-o filă, browser sau dispozitiv separat.
+        title: Ultima solicitare a eșuat
       next: Următorul
       read_only: Este modul numai citire, nu puteți modifica niciun rezultat.
       save: Salvați
+      submissionFailedAlert:
+        description: Nu s-a putut conecta la server. Vă rugăm să reîmprospătați pagina și să încercați din nou. Dacă acest lucru nu funcționează, vă rugăm să contactați asistența prin chat live sau mte.surveys@mercer.com
+        title: Ultima solicitare a eșuat
       submit: Trimite
+      warning: AVERTISMENT
+    pages:
+      edit:
+        assets: Active
+        general_settings: Setări generale
+        translations: Traduceri
     pickgrouprank:
       items: Articole
     proceed: Continuați oricum
+    question_info_bar:
+      select_linked_questions: Selectați întrebări legate
+    reset: Reseta
+    scoring:
+      competency: Competență
+      id: ID
+      score: Scor
+    screen_reader_announcements:
+      fifteen_seconds_left: Au mai rămas 15 secunde
+      five_minutes_left: Au mai rămas 5 minute
+      one_minute_left: 1 minut rămas
+      seconds_left: "%{seconds} secunde rămase"
+      thirty_seconds_left: 30 de secunde rămase
+      time_is_up: Timpul tău s-a terminat
+      time_is_up_for_recording: Timpul a expirat și înregistrarea se va opri acum
+    single_page:
+      display_linked_questions: Afișarea răspunsurilor legate de întrebarea selectată în prezent.
+    trash: Gunoi
     unknown_error: A apărut o eroare necunoscută.
+    update: Actualiza
+    upload: Încărca
     video_response:
       device: Permiteți
       device_selection:
@@ -156,6 +1120,7 @@ ro:
       media_recorder:
         failure: Acest browser nu acceptă înregistrarea video. Vă rugăm să utilizați Chrome sau Firefox pentru înregistrarea video
         success: Vă rugăm să permiteți utilizarea camerei și a microfonului pentru înregistrarea audio și video
+        unsupported: Acest browser nu acceptă înregistrarea video. Vă rugăm să utilizați oricare dintre următoarele browsere,
       recording_duration_label: Durata maximă de înregistrare
       recording_stop_label: Înregistrarea se va opri în
       requesting_permission: Solicitarea permisiunii...
@@ -164,6 +1129,7 @@ ro:
       saved:
         label: Video salvat
       saving: Salvarea video...
+      seek: Căuta
       start_recording: Începeți înregistrarea
       stop_recording: Opriți înregistrarea
       tracker:
@@ -172,6 +1138,60 @@ ro:
         frame: Vă rugăm să vă asigurați că fața dvs. se aliniază cu rama
         ready: Apăsați butonul Record (Înregistrare) când sunteți gata să înregistrați
     wait: Așteptați
+  assessments_reports:
+    add_group_form:
+      previous_assessments_required: Evaluări pentru rulare în ordinea de mai jos
+      previous_group_required: Este necesară finalizarea anterioară a grupului
+    menu:
+      assessment_center: Centrul de evaluare
+      assessment_center_invites: Invitații la centrul de evaluare
+      assessments_and_reports: Evaluări și rapoarte
+      idp: IDP
+      manage: Gestiona
+      report_approval: Setări de aprobare a rapoartelor
+      sequencing: Secvenţiere
+    report_approval:
+      add_settings: Adăugați setare
+      create_seetings: Creează setări
+    sequencing:
+      add_assessment_center: Adăugați centrul de evaluare
+      add_group: Adăugare grup
+      assessments: Evaluări
+      delete_group: Ștergeți grupul
+      edit_group_name: Editați numele grupului
+      modal:
+        delete:
+          cancel: Anula
+          cannot_delete_with_workshops: Nu se poate șterge grupul care conține ateliere, șterge mai întâi atelierele
+          failed: Nu s-a putut șterge grupul "%{name}", vă rugăm să contactați administratorul
+          ok: Da, ștergeți
+          text: Sunteți sigur că doriți să ștergeți grupul "%{name}"?
+          title: Ștergeți grupul
+      no_assessments: Trageți și plasați evaluările
+      no_ungrouped_assessments: Trageți și plasați evaluările aici pentru degrupare
+      ungrouped_assessments: Evaluări negrupate
+  assessors:
+    campaigns_list:
+      column:
+        evaluation_count: Număr de evaluări
+        evaluation_status: Starea evaluării
+        moderation_count: Număr de moderare
+        moderation_status: Starea moderării
+  assign_reports:
+    assessment_not_in_report: Evaluarea cu id %{assessment_id} nu face parte din raportul cu id %{report_id}
+    errors:
+      not_enought_licenses: Pachetul cu id %{bundle_id} nu are licențe
+      user_not_found: 'Rândul %{row}: Utilizatorul cu adresa de e-mail "%{email}" nu a fost găsită'
+    report_bundle_not_found: Raportul pachet cu idul %{bundle_id} nu a fost găsit
+    report_not_found: Raportul cu idul %{report_id} nu este găsit
+    report_not_in_bundle: Raportul cu codul %{report_id} nu face parte din pachetul de rapoarte cu codul %{bundle_id}
+  assigns:
+    decorator:
+      no_description: Descrierea este goală
+  audit_log_failures:
+    invalid_sso_token: Token SSO nevalid
+    record_not_found: Înregistrare nu a fost găsită
+    user_not_authorized: Utilizator neautorizat
   auth:
     current_password: Parolă curentă
     current_password_placeholder: Introduceți parola curentă
@@ -181,18 +1201,23 @@ ro:
       description: Vă rugăm să completați toate câmpurile pentru a crea o parolă nouă
       submit: Trimite
       title: Reînnoiți parola
+    lighthouse_logo_alt_text: Logo-ul farului
     login:
+      continue_btn: Continua
       description: Vă rugăm să vă conectați cu informațiile contului dvs. personal
       forgot_password: Ați uitat parola?
+      hide_password: Ascundeți parola
       login_btn: Autentificare
       magic_link_btn: Trimite-mi prin e-mail link-ul de conectare
       not_member: Nu sunteți membru?
       or: SAU
+      show_password: Afișați parola
       sso_btn: Autentificare cu Single Sign-On
       title: Bine ați venit!
     logout: Ieșire
     magic_link:
       description: Vă rugăm să introduceți adresa dvs. de e-mail pentru a primi un link de conectare
+      invalid_email: E-mailul nu este valid
       login_with_password: Autentificare cu parolă
       send_me_login_link: Trimiteți-mi link-ul de conectare
       success: V-am trimis un link de conectare la "%{email}". Faceți clic pe link-ul din e-mailul pe care l-ați primit pentru a vă conecta
@@ -244,14 +1269,33 @@ ro:
         invalid_code: Cod invalid
         invalid_number: Numărul de telefon mobil este incorect. Vă rugăm să verificați din nou numărul dvs
         max_attempts_reached: Prea multe încercări. Vă rugăm să așteptați 10 minute înainte de a încerca din nou.
+  browsers:
+    chrome: Google Chrome
+    download:
+      chrome: https://www.google.com/chrome/
+      edge: https://www.microsoft.com/en-us/edge
+      firefox: https://www.mozilla.org/en-US/firefox/new/
+      instruction: Descărca
+      safari: https://www.apple.com/safari/
+    edge: Microsoft Edge
+    firefox: Mozilla Firefox
+    safari: Apple Safari
+    support:
+      instruction: Vă rugăm să descărcați și să utilizați oricare dintre următoarele browsere.
+      message: Browserul pe care îl utilizați nu este acceptat de Lighthouse.
+    upgrade:
+      instruction: Faceți upgrade acum
+      message: Vă rugăm să utilizați cea mai recentă versiune a browserelor
   campaign:
     all_activities_are_completed: Toate activitățile sunt acum finalizate.
     all_activities_are_completed_multiple: Toate activitățile pentru această campanie sunt acum finalizate. Vă rugăm să mergeți la tabloul de bord și să verificați dacă mai aveți alte activități alocate.
+    already_joined: Te-ai alăturat deja acestei campanii
     begin: Începeți sarcinile
     begin_btn_msg_before_prework: Trebuie să îndepliniți următoarele sarcini înainte de a începe campania cronometrată
     begin_campaign_msg: Începeți campania înainte de a lua evaluări
     campaigns: Campanii
     closed_campaign_message: Această campanie este închisă. Nu puteți efectua nicio evaluare în cadrul acestei campanii.
+    code_usage_limit_reached: Limita de utilizare a codului a fost atinsă, vă rugăm să contactați administratorul
     complete_prev: Completați toate evaluările anterioare
     complete_tasks: Vă rugăm să completați sarcinile de mai jos înainte de a lua această măsură.
     continue: Continuați-vă sarcinile
@@ -261,6 +1305,7 @@ ro:
       campaign: Campanie
       change_password: Schimbare parolă
       development: Dezvoltare
+      direct_reportees: Raportari directi
       home: Acasă
       insights: Perspective
       my_plan: Planul meu
@@ -280,17 +1325,19 @@ ro:
     insights_reports: Perspective și rapoarte
     instruction_modal:
       campaign_start_final_instructions: "<p>vă rugăm să fiți conștienți de faptul că nu există nicio modalitate de a opri sau de a întrerupe cronometrul. Cronometrul campaniei va continua să ruleze chiar și atunci când închideți browserul, astfel încât nu trebuie să vă gândiți în niciun moment să lăsați sarcinile între ele pentru a face altceva. Asigurați-vă că reduceți la minimum distragerile în timpul sarcinilor. Găsiți un mediu liniștit, dezactivați notificările de pe dispozitivele dvs. și evitați multitasking-ul. Păstrați-vă concentrarea și rămâneți concentrat. Odată ce cronometrul campaniei se termină, nu veți mai putea continua. Dacă ați citit instrucțiunile de mai sus, vă rugăm să faceți clic pe Start pentru a continua sarcinile atribuite</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Vă rugăm să citiți corect următoarele instrucțiuni.</h4>
-        <p>sarcinile pe care urmează să le începeți sunt cronometrate. După ce faceți clic pe "Start", cronometrul campaniei va porni automat. Aveți %{minute} minute pentru a finaliza toate activitățile. Vă rugăm să vă propuneți să finalizați sarcinile în intervalul de timp desemnat și să gestionați timpul în mod eficient pentru a evita grăbirea procesului de evaluare. Asigurați-vă că finalizați sarcinile dintr-o dată, astfel încât, dacă trebuie să faceți o pauză, acum este momentul</p>
-      common_proctoring_instructions: |
+        <p>sarcinile pe care urmează să le începeți sunt cronometrate. După ce faceți clic pe "Start", cronometrul campaniei va porni automat. Aveți %{minutes} minute pentru a finaliza toate activitățile. Vă rugăm să vă propuneți să finalizați sarcinile în intervalul de timp desemnat și să gestionați timpul în mod eficient pentru a evita grăbirea procesului de evaluare. Asigurați-vă că finalizați sarcinile dintr-o dată, astfel încât, dacă trebuie să faceți o pauză, acum este momentul</p>
+      common_proctoring_instructions: |-
         <h4>Proctoring</h4>
         <p>după ce faceți clic pe butonul Start, veți fi redirecționat către sistemul nostru de supraveghere. Acesta vă va monitoriza camera, microfonul și ecranul în timpul sesiunii. Aceste sesiuni sunt supravegheate automat de sistemul nostru sofisticat de inteligență artificială, oferind o experiență de utilizare neîntreruptă și fără probleme. Cu toate acestea, sesiunile pot fi, de asemenea, revizuite de supraveghetori umani. Orice semne de conduită necorespunzătoare sau nereguli vor fi semnalate. Acest lucru se face pentru a ne asigura că nu se fac încercări de înșelăciune. Dacă se constată suspiciuni, sarcina sau sarcinile dvs. vor fi anulate</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Browser de control</h4>
         <p>vi se va solicita să descărcați și să instalați un browser special pentru a îndeplini sarcinile de supraveghere. Vă rugăm să urmați instrucțiunile din ecranul următor. Puteți dezinstala acest browser după finalizarea tuturor activităților necesare</p>
     instructions:
+      collapse_aria_label: 'Afișați mai multe informații mai sus: Centrul virtual de învățare'
       collapse_link_text: Arată mai puțin
+      expand_aria_label: 'Afișați mai puține informații mai sus: Centrul virtual de învățare'
       expand_link_text: Arată mai multe
       heading: Vă rugăm să consultați liniile directoare de mai jos înainte de a începe. Vă dorim toate cele bune!
     language:
@@ -309,6 +1356,10 @@ ro:
       last_updated_text: 'Profilul a fost actualizat ultima dată pe:'
       sub_heading: Completați informațiile complete ale profilului dvs
       welcome_text: Bine ați venit,
+    reset_warning: Puteți reporni doar campania marcată ca campanie de antrenament.
+    restart_practice: Reporniți antrenamentul
+    restart_practice_confirmation: Ești sigur că vrei să repornești cabinetul?
+    restart_practice_success: Practica a fost reluată cu succes
     thank_you_for_time: Vă mulțumim pentru timpul acordat
     time_left:
       cancel: Anulează
@@ -316,20 +1367,163 @@ ro:
       notification: Timpul alocat pentru această sarcină "%{assessmentName}" a fost %{totalAssessmentTime}. Din cauza timpului total scurs, aveți acum doar %{remainingCampaignTime} ca timp ajustat pentru a finaliza această sarcină.
     timer:
       notification_hours: Mai aveți %{hours} oră
-      notification_minutes: mai aveți %{minute} minute
+      notification_minutes: mai aveți %{minutes} minute
   campaign_assessment:
+    actions:
+      bulk_download: Descărcare în bloc
+      bulk_update_evaluation_as_done: Marcați ca terminat
+      bulk_update_evaluation_as_undone: Demarcați ca terminat
+      download: Descărcați rapoarte
+      export_completion_status: Starea de finalizare a exportului
+      export_external: Extern
+      export_normed: Scoruri factoriale normate
+      export_occupations: Ocupaţii
+      export_raw_labels: Raw (cu etichete)
+      export_raw_scores: Scorurile factorului brut
+      export_raw_without_labels: Raw (fără etichete)
+      export_scores: Scoruri
+      export_scoring: Notare
+      factor_benchmark_score: Scorul Factor Benchmark
+      force_generate: Forțați generarea
+      import_raw: Crud
+      import_scoring: Notare
+      regenerate: Generați rapoarte
+      rescore: Evaluarea rescorului
+      reset_all_nominations: Resetați toate nominalizările
+      reset_participant: Resetați toți participanții
+    allow_msg_proctoring_workshop_activity: Activitățile centrului de evaluare nu sunt supravegheate.
     assessment_center_heading: Detalii privind centrul de evaluare
     assessments_heading: Sarcinile dvs
     column:
-      external_user_id: Skillvue Candidat ID
+      assessment_name: Denumirea evaluării
+      assessor_form: Formular evaluator
+      auto_assign: Atribuire automată
+      dimension_id: ID dimensiune
+      external_user_id: ID candidat Skillvue
+      id: ID de evaluare a campaniei
+      locales: Localizări
+      norm: Normă
+      norm_id: ID normă
+      pearson_norm_id: Pearson Norm ID
+      pearson_schedule_id: ID-ul programului Pearson
+      pearson_variation: Varianta Pearson
+      prework: Prework
+      saville_candidate_id: ID candidat
+      saville_data_separator: Separator de date Saville
+      simulation_content_variation: Variația conținutului de simulare
+      simulation_participant_id: ID participant la simulare
+      simulation_time_extension: Prelungirea timpului de simulare
       skillvue_email_id: Adresa de e-mail a candidatului Skillvue
       skillvue_external_assessment_id: Skillvue Evaluare ID
+      universal_link: Legătura universală
+    drawer:
+      mettl_schedule_name: Nume program Mettl
+      title: Detalii de evaluare
+    messages:
+      export_completion_statuses_scheduled: Lucrarea de export a stărilor de finalizare a fost programată cu succes
+      export_occupations_job_scheduled: Ocupații Locul de muncă la export a fost programat cu succes
+      export_reports_and_assessments_statuses_scheduled: Lucrarea Export rapoarte și evaluări a fost programată cu succes
+      external_results_export_scheduled: Activitatea de export Evaluare externă a fost programată cu succes
+      norm_results_export_scheduled: Lucrarea de export Rezultate normalizate de evaluare a fost programată cu succes
+      normalize_factor_scores_scheduled: Normalizarea scorurilor factorilor a fost programată cu succes.
+      raw_factor_export_scheduled: Evaluarea activității de export Raw Factor a fost programată cu succes
+      raw_results_export_scheduled: Activitatea de export Rezultate brute de evaluare a fost programată cu succes
+      scoring_results_export_scheduled: Lucrarea de export a rezultatelor scorului de evaluare a fost programată cu succes
     modals:
       assessor_campaign_assessment_group:
         error_message: Ceva nu a mers bine. Vă rugăm să contactați administratorul
         placeholder: Selectați un grup de centre de evaluare
         success_message: Evaluator Campania Grupul de evaluare a fost atribuit cu succes
         title: Assessment Center Group
+      bulk_update_evaluation:
+        content: Sigur doriți să marcați toate subiectele selectate ca %{status}?
+        successfully: Marcat cu succes ca %{status}.
+        title: Marcați în bloc ca %{status}?
+      import_raw:
+        body: Consultați funcționalitatea de export pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
+        success_msg: Importul a fost încărcat cu succes
+        title: Importul datelor Rezultate brute
+        upload: Încărca
+      import_scoring:
+        body: Consultați funcționalitatea de export pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
+        success_msg: Importul a fost încărcat cu succes
+        title: Importați datele rezultatelor scorului
+        upload: Încărca
+      prework_setting:
+        disable: Dezactivați lucrul în prealabil pentru toți utilizatorii existenți
+        enable: Activați prelucrul pentru toți utilizatorii existenți
+        title: Formular de setare înainte de lucru
+      regenerate:
+        content: Sigur doriți să regenerați rapoartele disponibile?
+        title: Regenerarea rapoartelor?
+      remove:
+        helper_text: 'PERICOL: dacă selectați această opțiune, vor fi eliminate toate răspunsurile utilizatorilor la această evaluare din această campanie.'
+        msg_text: Încercați să ștergeți <strong>evaluarea "%{name}"</strong>
+        successfully: Evaluarea %{name} a fost eliminată cu succes.
+        title: Eliminați evaluarea?
+      rescore:
+        content: Sunteți sigur că doriți să reevaluați?
+        successfully: Evaluarea a fost reevaluată cu succes.
+        title: Evaluarea rescorului?
+      rescore_response:
+        message: Reevaluarea programată pentru evaluarea "%{name}"
+        title: Răspunsuri de reevaluare
+      reset:
+        content: Sunteți sigur că doriți să resetați rezultatul?
+        successfully: Datele rezultatelor au fost resetate cu succes.
+        title: Resetează rezultatul pentru evaluarea %{name}?
+      update_assessor_form:
+        select_assessor: Selectați formularul evaluatorului
+        success_msg: Formularul evaluatorului a fost încărcat cu succes
+        title: Actualizați formularul evaluatorului
+        update: Actualiza
+      update_content_variation:
+        select_schedule: Selectați varianta de conținut
+        success_msg: Variația conținutului de simulare a fost actualizată cu succes
+        update: Actualiza
+      update_external_config:
+        text_placeholder: Configurare json externă
+        title: Actualizați configurația externă
+      update_locales:
+        select_locales: Selectați setările regionale
+        success_msg: Setările regionale au fost actualizate cu succes
+        title: Actualizați setările regionale disponibile
+      update_mettl_schedule:
+        select_schedule: Selectează Programare
+        success_msg: Programul Mettl a fost actualizat cu succes
+        update: Actualiza
+      update_norm:
+        apply: Aplicați această modificare utilizatorilor existenți din această campanie
+        cannot_remove_norm: Nu se poate elimina norma pentru evaluarea finalizată.
+        select_norm: Selectează norma
+        success_msg: Normele au fost actualizate cu succes
+        title: Actualizare normă
+        update: Actualiza
+      update_simulation_time_extension:
+        success_msg: Prelungirea timpului de simulare a fost actualizată cu succes
+        title: Prelungirea timpului
+        tooltip: Prelungirea timpului ca factor (de exemplu, 1,5 pentru 50% mai mult timp)
+        update: Actualiza
+      update_time:
+        additional_time: Timp (min)
+        title: Prelungiți timpul
+      workshop_activity_duration:
+        form:
+          duration: Durata în minute
+        title: Durata activității de atelier
+    normalize_factor_scores:
+      normalization_not_allowed: Normalizarea scorurilor factorilor este în prezent dezactivată pentru această evaluare în cadrul proiectului. Vă rugăm să o activați pentru a continua.
+      success: Normalizarea scorurilor factorilor finalizată cu succes
+    not_allow_msg_proctoring_workshop_activity: Nu puteți face activități de centru de evaluare, deoarece vă aflați într-o fereastră de supraveghere. Pentru a face aceste activități, trebuie să ieșiți din fereastra de supraveghere.
+    pearson_variation_form:
+      apply_to_existing_users: Aplicați această modificare utilizatorilor existenți din această campanie
+      select: Selectează varianta
+      update: Actualiza
+      update_success: Varianta Pearson a fost actualizată cu succes
+    scheduled_successfully: Evaluarea a fost programată cu succes
+    scheduling:
+      update_exists: Înlocuirea programului existent
+    scheduling_time: Programați timpul de evaluare
     statuses:
       completed: Completat
       in_progress: În curs de desfășurare
@@ -338,11 +1532,100 @@ ro:
       not_started: Nu a început
       timed_out: Timed Out
       universal_link: Legătură universală
+    ungrouped_assessments_heading: Negrupat
+  campaign_join_token:
+    campaign_id: Codul campaniei
+    expire_in: Expiră în (sec)
+    invalid_token: Token nevalid
+    text: Text
+  campaign_report:
+    actions:
+      add_reports:
+        enqueue_message: Sarcina Adăugare rapoarte este pusă în coadă cu succes
+        success_message: Rapoartele au fost adăugate cu succes
+      bulk_download: Descărcare în bloc
+      export_data: Exportați date
+    bulk_download:
+      error: Descărcarea în bloc este limitată la 1000 de fișiere de raport. Selecția curentă are %{count} fișiere de raport. Ajustați datele de început și de sfârșit pentru a reduce numărul de fișiere de raport de descărcat.
+    column:
+      assessor_access: Acces evaluator
+      auto_assign: Atribuire automată
+      main_report: Raport principal
+      report_bundle: Pachet de rapoarte
+      report_name: Numele raportului
+      user_access: Acces utilizator
+      user_dashboard: Tabloul de bord al utilizatorului
+    form:
+      operation: Operație
+      operation_options:
+        add_and_allow_new_response: Adăugați un raport la utilizatorul existent și permiteți un răspuns nou
+        add_with_existing_response: Adăugați un raport la utilizatorul existent și păstrați răspunsul existent
+        skip_existing: Omiteți utilizatorul existent
+      report: Raport
+      report_bundle_placeholder: Selectați un pachet de rapoarte
+    messages:
+      bulk_download_error: Descărcarea în bloc este limitată la 1000 de fișiere de raport. Dacă ați selectat mai multe lamente, vă rugăm să le reduceți.
+      bulk_download_successful: Sarcina de descărcare a raportului în bloc a fost programată cu succes
+      export_report_data_scheduled: Sarcina de export a datelor de raportare a fost programată cu succes
+    modals:
+      remove:
+        apply: Aplicați aceste modificări utilizatorilor existenți din această campanie.
+        msg_text: Încercați să ștergeți raportul <strong>"%{reportName}"</strong>
+        title: Eliminați raportul?
+      user_access:
+        apply: Aplicați aceste modificări utilizatorilor existenți din această campanie.
+        title:
+          disable: Dezactivați accesul utilizatorilor
+          enable: Activați accesul utilizatorului
+  campaign_users:
+    actions:
+      add_manager: Adăugați manager
+      extend_time: Prelungiți timpul
+      search_user: Utilizator de căutare
+    assessments:
+      progress: Progres
+    details:
+      additional_time: Timp suplimentar
+      assessment_center: Centrul de evaluare
+      assessment_center_invites: Invitații la centrul de evaluare
+      completed_at: Finalizat la
+      completion_status: Starea de finalizare
+      hogan_id: Hogan Id
+      last_login: Ultima conectare
+      manager: Manager
+      modals:
+        create_hogan_credentials:
+          assessments: 'Evaluări:'
+          confirmation: Introduceți e-mailul de mai jos în caseta de text pentru a adăuga o nouă acreditare hogan
+          reports: 'Rapoarte:'
+          successfully: Noua acreditare hogan pentru utilizatorul cu e-mail %{email} a fost adăugată cu succes.
+          warning: Crearea unei noi acreditări Hogan va elimina următoarele evaluări și rapoarte asociate cu vechea acreditare Hogan pentru %{email}
+        remove:
+          successfully: Utilizatorul cu e-mail %{email} a fost eliminat cu succes.
+          title: Sigur doriți să eliminați acest utilizator din campania %{campaignName}?
+      not_completed_yet: Nefinalizat încă
+      not_logged_in_yet: Nu sunt încă conectat
+      not_started_yet: Nu a început încă
+      started_at: A început la
+      statuses:
+        completed: Completat
+        in_progress: În curs de desfășurare
+        ineligible: Neeligibile
+        interrupted: Întrerupt
+        not_started: Neînceput
+        timed_out: Expirat
+    modals:
+      remove: Sigur doriți să eliminați utilizatorul cu e-mail "%{email}" din această campanie?
   campaigns:
+    assessments_and_reports:
+      assessor_assessments: Evaluările evaluatorului
+      other_assessments: Alte evaluări
+      other_assessor_assessments: Alte evaluări ale evaluatorului
+      other_reports: Alte rapoarte
     card:
       duration: Durată
       starts_in: 'Începe în:'
-      starts_on: Începe la %{data}
+      starts_on: Începe la %{date}
       will_start_shortly: Campania va începe în scurt timp. Vă rugăm să așteptați
   change_password_page:
     old_password: Parolă veche
@@ -419,75 +1702,314 @@ ro:
       retake: Nu, vreau să reiau
       run_again: Aleargă din nou
       title: Trebuie să ne asigurăm că sistemul dvs. poate înregistra înregistrarea video
+      upload_again: Încarcă din nou
       uploading: Încărcare
   common:
     actions:
       add: Adaugă
+      approve: Aproba
       archive: Arhivă
+      back_to_dashboard: Înapoi la tabloul de bord
+      back_to_responses: Înapoi la răspunsuri
       cancel: Anulează
+      change: Schimbare
       close: Închidere
+      continue: Continua
       copy: Copiați
+      create: Crea
       delete: Ștergeți
+      done: Făcut
+      download: Descărca
       edit: Editare
+      export: Export
+      filter: Filtru
+      filter_by_tags: Filtrează după etichete
+      go_back: Întoarce-te
+      import: Importa
+      insert: Insera
+      ok: OK
       publish: Publicare
+      reject: Respinge
       remove: Eliminați
       reset: Resetare
       resolve: Rezolvați
       restore: Restaurare
+      return_to_home: Înapoi la Acasă
+      run: Alerga
       save: Salvați
+      schedule: Orar
       search: Căutare
       send: Trimiteți
+      sign_in: Conectează-te
       start: Start
+      submit: Prezinte
       unarchive: Dezarhivare
       unpublish: Nepublicați
       unresolve: Nerezolvat
       update: Actualizare
       upload: Încărcare
+      upload_file: Încărcați fișierul
       verify: Verificare
+      view: Vedere
       view_all_tasks: Vizualizați toate sarcinile
       view_detail: Vezi detalii
     column:
       action: Acțiune
+      active: Activ
+      allow_multiple_responses: Permiteți mai multe răspunsuri
+      approval_notification_list: Lista de utilizatori de notificare de aprobare
+      approvers_list: Lista de aprobatori
+      assessment: Evaluare
+      assessment_name: Numele evaluării
+      assessments: Evaluări
+      assessor: Evaluator
       category: Categorie
+      client: Client
       code: Cod
       created_at: Creat la
+      created_by: Creat de
+      created_date: Data creării
+      default_language: Limba implicită
+      description: Descriere
+      details: Detalii
+      dimension: Dimensiune
+      email: E-mail
+      external_report_id: ID raport extern
+      first_name: Prenume
+      icon: Icoană
+      icon_color: Culoarea pictogramei
       id: Id
+      json:
+        answer: Răspuns JSON
+        external_result: Rezultat extern JSON
+        scoring: Scor JSON
+      key: Cheie
+      last_name: Nume de familie
+      linked_activities: Activități legate
+      linked_assessment: Evaluare legată
+      meeting_link: Link întâlnire
+      modified_by: Modificat de
+      modified_date: Data modificării
+      name: Nume
+      owner: Proprietar
+      package_id: ID-ul pachetului
+      poster: Afiș
+      project: Proiect
+      provider: Furnizor
+      qc_user_list: Lista utilizatorilor QC
+      report: Raport
+      report_id: ID raport
+      require_scheduling: Necesită programare
+      responses_count: Număr de răspunsuri
+      schedule_time: Timp de programare
+      scheduling: Programarea
+      skills: Aptitudini
       status: Statut
+      tags: Tags
+      timing: Calendarul
+      token: Simbol
+      type: Tip
+      unschedule: Deprogramare
+      updated_at: Ultima actualizare
+    errors:
+      csv_injection_validation_error: nu poate începe cu =, |, +, -, @, %
+      something_wrong: Ceva nu a mers bine. Contactați administratorul.
+    messages:
+      leave_message: Sunteți sigur că doriți să părăsiți această pagină? Orice răspuns nesalvat pe care îl aveți se va pierde.
     model:
+      admins: Administratori
+      assessment: Evaluare
       assessments: Evaluări
       campaigns: Campanii
+      completion_statuses: Statusuri de finalizare
+      datasheet: Fișă tehnică
+      projects: Proiecte
+      report: Raport
       reports: Rapoarte
+      scoring: Notare
+      sms_contact: SMS Contact
+      threesixty_campaign: Treișaizeci de scoruri de campanie
+    status:
+      completed: Completat
+      dropped_out: A renunțat
+      in_progress: În curs de desfășurare
+      late: Târziu
+      no_show: Fără prezentare
+      not_started: Neînceput
+      not_status: Fără statut
+      on_time: Punctual
     text:
+      accepted: Acceptate
+      all_pages: Toate paginile
       cancel: Anulează
       confirm: Confirmați
       continue: Continuați
+      copied: Copiat în clipboard
       default: Implicit
       download: Descărcare
+      file: Fișier
+      global_import: Este import global?
+      minutes: Minute
       na: N/A
+      none: Niciunul
       ok: Bine
       refer_export_file: Consultați funcționalitatea Export pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
+      reference_language: Limba de referință
       response: Răspuns
+      select: Alege
+      selected: Selectat
+      subject: Subiect
+      total: Total
+      view_as: Vizualizare ca
+    tooltips:
+      hide: Ascunde
+      view: Vedere
+    validations:
+      select_locale: Vă rugăm să selectați unele setări regionale
+      should_be_whole_number: ar trebui să fie un număr întreg
+  confirmation:
+    delete_comment: Sigur doriți să ștergeți acest comentariu?
+  custom_field:
+    field_name: Nume câmp
+  datasheet:
+    errors:
+      datasheet_column:
+        not_found: Coloana '%{column_name}' nu a fost găsită
+        numeric_value_required: Coloana "%{field}" ar trebui să fie un număr
+        string_value_required: Coloana '%{field}' ar trebui să fie un șir
+      not_configured: Fișa tehnică nu este configurată
   devise:
     administrators:
+      meta_title: Conectați-vă la panoul de administrare
+      passwords:
+        edit:
+          submit: Setați o parolă nouă
+          title: Schimbați-vă parola
+        new:
+          back: Întoarcerea înapoi
+          submit: Trimite-mi instrucțiuni
+          title: Ai uitat parola?
       sessions:
         new:
+          forgot_password: Ai uitat parola?
           submit: Autentificare
+          title: "<strong>Bine ați venit</strong>, vă rugăm să vă autentificați"
+      shared:
+        links:
+          about: Despre
+          app_name: "© Nume aplicație 2016"
+          contact_us: Contactați-ne
+          privacy: Intimitate
+    confirmations:
+      confirmed: Adresa ta de e-mail a fost confirmată cu succes.
+      send_instructions: Veți primi un e-mail cu instrucțiuni despre cum să vă confirmați adresa de e-mail în câteva minute.
+      send_paranoid_instructions: Dacă adresa dumneavoastră de e-mail există în baza noastră de date, veți primi un e-mail cu instrucțiuni despre cum să vă confirmați adresa de e-mail în câteva minute.
     failure:
       already_authenticated: Sunteți deja conectat.
       inactive: Contul dvs. nu este încă activat.
       invalid: E-mail sau parolă invalidă.
       invited: Aveți o invitație în așteptare, acceptați-o pentru a finaliza crearea contului dvs.
+      last_attempt: Mai aveți o încercare înainte ca contul să fie blocat.
+      locked: Contul tău este blocat.
       magic_link_invalid: Link de conectare invalid sau expirat.
       not_found_in_database: E-mail sau parolă invalidă.
+      saml_user_not_present: Utilizatorul nu este prezent în sistem
       timeout: Sesiunea dvs. a expirat. Vă rugăm să vă autentificați din nou pentru a continua.
       unauthenticated: Trebuie să vă conectați sau să vă înregistrați înainte de a continua.
+      unconfirmed: Trebuie să vă confirmați adresa de e-mail înainte de a continua.
     invitations:
       edit:
+        confirm_password_label: Confirmați parola
+        header: Setați-vă parola
+        instruction: Pentru a crea o parolă nouă, introduceți noua parolă în casetele de mai jos
         password_label: Parolă
+        submit: Setare parolă nouă
+        submit_button: Setează-mi parola
+        title: Creați parola
+      invitation_removed: Invitația ta a fost eliminată.
+      invitation_token_invalid: Jetonul de invitație furnizat nu este valabil!
+      new:
+        header: Trimite invitație
+        submit_button: Trimite o invitație
+      no_invitations_remaining: Nu au mai rămas invitații
+      send_instructions: A fost trimis un e-mail de invitație la %{email}.
+      updated: Parola a fost setată cu succes. Acum sunteți conectat.
+      updated_not_active: Parola a fost setată cu succes.
+    mailer:
+      admin_invitation_instructions:
+        accept: Faceți clic aici pentru a accepta invitația.
+        body: |-
+          Bună ziua %{name},
+          Ați fost invitat să accesați panoul de administrare al platformei de evaluare Lighthouse - The Talent Enterprise.
+
+          %{accept} Sau puteți ignora în siguranță acest e-mail.
+
+          Vă rugăm să nu partajați acreditările de acces cu nimeni.
+        subject: Invitație la far
+      confirmation_instructions:
+        subject: Instrucțiuni de confirmare
+      invitation_instructions:
+        body: |-
+          Bună ziua %{name},
+          Ați fost adăugat la Lighthouse ca administrator pentru următoarea secțiune
+        login: Conectați-vă la Lighthouse
+        sections:
+          campaign: 'Campanie: %{section_name}'
+          client: 'Client Tenancy: %{section_name}'
+          project: 'Proiect: %{section_name}'
+        subject: Invitație la far
+      password_change:
+        body: |-
+          Bună ziua %{name}!
+
+          Parola a fost schimbată.
+
+          Dacă nu ați făcut această solicitare, vă rugăm să contactați imediat Asistența la mte.support@mercer.com
+        regards: |-
+          Cu stimă
+          Echipa Farului
+        subject: Parola Lighthouse s-a schimbat
+      reset_password_instructions:
+        body: |-
+          Bună ziua %{name}!
+
+          Cineva a solicitat un link pentru a vă schimba parola. Puteți face acest lucru prin linkul de mai jos.
+        change_password: Schimbați parola
+        footer: Dacă nu ați solicitat acest lucru, puteți ignora în siguranță acest e-mail. Parola nu se va schimba până când nu accesați linkul de mai sus și nu creați unul nou.
+        regards: |-
+          Cu stimă
+          Echipa Farului
+        subject: Instrucțiuni pentru resetarea parolei
+      unlock_instructions:
+        body: |-
+          Bună ziua %{name}!
+
+          Contul tău a fost blocat din cauza unui număr excesiv de încercări de conectare nereușite.
+
+          Faceți clic pe linkul de mai jos pentru a vă debloca contul:
+        footer: Dacă nu ați solicitat acest lucru, puteți ignora în siguranță acest e-mail. Parola nu se va schimba până când nu accesați linkul de mai sus și nu creați unul nou.
+        regards: |-
+          Cu stimă
+          Echipa Farului
+        subject: Instrucțiuni pentru deblocarea contului
+        unlock_account: Deblochează-mi contul
+    omniauth_callbacks:
+      failure: Nu s-a putut autentifica de la %{kind} din cauza "%{reason}".
+      success: Autentificat cu succes din contul %{kind}.
     passwords:
+      edit:
+        instruction: Pentru a crea o parolă nouă, introduceți noua parolă în casetele de mai jos
+        submit: Prezinte
+        title: Creare parolă
       invalid_email: E-mail invalid
+      no_token: Nu puteți accesa această pagină fără a veni dintr-un e-mail de resetare a parolei. Dacă veniți dintr-un e-mail de resetare a parolei, asigurați-vă că ați folosit adresa URL completă furnizată.
+      send_instructions: Veți primi un e-mail cu instrucțiuni despre cum să vă resetați parola în câteva minute.
+      send_paranoid_instructions: Dacă adresa ta de e-mail există în baza noastră de date, vei primi un link de recuperare a parolei la adresa ta de e-mail în câteva minute.
+      updated: Parola a fost schimbată cu succes. Acum sunteți conectat.
+      updated_not_active: Parola a fost schimbată cu succes.
     registrations:
       communication_not_setup_error: Comunicarea prin e-mail de înregistrare nu este configurată, vă rugăm să contactați administratorul acestui proiect.
+      destroyed: Pa! Contul tău a fost anulat cu succes. Sperăm să vă revedem în curând.
       new:
         email: Adresă de e-mail
         first_name: Numele și prenumele
@@ -501,71 +2023,255 @@ ro:
           sign_in: Înregistrează-te
         terms_notice: Prin înregistrare, sunteți de acord cu <a href="%{terms_url}">Termenii</a> și <a href="%{terms_url}">condițiile</a> noastre <a href="%{terms_url}">de utilizare și cu Politica de confidențialitate</a>
         title: Înregistrați-vă acum
+      signed_up: Bun venit! Te-ai înscris cu succes.
+      signed_up_but_inactive: Te-ai înscris cu succes. Cu toate acestea, nu v-am putut conecta deoarece contul dumneavoastră nu este încă activat.
+      signed_up_but_locked: Te-ai înscris cu succes. Cu toate acestea, nu ne-am putut conecta deoarece contul este blocat.
+      signed_up_but_unconfirmed: Un mesaj cu un link de confirmare a fost trimis la adresa ta de e-mail. Vă rugăm să urmați linkul pentru a vă activa contul.
       success:
         actions:
           sign_in: Înregistrează-te
+        instruction: Vă rugăm să vă verificați e-mailul pentru instrucțiuni suplimentare
+        title: Înscriere reușită
+      update_needs_confirmation: V-ați actualizat contul cu succes, dar trebuie să vă confirmăm noua adresă de e-mail. Vă rugăm să vă verificați e-mailul și să urmați linkul de confirmare pentru a confirma noua adresă de e-mail.
+      updated: Contul tău a fost actualizat cu succes.
     sessions:
+      already_signed_out: Deconectat cu succes.
       new:
         email: Adresa de e-mail
         forgot_password: Ați uitat parola?
         instruction: Vă rugăm să vă conectați cu informațiile contului dvs. personal
+        keep_sign_in: Da, păstrați-mă conectat
+        login_with_sso: Conectați-vă cu Single Sign-On
         password_placeholder: Parolă
         submit: Autentificare
         tabs:
           register: Înregistrare
           sign_in: Autentificare
         title: Bine ați venit!
+      signed_in: V-ați conectat cu succes!
+      signed_in_time: V-ați conectat ultima dată la %{date_time}
+      signed_out: Deconectat cu succes.
+      unsuccessful_sign_in_time: Ultima încercare de conectare pe %{date_time} nu a reușit.
     two_factor_authentication:
       attempt: Vă rugăm să introduceți OTP-ul pe care l-ați primit la adresa dvs. de e-mail înregistrată
+      attempt_failed: OTP incorect! Vă rugăm să încercați din nou
       code_has_been_sent: Noul dvs. OTP a fost trimis la adresa dvs. de e-mail înregistrată
+      contact_administrator: Vă rugăm să contactați administratorul de sistem
+      email:
+        otp:
+          subject: Parola de unică folosință
+      max_login_attempts_reached: Ați atins numărul maxim de încercări pentru OTP-ul curent. Faceți clic pe Retrimite OTP pentru a primi un nou OTP
+      otp: Cod
+      submit: Verifica
+      success: Conectarea cu autentificarea cu doi factori a avut succes.
+      title: Parolă unică
+    unlocks:
+      send_instructions: Veți primi un e-mail cu instrucțiuni despre cum să vă deblocați contul în câteva minute.
+      send_paranoid_instructions: Dacă contul tău există, vei primi un e-mail cu instrucțiuni despre cum să-l deblochezi în câteva minute.
+      unlocked: Contul tău a fost deblocat cu succes. Vă rugăm să vă conectați pentru a continua.
+      unprocessable_entity: Contul tău nu a putut fi deblocat cu acest link. Vă rugăm să contactați asistența.
   dry_errors:
     errors:
+      add_edit_project:
+        invalid_subdomain_format: Format greșit al subdomeniului.
+        reserved_subdomain: Subdomeniul %{value} este rezervat
+        uniq_subdomain: Subdomeniul ar trebui să fie unic.
+      add_manager:
+        manager_not_found: Managerul nu a fost găsit sau nu face parte din același proiect
+        user_not_found: Utilizatorul nu a fost găsit sau nu face parte din același proiect
+      admin:
+        already_added: Administrator cu e-mail deja adăugat.
+      already_assigned?: Nu se poate lega această evaluare - este deja atribuită la '%{linked_assessor_form_name}'.
+      already_invited: Acest utilizator există deja în centrul de evaluare pe care încercați să-l adăugați.
+      assessor_assessment:
+        already_added: Evaluarea evaluatorului a fost deja adăugată la campanie.
+        lead_already_added: O singură evaluare a evaluatorului principal poate fi adăugată la campanie.
+      campaign_factor:
+        code_already_exists: Un factor cu același cod există deja.
+        invalid_lua_name: ar trebui să fie un nume de variabilă lua valid
+        limit_exceeded: Ați atins limita maximă de %{limit} factori de campanie.
+        name_already_exists: Un factor cu același nume există deja.
+        rank_not_allowed: Pot fi clasificați numai factorii cu un tip numeric de ieșire.
+      campaign_factor_group:
+        group_already_exists: Un grup cu același nume există deja.
+        last_factor_group: Nu se poate șterge ultimul grup de factori de campanie.
       campaign_idps:
         idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui campaniei.
+      cant_be_deleted: Această înregistrare nu poate fi ștearsă
+      client_feature:
+        ai_assisted_idp_feature_error: Nu poate fi adevărat dacă funcția AI Assistants este dezactivată
+      create_superadmin:
+        uniq_email: E-mailul ar trebui să fie unic.
       development_actions:
         only_global_skills_allowed: Competențele selectate trebuie să fie competențe globale.
         skills_not_belong_to_project: Competențele selectate trebuie să aparțină proiectului specificat.
         skills_required: Vă rugăm să selectați cel puțin o competență.
+      exceeded_subjects_count: Puteți adăuga doar %{count} subiecte per invitație
+      filled?: nu poate fi gol
+      idp_template:
+        content_required: Conținutul este necesar pentru instrucțiuni
+        tag_or_skill_required: Vă rugăm să selectați fie o etichetă, fie o abilitate atunci când este aleasă opțiunea "Selectat".
+      invalid_name: Numai alfabetul, numărul, spațiile, liniuța și punctul sunt permise ca caracter valid
+      invalid_value: Declarația nevalidă '%{value}' pe numărul de linie %{row}
       job_roles:
         unique_within_job_group: Un rol de post cu același nume există deja.
+      json?: Ar trebui să fie JSON valid
+      key?: nu poate fi gol
+      match_regexp?: valoare nevalidă
+      mettl_schedule_record_create:
+        uniq_schedule_name: Numele programului ar trebui să fie unic
+      missed?: nu poate fi gol
+      not_allowed?: Nu este permisă modificarea
+      not_in_the_list?: valoare nevalidă transmisă
+      not_uniq_variable: Variabila '%{value}' redefinită pe numărul de linie %{row}
+      project_assessments:
+        should_be_greater_than_zero: Valabilitatea rezultatului trebuie să fie mai mare de 0 zile
+      report_approval_settings:
+        report_exists: Setarea de aprobare a raportului pentru acest raport există deja.
+        validates_admins: Administratorii nu au acces la campanie.
+      report_families_reports:
+        report_exists: Acest raport face deja parte din pachetul de rapoarte
+      size?: dimensiunea ar trebui să fie mai mică %{size}
+      skill:
+        already_added: Abilitate cu același nume deja adăugată.
+      skill_alias:
+        unique_alias: Aliasul ar trebui să fie unic
+        unique_skill: Abilitățile ar trebui să fie unice
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Competența și rolul postului trebuie să aparțină aceluiași proiect sau să fie globale.
         unique_mappings: Există deja o corespondență cu aceleași competențe și roluri.
+      uniq: Această evaluare Mettl este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
+      uniq?: ar trebui să fie unice
+      uniq_simulation: Această evaluare de simulare este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
       uniq_skillvue: Această evaluare Skillvue este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
+      update_workshop:
+        less_than_booked: Numărul total de locuri trebuie să fie mai mare decât cel rezervat
+      user_availability_date:
+        overlaps_date: Se suprapune cu o altă disponibilitate %{range}
+        overlaps_time: Se suprapune intervalul %{interval}
+        start_date_should_be_less: Data de începere trebuie să fie mai mică decât data de încheiere
+        start_time_should_be_less: Ora de începere ar trebui să fie mai mică decât ora de sfârșit
       user_idp_plan:
+        idp_template_already_assigned_to_user: Acest șablon Idp este deja asociat acestui utilizator și este activ
         idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui utilizatorului.
+      user_saved_filters:
+        limit_exceeded: Puteți avea doar %{limit} filtre salvate, vă rugăm să ștergeți filtrele salvate pentru a adăuga mai multe.
+        unique_name: Există deja un filtru cu același nume.
+      workshop_invited_subject_create:
+        already_exists: Subiectul există deja în invitație.
+      workshop_subject_create:
+        already_exists: Subiectul există deja în acest centru de evaluare.
+        part_of_other_workshop: Subiectul este deja participant la '%{workshop_name}'.
+      workshops:
+        no_available_assessor_slots: Nu există locuri disponibile pentru evaluator %{assessor}
+        no_available_manager_slots: Nu există sloturi disponibile pentru manager %{manager}
+    users:
+      registrations:
+        new:
+          register: Înregistrează-te
+          sign_in: Conectează-te
+      sessions:
+        new:
+          register: Înregistrează-te
+          sign_in: Conectează-te
   emails:
+    nomination_approval_table:
+      evaluator_name: Numele evaluatorului
+      number: Nu
+      relationship: Rudenie
+      subject_name: Numele subiectului
     subject_relationship_table:
       subject_email: Subiect Email
       subject_name: Numele subiectului
       subject_relationship: Subiect Relație
+  empty: Gol
+  enums:
+    communication:
+      body:
+        error: Corpul e-mailului are un text incorect.
   errors:
     assessments:
       timed_out: Nu veți putea efectua evaluarea %{assessment_name}, deoarece timpul a expirat.
     error: Eroare
+    error_401: Nu sunteți autorizat să accesați această resursă. Vă rugăm să vă conectați.
+    error_403: Nu aveți permisiunea de a vizualiza această resursă.
     error_500: Ceva nu a mers bine. Contactați administratorul.
+    error_msg: Ceva nu a mers bine. Vă rugăm să reîmprospătați pagina și, dacă problema persistă, contactați administratorul
     forbidden: Nu aveți acces la această pagină
     forbidden_action: Nu aveți permisiuni pentru această acțiune
+    invalid_session_title: Sesiune nevalidă
     invalid_token: Ceva nu a mers bine. Vă rugăm să reîncărcați pagina și să încercați din nou.
+    max_regeneration_limit: Limita maximă de regenerare depășită, contactați administrația.
+    messages:
+      data_report_blank: Raportul de date nu există
     module_error: Ceva nu a mers bine cu acest modul, vă rugăm să contactați administrația.
     module_error_editor: Ceva nu a mers bine cu acest modul, vă rugăm să verificați setările modulului.
     module_props_error: Ceva nu a mers bine cu acest modul.
+    skill_gap_report:
+      not_found: Raportul privind deficitul de competențe nu a fost găsit
     try_again: Vă rugăm să încercați din nou
+    user_idp_plan:
+      no_active_plan: Nu s-a găsit niciun plan IDP activ
+    webhooks:
+      multiple_webhook_error: URL-ul nu poate fi actualizat, deoarece există mai multe webhook-uri pentru acest proiect.
+  evaluators:
+    errors:
+      can_not_processed: nu poate fi prelucrat
+      exists: există deja
+      max_evaluators: Aveți deja suficienți evaluatori
   factors:
     description: Descriere
     factor: Factor
   frontend:
     activate: Activați
     are_you_sure: Sunteți sigur?
+    aria:
+      back_to_dashboard: Înapoi la tabloul de bord
+      back_to_tasks: Înapoi la Sarcini
+      calendar: Calendar
+      campaign_name_description: ', pentru campania "%{campaignName}"'
+      change_language: "(Schimbați limba)"
+      clear_date: Ștergeți data
+      collapse_menu: Restrângere meniu
+      confirm_proceed: Confirmați pentru a continua
+      delete_message: Ștergeți mesajul
+      drag_drop_instructions_desktop: Activați modul formulare pentru a glisa și plasa elementele cu un cititor de ecran.
+      drag_drop_instructions_mobile: Cu un cititor de ecran, atingeți de două ori și mențineți apăsat un buton de tragere, deplasați-vă la alt element și ridicați degetul pentru a muta elementul.
+      enlarge_view_text: Măriți vizualizarea %{text}
+      expand_menu: Extindeți meniul
+      file_uploaded: Fișier încărcat
+      lang_dropdown_description: ",schimbă limba"
+      pause: Pauză
+      play: Juca
+      profile_progress: Completarea profilului este
+      remove_file: Eliminați fișierul
+      send_message: Trimite mesaj
+      slider_label_instruction: 'min: %{min} și max: %{max}'
+      task_btn_description: sarcină %{assessmentName}
+      task_progress_label: Finalizarea sarcinii este
+      write_message: Scrieți-vă mesajul
     assessment: Evaluare
     assessment_groups:
       create_success: Grupul a fost creat cu succes
       update_success: Grupul a fost actualizat cu succes
+    availability:
+      add_new_availability: Adăugați disponibilitate nouă
+      create_success: Disponibilitatea a fost creată cu succes.
+      remove_confirm:
+        content: Sigur doriți să eliminați disponibilitatea?
+        success: Disponibilitatea a fost eliminată cu succes.
+        title: Eliminați disponibilitatea
+      update_success: Disponibilitatea a fost actualizată cu succes.
     background_reading: Lectura de fundal
     bookings:
       accept_invite_msg: Ați primit o invitație. Vă rugăm să vă rezervați locul.
       add_to_calendar: Adăugare la calendar
       add_to_calendar_tour_description: Adăugați această rezervare la calendarul dvs
+      add_to_google_calendar: Adăugați la Google Calendar
+      add_to_i_calendar: Adaugă în iCalendar
+      add_to_msoffice_calendar: Adăugați la calendarul Microsoft Office 365
+      add_to_outlook_calendar: Adăugare la calendarul Outlook
+      add_to_yahoo_calendar: Adăugați la yahoo calendar
       assessment_center_alert:
         btn_title: Campanie
         message_part1: Completați toate prelucrările din acest
@@ -603,9 +2309,11 @@ ro:
       language_required_msg: Vă rugăm să selectați o limbă
       meeting_start_text: 'Reuniunea va începe în:'
       need_changes: Trebuie să faceți modificări?
+      neurodivergence_comment_aria_label: Comentarii despre neurodivergență
       neurodivergence_comment_placeholder: Comentariile dvs
       neurodivergence_question: Aveți nevoie de acomodări sau ajustări rezonabile din cauza unor nevoi speciale sau dizabilități pentru a participa pe deplin la evaluare?
       no_invites_msg: Veți fi adăugat la centrul de evaluare sau veți primi o invitație pentru a vă rezerva un loc; odată ce faceți parte din centru, puteți finaliza activitățile făcând clic pe butonul "Vezi detalii" de mai jos.
+      or: sau
       other_invite: Vedeți %{count} mai multe invitații
       other_invites: Vedeți %{count} mai multe invitații
       reason: Motivul
@@ -630,24 +2338,68 @@ ro:
     break_time: Pauză
     campaign:
       actions:
+        copy:
+          success: "%{campaignName} a fost copiat cu succes."
         remove:
           confirmation: Introduceți numele campaniei actuale în caseta de text de mai jos pentru a elimina campania
           success: "%{campaignName} a fost eliminat cu succes."
       users:
+        actions:
+          export:
+            details: Utilizatorii campaniei
+            scheduled: Exportul utilizatorului a fost programat cu succes.
+          export_reports_and_assessments:
+            details: Rapoarte și evaluări
         completion_statuses:
           completed: Completat
           in_progress: În curs de desfășurare
           not_started: Nu a început
     change_password: Modificarea parolei
+    clients:
+      actions:
+        create:
+          create_client: Creare client
+          create_license: Adăugați licență
+        menus:
+          view_licenses: Vizualizați licențele
+        remove:
+          confirmation: Introduceți numele curent al clientului de mai jos în caseta de text pentru a elimina clientul
+          success: Clientul cu numele "%{clientName}" a fost eliminat cu succes
+      projects:
+        actions:
+          remove:
+            confirmation: Introduceți numele curent al proiectului de mai jos în caseta de text pentru a elimina proiectul
+            success: Proiectul cu numele "%{projectName}" a fost eliminat cu succes
     delete: Ștergeți
     edit: Editare
+    error_warning: Ups, ceva nu a mers bine cu evaluarea ta. Vă rugăm să contactați asistența.
+    hogan:
+      cannot_start: Nu poți începe evaluarea hogan chiar acum. Vă rugăm să încercați după câteva minute.
     lighthouse_app: Farul Mercer
     login: Autentificare
+    maintenance:
+      notification: Farul va fi oprit pentru întreținere programată în 60 de secunde
     manage: Gestionați
     'no': Nu
+    passwordSetting:
+      update_success: Setările de securitate au fost actualizate cu succes
+    questions:
+      campaign_factor_feedback:
+        add_skill: Adăugați abilități
+        feedback: Feedback
+        max_factors: Factori maximi
+        min_factors: Factori minimi
+        skill_factor: Factorul de calificare
+    report_error: Ups, ceva nu a mers bine cu raportul tău. Vă rugăm să contactați asistența.
+    request_failed_message_box:
+      message: Ultima solicitare a eșuat. Vă rugăm să reîmprospătați pagina și, dacă problema persistă, contactați administratorul.
+      refresh: Împrospăta
     resource:
       create_success: "%{readableResourceName} a fost adăugat cu succes"
       update_success: "%{readableResourceName} a fost actualizat cu succes"
+    restart: Reîncepe
+    restart_progress: Au existat unele modificări în evaluare. Vă rugăm să reîmprospătați pagina pentru a vedea modificările. Reîmprospătarea paginii va începe evaluarea de la început. Întrebările la care ați răspuns deja vor fi completate automat.
+    saved_results: Răspunsurile salvate cu succes.
     session_timeout_modal:
       buttons:
         close: Închidere
@@ -658,6 +2410,15 @@ ro:
       message_after_timeout: Sesiunea dvs. a expirat, vă rugăm să vă autentificați din nou.
       time_remaining: Timp rămas
       title: Avertisment de expirare a sesiunii
+    skip_to_content: Sari la conținut
+    smsInvites:
+      create_success: Invitația SMS a fost adăugată cu succes
+      update_success: SMS Invite a fost actualizat cu succes
+    sms_records:
+      create_success: Lucrarea SMS a fost programată cu succes
+    test_webhook:
+      create_success: Testul Webhook a avut succes.
+      success: Succes
     update: Actualizare
     upload: Încărcare
     workshop_invited_subjects:
@@ -668,145 +2429,189 @@ ro:
         requested_rescheduling: Reprogramare solicitată
         requested_rescheduling_rejected: Solicitat Reprogramare Respins
     'yes': Da
+  glint:
+    booking_card:
+      aria_available_time: Timp disponibil
+      aria_back_to_time_selection: Înapoi la selectarea orei
+      aria_desc_current_month: În prezent pe %{monthName} %{year}
+      aria_label_next_month: Mergi la luna viitoare
+      aria_label_previous_month: Mergi la luna anterioară
+      aria_timezone_select: Selectați fusul orar
+    color_picker:
+      copy_success_msg: Codul hexadecimal copiat în clipboard.
+      recent_colors: 'Utilizate recent:'
+      recommended_colors: 'Recomandat:'
+    datepicker_with_ranges:
+      all_time: Din toate timpurile
+      current_month: Luna curentă
+      current_week: Săptămâna curentă
+      last_month: Luna trecută
+      last_week: Săptămâna trecută
+      today: Azi
+      yesterday: Ieri
+    fontsize_modifier:
+      change_font: Modificarea dimensiunii fontului
+      decrease_font: Micșorați dimensiunea fontului
+      increase_font: Măriți dimensiunea fontului
+      reset_font: Resetați dimensiunea fontului
+    input_duration:
+      max_duration: Durata maximă este %{duration}
+    schedule_availability:
+      copy_to_all: Copiază în toate
+      end_date: Data de încheiere
+      from: Din
+      new_schedule: Adăugați un program nou
+      new_schedule_description: Ora de începere trebuie să fie mai devreme decât ora de sfârșit
+      no_slots: Nu au fost adăugate sloturi
+      required_error: nu poate fi gol
+      save: Salva
+      saved_schedule_description: Program de disponibilitate salvat al utilizatorului
+      start_date: Data de începere
+      timezone_label: Fus orar
+      to: Spre
+    views_container:
+      aria_grid_view: Vizualizare grilă
+      aria_list_view: Vizualizare listă
+      aria_selected: Selectat
   idp:
     actions: Acțiuni
     behavioral: Comportamental
-    board: Tablă
+    board: Scândură
     comment_details:
       add_comment: Adaugă comentariu
       add_comment_placeholder: Adaugă un comentariu...
       add_reply_placeholder: Adaugă un răspuns...
-      go_to_skill: Mergi la competență
+      go_to_skill: Mergi la abilitate
     comments:
       close: Închide
       comments: Comentarii
-      filter_comments: Filtrează comentariile
-      mark_as_resolved: Marchează ca rezolvat
-      mark_as_unresolved: Marchează ca nerezolvat
-      replied: S-a răspuns
-      replies: Răspunsuri
+      filter_comments: Filtrarea comentariilor
+      mark_as_resolved: Marcați ca rezolvat
+      mark_as_unresolved: Marcați ca nerezolvat
+      replied: Răspuns
+      replies: Răspunsurile
       reply: Răspunde
-      resolve: Rezolvă
-      resolved: Rezolvat
+      resolve: Rezolva
+      resolved: Rezolvată
       resolved_message: Acest comentariu a fost rezolvat și răspunsurile sunt dezactivate.
-      show_only_read: Afișează doar citite
-      show_only_resolved: Afișează doar rezolvate
-      show_only_unread: Afișează doar necitite
-      show_only_unresolved: Afișează doar nerezolvate
+      show_only_read: Afișează doar citit
+      show_only_resolved: Afișează doar rezolvat
+      show_only_unread: Afișează doar necitit
+      show_only_unresolved: Afișează doar nerezolvat
       sort_by_date: Sortează după dată
       you: Tu
-    convert_to_draft: Convertește în ciornă
+    convert_to_draft: Conversie în ciornă
     details: Detalii
     development_actions:
       action_private: Da
       action_public: Nu
-      add_development_action: Adaugă acțiune de dezvoltare
-      all: Toate
+      add_development_action: Adăugarea acțiunii de dezvoltare
+      all: Tot
       approved: Aprobat
       board_view:
-        completed: Finalizat
-        in_progress: În curs
-        not_started: Nu a început
-      completion: Finalizare
-      create_my_own: Creează propria mea
-      date_range: Data de început - Data de sfârșit
-      generate_by_ai: Generează cu AI
-      generate_more: Generează mai multe
-      generating_development_actions: Se generează acțiuni de dezvoltare...
+        completed: Completat
+        in_progress: În curs de desfășurare
+        not_started: Neînceput
+      completion: Terminare
+      create_my_own: Creează-mi propriul
+      date_range: Data de începere - Data de sfârșit
+      generate_by_ai: Generați prin AI
+      generate_more: Generează mai mult
+      generating_development_actions: Generarea de acțiuni de dezvoltare...
       heading: Acțiuni de dezvoltare
       incomplete_error: Acțiuni de dezvoltare incomplete
       incomplete_error_message: Unele acțiuni de dezvoltare sunt incomplete. Vă rugăm să le completați înainte de a trimite IDP-ul.
       incomplete_warning: Acțiuni de dezvoltare incomplete
-      incomplete_warning_message: Unele acțiuni de dezvoltare sunt incomplete. Sigur doriți să marcați IDP-ul ca finalizat?
-      learning_from_others: Învățare de la alții
-      manage_skills: Gestionează competențele
+      incomplete_warning_message: Unele acțiuni de dezvoltare sunt incomplete. Sunteți sigur că doriți să vă marcați IDP-ul complet?
+      learning_from_others: Învățând de la alții
+      manage_skills: Gestionați abilitățile
       marathon: Maraton
-      mark_as_complete: Marchează ca finalizat
-      no_development_actions: Nicio acțiune de dezvoltare
+      mark_as_complete: Marcați ca finalizat
+      no_development_actions: Fără acțiuni de dezvoltare
       on_the_job: La locul de muncă
-      other: Altele
+      other: Alt
       private: Privat
-      publish_plan: Publică planul
-      remove: Elimină
-      skill: Competență
+      publish_plan: Publicați planul
+      remove: Depărta
+      skill: Îndemânare
       sprint: Sprint
-      start_plan: Începe planul
+      start_plan: Începeți planul
       structured_learning: Învățare structurată
-      submit_plan: Trimite planul
+      submit_plan: Trimiteți planul
       write_here: Scrie aici...
-    edit_plan: Editează planul
+    edit_plan: Editați planul
     edit_progress: Editare progres
     initial_steps:
-      add_skill_group_description: Pe baza rezultatelor evaluării, iată câteva dintre ariile tale de puncte forte și dezvoltare. Alege competențele pe care dorești să le dezvolți în continuare ca parte a planului tău de dezvoltare.
-      add_skill_group_title: Explorarea competențelor tale %{category}
-      add_skills: Adaugă
-      add_skills_step: Adaugă competențe
-      continue_to_rate_skills: Continuă să evaluezi competențele
-      getting_started: Începe
-      less_skills: Arată mai puține competențe
-      more_skills: Explorează mai multe competențe
-      next: Următorul
-      no_skills_selected: Nicio competență selectată.
-      rate_skills: Evaluează competențele
-      rate_skills_description: Acum că ai selectat prioritățile de dezvoltare, te rugăm să te autoevaluezi pentru fiecare dintre următoarele. Amintește-ți să te evaluezi pe baza nivelului actual, nu pe cel trecut sau dorit.
-      rate_skills_title: Autoevaluarea competențelor
-      rating_column_header: Autoevaluarea ta
+      add_skill_group_description: Pe baza rezultatelor evaluării dvs., iată câteva dintre domeniile de puncte forte și dezvoltare pentru dvs. Alegeți abilitățile pe care doriți să le dezvoltați în continuare ca parte a planului de dezvoltare.
+      add_skill_group_title: Explorarea abilităților %{category}
+      add_skills: Adăuga
+      add_skills_step: Adăugați abilități
+      continue_to_rate_skills: Continuați să evaluați competențele
+      getting_started: Introducere
+      less_skills: Afișați mai puține abilități
+      more_skills: Explorați mai multe abilități
+      next: Următor
+      no_skills_selected: Nicio abilitate selectată.
+      rate_skills: Evaluați abilitățile
+      rate_skills_description: Acum că v-ați selectat prioritățile de dezvoltare, vă rugăm să vă evaluați pentru fiecare dintre următoarele. Nu uitați să vă evaluați în funcție de nivelul actual și nu de nivelul trecut sau dorit.
+      rate_skills_title: Evaluați-vă abilitățile
+      rating_column_header: Autoevaluarea dvs.
       reflective_questions: Întrebări reflexive
-      save: Salvează
-      select_skills: Selectează competențele tale
-      select_skills_placeholder: Selectează competențe
-      selected_skills: Competențe selectate
-      skill_column_header: Competență
+      save: Salva
+      select_skills: Selectează-ți abilitățile
+      select_skills_placeholder: Selectați abilitățile
+      selected_skills: Abilități selectate
+      skill_column_header: Îndemânare
       skill_gap_report: Raport privind decalajul de competențe
     list: Listă
-    manage_plan: Gestionează planul
-    mark_as_complete: Marchează ca finalizat
-    mark_as_incomplete: Marchează ca incomplet
+    manage_plan: Gestionați planul
+    mark_as_complete: Marcați ca finalizat
+    mark_as_incomplete: Marcați ca incomplet
     my_plan:
       development_plan: Plan de dezvoltare
       graphs:
         categories: Categorii
-      save_skills: Salvează competențele
-    new_comments: Comentariu(i) nou(i)
+      save_skills: Salvați abilități
+    new_comments: Comentariu (comentarii) nou
     pdf:
-      approval_status: Stare aprobare
+      approval_status: Starea aprobării
       cover:
         fields:
-          assigned_data: Data atribuirii
+          assigned_data: Data atribuită
           assigned_date: Data atribuirii
           completion_date: Data finalizării
           division: Divizie
           name: Nume
           publish_date: Data publicării
           review_date: Data revizuirii
-          role: Rol curent
+          role: Rolul actual
       guidelines:
         cards:
           c1:
-            content: Include competențe, cunoștințe și abilități care trebuie dezvoltate. Asigură-te că sunt specifice, măsurabile, realizabile, realiste și pot fi îndeplinite în termenele menționate.
+            content: Includeți abilități, cunoștințe și capacități care trebuie dezvoltate. Asigurați-vă că sunt specifice, măsurabile, realizabile, realiste și rezonabil de realizat în termenele menționate.
             title: Obiective de dezvoltare
           c2:
-            content: Aceasta se bazează pe competența care trebuie dezvoltată conform experienței de evaluare.
+            content: Acest lucru se bazează pe competența care urmează să fie dezvoltată pe baza experienței de evaluare.
             title: Competență
           c3:
-            content: Această secțiune include acțiunile tale de dezvoltare bazate pe modelul de învățare 70-20-10 de mai jos. Se recomandă să selectezi o combinație din fiecare dintre cele trei elemente pentru a asigura o abordare variată a învățării și dezvoltării.
+            content: Această secțiune include acțiunile de dezvoltare bazate pe modelul de învățare 70-20-10 enumerat mai jos. Este recomandat să selectați o combinație a fiecăruia dintre cele trei elemente pentru a asigura o abordare variată de învățare și dezvoltare.
             title: Activitate
           c4:
-            content: Asigură-te că termenele sunt realiste în funcție de când poate fi finalizat obiectivul. Modifică-le după caz.
-            title: Termen
+            content: Asigurați-vă că termenele sunt realiste în funcție de momentul în care obiectivul poate fi finalizat. Modificați acest lucru după caz.
+            title: Cronologie
           c5:
-            content: Folosește secțiunea de progres pentru a urmări progresul pe traseele identificate.
+            content: Utilizați secțiunea de progres pentru a sprijini progresul pe pistele identificate.
             title: Progres
         chart:
-          collaboration: "<strong>20%</strong> Învățare colaborativă <br />"
-          job: "<strong>70%</strong> Învățare <br /> la locul de muncă"
-          learn: "<strong>10%</strong> Învățare formală <br />"
+          collaboration: "<strong>20%</strong>Colaborativ <br /> Învățare"
+          job: "<strong>70%</strong>Învățare <br />la locul de muncă"
+          learn: "<strong>10%</strong>Învățare formală"
         content:
           list:
-            r1: Această listă este doar orientativă, iar alte căi de dezvoltare pot fi luate în considerare în funcție de aspirațiile individuale, recomandările managerului sau prioritățile de afaceri ale organizației.
-            r2: Lansarea unora dintre aceste căi de dezvoltare va depinde de strategia organizațională de educație și învățare.
-            r3: Ia în considerare căile recomandate de mai jos când îți dezvolți Planul Individual de Dezvoltare.
-          main: Această secțiune include o listă cumulativă a tuturor căilor de dezvoltare, având în vedere bunele practici de învățare, adică ghidul 70-20-10, care oferă o călătorie progresivă ce combină învățarea în clasă, coaching-ul și învățarea la locul de muncă. Pe baza rezultatelor experienței de dezvoltare a leadershipului și a priorităților de afaceri, au fost recomandate posibile căi de dezvoltare care pot fi luate în considerare pentru dezvoltarea ta.
+            r1: Vă rugăm să rețineți că această listă este doar orientativă și pot fi luate în considerare căi de dezvoltare suplimentare pe baza aspirațiilor individuale, a recomandărilor managerului dvs., precum și a priorităților de afaceri ale organizației.
+            r2: Vă rugăm să rețineți că lansarea unora dintre aceste căi de dezvoltare va depinde de strategia de educație și învățare la nivel organizațional.
+            r3: Vă rugăm să luați în considerare căile recomandate, așa cum sunt traversate mai jos, atunci când vă dezvoltați planul de dezvoltare individuală.
+          main: Această secțiune include o listă cumulativă a tuturor căilor de dezvoltare, ținând cont de cele mai bune practici de învățare, adică ghidul 70-20-10, care oferă o călătorie progresivă care combină învățarea la clasă, coaching și învățarea la locul de muncă. Pe baza rezultatelor experienței de dezvoltare a leadershipului și a priorităților de afaceri, au fost recomandate posibile căi de dezvoltare, care pot fi luate în considerare pentru dezvoltarea dvs.
         learn_cards:
           collaboration:
             list:
@@ -817,7 +2622,7 @@ ro:
             - Primește feedback formal și informal de la alții
             - Joacă un rol activ în asociații și rețele de industrie
             - Construiește-ți propriile rețele externe
-            title: Învățare colaborativă (20%) <br/> Dezvoltare prin alții
+            title: Învățare colaborativă (20%) <br/> Dezvoltarea prin alții
           job:
             list:
             - Preia poziții de conducere în comitete de management sau stakeholderi
@@ -826,7 +2631,7 @@ ro:
             - Lucrează în colaborare cu alte funcții
             - Condu proiecte în afara organizației tale
             - Lucrează îndeaproape cu experți externi din industrie la proiecte comune
-            title: Învățare la locul de muncă (70%) <br/> Dezvoltare prin experiență
+            title: Învățarea la locul de muncă (70%) <br/> Dezvoltarea prin experiență
           learn:
             list:
             - Preia poziții de conducere în comitete de management sau stakeholderi
@@ -835,60 +2640,60 @@ ro:
             - Lucrează în colaborare cu alte funcții
             - Condu proiecte în afara organizației tale
             - Lucrează îndeaproape cu experți externi din industrie la proiecte comune
-            title: Învățare formală (10%) <br/> Dezvoltare prin învățare structurată
-        title: Ghid pentru IDP
+            title: Învățare formală (10%) <br/> Dezvoltarea prin învățare structurată
+        title: Linii directoare pentru a vă ghida IDP-ul
       idp:
-        end_date: Data de sfârșit
+        end_date: Data de încheiere
         self_rating: Autoevaluare
-        start_date: Data de început
+        start_date: Data de începere
         subtitle:
           behavioural: Comportamental
           technical: Tehnic
-        title: Plan Individual de Dezvoltare
+        title: Plan de dezvoltare individuală
       last:
         end_report: Sfârșitul raportului
       reflections:
         subtitle: Întrebări pentru dezvoltarea profesională generală
-        title: Reflecții pentru a-ți ghida IDP-ul
+        title: Reflecții pentru a vă ghida IDP-ul
       skill_categories:
         behavioral: Comportamental
         technical: Tehnic
       statuses:
         approved: Revizuit și aprobat
-        completed: Finalizat
+        completed: Completat
         draft: Ciornă
         not_reviewed: Nerevizuit
-        pending_approval: În revizuire
+        pending_approval: În recenzie
       summary:
-        ai_count: AI generativ
+        ai_count: IA generativă
         collaborative_learn: Învățare colaborativă
         created_by: Creat de
-        current_status: Starea curentă a IDP-ului
-        custom: Personalizat
-        custom_count: Personalizat
-        da_count: Număr acțiuni de dezvoltare
+        current_status: Starea actuală a IDP
+        custom: Obicei
+        custom_count: Obicei
+        da_count: Numărul de acțiuni de dezvoltare
         formal_learn: Învățare formală
-        generated_ai: AI generativ
-        learn_on_job: Învățare la locul de muncă
-        learn_pathway: Cale de învățare
-        lib_count: Bibliotecă IDP
-        library: Bibliotecă IDP
-        skills_count: Număr competențe
-        title: Rezumat raport
+        generated_ai: IA generativă
+        learn_on_job: Învățarea la locul de muncă
+        learn_pathway: Calea de învățare
+        lib_count: Biblioteca IDP
+        library: Biblioteca IDP
+        skills_count: Abilitățile contează
+        title: Rezumatul raportului
     plan: Plan
     reflective_questions:
       already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
-      answer_later: Răspunde mai târziu
-      answer_placeholder: Scrie răspunsul aici...
+      answer_later: Răspuns mai târziu
+      answer_placeholder: Scrie-ți răspunsul aici...
       errors:
-        max_words: Răspunsul permite maximum %{count} cuvinte
+        max_words: Răspunsul permite un maxim %{count} cuvinte
         min_words: Răspunsul necesită cel puțin %{count} cuvinte
-        required: Răspunsul la întrebare este obligatoriu
-      max_words: Max cuvinte
-      min_words: Min cuvinte
+        required: Răspunsul la întrebare este necesar
+      max_words: Cuvinte maxime
+      min_words: Cuvinte minime
       title: Întrebări reflexive
-      update_failed: A apărut o eroare la actualizare
-      updated_successfully: Răspunsurile tale au fost actualizate cu succes
+      update_failed: A apărut o eroare în timpul actualizării
+      updated_successfully: Răspunsurile dumneavoastră au fost actualizate cu succes
       words: Cuvinte
     skill_gap_report:
       title: Raport privind decalajul de competențe
@@ -896,19 +2701,189 @@ ro:
     technical: Tehnic
     user_idp_status:
       approved: Aprobat
-      completed: Finalizat
-      draft: Ciornă
-      in_progress: În curs
-      not_started: Nu a început
+      completed: Completat
+      draft: Proiect
+      in_progress: În curs de desfășurare
+      not_started: Neînceput
       pending_approval: În așteptarea aprobării
       rejected: Respins
-    users: Utilizatori
-    with_reflection_questions: Cu întrebări reflexive
-    without_reflection_questions: Fără întrebări reflexive
+    users: Utilizatorii
+    with_reflection_questions: Cu întrebări de reflecție
+    without_reflection_questions: Fără întrebări de reflecție
   idp_templates:
+    assign: Atribui
+    assign_idp_template: Atribuiți șablon Idp
+    auto_assign: Atribuiți automat utilizatori noi
     errors:
+      idp_template_not_found: Șablonul IDP nu a fost găsit
       user_idp_template_not_found: Nu v-a fost atribuit niciun șablon IDP.
+    idp_template: Șablon IDP
+    override_exists: Suprascrieți și resetați utilizatorii existenți
+    placeholder: Selectați un șablon Idp
+    save_and_assign: Salvare și atribuire
+    success_scheduled: Lucrarea de atribuire a IDP a fost programată cu succes
+  jobs:
+    threesixty:
+      bulk_downloads: Descărcarea în bloc a fost programată cu succes
+      export_completion_statuses_scheduled: Lucrarea de export a stărilor de finalizare a fost programată cu succes
+      export_raw_results_scheduled: Lucrarea de export Rezultate brute a fost programată cu succes
+      export_scores_scheduled: Lucrarea de export a scorurilor a fost programată cu succes
+      reports:
+        download:
+          description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''%{url}'' target=''_blank''>Descărcați</a>'
+          error: A apărut o eroare
+          error_description: Generarea rapoartelor a eșuat. Vă rugăm să contactați administratorul sau să încercați să <b>descărcați</b> din nou.
+          message: Raportul este gata
+  languages:
+    af: Afrikaans
+    ar: Arabă
+    az: Azeră
+    bg: Bulgară
+    bs: Bosniacă
+    by: Belarusă
+    ca: Catalană
+    cn: Chineză
+    cs: Cehă
+    cy: Cymraeg
+    da: Daneză
+    de: Deutsch
+    el: Greacă
+    en: Engleză
+    en-GB: Engleză - Marea Britanie
+    en-US: Engleză - SUA
+    eo: Esperanto
+    es: Spaniolă (America Latină)
+    es-ES: Spaniolă (Spania)
+    et: Estonă
+    fa: Persană
+    fi: Finlandeză
+    fr: Franceză
+    gu: Gujarati
+    he: Ebraică
+    hi: Hindi
+    hr: Croată
+    hu: Maghiară
+    id: Bahasa Indonezia
+    it: Italiană
+    ja: Japoneză
+    km: Khmeră
+    ko: Coreeană
+    lt: Lituaniană
+    lv: Letonă
+    mk: Macedoneană
+    mn: Mongolă
+    ms: Bahasa Malaezia
+    my: Myanmar
+    nb: Bokmål norvegian
+    nl: Olandeză
+    'no': Norvegiană
+    pl: Poloneză
+    pt: Portugheză
+    pt-BR: Portugheză braziliană
+    pt-PT: Portugheză (Portugalia)
+    pt_BR: Portugheză (Brazilia)
+    ro: Română
+    ru: Rusă
+    sk: Slovacă
+    sl: Slovenă
+    sr-Cyrl: Chirilic sârb
+    sr-Latn: Sârbă latină
+    sv: Suedeză
+    sw: Swahili
+    ta: Tamil
+    th: Thai
+    tl: Tagalogă
+    tr: Turcă
+    ua: Ucraineană
+    uk: Ucraineană
+    ur: Urdu
+    vi: Vietnameză
+    zh: Chineză simplificată
+    zh-CN: Chineză (RPC)
+    zh-HK: Chineză (Hong Kong)
+    zh-Hant: Chineză - Tradițională
+    zh-TW: Chineză (Taiwan)
+  license_usage:
+    active: Activ
+    campaign_name: Numele campaniei
+    inactive: Inactiv
+    status_updated_at: Ultima actualizare de stare
+    status_updated_by: Ultima actualizare de către
+    subject_email: Subiectul e-mailului
+    subject_name: Numele subiectului
+    usage_overview: Vizualizați utilizarea licențelor
+    usages: Uzanţele
+  licenses:
+    enabled: Activat
+    end_date: Data de încheiere
+    not_enough_idp_license: Nu sunt suficiente licențe IDP, vă rugăm să contactați administratorul
+    not_enough_license: "'%{client_name}' nu are suficiente licențe pentru '%{report_name}'"
+    not_enough_license_count: Nu sunt suficiente licențe, vă rugăm să contactați administratorul
+    not_enough_proctoring_credits: Nu sunt suficiente credite pentru a începe sesiunea de supraveghere
+    number: Număr
+    overuse_number: Suprautilizare
+    report_family: Pachet de rapoarte
+    start_date: Data de începere
+    title: Licență
+    type: Tip
+    types:
+      common: Comun
+      idp: IDP
+      proctoring: Supravegherea
+      threesixty: Treișaizeci
+    used_number: Licențe folosite
+    used_out_of: "%{used} din %{total}"
   mailer:
+    from: Întreprinderea talentelor
+    idp:
+      manager_unread_comments:
+        body: |-
+          Bună ziua %{name},
+          Aveți comentarii noi de la persoanele raportate de IDP.
+
+          %{dashboard_link}
+
+          În tabloul de bord al raportarilor directi, puteți:
+          - Revizuiți noile comentarii ale membrilor cu privire la planurile lor individuale
+          - Oferă feedback cu privire la obiectivele lor de dezvoltare
+          - Urmăriți progresul activităților IDP
+          - Sprijină creșterea și dezvoltarea echipei tale
+        dashboard_link: Vizitați tabloul de bord
+        subject: Aveți comentarii noi - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          Bună ziua %{name},
+          Ai noi comentarii despre planul tău de dezvoltare.
+
+          %{dashboard_link}
+
+          În tabloul de bord Planul meu, puteți:
+          - Actualizați-vă planul de dezvoltare
+          - Citiți comentarii și feedback noi
+          - Răspundeți la întrebările managerului dvs.
+          - Actualizați-vă progresul în acțiunile de dezvoltare
+        dashboard_link: Vizualizați planul meu
+        subject: Ai comentarii noi despre planul tău de dezvoltare - %{campaign_name}
+    license:
+      expire:
+        subject: Licența a expirat
+      overuse:
+        subject: Utilizarea excesivă a licențelor
+      weekly_stats:
+        column_headers:
+          client_name: Numele clientului
+          expiry_date: Data de expirare
+          overuse_limit: Limita de utilizare excesivă
+          project_manager: Manager de proiect
+          remaining_count: Numărul rămas
+          type: Tipul de licență
+          use_count: Număr de utilizări
+        expiry_stats: 'Licențe care expiră în următoarele 30 de zile:'
+        no_expiry_stats: Nicio licență nu expiră în următoarele 30 de zile.
+        no_weekly_stats: Nicio licență consumată în ultimele 7 zile.
+        notice: Notă - Vă puteți dezabona de la acest e-mail săptămânal de pe pagina de profil.
+        subject: Statistici săptămânale de utilizare a licențelor
+        weekly_stats: 'Statistici de utilizare a licențelor săptămâna trecută:'
     magic_link:
       body:
         dear: Dragă %{name},
@@ -916,8 +2891,29 @@ ro:
         instructions: Faceți clic pe linkul de mai jos pentru a vă conecta la Lighthouse.
         signin_link: Link de conectare
       subject: Link de conectare pentru Lighthouse
+    users:
+      account_disable: Contul a fost dezactivat din cauza inactivității
+      warning: Contul tău va fi dezactivat în curând din cauza inactivității
+  maintenance_message: Lighthouse va fi oprit pentru întreținere programată pe %{start_date} și va fi indisponibil timp de %{duration} ore
+  maintenance_submessage: Vă rugăm să reîmprospătați pagina după finalizarea întreținerii. Veți fi redirecționat către pagina de conectare
+  my: Meu
+  myself: Însumi
   navigation:
     logout: Deconectați-vă
+  'no': Nu
+  nominations:
+    approval_email_error: Ultima aprobare prin e-mail a fost trimisă la %{last_sent_at}. Puteți trimite următorul e-mail de memento în %{wait_time}
+  norms:
+    percentile:
+      columns:
+        mean: Însemna
+        name: Nume
+        standard_deviation: Abatere standard
+      messages:
+        failure: 'Eroare: %{error}.'
+        success: Norma pentru factorul '%{factorName}' a fost actualizată cu succes.
+      values:
+        empty: Gol
   profile:
     add_field: Adaugă câmp
     add_photo: Adaugă fotografie
@@ -937,18 +2933,150 @@ ro:
     old_data: Datele din profilul dvs. sunt vechi de %{months} luni. Vă rugăm să confirmați detaliile pentru a continua
     password: Parolă
     password_confirmation: Confirmarea parolei
+    photo: Fotografie
     success_update: Profilul a fost salvat cu succes
     timezone: Zona orară
     title: Profilul meu
     update: Actualizare
     update_required: Sunt necesare actualizări ale profilului
+  profiles:
+    edit:
+      header: Setări profil
+    form:
+      username: Nume de utilizator
+    update:
+      successfully: Profilul a fost actualizat cu succes
+  registration:
+    success_update: Înregistrarea a fost salvată cu succes
+  registration_code:
+    allowed_domains: Domenii permise
+    invalid_code: Cod de campanie nevalid
+    modals:
+      remove:
+        content: Sigur doriți să eliminați codul de înregistrare <strong>"%{code}"</strong>?
+        successfully: Codul de înregistrare "%{code}" a fost eliminat cu succes.
+      title: Cod de înregistrare
+    one_domain_per_line: Un nume de domeniu pe linie
+    restricted_domains: Domenii restricționate
+    token_expired: Tokenul a expirat
+  report_approvals:
+    events:
+      approved_text: Text aprobat
+      comment_added: a adăugat comentariul <i>%{text}</i>
+      comment_removed: Comentariu eliminat
+      comment_resolved: Comentariu rezolvat
+      comment_unresolved: Comentariu nerezolvat
+      comment_updated: a schimbat comentariul <s>%{oldText}</s> în <i>%{newText}</i>
+      created_text: Text adăugat
+      disapproved_text: Text dezaprobat
+      removed_text: text eliminat
+      status_changed: a schimbat starea de la <i>%{from}</i> la <i>%{to}</i>
+      updated_text: text actualizat
+    tabs:
+      all: Tot
+      approved: Aprobat
+      my_tasks: Sarcinile mele
+  report_bundles:
+    actions:
+      remove:
+        confirm_message: Sigur doriți să ștergeți pachetul de rapoarte "%{name}"?
+        confirm_title: Confirmare necesară
+        success_message: Pachetul de rapoarte %{name} a fost șters
+    report_bundle: Pachet de rapoarte
+    report_bundles: Pachete de rapoarte
+    reports:
+      actions:
+        add: Adăugați un raport nou
+        remove:
+          confirm_message: Sigur doriți să ștergeți raportul "%{name}" din "%{report_bundle_name}"?
+          confirm_title: Confirmare necesară
+          success_message: Raportul %{name} a fost șters
   reports:
     actions:
       add: Adaugă raport
+      archived:
+        success_message: Raportul "%{name}" a fost arhivat cu succes.
+      back_to_campaign: Înapoi la campanie
+      copy:
+        success_message: Raportul "%{name}" a fost copiat cu succes.
+      details: Detalii
       download: Descărcați raportul
+      download_csv: Descărcați CSV
+      edit: Editare
+      evaluate: Evalua
+      extend_time: Prelungiți timpul
+      goto_dashboard: Click aici pentru a continua
+      re_evaluate: Faceți clic aici pentru a reevalua
+      reevaluate: Reevaluați
+      remove:
+        confirm_message: Sigur doriți să ștergeți raportul "%{name}"?
+        confirm_title: Confirmare necesară
+        success_message: Raportul %{name} a fost eliminat
+      rescore: Repartizare
+      restore:
+        success_message: Raportul %{name} a fost restaurat cu succes
+      unarchived:
+        success_message: Raportul %{name} a fost dezarhivat cu succes
+      update_language: Actualizați limba
       view: Vezi raportul
+    active: Activ
+    archived: Arhivate
+    builder:
+      graph:
+        properties:
+          barBorderRadius: Raza bordurii barei
+          barWeight: Greutatea barei
+          dataFormat: Formatul datelor
+          graphOption3D: 3D
+          graphOptionStandard: Standard
+          graphSubType: Subtip de grafic
+          graphTypeHorizontal: Orizontal
+          graphTypeVertical: Vertical
+          hideEmptyColumns: Ascundeți coloanele goale
+          hideEmptyFilters: Ascundeți filtrele goale
+          hideXAxisLine: Ascunderea liniilor de grilă ale axei X
+          hideXAxisTitle: Ascundeți titlul axei X
+          hideYAxisLine: Ascunderea liniilor de grilă ale axei Y
+          hideYAxisTitle: Ascundeți titlul axei Y
+          hideZeroValueColumns: Ascundeți coloanele cu valoare zero
+          legendPosition: Poziția legendei
+          maxValueLabel: Valoare maximă (număr)
+          maxValueLabelPlaceholder: Valoare maximă
+          positionBottomLeft: Stânga
+          positionBottomMiddle: Mijloc jos
+          positionBottomRight: Dreapta
+          positionTopLeft: Stânga sus
+          positionTopMiddle: Mijloc sus
+          positionTopRight: Dreapta sus
+          reverse: Inversa
+          showLegend: Afișați legenda
+    columns:
+      data_only: Numai date
+      default_language: Limba implicită
+      external_settings:
+        hogan_report_id: ID raport Hogan
+        saville_report_id: ID raport Saville
+      other_available_languages: Alte limbi disponibile
+    create: Crea
+    dashboard: Tablou
+    drawer:
+      title: Detalii raport
+    fields:
+      provider:
+        custom_upload: Încărcare personalizată
+        hogan: Hogan
+        internal: Intern
+        mettl: Mettl
+        pearson: Pearson
+        saville: Saville
+        skillvue: Skillvue
     form:
+      load_from_mettl: Încărcare de la Mettl
+      load_from_pearson: Încărcare de la Pearson
       load_from_skillvue: Încărcați de la Skillvue
+      none_external: Niciunul - Utilizați generatorul de rapoarte
+    language: Limba raportului
+    language_updated: Limba raportului a fost actualizată cu succes
     modules:
       campaign_factors_table:
         add_condition: Adaugă condiție
@@ -966,13 +3094,21 @@ ro:
         strengths: Puncte forte
         then: Apoi afișați următorul text
         title: Titlu
+      common:
+        all_factors: Toți factorii
+        font: Font
+        table_options: Opțiuni de tabel
+        table_type: Tip tabel
       factors_table:
         description: Descriere
+        na: N/A
         no_data: Nu există date disponibile pentru această secțiune.
         rank: Rang
         score: Punctaj
       gap_assessment:
         gap: Gap
+        hide_left_filter: Ascunde filtrul din stânga
+        hide_right_filter: Ascunde filtrul din dreapta
         item: Indicator
         negative_gap: Lacune negative
         no_negative_gaps: Nu există lacune negative
@@ -1035,6 +3171,14 @@ ro:
         total: Total
       video_response:
         no_results: Nu există înregistrări video
+    pages:
+      edit:
+        assets: Active
+        general_settings: Setări generale
+        translations: Traduceri
+    report: Raport
+    reports: Rapoarte
+    reset: Reseta
     show:
       export_pdf: Export în PDF
       header: Raport
@@ -1046,29 +3190,358 @@ ro:
       not_available: Nu este disponibil
       on_hold: În așteptare
       released: Eliberat
+    trash: Gunoi
+    update: Actualiza
+    upload: Încărca
+  reset_password_modal:
+    fields:
+      automatically_generate_password: Generați automat parola
+      change_password_on_login: Schimbați parola la conectare
+      login_link: Link de conectare
+      new_password: Parolă nouă
+      password_placeholder: Introduceți parola
+      send_password_email: Trimiteți parola prin e-mail
+      username: Nume de utilizator
+    messages:
+      reset_password_success: Parola utilizatorului %{email} a fost resetată cu succes.
+      send_password_email_success: E-mail trimis utilizatorului %{email} cu parola.
+    title: Resetați parola
+  select: Alege
   shared:
     filters:
       clear: Ștergeți filtrele
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
+    mte_logo_alt_text: Sigla Mercer Talent Enterprise
     terms_conditions_privacy: Declarație de confidențialitate
     tte_terms_and_condition: Termeni și confidențialitate
+  sheet:
+    import_modal:
+      alert_access_sheet_removal: Încărcarea unei noi foi de acces cu ștergerea tuturor înregistrărilor existente și încărcarea uneia noi din foaie. Vă rugăm să vă asigurați că aveți toate înregistrările Accesssheet în foaia de calcul.
+      success_message: Fișierul a fost încărcat cu succes. Importul înregistrării fișei tehnice în curs de desfășurare
+      title: Importul înregistrărilor de foaie
+    menu:
+      export: Foaie de export
+      export_info: Nu există date de exportat.
+      import: Foaie de import
+    no_sheet: Trebuie să importați mai întâi foaia
   simple_form:
+    error_notification:
+      default_message: 'Vă rugăm să revizuiți problemele de mai jos:'
+    labels:
+      client:
+        applicable_level: Nivel aplicabil
+        applicable_levels:
+          campaign: Campanie
+          project: Proiect
+          sub_campaign: Sub-campanie
+        category: Categorie
+        created_at: Data creării
+        id: ID
+        licenses: Număr de licență
+        licenses_expire: Data de expirare a licenței
+        licenses_used: Utilizarea licenței
+        location: Loc
+        logo: Logo-ul clientului
+        memberships_count: Utilizatorii
+        name: Nume
+        number: Număr de client
+        privacy_consent: Activați consimțământul pentru prelucrarea datelor
+        project_manager: Manager de proiect TTE
+        project_manager_id: Manager de proiect TTE
+        report_ids: Rapoarte
+        strong_password_enabled: Activați parola puternică
+        subdomain: Subdomeniu
+        types:
+          associate: Asociat
+          corporate: Corporatist
+          distributer: Distribuitor
+          other: Alt
+          partner: Partener
+          retail: Vânzare cu amănuntul
+          tte: TTE
+        updated_at: Data modificării
+        year: Anul clientului
+      membership:
+        role: Rolul de membru
+    'no': Nu
     placeholders:
+      administration/assessments/assign_form:
+        access_reports: Reguli de acces la raport
+        access_reports_at: Accesați raportul la
+        access_reports_at_date: Dată
+        access_reports_at_time: Oră
+        client_ids: Închirieri pentru clienți
+        manager_ids: Manageri
+        report_ids: Rapoarte
+        user_ids: Utilizatorii
       administrator:
+        active: Activ
+        created_at: Data creării
+        current_password: Parolă curentă
+        disabled: Dezactiva
         email: Adresă de e-mail
+        first_name: Prenume
+        id: ID
         last_name: Numele de familie
+        manage_client_ids: Închirierea clientului
+        memberships: Închirierea clientului
+        name: Nume
+        password: Parolă
+        password_confirmation: Confirmarea parolei
+        role: Rol
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            project_admin: Administrator de proiect
+            regular: Administrator client
+            superadmin: Super Admin
+          agile: AGIL
+          case_study: Studiu de caz
+          client_admin: Administrator client
+          hogan: Hogan
+          manager: Manager
+          member: Utilizator
+          organisational: Organizatorice
+          project_admin: Administrator de proiect
+          psychometric: Psihometrice
+          regular: Regulat
+          saville: Saville
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Treișaizeci
+        types:
+          anonymous: Utilizatori anonimi
+          identified: Utilizatori identificați
+        updated_at: Data modificării
+      assessment:
+        active: Activ
+        categories:
+          '360': Campania 360
+          agile: AGIL
+          assessor_form: Formular evaluator
+          case_study: Studii de caz
+          hogan: Hogan
+          meeting: Ședință
+          organisational: Anchete
+          psychometric: Evaluare
+          saville: Saville
+        category: Categorie
+        completed_at: Data finalizării
+        created_at: Data creării
+        description: Descriere
+        id: ID
+        name: Nume
+        statuses:
+          completed: Completat
+          finished: complet
+          in_progress: Relua
+          interrupted: Întrerupt
+          not_started: Nou
+          overdue: Restante
+        timing: Calendarul
+        types:
+          common: Evaluarea TTE
+          hogan: Hogan
+          saville: Evaluarea Saville
+        updated_at: Data modificării
+      block:
+        active: Activ
+        assign_to_assessment_ids: Evaluări
+        created_at: Data creării
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+      client:
+        applicable_level: Nivel aplicabil
+        applicable_levels:
+          campaign: Campanie
+          project: Proiect
+          sub_campaign: Sub-campanie
+        category: Categorie
+        created_at: Data creării
+        id: ID
+        licenses: Număr de licență
+        licenses_expire: Data de expirare a licenței
+        licenses_used: Utilizarea licenței
+        location: Loc
+        logo: Logo-ul clientului
+        memberships_count: Utilizatorii
+        name: Nume
+        number: Număr de client
+        privacy_consent: Activați consimțământul pentru prelucrarea datelor
+        project_manager: Manager de proiect TTE
+        project_manager_id: Manager de proiect TTE
+        report_ids: Rapoarte
+        strong_password_enabled: Activați parola puternică
+        subdomain: Subdomeniu
+        types:
+          associate: Asociat
+          corporate: Corporatist
+          distributer: Distribuitor
+          other: Alt
+          partner: Partener
+          retail: Vânzare cu amănuntul
+          tte: TTE
+        updated_at: Data modificării
+        year: Anul clientului
+      communication:
+        created_at: Data creării
+        id: ID
+        updated_at: Data modificării
+      dimension:
+        active: Activ
+        created_at: Data creării
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+      factor:
+        active: Activ
+        created_at: Data creării
+        id: ID
+        name: Nume
+        parent_id: Părinte
+        questions_count: Nu. de întrebări
+        updated_at: Data modificării
+      library:
+        created_at: Data creării
+        id: ID
+        type: Miniatură
+        updated_at: Data modificării
+      license:
+        id: ID
+        number: Număr de licență
+        overuse_number: Alocație de utilizare excesivă
+        type: Licență pentru
+        types:
+          common: Comun
+          threesixty: Treișaizeci
+        unlimited: Nelimitat
+        used_number: Număr de licență folosit
       memebrship:
+        active: Activ
+        created_at: Data creării
+        disabled: Dezactiva
+        email: E-mail
+        first_name: Prenume
+        id: ID
         last_name: Numele de familie
+        parent: Direct Manager
+        parent_id: Direct Manager
+        report_ids: ID-urile rapoartelor
+        roles:
+          campaign_admin: Administratorul campaniei
+          client_admin: Administrator client
+          manager: Manager
+          member: Utilizator
+          project_admin: Administrator de proiect
+        updated_at: Data modificării
+        user_access: Acces utilizator
+      norm:
+        active: Activ
+        bachelors_or_masters_qualification: Calificare de licență sau master
+        created_at: Data creării
+        description: Descriere
+        description_label: DESCRIERE
+        diploma_qualification: Diplomă de calificare
+        factor_id: Competență
+        factor_id_label: SELECTAȚI COMPETENȚA
+        full_description: Descriere completă
+        high_school_entry_roles: Roluri de intrare în liceu
+        id: ID
+        key_career_tracks: Piste cheie de carieră
+        membership_id: Atribuitor
+        membership_id_label: SELECTEAZĂ ATRIBUITOR
+        name: Nume
+        name_label: ACȚIUNE
+        planned_completed_at: Scadentă
+        planned_completed_at_label: SELECTAȚI DATA SCADENTĂ
+        potential_areas_of_study: Domenii potențiale de studiu
+        priority: Prioritate
+        priority_label: PRIORITATE
+        status: Stare
+        status_label: SELECTAȚI STAREA
+        statuses:
+          completed: Completat
+          in_progress: În curs de desfășurare
+          not_started: Neînceput
+          overdue: Restante
+        updated_at: Data modificării
+        updated_by: Editat de
+        work_environment: Mediul de lucru
+      question:
+        active: Activ
+        assign_to_assessment_ids: Evaluări
+        created_at: Data creării
+        id: ID
+        name: Nume
+        updated_at: Data modificării
+      regenerate_reports:
+        report_ids: Rapoarte
+      report:
+        created_at: Data creării
+        id: ID
+        updated_at: Data modificării
       user:
+        active: Activ
+        created_at: Data creării
+        current_password: Parolă curentă
+        disabled: Dezactiva
         email: Adresă de e-mail
         first_name: Numele și prenumele
+        id: ID
         last_name: Numele de familie
+        manage_client_ids: Închirierea clientului
+        memberships: Închirierea clientului
+        name: Nume
+        old_password: Parolă veche
         password: Parolă
+        password_confirmation: Confirmarea parolei
+        role: Rol
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            project_admin: Administrator de proiect
+            regular: Administrator client
+            superadmin: Super Admin
+          agile: AGIL
+          case_study: Studiu de caz
+          client_admin: Administrator client
+          hogan: Hogan
+          manager: Manager
+          member: Utilizator
+          organisational: Organizatorice
+          project_admin: Administrator de proiect
+          psychometric: Psihometrice
+          regular: Regulat
+          saville: Saville
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Treișaizeci
+        types:
+          anonymous: Utilizatori anonimi
+          identified: Utilizatori identificați
+        updated_at: Data modificării
       user_form:
+        active: Activ
+        created_at: Data creării
+        current_password: Parolă curentă
+        disabled: Dezactiva
         email: Adresă de e-mail
         first_name: Numele și prenumele
+        id: ID
         last_name: Numele de familie
+        parent: Direct Manager
+        parent_id: Direct Manager
         password: Parolă
+        password_confirmation: Confirmarea parolei
+        role: Rol
+        updated_at: Data modificării
+    required:
+      mark: "*"
+      text: necesar
+    'yes': Da
   subjects:
     approval_statuses:
       approved: Aprobat
@@ -1103,11 +3576,13 @@ ro:
     accept_privacy_modal:
       accept: Acceptați
       checkbox: Am citit și am înțeles Politica de confidențialitate menționată mai sus
-      checkbox_with_client_link:
+      checkbox_with_client_link: Făcând clic pe această casetă, sunteți de acord că ați citit declarația noastră de confidențialitate și declarația de confidențialitate a clientului nostru și că sunteți de acord cu colectarea și prelucrarea informațiilor dvs. personale descrise în acestea, inclusiv cu transferul internațional al informațiilor dvs. personale.
+      privacy_notice: Notificare privind confidențialitatea
       title: Consimțământul privind prelucrarea datelor
     action: Acțiune
     add: Adaugă
     and: Și
+    approve: Aproba
     approve_all: Aprobați toate
     approve_all_successful: A aprobat toate nominalizările
     approve_evaluations: Aprobarea evaluărilor
@@ -1135,6 +3610,7 @@ ro:
     decline: Declin
     decline_invite: Declinați invitația
     denied: Refuzat
+    deny: Nega
     deny_all: Refuzați toate
     deny_all_successful: A refuzat toate nominalizările
     download_pdf: Descarcă PDF
@@ -1147,6 +3623,7 @@ ro:
     evaluate: Evaluați
     evaluation: Evaluare
     evaluation_all_closed_message: În prezent, toate nominalizările sunt în așteptarea aprobării
+    evaluation_closed_message: Evaluarea este închisă pentru acest subiect
     evaluation_closed_nomination_message: Nu puteți nominaliza pentru acest subiect deoarece evaluarea este închisă pentru acest subiect
     evaluation_help_modal:
       title: Ajutor pentru evaluare
@@ -1164,6 +3641,8 @@ ro:
       statuses:
         success: Succes
         undelivered: Nedepusă
+    more_info_evaluation_label: Mai multe informații - Evaluări
+    more_info_nomination_label: Mai multe informații - Nominalizări
     my_projects: Proiectele mele
     name_label: Nume și prenume
     nominate: Nominalizare
@@ -1177,8 +3656,11 @@ ro:
       exactly: Exact %{count}
     nominations: Nominalizări
     options:
+      form:
+        value_not_valid: nu are o valoare validă
       global:
         cannot_re_edit: Participanții nu pot edita evaluările
+        disable_all_evaluations: Dezactivați toate evaluările
     or: Sau
     page_title: Signify 360° Recenzie - Nivel de aplicare
     participant_list:
@@ -1189,11 +3671,13 @@ ro:
         hold_report: Raport de așteptare
         login: Autentificare
         mark_as_done: Marcați ca finalizat
+        regenerate_report: Generați raport
         release_report: Raport de eliberare
         remove_campaign: Eliminați din campanie
         remove_report_approval: Eliminarea aprobării raportului
         remove_report_hold_release_report: Eliminarea reținerii/eliberării raportului
         remove_subject: Eliminați subiectul
+        reset_password: Resetați parola
         unmark_as_done: Debifați ca finalizat
         view_report: Vezi raportul
         view_responses: Vezi răspunsurile
@@ -1241,6 +3725,7 @@ ro:
     setup_nominations: Stabilirea nominalizărilor
     subject: Subiect
     submit: Trimite
+    timed_out: Expirat
     total_progress: Progres total
     user_name_input_placeholder: tastați numele sau adresa de e-mail...
     validation_errors: Erori de validare
@@ -1250,27 +3735,216 @@ ro:
     waiting: În așteptare
     you: Tu
     yourself: Tu însuți
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Făcând clic pe această casetă, sunteți de acord că ați citit declarația noastră de confidențialitate și declarația de confidențialitate a clientului nostru și că sunteți de acord cu colectarea și prelucrarea informațiilor dvs. personale descrise în acestea, inclusiv cu transferul internațional al informațiilor dvs. personale.
+    privacy_notice: Notificare privind confidențialitatea
+  time:
+    formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: ZZ/LL/AAAA hh:mm A
+      datetimepicker_client_with_timezone: D MMM AAAA / H:mm Z
+      datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: ZZ/LL/AAAA
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
+      short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
+  universal_links:
+    active: Activ
+    allow_multiple_respones: Permiteți utilizatorilor să trimită mai multe răspunsuri
+    png: PNG
+    regenerate_link: Regenerați linkul
+    successfully_generated: Generat cu succes
+    successfully_updated: Actualizat cu succes
+    svg: SVG
   user:
+    datasheet:
+      attribute: Atribut
+      value: Valoare
     fields:
       email: Adresă de e-mail
       first_name: Numele și prenumele
       last_name: Numele de familie
+    form:
+      email: E-mail
+      first_name: Prenume
+      last_name: Nume de familie
+      locale: Setări regionale
+      operation: Operație
+      operation_options:
+        add_and_allow_new_response: Adăugați utilizator și permiteți un răspuns nou
+        add_with_existing_response: Adăugați utilizator cu răspuns existent
+        skip_existing: Omiteți utilizatorul existent
+    modals:
+      exports:
+        export_sign_in_url: Exportați cu autentificarea magică în URL
+        include_inactive_users: Exportați cu utilizatori inactivi
+        title: Exportați utilizatori
+      import:
+        body: Consultați funcționalitatea de export pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
+        imported_reports: Rapoartele și evaluările au fost importate
+        imported_users: 'Numărul de utilizatori importați: %{number}'
+        success_msg: Fișierul încărcat a fost pus în coadă pentru import. Vă rugăm să verificați starea în notificări
+        title: Importați utilizatori
+        user_with_unchanged_passwords: Lista utilizatorilor ale căror parole nu au fost modificate
+      import_reports:
+        body: Consultați fișierul eșantion pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
+        title: Atribuiți rapoarte și evaluări
+    toolbar:
+      bulk_download_idp_reports: Descărcați în bloc rapoarte IDP
+      export: Exportați utilizatori
+      export_compact_completion_status: Compact
+      export_detailed_completion_status: Detaliat
+      export_reports_and_assessments: Rapoarte și evaluări de export
+      import: Importați utilizatori
+      import_reports: Importați rapoarte și evaluări
+  user_assessment:
+    column:
+      dimension_id: ID dimensiune
+      id: ID de evaluare a utilizatorului
+      norm_id: ID normă
+    drawer:
+      copied: "%{name} copiat în clipboard."
+      copy: Copiați în Clipboard
+      mettl_schedule_name: Nume program Mettl
+      no_data: Nu există date disponibile
+      title: Detalii de evaluare
+      view: Vedere
   user_assessments:
+    modals:
+      actions:
+        reset_progress:
+          name: Resetează progresul
+          success_message: Evaluarea %{name} este gata pentru editare
+      push_test_webhook:
+        copy_request_data_success: Sarcina utilă Rquest a fost copiată cu succes în clipboard.
+        copy_response_body_success: Corpul răspunsului a fost copiat cu succes în clipboard.
+        copy_response_headers_success: Anteturile de răspuns au fost copiate cu succes în clipboard.
+        event_name_placeholder: Numele evenimentului
+        response_body_title: Corp de răspuns
+        response_header_title: Anteturi de răspuns
+      push_webhook:
+        submit_button_name: Push Webhook
+        title: Push Webhook
+      remove:
+        content: Sigur doriți să eliminați evaluarea "%{name}"?
+        successfully: Evaluarea %{name} a fost eliminată cu succes.
+      reset:
+        content: Sigur doriți să resetați progresul "%{name}"?
+      test_webhook:
+        submit_button_name: Trimite test
+        title: Trimiteți testul evenimentului Webhook
+    normalize_factor_scores:
+      no_scoring_data: Normalizarea scorurilor factorilor nu poate fi finalizată, deoarece nu sunt disponibile date de punctaj.
+    progress_label: Progresul evaluării
     redirect: Veți fi redirecționat către site-ul unei terțe părți pentru această evaluare. Vă rugăm să faceți clic pe continuare dacă doriți să începeți evaluarea.
+    status:
+      completed: Completat
+      in_progress: În curs de desfășurare
+      ineligible: Neeligibile
+      interrupted: Întrerupt
+      not_started: Neînceput
+      timed_out: Expirat
+    statuses:
+      evaluator_nomination_status:
+        completed: Completat
+        declined: Refuzată
+        waiting: Așteptare
+      manager_evaluation_status:
+        approved: Aprobat
+        denied: Refuzat
+        waiting: Așteptare
+      manager_nomination_status:
+        approved: Aprobat
+        completed: Completat
+        declined: Refuzată
+        denied: Refuzat
+        waiting: Așteptare
+    timer_title:
+      assessment: Evaluare
+      campaign: Campanie
   user_reports:
     actions:
+      add: Adăugați un raport
+      download: Descărca
+      generate: Genera
       regenerate: Regenerare
+    approval_statuses:
+      approved: Aprobat
+      change_requested: Modificare solicitată
+      not_ready: Nu este pregătit
+      pending_qc: În așteptare QC
+      qc_completed: QC finalizat
+      qc_in_progress: QC în curs de desfășurare
     messages:
+      async_generation: Generarea rapoartelor în curs de desfășurare. Veți fi notificat odată ce raportul este generat.
       regenerate_successful: Activitatea de regenerare a rapoartelor a fost programată cu succes
     modals:
       remove:
         content: Sunteți sigur că doriți să eliminați raportul %{userReportName}?
+        content_with_counts:
+          both: 'PERICOL: Raportul %{userReportName} are %{commentsCount} comentarii și %{editsCount} modificări. Dacă eliminați raportul de la utilizator, aceste comentarii și modificări se vor pierde.'
+          comments: 'PERICOL: Raportul %{userReportName} are %{commentsCount} comentariu(e). Dacă eliminați raportul de la utilizator, aceste comentarii se vor pierde.'
+          edits: 'PERICOL: Raportul %{userReportName} are %{editsCount} editări. Dacă eliminați raportul de la utilizator, aceste modificări se vor pierde.'
         successfully: raportul %{userReportName} a fost eliminat cu succes
+      remove_file:
+        content: Sigur doriți să eliminați fișierul?
+        successfully: Fișierul a fost eliminat cu succes.
+      upload_file:
+        choose_file: Alege fișier
+        success: Fișier încărcat cu succes.
+        upload: Încărca
     preview_report: Raport de previzualizare
     statuses:
       generating: Generarea
       not_prepared: Nu este disponibil
       prepared: Disponibil
+  users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: Autentificarea cu 2 factori este dezactivată
+          enabled: Autentificarea cu 2 factori este activată
+        option_to_disable: Dezactivați 2FA
+        option_to_enable: Activați 2FA
+      remove:
+        confirm_message: Sigur doriți să ștergeți utilizatorul cu un e-mail "%{email}"?
+        confirm_title: Confirmare necesară
+        error_message: Nu s-a putut elimina utilizatorul din cauza erorii - %{error}
+        success_message: "%{email} a fost eliminat"
+        system_error_message: Nu s-a putut elimina utilizatorul, vă rugăm să încercați din nou mai târziu sau să contactați asistența.
+      reset_password:
+        option: Resetați parola
+      unlock_user_access:
+        message: Accesul utilizatorilor pentru %{email} a fost deblocat cu succes.
+        title: Deblocarea accesului utilizatorului
+        tooltip: Acest cont de utilizator este blocat
+    admins: Administratori
+    create_global_assessor: Creați evaluator global
+    create_superadmin: Creați un super administrator
+    dashboard: Tablou
+    drawer:
+      link: Legătură
+      role: Rol
+      title: Detalii utilizator
+    global_assessors: Evaluatori globali
+    password_change_success: Parola a fost schimbată cu succes. Vă rugăm să vă conectați cu noua parolă.
+    roles:
+      campaign_admin: Administratorul campaniei
+      campaign_assessor: Evaluator de campanie
+      campaign_user: Utilizator campanie
+      client_admin: Administrator client
+      project_admin: Administrator de proiect
+      superadmin: Super Admin
+    superadmins: Super administratori
+    users: Utilizatorii
   validations:
     AudioResponse:
       in_progress:
@@ -1285,6 +3959,8 @@ ro:
     TextEntry:
       Email:
         character_range: Mesajul de e-mail introdus trebuie să conțină cel puțin %{min} și cel mult %{max} caractere.
+        max_character: Mesajul de e-mail introdus nu trebuie să aibă mai mult de %{max} caractere.
+        min_character: Mesajul de e-mail introdus trebuie să aibă cel puțin %{min} caractere.
         subject:
           min_length: Câmpul Subiect trebuie să aibă minimum 10 caractere
         to:
@@ -1304,30 +3980,37 @@ ro:
     email: Răspunsul dvs. trebuie să fie un e-mail valid
     exact: Vă rugăm să selectați exact %{count} alegere(uri)
     file_upload:
+      BadRequest: Fișierul nu a fost încărcat, deoarece ultima solicitare a eșuat. Acest lucru se poate datora faptului că internetul nu funcționează. Dacă internetul funcționează, vă rugăm să contactați administratorul
       EntityTooLarge: Dimensiunea fișierului trebuie să fie mai mică de %{maxFileSize} MB
       WrongFileType: Tipul de fișier trebuie să fie unul dintre următoarele %{allowedFileTypes}
+    idp:
+      reflective_questions_required: Răspunsurile la întrebările reflexive sunt necesare pentru IDP
+      status_not_permitted: nu este permis de utilizator.
+      status_not_permitted_by_manager: Managerul nu poate actualiza starea atunci când planul este în starea "%{status}".
+    invalid: este nevalidă
     issue: Problema
     least: Vă rugăm să răspundeți la cel puțin %{min} alegere(uri).
     least_hotspot: Vă rugăm să răspundeți la cel puțin %{min} alegere(uri).
     max_character: Răspunsul dvs. nu trebuie să aibă mai mult de %{max} caractere.
     max_word: Răspunsul dvs. nu trebuie să depășească %{max} cuvinte.
     min_character: Răspunsul dvs. trebuie să conțină cel puțin %{min} caractere.
+    min_factor: Răspunsul tău trebuie să conțină cel puțin %{min} feedback-uri factoriale.
     min_word: Răspunsul dvs. trebuie să fie de cel puțin %{min} cuvinte
     most:
-      few:
       one: Vă rugăm să selectați cel mult %{max} alegere(uri)
-      other:
     must_rank_between: Vă rugăm să atribuiți o valoare de la %{min} la %{max} pentru fiecare element. Valorile nu pot fi repetate.
     must_select: Vă rugăm să selectați de la %{min} la %{max} opțiuni
+    not_in_future: Data selectată nu ar trebui să fie în viitor
+    not_in_past: Data selectată nu trebuie să fie în trecut
     number: Răspunsul dvs. trebuie să fie un număr
     photo: necesare
     range: Vă rugăm să răspundeți la cel puțin %{min} și la cel mult %{max} alegere(uri).
     required: Vă rugăm să răspundeți la această întrebare
     text: Răspunsul dumneavoastră nu trebuie să conțină un număr
     title:
-      few:
       one: Există o eroare, vă rugăm să vă verificați răspunsurile
       other: Au existat %{count} erori, vă rugăm să verificați răspunsul.
+    user_self_skill_rating_disabled: Autoevaluarea este dezactivată pentru acest șablon
     word_count: 'Număr de cuvinte '
     word_range: Răspunsul dumneavoastră trebuie să conțină cel puțin %{min} și cel mult %{max} cuvinte.
   'yes': Da

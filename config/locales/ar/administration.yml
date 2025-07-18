@@ -934,6 +934,7 @@ ar:
         inactive: غير نشط
         status: الحالة
       form:
+        campaign: الحملة
         name: الاسم
         practice_campaign: حملة تدريبية
         status: الحالة
@@ -1095,6 +1096,14 @@ ar:
         successfully: تم حذف عقد العميل %{name} بنجاح.
       edit:
         header: تعديل العميل
+      form:
+        client: العميل
+        country: البلد
+        name: الاسم
+        number: العدد
+        project_manager: مدير المشروع
+        type: النوع
+        year: السنة
       licenses:
         resource:
           confirmations:
@@ -1551,7 +1560,7 @@ ar:
         all: الكل
         assessment_completion_status_code: رمز حالة إكمال التقييم
         assessment_completion_status_code_hint: إذا تم تحديد رمز إكمال، سيتم الإرسال فقط إذا كان تقييم المستخدم يحتوي على رمز حالة الإكمال هذا.
-        body_mustache: |
+        body_mustache: |-
           {{{user_link}}} - رابط إلى المنصة للمستخدمين الحاليين أو رابط لمرة واحدة فقط لتعيين كلمة مرور للمستخدمين الجدد
           {{{user_url}}} - نفس user_link ولكن فقط عنوان URL بدلاً من رابط
           {{{user_link_qrcode}}} - تضمين رمز QR تم إنشاؤه من user_link
@@ -1752,15 +1761,15 @@ ar:
         development_action_not_in_project: 'الصف %{row}: معرف إجراء التطوير %{development_action_id} لا ينتمي إلى هذا المشروع'
         image_download_failed: 'فشل تنزيل الصورة من %{url}: %{message}'
         invalid_csv_format: 'تنسيق CSV غير صالح: %{message}'
-        invalid_date: تنسيق التاريخ لـ ٪ {date} غير صالح.
-        invalid_date_format: 'ROW ٪ {row}: تنسيق تاريخ غير صالح لـ ٪ {field}.'
+        invalid_date: تنسيق التاريخ لـ %{date} غير صالح.
+        invalid_date_format: 'ROW %{row}: تنسيق تاريخ غير صالح لـ %{field}.'
         invalid_development_action_type: 'الصف %{row}: نوع إجراء التطوير غير صالح %{value}. أنواع إجراءات التطوير الصالحة هي: %{valid_development_action_types}.'
-        invalid_duration_format: 'يسمح فقط للقيم الرقمية بالمدة.الصف ٪ {row}: ٪ {value} ليس مدة صالحة.'
+        invalid_duration_format: 'يسمح فقط للقيم الرقمية بالمدة.الصف %{row}: %{value} ليس مدة صالحة.'
         invalid_image_file: 'ملف الصورة غير صالح: %{message}'
         invalid_image_url: 'تنسيق عنوان URL للصورة غير صالح: %{url}'
-        invalid_languages: اللغات المتاحة غير صالحة ٪ {invalid_languages} للصف ٪ {row}.
+        invalid_languages: اللغات المتاحة غير صالحة %{invalid_languages} للصف %{row}.
         invalid_learning_style: 'الصف %{row}: نمط تعلم غير صالح ''%{value}''. الأنواع الصالحة هي: %{valid_types}'
-        languages_only_for_courses: لا يمكن تعيين اللغات المتاحة إلا لإجراءات تطوير النوع "الدورة".يرجى إزالة اللغة المتاحة للصف ٪ {row} أو تغيير نوع إجراء التطوير إلى "الدورة".
+        languages_only_for_courses: لا يمكن تعيين اللغات المتاحة إلا لإجراءات تطوير النوع "الدورة".يرجى إزالة اللغة المتاحة للصف %{row} أو تغيير نوع إجراء التطوير إلى "الدورة".
         missing_columns: 'الأعمدة المطلوبة مفقودة: %{fields}'
         save_failed: 'فشل حفظ إجراء التطوير: %{message}'
         skill_not_found: 'لم يتم العثور على المهارة للمعرف: %{skill_id}'
@@ -2770,6 +2779,7 @@ ar:
           success: Assessment '%{name}' was deleted successfully.
           title: Delete Assessment
         form:
+          assessment: التقييم
           assessment_placeholder: Select Assessment
           assessment_required: Assessment is required
           normalize_factor_scores: Normalize Factor Scores
@@ -2905,22 +2915,45 @@ ar:
         client_logo_label: Client Logo
         contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
         contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
+        copy_text: النص
+        dashed_button: متقطع
+        default_button: افتراضي
         error_color: Error Color
+        hover_options:
+          danger_item: عنصر الخطر
+          first_menu_item: 1 عنصر القائمة 1
+        hover_text: مرر لي
         info_color: Info Color
+        link_text: الرابط
         logo_upload: Upload
         position_auto: Auto
         position_label: Login Box Position
         position_left: Left
         position_right: Right
+        primary_button: ابتدائي
         primary_color: Primary Color
         reset: Reset
         sec_logo_label: Secondary Logo
         sec_logo_upload: Upload
         secondary_logo_alt_text: Secondary Logo Alt-Text
         secondary_logo_alt_text_required: Secondary Alt-Text Logo is Required
+        submenu_options:
+          option_one: الخيار 1
+          option_title: البند 1
+          option_two: الخيار 2
         success_color: Success Color
         success_update: Design Settings were saved successfully
+        tab_text_one: قائمة الطعام
+        tab_text_two: القائمة الفرعية
+        text_danger: نص (خطر)
+        text_success: النص (نجاح)
+        text_warning: نص (تحذير)
         warning_color: Warning Color
+      form:
+        name: الاسم
+        project_number: رقم المشروع
+        subdomain: النطاق الفرعي
+        title: المشروع
       general_settings:
         live_chat: Enable Live Chat
         locales_label: Locales
@@ -3043,6 +3076,13 @@ ar:
         success_msg: استيراد أسئلة التفكير قيد التقدم. يرجى التحقق من الحالة في الإشعارات.
       question: سؤال
     report_approval:
+      approval_statuses:
+        approved: معتمد
+        change_requested: التغيير المطلوب
+        not_ready: غير جاهز
+        pending_qc: في انتظار مراقبة الجودة
+        qc_completed: اكتملت مراقبة الجودة
+        qc_in_progress: مراقبة الجودة قيد التنفيذ
       bulk_approve_success: "%{sent_for_approval} تم الإرسال للموافقة. %{approved} تمت الموافقة على التقارير. %{ignored} تقارير تتطلب موافقة يدوية بسبب تغييرات/تعليقات مراقبة الجودة."
       columns:
         actions: Actions
@@ -3074,6 +3114,7 @@ ar:
         no_saved_filters: There are no saved filters
         save_filter: Filter Saved
         set_favorite: Filter has been set as favorite
+      submit_or_approve_all: إرسال الكل أو الموافقة على الكل
     report_builder:
       campaign_factors:
         add_field: Add Field
@@ -3390,7 +3431,7 @@ ar:
         add_assessor_form: Add Assessor Form
         assessments: Assessments
         assessor_forms: Assessor Forms
-        confirm_message: |
+        confirm_message: |-
           Are you sure you want to cancel the participation of the subject with the email '%{subject_email}'?
           <br />
           Once marked as cancelled, this subject will not be able to participate in the assessment center.
@@ -3728,7 +3769,7 @@ ar:
         modal:
           btn_name: Send SMS
           title: Send SMS
-        pipetext_details: |
+        pipetext_details: |-
           {{{first_name}}} - Recipient First Name
           <br />
           {{{last_name}}} - Recipient Last Name
@@ -3913,7 +3954,7 @@ ar:
     templates:
       blocks:
         copy:
-          error: Block \#%{name} was not copied.
+          error: Block \
         destroy:
           successfully: Block %{name} was deleted successfully.
         edit:
@@ -4086,6 +4127,14 @@ ar:
         messages:
           title: Messages
         participants:
+          subjects:
+            add_subjects: إضافة مواضيع
+            current_job_role: الدور الوظيفي الحالي
+            email: البريد الإلكتروني
+            first_name: الاسم الأول
+            last_name: اسم العائلة
+            locale: موقع
+            target_job_role: الدور الوظيفي المستهدف
           title: Participants
         report:
           menu:

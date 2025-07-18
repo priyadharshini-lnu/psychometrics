@@ -765,6 +765,12 @@ en:
           attributes:
             base:
               max_takes_limit_reached: Limit reached for maximum takes
+        register:
+          attributes:
+            mobile_number:
+              blank: Mobile number is required
+              invalid: Mobile number is invalid
+              verification_expired: The verification code has expired. You can try verifying again.
         report:
           assessments_not_hogan: All Assessments must be Hogan type
           assessments_not_saville: All Assessment must be a Saville type
@@ -924,6 +930,7 @@ en:
       download_csv: Download CSV
       edit: Edit
       evaluate: Evaluate
+      export: Export
       export_normed: Normed Factor Scores
       export_raw_labels: Raw (with labels)
       export_raw_scores: Raw Factor Scores
@@ -1320,21 +1327,21 @@ en:
     inactive_campaign_message: Currently, you have not been assigned any activities.
     insights_reports: Insights & Reports
     instruction_modal:
-      campaign_start_final_instructions: |
+      campaign_start_final_instructions: |-
         <p>
           Please be aware that there is no way to Stop or Pause the timer. The campaign timer will keep running even when you close the browser so at no point you should think about leaving the tasks in between to do something else. Do make sure to minimize distractions during the tasks. Find a quiet environment, turn off notifications on your devices, and avoid multitasking. Maintain your concentration and stay focused. Once the campaign timer runs out, you will not be able to continue. If you have read through the above instructions, please click on start to continue the assigned tasks.
         </p>
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>Please read the following instructions properly.</h4>
         <p>
           The task(s) you are about to begin are timed. Once you click on “Start”, the campaign timer will automatically commence. You have %{minutes} minutes to complete all the activities. Please aim to complete the tasks within the designated timeframe and manage time effectively to avoid rushing through the evaluation process. Make sure to complete the tasks in one go so if you need to take a break, Now is the time.
         </p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>Proctoring</h4>
         <p>
           Upon clicking the Start button, you will be redirected to our proctoring system. It will monitor your camera, microphone, and screen during your session. These sessions are automatically proctored by our sophisticated AI system, providing an uninterrupted and smooth user experience. However, sessions may also be reviewed by human proctors. Any signs of misconduct or irregularities will be flagged. This is being done to ensure that no cheating attempts are made. If found suspicions, your task(s) will stand canceled.
         </p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>Proctoring browser</h4>
         <p>
           You will be required to download and install a special browser to complete the proctored tasks. Please follow the instructions in the next screen. You can uninstall this after completing all required activities.
@@ -2907,6 +2914,7 @@ en:
     overuse_number: Over use allowance
     report_family: Report bundle
     start_date: Start date
+    title: License
     type: Type
     types:
       common: Common
@@ -3817,6 +3825,9 @@ en:
     waiting: Waiting
     you: You
     yourself: Yourself
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: By clicking this box, you agree that you have read our privacy notice and our client's privacy notice and you consent to the collection and processing of your personal information as described therein, including the international transfer of your personal information.
+    privacy_notice: Privacy Notice
   time:
     formats:
       date: "%d/%m/%y"

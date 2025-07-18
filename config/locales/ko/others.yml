@@ -34,7 +34,7 @@ ko:
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: '"%{블록 이름}" 블록에 중복 구성이 있습니다: %{중복 구성}'
+              duplicate_block: '"%{block_name}" 블록에 중복 구성이 있습니다: %{duplicate_configurations}}'
         assessment_question_import_form:
           attributes:
             file:
@@ -119,7 +119,7 @@ ko:
               blank: 이름은 비워 둘 수 없습니다
             job_role:
               cannot_be_same: 대상 직무 역할은 현재 직무 역할과 달라야 합니다.
-              not_found: 프로젝트 또는 글로벌 역할에서 '%{이름}' 직책을 찾을 수 없습니다.
+              not_found: 프로젝트 또는 글로벌 역할에서 '%{name}' 직책을 찾을 수 없습니다.
             last_name:
               blank: 성은 비워 둘 수 없습니다
             locale:
@@ -167,12 +167,17 @@ ko:
             base:
               code_length: "%{index} 행의 코드 길이는 3자 이상이어야 합니다."
               code_required: 행 %{index}에 팩터 코드가 필요합니다
-              invalid_scoring_strategy: 행 {index}에 잘못된 채점 전략 '%{strategy}'이(가) 있습니다. 허용되는 전략은 %{allowed}입니다.
+              invalid_csv: 잘못된 csv %{error_message}
+              invalid_scoring_strategy: 행 %{index}에 잘못된 채점 전략 '%{strategy}'이(가) 있습니다. 허용되는 전략은 %{allowed}입니다.
               missing_headers: '누락된 필수 헤더: %{headers}'
               name_required: 행 %{index}에 팩터 이름이 필요합니다
               scoring_strategy_required: 행 %{index}에 채점 전략이 필요합니다
             file:
               invalid_format: CSV 파일을 업로드하세요
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: 클라이언트 SMS 알림이 비활성화되었습니다.
         hogan:
           attributes:
             name:
@@ -191,6 +196,7 @@ ko:
               blank: 이름은 비워 둘 수 없습니다
             job_role:
               cannot_be_same: 대상 직무 역할은 현재 직무 역할과 달라야 합니다.
+              not_found: 작업 역할 '%{name}'을(를) 프로젝트 또는 전역 역할에서 찾을 수 없습니다.
             last_name:
               blank: 성은 비워 둘 수 없습니다
             locale:
@@ -200,12 +206,12 @@ ko:
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: 행 %{행_번호}에서 %{열_이름} 값을 비울 수 없습니다.
+              column_cannot_be_blank: 행 %{column_name}에서 %{row_number} 값을 비울 수 없습니다.
               invalid_format: CSV 파일을 업로드하세요.
-              invalid_job_role_id: 행 %{행_번호}의 ID가 올바른 직무 역할 ID가 아닙니다.
+              invalid_job_role_id: 행 %{row_number}의 ID가 올바른 직무 역할 ID가 아닙니다.
               invalid_locale: 행 %{row_number}의 로캘이 올바른 로캘이 아닙니다.
-              missing_required_columns: '누락된 필수 열: %{열}'
-              parsing_failed: '파일을 구문 분석하는 동안 오류가 발생했습니다(오류: %{오류}).'
+              missing_required_columns: '누락된 필수 열: %{columns}'
+              parsing_failed: '파일을 구문 분석하는 동안 오류가 발생했습니다(오류: %{error}).'
             project:
               must_exist: 프로젝트가 존재해야 합니다.
         mettl:
@@ -307,7 +313,7 @@ ko:
               column_type_mismatch: 열 <b>%{col}은</b> (는) %{type}이어야 하지만 <b>%{got}을</b>(를) 가져왔습니다
               email_blank: '행 %{row_number}: 이메일 필드를 비워 둘 수 없습니다'
               email_duplicate: 이메일 열에 중복된 항목이 있습니다
-              email_invalid: '행 %{행row_number_번호}: 이메일이 잘못되었습니다'
+              email_invalid: '행 %{row_number}: 이메일이 잘못되었습니다'
               invalid_column: 잘못된 열 %{name}
               invalid_column_name: 열 <b>"%{column}"</b> 이(가) 잘못되었습니다
               invalid_column_name_size: <b>"%{column}"</b> 열 이름이 너무 깁니다(최대 64개)
@@ -317,7 +323,7 @@ ko:
               invalid_string_value: <b>행#%{index}</b> 열 <b>"%{column}"</b> 이 문자열이 아닙니다
               invalid_string_value_size: <b>행#%{index}</b> 열 <b>"%{column}"</b> 이 너무 깁니다(최대 256)
               no_email_column: 파일에 이메일 열이 포함되어 있지 않습니다
-              non_uniq_column: 유니크가 아닌 %{column} 열이 다음과 같습니다
+              non_uniq_column: 유니크가 아닌 %{columns} 열이 다음과 같습니다
         sheet_row_form:
           attributes:
             email:
@@ -326,11 +332,11 @@ ko:
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 블록 이름]에 대해 선택된 스킬 유형으로 하나 이상의 직무 역할이 활성화되어 있어야 합니다.
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: "%{block_name} 에 대해 선택한 기술 유형으로 하나 이상의 작업 역할을 활성화해야 합니다."
               at_least_one_job_role_required: 블록 이름]의 %{스킬 유형}에 대해 하나 이상의 직무 역할이 필요합니다.
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: 블록 이름]에 대해 선택한 직무 역할과 함께 하나 이상의 스킬 유형이 활성화되어 있어야 합니다.
               invalid_job_role_type: '블록 이름에 대한 %{스킬 유형}에 대한 %{직무 역할 %{직무_역할}이(가) 잘못되었습니다. 유효한 옵션: %{valid_options}'
-              invalid_skill_type: '역할_이름]의 %{블록_이름}에 대한 %{스킬 유형 %{스킬_유형}이(가) 잘못되었습니다. 유효한 옵션: %{valid_options}'
+              invalid_skill_type: '유효하지 않은 스킬 유형 %{skill_type} for %{role_name} for %{block_name}. 유효한 옵션: %{valid_options}'
               props_missing: 블록 이름]에 대한 스킬 구성이 없습니다.
         skillvue:
           attributes:
@@ -372,11 +378,11 @@ ko:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: '행 %{행}: 필드}에 대해 %{값} 값을 중복했습니다.'
+              duplicate_value: '행 %{row}: %{field}에 대한 중복 값 %{value}'
               invalid_format: xlsx 파일을 업로드하세요.
-              missing_headers: "%{시트_이름} 시트에 필수 헤더가 없습니다: %{헤더}"
-              missing_sheets: '필요한 시트가 누락되었습니다: %{시트}'
-              missing_value: '행 %{행}: 필드}에 누락된 값이 있습니다.'
+              missing_headers: "%{sheet_name} 시트에 필수 헤더가 없습니다: %{headers}"
+              missing_sheets: '필요한 시트가 누락되었습니다: %{sheets}'
+              missing_value: '행 %{row}: %{field}에 대한 누락된 값'
             project:
               must_exist: 프로젝트가 존재해야 합니다.
         update_norm:
@@ -761,6 +767,12 @@ ko:
           attributes:
             base:
               max_takes_limit_reached: 최대 테이크 한도 도달
+        register:
+          attributes:
+            mobile_number:
+              blank: 휴대폰 번호 필수 입력
+              invalid: 휴대폰 번호가 유효하지 않습니다
+              verification_expired: 인증 코드가 만료되었습니다. 다시 인증해 보세요.
         report:
           assessments_not_hogan: 모든 평가는 호건 유형이어야 합니다
           assessments_not_saville: 모든 평가는 새빌 유형이어야 합니다
@@ -776,6 +788,8 @@ ko:
               invalid: 현재 비밀번호가 올바르지 않습니다
             manager_id:
               cannot_be_self: 사용자는 자신을 매니저로 지정할 수 없습니다
+        user_idp_comment:
+          reply_to_reply: 응답에 응답할 수 없음(한 수준의 중첩만 허용됨)
         user_idp_plan:
           no_active_plan: 활성 IDP 요금제를 찾을 수 없습니다
   admin_jobs:
@@ -789,6 +803,7 @@ ko:
         assign_idp_to_users: 사용자에게 IDP 할당
         assign_reports_and_assessments: 보고서 및 평가 할당
         bulk_create_workshop_invites: 일괄 평가 센터 초대장 보내기
+        bulk_download_idp_reports: IDP 보고서 대량 다운로드
         bulk_download_reports: 보고서 대량 다운로드
         bulk_download_user_reports: 사용자 보고서 대량 다운로드
         bulk_regenerate_reports: 캠페인 보고서 재생성
@@ -796,6 +811,7 @@ ko:
         bulk_regenerate_user_reports: 사용자 보고서 다시 생성
         bulk_reports: 대량 보고서
         bulk_rescore_campaign_factors: 대량 리스코어 캠페인 요소
+        bulk_update_evaluation_status: 평가 상태 대량 업데이트
         compact_completion_status_export: 컴팩트 완료 상태 내보내기
         completion_status_export: 완료 상태 내보내기
         copy_dimension: 복사 차원
@@ -805,6 +821,7 @@ ko:
         export_assessment_questions: 수출 평가 질문
         export_campaign_factors: 수출 캠페인 요소
         export_campaign_scorings: 내보내기 캠페인 점수
+        export_dashboard_as_file: 대시보드를 파일로 내보내기
         export_development_action_translations: 수출 개발 작업 번역
         export_development_actions: 수출 개발 작업
         export_dimension_as_json: 차원 JSON 내보내기
@@ -812,7 +829,9 @@ ko:
         export_job_roles_translations: 직무 역할 번역 내보내기
         export_norm: 내보내기 규범
         export_occupations: 직업 내보내기
+        export_proficiency_level_translations: 수출 숙련도 수준 번역
         export_proficiency_levels: 내보내기 숙련도 수준
+        export_reflection_questions: Export Reflection 질문
         export_report_data: 보고서 데이터 내보내기
         export_reports_and_assessments: 내보내기 보고서 및 평가
         export_skill_translations: 기술 번역 내보내기
@@ -834,8 +853,10 @@ ko:
         import_job_roles_translations: 직무 역할 번역 가져오기
         import_norm: 가져오기 규범
         import_proficiency_level_translations: 숙련도 수준 번역 가져오기
+        import_proficiency_levels: 가져오기 숙련도 수준
         import_question_translations: 질문 번역 가져오기
         import_raw_data: 원시 데이터 가져오기
+        import_reflection_questions: Import Reflection 질문
         import_scoring_data: 채점 데이터 가져오기
         import_skill_rater_taxonomies: 스킬 평가자 분류체계 가져오기
         import_skill_translations: 스킬 번역 가져오기
@@ -865,6 +886,8 @@ ko:
         failed: 실패
         in_progress: 진행 중
         scheduled: 예약됨
+    bulk_download_idp_reports:
+      already_exists: 이 IDP 보고서를 생성하는 작업은 이미 진행 중입니다.
     bulk_download_reports:
       content:
         title: 보고서 다운로드 링크
@@ -909,6 +932,7 @@ ko:
       download_csv: CSV 다운로드
       edit: 편집
       evaluate: 평가
+      export: 내보내기
       export_normed: 표준화된 요인 점수
       export_raw_labels: 원시(레이블 포함)
       export_raw_scores: 원시 요인 점수
@@ -922,7 +946,7 @@ ko:
       next_assessment: 다음 평가로 넘어가기
       pending_tasks:
         one: 보류 중인 작업이 1개 있습니다.
-        other: 보류 중인 작업이 %{count}개 있습니다.
+        other: 보류 중인 작업이 %{count}개 있습니다
       re_evaluate: 재평가하려면 여기를 클릭하세요
       reevaluate: 재평가
       remove:
@@ -980,7 +1004,7 @@ ko:
     dashboard: 대시보드
     dictation:
       allow_browser_permision: 받아쓰기를 사용하려면 브라우저 오디오 권한을 허용하세요
-      autostopping_in: 역방향 카운트다운}초 후 받아쓰기 자동 중지
+      autostopping_in: "%{reverseCountdown}초 만에 받아쓰기 자동 중지"
       browser_unsupported: 브라우저가 오디오 입력을 지원하지 않습니다
       dictation_active: 받아쓰기가 활성화되었습니다
       dictation_disabled: 받아쓰기가 현재 비활성화되어 있거나 다른 문제에서 사용 중입니다
@@ -1027,6 +1051,7 @@ ko:
         pearson: 피어슨 평가
         saville: 새빌 평가
         simulation: 시뮬레이션 평가
+        skillvue: Skillvue 평가
     flow:
       end_assessment_modal:
         custom_message: 사용자 지정 평가 종료 메시지
@@ -1036,7 +1061,7 @@ ko:
     instructions:
       begin_assessment: 시작
       cancel: 취소
-      default: 기본값
+      default: 이 활동은 시간 제한이 있는 활동으로, 평가 시작을 클릭하면 %{time}분 동안 완료할 수 있습니다.
       title: 지침
     messages:
       external_scores_export_scheduled: 평가 점수 내보내기 작업이 성공적으로 예약되었습니다
@@ -1121,6 +1146,7 @@ ko:
       previous_group_required: 이전 그룹 완료 필요
     menu:
       assessment_center: 평가 센터
+      assessment_center_invites: 평가 센터 초대
       assessments_and_reports: 평가 및 보고서
       idp: IDP
       manage: 관리
@@ -1139,7 +1165,7 @@ ko:
         delete:
           cancel: 취소
           cannot_delete_with_workshops: 워크샵이 포함된 그룹을 삭제할 수 없으므로 먼저 워크샵을 삭제하세요.
-          failed: '"%{이름}" 그룹을 삭제하지 못했습니다. 관리자에게 문의하세요'
+          failed: '"%{name}" 그룹을 삭제하지 못했습니다. 관리자에게 문의하세요'
           ok: 예, 삭제
           text: '"%{name}" 그룹을 삭제하시겠습니까?'
           title: 그룹 삭제
@@ -1157,7 +1183,7 @@ ko:
     assessment_not_in_report: ID가 %{assessment_id}인 평가는 ID가 %{report_id}인 보고서에 포함되지 않습니다
     errors:
       not_enought_licenses: 번들 ID가 %{bundle_id}인 번들에 라이선스가 없습니다
-      user_not_found: '행 %{행}: 이메일 ''%{email}''을(를) 가진 사용자를 찾을 수 없습니다'
+      user_not_found: '행 %{row}: 이메일 ''%{email}''을(를) 가진 사용자를 찾을 수 없습니다'
     report_bundle_not_found: 아이디가 %{bundle_id}인 보고서 번들을 찾을 수 없습니다
     report_not_found: ID %{report_id}의 보고서를 찾을 수 없습니다
     report_not_in_bundle: ID %{report_id}가 %{bundle_id}가 있는 보고서 번들에 속하지 않은 보고서입니다
@@ -1196,7 +1222,7 @@ ko:
       invalid_email: 이메일이 유효하지 않습니다
       login_with_password: 비밀번호로 로그인
       send_me_login_link: 로그인 링크 보내기
-      success: 성공
+      success: "'%{email}'에 대한 로그인 링크를 보내드립니다. 로그인하기 위해 받은 이메일의 링크를 클릭하십시오."
     mobile_number: 휴대폰 번호
     new_password: 새 비밀번호
     new_password_placeholder: 새 비밀번호 입력
@@ -1205,7 +1231,7 @@ ko:
       code_placeholder: 일회용 비밀번호
       description: 설명
       resend: OTP 다시 보내기
-      resend_in: 타임스탬프}초 후에 다시 보내기
+      resend_in: "%{timestamp}초 안에 재전송"
       resend_success: 휴대폰 번호로 OTP가 전송됩니다
       sms_description: 휴대폰 번호로 전송된 OTP를 입력하세요.
       submit: 확인
@@ -1301,13 +1327,13 @@ ko:
     insights_reports: 인사이트 및 보고서
     instruction_modal:
       campaign_start_final_instructions: "<p>타이머를 중지하거나 일시 중지하는 방법은 없습니다. 브라우저를 닫아도 캠페인 타이머는 계속 실행되므로 중간에 다른 일을 하기 위해 작업을 중단할 생각은 하지 마세요. 작업 중 방해 요소를 최소화하세요. 조용한 환경을 찾고, 기기에서 알림을 끄고, 멀티태스킹을 피하세요. 집중력을 유지하고 집중하세요. 캠페인 타이머가 다 지나면 계속할 수 없습니다. 위의 지침을 모두 읽었다면 시작을 클릭하여 할당된 작업을 계속 진행하시기 바랍니다</p>\n"
-      campaign_start_instruction: |
+      campaign_start_instruction: |-
         <h4>다음 지침을 잘 읽어주세요.</h4>
         <p>시작하려는 작업에는 시간이 정해져 있습니다. '시작'을 클릭하면 캠페인 타이머가 자동으로 시작됩니다. 모든 활동을 완료하는 데 남은 시간은 %{minutes}입니다. 지정된 시간 내에 작업을 완료하고 평가 과정을 서두르지 않도록 시간을 효율적으로 관리하세요. 한 번에 작업을 완료해야 하므로 잠시 쉬고 싶다면 지금이 바로 그 시간입니다</p>
-      common_proctoring_instructions: |
+      common_proctoring_instructions: |-
         <h4>감독</h4>
         <p>시작 버튼을 클릭하면 감독 시스템으로 리디렉션되며, 세션이 진행되는 동안 카메라, 마이크, 화면을 모니터링합니다. 이러한 세션은 정교한 AI 시스템에 의해 자동으로 감독되어 중단 없이 원활한 사용자 경험을 제공합니다. 그러나 세션은 인간 감독자가 검토할 수도 있습니다. 부정 행위나 부정 행위의 징후가 발견되면 플래그가 표시됩니다. 이는 부정 행위 시도를 방지하기 위한 것입니다. 의심이 발견되면 작업은 취소될 수 있습니다</p>
-      lockdown_browser_instruction: |
+      lockdown_browser_instruction: |-
         <h4>감독 브라우저</h4>
         <p>감독하는 작업을 완료하려면 특수 브라우저를 다운로드하여 설치해야 합니다. 다음 화면의 지침을 따르세요. 필요한 모든 활동을 완료한 후 제거할 수 있습니다</p>
     instructions:
@@ -1347,6 +1373,8 @@ ko:
   campaign_assessment:
     actions:
       bulk_download: 대량 다운로드
+      bulk_update_evaluation_as_done: 완료로 표시
+      bulk_update_evaluation_as_undone: 완료로 표시 해제
       download: 보고서 다운로드
       export_completion_status: 내보내기 완료 상태
       export_external: 외부
@@ -1378,9 +1406,15 @@ ko:
       locales: 로캘
       norm: 표준
       norm_id: 표준 ID
+      pearson_norm_id: Pearson Norm ID
+      pearson_schedule_id: 피어슨 일정 ID
       pearson_variation: 피어슨 변형
       prework: 사전 작업
+      saville_candidate_id: 후보 ID
+      saville_data_separator: Saville 데이터 분리기
       simulation_content_variation: 시뮬레이션 콘텐츠 변형
+      simulation_participant_id: 시뮬레이션 참가자 ID
+      simulation_time_extension: 시뮬레이션 시간 연장
       skillvue_email_id: 스킬뷰 응시자 이메일 ID
       skillvue_external_assessment_id: 스킬뷰 평가 ID
       universal_link: 유니버설 링크
@@ -1403,6 +1437,10 @@ ko:
         placeholder: 평가 센터 그룹 선택
         success_message: 평가자 캠페인 평가 그룹이 성공적으로 할당되었습니다.
         title: 평가 센터 그룹
+      bulk_update_evaluation:
+        content: 선택한 모든 주제를 %{status}(으)로 표시하시겠습니까?
+        successfully: "%{status}(으)로 성공적으로 표시되었습니다."
+        title: 대량 표시가 %{status}(으)로 표시되나요?
       import_raw:
         body: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 내보내기 기능을 참조하세요.
         success_msg: 가져오기가 성공적으로 업로드되었습니다
@@ -1413,6 +1451,10 @@ ko:
         success_msg: 가져오기가 성공적으로 업로드되었습니다
         title: 채점 결과 데이터 가져오기
         upload: 업로드
+      prework_setting:
+        disable: 모든 기존 사용자에 대해 사전 작업 비활성화
+        enable: 모든 기존 사용자에 대해 사전 작업 활성화
+        title: 사전 작업 설정 양식
       regenerate:
         content: 사용 가능한 보고서를 다시 생성하시겠습니까?
         title: 보고서를 다시 생성하시겠습니까?
@@ -1585,7 +1627,7 @@ ko:
     card:
       duration: 기간
       starts_in: '시작됩니다:'
-      starts_on: 날짜}에 시작
+      starts_on: "%{date}일부터 시작"
       will_start_shortly: 캠페인이 곧 시작됩니다. 잠시만 기다려주세요
   change_password_page:
     old_password: 이전 비밀번호
@@ -1679,23 +1721,30 @@ ko:
       create: 만들기
       delete: 삭제
       done: 완료
+      download: 다운로드
       edit: 편집
       export: 내보내기
+      filter: 필터
       filter_by_tags: 태그별로 필터링
+      go_back: 돌아 가
       import: 가져오기
       insert: 삽입
       ok: 확인
       publish: 게시
+      reject: 거절하다
       remove: 제거
       reset: 초기화
       resolve: 해결
       restore: 복원
+      return_to_home: 집으로 돌아가기
       run: 실행
       save: 저장
       schedule: 일정
       search: 검색
       send: 보내기
+      sign_in: 서명하세요
       start: 시작
+      submit: 전송
       unarchive: 보관 해제
       unpublish: 게시 취소
       unresolve: 해결 취소
@@ -1809,6 +1858,7 @@ ko:
       refer_export_file: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 내보내기 기능을 참조하세요.
       reference_language: 참조 언어
       response: 응답
+      select: 고르다
       selected: 선택됨
       subject: 제목
       total: 합계
@@ -1890,16 +1940,18 @@ ko:
     mailer:
       admin_invitation_instructions:
         accept: 초대를 수락하려면 여기를 클릭하세요.
-        body: '안녕하세요 %{name} 님, 인재 기업 평가 플랫폼인 라이트하우스의 관리자 패널에 액세스하도록 초대되었습니다. 수락] 또는 이 이메일을 무시해도 됩니다. 액세스 자격 증명을 다른 사람과 공유하지 마세요.
+        body: |-
+          안녕하세요 %{name}님,
+          Lighthouse - The Talent Enterprise 평가 플랫폼의 관리자 패널에 액세스하도록 초대되었습니다.
 
-          '
+          %{accept} 또는 이 이메일을 무시해도 됩니다.
+
+          액세스 자격 증명을 누구와도 공유하지 마십시오.
         subject: 라이트하우스로의 초대
       confirmation_instructions:
         subject: 확인 지침
       invitation_instructions:
-        body: '안녕하세요 %{name} 님, 다음 섹션의 관리자로 라이트하우스에 추가되었습니다
-
-          '
+        body: '안녕하세요 %{name} 님, 다음 섹션의 관리자로 라이트하우스에 추가되었습니다 '
         login: 라이트하우스에 로그인
         sections:
           campaign: '캠페인: %{section_name}'
@@ -1907,31 +1959,19 @@ ko:
           project: '프로젝트: %{section_name}'
         subject: 라이트하우스로의 초대
       password_change:
-        body: '안녕하세요 %{name} 님! 비밀번호가 변경되었습니다. 이 요청을 하지 않은 경우 즉시 지원팀(mte.support@mercer.com)으로 문의하시기 바랍니다
-
-          '
-        regards: '라이트하우스 팀
-
-          '
+        body: '안녕하세요 %{name} 님! 비밀번호가 변경되었습니다. 이 요청을 하지 않은 경우 즉시 지원팀(mte.support@mercer.com)으로 문의하시기 바랍니다 '
+        regards: '라이트하우스 팀 '
         subject: 라이트하우스 비밀번호가 변경되었습니다
       reset_password_instructions:
-        body: '안녕하세요 %{name} 님! 누군가 비밀번호를 변경할 수 있는 링크를 요청했습니다. 아래 링크를 통해 비밀번호를 변경할 수 있습니다.
-
-          '
+        body: '안녕하세요 %{name} 님! 누군가 비밀번호를 변경할 수 있는 링크를 요청했습니다. 아래 링크를 통해 비밀번호를 변경할 수 있습니다. '
         change_password: 비밀번호 변경
         footer: 요청하지 않은 경우 이 이메일을 무시해도 됩니다. 위의 링크에 액세스하여 새 비밀번호를 생성할 때까지 비밀번호는 변경되지 않습니다.
-        regards: '라이트하우스 팀
-
-          '
+        regards: '라이트하우스 팀 '
         subject: 비밀번호 재설정 방법
       unlock_instructions:
-        body: '안녕하세요 %{name} 님! 로그인 시도 횟수가 너무 많아 계정이 잠겼습니다. 아래 링크를 클릭하여 계정의 잠금을 해제하세요:
-
-          '
+        body: '안녕하세요 %{name} 님! 로그인 시도 횟수가 너무 많아 계정이 잠겼습니다. 아래 링크를 클릭하여 계정의 잠금을 해제하세요: '
         footer: 요청하지 않은 경우 이 이메일을 무시해도 됩니다. 위의 링크에 액세스하여 새 비밀번호를 생성할 때까지 비밀번호는 변경되지 않습니다.
-        regards: '라이트하우스 팀
-
-          '
+        regards: '라이트하우스 팀 '
         subject: 계정 잠금 해제 지침
         unlock_account: 내 계정 잠금 해제
     omniauth_callbacks:
@@ -2039,6 +2079,9 @@ ko:
         last_factor_group: 마지막 캠페인 요소 그룹을 삭제할 수 없습니다.
       campaign_idps:
         idp_template_not_published: 이 IDP 템플릿은 아직 게시되지 않았습니다. 캠페인에 할당하기 전에 게시하십시오.
+      cant_be_deleted: 이 레코드는 삭제할 수 없습니다.
+      client_feature:
+        ai_assisted_idp_feature_error: AI 어시스턴트 기능이 비활성화된 경우 true일 수 없습니다.
       create_superadmin:
         uniq_email: 이메일은 고유해야 합니다.
       development_actions:
@@ -2071,6 +2114,8 @@ ko:
       report_families_reports:
         report_exists: 이 보고서는 이미 보고서 번들의 일부입니다
       size?: 크기는 %{size}보다 작아야 합니다
+      skill:
+        already_added: 같은 이름의 스킬이 이미 추가되었습니다.
       skill_alias:
         unique_alias: 별칭은 고유해야 합니다
         unique_skill: 스킬은 고유해야 합니다
@@ -2130,6 +2175,8 @@ ko:
     assessments:
       timed_out: 시간이 초과되었으므로 %{assessment_name} 평가에 응시할 수 없습니다.
     error: 오류
+    error_401: 이 리소스에 액세스할 수 있는 권한이 없습니다. 로그인해 주세요.
+    error_403: 이 리소스를 볼 수 있는 권한이 없습니다.
     error_500: 문제가 발생했습니다. 관리자에게 문의하세요.
     error_msg: 문제가 발생했습니다. 페이지를 새로 고친 후 문제가 지속되면 관리자에게 문의하세요
     forbidden: 이 페이지에 액세스할 수 없습니다
@@ -2172,7 +2219,7 @@ ko:
       delete_message: 메시지 삭제
       drag_drop_instructions_desktop: 양식 모드를 켜서 화면 리더로 항목을 끌어다 놓습니다.
       drag_drop_instructions_mobile: 화면 리더를 사용하여 드래그 버튼을 두 번 탭한 다음 다른 항목으로 이동하고 손가락을 들어 항목을 이동합니다.
-      enlarge_view_text: 텍스트} 확대 보기
+      enlarge_view_text: "%{text} 확대 보기"
       expand_menu: 메뉴 확장
       file_uploaded: 파일 업로드
       lang_dropdown_description: 언어 변경
@@ -2249,8 +2296,8 @@ ko:
       neurodivergence_question: 평가에 완전히 참여하기 위해 특별한 필요나 장애로 인해 합리적인 편의나 조정이 필요하신가요?
       no_invites_msg: 평가 센터에 추가되거나 슬롯 예약 초대를 받게 되며, 센터에 참여하게 되면 아래의 '세부 정보 보기' 버튼을 클릭하여 활동을 완료할 수 있습니다.
       or: 또는
-      other_invite: 카운트] 더 초대하기 참조
-      other_invites: 카운트] 더 많은 초대 참조
+      other_invite: 초대장 %{count} 더 보기
+      other_invites: 더 많은 초대 %{count} 보기
       reason: 이유
       reason_for_cancel: 취소 사유
       reason_for_reschedule: 일정 변경 이유
@@ -2453,10 +2500,10 @@ ko:
       generate_more: 더 많은 생성
       generating_development_actions: 개발 작업 생성...
       heading: 개발 작업
-      incomplete_error: 개발 작업 완료되지 않음
-      incomplete_error_message: 일부 개발 작업이 완료되지 않았습니다. IDP를 제출하기 전에 완료해 주세요.
-      incomplete_warning: 개발 작업 완료되지 않음
-      incomplete_warning_message: 일부 개발 작업이 완료되지 않았습니다. IDP를 완료로 표시하시겠습니까?
+      incomplete_error: 불완전한 개발 작업
+      incomplete_error_message: 일부 개발 작업은 완료되지 않았습니다. IDP를 제출하기 전에 작성하십시오.
+      incomplete_warning: 불완전한 개발 작업
+      incomplete_warning_message: 일부 개발 작업은 완료되지 않았습니다. IDP를 완료로 표시하시겠습니까?
       learning_from_others: 다른 사람에게서 배우기
       manage_skills: 스킬 관리
       marathon: 마라톤
@@ -2473,11 +2520,11 @@ ko:
       structured_learning: 구조화된 학습
       submit_plan: 계획 제출
       write_here: 여기에 쓰기...
-    edit_plan: 계획 수정
+    edit_plan: 계획 편집
     edit_progress: 진행 상황 편집
     initial_steps:
       add_skill_group_description: 평가 결과에 따라 강점과 개발이 필요한 영역은 다음과 같습니다. 개발 계획의 일부로 더 발전시키고 싶은 기술을 선택하세요.
-      add_skill_group_title: 카테고리] 스킬 살펴보기
+      add_skill_group_title: "%{category} 기술 탐색"
       add_skills: 추가
       add_skills_step: 스킬 추가
       continue_to_rate_skills: 스킬 평가 계속하기
@@ -2490,7 +2537,8 @@ ko:
       rate_skills_description: 이제 개발 우선순위를 선택했으니 다음 각 항목에 대해 자신을 평가해 주세요. 과거 또는 원하는 수준이 아닌 현재 수준을 기준으로 자신을 평가해야 한다는 점을 잊지 마세요.
       rate_skills_title: 실력 평가하기
       rating_column_header: 자기 평가
-      save: 구하다
+      reflective_questions: 성찰적 질문
+      save: 구해내다
       select_skills: 기술 선택
       select_skills_placeholder: 기술 선택
       selected_skills: 선택 기술
@@ -2505,30 +2553,121 @@ ko:
       graphs:
         categories: 카테고리
       save_skills: 스킬 저장
-    new_comments: 새 댓글
+    new_comments: 새 댓글(들)
     pdf:
+      approval_status: 결재 현황
       cover:
         fields:
+          assigned_data: 할당된 날짜
           assigned_date: 할당된 날짜
+          completion_date: 완료 날짜
+          division: 나눗셈
+          name: 이름
+          publish_date: 게시 날짜
+          review_date: 검토 날짜
+          role: 현재 역할
+      guidelines:
+        cards:
+          c1:
+            content: 개발해야 할 기술, 지식 및 기능을 포함합니다. 구체적이고, 측정 가능하고, 달성 가능하고, 현실적이고, 언급된 일정 내에 합리적으로 달성할 수 있는지 확인합니다.
+            title: 개발 목표
+          c2:
+            content: 이는 평가 경험을 기반으로 개발해야 하는 역량을 기반으로 합니다.
+            title: 역량
+          c3:
+            content: 이 섹션에는 아래 나열된 70-20-10 학습 모델을 기반으로 하는 개발 작업이 포함되어 있습니다. 다양한 학습 및 개발 접근 방식을 보장하기 위해 세 가지 요소의 조합을 선택하는 것이 좋습니다.
+            title: 활동
+          c4:
+            content: 목표를 완료할 수 있는 시점을 기준으로 타임라인이 현실적인지 확인합니다. 적절한 경우 이를 수정하십시오.
+            title: 타임라인
+          c5:
+            content: 진행률 섹션을 사용하여 식별된 트랙의 진행을 지원합니다.
+            title: 진보
+        chart:
+          collaboration: "<strong>20%</strong>공동 <br /> 공부"
+          job: "<strong>70%</strong>공부 <br />직장에서"
+          learn: "<strong>10%</strong>공식 학습"
+        content:
+          list:
+            r1: 이 목록은 참고용일 뿐이며, 개인의 포부, 관리자의 권장 사항 및 조직의 비즈니스 우선 순위에 따라 추가 개발 경로를 고려할 수 있습니다.
+            r2: 이러한 개발 경로 중 일부의 출시는 조직 전체의 교육 및 학습 전략에 따라 달라질 것입니다.
+            r3: 개인 개발 계획을 개발할 때 아래에 설명된 권장 경로를 고려하십시오.
+          main: '이 섹션에는 교실 학습, 코칭 및 현장 학습을 결합한 점진적인 여정을 제공하는 모범 사례 학습(예: 70-20-10 지침)을 염두에 두고 모든 개발 경로의 누적 목록이 포함되어 있습니다. 리더십 개발 경험과 비즈니스 우선 순위의 결과를 기반으로 개발을 위해 고려할 수 있는 가능한 개발 경로가 권장되었습니다.'
+        learn_cards:
+          collaboration:
+            title: 협업 학습(20%) <br/> 다른 사람들을 통해 발전
+          job:
+            title: 직장에서 배우기(70%) <br/> 경험을 통한 발전
+          learn:
+            title: 공식 학습(10%) <br/> 구조화된 학습을 통한 개발
+        title: IDP를 안내하기 위한 지침
+      idp:
+        end_date: 종료 날짜
+        self_rating: 자체 평가
+        start_date: 시작 날짜
+        subtitle:
+          behavioural: 행동
+          technical: 기술
+        title: 개인 개발 계획
+      last:
+        end_report: 보고서 끝
+      reflections:
+        subtitle: 전반적인 전문성 개발을 위한 질문
+        title: IDP를 안내하기 위한 고찰
+      skill_categories:
+        behavioral: 행동
+        technical: 기술
       statuses:
+        approved: 검토 및 승인
+        completed: 완료
         draft: 초안
+        not_reviewed: 검토되지 않음
+        pending_approval: 리뷰
+      summary:
+        ai_count: 생성형 AI
+        collaborative_learn: 협업 학습
+        created_by: 만든 사람
+        current_status: IDP 현재 상태
+        custom: 관습
+        custom_count: 관습
+        da_count: 개발 작업 개수
+        formal_learn: 공식 학습
+        generated_ai: 생성형 AI
+        learn_on_job: 직장에서 배우기
+        learn_pathway: 학습 경로
+        lib_count: IDP 라이브러리
+        library: IDP 라이브러리
+        skills_count: 스킬 수
+        title: 보고서 요약
     plan: 계획
     reflective_questions:
       already_completed: IDP가 이미 완료되었으므로 지금은 질문에 답변할 수 없습니다.
+      answer_later: 나중에 대답
+      answer_placeholder: 여기에 답변을 작성하십시오 ...
+      errors:
+        max_words: 답변은 최대 %{count}단어를 허용합니다
+        min_words: 답변에는 최소 %{count}개의 단어가 필요합니다
+        required: 질문에 대한 답변이 필요합니다.
+      max_words: 최대 단어 수
+      min_words: 최소 단어 수
+      title: 성찰적 질문
+      update_failed: 업데이트하는 동안 오류가 발생했습니다.
+      updated_successfully: 답변이 성공적으로 업데이트되었습니다.
+      words: 가사
     skill_gap_report:
       title: 기술 격차 보고서
     status: 상태
     user_idp_status:
       approved: 승인됨
-      completed: 완료됨
+      completed: 완료
       draft: 초안
       in_progress: 진행 중
       not_started: 시작되지 않음
       pending_approval: 보류 중
-      rejected: 거부됨
+      rejected: 거부
     users: 사용자
     with_reflection_questions: 성찰 질문 포함
-    without_reflection_questions: 성찰 질문 없음
+    without_reflection_questions: 성찰 질문 없이
   idp_templates:
     assign: 할당
     assign_idp_template: Idp 템플릿 할당
@@ -2643,6 +2782,7 @@ ko:
     overuse_number: 초과 사용 허용량
     report_family: 보고서 번들
     start_date: 시작 날짜
+    title: 라이선스
     type: 유형
     types:
       common: 공통
@@ -2653,6 +2793,35 @@ ko:
     used_out_of: 총 %{used} 중 %{total}
   mailer:
     from: 인재 기업
+    idp:
+      manager_unread_comments:
+        body: |-
+          %{name}님, 안녕하세요.
+          IDP 기자로부터 새로운 의견이 있습니다.
+
+          %{dashboard_link}
+
+          Direct Reportees 대시보드에서 다음을 수행할 수 있습니다.
+          - 개별 계획에 대한 회원의 새로운 의견을 검토합니다.
+          - 개발 목표에 대한 피드백 제공
+          - IDP 활동에 대한 진행 상황 추적
+          - 팀의 성장과 발전 지원
+        dashboard_link: 대시보드 방문
+        subject: 새 댓글이 있습니다 - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          %{name}님, 안녕하세요.
+          개발 계획에 대한 새로운 의견이 있습니다.
+
+          %{dashboard_link}
+
+          My Plan 대시보드에서 다음을 수행할 수 있습니다.
+          - 개발 계획 업데이트
+          - 새로운 의견 및 피드백 읽기
+          - 관리자의 질문에 응답
+          - 개발 작업에 대한 진행 상황을 업데이트합니다.
+        dashboard_link: 내 요금제 보기
+        subject: 개발 계획에 대한 새로운 의견이 있습니다 - %{campaign_name}
     license:
       expire:
         subject: 라이선스 만료
@@ -2675,7 +2844,7 @@ ko:
         weekly_stats: '지난 주 라이선스 사용량 통계 :'
     magic_link:
       body:
-        dear: 이름}님께,
+        dear: 친애하는 %{name},
         greetings: 오늘의 인사!
         instructions: 지침
         signin_link: 로그인 링크
@@ -2858,6 +3027,7 @@ ko:
         mettl: Mettl
         pearson: Pearson
         saville: Saville
+        skillvue: 스킬뷰
     form:
       load_from_mettl: Mettl에서 로드
       load_from_pearson: 피어슨에서 로드
@@ -2933,7 +3103,7 @@ ko:
         developmental_rating: 발달 등급
         questions: 질문
       strength_clusters:
-        index_sub_factors_considered: 근무 스타일} 업무 환경에 대한 최종 점수를 제공하기 위해 고려된 번창 지수 하위 요소는 다음과 같습니다
+        index_sub_factors_considered: Thriving Index %{workstyle} 작업 환경에 대한 최종 점수를 제공하는 것으로 간주되는 하위 요소
         possible_roles: 가능한 역할
         work_environments: 예상되는 업무 환경
       three_sixty_default:
@@ -3384,7 +3554,7 @@ ko:
     begin: 시작
     cancel: 취소
     close_evaluation_modal:
-      message: 메시지
+      message: 보고서를 확인한 후에는 %{pronoun_or_name} 추가 평가를 받을 수 없습니다
       title: 보고서를 정말 보시겠습니까?
     closed_campaign_message: 이 360 캠페인은 마감되었습니다. 이 캠페인에 다른 사람을 추천하거나 평가할 수 없습니다.
     completed: 완료
@@ -3523,6 +3693,9 @@ ko:
     waiting: 대기 중
     you: 당신
     yourself: 나 자신
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: 이 확인란을 클릭하면 당사의 개인정보 처리방침 및 고객의 개인정보 처리방침을 읽었으며, 개인정보의 국제 전송을 포함하여 여기에 설명된 대로 개인정보를 수집 및 처리하는 데 동의하는 것으로 간주됩니다.
+    privacy_notice: 개인정보 고지
   time:
     formats:
       date: d/%m/%y
@@ -3583,6 +3756,7 @@ ko:
         body: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 샘플 파일을 참조하세요.
         title: 보고서 및 평가 할당
     toolbar:
+      bulk_download_idp_reports: IDP 보고서 대량 다운로드
       export: 사용자 내보내기
       export_compact_completion_status: 컴팩트
       export_detailed_completion_status: 상세
@@ -3595,7 +3769,7 @@ ko:
       id: 사용자 평가 ID
       norm_id: 표준 ID
     drawer:
-      copied: 이름}이(가) 클립보드에 복사되었습니다.
+      copied: "%{name} 클립보드에 복사되었습니다."
       copy: 클립보드에 복사
       mettl_schedule_name: 메틀 스케줄 이름
       no_data: 사용 가능한 데이터 없음
@@ -3707,7 +3881,7 @@ ko:
       reset_password:
         option: 비밀번호 재설정
       unlock_user_access:
-        message: Email}에 대한 사용자 액세스가 성공적으로 잠금 해제되었습니다.
+        message: "%{email}에 대한 사용자 액세스가 성공적으로 잠금 해제되었습니다."
         title: 사용자 액세스 잠금 해제
         tooltip: 이 사용자 계정은 잠긴 상태입니다
     admins: 관리자
@@ -3767,6 +3941,10 @@ ko:
       BadRequest: 마지막 요청이 실패하여 파일이 업로드되지 않았습니다. 인터넷이 작동하지 않기 때문일 수 있습니다. 인터넷이 작동하는 경우 관리자에게 문의하세요
       EntityTooLarge: 파일 크기는 %{maxFileSize}MB 미만이어야 합니다
       WrongFileType: 파일 유형은 다음 %{allowedFileTypes} 중 하나이어야 합니다
+    idp:
+      reflective_questions_required: IDP에는 성찰적 질문에 대한 답변이 필요합니다.
+      status_not_permitted: 사용자가 허용하지 않습니다.
+      status_not_permitted_by_manager: 관리자가 계획이 '%{status}' 상태인 경우 상태를 업데이트할 수 없습니다.
     invalid: 가 유효하지 않습니다
     issue: 이슈
     least: 최소 %{min}개 이상 선택해 주세요.

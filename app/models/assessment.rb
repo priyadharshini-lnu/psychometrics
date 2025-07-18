@@ -419,4 +419,9 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
     project_assessments.find_by(project_id: project_id)&.user_result_validity_in_days || DEFAULT_SCORE_VALIDITY_PERIOD
   end
+
+  def available_languages
+    @available_translations = ::Translation.available_translation_for_assessment(id)
+    @available_translations + [default_language]
+  end
 end

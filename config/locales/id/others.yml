@@ -11,150 +11,1119 @@ id:
         select_comparison: Pilih Jenis Perbandingan
         select_factors: Pilih Faktor
         select_operation: Pilih Operasi
+      sheet_column:
+        accessor_access: Akses akses
+        dashboard_use: Penggunaan dasbor
+        visible_in_list: Terlihat dalam daftar
     errors:
       models:
+        admin_edit:
+          attributes:
+            email:
+              blank: Bidang email tidak boleh kosong
+              invalid: Email tidak valid
+            first_name:
+              blank: Nama depan tidak boleh kosong
+            last_name:
+              blank: Nama belakang tidak boleh kosong
+        agile:
+          answers:
+            blank: Jawaban tidak boleh kosong
+          group_id:
+            blank: ID grup tidak boleh kosong
         all_blocks_form:
           attributes:
             base:
-              duplicate_block: 'Blok "%{nama_blok}" memiliki konfigurasi duplikat: %{konfigurasi_duplikat}'
+              duplicate_block: 'Blok "%{block_name}" memiliki konfigurasi duplikat: %{duplicate_configurations}'
+        assessment_question_import_form:
+          attributes:
+            file:
+              invalid_format: Silakan unggah file xlsx
+        assign_report:
+          attributes:
+            adding_report_ids:
+              not_linked_to_report_family: Anda memilih Laporan yang tidak ditautkan ke Paket Laporan yang dipilih
+              report_family_disabled: Anda memilih Bundel Laporan yang dinonaktifkan
+              reports_disabled: Anda memilih Laporan yang dinonaktifkan
+            removing_report_ids:
+              not_linked_to_report_family: Anda memilih Laporan yang tidak ditautkan ke Paket Laporan yang dipilih
+        assign_reports_and_assessments:
+          attributes:
+            assessment_id:
+              blank: ID penilaian tidak boleh kosong
+            bundle_report_id:
+              blank: ID Paket Laporan tidak boleh kosong
+            report_id:
+              blank: ID Laporan tidak boleh kosong
+        campaign_factor_import_form:
+          attributes:
+            file:
+              invalid_format: Silakan unggah file xlsx
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: Kolom '%{entity}' tidak boleh kosong di baris %{index}
+              duplicate_code: Gandakan kode '%{code}' di baris %{index}
+              invalid_output_type: output_type '%{output_type}' tidak valid di baris %{index}
+              max_limit_reached: Total faktor kampanye melebihi batas maksimum %{count}
+              missing_headers: 'Header yang diperlukan tidak ada: %{headers}'
+              type_mismatch: Jenis output tidak cocok untuk kode '%{code}' di baris %{index}
+            file:
+              invalid_format: Silakan unggah file xlsx
+            resource:
+              must_exist: "%{resource} harus ada"
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: Silakan unggah file CSV
+        column:
+          attributes:
+            name:
+              not_unique: Bidang ini sudah ada
+        create_all:
+          attributes:
+            assessors:
+              blank: Pilih setidaknya satu penilai
+              email_duplicated: Email subjek dan penilai diduplikasi
+              multiple_leads_for_subject: Beberapa Penilai Utama yang ditugaskan untuk subjek
+            evaluators:
+              email_duplicated: Email subjek dan evaluator diduplikasi
+            subjects:
+              email_duplicated: Beberapa subjek memiliki email yang sama
         create_one:
           attributes:
+            assessment_ids:
+              invalid: Penilaian %{id} tidak dapat dilampirkan ke penilai
+              lead_assessor_already_assigned: Subjek hanya dapat ditetapkan satu Penilai Utama
+            assessor_email:
+              already_exists: Subjek dengan penilai ini sudah terhubung
+              blank: Email Penilai tidak boleh kosong
+              invalid: Email Penilai tidak valid
+            email:
+              already_exists: Subjek dengan email yang sama sudah ada
+              blank: Email tidak boleh kosong
+              invalid: Email tidak valid
+            evaluator_email:
+              already_exists: Subjek dengan evaluator ini sudah terhubung
+              blank: Email Evaluator tidak boleh kosong
+              invalid: Email Evaluator tidak valid
+            evaluator_first_name:
+              blank: Nama depan evaluator tidak boleh kosong
+            evaluator_last_name:
+              blank: Nama belakang evaluator tidak boleh kosong
+            evaluator_locale:
+              inclusion: Lokasi yang salah
+            evaluator_password:
+              too_short: Sandi evaluator terlalu pendek (minimum adalah %{count} karakter)
+            first_name:
+              blank: Nama depan tidak boleh kosong
             job_role:
               cannot_be_same: Peran pekerjaan target harus berbeda dari peran pekerjaan saat ini
-              not_found: Peran pekerjaan '%{nama}' tidak ditemukan dalam peran proyek atau global
+              not_found: Peran pekerjaan '%{name}' tidak ditemukan dalam peran proyek atau global
+            last_name:
+              blank: Nama belakang tidak boleh kosong
+            locale:
+              inclusion: Lokasi yang salah
+            relationship_name:
+              blank: Hubungan tidak bisa kosong
+              invalid: Hubungan %{name} tidak valid
+            subject_email:
+              blank: Email subjek tidak boleh kosong
+              invalid: Email Subjek tidak valid
+              not_exists: Subjek tidak ditemukan dengan alamat email %{email}
+        email_schedule:
+          attributes:
+            content:
+              blank: Konten tidak boleh kosong
+            from:
+              blank: Dari bidang tidak boleh kosong
+            reply_to_email:
+              blank: Kolom membalas email tidak boleh kosong
+              invalid: Membalas email tidak valid
+            scheduled_date:
+              blank: Bidang tanggal terjadwal tidak dapat kosong
+            subject:
+              blank: Subjek tidak boleh kosong
+        email_template:
+          attributes:
+            content:
+              blank: Konten tidak boleh kosong
+              invalid_consolidated_pipetext: Pipetext ini tidak valid untuk pesan konsolidasi %{invalid_pipetexts}
+              invalid_unconsolidated_pipetext: Pipetext ini tidak valid untuk pesan yang tidak terkonsolidasi %{invalid_pipetexts}
+            from:
+              blank: Dari bidang tidak boleh kosong
+            reply_to_email:
+              blank: Kolom membalas email tidak boleh kosong
+              invalid: Membalas email tidak valid
+            subject:
+              blank: Subjek tidak boleh kosong
+        email_test_form:
+          attributes:
+            to_email:
+              blank: Bidang email tidak boleh kosong
+              invalid: Email tidak valid
+        factor_import_form:
+          attributes:
+            base:
+              code_length: Kode harus memiliki panjang minimal 3 karakter di baris %{index}.
+              code_required: Kode faktor diperlukan di baris %{index}
+              invalid_csv: Csv %{error_message} tidak valid
+              invalid_scoring_strategy: Strategi penilaian tidak valid '%{strategy}' di baris %{index}. Strategi yang diizinkan adalah %{allowed}.
+              missing_headers: 'Header yang diperlukan tidak ada: %{headers}'
+              name_required: Nama faktor diperlukan di baris %{index}
+              scoring_strategy_required: Strategi penilaian diperlukan di baris %{index}
+            file:
+              invalid_format: Silakan unggah file CSV
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: Notifikasi SMS klien dinonaktifkan
+        hogan:
+          attributes:
+            name:
+              not_unique: Integrasi ini sudah ada untuk proyek ini
+        iiht:
+          attributes:
+            name:
+              not_unique: Integrasi ini sudah ada untuk proyek ini
         import_one:
           attributes:
+            email:
+              already_exists: Subjek dengan email yang sama sudah ada
+              blank: Email tidak boleh kosong
+              invalid: Email tidak valid
+            first_name:
+              blank: Nama depan tidak boleh kosong
             job_role:
               cannot_be_same: Peran pekerjaan target harus berbeda dari peran pekerjaan saat ini
+              not_found: Peran pekerjaan '%{name}' tidak ditemukan di peran proyek atau global
+            last_name:
+              blank: Nama belakang tidak boleh kosong
+            locale:
+              inclusion: Lokasi yang salah
+            password:
+              too_short: Kata sandi terlalu pendek. Karakter minimum %{count} diperlukan
         job_roles_translations_form:
           attributes:
             file:
-              column_cannot_be_blank: Nilai %{nama_kolom} tidak boleh kosong pada baris %{nomor_baris}
-              invalid_format: Silakan unggah file CSV
-              invalid_job_role_id: Id pada baris %{baris_nomor} bukan merupakan ID peran pekerjaan yang valid
-              invalid_locale: Lokasi di baris %{baris_nomor} bukan merupakan lokasi yang valid
-              missing_required_columns: 'Kolom yang diperlukan tidak ada: %{kolom-kolom}'
-              parsing_failed: 'Kesalahan saat mem-parsing file, kesalahan: %{error}.'
+              column_cannot_be_blank: Nilai %{column_name} tidak boleh kosong pada baris %{row_number}
+              invalid_format: Silakan unggah dokumen CSV
+              invalid_job_role_id: ID pada baris %{row_number} bukan merupakan ID peran pekerjaan yang valid
+              invalid_locale: Lokasi di baris %{row_number} bukan merupakan lokasi yang valid
+              missing_required_columns: 'Kolom yang diperlukan tidak ada: %{columns}'
+              parsing_failed: 'Kesalahan saat mengurai file, kesalahan: %{error}.'
             project:
               must_exist: Proyek harus ada
+        mettl:
+          attributes:
+            name:
+              not_unique: Integrasi ini sudah ada untuk proyek ini
+        password_reset:
+          attributes:
+            email:
+              wrong_email: Kami tidak dapat menemukan pengguna dengan email yang Anda berikan.
+        profile:
+          attributes:
+            first_name:
+              blank: Nama depan tidak boleh kosong
+            last_name:
+              blank: Nama belakang tidak boleh kosong
+            password:
+              contains_repeats: Kata sandi tidak boleh berisi pengulangan
+              too_short: Kata sandi terlalu pendek. Karakter minimum %{count} diperlukan
+              too_weak: 'Kata sandi harus berisi: Minimal 1 huruf kecil, 1 huruf besar, 1 angka, dan 1 karakter khusus.'
+        questions_import_block_form:
+          attributes:
+            name:
+              blank: Nama Blok tidak boleh kosong
+        questions_import_matrix_table_form:
+          attributes:
+            answersType:
+              blank: Properti pertanyaan MatrixTable 'answersType' tidak dapat kosong
+              inclusion: Properti pertanyaan MatrixTable 'answerType' harus berupa 'SingleAnswer' atau 'MultipleAnswer'
+            type:
+              blank: Properti pertanyaan MatrixTable 'type' tidak dapat kosong
+              inclusion: Jenis pertanyaan MatrixTable harus memiliki 'Likert'
+        questions_import_multiple_choice_form:
+          attributes:
+            type:
+              blank: Properti pertanyaan Pilihan Ganda 'jenis' tidak dapat kosong.
+              inclusion: Properti pertanyaan MultipleChoice 'type' harus berupa 'SingleAnswer', 'MultipleAnswer' atau 'Dropdown'
+        questions_import_question_form:
+          attributes:
+            name:
+              blank: Nama Pertanyaan tidak boleh kosong
+            type:
+              blank: Judul Pertanyaan tidak boleh kosong
+              inclusion: Jenis pertanyaan harus 'TextEntry', 'MultipleChoice', 'MatrixTable' atau 'StaticContent'
+        questions_import_randomization_property_form:
+          attributes:
+            questions:
+              blank: randomization.questions tidak dapat kosong jika randomization.type adalah 'Beberapa'
+            type:
+              inclusion: randomization.type harus berupa 'Semua', 'Beberapa' atau 'Tidak'
+        questions_import_required_validation_form:
+          attributes:
+            type:
+              inclusion: Jenis validasi yang diperlukan harus berupa 'Force' atau 'Request'
+        questions_import_static_content_form:
+          attributes:
+            type:
+              blank: Jenis properti pertanyaan Konten Statis tidak dapat kosong
+              inclusion: Jenis properti pertanyaan Konten Statis harus 'Teks'
+        questions_import_text_entry_form:
+          attributes:
+            type:
+              blank: Properti pertanyaan TextEntry 'type' tidak dapat kosong.
+              inclusion: Properti pertanyaan TextEntry 'type' harus berupa 'Single Line', 'Multi Line' atau 'Essay Text Box'
+        register:
+          attributes:
+            email:
+              blank: Alamat Email diperlukan
+              in_use: Alamat Email ini sedang digunakan. Jika Anda sudah memiliki akun, silakan masuk.
+              invalid: Alamat Email tidak valid
+              too_long: Alamat Email terlalu panjang
+            first_name:
+              blank: Nama Depan diperlukan
+              too_long: Nama Depan terlalu panjang
+            last_name:
+              blank: Nama Belakang diperlukan
+              too_long: Nama Belakang terlalu panjang
+            mobile_number:
+              blank: Nomor ponsel diperlukan
+              invalid: Nomor ponsel tidak berlaku
+              verification_expired: Kode verifikasi telah kedaluwarsa. Anda dapat mencoba memverifikasi lagi.
+            registration_code:
+              blank: Kode pendaftaran diperlukan
+              incorrect_email_domain: Alamat email ini tidak berlaku untuk kode pendaftaran yang dimasukkan
+              invalid: Kode pendaftaran tidak valid
+            sms_invite_code:
+              invalid: Kode undangan SMS tidak valid
+        saml_setting:
+          invalid_cert: Sertifikat tidak valid
+        security_setting_forms:
+          attributes:
+            magic_link_expiry_in_seconds:
+              greater_than_or_equal_to: Durasi harus minimal 5 menit
+            session_inactivity_timeout_in_seconds:
+              greater_than_or_equal_to: Durasi harus minimal 60 menit
+        sheet:
+          attributes:
+            file:
+              column_type_mismatch: Kolom <b>%{col}</b> diharapkan berjenis %{type} tetapi mendapat <b>%{got}</b>
+              email_blank: 'Baris %{row_number}: Bidang email tidak boleh kosong'
+              email_duplicate: Ada duplikat di kolom Email
+              email_invalid: 'Baris %{row_number}: Email tidak valid'
+              invalid_column: Kolom tidak valid %{name}
+              invalid_column_name: Kolom <b>"%{column}"</b> tidak valid
+              invalid_column_name_size: Nama kolom <b>"%{column}"</b> terlalu panjang (maks 64)
+              invalid_column_type: Jenis kolom harus String, Teks, Angka, HTML, atau Markdown
+              invalid_format: Format tidak valid (.xlsx)
+              invalid_number_value: <b>Baris#%{index}</b> Kolom <b>"%{column}"</b> bukan Angka
+              invalid_string_value: <b>Kolom Row#%{index}</b> <b>"%{column}"</b> bukan String
+              invalid_string_value_size: <b>Baris#%{index}</b> kolom <b>"%{column}"</b>  terlalu panjang (maks 256)
+              no_email_column: File tidak berisi kolom Email
+              non_uniq_column: Ada kolom non uniq berikut %{columns}
+        sheet_row_form:
+          attributes:
+            email:
+              blank: Email tidak boleh kosong
+              not_uniq_email: Baris dengan email sudah ada
         skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Setidaknya satu peran pekerjaan harus diaktifkan dengan jenis keterampilan yang dipilih untuk %{nama_blok}
+              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Setidaknya satu peran pekerjaan harus diaktifkan dengan jenis keterampilan yang dipilih untuk %{block_name}
               at_least_one_job_role_required: Setidaknya satu peran pekerjaan diperlukan untuk %{jenis_keterampilan} untuk %{nama_blok}
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Setidaknya satu jenis keterampilan harus diaktifkan dengan peran pekerjaan yang dipilih untuk %{nama_blok}
               invalid_job_role_type: 'Peran pekerjaan yang tidak valid %{peran_pekerjaan} untuk %{jenis_keterampilan} untuk %{nama_blok}. Opsi yang valid: %{valid_options}'
-              invalid_skill_type: 'Jenis keterampilan yang tidak valid %{jenis_keterampilan} untuk %{nama_peran} untuk %{nama_blok}. Opsi yang valid: %{valid_options}'
+              invalid_skill_type: 'Jenis keterampilan yang tidak valid %{skill_type} untuk %{role_name} untuk %{block_name}. Opsi yang valid: %{valid_options}'
               props_missing: Konfigurasi keterampilan tidak ada untuk %{nama_blok}
         skillvue:
           attributes:
             name:
               not_unique: Integrasi ini sudah ada untuk proyek ini.
+        sms_invites_create:
+          attributes:
+            first_name:
+              blank: Nama depan tidak boleh kosong
+            last_name:
+              blank: Nama belakang tidak boleh kosong
+            locale:
+              inclusion: Lokasi yang salah.
+            mobile_no:
+              blank: Nomor ponsel tidak boleh kosong
+              invalid: Nomor ponsel harus dimulai dengan plus, diikuti dengan kode internasional dan kemudian nomor
+              invite_exists_in_campaign: Undangan SMS dengan nomor ponsel yang sama sudah ada
+        sms_invites_import:
+          attributes:
+            import_data:
+              duplicated_mobile_numbers: 'Nomor ponsel berikut diduplikasi dalam CSV: %{mobile_numbers}'
+              invalid_header: Header tidak valid. Ekspor undangan SMS untuk mendapatkan header yang benar
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: Format ID Email tidak valid.
+        super_admin_edit:
+          attributes:
+            email:
+              blank: Bidang email tidak boleh kosong
+              invalid: Email tidak valid
+              starts_with_invalid_characters: Email tidak dapat dimulai dengan =, |, +, -, @, %
+            first_name:
+              blank: Nama depan tidak boleh kosong
+              starts_with_invalid_characters: Nama Depan tidak dapat dimulai dengan =, |, +, -, @, %
+            last_name:
+              blank: Nama belakang tidak boleh kosong
+              starts_with_invalid_characters: Nama Belakang tidak dapat dimulai dengan =, |, +, -, @, %
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Baris %{baris}: Nilai duplikat %{nilai} untuk %{bidang}'
-              invalid_format: Silakan unggah file xlsx
-              missing_headers: "%{nama_sheet} sheet tidak ada header yang diperlukan: %{header}"
-              missing_sheets: 'Lembar yang diperlukan hilang: %{lembaran}'
-              missing_value: 'Baris %{baris}: Nilai yang hilang untuk %{baris}'
+              duplicate_value: 'Baris %{row}: Nilai duplikat %{value} untuk %{field}'
+              invalid_format: Silakan unggah dokumen xlsx
+              missing_headers: 'Lembar %{sheet_name} tidak memiliki judul yang diperlukan: %{headers}'
+              missing_sheets: 'Lembaran yang diperlukan hilang: %{sheets}'
+              missing_value: 'Baris %{row}: Nilai yang hilang untuk %{field}'
             project:
               must_exist: Proyek harus ada
+        update_norm:
+          attributes:
+            norm_type:
+              inclusion: Silakan pilih jenis norma yang benar
+        user:
+          attributes:
+            email:
+              user_exists_in_campaign: Pengguna dengan id email ini sudah ada di kampanye
+              user_exists_in_project: Pengguna dengan id email ini sudah ada di project
+            import_data:
+              cant_overwrite_password: Anda tidak memiliki izin untuk menimpa kata sandi.
+              duplicated_emails: 'Email berikut diduplikasi dalam CSV: %{emails}'
+              invalid_email: 'Baris %{row_number}: Email tidak valid %{email}'
+              invalid_header: Header tidak valid, ambil header dari ekspor
+              invalid_reports_header: Header tidak valid, ambil header dari file sampel
+              manager_not_found: 'Baris %{row_number}: Pengelola dengan email %{email} tidak ada dalam kampanye atau di CSV'
+              user_update_failed: Pembaruan pengguna gagal untuk %{email} dengan kesalahan '%{error}'
+            locale:
+              inclusion: Lokasi yang salah
+            name:
+              starts_with_invalid_characters: tidak dapat memulai dengan =, |, +, -, @, %
+            schedule_end_date:
+              invalid_datetime: tidak valid
+            schedule_start_date:
+              invalid_datetime: tidak valid
+        user_assessment:
+          subject_and_assessment_exists: Penilaian dan pasangan mata pelajaran sudah ada
+        user_idp_development_action:
+          attributes:
+            end_date_time:
+              invalid_datetime: tidak valid
+            private:
+              inclusion: harus boolean
+            start_date_time:
+              invalid_datetime: tidak valid
   activerecord:
     attributes:
+      administration/assessments/assign_form:
+        access_reports: Aturan Laporan Akses
+        access_reports_at: Akses Laporan di
+        access_reports_at_date: Tanggal
+        access_reports_at_time: Waktu
+        client_ids: Penyewaan Klien
+        manager_ids: Manajer
+        report_ids: Laporan
+        user_ids: Pengguna
+      assessment:
+        active: Aktif
+        categories:
+          '360': Kampanye 360
+          agile: LINCAH
+          assessor_form: Formulir Penilai
+          case_study: Studi Kasus
+          hogan: Hogan
+          iiht: IIHT
+          meeting: Rapat
+          organisational: Survei
+          pearson: Pearson
+          psychometric: Penilaian
+          saville: Saville
+          threesixty: Kampanye 360
+        category: Golongan
+        created_at: Tanggal Dibuat
+        description: Deskripsi
+        id: ID
+        name: Nama
+        statuses:
+          finished: selesai
+        timing: Waktu
+        types:
+          common: Penilaian TTE
+          hogan: Hogan
+          iiht: Penilaian IIHT
+          pearson: Penilaian Pearson
+          saville: Penilaian Saville
+        updated_at: Tanggal yang Dimodifikasi
+      assign:
+        completed_at: Tanggal Penyelesaian
+        statuses:
+          completed: Selesai
+          in_progress: Melanjutkan
+          ineligible: Tidak memenuhi syarat
+          interrupted: Terganggu
+          not_started: Baru
+          overdue: Terlambat
+          timed_out: Waktu habis
+      block:
+        active: Aktif
+        assign_to_assessment_ids: Penilaian
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+      client:
+        applicable_level: Tingkat yang Berlaku
+        applicable_levels:
+          campaign: Kampanye
+          project: Proyek
+          sub_campaign: Sub-Kampanye
+        category: Golongan
+        created_at: Tanggal Dibuat
+        id: ID
+        licenses: Nomor lisensi
+        licenses_expire: Tanggal Kedaluwarsa Lisensi
+        licenses_used: Penggunaan Lisensi
+        location: Tempat
+        logo: Logo klien
+        memberships_count: Pengguna
+        name: Nama
+        number: Nomor Klien
+        privacy_consent: Mengaktifkan izin pemrosesan data
+        project_manager: Manajer Proyek TTE
+        project_manager_id: Manajer Proyek TTE
+        report_ids: Laporan
+        strong_password_enabled: Aktifkan kata sandi yang kuat
+        subdomain: Subdomain
+        types:
+          associate: Mengasosiasikan
+          corporate: Perusahaan
+          distributer: Distributor
+          other: Lain
+          partner: Partner
+          retail: Retail
+          tte: TTE
+        updated_at: Tanggal yang Dimodifikasi
+        year: Tahun Klien
+      communication:
+        created_at: Tanggal Dibuat
+        id: ID
+        updated_at: Tanggal yang Dimodifikasi
+      dimension:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+      factor:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        parent_id: Ortu
+        questions_count: Tidak. Pertanyaan
+        updated_at: Tanggal yang Dimodifikasi
+      hogan_report_setting:
+        load_report: Muat laporan dari Hogan
+      innovation_style:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        description: Deskripsi
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+      innovation_styles_factor:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+      library:
+        created_at: Tanggal Dibuat
+        id: ID
+        type: Gambar mini
+        updated_at: Tanggal yang Dimodifikasi
+      license:
+        id: ID
+        number: Nomor Lisensi
+        overuse_number: Tunjangan Penggunaan Berlebih
+        type: Lisensi untuk
+        types:
+          common: Biasa
+          proctoring: Pengawasan
+          threesixty: Tiga enam puluh
+        unlimited: Unlimited
+        used_number: Nomor Lisensi Bekas
       membership:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        disabled: Menonaktifkan
+        email: Email
         first_name: Nama depan
+        id: ID
         last_name: Nama belakang
+        parent: Manajer Langsung
+        parent_id: Manajer Langsung
+        report_ids: ID Laporan
+        roles:
+          campaign_admin: Admin Kampanye
+          client_admin: Admin Klien
+          manager: Manajer
+          member: Pengguna
+          project_admin: Admin Proyek
+        updated_at: Tanggal yang Dimodifikasi
+        user_access: Akses Pengguna
+      norm:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+        updated_by: Diedit oleh
+      occupation:
+        active: Aktif
+        bachelors_or_masters_qualification: Kualifikasi Sarjana atau Magister
+        created_at: Tanggal Dibuat
+        description: Deskripsi
+        diploma_qualification: Kualifikasi Diploma
+        full_description: Deskripsi Lengkap
+        high_school_entry_roles: Peran Masuk Sekolah Menengah
+        id: ID
+        key_career_tracks: Jalur Karir Utama
+        name: Nama
+        potential_areas_of_study: Bidang Studi Potensial
+        updated_at: Tanggal yang Dimodifikasi
+        work_environment: Lingkungan Kerja
+      occupations_factor:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+      product:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+      question:
+        active: Aktif
+        assign_to_assessment_ids: Penilaian
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+      report:
+        created_at: Tanggal Dibuat
+        id: ID
+        updated_at: Tanggal yang Dimodifikasi
+      report_family:
+        created_at: Tanggal Dibuat
+        id: ID
+        updated_at: Tanggal yang Dimodifikasi
+      task:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        description: Deskripsi
+        description_label: DESKRIPSI
+        factor_id: Kompetensi
+        factor_id_label: PILIH KOMPETENSI
+        id: ID
+        membership_id: Penerima
+        membership_id_label: PILIH PENETAPAN
+        name: Item Tindakan
+        name_label: ITEM TINDAKAN
+        planned_completed_at: Tanggal jatuh tempo
+        planned_completed_at_label: PILIH TANGGAL JATUH TEMPO
+        priority: Prioritas
+        priority_label: PRIORITAS
+        status: Keadaan
+        status_label: PILIH STATUS
+        statuses:
+          completed: Selesai
+          in_progress: Sedang Berlangsung
+          not_started: Belum Dimulai
+          overdue: Terlambat
+        updated_at: Tanggal yang Dimodifikasi
+        updated_by: Diedit oleh
+      threesixty:
+        users_result:
+          statuses:
+            completed: Selesai
+            in_progress: Melanjutkan
+            not_started: Baru
       user:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        current_password: Kata sandi saat ini
+        disabled: Menonaktifkan
         email: Alamat email
         first_name: Nama depan
+        id: ID
         last_name: Nama belakang
-      user_form:
-        email: Alamat email
-        first_name: Nama depan
-        last_name: Nama belakang
+        manage_client_ids: Penyewaan Klien
+        memberships: Penyewaan Klien
+        name: Nama
         password: Kata sandi
+        password_confirmation: Konfirmasi kata sandi
+        role: Peranan
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            campaign_admin: Admin Kampanye
+            project_admin: Admin Proyek
+            regular: Admin Klien
+            superadmin: Super Admin
+          agile: LINCAH
+          assessor: Penilai
+          assessor_form: Formulir Penilai
+          campaign_admin: Admin Kampanye
+          case_study: Studi kasus
+          client_admin: Admin Klien
+          hogan: Hogan
+          iiht: IIHT
+          manager: Manajer
+          meeting: Rapat
+          member: Pengguna
+          organisational: Organisasi
+          pearson: Pearson
+          project_admin: Admin Proyek
+          psychometric: Psikometrik
+          regular: Biasa
+          saville: Saville
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Tiga enam puluh
+        types:
+          anonymous: Pengguna Anonim
+          identified: Pengguna yang Teridentifikasi
+        updated_at: Tanggal yang Dimodifikasi
+      user_form:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        current_password: Kata sandi saat ini
+        disabled: Menonaktifkan
+        email: Alamat email
+        first_name: Nama depan
+        id: ID
+        last_name: Nama belakang
+        parent: Manajer Langsung
+        parent_id: Manajer Langsung
+        password: Kata sandi
+        password_confirmation: Konfirmasi kata sandi
+        role: Peranan
+        updated_at: Tanggal yang Dimodifikasi
+      users_result:
+        assessment_name: Nama Penilaian
+        assessment_type: Jenis Penilaian
+        completed_at: Selesai Pada
+        completion_reasons:
+          time_out_offline: Waktu habis / Offline
+          time_out_online: Waktu habis / Online
+          user_completed: Pengguna Selesai
+        email: Email
+        name: Nama
+        result_id: ID Hasil
+        started_at: Dimulai Pada
+        status: Keadaan
+        statuses:
+          completed: Selesai
+          in_progress: Melanjutkan
+          ineligible: Tidak memenuhi syarat
+          interrupted: Terganggu
+          not_started: Baru
+          timed_out: Waktu import_raw
     errors:
+      messages:
+        admin_for_another_tte: Pengguna sudah admin di tte lain
+        invalid_http_url: URL tidak valid. Tentukan url lengkap dengan protokol http atau https di dalamnya.
+        not_uniqueness: Penugasan telah diambil
       models:
+        campaign_assessment:
+          attributes:
+            external_config:
+              invalid: Konfigurasi Eksternal harus berupa josn yang valid
+        campaign_factor:
+          attributes:
+            formula:
+              cyclic_dependency_found: 'Ada ketergantungan siklik dalam rumus. Dependensi: %{cyclic_path}'
+        factors_norm:
+          score_from_must_be_number: Skor dari harus angka
+          score_to_less_than_score_from: Skor ke kurang dari Skor dari
+          score_to_must_be_number: Skor harus menjadi angka
+        license:
+          attributes:
+            used_number:
+              overused: Lisensi yang digunakan tidak boleh lebih dari jumlah lisensi yang dialokasikan dan batas penggunaan yang berlebihan.
+          overuse: Lisensi %{name} digunakan secara berlebihan
+        media_response:
+          attributes:
+            base:
+              max_takes_limit_reached: Batas tercapai untuk pengambilan maksimum
         register:
           attributes:
             mobile_number:
-              blank: Diperlukan nomor ponsel
+              blank: Nomor ponsel diperlukan
               invalid: Nomor ponsel tidak valid
               verification_expired: Kode verifikasi telah kedaluwarsa. Anda dapat mencoba memverifikasi lagi.
+        report:
+          assessments_not_hogan: Semua Penilaian harus tipe Hogan
+          assessments_not_saville: Semua Penilaian harus tipe Saville
+          has_already_assigned: Penilaian tidak dapat diubah karena sudah ditetapkan ke pengguna atau tingkat yang berlaku
+          has_dependent_relation: Laporan ini disesuaikan pada pengguna
+          max_assessment_count: Anda telah mencapai batas penilaian %{max}
+          min_assessment_count: Jumlah penilaian minimum adalah %{min}
+        skill_gap_report:
+          not_found: Laporan kesenjangan keterampilan tidak ditemukan
         user:
           attributes:
             current_password:
               invalid: Kata sandi saat ini salah
+        user_idp_comment:
+          reply_to_reply: tidak dapat membalas balasan (hanya satu tingkat bersarang yang diizinkan)
+        user_idp_plan:
+          no_active_plan: Tidak ada paket IDP aktif yang ditemukan
   admin_jobs:
     attrs:
       operations:
-        export_job_roles_translations: Penerjemahan Peran Pekerjaan Ekspor
+        add_campaign_reports: Menambahkan Laporan Kampanye
+        assessment_norm_export: Ekspor Hasil Normasi
+        assessment_raw_factor_export: Ekspor Skor Faktor Mentah
+        assessment_raw_result_export: Ekspor Hasil Mentah
+        assessment_scoring_export: Ekspor Hasil Penilaian
+        assign_idp_to_users: Menetapkan IDP ke pengguna
+        assign_reports_and_assessments: Tetapkan Laporan dan Penilaian
+        bulk_create_workshop_invites: Undangan Pusat Penilaian Massal Kirim
+        bulk_download_idp_reports: Unduh Laporan IDP Massal
+        bulk_download_reports: Laporan Unduh Massal
+        bulk_download_user_reports: Unduh Laporan Pengguna Secara Massal
+        bulk_regenerate_reports: Buat Ulang Laporan Kampanye
+        bulk_regenerate_threesixty_reports: Buat Ulang Laporan Subjek Threesixty
+        bulk_regenerate_user_reports: Buat Ulang Laporan Pengguna
+        bulk_reports: Laporan Massal
+        bulk_rescore_campaign_factors: Faktor Kampanye Rescore Massal
+        bulk_update_evaluation_status: Status Evaluasi Pembaruan Massal
+        compact_completion_status_export: Ekspor Status Penyelesaian Kompak
+        completion_status_export: Ekspor Status Penyelesaian
+        copy_dimension: Salin Dimensi
+        create_threesixty_campaign: Buat Kampanye Threesixty
+        data_report_export: Ekspor Laporan Data
+        export_admin_with_permissions: Ekspor Admin Dengan Izin
+        export_assessment_questions: Pertanyaan Penilaian Ekspor
+        export_campaign_factors: Faktor Kampanye Ekspor
+        export_campaign_scorings: Ekspor Kampanye Scorings
+        export_dashboard_as_file: Ekspor Dasbor sebagai file
+        export_development_action_translations: Terjemahan Tindakan Pengembangan Ekspor
+        export_development_actions: Aksi Pengembangan Ekspor
+        export_dimension_as_json: Ekspor Dimensi JSON
+        export_factor_translations: Ekspor Terjemahan Faktor
+        export_job_roles_translations: Ekspor terjemahan Peran Pekerjaan
+        export_norm: Norma Ekspor
+        export_occupations: Ekspor Pekerjaan
+        export_proficiency_level_translations: Ekspor Terjemahan Tingkat Kecakapan
         export_proficiency_levels: Tingkat Kemahiran Ekspor
+        export_reflection_questions: Ekspor Pertanyaan Refleksi
+        export_report_data: Mengekspor data laporan
+        export_reports_and_assessments: Ekspor Laporan dan Penilaian
+        export_skill_translations: Ekspor Keterampilan Terjemahan
+        export_skills: Ekspor Keterampilan
+        export_user_report_events: Mengekspor Peristiwa Laporan Pengguna
+        export_users: Ekspor Pengguna Kampanye
+        external_assessment_export: Ekspor Hasil Eksternal
+        import_accesssheet: Impor Accessheet
+        import_assessment_questions: Pertanyaan Penilaian Impor
+        import_assessors: Penilai Impor
+        import_campaign_factors: Impor Faktor Kampanye
+        import_datasheet: Lembar Data Impor
+        import_development_action_translations: Terjemahan Tindakan Pengembangan Impor
+        import_development_actions: Tindakan Pengembangan Impor
+        import_dimension_from_json: Impor Dimensi dari JSON
+        import_external_campaign_scoring: Mengimpor Skor Kampanye Eksternal
+        import_factor_translations: Terjemahan Faktor Impor
+        import_factors: Faktor Impor
         import_job_roles_translations: Impor Terjemahan Peran Pekerjaan
-        import_skill_rater_taxonomies: Impor Taksonomi Penilai Keterampilan
-  administration: Administrasi
+        import_norm: Norma Impor
+        import_proficiency_level_translations: Impor Terjemahan Tingkat Kecakapan
+        import_proficiency_levels: Tingkat Kecakapan Impor
+        import_question_translations: Impor Terjemahan Pertanyaan
+        import_raw_data: Impor Data Mentah
+        import_reflection_questions: Impor Pertanyaan Refleksi
+        import_scoring_data: Impor Data Penilaian
+        import_skill_rater_taxonomies: Impor Taksonomi Penilaian Keterampilan
+        import_skill_translations: Impor Terjemahan Keterampilan
+        import_skills: Keterampilan Impor
+        import_sms_invites: Impor Undangan SMS
+        import_users: Impor Pengguna
+        migrate_assessment_translations: Migrasi Terjemahan Penilaian
+        normalize_factor_scores: Menormalkan Skor Faktor
+        regenerate_campaign_reports: Buat Ulang Laporan Kampanye
+        regenerate_report: Buat ulang laporan
+        regenerate_threesixty_report: Buat Ulang Laporan Threesixty
+        remap_report_assessment: Penilaian Laporan Petakan Ulang
+        rescore_assessment: Penilaian Skor Ulang
+        rescore_user_assessment: Penilaian Pengguna Rescore
+        send_sms_invites: Kirim undangan SMS
+        super_admin_assessment_norm_export: Ekspor Hasil Norma Super Admin
+        super_admin_assessment_raw_factor_export: Ekspor Skor Faktor Mentah Super Admin
+        super_admin_assessment_raw_result_export: Ekspor Hasil Mentah Super Admin
+        super_admin_datasheet_export: Ekspor Lembar Data Super Admin
+        super_admin_external_assessment_export: Ekspor Penilaian Eksternal Super Admin
+        threesixty_campaign_export_completion_status: Status Penyelesaian Ekspor Kampanye Threesixty
+        threesixty_campaign_export_scores: Ekspor Skor Kampanye Threesixty
+        workshop_status_export: Ekspor Status Pusat Penilaian
+      statuses:
+        completed: Selesai
+        completed_with_errors: Dilengkapi dengan kesalahan
+        failed: Gagal
+        in_progress: Sedang Berlangsung
+        scheduled: Dijadwalkan
+    bulk_download_idp_reports:
+      already_exists: Tugas untuk membuat laporan IDP ini sudah berlangsung
+    bulk_download_reports:
+      content:
+        title: Tautan untuk mengunduh laporan
+    close: Tutup
+    details: Rincian
+    errors: Kesalahan
+    invalid_job: Pemberitahuan ini sesuai dengan catatan yang dihapus
+    mark_as_read: Tandai semua baca
+    more: Lebih
+    notifications: Pemberitahuan
+    results: Hasil
+    super_admin:
+      errors:
+        data_processing_disabled: Pemrosesan data dinonaktifkan.
   anonym:
     close: Tutup
     continue: Lanjutkan
+    link_invalid_error_message: Tautan yang Anda coba akses tidak valid. Silakan hubungi administrator untuk mendapatkan URL yang benar dan lanjutkan dengan survei.
     notifications:
       restart:
         copy: Anda telah memulai survei ini. Anda dapat memilih untuk melanjutkan atau memulai kembali.
         title: Lanjutkan?
       retake:
         copy: Anda telah menyelesaikan survei ini, untuk mengulangnya kembali, silakan klik tombol Ulangi di bawah ini.
-        title: Mengambil kembali?
-    restart: Mulai ulang
-    retake: Mengambil kembali
+        title: Ulangi?
+    restart: Mulai lagi
+    retake: Ulangi
   assessments:
     actions:
+      add_tag:
+        success_message: Tag berhasil ditambahkan
+      archived:
+        success_message: Penilaian "%{name}" berhasil diarsipkan.
+      assessment_cache:
+        remove_cache: Hapus Cache
+        success_message: Berhasil menghapus cache
       back_to_campaign: Kembali ke Kampanye
+      back_to_dashboard: Kembali ke Dasbor
+      copy:
+        success_message: Penilaian "%{name}" berhasil disalin.
+      details: Rincian
+      download_csv: Unduh CSV
+      edit: Mengedit
+      evaluate: Mengevaluasi
+      export: Ekspor
+      export_normed: Skor Faktor Norma
+      export_raw_labels: Mentah (dengan label)
+      export_raw_scores: Skor Faktor Mentah
+      export_raw_without_labels: Mentah (tanpa label)
       extend_time: Perpanjang waktu
+      external_scores_export: Skor Eksternal
       goto_dashboard: Klik di sini untuk melanjutkan
+      manage_mettl_schedule: Kelola Jadwal Mettle
+      moderate: Skor Sedang
+      new_response: Tanggapan Baru
+      next_assessment: Lulus Ke Penilaian Berikutnya
       pending_tasks:
         one: Anda memiliki 1 tugas yang tertunda
-        other: Anda memiliki %{count} tugas yang tertunda
-      rescore: Nilai ulang
+        other: |-
+          Anda memiliki 1 tugas yang tertunda
+
+          Anda memiliki %{count} tugas yang tertunda
+      re_evaluate: Klik di sini untuk mengevaluasi kembali
+      reevaluate: Evaluasi Kembali
+      remove:
+        confirm_message: Apakah Anda yakin ingin menghapus penilaian "%{name}"?
+        confirm_title: Konfirmasi Diperlukan
+        success_message: Penilaian %{name} telah dihapus
+      remove_tag:
+        success_message: Tag berhasil dihapus
+      rescore: Menilai ulang
+      restore:
+        success_message: Penilaian "%{name}" berhasil dipulihkan
+      show_usage: Tampilkan Penggunaan
+      submit_another_response: Kirim tanggapan lain
+      submit_evaluation: Kirim Evaluasi
+      translations:
+        success_message: Terjemahan penilaian diperbarui
+      unarchived:
+        success_message: Penilaian "%{name}" berhasil dibatalkan pengarsipan
+      view: Melihat
+    active: Aktif
+    archived: Diarsipkan
+    assessment: Penilaian
+    assessments: Penilaian
     audio_response:
+      pause: Jeda
       permission_denied_message: Aktifkan izin mikrofon di browser Anda untuk merekam jawabannya
-      permission_text: Izinkan penggunaan mikrofon untuk merekam audio
+      permission_text: Mohon izinkan penggunaan mikrofon untuk merekam audio
+      resume: Melanjutkan
+      saved:
+        label: Audio Tersimpan
+      saving: Menyimpan Audio
+      start_recording: Mulai merekam
+      stop: Stop
     card_actions:
       begin: Mulai
       continue: Lanjutkan
+    categories:
+      redirecting: Mengarahkan
     column:
+      enable_audio_check: Aktifkan Pemeriksaan Audio
+      enable_network_check: Aktifkan Pemeriksaan Jaringan
+      enable_video_check: Aktifkan Pemeriksaan Video
       external_settings:
+        hogan_assessment_name: Nama Penilaian Hogan
+        iiht_assessment_name: Penilaian IIHT Nama
+        iiht_schedule_config: Jadwalkan konfigurasi
+        mettl_assessment_name: Nama Penilaian METTL
+        pearson_assessment_name: Nama Penilaian Pearson
+        pearson_norm_id: ID norma Pearson
+        saville_assessment_name: Penilaian Saville Nama
+        simulation_assessment_name: Nama Penilaian Simulasi
         skillvue_assessment_name: Nama Penilaian Skillvue
+      translations_migrated: Terjemahan Dimigrasikan
+    create: Menciptakan
+    dashboard: Dashboard
+    dictation:
+      allow_browser_permision: Izinkan izin audio browser untuk menggunakan dikte
+      autostopping_in: Dikte penghentian otomatis dalam %{reverseCountdown} detik
+      browser_unsupported: Browser Anda tidak mendukung input Audio
+      dictation_active: Dikte sekarang aktif
+      dictation_disabled: Dikte saat ini dinonaktifkan atau digunakan oleh pertanyaan lain
+      dictation_not_started: Dikte ucapan gagal dimulai
+      dictation_stopped: Dikte ucapan dihentikan
+      left: Kiri
+      listening: Mendengarkan
+      minutes: Menit
+      no_dictation_url: Server gagal merespons kemampuan ucapan ke teks
+      notifications:
+        autostopped: Dikte dihentikan secara otomatis karena keheningan terus menerus selama %{autocutoff} detik
+        refresh_page: Tidak dapat melanjutkan dikte ucapan, coba lagi dengan menyegarkan halaman
+      start_dictation: Mulai dikte
+      stop_dictation: Hentikan dikte
+      use_speech_instructions: Gunakan input ucapan untuk menulis jawaban ini
+    drawer:
+      title: Detail Penilaian
+    edit: Mengedit
     fields:
       category:
+        agile: LINCAH
+        assessor_form: Formulir Penilai
+        case_study: Studi Kasus
+        hogan: Hogan
+        iiht: IIHT
+        lead_assessor_form: Formulir Penilai Utama
+        meeting: Rapat
+        mettl: Mettl
+        organisational: Survei Organisasi
+        pearson: Pearson
+        psychometric: Psikometrik
+        saville: Saville
+        simulation: Simulasi
         skillvue: Skillvue
+        threesixty: Kampanye 360
+      status:
+        finished: Selesai
+        in_progress: Sedang Berlangsung
+      type:
+        common: Penilaian TTE
+        hogan: Hogan
+        iiht: Penilaian IIHT
+        mettl: Penilaian Mettl
+        pearson: Penilaian Pearson
+        saville: Penilaian Saville
+        simulation: Penilaian Simulasi
+        skillvue: Penilaian Skillvue
+    flow:
+      end_assessment_modal:
+        custom_message: Pesan akhir penilaian kustom
+        default_message: Pesan akhir penilaian default
+        mark_as_ineligible: Menandai sebagai tidak memenuhi syarat
+        show_uniq_identifier: Tampilkan Pengenal Unik kepada responden (untuk survei anonim)
     instructions:
       begin_assessment: Mulai
       cancel: Batal
-      default: Ini adalah aktivitas berjangka waktu, setelah Anda mengklik Mulai Penilaian, Anda akan memiliki %{time} menit untuk menyelesaikannya.
+      default: Aktivitas ini mempunyai batas waktu, setelah Anda mengklik Mulai Penilaian, Anda akan memiliki %{time} menit untuk menyelesaikannya.
       title: Petunjuk
     messages:
+      external_scores_export_scheduled: Pekerjaan ekspor Skor Penilaian berhasil dijadwalkan
       finish: Terima kasih atas waktu Anda, tanggapan Anda telah dicatat.
+      norm_results_export_scheduled: Pekerjaan ekspor Hasil Bernorma Penilaian berhasil dijadwalkan
+      raw_factor_export_scheduled: Pekerjaan ekspor Faktor Mentah Penilaian berhasil dijadwalkan
+      raw_results_export_scheduled: Pekerjaan ekspor Hasil Mentah Penilaian berhasil dijadwalkan
     page:
       back: Kembali
       confirm_message: "## Klik **Kembali** untuk meninjau tanggapan Anda untuk terakhir kalinya atau klik **Kirim** jika Anda sudah selesai."
+      invalid_session:
+        description: Sesi evaluasi ini telah dibatalkan. Hal ini dapat terjadi jika Anda melanjutkan evaluasi di tab, browser, atau perangkat terpisah.
+        title: Permintaan Terakhir Gagal
       next: Berikutnya
-      read_only: Adalah mode hanya baca, Anda tidak dapat mengubah hasil apa pun.
+      read_only: Ini adalah mode 'Read only', Anda tidak dapat mengubah hasil apa pun.
       save: Simpan
+      submissionFailedAlert:
+        description: Tidak dapat terhubung ke server. Silakan segarkan halaman dan coba lagi. Jika itu tidak berhasil, silakan hubungi dukungan melalui obrolan langsung atau mte.surveys@mercer.com
+        title: Permintaan Terakhir Gagal
       submit: Kirim
+      warning: PERINGATAN
+    pages:
+      edit:
+        assets: Aset
+        general_settings: Pengaturan Umum
+        translations: Terjemahan
     pickgrouprank:
       items: Item
     proceed: Lanjutkan saja
+    question_info_bar:
+      select_linked_questions: Pilih Pertanyaan Tertaut
+    reset: Reset
+    scoring:
+      competency: Kompetensi
+      id: ID
+      score: Skor
+    screen_reader_announcements:
+      fifteen_seconds_left: 15 detik tersisa
+      five_minutes_left: 5 menit tersisa
+      one_minute_left: 1 menit tersisa
+      seconds_left: "%{seconds} detik tersisa"
+      thirty_seconds_left: 30 detik tersisa
+      time_is_up: Waktumu habis
+      time_is_up_for_recording: Waktu habis dan perekaman akan berhenti sekarang
+    single_page:
+      display_linked_questions: Menampilkan respons yang ditautkan ke pertanyaan yang saat ini dipilih.
+    trash: Sampah
     unknown_error: Terjadi kesalahan yang tidak diketahui.
+    update: Pemutakhiran
+    upload: Unggah
     video_response:
       device: Izinkan
       device_selection:
         camera: Kamera
         mic: Mikrofon
       discard: Buang
-      discard_record_again: Buang &amp; Rekam Lagi
+      discard_record_again: Buang & Rekam Lagi
       media_recorder:
         failure: Browser ini tidak mendukung Perekaman Video. Silakan gunakan Chrome atau Firefox untuk Perekaman Video
         success: Izinkan penggunaan kamera dan mikrofon untuk merekam audio dan Video
+        unsupported: Browser ini tidak mendukung Perekaman Video. Silakan gunakan salah satu browser berikut,
       recording_duration_label: Durasi maksimum perekaman
       recording_stop_label: Perekaman akan berhenti di
       requesting_permission: Meminta Izin...
@@ -163,14 +1132,69 @@ id:
       saved:
         label: Video Tersimpan
       saving: Menyimpan Video...
+      seek: Mencari
       start_recording: Mulai merekam
       stop_recording: Berhenti merekam
       tracker:
-        backward: Anda terlalu dekat dengan layar, silakan mundur sedikit
-        forward: Anda terlalu jauh dari layar, silakan bergerak sedikit lebih dekat
+        backward: Anda terlalu dekat dengan layar, mohon mundur sedikit
+        forward: Anda terlalu jauh dari layar, mohon bergerak sedikit lebih dekat
         frame: Pastikan wajah Anda sejajar dengan bingkai
         ready: Tekan tombol Rekam apabila sudah siap untuk merekam
     wait: Tunggu
+  assessments_reports:
+    add_group_form:
+      previous_assessments_required: Penilaian yang akan dijalankan dalam urutan di bawah ini
+      previous_group_required: Diperlukan penyelesaian grup sebelumnya
+    menu:
+      assessment_center: Pusat Penilaian
+      assessment_center_invites: Undangan Pusat Penilaian
+      assessments_and_reports: Penilaian & Laporan
+      idp: IDP
+      manage: Urus
+      report_approval: Pengaturan Persetujuan Laporan
+      sequencing: Sekuensing
+    report_approval:
+      add_settings: Tambahkan Pengaturan
+      create_seetings: Membuat Pengaturan
+    sequencing:
+      add_assessment_center: Menambahkan pusat penilaian
+      add_group: Tambahkan grup
+      assessments: Penilaian
+      delete_group: Hapus grup
+      edit_group_name: Edit nama grup
+      modal:
+        delete:
+          cancel: Membatalkan
+          cannot_delete_with_workshops: Tidak dapat menghapus grup yang berisi lokakarya, hapus lokakarya terlebih dahulu
+          failed: Gagal menghapus grup "%{name}", silakan hubungi administrator
+          ok: Ya, hapus
+          text: Apakah Anda yakin ingin menghapus grup "%{name}"?
+          title: Hapus Grup
+      no_assessments: Seret dan lepas penilaian
+      no_ungrouped_assessments: Seret dan lepas penilaian di sini untuk membatalkan pengelompokan
+      ungrouped_assessments: Penilaian yang tidak dikelompokkan
+  assessors:
+    campaigns_list:
+      column:
+        evaluation_count: Jumlah Evaluasi
+        evaluation_status: Status Evaluasi
+        moderation_count: Jumlah Moderasi
+        moderation_status: Status Moderasi
+  assign_reports:
+    assessment_not_in_report: Penilaian dengan id %{assessment_id} bukan bagian dari laporan dengan id %{report_id}
+    errors:
+      not_enought_licenses: Bundel dengan id %{bundle_id} tidak memiliki lisensi
+      user_not_found: 'Baris %{row}: Pengguna dengan email ''%{email}'' tidak ditemukan'
+    report_bundle_not_found: Laporkan Bundel dengan id %{bundle_id} tidak ditemukan
+    report_not_found: Laporkan dengan id %{report_id} tidak ditemukan
+    report_not_in_bundle: Laporan dengan id %{report_id} bukan bagian dari paket laporan dengan id %{bundle_id}
+  assigns:
+    decorator:
+      no_description: Deskripsi kosong
+  audit_log_failures:
+    invalid_sso_token: Token SSO Tidak Valid
+    record_not_found: Catatan Tidak Ditemukan
+    user_not_authorized: Pengguna Tidak Berwenang
   auth:
     current_password: Kata Sandi Saat Ini
     current_password_placeholder: Masukkan Kata Sandi Saat Ini
@@ -179,22 +1203,27 @@ id:
     expired_password:
       description: Isi semua kolom untuk membuat kata sandi baru
       submit: Kirim
-      title: Memperbarui kata sandi Anda
+      title: Perbarui kata sandi Anda
+    lighthouse_logo_alt_text: Logo mercusuar
     login:
+      continue_btn: Terus
       description: Silakan masuk dengan informasi akun pribadi Anda
       forgot_password: Lupa Kata Sandi?
+      hide_password: Sembunyikan kata sandi
       login_btn: Masuk
-      magic_link_btn: Email saya tautan masuk
+      magic_link_btn: Emailkan saya tautan masuk
       not_member: Bukan anggota?
       or: ATAU
+      show_password: Tampilkan kata sandi
       sso_btn: Masuk dengan Sistem Masuk Tunggal
       title: Selamat datang!
     logout: Keluar
     magic_link:
       description: Masukkan alamat email Anda untuk menerima tautan masuk
+      invalid_email: Email tidak valid
       login_with_password: Masuk dengan kata sandi
-      send_me_login_link: Kirimkan saya tautan login
-      success: Kami telah mengirimkan tautan login ke '%{email}'. Klik tautan di email yang Anda terima untuk login
+      send_me_login_link: Kirimkan saya tautan masuk
+      success: Kami telah mengirimkan tautan masuk ke '%{email}'. Klik tautan di email yang Anda terima untuk login
     mobile_number: Nomor ponsel
     new_password: Kata Sandi Baru
     new_password_placeholder: Masukkan kata sandi baru
@@ -220,8 +1249,8 @@ id:
       have_account: Sudah memiliki akun?
       last_name: Nama belakang
       last_name_placeholder: Masukkan Nama Belakang
-      login_now: Login Sekarang!
-      registration_code: Kode Pendaftaran
+      login_now: Masuk Sekarang!
+      registration_code: Kode Registrasi
       registration_code_placeholder: Masukkan Kode Registrasi
       terms_notice: Dengan mendaftar, Anda menyetujui <a href="%{terms_url}">Ketentuan Layanan dan Kebijakan Privasi</a> kami
       title: Daftar
@@ -241,16 +1270,35 @@ id:
       error:
         blocked: Nomor ini diblokir karena terlalu banyak percobaan.
         invalid_code: Kode tidak valid
-        invalid_number: Nomor ponsel salah, harap periksa kembali nomor Anda
-        max_attempts_reached: Terlalu banyak percobaan, harap tunggu 10 menit sebelum mencoba lagi.
+        invalid_number: Nomor ponsel salah, mohon periksa kembali nomor Anda
+        max_attempts_reached: Terlalu banyak percobaan, mohon tunggu 10 menit sebelum mencoba lagi.
+  browsers:
+    chrome: Google Chrome
+    download:
+      chrome: https://www.google.com/chrome/
+      edge: https://www.microsoft.com/en-us/edge
+      firefox: https://www.mozilla.org/en-US/firefox/new/
+      instruction: Mengunduh
+      safari: https://www.apple.com/safari/
+    edge: Microsoft Edge
+    firefox: Mozilla Firefox
+    safari: Apple Safari
+    support:
+      instruction: Silakan unduh dan gunakan salah satu browser berikut.
+      message: Browser yang Anda gunakan tidak didukung oleh Lighthouse.
+    upgrade:
+      instruction: Tingkatkan Sekarang
+      message: Silakan gunakan browser versi terbaru
   campaign:
-    all_activities_are_completed: Semua aktivitas sekarang sudah selesai.
+    all_activities_are_completed: Semua aktivitas sekarang telah selesai.
     all_activities_are_completed_multiple: Semua aktivitas untuk kampanye ini sekarang telah selesai. Silakan lanjutkan ke Dasbor dan periksa apakah Anda memiliki aktivitas lain yang telah ditetapkan.
+    already_joined: Anda sudah bergabung dengan kampanye ini
     begin: Mulai tugas Anda
     begin_btn_msg_before_prework: Anda harus menyelesaikan tugas di bawah ini sebelum memulai kampanye berjangka waktu
     begin_campaign_msg: Memulai kampanye sebelum melakukan penilaian
     campaigns: Kampanye
-    closed_campaign_message: Anda tidak dapat melakukan penilaian dalam kampanye ini.
+    closed_campaign_message: Kampanye ini sudah ditutup. Anda tidak dapat melakukan penilaian dalam kampanye ini.
+    code_usage_limit_reached: Batas penggunaan kode tercapai, silakan hubungi administrator
     complete_prev: Menyelesaikan semua penilaian sebelumnya
     complete_tasks: Selesaikan tugas-tugas di bawah ini sebelum melakukan tindakan ini.
     continue: Lanjutkan tugas Anda
@@ -260,6 +1308,7 @@ id:
       campaign: Kampanye
       change_password: Ubah Kata Sandi
       development: Pengembangan
+      direct_reportees: Bawahan Langsung
       home: Beranda
       insights: Wawasan
       my_plan: Rencanaku
@@ -274,24 +1323,27 @@ id:
       view: Lihat Penilaian
     errors:
       invalid_status: Status kampanye tidak valid
-    goto_dashboard: Buka Dasbor
+    goto_dashboard: Pergi ke Dasbor
     inactive_campaign_message: Saat ini, Anda belum ditugaskan untuk melakukan aktivitas apa pun.
-    insights_reports: Wawasan &amp; Laporan
+    insights_reports: Wawasan & Laporan
     instruction_modal:
-      campaign_start_final_instructions: "<p>perlu diketahui bahwa tidak ada cara untuk Menghentikan atau Menjeda pengatur waktu. Pengatur waktu kampanye akan terus berjalan meskipun Anda menutup browser, jadi jangan pernah berpikir untuk meninggalkan tugas di sela-sela waktu untuk melakukan hal lain. Pastikan untuk meminimalkan gangguan selama mengerjakan tugas. Cari lingkungan yang tenang, matikan notifikasi pada perangkat Anda, dan hindari melakukan banyak hal sekaligus (multitasking). Pertahankan konsentrasi Anda dan tetaplah fokus. Setelah pengatur waktu kampanye habis, Anda tidak akan bisa melanjutkannya. Jika Anda sudah membaca instruksi di atas, silakan klik mulai untuk melanjutkan tugas yang telah diberikan</p>\n"
-      campaign_start_instruction: |
-        <h4>Harap baca instruksi berikut dengan benar.</h4>
-        <p>tugas yang akan Anda mulai memiliki waktu. Setelah Anda mengklik "Mulai", penghitung waktu kampanye akan dimulai secara otomatis. Anda memiliki waktu %{minutes} menit untuk menyelesaikan semua aktivitas. Harap usahakan untuk menyelesaikan tugas dalam jangka waktu yang telah ditentukan dan kelola waktu secara efektif agar tidak terburu-buru dalam melakukan proses evaluasi. Pastikan untuk menyelesaikan tugas dalam satu kali pengerjaan, sehingga jika Anda perlu beristirahat, Sekaranglah waktunya</p>
-      common_proctoring_instructions: |
+      campaign_start_final_instructions: "<p> Perlu diketahui bahwa tidak ada cara untuk Menghentikan atau Menjeda pengatur waktu. Pengatur waktu kampanye akan terus berjalan meskipun Anda menutup browser, jadi jangan pernah meninggalkan tugas di sela-sela waktu untuk melakukan hal lain. Pastikan untuk meminimalkan gangguan selama mengerjakan tugas. Cari lingkungan yang tenang, matikan notifikasi pada perangkat Anda, dan hindari melakukan banyak hal sekaligus (multitasking). Pertahankan konsentrasi Anda dan tetaplah fokus. Setelah pengatur waktu kampanye habis, Anda tidak akan bisa melanjutkannya. Jika Anda sudah membaca instruksi di atas, silakan klik mulai untuk melanjutkan tugas yang telah diberikan. </p>\n"
+      campaign_start_instruction: |-
+        <h4>Harap baca petunjuk berikut dengan benar.</h4>
+        <p>
+        Tugas yang akan Anda mulai diberi batas waktu. Setelah Anda mengklik "Mulai", pengatur waktu kampanye akan otomatis dimulai. Anda memiliki waktu %{minutes} menit untuk menyelesaikan semua aktivitas. Harap selesaikan tugas dalam jangka waktu yang ditentukan dan kelola waktu secara efektif untuk menghindari tergesa-gesa dalam proses evaluasi. Pastikan untuk menyelesaikan tugas sekaligus, jadi jika Anda perlu istirahat, Sekaranglah waktunya. </p>
+      common_proctoring_instructions: |-
         <h4>Pengawasan</h4>
-        <p>setelah mengklik tombol Mulai, Anda akan diarahkan ke sistem pengawasan kami. Sistem ini akan memantau kamera, mikrofon, dan layar Anda selama sesi berlangsung. Sesi ini secara otomatis diawasi oleh sistem AI kami yang canggih, sehingga memberikan pengalaman pengguna yang lancar dan tanpa gangguan. Namun, sesi juga dapat ditinjau oleh pengawas manusia. Tanda-tanda pelanggaran atau ketidakberesan akan ditandai. Hal ini dilakukan untuk memastikan bahwa tidak ada upaya kecurangan yang dilakukan. Jika ditemukan kecurigaan, tugas Anda akan dibatalkan</p>
-      lockdown_browser_instruction: |
-        <h4>Peramban pengawas</h4>
+        <p>setelah mengklik tombol Mulai, Anda akan diarahkan ke sistem pengawasan kami. Sistem ini akan memantau kamera, mikrofon, dan layar Anda selama sesi berlangsung. Sesi ini secara otomatis diawasi oleh sistem AI kami yang canggih, sehingga memberikan pengalaman pengguna yang lancar dan tanpa gangguan. Namun, sesi juga dapat ditinjau oleh pengawas manusia. Tanda-tanda pelanggaran atau penyimpangan akan ditandai. Hal ini dilakukan untuk memastikan bahwa tidak ada upaya kecurangan yang dilakukan. Jika ditemukan kecurigaan, tugas Anda akan dibatalkan</p>
+      lockdown_browser_instruction: |-
+        <h4>Browser pengawas</h4>
         <p>anda akan diminta untuk mengunduh dan menginstal browser khusus untuk menyelesaikan tugas-tugas yang diawasi. Ikuti petunjuk di layar berikutnya. Anda dapat menghapus instalasinya setelah menyelesaikan semua aktivitas yang diperlukan</p>
     instructions:
+      collapse_aria_label: 'Tampilkan informasi selengkapnya di atas: Pusat Pembelajaran Virtual'
       collapse_link_text: Tampilkan lebih sedikit
+      expand_aria_label: 'Tampilkan informasi lebih sedikit di atas: Pusat Pembelajaran Virtual'
       expand_link_text: Tampilkan lebih banyak
-      heading: Silakan tinjau panduan di bawah ini sebelum Anda memulai. Kami berharap yang terbaik untuk Anda!
+      heading: Silakan tinjau panduan di bawah ini sebelum Anda memulai. Selamat mengerjakan!
     language:
       content: Tugas ini tidak tersedia dalam bahasa yang dipilih saat ini. Pilih salah satu bahasa yang tersedia untuk melanjutkan.
       single_lang: Tugas ini hanya tersedia di %{lang}. Klik "Lanjutkan" untuk melanjutkan.
@@ -308,36 +1360,272 @@ id:
       last_updated_text: 'Profil terakhir kali diperbarui pada:'
       sub_heading: Lengkapi informasi profil lengkap Anda
       welcome_text: Selamat datang,
+    reset_warning: Anda hanya dapat memulai ulang kampanye yang ditandai sebagai kampanye latihan.
+    restart_practice: Mulai Latihan Ulang
+    restart_practice_confirmation: Apakah Anda yakin ingin memulai kembali latihan?
+    restart_practice_success: Latihan berhasil dimulai ulang
     thank_you_for_time: Terima kasih atas waktu Anda
     time_left:
       cancel: Batal
       continue: Lanjutkan
-      notification: Waktu yang dialokasikan untuk tugas "%{assessmentName}" adalah %{totalAssessmentTime}. Karena waktu yang telah berlalu secara keseluruhan, Anda sekarang hanya memiliki %{remainingCampaignTime} sebagai waktu yang telah disesuaikan untuk menyelesaikan tugas ini.
+      notification: Waktu yang dialokasikan untuk tugas  "%{assessmentName}" adalah %{totalAssessmentTime}. Karena waktu yang telah berlalu secara keseluruhan, Anda sekarang hanya memiliki %{remainingCampaignTime} sebagai waktu yang telah disesuaikan untuk menyelesaikan tugas ini.
     timer:
       notification_hours: Anda memiliki sisa waktu %{hours} jam
       notification_minutes: anda memiliki sisa waktu %{minutes} menit
   campaign_assessment:
+    actions:
+      bulk_download: Unduh Massal
+      bulk_update_evaluation_as_done: Tandai sebagai Selesai
+      bulk_update_evaluation_as_undone: Hapus tanda sebagai selesai
+      download: Unduh Laporan
+      export_completion_status: Status Penyelesaian Ekspor
+      export_external: Eksternal
+      export_normed: Skor Faktor Norma
+      export_occupations: Pekerjaan
+      export_raw_labels: Mentah (dengan label)
+      export_raw_scores: Skor Faktor Mentah
+      export_raw_without_labels: Mentah (tanpa label)
+      export_scores: Partitur
+      export_scoring: Penilaian
+      factor_benchmark_score: Skor Tolok Ukur Faktor
+      force_generate: Menghasilkan Gaya
+      import_raw: Mentah
+      import_scoring: Penilaian
+      regenerate: Hasilkan Laporan
+      rescore: Penilaian Skor Ulang
+      reset_all_nominations: Atur Ulang Semua Nominasi
+      reset_participant: Atur Ulang Semua Peserta
+    allow_msg_proctoring_workshop_activity: Kegiatan pusat penilaian tidak diawasi.
     assessment_center_heading: Rincian Pusat Penilaian
     assessments_heading: Tugas Anda
     column:
+      assessment_name: Nama penilaian
+      assessor_form: Formulir Penilai
+      auto_assign: Tetapkan Otomatis
+      dimension_id: ID Dimensi
       external_user_id: ID Kandidat Skillvue
+      id: ID Penilaian Kampanye
+      locales: Lokal
+      norm: Norma
+      norm_id: ID Norma
+      pearson_norm_id: ID Norma Pearson
+      pearson_schedule_id: ID Jadwal Pearson
+      pearson_variation: Variasi Pearson
+      prework: Prakerja
+      saville_candidate_id: ID Kandidat
+      saville_data_separator: Pemisah Data Saville
+      simulation_content_variation: Variasi Konten Simulasi
+      simulation_participant_id: ID Peserta Simulasi
+      simulation_time_extension: Perpanjangan Waktu Simulasi
       skillvue_email_id: ID Email Kandidat Skillvue
       skillvue_external_assessment_id: ID Penilaian Skillvue
+      universal_link: Tautan universal
+    drawer:
+      mettl_schedule_name: Nama Jadwal Mettl
+      title: Detail Penilaian
+    messages:
+      export_completion_statuses_scheduled: Status Penyelesaian Pekerjaan ekspor berhasil dijadwalkan
+      export_occupations_job_scheduled: Pekerjaan Ekspor Pekerjaan berhasil dijadwalkan
+      export_reports_and_assessments_statuses_scheduled: Ekspor Laporan dan tugas penilaian berhasil dijadwalkan
+      external_results_export_scheduled: Tugas ekspor Penilaian Eksternal berhasil dijadwalkan
+      norm_results_export_scheduled: Pekerjaan ekspor Hasil Bernorma Penilaian berhasil dijadwalkan
+      normalize_factor_scores_scheduled: Pekerjaan skor faktor normalisasi berhasil dijadwalkan.
+      raw_factor_export_scheduled: Pekerjaan ekspor Faktor Mentah Penilaian berhasil dijadwalkan
+      raw_results_export_scheduled: Pekerjaan ekspor Hasil Mentah Penilaian berhasil dijadwalkan
+      scoring_results_export_scheduled: Pekerjaan ekspor Hasil Penilaian Penilaian berhasil dijadwalkan
     modals:
       assessor_campaign_assessment_group:
         error_message: Ada yang tidak beres. Silakan hubungi administrator
         placeholder: Memilih Grup Pusat Penilaian
-        success_message: Penilai Kelompok Penilai Kampanye berhasil ditugaskan
+        success_message: Kelompok Penilaian Kampanye Penilai berhasil ditugaskan
         title: Kelompok Pusat Penilaian
+      bulk_update_evaluation:
+        content: Apakah Anda yakin ingin menandai semua mata pelajaran yang dipilih sebagai %{status}?
+        successfully: Berhasil ditandai sebagai %{status}.
+        title: Tandai massal sebagai %{status}?
+      import_raw:
+        body: Lihat fungsionalitas Ekspor untuk mengekstrak templat yang dapat digunakan untuk Mengimpor di sini.
+        success_msg: Impor berhasil diunggah
+        title: Mengimpor data Hasil Mentah
+        upload: Unggah
+      import_scoring:
+        body: Lihat fungsionalitas Ekspor untuk mengekstrak templat yang dapat digunakan untuk Mengimpor di sini.
+        success_msg: Impor berhasil diunggah
+        title: Mengimpor data Hasil Penilaian
+        upload: Unggah
+      prework_setting:
+        disable: Menonaktifkan prakerja untuk semua pengguna yang ada
+        enable: Aktifkan prakerja untuk semua pengguna yang ada
+        title: Formulir pengaturan prakerja
+      regenerate:
+        content: Apakah Anda yakin ingin membuat ulang laporan yang tersedia?
+        title: Membuat ulang laporan?
+      remove:
+        helper_text: 'BAHAYA: Memilih ini akan menghapus semua respons pengguna terhadap penilaian ini dalam kampanye ini.'
+        msg_text: Anda mencoba menghapus Penilaian <strong>"%{name}"</strong>
+        successfully: "%{name} berhasil dihapus."
+        title: Hapus penilaian?
+      rescore:
+        content: Apakah Anda yakin ingin menilai ulang penilaian?
+        successfully: Penilaian berhasil dinilai ulang.
+        title: Penilaian Skor Ulang?
+      rescore_response:
+        message: Penilaian ulang dijadwalkan untuk penilaian "%{name}"
+        title: Tanggapan Skor Ulang
+      reset:
+        content: Apakah Anda yakin ingin mengatur ulang hasil?
+        successfully: Data hasil berhasil diatur ulang.
+        title: Atur Ulang Hasil untuk penilaian %{name}?
+      update_assessor_form:
+        select_assessor: Pilih Formulir Penilai
+        success_msg: Formulir Penilai berhasil diunggah
+        title: Perbarui Formulir Penilai
+        update: Pemutakhiran
+      update_content_variation:
+        select_schedule: Pilih Variasi Konten
+        success_msg: Variasi Konten Simulasi berhasil diperbarui
+        update: Pemutakhiran
+      update_external_config:
+        text_placeholder: Konfigurasi json eksternal
+        title: Perbarui Konfigurasi Eksternal
+      update_locales:
+        select_locales: Pilih Lokal
+        success_msg: Lokal berhasil diperbarui
+        title: Perbarui Lokal yang Tersedia
+      update_mettl_schedule:
+        select_schedule: Pilih Jadwal
+        success_msg: Jadwal Mettl berhasil diperbarui
+        update: Pemutakhiran
+      update_norm:
+        apply: Menerapkan perubahan ini ke pengguna yang sudah ada di kampanye ini
+        cannot_remove_norm: Tidak dapat menghapus norma untuk penilaian yang diselesaikan.
+        select_norm: Pilih Norma
+        success_msg: Norma berhasil diperbarui
+        title: Perbarui Norma
+        update: Pemutakhiran
+      update_simulation_time_extension:
+        success_msg: Perpanjangan Waktu Simulasi berhasil diperbarui
+        title: Perpanjangan waktu
+        tooltip: Perpanjangan waktu sebagai faktor (misalnya, 1,5 untuk waktu 50% lebih lama)
+        update: Pemutakhiran
+      update_time:
+        additional_time: Waktu (menit)
+        title: Perpanjang Waktu
+      workshop_activity_duration:
+        form:
+          duration: Durasi dalam menit
+        title: Durasi kegiatan workshop
+    normalize_factor_scores:
+      normalization_not_allowed: Normalisasi skor faktor saat ini dinonaktifkan untuk penilaian ini dalam pengaturan proyek. Harap aktifkan untuk melanjutkan.
+      success: Normalisasi skor faktor berhasil diselesaikan
+    not_allow_msg_proctoring_workshop_activity: Anda tidak dapat melakukan kegiatan pusat penilaian karena Anda berada di dalam jendela pengawasan. Untuk melakukan kegiatan ini, Anda harus keluar dari jendela pengawasan.
+    pearson_variation_form:
+      apply_to_existing_users: Menerapkan perubahan ini ke pengguna yang sudah ada di kampanye ini
+      select: Pilih variasi
+      update: Pemutakhiran
+      update_success: Variasi Pearson berhasil diperbarui
+    scheduled_successfully: Penilaian berhasil dijadwalkan
+    scheduling:
+      update_exists: Ganti jadwal yang ada
+    scheduling_time: Jadwalkan waktu penilaian
     statuses:
       completed: Selesai
       in_progress: Sedang Berlangsung
       ineligible: Tidak memenuhi syarat
-      interrupted: Terganggu
+      interrupted: Terputus
       not_started: Tidak Dimulai
       timed_out: Waktu habis
       universal_link: Tautan universal
+    ungrouped_assessments_heading: Tidak dikelompokkan
+  campaign_join_token:
+    campaign_id: ID Kampanye
+    expire_in: Kedaluwarsa pada (detik)
+    invalid_token: Token tidak valid
+    text: Teks
+  campaign_report:
+    actions:
+      add_reports:
+        enqueue_message: Tugas Tambahkan Laporan berhasil diantrek
+        success_message: Laporan berhasil ditambahkan
+      bulk_download: Unduh Massal
+      export_data: Ekspor Data
+    bulk_download:
+      error: Unduhan massal dibatasi hingga 1000 file laporan. Pilihan saat ini memiliki file laporan %{count}. Sesuaikan tanggal mulai dan berakhir untuk mengurangi jumlah file laporan yang akan diunduh.
+    column:
+      assessor_access: Akses Penilai
+      auto_assign: Tetapkan Otomatis
+      main_report: Laporan Utama
+      report_bundle: Bundel Laporan
+      report_name: Nama laporan
+      user_access: Akses Pengguna
+      user_dashboard: Dasbor Pengguna
+    form:
+      operation: Operasi
+      operation_options:
+        add_and_allow_new_response: Tambahkan laporan ke pengguna yang ada dan izinkan respons baru
+        add_with_existing_response: Tambahkan laporan ke pengguna yang ada dan pertahankan respons yang ada
+        skip_existing: Lewati pengguna yang ada
+      report: Lapor
+      report_bundle_placeholder: Memilih paket laporan
+    messages:
+      bulk_download_error: Unduhan massal dibatasi hingga 1000 file laporan. Jika Anda telah memilih banyak bahasa, harap kurangi.
+      bulk_download_successful: Pekerjaan pengunduhan laporan massal berhasil dijadwalkan
+      export_report_data_scheduled: Tugas ekspor data laporan berhasil dijadwalkan
+    modals:
+      remove:
+        apply: Terapkan perubahan ini ke pengguna yang sudah ada di kampanye ini.
+        msg_text: Anda mencoba menghapus Laporan <strong>"%{reportName}"</strong>
+        title: Hapus Laporan?
+      user_access:
+        apply: Terapkan perubahan ini ke pengguna yang sudah ada di kampanye ini.
+        title:
+          disable: Nonaktifkan Akses Pengguna
+          enable: Aktifkan Akses Pengguna
+  campaign_users:
+    actions:
+      add_manager: Tambahkan pengelola
+      extend_time: Perpanjang Waktu
+      search_user: Cari pengguna
+    assessments:
+      progress: Kemajuan
+    details:
+      additional_time: Waktu tambahan
+      assessment_center: Pusat Penilaian
+      assessment_center_invites: Undangan Pusat Penilaian
+      completed_at: Selesai Pada
+      completion_status: Status penyelesaian
+      hogan_id: Hogan Id
+      last_login: Login terakhir
+      manager: Manajer
+      modals:
+        create_hogan_credentials:
+          assessments: 'Penilaian:'
+          confirmation: Masukkan email yang diberikan di bawah ini di kotak teks untuk menambahkan kredensial hogan baru
+          reports: 'Laporan:'
+          successfully: Kredensial hogan baru untuk pengguna dengan email %{email} berhasil ditambahkan.
+          warning: Membuat kredensial Hogan baru akan menghapus penilaian dan laporan berikut yang terkait dengan kredensial Hogan lama untuk %{email}
+        remove:
+          successfully: Pengguna dengan email %{email} berhasil dihapus.
+          title: Apakah Anda yakin ingin menghapus pengguna ini dari kampanye %{campaignName}?
+      not_completed_yet: Belum selesai
+      not_logged_in_yet: Belum masuk
+      not_started_yet: Belum dimulai
+      started_at: Dimulai Pada
+      statuses:
+        completed: Selesai
+        in_progress: Sedang Berlangsung
+        ineligible: Tidak memenuhi syarat
+        interrupted: Terganggu
+        not_started: Belum Dimulai
+        timed_out: Waktu habis
+    modals:
+      remove: Apakah Anda yakin ingin menghapus pengguna dengan email '%{email}' dari kampanye ini?
   campaigns:
+    assessments_and_reports:
+      assessor_assessments: Penilaian Penilai
+      other_assessments: Penilaian Lainnya
+      other_assessor_assessments: Penilaian Penilai Lainnya
+      other_reports: Laporan Lainnya
     card:
       duration: Durasi
       starts_in: 'Mulai masuk:'
@@ -354,15 +1642,15 @@ id:
       access: Akses
       continue: Ya, Oke untuk melanjutkan
       random_phrases:
-        eight: Semoga kopi Anda kuat dan hari Anda menjadi produktif.
-        five: Hidup akan lebih baik jika Anda tersenyum. Tersenyumlah untuk mikrofon!
-        four: Dia menjual kerang di tepi pantai.
-        nine: Jika ragu, cobalah untuk menguji apakah mikrofon ini berfungsi dengan baik!
-        one: Saya berteriak, Anda berteriak, kita semua berteriak minta es krim!
-        seven: Setiap hari adalah awal yang baru. Katakan dengan lantang dan bangga!
-        six: Pizza atau pasta? Keputusan yang sulit.
-        three: Pengujian, satu dua tiga, suaranya jernih sekali!.
-        two: Rubah coklat yang cepat melompati anjing yang malas.
+        eight: Semoga kopi Anda kuat dan hari Anda menjadi produktif. (May your coffee be strong and your day be productive.)
+        five: Hidup akan lebih baik jika Anda tersenyum. Tersenyumlah ke mikrofon! (Life is better when you smile. Smile for the mic!)
+        four: Dia menjual kerang di tepi pantai (She sells seashells by the seashore.)
+        nine: Jika ragu, cobalah untuk menguji apakah mikrofon ini berfungsi dengan baik! (When in doubt, test it out this mic works!)
+        one: Saya berteriak, Anda berteriak, kita semua berteriak minta es krim! (I scream, you scream, we all scream for ice cream!)
+        seven: Setiap hari adalah awal yang baru. Katakan dengan keras dan bangga! (Every day is a new beginning. Say it loud and proud!)
+        six: Pizza atau pasta? Keputusan yang sulit. (Pizza or pasta? Decisions are hard.)
+        three: Tes, satu dua tiga, suaranya jernih sekali! (Testing, one two three, the sound is clear as can be!)
+        two: Rubah coklat yang cepat melompati anjing yang malas. (The quick brown fox jumps over the lazy dog.)
       record_title: Silakan ucapkan dan ulangi kalimat berikut ini sebanyak 3 kali.
       retake: Tidak, saya ingin mengulang
       run_again: Jalankan lagi
@@ -392,11 +1680,11 @@ id:
         link_text: di sini
         link_text_action: Klik
         link_text_instruction: dan ikuti langkah-langkah untuk memberikan izin
-        refresh: Menyegarkan Peramban
-        refresh_text: Klik di bawah ini untuk menyegarkan browser dan menerapkan perubahan
+        refresh: Muat ulang browser
+        refresh_text: Klik di bawah ini untuk memuat ulang browser dan menerapkan perubahan
         subtitle: Perbaikan Cepat
         title: Anda membatalkan izin Webcam dan Mikrofon
-      permissions: Izin Webcam &amp; Audio
+      permissions: Izin Webcam & Audio
       title: Sebelum memulai penilaian ini, sistem Anda perlu menjalani beberapa pemeriksaan.
     video_check:
       access: Akses
@@ -404,89 +1692,328 @@ id:
       continue: Ya, Oke untuk melanjutkan
       description: Klik Mulai Merekam dan Rekam diri Anda sambil membaca bagian di bawah ini dengan suara Anda sendiri
       random_phrases:
-        eight: Jika Anda bisa melihat saya, berarti video berhasil, jika tidak, kami akan memecahkan masalahnya!
+        eight: Jika Anda bisa melihat saya, berarti video berhasil, jika tidak, kami akan memperbaikinya!
         five: Menguji video Anda, jangan khawatir, tidak perlu nominasi Oscar.
         four: Siap, siap, fokus! Kamera adalah panggung Anda.
-        nine: Senyum lebar dan video yang jernih, ayo lakukan tes ini dengan benar!
-        one: Angkat tangan Anda jika Anda bisa mendengar saya atau hanya melambaikan tangan ke arah kamera!
-        seven: Cermin, cermin di layar, biarkan pemeriksaan video bersih.
+        nine: Senyum lebar dan video yang jernih, mari selesaikan tes ini dengan baik!
+        one: Angkat tangan Anda jika Anda bisa mendengar saya atau lambaikan tangan ke arah kamera!
+        seven: Cermin, cermin di layar, biarkan pemeriksaan video tidak menemui kendala.
         six: Lampu, kamera, aksi, inilah saatnya Anda bersinar!
-        ten: Lambaian tangan yang ramah memastikan semuanya bekerja dengan baik.
-        three: Katakanlah keju! Atau hanya menguji senyum yang sempurna.
+        ten: Lambaikan tangan dengan ramah untuk memastikan semuanya bekerja dengan baik.
+        three: Senyum! Atau setidaknya uji senyum yang sempurna itu.
         two: Lihatlah ke arah lensa, tersenyumlah, dan berpura-puralah Anda sedang berada dalam cuplikan film.
       rec_text: REC
       retake: Tidak, saya ingin mengulang
       run_again: Jalankan lagi
       title: Kami perlu memastikan sistem Anda dapat merekam video
+      upload_again: Unggah lagi
       uploading: Mengunggah
   common:
     actions:
       add: Menambahkan
+      approve: Setuju
       archive: Arsip
+      back_to_dashboard: Kembali ke Dasbor
+      back_to_responses: Kembali Ke Tanggapan
       cancel: Batal
+      change: Ubah
       close: Tutup
+      continue: Terus
       copy: Salin
+      create: Menciptakan
       delete: Menghapus
+      done: Selesai
+      download: Mengunduh
       edit: Sunting
+      export: Ekspor
+      filter: Saringan
+      filter_by_tags: Filter berdasarkan tag
+      go_back: Kembali
+      import: Mengimpor
+      insert: Memasukkan
+      ok: OKE
       publish: Menerbitkan
+      reject: Menolak
       remove: Menghapus
       reset: Atur ulang
       resolve: Menyelesaikan
       restore: Mengembalikan
+      return_to_home: Kembali ke Rumah
+      run: Lari
       save: Simpan
+      schedule: Jadwal
       search: Pencarian
       send: Kirim
+      sign_in: Tandatangan
       start: Mulai
+      submit: Tunduk
       unarchive: Tidak diarsipkan
       unpublish: Batalkan penerbitan
       unresolve: Tidak terselesaikan
       update: Memperbarui
       upload: Unggah
+      upload_file: Unggah File
       verify: Verifikasi
+      view: Melihat
       view_all_tasks: Lihat semua tugas
       view_detail: Lihat Detail
     column:
       action: Tindakan
+      active: Aktif
+      allow_multiple_responses: Mengizinkan beberapa respons
+      approval_notification_list: Daftar Pengguna Pemberitahuan Persetujuan
+      approvers_list: Daftar Persetujuan
+      assessment: Penilaian
+      assessment_name: Nama Penilaian
+      assessments: Penilaian
+      assessor: Penilai
       category: Kategori
+      client: Klien
       code: Kode
       created_at: Dibuat di
+      created_by: Dibuat oleh
+      created_date: Tanggal Dibuat
+      default_language: Bahasa Default
+      description: Deskripsi
+      details: Rincian
+      dimension: Dimensi
+      email: Email
+      external_report_id: ID Laporan Luar Negeri
+      first_name: Nama depan
+      icon: Ikon
+      icon_color: Warna ikon
       id: Id
+      json:
+        answer: Jawab JSON
+        external_result: JSON Hasil Eksternal
+        scoring: Penilaian JSON
+      key: Kunci
+      last_name: Nama Belakang
+      linked_activities: Aktivitas Tertaut
+      linked_assessment: Penilaian Tertaut
+      meeting_link: Tautan Rapat
+      modified_by: Dimodifikasi oleh
+      modified_date: Tanggal yang Dimodifikasi
+      name: Nama
+      owner: Pemilik
+      package_id: ID Paket
+      poster: Plakat
+      project: Proyek
+      provider: Penyedia
+      qc_user_list: Daftar Pengguna QC
+      report: Lapor
+      report_id: ID Laporan
+      require_scheduling: Memerlukan Penjadwalan
+      responses_count: Jumlah Tanggapan
+      schedule_time: Jadwal Waktu
+      scheduling: Penjadwalan
+      skills: Keterampilan
       status: Status
+      tags: Tags
+      timing: Waktu
+      token: Tanda
+      type: Jenis
+      unschedule: Batalkan jadwal
+      updated_at: Terakhir Diperbarui
+    errors:
+      csv_injection_validation_error: tidak dapat memulai dengan =, |, +, -, @, %
+      something_wrong: Ada yang tidak beres. Hubungi administrator Anda.
+    messages:
+      leave_message: Apakah Anda yakin ingin meninggalkan halaman ini? Setiap jawaban yang belum disimpan yang Anda miliki akan hilang.
     model:
+      admins: Admin
+      assessment: Penilaian
       assessments: Penilaian
       campaigns: Kampanye
+      completion_statuses: Status Penyelesaian
+      datasheet: Lembar data
+      projects: Proyek
+      report: Lapor
       reports: Laporan
+      scoring: Penilaian
+      sms_contact: Kontak SMS
+      threesixty_campaign: Skor Kampanye Threesixty
+    status:
+      completed: Selesai
+      dropped_out: Putus Kuliah
+      in_progress: Sedang Berlangsung
+      late: Terlambat
+      no_show: Tidak Hadir
+      not_started: Belum Dimulai
+      not_status: Tidak Ada Status
+      on_time: Tepat waktu
     text:
+      accepted: Diterima
+      all_pages: Semua Halaman
       cancel: Batal
       confirm: Konfirmasi
       continue: Lanjutkan
+      copied: Disalin ke clipboard
       default: Default
       download: Unduh
+      file: Arsip
+      global_import: Apakah Impor Global?
+      minutes: Menit
       na: N/A
-      ok: Baiklah
+      none: Tidak
+      ok: Ok
       refer_export_file: Lihat fungsi Ekspor untuk mengekstrak template yang dapat digunakan untuk Mengimpor di sini.
+      reference_language: Bahasa Referensi
       response: Tanggapan
+      select: Pilih
+      selected: Dipilih
+      subject: Subyek
+      total: Seluruh
+      view_as: Lihat sebagai
+    tooltips:
+      hide: Menyembunyikan
+      view: Melihat
+    validations:
+      select_locale: Silakan pilih Beberapa lokal
+      should_be_whole_number: harus berupa bilangan bulat
+  confirmation:
+    delete_comment: Apakah Anda yakin ingin menghapus komentar ini?
+  custom_field:
+    field_name: Nama Bidang
+  datasheet:
+    errors:
+      datasheet_column:
+        not_found: Kolom '%{column_name}' tidak ditemukan
+        numeric_value_required: Kolom '%{field}' harus berupa angka
+        string_value_required: Kolom '%{field}' harus berupa string
+      not_configured: Lembar data tidak dikonfigurasi
   devise:
     administrators:
+      meta_title: Masuk ke panel administrasi
+      passwords:
+        edit:
+          submit: Tetapkan kata sandi baru
+          title: Mengubah kata sandi Anda
+        new:
+          back: Kembali
+          submit: Kirimkan instruksi kepada saya
+          title: Lupa Kata Sandi Anda?
       sessions:
         new:
+          forgot_password: Lupa Kata Sandi Anda?
           submit: Masuk
+          title: "<strong>Selamat datang</strong>, Silakan login"
+      shared:
+        links:
+          about: Sekitar
+          app_name: "© Nama Aplikasi 2016"
+          contact_us: Hubungi
+          privacy: Privasi
+    confirmations:
+      confirmed: Alamat email Anda telah berhasil dikonfirmasi.
+      send_instructions: Anda akan menerima email dengan instruksi tentang cara mengonfirmasi alamat email Anda dalam beberapa menit.
+      send_paranoid_instructions: Jika alamat email Anda ada di database kami, Anda akan menerima email dengan instruksi tentang cara mengonfirmasi alamat email Anda dalam beberapa menit.
     failure:
       already_authenticated: Anda sudah masuk.
       inactive: Akun Anda belum diaktifkan.
       invalid: Email atau kata sandi tidak valid.
       invited: Anda memiliki undangan yang tertunda, terima undangan tersebut untuk menyelesaikan pembuatan akun Anda.
+      last_attempt: Anda harus mencoba satu kali lagi sebelum akun Anda dikunci.
+      locked: Akun Anda terkunci.
       magic_link_invalid: Tautan masuk tidak valid atau kedaluwarsa.
       not_found_in_database: Email atau kata sandi tidak valid.
+      saml_user_not_present: Pengguna tidak ada dalam sistem
       timeout: Sesi Anda telah kedaluwarsa, silakan masuk lagi untuk melanjutkan.
       unauthenticated: Anda harus masuk atau mendaftar sebelum melanjutkan.
+      unconfirmed: Anda harus mengonfirmasi alamat email Anda sebelum melanjutkan.
     invitations:
       edit:
+        confirm_password_label: Konfirmasi Kata Sandi
+        header: Tetapkan kata sandi Anda
+        instruction: Untuk membuat kata sandi baru, silakan masukkan kata sandi baru Anda di kotak di bawah ini
         password_label: Kata sandi
+        submit: Tetapkan Kata Sandi Baru
+        submit_button: Atur kata sandi saya
+        title: Buat kata sandi
+      invitation_removed: Undangan Anda telah dihapus.
+      invitation_token_invalid: Token undangan yang diberikan tidak valid!
+      new:
+        header: Kirim undangan
+        submit_button: Mengirim undangan
+      no_invitations_remaining: Tidak ada undangan yang tersisa
+      send_instructions: Email undangan telah dikirim ke %{email}.
+      updated: Kata sandi Anda berhasil ditetapkan. Anda sekarang login.
+      updated_not_active: Kata sandi Anda berhasil ditetapkan.
+    mailer:
+      admin_invitation_instructions:
+        accept: Klik di sini untuk menerima undangan.
+        body: |-
+          Halo %{name},
+          Anda telah diundang untuk mengakses panel admin Lighthouse - Platform penilaian Talent Enterprise.
+
+          %{accept} Atau Anda dapat mengabaikan email ini dengan aman.
+
+          Harap jangan membagikan kredensial akses Anda dengan siapa pun.
+        subject: Undangan ke Mercusuar
+      confirmation_instructions:
+        subject: Instruksi konfirmasi
+      invitation_instructions:
+        body: |-
+          Halo %{name},
+          Anda telah ditambahkan ke Lighthouse sebagai Admin untuk bagian berikut
+        login: Masuk ke Mercusuar
+        sections:
+          campaign: 'Kampanye: %{section_name}'
+          client: 'Penyewaan Klien: %{section_name}'
+          project: 'Proyek: %{section_name}'
+        subject: Undangan ke Mercusuar
+      password_change:
+        body: |-
+          Halo %{name}!
+
+          Kata sandi Anda telah diubah.
+
+          Jika Anda tidak mengajukan permintaan ini, segera hubungi Dukungan di mte.support@mercer.com
+        regards: |-
+          Salam
+          Tim Mercusuar
+        subject: Kata sandi Mercusuar Anda telah berubah
+      reset_password_instructions:
+        body: |-
+          Halo %{name}!
+
+          Seseorang telah meminta tautan untuk mengubah kata sandi Anda. Anda dapat melakukan ini melalui tautan di bawah ini.
+        change_password: Ubah Kata Sandi
+        footer: Jika Anda tidak meminta ini, Anda dapat dengan aman mengabaikan email ini. Kata sandi Anda tidak akan berubah sampai Anda mengakses tautan di atas dan membuat yang baru.
+        regards: |-
+          Salam
+          Tim Mercusuar
+        subject: Petunjuk untuk mengatur ulang kata sandi Anda
+      unlock_instructions:
+        body: |-
+          Halo %{name}!
+
+          Akun Anda telah dikunci karena jumlah upaya login yang gagal berhasil.
+
+          Klik tautan di bawah ini untuk membuka kunci akun Anda:
+        footer: Jika Anda tidak meminta ini, Anda dapat dengan aman mengabaikan email ini. Kata sandi Anda tidak akan berubah sampai Anda mengakses tautan di atas dan membuat yang baru.
+        regards: |-
+          Salam
+          Tim Mercusuar
+        subject: Petunjuk untuk Membuka Kunci Akun Anda
+        unlock_account: Buka kunci akun saya
+    omniauth_callbacks:
+      failure: Tidak dapat mengautentikasi Anda dari %{kind} karena "%{reason}".
+      success: Berhasil diautentikasi dari akun %{kind}.
     passwords:
+      edit:
+        instruction: Untuk membuat kata sandi baru, silakan masukkan kata sandi baru Anda di kotak di bawah ini
+        submit: Tunduk
+        title: Buat Kata Sandi
       invalid_email: Email Tidak Valid
+      no_token: Anda tidak dapat mengakses halaman ini tanpa datang dari email pengaturan ulang kata sandi. Jika Anda berasal dari email pengaturan ulang kata sandi, pastikan Anda menggunakan URL lengkap yang disediakan.
+      send_instructions: Anda akan menerima email dengan instruksi tentang cara mengatur ulang kata sandi Anda dalam beberapa menit.
+      send_paranoid_instructions: Jika alamat email Anda ada di database kami, Anda akan menerima tautan pemulihan kata sandi di alamat email Anda dalam beberapa menit.
+      updated: Kata sandi Anda telah berhasil diubah. Anda sekarang login.
+      updated_not_active: Kata sandi Anda telah berhasil diubah.
     registrations:
       communication_not_setup_error: Komunikasi email pendaftaran tidak diatur, silakan hubungi administrator proyek ini.
+      destroyed: Dah! Akun Anda telah berhasil dibatalkan. Kami berharap dapat melihat Anda lagi segera.
       new:
         email: Alamat email
         first_name: Nama depan
@@ -500,86 +2027,270 @@ id:
           sign_in: Masuk
         terms_notice: Dengan mendaftar, Anda menyetujui <a href="%{terms_url}">Ketentuan Layanan dan Kebijakan Privasi</a> kami
         title: Daftar Sekarang
+      signed_up: Selamat datang! Anda telah berhasil mendaftar.
+      signed_up_but_inactive: Anda telah berhasil mendaftar. Namun, kami tidak dapat login karena akun Anda belum diaktifkan.
+      signed_up_but_locked: Anda telah berhasil mendaftar. Namun, kami tidak dapat login karena akun Anda terkunci.
+      signed_up_but_unconfirmed: Pesan dengan tautan konfirmasi telah dikirim ke alamat email Anda. Silakan ikuti tautan untuk mengaktifkan akun Anda.
       success:
         actions:
           sign_in: Masuk
+        instruction: Silakan periksa email Anda untuk instruksi lebih lanjut
+        title: Pendaftaran berhasil
+      update_needs_confirmation: Anda berhasil memperbarui akun Anda, tetapi kami perlu memverifikasi alamat email baru Anda. Silakan periksa email Anda dan ikuti tautan konfirmasi untuk mengonfirmasi alamat email baru Anda.
+      updated: Akun Anda telah berhasil diperbarui.
     sessions:
+      already_signed_out: Berhasil logout.
       new:
         email: Alamat email
         forgot_password: Lupa kata sandi?
         instruction: Silakan masuk dengan informasi akun pribadi Anda
+        keep_sign_in: Ya, Tetap saya login
+        login_with_sso: Login dengan Single Sign-On
         password_placeholder: Kata sandi
         submit: Masuk
         tabs:
           register: Daftar
           sign_in: Masuk
         title: Selamat datang!
+      signed_in: Anda telah berhasil masuk!
+      signed_in_time: Anda terakhir login di %{date_time}
+      signed_out: Berhasil logout.
+      unsuccessful_sign_in_time: Upaya login terakhir Anda di %{date_time} tidak berhasil.
     two_factor_authentication:
       attempt: Masukkan OTP yang telah Anda terima di alamat email yang terdaftar
+      attempt_failed: OTP salah! Silakan coba lagi
       code_has_been_sent: OTP baru Anda telah dikirim ke alamat email yang terdaftar
+      contact_administrator: Silakan hubungi administrator sistem Anda
+      email:
+        otp:
+          subject: Kata Sandi Sekali Pakai Anda
+      max_login_attempts_reached: Anda telah mencapai jumlah maksimum upaya untuk OTP saat ini. Klik Kirim Ulang OTP untuk menerima OTP baru
+      otp: Kode
+      submit: Memverifikasi
+      success: Login dengan Otentikasi Dua Faktor berhasil.
+      title: Kata Sandi Satu Kali
+    unlocks:
+      send_instructions: Anda akan menerima email dengan instruksi tentang cara membuka kunci akun Anda dalam beberapa menit.
+      send_paranoid_instructions: Jika akun Anda ada, Anda akan menerima email dengan petunjuk tentang cara membukanya dalam beberapa menit.
+      unlocked: Akun Anda telah berhasil dibuka kuncinya. Silakan login untuk melanjutkan.
+      unprocessable_entity: Akun Anda tidak dapat dibuka kuncinya dengan tautan ini. Silakan hubungi dukungan.
   dry_errors:
     errors:
+      add_edit_project:
+        invalid_subdomain_format: Format subdomain yang salah.
+        reserved_subdomain: Subdomain %{value} dicadangkan
+        uniq_subdomain: Subdomain harus unik.
+      add_manager:
+        manager_not_found: Manajer tidak ditemukan atau bukan bagian dari proyek yang sama
+        user_not_found: Pengguna tidak ditemukan atau bukan bagian dari proyek yang sama
+      admin:
+        already_added: Admin dengan email sudah ditambahkan.
+      already_assigned?: Tidak dapat menautkan penilaian ini - sudah ditetapkan ke '%{linked_assessor_form_name}'.
+      already_invited: Pengguna ini sudah ada di pusat penilaian yang ingin Anda tambahkan.
+      assessor_assessment:
+        already_added: Penilaian Penilai sudah ditambahkan ke kampanye.
+        lead_already_added: Hanya satu Penilaian Penilai Prospek yang dapat ditambahkan ke kampanye.
+      campaign_factor:
+        code_already_exists: Faktor dengan kode yang sama sudah ada.
+        invalid_lua_name: Harus nama variabel lua yang valid
+        limit_exceeded: Anda telah mencapai batas maksimum %{limit} faktor kampanye.
+        name_already_exists: Faktor dengan nama yang sama sudah ada.
+        rank_not_allowed: Hanya faktor dengan jenis numerik keluaran yang dapat diberi peringkat.
+      campaign_factor_group:
+        group_already_exists: Grup dengan nama yang sama sudah ada.
+        last_factor_group: Tidak dapat menghapus grup faktor Kampanye terakhir.
       campaign_idps:
         idp_template_not_published: Template IDP ini belum dipublikasikan, silakan publikasikan sebelum menugaskan kampanye.
+      cant_be_deleted: Catatan ini tidak dapat dihapus
+      client_feature:
+        ai_assisted_idp_feature_error: Tidak mungkin benar jika fitur asisten ai dinonaktifkan
+      create_superadmin:
+        uniq_email: Email harus uniq.
       development_actions:
         only_global_skills_allowed: Keterampilan yang dipilih haruslah keterampilan global.
         skills_not_belong_to_project: Keahlian yang dipilih harus sesuai dengan proyek yang ditentukan.
         skills_required: Pilihlah setidaknya satu keterampilan.
+      exceeded_subjects_count: Anda hanya dapat menambahkan %{count} subjek per undangan
+      filled?: tidak bisa kosong
+      idp_template:
+        content_required: Konten diperlukan untuk instruksi
+        tag_or_skill_required: Silakan pilih tag atau keterampilan saat opsi "Dipilih" dipilih.
+      invalid_name: Hanya alfabet, angka, spasi, tanda hubung, dan titik yang diizinkan sebagai karakter yang valid
+      invalid_value: pernyataan tidak valid '%{value}' pada nomor baris %{row}
       job_roles:
         unique_within_job_group: Peran pekerjaan dengan nama yang sama sudah ada.
+      json?: Harus JSON yang valid
+      key?: tidak bisa kosong
+      match_regexp?: nilai tidak valid
+      mettl_schedule_record_create:
+        uniq_schedule_name: Nama jadwal harus unik
+      missed?: tidak bisa kosong
+      not_allowed?: Tidak diizinkan untuk berubah
+      not_in_the_list?: nilai tidak valid diteruskan
+      not_uniq_variable: variabel '%{value}' didefinisikan ulang pada nomor baris %{row}
+      project_assessments:
+        should_be_greater_than_zero: Validitas hasil harus lebih besar dari 0 hari
+      report_approval_settings:
+        report_exists: Pengaturan persetujuan laporan untuk laporan ini sudah ada.
+        validates_admins: Admin tidak memiliki akses ke kampanye.
+      report_families_reports:
+        report_exists: Laporan ini sudah menjadi bagian dari Report Bundle
+      size?: ukuran harus kurang %{size}
+      skill:
+        already_added: Skill dengan nama yang sama sudah ditambahkan.
+      skill_alias:
+        unique_alias: Alias harus unik
+        unique_skill: Keterampilan harus unik
       skills_job_roles:
         must_belong_to_same_project_or_be_global: Keahlian dan peran pekerjaan harus berasal dari proyek yang sama atau bersifat global.
         unique_mappings: Pemetaan dengan keterampilan dan peran pekerjaan yang sama sudah ada.
+      uniq: Penilaian Mettl ini sudah ada dalam sistem. ID penilaian ini adalah %{id}
+      uniq?: harus unik
+      uniq_simulation: Penilaian Simulasi ini sudah ada dalam sistem. ID penilaian ini adalah %{id}
       uniq_skillvue: Penilaian Skillvue ini sudah ada di dalam sistem. ID dari penilaian ini adalah %{id}
+      update_workshop:
+        less_than_booked: Total kursi harus lebih besar dari yang dipesan
+      user_availability_date:
+        overlaps_date: Tumpang tindih dengan ketersediaan lain %{range}
+        overlaps_time: Tumpang tindih interval %{interval}
+        start_date_should_be_less: Tanggal mulai harus kurang dari tanggal akhir
+        start_time_should_be_less: Waktu mulai harus kurang dari waktu akhir
       user_idp_plan:
+        idp_template_already_assigned_to_user: Template Idp ini sudah dikirimkan ke pengguna ini dan aktif
         idp_template_not_published: Template IDP ini belum dipublikasikan, silakan publikasikannya sebelum menetapkan kepada pengguna.
+      user_saved_filters:
+        limit_exceeded: Anda hanya dapat memiliki filter tersimpan %{limit}, silakan hapus filter tersimpan untuk menambahkan lebih banyak.
+        unique_name: Filter dengan nama yang sama sudah ada.
+      workshop_invited_subject_create:
+        already_exists: Subjek sudah ada di undangan.
+      workshop_subject_create:
+        already_exists: Subjek sudah ada di Pusat Penilaian ini.
+        part_of_other_workshop: Subjek sudah menjadi peserta '%{workshop_name}'.
+      workshops:
+        no_available_assessor_slots: Tidak ada slot yang tersedia untuk penilai %{assessor}
+        no_available_manager_slots: Tidak ada slot yang tersedia untuk manajer %{manager}
+    users:
+      registrations:
+        new:
+          register: Daftar
+          sign_in: Tandatangan
+      sessions:
+        new:
+          register: Daftar
+          sign_in: Tandatangan
   emails:
+    nomination_approval_table:
+      evaluator_name: Nama Evaluator
+      number: Tidak
+      relationship: Hubungan
+      subject_name: Nama Subjek
     subject_relationship_table:
       subject_email: Email Subjek
-      subject_name: Nama Mata Pelajaran
+      subject_name: Nama Subjek
       subject_relationship: Hubungan Subjek
+  empty: Kosong
+  enums:
+    communication:
+      body:
+        error: Isi email memiliki teks pipa yang salah.
   errors:
     assessments:
       timed_out: Anda tidak akan dapat mengambil penilaian %{assessment_name} karena waktunya telah habis.
     error: Kesalahan
+    error_401: Anda tidak berwenang untuk mengakses sumber daya ini. Silakan masuk.
+    error_403: Anda tidak memiliki izin untuk melihat sumber daya ini.
     error_500: Ada yang tidak beres. Hubungi administrator Anda.
+    error_msg: Ada yang tidak beres. Silakan segarkan halaman dan jika masalah masih berlanjut, hubungi administrator Anda
     forbidden: Anda tidak memiliki akses ke halaman ini
     forbidden_action: Anda tidak memiliki izin untuk melakukan tindakan ini
+    invalid_session_title: Sesi Tidak Valid
     invalid_token: Ada yang salah, silakan muat ulang halaman dan coba lagi.
+    max_regeneration_limit: Batas regenerasi maksimum terlampaui, hubungi administrasi Anda.
+    messages:
+      data_report_blank: Laporan Data tidak ada
     module_error: Ada yang salah dengan modul ini, silakan hubungi bagian administrasi.
     module_error_editor: Ada yang salah dengan modul ini, silakan periksa pengaturan modul.
     module_props_error: Ada yang salah dengan modul ini.
+    skill_gap_report:
+      not_found: Laporan kesenjangan keterampilan tidak ditemukan
     try_again: Silakan coba lagi
+    user_idp_plan:
+      no_active_plan: Tidak ada paket IDP aktif yang ditemukan
+    webhooks:
+      multiple_webhook_error: URL tidak dapat diperbarui karena ada beberapa webhook untuk proyek ini.
+  evaluators:
+    errors:
+      can_not_processed: tidak dapat diproses
+      exists: sudah ada
+      max_evaluators: Anda sudah memiliki evaluator yang cukup
   factors:
     description: Deskripsi
     factor: Faktor
   frontend:
     activate: Aktifkan
-    are_you_sure: Apa kau yakin?
+    are_you_sure: Apakah Anda yakin?
+    aria:
+      back_to_dashboard: Kembali ke Dasbor
+      back_to_tasks: Kembali ke Tugas
+      calendar: Kalender
+      campaign_name_description: ', untuk kampanye "%{campaignName}"'
+      change_language: "(Ubah Bahasa)"
+      clear_date: Tanggal Jelas
+      collapse_menu: Ciutkan menu
+      confirm_proceed: Konfirmasi untuk melanjutkan
+      delete_message: Hapus pesan
+      drag_drop_instructions_desktop: Nyalakan mode formulir untuk menyeret dan melepas item dengan pembaca layar.
+      drag_drop_instructions_mobile: Dengan pembaca layar, ketuk dua kali dan tahan tombol seret, pindah ke item lain dan angkat jari untuk memindahkan item.
+      enlarge_view_text: Memperbesar tampilan %{text}
+      expand_menu: Perluas menu
+      file_uploaded: File yang diunggah
+      lang_dropdown_description: ", ubah bahasa"
+      pause: Jeda
+      play: Bermain
+      profile_progress: Penyelesaian profil adalah
+      remove_file: Hapus file
+      send_message: Kirim pesan
+      slider_label_instruction: 'min: %{min} dan maks: %{max}'
+      task_btn_description: tugas %{assessmentName}
+      task_progress_label: Penyelesaian tugas adalah
+      write_message: Tulis pesan Anda
     assessment: Penilaian
     assessment_groups:
       create_success: Grup berhasil dibuat
       update_success: Grup berhasil diperbarui
+    availability:
+      add_new_availability: Menambahkan ketersediaan baru
+      create_success: Ketersediaan berhasil dibuat.
+      remove_confirm:
+        content: Apakah Anda yakin ingin menghapus ketersediaan?
+        success: Ketersediaan berhasil dihapus.
+        title: Hapus ketersediaan
+      update_success: Ketersediaan berhasil diperbarui.
     background_reading: Bacaan Latar Belakang
     bookings:
       accept_invite_msg: Anda telah menerima undangan, silakan pesan slot Anda.
       add_to_calendar: Tambahkan ke Kalender
       add_to_calendar_tour_description: Tambahkan pemesanan ini ke kalender Anda
+      add_to_google_calendar: Tambahkan ke kalender google
+      add_to_i_calendar: Tambahkan ke iCalendar
+      add_to_msoffice_calendar: Tambahkan ke kalender microsoft office 365
+      add_to_outlook_calendar: Tambahkan ke kalender outlook
+      add_to_yahoo_calendar: Tambahkan ke kalender yahoo
       assessment_center_alert:
         btn_title: Kampanye
-        message_part1: Selesaikan semua pekerjaan awal dalam hal ini
+        message_part1: Selesaikan semua tugas pendahuluan dalam hal ini
         message_part2: sebelum memesan slot.
       assessment_center_group_name: Pusat Penilaian
       booking_failed_msg: 'Gagal memesan slot: %{error}'
       buttons:
-        book: Buku
+        book: Memesan
         book_again: Pesan Lagi
-        cancel: Batal
+        cancel: Batalkan
         cancel_booking: Batalkan Pemesanan
         confirm_booking: Konfirmasi Pemesanan
         confirm_reschedule: Konfirmasi Penjadwalan Ulang
         modify: Memodifikasi
-        nevermind: Sudahlah
+        nevermind: Lupakan
         no_text: Tidak
         request_cancel: Meminta pembatalan
         request_reschedule: Permintaan Penjadwalan Ulang
@@ -594,17 +2305,19 @@ id:
       confirm_booking_title: Konfirmasikan pemesanan ini?
       default_failure_msg: Tidak dapat memproses permintaan Anda. Silakan coba lagi nanti.
       default_requires_msg: "%{name} diperlukan"
-      join_activity_meeting: Bergabunglah dengan Rapat
-      join_workshop_meeting: Bergabunglah dengan Rapat
+      join_activity_meeting: Bergabung ke Rapat
+      join_workshop_meeting: Bergabung ke Rapat
       language: Bahasa
       language_placeholder: Pilih Bahasa
       language_preference_question: Apakah Anda memiliki preferensi bahasa?
       language_required_msg: Silakan pilih Bahasa
       meeting_start_text: 'Rapat akan dimulai:'
       need_changes: Perlu melakukan perubahan?
+      neurodivergence_comment_aria_label: Komentar neurodivergensi
       neurodivergence_comment_placeholder: Komentar Anda
       neurodivergence_question: Apakah Anda memerlukan akomodasi atau penyesuaian yang wajar karena kebutuhan khusus atau disabilitas untuk berpartisipasi penuh dalam penilaian?
       no_invites_msg: Anda akan ditambahkan ke pusat penilaian atau menerima undangan untuk memesan slot Anda; setelah Anda menjadi bagian dari pusat penilaian, Anda dapat menyelesaikan kegiatan dengan mengklik tombol 'Lihat Detail' di bawah ini.
+      or: atau
       other_invite: Lihat %{count} undangan lainnya
       other_invites: Lihat %{count} lebih banyak undangan
       reason: Alasan
@@ -622,31 +2335,75 @@ id:
       starts_in: 'Mulai masuk:'
       tab_label:
         bookings: Pemesanan
-        invites: Mengundang
-      what: Apa?
+        invites: Undangan
+      what: Apa
       when: Kapan
       workshop_start_text: Pusat Penilaian Anda akan dimulai pada
     break_time: Waktu Istirahat
     campaign:
       actions:
+        copy:
+          success: "%{campaignName} berhasil disalin."
         remove:
           confirmation: Masukkan nama kampanye saat ini yang diberikan di bawah ini dalam kotak teks untuk menghapus kampanye
           success: "%{campaignName} berhasil dihapus."
       users:
+        actions:
+          export:
+            details: Pengguna Kampanye
+            scheduled: Ekspor pengguna berhasil dijadwalkan.
+          export_reports_and_assessments:
+            details: Laporan dan Penilaian
         completion_statuses:
           completed: Selesai
           in_progress: Sedang Berlangsung
           not_started: Tidak Dimulai
     change_password: Mengubah kata sandi
+    clients:
+      actions:
+        create:
+          create_client: Buat Klien
+          create_license: Tambahkan lisensi
+        menus:
+          view_licenses: Lihat Lisensi
+        remove:
+          confirmation: Masukkan nama klien saat ini yang diberikan di bawah ini di kotak teks untuk menghapus klien
+          success: Klien dengan nama '%{clientName}' berhasil dihapus
+      projects:
+        actions:
+          remove:
+            confirmation: Masukkan nama proyek saat ini yang diberikan di bawah ini di kotak teks untuk menghapus proyek
+            success: Proyek dengan nama '%{projectName}' berhasil dihapus
     delete: Menghapus
     edit: Sunting
-    lighthouse_app: Mercusuar Mercer
+    error_warning: Ups, ada yang salah dengan penilaian Anda. Silakan hubungi dukungan.
+    hogan:
+      cannot_start: Anda tidak dapat memulai penilaian hogan sekarang. Silakan coba setelah beberapa menit.
+    lighthouse_app: Mercer Lighthouse
     login: Masuk
-    manage: Mengelola
+    maintenance:
+      notification: Mercusuar akan mati untuk pemeliharaan terjadwal dalam 60 detik
+    manage: Kelola
     'no': Tidak
+    passwordSetting:
+      update_success: Pengaturan keamanan berhasil diperbarui
+    questions:
+      campaign_factor_feedback:
+        add_skill: Tambahkan keterampilan
+        feedback: Umpan balik
+        max_factors: Faktor maks
+        min_factors: Faktor min
+        skill_factor: Faktor keterampilan
+    report_error: Ups, ada yang salah dengan laporan Anda. Silakan hubungi dukungan.
+    request_failed_message_box:
+      message: Permintaan Terakhir gagal. Silakan segarkan halaman dan jika masalah berlanjut, hubungi administrator Anda.
+      refresh: Refresh
     resource:
       create_success: "%{readableResourceName} berhasil ditambahkan"
       update_success: "%{readableResourceName} berhasil diperbarui"
+    restart: Restart
+    restart_progress: Ada beberapa perubahan dalam penilaian. Silakan segarkan halaman untuk melihat perubahannya. Menyegarkan halaman akan memulai penilaian dari awal. Pertanyaan yang telah Anda jawab akan diisi secara otomatis.
+    saved_results: Jawaban berhasil disimpan.
     session_timeout_modal:
       buttons:
         close: Tutup
@@ -657,16 +2414,69 @@ id:
       message_after_timeout: Sesi Anda telah habis, silakan masuk kembali.
       time_remaining: Sisa Waktu
       title: Peringatan Batas Waktu Sesi
+    skip_to_content: Lewati ke konten
+    smsInvites:
+      create_success: SMS Invite berhasil ditambahkan
+      update_success: SMS Invite berhasil diperbarui
+    sms_records:
+      create_success: Pekerjaan SMS berhasil dijadwalkan
+    test_webhook:
+      create_success: Tes webhook berhasil.
+      success: Keberhasilan
     update: Memperbarui
     upload: Unggah
     workshop_invited_subjects:
       statuses:
         cancelled: Dibatalkan
-        requested_cancellation: Pembatalan yang Diminta
+        requested_cancellation: Pembatalan telah diminta
         requested_cancellation_rejected: Pembatalan yang Diminta Ditolak
-        requested_rescheduling: Penjadwalan Ulang yang Diminta
+        requested_rescheduling: Permintaan Penjadwalan Ulang
         requested_rescheduling_rejected: Permintaan Penjadwalan Ulang Ditolak
     'yes': Ya
+  glint:
+    booking_card:
+      aria_available_time: waktu yang tersedia
+      aria_back_to_time_selection: Kembali ke Pemilihan Waktu
+      aria_desc_current_month: Saat ini menggunakan %{monthName} %{year}
+      aria_label_next_month: Pergi ke bulan depan
+      aria_label_previous_month: Pergi ke bulan sebelumnya
+      aria_timezone_select: Pilih Zona Waktu
+    color_picker:
+      copy_success_msg: Menyalin hexcode ke clipboard.
+      recent_colors: 'Baru-baru ini digunakan:'
+      recommended_colors: 'Direkomendasikan:'
+    datepicker_with_ranges:
+      all_time: Sepanjang Masa
+      current_month: Bulan Saat Ini
+      current_week: Minggu Ini
+      last_month: Bulan Lalu
+      last_week: Minggu lalu
+      today: Hari Ini
+      yesterday: Kemarin
+    fontsize_modifier:
+      change_font: Ubah ukuran font
+      decrease_font: Mengurangi ukuran font
+      increase_font: Meningkatkan ukuran font
+      reset_font: Atur ulang ukuran font
+    input_duration:
+      max_duration: Durasi maksimum adalah %{duration}
+    schedule_availability:
+      copy_to_all: Salin ke semua
+      end_date: Tanggal Berakhir
+      from: Dari
+      new_schedule: Menambahkan jadwal baru
+      new_schedule_description: Waktu mulai harus lebih awal dari waktu berakhir
+      no_slots: Tidak ada slot yang ditambahkan
+      required_error: tidak bisa kosong
+      save: Simpan
+      saved_schedule_description: Jadwal ketersediaan pengguna yang tersimpan
+      start_date: Tanggal Mulai
+      timezone_label: Zona Waktu
+      to: Ke
+    views_container:
+      aria_grid_view: Tampilan kisi
+      aria_list_view: Tampilan daftar
+      aria_selected: Dipilih
   idp:
     actions: Tindakan
     behavioral: Perilaku
@@ -679,23 +2489,23 @@ id:
     comments:
       close: Tutup
       comments: Komentar
-      filter_comments: Saring komentar
-      mark_as_resolved: Tandai sebagai telah diselesaikan
-      mark_as_unresolved: Tandai sebagai belum diselesaikan
-      replied: Dibalas
+      filter_comments: Filter komentar
+      mark_as_resolved: Tandai sebagai terselesaikan
+      mark_as_unresolved: Tandai sebagai belum terselesaikan
+      replied: Menjawab
       replies: Balasan
-      reply: Balas
-      resolve: Selesaikan
+      reply: Jawab
+      resolve: Menyelesaikan
       resolved: Diselesaikan
       resolved_message: Komentar ini telah diselesaikan dan balasan dinonaktifkan.
-      show_only_read: Tampilkan hanya yang sudah dibaca
-      show_only_resolved: Tampilkan hanya yang sudah diselesaikan
-      show_only_unread: Tampilkan hanya yang belum dibaca
-      show_only_unresolved: Tampilkan hanya yang belum diselesaikan
+      show_only_read: Tampilkan hanya baca
+      show_only_resolved: Tampilkan hanya diselesaikan
+      show_only_unread: Tampilkan hanya belum dibaca
+      show_only_unresolved: Tampilkan hanya yang belum terselesaikan
       sort_by_date: Urutkan berdasarkan tanggal
-      you: Anda
-    convert_to_draft: Ubah ke Konsep
-    details: Detail
+      you: Kamu
+    convert_to_draft: Konversi ke Draf
+    details: Rincian
     development_actions:
       action_private: Ya
       action_public: Tidak
@@ -708,59 +2518,59 @@ id:
         not_started: Belum Dimulai
       completion: Penyelesaian
       create_my_own: Buat Sendiri
-      date_range: Tanggal Mulai - Tanggal Selesai
+      date_range: Tanggal Mulai - Tanggal Akhir
       generate_by_ai: Hasilkan oleh AI
       generate_more: Hasilkan Lebih Banyak
-      generating_development_actions: Menghasilkan tindakan pengembangan...
+      generating_development_actions: Menghasilkan tindakan pembangunan...
       heading: Tindakan Pengembangan
-      incomplete_error: Tindakan Pengembangan Belum Lengkap
-      incomplete_error_message: Beberapa tindakan pengembangan belum lengkap. Silakan lengkapi sebelum mengirimkan IDP Anda.
-      incomplete_warning: Tindakan Pengembangan Belum Lengkap
-      incomplete_warning_message: Beberapa tindakan pengembangan belum lengkap. Apakah Anda yakin ingin menandai IDP Anda selesai?
+      incomplete_error: Tindakan Pengembangan yang Tidak Lengkap
+      incomplete_error_message: Beberapa tindakan pengembangan tidak lengkap. Harap lengkapi sebelum mengirimkan IDP Anda.
+      incomplete_warning: Tindakan Pengembangan yang Tidak Lengkap
+      incomplete_warning_message: Beberapa tindakan pengembangan tidak lengkap. Apakah Anda yakin ingin menandai IDP Anda selesai?
       learning_from_others: Belajar dari orang lain
       manage_skills: Kelola Keterampilan
       marathon: Maraton
       mark_as_complete: Tandai sebagai Selesai
       no_development_actions: Tidak ada tindakan pengembangan
       on_the_job: Di tempat kerja
-      other: Lainnya
-      private: Pribadi
-      publish_plan: Publikasikan Rencana
-      remove: Hapus
-      skill: Keterampilan
+      other: Lain
+      private: Swasta
+      publish_plan: Menerbitkan Rencana
+      remove: Buka
+      skill: Keahlian
       sprint: Sprint
       start_plan: Mulai Rencana
       structured_learning: Pembelajaran terstruktur
-      submit_plan: Kirim Rencana
+      submit_plan: Kirim Paket
       write_here: Tulis di sini...
-    edit_plan: Sunting Rencana
+    edit_plan: Edit Paket
     edit_progress: Edit Kemajuan
     initial_steps:
       add_skill_group_description: Berdasarkan hasil penilaian Anda, berikut adalah beberapa area kekuatan dan pengembangan untuk Anda. Pilih keterampilan yang ingin Anda kembangkan lebih lanjut sebagai bagian dari rencana pengembangan Anda.
       add_skill_group_title: Menjelajahi Keterampilan %{category} Anda
-      add_skills: Tambahkan
+      add_skills: Tambah
       add_skills_step: Tambahkan Keterampilan
-      continue_to_rate_skills: Lanjutkan untuk menilai keterampilan
-      getting_started: Memulai
-      less_skills: Tampilkan lebih sedikit keterampilan
+      continue_to_rate_skills: Terus menilai keterampilan
+      getting_started: Persiapan
+      less_skills: Tunjukkan keterampilan yang lebih sedikit
       more_skills: Jelajahi lebih banyak keterampilan
-      next: Berikutnya
+      next: Depan
       no_skills_selected: Tidak ada keterampilan yang dipilih.
-      rate_skills: Nilai Keterampilan
-      rate_skills_description: Sekarang setelah Anda memilih prioritas pengembangan Anda, silakan nilai diri Anda pada masing-masing berikut. Ingatlah untuk menilai diri Anda berdasarkan tingkat saat ini, bukan tingkat masa lalu atau yang diinginkan.
+      rate_skills: Keterampilan Nilai
+      rate_skills_description: Sekarang setelah Anda memilih prioritas perkembangan Anda, harap beri peringkat diri Anda pada masing-masing hal berikut. Ingatlah untuk menilai diri Anda berdasarkan level Anda saat ini dan bukan pada level masa lalu atau yang Anda inginkan.
       rate_skills_title: Menilai Keterampilan Anda
-      rating_column_header: Penilaian diri Anda
+      rating_column_header: Peringkat diri Anda
       reflective_questions: Pertanyaan Reflektif
       save: Simpan
       select_skills: Pilih keterampilan Anda
       select_skills_placeholder: Pilih keterampilan
       selected_skills: Keterampilan Terpilih
-      skill_column_header: Keterampilan
+      skill_column_header: Keahlian
       skill_gap_report: Laporan Kesenjangan Keterampilan
     list: Daftar
-    manage_plan: Kelola Rencana
+    manage_plan: Kelola Paket
     mark_as_complete: Tandai sebagai Selesai
-    mark_as_incomplete: Tandai sebagai Belum Selesai
+    mark_as_incomplete: Tandai sebagai Tidak Lengkap
     my_plan:
       development_plan: Rencana Pengembangan
       graphs:
@@ -771,41 +2581,41 @@ id:
       approval_status: Status Persetujuan
       cover:
         fields:
-          assigned_data: Tanggal Penugasan
+          assigned_data: Tanggal yang Ditetapkan
           assigned_date: Tanggal Penugasan
           completion_date: Tanggal Penyelesaian
           division: Divisi
           name: Nama
           publish_date: Tanggal Publikasi
-          review_date: Tanggal Tinjauan
+          review_date: Tanggal Peninjauan
           role: Peran Saat Ini
       guidelines:
         cards:
           c1:
-            content: Sertakan keterampilan, pengetahuan, dan kemampuan yang perlu dikembangkan. Pastikan spesifik, terukur, dapat dicapai, realistis, dan dapat diselesaikan dalam waktu yang disebutkan.
+            content: Sertakan keterampilan, pengetahuan, dan kemampuan yang perlu dikembangkan. Pastikan mereka spesifik, terukur, dapat dicapai, realistis, dan dapat dicapai secara wajar dalam garis waktu yang disebutkan.
             title: Tujuan Pengembangan
           c2:
-            content: Ini didasarkan pada kompetensi yang akan dikembangkan berdasarkan pengalaman penilaian.
+            content: Hal ini didasarkan pada kompetensi yang akan dikembangkan berdasarkan pengalaman penilaian.
             title: Kompetensi
           c3:
-            content: Bagian ini mencakup tindakan pengembangan Anda berdasarkan model pembelajaran 70-20-10 yang tercantum di bawah ini. Disarankan untuk memilih kombinasi dari ketiga elemen tersebut untuk memastikan pendekatan pembelajaran dan pengembangan yang bervariasi.
+            content: Bagian ini mencakup tindakan pengembangan Anda berdasarkan model pembelajaran 70-20-10 yang tercantum di bawah ini. Disarankan agar Anda memilih kombinasi dari masing-masing dari tiga elemen untuk memastikan pendekatan pembelajaran dan pengembangan yang bervariasi.
             title: Aktivitas
           c4:
-            content: Pastikan jadwal Anda realistis berdasarkan kapan tujuan dapat diselesaikan. Ubah sesuai kebutuhan.
-            title: Garis Waktu
+            content: Pastikan garis waktu Anda realistis berdasarkan kapan tujuan dapat diselesaikan. Ubah ini sebagaimana mestinya.
+            title: Garis waktu
           c5:
-            content: Gunakan bagian kemajuan untuk mendukung perkembangan pada jalur yang diidentifikasi.
+            content: Gunakan bagian kemajuan untuk mendukung kemajuan pada jalur yang diidentifikasi.
             title: Kemajuan
         chart:
-          collaboration: "<strong>20%</strong>Pembelajaran Kolaboratif <br />"
-          job: "<strong>70%</strong>Pembelajaran <br />di Tempat Kerja"
-          learn: "<strong>10%</strong>Pembelajaran Formal <br />"
+          collaboration: "<strong>20%</strong>Kolaboratif <br /> Belajar"
+          job: "<strong>70%</strong>Belajar <br />di Tempat Kerja"
+          learn: "<strong>10%</strong>Pembelajaran Formal"
         content:
           list:
             r1: Harap dicatat bahwa daftar ini hanya bersifat indikatif, dan jalur pengembangan tambahan dapat dipertimbangkan untuk Anda berdasarkan aspirasi individu, rekomendasi dari manajer Anda, serta prioritas bisnis organisasi.
-            r2: Harap dicatat bahwa peluncuran beberapa jalur pengembangan ini akan bergantung pada strategi pendidikan dan pembelajaran organisasi secara luas.
-            r3: Harap pertimbangkan jalur yang direkomendasikan seperti yang dicoret di bawah ini, saat mengembangkan Rencana Pengembangan Individu Anda.
-          main: Bagian ini mencakup daftar kumulatif dari semua jalur pengembangan, dengan memperhatikan praktik terbaik pembelajaran yaitu pedoman 70-20-10, yang memberikan perjalanan progresif menggabungkan pembelajaran di kelas, pembimbingan, dan pembelajaran di tempat kerja. Berdasarkan hasil dari pengalaman pengembangan kepemimpinan dan prioritas bisnis, jalur pengembangan yang mungkin telah direkomendasikan, yang dapat dipertimbangkan untuk pengembangan Anda.
+            r2: Harap dicatat bahwa peluncuran beberapa jalur pengembangan ini akan bergantung pada strategi pendidikan dan pembelajaran di seluruh organisasi.
+            r3: Harap pertimbangkan jalur yang direkomendasikan seperti yang dilintasi di bawah ini, saat mengembangkan Rencana Pengembangan Individu Anda.
+          main: Bagian ini mencakup daftar kumulatif dari semua jalur pengembangan, dengan mengingat pembelajaran praktik terbaik yaitu, pedoman 70-20-10, yang memberikan perjalanan progresif yang menggabungkan pembelajaran di kelas, pembinaan, dan pembelajaran di tempat kerja. Berdasarkan hasil dari pengalaman pengembangan kepemimpinan dan prioritas bisnis, kemungkinan jalur pengembangan telah direkomendasikan, yang dapat dipertimbangkan untuk pengembangan Anda.
         learn_cards:
           collaboration:
             list:
@@ -816,7 +2626,7 @@ id:
             - Mendapatkan umpan balik secara formal dan informal dari orang lain
             - Berperan aktif dalam asosiasi dan jaringan industri
             - Membangun jaringan eksternal Anda sendiri
-            title: Pembelajaran Kolaboratif (20%) <br/> Belajar melalui orang lain
+            title: Pembelajaran Kolaboratif (20%) <br/> Berkembang melalui orang lain
           job:
             list:
             - Mengambil posisi kepemimpinan dalam komite pemangku kepentingan atau manajemen
@@ -825,7 +2635,7 @@ id:
             - Bekerja lintas fungsi dengan departemen lain
             - Pertimbangkan untuk memimpin proyek di luar organisasi Anda
             - Bekerja sama dengan pakar industri eksternal dalam proyek bersama
-            title: Pembelajaran di Tempat Kerja (70%) <br/> Belajar melalui pengalaman
+            title: Belajar Di Tempat Kerja (70%) <br/> Berkembang melalui pengalaman
           learn:
             list:
             - Mengambil posisi kepemimpinan dalam komite pemangku kepentingan atau manajemen
@@ -834,11 +2644,11 @@ id:
             - Bekerja lintas fungsi dengan departemen lain
             - Pertimbangkan untuk memimpin proyek di luar organisasi Anda
             - Bekerja sama dengan pakar industri eksternal dalam proyek bersama
-            title: Pembelajaran Formal (10%) <br/> Belajar melalui pembelajaran terstruktur
-        title: Panduan untuk Membimbing IDP Anda
+            title: Pembelajaran Formal (10%) <br/> Berkembang melalui pembelajaran terstruktur
+        title: Pedoman untuk Memandu IDP Anda
       idp:
-        end_date: Tanggal Selesai
-        self_rating: Penilaian Diri
+        end_date: Tanggal Berakhir
+        self_rating: Peringkat Diri
         start_date: Tanggal Mulai
         subtitle:
           behavioural: Perilaku
@@ -847,8 +2657,8 @@ id:
       last:
         end_report: Akhir Laporan
       reflections:
-        subtitle: Pertanyaan untuk Pengembangan Profesional Keseluruhan
-        title: Refleksi untuk Membimbing IDP Anda
+        subtitle: Pertanyaan untuk Pengembangan Profesional Secara Keseluruhan
+        title: Refleksi untuk Memandu IDP Anda
       skill_categories:
         behavioral: Perilaku
         technical: Teknis
@@ -856,22 +2666,22 @@ id:
         approved: Ditinjau dan Disetujui
         completed: Selesai
         draft: Konsep
-        not_reviewed: Belum Ditinjau
-        pending_approval: Dalam Peninjauan
+        not_reviewed: Tidak Ditinjau
+        pending_approval: Dalam Tinjauan
       summary:
         ai_count: AI Generatif
         collaborative_learn: Pembelajaran Kolaboratif
         created_by: Dibuat oleh
         current_status: Status IDP Saat Ini
-        custom: Kustom
-        custom_count: Kustom
-        da_count: Jumlah Tindakan Pengembangan
+        custom: Adat
+        custom_count: Adat
+        da_count: Jumlah Tindakan Pembangunan
         formal_learn: Pembelajaran Formal
         generated_ai: AI Generatif
         learn_on_job: Belajar di tempat kerja
         learn_pathway: Jalur Pembelajaran
-        lib_count: Pustaka IDP
-        library: Pustaka IDP
+        lib_count: Perpustakaan IDP
+        library: Perpustakaan IDP
         skills_count: Jumlah Keterampilan
         title: Ringkasan Laporan
     plan: Rencana
@@ -880,43 +2690,234 @@ id:
       answer_later: Jawab Nanti
       answer_placeholder: Tulis jawaban Anda di sini...
       errors:
-        max_words: Jawaban maksimal %{count} kata
-        min_words: Jawaban minimal %{count} kata
-        required: Jawaban atas pertanyaan ini wajib diisi
-      max_words: Kata Maksimal
-      min_words: Kata Minimal
+        max_words: Jawabannya memungkinkan %{count} kata maksimum
+        min_words: Jawabannya membutuhkan setidaknya %{count} kata
+        required: Jawaban atas pertanyaan tersebut diperlukan
+      max_words: Kata-kata Maks
+      min_words: Kata Min
       title: Pertanyaan Reflektif
-      update_failed: Terjadi kesalahan saat memperbarui
-      updated_successfully: Jawaban Anda berhasil diperbarui
+      update_failed: Terjadi kesalahan selama pembaruan
+      updated_successfully: Jawaban Anda telah berhasil diperbarui
       words: Kata
     skill_gap_report:
       title: Laporan Kesenjangan Keterampilan
-    status: Status
+    status: Keadaan
     technical: Teknis
     user_idp_status:
       approved: Disetujui
       completed: Selesai
-      draft: Konsep
+      draft: Bagan
       in_progress: Sedang Berlangsung
       not_started: Belum Dimulai
       pending_approval: Menunggu Persetujuan
       rejected: Ditolak
     users: Pengguna
-    with_reflection_questions: Dengan Pertanyaan Reflektif
-    without_reflection_questions: Tanpa Pertanyaan Reflektif
+    with_reflection_questions: Dengan Pertanyaan Refleksi
+    without_reflection_questions: Tanpa Pertanyaan Refleksi
   idp_templates:
+    assign: Menetapkan
+    assign_idp_template: Tetapkan Template Idp
+    auto_assign: Menetapkan pengguna baru secara otomatis
     errors:
-      user_idp_template_not_found: Tidak ada templat IDP yang ditetapkan untuk Anda.
+      idp_template_not_found: Templat IDP tidak ditemukan
+      user_idp_template_not_found: Tidak ada kerangka IDP yang ditetapkan untuk Anda.
+    idp_template: Templat IDP
+    override_exists: Mengganti dan mengatur ulang pengguna yang ada
+    placeholder: Pilih Template Idp
+    save_and_assign: Simpan dan Tetapkan
+    success_scheduled: Pekerjaan untuk menetapkan IDP telah berhasil dijadwalkan
+  jobs:
+    threesixty:
+      bulk_downloads: Pekerjaan Unduhan Massal berhasil dijadwalkan
+      export_completion_statuses_scheduled: Status Penyelesaian Pekerjaan ekspor berhasil dijadwalkan
+      export_raw_results_scheduled: Pekerjaan ekspor Hasil Mentah berhasil dijadwalkan
+      export_scores_scheduled: Pekerjaan ekspor skor berhasil dijadwalkan
+      reports:
+        download:
+          description: 'Untuk mengunduh laporan, silakan ikuti tautan: <a href=''%{url}'' target=''_blank''>Unduh</a>'
+          error: Terjadi Kesalahan
+          error_description: Pembuatan laporan Anda gagal. Silakan hubungi Administrator atau coba <b>unduh</b> lagi.
+          message: Laporan sudah siap
+  languages:
+    af: Afrika
+    ar: Arab
+    az: Azerbaijan
+    bg: Bulgaria
+    bs: Bosnian
+    by: Belarusia
+    ca: Catalan
+    cn: Cina
+    cs: Ceko
+    cy: Cymraeg
+    da: Denmark
+    de: Deutsch
+    el: Yunani
+    en: Inggris
+    en-GB: Bahasa Inggris - Inggris
+    en-US: Bahasa Inggris - AS
+    eo: Bahasa esperanto
+    es: Spanyol (Amerika Latin)
+    es-ES: Spanyol (Spanyol)
+    et: Estonia
+    fa: Farsi
+    fi: Finlandia
+    fr: Prancis
+    gu: Gujarat
+    he: Ibrani
+    hi: Hindi
+    hr: Kroasia
+    hu: Hongaria
+    id: Bahasa Indonesia
+    it: Italia
+    ja: Jepang
+    km: Khmer
+    ko: Korea
+    lt: Lithuania
+    lv: Latvia
+    mk: Makedonia
+    mn: Mongolia
+    ms: Bahasa Malaysia
+    my: Myanmar
+    nb: Bokmål Norwegia
+    nl: Belanda
+    'no': Norwegia
+    pl: Polandia
+    pt: Portugis
+    pt-BR: Portugis Brasil
+    pt-PT: Portugis (Portugal)
+    pt_BR: Portugis (Brasil)
+    ro: Rumania
+    ru: Rusia
+    sk: Slovakia
+    sl: Slovenia
+    sr-Cyrl: Sirilik Serbia
+    sr-Latn: Latin Serbia
+    sv: Swedia
+    sw: Swahili
+    ta: Tamil
+    th: Thai
+    tl: Bahasa tagalog
+    tr: Turki
+    ua: Ukraina
+    uk: Ukraina
+    ur: Urdu
+    vi: Vietnam
+    zh: Cina Sederhana
+    zh-CN: Tionghoa (RRT)
+    zh-HK: Cina (Hong Kong)
+    zh-Hant: Cina - Tradisional
+    zh-TW: Cina (Taiwan)
+  license_usage:
+    active: Aktif
+    campaign_name: Nama kampanye
+    inactive: Aktif
+    status_updated_at: Pembaruan status terakhir
+    status_updated_by: Terakhir diperbarui oleh
+    subject_email: Email subjek
+    subject_name: Nama subjek
+    usage_overview: Melihat penggunaan lisensi
+    usages: Penggunaan
+  licenses:
+    enabled: Diaktifkan
+    end_date: Tanggal akhir
+    not_enough_idp_license: Lisensi IDP tidak cukup, silakan hubungi administrator
+    not_enough_license: "'%{client_name}' tidak memiliki cukup lisensi untuk '%{report_name}'"
+    not_enough_license_count: Lisensi tidak cukup, silakan hubungi administrator
+    not_enough_proctoring_credits: Tidak cukup kredit untuk memulai sesi pengawasan
+    number: Angka
+    overuse_number: Tunjangan penggunaan berlebih
+    report_family: Bundel laporan
+    start_date: Tanggal mulai
+    title: Lisensi
+    type: Jenis
+    types:
+      common: Biasa
+      idp: IDP
+      proctoring: Pengawasan
+      threesixty: Tiga enam puluh
+    used_number: Lisensi bekas
+    used_out_of: "%{used} dari %{total}"
   mailer:
+    from: Perusahaan Bakat
+    idp:
+      manager_unread_comments:
+        body: |-
+          Halo %{name},
+          Anda memiliki komentar baru dari lapor IDP Anda.
+
+          %{dashboard_link}
+
+          Di dasbor Bawahan Langsung, Anda dapat:
+          - Tinjau komentar baru dari anggota tentang paket masing-masing
+          - Berikan umpan balik tentang tujuan pengembangan mereka
+          - Lacak kemajuan aktivitas IDP
+          - Mendukung pertumbuhan dan perkembangan tim Anda
+        dashboard_link: Kunjungi Dasbor
+        subject: Anda memiliki komentar baru - %{campaign_name}
+      user_unread_comments:
+        body: |-
+          Halo %{name},
+          Anda memiliki komentar baru tentang rencana pengembangan Anda.
+
+          %{dashboard_link}
+
+          Di dasbor Paket Saya, Anda dapat:
+          - Perbarui rencana pengembangan Anda
+          - Baca komentar dan umpan balik baru
+          - Menanggapi pertanyaan dari manajer Anda
+          - Perbarui kemajuan Anda pada tindakan pengembangan
+        dashboard_link: Lihat Paket Saya
+        subject: Anda memiliki komentar baru tentang rencana pengembangan Anda - %{campaign_name}
+    license:
+      expire:
+        subject: Lisensi kedaluwarsa
+      overuse:
+        subject: Penggunaan lisensi yang berlebihan
+      weekly_stats:
+        column_headers:
+          client_name: Nama Klien
+          expiry_date: Tanggal kedaluwarsa
+          overuse_limit: Batas Penggunaan Berlebihan
+          project_manager: Manajer Proyek
+          remaining_count: Jumlah Tersisa
+          type: Jenis lisensi
+          use_count: Jumlah penggunaan
+        expiry_stats: 'Lisensi kedaluwarsa dalam 30 hari ke depan :'
+        no_expiry_stats: Tidak ada lisensi yang kedaluwarsa dalam 30 hari ke depan.
+        no_weekly_stats: Tidak ada lisensi yang digunakan dalam 7 hari terakhir.
+        notice: Catatan - Anda dapat berhenti berlangganan email mingguan ini dari halaman profil Anda.
+        subject: Statistik penggunaan lisensi mingguan
+        weekly_stats: 'Statistik penggunaan lisensi minggu lalu:'
     magic_link:
       body:
         dear: Kepada %{name} yang terhormat,
-        greetings: Salam untuk hari ini!
+        greetings: Halo!
         instructions: Klik tautan di bawah ini untuk masuk ke lighthouse.
         signin_link: Tautan Masuk
       subject: Tautan masuk untuk Lighthouse
+    users:
+      account_disable: Akun Anda telah dinonaktifkan karena tidak aktif
+      warning: Akun Anda akan segera dinonaktifkan karena tidak aktif
+  maintenance_message: Mercusuar akan mati untuk pemeliharaan terjadwal pada %{start_date} dan tidak akan tersedia selama %{duration} jam
+  maintenance_submessage: Silakan segarkan halaman setelah pemeliharaan selesai. Anda akan diarahkan ke halaman login
+  my: Saya
+  myself: Diriku
   navigation:
     logout: Keluar
+  'no': Tidak
+  nominations:
+    approval_email_error: Persetujuan email terakhir dikirim pada %{last_sent_at}. Anda dapat mengirim email pengingat berikutnya di %{wait_time}
+  norms:
+    percentile:
+      columns:
+        mean: Berarti
+        name: Nama
+        standard_deviation: Standar Deviasi
+      messages:
+        failure: 'Kesalahan: %{error}.'
+        success: Norma untuk Faktor '%{factorName}' berhasil diperbarui.
+      values:
+        empty: Kosong
   profile:
     add_field: Tambahkan Bidang
     add_photo: Tambahkan Foto
@@ -931,23 +2932,155 @@ id:
     last_name: Nama belakang
     locale: Bahasa Pilihan
     male: Laki-laki
-    mandatory_fields: Menunjukkan bidang wajib
-    not_disclosed: Memilih untuk tidak mengungkapkan
+    mandatory_fields: Menunjukkan kolom yang wajib
+    not_disclosed: Memilih tidak mengungkapkan
     old_data: Data profil Anda sudah berumur %{months} bulan. Harap konfirmasi detail untuk melanjutkan
     password: Kata sandi
     password_confirmation: Konfirmasi Kata Sandi
+    photo: Foto
     success_update: Profil berhasil disimpan
     timezone: Zona waktu
     title: Profil Saya
     update: Memperbarui
     update_required: Diperlukan pembaruan profil
+  profiles:
+    edit:
+      header: Pengaturan Profil
+    form:
+      username: Nama pengguna
+    update:
+      successfully: Profil berhasil diperbarui
+  registration:
+    success_update: Pendaftaran berhasil disimpan
+  registration_code:
+    allowed_domains: Domain yang diizinkan
+    invalid_code: Kode kampanye tidak valid
+    modals:
+      remove:
+        content: Apakah Anda yakin ingin menghapus kode Pendaftaran <strong>"%{code}"</strong>?
+        successfully: Kode pendaftaran '%{code}' berhasil dihapus.
+      title: Kode Pendaftaran
+    one_domain_per_line: Satu nama domain per baris
+    restricted_domains: Domain yang dibatasi
+    token_expired: Token kedaluwarsa
+  report_approvals:
+    events:
+      approved_text: Teks yang disetujui
+      comment_added: menambahkan komentar <i>%{text}</i>
+      comment_removed: Komentar yang dihapus
+      comment_resolved: komentar yang diselesaikan
+      comment_unresolved: Komentar yang belum terselesaikan
+      comment_updated: mengubah komentar <s>%{oldText}</s> menjadi <i>%{newText}</i>
+      created_text: Menambahkan teks
+      disapproved_text: teks yang tidak disetujui
+      removed_text: Teks yang dihapus
+      status_changed: Mengubah status dari <i>%{from}</i> menjadi <i>%{to}</i>
+      updated_text: Teks yang diperbarui
+    tabs:
+      all: Semua
+      approved: Disetujui
+      my_tasks: Tugas Saya
+  report_bundles:
+    actions:
+      remove:
+        confirm_message: Apakah Anda yakin ingin menghapus bundel laporan "%{name}"?
+        confirm_title: Konfirmasi Diperlukan
+        success_message: Bundel Laporan %{name} telah dihapus
+    report_bundle: Bundel Laporan
+    report_bundles: Paket Laporan
+    reports:
+      actions:
+        add: Tambahkan Laporan Baru
+        remove:
+          confirm_message: Apakah Anda yakin ingin menghapus laporan "%{name}" dari '%{report_bundle_name}'?
+          confirm_title: Konfirmasi Diperlukan
+          success_message: Laporan %{name} telah dihapus
   reports:
     actions:
       add: Tambah Laporan
+      archived:
+        success_message: Laporan "%{name}" berhasil diarsipkan.
+      back_to_campaign: Kembali ke Kampanye
+      copy:
+        success_message: Laporan "%{name}" berhasil disalin.
+      details: Rincian
       download: Unduh laporan
+      download_csv: Unduh CSV
+      edit: Mengedit
+      evaluate: Mengevaluasi
+      extend_time: Perpanjang waktu
+      goto_dashboard: Klik di sini untuk melanjutkan
+      re_evaluate: Klik di sini untuk mengevaluasi kembali
+      reevaluate: Evaluasi Kembali
+      remove:
+        confirm_message: Apakah Anda yakin ingin menghapus laporan "%{name}"?
+        confirm_title: Konfirmasi Diperlukan
+        success_message: Laporan %{name} telah dihapus
+      rescore: Skor ulang
+      restore:
+        success_message: Laporan %{name} berhasil dipulihkan
+      unarchived:
+        success_message: Laporan %{name} berhasil dibatalkan arsip
+      update_language: Perbarui Bahasa
       view: Lihat Laporan
+    active: Aktif
+    archived: Diarsipkan
+    builder:
+      graph:
+        properties:
+          barBorderRadius: Radius Perbatasan Batang
+          barWeight: Berat Batang
+          dataFormat: Data Format
+          graphOption3D: 3D
+          graphOptionStandard: Standar
+          graphSubType: Subtipe Grafik
+          graphTypeHorizontal: Horisontal
+          graphTypeVertical: Vertikal
+          hideEmptyColumns: Sembunyikan Kolom Kosong
+          hideEmptyFilters: Sembunyikan filter kosong
+          hideXAxisLine: Sembunyikan garis kisi sumbu X
+          hideXAxisTitle: Sembunyikan judul sumbu X
+          hideYAxisLine: Sembunyikan garis kisi sumbu Y
+          hideYAxisTitle: Sembunyikan judul sumbu Y
+          hideZeroValueColumns: Sembunyikan Kolom Nilai Nol
+          legendPosition: Posisi Legenda
+          maxValueLabel: Nilai Maks (angka)
+          maxValueLabelPlaceholder: Nilai Maks
+          positionBottomLeft: Kiri Bawah
+          positionBottomMiddle: Tengah Bawah
+          positionBottomRight: Kanan Bawah
+          positionTopLeft: Kiri Atas
+          positionTopMiddle: Tengah Atas
+          positionTopRight: Kanan Atas
+          reverse: Mundur
+          showLegend: Tampilkan Legenda
+    columns:
+      data_only: Hanya data
+      default_language: Bahasa Default
+      external_settings:
+        hogan_report_id: ID Laporan Hogan
+        saville_report_id: ID Laporan Saville
+      other_available_languages: Bahasa lain yang tersedia
+    create: Menciptakan
+    dashboard: Dashboard
+    drawer:
+      title: Detail Laporan
+    fields:
+      provider:
+        custom_upload: Unggahan Kustom
+        hogan: Hogan
+        internal: Intern
+        mettl: Mettl
+        pearson: Pearson
+        saville: Saville
+        skillvue: Keterampilan
     form:
+      load_from_mettl: Muat dari Mettl
+      load_from_pearson: Muat dari Pearson
       load_from_skillvue: Memuat dari Skillvue
+      none_external: Tidak ada - Menggunakan pembuat laporan
+    language: Bahasa Laporan
+    language_updated: Bahasa Laporan berhasil diperbarui
     modules:
       campaign_factors_table:
         add_condition: Tambahkan Kondisi
@@ -965,13 +3098,21 @@ id:
         strengths: Kekuatan
         then: Kemudian tampilkan teks berikut ini
         title: Judul
+      common:
+        all_factors: Semua faktor
+        font: Font
+        table_options: Opsi tabel
+        table_type: Jenis tabel
       factors_table:
         description: Deskripsi
+        na: N/A
         no_data: Tidak ada data yang tersedia untuk bagian ini.
         rank: Peringkat
         score: Skor
       gap_assessment:
         gap: Kesenjangan
+        hide_left_filter: Sembunyikan Filter Kiri
+        hide_right_filter: Sembunyikan Filter Kanan
         item: Indikator
         negative_gap: Kesenjangan Negatif
         no_negative_gaps: Tidak Ada Kesenjangan Negatif
@@ -980,7 +3121,7 @@ id:
         rank: Peringkat
         scoring_category: Kompetensi
       highest_lowest:
-        bottom_5: BAWAH 5
+        bottom_5: 5 TERBAWAH
         category: Kategori
         highest_scores: Skor Tertinggi
         item: Indikator
@@ -989,13 +3130,13 @@ id:
         rank: Peringkat
         scoring_category: Kompetensi
         sub_competenties: Sub-Kompetensi
-        top_5: TOP 5
+        top_5: 5 TERATAS
       potential_career_full:
         career_strengths_and_results: Kekuatan Karier dan Hasil Anda
         career_sub_tracks: Sub-lintasan Karier
-        key_career_tracks_within: Di bawah ini adalah daftar peran pekerjaan potensial untuk masing-masing jalur karier. Ingatlah bahwa daftar ini hanya bersifat indikatif, dan tidak lengkap. Perhatikan bahwa peran yang dicetak miring membutuhkan tingkat pendidikan dan/atau pengalaman yang lebih tinggi.
+        key_career_tracks_within: Di bawah ini adalah daftar peran pekerjaan yang potensial untuk masing-masing jalur karir. Ingatlah bahwa daftar ini hanya bersifat indikatif, dan tidak lengkap. Perhatikan bahwa peran yang dicetak miring membutuhkan tingkat pendidikan dan/atau pengalaman yang lebih tinggi.
         potential_areas_of_study: Bidang-bidang Studi yang Potensial
-        strength_high: Kekuatan Tanda Tangan
+        strength_high: Kekuatan Khas
         strength_low: Kekuatan Perkembangan
         strength_moderate: Kekuatan Potensial
         work_environment: Lingkungan Kerja
@@ -1008,15 +3149,15 @@ id:
         developmental_rating: Peringkat Perkembangan
         questions: Pertanyaan
       strength_clusters:
-        index_sub_factors_considered: Sub-faktor Indeks Berkembang yang telah dipertimbangkan untuk memberikan nilai akhir Anda untuk lingkungan kerja %{workstyle}
+        index_sub_factors_considered: Sub-faktor Indeks Perkembangan yang telah dipertimbangkan untuk memberikan nilai akhir Anda untuk lingkungan kerja %{workstyle}
         possible_roles: Peran yang mungkin dilakukan
         work_environments: Lingkungan Kerja yang Diharapkan
       three_sixty_default:
         factor:
           items: Item
-          max: Nilai Maks
-          mean: Berarti
-          min: Nilai Min
+          max: Nilai Maksimum
+          mean: Nilai rata-rata
+          min: Nilai Minimum
           standardDeviation: Standar Deviasi
           sum: Jumlah
           totalResponses: Total Tanggapan
@@ -1034,6 +3175,14 @@ id:
         total: Total
       video_response:
         no_results: Tidak ada video yang direkam
+    pages:
+      edit:
+        assets: Aset
+        general_settings: Pengaturan Umum
+        translations: Terjemahan
+    report: Lapor
+    reports: Laporan
+    reset: Reset
     show:
       export_pdf: Ekspor ke PDF
       header: Laporan
@@ -1045,29 +3194,358 @@ id:
       not_available: Tidak tersedia
       on_hold: Ditunda
       released: Dirilis
+    trash: Sampah
+    update: Pemutakhiran
+    upload: Unggah
+  reset_password_modal:
+    fields:
+      automatically_generate_password: Buat kata sandi secara otomatis
+      change_password_on_login: Ubah kata sandi saat login
+      login_link: Tautan Masuk
+      new_password: Kata Sandi Baru
+      password_placeholder: Masukkan Kata Sandi
+      send_password_email: Kirim kata sandi melalui Email
+      username: Nama pengguna
+    messages:
+      reset_password_success: Kata sandi pengguna %{email} berhasil disetel ulang.
+      send_password_email_success: Email dikirim ke pengguna %{email} dengan kata sandi.
+    title: Atur Ulang Kata Sandi
+  select: Pilih
   shared:
     filters:
       clear: Hapus Filter
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
+    mte_logo_alt_text: Logo Mercer Talent Enterprise
     terms_conditions_privacy: Pernyataan Privasi
-    tte_terms_and_condition: Ketentuan &amp; Privasi
+    tte_terms_and_condition: Ketentuan & Privasi
+  sheet:
+    import_modal:
+      alert_access_sheet_removal: Mengunggah Lembar Akses baru dengan menghapus semua catatan yang ada dan mengunggah yang baru dari lembar. Pastikan Anda memiliki semua catatan Accesssheet dalam spreadsheet.
+      success_message: File berhasil diunggah. Impor catatan lembar data sedang berlangsung
+      title: Impor Catatan Lembar
+    menu:
+      export: Lembar Ekspor
+      export_info: Tidak ada data untuk diekspor.
+      import: Lembar Impor
+    no_sheet: Anda harus mengimpor lembar terlebih dahulu
   simple_form:
+    error_notification:
+      default_message: 'Silakan tinjau masalah di bawah ini:'
+    labels:
+      client:
+        applicable_level: Tingkat yang Berlaku
+        applicable_levels:
+          campaign: Kampanye
+          project: Proyek
+          sub_campaign: Sub-Kampanye
+        category: Golongan
+        created_at: Tanggal Dibuat
+        id: ID
+        licenses: Nomor lisensi
+        licenses_expire: Tanggal Kedaluwarsa Lisensi
+        licenses_used: Penggunaan Lisensi
+        location: Tempat
+        logo: Logo klien
+        memberships_count: Pengguna
+        name: Nama
+        number: Nomor Klien
+        privacy_consent: Mengaktifkan izin pemrosesan data
+        project_manager: Manajer Proyek TTE
+        project_manager_id: Manajer Proyek TTE
+        report_ids: Laporan
+        strong_password_enabled: Aktifkan kata sandi yang kuat
+        subdomain: Subdomain
+        types:
+          associate: Mengasosiasikan
+          corporate: Perusahaan
+          distributer: Distributor
+          other: Lain
+          partner: Partner
+          retail: Retail
+          tte: TTE
+        updated_at: Tanggal yang Dimodifikasi
+        year: Tahun Klien
+      membership:
+        role: Peran keanggotaan
+    'no': Tidak
     placeholders:
+      administration/assessments/assign_form:
+        access_reports: Aturan Laporan Akses
+        access_reports_at: Akses Laporan di
+        access_reports_at_date: Tanggal
+        access_reports_at_time: Waktu
+        client_ids: Penyewaan Klien
+        manager_ids: Manajer
+        report_ids: Laporan
+        user_ids: Pengguna
       administrator:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        current_password: Kata sandi saat ini
+        disabled: Menonaktifkan
         email: Alamat email
+        first_name: Nama depan
+        id: ID
         last_name: Nama belakang
+        manage_client_ids: Penyewaan Klien
+        memberships: Penyewaan Klien
+        name: Nama
+        password: Kata sandi
+        password_confirmation: Konfirmasi kata sandi
+        role: Peranan
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            project_admin: Admin Proyek
+            regular: Admin Klien
+            superadmin: Super Admin
+          agile: LINCAH
+          case_study: Studi kasus
+          client_admin: Admin Klien
+          hogan: Hogan
+          manager: Manajer
+          member: Pengguna
+          organisational: Organisasi
+          project_admin: Admin Proyek
+          psychometric: Psikometrik
+          regular: Biasa
+          saville: Saville
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Tiga enam puluh
+        types:
+          anonymous: Pengguna Anonim
+          identified: Pengguna yang Teridentifikasi
+        updated_at: Tanggal yang Dimodifikasi
+      assessment:
+        active: Aktif
+        categories:
+          '360': Kampanye 360
+          agile: LINCAH
+          assessor_form: Formulir Penilai
+          case_study: Studi Kasus
+          hogan: Hogan
+          meeting: Rapat
+          organisational: Survei
+          psychometric: Penilaian
+          saville: Saville
+        category: Golongan
+        completed_at: Tanggal Penyelesaian
+        created_at: Tanggal Dibuat
+        description: Deskripsi
+        id: ID
+        name: Nama
+        statuses:
+          completed: Selesai
+          finished: selesai
+          in_progress: Melanjutkan
+          interrupted: Terganggu
+          not_started: Baru
+          overdue: Terlambat
+        timing: Waktu
+        types:
+          common: Penilaian TTE
+          hogan: Hogan
+          saville: Penilaian Saville
+        updated_at: Tanggal yang Dimodifikasi
+      block:
+        active: Aktif
+        assign_to_assessment_ids: Penilaian
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+      client:
+        applicable_level: Tingkat yang Berlaku
+        applicable_levels:
+          campaign: Kampanye
+          project: Proyek
+          sub_campaign: Sub-Kampanye
+        category: Golongan
+        created_at: Tanggal Dibuat
+        id: ID
+        licenses: Nomor lisensi
+        licenses_expire: Tanggal Kedaluwarsa Lisensi
+        licenses_used: Penggunaan Lisensi
+        location: Tempat
+        logo: Logo klien
+        memberships_count: Pengguna
+        name: Nama
+        number: Nomor Klien
+        privacy_consent: Mengaktifkan izin pemrosesan data
+        project_manager: Manajer Proyek TTE
+        project_manager_id: Manajer Proyek TTE
+        report_ids: Laporan
+        strong_password_enabled: Aktifkan kata sandi yang kuat
+        subdomain: Subdomain
+        types:
+          associate: Mengasosiasikan
+          corporate: Perusahaan
+          distributer: Distributor
+          other: Lain
+          partner: Partner
+          retail: Retail
+          tte: TTE
+        updated_at: Tanggal yang Dimodifikasi
+        year: Tahun Klien
+      communication:
+        created_at: Tanggal Dibuat
+        id: ID
+        updated_at: Tanggal yang Dimodifikasi
+      dimension:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+      factor:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        parent_id: Ortu
+        questions_count: Tidak. Pertanyaan
+        updated_at: Tanggal yang Dimodifikasi
+      library:
+        created_at: Tanggal Dibuat
+        id: ID
+        type: Gambar mini
+        updated_at: Tanggal yang Dimodifikasi
+      license:
+        id: ID
+        number: Nomor Lisensi
+        overuse_number: Tunjangan Penggunaan Berlebih
+        type: Lisensi untuk
+        types:
+          common: Biasa
+          threesixty: Tiga enam puluh
+        unlimited: Unlimited
+        used_number: Nomor Lisensi Bekas
       memebrship:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        disabled: Menonaktifkan
+        email: Email
+        first_name: Nama depan
+        id: ID
         last_name: Nama belakang
+        parent: Manajer Langsung
+        parent_id: Manajer Langsung
+        report_ids: ID Laporan
+        roles:
+          campaign_admin: Admin Kampanye
+          client_admin: Admin Klien
+          manager: Manajer
+          member: Pengguna
+          project_admin: Admin Proyek
+        updated_at: Tanggal yang Dimodifikasi
+        user_access: Akses Pengguna
+      norm:
+        active: Aktif
+        bachelors_or_masters_qualification: Kualifikasi Sarjana atau Magister
+        created_at: Tanggal Dibuat
+        description: Deskripsi
+        description_label: DESKRIPSI
+        diploma_qualification: Kualifikasi Diploma
+        factor_id: Kompetensi
+        factor_id_label: PILIH KOMPETENSI
+        full_description: Deskripsi Lengkap
+        high_school_entry_roles: Peran Masuk Sekolah Menengah
+        id: ID
+        key_career_tracks: Jalur Karir Utama
+        membership_id: Penerima
+        membership_id_label: PILIH PENETAPAN
+        name: Nama
+        name_label: ITEM TINDAKAN
+        planned_completed_at: Tanggal jatuh tempo
+        planned_completed_at_label: PILIH TANGGAL JATUH TEMPO
+        potential_areas_of_study: Bidang Studi Potensial
+        priority: Prioritas
+        priority_label: PRIORITAS
+        status: Keadaan
+        status_label: PILIH STATUS
+        statuses:
+          completed: Selesai
+          in_progress: Sedang Berlangsung
+          not_started: Belum Dimulai
+          overdue: Terlambat
+        updated_at: Tanggal yang Dimodifikasi
+        updated_by: Diedit oleh
+        work_environment: Lingkungan Kerja
+      question:
+        active: Aktif
+        assign_to_assessment_ids: Penilaian
+        created_at: Tanggal Dibuat
+        id: ID
+        name: Nama
+        updated_at: Tanggal yang Dimodifikasi
+      regenerate_reports:
+        report_ids: Laporan
+      report:
+        created_at: Tanggal Dibuat
+        id: ID
+        updated_at: Tanggal yang Dimodifikasi
       user:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        current_password: Kata sandi saat ini
+        disabled: Menonaktifkan
         email: Alamat email
         first_name: Nama depan
+        id: ID
         last_name: Nama belakang
+        manage_client_ids: Penyewaan Klien
+        memberships: Penyewaan Klien
+        name: Nama
+        old_password: Kata Sandi Lama
         password: Kata sandi
+        password_confirmation: Konfirmasi kata sandi
+        role: Peranan
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            project_admin: Admin Proyek
+            regular: Admin Klien
+            superadmin: Super Admin
+          agile: LINCAH
+          case_study: Studi kasus
+          client_admin: Admin Klien
+          hogan: Hogan
+          manager: Manajer
+          member: Pengguna
+          organisational: Organisasi
+          project_admin: Admin Proyek
+          psychometric: Psikometrik
+          regular: Biasa
+          saville: Saville
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Tiga enam puluh
+        types:
+          anonymous: Pengguna Anonim
+          identified: Pengguna yang Teridentifikasi
+        updated_at: Tanggal yang Dimodifikasi
       user_form:
+        active: Aktif
+        created_at: Tanggal Dibuat
+        current_password: Kata sandi saat ini
+        disabled: Menonaktifkan
         email: Alamat email
         first_name: Nama depan
+        id: ID
         last_name: Nama belakang
+        parent: Manajer Langsung
+        parent_id: Manajer Langsung
         password: Kata sandi
+        password_confirmation: Konfirmasi kata sandi
+        role: Peranan
+        updated_at: Tanggal yang Dimodifikasi
+    required:
+      mark: "*"
+      text: Diperlukan
+    'yes': Ya
   subjects:
     approval_statuses:
       approved: Disetujui
@@ -1100,21 +3578,22 @@ id:
       waiting: Menunggu
   threesixty:
     accept_privacy_modal:
-      accept: Menerima
-      checkbox: Saya telah membaca dan memahami Kebijakan Privasi yang disebutkan di atas
-      checkbox_with_client_link: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami dan pemberitahuan privasi klien kami dan Anda menyetujui pengumpulan dan pemrosesan informasi pribadi Anda seperti yang dijelaskan di dalamnya, termasuk transfer informasi pribadi Anda secara internasional.
+      accept: Terima
+      checkbox: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami tentang pengumpulan dan pemrosesan informasi pribadi Anda sebagaimana dijelaskan di dalamnya, termasuk transfer internasional atas informasi pribadi Anda.
+      checkbox_with_client_link: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami dan pemberitahuan privasi klien kami dan Anda menyetujui pengumpulan dan pemrosesan informasi pribadi Anda seperti yang dijelaskan di dalamnya, termasuk transfer internasional atas informasi pribadi Anda.
       privacy_notice: Pemberitahuan Privasi
       title: Persetujuan untuk Memproses dan Memindahkan Informasi Pribadi
     action: Tindakan
     add: Menambahkan
     and: Dan
+    approve: Setuju
     approve_all: Menyetujui Semua
     approve_all_successful: Menyetujui semua nominasi
     approve_evaluations: Menyetujui Evaluasi
     approve_nominations: Menyetujui Nominasi
     approve_reports: Menyetujui Laporan
     approved: Disetujui
-    approving_mail_sent: Surat untuk menyetujui pencalonan telah dikirimkan kepada para manajer
+    approving_mail_sent: Surat untuk menyetujui nominasi telah dikirim ke manajer
     as_my: sebagai saya
     assessment: Penilaian
     back_to_tasks: Kembali ke tugas
@@ -1127,7 +3606,7 @@ id:
     completed: Selesai
     confirm: Apa kau yakin?
     confirmation_for_nomination_removal: Apakah Anda yakin ingin menghapus nominasi
-    confirmation_required: Diperlukan konfirmasi
+    confirmation_required: Konfirmasi diperlukan
     confirmation_text_incorrect: Teks konfirmasi salah
     confirmation_text_placeholder: Teks konfirmasi di sini
     continue: Lanjutkan
@@ -1135,7 +3614,8 @@ id:
     decline: Menolak
     decline_invite: Tolak Undangan
     denied: Ditolak
-    deny_all: Menyangkal Semua
+    deny: Menyangkal
+    deny_all: Tolak Semua
     deny_all_successful: Menolak semua nominasi
     download_pdf: Unduh PDF
     download_report: Unduh Laporan
@@ -1147,6 +3627,7 @@ id:
     evaluate: Mengevaluasi
     evaluation: Evaluasi
     evaluation_all_closed_message: Saat ini semua nominasi sedang menunggu persetujuan
+    evaluation_closed_message: Evaluasi ditutup untuk mata pelajaran ini
     evaluation_closed_nomination_message: Anda tidak dapat mencalonkan diri untuk mata pelajaran ini karena evaluasi telah ditutup untuk mata pelajaran ini
     evaluation_help_modal:
       title: Bantuan evaluasi
@@ -1164,6 +3645,8 @@ id:
       statuses:
         success: Sukses
         undelivered: Tidak terkirim
+    more_info_evaluation_label: Informasi selengkapnya - Evaluasi
+    more_info_nomination_label: Informasi lebih lanjut - Nominasi
     my_projects: Proyek Saya
     name_label: Nama
     nominate: Menominasikan
@@ -1177,8 +3660,11 @@ id:
       exactly: Tepatnya %{count}
     nominations: Nominasi
     options:
+      form:
+        value_not_valid: tidak memiliki nilai yang valid
       global:
         cannot_re_edit: Peserta tidak dapat mengedit evaluasi
+        disable_all_evaluations: Nonaktifkan semua evaluasi
     or: Atau
     page_title: Signify 360° Review - Terapkan Level
     participant_list:
@@ -1188,18 +3674,20 @@ id:
         edit: Sunting
         hold_report: Tahan laporan
         login: Masuk
-        mark_as_done: Tandai sebagai selesai
+        mark_as_done: Tandai telah selesai
+        regenerate_report: Hasilkan Laporan
         release_report: Laporan rilis
         remove_campaign: Hapus dari kampanye
         remove_report_approval: Menghapus persetujuan laporan
         remove_report_hold_release_report: Menghapus Penahanan/Pelepasan Laporan
         remove_subject: Hapus subjek
+        reset_password: Atur Ulang Kata Sandi
         unmark_as_done: Hapus tanda setelah selesai
         view_report: Lihat Laporan
         view_responses: Lihat Tanggapan
       confirmation_messages:
         approve_report: Apakah Anda yakin ingin menyetujui laporan?
-        hold_report: Apakah Anda yakin ingin menyimpan laporan?
+        hold_report: Apakah Anda yakin ingin menahan laporan?
         mark_evaluation_done: Apakah Anda yakin ingin menandai evaluasi telah selesai? Evaluasi akan ditutup untuk mata pelajaran ini.
         release_report: Apakah Anda yakin ingin merilis laporan?
         remove_from_campaign: Apakah Anda yakin ingin menghapus pengguna dari kampanye?
@@ -1241,6 +3729,7 @@ id:
     setup_nominations: Mengatur nominasi
     subject: Subjek
     submit: Kirim
+    timed_out: Waktu habis
     total_progress: Kemajuan total
     user_name_input_placeholder: ketik nama atau email...
     validation_errors: Kesalahan Validasi
@@ -1250,27 +3739,216 @@ id:
     waiting: Menunggu
     you: Anda
     yourself: Diri sendiri
+  threesixty.accept_privacy_modal:
+    checkbox_with_client_link: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami dan pemberitahuan privasi klien kami dan Anda menyetujui pengumpulan dan pemrosesan informasi pribadi Anda seperti yang dijelaskan di dalamnya, termasuk transfer internasional atas informasi pribadi Anda.
+    privacy_notice: Pemberitahuan Privasi
+  time:
+    formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: DD/MM/YYYY hh:mm A
+      datetimepicker_client_with_timezone: 'D MMM YYYY / H: mm Z'
+      datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: DD/MM/YYYY
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
+      short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
+  universal_links:
+    active: Aktif
+    allow_multiple_respones: Mengizinkan pengguna mengirimkan beberapa respons
+    png: PNG
+    regenerate_link: Buat ulang Tautan
+    successfully_generated: Berhasil dihasilkan
+    successfully_updated: Berhasil diperbarui
+    svg: SVG
   user:
+    datasheet:
+      attribute: Atribut
+      value: Nilai
     fields:
       email: Alamat email
       first_name: Nama depan
       last_name: Nama belakang
+    form:
+      email: Email
+      first_name: Nama depan
+      last_name: Nama belakang
+      locale: Lokal
+      operation: Operasi
+      operation_options:
+        add_and_allow_new_response: Tambahkan pengguna dan izinkan respons baru
+        add_with_existing_response: Tambahkan pengguna dengan respons yang ada
+        skip_existing: Lewati pengguna yang ada
+    modals:
+      exports:
+        export_sign_in_url: Ekspor dengan URL masuk ajaib
+        include_inactive_users: Ekspor dengan pengguna yang tidak aktif
+        title: Ekspor Pengguna
+      import:
+        body: Lihat fungsionalitas Ekspor untuk mengekstrak templat yang dapat digunakan untuk Mengimpor di sini.
+        imported_reports: Laporan dan penilaian diimpor
+        imported_users: 'Jumlah pengguna yang diimpor: %{number}'
+        success_msg: File yang diunggah telah diantrekan untuk impor. Silakan periksa status di notifikasi
+        title: Impor Pengguna
+        user_with_unchanged_passwords: Daftar pengguna yang kata sandinya tidak diubah
+      import_reports:
+        body: Lihat file sampel untuk mengekstrak templat yang dapat digunakan untuk Mengimpor di sini.
+        title: Tetapkan Laporan dan Penilaian
+    toolbar:
+      bulk_download_idp_reports: Unduh Laporan IDP Massal
+      export: Ekspor Pengguna
+      export_compact_completion_status: Padat
+      export_detailed_completion_status: Rinci
+      export_reports_and_assessments: Ekspor Laporan dan Penilaian
+      import: Impor Pengguna
+      import_reports: Impor Laporan dan Penilaian
+  user_assessment:
+    column:
+      dimension_id: ID Dimensi
+      id: ID Penilaian Pengguna
+      norm_id: ID Norma
+    drawer:
+      copied: "%{name} disalin ke clipboard."
+      copy: Salin ke Clipboard
+      mettl_schedule_name: Nama Jadwal Mettl
+      no_data: Tidak ada data yang tersedia
+      title: Detail Penilaian
+      view: Melihat
   user_assessments:
+    modals:
+      actions:
+        reset_progress:
+          name: Atur Ulang Kemajuan
+          success_message: Penilaian %{name} siap untuk disunting
+      push_test_webhook:
+        copy_request_data_success: Rquest Payload berhasil disalin ke clipboard.
+        copy_response_body_success: Isi respons berhasil disalin ke clipboard.
+        copy_response_headers_success: Header respons berhasil disalin ke clipboard.
+        event_name_placeholder: Nama Acara
+        response_body_title: Badan Respons
+        response_header_title: Header Respons
+      push_webhook:
+        submit_button_name: Dorong Webhook
+        title: Dorong Webhook
+      remove:
+        content: Apakah Anda yakin ingin menghapus penilaian "%{name}"?
+        successfully: "%{name} berhasil dihapus."
+      reset:
+        content: Apakah Anda yakin ingin mengatur ulang kemajuan "%{name}"?
+      test_webhook:
+        submit_button_name: Kirim Tes
+        title: Kirim Tes Peristiwa Webhook
+    normalize_factor_scores:
+      no_scoring_data: Normalisasi skor faktor tidak dapat diselesaikan karena tidak ada data penilaian yang tersedia.
+    progress_label: Kemajuan Penilaian
     redirect: Anda akan diarahkan ke situs pihak ketiga untuk penilaian ini. Silakan klik lanjutkan jika Anda ingin memulai penilaian.
+    status:
+      completed: Selesai
+      in_progress: Sedang Berlangsung
+      ineligible: Tidak memenuhi syarat
+      interrupted: Terganggu
+      not_started: Belum Dimulai
+      timed_out: Waktu habis
+    statuses:
+      evaluator_nomination_status:
+        completed: Selesai
+        declined: Menolak
+        waiting: Menunggu
+      manager_evaluation_status:
+        approved: Disetujui
+        denied: Ditolak
+        waiting: Menunggu
+      manager_nomination_status:
+        approved: Disetujui
+        completed: Selesai
+        declined: Menolak
+        denied: Ditolak
+        waiting: Menunggu
+    timer_title:
+      assessment: Penilaian
+      campaign: Kampanye
   user_reports:
     actions:
+      add: Tambahkan Laporan
+      download: Mengunduh
+      generate: Menghasilkan
       regenerate: Regenerasi
+    approval_statuses:
+      approved: Disetujui
+      change_requested: Perubahan yang Diminta
+      not_ready: Belum Siap
+      pending_qc: QC Tertunda
+      qc_completed: QC Selesai
+      qc_in_progress: QC sedang berlangsung
     messages:
+      async_generation: Pembuatan laporan sedang berlangsung. Anda akan diberi tahu setelah laporan dibuat.
       regenerate_successful: Pekerjaan regenerasi laporan berhasil dijadwalkan
     modals:
       remove:
         content: Apakah anda yakin ingin menghapus laporan %{userReportName}?
+        content_with_counts:
+          both: 'BAHAYA: Laporan %{userReportName} memiliki %{commentsCount} komentar dan %{editsCount} suntingan. Jika Anda menghapus laporan dari pengguna, komentar dan pengeditan ini akan hilang.'
+          comments: 'BAHAYA: Laporan %{userReportName} memiliki %{commentsCount} komentar. Jika Anda menghapus laporan dari pengguna, komentar ini akan hilang.'
+          edits: 'BAHAYA: Laporan %{userReportName} memiliki %{editsCount} edit(s). Jika Anda menghapus laporan dari pengguna, suntingan ini akan hilang.'
         successfully: laporan %{userReportName} berhasil dihapus
+      remove_file:
+        content: Apakah Anda yakin ingin menghapus file?
+        successfully: File berhasil dihapus.
+      upload_file:
+        choose_file: Pilih File
+        success: File berhasil diunggah.
+        upload: Unggah
     preview_report: Laporan Pratinjau
     statuses:
       generating: Menghasilkan
       not_prepared: Tidak tersedia
       prepared: Tersedia
+  users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: 2 Faktor Autentikasi Dinonaktifkan
+          enabled: 2 Otentikasi Faktor Diaktifkan
+        option_to_disable: Nonaktifkan 2FA
+        option_to_enable: Aktifkan 2FA
+      remove:
+        confirm_message: Apakah Anda yakin ingin menghapus pengguna dengan email '%{email}'?
+        confirm_title: Konfirmasi Diperlukan
+        error_message: Tidak dapat menghapus pengguna karena kesalahan - %{error}
+        success_message: "%{email} telah dihapus"
+        system_error_message: Tidak dapat menghapus pengguna, silakan coba lagi nanti atau hubungi dukungan.
+      reset_password:
+        option: Atur Ulang Kata Sandi
+      unlock_user_access:
+        message: Akses pengguna untuk %{email} telah berhasil dibuka.
+        title: Buka kunci akses pengguna
+        tooltip: Akun pengguna ini dalam status terkunci
+    admins: Admin
+    create_global_assessor: Buat Penilai Global
+    create_superadmin: Buat Admin Super
+    dashboard: Dashboard
+    drawer:
+      link: Tautan
+      role: Peranan
+      title: Detail pengguna
+    global_assessors: Penilai Global
+    password_change_success: Kata sandi berhasil diubah. Silakan login dengan kata sandi baru Anda.
+    roles:
+      campaign_admin: Admin Kampanye
+      campaign_assessor: Penilai Kampanye
+      campaign_user: Pengguna Kampanye
+      client_admin: Admin Klien
+      project_admin: Admin Proyek
+      superadmin: Super Admin
+    superadmins: Admin Super
+    users: Pengguna
   validations:
     AudioResponse:
       in_progress:
@@ -1285,10 +3963,12 @@ id:
     TextEntry:
       Email:
         character_range: Pesan email yang dimasukkan harus minimal %{min} dan tidak lebih dari %{max} karakter.
+        max_character: Pesan email yang dimasukkan tidak boleh lebih dari %{max} karakter.
+        min_character: Pesan email yang dimasukkan harus setidaknya %{min} karakter.
         subject:
-          min_length: Kolom subjek harus terdiri dari minimal 10 karakter
+          min_length: Kolom Subjek harus terdiri dari minimal 10 karakter
         to:
-          required: Ke bidang harus diisi
+          required: Kolom Tujuan harus diisi
     VideoResponse:
       in_progress:
         recorded: Video direkam tetapi tidak disimpan
@@ -1299,32 +3979,41 @@ id:
     blank: tidak boleh kosong
     character_count: 'Jumlah karakter '
     character_range: Tanggapan Anda harus minimal %{min} dan tidak lebih dari %{max} karakter.
-    date: Tanggapan Anda harus berupa tanggal yang valid (hh/tt/yyyy)
+    date: Tanggapan Anda harus berupa tanggal yang valid (bulan/tanggal/tahun)
     each_group_contains: Setiap kelompok harus berisi tidak kurang dari %{min} dan tidak lebih dari %{max} item
     email: Tanggapan Anda harus berupa email yang valid
     exact: Pilih dengan tepat pilihan %{count}
     file_upload:
+      BadRequest: File tidak diunggah karena permintaan terakhir gagal. Ini mungkin karena internet Anda tidak berfungsi. Jika internet Anda berfungsi, silakan hubungi administrator
       EntityTooLarge: Ukuran file harus kurang dari %{maxFileSize} MB
       WrongFileType: Jenis file haruslah salah satu dari yang berikut ini %{allowedFileTypes}
+    idp:
+      reflective_questions_required: Jawaban atas pertanyaan reflektif diperlukan untuk IDP
+      status_not_permitted: tidak diizinkan oleh pengguna.
+      status_not_permitted_by_manager: Manajer tidak dapat memperbarui status saat paket dalam status '%{status}'.
+    invalid: tidak valid
     issue: Masalah
     least: Jawablah setidaknya %{min} pilihan.
     least_hotspot: Jawablah setidaknya %{min} pilihan.
     max_character: Tanggapan Anda tidak boleh lebih dari %{max} karakter.
-    max_word: Tanggapan Anda tidak boleh lebih dari %{maks} kata.
+    max_word: Tanggapan Anda tidak boleh lebih dari %{max} kata.
     min_character: Tanggapan Anda harus mengandung setidaknya karakter %{min}.
+    min_factor: Respons Anda harus berisi setidaknya umpan balik faktor %{min}.
     min_word: Tanggapan Anda harus setidaknya terdiri dari %{min} kata
-    most:
-      other: Pilihlah paling banyak %{maks} pilihan
+    most: Pilihlah paling banyak %{max} pilihan
     must_rank_between: Silakan tetapkan nilai dari %{min} hingga %{max} untuk setiap item. Nilai tidak boleh diulang.
     must_select: Pilih dari pilihan %{min} hingga %{max}
+    not_in_future: Tanggal yang dipilih seharusnya tidak di masa mendatang
+    not_in_past: Tanggal yang dipilih tidak boleh berada di masa lalu
     number: Tanggapan Anda harus berupa angka
     photo: diperlukan
-    range: Jawablah setidaknya %{min} dan tidak lebih dari %{max} pilihan.
+    range: Jawablah paling sedikit %{min} dan tidak lebih dari %{max} pilihan.
     required: Mohon jawab pertanyaan ini
     text: Tanggapan Anda tidak boleh berisi angka
     title:
       one: Ada satu kesalahan, mohon periksa tanggapan Anda
-      other: Ada %{count} kesalahan, silakan periksa respons anda.
+      other: Ada %{count} kesalahan, mohon periksa tanggapan Anda
+    user_self_skill_rating_disabled: Peringkat mandiri dinonaktifkan untuk templat ini
     word_count: 'Jumlah kata '
     word_range: Tanggapan Anda harus minimal %{min} dan tidak lebih dari %{max} kata.
   'yes': Ya

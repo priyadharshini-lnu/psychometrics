@@ -932,6 +932,7 @@ zh-Hant:
         inactive: 閒置
         status: 狀態
       form:
+        campaign: 活動
         name: 名稱
         practice_campaign: 實踐活動
         status: 狀態
@@ -1093,6 +1094,14 @@ zh-Hant:
         successfully: 客戶租約 %{name} 已成功刪除。
       edit:
         header: 編輯用戶端
+      form:
+        client: 客戶
+        country: 國家
+        name: 名稱
+        number: 數量
+        project_manager: 專案經理
+        type: 類型
+        year: 年份
       licenses:
         resource:
           confirmations:
@@ -1418,7 +1427,7 @@ zh-Hant:
             new: 新增 360 活動
             title: 360 活動
           license:
-            header: 編輯授權
+            header: "%{name} - 編輯許可證"
           licenses:
             update:
               duplicate_licenses: 您有重複的授權
@@ -1639,7 +1648,7 @@ zh-Hant:
         client: 客戶：
         communication_type: 通訊類型：
         delivery_rule: 交貨規則：
-        every_interval: 每隔 %{ 間隔｝
+        every_interval: 每 %{interval}
         owner: 業主：
         project: 專案：
         recipients: 收件人：
@@ -1749,15 +1758,15 @@ zh-Hant:
         development_action_not_in_project: '行 %{row}: 開發動作 ID %{development_action_id} 不屬於此專案'
         image_download_failed: 從 %{url} 下載影像失敗： %{message}
         invalid_csv_format: 無效的 CSV 格式：%{message}。
-        invalid_date: "％{date}的日期格式無效。"
-        invalid_date_format: 行％{row}：％{field}的無效日期格式
+        invalid_date: "%{date}的日期格式無效。"
+        invalid_date_format: '行%{row}: %{field}的無效日期格式'
         invalid_development_action_type: 行 %{row}：無效的開發作業類型「%{value}」。有效的開發行動類型是：%{valid_development_action_types}。
-        invalid_duration_format: 持續時間僅允許數字值。行％{row}：％{value}不是有效的持續時間。
+        invalid_duration_format: '持續時間僅允許數字值。行%{row}: %{value}不是有效的持續時間。'
         invalid_image_file: 無效的影像檔案：%{message}。
         invalid_image_url: 無效的圖片 URL 格式：%{url}。
-        invalid_languages: 無效的可用語言％{invalid_languages}對於行％{row}。
+        invalid_languages: 無效的可用語言%{invalid_languages}對於行%{row}。
         invalid_learning_style: 行 %{row}：無效的學習樣式 '%{value}'。 有效的類型是：%{valid_types}。
-        languages_only_for_courses: 可用語言只能設置為“課程”類型的開發動作。請刪除ROW％{row}的可用語言，或將開發操作的類型更改為“課程”。
+        languages_only_for_courses: 可用語言只能設置為“課程”類型的開發動作。請刪除ROW%{row}的可用語言，或將開發操作的類型更改為“課程”。
         missing_columns: 缺少必填欄位： %{fields}
         save_failed: 搶救失敗的研發項目：%{message}。
         skill_not_found: 未找到 ID 的技能： %{skill_id}
@@ -1772,7 +1781,7 @@ zh-Hant:
           invalid_id: '行 %{row}: ID 必須是數字'
           invalid_id_format: 行 %{row}：ID 格式必須為 "id#field"
           missing_columns: 缺少必填欄位：%{fields}。
-          save_failed: 儲存失敗
+          save_failed: 保存失敗： %{message}
     development_actions:
       create:
         successfully: 開發動作「%{name}」已成功建立。
@@ -2162,7 +2171,7 @@ zh-Hant:
           error: "[行 %{row}] %{error}"
           invalid_assign: "[Row %{row}] 找不到指定結果 ID 的記錄。 如果您要建立新結果，請將結果 ID 欄留空。"
           invalid_date: "[行 %{row}] %{error}"
-          question_invalid: "[問題 %{question_id} 無效"
+          question_invalid: "[第 %{row} 行]問題 %{question_id} 無效"
           user:
             record_not_found: 無法找到電子郵件位址為 %{email} 的現有使用者。
           user_assessment:
@@ -2766,6 +2775,7 @@ zh-Hant:
           success: 評估 '%{name}' 已成功刪除。
           title: 刪除評估
         form:
+          assessment: 評估
           assessment_placeholder: 選擇評估
           assessment_required: 需要進行評估
           normalize_factor_scores: 標準化因子分數
@@ -2901,22 +2911,45 @@ zh-Hant:
         client_logo_label: 客戶標誌
         contrast_ratio_warning: 注意：使用此主色可能會違反文字可讀性的對比要求。
         contrast_ratio_warning_lighter_color: 注意：使用此 %{name} 顏色可能會違反文字可讀性的對比要求。 請嘗試使用較深的顏色。
+        copy_text: 正文
+        dashed_button: 虛線
+        default_button: 預設
         error_color: 錯誤顏色
+        hover_options:
+          danger_item: 危險項目
+          first_menu_item: 第 1 個功能表項目
+        hover_text: 懸停我
         info_color: 資訊顏色
+        link_text: 連結
         logo_upload: 上傳
         position_auto: 自動
         position_label: 登入方塊位置
         position_left: 左邊
         position_right: 對
+        primary_button: 初級
         primary_color: 原色
         reset: 重設
         sec_logo_label: 副標誌
         sec_logo_upload: 上傳
         secondary_logo_alt_text: 次要標誌 Alt-Text
         secondary_logo_alt_text_required: 需要副 Alt-Text 標誌
+        submenu_options:
+          option_one: 選項 1
+          option_title: 項目 1
+          option_two: 選項 2
         success_color: 成功顏色
         success_update: 設計設定已成功儲存
+        tab_text_one: 選單
+        tab_text_two: 子選單
+        text_danger: Text(danger)
+        text_success: 文字 (成功)
+        text_warning: Text(warning)
         warning_color: 警告顏色
+      form:
+        name: 名稱
+        project_number: 專案編號
+        subdomain: 子網域
+        title: 專案
       general_settings:
         live_chat: 啟用即時交談
         locales_label: 地點
@@ -3034,11 +3067,18 @@ zh-Hant:
           invalid_min_words_column_format: 無效的最小字元列數值格式 %{row}
           invalid_required_column_format: 強制列值格式無效 %{row}
           missing_eng_question: 缺少英文問題內容 %{row}
-          save_failed: 儲存失敗 %{message｝
+          save_failed: 保存失敗%{message}
         failure_msg: 匯入檔案時發生錯誤。
         success_msg: 正在匯入反省問題。請在通知中查看狀態。
       question: 問題
     report_approval:
+      approval_statuses:
+        approved: 已核准
+        change_requested: 要求變更
+        not_ready: 未就緒
+        pending_qc: 等待 QC
+        qc_completed: QC 已完成
+        qc_in_progress: QC 進行中
       bulk_approve_success: "%{sent_for_approval}已送交審核。%{approved}已核准的報告。%{ignored}因 QC 變更/意見而需要手動核准的報告。"
       columns:
         actions: 行動
@@ -3070,6 +3110,7 @@ zh-Hant:
         no_saved_filters: 沒有儲存的篩選條件
         save_filter: 儲存的篩選條件
         set_favorite: 篩選器已設定為最愛
+      submit_or_approve_all: 提交或批准所有
     report_builder:
       campaign_factors:
         add_field: 新增欄位
@@ -3352,7 +3393,7 @@ zh-Hant:
         not_allowed: 不允許
         remaining: 剩餘座位
         scheduling_lead_time: 排程前置時間
-        scheduling_tooltip: 使用者可預約時段至 %{ 日期｝
+        scheduling_tooltip: 使用者可預約時段至 %{date}
         search_placehoder: 依 ID、電子郵件或姓名搜尋
         timezone: 時區
         total_seats: 總座位數
