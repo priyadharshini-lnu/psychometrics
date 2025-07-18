@@ -10,6 +10,10 @@ class SkillRaterQuestionSerializer < Panko::Serializer
     !!object.deleted_at
   end
 
+  def block_id
+    context[:block].id
+  end
+
   def props
     return {} unless skill
 

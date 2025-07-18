@@ -249,6 +249,16 @@ const FIELDS = [
       },
     ],
   },
+  {
+    branch: 'Skill Factors',
+    fields: [
+      {
+        name: 'Skill Factor Table',
+        type: 'link',
+        value: '{{skill_factor://SkillFactor/Table}}',
+      },
+    ],
+  },
 ]
 
 export default FIELDS

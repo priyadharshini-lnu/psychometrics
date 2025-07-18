@@ -70,6 +70,10 @@ class Dimension < ApplicationRecord
     end
   end
 
+  def non_skill_factors
+    all_factors.where(skill_id: nil).order(:id)
+  end
+
   def invalidate_assessment_cache
     assessments.each(&:invalidate_cache)
   end
