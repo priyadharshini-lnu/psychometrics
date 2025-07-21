@@ -29,18 +29,12 @@ module AdminJobs
     private
 
     def user_reports
-      @user_reports ||= campaign&.user_reports&.includes(:report)&.where(
-        report_id: selected_reports.keys, user_id: record.data['user_id']
-      )
-    end
-
-    def selected_reports
-      record.data['selected_reports'] || {}
+      @user_reports ||= campaign&.user_reports&.includes(:report)&.where(id: record.data['ids'])
     end
 
     def options
       {
-        selected_reports: selected_reports,
+        selected_reports: record.data['selected_reports'] || {},
         force_regenerate: true
       }
     end

@@ -73,15 +73,16 @@ module AdminJobs
     end
 
     def common_campaign_user_reports
-      selected_reports = record.data['selected_reports'] || {}
-      return campaign.user_reports.none if selected_reports.blank?
+      user_reports = campaign.user_reports.includes(:report).where(id: record.data['ids']).with_pdf_attachments
 
-      base_query = campaign.user_reports.where(user_id: record.data['user_id']).with_pdf_attachments
+      selected_reports = record.data['selected_reports'] || {}
+
+      return user_reports if selected_reports.blank?
 
       query_parts = selected_reports.filter_map do |report_id, locales|
         next if locales.blank?
 
-        base_query.where(
+        user_reports.where(
           report_id: report_id.to_i,
           user_report_pdfs: { locale: locales }
         )

@@ -117,7 +117,7 @@ export const selectRecords = (ids: number[]) => ({
 type SelectRecordsType = ReturnType<typeof selectRecords>
 
 export const regenerateReports = (campaignId: number, data:
-{selectedReports: { [key: string]: string[] } }) => ({
+{selectedReports: { [key: string]: string[] }, ids: number[]}) => ({
   type: REGENERATE_REPORTS,
   request: {
     method: 'post',
@@ -130,6 +130,7 @@ export const regenerateReports = (campaignId: number, data:
 export const bulkDownload = (
   campaignId: number,
   selectedReports: { [key: string]: string[] },
+  ids: number[],
   startDate: Date,
   endDate: Date,
   includeInactiveUsers = false,
@@ -139,6 +140,7 @@ export const bulkDownload = (
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/reports/bulk_download`,
     body: {
+      ids,
       selectedReports,
       startDate,
       endDate,
