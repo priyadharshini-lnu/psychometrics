@@ -36,13 +36,13 @@ const AssessmentsReports: React.FC<Props> = ({
   const { message } = App.useApp()
 
   const handleRegenerateReports = (selectedReports: { [key: string]: string[] }) => {
-    regenerateReports(parsedCampaignId, selectedReports, id).then(() => {
+    regenerateReports(parsedCampaignId, selectedReports, id, selectedIds).then(() => {
       message.success(I18n.t('user_reports.messages.regenerate_successful'))
     })
   }
 
   const handleDownloadReports = (selectedReports: { [key: string]: string[] }) => {
-    bulkDownload(parsedCampaignId, selectedReports, id)
+    bulkDownload(parsedCampaignId, selectedReports, id, selectedIds)
       .then(() => {
         message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
       })

@@ -100,14 +100,15 @@ const Manage: React.FC<Props> = ({
   const { message } = App.useApp()
 
   const handleRegenerateReports = (selectedReports: { [key: string]: string[] }) => {
-    regenerateReports(parsedCampaignId, { selectedReports }).then(() => {
+    regenerateReports(parsedCampaignId, { selectedReports, ids: selectedIds }).then(() => {
       message.success(I18n.t('user_reports.messages.regenerate_successful'))
     })
   }
 
   const handleDownloadReports = (selectedReports: { [key: string]: string[] },
     startDate: dayjs.Dayjs, endDate: dayjs.Dayjs, includeInactiveUsers: boolean) => {
-    bulkDownload(parsedCampaignId, selectedReports, startDate?.toDate(), endDate?.toDate(), includeInactiveUsers)
+    bulkDownload(parsedCampaignId, selectedReports, selectedIds,
+      startDate?.toDate(), endDate?.toDate(), includeInactiveUsers)
       .then(() => {
         message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
       })

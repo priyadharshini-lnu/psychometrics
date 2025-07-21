@@ -190,7 +190,10 @@ module Administration
       def regenerate
         AdminJob.call(
           :bulk_regenerate_reports,
-          { selected_reports: regenerate_report_params[:selected_reports], campaign_id: campaign.id },
+          {
+            ids: regenerate_report_params[:ids], selected_reports: regenerate_report_params[:selected_reports],
+            campaign_id: campaign.id
+          },
           current_user
         )
         audit! :regenerate, nil, record_type: 'CampaignReport', payload: { ids: params[:ids] }, campaign: campaign
@@ -210,7 +213,7 @@ module Administration
                  status: :unprocessable_entity
         else
           AdminJob.call(:bulk_download_reports,
-                        { selected_reports: params['selected_reports'], campaign_id: campaign.id,
+                        { ids: params[:ids], selected_reports: params['selected_reports'], campaign_id: campaign.id,
                           start_date: params[:start_date], end_date: params[:end_date],
                           include_inactive_users: params[:include_inactive_users] },
                         current_user)
@@ -300,7 +303,8 @@ module Administration
 
       def regenerate_report_params
         params[:data].permit(
-          selected_reports: {}
+          selected_reports: {},
+          ids: []
         )
       end
 

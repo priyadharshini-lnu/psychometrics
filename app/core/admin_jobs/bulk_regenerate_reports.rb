@@ -7,7 +7,7 @@ module AdminJobs
       options = {
         low_priority: true,
         force_regenerate: true,
-        selected_reports: selected_reports
+        selected_reports: record.data['selected_reports'] || {}
       }
       ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, options, record)
 
@@ -34,15 +34,7 @@ module AdminJobs
     private
 
     def campaign_reports
-      @campaign_reports ||= campaign&.campaign_reports&.includes(:report)&.where(report_id: report_ids)
-    end
-
-    def report_ids
-      selected_reports.keys
-    end
-
-    def selected_reports
-      @selected_reports ||= record.data['selected_reports'] || {}
+      @campaign_reports ||= campaign&.campaign_reports&.includes(:report)&.where(id: record.data['ids'])
     end
   end
 end
