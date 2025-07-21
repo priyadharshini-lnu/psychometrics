@@ -77,7 +77,7 @@ class EndUser::WorkshopInvitesController < ApplicationController
 
     if result[:ok]
       send_data result[:ok],
-                filename: "workshop-#{workshop.id}.ics",
+                filename: 'event.ics',
                 type: 'text/calendar; charset=utf-8'
     else
       render plain: I18n.t('errors.workshop.ical_generation_failed'), status: :unprocessable_entity
