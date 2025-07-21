@@ -2235,6 +2235,9 @@ en:
       no_active_plan: No active IDP plan found
     webhooks:
       multiple_webhook_error: url can't be updated as there are multiple webhook for this project.
+    workshop:
+      ical_generation_failed: Could not generate calendar invite
+      missing_or_invalid: Missing or invalid workshop_id
   evaluators:
     errors:
       can_not_processed: can not be processed
