@@ -2316,3 +2316,9 @@ ai_providers:
       openai_api_key: <%= ENV.fetch('AZURE_OPENAI_API_KEY', nil) %>
       openai_api_base: <%= ENV.fetch('AZURE_OPENAI_API_BASE_ENDPOINT', nil) %>
 available_ai_providers: <%= ENV.fetch('AVAILABLE_AI_PROVIDERS', nil) %>
+
+# Default SMTP throttling limits used when a project has no SMTP setting
+smtp_default:
+  concurrency_limit: <%= ENV.fetch('SMTP_CONCURRENCY_LIMIT', 10).to_i %>
+  rate_limit: <%= ENV.fetch('SMTP_RATE_LIMIT', 100).to_i %>
+  rate_limit_period: <%= ENV.fetch('SMTP_RATE_LIMIT_PERIOD', 1).to_i %>
