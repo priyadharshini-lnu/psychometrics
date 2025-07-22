@@ -163,35 +163,17 @@
   }
 }
 
-body:not([data-locale="ar"]) {
-  .details {
-    .right {
-      margin-left: 40px;
-    }
+.details {
+  .right {
+    margin-inline-start: 40px;
   }
-  .trackBox {
-    &:nth-child(odd) {
-      margin-left: 0;
-    }
-    &:nth-child(even) {
-      margin-right: 0;
-    }
+}
+.trackBox {
+  &:nth-child(odd) {
+    margin-inline-start: 0;
+  }
+  &:nth-child(even) {
+    margin-inline-end: 0;
   }
 }
 
-
-body[data-locale="ar"] {
-  .details {
-    .right {
-      margin-right: 40px;
-    }
-  }
-  .trackBox {
-    &:nth-child(even) {
-      margin-left: 0;
-    }
-    &:nth-child(odd) {
-      margin-right: 0;
-    }
-  }
-}
