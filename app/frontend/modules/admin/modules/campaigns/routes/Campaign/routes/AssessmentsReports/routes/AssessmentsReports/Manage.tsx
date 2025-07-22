@@ -207,6 +207,7 @@ const Manage: React.FC<Props> = ({
                 onClick={
                 () => openModal('AddAssessorAssessmentModal', {
                   addAssessorAssessment: createResource,
+                  campaignId: parsedCampaignId,
                 })
               }
               >
