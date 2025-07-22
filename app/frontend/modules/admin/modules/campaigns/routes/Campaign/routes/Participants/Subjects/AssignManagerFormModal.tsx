@@ -11,6 +11,7 @@ import { useResources } from '~/hooks/useResources'
 interface Props extends ConnectedProps<typeof connector> {
   close(): void
   projectId: number
+  campaignId: number
   userId: number
   manager: {
     id: number,
@@ -27,7 +28,7 @@ const connector = connect(
 const { I18n } = window
 
 export const AssignManagerFormModalComponent: React.FC<Props> = ({
-  close, projectId, userId, manager, addManager,
+  close, projectId, campaignId, userId, manager, addManager,
 }) => {
   const [form] = Form.useForm()
   const {
@@ -51,10 +52,11 @@ export const AssignManagerFormModalComponent: React.FC<Props> = ({
         filter: {
           search_query: '',
           exclude_user_id: userId.toString(),
+          campaign_id: campaignId.toString(),
         },
       },
     })
-  }, [userId])
+  }, [userId, campaignId])
 
   const handleInputChange = (value: string) => {
     fetchUsers({
@@ -62,6 +64,7 @@ export const AssignManagerFormModalComponent: React.FC<Props> = ({
         filter: {
           search_query: value,
           exclude_user_id: userId.toString(),
+          campaign_id: campaignId.toString(),
         },
       },
     })
