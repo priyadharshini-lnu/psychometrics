@@ -288,18 +288,33 @@ zh-Hant:
             view: 檢視
     ai_assistants:
       actions:
+        create: 建立 AI 助理
+        edit: 編輯 AI 助理
         playground: 遊樂場
       ai_assistants: AI 助理
       ai_assistants_playground: AI 助理遊樂場
       column:
         provider: 供應商
+      created_successfully: AI Assistant 已成功建立。
       form:
+        add_output_schema_key: 新增輸出模式金鑰
+        dependencies: 依賴
         description: 說明
+        enter_description: 輸入說明
+        enter_schema_key: 輸入模式金鑰
+        key: 鑰匙
         name: 名稱
+        output_schema_keys: 輸出模式鍵
         provider: 供應商
+        remove_output_schema_key: 移除輸出模式鍵
+        schema_key_description_required: 模式關鍵描述為必填項目
+        schema_key_required: 模式鍵為必填項目
+        schema_key_type: 鑰匙類型
+        schema_key_unique: 模式鍵應該是唯一的
         system_prompt: 系統提示
-        title: AI 助理
+        type: 類型
         user_prompt: 使用者提示
+      updated_successfully: AI Assistant 已成功更新。
     any: " - 任何 - "
     api:
       campaigns:
@@ -1541,6 +1556,7 @@ zh-Hant:
       reset: 重設
       save: 節省
       select_all: 全部選取
+      type: 類型
       unselect_all: 全部取消選擇
     communications:
       create:

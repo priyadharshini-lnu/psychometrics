@@ -290,18 +290,33 @@ pt:
             view: Ver
     ai_assistants:
       actions:
+        create: Criar assistente de IA
+        edit: Editar Assistente de IA
         playground: Parque infantil
       ai_assistants: Assistentes de IA
       ai_assistants_playground: Parque de jogos do assistente de IA
       column:
         provider: Fornecedor
+      created_successfully: O Assistente de IA foi criado com êxito.
       form:
+        add_output_schema_key: Adicionar chave de esquema de saída
+        dependencies: Dependências
         description: Descrição
+        enter_description: Introduzir Descrição
+        enter_schema_key: Introduzir chave de esquema
+        key: Chave
         name: Nome
+        output_schema_keys: Chaves do esquema de saída
         provider: Fornecedor
+        remove_output_schema_key: Remover chave do esquema de saída
+        schema_key_description_required: A descrição da chave de esquema é obrigatória
+        schema_key_required: A chave de esquema é necessária
+        schema_key_type: Tipo de chave
+        schema_key_unique: As chaves de esquema devem ser únicas
         system_prompt: Prompt do sistema
-        title: Assistente de IA
+        type: Tipo
         user_prompt: Prompt do utilizador
+      updated_successfully: O Assistente de IA foi atualizado com êxito.
     any: " - Qualquer - "
     api:
       campaigns:

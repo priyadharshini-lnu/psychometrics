@@ -290,18 +290,33 @@ nl:
             view: Bekijk
     ai_assistants:
       actions:
+        create: AI-assistent maken
+        edit: AI-assistent bewerken
         playground: Speeltuin
       ai_assistants: AI assistenten
       ai_assistants_playground: AI assistent speeltuin
       column:
         provider: Aanbieder
+      created_successfully: AI Assistant is succesvol aangemaakt.
       form:
+        add_output_schema_key: Uitvoerschema sleutel toevoegen
+        dependencies: Afhankelijkheden
         description: Beschrijving
+        enter_description: Beschrijving invoeren
+        enter_schema_key: Schemasleutel invoeren
+        key: Sleutel
         name: Naam
+        output_schema_keys: Uitvoerschema sleutels
         provider: Aanbieder
+        remove_output_schema_key: Uitvoerschema sleutel verwijderen
+        schema_key_description_required: Beschrijving van schemasleutel is vereist
+        schema_key_required: Schemasleutel is vereist
+        schema_key_type: Type sleutel
+        schema_key_unique: Schemasleutels moeten uniek zijn
         system_prompt: Systeem prompt
-        title: AI-assistent
+        type: Type
         user_prompt: Gebruikersprompt
+      updated_successfully: AI Assistant is succesvol bijgewerkt.
     any: " - Elke - "
     api:
       campaigns:

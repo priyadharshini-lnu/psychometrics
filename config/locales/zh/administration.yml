@@ -290,18 +290,33 @@ zh:
             view: 查看
     ai_assistants:
       actions:
+        create: 创建人工智能助理
+        edit: 编辑人工智能助理
         playground: 游乐场
       ai_assistants: 人工智能助理
       ai_assistants_playground: 人工智能助理游乐场
       column:
         provider: 提供商
+      created_successfully: AI 助手创建成功。
       form:
+        add_output_schema_key: 添加输出模式密钥
+        dependencies: 依赖关系
         description: 说明
+        enter_description: 输入描述
+        enter_schema_key: 输入模式密钥
+        key: 钥匙
         name: 名称
+        output_schema_keys: 输出模式键
         provider: 提供商
+        remove_output_schema_key: 移除输出模式密钥
+        schema_key_description_required: 模式密钥描述为必填项
+        schema_key_required: 需要模式密钥
+        schema_key_type: 钥匙类型
+        schema_key_unique: 模式键应是唯一的
         system_prompt: 系统提示
-        title: 人工智能助理
+        type: 类型
         user_prompt: 用户提示
+      updated_successfully: 人工智能助理已成功更新。
     any: " - 任何 - "
     api:
       campaigns:

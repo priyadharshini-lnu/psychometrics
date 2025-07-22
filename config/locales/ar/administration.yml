@@ -290,18 +290,32 @@ ar:
             view: منظر
     ai_assistants:
       actions:
+        create: إنشاء مساعد ذكاء اصطناعي
+        edit: تحرير مساعد الذكاء الاصطناعي
         playground: ساحة اللعب
       ai_assistants: مساعدو الذكاء الاصطناعي
       ai_assistants_playground: ملعب مساعد الذكاء الاصطناعي
       column:
         provider: المزود
+      created_successfully: تم إنشاء مساعد الذكاء الاصطناعي بنجاح.
       form:
+        add_output_schema_key: إضافة مفتاح مخطط الإخراج
+        dependencies: التبعيات
         description: الوصف
+        enter_description: أدخل الوصف
+        enter_schema_key: أدخل مفتاح المخطط
+        key: المفتاح
         name: الاسم
+        output_schema_keys: مفاتيح مخطط الإخراج
         provider: المزود
+        remove_output_schema_key: إزالة مفتاح مخطط الإخراج
+        schema_key_description_required: وصف مفتاح المخطط مطلوب
+        schema_key_type: نوع المفتاح
+        schema_key_unique: يجب أن تكون مفاتيح المخطط فريدة من نوعها
         system_prompt: موجه النظام
-        title: مساعد الذكاء الاصطناعي
+        type: النوع
         user_prompt: موجه المستخدم
+      updated_successfully: تم تحديث مساعد الذكاء الاصطناعي بنجاح.
     any: " - أي -"
     api:
       campaigns:

@@ -290,18 +290,33 @@ es-ES:
             view: Ver
     ai_assistants:
       actions:
+        create: Crear asistente de IA
+        edit: Editar Asistente AI
         playground: Parque infantil
       ai_assistants: Asistentes de IA
       ai_assistants_playground: Asistente de inteligencia artificial
       column:
         provider: Proveedor
+      created_successfully: AI Assistant se ha creado correctamente.
       form:
+        add_output_schema_key: Añadir clave de esquema de salida
+        dependencies: Dependencias
         description: Descripción
+        enter_description: Introducir descripción
+        enter_schema_key: Introducir clave de esquema
+        key: Clave
         name: Nombre
+        output_schema_keys: Claves del esquema de salida
         provider: Proveedor
+        remove_output_schema_key: Eliminar clave de esquema de salida
+        schema_key_description_required: La descripción de la clave del esquema es obligatoria
+        schema_key_required: La clave de esquema es obligatoria
+        schema_key_type: Tipo de llave
+        schema_key_unique: Las claves del esquema deben ser únicas
         system_prompt: Indicación del sistema
-        title: Asistente AI
+        type: Tipo
         user_prompt: Pregunta al usuario
+      updated_successfully: AI Assistant se ha actualizado correctamente.
     any: " - Cualquier.. "
     api:
       campaigns:

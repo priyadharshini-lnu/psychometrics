@@ -6,7 +6,7 @@ module Api
       class AI::AssistantResource < BaseResource
         model_name 'AI::Assistant'
         attributes :name, :description, :assistant_type, :user_prompt, :system_prompt,
-                   :created_at, :updated_at, :model_id, :status, :dependencies
+                   :created_at, :updated_at, :model_id, :status, :dependencies, :assistant_output_schema_keys_attributes
 
         has_one :owner, class_name: 'Client'
         has_one :last_modified_by, class_name: 'User'
@@ -14,6 +14,19 @@ module Api
 
         before_save do
           @model.last_modified_by_id = context[:user].id
+        end
+
+        delegate :assistant_output_schema_keys_attributes=, to: :@model
+
+        def assistant_output_schema_keys_attributes
+          @model.assistant_output_schema_keys.map do |schema_key|
+            {
+              id: schema_key.id,
+              key: schema_key.key,
+              key_type: schema_key.key_type,
+              description: schema_key.description
+            }
+          end
         end
 
         def self.creatable_fields(context)

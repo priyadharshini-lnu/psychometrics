@@ -290,18 +290,33 @@ en:
             view: View
     ai_assistants:
       actions:
+        create: Create AI Assistant
+        edit: Edit AI Assistant
         playground: Playground
       ai_assistants: AI Assistants
       ai_assistants_playground: AI Assistant Playground
       column:
         provider: Provider
+      created_successfully: AI Assistant was created successfully.
       form:
+        add_output_schema_key: Add Output Schema Key
+        dependencies: Dependencies
         description: Description
+        enter_description: Enter Description
+        enter_schema_key: Enter Schema Key
+        key: Key
         name: Name
+        output_schema_keys: Output Schema Keys
         provider: Provider
+        remove_output_schema_key: Remove Output Schema Key
+        schema_key_description_required: Schema Key Description is required
+        schema_key_required: Schema Key is required
+        schema_key_type: Key Type
+        schema_key_unique: Schema Keys should be unique
         system_prompt: System Prompt
-        title: AI Assistant
+        type: Type
         user_prompt: User Prompt
+      updated_successfully: AI Assistant was updated successfully.
     any: " - Any - "
     api:
       campaigns:

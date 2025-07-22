@@ -290,18 +290,33 @@ ko:
             view: 보기
     ai_assistants:
       actions:
+        create: AI 어시스턴트 만들기
+        edit: AI 어시스턴트 편집
         playground: 놀이터
       ai_assistants: AI 어시스턴트
       ai_assistants_playground: AI 어시스턴트 플레이그라운드
       column:
         provider: 공급자
+      created_successfully: AI 어시스턴트가 성공적으로 생성되었습니다.
       form:
+        add_output_schema_key: 출력 스키마 키 추가
+        dependencies: 종속성
         description: 설명
+        enter_description: 설명 입력
+        enter_schema_key: 스키마 키 입력
+        key: 키
         name: 이름
+        output_schema_keys: 출력 스키마 키
         provider: 공급자
+        remove_output_schema_key: 출력 스키마 키 제거
+        schema_key_description_required: 스키마 키 설명은 필수입니다.
+        schema_key_required: 스키마 키가 필요합니다.
+        schema_key_type: 키 유형
+        schema_key_unique: 스키마 키는 고유해야 합니다.
         system_prompt: 시스템 프롬프트
-        title: AI 어시스턴트
+        type: 유형
         user_prompt: 사용자 프롬프트
+      updated_successfully: AI 어시스턴트가 성공적으로 업데이트되었습니다.
     any: " - 모든 - "
     api:
       campaigns:

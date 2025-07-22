@@ -290,18 +290,33 @@ de:
             view: Siehe
     ai_assistants:
       actions:
+        create: AI-Assistent erstellen
+        edit: AI-Assistent bearbeiten
         playground: Spielplatz
       ai_assistants: AI-Assistenten
       ai_assistants_playground: AI-Assistent Spielwiese
       column:
         provider: Anbieter
+      created_successfully: AI Assistant wurde erfolgreich erstellt.
       form:
+        add_output_schema_key: Ausgabeschema-Schlüssel hinzufügen
+        dependencies: Abhängigkeiten
         description: Beschreibung
+        enter_description: Beschreibung eingeben
+        enter_schema_key: Schema-Schlüssel eingeben
+        key: Schlüssel
         name: Name
+        output_schema_keys: Schema-Schlüssel ausgeben
         provider: Anbieter
+        remove_output_schema_key: Ausgabeschema-Schlüssel entfernen
+        schema_key_description_required: Schemaschlüssel Beschreibung ist erforderlich
+        schema_key_required: Schemaschlüssel ist erforderlich
+        schema_key_type: Schlüssel Typ
+        schema_key_unique: Schema-Schlüssel sollten eindeutig sein
         system_prompt: System-Eingabeaufforderung
-        title: KI-Assistent
+        type: Typ
         user_prompt: Benutzeraufforderung
+      updated_successfully: AI Assistant wurde erfolgreich aktualisiert.
     any: " - Jeder - "
     api:
       campaigns:

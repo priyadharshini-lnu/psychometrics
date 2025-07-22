@@ -1,0 +1,56 @@
+import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useResources } from '~/hooks/useResources/useResources'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import {
+  AiAssistantTR, AiAssistant,
+} from '../../core/aiAssistant'
+import AiAssistantForm from './AiAssistantForm'
+
+const { I18n } = window
+
+const EditAiAssistant = () => {
+  const { aiAssistantId } = useParams() as { aiAssistantId: string }
+  const config = {
+    basePath: '/ai',
+    responseType: AiAssistantTR,
+    apiConfig: {
+      include: ['assistant_output_schema_keys'],
+    },
+  }
+  const { data: aiAssistant, fetchSingle } = useResources<AiAssistant>('assistants', config)
+
+  useEffect(() => {
+    if (aiAssistantId) {
+      fetchSingle({ id: aiAssistantId })
+    }
+  }, [])
+
+  return (
+    aiAssistant[0] && (
+      <>
+        <Breadcrumb
+          crumbs={[
+            {
+              link: () => '/admin',
+              label: () => I18n.t('users.dashboard'),
+            },
+            {
+              link: () => '/admin/ai_assistants',
+              label: () => I18n.t('administration.ai_assistants.ai_assistants'),
+            },
+            {
+              label: () => aiAssistant[0].name,
+            },
+            {
+              label: () => I18n.t('administration.ai_assistants.actions.edit'),
+            },
+          ]}
+        />
+        <AiAssistantForm aiAssistant={aiAssistant[0]} />
+      </>
+
+    )
+  )
+}
+export default EditAiAssistant

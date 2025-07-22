@@ -1,17 +1,11 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { AiAssistant, AiAssistantTR } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
+import { AiAssistantTR } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { Resource } from '~/modules/admin/components/Resource'
 import { AiAssistantsBreadcrumb } from './AiAssistantsBreadcrumb'
-import { AiAssistantFormModal } from './AiAssistantFormModal'
 import { AiAssistantsTable } from './AiAssistantsTable'
 import { AiAssistantsFilter } from './AiAssistantFilter'
-
-const MODALS = {
-  AiAssistantFormModal,
-}
 
 const connector = connect(
   () => ({
@@ -32,18 +26,12 @@ const AiAssistantList: React.FC<PropsFromRedux> = ({ openModal }) => {
     },
   }
 
-  const handleOpenModal = (aiAssistant?: AiAssistant) => {
-    openModal('AiAssistantFormModal', { aiAssistant })
-  }
-
   return (
     <>
       <Resource config={config} name="assistants">
         <AiAssistantsBreadcrumb />
         <AiAssistantsFilter openModal={openModal} />
-        <AiAssistantsTable openModal={handleOpenModal} />
-        <Modals modals={MODALS} />
-
+        <AiAssistantsTable />
       </Resource>
     </>
   )

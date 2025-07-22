@@ -290,18 +290,33 @@ ja:
             view: 表示
     ai_assistants:
       actions:
+        create: AIアシスタントを作る
+        edit: AIアシスタントを編集する
         playground: 遊び場
       ai_assistants: AIアシスタント
       ai_assistants_playground: AIアシスタント・プレイグラウンド
       column:
         provider: プロバイダー
+      created_successfully: AIアシスタントが正常に作成されました。
       form:
+        add_output_schema_key: 出力スキーマ・キーの追加
+        dependencies: 依存関係
         description: 説明
+        enter_description: 説明を入力
+        enter_schema_key: スキーマ・キーを入力
+        key: キー
         name: 名称
+        output_schema_keys: 出力スキーマ・キー
         provider: プロバイダー
+        remove_output_schema_key: 出力スキーマ・キーの削除
+        schema_key_description_required: スキーマキーの説明は必須
+        schema_key_required: スキーマ・キーが必要
+        schema_key_type: キータイプ
+        schema_key_unique: スキーマ・キーは一意でなければならない
         system_prompt: システムプロンプト
-        title: AIアシスタント
+        type: タイプ
         user_prompt: ユーザープロンプト
+      updated_successfully: AIアシスタントは正常に更新されました。
     any: " - どれでも "
     api:
       campaigns:

@@ -3,7 +3,7 @@
 class AI::Assistant < ApplicationRecord
   audited
 
-  ALLOWED_DEPENDENCIES = %w[datasheet assessments].freeze
+  ALLOWED_DEPENDENCIES = %w[datasheet assessments campaign_factors].freeze
 
   self.inheritance_column = :_type_disabled
 
@@ -12,6 +12,8 @@ class AI::Assistant < ApplicationRecord
   has_many :chats, class_name: 'AI::AssistantChat', foreign_key: 'ai_assistant_id', dependent: :destroy
   has_many :assistant_output_schema_keys,
            class_name: 'AI::AssistantOutputSchemaKey', foreign_key: 'ai_assistant_id', dependent: :destroy
+
+  accepts_nested_attributes_for :assistant_output_schema_keys, allow_destroy: true
 
   validates :model_id, presence: true
   validate :dependencies_must_be_valid
