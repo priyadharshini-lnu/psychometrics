@@ -60,9 +60,21 @@ zh-HK:
               must_exist: 專案必須存在
   activerecord:
     attributes:
+      assessment:
+        categories:
+          lead_assessor_form: 首席評估員表格
       membership:
         first_name: 名字
         last_name: 姓氏
+      task:
+        statuses:
+          in_progress: 進行中
+          not_started: 尚未開始
+      threesixty:
+        users_result:
+          statuses:
+            in_progress: 進行中
+            not_started: 尚未開始
       user:
         email: 電郵地址
         first_name: 名字
@@ -72,6 +84,11 @@ zh-HK:
         first_name: 名字
         last_name: 姓氏
         password: 密碼
+      users_result:
+        statuses:
+          in_progress: 進行中
+          not_started: 尚未開始
+          timed_out: 超時
     errors:
       models:
         register:
@@ -102,6 +119,8 @@ zh-HK:
         import_job_roles_translations: 匯入工作角色翻譯
         import_proficiency_level_translations: 進口能力等級翻譯
         import_skill_rater_taxonomies: 匯入技能評核員分類標準
+      statuses:
+        in_progress: 進行中
   anonym:
     close: 關閉
     continue: 繼續
@@ -135,7 +154,10 @@ zh-HK:
         skillvue_assessment_name: Skillvue 評估名稱
     fields:
       category:
+        lead_assessor_form: 首席評估員表格
         skillvue: Skillvue
+      status:
+        in_progress: 進行中
     instructions:
       begin_assessment: 開始
       cancel: 取消
@@ -366,6 +388,11 @@ zh-HK:
       not_started: 未開始
       timed_out: 超時
       universal_link: 通用連結
+  campaign_users:
+    details:
+      statuses:
+        in_progress: 進行中
+        not_started: 尚未開始
   campaigns:
     card:
       duration: 時間長度
@@ -487,6 +514,9 @@ zh-HK:
       assessments: 評估
       campaigns: 市場推廣
       reports: 報告
+    status:
+      in_progress: 進行中
+      not_started: 尚未開始
     text:
       cancel: 取消
       confirm: 確認
@@ -918,6 +948,7 @@ zh-HK:
     user_idp_status:
       approved: 已批准
       draft: 草稿
+      in_progress: 進行中
       not_started: 未开始
       pending_approval: 待批准
     users: 用戶
@@ -1079,6 +1110,10 @@ zh-HK:
         last_name: 姓氏
       memebrship:
         last_name: 姓氏
+      norm:
+        statuses:
+          in_progress: 進行中
+          not_started: 尚未開始
       user:
         email: 電郵地址
         first_name: 名字
@@ -1276,6 +1311,9 @@ zh-HK:
       last_name: 姓氏
   user_assessments:
     redirect: 您會被重新導向到第三方網站進行此評估。 如果您要開始評估，請按一下繼續。
+    status:
+      in_progress: 進行中
+      not_started: 尚未開始
   user_reports:
     messages:
       regenerate_successful: 報告重生成功安排

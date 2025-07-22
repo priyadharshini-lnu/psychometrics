@@ -438,6 +438,7 @@ en:
           case_study: Case Studies
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Lead Assessor Form
           meeting: Meeting
           organisational: Surveys
           pearson: Pearson
@@ -654,8 +655,8 @@ en:
         users_result:
           statuses:
             completed: Completed
-            in_progress: Resume
-            not_started: New
+            in_progress: In Progress
+            not_started: Not Started
       user:
         active: Active
         created_at: Created Date
@@ -733,11 +734,11 @@ en:
         status: Status
         statuses:
           completed: Completed
-          in_progress: Resume
+          in_progress: In Progress
           ineligible: Ineligible
           interrupted: Interrupted
-          not_started: New
-          timed_out: Timed import_raw
+          not_started: Not Started
+          timed_out: Timed out
     errors:
       messages:
         admin_for_another_tte: User already admin in another tte

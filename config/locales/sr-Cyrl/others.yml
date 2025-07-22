@@ -13,9 +13,21 @@ sr-Cyrl:
         select_operation: Изаберите операцију
   activerecord:
     attributes:
+      assessment:
+        categories:
+          lead_assessor_form: "[SR-CYRL] Lead Assessor Form"
       membership:
         first_name: Име
         last_name: Презиме
+      task:
+        statuses:
+          in_progress: "[SR-CYRL] In Progress"
+          not_started: "[SR-CYRL] Not Started"
+      threesixty:
+        users_result:
+          statuses:
+            in_progress: "[SR-CYRL] In Progress"
+            not_started: "[SR-CYRL] Not Started"
       user:
         email: Адреса е-поште
         first_name: Име
@@ -25,6 +37,11 @@ sr-Cyrl:
         first_name: Име
         last_name: Презиме
         password: Лозинка
+      users_result:
+        statuses:
+          in_progress: "[SR-CYRL] In Progress"
+          not_started: "[SR-CYRL] Not Started"
+          timed_out: "[SR-CYRL] Timed out"
     errors:
       models:
         register:
@@ -37,6 +54,10 @@ sr-Cyrl:
           attributes:
             current_password:
               invalid: Тренутна лозинка је нетачна
+  admin_jobs:
+    attrs:
+      statuses:
+        in_progress: "[SR-CYRL] In Progress"
   administration: Администрација
   anonym:
     close: Затвори
@@ -66,6 +87,11 @@ sr-Cyrl:
     card_actions:
       begin: Почетак
       continue: Настави
+    fields:
+      category:
+        lead_assessor_form: "[SR-CYRL] Lead Assessor Form"
+      status:
+        in_progress: "[SR-CYRL] In Progress"
     instructions:
       begin_assessment: Почетак
       cancel: Откажи
@@ -260,6 +286,11 @@ sr-Cyrl:
       not_started: Није започето
       timed_out: Временски истекло
       universal_link: Универзална веза
+  campaign_users:
+    details:
+      statuses:
+        in_progress: "[SR-CYRL] In Progress"
+        not_started: "[SR-CYRL] Not Started"
   campaigns:
     card:
       duration: Трајање
@@ -377,6 +408,9 @@ sr-Cyrl:
       assessments: Процене
       campaigns: Кампање
       reports: Извештаји
+    status:
+      in_progress: "[SR-CYRL] In Progress"
+      not_started: "[SR-CYRL] Not Started"
     text:
       cancel: Откажи
       confirm: Потврди
@@ -972,6 +1006,10 @@ sr-Cyrl:
         last_name: Презиме
       memebrship:
         last_name: Презиме
+      norm:
+        statuses:
+          in_progress: "[SR-CYRL] In Progress"
+          not_started: "[SR-CYRL] Not Started"
       user:
         email: Адреса е-поште
         first_name: Име
@@ -1169,6 +1207,9 @@ sr-Cyrl:
       last_name: Презиме
   user_assessments:
     redirect: Бићете преусмерени на сајт треће стране за ову процену. Кликните на дугме „Настави“ ако желите да започнете процену.
+    status:
+      in_progress: "[SR-CYRL] In Progress"
+      not_started: "[SR-CYRL] Not Started"
   user_reports:
     messages:
       regenerate_successful: Задатак регенерације извештаја је успешно заказан
