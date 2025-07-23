@@ -15,6 +15,8 @@ es-ES:
       title: Cambios auditados
     administrator:
       sessions:
+        errors:
+          recaptcha: Error en la verificación de Recaptcha
         new:
           forgot_password: "¿Ha olvidado su contraseña?"
           instruction: Inicie sesión con los datos de su cuenta personal
@@ -3592,6 +3594,7 @@ es-ES:
       disable_password_reuse: Desactivar la reutilización de contraseñas
       disallow_password_login: No permitir el acceso con contraseña
       enable_login_with_magic_link: Habilitar inicio de sesión con enlace mágico
+      enable_recaptcha: Activar reCAPTCHA
       enforce_password_policy: Aplicar la política de contraseñas en el siguiente inicio de sesión
       enforce_strong: Imponer una contraseña segura
       expiration: Caducidad de la contraseña

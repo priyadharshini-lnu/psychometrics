@@ -15,6 +15,8 @@ it:
       title: Variazioni verificate
     administrator:
       sessions:
+        errors:
+          recaptcha: Verifica Recaptcha fallita
         new:
           forgot_password: Avete dimenticato la password?
           instruction: Effettuare il login con i dati del proprio account personale
@@ -3592,6 +3594,7 @@ it:
       disable_password_reuse: Disabilitare il riutilizzo della password
       disallow_password_login: Non consentire l'accesso con password
       enable_login_with_magic_link: Abilita il login con link magico
+      enable_recaptcha: Abilitare reCAPTCHA
       enforce_password_policy: Applicare la politica delle password al prossimo accesso
       enforce_strong: Imporre password forti
       expiration: Scadenza della password

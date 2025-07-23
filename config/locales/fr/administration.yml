@@ -15,6 +15,8 @@ fr:
       title: Changements audités
     administrator:
       sessions:
+        errors:
+          recaptcha: La vérification du Recaptcha a échoué
         new:
           forgot_password: Vous avez oublié votre mot de passe ?
           instruction: Veuillez vous connecter avec les informations de votre compte personnel
@@ -3592,6 +3594,7 @@ fr:
       disable_password_reuse: Désactiver la réutilisation du mot de passe
       disallow_password_login: Interdire la connexion par mot de passe
       enable_login_with_magic_link: Activer la connexion par lien magique
+      enable_recaptcha: Activer reCAPTCHA
       enforce_password_policy: Appliquer la politique de mot de passe lors de la prochaine connexion
       enforce_strong: Appliquer un mot de passe fort
       expiration: Expiration du mot de passe

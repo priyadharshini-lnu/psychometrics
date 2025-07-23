@@ -15,6 +15,8 @@ ar:
       title: التغييرات المدققة
     administrator:
       sessions:
+        errors:
+          recaptcha: فشل التحقق من "إعادة التحقّق
         new:
           forgot_password: هل نسيت كلمة المرور؟
           instruction: يرجى تسجيل الدخول باستخدام معلومات حسابك الشخصي
@@ -3591,6 +3593,7 @@ ar:
       disable_password_reuse: Disable password reuse
       disallow_password_login: Disallow password login
       enable_login_with_magic_link: Enable Login with magic link
+      enable_recaptcha: تمكين اختبار إعادة التحقق من التحقق من التحقق من صحة المعلومات (reCAPTCHA)
       enforce_password_policy: Enforce password policy at next sign-in
       enforce_strong: Enforce strong password
       expiration: Password expiration

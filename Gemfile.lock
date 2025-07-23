@@ -771,6 +771,7 @@ GEM
     rbs (3.9.1)
       logger
     rdoc (6.3.4.1)
+    recaptcha (5.19.0)
     redis (4.7.1)
     redis-prescription (2.6.0)
     redlock (1.2.2)
@@ -1209,6 +1210,7 @@ DEPENDENCIES
   rails-i18n (~> 7.0)
   rails_autoscale_agent (~> 0.10.2)
   ransack (~> 4.1.1)
+  recaptcha
   rectify!
   redis (~> 4.7.1)
   redlock (~> 1.2.2)

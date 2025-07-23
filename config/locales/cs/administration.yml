@@ -15,6 +15,8 @@ cs:
       title: Auditované změny
     administrator:
       sessions:
+        errors:
+          recaptcha: Ověření Recaptcha se nezdařilo
         new:
           forgot_password: Zapomněli jste heslo?
           instruction: Přihlaste se prosím pomocí údajů o svém osobním účtu
@@ -3592,6 +3594,7 @@ cs:
       disable_password_reuse: Zakázat opakované použití hesla
       disallow_password_login: Zakázat přihlášení heslem
       enable_login_with_magic_link: Povolit přihlášení pomocí magického odkazu
+      enable_recaptcha: Povolit reCAPTCHA
       enforce_password_policy: Vynucení zásad hesla při příštím přihlášení
       enforce_strong: Vynucení silného hesla
       expiration: Vypršení platnosti hesla

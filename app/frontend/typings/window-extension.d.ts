@@ -12,6 +12,7 @@ declare global {
     PsyGlobalState: {
       realEnv: string,
       adminLocales:string,
+      recaptchaSiteKey:string
       availableAiProviders: string,
       sentryUrl: string,
       sentryDebug: string,
@@ -21,7 +22,7 @@ declare global {
       },
       features: {
         [key: string]: boolean
-      }
+      },
     },
     Utils: {
       isElementInViewport: (HTMLElement) => boolean
@@ -30,6 +31,10 @@ declare global {
     $chatwoot: unknnown
     Buffer: unknown
     FaceMesh: unknown
+    grecaptcha:{
+      ready: (callback: () => void) => void
+      execute: (siteKey: string, options: { action: string }) => Promise<string>
+    }
   }
   interface WindowEventMap {
     'local-storage': CustomEvent

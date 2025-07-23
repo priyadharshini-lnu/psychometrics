@@ -15,6 +15,8 @@ ja:
       title: 監査による変更
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha の検証に失敗しました。
         new:
           forgot_password: パスワードをお忘れですか？
           instruction: 個人アカウント情報でログインしてください
@@ -3592,6 +3594,7 @@ ja:
       disable_password_reuse: パスワードの再利用を無効にする
       disallow_password_login: パスワードによるログインを許可しない
       enable_login_with_magic_link: マジックリンクによるログインを有効にする
+      enable_recaptcha: reCAPTCHAを有効にする
       enforce_password_policy: 次回サインイン時にパスワードポリシーを強制する
       enforce_strong: 強力なパスワードの強制
       expiration: パスワードの有効期限

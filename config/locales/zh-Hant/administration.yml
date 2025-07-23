@@ -15,6 +15,8 @@ zh-Hant:
       title: 經審核的變更
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha 驗證失敗
         new:
           forgot_password: 忘記密碼？
           instruction: 請使用您的個人帳戶資訊登入
@@ -3589,6 +3591,7 @@ zh-Hant:
       disable_password_reuse: 停用密碼重複使用
       disallow_password_login: 禁止以密碼登入
       enable_login_with_magic_link: 啟用魔法連結登入
+      enable_recaptcha: 啟用 reCAPTCHA
       enforce_password_policy: 在下次登入時強制執行密碼政策
       enforce_strong: 強化密碼
       expiration: 密碼到期

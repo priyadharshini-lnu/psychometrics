@@ -1,52 +1,71 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input } from 'antd'
 import { Link } from 'react-router-dom'
 import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import { InputField } from '../../components/InputField'
 import { Flash } from '~/components/Flash'
 import styles from './styles.less'
+import { fetchRecaptchaToken } from '~/utils/recaptcha'
 
 const { I18n } = window
+const { disable_recaptcha } = window.PsyGlobalState.features
+const { recaptchaSiteKey } = window.PsyGlobalState
 
 interface LoginFormProps {
   csrfToken: string
   user: { email: string }
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ csrfToken, user }) => (
-  <>
-    <Flash />
-    <form
-      className={styles.form}
-      action="/administration"
-      method="post"
-    >
-      <Input type="hidden" name="authenticity_token" value={csrfToken} />
-      <InputField
-        label={I18n.t('auth.email')}
-        name="user[email]"
-        placeholder={I18n.t('auth.email_placeholder')}
-        defaultValue={user.email}
-      />
-      <InputField
-        label={I18n.t('auth.password')}
-        name="user[password]"
-        placeholder={I18n.t('auth.password_placeholder')}
-        password
-      />
-      <Link to="/administration/passwords/new">
-        {I18n.t('auth.login.forgot_password')}
-      </Link>
-      <ButtonWithArrow
-        label={I18n.t('auth.login.login_btn')}
-        type="primary"
-        size="large"
-        htmlType="submit"
-        className={styles.submit}
-        block
-      />
-    </form>
-  </>
-)
+const LoginForm: React.FC<LoginFormProps> = ({ csrfToken, user }) => {
+  const [recaptchaToken, setRecaptchaToken] = useState<string>('')
+
+  useEffect(() => {
+    if (!disable_recaptcha) {
+      fetchRecaptchaToken(recaptchaSiteKey, 'login').then((token) => {
+        setRecaptchaToken(token)
+      })
+    }
+  }, [])
+
+  return (
+    <>
+      <Flash />
+      <form
+        className={styles.form}
+        action="/administration"
+        method="post"
+      >
+        <Input type="hidden" name="authenticity_token" value={csrfToken} />
+
+        {!disable_recaptcha && (
+          <Input type="hidden" name="recaptcha_token" value={recaptchaToken} />
+        )}
+        <InputField
+          label={I18n.t('auth.email')}
+          name="user[email]"
+          placeholder={I18n.t('auth.email_placeholder')}
+          defaultValue={user.email}
+        />
+        <InputField
+          label={I18n.t('auth.password')}
+          name="user[password]"
+          placeholder={I18n.t('auth.password_placeholder')}
+          password
+        />
+        <Link to="/administration/passwords/new">
+          {I18n.t('auth.login.forgot_password')}
+        </Link>
+        <ButtonWithArrow
+          label={I18n.t('auth.login.login_btn')}
+          type="primary"
+          size="large"
+          htmlType="submit"
+          className={styles.submit}
+          block
+        />
+      </form>
+    </>
+  )
+}
 
 export default LoginForm

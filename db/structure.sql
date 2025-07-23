@@ -5826,7 +5826,8 @@ CREATE TABLE public.security_settings (
     magic_link_expiry_in_seconds integer DEFAULT 604800 NOT NULL,
     magic_link_enabled boolean DEFAULT false,
     disallow_password_login boolean DEFAULT false,
-    session_inactivity_timeout_in_seconds integer DEFAULT 7200 NOT NULL
+    session_inactivity_timeout_in_seconds integer DEFAULT 7200 NOT NULL,
+    enable_recaptcha boolean DEFAULT false
 );
 
 
@@ -17506,6 +17507,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250711074243'),
+('20250715133541'),
 ('20250709102014'),
 ('20250709100241'),
 ('20250704103208'),

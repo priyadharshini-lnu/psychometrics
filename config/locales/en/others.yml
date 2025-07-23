@@ -3298,6 +3298,9 @@ en:
       send_password_email_success: Email sent to user %{email} with the password.
     title: Reset Password
   select: Select
+  sessions:
+    errors:
+      recaptcha: Recaptcha verification failed. Please try again.
   shared:
     filters:
       clear: Clear Filters

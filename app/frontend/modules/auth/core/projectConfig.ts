@@ -24,6 +24,7 @@ interface State {
   background_size: BackgroundSize,
   magic_link_enabled: boolean,
   disallow_password_login: boolean,
+  enable_recaptcha?: boolean,
 }
 
 export const defaultState: State = {
@@ -40,6 +41,7 @@ export const defaultState: State = {
   background_size: 'cover',
   magic_link_enabled: false,
   disallow_password_login: false,
+  enable_recaptcha: false,
 }
 
 export default createReducer({}, defaultState)

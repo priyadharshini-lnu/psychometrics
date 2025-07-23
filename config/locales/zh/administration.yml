@@ -15,6 +15,8 @@ zh:
       title: 经审计的变化
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha 验证失败
         new:
           forgot_password: 忘记密码？
           instruction: 请使用个人账户信息登录
@@ -3592,6 +3594,7 @@ zh:
       disable_password_reuse: 禁用密码重用
       disallow_password_login: 禁止密码登录
       enable_login_with_magic_link: 启用魔法链接登录
+      enable_recaptcha: 启用验证码
       enforce_password_policy: 下次登录时执行密码策略
       enforce_strong: 执行强密码
       expiration: 密码过期

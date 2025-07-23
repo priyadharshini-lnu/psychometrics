@@ -15,6 +15,8 @@ de:
       title: Geprüfte Änderungen
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha-Überprüfung fehlgeschlagen
         new:
           forgot_password: Haben Sie Ihr Passwort vergessen?
           instruction: Bitte melden Sie sich mit Ihren persönlichen Kontodaten an
@@ -3592,6 +3594,7 @@ de:
       disable_password_reuse: Wiederverwendung von Passwörtern deaktivieren
       disallow_password_login: Passwortanmeldung verbieten
       enable_login_with_magic_link: Login mit magischem Link aktivieren
+      enable_recaptcha: reCAPTCHA aktivieren
       enforce_password_policy: Kennwortrichtlinie bei der nächsten Anmeldung durchsetzen
       enforce_strong: Erzwingen Sie ein sicheres Passwort
       expiration: Ablauf des Passworts

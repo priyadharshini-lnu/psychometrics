@@ -15,6 +15,8 @@ ko:
       title: 감사된 변경 사항
     administrator:
       sessions:
+        errors:
+          recaptcha: 리캡차 인증 실패
         new:
           forgot_password: 비밀번호를 잊으셨나요?
           instruction: 개인 계정 정보로 로그인하세요
@@ -3592,6 +3594,7 @@ ko:
       disable_password_reuse: 비밀번호 재사용 비활성화
       disallow_password_login: 비밀번호 로그인 허용
       enable_login_with_magic_link: 매직링크로 로그인 사용
+      enable_recaptcha: 재캡차 사용
       enforce_password_policy: 다음 로그인 시 비밀번호 정책 적용
       enforce_strong: 강력한 비밀번호 적용
       expiration: 비밀번호 만료

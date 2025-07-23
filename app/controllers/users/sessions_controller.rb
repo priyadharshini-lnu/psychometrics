@@ -3,6 +3,8 @@
 module Users
   class SessionsController < Devise::SessionsController
     layout 'devise'
+
+    prepend_before_action :verify_recaptcha_or_redirect, only: [:create]
     before_action :check_if_saml_is_enforced, only: [:create]
     before_action :compute_after_signout_path, only: [:destroy]
     before_action :perform_browser_check, only: [:new]
@@ -56,6 +58,18 @@ module Users
       @browser_detections = helpers.detect_browser(request.user_agent)
 
       redirect_to upgrade_url unless @browser_detections.supported_browser?
+    end
+
+    def verify_recaptcha_or_redirect
+      return if Settings.features.disable_recaptcha
+
+      @current_project = GetProjectBySubdomain.call!(request.subdomain)
+      return unless @current_project&.security_setting&.enable_recaptcha
+
+      unless verify_recaptcha(action: 'login', response: params[:recaptcha_token], minimum_score: 0.5)
+        flash[:alert] = I18n.t('sessions.errors.recaptcha')
+        redirect_to new_user_session_path and return
+      end
     end
   end
 end

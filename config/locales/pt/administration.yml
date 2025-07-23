@@ -15,6 +15,8 @@ pt:
       title: Alterações auditadas
     administrator:
       sessions:
+        errors:
+          recaptcha: A verificação do Recaptcha falhou
         new:
           forgot_password: Esqueceu-se da sua palavra-passe?
           instruction: Inicie sessão com as informações da sua conta pessoal
@@ -3592,6 +3594,7 @@ pt:
       disable_password_reuse: Desativar a reutilização da palavra-passe
       disallow_password_login: Não permitir o início de sessão com palavra-passe
       enable_login_with_magic_link: Ativar o início de sessão com ligação mágica
+      enable_recaptcha: Ativar o reCAPTCHA
       enforce_password_policy: Aplicar a política de palavra-passe no próximo início de sessão
       enforce_strong: Aplicar uma palavra-passe forte
       expiration: Expiração da palavra-passe
