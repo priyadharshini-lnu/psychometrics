@@ -2111,6 +2111,7 @@ pt:
       enter_template_name: Nome
       enter_template_name_error: O nome do modelo é obrigatório
       errors:
+        cannot_update_progress_plan_completed: Não é possível atualizar os progressos porque o plano PDI já foi concluído
         update: Atualização não permitida porque o modelo IDP já está associado a um plano IDP do utilizador.
       fields:
         assigned_data: Dados atribuídos

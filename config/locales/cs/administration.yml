@@ -2111,6 +2111,7 @@ cs:
       enter_template_name: Název
       enter_template_name_error: Název šablony je povinný
       errors:
+        cannot_update_progress_plan_completed: Nelze aktualizovat pokrok, protože plán IDP byl dokončen.
         update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele.
       fields:
         assigned_data: Přiřazená data

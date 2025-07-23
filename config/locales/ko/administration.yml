@@ -2111,6 +2111,7 @@ ko:
       enter_template_name: 이름
       enter_template_name_error: 템플릿 이름은 필수입니다
       errors:
+        cannot_update_progress_plan_completed: IDP 계획이 완료되었으므로 진행 상황을 업데이트할 수 없습니다.
         update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다.
       fields:
         assigned_data: 할당된 데이터

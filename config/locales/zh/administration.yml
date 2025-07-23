@@ -2111,6 +2111,7 @@ zh:
       enter_template_name: 名称
       enter_template_name_error: 模板名称为必填项
       errors:
+        cannot_update_progress_plan_completed: 无法更新进度，因为 IDP 计划已经完成
         update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。
       fields:
         assigned_data: 指定数据

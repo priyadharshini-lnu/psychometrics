@@ -2111,6 +2111,7 @@ de:
       enter_template_name: Name
       enter_template_name_error: Name der Vorlage ist erforderlich
       errors:
+        cannot_update_progress_plan_completed: Keine Fortschrittsaktualisierung möglich, da der IDP-Plan bereits abgeschlossen ist
         update: Aktualisierung nicht zulässig, da die IDP-Vorlage bereits mit einem Benutzer-IDP-Plan verknüpft ist.
       fields:
         assigned_data: Zugewiesene Daten

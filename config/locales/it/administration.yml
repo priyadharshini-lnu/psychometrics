@@ -2111,6 +2111,7 @@ it:
       enter_template_name: Nome
       enter_template_name_error: Il nome del modello è obbligatorio
       errors:
+        cannot_update_progress_plan_completed: Non è possibile aggiornare lo stato di avanzamento perché il piano IDP è stato completato.
         update: Aggiornamento non consentito perché il modello IDP è già associato a un piano IDP utente.
       fields:
         assigned_data: Dati assegnati

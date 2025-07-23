@@ -2111,6 +2111,7 @@ nl:
       enter_template_name: Naam
       enter_template_name_error: Sjabloonnaam is vereist
       errors:
+        cannot_update_progress_plan_completed: Kan de voortgang niet bijwerken omdat het IDP-plan is voltooid
         update: Bijwerken niet toegestaan omdat de IDP-sjabloon al gekoppeld is aan een IDP-plan van een gebruiker.
       fields:
         assigned_data: Toegewezen gegevens

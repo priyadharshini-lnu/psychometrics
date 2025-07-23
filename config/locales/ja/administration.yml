@@ -2111,6 +2111,7 @@ ja:
       enter_template_name: 名称
       enter_template_name_error: テンプレート名は必須
       errors:
+        cannot_update_progress_plan_completed: IDP計画が完了したため、進捗状況を更新できない
         update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
       fields:
         assigned_data: 割り当てデータ

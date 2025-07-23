@@ -2110,6 +2110,7 @@ ar:
       enter_template_name: Name
       enter_template_name_error: Template name is required
       errors:
+        cannot_update_progress_plan_completed: لا يمكن تحديث التقدم المحرز لأن خطة IDP قد اكتملت
         update: غير مسموح بالتحديث لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم.
       fields:
         assigned_data: البيانات المعينة

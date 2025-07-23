@@ -2109,6 +2109,7 @@ zh-Hant:
       enter_template_name: 名稱
       enter_template_name_error: 模板名稱為必填項目
       errors:
+        cannot_update_progress_plan_completed: 無法更新進度，因為 IDP 計劃已完成
         update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。
       fields:
         assigned_data: 指定資料

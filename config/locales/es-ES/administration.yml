@@ -2111,6 +2111,7 @@ es-ES:
       enter_template_name: Nombre
       enter_template_name_error: El nombre de la plantilla es obligatorio
       errors:
+        cannot_update_progress_plan_completed: No se puede actualizar el progreso porque el plan IDP ya se ha completado
         update: Actualización no permitida porque la plantilla IDP ya está asociada a un plan IDP de usuario.
       fields:
         assigned_data: Datos asignados

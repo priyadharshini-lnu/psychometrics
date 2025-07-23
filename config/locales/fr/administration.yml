@@ -2111,6 +2111,7 @@ fr:
       enter_template_name: Nom
       enter_template_name_error: Le nom du modèle est obligatoire
       errors:
+        cannot_update_progress_plan_completed: Impossible de mettre à jour l'état d'avancement car le plan IDP a été achevé.
         update: La mise à jour n'est pas autorisée car le modèle IDP est déjà associé à un plan IDP utilisateur.
       fields:
         assigned_data: Données attribuées
