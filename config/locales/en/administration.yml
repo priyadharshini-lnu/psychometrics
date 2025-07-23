@@ -2112,6 +2112,7 @@ en:
       enter_template_name: Name
       enter_template_name_error: Template name is required
       errors:
+        cannot_update_progress_plan_completed: Cannot update progress because the IDP plan has been completed
         update: Update not allowed because the IDP template is already associated with a user IDP plan.
       fields:
         assigned_data: Assigned Data
