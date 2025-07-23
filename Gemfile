@@ -205,7 +205,6 @@ group :development, :test do
   gem 'stackprof', '~> 0.2.12'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'recaptcha', require: 'recaptcha/rails'
   gem 'spring', '~> 4.1.1'
   gem 'spring-commands-parallel-tests'
 end
@@ -269,5 +268,6 @@ gem 'oci', '~> 2.20.0'
 # Sidekiq queue concurrency control
 gem 'sidekiq-throttled', '~> 1.5.2'
 
+gem 'recaptcha', require: 'recaptcha/rails'
 # To integrate with LLMs
 gem 'ruby_llm', '~> 1.3.1'
