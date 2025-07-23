@@ -3181,6 +3181,13 @@ sl:
         successfully: Poročilo »%{name}« je bilo uspešno izbrisano.
       edit:
         header: Urejanje imena poročila
+      edit_default_language:
+        agreement: Da, razumem posledice spremembe privzetega jezika.
+        warning:
+          description_li_1: Sprememba privzetega jezika z RTL v LTR jezik ali obratno bo vplivala na postavitev.
+          description_li_2: Če bi spremenili privzeti jezik, bi morali znova prevesti poročila.
+          description_li_3: Pred spremembo prenesite kopijo prevoda poročila.
+          title: Pozorno preberite navodila
       modals:
         remap_assessment:
           new_assessment_name: Novo ime ocenjevanja

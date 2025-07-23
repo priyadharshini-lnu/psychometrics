@@ -3225,10 +3225,14 @@ de:
       edit:
         header: Berichtsname bearbeiten
       edit_default_language:
-        confirm_msg: Ich habe die oben genannten Informationen gelesen und verstehe die Auswirkungen einer Änderung der Standardsprache.
+        agreement: Ja, ich verstehe die Auswirkungen der Änderung der Standardsprache.
         title: Standardsprache bearbeiten
         tooltip: Standardsprache bearbeiten
-        warning: Wenn Sie die Standardsprache von rtl in ltr oder umgekehrt ändern, wirkt sich dies auf das Layout aus. Wenn Sie die Standardsprache ändern, müssen Sie die Übersetzungen der Berichte überarbeiten. Bitte laden Sie eine Kopie der Übersetzungen herunter, bevor Sie diese Änderung vornehmen.
+        warning:
+          description_li_1: Wenn Sie die Standardsprache von RTL auf LTR oder umgekehrt ändern, wirkt sich dies auf das Layout aus.
+          description_li_2: Wenn Sie die Standardsprache ändern, müssen Sie die Übersetzung der Berichte überarbeiten.
+          description_li_3: Laden Sie eine Kopie der Berichtsübersetzungen herunter, bevor Sie diese Änderung vornehmen.
+          title: Bitte lesen Sie die Anweisungen sorgfältig
       modals:
         remap_assessment:
           new_assessment_name: Neue Bewertung Name

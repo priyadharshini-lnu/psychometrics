@@ -3225,10 +3225,14 @@ zh:
       edit:
         header: 编辑报告名称
       edit_default_language:
-        confirm_msg: 我已阅读上述信息，并了解更改默认语言的影响。
+        agreement: 是的，我理解更改默认语言所带来的影响。
         title: 编辑默认语言
         tooltip: 编辑默认语言
-        warning: 将默认语言从 rtl 改为 ltr，或反之亦然，都会影响版面设计。如果更改默认语言，则必须重新翻译报告。请在更改之前下载一份翻译副本。
+        warning:
+          description_li_1: 将默认语言从 RTL 更改为 LTR 语言或反之亦然，都会影响版面设计。
+          description_li_2: 如果更改默认语言，就必须重新翻译报告。
+          description_li_3: 在进行此更改之前，请下载报告翻译副本。
+          title: 请仔细阅读说明
       modals:
         remap_assessment:
           new_assessment_name: 新评估名称

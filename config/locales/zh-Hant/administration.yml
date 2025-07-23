@@ -3221,10 +3221,14 @@ zh-Hant:
       edit:
         header: 編輯報告名稱
       edit_default_language:
-        confirm_msg: 我已閱讀上述資訊，並瞭解變更預設語言的影響。
+        agreement: 是的，我了解預設語言變更的影響。
         title: 編輯預設語言
         tooltip: 編輯預設語言
-        warning: 將預設語言從 rtl 改為 ltr 語言或反之亦然，都會影響版面。如果變更預設語言，您必須重新處理報告的翻譯。在進行此變更之前，請下載一份翻譯副本。
+        warning:
+          description_li_1: 將預設語言從 RTL 變更為 LTR 語言，或反之亦然，都會影響版面編排。
+          description_li_2: 如果您變更預設語言，就必須重新翻譯報告。
+          description_li_3: 進行此變更之前，請先下載一份報告翻譯。
+          title: 請仔細閱讀說明
       modals:
         remap_assessment:
           new_assessment_name: 新評估名稱

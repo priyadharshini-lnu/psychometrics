@@ -3225,10 +3225,14 @@ pt:
       edit:
         header: Editar nome do relatório
       edit_default_language:
-        confirm_msg: Li as informações acima e compreendo as implicações de alterar a língua predefinida.
+        agreement: Sim, compreendo as implicações da mudança de língua por defeito.
         title: Editar idioma predefinido
         tooltip: Editar idioma predefinido
-        warning: Alterar o idioma predefinido de rtl para ltr ou vice-versa afectará a apresentação. Terá de voltar a trabalhar nas traduções dos relatórios se alterar a língua predefinida. Descarregue uma cópia das traduções antes de efetuar esta alteração.
+        warning:
+          description_li_1: A alteração do idioma predefinido de RTL para LTR ou vice-versa afectará a apresentação.
+          description_li_2: Teria de refazer as traduções dos relatórios se alterasse a língua predefinida.
+          description_li_3: Descarregue uma cópia das traduções do relatório antes de efetuar esta alteração.
+          title: Ler atentamente as instruções
       modals:
         remap_assessment:
           new_assessment_name: Novo nome de avaliação

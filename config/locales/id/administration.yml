@@ -3181,6 +3181,13 @@ id:
         successfully: Laporan '%{name}' berhasil dihapus.
       edit:
         header: Edit Nama Laporan
+      edit_default_language:
+        agreement: Ya, saya memahami implikasi dari perubahan bahasa default.
+        warning:
+          description_li_1: Mengubah bahasa default dari bahasa RTL ke bahasa LTR atau sebaliknya akan mempengaruhi tata letak.
+          description_li_2: Anda harus mengerjakan ulang terjemahan laporan jika Anda mengubah bahasa default.
+          description_li_3: Unduh salinan terjemahan laporan sebelum melakukan perubahan ini.
+          title: Harap baca instruksi dengan seksama
       modals:
         remap_assessment:
           new_assessment_name: Nama Penilaian Baru

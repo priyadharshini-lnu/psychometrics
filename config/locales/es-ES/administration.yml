@@ -3225,10 +3225,14 @@ es-ES:
       edit:
         header: Editar nombre del informe
       edit_default_language:
-        confirm_msg: He leído la información anterior y comprendo las implicaciones de cambiar la lengua por defecto.
+        agreement: Sí, entiendo las implicaciones del cambio de idioma por defecto.
         title: Editar idioma por defecto
         tooltip: Editar idioma por defecto
-        warning: Cambiar el idioma por defecto de rtl a ltr o viceversa afectará al diseño. Si cambia el idioma por defecto, tendrá que volver a realizar las traducciones de los informes. Por favor, descargue una copia de las traducciones antes de realizar este cambio.
+        warning:
+          description_li_1: Cambiar el idioma por defecto de RTL a LTR o viceversa afectará al diseño.
+          description_li_2: Si cambia el idioma por defecto, tendrá que volver a traducir los informes.
+          description_li_3: Descargue una copia de las traducciones del informe antes de realizar este cambio.
+          title: Lea atentamente las instrucciones
       modals:
         remap_assessment:
           new_assessment_name: Nombre de la nueva evaluación

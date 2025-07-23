@@ -3181,6 +3181,13 @@ sk:
         successfully: Hlásenie %{name} bolo úspešne odstránené.
       edit:
         header: Úprava názvu zostavy
+      edit_default_language:
+        agreement: Áno, chápem dôsledky zmeny predvoleného jazyka.
+        warning:
+          description_li_1: Zmena predvoleného jazyka z RTL na LTR alebo naopak ovplyvní rozloženie.
+          description_li_2: Ak by ste zmenili predvolený jazyk, museli by ste prepracovať preklady správ.
+          description_li_3: Pred vykonaním tejto zmeny si stiahnite kópiu prekladu správy.
+          title: Pozorne si prečítajte pokyny
       modals:
         remap_assessment:
           new_assessment_name: Nový názov hodnotenia

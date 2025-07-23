@@ -3181,6 +3181,13 @@ hr:
         successfully: Izvješće '%{name}' uspješno je izbrisano.
       edit:
         header: Uređivanje naziva izvješća
+      edit_default_language:
+        agreement: "[HR] Yes, I understand the implications of default language change."
+        warning:
+          description_li_1: "[HR] Changing the default language from RTL to LTR language or vice versa will affect the layout."
+          description_li_2: "[HR] You would have to rework on report translations if you change the default language."
+          description_li_3: "[HR] Download a copy of report translations before making this change."
+          title: "[HR] Please read instructions carefully"
       modals:
         remap_assessment:
           new_assessment_name: Novi naziv procjene

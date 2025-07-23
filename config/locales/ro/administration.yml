@@ -3181,6 +3181,13 @@ ro:
         successfully: Raportul "%{name}" a fost șters cu succes.
       edit:
         header: Editați numele raportului
+      edit_default_language:
+        agreement: Da, înțeleg implicațiile schimbării limbii implicite.
+        warning:
+          description_li_1: Schimbarea limbii implicite din RTL în LTR sau viceversa va afecta aspectul.
+          description_li_2: Va trebui să lucrați din nou la traducerile rapoartelor dacă schimbați limba implicită.
+          description_li_3: Descărcați o copie a traducerilor raportului înainte de a face această modificare.
+          title: Vă rugăm să citiți cu atenție instrucțiunile
       modals:
         remap_assessment:
           new_assessment_name: Noul nume de evaluare

@@ -3225,10 +3225,14 @@ fr:
       edit:
         header: Modifier le nom du rapport
       edit_default_language:
-        confirm_msg: J'ai lu les informations ci-dessus et je comprends les implications du changement de la langue par défaut.
+        agreement: Oui, je comprends les implications du changement de langue par défaut.
         title: Modifier la langue par défaut
         tooltip: Modifier la langue par défaut
-        warning: Le changement de la langue par défaut de rtl à ltr ou vice versa affectera la mise en page. Vous devrez retravailler les traductions des rapports si vous changez la langue par défaut. Veuillez télécharger une copie des traductions avant d'effectuer ce changement.
+        warning:
+          description_li_1: Le changement de la langue par défaut de RTL en LTR ou vice versa affectera la mise en page.
+          description_li_2: Vous devrez retravailler les traductions des rapports si vous changez la langue par défaut.
+          description_li_3: Téléchargez une copie des traductions des rapports avant d'effectuer ce changement.
+          title: Veuillez lire attentivement les instructions
       modals:
         remap_assessment:
           new_assessment_name: Nouveau nom de l'évaluation

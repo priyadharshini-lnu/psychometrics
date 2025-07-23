@@ -3225,10 +3225,14 @@ cs:
       edit:
         header: Upravit název zprávy
       edit_default_language:
-        confirm_msg: Přečetl/a jsem si výše uvedené informace a rozumím důsledkům změny výchozího jazyka.
+        agreement: Ano, chápu důsledky změny výchozího jazyka.
         title: Upravit výchozí jazyk
         tooltip: Upravit výchozí jazyk
-        warning: Změna výchozího jazyka z rtl na ltr nebo naopak ovlivní rozložení. Pokud změníte výchozí jazyk, budete muset překlady sestav přepracovat. Před provedením této změny si prosím stáhněte kopii překladů.
+        warning:
+          description_li_1: Změna výchozího jazyka z RTL na LTR nebo naopak ovlivní rozložení.
+          description_li_2: Pokud změníte výchozí jazyk, budete muset překlady zpráv přepracovat.
+          description_li_3: Před provedením této změny si stáhněte kopii překladů zpráv.
+          title: Pečlivě si přečtěte pokyny
       modals:
         remap_assessment:
           new_assessment_name: Název nového posouzení

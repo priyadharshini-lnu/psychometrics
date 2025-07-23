@@ -3225,10 +3225,14 @@ it:
       edit:
         header: Modifica del nome del rapporto
       edit_default_language:
-        confirm_msg: Ho letto le informazioni di cui sopra e comprendo le implicazioni della modifica della lingua predefinita.
+        agreement: Sì, capisco le implicazioni del cambio di lingua di default.
         title: Modifica della lingua predefinita
         tooltip: Modifica della lingua predefinita
-        warning: La modifica della lingua predefinita da rtl a ltr o viceversa influisce sul layout. Se si cambia la lingua predefinita, è necessario rielaborare le traduzioni dei report. Scaricare una copia delle traduzioni prima di effettuare questa modifica.
+        warning:
+          description_li_1: La modifica della lingua predefinita da RTL a LTR o viceversa influisce sul layout.
+          description_li_2: Se si cambia la lingua predefinita, è necessario rielaborare le traduzioni dei rapporti.
+          description_li_3: Scaricare una copia delle traduzioni dei rapporti prima di effettuare questa modifica.
+          title: Leggere attentamente le istruzioni
       modals:
         remap_assessment:
           new_assessment_name: Nome della nuova valutazione

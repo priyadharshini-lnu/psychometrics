@@ -3183,6 +3183,13 @@ hu:
         successfully: A(z) "%{name}" jelentés törlése sikeresen megtörtént.
       edit:
         header: Jelentés nevének szerkesztése
+      edit_default_language:
+        agreement: Igen, megértem az alapértelmezett nyelvváltás következményeit.
+        warning:
+          description_li_1: Ha az alapértelmezett nyelvet RTL-ről LTR nyelvre vagy fordítva változtatja, az hatással lesz az elrendezésre.
+          description_li_2: Ha megváltoztatja az alapértelmezett nyelvet, át kell dolgoznia a jelentésfordításokat.
+          description_li_3: Töltse le a jelentésfordítások egy példányát, mielőtt ezt a módosítást végrehajtaná.
+          title: Kérjük, figyelmesen olvassa el az utasításokat
       modals:
         remap_assessment:
           new_assessment_name: Új értékelési név

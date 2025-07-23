@@ -3181,6 +3181,13 @@ vi:
         successfully: Báo cáo '%{name}' đã bị xóa thành công.
       edit:
         header: Chỉnh sửa tên báo cáo
+      edit_default_language:
+        agreement: Vâng, tôi hiểu rõ những hậu quả của việc thay đổi ngôn ngữ mặc định.
+        warning:
+          description_li_1: Thay đổi ngôn ngữ mặc định từ RTL sang LTR hoặc ngược lại sẽ ảnh hưởng đến bố cục.
+          description_li_2: Nếu bạn thay đổi ngôn ngữ mặc định, bạn sẽ phải chỉnh sửa lại bản dịch của báo cáo.
+          description_li_3: Tải xuống bản dịch của báo cáo trước khi thực hiện thay đổi này.
+          title: Xin vui lòng đọc kỹ hướng dẫn.
       modals:
         remap_assessment:
           new_assessment_name: Tên đánh giá mới

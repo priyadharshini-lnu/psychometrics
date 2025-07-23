@@ -3225,10 +3225,14 @@ nl:
       edit:
         header: Rapportnaam bewerken
       edit_default_language:
-        confirm_msg: Ik heb de bovenstaande informatie gelezen en begrijp de implicaties van het wijzigen van de standaardtaal.
+        agreement: Ja, ik begrijp de implicaties van de standaardtaalverandering.
         title: Standaardtaal bewerken
         tooltip: Standaardtaal bewerken
-        warning: Als je de standaardtaal wijzigt van rtl naar ltr of omgekeerd, heeft dat invloed op de lay-out. Als je de standaardtaal wijzigt, moet je de rapportvertalingen opnieuw maken. Download een kopie van de vertalingen voordat u deze wijziging aanbrengt.
+        warning:
+          description_li_1: Als je de standaardtaal wijzigt van RTL naar LTR of omgekeerd, heeft dit invloed op de lay-out.
+          description_li_2: Je zou de rapportvertalingen moeten aanpassen als je de standaardtaal wijzigt.
+          description_li_3: Download een kopie van de rapportvertalingen voordat je deze wijziging aanbrengt.
+          title: Lees de instructies zorgvuldig
       modals:
         remap_assessment:
           new_assessment_name: Naam nieuwe beoordeling

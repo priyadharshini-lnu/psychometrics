@@ -3181,6 +3181,13 @@ pl:
         successfully: Raport "%{name}" został pomyślnie usunięty.
       edit:
         header: Edytowanie nazwy raportu
+      edit_default_language:
+        agreement: Tak, rozumiem konsekwencje zmiany domyślnego języka.
+        warning:
+          description_li_1: Zmiana domyślnego języka z RTL na LTR lub odwrotnie wpłynie na układ.
+          description_li_2: Jeśli zmienisz domyślny język, będziesz musiał ponownie opracować tłumaczenia raportów.
+          description_li_3: Pobierz kopię tłumaczeń raportów przed dokonaniem tej zmiany.
+          title: Prosimy o uważne przeczytanie instrukcji
       modals:
         remap_assessment:
           new_assessment_name: Nowa nazwa oceny

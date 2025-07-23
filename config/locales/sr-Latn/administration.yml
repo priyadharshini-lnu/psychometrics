@@ -3181,6 +3181,13 @@ sr-Latn:
         successfully: Izveštaj '%{name}' je uspešno obrisan.
       edit:
         header: Izmeni ime izveštaja
+      edit_default_language:
+        agreement: "[SR-LATN] Yes, I understand the implications of default language change."
+        warning:
+          description_li_1: "[SR-LATN] Changing the default language from RTL to LTR language or vice versa will affect the layout."
+          description_li_2: "[SR-LATN] You would have to rework on report translations if you change the default language."
+          description_li_3: "[SR-LATN] Download a copy of report translations before making this change."
+          title: "[SR-LATN] Please read instructions carefully"
       modals:
         remap_assessment:
           new_assessment_name: Novo ime procene
