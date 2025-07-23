@@ -1,6 +1,7 @@
 row
   columns.email-copyright.footer
-    |  © 
+    |  ©
     = Time.now.year
-    |  Lighthouse. All rights reserved 
+    |
+    = t('mailer.copyright.text')
   spacer[size="16"]

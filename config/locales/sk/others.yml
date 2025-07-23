@@ -2833,6 +2833,8 @@ sk:
     used_number: Použité licencie
     used_out_of: "%{used} z %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Všetky práva vyhradené
     from: Talentový podnik
     idp:
       manager_unread_comments:
@@ -2890,6 +2892,8 @@ sk:
         instructions: Kliknutím na nižšie uvedené prepojenie sa prihlásite do Majáka.
         signin_link: Prihlasovacie prepojenie
       subject: Prihlasovacie prepojenie pre Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Váš účet bol deaktivovaný z dôvodu nečinnosti
       warning: Váš účet bude čoskoro deaktivovaný z dôvodu nečinnosti

@@ -1918,6 +1918,8 @@ it:
       unauthenticated: È necessario effettuare il login o la registrazione prima di continuare.
       unconfirmed: È necessario confermare l'indirizzo e-mail prima di continuare.
     invitations:
+      confirmation_instructions:
+        subject: Istruzioni di conferma
       edit:
         confirm_password_label: Conferma la password
         header: Impostare la password
@@ -1950,6 +1952,23 @@ it:
           client: 'Affitto cliente: %{section_name}'
           project: 'Progetto: %{section_name}'
         subject: Invito al Faro
+      invitation_removed: Il vostro invito è stato rimosso.
+      invitation_token_invalid: Il token di invito fornito non è valido!
+      mailer:
+        accept: Fare clic qui per accettare l'invito.
+        admin_invitation_instructions:
+        body: 'Ciao %{name}, Sei stato invitato ad accedere al pannello di amministrazione di Lighthouse - La piattaforma di valutazione di Talent Enterprise. %{accept} Oppure puoi tranquillamente ignorare questa e-mail. Ti preghiamo di non condividere le tue credenziali di accesso con nessuno.
+
+          '
+        copyright:
+          text: Lighthouse. Tutti i diritti riservati
+        powered_by:
+          text: Powered by Lighthouse.
+        subject: Invito al Faro
+      new:
+        header: Inviare l'invito
+        submit_button: Inviare un invito
+      no_invitations_remaining: Non ci sono inviti rimanenti
       password_change:
         body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo mte.support@mercer.com '
         regards: 'Saluti, team Lighthouse '
@@ -1960,12 +1979,15 @@ it:
         footer: Se non l'avete richiesto, potete tranquillamente ignorare questa e-mail. La vostra password non cambierà finché non accederete al link di cui sopra e ne creerete una nuova.
         regards: 'Saluti, team Lighthouse '
         subject: Istruzioni per reimpostare la password
+      send_instructions: È stata inviata un'e-mail di invito a %{email}.
       unlock_instructions:
         body: 'Salve %{name}! Il suo account è stato bloccato a causa di un numero eccessivo di tentativi di accesso non riusciti. Clicchi sul link sottostante per sbloccare il suo account: '
         footer: Se non l'avete richiesto, potete tranquillamente ignorare questa e-mail. La vostra password non cambierà finché non accederete al link di cui sopra e ne creerete una nuova.
         regards: 'Saluti, team Lighthouse '
         subject: Istruzioni per lo sblocco del conto
         unlock_account: Sbloccare il mio account
+      updated: La password è stata impostata con successo e l'accesso è stato effettuato.
+      updated_not_active: La password è stata impostata con successo.
     omniauth_callbacks:
       failure: Non è stato possibile autenticarsi da %{kind} perché "%{reason}".
       success: Autenticato con successo dall'account %{kind}.

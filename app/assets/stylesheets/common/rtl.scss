@@ -4,8 +4,72 @@ body[data-locale="ar"] {
     direction: rtl;
     unicode-bidi: embed;
   }
-}
 
+  .communications-form {
+    input[name="resource[subject]"] {
+      direction: rtl;
+      text-align: start;
+    }
+  }
+
+  #communication_subject {
+    direction: rtl;
+    text-align: start;
+  }
+
+  .communications-form .fr-element,
+  #psychometrics_preview .fr-element,
+  #devise .fr-element {
+    direction: rtl;
+    text-align: start;
+  }
+
+  .communications-form .fr-toolbar,
+  #psychometrics_preview .fr-toolbar,
+  #devise .fr-toolbar {
+    direction: ltr;
+  }
+
+  #translated-subject[dir="rtl"],
+  #translated-subject.rtl,
+  span#translated-subject[dir="rtl"] {
+    direction: rtl;
+    text-align: start;
+    unicode-bidi: embed;
+    display: block;
+    width: 100%;
+  }
+
+  #translated-body[dir="rtl"],
+  #translated-body.rtl,
+  div#translated-body[dir="rtl"] {
+    direction: rtl;
+    text-align: start;
+    unicode-bidi: embed;
+
+    p, div, span, h1, h2, h3, h4, h5, h6 {
+      direction: rtl;
+      text-align: start;
+    }
+
+    ul, ol {
+      padding-inline-start: 1em;
+      padding-inline-end: 0;
+      direction: rtl;
+      text-align: start;
+    }
+  }
+
+  .list-group-item {
+    span[dir="rtl"],
+    div[dir="rtl"] {
+      direction: rtl;
+      text-align: start;
+      unicode-bidi: embed;
+      display: block;
+    }
+  }
+}
 
 body[data-locale="ar"] {
   #report_preview {

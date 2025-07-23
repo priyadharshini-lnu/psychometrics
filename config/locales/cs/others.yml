@@ -1954,6 +1954,8 @@ cs:
         subject: Pozvánka do Lighthouse
       confirmation_instructions:
         subject: Pokyny pro potvrzení
+      copyright:
+        text: Lighthouse. Všechna práva vyhrazena
       invitation_instructions:
         body: 'Dobrý den, %{name}, Byl jste přidán do Lighthouse jako správce následující sekce '
         login: Přihlášení k Lighthouse
@@ -1966,6 +1968,8 @@ cs:
         body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese mte.support@mercer.com '
         regards: 'S pozdravem, tým Lighthouse '
         subject: Vaše heslo k Majáku se změnilo
+      powered_by:
+        text: Poháněno Lighthouse.
       reset_password_instructions:
         body: 'Dobrý den, %{name}! Někdo si vyžádal odkaz na změnu hesla. Můžete tak učinit prostřednictvím níže uvedeného odkazu. '
         change_password: Změna hesla

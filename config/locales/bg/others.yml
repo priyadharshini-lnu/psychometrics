@@ -2835,6 +2835,8 @@ bg:
     used_number: Използвани лицензи
     used_out_of: "%{used} от %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Всички права запазени
     from: Предприятието за таланти
     idp:
       manager_unread_comments:
@@ -2892,6 +2894,8 @@ bg:
         instructions: Натиснете връзката по-долу, за да влезете в Lighthouse.
         signin_link: Връзка за влизане
       subject: Връзка за вход за Lighthouse
+    powered_by:
+      text: Захранван от Lighthouse.
     users:
       account_disable: Вашият акаунт е деактивиран поради неактивност
       warning: Акаунтът ви скоро ще бъде деактивиран поради неактивност

@@ -2,10 +2,9 @@ spacer[size="16"]
 wrapper.secondary
   center
     row
-      columns.powered-by-tte[valign="middle"]
+      columns.small-12.powered-by-tte[valign="middle" dir=(I18n.locale.to_s == 'ar' ? 'rtl' : 'ltr')]
         center
           = image_tag('tte-logo-no-text-raster.png', width: 47, height: 36)
-        spacer[size="16"]
-
-        p.text-center
-          |  Powered by Lighthouse.
+          spacer[size="16"]
+          p.text-center
+            = t('mailer.powered_by.text')

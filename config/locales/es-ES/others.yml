@@ -1885,6 +1885,8 @@ es-ES:
       unauthenticated: Tiene que iniciar sesión o registrarse antes de continuar.
       unconfirmed: Tienes que confirmar tu dirección de correo electrónico antes de continuar.
     invitations:
+      confirmation_instructions:
+        subject: Instrucciones de confirmación
       edit:
         confirm_password_label: Confirmar contraseña
         header: Establezca su contraseña
@@ -1893,24 +1895,6 @@ es-ES:
         submit: Establecer nueva contraseña
         submit_button: Establecer mi contraseña
         title: Crear contraseña
-      invitation_removed: Tu invitación ha sido retirada.
-      invitation_token_invalid: El código de invitación proporcionado no es válido
-      new:
-        header: Enviar invitación
-        submit_button: Enviar una invitación
-      no_invitations_remaining: No quedan invitaciones
-      send_instructions: Se ha enviado un correo electrónico de invitación a %{email}.
-      updated: Su contraseña se ha establecido correctamente. Ya ha iniciado sesión.
-      updated_not_active: Su contraseña se ha establecido correctamente.
-    mailer:
-      admin_invitation_instructions:
-        accept: Haga clic aquí para aceptar la invitación.
-        body: 'Hola %{name}, Ha sido invitado a acceder al panel de administración de Lighthouse - The Talent Enterprise assessment platform. %{accept} O puede ignorar este correo con total seguridad. Por favor, no comparta sus credenciales de acceso con nadie.
-
-          '
-        subject: Invitación a Lighthouse
-      confirmation_instructions:
-        subject: Instrucciones de confirmación
       invitation_instructions:
         body: 'Hola %{name}, Se le ha añadido a Lighthouse como administrador de la siguiente sección
 
@@ -1921,6 +1905,23 @@ es-ES:
           client: 'Cliente Tenencia: %{section_name}'
           project: 'Proyecto: %{section_name}'
         subject: Invitación a Lighthouse
+      invitation_removed: Tu invitación ha sido retirada.
+      invitation_token_invalid: El código de invitación proporcionado no es válido
+      mailer:
+        accept: Haga clic aquí para aceptar la invitación.
+        admin_invitation_instructions:
+        body: 'Hola %{name}, Ha sido invitado a acceder al panel de administración de Lighthouse - The Talent Enterprise assessment platform. %{accept} O puede ignorar este correo con total seguridad. Por favor, no comparta sus credenciales de acceso con nadie.
+
+          '
+        copyright:
+          text: Lighthouse. Todos los derechos reservados
+        powered_by:
+          text: Powered by Lighthouse.
+        subject: Invitación a Lighthouse
+      new:
+        header: Enviar invitación
+        submit_button: Enviar una invitación
+      no_invitations_remaining: No quedan invitaciones
       password_change:
         body: 'Hola %{name}! Su contraseña ha sido cambiada. Si no ha realizado esta solicitud, póngase en contacto con el servicio de asistencia inmediatamente en mte.support@mercer.com
 
@@ -1939,6 +1940,7 @@ es-ES:
 
           '
         subject: Instrucciones para restablecer la contraseña
+      send_instructions: Se ha enviado un correo electrónico de invitación a %{email}.
       unlock_instructions:
         body: 'Hola %{name}! Tu cuenta ha sido bloqueada debido a un número excesivo de intentos fallidos de inicio de sesión. Haz clic en el siguiente enlace para desbloquear tu cuenta:
 
@@ -1949,6 +1951,8 @@ es-ES:
           '
         subject: Instrucciones para desbloquear su cuenta
         unlock_account: Desbloquear mi cuenta
+      updated: Su contraseña se ha establecido correctamente. Ya ha iniciado sesión.
+      updated_not_active: Su contraseña se ha establecido correctamente.
     omniauth_callbacks:
       failure: No se le ha podido autenticar desde %{kind} porque "%{reason}".
       success: Autenticado correctamente desde la cuenta %{kind}.
@@ -2783,6 +2787,10 @@ es-ES:
     used_number: Licencias usadas
     used_out_of: "%{used} de %{total}"
   mailer:
+    footer:
+      regards: Saludos,
+      team_name: Equipo Lighthouse
+      technical_support: Para cualquier problema técnico, escríbanos a %{email} y responderemos dentro de 24 horas.
     from: La empresa del talento
     license:
       expire:

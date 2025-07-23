@@ -2837,6 +2837,8 @@ id:
     used_number: Lisensi bekas
     used_out_of: "%{used} dari %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Hak cipta dilindungi
     from: Perusahaan Bakat
     idp:
       manager_unread_comments:
@@ -2894,6 +2896,8 @@ id:
         instructions: Klik tautan di bawah ini untuk masuk ke lighthouse.
         signin_link: Tautan Masuk
       subject: Tautan masuk untuk Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Akun Anda telah dinonaktifkan karena tidak aktif
       warning: Akun Anda akan segera dinonaktifkan karena tidak aktif

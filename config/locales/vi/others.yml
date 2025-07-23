@@ -2827,6 +2827,8 @@ vi:
     used_number: Giấy phép đã sử dụng
     used_out_of: "%{used} trong số %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Bảo lưu mọi quyền
     from: Doanh nghiệp nhân tài
     idp:
       manager_unread_comments:
@@ -2884,6 +2886,8 @@ vi:
         instructions: Nhấp vào liên kết bên dưới để đăng nhập vào lighthouse.
         signin_link: Liên kết đăng nhập
       subject: Liên kết đăng nhập cho Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Tài khoản của bạn đã bị vô hiệu hóa do không hoạt động
       warning: Tài khoản của bạn sẽ sớm bị vô hiệu hóa do không hoạt động

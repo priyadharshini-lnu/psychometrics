@@ -2833,6 +2833,8 @@ ro:
     used_number: Licențe folosite
     used_out_of: "%{used} din %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Toate drepturile rezervate
     from: Întreprinderea talentelor
     idp:
       manager_unread_comments:
@@ -2890,6 +2892,8 @@ ro:
         instructions: Faceți clic pe linkul de mai jos pentru a vă conecta la Lighthouse.
         signin_link: Link de conectare
       subject: Link de conectare pentru Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Contul a fost dezactivat din cauza inactivității
       warning: Contul tău va fi dezactivat în curând din cauza inactivității

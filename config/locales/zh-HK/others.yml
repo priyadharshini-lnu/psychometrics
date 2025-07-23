@@ -928,6 +928,8 @@ zh-HK:
   licenses:
     title: 許可證
   mailer:
+    copyright:
+      text: Lighthouse. 版權所有
     magic_link:
       body:
         dear: 親愛的 %{name}、
@@ -935,6 +937,8 @@ zh-HK:
         instructions: 點選以下連結登入 lighthouse。
         signin_link: 登入連結
       subject: Lighthouse 的登入連結
+    powered_by:
+      text: Powered by Lighthouse.
   navigation:
     logout: 登出
   profile:

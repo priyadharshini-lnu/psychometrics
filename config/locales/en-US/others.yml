@@ -2831,6 +2831,8 @@ en-US:
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. All rights reserved
     from: The Talent Enterprise
     idp:
       manager_unread_comments:
@@ -2888,6 +2890,8 @@ en-US:
         instructions: Click below link to signin to lighthouse.
         signin_link: Sign-in Link
       subject: Sign-in link for Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity

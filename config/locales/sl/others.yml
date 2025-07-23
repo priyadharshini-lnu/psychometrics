@@ -2823,6 +2823,8 @@ sl:
     used_number: Uporabljene licence
     used_out_of: "%{used} od %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Vse pravice pridržane
     from: Podjetje za talente
     idp:
       manager_unread_comments:
@@ -2879,7 +2881,9 @@ sl:
         greetings: Lep pozdrav!
         instructions: Kliknite spodnjo povezavo za prijavo v Svetilnik.
         signin_link: Povezava za prijavo
-      subject: Povezava za prijavo v Svetilnik
+      subject: Povezava za prijavo za Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Vaš račun je onemogočen zaradi nedejavnosti
       warning: Vaš račun bo kmalu onemogočen zaradi nedejavnosti

@@ -2810,6 +2810,8 @@ hu:
     used_number: Használt licencek
     used_out_of: "%{used} a(z) %{total} -ból"
   mailer:
+    copyright:
+      text: Lighthouse. Minden jog fenntartva
     from: A tehetség vállalkozás
     idp:
       manager_unread_comments:
@@ -2867,6 +2869,8 @@ hu:
         instructions: Kattintson az alábbi linkre a világítótoronyba való bejelentkezéshez.
         signin_link: Bejelentkezési link
       subject: Bejelentkezési link a Lighthouse-hoz
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Fiókját inaktivitás miatt letiltották
       warning: Fiókját hamarosan letiltjuk inaktivitás miatt

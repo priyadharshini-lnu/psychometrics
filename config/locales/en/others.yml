@@ -2925,6 +2925,12 @@ en:
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. All rights reserved
+    footer:
+      regards: Regards,
+      team_name: Lighthouse Team
+      technical_support: For any technical issues, please write to us at %{email} and we will respond within 24 hours.
     from: The Talent Enterprise
     idp:
       manager_unread_comments:
@@ -2982,6 +2988,8 @@ en:
         instructions: Click below link to signin to lighthouse.
         signin_link: Signin Link
       subject: Signin link for Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity
