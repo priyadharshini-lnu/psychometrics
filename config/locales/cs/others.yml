@@ -2676,6 +2676,7 @@ cs:
         required: Odpověď na otázku je nutná
       max_words: Maximální počet slov
       min_words: Min. slov
+      no_reflective_questions: Žádné reflektivní otázky
       title: Reflektivní otázky
       update_failed: Během aktualizace došlo k chybě
       updated_successfully: Vaše odpovědi byly úspěšně aktualizovány

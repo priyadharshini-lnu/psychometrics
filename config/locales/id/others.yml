@@ -2693,6 +2693,7 @@ id:
         required: Jawaban atas pertanyaan tersebut diperlukan
       max_words: Kata-kata Maks
       min_words: Kata Min
+      no_reflective_questions: Tidak ada pertanyaan reflektif
       title: Pertanyaan Reflektif
       update_failed: Terjadi kesalahan selama pembaruan
       updated_successfully: Jawaban Anda telah berhasil diperbarui

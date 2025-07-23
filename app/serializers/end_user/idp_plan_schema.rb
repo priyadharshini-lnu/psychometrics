@@ -35,7 +35,7 @@ module EndUser
           required(:question).filled(:str?)
           required(:min_words).maybe(:int?)
           required(:max_words).maybe(:int?)
-          required(:answer).maybe(:str?)
+          optional(:answer).maybe(:str?)
         end
 
         optional(:user_idp_development_actions).array(:hash) do

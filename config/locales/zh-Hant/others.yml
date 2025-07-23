@@ -2670,6 +2670,7 @@ zh-Hant:
         required: 問題的答案是必需的
       max_words: 最大字數
       min_words: 最小字數
+      no_reflective_questions: 没有反思性问题
       title: 反思性問題
       update_failed: 更新期間出錯
       updated_successfully: 您的答案已成功更新

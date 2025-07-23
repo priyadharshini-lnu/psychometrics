@@ -2677,6 +2677,7 @@ ja:
         required: 質問への回答が必要
       max_words: 最大文字数
       min_words: ミニ・ワード
+      no_reflective_questions: 反省的な質問はありません
       title: 反省的な質問
       update_failed: アップデート中にエラーが発生しました。
       updated_successfully: 回答が更新されました

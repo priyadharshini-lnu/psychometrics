@@ -2689,6 +2689,7 @@ ro:
         required: Răspunsul la întrebare este necesar
       max_words: Cuvinte maxime
       min_words: Cuvinte minime
+      no_reflective_questions: Fără întrebări reflexive
       title: Întrebări reflexive
       update_failed: A apărut o eroare în timpul actualizării
       updated_successfully: Răspunsurile dumneavoastră au fost actualizate cu succes

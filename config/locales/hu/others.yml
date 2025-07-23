@@ -2667,6 +2667,7 @@ hu:
         required: A kérdésre adott válasz szükséges
       max_words: Szavak maximális száma
       min_words: Minimális szavak
+      no_reflective_questions: Nincsenek reflektív kérdések
       title: Reflektív kérdések
       update_failed: Hiba történt a frissítés során
       updated_successfully: Válaszait sikeresen frissítettük

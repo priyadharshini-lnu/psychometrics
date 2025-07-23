@@ -2680,6 +2680,7 @@ zh:
         required: 必须回答问题
       max_words: 最大字数
       min_words: 分词
+      no_reflective_questions: 沒有反思性問題
       title: 思考题
       update_failed: 更新过程中出现错误
       updated_successfully: 您的答案已成功更新

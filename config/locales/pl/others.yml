@@ -2692,6 +2692,7 @@ pl:
         required: Odpowiedź na pytanie jest wymagana
       max_words: Maksymalna liczba słów
       min_words: Min Words
+      no_reflective_questions: Żadnych refleksyjnych pytań
       title: Pytania refleksyjne
       update_failed: Wystąpił błąd podczas aktualizacji
       updated_successfully: Twoje odpowiedzi zostały pomyślnie zaktualizowane

@@ -2670,6 +2670,7 @@ it:
         required: La risposta alla domanda è richiesta
       max_words: Parole massime
       min_words: Parole Min
+      no_reflective_questions: Nessuna domanda riflessiva
       title: Domande di riflessione
       update_failed: Si è verificato un errore durante l'aggiornamento
       updated_successfully: Le risposte sono state aggiornate con successo

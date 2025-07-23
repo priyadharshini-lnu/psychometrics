@@ -2686,6 +2686,7 @@ th:
         required: จําเป็นต้องมีคําตอบสําหรับคําถาม
       max_words: คําสูงสุด
       min_words: คําขั้นต่ํา
+      no_reflective_questions: ไม่มีคำถามสะท้อน
       title: คําถามไตร่ตรอง
       update_failed: เกิดข้อผิดพลาดในระหว่างการอัปเดต
       updated_successfully: คําตอบของคุณอัปเดตเรียบร้อยแล้ว

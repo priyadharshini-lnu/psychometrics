@@ -908,6 +908,7 @@ zh-HK:
         required: 需要回答問題
       max_words: 最大字數
       min_words: 最小字數
+      no_reflective_questions: 沒有反思性問題
       title: 反思問題
       update_failed: 更新期間發生錯誤
       updated_successfully: 您的答案已成功更新

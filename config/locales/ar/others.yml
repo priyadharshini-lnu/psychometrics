@@ -2725,6 +2725,7 @@ ar:
         required: إجابة السؤال مطلوبة
       max_words: الحد الأقصى للكلمات
       min_words: كلمات دقيقة
+      no_reflective_questions: لا توجد أسئلة عاكسة
       title: أسئلة تأملية
       update_failed: حدث خطأ أثناء التحديث
       updated_successfully: تم تحديث إجاباتك بنجاح

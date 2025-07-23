@@ -2679,6 +2679,7 @@ sl:
         required: Odgovor na vprašanje je potreben
       max_words: Največje število besed
       min_words: Najmanj besed
+      no_reflective_questions: Brez refleksivnih vprašanj
       title: Refleksivna vprašanja
       update_failed: Med posodobitvijo je prišlo do napake
       updated_successfully: Vaši odgovori so bili uspešno posodobljeni

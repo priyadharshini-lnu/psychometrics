@@ -2648,6 +2648,7 @@ ko:
         required: 질문에 대한 답변이 필요합니다.
       max_words: 최대 단어 수
       min_words: 최소 단어 수
+      no_reflective_questions: 성찰 질문 없음
       title: 성찰적 질문
       update_failed: 업데이트하는 동안 오류가 발생했습니다.
       updated_successfully: 답변이 성공적으로 업데이트되었습니다.

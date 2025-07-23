@@ -2686,6 +2686,7 @@ hr:
         required: Odgovor na ovo pitanje je obavezan
       max_words: Maksimalni broj riječi
       min_words: Minimalni broj riječi
+      no_reflective_questions: Nema reflektivnih pitanja
       title: Pitanja za razmišljanje
       update_failed: Tijekom ažuriranja je došlo do pogreške
       updated_successfully: Vaši su odgovori uspješno ažurirani

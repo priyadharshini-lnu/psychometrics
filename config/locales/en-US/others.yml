@@ -2687,6 +2687,7 @@ en-US:
         required: The answer to the question is required
       max_words: Max Words
       min_words: Min Words
+      no_reflective_questions: No Reflective Questions available
       title: Reflective Questions
       update_failed: An error occurred during the update
       updated_successfully: Your answers have been updated successfully

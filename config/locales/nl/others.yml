@@ -2642,6 +2642,7 @@ nl:
         required: Het antwoord op de vraag is vereist
       max_words: Max Woorden
       min_words: Min woorden
+      no_reflective_questions: Geen reflectieve vragen
       title: Reflectieve vragen
       update_failed: Er is een fout opgetreden tijdens de update
       updated_successfully: Uw antwoorden zijn met succes bijgewerkt

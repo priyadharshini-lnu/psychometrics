@@ -2683,6 +2683,7 @@ pt:
         required: A resposta à pergunta é necessária
       max_words: Máximo de palavras
       min_words: Palavras mínimas
+      no_reflective_questions: Sem perguntas reflexivas
       title: Perguntas de reflexão
       update_failed: Ocorreu um erro durante a atualização
       updated_successfully: As suas respostas foram actualizadas com sucesso

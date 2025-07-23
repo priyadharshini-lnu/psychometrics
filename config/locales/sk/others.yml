@@ -2689,6 +2689,7 @@ sk:
         required: Odpoveď na otázku je povinná
       max_words: Maximálny počet slov
       min_words: Minimálne slová
+      no_reflective_questions: Žiadne reflexné otázky
       title: Reflexívne otázky
       update_failed: Počas aktualizácie sa vyskytla chyba
       updated_successfully: Vaše odpovede boli úspešne aktualizované

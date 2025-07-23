@@ -2683,6 +2683,7 @@ vi:
         required: Câu trả lời cho câu hỏi là bắt buộc
       max_words: Số từ tối đa
       min_words: Từ tối thiểu
+      no_reflective_questions: Không có câu hỏi phản ánh
       title: Những Câu Hỏi Suy Ngẫm
       update_failed: Đã xảy ra lỗi trong quá trình cập nhật
       updated_successfully: Câu trả lời của bạn đã được cập nhật thành công

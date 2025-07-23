@@ -799,6 +799,7 @@ sr-Cyrl:
         required: Одговор на питање је обавезан
       max_words: Максимум речи
       min_words: Минимум речи
+      no_reflective_questions: Без рефлексивних питања
       title: Рефлексивна питања
       update_failed: Дошло је до грешке при ажурирању
       updated_successfully: Ваши одговори су успешно ажурирани
