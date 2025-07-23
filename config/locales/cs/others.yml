@@ -3641,11 +3641,35 @@ cs:
       exactly: Přesně %{count}
     nominations: Nominace
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Umožnit hodnotitelům odmítnout nominaci
+        email_subject_when_nomination_declined: Předmět e-mailu při odmítnutí nominace
       form:
         value_not_valid: nemá platnou hodnotu
       global:
         cannot_re_edit: Účastníci nemohou upravovat hodnocení
         disable_all_evaluations: Zakázat všechna hodnocení
+      manager:
+        allow_subjects_to_email: Umožnit subjektům posílat manažerům e-maily, když jsou jejich nominace připraveny ke schválení.
+        approves_evaluations: Manažer schvaluje hodnocení
+        approves_nominations: Manažer schvaluje nominace
+        can_view_nominations: Manažer si může prohlédnout nominace
+        email_managers_when_nomination_ready: zasílání e-mailů manažerům, když je nominace subjektu připravena ke schválení.
+        email_subject_when_nomination_denied: Předmět e-mailu při zamítnutí nominace
+        may_choose_evaluators: Manažer si může vybrat hodnotitele
+      subject:
+        allow_subjects_to_select_relationships: Umožnit subjektům vybrat vztahy
+        anyone_in_assessment: Každý, kdo se účastní hodnocení
+        anyone_in_datasheet: Kdokoli v datovém listu
+        anyone_not_in_assessment: Každý, kdo není v současné době v hodnocení
+        can_view_evaluators: Subjekt může zobrazit hodnotitele
+        define_nomination_requirement: Definice požadavku na nominaci
+        limit_search_by_criteria: Omezit vyhledávání podle kritérií
+        nominates_evaluators: Subjekt nominuje hodnotitele
+        only_allow_relationships_of_specified_types: Povolit pouze vztahy určitých typů
+        only_show_subjects_who_match_criteria: 'Zobrazí se pouze subjekty, které splňují následující kritéria:'
+        self_evaluates: Subjekt provádí sebehodnocení
+        subjects_cannot_remove_nominations: Subjekty nemohou odstranit nominace nastavené manažery nebo administrátory.
     or: Nebo
     page_title: Hodnocení Signify 360° – použít úroveň
     participant_list:

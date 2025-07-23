@@ -3652,11 +3652,35 @@ sk:
       exactly: Presne %{count}
     nominations: Nominácie
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Umožniť hodnotiteľom odmietnuť nomináciu
+        email_subject_when_nomination_declined: Predmet e-mailu pri odmietnutí nominácie
       form:
         value_not_valid: nemá platnú hodnotu
       global:
         cannot_re_edit: Účastníci nemôžu upravovať hodnotenia
         disable_all_evaluations: Zakázať všetky hodnotenia
+      manager:
+        allow_subjects_to_email: Umožniť subjektom posielať manažérom e-mail, keď sú ich nominácie pripravené na schválenie.
+        approves_evaluations: Manažér schvaľuje hodnotenia
+        approves_nominations: Manažér schvaľuje nominácie
+        can_view_nominations: Manažér si môže prezerať nominácie
+        email_managers_when_nomination_ready: zasielanie e-mailov manažérom, keď je nominácia subjektu pripravená na schválenie.
+        email_subject_when_nomination_denied: Predmet e-mailu pri zamietnutí nominácie
+        may_choose_evaluators: Manažér si môže vybrať hodnotiteľov
+      subject:
+        allow_subjects_to_select_relationships: Umožniť subjektom vybrať vzťahy
+        anyone_in_assessment: Ktokoľvek v rámci hodnotenia
+        anyone_in_datasheet: Ktokoľvek v hárku s údajmi
+        anyone_not_in_assessment: Každý, kto v súčasnosti nie je v hodnotení
+        can_view_evaluators: Subjekt si môže prezerať hodnotiteľov
+        define_nomination_requirement: Definovať požiadavku na nomináciu
+        limit_search_by_criteria: Obmedzenie vyhľadávania podľa kritérií
+        nominates_evaluators: Subjekt nominuje hodnotiteľov
+        only_allow_relationships_of_specified_types: Povoľte len vzťahy určených typov
+        only_show_subjects_who_match_criteria: 'Zobrazte len subjekty, ktoré spĺňajú nasledujúce kritériá:'
+        self_evaluates: Subjekt sa sám hodnotí
+        subjects_cannot_remove_nominations: Subjekty nemôžu odstrániť nominácie nastavené manažérmi alebo administrátormi
     or: Alebo
     page_title: Signify 360° Review - Aplikovať úroveň
     participant_list:

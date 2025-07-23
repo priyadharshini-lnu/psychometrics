@@ -1504,6 +1504,8 @@ ar:
         update:
           successfully: تم تحديث المشروع %{name} بنجاح.
       registration_codes:
+        actions:
+          add_code: إضافة رمز
         column:
           code: الكود
           usage_stats: إحصائيات الاستخدام
@@ -1514,6 +1516,13 @@ ar:
           incorrect_domain: تنسيق المجال غير صحيح.
           invalid_end_date: يجب أن يكون أكبر من تاريخ البدء
           license_issue: ليس لديك تراخيص كافية.
+        form:
+          active: نشط
+          code: الكود
+          end_date: تاريخ الانتهاء
+          name: الاسم
+          start_date: تاريخ البدء
+          total_count: العدد الإجمالي
       resource:
         confirmations:
           delete:
@@ -3103,6 +3112,7 @@ ar:
         user_name: User Name
       dashboard: Dashboard
       download: Download
+      report_approval_settings: إعدادات الموافقة على التقرير
       report_approvals: Report Approvals
       review: Review
       saving_filters:
@@ -4066,6 +4076,7 @@ ar:
           invitations: Invitations
           reminders: Reminders
           report_ready: Report Ready
+        consolidated: مدمجة
         custom_message:
           description: This message can be sent to anyone participating in the assessment
           name: Custom Message
@@ -4089,7 +4100,10 @@ ar:
         request_approval:
           description: This message is sent to managers when a subject requests approval
           name: Request Approval
+        save: الحفظ
+        schedule: الجدول الزمني
         schedule_email: Schedule Email
+        schedule_email_title: جدولة البريد الإلكتروني
         schedule_time: Schedule Time
         send_test_email: Send Test Email
         subject: Subject
@@ -4130,6 +4144,14 @@ ar:
         welcome_message:
           description: This message will be displayed to subjects when they log in to begin the assessment or view their task list
           name: Welcome Message
+      mail_history:
+        actions: الإجراءات
+        date: التاريخ
+        download_details: تفاصيل التنزيل
+        emails_sent: رسائل البريد الإلكتروني المرسلة
+        recipient: المستلم
+        status: الحالة
+        subject: الموضوع
       manage:
         assessment: Assessment
         dimension: Dimensions
@@ -4137,19 +4159,45 @@ ar:
         report: Report
         title: Manage
       menu:
+        actions: الإجراءات
         datasheet:
           title: Datasheet
         messages:
+          allow_subjects_to_send_reminders: السماح للموضوعات بإرسال تذكيرات إلى المقيِّمين
+          automatically_send_invites: إرسال الدعوات تلقائياً إلى المقيِّمين الجدد
           title: Messages
         participants:
+          columns:
+            action: الإجراء
+            email: البريد الإلكتروني
+            evaluations_completed: التقييمات المنجزة
+            evaluations_received: التقييمات المستلمة
+            is_subject: هل الموضوع
+            name: الاسم
+            report_status: حالة التقرير
+            status: الحالة
+          evaluators:
+            add_evaluators: إضافة المقيِّمين
+            import_evaluators: مقيِّمو الاستيراد
+            title: المقيّمون
+          managers:
+            title: المدراء
+          options:
+            evaluator_options: خيارات المقيّم
+            global: الخيارات العالمية
+            manager_options: خيارات المدير
+            subject_options: خيارات الموضوع
+            title: الخيارات
           subjects:
             add_subjects: إضافة مواضيع
             current_job_role: الدور الوظيفي الحالي
             email: البريد الإلكتروني
             first_name: الاسم الأول
+            import_subjects: مواضيع الاستيراد
             last_name: اسم العائلة
             locale: موقع
             target_job_role: الدور الوظيفي المستهدف
+            title: الموضوعات
           title: Participants
         report:
           menu:
@@ -4165,8 +4213,26 @@ ar:
         mail_history: Mail History
         options: Options
       reports:
+        add_conditions: إضافة شروط
+        administrator_approves_reports: يوافق المسؤول على التقارير
+        allow_manager_to_view_individual_responses: السماح للمدير بعرض الردود الفردية
+        disable_report_download: تعطيل تنزيل التقرير
+        edit_email: تحرير البريد الإلكتروني
+        email_manager_when_report_is_ready_for_approval: إرسال بريد إلكتروني للمدير عندما يكون التقرير جاهزاً للموافقة عليه
+        email_subject_when_report_becomes_available: إرسال الموضوع بالبريد الإلكتروني عندما يتوفر التقرير
+        email_subjects_manager_when_available: إرسال بريد إلكتروني إلى مدير الموضوع عند توفر التقرير
+        make_report_available_to_subject_when: 'إتاحة التقرير للموضوع عندما:'
+        manager_approves_reports: يوافق المدير على التقارير
+        manager_can_access_subject_reports: يمكن للمدير الوصول إلى تقارير الموضوعات
+        manager_cannot_access_subject_reports: لا يمكن للمدير الاطلاع على التقرير حتى يتم استيفاء المتطلبات
+        report_access: تقرير الوصول إلى التقرير
+        report_approval: الموافقة على التقرير
+        report_availability: توفر التقرير
         show:
           title: Subject Report
+        subject_can_access_reports: يمكن للموضوع الوصول إلى تقاريرهم
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: وضع علامة على التراخيص على أنها معطلة
     time_zone: Time Zone
     tools: Tools
     translations:

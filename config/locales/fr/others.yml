@@ -3638,11 +3638,35 @@ fr:
       exactly: Exactement %{count}
     nominations: Nominations
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permettre aux évaluateurs de refuser la nomination
+        email_subject_when_nomination_declined: Objet du courriel en cas de refus d'une candidature
       form:
         value_not_valid: n'a pas de valeur valide
       global:
         cannot_re_edit: Les participants ne peuvent pas modifier les évaluations
         disable_all_evaluations: Désactiver toutes les évaluations
+      manager:
+        allow_subjects_to_email: Permettre aux sujets d'envoyer un courriel aux gestionnaires lorsque leurs nominations sont prêtes à être approuvées
+        approves_evaluations: Le gestionnaire approuve les évaluations
+        approves_nominations: Le directeur approuve les nominations
+        can_view_nominations: Le chef d'entreprise peut consulter les nominations
+        email_managers_when_nomination_ready: Envoyer un courrier électronique aux responsables lorsque la nomination d'un sujet est prête à être approuvée
+        email_subject_when_nomination_denied: Objet du courriel en cas de refus d'une candidature
+        may_choose_evaluators: Le gestionnaire peut choisir les évaluateurs
+      subject:
+        allow_subjects_to_select_relationships: Permettre aux sujets de sélectionner des relations
+        anyone_in_assessment: Toute personne participant à l'évaluation
+        anyone_in_datasheet: N'importe qui dans la fiche de données
+        anyone_not_in_assessment: Toute personne ne participant pas actuellement à l'évaluation
+        can_view_evaluators: Le sujet peut voir les évaluateurs
+        define_nomination_requirement: Définir les conditions de nomination
+        limit_search_by_criteria: Limiter la recherche par critères
+        nominates_evaluators: Le sujet nomme les évaluateurs
+        only_allow_relationships_of_specified_types: N'autoriser que les relations des types spécifiés
+        only_show_subjects_who_match_criteria: 'N''afficher que les sujets qui répondent aux critères suivants :'
+        self_evaluates: Le sujet s'auto-évalue
+        subjects_cannot_remove_nominations: Les sujets ne peuvent pas supprimer les nominations établies par les gestionnaires ou les administrateurs.
     or: Ou
     page_title: Examen de Signify 360° - Niveau d'application
     participant_list:

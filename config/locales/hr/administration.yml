@@ -1492,6 +1492,8 @@ hr:
         update:
           successfully: Projekt %{name} uspješno je ažuriran.
       registration_codes:
+        actions:
+          add_code: Dodaj kod
         column:
           code: Šifra
           usage_stats: Statistika korištenja
@@ -1502,6 +1504,13 @@ hr:
           incorrect_domain: Netočan format domene.
           invalid_end_date: mora biti veći od datuma početka
           license_issue: Nema dovoljno licenci.
+        form:
+          active: Aktivan
+          code: Kod
+          end_date: Datum završetka
+          name: Ime
+          start_date: Datum početka
+          total_count: Ukupan broj
       resource:
         confirmations:
           delete:
@@ -3060,6 +3069,7 @@ hr:
         user_name: Korisničko ime
       dashboard: Nadzorna ploča
       download: Preuzimanje
+      report_approval_settings: Postavke odobrenja izvješća
       report_approvals: Odobrenja izvješća
       review: Pregled
       saving_filters:
@@ -3182,12 +3192,12 @@ hr:
       edit:
         header: Uređivanje naziva izvješća
       edit_default_language:
-        agreement: "[HR] Yes, I understand the implications of default language change."
+        agreement: Da, razumijem implikacije promjene zadanog jezika.
         warning:
-          description_li_1: "[HR] Changing the default language from RTL to LTR language or vice versa will affect the layout."
-          description_li_2: "[HR] You would have to rework on report translations if you change the default language."
-          description_li_3: "[HR] Download a copy of report translations before making this change."
-          title: "[HR] Please read instructions carefully"
+          description_li_1: Promjena zadanog jezika s RTL na LTR jezik ili obrnuto utjecat će na raspored.
+          description_li_2: Morat ćete preraditi prijevode izvješća ako promijenite zadani jezik.
+          description_li_3: Preuzmite kopiju prijevoda izvješća prije ove promjene.
+          title: Molimo pažljivo pročitajte upute
       modals:
         remap_assessment:
           new_assessment_name: Novi naziv procjene
@@ -3986,6 +3996,7 @@ hr:
           invitations: Pozivnice
           reminders: Podsjetnike
           report_ready: Izvještaj spreman
+        consolidated: Konsolidirano
         custom_message:
           description: Ova se poruka može poslati svima koji sudjeluju u procjeni
           name: Prilagođena poruka
@@ -4009,7 +4020,10 @@ hr:
         request_approval:
           description: Ova se poruka šalje menadžerima kada ispitanik zatraži odobrenje
           name: Zatražite odobrenje
+        save: Spremi
+        schedule: Raspored
         schedule_email: Zakažite e-poštu
+        schedule_email_title: Raspored e-pošte
         schedule_time: Vrijeme rasporeda
         send_test_email: Pošalji testnu e-poštu
         subject: Ispitanik
@@ -4050,6 +4064,14 @@ hr:
         welcome_message:
           description: Ova će se poruka prikazati ispitanicima kada se prijave kako bi započeli procjenu ili pregledali svoj popis zadataka
           name: Poruka dobrodošlice
+      mail_history:
+        actions: Akcije
+        date: Datum
+        download_details: Preuzmite pojedinosti
+        emails_sent: Poslane e-pošte
+        recipient: Primatelj
+        status: Status
+        subject: Predmet
       manage:
         assessment: Ocjenjivanje
         dimension: Dimenzije
@@ -4057,19 +4079,45 @@ hr:
         report: Izvješće
         title: Upravljanje
       menu:
+        actions: Akcije
         datasheet:
           title: Podatkovna tablica
         messages:
+          allow_subjects_to_send_reminders: Dopustite ispitanicima da šalju podsjetnike evaluatorima
+          automatically_send_invites: Automatski pošaljite pozivnice novim evaluatorima
           title: Poruke
         participants:
+          columns:
+            action: Akcija
+            email: E-pošta
+            evaluations_completed: Dovršene evaluacije
+            evaluations_received: Primljene evaluacije
+            is_subject: Je ispitanik
+            name: Ime
+            report_status: Status izvješća
+            status: Status
+          evaluators:
+            add_evaluators: Dodaj evaluatore
+            import_evaluators: Uvezi evaluatore
+            title: Evaluatori
+          managers:
+            title: Menadžeri
+          options:
+            evaluator_options: Opcije evaluatora
+            global: Globalne opcije
+            manager_options: Opcije menadžera
+            subject_options: Opcije ispitanika
+            title: Opcije
           subjects:
             add_subjects: Dodavanje ispitanika
             current_job_role: Trenutna radna uloga
             email: E-pošta
             first_name: Ime
+            import_subjects: Uvezi ispitanike
             last_name: Prezime
             locale: Poprište
             target_job_role: Ciljana radna uloga
+            title: Ispitanici
           title: Sudionici
         report:
           menu:
@@ -4085,8 +4133,26 @@ hr:
         mail_history: Povijest pošte
         options: Mogućnosti
       reports:
+        add_conditions: Dodaj uvjete
+        administrator_approves_reports: Administrator odobrava izvješća
+        allow_manager_to_view_individual_responses: Dopusti menadžeru da vidi pojedinačne odgovore
+        disable_report_download: Onemogući preuzimanje izvješća
+        edit_email: Uredi e-poštu
+        email_manager_when_report_is_ready_for_approval: Pošaljite e-poštu menadžeru kada je izvješće spremno za odobrenje
+        email_subject_when_report_becomes_available: Pošaljite e-poštu ispitaniku kada izvješće postane dostupno
+        email_subjects_manager_when_available: Pošaljite e-poštu menadžeru ispitanika kada izvješće postane dostupno
+        make_report_available_to_subject_when: 'Učinite izvješće dostupnim ispitaniku kada:'
+        manager_approves_reports: Menadžer odobrava izvješća
+        manager_can_access_subject_reports: Menadžer može pristupiti izvješćima ispitanika
+        manager_cannot_access_subject_reports: Menadžer ne može vidjeti izvješće dok se ne ispune zahtjevi
+        report_access: Pristup izvješću
+        report_approval: Odobrenje izvješća
+        report_availability: Dostupnost izvješća
         show:
           title: Izvješće o ispitaniku
+        subject_can_access_reports: Ispitanik može pristupiti svojim izvješćima
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Označite licence kao deaktivirane
     time_zone: Vremenska zona
     tools: Alati
     translations:

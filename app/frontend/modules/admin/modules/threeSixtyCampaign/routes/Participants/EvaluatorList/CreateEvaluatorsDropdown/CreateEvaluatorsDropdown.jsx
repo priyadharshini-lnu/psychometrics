@@ -6,11 +6,11 @@ const CreateEvaluatorsDropdown = ({ openModal, permissions }) => {
   const menuItems = []
   permissions.addEvaluator && menuItems.push({
     key: 'add',
-    label: 'Add Evaluators...',
+    label: I18n.t('administration.threesixty_campaigns.menu.participants.evaluators.add_evaluators'),
   })
   permissions.importEvaluator && menuItems.push({
     key: 'import',
-    label: 'Import Evaluators...',
+    label: I18n.t('administration.threesixty_campaigns.menu.participants.evaluators.import_evaluators'),
   })
 
   const handleMenuClick = ({ key }) => {
@@ -30,7 +30,7 @@ const CreateEvaluatorsDropdown = ({ openModal, permissions }) => {
       innerElement={(
         <Button type="primary">
           <PlusOutlined />
-          <span>Add Evaluators</span>
+          <span>{I18n.t('administration.threesixty_campaigns.menu.participants.evaluators.add_evaluators')}</span>
           <DownOutlined />
         </Button>
       )}

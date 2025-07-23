@@ -157,7 +157,10 @@ const Filter = () => {
   }
 
   return (
-    <Resource.Filter placeholder="Search" name="subject_name_or_subject_email_or_campaign_name_cont">
+    <Resource.Filter
+      placeholder={I18n.t('common.actions.search')}
+      name="subject_name_or_subject_email_or_campaign_name_cont"
+    >
       <Space>
         <Radio.Group
           onChange={toggleStatusFilter}

@@ -1492,6 +1492,8 @@ en-US:
         update:
           successfully: Project %{name} was updated successfully.
       registration_codes:
+        actions:
+          add_code: Add Code
         column:
           code: Code
           usage_stats: Usage stats
@@ -1502,6 +1504,13 @@ en-US:
           incorrect_domain: Incorrect domain format.
           invalid_end_date: has to be greater than the start date
           license_issue: Not enough licenses.
+        form:
+          active: Active
+          code: Code
+          end_date: End Date
+          name: Name
+          start_date: Start Date
+          total_count: Total Count
       resource:
         confirmations:
           delete:
@@ -3060,6 +3069,7 @@ en-US:
         user_name: User Name
       dashboard: Dashboard
       download: Download
+      report_approval_settings: Report Approval Settings
       report_approvals: Report Approvals
       review: Review
       saving_filters:
@@ -3994,6 +4004,7 @@ en-US:
           invitations: Invitations
           reminders: Reminders
           report_ready: Report Ready
+        consolidated: Consolidated
         custom_message:
           description: This message can be sent to anyone participating in the assessment
           name: Custom Message
@@ -4017,7 +4028,10 @@ en-US:
         request_approval:
           description: This message is sent to managers when a subject requests approval
           name: Request Approval
+        save: Save
+        schedule: Schedule
         schedule_email: Schedule Email
+        schedule_email_title: Schedule Email
         schedule_time: Schedule Time
         send_test_email: Send Test Email
         subject: Subject
@@ -4058,6 +4072,14 @@ en-US:
         welcome_message:
           description: This message will be displayed to subjects when they log in to begin the assessment or view their task list
           name: Welcome Message
+      mail_history:
+        actions: Actions
+        date: Date
+        download_details: Download Details
+        emails_sent: Emails Sent
+        recipient: Recipient
+        status: Status
+        subject: Subject
       manage:
         assessment: Assessment
         dimension: Dimensions
@@ -4065,19 +4087,45 @@ en-US:
         report: Report
         title: Manage
       menu:
+        actions: Actions
         datasheet:
           title: Datasheet
         messages:
+          allow_subjects_to_send_reminders: Allow subjects to send reminders to evaluators
+          automatically_send_invites: Automatically send invites to new evaluators
           title: Messages
         participants:
+          columns:
+            action: Action
+            email: Email
+            evaluations_completed: Evaluations Completed
+            evaluations_received: Evaluations Received
+            is_subject: Is Subject
+            name: Name
+            report_status: Report Status
+            status: Status
+          evaluators:
+            add_evaluators: Add Evaluators
+            import_evaluators: Import Evaluators
+            title: Evaluators
+          managers:
+            title: Managers
+          options:
+            evaluator_options: Evaluator Options
+            global: Global Options
+            manager_options: Manager Options
+            subject_options: Subject Options
+            title: Options
           subjects:
             add_subjects: Add Subjects
             current_job_role: Current Job Role
             email: Email
             first_name: First Name
+            import_subjects: Import Subjects
             last_name: Last Name
             locale: Locale
             target_job_role: Target Job Role
+            title: Subjects
           title: Participants
         report:
           menu:
@@ -4093,8 +4141,26 @@ en-US:
         mail_history: Mail History
         options: Options
       reports:
+        add_conditions: Add Conditions
+        administrator_approves_reports: Administrator approves reports
+        allow_manager_to_view_individual_responses: Allow Manager to view individual responses
+        disable_report_download: Disable report download
+        edit_email: Edit email
+        email_manager_when_report_is_ready_for_approval: Email Manager when report is ready for approval
+        email_subject_when_report_becomes_available: Email subject when report becomes available
+        email_subjects_manager_when_available: Email subject's manager when report becomes available
+        make_report_available_to_subject_when: 'Make report available to subject when:'
+        manager_approves_reports: Manager approves reports
+        manager_can_access_subject_reports: Manager can access subject reports
+        manager_cannot_access_subject_reports: Manager cannot see report until requirements are met
+        report_access: Report Access
+        report_approval: Report Approval
+        report_availability: Report Availability
         show:
           title: Subject Report
+        subject_can_access_reports: Subject can access their reports
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Mark licenses as deactivated
     time_zone: Time Zone
     tools: Tools
     translations:

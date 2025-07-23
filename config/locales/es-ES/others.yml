@@ -3576,11 +3576,35 @@ es-ES:
       exactly: Exactamente %{count}
     nominations: Propuestas
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permitir que los evaluadores rechacen el nombramiento
+        email_subject_when_nomination_declined: Asunto del correo electrónico cuando se rechaza una candidatura
       form:
         value_not_valid: no tiene un valor válido
       global:
         cannot_re_edit: Los participantes no pueden editar las evaluaciones
         disable_all_evaluations: Desactivar todas las evaluaciones
+      manager:
+        allow_subjects_to_email: Permitir que los sujetos envíen un correo electrónico a los administradores cuando sus candidaturas estén listas para ser aprobadas.
+        approves_evaluations: El director aprueba las evaluaciones
+        approves_nominations: El Director aprueba los nombramientos
+        can_view_nominations: El administrador puede ver las candidaturas
+        email_managers_when_nomination_ready: Enviar un correo electrónico a los administradores cuando la candidatura de un sujeto esté lista para su aprobación
+        email_subject_when_nomination_denied: Asunto del correo electrónico cuando se deniega una candidatura
+        may_choose_evaluators: El gestor puede elegir a los evaluadores
+      subject:
+        allow_subjects_to_select_relationships: Permitir que los sujetos seleccionen las relaciones
+        anyone_in_assessment: Cualquiera que participe en la evaluación
+        anyone_in_datasheet: Cualquiera en la ficha técnica
+        anyone_not_in_assessment: Cualquier persona que no participe actualmente en la evaluación
+        can_view_evaluators: El sujeto puede ver a los evaluadores
+        define_nomination_requirement: Definir el requisito de nominación
+        limit_search_by_criteria: Limitar la búsqueda por criterios
+        nominates_evaluators: El sujeto nombra a los evaluadores
+        only_allow_relationships_of_specified_types: Permitir sólo relaciones de los tipos especificados
+        only_show_subjects_who_match_criteria: 'Mostrar sólo los sujetos que cumplan los siguientes criterios:'
+        self_evaluates: El sujeto se autoevalúa
+        subjects_cannot_remove_nominations: Los sujetos no pueden eliminar nominaciones establecidas por gestores o administradores
     or: O
     page_title: Revisión 360° de Signify (nivel de solicitud)
     participant_list:

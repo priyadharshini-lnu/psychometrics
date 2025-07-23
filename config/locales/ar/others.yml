@@ -3691,11 +3691,35 @@ ar:
       exactly: بالضبط %{count}
     nominations: الترشيحات
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: السماح للمقيِّمين برفض الترشيح
+        email_subject_when_nomination_declined: موضوع البريد الإلكتروني عند رفض الترشيح
       form:
         value_not_valid: ليس له قيمة صالحة
       global:
         cannot_re_edit: لا يمكن للمشاركين تحرير التقييمات
         disable_all_evaluations: تعطيل جميع التقييمات
+      manager:
+        allow_subjects_to_email: السماح للموضوعات بإرسال بريد إلكتروني إلى المديرين عندما تكون ترشيحاتهم جاهزة للموافقة عليها
+        approves_evaluations: يوافق المدير على التقييمات
+        approves_nominations: يوافق المدير على الترشيحات
+        can_view_nominations: يمكن للمدير عرض الترشيحات
+        email_managers_when_nomination_ready: إرسال بريد إلكتروني إلى المديرين عندما يكون ترشيح الموضوع جاهزًا للموافقة عليه
+        email_subject_when_nomination_denied: موضوع البريد الإلكتروني عند رفض الترشيح
+        may_choose_evaluators: يجوز للمدير اختيار المقيِّمين
+      subject:
+        allow_subjects_to_select_relationships: السماح للموضوعات باختيار العلاقات
+        anyone_in_assessment: أي شخص في التقييم
+        anyone_in_datasheet: أي شخص في ورقة البيانات
+        anyone_not_in_assessment: أي شخص ليس في التقييم حالياً
+        can_view_evaluators: يمكن للموضوع عرض المقيِّمين
+        define_nomination_requirement: تحديد متطلبات الترشيح
+        limit_search_by_criteria: تحديد البحث حسب المعايير
+        nominates_evaluators: يقوم الموضوع بترشيح المقيّمين
+        only_allow_relationships_of_specified_types: السماح فقط بالعلاقات من أنواع محددة
+        only_show_subjects_who_match_criteria: 'اعرض فقط الأشخاص الذين يطابقون المعايير التالية:'
+        self_evaluates: التقييم الذاتي للموضوع
+        subjects_cannot_remove_nominations: لا يمكن للموضوعات إزالة الترشيحات التي تم تعيينها من قبل المديرين أو المسؤولين
     or: أو
     page_title: Signify 360° مراجعة - مستوى التطبيق
     participant_list:

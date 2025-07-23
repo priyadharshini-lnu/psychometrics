@@ -1492,6 +1492,8 @@ th:
         update:
           successfully: โครงการ %{name} อัปเดตเรียบร้อยแล้ว
       registration_codes:
+        actions:
+          add_code: เพิ่มโค้ด
         column:
           code: รหัส
           usage_stats: สถิติการใช้งาน
@@ -1502,6 +1504,13 @@ th:
           incorrect_domain: รูปแบบโดเมนไม่ถูกต้อง
           invalid_end_date: ต้องมากกว่าวันที่เริ่มต้น
           license_issue: ใบอนุญาตไม่เพียงพอ
+        form:
+          active: แอคทีฟ
+          code: โค้ด
+          end_date: วันสิ้นสุด
+          name: ชื่อ
+          start_date: วันเริ่มงาน
+          total_count: จำนวนทั้งหมด
       resource:
         confirmations:
           delete:
@@ -3060,6 +3069,7 @@ th:
         user_name: ชื่อผู้ใช้
       dashboard: แผงหน้าปัด
       download: ดาวน์โหลด
+      report_approval_settings: การตั้งค่าการอนุมัติรายงาน
       report_approvals: การอนุมัติรายงาน
       review: ตรวจสอบ
       saving_filters:
@@ -3986,6 +3996,7 @@ th:
           invitations: คำ เชิญ
           reminders: หมายเหตุ
           report_ready: รายงานพร้อม
+        consolidated: รวมกัน
         custom_message:
           description: ข้อความนี้สามารถส่งไปยังทุกคนที่เข้าร่วมการประเมิน
           name: ข้อความที่กําหนดเอง
@@ -4009,7 +4020,10 @@ th:
         request_approval:
           description: ข้อความนี้จะถูกส่งไปยังผู้จัดการเมื่อหัวเรื่องร้องขอการอนุมัติ
           name: ขออนุมัติ
+        save: บันทึก
+        schedule: ตารางเวลา
         schedule_email: กําหนดเวลาอีเมล
+        schedule_email_title: กำหนดเวลาอีเมล
         schedule_time: กําหนดเวลา
         send_test_email: ส่งอีเมลทดสอบ
         subject: ชื่อเรื่อง
@@ -4050,6 +4064,14 @@ th:
         welcome_message:
           description: ข้อความนี้จะแสดงต่อผู้เข้ารับการทดสอบเมื่อพวกเขาเข้าสู่ระบบเพื่อเริ่มการประเมินหรือดูรายการงานของพวกเขา
           name: ข้อความต้อนรับ
+      mail_history:
+        actions: การกระทำ
+        date: วันที่
+        download_details: รายละเอียดการดาวน์โหลด
+        emails_sent: อีเมลที่ส่งแล้ว
+        recipient: ผู้รับ
+        status: สถานะ
+        subject: เรื่อง
       manage:
         assessment: การประเมิน
         dimension: มิติ
@@ -4057,19 +4079,45 @@ th:
         report: รายงาน
         title: จัดการ
       menu:
+        actions: การกระทำ
         datasheet:
           title: เอกสารข้อมูลสินค้า
         messages:
+          allow_subjects_to_send_reminders: อนุญาตให้ผู้เข้าร่วมส่งการแจ้งเตือนไปยังผู้ประเมิน
+          automatically_send_invites: ส่งคำเชิญไปยังผู้ประเมินใหม่โดยอัตโนมัติ
           title: ข้อความ
         participants:
+          columns:
+            action: การกระทำ
+            email: อีเมล
+            evaluations_completed: การประเมินเสร็จสิ้น
+            evaluations_received: การประเมินที่ได้รับ
+            is_subject: คือ หัวข้อ
+            name: ชื่อ
+            report_status: สถานะรายงาน
+            status: สถานะ
+          evaluators:
+            add_evaluators: เพิ่มผู้ประเมิน
+            import_evaluators: ผู้ประเมินการนำเข้า
+            title: ผู้ประเมิน
+          managers:
+            title: ผู้จัดการ
+          options:
+            evaluator_options: ตัวเลือกของผู้ประเมิน
+            global: ตัวเลือกระดับโลก
+            manager_options: ตัวเลือกของผู้จัดการ
+            subject_options: ตัวเลือกวิชา
+            title: ตัวเลือก
           subjects:
             add_subjects: เพิ่มหัวเรื่อง
             current_job_role: บทบาทงานปัจจุบัน
             email: อีเมล
             first_name: ชื่อ
+            import_subjects: นำเข้าหัวข้อ
             last_name: นามสกุล
             locale: สถานที่เกิดเหตุ
             target_job_role: บทบาทงานเป้าหมาย
+            title: หัวข้อ
           title: คน
         report:
           menu:
@@ -4085,8 +4133,26 @@ th:
         mail_history: ประวัติอีเมล
         options: ตัวเลือก
       reports:
+        add_conditions: เพิ่มเงื่อนไข
+        administrator_approves_reports: ผู้ดูแลระบบอนุมัติรายงาน
+        allow_manager_to_view_individual_responses: อนุญาตให้ผู้จัดการดูคำตอบของแต่ละบุคคล
+        disable_report_download: ปิดการดาวน์โหลดรายงาน
+        edit_email: แก้ไขอีเมล
+        email_manager_when_report_is_ready_for_approval: ผู้จัดการอีเมลเมื่อรายงานพร้อมสำหรับการอนุมัติ
+        email_subject_when_report_becomes_available: หัวข้ออีเมลเมื่อรายงานพร้อมใช้งาน
+        email_subjects_manager_when_available: ส่งอีเมลแจ้งผู้จัดการเรื่องหัวเรื่องเมื่อรายงานพร้อมใช้งาน
+        make_report_available_to_subject_when: 'ให้รายงานพร้อมใช้งานแก่ผู้เกี่ยวข้องเมื่อ:'
+        manager_approves_reports: ผู้จัดการอนุมัติรายงาน
+        manager_can_access_subject_reports: ผู้จัดการสามารถเข้าถึงรายงานตามหัวข้อได้
+        manager_cannot_access_subject_reports: ผู้จัดการไม่สามารถดูรายงานได้จนกว่าจะตอบสนองความต้องการ
+        report_access: การเข้าถึงรายงาน
+        report_approval: รายงานการอนุมัติ
+        report_availability: รายงานความพร้อมใช้งาน
         show:
           title: รายงานเรื่อง
+        subject_can_access_reports: ผู้ใช้สามารถเข้าถึงรายงานของตนได้
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: มาร์คใบอนุญาตเป็นยกเลิกการใช้งาน
     time_zone: เขตเวลา
     tools: เครื่อง มือ
     translations:

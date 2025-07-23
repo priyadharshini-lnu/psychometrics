@@ -1504,6 +1504,8 @@ pt:
         update:
           successfully: O projeto %{name} foi atualizado com êxito.
       registration_codes:
+        actions:
+          add_code: Adicionar código
         column:
           code: Código
           usage_stats: Estatísticas de utilização
@@ -1514,6 +1516,13 @@ pt:
           incorrect_domain: Formato de domínio incorreto.
           invalid_end_date: tem de ser superior à data de início
           license_issue: Não há licenças suficientes.
+        form:
+          active: Ativo
+          code: Código
+          end_date: Data final
+          name: Nome
+          start_date: Data de início
+          total_count: Contagem total
       resource:
         confirmations:
           delete:
@@ -3103,6 +3112,7 @@ pt:
         user_name: Nome do utilizador
       dashboard: Painel de controlo
       download: Descarregar
+      report_approval_settings: Configurações de aprovação de relatório
       report_approvals: Aprovações de relatórios
       review: Revisão
       saving_filters:
@@ -4066,6 +4076,7 @@ pt:
           invitations: Convites
           reminders: Lembretes
           report_ready: Relatório pronto
+        consolidated: Consolidado
         custom_message:
           description: Esta mensagem pode ser enviada a qualquer pessoa que participe na avaliação
           name: Mensagem personalizada
@@ -4089,7 +4100,10 @@ pt:
         request_approval:
           description: Esta mensagem é enviada aos gestores quando um assunto solicita aprovação
           name: Pedido de aprovação
+        save: Guardar
+        schedule: Horário
         schedule_email: Agendar e-mail
+        schedule_email_title: Agendar e-mail
         schedule_time: Horário
         send_test_email: Enviar e-mail de teste
         subject: Assunto
@@ -4130,6 +4144,14 @@ pt:
         welcome_message:
           description: Esta mensagem será apresentada aos sujeitos quando iniciarem sessão para começar a avaliação ou visualizarem a sua lista de tarefas
           name: Mensagem de boas-vindas
+      mail_history:
+        actions: Acções
+        date: Data
+        download_details: Descarregar detalhes
+        emails_sent: Emails enviados
+        recipient: Beneficiário
+        status: Estado
+        subject: Assunto
       manage:
         assessment: Avaliação
         dimension: Dimensões
@@ -4137,19 +4159,45 @@ pt:
         report: Relatório
         title: Gerir
       menu:
+        actions: Acções
         datasheet:
           title: Ficha de dados
         messages:
+          allow_subjects_to_send_reminders: Permitir que os sujeitos enviem lembretes aos avaliadores
+          automatically_send_invites: Enviar automaticamente convites a novos avaliadores
           title: Mensagens
         participants:
+          columns:
+            action: Ação
+            email: Correio eletrónico
+            evaluations_completed: Avaliações concluídas
+            evaluations_received: Avaliações recebidas
+            is_subject: É objeto
+            name: Nome
+            report_status: Estado do relatório
+            status: Estado
+          evaluators:
+            add_evaluators: Adicionar avaliadores
+            import_evaluators: Avaliadores de importação
+            title: Avaliadores
+          managers:
+            title: Gestores
+          options:
+            evaluator_options: Opções do avaliador
+            global: Opções globais
+            manager_options: Opções do gestor
+            subject_options: Opções de temas
+            title: Opções
           subjects:
             add_subjects: Adicionar assuntos
             current_job_role: Função profissional actual
             email: Correio eletrónico
             first_name: Primeiro nome
+            import_subjects: Assuntos de importação
             last_name: Último nome
             locale: Localidade
             target_job_role: Função profissional alvo
+            title: Temas
           title: Participantes
         report:
           menu:
@@ -4165,8 +4213,26 @@ pt:
         mail_history: Histórico do correio
         options: Opções
       reports:
+        add_conditions: Adicionar condições
+        administrator_approves_reports: O administrador aprova os relatórios
+        allow_manager_to_view_individual_responses: Permitir ao gestor visualizar respostas individuais
+        disable_report_download: Desativar a transferência de relatórios
+        edit_email: Editar e-mail
+        email_manager_when_report_is_ready_for_approval: Enviar um e-mail ao Gestor quando o relatório estiver pronto para aprovação
+        email_subject_when_report_becomes_available: Assunto do e-mail quando o relatório estiver disponível
+        email_subjects_manager_when_available: Enviar um e-mail ao gestor do assunto quando o relatório estiver disponível
+        make_report_available_to_subject_when: 'Disponibilizar o relatório à pessoa em causa quando:'
+        manager_approves_reports: O gestor aprova os relatórios
+        manager_can_access_subject_reports: O gestor pode aceder aos relatórios sobre o assunto
+        manager_cannot_access_subject_reports: O gestor não pode ver o relatório até que os requisitos sejam cumpridos
+        report_access: Acesso ao relatório
+        report_approval: Aprovação do relatório
+        report_availability: Disponibilidade do relatório
         show:
           title: Relatório sobre o assunto
+        subject_can_access_reports: O sujeito pode aceder aos seus relatórios
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Marcar licenças como desactivadas
     time_zone: Fuso horário
     tools: Ferramentas
     translations:

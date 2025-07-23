@@ -1231,8 +1231,32 @@ zh-HK:
       exactly: 正是 %{count}
     nominations: 提名
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: 允許評估人員拒絕提名
+        email_subject_when_nomination_declined: 拒絕提名時的電子郵件主題
       global:
         cannot_re_edit: 參與者無法編輯評估
+      manager:
+        allow_subjects_to_email: 允許主體在其提名準備好接受審核時，以電子郵件通知管理員
+        approves_evaluations: 經理核准評估
+        approves_nominations: 經理批准提名
+        can_view_nominations: 經理可檢視提名
+        email_managers_when_nomination_ready: 當主題的提名準備好接受審核時，以電子郵件通知管理員
+        email_subject_when_nomination_denied: 提名遭拒時的電子郵件主題
+        may_choose_evaluators: 經理可以選擇評估員
+      subject:
+        allow_subjects_to_select_relationships: 允許受試者選擇關係
+        anyone_in_assessment: 評估中的任何人
+        anyone_in_datasheet: 資料表中的任何人
+        anyone_not_in_assessment: 目前未參與評估的任何人
+        can_view_evaluators: 主題可檢視評估員
+        define_nomination_requirement: 定義提名要求
+        limit_search_by_criteria: 依標準限制搜尋
+        nominates_evaluators: 學科提名評估員
+        only_allow_relationships_of_specified_types: 只允許指定類型的關係
+        only_show_subjects_who_match_criteria: 只顯示符合下列條件的受試者：
+        self_evaluates: 受試者自我評估
+        subjects_cannot_remove_nominations: 主題無法移除經理或管理員設定的提名
     or: 或者
     page_title: Signify 360° 評論：應用級別
     participant_list:

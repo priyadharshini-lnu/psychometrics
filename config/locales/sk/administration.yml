@@ -1492,6 +1492,8 @@ sk:
         update:
           successfully: Projekt %{name} bol úspešne aktualizovaný.
       registration_codes:
+        actions:
+          add_code: Pridať kód
         column:
           code: Kód
           usage_stats: Štatistiky používania
@@ -1502,6 +1504,13 @@ sk:
           incorrect_domain: Nesprávny formát domény.
           invalid_end_date: musí byť dlhší ako dátum začiatku
           license_issue: Nedostatok licencií.
+        form:
+          active: Aktívne
+          code: Kód
+          end_date: Dátum ukončenia
+          name: Názov
+          start_date: Dátum začiatku
+          total_count: Celkový počet
       resource:
         confirmations:
           delete:
@@ -3060,6 +3069,7 @@ sk:
         user_name: Používateľské meno
       dashboard: Tabuľu
       download: Stiahnuť
+      report_approval_settings: Nastavenia schvaľovania správ
       report_approvals: Schválenia správ
       review: Revízia
       saving_filters:
@@ -3986,6 +3996,7 @@ sk:
           invitations: Pozvánky
           reminders: Pripomenutia
           report_ready: Správa pripravená
+        consolidated: Konsolidované
         custom_message:
           description: Túto správu je možné odoslať komukoľvek, kto sa zúčastňuje hodnotenia
           name: Vlastná správa
@@ -4009,7 +4020,10 @@ sk:
         request_approval:
           description: Táto správa sa odošle manažérom, keď subjekt požiada o schválenie
           name: Žiadosť o schválenie
+        save: Uložiť
+        schedule: Plán
         schedule_email: Naplánovať e-mail
+        schedule_email_title: Plán E-mail
         schedule_time: Naplánovať čas
         send_test_email: Odoslať testovací e-mail
         subject: Predmet
@@ -4050,6 +4064,14 @@ sk:
         welcome_message:
           description: Táto správa sa zobrazí subjektom, keď sa prihlásia, aby mohli začať hodnotenie alebo zobraziť svoj zoznam úloh
           name: Uvítacia správa
+      mail_history:
+        actions: Činnosti
+        date: Dátum
+        download_details: Stiahnite si podrobnosti
+        emails_sent: Odoslané e-maily
+        recipient: Príjemca
+        status: Stav
+        subject: Predmet
       manage:
         assessment: Hodnotenie
         dimension: Rozmery
@@ -4057,19 +4079,45 @@ sk:
         report: Správa
         title: Ovládať
       menu:
+        actions: Činnosti
         datasheet:
           title: Dátový hárok
         messages:
+          allow_subjects_to_send_reminders: Umožniť subjektom posielať hodnotiteľom upomienky
+          automatically_send_invites: Automatické odosielanie pozvánok novým hodnotiteľom
           title: Správy
         participants:
+          columns:
+            action: Akcia
+            email: E-mail
+            evaluations_completed: Ukončené hodnotenia
+            evaluations_received: Prijaté hodnotenia
+            is_subject: Je predmetom
+            name: Názov
+            report_status: Stav správy
+            status: Stav
+          evaluators:
+            add_evaluators: Pridať hodnotiteľov
+            import_evaluators: Hodnotitelia dovozu
+            title: Hodnotitelia
+          managers:
+            title: Manažéri
+          options:
+            evaluator_options: Možnosti hodnotiteľa
+            global: Globálne možnosti
+            manager_options: Možnosti manažéra
+            subject_options: Možnosti predmetu
+            title: Možnosti
           subjects:
             add_subjects: Pridanie predmetov
             current_job_role: Aktuálna pracovná pozícia
             email: E-mail
             first_name: Krstné meno
+            import_subjects: Importované predmety
             last_name: Priezvisko
             locale: Locale
             target_job_role: Cieľová pracovná pozícia
+            title: Predmety
           title: Účastníkov
         report:
           menu:
@@ -4085,8 +4133,26 @@ sk:
         mail_history: História pošty
         options: Možnosti
       reports:
+        add_conditions: Pridať podmienky
+        administrator_approves_reports: Správca schvaľuje správy
+        allow_manager_to_view_individual_responses: Umožniť manažérovi zobraziť jednotlivé odpovede
+        disable_report_download: Zakázať preberanie správ
+        edit_email: Upraviť e-mail
+        email_manager_when_report_is_ready_for_approval: E-mailový manažér, keď je správa pripravená na schválenie
+        email_subject_when_report_becomes_available: Predmet e-mailu, keď bude správa k dispozícii
+        email_subjects_manager_when_available: E-mail manažérovi subjektu, keď bude správa k dispozícii
+        make_report_available_to_subject_when: 'Sprístupnite správu subjektu, keď:'
+        manager_approves_reports: Manažér schvaľuje správy
+        manager_can_access_subject_reports: Manažér má prístup k predmetným správam
+        manager_cannot_access_subject_reports: Manažér nemôže vidieť správu, kým nie sú splnené požiadavky
+        report_access: Prístup k správe
+        report_approval: Schválenie správy
+        report_availability: Dostupnosť správy
         show:
           title: Správa o predmete
+        subject_can_access_reports: Subjekt má prístup k svojim správam
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Označenie licencií ako deaktivovaných
     time_zone: Časové pásmo
     tools: Náradie
     translations:

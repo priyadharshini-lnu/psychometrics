@@ -3657,11 +3657,35 @@ bg:
       exactly: Точно %{count}
     nominations: Номинации
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Позволете на оценителите да откажат номинация
+        email_subject_when_nomination_declined: Тема на имейла, когато номинацията е отхвърлена
       form:
         value_not_valid: няма валидна стойност
       global:
         cannot_re_edit: Участниците не могат да редактират оценките
         disable_all_evaluations: Деактивиране на всички оценки
+      manager:
+        allow_subjects_to_email: Позволете на субектите да изпращат имейли на мениджърите, когато техните номинации са готови за одобрение.
+        approves_evaluations: Мениджърът одобрява оценките
+        approves_nominations: Ръководителят одобрява номинациите
+        can_view_nominations: Мениджърът може да преглежда номинациите
+        email_managers_when_nomination_ready: Изпращане на имейл до мениджърите, когато номинацията на даден субект е готова за одобрение
+        email_subject_when_nomination_denied: Тема на имейла при отказ на номинация
+        may_choose_evaluators: Мениджърът може да избира оценители
+      subject:
+        allow_subjects_to_select_relationships: Позволете на субектите да избират взаимоотношения
+        anyone_in_assessment: Всеки, който участва в оценката
+        anyone_in_datasheet: Всеки в листа с данни
+        anyone_not_in_assessment: Всеки, който не е включен в оценката
+        can_view_evaluators: Субектът може да преглежда оценителите
+        define_nomination_requirement: Определяне на изискването за номиниране
+        limit_search_by_criteria: Ограничаване на търсенето по критерии
+        nominates_evaluators: Субектът номинира оценители
+        only_allow_relationships_of_specified_types: Разрешаване на връзки само от определени типове
+        only_show_subjects_who_match_criteria: 'Показвайте само субекти, които отговарят на следните критерии:'
+        self_evaluates: Субектът се самооценява
+        subjects_cannot_remove_nominations: Субектите не могат да премахват номинации, зададени от мениджъри или администратори.
     or: Или
     page_title: Signify 360° Преглед - ниво на приложение
     participant_list:

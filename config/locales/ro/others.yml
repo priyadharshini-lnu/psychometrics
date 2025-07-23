@@ -3655,11 +3655,35 @@ ro:
       exactly: Exact %{count}
     nominations: Nominalizări
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permiteți evaluatorilor să refuze nominalizarea
+        email_subject_when_nomination_declined: Subiect de e-mail atunci când o nominalizare este refuzată
       form:
         value_not_valid: nu are o valoare validă
       global:
         cannot_re_edit: Participanții nu pot edita evaluările
         disable_all_evaluations: Dezactivați toate evaluările
+      manager:
+        allow_subjects_to_email: Permiteți subiecților să trimită un e-mail managerilor atunci când nominalizările lor sunt gata pentru aprobare
+        approves_evaluations: Managerul aprobă evaluările
+        approves_nominations: Managerul aprobă nominalizările
+        can_view_nominations: Managerul poate vizualiza nominalizările
+        email_managers_when_nomination_ready: Trimiteți un e-mail managerilor atunci când nominalizarea unui subiect este gata pentru aprobare
+        email_subject_when_nomination_denied: Subiect de e-mail atunci când o nominalizare este respinsă
+        may_choose_evaluators: Managerul poate alege evaluatorii
+      subject:
+        allow_subjects_to_select_relationships: Permiteți subiecților să selecteze relațiile
+        anyone_in_assessment: Oricine în evaluare
+        anyone_in_datasheet: Oricine în fișa tehnică
+        anyone_not_in_assessment: Orice persoană care nu face parte în prezent din evaluare
+        can_view_evaluators: Subiectul poate vizualiza evaluatorii
+        define_nomination_requirement: Definirea cerinței de nominalizare
+        limit_search_by_criteria: Limitarea căutării în funcție de criterii
+        nominates_evaluators: Subiectul desemnează evaluatorii
+        only_allow_relationships_of_specified_types: Permiteți numai relațiile de tipul specificat
+        only_show_subjects_who_match_criteria: 'Afișați numai subiecții care corespund următoarelor criterii:'
+        self_evaluates: Subiectul se autoevaluează
+        subjects_cannot_remove_nominations: Subiecții nu pot elimina nominalizările stabilite de manageri sau administratori
     or: Sau
     page_title: Signify 360° Recenzie - Nivel de aplicare
     participant_list:

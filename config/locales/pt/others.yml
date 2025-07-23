@@ -3648,11 +3648,35 @@ pt:
       exactly: Exatamente %{count}
     nominations: Nomeações
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permitir que os avaliadores recusem a nomeação
+        email_subject_when_nomination_declined: Assunto do e-mail quando uma nomeação é recusada
       form:
         value_not_valid: não tem um valor válido
       global:
         cannot_re_edit: Os participantes não podem editar as avaliações
         disable_all_evaluations: Desativar todas as avaliações
+      manager:
+        allow_subjects_to_email: Permitir que os temas enviem mensagens de correio eletrónico aos gestores quando as suas nomeações estiverem prontas para aprovação
+        approves_evaluations: O gestor aprova as avaliações
+        approves_nominations: O gestor aprova as nomeações
+        can_view_nominations: O gestor pode ver as nomeações
+        email_managers_when_nomination_ready: Enviar um e-mail aos gestores quando a nomeação de um sujeito estiver pronta para aprovação
+        email_subject_when_nomination_denied: Assunto do correio eletrónico quando uma nomeação é recusada
+        may_choose_evaluators: O gestor pode escolher os avaliadores
+      subject:
+        allow_subjects_to_select_relationships: Permitir que os sujeitos seleccionem relações
+        anyone_in_assessment: Qualquer pessoa na avaliação
+        anyone_in_datasheet: Qualquer pessoa na ficha de dados
+        anyone_not_in_assessment: Qualquer pessoa que não esteja atualmente na avaliação
+        can_view_evaluators: O sujeito pode ver os avaliadores
+        define_nomination_requirement: Definir o requisito de nomeação
+        limit_search_by_criteria: Limitar a pesquisa por critérios
+        nominates_evaluators: O sujeito nomeia os avaliadores
+        only_allow_relationships_of_specified_types: Permitir apenas relações dos tipos especificados
+        only_show_subjects_who_match_criteria: 'Mostrar apenas os indivíduos que correspondem aos seguintes critérios:'
+        self_evaluates: Autoavaliação do sujeito
+        subjects_cannot_remove_nominations: Os sujeitos não podem remover nomeações definidas por gestores ou administradores
     or: Ou
     page_title: Revisão do Signify 360° – Nível de aplicação
     participant_list:

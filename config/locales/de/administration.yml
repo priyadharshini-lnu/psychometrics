@@ -1504,6 +1504,8 @@ de:
         update:
           successfully: Projekt %{name} wurde erfolgreich aktualisiert.
       registration_codes:
+        actions:
+          add_code: Code hinzufügen
         column:
           code: Code
           usage_stats: Nutzungsstatistiken
@@ -1514,6 +1516,13 @@ de:
           incorrect_domain: Falsches Domainformat.
           invalid_end_date: muss größer sein als das Startdatum
           license_issue: Nicht genügend Lizenzen.
+        form:
+          active: Aktiv
+          code: Code
+          end_date: Enddatum
+          name: Name
+          start_date: Datum des Beginns
+          total_count: Gesamtanzahl
       resource:
         confirmations:
           delete:
@@ -3103,6 +3112,7 @@ de:
         user_name: Name des Benutzers
       dashboard: Dashboard
       download: Herunterladen
+      report_approval_settings: Einstellungen für die Berichtsgenehmigung
       report_approvals: Bericht Genehmigungen
       review: Überprüfung
       saving_filters:
@@ -4066,6 +4076,7 @@ de:
           invitations: Einladungen
           reminders: Mahnungen
           report_ready: Bericht bereit
+        consolidated: Konsolidiert
         custom_message:
           description: Diese Nachricht kann an alle an der Bewertung beteiligten Personen gesendet werden
           name: Benutzerdefinierte Nachricht
@@ -4089,7 +4100,10 @@ de:
         request_approval:
           description: Diese Nachricht wird an Manager gesendet, wenn ein Thema eine Genehmigung beantragt
           name: Antrag auf Genehmigung
+        save: Speichern Sie
+        schedule: Zeitplan
         schedule_email: Zeitplan E-Mail
+        schedule_email_title: Zeitplan E-Mail
         schedule_time: Zeit einplanen
         send_test_email: Test-E-Mail senden
         subject: Thema
@@ -4130,6 +4144,14 @@ de:
         welcome_message:
           description: Diese Nachricht wird den Testpersonen angezeigt, wenn sie sich anmelden, um mit der Bewertung zu beginnen oder ihre Aufgabenliste einzusehen
           name: Willkommensnachricht
+      mail_history:
+        actions: Aktionen
+        date: Datum
+        download_details: Details herunterladen
+        emails_sent: Gesendete E-Mails
+        recipient: Empfänger
+        status: Status
+        subject: Thema
       manage:
         assessment: Bewertung
         dimension: Abmessungen
@@ -4137,19 +4159,45 @@ de:
         report: Bericht
         title: Verwalten Sie
       menu:
+        actions: Aktionen
         datasheet:
           title: Datenblatt
         messages:
+          allow_subjects_to_send_reminders: Erlauben Sie den Teilnehmern, Erinnerungen an die Bewerter zu senden
+          automatically_send_invites: Automatisch Einladungen an neue Bewerter senden
           title: Nachrichten
         participants:
+          columns:
+            action: Aktion
+            email: E-Mail
+            evaluations_completed: Abgeschlossene Evaluierungen
+            evaluations_received: Erhaltene Beurteilungen
+            is_subject: Ist Thema
+            name: Name
+            report_status: Bericht Status
+            status: Status
+          evaluators:
+            add_evaluators: Evaluatoren hinzufügen
+            import_evaluators: Evaluatoren importieren
+            title: Bewerter
+          managers:
+            title: Manager
+          options:
+            evaluator_options: Optionen für Auswerter
+            global: Globale Optionen
+            manager_options: Manager-Optionen
+            subject_options: Thema Optionen
+            title: Optionen
           subjects:
             add_subjects: Betreff hinzufügen
             current_job_role: Aktuelle Berufsrolle
             email: E-Mail
             first_name: Vorname
+            import_subjects: Themen importieren
             last_name: Nachname
             locale: Schauplatz
             target_job_role: Zielberufsrolle
+            title: Themen
           title: Teilnehmer
         report:
           menu:
@@ -4165,8 +4213,26 @@ de:
         mail_history: Mail-Geschichte
         options: Optionen
       reports:
+        add_conditions: Bedingungen hinzufügen
+        administrator_approves_reports: Der Administrator genehmigt die Berichte
+        allow_manager_to_view_individual_responses: Erlauben Sie dem Manager, einzelne Antworten anzuzeigen
+        disable_report_download: Download von Berichten deaktivieren
+        edit_email: E-Mail bearbeiten
+        email_manager_when_report_is_ready_for_approval: E-Mail an den Manager, wenn der Bericht zur Genehmigung bereit ist
+        email_subject_when_report_becomes_available: E-Mail-Betreff, wenn der Bericht verfügbar ist
+        email_subjects_manager_when_available: E-Mail an den Manager der Person, sobald der Bericht verfügbar ist
+        make_report_available_to_subject_when: 'Stellen Sie den Bericht dem Betroffenen zur Verfügung, wenn:'
+        manager_approves_reports: Der Manager genehmigt die Berichte
+        manager_can_access_subject_reports: Manager kann auf Fachberichte zugreifen
+        manager_cannot_access_subject_reports: Manager kann den Bericht erst sehen, wenn die Anforderungen erfüllt sind
+        report_access: Bericht Zugang
+        report_approval: Bericht Genehmigung
+        report_availability: Verfügbarkeit des Berichts
         show:
           title: 'Betreff: Bericht'
+        subject_can_access_reports: Subjekt kann auf seine Berichte zugreifen
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Lizenzen als deaktiviert markieren
     time_zone: Zeitzone
     tools: Werkzeuge
     translations:

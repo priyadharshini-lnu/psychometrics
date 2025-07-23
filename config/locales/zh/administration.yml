@@ -1504,6 +1504,8 @@ zh:
         update:
           successfully: 项目 %{name} 已成功更新。
       registration_codes:
+        actions:
+          add_code: 添加代码
         column:
           code: 代码
           usage_stats: 使用统计
@@ -1514,6 +1516,13 @@ zh:
           incorrect_domain: 域名格式不正确。
           invalid_end_date: 必须大于开始日期
           license_issue: 许可证数量不足。
+        form:
+          active: 活跃
+          code: 代码
+          end_date: 结束日期
+          name: 名称
+          start_date: 开始日期
+          total_count: 总计数
       resource:
         confirmations:
           delete:
@@ -3103,6 +3112,7 @@ zh:
         user_name: 用户名
       dashboard: 仪表板
       download: 下载
+      report_approval_settings: 报告审批设置
       report_approvals: 报告批准
       review: 评论
       saving_filters:
@@ -4066,6 +4076,7 @@ zh:
           invitations: 邀请函
           reminders: 提醒事项
           report_ready: 报告准备就绪
+        consolidated: 综合
         custom_message:
           description: 该信息可发送给参与评估的任何人
           name: 自定义信息
@@ -4089,7 +4100,10 @@ zh:
         request_approval:
           description: 当主题请求批准时，此信息将发送给管理人员
           name: 申请批准
+        save: 节省
+        schedule: 时间安排
         schedule_email: 日程安排电子邮件
+        schedule_email_title: 日程安排电子邮件
         schedule_time: 时间安排
         send_test_email: 发送测试电子邮件
         subject: 主题
@@ -4130,6 +4144,14 @@ zh:
         welcome_message:
           description: 当受试者登录开始评估或查看任务列表时，该信息将显示给受试者
           name: 欢迎词
+      mail_history:
+        actions: 行动
+        date: 日期
+        download_details: 下载详细信息
+        emails_sent: 已发送电子邮件
+        recipient: 受援国
+        status: 现状
+        subject: 主题
       manage:
         assessment: 评估
         dimension: 尺寸
@@ -4137,19 +4159,45 @@ zh:
         report: 报告
         title: 管理
       menu:
+        actions: 行动
         datasheet:
           title: 数据表
         messages:
+          allow_subjects_to_send_reminders: 允许受试者向评估者发送提醒信息
+          automatically_send_invites: 自动向新评估员发送邀请
           title: 信息
         participants:
+          columns:
+            action: 行动
+            email: 电子邮件
+            evaluations_completed: 已完成的评估
+            evaluations_received: 收到的评价
+            is_subject: 是主题
+            name: 名称
+            report_status: 报告状态
+            status: 现状
+          evaluators:
+            add_evaluators: 添加评估员
+            import_evaluators: 进口评估员
+            title: 评估员
+          managers:
+            title: 管理人员
+          options:
+            evaluator_options: 评估员选项
+            global: 全球选项
+            manager_options: 经理选项
+            subject_options: 学科选项
+            title: 选项
           subjects:
             add_subjects: 添加主题
             current_job_role: 当前工作角色
             email: 电子邮件
             first_name: 名字
+            import_subjects: 进口主题
             last_name: 姓氏
             locale: 地点
             target_job_role: 目标工作角色
+            title: 主题
           title: 与会者
         report:
           menu:
@@ -4165,8 +4213,26 @@ zh:
         mail_history: 邮件历史
         options: 选项
       reports:
+        add_conditions: 添加条件
+        administrator_approves_reports: 行政长官批准报告
+        allow_manager_to_view_individual_responses: 允许经理查看个别回复
+        disable_report_download: 禁用报告下载
+        edit_email: 编辑电子邮件
+        email_manager_when_report_is_ready_for_approval: 报告准备好供审批时，向经理发送电子邮件
+        email_subject_when_report_becomes_available: 报告发布后以电子邮件发送主题
+        email_subjects_manager_when_available: 报告发布后，向受试者的管理者发送电子邮件
+        make_report_available_to_subject_when: 在下列情况下向受试者提供报告
+        manager_approves_reports: 经理批准报告
+        manager_can_access_subject_reports: 管理人员可查阅主题报告
+        manager_cannot_access_subject_reports: 在满足要求之前，经理无法查看报告
+        report_access: 报告访问
+        report_approval: 报告批准
+        report_availability: 报告可用性
         show:
           title: 课题报告
+        subject_can_access_reports: 受试者可查阅其报告
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: 将许可证标记为停用
     time_zone: 时区
     tools: 工具
     translations:

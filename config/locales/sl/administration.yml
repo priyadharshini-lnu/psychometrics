@@ -1492,6 +1492,8 @@ sl:
         update:
           successfully: Projekt %{name} je bil uspešno posodobljen.
       registration_codes:
+        actions:
+          add_code: Dodajte kodo
         column:
           code: Koda
           usage_stats: Statistika uporabe
@@ -1502,6 +1504,13 @@ sl:
           incorrect_domain: Nepravilna oblika domene.
           invalid_end_date: mora biti daljši od začetnega datuma
           license_issue: Premalo licenc.
+        form:
+          active: Aktivno
+          code: Koda
+          end_date: Končni datum
+          name: Ime
+          start_date: Datum začetka
+          total_count: Skupno število
       resource:
         confirmations:
           delete:
@@ -3060,6 +3069,7 @@ sl:
         user_name: Uporabniško ime
       dashboard: Armaturni plošči
       download: Prenesti
+      report_approval_settings: Nastavitve odobritve poročila
       report_approvals: Odobritve poročil
       review: Pregled
       saving_filters:
@@ -3986,6 +3996,7 @@ sl:
           invitations: Vabila
           reminders: Opomnike
           report_ready: Pripravljeno poročilo
+        consolidated: Konsolidirani
         custom_message:
           description: To sporočilo lahko pošljete vsem, ki sodelujejo v ocenjevanju
           name: Sporočilo po meri
@@ -4009,7 +4020,10 @@ sl:
         request_approval:
           description: To sporočilo je poslano upraviteljem, ko zadeva zahteva odobritev
           name: Zahtevajte odobritev
+        save: Shrani
+        schedule: Urnik
         schedule_email: Načrtovanje e-pošte
+        schedule_email_title: Načrt e-pošte
         schedule_time: Urnik časa
         send_test_email: Pošlji testno e-poštno sporočilo
         subject: Predmet
@@ -4050,6 +4064,14 @@ sl:
         welcome_message:
           description: To sporočilo bo prikazano subjektom, ko se prijavijo, da začnejo ocenjevanje ali si ogledajo svoj seznam opravil
           name: Pozdravno sporočilo
+      mail_history:
+        actions: Ukrepi
+        date: Datum
+        download_details: Podrobnosti za prenos
+        emails_sent: Poslana e-pošta
+        recipient: Prejemnik
+        status: Status
+        subject: Zadeva
       manage:
         assessment: Ocena
         dimension: Dimenzije
@@ -4057,19 +4079,45 @@ sl:
         report: Poročilo
         title: Upravljanje
       menu:
+        actions: Ukrepi
         datasheet:
           title: Podatkovni list
         messages:
+          allow_subjects_to_send_reminders: omogočiti subjektom, da ocenjevalcem pošljejo opomnike.
+          automatically_send_invites: Samodejno pošiljanje povabil novim ocenjevalcem
           title: Sporočila
         participants:
+          columns:
+            action: Akcija
+            email: E-pošta
+            evaluations_completed: Zaključena vrednotenja
+            evaluations_received: Prejete ocene
+            is_subject: Je predmet
+            name: Ime
+            report_status: Stanje poročila
+            status: Status
+          evaluators:
+            add_evaluators: Dodajanje ocenjevalcev
+            import_evaluators: Ocenjevalci uvoza
+            title: Ocenjevalci
+          managers:
+            title: Upravljavci
+          options:
+            evaluator_options: Možnosti ocenjevalca
+            global: Globalne možnosti
+            manager_options: Možnosti upravitelja
+            subject_options: Možnosti predmeta
+            title: Možnosti
           subjects:
             add_subjects: Dodajanje predmetov
             current_job_role: Trenutna delovna vloga
             email: E-pošta
             first_name: Ime
+            import_subjects: Uvozni predmeti
             last_name: Priimek
             locale: Locale
             target_job_role: Ciljna delovna vloga
+            title: Predmeti
           title: Udeleženci
         report:
           menu:
@@ -4085,8 +4133,26 @@ sl:
         mail_history: Zgodovina pošte
         options: Možnosti
       reports:
+        add_conditions: Dodajanje pogojev
+        administrator_approves_reports: Upravitelj odobri poročila
+        allow_manager_to_view_individual_responses: Upravitelju omogočite ogled posameznih odgovorov
+        disable_report_download: Onemogočite prenos poročila
+        edit_email: Urejanje e-pošte
+        email_manager_when_report_is_ready_for_approval: e-poštno sporočilo upravitelja, ko je poročilo pripravljeno za odobritev
+        email_subject_when_report_becomes_available: Predmet e-pošte, ko bo poročilo na voljo
+        email_subjects_manager_when_available: Pošljite e-pošto vodji subjekta, ko bo poročilo na voljo
+        make_report_available_to_subject_when: 'Poročilo dajte na voljo subjektu, ko:'
+        manager_approves_reports: Vodja odobri poročila
+        manager_can_access_subject_reports: Upravitelj lahko dostopa do poročil o predmetih
+        manager_cannot_access_subject_reports: Upravitelj ne more videti poročila, dokler niso izpolnjene zahteve
+        report_access: Dostop do poročila
+        report_approval: Odobritev poročila
+        report_availability: Razpoložljivost poročila
         show:
           title: Poročilo o zadevi
+        subject_can_access_reports: Subjekt lahko dostopa do svojih poročil
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Označite licence kot deaktivirane
     time_zone: Časovni pas
     tools: Orodja
     translations:

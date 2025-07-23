@@ -3607,11 +3607,35 @@ nl:
       exactly: Precies %{count}
     nominations: Nominaties
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Geef beoordelaars de mogelijkheid om nominatie te weigeren
+        email_subject_when_nomination_declined: Onderwerp e-mail wanneer een nominatie is afgewezen
       form:
         value_not_valid: heeft geen geldige waarde
       global:
         cannot_re_edit: Deelnemers kunnen evaluaties niet bewerken
         disable_all_evaluations: Alle evaluaties uitschakelen
+      manager:
+        allow_subjects_to_email: Laat proefpersonen managers e-mailen wanneer hun nominaties klaar zijn voor goedkeuring
+        approves_evaluations: Manager keurt evaluaties goed
+        approves_nominations: Manager keurt nominaties goed
+        can_view_nominations: Manager kan nominaties bekijken
+        email_managers_when_nomination_ready: Managers een e-mail sturen wanneer de nominatie van een proefpersoon klaar is voor goedkeuring
+        email_subject_when_nomination_denied: Onderwerp e-mail wanneer een nominatie is afgewezen
+        may_choose_evaluators: Manager mag evaluatoren kiezen
+      subject:
+        allow_subjects_to_select_relationships: Laat proefpersonen relaties selecteren
+        anyone_in_assessment: Iedereen in de beoordeling
+        anyone_in_datasheet: Iedereen in het gegevensblad
+        anyone_not_in_assessment: Iedereen die momenteel niet wordt beoordeeld
+        can_view_evaluators: Onderwerp kan evaluatoren bekijken
+        define_nomination_requirement: Vereiste nominatie definiëren
+        limit_search_by_criteria: Zoekopdracht beperken op criteria
+        nominates_evaluators: Proefpersoon nomineert evaluatoren
+        only_allow_relationships_of_specified_types: Sta alleen relaties toe van gespecificeerde types
+        only_show_subjects_who_match_criteria: 'Toon alleen onderwerpen die aan de volgende criteria voldoen:'
+        self_evaluates: Proefpersoon evalueert zelf
+        subjects_cannot_remove_nominations: Proefpersonen kunnen geen nominaties verwijderen die zijn ingesteld door managers of admins
     or: Of
     page_title: Signify 360° Review - Aanpassen
     participant_list:

@@ -3652,11 +3652,35 @@ th:
       exactly: ตรงเป๊ะ %{count}
     nominations: การเสนอชื่อ
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: อนุญาตให้ผู้ประเมินปฏิเสธการเสนอชื่อ
+        email_subject_when_nomination_declined: หัวข้ออีเมลเมื่อการเสนอชื่อถูกปฏิเสธ
       form:
         value_not_valid: ไม่มีค่าที่ถูกต้อง
       global:
         cannot_re_edit: ผู้เข้าร่วมไม่สามารถแก้ไขการประเมินผลได้
         disable_all_evaluations: ปิดใช้งานการประเมินทั้งหมด
+      manager:
+        allow_subjects_to_email: อนุญาตให้ผู้เข้าร่วมส่งอีเมลถึงผู้จัดการเมื่อการเสนอชื่อของพวกเขาพร้อมสำหรับการอนุมัติ
+        approves_evaluations: ผู้จัดการอนุมัติการประเมิน
+        approves_nominations: ผู้จัดการอนุมัติการเสนอชื่อ
+        can_view_nominations: ผู้จัดการสามารถดูการเสนอชื่อได้
+        email_managers_when_nomination_ready: ผู้จัดการอีเมลเมื่อการเสนอชื่อของหัวข้อพร้อมสำหรับการอนุมัติ
+        email_subject_when_nomination_denied: หัวข้ออีเมลเมื่อการเสนอชื่อถูกปฏิเสธ
+        may_choose_evaluators: ผู้จัดการอาจเลือกผู้ประเมิน
+      subject:
+        allow_subjects_to_select_relationships: อนุญาตให้ผู้เข้าร่วมเลือกความสัมพันธ์
+        anyone_in_assessment: ทุกคนในการประเมิน
+        anyone_in_datasheet: ใครก็ตามในเอกสารข้อมูล
+        anyone_not_in_assessment: ผู้ใดก็ตามที่ไม่ได้อยู่ในขั้นตอนการประเมินในขณะนี้
+        can_view_evaluators: ผู้เรียนสามารถดูผู้ประเมินได้
+        define_nomination_requirement: กำหนดข้อกำหนดการเสนอชื่อ
+        limit_search_by_criteria: จำกัดการค้นหาตามเกณฑ์
+        nominates_evaluators: ผู้เสนอชื่อเสนอชื่อผู้ประเมิน
+        only_allow_relationships_of_specified_types: อนุญาตให้มีความสัมพันธ์เฉพาะประเภทที่ระบุเท่านั้น
+        only_show_subjects_who_match_criteria: 'แสดงเฉพาะวิชาที่ตรงกับเกณฑ์ต่อไปนี้:'
+        self_evaluates: ผู้ประเมินตนเอง
+        subjects_cannot_remove_nominations: ผู้ใช้งานไม่สามารถลบการเสนอชื่อที่ตั้งโดยผู้จัดการหรือผู้ดูแลระบบได้
     or: หรือ
     page_title: การประเมิน Signify 360 องศา - ระดับการสมัคร
     participant_list:

@@ -7,6 +7,8 @@ import OptionSection from '~/modules/admin/components/Options/Section'
 import ExpandableOption from '~/modules/admin/components/Options/Expandable'
 import { MaskedInput } from '~/glint'
 
+const { I18n } = window
+
 export default function GlobalSection ({
   options,
   updateParticipantOptions,
@@ -24,7 +26,7 @@ export default function GlobalSection ({
   })
 
   return (
-    <OptionSection label="Global Options">
+    <OptionSection label={I18n.t('administration.threesixty_campaigns.menu.participants.options.global')}>
       <ExpandableOption
         label={I18n.t('threesixty.options.global.cannot_re_edit')}
         {...parametersForSwitch('canNotEditEvaluation')}

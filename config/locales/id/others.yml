@@ -3659,11 +3659,35 @@ id:
       exactly: Tepatnya %{count}
     nominations: Nominasi
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Mengizinkan evaluator untuk menolak nominasi
+        email_subject_when_nomination_declined: Subjek email ketika nominasi ditolak
       form:
         value_not_valid: tidak memiliki nilai yang valid
       global:
         cannot_re_edit: Peserta tidak dapat mengedit evaluasi
         disable_all_evaluations: Nonaktifkan semua evaluasi
+      manager:
+        allow_subjects_to_email: Izinkan subjek mengirim email kepada manajer ketika nominasi mereka siap untuk disetujui
+        approves_evaluations: Manajer menyetujui evaluasi
+        approves_nominations: Manajer menyetujui nominasi
+        can_view_nominations: Manajer dapat melihat nominasi
+        email_managers_when_nomination_ready: Manajer email ketika nominasi subjek siap untuk disetujui
+        email_subject_when_nomination_denied: Subjek email ketika nominasi ditolak
+        may_choose_evaluators: Manajer dapat memilih Evaluator
+      subject:
+        allow_subjects_to_select_relationships: Izinkan subjek untuk memilih hubungan
+        anyone_in_assessment: Siapa pun yang ikut dalam penilaian
+        anyone_in_datasheet: Siapa pun yang ada di lembar data
+        anyone_not_in_assessment: Siapa pun yang saat ini tidak sedang dalam penilaian
+        can_view_evaluators: Subjek dapat melihat Evaluator
+        define_nomination_requirement: Tentukan persyaratan Nominasi
+        limit_search_by_criteria: Batasi pencarian berdasarkan kriteria
+        nominates_evaluators: Subjek menominasikan Evaluator
+        only_allow_relationships_of_specified_types: Hanya mengizinkan hubungan dengan jenis tertentu
+        only_show_subjects_who_match_criteria: 'Hanya tampilkan subjek yang sesuai dengan kriteria berikut:'
+        self_evaluates: Subjek Mengevaluasi Diri Sendiri
+        subjects_cannot_remove_nominations: Subjek tidak dapat menghapus nominasi yang ditetapkan oleh manajer atau admin
     or: Atau
     page_title: Signify 360° Review - Terapkan Level
     participant_list:

@@ -1492,6 +1492,8 @@ id:
         update:
           successfully: Proyek %{name} berhasil diperbarui.
       registration_codes:
+        actions:
+          add_code: Tambahkan Kode
         column:
           code: Kode
           usage_stats: Statistik penggunaan
@@ -1502,6 +1504,13 @@ id:
           incorrect_domain: Format domain salah.
           invalid_end_date: harus lebih besar dari tanggal mulai
           license_issue: Lisensi tidak cukup.
+        form:
+          active: Aktif
+          code: Kode
+          end_date: Tanggal Akhir
+          name: Nama
+          start_date: Tanggal Mulai
+          total_count: Jumlah Total
       resource:
         confirmations:
           delete:
@@ -3060,6 +3069,7 @@ id:
         user_name: Nama pengguna
       dashboard: Dashboard
       download: Mengunduh
+      report_approval_settings: Pengaturan Persetujuan Laporan
       report_approvals: Laporan Persetujuan
       review: Resensi
       saving_filters:
@@ -3986,6 +3996,7 @@ id:
           invitations: Undangan
           reminders: Pengingat
           report_ready: Laporan Siap
+        consolidated: Dikonsolidasikan
         custom_message:
           description: Pesan ini dapat dikirim ke siapa saja yang berpartisipasi dalam penilaian
           name: Pesan Kustom
@@ -4009,7 +4020,10 @@ id:
         request_approval:
           description: Pesan ini dikirim ke manajer saat subjek meminta persetujuan
           name: Minta Persetujuan
+        save: Simpan
+        schedule: Jadwal
         schedule_email: Jadwalkan Email
+        schedule_email_title: Jadwalkan Email
         schedule_time: Jadwal Waktu
         send_test_email: Kirim Email Uji
         subject: Subyek
@@ -4050,6 +4064,14 @@ id:
         welcome_message:
           description: Pesan ini akan ditampilkan kepada subjek saat mereka masuk untuk memulai penilaian atau melihat daftar tugas mereka
           name: Pesan Selamat Datang
+      mail_history:
+        actions: Tindakan
+        date: Tanggal
+        download_details: Unduh Detail
+        emails_sent: Email Terkirim
+        recipient: Penerima
+        status: Status
+        subject: Subjek
       manage:
         assessment: Penilaian
         dimension: Dimensi
@@ -4057,19 +4079,45 @@ id:
         report: Lapor
         title: Urus
       menu:
+        actions: Tindakan
         datasheet:
           title: Lembar data
         messages:
+          allow_subjects_to_send_reminders: Memungkinkan subjek untuk mengirim pengingat kepada evaluator
+          automatically_send_invites: Secara otomatis mengirim undangan ke evaluator baru
           title: Pesan
         participants:
+          columns:
+            action: Tindakan
+            email: Email
+            evaluations_completed: Evaluasi Selesai
+            evaluations_received: Evaluasi yang Diterima
+            is_subject: Apakah Subjek
+            name: Nama
+            report_status: Status Laporan
+            status: Status
+          evaluators:
+            add_evaluators: Menambahkan Evaluator
+            import_evaluators: Evaluator Impor
+            title: Evaluator
+          managers:
+            title: Manajer
+          options:
+            evaluator_options: Opsi Evaluator
+            global: Opsi Global
+            manager_options: Opsi Manajer
+            subject_options: Pilihan Mata Pelajaran
+            title: Pilihan
           subjects:
             add_subjects: Tambahkan Subjek
             current_job_role: Peran Pekerjaan Saat Ini
             email: Email
             first_name: Nama depan
+            import_subjects: Subjek Impor
             last_name: Nama Belakang
             locale: Lokal
             target_job_role: Peran Pekerjaan Target
+            title: Subjek
           title: Peserta
         report:
           menu:
@@ -4085,8 +4133,26 @@ id:
         mail_history: Riwayat Surat
         options: Pilihan
       reports:
+        add_conditions: Tambahkan Ketentuan
+        administrator_approves_reports: Administrator menyetujui laporan
+        allow_manager_to_view_individual_responses: Izinkan Manajer untuk melihat tanggapan individu
+        disable_report_download: Menonaktifkan pengunduhan laporan
+        edit_email: Edit email
+        email_manager_when_report_is_ready_for_approval: Manajer Email saat laporan siap untuk disetujui
+        email_subject_when_report_becomes_available: Subjek email saat laporan tersedia
+        email_subjects_manager_when_available: Manajer subjek email saat laporan tersedia
+        make_report_available_to_subject_when: 'Membuat laporan tersedia untuk subjek ketika:'
+        manager_approves_reports: Manajer menyetujui laporan
+        manager_can_access_subject_reports: Manajer dapat mengakses laporan subjek
+        manager_cannot_access_subject_reports: Manajer tidak dapat melihat laporan sampai persyaratan terpenuhi
+        report_access: Akses Laporan
+        report_approval: Persetujuan Laporan
+        report_availability: Ketersediaan Laporan
         show:
           title: Laporan Subjek
+        subject_can_access_reports: Subjek dapat mengakses laporan mereka
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Tandai lisensi sebagai dinonaktifkan
     time_zone: Zona Waktu
     tools: Perkakas
     translations:

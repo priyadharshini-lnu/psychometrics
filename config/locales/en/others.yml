@@ -3750,11 +3750,35 @@ en:
       exactly: Exactly %{count}
     nominations: Nominations
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Allow evaluators to decline nomination
+        email_subject_when_nomination_declined: Email subject when a nomination is declined
       form:
         value_not_valid: doesn't have a valid value
       global:
         cannot_re_edit: Participants cannot edit evaluations
         disable_all_evaluations: Disable all evaluations
+      manager:
+        allow_subjects_to_email: Allow subjects to email managers when their nominations are ready for approval
+        approves_evaluations: Manager approves evaluations
+        approves_nominations: Manager approves nominations
+        can_view_nominations: Manager can view nominations
+        email_managers_when_nomination_ready: Email managers when a subject's nomination is ready for approval
+        email_subject_when_nomination_denied: Email subject when a nomination is denied
+        may_choose_evaluators: Manager may choose Evaluators
+      subject:
+        allow_subjects_to_select_relationships: Allow subjects to select relationships
+        anyone_in_assessment: Anyone in the assessment
+        anyone_in_datasheet: Anyone in the datasheet
+        anyone_not_in_assessment: Anyone not currently in the assessment
+        can_view_evaluators: Subject can view Evaluators
+        define_nomination_requirement: Define Nomination requirement
+        limit_search_by_criteria: Limit search by criteria
+        nominates_evaluators: Subject nominates Evaluators
+        only_allow_relationships_of_specified_types: Only allow relationships of specified types
+        only_show_subjects_who_match_criteria: 'Only show subjects who match the following criteria:'
+        self_evaluates: Subject Self Evaluates
+        subjects_cannot_remove_nominations: Subjects cannot remove nominations set by managers or admins
     or: Or
     page_title: Signify 360° Review - Apply Level
     participant_list:

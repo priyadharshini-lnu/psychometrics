@@ -1504,6 +1504,8 @@ ja:
         update:
           successfully: プロジェクト %{name} が正常に更新されました。
       registration_codes:
+        actions:
+          add_code: コードを追加
         column:
           code: コード
           usage_stats: 使用統計
@@ -1514,6 +1516,13 @@ ja:
           incorrect_domain: ドメイン形式が正しくない。
           invalid_end_date: 開始日よりも大きくなければならない
           license_issue: ライセンスが足りない。
+        form:
+          active: アクティブ
+          code: コード
+          end_date: 終了日
+          name: 名称
+          start_date: 開始日
+          total_count: 総カウント数
       resource:
         confirmations:
           delete:
@@ -3103,6 +3112,7 @@ ja:
         user_name: ユーザー名
       dashboard: ダッシュボード
       download: ダウンロード
+      report_approval_settings: レポート承認設定
       report_approvals: レポートの承認
       review: レビュー
       saving_filters:
@@ -4066,6 +4076,7 @@ ja:
           invitations: 招待状
           reminders: 注意事項
           report_ready: レポート準備
+        consolidated: 連結
         custom_message:
           description: このメッセージは、アセスメントに参加するすべての人に送ることができます。
           name: カスタムメッセージ
@@ -4089,7 +4100,10 @@ ja:
         request_approval:
           description: このメッセージは、被験者が承認を要求したときに管理者に送信されます。
           name: 承認リクエスト
+        save: セーブ
+        schedule: スケジュール
         schedule_email: スケジュールメール
+        schedule_email_title: スケジュールメール
         schedule_time: スケジュール時間
         send_test_email: テストメールの送信
         subject: テーマ
@@ -4130,6 +4144,14 @@ ja:
         welcome_message:
           description: このメッセージは、被験者がログインして評価を開始するとき、またはタスクリストを表示するときに表示されます。
           name: ウェルカムメッセージ
+      mail_history:
+        actions: 行動
+        date: 日付
+        download_details: ダウンロード詳細
+        emails_sent: 送信メール
+        recipient: 受取人
+        status: ステータス
+        subject: テーマ
       manage:
         assessment: 評価
         dimension: 寸法
@@ -4137,19 +4159,45 @@ ja:
         report: レポート
         title: 管理
       menu:
+        actions: 行動
         datasheet:
           title: データシート
         messages:
+          allow_subjects_to_send_reminders: 被験者が評価者にリマインダーを送信できるようにする
+          automatically_send_invites: 新しい評価者に自動的に招待状を送る
           title: メッセージ
         participants:
+          columns:
+            action: アクション
+            email: 電子メール
+            evaluations_completed: 完了した評価
+            evaluations_received: 受けた評価
+            is_subject: 対象
+            name: 名称
+            report_status: レポート状況
+            status: ステータス
+          evaluators:
+            add_evaluators: 評価者の追加
+            import_evaluators: インポート・エバリュエーター
+            title: 評価者
+          managers:
+            title: マネージャー
+          options:
+            evaluator_options: 評価者オプション
+            global: グローバル・オプション
+            manager_options: マネージャーオプション
+            subject_options: 対象オプション
+            title: オプション
           subjects:
             add_subjects: 件名の追加
             current_job_role: 現在の職務
             email: Email
             first_name: ファーストネーム
+            import_subjects: 輸入対象
             last_name: ラストネーム
             locale: ロケール
             target_job_role: 目標職務
+            title: 対象
           title: 参加者
         report:
           menu:
@@ -4165,8 +4213,26 @@ ja:
         mail_history: メール履歴
         options: オプション
       reports:
+        add_conditions: 条件追加
+        administrator_approves_reports: 管理者が報告書を承認
+        allow_manager_to_view_individual_responses: マネージャーが個々の回答を閲覧できるようにする
+        disable_report_download: レポートのダウンロードを無効にする
+        edit_email: Eメールを編集する
+        email_manager_when_report_is_ready_for_approval: レポートの承認準備が完了したら、マネージャーにEメールを送信
+        email_subject_when_report_becomes_available: レポートが入手可能になったら、件名に電子メールを送信
+        email_subjects_manager_when_available: レポートが入手可能になり次第、対象者のマネージャーにメールする
+        make_report_available_to_subject_when: 対象者に報告書を提出する：
+        manager_approves_reports: マネージャーが報告書を承認
+        manager_can_access_subject_reports: 管理者は対象レポートにアクセスできる
+        manager_cannot_access_subject_reports: マネージャーは要件を満たすまでレポートを見ることができない
+        report_access: レポート アクセス
+        report_approval: 報告書の承認
+        report_availability: 報告書入手可能性
         show:
           title: 課題レポート
+        subject_can_access_reports: 対象者はレポートにアクセスできる
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: ライセンスを無効にする
     time_zone: タイムゾーン
     tools: ツール
     translations:

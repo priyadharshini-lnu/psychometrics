@@ -1492,6 +1492,8 @@ pl:
         update:
           successfully: Projekt %{name} został zaktualizowany pomyślnie.
       registration_codes:
+        actions:
+          add_code: Dodaj kod
         column:
           code: Kod
           usage_stats: Statystyki użytkowania
@@ -1502,6 +1504,13 @@ pl:
           incorrect_domain: Nieprawidłowy format domeny.
           invalid_end_date: musi być większa niż data początkowa
           license_issue: Za mało licencji.
+        form:
+          active: Aktywny
+          code: Kod
+          end_date: Data zakończenia
+          name: Nazwa
+          start_date: Data rozpoczęcia
+          total_count: Łączna liczba
       resource:
         confirmations:
           delete:
@@ -3060,6 +3069,7 @@ pl:
         user_name: Nazwa użytkownika
       dashboard: Deska rozdzielcza
       download: Pobierać
+      report_approval_settings: Ustawienia zatwierdzania raportów
       report_approvals: Zatwierdzanie raportów
       review: Recenzja
       saving_filters:
@@ -3986,6 +3996,7 @@ pl:
           invitations: Zaproszenia
           reminders: Przypomnienia
           report_ready: Gotowy raport
+        consolidated: Skonsolidowany
         custom_message:
           description: Ta wiadomość może zostać wysłana do każdej osoby biorącej udział w ocenie
           name: Wiadomość niestandardowa
@@ -4009,7 +4020,10 @@ pl:
         request_approval:
           description: Ta wiadomość jest wysyłana do menedżerów, gdy podmiot prosi o zatwierdzenie
           name: Poproś o zatwierdzenie
+        save: Zapisz
+        schedule: Harmonogram
         schedule_email: Zaplanuj wiadomość e-mail
+        schedule_email_title: Harmonogram e-mail
         schedule_time: Zaplanuj czas
         send_test_email: Wyślij testową wiadomość e-mail
         subject: Temat
@@ -4050,6 +4064,14 @@ pl:
         welcome_message:
           description: Ten komunikat zostanie wyświetlony uczestnikom, gdy zalogują się w celu rozpoczęcia oceny lub wyświetlenia listy zadań
           name: Wiadomość powitalna
+      mail_history:
+        actions: Działania
+        date: Data
+        download_details: Pobierz szczegóły
+        emails_sent: Wysłane wiadomości e-mail
+        recipient: Odbiorca
+        status: Status
+        subject: Przedmiot
       manage:
         assessment: Ocena
         dimension: Wymiary
@@ -4057,19 +4079,45 @@ pl:
         report: Sprawozdanie
         title: Zarządzać
       menu:
+        actions: Działania
         datasheet:
           title: Arkusz danych
         messages:
+          allow_subjects_to_send_reminders: Umożliwienie uczestnikom wysyłania przypomnień do oceniających
+          automatically_send_invites: Automatyczne wysyłanie zaproszeń do nowych oceniających
           title: Wiadomości
         participants:
+          columns:
+            action: Działanie
+            email: E-mail
+            evaluations_completed: Zakończone oceny
+            evaluations_received: Otrzymane oceny
+            is_subject: Czy temat
+            name: Nazwa
+            report_status: Status raportu
+            status: Status
+          evaluators:
+            add_evaluators: Dodaj oceniających
+            import_evaluators: Import Evaluators
+            title: Oceniający
+          managers:
+            title: Menedżerowie
+          options:
+            evaluator_options: Opcje ewaluatora
+            global: Opcje globalne
+            manager_options: Opcje menedżera
+            subject_options: Opcje przedmiotów
+            title: Opcje
           subjects:
             add_subjects: Dodawanie tematów
             current_job_role: Aktualne stanowisko
             email: E-mail
             first_name: Imię
+            import_subjects: Importuj przedmioty
             last_name: Nazwisko
             locale: Ustawień regionalnych
             target_job_role: Docelowa rola zawodowa
+            title: Przedmioty
           title: Uczestników
         report:
           menu:
@@ -4085,8 +4133,26 @@ pl:
         mail_history: Historia poczty
         options: Opcje
       reports:
+        add_conditions: Dodaj warunki
+        administrator_approves_reports: Administrator zatwierdza raporty
+        allow_manager_to_view_individual_responses: Umożliwienie menedżerowi przeglądania poszczególnych odpowiedzi
+        disable_report_download: Wyłącz pobieranie raportów
+        edit_email: Edytuj wiadomość e-mail
+        email_manager_when_report_is_ready_for_approval: Wyślij wiadomość e-mail do menedżera, gdy raport będzie gotowy do zatwierdzenia
+        email_subject_when_report_becomes_available: Temat wiadomości e-mail, gdy raport będzie dostępny
+        email_subjects_manager_when_available: Wyślij wiadomość e-mail do menedżera podmiotu, gdy raport będzie dostępny
+        make_report_available_to_subject_when: 'Udostępnić raport podmiotowi, gdy:'
+        manager_approves_reports: Menedżer zatwierdza raporty
+        manager_can_access_subject_reports: Menedżer może uzyskać dostęp do raportów tematycznych
+        manager_cannot_access_subject_reports: Menedżer nie może zobaczyć raportu, dopóki nie zostaną spełnione wymagania
+        report_access: Dostęp do raportu
+        report_approval: Zatwierdzenie raportu
+        report_availability: Dostępność raportu
         show:
           title: Raport tematyczny
+        subject_can_access_reports: Podmiot może uzyskać dostęp do swoich raportów
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Oznacz licencje jako nieaktywne
     time_zone: Strefa czasowa
     tools: Narzędzia
     translations:

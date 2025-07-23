@@ -3645,11 +3645,35 @@ sl:
       exactly: Natančno %{count}
     nominations: Nominacije
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Omogočiti ocenjevalcem, da zavrnejo imenovanje.
+        email_subject_when_nomination_declined: Predmet e-pošte ob zavrnitvi nominacije
       form:
         value_not_valid: nima veljavne vrednosti
       global:
         cannot_re_edit: Udeleženci ne morejo urejati ocen
         disable_all_evaluations: Onemogoči vsa ocenjevanja
+      manager:
+        allow_subjects_to_email: omogočiti subjektom, da pošljejo e-pošto upraviteljem, ko so njihove nominacije pripravljene za odobritev.
+        approves_evaluations: Vodja odobri ocene
+        approves_nominations: Upravitelj odobri imenovanja
+        can_view_nominations: Upravitelj si lahko ogleda nominacije
+        email_managers_when_nomination_ready: Pošiljanje e-pošte upraviteljem, ko je kandidatura subjekta pripravljena za odobritev.
+        email_subject_when_nomination_denied: Predmet e-pošte ob zavrnitvi nominacije
+        may_choose_evaluators: Vodja lahko izbere ocenjevalce
+      subject:
+        allow_subjects_to_select_relationships: Omogočite subjektom, da izberejo razmerja
+        anyone_in_assessment: Vsi, ki sodelujejo pri ocenjevanju
+        anyone_in_datasheet: Kdor koli v podatkovnem listu
+        anyone_not_in_assessment: Vsi, ki trenutno niso vključeni v ocenjevanje.
+        can_view_evaluators: Subjekt si lahko ogleda ocenjevalce
+        define_nomination_requirement: Opredelitev zahteve za imenovanje
+        limit_search_by_criteria: Omejitev iskanja po merilih
+        nominates_evaluators: Subjekt imenuje ocenjevalce
+        only_allow_relationships_of_specified_types: Dovolite samo razmerja določenih vrst
+        only_show_subjects_who_match_criteria: 'Prikažite samo subjekte, ki ustrezajo naslednjim merilom:'
+        self_evaluates: Subjekt sam ocenjuje
+        subjects_cannot_remove_nominations: Subjekti ne morejo odstraniti nominacij, ki so jih določili vodje ali administratorji.
     or: Ali
     page_title: Signify 360° pregled – uporabite nivo
     participant_list:

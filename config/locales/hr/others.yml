@@ -437,7 +437,7 @@ hr:
           case_study: Studije slučaja
           hogan: Hogan
           iiht: IIHT
-          lead_assessor_form: "[HR] Lead Assessor Form"
+          lead_assessor_form: Obrazac glavnog procjenitelja
           meeting: Sastanak
           organisational: Ankete
           pearson: Pearson
@@ -3652,11 +3652,35 @@ hr:
       exactly: Točno %{count}
     nominations: Nominacije
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Dopustite evaluatorima da odbace nominaciju
+        email_subject_when_nomination_declined: Predmet e-pošte kada je nominacija odbijena
       form:
         value_not_valid: nema valjanu vrijednost
       global:
         cannot_re_edit: Sudionici ne mogu uređivati ​​evaluacije
         disable_all_evaluations: Onemogući sve procjene
+      manager:
+        allow_subjects_to_email: Dopustite ispitanicima da pošalju e-poštu menadžerima kada su njihove nominacije spremne za odobrenje
+        approves_evaluations: Menadžer odobrava evaluacije
+        approves_nominations: Menadžer odobrava nominacije
+        can_view_nominations: Menadžer može vidjeti nominacije
+        email_managers_when_nomination_ready: Pošaljite e-poštu menadžerima kada je nominacija ispitanika spremna za odobrenje
+        email_subject_when_nomination_denied: Predmet e-pošte kada je nominacija odbijena
+        may_choose_evaluators: Menadžer može odabrati evaluatore
+      subject:
+        allow_subjects_to_select_relationships: Dopustite ispitanicima da odaberu odnose
+        anyone_in_assessment: Bilo tko u procjeni
+        anyone_in_datasheet: Bilo tko u podatkovnoj tablici
+        anyone_not_in_assessment: Bilo tko koji trenutno nije u procjeni
+        can_view_evaluators: Ispitanik može vidjeti evaluatore
+        define_nomination_requirement: Definirajte zahtjev za nominaciju
+        limit_search_by_criteria: Ograničite pretragu prema kriterijima
+        nominates_evaluators: Ispitanik nominira evaluatore
+        only_allow_relationships_of_specified_types: Dozvolite samo odnose određenih vrsta
+        only_show_subjects_who_match_criteria: 'Pokažite samo ispitanike koji odgovaraju sljedećim kriterijima:'
+        self_evaluates: Ispitanik se samoevaluira
+        subjects_cannot_remove_nominations: Ispitanici ne mogu ukloniti nominacije koje su postavili menadžeri ili administratori
     or: Ili
     page_title: Signify 360° pregled - Primjena razine
     participant_list:

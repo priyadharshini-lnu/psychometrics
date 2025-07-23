@@ -13,36 +13,45 @@ export default function ManagerSection ({
   })
 
   return (
-    <OptionSection label="Manager Options">
-      <ExpandableOption label="Manager can view nominations" {...parametersForSwitch('canViewNominations')} />
+    <OptionSection label={I18n.t('administration.threesixty_campaigns.menu.participants.options.manager_options')}>
       <ExpandableOption
-        label="Manager may choose Evaluators"
+        label={I18n.t('threesixty.options.manager.can_view_nominations')}
+        {...parametersForSwitch('canViewNominations')}
+      />
+      <ExpandableOption
+        label={I18n.t('threesixty.options.manager.may_choose_evaluators')}
         {...parametersForSwitch('canChooseEvaluators')}
       />
-      <ExpandableOption label="Manager approves nominations" {...parametersForSwitch('canApproveNominations')}>
+      <ExpandableOption
+        label={I18n.t('threesixty.options.manager.approves_nominations')}
+        {...parametersForSwitch('canApproveNominations')}
+      >
         <div>
           <ExpandableOption
-            label="Email managers when a subject's nomination is ready for approval"
+            label={I18n.t('threesixty.options.manager.email_managers_when_nomination_ready')}
             {...parametersForSwitch('emailManagersOnNominationApproval')}
             type="checkbox"
           />
         </div>
         <div>
           <ExpandableOption
-            label="Allow subjects to email managers when their nominations are ready for approval"
+            label={I18n.t('threesixty.options.manager.allow_subjects_to_email')}
             {...parametersForSwitch('subjectsCanEmailManagers')}
             type="checkbox"
           />
         </div>
         <div>
           <ExpandableOption
-            label="Email subject when a nomination is denied"
+            label={I18n.t('threesixty.options.manager.email_subject_when_nomination_denied')}
             {...parametersForSwitch('emailSubjectWhenManagerDeclinesNomination')}
             type="checkbox"
           />
         </div>
       </ExpandableOption>
-      <ExpandableOption label="Manager approves evaluations" {...parametersForSwitch('canApprovesEvaluations')} />
+      <ExpandableOption
+        label={I18n.t('threesixty.options.manager.approves_evaluations')}
+        {...parametersForSwitch('canApprovesEvaluations')}
+      />
     </OptionSection>
   )
 }

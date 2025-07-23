@@ -1492,6 +1492,8 @@ ro:
         update:
           successfully: Proiectul %{name} a fost actualizat cu succes.
       registration_codes:
+        actions:
+          add_code: Adaugă codul
         column:
           code: Cod
           usage_stats: Statistici de utilizare
@@ -1502,6 +1504,13 @@ ro:
           incorrect_domain: Format de domeniu incorect.
           invalid_end_date: trebuie să fie mai mare decât data de începere
           license_issue: Nu sunt suficiente licențe.
+        form:
+          active: Activ
+          code: Cod
+          end_date: Data de încheiere
+          name: Nume și prenume
+          start_date: Data de începere
+          total_count: Număr total
       resource:
         confirmations:
           delete:
@@ -3060,6 +3069,7 @@ ro:
         user_name: Nume de utilizator
       dashboard: Tablou
       download: Descărca
+      report_approval_settings: Setări de aprobare a raportului
       report_approvals: Aprobări de rapoarte
       review: Recenzie
       saving_filters:
@@ -3986,6 +3996,7 @@ ro:
           invitations: Invitaţii
           reminders: Mementouri
           report_ready: Pregătit pentru raport
+        consolidated: Consolidat
         custom_message:
           description: Acest mesaj poate fi trimis oricărei persoane care participă la evaluare
           name: Mesaj personalizat
@@ -4009,7 +4020,10 @@ ro:
         request_approval:
           description: Acest mesaj este trimis managerilor atunci când un subiect solicită aprobarea
           name: Solicitați aprobarea
+        save: Salvați
+        schedule: Program
         schedule_email: Programați e-mailul
+        schedule_email_title: Programare e-mail
         schedule_time: Timp de programare
         send_test_email: Trimite e-mail de testare
         subject: Subiect
@@ -4050,6 +4064,14 @@ ro:
         welcome_message:
           description: Acest mesaj va fi afișat subiecților atunci când se conectează pentru a începe evaluarea sau pentru a-și vizualiza lista de sarcini
           name: Mesaj de bun venit
+      mail_history:
+        actions: Acțiuni
+        date: Data
+        download_details: Descărcați detalii
+        emails_sent: Email-uri trimise
+        recipient: Beneficiar
+        status: Statut
+        subject: Subiect
       manage:
         assessment: Evaluare
         dimension: Dimensiuni
@@ -4057,19 +4079,45 @@ ro:
         report: Raport
         title: Gestiona
       menu:
+        actions: Acțiuni
         datasheet:
           title: Fișă tehnică
         messages:
+          allow_subjects_to_send_reminders: Permiteți subiecților să trimită memento-uri evaluatorilor
+          automatically_send_invites: Trimiteți automat invitații noilor evaluatori
           title: Mesaje
         participants:
+          columns:
+            action: Acțiune
+            email: E-mail
+            evaluations_completed: Evaluări finalizate
+            evaluations_received: Evaluări primite
+            is_subject: Este subiect
+            name: Nume și prenume
+            report_status: Starea raportului
+            status: Statut
+          evaluators:
+            add_evaluators: Adăugați evaluatori
+            import_evaluators: Evaluatori de import
+            title: Evaluatori
+          managers:
+            title: Manageri
+          options:
+            evaluator_options: Opțiuni Evaluator
+            global: Opțiuni globale
+            manager_options: Opțiuni manager
+            subject_options: Opțiuni de subiect
+            title: Opțiuni
           subjects:
             add_subjects: Adăugați subiecte
             current_job_role: Rolul actual al postului
             email: E-mail
             first_name: Prenume
+            import_subjects: Subiecte de import
             last_name: Nume de familie
             locale: Setări regionale
             target_job_role: Rol de post țintă
+            title: Subiecte
           title: Participanţii
         report:
           menu:
@@ -4085,8 +4133,26 @@ ro:
         mail_history: Istoricul e-mailurilor
         options: Opțiuni
       reports:
+        add_conditions: Adăugați condiții
+        administrator_approves_reports: Administratorul aprobă rapoartele
+        allow_manager_to_view_individual_responses: Permiteți managerului să vizualizeze răspunsurile individuale
+        disable_report_download: Dezactivați descărcarea raportului
+        edit_email: Editare e-mail
+        email_manager_when_report_is_ready_for_approval: Trimiteți un e-mail managerului atunci când raportul este gata pentru aprobare
+        email_subject_when_report_becomes_available: Subiect de e-mail atunci când raportul devine disponibil
+        email_subjects_manager_when_available: Trimiteți un e-mail managerului subiectului atunci când raportul devine disponibil
+        make_report_available_to_subject_when: 'Puneți raportul la dispoziția subiectului atunci când:'
+        manager_approves_reports: Managerul aprobă rapoartele
+        manager_can_access_subject_reports: Managerul poate accesa rapoartele pe subiect
+        manager_cannot_access_subject_reports: Managerul nu poate vedea raportul până când cerințele nu sunt îndeplinite
+        report_access: Raport de acces
+        report_approval: Aprobarea raportului
+        report_availability: Disponibilitatea raportului
         show:
           title: Raport de subiect
+        subject_can_access_reports: Subiectul își poate accesa rapoartele
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Marcați licențele ca fiind dezactivate
     time_zone: Fus orar
     tools: Instrumente
     translations:

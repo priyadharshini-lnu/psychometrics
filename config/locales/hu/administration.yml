@@ -1494,6 +1494,8 @@ hu:
         update:
           successfully: A(z) %{name} projekt frissítése sikeresen megtörtént.
       registration_codes:
+        actions:
+          add_code: Kód hozzáadása
         column:
           code: Kód
           usage_stats: Használati statisztikák
@@ -1504,6 +1506,13 @@ hu:
           incorrect_domain: Helytelen tartományformátum.
           invalid_end_date: nagyobbnak kell lennie, mint a kezdő dátumnak
           license_issue: Nincs elég licenc.
+        form:
+          active: Aktív
+          code: 'Kód:'
+          end_date: Végdátum
+          name: Név
+          start_date: Kezdeti dátum
+          total_count: Teljes szám
       resource:
         confirmations:
           delete:
@@ -3062,6 +3071,7 @@ hu:
         user_name: Felhasználónév
       dashboard: Irányítópult
       download: Letöltés
+      report_approval_settings: Jelentés jóváhagyási beállítások
       report_approvals: Jelentés jóváhagyása
       review: Ellenőrzés
       saving_filters:
@@ -3988,6 +3998,7 @@ hu:
           invitations: Meghívások
           reminders: Emlékeztetők
           report_ready: Jelentésre kész
+        consolidated: Konszolidált
         custom_message:
           description: Ezt az üzenetet az értékelésben részt vevő bárki megkaphatja
           name: Egyéni üzenet
@@ -4011,7 +4022,10 @@ hu:
         request_approval:
           description: Ezt az üzenetet küldjük el a vezetőknek, ha egy tulajdonos jóváhagyást kér
           name: Jóváhagyás kérése
+        save: Mentés
+        schedule: Ütemterv
         schedule_email: E-mail ütemezése
+        schedule_email_title: Ütemterv Email
         schedule_time: Ütemezési idő
         send_test_email: Teszt e-mail küldése
         subject: Tárgy
@@ -4052,6 +4066,14 @@ hu:
         welcome_message:
           description: Ez az üzenet akkor jelenik meg az alanyok számára, amikor bejelentkeznek az értékelés megkezdéséhez vagy a feladatlistájuk megtekintéséhez
           name: Üdvözlő üzenet
+      mail_history:
+        actions: Tevékenységek
+        date: Dátum
+        download_details: Részletek letöltése
+        emails_sent: Elküldött e-mailek
+        recipient: Címzett
+        status: Állapot
+        subject: 'Tárgy:'
       manage:
         assessment: Értékelés
         dimension: Méretek
@@ -4059,19 +4081,45 @@ hu:
         report: Jelentés
         title: Kezel
       menu:
+        actions: Tevékenységek
         datasheet:
           title: Adatlap
         messages:
+          allow_subjects_to_send_reminders: Lehetővé teszi az alanyok számára, hogy emlékeztetőket küldjenek az értékelőknek
+          automatically_send_invites: Meghívók automatikus küldése új értékelőknek
           title: Üzenetek
         participants:
+          columns:
+            action: Akció
+            email: E-mail
+            evaluations_completed: Befejezett értékelések
+            evaluations_received: Beérkezett értékelések
+            is_subject: Is Subject
+            name: Név
+            report_status: Jelentés állapota
+            status: Állapot
+          evaluators:
+            add_evaluators: Értékelők hozzáadása
+            import_evaluators: Értékelők importálása
+            title: Értékelők
+          managers:
+            title: Menedzserek
+          options:
+            evaluator_options: Értékelő lehetőségek
+            global: Globális beállítások
+            manager_options: Menedzseri lehetőségek
+            subject_options: Tantárgyi lehetőségek
+            title: Opciók
           subjects:
             add_subjects: Tárgyak hozzáadása
             current_job_role: Jelenlegi munkakör
             email: E-mail
             first_name: Keresztnév
+            import_subjects: Témák importálása
             last_name: Vezetéknév
             locale: Színhely
             target_job_role: Cél munkakör
+            title: Tantárgyak
           title: Résztvevők
         report:
           menu:
@@ -4087,8 +4135,26 @@ hu:
         mail_history: Levelezési előzmények
         options: Beállítások
       reports:
+        add_conditions: Feltételek hozzáadása
+        administrator_approves_reports: Az adminisztrátor jóváhagyja a jelentéseket
+        allow_manager_to_view_individual_responses: Lehetővé teszi a menedzser számára az egyéni válaszok megtekintését
+        disable_report_download: Jelentés letöltésének letiltása
+        edit_email: E-mail szerkesztése
+        email_manager_when_report_is_ready_for_approval: Email Manager, amikor a jelentés jóváhagyásra készen áll
+        email_subject_when_report_becomes_available: E-mail tárgy, ha a jelentés elérhetővé válik
+        email_subjects_manager_when_available: E-mail az alany menedzserének, amikor a jelentés elérhetővé válik
+        make_report_available_to_subject_when: 'A jelentést az alany rendelkezésére kell bocsátani, amikor:'
+        manager_approves_reports: A menedzser jóváhagyja a jelentéseket
+        manager_can_access_subject_reports: A menedzser hozzáférhet a témajelentésekhez
+        manager_cannot_access_subject_reports: A menedzser nem láthatja a jelentést, amíg a követelmények nem teljesülnek
+        report_access: Jelentés hozzáférés
+        report_approval: Jelentés jóváhagyása
+        report_availability: Jelentés elérhetősége
         show:
           title: Tárgyi jelentés
+        subject_can_access_reports: Az alanyok hozzáférhetnek jelentéseikhez
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Az engedélyek deaktiváltként való megjelölése
     time_zone: Időzóna
     tools: Eszközök
     translations:

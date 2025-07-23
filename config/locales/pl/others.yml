@@ -3657,11 +3657,35 @@ pl:
       exactly: Dokładnie %{count}
     nominations: Nominacje
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Umożliwienie oceniającym odrzucenia nominacji
+        email_subject_when_nomination_declined: Temat wiadomości e-mail w przypadku odrzucenia nominacji
       form:
         value_not_valid: nie ma prawidłowej wartości
       global:
         cannot_re_edit: Uczestnicy nie mogą edytować ocen
         disable_all_evaluations: Wyłączanie wszystkich ocen
+      manager:
+        allow_subjects_to_email: Zezwalaj podmiotom na wysyłanie wiadomości e-mail do menedżerów, gdy ich nominacje są gotowe do zatwierdzenia.
+        approves_evaluations: Menedżer zatwierdza oceny
+        approves_nominations: Menedżer zatwierdza nominacje
+        can_view_nominations: Menedżer może przeglądać nominacje
+        email_managers_when_nomination_ready: Wysyłanie wiadomości e-mail do menedżerów, gdy nominacja podmiotu jest gotowa do zatwierdzenia.
+        email_subject_when_nomination_denied: Temat wiadomości e-mail w przypadku odrzucenia nominacji
+        may_choose_evaluators: Menedżer może wybrać oceniających
+      subject:
+        allow_subjects_to_select_relationships: Umożliwienie uczestnikom wyboru relacji
+        anyone_in_assessment: Każda osoba biorąca udział w ocenie
+        anyone_in_datasheet: Każdy w arkuszu danych
+        anyone_not_in_assessment: Każdy, kto nie jest obecnie objęty oceną
+        can_view_evaluators: Podmiot może przeglądać oceniających
+        define_nomination_requirement: Określenie wymagań dotyczących nominacji
+        limit_search_by_criteria: Ogranicz wyszukiwanie według kryteriów
+        nominates_evaluators: Podmiot nominuje oceniających
+        only_allow_relationships_of_specified_types: Zezwalaj tylko na relacje określonych typów
+        only_show_subjects_who_match_criteria: 'Wyświetlaj tylko osoby spełniające poniższe kryteria:'
+        self_evaluates: Przedmiot samooceny
+        subjects_cannot_remove_nominations: Podmioty nie mogą usuwać nominacji ustawionych przez menedżerów lub administratorów.
     or: Lub
     page_title: Signify 360° Review - Poziom aplikacji
     participant_list:

@@ -1502,6 +1502,8 @@ zh-Hant:
         update:
           successfully: 專案 %{name} 已成功更新。
       registration_codes:
+        actions:
+          add_code: 加入代碼
         column:
           code: 代碼
           usage_stats: 使用統計
@@ -1512,6 +1514,13 @@ zh-Hant:
           incorrect_domain: 網域格式不正確。
           invalid_end_date: 必須大於開始日期
           license_issue: 許可證數量不足。
+        form:
+          active: 活躍
+          code: 代碼
+          end_date: 結束日期
+          name: 名稱
+          start_date: 開始日期
+          total_count: 總計
       resource:
         confirmations:
           delete:
@@ -3099,6 +3108,7 @@ zh-Hant:
         user_name: 使用者名稱
       dashboard: 儀表板
       download: 下載
+      report_approval_settings: 報告核准設定
       report_approvals: 報告核准
       review: 回顧
       saving_filters:
@@ -4062,6 +4072,7 @@ zh-Hant:
           invitations: 邀請函
           reminders: 提醒事項
           report_ready: 報告準備就緒
+        consolidated: 綜合
         custom_message:
           description: 此訊息可傳送給任何參與評估的人
           name: 自訂訊息
@@ -4085,7 +4096,10 @@ zh-Hant:
         request_approval:
           description: 當標的要求核准時，此訊息會傳送給管理員
           name: 請求批准
+        save: 節省
+        schedule: 時間表
         schedule_email: 排程電子郵件
+        schedule_email_title: 排程電子郵件
         schedule_time: 排程時間
         send_test_email: 傳送測試電子郵件
         subject: 主題
@@ -4126,6 +4140,14 @@ zh-Hant:
         welcome_message:
           description: 當受試者登入開始評估或檢視其任務清單時，此訊息將會顯示給他們。
           name: 歡迎詞
+      mail_history:
+        actions: 行動
+        date: 日期
+        download_details: 下載詳細資訊
+        emails_sent: 已傳送的電子郵件
+        recipient: 收件人
+        status: 狀態
+        subject: 主題
       manage:
         assessment: 評估
         dimension: 尺寸
@@ -4133,19 +4155,45 @@ zh-Hant:
         report: 報告
         title: 管理
       menu:
+        actions: 行動
         datasheet:
           title: 資料表
         messages:
+          allow_subjects_to_send_reminders: 允許受試者傳送提醒訊息給評估者
+          automatically_send_invites: 自動發送邀請函給新的評估人員
           title: 訊息
         participants:
+          columns:
+            action: 行動
+            email: 電子郵件
+            evaluations_completed: 已完成評估
+            evaluations_received: 收到的評估
+            is_subject: 是主題
+            name: 名稱
+            report_status: 報告狀態
+            status: 狀態
+          evaluators:
+            add_evaluators: 新增評估員
+            import_evaluators: 進口評估員
+            title: 評估員
+          managers:
+            title: 經理
+          options:
+            evaluator_options: 評估員選項
+            global: 全球選項
+            manager_options: 管理員選項
+            subject_options: 科目選項
+            title: 選項
           subjects:
             add_subjects: 新增主題
             current_job_role: 目前的工作角色
             email: 電子郵件
             first_name: 名
+            import_subjects: 進口主題
             last_name: 姓
             locale: 語言環境
             target_job_role: 目標工作角色
+            title: 主題
           title: 參與者
         report:
           menu:
@@ -4161,8 +4209,26 @@ zh-Hant:
         mail_history: 郵件歷史
         options: 選項
       reports:
+        add_conditions: 新增條件
+        administrator_approves_reports: 管理員批准報告
+        allow_manager_to_view_individual_responses: 允許經理檢視個別回覆
+        disable_report_download: 停用報告下載
+        edit_email: 編輯電子郵件
+        email_manager_when_report_is_ready_for_approval: 報告準備好供核准時，以電子郵件通知管理員
+        email_subject_when_report_becomes_available: 當報告可用時，以電子郵件通知主題
+        email_subjects_manager_when_available: 當報告可用時，寄電子郵件給目標人物的經理
+        make_report_available_to_subject_when: 在下列情況下向目標人物提供報告：
+        manager_approves_reports: 經理核准報告
+        manager_can_access_subject_reports: 經理可以存取主題報告
+        manager_cannot_access_subject_reports: 在符合要求之前，經理無法看到報告
+        report_access: 報告存取
+        report_approval: 報告核准
+        report_availability: 報告可用性
         show:
           title: 主題報告
+        subject_can_access_reports: 主題可存取其報告
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: 將授權標記為停用
     time_zone: 時區
     tools: 工具
     translations:

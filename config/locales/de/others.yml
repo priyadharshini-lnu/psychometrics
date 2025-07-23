@@ -3657,11 +3657,35 @@ de:
       exactly: Genau %{count}
     nominations: Benennungen
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Erlauben Sie den Bewertern, die Nominierung abzulehnen
+        email_subject_when_nomination_declined: Betreff der E-Mail, wenn eine Nominierung abgelehnt wird
       form:
         value_not_valid: keinen gültigen Wert hat
       global:
         cannot_re_edit: Teilnehmer können keine Bewertungen bearbeiten
         disable_all_evaluations: Alle Auswertungen deaktivieren
+      manager:
+        allow_subjects_to_email: Ermöglichen Sie es den Betreffenden, eine E-Mail an die Manager zu senden, wenn ihre Nominierungen zur Genehmigung bereit sind
+        approves_evaluations: Manager genehmigt Bewertungen
+        approves_nominations: Manager billigt Nominierungen
+        can_view_nominations: Manager kann Nominierungen einsehen
+        email_managers_when_nomination_ready: Manager per E-Mail benachrichtigen, wenn die Nominierung einer Person zur Genehmigung bereit ist
+        email_subject_when_nomination_denied: Betreff der E-Mail, wenn eine Nominierung abgelehnt wird
+        may_choose_evaluators: Manager kann Evaluatoren auswählen
+      subject:
+        allow_subjects_to_select_relationships: Erlauben Sie den Subjekten, Beziehungen auszuwählen
+        anyone_in_assessment: Jeder, der an der Bewertung teilnimmt
+        anyone_in_datasheet: Jeder im Datenblatt
+        anyone_not_in_assessment: Alle Personen, die derzeit nicht an der Bewertung teilnehmen
+        can_view_evaluators: Subjekt kann Evaluatoren sehen
+        define_nomination_requirement: Definieren Sie die Nominierungsanforderungen
+        limit_search_by_criteria: Suche nach Kriterien einschränken
+        nominates_evaluators: Thema ernennt Evaluatoren
+        only_allow_relationships_of_specified_types: Nur Beziehungen der angegebenen Typen zulassen
+        only_show_subjects_who_match_criteria: 'Es werden nur Personen angezeigt, die die folgenden Kriterien erfüllen:'
+        self_evaluates: Thema Selbsteinschätzung
+        subjects_cannot_remove_nominations: Probanden können keine von Managern oder Admins aufgestellten Nominierungen entfernen
     or: oder
     page_title: Signify 360° Review - Stufe anwenden
     participant_list:

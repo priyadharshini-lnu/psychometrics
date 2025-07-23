@@ -3642,11 +3642,35 @@ ja:
       exactly: 正確に %{count}。
     nominations: 推薦
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: 評価者が指名を辞退できるようにする
+        email_subject_when_nomination_declined: 指名辞退時のメール件名
       form:
         value_not_valid: 有効な値を持たない
       global:
         cannot_re_edit: 参加者は評価を編集できません
         disable_all_evaluations: すべての評価を無効にする
+      manager:
+        allow_subjects_to_email: 指名が承認されると、対象者が管理者に電子メールを送信できるようにする。
+        approves_evaluations: マネージャーが評価を承認
+        approves_nominations: マネージャーが指名を承認
+        can_view_nominations: マネージャーが指名を閲覧可能
+        email_managers_when_nomination_ready: 被験者の指名が承認されると、管理者に電子メールを送信する。
+        email_subject_when_nomination_denied: 指名が拒否された場合の件名
+        may_choose_evaluators: マネージャーは評価者を選ぶことができる
+      subject:
+        allow_subjects_to_select_relationships: 被験者が関係を選択できるようにする
+        anyone_in_assessment: 評価対象者
+        anyone_in_datasheet: データシートの誰でも
+        anyone_not_in_assessment: 現在査定を受けていない者
+        can_view_evaluators: 被験者は評価者を見ることができる
+        define_nomination_requirement: 指名条件を定義する
+        limit_search_by_criteria: 条件で検索を制限する
+        nominates_evaluators: 対象者が評価者を指名
+        only_allow_relationships_of_specified_types: 指定されたタイプの関係のみを許可する
+        only_show_subjects_who_match_criteria: 以下の条件に一致する被写体のみを表示します：
+        self_evaluates: 被験者の自己評価
+        subjects_cannot_remove_nominations: 対象者は、マネージャーや管理者が設定した指名を削除することはできません。
     or: または
     page_title: 360°のレビューを示す - レベルを適用
     participant_list:

@@ -3632,11 +3632,35 @@ hu:
       exactly: Pontosan %{count}
     nominations: Jelölések
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Lehetővé teszi az értékelők számára a jelölés elutasítását
+        email_subject_when_nomination_declined: E-mail tárgya, ha egy jelölést elutasítanak
       form:
         value_not_valid: nincs érvényes értéke
       global:
         cannot_re_edit: A résztvevők nem szerkeszthetik az értékeléseket
         disable_all_evaluations: Az összes értékelés letiltása
+      manager:
+        allow_subjects_to_email: Lehetővé teszi az alanyok számára, hogy e-mailben küldjék el a menedzsereknek, ha a jelöléseik készen állnak jóváhagyásra.
+        approves_evaluations: Az igazgató jóváhagyja az értékeléseket
+        approves_nominations: Az igazgató jóváhagyja a jelöléseket
+        can_view_nominations: A menedzser megtekintheti a jelöléseket
+        email_managers_when_nomination_ready: E-mail a menedzsereknek, ha egy alany jelölése készen áll jóváhagyásra
+        email_subject_when_nomination_denied: E-mail tárgya, ha egy jelölést elutasítanak
+        may_choose_evaluators: A menedzser választhat értékelőket
+      subject:
+        allow_subjects_to_select_relationships: Lehetővé teszi az alanyok számára a kapcsolatok kiválasztását
+        anyone_in_assessment: Bárki az értékelésben
+        anyone_in_datasheet: Bárki az adatlapon
+        anyone_not_in_assessment: Bárki, aki jelenleg nem vesz részt az értékelésben
+        can_view_evaluators: Az alany megtekintheti az értékelőket
+        define_nomination_requirement: Jelölési követelmény meghatározása
+        limit_search_by_criteria: Keresés korlátozása kritériumok alapján
+        nominates_evaluators: Az alany nevezi ki az értékelőket
+        only_allow_relationships_of_specified_types: Csak a megadott típusú kapcsolatok engedélyezése
+        only_show_subjects_who_match_criteria: 'Csak a következő kritériumoknak megfelelő alanyok megjelenítése:'
+        self_evaluates: A tantárgy önértékelése
+        subjects_cannot_remove_nominations: Az alanyok nem távolíthatják el a menedzserek vagy adminok által beállított jelöléseket.
     or: Vagy
     page_title: Signify 360° felülvizsgálata - Alkalmazási szint
     participant_list:

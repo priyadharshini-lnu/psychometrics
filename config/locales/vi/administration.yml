@@ -1492,6 +1492,8 @@ vi:
         update:
           successfully: Dự án %{name} đã được cập nhật thành công.
       registration_codes:
+        actions:
+          add_code: Thêm mã
         column:
           code: Mã
           usage_stats: Số liệu thống kê sử dụng
@@ -1502,6 +1504,13 @@ vi:
           incorrect_domain: Định dạng miền không chính xác.
           invalid_end_date: phải lớn hơn ngày bắt đầu
           license_issue: Không đủ giấy phép.
+        form:
+          active: Hoạt động
+          code: Mã
+          end_date: Ngày kết thúc
+          name: Tên
+          start_date: Ngày bắt đầu
+          total_count: Tổng số
       resource:
         confirmations:
           delete:
@@ -3060,6 +3069,7 @@ vi:
         user_name: Tên người dùng
       dashboard: Bảng điều khiển
       download: Tải xuống
+      report_approval_settings: Cài đặt phê duyệt báo cáo
       report_approvals: Phê duyệt báo cáo
       review: Xem xét
       saving_filters:
@@ -3986,6 +3996,7 @@ vi:
           invitations: Lời mời
           reminders: Nhắc nhở
           report_ready: Báo cáo sẵn sàng
+        consolidated: Hợp nhất
         custom_message:
           description: Thông báo này có thể được gửi cho bất kỳ ai tham gia đánh giá
           name: Tin nhắn tùy chỉnh
@@ -4009,7 +4020,10 @@ vi:
         request_approval:
           description: Thông báo này được gửi đến người quản lý khi một chủ thể yêu cầu phê duyệt
           name: Yêu cầu phê duyệt
+        save: Lưu
+        schedule: Lịch trình
         schedule_email: Lên lịch email
+        schedule_email_title: Lịch trình email
         schedule_time: Lịch trình thời gian
         send_test_email: Gửi email thử nghiệm
         subject: Chủ đề
@@ -4050,6 +4064,14 @@ vi:
         welcome_message:
           description: Thông báo này sẽ được hiển thị cho các đối tượng khi họ đăng nhập để bắt đầu đánh giá hoặc xem danh sách nhiệm vụ của họ
           name: Thông điệp chào mừng
+      mail_history:
+        actions: Hành động
+        date: Ngày
+        download_details: Chi tiết tải xuống
+        emails_sent: Email đã gửi
+        recipient: Người nhận
+        status: Trạng thái
+        subject: Chủ đề
       manage:
         assessment: Thuế
         dimension: Kích thước
@@ -4057,19 +4079,45 @@ vi:
         report: Báo cáo
         title: Điều khiển
       menu:
+        actions: Hành động
         datasheet:
           title: Bảng dữ liệu
         messages:
+          allow_subjects_to_send_reminders: Cho phép người được đánh giá gửi lời nhắc nhở cho người đánh giá.
+          automatically_send_invites: Tự động gửi lời mời đến các đánh giá viên mới
           title: Thư
         participants:
+          columns:
+            action: Hành động
+            email: Thư điện tử
+            evaluations_completed: Đánh giá đã hoàn thành
+            evaluations_received: Đánh giá đã nhận
+            is_subject: Chủ đề là
+            name: Tên
+            report_status: Trạng thái báo cáo
+            status: Trạng thái
+          evaluators:
+            add_evaluators: Thêm người đánh giá
+            import_evaluators: Nhà đánh giá nhập khẩu
+            title: Người đánh giá
+          managers:
+            title: Quản lý
+          options:
+            evaluator_options: Tùy chọn đánh giá
+            global: Tùy chọn toàn cầu
+            manager_options: Tùy chọn Quản lý
+            subject_options: Chủ đề tùy chọn
+            title: Tùy chọn
           subjects:
             add_subjects: Thêm chủ đề
             current_job_role: Vai trò công việc hiện tại
             email: Email
             first_name: Tên thánh
+            import_subjects: Nhập chủ đề
             last_name: Họ
             locale: Locale
             target_job_role: Vai trò công việc mục tiêu
+            title: Chủ đề
           title: Tham gia
         report:
           menu:
@@ -4085,8 +4133,26 @@ vi:
         mail_history: Lịch sử thư
         options: Tùy chọn
       reports:
+        add_conditions: Thêm điều kiện
+        administrator_approves_reports: Quản trị viên phê duyệt báo cáo
+        allow_manager_to_view_individual_responses: Cho phép Quản lý xem các phản hồi cá nhân.
+        disable_report_download: Tắt tính năng tải xuống báo cáo
+        edit_email: Chỉnh sửa email
+        email_manager_when_report_is_ready_for_approval: Quản lý email khi báo cáo đã sẵn sàng để phê duyệt
+        email_subject_when_report_becomes_available: Tiêu đề email khi báo cáo có sẵn
+        email_subjects_manager_when_available: Gửi email cho người quản lý của chủ đề email khi báo cáo có sẵn.
+        make_report_available_to_subject_when: 'Cho phép người liên quan xem báo cáo khi:'
+        manager_approves_reports: Quản lý phê duyệt báo cáo
+        manager_can_access_subject_reports: Quản lý có thể truy cập các báo cáo liên quan.
+        manager_cannot_access_subject_reports: Quản lý không thể xem báo cáo cho đến khi các yêu cầu được đáp ứng.
+        report_access: Quyền truy cập báo cáo
+        report_approval: Phê duyệt báo cáo
+        report_availability: Tình trạng sẵn có của báo cáo
         show:
           title: Báo cáo chủ đề
+        subject_can_access_reports: Người dùng có thể truy cập các báo cáo của mình.
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Đánh dấu giấy phép là đã vô hiệu hóa
     time_zone: Múi giờ
     tools: Công cụ
     translations:

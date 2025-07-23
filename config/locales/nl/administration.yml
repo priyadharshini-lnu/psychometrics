@@ -1504,6 +1504,8 @@ nl:
         update:
           successfully: Project %{name} is succesvol bijgewerkt.
       registration_codes:
+        actions:
+          add_code: Code toevoegen
         column:
           code: Code
           usage_stats: Gebruiksstatistieken
@@ -1514,6 +1516,13 @@ nl:
           incorrect_domain: Onjuiste domeinindeling.
           invalid_end_date: moet groter zijn dan de begindatum
           license_issue: Niet genoeg licenties.
+        form:
+          active: Actief
+          code: Code
+          end_date: Einddatum
+          name: Naam
+          start_date: Startdatum
+          total_count: Totaal aantal
       resource:
         confirmations:
           delete:
@@ -3103,6 +3112,7 @@ nl:
         user_name: Gebruikersnaam
       dashboard: Dashboard
       download: Downloaden
+      report_approval_settings: Instellingen voor goedkeuring van rapporten
       report_approvals: Goedkeuringen
       review: Beoordeling
       saving_filters:
@@ -4066,6 +4076,7 @@ nl:
           invitations: Uitnodigingen
           reminders: Herinneringen
           report_ready: Rapport klaar
+        consolidated: Geconsolideerd
         custom_message:
           description: Dit bericht kan naar iedereen gestuurd worden die deelneemt aan de beoordeling
           name: Aangepast bericht
@@ -4089,7 +4100,10 @@ nl:
         request_approval:
           description: Dit bericht wordt naar managers gestuurd wanneer een onderwerp om goedkeuring vraagt
           name: Goedkeuring aanvragen
+        save: Sla
+        schedule: Schema
         schedule_email: E-mail plannen
+        schedule_email_title: E-mail plannen
         schedule_time: Tijd plannen
         send_test_email: Testmail verzenden
         subject: Onderwerp
@@ -4130,6 +4144,14 @@ nl:
         welcome_message:
           description: Dit bericht wordt aan de proefpersonen getoond wanneer ze inloggen om met de beoordeling te beginnen of hun takenlijst te bekijken
           name: Welkom
+      mail_history:
+        actions: Acties
+        date: Datum
+        download_details: Details downloaden
+        emails_sent: Verzonden e-mails
+        recipient: Ontvanger
+        status: Status
+        subject: Onderwerp
       manage:
         assessment: Beoordeling
         dimension: Afmetingen
@@ -4137,19 +4159,45 @@ nl:
         report: Rapporteer
         title: Beheer
       menu:
+        actions: Acties
         datasheet:
           title: Gegevensblad
         messages:
+          allow_subjects_to_send_reminders: Laat proefpersonen herinneringen sturen naar beoordelaars
+          automatically_send_invites: Automatisch uitnodigingen versturen naar nieuwe beoordelaars
           title: Berichten
         participants:
+          columns:
+            action: Actie
+            email: E-mail
+            evaluations_completed: Afgeronde evaluaties
+            evaluations_received: Ontvangen evaluaties
+            is_subject: Is Onderwerp
+            name: Naam
+            report_status: Statusrapport
+            status: Status
+          evaluators:
+            add_evaluators: Evaluatoren toevoegen
+            import_evaluators: Importeer beoordelaars
+            title: Evaluatoren
+          managers:
+            title: Managers
+          options:
+            evaluator_options: Opties voor beoordelaar
+            global: Wereldwijde opties
+            manager_options: Opties voor managers
+            subject_options: Onderwerp Opties
+            title: Opties
           subjects:
             add_subjects: Onderwerpen toevoegen
             current_job_role: Huidige Functierol
             email: Email
             first_name: Voornaam
+            import_subjects: Invoer Onderwerpen
             last_name: Achternaam
             locale: Lokaal
             target_job_role: Doel Functierol
+            title: Onderwerpen
           title: Deelnemers
         report:
           menu:
@@ -4165,8 +4213,26 @@ nl:
         mail_history: Mail Geschiedenis
         options: Opties
       reports:
+        add_conditions: Voorwaarden toevoegen
+        administrator_approves_reports: Beheerder keurt rapporten goed
+        allow_manager_to_view_individual_responses: Manager toestaan individuele reacties te bekijken
+        disable_report_download: Downloaden van rapporten uitschakelen
+        edit_email: E-mail bewerken
+        email_manager_when_report_is_ready_for_approval: E-mail Manager wanneer rapport klaar is voor goedkeuring
+        email_subject_when_report_becomes_available: Onderwerp e-mail wanneer het rapport beschikbaar is
+        email_subjects_manager_when_available: E-mail de manager van het onderwerp wanneer het rapport beschikbaar is
+        make_report_available_to_subject_when: 'Stel het rapport beschikbaar aan de proefpersoon wanneer:'
+        manager_approves_reports: Manager keurt rapporten goed
+        manager_can_access_subject_reports: Manager heeft toegang tot rapporten over het onderwerp
+        manager_cannot_access_subject_reports: Manager kan rapport niet inzien totdat aan de vereisten is voldaan
+        report_access: Toegang rapporteren
+        report_approval: Goedkeuring verslag
+        report_availability: Rapport Beschikbaarheid
         show:
           title: Onderwerp Rapport
+        subject_can_access_reports: Proefpersoon heeft toegang tot zijn rapporten
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Licenties markeren als gedeactiveerd
     time_zone: Tijdzone
     tools: Gereedschap
     translations:

@@ -1492,6 +1492,8 @@ bg:
         update:
           successfully: Проектът %{name} беше актуализиран успешно.
       registration_codes:
+        actions:
+          add_code: Добавяне на код
         column:
           code: Код
           usage_stats: Статистика на използването
@@ -1502,6 +1504,13 @@ bg:
           incorrect_domain: Неправилен формат на домейна.
           invalid_end_date: трябва да е по-голямо от началната дата
           license_issue: Няма достатъчно лицензи.
+        form:
+          active: Активен
+          code: Код
+          end_date: Крайна дата
+          name: Име
+          start_date: Начална дата
+          total_count: Общ брой
       resource:
         confirmations:
           delete:
@@ -3060,6 +3069,7 @@ bg:
         user_name: Потребителско име
       dashboard: Таблото
       download: Свалям
+      report_approval_settings: Настройки за одобряване на отчети
       report_approvals: Докладване на одобрения
       review: Преглед
       saving_filters:
@@ -3986,6 +3996,7 @@ bg:
           invitations: Покани
           reminders: Напомняния
           report_ready: Докладът е готов
+        consolidated: Консолидиран
         custom_message:
           description: Това съобщение може да бъде изпратено на всеки, който участва в оценяването
           name: Персонализирано съобщение
@@ -4009,7 +4020,10 @@ bg:
         request_approval:
           description: Това съобщение се изпраща на мениджърите, когато субект поиска одобрение
           name: Поискайте одобрение
+        save: Запазете
+        schedule: График
         schedule_email: Насрочете имейл
+        schedule_email_title: Имейл за планиране
         schedule_time: Време по график
         send_test_email: Изпратете тестов имейл
         subject: Предмет
@@ -4050,6 +4064,14 @@ bg:
         welcome_message:
           description: Това съобщение ще се покаже на субектите, когато влязат, за да започнат оценяването или да прегледат списъка си със задачи
           name: Приветствено съобщение
+      mail_history:
+        actions: Действия
+        date: Дата
+        download_details: Изтегляне на подробности
+        emails_sent: Изпратени имейли
+        recipient: Получател
+        status: Статус
+        subject: Тема
       manage:
         assessment: Оценка
         dimension: Размери
@@ -4057,19 +4079,45 @@ bg:
         report: Доклад
         title: Управлявам
       menu:
+        actions: Действия
         datasheet:
           title: Лист с данни
         messages:
+          allow_subjects_to_send_reminders: Позволете на субектите да изпращат напомняния на оценителите
+          automatically_send_invites: Автоматично изпращане на покани до нови оценители
           title: Съобщения
         participants:
+          columns:
+            action: Действие
+            email: Имейл
+            evaluations_completed: Завършени оценки
+            evaluations_received: Получени оценки
+            is_subject: Е предмет
+            name: Име
+            report_status: Състояние на доклада
+            status: Статус
+          evaluators:
+            add_evaluators: Добавяне на оценители
+            import_evaluators: Внос на оценители
+            title: Оценители
+          managers:
+            title: Мениджъри
+          options:
+            evaluator_options: Опции за оценител
+            global: Глобални опции
+            manager_options: Опции за мениджър
+            subject_options: Възможности за избор на тема
+            title: Опции
           subjects:
             add_subjects: Добавяне на теми
             current_job_role: Текуща длъжност
             email: Имейл
             first_name: Собствено име
+            import_subjects: Теми за внос
             last_name: Презиме
             locale: Място
             target_job_role: Целева роля
+            title: Субекти
           title: Участниците
         report:
           menu:
@@ -4085,8 +4133,26 @@ bg:
         mail_history: История на пощата
         options: Опции
       reports:
+        add_conditions: Добавяне на условия
+        administrator_approves_reports: Администраторът одобрява докладите
+        allow_manager_to_view_individual_responses: Позволете на мениджъра да преглежда индивидуални отговори
+        disable_report_download: Деактивиране на изтеглянето на доклади
+        edit_email: Редактиране на имейл
+        email_manager_when_report_is_ready_for_approval: Изпращане на имейл до мениджъра, когато отчетът е готов за одобрение
+        email_subject_when_report_becomes_available: Тема на имейл, когато докладът стане достъпен
+        email_subjects_manager_when_available: Изпратете имейл на мениджъра на обекта, когато докладът стане достъпен
+        make_report_available_to_subject_when: 'Предоставете доклада на субекта, когато:'
+        manager_approves_reports: Мениджърът одобрява докладите
+        manager_can_access_subject_reports: Мениджърът има достъп до отчетите на субектите
+        manager_cannot_access_subject_reports: Мениджърът не може да види отчета, докато не бъдат изпълнени изискванията
+        report_access: Достъп до доклад
+        report_approval: Одобряване на доклада
+        report_availability: Наличност на доклада
         show:
           title: Тематичен доклад
+        subject_can_access_reports: Субектът може да получи достъп до своите доклади
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Маркиране на лицензите като деактивирани
     time_zone: Часова зона
     tools: Инструменти
     translations:
