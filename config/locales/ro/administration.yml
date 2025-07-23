@@ -298,7 +298,6 @@ ro:
         name: Nume
         provider: Furnizor
         system_prompt: Solicitare de sistem
-        title: Asistent AI
         user_prompt: Solicitarea utilizatorului
     any: " -Oricare- "
     api:

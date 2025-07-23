@@ -16,9 +16,13 @@ export const OutputSchemaKeyFields: React.FC<Props> = ({
   name, remove, index, ...restField
 }) => (
   <>
-    <Flex style={{
-      marginTop: 8, minHeight: '80px', flex: 1, gap: '16px',
-    }}
+    <Flex
+      className="mt-4"
+      gap={16}
+      flex={1}
+      style={{
+        minHeight: '80px',
+      }}
     >
       <Form.Item
         style={{ flex: 1 }}
@@ -67,14 +71,14 @@ export const OutputSchemaKeyFields: React.FC<Props> = ({
       </Form.Item>
       <Tooltip title={I18n.t('administration.ai_assistants.form.remove_output_schema_key')}>
         <Button
+          className="mt-4"
           aria-label={I18n.t('administration.ai_assistants.form.remove_output_schema_key')}
-          style={{ marginTop: '8px', alignSelf: 'center', border: '1px solid' }}
+          style={{ alignSelf: 'center' }}
           size="middle"
           onClick={() => {
             remove(index)
           }}
           danger
-          type="link"
           shape="circle"
           icon={<DeleteOutlined />}
         />

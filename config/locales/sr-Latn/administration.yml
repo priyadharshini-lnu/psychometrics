@@ -298,7 +298,6 @@ sr-Latn:
         name: Ime
         provider: Dobavljač
         system_prompt: Sistem prompt
-        title: AI pomoćnik
         user_prompt: Korisnička uputstva
     any: " - Bilo koji - "
     api:

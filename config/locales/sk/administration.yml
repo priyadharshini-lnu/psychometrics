@@ -298,7 +298,6 @@ sk:
         name: Meno
         provider: Poskytovateľ
         system_prompt: Systémová výzva
-        title: Asistent AI
         user_prompt: Výzva používateľa
     any: " -Akýkoľvek- "
     api:

@@ -298,7 +298,6 @@ id:
         name: Nama
         provider: Penyedia
         system_prompt: Prompt Sistem
-        title: Asisten AI
         user_prompt: Permintaan Pengguna
     any: " - Setiap - "
     api:

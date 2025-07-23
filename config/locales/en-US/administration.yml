@@ -298,7 +298,6 @@ en-US:
         name: Name
         provider: Provider
         system_prompt: System Prompt
-        title: AI Assistant
         user_prompt: User Prompt
     any: " - Any - "
     api:
