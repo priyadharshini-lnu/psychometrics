@@ -46,7 +46,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
               description: 'A sample AI assistant',
               system_prompt: 'You are a helpful assistant',
               user_prompt: 'How can I help you?',
-              action: 'assist',
+              assistant_type: 'content_writer',
               created_at: '2023-01-01T00:00:00Z',
               updated_at: '2023-01-01T00:00:00Z'
             },
@@ -94,10 +94,10 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
                   description: { type: :string, example: 'A new AI assistant' },
                   system_prompt: { type: :string, example: 'You are a helpful assistant' },
                   user_prompt: { type: :string, example: 'How can I help you?' },
-                  action: { type: :string, example: 'assist' },
+                  assistant_type: { type: :string, example: 'content_writer' },
                   model_id: { type: :string, example: 'azure-openai' }
                 },
-                required: %w[name description system_prompt user_prompt action model_id]
+                required: %w[name description system_prompt user_prompt type model_id]
               }
             }
           }
@@ -114,7 +114,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
                 description: 'A test assistant',
                 system_prompt: 'You are a helpful assistant',
                 user_prompt: 'How can I help you?',
-                action: 'assist',
+                assistant_type: 'content_writer',
                 model_id: 'azure-openai'
               }
             }
@@ -128,7 +128,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
           # The create response is a flat hash of attributes
           expect(data).to have_key('name')
           expect(data).to have_key('description')
-          expect(data).to have_key('action')
+          expect(data).to have_key('assistant_type')
           expect(data).to have_key('created_at')
           expect(data).to have_key('updated_at')
           expect(data['name']).to eq('Test Assistant')
@@ -184,7 +184,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
                   description: { type: :string, example: 'An updated AI assistant' },
                   system_prompt: { type: :string },
                   user_prompt: { type: :string },
-                  action: { type: :string }
+                  type: { type: :string }
                 }
               }
             }

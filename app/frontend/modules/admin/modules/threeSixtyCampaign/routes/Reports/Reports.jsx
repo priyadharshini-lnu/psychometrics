@@ -15,12 +15,11 @@ const routes = [
 export default function Reports () {
   const navigate = useNavigate()
   const params = useParams()
-  const { clientId, projectId, campaignId } = params
   const selectedKey = params['*']
 
   const goto = (key) => {
     navigate(
-      `/administration/clients/${clientId}/projects/${projectId}/threesixty_campaigns/${campaignId}/reports/${key}`,
+      `${key}`,
     )
   }
   return (

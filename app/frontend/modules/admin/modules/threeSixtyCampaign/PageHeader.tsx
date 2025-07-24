@@ -6,20 +6,15 @@ import { TopMenu } from './components/TopMenu'
 const { I18n } = window
 export const PageHeader: FC = () => {
   const {
-    projectId,
     campaignId,
-    clientId,
-  } = useParams() as { projectId: string, clientId: string, campaignId: string }
-  const parsedCampaignId = parseInt(campaignId, 10)
+  } = useParams() as { projectId: string, campaignId: string }
   return (
     <>
       <Breadcrumb
         request={{
-          fields: ['project', 'client', 'threesixty'],
+          fields: ['project', 'campaign', 'client'],
           data: {
-            projectId: parseInt(projectId, 10),
-            clientId: parseInt(clientId, 10),
-            threesixtyId: parsedCampaignId,
+            campaignId: parseInt(campaignId, 10),
           },
         }}
         crumbs={[
@@ -32,11 +27,11 @@ export const PageHeader: FC = () => {
             label: state => state.client.name,
           },
           {
-            link: state => `/admin/projects/${state.project?.id}/new_campaigns?filters[statusEq]=active`,
+            link: state => `/admin/projects/${state.project?.id}/new_campaigns`,
             label: state => state.project?.name,
           },
           {
-            label: state => state.threesixty?.name,
+            label: state => state.campaign?.name,
           },
         ]}
       />

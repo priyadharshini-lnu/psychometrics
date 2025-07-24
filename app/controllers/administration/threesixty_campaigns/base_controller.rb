@@ -7,7 +7,7 @@ module Administration
       rescue_from Errors::LicenseError, with: :render_license_error
 
       def threesixty_campaign
-        @threesixty_campaign ||= ::Threesixty::Campaign.find_by(id: params[:threesixty_campaign_id])
+        @threesixty_campaign ||= ::Threesixty::Campaign.find_by(campaign_id: params[:threesixty_campaign_id])
       end
 
       def pundit_authorize

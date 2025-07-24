@@ -292,10 +292,8 @@ zh-Hant:
       ai_assistants: AI 助理
       ai_assistants_playground: AI 助理遊樂場
       column:
-        ai_action: AI 行動
         provider: 供應商
       form:
-        action: 行動
         description: 說明
         name: 名稱
         provider: 供應商
@@ -844,6 +842,14 @@ zh-Hant:
     campaign_factors_import:
       errors:
         invalid_headers: 下列標頭無效： %{headers}
+    campaign_report:
+      bulk_download:
+        data_range_error: 請選擇日期範圍
+        modal:
+          subtitle: 選擇日期範圍，然後為每份報告選擇所需語言
+      generate:
+        modal:
+          subtitle: 選擇每份報告所需的語言
     campaign_templates:
       campaign_templates: 活動範本
       column:
@@ -961,7 +967,9 @@ zh-Hant:
             empty: 空
             inactive: 閒置
             name: 名稱
+            normal: 正常
             previous: 上一頁
+            skill_rater: 技能評核員
             standard: 標準
             status: 狀態
           close:
@@ -1494,6 +1502,8 @@ zh-Hant:
         update:
           successfully: 專案 %{name} 已成功更新。
       registration_codes:
+        actions:
+          add_code: 加入代碼
         column:
           code: 代碼
           usage_stats: 使用統計
@@ -1504,6 +1514,13 @@ zh-Hant:
           incorrect_domain: 網域格式不正確。
           invalid_end_date: 必須大於開始日期
           license_issue: 許可證數量不足。
+        form:
+          active: 活躍
+          code: 代碼
+          end_date: 結束日期
+          name: 名稱
+          start_date: 開始日期
+          total_count: 總計
       resource:
         confirmations:
           delete:
@@ -1621,6 +1638,7 @@ zh-Hant:
         type: 類型
       list:
         actions: 行動
+        assessment_center_group: 評估中心小組
         author: 創建者
         campaign: 活動
         client_name: 客戶
@@ -1768,6 +1786,7 @@ zh-Hant:
       errors:
         blank_field: '行 %{row}: %{field} 不能為空白'
         csv_file_required: 必須是 CSV 檔案
+        development_action_not_in_project: '行 %{row}: 開發動作 ID %{development_action_id} 不屬於此專案'
         image_download_failed: 從 %{url} 下載影像失敗： %{message}
         invalid_csv_format: 無效的 CSV 格式：%{message}。
         invalid_date: "%{date}的日期格式無效。"
@@ -2097,18 +2116,22 @@ zh-Hant:
       all: 全部
       appearance: 外觀
       appearance_hint: 若要修改外觀，請先儲存 IDP 模版，以啟用這些設定。
+      appearance_success: 外觀設定已成功儲存
       background_image: 背景圖片
       behavioral_skills: 行為技巧
       client_skills: 客戶技能
+      details_updated: IDP 詳細資料已成功更新
       edit_template: 編輯 IDP 範本
+      enter_tag_or_skills_error: 選擇至少一個標籤或技能
       enter_template_description: 說明
       enter_template_description_error: 範本描述為必填項目。
       enter_template_name: 名稱
       enter_template_name_error: 模板名稱為必填項目
       errors:
-        update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。外觀變更已儲存。
+        update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。
       fields:
         assigned_data: 指定資料
+        assigned_date: 指定日期
         completion_date: 完成日期
         division: 部門
         name: 名稱
@@ -2146,6 +2169,11 @@ zh-Hant:
       show_reflections: 展覽反思
       skill_gap_report: 技能差距報告
       skills: 技術
+      skills_updated: IDP 技能更新成功
+      status:
+        draft: 草案
+        published: 已出版
+      status_updated: IDP 狀態更新成功
       subtitle_text: 字幕文字
       tab:
         development_actions: 發展行動
@@ -2380,41 +2408,40 @@ zh-Hant:
     job_role:
       column:
         job_group: 工作群組
+        skill_name: 技能名稱
       export:
         failure_msg: 匯出翻譯時發生錯誤
         success_msg: 出口開發行動正在進行中。
-      export_action:
-        translations: 出口工作角色翻譯
       form:
         code: 代碼
         description: 說明
         job_group: 工作群組
         name: 名稱
         title: 工作角色
-      global: 全球工作角色？
       import:
         download_example_csv: 下載範例 csv
         success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
       import_action:
         translations: 匯入工作角色翻譯
+      job_role_details: 工作角色詳情
       translations: 工作角色翻譯
     job_role_skill_mapping:
       column:
         expected_proficiency_level: 預期能力等級
-        job_role: 工作角色
-        skill: 技術
       form:
-        expected_proficiency_level: 預期能力等級
-        job_role: 工作角色
-        skill: 技術
         title: 技能工作映射
-      global: 全球技能工作映射嗎？
       import:
         taxonomy: 分類學
     job_roles:
       export:
         translations:
           details: 詳細資訊
+      translations:
+        import:
+          errors:
+            job_role_not_found: 未找到 ID 為 %{id} 的工作角色
+            missing_columns: 缺少必填欄位：%{columns}。
+            save_failed: 處理工作角色 ID %{id} 出錯：%{message}
     libraries:
       create:
         successfully: 項目 %{name} 已成功建立。
@@ -2701,14 +2728,11 @@ zh-Hant:
           level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
           must_be_unique: 必須獨一無二
           proficiency_level_exists: 已存在具有此技能和專案的 ProficiencyLevel
-          proficiency_level_exists_for_all_skills: 已存在所有技能的精通等級
-          proficiency_level_exists_for_category: 此類別的 ProficiencyLevel 已經存在
-          project_level_all_skills_exists: 已存在「all_skills」能力等級
+          proficiency_level_exists_for_default: 已退出預設的精通等級
+          proficiency_level_exists_for_type: 此類型的精通等級已經存在
+          project_level_default_exists: 預設」能力等級已經存在
           skill_must_exist: 技能必須存在於 proficiency_type 'by_skill' 中。
       export:
-        actions:
-          proficiency: 出口能力
-          translations: 出口能力翻譯
         details: 詳細資訊
         failure_msg: 匯出能力等級時發生錯誤
         success_msg: 輸出開發中的行動
@@ -2721,28 +2745,23 @@ zh-Hant:
         proficiency_translations: 能力翻譯
         proficiency_type: 能力類型
         skill: 技術
-        skill_category: 技能類別
         skill_name: 技能名稱
+        skill_type: 技能類型
         title: 能力
-      global: 全球能力是嗎？
       import:
         actions:
           proficiency: 進口能力
           translations: 進口能力翻譯
         errors:
-          all_skills_global_exists: 行 %{row_number}：全局層級 'all_skills' 的 ProficiencyLevel 已經存在
-          all_skills_project_exists: 行 %{row_number}：專案層級 'all_skills' 的 ProficiencyLevel 已經存在
-          by_category_exists: 行 %{row_number}：此專案和技能類別已存在 'by_category' ProficiencyLevel
-          by_category_missing: 行 %{row_number}：by_category' 類型必須有專案和技能類別
           by_skill_exists: 行 %{row_number}：此專案與技能已有 'by_skill' ProficiencyLevel。
           by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
+          by_skill_type_exists: 行 %{row_number}：此專案和技能類型已有''by_skill_type''ProficiencyLevel。
+          by_skill_type_missing: 行 %{row_number}：by_skill_type'' 類型的專案和技能類型必須存在
+          default_global_exists: 行 %{row_number}：全局層級的'「預設」'ProficiencyLevel已經存在
+          default_project_exists: 行 %{row_number}：專案層級的 '「預設」 ProficiencyLevel 已經存在
           invalid_csv_format: 無效的 CSV 格式：%{message}。
-          invalid_json: 行 %{line}：LevelDefinition 中的 JSON 無效 - %{message}
-          invalid_json_structure: 必須是一個 JSON 物件，具有類似 'description「 和 」summary' 的鍵
           invalid_proficiency_type: 行 %{row_number}：無效或遺失 ProficiencyType
           missing_columns: 缺少必填欄位：%{fields}。
-          missing_required_fields: 行 %{line}：缺少必填欄位 (%{fields})
-          save_failed: 行 %{line}：%{message}
           skill_not_found: 行 %{row_number}：無效或遺失技能
         job_queued: 能力等級匯入工作已排隊
       translations:
@@ -2759,9 +2778,9 @@ zh-Hant:
             row_id_blank: 行 %{row}：ID 不能為空白
             save_failed: 處理技能 ID %{id} 出錯：%{message}
       type:
-        all_skills: 所有技能
-        by_category: 依類別
         by_skill: 按技術
+        by_skill_type: 依技能類型
+        default: 預設
     profile:
       change_password: 變更密碼
       details: 詳細資訊
@@ -3123,6 +3142,7 @@ zh-Hant:
         user_name: 使用者名稱
       dashboard: 儀表板
       download: 下載
+      report_approval_settings: 報告核准設定
       report_approvals: 報告核准
       review: 回顧
       saving_filters:
@@ -3244,6 +3264,15 @@ zh-Hant:
         successfully: 報告 '%{name}' 已成功刪除。
       edit:
         header: 編輯報告名稱
+      edit_default_language:
+        agreement: 是的，我了解預設語言變更的影響。
+        title: 編輯預設語言
+        tooltip: 編輯預設語言
+        warning:
+          description_li_1: 將預設語言從 RTL 變更為 LTR 語言，或反之亦然，都會影響版面編排。
+          description_li_2: 如果您變更預設語言，就必須重新翻譯報告。
+          description_li_3: 進行此變更之前，請先下載一份報告翻譯。
+          title: 請仔細閱讀說明
       modals:
         remap_assessment:
           new_assessment_name: 新評估名稱
@@ -3286,6 +3315,9 @@ zh-Hant:
         successfully: 報告已成功更新。
       update:
         successfully: 報告 %{name} 已成功更新。
+    reports_language_selection_modal:
+      download: 報告下載
+      generate: 報告產生
     resource:
       remove_confirm:
         message: 您確定要移除此資源嗎？
@@ -3695,6 +3727,7 @@ zh-Hant:
         import:
           missing_fields_data: '行 %{line_number}：缺少必填欄位: %{fields}'
           save_failed: 第 %{line_number} 行：儲存技能 '%{name}' 失敗： %{message}
+          skill_not_in_project: 行 %{line_number}：技能 ID %{skill_id} 不屬於此專案
         search:
           all_and_project_id_mutually_exclusive: 當提供 project_id_eq 時，所有項目都不能為真
           invalid_all_value: 必須是其中之一：true、false
@@ -3705,12 +3738,8 @@ zh-Hant:
         details: 詳細資訊
         failure_msg: 匯出翻譯時發生錯誤
         success_msg: 出口開發行動正在進行中。
-        title: 出口
         translations:
           details: 技能翻譯
-      export_action:
-        skills_title: 出口技能
-        skills_translations_title: 出口技能翻譯
       form:
         client_placeholder: 選擇客戶
         description: 說明
@@ -3719,9 +3748,6 @@ zh-Hant:
         skill_group: 技能組
         skill_type: 技能類型
         title: 技術
-      global: 全球技能？
-      global_skills: 全球技能
-      global_translations: 全球技能翻譯
       import:
         download_example_csv: 下載範例 csv
         info_msg: 上傳的檔案已排隊等待匯入，請在通知中查看狀態。
@@ -3731,8 +3757,6 @@ zh-Hant:
         skills_translations_title: 輸入技能翻譯
       skill_details: 技能詳情
       skill_translations: 技能翻譯
-      skill_translations_project: 基於專案的技能翻譯
-      skills_project: 以專案為基礎的技能
       title: 技術
       translations:
         import:
@@ -3743,7 +3767,6 @@ zh-Hant:
             skill_not_found: 未找到 ID 為 %{id} 的技能
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: 技能工作對應
         job_roles: 工作角色
         proficiency: 精通
         skills: 技能
@@ -3901,7 +3924,25 @@ zh-Hant:
         successfully: 子因素已成功更新。
     survey_builder:
       builder_area:
+        current_job: 目前工作
+        default_not_applicable_label: 沒有機會學習或展示技能
+        enable_not_applicable: 啟用不適用選項
+        enable_required_validation: 啟用必要的驗證
+        force_response: 原力回應
+        job_role_required: 請至少選擇一個工作角色
+        not_applicable_label: 不適用 標籤
         options: 選項
+        request_response: 請求回應
+        skill_rater_config: 技能評定員配置
+        target_job: 目標工作
+      models:
+        block_types:
+          regular: 常規
+          skill_rater: 技能評定員
+        skill_types:
+          behavioural: 行為
+          other: 其他
+          technical: 技術
       property_panel:
         add_n_a_option: 新增不適用選項
         allow_content_copy: 允許內容複製
@@ -3960,12 +4001,11 @@ zh-Hant:
         download_example_file: 下載範例檔案
         success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
       import_action:
-        taxonomy: 匯入分類系統
+        taxonomy: 匯入技能分類系統
       job_roles: 工作角色
       proficiency: 能力
-      skill_job_mappings: 技能工作對應
       skills: 技術
-      title: 分類學
+      title: 技能分類學
     templates:
       blocks:
         copy:
@@ -4066,6 +4106,7 @@ zh-Hant:
           invitations: 邀請函
           reminders: 提醒事項
           report_ready: 報告準備就緒
+        consolidated: 綜合
         custom_message:
           description: 此訊息可傳送給任何參與評估的人
           name: 自訂訊息
@@ -4089,7 +4130,10 @@ zh-Hant:
         request_approval:
           description: 當標的要求核准時，此訊息會傳送給管理員
           name: 請求批准
+        save: 節省
+        schedule: 時間表
         schedule_email: 排程電子郵件
+        schedule_email_title: 排程電子郵件
         schedule_time: 排程時間
         send_test_email: 傳送測試電子郵件
         subject: 主題
@@ -4130,6 +4174,14 @@ zh-Hant:
         welcome_message:
           description: 當受試者登入開始評估或檢視其任務清單時，此訊息將會顯示給他們。
           name: 歡迎詞
+      mail_history:
+        actions: 行動
+        date: 日期
+        download_details: 下載詳細資訊
+        emails_sent: 已傳送的電子郵件
+        recipient: 收件人
+        status: 狀態
+        subject: 主題
       manage:
         assessment: 評估
         dimension: 尺寸
@@ -4137,19 +4189,45 @@ zh-Hant:
         report: 報告
         title: 管理
       menu:
+        actions: 行動
         datasheet:
           title: 資料表
         messages:
+          allow_subjects_to_send_reminders: 允許受試者傳送提醒訊息給評估者
+          automatically_send_invites: 自動發送邀請函給新的評估人員
           title: 訊息
         participants:
+          columns:
+            action: 行動
+            email: 電子郵件
+            evaluations_completed: 已完成評估
+            evaluations_received: 收到的評估
+            is_subject: 是主題
+            name: 名稱
+            report_status: 報告狀態
+            status: 狀態
+          evaluators:
+            add_evaluators: 新增評估員
+            import_evaluators: 進口評估員
+            title: 評估員
+          managers:
+            title: 經理
+          options:
+            evaluator_options: 評估員選項
+            global: 全球選項
+            manager_options: 管理員選項
+            subject_options: 科目選項
+            title: 選項
           subjects:
             add_subjects: 新增主題
             current_job_role: 目前的工作角色
             email: 電子郵件
             first_name: 名
+            import_subjects: 進口主題
             last_name: 姓
             locale: 語言環境
             target_job_role: 目標工作角色
+            title: 主題
           title: 參與者
         report:
           menu:
@@ -4165,8 +4243,26 @@ zh-Hant:
         mail_history: 郵件歷史
         options: 選項
       reports:
+        add_conditions: 新增條件
+        administrator_approves_reports: 管理員批准報告
+        allow_manager_to_view_individual_responses: 允許經理檢視個別回覆
+        disable_report_download: 停用報告下載
+        edit_email: 編輯電子郵件
+        email_manager_when_report_is_ready_for_approval: 報告準備好供核准時，以電子郵件通知管理員
+        email_subject_when_report_becomes_available: 當報告可用時，以電子郵件通知主題
+        email_subjects_manager_when_available: 當報告可用時，寄電子郵件給目標人物的經理
+        make_report_available_to_subject_when: 在下列情況下向目標人物提供報告：
+        manager_approves_reports: 經理核准報告
+        manager_can_access_subject_reports: 經理可以存取主題報告
+        manager_cannot_access_subject_reports: 在符合要求之前，經理無法看到報告
+        report_access: 報告存取
+        report_approval: 報告核准
+        report_availability: 報告可用性
         show:
           title: 主題報告
+        subject_can_access_reports: 主題可存取其報告
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: 將授權標記為停用
     time_zone: 時區
     tools: 工具
     translations:

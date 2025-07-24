@@ -126,7 +126,7 @@ const apiMiddleware = () => next => (action) => {
   if (!request.debounce) return processApi()
 
   if (debounceTimers[action.type]) clearTimeout(debounceTimers[action.type])
-  debounceTimers[action.type] = setTimeout(processApi, request.debounce)
+  debounceTimers[action.type] = window.setTimeout(processApi, request.debounce)
   return debounceTimers[action.type]
 }
 

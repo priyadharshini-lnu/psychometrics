@@ -52,7 +52,7 @@ export const Filter: FC<Props> = ({
 
       <Col>
         <Space>
-          {showTagFilter && <TagFilter tag="tagged_with" config={tagFilterConfig} />}
+          {showTagFilter && <TagFilter name="tagged_with" config={tagFilterConfig} />}
           {!hideSearch && (
             <Search
               placeholder={placeholder || defaultPlaceholder}

@@ -17,21 +17,21 @@ export default function ReportAvailabilitySection ({
   const disable = !campaignReportPermissions.manageReportsOptions
 
   return (
-    <OptionSection label="Report Availability">
+    <OptionSection label={I18n.t('administration.threesixty_campaigns.reports.report_availability')}>
       <ExpandableOption
-        label="Make report available to subject when:"
+        label={I18n.t('administration.threesixty_campaigns.reports.make_report_available_to_subject_when')}
         {...parametersForSwitch('reportAvailableToSubjectOnCriteria')}
         disabled={disable}
       >
         <AvailabilityRequirement />
       </ExpandableOption>
       <ExpandableOption
-        label="Email subject when report becomes available"
+        label={I18n.t('administration.threesixty_campaigns.reports.email_subject_when_report_becomes_available')}
         {...parametersForSwitch('emailSubjectWhenReportAvailable')}
         disabled={disable}
       />
       <ExpandableOption
-        label="Email subject's manager when report becomes available"
+        label={I18n.t('administration.threesixty_campaigns.reports.email_subjects_manager_when_available')}
         {...parametersForSwitch('emailManagerWhenReportAvailable')}
         disabled={disable}
       />

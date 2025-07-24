@@ -437,6 +437,7 @@ sr-Latn:
           case_study: Studije slučaja
           hogan: Hogan
           iiht: OMILjENO
+          lead_assessor_form: Obrazac glavnog procenjivača
           meeting: Sastanak
           organisational: Ankete
           pearson: Pirson
@@ -861,7 +862,6 @@ sr-Latn:
         import_scoring_data: Uvoz podataka o bodovanju
         import_skill_translations: Uvoz veština Prevodi
         import_skills: Veštine uvoza
-        import_skills_rater_taxonomies: Uvezi taksonomije ocenjivača veština
         import_sms_invites: Uvoz SMS pozivnice
         import_users: Uvoz korisnika
         migrate_assessment_translations: Procena Prevod migracija
@@ -1853,7 +1853,6 @@ sr-Latn:
       default: Ponuđeno
       download: Preuzmi
       file: Datoteke
-      global_export: Da li je globalni izvoz?
       global_import: Da li je globalni uvoz?
       minutes: Minuta
       na: N/A
@@ -3628,11 +3627,35 @@ sr-Latn:
       exactly: Tačno%{count}
     nominations: Nominacije
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Dozvoli procenjivačima da odbiju nominaciju
+        email_subject_when_nomination_declined: Predmet e-pošte kada je nominacija odbijena
       form:
         value_not_valid: nema važeću vrednost
       global:
         cannot_re_edit: Učesnici ne mogu da uređuju evaluacije
         disable_all_evaluations: Onemogućavanje svih procena
+      manager:
+        allow_subjects_to_email: Dozvoli subjektima da pošalju e-poštu menadžerima kada su njihove nominacije spremne za odobrenje
+        approves_evaluations: Menadžer odobrava evaluacije
+        approves_nominations: Menadžer odobrava nominacije
+        can_view_nominations: Menadžer može da vidi nominacije
+        email_managers_when_nomination_ready: Pošalji e-poštu menadžerima kada je nominacija subjekta spremna za odobrenje
+        email_subject_when_nomination_denied: Predmet e-pošte kada je nominacija odbijena
+        may_choose_evaluators: Menadžer može da izabere procenjivače
+      subject:
+        allow_subjects_to_select_relationships: Dozvoli subjektima da izaberu odnose
+        anyone_in_assessment: Bilo ko u proceni
+        anyone_in_datasheet: Bilo ko u datasheet-u
+        anyone_not_in_assessment: Bilo ko ko trenutno nije u proceni
+        can_view_evaluators: Subjekat može da vidi procenjivače
+        define_nomination_requirement: Definiši zahtev za nominaciju
+        limit_search_by_criteria: Ograniči pretragu po kriterijumima
+        nominates_evaluators: Subjekat nominuje procenjivače
+        only_allow_relationships_of_specified_types: Dozvoli samo odnose određenih tipova
+        only_show_subjects_who_match_criteria: 'Prikaži samo subjekte koji odgovaraju sledećim kriterijumima:'
+        self_evaluates: Subjekat sam procenjuje
+        subjects_cannot_remove_nominations: Subjekti ne mogu da uklone nominacije koje su postavili menadžeri ili administratori
     or: Ili
     page_title: Signify 360° pregled - Primeni nivo
     participant_list:
@@ -3847,7 +3870,6 @@ sr-Latn:
       add: Dodaj izveštaj
       download: Preuzimanje
       generate: Generisanje
-      regenerate: Regeneriši
     approval_statuses:
       approved: Odobrio
       change_requested: Zatražena promena

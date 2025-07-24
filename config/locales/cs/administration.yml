@@ -174,6 +174,8 @@ cs:
             title: Šablony IDP
             view: Zobrazit
           jobRoles:
+            export_translations: Export pracovních rolí Překlady
+            import_translations: Import pracovních rolí Překlady
             manage: Správa
             title: Pracovní role
             view: Zobrazit
@@ -292,10 +294,8 @@ cs:
       ai_assistants: Asistenti AI
       ai_assistants_playground: AI Assistant Playground
       column:
-        ai_action: Akce AI
         provider: Poskytovatel
       form:
-        action: Akce
         description: Popis
         name: Název
         provider: Poskytovatel
@@ -844,6 +844,14 @@ cs:
     campaign_factors_import:
       errors:
         invalid_headers: 'Následující hlavičky jsou neplatné: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Vyberte prosím rozsah dat
+        modal:
+          subtitle: Zvolte rozsah dat a poté vyberte požadovaný jazyk pro každou zprávu.
+      generate:
+        modal:
+          subtitle: Vyberte požadovaný jazyk pro každou zprávu
     campaign_templates:
       campaign_templates: Šablony kampaní
       column:
@@ -961,7 +969,9 @@ cs:
             empty: Prázdné stránky
             inactive: Neaktivní
             name: Název
+            normal: Normální
             previous: Předchozí
+            skill_rater: Hodnocení dovedností
             standard: Standardní
             status: Stav
           close:
@@ -1494,6 +1504,8 @@ cs:
         update:
           successfully: Projekt %{name} byl úspěšně aktualizován.
       registration_codes:
+        actions:
+          add_code: Přidat kód
         column:
           code: Kód
           usage_stats: Statistiky používání
@@ -1504,6 +1516,13 @@ cs:
           incorrect_domain: Nesprávný formát domény.
           invalid_end_date: musí být větší než datum zahájení
           license_issue: Nedostatek licencí.
+        form:
+          active: Aktivní
+          code: Kód
+          end_date: Datum ukončení
+          name: Název
+          start_date: Datum zahájení
+          total_count: Celkový počet
       resource:
         confirmations:
           delete:
@@ -1533,6 +1552,7 @@ cs:
       reset: Obnovení
       save: Uložit
       select_all: Vyberte vše
+      type: Typ
       unselect_all: Zrušit výběr všech
     communication_settings: Nastavení
     communications:
@@ -1621,6 +1641,7 @@ cs:
         type: Typ
       list:
         actions: Akce
+        assessment_center_group: Skupina Assessment Center
         author: Vytvořil
         campaign: Kampaň
         client_name: Klient
@@ -1768,6 +1789,7 @@ cs:
       errors:
         blank_field: 'Řádek %{row}: %{field} nemůže být prázdné'
         csv_file_required: Musí to být soubor CSV
+        development_action_not_in_project: 'Řádek %{row}: ID vývojové akce %{development_action_id} nepatří do tohoto projektu'
         image_download_failed: 'Nepodařilo se stáhnout obrázek z %{url}: %{message}'
         invalid_csv_format: 'Nesprávný formát CSV: %{message}'
         invalid_date: Formát data pro %{date} je neplatný.
@@ -2097,18 +2119,22 @@ cs:
       all: Všechny
       appearance: Vzhled
       appearance_hint: Chcete-li upravit vzhled, nejprve uložte šablonu IDP, abyste tato nastavení umožnili.
+      appearance_success: Nastavení vzhledu bylo úspěšně uloženo
       background_image: Obrázek na pozadí
       behavioral_skills: Behaviorální dovednosti
       client_skills: Klientské dovednosti
+      details_updated: Úspěšná aktualizace údajů IDP
       edit_template: Upravit šablonu IDP
+      enter_tag_or_skills_error: Vyberte alespoň jednu značku nebo dovednost
       enter_template_description: Popis
       enter_template_description_error: Je vyžadován popis šablony.
       enter_template_name: Název
       enter_template_name_error: Název šablony je povinný
       errors:
-        update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele. Změny vzhledu byly uloženy.
+        update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele.
       fields:
         assigned_data: Přiřazená data
+        assigned_date: Přidělené datum
         completion_date: Datum dokončení
         division: Divize
         name: Název
@@ -2146,6 +2172,11 @@ cs:
       show_reflections: Zobrazit reflexe
       skill_gap_report: Zpráva o nedostatku dovedností
       skills: Dovednosti
+      skills_updated: Úspěšná aktualizace dovedností IDP
+      status:
+        draft: Návrh
+        published: Zveřejněno na
+      status_updated: Stav IDP úspěšně aktualizován
       subtitle_text: Text titulku
       tab:
         development_actions: Vývojové akce
@@ -2378,43 +2409,43 @@ cs:
         rescheduled: Přeloženo na
       subject: Předmět
     job_role:
+      are_you_sure_to_remove: Určitě je chcete odstranit?
       column:
         job_group: Pracovní skupina
+        skill_name: Název dovednosti
       export:
         failure_msg: Chyba při exportu překladů
         success_msg: Exportování probíhajících vývojových akcí.
-      export_action:
-        translations: Překlady exportních pracovních rolí
       form:
         code: Kód
         description: Popis
         job_group: Pracovní skupina
         name: Název
         title: Pracovní role
-      global: Je globální pracovní role?
       import:
         download_example_csv: Stáhnout příklad csv
         success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
       import_action:
         translations: Importovat překlady pracovních rolí
+      job_role_details: Podrobnosti o pracovní pozici
       translations: Překlady pracovních rolí
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Očekávaná úroveň znalostí
-        job_role: Pracovní role
-        skill: Dovednost
       form:
-        expected_proficiency_level: Očekávaná úroveň znalostí
-        job_role: Pracovní role
-        skill: Dovednost
         title: Mapování dovedností
-      global: Je globální mapování pracovních míst?
       import:
         taxonomy: Taxonomie
     job_roles:
       export:
         translations:
           details: Podrobnosti na
+      translations:
+        import:
+          errors:
+            job_role_not_found: Pracovní role s ID %{id} nebyla nalezena
+            missing_columns: 'Chybějící povinné sloupce: %{columns}'
+            save_failed: 'Chyba při zpracování ID role úlohy %{id}: %{zpráva}'
     libraries:
       create:
         successfully: Položka %{name} byla úspěšně vytvořena.
@@ -2701,14 +2732,11 @@ cs:
           level_definition_must_match_level: musí obsahovat přesně %{expected} úrovně, ale %{actual} byly dány
           must_be_unique: Musí být jedinečné
           proficiency_level_exists: Již existuje úroveň ProficiencyLevel s touto dovedností a projektem.
-          proficiency_level_exists_for_all_skills: Úroveň způsobilosti pro všechny dovednosti již existuje.
-          proficiency_level_exists_for_category: ProficiencyLevel pro tuto kategorii již existuje
-          project_level_all_skills_exists: Úroveň způsobilosti "all_skills" již existuje
+          proficiency_level_exists_for_default: Úroveň způsobilosti pro výchozí nastavení již existuje
+          proficiency_level_exists_for_type: Úroveň způsobilosti pro tento typ již existuje.
+          project_level_default_exists: Výchozí úroveň způsobilosti již existuje.
           skill_must_exist: Dovednost musí být přítomna pro proficiency_type 'by_skill'
       export:
-        actions:
-          proficiency: Znalost exportu
-          translations: Překlady pro export
         details: Podrobnosti na
         failure_msg: Chyba při exportu úrovní pokročilosti
         success_msg: Exportování probíhajících vývojových akcí
@@ -2721,28 +2749,23 @@ cs:
         proficiency_translations: Odborné překlady
         proficiency_type: Typ odbornosti
         skill: Dovednost
-        skill_category: Kategorie dovedností
         skill_name: Název dovednosti
+        skill_type: Typ dovednosti
         title: Znalost
-      global: Je globální odbornost?
       import:
         actions:
           proficiency: Znalost importu
           translations: Překlady pro dovozce
         errors:
-          all_skills_global_exists: 'Řádek %{row_number}: již existuje globální úroveň ''all_skills'' ProficiencyLevel'
-          all_skills_project_exists: 'Řádek %{row_number}: Již existuje úroveň způsobilosti ''all_skills'' na úrovni projektu'
-          by_category_exists: 'Řádek %{row_number}: ProficiencyLevel již existuje pro tento projekt a kategorii dovedností ''by_category''.'
-          by_category_missing: 'Řádek %{row_number}: Kategorie projektu a dovednosti musí být přítomny pro typ ''by_category'''
           by_skill_exists: 'Řádek %{row_number}: ProficiencyLevel ''by_skill'' již existuje pro tento projekt a dovednost'
           by_skill_missing: 'Řádek %{row_number}: Projekt a dovednost musí být přítomny pro typ ''by_skill'''
+          by_skill_type_exists: 'Řádek %{číslo_řádku}: ProficiencyLevel ''''by_skill_type'''' již existuje pro tento projekt a typ dovednosti'
+          by_skill_type_missing: 'Řádek %{číslo_řádku}: Typ projektu a dovednosti musí být přítomen pro typ ''''by_skill_type'''''
+          default_global_exists: 'Řádek %{číslo_řádku}: Již existuje ''''výchozí'''' úroveň ProficiencyLevel na globální úrovni'
+          default_project_exists: 'Řádek %{číslo_řádku}: Již existuje ''''výchozí'''' ProficiencyLevel na úrovni projektu'
           invalid_csv_format: 'Nesprávný formát CSV: %{message}'
-          invalid_json: 'Řádek %{line}: Invalid JSON in LevelDefinition - %{message}'
-          invalid_json_structure: musí být objekt JSON s klíči jako 'description' a 'summary'.
           invalid_proficiency_type: 'Řádek %{row_number}: Neplatný nebo chybějící ProficiencyType'
           missing_columns: 'Chybějící povinné sloupce: %{fields}'
-          missing_required_fields: 'Řádek %{line}: Chybějící povinná pole (%{fields})'
-          save_failed: 'Řádek %{line}: %{message}'
           skill_not_found: 'Řádek %{row_number}: Neplatná nebo chybějící dovednost'
         job_queued: Úloha importu úrovní znalostí byla zařazena do fronty
       translations:
@@ -2759,9 +2782,9 @@ cs:
             row_id_blank: 'Řádek %{row}: ID nemůže být prázdné'
             save_failed: 'Chyba při zpracování ID dovednosti %{id}: %{message}'
       type:
-        all_skills: Všechny dovednosti
-        by_category: Podle kategorie
         by_skill: Podle dovednosti
+        by_skill_type: Podle typu dovednosti
+        default: Výchozí
     profile:
       change_password: Změna hesla
       details: Podrobnosti na
@@ -3123,6 +3146,7 @@ cs:
         user_name: Uživatelské jméno
       dashboard: Přístrojová deska
       download: Stáhnout
+      report_approval_settings: Nastavení schvalování zpráv
       report_approvals: Schvalování zpráv
       review: Recenze
       saving_filters:
@@ -3244,6 +3268,15 @@ cs:
         successfully: Hlášení '%{name}' bylo úspěšně odstraněno.
       edit:
         header: Upravit název zprávy
+      edit_default_language:
+        agreement: Ano, chápu důsledky změny výchozího jazyka.
+        title: Upravit výchozí jazyk
+        tooltip: Upravit výchozí jazyk
+        warning:
+          description_li_1: Změna výchozího jazyka z RTL na LTR nebo naopak ovlivní rozložení.
+          description_li_2: Pokud změníte výchozí jazyk, budete muset překlady zpráv přepracovat.
+          description_li_3: Před provedením této změny si stáhněte kopii překladů zpráv.
+          title: Pečlivě si přečtěte pokyny
       modals:
         remap_assessment:
           new_assessment_name: Název nového posouzení
@@ -3286,6 +3319,9 @@ cs:
         successfully: Zpráva byla úspěšně aktualizována.
       update:
         successfully: Zpráva %{name} byla úspěšně aktualizována.
+    reports_language_selection_modal:
+      download: Zpráva ke stažení
+      generate: Generování zprávy
     resource:
       remove_confirm:
         message: Opravdu chcete tento zdroj odebrat?
@@ -3695,6 +3731,7 @@ cs:
         import:
           missing_fields_data: 'Řádek %{line_number}: Chybějící povinná pole: %{fields}'
           save_failed: 'Řádek %{line_number}: Nepodařilo se uložit dovednost ''%{name}'': %{message}'
+          skill_not_in_project: 'Řádek %{line_number}: ID dovednosti %{skill_id} nepatří do tohoto projektu'
         search:
           all_and_project_id_mutually_exclusive: Vše nemůže být pravda, pokud je zadáno project_id_eq
           invalid_all_value: 'musí být jedna z následujících hodnot: true, false'
@@ -3705,12 +3742,8 @@ cs:
         details: Podrobnosti na
         failure_msg: Chyba při exportu překladů
         success_msg: Exportování probíhajících vývojových akcí.
-        title: Export
         translations:
           details: Překlady dovedností
-      export_action:
-        skills_title: Exportní dovednosti
-        skills_translations_title: Exportní dovednosti Překlady
       form:
         client_placeholder: Výběr klienta
         description: Popis
@@ -3719,9 +3752,6 @@ cs:
         skill_group: Skupina dovedností
         skill_type: Typ dovednosti
         title: Dovednost
-      global: Je globální dovednost?
-      global_skills: Globální dovednosti
-      global_translations: Překlady globálních dovedností
       import:
         download_example_csv: Stáhnout příklad csv
         info_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
@@ -3731,8 +3761,6 @@ cs:
         skills_translations_title: Importovat dovednosti Překlady
       skill_details: Podrobnosti o dovednostech
       skill_translations: Překlady dovedností
-      skill_translations_project: Překlady dovedností na základě projektu
-      skills_project: Dovednosti založené na projektu
       title: Dovednosti
       translations:
         import:
@@ -3743,7 +3771,6 @@ cs:
             skill_not_found: Dovednost s ID %{id} nebyla nalezena
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Mapování dovedností
         job_roles: Pracovní role
         proficiency: Proficience
         skills: Dovednosti
@@ -3901,7 +3928,25 @@ cs:
         successfully: Dílčí faktor byl úspěšně aktualizován.
     survey_builder:
       builder_area:
+        current_job: Současná práce
+        default_not_applicable_label: Žádná příležitost naučit se nebo prokázat dovednosti
+        enable_not_applicable: Povolit možnost N/A
+        enable_required_validation: Povolení požadovaného ověření
+        force_response: Reakce síly
+        job_role_required: Vyberte prosím alespoň jednu pracovní pozici
+        not_applicable_label: Nepoužitelný štítek
         options: Možnosti
+        request_response: Odpověď na žádost
+        skill_rater_config: Konfigurace hodnocení dovedností
+        target_job: Cílová práce
+      models:
+        block_types:
+          regular: Pravidelné
+          skill_rater: Hodnocení dovedností
+        skill_types:
+          behavioural: Chování
+          other: Další
+          technical: Technická stránka
       property_panel:
         add_n_a_option: Přidat možnost N/A
         allow_content_copy: Povolit kopírování obsahu
@@ -3960,12 +4005,11 @@ cs:
         download_example_file: Stáhnout soubor s příkladem
         success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
       import_action:
-        taxonomy: Import taxonomie
+        taxonomy: Import taxonomie dovedností
       job_roles: Pracovní role
       proficiency: Znalost
-      skill_job_mappings: Mapování dovedností
       skills: Dovednosti
-      title: Taxonomie
+      title: Taxonomie dovedností
     templates:
       blocks:
         copy:
@@ -4066,6 +4110,7 @@ cs:
           invitations: Pozvánky
           reminders: Připomínky
           report_ready: Připravená zpráva
+        consolidated: Konsolidované
         custom_message:
           description: Tato zpráva může být zaslána komukoli, kdo se účastní hodnocení
           name: Vlastní zpráva
@@ -4089,7 +4134,10 @@ cs:
         request_approval:
           description: Tato zpráva je zasílána manažerům, když subjekt žádá o schválení
           name: Žádost o schválení
+        save: Uložit
+        schedule: Plán
         schedule_email: Plán E-mail
+        schedule_email_title: Plán E-mail
         schedule_time: Časový plán
         send_test_email: Odeslání testovacího e-mailu
         subject: Předmět
@@ -4130,6 +4178,14 @@ cs:
         welcome_message:
           description: Tato zpráva se subjektům zobrazí, když se přihlásí k zahájení hodnocení nebo si zobrazí seznam úkolů
           name: Uvítací zpráva
+      mail_history:
+        actions: Akce
+        date: Datum
+        download_details: Stáhnout podrobnosti
+        emails_sent: Odeslané e-maily
+        recipient: Příjemce
+        status: Stav
+        subject: Předmět
       manage:
         assessment: Hodnocení
         dimension: Rozměry
@@ -4137,19 +4193,45 @@ cs:
         report: Nahlásit
         title: Správa
       menu:
+        actions: Akce
         datasheet:
           title: Datový list
         messages:
+          allow_subjects_to_send_reminders: Umožnit subjektům zasílat hodnotitelům upomínky
+          automatically_send_invites: Automatické zasílání pozvánek novým hodnotitelům
           title: Zprávy
         participants:
+          columns:
+            action: Akce
+            email: E-mail
+            evaluations_completed: Dokončená hodnocení
+            evaluations_received: Přijatá hodnocení
+            is_subject: Je předmětem
+            name: Název
+            report_status: Stav zprávy
+            status: Stav
+          evaluators:
+            add_evaluators: Přidání hodnotitelů
+            import_evaluators: Hodnotitelé importu
+            title: Hodnotitelé
+          managers:
+            title: Manažeři
+          options:
+            evaluator_options: Možnosti hodnotitele
+            global: Globální možnosti
+            manager_options: Možnosti manažera
+            subject_options: Možnosti předmětu
+            title: Možnosti
           subjects:
             add_subjects: Přidat subjekty
             current_job_role: Aktuální pracovní role
             email: E-mail
             first_name: Jméno
+            import_subjects: Importované předměty
             last_name: Příjmení
             locale: Lokalita
             target_job_role: Cílová pracovní role
+            title: Předměty
           title: Účastníci
         report:
           menu:
@@ -4165,8 +4247,26 @@ cs:
         mail_history: Historie pošty
         options: Možnosti
       reports:
+        add_conditions: Přidat podmínky
+        administrator_approves_reports: Správce schvaluje zprávy
+        allow_manager_to_view_individual_responses: Umožnit správci zobrazit jednotlivé odpovědi
+        disable_report_download: Zakázat stahování zpráv
+        edit_email: Upravit e-mail
+        email_manager_when_report_is_ready_for_approval: Zaslání e-mailu správci, když je zpráva připravena ke schválení
+        email_subject_when_report_becomes_available: Předmět e-mailu, až bude zpráva k dispozici
+        email_subjects_manager_when_available: Pošlete e-mail manažerovi subjektu, jakmile bude zpráva k dispozici
+        make_report_available_to_subject_when: 'Zpřístupněte zprávu subjektu, když:'
+        manager_approves_reports: Manažer schvaluje zprávy
+        manager_can_access_subject_reports: Manažer má přístup k předmětovým zprávám
+        manager_cannot_access_subject_reports: Manažer nemůže vidět zprávu, dokud nejsou splněny požadavky
+        report_access: Přístup k hlášení
+        report_approval: Schválení zprávy
+        report_availability: Dostupnost zprávy
         show:
           title: Předmětová zpráva
+        subject_can_access_reports: Subjekt má přístup ke svým zprávám
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Označení licencí jako deaktivovaných
     time_zone: Časové pásmo
     tools: Nástroje
     translations:

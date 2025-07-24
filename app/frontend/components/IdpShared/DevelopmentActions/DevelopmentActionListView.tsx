@@ -10,7 +10,7 @@ import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard
 import { BoxWithShadow } from '~/glint'
 import {
   AvailableDevelopmentActions,
-  CategoryWithSkills,
+  TypeWithSkills,
   DevelopmentAction,
   DevelopmentActionLearningStyle,
   SkillWithDevelopmentActions,
@@ -19,13 +19,13 @@ import { CreateCustomDevelopmentActionModal } from './CreateCustomDevelopmentAct
 import { AddDevelopmentActionModal } from './AddDevelopmentActionModal'
 import styles from './DevelopmentActionListView.less'
 import { AIGeneratedDevelopmentActionsModal } from './AIGeneratedDevelopmentActionsModal'
-import { renderSkillCategoryIcon } from '../utils'
+import { renderSkillTypeIcon } from '../utils'
 
 const { I18n } = window
 
 type SkillsContainerProps = {
   editMode?: boolean
-  categories: CategoryWithSkills[]
+  categories: TypeWithSkills[]
   availableDevelopmentActions: AvailableDevelopmentActions[]
   onAddDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onShowAvailableDevelopmentAction?: (skillId: string | number | null) => void
@@ -177,8 +177,10 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
           <BoxWithShadow key={category.skillType} className={`${styles.p_16} ${styles.mt_8}`}>
             <Flex vertical gap={16}>
               <Flex align="center" gap={12}>
-                <Avatar size={24} src={renderSkillCategoryIcon(category.skillType)} />
-                <h3 className={styles.h3}>{category.skillType}</h3>
+                <Avatar size={24} src={renderSkillTypeIcon(category.skillType)} />
+                <h3 className={styles.h3}>
+                  {I18n.t(`idp.${category.skillType.toLowerCase()}`)}
+                </h3>
               </Flex>
               <Flex gap={12} vertical>
                 {renderCards(category.skills)}
@@ -191,7 +193,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
           <Button
             onClick={() => onAddMoreSkills()}
             icon={<EditOutlined />}
-            style={{ alignSelf: 'flex-end' }}
+            style={{ alignSelf: 'center' }}
           >
             {I18n.t('idp.development_actions.manage_skills')}
           </Button>

@@ -191,6 +191,14 @@ yarn run test
 ```
 Check package.json for more details
 
+# Generating translations in different languages
+
+Every string that you add, should be added through `config/locales/{locale_name}/*.yml`.
+Steps
+- Add english language strings in config/locales/en/*.yml
+- Run `./bin/devtools I18n auto_translate_yml --base-branch=develop`, to auto translate this string in different languages. It will update yml files in for different languages
+- Verify the changes and commit all changes from `config/locales/{locale_name}/*.yml.` files
+
 # Mocking API Responses
 To mock v2 API responses, add the following to the controller:
 ```

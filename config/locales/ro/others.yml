@@ -329,12 +329,13 @@ ro:
             email:
               blank: E-mailul nu poate fi gol
               not_uniq_email: Rândul cu e-mail este deja prezent
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Cel puțin un rol de post trebuie să fie activat cu un tip de competență selectat pentru %{block_name}
-              invalid_skill_type: 'Tipul de abilitate nevalid %{skill_type} pentru %{role_name} pentru %{block_name}. Opțiuni valide: %{valid_options}'
-              props_missing: Loc de muncă
+              at_least_one_job_role_required: Cel puțin un rol este necesar pentru %{skill_type} pentru %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Cel puțin un tip de competență trebuie să fie activat cu un rol de post selectat pentru %{block_name}
+              invalid_job_role_type: 'Rolul postului %{job_role} invalid pentru %{skill_type} pentru %{block_name}. Opțiuni valide: %{valid_options}'
+              props_missing: Lipsește configurația competențelor pentru %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ ro:
           case_study: Studii de caz
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formular de evaluator principal
           meeting: Ședință
           organisational: Anchete
           pearson: Pearson
@@ -859,9 +861,9 @@ ro:
         import_raw_data: Importați date brute
         import_reflection_questions: Importați întrebări de reflecție
         import_scoring_data: Importul datelor de scor
+        import_skill_rater_taxonomies: Importul taxonomiilor evaluatorilor de competențe
         import_skill_translations: Traduceri de abilități de import
         import_skills: Abilități de import
-        import_skills_rater_taxonomies: Importul taxonomiilor evaluatorilor de competențe
         import_sms_invites: Importați invitația prin SMS
         import_users: Importați utilizatori
         migrate_assessment_translations: Migrarea traducerii de evaluare
@@ -1731,6 +1733,7 @@ ro:
       import: Importa
       insert: Insera
       ok: OK
+      publish: Publicare
       reject: Respinge
       remove: Eliminați
       reset: Resetare
@@ -1746,6 +1749,7 @@ ro:
       start: Start
       submit: Prezinte
       unarchive: Dezarhivare
+      unpublish: Nepublicați
       unresolve: Nerezolvat
       update: Actualizare
       upload: Încărcare
@@ -1849,7 +1853,6 @@ ro:
       default: Implicit
       download: Descărcare
       file: Fișier
-      global_export: Este exportul global?
       global_import: Este import global?
       minutes: Minute
       na: N/A
@@ -2097,11 +2100,17 @@ ro:
       campaign_factor_group:
         group_already_exists: Un grup cu același nume există deja.
         last_factor_group: Nu se poate șterge ultimul grup de factori de campanie.
+      campaign_idps:
+        idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui campaniei.
       cant_be_deleted: Această înregistrare nu poate fi ștearsă
       client_feature:
         ai_assisted_idp_feature_error: Nu poate fi adevărat dacă funcția AI Assistants este dezactivată
       create_superadmin:
         uniq_email: E-mailul ar trebui să fie unic.
+      development_actions:
+        only_global_skills_allowed: Competențele selectate trebuie să fie competențe globale.
+        skills_not_belong_to_project: Competențele selectate trebuie să aparțină proiectului specificat.
+        skills_required: Vă rugăm să selectați cel puțin o competență.
       exceeded_subjects_count: Puteți adăuga doar %{count} subiecte per invitație
       filled?: nu poate fi gol
       idp_template:
@@ -2149,6 +2158,7 @@ ro:
         start_time_should_be_less: Ora de începere ar trebui să fie mai mică decât ora de sfârșit
       user_idp_plan:
         idp_template_already_assigned_to_user: Acest șablon Idp este deja asociat acestui utilizator și este activ
+        idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui utilizatorului.
       user_saved_filters:
         limit_exceeded: Puteți avea doar %{limit} filtre salvate, vă rugăm să ștergeți filtrele salvate pentru a adăuga mai multe.
         unique_name: Există deja un filtru cu același nume.
@@ -2470,6 +2480,7 @@ ro:
       aria_selected: Selectat
   idp:
     actions: Acțiuni
+    behavioral: Comportamental
     board: Scândură
     comment_details:
       add_comment: Adaugă comentariu
@@ -2534,6 +2545,7 @@ ro:
       submit_plan: Trimiteți planul
       write_here: Scrie aici...
     edit_plan: Editați planul
+    edit_progress: Editare progres
     initial_steps:
       add_skill_group_description: Pe baza rezultatelor evaluării dvs., iată câteva dintre domeniile de puncte forte și dezvoltare pentru dvs. Alegeți abilitățile pe care doriți să le dezvoltați în continuare ca parte a planului de dezvoltare.
       add_skill_group_title: Explorarea abilităților %{category}
@@ -2571,6 +2583,7 @@ ro:
       cover:
         fields:
           assigned_data: Data atribuită
+          assigned_date: Data atribuirii
           completion_date: Data finalizării
           division: Divizie
           name: Nume
@@ -2606,10 +2619,32 @@ ro:
           main: Această secțiune include o listă cumulativă a tuturor căilor de dezvoltare, ținând cont de cele mai bune practici de învățare, adică ghidul 70-20-10, care oferă o călătorie progresivă care combină învățarea la clasă, coaching și învățarea la locul de muncă. Pe baza rezultatelor experienței de dezvoltare a leadershipului și a priorităților de afaceri, au fost recomandate posibile căi de dezvoltare, care pot fi luate în considerare pentru dezvoltarea dvs.
         learn_cards:
           collaboration:
+            list:
+            - Oferă-te să fii mentor sau coach pentru alții
+            - Solicită să fii mentorat de un expert din domeniul tău
+            - Găsește un coach care să te sprijine în dezvoltare
+            - Creează un grup de lucru colaborativ pentru a discuta provocările curente din afacere
+            - Primește feedback formal și informal de la alții
+            - Joacă un rol activ în asociații și rețele de industrie
+            - Construiește-ți propriile rețele externe
             title: Învățare colaborativă (20%) <br/> Dezvoltarea prin alții
           job:
+            list:
+            - Preia poziții de conducere în comitete de management sau stakeholderi
+            - Fii voluntar pentru a conduce proiecte de management al schimbării în organizație
+            - Ia în considerare asumarea unor sarcini provocatoare
+            - Lucrează în colaborare cu alte funcții
+            - Condu proiecte în afara organizației tale
+            - Lucrează îndeaproape cu experți externi din industrie la proiecte comune
             title: Învățarea la locul de muncă (70%) <br/> Dezvoltarea prin experiență
           learn:
+            list:
+            - Preia poziții de conducere în comitete de management sau stakeholderi
+            - Fii voluntar pentru a conduce proiecte de management al schimbării în organizație
+            - Ia în considerare asumarea unor sarcini provocatoare
+            - Lucrează în colaborare cu alte funcții
+            - Condu proiecte în afara organizației tale
+            - Lucrează îndeaproape cu experți externi din industrie la proiecte comune
             title: Învățare formală (10%) <br/> Dezvoltarea prin învățare structurată
         title: Linii directoare pentru a vă ghida IDP-ul
       idp:
@@ -2631,6 +2666,7 @@ ro:
       statuses:
         approved: Revizuit și aprobat
         completed: Completat
+        draft: Ciornă
         not_reviewed: Nerevizuit
         pending_approval: În recenzie
       summary:
@@ -2667,6 +2703,7 @@ ro:
     skill_gap_report:
       title: Raport privind decalajul de competențe
     status: Stare
+    technical: Tehnic
     user_idp_status:
       approved: Aprobat
       completed: Completat
@@ -3624,11 +3661,35 @@ ro:
       exactly: Exact %{count}
     nominations: Nominalizări
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permiteți evaluatorilor să refuze nominalizarea
+        email_subject_when_nomination_declined: Subiect de e-mail atunci când o nominalizare este refuzată
       form:
         value_not_valid: nu are o valoare validă
       global:
         cannot_re_edit: Participanții nu pot edita evaluările
         disable_all_evaluations: Dezactivați toate evaluările
+      manager:
+        allow_subjects_to_email: Permiteți subiecților să trimită un e-mail managerilor atunci când nominalizările lor sunt gata pentru aprobare
+        approves_evaluations: Managerul aprobă evaluările
+        approves_nominations: Managerul aprobă nominalizările
+        can_view_nominations: Managerul poate vizualiza nominalizările
+        email_managers_when_nomination_ready: Trimiteți un e-mail managerilor atunci când nominalizarea unui subiect este gata pentru aprobare
+        email_subject_when_nomination_denied: Subiect de e-mail atunci când o nominalizare este respinsă
+        may_choose_evaluators: Managerul poate alege evaluatorii
+      subject:
+        allow_subjects_to_select_relationships: Permiteți subiecților să selecteze relațiile
+        anyone_in_assessment: Oricine în evaluare
+        anyone_in_datasheet: Oricine în fișa tehnică
+        anyone_not_in_assessment: Orice persoană care nu face parte în prezent din evaluare
+        can_view_evaluators: Subiectul poate vizualiza evaluatorii
+        define_nomination_requirement: Definirea cerinței de nominalizare
+        limit_search_by_criteria: Limitarea căutării în funcție de criterii
+        nominates_evaluators: Subiectul desemnează evaluatorii
+        only_allow_relationships_of_specified_types: Permiteți numai relațiile de tipul specificat
+        only_show_subjects_who_match_criteria: 'Afișați numai subiecții care corespund următoarelor criterii:'
+        self_evaluates: Subiectul se autoevaluează
+        subjects_cannot_remove_nominations: Subiecții nu pot elimina nominalizările stabilite de manageri sau administratori
     or: Sau
     page_title: Signify 360° Recenzie - Nivel de aplicare
     participant_list:
@@ -3843,7 +3904,6 @@ ro:
       add: Adăugați un raport
       download: Descărca
       generate: Genera
-      regenerate: Regenerare
     approval_statuses:
       approved: Aprobat
       change_requested: Modificare solicitată

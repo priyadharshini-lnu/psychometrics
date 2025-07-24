@@ -5,13 +5,16 @@ module AdminJobs
     def call
       project_id = record.data['project_id']
 
-      ::JobRoles::ImportTranslations.call!(record.file_url, project_id)
+      result = Administration::ImportJobRoleTranslations.new(
+        record.file,
+        project_id
+      ).call
 
-      broadcast :ok
-    end
-
-    def valid?
-      project.present?
+      if result == true
+        broadcast :ok
+      else
+        raise StandardError, "Import failed: #{result.join(', ')}"
+      end
     end
   end
 end

@@ -4,7 +4,7 @@ import {
 import _ from 'lodash'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { createReducer } from '~/utils/redux'
-import { getCurrentCampaignId } from '../campaignDetails'
+import { getCampaignId } from '../campaignDetails'
 
 export const FETCH = 'threeSixty/messageOptions/messageFETCH'
 export const UPDATE = 'threeSixty/messageOptions/UPDATE'
@@ -55,7 +55,7 @@ export default createReducer(HANDLERS, defaultState)
 function* genSyncWithServer () {
   yield delay(1000)
   const messageOptions = yield select(getMessageOption)
-  const campaignId = yield select(getCurrentCampaignId)
+  const campaignId = yield select(getCampaignId)
   yield put(syncWithServer(campaignId, messageOptions))
 }
 

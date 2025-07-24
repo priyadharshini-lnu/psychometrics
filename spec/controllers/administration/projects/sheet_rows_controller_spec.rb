@@ -5,12 +5,7 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
   let(:current_user) { create(:superadmin) }
   let(:project) { create(:project) }
   let(:sheet) do
-    create(:sheet, project: project, columns: [
-      { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-      { name: 'Name', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-      { name: 'Profile', type: 'Markdown', accessor_access: true, dashboard_use: true, visible_in_list: true },
-      { name: 'Description', type: 'HTML', accessor_access: true, dashboard_use: true, visible_in_list: true }
-    ])
+    create(:sheet, project: project)
   end
   let!(:columns) do
     [

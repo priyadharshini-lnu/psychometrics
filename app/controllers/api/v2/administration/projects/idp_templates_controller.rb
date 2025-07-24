@@ -4,7 +4,6 @@ module Api
   class V2::Administration::Projects::IdpTemplatesController < Api::V2::Administration::BaseController
     before_action :set_user_idp_plan, only: %i[update destroy uploads]
     validate_crud_requests Api::V2::IdpTemplate::Schema
-    validates_request_schema :create, :create_request_contract_and_schema
     validates_request_schema :update, :update_request_contract_and_schema
     validates_request_schema :update_instructions, :update_instructions_request_contract_and_schema
 
@@ -27,7 +26,7 @@ module Api
     end
 
     def show
-      locale = params[:query][:locale] || I18n.default_locale
+      locale = params.dig(:query, :locale) || I18n.default_locale
 
       Mobility.with_locale(locale) do
         jsonapi_render json: @model
@@ -36,15 +35,19 @@ module Api
 
     def update
       if @user_idp_plan.present?
-        if @model.update(appearance_params)
-          render json: {
-            error: t('administration.idp.errors.update')
-          }, status: :bad_request
-        else
-          render json: { errors: @model.errors }, status: :unprocessable_entity
-        end
+        render json: {
+          error: t('administration.idp.errors.update')
+        }, status: :bad_request
       else
         super
+      end
+    end
+
+    def update_appearance
+      if @model.update(appearance_params)
+        jsonapi_render json: @model
+      else
+        render json: { errors: @model.errors }, status: :unprocessable_entity
       end
     end
 

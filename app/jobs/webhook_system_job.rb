@@ -1,9 +1,18 @@
 # frozen_string_literal: true
 
 class WebhookSystemJob < WebhookSystem::Job
+  EXECUTIONS_TO_RETRY_TIMING = {
+    1 => 1.minute + rand(10..60).seconds,
+    2 => 5.minutes + rand(10..60).seconds,
+    3 => 15.minutes + rand(10..60).seconds
+  }.freeze
+
   include Sidekiq::Throttled::Job
 
   queue_as :webhooks
+
+  retry_on WebhookSystem::Job::RequestFailed, attempts: 4,
+    wait: ->(executions) { EXECUTIONS_TO_RETRY_TIMING[executions] }
 
   sidekiq_throttle(
     threshold: {
@@ -20,10 +29,5 @@ class WebhookSystemJob < WebhookSystem::Job
 
     subscription = Webhook.active.not_deleted.find(subscription_id)
     super(subscription, event)
-  end
-
-  rescue_from(::WebhookSystem::Job::RequestFailed) do |error|
-    Sentry.capture_exception(error)
-    raise error
   end
 end

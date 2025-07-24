@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
@@ -11,23 +10,19 @@ import {
 } from '@ant-design/icons'
 
 import { MenuItem } from '~/interfaces/Antd'
-import { get as getCurrentUser } from '~/core/currentUser'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import {
+  get as getCurrentCampaign,
+} from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 
 import routeUtils from '~/utils/route'
 import settings from '../settings'
 
 const { I18n } = window
 
-const connector = connect((state: RootState) => ({
-  currentUser: getCurrentUser(state),
-}))
-
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-const TopMenuComponent: FC<PropsFromRedux> = ({
-  currentUser,
-}) => {
+function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
   const { pathname } = useLocation()
 
   const navigate = useNavigate()
@@ -50,8 +45,8 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     if (pathname.includes('/reports/options')) {
       return ['reports/options']
     }
-    if (pathname.includes('/datasheets')) {
-      return ['datasheets']
+    if (pathname.includes('/datasheet')) {
+      return ['datasheet']
     }
     return undefined
   }
@@ -60,27 +55,27 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     icon: <UserOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.participants.title'),
   }]
-  if (currentUser.permissions.accessEmailMessages
-    || currentUser.permissions.accessMessagesOptions
-    || currentUser.permissions.accessInstructionMessages) {
+  if (campaignPermissions.accessEmailMessages
+    || campaignPermissions.accessMessagesOptions
+    || campaignPermissions.accessInstructionMessages) {
     menuItems.push({
       key: 'messages/options',
       icon: <MessageOutlined />,
       label: I18n.t('administration.threesixty_campaigns.menu.messages.title'),
     })
   }
-  currentUser.permissions.editReportOptions && menuItems.push({
+  campaignPermissions.editReportOptions && menuItems.push({
     key: 'reports/options',
     icon: <PieChartOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.report.title'),
   })
   menuItems.push({
-    key: 'datasheets',
+    key: 'datasheet',
     icon: <DatabaseOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.datasheet.title'),
   })
 
-  currentUser.permissions.manageAdmins && menuItems.push({
+  campaignPermissions.manageAdmins && menuItems.push({
     key: 'admins',
     label: I18n.t('common.model.admins'),
     icon: <SolutionOutlined />,
@@ -96,4 +91,10 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
   )
 }
 
+
+const connector = connect(
+  (state: RootState) => ({
+    campaignPermissions: getCurrentCampaign(state).permissions,
+  }),
+)
 export const TopMenu = connector(TopMenuComponent)

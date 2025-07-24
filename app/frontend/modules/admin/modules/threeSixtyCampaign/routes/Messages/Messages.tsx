@@ -1,9 +1,11 @@
 import { Menu } from 'antd'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import {
+  get as getCurrentCampaign,
+} from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import RouteList from '~/components/RouteList'
-import { get as getCurrentUser } from '~/core/currentUser'
 import PipedTextModal from '~/components/Editor/PipedTextModal'
 import routeUtils from '~/utils/route'
 import settings from '../../settings'
@@ -24,31 +26,27 @@ const routes = [
   { path: '/instructions/:id', component: <InstructionList /> },
   { path: '/mail_histories', component: <MailHistories /> },
 ]
-function Messages ({ currentUser }) {
-  const [selected, setSelected] = useState('')
+function Messages ({ campaignPermissions }) {
   const navigate = useNavigate()
+  const selected = `/messages${routeUtils.getActiveRoutePath(routes)}`
 
-  useEffect(() => {
-    setSelected(`/messages${routeUtils.getActiveRoutePath(routes)}`)
-  }, [])
   const onSelect = ({ key }) => {
-    setSelected(key)
     routeUtils.moveTo(navigate, settings.urlPrefix, key)
   }
   const menuItems = [
-    currentUser.permissions.accessEmailMessages && {
+    campaignPermissions.accessEmailMessages && {
       key: '/messages/email',
       label: I18n.t('administration.threesixty_campaigns.messages.email_messages'),
     },
-    currentUser.permissions.accessInstructionMessages && {
+    campaignPermissions.accessInstructionMessages && {
       key: '/messages/instructions',
       label: I18n.t('administration.threesixty_campaigns.messages.instruction_messages'),
     },
-    currentUser.permissions.accessEmailMessages && {
+    campaignPermissions.accessEmailMessages && {
       key: '/messages/mail_histories',
       label: I18n.t('administration.threesixty_campaigns.messages.mail_history'),
     },
-    currentUser.permissions.accessMessagesOptions && {
+    campaignPermissions.accessMessagesOptions && {
       key: '/messages/options',
       label: I18n.t('administration.threesixty_campaigns.messages.options'),
     },
@@ -70,7 +68,10 @@ function Messages ({ currentUser }) {
     </>
   )
 }
+const connector = connect(
+  (state: RootState) => ({
+    campaignPermissions: getCurrentCampaign(state).permissions,
+  }),
+)
 
-export default connect(state => ({
-  currentUser: getCurrentUser(state),
-}), {})(Messages)
+export default connector(Messages)

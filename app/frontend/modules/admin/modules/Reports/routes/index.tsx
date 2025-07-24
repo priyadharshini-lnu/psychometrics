@@ -34,16 +34,16 @@ const Layout = () => <RouteList routes={routes} urlPrefix="" />
 
 const ReportRoutes = [
   {
-    path: '/reports/*',
-    component: <Layout />,
+    path: 'reports/*',
+    element: <Layout />,
   },
   {
-    path: '/report_families/:id/reports',
-    component: <ReportBundleReportList />,
+    path: 'report_families/:id/reports',
+    element: <ReportBundleReportList />,
   },
   {
-    path: '/report_families',
-    component: <ReportBundleList />,
+    path: 'report_families',
+    element: <ReportBundleList />,
   },
 ]
 

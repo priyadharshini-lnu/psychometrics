@@ -15,7 +15,7 @@ RSpec.describe Api::V2::IdpTemplate::Contract do
     jsonapi_resource_request(
       'idp_templates',
       {
-        id: idp_template.id,
+        id: idp_template.id.to_s,
         name: 'test',
         self_rating_enabled: true,
         description: 'test',
@@ -53,7 +53,7 @@ RSpec.describe Api::V2::IdpTemplate::Contract do
 
   let(:contract) do
     Api::V2::IdpTemplate::Contract.new(
-      schema: Api::V2::IdpTemplate::Schema.create_request
+      schema: Api::V2::IdpTemplate::Schema.update_request
     )
   end
 

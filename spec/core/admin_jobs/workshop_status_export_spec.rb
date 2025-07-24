@@ -28,6 +28,7 @@ describe AdminJobs::WorkshopStatusExport do
       'Prework Status',
       'Prework Completed Date',
       'Scheduling Status',
+      'AC Group Name',
       'AC Name',
       'AC Invite',
       'AC Activity Completion',
@@ -66,6 +67,7 @@ describe AdminJobs::WorkshopStatusExport do
       1.day.ago.to_s,
       nil,
       nil,
+      nil,
       'Not Invited',
       nil,
       nil,
@@ -97,6 +99,7 @@ describe AdminJobs::WorkshopStatusExport do
       nil,
       nil,
       nil,
+      nil,
       'Invited',
       nil,
       nil,
@@ -109,7 +112,8 @@ describe AdminJobs::WorkshopStatusExport do
 
   it 'export correct details for invited subject that have accepted the invite and not completed center activities' do
     create(:campaign_user, campaign: campaign, user: user)
-    workshop = create(:workshop, campaign: campaign)
+    assessment_group = create(:campaign_assessment_group, campaign: campaign, name: 'Test Group')
+    workshop = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group)
     create(:workshop_invited_subject, user: user, workshop_invite: create(:workshop_invite, campaign: campaign))
     create(
       :workshop_subject, user: user, campaign: campaign, preferred_language: 'en', scheduling_status: :late_cancelled,
@@ -146,6 +150,7 @@ describe AdminJobs::WorkshopStatusExport do
       'Completed',
       nil,
       'Scheduled',
+      'Test Group',
       workshop.name,
       'Invited',
       'In Progress',
@@ -159,7 +164,8 @@ describe AdminJobs::WorkshopStatusExport do
 
   it 'export correct details for invited subject that have accepted the invite and completed center activities' do
     create(:campaign_user, campaign: campaign, user: user)
-    workshop = create(:workshop, campaign: campaign)
+    assessment_group = create(:campaign_assessment_group, campaign: campaign, name: 'Test Group')
+    workshop = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group)
     create(:workshop_invited_subject, user: user, workshop_invite: create(:workshop_invite, campaign: campaign))
     workshop_subject = create(
       :workshop_subject, user: user, workshop: workshop, campaign: campaign, preferred_language: 'en'
@@ -188,6 +194,7 @@ describe AdminJobs::WorkshopStatusExport do
       'Completed',
       nil,
       'Scheduled',
+      'Test Group',
       workshop.name,
       'Invited',
       'Completed',

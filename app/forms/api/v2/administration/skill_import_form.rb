@@ -6,7 +6,7 @@ module Api
       class SkillImportForm
         include ActiveModel::Model
 
-        REQUIRED_FIELDS = %w[ID Name Description].freeze
+        REQUIRED_FIELDS = %w[Name Description].freeze
 
         attr_accessor :file, :project_id
 
@@ -58,6 +58,24 @@ module Api
               I18n.t(
                 'administration.skills.errors.import.missing_fields_data',
                 fields: missing_fields.join(', '),
+                line_number: row_number
+              )
+            )
+          end
+
+          validate_skill_belongs_to_project(row, row_number)
+        end
+
+        def validate_skill_belongs_to_project(row, row_number)
+          return if row['ID'].blank? || project_id.blank?
+
+          skill = ::Skill.find_by(id: row['ID'])
+          if skill.present? && skill.project_id != project_id
+            errors.add(
+              :base,
+              I18n.t(
+                'administration.skills.errors.import.skill_not_in_project',
+                skill_id: row['ID'],
                 line_number: row_number
               )
             )

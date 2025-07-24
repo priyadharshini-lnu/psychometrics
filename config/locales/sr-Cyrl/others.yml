@@ -14,6 +14,8 @@ sr-Cyrl:
   activerecord:
     attributes:
       assessment:
+        categories:
+          lead_assessor_form: Образац главног процењивача
         description: Опис
         name: Име
       block:
@@ -52,6 +54,14 @@ sr-Cyrl:
         owner: Власник
       task:
         description: Опис
+        statuses:
+          in_progress: У току
+          not_started: Није започето
+      threesixty:
+        users_result:
+          statuses:
+            in_progress: У току
+            not_started: Није започето
       user:
         email: Адреса е-поште
         first_name: Име
@@ -64,6 +74,10 @@ sr-Cyrl:
         password: Лозинка
       users_result:
         name: Име
+        statuses:
+          in_progress: У току
+          not_started: Није започето
+          timed_out: Истекло време
     errors:
       models:
         register:
@@ -76,6 +90,10 @@ sr-Cyrl:
           attributes:
             current_password:
               invalid: Тренутна лозинка је нетачна
+  admin_jobs:
+    attrs:
+      statuses:
+        in_progress: У току
   administration: Администрација
   anonym:
     close: Затвори
@@ -105,6 +123,11 @@ sr-Cyrl:
     card_actions:
       begin: Почетак
       continue: Настави
+    fields:
+      category:
+        lead_assessor_form: Образац главног процењивача
+      status:
+        in_progress: У току
     instructions:
       begin_assessment: Почетак
       cancel: Откажи
@@ -299,6 +322,11 @@ sr-Cyrl:
       not_started: Није започето
       timed_out: Временски истекло
       universal_link: Универзална веза
+  campaign_users:
+    details:
+      statuses:
+        in_progress: У току
+        not_started: Није започето
   campaigns:
     card:
       duration: Трајање
@@ -419,6 +447,9 @@ sr-Cyrl:
       assessments: Процене
       campaigns: Кампање
       reports: Извештаји
+    status:
+      in_progress: У току
+      not_started: Није започето
     text:
       cancel: Откажи
       confirm: Потврди
@@ -479,6 +510,16 @@ sr-Cyrl:
     two_factor_authentication:
       attempt: Молимо вас да унесете OTP који сте добили на регистровану адресу е-поште
       code_has_been_sent: Ваш нови OTP је послат на вашу регистровану адресу е-поште
+  dry_errors:
+    errors:
+      campaign_idps:
+        idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кампање.
+      development_actions:
+        only_global_skills_allowed: Одабране вештине морају бити глобалне вештине.
+        skills_not_belong_to_project: Одабране вештине морају да припадају наведеном пројекту.
+        skills_required: Изаберите бар једну вештину.
+      user_idp_plan:
+        idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кориснику.
   emails:
     subject_relationship_table:
       subject_email: Наслов имејла
@@ -614,12 +655,139 @@ sr-Cyrl:
         requested_rescheduling_rejected: Захтевано поновно заказивање је одбијено
     'yes': Да
   idp:
+    actions: Акције
+    behavioral: Понашајно
+    board: Табла
+    comment_details:
+      add_comment: Додај коментар
+      add_comment_placeholder: Додај коментар...
+      add_reply_placeholder: Додај одговор...
+      go_to_skill: Иди на вештину
+    comments:
+      close: Затвори
+      comments: Коментари
+      filter_comments: Филтрирај коментаре
+      mark_as_resolved: Означи као решено
+      mark_as_unresolved: Означи као нерешено
+      replied: Одговорено
+      replies: Одговори
+      reply: Одговори
+      resolve: Реши
+      resolved: Решено
+      resolved_message: Овај коментар је решен и одговори су онемогућени.
+      show_only_read: Прикажи само прочитане
+      show_only_resolved: Прикажи само решене
+      show_only_unread: Прикажи само непрочитане
+      show_only_unresolved: Прикажи само нерешене
+      sort_by_date: Сортирај по датуму
+      you: Ви
+    convert_to_draft: Претвори у нацрт
+    details: Детаљи
+    development_actions:
+      action_private: Да
+      action_public: Не
+      add_development_action: Додај акцију развоја
+      all: Све
+      approved: Одобрено
+      board_view:
+        completed: Завршено
+        in_progress: У току
+        not_started: Није започето
+      completion: Завршетак
+      create_my_own: Креирај своју
+      date_range: Датум почетка - Датум завршетка
+      generate_by_ai: Генериши помоћу АИ
+      generate_more: Генериши још
+      generating_development_actions: Генерисање акција развоја...
+      heading: Акције развоја
+      incomplete_error: Недовршене акције развоја
+      incomplete_error_message: Неке акције развоја нису завршене. Молимо вас да их завршите пре слања ИДП-а.
+      incomplete_warning: Недовршене акције развоја
+      incomplete_warning_message: Неке акције развоја нису завршене. Да ли сте сигурни да желите да означите свој ИДП као завршен?
+      learning_from_others: Учење од других
+      manage_skills: Управљај вештинама
+      marathon: Маратон
+      mark_as_complete: Означи као завршено
+      no_development_actions: Нема акција развоја
+      on_the_job: На послу
+      other: Друго
+      private: Приватно
+      publish_plan: Објави план
+      remove: Уклони
+      skill: Вештина
+      sprint: Спринт
+      start_plan: Започни план
+      structured_learning: Структурирано учење
+      submit_plan: Пошаљи план
+      write_here: Пишите овде...
+    edit_plan: Измени план
+    edit_progress: Уреди напредак
+    initial_steps:
+      add_skill_group_description: На основу резултата процене, ово су неке од ваших снага и области за развој. Изаберите вештине које желите да развијате као део свог плана развоја.
+      add_skill_group_title: Истраживање ваших %{category} вештина
+      add_skills: Додај
+      add_skills_step: Додај вештине
+      continue_to_rate_skills: Настави са оцењивањем вештина
+      getting_started: Почетак
+      less_skills: Прикажи мање вештина
+      more_skills: Истражи више вештина
+      next: Следеће
+      no_skills_selected: Ниједна вештина није изабрана.
+      rate_skills: Оцени вештине
+      rate_skills_description: Сада када сте изабрали приоритете за развој, оцените себе за сваку од следећих вештина. Оцените себе на основу тренутног нивоа, а не прошлог или жељеног.
+      rate_skills_title: Оцењивање ваших вештина
+      rating_column_header: Ваша самооцена
+      reflective_questions: Рефлексивна питања
+      save: Сачувај
+      select_skills: Изаберите своје вештине
+      select_skills_placeholder: Изаберите вештине
+      selected_skills: Изабране вештине
+      skill_column_header: Вештина
+      skill_gap_report: Извештај о јазу у вештинама
+    list: Листа
+    manage_plan: Управљај планом
+    mark_as_complete: Означи као завршено
+    mark_as_incomplete: Означи као недовршено
+    my_plan:
+      development_plan: План развоја
+      graphs:
+        categories: Категорије
+      save_skills: Сачувај вештине
+    new_comments: Нови коментар(и)
     pdf:
       cover:
         fields:
           name: Име
+    plan: План
     reflective_questions:
-      already_completed: Интегрисани план (ИПР) је већ завршен, сада не можете одговарати на питања.
+      already_completed: ИДП је већ завршен, сада не можете одговарати на питања.
+      answer_later: Одговори касније
+      answer_placeholder: Напишите свој одговор овде...
+      errors:
+        max_words: Одговор може имати највише %{count} речи
+        min_words: Одговор мора имати најмање %{count} речи
+        required: Одговор на питање је обавезан
+      max_words: Максимум речи
+      min_words: Минимум речи
+      title: Рефлексивна питања
+      update_failed: Дошло је до грешке при ажурирању
+      updated_successfully: Ваши одговори су успешно ажурирани
+      words: Речи
+    skill_gap_report:
+      title: Извештај о јазу у вештинама
+    status: Статус
+    technical: Техничко
+    user_idp_status:
+      approved: Одобрено
+      completed: Завршено
+      draft: Нацрт
+      in_progress: У току
+      not_started: Није започето
+      pending_approval: Чека одобрење
+      rejected: Одбијено
+    users: Корисници
+    with_reflection_questions: Са рефлексивним питањима
+    without_reflection_questions: Без рефлексивних питања
   idp_templates:
     errors:
       user_idp_template_not_found: Није вам додељен ниједан шаблон за идентификацију личности.
@@ -796,6 +964,9 @@ sr-Cyrl:
       norm:
         description: Опис
         name: Име
+        statuses:
+          in_progress: У току
+          not_started: Није започето
       question:
         name: Име
       user:
@@ -916,8 +1087,32 @@ sr-Cyrl:
       exactly: Тачно %{count}
     nominations: Номинације
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Дозволити процењивачима да одбаце номинацију
+        email_subject_when_nomination_declined: Предмет е-поште када је номинација одбачена
       global:
         cannot_re_edit: Учесници не могу да мењају евалуације
+      manager:
+        allow_subjects_to_email: Дозволити испитаницима да пошаљу е-пошту менаџерима када су њихове номинације спремне за одобрење
+        approves_evaluations: Менаџер одобрава евалуације
+        approves_nominations: Менаџер одобрава номинације
+        can_view_nominations: Менаџер може да види номинације
+        email_managers_when_nomination_ready: Пошаљи е-пошту менаџерима када је номинација испитаника спремна за одобрење
+        email_subject_when_nomination_denied: Предмет е-поште када је номинација одбијена
+        may_choose_evaluators: Менаџер може да изабере процењиваче
+      subject:
+        allow_subjects_to_select_relationships: Дозволити испитаницима да изаберу односе
+        anyone_in_assessment: Било ко у процени
+        anyone_in_datasheet: Било ко у табели података
+        anyone_not_in_assessment: Било ко ко тренутно није у процени
+        can_view_evaluators: Испитаник може да види процењиваче
+        define_nomination_requirement: Дефинишите захтев за номинацију
+        limit_search_by_criteria: Ограничите претрагу по критеријумима
+        nominates_evaluators: Испитаник номинује процењиваче
+        only_allow_relationships_of_specified_types: Дозволити само односе одређених типова
+        only_show_subjects_who_match_criteria: 'Прикажи само испитанике који одговарају следећим критеријумима:'
+        self_evaluates: Испитаник се самопроцењује
+        subjects_cannot_remove_nominations: Испитаници не могу да уклоне номинације које су поставили менаџери или администратори
     or: Или
     page_title: Signify 360° преглед - Примени ниво
     participant_list:
@@ -996,9 +1191,10 @@ sr-Cyrl:
       last_name: Презиме
   user_assessments:
     redirect: Бићете преусмерени на сајт треће стране за ову процену. Кликните на дугме „Настави“ ако желите да започнете процену.
+    status:
+      in_progress: У току
+      not_started: Није започето
   user_reports:
-    actions:
-      regenerate: Регенериши
     messages:
       regenerate_successful: Задатак регенерације извештаја је успешно заказан
     modals:

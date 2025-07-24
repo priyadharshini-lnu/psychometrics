@@ -8,7 +8,7 @@ lib/
     cli.rb # Main CLI registry
     cli/
       commands/
-        ASSIGN_USER_REPORT_README.md # Documentation
+        ASSIGN_USER_REPORT_README.md # Documentation for individual command. Not necessary in case command --help has enough details
         assign_user_report.rb   # CLI command implementation
 ```
 

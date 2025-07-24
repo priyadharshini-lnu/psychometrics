@@ -143,6 +143,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'comments_count' => 0,
       'edits_count' => 0,
       'hogan_participant_id' => nil,
+      'effective_default_language' => user_report.effective_default_language,
+      'available_languages' => user_report.campaign_report&.available_languages,
       'permissions' => {
         'download_report' => true,
         'remove' => true,

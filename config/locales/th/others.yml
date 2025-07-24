@@ -329,12 +329,13 @@ th:
             email:
               blank: อีเมลต้องไม่ว่างเปล่า
               not_uniq_email: แถวที่มีอีเมลมีอยู่แล้ว
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: ต้องเปิดใช้อย่างน้อยหนึ่งตำแหน่งงาน พร้อมทั้งเลือกประเภททักษะสำหรับ %{block_name}
-              invalid_skill_type: 'ประเภททักษะไม่ถูกต้อง %{skill_type} สำหรับ %{role_name} สำหรับ %{block_name}. ตัวเลือกที่ถูกต้อง: %{valid_options}'
-              props_missing: งาน
+              at_least_one_job_role_required: จำเป็นต้องมีตำแหน่งงานอย่างน้อยหนึ่งตำแหน่งสำหรับ %{skill_type} สำหรับ %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: ต้องเปิดใช้งานทักษะอย่างน้อยหนึ่งประเภทพร้อมเลือกบทบาทงานสำหรับ %{block_name}
+              invalid_job_role_type: 'ตำแหน่งงานไม่ถูกต้อง %{job_role} สำหรับ %{skill_type} สำหรับ %{block_name}. ตัวเลือกที่ถูกต้อง: %{valid_options}'
+              props_missing: การกำหนดค่าทักษะไม่พบสำหรับ %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ th:
           case_study: กรณีศึกษา
           hogan: โฮแกน
           iiht: ไอเอชที
+          lead_assessor_form: แบบฟอร์มผู้ประเมินหลัก
           meeting: การประชุม
           organisational: สำรวจ
           pearson: เพียร์สัน
@@ -859,9 +861,9 @@ th:
         import_raw_data: นําเข้าข้อมูลดิบ
         import_reflection_questions: นําเข้าคําถามสะท้อน
         import_scoring_data: นําเข้าข้อมูลการให้คะแนน
+        import_skill_rater_taxonomies: นำเข้าระบบหมวดหมู่การให้คะแนนทักษะ
         import_skill_translations: การแปลทักษะการนําเข้า
         import_skills: ทักษะการนําเข้า
-        import_skills_rater_taxonomies: นำเข้าระบบหมวดหมู่การให้คะแนนทักษะ
         import_sms_invites: นําเข้าคําเชิญทาง SMS
         import_users: นําเข้าผู้ใช้
         migrate_assessment_translations: การโยกย้ายการแปลการประเมิน
@@ -1728,6 +1730,7 @@ th:
       import: นําเข้า
       insert: สอด
       ok: ตกลง, ได้
+      publish: เผยแพร่
       reject: ปฏิเสธ
       remove: เอาออก
       reset: รีเซ็ต
@@ -1743,6 +1746,7 @@ th:
       start: เริ่ม
       submit: ส่ง
       unarchive: ยกเลิกเก็บถาวร
+      unpublish: เผยแพร่
       unresolve: ยังไม่ได้แก้ไข
       update: อัปเดต
       upload: อัพโหลด
@@ -1846,7 +1850,6 @@ th:
       default: ค่าเริ่มต้น
       download: ดาวน์โหลด
       file: แฟ้ม
-      global_export: เป็นการส่งออกทั่วโลกหรือไม่?
       global_import: นําเข้าทั่วโลกหรือไม่?
       minutes: รายงานการประชุม
       na: ไม่มีข้อมูล
@@ -2094,11 +2097,17 @@ th:
       campaign_factor_group:
         group_already_exists: มีกลุ่มที่มีชื่อเดียวกันอยู่แล้ว
         last_factor_group: ไม่สามารถลบกลุ่มปัจจัยแคมเปญล่าสุดได้
+      campaign_idps:
+        idp_template_not_published: เทมเพลต IDP นี้ยังไม่เผยแพร่โปรดเผยแพร่ก่อนที่จะมอบหมายให้แคมเปญ
       cant_be_deleted: ไม่สามารถลบบันทึกนี้ได้
       client_feature:
         ai_assisted_idp_feature_error: ไม่สามารถเป็นความจริงได้หากปิดใช้งานคุณสมบัติผู้ช่วย AI
       create_superadmin:
         uniq_email: อีเมลควรเป็น uniq
+      development_actions:
+        only_global_skills_allowed: ทักษะที่เลือกต้องเป็นทักษะระดับโลก
+        skills_not_belong_to_project: ทักษะที่เลือกต้องเป็นของโครงการที่ระบุไว้
+        skills_required: กรุณาเลือกอย่างน้อยหนึ่งทักษะ
       exceeded_subjects_count: คุณสามารถเพิ่มได้เฉพาะ %{count} หัวเรื่องต่อการเชิญ
       filled?: ไม่สามารถว่างเปล่าได้
       idp_template:
@@ -2146,6 +2155,7 @@ th:
         start_time_should_be_less: เวลาเริ่มต้นควรน้อยกว่าเวลาสิ้นสุด
       user_idp_plan:
         idp_template_already_assigned_to_user: เทมเพลต Idp นี้ถูกส่งไปยังผู้ใช้รายนี้แล้วและใช้งานอยู่
+        idp_template_not_published: เทมเพลต IDP นี้ยังไม่เผยแพร่โปรดเผยแพร่ก่อนที่จะมอบหมายให้ผู้ใช้
       user_saved_filters:
         limit_exceeded: คุณสามารถมีตัวกรองที่บันทึกไว้ได้เพียง %{limit} โปรดลบตัวกรองที่บันทึกไว้เพื่อเพิ่ม
         unique_name: มีตัวกรองที่มีชื่อเดียวกันอยู่แล้ว
@@ -2467,6 +2477,7 @@ th:
       aria_selected: เลือก
   idp:
     actions: การดําเนินการ
+    behavioral: พฤติกรรม
     board: กระดาน
     comment_details:
       add_comment: เพิ่มความคิดเห็น
@@ -2531,6 +2542,7 @@ th:
       submit_plan: ส่งแผน
       write_here: เขียนที่นี่...
     edit_plan: แก้ไขแผน
+    edit_progress: แก้ไขความคืบหน้า
     initial_steps:
       add_skill_group_description: จากผลการประเมินของคุณต่อไปนี้คือจุดแข็งและการพัฒนาสําหรับคุณ เลือกทักษะที่คุณต้องการพัฒนาเพิ่มเติมโดยเป็นส่วนหนึ่งของแผนการพัฒนาของคุณ
       add_skill_group_title: สํารวจทักษะ %{category} ของคุณ
@@ -2568,6 +2580,7 @@ th:
       cover:
         fields:
           assigned_data: วันที่กําหนด
+          assigned_date: วันที่กำหนด
           completion_date: วันที่เสร็จสมบูรณ์
           division: แผนก
           name: ชื่อ
@@ -2603,10 +2616,32 @@ th:
           main: ส่วนนี้ประกอบด้วยรายการสะสมของเส้นทางการพัฒนาทั้งหมด โดยคํานึงถึงการเรียนรู้แนวปฏิบัติที่ดีที่สุด เช่น แนวทาง 70-20-10 ซึ่งให้การเดินทางที่ก้าวหน้าซึ่งรวมการเรียนรู้ในห้องเรียน การฝึกสอน และการเรียนรู้ในภาคปฏิบัติ จากผลลัพธ์จากประสบการณ์การพัฒนาความเป็นผู้นําและลําดับความสําคัญทางธุรกิจ ได้มีการแนะนําเส้นทางการพัฒนาที่เป็นไปได้ ซึ่งสามารถพิจารณาได้สําหรับการพัฒนาของคุณ
         learn_cards:
           collaboration:
+            list:
+            - เสนอเป็นโค้ชหรือที่ปรึกษาให้ผู้อื่น
+            - ขอรับคำปรึกษาจากผู้เชี่ยวชาญในสายงานของคุณ
+            - หาผู้ฝึกสอนเพื่อสนับสนุนการพัฒนาของคุณ
+            - ตั้งกลุ่มทำงานร่วมกันเพื่อหารือปัญหาทางธุรกิจ
+            - รับข้อเสนอแนะทั้งทางการและไม่เป็นทางการจากผู้อื่น
+            - มีบทบาทในสมาคมหรือเครือข่ายวิชาชีพ
+            - สร้างเครือข่ายภายนอกของคุณเอง
             title: การเรียนรู้ร่วมกัน (20%) <br/> พัฒนาผ่านผู้อื่น
           job:
+            list:
+            - รับตำแหน่งผู้นำในคณะกรรมการหรือคณะทำงาน
+            - อาสานำโครงการเปลี่ยนแปลงในองค์กร
+            - รับงานที่ท้าทายมากขึ้น
+            - ทำงานข้ามสายงานกับฝ่ายอื่น
+            - นำโครงการนอกองค์กรของคุณ
+            - ทำงานร่วมกับผู้เชี่ยวชาญภายนอกในโครงการร่วม
             title: การเรียนรู้ในการทํางาน (70%) <br/> พัฒนาผ่านประสบการณ์
           learn:
+            list:
+            - รับตำแหน่งผู้นำในคณะกรรมการหรือคณะทำงาน
+            - อาสานำโครงการเปลี่ยนแปลงในองค์กร
+            - รับงานที่ท้าทายมากขึ้น
+            - ทำงานข้ามสายงานกับฝ่ายอื่น
+            - นำโครงการนอกองค์กรของคุณ
+            - ทำงานร่วมกับผู้เชี่ยวชาญภายนอกในโครงการร่วม
             title: การเรียนรู้อย่างเป็นทางการ (10%) <br/> การพัฒนาผ่านการเรียนรู้ที่มีโครงสร้าง
         title: แนวทางในการแนะนํา IDP ของคุณ
       idp:
@@ -2628,6 +2663,7 @@ th:
       statuses:
         approved: ตรวจสอบและอนุมัติแล้ว
         completed: เสร็จ สมบูรณ์
+        draft: ร่าง
         not_reviewed: ไม่ได้รับการตรวจสอบ
         pending_approval: อยู่ระหว่างตรวจสอบ
       summary:
@@ -2664,6 +2700,7 @@ th:
     skill_gap_report:
       title: รายงานช่องว่างทักษะ
     status: สถานะ
+    technical: เทคนิค
     user_idp_status:
       approved: อนุมัติ
       completed: เสร็จ สมบูรณ์
@@ -3621,11 +3658,35 @@ th:
       exactly: ตรงเป๊ะ %{count}
     nominations: การเสนอชื่อ
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: อนุญาตให้ผู้ประเมินปฏิเสธการเสนอชื่อ
+        email_subject_when_nomination_declined: หัวข้ออีเมลเมื่อการเสนอชื่อถูกปฏิเสธ
       form:
         value_not_valid: ไม่มีค่าที่ถูกต้อง
       global:
         cannot_re_edit: ผู้เข้าร่วมไม่สามารถแก้ไขการประเมินผลได้
         disable_all_evaluations: ปิดใช้งานการประเมินทั้งหมด
+      manager:
+        allow_subjects_to_email: อนุญาตให้ผู้เข้าร่วมส่งอีเมลถึงผู้จัดการเมื่อการเสนอชื่อของพวกเขาพร้อมสำหรับการอนุมัติ
+        approves_evaluations: ผู้จัดการอนุมัติการประเมิน
+        approves_nominations: ผู้จัดการอนุมัติการเสนอชื่อ
+        can_view_nominations: ผู้จัดการสามารถดูการเสนอชื่อได้
+        email_managers_when_nomination_ready: ผู้จัดการอีเมลเมื่อการเสนอชื่อของหัวข้อพร้อมสำหรับการอนุมัติ
+        email_subject_when_nomination_denied: หัวข้ออีเมลเมื่อการเสนอชื่อถูกปฏิเสธ
+        may_choose_evaluators: ผู้จัดการอาจเลือกผู้ประเมิน
+      subject:
+        allow_subjects_to_select_relationships: อนุญาตให้ผู้เข้าร่วมเลือกความสัมพันธ์
+        anyone_in_assessment: ทุกคนในการประเมิน
+        anyone_in_datasheet: ใครก็ตามในเอกสารข้อมูล
+        anyone_not_in_assessment: ผู้ใดก็ตามที่ไม่ได้อยู่ในขั้นตอนการประเมินในขณะนี้
+        can_view_evaluators: ผู้เรียนสามารถดูผู้ประเมินได้
+        define_nomination_requirement: กำหนดข้อกำหนดการเสนอชื่อ
+        limit_search_by_criteria: จำกัดการค้นหาตามเกณฑ์
+        nominates_evaluators: ผู้เสนอชื่อเสนอชื่อผู้ประเมิน
+        only_allow_relationships_of_specified_types: อนุญาตให้มีความสัมพันธ์เฉพาะประเภทที่ระบุเท่านั้น
+        only_show_subjects_who_match_criteria: 'แสดงเฉพาะวิชาที่ตรงกับเกณฑ์ต่อไปนี้:'
+        self_evaluates: ผู้ประเมินตนเอง
+        subjects_cannot_remove_nominations: ผู้ใช้งานไม่สามารถลบการเสนอชื่อที่ตั้งโดยผู้จัดการหรือผู้ดูแลระบบได้
     or: หรือ
     page_title: การประเมิน Signify 360 องศา - ระดับการสมัคร
     participant_list:
@@ -3840,7 +3901,6 @@ th:
       add: เพิ่มรายงาน
       download: ดาวน์โหลด
       generate: ผลิต
-      regenerate: สร้างใหม่
     approval_statuses:
       approved: อนุมัติ
       change_requested: ขอเปลี่ยนแปลง

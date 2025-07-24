@@ -24,7 +24,8 @@ module Reports
           locale: context[:locale],
           default_language: object.default_language,
           translations_migrated: object.translations_migrated?,
-          translations: translations
+          translations: translations,
+          campaign_user: context[:campaign_user]
         }
       ).to_a
     end

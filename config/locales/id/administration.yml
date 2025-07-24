@@ -292,10 +292,8 @@ id:
       ai_assistants: Asisten AI
       ai_assistants_playground: Taman Bermain Asisten AI
       column:
-        ai_action: Aksi AI
         provider: Penyedia
       form:
-        action: Perbuatan
         description: Deskripsi
         name: Nama
         provider: Penyedia
@@ -1494,6 +1492,8 @@ id:
         update:
           successfully: Proyek %{name} berhasil diperbarui.
       registration_codes:
+        actions:
+          add_code: Tambahkan Kode
         column:
           code: Kode
           usage_stats: Statistik penggunaan
@@ -1504,6 +1504,13 @@ id:
           incorrect_domain: Format domain salah.
           invalid_end_date: harus lebih besar dari tanggal mulai
           license_issue: Lisensi tidak cukup.
+        form:
+          active: Aktif
+          code: Kode
+          end_date: Tanggal Akhir
+          name: Nama
+          start_date: Tanggal Mulai
+          total_count: Jumlah Total
       resource:
         confirmations:
           delete:
@@ -2383,15 +2390,12 @@ id:
       export:
         failure_msg: Kesalahan saat mengekspor terjemahan
         success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung.
-      export_action:
-        translations: Ekspor Terjemahan Peran Pekerjaan
       form:
         code: Kode
         description: Deskripsi
         job_group: Kelompok Pekerjaan
         name: Nama
         title: Peran Pekerjaan
-      global: Apakah Peran Pekerjaan Global?
       import:
         download_example_csv: Unduh Contoh csv
         success_msg: File yang diunggah telah diantrekan untuk impor. Silakan periksa status di notifikasi.
@@ -2401,14 +2405,8 @@ id:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Tingkat Kemahiran yang Diharapkan
-        job_role: Peran Pekerjaan
-        skill: Keahlian
       form:
-        expected_proficiency_level: Tingkat Kemahiran yang Diharapkan
-        job_role: Peran Pekerjaan
-        skill: Keahlian
         title: Pemetaan Pekerjaan Keterampilan
-      global: Apakah Pemetaan Pekerjaan Keterampilan Global?
       import:
         taxonomy: Taksonomi
     job_roles:
@@ -2701,14 +2699,8 @@ id:
           level_definition_must_match_level: harus berisi persis %{expected} level, tetapi %{actual} diberikan
           must_be_unique: Harus unik
           proficiency_level_exists: Tingkat Kecakapan dengan keterampilan dan proyek ini sudah ada
-          proficiency_level_exists_for_all_skills: Tingkat Kecakapan untuk semua keterampilan sudah keluar
-          proficiency_level_exists_for_category: Tingkat Kecakapan untuk kategori ini sudah ada
-          project_level_all_skills_exists: Tingkat kemahiran 'all_skills' sudah ada
           skill_must_exist: Keterampilan harus ada untuk proficiency_type 'by_skill'
       export:
-        actions:
-          proficiency: Kemahiran Ekspor
-          translations: Ekspor Terjemahan Kecakapan
         details: Rincian
         failure_msg: Kesalahan saat mengekspor tingkat kecakapan
         success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung
@@ -2721,28 +2713,18 @@ id:
         proficiency_translations: Terjemahan Kemahiran
         proficiency_type: Jenis kemahiran
         skill: Keahlian
-        skill_category: Kategori Keterampilan
         skill_name: Nama keterampilan
         title: Kemampuan
-      global: Apakah Kemahiran Global?
       import:
         actions:
           proficiency: Kemahiran Impor
           translations: Terjemahan Kemahiran Impor
         errors:
-          all_skills_global_exists: 'Baris %{row_number}: Tingkat Kecakapan ''all_skills'' tingkat global sudah ada'
-          all_skills_project_exists: 'Baris %{row_number}: Tingkat Kecakapan ''all_skills'' tingkat proyek sudah ada'
-          by_category_exists: 'Baris %{row_number}: Tingkat Kecakapan ''by_category'' sudah ada untuk kategori proyek dan keterampilan ini'
-          by_category_missing: 'Baris %{row_number}: Kategori Proyek dan Keterampilan harus ada untuk jenis ''by_category'''
           by_skill_exists: 'Baris %{row_number}: Tingkat Kecakapan ''by_skill'' sudah ada untuk proyek dan keterampilan ini'
           by_skill_missing: 'Baris %{row_number}: Proyek dan Keterampilan harus ada untuk jenis ''by_skill'''
           invalid_csv_format: 'Format CSV tidak valid: %{message}'
-          invalid_json: 'Baris %{line}: JSON tidak valid di LevelDefinition - %{message}'
-          invalid_json_structure: harus berupa objek JSON dengan kunci seperti 'description' dan 'summary'
           invalid_proficiency_type: 'Baris %{row_number}: Tidak valid atau tidak ada ProficiencyType'
           missing_columns: 'Kolom wajib tidak ada: %{fields}'
-          missing_required_fields: 'Baris %{line}: Kolom wajib jawab tidak ada (%{fields})'
-          save_failed: 'Baris %{line}: %{message}'
           skill_not_found: 'Baris %{row_number}: Keterampilan tidak valid atau hilang'
         job_queued: Tugas impor tingkat kemahiran telah diantri
       translations:
@@ -2759,8 +2741,6 @@ id:
             row_id_blank: 'Baris %{row}: ID tidak boleh kosong'
             save_failed: 'Error memproses ID Skill %{id}: %{message}'
       type:
-        all_skills: Semua Keterampilan
-        by_category: Berdasarkan Kategori
         by_skill: Berdasarkan Keterampilan
     profile:
       change_password: Ubah kata sandi
@@ -3123,6 +3103,7 @@ id:
         user_name: Nama pengguna
       dashboard: Dashboard
       download: Mengunduh
+      report_approval_settings: Pengaturan Persetujuan Laporan
       report_approvals: Laporan Persetujuan
       review: Resensi
       saving_filters:
@@ -3244,6 +3225,13 @@ id:
         successfully: Laporan '%{name}' berhasil dihapus.
       edit:
         header: Edit Nama Laporan
+      edit_default_language:
+        agreement: Ya, saya memahami implikasi dari perubahan bahasa default.
+        warning:
+          description_li_1: Mengubah bahasa default dari bahasa RTL ke bahasa LTR atau sebaliknya akan mempengaruhi tata letak.
+          description_li_2: Anda harus mengerjakan ulang terjemahan laporan jika Anda mengubah bahasa default.
+          description_li_3: Unduh salinan terjemahan laporan sebelum melakukan perubahan ini.
+          title: Harap baca instruksi dengan seksama
       modals:
         remap_assessment:
           new_assessment_name: Nama Penilaian Baru
@@ -3702,12 +3690,8 @@ id:
         details: Rincian
         failure_msg: Kesalahan saat mengekspor terjemahan
         success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung.
-        title: Ekspor
         translations:
           details: Terjemahan Keterampilan
-      export_action:
-        skills_title: Ekspor Keterampilan
-        skills_translations_title: Ekspor Keterampilan Terjemahan
       form:
         client_placeholder: Pilih Klien
         description: Deskripsi
@@ -3716,9 +3700,6 @@ id:
         skill_group: Kelompok Keterampilan
         skill_type: Jenis Keterampilan
         title: Keahlian
-      global: Apakah Keterampilan Global?
-      global_skills: Keterampilan Global
-      global_translations: Terjemahan Keterampilan Global
       import:
         download_example_csv: Unduh Contoh csv
         info_msg: File yang diunggah telah diantrekan untuk impor. Silakan periksa status di notifikasi.
@@ -3728,8 +3709,6 @@ id:
         skills_translations_title: Impor Terjemahan Keterampilan
       skill_details: Detail Keterampilan
       skill_translations: Keterampilan Terjemahan
-      skill_translations_project: Terjemahan Keterampilan berdasarkan Proyek
-      skills_project: Keterampilan berdasarkan Proyek
       title: Keterampilan
       translations:
         import:
@@ -3740,7 +3719,6 @@ id:
             skill_not_found: Keterampilan dengan ID %{id} tidak ditemukan
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Pemetaan Pekerjaan Keterampilan
         job_roles: Peran Pekerjaan
         proficiency: Kemampuan
         skills: Keterampilan
@@ -3950,7 +3928,6 @@ id:
         taxonomy: Taksonomi Impor
       job_roles: Peran Pekerjaan
       proficiency: Kemampuan
-      skill_job_mappings: Pemetaan Pekerjaan Keterampilan
       skills: Keterampilan
       title: Taksonomi
     templates:
@@ -4053,6 +4030,7 @@ id:
           invitations: Undangan
           reminders: Pengingat
           report_ready: Laporan Siap
+        consolidated: Dikonsolidasikan
         custom_message:
           description: Pesan ini dapat dikirim ke siapa saja yang berpartisipasi dalam penilaian
           name: Pesan Kustom
@@ -4076,7 +4054,10 @@ id:
         request_approval:
           description: Pesan ini dikirim ke manajer saat subjek meminta persetujuan
           name: Minta Persetujuan
+        save: Simpan
+        schedule: Jadwal
         schedule_email: Jadwalkan Email
+        schedule_email_title: Jadwalkan Email
         schedule_time: Jadwal Waktu
         send_test_email: Kirim Email Uji
         subject: Subyek
@@ -4117,6 +4098,14 @@ id:
         welcome_message:
           description: Pesan ini akan ditampilkan kepada subjek saat mereka masuk untuk memulai penilaian atau melihat daftar tugas mereka
           name: Pesan Selamat Datang
+      mail_history:
+        actions: Tindakan
+        date: Tanggal
+        download_details: Unduh Detail
+        emails_sent: Email Terkirim
+        recipient: Penerima
+        status: Status
+        subject: Subjek
       manage:
         assessment: Penilaian
         dimension: Dimensi
@@ -4124,19 +4113,45 @@ id:
         report: Lapor
         title: Urus
       menu:
+        actions: Tindakan
         datasheet:
           title: Lembar data
         messages:
+          allow_subjects_to_send_reminders: Memungkinkan subjek untuk mengirim pengingat kepada evaluator
+          automatically_send_invites: Secara otomatis mengirim undangan ke evaluator baru
           title: Pesan
         participants:
+          columns:
+            action: Tindakan
+            email: Email
+            evaluations_completed: Evaluasi Selesai
+            evaluations_received: Evaluasi yang Diterima
+            is_subject: Apakah Subjek
+            name: Nama
+            report_status: Status Laporan
+            status: Status
+          evaluators:
+            add_evaluators: Menambahkan Evaluator
+            import_evaluators: Evaluator Impor
+            title: Evaluator
+          managers:
+            title: Manajer
+          options:
+            evaluator_options: Opsi Evaluator
+            global: Opsi Global
+            manager_options: Opsi Manajer
+            subject_options: Pilihan Mata Pelajaran
+            title: Pilihan
           subjects:
             add_subjects: Tambahkan Subjek
             current_job_role: Peran Pekerjaan Saat Ini
             email: Email
             first_name: Nama depan
+            import_subjects: Subjek Impor
             last_name: Nama Belakang
             locale: Lokal
             target_job_role: Peran Pekerjaan Target
+            title: Subjek
           title: Peserta
         report:
           menu:
@@ -4152,8 +4167,26 @@ id:
         mail_history: Riwayat Surat
         options: Pilihan
       reports:
+        add_conditions: Tambahkan Ketentuan
+        administrator_approves_reports: Administrator menyetujui laporan
+        allow_manager_to_view_individual_responses: Izinkan Manajer untuk melihat tanggapan individu
+        disable_report_download: Menonaktifkan pengunduhan laporan
+        edit_email: Edit email
+        email_manager_when_report_is_ready_for_approval: Manajer Email saat laporan siap untuk disetujui
+        email_subject_when_report_becomes_available: Subjek email saat laporan tersedia
+        email_subjects_manager_when_available: Manajer subjek email saat laporan tersedia
+        make_report_available_to_subject_when: 'Membuat laporan tersedia untuk subjek ketika:'
+        manager_approves_reports: Manajer menyetujui laporan
+        manager_can_access_subject_reports: Manajer dapat mengakses laporan subjek
+        manager_cannot_access_subject_reports: Manajer tidak dapat melihat laporan sampai persyaratan terpenuhi
+        report_access: Akses Laporan
+        report_approval: Persetujuan Laporan
+        report_availability: Ketersediaan Laporan
         show:
           title: Laporan Subjek
+        subject_can_access_reports: Subjek dapat mengakses laporan mereka
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Tandai lisensi sebagai dinonaktifkan
     time_zone: Zona Waktu
     tools: Perkakas
     translations:

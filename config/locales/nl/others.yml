@@ -329,12 +329,13 @@ nl:
             email:
               blank: E-mail kan niet leeg zijn
               not_uniq_email: Rij met e-mail is al aanwezig
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ten minste één functierol moet ingeschakeld zijn met een vaardigheidstype geselecteerd voor %{block_name}
-              invalid_skill_type: 'Ongeldig vaardigheidstype %{skill_type} voor %{role_name} voor %{block_name}. Geldige opties: %{valid_options}'
-              props_missing: Job
+              at_least_one_job_role_required: Ten minste één functierol is vereist voor %{skill_type} voor %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Minstens één vaardigheidstype moet ingeschakeld zijn met een functierol geselecteerd voor %{block_name}
+              invalid_job_role_type: 'Ongeldige functierol %{job_role} voor %{skill_type} voor %{block_name}. Geldige opties: %{valid_options}'
+              props_missing: Configuratie voor vaardigheden ontbreekt voor %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ nl:
           case_study: Casestudies
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulier hoofdbeoordelaar
           meeting: Vergadering
           organisational: Enquêtes
           pearson: Pearson
@@ -789,6 +791,8 @@ nl:
           attributes:
             current_password:
               invalid: Huidig wachtwoord is onjuist
+            manager_id:
+              cannot_be_self: Gebruiker kan niet worden toegewezen als zijn eigen manager
         user_idp_comment:
           reply_to_reply: Kan niet reageren op een antwoord (slechts één niveau van nesten toegestaan)
         user_idp_plan:
@@ -859,9 +863,9 @@ nl:
         import_raw_data: Ruwe gegevens importeren
         import_reflection_questions: Reflectievragen importeren
         import_scoring_data: Scoringsgegevens importeren
+        import_skill_rater_taxonomies: Taxonomieën voor vaardigheidsbeoordelaars importeren
         import_skill_translations: Importvaardigheden Vertalingen
         import_skills: Vaardigheden importeren
-        import_skills_rater_taxonomies: Taxonomieën voor vaardigheidsbeoordelaars importeren
         import_sms_invites: SMS-uitnodiging importeren
         import_users: Gebruikers importeren
         migrate_assessment_translations: Beoordeling Vertaalmigratie
@@ -1731,6 +1735,7 @@ nl:
       import: Importeren
       insert: Invoegen
       ok: OK
+      publish: Publiceer
       reject: Verwerpen
       remove: Verwijder
       reset: Reset
@@ -1746,6 +1751,7 @@ nl:
       start: Start
       submit: Opslaan
       unarchive: Unarchive
+      unpublish: Verwijder
       unresolve: Niet oplossen
       update: Update
       upload: Uploaden
@@ -1849,7 +1855,6 @@ nl:
       default: Standaard
       download: Downloaden
       file: Bestand
-      global_export: Is wereldwijde export?
       global_import: Is Global Import?
       minutes: Notulen
       na: N.V.T
@@ -2052,6 +2057,7 @@ nl:
         reserved_subdomain: Subdomein %{value} is gereserveerd
         uniq_subdomain: Subdomein moet uniek zijn.
       add_manager:
+        cannot_be_self: Gebruiker kan niet worden toegewezen als zijn eigen manager
         manager_not_found: Manager niet gevonden of geen onderdeel van hetzelfde project
         user_not_found: Gebruiker niet gevonden of maakt geen deel uit van hetzelfde project
       admin:
@@ -2070,11 +2076,17 @@ nl:
       campaign_factor_group:
         group_already_exists: Er bestaat al een groep met dezelfde naam.
         last_factor_group: Kan laatste Campagnefactor-groep niet verwijderen.
+      campaign_idps:
+        idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de campagne toewijst.
       cant_be_deleted: Deze record kan niet worden verwijderd
       client_feature:
         ai_assisted_idp_feature_error: Kan niet waar zijn als de functie voor ai-assistenten is uitgeschakeld
       create_superadmin:
         uniq_email: E-mail moet uniek zijn.
+      development_actions:
+        only_global_skills_allowed: De geselecteerde vaardigheden moeten globale vaardigheden zijn.
+        skills_not_belong_to_project: De geselecteerde vaardigheden moeten bij het opgegeven project horen.
+        skills_required: Selecteer minstens één vaardigheid.
       exceeded_subjects_count: Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
       filled?: kan niet leeg zijn
       idp_template:
@@ -2122,6 +2134,7 @@ nl:
         start_time_should_be_less: Starttijd moet korter zijn dan eindtijd
       user_idp_plan:
         idp_template_already_assigned_to_user: Dit Idp-sjabloon is al toegewezen aan deze gebruiker en is actief
+        idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de gebruiker toewijst.
       user_saved_filters:
         limit_exceeded: Je kunt maar %{limit} opgeslagen filters hebben. Verwijder opgeslagen filters om er meer toe te voegen.
         unique_name: Er bestaat al een filter met dezelfde naam.
@@ -2507,6 +2520,7 @@ nl:
       submit_plan: Plan indienen
       write_here: Schrijf hier...
     edit_plan: Plan bewerken
+    edit_progress: Vooruitgang bewerken
     initial_steps:
       add_skill_group_description: Op basis van de resultaten van je assessment zijn hier een aantal sterke punten en ontwikkelingsgebieden voor jou. Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
       add_skill_group_title: Je %{category} vaardigheden verkennen
@@ -2544,6 +2558,7 @@ nl:
       cover:
         fields:
           assigned_data: Toegewezen datum
+          assigned_date: Toegewezen Datum
           completion_date: Voltooiingsdatum
           division: Divisie
           name: Naam
@@ -2604,6 +2619,7 @@ nl:
       statuses:
         approved: Beoordeeld en goedgekeurd
         completed: Volbracht
+        draft: Ontwerp
         not_reviewed: Niet beoordeeld
         pending_approval: In recensie
       summary:
@@ -3597,11 +3613,35 @@ nl:
       exactly: Precies %{count}
     nominations: Nominaties
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Geef beoordelaars de mogelijkheid om nominatie te weigeren
+        email_subject_when_nomination_declined: Onderwerp e-mail wanneer een nominatie is afgewezen
       form:
         value_not_valid: heeft geen geldige waarde
       global:
         cannot_re_edit: Deelnemers kunnen evaluaties niet bewerken
         disable_all_evaluations: Alle evaluaties uitschakelen
+      manager:
+        allow_subjects_to_email: Laat proefpersonen managers e-mailen wanneer hun nominaties klaar zijn voor goedkeuring
+        approves_evaluations: Manager keurt evaluaties goed
+        approves_nominations: Manager keurt nominaties goed
+        can_view_nominations: Manager kan nominaties bekijken
+        email_managers_when_nomination_ready: Managers een e-mail sturen wanneer de nominatie van een proefpersoon klaar is voor goedkeuring
+        email_subject_when_nomination_denied: Onderwerp e-mail wanneer een nominatie is afgewezen
+        may_choose_evaluators: Manager mag evaluatoren kiezen
+      subject:
+        allow_subjects_to_select_relationships: Laat proefpersonen relaties selecteren
+        anyone_in_assessment: Iedereen in de beoordeling
+        anyone_in_datasheet: Iedereen in het gegevensblad
+        anyone_not_in_assessment: Iedereen die momenteel niet wordt beoordeeld
+        can_view_evaluators: Onderwerp kan evaluatoren bekijken
+        define_nomination_requirement: Vereiste nominatie definiëren
+        limit_search_by_criteria: Zoekopdracht beperken op criteria
+        nominates_evaluators: Proefpersoon nomineert evaluatoren
+        only_allow_relationships_of_specified_types: Sta alleen relaties toe van gespecificeerde types
+        only_show_subjects_who_match_criteria: 'Toon alleen onderwerpen die aan de volgende criteria voldoen:'
+        self_evaluates: Proefpersoon evalueert zelf
+        subjects_cannot_remove_nominations: Proefpersonen kunnen geen nominaties verwijderen die zijn ingesteld door managers of admins
     or: Of
     page_title: Signify 360° Review - Aanpassen
     participant_list:
@@ -3816,7 +3856,6 @@ nl:
       add: Rapport toevoegen
       download: Downloaden
       generate: Genereren
-      regenerate: Regenereer
     approval_statuses:
       approved: Goedgekeurd
       change_requested: Aangevraagde wijziging

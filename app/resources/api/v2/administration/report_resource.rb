@@ -26,10 +26,6 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
     @model.updated_by_id = context[:user].id
   end
 
-  def self.updatable_fields(_)
-    super - %i[default_language]
-  end
-
   def remove
     return super if @model.deleted?
 

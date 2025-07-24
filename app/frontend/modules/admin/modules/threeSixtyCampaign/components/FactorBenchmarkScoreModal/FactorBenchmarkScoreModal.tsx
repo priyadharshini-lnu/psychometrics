@@ -28,7 +28,7 @@ interface BenchmarkScore {
 }
 
 export default function FactorBenchmarkScoreModal ({
-  campaignId, dimensionId, currentUser,
+  campaignId, dimensionId, permissions,
   close,
 }) {
   const [benchmarks, setBenchmarks] = useState({})
@@ -41,7 +41,7 @@ export default function FactorBenchmarkScoreModal ({
     },
   })
 
-  const canManage = currentUser.permissions.manageFactorBenchmarkScores
+  const canManage = permissions.manageFactorBenchmarkScores
 
   const {
     fetch: fetchScores, collectionAction, isLoading: scoresLoading,

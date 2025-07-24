@@ -9,7 +9,6 @@ import { SkillsFormModal } from './SkillsFormModal'
 import { SkillsTable } from './SkillsTable'
 import { SkillsFilter } from './SkillsFilter'
 import { SkillsImportModal } from './SkillsImportModal'
-import { SkillsExportModal } from './SkillsExportModal'
 import { Tabs } from '../Tabs'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { getFeatures } from '~/core/config'
@@ -18,7 +17,6 @@ import { RootState } from '~/core/reducers'
 const MODALS = {
   SkillsImportModal,
   SkillsFormModal,
-  SkillsExportModal,
 }
 
 const connecter = connect(

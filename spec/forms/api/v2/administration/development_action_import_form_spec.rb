@@ -184,6 +184,85 @@ describe Api::V2::Administration::DevelopmentActionImportForm do
           )
         )
       end
+
+      context 'project validation' do
+        let(:project) { create(:project) }
+        let(:other_project) { create(:project) }
+        let!(:development_action_in_project) { create(:development_action, project_id: project.id) }
+        let!(:development_action_in_other_project) { create(:development_action, project_id: other_project.id) }
+
+        it 'validates development action belongs to project when project_id is set' do
+          form.project_id = project.id
+
+          allow(CSVSafe).to receive(:read).with(
+            invalid_data_csv.path,
+            encoding: 'bom|utf-8'
+          ).and_return([
+            %w[ID SkillID Name Description Type DevelopmentActionType],
+            [development_action_in_other_project.id.to_s, '1', 'Test', 'Desc', 'structured_learning', 'course']
+          ])
+
+          form.valid?
+          expect(form.errors[:base]).to include(
+            I18n.t(
+              'administration.development_action_import.errors.development_action_not_in_project',
+              development_action_id: development_action_in_other_project.id,
+              row: 2
+            )
+          )
+        end
+
+        it 'allows development action that belongs to the project' do
+          form.project_id = project.id
+
+          allow(CSVSafe).to receive(:read).with(
+            invalid_data_csv.path,
+            encoding: 'bom|utf-8'
+          ).and_return([
+            %w[ID SkillID Name Description Type DevelopmentActionType],
+            [development_action_in_project.id.to_s, '1', 'Test', 'Desc', 'structured_learning', 'course']
+          ])
+
+          form.valid?
+          expect(form.errors[:base]).not_to include(
+            match(/does not belong to this project/)
+          )
+        end
+
+        it 'skips validation when development action ID is blank' do
+          form.project_id = project.id
+
+          allow(CSVSafe).to receive(:read).with(
+            invalid_data_csv.path,
+            encoding: 'bom|utf-8'
+          ).and_return([
+            %w[ID SkillID Name Description Type DevelopmentActionType],
+            ['', '1', 'Test', 'Desc', 'structured_learning', 'course']
+          ])
+
+          form.valid?
+          expect(form.errors[:base]).not_to include(
+            match(/does not belong to this project/)
+          )
+        end
+
+        it 'skips validation when project_id is blank' do
+          form.project_id = nil
+
+          allow(CSVSafe).to receive(:read).with(
+            invalid_data_csv.path,
+            encoding: 'bom|utf-8'
+          ).and_return([
+            %w[ID SkillID Name Description Type DevelopmentActionType],
+            [development_action_in_other_project.id.to_s, '1', 'Test', 'Desc', 'structured_learning', 'course']
+          ])
+
+          form.valid?
+          expect(form.errors[:base]).not_to include(
+            match(/does not belong to this project/)
+          )
+        end
+      end
     end
 
     context 'with valid CSV file' do

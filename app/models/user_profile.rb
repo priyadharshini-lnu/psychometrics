@@ -13,7 +13,6 @@ class UserProfile < ApplicationRecord
   before_save do
     self.locale = locale.presence
   end
-  after_save :sync_data, if: proc { custom_fields_previously_changed? }
 
   belongs_to :user
   has_one_image_attachment :photo, variants: [:icon]

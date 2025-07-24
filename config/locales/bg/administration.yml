@@ -292,10 +292,8 @@ bg:
       ai_assistants: ИИ асистенти
       ai_assistants_playground: ИИ асистент детска площадка
       column:
-        ai_action: Действие с ИИ
         provider: Доставчик
       form:
-        action: Действие
         description: Описание
         name: Име
         provider: Доставчик
@@ -1494,6 +1492,8 @@ bg:
         update:
           successfully: Проектът %{name} беше актуализиран успешно.
       registration_codes:
+        actions:
+          add_code: Добавяне на код
         column:
           code: Код
           usage_stats: Статистика на използването
@@ -1504,6 +1504,13 @@ bg:
           incorrect_domain: Неправилен формат на домейна.
           invalid_end_date: трябва да е по-голямо от началната дата
           license_issue: Няма достатъчно лицензи.
+        form:
+          active: Активен
+          code: Код
+          end_date: Крайна дата
+          name: Име
+          start_date: Начална дата
+          total_count: Общ брой
       resource:
         confirmations:
           delete:
@@ -2383,15 +2390,12 @@ bg:
       export:
         failure_msg: Грешка при експортиране на преводи
         success_msg: Текущи действия за развитие на износа.
-      export_action:
-        translations: Експортиране на преводи на роли за работа
       form:
         code: Код
         description: Описание
         job_group: Работна група
         name: Име
         title: Длъжностна роля
-      global: Глобалната роля на работата ли е?
       import:
         download_example_csv: Изтегляне на пример csv
         success_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
@@ -2401,14 +2405,8 @@ bg:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Очаквано ниво на владеене
-        job_role: Длъжностна роля
-        skill: Умение
       form:
-        expected_proficiency_level: Очаквано ниво на владеене
-        job_role: Длъжностна роля
-        skill: Умение
         title: Картографиране на работни места за умения
-      global: Глобалното картографиране на работата за умения ли е?
       import:
         taxonomy: Таксономия
     job_roles:
@@ -2701,14 +2699,8 @@ bg:
           level_definition_must_match_level: трябва да съдържа точно %{expected} нива, но са дадени %{actual}
           must_be_unique: Трябва да е уникално
           proficiency_level_exists: Ниво на владеене с това умение и проект вече съществува
-          proficiency_level_exists_for_all_skills: Ниво на владеене за всички умения, които вече са завършени
-          proficiency_level_exists_for_category: Ниво на владеене за тази категория вече съществува
-          project_level_all_skills_exists: Вече съществува "all_skills" ниво на владеене
           skill_must_exist: Умението трябва да присъства за proficiency_type "by_skill"
       export:
-        actions:
-          proficiency: Умения за износ
-          translations: Експортиране на преводи за умения
         details: Подробности
         failure_msg: Грешка при експортиране на нива на владеене
         success_msg: Изнасяне на действия за развитие в ход
@@ -2721,28 +2713,18 @@ bg:
         proficiency_translations: Преводи за професионализъм
         proficiency_type: Тип владеене
         skill: Умение
-        skill_category: Категория на уменията
         skill_name: Име на умението
         title: Владеене
-      global: Глобално владеене ли е?
       import:
         actions:
           proficiency: Умения за импортиране
           translations: Импортиране на преводи за умения
         errors:
-          all_skills_global_exists: 'Ред %{row_number}: Вече съществува ниво "all_skills" на глобално ниво'
-          all_skills_project_exists: 'Ред %{row_number}: Вече съществува ниво на знание "all_skills" на ниво проект'
-          by_category_exists: 'Ред %{row_number}: Ниво на владеене "by_category" вече съществува за този проект и категория умения'
-          by_category_missing: 'Ред %{row_number}: Проектът и категорията на умението трябва да присъстват за тип "by_category"'
           by_skill_exists: 'Ред %{row_number}: Ниво на владеене "by_skill" вече съществува за този проект и умение'
           by_skill_missing: 'Ред %{row_number}: Проектът и умението трябва да присъстват за тип ''by_skill'''
           invalid_csv_format: 'Невалиден CSV формат: %{message}'
-          invalid_json: 'Ред %{line}: Невалиден JSON в LevelDefinition - %{message}'
-          invalid_json_structure: трябва да е JSON обект с ключове като 'description' и 'summary'
           invalid_proficiency_type: 'Ред %{row_number}: Невалиден или липсващ ProficiencyType'
           missing_columns: 'Липсват задължителни колони: %{fields}'
-          missing_required_fields: 'Ред %{line}: Липсват задължителни полета (%{fields})'
-          save_failed: 'Ред %{line}: %{message}'
           skill_not_found: 'Ред %{row_number}: Невалидно или липсващо умение'
         job_queued: Заданието за импортиране на нива на владеене е поставено на опашка
       translations:
@@ -2759,8 +2741,6 @@ bg:
             row_id_blank: 'Ред %{row}: ИД не може да бъде празен'
             save_failed: 'Грешка при обработката Идентификатор на умението %{id}: %{message}'
       type:
-        all_skills: Всички умения
-        by_category: По категория
         by_skill: По умения
     profile:
       change_password: Промяна на паролата
@@ -3123,6 +3103,7 @@ bg:
         user_name: Потребителско име
       dashboard: Таблото
       download: Свалям
+      report_approval_settings: Настройки за одобряване на отчети
       report_approvals: Докладване на одобрения
       review: Преглед
       saving_filters:
@@ -3244,6 +3225,13 @@ bg:
         successfully: Докладът "%{name}" е изтрит успешно.
       edit:
         header: Редактиране на името на отчета
+      edit_default_language:
+        agreement: Да, разбирам последиците от промяната на езика по подразбиране.
+        warning:
+          description_li_1: Промяната на езика по подразбиране от RTL на LTR език или обратно ще се отрази на оформлението.
+          description_li_2: Ако промените езика по подразбиране, ще трябва да преработите преводите на отчетите.
+          description_li_3: Изтеглете копие на преводите на доклади, преди да направите тази промяна.
+          title: Моля, прочетете внимателно инструкциите
       modals:
         remap_assessment:
           new_assessment_name: Ново име на оценяване
@@ -3702,12 +3690,8 @@ bg:
         details: Подробности
         failure_msg: Грешка при експортиране на преводи
         success_msg: Текущи действия за развитие на износа.
-        title: Износ
         translations:
           details: Преводи на умения
-      export_action:
-        skills_title: Експортиране на умения
-        skills_translations_title: Експортиране на преводи на умения
       form:
         client_placeholder: Изберете клиент
         description: Описание
@@ -3716,9 +3700,6 @@ bg:
         skill_group: Група умения
         skill_type: Тип умение
         title: Умение
-      global: Глобално умение ли е?
-      global_skills: Глобални умения
-      global_translations: Преводи на глобални умения
       import:
         download_example_csv: Изтегляне на пример csv
         info_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
@@ -3728,8 +3709,6 @@ bg:
         skills_translations_title: Импортиране на преводи на умения
       skill_details: Подробности за уменията
       skill_translations: Преводи на умения
-      skill_translations_project: Преводи на умения въз основа на проект
-      skills_project: Умения, базирани на проект
       title: Умения
       translations:
         import:
@@ -3740,7 +3719,6 @@ bg:
             skill_not_found: Умение с идентификатор %{id} не е намерено
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Съпоставяне на работни места за умения
         job_roles: Работни роли
         proficiency: Владеене
         skills: Умения
@@ -3950,7 +3928,6 @@ bg:
         taxonomy: Таксономия на вноса
       job_roles: Работни роли
       proficiency: Владеене
-      skill_job_mappings: Съпоставяне на работни места за умения
       skills: Умения
       title: Таксономия
     templates:
@@ -4053,6 +4030,7 @@ bg:
           invitations: Покани
           reminders: Напомняния
           report_ready: Докладът е готов
+        consolidated: Консолидиран
         custom_message:
           description: Това съобщение може да бъде изпратено на всеки, който участва в оценяването
           name: Персонализирано съобщение
@@ -4076,7 +4054,10 @@ bg:
         request_approval:
           description: Това съобщение се изпраща на мениджърите, когато субект поиска одобрение
           name: Поискайте одобрение
+        save: Запазете
+        schedule: График
         schedule_email: Насрочете имейл
+        schedule_email_title: Имейл за планиране
         schedule_time: Време по график
         send_test_email: Изпратете тестов имейл
         subject: Предмет
@@ -4117,6 +4098,14 @@ bg:
         welcome_message:
           description: Това съобщение ще се покаже на субектите, когато влязат, за да започнат оценяването или да прегледат списъка си със задачи
           name: Приветствено съобщение
+      mail_history:
+        actions: Действия
+        date: Дата
+        download_details: Изтегляне на подробности
+        emails_sent: Изпратени имейли
+        recipient: Получател
+        status: Статус
+        subject: Тема
       manage:
         assessment: Оценка
         dimension: Размери
@@ -4124,19 +4113,45 @@ bg:
         report: Доклад
         title: Управлявам
       menu:
+        actions: Действия
         datasheet:
           title: Лист с данни
         messages:
+          allow_subjects_to_send_reminders: Позволете на субектите да изпращат напомняния на оценителите
+          automatically_send_invites: Автоматично изпращане на покани до нови оценители
           title: Съобщения
         participants:
+          columns:
+            action: Действие
+            email: Имейл
+            evaluations_completed: Завършени оценки
+            evaluations_received: Получени оценки
+            is_subject: Е предмет
+            name: Име
+            report_status: Състояние на доклада
+            status: Статус
+          evaluators:
+            add_evaluators: Добавяне на оценители
+            import_evaluators: Внос на оценители
+            title: Оценители
+          managers:
+            title: Мениджъри
+          options:
+            evaluator_options: Опции за оценител
+            global: Глобални опции
+            manager_options: Опции за мениджър
+            subject_options: Възможности за избор на тема
+            title: Опции
           subjects:
             add_subjects: Добавяне на теми
             current_job_role: Текуща длъжност
             email: Имейл
             first_name: Собствено име
+            import_subjects: Теми за внос
             last_name: Презиме
             locale: Място
             target_job_role: Целева роля
+            title: Субекти
           title: Участниците
         report:
           menu:
@@ -4152,8 +4167,26 @@ bg:
         mail_history: История на пощата
         options: Опции
       reports:
+        add_conditions: Добавяне на условия
+        administrator_approves_reports: Администраторът одобрява докладите
+        allow_manager_to_view_individual_responses: Позволете на мениджъра да преглежда индивидуални отговори
+        disable_report_download: Деактивиране на изтеглянето на доклади
+        edit_email: Редактиране на имейл
+        email_manager_when_report_is_ready_for_approval: Изпращане на имейл до мениджъра, когато отчетът е готов за одобрение
+        email_subject_when_report_becomes_available: Тема на имейл, когато докладът стане достъпен
+        email_subjects_manager_when_available: Изпратете имейл на мениджъра на обекта, когато докладът стане достъпен
+        make_report_available_to_subject_when: 'Предоставете доклада на субекта, когато:'
+        manager_approves_reports: Мениджърът одобрява докладите
+        manager_can_access_subject_reports: Мениджърът има достъп до отчетите на субектите
+        manager_cannot_access_subject_reports: Мениджърът не може да види отчета, докато не бъдат изпълнени изискванията
+        report_access: Достъп до доклад
+        report_approval: Одобряване на доклада
+        report_availability: Наличност на доклада
         show:
           title: Тематичен доклад
+        subject_can_access_reports: Субектът може да получи достъп до своите доклади
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Маркиране на лицензите като деактивирани
     time_zone: Часова зона
     tools: Инструменти
     translations:

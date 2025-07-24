@@ -151,7 +151,7 @@ const UserDevelopmentPlanComponent = ({
 
   const searchSkillResource = useSearchSkills()
 
-  const skillCategories = _.map(_.groupBy(allSkills, 'skillType'), (skills, skillType) => ({
+  const skillTypes = _.map(_.groupBy(allSkills, 'skillType'), (skills, skillType) => ({
     skillType,
     skills,
   }))
@@ -162,8 +162,10 @@ const UserDevelopmentPlanComponent = ({
   }
 
   useEffect(() => {
+    setIsLoading(true)
     fetchUserIdpPlan(idpUserId).then(({ response }) => {
       setSelectedSkills(response.data.userIdpSkills)
+      setIsLoading(false)
     }).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))
       navigate('/')
@@ -460,7 +462,7 @@ const UserDevelopmentPlanComponent = ({
         />
         <AddSkillsStep
           addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
-          skillCategories={skillCategories}
+          skillTypes={skillTypes}
           onFinishAddSkill={handleFinishAddSkill}
           selectedSkills={selectedSkills}
           onDeselectSkill={handleDeselectSkill}

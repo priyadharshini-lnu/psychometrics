@@ -73,6 +73,7 @@ export const fetch = (campaignId: string, tableConfig: TableConfig) => ({
     debounce: 500,
     tableConfig,
     url: `/administration/new_campaigns/${campaignId}/users`,
+    loader: true,
   },
 })
 
@@ -189,7 +190,7 @@ export const setUserDetails = (userDetails: UserDetails) => ({
   userDetails,
 })
 
-export const addManager = (projectId: number, UserId: number, managerId: number) => ({
+export const addManager = (projectId: number, UserId: number, managerId: number | null) => ({
   type: ADD_MANAGER,
   request: {
     method: 'put',

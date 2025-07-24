@@ -15,7 +15,7 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
     get 'List Job Roles' do
       operationId 'getJobRoles'
       description 'Lists all job roles for a project, optionally including global roles'
-      tags 'SkillsRaterJobRoles'
+      tags 'SkillRaterJobRoles'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
@@ -43,30 +43,6 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
         end
       end
 
-      context 'with include_global_roles filter' do
-        response '200', 'returns both project specific and global job roles' do
-          let(:project_id) { project.id }
-          let(:'filter[include_global_roles]') { 'true' }
-
-          before do
-            create_list(:job_role, 3, project: project, job_group: job_group)
-            create_list(:job_role, 2, project: nil)
-            create(:job_role, project: create(:project))
-          end
-
-          run_test! do |response|
-            expect(response).to have_http_status(:ok)
-            json_response = JSON.parse(response.body)
-            expect(json_response['data'].size).to eq(5)
-
-            project_ids = json_response['data'].map do |role|
-              role['attributes']['project_id']
-            end
-            expect(project_ids).to include(project.id, nil)
-          end
-        end
-      end
-
       context 'all job roles' do
         response '200', 'returns all job roles when no filter applied' do
           before do
@@ -78,7 +54,7 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
           run_test! do |response|
             expect(response).to have_http_status(:ok)
             json_response = JSON.parse(response.body)
-            expect(json_response['data'].size).to eq(6)
+            expect(json_response['data'].size).to eq(2)
           end
         end
       end
@@ -87,7 +63,7 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
     post 'Create Job Role' do
       operationId 'createJobRole'
       description 'Creates a new job role'
-      tags 'SkillsRaterJobRoles'
+      tags 'SkillRaterJobRoles'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
@@ -130,7 +106,7 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
     patch 'Update Job Role' do
       operationId 'updateJobRole'
       description 'Updates a job role'
-      tags 'SkillsRaterJobRoles'
+      tags 'SkillRaterJobRoles'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
@@ -160,7 +136,7 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
     delete 'Delete Job Role' do
       operationId 'deleteJobRole'
       description 'Deletes a job role'
-      tags 'SkillsRaterJobRoles'
+      tags 'SkillRaterJobRoles'
       consumes 'application/vnd.api+json'
       security [basic: []]
 

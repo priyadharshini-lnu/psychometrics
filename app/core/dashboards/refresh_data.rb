@@ -12,10 +12,6 @@ module Dashboards
     def call
       return broadcast :ok if campaign.campaign_datasheet.nil?
 
-      ApplicationRecord.transaction do
-        Sheets::CreateFlatSheetView.call!(campaign.campaign_datasheet)
-        Sheets::CreateFlatSheetView.call!(campaign.accesssheet) if campaign.accesssheet
-      end
       begin
         PowerBi::RefreshDataset.call!(dashboard.dataset_id)
       rescue PowerBi::RefreshFailedError => e

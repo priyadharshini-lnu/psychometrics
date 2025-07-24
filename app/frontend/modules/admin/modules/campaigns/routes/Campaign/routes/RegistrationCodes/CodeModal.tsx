@@ -47,45 +47,45 @@ const CodeFormModal: React.FC<Props> = ({
         <>
           <Form.Item
             name="name"
-            label="Name"
+            label={I18n.t('administration.clients.registration_codes.form.name')}
             rules={[{ required: true }]}
           >
             <Input name="registraion_code_name" />
           </Form.Item>
           <Form.Item
             name="code"
-            label="Code"
+            label={I18n.t('administration.clients.registration_codes.form.code')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="totalCount"
-            label="Total count"
+            label={I18n.t('administration.clients.registration_codes.form.total_count')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="startDate"
-            label="Start Date"
+            label={I18n.t('administration.clients.registration_codes.form.start_date')}
             rules={[{ required: true }]}
           >
             <DatePicker showTime format="YYYY-MM-DD HH:mm" className={styles.datepicker} />
           </Form.Item>
           <Form.Item
             name="endDate"
-            label="End Date"
+            label={I18n.t('administration.clients.registration_codes.form.end_date')}
             rules={[{ required: true }]}
           >
             <DatePicker showTime format="YYYY-MM-DD HH:mm" className={styles.datepicker} />
           </Form.Item>
           <Form.Item
             name="disabled"
-            label="Active"
+            label={I18n.t('administration.clients.registration_codes.form.active')}
             valuePropName="checked"
           >
-            <Checkbox>Active</Checkbox>
+            <Checkbox>{I18n.t('administration.clients.registration_codes.form.active')}</Checkbox>
           </Form.Item>
           <Form.Item
             name="restrictedDomains"

@@ -13,7 +13,7 @@ export default function AvailabilityRequirement ({
   addNewLogicalSetCondition,
   moveConditionToNextLogicSet,
 }) {
-  const defaultRelationshipId = relationships[0].id
+  const defaultRelationshipId = relationships[0]?.id
   if (_.isEmpty(conditions)) {
     return (
       <div
@@ -22,7 +22,7 @@ export default function AvailabilityRequirement ({
         role="button"
         tabIndex={0}
       >
-        Add conditions
+        {I18n.t('administration.threesixty_campaigns.reports.add_conditions')}
       </div>
     )
   }

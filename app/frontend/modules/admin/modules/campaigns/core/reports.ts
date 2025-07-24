@@ -47,6 +47,8 @@ export const REMOVE_REPORT_BY_IDS = 'resource/campaigns/report/REMOVE_REPORT_BY_
 export const BULK_DOWNLOAD = 'campaigns/reports/BULK_DOWNLOAD'
 export const EXPORT_DATA = 'campaigns/reports/EXPORT_DATA'
 export const FETCH_OTHER_REPORTS = 'campaigns/FETCH_OTHER_REPORTS'
+export const UPDATE_DEFAULT_AND_AVAILABLE_LOCALES = 'campaigns/reports/UPDATE_DEFAULT_AND_AVAILABLE_LOCALES'
+
 
 export const remove = (campaignId: number, campaignReportId: number, removeUserReports: boolean) => ({
   type: REMOVE,
@@ -114,18 +116,20 @@ export const selectRecords = (ids: number[]) => ({
 
 type SelectRecordsType = ReturnType<typeof selectRecords>
 
-export const regenerateReports = (campaignId: number, ids: number[]) => ({
+export const regenerateReports = (campaignId: number, data:
+{selectedReports: { [key: string]: string[] }, ids: number[]}) => ({
   type: REGENERATE_REPORTS,
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/reports/regenerate`,
-    body: { ids },
+    body: { data },
     loader: true,
   },
 })
 
 export const bulkDownload = (
   campaignId: number,
+  selectedReports: { [key: string]: string[] },
   ids: number[],
   startDate: Date,
   endDate: Date,
@@ -137,6 +141,7 @@ export const bulkDownload = (
     url: `/administration/new_campaigns/${campaignId}/reports/bulk_download`,
     body: {
       ids,
+      selectedReports,
       startDate,
       endDate,
       includeInactiveUsers,
@@ -154,6 +159,18 @@ export const exportData = (campaignId: number, reportId: number) => ({
   },
 })
 
+export const updateDefaultAndAvailableLocales = (
+  campaignId: string, campaignReportId: string, body: { defaultLanguage: string, availableLanguages: string[] },
+) => ({
+  type: UPDATE_DEFAULT_AND_AVAILABLE_LOCALES,
+  id: parseInt(campaignReportId, 10),
+  request: {
+    method: 'patch',
+    url: `/administration/new_campaigns/${campaignId}/reports/${campaignReportId}/update_default_and_available_locales`,
+    body,
+  },
+})
+
 type RemoveResponse = number
 
 type FetchType = ApiActionResponse<{
@@ -164,6 +181,9 @@ type FetchType = ApiActionResponse<{
 type CreateType = ApiActionResponse<{ reports: Report[] }>
 type ToggleUserAccessType = ApiActionResponse<Report>
 type RemoveType = ApiActionResponse<RemoveResponse>
+type UpdateDefaultAndAvailableLocalesType = ApiActionResponse<{
+  defaultLanguage: string, availableLanguages: string[],
+}>
 interface ToggleAssessorAccessType extends Action {
   id: number
 }
@@ -252,6 +272,16 @@ const HANDLERS = {
       if (report.id !== id) return report
 
       return { ...report, autoAssign: !report.autoAssign }
+    }))
+  ),
+  [UPDATE_DEFAULT_AND_AVAILABLE_LOCALES]: (state: State, {
+    requestAction: { id },
+    response,
+  }: UpdateDefaultAndAvailableLocalesType) => (
+    updateIn(state, ['list'], (reports: Report[]) => _.map(reports, (report: Report) => {
+      if (report.id !== id) return report
+      const { defaultLanguage, availableLanguages } = response
+      return { ...report, defaultLanguage, availableLanguages }
     }))
   ),
   [SELECT_RECORDS]: (state: State, { payload: { ids } }: SelectRecordsType) => ({ ...state, selectedIds: ids }),

@@ -25,6 +25,7 @@ module AdminJobs
 
     def self.validate(data, owner)
       if AdminJobRecord.where('data::jsonb @> ?::jsonb', data.to_json).exists?(owner: owner,
+                                                                               parent_job_id: nil,
                                                                                status: %i[scheduled in_progress])
         raise AdminJob::AlreadyExistsError
       end

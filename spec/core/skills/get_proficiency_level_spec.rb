@@ -19,23 +19,23 @@ RSpec.describe Skills::GetProficiencyLevel do
       end
     end
 
-    context 'when project-level by_category proficiency level exists and by_skill does not' do
+    context 'when project-level by_skill_type proficiency level exists and by_skill does not' do
       let!(:proficiency_level) do
-        create(:proficiency_level, project_id: project.id, skill_category: skill.skill_type,
-        proficiency_type: 'by_category')
+        create(:proficiency_level, project_id: project.id, skill_type: skill.skill_type,
+        proficiency_type: 'by_skill_type')
       end
 
-      it 'falls back to by_category and broadcasts' do
+      it 'falls back to by_skill_type and broadcasts' do
         expect { call_command }.to broadcast(:ok, proficiency_level: proficiency_level)
       end
     end
 
-    context 'when project-level all_skills proficiency level exists and others don’t' do
+    context 'when project-level default proficiency level exists and others don’t' do
       let!(:proficiency_level) do
-        create(:proficiency_level, project_id: project.id, proficiency_type: 'all_skills')
+        create(:proficiency_level, project_id: project.id, proficiency_type: 'default')
       end
 
-      it 'falls back to all_skills and broadcasts' do
+      it 'falls back to default and broadcasts' do
         expect { call_command }.to broadcast(:ok, proficiency_level: proficiency_level)
       end
     end
@@ -50,22 +50,22 @@ RSpec.describe Skills::GetProficiencyLevel do
       end
     end
 
-    context 'when no project-level or global by_skill, but global by_category exists' do
+    context 'when no project-level or global by_skill, but global by_skill_type exists' do
       let!(:proficiency_level) do
-        create(:proficiency_level, project_id: nil, skill_category: skill.skill_type, proficiency_type: 'by_category')
+        create(:proficiency_level, project_id: nil, skill_type: skill.skill_type, proficiency_type: 'by_skill_type')
       end
 
-      it 'returns the global by_category level' do
+      it 'returns the global by_skill_type level' do
         expect { call_command }.to broadcast(:ok, proficiency_level: proficiency_level)
       end
     end
 
-    context 'when only global all_skills proficiency level exists' do
+    context 'when only global default proficiency level exists' do
       let!(:proficiency_level) do
-        create(:proficiency_level, project_id: nil, proficiency_type: 'all_skills')
+        create(:proficiency_level, project_id: nil, proficiency_type: 'default')
       end
 
-      it 'returns the global all_skills level' do
+      it 'returns the global default level' do
         expect { call_command }.to broadcast(:ok, proficiency_level: proficiency_level)
       end
     end

@@ -21,6 +21,8 @@ module UsersResults::ControllerConcern
       ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
     end
 
+    campaign_user = CampaignUser.find_by(campaign_id: @users_result.campaign_id, user_id: user_assessment.subject_id)
+
     render json: UsersResultUpdateSerializer.new(
       context: {
         current_block_id: params[:current_block_id],
@@ -28,7 +30,8 @@ module UsersResults::ControllerConcern
         threesixty_campaign: @users_result.campaign.threesixty_campaign,
         campaign: @users_result.campaign,
         locale: current_user.locale,
-        progress_was_reseted: progress_was_reseted
+        progress_was_reseted: progress_was_reseted,
+        campaign_user: campaign_user
       }
     ).serialize(@users_result)
   end

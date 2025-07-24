@@ -8,22 +8,22 @@ describe Campaign, type: :model do
 
   describe '#datasheet_columns' do
     it 'returns campaign datasheet columns if there is not project datasheet' do
-      datasheet = create(:datasheet, campaign: campaign, columns: [{ name: 'Name', type: 'String' }])
+      datasheet = create(:datasheet, campaign: campaign)
       create(:sheet_column, name: 'Name', column_type: 'string', sheet: datasheet)
 
       expect(campaign.datasheet_columns).to eq([{ 'name' => 'Name', 'type' => 'String' }])
     end
 
     it 'return project datsheet columns if there is no campaign datasheet' do
-      datasheet = create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }])
+      datasheet = create(:datasheet, project: project)
       create(:sheet_column, name: 'Name', column_type: 'string', sheet: datasheet)
 
       expect(campaign.datasheet_columns).to eq([{ 'name' => 'Name', 'type' => 'String' }])
     end
 
     it 'returns combined datasheet columns' do
-      c_datasheet = create(:datasheet, campaign: campaign, columns: [{ name: 'Title', type: 'Text' }])
-      p_datasheet = create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }])
+      c_datasheet = create(:datasheet, campaign: campaign)
+      p_datasheet = create(:datasheet, project: project)
       create(:sheet_column, name: 'Title', column_type: 'text', sheet: c_datasheet)
       create(:sheet_column, name: 'Name', column_type: 'string', sheet: p_datasheet)
 
@@ -32,8 +32,8 @@ describe Campaign, type: :model do
     end
 
     it 'returns combined datasheet columns with different types' do
-      c_datasheet = create(:datasheet, campaign: campaign, columns: [{ name: 'Name', type: 'Text' }])
-      p_datasheet = create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }])
+      c_datasheet = create(:datasheet, campaign: campaign)
+      p_datasheet = create(:datasheet, project: project)
       create(:sheet_column, name: 'Name', column_type: 'text', sheet: c_datasheet)
       create(:sheet_column, name: 'Name', column_type: 'string', sheet: p_datasheet)
 
@@ -51,8 +51,8 @@ describe Campaign, type: :model do
   end
 
   describe '#datasheet_data' do
-    let(:campaign_datasheet) { create(:datasheet, campaign: campaign, columns: [{ name: 'Name', type: 'String' }]) }
-    let(:project_datasheet) { create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }]) }
+    let(:campaign_datasheet) { create(:datasheet, campaign: campaign) }
+    let(:project_datasheet) { create(:datasheet, project: project) }
 
     it 'returns campaign datasheet columns if there is not project datasheet' do
       col = create(:sheet_column, name: 'Name', column_type: 'string', sheet: campaign_datasheet)

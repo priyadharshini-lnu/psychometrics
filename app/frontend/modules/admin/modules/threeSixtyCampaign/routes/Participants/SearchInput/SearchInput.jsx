@@ -7,6 +7,8 @@ import routeUtils from '~/utils/route'
 import styles from './styles.less'
 import settings from '../../../settings'
 
+const { I18n } = window
+
 export default function Search ({
   onChange: onChangeCallback, path, searchTerm,
 }) {
@@ -26,7 +28,7 @@ export default function Search ({
     <Input
       value={value}
       onChange={onChange}
-      placeholder="Search..."
+      placeholder={I18n.t('common.actions.search')}
       suffix={<SearchOutlined />}
       className={styles.container}
     />

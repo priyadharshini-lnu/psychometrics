@@ -70,7 +70,7 @@ export const AdminRolesForm: React.FC<Props> = ({
             <Fragment key={grantFor}>
               <Form.Item
                 name={['permissions', `${grantFor}`]}
-                label={_.startCase(grantFor)}
+                label={I18n.t(`administration.administrators.permissions.labels.${grantFor}.title`)}
                 className="mb-5"
               >
                 <Checkbox.Group>

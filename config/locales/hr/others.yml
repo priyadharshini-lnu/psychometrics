@@ -437,6 +437,7 @@ hr:
           case_study: Studije slučaja
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Obrazac glavnog procjenitelja
           meeting: Sastanak
           organisational: Ankete
           pearson: Pearson
@@ -861,7 +862,6 @@ hr:
         import_scoring_data: Uvoz podataka o bodovanju
         import_skill_translations: Uvoz prijevoda vještina
         import_skills: Vještine uvoza
-        import_skills_rater_taxonomies: Unošenje klasifikacije ocjenjivača vještina
         import_sms_invites: Uvoz SMS pozivnice
         import_users: Uvoz korisnika
         migrate_assessment_translations: Procjena Migracija prijevoda
@@ -1850,7 +1850,6 @@ hr:
       default: Zadano
       download: Preuzeti
       file: Datoteka
-      global_export: Je li globalni izvoz?
       global_import: Je li globalni uvoz?
       minutes: Minuta
       na: N/A
@@ -2098,11 +2097,17 @@ hr:
       campaign_factor_group:
         group_already_exists: Grupa s istim imenom već postoji.
         last_factor_group: Nije moguće izbrisati posljednju grupu faktora kampanje.
+      campaign_idps:
+        idp_template_not_published: Ovaj predložak IDP -a još nije objavljen, objavite ga prije nego što dodijelite kampanju.
       cant_be_deleted: Ovaj zapis se ne može izbrisati
       client_feature:
         ai_assisted_idp_feature_error: Ne može biti istina ako je značajka AI pomoćnika onemogućena
       create_superadmin:
         uniq_email: E-pošta bi trebala biti jedinstvena.
+      development_actions:
+        only_global_skills_allowed: Odabrane vještine moraju biti globalne vještine.
+        skills_not_belong_to_project: Odabrane vještine moraju pripadati navedenom projektu.
+        skills_required: Odaberite barem jednu vještinu.
       exceeded_subjects_count: Možete dodati samo %{count} ispitanika po pozivnici
       filled?: ne može biti prazan
       idp_template:
@@ -2150,6 +2155,7 @@ hr:
         start_time_should_be_less: Vrijeme početka trebalo bi biti kraće od vremena završetka
       user_idp_plan:
         idp_template_already_assigned_to_user: Ovaj Idp predložak već je dodijeljen ovom korisniku i aktivan je
+        idp_template_not_published: Ovaj predložak IDP -a još nije objavljen, objavite ga prije dodjele korisniku.
       user_saved_filters:
         limit_exceeded: Možete imati samo %{limit} spremljenih filtara, ljubazno izbrišite spremljene filtre da biste dodali još.
         unique_name: Filtar s istim imenom već postoji.
@@ -2471,6 +2477,7 @@ hr:
       aria_selected: Odabrani
   idp:
     actions: Akcije
+    behavioral: Bihevioralne
     board: Odbor
     comment_details:
       add_comment: Dodaj komentar
@@ -2535,6 +2542,7 @@ hr:
       submit_plan: Pošalji plan
       write_here: Napišite ovdje...
     edit_plan: Uredi plan
+    edit_progress: Uredi napredak
     initial_steps:
       add_skill_group_description: Na temelju rezultata vaše procjene, evo nekih od područja snaga i razvoja za vas. Odaberite vještine koje želite dalje razvijati kao dio svog razvojnog plana.
       add_skill_group_title: Istraživanje vaših vještina %{category}
@@ -2572,6 +2580,7 @@ hr:
       cover:
         fields:
           assigned_data: Dodijeljeni datum
+          assigned_date: Datum dodjele
           completion_date: Datum završetka
           division: Podjela
           name: Ime
@@ -2607,10 +2616,32 @@ hr:
           main: Ovaj odjeljak uključuje kumulativni popis svih razvojnih putova, imajući na umu najbolju praksu učenja, tj. smjernice 70-20-10, koje pružaju progresivno putovanje kombinirajući učenje u učionici, podučavanje i učenje na radnom mjestu. Na temelju ishoda iskustva razvoja vodstva i poslovnih prioriteta preporučeni su mogući razvojni putovi koji se mogu uzeti u obzir za vaš razvoj.
         learn_cards:
           collaboration:
+            list:
+            - Ponudite mentorstvo ili podučavanje drugima
+            - Zatražite mentorstvo od stručnjaka u svom području
+            - Pronađite mentora za podršku svom razvoju
+            - Organizirajte suradničku radnu grupu za raspravu o izazovima u poslovanju
+            - Dobijte povratne informacije formalno i neformalno od drugih
+            - Aktivno sudjelujte u industrijskim udrugama i mrežama
+            - Izgradite vlastite vanjske mreže
             title: Suradničko učenje (20%) <br/> Razvoj pomoću drugih
           job:
+            list:
+            - Preuzmite liderske pozicije u odborima ili upravljačkim tijelima
+            - Volontirajte za vođenje projekata upravljanja promjenama u organizaciji
+            - Razmotrite preuzimanje zahtjevnijih zadataka
+            - Radite međufunkcionalno s drugim odjelima
+            - Razmotrite vođenje projekata izvan vaše organizacije
+            - Tijesno surađujte s vanjskim stručnjacima na zajedničkim projektima
             title: Učenje na poslu (70%) <br/> Razvoj kroz iskustvo
           learn:
+            list:
+            - Preuzmite liderske pozicije u odborima ili upravljačkim tijelima
+            - Volontirajte za vođenje projekata upravljanja promjenama u organizaciji
+            - Razmotrite preuzimanje zahtjevnijih zadataka
+            - Radite međufunkcionalno s drugim odjelima
+            - Razmotrite vođenje projekata izvan vaše organizacije
+            - Tijesno surađujte s vanjskim stručnjacima na zajedničkim projektima
             title: Formalno učenje (10%) <br/> Razvoj kroz strukturirano učenje
         title: Smjernice za usmjeravanje vašeg IDP-a
       idp:
@@ -2632,6 +2663,7 @@ hr:
       statuses:
         approved: Pregledano i odobreno
         completed: Završeno
+        draft: Nacrt
         not_reviewed: Nije pregledano
         pending_approval: Pregledava se
       summary:
@@ -2668,6 +2700,7 @@ hr:
     skill_gap_report:
       title: Izvješće o nedostatku vještina
     status: Status
+    technical: Tehnički
     user_idp_status:
       approved: Odobreno
       completed: Završeno
@@ -3625,11 +3658,35 @@ hr:
       exactly: Točno %{count}
     nominations: Nominacije
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Dopustite evaluatorima da odbace nominaciju
+        email_subject_when_nomination_declined: Predmet e-pošte kada je nominacija odbijena
       form:
         value_not_valid: nema valjanu vrijednost
       global:
         cannot_re_edit: Sudionici ne mogu uređivati ​​evaluacije
         disable_all_evaluations: Onemogući sve procjene
+      manager:
+        allow_subjects_to_email: Dopustite ispitanicima da pošalju e-poštu menadžerima kada su njihove nominacije spremne za odobrenje
+        approves_evaluations: Menadžer odobrava evaluacije
+        approves_nominations: Menadžer odobrava nominacije
+        can_view_nominations: Menadžer može vidjeti nominacije
+        email_managers_when_nomination_ready: Pošaljite e-poštu menadžerima kada je nominacija ispitanika spremna za odobrenje
+        email_subject_when_nomination_denied: Predmet e-pošte kada je nominacija odbijena
+        may_choose_evaluators: Menadžer može odabrati evaluatore
+      subject:
+        allow_subjects_to_select_relationships: Dopustite ispitanicima da odaberu odnose
+        anyone_in_assessment: Bilo tko u procjeni
+        anyone_in_datasheet: Bilo tko u podatkovnoj tablici
+        anyone_not_in_assessment: Bilo tko koji trenutno nije u procjeni
+        can_view_evaluators: Ispitanik može vidjeti evaluatore
+        define_nomination_requirement: Definirajte zahtjev za nominaciju
+        limit_search_by_criteria: Ograničite pretragu prema kriterijima
+        nominates_evaluators: Ispitanik nominira evaluatore
+        only_allow_relationships_of_specified_types: Dozvolite samo odnose određenih vrsta
+        only_show_subjects_who_match_criteria: 'Pokažite samo ispitanike koji odgovaraju sljedećim kriterijima:'
+        self_evaluates: Ispitanik se samoevaluira
+        subjects_cannot_remove_nominations: Ispitanici ne mogu ukloniti nominacije koje su postavili menadžeri ili administratori
     or: Ili
     page_title: Signify 360° pregled - Primjena razine
     participant_list:
@@ -3844,7 +3901,6 @@ hr:
       add: Dodati izvješća
       download: Preuzeti
       generate: Generirati
-      regenerate: Obnoviti
     approval_statuses:
       approved: Odobreno
       change_requested: Zatražena promjena

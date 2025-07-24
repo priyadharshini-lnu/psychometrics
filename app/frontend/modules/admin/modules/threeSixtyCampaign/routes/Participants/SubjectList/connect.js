@@ -18,8 +18,8 @@ export default connect(
         list, total, permissions,
       },
       campaignDetails: {
-        campaignId: currentCampaignId, reportAvailableLanguages, reportDefaultLanguage,
-        reportIcon, reportName,
+        id: threeSixtyCampaignId, reportAvailableLanguages, reportDefaultLanguage,
+        reportIcon, reportName, category,
       },
     },
   }) => ({
@@ -30,9 +30,10 @@ export default connect(
     reportDefaultLanguage,
     page: routeUtils.getPage(),
     searchTerm: routeUtils.getSearchTerm(),
-    currentCampaignId,
+    threeSixtyCampaignId,
     reportIcon,
     reportName,
+    category,
   }),
   dispatch => ({
     fetchSubjects: (campaignId, page, query) => dispatch(fetchSubjects(campaignId, page, query)),

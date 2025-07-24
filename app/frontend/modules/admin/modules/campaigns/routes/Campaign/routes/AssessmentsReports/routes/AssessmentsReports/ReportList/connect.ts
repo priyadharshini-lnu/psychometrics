@@ -1,4 +1,6 @@
 import { connect, ConnectedProps } from 'react-redux'
+import { isRequestInProgress } from '~/core/request'
+import { FETCH_ASSESSMENTS_AND_REPORTS } from '~/modules/admin/modules/campaigns/core/current'
 import {
   get as getReports,
   selectRecords, toggleAssessorAccess,
@@ -13,6 +15,7 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 const connecter = connect(
   (state: RootState) => ({
     reports: getReports(state),
+    isReportsLoading: isRequestInProgress(state, FETCH_ASSESSMENTS_AND_REPORTS),
   }),
   {
     openModal,

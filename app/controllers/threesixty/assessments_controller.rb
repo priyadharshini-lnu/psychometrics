@@ -8,6 +8,7 @@ module Threesixty
     def index
       result = participant.users_result
       assessment = @campaign.assessment
+      campaign_user = CampaignUser.find_by(campaign_id: @campaign.campaign_id, user_id: participant.subject_id)
       authorize [:threesixty, assessment]
 
       piped_text_context = {
@@ -23,7 +24,8 @@ module Threesixty
         context: {
           include: '**',
           selected_locale: @selected_locale,
-          piped_text_context: piped_text_context
+          piped_text_context: piped_text_context,
+          campaign_user: campaign_user
         }
       ).serialize(assessment)
     end

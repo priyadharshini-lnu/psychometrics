@@ -174,6 +174,8 @@ pt:
             title: Modelos de PDI
             view: Ver
           jobRoles:
+            export_translations: Exportação Funções de trabalho Traduções
+            import_translations: Importar traduções de funções de trabalho
             manage: Gerir
             title: Funções
             view: Ver
@@ -292,10 +294,8 @@ pt:
       ai_assistants: Assistentes de IA
       ai_assistants_playground: Parque de jogos do assistente de IA
       column:
-        ai_action: Ação de IA
         provider: Fornecedor
       form:
-        action: Ação
         description: Descrição
         name: Nome
         provider: Fornecedor
@@ -844,6 +844,14 @@ pt:
     campaign_factors_import:
       errors:
         invalid_headers: 'Os seguintes cabeçalhos são inválidos: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Selecione o intervalo de datas
+        modal:
+          subtitle: Selecione um intervalo de datas e, em seguida, selecione a língua necessária para cada relatório
+      generate:
+        modal:
+          subtitle: Selecionar a língua necessária para cada relatório
     campaign_templates:
       campaign_templates: Modelos de campanha
       column:
@@ -961,7 +969,9 @@ pt:
             empty: Vazio
             inactive: Inativo
             name: Nome
+            normal: Normal
             previous: Anterior
+            skill_rater: Avaliador de competências
             standard: Padrão
             status: Estado
           close:
@@ -1494,6 +1504,8 @@ pt:
         update:
           successfully: O projeto %{name} foi atualizado com êxito.
       registration_codes:
+        actions:
+          add_code: Adicionar código
         column:
           code: Código
           usage_stats: Estatísticas de utilização
@@ -1504,6 +1516,13 @@ pt:
           incorrect_domain: Formato de domínio incorreto.
           invalid_end_date: tem de ser superior à data de início
           license_issue: Não há licenças suficientes.
+        form:
+          active: Ativo
+          code: Código
+          end_date: Data final
+          name: Nome
+          start_date: Data de início
+          total_count: Contagem total
       resource:
         confirmations:
           delete:
@@ -1533,6 +1552,7 @@ pt:
       reset: Reiniciar
       save: Guardar
       select_all: Selecionar tudo
+      type: Tipo
       unselect_all: Desmarcar tudo
     communication_settings: Definições
     communications:
@@ -1621,6 +1641,7 @@ pt:
         type: Tipo
       list:
         actions: Acções
+        assessment_center_group: Grupo do Centro de Avaliação
         author: Criado por
         campaign: Campanha
         client_name: Cliente
@@ -1768,6 +1789,7 @@ pt:
       errors:
         blank_field: 'Linha %{row}: %{field} não pode estar em branco'
         csv_file_required: Deve ser um ficheiro CSV
+        development_action_not_in_project: 'Linha %{row}: O ID da Ação de Desenvolvimento %{development_action_id} não pertence a este projeto'
         image_download_failed: 'Falha ao descarregar a imagem de %{url}: %{message}'
         invalid_csv_format: 'Formato CSV inválido: %{message}'
         invalid_date: O formato de data para %{date} é inválido.
@@ -2097,18 +2119,22 @@ pt:
       all: Todos
       appearance: Aparência
       appearance_hint: Para modificar o aspeto, guarde primeiro o modelo IDP para ativar estas definições.
+      appearance_success: Definições de aspeto guardadas com êxito
       background_image: Imagem de fundo
       behavioral_skills: Competências comportamentais
       client_skills: Competências dos clientes
+      details_updated: Detalhes do PDI actualizados com êxito
       edit_template: Editar modelo de PDI
+      enter_tag_or_skills_error: Selecionar pelo menos uma etiqueta ou competência
       enter_template_description: Descrição
       enter_template_description_error: A descrição do modelo é obrigatória.
       enter_template_name: Nome
       enter_template_name_error: O nome do modelo é obrigatório
       errors:
-        update: Atualização não permitida porque o modelo IDP já está associado a um plano IDP do utilizador. As alterações de aparência foram guardadas.
+        update: Atualização não permitida porque o modelo IDP já está associado a um plano IDP do utilizador.
       fields:
         assigned_data: Dados atribuídos
+        assigned_date: Data atribuída
         completion_date: Data de conclusão
         division: Divisão
         name: Nome
@@ -2146,6 +2172,11 @@ pt:
       show_reflections: Mostrar reflexões
       skill_gap_report: Relatório de défice de competências
       skills: Competências
+      skills_updated: Competências do PDI actualizadas com êxito
+      status:
+        draft: Projeto
+        published: Publicado
+      status_updated: Estado da PDI atualizado com êxito
       subtitle_text: Texto da legenda
       tab:
         development_actions: Acções de desenvolvimento
@@ -2378,43 +2409,43 @@ pt:
         rescheduled: Reagendado
       subject: Assunto
     job_role:
+      are_you_sure_to_remove: Tem a certeza de que vai retirar?
       column:
         job_group: Grupo de trabalho
+        skill_name: Nome da habilidade
       export:
         failure_msg: Erro ao exportar traduções
         success_msg: Acções de desenvolvimento de exportação em curso.
-      export_action:
-        translations: Exportação Função Traduções
       form:
         code: Código
         description: Descrição
         job_group: Grupo de trabalho
         name: Nome
         title: Função
-      global: O trabalho global é uma função?
       import:
         download_example_csv: Descarregar Exemplo csv
         success_msg: O ficheiro carregado foi colocado em fila de espera para importação. Verifique o estado nas notificações.
       import_action:
         translations: Importar traduções de funções de trabalho
+      job_role_details: Detalhes do cargo
       translations: Traduções de funções
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Nível de proficiência esperado
-        job_role: Função
-        skill: Habilidade
       form:
-        expected_proficiency_level: Nível de proficiência esperado
-        job_role: Função
-        skill: Habilidade
         title: Mapeamento de funções de competências
-      global: O Global Skill Job Mapping é um mapeamento de empregos?
       import:
         taxonomy: Taxonomia
     job_roles:
       export:
         translations:
           details: Detalhes
+      translations:
+        import:
+          errors:
+            job_role_not_found: Função de trabalho com ID %{id} não encontrada
+            missing_columns: 'Faltam colunas obrigatórias: %{colunas}'
+            save_failed: 'Erro ao processar o ID da função de trabalho %{id}: %{mensagem}'
     libraries:
       create:
         successfully: O item %{name} foi criado com êxito.
@@ -2701,14 +2732,11 @@ pt:
           level_definition_must_match_level: deve conter exatamente os níveis %{expected}, mas foram dados %{actual}
           must_be_unique: Deve ser único
           proficiency_level_exists: Já existe um ProficiencyLevel com esta competência e projeto
-          proficiency_level_exists_for_all_skills: Já existe um nível de proficiência para todas as competências
-          proficiency_level_exists_for_category: Já existe um ProficiencyLevel para esta categoria
-          project_level_all_skills_exists: Já existe um nível de proficiência 'all_skills'
+          proficiency_level_exists_for_default: Já existe um nível de proficiência por defeito
+          proficiency_level_exists_for_type: Já existe um Nível de Proficiência para este tipo
+          project_level_default_exists: Já existe um nível de proficiência "por defeito
           skill_must_exist: A competência deve estar presente para o tipo de competência "por competência
       export:
-        actions:
-          proficiency: Proficiência em exportação
-          translations: Traduções para exportação
         details: Detalhes
         failure_msg: Erro ao exportar níveis de proficiência
         success_msg: Exportação de acções de desenvolvimento em curso
@@ -2721,28 +2749,23 @@ pt:
         proficiency_translations: Traduções de Proficiência
         proficiency_type: Tipo de proficiência
         skill: Habilidade
-        skill_category: Categoria de competências
         skill_name: Nome da habilidade
+        skill_type: Tipo de habilidade
         title: Proficiência
-      global: A proficiência global é?
       import:
         actions:
           proficiency: Proficiência em importação
           translations: Traduções de Proficiência em Importação
         errors:
-          all_skills_global_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''all_skills'' de nível global'
-          all_skills_project_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''all_skills'' ao nível do projeto'
-          by_category_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''by_category'' para este projeto e categoria de competências'
-          by_category_missing: 'Linha %{row_number}: O projeto e a categoria de competência têm de estar presentes para o tipo ''by_category'
           by_skill_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''by_skill'' para este projeto e competência'
           by_skill_missing: 'Linha %{row_number}: O projeto e a competência têm de estar presentes para o tipo ''by_skill'
+          by_skill_type_exists: 'Linha %{número_da_linha}: Já existe um ProficiencyLevel ''''by_skill_type'''' para este projeto e tipo de competência'
+          by_skill_type_missing: 'Linha %{número_da_linha}: O projeto e o tipo de competência têm de estar presentes para o tipo ''''by_skill_type'''''
+          default_global_exists: 'Linha %{número_da_linha}: Já existe um ProficiencyLevel ''''predefinido'''' a nível global'
+          default_project_exists: 'Linha %{número_da_linha}: Já existe um ProficiencyLevel "predefinido" ao nível do projeto'
           invalid_csv_format: 'Formato CSV inválido: %{message}'
-          invalid_json: 'Linha %{line}: JSON inválido em LevelDefinition - %{message}'
-          invalid_json_structure: deve ser um objeto JSON com chaves como "description" e "summary
           invalid_proficiency_type: 'Linha %{row_number}: ProficiencyType inválido ou em falta'
           missing_columns: 'Colunas obrigatórias em falta: %{fields}'
-          missing_required_fields: 'Linha %{line}: Faltam campos obrigatórios (%{fields})'
-          save_failed: 'Linha %{line}: %{message}'
           skill_not_found: 'Linha %{row_number}: Competência inválida ou em falta'
         job_queued: A tarefa de importação de níveis de proficiência foi colocada em fila de espera
       translations:
@@ -2759,9 +2782,9 @@ pt:
             row_id_blank: 'Linha %{row}: O ID não pode estar em branco'
             save_failed: 'Erro ao processar o ID de competência %{id}: %{message}'
       type:
-        all_skills: Todas as competências
-        by_category: Por categoria
         by_skill: Por Habilidade
+        by_skill_type: Por tipo de habilidade
+        default: Predefinição
     profile:
       change_password: Alterar a palavra-passe
       details: Detalhes
@@ -3123,6 +3146,7 @@ pt:
         user_name: Nome do utilizador
       dashboard: Painel de controlo
       download: Descarregar
+      report_approval_settings: Configurações de aprovação de relatório
       report_approvals: Aprovações de relatórios
       review: Revisão
       saving_filters:
@@ -3244,6 +3268,15 @@ pt:
         successfully: O relatório '%{name}' foi eliminado com êxito.
       edit:
         header: Editar nome do relatório
+      edit_default_language:
+        agreement: Sim, compreendo as implicações da mudança de língua por defeito.
+        title: Editar idioma predefinido
+        tooltip: Editar idioma predefinido
+        warning:
+          description_li_1: A alteração do idioma predefinido de RTL para LTR ou vice-versa afectará a apresentação.
+          description_li_2: Teria de refazer as traduções dos relatórios se alterasse a língua predefinida.
+          description_li_3: Descarregue uma cópia das traduções do relatório antes de efetuar esta alteração.
+          title: Ler atentamente as instruções
       modals:
         remap_assessment:
           new_assessment_name: Novo nome de avaliação
@@ -3286,6 +3319,9 @@ pt:
         successfully: O relatório foi atualizado com êxito.
       update:
         successfully: O relatório %{name} foi atualizado com êxito.
+    reports_language_selection_modal:
+      download: Descarregar relatório
+      generate: Gerar relatório
     resource:
       remove_confirm:
         message: Tem a certeza de que pretende remover este recurso?
@@ -3695,6 +3731,7 @@ pt:
         import:
           missing_fields_data: 'Linha %{line_number}: Campos obrigatórios em falta: %{fields}'
           save_failed: 'Linha %{line_number}: Falha ao guardar a habilidade ''%{name}'': %{message}'
+          skill_not_in_project: 'Linha %{line_number}: O ID da habilidade %{skill_id} não pertence a este projeto'
         search:
           all_and_project_id_mutually_exclusive: Todos não podem ser verdadeiros quando project_id_eq é fornecido
           invalid_all_value: 'deve ser um de: verdadeiro, falso'
@@ -3705,12 +3742,8 @@ pt:
         details: Detalhes
         failure_msg: Erro ao exportar traduções
         success_msg: Acções de desenvolvimento de exportação em curso.
-        title: Exportação
         translations:
           details: Traduções de competências
-      export_action:
-        skills_title: Competências de exportação
-        skills_translations_title: Competências de exportação Traduções
       form:
         client_placeholder: Selecionar um cliente
         description: Descrição
@@ -3719,9 +3752,6 @@ pt:
         skill_group: Grupo de competências
         skill_type: Tipo de habilidade
         title: Habilidade
-      global: A Competência Global?
-      global_skills: Competências globais
-      global_translations: Global Skills Traduções
       import:
         download_example_csv: Descarregar Exemplo csv
         info_msg: O ficheiro carregado foi colocado em fila de espera para importação. Verifique o estado nas notificações.
@@ -3731,8 +3761,6 @@ pt:
         skills_translations_title: Traduções de competências de importação
       skill_details: Detalhes da habilidade
       skill_translations: Competências Traduções
-      skill_translations_project: Traduções de competências com base no projeto
-      skills_project: Competências baseadas no projeto
       title: Competências
       translations:
         import:
@@ -3743,7 +3771,6 @@ pt:
             skill_not_found: Competência com ID %{id} não encontrada
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Mapeamentos de funções de competências
         job_roles: Funções
         proficiency: Proficiência
         skills: Competências
@@ -3901,7 +3928,25 @@ pt:
         successfully: O subfactor foi atualizado com êxito.
     survey_builder:
       builder_area:
+        current_job: Emprego atual
+        default_not_applicable_label: Não há oportunidade de aprender ou demonstrar competências
+        enable_not_applicable: Ativar a opção N/A
+        enable_required_validation: Ativar a validação obrigatória
+        force_response: Resposta da força
+        job_role_required: Selecione pelo menos uma função
+        not_applicable_label: Não aplicável Rótulo
         options: Opções
+        request_response: Resposta ao pedido
+        skill_rater_config: Configuração do avaliador de competências
+        target_job: Emprego alvo
+      models:
+        block_types:
+          regular: Regular
+          skill_rater: Avaliador de competências
+        skill_types:
+          behavioural: Comportamental
+          other: Outros
+          technical: Técnica
       property_panel:
         add_n_a_option: Adicionar opção N/A
         allow_content_copy: Permitir a cópia de conteúdos
@@ -3960,12 +4005,11 @@ pt:
         download_example_file: Descarregar ficheiro de exemplo
         success_msg: O ficheiro carregado foi colocado em fila de espera para importação. Verifique o estado nas notificações.
       import_action:
-        taxonomy: Importar taxonomia
+        taxonomy: Importar a taxonomia de competências
       job_roles: Funções
       proficiency: Proficiência
-      skill_job_mappings: Mapeamentos de funções de competências
       skills: Competências
-      title: Taxonomia
+      title: Taxonomia de competências
     templates:
       blocks:
         copy:
@@ -4066,6 +4110,7 @@ pt:
           invitations: Convites
           reminders: Lembretes
           report_ready: Relatório pronto
+        consolidated: Consolidado
         custom_message:
           description: Esta mensagem pode ser enviada a qualquer pessoa que participe na avaliação
           name: Mensagem personalizada
@@ -4089,7 +4134,10 @@ pt:
         request_approval:
           description: Esta mensagem é enviada aos gestores quando um assunto solicita aprovação
           name: Pedido de aprovação
+        save: Guardar
+        schedule: Horário
         schedule_email: Agendar e-mail
+        schedule_email_title: Agendar e-mail
         schedule_time: Horário
         send_test_email: Enviar e-mail de teste
         subject: Assunto
@@ -4130,6 +4178,14 @@ pt:
         welcome_message:
           description: Esta mensagem será apresentada aos sujeitos quando iniciarem sessão para começar a avaliação ou visualizarem a sua lista de tarefas
           name: Mensagem de boas-vindas
+      mail_history:
+        actions: Acções
+        date: Data
+        download_details: Descarregar detalhes
+        emails_sent: Emails enviados
+        recipient: Beneficiário
+        status: Estado
+        subject: Assunto
       manage:
         assessment: Avaliação
         dimension: Dimensões
@@ -4137,19 +4193,45 @@ pt:
         report: Relatório
         title: Gerir
       menu:
+        actions: Acções
         datasheet:
           title: Ficha de dados
         messages:
+          allow_subjects_to_send_reminders: Permitir que os sujeitos enviem lembretes aos avaliadores
+          automatically_send_invites: Enviar automaticamente convites a novos avaliadores
           title: Mensagens
         participants:
+          columns:
+            action: Ação
+            email: Correio eletrónico
+            evaluations_completed: Avaliações concluídas
+            evaluations_received: Avaliações recebidas
+            is_subject: É objeto
+            name: Nome
+            report_status: Estado do relatório
+            status: Estado
+          evaluators:
+            add_evaluators: Adicionar avaliadores
+            import_evaluators: Avaliadores de importação
+            title: Avaliadores
+          managers:
+            title: Gestores
+          options:
+            evaluator_options: Opções do avaliador
+            global: Opções globais
+            manager_options: Opções do gestor
+            subject_options: Opções de temas
+            title: Opções
           subjects:
             add_subjects: Adicionar assuntos
             current_job_role: Função profissional actual
             email: Correio eletrónico
             first_name: Primeiro nome
+            import_subjects: Assuntos de importação
             last_name: Último nome
             locale: Localidade
             target_job_role: Função profissional alvo
+            title: Temas
           title: Participantes
         report:
           menu:
@@ -4165,8 +4247,26 @@ pt:
         mail_history: Histórico do correio
         options: Opções
       reports:
+        add_conditions: Adicionar condições
+        administrator_approves_reports: O administrador aprova os relatórios
+        allow_manager_to_view_individual_responses: Permitir ao gestor visualizar respostas individuais
+        disable_report_download: Desativar a transferência de relatórios
+        edit_email: Editar e-mail
+        email_manager_when_report_is_ready_for_approval: Enviar um e-mail ao Gestor quando o relatório estiver pronto para aprovação
+        email_subject_when_report_becomes_available: Assunto do e-mail quando o relatório estiver disponível
+        email_subjects_manager_when_available: Enviar um e-mail ao gestor do assunto quando o relatório estiver disponível
+        make_report_available_to_subject_when: 'Disponibilizar o relatório à pessoa em causa quando:'
+        manager_approves_reports: O gestor aprova os relatórios
+        manager_can_access_subject_reports: O gestor pode aceder aos relatórios sobre o assunto
+        manager_cannot_access_subject_reports: O gestor não pode ver o relatório até que os requisitos sejam cumpridos
+        report_access: Acesso ao relatório
+        report_approval: Aprovação do relatório
+        report_availability: Disponibilidade do relatório
         show:
           title: Relatório sobre o assunto
+        subject_can_access_reports: O sujeito pode aceder aos seus relatórios
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Marcar licenças como desactivadas
     time_zone: Fuso horário
     tools: Ferramentas
     translations:

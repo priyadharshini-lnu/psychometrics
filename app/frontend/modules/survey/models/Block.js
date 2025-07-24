@@ -16,6 +16,7 @@ const Block = function (attrs = {}) {
   this.saveAsTemplate = false
   this.templateId = attrs.template_id
   this.deletedAt = attrs.deleted_at
+  this.blockType = attrs.blockType || 'regular'
   if (_.isEmpty(attrs.props)) {
     this.props = { randomization: { type: 'No' }, buttons: { prev_button: 'Previous', next_button: 'Next' } }
   } else {
@@ -38,6 +39,7 @@ _.extend(Block.prototype, {
       save_as_template: this.saveAsTemplate,
       deleted_at: this.deletedAt,
       questions: this.questions,
+      block_type: this.blockType,
     }
   },
 })

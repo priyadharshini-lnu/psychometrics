@@ -292,10 +292,8 @@ sl:
       ai_assistants: Pomočniki za umetno inteligenco
       ai_assistants_playground: Igrišče pomočnika AI
       column:
-        ai_action: Ukrepanje umetne inteligence
         provider: Ponudnik
       form:
-        action: Dejanje
         description: Opis
         name: Ime
         provider: Ponudnik
@@ -1494,6 +1492,8 @@ sl:
         update:
           successfully: Projekt %{name} je bil uspešno posodobljen.
       registration_codes:
+        actions:
+          add_code: Dodajte kodo
         column:
           code: Koda
           usage_stats: Statistika uporabe
@@ -1504,6 +1504,13 @@ sl:
           incorrect_domain: Nepravilna oblika domene.
           invalid_end_date: mora biti daljši od začetnega datuma
           license_issue: Premalo licenc.
+        form:
+          active: Aktivno
+          code: Koda
+          end_date: Končni datum
+          name: Ime
+          start_date: Datum začetka
+          total_count: Skupno število
       resource:
         confirmations:
           delete:
@@ -2383,15 +2390,12 @@ sl:
       export:
         failure_msg: Napaka pri izvažanju prevodov
         success_msg: Izvoz razvojnih ukrepov v teku.
-      export_action:
-        translations: Izvoz prevodov delovnih mest
       form:
         code: Koda
         description: Opis
         job_group: Delovna skupina
         name: Ime
         title: Delovna vloga
-      global: Ali je globalna delovna vloga?
       import:
         download_example_csv: Prenesite primer csv
         success_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
@@ -2401,14 +2405,8 @@ sl:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Pričakovana raven strokovnosti
-        job_role: Delovna vloga
-        skill: Spretnost
       form:
-        expected_proficiency_level: Pričakovana raven strokovnosti
-        job_role: Delovna vloga
-        skill: Spretnost
         title: Skill Job Mapping
-      global: Ali je globalno kartiranje delovnih mest?
       import:
         taxonomy: Taksonomija
     job_roles:
@@ -2701,14 +2699,8 @@ sl:
           level_definition_must_match_level: mora vsebovati natančno %{expected} ravni, vendar so bili podani %{actual}
           must_be_unique: Mora biti edinstven
           proficiency_level_exists: Raven strokovnosti s to spretnostjo in projektom že obstaja
-          proficiency_level_exists_for_all_skills: Raven strokovnosti za vsa znanja in spretnosti, ki so že izginila
-          proficiency_level_exists_for_category: Raven strokovnosti za to kategorijo že obstaja
-          project_level_all_skills_exists: Raven strokovnosti "all_skills" že obstaja
           skill_must_exist: Spretnost mora biti prisotna za proficiency_type "by_skill"
       export:
-        actions:
-          proficiency: Znanje izvoza
-          translations: Izvoz prevodov
         details: Podrobnosti
         failure_msg: Napaka pri izvažanju ravni strokovnosti
         success_msg: Izvoz razvojnih ukrepov v teku
@@ -2721,28 +2713,18 @@ sl:
         proficiency_translations: Strokovni prevodi
         proficiency_type: Vrsta strokovnosti
         skill: Spretnost
-        skill_category: Kategorija spretnosti
         skill_name: Ime spretnosti
         title: Znanje
-      global: Ali je globalna strokovnost?
       import:
         actions:
           proficiency: Znanje uvoza
           translations: Uvoz prevodov strokovnosti
         errors:
-          all_skills_global_exists: 'Vrstica %{row_number}: Raven znanja na globalni ravni »all_skills« že obstaja'
-          all_skills_project_exists: 'Vrstica %{row_number}: Raven znanja »all_skills« na ravni projekta že obstaja'
-          by_category_exists: 'Vrstica %{row_number}: Za ta projekt in kategorijo spretnosti že obstaja raven znanja »by_category«'
-          by_category_missing: 'Vrstica %{row_number}: Kategorija projekta in spretnosti morata biti prisotna za vrsto »by_category«'
           by_skill_exists: 'Vrstica %{row_number}: Za ta projekt in spretnost že obstaja raven strokovnosti ''by_skill'''
           by_skill_missing: 'Vrstica %{row_number}: Projekt in spretnost morata biti prisotna za vrsto »by_skill«'
           invalid_csv_format: 'Neveljavna oblika zapisa CSV: %{message}'
-          invalid_json: 'Vrstica %{line}: Neveljaven JSON v LevelDefinition – %{message}'
-          invalid_json_structure: mora biti predmet JSON s ključi, kot sta »opis« in »povzetek«
           invalid_proficiency_type: 'Vrstica %{row_number}: Neveljavna ali manjka ProficiencyType'
           missing_columns: 'Manjkajo obvezni stolpci: %{fields}'
-          missing_required_fields: 'Vrstica %{line}: manjkajoča obvezna polja (%{fields})'
-          save_failed: 'Vrstica %{line}: %{message}'
           skill_not_found: 'Vrstica %{row_number}: Neveljavna ali manjkajoča spretnost'
         job_queued: Uvozno delo ravni strokovnosti je bilo v čakalni vrsti
       translations:
@@ -2759,8 +2741,6 @@ sl:
             row_id_blank: 'Vrstica %{row}: ID ne more biti prazen'
             save_failed: 'ID spretnosti pri obdelavi napake %{id}: %{message}'
       type:
-        all_skills: Vse spretnosti
-        by_category: Po kategorijah
         by_skill: S spretnostjo
     profile:
       change_password: Spreminjanje gesla
@@ -3123,6 +3103,7 @@ sl:
         user_name: Uporabniško ime
       dashboard: Armaturni plošči
       download: Prenesti
+      report_approval_settings: Nastavitve odobritve poročila
       report_approvals: Odobritve poročil
       review: Pregled
       saving_filters:
@@ -3244,6 +3225,13 @@ sl:
         successfully: Poročilo »%{name}« je bilo uspešno izbrisano.
       edit:
         header: Urejanje imena poročila
+      edit_default_language:
+        agreement: Da, razumem posledice spremembe privzetega jezika.
+        warning:
+          description_li_1: Sprememba privzetega jezika z RTL v LTR jezik ali obratno bo vplivala na postavitev.
+          description_li_2: Če bi spremenili privzeti jezik, bi morali znova prevesti poročila.
+          description_li_3: Pred spremembo prenesite kopijo prevoda poročila.
+          title: Pozorno preberite navodila
       modals:
         remap_assessment:
           new_assessment_name: Novo ime ocenjevanja
@@ -3702,12 +3690,8 @@ sl:
         details: Podrobnosti
         failure_msg: Napaka pri izvažanju prevodov
         success_msg: Izvoz razvojnih ukrepov v teku.
-        title: Izvoz
         translations:
           details: Prevodi spretnosti
-      export_action:
-        skills_title: Izvozne spretnosti
-        skills_translations_title: Izvoz veščin Prevodi
       form:
         client_placeholder: Izberite odjemalca
         description: Opis
@@ -3716,9 +3700,6 @@ sl:
         skill_group: Skupina spretnosti
         skill_type: Vrsta spretnosti
         title: Spretnost
-      global: Je globalna spretnost?
-      global_skills: Globalne spretnosti
-      global_translations: Globalni prevodi spretnosti
       import:
         download_example_csv: Prenesite primer csv
         info_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
@@ -3728,8 +3709,6 @@ sl:
         skills_translations_title: Uvoz prevodov spretnosti
       skill_details: Podrobnosti o spretnostih
       skill_translations: Spretnosti Prevodi
-      skill_translations_project: Prevodi spretnosti na podlagi projekta
-      skills_project: Spretnosti, ki temeljijo na projektu
       title: Spretnosti
       translations:
         import:
@@ -3740,7 +3719,6 @@ sl:
             skill_not_found: Spretnost z ID-jem %{id} ni bila najdena
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Preslikave delovnih mest spretnosti
         job_roles: Delovna mesta
         proficiency: Znanje
         skills: Spretnosti
@@ -3950,7 +3928,6 @@ sl:
         taxonomy: Uvozna taksonomija
       job_roles: Delovna mesta
       proficiency: Znanje
-      skill_job_mappings: Preslikave delovnih mest spretnosti
       skills: Spretnosti
       title: Taksonomija
     templates:
@@ -4053,6 +4030,7 @@ sl:
           invitations: Vabila
           reminders: Opomnike
           report_ready: Pripravljeno poročilo
+        consolidated: Konsolidirani
         custom_message:
           description: To sporočilo lahko pošljete vsem, ki sodelujejo v ocenjevanju
           name: Sporočilo po meri
@@ -4076,7 +4054,10 @@ sl:
         request_approval:
           description: To sporočilo je poslano upraviteljem, ko zadeva zahteva odobritev
           name: Zahtevajte odobritev
+        save: Shrani
+        schedule: Urnik
         schedule_email: Načrtovanje e-pošte
+        schedule_email_title: Načrt e-pošte
         schedule_time: Urnik časa
         send_test_email: Pošlji testno e-poštno sporočilo
         subject: Predmet
@@ -4117,6 +4098,14 @@ sl:
         welcome_message:
           description: To sporočilo bo prikazano subjektom, ko se prijavijo, da začnejo ocenjevanje ali si ogledajo svoj seznam opravil
           name: Pozdravno sporočilo
+      mail_history:
+        actions: Ukrepi
+        date: Datum
+        download_details: Podrobnosti za prenos
+        emails_sent: Poslana e-pošta
+        recipient: Prejemnik
+        status: Status
+        subject: Zadeva
       manage:
         assessment: Ocena
         dimension: Dimenzije
@@ -4124,19 +4113,45 @@ sl:
         report: Poročilo
         title: Upravljanje
       menu:
+        actions: Ukrepi
         datasheet:
           title: Podatkovni list
         messages:
+          allow_subjects_to_send_reminders: omogočiti subjektom, da ocenjevalcem pošljejo opomnike.
+          automatically_send_invites: Samodejno pošiljanje povabil novim ocenjevalcem
           title: Sporočila
         participants:
+          columns:
+            action: Akcija
+            email: E-pošta
+            evaluations_completed: Zaključena vrednotenja
+            evaluations_received: Prejete ocene
+            is_subject: Je predmet
+            name: Ime
+            report_status: Stanje poročila
+            status: Status
+          evaluators:
+            add_evaluators: Dodajanje ocenjevalcev
+            import_evaluators: Ocenjevalci uvoza
+            title: Ocenjevalci
+          managers:
+            title: Upravljavci
+          options:
+            evaluator_options: Možnosti ocenjevalca
+            global: Globalne možnosti
+            manager_options: Možnosti upravitelja
+            subject_options: Možnosti predmeta
+            title: Možnosti
           subjects:
             add_subjects: Dodajanje predmetov
             current_job_role: Trenutna delovna vloga
             email: E-pošta
             first_name: Ime
+            import_subjects: Uvozni predmeti
             last_name: Priimek
             locale: Locale
             target_job_role: Ciljna delovna vloga
+            title: Predmeti
           title: Udeleženci
         report:
           menu:
@@ -4152,8 +4167,26 @@ sl:
         mail_history: Zgodovina pošte
         options: Možnosti
       reports:
+        add_conditions: Dodajanje pogojev
+        administrator_approves_reports: Upravitelj odobri poročila
+        allow_manager_to_view_individual_responses: Upravitelju omogočite ogled posameznih odgovorov
+        disable_report_download: Onemogočite prenos poročila
+        edit_email: Urejanje e-pošte
+        email_manager_when_report_is_ready_for_approval: e-poštno sporočilo upravitelja, ko je poročilo pripravljeno za odobritev
+        email_subject_when_report_becomes_available: Predmet e-pošte, ko bo poročilo na voljo
+        email_subjects_manager_when_available: Pošljite e-pošto vodji subjekta, ko bo poročilo na voljo
+        make_report_available_to_subject_when: 'Poročilo dajte na voljo subjektu, ko:'
+        manager_approves_reports: Vodja odobri poročila
+        manager_can_access_subject_reports: Upravitelj lahko dostopa do poročil o predmetih
+        manager_cannot_access_subject_reports: Upravitelj ne more videti poročila, dokler niso izpolnjene zahteve
+        report_access: Dostop do poročila
+        report_approval: Odobritev poročila
+        report_availability: Razpoložljivost poročila
         show:
           title: Poročilo o zadevi
+        subject_can_access_reports: Subjekt lahko dostopa do svojih poročil
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Označite licence kot deaktivirane
     time_zone: Časovni pas
     tools: Orodja
     translations:

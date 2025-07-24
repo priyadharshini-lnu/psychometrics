@@ -1,6 +1,6 @@
 import { takeEvery, put, select } from 'redux-saga/effects'
 import { get as getSelectedTab } from './selectedParticipantTab'
-import { getCurrentCampaignId } from './campaignDetails'
+import { getCampaignId } from './campaignDetails'
 import { fetchSubjects } from './subjects'
 import { fetchEvaluators } from './evaluators'
 import { fetchManagers } from './managers'
@@ -132,7 +132,7 @@ export const removeUser = (campaignId: number, userId: number) => ({
 
 function* genReloadCurrentParticipantTab () {
   const selectedTab = yield select(getSelectedTab)
-  const campaignId = yield select(getCurrentCampaignId)
+  const campaignId = yield select(getCampaignId)
   switch (selectedTab) {
     case '/participants/subjects':
       return yield put(fetchSubjects(campaignId))

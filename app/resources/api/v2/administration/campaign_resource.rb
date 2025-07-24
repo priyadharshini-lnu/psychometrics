@@ -1,19 +1,21 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignResource < Api::V2::Administration::BaseResource
-  attributes :name, :project_id, :default_idp_template_id
+  attributes :name, :project_id, :type, :status
 
   has_one :default_idp_template, foreign_key_on: :default_idp_template_id
   has_one :dashboard, foreign_key_on: :related
   has_one :threesixty_campaign, foreign_key_on: :related
+  has_many :campaign_assessments, foreign_key_on: :related
+  has_many :campaign_reports, foreign_key_on: :related
 
   def meta_details
     {
-      permissions: @model.common? ? campaign_permissions : threesixty_permissions
+      permissions: common_campaign_permissions
     }
   end
 
-  def campaign_permissions
+  def common_campaign_permissions
     # rubocop:disable Metrics/BlockLength
     lambda {
       GetPermissionsHash.call!(
@@ -51,21 +53,5 @@ class Api::V2::Administration::CampaignResource < Api::V2::Administration::BaseR
       )
     }
     # rubocop:enable Metrics/BlockLength
-  end
-
-  def threesixty_permissions
-    lambda {
-      GetPermissionsHash.call!(
-        Administration::Threesixty::CampaignPolicy,
-        context[:user],
-        @model.threesixty_campaign,
-        %w[
-          edit_assessment
-          manage_reports_options
-        ],
-        project_id: @model.project_id,
-        campaign_id: @model.id
-      ).transform_keys! { |k| k.camelcase(:lower) }
-    }
   end
 end

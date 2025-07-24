@@ -3,6 +3,20 @@
 module Api
   class V2::Administration::DevelopmentActionsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::DevelopmentAction::Schema
+    validates_request_schema :create, :create_request_contract_and_schema
+    validates_request_schema :update, :update_request_contract_and_schema
+
+    def create_request_contract_and_schema
+      Api::V2::DevelopmentAction::Contract.new(
+        schema: Api::V2::DevelopmentAction::Schema.create_request
+      )
+    end
+
+    def update_request_contract_and_schema
+      Api::V2::DevelopmentAction::Contract.new(
+        schema: Api::V2::DevelopmentAction::Schema.update_request
+      )
+    end
 
     def meta_details
       {
@@ -34,7 +48,8 @@ module Api
 
     def import
       form = Api::V2::Administration::DevelopmentActionImportForm.new(
-        file: params[:file]
+        file: params[:file],
+        project_id: project&.id
       )
 
       if form.valid?

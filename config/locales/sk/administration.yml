@@ -292,10 +292,8 @@ sk:
       ai_assistants: Asistenti AI
       ai_assistants_playground: Ihrisko AI Assistant
       column:
-        ai_action: Akcia umelej inteligencie
         provider: Poskytovateľ
       form:
-        action: Akcia
         description: Popis
         name: Meno
         provider: Poskytovateľ
@@ -1494,6 +1492,8 @@ sk:
         update:
           successfully: Projekt %{name} bol úspešne aktualizovaný.
       registration_codes:
+        actions:
+          add_code: Pridať kód
         column:
           code: Kód
           usage_stats: Štatistiky používania
@@ -1504,6 +1504,13 @@ sk:
           incorrect_domain: Nesprávny formát domény.
           invalid_end_date: musí byť dlhší ako dátum začiatku
           license_issue: Nedostatok licencií.
+        form:
+          active: Aktívne
+          code: Kód
+          end_date: Dátum ukončenia
+          name: Názov
+          start_date: Dátum začiatku
+          total_count: Celkový počet
       resource:
         confirmations:
           delete:
@@ -2383,15 +2390,12 @@ sk:
       export:
         failure_msg: Chyba pri exporte prekladov
         success_msg: Export prebiehajúcich vývojových akcií.
-      export_action:
-        translations: Export prekladov pracovných pozícií
       form:
         code: Kód
         description: Popis
         job_group: Pracovná skupina
         name: Meno
         title: Pracovná pozícia
-      global: Je globálna pracovná úloha?
       import:
         download_example_csv: Stiahnuť Príklad csv
         success_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
@@ -2401,14 +2405,8 @@ sk:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Očakávaná úroveň odbornosti
-        job_role: Pracovná pozícia
-        skill: Schopnosť
       form:
-        expected_proficiency_level: Očakávaná úroveň odbornosti
-        job_role: Pracovná pozícia
-        skill: Schopnosť
         title: Mapovanie zručností
-      global: Je mapovanie pracovných miest globálnych zručností?
       import:
         taxonomy: Taxonómia
     job_roles:
@@ -2701,14 +2699,8 @@ sk:
           level_definition_must_match_level: musia obsahovať presne %{expected} úrovne, ale %{actual} boli uvedené
           must_be_unique: Musí byť jedinečný
           proficiency_level_exists: Úroveň odbornosti s touto zručnosťou a projektom už existuje
-          proficiency_level_exists_for_all_skills: Úroveň odbornosti pre všetky zručnosti, ktoré už ukončili
-          proficiency_level_exists_for_category: Úroveň odbornosti pre túto kategóriu už existuje
-          project_level_all_skills_exists: Úroveň odborných znalostí "all_skills" už existuje
           skill_must_exist: Zručnosť musí byť prítomná pre proficiency_type "by_skill"
       export:
-        actions:
-          proficiency: Exportná zdatnosť
-          translations: Exportovať preklady odbornosti
         details: Detaily
         failure_msg: Chyba pri exporte úrovní odbornosti
         success_msg: Export prebiehajúcich vývojových akcií
@@ -2721,28 +2713,18 @@ sk:
         proficiency_translations: Odborné preklady
         proficiency_type: Typ odbornosti
         skill: Schopnosť
-        skill_category: Kategória zručností
         skill_name: Názov zručnosti
         title: Odbornej spôsobilosti
-      global: Je globálna odbornosť?
       import:
         actions:
           proficiency: Odbornosť importu
           translations: Import prekladov odbornosti
         errors:
-          all_skills_global_exists: 'Riadok %{row_number}: Úroveň znalosti na globálnej úrovni "all_skills" už existuje'
-          all_skills_project_exists: 'Riadok %{row_number}: Úroveň odbornosti na úrovni projektu "all_skills" už existuje'
-          by_category_exists: 'Riadok %{row_number}: Pre tento projekt a kategóriu zručností už existuje úroveň znalosti "by_category".'
-          by_category_missing: 'Riadok %{row_number}: Pre typ "by_category" musí byť prítomný projekt a kategória zručností'
           by_skill_exists: 'Riadok %{row_number}: Pre tento projekt a zručnosť už existuje úroveň "by_skill"'
           by_skill_missing: 'Riadok %{row_number}: Projekt a zručnosť musia byť prítomné pre typ "by_skill"'
           invalid_csv_format: 'Neplatný formát CSV: %{message}'
-          invalid_json: 'Riadok %{line}: Neplatný kód JSON v LevelDefinition – %{message}'
-          invalid_json_structure: musí to byť objekt JSON s kľúčmi ako "popis" a "súhrn"
           invalid_proficiency_type: 'Riadok %{row_number}: Neplatný alebo chýbajúci ProficiencyType'
           missing_columns: 'Chýbajú povinné stĺpce: %{fields}'
-          missing_required_fields: 'Riadok %{line}: Chýbajú povinné polia (%{fields})'
-          save_failed: 'Riadok %{line}: %{message}'
           skill_not_found: 'Riadok %{row_number}: Neplatná alebo chýbajúca zručnosť'
         job_queued: Úloha importu úrovní odbornosti bola zaradená do frontu
       translations:
@@ -2759,8 +2741,6 @@ sk:
             row_id_blank: 'Riadok %{row}: ID nemôže byť prázdne'
             save_failed: 'Chyba pri spracovaní ID zručnosti %{id}: %{message}'
       type:
-        all_skills: Všetky zručnosti
-        by_category: Podľa kategórie
         by_skill: Podľa zručnosti
     profile:
       change_password: Zmeniť heslo
@@ -3123,6 +3103,7 @@ sk:
         user_name: Používateľské meno
       dashboard: Tabuľu
       download: Stiahnuť
+      report_approval_settings: Nastavenia schvaľovania správ
       report_approvals: Schválenia správ
       review: Revízia
       saving_filters:
@@ -3244,6 +3225,13 @@ sk:
         successfully: Hlásenie %{name} bolo úspešne odstránené.
       edit:
         header: Úprava názvu zostavy
+      edit_default_language:
+        agreement: Áno, chápem dôsledky zmeny predvoleného jazyka.
+        warning:
+          description_li_1: Zmena predvoleného jazyka z RTL na LTR alebo naopak ovplyvní rozloženie.
+          description_li_2: Ak by ste zmenili predvolený jazyk, museli by ste prepracovať preklady správ.
+          description_li_3: Pred vykonaním tejto zmeny si stiahnite kópiu prekladu správy.
+          title: Pozorne si prečítajte pokyny
       modals:
         remap_assessment:
           new_assessment_name: Nový názov hodnotenia
@@ -3702,12 +3690,8 @@ sk:
         details: Detaily
         failure_msg: Chyba pri exporte prekladov
         success_msg: Export prebiehajúcich vývojových akcií.
-        title: Vývoz
         translations:
           details: Preklady zručností
-      export_action:
-        skills_title: Exportné zručnosti
-        skills_translations_title: Exportné preklady zručností
       form:
         client_placeholder: Vyberte klienta
         description: Popis
@@ -3716,9 +3700,6 @@ sk:
         skill_group: Skupina zručností
         skill_type: Typ zručnosti
         title: Schopnosť
-      global: Je globálna zručnosť?
-      global_skills: Globálne zručnosti
-      global_translations: Globálne preklady zručností
       import:
         download_example_csv: Stiahnuť Príklad csv
         info_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
@@ -3728,8 +3709,6 @@ sk:
         skills_translations_title: Importujte preklady zručností
       skill_details: Podrobnosti o zručnosti
       skill_translations: Preklady zručností
-      skill_translations_project: Preklady zručností na základe projektu
-      skills_project: Zručnosti založené na projekte
       title: Zručnosti
       translations:
         import:
@@ -3740,7 +3719,6 @@ sk:
             skill_not_found: Zručnosť s ID %{id} sa nenašla
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Mapovanie pracovných zručností
         job_roles: Pracovné pozície
         proficiency: Odbornej spôsobilosti
         skills: Zručnosti
@@ -3950,7 +3928,6 @@ sk:
         taxonomy: Dovozná taxonómia
       job_roles: Pracovné pozície
       proficiency: Odbornej spôsobilosti
-      skill_job_mappings: Mapovanie pracovných zručností
       skills: Zručnosti
       title: Taxonómia
     templates:
@@ -4053,6 +4030,7 @@ sk:
           invitations: Pozvánky
           reminders: Pripomenutia
           report_ready: Správa pripravená
+        consolidated: Konsolidované
         custom_message:
           description: Túto správu je možné odoslať komukoľvek, kto sa zúčastňuje hodnotenia
           name: Vlastná správa
@@ -4076,7 +4054,10 @@ sk:
         request_approval:
           description: Táto správa sa odošle manažérom, keď subjekt požiada o schválenie
           name: Žiadosť o schválenie
+        save: Uložiť
+        schedule: Plán
         schedule_email: Naplánovať e-mail
+        schedule_email_title: Plán E-mail
         schedule_time: Naplánovať čas
         send_test_email: Odoslať testovací e-mail
         subject: Predmet
@@ -4117,6 +4098,14 @@ sk:
         welcome_message:
           description: Táto správa sa zobrazí subjektom, keď sa prihlásia, aby mohli začať hodnotenie alebo zobraziť svoj zoznam úloh
           name: Uvítacia správa
+      mail_history:
+        actions: Činnosti
+        date: Dátum
+        download_details: Stiahnite si podrobnosti
+        emails_sent: Odoslané e-maily
+        recipient: Príjemca
+        status: Stav
+        subject: Predmet
       manage:
         assessment: Hodnotenie
         dimension: Rozmery
@@ -4124,19 +4113,45 @@ sk:
         report: Správa
         title: Ovládať
       menu:
+        actions: Činnosti
         datasheet:
           title: Dátový hárok
         messages:
+          allow_subjects_to_send_reminders: Umožniť subjektom posielať hodnotiteľom upomienky
+          automatically_send_invites: Automatické odosielanie pozvánok novým hodnotiteľom
           title: Správy
         participants:
+          columns:
+            action: Akcia
+            email: E-mail
+            evaluations_completed: Ukončené hodnotenia
+            evaluations_received: Prijaté hodnotenia
+            is_subject: Je predmetom
+            name: Názov
+            report_status: Stav správy
+            status: Stav
+          evaluators:
+            add_evaluators: Pridať hodnotiteľov
+            import_evaluators: Hodnotitelia dovozu
+            title: Hodnotitelia
+          managers:
+            title: Manažéri
+          options:
+            evaluator_options: Možnosti hodnotiteľa
+            global: Globálne možnosti
+            manager_options: Možnosti manažéra
+            subject_options: Možnosti predmetu
+            title: Možnosti
           subjects:
             add_subjects: Pridanie predmetov
             current_job_role: Aktuálna pracovná pozícia
             email: E-mail
             first_name: Krstné meno
+            import_subjects: Importované predmety
             last_name: Priezvisko
             locale: Locale
             target_job_role: Cieľová pracovná pozícia
+            title: Predmety
           title: Účastníkov
         report:
           menu:
@@ -4152,8 +4167,26 @@ sk:
         mail_history: História pošty
         options: Možnosti
       reports:
+        add_conditions: Pridať podmienky
+        administrator_approves_reports: Správca schvaľuje správy
+        allow_manager_to_view_individual_responses: Umožniť manažérovi zobraziť jednotlivé odpovede
+        disable_report_download: Zakázať preberanie správ
+        edit_email: Upraviť e-mail
+        email_manager_when_report_is_ready_for_approval: E-mailový manažér, keď je správa pripravená na schválenie
+        email_subject_when_report_becomes_available: Predmet e-mailu, keď bude správa k dispozícii
+        email_subjects_manager_when_available: E-mail manažérovi subjektu, keď bude správa k dispozícii
+        make_report_available_to_subject_when: 'Sprístupnite správu subjektu, keď:'
+        manager_approves_reports: Manažér schvaľuje správy
+        manager_can_access_subject_reports: Manažér má prístup k predmetným správam
+        manager_cannot_access_subject_reports: Manažér nemôže vidieť správu, kým nie sú splnené požiadavky
+        report_access: Prístup k správe
+        report_approval: Schválenie správy
+        report_availability: Dostupnosť správy
         show:
           title: Správa o predmete
+        subject_can_access_reports: Subjekt má prístup k svojim správam
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Označenie licencií ako deaktivovaných
     time_zone: Časové pásmo
     tools: Náradie
     translations:

@@ -15,7 +15,7 @@ module Campaigns
       end
 
       def call
-        ActiveRecord::Base.transaction(requires_new: true) do
+        user_report, user_assessments = ActiveRecord::Base.transaction(requires_new: true) do
           Licenses::Use.call!(campaign, user, report, options[:report_family_id]) unless idp_license_usage
           user_report = UserReport.find_by(campaign: campaign, report: report, user: user)
           user_report ||= create_user_report
@@ -26,15 +26,18 @@ module Campaigns
             end
 
             handle_hogan_user_assessments_creation(user_assessments, user_report)
-            recompute_user_results(user_assessments)
             set_approval_status_for_user_report(user_report)
-            generate_report_pdf(user_report) if !user_report.report.hogan? && !user_report.prepared?
           end
 
-          broadcast :ok,
-                    user_report: user_report,
-                    user_assessments: user_assessments
+          [user_report, user_assessments]
         end
+
+        user_report.reload
+        generate_report_pdf(user_report) if !user_report.report.hogan? && !user_report.prepared?
+
+        broadcast :ok,
+                  user_report: user_report,
+                   user_assessments: user_assessments
       end
 
       private
@@ -94,14 +97,6 @@ module Campaigns
 
       def handle_hogan_user_assessments_creation(user_assessments, user_report)
         ::Hogan::HandleAssignHoganAssessments.call!(user, user_assessments, user_report, options)
-      end
-
-      def recompute_user_results(user_assessments)
-        return unless options[:operation] == 'add_with_existing_response'
-
-        user_assessments.each do |user_assessment|
-          ::UsersResults::RecomputeJob.perform_later(user_assessment.users_result, user)
-        end
       end
 
       def create_assessment_to_user(assessment)

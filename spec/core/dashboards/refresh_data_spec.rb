@@ -7,20 +7,15 @@ describe Dashboards::RefreshData do
   let!(:campaign) { dashboard.campaign }
 
   it "doesn't create view and calls powerbi for refresh if there is no datasheet" do
-    expect(Sheets::CreateFlatSheetView).to_not receive(:call!)
     expect(PowerBi::RefreshDataset).to_not receive(:call!)
 
     described_class.call!(dashboard)
   end
 
   it 'calls command to create datasheet, accessheet view and refresh powerbi dataset' do
-    datasheet = create(:datasheet, campaign: campaign)
-    accesssheet = create(:accesssheet, campaign: campaign)
-
     campaign.reload
+    create(:datasheet, campaign: campaign)
 
-    expect(Sheets::CreateFlatSheetView).to receive(:call!).with(datasheet)
-    expect(Sheets::CreateFlatSheetView).to receive(:call!).with(accesssheet)
     expect(PowerBi::RefreshDataset).to receive(:call!)
 
     described_class.call!(dashboard)

@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
+import Locales from './locales'
 
 const { Column } = Table
 const { I18n } = window
@@ -22,6 +23,7 @@ const ReportList: React.FC<Props> = ({
     list,
     reportPermissions,
   },
+  isReportsLoading,
   openModal,
   selectRecords,
   toggleAssessorAccess,
@@ -47,18 +49,23 @@ const ReportList: React.FC<Props> = ({
           className="mtm"
           rowKey="id"
           dataSource={list}
+          loading={isReportsLoading}
           pagination={false}
           rowSelection={{ type: 'checkbox', onChange: (ids: number[]) => { selectRecords(ids) } }}
+          scroll={{ x: 'max-content' }}
         >
           <Column
             title={I18n.t('common.column.id')}
             dataIndex="reportId"
             key="reportId"
+            fixed="left"
+            width={50}
           />
           <Column
             title={I18n.t('campaign_report.column.report_name')}
             key="name"
             dataIndex="name"
+            fixed="left"
           />
           <Column
             title={I18n.t('campaign_report.column.report_bundle')}
@@ -122,6 +129,22 @@ const ReportList: React.FC<Props> = ({
             )}
           />
           <Column
+            title={I18n.t('campaign_report.column.locales')}
+            key="availableLocales"
+            render={({
+              id, availableLanguages, effectiveDefaultLanguage, reportLocales, internal,
+            }) => (
+              <Locales
+                id={id}
+                availableLanguages={availableLanguages}
+                defaultLanguage={effectiveDefaultLanguage}
+                reportLocales={reportLocales}
+                campaignId={campaignId}
+                internal={internal}
+              />
+            )}
+          />
+          <Column
             title={I18n.t('common.column.action')}
             key="action"
             render={report => (
@@ -144,6 +167,8 @@ const ReportList: React.FC<Props> = ({
                 )}
               />
             )}
+            width={50}
+            fixed="right"
           />
         </Table>
       </Col>

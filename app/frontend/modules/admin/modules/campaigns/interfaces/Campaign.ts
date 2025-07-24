@@ -1,45 +1,48 @@
 import * as t from 'io-ts'
 
+
+export interface CommonCampaignPermissions {
+  edit: boolean
+  delete: boolean
+  copy: boolean
+  updateCampaignOptions: boolean
+  manageCampaigns: boolean
+  viewRegistrationCodes: boolean
+  viewDatasheets: boolean
+  manageCampaignAdmins: boolean
+  manageOptions: boolean
+  viewDashboard: boolean
+  initializeDashboard: boolean
+  viewAccesssheet: boolean
+  viewAccesssheetSettings: boolean
+  viewSmsInvites: boolean
+  viewAssessors: boolean
+  viewWorkshops: boolean
+  viewWorkshopInvites: boolean
+  stats: boolean
+  pdfPassword: boolean
+  viewCampaignScoring: boolean
+  manageCampaignScoring: boolean
+  viewCampaignScoringSetting: boolean
+  viewAuditReports: boolean
+  viewAssessmentsAndReports: boolean
+  manageReportApprovalSettings: boolean
+}
+
 export default interface Campaign {
   id: number
   projectId: number
   name: string
   type: string
   status: string
-  startDate: Date
-  endDate: Date
+  startDate?: Date | null | string
+  endDate?: Date | null | string
   assessments: Entity[]
   reports: Entity[]
-  isFixedTime: boolean
-  isThreesixty: boolean
-  permissions: {
-    edit: boolean
-    delete: boolean
-    copy: boolean
-    updateCampaignOptions: boolean
-    manageCampaigns: boolean
-    viewRegistrationCodes: boolean
-    viewDatasheets: boolean
-    manageCampaignAdmins: boolean
-    manageOptions: boolean
-    viewDashboard: boolean
-    initializeDashboard: boolean
-    viewAccesssheet: boolean
-    viewAccesssheetSettings: boolean
-    viewSmsInvites: boolean
-    viewAssessors: boolean
-    viewWorkshops: boolean
-    viewWorkshopInvites: boolean
-    viewCampiagnScoring: boolean
-    stats: boolean
-    pdfPassword: boolean
-    viewCampaignScoring: boolean
-    manageCampaignScoring: boolean
-    viewCampaignScoringSetting: boolean
-    viewAuditReports: boolean
-    viewAssessmentsAndReports: boolean
-    manageReportApprovalSettings: boolean
-  }
+  isFixedTime?: boolean | null
+  isThreesixty?: boolean | null
+  permissions: CommonCampaignPermissions
+  practiceCampaign?: boolean | null
 }
 
 export interface Entity {

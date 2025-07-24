@@ -81,11 +81,7 @@ module Threesixty
       def find_job_role(role_name)
         return nil if role_name.blank?
 
-        JobRole.find_by(
-          'name = ? AND (project_id = ? OR project_id IS NULL)',
-          role_name,
-          project.id
-        )
+        JobRole.find_by(name: role_name, project_id: project.id)
       end
 
       def project_users_indexed

@@ -329,12 +329,13 @@ sk:
             email:
               blank: E-mail nemôže byť prázdny
               not_uniq_email: Riadok s e-mailom je už prítomný
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pre %{block_name} musí byť povolená aspoň jedna pracovná rola s vybraným typom zručnosti
-              invalid_skill_type: 'Neplatný typ zručnosti %{skill_type} pre %{role_name} pre %{block_name}. Platné možnosti: %{valid_options}'
-              props_missing: Práca
+              at_least_one_job_role_required: Pre %{skill_type} sa vyžaduje aspoň jedna pracovná úloha pre %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Pre %{block_name} musí byť povolený aspoň jeden typ zručnosti s vybranou pracovnou rolou
+              invalid_job_role_type: 'Neplatná pracovná úloha %{job_role} pre %{skill_type} pre %{block_name}. Platné možnosti: %{valid_options}'
+              props_missing: Chýba konfigurácia zručností pre %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ sk:
           case_study: Prípadové štúdie
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulár vedúceho posudzovateľa
           meeting: Schôdza
           organisational: Prieskumy
           pearson: Pearson
@@ -859,9 +861,9 @@ sk:
         import_raw_data: Import nespracovaných údajov
         import_reflection_questions: Import otázok na reflexiu
         import_scoring_data: Import údajov o bodovaní
+        import_skill_rater_taxonomies: Import taxonómií hodnotiteľov zručností
         import_skill_translations: Importujte preklady zručností
         import_skills: Importné zručnosti
-        import_skills_rater_taxonomies: Import taxonómií hodnotiteľov zručností
         import_sms_invites: Importovať SMS pozvánku
         import_users: Importovať používateľov
         migrate_assessment_translations: Hodnotenie Migrácia prekladu
@@ -1731,6 +1733,7 @@ sk:
       import: Import
       insert: Vložiť
       ok: OK
+      publish: Publikovať
       reject: Odmietnuť
       remove: Odstránenie stránky
       reset: Obnovenie
@@ -1746,6 +1749,7 @@ sk:
       start: Štart
       submit: Predložiť
       unarchive: Zrušiť archiváciu
+      unpublish: Zrušenie zverejnenia
       unresolve: Neriešené
       update: Aktualizácia
       upload: Nahrať
@@ -1849,7 +1853,6 @@ sk:
       default: Predvolené nastavenie
       download: Stiahnite si
       file: Súbor
-      global_export: Je globálny export?
       global_import: Je globálny dovoz?
       minutes: Zápis
       na: NEUPLATŇUJE SA
@@ -2097,11 +2100,17 @@ sk:
       campaign_factor_group:
         group_already_exists: Skupina s rovnakým názvom už existuje.
         last_factor_group: Poslednú skupinu faktorov kampane nie je možné odstrániť.
+      campaign_idps:
+        idp_template_not_published: Táto šablóna IDP ešte nie je zverejnená, pred pridelením kampane ju uverejnite.
       cant_be_deleted: Tento záznam nie je možné odstrániť
       client_feature:
         ai_assisted_idp_feature_error: Nemôže to byť pravda, ak je funkcia ai asistentov vypnutá
       create_superadmin:
         uniq_email: E-mail by mal byť uniq.
+      development_actions:
+        only_global_skills_allowed: Vybrané zručnosti musia byť globálne.
+        skills_not_belong_to_project: Vybrané zručnosti musia patriť k zadanému projektu.
+        skills_required: Vyberte aspoň jednu zručnosť.
       exceeded_subjects_count: Na pozvánku môžete pridať iba %{count} predmetov
       filled?: nemôže byť prázdny
       idp_template:
@@ -2149,6 +2158,7 @@ sk:
         start_time_should_be_less: Čas začiatku by mal byť kratší ako čas ukončenia
       user_idp_plan:
         idp_template_already_assigned_to_user: Táto šablóna Idp je už priradená k tomuto používateľovi a je aktívna
+        idp_template_not_published: Táto šablóna IDP ešte nie je zverejnená, pred priradením používateľovi ju zverejnite.
       user_saved_filters:
         limit_exceeded: Môžete mať iba uložené filtre %{limit}, ak chcete pridať ďalšie, odstráňte uložené filtre.
         unique_name: Filter s rovnakým názvom už existuje.
@@ -2470,6 +2480,7 @@ sk:
       aria_selected: Vybraný
   idp:
     actions: Akcie
+    behavioral: Behaviorálne
     board: Doska
     comment_details:
       add_comment: Pridať komentár
@@ -2534,6 +2545,7 @@ sk:
       submit_plan: Odoslať plán
       write_here: Napíšte sem...
     edit_plan: Upraviť plán
+    edit_progress: Upraviť pokrok
     initial_steps:
       add_skill_group_description: Na základe výsledkov vášho hodnotenia uvádzame niektoré z oblastí silných stránok a rozvoja pre vás. Vyberte si zručnosti, ktoré chcete ďalej rozvíjať ako súčasť svojho plánu rozvoja.
       add_skill_group_title: Preskúmanie vašich zručností %{category}
@@ -2571,6 +2583,7 @@ sk:
       cover:
         fields:
           assigned_data: Pridelený dátum
+          assigned_date: Pridelený dátum
           completion_date: Dátum dokončenia
           division: Delenie
           name: Meno
@@ -2606,10 +2619,32 @@ sk:
           main: Táto časť obsahuje kumulatívny zoznam všetkých vývojových ciest, pričom treba mať na pamäti učenie sa s osvedčenými postupmi, tj usmernenie 70-20-10, ktoré poskytuje progresívnu cestu kombinujúcu učenie sa v triede, koučing a učenie sa na pracovisku. Na základe výsledkov skúseností s rozvojom vedenia a obchodných priorít boli odporúčané možné cesty rozvoja, ktoré je možné zvážiť pre váš rozvoj.
         learn_cards:
           collaboration:
+            list:
+            - Ponúknite koučovanie alebo mentorovanie iným
+            - Požiadajte o mentorovanie odborníkom vo vašom odbore
+            - Získajte kouča na podporu vášho rozvoja
+            - Založte pracovnú skupinu na diskusiu o aktuálnych výzvach v podnikaní
+            - Získavajte spätnú väzbu formálne aj neformálne od iných
+            - Aktívne sa zapájajte do priemyselných združení a sietí
+            - Budujte si vlastné externé siete
             title: Kolaboratívne učenie (20 %) <br/> Rozvoj prostredníctvom iných
           job:
+            list:
+            - Prevezmite vedúce pozície v komisiách alebo manažérskych výboroch
+            - Dobrovoľne veďte projekty riadenia zmien pre organizáciu
+            - Zvážte prijatie náročných úloh
+            - Spolupracujte s inými oddeleniami
+            - Veďte projekty mimo vašej organizácie
+            - Spolupracujte s externými odborníkmi na spoločných projektoch
             title: Učenie sa v práci (70 %) <br/> Rozvoj prostredníctvom skúseností
           learn:
+            list:
+            - Prevezmite vedúce pozície v komisiách alebo manažérskych výboroch
+            - Dobrovoľne veďte projekty riadenia zmien pre organizáciu
+            - Zvážte prijatie náročných úloh
+            - Spolupracujte s inými oddeleniami
+            - Veďte projekty mimo vašej organizácie
+            - Spolupracujte s externými odborníkmi na spoločných projektoch
             title: Formálne vzdelávanie (10 %) <br/> Rozvoj prostredníctvom štruktúrovaného učenia
         title: Pokyny na usmernenie vášho IDP
       idp:
@@ -2631,6 +2666,7 @@ sk:
       statuses:
         approved: Skontrolované a schválené
         completed: Dokončený
+        draft: Návrh
         not_reviewed: Nerecenzované
         pending_approval: V recenzii
       summary:
@@ -2667,6 +2703,7 @@ sk:
     skill_gap_report:
       title: Správa o nedostatku zručností
     status: Stav
+    technical: Technické
     user_idp_status:
       approved: Schválený
       completed: Dokončený
@@ -3621,11 +3658,35 @@ sk:
       exactly: Presne %{count}
     nominations: Nominácie
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Umožniť hodnotiteľom odmietnuť nomináciu
+        email_subject_when_nomination_declined: Predmet e-mailu pri odmietnutí nominácie
       form:
         value_not_valid: nemá platnú hodnotu
       global:
         cannot_re_edit: Účastníci nemôžu upravovať hodnotenia
         disable_all_evaluations: Zakázať všetky hodnotenia
+      manager:
+        allow_subjects_to_email: Umožniť subjektom posielať manažérom e-mail, keď sú ich nominácie pripravené na schválenie.
+        approves_evaluations: Manažér schvaľuje hodnotenia
+        approves_nominations: Manažér schvaľuje nominácie
+        can_view_nominations: Manažér si môže prezerať nominácie
+        email_managers_when_nomination_ready: zasielanie e-mailov manažérom, keď je nominácia subjektu pripravená na schválenie.
+        email_subject_when_nomination_denied: Predmet e-mailu pri zamietnutí nominácie
+        may_choose_evaluators: Manažér si môže vybrať hodnotiteľov
+      subject:
+        allow_subjects_to_select_relationships: Umožniť subjektom vybrať vzťahy
+        anyone_in_assessment: Ktokoľvek v rámci hodnotenia
+        anyone_in_datasheet: Ktokoľvek v hárku s údajmi
+        anyone_not_in_assessment: Každý, kto v súčasnosti nie je v hodnotení
+        can_view_evaluators: Subjekt si môže prezerať hodnotiteľov
+        define_nomination_requirement: Definovať požiadavku na nomináciu
+        limit_search_by_criteria: Obmedzenie vyhľadávania podľa kritérií
+        nominates_evaluators: Subjekt nominuje hodnotiteľov
+        only_allow_relationships_of_specified_types: Povoľte len vzťahy určených typov
+        only_show_subjects_who_match_criteria: 'Zobrazte len subjekty, ktoré spĺňajú nasledujúce kritériá:'
+        self_evaluates: Subjekt sa sám hodnotí
+        subjects_cannot_remove_nominations: Subjekty nemôžu odstrániť nominácie nastavené manažérmi alebo administrátormi
     or: Alebo
     page_title: Signify 360° Review - Aplikovať úroveň
     participant_list:
@@ -3840,7 +3901,6 @@ sk:
       add: Pridať správu
       download: Stiahnuť
       generate: Generovať
-      regenerate: Regenerujte
     approval_statuses:
       approved: Schválený
       change_requested: Požadovaná zmena

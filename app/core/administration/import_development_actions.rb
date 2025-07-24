@@ -63,12 +63,10 @@ module Administration
     end
 
     def find_or_create_development_action(row_data)
-      id = row_data['ID']
-
       skill = Skill.where(id: row_data['SkillID']).where('project_id = ? OR project_id IS NULL', @project_id).first
       return nil if skill.nil?
 
-      development_action = DevelopmentAction.find_or_initialize_by(id: id)
+      development_action = find_or_new_development_action(row_data['ID'])
       skill_ids = development_action.skill_ids
       development_action.assign_attributes(
         project_id: @project_id,
@@ -79,6 +77,12 @@ module Administration
       development_action.skills << skill unless skill_ids.include?(skill.id)
 
       development_action
+    end
+
+    def find_or_new_development_action(id)
+      return DevelopmentAction.new if id.blank?
+
+      DevelopmentAction.find_by(id: id, project_id: @project_id) || DevelopmentAction.new
     end
 
     def attach_image(development_action, image_url)

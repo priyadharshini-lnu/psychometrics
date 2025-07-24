@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom'
 
 import { useEffect } from 'react'
 import RouteList from '~/components/RouteList'
-import { get as getCurrentUser } from '~/core/currentUser'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { set as setSelectedTab, get as getSelectedTab } from '../../core/selectedParticipantTab'
+import {
+  get as getCurrentCampaign,
+} from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import routeUtils from '~/utils/route'
 import settings from '../../settings'
 import { PageHeader } from '../../PageHeader'
@@ -26,6 +29,7 @@ import ImportRawModal from './ImportRawModal'
 import BulkDownloadModal from '../../components/BulkDownloadModal'
 import RegenerateReportModal from '../../components/RegenerateReportModal'
 import DownloadReportModal from '../../components/DownloadReportModal'
+import CreateSubjectModal from './SubjectList/CreateSubjectModal'
 
 const MODALS = {
   FactorBenchmarkScoreModal,
@@ -33,6 +37,7 @@ const MODALS = {
   BulkDownloadModal,
   RegenerateReportModal,
   DownloadReportModal,
+  CreateSubjectModal,
 }
 
 const routes = [
@@ -42,7 +47,10 @@ const routes = [
   { path: '/evaluators', component: <EvaluatorList /> },
   { path: '/managers', component: <ManagerList /> },
 ]
-function Index ({ currentUser, setSelectedTab, selectedTab }) {
+
+const { I18n } = window
+
+function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -54,13 +62,22 @@ function Index ({ currentUser, setSelectedTab, selectedTab }) {
     routeUtils.moveTo(navigate, settings.urlPrefix, key)
   }
   const menuItems = [
-    { key: '/participants/subjects', label: 'Subjects' },
-    { key: '/participants/evaluators', label: 'Evaluators' },
-    { key: '/participants/managers', label: 'Managers' },
+    {
+      key: '/participants/subjects',
+      label: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.title'),
+    },
+    {
+      key: '/participants/evaluators',
+      label: I18n.t('administration.threesixty_campaigns.menu.participants.evaluators.title'),
+    },
+    {
+      key: '/participants/managers',
+      label: I18n.t('administration.threesixty_campaigns.menu.participants.managers.title'),
+    },
   ]
-  currentUser.permissions.editParticipantOptions && menuItems.push({
+  campaignPermissions.editParticipantOptions && menuItems.push({
     key: '/participants/options',
-    label: 'Options',
+    label: I18n.t('administration.threesixty_campaigns.menu.participants.options.title'),
   })
   return (
     <>
@@ -88,9 +105,15 @@ function Index ({ currentUser, setSelectedTab, selectedTab }) {
   )
 }
 
-export default connect(state => ({
-  currentUser: getCurrentUser(state),
-  selectedTab: getSelectedTab(state),
-}), {
-  setSelectedTab,
-})(Index)
+const connector = connect(
+  (state: RootState) => ({
+    campaignPermissions: getCurrentCampaign(state).permissions,
+    selectedTab: getSelectedTab(state),
+  }),
+  {
+    setSelectedTab,
+  },
+)
+
+
+export default connector(Index)

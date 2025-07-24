@@ -174,6 +174,8 @@ nl:
             title: IDP-sjablonen
             view: Bekijk
           jobRoles:
+            export_translations: Jobrollen exporteren Vertalingen
+            import_translations: Jobrollen importeren Vertalingen
             manage: Beheer
             title: Functierollen
             view: Bekijk
@@ -292,10 +294,8 @@ nl:
       ai_assistants: AI assistenten
       ai_assistants_playground: AI assistent speeltuin
       column:
-        ai_action: AI-Actie
         provider: Aanbieder
       form:
-        action: Actie
         description: Beschrijving
         name: Naam
         provider: Aanbieder
@@ -844,6 +844,14 @@ nl:
     campaign_factors_import:
       errors:
         invalid_headers: 'De volgende headers zijn ongeldig: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Selecteer een datumbereik
+        modal:
+          subtitle: Selecteer een datumbereik en vervolgens de gewenste taal voor elk rapport
+      generate:
+        modal:
+          subtitle: Selecteer de gewenste taal voor elk rapport
     campaign_templates:
       campaign_templates: Campagnesjablonen
       column:
@@ -961,7 +969,9 @@ nl:
             empty: Leeg
             inactive: Inactief
             name: Naam
+            normal: Normaal
             previous: Vorige
+            skill_rater: Vaardigheden beoordelaar
             standard: Standaard
             status: Status
           close:
@@ -1494,6 +1504,8 @@ nl:
         update:
           successfully: Project %{name} is succesvol bijgewerkt.
       registration_codes:
+        actions:
+          add_code: Code toevoegen
         column:
           code: Code
           usage_stats: Gebruiksstatistieken
@@ -1504,6 +1516,13 @@ nl:
           incorrect_domain: Onjuiste domeinindeling.
           invalid_end_date: moet groter zijn dan de begindatum
           license_issue: Niet genoeg licenties.
+        form:
+          active: Actief
+          code: Code
+          end_date: Einddatum
+          name: Naam
+          start_date: Startdatum
+          total_count: Totaal aantal
       resource:
         confirmations:
           delete:
@@ -1533,6 +1552,7 @@ nl:
       reset: Reset
       save: Sla
       select_all: Alles selecteren
+      type: Type
       unselect_all: Alles deselecteren
     communication_settings: Instellingen
     communications:
@@ -1621,6 +1641,7 @@ nl:
         type: Type
       list:
         actions: Acties
+        assessment_center_group: Assessment Center Groep
         author: Gemaakt door
         campaign: Campagne
         client_name: Klant
@@ -1768,6 +1789,7 @@ nl:
       errors:
         blank_field: 'Rij %{row}: %{field} kan niet leeg zijn'
         csv_file_required: Moet een CSV-bestand zijn
+        development_action_not_in_project: 'Rij %{row}: Ontwikkelingsactie ID %{development_action_id} behoort niet tot dit project'
         image_download_failed: 'Downloaden van afbeelding van %{url} mislukt: %{message}'
         invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
         invalid_date: Datumformaat voor %{date} is ongeldig.
@@ -2097,18 +2119,22 @@ nl:
       all: Alle
       appearance: Uiterlijk
       appearance_hint: Om het uiterlijk aan te passen, moet je de IDP-sjabloon eerst opslaan om deze instellingen te activeren.
+      appearance_success: Uiterlijkinstellingen succesvol opgeslagen
       background_image: Achtergrondafbeelding
       behavioral_skills: Gedragsvaardigheden
       client_skills: Vaardigheden voor klanten
+      details_updated: IDP Details succesvol bijgewerkt
       edit_template: IDP-sjabloon bewerken
+      enter_tag_or_skills_error: Selecteer minstens één tag of vaardigheid
       enter_template_description: Beschrijving
       enter_template_description_error: Sjabloonbeschrijving is vereist.
       enter_template_name: Naam
       enter_template_name_error: Sjabloonnaam is vereist
       errors:
-        update: Bijwerken niet toegestaan omdat de IDP-sjabloon al is gekoppeld aan een IDP-plan van een gebruiker. Wijzigingen in uiterlijk zijn opgeslagen.
+        update: Bijwerken niet toegestaan omdat de IDP-sjabloon al gekoppeld is aan een IDP-plan van een gebruiker.
       fields:
         assigned_data: Toegewezen gegevens
+        assigned_date: Toegewezen Datum
         completion_date: Datum van voltooiing
         division: Divisie
         name: Naam
@@ -2146,6 +2172,11 @@ nl:
       show_reflections: Reflecties tonen
       skill_gap_report: Rapport over vaardigheidskloof
       skills: Vaardigheden
+      skills_updated: IDP Vaardigheden succesvol bijgewerkt
+      status:
+        draft: Ontwerp
+        published: Gepubliceerd
+      status_updated: IDP-status succesvol bijgewerkt
       subtitle_text: Ondertitel tekst
       tab:
         development_actions: Ontwikkelingsacties
@@ -2378,43 +2409,43 @@ nl:
         rescheduled: Verpland
       subject: Onderwerp
     job_role:
+      are_you_sure_to_remove: Weet je zeker dat je moet verwijderen?
       column:
         job_group: Functiegroep
+        skill_name: Naam vaardigheid
       export:
         failure_msg: Fout tijdens het exporteren van vertalingen
         success_msg: Het exporteren van ontwikkelingsacties in uitvoering.
-      export_action:
-        translations: Vertalingen exporteren
       form:
         code: Code
         description: Beschrijving
         job_group: Functiegroep
         name: Naam
         title: Functie
-      global: Is wereldwijde baan rol?
       import:
         download_example_csv: Voorbeeld csv downloaden
         success_msg: Het geüploade bestand is in de wachtrij geplaatst om te worden geïmporteerd. Controleer de status in de meldingen.
       import_action:
         translations: Importeren van functievertalingen
+      job_role_details: Functie details
       translations: Functie Vertalingen
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Verwacht vaardigheidsniveau
-        job_role: Functie
-        skill: Vaardigheid
       form:
-        expected_proficiency_level: Verwacht vaardigheidsniveau
-        job_role: Functie
-        skill: Vaardigheid
         title: Vaardigheden Functie in kaart brengen
-      global: Is Global Skill Job Mapping?
       import:
         taxonomy: Taxonomie
     job_roles:
       export:
         translations:
           details: Details
+      translations:
+        import:
+          errors:
+            job_role_not_found: Jobrol met ID %{id} niet gevonden
+            missing_columns: 'Ontbrekende verplichte kolommen: %{columns}'
+            save_failed: 'Fout bij het verwerken van Job Role-ID %{id}: %{bericht}'
     libraries:
       create:
         successfully: Item %{name} is succesvol aangemaakt.
@@ -2701,14 +2732,11 @@ nl:
           level_definition_must_match_level: moet precies %{expected} niveaus bevatten, maar %{actual} werden gegeven
           must_be_unique: Moet uniek zijn
           proficiency_level_exists: Er bestaat al een ProficiencyLevel met deze vaardigheid en dit project
-          proficiency_level_exists_for_all_skills: Er bestaat al een vaardigheidsniveau voor alle vaardigheden
-          proficiency_level_exists_for_category: Er bestaat al een ProficiencyLevel voor deze categorie
-          project_level_all_skills_exists: Er bestaat al een vaardigheidsniveau 'all_skills
+          proficiency_level_exists_for_default: Er is al een vaardigheidsniveau voor standaardinstellingen
+          proficiency_level_exists_for_type: Er bestaat al een vaardigheidsniveau voor dit type
+          project_level_default_exists: Er bestaat al een 'standaard' vaardigheidsniveau
           skill_must_exist: Vaardigheid moet aanwezig zijn voor vaardigheidstype 'by_skill'.
       export:
-        actions:
-          proficiency: Exportvaardigheden
-          translations: Exportvaardigheden Vertalingen
         details: Details
         failure_msg: Fout bij het exporteren van vaardigheidsniveaus
         success_msg: Lopende ontwikkelingsacties exporteren
@@ -2721,28 +2749,23 @@ nl:
         proficiency_translations: Bekwaamheid Vertalingen
         proficiency_type: Type bekwaamheid
         skill: Vaardigheid
-        skill_category: Vaardigheidscategorie
         skill_name: Naam vaardigheid
+        skill_type: Type vaardigheid
         title: Bekwaamheid
-      global: Is mondiale vaardigheid?
       import:
         actions:
           proficiency: Importvaardigheden
           translations: Vertalingen importeren
         errors:
-          all_skills_global_exists: 'Rij %{row_number}: Er bestaat al een ProficiencyLevel op globaal niveau ''all_skills'
-          all_skills_project_exists: 'Rij %{row_number}: Er bestaat al een ProficiencyLevel op projectniveau ''all_skills'
-          by_category_exists: 'Rij %{row_number}: Er bestaat al een ''by_category'' ProficiencyLevel voor dit project en deze vaardigheidscategorie'
-          by_category_missing: 'Rij %{row_number}: Project en vaardigheidscategorie moeten aanwezig zijn voor ''by_category''-type'
           by_skill_exists: 'Rij %{row_number}: Er bestaat al een ''by_skill'' ProficiencyLevel voor dit project en deze vaardigheid'
           by_skill_missing: 'Rij %{row_number}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
+          by_skill_type_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''by_skill_type'''' ProficiencyLevel voor dit project en vaardigheidstype'
+          by_skill_type_missing: 'Rij %{rij_nummer}: Project en Skill Type moeten aanwezig zijn voor ''''by_skill_type'''' type'
+          default_global_exists: 'Rij %{rij_nummer}: Er bestaat al een globaal niveau ''''standaard'''' ProficiencyLevel'
+          default_project_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''standaard'''' ProficiencyLevel op projectniveau'
           invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
-          invalid_json: 'Regel %{line}: Ongeldige JSON in LevelDefinition - %{message}'
-          invalid_json_structure: moet een JSON-object zijn met sleutels als "description" en "summary".
           invalid_proficiency_type: 'Rij %{row_number}: Ongeldig of ontbrekend ProficiencyType'
           missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
-          missing_required_fields: 'Regel %{line}: Verplichte velden ontbreken (%{fields})'
-          save_failed: 'Regel %{line}: %{message}'
           skill_not_found: 'Rij %{row_number}: Ongeldige of ontbrekende vaardigheid'
         job_queued: Vaardigheidsniveaus importtaak is in de wachtrij geplaatst
       translations:
@@ -2759,9 +2782,9 @@ nl:
             row_id_blank: 'Rij %{row}: ID kan niet leeg zijn'
             save_failed: 'Fout bij het verwerken van vaardigheid-ID %{id}: %{message}'
       type:
-        all_skills: Alle vaardigheden
-        by_category: Per categorie
         by_skill: Door Behendigheid
+        by_skill_type: Op vaardigheidstype
+        default: Standaard
     profile:
       change_password: Wachtwoord wijzigen
       details: Details
@@ -3123,6 +3146,7 @@ nl:
         user_name: Gebruikersnaam
       dashboard: Dashboard
       download: Downloaden
+      report_approval_settings: Instellingen voor goedkeuring van rapporten
       report_approvals: Goedkeuringen
       review: Beoordeling
       saving_filters:
@@ -3244,6 +3268,15 @@ nl:
         successfully: Rapport '%{name}' is succesvol verwijderd.
       edit:
         header: Rapportnaam bewerken
+      edit_default_language:
+        agreement: Ja, ik begrijp de implicaties van de standaardtaalverandering.
+        title: Standaardtaal bewerken
+        tooltip: Standaardtaal bewerken
+        warning:
+          description_li_1: Als je de standaardtaal wijzigt van RTL naar LTR of omgekeerd, heeft dit invloed op de lay-out.
+          description_li_2: Je zou de rapportvertalingen moeten aanpassen als je de standaardtaal wijzigt.
+          description_li_3: Download een kopie van de rapportvertalingen voordat je deze wijziging aanbrengt.
+          title: Lees de instructies zorgvuldig
       modals:
         remap_assessment:
           new_assessment_name: Naam nieuwe beoordeling
@@ -3286,6 +3319,9 @@ nl:
         successfully: Rapport is met succes bijgewerkt.
       update:
         successfully: Rapport %{name} is bijgewerkt.
+    reports_language_selection_modal:
+      download: Downloaden
+      generate: Rapport genereren
     resource:
       remove_confirm:
         message: Weet je zeker dat je deze bron wilt verwijderen?
@@ -3695,6 +3731,7 @@ nl:
         import:
           missing_fields_data: 'Regel %{line_number}: Verplichte velden ontbreken: %{fields}'
           save_failed: 'Regel %{line_number}: Opslaan van vaardigheid ''%{name}'' mislukt: %{message}'
+          skill_not_in_project: 'Regel %{line_number}: Vaardigheid ID %{skill_id} behoort niet tot dit project'
         search:
           all_and_project_id_mutually_exclusive: Alles kan niet waar zijn als project_id_eq is opgegeven
           invalid_all_value: 'moet een van de volgende zijn: waar, onwaar'
@@ -3705,12 +3742,8 @@ nl:
         details: Details
         failure_msg: Fout tijdens het exporteren van vertalingen
         success_msg: Het exporteren van ontwikkelingsacties in uitvoering.
-        title: Exporteer
         translations:
           details: Vaardigheden Vertalingen
-      export_action:
-        skills_title: Exportvaardigheden
-        skills_translations_title: Exportvaardigheden Vertalingen
       form:
         client_placeholder: Selecteer een klant
         description: Beschrijving
@@ -3719,9 +3752,6 @@ nl:
         skill_group: Vaardigheidsgroep
         skill_type: Vaardigheidstype
         title: Vaardigheid
-      global: Is globale vaardigheid?
-      global_skills: Wereldwijde vaardigheden
-      global_translations: Global Skills Vertalingen
       import:
         download_example_csv: Voorbeeld csv downloaden
         info_msg: Het geüploade bestand is in de wachtrij geplaatst voor import. Controleer de status in de meldingen.
@@ -3731,8 +3761,6 @@ nl:
         skills_translations_title: Importvaardigheden Vertalingen
       skill_details: Vaardigheden
       skill_translations: Vaardigheden Vertalingen
-      skill_translations_project: Vaardigheid Vertalingen gebaseerd op Project
-      skills_project: Vaardigheden gebaseerd op Project
       title: Vaardigheden
       translations:
         import:
@@ -3743,7 +3771,6 @@ nl:
             skill_not_found: Vaardigheid met ID %{id} niet gevonden
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Vaardigheidstaken toewijzingen
         job_roles: Functierollen
         proficiency: Vaardigheid
         skills: Vaardigheden
@@ -3901,7 +3928,25 @@ nl:
         successfully: Subfactor is met succes bijgewerkt.
     survey_builder:
       builder_area:
+        current_job: Huidige baan
+        default_not_applicable_label: Geen mogelijkheid om vaardigheden te leren of te demonstreren
+        enable_not_applicable: N/A-optie inschakelen
+        enable_required_validation: Vereiste validatie inschakelen
+        force_response: Reactie op kracht
+        job_role_required: Selecteer ten minste één functie
+        not_applicable_label: Niet van toepassing Label
         options: Opties
+        request_response: Antwoord op verzoek
+        skill_rater_config: Configuratie vaardigheidsbeoordelaar
+        target_job: Streefbaan
+      models:
+        block_types:
+          regular: Gewoon
+          skill_rater: Vaardigheid Rater
+        skill_types:
+          behavioural: Gedrag
+          other: Andere
+          technical: Technisch
       property_panel:
         add_n_a_option: N.v.t.-optie toevoegen
         allow_content_copy: Inhoud kopiëren toestaan
@@ -3960,12 +4005,11 @@ nl:
         download_example_file: Voorbeeldbestand downloaden
         success_msg: Het geüploade bestand is in de wachtrij geplaatst om te worden geïmporteerd. Controleer de status in de meldingen.
       import_action:
-        taxonomy: Taxonomie importeren
+        taxonomy: Taxonomie vaardigheden importeren
       job_roles: Functierollen
       proficiency: Bekwaamheid
-      skill_job_mappings: Vaardigheidstaken toewijzingen
       skills: Vaardigheden
-      title: Taxonomie
+      title: Taxonomie van vaardigheden
     templates:
       blocks:
         copy:
@@ -4066,6 +4110,7 @@ nl:
           invitations: Uitnodigingen
           reminders: Herinneringen
           report_ready: Rapport klaar
+        consolidated: Geconsolideerd
         custom_message:
           description: Dit bericht kan naar iedereen gestuurd worden die deelneemt aan de beoordeling
           name: Aangepast bericht
@@ -4089,7 +4134,10 @@ nl:
         request_approval:
           description: Dit bericht wordt naar managers gestuurd wanneer een onderwerp om goedkeuring vraagt
           name: Goedkeuring aanvragen
+        save: Sla
+        schedule: Schema
         schedule_email: E-mail plannen
+        schedule_email_title: E-mail plannen
         schedule_time: Tijd plannen
         send_test_email: Testmail verzenden
         subject: Onderwerp
@@ -4130,6 +4178,14 @@ nl:
         welcome_message:
           description: Dit bericht wordt aan de proefpersonen getoond wanneer ze inloggen om met de beoordeling te beginnen of hun takenlijst te bekijken
           name: Welkom
+      mail_history:
+        actions: Acties
+        date: Datum
+        download_details: Details downloaden
+        emails_sent: Verzonden e-mails
+        recipient: Ontvanger
+        status: Status
+        subject: Onderwerp
       manage:
         assessment: Beoordeling
         dimension: Afmetingen
@@ -4137,19 +4193,45 @@ nl:
         report: Rapporteer
         title: Beheer
       menu:
+        actions: Acties
         datasheet:
           title: Gegevensblad
         messages:
+          allow_subjects_to_send_reminders: Laat proefpersonen herinneringen sturen naar beoordelaars
+          automatically_send_invites: Automatisch uitnodigingen versturen naar nieuwe beoordelaars
           title: Berichten
         participants:
+          columns:
+            action: Actie
+            email: E-mail
+            evaluations_completed: Afgeronde evaluaties
+            evaluations_received: Ontvangen evaluaties
+            is_subject: Is Onderwerp
+            name: Naam
+            report_status: Statusrapport
+            status: Status
+          evaluators:
+            add_evaluators: Evaluatoren toevoegen
+            import_evaluators: Importeer beoordelaars
+            title: Evaluatoren
+          managers:
+            title: Managers
+          options:
+            evaluator_options: Opties voor beoordelaar
+            global: Wereldwijde opties
+            manager_options: Opties voor managers
+            subject_options: Onderwerp Opties
+            title: Opties
           subjects:
             add_subjects: Onderwerpen toevoegen
             current_job_role: Huidige Functierol
             email: Email
             first_name: Voornaam
+            import_subjects: Invoer Onderwerpen
             last_name: Achternaam
             locale: Lokaal
             target_job_role: Doel Functierol
+            title: Onderwerpen
           title: Deelnemers
         report:
           menu:
@@ -4165,8 +4247,26 @@ nl:
         mail_history: Mail Geschiedenis
         options: Opties
       reports:
+        add_conditions: Voorwaarden toevoegen
+        administrator_approves_reports: Beheerder keurt rapporten goed
+        allow_manager_to_view_individual_responses: Manager toestaan individuele reacties te bekijken
+        disable_report_download: Downloaden van rapporten uitschakelen
+        edit_email: E-mail bewerken
+        email_manager_when_report_is_ready_for_approval: E-mail Manager wanneer rapport klaar is voor goedkeuring
+        email_subject_when_report_becomes_available: Onderwerp e-mail wanneer het rapport beschikbaar is
+        email_subjects_manager_when_available: E-mail de manager van het onderwerp wanneer het rapport beschikbaar is
+        make_report_available_to_subject_when: 'Stel het rapport beschikbaar aan de proefpersoon wanneer:'
+        manager_approves_reports: Manager keurt rapporten goed
+        manager_can_access_subject_reports: Manager heeft toegang tot rapporten over het onderwerp
+        manager_cannot_access_subject_reports: Manager kan rapport niet inzien totdat aan de vereisten is voldaan
+        report_access: Toegang rapporteren
+        report_approval: Goedkeuring verslag
+        report_availability: Rapport Beschikbaarheid
         show:
           title: Onderwerp Rapport
+        subject_can_access_reports: Proefpersoon heeft toegang tot zijn rapporten
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Licenties markeren als gedeactiveerd
     time_zone: Tijdzone
     tools: Gereedschap
     translations:

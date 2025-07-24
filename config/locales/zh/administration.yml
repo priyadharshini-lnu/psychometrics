@@ -174,6 +174,8 @@ zh:
             title: IDP 模板
             view: 查看
           jobRoles:
+            export_translations: 导出工作角色翻译
+            import_translations: 导入工作角色翻译
             manage: 管理
             title: 工作角色
             view: 查看
@@ -292,10 +294,8 @@ zh:
       ai_assistants: 人工智能助理
       ai_assistants_playground: 人工智能助理游乐场
       column:
-        ai_action: 人工智能行动
         provider: 提供商
       form:
-        action: 行动
         description: 说明
         name: 名称
         provider: 提供商
@@ -844,6 +844,14 @@ zh:
     campaign_factors_import:
       errors:
         invalid_headers: 以下标头无效： %{headers}
+    campaign_report:
+      bulk_download:
+        data_range_error: 请选择日期范围
+        modal:
+          subtitle: 选择日期范围，然后为每份报告选择所需语言
+      generate:
+        modal:
+          subtitle: 为每份报告选择所需的语言
     campaign_templates:
       campaign_templates: 活动模板
       column:
@@ -961,7 +969,9 @@ zh:
             empty: 空
             inactive: 不活动
             name: 名称
+            normal: 正常
             previous: 上一页
+            skill_rater: 技能评级员
             standard: 标准
             status: 现状
           close:
@@ -1494,6 +1504,8 @@ zh:
         update:
           successfully: 项目 %{name} 已成功更新。
       registration_codes:
+        actions:
+          add_code: 添加代码
         column:
           code: 代码
           usage_stats: 使用统计
@@ -1504,6 +1516,13 @@ zh:
           incorrect_domain: 域名格式不正确。
           invalid_end_date: 必须大于开始日期
           license_issue: 许可证数量不足。
+        form:
+          active: 活跃
+          code: 代码
+          end_date: 结束日期
+          name: 名称
+          start_date: 开始日期
+          total_count: 总计数
       resource:
         confirmations:
           delete:
@@ -1533,6 +1552,7 @@ zh:
       reset: 重置
       save: 节省
       select_all: 选择所有
+      type: 类型
       unselect_all: 全部取消选择
     communication_settings: 设置
     communications:
@@ -1621,6 +1641,7 @@ zh:
         type: 类型
       list:
         actions: 行动
+        assessment_center_group: 评估中心小组
         author: 创建者
         campaign: 活动
         client_name: 客户
@@ -1768,6 +1789,7 @@ zh:
       errors:
         blank_field: '行 %{row}: %{field} 不能为空'
         csv_file_required: 必须是 CSV 文件
+        development_action_not_in_project: '行 %{row}: 开发活动 ID %{development_action_id} 不属于此项目'
         image_download_failed: 从 %{url} 下载图像失败： %{message}
         invalid_csv_format: CSV 格式无效： %{message}
         invalid_date: "%{date}的日期格式无效。"
@@ -2097,18 +2119,22 @@ zh:
       all: 全部
       appearance: 外观
       appearance_hint: 要修改外观，请先保存 IDP 模板，以启用这些设置。
+      appearance_success: 成功保存外观设置
       background_image: 背景图片
       behavioral_skills: 行为技能
       client_skills: 客户技能
+      details_updated: 成功更新 IDP 详情
       edit_template: 编辑 IDP 模板
+      enter_tag_or_skills_error: 选择至少一个标签或技能
       enter_template_description: 说明
       enter_template_description_error: 需要模板说明。
       enter_template_name: 名称
       enter_template_name_error: 模板名称为必填项
       errors:
-        update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。外观更改已保存。
+        update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。
       fields:
         assigned_data: 指定数据
+        assigned_date: 指定日期
         completion_date: 完成日期
         division: 分部
         name: 名称
@@ -2146,6 +2172,11 @@ zh:
       show_reflections: 展示反思
       skill_gap_report: 技能差距报告
       skills: 技能
+      skills_updated: IDP 技能更新成功
+      status:
+        draft: 草案
+        published: 已出版
+      status_updated: IDP 状态更新成功
       subtitle_text: 字幕文本
       tab:
         development_actions: 发展行动
@@ -2378,43 +2409,43 @@ zh:
         rescheduled: 改期
       subject: 主题
     job_role:
+      are_you_sure_to_remove: 你确定要删除吗？
       column:
         job_group: 工作小组
+        skill_name: 技能名称
       export:
         failure_msg: 导出翻译时出错
         success_msg: 导出开发行动正在进行中。
-      export_action:
-        translations: 出口职位角色翻译
       form:
         code: 代码
         description: 说明
         job_group: 工作小组
         name: 名称
         title: 工作角色
-      global: 全球工作角色是什么？
       import:
         download_example_csv: 下载 csv 示例
         success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
       import_action:
         translations: 导入工作角色翻译
+      job_role_details: 工作角色详情
       translations: 工作角色翻译
     job_role_skill_mapping:
       column:
         expected_proficiency_level: 预期能力水平
-        job_role: 工作角色
-        skill: 技能
       form:
-        expected_proficiency_level: 预期能力水平
-        job_role: 工作角色
-        skill: 技能
         title: 技能岗位制图
-      global: 全球技能工作图谱是什么？
       import:
         taxonomy: 分类学
     job_roles:
       export:
         translations:
           details: 详细信息
+      translations:
+        import:
+          errors:
+            job_role_not_found: 未找到 ID 为 %{id} 的工作角色
+            missing_columns: 缺少必填列： %{columns}
+            save_failed: 处理工作角色 ID %{id} 时出错：%{message｝
     libraries:
       create:
         successfully: 项目 %{name} 创建成功。
@@ -2701,14 +2732,11 @@ zh:
           level_definition_must_match_level: 必须完全包含 %{expected}水平，但给出了 %{actual}水平。
           must_be_unique: 必须独一无二
           proficiency_level_exists: 已存在具有该技能和项目的 ProficiencyLevel
-          proficiency_level_exists_for_all_skills: 所有技能的熟练等级已经存在
-          proficiency_level_exists_for_category: 该类别的熟练程度等级已经存在
-          project_level_all_skills_exists: 已存在 "all_skills "能力级别
+          proficiency_level_exists_for_default: 已退出默认设置的熟练级别
+          proficiency_level_exists_for_type: 该类型的熟练级别已经存在
+          project_level_default_exists: 默认 "能力水平已经存在
           skill_must_exist: 技能类型 "by_skill "必须包含技能
       export:
-        actions:
-          proficiency: 出口能力
-          translations: 出口能力翻译
         details: 详细信息
         failure_msg: 导出熟练程度时出错
         success_msg: 导出发展中行动
@@ -2721,28 +2749,23 @@ zh:
         proficiency_translations: 熟练翻译
         proficiency_type: 能力类型
         skill: 技能
-        skill_category: 技能类别
         skill_name: 技能名称
+        skill_type: 技能类型
         title: 熟练程度
-      global: 全球能力是什么？
       import:
         actions:
           proficiency: 进口能力
           translations: 进口能力翻译
         errors:
-          all_skills_global_exists: 行 %{row_number}：已存在全局级别 "all_skills"（所有技能）ProficiencyLevel
-          all_skills_project_exists: 行 %{row_number}：已经存在一个项目级别的 "all_skills "熟练级别
-          by_category_exists: 行 %{row_number}：此项目和技能类别已存在 "by_category "熟练级别
-          by_category_missing: 行 %{row_number}：by_category "类型必须有项目和技能类别
           by_skill_exists: 行 %{row_number}：此项目和技能已存在 "by_skill "熟练等级
           by_skill_missing: 行 %{row_number}：by_skill "类型必须有项目和技能
+          by_skill_type_exists: 行 %{row_number}：此项目和技能类型已存在"'by_skill_type'"熟练等级
+          by_skill_type_missing: 行 %{row_number}：by_skill_type''类型必须有项目和技能类型
+          default_global_exists: 行 %{row_number}：已存在全局级别的 "默认 "熟练等级
+          default_project_exists: 行 %{row_number}：已存在项目级别的 "默认 "熟练级别
           invalid_csv_format: CSV 格式无效： %{message}
-          invalid_json: 行 %{line}：LevelDefinition 中的 JSON 无效 - %{message}
-          invalid_json_structure: 必须是一个 JSON 对象，包含 "描述 "和 "摘要 "等关键字
           invalid_proficiency_type: 行 %{row_number}：无效或缺少 ProficiencyType
           missing_columns: 缺少必填列： %{fields}
-          missing_required_fields: 行 %{line}：缺少必填字段 (%{fields})
-          save_failed: 行 %{line}：%{message}
           skill_not_found: 行 %{row_number}：技能无效或缺失
         job_queued: 能力水平导入工作已排队
       translations:
@@ -2759,9 +2782,9 @@ zh:
             row_id_blank: 行 %{row}：ID 不能为空
             save_failed: 处理技能 ID %{id}时出错：%{message}
       type:
-        all_skills: 所有技能
-        by_category: 按类别
         by_skill: 通过技能
+        by_skill_type: 按技能类型
+        default: 默认值
     profile:
       change_password: 更改密码
       details: 详细信息
@@ -3123,6 +3146,7 @@ zh:
         user_name: 用户名
       dashboard: 仪表板
       download: 下载
+      report_approval_settings: 报告审批设置
       report_approvals: 报告批准
       review: 评论
       saving_filters:
@@ -3244,6 +3268,15 @@ zh:
         successfully: 报告"%{name}"已成功删除。
       edit:
         header: 编辑报告名称
+      edit_default_language:
+        agreement: 是的，我理解更改默认语言所带来的影响。
+        title: 编辑默认语言
+        tooltip: 编辑默认语言
+        warning:
+          description_li_1: 将默认语言从 RTL 更改为 LTR 语言或反之亦然，都会影响版面设计。
+          description_li_2: 如果更改默认语言，就必须重新翻译报告。
+          description_li_3: 在进行此更改之前，请下载报告翻译副本。
+          title: 请仔细阅读说明
       modals:
         remap_assessment:
           new_assessment_name: 新评估名称
@@ -3286,6 +3319,9 @@ zh:
         successfully: 报告已成功更新。
       update:
         successfully: 报告 %{name} 已成功更新。
+    reports_language_selection_modal:
+      download: 报告下载
+      generate: 生成报告
     resource:
       remove_confirm:
         message: 您确定要删除此资源吗？
@@ -3695,6 +3731,7 @@ zh:
         import:
           missing_fields_data: 第 %{line_number} 行：缺少必填字段：%{fields}
           save_failed: 行 %{line_number}：保存技能"%{name}"失败： %{message}
+          skill_not_in_project: 行 %{line_number}：技能 ID %{skill_id} 不属于此项目
         search:
           all_and_project_id_mutually_exclusive: 当提供 project_id_eq 时，不能全部为真
           invalid_all_value: 必须是：true、false
@@ -3705,12 +3742,8 @@ zh:
         details: 详细信息
         failure_msg: 导出翻译时出错
         success_msg: 导出开发行动正在进行中。
-        title: 出口
         translations:
           details: 技能翻译
-      export_action:
-        skills_title: 出口技能
-        skills_translations_title: 出口技能翻译
       form:
         client_placeholder: 选择客户
         description: 说明
@@ -3719,9 +3752,6 @@ zh:
         skill_group: 技能组
         skill_type: 技能类型
         title: 技能
-      global: 全球技能是什么？
-      global_skills: 全球技能
-      global_translations: 全球技能翻译
       import:
         download_example_csv: 下载 csv 示例
         info_msg: 上传的文件已排队等待导入，请查看通知中的状态。
@@ -3731,8 +3761,6 @@ zh:
         skills_translations_title: 进口技能翻译
       skill_details: 技能详情
       skill_translations: 技能翻译
-      skill_translations_project: 基于项目的技能翻译
-      skills_project: 基于项目的技能
       title: 技能
       translations:
         import:
@@ -3743,7 +3771,6 @@ zh:
             skill_not_found: 未找到 ID 为 %{id} 的技能
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: 技能岗位映射
         job_roles: 工作角色
         proficiency: 熟练
         skills: 技能
@@ -3901,7 +3928,25 @@ zh:
         successfully: 子因子已成功更新。
     survey_builder:
       builder_area:
+        current_job: 当前工作
+        default_not_applicable_label: 没有机会学习或展示技能
+        enable_not_applicable: 启用不适用选项
+        enable_required_validation: 启用必要的验证
+        force_response: 部队反应
+        job_role_required: 请至少选择一个工作角色
+        not_applicable_label: 不适用 标签
         options: 选项
+        request_response: 请求答复
+        skill_rater_config: 技能评级器配置
+        target_job: 目标职位
+      models:
+        block_types:
+          regular: 常规
+          skill_rater: 技能评级员
+        skill_types:
+          behavioural: 行为
+          other: 其他
+          technical: 技术
       property_panel:
         add_n_a_option: 添加不适用选项
         allow_content_copy: 允许复制内容
@@ -3960,12 +4005,11 @@ zh:
         download_example_file: 下载示例文件
         success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
       import_action:
-        taxonomy: 导入分类标准
+        taxonomy: 导入技能分类标准
       job_roles: 工作角色
       proficiency: 熟练程度
-      skill_job_mappings: 技能岗位映射
       skills: 技能
-      title: 分类学
+      title: 技能分类法
     templates:
       blocks:
         copy:
@@ -4066,6 +4110,7 @@ zh:
           invitations: 邀请函
           reminders: 提醒事项
           report_ready: 报告准备就绪
+        consolidated: 综合
         custom_message:
           description: 该信息可发送给参与评估的任何人
           name: 自定义信息
@@ -4089,7 +4134,10 @@ zh:
         request_approval:
           description: 当主题请求批准时，此信息将发送给管理人员
           name: 申请批准
+        save: 节省
+        schedule: 时间安排
         schedule_email: 日程安排电子邮件
+        schedule_email_title: 日程安排电子邮件
         schedule_time: 时间安排
         send_test_email: 发送测试电子邮件
         subject: 主题
@@ -4130,6 +4178,14 @@ zh:
         welcome_message:
           description: 当受试者登录开始评估或查看任务列表时，该信息将显示给受试者
           name: 欢迎词
+      mail_history:
+        actions: 行动
+        date: 日期
+        download_details: 下载详细信息
+        emails_sent: 已发送电子邮件
+        recipient: 受援国
+        status: 现状
+        subject: 主题
       manage:
         assessment: 评估
         dimension: 尺寸
@@ -4137,19 +4193,45 @@ zh:
         report: 报告
         title: 管理
       menu:
+        actions: 行动
         datasheet:
           title: 数据表
         messages:
+          allow_subjects_to_send_reminders: 允许受试者向评估者发送提醒信息
+          automatically_send_invites: 自动向新评估员发送邀请
           title: 信息
         participants:
+          columns:
+            action: 行动
+            email: 电子邮件
+            evaluations_completed: 已完成的评估
+            evaluations_received: 收到的评价
+            is_subject: 是主题
+            name: 名称
+            report_status: 报告状态
+            status: 现状
+          evaluators:
+            add_evaluators: 添加评估员
+            import_evaluators: 进口评估员
+            title: 评估员
+          managers:
+            title: 管理人员
+          options:
+            evaluator_options: 评估员选项
+            global: 全球选项
+            manager_options: 经理选项
+            subject_options: 学科选项
+            title: 选项
           subjects:
             add_subjects: 添加主题
             current_job_role: 当前工作角色
             email: 电子邮件
             first_name: 名字
+            import_subjects: 进口主题
             last_name: 姓氏
             locale: 地点
             target_job_role: 目标工作角色
+            title: 主题
           title: 与会者
         report:
           menu:
@@ -4165,8 +4247,26 @@ zh:
         mail_history: 邮件历史
         options: 选项
       reports:
+        add_conditions: 添加条件
+        administrator_approves_reports: 行政长官批准报告
+        allow_manager_to_view_individual_responses: 允许经理查看个别回复
+        disable_report_download: 禁用报告下载
+        edit_email: 编辑电子邮件
+        email_manager_when_report_is_ready_for_approval: 报告准备好供审批时，向经理发送电子邮件
+        email_subject_when_report_becomes_available: 报告发布后以电子邮件发送主题
+        email_subjects_manager_when_available: 报告发布后，向受试者的管理者发送电子邮件
+        make_report_available_to_subject_when: 在下列情况下向受试者提供报告
+        manager_approves_reports: 经理批准报告
+        manager_can_access_subject_reports: 管理人员可查阅主题报告
+        manager_cannot_access_subject_reports: 在满足要求之前，经理无法查看报告
+        report_access: 报告访问
+        report_approval: 报告批准
+        report_availability: 报告可用性
         show:
           title: 课题报告
+        subject_can_access_reports: 受试者可查阅其报告
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: 将许可证标记为停用
     time_zone: 时区
     tools: 工具
     translations:

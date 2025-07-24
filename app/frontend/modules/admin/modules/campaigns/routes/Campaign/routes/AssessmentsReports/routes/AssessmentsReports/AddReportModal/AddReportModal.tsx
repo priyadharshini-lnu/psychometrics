@@ -88,7 +88,7 @@ const AddReportModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="report"
-      readableResourceName="Report"
+      readableResourceName={I18n.t('campaign_report.form.report')}
       requestScope={requestScope}
       resourceBaseUrl={resourceBaseUrl}
       close={close}

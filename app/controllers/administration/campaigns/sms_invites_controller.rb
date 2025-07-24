@@ -76,7 +76,10 @@ module Administration
       end
 
       def import
-        import_data = CSV.parse(File.read(params[:file].path), headers: :first_row).map(&:to_h)
+        csv_result = ::CsvFileParser.call!(params[:file], headers: :first_row)
+
+        import_data = csv_result.map(&:to_h)
+
         return head :ok if import_data.blank?
 
         form = ::SmsInvites::ImportForm.new(import_data: import_data).with_context(campaign: campaign)

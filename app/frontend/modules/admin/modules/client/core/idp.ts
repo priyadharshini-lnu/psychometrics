@@ -21,6 +21,18 @@ export const ReflectionQuestionTR = t.type({
   maxWords: t.union([t.number, t.null]),
 })
 
+export const IdpListItemTR = t.type({
+  id: t.string,
+  name: t.string,
+  description: t.string,
+  status: t.string,
+  allowEdit: t.boolean,
+  report: t.union([
+    ReportTR,
+    t.undefined,
+  ]),
+})
+
 export const IdpTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
@@ -51,6 +63,8 @@ export const IdpTR = t.intersection([
       titleText: t.union([t.string, t.null]),
       subtitleText: t.union([t.string, t.null]),
     })),
+    status: t.string,
+    allowEdit: t.boolean,
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),

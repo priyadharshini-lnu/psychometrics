@@ -5,9 +5,9 @@ FactoryBot.define do
     association :project, factory: :project
     association :skill
 
-    proficiency_type { 'all_skills' }
+    proficiency_type { 'default' }
     level { 2 }
-    skill_category { 'technical' }
+    skill_type { 'technical' }
     level_definition { 'Basic understanding' }
   end
 end

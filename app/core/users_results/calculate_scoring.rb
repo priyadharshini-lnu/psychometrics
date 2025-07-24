@@ -69,6 +69,10 @@ module UsersResults
         end
       end
 
+      if assessment.dimension.skill_rater?
+        calculate_skill_rater_scoring
+      end
+
       broadcast :ok, ::UsersResults::Scoring::Extend.call!(
         {
           dimension: users_result.assessment.dimension,
@@ -83,6 +87,11 @@ module UsersResults
     # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
     private
+
+    def calculate_skill_rater_scoring
+      skill_rater_scoring = CalculateSkillRaterScores.new(users_result).call
+      @scoring.merge!(skill_rater_scoring)
+    end
 
     attr_reader :users_result, :scoring, :norm_data
   end

@@ -9,6 +9,7 @@ module Administration
 
           required(:id).filled(:int?)
           required(:name).filled(:str?)
+          required(:skill_rater).filled(:bool?)
         end
       end
     end

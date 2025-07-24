@@ -69,7 +69,7 @@ module Administration
         AdminJob.call(
           :regenerate_threesixty_report, {
             subject_id: resource.id,
-            threesixty_campaign_id: params[:threesixty_campaign_id],
+            threesixty_campaign_id: threesixty_campaign.id,
             locales: params[:selected_locales],
             force_regenerate: params[:force_regenerate]
           }, current_user

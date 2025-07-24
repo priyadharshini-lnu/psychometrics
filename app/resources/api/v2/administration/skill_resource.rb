@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseResource
   attributes :name, :description, :skill_type, :created_at, :updated_at, :project_id, :tag_list, :global,
-             :skill_group_id
+             :skill_group_id, :allowed_proficiency_levels
 
   has_one :project
   has_one :skill_group
@@ -30,6 +30,10 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
     @model.project_id.to_s
   end
 
+  def skill_group_id
+    @model.skill_group_id.to_s
+  end
+
   def tag_list
     @model.all_tags_list
   end
@@ -43,7 +47,23 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
   end
 
   def self.records(opts = {})
-    super.includes(:translations)
+    project_id = opts.dig(:context, :filter, :project_id_eq)
+    all_skills_filter = opts.dig(:context, :filter, :all_skills)
+
+    scope = super
+    scope = scope.where(project_id: nil) if project_id.nil? && all_skills_filter.nil?
+    scope.includes(:translations)
+  end
+
+  def allowed_proficiency_levels
+    result = Skills::GetProficiencyLevel.call(@model)
+    proficiency_level = result[:ok][:proficiency_level]
+
+    return {} unless proficiency_level && proficiency_level[:level_definition].present?
+
+    proficiency_level[:level_definition].each_with_object({}) do |defn, hash|
+      hash[defn['level']] = defn['name']
+    end
   end
 
   ransack_filters %i[

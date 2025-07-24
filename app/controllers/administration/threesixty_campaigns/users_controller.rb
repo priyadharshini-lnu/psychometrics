@@ -9,7 +9,9 @@ module Administration
 
       def update
         if form.valid?
-          resource.update!(form.attributes)
+          resource.update!(form.attributes.except(:current_job_role, :target_job_role))
+          update_campaign_user_job_roles if job_roles_present?
+
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: 400
@@ -41,6 +43,22 @@ module Administration
           threesixty_campaign: threesixty_campaign,
           project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id,
           policy_class: Threesixty::UserPolicy
+        )
+      end
+
+      def job_roles_present?
+        form.attributes.key?(:current_job_role) || form.attributes.key?(:target_job_role)
+      end
+
+      def update_campaign_user_job_roles
+        campaign_user = CampaignUser.find_or_create_by!(
+          user: resource,
+          campaign: threesixty_campaign.campaign
+        )
+
+        campaign_user.update!(
+          current_job_role_id: form.current_job_role,
+          target_job_role_id: form.target_job_role
         )
       end
     end

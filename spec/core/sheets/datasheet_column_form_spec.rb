@@ -5,10 +5,7 @@ require 'rails_helper'
 describe Sheets::DatasheetColumnForm do
   context 'Validation' do
     let!(:sheet) do
-      create(:sheet, columns: [
-        { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-        { name: 'Uniq', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
-      ])
+      create(:sheet)
     end
     let!(:columns) do
       create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string')

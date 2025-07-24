@@ -20,13 +20,13 @@ export type TagFilterConfig = {
 
 type Props = {
   placeholder?: string
-  tag: string,
+  name: string,
   config?: TagFilterConfig
 }
 
 export const TagFilter: FC<Props> = ({
   placeholder,
-  tag,
+  name,
   config = { taggable_resource_type: '' },
 }) => {
   const {
@@ -46,7 +46,7 @@ export const TagFilter: FC<Props> = ({
 
   const defaultPlaceholder = I18n.t('common.actions.filter_by_tags')
 
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [selectedTags, setSelectedTags] = useState<string[]>(resource.getFilteredValue(name) as string[] || [])
 
   useEffect(() => {
     fetchTags({
@@ -63,7 +63,7 @@ export const TagFilter: FC<Props> = ({
   const handleTagSelect = (value: string) => {
     const newSelectedTags = [...selectedTags, value]
     setSelectedTags(newSelectedTags)
-    resource.changeFilter(tag, newSelectedTags)
+    resource.changeFilter(name, newSelectedTags)
   }
 
   const debouncedFetchTags = useCallback(_.debounce((value) => {
@@ -85,7 +85,7 @@ export const TagFilter: FC<Props> = ({
   const handleTagClose = (removedTag: string) => {
     const newSelectedTags = selectedTags.filter(tag => tag !== removedTag)
     setSelectedTags(newSelectedTags)
-    resource.changeFilter(tag, newSelectedTags)
+    resource.changeFilter(name, newSelectedTags)
   }
 
   // Filter out selected tags from the dropdown options

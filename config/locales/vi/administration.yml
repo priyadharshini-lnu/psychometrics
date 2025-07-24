@@ -292,10 +292,8 @@ vi:
       ai_assistants: Trợ lý AI
       ai_assistants_playground: Sân chơi trợ lý AI
       column:
-        ai_action: Hành động AI
         provider: Cung cấp
       form:
-        action: Hành động
         description: Sự miêu tả
         name: Tên
         provider: Cung cấp
@@ -1494,6 +1492,8 @@ vi:
         update:
           successfully: Dự án %{name} đã được cập nhật thành công.
       registration_codes:
+        actions:
+          add_code: Thêm mã
         column:
           code: Mã
           usage_stats: Số liệu thống kê sử dụng
@@ -1504,6 +1504,13 @@ vi:
           incorrect_domain: Định dạng miền không chính xác.
           invalid_end_date: phải lớn hơn ngày bắt đầu
           license_issue: Không đủ giấy phép.
+        form:
+          active: Hoạt động
+          code: Mã
+          end_date: Ngày kết thúc
+          name: Tên
+          start_date: Ngày bắt đầu
+          total_count: Tổng số
       resource:
         confirmations:
           delete:
@@ -2383,15 +2390,12 @@ vi:
       export:
         failure_msg: Lỗi khi xuất bản dịch
         success_msg: Xuất các hành động phát triển đang được tiến hành.
-      export_action:
-        translations: Xuất bản dịch vai trò công việc
       form:
         code: Mã
         description: Sự miêu tả
         job_group: Nhóm công việc
         name: Tên
         title: Vai trò công việc
-      global: Vai trò công việc toàn cầu có phải không?
       import:
         download_example_csv: Tải xuống ví dụ csv
         success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
@@ -2401,14 +2405,8 @@ vi:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Mức độ thành thạo dự kiến
-        job_role: Vai trò công việc
-        skill: Kỹ năng
       form:
-        expected_proficiency_level: Mức độ thành thạo dự kiến
-        job_role: Vai trò công việc
-        skill: Kỹ năng
         title: Lập bản đồ công việc kỹ năng
-      global: Lập bản đồ công việc kỹ năng toàn cầu có phải không?
       import:
         taxonomy: Phân loại học
     job_roles:
@@ -2701,14 +2699,8 @@ vi:
           level_definition_must_match_level: phải chứa chính xác %{expected} mức, nhưng %{actual} đã được đưa ra
           must_be_unique: Phải là duy nhất
           proficiency_level_exists: Mức độ thành thạo với kỹ năng và dự án này đã tồn tại
-          proficiency_level_exists_for_all_skills: Mức độ thành thạo cho tất cả các kỹ năng đã thoát ra
-          proficiency_level_exists_for_category: Mức độ thành thạo cho hạng mục này đã tồn tại
-          project_level_all_skills_exists: Mức độ thành thạo 'all_skills' đã tồn tại
           skill_must_exist: Kỹ năng phải có mặt cho proficiency_type 'by_skill'
       export:
-        actions:
-          proficiency: Thành thạo xuất khẩu
-          translations: Bản dịch thông thạo xuất khẩu
         details: Chi tiết
         failure_msg: Lỗi khi xuất mức độ thành thạo
         success_msg: Xuất các hành động phát triển đang được tiến hành
@@ -2721,28 +2713,18 @@ vi:
         proficiency_translations: Dịch thuật thành thạo
         proficiency_type: Loại thông thạo
         skill: Kỹ năng
-        skill_category: Danh mục kỹ năng
         skill_name: Tên kỹ năng
         title: Thông thạo
-      global: Có phải là thành thạo toàn cầu?
       import:
         actions:
           proficiency: Thành thạo nhập khẩu
           translations: Bản dịch thành thạo nhập khẩu
         errors:
-          all_skills_global_exists: 'Hàng %{row_number}: Mức độ ''all_skills'' đã tồn tại'
-          all_skills_project_exists: 'Hàng %{row_number}: Mức độ ''all_skills'' cấp dự án đã tồn tại'
-          by_category_exists: 'Hàng %{row_number}: Mức độ thông thạo ''by_category'' đã tồn tại cho dự án và danh mục kỹ năng này'
-          by_category_missing: 'Hàng %{row_number}: Dự án và Danh mục kỹ năng phải có đối với loại ''by_category'''
           by_skill_exists: 'Hàng %{row_number}: Mức độ thông thạo ''by_skill'' đã tồn tại cho dự án và kỹ năng này'
           by_skill_missing: 'Hàng %{row_number}: Dự án và Kỹ năng phải có đối với loại ''by_skill'''
           invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
-          invalid_json: 'Dòng %{line}: JSON không hợp lệ trong LevelDefinition - %{message}'
-          invalid_json_structure: phải là một đối tượng JSON có các khóa như 'description' và 'summary'
           invalid_proficiency_type: 'Hàng %{row_number}: Không hợp lệ hoặc thiếu ProficiencyType'
           missing_columns: 'Thiếu cột bắt buộc: %{fields}'
-          missing_required_fields: 'Dòng %{line}: Thiếu các trường bắt buộc (%{fields})'
-          save_failed: 'Dòng %{line}: %{message}'
           skill_not_found: 'Hàng %{row_number}: Kỹ năng không hợp lệ hoặc thiếu'
         job_queued: Công việc nhập trình độ thành thạo đã được xếp hàng
       translations:
@@ -2759,8 +2741,6 @@ vi:
             row_id_blank: 'Hàng %{row}: ID không được để trống'
             save_failed: 'Lỗi xử lý ID kỹ năng %{id}: %{message}'
       type:
-        all_skills: Tất cả các kỹ năng
-        by_category: Theo danh mục
         by_skill: Theo kỹ năng
     profile:
       change_password: Thay đổi mật khẩu
@@ -3123,6 +3103,7 @@ vi:
         user_name: Tên người dùng
       dashboard: Bảng điều khiển
       download: Tải xuống
+      report_approval_settings: Cài đặt phê duyệt báo cáo
       report_approvals: Phê duyệt báo cáo
       review: Xem xét
       saving_filters:
@@ -3244,6 +3225,13 @@ vi:
         successfully: Báo cáo '%{name}' đã bị xóa thành công.
       edit:
         header: Chỉnh sửa tên báo cáo
+      edit_default_language:
+        agreement: Vâng, tôi hiểu rõ những hậu quả của việc thay đổi ngôn ngữ mặc định.
+        warning:
+          description_li_1: Thay đổi ngôn ngữ mặc định từ RTL sang LTR hoặc ngược lại sẽ ảnh hưởng đến bố cục.
+          description_li_2: Nếu bạn thay đổi ngôn ngữ mặc định, bạn sẽ phải chỉnh sửa lại bản dịch của báo cáo.
+          description_li_3: Tải xuống bản dịch của báo cáo trước khi thực hiện thay đổi này.
+          title: Xin vui lòng đọc kỹ hướng dẫn.
       modals:
         remap_assessment:
           new_assessment_name: Tên đánh giá mới
@@ -3702,12 +3690,8 @@ vi:
         details: Chi tiết
         failure_msg: Lỗi khi xuất bản dịch
         success_msg: Xuất các hành động phát triển đang được tiến hành.
-        title: Xuất khẩu
         translations:
           details: Dịch thuật kỹ năng
-      export_action:
-        skills_title: Kỹ năng xuất khẩu
-        skills_translations_title: Bản dịch kỹ năng xuất khẩu
       form:
         client_placeholder: Chọn một khách hàng
         description: Sự miêu tả
@@ -3716,9 +3700,6 @@ vi:
         skill_group: Nhóm kỹ năng
         skill_type: Loại kỹ năng
         title: Kỹ năng
-      global: Kỹ năng toàn cầu có phải không?
-      global_skills: Kỹ năng toàn cầu
-      global_translations: Dịch thuật Kỹ năng Toàn cầu
       import:
         download_example_csv: Tải xuống ví dụ csv
         info_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
@@ -3728,8 +3709,6 @@ vi:
         skills_translations_title: Bản dịch kỹ năng nhập khẩu
       skill_details: Chi tiết kỹ năng
       skill_translations: Kỹ năng dịch thuật
-      skill_translations_project: Dịch thuật kỹ năng dựa trên dự án
-      skills_project: Kỹ năng dựa trên Dự án
       title: Kỹ năng
       translations:
         import:
@@ -3740,7 +3719,6 @@ vi:
             skill_not_found: Không tìm thấy kỹ năng có ID %{id}
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Lập bản đồ công việc kỹ năng
         job_roles: Vai trò công việc
         proficiency: Thông thạo
         skills: Kỹ năng
@@ -3950,7 +3928,6 @@ vi:
         taxonomy: Phân loại nhập khẩu
       job_roles: Vai trò công việc
       proficiency: Thông thạo
-      skill_job_mappings: Lập bản đồ công việc kỹ năng
       skills: Kỹ năng
       title: Phân loại học
     templates:
@@ -4053,6 +4030,7 @@ vi:
           invitations: Lời mời
           reminders: Nhắc nhở
           report_ready: Báo cáo sẵn sàng
+        consolidated: Hợp nhất
         custom_message:
           description: Thông báo này có thể được gửi cho bất kỳ ai tham gia đánh giá
           name: Tin nhắn tùy chỉnh
@@ -4076,7 +4054,10 @@ vi:
         request_approval:
           description: Thông báo này được gửi đến người quản lý khi một chủ thể yêu cầu phê duyệt
           name: Yêu cầu phê duyệt
+        save: Lưu
+        schedule: Lịch trình
         schedule_email: Lên lịch email
+        schedule_email_title: Lịch trình email
         schedule_time: Lịch trình thời gian
         send_test_email: Gửi email thử nghiệm
         subject: Chủ đề
@@ -4117,6 +4098,14 @@ vi:
         welcome_message:
           description: Thông báo này sẽ được hiển thị cho các đối tượng khi họ đăng nhập để bắt đầu đánh giá hoặc xem danh sách nhiệm vụ của họ
           name: Thông điệp chào mừng
+      mail_history:
+        actions: Hành động
+        date: Ngày
+        download_details: Chi tiết tải xuống
+        emails_sent: Email đã gửi
+        recipient: Người nhận
+        status: Trạng thái
+        subject: Chủ đề
       manage:
         assessment: Thuế
         dimension: Kích thước
@@ -4124,19 +4113,45 @@ vi:
         report: Báo cáo
         title: Điều khiển
       menu:
+        actions: Hành động
         datasheet:
           title: Bảng dữ liệu
         messages:
+          allow_subjects_to_send_reminders: Cho phép người được đánh giá gửi lời nhắc nhở cho người đánh giá.
+          automatically_send_invites: Tự động gửi lời mời đến các đánh giá viên mới
           title: Thư
         participants:
+          columns:
+            action: Hành động
+            email: Thư điện tử
+            evaluations_completed: Đánh giá đã hoàn thành
+            evaluations_received: Đánh giá đã nhận
+            is_subject: Chủ đề là
+            name: Tên
+            report_status: Trạng thái báo cáo
+            status: Trạng thái
+          evaluators:
+            add_evaluators: Thêm người đánh giá
+            import_evaluators: Nhà đánh giá nhập khẩu
+            title: Người đánh giá
+          managers:
+            title: Quản lý
+          options:
+            evaluator_options: Tùy chọn đánh giá
+            global: Tùy chọn toàn cầu
+            manager_options: Tùy chọn Quản lý
+            subject_options: Chủ đề tùy chọn
+            title: Tùy chọn
           subjects:
             add_subjects: Thêm chủ đề
             current_job_role: Vai trò công việc hiện tại
             email: Email
             first_name: Tên thánh
+            import_subjects: Nhập chủ đề
             last_name: Họ
             locale: Locale
             target_job_role: Vai trò công việc mục tiêu
+            title: Chủ đề
           title: Tham gia
         report:
           menu:
@@ -4152,8 +4167,26 @@ vi:
         mail_history: Lịch sử thư
         options: Tùy chọn
       reports:
+        add_conditions: Thêm điều kiện
+        administrator_approves_reports: Quản trị viên phê duyệt báo cáo
+        allow_manager_to_view_individual_responses: Cho phép Quản lý xem các phản hồi cá nhân.
+        disable_report_download: Tắt tính năng tải xuống báo cáo
+        edit_email: Chỉnh sửa email
+        email_manager_when_report_is_ready_for_approval: Quản lý email khi báo cáo đã sẵn sàng để phê duyệt
+        email_subject_when_report_becomes_available: Tiêu đề email khi báo cáo có sẵn
+        email_subjects_manager_when_available: Gửi email cho người quản lý của chủ đề email khi báo cáo có sẵn.
+        make_report_available_to_subject_when: 'Cho phép người liên quan xem báo cáo khi:'
+        manager_approves_reports: Quản lý phê duyệt báo cáo
+        manager_can_access_subject_reports: Quản lý có thể truy cập các báo cáo liên quan.
+        manager_cannot_access_subject_reports: Quản lý không thể xem báo cáo cho đến khi các yêu cầu được đáp ứng.
+        report_access: Quyền truy cập báo cáo
+        report_approval: Phê duyệt báo cáo
+        report_availability: Tình trạng sẵn có của báo cáo
         show:
           title: Báo cáo chủ đề
+        subject_can_access_reports: Người dùng có thể truy cập các báo cáo của mình.
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Đánh dấu giấy phép là đã vô hiệu hóa
     time_zone: Múi giờ
     tools: Công cụ
     translations:

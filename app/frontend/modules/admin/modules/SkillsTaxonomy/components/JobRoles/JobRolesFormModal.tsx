@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import {
   Form, Input, Select,
   Spin,
-  Switch,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { debounce } from 'lodash'
@@ -12,13 +11,6 @@ import ResourceFormModal from '~/components/ResourceFormModal'
 import { JobRole } from '~/modules/admin/modules/client/core/jobRoles'
 import { JobGroup } from '~/modules/admin/modules/client/core/jobGroups'
 import { ApiConfig } from '~/hooks/useResources/interfaces'
-import { Client } from '~/modules/admin/modules/client/core/clients'
-import { Project } from '~/modules/admin/modules/client/core/projects'
-
-type OptionsType = {
-  id: string
-  name: string
-}
 
 type Props = {
   close(): void
@@ -32,17 +24,11 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
 
   const { resource } = useResourceContext<JobRole>()
   const [form] = Form.useForm()
-  const {
-    data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
-  } = useResources<Client>('clients')
-
-  const global = Form.useWatch('global', form)
-  const projectId = Form.useWatch('projectId', form)
 
   const {
     data: jobGroups,
-    fetch: fetchJobGroups, isLoading: isJobGroupsLoading, setData: setJobGroups,
-  } = useResources('job_groups', {
+    fetch: fetchJobGroups, isLoading: isJobGroupsLoading,
+  } = useResources<JobGroup>('job_groups', {
     apiConfig: {
       filter: {
         end_level_groups: 'true',
@@ -51,147 +37,33 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
     } as ApiConfig,
   })
 
+  const getJobGroups = (): JobGroup[] => {
+    if (!jobGroups?.length && jobRole?.jobGroup) {
+      return [jobRole.jobGroup]
+    }
+    return jobGroups
+  }
+
   const debouncedFetchJobGroups = useCallback(debounce((value) => {
     fetchJobGroups({
       apiConfig: {
         filter: {
           name_cont: value,
           ...(
-            (projectId) ? { project_id: projectId } : {}
+            params.projectid ? { project_id: params.projectid } : {}
           ),
         },
       },
     })
-  }, 300), [projectId])
+  }, 300), [params.projectId])
 
-  useEffect(() => {
-    if (jobRole) {
-      fetchJobGroups({
-        apiConfig: {
-          filter: { name_cont: jobRole.jobGroup?.name ?? '' },
-        },
-      })
-    }
-  }, [jobRole])
-
-  const ownersLoading = isOwnerLoading('fetch')
-
-  const fetchOwnersByValue = (value: string) => fetchOwners({
-    apiConfig: {
-      filter: {
-        filterable_fields: value,
-      },
-    },
+  const transformValues = values => ({
+    ...values,
+    project_id: (params.projectId || values.projectId)
+      ? Number(params.projectId || values.projectId)
+      : undefined,
+    job_group_id: Number(values.jobGroupId),
   })
-
-  const searchAvailableOwners = debounce((value) => {
-    fetchOwnersByValue(value)
-  }, 300)
-
-  useEffect(() => {
-    form.resetFields(['ownerId'])
-  }, [global])
-
-  useEffect(() => {
-    setJobGroups([])
-    form.resetFields(['jobGroupId'])
-  }, [global, projectId])
-
-  const ownerId = Form.useWatch(['ownerId'], form)
-  const getProjects = (): OptionsType[] => {
-    if (!jobRole || !jobRole.project) {
-      return projects
-    }
-
-    return [...projects, jobRole.project] as OptionsType[]
-  }
-
-  const {
-    data: projects, fetch: fetchProjects, isLoading: projectIsLoading, setData: setProjects,
-  } = useResources<Project>('projects', { basePath: `clients/${ownerId}` })
-
-  useEffect(() => {
-    setProjects([])
-    form.resetFields(['projectId'])
-  }, [ownerId])
-
-  const handleProjectSearch = debounce((value) => {
-    fetchProjects({
-      apiConfig: {
-        filter: { filterable_fields: value },
-        fields: { clients: ['name'] },
-      },
-    })
-  }, 300)
-
-  const transformValues = (values) => {
-    delete values.global
-    delete values.ownerId
-    return {
-      ...values,
-      project_id: (params.projectId || values.projectId)
-        ? Number(params.projectId || values.projectId)
-        : undefined,
-      job_group_id: Number(values.jobGroupId),
-    }
-  }
-
-  const renderClientSelector = () => {
-    if (global) return null
-    return (
-      <Form.Item
-        name="ownerId"
-        label={I18n.t('common.column.client')}
-        rules={[{ required: true }]}
-      >
-        <Select
-          showSearch
-          filterOption={false}
-          placeholder={I18n.t('administration.skills.form.client_placeholder')}
-          onSearch={searchAvailableOwners}
-          notFoundContent={ownersLoading ? <Spin size="small" /> : null}
-        >
-          {
-            owners.map(({ id, name }) => (
-              <Select.Option key={id} value={id}>{name}</Select.Option>
-            ))
-          }
-        </Select>
-      </Form.Item>
-    )
-  }
-
-  const renderProjectSelector = () => {
-    if (jobRole && !jobRole?.project) {
-      return null
-    }
-
-    if (global) {
-      return null
-    }
-
-    return (
-      <Form.Item
-        name="projectId"
-        label={I18n.t('common.column.project')}
-        rules={[{ required: true }]}
-      >
-        <Select
-          showSearch
-          filterOption={false}
-          disabled={!!jobRole}
-          onSearch={handleProjectSearch}
-          options={(getProjects() || []).map(p => ({
-            value: p.id,
-            label: p.name,
-          }))}
-          placeholder={I18n.t('administration.skills.form.project_placeholder')}
-          value={form.getFieldValue('projectId')}
-          notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
-        />
-      </Form.Item>
-    )
-  }
 
   return (
     <ResourceFormModal
@@ -215,6 +87,7 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
           >
             <Input />
           </Form.Item>
+
           <Form.Item
             name="code"
             label={I18n.t('administration.job_role.form.code')}
@@ -222,29 +95,15 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
           >
             <Input />
           </Form.Item>
+
           <Form.Item
             name="description"
             label={I18n.t('administration.job_role.form.description')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input.TextArea />
           </Form.Item>
-          {!params.projectId && (
-            <>
-              {!jobRole && (
-                <>
-                  <Form.Item
-                    name="global"
-                    label={I18n.t('administration.job_role.global')}
-                  >
-                    <Switch />
-                  </Form.Item>
-                  {renderClientSelector()}
-                </>
-              )}
-              {renderProjectSelector()}
-            </>
-          )}
+
           <Form.Item
             name="jobGroupId"
             label={I18n.t('administration.job_role.form.job_group')}
@@ -259,11 +118,11 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
                 debouncedFetchJobGroups(value)
               }}
               notFoundContent={isJobGroupsLoading('fetch') ? <Spin size="small" /> : null}
-            >
-              {jobGroups?.map((item: JobGroup) => (
-                <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>
-              ))}
-            </Select>
+              options={getJobGroups().map(p => ({
+                value: p.id,
+                label: p.name,
+              }))}
+            />
           </Form.Item>
         </>
       )}

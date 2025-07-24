@@ -292,10 +292,8 @@ pl:
       ai_assistants: Asystenci AI
       ai_assistants_playground: Plac zabaw dla asystentów AI
       column:
-        ai_action: Działanie SI
         provider: Dostawca
       form:
-        action: Akcja
         description: Opis
         name: Nazwa
         provider: Dostawca
@@ -1494,6 +1492,8 @@ pl:
         update:
           successfully: Projekt %{name} został zaktualizowany pomyślnie.
       registration_codes:
+        actions:
+          add_code: Dodaj kod
         column:
           code: Kod
           usage_stats: Statystyki użytkowania
@@ -1504,6 +1504,13 @@ pl:
           incorrect_domain: Nieprawidłowy format domeny.
           invalid_end_date: musi być większa niż data początkowa
           license_issue: Za mało licencji.
+        form:
+          active: Aktywny
+          code: Kod
+          end_date: Data zakończenia
+          name: Nazwa
+          start_date: Data rozpoczęcia
+          total_count: Łączna liczba
       resource:
         confirmations:
           delete:
@@ -2383,15 +2390,12 @@ pl:
       export:
         failure_msg: Błąd podczas eksportowania tłumaczeń
         success_msg: Eksport działań rozwojowych w toku.
-      export_action:
-        translations: Eksport tłumaczeń ról zawodowych
       form:
         code: Kod
         description: Opis
         job_group: Grupa zadań
         name: Nazwa
         title: Stanowisko
-      global: Czy globalna rola pracy?
       import:
         download_example_csv: Pobierz przykładowy plik csv
         success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
@@ -2401,14 +2405,8 @@ pl:
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Oczekiwany poziom biegłości
-        job_role: Stanowisko
-        skill: Zręczność
       form:
-        expected_proficiency_level: Oczekiwany poziom biegłości
-        job_role: Stanowisko
-        skill: Zręczność
         title: Mapowanie umiejętności zawodowych
-      global: Czy mapowanie stanowisk pracy z globalnymi umiejętnościami jest możliwe?
       import:
         taxonomy: Taksonomia
     job_roles:
@@ -2701,14 +2699,8 @@ pl:
           level_definition_must_match_level: musi zawierać dokładnie %{expected} poziomy, ale podano %{actual}
           must_be_unique: Musi być unikatowy
           proficiency_level_exists: Poziom biegłości w tej umiejętności i projekcie już istnieje
-          proficiency_level_exists_for_all_skills: Poziom biegłości dla wszystkich umiejętności już się kończy
-          proficiency_level_exists_for_category: Poziom biegłości dla tej kategorii już istnieje
-          project_level_all_skills_exists: Poziom biegłości "all_skills" już istnieje
           skill_must_exist: Umiejętność musi być obecna, aby proficiency_type "by_skill"
       export:
-        actions:
-          proficiency: Biegłość eksportowa
-          translations: Tłumaczenia biegłości eksportowej
         details: Szczegóły
         failure_msg: Błąd podczas eksportowania poziomów biegłości
         success_msg: Eksport trwających działań rozwojowych
@@ -2721,28 +2713,18 @@ pl:
         proficiency_translations: Tłumaczenia biegłości
         proficiency_type: Rodzaj biegłości
         skill: Zręczność
-        skill_category: Kategoria umiejętności
         skill_name: Nazwa umiejętności
         title: Biegłość
-      global: Czy biegłość jest globalna?
       import:
         actions:
           proficiency: Biegłość w imporcie
           translations: Tłumaczenia biegłości importowej
         errors:
-          all_skills_global_exists: 'Wiersz %{row_number}: Poziom biegłości "all_skills" na poziomie globalnym już istnieje'
-          all_skills_project_exists: 'Wiersz %{row_number}: Poziom biegłości "all_skills" na poziomie projektu już istnieje'
-          by_category_exists: 'Wiersz %{row_number}: Poziom biegłości "by_category" już istnieje dla tego projektu i kategorii umiejętności'
-          by_category_missing: 'Wiersz %{row_number}: Kategoria projektu i umiejętności musi być obecna dla typu "by_category"'
           by_skill_exists: 'Wiersz %{row_number}: Poziom biegłości "by_skill" już istnieje dla tego projektu i umiejętności'
           by_skill_missing: 'Wiersz %{row_number}: Projekt i umiejętność muszą być obecne dla typu "by_skill"'
           invalid_csv_format: 'Nieprawidłowy format CSV: %{message}'
-          invalid_json: 'Wiersz %{line}: Nieprawidłowy kod JSON w LevelDefinition — %{message}'
-          invalid_json_structure: musi być obiektem JSON z kluczami, takimi jak "description" i "summary"
           invalid_proficiency_type: 'Wiersz %{row_number}: Nieprawidłowy lub brakujący ProficiencyType'
           missing_columns: 'Brak wymaganych kolumn: %{fields}'
-          missing_required_fields: 'Wiersz %{line}: Brak wymaganych pól (%{fields})'
-          save_failed: 'Wiersz %{line}: %{message}'
           skill_not_found: 'Wiersz %{row_number}: Nieprawidłowa lub brakująca umiejętność'
         job_queued: Zadanie importu poziomów biegłości zostało umieszczone w kolejce
       translations:
@@ -2759,8 +2741,6 @@ pl:
             row_id_blank: 'Wiersz %{row}: Identyfikator nie może być pusty'
             save_failed: 'Błąd podczas przetwarzania identyfikatora umiejętności %{id}: %{message}'
       type:
-        all_skills: Wszystkie umiejętności
-        by_category: Według kategorii
         by_skill: Według umiejętności
     profile:
       change_password: Zmień hasło
@@ -3123,6 +3103,7 @@ pl:
         user_name: Nazwa użytkownika
       dashboard: Deska rozdzielcza
       download: Pobierać
+      report_approval_settings: Ustawienia zatwierdzania raportów
       report_approvals: Zatwierdzanie raportów
       review: Recenzja
       saving_filters:
@@ -3244,6 +3225,13 @@ pl:
         successfully: Raport "%{name}" został pomyślnie usunięty.
       edit:
         header: Edytowanie nazwy raportu
+      edit_default_language:
+        agreement: Tak, rozumiem konsekwencje zmiany domyślnego języka.
+        warning:
+          description_li_1: Zmiana domyślnego języka z RTL na LTR lub odwrotnie wpłynie na układ.
+          description_li_2: Jeśli zmienisz domyślny język, będziesz musiał ponownie opracować tłumaczenia raportów.
+          description_li_3: Pobierz kopię tłumaczeń raportów przed dokonaniem tej zmiany.
+          title: Prosimy o uważne przeczytanie instrukcji
       modals:
         remap_assessment:
           new_assessment_name: Nowa nazwa oceny
@@ -3702,12 +3690,8 @@ pl:
         details: Szczegóły
         failure_msg: Błąd podczas eksportowania tłumaczeń
         success_msg: Eksport działań rozwojowych w toku.
-        title: Eksport
         translations:
           details: Tłumaczenia umiejętności
-      export_action:
-        skills_title: Umiejętności eksportowe
-        skills_translations_title: Tłumaczenia umiejętności eksportowych
       form:
         client_placeholder: Wybierz klienta
         description: Opis
@@ -3716,9 +3700,6 @@ pl:
         skill_group: Grupa umiejętności
         skill_type: Rodzaj umiejętności
         title: Zręczność
-      global: Czy umiejętności globalne?
-      global_skills: Umiejętności globalne
-      global_translations: Tłumaczenia umiejętności globalnych
       import:
         download_example_csv: Pobierz przykładowy plik csv
         info_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
@@ -3728,8 +3709,6 @@ pl:
         skills_translations_title: Importowanie tłumaczeń umiejętności
       skill_details: Szczegóły umiejętności
       skill_translations: Umiejętności Tłumaczenia
-      skill_translations_project: Tłumaczenia umiejętności w oparciu o projekt
-      skills_project: Umiejętności oparte na projekcie
       title: Umiejętności
       translations:
         import:
@@ -3740,7 +3719,6 @@ pl:
             skill_not_found: Nie znaleziono umiejętności o identyfikatorze %{id}
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Mapowania stanowisk umiejętności
         job_roles: Role zawodowe
         proficiency: Biegłość
         skills: Umiejętności
@@ -3950,7 +3928,6 @@ pl:
         taxonomy: Taksonomia importu
       job_roles: Role zawodowe
       proficiency: Biegłość
-      skill_job_mappings: Mapowania stanowisk umiejętności
       skills: Umiejętności
       title: Taksonomia
     templates:
@@ -4053,6 +4030,7 @@ pl:
           invitations: Zaproszenia
           reminders: Przypomnienia
           report_ready: Gotowy raport
+        consolidated: Skonsolidowany
         custom_message:
           description: Ta wiadomość może zostać wysłana do każdej osoby biorącej udział w ocenie
           name: Wiadomość niestandardowa
@@ -4076,7 +4054,10 @@ pl:
         request_approval:
           description: Ta wiadomość jest wysyłana do menedżerów, gdy podmiot prosi o zatwierdzenie
           name: Poproś o zatwierdzenie
+        save: Zapisz
+        schedule: Harmonogram
         schedule_email: Zaplanuj wiadomość e-mail
+        schedule_email_title: Harmonogram e-mail
         schedule_time: Zaplanuj czas
         send_test_email: Wyślij testową wiadomość e-mail
         subject: Temat
@@ -4117,6 +4098,14 @@ pl:
         welcome_message:
           description: Ten komunikat zostanie wyświetlony uczestnikom, gdy zalogują się w celu rozpoczęcia oceny lub wyświetlenia listy zadań
           name: Wiadomość powitalna
+      mail_history:
+        actions: Działania
+        date: Data
+        download_details: Pobierz szczegóły
+        emails_sent: Wysłane wiadomości e-mail
+        recipient: Odbiorca
+        status: Status
+        subject: Przedmiot
       manage:
         assessment: Ocena
         dimension: Wymiary
@@ -4124,19 +4113,45 @@ pl:
         report: Sprawozdanie
         title: Zarządzać
       menu:
+        actions: Działania
         datasheet:
           title: Arkusz danych
         messages:
+          allow_subjects_to_send_reminders: Umożliwienie uczestnikom wysyłania przypomnień do oceniających
+          automatically_send_invites: Automatyczne wysyłanie zaproszeń do nowych oceniających
           title: Wiadomości
         participants:
+          columns:
+            action: Działanie
+            email: E-mail
+            evaluations_completed: Zakończone oceny
+            evaluations_received: Otrzymane oceny
+            is_subject: Czy temat
+            name: Nazwa
+            report_status: Status raportu
+            status: Status
+          evaluators:
+            add_evaluators: Dodaj oceniających
+            import_evaluators: Import Evaluators
+            title: Oceniający
+          managers:
+            title: Menedżerowie
+          options:
+            evaluator_options: Opcje ewaluatora
+            global: Opcje globalne
+            manager_options: Opcje menedżera
+            subject_options: Opcje przedmiotów
+            title: Opcje
           subjects:
             add_subjects: Dodawanie tematów
             current_job_role: Aktualne stanowisko
             email: E-mail
             first_name: Imię
+            import_subjects: Importuj przedmioty
             last_name: Nazwisko
             locale: Ustawień regionalnych
             target_job_role: Docelowa rola zawodowa
+            title: Przedmioty
           title: Uczestników
         report:
           menu:
@@ -4152,8 +4167,26 @@ pl:
         mail_history: Historia poczty
         options: Opcje
       reports:
+        add_conditions: Dodaj warunki
+        administrator_approves_reports: Administrator zatwierdza raporty
+        allow_manager_to_view_individual_responses: Umożliwienie menedżerowi przeglądania poszczególnych odpowiedzi
+        disable_report_download: Wyłącz pobieranie raportów
+        edit_email: Edytuj wiadomość e-mail
+        email_manager_when_report_is_ready_for_approval: Wyślij wiadomość e-mail do menedżera, gdy raport będzie gotowy do zatwierdzenia
+        email_subject_when_report_becomes_available: Temat wiadomości e-mail, gdy raport będzie dostępny
+        email_subjects_manager_when_available: Wyślij wiadomość e-mail do menedżera podmiotu, gdy raport będzie dostępny
+        make_report_available_to_subject_when: 'Udostępnić raport podmiotowi, gdy:'
+        manager_approves_reports: Menedżer zatwierdza raporty
+        manager_can_access_subject_reports: Menedżer może uzyskać dostęp do raportów tematycznych
+        manager_cannot_access_subject_reports: Menedżer nie może zobaczyć raportu, dopóki nie zostaną spełnione wymagania
+        report_access: Dostęp do raportu
+        report_approval: Zatwierdzenie raportu
+        report_availability: Dostępność raportu
         show:
           title: Raport tematyczny
+        subject_can_access_reports: Podmiot może uzyskać dostęp do swoich raportów
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Oznacz licencje jako nieaktywne
     time_zone: Strefa czasowa
     tools: Narzędzia
     translations:

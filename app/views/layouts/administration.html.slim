@@ -12,6 +12,7 @@ html lang="en"
       = stylesheet_link_tag 'test'
     = javascript_include_tag 'administration'
     = javascript_include_tag "administration/i18n/#{load_translation_file}.js"
+    = load_report_translation_file(params)
     = render 'layouts/favicons'
     = vite_client_tag
     = vite_react_refresh_tag

@@ -18,6 +18,7 @@ module Threesixty
         threesixty_campaign = campaign.build_threesixty_campaign
         threesixty_campaign.build_option(participants: Threesixty::Option::DEFAULT_PARTICIPANTS,
                                          reports: Threesixty::Option::DEFAULT_REPORTS)
+        threesixty_campaign.category = form.threesixty_category || Threesixty::Campaign.categories[:normal]
 
         broadcast :ok, threesixty_campaign
       end

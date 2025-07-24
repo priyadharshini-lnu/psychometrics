@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
-import { MenuProps } from 'antd'
+import {
+  MenuProps, message, Space,
+} from 'antd'
 import { RemoveResource } from 'hooks/useResources/interfaces'
-import { useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Idp } from '~/modules/admin/modules/client/core/idp'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -38,6 +40,15 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
   const { resource } = useResourceContext<Idp>()
   const { getSortOrder, removeResource } = resource
   const { projectId } = useParams() as { projectId: string }
+  const navigate = useNavigate()
+
+  const publish = (idp: Idp, status) => {
+    resource.updateResource({ id: idp.id, status }).then(() => {
+      message.success(I18n.t('administration.idp.status_updated'))
+    }).catch((error) => {
+      message.error(error?.base?.[0]?.title)
+    })
+  }
 
   return (
     <>
@@ -54,7 +65,7 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
         <Resource.Column<Idp>
           title={`${I18n.t('common.column.name')}`}
           id="name"
-          render={item => item?.name}
+          render={item => <Link to={`/admin/projects/${projectId}/idp/templates/${item.id}`}>{item?.name}</Link>}
           sorter
         />
 
@@ -72,6 +83,16 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
         />
 
         <Resource.Column<Idp>
+          title={`${I18n.t('common.column.status')}`}
+          id="published"
+          render={item => (
+            <Space>
+              {I18n.t(`administration.idp.status.${item.status}`)}
+            </Space>
+          )}
+        />
+
+        <Resource.Column<Idp>
           title={I18n.t('common.column.action')}
           id="action"
           width={100}
@@ -84,6 +105,8 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
                   removeResource,
                   projectId,
                   clientId,
+                  navigate,
+                  publish,
                 })
               }
             />
@@ -101,6 +124,8 @@ interface ActionMenuData {
   removeResource: RemoveResource,
   projectId: string,
   clientId: string,
+  navigate: ReturnType<typeof useNavigate>,
+  publish: (idp: Idp, status: string) => void,
 }
 
 const getActionMenuProps = ({
@@ -108,16 +133,25 @@ const getActionMenuProps = ({
   openModal,
   removeResource,
   projectId,
-  clientId,
+  navigate,
+  publish,
 }: ActionMenuData): MenuProps => {
   const menuItems = [
     { key: 'edit', label: I18n.t('common.actions.edit') },
+    idp.status === 'draft' ? { key: 'publish', label: I18n.t('common.actions.publish') } : null,
+    idp.status === 'published' ? { key: 'unpublish', label: I18n.t('common.actions.unpublish') } : null,
     { key: 'remove', label: I18n.t('common.actions.remove') },
   ]
 
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
-      return openModal('IDPTemplateForm', { idp, projectId, clientId })
+      navigate(`/admin/projects/${projectId}/idp/templates/${idp.id}`)
+    }
+    if (key === 'publish') {
+      publish(idp, 'published')
+    }
+    if (key === 'unpublish') {
+      publish(idp, 'draft')
     }
     if (key === 'remove') {
       return openModal('RemoveIdTemplate', { idp, removeIdp: removeResource })
