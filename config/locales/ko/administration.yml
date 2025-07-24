@@ -1079,6 +1079,7 @@ ko:
         ai_assistants: AI 어시스턴트
         ai_assisted_idp: AI 지원 IDP
         global_skills: 글로벌 기술
+        idp: IDP
         sms_notification: SMS 알림
     clients:
       api_keys:
@@ -2444,8 +2445,8 @@ ko:
         import:
           errors:
             job_role_not_found: ID가 %{id}인 작업 역할을 찾을 수 없습니다.
-            missing_columns: '누락된 필수 열: %{열}'
-            save_failed: '작업 역할 ID %{id}를 처리하는 동안 오류가 발생했습니다: %{메시지}'
+            missing_columns: '누락된 필수 열: %{columns}'
+            save_failed: '작업 역할 ID %{id}를 처리하는 동안 오류가 발생했습니다: %{message}'
     libraries:
       create:
         successfully: 항목 %{name}을(를) 성공적으로 만들었습니다.
@@ -2759,10 +2760,10 @@ ko:
         errors:
           by_skill_exists: '행 %{row_number}: 이 프로젝트 및 스킬에 대해 ''by_skill'' 숙련도 레벨이 이미 존재합니다.'
           by_skill_missing: '행 %{row_number}: ''by_skill'' 유형에 대해 프로젝트와 스킬이 있어야 합니다.'
-          by_skill_type_exists: '행 %{행_번호}: 이 프로젝트 및 스킬 유형에 대한 ''''by_skill_type'''' 숙련도 수준이 이미 존재합니다.'
-          by_skill_type_missing: '행 %{행_번호}: ''''by_skill_type'''' 유형에는 프로젝트 및 스킬 유형이 있어야 합니다.'
-          default_global_exists: '행 %{행_번호}: 글로벌 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
-          default_project_exists: '행 %{행_번호}: 프로젝트 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
+          by_skill_type_exists: '행 %{row_number}: 이 프로젝트 및 스킬 유형에 대한 ''''by_skill_type'''' 숙련도 수준이 이미 존재합니다.'
+          by_skill_type_missing: '행 %{row_number}: ''''by_skill_type'''' 유형에는 프로젝트 및 스킬 유형이 있어야 합니다.'
+          default_global_exists: '행 %{row_number}: 글로벌 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
+          default_project_exists: '행 %{row_number}: 프로젝트 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
           invalid_csv_format: '잘못된 CSV 형식: %{message}'
           invalid_proficiency_type: '행 %{row_number}: 잘못되었거나 누락된 숙련도 유형입니다.'
           missing_columns: '누락된 필수 열: %{fields}'

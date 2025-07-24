@@ -1581,6 +1581,7 @@ de:
     column:
       assessor_access: Assessor Zugang
       auto_assign: Automatisch zuweisen
+      locales: Lokalitäten
       main_report: Hauptbericht
       report_bundle: Berichtsbündel
       report_name: Name des Berichts
@@ -1603,6 +1604,13 @@ de:
         apply: Wenden Sie diese Änderungen auf bestehende Benutzer in dieser Kampagne an.
         msg_text: Sie versuchen, den Bericht <strong>"%{reportName}"</strong> zu löschen
         title: Bericht entfernen?
+      update_languages:
+        default_language: Standardsprache
+        other_available_languages: Andere verfügbare Sprachen
+        select_default_language: Standardsprache auswählen
+        select_languages: Sprachen auswählen
+        success_msg: Sprachen wurden erfolgreich aktualisiert
+        title: Sprache des Berichts
       user_access:
         apply: Wenden Sie diese Änderungen auf bestehende Benutzer in dieser Kampagne an.
         title:
@@ -2222,6 +2230,9 @@ de:
       no_active_plan: Kein aktiver IDP-Plan gefunden
     webhooks:
       multiple_webhook_error: url kann nicht aktualisiert werden, da es mehrere Webhooks für dieses Projekt gibt.
+    workshop:
+      ical_generation_failed: Kalendereinladung konnte nicht erstellt werden
+      missing_or_invalid: Fehlende oder ungültige workshop_id
   evaluators:
     errors:
       can_not_processed: kann nicht bearbeitet werden
@@ -2483,6 +2494,7 @@ de:
       aria_selected: Ausgewählte
   idp:
     actions: Aktionen
+    behavioral: Verhaltenstipps
     board: Vorstand
     comment_details:
       add_comment: Kommentar hinzufügen
@@ -2706,6 +2718,7 @@ de:
     skill_gap_report:
       title: Bericht über das Qualifikationsdefizit
     status: Status
+    technical: Technisch
     user_idp_status:
       approved: Genehmigt
       completed: Abgeschlossen

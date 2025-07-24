@@ -791,6 +791,8 @@ th:
           attributes:
             current_password:
               invalid: รหัสผ่านปัจจุบันไม่ถูกต้อง
+            manager_id:
+              cannot_be_self: ผู้ใช้ไม่สามารถถูกกำหนดให้เป็นผู้จัดการของตนเองได้
         user_idp_comment:
           reply_to_reply: ไม่สามารถตอบกลับการตอบกลับได้ (อนุญาตให้ซ้อนได้เพียงระดับเดียว)
         user_idp_plan:
@@ -1552,6 +1554,7 @@ th:
     column:
       assessor_access: การเข้าถึงผู้ประเมิน
       auto_assign: กําหนดอัตโนมัติ
+      locales: Locales
       main_report: รายงานหลัก
       report_bundle: ชุดรายงาน
       report_name: ชื่อรายงาน
@@ -1574,6 +1577,13 @@ th:
         apply: ใช้การเปลี่ยนแปลงนี้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
         msg_text: คุณกําลังพยายามลบรายงาน <strong>"%{reportName}"</strong>
         title: ลบรายงาน?
+      update_languages:
+        default_language: ภาษาเริ่มต้น
+        other_available_languages: ภาษาอื่น ๆ ที่มีให้บริการ
+        select_default_language: เลือกภาษาเริ่มต้น
+        select_languages: เลือกภาษา
+        success_msg: ภาษาได้รับการอัปเดตเรียบร้อยแล้ว
+        title: รายงานภาษา
       user_access:
         apply: ใช้การเปลี่ยนแปลงนี้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
         title:
@@ -2079,6 +2089,7 @@ th:
         reserved_subdomain: โดเมนย่อย %{value} ถูกสงวนไว้
         uniq_subdomain: โดเมนย่อยควรไม่ซ้ํากัน
       add_manager:
+        cannot_be_self: ผู้ใช้ไม่สามารถถูกกำหนดให้เป็นผู้จัดการของตนเองได้
         manager_not_found: ไม่พบผู้จัดการหรือไม่เป็นส่วนหนึ่งของโครงการเดียวกัน
         user_not_found: ไม่พบผู้ใช้หรือไม่ได้เป็นส่วนหนึ่งของโครงการเดียวกัน
       admin:
@@ -2216,6 +2227,9 @@ th:
       no_active_plan: ไม่พบแผน IDP ที่ใช้งานอยู่
     webhooks:
       multiple_webhook_error: ไม่สามารถอัปเดต URL ได้เนื่องจากมีเว็บฮุคหลายตัวสําหรับโปรเจ็กต์นี้
+    workshop:
+      ical_generation_failed: ไม่สามารถสร้างคำเชิญปฏิทินได้
+      missing_or_invalid: ไม่มีหรือไม่มีค่าที่ถูกต้องสำหรับ workshop_id
   evaluators:
     errors:
       can_not_processed: ไม่สามารถประมวลผลได้

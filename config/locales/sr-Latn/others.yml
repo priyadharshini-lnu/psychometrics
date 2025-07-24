@@ -329,6 +329,13 @@ sr-Latn:
             email:
               blank: Imejl ne može biti prazan
               not_uniq_email: Red sa imejlom je već prisutan
+        skill_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_required: Najmanje jedna radna uloga je potrebna za %{skill_type} za %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Najmanje jedan tip veštine mora biti omogućen sa izabranom radnom ulogom za %{block_name}
+              invalid_job_role_type: 'Nevažeća radna uloga %{job_role} za %{skill_type} za %{block_name}. Važeće opcije: %{valid_options}'
+              props_missing: Nedostaje konfiguracija veština za %{block_name}
         skills_rater_block_form:
           attributes:
             base:
@@ -758,6 +765,7 @@ sr-Latn:
           attributes:
             formula:
               cyclic_dependency_found: 'Postoji ciklična zavisnost u formuli. Zavisnost: %{cyclic_path}'
+        cannot_be_self: Korisnik ne može biti dodeljen kao sopstveni menadžer
         factors_norm:
           score_from_must_be_number: Rezultat od mora biti broj
           score_to_less_than_score_from: Rezultat je manji od rezultata iz
@@ -790,6 +798,7 @@ sr-Latn:
           attributes:
             current_password:
               invalid: Trenutna lozinka je netačna
+            manager_id:
         user_idp_comment:
           reply_to_reply: Ne mogu da odgovorim na odgovor (dozvoljen je samo jedan nivo gnežđenja)
         user_idp_plan:
@@ -860,6 +869,7 @@ sr-Latn:
         import_raw_data: Uvoz sirovih podataka
         import_reflection_questions: Uvoz pitanja za refleksiju
         import_scoring_data: Uvoz podataka o bodovanju
+        import_skill_rater_taxonomies: Uvezi taksonomije procene veština
         import_skill_translations: Uvoz veština Prevodi
         import_skills: Veštine uvoza
         import_sms_invites: Uvoz SMS pozivnice
@@ -1557,6 +1567,7 @@ sr-Latn:
     column:
       assessor_access: Pristup procenjivaču
       auto_assign: Automatsko dodeljivanje
+      locales: Jezici
       main_report: Glavni izveštaj
       report_bundle: Izveštaj Bundle
       report_name: Naziv izveštaja
@@ -1579,6 +1590,13 @@ sr-Latn:
         apply: Primenite ove promene na postojeće korisnike u ovoj kampanji.
         msg_text: Pokušavate da izbrišete <strong>izveštaj "%{reportName}"</strong>
         title: Ukloniti izveštaj?
+      update_languages:
+        default_language: Podrazumevani jezik
+        other_available_languages: Drugi dostupni jezici
+        select_default_language: Izaberite podrazumevani jezik
+        select_languages: Izaberite jezike
+        success_msg: Jezici su uspešno ažurirani
+        title: Jezik izveštaja
       user_access:
         apply: Primenite ove promene na postojeće korisnike u ovoj kampanji.
         title:
@@ -1735,6 +1753,7 @@ sr-Latn:
       import: Uvoz
       insert: Umetni
       ok: U redu
+      publish: Objavi
       reject: Odbaci
       remove: Ukloni
       reset: Poništi
@@ -1750,6 +1769,7 @@ sr-Latn:
       start: Počni
       submit: Prosleđivanje
       unarchive: Vrati iz arhive
+      unpublish: Poništi objavu
       unresolve: Nereši
       update: Ažuriraj
       upload: Otpremi
@@ -2082,6 +2102,7 @@ sr-Latn:
         reserved_subdomain: Poddomen %{value} je rezervisan
         uniq_subdomain: Poddomen treba da bude jedinstven.
       add_manager:
+        cannot_be_self: Korisnik ne može biti dodeljen kao sopstveni menadžer
         manager_not_found: Menadžer nije pronađen ili nije deo istog projekta
         user_not_found: Korisnik nije pronađen ili nije deo istog projekta
       admin:
@@ -2100,11 +2121,17 @@ sr-Latn:
       campaign_factor_group:
         group_already_exists: Grupa sa istim imenom već postoji.
         last_factor_group: Nije moguće izbrisati poslednju grupu faktora kampanje.
+      campaign_idps:
+        idp_template_not_published: Ovaj IDP šablon još nije objavljen, molimo objavite ga pre dodele kampanji.
       cant_be_deleted: Ovaj zapis se ne može obrisati
       client_feature:
         ai_assisted_idp_feature_error: Ne može biti istina ako je funkcija AI pomoćnika onemogućena
       create_superadmin:
         uniq_email: E-pošta treba da bude unik.
+      development_actions:
+        only_global_skills_allowed: Izabrane veštine moraju biti globalne veštine.
+        skills_not_belong_to_project: Izabrane veštine moraju pripadati navedenom projektu.
+        skills_required: Izaberite bar jednu veštinu.
       exceeded_subjects_count: Možete dodati samo %{count} predmeta po pozivu
       filled?: ne može biti prazan
       idp_template:
@@ -2152,6 +2179,7 @@ sr-Latn:
         start_time_should_be_less: Vreme početka treba da bude manje od vremena završetka
       user_idp_plan:
         idp_template_already_assigned_to_user: Ovaj Idp Šablon je već asisted ovom korisniku i aktivan
+        idp_template_not_published: Ovaj IDP šablon još nije objavljen, molimo objavite ga pre dodele korisniku.
       user_saved_filters:
         limit_exceeded: Možete imati samo %{limit} sačuvane filtere, ljubazno izbrišite sačuvane filtere da biste dodali još.
         unique_name: Filter sa istim imenom već postoji.
@@ -2212,6 +2240,9 @@ sr-Latn:
       no_active_plan: Nije pronađen aktivan IDP plan
     webhooks:
       multiple_webhook_error: URL se ne može ažurirati jer postoji više vebhook za ovaj projekat.
+    workshop:
+      ical_generation_failed: Nije moguće generisati pozivnicu za kalendar
+      missing_or_invalid: Nedostaje ili je nevažeći workshop_id
   evaluators:
     errors:
       can_not_processed: ne može se obraditi
@@ -2473,6 +2504,7 @@ sr-Latn:
       aria_selected: Izabrali
   idp:
     actions: Radnje
+    behavioral: Bihejvioralno
     board: Tablu
     comment_details:
       add_comment: Dodaj komentar
@@ -2537,6 +2569,7 @@ sr-Latn:
       submit_plan: Pošalji plan
       write_here: Pišite ovde...
     edit_plan: Uredi plan
+    edit_progress: Uredi napredak
     initial_steps:
       add_skill_group_description: Na osnovu vaših rezultata procene, evo nekih od oblasti prednosti i razvoja za vas. Izaberite veštine koje želite da dalje razvijate kao deo vašeg razvojnog plana.
       add_skill_group_title: Istraživanje vaših %{category} veština
@@ -2574,6 +2607,7 @@ sr-Latn:
       cover:
         fields:
           assigned_data: Dodeljeni datum
+          assigned_date: Datum dodele
           completion_date: Datum završetka
           division: Odsek
           name: Ime
@@ -2634,6 +2668,7 @@ sr-Latn:
       statuses:
         approved: Pregledano i odobreno
         completed: Dovršeno
+        draft: Nacrt
         not_reviewed: Nije pregledano
         pending_approval: U pregledu
       summary:
@@ -2670,6 +2705,7 @@ sr-Latn:
     skill_gap_report:
       title: Izveštaj o jazu u veštinama
     status: Status
+    technical: Tehnički
     user_idp_status:
       approved: Odobrio
       completed: Dovršeno

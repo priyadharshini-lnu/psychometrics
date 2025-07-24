@@ -11,6 +11,15 @@ sr-Cyrl:
         select_comparison: Изаберите тип поређења
         select_factors: Изаберите факторе
         select_operation: Изаберите операцију
+    errors:
+      models:
+        skill_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_required: Потребна је бар једна радна улога за %{skill_type} за %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Најмање један тип вештине мора бити омогућен са изабраном радном улогом за %{block_name}
+              invalid_job_role_type: 'Неважећа радна улога %{job_role} за %{skill_type} за %{block_name}. Дозвољене опције: %{valid_options}'
+              props_missing: Недостаје конфигурација вештина за %{block_name}
   activerecord:
     attributes:
       assessment:
@@ -90,8 +99,12 @@ sr-Cyrl:
           attributes:
             current_password:
               invalid: Тренутна лозинка је нетачна
+            manager_id:
+              cannot_be_self: Корисник не може бити постављен као свој менаџер
   admin_jobs:
     attrs:
+      operations:
+        import_skill_rater_taxonomies: Увоз таксономија процењивача вештина
       statuses:
         in_progress: У току
   administration: Администрација
@@ -314,6 +327,8 @@ sr-Cyrl:
   campaign_assessment:
     assessment_center_heading: Детаљи центра за процену
     assessments_heading: Ваши задаци
+    column:
+      locales: Локализације
     statuses:
       completed: Завршено
       in_progress: У току
@@ -322,6 +337,17 @@ sr-Cyrl:
       not_started: Није започето
       timed_out: Временски истекло
       universal_link: Универзална веза
+  campaign_report:
+    column:
+      locales: Језици
+    modals:
+      update_languages:
+        default_language: Подразумевани језик
+        other_available_languages: Остали доступни језици
+        select_default_language: Изаберите подразумевани језик
+        select_languages: Изаберите језике
+        success_msg: Језици су успешно ажурирани
+        title: Језик извештаја
   campaign_users:
     details:
       statuses:
@@ -419,6 +445,7 @@ sr-Cyrl:
       delete: Обриши
       edit: Измени
       export: Извоз
+      publish: Објави
       remove: Уклони
       reset: Ресетуј
       resolve: Решити
@@ -428,6 +455,7 @@ sr-Cyrl:
       send: Пошаљи
       start: Почетак
       unarchive: Врати из архиве
+      unpublish: Повуци објаву
       unresolve: Нерешено
       update: Ажурирање
       upload: Отпреми
@@ -438,6 +466,7 @@ sr-Cyrl:
       action: Акција
       category: Категорија
       created_at: Направљено у
+      default_language: Подразумевани језик
       description: Опис
       id: ИД
       name: Име
@@ -512,6 +541,8 @@ sr-Cyrl:
       code_has_been_sent: Ваш нови OTP је послат на вашу регистровану адресу е-поште
   dry_errors:
     errors:
+      add_manager:
+        cannot_be_self: Корисник не може бити постављен као свој менаџер
       campaign_idps:
         idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кампање.
       development_actions:
@@ -537,6 +568,9 @@ sr-Cyrl:
     module_error_editor: Дошло је до грешке са овим модулом, проверите подешавања модула.
     module_props_error: Нешто је пошло наопако са овим модулом.
     try_again: Молим вас покушајте поново
+    workshop:
+      ical_generation_failed: Није могуће генерисати позивницу за календар
+      missing_or_invalid: Недостаје или је неважећи workshop_id
   factors:
     description: Опис
     factor: Фактор
@@ -757,7 +791,16 @@ sr-Cyrl:
     pdf:
       cover:
         fields:
+          assigned_data: Датум доделе
+          assigned_date: Датум додељен
           name: Име
+      idp:
+        subtitle:
+          technical: Технички
+      skill_categories:
+        technical: Технички
+      statuses:
+        draft: Нацрт
     plan: План
     reflective_questions:
       already_completed: ИДП је већ завршен, сада не можете одговарати на питања.
@@ -836,6 +879,9 @@ sr-Cyrl:
       add: Додај извештај
       download: Преузми извештај
       view: Прикажи извештај
+    columns:
+      default_language: Подразумевани језик
+    language: Језик извештаја
     modules:
       campaign_factors_table:
         add_condition: Додај услов

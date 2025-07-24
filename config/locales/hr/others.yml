@@ -329,6 +329,13 @@ hr:
             email:
               blank: E-pošta ne može biti prazna
               not_uniq_email: Redak s e-poštom već je prisutan
+        skill_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_required: Potrebna je barem jedna radna uloga za %{skill_type} za %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Najmanje jedna vrsta vještine mora biti omogućena s odabranom radnom ulogom za %{block_name}
+              invalid_job_role_type: 'Nevažeća radna uloga %{job_role} za %{skill_type} za %{block_name}. Valjane opcije: %{valid_options}'
+              props_missing: Nedostaje konfiguracija vještina za %{block_name}
         skills_rater_block_form:
           attributes:
             base:
@@ -790,6 +797,8 @@ hr:
           attributes:
             current_password:
               invalid: Trenutna lozinka je netočna
+            manager_id:
+              cannot_be_self: Korisnik ne može biti postavljen kao vlastiti menadžer
         user_idp_comment:
           reply_to_reply: ne mogu odgovoriti na odgovor (dopuštena je samo jedna razina ugniježđenja)
         user_idp_plan:
@@ -860,6 +869,7 @@ hr:
         import_raw_data: Uvoz neobrađenih podataka
         import_reflection_questions: Uvoz pitanja za razmišljanje
         import_scoring_data: Uvoz podataka o bodovanju
+        import_skill_rater_taxonomies: Uvoz taksonomija procjenjivača vještina
         import_skill_translations: Uvoz prijevoda vještina
         import_skills: Vještine uvoza
         import_sms_invites: Uvoz SMS pozivnice
@@ -1554,6 +1564,7 @@ hr:
     column:
       assessor_access: Pristup procjenitelja
       auto_assign: Automatsko dodjeljivanje
+      locales: Lokalizacije
       main_report: Glavno izvješće
       report_bundle: Paket izvješća
       report_name: Naziv izvješća
@@ -1576,6 +1587,13 @@ hr:
         apply: Primijenite ove promjene na postojeće korisnike u ovoj kampanji.
         msg_text: Pokušavate izbrisati izvješće <strong>"%{reportName}"</strong>
         title: Ukloniti izvješće?
+      update_languages:
+        default_language: Zadani jezik
+        other_available_languages: Ostali dostupni jezici
+        select_default_language: Odaberite zadani jezik
+        select_languages: Odaberite jezike
+        success_msg: Jezici su uspješno ažurirani
+        title: Jezik izvješća
       user_access:
         apply: Primijenite ove promjene na postojeće korisnike u ovoj kampanji.
         title:
@@ -1732,6 +1750,7 @@ hr:
       import: Uvoz
       insert: Umetnuti
       ok: OK
+      publish: Objavi
       reject: Odbiti
       remove: Ukloniti
       reset: Ponovno pokrenuti
@@ -1747,6 +1766,7 @@ hr:
       start: Započeti
       submit: Predati se
       unarchive: Poništiti arhiviranje
+      unpublish: Povuci objavu
       unresolve: Problem nije riješen
       update: Ažurirati
       upload: Prenijeti
@@ -2079,6 +2099,7 @@ hr:
         reserved_subdomain: Poddomena %{value} je rezervirana
         uniq_subdomain: Poddomena bi trebala biti jedinstvena.
       add_manager:
+        cannot_be_self: Korisnik ne može biti postavljen kao vlastiti menadžer
         manager_not_found: Menadžer nije pronađen ili nije dio istog projekta
         user_not_found: Korisnik nije pronađen ili nije dio istog projekta
       admin:
@@ -2216,6 +2237,9 @@ hr:
       no_active_plan: Nije pronađen aktivan IDP plan
     webhooks:
       multiple_webhook_error: URL se ne može ažurirati jer postoji više web-dojavnika za ovaj projekt.
+    workshop:
+      ical_generation_failed: Nije moguće generirati pozivnicu za kalendar
+      missing_or_invalid: Nedostaje ili je nevažeći workshop_id
   evaluators:
     errors:
       can_not_processed: Ne može se obraditi

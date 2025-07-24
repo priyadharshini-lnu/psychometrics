@@ -174,6 +174,8 @@ hr:
             title: Predlošci IDP-a
             view: Pregled
           jobRoles:
+            export_translations: Izvoz prijevoda radnih uloga
+            import_translations: Uvoz prijevoda radnih uloga
             manage: Upravljanje
             title: Poslovne uloge
             view: Pregled
@@ -842,6 +844,14 @@ hr:
     campaign_factors_import:
       errors:
         invalid_headers: 'Sljedeća zaglavlja su nevažeća: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Molimo odaberite raspon datuma
+        modal:
+          subtitle: Odaberite raspon datuma i zatim odaberite potreban jezik za svako izvješće
+      generate:
+        modal:
+          subtitle: Odaberite potreban jezik za svako izvješće
     campaign_templates:
       campaign_templates: Predlošci kampanja
       column:
@@ -959,7 +969,9 @@ hr:
             empty: Prazno
             inactive: Neaktivano
             name: Ime
+            normal: Normalno
             previous: Prethodno
+            skill_rater: Procjenjivač vještina
             standard: Standardno
             status: Status
           close:
@@ -1067,6 +1079,7 @@ hr:
         ai_assistants: AI pomoćnici
         ai_assisted_idp: IDP potpomognut umjetnom inteligencijom
         global_skills: Globalne vještine
+        idp: IDP
         sms_notification: SMS obavijest
     clients:
       api_keys:
@@ -1540,6 +1553,7 @@ hr:
       reset: Resetiranje
       save: Spremi
       select_all: Odaberi sve
+      type: Tip
       unselect_all: Poništi odabir svega
     communication_settings: Postavke
     communications:
@@ -1628,6 +1642,7 @@ hr:
         type: Tip
       list:
         actions: Akcije
+        assessment_center_group: Grupa centara za procjenu
         author: Izradio
         campaign: Kampanja
         client_name: Klijent
@@ -1775,6 +1790,7 @@ hr:
       errors:
         blank_field: 'Redak %{row}: %{field} ne može biti prazan'
         csv_file_required: Mora biti CSV datoteka
+        development_action_not_in_project: 'Redak %{row}: ID razvojne akcije %{development_action_id} ne pripada ovom projektu'
         image_download_failed: 'Nije uspjelo preuzeti sliku s %{url}: %{message}'
         invalid_csv_format: 'Nevažeći CSV format: %{message}'
         invalid_date: Format datuma za %{date} nije valjan.
@@ -2104,10 +2120,13 @@ hr:
       all: Sve
       appearance: Izgled
       appearance_hint: Da biste izmijenili izgled, prvo spremite IDP predložak da biste omogućili ove postavke.
+      appearance_success: Postavke izgleda su uspješno spremljene
       background_image: Pozadinska slika
       behavioral_skills: Vještine ponašanja
       client_skills: Vještine klijenata
+      details_updated: Detalji IDP-a su uspješno ažurirani
       edit_template: Uredi predložak IDP-a
+      enter_tag_or_skills_error: Odaberite barem jednu oznaku ili vještinu
       enter_template_description: Opis
       enter_template_description_error: Potreban je opis predloška.
       enter_template_name: Ime
@@ -2116,6 +2135,7 @@ hr:
         update: Ažuriranje nije dopušteno jer je predložak IDP-a već povezan s korisničkim IDP planom. Promjene izgleda su spremljene.
       fields:
         assigned_data: Dodijeljeni podaci
+        assigned_date: Datum dodjele
         completion_date: Datum završetka
         division: Podjela
         name: Ime
@@ -2153,6 +2173,11 @@ hr:
       show_reflections: Pokažite odraze
       skill_gap_report: Izvješće o nedostatku vještina
       skills: Vještine
+      skills_updated: Vještine IDP-a su uspješno ažurirane
+      status:
+        draft: Skica
+        published: Objavljeno
+      status_updated: Status IDP-a je uspješno ažuriran
       subtitle_text: Tekst titlova
       tab:
         development_actions: Razvojne akcije
@@ -2385,8 +2410,10 @@ hr:
         rescheduled: Odgođeno
       subject: Ispitanik
     job_role:
+      are_you_sure_to_remove: Jeste li sigurni da želite ukloniti?
       column:
         job_group: Grupa poslova
+        skill_name: Naziv vještine
       export:
         failure_msg: Pogreška prilikom izvoza prijevoda
         success_msg: Izvoz razvojnih radnji u tijeku.
@@ -2401,6 +2428,7 @@ hr:
         success_msg: Prenesena datoteka stavljena je u red čekanja za uvoz. Provjerite status u obavijestima.
       import_action:
         translations: Uvoz prijevoda radnih uloga
+      job_role_details: Detalji radne uloge
       translations: Prijevodi radnih uloga
     job_role_skill_mapping:
       column:
@@ -2413,6 +2441,12 @@ hr:
       export:
         translations:
           details: Detalji
+      translations:
+        import:
+          errors:
+            job_role_not_found: Radna uloga s ID-om %{id} nije pronađena
+            missing_columns: 'Nedostaju obavezni stupci: %{columns}'
+            save_failed: 'Greška pri obradi radne uloge s ID-om %{id}: %{message}'
     libraries:
       create:
         successfully: Stavka %{name} je uspješno kreirana.
@@ -2699,6 +2733,9 @@ hr:
           level_definition_must_match_level: mora sadržavati točno %{expected} razine, ali %{actual} je dano
           must_be_unique: Mora biti jedinstven
           proficiency_level_exists: Razina stručnosti s ovom vještinom i projektom već postoji
+          proficiency_level_exists_for_default: Razina stručnosti za zadanu vrijednost već postoji
+          proficiency_level_exists_for_type: Razina stručnosti za ovu vrstu već postoji
+          project_level_default_exists: "'Zadana' razina stručnosti već postoji"
           skill_must_exist: Vještina mora biti prisutna za proficiency_type 'by_skill'
       export:
         details: Detalji
@@ -2714,6 +2751,7 @@ hr:
         proficiency_type: Vrsta stručnosti
         skill: Vještina
         skill_name: Naziv vještine
+        skill_type: Vrsta vještine
         title: Znanje
       import:
         actions:
@@ -2742,6 +2780,8 @@ hr:
             save_failed: 'ID vještine pri obradi pogreške %{id}: %{message}'
       type:
         by_skill: Po vještini
+        by_skill_type: Po vrsti vještine
+        default: Zadano
     profile:
       change_password: Promjena lozinke
       details: Detalji
@@ -3227,6 +3267,8 @@ hr:
         header: Uređivanje naziva izvješća
       edit_default_language:
         agreement: Da, razumijem implikacije promjene zadanog jezika.
+        title: Uredi zadani jezik
+        tooltip: Uredi zadani jezik
         warning:
           description_li_1: Promjena zadanog jezika s RTL na LTR jezik ili obrnuto utjecat će na raspored.
           description_li_2: Morat ćete preraditi prijevode izvješća ako promijenite zadani jezik.
@@ -3274,6 +3316,9 @@ hr:
         successfully: Izvješće je uspješno ažurirano.
       update:
         successfully: Izvješće %{name} uspješno je ažurirano.
+    reports_language_selection_modal:
+      download: Preuzimanje izvješća
+      generate: Generiraj izvješće
     resource:
       remove_confirm:
         message: Jeste li sigurni da želite ukloniti ovaj resurs?
@@ -3680,6 +3725,7 @@ hr:
         import:
           missing_fields_data: 'Redak %{line_number}: Nedostaju obavezna polja: %{fields}'
           save_failed: 'Redak %{line_number}: Nije uspjelo spremiti vještinu ''%{name}'': %{message}'
+          skill_not_in_project: 'Redak %{line_number}: ID vještine %{skill_id} ne pripada ovom projektu'
         search:
           all_and_project_id_mutually_exclusive: Ne može sve biti istina kada se project_id_eq pruži
           invalid_all_value: 'mora biti jedan od: istinit, netočan'
@@ -3871,7 +3917,25 @@ hr:
         successfully: Podfaktor je uspješno ažuriran.
     survey_builder:
       builder_area:
+        current_job: Trenutni posao
+        default_not_applicable_label: Nema prilike za učenje ili pokazivanje vještine
+        enable_not_applicable: Omogući opciju N/D
+        enable_required_validation: Omogući obaveznu provjeru
+        force_response: Obavezni odgovor
+        job_role_required: Odaberite barem jednu radnu ulogu
+        not_applicable_label: Oznaka nije primjenjiva
         options: Mogućnosti
+        request_response: Zatraži odgovor
+        skill_rater_config: Konfiguracija procjenjivača vještina
+        target_job: Ciljani posao
+      models:
+        block_types:
+          regular: Redovan
+          skill_rater: Procjenjivač vještina
+        skill_types:
+          behavioural: Bihevioralni
+          other: Ostalo
+          technical: Tehnički
       property_panel:
         add_n_a_option: Dodaj opciju N/A
         allow_content_copy: Dopusti kopiranje sadržaja

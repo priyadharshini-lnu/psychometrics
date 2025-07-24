@@ -1531,6 +1531,7 @@ es-ES:
     column:
       assessor_access: Acceso para asesores
       auto_assign: Asignación automática
+      locales: Locales
       main_report: Informe principal
       report_bundle: Paquete de informes
       report_name: Nombre del informe
@@ -1553,6 +1554,13 @@ es-ES:
         apply: Aplique estos cambios a los usuarios existentes en esta campaña.
         msg_text: Está intentando eliminar el informe <strong>"%{reportName}"</strong>
         title: "¿Eliminar informe?"
+      update_languages:
+        default_language: Idioma por defecto
+        other_available_languages: Otras lenguas disponibles
+        select_default_language: Seleccionar idioma por defecto
+        select_languages: Seleccionar idiomas
+        success_msg: Los idiomas se han actualizado correctamente
+        title: Idioma del informe
       user_access:
         apply: Aplique estos cambios a los usuarios existentes en esta campaña.
         title:
@@ -2171,6 +2179,9 @@ es-ES:
       no_active_plan: No se ha encontrado ningún plan PDI activo
     webhooks:
       multiple_webhook_error: url no se puede actualizar ya que hay múltiples webhook para este proyecto.
+    workshop:
+      ical_generation_failed: No se ha podido generar la invitación al calendario
+      missing_or_invalid: Falta el workshop_id o no es válido
   evaluators:
     errors:
       can_not_processed: no se puede procesar
@@ -2432,6 +2443,7 @@ es-ES:
       aria_selected: Selección
   idp:
     actions: Acciones
+    behavioral: Comportamiento
     board: Tablero
     comment_details:
       add_comment: Agregar comentario
@@ -2654,6 +2666,7 @@ es-ES:
     skill_gap_report:
       title: Informe sobre el déficit de cualificaciones
     status: Estado
+    technical: Técnico
     user_idp_status:
       approved: Aprobado
       completed: Completado

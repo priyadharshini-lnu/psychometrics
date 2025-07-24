@@ -1557,6 +1557,7 @@ zh-Hant:
     column:
       assessor_access: 評估員存取
       auto_assign: 自動指定
+      locales: 地點
       main_report: 主要報告
       report_bundle: 報告套件
       report_name: 報告名稱
@@ -1579,6 +1580,13 @@ zh-Hant:
         apply: 將此變更套用至此活動中的現有使用者。
         msg_text: 您正嘗試刪除<strong>「%{reportName}」</strong>報告
         title: 移除報告？
+      update_languages:
+        default_language: 預設語言
+        other_available_languages: 其他可用語言
+        select_default_language: 選擇預設語言
+        select_languages: 選擇語言
+        success_msg: 語言已成功更新
+        title: 報告語言
       user_access:
         apply: 將此變更套用至此活動中的現有使用者。
         title:
@@ -2195,6 +2203,9 @@ zh-Hant:
       no_active_plan: 未找到有效的 IDP 計劃
     webhooks:
       multiple_webhook_error: 由於此專案有多個 webhook，因此無法更新 url。
+    workshop:
+      ical_generation_failed: 無法產生行事曆邀請
+      missing_or_invalid: 缺失或無效的 workshop_id
   evaluators:
     errors:
       can_not_processed: 無法處理
@@ -2456,6 +2467,7 @@ zh-Hant:
       aria_selected: 精選
   idp:
     actions: 行動
+    behavioral: 行為
     board: 董事會
     comment_details:
       add_comment: 新增評論
@@ -2684,6 +2696,7 @@ zh-Hant:
     skill_gap_report:
       title: 技能差距報告
     status: 狀態
+    technical: 技術
     user_idp_status:
       approved: 已核准
       completed: 完成

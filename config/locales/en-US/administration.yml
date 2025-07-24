@@ -174,6 +174,8 @@ en-US:
             title: IDP Templates
             view: View
           jobRoles:
+            export_translations: Export Job Roles Translations
+            import_translations: Import Job Roles Translations
             manage: Manage
             title: Job Roles
             view: View
@@ -842,6 +844,14 @@ en-US:
     campaign_factors_import:
       errors:
         invalid_headers: 'Following headers are invalid: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Please select date range
+        modal:
+          subtitle: Select a date range and then select required language for each report
+      generate:
+        modal:
+          subtitle: Select the required language for each report
     campaign_templates:
       campaign_templates: Campaign Templates
       column:
@@ -959,7 +969,9 @@ en-US:
             empty: Empty
             inactive: Inactive
             name: Name
+            normal: Normal
             previous: Previous
+            skill_rater: Skill Rater
             standard: Standard
             status: Status
           close:
@@ -1067,6 +1079,7 @@ en-US:
         ai_assistants: AI Assistants
         ai_assisted_idp: AI Assisted IDP
         global_skills: Global Skills
+        idp: IDP
         sms_notification: SMS Notification
     clients:
       api_keys:
@@ -1540,6 +1553,7 @@ en-US:
       reset: Reset
       save: Save
       select_all: Select all
+      type: Type
       unselect_all: Unselect all
     communication_settings: Settings
     communications:
@@ -1628,6 +1642,7 @@ en-US:
         type: Type
       list:
         actions: Actions
+        assessment_center_group: Assessment Center Group
         author: Created by
         campaign: Campaign
         client_name: Client
@@ -1775,6 +1790,7 @@ en-US:
       errors:
         blank_field: 'Row %{row}: %{field} cannot be blank'
         csv_file_required: Must be a CSV file
+        development_action_not_in_project: 'Line %{row}: Development Action ID %{development_action_id} does not belong to this project'
         image_download_failed: 'Failed to download image from %{url}: %{message}'
         invalid_csv_format: 'Invalid CSV format: %{message}'
         invalid_date: Date format for %{date} is invalid.
@@ -2104,10 +2120,13 @@ en-US:
       all: All
       appearance: Appearance
       appearance_hint: To modify the appearance, please save the IDP template first to enable these settings.
+      appearance_success: Appearance settings saved successfully
       background_image: Background image
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
+      details_updated: IDP Details updated successfully
       edit_template: Edit IDP Template
+      enter_tag_or_skills_error: Select at least one tag or skill
       enter_template_description: Description
       enter_template_description_error: Template description is required.
       enter_template_name: Name
@@ -2116,6 +2135,7 @@ en-US:
         update: Update not allowed because the IDP template is already associated with a user IDP plan. Appearance changes has been saved.
       fields:
         assigned_data: Assigned Data
+        assigned_date: Assigned Date
         completion_date: Completion Date
         division: Division
         name: Name
@@ -2153,6 +2173,11 @@ en-US:
       show_reflections: Show Reflections
       skill_gap_report: Skill Gap Report
       skills: Skills
+      skills_updated: IDP Skills updated successfully
+      status:
+        draft: Draft
+        published: Published
+      status_updated: IDP Status updated successfully
       subtitle_text: Subtitle text
       tab:
         development_actions: Development Actions
@@ -2385,8 +2410,10 @@ en-US:
         rescheduled: Rescheduled
       subject: Subject
     job_role:
+      are_you_sure_to_remove: Are you sure to remove?
       column:
         job_group: Job Group
+        skill_name: Skill Name
       export:
         failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress.
@@ -2401,6 +2428,7 @@ en-US:
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
       import_action:
         translations: Import Job Role Translations
+      job_role_details: Job Role Details
       translations: Job Role Translations
     job_role_skill_mapping:
       column:
@@ -2413,6 +2441,12 @@ en-US:
       export:
         translations:
           details: Details
+      translations:
+        import:
+          errors:
+            job_role_not_found: Job role with ID %{id} not found
+            missing_columns: 'Missing required columns: %{columns}'
+            save_failed: 'Error processing Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: Item %{name} was created successfully.
@@ -2699,6 +2733,9 @@ en-US:
           level_definition_must_match_level: must contain exactly %{expected} levels, but %{actual} were given
           must_be_unique: Must be unique
           proficiency_level_exists: A Proficiency Level with this skill and project already exists
+          proficiency_level_exists_for_default: A Proficiency Level for default already exits
+          proficiency_level_exists_for_type: A Proficiency Level for this type already exists
+          project_level_default_exists: A 'default' proficiency level already exists
           skill_must_exist: Skill must be present for proficiency_type 'by_skill'
       export:
         details: Details
@@ -2714,6 +2751,7 @@ en-US:
         proficiency_type: Proficiency Type
         skill: Skill
         skill_name: Skill name
+        skill_type: Skill Type
         title: Proficiency
       import:
         actions:
@@ -2742,6 +2780,8 @@ en-US:
             save_failed: 'Error processing Skill ID %{id}: %{message}'
       type:
         by_skill: By Skill
+        by_skill_type: By Skill Type
+        default: Default
     profile:
       change_password: Change password
       details: Details
@@ -3227,6 +3267,8 @@ en-US:
         header: Edit Report Name
       edit_default_language:
         agreement: Yes, I understand the implications of default language change.
+        title: Edit Default Language
+        tooltip: Edit Default Language
         warning:
           description_li_1: Changing the default language from RTL to LTR language or vice versa will affect the layout.
           description_li_2: You would have to rework on report translations if you change the default language.
@@ -3274,6 +3316,9 @@ en-US:
         successfully: Report was updated successfully.
       update:
         successfully: Report %{name} was updated successfully.
+    reports_language_selection_modal:
+      download: Report download
+      generate: Report generate
     resource:
       remove_confirm:
         message: Are you sure you want to remove this resource?
@@ -3683,6 +3728,7 @@ en-US:
         import:
           missing_fields_data: 'Line %{line_number}: Missing required fields: %{fields}'
           save_failed: 'Line %{line_number}: Failed to save skill ''%{name}'': %{message}'
+          skill_not_in_project: 'Line %{line_number}: Skill ID %{skill_id} does not belong to this project'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'must be one of: true, false'
@@ -3879,7 +3925,25 @@ en-US:
         successfully: Sub-Factor was updated successfully.
     survey_builder:
       builder_area:
+        current_job: Current Job
+        default_not_applicable_label: No opportunity to learn about or demonstrate skill
+        enable_not_applicable: Enable N/A option
+        enable_required_validation: Enable Required Validation
+        force_response: Force response
+        job_role_required: Please select at least one job role
+        not_applicable_label: Not Applicable Label
         options: Options
+        request_response: Request response
+        skill_rater_config: Skill Rater configuration
+        target_job: Target Job
+      models:
+        block_types:
+          regular: Regular
+          skill_rater: Skill Rater
+        skill_types:
+          behavioural: Behavioural
+          other: Other
+          technical: Technical
       property_panel:
         add_n_a_option: Add N/A option
         allow_content_copy: Allow content copying

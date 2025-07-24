@@ -1557,6 +1557,7 @@ it:
     column:
       assessor_access: Accesso al valutatore
       auto_assign: Assegnazione automatica
+      locales: Località
       main_report: Rapporto principale
       report_bundle: Pacchetto di rapporti
       report_name: Nome del rapporto
@@ -1579,6 +1580,13 @@ it:
         apply: Applicare le modifiche agli utenti esistenti in questa campagna.
         msg_text: Si sta cercando di eliminare il rapporto <strong>"%{reportName}"</strong>
         title: Rimuovere il rapporto?
+      update_languages:
+        default_language: Lingua predefinita
+        other_available_languages: Altre lingue disponibili
+        select_default_language: Selezionare la lingua predefinita
+        select_languages: Selezionare le lingue
+        success_msg: Le lingue sono state aggiornate con successo
+        title: Lingua del rapporto
       user_access:
         apply: Applicare le modifiche agli utenti esistenti in questa campagna.
         title:
@@ -2195,6 +2203,9 @@ it:
       no_active_plan: Nessun piano IDP attivo trovato
     webhooks:
       multiple_webhook_error: l'url non può essere aggiornato perché esistono più webhook per questo progetto.
+    workshop:
+      ical_generation_failed: Impossibile generare un invito al calendario
+      missing_or_invalid: Workshop_id mancante o non valido
   evaluators:
     errors:
       can_not_processed: non può essere elaborato
@@ -2456,6 +2467,7 @@ it:
       aria_selected: Selezionato
   idp:
     actions: Azioni
+    behavioral: Comportamento
     board: Consiglio di amministrazione
     comment_details:
       add_comment: Aggiungi commento
@@ -2684,6 +2696,7 @@ it:
     skill_gap_report:
       title: Rapporto sul divario di competenze
     status: Stato
+    technical: Tecnica
     user_idp_status:
       approved: Approvato
       completed: Finito

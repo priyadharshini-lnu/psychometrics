@@ -174,6 +174,8 @@ id:
             title: Template IDP
             view: Melihat
           jobRoles:
+            export_translations: Penerjemahan Peran Pekerjaan Ekspor
+            import_translations: Impor Terjemahan Peran Pekerjaan
             manage: Urus
             title: Peran Pekerjaan
             view: Melihat
@@ -842,6 +844,14 @@ id:
     campaign_factors_import:
       errors:
         invalid_headers: 'Header berikut tidak valid: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Pilih rentang tanggal
+        modal:
+          subtitle: Pilih rentang tanggal, lalu pilih bahasa yang diperlukan untuk setiap laporan
+      generate:
+        modal:
+          subtitle: Pilih bahasa yang diperlukan untuk setiap laporan
     campaign_templates:
       campaign_templates: Templat Kampanye
       column:
@@ -959,7 +969,9 @@ id:
             empty: Kosong
             inactive: Tidak Aktif
             name: Nama
+            normal: Normal
             previous: Sebelumnya
+            skill_rater: Penilai Keterampilan
             standard: Standar
             status: Keadaan
           close:
@@ -1067,6 +1079,7 @@ id:
         ai_assistants: Asisten AI
         ai_assisted_idp: IDP yang Dibantu AI
         global_skills: Keterampilan Global
+        idp: IDP
         sms_notification: Pemberitahuan SMS
     clients:
       api_keys:
@@ -1540,6 +1553,7 @@ id:
       reset: Reset
       save: Simpan
       select_all: Pilih semua
+      type: Jenis
       unselect_all: Batalkan pilihan semua
     communication_settings: Pengaturan
     communications:
@@ -1628,6 +1642,7 @@ id:
         type: Jenis
       list:
         actions: Tindakan
+        assessment_center_group: Kelompok Pusat Penilaian
         author: Dibuat oleh
         campaign: Kampanye
         client_name: Klien
@@ -1775,6 +1790,7 @@ id:
       errors:
         blank_field: 'Baris %{row}: %{field} tidak boleh kosong'
         csv_file_required: Harus berupa file CSV
+        development_action_not_in_project: 'Line %{row}: Development Action ID %{development_action_id} bukan milik proyek ini'
         image_download_failed: 'Gagal mengunduh gambar dari %{url}: %{message}'
         invalid_csv_format: 'Format CSV tidak valid: %{message}'
         invalid_date: Format tanggal untuk %{date} tidak valid.
@@ -2104,10 +2120,13 @@ id:
       all: Semua
       appearance: Rupa
       appearance_hint: Untuk mengubah tampilan, silakan simpan templat IDP terlebih dahulu untuk mengaktifkan pengaturan ini.
+      appearance_success: Pengaturan penampilan berhasil disimpan
       background_image: Gambar latar belakang
       behavioral_skills: Keterampilan Perilaku
       client_skills: Keterampilan Klien
+      details_updated: Detail IDP berhasil diperbarui
       edit_template: Edit IDP Template
+      enter_tag_or_skills_error: Pilih setidaknya satu tag atau keterampilan
       enter_template_description: Deskripsi
       enter_template_description_error: Deskripsi templat diperlukan.
       enter_template_name: Nama
@@ -2116,6 +2135,7 @@ id:
         update: Pembaruan tidak diizinkan karena templat IDP sudah dikaitkan dengan paket IDP pengguna. Perubahan tampilan telah disimpan.
       fields:
         assigned_data: Data yang Ditetapkan
+        assigned_date: Tanggal Penugasan
         completion_date: Tanggal Penyelesaian
         division: Divisi
         name: Nama
@@ -2153,6 +2173,11 @@ id:
       show_reflections: Tampilkan Refleksi
       skill_gap_report: Laporan Kesenjangan Keterampilan
       skills: Keterampilan
+      skills_updated: Keterampilan IDP berhasil diperbarui
+      status:
+        draft: Konsep
+        published: Diterbitkan
+      status_updated: Status IDP berhasil diperbarui
       subtitle_text: Teks subtitle
       tab:
         development_actions: Tindakan Pengembangan
@@ -2385,8 +2410,10 @@ id:
         rescheduled: Dijadwalkan Ulang
       subject: Subyek
     job_role:
+      are_you_sure_to_remove: Apakah Anda yakin untuk menghapusnya?
       column:
         job_group: Kelompok Pekerjaan
+        skill_name: Nama Keterampilan
       export:
         failure_msg: Kesalahan saat mengekspor terjemahan
         success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung.
@@ -2401,6 +2428,7 @@ id:
         success_msg: File yang diunggah telah diantrekan untuk impor. Silakan periksa status di notifikasi.
       import_action:
         translations: Impor Terjemahan Peran Pekerjaan
+      job_role_details: Rincian Peran Pekerjaan
       translations: Terjemahan Peran Pekerjaan
     job_role_skill_mapping:
       column:
@@ -2413,6 +2441,12 @@ id:
       export:
         translations:
           details: Rincian
+      translations:
+        import:
+          errors:
+            job_role_not_found: Peran pekerjaan dengan ID %{id} tidak ditemukan
+            missing_columns: 'Kolom yang diperlukan tidak ada: %{columns}'
+            save_failed: 'Kesalahan pemrosesan ID Peran Pekerjaan %{id}: %{message}'
     libraries:
       create:
         successfully: Item %{name} berhasil dibuat.
@@ -2699,6 +2733,9 @@ id:
           level_definition_must_match_level: harus berisi persis %{expected} level, tetapi %{actual} diberikan
           must_be_unique: Harus unik
           proficiency_level_exists: Tingkat Kecakapan dengan keterampilan dan proyek ini sudah ada
+          proficiency_level_exists_for_default: Tingkat Kemahiran untuk default sudah keluar
+          proficiency_level_exists_for_type: Tingkat Kemahiran untuk jenis ini sudah ada
+          project_level_default_exists: Tingkat kemahiran 'default' sudah ada
           skill_must_exist: Keterampilan harus ada untuk proficiency_type 'by_skill'
       export:
         details: Rincian
@@ -2714,6 +2751,7 @@ id:
         proficiency_type: Jenis kemahiran
         skill: Keahlian
         skill_name: Nama keterampilan
+        skill_type: Jenis Keterampilan
         title: Kemampuan
       import:
         actions:
@@ -2742,6 +2780,8 @@ id:
             save_failed: 'Error memproses ID Skill %{id}: %{message}'
       type:
         by_skill: Berdasarkan Keterampilan
+        by_skill_type: Berdasarkan Jenis Keterampilan
+        default: Default
     profile:
       change_password: Ubah kata sandi
       details: Rincian
@@ -3227,6 +3267,8 @@ id:
         header: Edit Nama Laporan
       edit_default_language:
         agreement: Ya, saya memahami implikasi dari perubahan bahasa default.
+        title: Edit Bahasa Default
+        tooltip: Edit Bahasa Default
         warning:
           description_li_1: Mengubah bahasa default dari bahasa RTL ke bahasa LTR atau sebaliknya akan mempengaruhi tata letak.
           description_li_2: Anda harus mengerjakan ulang terjemahan laporan jika Anda mengubah bahasa default.
@@ -3274,6 +3316,9 @@ id:
         successfully: Laporan berhasil diperbarui.
       update:
         successfully: Laporan %{name} berhasil diperbarui.
+    reports_language_selection_modal:
+      download: Unduh laporan
+      generate: Membuat laporan
     resource:
       remove_confirm:
         message: Apakah Anda yakin ingin menghapus sumber daya ini?
@@ -3680,6 +3725,7 @@ id:
         import:
           missing_fields_data: 'Baris %{line_number}: Bidang wajib tidak ada: %{fields}'
           save_failed: 'Baris %{line_number}: Gagal menyimpan skill ''%{name}'': %{message}'
+          skill_not_in_project: 'Line %{line_number}: ID Keterampilan %{skill_id} bukan milik proyek ini'
         search:
           all_and_project_id_mutually_exclusive: Semua tidak bisa benar ketika project_id_eq disediakan
           invalid_all_value: 'harus salah satu: benar, salah'
@@ -3871,7 +3917,25 @@ id:
         successfully: Sub-Faktor berhasil diperbarui.
     survey_builder:
       builder_area:
+        current_job: Pekerjaan saat ini
+        default_not_applicable_label: Tidak ada kesempatan untuk mempelajari atau mendemonstrasikan keterampilan
+        enable_not_applicable: Mengaktifkan opsi N/A
+        enable_required_validation: Aktifkan Validasi yang Diperlukan
+        force_response: Tanggapan paksa
+        job_role_required: Pilih setidaknya satu peran pekerjaan
+        not_applicable_label: Label Tidak Berlaku
         options: Pilihan
+        request_response: Tanggapan permintaan
+        skill_rater_config: Konfigurasi Penilai Keterampilan
+        target_job: Target Pekerjaan
+      models:
+        block_types:
+          regular: Reguler
+          skill_rater: Penilai Keterampilan
+        skill_types:
+          behavioural: Perilaku
+          other: Lainnya
+          technical: Teknis
       property_panel:
         add_n_a_option: Tambahkan opsi N/A
         allow_content_copy: Mengizinkan penyalinan konten

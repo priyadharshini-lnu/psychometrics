@@ -1079,6 +1079,7 @@ pt:
         ai_assistants: Assistentes de IA
         ai_assisted_idp: PDI assistida por IA
         global_skills: Competências globais
+        idp: PDI
         sms_notification: Notificação por SMS
     clients:
       api_keys:
@@ -2444,8 +2445,8 @@ pt:
         import:
           errors:
             job_role_not_found: Função de trabalho com ID %{id} não encontrada
-            missing_columns: 'Faltam colunas obrigatórias: %{colunas}'
-            save_failed: 'Erro ao processar o ID da função de trabalho %{id}: %{mensagem}'
+            missing_columns: 'Faltam colunas obrigatórias: %{columns}'
+            save_failed: 'Erro ao processar o ID da função de trabalho %{id}: %{message}'
     libraries:
       create:
         successfully: O item %{name} foi criado com êxito.
@@ -2759,10 +2760,10 @@ pt:
         errors:
           by_skill_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''by_skill'' para este projeto e competência'
           by_skill_missing: 'Linha %{row_number}: O projeto e a competência têm de estar presentes para o tipo ''by_skill'
-          by_skill_type_exists: 'Linha %{número_da_linha}: Já existe um ProficiencyLevel ''''by_skill_type'''' para este projeto e tipo de competência'
-          by_skill_type_missing: 'Linha %{número_da_linha}: O projeto e o tipo de competência têm de estar presentes para o tipo ''''by_skill_type'''''
-          default_global_exists: 'Linha %{número_da_linha}: Já existe um ProficiencyLevel ''''predefinido'''' a nível global'
-          default_project_exists: 'Linha %{número_da_linha}: Já existe um ProficiencyLevel "predefinido" ao nível do projeto'
+          by_skill_type_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''''by_skill_type'''' para este projeto e tipo de competência'
+          by_skill_type_missing: 'Linha %{row_number}: O projeto e o tipo de competência têm de estar presentes para o tipo ''''by_skill_type'''''
+          default_global_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''''predefinido'''' a nível global'
+          default_project_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel "predefinido" ao nível do projeto'
           invalid_csv_format: 'Formato CSV inválido: %{message}'
           invalid_proficiency_type: 'Linha %{row_number}: ProficiencyType inválido ou em falta'
           missing_columns: 'Colunas obrigatórias em falta: %{fields}'

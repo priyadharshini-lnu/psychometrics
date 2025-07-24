@@ -1570,6 +1570,7 @@ pt:
     column:
       assessor_access: Acesso do assessor
       auto_assign: Atribuição automática
+      locales: Localidades
       main_report: Relatório principal
       report_bundle: Pacote de relatórios
       report_name: Nome do relatório
@@ -1592,6 +1593,13 @@ pt:
         apply: Aplique estas alterações aos utilizadores existentes nesta campanha.
         msg_text: Está a tentar eliminar o relatório <strong>"%{reportName}</strong>
         title: Remover relatório?
+      update_languages:
+        default_language: Língua por defeito
+        other_available_languages: Outras línguas disponíveis
+        select_default_language: Selecionar o idioma predefinido
+        select_languages: Selecionar línguas
+        success_msg: As línguas foram actualizadas com êxito
+        title: Idioma do relatório
       user_access:
         apply: Aplique estas alterações aos utilizadores existentes nesta campanha.
         title:
@@ -2208,6 +2216,9 @@ pt:
       no_active_plan: Não foi encontrado nenhum plano IDP ativo
     webhooks:
       multiple_webhook_error: o url não pode ser atualizado porque existem vários webhooks para este projeto.
+    workshop:
+      ical_generation_failed: Não foi possível gerar um convite de calendário
+      missing_or_invalid: Workshop_id em falta ou inválido
   evaluators:
     errors:
       can_not_processed: não pode ser processado
@@ -2469,6 +2480,7 @@ pt:
       aria_selected: Selecionado
   idp:
     actions: Acções
+    behavioral: Comportamental
     board: Direção
     comment_details:
       add_comment: Adicionar comentário
@@ -2697,6 +2709,7 @@ pt:
     skill_gap_report:
       title: Relatório de défice de competências
     status: Estado
+    technical: Técnica
     user_idp_status:
       approved: Aprovado
       completed: Concluída |

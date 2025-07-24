@@ -1079,6 +1079,7 @@ nl:
         ai_assistants: AI assistenten
         ai_assisted_idp: AI Geassisteerde IDP
         global_skills: Wereldwijde vaardigheden
+        idp: IDP
         sms_notification: SMS-melding
     clients:
       api_keys:
@@ -2445,7 +2446,7 @@ nl:
           errors:
             job_role_not_found: Jobrol met ID %{id} niet gevonden
             missing_columns: 'Ontbrekende verplichte kolommen: %{columns}'
-            save_failed: 'Fout bij het verwerken van Job Role-ID %{id}: %{bericht}'
+            save_failed: 'Fout bij het verwerken van Job Role-ID %{id}: %{message}'
     libraries:
       create:
         successfully: Item %{name} is succesvol aangemaakt.
@@ -2759,10 +2760,10 @@ nl:
         errors:
           by_skill_exists: 'Rij %{row_number}: Er bestaat al een ''by_skill'' ProficiencyLevel voor dit project en deze vaardigheid'
           by_skill_missing: 'Rij %{row_number}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
-          by_skill_type_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''by_skill_type'''' ProficiencyLevel voor dit project en vaardigheidstype'
-          by_skill_type_missing: 'Rij %{rij_nummer}: Project en Skill Type moeten aanwezig zijn voor ''''by_skill_type'''' type'
-          default_global_exists: 'Rij %{rij_nummer}: Er bestaat al een globaal niveau ''''standaard'''' ProficiencyLevel'
-          default_project_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''standaard'''' ProficiencyLevel op projectniveau'
+          by_skill_type_exists: 'Rij %{row_number}: Er bestaat al een ''''by_skill_type'''' ProficiencyLevel voor dit project en vaardigheidstype'
+          by_skill_type_missing: 'Rij %{row_number}: Project en Skill Type moeten aanwezig zijn voor ''''by_skill_type'''' type'
+          default_global_exists: 'Rij %{row_number}: Er bestaat al een globaal niveau ''''standaard'''' ProficiencyLevel'
+          default_project_exists: 'Rij %{row_number}: Er bestaat al een ''''standaard'''' ProficiencyLevel op projectniveau'
           invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
           invalid_proficiency_type: 'Rij %{row_number}: Ongeldig of ontbrekend ProficiencyType'
           missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'

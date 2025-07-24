@@ -1557,6 +1557,7 @@ ko:
     column:
       assessor_access: 평가자 액세스
       auto_assign: 자동 할당
+      locales: 로캘
       main_report: 주요 보고서
       report_bundle: 보고서 번들
       report_name: 보고서 이름
@@ -1579,6 +1580,13 @@ ko:
         apply: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용합니다.
         msg_text: <strong>"%{reportName}"</strong> 보고서를 삭제하려고 합니다
         title: 신고 삭제?
+      update_languages:
+        default_language: 기본 언어
+        other_available_languages: 기타 사용 가능한 언어
+        select_default_language: 기본 언어 선택
+        select_languages: 언어 선택
+        success_msg: 언어가 성공적으로 업데이트되었습니다.
+        title: 보고 언어
       user_access:
         apply: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용합니다.
         title:
@@ -2201,6 +2209,9 @@ ko:
       no_active_plan: 활성 IDP 요금제를 찾을 수 없습니다
     webhooks:
       multiple_webhook_error: 이 프로젝트에 웹훅이 여러 개 있으므로 URL을 업데이트할 수 없습니다.
+    workshop:
+      ical_generation_failed: 캘린더 초대를 생성할 수 없습니다.
+      missing_or_invalid: 누락되었거나 잘못된 워크샵_id
   evaluators:
     errors:
       can_not_processed: 처리할 수 없습니다
@@ -2462,6 +2473,7 @@ ko:
       aria_selected: 선택됨
   idp:
     actions: 작업
+    behavioral: 행동
     board: 보드
     comment_details:
       add_comment: 댓글 추가
@@ -2662,6 +2674,7 @@ ko:
     skill_gap_report:
       title: 기술 격차 보고서
     status: 상태
+    technical: 기술
     user_idp_status:
       approved: 승인됨
       completed: 완료

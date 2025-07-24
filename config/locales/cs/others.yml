@@ -1569,6 +1569,7 @@ cs:
     column:
       assessor_access: Přístup hodnotitele
       auto_assign: Automatické přiřazení
+      locales: Lokality
       main_report: Hlavní zpráva
       report_bundle: Svazek zpráv
       report_name: Název zprávy
@@ -1591,6 +1592,13 @@ cs:
         apply: Použijte tyto změny na stávající uživatele v této kampani.
         msg_text: Pokoušíte se odstranit zprávu <strong>"%{reportName}</strong> "
         title: Odstranit zprávu?
+      update_languages:
+        default_language: Výchozí jazyk
+        other_available_languages: Další dostupné jazyky
+        select_default_language: Výběr výchozího jazyka
+        select_languages: Vybrat jazyky
+        success_msg: Jazyky byly úspěšně aktualizovány
+        title: Jazyk zprávy
       user_access:
         apply: Použijte tyto změny na stávající uživatele v této kampani.
         title:
@@ -2207,6 +2215,9 @@ cs:
       no_active_plan: Nebyl nalezen žádný aktivní plán IDP
     webhooks:
       multiple_webhook_error: url nelze aktualizovat, protože pro tento projekt existuje více webhooků.
+    workshop:
+      ical_generation_failed: Nelze vygenerovat pozvánku do kalendáře
+      missing_or_invalid: Chybějící nebo neplatné workshop_id
   evaluators:
     errors:
       can_not_processed: nelze zpracovat
@@ -2468,6 +2479,7 @@ cs:
       aria_selected: Vybrané stránky
   idp:
     actions: Akce
+    behavioral: Chování
     board: Přehled
     comment_details:
       add_comment: Přidat komentář
@@ -2690,6 +2702,7 @@ cs:
     skill_gap_report:
       title: Zpráva o nedostatku dovedností
     status: Stav
+    technical: Technická stránka
     user_idp_status:
       approved: Schváleno
       completed: Hotový

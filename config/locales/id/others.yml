@@ -791,6 +791,8 @@ id:
           attributes:
             current_password:
               invalid: Kata sandi saat ini salah
+            manager_id:
+              cannot_be_self: Pengguna tidak dapat ditugaskan sebagai manajer mereka sendiri
         user_idp_comment:
           reply_to_reply: tidak dapat membalas balasan (hanya satu tingkat bersarang yang diizinkan)
         user_idp_plan:
@@ -1559,6 +1561,7 @@ id:
     column:
       assessor_access: Akses Penilai
       auto_assign: Tetapkan Otomatis
+      locales: Lokal
       main_report: Laporan Utama
       report_bundle: Bundel Laporan
       report_name: Nama laporan
@@ -1581,6 +1584,13 @@ id:
         apply: Terapkan perubahan ini ke pengguna yang sudah ada di kampanye ini.
         msg_text: Anda mencoba menghapus Laporan <strong>"%{reportName}"</strong>
         title: Hapus Laporan?
+      update_languages:
+        default_language: Bahasa Default
+        other_available_languages: Bahasa lain yang tersedia
+        select_default_language: Pilih Bahasa default
+        select_languages: Pilih Bahasa
+        success_msg: Bahasa berhasil diperbarui
+        title: Bahasa Laporan
       user_access:
         apply: Terapkan perubahan ini ke pengguna yang sudah ada di kampanye ini.
         title:
@@ -2086,6 +2096,7 @@ id:
         reserved_subdomain: Subdomain %{value} dicadangkan
         uniq_subdomain: Subdomain harus unik.
       add_manager:
+        cannot_be_self: Pengguna tidak dapat ditugaskan sebagai manajer mereka sendiri
         manager_not_found: Manajer tidak ditemukan atau bukan bagian dari proyek yang sama
         user_not_found: Pengguna tidak ditemukan atau bukan bagian dari proyek yang sama
       admin:
@@ -2223,6 +2234,9 @@ id:
       no_active_plan: Tidak ada paket IDP aktif yang ditemukan
     webhooks:
       multiple_webhook_error: URL tidak dapat diperbarui karena ada beberapa webhook untuk proyek ini.
+    workshop:
+      ical_generation_failed: Tidak dapat membuat undangan kalender
+      missing_or_invalid: Workshop_id tidak ada atau tidak valid
   evaluators:
     errors:
       can_not_processed: tidak dapat diproses

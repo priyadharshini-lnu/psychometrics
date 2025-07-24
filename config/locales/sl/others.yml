@@ -791,6 +791,8 @@ sl:
           attributes:
             current_password:
               invalid: Trenutno geslo je napačno
+            manager_id:
+              cannot_be_self: Uporabnik ne more biti dodeljen kot lastni vodja
         user_idp_comment:
           reply_to_reply: ne morem odgovoriti na odgovor (dovoljena je samo ena raven gnezdenja)
         user_idp_plan:
@@ -1564,6 +1566,7 @@ sl:
     column:
       assessor_access: Dostop ocenjevalca
       auto_assign: Samodejna dodelitev
+      locales: Lokacije
       main_report: Glavno poročilo
       report_bundle: Sveženj poročil
       report_name: Ime poročila
@@ -1586,6 +1589,13 @@ sl:
         apply: Te spremembe uporabite za obstoječe uporabnike v tej oglaševalski akciji.
         msg_text: Poskušate izbrisati poročilo <strong>»%{reportName}«</strong>
         title: Odstraniti poročilo?
+      update_languages:
+        default_language: Privzet jezik
+        other_available_languages: Drugi razpoložljivi jeziki
+        select_default_language: Izberite privzeti jezik
+        select_languages: Izberite jezike
+        success_msg: Jeziki so bili uspešno posodobljeni
+        title: Jezik poročila
       user_access:
         apply: Te spremembe uporabite za obstoječe uporabnike v tej oglaševalski akciji.
         title:
@@ -2072,6 +2082,7 @@ sl:
         reserved_subdomain: Poddomena %{value} je rezervirana
         uniq_subdomain: Poddomena mora biti edinstvena.
       add_manager:
+        cannot_be_self: Uporabnik ne more biti dodeljen kot lastni vodja
         manager_not_found: Upravitelj ni najden ali ni del istega projekta
         user_not_found: Uporabnik ni bil najden ali ni del istega projekta
       admin:
@@ -2209,6 +2220,9 @@ sl:
       no_active_plan: Ni najdenega aktivnega načrta IDP
     webhooks:
       multiple_webhook_error: URL-ja ni mogoče posodobiti, ker je za ta projekt na voljo več spletnih kavljev.
+    workshop:
+      ical_generation_failed: Ni bilo mogoče ustvariti povabila za koledar
+      missing_or_invalid: Manjkajoči ali neveljavni workshop_id
   evaluators:
     errors:
       can_not_processed: ni mogoče obdelati

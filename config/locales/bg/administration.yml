@@ -174,6 +174,8 @@ bg:
             title: Шаблони за индивидуален план за развитие
             view: Изглед
           jobRoles:
+            export_translations: Експорт на работни роли Преводи
+            import_translations: Импортиране на работни роли Преводи
             manage: Управлявам
             title: Работни роли
             view: Изглед
@@ -842,6 +844,14 @@ bg:
     campaign_factors_import:
       errors:
         invalid_headers: 'Следните заглавия са невалидни: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Моля, изберете диапазон от дати
+        modal:
+          subtitle: Изберете диапазон от дати и след това изберете необходимия език за всеки отчет
+      generate:
+        modal:
+          subtitle: Изберете необходимия език за всеки отчет
     campaign_templates:
       campaign_templates: Шаблони за кампании
       column:
@@ -959,7 +969,9 @@ bg:
             empty: Празен
             inactive: Неактивен
             name: Име
+            normal: Нормален
             previous: Предишен
+            skill_rater: Оценяване на уменията
             standard: Стандартен
             status: Статус
           close:
@@ -1067,6 +1079,7 @@ bg:
         ai_assistants: AI асистенти
         ai_assisted_idp: Подпомагано от AI IDP
         global_skills: Глобални умения
+        idp: IDP
         sms_notification: SMS известяване
     clients:
       api_keys:
@@ -1540,6 +1553,7 @@ bg:
       reset: Проучване
       save: Спасявам
       select_all: Изберете всички
+      type: Тип
       unselect_all: Премахване на избора на всички
     communication_settings: Настройки
     communications:
@@ -1628,6 +1642,7 @@ bg:
         type: Вид
       list:
         actions: Действия
+        assessment_center_group: Група Център за оценяване
         author: Създаден от
         campaign: Кампания
         client_name: Клиент
@@ -1775,6 +1790,7 @@ bg:
       errors:
         blank_field: 'Ред %{row}: %{field} не може да бъде празен'
         csv_file_required: Трябва да е CSV файл
+        development_action_not_in_project: 'Ред %{row}: ID на действието по разработване %{development_action_id} не принадлежи на този проект'
         image_download_failed: 'Неуспешно изтегляне на изображение от %{url}: %{message}'
         invalid_csv_format: 'Невалиден CSV формат: %{message}'
         invalid_date: Форматът на датата за %{date} е невалиден.
@@ -2104,10 +2120,13 @@ bg:
       all: Цял
       appearance: Външен вид
       appearance_hint: За да промените външния вид, моля, първо запазете шаблона IDP, за да активирате тези настройки.
+      appearance_success: Настройките на външния вид са запазени успешно
       background_image: Фоново изображение
       behavioral_skills: Поведенчески умения
       client_skills: Умения на клиента
+      details_updated: Детайлите на IDP са актуализирани успешно
       edit_template: Редактиране на шаблон за IDP
+      enter_tag_or_skills_error: Изберете поне един етикет или умение
       enter_template_description: Описание
       enter_template_description_error: Задължително е описание на шаблона.
       enter_template_name: Име
@@ -2116,6 +2135,7 @@ bg:
         update: Актуализацията не е разрешена, тъй като шаблонът за IDP вече е свързан с потребителски IDP план. Промените във външния вид са запазени.
       fields:
         assigned_data: Присвоени данни
+        assigned_date: Присвоена дата
         completion_date: Дата на завършване
         division: Делене
         name: Име
@@ -2153,6 +2173,11 @@ bg:
       show_reflections: Показване на размисли
       skill_gap_report: Доклад за пропуските в уменията
       skills: Умения
+      skills_updated: Успешно актуализиране на уменията в IDP
+      status:
+        draft: Проект
+        published: Публикувано на
+      status_updated: Статусът на IDP е актуализиран успешно
       subtitle_text: Текст на субтитрите
       tab:
         development_actions: Действия за развитие
@@ -2385,8 +2410,10 @@ bg:
         rescheduled: Пренасрочен
       subject: Предмет
     job_role:
+      are_you_sure_to_remove: Сигурни ли сте, че ще премахнете?
       column:
         job_group: Работна група
+        skill_name: Име на умението
       export:
         failure_msg: Грешка при експортиране на преводи
         success_msg: Текущи действия за развитие на износа.
@@ -2401,6 +2428,7 @@ bg:
         success_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
       import_action:
         translations: Импортиране на преводи на работни роли
+      job_role_details: Подробности за ролята на работата
       translations: Преводи на длъжностни роли
     job_role_skill_mapping:
       column:
@@ -2413,6 +2441,12 @@ bg:
       export:
         translations:
           details: Подробности
+      translations:
+        import:
+          errors:
+            job_role_not_found: Роля на работа с ID %{id} не е намерена
+            missing_columns: 'Липсват задължителни колони: %{columns}'
+            save_failed: 'Обработка на грешка Идентификатор на ролята на работа %{id}: %{message}'
     libraries:
       create:
         successfully: Елементът %{name} е създаден успешно.
@@ -2699,6 +2733,9 @@ bg:
           level_definition_must_match_level: трябва да съдържа точно %{expected} нива, но са дадени %{actual}
           must_be_unique: Трябва да е уникално
           proficiency_level_exists: Ниво на владеене с това умение и проект вече съществува
+          proficiency_level_exists_for_default: Вече има ниво на владеене на езика по подразбиране
+          proficiency_level_exists_for_type: Вече съществува ниво на владеене за този тип.
+          project_level_default_exists: Вече съществува ниво на владеене на езика по подразбиране.
           skill_must_exist: Умението трябва да присъства за proficiency_type "by_skill"
       export:
         details: Подробности
@@ -2714,6 +2751,7 @@ bg:
         proficiency_type: Тип владеене
         skill: Умение
         skill_name: Име на умението
+        skill_type: Тип умение
         title: Владеене
       import:
         actions:
@@ -2742,6 +2780,8 @@ bg:
             save_failed: 'Грешка при обработката Идентификатор на умението %{id}: %{message}'
       type:
         by_skill: По умения
+        by_skill_type: По тип умения
+        default: По подразбиране
     profile:
       change_password: Промяна на паролата
       details: Подробности
@@ -3227,6 +3267,8 @@ bg:
         header: Редактиране на името на отчета
       edit_default_language:
         agreement: Да, разбирам последиците от промяната на езика по подразбиране.
+        title: Редактиране на езика по подразбиране
+        tooltip: Редактиране на езика по подразбиране
         warning:
           description_li_1: Промяната на езика по подразбиране от RTL на LTR език или обратно ще се отрази на оформлението.
           description_li_2: Ако промените езика по подразбиране, ще трябва да преработите преводите на отчетите.
@@ -3274,6 +3316,9 @@ bg:
         successfully: Докладът беше актуализиран успешно.
       update:
         successfully: Докладът %{name} е актуализиран успешно.
+    reports_language_selection_modal:
+      download: Изтегляне на доклад
+      generate: Генериране на доклад
     resource:
       remove_confirm:
         message: Сигурни ли сте, че искате да премахнете този ресурс?
@@ -3680,6 +3725,7 @@ bg:
         import:
           missing_fields_data: 'Ред %{line_number}: Липсват задължителни полета: %{fields}'
           save_failed: 'Ред %{line_number}: Неуспешно запазване на умението ''%{name}'': %{message}'
+          skill_not_in_project: 'Ред %{line_number}: Skill ID %{skill_id} не принадлежи на този проект'
         search:
           all_and_project_id_mutually_exclusive: Всичко не може да е вярно, когато project_id_eq е предоставено
           invalid_all_value: 'трябва да е едно от: вярно, невярно'
@@ -3871,7 +3917,25 @@ bg:
         successfully: Подфакторът беше актуализиран успешно.
     survey_builder:
       builder_area:
+        current_job: Настояща работа
+        default_not_applicable_label: Няма възможност да се запознаете или да демонстрирате умения
+        enable_not_applicable: Активиране на опцията N/A
+        enable_required_validation: Активиране на изискваното валидиране
+        force_response: Силов отговор
+        job_role_required: Моля, изберете поне една длъжност
+        not_applicable_label: Не е приложимо Етикет
         options: Опции
+        request_response: Отговор на заявката
+        skill_rater_config: Конфигурация за оценка на уменията
+        target_job: Целева работа
+      models:
+        block_types:
+          regular: Редовно
+          skill_rater: Оценяване на уменията
+        skill_types:
+          behavioural: Поведенчески
+          other: Други
+          technical: Технически
       property_panel:
         add_n_a_option: Добавяне на опция N/A
         allow_content_copy: Разрешаване на копиране на съдържание

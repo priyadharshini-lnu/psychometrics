@@ -1079,6 +1079,7 @@ it:
         ai_assistants: Assistenti AI
         ai_assisted_idp: AI Assistito IDP
         global_skills: Competenze globali
+        idp: IDP
         sms_notification: Notifica via SMS
     clients:
       api_keys:
@@ -2444,8 +2445,8 @@ it:
         import:
           errors:
             job_role_not_found: Ruolo lavorativo con ID %{id} non trovato
-            missing_columns: 'Colonne mancanti: %{colonne}'
-            save_failed: 'Errore nell''elaborazione del Job Role ID %{id}: %{messaggio}'
+            missing_columns: 'Colonne mancanti: %{columns}'
+            save_failed: 'Errore nell''elaborazione del Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: L'elemento %{name} è stato creato con successo.
@@ -2759,10 +2760,10 @@ it:
         errors:
           by_skill_exists: 'Riga %{row_number}: Esiste già un livello di competenza ''by_skill'' per questo progetto e per questa competenza.'
           by_skill_missing: 'Riga %{row_number}: Il progetto e la competenza devono essere presenti per il tipo ''by_skill''.'
-          by_skill_type_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel ''''by_skill_type'''' per questo progetto e per questo tipo di abilità.'
-          by_skill_type_missing: 'Riga %{numero_riga}: Il progetto e il tipo di competenza devono essere presenti per il tipo ''''by_skill_type''''.'
-          default_global_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel di livello globale ''''predefinito''''.'
-          default_project_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel ''''predefinito'''' a livello di progetto.'
+          by_skill_type_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''by_skill_type'''' per questo progetto e per questo tipo di abilità.'
+          by_skill_type_missing: 'Riga %{row_number}: Il progetto e il tipo di competenza devono essere presenti per il tipo ''''by_skill_type''''.'
+          default_global_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel di livello globale ''''predefinito''''.'
+          default_project_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''predefinito'''' a livello di progetto.'
           invalid_csv_format: 'Formato CSV non valido: %{message}'
           invalid_proficiency_type: 'Riga %{row_number}: Tipo di competenza non valido o mancante'
           missing_columns: 'Colonne obbligatorie mancanti: %{fields}'

@@ -174,6 +174,8 @@ th:
             title: เทมเพลต IDP
             view: ดู
           jobRoles:
+            export_translations: ส่งออกบทบาทงานแปล
+            import_translations: นำเข้าการแปลบทบาทงาน
             manage: จัดการ
             title: บทบาทในงาน
             view: ดู
@@ -842,6 +844,14 @@ th:
     campaign_factors_import:
       errors:
         invalid_headers: 'ส่วนหัวต่อไปนี้ไม่ถูกต้อง: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: กรุณาเลือกช่วงวันที่
+        modal:
+          subtitle: เลือกช่วงวันที่ จากนั้นเลือกภาษาที่ต้องการสำหรับแต่ละรายงาน
+      generate:
+        modal:
+          subtitle: เลือกภาษาที่ต้องการสำหรับแต่ละรายงาน
     campaign_templates:
       campaign_templates: เทมเพลตแคมเปญ
       column:
@@ -959,7 +969,9 @@ th:
             empty: เปล่า
             inactive: เกียจคร้าน
             name: ชื่อ
+            normal: ปกติ
             previous: ก่อน
+            skill_rater: ผู้ประเมินทักษะ
             standard: มาตรฐาน
             status: สถานะ
           close:
@@ -1067,6 +1079,7 @@ th:
         ai_assistants: ผู้ช่วย AI
         ai_assisted_idp: AI ช่วยเหลือ IDP
         global_skills: ทักษะระดับโลก
+        idp: ผู้พลัดถิ่นภายในประเทศ
         sms_notification: การแจ้งเตือนทาง SMS
     clients:
       api_keys:
@@ -1540,6 +1553,7 @@ th:
       reset: รี เซ็ต
       save: ประหยัด
       select_all: เลือกทั้งหมด
+      type: ประเภท
       unselect_all: ยกเลิกการเลือกทั้งหมด
     communication_settings: การตั้งค่า
     communications:
@@ -1628,6 +1642,7 @@ th:
         type: ประเภท
       list:
         actions: การดําเนินการ
+        assessment_center_group: ศูนย์ประเมินผลกลุ่ม
         author: สร้างโดย
         campaign: รณรงค์
         client_name: ลูกค้า
@@ -1775,6 +1790,7 @@ th:
       errors:
         blank_field: 'แถว %{row}: %{field} ต้องไม่ว่างเปล่า'
         csv_file_required: ต้องเป็นไฟล์ CSV
+        development_action_not_in_project: 'ไลน์%{row}: การดำเนินการพัฒนา ID%{development_action_id} ไม่เกี่ยวข้องกับโครงการนี้'
         image_download_failed: 'ดาวน์โหลดรูปภาพจาก %{url} ไม่สําเร็จ: %{message}'
         invalid_csv_format: 'รูปแบบ CSV ไม่ถูกต้อง: %{message}'
         invalid_date: รูปแบบวันที่สําหรับ %{date} ไม่ถูกต้อง
@@ -2104,10 +2120,13 @@ th:
       all: ทั้งหมด
       appearance: ลักษณะ
       appearance_hint: หากต้องการแก้ไขรูปลักษณ์ โปรดบันทึกเทมเพลต IDP ก่อนเพื่อเปิดใช้งานการตั้งค่าเหล่านี้
+      appearance_success: การตั้งค่าการแสดงผลบันทึกไว้เรียบร้อยแล้ว
       background_image: ภาพพื้นหลัง
       behavioral_skills: ทักษะพฤติกรรม
       client_skills: ทักษะของลูกค้า
+      details_updated: รายละเอียดผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จแล้ว
       edit_template: แก้ไขเทมเพลต IDP
+      enter_tag_or_skills_error: เลือกอย่างน้อยหนึ่งแท็กหรือทักษะ
       enter_template_description: คำอธิบาย
       enter_template_description_error: จําเป็นต้องมีคําอธิบายเทมเพลต
       enter_template_name: ชื่อ
@@ -2116,6 +2135,7 @@ th:
         update: ไม่อนุญาตให้อัปเดตเนื่องจากเทมเพลต IDP เชื่อมโยงกับแผน IDP ของผู้ใช้อยู่แล้ว การเปลี่ยนแปลงรูปลักษณ์ถูกบันทึกไว้
       fields:
         assigned_data: ข้อมูลที่ได้รับมอบหมาย
+        assigned_date: วันที่กำหนด
         completion_date: วันที่เสร็จสมบูรณ์
         division: แผนก
         name: ชื่อ
@@ -2153,6 +2173,11 @@ th:
       show_reflections: แสดงภาพสะท้อน
       skill_gap_report: รายงานช่องว่างทักษะ
       skills: ทักษะ
+      skills_updated: ทักษะ IDP ได้รับการอัปเดตสำเร็จ
+      status:
+        draft: ร่าง
+        published: เผยแพร่แล้ว
+      status_updated: สถานะผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จ
       subtitle_text: ข้อความคําบรรยาย
       tab:
         development_actions: การดําเนินการพัฒนา
@@ -2385,8 +2410,10 @@ th:
         rescheduled: เลื่อนกําหนดเวลา
       subject: ชื่อเรื่อง
     job_role:
+      are_you_sure_to_remove: คุณแน่ใจหรือไม่ที่จะลบ?
       column:
         job_group: กลุ่มงาน
+        skill_name: ชื่อทักษะ
       export:
         failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
         success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
@@ -2401,6 +2428,7 @@ th:
         success_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
       import_action:
         translations: นําเข้าการแปลบทบาทงาน
+      job_role_details: รายละเอียดตำแหน่งงาน
       translations: การแปลบทบาทงาน
     job_role_skill_mapping:
       column:
@@ -2413,6 +2441,12 @@ th:
       export:
         translations:
           details: ราย ละเอียด
+      translations:
+        import:
+          errors:
+            job_role_not_found: ตำแหน่งงานที่มีรหัส ID%{id} ไม่พบ
+            missing_columns: คอลัมน์ที่จำเป็นหายไป:%{columns}
+            save_failed: เกิดข้อผิดพลาดในการประมวลผลรหัสตำแหน่งงาน%{id}:%{message}
     libraries:
       create:
         successfully: รายการ %{name} ถูกสร้างขึ้นเรียบร้อยแล้ว
@@ -2699,6 +2733,9 @@ th:
           level_definition_must_match_level: ต้องมีระดับ %{expected} พอดี แต่ได้รับ %{actual}
           must_be_unique: ต้องไม่ซ้ํากัน
           proficiency_level_exists: ระดับความชํานาญที่มีทักษะและโครงการนี้มีอยู่แล้ว
+          proficiency_level_exists_for_default: ระดับความสามารถสำหรับค่าเริ่มต้นมีอยู่แล้ว
+          proficiency_level_exists_for_type: ระดับความสามารถสำหรับประเภทนี้มีอยู่แล้ว
+          project_level_default_exists: ระดับความสามารถ 'เริ่มต้น' มีอยู่แล้ว
           skill_must_exist: ต้องมีทักษะสําหรับ 'by_skill' proficiency_type
       export:
         details: ราย ละเอียด
@@ -2714,6 +2751,7 @@ th:
         proficiency_type: ประเภทความเชี่ยวชาญ
         skill: ทักษะ
         skill_name: ชื่อทักษะ
+        skill_type: ประเภททักษะ
         title: ความสามารถ
       import:
         actions:
@@ -2742,6 +2780,8 @@ th:
             save_failed: 'การประมวลผลรหัสทักษะ %{id} ผิดพลาด: %{message}'
       type:
         by_skill: ตามทักษะ
+        by_skill_type: ตามประเภททักษะ
+        default: ค่าเริ่มต้น
     profile:
       change_password: เปลี่ยนรหัสผ่าน
       details: ราย ละเอียด
@@ -3227,6 +3267,8 @@ th:
         header: แก้ไขชื่อรายงาน
       edit_default_language:
         agreement: ใช่ ฉันเข้าใจผลกระทบที่อาจเกิดขึ้นจากการเปลี่ยนแปลงภาษาเริ่มต้น
+        title: แก้ไข ภาษาเริ่มต้น
+        tooltip: แก้ไข ภาษาเริ่มต้น
         warning:
           description_li_1: การเปลี่ยนภาษาเริ่มต้นจากภาษา RTL เป็นภาษา LTR หรือในทางกลับกัน จะส่งผลต่อเค้าโครง
           description_li_2: คุณจะต้องทำการแก้ไขการแปลรายงานใหม่หากคุณเปลี่ยนภาษาเริ่มต้น
@@ -3274,6 +3316,9 @@ th:
         successfully: รายงานอัปเดตเรียบร้อยแล้ว
       update:
         successfully: รายงาน %{name} อัปเดตเรียบร้อยแล้ว
+    reports_language_selection_modal:
+      download: ดาวน์โหลดรายงาน
+      generate: รายงานสร้างขึ้น
     resource:
       remove_confirm:
         message: คุณแน่ใจหรือไม่ว่าต้องการลบทรัพยากรนี้?
@@ -3680,6 +3725,7 @@ th:
         import:
           missing_fields_data: 'บรรทัด %{line_number}: ไม่มีช่องที่ต้องกรอก: %{fields}'
           save_failed: 'บรรทัด %{line_number}: บันทึกทักษะ ''%{name}'': %{message} ไม่สําเร็จ'
+          skill_not_in_project: 'ไลน์%{line_number}: รหัสทักษะ%{skill_id} ไม่เป็นของโปรเจ็กต์นี้'
         search:
           all_and_project_id_mutually_exclusive: ทั้งหมดไม่สามารถเป็นจริงได้เมื่อมีการให้ project_id_eq
           invalid_all_value: 'ต้องเป็นหนึ่งใน: จริงเท็จ'
@@ -3871,7 +3917,25 @@ th:
         successfully: ปัจจัยย่อยอัปเดตเรียบร้อยแล้ว
     survey_builder:
       builder_area:
+        current_job: งานปัจจุบัน
+        default_not_applicable_label: ไม่มีโอกาสที่จะเรียนรู้เกี่ยวกับหรือแสดงทักษะ
+        enable_not_applicable: เปิดใช้งานตัวเลือก N/A
+        enable_required_validation: เปิดใช้งานการตรวจสอบความถูกต้องที่จำเป็น
+        force_response: การตอบสนองด้วยกำลัง
+        job_role_required: กรุณาเลือกอย่างน้อยหนึ่งบทบาทงาน
+        not_applicable_label: ป้ายกำกับไม่เกี่ยวข้อง
         options: ตัวเลือก
+        request_response: คำขอการตอบกลับ
+        skill_rater_config: การกำหนดค่าผู้ประเมินทักษะ
+        target_job: ตำแหน่งงานเป้าหมาย
+      models:
+        block_types:
+          regular: ปกติ
+          skill_rater: ผู้ประเมินทักษะ
+        skill_types:
+          behavioural: พฤติกรรม
+          other: อื่นๆ
+          technical: เทคนิค
       property_panel:
         add_n_a_option: เพิ่มตัวเลือก N/A
         allow_content_copy: อนุญาตการคัดลอกเนื้อหา

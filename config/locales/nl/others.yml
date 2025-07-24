@@ -1557,6 +1557,7 @@ nl:
     column:
       assessor_access: Toegang Assessor
       auto_assign: Automatisch toewijzen
+      locales: Locaties
       main_report: Hoofdrapport
       report_bundle: Bundel rapporten
       report_name: Naam verslag
@@ -1579,6 +1580,13 @@ nl:
         apply: Pas deze wijzigingen toe op bestaande gebruikers in deze campagne.
         msg_text: U probeert <strong>"%{reportName}"</strong> Rapport te verwijderen
         title: Rapport verwijderen?
+      update_languages:
+        default_language: Standaard Taal
+        other_available_languages: Andere beschikbare talen
+        select_default_language: Selecteer standaard taal
+        select_languages: Selecteer talen
+        success_msg: Talen zijn succesvol bijgewerkt
+        title: Rapport Taal
       user_access:
         apply: Pas deze wijzigingen toe op bestaande gebruikers in deze campagne.
         title:
@@ -2195,6 +2203,9 @@ nl:
       no_active_plan: Geen actief IDP-plan gevonden
     webhooks:
       multiple_webhook_error: de url kan niet worden bijgewerkt omdat er meerdere webhooks zijn voor dit project.
+    workshop:
+      ical_generation_failed: Kan geen kalenderuitnodiging genereren
+      missing_or_invalid: Ontbrekend of ongeldig workshop_id
   evaluators:
     errors:
       can_not_processed: kan niet worden verwerkt
@@ -2456,6 +2467,7 @@ nl:
       aria_selected: Geselecteerd
   idp:
     actions: Acties
+    behavioral: Gedrag
     board: Raad van bestuur
     comment_details:
       add_comment: Opmerking toevoegen
@@ -2656,6 +2668,7 @@ nl:
     skill_gap_report:
       title: Rapport over vaardigheidskloof
     status: Status
+    technical: Technisch
     user_idp_status:
       approved: Goedgekeurd
       completed: Volbracht

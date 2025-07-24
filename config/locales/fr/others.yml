@@ -791,6 +791,8 @@ fr:
           attributes:
             current_password:
               invalid: Le mot de passe actuel est incorrect
+            manager_id:
+              cannot_be_self: L'utilisateur ne peut pas être désigné comme son propre gestionnaire
         user_idp_comment:
           reply_to_reply: Impossible de répondre à une réponse (un seul niveau d’imbrication autorisé)
         user_idp_plan:
@@ -1555,6 +1557,7 @@ fr:
     column:
       assessor_access: Accès à l'évaluateur
       auto_assign: Attribution automatique
+      locales: Localités
       main_report: Rapport principal
       report_bundle: Ensemble de rapports
       report_name: Nom du rapport
@@ -1577,6 +1580,13 @@ fr:
         apply: Appliquez ces modifications aux utilisateurs existants de cette campagne.
         msg_text: Vous essayez de supprimer le rapport <strong>"%{reportName}"</strong>
         title: Supprimer le rapport ?
+      update_languages:
+        default_language: Langue par défaut
+        other_available_languages: Autres langues disponibles
+        select_default_language: Sélectionner la langue par défaut
+        select_languages: Sélectionner les langues
+        success_msg: Les langues ont été mises à jour avec succès
+        title: Langue du rapport
       user_access:
         apply: Appliquez ces modifications aux utilisateurs existants de cette campagne.
         title:
@@ -2196,6 +2206,9 @@ fr:
       no_active_plan: Aucun plan d'action actif n'a été trouvé
     webhooks:
       multiple_webhook_error: l'url ne peut pas être mise à jour car il y a plusieurs webhooks pour ce projet.
+    workshop:
+      ical_generation_failed: Impossible de générer une invitation au calendrier
+      missing_or_invalid: Numéro d'atelier manquant ou invalide
   evaluators:
     errors:
       can_not_processed: ne peut être traité

@@ -1079,6 +1079,7 @@ ar:
         ai_assistants: مساعدو الذكاء الاصطناعي
         ai_assisted_idp: المشردون داخلياً بمساعدة الذكاء الاصطناعي
         global_skills: المهارات العالمية
+        idp: IDP
         sms_notification: إشعار الرسائل النصية القصيرة
     clients:
       api_keys:
@@ -2444,8 +2445,8 @@ ar:
         import:
           errors:
             job_role_not_found: دور الوظيفة مع المعرف %{id} غير موجود
-            missing_columns: 'الأعمدة المفقودة المطلوبة: %{الأعمدة}'
-            save_failed: 'خطأ في معالجة معرف دور الوظيفة %{id}: %{الرسالة}'
+            missing_columns: 'الأعمدة المفقودة المطلوبة: %{columns}'
+            save_failed: 'خطأ في معالجة معرف دور الوظيفة %{id}: %{message}'
     libraries:
       create:
         successfully: Item %{name} was created successfully.
@@ -2759,10 +2760,10 @@ ar:
         errors:
           by_skill_exists: 'الصف %{row_number}: مستوى الكفاءة ''حسب_المهارة'' موجود بالفعل لهذا المشروع والمهارة'
           by_skill_missing: 'الصف %{row_number}: يجب أن يكون المشروع والمهارة موجودين لنوع "حسب_المهارة'
-          by_skill_type_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "حسب_النوع" موجود بالفعل لهذا المشروع ونوع المهارة'
-          by_skill_type_missing: 'الصف %{صف_رقم}: يجب أن يكون نوع المشروع ونوع المهارة موجودين لنوع "حسب_النوع'
-          default_global_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "الافتراضي" على المستوى العام موجود بالفعل'
-          default_project_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل'
+          by_skill_type_exists: 'الصف %{row_number}: مستوى الكفاءة "حسب_النوع" موجود بالفعل لهذا المشروع ونوع المهارة'
+          by_skill_type_missing: 'الصف %{row_number}: يجب أن يكون نوع المشروع ونوع المهارة موجودين لنوع "حسب_النوع'
+          default_global_exists: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على المستوى العام موجود بالفعل'
+          default_project_exists: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل'
           invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
           invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
           missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'

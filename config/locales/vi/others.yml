@@ -791,6 +791,8 @@ vi:
           attributes:
             current_password:
               invalid: Mật khẩu hiện tại không đúng
+            manager_id:
+              cannot_be_self: Người dùng không thể được chỉ định làm quản lý của chính mình.
         user_idp_comment:
           reply_to_reply: không thể trả lời câu trả lời (chỉ cho phép một cấp độ lồng nhau)
         user_idp_plan:
@@ -1549,6 +1551,7 @@ vi:
     column:
       assessor_access: Quyền truy cập của người đánh giá
       auto_assign: Tự động chỉ định
+      locales: Vùng địa phương
       main_report: Báo cáo chính
       report_bundle: Gói báo cáo
       report_name: Tên báo cáo
@@ -1571,6 +1574,13 @@ vi:
         apply: Áp dụng thay đổi này cho người dùng hiện tại trong chiến dịch này.
         msg_text: Bạn đang cố gắng xóa Báo cáo <strong>"%{reportName}"</strong>
         title: Xóa báo cáo?
+      update_languages:
+        default_language: Ngôn ngữ mặc định
+        other_available_languages: Các ngôn ngữ khác có sẵn
+        select_default_language: Chọn ngôn ngữ mặc định
+        select_languages: Chọn ngôn ngữ
+        success_msg: Các ngôn ngữ đã được cập nhật thành công.
+        title: Ngôn ngữ báo cáo
       user_access:
         apply: Áp dụng thay đổi này cho người dùng hiện tại trong chiến dịch này.
         title:
@@ -2076,6 +2086,7 @@ vi:
         reserved_subdomain: Tên miền phụ %{value} được bảo lưu
         uniq_subdomain: Tên miền phụ phải là duy nhất.
       add_manager:
+        cannot_be_self: Người dùng không thể được chỉ định làm quản lý của chính mình.
         manager_not_found: Không tìm thấy người quản lý hoặc không phải là một phần của cùng một dự án
         user_not_found: Không tìm thấy người dùng hoặc không phải là một phần của cùng một dự án
       admin:
@@ -2213,6 +2224,9 @@ vi:
       no_active_plan: Không tìm thấy gói IDP đang hoạt động
     webhooks:
       multiple_webhook_error: URL không thể được cập nhật vì có nhiều webhook cho dự án này.
+    workshop:
+      ical_generation_failed: Không thể tạo lời mời lịch.
+      missing_or_invalid: Thiếu hoặc không hợp lệ workshop_id
   evaluators:
     errors:
       can_not_processed: không thể xử lý

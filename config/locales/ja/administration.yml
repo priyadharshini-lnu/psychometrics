@@ -1079,6 +1079,7 @@ ja:
         ai_assistants: AIアシスタント
         ai_assisted_idp: AIアシストIDP
         global_skills: グローバル・スキル
+        idp: アイディーピー
         sms_notification: SMS通知
     clients:
       api_keys:

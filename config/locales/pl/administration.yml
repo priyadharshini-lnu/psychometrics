@@ -174,6 +174,8 @@ pl:
             title: Szablony IDP
             view: Widok
           jobRoles:
+            export_translations: Eksportuj tłumaczenia ról zawodowych
+            import_translations: Importowanie tłumaczeń ról zadań
             manage: Zarządzać
             title: Role zawodowe
             view: Widok
@@ -842,6 +844,14 @@ pl:
     campaign_factors_import:
       errors:
         invalid_headers: 'Następujące nagłówki są nieprawidłowe: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Wybierz zakres dat
+        modal:
+          subtitle: Wybierz zakres dat, a następnie wybierz wymagany język dla każdego raportu.
+      generate:
+        modal:
+          subtitle: Wybierz wymagany język dla każdego raportu
     campaign_templates:
       campaign_templates: Szablony kampanii
       column:
@@ -959,7 +969,9 @@ pl:
             empty: Pusty
             inactive: Nieaktywny
             name: Nazwa
+            normal: Normalny
             previous: Poprzedni
+            skill_rater: Ocena umiejętności
             standard: Norma
             status: Stan
           close:
@@ -1067,6 +1079,7 @@ pl:
         ai_assistants: Asystenci AI
         ai_assisted_idp: Dostawca tożsamości wspomagany przez sztuczną inteligencję
         global_skills: Umiejętności globalne
+        idp: PRI
         sms_notification: Powiadomienie SMS
     clients:
       api_keys:
@@ -1540,6 +1553,7 @@ pl:
       reset: Resetować
       save: Zapisać
       select_all: Zaznacz wszystko
+      type: Typ
       unselect_all: Odznacz wszystko
     communication_settings: Ustawienia
     communications:
@@ -1628,6 +1642,7 @@ pl:
         type: Typ
       list:
         actions: Akcje
+        assessment_center_group: Assessment Center Group
         author: Utworzony przez
         campaign: Kampania
         client_name: Klient
@@ -1775,6 +1790,7 @@ pl:
       errors:
         blank_field: 'Wiersz %{row}: %{field} nie może być pusty'
         csv_file_required: Musi to być plik CSV
+        development_action_not_in_project: 'Linia %{row}: Identyfikator akcji rozwojowej %{development_action_id} nie należy do tego projektu.'
         image_download_failed: 'Nie udało się pobrać obrazu z %{url}: %{message}'
         invalid_csv_format: 'Nieprawidłowy format CSV: %{message}'
         invalid_date: Format daty dla %{date} jest nieprawidłowy.
@@ -2104,10 +2120,13 @@ pl:
       all: Cały
       appearance: Wygląd
       appearance_hint: Aby zmodyfikować wygląd, najpierw zapisz szablon IDP, aby włączyć te ustawienia.
+      appearance_success: Ustawienia wyglądu zostały pomyślnie zapisane
       background_image: Obraz w tle
       behavioral_skills: Umiejętności behawioralne
       client_skills: Umiejętności klienta
+      details_updated: Szczegóły IDP zostały pomyślnie zaktualizowane
       edit_template: Edytowanie szablonu dostawcy tożsamości
+      enter_tag_or_skills_error: Wybierz co najmniej jeden tag lub umiejętność
       enter_template_description: Opis
       enter_template_description_error: Wymagany jest opis szablonu.
       enter_template_name: Nazwa
@@ -2116,6 +2135,7 @@ pl:
         update: Aktualizacja nie jest dozwolona, ponieważ szablon dostawcy tożsamości jest już skojarzony z planem dostawcy tożsamości użytkownika. Zmiany wyglądu zostały zapisane.
       fields:
         assigned_data: Przypisane dane
+        assigned_date: Przypisana data
         completion_date: Data realizacji
         division: Dzielenie
         name: Nazwa
@@ -2153,6 +2173,11 @@ pl:
       show_reflections: Pokaż odbicia
       skill_gap_report: Raport o brakach w umiejętnościach
       skills: Umiejętności
+      skills_updated: Umiejętności IDP zostały pomyślnie zaktualizowane
+      status:
+        draft: Wersja robocza
+        published: Opublikowano
+      status_updated: Status IDP został pomyślnie zaktualizowany
       subtitle_text: Tekst napisów
       tab:
         development_actions: Działania rozwojowe
@@ -2385,8 +2410,10 @@ pl:
         rescheduled: Przełożony
       subject: Temat
     job_role:
+      are_you_sure_to_remove: Czy na pewno usunąć?
       column:
         job_group: Grupa zadań
+        skill_name: Nazwa umiejętności
       export:
         failure_msg: Błąd podczas eksportowania tłumaczeń
         success_msg: Eksport działań rozwojowych w toku.
@@ -2401,6 +2428,7 @@ pl:
         success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
       import_action:
         translations: Importowanie tłumaczeń ról zawodowych
+      job_role_details: Szczegóły dotyczące stanowiska
       translations: Tłumaczenia stanowisk pracy
     job_role_skill_mapping:
       column:
@@ -2413,6 +2441,12 @@ pl:
       export:
         translations:
           details: Szczegóły
+      translations:
+        import:
+          errors:
+            job_role_not_found: 'Nie znaleziono roli zawodowej o identyfikatorze %{id} '
+            missing_columns: 'Brak wymaganych kolumn: %{columns}'
+            save_failed: 'Błąd przetwarzania Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: Element %{name} został utworzony pomyślnie.
@@ -2699,6 +2733,9 @@ pl:
           level_definition_must_match_level: musi zawierać dokładnie %{expected} poziomy, ale podano %{actual}
           must_be_unique: Musi być unikatowy
           proficiency_level_exists: Poziom biegłości w tej umiejętności i projekcie już istnieje
+          proficiency_level_exists_for_default: Poziom biegłości dla domyślnych ustawień już istnieje
+          proficiency_level_exists_for_type: Poziom biegłości dla tego typu już istnieje
+          project_level_default_exists: '"Domyślny" poziom biegłości już istnieje.'
           skill_must_exist: Umiejętność musi być obecna, aby proficiency_type "by_skill"
       export:
         details: Szczegóły
@@ -2714,6 +2751,7 @@ pl:
         proficiency_type: Rodzaj biegłości
         skill: Zręczność
         skill_name: Nazwa umiejętności
+        skill_type: Typ umiejętności
         title: Biegłość
       import:
         actions:
@@ -2742,6 +2780,8 @@ pl:
             save_failed: 'Błąd podczas przetwarzania identyfikatora umiejętności %{id}: %{message}'
       type:
         by_skill: Według umiejętności
+        by_skill_type: Według rodzaju umiejętności
+        default: Domyślne
     profile:
       change_password: Zmień hasło
       details: Szczegóły
@@ -3227,6 +3267,8 @@ pl:
         header: Edytowanie nazwy raportu
       edit_default_language:
         agreement: Tak, rozumiem konsekwencje zmiany domyślnego języka.
+        title: Edytuj domyślny język
+        tooltip: Edytuj domyślny język
         warning:
           description_li_1: Zmiana domyślnego języka z RTL na LTR lub odwrotnie wpłynie na układ.
           description_li_2: Jeśli zmienisz domyślny język, będziesz musiał ponownie opracować tłumaczenia raportów.
@@ -3274,6 +3316,9 @@ pl:
         successfully: Raport został zaktualizowany pomyślnie.
       update:
         successfully: Raport %{name} został pomyślnie zaktualizowany.
+    reports_language_selection_modal:
+      download: Raport do pobrania
+      generate: Generowanie raportów
     resource:
       remove_confirm:
         message: Czy na pewno chcesz usunąć ten zasób?
@@ -3680,6 +3725,7 @@ pl:
         import:
           missing_fields_data: 'Wiersz %{line_number}: Brak wymaganych pól: %{fields}'
           save_failed: 'Wiersz %{line_number}: Nie można zapisać umiejętności "%{name}": %{message}'
+          skill_not_in_project: 'Linia %{line_number}: Identyfikator umiejętności %{skill_id} nie należy do tego projektu.'
         search:
           all_and_project_id_mutually_exclusive: Nie wszystko może być prawdą, gdy project_id_eq jest zapewnione
           invalid_all_value: 'Musi być jednym z: prawda, fałsz'
@@ -3871,7 +3917,25 @@ pl:
         successfully: Sub-Factor został pomyślnie zaktualizowany.
     survey_builder:
       builder_area:
+        current_job: Obecna praca
+        default_not_applicable_label: Brak możliwości poznania lub zademonstrowania umiejętności
+        enable_not_applicable: Włącz opcję Nie dotyczy
+        enable_required_validation: Włącz wymaganą walidację
+        force_response: Reakcja siłowa
+        job_role_required: Wybierz co najmniej jedną rolę zawodową
+        not_applicable_label: Nie dotyczy Etykieta
         options: Opcje
+        request_response: Odpowiedź na żądanie
+        skill_rater_config: Konfiguracja Skill Ratera
+        target_job: Praca docelowa
+      models:
+        block_types:
+          regular: Regularny
+          skill_rater: Ocena umiejętności
+        skill_types:
+          behavioural: Zachowanie
+          other: Inne
+          technical: Techniczne
       property_panel:
         add_n_a_option: Dodaj opcję Nie dotyczy
         allow_content_copy: Zezwalaj na kopiowanie zawartości

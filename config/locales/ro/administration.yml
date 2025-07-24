@@ -174,6 +174,8 @@ ro:
             title: Șabloane IDP
             view: Vedere
           jobRoles:
+            export_translations: Export Rolul postului Traduceri
+            import_translations: Import Rolul postului Traduceri
             manage: Gestiona
             title: Roluri de post
             view: Vedere
@@ -842,6 +844,14 @@ ro:
     campaign_factors_import:
       errors:
         invalid_headers: 'Următoarele anteturi sunt nevalide: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Vă rugăm să selectați intervalul de date
+        modal:
+          subtitle: Selectați un interval de date și apoi selectați limba necesară pentru fiecare raport
+      generate:
+        modal:
+          subtitle: Selectați limba necesară pentru fiecare raport
     campaign_templates:
       campaign_templates: Șabloane de campanie
       column:
@@ -959,7 +969,9 @@ ro:
             empty: Gol
             inactive: Inactiv
             name: Nume
+            normal: Normal
             previous: Precedent
+            skill_rater: Evaluator de abilități
             standard: Standard
             status: Stare
           close:
@@ -1067,6 +1079,7 @@ ro:
         ai_assistants: Asistenți AI
         ai_assisted_idp: IDP asistat de AI
         global_skills: Competențe globale
+        idp: IDP
         sms_notification: Notificare SMS
     clients:
       api_keys:
@@ -1540,6 +1553,7 @@ ro:
       reset: Reseta
       save: Salva
       select_all: Selectează tot
+      type: Tip
       unselect_all: Deselectați tot
     communication_settings: Setări
     communications:
@@ -1628,6 +1642,7 @@ ro:
         type: Tip
       list:
         actions: Acțiuni
+        assessment_center_group: Assessment Center Group
         author: Creat de
         campaign: Campanie
         client_name: Client
@@ -1775,6 +1790,7 @@ ro:
       errors:
         blank_field: 'Rândul %{row}: %{field} nu poate fi necompletat'
         csv_file_required: Trebuie să fie un fișier CSV
+        development_action_not_in_project: 'Linia %{row}: ID-ul acțiunii de dezvoltare %{development_action_id} nu aparține acestui proiect'
         image_download_failed: 'Nu s-a reușit descărcarea imaginii de la %{url}: %{message}'
         invalid_csv_format: 'Format CSV nevalid: %{message}'
         invalid_date: Formatul de dată pentru %{date} nu este valid.
@@ -2104,10 +2120,13 @@ ro:
       all: Tot
       appearance: Apariție
       appearance_hint: Pentru a modifica aspectul, vă rugăm să salvați mai întâi șablonul IDP pentru a activa aceste setări.
+      appearance_success: Setările aspectului au fost salvate cu succes
       background_image: Imagine de fundal
       behavioral_skills: Abilități comportamentale
       client_skills: Abilitățile clientului
+      details_updated: Detalii IDP actualizate cu succes
       edit_template: Editați șablonul IDP
+      enter_tag_or_skills_error: Selectați cel puțin o etichetă sau abilitate
       enter_template_description: Descriere
       enter_template_description_error: Este necesară descrierea șablonului.
       enter_template_name: Nume
@@ -2116,6 +2135,7 @@ ro:
         update: Actualizarea nu este permisă, deoarece șablonul IDP este deja asociat cu un plan IDP al utilizatorului. Modificările de aspect au fost salvate.
       fields:
         assigned_data: Date atribuite
+        assigned_date: Data atribuirii
         completion_date: Data finalizării
         division: Divizie
         name: Nume
@@ -2153,6 +2173,11 @@ ro:
       show_reflections: Afișați reflecții
       skill_gap_report: Raport privind decalajul de competențe
       skills: Aptitudini
+      skills_updated: Competențe IDP actualizate cu succes
+      status:
+        draft: Proiect
+        published: Publicat
+      status_updated: Statutul IDP actualizat cu succes
       subtitle_text: Textul subtitrării
       tab:
         development_actions: Acțiuni de dezvoltare
@@ -2385,8 +2410,10 @@ ro:
         rescheduled: Reprogramat
       subject: Subiect
     job_role:
+      are_you_sure_to_remove: Sunteți sigur că doriți să eliminați?
       column:
         job_group: Grup de locuri de muncă
+        skill_name: Numele abilității
       export:
         failure_msg: Eroare la exportul traducerilor
         success_msg: Exportul acțiunilor de dezvoltare în curs de desfășurare.
@@ -2401,6 +2428,7 @@ ro:
         success_msg: Fișierul încărcat a fost pus în coadă pentru import. Vă rugăm să verificați starea în notificări.
       import_action:
         translations: Importați traduceri ale rolurilor de muncă
+      job_role_details: Detalii privind rolul postului
       translations: Traduceri de roluri
     job_role_skill_mapping:
       column:
@@ -2413,6 +2441,12 @@ ro:
       export:
         translations:
           details: Detalii
+      translations:
+        import:
+          errors:
+            job_role_not_found: Rolul postului cu ID-ul %{id} nu a fost găsit
+            missing_columns: 'Lipsesc coloanele necesare: %{columns}'
+            save_failed: 'Eroare de procesare Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: Elementul %{name} a fost creat cu succes.
@@ -2699,6 +2733,9 @@ ro:
           level_definition_must_match_level: trebuie să conțină exact %{expected} niveluri, dar %{actual} au fost date
           must_be_unique: Trebuie să fie unic
           proficiency_level_exists: Un nivel de competență cu această abilitate și proiect există deja
+          proficiency_level_exists_for_default: Există deja un nivel de competență pentru implicit
+          proficiency_level_exists_for_type: Există deja un nivel de competență pentru acest tip
+          project_level_default_exists: Există deja un nivel "implicit" de competență
           skill_must_exist: Abilitățile trebuie să fie prezente pentru proficiency_type "by_skill"
       export:
         details: Detalii
@@ -2714,6 +2751,7 @@ ro:
         proficiency_type: Tip de competență
         skill: Îndemânare
         skill_name: Numele abilității
+        skill_type: Tip de abilitate
         title: Competenţă
       import:
         actions:
@@ -2742,6 +2780,8 @@ ro:
             save_failed: 'Eroare la procesarea ID-ului abilității %{id}: %{message}'
       type:
         by_skill: După îndemânare
+        by_skill_type: Pe tip de abilitate
+        default: Implicit
     profile:
       change_password: Schimbați parola
       details: Detalii
@@ -3227,6 +3267,8 @@ ro:
         header: Editați numele raportului
       edit_default_language:
         agreement: Da, înțeleg implicațiile schimbării limbii implicite.
+        title: Editarea limbii implicite
+        tooltip: Editarea limbii implicite
         warning:
           description_li_1: Schimbarea limbii implicite din RTL în LTR sau viceversa va afecta aspectul.
           description_li_2: Va trebui să lucrați din nou la traducerile rapoartelor dacă schimbați limba implicită.
@@ -3274,6 +3316,9 @@ ro:
         successfully: Raportul a fost actualizat cu succes.
       update:
         successfully: Raportul %{name} a fost actualizat cu succes.
+    reports_language_selection_modal:
+      download: Descărcare raport
+      generate: Generarea raportului
     resource:
       remove_confirm:
         message: Sunteți sigur că doriți să eliminați această resursă?
@@ -3680,6 +3725,7 @@ ro:
         import:
           missing_fields_data: 'Linia %{line_number}: Câmpuri obligatorii lipsă: %{fields}'
           save_failed: 'Linia %{line_number}: Nu s-a reușit salvarea abilității ''%{name}'': %{message}'
+          skill_not_in_project: 'Linia %{line_number}: Skill ID %{skill_id} nu face parte din acest proiect'
         search:
           all_and_project_id_mutually_exclusive: Toate nu pot fi adevărate atunci când este furnizat project_id_eq
           invalid_all_value: 'trebuie să fie una dintre: adevărat, fals'
@@ -3871,7 +3917,25 @@ ro:
         successfully: Subfactorul a fost actualizat cu succes.
     survey_builder:
       builder_area:
+        current_job: Loc de muncă actual
+        default_not_applicable_label: Nicio oportunitate de a învăța sau de a-și demonstra abilitățile
+        enable_not_applicable: Activarea opțiunii N/A
+        enable_required_validation: Activarea validării obligatorii
+        force_response: Răspunsul forței
+        job_role_required: Vă rugăm să selectați cel puțin un rol profesional
+        not_applicable_label: Nu se aplică Etichetă
         options: Opțiuni
+        request_response: Cerere de răspuns
+        skill_rater_config: Configurarea evaluatorului de abilități
+        target_job: Job țintă
+      models:
+        block_types:
+          regular: Regular
+          skill_rater: Evaluator de abilități
+        skill_types:
+          behavioural: Comportamentale
+          other: Altele
+          technical: Tehnic
       property_panel:
         add_n_a_option: Adăugați o opțiune N/A
         allow_content_copy: Permiteți copierea conținutului

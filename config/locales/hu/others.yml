@@ -791,6 +791,8 @@ hu:
           attributes:
             current_password:
               invalid: A jelenlegi jelszó helytelen
+            manager_id:
+              cannot_be_self: A felhasználó nem jelölhető ki saját menedzserként
         user_idp_comment:
           reply_to_reply: Nem tud válaszolni egy válaszra (csak egy beágyazási szint engedélyezett)
         user_idp_plan:
@@ -1555,6 +1557,7 @@ hu:
     column:
       assessor_access: Értékelői hozzáférés
       auto_assign: Automatikus hozzárendelés
+      locales: Helyszínek
       main_report: Fő jelentés
       report_bundle: Jelentéscsomag
       report_name: Jelentés neve
@@ -1577,6 +1580,13 @@ hu:
         apply: Alkalmazza ezeket a módosításokat a kampány meglévő felhasználóira.
         msg_text: <strong>"%{reportName}"</strong> jelentést próbál törölni
         title: Eltávolítja a jelentést?
+      update_languages:
+        default_language: Alapértelmezett nyelv
+        other_available_languages: Egyéb rendelkezésre álló nyelvek
+        select_default_language: Alapértelmezett nyelv kiválasztása
+        select_languages: Nyelvek kiválasztása
+        success_msg: A nyelvek sikeresen frissültek
+        title: Jelentés nyelve
       user_access:
         apply: Alkalmazza ezeket a módosításokat a kampány meglévő felhasználóira.
         title:
@@ -2082,6 +2092,7 @@ hu:
         reserved_subdomain: A(z) %{value} altartomány le van foglalva
         uniq_subdomain: Az altartománynak egyedinek kell lennie.
       add_manager:
+        cannot_be_self: A felhasználó nem jelölhető ki saját menedzserként
         manager_not_found: A menedzser nem található, vagy nem része ugyanannak a projektnek
         user_not_found: A felhasználó nem található, vagy nem része ugyanannak a projektnek
       admin:
@@ -2219,6 +2230,9 @@ hu:
       no_active_plan: Nem található aktív IDP-terv
     webhooks:
       multiple_webhook_error: Az URL nem frissíthető, mivel ehhez a projekthez több webhook is tartozik.
+    workshop:
+      ical_generation_failed: Nem tudott naptármeghívót generálni
+      missing_or_invalid: Hiányzó vagy érvénytelen workshop_id
   evaluators:
     errors:
       can_not_processed: nem dolgozható fel
@@ -2681,6 +2695,7 @@ hu:
     skill_gap_report:
       title: Készséghiány-jelentés
     status: Állapot
+    technical: Műszaki
     user_idp_status:
       approved: Jóváhagyott
       completed: Befejezett

@@ -174,6 +174,8 @@ sk:
             title: Šablóny IDP
             view: Pohľad
           jobRoles:
+            export_translations: Export pracovných rolí Preklady
+            import_translations: Import pracovných rolí Preklady
             manage: Ovládať
             title: Pracovné pozície
             view: Pohľad
@@ -842,6 +844,14 @@ sk:
     campaign_factors_import:
       errors:
         invalid_headers: 'Nasledujúce hlavičky sú neplatné: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Prosím, vyberte rozsah dátumov
+        modal:
+          subtitle: Vyberte rozsah dátumov a potom vyberte požadovaný jazyk pre každú správu
+      generate:
+        modal:
+          subtitle: Vyberte požadovaný jazyk pre každú správu
     campaign_templates:
       campaign_templates: Šablóny kampaní
       column:
@@ -959,7 +969,9 @@ sk:
             empty: Prázdny
             inactive: Neaktívny
             name: Meno
+            normal: Normálne
             previous: Predchádzajúci
+            skill_rater: Hodnotiteľ zručností
             standard: Štandard
             status: Stav
           close:
@@ -1067,6 +1079,7 @@ sk:
         ai_assistants: Asistenti AI
         ai_assisted_idp: IDP s pomocou AI
         global_skills: Globálne zručnosti
+        idp: IDP
         sms_notification: SMS upozornenie
     clients:
       api_keys:
@@ -1540,6 +1553,7 @@ sk:
       reset: Vynulovanie
       save: Zachrániť
       select_all: Vybrať všetko
+      type: Typ
       unselect_all: Zrušiť výber všetkých
     communication_settings: Nastavenia
     communications:
@@ -1628,6 +1642,7 @@ sk:
         type: Typ
       list:
         actions: Akcie
+        assessment_center_group: Skupina Assessment Center
         author: Vytvoril
         campaign: Kampaň
         client_name: Klient
@@ -1775,6 +1790,7 @@ sk:
       errors:
         blank_field: 'Riadok %{row}: %{field} nemôže byť prázdny'
         csv_file_required: Musí to byť súbor CSV
+        development_action_not_in_project: 'Riadok %{row}: ID rozvojovej akcie %{development_action_id} nepatrí do tohto projektu'
         image_download_failed: 'Nepodarilo sa stiahnuť obrázok z %{url}: %{message}'
         invalid_csv_format: 'Neplatný formát CSV: %{message}'
         invalid_date: Formát dátumu pre %{date} je neplatný.
@@ -2104,10 +2120,13 @@ sk:
       all: Všetko
       appearance: Vzhľad
       appearance_hint: Ak chcete upraviť vzhľad, najskôr uložte šablónu IDP, aby ste povolili tieto nastavenia.
+      appearance_success: Nastavenia vzhľadu boli úspešne uložené
       background_image: Obrázok na pozadí
       behavioral_skills: Behaviorálne zručnosti
       client_skills: Zručnosti klienta
+      details_updated: IDP Podrobnosti úspešne aktualizované
       edit_template: Upraviť šablónu IDP
+      enter_tag_or_skills_error: Vyberte aspoň jednu značku alebo zručnosť
       enter_template_description: Popis
       enter_template_description_error: Vyžaduje sa popis šablóny.
       enter_template_name: Meno
@@ -2116,6 +2135,7 @@ sk:
         update: Aktualizácia nie je povolená, pretože šablóna IDP je už priradená k plánu IDP používateľa. Zmeny vzhľadu boli uložené.
       fields:
         assigned_data: Priradené údaje
+        assigned_date: Pridelený dátum
         completion_date: Dátum dokončenia
         division: Delenie
         name: Meno
@@ -2153,6 +2173,11 @@ sk:
       show_reflections: Zobraziť odrazy
       skill_gap_report: Správa o nedostatku zručností
       skills: Zručnosti
+      skills_updated: IDP Skills úspešne aktualizovaný
+      status:
+        draft: Návrh
+        published: Zverejnené na
+      status_updated: Stav IDP bol úspešne aktualizovaný
       subtitle_text: Text titulkov
       tab:
         development_actions: Rozvojové akcie
@@ -2385,8 +2410,10 @@ sk:
         rescheduled: Preložený
       subject: Predmet
     job_role:
+      are_you_sure_to_remove: Určite ho chcete odstrániť?
       column:
         job_group: Pracovná skupina
+        skill_name: Názov zručnosti
       export:
         failure_msg: Chyba pri exporte prekladov
         success_msg: Export prebiehajúcich vývojových akcií.
@@ -2401,6 +2428,7 @@ sk:
         success_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
       import_action:
         translations: Import prekladov pracovných pozícií
+      job_role_details: Podrobnosti o pracovnej úlohe
       translations: Preklady pracovných pozícií
     job_role_skill_mapping:
       column:
@@ -2413,6 +2441,12 @@ sk:
       export:
         translations:
           details: Detaily
+      translations:
+        import:
+          errors:
+            job_role_not_found: Pracovná úloha s ID %{id} nebola nájdená
+            missing_columns: 'Chýbajúce požadované stĺpce: %{columns}'
+            save_failed: 'Chybné spracovanie ID úlohy %{id}: %{message}'
     libraries:
       create:
         successfully: Položka %{name} bola úspešne vytvorená.
@@ -2699,6 +2733,9 @@ sk:
           level_definition_must_match_level: musia obsahovať presne %{expected} úrovne, ale %{actual} boli uvedené
           must_be_unique: Musí byť jedinečný
           proficiency_level_exists: Úroveň odbornosti s touto zručnosťou a projektom už existuje
+          proficiency_level_exists_for_default: Úroveň spôsobilosti pre predvolené nastavenie už existuje
+          proficiency_level_exists_for_type: Úroveň spôsobilosti pre tento typ už existuje
+          project_level_default_exists: Predvolená úroveň zručnosti už existuje
           skill_must_exist: Zručnosť musí byť prítomná pre proficiency_type "by_skill"
       export:
         details: Detaily
@@ -2714,6 +2751,7 @@ sk:
         proficiency_type: Typ odbornosti
         skill: Schopnosť
         skill_name: Názov zručnosti
+        skill_type: Typ zručnosti
         title: Odbornej spôsobilosti
       import:
         actions:
@@ -2742,6 +2780,8 @@ sk:
             save_failed: 'Chyba pri spracovaní ID zručnosti %{id}: %{message}'
       type:
         by_skill: Podľa zručnosti
+        by_skill_type: Podľa typu zručnosti
+        default: Predvolené nastavenie
     profile:
       change_password: Zmeniť heslo
       details: Detaily
@@ -3227,6 +3267,8 @@ sk:
         header: Úprava názvu zostavy
       edit_default_language:
         agreement: Áno, chápem dôsledky zmeny predvoleného jazyka.
+        title: Upraviť predvolený jazyk
+        tooltip: Upraviť predvolený jazyk
         warning:
           description_li_1: Zmena predvoleného jazyka z RTL na LTR alebo naopak ovplyvní rozloženie.
           description_li_2: Ak by ste zmenili predvolený jazyk, museli by ste prepracovať preklady správ.
@@ -3274,6 +3316,9 @@ sk:
         successfully: Správa bola úspešne aktualizovaná.
       update:
         successfully: Správa %{name} bola úspešne aktualizovaná.
+    reports_language_selection_modal:
+      download: Správa na stiahnutie
+      generate: Generovanie správy
     resource:
       remove_confirm:
         message: Naozaj chcete tento zdroj odstrániť?
@@ -3680,6 +3725,7 @@ sk:
         import:
           missing_fields_data: 'Riadok %{line_number}: Chýbajú povinné polia: %{fields}'
           save_failed: 'Riadok %{line_number}: Nepodarilo sa uložiť zručnosť ''%{name}'': %{message}'
+          skill_not_in_project: 'Riadok %{line_number}: ID zručnosti %{skill_id} nepatrí do tohto projektu'
         search:
           all_and_project_id_mutually_exclusive: Všetko nemôže byť pravdivé, keď je project_id_eq poskytnuté
           invalid_all_value: 'musí byť jedným z: pravda, nepravda'
@@ -3871,7 +3917,25 @@ sk:
         successfully: Sub-Factor bol úspešne aktualizovaný.
     survey_builder:
       builder_area:
+        current_job: Súčasná práca
+        default_not_applicable_label: Žiadna príležitosť naučiť sa alebo preukázať zručnosť
+        enable_not_applicable: Povolenie možnosti N/A
+        enable_required_validation: Povolenie požadovaného overovania
+        force_response: Reakcia sily
+        job_role_required: Vyberte aspoň jednu pracovnú pozíciu
+        not_applicable_label: Neuplatňuje sa Štítok
         options: Možnosti
+        request_response: Odpoveď na žiadosť
+        skill_rater_config: Konfigurácia hodnotenia zručností
+        target_job: Cieľová práca
+      models:
+        block_types:
+          regular: Pravidelné
+          skill_rater: Hodnotiteľ zručností
+        skill_types:
+          behavioural: Správanie
+          other: Iné
+          technical: Technická stránka
       property_panel:
         add_n_a_option: Pridať možnosť Nie je k dispozícii
         allow_content_copy: Povolenie kopírovania obsahu

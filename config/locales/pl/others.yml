@@ -791,6 +791,8 @@ pl:
           attributes:
             current_password:
               invalid: Bieżące hasło jest nieprawidłowe
+            manager_id:
+              cannot_be_self: Użytkownik nie może zostać przypisany jako własny menedżer
         user_idp_comment:
           reply_to_reply: Nie można odpowiedzieć na odpowiedź (dozwolony jest tylko jeden poziom zagnieżdżania)
         user_idp_plan:
@@ -1559,6 +1561,7 @@ pl:
     column:
       assessor_access: Dostęp do asesora
       auto_assign: Automatyczne przypisywanie
+      locales: Lokalizacje
       main_report: Raport główny
       report_bundle: Pakiet raportów
       report_name: Nazwa raportu
@@ -1581,6 +1584,13 @@ pl:
         apply: Zastosuj te zmiany do istniejących użytkowników w tej kampanii.
         msg_text: Próbujesz usunąć raport <strong>"%{reportName}"</strong>
         title: Usunąć raport?
+      update_languages:
+        default_language: Domyślny język
+        other_available_languages: Inne dostępne języki
+        select_default_language: Wybierz domyślny język
+        select_languages: Wybierz języki
+        success_msg: Języki zostały pomyślnie zaktualizowane
+        title: Język raportu
       user_access:
         apply: Zastosuj te zmiany do istniejących użytkowników w tej kampanii.
         title:
@@ -2086,6 +2096,7 @@ pl:
         reserved_subdomain: Subdomena %{value} jest zarezerwowana
         uniq_subdomain: Subdomena powinna być unikalna.
       add_manager:
+        cannot_be_self: Użytkownik nie może zostać przypisany jako własny menedżer
         manager_not_found: Nie znaleziono menedżera lub nie jest on częścią tego samego projektu
         user_not_found: Nie znaleziono użytkownika lub nie jest on częścią tego samego projektu
       admin:
@@ -2223,6 +2234,9 @@ pl:
       no_active_plan: Nie znaleziono aktywnego planu IDP
     webhooks:
       multiple_webhook_error: Nie można zaktualizować adresu URL, ponieważ dla tego projektu istnieje wiele elementów webhook.
+    workshop:
+      ical_generation_failed: Nie można wygenerować zaproszenia do kalendarza
+      missing_or_invalid: Brakujący lub nieprawidłowy identyfikator_warsztatu
   evaluators:
     errors:
       can_not_processed: nie można przetworzyć
@@ -2484,6 +2498,7 @@ pl:
       aria_selected: Wybrany
   idp:
     actions: Działania
+    behavioral: Zachowanie
     board: Tablica
     comment_details:
       add_comment: Dodaj komentarz
@@ -2706,6 +2721,7 @@ pl:
     skill_gap_report:
       title: Raport luk w umiejętnościach
     status: Stan
+    technical: Techniczne
     user_idp_status:
       approved: Zatwierdzony
       completed: Zakończone

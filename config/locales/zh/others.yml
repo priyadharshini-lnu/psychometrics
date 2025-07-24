@@ -1567,6 +1567,7 @@ zh:
     column:
       assessor_access: 评估员访问
       auto_assign: 自动分配
+      locales: 地点
       main_report: 主要报告
       report_bundle: 报告包
       report_name: 报告名称
@@ -1589,6 +1590,13 @@ zh:
         apply: 将此更改应用于该活动中的现有用户。
         msg_text: 您正在尝试删除<strong>"%{reportName}"</strong>报告
         title: 删除报告？
+      update_languages:
+        default_language: 默认语言
+        other_available_languages: 其他可用语言
+        select_default_language: 选择默认语言
+        select_languages: 选择语言
+        success_msg: 语言已成功更新
+        title: 报告语言
       user_access:
         apply: 将此更改应用于该活动中的现有用户。
         title:
@@ -2205,6 +2213,9 @@ zh:
       no_active_plan: 未找到有效的 IDP 计划
     webhooks:
       multiple_webhook_error: 由于该项目有多个 webhook，因此无法更新 url。
+    workshop:
+      ical_generation_failed: 无法生成日历邀请
+      missing_or_invalid: 缺少或无效 Workshop_id
   evaluators:
     errors:
       can_not_processed: 无法处理
@@ -2466,6 +2477,7 @@ zh:
       aria_selected: 精选
   idp:
     actions: 行动
+    behavioral: 行为
     board: 董事会
     comment_details:
       add_comment: 添加评论
@@ -2694,6 +2706,7 @@ zh:
     skill_gap_report:
       title: 技能差距报告
     status: 现状
+    technical: 技术
     user_idp_status:
       approved: 批准
       completed: 完成

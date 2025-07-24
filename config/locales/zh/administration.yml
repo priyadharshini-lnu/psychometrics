@@ -1079,6 +1079,7 @@ zh:
         ai_assistants: 人工智能助理
         ai_assisted_idp: AI 援助的境内流离失所者
         global_skills: 全球技能
+        idp: IDP
         sms_notification: 短信通知
     clients:
       api_keys:

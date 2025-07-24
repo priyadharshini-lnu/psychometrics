@@ -1557,6 +1557,7 @@ bg:
     column:
       assessor_access: Достъп до оценителя
       auto_assign: Автоматично присвояване
+      locales: Местоположения
       main_report: Основен доклад
       report_bundle: Пакет от отчети
       report_name: Име на отчета
@@ -1579,6 +1580,13 @@ bg:
         apply: Приложете тези промени към съществуващи потребители в тази кампания.
         msg_text: Опитвате се да изтриете <strong>отчета "%{reportName}"</strong>
         title: Премахване на доклада?
+      update_languages:
+        default_language: Език по подразбиране
+        other_available_languages: Други налични езици
+        select_default_language: Избор на език по подразбиране
+        select_languages: Изберете езици
+        success_msg: Езиците бяха актуализирани успешно
+        title: Език на доклада
       user_access:
         apply: Приложете тези промени към съществуващи потребители в тази кампания.
         title:
@@ -2222,6 +2230,9 @@ bg:
       no_active_plan: Не е намерен активен план за IDP
     webhooks:
       multiple_webhook_error: URL адресът не може да бъде актуализиран, тъй като има множество уеб кукички за този проект.
+    workshop:
+      ical_generation_failed: Не може да генерира покана за календара
+      missing_or_invalid: Липсващ или невалиден workshop_id
   evaluators:
     errors:
       can_not_processed: не може да се обработва
@@ -2586,6 +2597,7 @@ bg:
       cover:
         fields:
           assigned_data: Определена дата
+          assigned_date: Присвоена дата
           completion_date: Дата на завършване
           division: Делене
           name: Име
