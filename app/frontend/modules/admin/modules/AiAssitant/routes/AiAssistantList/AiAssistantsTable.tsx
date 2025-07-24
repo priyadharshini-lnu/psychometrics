@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { AiAssistant } from 'modules/admin/modules/AiAssitant/core/aiAssistant'
 import { useNavigate } from 'react-router-dom'
-import { AI_PROVIDERS } from '~/modules/admin/modules/AiAssitant/core/constants'
+import { AI_PROVIDERS, ASSISTANT_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
 import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -94,9 +94,9 @@ export const AiAssistantsTable: React.FC<Props> = ({ openModal }) => (
       sorter
     />
     <Resource.Column<AiAssistant>
-      title={I18n.t('administration.ai_assistants.column.ai_action')}
-      id="ai_action"
-      render={aiAssistant => <Typography.Text>{aiAssistant.action}</Typography.Text>}
+      title={I18n.t('administration.common.type')}
+      id="assistantType"
+      render={aiAssistant => <Typography.Text>{ASSISTANT_TYPES[aiAssistant.assistantType]?.name}</Typography.Text>}
       sorter
     />
     <Resource.Column<AiAssistant>

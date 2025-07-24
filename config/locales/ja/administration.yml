@@ -174,6 +174,8 @@ ja:
             title: IDPテンプレート
             view: 表示
           jobRoles:
+            export_translations: 仕事の役割の翻訳をエクスポート
+            import_translations: 仕事の役割の翻訳をインポートする
             manage: 管理
             title: 仕事の役割
             view: 表示
@@ -292,10 +294,8 @@ ja:
       ai_assistants: AIアシスタント
       ai_assistants_playground: AIアシスタント・プレイグラウンド
       column:
-        ai_action: AIアクション
         provider: プロバイダー
       form:
-        action: アクション
         description: 説明
         name: 名称
         provider: プロバイダー
@@ -844,6 +844,14 @@ ja:
     campaign_factors_import:
       errors:
         invalid_headers: '以下のヘッダは無効です: %{headers}.'
+    campaign_report:
+      bulk_download:
+        data_range_error: 日付を選択してください
+        modal:
+          subtitle: 日付範囲を選択し、各レポートに必要な言語を選択します。
+      generate:
+        modal:
+          subtitle: 各レポートに必要な言語を選択
     campaign_templates:
       campaign_templates: キャンペーンテンプレート
       column:
@@ -961,7 +969,9 @@ ja:
             empty: 空
             inactive: 活動休止中
             name: 名称
+            normal: ノーマル
             previous: 前へ
+            skill_rater: 技能評価者
             standard: スタンダード
             status: ステータス
           close:
@@ -1069,6 +1079,7 @@ ja:
         ai_assistants: AIアシスタント
         ai_assisted_idp: AIアシストIDP
         global_skills: グローバル・スキル
+        idp: アイディーピー
         sms_notification: SMS通知
     clients:
       api_keys:
@@ -1494,6 +1505,8 @@ ja:
         update:
           successfully: プロジェクト %{name} が正常に更新されました。
       registration_codes:
+        actions:
+          add_code: コードを追加
         column:
           code: コード
           usage_stats: 使用統計
@@ -1504,6 +1517,13 @@ ja:
           incorrect_domain: ドメイン形式が正しくない。
           invalid_end_date: 開始日よりも大きくなければならない
           license_issue: ライセンスが足りない。
+        form:
+          active: アクティブ
+          code: コード
+          end_date: 終了日
+          name: 名称
+          start_date: 開始日
+          total_count: 総カウント数
       resource:
         confirmations:
           delete:
@@ -1533,6 +1553,7 @@ ja:
       reset: リセット
       save: セーブ
       select_all: すべて選択
+      type: タイプ
       unselect_all: すべて選択解除
     communication_settings: 設定
     communications:
@@ -1621,6 +1642,7 @@ ja:
         type: タイプ
       list:
         actions: 行動
+        assessment_center_group: アセスメント・センター・グループ
         author: 作成者
         campaign: キャンペーン
         client_name: クライアント
@@ -1768,6 +1790,7 @@ ja:
       errors:
         blank_field: '行 %{row}: %{field} は空白にできません。'
         csv_file_required: CSVファイルであること
+        development_action_not_in_project: '行 %{row}: 開発アクション ID %{development_action_id} はこのプロジェクトに属していません'
         image_download_failed: "%{url}から画像をダウンロードできませんでした:%{message}"
         invalid_csv_format: '無効な CSV 形式: %{message} です。'
         invalid_date: "%{date}の日付形式は無効です。"
@@ -2097,18 +2120,22 @@ ja:
       all: すべて
       appearance: 外観
       appearance_hint: 外観を変更するには、まずIDPテンプレートを保存して、これらの設定を有効にしてください。
+      appearance_success: アピアランス設定の保存に成功
       background_image: 背景画像
       behavioral_skills: 行動スキル
       client_skills: クライアント・スキル
+      details_updated: IDP詳細の更新に成功
       edit_template: IDPテンプレートの編集
+      enter_tag_or_skills_error: 少なくとも1つのタグまたはスキルを選択する
       enter_template_description: 説明
       enter_template_description_error: テンプレートの説明が必要です。
       enter_template_name: 名称
       enter_template_name_error: テンプレート名は必須
       errors:
-        update: IDP テンプレートがすでにユーザー IDP プランに関連付けられているため、更新できません。外観の変更が保存されました。
+        update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
       fields:
         assigned_data: 割り当てデータ
+        assigned_date: 担当日
         completion_date: 完了日
         division: 部門
         name: 名称
@@ -2146,6 +2173,11 @@ ja:
       show_reflections: ショー・リフレクションズ
       skill_gap_report: スキル・ギャップ・レポート
       skills: スキル
+      skills_updated: IDPスキルの更新に成功
+      status:
+        draft: ドラフト
+        published: 出版
+      status_updated: IDPステータスの更新に成功
       subtitle_text: 字幕テキスト
       tab:
         development_actions: 開発アクション
@@ -2378,43 +2410,43 @@ ja:
         rescheduled: 予定変更
       subject: 対象
     job_role:
+      are_you_sure_to_remove: 本当に外していいのか？
       column:
         job_group: 職務グループ
+        skill_name: スキル名
       export:
         failure_msg: 翻訳のエクスポート時のエラー
         success_msg: 進行中の開発アクションをエクスポートする。
-      export_action:
-        translations: 輸出の仕事の役割の翻訳
       form:
         code: コード
         description: 説明
         job_group: 職務グループ
         name: 名称
         title: 仕事の役割
-      global: グローバルな仕事は役割か？
       import:
         download_example_csv: サンプルcsvをダウンロード
         success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
       import_action:
         translations: 役割の翻訳をインポートする
+      job_role_details: 職務内容
       translations: 職務の翻訳
     job_role_skill_mapping:
       column:
         expected_proficiency_level: 期待される能力レベル
-        job_role: 仕事の役割
-        skill: スキル
       form:
-        expected_proficiency_level: 期待される能力レベル
-        job_role: 仕事の役割
-        skill: スキル
         title: スキル・ジョブ・マッピング
-      global: グローバルスキルはジョブマッピングか？
       import:
         taxonomy: 分類学
     job_roles:
       export:
         translations:
           details: 詳細
+      translations:
+        import:
+          errors:
+            job_role_not_found: ID %{id} を持つジョブ・ロールが見つかりません。
+            missing_columns: '必要な列がありません: %{columns}.'
+            save_failed: ジョブ役割 ID %{id} の処理エラーです：メッセージ
     libraries:
       create:
         successfully: 項目 %{name} が正常に作成されました。
@@ -2701,14 +2733,11 @@ ja:
           level_definition_must_match_level: は正確に%{expected}レベルを含んでいなければならないが、%{actual}は与えられた。
           must_be_unique: ユニークでなければならない
           proficiency_level_exists: このスキルとプロジェクトを持つProficiencyLevelがすでに存在する。
-          proficiency_level_exists_for_all_skills: すべてのスキルの熟練度レベルはすでに終了している。
-          proficiency_level_exists_for_category: このカテゴリのProficiencyLevelはすでに存在する。
-          project_level_all_skills_exists: all_skills'熟練度レベルはすでに存在する。
+          proficiency_level_exists_for_default: デフォルトの熟練度はすでに終了している。
+          proficiency_level_exists_for_type: このタイプの熟練度レベルはすでに存在する。
+          project_level_default_exists: デフォルト」の熟練度レベルはすでに存在する
           skill_must_exist: 熟練度タイプ'by_skill'では、スキルが存在しなければならない。
       export:
-        actions:
-          proficiency: 輸出能力
-          translations: 輸出技能翻訳
         details: 詳細
         failure_msg: 熟練度レベルのエクスポート時のエラー
         success_msg: 進行中の開発アクションのエクスポート
@@ -2721,28 +2750,23 @@ ja:
         proficiency_translations: 翻訳能力
         proficiency_type: 熟練度タイプ
         skill: スキル
-        skill_category: スキルカテゴリー
         skill_name: スキル名
+        skill_type: スキルの種類
         title: 熟練度
-      global: グローバル・プロフィシェンシーとは何か？
       import:
         actions:
           proficiency: 輸入能力
           translations: 輸入技能翻訳
         errors:
-          all_skills_global_exists: 行 %{row_number}：グローバルレベル 'all_skills' ProficiencyLevel が既に存在します。
-          all_skills_project_exists: 行 %{row_number}：プロジェクト・レベル 'all_skills' ProficiencyLevel が既に存在します。
-          by_category_exists: 行 %{row_number}：by_category'ProficiencyLevelは、このプロジェクトとスキル・カテゴリに既に存在します。
-          by_category_missing: 行 %{row_number}：by_category'タイプでは、プロジェクトとスキル・カテゴリが存在する必要があります。
           by_skill_exists: 行 %{row_number}：by_skill'ProficiencyLevelは、このプロジェクトとスキルに既に存在します。
           by_skill_missing: 行 %{row_number}：by_skill'タイプでは、プロジェクトとスキルが存在する必要があります。
+          by_skill_type_exists: 行 %{row_number}：このプロジェクトとスキル・タイプには ''by_skill_type'' ProficiencyLevel が既に存在します。
+          by_skill_type_missing: 行 %{row_number}：by_skill_type''タイプにはプロジェクトとスキル・タイプが存在する必要があります。
+          default_global_exists: 行 %{row_number}：グローバル・レベルの ''default'' ProficiencyLevel が既に存在します。
+          default_project_exists: 行 %{row_number}：プロジェクト・レベルの ''default'' ProficiencyLevel が既に存在します。
           invalid_csv_format: '無効な CSV 形式: %{message} です。'
-          invalid_json: 行 %{line}：LevelDefinition - %{message} に無効な JSON があります。
-          invalid_json_structure: description'や'summary'といったキーを持つJSONオブジェクトでなければならない。
           invalid_proficiency_type: 行 %{row_number}：ProficiencyTypeが無効または見つかりません。
           missing_columns: '必須列がありません: %{fields}.'
-          missing_required_fields: 行 %{line}：必須フィールドがありません (%{fields})
-          save_failed: 回線%{line}:%{message}
           skill_not_found: 行 %{row_number}：無効または見つからないスキル
         job_queued: 技能レベルのインポートジョブがキューに入れられました。
       translations:
@@ -2759,9 +2783,9 @@ ja:
             row_id_blank: 行 %{row}：IDを空白にすることはできません
             save_failed: 'スキルID %{id}の処理エラー: %{message}'
       type:
-        all_skills: すべてのスキル
-        by_category: カテゴリー別
         by_skill: スキル別
+        by_skill_type: スキルタイプ別
+        default: デフォルト
     profile:
       change_password: パスワードの変更
       details: 詳細
@@ -3123,6 +3147,7 @@ ja:
         user_name: ユーザー名
       dashboard: ダッシュボード
       download: ダウンロード
+      report_approval_settings: レポート承認設定
       report_approvals: レポートの承認
       review: レビュー
       saving_filters:
@@ -3244,6 +3269,15 @@ ja:
         successfully: レポート '%{name}' は正常に削除されました。
       edit:
         header: レポート名の編集
+      edit_default_language:
+        agreement: はい、デフォルトの言語が変わることの意味は理解しています。
+        title: デフォルト言語の編集
+        tooltip: デフォルト言語の編集
+        warning:
+          description_li_1: デフォルトの言語をRTL言語からLTR言語に、またはその逆に変更すると、レイアウトに影響します。
+          description_li_2: デフォルトの言語を変更すると、レポートの翻訳をやり直す必要があります。
+          description_li_3: この変更を行う前に、レポートの翻訳をダウンロードしてください。
+          title: 説明書をよくお読みください
       modals:
         remap_assessment:
           new_assessment_name: 新しい評価名
@@ -3286,6 +3320,9 @@ ja:
         successfully: レポートは正常に更新されました。
       update:
         successfully: レポート %{name} が正常に更新されました。
+    reports_language_selection_modal:
+      download: レポートダウンロード
+      generate: レポート作成
     resource:
       remove_confirm:
         message: 本当にこのリソースを削除しますか？
@@ -3695,6 +3732,7 @@ ja:
         import:
           missing_fields_data: '行 %{line_number}：必須フィールドがありません: %{fields}'
           save_failed: '行 %{line_number}：スキル ''%{name}'' の保存に失敗しました: %{message}.'
+          skill_not_in_project: '行 %{line_number}: スキル ID %{skill_id} はこのプロジェクトに属していません'
         search:
           all_and_project_id_mutually_exclusive: project_id_eqが指定された場合、すべてがtrueになる。
           invalid_all_value: true、falseのいずれかでなければならない。
@@ -3705,12 +3743,8 @@ ja:
         details: 詳細
         failure_msg: 翻訳のエクスポート時のエラー
         success_msg: 進行中の開発アクションをエクスポートする。
-        title: 輸出
         translations:
           details: 技能翻訳
-      export_action:
-        skills_title: 輸出スキル
-        skills_translations_title: 輸出技能翻訳
       form:
         client_placeholder: クライアントの選択
         description: 説明
@@ -3719,9 +3753,6 @@ ja:
         skill_group: スキルグループ
         skill_type: スキルタイプ
         title: スキル
-      global: グローバル・スキルとは何か？
-      global_skills: グローバル・スキル
-      global_translations: グローバル・スキル翻訳
       import:
         download_example_csv: サンプルcsvをダウンロード
         info_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
@@ -3731,8 +3762,6 @@ ja:
         skills_translations_title: 輸入技能翻訳
       skill_details: スキル詳細
       skill_translations: 技能翻訳
-      skill_translations_project: プロジェクトに基づく技能翻訳
-      skills_project: プロジェクトに基づくスキル
       title: スキル
       translations:
         import:
@@ -3743,7 +3772,6 @@ ja:
             skill_not_found: ID %{id} を持つスキルが見つかりません。
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: スキル・ジョブ・マッピング
         job_roles: 仕事の役割
         proficiency: 熟練度
         skills: スキル
@@ -3901,7 +3929,25 @@ ja:
         successfully: サブファクターは正常に更新されました。
     survey_builder:
       builder_area:
+        current_job: 現在の仕事
+        default_not_applicable_label: 技術について学んだり、技術を発揮したりする機会がない
+        enable_not_applicable: N/Aオプションを有効にする
+        enable_required_validation: 必須バリデーションを有効にする
+        force_response: フォース・レスポンス
+        job_role_required: 少なくとも1つの職務を選択してください
+        not_applicable_label: 非該当 ラベル
         options: オプション
+        request_response: リクエスト・レスポンス
+        skill_rater_config: スキルレイターの設定
+        target_job: 目標の仕事
+      models:
+        block_types:
+          regular: レギュラー
+          skill_rater: 技能評価者
+        skill_types:
+          behavioural: 行動
+          other: その他
+          technical: テクニカル
       property_panel:
         add_n_a_option: N/Aオプションを追加
         allow_content_copy: コンテンツのコピーを許可する
@@ -3960,12 +4006,11 @@ ja:
         download_example_file: 例題ファイルのダウンロード
         success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
       import_action:
-        taxonomy: タクソノミーのインポート
+        taxonomy: スキル分類法のインポート
       job_roles: 仕事の役割
       proficiency: 熟練度
-      skill_job_mappings: スキル・ジョブ・マッピング
       skills: スキル
-      title: 分類学
+      title: スキル分類法
     templates:
       blocks:
         copy:
@@ -4066,6 +4111,7 @@ ja:
           invitations: 招待状
           reminders: 注意事項
           report_ready: レポート準備
+        consolidated: 連結
         custom_message:
           description: このメッセージは、アセスメントに参加するすべての人に送ることができます。
           name: カスタムメッセージ
@@ -4089,7 +4135,10 @@ ja:
         request_approval:
           description: このメッセージは、被験者が承認を要求したときに管理者に送信されます。
           name: 承認リクエスト
+        save: セーブ
+        schedule: スケジュール
         schedule_email: スケジュールメール
+        schedule_email_title: スケジュールメール
         schedule_time: スケジュール時間
         send_test_email: テストメールの送信
         subject: テーマ
@@ -4130,6 +4179,14 @@ ja:
         welcome_message:
           description: このメッセージは、被験者がログインして評価を開始するとき、またはタスクリストを表示するときに表示されます。
           name: ウェルカムメッセージ
+      mail_history:
+        actions: 行動
+        date: 日付
+        download_details: ダウンロード詳細
+        emails_sent: 送信メール
+        recipient: 受取人
+        status: ステータス
+        subject: テーマ
       manage:
         assessment: 評価
         dimension: 寸法
@@ -4137,19 +4194,45 @@ ja:
         report: レポート
         title: 管理
       menu:
+        actions: 行動
         datasheet:
           title: データシート
         messages:
+          allow_subjects_to_send_reminders: 被験者が評価者にリマインダーを送信できるようにする
+          automatically_send_invites: 新しい評価者に自動的に招待状を送る
           title: メッセージ
         participants:
+          columns:
+            action: アクション
+            email: 電子メール
+            evaluations_completed: 完了した評価
+            evaluations_received: 受けた評価
+            is_subject: 対象
+            name: 名称
+            report_status: レポート状況
+            status: ステータス
+          evaluators:
+            add_evaluators: 評価者の追加
+            import_evaluators: インポート・エバリュエーター
+            title: 評価者
+          managers:
+            title: マネージャー
+          options:
+            evaluator_options: 評価者オプション
+            global: グローバル・オプション
+            manager_options: マネージャーオプション
+            subject_options: 対象オプション
+            title: オプション
           subjects:
             add_subjects: 件名の追加
             current_job_role: 現在の職務
             email: Email
             first_name: ファーストネーム
+            import_subjects: 輸入対象
             last_name: ラストネーム
             locale: ロケール
             target_job_role: 目標職務
+            title: 対象
           title: 参加者
         report:
           menu:
@@ -4165,8 +4248,26 @@ ja:
         mail_history: メール履歴
         options: オプション
       reports:
+        add_conditions: 条件追加
+        administrator_approves_reports: 管理者が報告書を承認
+        allow_manager_to_view_individual_responses: マネージャーが個々の回答を閲覧できるようにする
+        disable_report_download: レポートのダウンロードを無効にする
+        edit_email: Eメールを編集する
+        email_manager_when_report_is_ready_for_approval: レポートの承認準備が完了したら、マネージャーにEメールを送信
+        email_subject_when_report_becomes_available: レポートが入手可能になったら、件名に電子メールを送信
+        email_subjects_manager_when_available: レポートが入手可能になり次第、対象者のマネージャーにメールする
+        make_report_available_to_subject_when: 対象者に報告書を提出する：
+        manager_approves_reports: マネージャーが報告書を承認
+        manager_can_access_subject_reports: 管理者は対象レポートにアクセスできる
+        manager_cannot_access_subject_reports: マネージャーは要件を満たすまでレポートを見ることができない
+        report_access: レポート アクセス
+        report_approval: 報告書の承認
+        report_availability: 報告書入手可能性
         show:
           title: 課題レポート
+        subject_can_access_reports: 対象者はレポートにアクセスできる
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: ライセンスを無効にする
     time_zone: タイムゾーン
     tools: ツール
     translations:

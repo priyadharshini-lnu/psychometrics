@@ -21,6 +21,7 @@ export type Props = OwnProps & PropsFromRedux
 
 const AssessmentsReports: React.FC<Props> = ({
   user,
+  reports,
   openModal,
   selectedIds,
   regenerateReports,
@@ -34,16 +35,20 @@ const AssessmentsReports: React.FC<Props> = ({
   const parsedUserId = parseInt(id, 10)
   const { message } = App.useApp()
 
-  const handleDownload = () => {
-    bulkDownload(parsedCampaignId, selectedIds).then(() => {
-      message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
+  const handleRegenerateReports = (selectedReports: { [key: string]: string[] }) => {
+    regenerateReports(parsedCampaignId, selectedReports, id, selectedIds).then(() => {
+      message.success(I18n.t('user_reports.messages.regenerate_successful'))
     })
   }
 
-  const handleRegenerateReports = () => {
-    regenerateReports(parsedCampaignId, selectedIds).then(() => {
-      message.success(I18n.t('user_reports.messages.regenerate_successful'))
-    })
+  const handleDownloadReports = (selectedReports: { [key: string]: string[] }) => {
+    bulkDownload(parsedCampaignId, selectedReports, id, selectedIds)
+      .then(() => {
+        message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
+      })
+      .catch((error) => {
+        message.error(error)
+      })
   }
 
   return (
@@ -58,7 +63,14 @@ const AssessmentsReports: React.FC<Props> = ({
               {user.permissions.bulkDownload && (
                 <Button
                   type="default"
-                  onClick={handleDownload}
+                  onClick={() => openModal(
+                    'ReportsLanguageSelectionModal', {
+                      selectedIds,
+                      handleReportsLanguageSelection: handleDownloadReports,
+                      reports,
+                      isDownload: true,
+                    },
+                  )}
                   disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
                   loading={bulkDownloadInProgress}
                 >
@@ -68,11 +80,17 @@ const AssessmentsReports: React.FC<Props> = ({
               {user.permissions.regenerateReport && (
                 <Button
                   type="default"
-                  onClick={handleRegenerateReports}
+                  onClick={() => openModal(
+                    'ReportsLanguageSelectionModal', {
+                      selectedIds,
+                      handleReportsLanguageSelection: handleRegenerateReports,
+                      reports,
+                    },
+                  )}
                   disabled={_.isEmpty(selectedIds) || regenerateInProgress}
                   loading={regenerateInProgress}
                 >
-                  <span>{I18n.t('user_reports.actions.regenerate')}</span>
+                  <span>{I18n.t('user_reports.actions.generate')}</span>
                 </Button>
               )}
               {user.permissions.addReport && (

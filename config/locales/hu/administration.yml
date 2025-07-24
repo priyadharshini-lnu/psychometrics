@@ -174,6 +174,8 @@ hu:
             title: IDP-sablonok
             view: Nézet
           jobRoles:
+            export_translations: Exportálás munkakörök fordítások
+            import_translations: Munkakörök importálása Fordítások
             manage: Kezel
             title: Munkakörök
             view: Nézet
@@ -292,10 +294,8 @@ hu:
       ai_assistants: AI-asszisztensek
       ai_assistants_playground: AI-asszisztens játszótér
       column:
-        ai_action: AI-tevékenység
         provider: Szolgáltató
       form:
-        action: Tevékenység
         description: Leírás
         name: Név
         provider: Szolgáltató
@@ -844,6 +844,14 @@ hu:
     campaign_factors_import:
       errors:
         invalid_headers: 'A következő fejlécek érvénytelenek: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Kérjük, válassza ki a dátumtartományt
+        modal:
+          subtitle: Válasszon ki egy dátumtartományt, majd válassza ki a kívánt nyelvet az egyes jelentésekhez.
+      generate:
+        modal:
+          subtitle: Válassza ki a kívánt nyelvet az egyes jelentésekhez
     campaign_templates:
       campaign_templates: Kampánysablonok
       column:
@@ -961,7 +969,9 @@ hu:
             empty: Üres
             inactive: Inaktív
             name: Név
+            normal: Normál
             previous: Előző
+            skill_rater: Skill Rater
             standard: Szabvány
             status: Állapot
           close:
@@ -1069,6 +1079,7 @@ hu:
         ai_assistants: AI-asszisztensek
         ai_assisted_idp: AI által támogatott IDP
         global_skills: Globális készségek
+        idp: IDP
         sms_notification: SMS-értesítés
     clients:
       api_keys:
@@ -1496,6 +1507,8 @@ hu:
         update:
           successfully: A(z) %{name} projekt frissítése sikeresen megtörtént.
       registration_codes:
+        actions:
+          add_code: Kód hozzáadása
         column:
           code: Kód
           usage_stats: Használati statisztikák
@@ -1506,6 +1519,13 @@ hu:
           incorrect_domain: Helytelen tartományformátum.
           invalid_end_date: nagyobbnak kell lennie, mint a kezdő dátumnak
           license_issue: Nincs elég licenc.
+        form:
+          active: Aktív
+          code: 'Kód:'
+          end_date: Végdátum
+          name: Név
+          start_date: Kezdeti dátum
+          total_count: Teljes szám
       resource:
         confirmations:
           delete:
@@ -1535,6 +1555,7 @@ hu:
       reset: Visszaállít
       save: Mentés
       select_all: Az összes kijelölése
+      type: Típus
       unselect_all: Az összes kijelölésének törlése
     communication_settings: Beállítások
     communications:
@@ -1623,6 +1644,7 @@ hu:
         type: Típus
       list:
         actions: Műveletek
+        assessment_center_group: Assessment Center csoport
         author: 'Készítette:'
         campaign: Kampány
         client_name: Ügyfél
@@ -1770,6 +1792,7 @@ hu:
       errors:
         blank_field: "%{row} sor: %{field} nem lehet üres"
         csv_file_required: CSV-fájlnak kell lennie
+        development_action_not_in_project: "%{row} sor : A %{development_action_id} fejlesztési intézkedés azonosítója nem tartozik ehhez a projekthez."
         image_download_failed: 'Nem sikerült letölteni a képet a(z) %{url} webhelyről: %{message}'
         invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
         invalid_date: A(z) %{date} dátumformátuma érvénytelen.
@@ -2099,10 +2122,13 @@ hu:
       all: Összes
       appearance: Megjelenés
       appearance_hint: A megjelenés módosításához először mentse el az IDP-sablont a beállítások engedélyezéséhez.
+      appearance_success: Megjelenési beállítások sikeresen mentve
       background_image: Háttérkép
       behavioral_skills: Viselkedési készségek
       client_skills: Ügyfélkészségek
+      details_updated: IDP részletek sikeresen frissítve
       edit_template: IDP sablon szerkesztése
+      enter_tag_or_skills_error: Válasszon ki legalább egy címkét vagy készséget
       enter_template_description: Leírás
       enter_template_description_error: A sablon leírása kötelező.
       enter_template_name: Név
@@ -2111,6 +2137,7 @@ hu:
         update: A frissítés nem engedélyezett, mert az IDP-sablon már társítva van egy felhasználói IDP-csomaghoz. A megjelenés változásai mentésre kerültek.
       fields:
         assigned_data: Hozzárendelt adatok
+        assigned_date: Hozzárendelt dátum
         completion_date: Befejezés dátuma
         division: Részleg
         name: Név
@@ -2148,6 +2175,11 @@ hu:
       show_reflections: Reflexiók megjelenítése
       skill_gap_report: Valamilyen készség hiányáról szóló jelentés kiválasztása
       skills: Készségek
+      skills_updated: IDP készségek sikeresen frissítve
+      status:
+        draft: Tervezet
+        published: Megjelent
+      status_updated: IDP státusz sikeresen frissítve
       subtitle_text: Felirat szövege
       tab:
         development_actions: Fejlesztési tevékenységek
@@ -2380,43 +2412,43 @@ hu:
         rescheduled: Átütemezve
       subject: Tárgy
     job_role:
+      are_you_sure_to_remove: Biztos, hogy el akarja távolítani?
       column:
         job_group: Munkacsoport
+        skill_name: Képesség neve
       export:
         failure_msg: Hiba a fordítások exportálása során
         success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása.
-      export_action:
-        translations: A Munkakörök fordításának exportálása
       form:
         code: Kód
         description: Leírás
         job_group: Munkacsoport
         name: Név
         title: Munkakör
-      global: Globális munkakör?
       import:
         download_example_csv: csv-példa letöltése
         success_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
       import_action:
         translations: A munkakörök fordításának importálása
+      job_role_details: A munkakör részletei
       translations: Munkakörök fordítása
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Elvárt tudásszint
-        job_role: Munkakör
-        skill: Készség
       form:
-        expected_proficiency_level: Elvárt tudásszint
-        job_role: Munkakör
-        skill: Készség
         title: Készségek feltérképezése
-      global: Globális készségek feltérképezése?
       import:
         taxonomy: Taxonómia
     job_roles:
       export:
         translations:
           details: Részletek
+      translations:
+        import:
+          errors:
+            job_role_not_found: A %{id} azonosítóval rendelkező munkakör nem található
+            missing_columns: 'Hiányzó kötelező oszlopok: %{columns}'
+            save_failed: 'Hiba a munkaszerep azonosítójának feldolgozása %{id}: %{message}'
     libraries:
       create:
         successfully: A(z) %{name} elem létrehozása sikeresen megtörtént.
@@ -2703,14 +2735,11 @@ hu:
           level_definition_must_match_level: pontosan %{expected} szinteket kell tartalmaznia, de %{actual} meg van adva
           must_be_unique: Egyedinek kell lennie
           proficiency_level_exists: Ezzel a készséggel és projekttel már létezik tudásszint
-          proficiency_level_exists_for_all_skills: Valamennyi készséghez tartozik már tudásszint
-          proficiency_level_exists_for_category: Ehhez a kategóriához már létezik tudásszint
-          project_level_all_skills_exists: Már létezik egy "all_skills" tudásszint
+          proficiency_level_exists_for_default: A Proficiency Level alapértelmezett már létezik
+          proficiency_level_exists_for_type: Erre a típusra már létezik jártassági szint.
+          project_level_default_exists: Már létezik egy "alapértelmezett" jártassági szint.
           skill_must_exist: A készségnek jelen kell lennie a proficiency_type "by_skill"
       export:
-        actions:
-          proficiency: Tudásszint exportálása
-          translations: Tudásszint fordításainak exportálása
         details: Részletek
         failure_msg: Hiba a tudásszintekszintek exportálása során
         success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása
@@ -2723,28 +2752,19 @@ hu:
         proficiency_translations: Szakértelem fordításai
         proficiency_type: Szakértelem típusa
         skill: Készség
-        skill_category: Készség kategória
         skill_name: Készség neve
+        skill_type: Képesség típusa
         title: Szakértelem
-      global: Globális szakértelem?
       import:
         actions:
           proficiency: Szakértelem importálása
           translations: Szakértelem fordításainak importálása
         errors:
-          all_skills_global_exists: '%{row_number} sor: Már létezik egy globális szintű "all_skills" ProficiencyLevel'
-          all_skills_project_exists: '%{row_number} sor: Már létezik egy projektszintű "all_skills" ProficiencyLevel'
-          by_category_exists: '%{row_number} sor: Ehhez a projekthez és készségkategóriához már létezik egy "by_category" ProficiencyLevel'
-          by_category_missing: '%{row_number} sor: A projektnek és a készségkategóriának jelen kell lennie a "by_category" típushoz'
           by_skill_exists: '%{row_number} sor: Ehhez a projekthez és készséghez már létezik egy "by_skill" ProficiencyLevel'
           by_skill_missing: '%{row_number} sor: A projektnek és a készségnek jelen kell lennie a "by_skill" típushoz'
           invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
-          invalid_json: 'Sor %{line}: Érvénytelen JSON a LevelDefinitionben - %{message}'
-          invalid_json_structure: JSON-objektumnak kell lennie olyan kulcsokkal, mint a "description" és a "summary"
           invalid_proficiency_type: 'A(z) %{row_number} sor: Érvénytelen vagy hiányzó ProficiencyType'
           missing_columns: 'Hiányzó kötelező oszlopok: %{fields}'
-          missing_required_fields: "%{line} sor: Hiányzó kötelező mezők (%{fields})"
-          save_failed: "%{line} sor: %{message}"
           skill_not_found: "%{row_number} sor: Érvénytelen vagy hiányzó készség"
         job_queued: A tudásszintek importálási feladata várólistára került
       translations:
@@ -2761,9 +2781,9 @@ hu:
             row_id_blank: "%{row} sor: Az azonosító nem lehet üres"
             save_failed: 'Hiba a(z) %{id} készségazonosító feldolgozásában: %{message}'
       type:
-        all_skills: Minden készség
-        by_category: Kategória szerint
         by_skill: Készség szerint
+        by_skill_type: Képességtípusonként
+        default: Alapértelmezett
     profile:
       change_password: Jelszó módosítása
       details: Részletek
@@ -3125,6 +3145,7 @@ hu:
         user_name: Felhasználónév
       dashboard: Irányítópult
       download: Letöltés
+      report_approval_settings: Jelentés jóváhagyási beállítások
       report_approvals: Jelentés jóváhagyása
       review: Ellenőrzés
       saving_filters:
@@ -3246,6 +3267,15 @@ hu:
         successfully: A(z) "%{name}" jelentés törlése sikeresen megtörtént.
       edit:
         header: Jelentés nevének szerkesztése
+      edit_default_language:
+        agreement: Igen, megértem az alapértelmezett nyelvváltás következményeit.
+        title: Alapértelmezett nyelv szerkesztése
+        tooltip: Alapértelmezett nyelv szerkesztése
+        warning:
+          description_li_1: Ha az alapértelmezett nyelvet RTL-ről LTR nyelvre vagy fordítva változtatja, az hatással lesz az elrendezésre.
+          description_li_2: Ha megváltoztatja az alapértelmezett nyelvet, át kell dolgoznia a jelentésfordításokat.
+          description_li_3: Töltse le a jelentésfordítások egy példányát, mielőtt ezt a módosítást végrehajtaná.
+          title: Kérjük, figyelmesen olvassa el az utasításokat
       modals:
         remap_assessment:
           new_assessment_name: Új értékelési név
@@ -3288,6 +3318,9 @@ hu:
         successfully: A jelentés frissítése sikeresen megtörtént.
       update:
         successfully: A(z) %{name} jelentés frissítése sikeresen megtörtént.
+    reports_language_selection_modal:
+      download: Jelentés letöltése
+      generate: Jelentés generálása
     resource:
       remove_confirm:
         message: Biztosan el akarja távolítani ezt a forrást?
@@ -3694,6 +3727,7 @@ hu:
         import:
           missing_fields_data: "%{line_number} sor: Hiányzó kötelező mezők: %{fields}"
           save_failed: 'A(z) %{line_number} sor: Nem sikerült menteni a(z) ''%{name}'' készséget: %{message}'
+          skill_not_in_project: "%{line_number} sor : A %{skill_id} készségazonosító nem tartozik ehhez a projekthez."
         search:
           all_and_project_id_mutually_exclusive: Nem lehet minden igaz, ha project_id_eq megadják
           invalid_all_value: 'a következők egyikének kell lennie: igaz, hamis'
@@ -3704,12 +3738,8 @@ hu:
         details: Részletek
         failure_msg: Hiba a fordítások exportálása során
         success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása.
-        title: Exportál
         translations:
           details: Készségek fordításai
-      export_action:
-        skills_title: Készségek exportálása
-        skills_translations_title: Készségek fordításainak exportálása
       form:
         client_placeholder: Ügyfél kiválasztása
         description: Leírás
@@ -3718,9 +3748,6 @@ hu:
         skill_group: Készségcsoport
         skill_type: Készség típusa
         title: Készség
-      global: Globális készség?
-      global_skills: Globális készségek
-      global_translations: Globális készségek fordításai
       import:
         download_example_csv: csv-példa letöltése
         info_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
@@ -3730,8 +3757,6 @@ hu:
         skills_translations_title: Készségek fordításainak importálása
       skill_details: Készség részletei
       skill_translations: Készségek fordításai
-      skill_translations_project: Készségek fordításai projektek alapján
-      skills_project: Készségek projektek alapján
       title: Készségek
       translations:
         import:
@@ -3742,7 +3767,6 @@ hu:
             skill_not_found: A(z) %{id} azonosítójú készség nem található
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Készség-munka feltérképezése
         job_roles: Munkakörök
         proficiency: Szakértelem
         skills: Készségek
@@ -3895,7 +3919,25 @@ hu:
         successfully: A Sub-Factor frissítése sikeresen megtörtént.
     survey_builder:
       builder_area:
+        current_job: Jelenlegi munka
+        default_not_applicable_label: Nincs lehetőség a készségek megismerésére vagy bemutatására
+        enable_not_applicable: N/A opció engedélyezése
+        enable_required_validation: Kötelező érvényesítés engedélyezése
+        force_response: Erőre adott válasz
+        job_role_required: Kérjük, válasszon ki legalább egy munkakört
+        not_applicable_label: Nem alkalmazható Címke
         options: Beállítások
+        request_response: Kérelemre adott válasz
+        skill_rater_config: Skill Rater konfiguráció
+        target_job: Cél Állás
+      models:
+        block_types:
+          regular: Rendszeres
+          skill_rater: Skill Rater
+        skill_types:
+          behavioural: Viselkedés
+          other: Egyéb
+          technical: Műszaki
       property_panel:
         add_n_a_option: N/A opció hozzáadása
         allow_content_copy: Tartalommásolás engedélyezése
@@ -3952,7 +3994,6 @@ hu:
         taxonomy: Import taxonómia
       job_roles: Munkakörök
       proficiency: Szakértelem
-      skill_job_mappings: Készség-feladatok leképezése
       skills: Készségek
       title: Rendszertan
     templates:
@@ -4055,6 +4096,7 @@ hu:
           invitations: Meghívások
           reminders: Emlékeztetők
           report_ready: Jelentésre kész
+        consolidated: Konszolidált
         custom_message:
           description: Ezt az üzenetet az értékelésben részt vevő bárki megkaphatja
           name: Egyéni üzenet
@@ -4078,7 +4120,10 @@ hu:
         request_approval:
           description: Ezt az üzenetet küldjük el a vezetőknek, ha egy tulajdonos jóváhagyást kér
           name: Jóváhagyás kérése
+        save: Mentés
+        schedule: Ütemterv
         schedule_email: E-mail ütemezése
+        schedule_email_title: Ütemterv Email
         schedule_time: Ütemezési idő
         send_test_email: Teszt e-mail küldése
         subject: Tárgy
@@ -4119,6 +4164,14 @@ hu:
         welcome_message:
           description: Ez az üzenet akkor jelenik meg az alanyok számára, amikor bejelentkeznek az értékelés megkezdéséhez vagy a feladatlistájuk megtekintéséhez
           name: Üdvözlő üzenet
+      mail_history:
+        actions: Tevékenységek
+        date: Dátum
+        download_details: Részletek letöltése
+        emails_sent: Elküldött e-mailek
+        recipient: Címzett
+        status: Állapot
+        subject: 'Tárgy:'
       manage:
         assessment: Értékelés
         dimension: Méretek
@@ -4126,19 +4179,45 @@ hu:
         report: Jelentés
         title: Kezel
       menu:
+        actions: Tevékenységek
         datasheet:
           title: Adatlap
         messages:
+          allow_subjects_to_send_reminders: Lehetővé teszi az alanyok számára, hogy emlékeztetőket küldjenek az értékelőknek
+          automatically_send_invites: Meghívók automatikus küldése új értékelőknek
           title: Üzenetek
         participants:
+          columns:
+            action: Akció
+            email: E-mail
+            evaluations_completed: Befejezett értékelések
+            evaluations_received: Beérkezett értékelések
+            is_subject: Is Subject
+            name: Név
+            report_status: Jelentés állapota
+            status: Állapot
+          evaluators:
+            add_evaluators: Értékelők hozzáadása
+            import_evaluators: Értékelők importálása
+            title: Értékelők
+          managers:
+            title: Menedzserek
+          options:
+            evaluator_options: Értékelő lehetőségek
+            global: Globális beállítások
+            manager_options: Menedzseri lehetőségek
+            subject_options: Tantárgyi lehetőségek
+            title: Opciók
           subjects:
             add_subjects: Tárgyak hozzáadása
             current_job_role: Jelenlegi munkakör
             email: E-mail
             first_name: Keresztnév
+            import_subjects: Témák importálása
             last_name: Vezetéknév
             locale: Színhely
             target_job_role: Cél munkakör
+            title: Tantárgyak
           title: Résztvevők
         report:
           menu:
@@ -4154,8 +4233,26 @@ hu:
         mail_history: Levelezési előzmények
         options: Beállítások
       reports:
+        add_conditions: Feltételek hozzáadása
+        administrator_approves_reports: Az adminisztrátor jóváhagyja a jelentéseket
+        allow_manager_to_view_individual_responses: Lehetővé teszi a menedzser számára az egyéni válaszok megtekintését
+        disable_report_download: Jelentés letöltésének letiltása
+        edit_email: E-mail szerkesztése
+        email_manager_when_report_is_ready_for_approval: Email Manager, amikor a jelentés jóváhagyásra készen áll
+        email_subject_when_report_becomes_available: E-mail tárgy, ha a jelentés elérhetővé válik
+        email_subjects_manager_when_available: E-mail az alany menedzserének, amikor a jelentés elérhetővé válik
+        make_report_available_to_subject_when: 'A jelentést az alany rendelkezésére kell bocsátani, amikor:'
+        manager_approves_reports: A menedzser jóváhagyja a jelentéseket
+        manager_can_access_subject_reports: A menedzser hozzáférhet a témajelentésekhez
+        manager_cannot_access_subject_reports: A menedzser nem láthatja a jelentést, amíg a követelmények nem teljesülnek
+        report_access: Jelentés hozzáférés
+        report_approval: Jelentés jóváhagyása
+        report_availability: Jelentés elérhetősége
         show:
           title: Tárgyi jelentés
+        subject_can_access_reports: Az alanyok hozzáférhetnek jelentéseikhez
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Az engedélyek deaktiváltként való megjelölése
     time_zone: Időzóna
     tools: Eszközök
     translations:

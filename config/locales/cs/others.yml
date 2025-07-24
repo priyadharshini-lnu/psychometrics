@@ -329,12 +329,13 @@ cs:
             email:
               blank: E-mail nemůže být prázdný
               not_uniq_email: Řádek s e-mailem je již přítomen
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pro %{block_name} musí být povolena alespoň jedna pracovní role s vybraným typem dovednosti.
-              invalid_skill_type: 'Neplatný typ dovednosti %{skill_type} pro %{role_name} pro %{block_name}. Platné možnosti: %{valid_options}'
-              props_missing: Práce
+              at_least_one_job_role_required: Pro %{skill_type} je vyžadována alespoň jedna pracovní role pro %{block_name}.
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Pro %{block_name} musí být povolen alespoň jeden typ dovednosti s vybranou pracovní rolí.
+              invalid_job_role_type: 'Neplatná pracovní role %{job_role} pro %{skill_type} pro %{block_name}. Platné možnosti: %{valid_options}'
+              props_missing: Chybí konfigurace dovedností pro %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ cs:
           case_study: Případové studie
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulář vedoucího hodnotitele
           meeting: Setkání
           organisational: Průzkumy
           pearson: Pearson
@@ -789,6 +791,8 @@ cs:
           attributes:
             current_password:
               invalid: Současné heslo je nesprávné
+            manager_id:
+              cannot_be_self: Uživatel nemůže být přiřazen jako svůj vlastní správce
         user_idp_comment:
           reply_to_reply: Nelze odpovědět na odpověď (povolena je pouze jedna úroveň vnoření)
         user_idp_plan:
@@ -859,9 +863,9 @@ cs:
         import_raw_data: Import surových dat
         import_reflection_questions: Import otázek k zamyšlení
         import_scoring_data: Import dat pro skórování
+        import_skill_rater_taxonomies: Import taxonomií hodnotitelů dovedností
         import_skill_translations: Importovat dovednosti Překlady
         import_skills: Dovednosti pro import
-        import_skills_rater_taxonomies: Import taxonomií hodnotitelů dovedností
         import_sms_invites: Importovat pozvánku SMS
         import_users: Import uživatelů
         migrate_assessment_translations: Hodnocení Překlad migrace
@@ -1565,6 +1569,7 @@ cs:
     column:
       assessor_access: Přístup hodnotitele
       auto_assign: Automatické přiřazení
+      locales: Lokality
       main_report: Hlavní zpráva
       report_bundle: Svazek zpráv
       report_name: Název zprávy
@@ -1587,6 +1592,13 @@ cs:
         apply: Použijte tyto změny na stávající uživatele v této kampani.
         msg_text: Pokoušíte se odstranit zprávu <strong>"%{reportName}</strong> "
         title: Odstranit zprávu?
+      update_languages:
+        default_language: Výchozí jazyk
+        other_available_languages: Další dostupné jazyky
+        select_default_language: Výběr výchozího jazyka
+        select_languages: Vybrat jazyky
+        success_msg: Jazyky byly úspěšně aktualizovány
+        title: Jazyk zprávy
       user_access:
         apply: Použijte tyto změny na stávající uživatele v této kampani.
         title:
@@ -1743,6 +1755,7 @@ cs:
       import: Import
       insert: Vložte
       ok: OK
+      publish: Zveřejnit
       reject: Odmítat
       remove: Odstranit
       reset: Obnovit
@@ -1758,6 +1771,7 @@ cs:
       start: Spustit
       submit: Odeslat
       unarchive: Odebrat z archivu
+      unpublish: Zrušení publikování
       unresolve: Označit jako nevyřešené
       update: Aktualizovat
       upload: Nahrát
@@ -1861,7 +1875,6 @@ cs:
       default: Výchozí
       download: Stáhnout
       file: Soubor
-      global_export: Je globální export?
       global_import: Je globální import?
       minutes: Zápis
       na: Neznámé
@@ -2064,6 +2077,7 @@ cs:
         reserved_subdomain: Subdoména %{value} je rezervována
         uniq_subdomain: Subdoména by měla být jedinečná.
       add_manager:
+        cannot_be_self: Uživatel nemůže být přiřazen jako svůj vlastní správce
         manager_not_found: Správce nenalezen nebo není součástí stejného projektu
         user_not_found: Uživatel nebyl nalezen nebo není součástí stejného projektu
       admin:
@@ -2082,11 +2096,17 @@ cs:
       campaign_factor_group:
         group_already_exists: Skupina se stejným názvem již existuje.
         last_factor_group: Nelze odstranit poslední skupinu faktorů kampaně.
+      campaign_idps:
+        idp_template_not_published: Tato šablona IDP dosud není zveřejněna, zveřejněte ji před přiřazením kampaně.
       cant_be_deleted: Tento záznam nelze smazat
       client_feature:
         ai_assisted_idp_feature_error: Nemůže to být pravda, pokud je funkce asistentů ai zakázána
       create_superadmin:
         uniq_email: E-mail by měl být uniq.
+      development_actions:
+        only_global_skills_allowed: Vybrané dovednosti musí být globální.
+        skills_not_belong_to_project: Vybrané dovednosti musí patřit k zadanému projektu.
+        skills_required: Vyberte alespoň jednu dovednost.
       exceeded_subjects_count: Na jednu pozvánku můžete přidat pouze %{count} subjektů
       filled?: nemůže být prázdný
       idp_template:
@@ -2134,6 +2154,7 @@ cs:
         start_time_should_be_less: Čas zahájení by měl být kratší než čas ukončení
       user_idp_plan:
         idp_template_already_assigned_to_user: Tato šablona Idp je již přiřazena tomuto uživateli a je aktivní
+        idp_template_not_published: Tato šablona IDP dosud není zveřejněna, zveřejněte ji před přiřazením uživateli.
       user_saved_filters:
         limit_exceeded: Můžete mít pouze %{limit} uložených filtrů, pokud chcete přidat další, laskavě uložené filtry odstraňte.
         unique_name: Filtr se stejným názvem již existuje.
@@ -2194,6 +2215,9 @@ cs:
       no_active_plan: Nebyl nalezen žádný aktivní plán IDP
     webhooks:
       multiple_webhook_error: url nelze aktualizovat, protože pro tento projekt existuje více webhooků.
+    workshop:
+      ical_generation_failed: Nelze vygenerovat pozvánku do kalendáře
+      missing_or_invalid: Chybějící nebo neplatné workshop_id
   evaluators:
     errors:
       can_not_processed: nelze zpracovat
@@ -2455,6 +2479,7 @@ cs:
       aria_selected: Vybrané stránky
   idp:
     actions: Akce
+    behavioral: Chování
     board: Přehled
     comment_details:
       add_comment: Přidat komentář
@@ -2519,6 +2544,7 @@ cs:
       submit_plan: Odeslat plán
       write_here: Pište zde...
     edit_plan: Upravit plán
+    edit_progress: Upravit pokrok
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností
@@ -2556,6 +2582,7 @@ cs:
       cover:
         fields:
           assigned_data: Datum přiřazení
+          assigned_date: Přidělené datum
           completion_date: Datum dokončení
           division: Oddělení
           name: Jméno
@@ -2638,6 +2665,7 @@ cs:
       statuses:
         approved: Zkontrolováno a schváleno
         completed: Dokončeno
+        draft: Návrh
         not_reviewed: Nezkontrolováno
         pending_approval: V kontrole
       summary:
@@ -2674,6 +2702,7 @@ cs:
     skill_gap_report:
       title: Zpráva o nedostatku dovedností
     status: Stav
+    technical: Technická stránka
     user_idp_status:
       approved: Schváleno
       completed: Hotový
@@ -3631,11 +3660,35 @@ cs:
       exactly: Přesně %{count}
     nominations: Nominace
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Umožnit hodnotitelům odmítnout nominaci
+        email_subject_when_nomination_declined: Předmět e-mailu při odmítnutí nominace
       form:
         value_not_valid: nemá platnou hodnotu
       global:
         cannot_re_edit: Účastníci nemohou upravovat hodnocení
         disable_all_evaluations: Zakázat všechna hodnocení
+      manager:
+        allow_subjects_to_email: Umožnit subjektům posílat manažerům e-maily, když jsou jejich nominace připraveny ke schválení.
+        approves_evaluations: Manažer schvaluje hodnocení
+        approves_nominations: Manažer schvaluje nominace
+        can_view_nominations: Manažer si může prohlédnout nominace
+        email_managers_when_nomination_ready: zasílání e-mailů manažerům, když je nominace subjektu připravena ke schválení.
+        email_subject_when_nomination_denied: Předmět e-mailu při zamítnutí nominace
+        may_choose_evaluators: Manažer si může vybrat hodnotitele
+      subject:
+        allow_subjects_to_select_relationships: Umožnit subjektům vybrat vztahy
+        anyone_in_assessment: Každý, kdo se účastní hodnocení
+        anyone_in_datasheet: Kdokoli v datovém listu
+        anyone_not_in_assessment: Každý, kdo není v současné době v hodnocení
+        can_view_evaluators: Subjekt může zobrazit hodnotitele
+        define_nomination_requirement: Definice požadavku na nominaci
+        limit_search_by_criteria: Omezit vyhledávání podle kritérií
+        nominates_evaluators: Subjekt nominuje hodnotitele
+        only_allow_relationships_of_specified_types: Povolit pouze vztahy určitých typů
+        only_show_subjects_who_match_criteria: 'Zobrazí se pouze subjekty, které splňují následující kritéria:'
+        self_evaluates: Subjekt provádí sebehodnocení
+        subjects_cannot_remove_nominations: Subjekty nemohou odstranit nominace nastavené manažery nebo administrátory.
     or: Nebo
     page_title: Hodnocení Signify 360° – použít úroveň
     participant_list:
@@ -3850,7 +3903,6 @@ cs:
       add: Přidat zprávu
       download: Stáhnout
       generate: Generovat
-      regenerate: Znovu vygenerovat
     approval_statuses:
       approved: Schváleno
       change_requested: Požadovaná změna

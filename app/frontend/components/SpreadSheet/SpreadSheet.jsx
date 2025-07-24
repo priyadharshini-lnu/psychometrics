@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import _ from 'lodash'
+import cs from 'classnames'
 import { setIn } from '~/utils/immutable'
 import Row from './Row'
+
 import styles from './styles.less'
 
 const MIN_ROW_SIZE = 3
 const SpreadSheet = ({
-  entities, updateEntities, fields, context,
+  entities, updateEntities, fields, context, className,
 }) => {
   const [rowSize, setRowSize] = useState(MIN_ROW_SIZE)
 
@@ -21,7 +23,7 @@ const SpreadSheet = ({
   const updateEntity = (path, value) => updateEntities(setIn(entities, path, value))
 
   return (
-    <table className={styles.table}>
+    <table className={cs(styles.table, className)}>
       <thead>
         <tr>
           {fields.map(field => (

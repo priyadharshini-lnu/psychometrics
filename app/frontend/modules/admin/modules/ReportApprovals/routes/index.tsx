@@ -17,8 +17,8 @@ const Layout = () => <RouteList routes={routes} urlPrefix="" />
 
 const ReportApprovalsRoutes = [
   {
-    path: '/report_approvals/*',
-    component: <Layout />,
+    path: 'report_approvals/*',
+    element: <Layout />,
   },
 ]
 

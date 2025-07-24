@@ -15,10 +15,12 @@ module Api
               attribute[:description].maybe(:string)
               attribute[:system_prompt].maybe(:string)
               attribute[:user_prompt].maybe(:string)
-              attribute[:action].maybe(:string)
+              attribute[:assistant_type].maybe(:string)
               attribute[:created_at].filled(:string)
               attribute[:updated_at].filled(:string)
               attribute[:model_id].maybe(:string)
+              attribute[:status].maybe(:string)
+              attribute[:dependencies].maybe(:array).each(:string)
             end
           end
 
@@ -28,8 +30,10 @@ module Api
               required(:description).filled(:string)
               required(:system_prompt).filled(:string)
               required(:user_prompt).filled(:string)
-              required(:action).filled(:string)
+              required(:assistant_type).filled(:string)
               required(:model_id).filled(:string)
+              optional(:status).maybe(:string)
+              optional(:dependencies).maybe(:array).each(:string)
             end
           end
 
@@ -39,8 +43,10 @@ module Api
               optional(:description).maybe(:string)
               optional(:system_prompt).maybe(:string)
               optional(:user_prompt).maybe(:string)
-              optional(:action).maybe(:string)
+              optional(:assistant_type).maybe(:string)
               optional(:model_id).filled(:string)
+              optional(:status).maybe(:string)
+              optional(:dependencies).maybe(:array).each(:string)
             end
           end
 
@@ -54,7 +60,9 @@ module Api
           def self.relationships(_)
             [
               { name: :owner, resource: :clients, relationship: :one, required: false, allowed_blank: true },
-              { name: :last_modified_by, resource: :users, relationship: :one, required: false, allowed_blank: true }
+              { name: :last_modified_by, resource: :users, relationship: :one, required: false, allowed_blank: true },
+              { name: :assistant_output_schema_keys, resource: :assistant_output_schema_keys, relationship: :many,
+                required: false, allowed_blank: true }
             ]
           end
         end

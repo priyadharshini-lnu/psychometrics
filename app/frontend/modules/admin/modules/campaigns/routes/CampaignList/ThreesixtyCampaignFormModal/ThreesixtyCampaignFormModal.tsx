@@ -8,7 +8,7 @@ import {
 import {
   ExclamationCircleOutlined,
 } from '@ant-design/icons'
-import { PropsFromRedux } from './connect'
+import connecter, { PropsFromRedux } from './connect'
 import styles from './ThreesixtyCampaignFormModal.less'
 import BaseSettingsForm from './BaseSettingsForm'
 import AdvancedSettingsForm from './AdvancedSettingsForm'
@@ -27,13 +27,15 @@ type Props = OwnProps & PropsFromRedux
 type baseSettings = {
   name: string,
    threesixty_type: string,
-   status: string
+   status: string,
+   threesixty_category: string
   }
 
 const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   projectId,
   close,
   fetchTemplatesAndAssessments,
+  features,
   addInReduxStore,
 }) => {
   const { modal, message } = App.useApp()
@@ -43,12 +45,14 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   const [assessments, setAssessments] = useState<Assessment[]>([])
 
 
-  const { collectionAction: createCampaign } = useResources(
+  const { collectionAction: createCampaign, isLoading } = useResources(
     'threesixty_campaigns',
     {
       basePath: `projects/${projectId}`,
     },
   )
+
+  const isCreatingCampaign = isLoading('post/create_campaign')
 
   useEffect(() => {
     fetchTemplatesAndAssessments(projectId).then(
@@ -60,6 +64,8 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   }, [])
 
   const handleBaseSettingsFinish = (values) => {
+    if (isCreatingCampaign) return
+
     setBaseSettings(values)
     if (values.threesixty_type === THREESIXTY_TYPES.EMPTY) {
       createCampaign({
@@ -93,7 +99,8 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   }
 
   const handlesAdvancedSettingsFinish = (data) => {
-    close()
+    if (isCreatingCampaign) return
+
     const body = {
       ...baseSettings,
       ...data,
@@ -152,13 +159,16 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
             onBack={handleBack}
             onFinish={handlesAdvancedSettingsFinish}
             campaignTemplates={campaignTemplates}
+            isSubmitting={isCreatingCampaign}
           />
         ) : (
           <BaseSettingsForm
             initialSettings={baseSettings}
             assessments={assessments}
+            features={features}
             onClose={close}
             onFinish={handleBaseSettingsFinish}
+            isSubmitting={isCreatingCampaign}
           />
         )}
       </Flex>
@@ -166,4 +176,4 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   )
 }
 
-export default ThreesixtyCampaignFormModal
+export default connecter(ThreesixtyCampaignFormModal)

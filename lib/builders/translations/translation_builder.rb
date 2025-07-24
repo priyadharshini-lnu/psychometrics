@@ -11,6 +11,7 @@ module Builders
           'staticContent',
           'questionText',
           'notApplicableLabel',
+          'not_applicable',
           'choicesTexts[*]',
           'labelsTexts[*]',
           'scalePointsTexts[*]',

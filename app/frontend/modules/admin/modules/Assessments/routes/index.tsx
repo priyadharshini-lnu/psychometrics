@@ -32,8 +32,8 @@ const Layout = () => <RouteList routes={routes} urlPrefix="" />
 
 const AssessmentRoutes = [
   {
-    path: '/assessments/*',
-    component: <Layout />,
+    path: 'assessments/*',
+    element: <Layout />,
   },
 ]
 

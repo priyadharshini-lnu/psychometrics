@@ -6,6 +6,7 @@ import {
 import { CheckOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import cs from 'classnames'
 import SpreadSheet from '~/components/SpreadSheet'
 import spreadSheetUtils from '~/modules/admin/utils/spreadSheet'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
@@ -15,17 +16,33 @@ import { setIn } from '~/utils/immutable'
 import { useResources } from '~/hooks/useResources'
 import { getFeatures } from '~/core/config'
 
+import styles from './CreateSubjectModal.less'
+import { getCategory } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { camelizeKeys } from '~/utils/object'
+
 const { I18n } = window
 
-const getTableFields = (jobRoles, skillRaterEnabled) => {
+const getTableFields = (jobRoles, isSkillRater) => {
   const fields = [
     { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email'), key: 'email' },
-    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name'), key: 'firstName' },
-    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name'), key: 'lastName' },
-    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.locale'), key: 'locale' },
+    {
+      name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name'),
+      key: 'firstName',
+      styles: { maxWidth: '150px' },
+    },
+    {
+      name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name'),
+      key: 'lastName',
+      styles: { maxWidth: '150px' },
+    },
+    {
+      name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.locale'),
+      key: 'locale',
+      styles: { maxWidth: '60px' },
+    },
   ]
 
-  if (skillRaterEnabled) {
+  if (isSkillRater) {
     fields.push(
       {
         name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.current_job_role'),
@@ -35,6 +52,7 @@ const getTableFields = (jobRoles, skillRaterEnabled) => {
           label: role.name,
           value: role.name,
         })) || [],
+        styles: { maxWidth: '150px' },
       },
       {
         name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.target_job_role'),
@@ -44,6 +62,7 @@ const getTableFields = (jobRoles, skillRaterEnabled) => {
           label: role.name,
           value: role.name,
         })) || [],
+        styles: { maxWidth: '150px' },
       },
     )
   }
@@ -52,7 +71,7 @@ const getTableFields = (jobRoles, skillRaterEnabled) => {
 }
 
 
-const formItemLayout = { labelCol: { span: 3 }, wrapperCol: { span: 12 } }
+const formItemLayout = { labelCol: { span: 'auto' }, wrapperCol: { span: 10 } }
 
 function CreateSubjectModal ({
   closeModal,
@@ -63,6 +82,7 @@ function CreateSubjectModal ({
   subjects,
   creationInProgress,
   clearForm,
+  isSkillRater,
   features,
 }) {
   const { campaignId, projectId } = useParams()
@@ -89,11 +109,12 @@ function CreateSubjectModal ({
   useEffect(() => {
     fetchJobRoles()
   }, [])
-  const skillRaterEnabled = features?.skill_rater_enabled
+  const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled
 
   return (
     <Modal
-      width={700}
+      width="70%"
+      className={styles.formModal}
       title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects')}
       open
       onCancel={closeModal}
@@ -123,8 +144,9 @@ function CreateSubjectModal ({
       <Divider />
       <SpreadSheet
         entities={subjects}
-        fields={getTableFields(jobRoles, skillRaterEnabled)}
+        fields={getTableFields(jobRoles, (skillRaterEnabled && isSkillRater))}
         updateEntities={fillSubjects}
+        className={cs({ [styles.spreadSheet]: skillRaterEnabled && isSkillRater })}
       />
       <ErrorAlertBox errors={errors} />
     </Modal>
@@ -133,6 +155,7 @@ function CreateSubjectModal ({
 
 const mapStateToProps = state => ({
   features: getFeatures(state),
+  isSkillRater: getCategory(state) === 'skill_rater',
 })
 
 export default connect(mapStateToProps)(CreateSubjectModal)

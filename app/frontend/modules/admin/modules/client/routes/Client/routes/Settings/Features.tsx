@@ -13,6 +13,8 @@ interface ClientFeatures {
   smsNotification: boolean;
   aiAssistants: boolean;
   aiAssistedIdp: boolean;
+  globalSkills: boolean;
+  idp: boolean;
   id: string;
 }
 
@@ -60,6 +62,7 @@ export const Features: React.FC = () => {
       aiAssistants: values.aiAssistants || false,
       aiAssistedIdp: !values.aiAssistants ? false : values.aiAssistedIdp || false,
       globalSkills: values.globalSkills || false,
+      idp: values.idp || false,
     }
     return {
       ...transformedValues,
@@ -97,6 +100,12 @@ export const Features: React.FC = () => {
                 <Form.Item
                   name="smsNotification"
                   label={I18n.t('administration.client_features.form.sms_notification')}
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  name="idp"
+                  label={I18n.t('administration.client_features.form.idp')}
                 >
                   <Switch />
                 </Form.Item>

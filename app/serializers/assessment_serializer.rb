@@ -25,7 +25,8 @@ class AssessmentSerializer < Panko::Serializer
         context: {
           piped_text_context: piped_text_context,
           selected_locale: context[:selected_locale],
-          translations: translations
+          translations: translations,
+          campaign_user: context[:campaign_user] || {}
         }
       ).to_a
     end
@@ -46,14 +47,12 @@ class AssessmentSerializer < Panko::Serializer
   def factors
     return [] unless object.dimension
 
-    question_ids = FactorsScoring.factor_question_ids(object.id)
+    factors_data = build_factors_data
 
     Panko::ArraySerializer.new(
-      object.dimension.all_factors.with_attached_icon.includes(:sub_factors, :translations, sub_factors: :translations),
+      factors_data[:factors],
       each_serializer: Factors::WithSubFactorsSerializer,
-      context: {
-        question_ids: question_ids
-      }
+      context: { question_ids: factors_data[:question_ids] }
     ).to_a
   end
 
@@ -129,6 +128,64 @@ class AssessmentSerializer < Panko::Serializer
   end
 
   private
+
+  def build_factors_data
+    if object.skill_rater?
+      build_skill_rater_factors_data
+    else
+      build_standard_factors_data
+    end
+  end
+
+  def build_skill_rater_factors_data
+    filter = CampaignUsers::GetApplicableSkillIds::FilterBuilder.
+             build_filter_from_skill_rater_blocks(skill_rater_blocks)
+    skill_ids = CampaignUsers::GetApplicableSkillIds.call!(
+      context[:campaign_user],
+      filter: filter
+    )
+
+    skill_question_ids = Question.where(skill_id: skill_ids).pluck(:id)
+    skill_factors = object.dimension.factors.where(skill_id: skill_ids)
+
+    base_factors = non_skill_factors
+    base_question_ids = factor_question_ids
+
+    combined_factors = combine_factors(base_factors, skill_factors)
+    combined_question_ids = combine_question_ids(base_question_ids, skill_question_ids)
+
+    { factors: combined_factors, question_ids: combined_question_ids }
+  end
+
+  def build_standard_factors_data
+    { factors: non_skill_factors, question_ids: factor_question_ids }
+  end
+
+  def combine_factors(base_factors, skill_factors)
+    return base_factors if skill_factors.blank?
+
+    (Array(base_factors) + Array(skill_factors)).uniq
+  end
+
+  def combine_question_ids(base_question_ids, skill_question_ids)
+    return base_question_ids if skill_question_ids.blank?
+
+    (Array(base_question_ids) + Array(skill_question_ids)).uniq
+  end
+
+  def non_skill_factors
+    object.dimension.non_skill_factors.
+      with_attached_icon.
+      includes(:sub_factors, :translations, sub_factors: :translations)
+  end
+
+  def factor_question_ids
+    FactorsScoring.factor_question_ids(object.id)
+  end
+
+  def skill_rater_blocks
+    object.blocks.skill_rater
+  end
 
   def campaign_assessment
     context[:campaign_assessment]

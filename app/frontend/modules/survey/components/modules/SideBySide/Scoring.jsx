@@ -31,8 +31,9 @@ export class Scoring extends Component {
 
   change = (scale, choice, answer, e) => {
     const { scoring } = this.props
-    const value = Utils.parseFloat(e.currentTarget ? e.currentTarget.value : e)
-    scoring.changeValue(scale, choice, answer, value)
+    const value = e.currentTarget ? e.currentTarget.value : e
+    const parsedValue = Utils.isNumeric(value) ? Utils.parseFloat(value) : ''
+    scoring.changeValue(scale, choice, answer, parsedValue)
     this.forceUpdate()
   }
 
@@ -67,7 +68,7 @@ export class Scoring extends Component {
       return (
         <ScoringCell
           value={scoring.engine.findAnswer({ scale, choice }, answer).value}
-          onChange={e => this.change(this, scale, choice, answer, e)}
+          onChange={e => this.change(scale, choice, answer, e)}
         />
       )
     }

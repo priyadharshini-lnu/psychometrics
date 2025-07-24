@@ -41,10 +41,10 @@ export const JobRolesFilters: React.FC<Props> = ({
       })
   }
 
-  const handleExportTranslations = (selectedProjectId?: number) => {
+  const handleExportTranslations = () => {
     let action = 'export_translations'
-    if (params.projectId || selectedProjectId) {
-      action += `?project_id=${params.projectId ?? selectedProjectId}`
+    if (params.projectId) {
+      action += `?project_id=${params.projectId}`
     }
     resource.collectionAction({
       action,
@@ -64,14 +64,7 @@ export const JobRolesFilters: React.FC<Props> = ({
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
       })
     } else if (action === 'export_translations') {
-      if (params.projectId) {
-        handleExportTranslations()
-      } else {
-        openModal('JobRolesExportModal', {
-          handleExport: handleExportTranslations,
-          title: I18n.t('administration.job_role.export_action.translations'),
-        })
-      }
+      handleExportTranslations()
     }
   }
 

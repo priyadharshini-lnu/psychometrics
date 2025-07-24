@@ -27,6 +27,10 @@ module Api
         has_permission?(:idp_templates, :manage)
       end
 
+      def update_appearance?
+        has_permission?(:idp_templates, :manage)
+      end
+
       def update_reflection_questions?
         has_permission?(:idp_templates, :manage)
       end

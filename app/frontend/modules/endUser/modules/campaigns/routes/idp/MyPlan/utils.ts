@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import {
   CategoryWithDevelopmentActions,
-  CategoryWithSkills,
+  TypeWithSkills,
   DevelopmentAction,
   DevelopmentActionWithSkill,
   Skill,
@@ -54,7 +54,7 @@ export function groupSkillsBySkillType (
   skills: Record<string, Skill>,
   developmentActions: Record<string, DevelopmentAction>,
   groupByOption = 'userIdpSkillId',
-): CategoryWithSkills[] {
+): TypeWithSkills[] {
   const enrichedSkills = addDevelopmentActionsToSkills(skills, developmentActions, groupByOption)
   const groupedBySkillType = _.groupBy(enrichedSkills, 'skillType')
 

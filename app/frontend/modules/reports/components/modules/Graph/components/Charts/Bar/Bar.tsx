@@ -126,7 +126,7 @@ export const Bar: React.FC<Props> = ({
       reversedX = true
       oppositeY = true
     } else {
-      reversedX = false
+      reversedX = true
       reversedY = false
       oppositeY = false
       oppositeX = false

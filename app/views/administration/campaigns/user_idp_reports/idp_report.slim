@@ -1,6 +1,6 @@
 #report_preview.html_preview
 
-javascript:
+javascript [nonce=content_security_policy_nonce]:
   window.__INITIAL_STATE__ = {
     idp: {
       template: JSON.parse('#{escape_javascript((@data[:template] || {}).to_json).html_safe}'),

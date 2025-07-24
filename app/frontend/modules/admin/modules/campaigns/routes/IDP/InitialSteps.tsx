@@ -22,7 +22,7 @@ export const InitialStepsComponent = () => {
   const [currentStep, setCurrentStep] = useState(STEPS.gettingStarted)
   const [isLoading, setIsLoading] = useState(true)
 
-  const { idp_plan_id } = useParams()
+  const { idpPlanId } = useParams()
   const { step: paramStep } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
@@ -40,7 +40,7 @@ export const InitialStepsComponent = () => {
     },
   )
 
-  const userIdpPlanData = getResource(idp_plan_id as string) as UserIdpPlan
+  const userIdpPlanData = getResource(idpPlanId as string) as UserIdpPlan
 
   const STEP_ITEMS = [
     {
@@ -86,11 +86,11 @@ export const InitialStepsComponent = () => {
 
   useEffect(() => {
     fetchUserIdpPlan({
-      id: idp_plan_id as string,
+      id: idpPlanId as string,
     }).then(() => {
       setIsLoading(false)
     })
-  }, [idp_plan_id])
+  }, [idpPlanId])
 
   const handleNextForGettingStartedStep = () => {
     if (!userIdpPlanData?.skillGapReportAvailable) {

@@ -78,7 +78,7 @@ module AllowedPermissions
     'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage],
     'proficiency_levels' => %w[view manage import export import_translations export_translations],
-    'job_roles' => %w[view manage],
+    'job_roles' => %w[view manage import_translations export_translations],
     'reflection_questions' => %w[view manage import export],
     'skills' => %w[view manage import export import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations]
@@ -152,7 +152,7 @@ module AllowedPermissions
     'idp_templates' => %w[view manage],
     'proficiency_levels' => %w[view manage import export import_translations export_translations],
     'skills' => %w[view manage import export import_translations export_translations],
-    'job_roles' => %w[view manage],
+    'job_roles' => %w[view manage import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations],
     'reflection_questions' => %w[view manage import export]
   }.freeze
@@ -197,6 +197,7 @@ module AllowedPermissions
     ],
     'workshops' => %w[view manage],
     'idp_templates' => %w[view manage],
+    'job_roles' => %w[view],
     'proficiency_levels' => %w[view],
     'skills' => %w[view]
   }.freeze

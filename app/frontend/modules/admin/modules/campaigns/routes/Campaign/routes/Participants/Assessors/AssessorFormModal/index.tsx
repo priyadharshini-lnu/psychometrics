@@ -144,6 +144,7 @@ const AssessorFormModal: React.FC<Props & PropsFromRedux> = ({
         entities={assessors || []}
         updateEntities={fillAssessors}
         context={{ assessments }}
+        className=""
       />
       <ErrorAlertBox errors={errors} className="mt8" scrollToError={false} scrollView={null} />
     </Modal>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::ClientFeatureResource < Api::V2::Administration::BaseResource
-  attributes :sms_notification, :ai_assistants, :ai_assisted_idp, :global_skills
+  attributes :sms_notification, :ai_assistants, :ai_assisted_idp, :global_skills, :idp
 
   ransack_filters %i[client_id_eq]
 

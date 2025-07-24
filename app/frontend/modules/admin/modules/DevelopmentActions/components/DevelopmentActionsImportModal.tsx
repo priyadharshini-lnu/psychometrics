@@ -16,7 +16,7 @@ const { I18n } = window
 
 interface OwnProps {
   close(): void
-  handleImport: (data: FormData, projectId:number, successCallback: ()=>void, failureCallback: (error)=>void) => ApiAction<void>,
+  handleImport: (data: FormData, projectId:number | null, successCallback: ()=>void, failureCallback: (error)=>void) => ApiAction<void>,
   csvFilePath: string,
   title: string,
   allowGlobalImport: boolean
@@ -66,22 +66,20 @@ export const DevelopmentActionsImportModal: React.FC<OwnProps> = ({
   } = useClientsAndProjectsResource(ownerId || '')
 
   const handleUpload = () => {
-    if (projectId) {
-      if (!file) return
+    if (!file) return
 
-      const data = new FormData()
-      data.append('file', file)
-      setLoading(true)
+    const data = new FormData()
+    data.append('file', file)
+    setLoading(true)
 
-      handleImport(data, parseInt(projectId, 10), () => {
-        form.resetFields()
-        close()
-        setLoading(false)
-      }, (error) => {
-        setErrors(error)
-        setLoading(false)
-      })
-    }
+    handleImport(data, projectId ? parseInt(projectId, 10) : null, () => {
+      form.resetFields()
+      close()
+      setLoading(false)
+    }, (error) => {
+      setErrors(error)
+      setLoading(false)
+    })
   }
 
   const handleValuesChange = (changedValues: Record<string, string>) => {

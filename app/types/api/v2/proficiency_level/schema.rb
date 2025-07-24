@@ -8,7 +8,7 @@ class Api::V2::ProficiencyLevel::Schema < Api::Base::Schema
   def self.attributes(attribute, _)
     proc do
       attribute[:proficiency_type].filled(:string)
-      optional(:skill_category).filled(:string)
+      optional(:skill_type).filled(:string)
       attribute[:level].filled(:integer, gteq?: ProficiencyLevel::MIN_LEVEL, lteq?: ProficiencyLevel::MAX_LEVEL)
       attribute[:level_definition].filled(:array)
     end

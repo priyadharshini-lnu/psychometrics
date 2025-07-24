@@ -8,12 +8,12 @@ class ProficiencyLevel < ApplicationRecord
   belongs_to :skill
 
   enum :proficiency_type, {
-    all_skills: 0,
-    by_category: 1,
+    default: 0,
+    by_skill_type: 1,
     by_skill: 2
   }
 
-  enum :skill_category, { behavioral: 0, technical: 1, other: 2 }
+  enum :skill_type, { behavioral: 0, technical: 1, other: 2 }
 
   MIN_LEVEL = 2
   MAX_LEVEL = 10
@@ -27,13 +27,13 @@ class ProficiencyLevel < ApplicationRecord
     query = "%#{query}%"
 
     proficiency_case_sql = enum_case_sql('proficiency_levels.proficiency_type', proficiency_types)
-    skill_category_case_sql = enum_case_sql('proficiency_levels.skill_category', skill_categories)
+    skill_type_case_sql = enum_case_sql('proficiency_levels.skill_type', skill_types)
 
     left_joins(:skill).where(
       sanitize_sql_array([
         "#{proficiency_case_sql} ILIKE :query
         OR REPLACE(#{proficiency_case_sql}, '_', ' ') ILIKE :query
-        OR REPLACE(#{skill_category_case_sql}, '_', ' ') ILIKE :query
+        OR REPLACE(#{skill_type_case_sql}, '_', ' ') ILIKE :query
         OR COALESCE(skills.name, '') ILIKE :query", { query: query }
       ])
     )
@@ -48,10 +48,14 @@ class ProficiencyLevel < ApplicationRecord
     parent.table[:proficiency_type]
   end
 
+  ransacker :skill_type, formatter: proc { |v| skill_types[v] } do |parent|
+    parent.table[:skill_type]
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[
       proficiency_type
-      skill_category
+      skill_type
       skill_id
       level
       level_definition

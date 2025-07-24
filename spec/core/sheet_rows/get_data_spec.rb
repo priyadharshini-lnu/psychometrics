@@ -4,9 +4,7 @@ require 'rails_helper'
 
 describe SheetRows::GetData do
   let(:sheet) do
-    create(:sheet, columns: [{ name: 'Email', type: 'String' },
-                             { name: 'Name', type: 'String' },
-                             { name: 'Profile', type: 'Text' }])
+    create(:sheet)
   end
   let!(:columns) do
     [
@@ -37,8 +35,7 @@ describe SheetRows::GetData do
   end
 
   it 'uses the sheet passed to get columns for which data needs to be extracted' do
-    new_sheet = create(:sheet, columns: [{ name: 'Email', type: 'String' },
-                                         { name: 'Profile', type: 'Text' }])
+    new_sheet = create(:sheet)
     create(:sheet_column, sheet: new_sheet, name: 'Email', column_type: 'string')
     create(:sheet_column, sheet: new_sheet, name: 'Profile', column_type: 'text')
     columns[0].update(sheet: new_sheet)

@@ -3,7 +3,7 @@
 module AdminJobs
   class BulkRegenerateUserReports < AdminJobs::Base
     def call
-      ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, {}, record)
+      ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, options, record)
 
       broadcast :waiting
     end
@@ -32,8 +32,15 @@ module AdminJobs
       @user_reports ||= campaign&.user_reports&.includes(:report)&.where(id: record.data['ids'])
     end
 
+    def options
+      {
+        selected_reports: record.data['selected_reports'] || {},
+        force_regenerate: true
+      }
+    end
+
     def user
-      @user ||= user_reports.first&.user
+      @user ||= User.find_by(id: record.data['user_id'])
     end
   end
 end

@@ -36,9 +36,12 @@ export default function SubjectSection ({
   })
 
   return (
-    <OptionSection label="Subject Options">
+    <OptionSection label={I18n.t('administration.threesixty_campaigns.menu.participants.options.subject_options')}>
       <NominationRequirementModal />
-      <ExpandableOption label="Subject Self Evaluates" {...parametersForSwitch('canEvaluateSelf')}>
+      <ExpandableOption
+        label={I18n.t('threesixty.options.subject.self_evaluates')}
+        {...parametersForSwitch('canEvaluateSelf')}
+      >
         {/* <ExpandableOption */}
         {/* label="Limit self-evaluators by criteria" */}
         {/* {...parametersForSwitch('limitSelfEvaluationByCriteria')} */}
@@ -50,28 +53,31 @@ export default function SubjectSection ({
       </ExpandableOption>
 
       <ExpandableOption
-        label="Subject can view Evaluators"
+        label={I18n.t('threesixty.options.subject.can_view_evaluators')}
         {...parametersForSwitch('canViewEvaluators')}
       />
       <ExpandableOption
-        label="Subject nominates Evaluators"
+        label={I18n.t('threesixty.options.subject.nominates_evaluators')}
         {...parametersForSwitch('canNominateEvaluators')}
-        actionable={
-          <Button size="small" onClick={openNominationRequirementModal}>Define Nomination requirement</Button>
-        }
+        actionable={(
+          <Button size="small" onClick={openNominationRequirementModal}>
+            {
+            I18n.t('threesixty.options.subject.define_nomination_requirement')}
+          </Button>
+        )}
       >
         <ExpandableOption
-          label="Anyone not currently in the assessment"
+          label={I18n.t('threesixty.options.subject.anyone_not_in_assessment')}
           {...parametersForSwitch('canNominateAnyoneNotInAssessment')}
           type="checkbox"
         />
         <ExpandableOption
-          label="Anyone in the assessment"
+          label={I18n.t('threesixty.options.subject.anyone_in_assessment')}
           {...parametersForSwitch('canNominateAnyoneInAssessment')}
           type="checkbox"
         >
           <ExpandableOption
-            label="Only show subjects who match the following criteria:"
+            label={I18n.t('threesixty.options.subject.only_show_subjects_who_match_criteria')}
             {...parametersForSwitch('limitNominationBySubjectToAnyoneInAssessment')}
             type="checkbox"
           >
@@ -79,12 +85,12 @@ export default function SubjectSection ({
           </ExpandableOption>
         </ExpandableOption>
         <ExpandableOption
-          label="Anyone in the datasheet"
+          label={I18n.t('threesixty.options.subject.anyone_in_datasheet')}
           {...parametersForSwitch('canNominateAnyoneFromDatasheet')}
           type="checkbox"
         >
           <ExpandableOption
-            label="Limit search by criteria"
+            label={I18n.t('threesixty.options.subject.limit_search_by_criteria')}
             {...parametersForSwitch('limitNominationBySubjectFromDatasheet')}
             type="checkbox"
           >
@@ -93,17 +99,17 @@ export default function SubjectSection ({
         </ExpandableOption>
 
         <ExpandableOption
-          label="Subjects cannot remove nominations set by managers or admins"
+          label={I18n.t('threesixty.options.subject.subjects_cannot_remove_nominations')}
           {...parametersForSwitch('cannotRemoveNominationSetByManagerAndAdmin')}
           type="checkbox"
         />
         <ExpandableOption
-          label="Allow subjects to select relationships"
+          label={I18n.t('threesixty.options.subject.allow_subjects_to_select_relationships')}
           {...parametersForSwitch('canSelectRelationship')}
           type="checkbox"
         >
           <ExpandableOption
-            label="Only allow relationships of specified types"
+            label={I18n.t('threesixty.options.subject.only_allow_relationships_of_specified_types')}
             {...parametersForSwitch('limitRelationshipThatSubjectCanSelect')}
             type="checkbox"
           >

@@ -329,12 +329,13 @@ zh:
             email:
               blank: 电子邮件不能为空
               not_uniq_email: 包含电子邮件的行已经存在
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: 必须启用至少一个工作角色，并为 %{block_name} 选择一个技能类型。
-              invalid_skill_type: "%{block_name} 的 %{role_name} 的 %{skill_type} 技能类型无效。有效选项： %{valid_options}"
-              props_missing: 工作
+              at_least_one_job_role_required: "%{block_name} 的 %{skill_type} 至少需要一个工作角色"
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: 为 %{block_name} 选择的工作角色必须至少启用一种技能类型。
+              invalid_job_role_type: "%{block_name} 的 %{skill_type} 的 %{job_role} 工作角色无效。有效选项： %{valid_options}"
+              props_missing: 缺少 %{block_name} 的技能配置
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ zh:
           case_study: 案例研究
           hogan: 霍根
           iiht: IIHT
+          lead_assessor_form: 主任评估员表格
           meeting: 会议
           organisational: 调查
           pearson: 皮尔森
@@ -789,6 +791,8 @@ zh:
           attributes:
             current_password:
               invalid: 当前密码不正确
+            manager_id:
+              cannot_be_self: 用户不能被指定为自己的经理
         user_idp_comment:
           reply_to_reply: 无法回复回复（只允许一个级别的嵌套）
         user_idp_plan:
@@ -859,9 +863,9 @@ zh:
         import_raw_data: 导入原始数据
         import_reflection_questions: 导入反射问题
         import_scoring_data: 导入评分数据
+        import_skill_rater_taxonomies: 导入技能评级器分类标准
         import_skill_translations: 进口技能翻译
         import_skills: 进口技能
-        import_skills_rater_taxonomies: 导入技能评级器分类标准
         import_sms_invites: 导入短信邀请
         import_users: 导入用户
         migrate_assessment_translations: 评估 翻译迁移
@@ -1563,6 +1567,7 @@ zh:
     column:
       assessor_access: 评估员访问
       auto_assign: 自动分配
+      locales: 地点
       main_report: 主要报告
       report_bundle: 报告包
       report_name: 报告名称
@@ -1585,6 +1590,13 @@ zh:
         apply: 将此更改应用于该活动中的现有用户。
         msg_text: 您正在尝试删除<strong>"%{reportName}"</strong>报告
         title: 删除报告？
+      update_languages:
+        default_language: 默认语言
+        other_available_languages: 其他可用语言
+        select_default_language: 选择默认语言
+        select_languages: 选择语言
+        success_msg: 语言已成功更新
+        title: 报告语言
       user_access:
         apply: 将此更改应用于该活动中的现有用户。
         title:
@@ -1741,6 +1753,7 @@ zh:
       import: 进口
       insert: 插入
       ok: 好的
+      publish: 出版
       reject: 拒绝
       remove: 移除
       reset: 重置
@@ -1756,6 +1769,7 @@ zh:
       start: 开始
       submit: 提交
       unarchive: 取消存档
+      unpublish: 取消出版
       unresolve: 取消解决
       update: 更新
       upload: 上传
@@ -1859,7 +1873,6 @@ zh:
       default: 默认
       download: 下载
       file: 文件
-      global_export: 是全球出口吗？
       global_import: 全球进口是什么？
       minutes: 分钟
       na: 不适用
@@ -2062,6 +2075,7 @@ zh:
         reserved_subdomain: 子域 %{value} 已保留
         uniq_subdomain: 子域应是唯一的。
       add_manager:
+        cannot_be_self: 用户不能被指定为自己的经理
         manager_not_found: 未找到管理员或管理员不属于同一项目
         user_not_found: 未找到用户或不属于同一项目
       admin:
@@ -2080,11 +2094,17 @@ zh:
       campaign_factor_group:
         group_already_exists: 已存在同名组。
         last_factor_group: 无法删除最后一个竞选因素组。
+      campaign_idps:
+        idp_template_not_published: 该IDP模板尚未发布，请在分配到广告系列之前将其发布。
       cant_be_deleted: 无法删除此记录
       client_feature:
         ai_assisted_idp_feature_error: 如果禁用 AI 助手功能，则不能为 true
       create_superadmin:
         uniq_email: 电子邮件应为统一格式。
+      development_actions:
+        only_global_skills_allowed: 所选技能必须是全球性技能。
+        skills_not_belong_to_project: 所选技能必须属于指定项目。
+        skills_required: 请至少选择一项技能。
       exceeded_subjects_count: 每次邀请只能添加 %{count} 主题
       filled?: 不能空白
       idp_template:
@@ -2132,6 +2152,7 @@ zh:
         start_time_should_be_less: 开始时间应小于结束时间
       user_idp_plan:
         idp_template_already_assigned_to_user: 此 Idp 模板已分配给该用户并处于活动状态
+        idp_template_not_published: 该IDP模板尚未发布，请在分配给用户之前将其发布。
       user_saved_filters:
         limit_exceeded: 您只能保存 %{limit} 过滤器，请删除已保存的过滤器以添加更多过滤器。
         unique_name: 已存在同名过滤器。
@@ -2192,6 +2213,9 @@ zh:
       no_active_plan: 未找到有效的 IDP 计划
     webhooks:
       multiple_webhook_error: 由于该项目有多个 webhook，因此无法更新 url。
+    workshop:
+      ical_generation_failed: 无法生成日历邀请
+      missing_or_invalid: 缺少或无效 Workshop_id
   evaluators:
     errors:
       can_not_processed: 无法处理
@@ -2453,6 +2477,7 @@ zh:
       aria_selected: 精选
   idp:
     actions: 行动
+    behavioral: 行为
     board: 董事会
     comment_details:
       add_comment: 添加评论
@@ -2517,6 +2542,7 @@ zh:
       submit_plan: 提交计划
       write_here: 在此处写入...
     edit_plan: 编辑计划
+    edit_progress: 编辑进度
     initial_steps:
       add_skill_group_description: 根据你的评估结果，以下是你的一些优势和发展领域。 选择你希望进一步发展的技能，作为你发展计划的一部分。
       add_skill_group_title: 探索您的 %{category} 技能
@@ -2560,6 +2586,7 @@ zh:
       cover:
         fields:
           assigned_data: 分配日期
+          assigned_date: 指定日期
           completion_date: 完成日期
           division: 部门
           name: 姓名
@@ -2642,6 +2669,7 @@ zh:
       statuses:
         approved: 已审核并批准
         completed: 已完成
+        draft: 草案
         not_reviewed: 未审核
         pending_approval: 审核中
       summary:
@@ -2678,6 +2706,7 @@ zh:
     skill_gap_report:
       title: 技能差距报告
     status: 现状
+    technical: 技术
     user_idp_status:
       approved: 批准
       completed: 完成
@@ -3635,11 +3664,35 @@ zh:
       exactly: 正是 %{count}
     nominations: 提名
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: 允许评估员拒绝提名
+        email_subject_when_nomination_declined: 拒绝提名时的电子邮件主题
       form:
         value_not_valid: 没有有效值
       global:
         cannot_re_edit: 参与者无法编辑评估
         disable_all_evaluations: 禁用所有评估
+      manager:
+        allow_subjects_to_email: 允许主题在其提名可供审批时向管理者发送电子邮件
+        approves_evaluations: 经理批准评估
+        approves_nominations: 经理批准提名
+        can_view_nominations: 经理可查看提名
+        email_managers_when_nomination_ready: 向管理人员发送电子邮件，通知他们何时可以批准某个主题的提名
+        email_subject_when_nomination_denied: 拒绝提名时的电子邮件主题
+        may_choose_evaluators: 经理可选择评估员
+      subject:
+        allow_subjects_to_select_relationships: 允许主体选择关系
+        anyone_in_assessment: 评估中的任何人
+        anyone_in_datasheet: 数据表中的任何人
+        anyone_not_in_assessment: 目前未参加评估的任何人
+        can_view_evaluators: 主题可查看评估员
+        define_nomination_requirement: 确定提名要求
+        limit_search_by_criteria: 按标准限制搜索
+        nominates_evaluators: 学科提名评估员
+        only_allow_relationships_of_specified_types: 只允许指定类型的关系
+        only_show_subjects_who_match_criteria: 只显示符合以下条件的对象：
+        self_evaluates: 受试者自我评价
+        subjects_cannot_remove_nominations: 主体无法删除经理或管理员设置的提名
     or: 或
     page_title: Signify 360°评估 - 应用级别
     participant_list:
@@ -3854,7 +3907,6 @@ zh:
       add: 添加报告
       download: 下载
       generate: 生成
-      regenerate: 重新生成
     approval_statuses:
       approved: 批准
       change_requested: 要求更改

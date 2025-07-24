@@ -17,6 +17,7 @@ export default connect(
   }) => ({
     currentLocale: assessment.locale,
     assessmentDefaultLanguage: assessment.defaultLanguage,
+    assessmentCategory: assessment.category,
   }),
   {
     openRandomization: data => openModal('randomization', data),

@@ -49,6 +49,7 @@ const AdvancedSettingsForm = ({
   onFinish,
   projectId,
   onBack,
+  isSubmitting = false,
 }) => {
   const [form] = Form.useForm()
   const [showFactorsSelect, setShowFactorsSelect] = useState(false)
@@ -453,16 +454,18 @@ const AdvancedSettingsForm = ({
           </Flex>
         </Flex>
         <Flex className={`w-100 p-8 ${styles.borderTop}`} gap={8} justify="flex-end">
-          <Button key="back" onClick={onBack}>
+          <Button key="back" onClick={onBack} disabled={isSubmitting}>
             {I18n.t('administration.common.back')}
           </Button>
-          <Button key="cancel" onClick={onClose}>
+          <Button key="cancel" onClick={onClose} disabled={isSubmitting}>
             {I18n.t('administration.common.cancel')}
           </Button>
           <Button
             key="submit"
             type="primary"
             htmlType="submit"
+            loading={isSubmitting}
+            disabled={isSubmitting}
           >
             {I18n.t('administration.common.save')}
           </Button>

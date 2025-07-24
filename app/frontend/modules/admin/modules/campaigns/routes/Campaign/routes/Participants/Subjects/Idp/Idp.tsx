@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {
+  useEffect, useState, useCallback,
+} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
-  App, Select, Button, Tag, Flex,
+  App, Select, Button, Tag, Flex, Spin,
 } from 'antd'
 import _ from 'lodash'
 import { IdpTemplate, IdpTemplateTR } from '~/modules/admin/modules/campaigns/core/idp/index'
@@ -28,7 +30,7 @@ export const Idp: React.FC<{}> = () => {
   )
 
   const {
-    data, fetch,
+    data: idpTemplates, fetch, isLoading: isTemplatesLoading,
   } = useResources<IdpTemplate>(
     'idp_templates',
     {
@@ -36,6 +38,7 @@ export const Idp: React.FC<{}> = () => {
       trackUrl: true,
       responseType: IdpTemplateTR,
       apiConfig: {
+        filter: { status_eq: 'published' },
         fields: { idp_templates: ['name', 'description'] },
       },
     },
@@ -71,7 +74,7 @@ export const Idp: React.FC<{}> = () => {
         idpTemplateId: selectedIdpTemplate,
         creatorId: id,
       }).then(() => {
-        const name = data.find(idpTemplate => idpTemplate.id === selectedIdpTemplate)?.name
+        const name = idpTemplates.find(idpTemplate => idpTemplate.id === selectedIdpTemplate)?.name
         message.success(`${name} assigned to user`)
         setSelectedIdpTemplate(null)
         getActiveIdpTemplate()
@@ -91,11 +94,17 @@ export const Idp: React.FC<{}> = () => {
     getActiveIdpTemplate()
   }, [])
 
+  const debouncedFetchIdpTemplates = useCallback(_.debounce((value) => {
+    fetch({
+      apiConfig: { filter: { filterable_fields: value } },
+    })
+  }, 300), [])
+
   return (
     <Flex vertical>
       <h3>{I18n.t('idp_templates.assign_idp_template')}</h3>
 
-      <Flex justify="space-between">
+      <Flex wrap justify="space-between">
         <Flex className="m4">
           <Select
             showSearch
@@ -104,9 +113,12 @@ export const Idp: React.FC<{}> = () => {
             onChange={(value) => {
               handleSelectChange(value)
             }}
+            onSearch={debouncedFetchIdpTemplates}
             value={selectedIdpTemplate || (activeIdpPlan?.idpTemplateId.toString())}
+            notFoundContent={isTemplatesLoading('fetch') ? <Spin size="small" /> : null}
+            filterOption={false}
           >
-            {_.map(data, (idpTemplate: IdpTemplate) => (
+            {_.map(idpTemplates, (idpTemplate: IdpTemplate) => (
               <Select.Option key={idpTemplate.id} value={idpTemplate.id}>
                 {idpTemplate.name}
                 {'     '}
@@ -140,7 +152,7 @@ export const Idp: React.FC<{}> = () => {
             <Button
               onClick={() => {
               // eslint-disable-next-line max-len
-                navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/user/${id}/idp_plan/${activeIdpPlan?.id.toString()}/step/getting_started`)
+                navigate(`${activeIdpPlan?.id}/step/getting_started`)
               }}
             >
               {I18n.t('idp.manage_plan')}

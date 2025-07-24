@@ -5,8 +5,8 @@ require 'swagger_helper'
 
 describe Api::V2::Administration::CampaignsController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:campaign) { create(:campaign) }
-  let!(:idp_template) { create(:idp_template) }
   let!(:superadmin) { create(:superadmin) }
+  let!(:idp_template) { create(:idp_template) }
   let!(:include_resource_meta) { 'permissions' }
 
   before(:each) do
@@ -33,6 +33,9 @@ describe Api::V2::Administration::CampaignsController, swagger_doc: 'v2/swagger.
           campaign_response = JSON.parse(response.body)['data']
           expect(campaign_response).to have_key('id')
           expect(campaign_response).to have_attribute(:name).with_value(campaign.name)
+          expect(campaign_response).to have_attribute(:project_id).with_value(campaign.project_id)
+          expect(campaign_response).to have_attribute(:type).with_value(campaign.type)
+          expect(campaign_response).to have_attribute(:status).with_value(campaign.status)
           expect(campaign_response['meta']).to have_key('permissions')
         end
       end
@@ -75,7 +78,8 @@ describe Api::V2::Administration::CampaignsController, swagger_doc: 'v2/swagger.
           expect(campaign_response).to have_key('id')
           expect(campaign_response).to have_attribute(:name).with_value(campaign.name)
           expect(campaign_response).to have_attribute(:project_id).with_value(campaign.project_id)
-          expect(campaign_response).to have_attribute(:default_idp_template_id).with_value(idp_template.id)
+          expect(campaign_response).to have_attribute(:type).with_value(campaign.type)
+          expect(campaign_response).to have_attribute(:status).with_value(campaign.status)
           expect(campaign_response).to have_relationship(:default_idp_template).
             with_data({ 'id' => idp_template.id.to_s, 'type' => 'idp_templates' })
         end

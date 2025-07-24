@@ -329,12 +329,13 @@ sl:
             email:
               blank: E-pošta ne more biti prazna
               not_uniq_email: Vrstica z e-poštnim sporočilom je že prisotna
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Za %{block_name} mora biti omogočena vsaj ena delovna vloga z izbrano veščino
-              invalid_skill_type: 'Neveljavna vrsta veščine %{skill_type} za vlogo %{role_name} v %{block_name}. Veljavne možnosti: %{valid_options}'
-              props_missing: Delo
+              at_least_one_job_role_required: Vsaj ena vloga delovnega mesta je potrebna za %{skill_type} za %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Vsaj ena vrsta spretnosti mora biti omogočena pri izbrani vlogi delovnega mesta za %{block_name}
+              invalid_job_role_type: 'Nepravilna vloga delovnega mesta %{job_role} za %{skill_type} za %{block_name}. Veljavne možnosti: %{valid_options}'
+              props_missing: Manjka konfiguracija veščin za %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ sl:
           case_study: Študije primerov
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Obrazec za vodilnega ocenjevalca
           meeting: Srečanje
           organisational: Raziskave
           pearson: Pearson
@@ -789,6 +791,8 @@ sl:
           attributes:
             current_password:
               invalid: Trenutno geslo je napačno
+            manager_id:
+              cannot_be_self: Uporabnik ne more biti dodeljen kot lastni vodja
         user_idp_comment:
           reply_to_reply: ne morem odgovoriti na odgovor (dovoljena je samo ena raven gnezdenja)
         user_idp_plan:
@@ -859,9 +863,9 @@ sl:
         import_raw_data: Uvoz neobdelanih podatkov
         import_reflection_questions: Uvoz vprašanj za razmislek
         import_scoring_data: Uvoz podatkov točkovanja
+        import_skill_rater_taxonomies: Uvoz taksonomij za ocenjevanje veščin
         import_skill_translations: Uvoz prevodov spretnosti
         import_skills: Uvozne spretnosti
-        import_skills_rater_taxonomies: Uvoz taksonomij za ocenjevanje veščin
         import_sms_invites: Uvoz SMS povabila
         import_users: Uvoz uporabnikov
         migrate_assessment_translations: Ocenjevanje Selitev prevoda
@@ -1562,6 +1566,7 @@ sl:
     column:
       assessor_access: Dostop ocenjevalca
       auto_assign: Samodejna dodelitev
+      locales: Lokacije
       main_report: Glavno poročilo
       report_bundle: Sveženj poročil
       report_name: Ime poročila
@@ -1584,6 +1589,13 @@ sl:
         apply: Te spremembe uporabite za obstoječe uporabnike v tej oglaševalski akciji.
         msg_text: Poskušate izbrisati poročilo <strong>»%{reportName}«</strong>
         title: Odstraniti poročilo?
+      update_languages:
+        default_language: Privzet jezik
+        other_available_languages: Drugi razpoložljivi jeziki
+        select_default_language: Izberite privzeti jezik
+        select_languages: Izberite jezike
+        success_msg: Jeziki so bili uspešno posodobljeni
+        title: Jezik poročila
       user_access:
         apply: Te spremembe uporabite za obstoječe uporabnike v tej oglaševalski akciji.
         title:
@@ -1726,43 +1738,26 @@ sl:
       cancel: Prekliči
       change: Spremeniti
       close: Zapri
-      continue: Nadaljuj
       copy: Kopiraj
-      create: Ustvariti
       delete: Izbriši
-      done: Storiti
-      download: Prenesti
       edit: Uredi
-      export: Izvoz
-      filter: Filter
-      filter_by_tags: Filtriranje po oznakah
-      go_back: Vrni se
-      import: Uvoz
-      insert: Vstaviti
-      ok: V redu
-      reject: Zavrne
-      remove: Odstrani
-      reset: Ponastavi
-      resolve: Razreši
-      restore: Obnovi
-      return_to_home: Vrnitev domov
-      run: Teči
+      publish: Objavite
+      remove: Odstranite
+      reset: Ponastavitev
+      resolve: Reševanje
+      restore: Obnovitev
       save: Shrani
-      schedule: Urnik
-      search: Išči
+      search: Iskanje
       send: Pošlji
-      sign_in: Prijava
-      start: Začni
-      submit: Predložiti
-      unarchive: Premakni iz arhiva
-      unresolve: Označi kot nerazrešeno
-      update: Posodobi
-      upload: Naloži
-      upload_file: Naloži datoteko
+      start: Začetek
+      unarchive: Odprava arhiviranja
+      unpublish: Odprava objave
+      unresolve: Nerazrešitev
+      update: Posodobitev
+      upload: Naložite
       verify: Preveri
-      view: Pogled
-      view_all_tasks: Ogled vseh nalog
-      view_detail: Ogled podrobnosti
+      view_all_tasks: Prikaži vse naloge
+      view_detail: Poglej podrobnosti
     column:
       action: Dejanje
       active: Dejaven
@@ -1858,7 +1853,6 @@ sl:
       default: Privzeto
       download: Prenesi
       file: Datoteka
-      global_export: Je globalni izvoz?
       global_import: Je globalni uvoz?
       minutes: Minut
       na: NI RELEVANTNO
@@ -2088,6 +2082,7 @@ sl:
         reserved_subdomain: Poddomena %{value} je rezervirana
         uniq_subdomain: Poddomena mora biti edinstvena.
       add_manager:
+        cannot_be_self: Uporabnik ne more biti dodeljen kot lastni vodja
         manager_not_found: Upravitelj ni najden ali ni del istega projekta
         user_not_found: Uporabnik ni bil najden ali ni del istega projekta
       admin:
@@ -2106,11 +2101,17 @@ sl:
       campaign_factor_group:
         group_already_exists: Skupina z istim imenom že obstaja.
         last_factor_group: Zadnje skupine faktorjev oglaševalske akcije ni mogoče izbrisati.
+      campaign_idps:
+        idp_template_not_published: Ta predloga IDP še ni objavljena, objavite jo, preden dodelite kampanjo.
       cant_be_deleted: Tega zapisa ni mogoče izbrisati
       client_feature:
         ai_assisted_idp_feature_error: Ne more biti res, če je funkcija pomočnikov AI onemogočena
       create_superadmin:
         uniq_email: E-pošta mora biti uniq.
+      development_actions:
+        only_global_skills_allowed: Izbrana znanja in spretnosti morajo biti globalna znanja in spretnosti.
+        skills_not_belong_to_project: Izbrana znanja morajo pripadati določenemu projektu.
+        skills_required: Izberite vsaj eno spretnost.
       exceeded_subjects_count: Na povabilo lahko dodate samo %{count} predmetov
       filled?: Ne more biti prazno
       idp_template:
@@ -2158,6 +2159,7 @@ sl:
         start_time_should_be_less: Začetni čas mora biti krajši od končnega časa
       user_idp_plan:
         idp_template_already_assigned_to_user: Ta predloga za IDP je že dodeljena temu uporabniku in je aktivna
+        idp_template_not_published: Ta predloga IDP še ni objavljena, objavite jo, preden dodelite uporabniku.
       user_saved_filters:
         limit_exceeded: Lahko imate samo %{limit} shranjenih filtrov, prosimo, izbrišite shranjene filtre, če želite dodati več.
         unique_name: Filter z istim imenom že obstaja.
@@ -2218,6 +2220,9 @@ sl:
       no_active_plan: Ni najdenega aktivnega načrta IDP
     webhooks:
       multiple_webhook_error: URL-ja ni mogoče posodobiti, ker je za ta projekt na voljo več spletnih kavljev.
+    workshop:
+      ical_generation_failed: Ni bilo mogoče ustvariti povabila za koledar
+      missing_or_invalid: Manjkajoči ali neveljavni workshop_id
   evaluators:
     errors:
       can_not_processed: ni mogoče obdelati
@@ -2479,6 +2484,7 @@ sl:
       aria_selected: Izbrane
   idp:
     actions: Dejanja
+    behavioral: Vedenjski
     board: Deska
     comment_details:
       add_comment: Dodaj komentar
@@ -2543,6 +2549,7 @@ sl:
       submit_plan: Pošlji načrt
       write_here: Pišite tukaj ...
     edit_plan: Urejanje načrta
+    edit_progress: Urejanje napredka
     initial_steps:
       add_skill_group_description: Na podlagi rezultatov ocenjevanja je tukaj nekaj področij prednosti in razvoja za vas. Izberite veščine, ki jih želite še naprej razvijati kot del svojega razvojnega načrta.
       add_skill_group_title: Raziskovanje vaših spretnosti %{category}
@@ -2580,6 +2587,7 @@ sl:
       cover:
         fields:
           assigned_data: Dodeljeni datum
+          assigned_date: Dodeljen datum
           completion_date: Datum zaključka
           division: Deljenje
           name: Ime
@@ -2615,10 +2623,32 @@ sl:
           main: Ta razdelek vključuje kumulativni seznam vseh razvojnih poti, pri čemer je treba upoštevati najboljše prakse učenja, tj. smernice 70-20-10, ki zagotavljajo progresivno potovanje, ki združuje učenje v učilnici, coaching in učenje na delovnem mestu. Na podlagi rezultatov izkušenj z razvojem vodstva in poslovnih prioritet so bile priporočene možne razvojne poti, ki jih lahko upoštevate za vaš razvoj.
         learn_cards:
           collaboration:
+            list:
+            - Ponudite mentorstvo ali coaching drugim
+            - Prosite, da vas mentorira strokovnjak na vašem področju
+            - Pridobite coacha za podporo vašemu razvoju
+            - Ustanovite sodelovalno delovno skupino za razpravo o izzivih v podjetju
+            - Pridobite povratne informacije formalno in neformalno od drugih
+            - Aktivno sodelujte v strokovnih združenjih in mrežah
+            - Zgradite svojo zunanjo mrežo
             title: Sodelovalno učenje (20 %) <br/> Razvoj skozi druge
           job:
+            list:
+            - Prevzemite vodilne položaje v odborih ali upravnih skupinah
+            - Prostovoljno vodite projekte sprememb v organizaciji
+            - Razmislite o zahtevnejših nalogah
+            - Sodelujte z drugimi oddelki
+            - Vodite projekte zunaj vaše organizacije
+            - Sodelujte z zunanjimi strokovnjaki pri skupnih projektih
             title: Učenje na delovnem mestu (70 %) <br/> Razvoj skozi izkušnje
           learn:
+            list:
+            - Prevzemite vodilne položaje v odborih ali upravnih skupinah
+            - Prostovoljno vodite projekte sprememb v organizaciji
+            - Razmislite o zahtevnejših nalogah
+            - Sodelujte z drugimi oddelki
+            - Vodite projekte zunaj vaše organizacije
+            - Sodelujte z zunanjimi strokovnjaki pri skupnih projektih
             title: Formalno učenje (10 %) <br/> Razvoj s strukturiranim učenjem
         title: Smernice za vodenje vašega IDP
       idp:
@@ -2640,6 +2670,7 @@ sl:
       statuses:
         approved: Pregledano in odobreno
         completed: Dokončan
+        draft: Osnutek
         not_reviewed: Ni ocenjeno
         pending_approval: V pregledu
       summary:
@@ -2676,6 +2707,7 @@ sl:
     skill_gap_report:
       title: Poročilo o vrzeli v znanju in spretnostih
     status: Stanje
+    technical: Tehnični
     user_idp_status:
       approved: Odobren
       completed: Dokončan
@@ -3633,11 +3665,35 @@ sl:
       exactly: Natančno %{count}
     nominations: Nominacije
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Omogočiti ocenjevalcem, da zavrnejo imenovanje.
+        email_subject_when_nomination_declined: Predmet e-pošte ob zavrnitvi nominacije
       form:
         value_not_valid: nima veljavne vrednosti
       global:
         cannot_re_edit: Udeleženci ne morejo urejati ocen
         disable_all_evaluations: Onemogoči vsa ocenjevanja
+      manager:
+        allow_subjects_to_email: omogočiti subjektom, da pošljejo e-pošto upraviteljem, ko so njihove nominacije pripravljene za odobritev.
+        approves_evaluations: Vodja odobri ocene
+        approves_nominations: Upravitelj odobri imenovanja
+        can_view_nominations: Upravitelj si lahko ogleda nominacije
+        email_managers_when_nomination_ready: Pošiljanje e-pošte upraviteljem, ko je kandidatura subjekta pripravljena za odobritev.
+        email_subject_when_nomination_denied: Predmet e-pošte ob zavrnitvi nominacije
+        may_choose_evaluators: Vodja lahko izbere ocenjevalce
+      subject:
+        allow_subjects_to_select_relationships: Omogočite subjektom, da izberejo razmerja
+        anyone_in_assessment: Vsi, ki sodelujejo pri ocenjevanju
+        anyone_in_datasheet: Kdor koli v podatkovnem listu
+        anyone_not_in_assessment: Vsi, ki trenutno niso vključeni v ocenjevanje.
+        can_view_evaluators: Subjekt si lahko ogleda ocenjevalce
+        define_nomination_requirement: Opredelitev zahteve za imenovanje
+        limit_search_by_criteria: Omejitev iskanja po merilih
+        nominates_evaluators: Subjekt imenuje ocenjevalce
+        only_allow_relationships_of_specified_types: Dovolite samo razmerja določenih vrst
+        only_show_subjects_who_match_criteria: 'Prikažite samo subjekte, ki ustrezajo naslednjim merilom:'
+        self_evaluates: Subjekt sam ocenjuje
+        subjects_cannot_remove_nominations: Subjekti ne morejo odstraniti nominacij, ki so jih določili vodje ali administratorji.
     or: Ali
     page_title: Signify 360° pregled – uporabite nivo
     participant_list:
@@ -3852,7 +3908,6 @@ sl:
       add: Dodajanje poročila
       download: Prenesti
       generate: Ustvariti
-      regenerate: Znova ustvarite
     approval_statuses:
       approved: Odobren
       change_requested: Zahtevana sprememba

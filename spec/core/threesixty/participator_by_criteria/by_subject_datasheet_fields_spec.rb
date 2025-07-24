@@ -8,6 +8,11 @@ describe Threesixty::ParticipatorByCriteria::BySubjectDatasheetFields do
   let(:threesixty_evaluators) { create_list(:threesixty_evaluator, 3) }
   let(:threesixty_subjects) { create_list(:threesixty_evaluator, 3) }
   let(:datasheet) { create(:datasheet, project: threesixty_campaign.project) }
+  let!(:columns) do
+    [
+      create(:sheet_column, sheet: datasheet, name: 'gender', column_type: 'string')
+    ]
+  end
 
   it 'returns evaluators who have subject with matching datasheet criteria' do
     3.times do |index|
@@ -19,24 +24,15 @@ describe Threesixty::ParticipatorByCriteria::BySubjectDatasheetFields do
       )
     end
 
-    create(
-      :sheet_row,
-      sheet: datasheet,
-      email: threesixty_subjects[0].email,
-      data: { 'gender' => 'M' }
-    )
-    create(
-      :sheet_row,
-      sheet: datasheet,
-      email: threesixty_subjects[1].email,
-      data: { 'gender' => 'M' }
-    )
-    create(
-      :sheet_row,
-      sheet: datasheet,
-      email: threesixty_subjects[2].email,
-      data: { 'gender' => 'F' }
-    )
+    create(:sheet_row, sheet: datasheet, email: threesixty_subjects[0].email).tap do |row|
+      row.sheet_row_data.create(sheet_column: datasheet.sheet_columns.find_by(name: 'gender'), string_value: 'M')
+    end
+    create(:sheet_row, sheet: datasheet, email: threesixty_subjects[1].email).tap do |row|
+      row.sheet_row_data.create(sheet_column: datasheet.sheet_columns.find_by(name: 'gender'), string_value: 'M')
+    end
+    create(:sheet_row, sheet: datasheet, email: threesixty_subjects[2].email).tap do |row|
+      row.sheet_row_data.create(sheet_column: datasheet.sheet_columns.find_by(name: 'gender'), string_value: 'F')
+    end
 
     criteria_list = [{ 'field' => 'subject_datasheet', 'sub_field' => 'gender', 'value' => 'M' }]
     results = described_class.call!(

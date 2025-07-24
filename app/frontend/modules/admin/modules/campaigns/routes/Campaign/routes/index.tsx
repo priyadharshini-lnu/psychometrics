@@ -21,6 +21,8 @@ const routes = [
   { redirect: true, from: '', to: 'participants' },
   { redirect: true, from: '/scheduling', to: 'assessment_center' },
   { redirect: true, from: '/participants/subjects/:id', to: 'assessments' },
+  { path: '/participants/subjects/:userId/idp/:idpPlanId/step/:step', component: <InitialStepsComponent /> },
+  { path: '/participants/subjects/:userId/idp/:idpPlanId/plan', component: <Plan /> },
   { path: '/participants/assessors/:id', component: <AssessorsDetails /> },
   { path: '/participants/*', component: <Participants /> },
   { path: '/scheduling/*', component: <Scheduling /> },
@@ -39,8 +41,6 @@ const routes = [
   { path: '/audit_reports', component: <DataExports /> },
   { path: '/audit_reports', component: <DataExports /> },
   { path: '/user_idp_reports/:id/*', component: <IdpReportPreview /> },
-  { path: '/user/:user_id/idp_plan/:idp_plan_id/step/:step', component: <InitialStepsComponent /> },
-  { path: '/user/:user_id/idp_plan/:idp_plan_id/plan', component: <Plan /> },
 ]
 
 export default routes

@@ -7,7 +7,7 @@ import { useResourceContext } from '~/modules/admin/components/Resource'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { AiAssistant } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { getAvailableAiProviders } from '~/core/config'
-import { AI_ACTIONS, AI_PROVIDERS } from '~/modules/admin/modules/AiAssitant/core/constants'
+import { ASSISTANT_TYPES, AI_PROVIDERS } from '~/modules/admin/modules/AiAssitant/core/constants'
 
 
 type Props = {
@@ -65,14 +65,14 @@ export const AiAssistantFormModal: React.FC<Props> = ({ close, aiAssistant }) =>
             </Select>
           </Form.Item>
           <Form.Item
-            name="action"
-            label={I18n.t('administration.ai_assistants.form.action')}
+            name="assistantType"
+            label={I18n.t('administration.common.type')}
             rules={[{ required: true }]}
           >
             <Select>
-              {Object.values(AI_ACTIONS).map(action => (
-                <Select.Option key={action.id} value={action.id}>
-                  {action.name}
+              {Object.values(ASSISTANT_TYPES).map(type => (
+                <Select.Option key={type.id} value={type.id}>
+                  {type.name}
                 </Select.Option>
               ))}
             </Select>

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
+
 module Administration
   module Campaigns
     class UserReportsController < Administration::Campaigns::BaseController
@@ -121,7 +123,12 @@ module Administration
       end
 
       def regenerate
-        AdminJob.call(:bulk_regenerate_user_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
+        AdminJob.call(
+          :bulk_regenerate_user_reports, {
+            ids: params[:ids], campaign_id: campaign.id, user_id: params[:user_id],
+            selected_reports: params[:selected_reports]
+          }, current_user
+        )
         audit! :regenerate_report, resource, payload: { ids: params[:ids], campaign_id: campaign.id },
                campaign: campaign
 
@@ -129,12 +136,18 @@ module Administration
       end
 
       def bulk_download
-        AdminJob.call(:bulk_download_user_reports,
-                      { ids: params[:ids], campaign_id: campaign.id },
-                      current_user)
+        AdminJob.call(:bulk_download_user_reports, {
+          ids: params[:ids],
+          selected_reports: params[:selected_reports],
+          campaign_id: campaign.id,
+          user_id: params[:user_id]
+        }, current_user)
 
-        audit! :bulk_download, nil, record_type: 'UserReport', payload: { ids: params[:ids] },
-        campaign: campaign
+        audit! :bulk_download, nil, record_type: 'UserReport', payload: {
+          selected_reports: params[:selected_reports],
+          user_id: params[:user_id],
+          campaign_id: campaign.id
+        }, campaign: campaign
 
         head :ok
       end
@@ -237,3 +250,5 @@ module Administration
     end
   end
 end
+
+# rubocop:enable Metrics/ClassLength

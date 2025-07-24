@@ -10,7 +10,7 @@ import IDP from './Page/types/IDP/IDP'
 const { I18n } = window
 I18n.locale = document.body.getAttribute('data-locale')
 const isRtl = () => {
-  const lang = I18n.currentLocale()
+  const lang = I18n.uiLocale || I18n.currentLocale()
   return lang === 'ar' || lang === 'he'
 }
 

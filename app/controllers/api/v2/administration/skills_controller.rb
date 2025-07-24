@@ -182,6 +182,12 @@ module Api
           super || params.dig(:filter, :project_id_eq)
         end
 
+        def context
+          super.merge(
+            filter: params[:filter]
+          )
+        end
+
         private
 
         def search_params

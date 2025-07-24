@@ -6,23 +6,31 @@ import mercer from '../../../assets/MercerLogo.svg'
 import Page from '../../Page'
 import styles from './Cover.less'
 import { useAppSelector } from '~/modules/idpReport/hooks/redux'
-
-const { I18n } = window
-I18n.locale = document.body.getAttribute('data-locale')
+import { useI18n } from '~/modules/idpReport/I18nContext'
 
 const FIELDS = [
   'name',
   'role',
-  'assigned_data',
+  'assigned_date',
   'division',
   'review_date',
   'publish_date',
   'completion_date',
 ]
 
+const FIELD_TO_DATA = {
+  name: 'name',
+  role: 'role',
+  division: 'division',
+  assigned_date: 'assigned_date',
+  publish_date: 'start_date',
+  completion_date: 'completion_date',
+}
+
 const Cover = ({ rtl }) => {
   const template = useAppSelector(state => state.idp.template)
   const userIdp = useAppSelector(state => state.idp.userIdp)
+  const I18n = useI18n()
   const {
     background, client_logo, logo_type, title_text, subtitle_text,
   } = template
@@ -79,7 +87,7 @@ const Cover = ({ rtl }) => {
                         {I18n.t(`idp.pdf.cover.fields.${item}`)}
                       </div>
                       <div className={styles.value}>
-                        {userIdp[item] || ''}
+                        {userIdp[FIELD_TO_DATA[item]] || ''}
                       </div>
                     </div>
                   ))}

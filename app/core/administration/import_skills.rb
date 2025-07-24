@@ -2,9 +2,6 @@
 
 module Administration
   class ImportSkills < BaseCommand
-    REQUIRED_FIELDS = %w[ID Name Description].freeze
-    REQUIRED_VALUES = %w[Name Description].freeze
-
     def initialize(file, project_id)
       @file = file
       @project_id = project_id
@@ -50,7 +47,7 @@ module Administration
 
     def initialize_skill(row)
       if row['ID'].present?
-        Skill.find_by(id: row['ID']) || Skill.new
+        Skill.find_by(id: row['ID'], project_id: @project_id) || Skill.new
       else
         Skill.new
       end

@@ -11,9 +11,7 @@ module Sheets
 
     def call
       transaction do
-        removed_columns = sheet.sheet_columns.where(id: column_ids).pluck(:name).join("','")
         sheet.sheet_columns.where(id: column_ids).destroy_all
-        sheet.rows.update_all("data = data - ARRAY['#{ActiveRecord::Base.sanitize_sql(removed_columns)}']")
       end
       broadcast :ok
     end

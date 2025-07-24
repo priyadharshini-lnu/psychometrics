@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :assistant, class: 'AI::Assistant' do
     sequence(:name) { |n| "Test Assistant #{n}" }
     description { 'This is a test assistant' }
-    action { 'chat' }
+    assistant_type { 'content_writer' }
     user_prompt { 'Ask me anything' }
     system_prompt { 'Be helpful and concise' }
     model_id { 'gpt-4o-mini' }

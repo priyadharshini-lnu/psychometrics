@@ -20,7 +20,9 @@ module SmsInvites
 
     def validate_body
       import_data.each_with_index do |attrs, index|
+        attrs.transform_values! { |value| Utility::String.remove_csv_injection_marker(value) }
         form = ::SmsInvites::Form.new(attrs).with_context(campaign: context.campaign)
+
         errors.add(:import_data, "Row #{index + 1}: #{form.errors.messages.values.first.first}") if form.invalid?
       end
     end

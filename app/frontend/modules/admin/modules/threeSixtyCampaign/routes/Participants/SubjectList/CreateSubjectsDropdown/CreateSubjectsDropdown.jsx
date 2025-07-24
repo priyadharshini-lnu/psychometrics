@@ -1,10 +1,12 @@
 import { Button, Dropdown } from 'antd'
 import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 
+const { I18n } = window
+
 const CreateSubjectsDropdown = ({ openModal }) => {
   const menuItems = [
-    { key: 'add', label: 'Add Subjects...' },
-    { key: 'import', label: 'Import Subjects...' },
+    { key: 'add', label: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects') },
+    { key: 'import', label: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.import_subjects') },
   ]
   const handleMenuClick = ({ key }) => {
     if (key === 'add') {
@@ -23,7 +25,7 @@ const CreateSubjectsDropdown = ({ openModal }) => {
     >
       <Button type="primary">
         <PlusOutlined />
-        <span>Add Subjects</span>
+        <span>{I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects')}</span>
         <DownOutlined />
       </Button>
     </Dropdown>

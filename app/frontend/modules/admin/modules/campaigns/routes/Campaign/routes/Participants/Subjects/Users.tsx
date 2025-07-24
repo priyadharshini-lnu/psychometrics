@@ -55,6 +55,7 @@ interface Props {
   remove(campaignId: string, id: number): void
   toggleActive(campaignId: string, id: number, options: { updateInListing: boolean }): void
   users: UserState
+  isLoadingUsers: boolean
   tableConfig: TableConfig
   changeFilter(filterName: string, filterValue: string): void
   getFilteredValue(filterName: string): FilterValue
@@ -84,6 +85,7 @@ const UserList: React.FC<Props> = ({
     total,
     permissions,
   },
+  isLoadingUsers,
   tableConfig: {
     filters,
     page,
@@ -174,6 +176,7 @@ const UserList: React.FC<Props> = ({
             rowKey="id"
             dataSource={list}
             onChange={onTableChange}
+            loading={isLoadingUsers}
             pagination={false}
             scroll={{ x: 1500 }}
           >

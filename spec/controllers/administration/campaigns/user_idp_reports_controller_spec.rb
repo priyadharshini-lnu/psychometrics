@@ -31,18 +31,6 @@ RSpec.describe Administration::Campaigns::UserIdpReportsController, type: :contr
   end
 
   describe 'GET download' do
-    it 'redirects to the user IDP report page after initiating download' do
-      allow(Settings.features).to receive_message_chain(:url_to_pdf_faas) { true }
-      expect(UserReports::GenerateIdpReportPdf).to receive(:call!)
-
-      lang = 'en'
-
-      get :download, params: { new_campaign_id: campaign.id, id: user_idp_plan.id, lang: lang }, format: :html
-
-      expected_url = "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/user_idp_reports/#{user_idp_plan.id}?lang=#{lang}" # rubocop:disable Layout/LineLength
-      expect(response).to redirect_to(expected_url)
-    end
-
     it 'returns http ok for json format' do
       expect(UserReports::GenerateIdpReportPdf).to receive(:call!)
 

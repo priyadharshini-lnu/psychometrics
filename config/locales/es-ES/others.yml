@@ -323,12 +323,13 @@ es-ES:
             email:
               blank: El correo electrónico no puede estar en blanco
               not_uniq_email: La fila con el correo electrónico ya está presente
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Al menos un rol de trabajo debe estar habilitado con un tipo de habilidad seleccionada para %{block_name}
-              invalid_skill_type: 'Tipo de habilidad %{skill_type} no válido para %{role_name} para %{block_name}. Opciones válidas: %{valid_options}'
-              props_missing: Empleo
+              at_least_one_job_role_required: Se requiere al menos un rol de trabajo para %{skill_type} para %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Al menos un tipo de habilidad debe estar habilitado con un rol de trabajo seleccionado para %{block_name}
+              invalid_job_role_type: 'Función %{job_role} no válida para %{skill_type} para %{block_name}. Opciones válidas: %{valid_options}'
+              props_missing: Falta la configuración de habilidades para %{block_name}
         skillvue:
           attributes:
             name:
@@ -431,6 +432,7 @@ es-ES:
           case_study: Casos prácticos
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulario del asesor principal
           meeting: Reunión
           organisational: Encuestas
           pearson: Pearson
@@ -777,6 +779,8 @@ es-ES:
           attributes:
             current_password:
               invalid: La contraseña actual no es correcta
+            manager_id:
+              cannot_be_self: El usuario no puede asignarse como su propio gestor
         user_idp_plan:
           no_active_plan: No se ha encontrado ningún plan PDI activo
   admin_jobs:
@@ -838,9 +842,9 @@ es-ES:
         import_question_translations: Importar traducciones de preguntas
         import_raw_data: Importar datos brutos
         import_scoring_data: Importar datos de puntuación
+        import_skill_rater_taxonomies: Importar taxonomías de evaluadores de competencias
         import_skill_translations: Importación de traducciones especializadas
         import_skills: Habilidades de importación
-        import_skills_rater_taxonomies: Importar taxonomías de evaluadores de competencias
         import_sms_invites: Importar invitación SMS
         import_users: Importar usuarios
         migrate_assessment_translations: Evaluación Traducción migración
@@ -1527,6 +1531,7 @@ es-ES:
     column:
       assessor_access: Acceso para asesores
       auto_assign: Asignación automática
+      locales: Locales
       main_report: Informe principal
       report_bundle: Paquete de informes
       report_name: Nombre del informe
@@ -1549,6 +1554,13 @@ es-ES:
         apply: Aplique estos cambios a los usuarios existentes en esta campaña.
         msg_text: Está intentando eliminar el informe <strong>"%{reportName}"</strong>
         title: "¿Eliminar informe?"
+      update_languages:
+        default_language: Idioma por defecto
+        other_available_languages: Otras lenguas disponibles
+        select_default_language: Seleccionar idioma por defecto
+        select_languages: Seleccionar idiomas
+        success_msg: Los idiomas se han actualizado correctamente
+        title: Idioma del informe
       user_access:
         apply: Aplique estos cambios a los usuarios existentes en esta campaña.
         title:
@@ -1702,6 +1714,7 @@ es-ES:
       import: Importar
       insert: Inserte
       ok: OK
+      publish: Publique
       remove: Eliminar
       reset: Restablecer
       resolve: Resolver
@@ -1714,6 +1727,7 @@ es-ES:
       start: Iniciar
       submit: Enviar
       unarchive: Sacar del archivo
+      unpublish: Anule la publicación de
       unresolve: Deshacer la resolución
       update: Actualizar
       upload: Subir
@@ -2034,6 +2048,7 @@ es-ES:
         reserved_subdomain: El subdominio %{value} está reservado
         uniq_subdomain: El subdominio debe ser único.
       add_manager:
+        cannot_be_self: El usuario no puede asignarse como su propio gestor
         manager_not_found: Gestor no encontrado o que no forma parte del mismo proyecto
         user_not_found: Usuario no encontrado o que no forma parte del mismo proyecto
       admin:
@@ -2052,8 +2067,14 @@ es-ES:
       campaign_factor_group:
         group_already_exists: Ya existe un grupo con el mismo nombre.
         last_factor_group: No se puede eliminar el último grupo de factores de Campaña.
+      campaign_idps:
+        idp_template_not_published: Esta plantilla de IDP aún no se publica, publíquela antes de asignar a la campaña.
       create_superadmin:
         uniq_email: El correo electrónico debe ser uniq.
+      development_actions:
+        only_global_skills_allowed: Las competencias seleccionadas deben ser competencias globales.
+        skills_not_belong_to_project: Las competencias seleccionadas deben pertenecer al proyecto especificado.
+        skills_required: Seleccione al menos una habilidad.
       exceeded_subjects_count: Sólo puede añadir %{count} sujetos por invitación
       filled?: no puede estar en blanco
       idp_template:
@@ -2099,6 +2120,7 @@ es-ES:
         start_time_should_be_less: La hora de inicio debe ser inferior a la hora de finalización
       user_idp_plan:
         idp_template_already_assigned_to_user: Esta Plantilla Idp ya está asignada a este usuario y está activa
+        idp_template_not_published: Esta plantilla de IDP aún no se publica, publíquela antes de asignar al usuario.
       user_saved_filters:
         limit_exceeded: Sólo puede tener %{limit} filtros guardados, por favor borre los filtros guardados para añadir más.
         unique_name: Ya existe un filtro con el mismo nombre.
@@ -2157,6 +2179,9 @@ es-ES:
       no_active_plan: No se ha encontrado ningún plan PDI activo
     webhooks:
       multiple_webhook_error: url no se puede actualizar ya que hay múltiples webhook para este proyecto.
+    workshop:
+      ical_generation_failed: No se ha podido generar la invitación al calendario
+      missing_or_invalid: Falta el workshop_id o no es válido
   evaluators:
     errors:
       can_not_processed: no se puede procesar
@@ -2418,6 +2443,7 @@ es-ES:
       aria_selected: Selección
   idp:
     actions: Acciones
+    behavioral: Comportamiento
     board: Tablero
     comment_details:
       add_comment: Agregar comentario
@@ -2461,9 +2487,14 @@ es-ES:
       generate_more: Generar Más
       generating_development_actions: Generando acciones de desarrollo...
       heading: Acciones de Desarrollo
+      incomplete_error: Acciones de desarrollo incompletas
+      incomplete_error_message: Algunas acciones de desarrollo están incompletas. Por favor, complételas antes de enviar su IDP.
+      incomplete_warning: Acciones de desarrollo incompletas
+      incomplete_warning_message: Algunas acciones de desarrollo están incompletas. ¿Está seguro de que desea marcar su IDP como completo?
       learning_from_others: Aprendiendo de otros
       manage_skills: Gestionar Habilidades
       marathon: Maratón
+      mark_as_complete: Mark as Complete
       no_development_actions: No hay acciones de desarrollo
       on_the_job: En el trabajo
       other: Otro
@@ -2472,9 +2503,12 @@ es-ES:
       remove: Eliminar
       skill: Habilidad
       sprint: Sprint
+      start_plan: Iniciar plan
       structured_learning: Aprendizaje estructurado
       submit_plan: Enviar Plan
       write_here: Escriba aquí...
+    edit_plan: Editar plan
+    edit_progress: Editar progreso
     initial_steps:
       add_skill_group_description: Basado en los resultados de su evaluación, aquí hay algunas áreas de fortalezas y desarrollo para usted. Elija las habilidades que desea desarrollar más como parte de su plan de desarrollo.
       add_skill_group_title: Explorando Sus Habilidades de %{category}
@@ -2491,6 +2525,7 @@ es-ES:
       rate_skills_title: Evaluando Sus Habilidades
       rating_column_header: Su autoevaluación
       reflective_questions: Preguntas de reflexión
+      save: Guardar
       select_skills: Seleccione sus habilidades
       select_skills_placeholder: Seleccionar habilidades
       selected_skills: Habilidades Seleccionadas
@@ -2505,11 +2540,13 @@ es-ES:
       graphs:
         categories: Categorías
       save_skills: Guardar Habilidades
+    new_comments: Nuevos comentarios
     pdf:
       approval_status: Estado de Aprobación
       cover:
         fields:
           assigned_data: Fecha Asignada
+          assigned_date: Fecha asignada
           completion_date: Fecha de Finalización
           division: División
           name: Nombre
@@ -2592,6 +2629,7 @@ es-ES:
       statuses:
         approved: Revisado y Aprobado
         completed: Completado
+        draft: Borrador
         not_reviewed: No Revisado
         pending_approval: En Revisión
       summary:
@@ -2610,6 +2648,7 @@ es-ES:
         library: Biblioteca PDI
         skills_count: Recuento de Habilidades
         title: Resumen del Informe
+    plan: Plan
     reflective_questions:
       already_completed: El PDI ya se ha completado, no puede responder a las preguntas ahora.
       answer_later: Respuesta
@@ -2627,12 +2666,18 @@ es-ES:
     skill_gap_report:
       title: Informe sobre el déficit de cualificaciones
     status: Estado
+    technical: Técnico
     user_idp_status:
       approved: Aprobado
+      completed: Completado
       draft: Borrador
+      in_progress: En progreso
       not_started: No iniciado
       pending_approval: Pendiente
+      rejected: Rechazado
     users: Usuarios
+    with_reflection_questions: Con preguntas de reflexión
+    without_reflection_questions: Sin preguntas de reflexión
   idp_templates:
     assign: Asignar
     assign_idp_template: Asignar plantilla Idp
@@ -3550,11 +3595,35 @@ es-ES:
       exactly: Exactamente %{count}
     nominations: Propuestas
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permitir que los evaluadores rechacen el nombramiento
+        email_subject_when_nomination_declined: Asunto del correo electrónico cuando se rechaza una candidatura
       form:
         value_not_valid: no tiene un valor válido
       global:
         cannot_re_edit: Los participantes no pueden editar las evaluaciones
         disable_all_evaluations: Desactivar todas las evaluaciones
+      manager:
+        allow_subjects_to_email: Permitir que los sujetos envíen un correo electrónico a los administradores cuando sus candidaturas estén listas para ser aprobadas.
+        approves_evaluations: El director aprueba las evaluaciones
+        approves_nominations: El Director aprueba los nombramientos
+        can_view_nominations: El administrador puede ver las candidaturas
+        email_managers_when_nomination_ready: Enviar un correo electrónico a los administradores cuando la candidatura de un sujeto esté lista para su aprobación
+        email_subject_when_nomination_denied: Asunto del correo electrónico cuando se deniega una candidatura
+        may_choose_evaluators: El gestor puede elegir a los evaluadores
+      subject:
+        allow_subjects_to_select_relationships: Permitir que los sujetos seleccionen las relaciones
+        anyone_in_assessment: Cualquiera que participe en la evaluación
+        anyone_in_datasheet: Cualquiera en la ficha técnica
+        anyone_not_in_assessment: Cualquier persona que no participe actualmente en la evaluación
+        can_view_evaluators: El sujeto puede ver a los evaluadores
+        define_nomination_requirement: Definir el requisito de nominación
+        limit_search_by_criteria: Limitar la búsqueda por criterios
+        nominates_evaluators: El sujeto nombra a los evaluadores
+        only_allow_relationships_of_specified_types: Permitir sólo relaciones de los tipos especificados
+        only_show_subjects_who_match_criteria: 'Mostrar sólo los sujetos que cumplan los siguientes criterios:'
+        self_evaluates: El sujeto se autoevalúa
+        subjects_cannot_remove_nominations: Los sujetos no pueden eliminar nominaciones establecidas por gestores o administradores
     or: O
     page_title: Revisión 360° de Signify (nivel de solicitud)
     participant_list:
@@ -3765,7 +3834,6 @@ es-ES:
       add: Añadir informe
       download: Descargar
       generate: Genere
-      regenerate: Volver a generar
     approval_statuses:
       approved: Aprobado
       change_requested: Cambio solicitado

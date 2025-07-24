@@ -169,7 +169,7 @@ export default function Emails ({
           onClick={saveTemplate}
         >
           <SaveOutlined />
-          Save
+          {I18n.t('administration.threesixty_campaigns.email_templates.save')}
         </Button>
       </Col>
       <SentTestEmailModal />
@@ -190,7 +190,7 @@ function ConsolidatedSwitch ({ selectedTemplate, update }) {
         onChange={(checked) => { update(selectedTemplate.id, 'consolidated', checked) }}
       />
       {'  '}
-      <span>Consolidated</span>
+      <span>{I18n.t('administration.threesixty_campaigns.email_templates.consolidated')}</span>
     </div>
   )
 }

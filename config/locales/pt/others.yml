@@ -329,12 +329,13 @@ pt:
             email:
               blank: O correio eletrónico não pode estar em branco
               not_uniq_email: A linha com o correio eletrónico já está presente
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Pelo menos um posto de trabalho deve estar ativado com um tipo de competência selecionado para %{block_name}
-              invalid_skill_type: 'Tipo de habilidade inválido %{skill_type} para %{role_name} para %{block_name}. Opções válidas: %{valid_options}'
-              props_missing: Emprego
+              at_least_one_job_role_required: Pelo menos uma função é necessária para %{skill_type} para %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Pelo menos um tipo de competência tem de estar ativado com uma função selecionada para %{block_name}
+              invalid_job_role_type: 'Função de trabalho inválida %{job_role} para %{skill_type} para %{block_name}. Opções válidas: %{valid_options}'
+              props_missing: Falta a configuração de competências para %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ pt:
           case_study: Estudos de caso
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulário do avaliador principal
           meeting: Reunião
           organisational: Inquéritos
           pearson: Pearson
@@ -789,6 +791,8 @@ pt:
           attributes:
             current_password:
               invalid: A palavra-passe atual está incorreta
+            manager_id:
+              cannot_be_self: O utilizador não pode ser atribuído como seu próprio gestor
         user_idp_comment:
           reply_to_reply: não é possível responder a uma resposta (apenas um nível de aninhamento permitido)
         user_idp_plan:
@@ -859,9 +863,9 @@ pt:
         import_raw_data: Importar dados brutos
         import_reflection_questions: Importar perguntas de reflexão
         import_scoring_data: Importar dados de avaliação
+        import_skill_rater_taxonomies: Importar taxonomias de avaliadores de competências
         import_skill_translations: Traduções de competências de importação
         import_skills: Competências de importação
-        import_skills_rater_taxonomies: Importar taxonomias de avaliadores de competências
         import_sms_invites: Importar convite SMS
         import_users: Importar utilizadores
         migrate_assessment_translations: Avaliação Tradução migração
@@ -1566,6 +1570,7 @@ pt:
     column:
       assessor_access: Acesso do assessor
       auto_assign: Atribuição automática
+      locales: Localidades
       main_report: Relatório principal
       report_bundle: Pacote de relatórios
       report_name: Nome do relatório
@@ -1588,6 +1593,13 @@ pt:
         apply: Aplique estas alterações aos utilizadores existentes nesta campanha.
         msg_text: Está a tentar eliminar o relatório <strong>"%{reportName}</strong>
         title: Remover relatório?
+      update_languages:
+        default_language: Língua por defeito
+        other_available_languages: Outras línguas disponíveis
+        select_default_language: Selecionar o idioma predefinido
+        select_languages: Selecionar línguas
+        success_msg: As línguas foram actualizadas com êxito
+        title: Idioma do relatório
       user_access:
         apply: Aplique estas alterações aos utilizadores existentes nesta campanha.
         title:
@@ -1744,6 +1756,7 @@ pt:
       import: Importação
       insert: Inserir
       ok: OK
+      publish: Publicar
       reject: Rejeitar
       remove: Remover
       reset: Repor
@@ -1759,6 +1772,7 @@ pt:
       start: Iniciar
       submit: Enviar
       unarchive: Desarquivar
+      unpublish: Cancelar a publicação
       unresolve: Reabrir
       update: Atualizar
       upload: Carregar
@@ -1862,7 +1876,6 @@ pt:
       default: Padrão
       download: Descarregar
       file: Ficheiro
-      global_export: A Global Export é uma exportação?
       global_import: A importação global?
       minutes: Minutos
       na: N/A
@@ -2065,6 +2078,7 @@ pt:
         reserved_subdomain: O subdomínio %{value} está reservado
         uniq_subdomain: O subdomínio deve ser único.
       add_manager:
+        cannot_be_self: O utilizador não pode ser atribuído como seu próprio gestor
         manager_not_found: O gestor não foi encontrado ou não faz parte do mesmo projeto
         user_not_found: Utilizador não encontrado ou que não faz parte do mesmo projeto
       admin:
@@ -2083,11 +2097,17 @@ pt:
       campaign_factor_group:
         group_already_exists: Já existe um grupo com o mesmo nome.
         last_factor_group: Não é possível eliminar o último grupo de factores de campanha.
+      campaign_idps:
+        idp_template_not_published: Este modelo de IDP ainda não foi publicado, publique -o antes de atribuir a campanha.
       cant_be_deleted: Este registo não pode ser eliminado
       client_feature:
         ai_assisted_idp_feature_error: Não pode ser verdade se o recurso de assistentes de IA estiver desativado
       create_superadmin:
         uniq_email: O correio eletrónico deve ser uniq.
+      development_actions:
+        only_global_skills_allowed: As competências selecionadas devem ser competências globais.
+        skills_not_belong_to_project: As competências selecionadas devem pertencer ao projeto especificado.
+        skills_required: Selecione pelo menos uma competência.
       exceeded_subjects_count: Só é possível adicionar %{count} temas por convite
       filled?: não pode estar em branco
       idp_template:
@@ -2135,6 +2155,7 @@ pt:
         start_time_should_be_less: A hora de início deve ser inferior à hora de fim
       user_idp_plan:
         idp_template_already_assigned_to_user: Este modelo de Idp já foi atribuído a este utilizador e está ativo
+        idp_template_not_published: Este modelo IDP ainda não foi publicado, publique -o antes de atribuir ao usuário.
       user_saved_filters:
         limit_exceeded: Só pode ter %{limit} filtros guardados, por favor elimine os filtros guardados para adicionar mais.
         unique_name: Já existe um filtro com o mesmo nome.
@@ -2195,6 +2216,9 @@ pt:
       no_active_plan: Não foi encontrado nenhum plano IDP ativo
     webhooks:
       multiple_webhook_error: o url não pode ser atualizado porque existem vários webhooks para este projeto.
+    workshop:
+      ical_generation_failed: Não foi possível gerar um convite de calendário
+      missing_or_invalid: Workshop_id em falta ou inválido
   evaluators:
     errors:
       can_not_processed: não pode ser processado
@@ -2456,6 +2480,7 @@ pt:
       aria_selected: Selecionado
   idp:
     actions: Acções
+    behavioral: Comportamental
     board: Direção
     comment_details:
       add_comment: Adicionar comentário
@@ -2520,6 +2545,7 @@ pt:
       submit_plan: Apresentar plano
       write_here: Escreva aqui...
     edit_plan: Editar plano
+    edit_progress: Editar o progresso
     initial_steps:
       add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
       add_skill_group_title: Explorar as suas competências de %{category}
@@ -2563,6 +2589,7 @@ pt:
       cover:
         fields:
           assigned_data: Data Atribuída
+          assigned_date: Data atribuída
           completion_date: Data de Conclusão
           division: Divisão
           name: Nome
@@ -2645,6 +2672,7 @@ pt:
       statuses:
         approved: Revisto e Aprovado
         completed: Concluído
+        draft: Projeto
         not_reviewed: Não Revisto
         pending_approval: Em Revisão
       summary:
@@ -2681,6 +2709,7 @@ pt:
     skill_gap_report:
       title: Relatório de défice de competências
     status: Estado
+    technical: Técnica
     user_idp_status:
       approved: Aprovado
       completed: Concluída |
@@ -3638,11 +3667,35 @@ pt:
       exactly: Exatamente %{count}
     nominations: Nomeações
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permitir que os avaliadores recusem a nomeação
+        email_subject_when_nomination_declined: Assunto do e-mail quando uma nomeação é recusada
       form:
         value_not_valid: não tem um valor válido
       global:
         cannot_re_edit: Os participantes não podem editar as avaliações
         disable_all_evaluations: Desativar todas as avaliações
+      manager:
+        allow_subjects_to_email: Permitir que os temas enviem mensagens de correio eletrónico aos gestores quando as suas nomeações estiverem prontas para aprovação
+        approves_evaluations: O gestor aprova as avaliações
+        approves_nominations: O gestor aprova as nomeações
+        can_view_nominations: O gestor pode ver as nomeações
+        email_managers_when_nomination_ready: Enviar um e-mail aos gestores quando a nomeação de um sujeito estiver pronta para aprovação
+        email_subject_when_nomination_denied: Assunto do correio eletrónico quando uma nomeação é recusada
+        may_choose_evaluators: O gestor pode escolher os avaliadores
+      subject:
+        allow_subjects_to_select_relationships: Permitir que os sujeitos seleccionem relações
+        anyone_in_assessment: Qualquer pessoa na avaliação
+        anyone_in_datasheet: Qualquer pessoa na ficha de dados
+        anyone_not_in_assessment: Qualquer pessoa que não esteja atualmente na avaliação
+        can_view_evaluators: O sujeito pode ver os avaliadores
+        define_nomination_requirement: Definir o requisito de nomeação
+        limit_search_by_criteria: Limitar a pesquisa por critérios
+        nominates_evaluators: O sujeito nomeia os avaliadores
+        only_allow_relationships_of_specified_types: Permitir apenas relações dos tipos especificados
+        only_show_subjects_who_match_criteria: 'Mostrar apenas os indivíduos que correspondem aos seguintes critérios:'
+        self_evaluates: Autoavaliação do sujeito
+        subjects_cannot_remove_nominations: Os sujeitos não podem remover nomeações definidas por gestores ou administradores
     or: Ou
     page_title: Revisão do Signify 360° – Nível de aplicação
     participant_list:
@@ -3857,7 +3910,6 @@ pt:
       add: Adicionar relatório
       download: Descarregar
       generate: Gerar
-      regenerate: Regenerar
     approval_statuses:
       approved: Aprovado
       change_requested: Alteração solicitada

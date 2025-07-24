@@ -174,6 +174,8 @@ th:
             title: เทมเพลต IDP
             view: ดู
           jobRoles:
+            export_translations: ส่งออกบทบาทงานแปล
+            import_translations: นำเข้าการแปลบทบาทงาน
             manage: จัดการ
             title: บทบาทในงาน
             view: ดู
@@ -292,10 +294,8 @@ th:
       ai_assistants: ผู้ช่วย AI
       ai_assistants_playground: สนามทดลองผู้ช่วย AI
       column:
-        ai_action: การดําเนินการของ AI
         provider: ผู้จัดหา
       form:
-        action: การดําเนินการ
         description: คำอธิบาย
         name: ชื่อ
         provider: ผู้จัดหา
@@ -844,6 +844,14 @@ th:
     campaign_factors_import:
       errors:
         invalid_headers: 'ส่วนหัวต่อไปนี้ไม่ถูกต้อง: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: กรุณาเลือกช่วงวันที่
+        modal:
+          subtitle: เลือกช่วงวันที่ จากนั้นเลือกภาษาที่ต้องการสำหรับแต่ละรายงาน
+      generate:
+        modal:
+          subtitle: เลือกภาษาที่ต้องการสำหรับแต่ละรายงาน
     campaign_templates:
       campaign_templates: เทมเพลตแคมเปญ
       column:
@@ -961,7 +969,9 @@ th:
             empty: เปล่า
             inactive: เกียจคร้าน
             name: ชื่อ
+            normal: ปกติ
             previous: ก่อน
+            skill_rater: ผู้ประเมินทักษะ
             standard: มาตรฐาน
             status: สถานะ
           close:
@@ -1069,6 +1079,7 @@ th:
         ai_assistants: ผู้ช่วย AI
         ai_assisted_idp: AI ช่วยเหลือ IDP
         global_skills: ทักษะระดับโลก
+        idp: ผู้พลัดถิ่นภายในประเทศ
         sms_notification: การแจ้งเตือนทาง SMS
     clients:
       api_keys:
@@ -1494,6 +1505,8 @@ th:
         update:
           successfully: โครงการ %{name} อัปเดตเรียบร้อยแล้ว
       registration_codes:
+        actions:
+          add_code: เพิ่มโค้ด
         column:
           code: รหัส
           usage_stats: สถิติการใช้งาน
@@ -1504,6 +1517,13 @@ th:
           incorrect_domain: รูปแบบโดเมนไม่ถูกต้อง
           invalid_end_date: ต้องมากกว่าวันที่เริ่มต้น
           license_issue: ใบอนุญาตไม่เพียงพอ
+        form:
+          active: แอคทีฟ
+          code: โค้ด
+          end_date: วันสิ้นสุด
+          name: ชื่อ
+          start_date: วันเริ่มงาน
+          total_count: จำนวนทั้งหมด
       resource:
         confirmations:
           delete:
@@ -1533,6 +1553,7 @@ th:
       reset: รี เซ็ต
       save: ประหยัด
       select_all: เลือกทั้งหมด
+      type: ประเภท
       unselect_all: ยกเลิกการเลือกทั้งหมด
     communication_settings: การตั้งค่า
     communications:
@@ -1621,6 +1642,7 @@ th:
         type: ประเภท
       list:
         actions: การดําเนินการ
+        assessment_center_group: ศูนย์ประเมินผลกลุ่ม
         author: สร้างโดย
         campaign: รณรงค์
         client_name: ลูกค้า
@@ -1768,6 +1790,7 @@ th:
       errors:
         blank_field: 'แถว %{row}: %{field} ต้องไม่ว่างเปล่า'
         csv_file_required: ต้องเป็นไฟล์ CSV
+        development_action_not_in_project: 'ไลน์%{row}: การดำเนินการพัฒนา ID%{development_action_id} ไม่เกี่ยวข้องกับโครงการนี้'
         image_download_failed: 'ดาวน์โหลดรูปภาพจาก %{url} ไม่สําเร็จ: %{message}'
         invalid_csv_format: 'รูปแบบ CSV ไม่ถูกต้อง: %{message}'
         invalid_date: รูปแบบวันที่สําหรับ %{date} ไม่ถูกต้อง
@@ -2097,10 +2120,13 @@ th:
       all: ทั้งหมด
       appearance: ลักษณะ
       appearance_hint: หากต้องการแก้ไขรูปลักษณ์ โปรดบันทึกเทมเพลต IDP ก่อนเพื่อเปิดใช้งานการตั้งค่าเหล่านี้
+      appearance_success: การตั้งค่าการแสดงผลบันทึกไว้เรียบร้อยแล้ว
       background_image: ภาพพื้นหลัง
       behavioral_skills: ทักษะพฤติกรรม
       client_skills: ทักษะของลูกค้า
+      details_updated: รายละเอียดผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จแล้ว
       edit_template: แก้ไขเทมเพลต IDP
+      enter_tag_or_skills_error: เลือกอย่างน้อยหนึ่งแท็กหรือทักษะ
       enter_template_description: คำอธิบาย
       enter_template_description_error: จําเป็นต้องมีคําอธิบายเทมเพลต
       enter_template_name: ชื่อ
@@ -2109,6 +2135,7 @@ th:
         update: ไม่อนุญาตให้อัปเดตเนื่องจากเทมเพลต IDP เชื่อมโยงกับแผน IDP ของผู้ใช้อยู่แล้ว การเปลี่ยนแปลงรูปลักษณ์ถูกบันทึกไว้
       fields:
         assigned_data: ข้อมูลที่ได้รับมอบหมาย
+        assigned_date: วันที่กำหนด
         completion_date: วันที่เสร็จสมบูรณ์
         division: แผนก
         name: ชื่อ
@@ -2146,6 +2173,11 @@ th:
       show_reflections: แสดงภาพสะท้อน
       skill_gap_report: รายงานช่องว่างทักษะ
       skills: ทักษะ
+      skills_updated: ทักษะ IDP ได้รับการอัปเดตสำเร็จ
+      status:
+        draft: ร่าง
+        published: เผยแพร่แล้ว
+      status_updated: สถานะผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จ
       subtitle_text: ข้อความคําบรรยาย
       tab:
         development_actions: การดําเนินการพัฒนา
@@ -2378,43 +2410,43 @@ th:
         rescheduled: เลื่อนกําหนดเวลา
       subject: ชื่อเรื่อง
     job_role:
+      are_you_sure_to_remove: คุณแน่ใจหรือไม่ที่จะลบ?
       column:
         job_group: กลุ่มงาน
+        skill_name: ชื่อทักษะ
       export:
         failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
         success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
-      export_action:
-        translations: ส่งออกคําแปลบทบาทงาน
       form:
         code: รหัส
         description: คำอธิบาย
         job_group: กลุ่มงาน
         name: ชื่อ
         title: บทบาทงาน
-      global: เป็นบทบาทงานระดับโลกหรือไม่?
       import:
         download_example_csv: ดาวน์โหลดตัวอย่าง csv
         success_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
       import_action:
         translations: นําเข้าการแปลบทบาทงาน
+      job_role_details: รายละเอียดตำแหน่งงาน
       translations: การแปลบทบาทงาน
     job_role_skill_mapping:
       column:
         expected_proficiency_level: ระดับความชํานาญที่คาดหวัง
-        job_role: บทบาทงาน
-        skill: ทักษะ
       form:
-        expected_proficiency_level: ระดับความชํานาญที่คาดหวัง
-        job_role: บทบาทงาน
-        skill: ทักษะ
         title: การทําแผนที่งานทักษะ
-      global: การทําแผนที่งานทักษะระดับโลกหรือไม่?
       import:
         taxonomy: อนุกรมวิธาน
     job_roles:
       export:
         translations:
           details: ราย ละเอียด
+      translations:
+        import:
+          errors:
+            job_role_not_found: ตำแหน่งงานที่มีรหัส ID%{id} ไม่พบ
+            missing_columns: คอลัมน์ที่จำเป็นหายไป:%{columns}
+            save_failed: เกิดข้อผิดพลาดในการประมวลผลรหัสตำแหน่งงาน%{id}:%{message}
     libraries:
       create:
         successfully: รายการ %{name} ถูกสร้างขึ้นเรียบร้อยแล้ว
@@ -2701,14 +2733,11 @@ th:
           level_definition_must_match_level: ต้องมีระดับ %{expected} พอดี แต่ได้รับ %{actual}
           must_be_unique: ต้องไม่ซ้ํากัน
           proficiency_level_exists: ระดับความชํานาญที่มีทักษะและโครงการนี้มีอยู่แล้ว
-          proficiency_level_exists_for_all_skills: ระดับความชํานาญสําหรับทักษะทั้งหมดออกแล้ว
-          proficiency_level_exists_for_category: ระดับความชํานาญสําหรับหมวดหมู่นี้มีอยู่แล้ว
-          project_level_all_skills_exists: ระดับความเชี่ยวชาญ 'all_skills' มีอยู่แล้ว
+          proficiency_level_exists_for_default: ระดับความสามารถสำหรับค่าเริ่มต้นมีอยู่แล้ว
+          proficiency_level_exists_for_type: ระดับความสามารถสำหรับประเภทนี้มีอยู่แล้ว
+          project_level_default_exists: ระดับความสามารถ 'เริ่มต้น' มีอยู่แล้ว
           skill_must_exist: ต้องมีทักษะสําหรับ 'by_skill' proficiency_type
       export:
-        actions:
-          proficiency: ความเชี่ยวชาญด้านการส่งออก
-          translations: การแปลความเชี่ยวชาญด้านการส่งออก
         details: ราย ละเอียด
         failure_msg: ข้อผิดพลาดขณะส่งออกระดับความชํานาญ
         success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
@@ -2721,28 +2750,19 @@ th:
         proficiency_translations: การแปลความเชี่ยวชาญ
         proficiency_type: ประเภทความเชี่ยวชาญ
         skill: ทักษะ
-        skill_category: หมวดหมู่ทักษะ
         skill_name: ชื่อทักษะ
+        skill_type: ประเภททักษะ
         title: ความสามารถ
-      global: มีความเชี่ยวชาญระดับโลกหรือไม่?
       import:
         actions:
           proficiency: ความเชี่ยวชาญในการนําเข้า
           translations: นําเข้าการแปลความสามารถ
         errors:
-          all_skills_global_exists: 'แถว %{row_number}: มี ''all_skills'' ระดับ ProficiencyLevel อยู่แล้ว'
-          all_skills_project_exists: 'แถว %{row_number}: ระดับโครงการ ''all_skills'' ProficiencyLevel มีอยู่แล้ว'
-          by_category_exists: 'แถว %{row_number}: ระดับความเชี่ยวชาญ ''by_category'' มีอยู่แล้วสําหรับโครงการและหมวดหมู่ทักษะนี้'
-          by_category_missing: 'แถว %{row_number}: ต้องมีโครงการและหมวดหมู่ทักษะสําหรับประเภท ''by_category'''
           by_skill_exists: 'แถว %{row_number}: ระดับความเชี่ยวชาญ ''by_skill'' มีอยู่แล้วสําหรับโครงการและทักษะนี้'
           by_skill_missing: 'แถว %{row_number}: ต้องมีโครงการและทักษะสําหรับประเภท ''by_skill'''
           invalid_csv_format: 'รูปแบบ CSV ไม่ถูกต้อง: %{message}'
-          invalid_json: 'บรรทัด %{line}: JSON ไม่ถูกต้องใน LevelDefinition - %{message}'
-          invalid_json_structure: ต้องเป็นออบเจ็กต์ JSON ที่มีคีย์เช่น 'description' และ 'summary'
           invalid_proficiency_type: 'แถว %{row_number}: ProficiencyType ไม่ถูกต้องหรือขาดหายไป'
           missing_columns: 'คอลัมน์ที่ต้องมีหายไป: %{fields}'
-          missing_required_fields: 'บรรทัด %{line}: ไม่มีช่องที่ต้องกรอก (%{fields})'
-          save_failed: 'บรรทัด %{line}: %{message}'
           skill_not_found: 'แถว %{row_number}: สกิลไม่ถูกต้องหรือขาดหายไป'
         job_queued: งานนําเข้าระดับความชํานาญถูกจัดคิว
       translations:
@@ -2759,9 +2779,9 @@ th:
             row_id_blank: 'แถว %{row}: ID ต้องไม่ว่างเปล่า'
             save_failed: 'การประมวลผลรหัสทักษะ %{id} ผิดพลาด: %{message}'
       type:
-        all_skills: ทักษะทั้งหมด
-        by_category: ตามหมวดหมู่
         by_skill: ตามทักษะ
+        by_skill_type: ตามประเภททักษะ
+        default: ค่าเริ่มต้น
     profile:
       change_password: เปลี่ยนรหัสผ่าน
       details: ราย ละเอียด
@@ -3123,6 +3143,7 @@ th:
         user_name: ชื่อผู้ใช้
       dashboard: แผงหน้าปัด
       download: ดาวน์โหลด
+      report_approval_settings: การตั้งค่าการอนุมัติรายงาน
       report_approvals: การอนุมัติรายงาน
       review: ตรวจสอบ
       saving_filters:
@@ -3244,6 +3265,15 @@ th:
         successfully: รายงาน '%{name}' ถูกลบเรียบร้อยแล้ว
       edit:
         header: แก้ไขชื่อรายงาน
+      edit_default_language:
+        agreement: ใช่ ฉันเข้าใจผลกระทบที่อาจเกิดขึ้นจากการเปลี่ยนแปลงภาษาเริ่มต้น
+        title: แก้ไข ภาษาเริ่มต้น
+        tooltip: แก้ไข ภาษาเริ่มต้น
+        warning:
+          description_li_1: การเปลี่ยนภาษาเริ่มต้นจากภาษา RTL เป็นภาษา LTR หรือในทางกลับกัน จะส่งผลต่อเค้าโครง
+          description_li_2: คุณจะต้องทำการแก้ไขการแปลรายงานใหม่หากคุณเปลี่ยนภาษาเริ่มต้น
+          description_li_3: โปรดดาวน์โหลดสำเนาการแปลรายงานก่อนทำการเปลี่ยนแปลงนี้
+          title: กรุณาอ่านคำแนะนำอย่างละเอียด
       modals:
         remap_assessment:
           new_assessment_name: ชื่อการประเมินใหม่
@@ -3286,6 +3316,9 @@ th:
         successfully: รายงานอัปเดตเรียบร้อยแล้ว
       update:
         successfully: รายงาน %{name} อัปเดตเรียบร้อยแล้ว
+    reports_language_selection_modal:
+      download: ดาวน์โหลดรายงาน
+      generate: รายงานสร้างขึ้น
     resource:
       remove_confirm:
         message: คุณแน่ใจหรือไม่ว่าต้องการลบทรัพยากรนี้?
@@ -3692,6 +3725,7 @@ th:
         import:
           missing_fields_data: 'บรรทัด %{line_number}: ไม่มีช่องที่ต้องกรอก: %{fields}'
           save_failed: 'บรรทัด %{line_number}: บันทึกทักษะ ''%{name}'': %{message} ไม่สําเร็จ'
+          skill_not_in_project: 'ไลน์%{line_number}: รหัสทักษะ%{skill_id} ไม่เป็นของโปรเจ็กต์นี้'
         search:
           all_and_project_id_mutually_exclusive: ทั้งหมดไม่สามารถเป็นจริงได้เมื่อมีการให้ project_id_eq
           invalid_all_value: 'ต้องเป็นหนึ่งใน: จริงเท็จ'
@@ -3702,12 +3736,8 @@ th:
         details: ราย ละเอียด
         failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
         success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
-        title: ส่งออก
         translations:
           details: การแปลทักษะ
-      export_action:
-        skills_title: ทักษะการส่งออก
-        skills_translations_title: การแปลทักษะการส่งออก
       form:
         client_placeholder: เลือกลูกค้า
         description: คำอธิบาย
@@ -3716,9 +3746,6 @@ th:
         skill_group: กลุ่มทักษะ
         skill_type: ประเภททักษะ
         title: ทักษะ
-      global: เป็นทักษะระดับโลกหรือไม่?
-      global_skills: ทักษะระดับโลก
-      global_translations: การแปลทักษะระดับโลก
       import:
         download_example_csv: ดาวน์โหลดตัวอย่าง csv
         info_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
@@ -3728,8 +3755,6 @@ th:
         skills_translations_title: การแปลทักษะการนําเข้า
       skill_details: รายละเอียดทักษะ
       skill_translations: การแปลทักษะ
-      skill_translations_project: การแปลทักษะตามโครงการ
-      skills_project: ทักษะตามโครงการ
       title: ทักษะ
       translations:
         import:
@@ -3740,7 +3765,6 @@ th:
             skill_not_found: ไม่พบสกิลที่มี ID %{id}
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: การแมปงานทักษะ
         job_roles: บทบาทงาน
         proficiency: ความสามารถ
         skills: ทักษะ
@@ -3893,7 +3917,25 @@ th:
         successfully: ปัจจัยย่อยอัปเดตเรียบร้อยแล้ว
     survey_builder:
       builder_area:
+        current_job: งานปัจจุบัน
+        default_not_applicable_label: ไม่มีโอกาสที่จะเรียนรู้เกี่ยวกับหรือแสดงทักษะ
+        enable_not_applicable: เปิดใช้งานตัวเลือก N/A
+        enable_required_validation: เปิดใช้งานการตรวจสอบความถูกต้องที่จำเป็น
+        force_response: การตอบสนองด้วยกำลัง
+        job_role_required: กรุณาเลือกอย่างน้อยหนึ่งบทบาทงาน
+        not_applicable_label: ป้ายกำกับไม่เกี่ยวข้อง
         options: ตัวเลือก
+        request_response: คำขอการตอบกลับ
+        skill_rater_config: การกำหนดค่าผู้ประเมินทักษะ
+        target_job: ตำแหน่งงานเป้าหมาย
+      models:
+        block_types:
+          regular: ปกติ
+          skill_rater: ผู้ประเมินทักษะ
+        skill_types:
+          behavioural: พฤติกรรม
+          other: อื่นๆ
+          technical: เทคนิค
       property_panel:
         add_n_a_option: เพิ่มตัวเลือก N/A
         allow_content_copy: อนุญาตการคัดลอกเนื้อหา
@@ -3950,7 +3992,6 @@ th:
         taxonomy: อนุกรมวิธานนําเข้า
       job_roles: บทบาทงาน
       proficiency: ความสามารถ
-      skill_job_mappings: การแมปงานทักษะ
       skills: ทักษะ
       title: อนุกรมวิธาน
     templates:
@@ -4053,6 +4094,7 @@ th:
           invitations: คำ เชิญ
           reminders: หมายเหตุ
           report_ready: รายงานพร้อม
+        consolidated: รวมกัน
         custom_message:
           description: ข้อความนี้สามารถส่งไปยังทุกคนที่เข้าร่วมการประเมิน
           name: ข้อความที่กําหนดเอง
@@ -4076,7 +4118,10 @@ th:
         request_approval:
           description: ข้อความนี้จะถูกส่งไปยังผู้จัดการเมื่อหัวเรื่องร้องขอการอนุมัติ
           name: ขออนุมัติ
+        save: บันทึก
+        schedule: ตารางเวลา
         schedule_email: กําหนดเวลาอีเมล
+        schedule_email_title: กำหนดเวลาอีเมล
         schedule_time: กําหนดเวลา
         send_test_email: ส่งอีเมลทดสอบ
         subject: ชื่อเรื่อง
@@ -4117,6 +4162,14 @@ th:
         welcome_message:
           description: ข้อความนี้จะแสดงต่อผู้เข้ารับการทดสอบเมื่อพวกเขาเข้าสู่ระบบเพื่อเริ่มการประเมินหรือดูรายการงานของพวกเขา
           name: ข้อความต้อนรับ
+      mail_history:
+        actions: การกระทำ
+        date: วันที่
+        download_details: รายละเอียดการดาวน์โหลด
+        emails_sent: อีเมลที่ส่งแล้ว
+        recipient: ผู้รับ
+        status: สถานะ
+        subject: เรื่อง
       manage:
         assessment: การประเมิน
         dimension: มิติ
@@ -4124,19 +4177,45 @@ th:
         report: รายงาน
         title: จัดการ
       menu:
+        actions: การกระทำ
         datasheet:
           title: เอกสารข้อมูลสินค้า
         messages:
+          allow_subjects_to_send_reminders: อนุญาตให้ผู้เข้าร่วมส่งการแจ้งเตือนไปยังผู้ประเมิน
+          automatically_send_invites: ส่งคำเชิญไปยังผู้ประเมินใหม่โดยอัตโนมัติ
           title: ข้อความ
         participants:
+          columns:
+            action: การกระทำ
+            email: อีเมล
+            evaluations_completed: การประเมินเสร็จสิ้น
+            evaluations_received: การประเมินที่ได้รับ
+            is_subject: คือ หัวข้อ
+            name: ชื่อ
+            report_status: สถานะรายงาน
+            status: สถานะ
+          evaluators:
+            add_evaluators: เพิ่มผู้ประเมิน
+            import_evaluators: ผู้ประเมินการนำเข้า
+            title: ผู้ประเมิน
+          managers:
+            title: ผู้จัดการ
+          options:
+            evaluator_options: ตัวเลือกของผู้ประเมิน
+            global: ตัวเลือกระดับโลก
+            manager_options: ตัวเลือกของผู้จัดการ
+            subject_options: ตัวเลือกวิชา
+            title: ตัวเลือก
           subjects:
             add_subjects: เพิ่มหัวเรื่อง
             current_job_role: บทบาทงานปัจจุบัน
             email: อีเมล
             first_name: ชื่อ
+            import_subjects: นำเข้าหัวข้อ
             last_name: นามสกุล
             locale: สถานที่เกิดเหตุ
             target_job_role: บทบาทงานเป้าหมาย
+            title: หัวข้อ
           title: คน
         report:
           menu:
@@ -4152,8 +4231,26 @@ th:
         mail_history: ประวัติอีเมล
         options: ตัวเลือก
       reports:
+        add_conditions: เพิ่มเงื่อนไข
+        administrator_approves_reports: ผู้ดูแลระบบอนุมัติรายงาน
+        allow_manager_to_view_individual_responses: อนุญาตให้ผู้จัดการดูคำตอบของแต่ละบุคคล
+        disable_report_download: ปิดการดาวน์โหลดรายงาน
+        edit_email: แก้ไขอีเมล
+        email_manager_when_report_is_ready_for_approval: ผู้จัดการอีเมลเมื่อรายงานพร้อมสำหรับการอนุมัติ
+        email_subject_when_report_becomes_available: หัวข้ออีเมลเมื่อรายงานพร้อมใช้งาน
+        email_subjects_manager_when_available: ส่งอีเมลแจ้งผู้จัดการเรื่องหัวเรื่องเมื่อรายงานพร้อมใช้งาน
+        make_report_available_to_subject_when: 'ให้รายงานพร้อมใช้งานแก่ผู้เกี่ยวข้องเมื่อ:'
+        manager_approves_reports: ผู้จัดการอนุมัติรายงาน
+        manager_can_access_subject_reports: ผู้จัดการสามารถเข้าถึงรายงานตามหัวข้อได้
+        manager_cannot_access_subject_reports: ผู้จัดการไม่สามารถดูรายงานได้จนกว่าจะตอบสนองความต้องการ
+        report_access: การเข้าถึงรายงาน
+        report_approval: รายงานการอนุมัติ
+        report_availability: รายงานความพร้อมใช้งาน
         show:
           title: รายงานเรื่อง
+        subject_can_access_reports: ผู้ใช้สามารถเข้าถึงรายงานของตนได้
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: มาร์คใบอนุญาตเป็นยกเลิกการใช้งาน
     time_zone: เขตเวลา
     tools: เครื่อง มือ
     translations:

@@ -22,44 +22,44 @@ module Api
           end
         end
 
-        # Validate presence and uniqueness for `by_category`
+        # Validate presence and uniqueness for `by_skill_type`
         rule(data: { attributes: :proficiency_type }) do
           attrs = values[:data][:attributes]
           type = attrs[:proficiency_type]
-          next unless type == 'by_category'
+          next unless type == 'by_skill_type'
 
-          skill_category = attrs[:skill_category]
+          skill_type = attrs[:skill_type]
           project_id = values.dig(:data, :relationships, :project, :data, :id)&.to_i
 
-          if skill_category.blank?
+          if skill_type.blank?
             key.failure(
               I18n.t(
                 'administration.proficiency_levels.errors.create.global_category_not_allowed_for_project'
               )
             )
 
-          elsif ::ProficiencyLevel.exists?(proficiency_type: 'by_category', project_id: project_id,
-                                           skill_category: skill_category)
-            key.failure(I18n.t('administration.proficiency_levels.errors.create.proficiency_level_exists_for_category'))
+          elsif ::ProficiencyLevel.exists?(proficiency_type: 'by_skill_type', project_id: project_id,
+                                           skill_type: skill_type)
+            key.failure(I18n.t('administration.proficiency_levels.errors.create.proficiency_level_exists_for_type'))
           end
         end
 
-        # Validate presence and uniqueness for `all_skills`
+        # Validate presence and uniqueness for `default`
         rule(data: { attributes: :proficiency_type }) do
           attrs = values[:data][:attributes]
           type = attrs[:proficiency_type]
-          next unless type == 'all_skills'
+          next unless type == 'default'
 
-          attrs[:skill_category]
+          attrs[:skill_type]
           project_id = values.dig(:data, :relationships, :project, :data, :id)&.to_i
 
           if project_id
-            if ::ProficiencyLevel.exists?(proficiency_type: 'all_skills', project_id: project_id)
-              key.failure(I18n.t('administration.proficiency_levels.errors.create.project_level_all_skills_exists'))
+            if ::ProficiencyLevel.exists?(proficiency_type: 'default', project_id: project_id)
+              key.failure(I18n.t('administration.proficiency_levels.errors.create.project_level_default_exists'))
             end
-          elsif ::ProficiencyLevel.exists?(proficiency_type: 'all_skills', project_id: nil)
+          elsif ::ProficiencyLevel.exists?(proficiency_type: 'default', project_id: nil)
             key.failure(
-              I18n.t('administration.proficiency_levels.errors.create.proficiency_level_exists_for_all_skills')
+              I18n.t('administration.proficiency_levels.errors.create.proficiency_level_exists_for_default')
             )
           end
         end

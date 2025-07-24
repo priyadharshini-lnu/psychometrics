@@ -11,7 +11,7 @@ module Api
         VALID_DEVELOPMENT_ACTION_TYPES = %w[course default].freeze
         VALID_LEARNING_STYLES = %w[structured_learning learning_from_others on_the_job].freeze
 
-        attr_accessor :file
+        attr_accessor :file, :project_id
 
         validates :file, presence: true
         validate :validate_file_format
@@ -76,6 +76,7 @@ module Api
           validate_development_action_type(row, row_number)
           validate_duration(row, row_number)
           validate_available_languages(row, row_number)
+          validate_development_action_belongs_to_project(row, row_number)
         end
 
         def validate_available_languages(row, row_number)
@@ -160,6 +161,22 @@ module Api
                                      row: row_number,
                                      value: row['DevelopmentActionType'],
                                      valid_development_action_types: VALID_DEVELOPMENT_ACTION_TYPES.join(', ')))
+          end
+        end
+
+        def validate_development_action_belongs_to_project(row, row_number)
+          return if row['ID'].blank? || project_id.blank?
+
+          development_action = ::DevelopmentAction.find_by(id: row['ID'])
+          if development_action.present? && development_action.project_id != project_id
+            errors.add(
+              :base,
+              I18n.t(
+                'administration.development_action_import.errors.development_action_not_in_project',
+                row: row_number,
+                development_action_id: row['ID']
+              )
+            )
           end
         end
       end

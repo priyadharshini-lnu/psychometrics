@@ -124,6 +124,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
         filter: {
           name_cont: value,
           project_id_eq: projectIdParam || projectIdFilter,
+          ...(!projectIdParam && !projectIdFilter && { global }),
         },
         fields: { skills: ['name'] },
         include: ['project'],

@@ -29,13 +29,6 @@ Rails.application.routes.draw do
 
   get '/admin', to: 'administration/app#dashboard', as: :admin
   get '/admin/meet/:room_id', to: 'administration/app#dashboard', as: :admin_meeting
-
-  # TODO: remove this once we move Threesixty use common campaign type route
-  get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id/*all',
-      to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}/%{all}')
-  get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id',
-      to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}')
-  get '/admin/clients/:client_id/*all', to: 'administration/app#dashboard'
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'
@@ -237,12 +230,13 @@ Rails.application.routes.draw do
             patch :toggle_auto_assign
             patch :toggle_user_dashboard
             patch :toggle_main_report
+            patch :update_default_and_available_locales
           end
         end
         resources :user_idp_reports do
           member do
             get :pdf_preview
-            get :download
+            post :download
           end
         end
         resources :user_reports do
@@ -925,6 +919,7 @@ as: :simulation_progress_notification
           get :fetch_invite
           post :reschedule_or_request_reschedule
           post :cancel_or_request_cancellation
+          get :download_ical
         end
       end
 
@@ -1214,6 +1209,7 @@ as: :simulation_progress_notification
             jsonapi_resources :idp_templates, only: %i[index create update destroy show],
               controller: 'projects/idp_templates' do
                 post :uploads, on: :member
+                post :update_appearance, on: :member
                 post :update_reflection_questions, on: :member
                 post :update_instructions, on: :member
               end
@@ -1529,7 +1525,7 @@ as: :simulation_progress_notification
 
           jsonapi_resources :user_saved_filters, only: %i[index create update destroy]
 
-          jsonapi_resources :skills_rater_assessments do
+          jsonapi_resources :skill_rater_assessments do
             collection do
               post :import_taxonomies
             end
@@ -1550,6 +1546,7 @@ as: :simulation_progress_notification
               post :import_translations
               post :export
               post :export_translations
+              get :skill_proficiency
             end
           end
 
@@ -1558,7 +1555,8 @@ as: :simulation_progress_notification
           jsonapi_resources :skill_groups, only: %i[index]
 
           namespace :ai do
-            jsonapi_resources :assistants, relationships: false do
+            jsonapi_resources :assistants do
+              jsonapi_relationships
               member do
                 post :generate
               end

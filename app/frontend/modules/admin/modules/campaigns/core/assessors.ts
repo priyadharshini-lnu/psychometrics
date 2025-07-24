@@ -108,6 +108,7 @@ export const fetch = (campaignId: string, tableConfig: TableConfig) => ({
     tableConfig,
     url: `/administration/new_campaigns/${campaignId}/assessors`,
     typedResponse: FetchAssessorsTR,
+    loader: true,
   },
 })
 

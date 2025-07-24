@@ -54,6 +54,7 @@ export type CampaignTemplate = t.TypeOf<typeof CampaignTemplate>
 const Assessment = t.type({
   id: t.number,
   name: t.string,
+  skillRater: t.boolean,
 })
 export type Assessment = t.TypeOf<typeof Assessment>
 

@@ -397,24 +397,24 @@ export const selectRecords = (ids: number[]) => ({
 })
 
 
-export const regenerateReports = (campaignId: number, ids: number[]) => ({
+export const regenerateReports = (campaignId: number,
+  selectedReports: { [key: string]: string[] }, userId: string, ids: number[]) => ({
   type: REGENERATE_REPORTS,
-  ids,
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_reports/regenerate`,
-    body: { ids },
+    body: { selectedReports, userId, ids },
     loader: true,
   },
 })
 
-export const bulkDownload = (campaignId: number, ids: number[]) => ({
+export const bulkDownload = (campaignId: number,
+  selectedReports: { [key: string]: string[] }, userId: string, ids: number[]) => ({
   type: BULK_DOWNLOAD,
-  ids,
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_reports/bulk_download`,
-    body: { ids },
+    body: { selectedReports, userId, ids },
     loader: true,
   },
 })

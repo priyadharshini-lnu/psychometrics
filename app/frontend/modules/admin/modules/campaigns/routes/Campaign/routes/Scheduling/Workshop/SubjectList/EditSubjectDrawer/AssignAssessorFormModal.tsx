@@ -126,6 +126,32 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
       message: I18n.t('administration.scheduling.errors.meeting_link_https'),
     }] : [{ required: true }]
 
+  const assessorsOptions = useMemo(() => {
+    if (!assessors) return []
+    if (assessment?.source === ASSESSMENT_SOURCE.ASSESSOR_USER_ASSESSMENT) {
+      if (!assessment.assessor) return []
+      return [{
+        userId: assessment.assessor.id,
+        name: assessment.assessor.name,
+      }]
+    }
+    return assessors.map(assessor => ({
+      userId: assessor.userId,
+      name: assessor.name,
+    }))
+  }, [assessors, assessment])
+
+  const assessmentOptions = useMemo(() => {
+    if (assessment?.source === ASSESSMENT_SOURCE.ASSESSOR_USER_ASSESSMENT) {
+      if (!assessment.assessmentId) return []
+      return [{
+        assessmentId: assessment.assessmentId,
+        name: assessment.name,
+      }]
+    }
+    return campaignAssessorAssessments
+  }, [campaignAssessorAssessments, assessment])
+
   return (
     <Modal
       title={assessment ? I18n.t('administration.scheduling.subjects.edit_assessor_form')
@@ -164,7 +190,7 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
               }
             }
           >
-            {campaignAssessorAssessments?.map(assessment => (
+            {assessmentOptions?.map(assessment => (
               <Select.Option
                 key={assessment.assessmentId}
                 value={assessment.assessmentId}
@@ -183,7 +209,7 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
             disabled={assessment?.source === ASSESSMENT_SOURCE.ASSESSOR_USER_ASSESSMENT}
             onChange={() => setError(undefined)}
           >
-            {assessors?.map(assessor => (
+            {assessorsOptions?.map(assessor => (
               <Select.Option
                 key={assessor.userId}
                 value={assessor.userId}

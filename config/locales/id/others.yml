@@ -329,12 +329,13 @@ id:
             email:
               blank: Email tidak boleh kosong
               not_uniq_email: Baris dengan email sudah ada
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Setidaknya satu peran pekerjaan harus diaktifkan dengan jenis keterampilan yang dipilih untuk %{block_name}
-              invalid_skill_type: 'Jenis keterampilan yang tidak valid %{skill_type} untuk %{role_name} untuk %{block_name}. Opsi yang valid: %{valid_options}'
-              props_missing: Pekerjaan
+              at_least_one_job_role_required: Setidaknya satu peran pekerjaan diperlukan untuk %{skill_type} untuk %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Setidaknya satu jenis keterampilan harus diaktifkan dengan peran pekerjaan yang dipilih untuk %{block_name}
+              invalid_job_role_type: 'Peran pekerjaan yang tidak valid %{job_role} untuk %{skill_type} untuk %{block_name}. Opsi yang valid: %{valid_options}'
+              props_missing: Konfigurasi keterampilan tidak ada untuk %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ id:
           case_study: Studi Kasus
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulir Penilai Utama
           meeting: Rapat
           organisational: Survei
           pearson: Pearson
@@ -789,6 +791,8 @@ id:
           attributes:
             current_password:
               invalid: Kata sandi saat ini salah
+            manager_id:
+              cannot_be_self: Pengguna tidak dapat ditugaskan sebagai manajer mereka sendiri
         user_idp_comment:
           reply_to_reply: tidak dapat membalas balasan (hanya satu tingkat bersarang yang diizinkan)
         user_idp_plan:
@@ -859,9 +863,9 @@ id:
         import_raw_data: Impor Data Mentah
         import_reflection_questions: Impor Pertanyaan Refleksi
         import_scoring_data: Impor Data Penilaian
+        import_skill_rater_taxonomies: Impor Taksonomi Penilaian Keterampilan
         import_skill_translations: Impor Terjemahan Keterampilan
         import_skills: Keterampilan Impor
-        import_skills_rater_taxonomies: Impor Taksonomi Penilaian Keterampilan
         import_sms_invites: Impor Undangan SMS
         import_users: Impor Pengguna
         migrate_assessment_translations: Migrasi Terjemahan Penilaian
@@ -1557,6 +1561,7 @@ id:
     column:
       assessor_access: Akses Penilai
       auto_assign: Tetapkan Otomatis
+      locales: Lokal
       main_report: Laporan Utama
       report_bundle: Bundel Laporan
       report_name: Nama laporan
@@ -1579,6 +1584,13 @@ id:
         apply: Terapkan perubahan ini ke pengguna yang sudah ada di kampanye ini.
         msg_text: Anda mencoba menghapus Laporan <strong>"%{reportName}"</strong>
         title: Hapus Laporan?
+      update_languages:
+        default_language: Bahasa Default
+        other_available_languages: Bahasa lain yang tersedia
+        select_default_language: Pilih Bahasa default
+        select_languages: Pilih Bahasa
+        success_msg: Bahasa berhasil diperbarui
+        title: Bahasa Laporan
       user_access:
         apply: Terapkan perubahan ini ke pengguna yang sudah ada di kampanye ini.
         title:
@@ -1735,6 +1747,7 @@ id:
       import: Mengimpor
       insert: Memasukkan
       ok: OKE
+      publish: Menerbitkan
       reject: Menolak
       remove: Menghapus
       reset: Atur ulang
@@ -1750,6 +1763,7 @@ id:
       start: Mulai
       submit: Tunduk
       unarchive: Tidak diarsipkan
+      unpublish: Batalkan penerbitan
       unresolve: Tidak terselesaikan
       update: Memperbarui
       upload: Unggah
@@ -1853,7 +1867,6 @@ id:
       default: Default
       download: Unduh
       file: Arsip
-      global_export: Apakah Ekspor Global?
       global_import: Apakah Impor Global?
       minutes: Menit
       na: N/A
@@ -2083,6 +2096,7 @@ id:
         reserved_subdomain: Subdomain %{value} dicadangkan
         uniq_subdomain: Subdomain harus unik.
       add_manager:
+        cannot_be_self: Pengguna tidak dapat ditugaskan sebagai manajer mereka sendiri
         manager_not_found: Manajer tidak ditemukan atau bukan bagian dari proyek yang sama
         user_not_found: Pengguna tidak ditemukan atau bukan bagian dari proyek yang sama
       admin:
@@ -2101,11 +2115,17 @@ id:
       campaign_factor_group:
         group_already_exists: Grup dengan nama yang sama sudah ada.
         last_factor_group: Tidak dapat menghapus grup faktor Kampanye terakhir.
+      campaign_idps:
+        idp_template_not_published: Template IDP ini belum dipublikasikan, silakan publikasikan sebelum menugaskan kampanye.
       cant_be_deleted: Catatan ini tidak dapat dihapus
       client_feature:
         ai_assisted_idp_feature_error: Tidak mungkin benar jika fitur asisten ai dinonaktifkan
       create_superadmin:
         uniq_email: Email harus uniq.
+      development_actions:
+        only_global_skills_allowed: Keterampilan yang dipilih haruslah keterampilan global.
+        skills_not_belong_to_project: Keahlian yang dipilih harus sesuai dengan proyek yang ditentukan.
+        skills_required: Pilihlah setidaknya satu keterampilan.
       exceeded_subjects_count: Anda hanya dapat menambahkan %{count} subjek per undangan
       filled?: tidak bisa kosong
       idp_template:
@@ -2153,6 +2173,7 @@ id:
         start_time_should_be_less: Waktu mulai harus kurang dari waktu akhir
       user_idp_plan:
         idp_template_already_assigned_to_user: Template Idp ini sudah dikirimkan ke pengguna ini dan aktif
+        idp_template_not_published: Template IDP ini belum dipublikasikan, silakan publikasikannya sebelum menetapkan kepada pengguna.
       user_saved_filters:
         limit_exceeded: Anda hanya dapat memiliki filter tersimpan %{limit}, silakan hapus filter tersimpan untuk menambahkan lebih banyak.
         unique_name: Filter dengan nama yang sama sudah ada.
@@ -2213,6 +2234,9 @@ id:
       no_active_plan: Tidak ada paket IDP aktif yang ditemukan
     webhooks:
       multiple_webhook_error: URL tidak dapat diperbarui karena ada beberapa webhook untuk proyek ini.
+    workshop:
+      ical_generation_failed: Tidak dapat membuat undangan kalender
+      missing_or_invalid: Workshop_id tidak ada atau tidak valid
   evaluators:
     errors:
       can_not_processed: tidak dapat diproses
@@ -2474,6 +2498,7 @@ id:
       aria_selected: Dipilih
   idp:
     actions: Tindakan
+    behavioral: Perilaku
     board: Papan
     comment_details:
       add_comment: Tambahkan Komentar
@@ -2538,6 +2563,7 @@ id:
       submit_plan: Kirim Paket
       write_here: Tulis di sini...
     edit_plan: Edit Paket
+    edit_progress: Edit Kemajuan
     initial_steps:
       add_skill_group_description: Berdasarkan hasil penilaian Anda, berikut adalah beberapa area kekuatan dan pengembangan untuk Anda. Pilih keterampilan yang ingin Anda kembangkan lebih lanjut sebagai bagian dari rencana pengembangan Anda.
       add_skill_group_title: Menjelajahi Keterampilan %{category} Anda
@@ -2575,6 +2601,7 @@ id:
       cover:
         fields:
           assigned_data: Tanggal yang Ditetapkan
+          assigned_date: Tanggal Penugasan
           completion_date: Tanggal Penyelesaian
           division: Divisi
           name: Nama
@@ -2610,10 +2637,32 @@ id:
           main: Bagian ini mencakup daftar kumulatif dari semua jalur pengembangan, dengan mengingat pembelajaran praktik terbaik yaitu, pedoman 70-20-10, yang memberikan perjalanan progresif yang menggabungkan pembelajaran di kelas, pembinaan, dan pembelajaran di tempat kerja. Berdasarkan hasil dari pengalaman pengembangan kepemimpinan dan prioritas bisnis, kemungkinan jalur pengembangan telah direkomendasikan, yang dapat dipertimbangkan untuk pengembangan Anda.
         learn_cards:
           collaboration:
+            list:
+            - Menawarkan untuk membimbing atau menjadi mentor bagi orang lain
+            - Meminta untuk dibimbing oleh ahli di bidang Anda
+            - Mendapatkan pelatih untuk mendukung pengembangan Anda
+            - Membentuk kelompok kerja kolaboratif untuk mendiskusikan tantangan bisnis yang sedang berlangsung
+            - Mendapatkan umpan balik secara formal dan informal dari orang lain
+            - Berperan aktif dalam asosiasi dan jaringan industri
+            - Membangun jaringan eksternal Anda sendiri
             title: Pembelajaran Kolaboratif (20%) <br/> Berkembang melalui orang lain
           job:
+            list:
+            - Mengambil posisi kepemimpinan dalam komite pemangku kepentingan atau manajemen
+            - Menjadi sukarelawan untuk memimpin proyek manajemen perubahan untuk organisasi
+            - Pertimbangkan untuk mengambil tugas yang menantang
+            - Bekerja lintas fungsi dengan departemen lain
+            - Pertimbangkan untuk memimpin proyek di luar organisasi Anda
+            - Bekerja sama dengan pakar industri eksternal dalam proyek bersama
             title: Belajar Di Tempat Kerja (70%) <br/> Berkembang melalui pengalaman
           learn:
+            list:
+            - Mengambil posisi kepemimpinan dalam komite pemangku kepentingan atau manajemen
+            - Menjadi sukarelawan untuk memimpin proyek manajemen perubahan untuk organisasi
+            - Pertimbangkan untuk mengambil tugas yang menantang
+            - Bekerja lintas fungsi dengan departemen lain
+            - Pertimbangkan untuk memimpin proyek di luar organisasi Anda
+            - Bekerja sama dengan pakar industri eksternal dalam proyek bersama
             title: Pembelajaran Formal (10%) <br/> Berkembang melalui pembelajaran terstruktur
         title: Pedoman untuk Memandu IDP Anda
       idp:
@@ -2635,6 +2684,7 @@ id:
       statuses:
         approved: Ditinjau dan Disetujui
         completed: Selesai
+        draft: Konsep
         not_reviewed: Tidak Ditinjau
         pending_approval: Dalam Tinjauan
       summary:
@@ -2671,6 +2721,7 @@ id:
     skill_gap_report:
       title: Laporan Kesenjangan Keterampilan
     status: Keadaan
+    technical: Teknis
     user_idp_status:
       approved: Disetujui
       completed: Selesai
@@ -3628,11 +3679,35 @@ id:
       exactly: Tepatnya %{count}
     nominations: Nominasi
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Mengizinkan evaluator untuk menolak nominasi
+        email_subject_when_nomination_declined: Subjek email ketika nominasi ditolak
       form:
         value_not_valid: tidak memiliki nilai yang valid
       global:
         cannot_re_edit: Peserta tidak dapat mengedit evaluasi
         disable_all_evaluations: Nonaktifkan semua evaluasi
+      manager:
+        allow_subjects_to_email: Izinkan subjek mengirim email kepada manajer ketika nominasi mereka siap untuk disetujui
+        approves_evaluations: Manajer menyetujui evaluasi
+        approves_nominations: Manajer menyetujui nominasi
+        can_view_nominations: Manajer dapat melihat nominasi
+        email_managers_when_nomination_ready: Manajer email ketika nominasi subjek siap untuk disetujui
+        email_subject_when_nomination_denied: Subjek email ketika nominasi ditolak
+        may_choose_evaluators: Manajer dapat memilih Evaluator
+      subject:
+        allow_subjects_to_select_relationships: Izinkan subjek untuk memilih hubungan
+        anyone_in_assessment: Siapa pun yang ikut dalam penilaian
+        anyone_in_datasheet: Siapa pun yang ada di lembar data
+        anyone_not_in_assessment: Siapa pun yang saat ini tidak sedang dalam penilaian
+        can_view_evaluators: Subjek dapat melihat Evaluator
+        define_nomination_requirement: Tentukan persyaratan Nominasi
+        limit_search_by_criteria: Batasi pencarian berdasarkan kriteria
+        nominates_evaluators: Subjek menominasikan Evaluator
+        only_allow_relationships_of_specified_types: Hanya mengizinkan hubungan dengan jenis tertentu
+        only_show_subjects_who_match_criteria: 'Hanya tampilkan subjek yang sesuai dengan kriteria berikut:'
+        self_evaluates: Subjek Mengevaluasi Diri Sendiri
+        subjects_cannot_remove_nominations: Subjek tidak dapat menghapus nominasi yang ditetapkan oleh manajer atau admin
     or: Atau
     page_title: Signify 360° Review - Terapkan Level
     participant_list:
@@ -3847,7 +3922,6 @@ id:
       add: Tambahkan Laporan
       download: Mengunduh
       generate: Menghasilkan
-      regenerate: Regenerasi
     approval_statuses:
       approved: Disetujui
       change_requested: Perubahan yang Diminta

@@ -2,7 +2,15 @@
 
 class UserIdpDevelopmentActionSerializer < Panko::Serializer
   attributes :custom_action_learning_style, :custom_action, :start_date_time, :end_date_time, :progress,
-             :learning_style, :type
+             :learning_style, :type, :name, :description
+
+  def name
+    object.development_action&.name
+  end
+
+  def description
+    object.development_action&.description
+  end
 
   def type
     return 'custom_action' if object.custom_action?

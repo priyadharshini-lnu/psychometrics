@@ -53,7 +53,7 @@ _.extend(Result.prototype, {
   },
 
   processValidation () {
-    if (this.question.validation.type === 'None') {
+    if (this.question.validation.type === 'None' || !this.question.validation.type) {
       return
     }
     if (this.question.validation.type === 'Custom') {

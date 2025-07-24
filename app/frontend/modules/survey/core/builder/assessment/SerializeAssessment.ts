@@ -34,6 +34,7 @@ export const BlockSerializer = (data: any) => ({
   save_as_template: data.saveAsTemplate,
   deleted_at: data.deletedAt,
   questions: data.questions,
+  block_type: data.blockType,
 })
 
 export const QuestionSerializer = (data: any) => ({

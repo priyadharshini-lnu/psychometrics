@@ -30,8 +30,8 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
     end
 
     context 'with name_cont filter' do
-      it 'returns skills matching the name pattern' do
-        get :index, params: { filter: { name_cont: 'Ruby' } }
+      it 'returns skills matching the name pattern in the scope' do
+        get :index, params: { filter: { name_cont: 'Ruby', project_id_eq: project.id } }
 
         expect(response).to have_http_status(:ok)
         parsed_response = JSON.parse(response.body)
@@ -42,12 +42,13 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
 
     context 'with skill_type_in filter' do
       it 'returns skills in the specified skill_type' do
-        get :index, params: { filter: { skill_type_in: 'technical', name_cont: 'Engineering' } }
+        get :index,
+            params: { filter: { skill_type_in: 'technical', name_cont: 'Engineering', project_id_eq: project.id } }
 
         expect(response).to have_http_status(:ok)
         parsed_response = JSON.parse(response.body)
         names = parsed_response['data'].map { |s| s['attributes']['name'] }
-        expect(names).to match_array(['Ruby Engineering', 'Python Engineering', 'Java Engineering'])
+        expect(names).to match_array(['Ruby Engineering'])
       end
 
       it 'returns skills in multiple skill_types' do
@@ -57,11 +58,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         parsed_response = JSON.parse(response.body)
         names = parsed_response['data'].map { |s| s['attributes']['name'] }
         expect(names).to match_array([
-          'Ruby Engineering',
-          'Python Engineering',
-          'Java Engineering',
-          'Engineering Communication',
-          'Engineering Leadership'
+          'Engineering Leadership', 'Python Engineering'
         ])
       end
     end
@@ -117,7 +114,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         expect(response).to have_http_status(:ok)
         parsed_response = JSON.parse(response.body)
         names = parsed_response['data'].map { |s| s['attributes']['name'] }
-        expect(names).to match_array(['Ruby Engineering', 'Python Engineering', 'Java Engineering'])
+        expect(names).to match_array(['Python Engineering'])
       end
 
       it 'returns skills matching name pattern and project' do
@@ -233,8 +230,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
 
       it 'returns only accessible skills' do
         get :index, params: {
-          filter: { name_cont: 'Skill' },
-          project_id: accessible_project.id
+          filter: { name_cont: 'Skill', project_id_eq: accessible_project.id }
         }
 
         expect(response).to have_http_status(:ok)

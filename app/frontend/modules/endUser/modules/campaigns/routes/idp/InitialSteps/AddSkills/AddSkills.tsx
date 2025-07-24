@@ -48,7 +48,7 @@ const AddSkillsComponent = ({
     setSelectedSkills(selectedSkills.filter(userIdpSkill => userIdpSkill.skillId !== skillId))
   }
 
-  const skillCategories = _.map(_.groupBy(skills, 'skillType'), (skills, skillType) => ({
+  const skillTypes = _.map(_.groupBy(skills, 'skillType'), (skills, skillType) => ({
     skillType,
     skills,
   }))
@@ -89,7 +89,7 @@ const AddSkillsComponent = ({
         selfRatingEnabled ? I18n.t('idp.initial_steps.continue_to_rate_skills') : I18n.t('idp.initial_steps.next')}
       onAddSkill={handleAddSkill}
       selectedSkills={selectedSkills}
-      skillCategories={skillCategories}
+      skillTypes={skillTypes}
       onDeselectSkill={handleDeselectSkill}
       onFinishAddSkill={handleFinishAddinSkill}
       isSubmitting={isSubmittingPlan || isSubmitting}

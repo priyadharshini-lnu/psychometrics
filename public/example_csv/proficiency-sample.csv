@@ -1,11 +1,2 @@
-ProficiencyType,SkillCategory,SkillName,TotalLevels,LevelNumber,LevelName,LevelDescription
-by_skill,technical,Java Programming,3,1,Beginner,Can write basic Java programs and understand core concepts
-by_skill,technical,Java Programming,3,2,Intermediate,Can develop medium-sized applications using frameworks
-by_skill,technical,Java Programming,3,3,Advanced,Can architect complex systems and optimize performance
-by_category,behavioral,Team Management,4,1,Foundation,Can lead small team meetings and coordinate basic activities
-by_category,behavioral,Team Management,4,2,Developing,Can effectively manage team dynamics and resolve conflicts
-by_category,behavioral,Team Management,4,3,Proficient,Can lead multiple teams and handle complex deliverables
-by_category,behavioral,Team Management,4,4,Expert,Can develop strategies and mentor other leaders
-all_skills,technical,Data Analysis,3,1,Basic,Can perform basic data cleaning and create visualizations
-all_skills,technical,Data Analysis,3,2,Proficient,Can use advanced statistical methods and create reports
-all_skills,technical,Data Analysis,3,3,Expert,Can lead data initiatives and develop predictive models
+ProficiencyType,SkillCategory,SkillName,TotalLevels,Level1,Name1,Description1,Level2,Name2,Description2,Level3,Name3,Description3,Level4,Name4,Description4,Level5,Name5,Description5,Level6,Name6,Description6
+all_skills,,,6,1,Awareness,"Understands the basic concepts of the skill but with minimal experience, context and perspective, requires clear instruction and direction.",2,Developing,"Can discuss and apply terminology, concepts, principles, and issues related to this skill at a basic level. Requires ongoing supervision, decreasing as experience is gained.",3,Intermediate,Successfully completes skill-associated tasks independently. Minimal guidance required; usually only in highly complex applications.,4,Advanced,Performs skill related actions successfully and completely independently. Actively coaches others on skill and can apply skill in complex or nuanced situations.,5,Authority,"Provides regular coaching to others related to this area of expertise, inside and outside the organization. Is strategic in skill application, evolving skill as needed across complex situations.",0,No Opportunity,No opportunity to learn about or demonstrate skill

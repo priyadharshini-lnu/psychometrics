@@ -10,7 +10,7 @@ import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard
 import { BoxWithShadow } from '~/glint'
 import {
   AvailableDevelopmentActions,
-  CategoryWithSkills,
+  TypeWithSkills,
   DevelopmentAction,
   DevelopmentActionLearningStyle,
   SkillWithDevelopmentActions,
@@ -20,13 +20,13 @@ import { CreateCustomDevelopmentActionModal } from
 import { AddDevelopmentActionModal } from '~/components/IdpShared/DevelopmentActions/AddDevelopmentActionModal'
 import styles from './DevelopmentActionListView.less'
 import { AIGeneratedDevelopmentActions } from './AIGeneratedDevelopmentActions'
-import { renderSkillCategoryIcon } from '~/components/IdpShared/utils'
+import { renderSkillTypeIcon } from '~/components/IdpShared/utils'
 
 const { I18n } = window
 
 type DevelopmentActionListViewProps = {
   editMode?: boolean
-  categories: CategoryWithSkills[]
+  categories: TypeWithSkills[]
   availableDevelopmentActions: AvailableDevelopmentActions[]
   onAddDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onShowAvailableDevelopmentAction?: (skillId: number | string | null) => void
@@ -177,7 +177,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
           <BoxWithShadow key={category.skillType} className={`${styles.p_16} ${styles.mt_8}`}>
             <Flex vertical gap={16}>
               <Flex align="center" gap={12}>
-                <Avatar size={24} src={renderSkillCategoryIcon(category.skillType)} />
+                <Avatar size={24} src={renderSkillTypeIcon(category.skillType)} />
                 <h3 className={styles.h3}>{category.skillType}</h3>
               </Flex>
               <Flex gap={12} vertical>

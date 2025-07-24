@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { isRequestInProgress } from '~/core/request'
 import {
   fetch,
   remove,
@@ -8,6 +9,7 @@ import {
   exportCompactCompletionStatuses,
   exportUsers,
   exportReportsAndAssessments,
+  FETCH,
 } from '~/modules/admin/modules/campaigns/core/users'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -17,6 +19,7 @@ const connecter = connect(
   (state: RootState) => ({
     users: getUsers(state),
     isSuperAdmin: isSuperAdmin(state.currentUser),
+    isLoadingUsers: isRequestInProgress(state, FETCH),
   }),
   {
     fetch,

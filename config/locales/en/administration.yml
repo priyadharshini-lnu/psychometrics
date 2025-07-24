@@ -174,6 +174,8 @@ en:
             title: IDP Templates
             view: View
           jobRoles:
+            export_translations: Export Job Roles Translations
+            import_translations: Import Job Roles Translations
             manage: Manage
             title: Job Roles
             view: View
@@ -292,10 +294,8 @@ en:
       ai_assistants: AI Assistants
       ai_assistants_playground: AI Assistant Playground
       column:
-        ai_action: AI Action
         provider: Provider
       form:
-        action: Action
         description: Description
         name: Name
         provider: Provider
@@ -844,6 +844,14 @@ en:
     campaign_factors_import:
       errors:
         invalid_headers: 'Following headers are invalid: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Please select date range
+        modal:
+          subtitle: Select a date range and then select required language for each report
+      generate:
+        modal:
+          subtitle: Select the required language for each report
     campaign_templates:
       campaign_templates: Campaign Templates
       column:
@@ -961,7 +969,9 @@ en:
             empty: Empty
             inactive: Inactive
             name: Name
+            normal: Normal
             previous: Previous
+            skill_rater: Skill Rater
             standard: Standard
             status: Status
           close:
@@ -1069,6 +1079,7 @@ en:
         ai_assistants: AI Assistants
         ai_assisted_idp: AI Assisted IDP
         global_skills: Global Skills
+        idp: IDP
         sms_notification: SMS Notification
     clients:
       api_keys:
@@ -1494,6 +1505,8 @@ en:
         update:
           successfully: Project %{name} was updated successfully.
       registration_codes:
+        actions:
+          add_code: Add Code
         column:
           code: Code
           usage_stats: Usage stats
@@ -1504,6 +1517,13 @@ en:
           incorrect_domain: Incorrect domain format.
           invalid_end_date: has to be greater than the start date
           license_issue: Not enough licenses.
+        form:
+          active: Active
+          code: Code
+          end_date: End Date
+          name: Name
+          start_date: Start Date
+          total_count: Total Count
       resource:
         confirmations:
           delete:
@@ -1533,6 +1553,7 @@ en:
       reset: Reset
       save: Save
       select_all: Select all
+      type: Type
       unselect_all: Unselect all
     communication_settings: Settings
     communications:
@@ -1621,6 +1642,7 @@ en:
         type: Type
       list:
         actions: Actions
+        assessment_center_group: Assessment Center Group
         author: Created by
         campaign: Campaign
         client_name: Client
@@ -1768,6 +1790,7 @@ en:
       errors:
         blank_field: 'Row %{row}: %{field} cannot be blank'
         csv_file_required: Must be a CSV file
+        development_action_not_in_project: 'Line %{row}: Development Action ID %{development_action_id} does not belong to this project'
         image_download_failed: 'Failed to download image from %{url}: %{message}'
         invalid_csv_format: 'Invalid CSV format: %{message}'
         invalid_date: Date format for %{date} is invalid.
@@ -2097,18 +2120,22 @@ en:
       all: All
       appearance: Appearance
       appearance_hint: To modify the appearance, please save the IDP template first to enable these settings.
+      appearance_success: Appearance settings saved successfully
       background_image: Background image
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
+      details_updated: IDP Details updated successfully
       edit_template: Edit IDP Template
+      enter_tag_or_skills_error: Select at least one tag or skill
       enter_template_description: Description
       enter_template_description_error: Template description is required.
       enter_template_name: Name
       enter_template_name_error: Template name is required
       errors:
-        update: Update not allowed because the IDP template is already associated with a user IDP plan. Appearance changes has been saved.
+        update: Update not allowed because the IDP template is already associated with a user IDP plan.
       fields:
         assigned_data: Assigned Data
+        assigned_date: Assigned Date
         completion_date: Completion Date
         division: Division
         name: Name
@@ -2146,6 +2173,11 @@ en:
       show_reflections: Show Reflections
       skill_gap_report: Skill Gap Report
       skills: Skills
+      skills_updated: IDP Skills updated successfully
+      status:
+        draft: Draft
+        published: Published
+      status_updated: IDP Status updated successfully
       subtitle_text: Subtitle text
       tab:
         development_actions: Development Actions
@@ -2378,43 +2410,43 @@ en:
         rescheduled: Rescheduled
       subject: Subject
     job_role:
+      are_you_sure_to_remove: Are you sure to remove?
       column:
         job_group: Job Group
+        skill_name: Skill Name
       export:
         failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress.
-      export_action:
-        translations: Export Job Role Translations
       form:
         code: Code
         description: Description
         job_group: Job Group
         name: Name
         title: Job Role
-      global: Is Global Job Role?
       import:
         download_example_csv: Download Example csv
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
       import_action:
         translations: Import Job Role Translations
+      job_role_details: Job Role Details
       translations: Job Role Translations
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Expected Proficiency Level
-        job_role: Job Role
-        skill: Skill
       form:
-        expected_proficiency_level: Expected Proficiency Level
-        job_role: Job Role
-        skill: Skill
         title: Skill Job Mapping
-      global: Is Global Skill Job Mapping?
       import:
-        taxonomy: Taxonomy
+        taxonomy: Skills Taxonomy
     job_roles:
       export:
         translations:
           details: Details
+      translations:
+        import:
+          errors:
+            job_role_not_found: Job role with ID %{id} not found
+            missing_columns: 'Missing required columns: %{columns}'
+            save_failed: 'Error processing Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: Item %{name} was created successfully.
@@ -2701,14 +2733,11 @@ en:
           level_definition_must_match_level: must contain exactly %{expected} levels, but %{actual} were given
           must_be_unique: Must be unique
           proficiency_level_exists: A Proficiency Level with this skill and project already exists
-          proficiency_level_exists_for_all_skills: A Proficiency Level for all skills already exits
-          proficiency_level_exists_for_category: A Proficiency Level for this category already exists
-          project_level_all_skills_exists: A 'all_skills' proficiency level already exists
+          proficiency_level_exists_for_default: A Proficiency Level for default already exits
+          proficiency_level_exists_for_type: A Proficiency Level for this type already exists
+          project_level_default_exists: A 'default' proficiency level already exists
           skill_must_exist: Skill must be present for proficiency_type 'by_skill'
       export:
-        actions:
-          proficiency: Export Proficiency
-          translations: Export Proficiency Translations
         details: Details
         failure_msg: Error while exporting proficiency levels
         success_msg: Exporting development actions in progress
@@ -2721,28 +2750,23 @@ en:
         proficiency_translations: Proficiency Translations
         proficiency_type: Proficiency Type
         skill: Skill
-        skill_category: Skill Category
         skill_name: Skill name
+        skill_type: Skill Type
         title: Proficiency
-      global: Is Global Proficiency?
       import:
         actions:
           proficiency: Import Proficiency
           translations: Import Proficiency Translations
         errors:
-          all_skills_global_exists: 'Row %{row_number}: A global-level ''all_skills'' ProficiencyLevel already exists'
-          all_skills_project_exists: 'Row %{row_number}: A project-level ''all_skills'' ProficiencyLevel already exists'
-          by_category_exists: 'Row %{row_number}: A ''by_category'' ProficiencyLevel already exists for this project and skill category'
-          by_category_missing: 'Row %{row_number}: Project and Skill Category must be present for ''by_category'' type'
           by_skill_exists: 'Row %{row_number}: A ''by_skill'' ProficiencyLevel already exists for this project and skill'
           by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
+          by_skill_type_exists: 'Row %{row_number}: A ''''by_skill_type'''' ProficiencyLevel already exists for this project and skill type'
+          by_skill_type_missing: 'Row %{row_number}: Project and Skill Type must be present for ''''by_skill_type'''' type'
+          default_global_exists: 'Row %{row_number}: A global-level ''default'' ProficiencyLevel already exists'
+          default_project_exists: 'Row %{row_number}: A project-level ''default'' ProficiencyLevel already exists'
           invalid_csv_format: 'Invalid CSV format: %{message}'
-          invalid_json: 'Line %{line}: Invalid JSON in LevelDefinition - %{message}'
-          invalid_json_structure: must be a JSON object with keys like 'description' and 'summary'
           invalid_proficiency_type: 'Row %{row_number}: Invalid or missing ProficiencyType'
           missing_columns: 'Missing required columns: %{fields}'
-          missing_required_fields: 'Line %{line}: Missing required fields (%{fields})'
-          save_failed: 'Line %{line}: %{message}'
           skill_not_found: 'Row %{row_number}: Invalid or missing Skill'
         job_queued: Proficiency levels import job has been queued
       translations:
@@ -2759,9 +2783,9 @@ en:
             row_id_blank: 'Row %{row}: ID cannot be blank'
             save_failed: 'Error processing Skill ID %{id}: %{message}'
       type:
-        all_skills: All Skills
-        by_category: By Category
         by_skill: By Skill
+        by_skill_type: By Skill Type
+        default: Default
     profile:
       change_password: Change password
       details: Details
@@ -3123,6 +3147,7 @@ en:
         user_name: User Name
       dashboard: Dashboard
       download: Download
+      report_approval_settings: Report Approval Settings
       report_approvals: Report Approvals
       review: Review
       saving_filters:
@@ -3244,6 +3269,15 @@ en:
         successfully: Report '%{name}' was deleted successfully.
       edit:
         header: Edit Report Name
+      edit_default_language:
+        agreement: Yes, I understand the implications of default language change.
+        title: Edit Default Language
+        tooltip: Edit Default Language
+        warning:
+          description_li_1: Changing the default language from RTL to LTR language or vice versa will affect the layout.
+          description_li_2: You would have to rework on report translations if you change the default language.
+          description_li_3: Download a copy of report translations before making this change.
+          title: Please read instructions carefully
       modals:
         remap_assessment:
           new_assessment_name: New Assessment Name
@@ -3286,6 +3320,9 @@ en:
         successfully: Report was updated successfully.
       update:
         successfully: Report %{name} was updated successfully.
+    reports_language_selection_modal:
+      download: Report download
+      generate: Report generate
     resource:
       remove_confirm:
         message: Are you sure you want to remove this resource?
@@ -3695,6 +3732,7 @@ en:
         import:
           missing_fields_data: 'Line %{line_number}: Missing required fields: %{fields}'
           save_failed: 'Line %{line_number}: Failed to save skill ''%{name}'': %{message}'
+          skill_not_in_project: 'Line %{line_number}: Skill ID %{skill_id} does not belong to this project'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
           invalid_all_value: 'must be one of: true, false'
@@ -3705,12 +3743,8 @@ en:
         details: Details
         failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress.
-        title: Export
         translations:
           details: Skill Translations
-      export_action:
-        skills_title: Export Skills
-        skills_translations_title: Export Skills Translations
       form:
         client_placeholder: Select a Client
         description: Description
@@ -3719,9 +3753,6 @@ en:
         skill_group: Skill Group
         skill_type: Skill Type
         title: Skill
-      global: Is Global Skill?
-      global_skills: Global Skills
-      global_translations: Global Skills Translations
       import:
         download_example_csv: Download Example csv
         info_msg: The uploaded file has been queued for import. Please check the status in the notifications.
@@ -3731,8 +3762,6 @@ en:
         skills_translations_title: Import Skills Translations
       skill_details: Skill Details
       skill_translations: Skills Translations
-      skill_translations_project: Skill Translations based on Project
-      skills_project: Skills based on Project
       title: Skills
       translations:
         import:
@@ -3743,7 +3772,6 @@ en:
             skill_not_found: Skill with ID %{id} not found
     skills_taxonomy:
       tabs:
-        job_role_skill_mapping: Skill Job Mappings
         job_roles: Job Roles
         proficiency: Proficiency
         skills: Skills
@@ -3901,7 +3929,25 @@ en:
         successfully: Sub-Factor was updated successfully.
     survey_builder:
       builder_area:
+        current_job: Current Job
+        default_not_applicable_label: No opportunity to learn about or demonstrate skill
+        enable_not_applicable: Enable N/A option
+        enable_required_validation: Enable Required Validation
+        force_response: Force response
+        job_role_required: Please select at least one job role
+        not_applicable_label: Not Applicable Label
         options: Options
+        request_response: Request response
+        skill_rater_config: Skill Rater configuration
+        target_job: Target Job
+      models:
+        block_types:
+          regular: Regular
+          skill_rater: Skill Rater
+        skill_types:
+          behavioural: Behavioural
+          other: Other
+          technical: Technical
       property_panel:
         add_n_a_option: Add N/A option
         allow_content_copy: Allow content copying
@@ -3960,12 +4006,11 @@ en:
         download_example_file: Download Example File
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
       import_action:
-        taxonomy: Import Taxonomy
+        taxonomy: Import Skills Taxonomy
       job_roles: Job Roles
       proficiency: Proficiency
-      skill_job_mappings: Skill Job Mappings
       skills: Skills
-      title: Taxonomy
+      title: Skills Taxonomy
     templates:
       blocks:
         copy:
@@ -4066,6 +4111,7 @@ en:
           invitations: Invitations
           reminders: Reminders
           report_ready: Report Ready
+        consolidated: Consolidated
         custom_message:
           description: This message can be sent to anyone participating in the assessment
           name: Custom Message
@@ -4089,7 +4135,10 @@ en:
         request_approval:
           description: This message is sent to managers when a subject requests approval
           name: Request Approval
+        save: Save
+        schedule: Schedule
         schedule_email: Schedule Email
+        schedule_email_title: Schedule Email
         schedule_time: Schedule Time
         send_test_email: Send Test Email
         subject: Subject
@@ -4130,6 +4179,14 @@ en:
         welcome_message:
           description: This message will be displayed to subjects when they log in to begin the assessment or view their task list
           name: Welcome Message
+      mail_history:
+        actions: Actions
+        date: Date
+        download_details: Download Details
+        emails_sent: Emails Sent
+        recipient: Recipient
+        status: Status
+        subject: Subject
       manage:
         assessment: Assessment
         dimension: Dimensions
@@ -4137,19 +4194,45 @@ en:
         report: Report
         title: Manage
       menu:
+        actions: Actions
         datasheet:
           title: Datasheet
         messages:
+          allow_subjects_to_send_reminders: Allow subjects to send reminders to evaluators
+          automatically_send_invites: Automatically send invites to new evaluators
           title: Messages
         participants:
+          columns:
+            action: Action
+            email: Email
+            evaluations_completed: Evaluations Completed
+            evaluations_received: Evaluations Received
+            is_subject: Is Subject
+            name: Name
+            report_status: Report Status
+            status: Status
+          evaluators:
+            add_evaluators: Add Evaluators
+            import_evaluators: Import Evaluators
+            title: Evaluators
+          managers:
+            title: Managers
+          options:
+            evaluator_options: Evaluator Options
+            global: Global Options
+            manager_options: Manager Options
+            subject_options: Subject Options
+            title: Options
           subjects:
             add_subjects: Add Subjects
             current_job_role: Current Job Role
             email: Email
             first_name: First Name
+            import_subjects: Import Subjects
             last_name: Last Name
             locale: Locale
             target_job_role: Target Job Role
+            title: Subjects
           title: Participants
         report:
           menu:
@@ -4165,8 +4248,26 @@ en:
         mail_history: Mail History
         options: Options
       reports:
+        add_conditions: Add Conditions
+        administrator_approves_reports: Administrator approves reports
+        allow_manager_to_view_individual_responses: Allow Manager to view individual responses
+        disable_report_download: Disable report download
+        edit_email: Edit email
+        email_manager_when_report_is_ready_for_approval: Email Manager when report is ready for approval
+        email_subject_when_report_becomes_available: Email subject when report becomes available
+        email_subjects_manager_when_available: Email subject's manager when report becomes available
+        make_report_available_to_subject_when: 'Make report available to subject when:'
+        manager_approves_reports: Manager approves reports
+        manager_can_access_subject_reports: Manager can access subject reports
+        manager_cannot_access_subject_reports: Manager cannot see report until requirements are met
+        report_access: Report Access
+        report_approval: Report Approval
+        report_availability: Report Availability
         show:
           title: Subject Report
+        subject_can_access_reports: Subject can access their reports
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Mark licenses as deactivated
     time_zone: Time Zone
     tools: Tools
     translations:

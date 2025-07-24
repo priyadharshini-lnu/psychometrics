@@ -7,6 +7,8 @@ module Api
         validate_crud_requests Api::V2::ProficiencyLevel::Schema
         validates_request_schema :create, -> { Api::V2::ProficiencyLevel::Contract.new }
 
+        before_action :find_skill, only: [:skill_proficiency]
+
         def export
           AdminJob.call(
             :export_proficiency_levels,
@@ -60,6 +62,20 @@ module Api
           else
             render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
           end
+        end
+
+        def skill_proficiency
+          proficiency_level = Skills::GetProficiencyLevel.call!(@skill)[:proficiency_level] || []
+          render json: proficiency_level
+        end
+
+        private
+
+        def find_skill
+          @skill = ::Skill.find_by(id: params[:skill_id])
+          return if @skill
+
+          render json: { error: 'Skill not found' }, status: :not_found
         end
       end
     end

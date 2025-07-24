@@ -38,7 +38,10 @@ export default function EvaluatorList ({
       <Row justify="space-between">
         <Col span={4} className="pll">
           <UserOutlined />
-          <span className="mlm">{`${total} Evaluators`}</span>
+          <span className="mlm">
+            {`${total}
+          ${I18n.t('administration.threesixty_campaigns.menu.participants.evaluators.title')}`}
+          </span>
         </Col>
         <Col span={20} className="text-align-r">
           <SearchInput

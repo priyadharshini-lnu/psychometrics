@@ -329,12 +329,13 @@ fr:
             email:
               blank: L'email ne peut pas être vide
               not_uniq_email: La ligne avec l'email est déjà présente
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Au moins un rôle professionnel doit être activé avec un type de compétence sélectionné pour %{block_name}
-              invalid_skill_type: 'Type de compétence non valide %{skill_type} pour %{role_name} pour %{block_name}. Options valides : %{valid_options}'
-              props_missing: Emploi
+              at_least_one_job_role_required: Au moins un rôle professionnel est requis pour %{skill_type} pour %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Au moins un type de compétence doit être activé avec un rôle professionnel sélectionné pour %{block_name}
+              invalid_job_role_type: 'Rôle professionnel non valide %{job_role} pour %{skill_type} pour %{block_name}. Options valides : %{valid_options}'
+              props_missing: La configuration des compétences est manquante pour %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ fr:
           case_study: Études de cas
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulaire de l'évaluateur principal
           meeting: Réunion
           organisational: Enquêtes
           pearson: Pearson
@@ -789,6 +791,8 @@ fr:
           attributes:
             current_password:
               invalid: Le mot de passe actuel est incorrect
+            manager_id:
+              cannot_be_self: L'utilisateur ne peut pas être désigné comme son propre gestionnaire
         user_idp_comment:
           reply_to_reply: Impossible de répondre à une réponse (un seul niveau d’imbrication autorisé)
         user_idp_plan:
@@ -859,9 +863,9 @@ fr:
         import_raw_data: Importer des données brutes
         import_reflection_questions: Importer des questions de réflexion
         import_scoring_data: Importer des données de notation
+        import_skill_rater_taxonomies: Importer les taxonomies des évaluateurs de compétences
         import_skill_translations: Compétences d'importation Traductions
         import_skills: Compétences en matière d'importation
-        import_skills_rater_taxonomies: Importer les taxonomies des évaluateurs de compétences
         import_sms_invites: Importer une invitation par SMS
         import_users: Importer des utilisateurs
         migrate_assessment_translations: Évaluation Traduction migration
@@ -1553,6 +1557,7 @@ fr:
     column:
       assessor_access: Accès à l'évaluateur
       auto_assign: Attribution automatique
+      locales: Localités
       main_report: Rapport principal
       report_bundle: Ensemble de rapports
       report_name: Nom du rapport
@@ -1575,6 +1580,13 @@ fr:
         apply: Appliquez ces modifications aux utilisateurs existants de cette campagne.
         msg_text: Vous essayez de supprimer le rapport <strong>"%{reportName}"</strong>
         title: Supprimer le rapport ?
+      update_languages:
+        default_language: Langue par défaut
+        other_available_languages: Autres langues disponibles
+        select_default_language: Sélectionner la langue par défaut
+        select_languages: Sélectionner les langues
+        success_msg: Les langues ont été mises à jour avec succès
+        title: Langue du rapport
       user_access:
         apply: Appliquez ces modifications aux utilisateurs existants de cette campagne.
         title:
@@ -1731,6 +1743,7 @@ fr:
       import: Importation
       insert: Insérer
       ok: OK
+      publish: Publier
       reject: Rejeter
       remove: Retirer
       reset: Remise à zéro
@@ -1746,6 +1759,7 @@ fr:
       start: Démarrage
       submit: Soumettre
       unarchive: Désarchiver
+      unpublish: Dépublier
       unresolve: Non résolu
       update: Mise à jour
       upload: Télécharger
@@ -1849,7 +1863,6 @@ fr:
       default: Défaut
       download: Télécharger
       file: Fichier
-      global_export: Est-ce que Global Export ?
       global_import: Est-ce que Global Import ?
       minutes: Procès-verbal
       na: N/A
@@ -2052,6 +2065,7 @@ fr:
         reserved_subdomain: Le sous-domaine %{value} est réservé
         uniq_subdomain: Le sous-domaine doit être unique.
       add_manager:
+        cannot_be_self: L'utilisateur ne peut pas être assigné comme son propre gestionnaire
         manager_not_found: Gestionnaire introuvable ou ne faisant pas partie du même projet
         user_not_found: Utilisateur introuvable ou ne faisant pas partie du même projet
       admin:
@@ -2070,11 +2084,17 @@ fr:
       campaign_factor_group:
         group_already_exists: Un groupe portant le même nom existe déjà.
         last_factor_group: Impossible de supprimer le dernier groupe de facteurs de campagne.
+      campaign_idps:
+        idp_template_not_published: Ce modèle de PDI n'est pas encore publié, veuillez le publier avant de s'attaquer à la campagne.
       cant_be_deleted: Cet enregistrement ne peut pas être supprimé
       client_feature:
         ai_assisted_idp_feature_error: Ne peut pas être vrai si la fonction des assistants d’IA est désactivée
       create_superadmin:
         uniq_email: L'email doit être unique.
+      development_actions:
+        only_global_skills_allowed: Les compétences sélectionnées doivent être des compétences globales.
+        skills_not_belong_to_project: Les compétences sélectionnées doivent appartenir au projet spécifié.
+        skills_required: Veuillez sélectionner au moins une compétence.
       exceeded_subjects_count: Vous ne pouvez ajouter que %{count} sujets par invitation
       filled?: ne peut être vide
       idp_template:
@@ -2122,6 +2142,7 @@ fr:
         start_time_should_be_less: L'heure de début doit être inférieure à l'heure de fin
       user_idp_plan:
         idp_template_already_assigned_to_user: Ce modèle Idp est déjà attribué à cet utilisateur et est actif
+        idp_template_not_published: Ce modèle IDP n'est pas encore publié, veuillez le publier avant d'attribuer à l'utilisateur.
       user_saved_filters:
         limit_exceeded: Vous ne pouvez avoir qu'une %{limit} de filtres enregistrés, veuillez supprimer les filtres enregistrés pour en ajouter d'autres.
         unique_name: Un filtre portant le même nom existe déjà.
@@ -2185,6 +2206,9 @@ fr:
       no_active_plan: Aucun plan d'action actif n'a été trouvé
     webhooks:
       multiple_webhook_error: l'url ne peut pas être mise à jour car il y a plusieurs webhooks pour ce projet.
+    workshop:
+      ical_generation_failed: Impossible de générer une invitation au calendrier
+      missing_or_invalid: Numéro d'atelier manquant ou invalide
   evaluators:
     errors:
       can_not_processed: ne peut être traité
@@ -2446,6 +2470,7 @@ fr:
       aria_selected: Sélectionné
   idp:
     actions: Actions
+    behavioral: Comportementale
     board: Conseil d'administration
     comment_details:
       add_comment: Ajouter un commentaire
@@ -2510,6 +2535,7 @@ fr:
       submit_plan: Soumettre le plan
       write_here: Écrivez ici...
     edit_plan: Modifier le plan
+    edit_progress: Modifier l'état d'avancement
     initial_steps:
       add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
       add_skill_group_title: Explorer vos compétences %{category}
@@ -2553,6 +2579,7 @@ fr:
       cover:
         fields:
           assigned_data: Date d'attribution
+          assigned_date: Date assignée
           completion_date: Date d'achèvement
           division: Division
           name: Nom
@@ -2635,6 +2662,7 @@ fr:
       statuses:
         approved: Revu et approuvé
         completed: Terminé
+        draft: Projet
         not_reviewed: Non revu
         pending_approval: En cours de révision
       summary:
@@ -2671,6 +2699,7 @@ fr:
     skill_gap_report:
       title: Rapport sur les lacunes en matière de compétences
     status: Statut
+    technical: Technique
     user_idp_status:
       approved: Approuvé
       completed: Terminé
@@ -3628,11 +3657,35 @@ fr:
       exactly: Exactement %{count}
     nominations: Nominations
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permettre aux évaluateurs de refuser la nomination
+        email_subject_when_nomination_declined: Objet du courriel en cas de refus d'une candidature
       form:
         value_not_valid: n'a pas de valeur valide
       global:
         cannot_re_edit: Les participants ne peuvent pas modifier les évaluations
         disable_all_evaluations: Désactiver toutes les évaluations
+      manager:
+        allow_subjects_to_email: Permettre aux sujets d'envoyer un courriel aux gestionnaires lorsque leurs nominations sont prêtes à être approuvées
+        approves_evaluations: Le gestionnaire approuve les évaluations
+        approves_nominations: Le directeur approuve les nominations
+        can_view_nominations: Le chef d'entreprise peut consulter les nominations
+        email_managers_when_nomination_ready: Envoyer un courrier électronique aux responsables lorsque la nomination d'un sujet est prête à être approuvée
+        email_subject_when_nomination_denied: Objet du courriel en cas de refus d'une candidature
+        may_choose_evaluators: Le gestionnaire peut choisir les évaluateurs
+      subject:
+        allow_subjects_to_select_relationships: Permettre aux sujets de sélectionner des relations
+        anyone_in_assessment: Toute personne participant à l'évaluation
+        anyone_in_datasheet: N'importe qui dans la fiche de données
+        anyone_not_in_assessment: Toute personne ne participant pas actuellement à l'évaluation
+        can_view_evaluators: Le sujet peut voir les évaluateurs
+        define_nomination_requirement: Définir les conditions de nomination
+        limit_search_by_criteria: Limiter la recherche par critères
+        nominates_evaluators: Le sujet nomme les évaluateurs
+        only_allow_relationships_of_specified_types: N'autoriser que les relations des types spécifiés
+        only_show_subjects_who_match_criteria: 'N''afficher que les sujets qui répondent aux critères suivants :'
+        self_evaluates: Le sujet s'auto-évalue
+        subjects_cannot_remove_nominations: Les sujets ne peuvent pas supprimer les nominations établies par les gestionnaires ou les administrateurs.
     or: Ou
     page_title: Examen de Signify 360° - Niveau d'application
     participant_list:
@@ -3847,7 +3900,6 @@ fr:
       add: Ajouter un rapport
       download: Télécharger
       generate: Générer
-      regenerate: Régénérer
     approval_statuses:
       approved: Approuvé
       change_requested: Modification demandée

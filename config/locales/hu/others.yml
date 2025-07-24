@@ -329,12 +329,13 @@ hu:
             email:
               blank: Az e-mail nem lehet üres
               not_uniq_email: Az e-mailt tartalmazó sor már jelen van
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Legalább egy munkakörnek engedélyezettnek kell lennie, és a %{block_name} számára kiválasztott készségtípust kell kiválasztani.
-              invalid_skill_type: 'Érvénytelen képességtípus %{skill_type} a %{role_name} számára %{block_name}. Érvényes opciók: %{valid_options}'
-              props_missing: Állás
+              at_least_one_job_role_required: "%{skill_type} legalább egy munkakörre van szükség %{block_name} esetében"
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Legalább egy készségtípusnak engedélyezve kell lennie a %{block_name} számára kiválasztott munkakörrel.
+              invalid_job_role_type: 'Érvénytelen munkakör %{job_role} %{skill_type} %{block_name} számára. Érvényes opciók: %{valid_options}'
+              props_missing: Hiányzik a %{block_name} készségkonfiguráció.
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ hu:
           case_study: Esettanulmányok
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Vezető értékelő űrlap
           meeting: Találkozó
           organisational: Felmérések
           pearson: Pearson
@@ -789,6 +791,8 @@ hu:
           attributes:
             current_password:
               invalid: A jelenlegi jelszó helytelen
+            manager_id:
+              cannot_be_self: A felhasználó nem jelölhető ki saját menedzserként
         user_idp_comment:
           reply_to_reply: Nem tud válaszolni egy válaszra (csak egy beágyazási szint engedélyezett)
         user_idp_plan:
@@ -859,9 +863,9 @@ hu:
         import_raw_data: Nyers adatok importálása
         import_reflection_questions: Elmélkedési kérdések importálása
         import_scoring_data: Pontozási adatok importálása
+        import_skill_rater_taxonomies: Képességértékelő taxonómiák importálása
         import_skill_translations: Szakértelemfordítások importálása
         import_skills: Készségek importálása
-        import_skills_rater_taxonomies: Képességértékelő taxonómiák importálása
         import_sms_invites: SMS meghívó importálása
         import_users: Felhasználók importálása
         migrate_assessment_translations: Értékelés Fordítás áttelepítése
@@ -1553,6 +1557,7 @@ hu:
     column:
       assessor_access: Értékelői hozzáférés
       auto_assign: Automatikus hozzárendelés
+      locales: Helyszínek
       main_report: Fő jelentés
       report_bundle: Jelentéscsomag
       report_name: Jelentés neve
@@ -1575,6 +1580,13 @@ hu:
         apply: Alkalmazza ezeket a módosításokat a kampány meglévő felhasználóira.
         msg_text: <strong>"%{reportName}"</strong> jelentést próbál törölni
         title: Eltávolítja a jelentést?
+      update_languages:
+        default_language: Alapértelmezett nyelv
+        other_available_languages: Egyéb rendelkezésre álló nyelvek
+        select_default_language: Alapértelmezett nyelv kiválasztása
+        select_languages: Nyelvek kiválasztása
+        success_msg: A nyelvek sikeresen frissültek
+        title: Jelentés nyelve
       user_access:
         apply: Alkalmazza ezeket a módosításokat a kampány meglévő felhasználóira.
         title:
@@ -1731,6 +1743,7 @@ hu:
       import: Importál
       insert: Beilleszt
       ok: OKÉ
+      publish: Közzététel
       reject: Elutasít
       remove: Távolítsa el a
       reset: Reset
@@ -1746,6 +1759,7 @@ hu:
       start: Indítsa el a  oldalt
       submit: Előterjeszt
       unarchive: Unarchive
+      unpublish: Unpublish
       unresolve: Megoldhatatlan
       update: Frissítés
       upload: Feltöltés
@@ -1849,7 +1863,6 @@ hu:
       default: Alapértelmezett
       download: Letöltés
       file: Fájl
-      global_export: Globális export?
       global_import: Globális import?
       minutes: Jegyzőkönyv
       na: N/A
@@ -2079,6 +2092,7 @@ hu:
         reserved_subdomain: A(z) %{value} altartomány le van foglalva
         uniq_subdomain: Az altartománynak egyedinek kell lennie.
       add_manager:
+        cannot_be_self: A felhasználó nem jelölhető ki saját menedzserként
         manager_not_found: A menedzser nem található, vagy nem része ugyanannak a projektnek
         user_not_found: A felhasználó nem található, vagy nem része ugyanannak a projektnek
       admin:
@@ -2097,11 +2111,17 @@ hu:
       campaign_factor_group:
         group_already_exists: Már létezik azonos nevű csoport.
         last_factor_group: Nem lehet törölni az utolsó kampánytényező-csoportot.
+      campaign_idps:
+        idp_template_not_published: Ezt az IDP sablont még nem teszik közzé, kérjük, tegye közzé, mielőtt a kampányba hozzárendelné.
       cant_be_deleted: Ez a rekord nem törölhető
       client_feature:
         ai_assisted_idp_feature_error: Nem lehet igaz, ha az AI asszisztensek funkció le van tiltva
       create_superadmin:
         uniq_email: Az e-mailnek uniq-nak kell lennie.
+      development_actions:
+        only_global_skills_allowed: A kiválasztott készségeknek globális készségeknek kell lenniük.
+        skills_not_belong_to_project: A kiválasztott készségeknek a megadott projekthez kell tartozniuk.
+        skills_required: Kérjük, válasszon ki legalább egy készséget.
       exceeded_subjects_count: Meghívónként csak %{count} témát adhat hozzá
       filled?: Nem lehet üres
       idp_template:
@@ -2149,6 +2169,7 @@ hu:
         start_time_should_be_less: A kezdési időpontnak rövidebbnek kell lennie, mint a befejezési időpontnak
       user_idp_plan:
         idp_template_already_assigned_to_user: Ez az idp-sablon már hozzá van rendelve ehhez a felhasználóhoz, és aktív
+        idp_template_not_published: Ezt az IDP sablont még nem teszik közzé, kérjük, tegye közzé, mielőtt hozzárendelné a felhasználót.
       user_saved_filters:
         limit_exceeded: Csak %{limit} mentett szűrők lehetnek, kérjük, töröld a mentett szűrőket, hogy továbbiakat adj hozzá.
         unique_name: Már létezik egy azonos nevű szűrő.
@@ -2209,6 +2230,9 @@ hu:
       no_active_plan: Nem található aktív IDP-terv
     webhooks:
       multiple_webhook_error: Az URL nem frissíthető, mivel ehhez a projekthez több webhook is tartozik.
+    workshop:
+      ical_generation_failed: Nem tudott naptármeghívót generálni
+      missing_or_invalid: Hiányzó vagy érvénytelen workshop_id
   evaluators:
     errors:
       can_not_processed: nem dolgozható fel
@@ -2470,6 +2494,7 @@ hu:
       aria_selected: Kiválasztott
   idp:
     actions: Műveletek
+    behavioral: Viselkedési
     board: Beszáll
     comment_details:
       add_comment: Megjegyzés hozzáadása
@@ -2534,6 +2559,7 @@ hu:
       submit_plan: Terv benyújtása
       write_here: Írj ide...
     edit_plan: Terv szerkesztése
+    edit_progress: Haladás szerkesztése
     initial_steps:
       add_skill_group_description: Az értékelési eredmények alapján íme néhány erősségi és fejlesztési terület az Ön számára. Válassza ki azokat a készségeket, amelyeket tovább szeretne fejleszteni a fejlesztési terv részeként.
       add_skill_group_title: "%{category} képességeinek felfedezése"
@@ -2571,6 +2597,7 @@ hu:
       cover:
         fields:
           assigned_data: Hozzárendelt dátum
+          assigned_date: Hozzárendelt dátum
           completion_date: Befejezés dátuma
           division: Osztás
           name: Név
@@ -2631,6 +2658,7 @@ hu:
       statuses:
         approved: Felülvizsgált és jóváhagyott
         completed: Befejezett
+        draft: Tervezet
         not_reviewed: Nincs felülvizsgálva
         pending_approval: Áttekintés alatt
       summary:
@@ -2667,6 +2695,7 @@ hu:
     skill_gap_report:
       title: Készséghiány-jelentés
     status: Állapot
+    technical: Műszaki
     user_idp_status:
       approved: Jóváhagyott
       completed: Befejezett
@@ -3624,11 +3653,35 @@ hu:
       exactly: Pontosan %{count}
     nominations: Jelölések
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Lehetővé teszi az értékelők számára a jelölés elutasítását
+        email_subject_when_nomination_declined: E-mail tárgya, ha egy jelölést elutasítanak
       form:
         value_not_valid: nincs érvényes értéke
       global:
         cannot_re_edit: A résztvevők nem szerkeszthetik az értékeléseket
         disable_all_evaluations: Az összes értékelés letiltása
+      manager:
+        allow_subjects_to_email: Lehetővé teszi az alanyok számára, hogy e-mailben küldjék el a menedzsereknek, ha a jelöléseik készen állnak jóváhagyásra.
+        approves_evaluations: Az igazgató jóváhagyja az értékeléseket
+        approves_nominations: Az igazgató jóváhagyja a jelöléseket
+        can_view_nominations: A menedzser megtekintheti a jelöléseket
+        email_managers_when_nomination_ready: E-mail a menedzsereknek, ha egy alany jelölése készen áll jóváhagyásra
+        email_subject_when_nomination_denied: E-mail tárgya, ha egy jelölést elutasítanak
+        may_choose_evaluators: A menedzser választhat értékelőket
+      subject:
+        allow_subjects_to_select_relationships: Lehetővé teszi az alanyok számára a kapcsolatok kiválasztását
+        anyone_in_assessment: Bárki az értékelésben
+        anyone_in_datasheet: Bárki az adatlapon
+        anyone_not_in_assessment: Bárki, aki jelenleg nem vesz részt az értékelésben
+        can_view_evaluators: Az alany megtekintheti az értékelőket
+        define_nomination_requirement: Jelölési követelmény meghatározása
+        limit_search_by_criteria: Keresés korlátozása kritériumok alapján
+        nominates_evaluators: Az alany nevezi ki az értékelőket
+        only_allow_relationships_of_specified_types: Csak a megadott típusú kapcsolatok engedélyezése
+        only_show_subjects_who_match_criteria: 'Csak a következő kritériumoknak megfelelő alanyok megjelenítése:'
+        self_evaluates: A tantárgy önértékelése
+        subjects_cannot_remove_nominations: Az alanyok nem távolíthatják el a menedzserek vagy adminok által beállított jelöléseket.
     or: Vagy
     page_title: Signify 360° felülvizsgálata - Alkalmazási szint
     participant_list:
@@ -3843,7 +3896,6 @@ hu:
       add: Jelentés hozzáadása
       download: Letöltés
       generate: Létrehoz
-      regenerate: Regenerálja
     approval_statuses:
       approved: Jóváhagyott
       change_requested: Módosítás kérve

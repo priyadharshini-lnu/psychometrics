@@ -43,7 +43,7 @@ describe Sheets::ParseFile do
 
   context 'sheet is Accesssheet' do
     it 'deletes existing record' do
-      sheet = project.sheets.create!(columns: columns, type: 'Accesssheet')
+      sheet = project.sheets.create!(type: 'Accesssheet')
       described_class.call(form, project, 'Accesssheet')
       expect(Sheet.find_by(id: sheet.id)).to eq(nil)
     end
@@ -68,7 +68,7 @@ describe Sheets::ParseFile do
   end
 
   it 'merge exists sheet row data' do
-    sheet = project.sheets.create(columns: columns)
+    sheet = project.sheets.create
     column = sheet.sheet_columns.create(name: 'Name', column_type: 'string')
     sheet_row = sheet.rows.create(email: email)
     sheet_row.sheet_row_data.create(sheet_column: column, string_value: 'James')

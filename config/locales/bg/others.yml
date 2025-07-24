@@ -329,12 +329,13 @@ bg:
             email:
               blank: Имейлът не може да бъде празен
               not_uniq_email: Ред с имейл вече присъства
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Трябва да е активирана поне една роля за работа с избран тип умения за %{block_name}
-              invalid_skill_type: 'Невалиден тип умение %{skill_type} за %{role_name} за %{block_name}. Допустими опции: %{valid_options}'
-              props_missing: Работа
+              at_least_one_job_role_required: За %{skill_type} се изисква поне една длъжностна роля за %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Поне един тип умение трябва да е активиран с избрана роля за работа за %{block_name}
+              invalid_job_role_type: 'Невалидна длъжностна роля %{job_role} за %{skill_type} за %{block_name}. Валидни опции: %{valid_options}'
+              props_missing: Липсва конфигурация на уменията за %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ bg:
           case_study: Казуси
           hogan: Хоган
           iiht: ИИХТ
+          lead_assessor_form: Формуляр за водещ оценител
           meeting: Събрание
           organisational: Изследвания
           pearson: Пиърсън
@@ -789,6 +791,8 @@ bg:
           attributes:
             current_password:
               invalid: Текущата парола е неправилна
+            manager_id:
+              cannot_be_self: Потребителят не може да бъде назначен като свой собствен мениджър
         user_idp_comment:
           reply_to_reply: не може да отговори на отговор (разрешено е само едно ниво на влагане)
         user_idp_plan:
@@ -859,9 +863,9 @@ bg:
         import_raw_data: Импортиране на необработени данни
         import_reflection_questions: Импортиране на въпроси за размисъл
         import_scoring_data: Импортиране на данни за оценяване
+        import_skill_rater_taxonomies: Импортиране на таксономии за оценяване на уменията
         import_skill_translations: Импортиране на преводи на умения
         import_skills: Импортиране на умения
-        import_skills_rater_taxonomies: Импортиране на таксономии за оценяване на уменията
         import_sms_invites: Импортиране на SMS покана
         import_users: Импортиране на потребители
         migrate_assessment_translations: Оценяване Преводаческа миграция
@@ -1553,6 +1557,7 @@ bg:
     column:
       assessor_access: Достъп до оценителя
       auto_assign: Автоматично присвояване
+      locales: Местоположения
       main_report: Основен доклад
       report_bundle: Пакет от отчети
       report_name: Име на отчета
@@ -1575,6 +1580,13 @@ bg:
         apply: Приложете тези промени към съществуващи потребители в тази кампания.
         msg_text: Опитвате се да изтриете <strong>отчета "%{reportName}"</strong>
         title: Премахване на доклада?
+      update_languages:
+        default_language: Език по подразбиране
+        other_available_languages: Други налични езици
+        select_default_language: Избор на език по подразбиране
+        select_languages: Изберете езици
+        success_msg: Езиците бяха актуализирани успешно
+        title: Език на доклада
       user_access:
         apply: Приложете тези промени към съществуващи потребители в тази кампания.
         title:
@@ -1731,6 +1743,7 @@ bg:
       import: Внос
       insert: Вмъквам
       ok: ОК
+      publish: Публикувайте
       reject: Отхвърлям
       remove: Премахнете
       reset: Нулирайте
@@ -1746,6 +1759,7 @@ bg:
       start: НЗапочнете
       submit: Изпрати
       unarchive: Разрхивирайте
+      unpublish: Отмяна на публикацията
       unresolve: Неразрешете
       update: Актуализирайте
       upload: Качете
@@ -1849,7 +1863,6 @@ bg:
       default: По подразбиране
       download: Изтеглете
       file: Файл
-      global_export: Глобален износ ли е?
       global_import: Глобален внос ли е?
       minutes: Минути
       na: Не е налично
@@ -2079,6 +2092,7 @@ bg:
         reserved_subdomain: Поддомейнът %{value} е запазен
         uniq_subdomain: Поддомейнът трябва да бъде уникален.
       add_manager:
+        cannot_be_self: Потребителят не може да бъде назначен като свой собствен мениджър
         manager_not_found: Мениджърът не е намерен или не е част от един и същ проект
         user_not_found: Потребител не е намерен или не е част от един и същ проект
       admin:
@@ -2097,11 +2111,17 @@ bg:
       campaign_factor_group:
         group_already_exists: Група със същото име вече съществува.
         last_factor_group: Не може да се изтрие последната група фактори на кампанията.
+      campaign_idps:
+        idp_template_not_published: Този шаблон на IDP все още не е публикуван, моля, публикувайте го преди да присвоите в кампания.
       cant_be_deleted: Този запис не може да бъде изтрит
       client_feature:
         ai_assisted_idp_feature_error: Не може да е вярно, ако функцията за AI асистенти е деактивирана
       create_superadmin:
         uniq_email: Имейлът трябва да е uniq.
+      development_actions:
+        only_global_skills_allowed: Избраните умения трябва да са глобални.
+        skills_not_belong_to_project: Избраните умения трябва да принадлежат към посочения проект.
+        skills_required: Моля, изберете поне едно умение.
       exceeded_subjects_count: Можете да добавяте само %{count} теми на покана
       filled?: не може да бъде празен
       idp_template:
@@ -2149,6 +2169,7 @@ bg:
         start_time_should_be_less: Началният час трябва да е по-малък от крайния час
       user_idp_plan:
         idp_template_already_assigned_to_user: Този шаблон за IDP вече е приет към този потребител и е активен
+        idp_template_not_published: Този шаблон на IDP все още не е публикуван, моля, публикувайте го, преди да зададете на потребителя.
       user_saved_filters:
         limit_exceeded: Можете да имате само %{limit} запазени филтри, моля, изтрийте запазените филтри, за да добавите още.
         unique_name: Вече съществува филтър със същото име.
@@ -2209,6 +2230,9 @@ bg:
       no_active_plan: Не е намерен активен план за IDP
     webhooks:
       multiple_webhook_error: URL адресът не може да бъде актуализиран, тъй като има множество уеб кукички за този проект.
+    workshop:
+      ical_generation_failed: Не може да генерира покана за календара
+      missing_or_invalid: Липсващ или невалиден workshop_id
   evaluators:
     errors:
       can_not_processed: не може да се обработва
@@ -2470,6 +2494,7 @@ bg:
       aria_selected: Избран
   idp:
     actions: Действия
+    behavioral: Поведенчески
     board: Съвет
     comment_details:
       add_comment: Добави коментар
@@ -2534,6 +2559,7 @@ bg:
       submit_plan: Изпрати план
       write_here: Пишете тук...
     edit_plan: Редактиране на плана
+    edit_progress: Редактиране на напредъка
     initial_steps:
       add_skill_group_description: Въз основа на резултатите от вашата оценка, ето някои от областите на силни страни и развитие за вас. Изберете уменията, които искате да развиете допълнително, като част от вашия план за развитие.
       add_skill_group_title: Изследване на вашите умения %{category}
@@ -2571,6 +2597,7 @@ bg:
       cover:
         fields:
           assigned_data: Определена дата
+          assigned_date: Присвоена дата
           completion_date: Дата на завършване
           division: Делене
           name: Име
@@ -2606,10 +2633,32 @@ bg:
           main: Този раздел включва кумулативен списък на всички пътища за развитие, като се има предвид най-добрите практики за обучение, т.е. насоки 70-20-10, които осигуряват прогресивно пътуване, съчетаващо обучение в класната стая, коучинг и обучение на работното място. Въз основа на резултатите от опита в развитието на лидерството и бизнес приоритетите са препоръчани възможни пътища за развитие, които могат да бъдат разгледани за вашето развитие.
         learn_cards:
           collaboration:
+            list:
+            - Предложете да бъдете ментор или коуч на други
+            - Поискайте да бъдете наставлявани от експерт във вашата област
+            - Намерете коуч, който да подкрепи вашето развитие
+            - Създайте колаборативна работна група за обсъждане на текущи бизнес предизвикателства
+            - Получавайте обратна връзка формално и неформално от други
+            - Вземете активно участие в индустриални асоциации и мрежи
+            - Изградете свои собствени външни мрежи
             title: Съвместно обучение (20%) <br/> Развитие чрез други
           job:
+            list:
+            - Поемете ръководни позиции в комитети на заинтересовани страни или управленски комитети
+            - Доброволствайте да ръководите проекти за управление на промяната в организацията
+            - Помислете за поемане на предизвикателни задачи
+            - Работете съвместно с други функции
+            - Помислете за ръководене на проекти извън вашата организация
+            - Работете в тясно сътрудничество с външни експерти от индустрията по съвместни проекти
             title: Учене на работното място (70%) <br/> Развитие чрез опит
           learn:
+            list:
+            - Поемете ръководни позиции в комитети на заинтересовани страни или управленски комитети
+            - Доброволствайте да ръководите проекти за управление на промяната в организацията
+            - Помислете за поемане на предизвикателни задачи
+            - Работете съвместно с други функции
+            - Помислете за ръководене на проекти извън вашата организация
+            - Работете в тясно сътрудничество с външни експерти от индустрията по съвместни проекти
             title: Формално обучение (10%) <br/> Развитие чрез структурирано обучение
         title: Насоки за насочване на вашето IDP
       idp:
@@ -2631,6 +2680,7 @@ bg:
       statuses:
         approved: Прегледан и одобрен
         completed: Завършен
+        draft: Чернова
         not_reviewed: Не е прегледан
         pending_approval: В преглед
       summary:
@@ -2667,6 +2717,7 @@ bg:
     skill_gap_report:
       title: Доклад за пропуските в уменията
     status: Статус
+    technical: Технически
     user_idp_status:
       approved: Одобрен
       completed: Завършен
@@ -3624,11 +3675,35 @@ bg:
       exactly: Точно %{count}
     nominations: Номинации
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Позволете на оценителите да откажат номинация
+        email_subject_when_nomination_declined: Тема на имейла, когато номинацията е отхвърлена
       form:
         value_not_valid: няма валидна стойност
       global:
         cannot_re_edit: Участниците не могат да редактират оценките
         disable_all_evaluations: Деактивиране на всички оценки
+      manager:
+        allow_subjects_to_email: Позволете на субектите да изпращат имейли на мениджърите, когато техните номинации са готови за одобрение.
+        approves_evaluations: Мениджърът одобрява оценките
+        approves_nominations: Ръководителят одобрява номинациите
+        can_view_nominations: Мениджърът може да преглежда номинациите
+        email_managers_when_nomination_ready: Изпращане на имейл до мениджърите, когато номинацията на даден субект е готова за одобрение
+        email_subject_when_nomination_denied: Тема на имейла при отказ на номинация
+        may_choose_evaluators: Мениджърът може да избира оценители
+      subject:
+        allow_subjects_to_select_relationships: Позволете на субектите да избират взаимоотношения
+        anyone_in_assessment: Всеки, който участва в оценката
+        anyone_in_datasheet: Всеки в листа с данни
+        anyone_not_in_assessment: Всеки, който не е включен в оценката
+        can_view_evaluators: Субектът може да преглежда оценителите
+        define_nomination_requirement: Определяне на изискването за номиниране
+        limit_search_by_criteria: Ограничаване на търсенето по критерии
+        nominates_evaluators: Субектът номинира оценители
+        only_allow_relationships_of_specified_types: Разрешаване на връзки само от определени типове
+        only_show_subjects_who_match_criteria: 'Показвайте само субекти, които отговарят на следните критерии:'
+        self_evaluates: Субектът се самооценява
+        subjects_cannot_remove_nominations: Субектите не могат да премахват номинации, зададени от мениджъри или администратори.
     or: Или
     page_title: Signify 360° Преглед - ниво на приложение
     participant_list:
@@ -3843,7 +3918,6 @@ bg:
       add: Добавяне на отчет
       download: Свалям
       generate: Пораждам
-      regenerate: Регенерирайте
     approval_statuses:
       approved: Одобрен
       change_requested: Искана промяна

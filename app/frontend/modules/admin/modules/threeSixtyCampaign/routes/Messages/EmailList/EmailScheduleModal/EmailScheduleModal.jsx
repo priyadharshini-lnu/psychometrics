@@ -83,13 +83,13 @@ export default function EmailScheduleModal ({
   return (
     <Modal
       width={800}
-      title="Schedule Email"
+      title={I18n.t('administration.threesixty_campaigns.email_templates.schedule_email_title')}
       open
       onCancel={closeModal}
       bodyStyle={{ padding: '0px' }}
       footer={[
         <Button key="back" onClick={closeModal}>
-          Cancel
+          {I18n.t('common.actions.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -99,7 +99,7 @@ export default function EmailScheduleModal ({
           loading={loading}
         >
           <CheckOutlined />
-          Schedule
+          {I18n.t('administration.threesixty_campaigns.email_templates.schedule')}
         </Button>,
       ]}
     >
@@ -174,7 +174,7 @@ function ConsolidatedSwitch ({ emailTemplate, update }) {
         onChange={update}
       />
       {'  '}
-      <span>Consolidated</span>
+      <span>{I18n.t('administration.threesixty_campaigns.email_templates.consolidated')}</span>
     </div>
   )
 }

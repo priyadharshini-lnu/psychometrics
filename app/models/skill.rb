@@ -13,6 +13,8 @@ class Skill < ApplicationRecord
   belongs_to :skill_group, optional: true
 
   has_one :proficiency_level
+  has_one :question, dependent: :destroy
+  has_one :factor, dependent: :destroy
   has_many :skills_job_roles
   has_many :job_roles, through: :skills_job_roles
   has_many :skills_development_actions, dependent: :destroy
@@ -22,6 +24,8 @@ class Skill < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :project_id, case_sensitive: false }
 
   enum :skill_type, { behavioral: 0, technical: 1, other: 2 }
+
+  after_create_commit :create_associated_question, unless: :question_exists?
 
   acts_as_taggable_on :tags
   acts_as_taggable_tenant :project_id
@@ -62,5 +66,20 @@ class Skill < ApplicationRecord
   # Custom ransacker for skill_type enum
   ransacker :skill_type, formatter: proc { |v| skill_types[v] } do |parent|
     parent.table[:skill_type]
+  end
+
+  private
+
+  def create_associated_question
+    Question.create!(
+      name: "#{name} Question",
+      skill: self,
+      owner_id: project_id,
+      type: 'SkillRater'
+    )
+  end
+
+  def question_exists?
+    Question.exists?(skill_id: id)
   end
 end

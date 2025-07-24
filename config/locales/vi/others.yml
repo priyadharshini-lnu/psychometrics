@@ -329,12 +329,13 @@ vi:
             email:
               blank: Email không được để trống
               not_uniq_email: Hàng có email đã có sẵn
-        skills_rater_block_form:
+        skill_rater_block_form:
           attributes:
             base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Ít nhất một vị trí công việc phải được kích hoạt với loại kỹ năng được chọn cho %{block_name}
-              invalid_skill_type: 'Loại kỹ năng không hợp lệ %{skill_type} cho %{role_name} cho %{block_name}. Các tùy chọn hợp lệ: %{valid_options}'
-              props_missing: Công việc
+              at_least_one_job_role_required: Ít nhất một vị trí công việc là bắt buộc cho %{skill_type} cho %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Ít nhất một loại kỹ năng phải được kích hoạt với một vai trò công việc được chọn cho %{block_name}
+              invalid_job_role_type: 'Vị trí công việc không hợp lệ %{job_role} cho %{skill_type} cho %{block_name}. Các tùy chọn hợp lệ: %{valid_options}'
+              props_missing: Cấu hình kỹ năng còn thiếu cho %{block_name}
         skillvue:
           attributes:
             name:
@@ -437,6 +438,7 @@ vi:
           case_study: Nghiên cứu điển hình
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Phiếu đánh giá của Trưởng nhóm đánh giá
           meeting: Hội nghị
           organisational: Cuộc điều tra
           pearson: Pearson
@@ -789,6 +791,8 @@ vi:
           attributes:
             current_password:
               invalid: Mật khẩu hiện tại không đúng
+            manager_id:
+              cannot_be_self: Người dùng không thể được chỉ định làm quản lý của chính mình.
         user_idp_comment:
           reply_to_reply: không thể trả lời câu trả lời (chỉ cho phép một cấp độ lồng nhau)
         user_idp_plan:
@@ -859,9 +863,9 @@ vi:
         import_raw_data: Nhập dữ liệu thô
         import_reflection_questions: Nhập câu hỏi phản ánh
         import_scoring_data: Nhập dữ liệu tính điểm
+        import_skill_rater_taxonomies: Nhập các phân loại đánh giá kỹ năng
         import_skill_translations: Bản dịch kỹ năng nhập khẩu
         import_skills: Kỹ năng nhập khẩu
-        import_skills_rater_taxonomies: Nhập các phân loại đánh giá kỹ năng
         import_sms_invites: Nhập lời mời SMS
         import_users: Nhập người dùng
         migrate_assessment_translations: Di chuyển dịch thuật đánh giá
@@ -1547,6 +1551,7 @@ vi:
     column:
       assessor_access: Quyền truy cập của người đánh giá
       auto_assign: Tự động chỉ định
+      locales: Vùng địa phương
       main_report: Báo cáo chính
       report_bundle: Gói báo cáo
       report_name: Tên báo cáo
@@ -1569,6 +1574,13 @@ vi:
         apply: Áp dụng thay đổi này cho người dùng hiện tại trong chiến dịch này.
         msg_text: Bạn đang cố gắng xóa Báo cáo <strong>"%{reportName}"</strong>
         title: Xóa báo cáo?
+      update_languages:
+        default_language: Ngôn ngữ mặc định
+        other_available_languages: Các ngôn ngữ khác có sẵn
+        select_default_language: Chọn ngôn ngữ mặc định
+        select_languages: Chọn ngôn ngữ
+        success_msg: Các ngôn ngữ đã được cập nhật thành công.
+        title: Ngôn ngữ báo cáo
       user_access:
         apply: Áp dụng thay đổi này cho người dùng hiện tại trong chiến dịch này.
         title:
@@ -1725,6 +1737,7 @@ vi:
       import: Nhập khẩu
       insert: Chèn
       ok: OK
+      publish: Xuất bản
       reject: Bác bỏ
       remove: Di dời
       reset: Cài lại
@@ -1740,6 +1753,7 @@ vi:
       start: Bắt đầu
       submit: Trình
       unarchive: Bỏ lưu trữ
+      unpublish: Hủy đăng
       unresolve: Chưa giải quyết
       update: Cập nhật
       upload: Tải lên
@@ -1843,7 +1857,6 @@ vi:
       default: Mặc định
       download: Tải về
       file: Tệp
-      global_export: Xuất khẩu toàn cầu có phải không?
       global_import: Nhập khẩu toàn cầu có phải không?
       minutes: Biên bản
       na: Không có
@@ -2073,6 +2086,7 @@ vi:
         reserved_subdomain: Tên miền phụ %{value} được bảo lưu
         uniq_subdomain: Tên miền phụ phải là duy nhất.
       add_manager:
+        cannot_be_self: Người dùng không thể được chỉ định làm quản lý của chính mình.
         manager_not_found: Không tìm thấy người quản lý hoặc không phải là một phần của cùng một dự án
         user_not_found: Không tìm thấy người dùng hoặc không phải là một phần của cùng một dự án
       admin:
@@ -2091,11 +2105,17 @@ vi:
       campaign_factor_group:
         group_already_exists: Một nhóm có cùng tên đã tồn tại.
         last_factor_group: Không thể xóa nhóm yếu tố chiến dịch cuối cùng.
+      campaign_idps:
+        idp_template_not_published: Mẫu IDP này chưa được xuất bản, vui lòng xuất bản nó trước khi gán cho chiến dịch.
       cant_be_deleted: Không thể xóa bản ghi này
       client_feature:
         ai_assisted_idp_feature_error: Không thể đúng nếu tính năng trợ lý ai bị tắt
       create_superadmin:
         uniq_email: Email nên là uniq.
+      development_actions:
+        only_global_skills_allowed: Các kỹ năng được chọn phải là kỹ năng toàn cầu.
+        skills_not_belong_to_project: Các kỹ năng được chọn phải thuộc về dự án đã được chỉ định.
+        skills_required: Vui lòng chọn ít nhất một kỹ năng.
       exceeded_subjects_count: Bạn chỉ có thể thêm %{count} chủ đề cho mỗi lời mời
       filled?: không thể để trống
       idp_template:
@@ -2143,6 +2163,7 @@ vi:
         start_time_should_be_less: Thời gian bắt đầu phải ít hơn thời gian kết thúc
       user_idp_plan:
         idp_template_already_assigned_to_user: Mẫu Idp này đã được cung cấp cho người dùng này và đang hoạt động
+        idp_template_not_published: Mẫu IDP này chưa được xuất bản, vui lòng xuất bản nó trước khi gán cho người dùng.
       user_saved_filters:
         limit_exceeded: Bạn chỉ có thể có %{limit} bộ lọc đã lưu, vui lòng xóa các bộ lọc đã lưu để thêm nhiều hơn.
         unique_name: Một bộ lọc có cùng tên đã tồn tại.
@@ -2203,6 +2224,9 @@ vi:
       no_active_plan: Không tìm thấy gói IDP đang hoạt động
     webhooks:
       multiple_webhook_error: URL không thể được cập nhật vì có nhiều webhook cho dự án này.
+    workshop:
+      ical_generation_failed: Không thể tạo lời mời lịch.
+      missing_or_invalid: Thiếu hoặc không hợp lệ workshop_id
   evaluators:
     errors:
       can_not_processed: không thể xử lý
@@ -2464,6 +2488,7 @@ vi:
       aria_selected: Chọn
   idp:
     actions: Hành động
+    behavioral: Hành vi
     board: Ván
     comment_details:
       add_comment: Thêm bình luận
@@ -2528,6 +2553,7 @@ vi:
       submit_plan: Gửi kế hoạch
       write_here: Viết ở đây...
     edit_plan: Chỉnh sửa kế hoạch
+    edit_progress: Chỉnh sửa tiến độ
     initial_steps:
       add_skill_group_description: Dựa trên kết quả đánh giá của bạn, đây là một số lĩnh vực thế mạnh và sự phát triển dành cho bạn. Chọn các kỹ năng bạn muốn phát triển hơn nữa như một phần của kế hoạch phát triển của bạn.
       add_skill_group_title: Khám phá các kỹ năng %{category} của bạn
@@ -2565,6 +2591,7 @@ vi:
       cover:
         fields:
           assigned_data: Ngày chỉ định
+          assigned_date: Ngày được giao
           completion_date: Ngày hoàn thành
           division: Sư đoàn
           name: Tên
@@ -2600,10 +2627,32 @@ vi:
           main: Phần này bao gồm danh sách tích lũy tất cả các lộ trình phát triển, ghi nhớ việc học thực hành tốt nhất, tức là hướng dẫn 70-20-10, cung cấp một hành trình tiến bộ kết hợp học trên lớp, huấn luyện và học tập tại chỗ. Dựa trên kết quả từ kinh nghiệm phát triển lãnh đạo và các ưu tiên kinh doanh, các lộ trình phát triển khả thi đã được đề xuất, có thể được xem xét cho sự phát triển của bạn.
         learn_cards:
           collaboration:
+            list:
+            - Đề nghị huấn luyện hoặc cố vấn cho người khác
+            - Yêu cầu được cố vấn bởi chuyên gia trong lĩnh vực của bạn
+            - Tìm một huấn luyện viên hỗ trợ phát triển của bạn
+            - Thiết lập nhóm làm việc hợp tác để thảo luận các thách thức trong doanh nghiệp
+            - Nhận phản hồi chính thức và không chính thức từ người khác
+            - Tham gia tích cực vào các hiệp hội và mạng lưới ngành
+            - Xây dựng mạng lưới bên ngoài của riêng bạn
             title: Học tập hợp tác (20%) <br/> Phát triển thông qua người khác
           job:
+            list:
+            - Đảm nhận vị trí lãnh đạo trong các ủy ban quản lý hoặc các bên liên quan
+            - Tình nguyện dẫn dắt các dự án quản lý thay đổi cho tổ chức
+            - Xem xét nhận các nhiệm vụ thử thách
+            - Làm việc phối hợp với các phòng ban khác
+            - Dẫn dắt các dự án ngoài tổ chức của bạn
+            - Làm việc chặt chẽ với chuyên gia ngành ngoài trong các dự án chung
             title: Học tập trong công việc (70%) <br/> Phát triển thông qua kinh nghiệm
           learn:
+            list:
+            - Đảm nhận vị trí lãnh đạo trong các ủy ban quản lý hoặc các bên liên quan
+            - Tình nguyện dẫn dắt các dự án quản lý thay đổi cho tổ chức
+            - Xem xét nhận các nhiệm vụ thử thách
+            - Làm việc phối hợp với các phòng ban khác
+            - Dẫn dắt các dự án ngoài tổ chức của bạn
+            - Làm việc chặt chẽ với chuyên gia ngành ngoài trong các dự án chung
             title: Học tập chính thức (10%) <br/> Phát triển thông qua học tập có cấu trúc
         title: Hướng dẫn hướng dẫn IDP của bạn
       idp:
@@ -2625,6 +2674,7 @@ vi:
       statuses:
         approved: Đã xem xét và phê duyệt
         completed: Hoàn thành
+        draft: Bản nháp
         not_reviewed: Chưa được xem xét
         pending_approval: Đang xem xét
       summary:
@@ -2661,6 +2711,7 @@ vi:
     skill_gap_report:
       title: Báo cáo khoảng cách kỹ năng
     status: Tình trạng
+    technical: Kỹ thuật
     user_idp_status:
       approved: Chấp thuận
       completed: Hoàn thành
@@ -3618,11 +3669,35 @@ vi:
       exactly: Chính xác %{count}
     nominations: Đề cử
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Cho phép các đánh giá viên từ chối đề cử.
+        email_subject_when_nomination_declined: Tiêu đề email khi một đề cử bị từ chối
       form:
         value_not_valid: không có giá trị hợp lệ
       global:
         cannot_re_edit: Người tham gia không thể chỉnh sửa đánh giá
         disable_all_evaluations: Tắt tất cả các đánh giá
+      manager:
+        allow_subjects_to_email: Cho phép các ứng viên gửi email cho quản lý khi đề cử của họ đã sẵn sàng để phê duyệt.
+        approves_evaluations: Quản lý phê duyệt đánh giá
+        approves_nominations: Quản lý phê duyệt các đề cử.
+        can_view_nominations: Quản lý có thể xem các đề cử.
+        email_managers_when_nomination_ready: Gửi email cho các quản lý khi đề cử của một chủ đề đã sẵn sàng để phê duyệt.
+        email_subject_when_nomination_denied: Tiêu đề email khi đề cử bị từ chối
+        may_choose_evaluators: Quản lý có thể chọn các đánh giá viên.
+      subject:
+        allow_subjects_to_select_relationships: Cho phép các đối tượng chọn mối quan hệ
+        anyone_in_assessment: Bất kỳ ai tham gia đánh giá
+        anyone_in_datasheet: Bất kỳ ai trong bảng dữ liệu
+        anyone_not_in_assessment: Bất kỳ ai hiện không tham gia vào quá trình đánh giá.
+        can_view_evaluators: Người được đánh giá có thể xem người đánh giá.
+        define_nomination_requirement: Xác định yêu cầu đề cử
+        limit_search_by_criteria: Hạn chế tìm kiếm theo tiêu chí
+        nominates_evaluators: Người đề cử đề xuất các đánh giá viên.
+        only_allow_relationships_of_specified_types: Chỉ cho phép các mối quan hệ thuộc các loại được chỉ định.
+        only_show_subjects_who_match_criteria: 'Chỉ hiển thị các chủ đề đáp ứng các tiêu chí sau:'
+        self_evaluates: Đánh giá bản thân
+        subjects_cannot_remove_nominations: Người dùng không thể xóa các đề cử được thiết lập bởi quản trị viên hoặc người quản lý.
     or: Hoặc
     page_title: Đánh giá Signify 360° - Áp dụng Cấp độ
     participant_list:
@@ -3837,7 +3912,6 @@ vi:
       add: Thêm báo cáo
       download: Tải xuống
       generate: Đẻ ra
-      regenerate: Tái tạo
     approval_statuses:
       approved: Chấp thuận
       change_requested: Yêu cầu thay đổi

@@ -59,6 +59,7 @@ export const fetch = (campaignId: string, tableConfig: TableConfig): ApiAction<S
     debounce: 500,
     tableConfig,
     typedResponse: SmsInviteListResponseTR,
+    loader: true,
   },
 })
 

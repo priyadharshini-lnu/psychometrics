@@ -4,9 +4,7 @@ require 'rails_helper'
 
 describe Sheets::Export do
   let(:sheet) do
-    create(:sheet, columns: [{ name: 'Email', type: 'String' },
-                             { name: 'Profile', type: 'Text' },
-                             { name: 'Empty', type: 'Number' }])
+    create(:sheet)
   end
   let!(:columns) do
     sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string')

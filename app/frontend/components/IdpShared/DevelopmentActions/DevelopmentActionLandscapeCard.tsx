@@ -29,6 +29,7 @@ const { I18n } = window
 const connector = connect((state: RootState) => ({
   selfRatingEnabled: state.campaigns.idp.selfRatingEnabled,
   idpUser: state.campaigns.idp.user,
+  currentUser: state.currentUser,
 }),
 {
   updateUserIdpSkill,
@@ -58,8 +59,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   updateUserIdpSkill,
   selfRatingEnabled,
   removeDevelopmentActionFromPlan,
-  idpUser,
+  idpUser, currentUser,
 }) => {
+  const canEditProgress = currentUser.id === idpUser.id
+
   const handleRatingChange = (rating) => {
     updateUserIdpSkill(userIdpSkillId, { initialRating: rating }, idpUser.id).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))
@@ -90,6 +93,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       onUpdateDevelopmentAction={onUpdateDevelopmentAction}
       onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
       onRemoveDevelopmentAction={removeDevelopmentActionFromPlan}
+      canEditProgress={canEditProgress}
     />
   ))
 
@@ -136,6 +140,7 @@ const DateRange = ({ developmentAction, editMode, onDateRangeChange }) => {
             endDateTime ? dayjs(endDateTime) : null,
           ]}
           format={format}
+          disabledDate={current => current && current < dayjs().startOf('day')}
           onChange={onDateRangeChange}
         />
       </Flex>
@@ -160,6 +165,7 @@ const Card = ({
   onUpdateDevelopmentActionProgress,
   editMode,
   onRemoveDevelopmentAction,
+  canEditProgress,
 }) => {
   const [editableProgress, setEditableProgress] = useState(developmentAction.progress)
   const [editing, setEditing] = useState(false)
@@ -215,8 +221,8 @@ const Card = ({
         }}
       />
       <Flex gap={8} justify="flex-end">
-        <Button size="small" onClick={cancelEditing}>Cancel</Button>
-        <Button type="primary" size="small" onClick={saveProgress}>Save</Button>
+        <Button size="small" onClick={cancelEditing}>{I18n.t('common.actions.cancel')}</Button>
+        <Button type="primary" size="small" onClick={saveProgress}>{I18n.t('common.actions.save')}</Button>
       </Flex>
     </Flex>
   )
@@ -224,9 +230,9 @@ const Card = ({
   const progress = (
     <Popover
       content={popoverContent}
-      title="Edit Progress"
+      title={I18n.t('idp.edit_progress')}
       trigger="click"
-      open={editing}
+      open={canEditProgress && editing}
       onOpenChange={setEditing}
     >
       <Flex
@@ -253,7 +259,7 @@ const Card = ({
           align="flex-end"
         >
           <Progress percent={editableProgress} className={styles.m_none} />
-          {isHovering || isTablet ? (
+          {canEditProgress && (isHovering || isTablet) ? (
             <Button
               type="default"
               shape="circle"

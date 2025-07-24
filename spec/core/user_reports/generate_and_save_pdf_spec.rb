@@ -110,4 +110,46 @@ describe UserReports::GenerateAndSavePdf do
       expect(user_report.user_report_pdf.last_generated_at).to be_present
     end
   end
+
+  context(
+    'when user_report_selected_reports with report_id and locales ' \
+    'mapping is provided for normal campaign bulk regenerate'
+  ) do
+    let(:user_report1) { create(:user_report, user: user) }
+    let(:selected_reports) do
+      {
+        user_report.report_id.to_s => ['ar'],
+        user_report1.report_id.to_s => ['en']
+      }
+    end
+
+    before do
+      allow(UserReports::GeneratePdf).to receive(:call!).and_return(file_path: 'spec/fixtures/files/reports/test.pdf')
+      allow(user_report).to receive(:generatable?).and_return(true)
+      allow(user_report1).to receive(:generatable?).and_return(true)
+    end
+
+    it 'generates report for specified languages' do
+      expect(UserReports::GeneratePdf).to receive(:call!).with(
+        user_report,
+        current_user,
+        hash_including(lang: 'ar')
+      )
+
+      expect(UserReports::GeneratePdf).to receive(:call!).with(
+        user_report1,
+        current_user,
+        hash_including(lang: 'en')
+      )
+
+      described_class.call!(
+        [user_report, user_report1],
+        current_user,
+        selected_reports: selected_reports,
+        force_regenerate: true
+      )
+      expect(user_report.user_report_pdf(locale: 'ar').pdf_file.attached?).to be_truthy
+      expect(user_report1.user_report_pdf(locale: 'en').pdf_file.attached?).to be_truthy
+    end
+  end
 end

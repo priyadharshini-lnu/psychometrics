@@ -15,7 +15,7 @@ const { I18n } = window
 export const IdpReportPreview = () => {
   const { campaignId, id } = useParams<{campaignId: string, id:string}>()
   const [search] = useSearchParams()
-  const lang = search.get('lang') || 'en'
+  const lang = search.get('report_lang') || 'en'
   const dispatch = useDispatch()
 
   const isSuperAdmin = useSelector<RootState>(state => state.currentUser.role === 'Users::SuperAdmin')
@@ -28,7 +28,7 @@ export const IdpReportPreview = () => {
     }],
     onClick: ({ key }) => {
       if (campaignId && id) {
-        dispatch(downloadIdpReport(campaignId, id, key === 'with_rq')).then(() => {
+        dispatch(downloadIdpReport(campaignId, id, key === 'with_rq', lang)).then(() => {
           message.success(I18n.t('threesixty.report_generation_in_progress'))
         })
       }
@@ -46,7 +46,7 @@ export const IdpReportPreview = () => {
   return (
     <div style={{ padding: 20 }}>
       <Space>
-        <LangDropdownWithChangeUrl locales={['en', 'ar']} currentLocale={lang} />
+        <LangDropdownWithChangeUrl locales={['en', 'ar']} currentLocale={lang} paramName="report_lang" />
         <Dropdown menu={menu} trigger={['click']}>
           <Button>
             <Space>

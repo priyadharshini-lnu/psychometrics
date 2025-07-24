@@ -96,10 +96,17 @@ export const SkillsFilter: React.FC<Props> = ({
       if (params.projectId) {
         handleSkillsExport(Number(params.projectId))
       } else {
-        openModal('SkillsExportModal', {
-          handleExport: handleSkillsExport,
-          title: I18n.t('administration.skills.export_action.skills_title'),
+        resource.collectionAction({
+          action: 'export_global',
+          method: 'post',
+          body: {},
+          responseType: t.literal('ok'),
+        }).then(() => {
+          message.info(I18n.t('administration.skills.export.success_msg'))
         })
+          .catch(() => {
+            message.error(I18n.t('administration.skills.export.failure_msg'))
+          })
       }
     }
 
@@ -107,39 +114,19 @@ export const SkillsFilter: React.FC<Props> = ({
       if (params.projectId) {
         handleSkillsTranslationExport(Number(params.projectId))
       } else {
-        openModal('SkillsExportModal', {
-          handleExport: handleSkillsTranslationExport,
-          title: I18n.t('administration.skills.export_action.skills_translations_title'),
+        resource.collectionAction({
+          action: 'export_global_translations',
+          method: 'post',
+          body: {},
+          responseType: t.literal('ok'),
         })
+          .then(() => {
+            message.info(I18n.t('administration.skills.export.success_msg'))
+          })
+          .catch(() => {
+            message.error(I18n.t('administration.skills.export.failure_msg'))
+          })
       }
-    }
-
-    if (action === 'export_global_skills') {
-      resource.collectionAction({
-        action: 'export_global',
-        method: 'post',
-        body: {},
-        responseType: t.literal('ok'),
-      }).then(() => {
-        message.info(I18n.t('administration.skills.export.success_msg'))
-      })
-        .catch(() => {
-          message.error(I18n.t('administration.skills.export.failure_msg'))
-        })
-    }
-
-    if (action === 'export_global_skills_translations') {
-      resource.collectionAction({
-        action: 'export_global_translations',
-        method: 'post',
-        body: {},
-        responseType: t.literal('ok'),
-      }).then(() => {
-        message.info(I18n.t('administration.skills.export.success_msg'))
-      })
-        .catch(() => {
-          message.error(I18n.t('administration.skills.export.failure_msg'))
-        })
     }
   }
 

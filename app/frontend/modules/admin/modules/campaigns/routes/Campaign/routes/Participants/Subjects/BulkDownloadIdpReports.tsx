@@ -86,7 +86,7 @@ const BulkDownloadIdpReports: React.FC<PropsFromRedux & OwnProps> = ({
           setFields(allFields)
         }}
       >
-        <Form.Item name="lang">
+        <Form.Item name="lang" rules={[{ required: true }]}>
           <Select
             options={I18n.availableLocales.map(locale => ({
               label: I18n.t(`languages_localized.${locale}`),

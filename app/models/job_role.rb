@@ -27,4 +27,14 @@ class JobRole < ApplicationRecord
   def self.ransackable_scopes(_auth_object = nil)
     %w[global filterable_fields]
   end
+
+  def self.fetch_skills_for_types(job_role_id, skill_types, project_id)
+    SkillsJobRole.joins(:skill).
+      where(
+        job_role_id: job_role_id,
+        skills: { skill_type: skill_types },
+        project_id: project_id
+      ).
+      pluck(:skill_id)
+  end
 end

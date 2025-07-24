@@ -8,4 +8,7 @@ export default interface Report {
   userDashboard: boolean
   reportFamilyName: string
   autoAssign: boolean
+  effectiveDefaultLanguage?: string
+  availableLanguages?: string[]
+  internal: boolean
 }

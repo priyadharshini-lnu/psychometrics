@@ -1,6 +1,8 @@
 import OptionSection from '~/modules/admin/components/Options/Section'
 import ExpandableOption from '~/modules/admin/components/Options/Expandable'
 
+const { I18n } = window
+
 export default function ManagerSection ({
   options,
   updateParticipantOptions,
@@ -13,13 +15,15 @@ export default function ManagerSection ({
   })
 
   return (
-    <OptionSection label="Evaluator Options">
+    <OptionSection
+      label={I18n.t('administration.threesixty_campaigns.menu.participants.options.evaluator_options')}
+    >
       <ExpandableOption
-        label="Allow evaluators to decline nomination"
+        label={I18n.t('threesixty.options.evaluator.allow_evaluators_to_decline_nomination')}
         {...parametersForSwitch('canDeclineNomination')}
       >
         <ExpandableOption
-          label="Email subject when a nomination is declined"
+          label={I18n.t('threesixty.options.evaluator.email_subject_when_nomination_declined')}
           type="checkbox"
           {...parametersForSwitch('emailSubjectWhenEvaluatorsDeclinesNomination')}
         />

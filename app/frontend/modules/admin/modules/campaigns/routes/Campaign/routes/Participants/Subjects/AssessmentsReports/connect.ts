@@ -9,7 +9,7 @@ import {
 } from '~/modules/admin/modules/campaigns/core/users'
 import { get as getProctoringSessions } from '~/modules/admin/modules/campaigns/core/proctoringSessions'
 import {
-  regenerateReports, getSelectedIds, REGENERATE_REPORTS, bulkDownload, BULK_DOWNLOAD,
+  regenerateReports, getSelectedIds, REGENERATE_REPORTS, bulkDownload, BULK_DOWNLOAD, get as getReports,
 } from '~/modules/admin/modules/campaigns/core/userReports'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -17,6 +17,7 @@ import { isRequestInProgress } from '~/core/request'
 
 export const connecter = connect(
   (state: RootState) => ({
+    reports: getReports(state).list,
     user: getCurrentUser(state),
     proctoringSessions: getProctoringSessions(state).list,
     assessmentStatuses: getStatusesCount(state),

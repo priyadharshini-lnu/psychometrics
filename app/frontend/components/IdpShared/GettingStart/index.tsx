@@ -1,4 +1,4 @@
-import { Space, Typography } from 'antd'
+import { Typography, Flex } from 'antd'
 import { ButtonWithArrow, BoxWithShadow } from '~/glint'
 import { RocketLaunchIcon } from '~/glint/icons'
 import styles from './GettingStart.less'
@@ -9,7 +9,7 @@ const { I18n } = window
 export const GettingStart = ({ next, introMessage }) => (
   <>
     <BoxWithShadow className={styles.box}>
-      <Space size="middle" direction="vertical" className="ta-c">
+      <Flex vertical justify="center" className="ta-c">
         <div className="flex justify-center">
           <LaunchIcon />
         </div>
@@ -23,7 +23,7 @@ export const GettingStart = ({ next, introMessage }) => (
             onClick={() => next()}
           />
         </div>
-      </Space>
+      </Flex>
     </BoxWithShadow>
   </>
 )

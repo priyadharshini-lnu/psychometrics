@@ -105,7 +105,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     <ResourceFormModal
       resourceName="report_approval_settings"
       resource={reportApprovalSettingsFormData}
-      readableResourceName="Report Approval Settings"
+      readableResourceName={I18n.t('administration.report_approval.report_approval_settings')}
       showSuccessMessages
       close={close}
       scrollToFirstError
@@ -137,7 +137,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
             className="mb24"
             items={[{
               key: '1',
-              label: 'Settings',
+              label: I18n.t('administration.campaigns.assessment_reports.report_approval.settings'),
               forceRender: true,
               children: (
                 <Space direction="vertical" size="middle">

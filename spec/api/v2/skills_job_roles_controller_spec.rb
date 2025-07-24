@@ -16,49 +16,40 @@ describe Api::V2::Administration::SkillsJobRolesController, swagger_doc: 'v2/swa
     get 'List Skill Mappings' do
       operationId 'getSkillMappings'
       description 'Lists all skill mappings for a project, optionally including global mappings'
-      tags 'SkillsRaterSkillMappings'
+      tags 'SkillRaterSkillMappings'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
       parameter name: :project_id, in: :query, type: :string, required: false
       parameter name: :'filter[include_global_skills_job_roles]', in: :query, type: :boolean, required: false
 
-      context 'with global mappings' do
-        response '200', 'returns both project specific and global mappings' do
+      context 'with project_id' do
+        response '200', 'returns both project specific mappings' do
           let(:project_id) { project.id }
-          let(:'filter[include_global_skills_job_roles]') { 'true' }
 
-          let!(:project_mapping) { create(:skills_job_role, job_role: job_role, skill: skill) }
+          let!(:project_mapping) { create(:skills_job_role, job_role: job_role, skill: skill, project:) }
           let!(:global_mapping) do
             create(:skills_job_role,
                    job_role: create(:job_role, project: nil),
-                   skill: create(:skill, project: nil))
-          end
-          let!(:other_project_mapping) do
-            create(:skills_job_role,
-                   job_role: create(:job_role, project: create(:project)),
-                   skill: create(:skill, project: Project.find(create(:project).id)))
+                   skill: create(:skill, project: nil),
+                   project_id: nil)
           end
 
           run_test! do |response|
             expect(response).to have_http_status(:ok)
             json_response = JSON.parse(response.body)
-            expect(json_response['data'].size).to eq(2)
-            job_role_ids = json_response['data'].map do |mapping|
-              mapping['relationships']['job_role']['data']['id']
-            end
-            expect(job_role_ids).to contain_exactly(job_role.id.to_s, global_mapping.job_role.id.to_s)
+            expect(json_response['data'].map { |d| d['id'] }).to contain_exactly(project_mapping.id.to_s)
           end
         end
       end
 
       context 'without project_id' do
-        response '200', 'returns all mappings' do
+        response '200', 'returns global mappings' do
           before do
             SkillsJobRole.destroy_all
           end
-          let!(:mapping1) { create(:skills_job_role, expected_proficiency_level: 1) }
-          let!(:mapping2) { create(:skills_job_role, expected_proficiency_level: 2) }
+          let!(:mapping1) { create(:skills_job_role, expected_proficiency_level: 1, project_id: nil) }
+          let!(:mapping2) { create(:skills_job_role, expected_proficiency_level: 2, project_id: nil) }
 
           run_test! do |response|
             expect(response).to have_http_status(:ok)
@@ -72,7 +63,7 @@ describe Api::V2::Administration::SkillsJobRolesController, swagger_doc: 'v2/swa
     post 'Create Skill Mapping' do
       operationId 'createSkillMapping'
       description 'Creates a new skill mapping between job role and skill'
-      tags 'SkillsRaterSkillMappings'
+      tags 'SkillRaterSkillMappings'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
@@ -111,14 +102,14 @@ describe Api::V2::Administration::SkillsJobRolesController, swagger_doc: 'v2/swa
     parameter name: :id, in: :path, type: :string, required: true
     parameter name: :project_id, in: :query, type: :string, required: true
 
-    let!(:mapping) { create(:skills_job_role, job_role: job_role, skill: skill) }
-    let(:id) { mapping.id }
     let(:project_id) { project.id }
+    let!(:mapping) { create(:skills_job_role, job_role: job_role, skill: skill, project_id: project_id) }
+    let(:id) { mapping.id }
 
     delete 'Delete Skill Mapping' do
       operationId 'deleteSkillMapping'
       description 'Deletes a skill mapping'
-      tags 'SkillsRaterSkillMappings'
+      tags 'SkillRaterSkillMappings'
       consumes 'application/vnd.api+json'
       security [basic: []]
 
