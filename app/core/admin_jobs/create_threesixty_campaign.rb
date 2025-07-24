@@ -23,7 +23,7 @@ module AdminJobs
     end
 
     def campaign
-      @campaign ||= ::Threesixty::Campaign.find_by(id: record.data['campaign_id']).campaign
+      @campaign ||= ::Threesixty::Campaign.find_by(id: record.data['campaign_id'])&.campaign
     end
   end
 end
