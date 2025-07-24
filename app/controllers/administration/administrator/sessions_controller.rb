@@ -63,7 +63,8 @@ module Administration
       def verify_recaptcha_or_redirect
         return if Settings.features.disable_recaptcha
 
-        unless verify_recaptcha(action: 'login', response: params[:recaptcha_token], minimum_score: 0.5)
+        unless verify_recaptcha(action: 'login', response: params[:recaptcha_token],
+                                minimum_score: Settings.recaptcha.recaptcha_minimum_score.to_f)
           flash[:alert] = I18n.t('administration.administrator.sessions.errors.recaptcha')
           redirect_to root_path and return
         end

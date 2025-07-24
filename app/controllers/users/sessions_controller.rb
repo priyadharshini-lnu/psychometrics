@@ -66,7 +66,8 @@ module Users
       @current_project = GetProjectBySubdomain.call!(request.subdomain)
       return unless @current_project&.security_setting&.enable_recaptcha
 
-      unless verify_recaptcha(action: 'login', response: params[:recaptcha_token], minimum_score: 0.5)
+      unless verify_recaptcha(action: 'login', response: params[:recaptcha_token],
+                              minimum_score: Settings.recaptcha.recaptcha_minimum_score.to_f)
         flash[:alert] = I18n.t('sessions.errors.recaptcha')
         redirect_to new_user_session_path and return
       end
