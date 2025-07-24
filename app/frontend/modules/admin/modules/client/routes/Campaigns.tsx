@@ -8,6 +8,7 @@ import Campaign, {
   CommonCampaignPermissions,
 } from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import { updateCampaignDetails } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { fetchRelationships } from '~/modules/admin/modules/threeSixtyCampaign/core/relationships'
 
 const CommonCampaign = lazy(() => import('~/modules/admin/modules/campaigns/routes/Campaign'))
 const ThreeSixtyCampaign = lazy(() => import('~/modules/admin/modules/threeSixtyCampaign'))
@@ -64,6 +65,7 @@ const CampaignPage: React.FC = () => {
           permissions,
         }
         dispatch(updateCampaignDetails(campaignDetails))
+        dispatch(fetchRelationships(parseInt(campaignId, 10)))
       } else {
         const campaignDetails: Campaign = {
           id: parseInt(campaign.id, 10),
