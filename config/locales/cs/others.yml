@@ -438,6 +438,7 @@ cs:
           case_study: Případové studie
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulář vedoucího hodnotitele
           meeting: Setkání
           organisational: Průzkumy
           pearson: Pearson
@@ -518,6 +519,7 @@ cs:
         created_at: Datum vytvoření
         id: ID
         name: Název
+        owner: Majitel
         updated_at: Datum úpravy
       factor:
         active: Aktivní
@@ -544,7 +546,11 @@ cs:
         updated_at: Datum úpravy
       library:
         created_at: Datum vytvoření
+        description: Popis
+        files: Soubory
         id: ID
+        name: Název
+        owner: Majitel
         type: Miniatury
         updated_at: Datum úpravy
       license:
@@ -616,6 +622,7 @@ cs:
         created_at: Datum vytvoření
         id: ID
         name: Název
+        owner: Majitel
         updated_at: Datum úpravy
       report:
         created_at: Datum vytvoření
@@ -1562,6 +1569,7 @@ cs:
     column:
       assessor_access: Přístup hodnotitele
       auto_assign: Automatické přiřazení
+      locales: Lokality
       main_report: Hlavní zpráva
       report_bundle: Svazek zpráv
       report_name: Název zprávy
@@ -1584,6 +1592,13 @@ cs:
         apply: Použijte tyto změny na stávající uživatele v této kampani.
         msg_text: Pokoušíte se odstranit zprávu <strong>"%{reportName}</strong> "
         title: Odstranit zprávu?
+      update_languages:
+        default_language: Výchozí jazyk
+        other_available_languages: Další dostupné jazyky
+        select_default_language: Výběr výchozího jazyka
+        select_languages: Vybrat jazyky
+        success_msg: Jazyky byly úspěšně aktualizovány
+        title: Jazyk zprávy
       user_access:
         apply: Použijte tyto změny na stávající uživatele v této kampani.
         title:
@@ -2204,6 +2219,9 @@ cs:
       no_active_plan: Nebyl nalezen žádný aktivní plán IDP
     webhooks:
       multiple_webhook_error: url nelze aktualizovat, protože pro tento projekt existuje více webhooků.
+    workshop:
+      ical_generation_failed: Nelze vygenerovat pozvánku do kalendáře
+      missing_or_invalid: Chybějící nebo neplatné workshop_id
   evaluators:
     errors:
       can_not_processed: nelze zpracovat
@@ -2465,6 +2483,7 @@ cs:
       aria_selected: Vybrané stránky
   idp:
     actions: Akce
+    behavioral: Chování
     board: Přehled
     comment_details:
       add_comment: Přidat komentář
@@ -2688,6 +2707,7 @@ cs:
     skill_gap_report:
       title: Zpráva o nedostatku dovedností
     status: Stav
+    technical: Technická stránka
     user_idp_status:
       approved: Schváleno
       completed: Hotový
@@ -3645,11 +3665,35 @@ cs:
       exactly: Přesně %{count}
     nominations: Nominace
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Umožnit hodnotitelům odmítnout nominaci
+        email_subject_when_nomination_declined: Předmět e-mailu při odmítnutí nominace
       form:
         value_not_valid: nemá platnou hodnotu
       global:
         cannot_re_edit: Účastníci nemohou upravovat hodnocení
         disable_all_evaluations: Zakázat všechna hodnocení
+      manager:
+        allow_subjects_to_email: Umožnit subjektům posílat manažerům e-maily, když jsou jejich nominace připraveny ke schválení.
+        approves_evaluations: Manažer schvaluje hodnocení
+        approves_nominations: Manažer schvaluje nominace
+        can_view_nominations: Manažer si může prohlédnout nominace
+        email_managers_when_nomination_ready: zasílání e-mailů manažerům, když je nominace subjektu připravena ke schválení.
+        email_subject_when_nomination_denied: Předmět e-mailu při zamítnutí nominace
+        may_choose_evaluators: Manažer si může vybrat hodnotitele
+      subject:
+        allow_subjects_to_select_relationships: Umožnit subjektům vybrat vztahy
+        anyone_in_assessment: Každý, kdo se účastní hodnocení
+        anyone_in_datasheet: Kdokoli v datovém listu
+        anyone_not_in_assessment: Každý, kdo není v současné době v hodnocení
+        can_view_evaluators: Subjekt může zobrazit hodnotitele
+        define_nomination_requirement: Definice požadavku na nominaci
+        limit_search_by_criteria: Omezit vyhledávání podle kritérií
+        nominates_evaluators: Subjekt nominuje hodnotitele
+        only_allow_relationships_of_specified_types: Povolit pouze vztahy určitých typů
+        only_show_subjects_who_match_criteria: 'Zobrazí se pouze subjekty, které splňují následující kritéria:'
+        self_evaluates: Subjekt provádí sebehodnocení
+        subjects_cannot_remove_nominations: Subjekty nemohou odstranit nominace nastavené manažery nebo administrátory.
     or: Nebo
     page_title: Hodnocení Signify 360° – použít úroveň
     participant_list:

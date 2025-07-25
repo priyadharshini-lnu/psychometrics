@@ -174,6 +174,8 @@ ro:
             title: Șabloane IDP
             view: Vedere
           jobRoles:
+            export_translations: Export Rolul postului Traduceri
+            import_translations: Import Rolul postului Traduceri
             manage: Gestiona
             title: Roluri de post
             view: Vedere
@@ -841,6 +843,14 @@ ro:
     campaign_factors_import:
       errors:
         invalid_headers: 'Următoarele anteturi sunt nevalide: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Vă rugăm să selectați intervalul de date
+        modal:
+          subtitle: Selectați un interval de date și apoi selectați limba necesară pentru fiecare raport
+      generate:
+        modal:
+          subtitle: Selectați limba necesară pentru fiecare raport
     campaign_templates:
       campaign_templates: Șabloane de campanie
       column:
@@ -958,7 +968,9 @@ ro:
             empty: Gol
             inactive: Inactiv
             name: Nume
+            normal: Normal
             previous: Precedent
+            skill_rater: Evaluator de abilități
             standard: Standard
             status: Stare
           close:
@@ -1066,6 +1078,7 @@ ro:
         ai_assistants: Asistenți AI
         ai_assisted_idp: IDP asistat de AI
         global_skills: Competențe globale
+        idp: IDP
         sms_notification: Notificare SMS
     clients:
       api_keys:
@@ -1491,6 +1504,8 @@ ro:
         update:
           successfully: Proiectul %{name} a fost actualizat cu succes.
       registration_codes:
+        actions:
+          add_code: Adaugă codul
         column:
           code: Cod
           usage_stats: Statistici de utilizare
@@ -1501,6 +1516,13 @@ ro:
           incorrect_domain: Format de domeniu incorect.
           invalid_end_date: trebuie să fie mai mare decât data de începere
           license_issue: Nu sunt suficiente licențe.
+        form:
+          active: Activ
+          code: Cod
+          end_date: Data de încheiere
+          name: Nume și prenume
+          start_date: Data de începere
+          total_count: Număr total
       resource:
         confirmations:
           delete:
@@ -1530,7 +1552,9 @@ ro:
       reset: Reseta
       save: Salva
       select_all: Selectează tot
+      type: Tip
       unselect_all: Deselectați tot
+    communication_settings: Setări
     communications:
       create:
         successfully: Comunicarea a fost creată cu succes.
@@ -1563,9 +1587,16 @@ ro:
           {{email}} - Adresa de e-mail a destinatarului
           {{schedule_start_date}} - Data de începere a programului
           {{schedule_end_date}} - Data de încheiere a programului
+        campaign: Campanie
+        campaign_assessment_group: Grupul de evaluare a campaniei
+        client: Client
         completion: Terminare
         delivery_at: Livrare la (GST)
         delivery_delay_hours: Întârziere de livrare (ore)
+        delivery_interval: Interval de livrare
+        delivery_interval_number: Numărul intervalului de livrare
+        delivery_interval_period: Perioada intervalului de livrare
+        delivery_rule: Regula de livrare
         delivery_rules:
           in_progress: Dacă evaluarea este în curs de desfășurare
           not_competed: Dacă evaluarea nu este finalizată
@@ -1577,13 +1608,18 @@ ro:
         idp_template_approved: Aprobat de IDP
         idp_template_assigned: IDP atribuit
         idp_template_rejected: IDP respins
+        insert_piped_text: Inserarea textului cu conducte
         invitation: Invitație
         kind: Tipuri de comunicare
         locale: Setări regionale
         magic_link_email: E-mail Magic Link
+        message_body_placeholder: Introduceți mesajul dvs. aici...
         new_assignment: Misiune nouă
         new_users: Utilizatori noi
         other: Alt
+        owner: Proprietar
+        project: Proiect
+        recipients: Beneficiari
         reminder: Memento
         report_available: Raport disponibil
         selected: Selectat
@@ -1591,6 +1627,7 @@ ro:
         selected_recipients: Destinatari selectați
         stop_reminder: Opriți trimiterea mementourilor
         stop_reminder_datetime: Data de încheiere a mementourilor (GST)
+        subject: Subiect
         workshop_booked: Confirmarea rezervării centrului de evaluare
         workshop_cancelled: Centrul de evaluare anulat
         workshop_completed: Centru de evaluare finalizat
@@ -1604,6 +1641,7 @@ ro:
         type: Tip
       list:
         actions: Acțiuni
+        assessment_center_group: Assessment Center Group
         author: Creat de
         campaign: Campanie
         client_name: Client
@@ -1751,6 +1789,7 @@ ro:
       errors:
         blank_field: 'Rândul %{row}: %{field} nu poate fi necompletat'
         csv_file_required: Trebuie să fie un fișier CSV
+        development_action_not_in_project: 'Linia %{row}: ID-ul acțiunii de dezvoltare %{development_action_id} nu aparține acestui proiect'
         image_download_failed: 'Nu s-a reușit descărcarea imaginii de la %{url}: %{message}'
         invalid_csv_format: 'Format CSV nevalid: %{message}'
         invalid_date: Formatul de dată pentru %{date} nu este valid.
@@ -1875,10 +1914,24 @@ ro:
         successfully: Factori de import programat pentru parametrul %{name}.
         title: Factori de import
       import_modal:
+        after: După
+        before: Înainte de
         cancel: Anula
+        change_log_input: Jurnal de modificări
         continue: Continua
+        error: Eroare
+        error_occurred: A apărut o eroare
+        errors:
+          file_error: Vă rugăm să selectați un fișier JSON înainte de a continua.
+          processing_error: Eroare la procesarea fișierului
+        field: Câmp
         import: Importa
         import_dimension: Dimensiune import
+        import_scheduled: Import programat
+        operation: Funcționare
+        owner_input_validation: Vă rugăm să selectați un proprietar
+        owner_select: Selectați un proprietar
+        select_json: Selectați fișierul JSON
       import_translations:
         error: Eroare la importul traducerilor pentru parametrul %{name}.
         successfully: Importați traduceri programate pentru dimensiunea %{name}.
@@ -2066,10 +2119,13 @@ ro:
       all: Tot
       appearance: Apariție
       appearance_hint: Pentru a modifica aspectul, vă rugăm să salvați mai întâi șablonul IDP pentru a activa aceste setări.
+      appearance_success: Setările aspectului au fost salvate cu succes
       background_image: Imagine de fundal
       behavioral_skills: Abilități comportamentale
       client_skills: Abilitățile clientului
+      details_updated: Detalii IDP actualizate cu succes
       edit_template: Editați șablonul IDP
+      enter_tag_or_skills_error: Selectați cel puțin o etichetă sau abilitate
       enter_template_description: Descriere
       enter_template_description_error: Este necesară descrierea șablonului.
       enter_template_name: Nume
@@ -2078,6 +2134,7 @@ ro:
         update: Actualizarea nu este permisă, deoarece șablonul IDP este deja asociat cu un plan IDP al utilizatorului. Modificările de aspect au fost salvate.
       fields:
         assigned_data: Date atribuite
+        assigned_date: Data atribuirii
         completion_date: Data finalizării
         division: Divizie
         name: Nume
@@ -2115,6 +2172,11 @@ ro:
       show_reflections: Afișați reflecții
       skill_gap_report: Raport privind decalajul de competențe
       skills: Aptitudini
+      skills_updated: Competențe IDP actualizate cu succes
+      status:
+        draft: Proiect
+        published: Publicat
+      status_updated: Statutul IDP actualizat cu succes
       subtitle_text: Textul subtitrării
       tab:
         development_actions: Acțiuni de dezvoltare
@@ -2347,8 +2409,10 @@ ro:
         rescheduled: Reprogramat
       subject: Subiect
     job_role:
+      are_you_sure_to_remove: Sunteți sigur că doriți să eliminați?
       column:
         job_group: Grup de locuri de muncă
+        skill_name: Numele abilității
       export:
         failure_msg: Eroare la exportul traducerilor
         success_msg: Exportul acțiunilor de dezvoltare în curs de desfășurare.
@@ -2363,6 +2427,7 @@ ro:
         success_msg: Fișierul încărcat a fost pus în coadă pentru import. Vă rugăm să verificați starea în notificări.
       import_action:
         translations: Importați traduceri ale rolurilor de muncă
+      job_role_details: Detalii privind rolul postului
       translations: Traduceri de roluri
     job_role_skill_mapping:
       column:
@@ -2375,6 +2440,12 @@ ro:
       export:
         translations:
           details: Detalii
+      translations:
+        import:
+          errors:
+            job_role_not_found: Rolul postului cu ID-ul %{id} nu a fost găsit
+            missing_columns: 'Lipsesc coloanele necesare: %{columns}'
+            save_failed: 'Eroare de procesare Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: Elementul %{name} a fost creat cu succes.
@@ -2426,6 +2497,7 @@ ro:
         successfully: Utilizatorul %{name} a fost actualizat cu succes.
       update:
         successfully: Utilizatorul %{name} a fost actualizat cu succes.
+    message: Mesaj
     meta_title: Panou de administrare
     navigation:
       ai_assistants: Asistenți AI
@@ -2532,6 +2604,7 @@ ro:
         editor: Editor de norme
         export: Norma de export
         title: Opțiunile lui Norm
+      title: Norma
       toggle_status:
         successfully: Norm a fost actualizat cu succes.
       update:
@@ -2619,12 +2692,16 @@ ro:
     piped_text_modal:
       assessment_id: ID evaluare
       campaign_id: Codul campaniei
+      campaign_name: Numele campaniei
+      campaigns: Campanii
       insight_page_link: Link către pagina Insight
       insight_page_url: Adresa URL a paginii Insight
       join_link: Link alăturați-vă
       magic_link: Legătura magică
       magic_url: Adresa URL magică
       profile_custom_field: Câmp personalizat profil
+      project_name: Numele proiectului
+      projects: Proiecte
       report_name: Numele raportului
       text: Text
       title: Adăugați text canalizat
@@ -2655,6 +2732,9 @@ ro:
           level_definition_must_match_level: trebuie să conțină exact %{expected} niveluri, dar %{actual} au fost date
           must_be_unique: Trebuie să fie unic
           proficiency_level_exists: Un nivel de competență cu această abilitate și proiect există deja
+          proficiency_level_exists_for_default: Există deja un nivel de competență pentru implicit
+          proficiency_level_exists_for_type: Există deja un nivel de competență pentru acest tip
+          project_level_default_exists: Există deja un nivel "implicit" de competență
           skill_must_exist: Abilitățile trebuie să fie prezente pentru proficiency_type "by_skill"
       export:
         details: Detalii
@@ -2670,6 +2750,7 @@ ro:
         proficiency_type: Tip de competență
         skill: Îndemânare
         skill_name: Numele abilității
+        skill_type: Tip de abilitate
         title: Competenţă
       import:
         actions:
@@ -2698,6 +2779,8 @@ ro:
             save_failed: 'Eroare la procesarea ID-ului abilității %{id}: %{message}'
       type:
         by_skill: După îndemânare
+        by_skill_type: Pe tip de abilitate
+        default: Implicit
     profile:
       change_password: Schimbați parola
       details: Detalii
@@ -3059,6 +3142,7 @@ ro:
         user_name: Nume de utilizator
       dashboard: Tablou
       download: Descărca
+      report_approval_settings: Setări de aprobare a raportului
       report_approvals: Aprobări de rapoarte
       review: Recenzie
       saving_filters:
@@ -3180,6 +3264,15 @@ ro:
         successfully: Raportul "%{name}" a fost șters cu succes.
       edit:
         header: Editați numele raportului
+      edit_default_language:
+        agreement: Da, înțeleg implicațiile schimbării limbii implicite.
+        title: Editarea limbii implicite
+        tooltip: Editarea limbii implicite
+        warning:
+          description_li_1: Schimbarea limbii implicite din RTL în LTR sau viceversa va afecta aspectul.
+          description_li_2: Va trebui să lucrați din nou la traducerile rapoartelor dacă schimbați limba implicită.
+          description_li_3: Descărcați o copie a traducerilor raportului înainte de a face această modificare.
+          title: Vă rugăm să citiți cu atenție instrucțiunile
       modals:
         remap_assessment:
           new_assessment_name: Noul nume de evaluare
@@ -3222,6 +3315,9 @@ ro:
         successfully: Raportul a fost actualizat cu succes.
       update:
         successfully: Raportul %{name} a fost actualizat cu succes.
+    reports_language_selection_modal:
+      download: Descărcare raport
+      generate: Generarea raportului
     resource:
       remove_confirm:
         message: Sunteți sigur că doriți să eliminați această resursă?
@@ -3628,6 +3724,7 @@ ro:
         import:
           missing_fields_data: 'Linia %{line_number}: Câmpuri obligatorii lipsă: %{fields}'
           save_failed: 'Linia %{line_number}: Nu s-a reușit salvarea abilității ''%{name}'': %{message}'
+          skill_not_in_project: 'Linia %{line_number}: Skill ID %{skill_id} nu face parte din acest proiect'
         search:
           all_and_project_id_mutually_exclusive: Toate nu pot fi adevărate atunci când este furnizat project_id_eq
           invalid_all_value: 'trebuie să fie una dintre: adevărat, fals'
@@ -3819,7 +3916,25 @@ ro:
         successfully: Subfactorul a fost actualizat cu succes.
     survey_builder:
       builder_area:
+        current_job: Loc de muncă actual
+        default_not_applicable_label: Nicio oportunitate de a învăța sau de a-și demonstra abilitățile
+        enable_not_applicable: Activarea opțiunii N/A
+        enable_required_validation: Activarea validării obligatorii
+        force_response: Răspunsul forței
+        job_role_required: Vă rugăm să selectați cel puțin un rol profesional
+        not_applicable_label: Nu se aplică Etichetă
         options: Opțiuni
+        request_response: Cerere de răspuns
+        skill_rater_config: Configurarea evaluatorului de abilități
+        target_job: Job țintă
+      models:
+        block_types:
+          regular: Regular
+          skill_rater: Evaluator de abilități
+        skill_types:
+          behavioural: Comportamentale
+          other: Altele
+          technical: Tehnic
       property_panel:
         add_n_a_option: Adăugați o opțiune N/A
         allow_content_copy: Permiteți copierea conținutului
@@ -3978,6 +4093,7 @@ ro:
           invitations: Invitaţii
           reminders: Mementouri
           report_ready: Pregătit pentru raport
+        consolidated: Consolidat
         custom_message:
           description: Acest mesaj poate fi trimis oricărei persoane care participă la evaluare
           name: Mesaj personalizat
@@ -4001,7 +4117,10 @@ ro:
         request_approval:
           description: Acest mesaj este trimis managerilor atunci când un subiect solicită aprobarea
           name: Solicitați aprobarea
+        save: Salvați
+        schedule: Program
         schedule_email: Programați e-mailul
+        schedule_email_title: Programare e-mail
         schedule_time: Timp de programare
         send_test_email: Trimite e-mail de testare
         subject: Subiect
@@ -4042,6 +4161,14 @@ ro:
         welcome_message:
           description: Acest mesaj va fi afișat subiecților atunci când se conectează pentru a începe evaluarea sau pentru a-și vizualiza lista de sarcini
           name: Mesaj de bun venit
+      mail_history:
+        actions: Acțiuni
+        date: Data
+        download_details: Descărcați detalii
+        emails_sent: Email-uri trimise
+        recipient: Beneficiar
+        status: Statut
+        subject: Subiect
       manage:
         assessment: Evaluare
         dimension: Dimensiuni
@@ -4049,19 +4176,45 @@ ro:
         report: Raport
         title: Gestiona
       menu:
+        actions: Acțiuni
         datasheet:
           title: Fișă tehnică
         messages:
+          allow_subjects_to_send_reminders: Permiteți subiecților să trimită memento-uri evaluatorilor
+          automatically_send_invites: Trimiteți automat invitații noilor evaluatori
           title: Mesaje
         participants:
+          columns:
+            action: Acțiune
+            email: E-mail
+            evaluations_completed: Evaluări finalizate
+            evaluations_received: Evaluări primite
+            is_subject: Este subiect
+            name: Nume și prenume
+            report_status: Starea raportului
+            status: Statut
+          evaluators:
+            add_evaluators: Adăugați evaluatori
+            import_evaluators: Evaluatori de import
+            title: Evaluatori
+          managers:
+            title: Manageri
+          options:
+            evaluator_options: Opțiuni Evaluator
+            global: Opțiuni globale
+            manager_options: Opțiuni manager
+            subject_options: Opțiuni de subiect
+            title: Opțiuni
           subjects:
             add_subjects: Adăugați subiecte
             current_job_role: Rolul actual al postului
             email: E-mail
             first_name: Prenume
+            import_subjects: Subiecte de import
             last_name: Nume de familie
             locale: Setări regionale
             target_job_role: Rol de post țintă
+            title: Subiecte
           title: Participanţii
         report:
           menu:
@@ -4077,8 +4230,26 @@ ro:
         mail_history: Istoricul e-mailurilor
         options: Opțiuni
       reports:
+        add_conditions: Adăugați condiții
+        administrator_approves_reports: Administratorul aprobă rapoartele
+        allow_manager_to_view_individual_responses: Permiteți managerului să vizualizeze răspunsurile individuale
+        disable_report_download: Dezactivați descărcarea raportului
+        edit_email: Editare e-mail
+        email_manager_when_report_is_ready_for_approval: Trimiteți un e-mail managerului atunci când raportul este gata pentru aprobare
+        email_subject_when_report_becomes_available: Subiect de e-mail atunci când raportul devine disponibil
+        email_subjects_manager_when_available: Trimiteți un e-mail managerului subiectului atunci când raportul devine disponibil
+        make_report_available_to_subject_when: 'Puneți raportul la dispoziția subiectului atunci când:'
+        manager_approves_reports: Managerul aprobă rapoartele
+        manager_can_access_subject_reports: Managerul poate accesa rapoartele pe subiect
+        manager_cannot_access_subject_reports: Managerul nu poate vedea raportul până când cerințele nu sunt îndeplinite
+        report_access: Raport de acces
+        report_approval: Aprobarea raportului
+        report_availability: Disponibilitatea raportului
         show:
           title: Raport de subiect
+        subject_can_access_reports: Subiectul își poate accesa rapoartele
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Marcați licențele ca fiind dezactivate
     time_zone: Fus orar
     tools: Instrumente
     translations:

@@ -919,6 +919,7 @@ as: :simulation_progress_notification
           get :fetch_invite
           post :reschedule_or_request_reschedule
           post :cancel_or_request_cancellation
+          get :download_ical
         end
       end
 

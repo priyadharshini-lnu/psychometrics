@@ -438,6 +438,7 @@ ja:
           case_study: ケーススタディ
           hogan: ホーガン
           iiht: IIHT
+          lead_assessor_form: 主任査定者フォーム
           meeting: ミーティング
           organisational: アンケート調査
           pearson: ピアソン
@@ -518,6 +519,7 @@ ja:
         created_at: 作成日
         id: 身分証明書
         name: 名称
+        owner: オーナー
         updated_at: 変更日
       factor:
         active: アクティブ
@@ -544,7 +546,11 @@ ja:
         updated_at: 変更日
       library:
         created_at: 作成日
+        description: 説明
+        files: ファイル
         id: 身分証明書
+        name: 名称
+        owner: オーナー
         type: サムネイル
         updated_at: 変更日
       license:
@@ -616,6 +622,7 @@ ja:
         created_at: 作成日
         id: 身分証明書
         name: 名称
+        owner: オーナー
         updated_at: 変更日
       report:
         created_at: 作成日
@@ -1563,6 +1570,7 @@ ja:
     column:
       assessor_access: アセッサーのアクセス
       auto_assign: オートアサイン
+      locales: ロケール
       main_report: 主要レポート
       report_bundle: レポート・バンドル
       report_name: レポート名
@@ -1585,6 +1593,13 @@ ja:
         apply: この変更をキャンペーンの既存ユーザーに適用します。
         msg_text: "<strong>「%{reportName}」</strong>レポートを削除しようとしています"
         title: レポートを削除しますか？
+      update_languages:
+        default_language: デフォルト言語
+        other_available_languages: その他の言語
+        select_default_language: デフォルト言語の選択
+        select_languages: 言語選択
+        success_msg: 言語が正常に更新されました
+        title: レポート言語
       user_access:
         apply: この変更をキャンペーンの既存ユーザーに適用します。
         title:
@@ -2205,6 +2220,9 @@ ja:
       no_active_plan: 有効なIDP計画が見つからない
     webhooks:
       multiple_webhook_error: このプロジェクトには複数のWebhookがあるため、urlは更新できません。
+    workshop:
+      ical_generation_failed: カレンダーの招待を生成できませんでした
+      missing_or_invalid: ワークショップIDの欠落または無効
   evaluators:
     errors:
       can_not_processed: 処理できない
@@ -2466,6 +2484,7 @@ ja:
       aria_selected: 厳選された
   idp:
     actions: 行動
+    behavioral: ビヘイビア
     board: ボード
     comment_details:
       add_comment: コメントを追加
@@ -2689,6 +2708,7 @@ ja:
     skill_gap_report:
       title: スキル・ギャップ・レポート
     status: ステータス
+    technical: テクニカル
     user_idp_status:
       approved: 承認済み
       completed: 完了
@@ -3646,11 +3666,35 @@ ja:
       exactly: 正確に %{count}。
     nominations: 推薦
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: 評価者が指名を辞退できるようにする
+        email_subject_when_nomination_declined: 指名辞退時のメール件名
       form:
         value_not_valid: 有効な値を持たない
       global:
         cannot_re_edit: 参加者は評価を編集できません
         disable_all_evaluations: すべての評価を無効にする
+      manager:
+        allow_subjects_to_email: 指名が承認されると、対象者が管理者に電子メールを送信できるようにする。
+        approves_evaluations: マネージャーが評価を承認
+        approves_nominations: マネージャーが指名を承認
+        can_view_nominations: マネージャーが指名を閲覧可能
+        email_managers_when_nomination_ready: 被験者の指名が承認されると、管理者に電子メールを送信する。
+        email_subject_when_nomination_denied: 指名が拒否された場合の件名
+        may_choose_evaluators: マネージャーは評価者を選ぶことができる
+      subject:
+        allow_subjects_to_select_relationships: 被験者が関係を選択できるようにする
+        anyone_in_assessment: 評価対象者
+        anyone_in_datasheet: データシートの誰でも
+        anyone_not_in_assessment: 現在査定を受けていない者
+        can_view_evaluators: 被験者は評価者を見ることができる
+        define_nomination_requirement: 指名条件を定義する
+        limit_search_by_criteria: 条件で検索を制限する
+        nominates_evaluators: 対象者が評価者を指名
+        only_allow_relationships_of_specified_types: 指定されたタイプの関係のみを許可する
+        only_show_subjects_who_match_criteria: 以下の条件に一致する被写体のみを表示します：
+        self_evaluates: 被験者の自己評価
+        subjects_cannot_remove_nominations: 対象者は、マネージャーや管理者が設定した指名を削除することはできません。
     or: または
     page_title: 360°のレビューを示す - レベルを適用
     participant_list:

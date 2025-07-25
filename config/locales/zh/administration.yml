@@ -1096,6 +1096,7 @@ zh:
         ai_assistants: 人工智能助理
         ai_assisted_idp: AI 援助的境内流离失所者
         global_skills: 全球技能
+        idp: IDP
         sms_notification: 短信通知
     clients:
       api_keys:
@@ -1521,6 +1522,8 @@ zh:
         update:
           successfully: 项目 %{name} 已成功更新。
       registration_codes:
+        actions:
+          add_code: 添加代码
         column:
           code: 代码
           usage_stats: 使用统计
@@ -1531,6 +1534,13 @@ zh:
           incorrect_domain: 域名格式不正确。
           invalid_end_date: 必须大于开始日期
           license_issue: 许可证数量不足。
+        form:
+          active: 活跃
+          code: 代码
+          end_date: 结束日期
+          name: 名称
+          start_date: 开始日期
+          total_count: 总计数
       resource:
         confirmations:
           delete:
@@ -1562,6 +1572,7 @@ zh:
       select_all: 选择所有
       type: 类型
       unselect_all: 全部取消选择
+    communication_settings: 设置
     communications:
       create:
         successfully: 通信已成功创建。
@@ -1594,9 +1605,16 @@ zh:
            {{email}} - 接收者电子邮件
            {{schedule_start_date}} - 计划开始日期
            {{schedule_end_date}} - 计划结束日期"
+        campaign: 活动
+        campaign_assessment_group: 活动评估小组
+        client: 客户
         completion: 完工
         delivery_at: 交货价格（消费税）
         delivery_delay_hours: 交货延迟（小时）
+        delivery_interval: 交付间隔
+        delivery_interval_number: 交付间隔编号
+        delivery_interval_period: 交付间隔期
+        delivery_rule: 交付规则
         delivery_rules:
           in_progress: 如果评估正在进行中
           not_competed: 如果未完成评估
@@ -1608,13 +1626,18 @@ zh:
         idp_template_approved: IDP 批准
         idp_template_assigned: 分配的 IDP
         idp_template_rejected: 拒绝的境内流离失所者
+        insert_piped_text: 插入管道文字
         invitation: 邀请函
         kind: 通信类型
         locale: 区域设置
         magic_link_email: 魔法链接电子邮件
+        message_body_placeholder: 在此输入您的信息...
         new_assignment: 新任务
         new_users: 新用户
         other: 其他
+        owner: 业主
+        project: 项目
+        recipients: 受援国
         reminder: 提醒
         report_available: 现有报告
         selected: 精选
@@ -1622,6 +1645,7 @@ zh:
         selected_recipients: 选定受援国
         stop_reminder: 停止发送提醒
         stop_reminder_datetime: 提醒的结束日期（消费税）
+        subject: 主题
         workshop_booked: 评估中心预约确认
         workshop_cancelled: 评估中心取消
         workshop_completed: 评估中心已完成
@@ -1908,10 +1932,24 @@ zh:
         successfully: 为维度 %{name} 计划了导入因子作业。
         title: 进口因素
       import_modal:
+        after: 之后
+        before: 之前
         cancel: 取消
+        change_log_input: 更改日志
         continue: 继续
+        error: 错误
+        error_occurred: 发生错误
+        errors:
+          file_error: 请在继续之前选择一个 JSON 文件。
+          processing_error: 文件处理错误
+        field: 现场
         import: 进口
         import_dimension: 进口尺寸
+        import_scheduled: 计划导入
+        operation: 运行
+        owner_input_validation: 请选择业主
+        owner_select: 选择所有者
+        select_json: 选择 JSON 文件
       import_translations:
         error: 为维度 %{name} 导入翻译时出错。
         successfully: 为维度 %{name} 计划的导入翻译。
@@ -2478,6 +2516,7 @@ zh:
         successfully: 用户 %{name} 已成功更新。
       update:
         successfully: 用户 %{name} 已成功更新。
+    message: 留言
     meta_title: 管理面板
     navigation:
       ai_assistants: 人工智能助理
@@ -2584,6 +2623,7 @@ zh:
         editor: 规范编辑
         export: 出口规范
         title: 诺姆的选择
+      title: 规范
       toggle_status:
         successfully: 规范已成功更新。
       update:
@@ -2671,12 +2711,16 @@ zh:
     piped_text_modal:
       assessment_id: 评估 ID
       campaign_id: 活动 ID
+      campaign_name: 活动名称
+      campaigns: 活动
       insight_page_link: 洞察力页面链接
       insight_page_url: 洞察页面 URL
       join_link: 加入链接
       magic_link: 魔法链接
       magic_url: 神奇的 URL
       profile_custom_field: 配置文件自定义字段
+      project_name: 项目名称
+      projects: 项目
       report_name: 报告名称
       text: 文本
       title: 添加管道文字
@@ -3121,6 +3165,7 @@ zh:
         user_name: 用户名
       dashboard: 仪表板
       download: 下载
+      report_approval_settings: 报告审批设置
       report_approvals: 报告批准
       review: 评论
       saving_filters:
@@ -3243,10 +3288,14 @@ zh:
       edit:
         header: 编辑报告名称
       edit_default_language:
-        confirm_msg: 我已阅读上述信息，并了解更改默认语言的影响。
+        agreement: 是的，我理解更改默认语言所带来的影响。
         title: 编辑默认语言
         tooltip: 编辑默认语言
-        warning: 将默认语言从 rtl 改为 ltr，或反之亦然，都会影响版面设计。如果更改默认语言，则必须重新翻译报告。请在更改之前下载一份翻译副本。
+        warning:
+          description_li_1: 将默认语言从 RTL 更改为 LTR 语言或反之亦然，都会影响版面设计。
+          description_li_2: 如果更改默认语言，就必须重新翻译报告。
+          description_li_3: 在进行此更改之前，请下载报告翻译副本。
+          title: 请仔细阅读说明
       modals:
         remap_assessment:
           new_assessment_name: 新评估名称
@@ -4081,6 +4130,7 @@ zh:
           invitations: 邀请函
           reminders: 提醒事项
           report_ready: 报告准备就绪
+        consolidated: 综合
         custom_message:
           description: 该信息可发送给参与评估的任何人
           name: 自定义信息
@@ -4104,7 +4154,10 @@ zh:
         request_approval:
           description: 当主题请求批准时，此信息将发送给管理人员
           name: 申请批准
+        save: 节省
+        schedule: 时间安排
         schedule_email: 日程安排电子邮件
+        schedule_email_title: 日程安排电子邮件
         schedule_time: 时间安排
         send_test_email: 发送测试电子邮件
         subject: 主题
@@ -4145,6 +4198,14 @@ zh:
         welcome_message:
           description: 当受试者登录开始评估或查看任务列表时，该信息将显示给受试者
           name: 欢迎词
+      mail_history:
+        actions: 行动
+        date: 日期
+        download_details: 下载详细信息
+        emails_sent: 已发送电子邮件
+        recipient: 受援国
+        status: 现状
+        subject: 主题
       manage:
         assessment: 评估
         dimension: 尺寸
@@ -4152,19 +4213,45 @@ zh:
         report: 报告
         title: 管理
       menu:
+        actions: 行动
         datasheet:
           title: 数据表
         messages:
+          allow_subjects_to_send_reminders: 允许受试者向评估者发送提醒信息
+          automatically_send_invites: 自动向新评估员发送邀请
           title: 信息
         participants:
+          columns:
+            action: 行动
+            email: 电子邮件
+            evaluations_completed: 已完成的评估
+            evaluations_received: 收到的评价
+            is_subject: 是主题
+            name: 名称
+            report_status: 报告状态
+            status: 现状
+          evaluators:
+            add_evaluators: 添加评估员
+            import_evaluators: 进口评估员
+            title: 评估员
+          managers:
+            title: 管理人员
+          options:
+            evaluator_options: 评估员选项
+            global: 全球选项
+            manager_options: 经理选项
+            subject_options: 学科选项
+            title: 选项
           subjects:
             add_subjects: 添加主题
             current_job_role: 当前工作角色
             email: 电子邮件
             first_name: 名字
+            import_subjects: 进口主题
             last_name: 姓氏
             locale: 地点
             target_job_role: 目标工作角色
+            title: 主题
           title: 与会者
         report:
           menu:
@@ -4180,8 +4267,26 @@ zh:
         mail_history: 邮件历史
         options: 选项
       reports:
+        add_conditions: 添加条件
+        administrator_approves_reports: 行政长官批准报告
+        allow_manager_to_view_individual_responses: 允许经理查看个别回复
+        disable_report_download: 禁用报告下载
+        edit_email: 编辑电子邮件
+        email_manager_when_report_is_ready_for_approval: 报告准备好供审批时，向经理发送电子邮件
+        email_subject_when_report_becomes_available: 报告发布后以电子邮件发送主题
+        email_subjects_manager_when_available: 报告发布后，向受试者的管理者发送电子邮件
+        make_report_available_to_subject_when: 在下列情况下向受试者提供报告
+        manager_approves_reports: 经理批准报告
+        manager_can_access_subject_reports: 管理人员可查阅主题报告
+        manager_cannot_access_subject_reports: 在满足要求之前，经理无法查看报告
+        report_access: 报告访问
+        report_approval: 报告批准
+        report_availability: 报告可用性
         show:
           title: 课题报告
+        subject_can_access_reports: 受试者可查阅其报告
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: 将许可证标记为停用
     time_zone: 时区
     tools: 工具
     translations:

@@ -128,7 +128,7 @@ const FIELDS: FieldConfig[] = [
         ),
       },
       {
-        name: 'Campaign Name',
+        name: I18n.t('administration.piped_text_modal.campaign_name'),
         type: 'link',
         value: '${c://Campaign/Field}',
       },
@@ -138,7 +138,7 @@ const FIELDS: FieldConfig[] = [
     branch: 'Projects',
     fields: [
       {
-        name: 'Project Name',
+        name: I18n.t('administration.piped_text_modal.project_name'),
         type: 'link',
         value: '${p://Project/Field}',
       },

@@ -174,6 +174,8 @@ pl:
             title: Szablony IDP
             view: Widok
           jobRoles:
+            export_translations: Eksportuj tłumaczenia ról zawodowych
+            import_translations: Importowanie tłumaczeń ról zadań
             manage: Zarządzać
             title: Role zawodowe
             view: Widok
@@ -841,6 +843,14 @@ pl:
     campaign_factors_import:
       errors:
         invalid_headers: 'Następujące nagłówki są nieprawidłowe: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Wybierz zakres dat
+        modal:
+          subtitle: Wybierz zakres dat, a następnie wybierz wymagany język dla każdego raportu.
+      generate:
+        modal:
+          subtitle: Wybierz wymagany język dla każdego raportu
     campaign_templates:
       campaign_templates: Szablony kampanii
       column:
@@ -958,7 +968,9 @@ pl:
             empty: Pusty
             inactive: Nieaktywny
             name: Nazwa
+            normal: Normalny
             previous: Poprzedni
+            skill_rater: Ocena umiejętności
             standard: Norma
             status: Stan
           close:
@@ -1066,6 +1078,7 @@ pl:
         ai_assistants: Asystenci AI
         ai_assisted_idp: Dostawca tożsamości wspomagany przez sztuczną inteligencję
         global_skills: Umiejętności globalne
+        idp: PRI
         sms_notification: Powiadomienie SMS
     clients:
       api_keys:
@@ -1491,6 +1504,8 @@ pl:
         update:
           successfully: Projekt %{name} został zaktualizowany pomyślnie.
       registration_codes:
+        actions:
+          add_code: Dodaj kod
         column:
           code: Kod
           usage_stats: Statystyki użytkowania
@@ -1501,6 +1516,13 @@ pl:
           incorrect_domain: Nieprawidłowy format domeny.
           invalid_end_date: musi być większa niż data początkowa
           license_issue: Za mało licencji.
+        form:
+          active: Aktywny
+          code: Kod
+          end_date: Data zakończenia
+          name: Nazwa
+          start_date: Data rozpoczęcia
+          total_count: Łączna liczba
       resource:
         confirmations:
           delete:
@@ -1530,7 +1552,9 @@ pl:
       reset: Resetować
       save: Zapisać
       select_all: Zaznacz wszystko
+      type: Typ
       unselect_all: Odznacz wszystko
+    communication_settings: Ustawienia
     communications:
       create:
         successfully: Komunikacja została nawiązana pomyślnie.
@@ -1563,9 +1587,16 @@ pl:
           {{email}} - Adres e-mail odbiorcy
           {{schedule_start_date}} - Data rozpoczęcia harmonogramu
           {{schedule_end_date}} - Data zakończenia harmonogramu
+        campaign: Kampania
+        campaign_assessment_group: Grupa ds. oceny kampanii
+        client: Klient
         completion: Ukończenie
         delivery_at: Dostawa po cenie (GST)
         delivery_delay_hours: Opóźnienie dostawy (godziny)
+        delivery_interval: Interwał dostawy
+        delivery_interval_number: Numer interwału dostawy
+        delivery_interval_period: Okres między dostawami
+        delivery_rule: Zasada dostawy
         delivery_rules:
           in_progress: Jeśli ocena jest w toku
           not_competed: Jeśli ocena nie zostanie zakończona
@@ -1577,13 +1608,18 @@ pl:
         idp_template_approved: Zatwierdzony przez IDP
         idp_template_assigned: Przypisany IDP
         idp_template_rejected: IDP odrzucony
+        insert_piped_text: Wstawianie tekstu potokowego
         invitation: Zaproszenie
         kind: Typy komunikacji
         locale: Ustawień regionalnych
         magic_link_email: Wiadomość e-mail z magicznym linkiem
+        message_body_placeholder: Wpisz swoją wiadomość tutaj...
         new_assignment: Nowe zadanie
         new_users: Nowi użytkownicy
         other: Inny
+        owner: Właściciel
+        project: Projekt
+        recipients: Odbiorcy
         reminder: Przypomnienie
         report_available: Dostępny raport
         selected: Wybrany
@@ -1591,6 +1627,7 @@ pl:
         selected_recipients: Wybrani adresaci
         stop_reminder: Zatrzymywanie wysyłania przypomnień
         stop_reminder_datetime: Data zakończenia przypomnień (GST)
+        subject: Przedmiot
         workshop_booked: Potwierdzenie rezerwacji w centrum oceny
         workshop_cancelled: Assessment center anulowane
         workshop_completed: Assessment center zakończone
@@ -1604,6 +1641,7 @@ pl:
         type: Typ
       list:
         actions: Akcje
+        assessment_center_group: Assessment Center Group
         author: Utworzony przez
         campaign: Kampania
         client_name: Klient
@@ -1751,6 +1789,7 @@ pl:
       errors:
         blank_field: 'Wiersz %{row}: %{field} nie może być pusty'
         csv_file_required: Musi to być plik CSV
+        development_action_not_in_project: 'Linia %{row}: Identyfikator akcji rozwojowej %{development_action_id} nie należy do tego projektu.'
         image_download_failed: 'Nie udało się pobrać obrazu z %{url}: %{message}'
         invalid_csv_format: 'Nieprawidłowy format CSV: %{message}'
         invalid_date: Format daty dla %{date} jest nieprawidłowy.
@@ -1875,10 +1914,24 @@ pl:
         successfully: Zadanie importu czynników zaplanowane dla wymiaru %{name}.
         title: Czynniki importu
       import_modal:
+        after: Po
+        before: Przed
         cancel: Anuluj
+        change_log_input: Dziennik zmian
         continue: Kontynuować
+        error: Błąd
+        error_occurred: Wystąpił błąd
+        errors:
+          file_error: Przed kontynuowaniem wybierz plik JSON.
+          processing_error: Błąd przetwarzania pliku
+        field: Pole
         import: Import
         import_dimension: Importuj wymiar
+        import_scheduled: Zaplanowany import
+        operation: Działanie
+        owner_input_validation: Wybierz właściciela
+        owner_select: Wybór właściciela
+        select_json: Wybierz plik JSON
       import_translations:
         error: Błąd podczas importowania tłumaczeń dla wymiaru %{name}.
         successfully: Zaimportuj tłumaczenia zaplanowane dla wymiaru %{name}.
@@ -2066,10 +2119,13 @@ pl:
       all: Cały
       appearance: Wygląd
       appearance_hint: Aby zmodyfikować wygląd, najpierw zapisz szablon IDP, aby włączyć te ustawienia.
+      appearance_success: Ustawienia wyglądu zostały pomyślnie zapisane
       background_image: Obraz w tle
       behavioral_skills: Umiejętności behawioralne
       client_skills: Umiejętności klienta
+      details_updated: Szczegóły IDP zostały pomyślnie zaktualizowane
       edit_template: Edytowanie szablonu dostawcy tożsamości
+      enter_tag_or_skills_error: Wybierz co najmniej jeden tag lub umiejętność
       enter_template_description: Opis
       enter_template_description_error: Wymagany jest opis szablonu.
       enter_template_name: Nazwa
@@ -2078,6 +2134,7 @@ pl:
         update: Aktualizacja nie jest dozwolona, ponieważ szablon dostawcy tożsamości jest już skojarzony z planem dostawcy tożsamości użytkownika. Zmiany wyglądu zostały zapisane.
       fields:
         assigned_data: Przypisane dane
+        assigned_date: Przypisana data
         completion_date: Data realizacji
         division: Dzielenie
         name: Nazwa
@@ -2115,6 +2172,11 @@ pl:
       show_reflections: Pokaż odbicia
       skill_gap_report: Raport o brakach w umiejętnościach
       skills: Umiejętności
+      skills_updated: Umiejętności IDP zostały pomyślnie zaktualizowane
+      status:
+        draft: Wersja robocza
+        published: Opublikowano
+      status_updated: Status IDP został pomyślnie zaktualizowany
       subtitle_text: Tekst napisów
       tab:
         development_actions: Działania rozwojowe
@@ -2347,8 +2409,10 @@ pl:
         rescheduled: Przełożony
       subject: Temat
     job_role:
+      are_you_sure_to_remove: Czy na pewno usunąć?
       column:
         job_group: Grupa zadań
+        skill_name: Nazwa umiejętności
       export:
         failure_msg: Błąd podczas eksportowania tłumaczeń
         success_msg: Eksport działań rozwojowych w toku.
@@ -2363,6 +2427,7 @@ pl:
         success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
       import_action:
         translations: Importowanie tłumaczeń ról zawodowych
+      job_role_details: Szczegóły dotyczące stanowiska
       translations: Tłumaczenia stanowisk pracy
     job_role_skill_mapping:
       column:
@@ -2375,6 +2440,12 @@ pl:
       export:
         translations:
           details: Szczegóły
+      translations:
+        import:
+          errors:
+            job_role_not_found: 'Nie znaleziono roli zawodowej o identyfikatorze %{id} '
+            missing_columns: 'Brak wymaganych kolumn: %{columns}'
+            save_failed: 'Błąd przetwarzania Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: Element %{name} został utworzony pomyślnie.
@@ -2426,6 +2497,7 @@ pl:
         successfully: Użytkownik %{name} został pomyślnie zaktualizowany.
       update:
         successfully: Użytkownik %{name} został pomyślnie zaktualizowany.
+    message: Wiadomość
     meta_title: Panel administracyjny
     navigation:
       ai_assistants: Asystenci AI
@@ -2532,6 +2604,7 @@ pl:
         editor: Edytor norm
         export: Norma eksportowa
         title: Opcje Normy
+      title: Norma
       toggle_status:
         successfully: Norm został pomyślnie zaktualizowany.
       update:
@@ -2619,12 +2692,16 @@ pl:
     piped_text_modal:
       assessment_id: Identyfikator oceny
       campaign_id: Identyfikator kampanii
+      campaign_name: Nazwa kampanii
+      campaigns: Kampanie
       insight_page_link: Link do strony Insight
       insight_page_url: Adres URL strony statystyk
       join_link: Dołącz do linku
       magic_link: Magiczny link
       magic_url: Magiczny adres URL
       profile_custom_field: Pole niestandardowe profilu
+      project_name: Nazwa projektu
+      projects: Projekty
       report_name: Nazwa raportu
       text: Tekst
       title: Dodawanie tekstu z potoku
@@ -2655,6 +2732,9 @@ pl:
           level_definition_must_match_level: musi zawierać dokładnie %{expected} poziomy, ale podano %{actual}
           must_be_unique: Musi być unikatowy
           proficiency_level_exists: Poziom biegłości w tej umiejętności i projekcie już istnieje
+          proficiency_level_exists_for_default: Poziom biegłości dla domyślnych ustawień już istnieje
+          proficiency_level_exists_for_type: Poziom biegłości dla tego typu już istnieje
+          project_level_default_exists: '"Domyślny" poziom biegłości już istnieje.'
           skill_must_exist: Umiejętność musi być obecna, aby proficiency_type "by_skill"
       export:
         details: Szczegóły
@@ -2670,6 +2750,7 @@ pl:
         proficiency_type: Rodzaj biegłości
         skill: Zręczność
         skill_name: Nazwa umiejętności
+        skill_type: Typ umiejętności
         title: Biegłość
       import:
         actions:
@@ -2698,6 +2779,8 @@ pl:
             save_failed: 'Błąd podczas przetwarzania identyfikatora umiejętności %{id}: %{message}'
       type:
         by_skill: Według umiejętności
+        by_skill_type: Według rodzaju umiejętności
+        default: Domyślne
     profile:
       change_password: Zmień hasło
       details: Szczegóły
@@ -3059,6 +3142,7 @@ pl:
         user_name: Nazwa użytkownika
       dashboard: Deska rozdzielcza
       download: Pobierać
+      report_approval_settings: Ustawienia zatwierdzania raportów
       report_approvals: Zatwierdzanie raportów
       review: Recenzja
       saving_filters:
@@ -3180,6 +3264,15 @@ pl:
         successfully: Raport "%{name}" został pomyślnie usunięty.
       edit:
         header: Edytowanie nazwy raportu
+      edit_default_language:
+        agreement: Tak, rozumiem konsekwencje zmiany domyślnego języka.
+        title: Edytuj domyślny język
+        tooltip: Edytuj domyślny język
+        warning:
+          description_li_1: Zmiana domyślnego języka z RTL na LTR lub odwrotnie wpłynie na układ.
+          description_li_2: Jeśli zmienisz domyślny język, będziesz musiał ponownie opracować tłumaczenia raportów.
+          description_li_3: Pobierz kopię tłumaczeń raportów przed dokonaniem tej zmiany.
+          title: Prosimy o uważne przeczytanie instrukcji
       modals:
         remap_assessment:
           new_assessment_name: Nowa nazwa oceny
@@ -3222,6 +3315,9 @@ pl:
         successfully: Raport został zaktualizowany pomyślnie.
       update:
         successfully: Raport %{name} został pomyślnie zaktualizowany.
+    reports_language_selection_modal:
+      download: Raport do pobrania
+      generate: Generowanie raportów
     resource:
       remove_confirm:
         message: Czy na pewno chcesz usunąć ten zasób?
@@ -3628,6 +3724,7 @@ pl:
         import:
           missing_fields_data: 'Wiersz %{line_number}: Brak wymaganych pól: %{fields}'
           save_failed: 'Wiersz %{line_number}: Nie można zapisać umiejętności "%{name}": %{message}'
+          skill_not_in_project: 'Linia %{line_number}: Identyfikator umiejętności %{skill_id} nie należy do tego projektu.'
         search:
           all_and_project_id_mutually_exclusive: Nie wszystko może być prawdą, gdy project_id_eq jest zapewnione
           invalid_all_value: 'Musi być jednym z: prawda, fałsz'
@@ -3819,7 +3916,25 @@ pl:
         successfully: Sub-Factor został pomyślnie zaktualizowany.
     survey_builder:
       builder_area:
+        current_job: Obecna praca
+        default_not_applicable_label: Brak możliwości poznania lub zademonstrowania umiejętności
+        enable_not_applicable: Włącz opcję Nie dotyczy
+        enable_required_validation: Włącz wymaganą walidację
+        force_response: Reakcja siłowa
+        job_role_required: Wybierz co najmniej jedną rolę zawodową
+        not_applicable_label: Nie dotyczy Etykieta
         options: Opcje
+        request_response: Odpowiedź na żądanie
+        skill_rater_config: Konfiguracja Skill Ratera
+        target_job: Praca docelowa
+      models:
+        block_types:
+          regular: Regularny
+          skill_rater: Ocena umiejętności
+        skill_types:
+          behavioural: Zachowanie
+          other: Inne
+          technical: Techniczne
       property_panel:
         add_n_a_option: Dodaj opcję Nie dotyczy
         allow_content_copy: Zezwalaj na kopiowanie zawartości
@@ -3978,6 +4093,7 @@ pl:
           invitations: Zaproszenia
           reminders: Przypomnienia
           report_ready: Gotowy raport
+        consolidated: Skonsolidowany
         custom_message:
           description: Ta wiadomość może zostać wysłana do każdej osoby biorącej udział w ocenie
           name: Wiadomość niestandardowa
@@ -4001,7 +4117,10 @@ pl:
         request_approval:
           description: Ta wiadomość jest wysyłana do menedżerów, gdy podmiot prosi o zatwierdzenie
           name: Poproś o zatwierdzenie
+        save: Zapisz
+        schedule: Harmonogram
         schedule_email: Zaplanuj wiadomość e-mail
+        schedule_email_title: Harmonogram e-mail
         schedule_time: Zaplanuj czas
         send_test_email: Wyślij testową wiadomość e-mail
         subject: Temat
@@ -4042,6 +4161,14 @@ pl:
         welcome_message:
           description: Ten komunikat zostanie wyświetlony uczestnikom, gdy zalogują się w celu rozpoczęcia oceny lub wyświetlenia listy zadań
           name: Wiadomość powitalna
+      mail_history:
+        actions: Działania
+        date: Data
+        download_details: Pobierz szczegóły
+        emails_sent: Wysłane wiadomości e-mail
+        recipient: Odbiorca
+        status: Status
+        subject: Przedmiot
       manage:
         assessment: Ocena
         dimension: Wymiary
@@ -4049,19 +4176,45 @@ pl:
         report: Sprawozdanie
         title: Zarządzać
       menu:
+        actions: Działania
         datasheet:
           title: Arkusz danych
         messages:
+          allow_subjects_to_send_reminders: Umożliwienie uczestnikom wysyłania przypomnień do oceniających
+          automatically_send_invites: Automatyczne wysyłanie zaproszeń do nowych oceniających
           title: Wiadomości
         participants:
+          columns:
+            action: Działanie
+            email: E-mail
+            evaluations_completed: Zakończone oceny
+            evaluations_received: Otrzymane oceny
+            is_subject: Czy temat
+            name: Nazwa
+            report_status: Status raportu
+            status: Status
+          evaluators:
+            add_evaluators: Dodaj oceniających
+            import_evaluators: Import Evaluators
+            title: Oceniający
+          managers:
+            title: Menedżerowie
+          options:
+            evaluator_options: Opcje ewaluatora
+            global: Opcje globalne
+            manager_options: Opcje menedżera
+            subject_options: Opcje przedmiotów
+            title: Opcje
           subjects:
             add_subjects: Dodawanie tematów
             current_job_role: Aktualne stanowisko
             email: E-mail
             first_name: Imię
+            import_subjects: Importuj przedmioty
             last_name: Nazwisko
             locale: Ustawień regionalnych
             target_job_role: Docelowa rola zawodowa
+            title: Przedmioty
           title: Uczestników
         report:
           menu:
@@ -4077,8 +4230,26 @@ pl:
         mail_history: Historia poczty
         options: Opcje
       reports:
+        add_conditions: Dodaj warunki
+        administrator_approves_reports: Administrator zatwierdza raporty
+        allow_manager_to_view_individual_responses: Umożliwienie menedżerowi przeglądania poszczególnych odpowiedzi
+        disable_report_download: Wyłącz pobieranie raportów
+        edit_email: Edytuj wiadomość e-mail
+        email_manager_when_report_is_ready_for_approval: Wyślij wiadomość e-mail do menedżera, gdy raport będzie gotowy do zatwierdzenia
+        email_subject_when_report_becomes_available: Temat wiadomości e-mail, gdy raport będzie dostępny
+        email_subjects_manager_when_available: Wyślij wiadomość e-mail do menedżera podmiotu, gdy raport będzie dostępny
+        make_report_available_to_subject_when: 'Udostępnić raport podmiotowi, gdy:'
+        manager_approves_reports: Menedżer zatwierdza raporty
+        manager_can_access_subject_reports: Menedżer może uzyskać dostęp do raportów tematycznych
+        manager_cannot_access_subject_reports: Menedżer nie może zobaczyć raportu, dopóki nie zostaną spełnione wymagania
+        report_access: Dostęp do raportu
+        report_approval: Zatwierdzenie raportu
+        report_availability: Dostępność raportu
         show:
           title: Raport tematyczny
+        subject_can_access_reports: Podmiot może uzyskać dostęp do swoich raportów
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Oznacz licencje jako nieaktywne
     time_zone: Strefa czasowa
     tools: Narzędzia
     translations:

@@ -47,6 +47,9 @@ const routes = [
   { path: '/evaluators', component: <EvaluatorList /> },
   { path: '/managers', component: <ManagerList /> },
 ]
+
+const { I18n } = window
+
 function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
   const navigate = useNavigate()
 
@@ -59,13 +62,22 @@ function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
     routeUtils.moveTo(navigate, settings.urlPrefix, key)
   }
   const menuItems = [
-    { key: '/participants/subjects', label: 'Subjects' },
-    { key: '/participants/evaluators', label: 'Evaluators' },
-    { key: '/participants/managers', label: 'Managers' },
+    {
+      key: '/participants/subjects',
+      label: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.title'),
+    },
+    {
+      key: '/participants/evaluators',
+      label: I18n.t('administration.threesixty_campaigns.menu.participants.evaluators.title'),
+    },
+    {
+      key: '/participants/managers',
+      label: I18n.t('administration.threesixty_campaigns.menu.participants.managers.title'),
+    },
   ]
   campaignPermissions.editParticipantOptions && menuItems.push({
     key: '/participants/options',
-    label: 'Options',
+    label: I18n.t('administration.threesixty_campaigns.menu.participants.options.title'),
   })
   return (
     <>

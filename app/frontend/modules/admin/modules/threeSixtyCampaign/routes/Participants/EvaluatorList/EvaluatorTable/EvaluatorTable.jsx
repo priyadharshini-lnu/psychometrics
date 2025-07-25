@@ -22,7 +22,7 @@ export default function EvaluatorTable ({
   return (
     <Table className="mtm" rowKey="id" dataSource={evaluators} pagination={false} scroll={{ x: 'max-content' }}>
       <Column
-        title="Name"
+        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.name')}
         fixed={windowWidth > 800 ? 'left' : undefined}
         key="fullName"
         render={({ user, permissions }) => (
@@ -36,23 +36,35 @@ export default function EvaluatorTable ({
         )}
       />
       <Column
-        title="Email"
+        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.email')}
         key="user_email"
         render={({ user }) => user.email}
       />
-      <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />
-      <Column title="Evaluations Completed" dataIndex="evaluations" key="completed_evaluations" />
+      <Column
+        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.evaluations_received')}
+        dataIndex="evaluators"
+        key="received_evaluations"
+      />
+      <Column
+        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.evaluations_completed')}
+        dataIndex="evaluations"
+        key="completed_evaluations"
+      />
 
       <Column
-        title="Report Status"
+        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.report_status')}
         key="report_status"
         render={({ reportStatus }) => reportStatus && I18n.t(`reports.statuses.${reportStatus}`)}
       />
 
-      <Column title="Status" key="status" render={({ status }) => status && I18n.t(`subjects.statuses.${status}`)} />
+      <Column
+        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.status')}
+        key="status"
+        render={({ status }) => status && I18n.t(`subjects.statuses.${status}`)}
+      />
 
       <Column
-        title="Is Subject"
+        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.is_subject')}
         render={({ isSubject }) => isSubject && <CheckOutlined className="text-success" />}
         key="isSubject"
       />

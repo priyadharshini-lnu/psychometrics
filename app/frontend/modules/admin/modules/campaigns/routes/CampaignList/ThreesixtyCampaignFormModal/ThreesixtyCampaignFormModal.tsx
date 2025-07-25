@@ -35,6 +35,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   projectId,
   close,
   fetchTemplatesAndAssessments,
+  features,
   addInReduxStore,
 }) => {
   const { modal, message } = App.useApp()
@@ -164,6 +165,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
           <BaseSettingsForm
             initialSettings={baseSettings}
             assessments={assessments}
+            features={features}
             onClose={close}
             onFinish={handleBaseSettingsFinish}
             isSubmitting={isCreatingCampaign}

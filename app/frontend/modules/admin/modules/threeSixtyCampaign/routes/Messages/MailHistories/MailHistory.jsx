@@ -28,7 +28,7 @@ export default function MailHistory ({
 
   const columns = [
     {
-      title: 'Status',
+      title: I18n.t('administration.threesixty_campaigns.mail_history.status'),
       fixed: windowWidth > 800 ? 'left' : undefined,
       dataIndex: 'status',
       key: 'status',
@@ -39,17 +39,17 @@ export default function MailHistory ({
       },
     },
     {
-      title: 'Recipient',
+      title: I18n.t('administration.threesixty_campaigns.mail_history.recipient'),
       dataIndex: 'recipient',
       key: 'recipient',
     },
     {
-      title: 'Subject',
+      title: I18n.t('administration.threesixty_campaigns.mail_history.subject'),
       dataIndex: 'subject',
       key: 'subjects',
     },
     {
-      title: 'Date',
+      title: I18n.t('administration.threesixty_campaigns.mail_history.date'),
       dataIndex: 'scheduledDate',
       key: 'scheduledDate',
       render: (date, record) => (
@@ -60,12 +60,12 @@ export default function MailHistory ({
       ),
     },
     {
-      title: 'Emails Sent',
+      title: I18n.t('administration.threesixty_campaigns.mail_history.emails_sent'),
       dataIndex: 'emailsSent',
       key: 'emailsSent',
     },
     {
-      title: 'Actions',
+      title: I18n.t('administration.threesixty_campaigns.mail_history.actions'),
       fixed: windowWidth > 800 ? 'right' : undefined,
       key: 'actions',
       render: (_, record) => (
@@ -115,7 +115,7 @@ const ActionMenu = ({
         <a
           href={`/administration/threesixty_campaigns/${campaignId}/email_schedules/${emailSchedulId}/download.csv`}
         >
-          Download Details
+          {I18n.t('administration.threesixty_campaigns.mail_history.download_details')}
         </a>
       ),
     },

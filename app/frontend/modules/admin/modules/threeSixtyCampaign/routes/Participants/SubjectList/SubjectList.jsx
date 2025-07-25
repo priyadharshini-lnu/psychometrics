@@ -110,7 +110,7 @@ function SubjectList ({
           )}
           <ToolsDropdown
             isBulk
-            title="Actions"
+            title={I18n.t('administration.threesixty_campaigns.menu.actions')}
             permissions={permissions}
             selectedKeys={selectedKeys}
             excludedKeys={excludedKeys}
@@ -143,7 +143,7 @@ function SubjectList ({
             rowSelection={rowSelection}
           >
             <Column
-              title="Name"
+              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.name')}
               fixed={windowWidth > 800 ? 'left' : undefined}
               key="fullName"
               render={({ user, permissions }) => (
@@ -157,7 +157,7 @@ function SubjectList ({
               )}
             />
             <Column
-              title="Email"
+              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.email')}
               key="user_email"
               render={({ user }) => user.email}
             />
@@ -165,12 +165,12 @@ function SubjectList ({
             {isSkillRater && (
               <>
                 <Column
-                  title="Current Job Role"
+                  title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.current_job_role')}
                   key="current_job_role"
                   render={({ user }) => user.currentJobRole || '—'}
                 />
                 <Column
-                  title="Target Job Role"
+                  title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.target_job_role')}
                   key="target_job_role"
                   render={({ user }) => user.targetJobRole || '—'}
                 />
@@ -178,25 +178,25 @@ function SubjectList ({
             )}
 
             <Column
-              title="Evaluations Received"
+              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.evaluations_received')}
               dataIndex="evaluators"
               key="received_evaluations"
             />
             <Column
-              title="Evaluations Completed"
+              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.evaluations_completed')}
               dataIndex="evaluations"
               key="completed_evaluations"
             />
 
             <Column
-              title="Report Status"
+              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.report_status')}
               key="report_status"
               render={({ reportStatus }) => I18n.t(`reports.statuses.${reportStatus}`)
               }
             />
 
             <Column
-              title="Status"
+              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.status')}
               key="status"
               render={({ status }) => I18n.t(`subjects.statuses.${status}`)}
             />
@@ -204,7 +204,7 @@ function SubjectList ({
             <Column
               key="action"
               fixed={windowWidth > 800 ? 'right' : undefined}
-              title="Action"
+              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.action')}
               render={({
                 id, user: { email }, user, permissions, userReportId,
               }) => (

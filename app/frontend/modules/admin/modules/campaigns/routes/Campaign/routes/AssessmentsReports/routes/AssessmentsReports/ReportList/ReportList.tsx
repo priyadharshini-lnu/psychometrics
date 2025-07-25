@@ -65,7 +65,6 @@ const ReportList: React.FC<Props> = ({
             title={I18n.t('campaign_report.column.report_name')}
             key="name"
             dataIndex="name"
-            width={200}
             fixed="left"
           />
           <Column

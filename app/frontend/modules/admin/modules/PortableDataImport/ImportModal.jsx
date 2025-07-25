@@ -5,6 +5,8 @@ import {
 import { PrettyPrintJson } from './PrettyPrintJson'
 import { validateImport, submitImport, fetchClientsApi } from './api'
 
+const { I18n } = window
+
 const ImportModal = ({
   title,
   validateEndpoint,
@@ -46,7 +48,7 @@ const ImportModal = ({
 
   const columns = [
     {
-      title: 'Operation',
+      title: I18n.t('administration.dimensions.import_modal.operation'),
       dataIndex: 'operation',
       key: 'operation',
       width: '5%',
@@ -57,12 +59,12 @@ const ImportModal = ({
       ),
     },
     {
-      title: 'Field',
+      title: I18n.t('administration.dimensions.import_modal.field'),
       dataIndex: 'field',
       key: 'field',
     },
     {
-      title: 'Before',
+      title: I18n.t('administration.dimensions.import_modal.before'),
       dataIndex: 'oldValue',
       key: 'oldValue',
       width: '35%',
@@ -73,7 +75,7 @@ const ImportModal = ({
       ),
     },
     {
-      title: 'After',
+      title: I18n.t('administration.dimensions.import_modal.after'),
       dataIndex: 'newValue',
       key: 'newValue',
       width: '35%',
@@ -106,7 +108,7 @@ const ImportModal = ({
 
   const handleContinue = () => {
     if (!file) {
-      setFileError('Please select a JSON file before continuing.')
+      setFileError(I18n.t('administration.dimensions.import_modal.errors.file_error'))
       return
     }
     setFileError(null)
@@ -119,7 +121,7 @@ const ImportModal = ({
 
         validateImportFile(content)
       } catch (error) {
-        setErrors(['Error processing file'] + error)
+        setErrors([I18n.t('administration.dimensions.import_modal.errors.processing_error'), error])
       }
     }
 
@@ -152,7 +154,7 @@ const ImportModal = ({
         setIsValidating(false)
       })
       .catch((error) => {
-        setErrors(['An error occurred'] + error)
+        setErrors([I18n.t('administration.dimensions.import_modal.error_occurred'), error])
         setIsValidating(false)
       })
   }
@@ -162,12 +164,12 @@ const ImportModal = ({
     submitImport(importEndpoint, jsonFileContent, mappableValues)
       .then(() => {
         setShow(false)
-        message.success('Import scheduled')
+        message.success(I18n.t('administration.dimensions.import_modal.import_scheduled'))
         if (onClose) onClose()
         setIsImporting(false)
       })
       .catch(() => {
-        setErrors(['An error occurred'])
+        setErrors([I18n.t('administration.dimensions.import_modal.error_occurred')])
         setIsImporting(false)
       })
   }
@@ -193,7 +195,7 @@ const ImportModal = ({
   const renderFileUpload = () => (
     <>
       <Form.Item
-        label="Select JSON file"
+        label={I18n.t('administration.dimensions.import_modal.select_json')}
         required
         validateStatus={fileError ? 'error' : ''}
         help={fileError}
@@ -206,7 +208,7 @@ const ImportModal = ({
       </Form.Item>
       {fileError && (
         <Alert
-          message="Error"
+          message={I18n.t('administration.dimensions.import_modal.error')}
           description={fileError}
           type="error"
           showIcon
@@ -219,12 +221,12 @@ const ImportModal = ({
   const renderMappableFields = () => (
     <Form.Item
       name="ownerId"
-      label={window.I18n?.t('common.column.owner') || 'Owner'}
-      rules={[{ message: 'Please select an owner' }]}
+      label={I18n.t('administration.dimensions.import_modal.owner_select')}
+      rules={[{ message: I18n.t('administration.dimensions.import_modal.owner_input_validation') }]}
     >
       <Select
         showSearch
-        placeholder="Select an owner"
+        placeholder={I18n.t('administration.dimensions.import_modal.owner_select')}
         onSearch={(value) => {
           fetchClients(value)
         }}
@@ -242,7 +244,7 @@ const ImportModal = ({
   )
 
   const renderChangeLog = () => (
-    <Form.Item label="Change Log">
+    <Form.Item label={I18n.t('administration.dimensions.import_modal.change_log_input')}>
       <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
         <Table
           columns={columns}
@@ -256,7 +258,7 @@ const ImportModal = ({
 
   const renderErrors = () => (
     <Alert
-      message="Error"
+      message={I18n.t('administration.dimensions.import_modal.error')}
       description={(
         <div>
           {errors.map((error, index) => (

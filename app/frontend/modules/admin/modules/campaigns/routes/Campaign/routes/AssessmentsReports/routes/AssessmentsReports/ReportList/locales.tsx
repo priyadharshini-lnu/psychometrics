@@ -1,9 +1,8 @@
 import { Button, Flex, Popover } from 'antd'
-import { EditOutlined, StarFilled } from '@ant-design/icons'
+import { EditOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { openModal } from '~/modules/admin/core/ui/modals'
 
-const StarColor = '#faad14'
 const { I18n } = window
 
 type Props = PropsFromRedux & {
@@ -25,10 +24,9 @@ export const Locales = ({
   const remainingCount = otherLanguages.length - 1
 
   const allLanguagesContent = (
-    <Flex align="center" gap={6} wrap style={{ maxWidth: '200px' }}>
+    <Flex align="flex-end" gap={6} wrap style={{ maxWidth: '200px' }}>
       {defaultLanguage && (
-        <Flex align="center" gap={6}>
-          <StarFilled style={{ color: StarColor }} />
+        <Flex align="flex-end" gap={6}>
           <span style={{ fontWeight: 'bold' }}>
             {I18n.t(`languages.${defaultLanguage}`)}
           </span>
@@ -54,15 +52,16 @@ export const Locales = ({
           <Flex gap={4} align="center" style={{ display: 'inline-flex' }}>
             {defaultLanguage && (
               <Flex gap={2}>
-                <StarFilled style={{ color: StarColor }} />
-                <span style={{ fontWeight: 'bold' }}>{I18n.t(`languages.${defaultLanguage}`)}</span>
+                <span>
+                  {defaultLanguage}
+                </span>
               </Flex>
             )}
             {firstAdditionalLanguage ? (
               <Flex align="center" gap={4}>
                 {defaultLanguage ? <span>•</span> : null}
                 <span>
-                  {I18n.t(`languages.${firstAdditionalLanguage}`)}
+                  {firstAdditionalLanguage}
                 </span>
               </Flex>
             ) : null}

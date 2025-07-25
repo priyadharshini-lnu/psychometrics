@@ -1096,6 +1096,7 @@ it:
         ai_assistants: Assistenti AI
         ai_assisted_idp: AI Assistito IDP
         global_skills: Competenze globali
+        idp: IDP
         sms_notification: Notifica via SMS
     clients:
       api_keys:
@@ -1521,6 +1522,8 @@ it:
         update:
           successfully: Il progetto %{name} è stato aggiornato con successo.
       registration_codes:
+        actions:
+          add_code: Aggiungi codice
         column:
           code: Codice
           usage_stats: Statistiche di utilizzo
@@ -1531,6 +1534,13 @@ it:
           incorrect_domain: Formato del dominio non corretto.
           invalid_end_date: deve essere maggiore della data di inizio
           license_issue: Non ci sono abbastanza licenze.
+        form:
+          active: Attivo
+          code: Codice
+          end_date: Data di fine
+          name: Nome
+          start_date: Data di inizio
+          total_count: Conteggio totale
       resource:
         confirmations:
           delete:
@@ -1562,6 +1572,7 @@ it:
       select_all: Seleziona tutti
       type: Tipo
       unselect_all: Deselezionare tutti
+    communication_settings: Impostazioni
     communications:
       create:
         successfully: La comunicazione è stata creata con successo.
@@ -1594,9 +1605,16 @@ it:
            {{email}} - Email del destinatario
            {{schedule_start_date}} - Data di inizio del calendario
            {{schedule_end_date}} - Data di fine del calendario"
+        campaign: Campagna
+        campaign_assessment_group: Gruppo di valutazione della campagna
+        client: Cliente
         completion: Completamento
         delivery_at: Consegna a (GST)
         delivery_delay_hours: Ritardo nella consegna (ore)
+        delivery_interval: Intervallo di consegna
+        delivery_interval_number: Intervallo di consegna Numero
+        delivery_interval_period: Intervallo di consegna Periodo
+        delivery_rule: Regola di consegna
         delivery_rules:
           in_progress: Se la valutazione è in corso
           not_competed: Se la valutazione non viene completata
@@ -1608,13 +1626,18 @@ it:
         idp_template_approved: IDP Approvato
         idp_template_assigned: IDP Assegnato
         idp_template_rejected: IDP Rifiutato
+        insert_piped_text: Inserimento di testo con tubature
         invitation: Invito
         kind: Tipi di comunicazione
         locale: Impostazioni locali
         magic_link_email: Magic Link Email
+        message_body_placeholder: Inserisci il tuo messaggio qui...
         new_assignment: Nuovo incarico
         new_users: Nuovi utenti
         other: Altro
+        owner: Proprietario
+        project: Progetto
+        recipients: Destinatari
         reminder: Promemoria
         report_available: Rapporto disponibile
         selected: Selezionato
@@ -1622,6 +1645,7 @@ it:
         selected_recipients: Destinatari selezionati
         stop_reminder: Smettere di inviare promemoria
         stop_reminder_datetime: Data di scadenza dei solleciti (GST)
+        subject: Oggetto
         workshop_booked: Conferma di prenotazione dell'Assessment Center
         workshop_cancelled: Assessment center annullato
         workshop_completed: Assessment center completato
@@ -1908,10 +1932,24 @@ it:
         successfully: Lavoro di importazione dei fattori pianificato per la dimensione %{name}.
         title: Fattori di importazione
       import_modal:
+        after: Dopo
+        before: Prima
         cancel: Annullamento
+        change_log_input: Registro delle modifiche
         continue: Continua
+        error: Errore
+        error_occurred: Si è verificato un errore
+        errors:
+          file_error: Selezionare un file JSON prima di continuare.
+          processing_error: Errore nell'elaborazione del file
+        field: Campo
         import: Importazione
         import_dimension: Dimensione di importazione
+        import_scheduled: Importazione programmata
+        operation: Operazione
+        owner_input_validation: Selezionare un proprietario
+        owner_select: Selezionare un proprietario
+        select_json: Selezionare il file JSON
       import_translations:
         error: Errore durante l'importazione delle traduzioni per la dimensione %{name}.
         successfully: Importazione di traduzioni prevista per la dimensione %{name}.
@@ -2425,8 +2463,8 @@ it:
         import:
           errors:
             job_role_not_found: Ruolo lavorativo con ID %{id} non trovato
-            missing_columns: 'Colonne mancanti: %{colonne}'
-            save_failed: 'Errore nell''elaborazione del Job Role ID %{id}: %{messaggio}'
+            missing_columns: 'Colonne mancanti: %{columns}'
+            save_failed: 'Errore nell''elaborazione del Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: L'elemento %{name} è stato creato con successo.
@@ -2478,6 +2516,7 @@ it:
         successfully: L'utente %{name} è stato aggiornato con successo.
       update:
         successfully: L'utente %{name} è stato aggiornato con successo.
+    message: Messaggio
     meta_title: Pannello di amministrazione
     navigation:
       ai_assistants: Assistenti AI
@@ -2584,6 +2623,7 @@ it:
         editor: Norm Editor
         export: Norma di esportazione
         title: Opzioni di Norm
+      title: Norma
       toggle_status:
         successfully: La norma è stata aggiornata con successo.
       update:
@@ -2671,12 +2711,16 @@ it:
     piped_text_modal:
       assessment_id: ID di valutazione
       campaign_id: ID campagna
+      campaign_name: Nome della campagna
+      campaigns: Campagne
       insight_page_link: Link alla pagina di approfondimento
       insight_page_url: URL della pagina di approfondimento
       join_link: Unisciti al link
       magic_link: Collegamento magico
       magic_url: URL magico
       profile_custom_field: Campo personalizzato del profilo
+      project_name: Nome del progetto
+      projects: Progetti
       report_name: Nome del rapporto
       text: Testo
       title: Aggiunta di testo con tubature
@@ -2734,10 +2778,10 @@ it:
         errors:
           by_skill_exists: 'Riga %{row_number}: Esiste già un livello di competenza ''by_skill'' per questo progetto e per questa competenza.'
           by_skill_missing: 'Riga %{row_number}: Il progetto e la competenza devono essere presenti per il tipo ''by_skill''.'
-          by_skill_type_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel ''''by_skill_type'''' per questo progetto e per questo tipo di abilità.'
-          by_skill_type_missing: 'Riga %{numero_riga}: Il progetto e il tipo di competenza devono essere presenti per il tipo ''''by_skill_type''''.'
-          default_global_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel di livello globale ''''predefinito''''.'
-          default_project_exists: 'Riga %{numero_riga}: Esiste già un ProficiencyLevel ''''predefinito'''' a livello di progetto.'
+          by_skill_type_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''by_skill_type'''' per questo progetto e per questo tipo di abilità.'
+          by_skill_type_missing: 'Riga %{row_number}: Il progetto e il tipo di competenza devono essere presenti per il tipo ''''by_skill_type''''.'
+          default_global_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel di livello globale ''''predefinito''''.'
+          default_project_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''predefinito'''' a livello di progetto.'
           invalid_csv_format: 'Formato CSV non valido: %{message}'
           invalid_proficiency_type: 'Riga %{row_number}: Tipo di competenza non valido o mancante'
           missing_columns: 'Colonne obbligatorie mancanti: %{fields}'
@@ -3121,6 +3165,7 @@ it:
         user_name: Nome utente
       dashboard: Cruscotto
       download: Scaricare
+      report_approval_settings: Impostazioni di approvazione dei rapporti
       report_approvals: Approvazioni dei rapporti
       review: Recensione
       saving_filters:
@@ -3243,10 +3288,14 @@ it:
       edit:
         header: Modifica del nome del rapporto
       edit_default_language:
-        confirm_msg: Ho letto le informazioni di cui sopra e comprendo le implicazioni della modifica della lingua predefinita.
+        agreement: Sì, capisco le implicazioni del cambio di lingua di default.
         title: Modifica della lingua predefinita
         tooltip: Modifica della lingua predefinita
-        warning: La modifica della lingua predefinita da rtl a ltr o viceversa influisce sul layout. Se si cambia la lingua predefinita, è necessario rielaborare le traduzioni dei report. Scaricare una copia delle traduzioni prima di effettuare questa modifica.
+        warning:
+          description_li_1: La modifica della lingua predefinita da RTL a LTR o viceversa influisce sul layout.
+          description_li_2: Se si cambia la lingua predefinita, è necessario rielaborare le traduzioni dei rapporti.
+          description_li_3: Scaricare una copia delle traduzioni dei rapporti prima di effettuare questa modifica.
+          title: Leggere attentamente le istruzioni
       modals:
         remap_assessment:
           new_assessment_name: Nome della nuova valutazione
@@ -4081,6 +4130,7 @@ it:
           invitations: Inviti
           reminders: Promemoria
           report_ready: Rapporto pronto
+        consolidated: Consolidato
         custom_message:
           description: Questo messaggio può essere inviato a chiunque partecipi alla valutazione
           name: Messaggio personalizzato
@@ -4104,7 +4154,10 @@ it:
         request_approval:
           description: Questo messaggio viene inviato ai gestori quando un soggetto richiede l'approvazione
           name: Richiesta di approvazione
+        save: Risparmiare
+        schedule: Programma
         schedule_email: Programma e-mail
+        schedule_email_title: Programma e-mail
         schedule_time: Orario di programmazione
         send_test_email: Inviare un'e-mail di prova
         subject: Oggetto
@@ -4145,6 +4198,14 @@ it:
         welcome_message:
           description: Questo messaggio verrà visualizzato dai soggetti quando si collegheranno per iniziare la valutazione o per visualizzare l'elenco dei compiti
           name: Messaggio di benvenuto
+      mail_history:
+        actions: Azioni
+        date: Data
+        download_details: Scarica i dettagli
+        emails_sent: Email inviate
+        recipient: Destinatario
+        status: Stato
+        subject: Oggetto
       manage:
         assessment: Valutazione
         dimension: Dimensioni
@@ -4152,19 +4213,45 @@ it:
         report: Rapporto
         title: Gestire
       menu:
+        actions: Azioni
         datasheet:
           title: Scheda tecnica
         messages:
+          allow_subjects_to_send_reminders: Consentire ai soggetti di inviare promemoria ai valutatori
+          automatically_send_invites: Invio automatico di inviti a nuovi valutatori
           title: Messaggi
         participants:
+          columns:
+            action: Azione
+            email: Email
+            evaluations_completed: Valutazioni completate
+            evaluations_received: Valutazioni ricevute
+            is_subject: È soggetto
+            name: Nome
+            report_status: Stato del rapporto
+            status: Stato
+          evaluators:
+            add_evaluators: Aggiungere valutatori
+            import_evaluators: Valutatori di importazione
+            title: Valutatori
+          managers:
+            title: Dirigenti
+          options:
+            evaluator_options: Opzioni del valutatore
+            global: Opzioni globali
+            manager_options: Opzioni del gestore
+            subject_options: Opzioni del soggetto
+            title: Opzioni
           subjects:
             add_subjects: Aggiungi soggetti
             current_job_role: Ruolo lavorativo attuale
             email: Email
             first_name: Nome
+            import_subjects: Importazione di soggetti
             last_name: Cognome
             locale: Locale
             target_job_role: Ruolo lavorativo di destinazione
+            title: Soggetti
           title: Partecipanti
         report:
           menu:
@@ -4180,8 +4267,26 @@ it:
         mail_history: Storia della posta
         options: Opzioni
       reports:
+        add_conditions: Aggiungi condizioni
+        administrator_approves_reports: L'amministratore approva i rapporti
+        allow_manager_to_view_individual_responses: Consentire al gestore di visualizzare le singole risposte
+        disable_report_download: Disabilita il download dei rapporti
+        edit_email: Modifica e-mail
+        email_manager_when_report_is_ready_for_approval: Inviare un'e-mail al manager quando il rapporto è pronto per l'approvazione
+        email_subject_when_report_becomes_available: Oggetto dell'e-mail quando il rapporto è disponibile
+        email_subjects_manager_when_available: Inviare un'e-mail al responsabile del soggetto quando il rapporto è disponibile
+        make_report_available_to_subject_when: 'Mettere il rapporto a disposizione del soggetto quando:'
+        manager_approves_reports: Il manager approva i rapporti
+        manager_can_access_subject_reports: Il manager può accedere ai rapporti sui soggetti
+        manager_cannot_access_subject_reports: Il manager non può vedere il rapporto finché non sono soddisfatti i requisiti
+        report_access: Accesso al rapporto
+        report_approval: Approvazione del rapporto
+        report_availability: Disponibilità del rapporto
         show:
           title: Rapporto sul soggetto
+        subject_can_access_reports: Il soggetto può accedere ai propri rapporti
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Contrassegnare le licenze come disattivate
     time_zone: Fuso orario
     tools: Strumenti
     translations:

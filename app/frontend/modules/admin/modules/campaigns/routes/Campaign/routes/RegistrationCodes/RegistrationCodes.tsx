@@ -72,14 +72,14 @@ const RegistrationCodes: React.FC<Props> = ({
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} Registration Codes `}</span>
+          <span className="mlm">{`${total} ${I18n.t('administration.navigation.registration_codes')} `}</span>
         </Col>
         {permissions.create && (
           <div className="float-r">
             <div>
               <Button type="primary" onClick={() => openModal('CodeModal', { campaignId })}>
                 <PlusOutlined />
-                <span>Add Code</span>
+                <span>{I18n.t('administration.clients.registration_codes.actions.add_code')}</span>
               </Button>
             </div>
           </div>
@@ -271,11 +271,11 @@ const getActionsMenuProps = ({
   const menuItems: MenuItem[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
-    label: 'Edit',
+    label: I18n.t('common.actions.edit'),
   })
   permissions.remove && menuItems.push({
     key: 'remove',
-    label: 'Remove',
+    label: I18n.t('common.actions.remove'),
   })
 
   const handleMenuClick = ({ key }) => {

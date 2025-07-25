@@ -19,10 +19,11 @@ interface Props {
   withPipedText?: boolean
 }
 
+const { I18n } = window
+
 export const EmailEditor: React.FC<Props> = ({
   content, handleContentChange, type, details, className, withPipedText = false,
 }) => {
-  const { I18n } = window
   const direction = isRtl(I18n?.currentLocale()) ? 'rtl' : 'ltr'
 
   const [isInitialized, setIsInitialized] = useState(false)
@@ -32,6 +33,7 @@ export const EmailEditor: React.FC<Props> = ({
     imageOutputSize: true,
     codeMirror: CodeMirror,
     direction,
+    placeholderText: I18n.t('administration.communications.form.message_body_placeholder'),
     pluginsEnabled: [
       'image',
       'link',

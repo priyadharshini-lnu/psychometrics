@@ -438,6 +438,7 @@ th:
           case_study: กรณีศึกษา
           hogan: โฮแกน
           iiht: ไอเอชที
+          lead_assessor_form: แบบฟอร์มผู้ประเมินหลัก
           meeting: การประชุม
           organisational: สำรวจ
           pearson: เพียร์สัน
@@ -518,6 +519,7 @@ th:
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
+        owner: เจ้าของ
         updated_at: วันที่แก้ไข
       factor:
         active: กระปรี้กระเปร่า
@@ -544,7 +546,11 @@ th:
         updated_at: วันที่แก้ไข
       library:
         created_at: วันที่สร้าง
+        description: คำอธิบาย
+        files: ไฟล์
         id: รหัส
+        name: ชื่อ
+        owner: เจ้าของ
         type: รูปขนาดย่อ
         updated_at: วันที่แก้ไข
       license:
@@ -616,6 +622,7 @@ th:
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
+        owner: เจ้าของ
         updated_at: วันที่แก้ไข
       report:
         created_at: วันที่สร้าง
@@ -784,6 +791,8 @@ th:
           attributes:
             current_password:
               invalid: รหัสผ่านปัจจุบันไม่ถูกต้อง
+            manager_id:
+              cannot_be_self: ผู้ใช้ไม่สามารถถูกกำหนดให้เป็นผู้จัดการของตนเองได้
         user_idp_comment:
           reply_to_reply: ไม่สามารถตอบกลับการตอบกลับได้ (อนุญาตให้ซ้อนได้เพียงระดับเดียว)
         user_idp_plan:
@@ -1545,6 +1554,7 @@ th:
     column:
       assessor_access: การเข้าถึงผู้ประเมิน
       auto_assign: กําหนดอัตโนมัติ
+      locales: Locales
       main_report: รายงานหลัก
       report_bundle: ชุดรายงาน
       report_name: ชื่อรายงาน
@@ -1567,6 +1577,13 @@ th:
         apply: ใช้การเปลี่ยนแปลงนี้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
         msg_text: คุณกําลังพยายามลบรายงาน <strong>"%{reportName}"</strong>
         title: ลบรายงาน?
+      update_languages:
+        default_language: ภาษาเริ่มต้น
+        other_available_languages: ภาษาอื่น ๆ ที่มีให้บริการ
+        select_default_language: เลือกภาษาเริ่มต้น
+        select_languages: เลือกภาษา
+        success_msg: ภาษาได้รับการอัปเดตเรียบร้อยแล้ว
+        title: รายงานภาษา
       user_access:
         apply: ใช้การเปลี่ยนแปลงนี้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
         title:
@@ -2072,6 +2089,7 @@ th:
         reserved_subdomain: โดเมนย่อย %{value} ถูกสงวนไว้
         uniq_subdomain: โดเมนย่อยควรไม่ซ้ํากัน
       add_manager:
+        cannot_be_self: ผู้ใช้ไม่สามารถถูกกำหนดให้เป็นผู้จัดการของตนเองได้
         manager_not_found: ไม่พบผู้จัดการหรือไม่เป็นส่วนหนึ่งของโครงการเดียวกัน
         user_not_found: ไม่พบผู้ใช้หรือไม่ได้เป็นส่วนหนึ่งของโครงการเดียวกัน
       admin:
@@ -2209,6 +2227,9 @@ th:
       no_active_plan: ไม่พบแผน IDP ที่ใช้งานอยู่
     webhooks:
       multiple_webhook_error: ไม่สามารถอัปเดต URL ได้เนื่องจากมีเว็บฮุคหลายตัวสําหรับโปรเจ็กต์นี้
+    workshop:
+      ical_generation_failed: ไม่สามารถสร้างคำเชิญปฏิทินได้
+      missing_or_invalid: ไม่มีหรือไม่มีค่าที่ถูกต้องสำหรับ workshop_id
   evaluators:
     errors:
       can_not_processed: ไม่สามารถประมวลผลได้
@@ -3656,11 +3677,35 @@ th:
       exactly: ตรงเป๊ะ %{count}
     nominations: การเสนอชื่อ
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: อนุญาตให้ผู้ประเมินปฏิเสธการเสนอชื่อ
+        email_subject_when_nomination_declined: หัวข้ออีเมลเมื่อการเสนอชื่อถูกปฏิเสธ
       form:
         value_not_valid: ไม่มีค่าที่ถูกต้อง
       global:
         cannot_re_edit: ผู้เข้าร่วมไม่สามารถแก้ไขการประเมินผลได้
         disable_all_evaluations: ปิดใช้งานการประเมินทั้งหมด
+      manager:
+        allow_subjects_to_email: อนุญาตให้ผู้เข้าร่วมส่งอีเมลถึงผู้จัดการเมื่อการเสนอชื่อของพวกเขาพร้อมสำหรับการอนุมัติ
+        approves_evaluations: ผู้จัดการอนุมัติการประเมิน
+        approves_nominations: ผู้จัดการอนุมัติการเสนอชื่อ
+        can_view_nominations: ผู้จัดการสามารถดูการเสนอชื่อได้
+        email_managers_when_nomination_ready: ผู้จัดการอีเมลเมื่อการเสนอชื่อของหัวข้อพร้อมสำหรับการอนุมัติ
+        email_subject_when_nomination_denied: หัวข้ออีเมลเมื่อการเสนอชื่อถูกปฏิเสธ
+        may_choose_evaluators: ผู้จัดการอาจเลือกผู้ประเมิน
+      subject:
+        allow_subjects_to_select_relationships: อนุญาตให้ผู้เข้าร่วมเลือกความสัมพันธ์
+        anyone_in_assessment: ทุกคนในการประเมิน
+        anyone_in_datasheet: ใครก็ตามในเอกสารข้อมูล
+        anyone_not_in_assessment: ผู้ใดก็ตามที่ไม่ได้อยู่ในขั้นตอนการประเมินในขณะนี้
+        can_view_evaluators: ผู้เรียนสามารถดูผู้ประเมินได้
+        define_nomination_requirement: กำหนดข้อกำหนดการเสนอชื่อ
+        limit_search_by_criteria: จำกัดการค้นหาตามเกณฑ์
+        nominates_evaluators: ผู้เสนอชื่อเสนอชื่อผู้ประเมิน
+        only_allow_relationships_of_specified_types: อนุญาตให้มีความสัมพันธ์เฉพาะประเภทที่ระบุเท่านั้น
+        only_show_subjects_who_match_criteria: 'แสดงเฉพาะวิชาที่ตรงกับเกณฑ์ต่อไปนี้:'
+        self_evaluates: ผู้ประเมินตนเอง
+        subjects_cannot_remove_nominations: ผู้ใช้งานไม่สามารถลบการเสนอชื่อที่ตั้งโดยผู้จัดการหรือผู้ดูแลระบบได้
     or: หรือ
     page_title: การประเมิน Signify 360 องศา - ระดับการสมัคร
     participant_list:

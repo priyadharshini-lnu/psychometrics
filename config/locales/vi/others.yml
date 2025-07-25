@@ -438,6 +438,7 @@ vi:
           case_study: Nghiên cứu điển hình
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Phiếu đánh giá của Trưởng nhóm đánh giá
           meeting: Hội nghị
           organisational: Cuộc điều tra
           pearson: Pearson
@@ -518,6 +519,7 @@ vi:
         created_at: Ngày tạo
         id: ID
         name: Tên
+        owner: Chủ sở hữu
         updated_at: Ngày sửa đổi
       factor:
         active: Hoạt động
@@ -544,7 +546,11 @@ vi:
         updated_at: Ngày sửa đổi
       library:
         created_at: Ngày tạo
+        description: Mô tả
+        files: Tệp tin
         id: ID
+        name: Tên
+        owner: Chủ sở hữu
         type: Thu nhỏ
         updated_at: Ngày sửa đổi
       license:
@@ -616,6 +622,7 @@ vi:
         created_at: Ngày tạo
         id: ID
         name: Tên
+        owner: Chủ sở hữu
         updated_at: Ngày sửa đổi
       report:
         created_at: Ngày tạo
@@ -784,6 +791,8 @@ vi:
           attributes:
             current_password:
               invalid: Mật khẩu hiện tại không đúng
+            manager_id:
+              cannot_be_self: Người dùng không thể được chỉ định làm quản lý của chính mình.
         user_idp_comment:
           reply_to_reply: không thể trả lời câu trả lời (chỉ cho phép một cấp độ lồng nhau)
         user_idp_plan:
@@ -1542,6 +1551,7 @@ vi:
     column:
       assessor_access: Quyền truy cập của người đánh giá
       auto_assign: Tự động chỉ định
+      locales: Vùng địa phương
       main_report: Báo cáo chính
       report_bundle: Gói báo cáo
       report_name: Tên báo cáo
@@ -1564,6 +1574,13 @@ vi:
         apply: Áp dụng thay đổi này cho người dùng hiện tại trong chiến dịch này.
         msg_text: Bạn đang cố gắng xóa Báo cáo <strong>"%{reportName}"</strong>
         title: Xóa báo cáo?
+      update_languages:
+        default_language: Ngôn ngữ mặc định
+        other_available_languages: Các ngôn ngữ khác có sẵn
+        select_default_language: Chọn ngôn ngữ mặc định
+        select_languages: Chọn ngôn ngữ
+        success_msg: Các ngôn ngữ đã được cập nhật thành công.
+        title: Ngôn ngữ báo cáo
       user_access:
         apply: Áp dụng thay đổi này cho người dùng hiện tại trong chiến dịch này.
         title:
@@ -2069,6 +2086,7 @@ vi:
         reserved_subdomain: Tên miền phụ %{value} được bảo lưu
         uniq_subdomain: Tên miền phụ phải là duy nhất.
       add_manager:
+        cannot_be_self: Người dùng không thể được chỉ định làm quản lý của chính mình.
         manager_not_found: Không tìm thấy người quản lý hoặc không phải là một phần của cùng một dự án
         user_not_found: Không tìm thấy người dùng hoặc không phải là một phần của cùng một dự án
       admin:
@@ -2206,6 +2224,9 @@ vi:
       no_active_plan: Không tìm thấy gói IDP đang hoạt động
     webhooks:
       multiple_webhook_error: URL không thể được cập nhật vì có nhiều webhook cho dự án này.
+    workshop:
+      ical_generation_failed: Không thể tạo lời mời lịch.
+      missing_or_invalid: Thiếu hoặc không hợp lệ workshop_id
   evaluators:
     errors:
       can_not_processed: không thể xử lý
@@ -3653,11 +3674,35 @@ vi:
       exactly: Chính xác %{count}
     nominations: Đề cử
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Cho phép các đánh giá viên từ chối đề cử.
+        email_subject_when_nomination_declined: Tiêu đề email khi một đề cử bị từ chối
       form:
         value_not_valid: không có giá trị hợp lệ
       global:
         cannot_re_edit: Người tham gia không thể chỉnh sửa đánh giá
         disable_all_evaluations: Tắt tất cả các đánh giá
+      manager:
+        allow_subjects_to_email: Cho phép các ứng viên gửi email cho quản lý khi đề cử của họ đã sẵn sàng để phê duyệt.
+        approves_evaluations: Quản lý phê duyệt đánh giá
+        approves_nominations: Quản lý phê duyệt các đề cử.
+        can_view_nominations: Quản lý có thể xem các đề cử.
+        email_managers_when_nomination_ready: Gửi email cho các quản lý khi đề cử của một chủ đề đã sẵn sàng để phê duyệt.
+        email_subject_when_nomination_denied: Tiêu đề email khi đề cử bị từ chối
+        may_choose_evaluators: Quản lý có thể chọn các đánh giá viên.
+      subject:
+        allow_subjects_to_select_relationships: Cho phép các đối tượng chọn mối quan hệ
+        anyone_in_assessment: Bất kỳ ai tham gia đánh giá
+        anyone_in_datasheet: Bất kỳ ai trong bảng dữ liệu
+        anyone_not_in_assessment: Bất kỳ ai hiện không tham gia vào quá trình đánh giá.
+        can_view_evaluators: Người được đánh giá có thể xem người đánh giá.
+        define_nomination_requirement: Xác định yêu cầu đề cử
+        limit_search_by_criteria: Hạn chế tìm kiếm theo tiêu chí
+        nominates_evaluators: Người đề cử đề xuất các đánh giá viên.
+        only_allow_relationships_of_specified_types: Chỉ cho phép các mối quan hệ thuộc các loại được chỉ định.
+        only_show_subjects_who_match_criteria: 'Chỉ hiển thị các chủ đề đáp ứng các tiêu chí sau:'
+        self_evaluates: Đánh giá bản thân
+        subjects_cannot_remove_nominations: Người dùng không thể xóa các đề cử được thiết lập bởi quản trị viên hoặc người quản lý.
     or: Hoặc
     page_title: Đánh giá Signify 360° - Áp dụng Cấp độ
     participant_list:

@@ -176,6 +176,8 @@ zh-Hant:
             title: IDP 範本
             view: 檢視
           jobRoles:
+            export_translations: 匯出工作角色翻譯
+            import_translations: 匯入工作角色翻譯
             manage: 管理
             title: 工作角色
             view: 檢視
@@ -1094,6 +1096,7 @@ zh-Hant:
         ai_assistants: AI 助理
         ai_assisted_idp: AI 協助的 IDP
         global_skills: 全球技能
+        idp: IDP
         sms_notification: 簡訊通知
     clients:
       api_keys:
@@ -1519,6 +1522,8 @@ zh-Hant:
         update:
           successfully: 專案 %{name} 已成功更新。
       registration_codes:
+        actions:
+          add_code: 加入代碼
         column:
           code: 代碼
           usage_stats: 使用統計
@@ -1529,6 +1534,13 @@ zh-Hant:
           incorrect_domain: 網域格式不正確。
           invalid_end_date: 必須大於開始日期
           license_issue: 許可證數量不足。
+        form:
+          active: 活躍
+          code: 代碼
+          end_date: 結束日期
+          name: 名稱
+          start_date: 開始日期
+          total_count: 總計
       resource:
         confirmations:
           delete:
@@ -1560,6 +1572,7 @@ zh-Hant:
       select_all: 全部選取
       type: 類型
       unselect_all: 全部取消選擇
+    communication_settings: 設定
     communications:
       create:
         successfully: 通訊已成功建立。
@@ -1592,9 +1605,16 @@ zh-Hant:
            {{email}} - 接收者的電子郵件
            {{schedule_start_date}} - 排程開始日期
            {{schedule_end_date}} - 排程結束日期"
+        campaign: 活動
+        campaign_assessment_group: 活動評估小組
+        client: 客戶
         completion: 完成
         delivery_at: 運費 (GST)
         delivery_delay_hours: 交貨延遲（小時）
+        delivery_interval: 交貨間隔
+        delivery_interval_number: 交貨間隔號碼
+        delivery_interval_period: 交貨週期
+        delivery_rule: 交貨規則
         delivery_rules:
           in_progress: 如果評估正在進行中
           not_competed: 如果未完成評估
@@ -1606,13 +1626,18 @@ zh-Hant:
         idp_template_approved: IDP 核准
         idp_template_assigned: 指派的 IDP
         idp_template_rejected: 拒絕的 IDP
+        insert_piped_text: 插入管道文字
         invitation: 邀請函
         kind: 溝通類型
         locale: 區域設定
         magic_link_email: Magic Link 電子郵件
+        message_body_placeholder: 在此輸入您的訊息...
         new_assignment: 新任務
         new_users: 新使用者
         other: 其他
+        owner: 業主
+        project: 專案
+        recipients: 收件人
         reminder: 提醒事項
         report_available: 提供報告
         selected: 精選
@@ -1620,6 +1645,7 @@ zh-Hant:
         selected_recipients: 選定受助人
         stop_reminder: 停止傳送提醒訊息
         stop_reminder_datetime: 提醒的結束日期 (GST)
+        subject: 主題
         workshop_booked: 評估中心預約確認
         workshop_cancelled: 評估中心取消
         workshop_completed: 評估中心完成
@@ -1906,10 +1932,24 @@ zh-Hant:
         successfully: 為維度 %{name} 排程的匯入因子工作。
         title: 進口因素
       import_modal:
+        after: 之後
+        before: 之前
         cancel: 取消
+        change_log_input: 變更記錄
         continue: 繼續
+        error: 錯誤
+        error_occurred: 發生錯誤
+        errors:
+          file_error: 請在繼續之前選擇 JSON 檔案。
+          processing_error: 錯誤處理檔案
+        field: 現場
         import: 進口
         import_dimension: 進口尺寸
+        import_scheduled: 輸入排程
+        operation: 操作
+        owner_input_validation: 請選擇物主
+        owner_select: 選擇所有者
+        select_json: 選擇 JSON 檔案
       import_translations:
         error: 匯入尺寸 %{name} 的翻譯時發生錯誤。
         successfully: 預定為維度 %{name} 的匯入翻譯。
@@ -2388,6 +2428,7 @@ zh-Hant:
         rescheduled: 改期
       subject: 主題
     job_role:
+      are_you_sure_to_remove: 您確定要移除嗎？
       column:
         job_group: 工作群組
         skill_name: 技能名稱
@@ -2475,6 +2516,7 @@ zh-Hant:
         successfully: 使用者 %{name} 已成功更新。
       update:
         successfully: 使用者 %{name} 已成功更新。
+    message: 訊息
     meta_title: 管理面板
     navigation:
       ai_assistants: AI 助理
@@ -2581,6 +2623,7 @@ zh-Hant:
         editor: 標準編輯
         export: 出口規範
         title: Norm 的選項
+      title: 標準
       toggle_status:
         successfully: Norm 已成功更新。
       update:
@@ -2668,12 +2711,16 @@ zh-Hant:
     piped_text_modal:
       assessment_id: 評估 ID
       campaign_id: 活動 ID
+      campaign_name: 活動名稱
+      campaigns: 活動
       insight_page_link: 洞察頁連結
       insight_page_url: 洞察頁面 URL
       join_link: 加入連結
       magic_link: 魔術連結
       magic_url: 魔術網址
       profile_custom_field: 個人資料自訂欄位
+      project_name: 專案名稱
+      projects: 專案
       report_name: 報告名稱
       text: 正文
       title: 新增管道文字
@@ -3118,6 +3165,7 @@ zh-Hant:
         user_name: 使用者名稱
       dashboard: 儀表板
       download: 下載
+      report_approval_settings: 報告核准設定
       report_approvals: 報告核准
       review: 回顧
       saving_filters:
@@ -3240,10 +3288,14 @@ zh-Hant:
       edit:
         header: 編輯報告名稱
       edit_default_language:
-        confirm_msg: 我已閱讀上述資訊，並瞭解變更預設語言的影響。
+        agreement: 是的，我了解預設語言變更的影響。
         title: 編輯預設語言
         tooltip: 編輯預設語言
-        warning: 將預設語言從 rtl 改為 ltr 語言或反之亦然，都會影響版面。如果變更預設語言，您必須重新處理報告的翻譯。在進行此變更之前，請下載一份翻譯副本。
+        warning:
+          description_li_1: 將預設語言從 RTL 變更為 LTR 語言，或反之亦然，都會影響版面編排。
+          description_li_2: 如果您變更預設語言，就必須重新翻譯報告。
+          description_li_3: 進行此變更之前，請先下載一份報告翻譯。
+          title: 請仔細閱讀說明
       modals:
         remap_assessment:
           new_assessment_name: 新評估名稱
@@ -4078,6 +4130,7 @@ zh-Hant:
           invitations: 邀請函
           reminders: 提醒事項
           report_ready: 報告準備就緒
+        consolidated: 綜合
         custom_message:
           description: 此訊息可傳送給任何參與評估的人
           name: 自訂訊息
@@ -4101,7 +4154,10 @@ zh-Hant:
         request_approval:
           description: 當標的要求核准時，此訊息會傳送給管理員
           name: 請求批准
+        save: 節省
+        schedule: 時間表
         schedule_email: 排程電子郵件
+        schedule_email_title: 排程電子郵件
         schedule_time: 排程時間
         send_test_email: 傳送測試電子郵件
         subject: 主題
@@ -4142,6 +4198,14 @@ zh-Hant:
         welcome_message:
           description: 當受試者登入開始評估或檢視其任務清單時，此訊息將會顯示給他們。
           name: 歡迎詞
+      mail_history:
+        actions: 行動
+        date: 日期
+        download_details: 下載詳細資訊
+        emails_sent: 已傳送的電子郵件
+        recipient: 收件人
+        status: 狀態
+        subject: 主題
       manage:
         assessment: 評估
         dimension: 尺寸
@@ -4149,19 +4213,45 @@ zh-Hant:
         report: 報告
         title: 管理
       menu:
+        actions: 行動
         datasheet:
           title: 資料表
         messages:
+          allow_subjects_to_send_reminders: 允許受試者傳送提醒訊息給評估者
+          automatically_send_invites: 自動發送邀請函給新的評估人員
           title: 訊息
         participants:
+          columns:
+            action: 行動
+            email: 電子郵件
+            evaluations_completed: 已完成評估
+            evaluations_received: 收到的評估
+            is_subject: 是主題
+            name: 名稱
+            report_status: 報告狀態
+            status: 狀態
+          evaluators:
+            add_evaluators: 新增評估員
+            import_evaluators: 進口評估員
+            title: 評估員
+          managers:
+            title: 經理
+          options:
+            evaluator_options: 評估員選項
+            global: 全球選項
+            manager_options: 管理員選項
+            subject_options: 科目選項
+            title: 選項
           subjects:
             add_subjects: 新增主題
             current_job_role: 目前的工作角色
             email: 電子郵件
             first_name: 名
+            import_subjects: 進口主題
             last_name: 姓
             locale: 語言環境
             target_job_role: 目標工作角色
+            title: 主題
           title: 參與者
         report:
           menu:
@@ -4177,8 +4267,26 @@ zh-Hant:
         mail_history: 郵件歷史
         options: 選項
       reports:
+        add_conditions: 新增條件
+        administrator_approves_reports: 管理員批准報告
+        allow_manager_to_view_individual_responses: 允許經理檢視個別回覆
+        disable_report_download: 停用報告下載
+        edit_email: 編輯電子郵件
+        email_manager_when_report_is_ready_for_approval: 報告準備好供核准時，以電子郵件通知管理員
+        email_subject_when_report_becomes_available: 當報告可用時，以電子郵件通知主題
+        email_subjects_manager_when_available: 當報告可用時，寄電子郵件給目標人物的經理
+        make_report_available_to_subject_when: 在下列情況下向目標人物提供報告：
+        manager_approves_reports: 經理核准報告
+        manager_can_access_subject_reports: 經理可以存取主題報告
+        manager_cannot_access_subject_reports: 在符合要求之前，經理無法看到報告
+        report_access: 報告存取
+        report_approval: 報告核准
+        report_availability: 報告可用性
         show:
           title: 主題報告
+        subject_can_access_reports: 主題可存取其報告
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: 將授權標記為停用
     time_zone: 時區
     tools: 工具
     translations:

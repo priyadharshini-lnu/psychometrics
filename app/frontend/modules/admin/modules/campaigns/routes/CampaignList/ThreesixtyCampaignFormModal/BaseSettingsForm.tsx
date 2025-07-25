@@ -15,6 +15,7 @@ import { STATUSES } from '~/constants/campaign'
 import { Assessment } from '~/modules/admin/modules/campaigns/core/list'
 import { THREESIXTY_CATEGORY, TYPES as THREESIXTY_TYPES } from '~/modules/admin/constants/threesixtyCampaign'
 import styles from './ThreesixtyCampaignFormModal.less'
+import { camelizeKeys } from '~/utils/object'
 
 const { I18n } = window
 
@@ -28,11 +29,12 @@ type Props = {
     threesixty_category: string;
   } | null
   assessments: Assessment[]
+  features: Record<string, boolean>
   isSubmitting?: boolean
 }
 
 const BaseSettingsForm = ({
-  onFinish, onClose, initialSettings, assessments, isSubmitting = false,
+  onFinish, onClose, initialSettings, assessments, isSubmitting = false, features,
 }: Props) => {
   const [form] = Form.useForm()
   const category = Form.useWatch('threesixty_category', form)
@@ -40,6 +42,7 @@ const BaseSettingsForm = ({
     && initialSettings.threesixty_type === THREESIXTY_TYPES.EMPTY) ?? true)
   const [isPrevious360, setIsPrevious360] = useState((initialSettings
     && initialSettings.threesixty_type === THREESIXTY_TYPES.PREVIOUS_360) ?? false)
+  const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled
 
   const assessmentOptions = assessments.filter(assessment => (category === THREESIXTY_CATEGORY.SKILLS_RATER
     ? assessment.skillRater
@@ -114,30 +117,33 @@ const BaseSettingsForm = ({
                 </Radio.Group>
               </Form.Item>
             </Flex>
-
-            <Flex vertical className="w-100">
-              <Form.Item
-                name="threesixty_category"
-                label="Category"
-                required
-              >
-                <Radio.Group className="ps-4">
-                  <Space>
-                    <Radio
-                      value={THREESIXTY_CATEGORY.NORMAL}
+            {
+              skillRaterEnabled
+                && (
+                  <Flex vertical className="w-100">
+                    <Form.Item
+                      name="threesixty_category"
+                      label="Category"
+                      required
                     >
-                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.normal')}
-                    </Radio>
-                    <Radio
-                      value={THREESIXTY_CATEGORY.SKILLS_RATER}
-                    >
-                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.skill_rater')}
-                    </Radio>
-                  </Space>
-                </Radio.Group>
-              </Form.Item>
-            </Flex>
-
+                      <Radio.Group className="ps-4">
+                        <Space>
+                          <Radio
+                            value={THREESIXTY_CATEGORY.NORMAL}
+                          >
+                            {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.normal')}
+                          </Radio>
+                          <Radio
+                            value={THREESIXTY_CATEGORY.SKILLS_RATER}
+                          >
+                            {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.skill_rater')}
+                          </Radio>
+                        </Space>
+                      </Radio.Group>
+                    </Form.Item>
+                  </Flex>
+                )
+            }
             <Flex vertical className="w-100">
               <Form.Item
                 name="threesixty_type"

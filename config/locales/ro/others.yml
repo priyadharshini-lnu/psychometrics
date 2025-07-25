@@ -438,6 +438,7 @@ ro:
           case_study: Studii de caz
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formular de evaluator principal
           meeting: Ședință
           organisational: Anchete
           pearson: Pearson
@@ -518,6 +519,7 @@ ro:
         created_at: Data creării
         id: ID
         name: Nume
+        owner: Proprietar
         updated_at: Data modificării
       factor:
         active: Activ
@@ -544,7 +546,11 @@ ro:
         updated_at: Data modificării
       library:
         created_at: Data creării
+        description: Descriere
+        files: Fișiere
         id: ID
+        name: Nume și prenume
+        owner: Proprietar
         type: Miniatură
         updated_at: Data modificării
       license:
@@ -616,6 +622,7 @@ ro:
         created_at: Data creării
         id: ID
         name: Nume
+        owner: Proprietar
         updated_at: Data modificării
       report:
         created_at: Data creării
@@ -784,6 +791,8 @@ ro:
           attributes:
             current_password:
               invalid: Parola curentă este incorectă
+            manager_id:
+              cannot_be_self: Utilizatorul nu poate fi desemnat ca manager propriu
         user_idp_comment:
           reply_to_reply: nu poate răspunde la un răspuns (este permis un singur nivel de imbricare)
         user_idp_plan:
@@ -1548,6 +1557,7 @@ ro:
     column:
       assessor_access: Acces evaluator
       auto_assign: Atribuire automată
+      locales: Localuri
       main_report: Raport principal
       report_bundle: Pachet de rapoarte
       report_name: Numele raportului
@@ -1570,6 +1580,13 @@ ro:
         apply: Aplicați aceste modificări utilizatorilor existenți din această campanie.
         msg_text: Încercați să ștergeți raportul <strong>"%{reportName}"</strong>
         title: Eliminați raportul?
+      update_languages:
+        default_language: Limba implicită
+        other_available_languages: Alte limbi disponibile
+        select_default_language: Selectați limba implicită
+        select_languages: Selectați limbile
+        success_msg: Limbile au fost actualizate cu succes
+        title: Limba de raportare
       user_access:
         apply: Aplicați aceste modificări utilizatorilor existenți din această campanie.
         title:
@@ -2075,6 +2092,7 @@ ro:
         reserved_subdomain: Subdomeniul %{value} este rezervat
         uniq_subdomain: Subdomeniul ar trebui să fie unic.
       add_manager:
+        cannot_be_self: Utilizatorul nu poate fi desemnat ca manager propriu
         manager_not_found: Managerul nu a fost găsit sau nu face parte din același proiect
         user_not_found: Utilizatorul nu a fost găsit sau nu face parte din același proiect
       admin:
@@ -2212,6 +2230,9 @@ ro:
       no_active_plan: Nu s-a găsit niciun plan IDP activ
     webhooks:
       multiple_webhook_error: URL-ul nu poate fi actualizat, deoarece există mai multe webhook-uri pentru acest proiect.
+    workshop:
+      ical_generation_failed: Nu s-a putut genera invitația calendaristică
+      missing_or_invalid: ID atelier lipsă sau invalid
   evaluators:
     errors:
       can_not_processed: nu poate fi prelucrat
@@ -3659,11 +3680,35 @@ ro:
       exactly: Exact %{count}
     nominations: Nominalizări
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permiteți evaluatorilor să refuze nominalizarea
+        email_subject_when_nomination_declined: Subiect de e-mail atunci când o nominalizare este refuzată
       form:
         value_not_valid: nu are o valoare validă
       global:
         cannot_re_edit: Participanții nu pot edita evaluările
         disable_all_evaluations: Dezactivați toate evaluările
+      manager:
+        allow_subjects_to_email: Permiteți subiecților să trimită un e-mail managerilor atunci când nominalizările lor sunt gata pentru aprobare
+        approves_evaluations: Managerul aprobă evaluările
+        approves_nominations: Managerul aprobă nominalizările
+        can_view_nominations: Managerul poate vizualiza nominalizările
+        email_managers_when_nomination_ready: Trimiteți un e-mail managerilor atunci când nominalizarea unui subiect este gata pentru aprobare
+        email_subject_when_nomination_denied: Subiect de e-mail atunci când o nominalizare este respinsă
+        may_choose_evaluators: Managerul poate alege evaluatorii
+      subject:
+        allow_subjects_to_select_relationships: Permiteți subiecților să selecteze relațiile
+        anyone_in_assessment: Oricine în evaluare
+        anyone_in_datasheet: Oricine în fișa tehnică
+        anyone_not_in_assessment: Orice persoană care nu face parte în prezent din evaluare
+        can_view_evaluators: Subiectul poate vizualiza evaluatorii
+        define_nomination_requirement: Definirea cerinței de nominalizare
+        limit_search_by_criteria: Limitarea căutării în funcție de criterii
+        nominates_evaluators: Subiectul desemnează evaluatorii
+        only_allow_relationships_of_specified_types: Permiteți numai relațiile de tipul specificat
+        only_show_subjects_who_match_criteria: 'Afișați numai subiecții care corespund următoarelor criterii:'
+        self_evaluates: Subiectul se autoevaluează
+        subjects_cannot_remove_nominations: Subiecții nu pot elimina nominalizările stabilite de manageri sau administratori
     or: Sau
     page_title: Signify 360° Recenzie - Nivel de aplicare
     participant_list:

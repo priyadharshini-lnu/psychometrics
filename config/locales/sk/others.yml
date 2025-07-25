@@ -438,6 +438,7 @@ sk:
           case_study: Prípadové štúdie
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulár vedúceho posudzovateľa
           meeting: Schôdza
           organisational: Prieskumy
           pearson: Pearson
@@ -518,6 +519,7 @@ sk:
         created_at: Dátum vytvorenia
         id: ID
         name: Meno
+        owner: Vlastník
         updated_at: Dátum úpravy
       factor:
         active: Aktívny
@@ -544,7 +546,11 @@ sk:
         updated_at: Dátum úpravy
       library:
         created_at: Dátum vytvorenia
+        description: Popis
+        files: Súbory
         id: ID
+        name: Názov
+        owner: Vlastník
         type: Miniatúra
         updated_at: Dátum úpravy
       license:
@@ -616,6 +622,7 @@ sk:
         created_at: Dátum vytvorenia
         id: ID
         name: Meno
+        owner: Vlastník
         updated_at: Dátum úpravy
       report:
         created_at: Dátum vytvorenia
@@ -784,6 +791,8 @@ sk:
           attributes:
             current_password:
               invalid: Aktuálne heslo je nesprávne
+            manager_id:
+              cannot_be_self: Používateľ nemôže byť priradený ako vlastný manažér
         user_idp_comment:
           reply_to_reply: Nie je možné odpovedať na odpoveď (povolená je iba jedna úroveň vnorenia)
         user_idp_plan:
@@ -1548,6 +1557,7 @@ sk:
     column:
       assessor_access: Prístup hodnotiteľa
       auto_assign: Automatické priradenie
+      locales: Lokality
       main_report: Hlavná správa
       report_bundle: Balík zostáv
       report_name: Názov zostavy
@@ -1570,6 +1580,13 @@ sk:
         apply: Použite tieto zmeny na existujúcich používateľov v tejto kampani.
         msg_text: Pokúšate sa odstrániť správu <strong>"%{reportName}"</strong>
         title: Odstrániť hlásenie?
+      update_languages:
+        default_language: Predvolený jazyk
+        other_available_languages: Ďalšie dostupné jazyky
+        select_default_language: Výber predvoleného jazyka
+        select_languages: Vybrať jazyky
+        success_msg: Jazyky boli úspešne aktualizované
+        title: Jazyk správy
       user_access:
         apply: Použite tieto zmeny na existujúcich používateľov v tejto kampani.
         title:
@@ -2075,6 +2092,7 @@ sk:
         reserved_subdomain: Subdoména %{value} je vyhradená
         uniq_subdomain: Subdoména by mala byť jedinečná.
       add_manager:
+        cannot_be_self: Používateľ nemôže byť priradený ako vlastný manažér
         manager_not_found: Manažér sa nenašiel alebo nie je súčasťou toho istého projektu
         user_not_found: Používateľ sa nenašiel alebo nie je súčasťou toho istého projektu
       admin:
@@ -2212,6 +2230,9 @@ sk:
       no_active_plan: Nenašiel sa žiadny aktívny plán IDP
     webhooks:
       multiple_webhook_error: URL adresu nie je možné aktualizovať, pretože pre tento projekt existuje viacero webhookov.
+    workshop:
+      ical_generation_failed: Nepodarilo sa vygenerovať pozvánku do kalendára
+      missing_or_invalid: Chýbajúce alebo neplatné workshop_id
   evaluators:
     errors:
       can_not_processed: Nie je možné spracovať
@@ -3656,11 +3677,35 @@ sk:
       exactly: Presne %{count}
     nominations: Nominácie
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Umožniť hodnotiteľom odmietnuť nomináciu
+        email_subject_when_nomination_declined: Predmet e-mailu pri odmietnutí nominácie
       form:
         value_not_valid: nemá platnú hodnotu
       global:
         cannot_re_edit: Účastníci nemôžu upravovať hodnotenia
         disable_all_evaluations: Zakázať všetky hodnotenia
+      manager:
+        allow_subjects_to_email: Umožniť subjektom posielať manažérom e-mail, keď sú ich nominácie pripravené na schválenie.
+        approves_evaluations: Manažér schvaľuje hodnotenia
+        approves_nominations: Manažér schvaľuje nominácie
+        can_view_nominations: Manažér si môže prezerať nominácie
+        email_managers_when_nomination_ready: zasielanie e-mailov manažérom, keď je nominácia subjektu pripravená na schválenie.
+        email_subject_when_nomination_denied: Predmet e-mailu pri zamietnutí nominácie
+        may_choose_evaluators: Manažér si môže vybrať hodnotiteľov
+      subject:
+        allow_subjects_to_select_relationships: Umožniť subjektom vybrať vzťahy
+        anyone_in_assessment: Ktokoľvek v rámci hodnotenia
+        anyone_in_datasheet: Ktokoľvek v hárku s údajmi
+        anyone_not_in_assessment: Každý, kto v súčasnosti nie je v hodnotení
+        can_view_evaluators: Subjekt si môže prezerať hodnotiteľov
+        define_nomination_requirement: Definovať požiadavku na nomináciu
+        limit_search_by_criteria: Obmedzenie vyhľadávania podľa kritérií
+        nominates_evaluators: Subjekt nominuje hodnotiteľov
+        only_allow_relationships_of_specified_types: Povoľte len vzťahy určených typov
+        only_show_subjects_who_match_criteria: 'Zobrazte len subjekty, ktoré spĺňajú nasledujúce kritériá:'
+        self_evaluates: Subjekt sa sám hodnotí
+        subjects_cannot_remove_nominations: Subjekty nemôžu odstrániť nominácie nastavené manažérmi alebo administrátormi
     or: Alebo
     page_title: Signify 360° Review - Aplikovať úroveň
     participant_list:

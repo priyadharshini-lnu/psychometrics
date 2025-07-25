@@ -438,6 +438,7 @@ it:
           case_study: Casi di studio
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Modulo per il valutatore responsabile
           meeting: Riunione
           organisational: Sondaggi
           pearson: Pearson
@@ -518,6 +519,7 @@ it:
         created_at: Data di creazione
         id: ID
         name: Nome
+        owner: Proprietario
         updated_at: Data di modifica
       factor:
         active: Attivo
@@ -544,7 +546,11 @@ it:
         updated_at: Data di modifica
       library:
         created_at: Data di creazione
+        description: Descrizione
+        files: File
         id: ID
+        name: Nome
+        owner: Proprietario
         type: Miniatura
         updated_at: Data di modifica
       license:
@@ -616,6 +622,7 @@ it:
         created_at: Data di creazione
         id: ID
         name: Nome
+        owner: Proprietario
         updated_at: Data di modifica
       report:
         created_at: Data di creazione
@@ -1550,6 +1557,7 @@ it:
     column:
       assessor_access: Accesso al valutatore
       auto_assign: Assegnazione automatica
+      locales: Località
       main_report: Rapporto principale
       report_bundle: Pacchetto di rapporti
       report_name: Nome del rapporto
@@ -1572,6 +1580,13 @@ it:
         apply: Applicare le modifiche agli utenti esistenti in questa campagna.
         msg_text: Si sta cercando di eliminare il rapporto <strong>"%{reportName}"</strong>
         title: Rimuovere il rapporto?
+      update_languages:
+        default_language: Lingua predefinita
+        other_available_languages: Altre lingue disponibili
+        select_default_language: Selezionare la lingua predefinita
+        select_languages: Selezionare le lingue
+        success_msg: Le lingue sono state aggiornate con successo
+        title: Lingua del rapporto
       user_access:
         apply: Applicare le modifiche agli utenti esistenti in questa campagna.
         title:
@@ -2210,6 +2225,9 @@ it:
       no_active_plan: Nessun piano IDP attivo trovato
     webhooks:
       multiple_webhook_error: l'url non può essere aggiornato perché esistono più webhook per questo progetto.
+    workshop:
+      ical_generation_failed: Impossibile generare un invito al calendario
+      missing_or_invalid: Workshop_id mancante o non valido
   evaluators:
     errors:
       can_not_processed: non può essere elaborato
@@ -2471,6 +2489,7 @@ it:
       aria_selected: Selezionato
   idp:
     actions: Azioni
+    behavioral: Comportamento
     board: Consiglio di amministrazione
     comment_details:
       add_comment: Aggiungi commento
@@ -2700,6 +2719,7 @@ it:
     skill_gap_report:
       title: Rapporto sul divario di competenze
     status: Stato
+    technical: Tecnica
     user_idp_status:
       approved: Approvato
       completed: Finito
@@ -3657,11 +3677,35 @@ it:
       exactly: Esattamente %{count}
     nominations: Nomination
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Consentire ai valutatori di rifiutare la nomina
+        email_subject_when_nomination_declined: Oggetto dell'e-mail quando una candidatura viene rifiutata
       form:
         value_not_valid: non ha un valore valido
       global:
         cannot_re_edit: I partecipanti non possono modificare le valutazioni
         disable_all_evaluations: Disattivare tutte le valutazioni
+      manager:
+        allow_subjects_to_email: Consentire ai soggetti di inviare un'e-mail ai manager quando le loro candidature sono pronte per l'approvazione.
+        approves_evaluations: Il manager approva le valutazioni
+        approves_nominations: Il direttore approva le nomine
+        can_view_nominations: Il manager può visualizzare le candidature
+        email_managers_when_nomination_ready: Inviare ai manager un'e-mail quando la candidatura di un soggetto è pronta per essere approvata
+        email_subject_when_nomination_denied: Oggetto dell'e-mail quando una candidatura viene rifiutata
+        may_choose_evaluators: Il manager può scegliere i valutatori
+      subject:
+        allow_subjects_to_select_relationships: Consentire ai soggetti di selezionare le relazioni
+        anyone_in_assessment: Chiunque partecipi alla valutazione
+        anyone_in_datasheet: Chiunque nella scheda tecnica
+        anyone_not_in_assessment: Chiunque non sia attualmente in valutazione
+        can_view_evaluators: Il soggetto può vedere i valutatori
+        define_nomination_requirement: Definire i requisiti per la nomina
+        limit_search_by_criteria: Limitare la ricerca per criteri
+        nominates_evaluators: Il soggetto nomina i valutatori
+        only_allow_relationships_of_specified_types: Consente solo relazioni di tipo specificato
+        only_show_subjects_who_match_criteria: 'Mostra solo i soggetti che corrispondono ai seguenti criteri:'
+        self_evaluates: Il soggetto si autovaluta
+        subjects_cannot_remove_nominations: I soggetti non possono rimuovere le nomine effettuate dai manager o dagli amministratori.
     or: Oppure
     page_title: Recensione di Signify 360° - Applicare il livello
     participant_list:
