@@ -194,7 +194,7 @@ const CampaignListComponent: React.FC<Props> = ({
               render={({ status }) => capitalize(status)}
               filterMultiple={false}
               filters={map(STATUSES, status => ({
-                text: capitalize(status),
+                text: I18n.t(`administration.campaigns.filters.${status}`),
                 value: status,
               }))}
               filteredValue={getFilteredValue('statusEq')}
