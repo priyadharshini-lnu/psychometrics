@@ -174,6 +174,8 @@ bg:
             title: Шаблони за индивидуален план за развитие
             view: Изглед
           jobRoles:
+            export_translations: Експорт на работни роли Преводи
+            import_translations: Импортиране на работни роли Преводи
             manage: Управлявам
             title: Работни роли
             view: Изглед
@@ -841,6 +843,14 @@ bg:
     campaign_factors_import:
       errors:
         invalid_headers: 'Следните заглавия са невалидни: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Моля, изберете диапазон от дати
+        modal:
+          subtitle: Изберете диапазон от дати и след това изберете необходимия език за всеки отчет
+      generate:
+        modal:
+          subtitle: Изберете необходимия език за всеки отчет
     campaign_templates:
       campaign_templates: Шаблони за кампании
       column:
@@ -958,7 +968,9 @@ bg:
             empty: Празен
             inactive: Неактивен
             name: Име
+            normal: Нормален
             previous: Предишен
+            skill_rater: Оценяване на уменията
             standard: Стандартен
             status: Статус
           close:
@@ -1066,6 +1078,7 @@ bg:
         ai_assistants: AI асистенти
         ai_assisted_idp: Подпомагано от AI IDP
         global_skills: Глобални умения
+        idp: IDP
         sms_notification: SMS известяване
     clients:
       api_keys:
@@ -1491,6 +1504,8 @@ bg:
         update:
           successfully: Проектът %{name} беше актуализиран успешно.
       registration_codes:
+        actions:
+          add_code: Добавяне на код
         column:
           code: Код
           usage_stats: Статистика на използването
@@ -1501,6 +1516,13 @@ bg:
           incorrect_domain: Неправилен формат на домейна.
           invalid_end_date: трябва да е по-голямо от началната дата
           license_issue: Няма достатъчно лицензи.
+        form:
+          active: Активен
+          code: Код
+          end_date: Крайна дата
+          name: Име
+          start_date: Начална дата
+          total_count: Общ брой
       resource:
         confirmations:
           delete:
@@ -1530,7 +1552,9 @@ bg:
       reset: Проучване
       save: Спасявам
       select_all: Изберете всички
+      type: Тип
       unselect_all: Премахване на избора на всички
+    communication_settings: Настройки
     communications:
       create:
         successfully: Комуникацията беше създадена успешно.
@@ -1563,9 +1587,16 @@ bg:
           {{email}} - Имейл адрес на получателя
           {{schedule_start_date}} - Начална дата на планиране
           {{schedule_end_date}} - Крайна дата на графика
+        campaign: Кампания
+        campaign_assessment_group: Група за оценка на кампанията
+        client: Клиент
         completion: Завършване
         delivery_at: Доставка при (GST)
         delivery_delay_hours: Забавяне на доставката (часове)
+        delivery_interval: Интервал на доставка
+        delivery_interval_number: Номер на интервала на доставка
+        delivery_interval_period: Период на интервала на доставка
+        delivery_rule: Правило за доставка
         delivery_rules:
           in_progress: Ако оценката е в ход
           not_competed: Ако оценката не е завършена
@@ -1577,13 +1608,18 @@ bg:
         idp_template_approved: Одобрен от IDP
         idp_template_assigned: Назначен IDP
         idp_template_rejected: Вътрешно разселените лица са отхвърлени
+        insert_piped_text: Вмъкване на текст с тръби
         invitation: Покана
         kind: Видове комуникация
         locale: Място
         magic_link_email: Имейл на Magic Link
+        message_body_placeholder: Въведете вашето съобщение тук...
         new_assignment: Ново назначение
         new_users: Нови потребители
         other: Друг
+        owner: Собственик
+        project: Проект
+        recipients: Получатели
         reminder: Напомняне
         report_available: Наличен отчет
         selected: Избран
@@ -1591,6 +1627,7 @@ bg:
         selected_recipients: Избрани получатели
         stop_reminder: Спиране на изпращането на напомняния
         stop_reminder_datetime: Крайна дата за напомняния (GST)
+        subject: Тема
         workshop_booked: Потвърждение на резервацията в центъра за оценяване
         workshop_cancelled: Центърът за оценяване е отменен
         workshop_completed: Центърът за оценяване е завършен
@@ -1604,6 +1641,7 @@ bg:
         type: Вид
       list:
         actions: Действия
+        assessment_center_group: Група Център за оценяване
         author: Създаден от
         campaign: Кампания
         client_name: Клиент
@@ -1751,6 +1789,7 @@ bg:
       errors:
         blank_field: 'Ред %{row}: %{field} не може да бъде празен'
         csv_file_required: Трябва да е CSV файл
+        development_action_not_in_project: 'Ред %{row}: ID на действието по разработване %{development_action_id} не принадлежи на този проект'
         image_download_failed: 'Неуспешно изтегляне на изображение от %{url}: %{message}'
         invalid_csv_format: 'Невалиден CSV формат: %{message}'
         invalid_date: Форматът на датата за %{date} е невалиден.
@@ -1875,10 +1914,24 @@ bg:
         successfully: Задача за импортиране на фактори, планирана за величина %{name}.
         title: Фактори за внос
       import_modal:
+        after: След
+        before: Преди
         cancel: Отмени
+        change_log_input: Регистър на промените
         continue: Продължавам
+        error: Грешка
+        error_occurred: Възникнала е грешка
+        errors:
+          file_error: Моля, изберете JSON файл, преди да продължите.
+          processing_error: Грешка при обработката на файла
+        field: Поле
         import: Внос
         import_dimension: Величина за импортиране
+        import_scheduled: Планиран внос
+        operation: Операция
+        owner_input_validation: Моля, изберете собственик
+        owner_select: Изберете собственик
+        select_json: Изберете JSON файл
       import_translations:
         error: Грешка при импортиране на преводи за величина %{name}.
         successfully: Импортиране на преводи, планирани за величина %{name}.
@@ -2066,10 +2119,13 @@ bg:
       all: Цял
       appearance: Външен вид
       appearance_hint: За да промените външния вид, моля, първо запазете шаблона IDP, за да активирате тези настройки.
+      appearance_success: Настройките на външния вид са запазени успешно
       background_image: Фоново изображение
       behavioral_skills: Поведенчески умения
       client_skills: Умения на клиента
+      details_updated: Детайлите на IDP са актуализирани успешно
       edit_template: Редактиране на шаблон за IDP
+      enter_tag_or_skills_error: Изберете поне един етикет или умение
       enter_template_description: Описание
       enter_template_description_error: Задължително е описание на шаблона.
       enter_template_name: Име
@@ -2078,6 +2134,7 @@ bg:
         update: Актуализацията не е разрешена, тъй като шаблонът за IDP вече е свързан с потребителски IDP план. Промените във външния вид са запазени.
       fields:
         assigned_data: Присвоени данни
+        assigned_date: Присвоена дата
         completion_date: Дата на завършване
         division: Делене
         name: Име
@@ -2115,6 +2172,11 @@ bg:
       show_reflections: Показване на размисли
       skill_gap_report: Доклад за пропуските в уменията
       skills: Умения
+      skills_updated: Успешно актуализиране на уменията в IDP
+      status:
+        draft: Проект
+        published: Публикувано на
+      status_updated: Статусът на IDP е актуализиран успешно
       subtitle_text: Текст на субтитрите
       tab:
         development_actions: Действия за развитие
@@ -2347,8 +2409,10 @@ bg:
         rescheduled: Пренасрочен
       subject: Предмет
     job_role:
+      are_you_sure_to_remove: Сигурни ли сте, че ще премахнете?
       column:
         job_group: Работна група
+        skill_name: Име на умението
       export:
         failure_msg: Грешка при експортиране на преводи
         success_msg: Текущи действия за развитие на износа.
@@ -2363,6 +2427,7 @@ bg:
         success_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
       import_action:
         translations: Импортиране на преводи на работни роли
+      job_role_details: Подробности за ролята на работата
       translations: Преводи на длъжностни роли
     job_role_skill_mapping:
       column:
@@ -2375,6 +2440,12 @@ bg:
       export:
         translations:
           details: Подробности
+      translations:
+        import:
+          errors:
+            job_role_not_found: Роля на работа с ID %{id} не е намерена
+            missing_columns: 'Липсват задължителни колони: %{columns}'
+            save_failed: 'Обработка на грешка Идентификатор на ролята на работа %{id}: %{message}'
     libraries:
       create:
         successfully: Елементът %{name} е създаден успешно.
@@ -2426,6 +2497,7 @@ bg:
         successfully: Потребител %{name} е актуализиран успешно.
       update:
         successfully: Потребител %{name} е актуализиран успешно.
+    message: Съобщение
     meta_title: Административен панел
     navigation:
       ai_assistants: AI асистенти
@@ -2532,6 +2604,7 @@ bg:
         editor: Редактор на Norm
         export: Норма за износ
         title: Опции на Норма
+      title: Норма
       toggle_status:
         successfully: Норма беше актуализирана успешно.
       update:
@@ -2619,12 +2692,16 @@ bg:
     piped_text_modal:
       assessment_id: Идентификационен номер на оценяването
       campaign_id: Идентификационен номер на кампанията
+      campaign_name: Име на кампанията
+      campaigns: Кампании
       insight_page_link: Връзка към страницата с прозрения
       insight_page_url: URL адрес на страницата Insight
       join_link: Присъединете се към връзката
       magic_link: Вълшебна връзка
       magic_url: Магически URL адрес
       profile_custom_field: Персонализирано поле за профил
+      project_name: Име на проекта
+      projects: Проекти
       report_name: Име на отчета
       text: Текст
       title: Добавяне на тръбопроводен текст
@@ -2655,6 +2732,9 @@ bg:
           level_definition_must_match_level: трябва да съдържа точно %{expected} нива, но са дадени %{actual}
           must_be_unique: Трябва да е уникално
           proficiency_level_exists: Ниво на владеене с това умение и проект вече съществува
+          proficiency_level_exists_for_default: Вече има ниво на владеене на езика по подразбиране
+          proficiency_level_exists_for_type: Вече съществува ниво на владеене за този тип.
+          project_level_default_exists: Вече съществува ниво на владеене на езика по подразбиране.
           skill_must_exist: Умението трябва да присъства за proficiency_type "by_skill"
       export:
         details: Подробности
@@ -2670,6 +2750,7 @@ bg:
         proficiency_type: Тип владеене
         skill: Умение
         skill_name: Име на умението
+        skill_type: Тип умение
         title: Владеене
       import:
         actions:
@@ -2698,6 +2779,8 @@ bg:
             save_failed: 'Грешка при обработката Идентификатор на умението %{id}: %{message}'
       type:
         by_skill: По умения
+        by_skill_type: По тип умения
+        default: По подразбиране
     profile:
       change_password: Промяна на паролата
       details: Подробности
@@ -3059,6 +3142,7 @@ bg:
         user_name: Потребителско име
       dashboard: Таблото
       download: Свалям
+      report_approval_settings: Настройки за одобряване на отчети
       report_approvals: Докладване на одобрения
       review: Преглед
       saving_filters:
@@ -3180,6 +3264,15 @@ bg:
         successfully: Докладът "%{name}" е изтрит успешно.
       edit:
         header: Редактиране на името на отчета
+      edit_default_language:
+        agreement: Да, разбирам последиците от промяната на езика по подразбиране.
+        title: Редактиране на езика по подразбиране
+        tooltip: Редактиране на езика по подразбиране
+        warning:
+          description_li_1: Промяната на езика по подразбиране от RTL на LTR език или обратно ще се отрази на оформлението.
+          description_li_2: Ако промените езика по подразбиране, ще трябва да преработите преводите на отчетите.
+          description_li_3: Изтеглете копие на преводите на доклади, преди да направите тази промяна.
+          title: Моля, прочетете внимателно инструкциите
       modals:
         remap_assessment:
           new_assessment_name: Ново име на оценяване
@@ -3222,6 +3315,9 @@ bg:
         successfully: Докладът беше актуализиран успешно.
       update:
         successfully: Докладът %{name} е актуализиран успешно.
+    reports_language_selection_modal:
+      download: Изтегляне на доклад
+      generate: Генериране на доклад
     resource:
       remove_confirm:
         message: Сигурни ли сте, че искате да премахнете този ресурс?
@@ -3628,6 +3724,7 @@ bg:
         import:
           missing_fields_data: 'Ред %{line_number}: Липсват задължителни полета: %{fields}'
           save_failed: 'Ред %{line_number}: Неуспешно запазване на умението ''%{name}'': %{message}'
+          skill_not_in_project: 'Ред %{line_number}: Skill ID %{skill_id} не принадлежи на този проект'
         search:
           all_and_project_id_mutually_exclusive: Всичко не може да е вярно, когато project_id_eq е предоставено
           invalid_all_value: 'трябва да е едно от: вярно, невярно'
@@ -3819,7 +3916,25 @@ bg:
         successfully: Подфакторът беше актуализиран успешно.
     survey_builder:
       builder_area:
+        current_job: Настояща работа
+        default_not_applicable_label: Няма възможност да се запознаете или да демонстрирате умения
+        enable_not_applicable: Активиране на опцията N/A
+        enable_required_validation: Активиране на изискваното валидиране
+        force_response: Силов отговор
+        job_role_required: Моля, изберете поне една длъжност
+        not_applicable_label: Не е приложимо Етикет
         options: Опции
+        request_response: Отговор на заявката
+        skill_rater_config: Конфигурация за оценка на уменията
+        target_job: Целева работа
+      models:
+        block_types:
+          regular: Редовно
+          skill_rater: Оценяване на уменията
+        skill_types:
+          behavioural: Поведенчески
+          other: Други
+          technical: Технически
       property_panel:
         add_n_a_option: Добавяне на опция N/A
         allow_content_copy: Разрешаване на копиране на съдържание
@@ -3978,6 +4093,7 @@ bg:
           invitations: Покани
           reminders: Напомняния
           report_ready: Докладът е готов
+        consolidated: Консолидиран
         custom_message:
           description: Това съобщение може да бъде изпратено на всеки, който участва в оценяването
           name: Персонализирано съобщение
@@ -4001,7 +4117,10 @@ bg:
         request_approval:
           description: Това съобщение се изпраща на мениджърите, когато субект поиска одобрение
           name: Поискайте одобрение
+        save: Запазете
+        schedule: График
         schedule_email: Насрочете имейл
+        schedule_email_title: Имейл за планиране
         schedule_time: Време по график
         send_test_email: Изпратете тестов имейл
         subject: Предмет
@@ -4042,6 +4161,14 @@ bg:
         welcome_message:
           description: Това съобщение ще се покаже на субектите, когато влязат, за да започнат оценяването или да прегледат списъка си със задачи
           name: Приветствено съобщение
+      mail_history:
+        actions: Действия
+        date: Дата
+        download_details: Изтегляне на подробности
+        emails_sent: Изпратени имейли
+        recipient: Получател
+        status: Статус
+        subject: Тема
       manage:
         assessment: Оценка
         dimension: Размери
@@ -4049,19 +4176,45 @@ bg:
         report: Доклад
         title: Управлявам
       menu:
+        actions: Действия
         datasheet:
           title: Лист с данни
         messages:
+          allow_subjects_to_send_reminders: Позволете на субектите да изпращат напомняния на оценителите
+          automatically_send_invites: Автоматично изпращане на покани до нови оценители
           title: Съобщения
         participants:
+          columns:
+            action: Действие
+            email: Имейл
+            evaluations_completed: Завършени оценки
+            evaluations_received: Получени оценки
+            is_subject: Е предмет
+            name: Име
+            report_status: Състояние на доклада
+            status: Статус
+          evaluators:
+            add_evaluators: Добавяне на оценители
+            import_evaluators: Внос на оценители
+            title: Оценители
+          managers:
+            title: Мениджъри
+          options:
+            evaluator_options: Опции за оценител
+            global: Глобални опции
+            manager_options: Опции за мениджър
+            subject_options: Възможности за избор на тема
+            title: Опции
           subjects:
             add_subjects: Добавяне на теми
             current_job_role: Текуща длъжност
             email: Имейл
             first_name: Собствено име
+            import_subjects: Теми за внос
             last_name: Презиме
             locale: Място
             target_job_role: Целева роля
+            title: Субекти
           title: Участниците
         report:
           menu:
@@ -4077,8 +4230,26 @@ bg:
         mail_history: История на пощата
         options: Опции
       reports:
+        add_conditions: Добавяне на условия
+        administrator_approves_reports: Администраторът одобрява докладите
+        allow_manager_to_view_individual_responses: Позволете на мениджъра да преглежда индивидуални отговори
+        disable_report_download: Деактивиране на изтеглянето на доклади
+        edit_email: Редактиране на имейл
+        email_manager_when_report_is_ready_for_approval: Изпращане на имейл до мениджъра, когато отчетът е готов за одобрение
+        email_subject_when_report_becomes_available: Тема на имейл, когато докладът стане достъпен
+        email_subjects_manager_when_available: Изпратете имейл на мениджъра на обекта, когато докладът стане достъпен
+        make_report_available_to_subject_when: 'Предоставете доклада на субекта, когато:'
+        manager_approves_reports: Мениджърът одобрява докладите
+        manager_can_access_subject_reports: Мениджърът има достъп до отчетите на субектите
+        manager_cannot_access_subject_reports: Мениджърът не може да види отчета, докато не бъдат изпълнени изискванията
+        report_access: Достъп до доклад
+        report_approval: Одобряване на доклада
+        report_availability: Наличност на доклада
         show:
           title: Тематичен доклад
+        subject_can_access_reports: Субектът може да получи достъп до своите доклади
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Маркиране на лицензите като деактивирани
     time_zone: Часова зона
     tools: Инструменти
     translations:

@@ -438,6 +438,7 @@ nl:
           case_study: Casestudies
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulier hoofdbeoordelaar
           meeting: Vergadering
           organisational: Enquêtes
           pearson: Pearson
@@ -518,6 +519,7 @@ nl:
         created_at: Datum aangemaakt
         id: ID
         name: Naam
+        owner: Eigenaar
         updated_at: Gewijzigde datum
       factor:
         active: Actief
@@ -544,7 +546,11 @@ nl:
         updated_at: Gewijzigde datum
       library:
         created_at: Datum aangemaakt
+        description: Beschrijving
+        files: Bestanden
         id: ID
+        name: Naam
+        owner: Eigenaar
         type: Miniaturen
         updated_at: Gewijzigde datum
       license:
@@ -616,6 +622,7 @@ nl:
         created_at: Datum aangemaakt
         id: ID
         name: Naam
+        owner: Eigenaar
         updated_at: Gewijzigde datum
       report:
         created_at: Datum aangemaakt
@@ -1550,6 +1557,7 @@ nl:
     column:
       assessor_access: Toegang Assessor
       auto_assign: Automatisch toewijzen
+      locales: Locaties
       main_report: Hoofdrapport
       report_bundle: Bundel rapporten
       report_name: Naam verslag
@@ -1572,6 +1580,13 @@ nl:
         apply: Pas deze wijzigingen toe op bestaande gebruikers in deze campagne.
         msg_text: U probeert <strong>"%{reportName}"</strong> Rapport te verwijderen
         title: Rapport verwijderen?
+      update_languages:
+        default_language: Standaard Taal
+        other_available_languages: Andere beschikbare talen
+        select_default_language: Selecteer standaard taal
+        select_languages: Selecteer talen
+        success_msg: Talen zijn succesvol bijgewerkt
+        title: Rapport Taal
       user_access:
         apply: Pas deze wijzigingen toe op bestaande gebruikers in deze campagne.
         title:
@@ -2210,6 +2225,9 @@ nl:
       no_active_plan: Geen actief IDP-plan gevonden
     webhooks:
       multiple_webhook_error: de url kan niet worden bijgewerkt omdat er meerdere webhooks zijn voor dit project.
+    workshop:
+      ical_generation_failed: Kan geen kalenderuitnodiging genereren
+      missing_or_invalid: Ontbrekend of ongeldig workshop_id
   evaluators:
     errors:
       can_not_processed: kan niet worden verwerkt
@@ -2471,6 +2489,7 @@ nl:
       aria_selected: Geselecteerd
   idp:
     actions: Acties
+    behavioral: Gedrag
     board: Raad van bestuur
     comment_details:
       add_comment: Opmerking toevoegen
@@ -2672,6 +2691,7 @@ nl:
     skill_gap_report:
       title: Rapport over vaardigheidskloof
     status: Status
+    technical: Technisch
     user_idp_status:
       approved: Goedgekeurd
       completed: Volbracht
@@ -3629,11 +3649,35 @@ nl:
       exactly: Precies %{count}
     nominations: Nominaties
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Geef beoordelaars de mogelijkheid om nominatie te weigeren
+        email_subject_when_nomination_declined: Onderwerp e-mail wanneer een nominatie is afgewezen
       form:
         value_not_valid: heeft geen geldige waarde
       global:
         cannot_re_edit: Deelnemers kunnen evaluaties niet bewerken
         disable_all_evaluations: Alle evaluaties uitschakelen
+      manager:
+        allow_subjects_to_email: Laat proefpersonen managers e-mailen wanneer hun nominaties klaar zijn voor goedkeuring
+        approves_evaluations: Manager keurt evaluaties goed
+        approves_nominations: Manager keurt nominaties goed
+        can_view_nominations: Manager kan nominaties bekijken
+        email_managers_when_nomination_ready: Managers een e-mail sturen wanneer de nominatie van een proefpersoon klaar is voor goedkeuring
+        email_subject_when_nomination_denied: Onderwerp e-mail wanneer een nominatie is afgewezen
+        may_choose_evaluators: Manager mag evaluatoren kiezen
+      subject:
+        allow_subjects_to_select_relationships: Laat proefpersonen relaties selecteren
+        anyone_in_assessment: Iedereen in de beoordeling
+        anyone_in_datasheet: Iedereen in het gegevensblad
+        anyone_not_in_assessment: Iedereen die momenteel niet wordt beoordeeld
+        can_view_evaluators: Onderwerp kan evaluatoren bekijken
+        define_nomination_requirement: Vereiste nominatie definiëren
+        limit_search_by_criteria: Zoekopdracht beperken op criteria
+        nominates_evaluators: Proefpersoon nomineert evaluatoren
+        only_allow_relationships_of_specified_types: Sta alleen relaties toe van gespecificeerde types
+        only_show_subjects_who_match_criteria: 'Toon alleen onderwerpen die aan de volgende criteria voldoen:'
+        self_evaluates: Proefpersoon evalueert zelf
+        subjects_cannot_remove_nominations: Proefpersonen kunnen geen nominaties verwijderen die zijn ingesteld door managers of admins
     or: Of
     page_title: Signify 360° Review - Aanpassen
     participant_list:

@@ -1096,6 +1096,7 @@ nl:
         ai_assistants: AI assistenten
         ai_assisted_idp: AI Geassisteerde IDP
         global_skills: Wereldwijde vaardigheden
+        idp: IDP
         sms_notification: SMS-melding
     clients:
       api_keys:
@@ -1521,6 +1522,8 @@ nl:
         update:
           successfully: Project %{name} is succesvol bijgewerkt.
       registration_codes:
+        actions:
+          add_code: Code toevoegen
         column:
           code: Code
           usage_stats: Gebruiksstatistieken
@@ -1531,6 +1534,13 @@ nl:
           incorrect_domain: Onjuiste domeinindeling.
           invalid_end_date: moet groter zijn dan de begindatum
           license_issue: Niet genoeg licenties.
+        form:
+          active: Actief
+          code: Code
+          end_date: Einddatum
+          name: Naam
+          start_date: Startdatum
+          total_count: Totaal aantal
       resource:
         confirmations:
           delete:
@@ -1562,6 +1572,7 @@ nl:
       select_all: Alles selecteren
       type: Type
       unselect_all: Alles deselecteren
+    communication_settings: Instellingen
     communications:
       create:
         successfully: Communicatie is met succes gemaakt.
@@ -1594,9 +1605,16 @@ nl:
           {{email}} - E-mail ontvanger
           {{schedule_start_date}} - Begindatum planning
           {{schedule_end_date}} - Einddatum planning"
+        campaign: Campagne
+        campaign_assessment_group: Campagnebeoordelingsgroep
+        client: Klant
         completion: Voltooiing
         delivery_at: Levering bij (GST)
         delivery_delay_hours: Vertraging bij levering (uren)
+        delivery_interval: Levering Interval
+        delivery_interval_number: Afleverinterval Aantal
+        delivery_interval_period: Levering Intervalperiode
+        delivery_rule: Leveringsregel
         delivery_rules:
           in_progress: Als de beoordeling bezig is
           not_competed: Als de beoordeling niet is voltooid
@@ -1608,13 +1626,18 @@ nl:
         idp_template_approved: IDP Goedgekeurd
         idp_template_assigned: IDP toegewezen
         idp_template_rejected: IDP Afgewezen
+        insert_piped_text: Tekst met pijpen invoegen
         invitation: Uitnodiging
         kind: Soorten communicatie
         locale: Locatie
         magic_link_email: Magische link e-mail
+        message_body_placeholder: Voer hier uw bericht in...
         new_assignment: Nieuwe opdracht
         new_users: Nieuwe gebruikers
         other: Andere
+        owner: Eigenaar
+        project: Project
+        recipients: Ontvangers
         reminder: Herinnering
         report_available: Rapport beschikbaar
         selected: Geselecteerd
@@ -1622,6 +1645,7 @@ nl:
         selected_recipients: Geselecteerde ontvangers
         stop_reminder: Stop met het versturen van herinneringen
         stop_reminder_datetime: Einddatum voor herinneringen (GST)
+        subject: Onderwerp
         workshop_booked: Boekingsbevestiging van het beoordelingscentrum
         workshop_cancelled: Beoordelingscentrum geannuleerd
         workshop_completed: Assessment center voltooid
@@ -1908,10 +1932,24 @@ nl:
         successfully: Taak importfactoren gepland voor dimensie %{name}.
         title: Importfactoren
       import_modal:
+        after: Na
+        before: Voor
         cancel: Annuleren
+        change_log_input: Wijzigingslogboek
         continue: Ga verder
+        error: Fout
+        error_occurred: Er is een fout opgetreden
+        errors:
+          file_error: Selecteer een JSON-bestand voordat je verder gaat.
+          processing_error: Fout bij het verwerken van bestand
+        field: Veld
         import: Importeren
         import_dimension: Dimensie importeren
+        import_scheduled: Geplande import
+        operation: Operatie
+        owner_input_validation: Selecteer een eigenaar
+        owner_select: Selecteer een eigenaar
+        select_json: Selecteer JSON-bestand
       import_translations:
         error: Fout bij het importeren van vertalingen voor dimensie %{name}.
         successfully: Importvertalingen gepland voor dimensie %{name}.
@@ -2426,7 +2464,7 @@ nl:
           errors:
             job_role_not_found: Jobrol met ID %{id} niet gevonden
             missing_columns: 'Ontbrekende verplichte kolommen: %{columns}'
-            save_failed: 'Fout bij het verwerken van Job Role-ID %{id}: %{bericht}'
+            save_failed: 'Fout bij het verwerken van Job Role-ID %{id}: %{message}'
     libraries:
       create:
         successfully: Item %{name} is succesvol aangemaakt.
@@ -2478,6 +2516,7 @@ nl:
         successfully: Gebruiker %{name} is succesvol bijgewerkt.
       update:
         successfully: Gebruiker %{name} is succesvol bijgewerkt.
+    message: Bericht
     meta_title: Administratiepaneel
     navigation:
       ai_assistants: AI assistenten
@@ -2584,6 +2623,7 @@ nl:
         editor: Norm-editor
         export: Exportnorm
         title: Norm's opties
+      title: Norm
       toggle_status:
         successfully: Norm is met succes bijgewerkt.
       update:
@@ -2671,12 +2711,16 @@ nl:
     piped_text_modal:
       assessment_id: Beoordeling ID
       campaign_id: Campagne-ID
+      campaign_name: Naam campagne
+      campaigns: Campagnes
       insight_page_link: Inzicht pagina link
       insight_page_url: Inzicht pagina URL
       join_link: Word lid Link
       magic_link: Magische link
       magic_url: Magische URL
       profile_custom_field: Profiel aangepast veld
+      project_name: Naam project
+      projects: Projecten
       report_name: Rapport Naam
       text: Tekst
       title: Tekst met passepoil toevoegen
@@ -2734,10 +2778,10 @@ nl:
         errors:
           by_skill_exists: 'Rij %{row_number}: Er bestaat al een ''by_skill'' ProficiencyLevel voor dit project en deze vaardigheid'
           by_skill_missing: 'Rij %{row_number}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
-          by_skill_type_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''by_skill_type'''' ProficiencyLevel voor dit project en vaardigheidstype'
-          by_skill_type_missing: 'Rij %{rij_nummer}: Project en Skill Type moeten aanwezig zijn voor ''''by_skill_type'''' type'
-          default_global_exists: 'Rij %{rij_nummer}: Er bestaat al een globaal niveau ''''standaard'''' ProficiencyLevel'
-          default_project_exists: 'Rij %{rij_nummer}: Er bestaat al een ''''standaard'''' ProficiencyLevel op projectniveau'
+          by_skill_type_exists: 'Rij %{row_number}: Er bestaat al een ''''by_skill_type'''' ProficiencyLevel voor dit project en vaardigheidstype'
+          by_skill_type_missing: 'Rij %{row_number}: Project en Skill Type moeten aanwezig zijn voor ''''by_skill_type'''' type'
+          default_global_exists: 'Rij %{row_number}: Er bestaat al een globaal niveau ''''standaard'''' ProficiencyLevel'
+          default_project_exists: 'Rij %{row_number}: Er bestaat al een ''''standaard'''' ProficiencyLevel op projectniveau'
           invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
           invalid_proficiency_type: 'Rij %{row_number}: Ongeldig of ontbrekend ProficiencyType'
           missing_columns: 'Ontbrekende verplichte kolommen: %{fields}'
@@ -3121,6 +3165,7 @@ nl:
         user_name: Gebruikersnaam
       dashboard: Dashboard
       download: Downloaden
+      report_approval_settings: Instellingen voor goedkeuring van rapporten
       report_approvals: Goedkeuringen
       review: Beoordeling
       saving_filters:
@@ -3243,10 +3288,14 @@ nl:
       edit:
         header: Rapportnaam bewerken
       edit_default_language:
-        confirm_msg: Ik heb de bovenstaande informatie gelezen en begrijp de implicaties van het wijzigen van de standaardtaal.
+        agreement: Ja, ik begrijp de implicaties van de standaardtaalverandering.
         title: Standaardtaal bewerken
         tooltip: Standaardtaal bewerken
-        warning: Als je de standaardtaal wijzigt van rtl naar ltr of omgekeerd, heeft dat invloed op de lay-out. Als je de standaardtaal wijzigt, moet je de rapportvertalingen opnieuw maken. Download een kopie van de vertalingen voordat u deze wijziging aanbrengt.
+        warning:
+          description_li_1: Als je de standaardtaal wijzigt van RTL naar LTR of omgekeerd, heeft dit invloed op de lay-out.
+          description_li_2: Je zou de rapportvertalingen moeten aanpassen als je de standaardtaal wijzigt.
+          description_li_3: Download een kopie van de rapportvertalingen voordat je deze wijziging aanbrengt.
+          title: Lees de instructies zorgvuldig
       modals:
         remap_assessment:
           new_assessment_name: Naam nieuwe beoordeling
@@ -4081,6 +4130,7 @@ nl:
           invitations: Uitnodigingen
           reminders: Herinneringen
           report_ready: Rapport klaar
+        consolidated: Geconsolideerd
         custom_message:
           description: Dit bericht kan naar iedereen gestuurd worden die deelneemt aan de beoordeling
           name: Aangepast bericht
@@ -4104,7 +4154,10 @@ nl:
         request_approval:
           description: Dit bericht wordt naar managers gestuurd wanneer een onderwerp om goedkeuring vraagt
           name: Goedkeuring aanvragen
+        save: Sla
+        schedule: Schema
         schedule_email: E-mail plannen
+        schedule_email_title: E-mail plannen
         schedule_time: Tijd plannen
         send_test_email: Testmail verzenden
         subject: Onderwerp
@@ -4145,6 +4198,14 @@ nl:
         welcome_message:
           description: Dit bericht wordt aan de proefpersonen getoond wanneer ze inloggen om met de beoordeling te beginnen of hun takenlijst te bekijken
           name: Welkom
+      mail_history:
+        actions: Acties
+        date: Datum
+        download_details: Details downloaden
+        emails_sent: Verzonden e-mails
+        recipient: Ontvanger
+        status: Status
+        subject: Onderwerp
       manage:
         assessment: Beoordeling
         dimension: Afmetingen
@@ -4152,19 +4213,45 @@ nl:
         report: Rapporteer
         title: Beheer
       menu:
+        actions: Acties
         datasheet:
           title: Gegevensblad
         messages:
+          allow_subjects_to_send_reminders: Laat proefpersonen herinneringen sturen naar beoordelaars
+          automatically_send_invites: Automatisch uitnodigingen versturen naar nieuwe beoordelaars
           title: Berichten
         participants:
+          columns:
+            action: Actie
+            email: E-mail
+            evaluations_completed: Afgeronde evaluaties
+            evaluations_received: Ontvangen evaluaties
+            is_subject: Is Onderwerp
+            name: Naam
+            report_status: Statusrapport
+            status: Status
+          evaluators:
+            add_evaluators: Evaluatoren toevoegen
+            import_evaluators: Importeer beoordelaars
+            title: Evaluatoren
+          managers:
+            title: Managers
+          options:
+            evaluator_options: Opties voor beoordelaar
+            global: Wereldwijde opties
+            manager_options: Opties voor managers
+            subject_options: Onderwerp Opties
+            title: Opties
           subjects:
             add_subjects: Onderwerpen toevoegen
             current_job_role: Huidige Functierol
             email: Email
             first_name: Voornaam
+            import_subjects: Invoer Onderwerpen
             last_name: Achternaam
             locale: Lokaal
             target_job_role: Doel Functierol
+            title: Onderwerpen
           title: Deelnemers
         report:
           menu:
@@ -4180,8 +4267,26 @@ nl:
         mail_history: Mail Geschiedenis
         options: Opties
       reports:
+        add_conditions: Voorwaarden toevoegen
+        administrator_approves_reports: Beheerder keurt rapporten goed
+        allow_manager_to_view_individual_responses: Manager toestaan individuele reacties te bekijken
+        disable_report_download: Downloaden van rapporten uitschakelen
+        edit_email: E-mail bewerken
+        email_manager_when_report_is_ready_for_approval: E-mail Manager wanneer rapport klaar is voor goedkeuring
+        email_subject_when_report_becomes_available: Onderwerp e-mail wanneer het rapport beschikbaar is
+        email_subjects_manager_when_available: E-mail de manager van het onderwerp wanneer het rapport beschikbaar is
+        make_report_available_to_subject_when: 'Stel het rapport beschikbaar aan de proefpersoon wanneer:'
+        manager_approves_reports: Manager keurt rapporten goed
+        manager_can_access_subject_reports: Manager heeft toegang tot rapporten over het onderwerp
+        manager_cannot_access_subject_reports: Manager kan rapport niet inzien totdat aan de vereisten is voldaan
+        report_access: Toegang rapporteren
+        report_approval: Goedkeuring verslag
+        report_availability: Rapport Beschikbaarheid
         show:
           title: Onderwerp Rapport
+        subject_can_access_reports: Proefpersoon heeft toegang tot zijn rapporten
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Licenties markeren als gedeactiveerd
     time_zone: Tijdzone
     tools: Gereedschap
     translations:

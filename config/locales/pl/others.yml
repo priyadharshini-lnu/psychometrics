@@ -438,6 +438,7 @@ pl:
           case_study: Przypadków
           hogan: Hogan
           iiht: Międzynarodowa Biblioteka Medyczna (IIH
+          lead_assessor_form: Formularz Głównego Asesora
           meeting: Spotkanie
           organisational: Badania
           pearson: Pearson
@@ -518,6 +519,7 @@ pl:
         created_at: Data utworzenia
         id: ID
         name: Nazwa
+        owner: Właściciel
         updated_at: Data modyfikacji
       factor:
         active: Aktywny
@@ -544,7 +546,11 @@ pl:
         updated_at: Data modyfikacji
       library:
         created_at: Data utworzenia
+        description: Opis
+        files: Pliki
         id: ID
+        name: Nazwa
+        owner: Właściciel
         type: Miniatura
         updated_at: Data modyfikacji
       license:
@@ -616,6 +622,7 @@ pl:
         created_at: Data utworzenia
         id: ID
         name: Nazwa
+        owner: Właściciel
         updated_at: Data modyfikacji
       report:
         created_at: Data utworzenia
@@ -784,6 +791,8 @@ pl:
           attributes:
             current_password:
               invalid: Bieżące hasło jest nieprawidłowe
+            manager_id:
+              cannot_be_self: Użytkownik nie może zostać przypisany jako własny menedżer
         user_idp_comment:
           reply_to_reply: Nie można odpowiedzieć na odpowiedź (dozwolony jest tylko jeden poziom zagnieżdżania)
         user_idp_plan:
@@ -1552,6 +1561,7 @@ pl:
     column:
       assessor_access: Dostęp do asesora
       auto_assign: Automatyczne przypisywanie
+      locales: Lokalizacje
       main_report: Raport główny
       report_bundle: Pakiet raportów
       report_name: Nazwa raportu
@@ -1574,6 +1584,13 @@ pl:
         apply: Zastosuj te zmiany do istniejących użytkowników w tej kampanii.
         msg_text: Próbujesz usunąć raport <strong>"%{reportName}"</strong>
         title: Usunąć raport?
+      update_languages:
+        default_language: Domyślny język
+        other_available_languages: Inne dostępne języki
+        select_default_language: Wybierz domyślny język
+        select_languages: Wybierz języki
+        success_msg: Języki zostały pomyślnie zaktualizowane
+        title: Język raportu
       user_access:
         apply: Zastosuj te zmiany do istniejących użytkowników w tej kampanii.
         title:
@@ -2079,6 +2096,7 @@ pl:
         reserved_subdomain: Subdomena %{value} jest zarezerwowana
         uniq_subdomain: Subdomena powinna być unikalna.
       add_manager:
+        cannot_be_self: Użytkownik nie może zostać przypisany jako własny menedżer
         manager_not_found: Nie znaleziono menedżera lub nie jest on częścią tego samego projektu
         user_not_found: Nie znaleziono użytkownika lub nie jest on częścią tego samego projektu
       admin:
@@ -2216,6 +2234,9 @@ pl:
       no_active_plan: Nie znaleziono aktywnego planu IDP
     webhooks:
       multiple_webhook_error: Nie można zaktualizować adresu URL, ponieważ dla tego projektu istnieje wiele elementów webhook.
+    workshop:
+      ical_generation_failed: Nie można wygenerować zaproszenia do kalendarza
+      missing_or_invalid: Brakujący lub nieprawidłowy identyfikator_warsztatu
   evaluators:
     errors:
       can_not_processed: nie można przetworzyć
@@ -2477,6 +2498,7 @@ pl:
       aria_selected: Wybrany
   idp:
     actions: Działania
+    behavioral: Zachowanie
     board: Tablica
     comment_details:
       add_comment: Dodaj komentarz
@@ -2700,6 +2722,7 @@ pl:
     skill_gap_report:
       title: Raport luk w umiejętnościach
     status: Stan
+    technical: Techniczne
     user_idp_status:
       approved: Zatwierdzony
       completed: Zakończone
@@ -3661,11 +3684,35 @@ pl:
       exactly: Dokładnie %{count}
     nominations: Nominacje
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Umożliwienie oceniającym odrzucenia nominacji
+        email_subject_when_nomination_declined: Temat wiadomości e-mail w przypadku odrzucenia nominacji
       form:
         value_not_valid: nie ma prawidłowej wartości
       global:
         cannot_re_edit: Uczestnicy nie mogą edytować ocen
         disable_all_evaluations: Wyłączanie wszystkich ocen
+      manager:
+        allow_subjects_to_email: Zezwalaj podmiotom na wysyłanie wiadomości e-mail do menedżerów, gdy ich nominacje są gotowe do zatwierdzenia.
+        approves_evaluations: Menedżer zatwierdza oceny
+        approves_nominations: Menedżer zatwierdza nominacje
+        can_view_nominations: Menedżer może przeglądać nominacje
+        email_managers_when_nomination_ready: Wysyłanie wiadomości e-mail do menedżerów, gdy nominacja podmiotu jest gotowa do zatwierdzenia.
+        email_subject_when_nomination_denied: Temat wiadomości e-mail w przypadku odrzucenia nominacji
+        may_choose_evaluators: Menedżer może wybrać oceniających
+      subject:
+        allow_subjects_to_select_relationships: Umożliwienie uczestnikom wyboru relacji
+        anyone_in_assessment: Każda osoba biorąca udział w ocenie
+        anyone_in_datasheet: Każdy w arkuszu danych
+        anyone_not_in_assessment: Każdy, kto nie jest obecnie objęty oceną
+        can_view_evaluators: Podmiot może przeglądać oceniających
+        define_nomination_requirement: Określenie wymagań dotyczących nominacji
+        limit_search_by_criteria: Ogranicz wyszukiwanie według kryteriów
+        nominates_evaluators: Podmiot nominuje oceniających
+        only_allow_relationships_of_specified_types: Zezwalaj tylko na relacje określonych typów
+        only_show_subjects_who_match_criteria: 'Wyświetlaj tylko osoby spełniające poniższe kryteria:'
+        self_evaluates: Przedmiot samooceny
+        subjects_cannot_remove_nominations: Podmioty nie mogą usuwać nominacji ustawionych przez menedżerów lub administratorów.
     or: Lub
     page_title: Signify 360° Review - Poziom aplikacji
     participant_list:

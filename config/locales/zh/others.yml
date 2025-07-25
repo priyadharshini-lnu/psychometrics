@@ -438,6 +438,7 @@ zh:
           case_study: 案例研究
           hogan: 霍根
           iiht: IIHT
+          lead_assessor_form: 主任评估员表格
           meeting: 会议
           organisational: 调查
           pearson: 皮尔森
@@ -518,6 +519,7 @@ zh:
         created_at: 创建日期
         id: 身份证
         name: 名称
+        owner: 业主
         updated_at: 修改日期
       factor:
         active: 活跃
@@ -544,7 +546,11 @@ zh:
         updated_at: 修改日期
       library:
         created_at: 创建日期
+        description: 说明
+        files: 文件
         id: 身份证
+        name: 名称
+        owner: 业主
         type: 缩略图
         updated_at: 修改日期
       license:
@@ -616,6 +622,7 @@ zh:
         created_at: 创建日期
         id: 身份证
         name: 名称
+        owner: 业主
         updated_at: 修改日期
       report:
         created_at: 创建日期
@@ -1560,6 +1567,7 @@ zh:
     column:
       assessor_access: 评估员访问
       auto_assign: 自动分配
+      locales: 地点
       main_report: 主要报告
       report_bundle: 报告包
       report_name: 报告名称
@@ -1582,6 +1590,13 @@ zh:
         apply: 将此更改应用于该活动中的现有用户。
         msg_text: 您正在尝试删除<strong>"%{reportName}"</strong>报告
         title: 删除报告？
+      update_languages:
+        default_language: 默认语言
+        other_available_languages: 其他可用语言
+        select_default_language: 选择默认语言
+        select_languages: 选择语言
+        success_msg: 语言已成功更新
+        title: 报告语言
       user_access:
         apply: 将此更改应用于该活动中的现有用户。
         title:
@@ -2202,6 +2217,9 @@ zh:
       no_active_plan: 未找到有效的 IDP 计划
     webhooks:
       multiple_webhook_error: 由于该项目有多个 webhook，因此无法更新 url。
+    workshop:
+      ical_generation_failed: 无法生成日历邀请
+      missing_or_invalid: 缺少或无效 Workshop_id
   evaluators:
     errors:
       can_not_processed: 无法处理
@@ -2463,6 +2481,7 @@ zh:
       aria_selected: 精选
   idp:
     actions: 行动
+    behavioral: 行为
     board: 董事会
     comment_details:
       add_comment: 添加评论
@@ -2692,6 +2711,7 @@ zh:
     skill_gap_report:
       title: 技能差距报告
     status: 现状
+    technical: 技术
     user_idp_status:
       approved: 批准
       completed: 完成
@@ -3649,11 +3669,35 @@ zh:
       exactly: 正是 %{count}
     nominations: 提名
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: 允许评估员拒绝提名
+        email_subject_when_nomination_declined: 拒绝提名时的电子邮件主题
       form:
         value_not_valid: 没有有效值
       global:
         cannot_re_edit: 参与者无法编辑评估
         disable_all_evaluations: 禁用所有评估
+      manager:
+        allow_subjects_to_email: 允许主题在其提名可供审批时向管理者发送电子邮件
+        approves_evaluations: 经理批准评估
+        approves_nominations: 经理批准提名
+        can_view_nominations: 经理可查看提名
+        email_managers_when_nomination_ready: 向管理人员发送电子邮件，通知他们何时可以批准某个主题的提名
+        email_subject_when_nomination_denied: 拒绝提名时的电子邮件主题
+        may_choose_evaluators: 经理可选择评估员
+      subject:
+        allow_subjects_to_select_relationships: 允许主体选择关系
+        anyone_in_assessment: 评估中的任何人
+        anyone_in_datasheet: 数据表中的任何人
+        anyone_not_in_assessment: 目前未参加评估的任何人
+        can_view_evaluators: 主题可查看评估员
+        define_nomination_requirement: 确定提名要求
+        limit_search_by_criteria: 按标准限制搜索
+        nominates_evaluators: 学科提名评估员
+        only_allow_relationships_of_specified_types: 只允许指定类型的关系
+        only_show_subjects_who_match_criteria: 只显示符合以下条件的对象：
+        self_evaluates: 受试者自我评价
+        subjects_cannot_remove_nominations: 主体无法删除经理或管理员设置的提名
     or: 或
     page_title: Signify 360°评估 - 应用级别
     participant_list:

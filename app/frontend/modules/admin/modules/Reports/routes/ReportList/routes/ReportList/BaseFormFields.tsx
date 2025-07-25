@@ -312,6 +312,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
         open={isLanguageModalVisible}
         onOk={() => defaultLangForm.submit()}
         onCancel={handleModalCancel}
+        width={600}
       >
         <Form form={defaultLangForm} onFinish={handleModalOk}>
           <Form.Item
@@ -326,9 +327,15 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
             </Select>
           </Form.Item>
           <Alert
-            message={I18n.t('administration.reports.edit_default_language.warning')}
+            message={I18n.t('administration.reports.edit_default_language.warning.title')}
+            description={(
+              <ul style={{ paddingLeft: '20px' }}>
+                <li>{I18n.t('administration.reports.edit_default_language.warning.description_li_1')}</li>
+                <li>{I18n.t('administration.reports.edit_default_language.warning.description_li_2')}</li>
+                <li>{I18n.t('administration.reports.edit_default_language.warning.description_li_3')}</li>
+              </ul>
+            )}
             type="warning"
-            showIcon
             className="mb-6"
           />
           <Form.Item
@@ -337,7 +344,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
             rules={[{ required: true }]}
           >
             <Checkbox style={{ display: 'flex', alignItems: 'flex-start' }}>
-              {I18n.t('administration.reports.edit_default_language.confirm_msg')}
+              {I18n.t('administration.reports.edit_default_language.agreement')}
             </Checkbox>
           </Form.Item>
         </Form>

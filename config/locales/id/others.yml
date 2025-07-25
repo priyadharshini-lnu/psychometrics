@@ -438,6 +438,7 @@ id:
           case_study: Studi Kasus
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulir Penilai Utama
           meeting: Rapat
           organisational: Survei
           pearson: Pearson
@@ -518,6 +519,7 @@ id:
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
+        owner: Pemilik
         updated_at: Tanggal yang Dimodifikasi
       factor:
         active: Aktif
@@ -544,7 +546,11 @@ id:
         updated_at: Tanggal yang Dimodifikasi
       library:
         created_at: Tanggal Dibuat
+        description: Deskripsi
+        files: File
         id: ID
+        name: Nama
+        owner: Pemilik
         type: Gambar mini
         updated_at: Tanggal yang Dimodifikasi
       license:
@@ -616,6 +622,7 @@ id:
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
+        owner: Pemilik
         updated_at: Tanggal yang Dimodifikasi
       report:
         created_at: Tanggal Dibuat
@@ -784,6 +791,8 @@ id:
           attributes:
             current_password:
               invalid: Kata sandi saat ini salah
+            manager_id:
+              cannot_be_self: Pengguna tidak dapat ditugaskan sebagai manajer mereka sendiri
         user_idp_comment:
           reply_to_reply: tidak dapat membalas balasan (hanya satu tingkat bersarang yang diizinkan)
         user_idp_plan:
@@ -1552,6 +1561,7 @@ id:
     column:
       assessor_access: Akses Penilai
       auto_assign: Tetapkan Otomatis
+      locales: Lokal
       main_report: Laporan Utama
       report_bundle: Bundel Laporan
       report_name: Nama laporan
@@ -1574,6 +1584,13 @@ id:
         apply: Terapkan perubahan ini ke pengguna yang sudah ada di kampanye ini.
         msg_text: Anda mencoba menghapus Laporan <strong>"%{reportName}"</strong>
         title: Hapus Laporan?
+      update_languages:
+        default_language: Bahasa Default
+        other_available_languages: Bahasa lain yang tersedia
+        select_default_language: Pilih Bahasa default
+        select_languages: Pilih Bahasa
+        success_msg: Bahasa berhasil diperbarui
+        title: Bahasa Laporan
       user_access:
         apply: Terapkan perubahan ini ke pengguna yang sudah ada di kampanye ini.
         title:
@@ -2079,6 +2096,7 @@ id:
         reserved_subdomain: Subdomain %{value} dicadangkan
         uniq_subdomain: Subdomain harus unik.
       add_manager:
+        cannot_be_self: Pengguna tidak dapat ditugaskan sebagai manajer mereka sendiri
         manager_not_found: Manajer tidak ditemukan atau bukan bagian dari proyek yang sama
         user_not_found: Pengguna tidak ditemukan atau bukan bagian dari proyek yang sama
       admin:
@@ -2216,6 +2234,9 @@ id:
       no_active_plan: Tidak ada paket IDP aktif yang ditemukan
     webhooks:
       multiple_webhook_error: URL tidak dapat diperbarui karena ada beberapa webhook untuk proyek ini.
+    workshop:
+      ical_generation_failed: Tidak dapat membuat undangan kalender
+      missing_or_invalid: Workshop_id tidak ada atau tidak valid
   evaluators:
     errors:
       can_not_processed: tidak dapat diproses
@@ -3663,11 +3684,35 @@ id:
       exactly: Tepatnya %{count}
     nominations: Nominasi
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Mengizinkan evaluator untuk menolak nominasi
+        email_subject_when_nomination_declined: Subjek email ketika nominasi ditolak
       form:
         value_not_valid: tidak memiliki nilai yang valid
       global:
         cannot_re_edit: Peserta tidak dapat mengedit evaluasi
         disable_all_evaluations: Nonaktifkan semua evaluasi
+      manager:
+        allow_subjects_to_email: Izinkan subjek mengirim email kepada manajer ketika nominasi mereka siap untuk disetujui
+        approves_evaluations: Manajer menyetujui evaluasi
+        approves_nominations: Manajer menyetujui nominasi
+        can_view_nominations: Manajer dapat melihat nominasi
+        email_managers_when_nomination_ready: Manajer email ketika nominasi subjek siap untuk disetujui
+        email_subject_when_nomination_denied: Subjek email ketika nominasi ditolak
+        may_choose_evaluators: Manajer dapat memilih Evaluator
+      subject:
+        allow_subjects_to_select_relationships: Izinkan subjek untuk memilih hubungan
+        anyone_in_assessment: Siapa pun yang ikut dalam penilaian
+        anyone_in_datasheet: Siapa pun yang ada di lembar data
+        anyone_not_in_assessment: Siapa pun yang saat ini tidak sedang dalam penilaian
+        can_view_evaluators: Subjek dapat melihat Evaluator
+        define_nomination_requirement: Tentukan persyaratan Nominasi
+        limit_search_by_criteria: Batasi pencarian berdasarkan kriteria
+        nominates_evaluators: Subjek menominasikan Evaluator
+        only_allow_relationships_of_specified_types: Hanya mengizinkan hubungan dengan jenis tertentu
+        only_show_subjects_who_match_criteria: 'Hanya tampilkan subjek yang sesuai dengan kriteria berikut:'
+        self_evaluates: Subjek Mengevaluasi Diri Sendiri
+        subjects_cannot_remove_nominations: Subjek tidak dapat menghapus nominasi yang ditetapkan oleh manajer atau admin
     or: Atau
     page_title: Signify 360° Review - Terapkan Level
     participant_list:

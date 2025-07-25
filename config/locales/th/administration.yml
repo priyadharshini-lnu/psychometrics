@@ -174,6 +174,8 @@ th:
             title: เทมเพลต IDP
             view: ดู
           jobRoles:
+            export_translations: ส่งออกบทบาทงานแปล
+            import_translations: นำเข้าการแปลบทบาทงาน
             manage: จัดการ
             title: บทบาทในงาน
             view: ดู
@@ -841,6 +843,14 @@ th:
     campaign_factors_import:
       errors:
         invalid_headers: 'ส่วนหัวต่อไปนี้ไม่ถูกต้อง: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: กรุณาเลือกช่วงวันที่
+        modal:
+          subtitle: เลือกช่วงวันที่ จากนั้นเลือกภาษาที่ต้องการสำหรับแต่ละรายงาน
+      generate:
+        modal:
+          subtitle: เลือกภาษาที่ต้องการสำหรับแต่ละรายงาน
     campaign_templates:
       campaign_templates: เทมเพลตแคมเปญ
       column:
@@ -958,7 +968,9 @@ th:
             empty: เปล่า
             inactive: เกียจคร้าน
             name: ชื่อ
+            normal: ปกติ
             previous: ก่อน
+            skill_rater: ผู้ประเมินทักษะ
             standard: มาตรฐาน
             status: สถานะ
           close:
@@ -1066,6 +1078,7 @@ th:
         ai_assistants: ผู้ช่วย AI
         ai_assisted_idp: AI ช่วยเหลือ IDP
         global_skills: ทักษะระดับโลก
+        idp: ผู้พลัดถิ่นภายในประเทศ
         sms_notification: การแจ้งเตือนทาง SMS
     clients:
       api_keys:
@@ -1491,6 +1504,8 @@ th:
         update:
           successfully: โครงการ %{name} อัปเดตเรียบร้อยแล้ว
       registration_codes:
+        actions:
+          add_code: เพิ่มโค้ด
         column:
           code: รหัส
           usage_stats: สถิติการใช้งาน
@@ -1501,6 +1516,13 @@ th:
           incorrect_domain: รูปแบบโดเมนไม่ถูกต้อง
           invalid_end_date: ต้องมากกว่าวันที่เริ่มต้น
           license_issue: ใบอนุญาตไม่เพียงพอ
+        form:
+          active: แอคทีฟ
+          code: โค้ด
+          end_date: วันสิ้นสุด
+          name: ชื่อ
+          start_date: วันเริ่มงาน
+          total_count: จำนวนทั้งหมด
       resource:
         confirmations:
           delete:
@@ -1530,7 +1552,9 @@ th:
       reset: รี เซ็ต
       save: ประหยัด
       select_all: เลือกทั้งหมด
+      type: ประเภท
       unselect_all: ยกเลิกการเลือกทั้งหมด
+    communication_settings: การตั้งค่า
     communications:
       create:
         successfully: การสื่อสารถูกสร้างขึ้นเรียบร้อยแล้ว
@@ -1563,9 +1587,16 @@ th:
           {{email}} - อีเมลผู้รับ
           {{schedule_start_date}} - วันที่เริ่มต้นกําหนดการ
           {{schedule_end_date}} - วันที่สิ้นสุดกําหนดการ
+        campaign: แคมเปญ
+        campaign_assessment_group: กลุ่มประเมินผลแคมเปญ
+        client: ลูกค้า
         completion: เสร็จ สมบูรณ์
         delivery_at: จัดส่งที่ (GST)
         delivery_delay_hours: ความล่าช้าในการจัดส่ง (ชั่วโมง)
+        delivery_interval: ระยะเวลาการส่งมอบ
+        delivery_interval_number: จำนวนช่วงเวลาการส่งมอบ
+        delivery_interval_period: ช่วงเวลาการส่งมอบ
+        delivery_rule: กฎการส่งมอบ
         delivery_rules:
           in_progress: หากกําลังดําเนินการประเมิน
           not_competed: หากการประเมินไม่เสร็จสมบูรณ์
@@ -1577,13 +1608,18 @@ th:
         idp_template_approved: IDP ได้รับการอนุมัติ
         idp_template_assigned: IDP ที่ได้รับมอบหมาย
         idp_template_rejected: IDP ถูกปฏิเสธ
+        insert_piped_text: แทรกข้อความที่มีเส้นขอบ
         invitation: การเชื้อเชิญ
         kind: ประเภทการสื่อสาร
         locale: สถานที่เกิดเหตุ
         magic_link_email: อีเมลลิงค์เมจิก
+        message_body_placeholder: กรุณาป้อนข้อความของคุณที่นี่...
         new_assignment: งานที่ได้รับมอบหมายใหม่
         new_users: ผู้ใช้ใหม่
         other: อื่นๆ
+        owner: เจ้าของ
+        project: โครงการ
+        recipients: ผู้รับ
         reminder: หมายเหตุ
         report_available: มีรายงาน
         selected: เลือก
@@ -1591,6 +1627,7 @@ th:
         selected_recipients: ผู้รับที่เลือก
         stop_reminder: หยุดส่งการเตือนความจํา
         stop_reminder_datetime: วันที่สิ้นสุดการช่วยเตือน (GST)
+        subject: เรื่อง
         workshop_booked: การยืนยันการจองศูนย์ประเมิน
         workshop_cancelled: ศูนย์ประเมินถูกยกเลิก
         workshop_completed: ศูนย์ประเมินเสร็จสมบูรณ์
@@ -1604,6 +1641,7 @@ th:
         type: ประเภท
       list:
         actions: การดําเนินการ
+        assessment_center_group: ศูนย์ประเมินผลกลุ่ม
         author: สร้างโดย
         campaign: รณรงค์
         client_name: ลูกค้า
@@ -1751,6 +1789,7 @@ th:
       errors:
         blank_field: 'แถว %{row}: %{field} ต้องไม่ว่างเปล่า'
         csv_file_required: ต้องเป็นไฟล์ CSV
+        development_action_not_in_project: 'ไลน์%{row}: การดำเนินการพัฒนา ID%{development_action_id} ไม่เกี่ยวข้องกับโครงการนี้'
         image_download_failed: 'ดาวน์โหลดรูปภาพจาก %{url} ไม่สําเร็จ: %{message}'
         invalid_csv_format: 'รูปแบบ CSV ไม่ถูกต้อง: %{message}'
         invalid_date: รูปแบบวันที่สําหรับ %{date} ไม่ถูกต้อง
@@ -1875,10 +1914,24 @@ th:
         successfully: ตั้งเวลานําเข้าปัจจัยสําหรับมิติ %{name}
         title: ปัจจัยการนําเข้า
       import_modal:
+        after: หลังจาก
+        before: ก่อนหน้า
         cancel: ยกเลิก
+        change_log_input: บันทึกการเปลี่ยนแปลง
         continue: ต่อเนื่อง
+        error: ข้อผิดพลาด
+        error_occurred: เกิดข้อผิดพลาด
+        errors:
+          file_error: กรุณาเลือกไฟล์ JSON ก่อนดำเนินการต่อ
+          processing_error: เกิดข้อผิดพลาดในการประมวลผลไฟล์
+        field: ฟิลด์
         import: นําเข้า
         import_dimension: นำเข้ามิติ
+        import_scheduled: นำเข้าตามกำหนดการ
+        operation: การปฏิบัติการ
+        owner_input_validation: กรุณาเลือกเจ้าของ
+        owner_select: เลือกเจ้าของ
+        select_json: เลือกไฟล์ JSON
       import_translations:
         error: เกิดข้อผิดพลาดขณะนําเข้าคําแปลสําหรับมิติ %{name}
         successfully: ตั้งเวลานําเข้าคำแปลสําหรับมิติ %{name}
@@ -2066,10 +2119,13 @@ th:
       all: ทั้งหมด
       appearance: ลักษณะ
       appearance_hint: หากต้องการแก้ไขรูปลักษณ์ โปรดบันทึกเทมเพลต IDP ก่อนเพื่อเปิดใช้งานการตั้งค่าเหล่านี้
+      appearance_success: การตั้งค่าการแสดงผลบันทึกไว้เรียบร้อยแล้ว
       background_image: ภาพพื้นหลัง
       behavioral_skills: ทักษะพฤติกรรม
       client_skills: ทักษะของลูกค้า
+      details_updated: รายละเอียดผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จแล้ว
       edit_template: แก้ไขเทมเพลต IDP
+      enter_tag_or_skills_error: เลือกอย่างน้อยหนึ่งแท็กหรือทักษะ
       enter_template_description: คำอธิบาย
       enter_template_description_error: จําเป็นต้องมีคําอธิบายเทมเพลต
       enter_template_name: ชื่อ
@@ -2078,6 +2134,7 @@ th:
         update: ไม่อนุญาตให้อัปเดตเนื่องจากเทมเพลต IDP เชื่อมโยงกับแผน IDP ของผู้ใช้อยู่แล้ว การเปลี่ยนแปลงรูปลักษณ์ถูกบันทึกไว้
       fields:
         assigned_data: ข้อมูลที่ได้รับมอบหมาย
+        assigned_date: วันที่กำหนด
         completion_date: วันที่เสร็จสมบูรณ์
         division: แผนก
         name: ชื่อ
@@ -2115,6 +2172,11 @@ th:
       show_reflections: แสดงภาพสะท้อน
       skill_gap_report: รายงานช่องว่างทักษะ
       skills: ทักษะ
+      skills_updated: ทักษะ IDP ได้รับการอัปเดตสำเร็จ
+      status:
+        draft: ร่าง
+        published: เผยแพร่แล้ว
+      status_updated: สถานะผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จ
       subtitle_text: ข้อความคําบรรยาย
       tab:
         development_actions: การดําเนินการพัฒนา
@@ -2347,8 +2409,10 @@ th:
         rescheduled: เลื่อนกําหนดเวลา
       subject: ชื่อเรื่อง
     job_role:
+      are_you_sure_to_remove: คุณแน่ใจหรือไม่ที่จะลบ?
       column:
         job_group: กลุ่มงาน
+        skill_name: ชื่อทักษะ
       export:
         failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
         success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
@@ -2363,6 +2427,7 @@ th:
         success_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
       import_action:
         translations: นําเข้าการแปลบทบาทงาน
+      job_role_details: รายละเอียดตำแหน่งงาน
       translations: การแปลบทบาทงาน
     job_role_skill_mapping:
       column:
@@ -2375,6 +2440,12 @@ th:
       export:
         translations:
           details: ราย ละเอียด
+      translations:
+        import:
+          errors:
+            job_role_not_found: ตำแหน่งงานที่มีรหัส ID%{id} ไม่พบ
+            missing_columns: คอลัมน์ที่จำเป็นหายไป:%{columns}
+            save_failed: เกิดข้อผิดพลาดในการประมวลผลรหัสตำแหน่งงาน%{id}:%{message}
     libraries:
       create:
         successfully: รายการ %{name} ถูกสร้างขึ้นเรียบร้อยแล้ว
@@ -2426,6 +2497,7 @@ th:
         successfully: ผู้ใช้ %{name} อัปเดตเรียบร้อยแล้ว
       update:
         successfully: ผู้ใช้ %{name} อัปเดตเรียบร้อยแล้ว
+    message: ข้อความ
     meta_title: แผงการดูแลระบบ
     navigation:
       ai_assistants: ผู้ช่วย AI
@@ -2532,6 +2604,7 @@ th:
         editor: บรรณาธิการบรรทัดฐาน
         export: บรรทัดฐานการส่งออก
         title: ตัวเลือกของ Norm
+      title: ปกติ
       toggle_status:
         successfully: ค่ามาตรฐานอัปเดตเรียบร้อยแล้ว
       update:
@@ -2619,12 +2692,16 @@ th:
     piped_text_modal:
       assessment_id: รหัสการประเมิน
       campaign_id: รหัสแคมเปญ
+      campaign_name: ชื่อแคมเปญ
+      campaigns: แคมเปญ
       insight_page_link: ลิงค์หน้าข้อมูลเชิงลึก
       insight_page_url: URL ของหน้าข้อมูลเชิงลึก
       join_link: ลิงค์เข้าร่วม
       magic_link: ลิงค์เมจิก
       magic_url: URL เมจิก
       profile_custom_field: โปรไฟล์ฟิลด์ที่กําหนดเอง
+      project_name: ชื่อโครงการ
+      projects: โครงการ
       report_name: ชื่อรายงาน
       text: ข้อความ
       title: เพิ่มข้อความท่อ
@@ -2655,6 +2732,9 @@ th:
           level_definition_must_match_level: ต้องมีระดับ %{expected} พอดี แต่ได้รับ %{actual}
           must_be_unique: ต้องไม่ซ้ํากัน
           proficiency_level_exists: ระดับความชํานาญที่มีทักษะและโครงการนี้มีอยู่แล้ว
+          proficiency_level_exists_for_default: ระดับความสามารถสำหรับค่าเริ่มต้นมีอยู่แล้ว
+          proficiency_level_exists_for_type: ระดับความสามารถสำหรับประเภทนี้มีอยู่แล้ว
+          project_level_default_exists: ระดับความสามารถ 'เริ่มต้น' มีอยู่แล้ว
           skill_must_exist: ต้องมีทักษะสําหรับ 'by_skill' proficiency_type
       export:
         details: ราย ละเอียด
@@ -2670,6 +2750,7 @@ th:
         proficiency_type: ประเภทความเชี่ยวชาญ
         skill: ทักษะ
         skill_name: ชื่อทักษะ
+        skill_type: ประเภททักษะ
         title: ความสามารถ
       import:
         actions:
@@ -2698,6 +2779,8 @@ th:
             save_failed: 'การประมวลผลรหัสทักษะ %{id} ผิดพลาด: %{message}'
       type:
         by_skill: ตามทักษะ
+        by_skill_type: ตามประเภททักษะ
+        default: ค่าเริ่มต้น
     profile:
       change_password: เปลี่ยนรหัสผ่าน
       details: ราย ละเอียด
@@ -3059,6 +3142,7 @@ th:
         user_name: ชื่อผู้ใช้
       dashboard: แผงหน้าปัด
       download: ดาวน์โหลด
+      report_approval_settings: การตั้งค่าการอนุมัติรายงาน
       report_approvals: การอนุมัติรายงาน
       review: ตรวจสอบ
       saving_filters:
@@ -3180,6 +3264,15 @@ th:
         successfully: รายงาน '%{name}' ถูกลบเรียบร้อยแล้ว
       edit:
         header: แก้ไขชื่อรายงาน
+      edit_default_language:
+        agreement: ใช่ ฉันเข้าใจผลกระทบที่อาจเกิดขึ้นจากการเปลี่ยนแปลงภาษาเริ่มต้น
+        title: แก้ไข ภาษาเริ่มต้น
+        tooltip: แก้ไข ภาษาเริ่มต้น
+        warning:
+          description_li_1: การเปลี่ยนภาษาเริ่มต้นจากภาษา RTL เป็นภาษา LTR หรือในทางกลับกัน จะส่งผลต่อเค้าโครง
+          description_li_2: คุณจะต้องทำการแก้ไขการแปลรายงานใหม่หากคุณเปลี่ยนภาษาเริ่มต้น
+          description_li_3: โปรดดาวน์โหลดสำเนาการแปลรายงานก่อนทำการเปลี่ยนแปลงนี้
+          title: กรุณาอ่านคำแนะนำอย่างละเอียด
       modals:
         remap_assessment:
           new_assessment_name: ชื่อการประเมินใหม่
@@ -3222,6 +3315,9 @@ th:
         successfully: รายงานอัปเดตเรียบร้อยแล้ว
       update:
         successfully: รายงาน %{name} อัปเดตเรียบร้อยแล้ว
+    reports_language_selection_modal:
+      download: ดาวน์โหลดรายงาน
+      generate: รายงานสร้างขึ้น
     resource:
       remove_confirm:
         message: คุณแน่ใจหรือไม่ว่าต้องการลบทรัพยากรนี้?
@@ -3628,6 +3724,7 @@ th:
         import:
           missing_fields_data: 'บรรทัด %{line_number}: ไม่มีช่องที่ต้องกรอก: %{fields}'
           save_failed: 'บรรทัด %{line_number}: บันทึกทักษะ ''%{name}'': %{message} ไม่สําเร็จ'
+          skill_not_in_project: 'ไลน์%{line_number}: รหัสทักษะ%{skill_id} ไม่เป็นของโปรเจ็กต์นี้'
         search:
           all_and_project_id_mutually_exclusive: ทั้งหมดไม่สามารถเป็นจริงได้เมื่อมีการให้ project_id_eq
           invalid_all_value: 'ต้องเป็นหนึ่งใน: จริงเท็จ'
@@ -3819,7 +3916,25 @@ th:
         successfully: ปัจจัยย่อยอัปเดตเรียบร้อยแล้ว
     survey_builder:
       builder_area:
+        current_job: งานปัจจุบัน
+        default_not_applicable_label: ไม่มีโอกาสที่จะเรียนรู้เกี่ยวกับหรือแสดงทักษะ
+        enable_not_applicable: เปิดใช้งานตัวเลือก N/A
+        enable_required_validation: เปิดใช้งานการตรวจสอบความถูกต้องที่จำเป็น
+        force_response: การตอบสนองด้วยกำลัง
+        job_role_required: กรุณาเลือกอย่างน้อยหนึ่งบทบาทงาน
+        not_applicable_label: ป้ายกำกับไม่เกี่ยวข้อง
         options: ตัวเลือก
+        request_response: คำขอการตอบกลับ
+        skill_rater_config: การกำหนดค่าผู้ประเมินทักษะ
+        target_job: ตำแหน่งงานเป้าหมาย
+      models:
+        block_types:
+          regular: ปกติ
+          skill_rater: ผู้ประเมินทักษะ
+        skill_types:
+          behavioural: พฤติกรรม
+          other: อื่นๆ
+          technical: เทคนิค
       property_panel:
         add_n_a_option: เพิ่มตัวเลือก N/A
         allow_content_copy: อนุญาตการคัดลอกเนื้อหา
@@ -3978,6 +4093,7 @@ th:
           invitations: คำ เชิญ
           reminders: หมายเหตุ
           report_ready: รายงานพร้อม
+        consolidated: รวมกัน
         custom_message:
           description: ข้อความนี้สามารถส่งไปยังทุกคนที่เข้าร่วมการประเมิน
           name: ข้อความที่กําหนดเอง
@@ -4001,7 +4117,10 @@ th:
         request_approval:
           description: ข้อความนี้จะถูกส่งไปยังผู้จัดการเมื่อหัวเรื่องร้องขอการอนุมัติ
           name: ขออนุมัติ
+        save: บันทึก
+        schedule: ตารางเวลา
         schedule_email: กําหนดเวลาอีเมล
+        schedule_email_title: กำหนดเวลาอีเมล
         schedule_time: กําหนดเวลา
         send_test_email: ส่งอีเมลทดสอบ
         subject: ชื่อเรื่อง
@@ -4042,6 +4161,14 @@ th:
         welcome_message:
           description: ข้อความนี้จะแสดงต่อผู้เข้ารับการทดสอบเมื่อพวกเขาเข้าสู่ระบบเพื่อเริ่มการประเมินหรือดูรายการงานของพวกเขา
           name: ข้อความต้อนรับ
+      mail_history:
+        actions: การกระทำ
+        date: วันที่
+        download_details: รายละเอียดการดาวน์โหลด
+        emails_sent: อีเมลที่ส่งแล้ว
+        recipient: ผู้รับ
+        status: สถานะ
+        subject: เรื่อง
       manage:
         assessment: การประเมิน
         dimension: มิติ
@@ -4049,19 +4176,45 @@ th:
         report: รายงาน
         title: จัดการ
       menu:
+        actions: การกระทำ
         datasheet:
           title: เอกสารข้อมูลสินค้า
         messages:
+          allow_subjects_to_send_reminders: อนุญาตให้ผู้เข้าร่วมส่งการแจ้งเตือนไปยังผู้ประเมิน
+          automatically_send_invites: ส่งคำเชิญไปยังผู้ประเมินใหม่โดยอัตโนมัติ
           title: ข้อความ
         participants:
+          columns:
+            action: การกระทำ
+            email: อีเมล
+            evaluations_completed: การประเมินเสร็จสิ้น
+            evaluations_received: การประเมินที่ได้รับ
+            is_subject: คือ หัวข้อ
+            name: ชื่อ
+            report_status: สถานะรายงาน
+            status: สถานะ
+          evaluators:
+            add_evaluators: เพิ่มผู้ประเมิน
+            import_evaluators: ผู้ประเมินการนำเข้า
+            title: ผู้ประเมิน
+          managers:
+            title: ผู้จัดการ
+          options:
+            evaluator_options: ตัวเลือกของผู้ประเมิน
+            global: ตัวเลือกระดับโลก
+            manager_options: ตัวเลือกของผู้จัดการ
+            subject_options: ตัวเลือกวิชา
+            title: ตัวเลือก
           subjects:
             add_subjects: เพิ่มหัวเรื่อง
             current_job_role: บทบาทงานปัจจุบัน
             email: อีเมล
             first_name: ชื่อ
+            import_subjects: นำเข้าหัวข้อ
             last_name: นามสกุล
             locale: สถานที่เกิดเหตุ
             target_job_role: บทบาทงานเป้าหมาย
+            title: หัวข้อ
           title: คน
         report:
           menu:
@@ -4077,8 +4230,26 @@ th:
         mail_history: ประวัติอีเมล
         options: ตัวเลือก
       reports:
+        add_conditions: เพิ่มเงื่อนไข
+        administrator_approves_reports: ผู้ดูแลระบบอนุมัติรายงาน
+        allow_manager_to_view_individual_responses: อนุญาตให้ผู้จัดการดูคำตอบของแต่ละบุคคล
+        disable_report_download: ปิดการดาวน์โหลดรายงาน
+        edit_email: แก้ไขอีเมล
+        email_manager_when_report_is_ready_for_approval: ผู้จัดการอีเมลเมื่อรายงานพร้อมสำหรับการอนุมัติ
+        email_subject_when_report_becomes_available: หัวข้ออีเมลเมื่อรายงานพร้อมใช้งาน
+        email_subjects_manager_when_available: ส่งอีเมลแจ้งผู้จัดการเรื่องหัวเรื่องเมื่อรายงานพร้อมใช้งาน
+        make_report_available_to_subject_when: 'ให้รายงานพร้อมใช้งานแก่ผู้เกี่ยวข้องเมื่อ:'
+        manager_approves_reports: ผู้จัดการอนุมัติรายงาน
+        manager_can_access_subject_reports: ผู้จัดการสามารถเข้าถึงรายงานตามหัวข้อได้
+        manager_cannot_access_subject_reports: ผู้จัดการไม่สามารถดูรายงานได้จนกว่าจะตอบสนองความต้องการ
+        report_access: การเข้าถึงรายงาน
+        report_approval: รายงานการอนุมัติ
+        report_availability: รายงานความพร้อมใช้งาน
         show:
           title: รายงานเรื่อง
+        subject_can_access_reports: ผู้ใช้สามารถเข้าถึงรายงานของตนได้
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: มาร์คใบอนุญาตเป็นยกเลิกการใช้งาน
     time_zone: เขตเวลา
     tools: เครื่อง มือ
     translations:

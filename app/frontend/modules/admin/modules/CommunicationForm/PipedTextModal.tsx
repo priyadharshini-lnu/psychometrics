@@ -80,7 +80,7 @@ export const PipedTextModal: React.FC<Props> = ({
           dataSource={applicationFields()}
           renderItem={item => (
             <List.Item>
-              <Card title={item.branch}>
+              <Card title={I18n.t(`administration.piped_text_modal.${item.branch.toLowerCase()}`)}>
                 {item.fields.map((field) => {
                   const Component = types[field.type]
                   return (

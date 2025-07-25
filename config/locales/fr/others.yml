@@ -438,6 +438,7 @@ fr:
           case_study: Études de cas
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulaire de l'évaluateur principal
           meeting: Réunion
           organisational: Enquêtes
           pearson: Pearson
@@ -518,6 +519,7 @@ fr:
         created_at: Date de création
         id: ID
         name: Nom
+        owner: Propriétaire
         updated_at: Date de modification
       factor:
         active: Actif
@@ -544,7 +546,11 @@ fr:
         updated_at: Date de modification
       library:
         created_at: Date de création
+        description: Description
+        files: Dossiers
         id: ID
+        name: Nom
+        owner: Propriétaire
         type: Vignette
         updated_at: Date de modification
       license:
@@ -616,6 +622,7 @@ fr:
         created_at: Date de création
         id: ID
         name: Nom
+        owner: Propriétaire
         updated_at: Date de modification
       report:
         created_at: Date de création
@@ -784,6 +791,8 @@ fr:
           attributes:
             current_password:
               invalid: Le mot de passe actuel est incorrect
+            manager_id:
+              cannot_be_self: L'utilisateur ne peut pas être désigné comme son propre gestionnaire
         user_idp_comment:
           reply_to_reply: Impossible de répondre à une réponse (un seul niveau d’imbrication autorisé)
         user_idp_plan:
@@ -1548,6 +1557,7 @@ fr:
     column:
       assessor_access: Accès à l'évaluateur
       auto_assign: Attribution automatique
+      locales: Localités
       main_report: Rapport principal
       report_bundle: Ensemble de rapports
       report_name: Nom du rapport
@@ -1570,6 +1580,13 @@ fr:
         apply: Appliquez ces modifications aux utilisateurs existants de cette campagne.
         msg_text: Vous essayez de supprimer le rapport <strong>"%{reportName}"</strong>
         title: Supprimer le rapport ?
+      update_languages:
+        default_language: Langue par défaut
+        other_available_languages: Autres langues disponibles
+        select_default_language: Sélectionner la langue par défaut
+        select_languages: Sélectionner les langues
+        success_msg: Les langues ont été mises à jour avec succès
+        title: Langue du rapport
       user_access:
         apply: Appliquez ces modifications aux utilisateurs existants de cette campagne.
         title:
@@ -2211,6 +2228,9 @@ fr:
       no_active_plan: Aucun plan d'action actif n'a été trouvé
     webhooks:
       multiple_webhook_error: l'url ne peut pas être mise à jour car il y a plusieurs webhooks pour ce projet.
+    workshop:
+      ical_generation_failed: Impossible de générer une invitation au calendrier
+      missing_or_invalid: Numéro d'atelier manquant ou invalide
   evaluators:
     errors:
       can_not_processed: ne peut être traité
@@ -3664,11 +3684,35 @@ fr:
       exactly: Exactement %{count}
     nominations: Nominations
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permettre aux évaluateurs de refuser la nomination
+        email_subject_when_nomination_declined: Objet du courriel en cas de refus d'une candidature
       form:
         value_not_valid: n'a pas de valeur valide
       global:
         cannot_re_edit: Les participants ne peuvent pas modifier les évaluations
         disable_all_evaluations: Désactiver toutes les évaluations
+      manager:
+        allow_subjects_to_email: Permettre aux sujets d'envoyer un courriel aux gestionnaires lorsque leurs nominations sont prêtes à être approuvées
+        approves_evaluations: Le gestionnaire approuve les évaluations
+        approves_nominations: Le directeur approuve les nominations
+        can_view_nominations: Le chef d'entreprise peut consulter les nominations
+        email_managers_when_nomination_ready: Envoyer un courrier électronique aux responsables lorsque la nomination d'un sujet est prête à être approuvée
+        email_subject_when_nomination_denied: Objet du courriel en cas de refus d'une candidature
+        may_choose_evaluators: Le gestionnaire peut choisir les évaluateurs
+      subject:
+        allow_subjects_to_select_relationships: Permettre aux sujets de sélectionner des relations
+        anyone_in_assessment: Toute personne participant à l'évaluation
+        anyone_in_datasheet: N'importe qui dans la fiche de données
+        anyone_not_in_assessment: Toute personne ne participant pas actuellement à l'évaluation
+        can_view_evaluators: Le sujet peut voir les évaluateurs
+        define_nomination_requirement: Définir les conditions de nomination
+        limit_search_by_criteria: Limiter la recherche par critères
+        nominates_evaluators: Le sujet nomme les évaluateurs
+        only_allow_relationships_of_specified_types: N'autoriser que les relations des types spécifiés
+        only_show_subjects_who_match_criteria: 'N''afficher que les sujets qui répondent aux critères suivants :'
+        self_evaluates: Le sujet s'auto-évalue
+        subjects_cannot_remove_nominations: Les sujets ne peuvent pas supprimer les nominations établies par les gestionnaires ou les administrateurs.
     or: Ou
     page_title: Examen de Signify 360° - Niveau d'application
     participant_list:

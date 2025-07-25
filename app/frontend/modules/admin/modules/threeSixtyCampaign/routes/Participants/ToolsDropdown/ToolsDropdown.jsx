@@ -229,7 +229,7 @@ export default function ToolsDropdown ({
       centered: true,
       width: 650,
       content: I18n.t('campaign_assessment.modals.bulk_update_evaluation.content', { status }),
-      okText: I18n.t('common.text.ok'),
+      okText: I18n.t('common.text.confirm'),
       cancelText: I18n.t('common.text.cancel'),
       onOk: async () => {
         try {
@@ -300,7 +300,7 @@ export default function ToolsDropdown ({
       innerElement={(
         <Button>
           <ToolOutlined />
-          <span>{title || 'Tools'}</span>
+          <span>{title || I18n.t('administration.tools')}</span>
           <DownOutlined />
         </Button>
       )}

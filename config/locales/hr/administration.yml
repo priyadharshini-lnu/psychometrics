@@ -174,6 +174,8 @@ hr:
             title: Predlošci IDP-a
             view: Pregled
           jobRoles:
+            export_translations: Izvoz prijevoda radnih uloga
+            import_translations: Uvoz prijevoda radnih uloga
             manage: Upravljanje
             title: Poslovne uloge
             view: Pregled
@@ -841,6 +843,14 @@ hr:
     campaign_factors_import:
       errors:
         invalid_headers: 'Sljedeća zaglavlja su nevažeća: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Molimo odaberite raspon datuma
+        modal:
+          subtitle: Odaberite raspon datuma i zatim odaberite potreban jezik za svako izvješće
+      generate:
+        modal:
+          subtitle: Odaberite potreban jezik za svako izvješće
     campaign_templates:
       campaign_templates: Predlošci kampanja
       column:
@@ -958,7 +968,9 @@ hr:
             empty: Prazno
             inactive: Neaktivano
             name: Ime
+            normal: Normalno
             previous: Prethodno
+            skill_rater: Procjenjivač vještina
             standard: Standardno
             status: Status
           close:
@@ -1066,6 +1078,7 @@ hr:
         ai_assistants: AI pomoćnici
         ai_assisted_idp: IDP potpomognut umjetnom inteligencijom
         global_skills: Globalne vještine
+        idp: IDP
         sms_notification: SMS obavijest
     clients:
       api_keys:
@@ -1491,6 +1504,8 @@ hr:
         update:
           successfully: Projekt %{name} uspješno je ažuriran.
       registration_codes:
+        actions:
+          add_code: Dodaj kod
         column:
           code: Šifra
           usage_stats: Statistika korištenja
@@ -1501,6 +1516,13 @@ hr:
           incorrect_domain: Netočan format domene.
           invalid_end_date: mora biti veći od datuma početka
           license_issue: Nema dovoljno licenci.
+        form:
+          active: Aktivan
+          code: Kod
+          end_date: Datum završetka
+          name: Ime
+          start_date: Datum početka
+          total_count: Ukupan broj
       resource:
         confirmations:
           delete:
@@ -1530,7 +1552,9 @@ hr:
       reset: Resetiranje
       save: Spremi
       select_all: Odaberi sve
+      type: Tip
       unselect_all: Poništi odabir svega
+    communication_settings: Postavke
     communications:
       create:
         successfully: Komunikacija je uspješno uspostavljena.
@@ -1563,9 +1587,16 @@ hr:
           {{email}} - E-pošta primatelja
           {{schedule_start_date}} - Datum početka
           {{schedule_end_date}} - Datum završetka
+        campaign: Kampanja
+        campaign_assessment_group: Grupa procjene kampanje
+        client: Klijent
         completion: Završetak
         delivery_at: Dostava po (GST)
         delivery_delay_hours: Kašnjenje isporuke (sati)
+        delivery_interval: Interval dostave
+        delivery_interval_number: Broj intervala dostave
+        delivery_interval_period: Period intervala dostave
+        delivery_rule: Pravilo dostave
         delivery_rules:
           in_progress: Ako je procjena u tijeku
           not_competed: Ako procjena nije dovršena
@@ -1577,13 +1608,18 @@ hr:
         idp_template_approved: Odobreno za interno raseljene osobe
         idp_template_assigned: Dodijeljeno IDP-u
         idp_template_rejected: IDP odbijen
+        insert_piped_text: Umetni povezani tekst
         invitation: Poziv
         kind: Vrste komunikacije
         locale: Poprište
         magic_link_email: E-pošta Magic Link
+        message_body_placeholder: Unesite svoju poruku ovdje...
         new_assignment: Novi zadatak
         new_users: Novi korisnici
         other: Drugi
+        owner: Vlasnik
+        project: Projekt
+        recipients: Primatelji
         reminder: Opomena
         report_available: Dostupno izvješće
         selected: Odabrani
@@ -1591,6 +1627,7 @@ hr:
         selected_recipients: Odabrani primatelji
         stop_reminder: Prestanak slanja podsjetnika
         stop_reminder_datetime: Datum završetka podsjetnika (GST)
+        subject: Predmet
         workshop_booked: Potvrda rezervacije centra za procjenu
         workshop_cancelled: Centar za procjenu otkazan
         workshop_completed: Centar za procjenu završen
@@ -1604,6 +1641,7 @@ hr:
         type: Tip
       list:
         actions: Akcije
+        assessment_center_group: Grupa centara za procjenu
         author: Izradio
         campaign: Kampanja
         client_name: Klijent
@@ -1751,6 +1789,7 @@ hr:
       errors:
         blank_field: 'Redak %{row}: %{field} ne može biti prazan'
         csv_file_required: Mora biti CSV datoteka
+        development_action_not_in_project: 'Redak %{row}: ID razvojne akcije %{development_action_id} ne pripada ovom projektu'
         image_download_failed: 'Nije uspjelo preuzeti sliku s %{url}: %{message}'
         invalid_csv_format: 'Nevažeći CSV format: %{message}'
         invalid_date: Format datuma za %{date} nije valjan.
@@ -1875,10 +1914,24 @@ hr:
         successfully: Zadatak faktora uvoza zakazan za dimenziju %{name}.
         title: Čimbenici uvoza
       import_modal:
+        after: Nakon
+        before: Prije
         cancel: Otkazati
+        change_log_input: Dnevnik promjena
         continue: Nastaviti
+        error: Greška
+        error_occurred: Dogodila se greška
+        errors:
+          file_error: Molimo odaberite JSON datoteku prije nastavka.
+          processing_error: Greška prilikom obrade datoteke
+        field: Polje
         import: Uvoz
         import_dimension: Dimenzija uvoza
+        import_scheduled: Uvoz zakazan
+        operation: Operacija
+        owner_input_validation: Molimo odaberite vlasnika
+        owner_select: Odaberite vlasnika
+        select_json: Odaberite JSON datoteku
       import_translations:
         error: Pogreška prilikom uvoza prijevoda za dimenziju %{name}.
         successfully: Uvezite prijevode zakazane za dimenziju %{name}.
@@ -2066,10 +2119,13 @@ hr:
       all: Sve
       appearance: Izgled
       appearance_hint: Da biste izmijenili izgled, prvo spremite IDP predložak da biste omogućili ove postavke.
+      appearance_success: Postavke izgleda su uspješno spremljene
       background_image: Pozadinska slika
       behavioral_skills: Vještine ponašanja
       client_skills: Vještine klijenata
+      details_updated: Detalji IDP-a su uspješno ažurirani
       edit_template: Uredi predložak IDP-a
+      enter_tag_or_skills_error: Odaberite barem jednu oznaku ili vještinu
       enter_template_description: Opis
       enter_template_description_error: Potreban je opis predloška.
       enter_template_name: Ime
@@ -2078,6 +2134,7 @@ hr:
         update: Ažuriranje nije dopušteno jer je predložak IDP-a već povezan s korisničkim IDP planom. Promjene izgleda su spremljene.
       fields:
         assigned_data: Dodijeljeni podaci
+        assigned_date: Datum dodjele
         completion_date: Datum završetka
         division: Podjela
         name: Ime
@@ -2115,6 +2172,11 @@ hr:
       show_reflections: Pokažite odraze
       skill_gap_report: Izvješće o nedostatku vještina
       skills: Vještine
+      skills_updated: Vještine IDP-a su uspješno ažurirane
+      status:
+        draft: Skica
+        published: Objavljeno
+      status_updated: Status IDP-a je uspješno ažuriran
       subtitle_text: Tekst titlova
       tab:
         development_actions: Razvojne akcije
@@ -2347,8 +2409,10 @@ hr:
         rescheduled: Odgođeno
       subject: Ispitanik
     job_role:
+      are_you_sure_to_remove: Jeste li sigurni da želite ukloniti?
       column:
         job_group: Grupa poslova
+        skill_name: Naziv vještine
       export:
         failure_msg: Pogreška prilikom izvoza prijevoda
         success_msg: Izvoz razvojnih radnji u tijeku.
@@ -2363,6 +2427,7 @@ hr:
         success_msg: Prenesena datoteka stavljena je u red čekanja za uvoz. Provjerite status u obavijestima.
       import_action:
         translations: Uvoz prijevoda radnih uloga
+      job_role_details: Detalji radne uloge
       translations: Prijevodi radnih uloga
     job_role_skill_mapping:
       column:
@@ -2375,6 +2440,12 @@ hr:
       export:
         translations:
           details: Detalji
+      translations:
+        import:
+          errors:
+            job_role_not_found: Radna uloga s ID-om %{id} nije pronađena
+            missing_columns: 'Nedostaju obavezni stupci: %{columns}'
+            save_failed: 'Greška pri obradi radne uloge s ID-om %{id}: %{message}'
     libraries:
       create:
         successfully: Stavka %{name} je uspješno kreirana.
@@ -2426,6 +2497,7 @@ hr:
         successfully: Korisnik %{name} uspješno je ažuriran.
       update:
         successfully: Korisnik %{name} uspješno je ažuriran.
+    message: Poruka
     meta_title: Administrativna ploča
     navigation:
       ai_assistants: AI pomoćnici
@@ -2532,6 +2604,7 @@ hr:
         editor: Uređivač normi
         export: Izvozna norma
         title: Normove opcije
+      title: Norma
       toggle_status:
         successfully: Norm je uspješno ažuriran.
       update:
@@ -2619,12 +2692,16 @@ hr:
     piped_text_modal:
       assessment_id: ID procjene
       campaign_id: ID kampanje
+      campaign_name: Naziv kampanje
+      campaigns: Kampanje
       insight_page_link: Poveznica na stranicu Uvid
       insight_page_url: URL stranice uvida
       join_link: Veza za pridruživanje
       magic_link: Čarobna veza
       magic_url: Čarobni URL
       profile_custom_field: Prilagođeno polje profila
+      project_name: Naziv projekta
+      projects: Projekti
       report_name: Naziv izvješća
       text: Tekstualna poruka
       title: Dodavanje teksta s cijevima
@@ -2655,6 +2732,9 @@ hr:
           level_definition_must_match_level: mora sadržavati točno %{expected} razine, ali %{actual} je dano
           must_be_unique: Mora biti jedinstven
           proficiency_level_exists: Razina stručnosti s ovom vještinom i projektom već postoji
+          proficiency_level_exists_for_default: Razina stručnosti za zadanu vrijednost već postoji
+          proficiency_level_exists_for_type: Razina stručnosti za ovu vrstu već postoji
+          project_level_default_exists: "'Zadana' razina stručnosti već postoji"
           skill_must_exist: Vještina mora biti prisutna za proficiency_type 'by_skill'
       export:
         details: Detalji
@@ -2670,6 +2750,7 @@ hr:
         proficiency_type: Vrsta stručnosti
         skill: Vještina
         skill_name: Naziv vještine
+        skill_type: Vrsta vještine
         title: Znanje
       import:
         actions:
@@ -2698,6 +2779,8 @@ hr:
             save_failed: 'ID vještine pri obradi pogreške %{id}: %{message}'
       type:
         by_skill: Po vještini
+        by_skill_type: Po vrsti vještine
+        default: Zadano
     profile:
       change_password: Promjena lozinke
       details: Detalji
@@ -3059,6 +3142,7 @@ hr:
         user_name: Korisničko ime
       dashboard: Nadzorna ploča
       download: Preuzimanje
+      report_approval_settings: Postavke odobrenja izvješća
       report_approvals: Odobrenja izvješća
       review: Pregled
       saving_filters:
@@ -3180,6 +3264,15 @@ hr:
         successfully: Izvješće '%{name}' uspješno je izbrisano.
       edit:
         header: Uređivanje naziva izvješća
+      edit_default_language:
+        agreement: Da, razumijem implikacije promjene zadanog jezika.
+        title: Uredi zadani jezik
+        tooltip: Uredi zadani jezik
+        warning:
+          description_li_1: Promjena zadanog jezika s RTL na LTR jezik ili obrnuto utjecat će na raspored.
+          description_li_2: Morat ćete preraditi prijevode izvješća ako promijenite zadani jezik.
+          description_li_3: Preuzmite kopiju prijevoda izvješća prije ove promjene.
+          title: Molimo pažljivo pročitajte upute
       modals:
         remap_assessment:
           new_assessment_name: Novi naziv procjene
@@ -3222,6 +3315,9 @@ hr:
         successfully: Izvješće je uspješno ažurirano.
       update:
         successfully: Izvješće %{name} uspješno je ažurirano.
+    reports_language_selection_modal:
+      download: Preuzimanje izvješća
+      generate: Generiraj izvješće
     resource:
       remove_confirm:
         message: Jeste li sigurni da želite ukloniti ovaj resurs?
@@ -3628,6 +3724,7 @@ hr:
         import:
           missing_fields_data: 'Redak %{line_number}: Nedostaju obavezna polja: %{fields}'
           save_failed: 'Redak %{line_number}: Nije uspjelo spremiti vještinu ''%{name}'': %{message}'
+          skill_not_in_project: 'Redak %{line_number}: ID vještine %{skill_id} ne pripada ovom projektu'
         search:
           all_and_project_id_mutually_exclusive: Ne može sve biti istina kada se project_id_eq pruži
           invalid_all_value: 'mora biti jedan od: istinit, netočan'
@@ -3819,7 +3916,25 @@ hr:
         successfully: Podfaktor je uspješno ažuriran.
     survey_builder:
       builder_area:
+        current_job: Trenutni posao
+        default_not_applicable_label: Nema prilike za učenje ili pokazivanje vještine
+        enable_not_applicable: Omogući opciju N/D
+        enable_required_validation: Omogući obaveznu provjeru
+        force_response: Obavezni odgovor
+        job_role_required: Odaberite barem jednu radnu ulogu
+        not_applicable_label: Oznaka nije primjenjiva
         options: Mogućnosti
+        request_response: Zatraži odgovor
+        skill_rater_config: Konfiguracija procjenjivača vještina
+        target_job: Ciljani posao
+      models:
+        block_types:
+          regular: Redovan
+          skill_rater: Procjenjivač vještina
+        skill_types:
+          behavioural: Bihevioralni
+          other: Ostalo
+          technical: Tehnički
       property_panel:
         add_n_a_option: Dodaj opciju N/A
         allow_content_copy: Dopusti kopiranje sadržaja
@@ -3978,6 +4093,7 @@ hr:
           invitations: Pozivnice
           reminders: Podsjetnike
           report_ready: Izvještaj spreman
+        consolidated: Konsolidirano
         custom_message:
           description: Ova se poruka može poslati svima koji sudjeluju u procjeni
           name: Prilagođena poruka
@@ -4001,7 +4117,10 @@ hr:
         request_approval:
           description: Ova se poruka šalje menadžerima kada ispitanik zatraži odobrenje
           name: Zatražite odobrenje
+        save: Spremi
+        schedule: Raspored
         schedule_email: Zakažite e-poštu
+        schedule_email_title: Raspored e-pošte
         schedule_time: Vrijeme rasporeda
         send_test_email: Pošalji testnu e-poštu
         subject: Ispitanik
@@ -4042,6 +4161,14 @@ hr:
         welcome_message:
           description: Ova će se poruka prikazati ispitanicima kada se prijave kako bi započeli procjenu ili pregledali svoj popis zadataka
           name: Poruka dobrodošlice
+      mail_history:
+        actions: Akcije
+        date: Datum
+        download_details: Preuzmite pojedinosti
+        emails_sent: Poslane e-pošte
+        recipient: Primatelj
+        status: Status
+        subject: Predmet
       manage:
         assessment: Ocjenjivanje
         dimension: Dimenzije
@@ -4049,19 +4176,45 @@ hr:
         report: Izvješće
         title: Upravljanje
       menu:
+        actions: Akcije
         datasheet:
           title: Podatkovna tablica
         messages:
+          allow_subjects_to_send_reminders: Dopustite ispitanicima da šalju podsjetnike evaluatorima
+          automatically_send_invites: Automatski pošaljite pozivnice novim evaluatorima
           title: Poruke
         participants:
+          columns:
+            action: Akcija
+            email: E-pošta
+            evaluations_completed: Dovršene evaluacije
+            evaluations_received: Primljene evaluacije
+            is_subject: Je ispitanik
+            name: Ime
+            report_status: Status izvješća
+            status: Status
+          evaluators:
+            add_evaluators: Dodaj evaluatore
+            import_evaluators: Uvezi evaluatore
+            title: Evaluatori
+          managers:
+            title: Menadžeri
+          options:
+            evaluator_options: Opcije evaluatora
+            global: Globalne opcije
+            manager_options: Opcije menadžera
+            subject_options: Opcije ispitanika
+            title: Opcije
           subjects:
             add_subjects: Dodavanje ispitanika
             current_job_role: Trenutna radna uloga
             email: E-pošta
             first_name: Ime
+            import_subjects: Uvezi ispitanike
             last_name: Prezime
             locale: Poprište
             target_job_role: Ciljana radna uloga
+            title: Ispitanici
           title: Sudionici
         report:
           menu:
@@ -4077,8 +4230,26 @@ hr:
         mail_history: Povijest pošte
         options: Mogućnosti
       reports:
+        add_conditions: Dodaj uvjete
+        administrator_approves_reports: Administrator odobrava izvješća
+        allow_manager_to_view_individual_responses: Dopusti menadžeru da vidi pojedinačne odgovore
+        disable_report_download: Onemogući preuzimanje izvješća
+        edit_email: Uredi e-poštu
+        email_manager_when_report_is_ready_for_approval: Pošaljite e-poštu menadžeru kada je izvješće spremno za odobrenje
+        email_subject_when_report_becomes_available: Pošaljite e-poštu ispitaniku kada izvješće postane dostupno
+        email_subjects_manager_when_available: Pošaljite e-poštu menadžeru ispitanika kada izvješće postane dostupno
+        make_report_available_to_subject_when: 'Učinite izvješće dostupnim ispitaniku kada:'
+        manager_approves_reports: Menadžer odobrava izvješća
+        manager_can_access_subject_reports: Menadžer može pristupiti izvješćima ispitanika
+        manager_cannot_access_subject_reports: Menadžer ne može vidjeti izvješće dok se ne ispune zahtjevi
+        report_access: Pristup izvješću
+        report_approval: Odobrenje izvješća
+        report_availability: Dostupnost izvješća
         show:
           title: Izvješće o ispitaniku
+        subject_can_access_reports: Ispitanik može pristupiti svojim izvješćima
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Označite licence kao deaktivirane
     time_zone: Vremenska zona
     tools: Alati
     translations:

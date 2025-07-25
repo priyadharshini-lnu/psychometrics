@@ -174,6 +174,8 @@ id:
             title: Template IDP
             view: Melihat
           jobRoles:
+            export_translations: Penerjemahan Peran Pekerjaan Ekspor
+            import_translations: Impor Terjemahan Peran Pekerjaan
             manage: Urus
             title: Peran Pekerjaan
             view: Melihat
@@ -841,6 +843,14 @@ id:
     campaign_factors_import:
       errors:
         invalid_headers: 'Header berikut tidak valid: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Pilih rentang tanggal
+        modal:
+          subtitle: Pilih rentang tanggal, lalu pilih bahasa yang diperlukan untuk setiap laporan
+      generate:
+        modal:
+          subtitle: Pilih bahasa yang diperlukan untuk setiap laporan
     campaign_templates:
       campaign_templates: Templat Kampanye
       column:
@@ -958,7 +968,9 @@ id:
             empty: Kosong
             inactive: Tidak Aktif
             name: Nama
+            normal: Normal
             previous: Sebelumnya
+            skill_rater: Penilai Keterampilan
             standard: Standar
             status: Keadaan
           close:
@@ -1066,6 +1078,7 @@ id:
         ai_assistants: Asisten AI
         ai_assisted_idp: IDP yang Dibantu AI
         global_skills: Keterampilan Global
+        idp: IDP
         sms_notification: Pemberitahuan SMS
     clients:
       api_keys:
@@ -1491,6 +1504,8 @@ id:
         update:
           successfully: Proyek %{name} berhasil diperbarui.
       registration_codes:
+        actions:
+          add_code: Tambahkan Kode
         column:
           code: Kode
           usage_stats: Statistik penggunaan
@@ -1501,6 +1516,13 @@ id:
           incorrect_domain: Format domain salah.
           invalid_end_date: harus lebih besar dari tanggal mulai
           license_issue: Lisensi tidak cukup.
+        form:
+          active: Aktif
+          code: Kode
+          end_date: Tanggal Akhir
+          name: Nama
+          start_date: Tanggal Mulai
+          total_count: Jumlah Total
       resource:
         confirmations:
           delete:
@@ -1530,7 +1552,9 @@ id:
       reset: Reset
       save: Simpan
       select_all: Pilih semua
+      type: Jenis
       unselect_all: Batalkan pilihan semua
+    communication_settings: Pengaturan
     communications:
       create:
         successfully: Komunikasi berhasil tercipta.
@@ -1563,9 +1587,16 @@ id:
           {{email}} - Email Penerima
           {{schedule_start_date}} - Jadwalkan Tanggal Mulai
           {{schedule_end_date}} - Jadwalkan Tanggal Akhir
+        campaign: Kampanye
+        campaign_assessment_group: Kelompok Penilai Kampanye
+        client: Klien
         completion: Penyelesaian
         delivery_at: Pengiriman di (GST)
         delivery_delay_hours: Penundaan pengiriman (jam)
+        delivery_interval: Interval Pengiriman
+        delivery_interval_number: Nomor Interval Pengiriman
+        delivery_interval_period: Periode Interval Pengiriman
+        delivery_rule: Aturan Pengiriman
         delivery_rules:
           in_progress: Jika penilaian sedang berlangsung
           not_competed: Jika penilaian tidak selesai
@@ -1577,13 +1608,18 @@ id:
         idp_template_approved: IDP Disetujui
         idp_template_assigned: IDP Ditugaskan
         idp_template_rejected: IDP Ditolak
+        insert_piped_text: Menyisipkan Teks Berpipa
         invitation: Undangan
         kind: Jenis Komunikasi
         locale: Lokal
         magic_link_email: Email Tautan Ajaib
+        message_body_placeholder: Masukkan pesan Anda di sini...
         new_assignment: Tugas Baru
         new_users: Pengguna Baru
         other: Lain
+        owner: Pemilik
+        project: Proyek
+        recipients: Penerima
         reminder: Pengingat
         report_available: Laporan tersedia
         selected: Dipilih
@@ -1591,6 +1627,7 @@ id:
         selected_recipients: Penerima Terpilih
         stop_reminder: Berhenti mengirim pengingat
         stop_reminder_datetime: Tanggal akhir untuk pengingat (GST)
+        subject: Subjek
         workshop_booked: Konfirmasi pemesanan pusat penilaian
         workshop_cancelled: Pusat penilaian dibatalkan
         workshop_completed: Pusat penilaian selesai
@@ -1604,6 +1641,7 @@ id:
         type: Jenis
       list:
         actions: Tindakan
+        assessment_center_group: Kelompok Pusat Penilaian
         author: Dibuat oleh
         campaign: Kampanye
         client_name: Klien
@@ -1751,6 +1789,7 @@ id:
       errors:
         blank_field: 'Baris %{row}: %{field} tidak boleh kosong'
         csv_file_required: Harus berupa file CSV
+        development_action_not_in_project: 'Line %{row}: Development Action ID %{development_action_id} bukan milik proyek ini'
         image_download_failed: 'Gagal mengunduh gambar dari %{url}: %{message}'
         invalid_csv_format: 'Format CSV tidak valid: %{message}'
         invalid_date: Format tanggal untuk %{date} tidak valid.
@@ -1875,10 +1914,24 @@ id:
         successfully: Impor pekerjaan faktor yang dijadwalkan untuk dimensi %{name}.
         title: Faktor Impor
       import_modal:
+        after: Setelah
+        before: Sebelum
         cancel: Membatalkan
+        change_log_input: Ubah Log
         continue: Terus
+        error: Kesalahan
+        error_occurred: Terjadi kesalahan
+        errors:
+          file_error: Pilih file JSON sebelum melanjutkan.
+          processing_error: File pemrosesan kesalahan
+        field: Bidang
         import: Mengimpor
         import_dimension: Dimensi Impor
+        import_scheduled: Impor terjadwal
+        operation: Operasi
+        owner_input_validation: Pilih pemilik
+        owner_select: Pilih pemilik
+        select_json: Pilih file JSON
       import_translations:
         error: Kesalahan saat mengimpor terjemahan untuk dimensi %{name}.
         successfully: Impor terjemahan yang dijadwalkan untuk dimensi %{name}.
@@ -2066,10 +2119,13 @@ id:
       all: Semua
       appearance: Rupa
       appearance_hint: Untuk mengubah tampilan, silakan simpan templat IDP terlebih dahulu untuk mengaktifkan pengaturan ini.
+      appearance_success: Pengaturan penampilan berhasil disimpan
       background_image: Gambar latar belakang
       behavioral_skills: Keterampilan Perilaku
       client_skills: Keterampilan Klien
+      details_updated: Detail IDP berhasil diperbarui
       edit_template: Edit IDP Template
+      enter_tag_or_skills_error: Pilih setidaknya satu tag atau keterampilan
       enter_template_description: Deskripsi
       enter_template_description_error: Deskripsi templat diperlukan.
       enter_template_name: Nama
@@ -2078,6 +2134,7 @@ id:
         update: Pembaruan tidak diizinkan karena templat IDP sudah dikaitkan dengan paket IDP pengguna. Perubahan tampilan telah disimpan.
       fields:
         assigned_data: Data yang Ditetapkan
+        assigned_date: Tanggal Penugasan
         completion_date: Tanggal Penyelesaian
         division: Divisi
         name: Nama
@@ -2115,6 +2172,11 @@ id:
       show_reflections: Tampilkan Refleksi
       skill_gap_report: Laporan Kesenjangan Keterampilan
       skills: Keterampilan
+      skills_updated: Keterampilan IDP berhasil diperbarui
+      status:
+        draft: Konsep
+        published: Diterbitkan
+      status_updated: Status IDP berhasil diperbarui
       subtitle_text: Teks subtitle
       tab:
         development_actions: Tindakan Pengembangan
@@ -2347,8 +2409,10 @@ id:
         rescheduled: Dijadwalkan Ulang
       subject: Subyek
     job_role:
+      are_you_sure_to_remove: Apakah Anda yakin untuk menghapusnya?
       column:
         job_group: Kelompok Pekerjaan
+        skill_name: Nama Keterampilan
       export:
         failure_msg: Kesalahan saat mengekspor terjemahan
         success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung.
@@ -2363,6 +2427,7 @@ id:
         success_msg: File yang diunggah telah diantrekan untuk impor. Silakan periksa status di notifikasi.
       import_action:
         translations: Impor Terjemahan Peran Pekerjaan
+      job_role_details: Rincian Peran Pekerjaan
       translations: Terjemahan Peran Pekerjaan
     job_role_skill_mapping:
       column:
@@ -2375,6 +2440,12 @@ id:
       export:
         translations:
           details: Rincian
+      translations:
+        import:
+          errors:
+            job_role_not_found: Peran pekerjaan dengan ID %{id} tidak ditemukan
+            missing_columns: 'Kolom yang diperlukan tidak ada: %{columns}'
+            save_failed: 'Kesalahan pemrosesan ID Peran Pekerjaan %{id}: %{message}'
     libraries:
       create:
         successfully: Item %{name} berhasil dibuat.
@@ -2426,6 +2497,7 @@ id:
         successfully: Pengguna %{name} berhasil diperbarui.
       update:
         successfully: Pengguna %{name} berhasil diperbarui.
+    message: Pesan
     meta_title: Panel administrasi
     navigation:
       ai_assistants: Asisten AI
@@ -2532,6 +2604,7 @@ id:
         editor: Editor Norma
         export: Norma Ekspor
         title: Opsi Norm
+      title: Norma
       toggle_status:
         successfully: Norm berhasil diperbarui.
       update:
@@ -2619,12 +2692,16 @@ id:
     piped_text_modal:
       assessment_id: ID Penilaian
       campaign_id: ID Kampanye
+      campaign_name: Nama Kampanye
+      campaigns: Kampanye
       insight_page_link: Tautan Halaman Insight
       insight_page_url: URL Halaman Insight
       join_link: Link Bergabung
       magic_link: Tautan Ajaib
       magic_url: URL ajaib
       profile_custom_field: Bidang Kustom Profil
+      project_name: Nama Proyek
+      projects: Proyek
       report_name: Nama Laporan
       text: Teks
       title: Tambahkan Teks Piped
@@ -2655,6 +2732,9 @@ id:
           level_definition_must_match_level: harus berisi persis %{expected} level, tetapi %{actual} diberikan
           must_be_unique: Harus unik
           proficiency_level_exists: Tingkat Kecakapan dengan keterampilan dan proyek ini sudah ada
+          proficiency_level_exists_for_default: Tingkat Kemahiran untuk default sudah keluar
+          proficiency_level_exists_for_type: Tingkat Kemahiran untuk jenis ini sudah ada
+          project_level_default_exists: Tingkat kemahiran 'default' sudah ada
           skill_must_exist: Keterampilan harus ada untuk proficiency_type 'by_skill'
       export:
         details: Rincian
@@ -2670,6 +2750,7 @@ id:
         proficiency_type: Jenis kemahiran
         skill: Keahlian
         skill_name: Nama keterampilan
+        skill_type: Jenis Keterampilan
         title: Kemampuan
       import:
         actions:
@@ -2698,6 +2779,8 @@ id:
             save_failed: 'Error memproses ID Skill %{id}: %{message}'
       type:
         by_skill: Berdasarkan Keterampilan
+        by_skill_type: Berdasarkan Jenis Keterampilan
+        default: Default
     profile:
       change_password: Ubah kata sandi
       details: Rincian
@@ -3059,6 +3142,7 @@ id:
         user_name: Nama pengguna
       dashboard: Dashboard
       download: Mengunduh
+      report_approval_settings: Pengaturan Persetujuan Laporan
       report_approvals: Laporan Persetujuan
       review: Resensi
       saving_filters:
@@ -3180,6 +3264,15 @@ id:
         successfully: Laporan '%{name}' berhasil dihapus.
       edit:
         header: Edit Nama Laporan
+      edit_default_language:
+        agreement: Ya, saya memahami implikasi dari perubahan bahasa default.
+        title: Edit Bahasa Default
+        tooltip: Edit Bahasa Default
+        warning:
+          description_li_1: Mengubah bahasa default dari bahasa RTL ke bahasa LTR atau sebaliknya akan mempengaruhi tata letak.
+          description_li_2: Anda harus mengerjakan ulang terjemahan laporan jika Anda mengubah bahasa default.
+          description_li_3: Unduh salinan terjemahan laporan sebelum melakukan perubahan ini.
+          title: Harap baca instruksi dengan seksama
       modals:
         remap_assessment:
           new_assessment_name: Nama Penilaian Baru
@@ -3222,6 +3315,9 @@ id:
         successfully: Laporan berhasil diperbarui.
       update:
         successfully: Laporan %{name} berhasil diperbarui.
+    reports_language_selection_modal:
+      download: Unduh laporan
+      generate: Membuat laporan
     resource:
       remove_confirm:
         message: Apakah Anda yakin ingin menghapus sumber daya ini?
@@ -3628,6 +3724,7 @@ id:
         import:
           missing_fields_data: 'Baris %{line_number}: Bidang wajib tidak ada: %{fields}'
           save_failed: 'Baris %{line_number}: Gagal menyimpan skill ''%{name}'': %{message}'
+          skill_not_in_project: 'Line %{line_number}: ID Keterampilan %{skill_id} bukan milik proyek ini'
         search:
           all_and_project_id_mutually_exclusive: Semua tidak bisa benar ketika project_id_eq disediakan
           invalid_all_value: 'harus salah satu: benar, salah'
@@ -3819,7 +3916,25 @@ id:
         successfully: Sub-Faktor berhasil diperbarui.
     survey_builder:
       builder_area:
+        current_job: Pekerjaan saat ini
+        default_not_applicable_label: Tidak ada kesempatan untuk mempelajari atau mendemonstrasikan keterampilan
+        enable_not_applicable: Mengaktifkan opsi N/A
+        enable_required_validation: Aktifkan Validasi yang Diperlukan
+        force_response: Tanggapan paksa
+        job_role_required: Pilih setidaknya satu peran pekerjaan
+        not_applicable_label: Label Tidak Berlaku
         options: Pilihan
+        request_response: Tanggapan permintaan
+        skill_rater_config: Konfigurasi Penilai Keterampilan
+        target_job: Target Pekerjaan
+      models:
+        block_types:
+          regular: Reguler
+          skill_rater: Penilai Keterampilan
+        skill_types:
+          behavioural: Perilaku
+          other: Lainnya
+          technical: Teknis
       property_panel:
         add_n_a_option: Tambahkan opsi N/A
         allow_content_copy: Mengizinkan penyalinan konten
@@ -3978,6 +4093,7 @@ id:
           invitations: Undangan
           reminders: Pengingat
           report_ready: Laporan Siap
+        consolidated: Dikonsolidasikan
         custom_message:
           description: Pesan ini dapat dikirim ke siapa saja yang berpartisipasi dalam penilaian
           name: Pesan Kustom
@@ -4001,7 +4117,10 @@ id:
         request_approval:
           description: Pesan ini dikirim ke manajer saat subjek meminta persetujuan
           name: Minta Persetujuan
+        save: Simpan
+        schedule: Jadwal
         schedule_email: Jadwalkan Email
+        schedule_email_title: Jadwalkan Email
         schedule_time: Jadwal Waktu
         send_test_email: Kirim Email Uji
         subject: Subyek
@@ -4042,6 +4161,14 @@ id:
         welcome_message:
           description: Pesan ini akan ditampilkan kepada subjek saat mereka masuk untuk memulai penilaian atau melihat daftar tugas mereka
           name: Pesan Selamat Datang
+      mail_history:
+        actions: Tindakan
+        date: Tanggal
+        download_details: Unduh Detail
+        emails_sent: Email Terkirim
+        recipient: Penerima
+        status: Status
+        subject: Subjek
       manage:
         assessment: Penilaian
         dimension: Dimensi
@@ -4049,19 +4176,45 @@ id:
         report: Lapor
         title: Urus
       menu:
+        actions: Tindakan
         datasheet:
           title: Lembar data
         messages:
+          allow_subjects_to_send_reminders: Memungkinkan subjek untuk mengirim pengingat kepada evaluator
+          automatically_send_invites: Secara otomatis mengirim undangan ke evaluator baru
           title: Pesan
         participants:
+          columns:
+            action: Tindakan
+            email: Email
+            evaluations_completed: Evaluasi Selesai
+            evaluations_received: Evaluasi yang Diterima
+            is_subject: Apakah Subjek
+            name: Nama
+            report_status: Status Laporan
+            status: Status
+          evaluators:
+            add_evaluators: Menambahkan Evaluator
+            import_evaluators: Evaluator Impor
+            title: Evaluator
+          managers:
+            title: Manajer
+          options:
+            evaluator_options: Opsi Evaluator
+            global: Opsi Global
+            manager_options: Opsi Manajer
+            subject_options: Pilihan Mata Pelajaran
+            title: Pilihan
           subjects:
             add_subjects: Tambahkan Subjek
             current_job_role: Peran Pekerjaan Saat Ini
             email: Email
             first_name: Nama depan
+            import_subjects: Subjek Impor
             last_name: Nama Belakang
             locale: Lokal
             target_job_role: Peran Pekerjaan Target
+            title: Subjek
           title: Peserta
         report:
           menu:
@@ -4077,8 +4230,26 @@ id:
         mail_history: Riwayat Surat
         options: Pilihan
       reports:
+        add_conditions: Tambahkan Ketentuan
+        administrator_approves_reports: Administrator menyetujui laporan
+        allow_manager_to_view_individual_responses: Izinkan Manajer untuk melihat tanggapan individu
+        disable_report_download: Menonaktifkan pengunduhan laporan
+        edit_email: Edit email
+        email_manager_when_report_is_ready_for_approval: Manajer Email saat laporan siap untuk disetujui
+        email_subject_when_report_becomes_available: Subjek email saat laporan tersedia
+        email_subjects_manager_when_available: Manajer subjek email saat laporan tersedia
+        make_report_available_to_subject_when: 'Membuat laporan tersedia untuk subjek ketika:'
+        manager_approves_reports: Manajer menyetujui laporan
+        manager_can_access_subject_reports: Manajer dapat mengakses laporan subjek
+        manager_cannot_access_subject_reports: Manajer tidak dapat melihat laporan sampai persyaratan terpenuhi
+        report_access: Akses Laporan
+        report_approval: Persetujuan Laporan
+        report_availability: Ketersediaan Laporan
         show:
           title: Laporan Subjek
+        subject_can_access_reports: Subjek dapat mengakses laporan mereka
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Tandai lisensi sebagai dinonaktifkan
     time_zone: Zona Waktu
     tools: Perkakas
     translations:

@@ -60,18 +60,71 @@ zh-HK:
               must_exist: 專案必須存在
   activerecord:
     attributes:
+      assessment:
+        categories:
+          lead_assessor_form: 首席評估員表格
+        description: 說明
+        name: 名稱
+      block:
+        name: 名稱
+      client:
+        name: 名稱
+      dimension:
+        name: 名稱
+        owner: 業主
+      factor:
+        name: 名稱
+      innovation_style:
+        description: 說明
+        name: 名稱
+      innovation_styles_factor:
+        name: 名稱
+      library:
+        description: 說明
+        files: 檔案
+        name: 名稱
+        owner: 業主
       membership:
         first_name: 名字
         last_name: 姓氏
+      norm:
+        name: 名稱
+      occupation:
+        description: 說明
+        name: 名稱
+      occupations_factor:
+        name: 名稱
+      product:
+        name: 名稱
+      question:
+        name: 名稱
+        owner: 業主
+      task:
+        description: 說明
+        statuses:
+          in_progress: 進行中
+          not_started: 尚未開始
+      threesixty:
+        users_result:
+          statuses:
+            in_progress: 進行中
+            not_started: 尚未開始
       user:
         email: 電郵地址
         first_name: 名字
         last_name: 姓氏
+        name: 名稱
       user_form:
         email: 電郵地址
         first_name: 名字
         last_name: 姓氏
         password: 密碼
+      users_result:
+        name: 名稱
+        statuses:
+          in_progress: 進行中
+          not_started: 尚未開始
+          timed_out: 超時
     errors:
       models:
         register:
@@ -94,6 +147,8 @@ zh-HK:
           attributes:
             current_password:
               invalid: 目前密碼不正確
+            manager_id:
+              cannot_be_self: 使用者不能被指派為自己的經理
   admin_jobs:
     attrs:
       operations:
@@ -102,6 +157,8 @@ zh-HK:
         import_job_roles_translations: 匯入工作角色翻譯
         import_proficiency_level_translations: 進口能力等級翻譯
         import_skill_rater_taxonomies: 匯入技能評核員分類標準
+      statuses:
+        in_progress: 進行中
   anonym:
     close: 關閉
     continue: 繼續
@@ -135,7 +192,10 @@ zh-HK:
         skillvue_assessment_name: Skillvue 評估名稱
     fields:
       category:
+        lead_assessor_form: 首席評估員表格
         skillvue: Skillvue
+      status:
+        in_progress: 進行中
     instructions:
       begin_assessment: 開始
       cancel: 取消
@@ -350,6 +410,7 @@ zh-HK:
     assessments_heading: 您的任務
     column:
       external_user_id: Skillvue 候選人 ID
+      locales: 地點
       skillvue_email_id: Skillvue 候選人電子郵件 ID
       skillvue_external_assessment_id: Skillvue 評估 ID
     modals:
@@ -366,6 +427,22 @@ zh-HK:
       not_started: 未開始
       timed_out: 超時
       universal_link: 通用連結
+  campaign_report:
+    column:
+      locales: 地點
+    modals:
+      update_languages:
+        default_language: 預設語言
+        other_available_languages: 其他可用語言
+        select_default_language: 選擇預設語言
+        select_languages: 選擇語言
+        success_msg: 語言已成功更新
+        title: 報告語言
+  campaign_users:
+    details:
+      statuses:
+        in_progress: 進行中
+        not_started: 尚未開始
   campaigns:
     card:
       duration: 時間長度
@@ -481,12 +558,19 @@ zh-HK:
       category: 類別
       code: 代碼
       created_at: 建立時間
+      default_language: 預設語言
+      description: 說明
       id: ID
+      name: 名稱
+      owner: 業主
       status: 狀態
     model:
       assessments: 評估
       campaigns: 市場推廣
       reports: 報告
+    status:
+      in_progress: 進行中
+      not_started: 尚未開始
     text:
       cancel: 取消
       confirm: 確認
@@ -550,6 +634,8 @@ zh-HK:
       code_has_been_sent: 您的新單次密碼已發送至您已註冊的電郵地址
   dry_errors:
     errors:
+      add_manager:
+        cannot_be_self: 使用者不能被指派為自己的經理
       campaign_idps:
         idp_template_not_published: 該IDP模板尚未發布，請在分配到廣告系列之前將其發布。
       development_actions:
@@ -584,6 +670,9 @@ zh-HK:
     module_error_editor: 此模組出錯，請檢查模組設定。
     module_props_error: 這個模組出了問題。
     try_again: 請再試一次
+    workshop:
+      ical_generation_failed: 無法產生行事曆邀請
+      missing_or_invalid: 缺失或無效的 workshop_id
   factors:
     description: 說明
     factor: 因子
@@ -703,6 +792,7 @@ zh-HK:
     'yes': 是
   idp:
     actions: 操作
+    behavioral: 行為
     board: 看板
     comment_details:
       add_comment: 新增評論
@@ -916,9 +1006,11 @@ zh-HK:
     skill_gap_report:
       title: 技能差距報告
     status: 狀態
+    technical: 技術
     user_idp_status:
       approved: 已批准
       draft: 草稿
+      in_progress: 進行中
       not_started: 未开始
       pending_approval: 待批准
     users: 用戶
@@ -941,6 +1033,10 @@ zh-HK:
       text: Powered by Lighthouse.
   navigation:
     logout: 登出
+  norms:
+    percentile:
+      columns:
+        name: 名稱
   profile:
     add_field: 新增欄位
     add_photo: 新增相片
@@ -970,8 +1066,11 @@ zh-HK:
       add: 添加報告
       download: 下載報告
       view: 查看報告
+    columns:
+      default_language: 預設語言
     form:
       load_from_skillvue: 從 Skillvue 載入
+    language: 報告語言
     modules:
       campaign_factors_table:
         add_condition: 新增條件
@@ -1078,16 +1177,40 @@ zh-HK:
     terms_conditions_privacy: 私隱聲明
     tte_terms_and_condition: 條款和私隱
   simple_form:
+    labels:
+      client:
+        name: 名稱
     placeholders:
       administrator:
         email: 電郵地址
         last_name: 姓氏
+        name: 名稱
+      assessment:
+        description: 說明
+        name: 名稱
+      block:
+        name: 名稱
+      client:
+        name: 名稱
+      dimension:
+        name: 名稱
+      factor:
+        name: 名稱
       memebrship:
         last_name: 姓氏
+      norm:
+        description: 說明
+        name: 名稱
+        statuses:
+          in_progress: 進行中
+          not_started: 尚未開始
+      question:
+        name: 名稱
       user:
         email: 電郵地址
         first_name: 名字
         last_name: 姓氏
+        name: 名稱
         password: 密碼
       user_form:
         email: 電郵地址
@@ -1201,8 +1324,32 @@ zh-HK:
       exactly: 正是 %{count}
     nominations: 提名
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: 允許評估人員拒絕提名
+        email_subject_when_nomination_declined: 拒絕提名時的電子郵件主題
       global:
         cannot_re_edit: 參與者無法編輯評估
+      manager:
+        allow_subjects_to_email: 允許主體在其提名準備好接受審核時，以電子郵件通知管理員
+        approves_evaluations: 經理核准評估
+        approves_nominations: 經理批准提名
+        can_view_nominations: 經理可檢視提名
+        email_managers_when_nomination_ready: 當主題的提名準備好接受審核時，以電子郵件通知管理員
+        email_subject_when_nomination_denied: 提名遭拒時的電子郵件主題
+        may_choose_evaluators: 經理可以選擇評估員
+      subject:
+        allow_subjects_to_select_relationships: 允許受試者選擇關係
+        anyone_in_assessment: 評估中的任何人
+        anyone_in_datasheet: 資料表中的任何人
+        anyone_not_in_assessment: 目前未參與評估的任何人
+        can_view_evaluators: 主題可檢視評估員
+        define_nomination_requirement: 定義提名要求
+        limit_search_by_criteria: 依標準限制搜尋
+        nominates_evaluators: 學科提名評估員
+        only_allow_relationships_of_specified_types: 只允許指定類型的關係
+        only_show_subjects_who_match_criteria: 只顯示符合下列條件的受試者：
+        self_evaluates: 受試者自我評估
+        subjects_cannot_remove_nominations: 主題無法移除經理或管理員設定的提名
     or: 或者
     page_title: Signify 360° 評論：應用級別
     participant_list:
@@ -1281,6 +1428,9 @@ zh-HK:
       last_name: 姓氏
   user_assessments:
     redirect: 您會被重新導向到第三方網站進行此評估。 如果您要開始評估，請按一下繼續。
+    status:
+      in_progress: 進行中
+      not_started: 尚未開始
   user_reports:
     messages:
       regenerate_successful: 報告重生成功安排

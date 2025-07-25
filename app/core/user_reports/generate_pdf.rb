@@ -61,7 +61,7 @@ module UserReports
     def report_preview_admin_url
       if campaign.threesixty?
         params = default_report_preview_url_params.merge(
-          threesixty_campaign_id: campaign.threesixty_campaign.id,
+          threesixty_campaign_id: campaign.id,
           subdomain: Settings.subdomain,
           subject_id: Threesixty::Subject.find_by(user_id: user_report.user_id).id,
           format: :pdf

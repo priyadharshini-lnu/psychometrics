@@ -25,9 +25,21 @@ const { I18n } = window
 const getTableFields = (jobRoles, isSkillRater) => {
   const fields = [
     { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email'), key: 'email' },
-    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name'), key: 'firstName' },
-    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name'), key: 'lastName' },
-    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.locale'), key: 'locale' },
+    {
+      name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name'),
+      key: 'firstName',
+      styles: { maxWidth: '150px' },
+    },
+    {
+      name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name'),
+      key: 'lastName',
+      styles: { maxWidth: '150px' },
+    },
+    {
+      name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.locale'),
+      key: 'locale',
+      styles: { maxWidth: '60px' },
+    },
   ]
 
   if (isSkillRater) {
@@ -40,6 +52,7 @@ const getTableFields = (jobRoles, isSkillRater) => {
           label: role.name,
           value: role.name,
         })) || [],
+        styles: { maxWidth: '150px' },
       },
       {
         name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.target_job_role'),
@@ -49,6 +62,7 @@ const getTableFields = (jobRoles, isSkillRater) => {
           label: role.name,
           value: role.name,
         })) || [],
+        styles: { maxWidth: '150px' },
       },
     )
   }
@@ -57,7 +71,7 @@ const getTableFields = (jobRoles, isSkillRater) => {
 }
 
 
-const formItemLayout = { labelCol: { span: 3 }, wrapperCol: { span: 12 } }
+const formItemLayout = { labelCol: { span: 'auto' }, wrapperCol: { span: 10 } }
 
 function CreateSubjectModal ({
   closeModal,
@@ -100,6 +114,7 @@ function CreateSubjectModal ({
   return (
     <Modal
       width="70%"
+      className={styles.formModal}
       title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects')}
       open
       onCancel={closeModal}

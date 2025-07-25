@@ -432,6 +432,7 @@ es-ES:
           case_study: Casos prácticos
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Formulario del asesor principal
           meeting: Reunión
           organisational: Encuestas
           pearson: Pearson
@@ -512,6 +513,7 @@ es-ES:
         created_at: Fecha de creación
         id: ID
         name: Nombre
+        owner: Propietario
         updated_at: Fecha de modificación
       factor:
         active: Activo
@@ -538,7 +540,11 @@ es-ES:
         updated_at: Fecha de modificación
       library:
         created_at: Fecha de creación
+        description: Descripción
+        files: Archivos
         id: ID
+        name: Nombre
+        owner: Propietario
         type: Miniaturas
         updated_at: Fecha de modificación
       license:
@@ -610,6 +616,7 @@ es-ES:
         created_at: Fecha de creación
         id: ID
         name: Nombre
+        owner: Propietario
         updated_at: Fecha de modificación
       report:
         created_at: Fecha de creación
@@ -1524,6 +1531,7 @@ es-ES:
     column:
       assessor_access: Acceso para asesores
       auto_assign: Asignación automática
+      locales: Locales
       main_report: Informe principal
       report_bundle: Paquete de informes
       report_name: Nombre del informe
@@ -1546,6 +1554,13 @@ es-ES:
         apply: Aplique estos cambios a los usuarios existentes en esta campaña.
         msg_text: Está intentando eliminar el informe <strong>"%{reportName}"</strong>
         title: "¿Eliminar informe?"
+      update_languages:
+        default_language: Idioma por defecto
+        other_available_languages: Otras lenguas disponibles
+        select_default_language: Seleccionar idioma por defecto
+        select_languages: Seleccionar idiomas
+        success_msg: Los idiomas se han actualizado correctamente
+        title: Idioma del informe
       user_access:
         apply: Aplique estos cambios a los usuarios existentes en esta campaña.
         title:
@@ -2168,6 +2183,9 @@ es-ES:
       no_active_plan: No se ha encontrado ningún plan PDI activo
     webhooks:
       multiple_webhook_error: url no se puede actualizar ya que hay múltiples webhook para este proyecto.
+    workshop:
+      ical_generation_failed: No se ha podido generar la invitación al calendario
+      missing_or_invalid: Falta el workshop_id o no es válido
   evaluators:
     errors:
       can_not_processed: no se puede procesar
@@ -2429,6 +2447,7 @@ es-ES:
       aria_selected: Selección
   idp:
     actions: Acciones
+    behavioral: Comportamiento
     board: Tablero
     comment_details:
       add_comment: Agregar comentario
@@ -2652,6 +2671,7 @@ es-ES:
     skill_gap_report:
       title: Informe sobre el déficit de cualificaciones
     status: Estado
+    technical: Técnico
     user_idp_status:
       approved: Aprobado
       completed: Completado
@@ -3584,11 +3604,35 @@ es-ES:
       exactly: Exactamente %{count}
     nominations: Propuestas
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Permitir que los evaluadores rechacen el nombramiento
+        email_subject_when_nomination_declined: Asunto del correo electrónico cuando se rechaza una candidatura
       form:
         value_not_valid: no tiene un valor válido
       global:
         cannot_re_edit: Los participantes no pueden editar las evaluaciones
         disable_all_evaluations: Desactivar todas las evaluaciones
+      manager:
+        allow_subjects_to_email: Permitir que los sujetos envíen un correo electrónico a los administradores cuando sus candidaturas estén listas para ser aprobadas.
+        approves_evaluations: El director aprueba las evaluaciones
+        approves_nominations: El Director aprueba los nombramientos
+        can_view_nominations: El administrador puede ver las candidaturas
+        email_managers_when_nomination_ready: Enviar un correo electrónico a los administradores cuando la candidatura de un sujeto esté lista para su aprobación
+        email_subject_when_nomination_denied: Asunto del correo electrónico cuando se deniega una candidatura
+        may_choose_evaluators: El gestor puede elegir a los evaluadores
+      subject:
+        allow_subjects_to_select_relationships: Permitir que los sujetos seleccionen las relaciones
+        anyone_in_assessment: Cualquiera que participe en la evaluación
+        anyone_in_datasheet: Cualquiera en la ficha técnica
+        anyone_not_in_assessment: Cualquier persona que no participe actualmente en la evaluación
+        can_view_evaluators: El sujeto puede ver a los evaluadores
+        define_nomination_requirement: Definir el requisito de nominación
+        limit_search_by_criteria: Limitar la búsqueda por criterios
+        nominates_evaluators: El sujeto nombra a los evaluadores
+        only_allow_relationships_of_specified_types: Permitir sólo relaciones de los tipos especificados
+        only_show_subjects_who_match_criteria: 'Mostrar sólo los sujetos que cumplan los siguientes criterios:'
+        self_evaluates: El sujeto se autoevalúa
+        subjects_cannot_remove_nominations: Los sujetos no pueden eliminar nominaciones establecidas por gestores o administradores
     or: O
     page_title: Revisión 360° de Signify (nivel de solicitud)
     participant_list:

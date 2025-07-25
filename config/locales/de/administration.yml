@@ -1096,6 +1096,7 @@ de:
         ai_assistants: AI-Assistenten
         ai_assisted_idp: AI-unterstützte IDP
         global_skills: Globale Fertigkeiten
+        idp: IDP
         sms_notification: SMS-Benachrichtigung
     clients:
       api_keys:
@@ -1521,6 +1522,8 @@ de:
         update:
           successfully: Projekt %{name} wurde erfolgreich aktualisiert.
       registration_codes:
+        actions:
+          add_code: Code hinzufügen
         column:
           code: Code
           usage_stats: Nutzungsstatistiken
@@ -1531,6 +1534,13 @@ de:
           incorrect_domain: Falsches Domainformat.
           invalid_end_date: muss größer sein als das Startdatum
           license_issue: Nicht genügend Lizenzen.
+        form:
+          active: Aktiv
+          code: Code
+          end_date: Enddatum
+          name: Name
+          start_date: Datum des Beginns
+          total_count: Gesamtanzahl
       resource:
         confirmations:
           delete:
@@ -1562,6 +1572,7 @@ de:
       select_all: Alle auswählen
       type: Typ
       unselect_all: Alle abwählen
+    communication_settings: Einstellungen
     communications:
       create:
         successfully: Die Kommunikation wurde erfolgreich erstellt.
@@ -1594,9 +1605,16 @@ de:
            {{email}} - E-Mail des Empfängers
            {{schedule_start_date}} - Startdatum des Zeitplans
            {{schedule_end_date}} - Enddatum des Zeitplans"
+        campaign: Kampagne
+        campaign_assessment_group: Gruppe für Kampagnenbewertung
+        client: Kunde
         completion: Fertigstellung
         delivery_at: Lieferung zum (GST)
         delivery_delay_hours: Lieferverzug (Stunden)
+        delivery_interval: Lieferintervall
+        delivery_interval_number: Lieferintervall Nummer
+        delivery_interval_period: Lieferintervall Zeitraum
+        delivery_rule: Zustellungsvorschrift
         delivery_rules:
           in_progress: Wenn die Bewertung im Gange ist
           not_competed: Wenn die Bewertung nicht abgeschlossen ist
@@ -1608,13 +1626,18 @@ de:
         idp_template_approved: IDP Genehmigt
         idp_template_assigned: IDP zugewiesen
         idp_template_rejected: IDP Abgelehnt
+        insert_piped_text: Paspelierten Text einfügen
         invitation: Einladung
         kind: Kommunikationstypen
         locale: Gebietsschema
         magic_link_email: Magischer Link E-Mail
+        message_body_placeholder: Geben Sie hier Ihre Nachricht ein...
         new_assignment: Neue Aufgabe
         new_users: Neue Benutzer
         other: Andere
+        owner: Eigentümer
+        project: Projekt
+        recipients: Empfänger
         reminder: Erinnerung
         report_available: Bericht verfügbar
         selected: Ausgewählte
@@ -1622,6 +1645,7 @@ de:
         selected_recipients: Ausgewählte Begünstigte
         stop_reminder: Keine Mahnungen mehr senden
         stop_reminder_datetime: Enddatum für Mahnungen (GST)
+        subject: Thema
         workshop_booked: Assessment Center Buchungsbestätigung
         workshop_cancelled: Assessment Center abgesagt
         workshop_completed: Assessment Center abgeschlossen
@@ -1908,10 +1932,24 @@ de:
         successfully: Für die Dimension %{name} geplanter Importfaktorenauftrag.
         title: Import-Faktoren
       import_modal:
+        after: Nach
+        before: Vor
         cancel: Abbrechen
+        change_log_input: Änderungsprotokoll
         continue: Weiter
+        error: Fehler
+        error_occurred: Es ist ein Fehler aufgetreten
+        errors:
+          file_error: Bitte wählen Sie eine JSON-Datei aus, bevor Sie fortfahren.
+          processing_error: Fehler bei der Verarbeitung der Datei
+        field: Feld
         import: Importieren
         import_dimension: Dimension importieren
+        import_scheduled: Geplanter Import
+        operation: Operation
+        owner_input_validation: Bitte wählen Sie einen Eigentümer
+        owner_select: Wählen Sie einen Eigentümer
+        select_json: JSON-Datei auswählen
       import_translations:
         error: Fehler beim Importieren von Übersetzungen für die Dimension %{name}.
         successfully: Import von Übersetzungen für Dimension %{name} geplant.
@@ -2426,7 +2464,7 @@ de:
           errors:
             job_role_not_found: Jobrolle mit ID %{id} nicht gefunden
             missing_columns: 'Fehlende erforderliche Spalten: %{columns}'
-            save_failed: 'Fehler bei der Verarbeitung der Job-Rollen-ID %{id}: %{Meldung}'
+            save_failed: 'Fehler bei der Verarbeitung der Job-Rollen-ID %{id}: %{message}'
     libraries:
       create:
         successfully: Element %{name} wurde erfolgreich erstellt.
@@ -2478,6 +2516,7 @@ de:
         successfully: Benutzer %{name} wurde erfolgreich aktualisiert.
       update:
         successfully: Benutzer %{name} wurde erfolgreich aktualisiert.
+    message: Nachricht
     meta_title: Verwaltungs-Panel
     navigation:
       ai_assistants: AI-Assistenten
@@ -2584,6 +2623,7 @@ de:
         editor: Norm Editor
         export: Norm exportieren
         title: Norm's Optionen
+      title: Norm
       toggle_status:
         successfully: Norm wurde erfolgreich aktualisiert.
       update:
@@ -2671,12 +2711,16 @@ de:
     piped_text_modal:
       assessment_id: Bewertung ID
       campaign_id: Kampagnen-ID
+      campaign_name: Name der Kampagne
+      campaigns: Kampagnen
       insight_page_link: Insight Page Link
       insight_page_url: URL der Einsichtsseite
       join_link: Link verbinden
       magic_link: Magische Verbindung
       magic_url: Magische URL
       profile_custom_field: Benutzerdefiniertes Profilfeld
+      project_name: Name des Projekts
+      projects: Projekte
       report_name: Bericht Name
       text: Text
       title: Paspelierten Text hinzufügen
@@ -3121,6 +3165,7 @@ de:
         user_name: Name des Benutzers
       dashboard: Dashboard
       download: Herunterladen
+      report_approval_settings: Einstellungen für die Berichtsgenehmigung
       report_approvals: Bericht Genehmigungen
       review: Überprüfung
       saving_filters:
@@ -3243,10 +3288,14 @@ de:
       edit:
         header: Berichtsname bearbeiten
       edit_default_language:
-        confirm_msg: Ich habe die oben genannten Informationen gelesen und verstehe die Auswirkungen einer Änderung der Standardsprache.
+        agreement: Ja, ich verstehe die Auswirkungen der Änderung der Standardsprache.
         title: Standardsprache bearbeiten
         tooltip: Standardsprache bearbeiten
-        warning: Wenn Sie die Standardsprache von rtl in ltr oder umgekehrt ändern, wirkt sich dies auf das Layout aus. Wenn Sie die Standardsprache ändern, müssen Sie die Übersetzungen der Berichte überarbeiten. Bitte laden Sie eine Kopie der Übersetzungen herunter, bevor Sie diese Änderung vornehmen.
+        warning:
+          description_li_1: Wenn Sie die Standardsprache von RTL auf LTR oder umgekehrt ändern, wirkt sich dies auf das Layout aus.
+          description_li_2: Wenn Sie die Standardsprache ändern, müssen Sie die Übersetzung der Berichte überarbeiten.
+          description_li_3: Laden Sie eine Kopie der Berichtsübersetzungen herunter, bevor Sie diese Änderung vornehmen.
+          title: Bitte lesen Sie die Anweisungen sorgfältig
       modals:
         remap_assessment:
           new_assessment_name: Neue Bewertung Name
@@ -4081,6 +4130,7 @@ de:
           invitations: Einladungen
           reminders: Mahnungen
           report_ready: Bericht bereit
+        consolidated: Konsolidiert
         custom_message:
           description: Diese Nachricht kann an alle an der Bewertung beteiligten Personen gesendet werden
           name: Benutzerdefinierte Nachricht
@@ -4104,7 +4154,10 @@ de:
         request_approval:
           description: Diese Nachricht wird an Manager gesendet, wenn ein Thema eine Genehmigung beantragt
           name: Antrag auf Genehmigung
+        save: Speichern Sie
+        schedule: Zeitplan
         schedule_email: Zeitplan E-Mail
+        schedule_email_title: Zeitplan E-Mail
         schedule_time: Zeit einplanen
         send_test_email: Test-E-Mail senden
         subject: Thema
@@ -4145,6 +4198,14 @@ de:
         welcome_message:
           description: Diese Nachricht wird den Testpersonen angezeigt, wenn sie sich anmelden, um mit der Bewertung zu beginnen oder ihre Aufgabenliste einzusehen
           name: Willkommensnachricht
+      mail_history:
+        actions: Aktionen
+        date: Datum
+        download_details: Details herunterladen
+        emails_sent: Gesendete E-Mails
+        recipient: Empfänger
+        status: Status
+        subject: Thema
       manage:
         assessment: Bewertung
         dimension: Abmessungen
@@ -4152,19 +4213,45 @@ de:
         report: Bericht
         title: Verwalten Sie
       menu:
+        actions: Aktionen
         datasheet:
           title: Datenblatt
         messages:
+          allow_subjects_to_send_reminders: Erlauben Sie den Teilnehmern, Erinnerungen an die Bewerter zu senden
+          automatically_send_invites: Automatisch Einladungen an neue Bewerter senden
           title: Nachrichten
         participants:
+          columns:
+            action: Aktion
+            email: E-Mail
+            evaluations_completed: Abgeschlossene Evaluierungen
+            evaluations_received: Erhaltene Beurteilungen
+            is_subject: Ist Thema
+            name: Name
+            report_status: Bericht Status
+            status: Status
+          evaluators:
+            add_evaluators: Evaluatoren hinzufügen
+            import_evaluators: Evaluatoren importieren
+            title: Bewerter
+          managers:
+            title: Manager
+          options:
+            evaluator_options: Optionen für Auswerter
+            global: Globale Optionen
+            manager_options: Manager-Optionen
+            subject_options: Thema Optionen
+            title: Optionen
           subjects:
             add_subjects: Betreff hinzufügen
             current_job_role: Aktuelle Berufsrolle
             email: E-Mail
             first_name: Vorname
+            import_subjects: Themen importieren
             last_name: Nachname
             locale: Schauplatz
             target_job_role: Zielberufsrolle
+            title: Themen
           title: Teilnehmer
         report:
           menu:
@@ -4180,8 +4267,26 @@ de:
         mail_history: Mail-Geschichte
         options: Optionen
       reports:
+        add_conditions: Bedingungen hinzufügen
+        administrator_approves_reports: Der Administrator genehmigt die Berichte
+        allow_manager_to_view_individual_responses: Erlauben Sie dem Manager, einzelne Antworten anzuzeigen
+        disable_report_download: Download von Berichten deaktivieren
+        edit_email: E-Mail bearbeiten
+        email_manager_when_report_is_ready_for_approval: E-Mail an den Manager, wenn der Bericht zur Genehmigung bereit ist
+        email_subject_when_report_becomes_available: E-Mail-Betreff, wenn der Bericht verfügbar ist
+        email_subjects_manager_when_available: E-Mail an den Manager der Person, sobald der Bericht verfügbar ist
+        make_report_available_to_subject_when: 'Stellen Sie den Bericht dem Betroffenen zur Verfügung, wenn:'
+        manager_approves_reports: Der Manager genehmigt die Berichte
+        manager_can_access_subject_reports: Manager kann auf Fachberichte zugreifen
+        manager_cannot_access_subject_reports: Manager kann den Bericht erst sehen, wenn die Anforderungen erfüllt sind
+        report_access: Bericht Zugang
+        report_approval: Bericht Genehmigung
+        report_availability: Verfügbarkeit des Berichts
         show:
           title: 'Betreff: Bericht'
+        subject_can_access_reports: Subjekt kann auf seine Berichte zugreifen
+      reset_campaign_confirmation:
+        mark_licenses_as_deactivated: Lizenzen als deaktiviert markieren
     time_zone: Zeitzone
     tools: Werkzeuge
     translations:

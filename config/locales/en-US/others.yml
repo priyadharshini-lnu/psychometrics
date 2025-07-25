@@ -438,6 +438,7 @@ en-US:
           case_study: Case Studies
           hogan: Hogan
           iiht: IIHT
+          lead_assessor_form: Lead Assessor Form
           meeting: Meeting
           organisational: Surveys
           pearson: Pearson
@@ -518,6 +519,7 @@ en-US:
         created_at: Created Date
         id: ID
         name: Name
+        owner: Owner
         updated_at: Modified Date
       factor:
         active: Active
@@ -544,7 +546,11 @@ en-US:
         updated_at: Modified Date
       library:
         created_at: Created Date
+        description: Description
+        files: Files
         id: ID
+        name: Name
+        owner: Owner
         type: Thumbnail
         updated_at: Modified Date
       license:
@@ -616,6 +622,7 @@ en-US:
         created_at: Created Date
         id: ID
         name: Name
+        owner: Owner
         updated_at: Modified Date
       report:
         created_at: Created Date
@@ -784,6 +791,8 @@ en-US:
           attributes:
             current_password:
               invalid: Current password is incorrect
+            manager_id:
+              cannot_be_self: User cannot be assigned as their own manager
         user_idp_comment:
           reply_to_reply: cannot reply to a reply (only one level of nesting allowed)
         user_idp_plan:
@@ -1546,6 +1555,7 @@ en-US:
     column:
       assessor_access: Assessor Access
       auto_assign: Auto Assign
+      locales: Locales
       main_report: Main Report
       report_bundle: Report Bundle
       report_name: Report name
@@ -1568,6 +1578,13 @@ en-US:
         apply: Apply this changes to existing users in this campaign.
         msg_text: You are trying to delete <strong>"%{reportName}"</strong> Report
         title: Remove Report?
+      update_languages:
+        default_language: Default Language
+        other_available_languages: Other available Languages
+        select_default_language: Select default Language
+        select_languages: Select Languages
+        success_msg: Languages were updated successfully
+        title: Report Language
       user_access:
         apply: Apply this changes to existing users in this campaign.
         title:
@@ -2073,6 +2090,7 @@ en-US:
         reserved_subdomain: Subdomain %{value} is reserved
         uniq_subdomain: Subdomain should be unique.
       add_manager:
+        cannot_be_self: User cannot be assigned as their own manager
         manager_not_found: Manager not found or not part of the same project
         user_not_found: User not found or not part of the same project
       admin:
@@ -2210,6 +2228,9 @@ en-US:
       no_active_plan: No active IDP plan found
     webhooks:
       multiple_webhook_error: url can't be updated as there are multiple webhook for this project.
+    workshop:
+      ical_generation_failed: Could not generate calendar invite
+      missing_or_invalid: Missing or invalid workshop_id
   evaluators:
     errors:
       can_not_processed: can not be processed
@@ -3655,11 +3676,35 @@ en-US:
       exactly: Exactly %{count}
     nominations: Nominations
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Allow evaluators to decline nomination
+        email_subject_when_nomination_declined: Email subject when a nomination is declined
       form:
         value_not_valid: doesn't have a valid value
       global:
         cannot_re_edit: Participants cannot edit evaluations
         disable_all_evaluations: Disable all evaluations
+      manager:
+        allow_subjects_to_email: Allow subjects to email managers when their nominations are ready for approval
+        approves_evaluations: Manager approves evaluations
+        approves_nominations: Manager approves nominations
+        can_view_nominations: Manager can view nominations
+        email_managers_when_nomination_ready: Email managers when a subject's nomination is ready for approval
+        email_subject_when_nomination_denied: Email subject when a nomination is denied
+        may_choose_evaluators: Manager may choose Evaluators
+      subject:
+        allow_subjects_to_select_relationships: Allow subjects to select relationships
+        anyone_in_assessment: Anyone in the assessment
+        anyone_in_datasheet: Anyone in the datasheet
+        anyone_not_in_assessment: Anyone not currently in the assessment
+        can_view_evaluators: Subject can view Evaluators
+        define_nomination_requirement: Define Nomination requirement
+        limit_search_by_criteria: Limit search by criteria
+        nominates_evaluators: Subject nominates Evaluators
+        only_allow_relationships_of_specified_types: Only allow relationships of specified types
+        only_show_subjects_who_match_criteria: 'Only show subjects who match the following criteria:'
+        self_evaluates: Subject Self Evaluates
+        subjects_cannot_remove_nominations: Subjects cannot remove nominations set by managers or admins
     or: Or
     page_title: Signify 360° Review - Apply Level
     participant_list:

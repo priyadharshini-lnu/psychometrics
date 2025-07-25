@@ -11,20 +11,82 @@ sr-Cyrl:
         select_comparison: Изаберите тип поређења
         select_factors: Изаберите факторе
         select_operation: Изаберите операцију
+    errors:
+      models:
+        skill_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_required: Потребна је бар једна радна улога за %{skill_type} за %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Најмање један тип вештине мора бити омогућен са изабраном радном улогом за %{block_name}
+              invalid_job_role_type: 'Неважећа радна улога %{job_role} за %{skill_type} за %{block_name}. Дозвољене опције: %{valid_options}'
+              props_missing: Недостаје конфигурација вештина за %{block_name}
   activerecord:
     attributes:
+      assessment:
+        categories:
+          lead_assessor_form: Образац главног процењивача
+        description: Опис
+        name: Име
+      block:
+        name: Име
+      client:
+        name: Име
+      dimension:
+        name: Име
+        owner: Власник
+      factor:
+        name: Име
+      innovation_style:
+        description: Опис
+        name: Име
+      innovation_styles_factor:
+        name: Име
+      library:
+        description: Опис
+        files: Фајлови
+        name: Име
+        owner: Власник
       membership:
         first_name: Име
         last_name: Презиме
+      norm:
+        name: Име
+      occupation:
+        description: Опис
+        name: Име
+      occupations_factor:
+        name: Име
+      product:
+        name: Име
+      question:
+        name: Име
+        owner: Власник
+      task:
+        description: Опис
+        statuses:
+          in_progress: У току
+          not_started: Није започето
+      threesixty:
+        users_result:
+          statuses:
+            in_progress: У току
+            not_started: Није започето
       user:
         email: Адреса е-поште
         first_name: Име
         last_name: Презиме
+        name: Име
       user_form:
         email: Адреса е-поште
         first_name: Име
         last_name: Презиме
         password: Лозинка
+      users_result:
+        name: Име
+        statuses:
+          in_progress: У току
+          not_started: Није започето
+          timed_out: Истекло време
     errors:
       models:
         register:
@@ -37,6 +99,14 @@ sr-Cyrl:
           attributes:
             current_password:
               invalid: Тренутна лозинка је нетачна
+            manager_id:
+              cannot_be_self: Корисник не може бити постављен као свој менаџер
+  admin_jobs:
+    attrs:
+      operations:
+        import_skill_rater_taxonomies: Увоз таксономија процењивача вештина
+      statuses:
+        in_progress: У току
   administration: Администрација
   anonym:
     close: Затвори
@@ -66,6 +136,11 @@ sr-Cyrl:
     card_actions:
       begin: Почетак
       continue: Настави
+    fields:
+      category:
+        lead_assessor_form: Образац главног процењивача
+      status:
+        in_progress: У току
     instructions:
       begin_assessment: Почетак
       cancel: Откажи
@@ -252,6 +327,8 @@ sr-Cyrl:
   campaign_assessment:
     assessment_center_heading: Детаљи центра за процену
     assessments_heading: Ваши задаци
+    column:
+      locales: Локализације
     statuses:
       completed: Завршено
       in_progress: У току
@@ -260,6 +337,22 @@ sr-Cyrl:
       not_started: Није започето
       timed_out: Временски истекло
       universal_link: Универзална веза
+  campaign_report:
+    column:
+      locales: Језици
+    modals:
+      update_languages:
+        default_language: Подразумевани језик
+        other_available_languages: Остали доступни језици
+        select_default_language: Изаберите подразумевани језик
+        select_languages: Изаберите језике
+        success_msg: Језици су успешно ажурирани
+        title: Језик извештаја
+  campaign_users:
+    details:
+      statuses:
+        in_progress: У току
+        not_started: Није започето
   campaigns:
     card:
       duration: Трајање
@@ -352,6 +445,7 @@ sr-Cyrl:
       delete: Обриши
       edit: Измени
       export: Извоз
+      publish: Објави
       remove: Уклони
       reset: Ресетуј
       resolve: Решити
@@ -361,6 +455,7 @@ sr-Cyrl:
       send: Пошаљи
       start: Почетак
       unarchive: Врати из архиве
+      unpublish: Повуци објаву
       unresolve: Нерешено
       update: Ажурирање
       upload: Отпреми
@@ -371,12 +466,19 @@ sr-Cyrl:
       action: Акција
       category: Категорија
       created_at: Направљено у
+      default_language: Подразумевани језик
+      description: Опис
       id: ИД
+      name: Име
+      owner: Власник
       status: Статус
     model:
       assessments: Процене
       campaigns: Кампање
       reports: Извештаји
+    status:
+      in_progress: У току
+      not_started: Није започето
     text:
       cancel: Откажи
       confirm: Потврди
@@ -439,6 +541,8 @@ sr-Cyrl:
       code_has_been_sent: Ваш нови OTP је послат на вашу регистровану адресу е-поште
   dry_errors:
     errors:
+      add_manager:
+        cannot_be_self: Корисник не може бити постављен као свој менаџер
       campaign_idps:
         idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кампање.
       development_actions:
@@ -464,6 +568,9 @@ sr-Cyrl:
     module_error_editor: Дошло је до грешке са овим модулом, проверите подешавања модула.
     module_props_error: Нешто је пошло наопако са овим модулом.
     try_again: Молим вас покушајте поново
+    workshop:
+      ical_generation_failed: Није могуће генерисати позивницу за календар
+      missing_or_invalid: Недостаје или је неважећи workshop_id
   factors:
     description: Опис
     factor: Фактор
@@ -682,112 +789,18 @@ sr-Cyrl:
       save_skills: Сачувај вештине
     new_comments: Нови коментар(и)
     pdf:
-      approval_status: Статус одобрења
       cover:
         fields:
-          assigned_data: Датум додељивања
-          assigned_date: Датум додељивања
-          completion_date: Датум завршетка
-          division: Одељење
+          assigned_data: Датум доделе
+          assigned_date: Датум додељен
           name: Име
-          publish_date: Датум објављивања
-          review_date: Датум прегледа
-          role: Тренутна улога
-      guidelines:
-        cards:
-          c1:
-            content: Укључите вештине, знања и способности које треба развити. Обезбедите да су специфичне, мерљиве, достижне, реалне и могуће за остварење у наведеним роковима.
-            title: Циљеви развоја
-          c2:
-            content: Ово се заснива на компетенцији коју треба развити на основу искуства процене.
-            title: Компетенција
-          c3:
-            content: Овај одељак укључује ваше акције развоја засноване на 70-20-10 моделу учења наведеном испод. Препоручује се да изаберете комбинацију сва три елемента ради разноврсног приступа учењу и развоју.
-            title: Активност
-          c4:
-            content: Обезбедите да су ваши рокови реални на основу тога када циљ може бити завршен. Прилагодите их по потреби.
-            title: Временски оквир
-          c5:
-            content: Користите одељак за напредак да бисте пратили напредак на идентификованим стазама.
-            title: Напредак
-        chart:
-          collaboration: "<strong>20%</strong> Сарадничко <br /> учење"
-          job: "<strong>70%</strong> Учење <br /> на послу"
-          learn: "<strong>10%</strong> Формално учење"
-        content:
-          list:
-            r1: Ова листа је само индикативна, могу се разматрати и додатни путеви развоја у складу са вашим амбицијама, препорукама менаџера и приоритетима организације.
-            r2: Покретање неких од ових путева развоја зависиће од стратегије образовања и учења на нивоу организације.
-            r3: Размотрите препоручене путеве у наставку приликом израде свог индивидуалног плана развоја.
-          main: Овај одељак укључује кумулативну листу свих путева развоја, у складу са најбољом праксом учења, тј. 70-20-10 смерницом, која обезбеђује прогресивно путовање комбиновањем учења у учионици, менторства и учења на послу. На основу резултата искуства развоја лидерства и приоритета пословања, препоручени су могући путеви развоја који се могу разматрати за ваш развој.
-        learn_cards:
-          collaboration:
-            list:
-            - Понудите да будете ментор или коуч другима
-            - Затражите да вас менторише стручњак у вашој области
-            - Пронађите коуча који ће подржати ваш развој
-            - Организујте сарадничку радну групу за дискусију о текућим изазовима у пословању
-            - Добијајте повратне информације формално и неформално од других
-            - Активно учествујте у индустријским удружењима и мрежама
-            - Изградите сопствену спољну мрежу
-            title: Сарадничко учење (20%) <br/> Развој кроз друге
-          job:
-            list:
-            - Преузмите лидерске позиције у управљачким комитетима
-            - Волонтирајте да водите пројекте управљања променама у организацији
-            - Прихватите изазовне задатке
-            - Сарађујте са другим функцијама
-            - Водите пројекте ван своје организације
-            - Сарађујте са спољним стручњацима на заједничким пројектима
-            title: Учење на послу (70%) <br/> Развој кроз искуство
-          learn:
-            list:
-            - Преузмите лидерске позиције у управљачким комитетима
-            - Волонтирајте да водите пројекте управљања променама у организацији
-            - Прихватите изазовне задатке
-            - Сарађујте са другим функцијама
-            - Водите пројекте ван своје организације
-            - Сарађујте са спољним стручњацима на заједничким пројектима
-            title: Формално учење (10%) <br/> Развој кроз структуирано учење
-        title: Смернице за ваш ИДП
       idp:
-        end_date: Датум завршетка
-        self_rating: Самооцена
-        start_date: Датум почетка
         subtitle:
-          behavioural: Понашајно
-          technical: Техничко
-        title: Индивидуални план развоја
-      last:
-        end_report: Крај извештаја
-      reflections:
-        subtitle: Питања за свеукупни професионални развој
-        title: Рефлексије за ваш ИДП
+          technical: Технички
       skill_categories:
-        behavioral: Понашајно
-        technical: Техничко
+        technical: Технички
       statuses:
-        approved: Прегледано и одобрено
-        completed: Завршено
         draft: Нацрт
-        not_reviewed: Није прегледано
-        pending_approval: На прегледу
-      summary:
-        ai_count: Генеративни АИ
-        collaborative_learn: Сарадничко учење
-        created_by: Креирао
-        current_status: Тренутни статус ИДП-а
-        custom: Прилагођено
-        custom_count: Прилагођено
-        da_count: Број акција развоја
-        formal_learn: Формално учење
-        generated_ai: Генеративни АИ
-        learn_on_job: Учење на послу
-        learn_pathway: Пут развоја
-        lib_count: ИДП библиотека
-        library: ИДП библиотека
-        skills_count: Број вештина
-        title: Резиме извештаја
     plan: План
     reflective_questions:
       already_completed: ИДП је већ завршен, сада не можете одговарати на питања.
@@ -838,6 +851,10 @@ sr-Cyrl:
       text: Powered by Lighthouse.
   navigation:
     logout: Одјавите се
+  norms:
+    percentile:
+      columns:
+        name: Име
   profile:
     add_field: Додај поље
     add_photo: Додај фотографију
@@ -867,6 +884,9 @@ sr-Cyrl:
       add: Додај извештај
       download: Преузми извештај
       view: Прикажи извештај
+    columns:
+      default_language: Подразумевани језик
+    language: Језик извештаја
     modules:
       campaign_factors_table:
         add_condition: Додај услов
@@ -971,16 +991,40 @@ sr-Cyrl:
     terms_conditions_privacy: Изјава о приватности
     tte_terms_and_condition: Услови и приватност
   simple_form:
+    labels:
+      client:
+        name: Име
     placeholders:
       administrator:
         email: Адреса е-поште
         last_name: Презиме
+        name: Име
+      assessment:
+        description: Опис
+        name: Име
+      block:
+        name: Име
+      client:
+        name: Име
+      dimension:
+        name: Име
+      factor:
+        name: Име
       memebrship:
         last_name: Презиме
+      norm:
+        description: Опис
+        name: Име
+        statuses:
+          in_progress: У току
+          not_started: Није започето
+      question:
+        name: Име
       user:
         email: Адреса е-поште
         first_name: Име
         last_name: Презиме
+        name: Име
         password: Лозинка
       user_form:
         email: Адреса е-поште
@@ -1094,8 +1138,32 @@ sr-Cyrl:
       exactly: Тачно %{count}
     nominations: Номинације
     options:
+      evaluator:
+        allow_evaluators_to_decline_nomination: Дозволити процењивачима да одбаце номинацију
+        email_subject_when_nomination_declined: Предмет е-поште када је номинација одбачена
       global:
         cannot_re_edit: Учесници не могу да мењају евалуације
+      manager:
+        allow_subjects_to_email: Дозволити испитаницима да пошаљу е-пошту менаџерима када су њихове номинације спремне за одобрење
+        approves_evaluations: Менаџер одобрава евалуације
+        approves_nominations: Менаџер одобрава номинације
+        can_view_nominations: Менаџер може да види номинације
+        email_managers_when_nomination_ready: Пошаљи е-пошту менаџерима када је номинација испитаника спремна за одобрење
+        email_subject_when_nomination_denied: Предмет е-поште када је номинација одбијена
+        may_choose_evaluators: Менаџер може да изабере процењиваче
+      subject:
+        allow_subjects_to_select_relationships: Дозволити испитаницима да изаберу односе
+        anyone_in_assessment: Било ко у процени
+        anyone_in_datasheet: Било ко у табели података
+        anyone_not_in_assessment: Било ко ко тренутно није у процени
+        can_view_evaluators: Испитаник може да види процењиваче
+        define_nomination_requirement: Дефинишите захтев за номинацију
+        limit_search_by_criteria: Ограничите претрагу по критеријумима
+        nominates_evaluators: Испитаник номинује процењиваче
+        only_allow_relationships_of_specified_types: Дозволити само односе одређених типова
+        only_show_subjects_who_match_criteria: 'Прикажи само испитанике који одговарају следећим критеријумима:'
+        self_evaluates: Испитаник се самопроцењује
+        subjects_cannot_remove_nominations: Испитаници не могу да уклоне номинације које су поставили менаџери или администратори
     or: Или
     page_title: Signify 360° преглед - Примени ниво
     participant_list:
@@ -1174,6 +1242,9 @@ sr-Cyrl:
       last_name: Презиме
   user_assessments:
     redirect: Бићете преусмерени на сајт треће стране за ову процену. Кликните на дугме „Настави“ ако желите да започнете процену.
+    status:
+      in_progress: У току
+      not_started: Није започето
   user_reports:
     messages:
       regenerate_successful: Задатак регенерације извештаја је успешно заказан
