@@ -99,7 +99,7 @@ agile_config:
   asset_url: <%= ENV.fetch('AGILE_ASSETS_URL', 'https://tte-static.s3.eu-west-1.amazonaws.com/interactive-assessments/') %>
 live_chat:
   base_url: <%= ENV.fetch('CHATWOOT_BASE_URL', 'https://chatwoot.tte-work.com') %>
-  token: <%= ENV.fetch('CHATWOOT_TOKEN', 'zSvNq7inRf4HuQqFmV6GiuZg') %>
+  token: <%= ENV.fetch('CHATWOOT_TOKEN', nil) %>
 browser_requirements:
   default:
     supported:
