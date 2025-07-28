@@ -19,7 +19,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { RemoveReportApprovalSettingModal } from './RemoveReportApprovalModal'
 import { ReportApprovalFormModal } from './ReportApprovalFormModal'
-import { getCurrentCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { getCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 
 const { Column } = Table
 const { I18n } = window
@@ -32,7 +32,7 @@ const MODALS = {
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
-    threeSixtyCampaignId: getCurrentCampaignId(state),
+    campaignId: getCampaignId(state),
   }),
   {
     openModal,
@@ -49,30 +49,25 @@ interface Meta extends BaseMeta {
 const ReportApprovalSettingComponent: React.FC<Props> = ({
   openModal,
   currentUser,
-  threeSixtyCampaignId,
+  campaignId,
 }) => {
   const {
     data, meta, createResource, fetch, isLoading, updateResource, removeResource, requests,
   } = useResources<ReportApprovalSettings, Meta>(
     'report_approval_settings',
     {
-      basePath: `campaigns/${threeSixtyCampaignId}/`,
+      basePath: `campaigns/${campaignId}/`,
       responseType: ReportApprovalSettingsTR,
       apiConfig: {
         include: ['report'],
         fields: {
           reports: ['name'],
         },
-        query: { is_threesixty: true },
       },
     },
   )
   useEffect(() => {
-    fetch({
-      apiConfig: {
-        query: { is_threesixty: true },
-      },
-    })
+    fetch()
   }, [])
 
   const tableLoading = isLoading('fetch')
