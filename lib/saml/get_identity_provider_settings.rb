@@ -21,6 +21,7 @@ module Saml
     def url_options
       {
         host: Settings.domain,
+        subdomain: Settings.subdomain,
         protocol: Settings.protocol,
         port: Settings.port
       }
