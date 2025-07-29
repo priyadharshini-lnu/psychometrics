@@ -8,7 +8,7 @@ module Reports
       @report = Report.includes(:pages, :modules, :filters).find_by(id: report_id)
       @user = user
       @new_report_name = new_report_name
-      @owner_id = owner_id || @report.owner_id
+      @owner_id = owner_id
     end
 
     def call
