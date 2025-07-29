@@ -162,4 +162,30 @@ describe Campaigns::Users::Create do
       )
     end
   end
+
+  context 'send invite email' do
+    let(:user) { create(:user, project_id: campaign.project_id, email: form.email) }
+    let(:user1) { create(:user, project_id: campaign.project_id, email: Faker::Internet.email) }
+    let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+
+    it 'sends email if user is created and do not already exists in campaign' do
+      expect do
+        described_class.call!(form, campaign, current_user, user: user)
+      end.not_to(change { CommunicationEmail.count })
+    end
+
+    it 'sends email if user is created and does not exists in campaign' do
+      create(
+        :communication,
+        recipients: :new_users,
+        project_campaign: campaign,
+        project: campaign.project,
+        client: campaign.client,
+        kind: :invitation
+      )
+      expect do
+        described_class.call!(form, campaign, current_user, user: user1)
+      end.to change { CommunicationEmail.count }.by(1)
+    end
+  end
 end

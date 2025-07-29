@@ -64,6 +64,8 @@ module Campaigns
 
       def create_or_update_campaign_user
         @campaign_user = campaign.campaign_users.find_or_initialize_by(user: user)
+        @user_exists_in_campaign = @campaign_user.persisted?
+
         attributes = {
           active: form.active,
           schedule_start_date: form.schedule_start_date,
@@ -101,6 +103,8 @@ module Campaigns
       end
 
       def send_invite_email
+        return if @user_exists_in_campaign
+
         communication = Communication.new_users_recipients.
                         order(created_at: :desc).
                         find_by(campaign: campaign, kind: :invitation)
