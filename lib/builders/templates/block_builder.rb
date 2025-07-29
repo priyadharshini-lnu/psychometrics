@@ -7,7 +7,7 @@ module Builders
 
       def initialize(block, params)
         @block = block
-        @params = params.permit!
+        @params = params
       end
 
       def save
