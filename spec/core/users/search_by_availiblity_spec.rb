@@ -79,6 +79,64 @@ describe Users::SearchByAvailability do
     expect(result.pluck(:id)).to match_array(users.map(&:id))
   end
 
+  it 'correctly picks the user_availability_date if there are multiple dates defined' do
+    user = create(:user)
+    user_availability_date1 = create(
+      :user_availability_date,
+      timezone: 'Asia/Muscat',
+      user: user,
+      start_date: Date.parse('2025-07-14'),
+      end_date: Date.parse('2025-07-18')
+    )
+    user_availability_date2 = create(
+      :user_availability_date,
+      timezone: 'Asia/Muscat',
+      user: user,
+      start_date: Date.parse('2025-07-21'),
+      end_date: Date.parse('2025-07-25')
+    )
+    create(
+      :user_availability_day,
+      user_availability_date: user_availability_date1,
+      day: 2,
+      start_time: '06:00:00',
+      end_time: '08:00:00'
+    )
+    create(
+      :user_availability_day,
+      user_availability_date: user_availability_date2,
+      day: 2,
+      start_time: '13:00:00',
+      end_time: '15:00:00'
+    )
+
+    # 2nd day of week (Tuesday) i.e 2025-07-15
+    result = described_class.new(
+      Time.zone.parse('2025-07-15 07:00:00 +0400'), Time.zone.parse('2025-07-15 08:00:00 +0400')
+    ).query
+    expect(result.length).to eq(1)
+    expect(result[0].id).to eq(user.id)
+
+    # 2nd day of week (Tuesday) i.e 2025-07-15
+    result = described_class.new(
+      Time.zone.parse('2025-07-15 13:00:00 +0400'), Time.zone.parse('2025-07-15 14:00:00 +0400')
+    ).query
+    expect(result.length).to eq(0) # user is only available in this time slot between 2025-07-21 - 2023-07-25
+
+    # 2nd day of week (Tuesday) i.e 2023-07-22
+    result = described_class.new(
+      Time.zone.parse('2025-07-22 13:40:00 +0400'), Time.zone.parse('2025-07-22 14:00:00 +0400')
+    ).query
+    expect(result.length).to eq(1)
+    expect(result[0].id).to eq(user.id)
+
+    # 2nd day of week (Tuesday) i.e 2023-07-22
+    result = described_class.new(
+      Time.zone.parse('2025-07-22 07:40:00 +0400'), Time.zone.parse('2025-07-22 08:00:00 +0400')
+    ).query
+    expect(result.length).to eq(0) # user is only available in this time slot between 2025-07-14 - 2023-07-18
+  end
+
   it 'works with multiple availability dates and with multiple days' do
     user = create(:user)
     user_availability_date1 = create(
