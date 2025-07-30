@@ -1399,7 +1399,7 @@ fr:
       reset_all_nominations: Réinitialiser toutes les nominations
       reset_participant: Réinitialiser tous les participants
     allow_msg_proctoring_workshop_activity: Les activités du centre d'évaluation ne sont pas surveillées.
-    assessment_center_heading: Détails du centre d'évaluation
+    assessment_center_heading_label: Détails de la session
     assessments_heading: Vos tâches
     column:
       assessment_name: Nom de l'évaluation
@@ -2351,7 +2351,7 @@ fr:
         invites: Invitations
       what: Ce qu'il faut faire
       when: Quand
-      workshop_start_text: Votre centre d'évaluation débutera en
+      workshop_start_label: Votre session commencera à
     break_time: Temps de pause
     campaign:
       actions:

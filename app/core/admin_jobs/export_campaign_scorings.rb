@@ -31,7 +31,7 @@ module AdminJobs
 
     def write_csv
       job_record.update(total_tasks: record_count)
-      CSV.open(file_path, 'wb') do |csv|
+      CsvUtf8.write(file_path) do |csv|
         write_csv_headers(csv)
         max_count = campaign.campaign_users.count
         limit = 100

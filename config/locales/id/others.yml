@@ -1403,7 +1403,7 @@ id:
       reset_all_nominations: Atur Ulang Semua Nominasi
       reset_participant: Atur Ulang Semua Peserta
     allow_msg_proctoring_workshop_activity: Kegiatan pusat penilaian tidak diawasi.
-    assessment_center_heading: Rincian Pusat Penilaian
+    assessment_center_heading_label: Detail Sesi
     assessments_heading: Tugas Anda
     column:
       assessment_name: Nama penilaian
@@ -2357,7 +2357,7 @@ id:
         invites: Undangan
       what: Apa
       when: Kapan
-      workshop_start_text: Pusat Penilaian Anda akan dimulai pada
+      workshop_start_label: Sesi Anda akan dimulai di
     break_time: Waktu Istirahat
     campaign:
       actions:

@@ -10,9 +10,7 @@ module Api
     def base_response_meta
       return {} if params[:action] != 'index'
 
-      threesixty_campaign = if params.dig(:query, :is_threesixty)
-                              Threesixty::Campaign.find_by(id: params[:campaign_id])
-                            end
+      threesixty_campaign = campaign.threesixty_campaign
       {
         campaign_id: campaign.id,
         report_id: threesixty_campaign&.report_id

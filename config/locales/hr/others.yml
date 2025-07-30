@@ -1406,7 +1406,7 @@ hr:
       reset_all_nominations: Poništi sve nominacije
       reset_participant: Resetiranje svih sudionika
     allow_msg_proctoring_workshop_activity: Aktivnosti centra za procjenu se ne provode.
-    assessment_center_heading: Detalji Razvojnog centra
+    assessment_center_heading_label: Detalji sesije
     assessments_heading: Vaši zadaci
     column:
       assessment_name: Naziv procjene
@@ -2360,7 +2360,7 @@ hr:
         invites: Pozivnice
       what: Što
       when: Kada
-      workshop_start_text: Vaš Razvojni centar počet će za
+      workshop_start_label: Vaša sesija će početi za
     break_time: Vrijeme za pauzu
     campaign:
       actions:

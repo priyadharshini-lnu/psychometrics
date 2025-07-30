@@ -1396,7 +1396,7 @@ th:
       reset_all_nominations: รีเซ็ตการเสนอชื่อทั้งหมด
       reset_participant: รีเซ็ตผู้เข้าร่วมทั้งหมด
     allow_msg_proctoring_workshop_activity: กิจกรรมของศูนย์ประเมินไม่ได้ถูกคุมสอบ
-    assessment_center_heading: รายละเอียดศูนย์ประเมิน
+    assessment_center_heading_label: รายละเอียดเซสชัน
     assessments_heading: งานของคุณ
     column:
       assessment_name: ชื่อการประเมิน
@@ -2350,7 +2350,7 @@ th:
         invites: คำเชิญ
       what: อะไร
       when: เมื่อไร
-      workshop_start_text: ศูนย์การประเมินของคุณจะเริ่มต้นใน
+      workshop_start_label: เซสชันของคุณจะเริ่มใน
     break_time: เวลาพัก
     campaign:
       actions:

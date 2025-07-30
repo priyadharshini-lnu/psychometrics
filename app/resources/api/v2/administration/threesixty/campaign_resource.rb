@@ -35,8 +35,8 @@ class Api::V2::Administration::Threesixty::CampaignResource < Api::V2::Administr
           manage_admins
           manage_reports_options
         ],
-        project_id: context[:project_id],
-        campaign_id: context[:campaign_id]
+        project_id: @model.campaign.project_id,
+        campaign_id: @model.campaign_id
       ).transform_keys! { |k| k.camelcase(:lower) }
     }
   end

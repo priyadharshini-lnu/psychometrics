@@ -45,7 +45,10 @@ module Users
               EXTRACT(dow FROM dates) AS day
             FROM
               user_availability_dates
-              LEFT JOIN user_availability_days ON user_availability_days.user_availability_date_id = user_availability_dates.id
+              LEFT JOIN user_availability_days ON user_availability_days.user_availability_date_id = user_availability_dates.id AND (
+                (user_availability_dates.start_date :: TIMESTAMP AT TIME ZONE 'UTC', user_availability_dates.end_date :: TIMESTAMP AT TIME ZONE 'UTC')
+                OVERLAPS (:start_date_time :: TIMESTAMP WITH time zone, :end_date_time :: TIMESTAMP WITH time zone)
+              )
               LEFT JOIN generate_series(:start_date, :end_date, interval '1 day') AS dates ON TRUE
             WHERE
               user_availability_days."day" = EXTRACT(dow FROM dates)

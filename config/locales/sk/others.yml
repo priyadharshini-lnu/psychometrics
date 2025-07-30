@@ -1399,7 +1399,7 @@ sk:
       reset_all_nominations: Obnoviť všetky nominácie
       reset_participant: Obnoviť všetkých účastníkov
     allow_msg_proctoring_workshop_activity: Aktivity hodnotiaceho centra nie sú kontrolované.
-    assessment_center_heading: Podrobnosti o hodnotiacom centre
+    assessment_center_heading_label: Podrobnosti o zasadnutí
     assessments_heading: Vaše úlohy
     column:
       assessment_name: Názov hodnotenia
@@ -2353,7 +2353,7 @@ sk:
         invites: Pozýva
       what: Čo
       when: Keď
-      workshop_start_text: Vaše hodnotiace centrum sa začne v
+      workshop_start_label: Vaše sedenie sa začne v
     break_time: Čas prestávky
     campaign:
       actions:

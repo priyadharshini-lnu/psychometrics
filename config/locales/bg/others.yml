@@ -1399,7 +1399,7 @@ bg:
       reset_all_nominations: Нулиране на всички номинации
       reset_participant: Нулиране на всички участници
     allow_msg_proctoring_workshop_activity: Дейностите на центъра за оценяване не се контролират.
-    assessment_center_heading: Подробности за центъра за оценяване
+    assessment_center_heading_label: Подробности за сесията
     assessments_heading: Вашите задачи
     column:
       assessment_name: Име на оценяването
@@ -2353,7 +2353,7 @@ bg:
         invites: Покани
       what: Какво
       when: Кога
-      workshop_start_text: Вашият център за оценяване ще започне в
+      workshop_start_label: Сесията ви ще започне в
     break_time: Време за почивка
     campaign:
       actions:

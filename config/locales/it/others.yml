@@ -1399,7 +1399,7 @@ it:
       reset_all_nominations: Azzeramento di tutte le nomine
       reset_participant: Azzeramento di tutti i partecipanti
     allow_msg_proctoring_workshop_activity: Le attività dell'Assessment Center non vengono verificate.
-    assessment_center_heading: Dettagli sull'Assessment Center
+    assessment_center_heading_label: Dettagli della sessione
     assessments_heading: Le tue Attività
     column:
       assessment_name: Nome della valutazione
@@ -2348,7 +2348,7 @@ it:
         invites: Inviti
       what: Cosa
       when: Quando
-      workshop_start_text: L'Assessment Center inizierà a
+      workshop_start_label: La sessione inizierà a
     break_time: Tempo di pausa
     campaign:
       actions:

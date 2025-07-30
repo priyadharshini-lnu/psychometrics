@@ -1399,7 +1399,7 @@ zh-Hant:
       reset_all_nominations: 重設所有提名
       reset_participant: 重設所有參與者
     allow_msg_proctoring_workshop_activity: 評估中心的活動不接受監考。
-    assessment_center_heading: 評估中心詳細資訊
+    assessment_center_heading_label: 會議詳情
     assessments_heading: 您的任務
     column:
       assessment_name: 評估名稱
@@ -2330,7 +2330,7 @@ zh-Hant:
         invites: 邀請
       what: 什麼
       when: 當
-      workshop_start_text: 您的評估中心將於
+      workshop_start_label: 您的課程將於
     break_time: 休息時間
     campaign:
       actions:

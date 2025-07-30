@@ -1399,7 +1399,7 @@ ko:
       reset_all_nominations: 모든 추천 재설정
       reset_participant: 모든 참가자 초기화
     allow_msg_proctoring_workshop_activity: 평가 센터 활동은 감독되지 않습니다.
-    assessment_center_heading: 평가 센터 세부 정보
+    assessment_center_heading_label: 세션 세부 정보
     assessments_heading: 작업
     column:
       assessment_name: 평가 이름
@@ -2336,7 +2336,7 @@ ko:
         invites: 초대
       what: 무엇
       when: 언제
-      workshop_start_text: 평가 센터는 다음에서 시작됩니다
+      workshop_start_label: 세션은 다음에서 시작됩니다.
     break_time: 휴식 시간
     campaign:
       actions:

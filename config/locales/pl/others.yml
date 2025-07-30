@@ -1403,7 +1403,7 @@ pl:
       reset_all_nominations: Zresetuj wszystkie nominacje
       reset_participant: Zresetuj wszystkich uczestników
     allow_msg_proctoring_workshop_activity: Działania w ramach centrum oceny nie są nadzorowane.
-    assessment_center_heading: Szczegóły centrum oceny
+    assessment_center_heading_label: Szczegóły sesji
     assessments_heading: Twoje zadania
     column:
       assessment_name: Nazwa oceny
@@ -2357,7 +2357,7 @@ pl:
         invites: Zaproszenia
       what: Co
       when: Kiedy
-      workshop_start_text: Assessment Center rozpocznie się za
+      workshop_start_label: Twoja sesja rozpocznie się w
     break_time: Czas przerwy
     campaign:
       actions:

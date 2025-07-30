@@ -75,6 +75,7 @@ module UserReports::PdfGeneration
   # This action is used to generate pdf by puppeter
   def pdf_preview
     selected_locale = params[:lang] || resource.report.default_language
+    I18n.locale = selected_locale
 
     @data = ::UserReports::PrepareDataForReportPreview.call!(resource, locale: selected_locale)
     @pdf_export = true

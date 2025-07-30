@@ -64,7 +64,6 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     fetchQcUsers({
       apiConfig: {
         filter: { with_access_to_campaign: campaignId, search_query: value },
-        query: { is_threesixty: true },
       },
     })
   }, 300), [])
@@ -73,7 +72,6 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     fetchApproverUsers({
       apiConfig: {
         filter: { with_access_to_campaign: campaignId, search_query: value },
-        query: { is_threesixty: true },
       },
     })
   }, 300), [])
@@ -82,7 +80,6 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     fetchNotificationUsers({
       apiConfig: {
         filter: { with_access_to_campaign: campaignId, search_query: value },
-        query: { is_threesixty: true },
       },
     })
   }, 300), [])

@@ -1399,7 +1399,7 @@ nl:
       reset_all_nominations: Alle nominaties resetten
       reset_participant: Alle deelnemers resetten
     allow_msg_proctoring_workshop_activity: Assessmentactiviteiten worden niet gescreend.
-    assessment_center_heading: Details beoordelingscentrum
+    assessment_center_heading_label: Details sessie
     assessments_heading: Uw taken
     column:
       assessment_name: Naam beoordeling
@@ -2348,7 +2348,7 @@ nl:
         invites: Nodigt  uit
       what: Wat
       when: Wanneer
-      workshop_start_text: Je Assessment Center begint in
+      workshop_start_label: Je sessie begint in
     break_time: Pauze
     campaign:
       actions:

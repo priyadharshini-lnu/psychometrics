@@ -1412,7 +1412,7 @@ ja:
       reset_all_nominations: すべての指名をリセット
       reset_participant: 全参加者をリセット
     allow_msg_proctoring_workshop_activity: アセスメントセンターでの活動は試験されない。
-    assessment_center_heading: アセスメントセンターの詳細
+    assessment_center_heading_label: セッション詳細
     assessments_heading: あなたのタスク
     column:
       assessment_name: 評価名
@@ -2343,7 +2343,7 @@ ja:
         invites: 招待
       what: 内容
       when: 日時
-      workshop_start_text: アセスメントセンターの開始まで：
+      workshop_start_label: セッションの開始時間は
     break_time: 休憩時間
     campaign:
       actions:

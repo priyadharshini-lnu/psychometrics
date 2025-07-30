@@ -1409,7 +1409,7 @@ zh:
       reset_all_nominations: 重置所有提名
       reset_participant: 重置所有参与者
     allow_msg_proctoring_workshop_activity: 评估中心活动不进行监考。
-    assessment_center_heading: 评估中心详情
+    assessment_center_heading_label: 会议详情
     assessments_heading: 你的任务
     column:
       assessment_name: 评估名称
@@ -2340,7 +2340,7 @@ zh:
         invites: 邀请
       what: 事项
       when: 什么时候
-      workshop_start_text: 距离评估中心启动还有
+      workshop_start_label: 您的会议将在
     break_time: 休息时间
     campaign:
       actions:

@@ -12,7 +12,6 @@ import {
   Space,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
-import capitalize from 'lodash/capitalize'
 import map from 'lodash/map'
 import { MenuItem } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
@@ -191,10 +190,10 @@ const CampaignListComponent: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.campaigns.listing.status')}
               key="status"
-              render={({ status }) => capitalize(status)}
+              render={({ status }) => I18n.t(`administration.campaigns.filters.${status}`)}
               filterMultiple={false}
               filters={map(STATUSES, status => ({
-                text: capitalize(status),
+                text: I18n.t(`administration.campaigns.filters.${status}`),
                 value: status,
               }))}
               filteredValue={getFilteredValue('statusEq')}

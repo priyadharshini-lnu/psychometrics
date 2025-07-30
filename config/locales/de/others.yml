@@ -1423,7 +1423,7 @@ de:
       reset_all_nominations: Alle Nominierungen zurücksetzen
       reset_participant: Alle Teilnehmer zurücksetzen
     allow_msg_proctoring_workshop_activity: Assessment-Center-Aktivitäten werden nicht geprüft.
-    assessment_center_heading: Assessment Center Details
+    assessment_center_heading_label: Details zur Sitzung
     assessments_heading: Deine Aufgaben
     column:
       assessment_name: Name der Bewertung
@@ -2375,7 +2375,7 @@ de:
         invites: Einladungen
       what: What
       when: When
-      workshop_start_text: Your Assessment Center will start in
+      workshop_start_label: Ihre Sitzung beginnt in
     break_time: Pausenzeit
     campaign:
       actions:
