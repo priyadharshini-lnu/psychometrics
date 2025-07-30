@@ -1408,7 +1408,7 @@ sl:
       reset_all_nominations: Ponastavi vse nominacije
       reset_participant: Ponastavi vse udeležence
     allow_msg_proctoring_workshop_activity: Dejavnosti ocenjevalnega centra se ne izvajajo.
-    assessment_center_heading: Podrobnosti o ocenjevalnem centru
+    assessment_center_heading_label: Podrobnosti o seji
     assessments_heading: Vaše naloge
     column:
       assessment_name: Ime ocenjevanja
@@ -2343,7 +2343,7 @@ sl:
         invites: Povabila
       what: Kaj
       when: Ko
-      workshop_start_text: Vaš ocenjevalni center se začne čez
+      workshop_start_label: Srečanje se bo začelo v
     break_time: Čas za odmor
     campaign:
       actions:

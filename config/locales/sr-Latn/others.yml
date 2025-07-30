@@ -1409,7 +1409,7 @@ sr-Latn:
       reset_all_nominations: Resetuj sve nominacije
       reset_participant: Resetuj sve učesnike
     allow_msg_proctoring_workshop_activity: Aktivnosti centra za procenu se ne proцtore.
-    assessment_center_heading: Centar za procenu detalji
+    assessment_center_heading_label: Detalji sesije
     assessments_heading: Vaši zadaci
     column:
       assessment_name: Naziv procene
@@ -2363,7 +2363,7 @@ sr-Latn:
         invites: Pozivi
       what: Šta
       when: Kada
-      workshop_start_text: Vaš centar za procenu će početi za
+      workshop_start_label: Vaša sesija će početi za
     break_time: Vreme pauze
     campaign:
       actions:

@@ -1399,7 +1399,7 @@ hu:
       reset_all_nominations: Összes jelölés visszaállítása
       reset_participant: Az összes résztvevő visszaállítása
     allow_msg_proctoring_workshop_activity: Az értékelő központ tevékenységeit nem ellenőrzik.
-    assessment_center_heading: Értékelő központ részletei
+    assessment_center_heading_label: A munkamenet részletei
     assessments_heading: Az Ön feladatai
     column:
       assessment_name: Értékelés neve
@@ -2353,7 +2353,7 @@ hu:
         invites: Meghívók
       what: Mi
       when: Amikor
-      workshop_start_text: Az Ön értékelőközpontja a következő időpontban indul
+      workshop_start_label: A munkamenet a következő időpontban kezdődik
     break_time: Szünet
     campaign:
       actions:

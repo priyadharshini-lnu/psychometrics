@@ -406,7 +406,7 @@ zh-HK:
       notification_hours: 您有 %{hours} 小時 完成
       notification_minutes: 您有 %{minutes} 分 完成
   campaign_assessment:
-    assessment_center_heading: 評估中心詳細資訊
+    assessment_center_heading_label: 會議詳情
     assessments_heading: 您的任務
     column:
       external_user_id: Skillvue 候選人 ID
@@ -748,7 +748,7 @@ zh-HK:
         invites: 邀請
       what: 甚麼
       when: 何時
-      workshop_start_text: 您的評估中心將於以下時間開始：
+      workshop_start_label: 您的課程將於
     break_time: 休息時間
     campaign:
       actions:

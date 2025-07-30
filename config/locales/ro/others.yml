@@ -1399,7 +1399,7 @@ ro:
       reset_all_nominations: Resetați toate nominalizările
       reset_participant: Resetați toți participanții
     allow_msg_proctoring_workshop_activity: Activitățile centrului de evaluare nu sunt supravegheate.
-    assessment_center_heading: Detalii privind centrul de evaluare
+    assessment_center_heading_label: Detalii despre sesiune
     assessments_heading: Sarcinile dvs
     column:
       assessment_name: Denumirea evaluării
@@ -2353,7 +2353,7 @@ ro:
         invites: Invitații
       what: Ce
       when: Când
-      workshop_start_text: Centrul dvs. de evaluare va începe în
+      workshop_start_label: Sesiunea dvs. va începe în
     break_time: Pauză
     campaign:
       actions:

@@ -1411,7 +1411,7 @@ cs:
       reset_all_nominations: Obnovení všech nominací
       reset_participant: Obnovení všech účastníků
     allow_msg_proctoring_workshop_activity: Činnosti v hodnotícím centru nejsou ověřovány.
-    assessment_center_heading: Podrobnosti o hodnotícím centru
+    assessment_center_heading_label: Podrobnosti o sezení
     assessments_heading: Vaše úkoly
     column:
       assessment_name: Název hodnocení
@@ -2338,7 +2338,7 @@ cs:
         invites: Pozvánky
       what: Co
       when: Kdy
-      workshop_start_text: Centrum hodnocení bude zahájeno za
+      workshop_start_label: Vaše sezení začne v
     break_time: Čas přestávky
     campaign:
       actions:

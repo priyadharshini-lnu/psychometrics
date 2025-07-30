@@ -325,7 +325,7 @@ sr-Cyrl:
       notification_hours: Остало вам је %{hours} сат
       notification_minutes: Остало вам је %{minutes} минута
   campaign_assessment:
-    assessment_center_heading: Детаљи центра за процену
+    assessment_center_heading_label: Детаљи сесије
     assessments_heading: Ваши задаци
     column:
       locales: Локализације
@@ -646,7 +646,7 @@ sr-Cyrl:
         invites: Позиви
       what: Шта
       when: Када
-      workshop_start_text: Ваш центар за процену ће почети за
+      workshop_start_label: Ваша сесија ће почети за
     break_time: Пауза
     campaign:
       actions:

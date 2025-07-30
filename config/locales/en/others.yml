@@ -1411,7 +1411,7 @@ en:
       reset_all_nominations: Reset All Nominations
       reset_participant: Reset All Participants
     allow_msg_proctoring_workshop_activity: Assessment center activities are not proctored.
-    assessment_center_heading: Assessment Center Details
+    assessment_center_heading_label: Session Details
     assessments_heading: Your Tasks
     column:
       assessment_name: Assessment name
@@ -2365,7 +2365,7 @@ en:
         invites: Invites
       what: What
       when: When
-      workshop_start_text: Your Assessment Center will start in
+      workshop_start_label: Your session will start in
     break_time: Break Time
     campaign:
       actions:

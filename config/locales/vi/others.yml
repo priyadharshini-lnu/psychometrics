@@ -1393,7 +1393,7 @@ vi:
       reset_all_nominations: Đặt lại tất cả các đề cử
       reset_participant: Đặt lại tất cả người tham gia
     allow_msg_proctoring_workshop_activity: Các hoạt động của trung tâm đánh giá không được giám sát.
-    assessment_center_heading: Chi tiết về Trung tâm Đánh giá
+    assessment_center_heading_label: Chi tiết phiên họp
     assessments_heading: Nhiệm vụ của bạn
     column:
       assessment_name: Tên đánh giá
@@ -2347,7 +2347,7 @@ vi:
         invites: Lời mời
       what: Cái gì
       when: Khi
-      workshop_start_text: Trung tâm đánh giá của bạn sẽ bắt đầu vào
+      workshop_start_label: Phiên làm việc của bạn sẽ bắt đầu trong
     break_time: Giờ nghỉ giải lao
     campaign:
       actions:

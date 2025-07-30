@@ -1436,7 +1436,7 @@ ar:
       reset_all_nominations: إعادة تعيين جميع الترشيحات
       reset_participant: إعادة تعيين جميع المشاركين
     allow_msg_proctoring_workshop_activity: لا تتم مراقبة أنشطة مركز التقييم.
-    assessment_center_heading: تفاصيل مركز التقييم
+    assessment_center_heading_label: تفاصيل الجلسة
     assessments_heading: مهامك
     column:
       assessment_name: اسم التقييم
@@ -2390,7 +2390,7 @@ ar:
         invites: الدعوات
       what: ماذا
       when: متى
-      workshop_start_text: سيبدأ مركز التقييم الخاص بك في
+      workshop_start_label: ستبدأ جلستك في
     break_time: فترة إستراحة
     campaign:
       actions:

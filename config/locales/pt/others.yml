@@ -1412,7 +1412,7 @@ pt:
       reset_all_nominations: Redefinir todas as nomeações
       reset_participant: Reiniciar todos os participantes
     allow_msg_proctoring_workshop_activity: As actividades do centro de avaliação não são supervisionadas.
-    assessment_center_heading: Detalhes do centro de avaliação
+    assessment_center_heading_label: Detalhes da sessão
     assessments_heading: As suas tarefas
     column:
       assessment_name: Nome da avaliação
@@ -2339,7 +2339,7 @@ pt:
         invites: Convites
       what: O quê
       when: Quando
-      workshop_start_text: O seu Centro de avaliação começará em
+      workshop_start_label: A sua sessão terá início em
     break_time: Intervalo
     campaign:
       actions:
