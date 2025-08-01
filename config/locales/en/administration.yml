@@ -15,6 +15,8 @@ en:
       title: Audited Changes
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha verification failed
         new:
           forgot_password: Forgot your password?
           instruction: Please login with your personal account information
@@ -290,18 +292,33 @@ en:
             view: View
     ai_assistants:
       actions:
+        create: Create AI Assistant
+        edit: Edit AI Assistant
         playground: Playground
       ai_assistants: AI Assistants
       ai_assistants_playground: AI Assistant Playground
       column:
         provider: Provider
+      created_successfully: AI Assistant was created successfully.
       form:
+        add_output_schema_key: Add Output Schema Key
+        dependencies: Dependencies
         description: Description
+        enter_description: Enter Description
+        enter_schema_key: Enter Schema Key
+        key: Key
         name: Name
+        output_schema_keys: Output Schema Keys
         provider: Provider
+        remove_output_schema_key: Remove Output Schema Key
+        schema_key_description_required: Schema Key Description is required
+        schema_key_required: Schema Key is required
+        schema_key_type: Key Type
+        schema_key_unique: Schema Keys should be unique
         system_prompt: System Prompt
-        title: AI Assistant
+        type: Type
         user_prompt: User Prompt
+      updated_successfully: AI Assistant was updated successfully.
     any: " - Any - "
     api:
       campaigns:
@@ -2137,6 +2154,7 @@ en:
       enter_template_name: Name
       enter_template_name_error: Template name is required
       errors:
+        cannot_update_progress_plan_completed: Cannot update progress because the IDP plan has been completed
         update: Update not allowed because the IDP template is already associated with a user IDP plan.
       fields:
         assigned_data: Assigned Data
@@ -2735,7 +2753,9 @@ en:
       errors:
         create:
           invalid_format: Level definition must be an array of definitions.
+          level_definition_must_exist: Level definition can't be blank
           level_definition_must_match_level: must contain exactly %{expected} levels, but %{actual} were given
+          level_name_must_exist: Level name can't be blank
           must_be_unique: Must be unique
           proficiency_level_exists: A Proficiency Level with this skill and project already exists
           proficiency_level_exists_for_default: A Proficiency Level for default already exits
@@ -3631,6 +3651,7 @@ en:
       disable_password_reuse: Disable password reuse
       disallow_password_login: Disallow password login
       enable_login_with_magic_link: Enable Login with magic link
+      enable_recaptcha: Enable reCAPTCHA
       enforce_password_policy: Enforce password policy at next sign-in
       enforce_strong: Enforce strong password
       expiration: Password expiration

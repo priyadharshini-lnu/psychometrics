@@ -10,6 +10,9 @@ class SmtpSetting < ApplicationRecord
   enum :encryption, { none: 0, ssl: 1, tls: 2 }, prefix: true
   enum :authentication_type, { plain: 0, login: 1, cram_md5: 2 }
 
+  validates :concurrency_limit, :rate_limit, :rate_limit_period,
+            numericality: { only_integer: true, greater_than: 0 }
+
   def from_name_and_email
     no_reply_email = "no-reply@#{Settings.domain}"
     return "#{I18n.t('mailer.from')} <#{no_reply_email}>" unless enabled?

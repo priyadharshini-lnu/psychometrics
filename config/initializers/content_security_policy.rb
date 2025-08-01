@@ -39,7 +39,8 @@ unless Rails.env.test?
       script_src = [
         :self, :unsafe_eval, 'https://chatwoot.tte-work.com',
         'https://svc.webspellchecker.net', Settings.oac.base_embed_url,
-        'https://consent.trustarc.com'
+        'https://consent.trustarc.com', 'https://www.google.com',
+        'https://www.gstatic.com'
       ].compact
       script_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
 
@@ -59,7 +60,8 @@ unless Rails.env.test?
         :self, :blob, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
         'https://consent-reporting.trustarc.com', 'https://consent.trustarc.com',
         'https://*.sentry.io',
-        'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint
+        'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint,
+        'https://www.google.com', 'https://www.gstatic.com'
       ].compact
       connect_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
       connect_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?

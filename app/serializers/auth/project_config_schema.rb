@@ -26,6 +26,7 @@ module Auth
         required(:background_size).maybe(:str?)
         required(:hide_signup).filled(:bool?)
         required(:logo_alt_text).maybe(:str?)
+        required(:enable_recaptcha).maybe(:bool?)
       end
     end
   end

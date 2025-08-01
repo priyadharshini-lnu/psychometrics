@@ -15,6 +15,8 @@ cs:
       title: Auditované změny
     administrator:
       sessions:
+        errors:
+          recaptcha: Ověření Recaptcha se nezdařilo
         new:
           forgot_password: Zapomněli jste heslo?
           instruction: Přihlaste se prosím pomocí údajů o svém osobním účtu
@@ -290,18 +292,33 @@ cs:
             view: Zobrazit
     ai_assistants:
       actions:
+        create: Vytvořit asistenta AI
+        edit: Upravit AI Assistant
         playground: Dětské hřiště
       ai_assistants: Asistenti AI
       ai_assistants_playground: AI Assistant Playground
       column:
         provider: Poskytovatel
+      created_successfully: AI Assistant byl úspěšně vytvořen.
       form:
+        add_output_schema_key: Přidání klíče výstupního schématu
+        dependencies: Závislosti
         description: Popis
+        enter_description: Zadejte popis
+        enter_schema_key: Zadejte klíč schématu
+        key: Klíč
         name: Název
+        output_schema_keys: Klíče výstupního schématu
         provider: Poskytovatel
+        remove_output_schema_key: Odstranění klíče výstupního schématu
+        schema_key_description_required: Je vyžadován popis klíče schématu
+        schema_key_required: Je vyžadován klíč schématu
+        schema_key_type: Typ klíče
+        schema_key_unique: Klíče schématu by měly být jedinečné
         system_prompt: Systémová výzva
-        title: Asistent s umělou inteligencí
+        type: Typ
         user_prompt: Výzva pro uživatele
+      updated_successfully: AI Assistant byl úspěšně aktualizován.
     any: " - Jakýkoli - "
     api:
       campaigns:
@@ -2137,6 +2154,7 @@ cs:
       enter_template_name: Název
       enter_template_name_error: Název šablony je povinný
       errors:
+        cannot_update_progress_plan_completed: Nelze aktualizovat pokrok, protože plán IDP byl dokončen.
         update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele.
       fields:
         assigned_data: Přiřazená data
@@ -3631,6 +3649,7 @@ cs:
       disable_password_reuse: Zakázat opakované použití hesla
       disallow_password_login: Zakázat přihlášení heslem
       enable_login_with_magic_link: Povolit přihlášení pomocí magického odkazu
+      enable_recaptcha: Povolit reCAPTCHA
       enforce_password_policy: Vynucení zásad hesla při příštím přihlášení
       enforce_strong: Vynucení silného hesla
       expiration: Vypršení platnosti hesla

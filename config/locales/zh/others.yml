@@ -1972,6 +1972,8 @@ zh:
         subject: 灯塔邀请函
       confirmation_instructions:
         subject: 确认说明
+      copyright:
+        text: Lighthouse. 版权所有
       invitation_instructions:
         body: '您好 %{name}，您已被添加到莱皓思，成为以下部分的管理员 '
         login: 登录灯塔
@@ -1984,6 +1986,8 @@ zh:
         body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 mte.support@mercer.com 联系支持部门。 '
         regards: '莱皓思团队 '
         subject: 您的灯塔密码已更改
+      powered_by:
+        text: Powered by Lighthouse.
       reset_password_instructions:
         body: '您好 %{name}！有人请求提供更改密码的链接。 您可以通过下面的链接进行更改。 '
         change_password: 更改密码
@@ -2739,6 +2743,7 @@ zh:
         required: 必须回答问题
       max_words: 最大字数
       min_words: 分词
+      no_reflective_questions: 沒有反思性問題
       title: 思考题
       update_failed: 更新过程中出现错误
       updated_successfully: 您的答案已成功更新

@@ -3,6 +3,7 @@
 module Administration
   module Administrator
     class SessionsController < Devise::SessionsController
+      prepend_before_action :verify_recaptcha_or_redirect, only: [:create]
       before_action :ensure_redirect_to_saml, only: [:create]
 
       helper_method :resource_nam, :devise_mapping
@@ -54,6 +55,18 @@ module Administration
         user = User.find_by(email: params[:user][:email])
         if user&.saml_enforced_for_admins?
           redirect_to new_saml_user_session_url and return
+        end
+      end
+
+      private
+
+      def verify_recaptcha_or_redirect
+        return if Settings.features.disable_recaptcha
+
+        unless verify_recaptcha(action: 'login', response: params[:recaptcha_token],
+                                minimum_score: Settings.recaptcha.recaptcha_minimum_score.to_f)
+          flash[:alert] = I18n.t('administration.administrator.sessions.errors.recaptcha')
+          redirect_to root_path and return
         end
       end
     end

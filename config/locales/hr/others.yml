@@ -2765,6 +2765,7 @@ hr:
         required: Odgovor na ovo pitanje je obavezan
       max_words: Maksimalni broj riječi
       min_words: Minimalni broj riječi
+      no_reflective_questions: Nema reflektivnih pitanja
       title: Pitanja za razmišljanje
       update_failed: Tijekom ažuriranja je došlo do pogreške
       updated_successfully: Vaši su odgovori uspješno ažurirani
@@ -2908,6 +2909,8 @@ hr:
     used_number: Korištene licence
     used_out_of: "%{used} od %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Sva prava pridržana
     from: Talent Enterprise
     idp:
       manager_unread_comments:
@@ -2965,6 +2968,8 @@ hr:
         instructions: Kliknite na donju poveznicu za prijavu na Lighthouse.
         signin_link: Povezanica za prijavu
       subject: Poveznica za prijavu na Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Vaš je račun onemogućen zbog neaktivnosti
       warning: Vaš će račun uskoro biti onemogućen zbog neaktivnosti

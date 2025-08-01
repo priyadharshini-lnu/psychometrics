@@ -2728,6 +2728,7 @@ hu:
         required: A kérdésre adott válasz szükséges
       max_words: Szavak maximális száma
       min_words: Minimális szavak
+      no_reflective_questions: Nincsenek reflektív kérdések
       title: Reflektív kérdések
       update_failed: Hiba történt a frissítés során
       updated_successfully: Válaszait sikeresen frissítettük
@@ -2871,6 +2872,8 @@ hu:
     used_number: Használt licencek
     used_out_of: "%{used} a(z) %{total} -ból"
   mailer:
+    copyright:
+      text: Lighthouse. Minden jog fenntartva
     from: A tehetség vállalkozás
     idp:
       manager_unread_comments:
@@ -2928,6 +2931,8 @@ hu:
         instructions: Kattintson az alábbi linkre a világítótoronyba való bejelentkezéshez.
         signin_link: Bejelentkezési link
       subject: Bejelentkezési link a Lighthouse-hoz
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Fiókját inaktivitás miatt letiltották
       warning: Fiókját hamarosan letiltjuk inaktivitás miatt

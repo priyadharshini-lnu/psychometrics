@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -10,8 +10,12 @@ import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
 import { Flash } from '~/components/Flash'
 import { MagicLink } from '../MagicLink'
+import { fetchRecaptchaToken } from '~/utils/recaptcha'
+
 
 const { I18n } = window
+const { disable_recaptcha } = window.PsyGlobalState.features
+const { recaptchaSiteKey } = window.PsyGlobalState
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
@@ -27,6 +31,16 @@ const LoginComponent: React.FC<Props> = ({
   if (projectConfig.disallow_password_login) {
     return <MagicLink />
   }
+  const [recaptchaToken, setRecaptchaToken] = useState<string>('')
+  const enable_recaptcha = !disable_recaptcha && projectConfig.enable_recaptcha
+
+  useEffect(() => {
+    if (enable_recaptcha) {
+      fetchRecaptchaToken(recaptchaSiteKey, 'login').then((token) => {
+        setRecaptchaToken(token)
+      })
+    }
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -77,6 +91,9 @@ const LoginComponent: React.FC<Props> = ({
             onFinish={() => (document.getElementById('form-login') as HTMLFormElement).submit()}
           >
             <Input type="hidden" name="authenticity_token" value={csrfToken} />
+            {enable_recaptcha && (
+              <Input type="hidden" name="recaptcha_token" value={recaptchaToken} />
+            )}
             <InputField
               label={I18n.t('auth.email')}
               name="user[email]"

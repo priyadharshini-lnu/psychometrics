@@ -300,7 +300,6 @@ hu:
         name: Név
         provider: Szolgáltató
         system_prompt: Rendszerkérés
-        title: AI-asszisztens
         user_prompt: Felhasználói kérés
     any: " -Bármely- "
     api:

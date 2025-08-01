@@ -2057,11 +2057,11 @@ ar:
         sub_factors: Sub factors
         title: Factors
       list:
-        active: Active
-        created_at: Created date
-        id: ID
-        name: Name
-        updated_at: Modified date
+        active: نشط
+        created_at: تاريخ الإنشاء
+        id: المعرف
+        name: الاسم
+        updated_at: التاريخ المعدل
       new:
         header: New Factor
       resource:
@@ -2284,11 +2284,11 @@ ar:
         new: Add
         title: Innovation Styles
       list:
-        created_at: Created date
-        id: ID
-        name: Name
-        position: Position
-        updated_at: Modified date
+        created_at: تاريخ الإنشاء
+        id: المعرف
+        name: الاسم
+        position: المنصب
+        updated_at: التاريخ المعدل
       new:
         header: New Innovation Style
       resource:
@@ -2316,13 +2316,13 @@ ar:
         new: Add
         title: Factors
       list:
-        condition: Condition
-        created_at: Created date
-        id: ID
-        name: Name
-        position: Position
-        updated_at: Modified date
-        weight: Weight
+        condition: الحالة
+        created_at: تاريخ الإنشاء
+        id: المعرف
+        name: الاسم
+        position: المنصب
+        updated_at: التاريخ المعدل
+        weight: الوزن
       new:
         header: Attach Factors
       resource:
@@ -2571,13 +2571,13 @@ ar:
         owner: Owner
         title: Norms
       list:
-        active: Active
-        created_at: Created date
-        dimension_id: Dimension ID
-        id: ID
-        name: Name
-        updated_at: Modified date
-        updated_by: Updated by
+        active: نشط
+        created_at: تاريخ الإنشاء
+        dimension_id: معرّف البُعد
+        id: المعرف
+        name: الاسم
+        updated_at: التاريخ المعدل
+        updated_by: تم التحديث بواسطة
       new:
         header: New norm
       norms: Norms
@@ -2634,10 +2634,10 @@ ar:
         new: Add
         title: Occupations
       list:
-        created_at: Created Date
-        id: ID
-        name: Name
-        updated_at: Modified Date
+        created_at: تاريخ الإنشاء
+        id: المعرف
+        name: الاسم
+        updated_at: تاريخ التعديل
       new:
         header: New occupation
       resource:
@@ -2665,13 +2665,13 @@ ar:
         new: Add
         title: Factors
       list:
-        condition: Condition
-        created_at: Created date
-        id: ID
-        name: Name
-        position: Position
-        updated_at: Modified date
-        weight: Weight
+        condition: الحالة
+        created_at: تاريخ الإنشاء
+        id: المعرف
+        name: الاسم
+        position: المنصب
+        updated_at: التاريخ المعدل
+        weight: الوزن
       new:
         header: Attach Factors
       resource:
@@ -2713,13 +2713,13 @@ ar:
       title: Add Piped Text
     proctoring_sessions:
       columns:
-        comment: Comment
-        completed_at: Completed at
-        conclusion: Conclusion
-        links: Links
-        score: Score
-        session_id: Session ID
-        started_at: Started at
+        comment: تعليق
+        completed_at: اكتمل في
+        conclusion: الخاتمة
+        links: الروابط
+        score: النتيجة
+        session_id: معرّف الجلسة
+        started_at: بدأت في
       links:
         report: Report
         review: Review
@@ -2807,24 +2807,24 @@ ar:
         workshop_status_export: Workshop Status Export
         workshop_status_export_success: Workshop Status Export was scheduled successfully.
     project_participants:
-      cancel: Cancel
-      column_actions: Actions
-      column_campaigns: Campaigns
-      column_createdAt: Created At
-      column_created_at: Created at
-      column_email: Email
-      column_id: ID
-      column_name: Name
-      delete: Delete
-      edit: Edit
-      edit_participant: Edit participant
-      filter_campaigns: No campaigns
-      form_first_name: First name
-      form_last_name: Last name
-      reset_password: Reset password
-      save: Save
-      search_user: Search user
-      send_email: Send email
+      cancel: إلغاء
+      column_actions: الإجراءات
+      column_campaigns: الحملات
+      column_createdAt: تم إنشاؤها في
+      column_created_at: تم إنشاؤها في
+      column_email: البريد الإلكتروني
+      column_id: المعرف
+      column_name: الاسم
+      delete: حذف
+      edit: تحرير
+      edit_participant: تحرير المشارك
+      filter_campaigns: لا توجد حملات
+      form_first_name: الاسم الأول
+      form_last_name: اسم العائلة
+      reset_password: إعادة تعيين كلمة المرور
+      save: الحفظ
+      search_user: بحث المستخدم
+      send_email: إرسال بريد إلكتروني
     project_tabs:
       assessments:
         column:
@@ -2918,34 +2918,34 @@ ar:
           title: Delete
         title: Webhooks
     project_users:
-      cancel: Cancel
-      change_password: Change password
-      column_actions: Actions
-      column_campaigns: Campaigns
-      column_created_at: Created at
-      column_email: Email
-      column_id: ID
-      column_name: Name
-      confirm_delete: Yes, delete
-      confirm_send: Yes, send
-      delete: Delete
-      delete_error: Could not delete assessor '%{name}'. Please contact your administrator.
-      delete_success: Assessor '%{name}' was deleted successfully.
-      edit: Edit
-      edit_assessor: Edit assessor
-      filter_campaigns: With no campaigns
-      form_first_name: First name
-      form_last_name: Last name
-      modal_delete_content: Are you sure you want to delete assessor '%{name}'?
-      modal_delete_title: Delete assessor
-      modal_reset_email_content: Are you sure you want send password reset link to '%{email}'?
-      model_reset_email: Reset assessor's password
-      no_edit_permission: You do not have permission to edit assessor '%{name}'
-      reset_mail_error: Could not send reset password link to '%{email}'. Please contact your administrator.
-      reset_mail_success: Reset password link successfully sent to '%{email}'
-      save: Save
-      search_accessor: Search accessors
-      send_email: Send email
+      cancel: إلغاء
+      change_password: تغيير كلمة المرور
+      column_actions: الإجراءات
+      column_campaigns: الحملات
+      column_created_at: تم إنشاؤها في
+      column_email: البريد الإلكتروني
+      column_id: المعرف
+      column_name: الاسم
+      confirm_delete: نعم، احذف
+      confirm_send: نعم، أرسل
+      delete: حذف
+      delete_error: تعذر حذف المقيم "%{name}". يرجى الاتصال بالمسؤول.
+      delete_success: تم حذف المقيم "%{name}" بنجاح.
+      edit: تحرير
+      edit_assessor: تحرير المقيم
+      filter_campaigns: مع عدم وجود حملات
+      form_first_name: الاسم الأول
+      form_last_name: اسم العائلة
+      modal_delete_content: هل تريد بالتأكيد حذف المقيم "%{name}"؟
+      modal_delete_title: حذف المقيم
+      modal_reset_email_content: هل أنت متأكد من أنك تريد إرسال رابط إعادة تعيين كلمة المرور إلى "%{email}"؟
+      model_reset_email: إعادة تعيين كلمة مرور المقيم
+      no_edit_permission: ليس لديك إذن لتحرير المقيم '%{name}'
+      reset_mail_error: تعذر إرسال رابط إعادة تعيين كلمة المرور إلى "%{email}". يرجى الاتصال بالمسؤول.
+      reset_mail_success: تم إرسال رابط إعادة تعيين كلمة المرور بنجاح إلى "%{email}
+      save: الحفظ
+      search_accessor: ملحقات البحث
+      send_email: إرسال بريد إلكتروني
     projects:
       addProject: Add Project
       assessment_settings:
@@ -3336,24 +3336,24 @@ ar:
       after_signout_url: After Signout Url
       cert: Certificate
       config_details:
-        acs_url: Assertion Consumer Service URL
-        copied: Copied %{element}
-        issuer: Entity ID/Issuer
-        title: Configure Idp with following info
-      email_pipetext: Email Pipetext
-      enabled: Enabled
-      enforced: Enforce SAML
-      entity_id: Entity ID/Issuer
-      name_identifier_format: Name Identifier
+        acs_url: عنوان URL خدمة مستهلك التأكيد
+        copied: تم نسخ %{element}
+        issuer: معرّف الكيان/المُصدر
+        title: تكوين Idp بالمعلومات التالية
+      email_pipetext: البريد الإلكتروني Pipetext
+      enabled: ممكّنة
+      enforced: إنفاذ SAML
+      entity_id: معرّف الكيان/المُصدر
+      name_identifier_format: معرّف الاسم
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
       saml: SAML
       saml_setting: SAML Setting
       save: إعداد الحفظ
-      sso_service_url: SSO Service Url
-      successfully_saved_msg: SAML Setting was saved successfully. No verification is required as Enity ID/Issuer, SSO Service Url and Certificate is unchanged
-    save: Save
+      sso_service_url: عنوان خدمة SSO
+      successfully_saved_msg: تم حفظ إعداد SAML بنجاح.
+    save: الحفظ
     scheduling:
       add_activity: Add Activity
       add_assessment_center: Add Assessment Center
@@ -3537,19 +3537,19 @@ ar:
       dimension: Dimension
       edit_factor: Edit Factor
       export:
-        details: Campaign scorings
-        factors: Export Campaign Factors
-      factor: Factor
-      factor_group_removed_successfully: Campaign Factor group was removed successfully
-      factor_removal_confirmation: Enter factor name given below in text box to confirm
-      factor_removed_successfully: Campaign Factor was removed successfully
-      factors_exported_successfully: Export campaign factors job was scheduled successfully
-      factors_imported_successfully: Import campaign factors job was scheduled successfully
-      final: Final
-      final_score_updated_successfully: Final score was updated successfully
-      formula: Formula
-      get_started: Get Started
-      id: ID
+        details: تصنيفات الحملة
+        factors: عوامل حملة التصدير
+      factor: العامل
+      factor_group_removed_successfully: تمت إزالة مجموعة عامل الحملة بنجاح
+      factor_removal_confirmation: أدخل اسم العامل الوارد أدناه في مربع النص للتأكيد
+      factor_removed_successfully: تمت إزالة عامل الحملة بنجاح
+      factors_exported_successfully: تمت جدولة مهمة عوامل حملة التصدير بنجاح
+      factors_imported_successfully: تمت جدولة مهمة عوامل حملة الاستيراد بنجاح
+      final: النهائي
+      final_score_updated_successfully: تم تحديث النتيجة النهائية بنجاح
+      formula: الصيغة
+      get_started: ابدأ الآن
+      id: المعرف
       import:
         factors: Import Campaign Factors
       name: Name
@@ -3856,6 +3856,8 @@ ar:
       columns:
         id: ID
         message: Message
+        id: المعرف
+        message: الرسالة
     smtp_settings:
       authentication: Authentication
       authentication_type: Authentication Type
@@ -3883,6 +3885,9 @@ ar:
         input_hint: Your email setting will not saved until test email was sent successfully.
         input_placeholder: Test Email ID
         title: Test Email ID
+        input_hint: لن يتم حفظ إعداد البريد الإلكتروني الخاص بك حتى يتم إرسال البريد الإلكتروني الاختباري بنجاح.
+        input_placeholder: معرف البريد الإلكتروني الاختباري
+        title: معرف البريد الإلكتروني الاختباري
       test_modal:
         success_message: Test Email sent to %{email_id}.
         title: Test SMTP setting
@@ -3893,19 +3898,19 @@ ar:
       assessments:
         active: نشيط
         columns:
-          assessment_name: Assessment Name
-          completed: Completed
-          id: ID
-          in_progress: In Progress
-          ineligible: Ineligible
-          interrupted: Interrupted
-          not_started: Not Started
-          timed_out: Timed Out
+          assessment_name: اسم التقييم
+          completed: مكتمل
+          id: بطاقة الهوية
+          in_progress: قيد التنفيذ
+          ineligible: غير مؤهل
+          interrupted: مقاطعة
+          not_started: لم تبدأ
+          timed_out: انتهت المهلة
         count: عدد
         inactive: غير نشط
         percentage: نسبة مئوية
-        title: Assessments
-      title: Stats
+        title: التقييمات
+      title: الإحصائيات
       top_metrics:
         completed: Completed
         in_progress: In Progress

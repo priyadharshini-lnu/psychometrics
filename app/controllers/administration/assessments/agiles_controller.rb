@@ -23,7 +23,10 @@ class Administration::Assessments::AgilesController < Administration::BaseContro
   private
 
   def agile_params
-    params.require(:agile).permit!
+    params.require(:agile).permit(
+      config: {},
+      translations: {}
+    )
   end
 
   def init_breadcrumbs

@@ -2747,6 +2747,7 @@ th:
         required: จําเป็นต้องมีคําตอบสําหรับคําถาม
       max_words: คําสูงสุด
       min_words: คําขั้นต่ํา
+      no_reflective_questions: ไม่มีคำถามสะท้อน
       title: คําถามไตร่ตรอง
       update_failed: เกิดข้อผิดพลาดในระหว่างการอัปเดต
       updated_successfully: คําตอบของคุณอัปเดตเรียบร้อยแล้ว
@@ -2890,6 +2891,8 @@ th:
     used_number: ใบอนุญาตที่ใช้แล้ว
     used_out_of: "%{used} จาก %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. สงวนลิขสิทธิ์
     from: องค์กรผู้มีความสามารถ
     idp:
       manager_unread_comments:
@@ -2946,7 +2949,9 @@ th:
         greetings: สวัสดีวันใหม่!
         instructions: คลิกลิงก์ด้านล่างเพื่อลงชื่อเข้าใช้ประภาคาร
         signin_link: ลิงค์ลงชื่อเข้าใช้
-      subject: ลิงค์ลงชื่อเข้าใช้สำหรับประภาคาร
+      subject: ลิงค์ลงชื่อเข้าใช้สำหรับ Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: บัญชีของคุณถูกปิดใช้งานเนื่องจากไม่มีการใช้งาน
       warning: บัญชีของคุณจะถูกปิดใช้งานในไม่ช้าเนื่องจากไม่มีการใช้งาน

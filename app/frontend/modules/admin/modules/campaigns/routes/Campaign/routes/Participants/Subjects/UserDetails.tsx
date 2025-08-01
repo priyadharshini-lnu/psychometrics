@@ -263,6 +263,7 @@ export const UserDetails: React.FC<Props> = ({
                 <EditOutlined
                   onClick={() => openModal('AssignManagerFormModal', {
                     projectId,
+                    campaignId: parsedCampaignId,
                     userId,
                     manager: user.manager,
                   })

@@ -15,6 +15,8 @@ fr:
       title: Changements audités
     administrator:
       sessions:
+        errors:
+          recaptcha: La vérification du Recaptcha a échoué
         new:
           forgot_password: Vous avez oublié votre mot de passe ?
           instruction: Veuillez vous connecter avec les informations de votre compte personnel
@@ -290,18 +292,33 @@ fr:
             view: Voir
     ai_assistants:
       actions:
+        create: Créer un assistant IA
+        edit: Modifier l'assistant IA
         playground: Terrain de jeux
       ai_assistants: Assistants IA
       ai_assistants_playground: Terrain de jeu de l'assistant IA
       column:
         provider: Fournisseur
+      created_successfully: L'assistant AI a été créé avec succès.
       form:
+        add_output_schema_key: Ajouter une clé de schéma de sortie
+        dependencies: Dépendances
         description: Description
+        enter_description: Saisir la description
+        enter_schema_key: Saisir la clé de schéma
+        key: Clé
         name: Nom
+        output_schema_keys: Clés du schéma de sortie
         provider: Fournisseur
+        remove_output_schema_key: Supprimer la clé de schéma de sortie
+        schema_key_description_required: La description de la clé de schéma est obligatoire
+        schema_key_required: La clé de schéma est requise
+        schema_key_type: Type de clé
+        schema_key_unique: Les clés de schéma doivent être uniques
         system_prompt: Invite du système
-        title: Assistant IA
+        type: Type
         user_prompt: Invite de l'utilisateur
+      updated_successfully: L'assistant AI a été mis à jour avec succès.
     any: " - Tous - "
     api:
       campaigns:
@@ -2137,6 +2154,7 @@ fr:
       enter_template_name: Nom
       enter_template_name_error: Le nom du modèle est obligatoire
       errors:
+        cannot_update_progress_plan_completed: Impossible de mettre à jour l'état d'avancement car le plan IDP a été achevé.
         update: La mise à jour n'est pas autorisée car le modèle IDP est déjà associé à un plan IDP utilisateur.
       fields:
         assigned_data: Données attribuées
@@ -3631,6 +3649,7 @@ fr:
       disable_password_reuse: Désactiver la réutilisation du mot de passe
       disallow_password_login: Interdire la connexion par mot de passe
       enable_login_with_magic_link: Activer la connexion par lien magique
+      enable_recaptcha: Activer reCAPTCHA
       enforce_password_policy: Appliquer la politique de mot de passe lors de la prochaine connexion
       enforce_strong: Appliquer un mot de passe fort
       expiration: Expiration du mot de passe

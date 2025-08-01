@@ -151,7 +151,7 @@ module Administration
       @communication = resource
       @selected_locale = params[:locale] || params[:lang]
 
-      @available_locales = I18n.available_locales.map(&:to_s)
+      @available_locales = I18n.available_locales.map(&:to_s).sort
 
       @reference_subject = @communication.subject
       @reference_body = @communication.body

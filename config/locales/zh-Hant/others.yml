@@ -1962,6 +1962,8 @@ zh-Hant:
         subject: 燈塔邀請函
       confirmation_instructions:
         subject: 確認指示
+      copyright:
+        text: Lighthouse. 版權所有
       invitation_instructions:
         body: '您好 %{name}，您已被加入 Lighthouse（兆光科技），成為以下部分的管理員 '
         login: 登入 Lighthouse
@@ -1974,6 +1976,8 @@ zh-Hant:
         body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 mte.support@mercer.com '
         regards: 'Lighthouse 團隊 '
         subject: 您的 Lighthouse 密碼已變更
+      powered_by:
+        text: Powered by Lighthouse.
       reset_password_instructions:
         body: '您好，%{name}！有人要求提供變更密碼的連結。 您可以透過以下連結變更密碼。 '
         change_password: 變更密碼
@@ -2729,6 +2733,7 @@ zh-Hant:
         required: 問題的答案是必需的
       max_words: 最大字數
       min_words: 最小字數
+      no_reflective_questions: 没有反思性问题
       title: 反思性問題
       update_failed: 更新期間出錯
       updated_successfully: 您的答案已成功更新

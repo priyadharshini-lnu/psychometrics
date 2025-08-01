@@ -15,6 +15,8 @@ zh:
       title: 经审计的变化
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha 验证失败
         new:
           forgot_password: 忘记密码？
           instruction: 请使用个人账户信息登录
@@ -290,18 +292,33 @@ zh:
             view: 查看
     ai_assistants:
       actions:
+        create: 创建人工智能助理
+        edit: 编辑人工智能助理
         playground: 游乐场
       ai_assistants: 人工智能助理
       ai_assistants_playground: 人工智能助理游乐场
       column:
         provider: 提供商
+      created_successfully: AI 助手创建成功。
       form:
+        add_output_schema_key: 添加输出模式密钥
+        dependencies: 依赖关系
         description: 说明
+        enter_description: 输入描述
+        enter_schema_key: 输入模式密钥
+        key: 钥匙
         name: 名称
+        output_schema_keys: 输出模式键
         provider: 提供商
+        remove_output_schema_key: 移除输出模式密钥
+        schema_key_description_required: 模式密钥描述为必填项
+        schema_key_required: 需要模式密钥
+        schema_key_type: 钥匙类型
+        schema_key_unique: 模式键应是唯一的
         system_prompt: 系统提示
-        title: 人工智能助理
+        type: 类型
         user_prompt: 用户提示
+      updated_successfully: 人工智能助理已成功更新。
     any: " - 任何 - "
     api:
       campaigns:
@@ -2137,6 +2154,7 @@ zh:
       enter_template_name: 名称
       enter_template_name_error: 模板名称为必填项
       errors:
+        cannot_update_progress_plan_completed: 无法更新进度，因为 IDP 计划已经完成
         update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。
       fields:
         assigned_data: 指定数据
@@ -3631,6 +3649,7 @@ zh:
       disable_password_reuse: 禁用密码重用
       disallow_password_login: 禁止密码登录
       enable_login_with_magic_link: 启用魔法链接登录
+      enable_recaptcha: 启用验证码
       enforce_password_policy: 下次登录时执行密码策略
       enforce_strong: 执行强密码
       expiration: 密码过期

@@ -1080,6 +1080,7 @@ zh-HK:
         required: 需要回答問題
       max_words: 最大字數
       min_words: 最小字數
+      no_reflective_questions: 沒有反思性問題
       title: 反思問題
       update_failed: 更新期間發生錯誤
       updated_successfully: 您的答案已成功更新
@@ -1101,6 +1102,8 @@ zh-HK:
   licenses:
     title: 許可證
   mailer:
+    copyright:
+      text: Lighthouse. 版權所有
     magic_link:
       body:
         dear: 親愛的 %{name}、
@@ -1108,6 +1111,8 @@ zh-HK:
         instructions: 點選以下連結登入 lighthouse。
         signin_link: 登入連結
       subject: Lighthouse 的登入連結
+    powered_by:
+      text: Powered by Lighthouse.
   navigation:
     logout: 登出
   norms:

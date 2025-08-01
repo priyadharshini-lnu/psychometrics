@@ -300,7 +300,6 @@ pl:
         name: Nazwa
         provider: Dostawca
         system_prompt: Monit systemowy
-        title: Asystent AI
         user_prompt: Monit użytkownika
     any: " -Jakikolwiek- "
     api:

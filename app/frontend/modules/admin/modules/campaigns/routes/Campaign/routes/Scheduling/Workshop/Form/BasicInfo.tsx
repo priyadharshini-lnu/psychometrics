@@ -20,6 +20,8 @@ const fieldLayout = {
   wrapperCol: { span: 24 },
 }
 
+const MAX_ALLOWED_DATES = 20
+
 const { I18n } = window
 
 interface Props {
@@ -105,7 +107,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
       setDateFieldStatus(newDates.length ? 'success' : 'error')
       setSelectedDates(sortDates(newDates))
     }
-    if (existingIndex < 0 && date && selectedDates.length < 5) {
+    if (existingIndex < 0 && date && selectedDates.length < MAX_ALLOWED_DATES) {
       setDateFieldStatus('success')
       setSelectedDates(sortDates([...selectedDates, date]))
     }
@@ -143,7 +145,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
           initialValues={{ ...initialValues, dates: initialValues.dates?.length ? initialValues.dates : null }}
         >
           <Row gutter={16}>
-            <Col xs={24} sm={12} lg={8}>
+            <Col xs={24} sm={12} lg={10}>
               <Form.Item
                 label={I18n.t('administration.scheduling.assessment_center_form.dates_label')}
                 {...fieldLayout}
@@ -183,21 +185,22 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
                   style={{ width: '200px' }}
                 />
                 {selectedDates.length ? (
-                  <div className={styles.dateTags}>
+                  <Space wrap className={styles.dateTags}>
                     {selectedDates.map(date => (
                       <Tag
                         key={date.toISOString()}
                         closable
                         onClose={() => handleTagClose(date)}
+                        className="me-0"
                       >
                         {date.format('Do, MMMM, YYYY').toString()}
                       </Tag>
                     ))}
-                  </div>
+                  </Space>
                 ) : null}
               </Form.Item>
             </Col>
-            <Col xs={24} sm={12} lg={8}>
+            <Col xs={24} sm={12} lg={6}>
               <Form.Item
                 name="campaignAssessmentGroupId"
                 label={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}

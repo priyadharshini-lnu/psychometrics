@@ -2762,6 +2762,7 @@ en:
         required: The answer to the question is required
       max_words: Max Words
       min_words: Min Words
+      no_reflective_questions: No reflective questions available
       title: Reflective Questions
       update_failed: An error occurred during the update
       updated_successfully: Your answers have been updated successfully
@@ -2974,6 +2975,12 @@ en:
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. All rights reserved
+    footer:
+      regards: Regards,
+      team_name: Lighthouse Team
+      technical_support: For any technical issues, please write to us at %{email} and we will respond within 24 hours.
     from: The Talent Enterprise
     idp:
       manager_unread_comments:
@@ -3031,6 +3038,8 @@ en:
         instructions: Click below link to signin to lighthouse.
         signin_link: Signin Link
       subject: Signin link for Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity
@@ -3347,6 +3356,9 @@ en:
       send_password_email_success: Email sent to user %{email} with the password.
     title: Reset Password
   select: Select
+  sessions:
+    errors:
+      recaptcha: Recaptcha verification failed. Please try again.
   shared:
     filters:
       clear: Clear Filters

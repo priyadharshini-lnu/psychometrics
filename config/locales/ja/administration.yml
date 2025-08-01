@@ -15,6 +15,8 @@ ja:
       title: 監査による変更
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha の検証に失敗しました。
         new:
           forgot_password: パスワードをお忘れですか？
           instruction: 個人アカウント情報でログインしてください
@@ -290,18 +292,33 @@ ja:
             view: 表示
     ai_assistants:
       actions:
+        create: AIアシスタントを作る
+        edit: AIアシスタントを編集する
         playground: 遊び場
       ai_assistants: AIアシスタント
       ai_assistants_playground: AIアシスタント・プレイグラウンド
       column:
         provider: プロバイダー
+      created_successfully: AIアシスタントが正常に作成されました。
       form:
+        add_output_schema_key: 出力スキーマ・キーの追加
+        dependencies: 依存関係
         description: 説明
+        enter_description: 説明を入力
+        enter_schema_key: スキーマ・キーを入力
+        key: キー
         name: 名称
+        output_schema_keys: 出力スキーマ・キー
         provider: プロバイダー
+        remove_output_schema_key: 出力スキーマ・キーの削除
+        schema_key_description_required: スキーマキーの説明は必須
+        schema_key_required: スキーマ・キーが必要
+        schema_key_type: キータイプ
+        schema_key_unique: スキーマ・キーは一意でなければならない
         system_prompt: システムプロンプト
-        title: AIアシスタント
+        type: タイプ
         user_prompt: ユーザープロンプト
+      updated_successfully: AIアシスタントは正常に更新されました。
     any: " - どれでも "
     api:
       campaigns:
@@ -2137,6 +2154,7 @@ ja:
       enter_template_name: 名称
       enter_template_name_error: テンプレート名は必須
       errors:
+        cannot_update_progress_plan_completed: IDP計画が完了したため、進捗状況を更新できない
         update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
       fields:
         assigned_data: 割り当てデータ
@@ -3631,6 +3649,7 @@ ja:
       disable_password_reuse: パスワードの再利用を無効にする
       disallow_password_login: パスワードによるログインを許可しない
       enable_login_with_magic_link: マジックリンクによるログインを有効にする
+      enable_recaptcha: reCAPTCHAを有効にする
       enforce_password_policy: 次回サインイン時にパスワードポリシーを強制する
       enforce_strong: 強力なパスワードの強制
       expiration: パスワードの有効期限

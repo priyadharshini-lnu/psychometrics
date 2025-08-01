@@ -1938,6 +1938,8 @@ fr:
     invalid_captcha: L'entrée captcha n'était pas valide.
     invalid_security_question: La réponse à la question de sécurité n'est pas valide.
     invitations:
+      confirmation_instructions:
+        subject: Instructions de confirmation
       edit:
         confirm_password_label: Confirmer le mot de passe
         header: Définissez votre mot de passe
@@ -1970,6 +1972,23 @@ fr:
           client: 'Location du client : %{section_name}'
           project: 'Projet : %{section_name}'
         subject: Invitation au phare
+      invitation_removed: Votre invitation a été retirée.
+      invitation_token_invalid: Le jeton d'invitation fourni n'est pas valide !
+      mailer:
+        accept: Cliquez ici pour accepter l'invitation.
+        admin_invitation_instructions:
+        body: 'Bonjour %{name}, Vous avez été invité à accéder au panneau d''administration de Lighthouse - The Talent Enterprise assessment platform. %{accept} Ou vous pouvez ignorer cet e-mail. Veuillez ne pas partager vos identifiants d''accès avec qui que ce soit.
+
+          '
+        copyright:
+          text: Lighthouse. Tous droits réservés
+        powered_by:
+          text: Powered by Lighthouse.
+        subject: Invitation au phare
+      new:
+        header: Envoyer une invitation
+        submit_button: Envoyer une invitation
+      no_invitations_remaining: Il ne reste plus d'invitations
       password_change:
         body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse mte.support@mercer.com '
         regards: 'Cordialement, l''équipe de Lighthouse '
@@ -1980,12 +1999,15 @@ fr:
         footer: Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessus et créé un nouveau mot de passe.
         regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Instructions pour réinitialiser votre mot de passe
+      send_instructions: Un courriel d'invitation a été envoyé à %{email}.
       unlock_instructions:
         body: 'Bonjour %{name} ! Votre compte a été verrouillé en raison d''un nombre excessif de tentatives de connexion infructueuses. Cliquez sur le lien ci-dessous pour déverrouiller votre compte : '
         footer: Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessus et créé un nouveau mot de passe.
         regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Instructions pour débloquer votre compte
         unlock_account: Débloquer mon compte
+      updated: Votre mot de passe a été défini avec succès. Vous êtes maintenant connecté.
+      updated_not_active: Votre mot de passe a été défini avec succès.
     omniauth_callbacks:
       failure: Impossible de vous authentifier auprès de %{kind} car "%{reason}".
       success: Authentification réussie à partir du compte %{kind}.
@@ -2732,6 +2754,7 @@ fr:
         required: La réponse à la question est requise
       max_words: Mots maximums
       min_words: Mots minuscules
+      no_reflective_questions: Pas de questions de réflexion
       title: Questions de réflexion
       update_failed: Une erreur s'est produite lors de la mise à jour
       updated_successfully: Vos réponses ont été mises à jour avec succès
@@ -2875,6 +2898,10 @@ fr:
     used_number: Licences utilisées
     used_out_of: "%{used} sur %{total}"
   mailer:
+    footer:
+      regards: Cordialement,
+      team_name: Équipe Lighthouse
+      technical_support: Pour tout problème technique, écrivez-nous à %{email} et nous répondrons dans les 24 heures.
     from: L'entreprise des talents
     idp:
       manager_unread_comments:

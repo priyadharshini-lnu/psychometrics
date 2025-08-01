@@ -268,5 +268,6 @@ gem 'oci', '~> 2.20.0'
 # Sidekiq queue concurrency control
 gem 'sidekiq-throttled', '~> 1.5.2'
 
+gem 'recaptcha', require: 'recaptcha/rails'
 # To integrate with LLMs
 gem 'ruby_llm', '~> 1.3.1'

@@ -62,7 +62,8 @@ describe Assessments::CopyAssessment do
     end
 
     let(:copy) do
-      described_class.call(assessment.id, user, new_assessment_name: "Copy of #{assessment.name}")[:ok][:assessment]
+      described_class.call(assessment.id, user, client.id,
+                           new_assessment_name: "Copy of #{assessment.name}")[:ok][:assessment]
     end
 
     it 'succeeds' do
@@ -75,7 +76,8 @@ describe Assessments::CopyAssessment do
     it 'saves passed assessment name' do
       assessment = create(:assessment, owner_id: client.id)
       assessment_name = Faker::Name.name
-      assessment = described_class.call!(assessment.id, user, new_assessment_name: assessment_name)[:assessment]
+      assessment = described_class.call!(assessment.id, user, client.id,
+                                         new_assessment_name: assessment_name)[:assessment]
 
       expect(assessment.name).to eq(assessment_name)
     end
@@ -174,6 +176,14 @@ describe Assessments::CopyAssessment do
       translations = copy.blocks.first.questions.first.translations
 
       expect(translations.length).to eq(assessment.blocks.first.questions.first.translations.length)
+    end
+
+    it 'save TTE as owner_id when owner_id is not passed' do
+      superadmin = create(:superadmin)
+      copy = described_class.call!(assessment.id, superadmin, nil,
+                                   new_assessment_name: "Copy of #{assessment.name}")[:assessment]
+
+      expect(copy.owner_id).to eq(nil)
     end
   end
 end

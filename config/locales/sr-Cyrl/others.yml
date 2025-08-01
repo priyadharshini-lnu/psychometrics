@@ -899,6 +899,7 @@ sr-Cyrl:
         required: Одговор на питање је обавезан
       max_words: Максимум речи
       min_words: Минимум речи
+      no_reflective_questions: Без рефлексивних питања
       title: Рефлексивна питања
       update_failed: Дошло је до грешке при ажурирању
       updated_successfully: Ваши одговори су успешно ажурирани
@@ -924,6 +925,8 @@ sr-Cyrl:
   licenses:
     title: Лиценца
   mailer:
+    copyright:
+      text: Lighthouse. Сва права задржана
     magic_link:
       body:
         dear: Драги/а %{name},
@@ -931,6 +934,8 @@ sr-Cyrl:
         instructions: Кликните на линк испод да бисте се пријавили на светионик.
         signin_link: Линк за пријаву
       subject: Линк за пријаву на Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
   navigation:
     logout: Одјавите се
   norms:

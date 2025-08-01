@@ -48,10 +48,10 @@ module Administration
       # PATCH/PUT /administration/resources/1
       def update
         resource.updated_by = current_user
-        params[:question][:props] = Utility::Hash.sanitize_nested_hash(params[:question][:props])
-        question = ::Builders::Templates::QuestionBuilder.new(resource, params.require(:question))
+
+        question = ::Builders::Templates::QuestionBuilder.new(resource, question_params)
         if question.save
-          audit! :update, resource, payload: params, user: current_user
+          audit! :update, resource, payload: question_params, user: current_user
           render json: { data: QuestionSerializer.new(
             context: {
               include: '**'
@@ -121,6 +121,22 @@ module Administration
 
       def resource_params
         params.require(:resource).permit(:name, :owner_id, assign_to_assessment_ids: [])
+      end
+
+      def question_params
+        permitted_params = params.require(:question).permit(
+          :id, :block_id, :name, :position, :type, :display_logic, :template_id, :save_as_template,
+          props: {},
+          validation: {},
+          required_validation: {},
+          skip_logic: []
+        )
+
+        if permitted_params[:props].present?
+          permitted_params[:props] = Utility::Hash.sanitize_nested_hash(permitted_params[:props])
+        end
+
+        permitted_params
       end
     end
   end

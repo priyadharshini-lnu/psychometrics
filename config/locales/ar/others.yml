@@ -2787,6 +2787,7 @@ ar:
         required: إجابة السؤال مطلوبة
       max_words: الحد الأقصى للكلمات
       min_words: كلمات دقيقة
+      no_reflective_questions: لا توجد أسئلة عاكسة
       title: أسئلة تأملية
       update_failed: حدث خطأ أثناء التحديث
       updated_successfully: تم تحديث إجاباتك بنجاح
@@ -2930,6 +2931,12 @@ ar:
     used_number: التراخيص المستخدمة
     used_out_of: "%{used} من %{total}"
   mailer:
+    copyright:
+      text: لايت هاوس. جميع الحقوق محفوظة
+    footer:
+      regards: مع أطيب التحيات،
+      team_name: فريق لايت هاوس
+      technical_support: لأي مشاكل تقنية، يرجى الكتابة إلينا على %{email} وسنرد خلال 24 ساعة.
     from: مؤسسة المواهب
     idp:
       manager_unread_comments:
@@ -2987,6 +2994,8 @@ ar:
         instructions: انقر على الرابط أدناه لتسجيل الدخول إلى Lighthouse.
         signin_link: رابط تسجيل الدخول
       subject: رابط تسجيل الدخول إلى Lighthouse
+    powered_by:
+      text: مدعوم من لايت هاوس.
     users:
       account_disable: تم تعطيل حسابك بسبب عدم النشاط
       warning: سيتم تعطيل حسابك قريبا بسبب عدم النشاط

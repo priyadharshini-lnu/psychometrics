@@ -300,7 +300,6 @@ vi:
         name: Tên
         provider: Cung cấp
         system_prompt: Nhắc nhở hệ thống
-        title: Trợ lý AI
         user_prompt: Nhắc nhở người dùng
     any: " -Bất kì- "
     api:

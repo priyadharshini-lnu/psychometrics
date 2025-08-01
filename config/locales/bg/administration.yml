@@ -300,7 +300,6 @@ bg:
         name: Име
         provider: Доставчик
         system_prompt: Системна подкана
-        title: ИИ асистент
         user_prompt: Потребителска подкана
     any: " -Всякакъв- "
     api:

@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { FC, useState } from 'react'
 import {
   Typography, Layout, Button, Flex,
-  message, Space, Form,
+  message, Space, Form, Empty,
 } from 'antd'
 import {
   useSelector,
@@ -117,6 +117,10 @@ export const ReflectiveQuestions: FC<Props> = ({ onSave, showSkip, onSkip }) => 
 
   if (!status) {
     return <PageLoadSpinner size="large" />
+  }
+
+  if (status && reflectionQuestions.length === 0) {
+    return <Empty description={I18n.t('idp.reflective_questions.no_reflective_questions')} />
   }
 
   return (

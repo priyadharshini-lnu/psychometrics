@@ -71,6 +71,11 @@ module EndUser
     def update_progress
       user_idp_development_action = user.user_idp_development_actions.find(progress_params[:id])
 
+      if user_idp_development_action.user_idp_plan.completed?
+        render json: { errors: [I18n.t('idp.errors.cannot_update_progress_plan_completed')] }, status: 422
+        return
+      end
+
       if user_idp_development_action.update!(progress: progress_params[:progress])
         render json: user_idp_development_action, status: :ok
       else

@@ -40,10 +40,10 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
       return ['admins']
     }
     if (pathname.includes('/messages')) {
-      return ['messages/options']
+      return ['messages']
     }
-    if (pathname.includes('/reports/options')) {
-      return ['reports/options']
+    if (pathname.includes('/reports')) {
+      return ['reports']
     }
     if (pathname.includes('/datasheet')) {
       return ['datasheet']
@@ -59,13 +59,13 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
     || campaignPermissions.accessMessagesOptions
     || campaignPermissions.accessInstructionMessages) {
     menuItems.push({
-      key: 'messages/options',
+      key: 'messages',
       icon: <MessageOutlined />,
       label: I18n.t('administration.threesixty_campaigns.menu.messages.title'),
     })
   }
   campaignPermissions.editReportOptions && menuItems.push({
-    key: 'reports/options',
+    key: 'reports',
     icon: <PieChartOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.report.title'),
   })

@@ -300,7 +300,6 @@ th:
         name: ชื่อ
         provider: ผู้จัดหา
         system_prompt: คำสั่งของระบบ
-        title: ผู้ช่วย AI
         user_prompt: คำสั่งของผู้ใช้
     any: " -ใดๆ- "
     api:

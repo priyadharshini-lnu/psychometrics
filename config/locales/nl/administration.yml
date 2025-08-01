@@ -15,6 +15,8 @@ nl:
       title: Gecontroleerde wijzigingen
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha verificatie mislukt
         new:
           forgot_password: Wachtwoord vergeten?
           instruction: Log in met uw persoonlijke accountgegevens
@@ -290,18 +292,33 @@ nl:
             view: Bekijk
     ai_assistants:
       actions:
+        create: AI-assistent maken
+        edit: AI-assistent bewerken
         playground: Speeltuin
       ai_assistants: AI assistenten
       ai_assistants_playground: AI assistent speeltuin
       column:
         provider: Aanbieder
+      created_successfully: AI Assistant is succesvol aangemaakt.
       form:
+        add_output_schema_key: Uitvoerschema sleutel toevoegen
+        dependencies: Afhankelijkheden
         description: Beschrijving
+        enter_description: Beschrijving invoeren
+        enter_schema_key: Schemasleutel invoeren
+        key: Sleutel
         name: Naam
+        output_schema_keys: Uitvoerschema sleutels
         provider: Aanbieder
+        remove_output_schema_key: Uitvoerschema sleutel verwijderen
+        schema_key_description_required: Beschrijving van schemasleutel is vereist
+        schema_key_required: Schemasleutel is vereist
+        schema_key_type: Type sleutel
+        schema_key_unique: Schemasleutels moeten uniek zijn
         system_prompt: Systeem prompt
-        title: AI-assistent
+        type: Type
         user_prompt: Gebruikersprompt
+      updated_successfully: AI Assistant is succesvol bijgewerkt.
     any: " - Elke - "
     api:
       campaigns:
@@ -2137,6 +2154,7 @@ nl:
       enter_template_name: Naam
       enter_template_name_error: Sjabloonnaam is vereist
       errors:
+        cannot_update_progress_plan_completed: Kan de voortgang niet bijwerken omdat het IDP-plan is voltooid
         update: Bijwerken niet toegestaan omdat de IDP-sjabloon al gekoppeld is aan een IDP-plan van een gebruiker.
       fields:
         assigned_data: Toegewezen gegevens
@@ -3631,6 +3649,7 @@ nl:
       disable_password_reuse: Hergebruik van wachtwoorden uitschakelen
       disallow_password_login: Aanmelden met wachtwoord weigeren
       enable_login_with_magic_link: Inloggen met magische link inschakelen
+      enable_recaptcha: ReCAPTCHA inschakelen
       enforce_password_policy: Wachtwoordbeleid afdwingen bij volgende aanmelding
       enforce_strong: Krachtig wachtwoord afdwingen
       expiration: Vervaldatum wachtwoord

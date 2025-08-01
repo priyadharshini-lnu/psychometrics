@@ -2754,6 +2754,7 @@ pl:
         required: Odpowiedź na pytanie jest wymagana
       max_words: Maksymalna liczba słów
       min_words: Min Words
+      no_reflective_questions: Żadnych refleksyjnych pytań
       title: Pytania refleksyjne
       update_failed: Wystąpił błąd podczas aktualizacji
       updated_successfully: Twoje odpowiedzi zostały pomyślnie zaktualizowane
@@ -2897,6 +2898,8 @@ pl:
     used_number: Używane licencje
     used_out_of: "%{used} z %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Wszelkie prawa zastrzeżone
     from: Przedsiębiorstwo Talentów
     idp:
       manager_unread_comments:
@@ -2954,6 +2957,8 @@ pl:
         instructions: Kliknij poniższy link, aby zalogować się do lighthouse.
         signin_link: Link do logowania
       subject: Łącze logowania do Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Twoje konto zostało wyłączone z powodu braku aktywności
       warning: Twoje konto zostanie wkrótce wyłączone z powodu braku aktywności

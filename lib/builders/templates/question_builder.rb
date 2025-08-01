@@ -7,7 +7,7 @@ module Builders
 
       def initialize(question, params)
         @question = question
-        @params = params.permit!
+        @params = params
       end
 
       def save

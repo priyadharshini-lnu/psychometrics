@@ -15,6 +15,8 @@ pt:
       title: Alterações auditadas
     administrator:
       sessions:
+        errors:
+          recaptcha: A verificação do Recaptcha falhou
         new:
           forgot_password: Esqueceu-se da sua palavra-passe?
           instruction: Inicie sessão com as informações da sua conta pessoal
@@ -290,18 +292,33 @@ pt:
             view: Ver
     ai_assistants:
       actions:
+        create: Criar assistente de IA
+        edit: Editar Assistente de IA
         playground: Parque infantil
       ai_assistants: Assistentes de IA
       ai_assistants_playground: Parque de jogos do assistente de IA
       column:
         provider: Fornecedor
+      created_successfully: O Assistente de IA foi criado com êxito.
       form:
+        add_output_schema_key: Adicionar chave de esquema de saída
+        dependencies: Dependências
         description: Descrição
+        enter_description: Introduzir Descrição
+        enter_schema_key: Introduzir chave de esquema
+        key: Chave
         name: Nome
+        output_schema_keys: Chaves do esquema de saída
         provider: Fornecedor
+        remove_output_schema_key: Remover chave do esquema de saída
+        schema_key_description_required: A descrição da chave de esquema é obrigatória
+        schema_key_required: A chave de esquema é necessária
+        schema_key_type: Tipo de chave
+        schema_key_unique: As chaves de esquema devem ser únicas
         system_prompt: Prompt do sistema
-        title: Assistente de IA
+        type: Tipo
         user_prompt: Prompt do utilizador
+      updated_successfully: O Assistente de IA foi atualizado com êxito.
     any: " - Qualquer - "
     api:
       campaigns:
@@ -2137,6 +2154,7 @@ pt:
       enter_template_name: Nome
       enter_template_name_error: O nome do modelo é obrigatório
       errors:
+        cannot_update_progress_plan_completed: Não é possível atualizar os progressos porque o plano PDI já foi concluído
         update: Atualização não permitida porque o modelo IDP já está associado a um plano IDP do utilizador.
       fields:
         assigned_data: Dados atribuídos
@@ -3631,6 +3649,7 @@ pt:
       disable_password_reuse: Desativar a reutilização da palavra-passe
       disallow_password_login: Não permitir o início de sessão com palavra-passe
       enable_login_with_magic_link: Ativar o início de sessão com ligação mágica
+      enable_recaptcha: Ativar o reCAPTCHA
       enforce_password_policy: Aplicar a política de palavra-passe no próximo início de sessão
       enforce_strong: Aplicar uma palavra-passe forte
       expiration: Expiração da palavra-passe

@@ -15,6 +15,8 @@ ko:
       title: 감사된 변경 사항
     administrator:
       sessions:
+        errors:
+          recaptcha: 리캡차 인증 실패
         new:
           forgot_password: 비밀번호를 잊으셨나요?
           instruction: 개인 계정 정보로 로그인하세요
@@ -290,18 +292,33 @@ ko:
             view: 보기
     ai_assistants:
       actions:
+        create: AI 어시스턴트 만들기
+        edit: AI 어시스턴트 편집
         playground: 놀이터
       ai_assistants: AI 어시스턴트
       ai_assistants_playground: AI 어시스턴트 플레이그라운드
       column:
         provider: 공급자
+      created_successfully: AI 어시스턴트가 성공적으로 생성되었습니다.
       form:
+        add_output_schema_key: 출력 스키마 키 추가
+        dependencies: 종속성
         description: 설명
+        enter_description: 설명 입력
+        enter_schema_key: 스키마 키 입력
+        key: 키
         name: 이름
+        output_schema_keys: 출력 스키마 키
         provider: 공급자
+        remove_output_schema_key: 출력 스키마 키 제거
+        schema_key_description_required: 스키마 키 설명은 필수입니다.
+        schema_key_required: 스키마 키가 필요합니다.
+        schema_key_type: 키 유형
+        schema_key_unique: 스키마 키는 고유해야 합니다.
         system_prompt: 시스템 프롬프트
-        title: AI 어시스턴트
+        type: 유형
         user_prompt: 사용자 프롬프트
+      updated_successfully: AI 어시스턴트가 성공적으로 업데이트되었습니다.
     any: " - 모든 - "
     api:
       campaigns:
@@ -2137,6 +2154,7 @@ ko:
       enter_template_name: 이름
       enter_template_name_error: 템플릿 이름은 필수입니다
       errors:
+        cannot_update_progress_plan_completed: IDP 계획이 완료되었으므로 진행 상황을 업데이트할 수 없습니다.
         update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다.
       fields:
         assigned_data: 할당된 데이터
@@ -3631,6 +3649,7 @@ ko:
       disable_password_reuse: 비밀번호 재사용 비활성화
       disallow_password_login: 비밀번호 로그인 허용
       enable_login_with_magic_link: 매직링크로 로그인 사용
+      enable_recaptcha: 재캡차 사용
       enforce_password_policy: 다음 로그인 시 비밀번호 정책 적용
       enforce_strong: 강력한 비밀번호 적용
       expiration: 비밀번호 만료

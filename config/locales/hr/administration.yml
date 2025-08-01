@@ -300,7 +300,6 @@ hr:
         name: Ime
         provider: Pružatelj usluga
         system_prompt: Upit sustava
-        title: AI pomoćnik
         user_prompt: Upit korisnika
     any: " -Ikakav- "
     api:

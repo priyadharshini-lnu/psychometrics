@@ -300,7 +300,6 @@ sl:
         name: Ime
         provider: Ponudnik
         system_prompt: Sistemski poziv
-        title: Pomočnik za umetno inteligenco
         user_prompt: Poziv uporabnika
     any: " -Poljuben- "
     api:

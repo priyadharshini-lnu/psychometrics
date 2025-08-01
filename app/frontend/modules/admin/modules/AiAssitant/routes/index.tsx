@@ -3,6 +3,8 @@ import RouteList from '~/components/RouteList'
 
 const AiAssistantList = lazy(() => import('./AiAssistantList'))
 const AiAssistantPlayground = lazy(() => import('./AiAssistantPlayground'))
+const CreateAiAssistant = lazy(() => import('./AiAssistantList/CreateAiAssistant'))
+const EditAiAssistant = lazy(() => import('./AiAssistantList/EditAiAssistant'))
 
 export const routes = [
   {
@@ -12,6 +14,14 @@ export const routes = [
   {
     path: '/:aiAssistantId/playground',
     component: <AiAssistantPlayground />,
+  },
+  {
+    path: '/create',
+    component: <CreateAiAssistant />,
+  },
+  {
+    path: '/:aiAssistantId/edit',
+    component: <EditAiAssistant />,
   },
 ]
 

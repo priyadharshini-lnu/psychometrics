@@ -2748,6 +2748,7 @@ en-US:
         required: The answer to the question is required
       max_words: Max Words
       min_words: Min Words
+      no_reflective_questions: No Reflective Questions available
       title: Reflective Questions
       update_failed: An error occurred during the update
       updated_successfully: Your answers have been updated successfully
@@ -2891,6 +2892,8 @@ en-US:
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. All rights reserved
     from: The Talent Enterprise
     idp:
       manager_unread_comments:
@@ -2948,6 +2951,8 @@ en-US:
         instructions: Click below link to signin to lighthouse.
         signin_link: Sign-in Link
       subject: Sign-in link for Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity

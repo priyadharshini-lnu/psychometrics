@@ -15,6 +15,8 @@ es-ES:
       title: Cambios auditados
     administrator:
       sessions:
+        errors:
+          recaptcha: Error en la verificación de Recaptcha
         new:
           forgot_password: "¿Ha olvidado su contraseña?"
           instruction: Inicie sesión con los datos de su cuenta personal
@@ -290,18 +292,33 @@ es-ES:
             view: Ver
     ai_assistants:
       actions:
+        create: Crear asistente de IA
+        edit: Editar Asistente AI
         playground: Parque infantil
       ai_assistants: Asistentes de IA
       ai_assistants_playground: Asistente de inteligencia artificial
       column:
         provider: Proveedor
+      created_successfully: AI Assistant se ha creado correctamente.
       form:
+        add_output_schema_key: Añadir clave de esquema de salida
+        dependencies: Dependencias
         description: Descripción
+        enter_description: Introducir descripción
+        enter_schema_key: Introducir clave de esquema
+        key: Clave
         name: Nombre
+        output_schema_keys: Claves del esquema de salida
         provider: Proveedor
+        remove_output_schema_key: Eliminar clave de esquema de salida
+        schema_key_description_required: La descripción de la clave del esquema es obligatoria
+        schema_key_required: La clave de esquema es obligatoria
+        schema_key_type: Tipo de llave
+        schema_key_unique: Las claves del esquema deben ser únicas
         system_prompt: Indicación del sistema
-        title: Asistente AI
+        type: Tipo
         user_prompt: Pregunta al usuario
+      updated_successfully: AI Assistant se ha actualizado correctamente.
     any: " - Cualquier.. "
     api:
       campaigns:
@@ -2137,6 +2154,7 @@ es-ES:
       enter_template_name: Nombre
       enter_template_name_error: El nombre de la plantilla es obligatorio
       errors:
+        cannot_update_progress_plan_completed: No se puede actualizar el progreso porque el plan IDP ya se ha completado
         update: Actualización no permitida porque la plantilla IDP ya está asociada a un plan IDP de usuario.
       fields:
         assigned_data: Datos asignados
@@ -3631,6 +3649,7 @@ es-ES:
       disable_password_reuse: Desactivar la reutilización de contraseñas
       disallow_password_login: No permitir el acceso con contraseña
       enable_login_with_magic_link: Habilitar inicio de sesión con enlace mágico
+      enable_recaptcha: Activar reCAPTCHA
       enforce_password_policy: Aplicar la política de contraseñas en el siguiente inicio de sesión
       enforce_strong: Imponer una contraseña segura
       expiration: Caducidad de la contraseña
