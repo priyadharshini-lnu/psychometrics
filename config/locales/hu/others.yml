@@ -817,7 +817,7 @@ hu:
         bulk_reports: Tömeges jelentések
         bulk_rescore_campaign_factors: Tömeges újrapontozási kampánytényezők
         bulk_update_evaluation_status: Tömeges frissítés kiértékelési állapota
-        compact_completion_status_export: Kompakt befejezési állapot exportálása
+        compact_completion_status_export: Kompakt teljesítési állapot exportálása
         completion_status_export: Befejezési állapot exportálása
         copy_dimension: Méret másolása
         create_threesixty_campaign: Hozzon létre Threesixty kampányt
@@ -872,7 +872,7 @@ hu:
         normalize_factor_scores: Faktorpontszámok normalizálása
         regenerate_campaign_reports: Kampányjelentések újragenerálása
         regenerate_report: Jelentés újragenerálása
-        regenerate_threesixty_report: Regenerálja a Threesixty jelentést
+        regenerate_threesixty_report: Újra generálás a Threesixty jelentést
         remap_report_assessment: Jelentés értékelésének újratervezése
         rescore_assessment: Pontozás újraértékelése
         rescore_user_assessment: Felhasználói értékelés újrapontozása
@@ -902,6 +902,7 @@ hu:
     invalid_job: Ez az értesítés a törölt rekordnak felel meg
     mark_as_read: Összes megjelölése olvasottnak
     more: Több
+    no_notifications: Nincs értesítés
     notifications: Értesítések
     results: Eredmények
     super_admin:
@@ -1536,7 +1537,9 @@ hu:
       in_progress: Folyamatban
       ineligible: Nem támogatható
       interrupted: Megszakított
+      new: Új
       not_started: Nem indult
+      progress: Folyamatban
       timed_out: Lejárt az idő
       universal_link: Univerzális kapcsolat
     ungrouped_assessments_heading: Csoportosítatlan
@@ -1605,7 +1608,7 @@ hu:
       assessment_center_invites: Értékelőközpont-meghívók
       completed_at: 'Befejezve:'
       completion_status: Befejezési állapot
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Utolsó bejelentkezés
       manager: Menedzser
       modals:
@@ -1793,7 +1796,7 @@ hu:
       first_name: Keresztnév
       icon: Ikon
       icon_color: Ikon színe
-      id: Id
+      id: ID
       json:
         answer: Válasz JSON
         external_result: Külső eredmény JSON
@@ -1836,7 +1839,7 @@ hu:
       assessment: Értékelés
       assessments: Értékelések
       campaigns: Kampányok
-      completion_statuses: Befejezési állapotok
+      completion_statuses: Teljesítési állapotok
       datasheet: Adatlap
       projects: Projektek
       report: Jelentés
@@ -1932,6 +1935,8 @@ hu:
       timeout: Az Ön munkamenete lejárt. Kérjük, jelentkezzen be újra a folytatáshoz.
       unauthenticated: A folytatáshoz be kell jelentkeznie vagy regisztrálnia kell.
       unconfirmed: A folytatás előtt meg kell erősítenie e-mail címét.
+    invalid_captcha: A captcha bevitele érvénytelen volt.
+    invalid_security_question: A biztonsági kérdésre adott válasz érvénytelen volt.
     invitations:
       edit:
         confirm_password_label: Jelszó megerősítése
@@ -2011,6 +2016,25 @@ hu:
     omniauth_callbacks:
       failure: Nem sikerült hitelesíteni %{kind}-ből, mert "%{reason}".
       success: Sikeresen hitelesítve a(z) %{kind} fiókból.
+    paranoid_verification_code:
+      show:
+        submit: Küldje be a
+        submit_verification_code: Ellenőrző kód beküldése
+        verification_code: Ellenőrző kód
+      updated: Ellenőrző kód elfogadva
+    paranoid_verify:
+      code_required: Kérjük, adja meg a kódot, amit a támogató csapatunk megadott
+    password_expired:
+      change_required: A jelszava lejárt. Kérjük, újítsa meg jelszavát.
+      forced_changed: Új jelszót kell beállítania a fiókjához.
+      password_policy_changed: A jelszószabályzat megváltozott. Kérjük, változtassa meg jelszavát.
+      show:
+        change_my_password: Jelszó módosítása
+        current_password: Jelenlegi jelszó
+        new_password: Új jelszó
+        new_password_confirmation: Új jelszó megerősítése
+        renew_your_password: Jelszó megújítása
+      updated: Az új jelszó elmentésre kerül.
     passwords:
       edit:
         instruction: Új jelszó létrehozásához kérjük, írja be az új jelszót az alábbi mezőkbe
@@ -2208,6 +2232,8 @@ hu:
   errors:
     assessments:
       timed_out: Nem tudja elvégezni a %{assessment_name} értékelést, mivel lejárt az idő.
+    equal_to_current_password: nem lehet azonos az aktuális jelszóval.
+    equal_to_email: másnak kell lennie, mint az e-mail.
     error: Hiba
     error_401: Az erőforrás elérésére nincs jogosultsága. Kérjük, jelentkezzen be.
     error_403: Nincs engedélye az erőforrás megtekintésére.
@@ -2220,6 +2246,20 @@ hu:
     max_regeneration_limit: Túllépte a maximális regenerációs korlátot, forduljon az adminisztrációhoz.
     messages:
       data_report_blank: Az adatjelentés nem létezik
+      password_complexity:
+        digit:
+          one: legalább egy számjegyet kell tartalmaznia
+          other: legalább <x>count</x> számjegyeket kell tartalmaznia
+        lower:
+          one: legalább egy kisbetűt kell tartalmaznia
+          other: legalább <x>count</x> kisbetűket kell tartalmaznia.
+        symbol:
+          one: legalább egy írásjelet vagy szimbólumot kell tartalmaznia.
+          other: legalább <x>count</x> írásjeleket vagy szimbólumokat kell tartalmaznia.
+        upper:
+          one: legalább egy nagybetűt kell tartalmaznia
+          other: legalább <x>count</x> nagybetűket kell tartalmaznia.
+      taken_in_past: nem lehet azonos a korábban használt jelszóval.
     module_error: Valami baj történt ezzel a modullal, kérjük, lépjen kapcsolatba az adminisztrációval.
     module_error_editor: Valami elromlott ezzel a modullal, kérjük, ellenőrizze a modul beállításait.
     module_props_error: Valami elromlott ezzel a modullal.

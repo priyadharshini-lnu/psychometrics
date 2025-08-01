@@ -425,7 +425,7 @@ pt:
         access_reports_at: Aceder ao relatório em
         access_reports_at_date: Data
         access_reports_at_time: Tempo
-        client_ids: Alugueres de clientes
+        client_ids: Clientes
         manager_ids: Gestores
         report_ids: Relatórios
         user_ids: Utilizadores
@@ -838,7 +838,7 @@ pt:
         export_proficiency_levels: Níveis de proficiência em exportação
         export_reflection_questions: Exportar perguntas de reflexão
         export_report_data: Exportar dados do relatório
-        export_reports_and_assessments: Relatórios e avaliações de exportação
+        export_reports_and_assessments: Exportar Relatório e Avaliações
         export_skill_translations: Competências de exportação Traduções
         export_skills: Competências de exportação
         export_user_report_events: Exportar eventos do relatório do utilizador
@@ -902,6 +902,7 @@ pt:
     invalid_job: Esta notificação corresponde a um registo eliminado
     mark_as_read: Marcar todas as leituras
     more: Mais
+    no_notifications: Sem notificações
     notifications: Notificações
     results: Resultados
     super_admin:
@@ -945,7 +946,7 @@ pt:
       extend_time: Prolongar o tempo
       external_scores_export: Pontuações externas
       goto_dashboard: Clique aqui para continuar
-      manage_mettl_schedule: Gerir o calendário do Mettle
+      manage_mettl_schedule: Gerenciar o calendário do Mettle
       moderate: Pontuações moderadas
       new_response: Nova resposta
       next_assessment: Passar para a avaliação seguinte
@@ -983,7 +984,7 @@ pt:
       resume: Currículo
       saved:
         label: Áudio guardado
-      saving: Guardar áudio
+      saving: Salvar áudio
       start_recording: Iniciar a gravação
       stop: Parar
     card_actions:
@@ -1086,7 +1087,7 @@ pt:
         title: Último pedido falhou
       next: Avançar
       read_only: O modo é apenas de leitura, não pode alterar nenhum resultado.
-      save: Guardar
+      save: Salvar
       submissionFailedAlert:
         description: Não foi possível estabelecer ligação ao servidor. Actualize a página e tente novamente. Se não funcionar, contacte o serviço de apoio através do chat ao vivo ou de mte.surveys@mercer.com
         title: Último pedido falhou
@@ -1136,10 +1137,10 @@ pt:
       recording_stop_label: A gravação irá parar dentro de
       requesting_permission: Pedido de autorização...
       response_recorded: Resposta registrada
-      save: Guardar
+      save: Salvar
       saved:
         label: Guardado
-      saving: A guardar...
+      saving: A Salvar...
       seek: Procurar
       start_recording: Iniciar gravação
       stop_recording: Parar a gravação
@@ -1158,7 +1159,7 @@ pt:
       assessment_center_invites: Centro de Avaliação convida
       assessments_and_reports: Avaliações e relatórios
       idp: PDI
-      manage: Gerir
+      manage: Gerenciar
       report_approval: Configurações de aprovação de relatório
       sequencing: Sequenciação
     report_approval:
@@ -1549,7 +1550,9 @@ pt:
       in_progress: Em curso
       ineligible: Não elegível
       interrupted: Interrompido
+      new: Novo
       not_started: Não iniciado
+      progress: Em curso
       timed_out: Temporizada
       universal_link: Ligação universal
     ungrouped_assessments_heading: Não agrupado
@@ -1575,7 +1578,7 @@ pt:
       report_bundle: Pacote de relatórios
       report_name: Nome do relatório
       user_access: Acesso do utilizador
-      user_dashboard: Painel de controlo do utilizador
+      user_dashboard: Painel de controle do utilizador
     form:
       operation: Funcionamento
       operation_options:
@@ -1618,7 +1621,7 @@ pt:
       assessment_center_invites: Convites para o Centro de Avaliação
       completed_at: Concluído em
       completion_status: Estado de conclusão
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Último login
       manager: Diretor
       modals:
@@ -1762,9 +1765,9 @@ pt:
       reset: Repor
       resolve: Resolver
       restore: Restaurar
-      return_to_home: Regresso a Casa
+      return_to_home: Voltar a página inicial
       run: Correr
-      save: Guardar
+      save: Salvar
       schedule: Horário
       search: Pesquisar
       send: Enviar
@@ -1826,7 +1829,7 @@ pt:
       provider: Fornecedor
       qc_user_list: Lista de utilizadores QC
       report: Relatório
-      report_id: Id do relatório
+      report_id: ID do relatório
       require_scheduling: Programação de necessidades
       responses_count: Contagem de respostas
       schedule_time: Horário
@@ -1945,6 +1948,8 @@ pt:
       timeout: A sua sessão expirou. Inicie sessão para continuar.
       unauthenticated: Tem de iniciar sessão ou registar-se antes de continuar.
       unconfirmed: Tem de confirmar o seu endereço de correio eletrónico antes de continuar.
+    invalid_captcha: A introdução do captcha era inválida.
+    invalid_security_question: A resposta à pergunta de segurança era inválida.
     invitations:
       edit:
         confirm_password_label: Confirmar a palavra-passe
@@ -1997,6 +2002,25 @@ pt:
     omniauth_callbacks:
       failure: Não foi possível autenticá-lo a partir de %{kind} porque "%{reason}".
       success: Autenticação bem sucedida da conta %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Enviar
+        submit_verification_code: Enviar código de verificação
+        verification_code: Código de verificação
+      updated: Código de verificação aceite
+    paranoid_verify:
+      code_required: Introduza o código que a nossa equipa de apoio forneceu
+    password_expired:
+      change_required: A sua palavra-passe expirou. Por favor, renove a sua palavra-passe.
+      forced_changed: Tem de definir uma nova palavra-passe para a sua conta.
+      password_policy_changed: A política de palavras-passe foi alterada. Altere a sua palavra-passe.
+      show:
+        change_my_password: Alterar a minha palavra-passe
+        current_password: Palavra-passe atual
+        new_password: Nova palavra-passe
+        new_password_confirmation: Confirmar a nova palavra-passe
+        renew_your_password: Renovar a sua palavra-passe
+      updated: A sua nova palavra-passe é guardada.
     passwords:
       edit:
         instruction: Para criar uma nova palavra-passe, introduza a sua nova palavra-passe nas caixas abaixo
@@ -2194,6 +2218,8 @@ pt:
   errors:
     assessments:
       timed_out: Não é possível efetuar a avaliação %{assessment_name} porque o tempo limite foi ultrapassado.
+    equal_to_current_password: deve ser diferente da palavra-passe atual.
+    equal_to_email: deve ser diferente do correio eletrónico.
     error: Erro
     error_401: Você não está autorizado a acessar este recurso. Inicie sessão.
     error_403: Você não tem permissão para exibir este recurso.
@@ -2206,6 +2232,20 @@ pt:
     max_regeneration_limit: Limite máximo de regeneração excedido, contacte a sua administração.
     messages:
       data_report_blank: Relatório de dados não existe
+      password_complexity:
+        digit:
+          one: deve conter pelo menos um dígito
+          other: deve conter pelo menos <x>count</x> dígitos
+        lower:
+          one: deve conter pelo menos uma letra minúscula
+          other: deve conter pelo menos <x>count</x> letras minúsculas
+        symbol:
+          one: deve conter pelo menos um sinal de pontuação ou símbolo
+          other: deve conter pelo menos <x>count</x> sinais de pontuação ou símbolos
+        upper:
+          one: deve conter pelo menos uma letra maiúscula
+          other: deve conter pelo menos <x>count</x> letras maiúsculas
+      taken_in_past: não deve ser igual a nenhuma palavra-passe utilizada anteriormente.
     module_error: Algo ocorreu mal com este módulo, contacte a administração.
     module_error_editor: Algo ocorreu mal com este módulo, verifique as definições do módulo.
     module_props_error: Algo ocorreu mal com este módulo.
@@ -2469,7 +2509,7 @@ pt:
       new_schedule_description: A hora de início deve ser anterior à hora de fim
       no_slots: Não foram adicionadas ranhuras
       required_error: não pode estar vazio
-      save: Guardar
+      save: Salvar
       saved_schedule_description: Calendário de disponibilidade guardado do utilizador
       start_date: Data de início
       timezone_label: Fuso horário
@@ -2529,7 +2569,7 @@ pt:
       incomplete_warning: Ações de desenvolvimento incompletas
       incomplete_warning_message: Algumas ações de desenvolvimento estão incompletas. Tem certeza de que deseja marcar seu IDP como completo?
       learning_from_others: Aprender com os outros
-      manage_skills: Gerir competências
+      manage_skills: Gerenciar competências
       marathon: Maratona
       mark_as_complete: Marcar como Concluído
       no_development_actions: Nenhuma ação de desenvolvimento
@@ -2582,7 +2622,7 @@ pt:
         learning_structured: Aprendizagem estruturada (%{contagem})
         other: Outros
         technical: Técnica
-      save_skills: Guardar competências
+      save_skills: Salvar competências
     new_comments: Novo(s) comentário(s)
     pdf:
       approval_status: Estado de Aprovação
@@ -2731,7 +2771,7 @@ pt:
     idp_template: Modelo de PDI
     override_exists: Anular e repor utilizadores existentes
     placeholder: Selecionar um modelo de Idp
-    save_and_assign: Guardar e atribuir
+    save_and_assign: Salvar e atribuir
     success_scheduled: A tarefa de atribuição de IDP foi agendada com êxito
   jobs:
     threesixty:
@@ -3281,7 +3321,7 @@ pt:
         access_reports_at: Aceder ao relatório em
         access_reports_at_date: Data
         access_reports_at_time: Tempo
-        client_ids: Alugueres de clientes
+        client_ids: Clientes
         manager_ids: Gestores
         report_ids: Relatórios
         user_ids: Utilizadores
@@ -3752,7 +3792,7 @@ pt:
       title: Ajuda para relatórios
     reset_campaign_confirmation: Introduza na caixa de texto o nome da campanha atual indicado abaixo para repor todos os participantes
     reset_nomination_confirmation: Introduza na caixa de texto o nome atual da campanha indicado abaixo para anular todas as nomeações
-    save: Guardar
+    save: Salvar
     select_relationnship: Selecionar relacionamento
     select_relationship: Selecionar relacionamento
     self: O próprio
@@ -3837,7 +3877,7 @@ pt:
       export: Exportar utilizadores
       export_compact_completion_status: Compacto
       export_detailed_completion_status: Detalhado
-      export_reports_and_assessments: Relatórios e avaliações de exportação
+      export_reports_and_assessments: Exportar Relatório e Avaliações
       import: Importar utilizadores
       import_reports: Importar relatórios e avaliações
   user_assessment:

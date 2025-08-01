@@ -17,7 +17,7 @@ sr-Latn:
       sessions:
         new:
           forgot_password: Zaboravili ste lozinku?
-          instruction: Molimo Vas da se prijavite sa svojim ličnim podacima o nalogu
+          instruction: Molimo Vas da se ulogujete sa informacijama sa Vašeg ličnog naloga
           password_placeholder: Lozinka
           title: Dobrodošli!
       shared:
@@ -77,7 +77,7 @@ sr-Latn:
           actions: Radnje
           created_at: Kreirano u
           email: Imejl
-          id: Id
+          id: ID
           name: Ime
         header:
           add_admin: Dodaj administratora
@@ -597,7 +597,7 @@ sr-Latn:
       statuses:
         completed: Završeno
         in_progress: U toku
-        not_started: Nije počelo
+        not_started: Nije započeto
     assigns:
       create:
         successfully: Uspešno je kreirano novo dodeljivanje procene
@@ -712,8 +712,8 @@ sr-Latn:
       client: Zakup klijenta
       clientAdmins: Administratori klijenata
       client_admins: Administratori klijenata
-      clients: Zakupi klijenata
-      communication_center: Komunikacioni centar
+      clients: Klijentski prostor
+      communication_center: Centar za komunikaciju
       create: Kreiraj
       data_exports: Izvoz podataka
       data_reports: Izveštaji o podacima
@@ -725,7 +725,7 @@ sr-Latn:
       home: Kontrolna tabla
       innovation_styles: Stilovi inovacija
       innovation_styles_factors: Faktori
-      libraries: Medijska biblioteka
+      libraries: Biblioteka medija
       license_usages: Upotreba licenci
       licenses: Licence
       new_campaign: Nova kampanja
@@ -743,7 +743,7 @@ sr-Latn:
       registration_codes: Registracioni kodovi
       report_families: Paketi izveštaja
       reports: Izveštaji
-      settings: Postavke
+      settings: Podešavanja
       smtp_settings: SMTP podešavanja
       statistics: Statistika
       sub_campaigns: Pod-kampanje
@@ -926,7 +926,7 @@ sr-Latn:
           remove_modal_success: 'Postavka odobrenja za ID izveštaja: %{reportId} je uspešno obrisana'
           remove_modal_text: 'Da li ste sigurni da želite da izbrišete ovu postavku za ID izveštaja: %{reportId}?'
           report: Izveštaj
-          settings: Postavke
+          settings: Podešavanja
       assessors:
         spoof:
           successfully: Uspešno ste se prijavili kao %{name}
@@ -942,13 +942,16 @@ sr-Latn:
         inactive: Neaktivno
         status: Status
       form:
+        active_notice: Статус кампање ће се аутоматски предомислити на затворену на одабрани крајњи датум
         campaign: Kampanja
+        inactive_notice: Статус кампање аутоматски ће се пребацити на активно на одабрани датум почетка
+        instruction: То се може омогућити само истовремено стварање кампање
         name: Ime
         practice_campaign: Kampanja prakse
         status: Status
       listing:
         assessments: Procene
-        id: Id
+        id: ID
         name: Ime
         reports: Izveštaji
         status: Status
@@ -965,6 +968,7 @@ sr-Latn:
             active: Aktivno
             archive: Arhiva
             assessment: Procena
+            category: Категорија
             closed: Zatvoreno
             empty: Prazno
             inactive: Neaktivno
@@ -974,6 +978,7 @@ sr-Latn:
             skill_rater: Procena veština
             standard: Standardno
             status: Status
+            type: Уписати
           close:
             content: Da li ste sigurni da želite da zatvorite kreator kampanja sa više ocenjivača? Bilo koji nesačuvani rad će biti izgubljen. Molimo Vas da potvrdite svoju odluku.
             title: Zatvori kreator kampanja sa više ocenjivača?
@@ -1055,7 +1060,7 @@ sr-Latn:
           all: Sve
           anonymous: Anonimno
           identified: Identifikovano
-        id: Id
+        id: ID
         is_active: Aktivno
         name: Ime
         no_permission_message: Nemate dozvolu za modifikaciju
@@ -1163,7 +1168,7 @@ sr-Latn:
               sub_campaigns: Pod-kampanje
               tests_allocated: Testovi dodeljeni
               users: Korisnici
-            id: Id
+            id: ID
             name: Naziv kampanje
             reports: Izveštaji
             updated_at: Datum ažuriranja
@@ -1186,7 +1191,7 @@ sr-Latn:
               sub_campaigns: Pod-kampanje
               tests_allocated: Testovi dodeljeni
               users: Korisnici
-            id: Id
+            id: ID
             name: Naziv kampanje
             reports: Izveštaji
             updated_at: Datum ažuriranja
@@ -1237,7 +1242,7 @@ sr-Latn:
                 sub_campaign: Pod-kampanje
                 tests_allocated: Testovi dodeljeni
                 users: Korisnici
-              id: Id
+              id: ID
               name: Ime podkampanje
               reports: Izveštaji
               updated_at: Datum ažuriranja
@@ -1260,7 +1265,7 @@ sr-Latn:
                 sub_campaign: Pod-kampanje
                 tests_allocated: Testovi dodeljeni
                 users: Korisnici
-              id: Id
+              id: ID
               name: Ime podkampanje
               reports: Izveštaji
               updated_at: Ažuriran datum
@@ -1310,7 +1315,7 @@ sr-Latn:
           assigned_user: Dodeljeni korisnici
           completed_user: Završeni korisnici
           created_at: Datum kreiranja
-          id: Id
+          id: ID
           name: Naziv projekta
           number: Broj
           project_admin: Administratori projekta
@@ -1359,7 +1364,7 @@ sr-Latn:
           assigned_user: Dodeljeni korisnici
           completed_user: Završeni korisnici
           created_at: Datum kreiranja
-          id: Id
+          id: ID
           name: Naziv projekta
           number: Broj
           project_admin: Administratori projekta
@@ -1405,10 +1410,10 @@ sr-Latn:
             enable: Izvadi iz arhive
           completion_statuses:
             approved: Odobreno
-            completed: Dovršeno
+            completed: Završeno
             denied: Odbijeno
             in_progress: U toku
-            not_started: Nije počelo
+            not_started: Nije započeto
           copy:
             error: Zakup klijenta '%{name}' nije kopiran.
             successfully: Zakup klijenta '%{name}' je uspešno kopiran.
@@ -1428,7 +1433,7 @@ sr-Latn:
             assessment: Procena
             client_admins: Administratori klijenata
             created_at: Kreiran u
-            id: Id
+            id: ID
             name: Ime
             report: Izveštaj
             report_bundle: Paket izveštaja
@@ -1448,7 +1453,7 @@ sr-Latn:
             assessment: Procena
             client_admins: Administratori klijenata
             created_at: Kreirano u
-            id: Id
+            id: ID
             name: Ime
             report: Izveštaj
             report_bundle: Paket izveštaja
@@ -1532,7 +1537,7 @@ sr-Latn:
             title: Arhiva <strong>%{name}</strong> ?
           enable:
             title: Izvadi iz arhive <strong>%{name}</strong> ?
-      tenancies: Zakupi klijenata
+      tenancies: Klijentski prostor
       threesixty_campaign: 360 kampanja
       toggle_status:
         successfully: Zakup klijenta %{name} je uspešno ažuriran.
@@ -1580,7 +1585,7 @@ sr-Latn:
         assessment_completion_status_code: Kod statusa završetka procene
         assessment_completion_status_code_hint: Ako je naveden kod za završetak, on će biti poslat samo ako procena korisnika ima ovaj status kod završetka.
         body_mustache: |-
-          {{{user_link}}} - Link za platformu za postojeće korisnike ili jednokratni link za postavljanje lozinke za nove korisnike
+          {{{user_link}}} - Link za platformu za postojeće korisnike ili jednokratni link za postavljanje lozinka za nove korisnike
           {{{user_url}}} - Isto kao i user_link, ali samo URL umesto hiperlinka
           {{{user_link_qrcode}}} - Ugradite QR kod generisan iz user_link
           {{first_name}} - Ime primaoca
@@ -1638,7 +1643,7 @@ sr-Latn:
       index:
         clients: Klijenti
         new: Dodaj
-        title: Komunikacioni centar
+        title: Centar za komunikaciju
         type: Tip
       list:
         actions: Radnje
@@ -1735,7 +1740,7 @@ sr-Latn:
         accesssheet: Pristupna lista
         accesssheet_setting: Podešavanja pristupnog lista
         dashboard: Dashboard
-        settings: Postavke
+        settings: Podešavanja
     dashboard_form:
       fields:
         dataset_id: ID skupa podataka
@@ -1947,7 +1952,7 @@ sr-Latn:
       list:
         active: Aktivno
         created_at: Datum kreiranja
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum izmene
       new:
@@ -2054,7 +2059,7 @@ sr-Latn:
       list:
         active: Aktivno
         created_at: Datum kreiranja
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum izmene
       new:
@@ -2182,7 +2187,7 @@ sr-Latn:
       tab:
         development_actions: Razvojne akcije
         reflection_questions: Pitanja za razmišljanje
-        settings: Postavke
+        settings: Podešavanja
         templates: Šabloni
       technical_skills: Tehničke veštine
       template_details: Detalji šablona
@@ -2239,7 +2244,7 @@ sr-Latn:
         header: Uvoz
       users:
         existing_users_whose_password_not_changed_modal_dialog:
-          header: Lista korisnika čije lozinke neće biti promenjene
+          header: Lista korisnika čije lozinka neće biti promenjene
         form:
           description: Pogledajte Izvoz funkcionalnost da izvučete šablon koji se može koristiti za uvoz ovde.
           import: Uvoz
@@ -2261,7 +2266,7 @@ sr-Latn:
       create:
         successfully: Korisnici su uspešno uvezeni
       new:
-        header: Uvoz korisnika
+        header: Uvezi korisnike
     individual_invite:
       tabs:
         assessment_center: Centar za procenu
@@ -2280,7 +2285,7 @@ sr-Latn:
         title: Stilovi inovacija
       list:
         created_at: Datum kreiranja
-        id: Id
+        id: ID
         name: Ime
         position: Pozicija
         updated_at: Datum izmene
@@ -2313,7 +2318,7 @@ sr-Latn:
       list:
         condition: Stanje
         created_at: Datum kreiranja
-        id: Id
+        id: ID
         name: Ime
         position: Pozicija
         updated_at: Datum izmene
@@ -2457,13 +2462,13 @@ sr-Latn:
       index:
         new_folder: Nova fascikla
         owner: Vlasnik
-        title: Medijska biblioteka
+        title: Biblioteka medija
         upload: Otpremanje
       list:
         created_at: Datum kreiranja
         name: Ime
         new_folder: Nova fascikla
-        root: Medijska biblioteka
+        root: Biblioteka medija
         type: Tip
         updated_at: Datum izmene
         upload: Otpremi novu datoteku
@@ -2512,15 +2517,15 @@ sr-Latn:
       campaign_templates: Predlošci kampanje
       change_password: Promeni lozinku
       client_admins: Administratori klijenata
-      clients: Zakupi klijenata
-      communication_center: Komunikacioni centar
+      clients: Klijentski prostor
+      communication_center: Centar za komunikaciju
       dashboard: Dashboard
       data_reports: Izveštaji o podacima
       development_actions: Razvojne akcije
       dimensions: Dimenzije
       factors: Faktori
       innovation_styles: Stilovi inovacija
-      libraries: Medijska biblioteka
+      libraries: Biblioteka medija
       norms: Norme
       occupations: Zanimanja
       options: Opcije
@@ -2530,7 +2535,7 @@ sr-Latn:
       project_admins: Administratori projekta
       question_center: Centar za pitanja
       registration_codes: Registracioni kodovi
-      report_approvals: Izveštaj o odobrenju
+      report_approvals: Odobrenja izveštaja
       reports: Izveštaji
       scheduling: Planiranje
       show_submenu: Prikaži pod-meni
@@ -2569,7 +2574,7 @@ sr-Latn:
         active: Aktivno
         created_at: Datum kreiranja
         dimension_id: Dimenzija ID
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum izmene
         updated_by: Ažurirano od strane
@@ -2630,7 +2635,7 @@ sr-Latn:
         title: Zanimanja
       list:
         created_at: Datum kreiranja
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum izmene
       new:
@@ -2662,7 +2667,7 @@ sr-Latn:
       list:
         condition: Stanje
         created_at: Datum kreiranja
-        id: Id
+        id: ID
         name: Ime
         position: Pozicija
         updated_at: Datum izmene
@@ -2804,7 +2809,7 @@ sr-Latn:
       column_createdAt: Kreirano u
       column_created_at: Kreirano u
       column_email: Imejl
-      column_id: Id
+      column_id: ID
       column_name: Ime
       delete: Izbriši
       edit: Uredi
@@ -2915,7 +2920,7 @@ sr-Latn:
       column_campaigns: Kampanje
       column_created_at: Kreirano u
       column_email: Imejl
-      column_id: Id
+      column_id: ID
       column_name: Ime
       confirm_delete: Da, izbriši
       confirm_send: Da, pošalji
@@ -2929,11 +2934,11 @@ sr-Latn:
       form_last_name: Prezime
       modal_delete_content: Da li ste sigurni da želite da izbrišete procenjivača '%{name}'?
       modal_delete_title: Izbriši procenjivača
-      modal_reset_email_content: Da li ste sigurni da želite da pošaljete vezu za resetovanje lozinke na '%{email}'?
+      modal_reset_email_content: Da li ste sigurni da želite da pošaljete vezu za resetovanje lozinka na '%{email}'?
       model_reset_email: Resetuj lozinku ocenjivača
       no_edit_permission: Nemate dozvolu za uređivanje procenjivača '%{name}'
-      reset_mail_error: Nije moguće poslati link za resetovanje lozinke na '%{email}'. Molimo Vas da kontaktirate svog administratora.
-      reset_mail_success: Veza za poništavanje lozinke uspešno poslata na '%{email}'
+      reset_mail_error: Nije moguće poslati link za resetovanje lozinka na '%{email}'. Molimo Vas da kontaktirate svog administratora.
+      reset_mail_success: Veza za poništavanje lozinka uspešno poslata na '%{email}'
       save: Sačuvaj
       search_accessor: Pretraga pristupnika
       send_email: Pošalji imejl
@@ -3023,7 +3028,7 @@ sr-Latn:
         schedule_name: Ime rasporeda
         search: Pretraži
         secure_browser_enabled: Omogući siguran pretraživač
-        settings: Postavke
+        settings: Podešavanja
         show_remaining_counts: Omogućiti prikazivanje preostalog broja
         visual_proctoring_enabled: Omogućite vizuelni proktoring
         web_proctoring_enabled: Omogućite veb Proctoring
@@ -3144,7 +3149,7 @@ sr-Latn:
       dashboard: Dashboard
       download: Preuzmi
       report_approval_settings: Podešavanja odobravanja izveštaja
-      report_approvals: Prijavi odobrenja
+      report_approvals: Odobrenja izveštaja
       review: Pregledaj
       saving_filters:
         actions:
@@ -3473,7 +3478,7 @@ sr-Latn:
         scheduled: Zakazano
       search_participant: Učesnici kampanje za pretragu
       status:
-        completed: Dovršeno
+        completed: Završeno
         dropped_out: Odustao/la
         in_progress: U toku
         late: Kasno
@@ -3537,7 +3542,7 @@ sr-Latn:
       final_score_updated_successfully: Konačni skor je uspešno ažuriran
       formula: Formula
       get_started: Počni
-      id: Id
+      id: ID
       import:
         factors: Uvezi faktore kampanje
       name: Ime
@@ -3598,7 +3603,7 @@ sr-Latn:
         rescore_confirm: Ponovno ocenjivanje korisnika '%{email}'. Da li ste sigurni da želite da nastavite?
         tools: Alatke
       tabs:
-        settings: Postavke
+        settings: Podešavanja
         subject_scores: Skorobi subjekta
       type: Tip
       variables: Varijable
@@ -3616,15 +3621,15 @@ sr-Latn:
       90_days: 90 dana
       attempts_to_lock: Pokušaji zaključavanja
       auto_unlock_time: Vreme automatskog otključavanja
-      disable_password_reuse: Onemogući ponovnu upotrebu lozinke
+      disable_password_reuse: Onemogući ponovnu upotrebu lozinka
       disallow_password_login: Zabrani prijavljivanje lozinkom
       enable_login_with_magic_link: Omogući prijavu sa magičnim linkom
-      enforce_password_policy: Sprovedi politiku lozinke na sledećem prijavljivanja
+      enforce_password_policy: Sprovedi politiku lozinka na sledećem prijavljivanja
       enforce_strong: Sprovedite jaku lozinku
-      expiration: Istek lozinke
+      expiration: Istek lozinka
       lock_account: Zaključaj nalog
       magic_link_expiry_duration: Trajanje isteka magične veze
-      min_length: Minimalna dužina lozinke
+      min_length: Minimalna dužina lozinka
       never: Nikad
       restrict_sequences: Ograniči sekvencijalne i ponavljajuće znakove
       security: Bezbednosna podešavanja
@@ -3715,7 +3720,7 @@ sr-Latn:
           title: Izbriši kolone
       tabs:
         rows: Redovi
-        settings: Postavke
+        settings: Podešavanja
     skills:
       applicable_proficiency_levels: Primenjivi nivoi stručnosti
       columns:
@@ -3837,7 +3842,7 @@ sr-Latn:
         send_sms: Pošalji SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Poruka
     smtp_settings:
       authentication: Potvrda identiteta
@@ -3874,22 +3879,26 @@ sr-Latn:
       user_name: Korisničko ime
     stats:
       assessments:
+        active: Aktivno
         columns:
           assessment_name: Ime procene
-          completed: Dovršeno
+          completed: Završeno
           id: ID
           in_progress: U toku
           ineligible: Neprihvatljivo
           interrupted: Prekinuto
-          not_started: Nije počelo
+          not_started: Nije započeto
           timed_out: Isteklo vreme
+        count: Broj
+        inactive: Neaktivno
+        percentage: Procenat
         title: Procene
       title: Statistike
       top_metrics:
-        completed: Dovršeno
+        completed: Završeno
         in_progress: U toku
         interrupted: Prekinuto
-        not_started: Nije počelo
+        not_started: Nije započeto
         timed_out: Isteklo vreme
         users: Korisnici
       users:

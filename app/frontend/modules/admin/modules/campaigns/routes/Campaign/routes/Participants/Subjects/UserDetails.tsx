@@ -110,6 +110,7 @@ export const UserDetails: React.FC<Props> = ({
     new: 'blue',
     not_started: 'blue',
     in_progress: 'orange',
+    progress: 'orange',
     completed: 'green',
     interrupted: 'orange',
     timed_out: 'red',
@@ -219,7 +220,10 @@ export const UserDetails: React.FC<Props> = ({
             {assessmentStatuses && (
               <Descriptions.Item label={I18n.t('campaign_users.assessments.progress')}>
                 {_.map(assessmentStatuses, (value, status) => (
-                  <Tag key={status} color={statusToColor[status]}>{`${value} ${_.capitalize(status)}`}</Tag>
+                  <Tag key={status} color={statusToColor[status]}>
+                    {`${value}
+                    ${I18n.t(`campaign_assessment.statuses.${status}`)}`}
+                  </Tag>
                 ))}
               </Descriptions.Item>
             )}

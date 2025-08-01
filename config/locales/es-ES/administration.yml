@@ -4,8 +4,8 @@ es-ES:
     actions: Acciones
     active_record_audits:
       action: Acción
-      audit_id: Id de auditoría
-      auditable_id: Id de registro
+      audit_id: ID de auditoría
+      auditable_id: ID de registro
       auditable_type: Tipo de registro
       audited_changes: Cambios auditados
       new_diff:
@@ -36,7 +36,7 @@ es-ES:
           last_name: Apellido
           last_name_required: Apellido obligatorio
           no_edit_permission: No tienes permiso para editar admin '%{name}'
-          save: Guardar
+          save: Salvar
           update: Actualización
           update_success: Admin '%{name}' se ha actualizado correctamente
         notes:
@@ -55,9 +55,9 @@ es-ES:
           last_name: Apellido
           project_admin: Administrador del proyecto
           project_list: Lista de proyectos
-          role: Administración de la campaña
+          role: Administración
           title:
-            campaign_admin: Administración de la campaña
+            campaign_admin: Administración
             client_admin: Administración de clientes
             project_admin: Administrador del proyecto
       list:
@@ -77,7 +77,7 @@ es-ES:
           actions: Acciones
           created_at: Creado en
           email: Correo electrónico
-          id: Id
+          id: ID
           name: Nombre
         header:
           add_admin: Añadir admin
@@ -94,15 +94,15 @@ es-ES:
       permissions:
         labels:
           apiKeys:
-            manage: Gestione
+            manage: Gestión
             title: Claves API
             view: Ver
           assessments:
-            manage: Gestione
+            manage: Gestión
             title: Evaluaciones
             view: Ver
           assessors:
-            manage: Gestione
+            manage: Gestión
             title: Asesores
             view: Ver
           auditLogs:
@@ -113,13 +113,13 @@ es-ES:
             title: Informes de auditoría
             user_report_events: Registros de aprobación de informes
           campaignFactors:
-            manage: Gestione
+            manage: Gestión
             title: Factores de la campaña
             view: Ver
           campaigns:
             bulk_download: Descarga masiva
             bulk_regenerate_reports: Regeneración masiva de informes
-            manage: Gestione
+            manage: Gestión
             manage_admins: Gestionar administradores
             manage_factor_benchmark_scores: Gestionar las puntuaciones de referencia de los factores
             manage_messages: Gestionar mensajes
@@ -135,12 +135,12 @@ es-ES:
             view_stats: Ver estadísticas
           clients:
             export_data_report: Exportar informe de datos
-            manage: Gestione
+            manage: Gestión
             title: Clientes
             view: Ver
             view_licenses: Ver licencias
           communications:
-            manage: Gestione
+            manage: Gestión
             title: Comunicaciones
             view: Ver
           dashboards:
@@ -150,7 +150,7 @@ es-ES:
             title: Cuadros de mando
             view: Ver
           datasheets:
-            manage: Gestione
+            manage: Gestión
             title: Fichas técnicas
             view: Ver
           developmentActions:
@@ -162,25 +162,25 @@ es-ES:
             import_global: Importación global
             import_global_translations: Importar traducciones globales
             import_translations: Importación de traducciones
-            manage: Gestione
+            manage: Gestión
             title: Acciones de desarrollo
             view: Ver
           dimensions:
-            manage: Gestione
+            manage: Gestión
             title: Dimensiones
             view: Ver
           idpTemplates:
-            manage: Gestione
+            manage: Gestión
             title: Plantillas de PDI
             view: Ver
           jobRoles:
             export_translations: Exportar traducciones de funciones
             import_translations: Importar traducciones de funciones
-            manage: Gestione
+            manage: Gestión
             title: Funciones
             view: Ver
           mediaLibraries:
-            manage: Gestione
+            manage: Gestión
             title: Mediatecas
             view: Ver
           messages:
@@ -189,7 +189,7 @@ es-ES:
             options: Opciones
             title: Mensajes
           norms:
-            manage: Gestione
+            manage: Gestión
             title: Normas
             view: Ver
           proficiencyLevels:
@@ -197,7 +197,7 @@ es-ES:
             export_translations: Traducciones de los niveles de competencia de exportación
             import: Niveles de competencia de importación
             import_translations: Importar traducciones de niveles de competencia
-            manage: Gestione
+            manage: Gestión
             title: Niveles de competencia
             view: Ver
           proficiency_level:
@@ -214,30 +214,30 @@ es-ES:
             title: Configuración del proyecto
             webhooks: Webhooks
           projects:
-            manage: Gestione
+            manage: Gestión
             manage_admins: Gestionar administradores
             manage_users: Gestionar usuarios
             title: Proyectos
             view: Ver
           questions:
-            manage: Gestione
+            manage: Gestión
             title: Preguntas
             view: Ver
           reflectionQuestions:
             export: Exportar
             import: Importar
-            manage: Gestione
+            manage: Gestión
             title: Preguntas de reflexión del PDI
             view: Ver
           registrationCodes:
-            manage: Gestione
+            manage: Gestión
             title: Códigos de registro
             view: Ver
           registrationSettings:
-            manage: Gestione
+            manage: Gestión
             title: Ajustes de registro
           reports:
-            manage: Gestione
+            manage: Gestión
             title: Informes
             view: Ver
           responseMeta:
@@ -269,15 +269,15 @@ es-ES:
             export_translations: Exportar traducciones
             import: Importar
             import_translations: Importación de traducciones
-            manage: Gestione
+            manage: Gestión
             title: Habilidades
             view: Ver
           smsHistories:
-            manage: Gestione
+            manage: Gestión
             title: Historias de SMS
             view: Ver
           smsInvites:
-            manage: Gestione
+            manage: Gestión
             title: Invitaciones por SMS
             view: Ver
           users:
@@ -285,7 +285,7 @@ es-ES:
             title: Usuarios
           workshops:
             export_status: Estado de la exportación
-            manage: Gestione
+            manage: Gestión
             title: Talleres
             view: Ver
     ai_assistants:
@@ -321,7 +321,7 @@ es-ES:
       current: Actual
       invite:
         add_invite: Añadir invitación
-        assessment_center: Centro de Evaluación
+        assessment_center: Assessment Center
         back: Volver
         basic_info:
           allow_preferred_language: Permitir idioma preferido
@@ -333,7 +333,7 @@ es-ES:
           preferred_language: Lenguas permitidas
           required_error: No puede estar vacío
           title: Información básica
-        center_group: Grupo del Centro de Evaluación
+        center_group: Grupo del Assessment Center
         confirm_message: "¿Seguro que quieres borrar una invitación?"
         confirm_message_with_title: ¿Está seguro de que desea eliminar la invitación con el título "%{invite_title}"?
         confirm_title: Confirme
@@ -343,7 +343,7 @@ es-ES:
         next: Siguiente
         not_selected: No seleccionado
         requests: Solicitudes
-        save: Guardar y enviar
+        save: Salvar y enviar
         send_invites:
           add: Añadir
           add_description: Puedes traducir el título y la descripción de la invitación a varios idiomas
@@ -468,7 +468,7 @@ es-ES:
           question: preguntas
         present_only: Sólo presente
         question_per_factor_and_show: preguntas por factor y mostrar
-        save: Guardar
+        save: Salvar
         select: Seleccione
         select_only: Seleccione sólo
         single_question_page_warning: La evaluación actual está configurada para mostrar una pregunta por página. Si se configura aquí más de una pregunta por página, se desactivará automáticamente la configuración de Pregunta única por página.
@@ -496,7 +496,7 @@ es-ES:
         disable_nav_btn: Desactivar el botón Atrás de navegación
         enable_back: Activar el botón Atrás
         enable_progress: Activar la barra de progreso
-        enable_save: Activar el botón de guardar
+        enable_save: Activar el botón de Salvar
         enable_single_question_page: Mostrar una pregunta por página
         enable_single_question_page_confirm: Esto actualizará la aleatorización de bloques por página a 1. ¿Estás seguro?
         enable_timer: Activar temporizador
@@ -637,8 +637,8 @@ es-ES:
       outcome: Resultado
       payload: Carga útil
       project: Proyecto
-      record_id: Id de registro
-      request_id: Id de solicitud
+      record_id: ID de registro
+      request_id: ID de solicitud
       reset: Restablecer
       search: Buscar en
       search_campaign: Búsqueda por campaña
@@ -712,7 +712,7 @@ es-ES:
       client: Arrendamiento de clientes
       clientAdmins: Administradores de clientes
       client_admins: Administradores de clientes
-      clients: Arrendamientos de clientes
+      clients: Clientes
       communication_center: Centro de comunicaciones
       create: Cree
       data_exports: Exportación de datos
@@ -911,7 +911,7 @@ es-ES:
       update:
         successfully: La tenencia del cliente %{name} se ha actualizado correctamente.
     campaigns:
-      actions: Gestione
+      actions: Gestión
       assessment_reports:
         report_approval:
           allow_bulk_approve: Permitir aprobación masiva
@@ -923,7 +923,7 @@ es-ES:
           do_not_send_notifications: No enviar notificaciones
           modal_title: Configuración de la aprobación de informes
           qc_users: Usuarios de QC
-          remove_modal_success: 'La configuración de aprobación para el id de informe: %{reportId} se ha eliminado correctamente '
+          remove_modal_success: 'La configuración de aprobación para el id de informe: %{reportId} se ha eliminado correctamente'
           remove_modal_text: "¿Está seguro de que desea eliminar esta configuración para el id de informe: %{reportId}?"
           report: Informe
           settings: Ajustes
@@ -942,13 +942,16 @@ es-ES:
         inactive: Inactivo
         status: Estado
       form:
+        active_notice: El estado de la campaña cambiará automáticamente a cerrado en la fecha de finalización seleccionada
         campaign: Campaña
+        inactive_notice: El estado de la campaña cambiará automáticamente a activo en la fecha de inicio seleccionada
+        instruction: Esto solo se puede habilitar mientras crea una campaña
         name: Nombre
         practice_campaign: Campaña práctica
         status: Estado
       listing:
         assessments: Evaluaciones
-        id: Id
+        id: ID
         name: Nombre
         reports: Informes
         status: Estado
@@ -965,6 +968,7 @@ es-ES:
             active: Activo
             archive: Archivo
             assessment: Evaluación
+            category: Categoría
             closed: Cerrado
             empty: Vacío
             inactive: Inactivo
@@ -974,6 +978,7 @@ es-ES:
             skill_rater: Evaluador de competencias
             standard: Estándar
             status: Estado
+            type: Tipo
           close:
             content: "¿Está seguro de que desea cerrar el Creador de Campañas Multi-Rater? Cualquier trabajo de personalización no guardado se perderá. Por favor, confirme su decisión."
             title: "¿Cerrar el Creador de Campañas Multi-Rater?"
@@ -1000,14 +1005,14 @@ es-ES:
       options:
         description:
           name: Descripción
-          save: Guardar Descripción
+          save: Salvar Descripción
           save_success: Descripción guardada correctamente
         fixed_time: Tiempo fijo
         instructions:
           actions:
             saved: Instrucciones guardadas correctamente
           enable: Activar instrucciones
-          save: Guardar instrucciones
+          save: Salvar instrucciones
         prework_required: No permitir la reserva del centro si no se han completado los trabajos previos
         prework_required_for_invite: Enviar invitación por correo electrónico sólo cuando se haya completado el trabajo previo
         proctoring:
@@ -1055,7 +1060,7 @@ es-ES:
           all: Todos
           anonymous: Anónimo
           identified: Identificado
-        id: Id
+        id: ID
         is_active: Activo
         name: Nombre
         no_permission_message: No tiene permiso para modificar
@@ -1094,7 +1099,7 @@ es-ES:
         enable: Desarchivar
       columns:
         country: País
-        project_manager: Jefe de proyecto
+        project_manager: Responsable de proyecto
         type: Tipo
         year: Año
       copy:
@@ -1110,7 +1115,7 @@ es-ES:
         country: País
         name: Nombre
         number: Número
-        project_manager: Jefe de proyecto
+        project_manager: Responsable de proyecto
         type: Tipo
         year: Año
       licenses:
@@ -1163,7 +1168,7 @@ es-ES:
               sub_campaigns: Subcampañas
               tests_allocated: Pruebas asignadas
               users: Usuarios
-            id: Id
+            id: ID
             name: Nombre de la campaña
             reports: Informes
             updated_at: Fecha actualizada
@@ -1186,7 +1191,7 @@ es-ES:
               sub_campaigns: Subcampañas
               tests_allocated: Pruebas asignadas
               users: Usuarios
-            id: Id
+            id: ID
             name: Nombre de la campaña
             reports: Informes
             updated_at: Fecha actualizada
@@ -1237,7 +1242,7 @@ es-ES:
                 sub_campaign: Subcampañas
                 tests_allocated: Pruebas asignadas
                 users: Usuarios
-              id: Id
+              id: ID
               name: Nombre de la subcampaña
               reports: Informes
               updated_at: Fecha actualizada
@@ -1260,7 +1265,7 @@ es-ES:
                 sub_campaign: Subcampañas
                 tests_allocated: Pruebas asignadas
                 users: Usuarios
-              id: Id
+              id: ID
               name: Nombre de la subcampaña
               reports: Informes
               updated_at: Fecha actualizada
@@ -1310,7 +1315,7 @@ es-ES:
           assigned_user: Usuarios asignados
           completed_user: Usuarios completados
           created_at: Fecha de creación
-          id: Id
+          id: ID
           name: Nombre del proyecto
           number: Número
           project_admin: Administradores de proyectos
@@ -1359,7 +1364,7 @@ es-ES:
           assigned_user: Usuarios asignados
           completed_user: Usuarios completados
           created_at: Fecha de creación
-          id: Id
+          id: ID
           name: Nombre del proyecto
           number: Número
           project_admin: Administradores de proyectos
@@ -1428,7 +1433,7 @@ es-ES:
             assessment: Valoración
             client_admins: Administradores de clientes
             created_at: Creado en
-            id: Id
+            id: ID
             name: Nombre
             report: Informe
             report_bundle: Paquete de informes
@@ -1448,7 +1453,7 @@ es-ES:
             assessment: Valoración
             client_admins: Administradores de clientes
             created_at: Creado en
-            id: Id
+            id: ID
             name: Nombre
             report: Informe
             report_bundle: Paquete de informes
@@ -1532,7 +1537,7 @@ es-ES:
             title: Archivar <strong>%{name}</strong>?
           enable:
             title: Desarchivar <strong>%{name}</strong>?
-      tenancies: Arrendamientos de clientes
+      tenancies: Clientes
       threesixty_campaign: Campaña Threesixty
       toggle_status:
         successfully: La tenencia del cliente %{name} se ha actualizado correctamente.
@@ -1551,7 +1556,7 @@ es-ES:
       minute: minuto
       next: Siguiente
       reset: Restablecer
-      save: Guardar
+      save: Salvar
       select_all: Seleccionar todo
       type: Tipo
       unselect_all: Deseleccionar todo
@@ -1642,7 +1647,7 @@ es-ES:
         type: Tipo
       list:
         actions: Acciones
-        assessment_center_group: Grupo del Centro de Evaluación
+        assessment_center_group: Grupo del Assessment Center
         author: Creado por
         campaign: Campaña
         client_name: Cliente
@@ -1676,7 +1681,7 @@ es-ES:
           view: Ver Comunicación
       show:
         assessment: 'Evaluación:'
-        assessment_center_group: 'Grupo del Centro de Evaluación:'
+        assessment_center_group: 'Grupo del Assessment Center:'
         back: Volver
         body: 'Cuerpo:'
         campaign: 'Campaña:'
@@ -1727,10 +1732,10 @@ es-ES:
         embed_token_error_description: Compruebe si el conjunto de datos y el ID de informe de la configuración son correctos.
         embed_token_error_title: No se ha podido generar el token Embed.
       settings:
-        capacity_id: Capacidad Id
+        capacity_id: Capacidad ID
         details: Detalles
         refresh: Actualizar
-        workspace_id: Id de espacio de trabajo
+        workspace_id: ID de espacio de trabajo
       tabs:
         accesssheet: Hoja de acceso
         accesssheet_setting: Configuración de la hoja de acceso
@@ -1738,12 +1743,12 @@ es-ES:
         settings: Ajustes
     dashboard_form:
       fields:
-        dataset_id: Id. del conjunto de datos
+        dataset_id: ID. del conjunto de datos
         enabled: Activado
         image: Imagen
         project_path: Trayectoria del proyecto
         refresh_interval: Intervalo de actualización (minutos)
-        report_id: Informe Id
+        report_id: Informe ID
         visual_header_visibility: Visibilidad de la cabecera
       image_upload_failed: Error al cargar la imagen.
       none: Ninguno
@@ -1816,7 +1821,7 @@ es-ES:
           invalid_id: 'Fila %{row}: ID debe ser un número'
           invalid_id_format: 'Fila %{row}: ID debe estar en el formato "id#campo"'
           missing_columns: 'Faltan columnas obligatorias: %{fields}'
-          save_failed: 'No se pudo guardar: %{message}'
+          save_failed: 'No se pudo Salvar: %{message}'
     development_actions:
       create:
         successfully: La acción de desarrollo "%{name}" se ha creado correctamente.
@@ -1947,7 +1952,7 @@ es-ES:
       list:
         active: Activo
         created_at: Fecha de creación
-        id: Id
+        id: ID
         name: Nombre
         updated_at: Fecha de modificación
       new:
@@ -2054,7 +2059,7 @@ es-ES:
       list:
         active: Activo
         created_at: Fecha de creación
-        id: Id
+        id: ID
         name: Nombre
         updated_at: Fecha modificada
       new:
@@ -2264,7 +2269,7 @@ es-ES:
         header: Importar usuarios
     individual_invite:
       tabs:
-        assessment_center: Centro de Evaluación
+        assessment_center: Assessment Center
         subjects: Temas
     innovation_styles:
       create:
@@ -2280,7 +2285,7 @@ es-ES:
         title: Estilos de innovación
       list:
         created_at: Fecha de creación
-        id: Id
+        id: ID
         name: Nombre
         position: Posición
         updated_at: Fecha modificada
@@ -2313,7 +2318,7 @@ es-ES:
       list:
         condition: Condición
         created_at: Fecha de creación
-        id: Id
+        id: ID
         name: Nombre
         position: Posición
         updated_at: Fecha modificada
@@ -2505,14 +2510,14 @@ es-ES:
       assessments: Evaluaciones
       assessments_reports: Evaluaciones e informes
       assessor_dashboard: Panel de control del evaluador
-      assessor_workshops: Centro de Evaluación
+      assessor_workshops: Assessment Center
       audit_logs: Registros de auditoría
       availability: Disponibilidad
       back_to_main: Menú principal
       campaign_templates: Plantillas de campaña
       change_password: Cambiar contraseña
       client_admins: Administradores de clientes
-      clients: Arrendamientos de clientes
+      clients: Clientes
       communication_center: Centro de comunicaciones
       dashboard: Cuadro de mandos
       data_reports: Informes de datos
@@ -2568,8 +2573,8 @@ es-ES:
       list:
         active: Activo
         created_at: Fecha de creación
-        dimension_id: Dimensión Id
-        id: Id
+        dimension_id: Dimensión ID
+        id: ID
         name: Nombre
         updated_at: Fecha modificada
         updated_by: Actualizado por
@@ -2630,7 +2635,7 @@ es-ES:
         title: Ocupaciones
       list:
         created_at: Fecha de creación
-        id: Id
+        id: ID
         name: Nombre
         updated_at: Fecha de modificación
       new:
@@ -2662,7 +2667,7 @@ es-ES:
       list:
         condition: Condición
         created_at: Fecha de creación
-        id: Id
+        id: ID
         name: Nombre
         position: Posición
         updated_at: Fecha modificada
@@ -2713,7 +2718,7 @@ es-ES:
         conclusion: Conclusión
         links: Enlaces
         score: Puntuación
-        session_id: Id de sesión
+        session_id: ID de sesión
         started_at: Comenzó en
       links:
         report: Informe
@@ -2808,7 +2813,7 @@ es-ES:
       column_createdAt: Creado en
       column_created_at: Creado en
       column_email: Correo electrónico
-      column_id: Id
+      column_id: ID
       column_name: Nombre
       delete: Borrar
       edit: Editar
@@ -2817,7 +2822,7 @@ es-ES:
       form_first_name: Nombre
       form_last_name: Apellido
       reset_password: Restablecer contraseña
-      save: Guardar
+      save: Salvar
       search_user: Buscar usuario
       send_email: Enviar correo electrónico
     project_tabs:
@@ -2919,7 +2924,7 @@ es-ES:
       column_campaigns: Campañas
       column_created_at: Creado en
       column_email: Correo electrónico
-      column_id: Id
+      column_id: ID
       column_name: Nombre
       confirm_delete: Sí, borrar
       confirm_send: Sí, enviar
@@ -2938,7 +2943,7 @@ es-ES:
       no_edit_permission: No tiene permiso para editar al asesor '%{name}'
       reset_mail_error: No se ha podido enviar el enlace de restablecimiento de contraseña a '%{email}'. Ponte en contacto con tu administrador.
       reset_mail_success: Enlace de restablecimiento de contraseña enviado correctamente a "%{email}"
-      save: Guardar
+      save: Salvar
       search_accessor: Accesores de búsqueda
       send_email: Enviar correo electrónico
     projects:
@@ -3011,7 +3016,7 @@ es-ES:
         locales_label: Locales
         name_label: Nombre
         project_number_label: Número de proyecto
-        save_changes: Guardar cambios
+        save_changes: Salvar cambios
         sub_domain_label: Subdominio
       mettl_schedule_records:
         actions:
@@ -3076,7 +3081,7 @@ es-ES:
         column_active: Activo
         column_created_date: Fecha de creación
         column_description: Descripción
-        column_manage: Gestione
+        column_manage: Gestión
         column_updated_date: Fecha modificada
         column_url: URL
         search: Buscar en Webhoook
@@ -3123,7 +3128,7 @@ es-ES:
           invalid_min_words_column_format: Formato de valor de columna de palabras mínimas no válido %{row}
           invalid_required_column_format: Formato de valor de columna obligatorio no válido %{row}
           missing_eng_question: Falta el contenido de la pregunta en inglés %{row}
-          save_failed: Error al guardar %{message}
+          save_failed: Error al Salvar %{message}
         failure_msg: Error al importar el archivo.
         success_msg: Importación de preguntas de reflexión en curso. Compruebe el estado en las notificaciones.
       question: Pregunta
@@ -3141,7 +3146,7 @@ es-ES:
         approval_status: Estado de aprobación
         approved_by: Aprobado por
         campaign_name: Nombre de la campaña
-        qc_by: QC Por
+        qc_by: Revisado por
         report_name: Nombre del informe
         user_email: Correo electrónico del usuario
         user_name: Nombre de usuario
@@ -3154,15 +3159,15 @@ es-ES:
         actions:
           clear_filters: Limpiar filtros
           delete_filter: Borrar filtro
-          save_filter: Guardar
-          save_new_filter: Guardar como nuevo filtro
+          save_filter: Salvar
+          save_new_filter: Salvar como nuevo filtro
           saved_filters: Filtros guardados
         delete_saved_filters: Filtro eliminado
         edit_filter_name: Nombre del filtro guardado
         error_while_deleting: Error al borrar
         error_while_editing: Error de edición
         error_while_fetching: Algo salió mal, inténtelo de nuevo
-        error_while_saving: Error al guardar el filtro
+        error_while_saving: Error al Salvar el filtro
         filter_updated: Filtro actualizado
         no_saved_filters: No hay filtros guardados
         save_filter: Filtro guardado
@@ -3333,7 +3338,7 @@ es-ES:
       config_details:
         acs_url: URL del servicio al consumidor de aserciones
         copied: Copiado %{element}
-        issuer: Entidad Id/Emisor
+        issuer: Entidad ID/Emisor
         title: Configurar Idp con la siguiente información
       email_pipetext: Envíe un correo electrónico a Pipetext
       enabled: Activado
@@ -3345,10 +3350,10 @@ es-ES:
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistente
       saml: SAML
       saml_setting: Configuración SAML
-      save: Guardar configuración
+      save: Salvar configuración
       sso_service_url: Url del servicio SSO
       successfully_saved_msg: La configuración SAML se ha guardado correctamente.
-    save: Guardar
+    save: Salvar
     scheduling:
       add_activity: Añadir actividad
       add_assessment_center: Añadir centro de evaluación
@@ -3360,7 +3365,7 @@ es-ES:
       assessment_center_form:
         add_more: Más información
         allow_late_cancellation_and_scheduling: Permitir la cancelación tardía y la programación
-        assessment_center_group: Grupo del Centro de Evaluación
+        assessment_center_group: Grupo del Assessment Center
         assessment_center_group_placeholder: Seleccionar grupo del centro de evaluación
         assessor_ids_label: Asesores
         back: Volver
@@ -3418,7 +3423,7 @@ es-ES:
         attendance: Asistencia
         attended: Asistió a
         booked_at: Reservado en
-        campaign_assessment_group: Grupo del Centro de Evaluación
+        campaign_assessment_group: Grupo del Assessment Center
         campaign_name: Nombre de la campaña
         duration: Duración
         managers: Gerentes
@@ -3444,7 +3449,7 @@ es-ES:
         allowed: Permitido
         assessors: Asesores
         booked: Plazas reservadas
-        campaign_assessment_group: Grupo del Centro de Evaluación
+        campaign_assessment_group: Grupo del Assessment Center
         cancellation_lead_time: Plazo de cancelación
         cancellation_tooltip: El usuario podrá cancelar la reserva hasta %{date}
         date: Fecha y hora
@@ -3512,7 +3517,7 @@ es-ES:
         unschedule: Desprogramar
       tabs:
         activities: Actividades
-        assessment_center: Centro de Evaluación
+        assessment_center: Assessment Center
         invites: Invita
         resources: Recursos
         subjects: Temas
@@ -3544,7 +3549,7 @@ es-ES:
       final_score_updated_successfully: La puntuación final se ha actualizado correctamente
       formula: Fórmula
       get_started: Comenzar
-      id: Id
+      id: ID
       import:
         factors: Factores de la campaña de importación
       name: Nombre
@@ -3564,8 +3569,8 @@ es-ES:
       remove_factor_group_confirmation_content: ¿Está seguro de que desea eliminar el grupo de factores "%{group_name}"?
       remove_factor_group_confirmation_title: Eliminar grupo de factores
       required_error: No puede estar vacío
-      save: Guardar
-      save_all: Guardar todo
+      save: Salvar
+      save_all: Salvar todo
       score_range: Rango de puntuación
       score_types:
         norm_score: Puntuación normal
@@ -3683,15 +3688,15 @@ es-ES:
         add_column: Añadir columna
         not_allowed_for_dashboard_use: Para que la columna se utilice en el cuadro de mandos, debe tener menos de 64 caracteres
         reorder: Reordenar
-        save_order: Guardar pedido
+        save_order: Salvar pedido
       drawers:
         add_edit:
           cancelText: Cancelar
           markdown:
             preview: Vista previa
             title: Markdown
-          save: Guardar
-          saving: Guardar
+          save: Salvar
+          saving: Salvar
           success_message_add: Nuevo registro añadido
           success_message_edit: Registro actualizado
           title_add: Añadir registro de hoja
@@ -3731,7 +3736,7 @@ es-ES:
       errors:
         import:
           missing_fields_data: 'Línea %{line_number}: Faltan campos obligatorios: %{fields}'
-          save_failed: 'Línea %{line_number}: Error al guardar la habilidad ''%{name}'': %{message}'
+          save_failed: 'Línea %{line_number}: Error al Salvar la habilidad ''%{name}'': %{message}'
           skill_not_in_project: 'Línea %{line_number}: El ID de habilidad %{skill_id} no pertenece a este proyecto'
         search:
           all_and_project_id_mutually_exclusive: All cant be true when project_id_eq is provided
@@ -3849,7 +3854,7 @@ es-ES:
         send_sms: Enviar SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Mensaje
     smtp_settings:
       authentication: Autenticación
@@ -3877,7 +3882,7 @@ es-ES:
       test_email_modal:
         input_hint: Su configuración de correo electrónico no se guardará hasta que el correo electrónico de prueba se haya enviado correctamente.
         input_placeholder: Email de prueba
-        title: Id. de correo electrónico de prueba
+        title: ID. de correo electrónico de prueba
       test_modal:
         success_message: Email de prueba enviado a %{email_id}.
         title: Prueba de configuración SMTP
@@ -3886,6 +3891,7 @@ es-ES:
       user_name: Nombre de usuario
     stats:
       assessments:
+        active: Activo
         columns:
           assessment_name: Nombre de la evaluación
           completed: Completado
@@ -3895,6 +3901,9 @@ es-ES:
           interrupted: Interrumpido
           not_started: No iniciado
           timed_out: Fuera de plazo
+        count: Recuento
+        inactive: Inactivo
+        percentage: Porcentaje
         title: Evaluaciones
       title: Estadísticas
       top_metrics:
@@ -4135,7 +4144,7 @@ es-ES:
         request_approval:
           description: Este mensaje se envía a los gestores cuando un asunto solicita aprobación
           name: Solicitud de aprobación
-        save: Guardar
+        save: Salvar
         schedule: Horario
         schedule_email: Programar correo electrónico
         schedule_email_title: Programar correo electrónico
@@ -4192,7 +4201,7 @@ es-ES:
         dimension: Dimensiones
         manage_relationships: Gestionar las relaciones...
         report: Informe
-        title: Gestione
+        title: Gestión
       menu:
         actions: Acciones
         datasheet:

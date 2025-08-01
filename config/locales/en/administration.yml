@@ -4,8 +4,8 @@ en:
     actions: Actions
     active_record_audits:
       action: Action
-      audit_id: Audit Id
-      auditable_id: Record Id
+      audit_id: Audit ID
+      auditable_id: Record ID
       auditable_type: Record Type
       audited_changes: Audited Changes
       new_diff:
@@ -77,7 +77,7 @@ en:
           actions: Actions
           created_at: Created at
           email: Email
-          id: Id
+          id: ID
           name: Name
         header:
           add_admin: Add admin
@@ -306,7 +306,7 @@ en:
     api:
       campaigns:
         validate_form:
-          external_id_taken: External Id '%{external_id}' is already taken'
+          external_id_taken: External ID '%{external_id}' is already taken'
       users:
         form:
           campaign_ids_not_existing: Not all campaign ids are existing
@@ -637,8 +637,8 @@ en:
       outcome: Outcome
       payload: Payload
       project: Project
-      record_id: Record Id
-      request_id: Request Id
+      record_id: Record ID
+      request_id: Request ID
       reset: Reset
       search: Search
       search_campaign: Search by Campaign
@@ -942,13 +942,16 @@ en:
         inactive: Inactive
         status: Status
       form:
+        active_notice: Campaign status will automatically change to closed on the selected end date & time
         campaign: Campaign
+        inactive_notice: Campaign status will automatically change to active on the selected start date & time
+        instruction: This can be only enabled while creating
         name: Name
         practice_campaign: Practice Campaign
         status: Status
       listing:
         assessments: Assessments
-        id: Id
+        id: ID
         name: Name
         reports: Reports
         status: Status
@@ -965,6 +968,7 @@ en:
             active: Active
             archive: Archive
             assessment: Assessment
+            category: Category
             closed: Closed
             empty: Empty
             inactive: Inactive
@@ -974,6 +978,7 @@ en:
             skill_rater: Skill Rater
             standard: Standard
             status: Status
+            type: Type
           close:
             content: Are you sure you want to close the Multi Rater Campaign Creator? Any unsaved customization work will be lost. Please confirm your decision.
             title: Close Multi Rater Campaign Creator?
@@ -1055,7 +1060,7 @@ en:
           all: All
           anonymous: Anonymous
           identified: Identified
-        id: Id
+        id: ID
         is_active: Active
         name: Name
         no_permission_message: You do not have permission to modify
@@ -1163,7 +1168,7 @@ en:
               sub_campaigns: Sub-Campaigns
               tests_allocated: Tests allocated
               users: Users
-            id: Id
+            id: ID
             name: Campaign name
             reports: Reports
             updated_at: Updated date
@@ -1186,7 +1191,7 @@ en:
               sub_campaigns: Sub-Campaigns
               tests_allocated: Tests allocated
               users: Users
-            id: Id
+            id: ID
             name: Campaign name
             reports: Reports
             updated_at: Updated date
@@ -1237,7 +1242,7 @@ en:
                 sub_campaign: Sub-Campaigns
                 tests_allocated: Tests Allocated
                 users: Users
-              id: Id
+              id: ID
               name: Sub-Campaign name
               reports: Reports
               updated_at: Updated date
@@ -1260,7 +1265,7 @@ en:
                 sub_campaign: Sub-Campaigns
                 tests_allocated: Tests Allocated
                 users: Users
-              id: Id
+              id: ID
               name: Sub-Campaign name
               reports: Reports
               updated_at: Updated date
@@ -1310,7 +1315,7 @@ en:
           assigned_user: Assigned users
           completed_user: Completed users
           created_at: Created date
-          id: Id
+          id: ID
           name: Project name
           number: Number
           project_admin: Project admins
@@ -1359,7 +1364,7 @@ en:
           assigned_user: Assigned users
           completed_user: Completed users
           created_at: Created date
-          id: Id
+          id: ID
           name: Project name
           number: Number
           project_admin: Project admins
@@ -1428,7 +1433,7 @@ en:
             assessment: Assement
             client_admins: Client Admins
             created_at: Created At
-            id: Id
+            id: ID
             name: Name
             report: Report
             report_bundle: Report Bundle
@@ -1448,7 +1453,7 @@ en:
             assessment: Assement
             client_admins: Client Admins
             created_at: Created At
-            id: Id
+            id: ID
             name: Name
             report: Report
             report_bundle: Report Bundle
@@ -1724,10 +1729,10 @@ en:
       pdf: PDF
       pptx: PPTX
       preview:
-        embed_token_error_description: Please check if Dataset and Report Id in settings is correct.
+        embed_token_error_description: Please check if Dataset and Report ID in settings is correct.
         embed_token_error_title: Unable to generate Embed token.
       settings:
-        capacity_id: Capacity Id
+        capacity_id: Capacity ID
         details: Details
         refresh: Refresh
         workspace_id: Workspace id
@@ -1738,12 +1743,12 @@ en:
         settings: Settings
     dashboard_form:
       fields:
-        dataset_id: Dataset Id
+        dataset_id: Dataset ID
         enabled: Enabled
         image: Image
         project_path: Project Path
         refresh_interval: Refresh Interval (minutes)
-        report_id: Report Id
+        report_id: Report ID
         visual_header_visibility: Visual Header Visibility
       image_upload_failed: Image upload failed.
       none: None
@@ -1947,7 +1952,7 @@ en:
       list:
         active: Active
         created_at: Created date
-        id: Id
+        id: ID
         name: Name
         updated_at: Modified Date
       new:
@@ -2054,7 +2059,7 @@ en:
       list:
         active: Active
         created_at: Created date
-        id: Id
+        id: ID
         name: Name
         updated_at: Modified date
       new:
@@ -2280,7 +2285,7 @@ en:
         title: Innovation Styles
       list:
         created_at: Created date
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Modified date
@@ -2313,7 +2318,7 @@ en:
       list:
         condition: Condition
         created_at: Created date
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Modified date
@@ -2568,8 +2573,8 @@ en:
       list:
         active: Active
         created_at: Created date
-        dimension_id: Dimension Id
-        id: Id
+        dimension_id: Dimension ID
+        id: ID
         name: Name
         updated_at: Modified date
         updated_by: Updated by
@@ -2630,7 +2635,7 @@ en:
         title: Occupations
       list:
         created_at: Created Date
-        id: Id
+        id: ID
         name: Name
         updated_at: Modified Date
       new:
@@ -2662,7 +2667,7 @@ en:
       list:
         condition: Condition
         created_at: Created date
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Modified date
@@ -2713,7 +2718,7 @@ en:
         conclusion: Conclusion
         links: Links
         score: Score
-        session_id: Session Id
+        session_id: Session ID
         started_at: Started at
       links:
         report: Report
@@ -2808,7 +2813,7 @@ en:
       column_createdAt: Created At
       column_created_at: Created at
       column_email: Email
-      column_id: Id
+      column_id: ID
       column_name: Name
       delete: Delete
       edit: Edit
@@ -2919,7 +2924,7 @@ en:
       column_campaigns: Campaigns
       column_created_at: Created at
       column_email: Email
-      column_id: Id
+      column_id: ID
       column_name: Name
       confirm_delete: Yes, delete
       confirm_send: Yes, send
@@ -3333,7 +3338,7 @@ en:
       config_details:
         acs_url: Assertion Consumer Service URL
         copied: Copied %{element}
-        issuer: Entity Id/Issuer
+        issuer: Entity ID/Issuer
         title: Configure Idp with following info
       email_pipetext: Email Pipetext
       enabled: Enabled
@@ -3544,7 +3549,7 @@ en:
       final_score_updated_successfully: Final score was updated successfully
       formula: Formula
       get_started: Get Started
-      id: Id
+      id: ID
       import:
         factors: Import Campaign Factors
       name: Name
@@ -3849,7 +3854,7 @@ en:
         send_sms: Send SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Message
     smtp_settings:
       authentication: Authentication
@@ -3877,7 +3882,7 @@ en:
       test_email_modal:
         input_hint: Your email setting will not saved until test email was sent successfully.
         input_placeholder: Test Email ID
-        title: Test Email Id
+        title: Test Email ID
       test_modal:
         success_message: Test Email sent to %{email_id}.
         title: Test SMTP setting
@@ -3886,6 +3891,7 @@ en:
       user_name: User Name
     stats:
       assessments:
+        active: Active
         columns:
           assessment_name: Assessment Name
           completed: Completed
@@ -3895,6 +3901,9 @@ en:
           interrupted: Interrupted
           not_started: Not Started
           timed_out: Timed Out
+        count: Count
+        inactive: Inactive
+        percentage: Percentage
         title: Assessments
       title: Stats
       top_metrics:

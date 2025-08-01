@@ -4,7 +4,7 @@ id:
     actions: Tindakan
     active_record_audits:
       action: Tindakan
-      audit_id: Audit Id
+      audit_id: Audit ID
       auditable_id: ID Rekaman
       auditable_type: Jenis Rekaman
       audited_changes: Perubahan yang Diaudit
@@ -77,7 +77,7 @@ id:
           actions: Tindakan
           created_at: Dibuat di
           email: Email
-          id: Id
+          id: ID
           name: Nama
         header:
           add_admin: Tambahkan admin
@@ -94,7 +94,7 @@ id:
       permissions:
         labels:
           apiKeys:
-            manage: Urus
+            manage: Kelola
             title: Kunci API
             view: Lihat
           assessments:
@@ -113,7 +113,7 @@ id:
             title: Laporan Audit
             user_report_events: Log Persetujuan Laporan
           campaignFactors:
-            manage: Urus
+            manage: Kelola
             title: Faktor Kampanye
             view: Lihat
           campaigns:
@@ -176,7 +176,7 @@ id:
           jobRoles:
             export_translations: Penerjemahan Peran Pekerjaan Ekspor
             import_translations: Impor Terjemahan Peran Pekerjaan
-            manage: Urus
+            manage: Kelola
             title: Peran Pekerjaan
             view: Melihat
           mediaLibraries:
@@ -189,7 +189,7 @@ id:
             options: Pilihan
             title: Pesan
           norms:
-            manage: Urus
+            manage: Kelola
             title: Norma
             view: Melihat
           proficiencyLevels:
@@ -197,7 +197,7 @@ id:
             export_translations: Ekspor Tingkat Kecakapan terjemahan
             import: Tingkat Kecakapan Impor
             import_translations: Impor Terjemahan Tingkat Kecakapan
-            manage: Urus
+            manage: Kelola
             title: Tingkat Kemahiran
             view: Melihat
           proficiency_level:
@@ -214,30 +214,30 @@ id:
             title: Pengaturan Proyek
             webhooks: Webhook
           projects:
-            manage: Urus
+            manage: Kelola
             manage_admins: Kelola Admin
             manage_users: Kelola Pengguna
             title: Proyek
             view: Melihat
           questions:
-            manage: Urus
+            manage: Kelola
             title: Pertanyaan
             view: Melihat
           reflectionQuestions:
             export: Ekspor
             import: Mengimpor
-            manage: Urus
+            manage: Kelola
             title: Pertanyaan Refleksi IDP
             view: Melihat
           registrationCodes:
-            manage: Urus
+            manage: Kelola
             title: Kode Pendaftaran
             view: Melihat
           registrationSettings:
-            manage: Urus
+            manage: Kelola
             title: Pengaturan Pendaftaran
           reports:
-            manage: Urus
+            manage: Kelola
             title: Laporan
             view: Melihat
           responseMeta:
@@ -269,15 +269,15 @@ id:
             export_translations: Ekspor Terjemahan Keterampilan
             import: Keterampilan Impor
             import_translations: Impor Terjemahan Keterampilan
-            manage: Urus
+            manage: Kelola
             title: Keterampilan
             view: Melihat
           smsHistories:
-            manage: Urus
+            manage: Kelola
             title: Riwayat SMS
             view: Melihat
           smsInvites:
-            manage: Urus
+            manage: Kelola
             title: Undangan SMS
             view: Melihat
           users:
@@ -285,7 +285,7 @@ id:
             title: Pengguna
           workshops:
             export_status: Status Ekspor
-            manage: Urus
+            manage: Kelola
             title: Lokakarya
             view: Melihat
     ai_assistants:
@@ -397,7 +397,7 @@ id:
           content: Apakah Anda yakin ingin %{action} %{status} dari %{subjectName}?
           success: "%{status} dari %{subjectName} berhasil %{action}."
           title: "%{action} %{status}"
-        status: Keadaan
+        status: Status
         subject_name: Nama Subjek
         workshop_time: Waktu Lokakarya
       past: Masa lalu
@@ -532,7 +532,7 @@ id:
         reset_successfully: Mengatur ulang evaluasi untuk subjek dengan email "%{subjectEmail}" berhasil.
         subject_email: Subjek Email
         subject_name: Nama Subjek
-      completed_at: Selesai Pada
+      completed_at: Selesai
       count: "%{count} Penilai"
       create_assessor: Tambahkan Penilai
       evaluations: Evaluasi
@@ -709,10 +709,10 @@ id:
       audit_reports: Laporan Audit
       campaign_templates: Template Kampanye
       campaigns: Kampanye
-      client: Penyewaan Klien
+      client: Klien Pengguna
       clientAdmins: Admin Klien
       client_admins: Admin Klien
-      clients: Penyewaan Klien
+      clients: Klien Pengguna
       communication_center: Pusat Komunikasi
       create: Menciptakan
       data_exports: Ekspor Data
@@ -859,11 +859,11 @@ id:
         owner: Pemilik
         report: Lapor
       copy:
-        successfully: Penyewaan Klien %{name} berhasil disalin.
+        successfully: Klien Pengguna %{name} berhasil disalin.
       create:
-        successfully: Penyewaan Klien %{name} berhasil dibuat.
+        successfully: Klien Pengguna %{name} berhasil dibuat.
       destroy:
-        successfully: Penyewaan Klien %{name} berhasil dihapus.
+        successfully: Klien Pengguna %{name} berhasil dihapus.
       edit:
         header: Edit Klien
       errors:
@@ -907,20 +907,20 @@ id:
           delete: Hapus Klien
           edit: Edit Klien
       toggle_status:
-        successfully: Penyewaan Klien %{name} berhasil diperbarui.
+        successfully: Klien Pengguna %{name} berhasil diperbarui.
       update:
-        successfully: Penyewaan Klien %{name} berhasil diperbarui.
+        successfully: Klien Pengguna %{name} berhasil diperbarui.
     campaigns:
-      actions: Urus
+      actions: Kelola
       assessment_reports:
         report_approval:
           allow_bulk_approve: Izinkan Persetujuan Massal
           allow_qc_bulk_submit: Izinkan Pengiriman Massal QC
-          approval_notification_users: Pemberitahuan Persetujuan Pengguna
+          approval_notification_users: Notifikasi Persetujuan Pengguna
           approvers: Pemberi persetujuan
           approvers_can_edit: Pemberi Persetujuan Dapat Mengedit
           approvers_not_required: Pemberi Persetujuan Tidak Diperlukan
-          do_not_send_notifications: Jangan mengirim email ke pengguna [QC, Pemberitahuan Persetujuan & Persetujuan]
+          do_not_send_notifications: Jangan mengirim email ke pengguna [QC, Notifikasi Persetujuan & Persetujuan]
           modal_title: Pengaturan Persetujuan Laporan
           qc_users: Pengguna QC
           remove_modal_success: 'Setelan persetujuan untuk id laporan: %{reportId} berhasil dihapus '
@@ -940,18 +940,21 @@ id:
         archived: Diarsipkan
         closed: Tertutup
         inactive: Tidak Aktif
-        status: Keadaan
+        status: Status
       form:
+        active_notice: Status kampanye akan secara otomatis berubah menjadi ditutup pada tanggal akhir yang dipilih
         campaign: Kampanye
+        inactive_notice: Status kampanye akan secara otomatis berubah menjadi aktif pada tanggal mulai yang dipilih
+        instruction: Ini hanya dapat diaktifkan saat membuat kampanye
         name: Nama
         practice_campaign: Kampanye Latihan
-        status: Keadaan
+        status: Status
       listing:
         assessments: Penilaian
-        id: Id
+        id: ID
         name: Nama
         reports: Laporan
-        status: Keadaan
+        status: Status
         type: Jenis
       menus:
         add_common_campaign: Tambahkan Kampanye Umum
@@ -965,6 +968,7 @@ id:
             active: Aktif
             archive: Arsip
             assessment: Penilaian
+            category: Kategori
             closed: Tertutup
             empty: Kosong
             inactive: Tidak Aktif
@@ -973,7 +977,8 @@ id:
             previous: Sebelumnya
             skill_rater: Penilai Keterampilan
             standard: Standar
-            status: Keadaan
+            status: Status
+            type: Jenis
           close:
             content: Apakah Anda yakin ingin menutup Pembuat Kampanye Multi Rater? Setiap pekerjaan penyesuaian yang belum disimpan akan hilang. Harap konfirmasi keputusan Anda.
             title: Tutup Pembuat Kampanye Multi Rater?
@@ -1055,7 +1060,7 @@ id:
           all: Semua
           anonymous: Anonim
           identified: Diidentifikasi
-        id: Id
+        id: ID
         is_active: Aktif
         name: Nama
         no_permission_message: Anda tidak memiliki izin untuk memodifikasi
@@ -1080,7 +1085,7 @@ id:
         ai_assisted_idp: IDP yang Dibantu AI
         global_skills: Keterampilan Global
         idp: IDP
-        sms_notification: Pemberitahuan SMS
+        sms_notification: Notifikasi SMS
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1098,11 +1103,11 @@ id:
         type: Jenis
         year: Tahun
       copy:
-        successfully: Penyewaan Klien '%{name}' berhasil disalin.
+        successfully: Klien Pengguna '%{name}' berhasil disalin.
       create:
-        successfully: Penyewaan Klien '%{name}' berhasil dibuat.
+        successfully: Klien Pengguna '%{name}' berhasil dibuat.
       destroy:
-        successfully: Penyewaan Klien %{name} berhasil dihapus.
+        successfully: Klien Pengguna %{name} berhasil dihapus.
       edit:
         header: Edit Klien
       form:
@@ -1163,7 +1168,7 @@ id:
               sub_campaigns: Sub-Kampanye
               tests_allocated: Tes yang dialokasikan
               users: Pengguna
-            id: Id
+            id: ID
             name: Nama kampanye
             reports: Laporan
             updated_at: Tanggal diperbarui
@@ -1186,7 +1191,7 @@ id:
               sub_campaigns: Sub-Kampanye
               tests_allocated: Tes yang dialokasikan
               users: Pengguna
-            id: Id
+            id: ID
             name: Nama kampanye
             reports: Laporan
             updated_at: Tanggal diperbarui
@@ -1237,7 +1242,7 @@ id:
                 sub_campaign: Sub-Kampanye
                 tests_allocated: Tes yang Dialokasikan
                 users: Pengguna
-              id: Id
+              id: ID
               name: Nama sub-kampanye
               reports: Laporan
               updated_at: Tanggal diperbarui
@@ -1260,7 +1265,7 @@ id:
                 sub_campaign: Sub-Kampanye
                 tests_allocated: Tes yang Dialokasikan
                 users: Pengguna
-              id: Id
+              id: ID
               name: Nama sub-kampanye
               reports: Laporan
               updated_at: Tanggal diperbarui
@@ -1305,12 +1310,12 @@ id:
           actual_usage: Penggunaan aktual
           admin: Admin klien
           applicable_level: Tingkat yang berlaku
-          archive_status: Keadaan
+          archive_status: Status
           assessments: Penilaian
           assigned_user: Pengguna yang ditetapkan
           completed_user: Pengguna yang lengkap
           created_at: Tanggal dibuat
-          id: Id
+          id: ID
           name: Nama proyek
           number: Angka
           project_admin: Admin proyek
@@ -1354,12 +1359,12 @@ id:
           actual_usage: Penggunaan aktual
           admin: Admin klien
           applicable_level: Tingkat yang berlaku
-          archive_status: Keadaan
+          archive_status: Status
           assessments: Penilaian
           assigned_user: Pengguna yang ditetapkan
           completed_user: Pengguna yang lengkap
           created_at: Tanggal dibuat
-          id: Id
+          id: ID
           name: Nama proyek
           number: Angka
           project_admin: Admin proyek
@@ -1410,17 +1415,17 @@ id:
             in_progress: Sedang Berlangsung
             not_started: Belum Dimulai
           copy:
-            error: Penyewaan Klien '%{name}' tidak disalin.
-            successfully: Penyewaan Klien '%{name}' berhasil disalin.
+            error: Klien Pengguna '%{name}' tidak disalin.
+            successfully: Klien Pengguna '%{name}' berhasil disalin.
           create:
-            successfully: Penyewaan Klien '%{name}' berhasil dibuat.
+            successfully: Klien Pengguna '%{name}' berhasil dibuat.
           designs:
             form:
               no_background: Belum ada Latar Belakang
               no_logo: Belum ada Logo
           destroy:
             error: Tidak dapat menghapus '%{name}' karena ada beberapa asosiasi dependen subjek atau evaluator.
-            successfully: Penyewaan Klien '%{name}' berhasil dihapus.
+            successfully: Klien Pengguna '%{name}' berhasil dihapus.
           edit:
             header: Edit Kampanye 360
           export:
@@ -1428,11 +1433,11 @@ id:
             assessment: Assement
             client_admins: Admin Klien
             created_at: Dibuat di
-            id: Id
+            id: ID
             name: Nama
             report: Lapor
             report_bundle: Bundel Laporan
-            status: Keadaan
+            status: Status
           index:
             export: Ekspor
             new: Tambahkan Kampanye 360
@@ -1448,11 +1453,11 @@ id:
             assessment: Assement
             client_admins: Admin Klien
             created_at: Dibuat di
-            id: Id
+            id: ID
             name: Nama
             report: Lapor
             report_bundle: Bundel Laporan
-            status: Keadaan
+            status: Status
             updated_at: Tanggal diperbarui
           new:
             header: Kampanye 360 Baru
@@ -1492,9 +1497,9 @@ id:
               assessment_type: Jenis penilaian
               title: Statistik
           toggle_status:
-            successfully: Penyewaan Klien %{name} berhasil diperbarui.
+            successfully: Klien Pengguna %{name} berhasil diperbarui.
           update:
-            successfully: Penyewaan Klien %{name} berhasil diperbarui.
+            successfully: Klien Pengguna %{name} berhasil diperbarui.
           url: URL
         toggle_status:
           successfully: Proyek %{name} berhasil diperbarui.
@@ -1532,12 +1537,12 @@ id:
             title: Arsip <strong>%{name}</strong> ?
           enable:
             title: Membatalkan arsip <strong>%{name}</strong> ?
-      tenancies: Penyewaan Klien
+      tenancies: Klien Pengguna
       threesixty_campaign: Kampanye Threesixty
       toggle_status:
-        successfully: Penyewaan Klien %{name} berhasil diperbarui.
+        successfully: Klien Pengguna %{name} berhasil diperbarui.
       update:
-        successfully: Penyewaan Klien %{name} berhasil diperbarui.
+        successfully: Klien Pengguna %{name} berhasil diperbarui.
     close: Tutup
     common:
       add: Tambah
@@ -1724,7 +1729,7 @@ id:
       pdf: PDF
       pptx: PPTX
       preview:
-        embed_token_error_description: Silakan periksa apakah Himpunan Data dan Id Laporan di pengaturan sudah benar.
+        embed_token_error_description: Silakan periksa apakah Himpunan Data dan ID Laporan di pengaturan sudah benar.
         embed_token_error_title: Tidak dapat menghasilkan token Sematkan.
       settings:
         capacity_id: ID Kapasitas
@@ -1762,7 +1767,7 @@ id:
         name: Nama
         owner: Pemilik
         password: Kata sandi
-        status: Keadaan
+        status: Status
         udpated_at: Terakhir Diperbarui di
       configuration: Konfigurasi
       errors:
@@ -1782,10 +1787,10 @@ id:
     datasheet:
       threesixty_warning: Anda tidak dapat mengupload kolom lembar data untuk laporan 360 dari sini. Untuk laporan 360, kolom lembar data dimuat dari kampanye yang ditautkan ke laporan ini
     dates:
-      completed: Selesai Pada
+      completed: Selesai
       end: Tanggal Berakhir
       start: Tanggal Mulai
-      started: Dimulai Pada
+      started: Dimulai
     development_action_import:
       errors:
         blank_field: 'Baris %{row}: %{field} tidak boleh kosong'
@@ -1947,9 +1952,9 @@ id:
       list:
         active: Aktif
         created_at: Tanggal dibuat
-        id: Id
+        id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       new:
         header: Dimensi Baru
       resource:
@@ -2054,7 +2059,7 @@ id:
       list:
         active: Aktif
         created_at: Tanggal dibuat
-        id: Id
+        id: ID
         name: Nama
         updated_at: Tanggal modifikasi
       new:
@@ -2280,7 +2285,7 @@ id:
         title: Gaya Inovasi
       list:
         created_at: Tanggal dibuat
-        id: Id
+        id: ID
         name: Nama
         position: Posisi
         updated_at: Tanggal modifikasi
@@ -2311,9 +2316,9 @@ id:
         new: Tambah
         title: Faktor
       list:
-        condition: Keadaan
+        condition: Status
         created_at: Tanggal dibuat
-        id: Id
+        id: ID
         name: Nama
         position: Posisi
         updated_at: Tanggal modifikasi
@@ -2512,7 +2517,7 @@ id:
       campaign_templates: Templat Kampanye
       change_password: Ubah Kata Sandi
       client_admins: Admin Klien
-      clients: Penyewaan Klien
+      clients: Klien Pengguna
       communication_center: Pusat Komunikasi
       dashboard: Dashboard
       data_reports: Laporan Data
@@ -2569,7 +2574,7 @@ id:
         active: Aktif
         created_at: Tanggal dibuat
         dimension_id: ID Dimensi
-        id: Id
+        id: ID
         name: Nama
         updated_at: Tanggal modifikasi
         updated_by: Diperbarui oleh
@@ -2610,7 +2615,7 @@ id:
         successfully: Norm berhasil diperbarui.
       update:
         successfully: Norma %{name} berhasil diperbarui.
-    notification_bell_icon: Ikon Lonceng Pemberitahuan
+    notification_bell_icon: Ikon Lonceng Notifikasi
     noty:
       error_408: Tindakan ini memakan waktu terlalu lama. Silakan coba muat ulang halaman.
       error_500: Ada yang tidak beres. Hubungi administrator Anda.
@@ -2630,9 +2635,9 @@ id:
         title: Pekerjaan
       list:
         created_at: Tanggal Dibuat
-        id: Id
+        id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       new:
         header: Pekerjaan baru
       resource:
@@ -2660,9 +2665,9 @@ id:
         new: Tambah
         title: Faktor
       list:
-        condition: Keadaan
+        condition: Status
         created_at: Tanggal dibuat
-        id: Id
+        id: ID
         name: Nama
         position: Posisi
         updated_at: Tanggal modifikasi
@@ -2804,7 +2809,7 @@ id:
       column_createdAt: Dibuat di
       column_created_at: Dibuat di
       column_email: Email
-      column_id: Id
+      column_id: ID
       column_name: Nama
       delete: Menghapus
       edit: Mengedit
@@ -2915,7 +2920,7 @@ id:
       column_campaigns: Kampanye
       column_created_at: Dibuat di
       column_email: Email
-      column_id: Id
+      column_id: ID
       column_name: Nama
       confirm_delete: Ya, hapus
       confirm_send: Ya, kirim
@@ -3072,7 +3077,7 @@ id:
         column_active: Aktif
         column_created_date: Tanggal Dibuat
         column_description: Deskripsi
-        column_manage: Urus
+        column_manage: Kelola
         column_updated_date: Tanggal modifikasi
         column_url: URL
         search: Cari Webhoook
@@ -3537,7 +3542,7 @@ id:
       final_score_updated_successfully: Skor akhir berhasil diperbarui
       formula: Rumus
       get_started: Memulai
-      id: Id
+      id: ID
       import:
         factors: Impor Faktor Kampanye
       name: Nama
@@ -3837,7 +3842,7 @@ id:
         send_sms: Kirim SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Pesan
     smtp_settings:
       authentication: Otentikasi
@@ -3874,6 +3879,7 @@ id:
       user_name: Nama pengguna
     stats:
       assessments:
+        active: Aktif
         columns:
           assessment_name: Nama Penilaian
           completed: Selesai
@@ -3883,6 +3889,9 @@ id:
           interrupted: Terganggu
           not_started: Belum Dimulai
           timed_out: Waktu habis
+        count: Hitungan
+        inactive: Tidak aktif
+        percentage: Persentase
         title: Penilaian
       title: Statistik
       top_metrics:
@@ -4175,7 +4184,7 @@ id:
         dimension: Dimensi
         manage_relationships: Kelola Hubungan...
         report: Lapor
-        title: Urus
+        title: Kelola
       menu:
         actions: Tindakan
         datasheet:
@@ -4293,7 +4302,7 @@ id:
           membership:
             delete:
               body: "<p>Apakah Anda yakin ingin menghapus?</p>\n"
-              title: Menghapus <strong>%{name}</strong> dari %{client_name} Penyewaan Klien?
+              title: Menghapus <strong>%{name}</strong> dari %{client_name} Klien Pengguna?
             toggle_status:
               body: "<p>Apakah Anda yakin ingin %{status} Keanggotaan ini?</p>\n"
               title: "<strong>Keanggotaan %{status}</strong> %{name}?"

@@ -208,7 +208,7 @@ nl:
             file:
               column_cannot_be_blank: Waarde %{column_name} kan niet leeg zijn in rij %{row_number}
               invalid_format: CSV-bestand uploaden
-              invalid_job_role_id: Id in rij %{row_number} is geen geldige functierol-ID
+              invalid_job_role_id: ID in rij %{row_number} is geen geldige functierol-ID
               invalid_locale: Locale bij rij %{row_number} is geen geldige locale
               missing_required_columns: 'Ontbrekende verplichte kolommen: %{columns}'
               parsing_failed: 'Fout tijdens het parsen van bestand, fout: %{error}.'
@@ -902,6 +902,7 @@ nl:
     invalid_job: Deze melding komt overeen met verwijderde record
     mark_as_read: Markeer alle gelezen
     more: Meer
+    no_notifications: Geen meldingen
     notifications: Meldingen
     results: Resultaten
     super_admin:
@@ -1536,7 +1537,9 @@ nl:
       in_progress: In uitvoering
       ineligible: Niet-subsidiabel
       interrupted: Onderbroken
+      new: Nieuw
       not_started: Niet gestart
+      progress: In uitvoering
       timed_out: Uitgetimed
       universal_link: Universele link
     ungrouped_assessments_heading: Niet-gegroepeerd
@@ -1605,7 +1608,7 @@ nl:
       assessment_center_invites: Uitnodigingen voor beoordelingscentrum
       completed_at: Voltooid Op
       completion_status: Voltooiingsstatus
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Laatste login
       manager: Manager
       modals:
@@ -1793,7 +1796,7 @@ nl:
       first_name: Voornaam
       icon: Pictogram
       icon_color: Kleur pictogram
-      id: Id
+      id: ID
       json:
         answer: Antwoord JSON
         external_result: Extern resultaat JSON
@@ -1813,7 +1816,7 @@ nl:
       provider: Aanbieder
       qc_user_list: QC gebruikerslijst
       report: Rapporteer
-      report_id: Rapport Id
+      report_id: Rapport ID
       require_scheduling: Planning vereisen
       responses_count: Antwoorden Tellen
       schedule_time: Tijd plannen
@@ -1932,6 +1935,8 @@ nl:
       timeout: Uw sessie is verlopen. Log opnieuw in om verder te gaan.
       unauthenticated: U moet inloggen of registreren voordat u verder kunt gaan.
       unconfirmed: Je moet je e-mailadres bevestigen voordat je verder kunt gaan.
+    invalid_captcha: De captcha-invoer was ongeldig.
+    invalid_security_question: Het antwoord op de beveiligingsvraag was ongeldig.
     invitations:
       edit:
         confirm_password_label: Wachtwoord bevestigen
@@ -1984,6 +1989,25 @@ nl:
     omniauth_callbacks:
       failure: Kan u niet verifiëren van %{kind} omdat "%{reason}".
       success: Succesvol geverifieerd van %{kind} account.
+    paranoid_verification_code:
+      show:
+        submit: Stuur  in
+        submit_verification_code: Verificatiecode indienen
+        verification_code: Verificatiecode
+      updated: Verificatiecode geaccepteerd
+    paranoid_verify:
+      code_required: Voer de code in die ons supportteam heeft verstrekt
+    password_expired:
+      change_required: Je wachtwoord is verlopen. Vernieuw je wachtwoord.
+      forced_changed: Je moet een nieuw wachtwoord instellen voor je account.
+      password_policy_changed: Wachtwoordbeleid gewijzigd. Wijzig uw wachtwoord.
+      show:
+        change_my_password: Mijn wachtwoord wijzigen
+        current_password: Huidig wachtwoord
+        new_password: Nieuw wachtwoord
+        new_password_confirmation: Nieuw wachtwoord bevestigen
+        renew_your_password: Vernieuw je wachtwoord
+      updated: Uw nieuwe wachtwoord wordt opgeslagen.
     passwords:
       edit:
         instruction: Om een nieuw wachtwoord aan te maken, voert u uw nieuwe wachtwoord in de vakjes hieronder in
@@ -2181,6 +2205,8 @@ nl:
   errors:
     assessments:
       timed_out: Je kunt de %{assessment_name} beoordeling niet doen omdat deze is uitgetimed.
+    equal_to_current_password: moet anders zijn dan het huidige wachtwoord.
+    equal_to_email: moet anders zijn dan de e-mail.
     error: Fout
     error_401: U bent niet gemachtigd om toegang te krijgen tot deze bron. Gelieve in te loggen.
     error_403: U hebt geen toestemming om deze bron te bekijken.
@@ -2193,6 +2219,20 @@ nl:
     max_regeneration_limit: Maximale regeneratielimiet overschreden, neem contact op met uw administratie.
     messages:
       data_report_blank: Gegevensrapport bestaat niet
+      password_complexity:
+        digit:
+          one: moet ten minste één cijfer bevatten
+          other: moet ten minste <x>count</x> cijfers bevatten
+        lower:
+          one: moet ten minste één kleine letter bevatten
+          other: moet ten minste <x>count</x> kleine letters bevatten
+        symbol:
+          one: moet ten minste één leesteken of symbool bevatten
+          other: moet ten minste <x>count</x> leestekens of symbolen bevatten
+        upper:
+          one: moet minstens één hoofdletter bevatten
+          other: moet ten minste <x>count</x> hoofdletters bevatten
+      taken_in_past: mag niet hetzelfde zijn als een eerder gebruikt wachtwoord.
     module_error: Er is iets misgegaan met deze module. Neem contact op met de administratie.
     module_error_editor: Er is iets misgegaan met deze module. Controleer de module-instellingen.
     module_props_error: Er is iets misgegaan met deze module.

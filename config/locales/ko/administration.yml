@@ -77,7 +77,7 @@ ko:
           actions: 작업
           created_at: 만든 곳
           email: 이메일
-          id: Id
+          id: ID
           name: 이름
         header:
           add_admin: 관리자 추가
@@ -942,13 +942,16 @@ ko:
         inactive: 비활성
         status: 상태
       form:
+        active_notice: 캠페인 상태는 선택한 종료일에 자동으로 폐쇄됩니다.
         campaign: 캠페인
+        inactive_notice: 캠페인 상태는 선택한 시작일에 자동으로 활성화됩니다.
+        instruction: 이것은 캠페인을 만들 때만 활성화 될 수 있습니다
         name: 이름
         practice_campaign: 실천 캠페인
         status: 상태
       listing:
         assessments: 평가
-        id: Id
+        id: ID
         name: 이름
         reports: 보고서
         status: 상태
@@ -965,6 +968,7 @@ ko:
             active: 활성
             archive: 아카이브
             assessment: 평가
+            category: 범주
             closed: 닫힘
             empty: 비어 있음
             inactive: 비활성
@@ -974,6 +978,7 @@ ko:
             skill_rater: 스킬 평가자
             standard: 표준
             status: 상태
+            type: 유형
           close:
             content: 멀티 평가자 캠페인 크리에이터를 닫으시겠습니까? 저장하지 않은 사용자 지정 작업은 모두 손실됩니다. 결정을 확인해 주세요.
             title: 멀티 레이터 캠페인 크리에이터를 닫으시겠습니까?
@@ -1055,7 +1060,7 @@ ko:
           all: 모두
           anonymous: 익명
           identified: 식별됨
-        id: Id
+        id: ID
         is_active: 활성
         name: 이름
         no_permission_message: 수정할 수 있는 권한이 없습니다
@@ -1163,7 +1168,7 @@ ko:
               sub_campaigns: 하위 캠페인
               tests_allocated: 할당된 시험
               users: 사용자
-            id: Id
+            id: ID
             name: 캠페인 이름
             reports: 보고서
             updated_at: 업데이트 날짜
@@ -1186,7 +1191,7 @@ ko:
               sub_campaigns: 하위 캠페인
               tests_allocated: 할당된 시험
               users: 사용자
-            id: Id
+            id: ID
             name: 캠페인 이름
             reports: 보고서
             updated_at: 업데이트 날짜
@@ -1237,7 +1242,7 @@ ko:
                 sub_campaign: 하위 캠페인
                 tests_allocated: 할당된 테스트
                 users: 사용자
-              id: Id
+              id: ID
               name: 하위 캠페인 이름
               reports: 보고서
               updated_at: 업데이트 날짜
@@ -1260,7 +1265,7 @@ ko:
                 sub_campaign: 하위 캠페인
                 tests_allocated: 할당된 테스트
                 users: 사용자
-              id: Id
+              id: ID
               name: 하위 캠페인 이름
               reports: 보고서
               updated_at: 업데이트 날짜
@@ -1310,7 +1315,7 @@ ko:
           assigned_user: 할당된 사용자
           completed_user: 완료된 사용자
           created_at: 생성된 날짜
-          id: Id
+          id: ID
           name: 프로젝트 이름
           number: 번호
           project_admin: 프로젝트 관리자
@@ -1359,7 +1364,7 @@ ko:
           assigned_user: 할당된 사용자
           completed_user: 완료된 사용자
           created_at: 생성된 날짜
-          id: Id
+          id: ID
           name: 프로젝트 이름
           number: 번호
           project_admin: 프로젝트 관리자
@@ -1428,7 +1433,7 @@ ko:
             assessment: 어설션
             client_admins: 클라이언트 관리자
             created_at: 만든 곳
-            id: Id
+            id: ID
             name: 이름
             report: 신고
             report_bundle: 보고서 번들
@@ -1448,7 +1453,7 @@ ko:
             assessment: 어설션
             client_admins: 클라이언트 관리자
             created_at: 만든 곳
-            id: Id
+            id: ID
             name: 이름
             report: 신고
             report_bundle: 보고서 번들
@@ -1947,7 +1952,7 @@ ko:
       list:
         active: 활성
         created_at: 생성된 날짜
-        id: Id
+        id: ID
         name: 이름
         updated_at: 수정된 날짜
       new:
@@ -2054,7 +2059,7 @@ ko:
       list:
         active: 활성
         created_at: 생성된 날짜
-        id: Id
+        id: ID
         name: 이름
         updated_at: 수정된 날짜
       new:
@@ -2280,7 +2285,7 @@ ko:
         title: 혁신 스타일
       list:
         created_at: 생성된 날짜
-        id: Id
+        id: ID
         name: 이름
         position: 위치
         updated_at: 수정된 날짜
@@ -2313,7 +2318,7 @@ ko:
       list:
         condition: 조건
         created_at: 생성된 날짜
-        id: Id
+        id: ID
         name: 이름
         position: 위치
         updated_at: 수정된 날짜
@@ -2569,7 +2574,7 @@ ko:
         active: 활성
         created_at: 생성된 날짜
         dimension_id: 차원 ID
-        id: Id
+        id: ID
         name: 이름
         updated_at: 수정된 날짜
         updated_by: 업데이트 날짜
@@ -2630,7 +2635,7 @@ ko:
         title: 직업
       list:
         created_at: 생성 날짜
-        id: Id
+        id: ID
         name: 이름
         updated_at: 수정된 날짜
       new:
@@ -2662,7 +2667,7 @@ ko:
       list:
         condition: 조건
         created_at: 생성된 날짜
-        id: Id
+        id: ID
         name: 이름
         position: 위치
         updated_at: 수정된 날짜
@@ -2808,7 +2813,7 @@ ko:
       column_createdAt: 만든 곳
       column_created_at: 만든 곳
       column_email: 이메일
-      column_id: Id
+      column_id: ID
       column_name: 이름
       delete: 삭제
       edit: 편집
@@ -2919,7 +2924,7 @@ ko:
       column_campaigns: 캠페인
       column_created_at: 만든 곳
       column_email: 이메일
-      column_id: Id
+      column_id: ID
       column_name: 이름
       confirm_delete: 예, 삭제
       confirm_send: 예, 전송
@@ -3544,7 +3549,7 @@ ko:
       final_score_updated_successfully: 최종 점수가 성공적으로 업데이트되었습니다
       formula: 공식
       get_started: 시작하기
-      id: Id
+      id: ID
       import:
         factors: 캠페인 요소 가져오기
       name: 이름
@@ -3849,7 +3854,7 @@ ko:
         send_sms: SMS 보내기
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: 메시지
     smtp_settings:
       authentication: 인증
@@ -3886,6 +3891,7 @@ ko:
       user_name: 사용자 이름
     stats:
       assessments:
+        active: 활동적인
         columns:
           assessment_name: 평가 이름
           completed: 완료
@@ -3895,6 +3901,9 @@ ko:
           interrupted: 중단됨
           not_started: 시작되지 않음
           timed_out: 시간 초과
+        count: 개수
+        inactive: 비활성
+        percentage: 백분율
         title: 평가
       title: 통계
       top_metrics:

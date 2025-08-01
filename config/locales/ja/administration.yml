@@ -942,7 +942,10 @@ ja:
         inactive: 活動休止中
         status: ステータス
       form:
+        active_notice: キャンペーンステータスは、選択した終了日にクローズに自動的に変更されます
         campaign: キャンペーン
+        inactive_notice: キャンペーンのステータスは、選択した開始日に自動的にアクティブに変更されます
+        instruction: これは、キャンペーンの作成中にのみ有効にできます
         name: 名称
         practice_campaign: 練習キャンペーン
         status: ステータス
@@ -965,6 +968,7 @@ ja:
             active: アクティブ
             archive: アーカイブ
             assessment: 評価
+            category: カテゴリ
             closed: クローズド
             empty: 空
             inactive: 活動休止中
@@ -974,6 +978,7 @@ ja:
             skill_rater: 技能評価者
             standard: スタンダード
             status: ステータス
+            type: タイプ
           close:
             content: Multi Rater Campaign Creatorを終了してもよろしいですか？ 保存されていないカスタマイズ作業は失われます。 決定を確認してください。
             title: マルチ・レイター・キャンペーン・クリエーターを閉じる
@@ -3886,6 +3891,7 @@ ja:
       user_name: ユーザー名
     stats:
       assessments:
+        active: アクティブ
         columns:
           assessment_name: 評価名
           completed: 完成
@@ -3895,6 +3901,9 @@ ja:
           interrupted: 中断
           not_started: 未着手
           timed_out: タイムアウト
+        count: カウント
+        inactive: 非アクティブ
+        percentage: パーセント
         title: アセスメント
       title: 統計
       top_metrics:

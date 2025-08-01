@@ -942,7 +942,10 @@ ar:
         inactive: غير نشط
         status: الحالة
       form:
+        active_notice: ستتغير حالة الحملة تلقائيًا إلى مغلق في تاريخ النهاية المحددة
         campaign: الحملة
+        inactive_notice: ستتغير حالة الحملة تلقائيًا إلى نشط في تاريخ البدء المحدد
+        instruction: يمكن تمكين هذا فقط أثناء إنشاء الحملة
         name: الاسم
         practice_campaign: حملة تدريبية
         status: الحالة
@@ -965,6 +968,7 @@ ar:
             active: نشط
             archive: الأرشيف
             assessment: التقييم
+            category: فئة
             closed: مغلق
             empty: فارغة
             inactive: غير نشط
@@ -974,6 +978,7 @@ ar:
             skill_rater: مقيّم المهارات
             standard: قياسي
             status: الحالة
+            type: يكتب
           close:
             content: هل أنت متأكد أنك تريد إغلاق منشئ الحملة متعددة التقييمات؟ سيتم فقدان أي عمل تخصيص غير محفوظ. يرجى تأكيد قرارك.
             title: إغلاق منشئ الحملة متعددة التقييمات؟
@@ -2054,7 +2059,7 @@ ar:
       list:
         active: Active
         created_at: Created date
-        id: Id
+        id: ID
         name: Name
         updated_at: Modified date
       new:
@@ -2280,7 +2285,7 @@ ar:
         title: Innovation Styles
       list:
         created_at: Created date
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Modified date
@@ -2313,7 +2318,7 @@ ar:
       list:
         condition: Condition
         created_at: Created date
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Modified date
@@ -2568,8 +2573,8 @@ ar:
       list:
         active: Active
         created_at: Created date
-        dimension_id: Dimension Id
-        id: Id
+        dimension_id: Dimension ID
+        id: ID
         name: Name
         updated_at: Modified date
         updated_by: Updated by
@@ -2630,7 +2635,7 @@ ar:
         title: Occupations
       list:
         created_at: Created Date
-        id: Id
+        id: ID
         name: Name
         updated_at: Modified Date
       new:
@@ -2662,7 +2667,7 @@ ar:
       list:
         condition: Condition
         created_at: Created date
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Modified date
@@ -2713,7 +2718,7 @@ ar:
         conclusion: Conclusion
         links: Links
         score: Score
-        session_id: Session Id
+        session_id: Session ID
         started_at: Started at
       links:
         report: Report
@@ -2808,7 +2813,7 @@ ar:
       column_createdAt: Created At
       column_created_at: Created at
       column_email: Email
-      column_id: Id
+      column_id: ID
       column_name: Name
       delete: Delete
       edit: Edit
@@ -2919,7 +2924,7 @@ ar:
       column_campaigns: Campaigns
       column_created_at: Created at
       column_email: Email
-      column_id: Id
+      column_id: ID
       column_name: Name
       confirm_delete: Yes, delete
       confirm_send: Yes, send
@@ -3333,7 +3338,7 @@ ar:
       config_details:
         acs_url: Assertion Consumer Service URL
         copied: Copied %{element}
-        issuer: Entity Id/Issuer
+        issuer: Entity ID/Issuer
         title: Configure Idp with following info
       email_pipetext: Email Pipetext
       enabled: Enabled
@@ -3347,7 +3352,7 @@ ar:
       saml_setting: SAML Setting
       save: إعداد الحفظ
       sso_service_url: SSO Service Url
-      successfully_saved_msg: SAML Setting was saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
+      successfully_saved_msg: SAML Setting was saved successfully. No verification is required as Enity ID/Issuer, SSO Service Url and Certificate is unchanged
     save: Save
     scheduling:
       add_activity: Add Activity
@@ -3544,7 +3549,7 @@ ar:
       final_score_updated_successfully: Final score was updated successfully
       formula: Formula
       get_started: Get Started
-      id: Id
+      id: ID
       import:
         factors: Import Campaign Factors
       name: Name
@@ -3849,7 +3854,7 @@ ar:
         send_sms: Send SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Message
     smtp_settings:
       authentication: Authentication
@@ -3877,7 +3882,7 @@ ar:
       test_email_modal:
         input_hint: Your email setting will not saved until test email was sent successfully.
         input_placeholder: Test Email ID
-        title: Test Email Id
+        title: Test Email ID
       test_modal:
         success_message: Test Email sent to %{email_id}.
         title: Test SMTP setting
@@ -3886,6 +3891,7 @@ ar:
       user_name: User Name
     stats:
       assessments:
+        active: نشيط
         columns:
           assessment_name: Assessment Name
           completed: Completed
@@ -3895,6 +3901,9 @@ ar:
           interrupted: Interrupted
           not_started: Not Started
           timed_out: Timed Out
+        count: عدد
+        inactive: غير نشط
+        percentage: نسبة مئوية
         title: Assessments
       title: Stats
       top_metrics:

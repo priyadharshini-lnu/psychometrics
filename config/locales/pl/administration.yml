@@ -77,7 +77,7 @@ pl:
           actions: Akcje
           created_at: Utworzono w
           email: E-mail
-          id: Id
+          id: ID
           name: Nazwa
         header:
           add_admin: Dodaj administratora
@@ -942,13 +942,16 @@ pl:
         inactive: Nieaktywny
         status: Stan
       form:
+        active_notice: Status kampanii automatycznie zmieni się na zamknięte w wybranym terminie
         campaign: Kampania
+        inactive_notice: Status kampanii automatycznie zmieni się na aktywne w wybranym dniu rozpoczęcia
+        instruction: Można to włączyć tylko podczas tworzenia kampanii
         name: Nazwa
         practice_campaign: Kampania treningowa
         status: Stan
       listing:
         assessments: Oceny
-        id: Id
+        id: ID
         name: Nazwa
         reports: Raporty
         status: Stan
@@ -965,6 +968,7 @@ pl:
             active: Aktywny
             archive: Archiwum
             assessment: Ocena
+            category: Kategoria
             closed: Zamknięty
             empty: Pusty
             inactive: Nieaktywny
@@ -974,6 +978,7 @@ pl:
             skill_rater: Ocena umiejętności
             standard: Norma
             status: Stan
+            type: Typ
           close:
             content: Czy na pewno chcesz zamknąć Kreator kampanii Multi Rater? Wszelkie niezapisane prace związane z dostosowywaniem zostaną utracone. Potwierdź swoją decyzję.
             title: Zamknąć Kreator kampanii z wieloma ocenami?
@@ -1055,7 +1060,7 @@ pl:
           all: Cały
           anonymous: Anonimowy
           identified: Identyfikowane
-        id: Id
+        id: ID
         is_active: Aktywny
         name: Nazwa
         no_permission_message: Nie masz uprawnień do modyfikowania
@@ -1163,7 +1168,7 @@ pl:
               sub_campaigns: Podkampanie
               tests_allocated: Przydzielone testy
               users: Użytkowników
-            id: Id
+            id: ID
             name: Nazwa kampanii
             reports: Raporty
             updated_at: Data aktualizacji
@@ -1186,7 +1191,7 @@ pl:
               sub_campaigns: Podkampanie
               tests_allocated: Przydzielone testy
               users: Użytkowników
-            id: Id
+            id: ID
             name: Nazwa kampanii
             reports: Raporty
             updated_at: Data aktualizacji
@@ -1237,7 +1242,7 @@ pl:
                 sub_campaign: Podkampanie
                 tests_allocated: Przydzielone testy
                 users: Użytkowników
-              id: Id
+              id: ID
               name: Nazwa podkampanii
               reports: Raporty
               updated_at: Data aktualizacji
@@ -1260,7 +1265,7 @@ pl:
                 sub_campaign: Podkampanie
                 tests_allocated: Przydzielone testy
                 users: Użytkowników
-              id: Id
+              id: ID
               name: Nazwa podkampanii
               reports: Raporty
               updated_at: Data aktualizacji
@@ -1310,7 +1315,7 @@ pl:
           assigned_user: Przypisani użytkownicy
           completed_user: Ukończoni użytkownicy
           created_at: Data utworzenia
-          id: Id
+          id: ID
           name: Nazwa projektu
           number: Numer
           project_admin: Administratorzy projektu
@@ -1359,7 +1364,7 @@ pl:
           assigned_user: Przypisani użytkownicy
           completed_user: Ukończoni użytkownicy
           created_at: Data utworzenia
-          id: Id
+          id: ID
           name: Nazwa projektu
           number: Numer
           project_admin: Administratorzy projektu
@@ -1428,7 +1433,7 @@ pl:
             assessment: Montaż
             client_admins: Administratorzy klienta
             created_at: Utworzono w
-            id: Id
+            id: ID
             name: Nazwa
             report: Sprawozdanie
             report_bundle: Pakiet raportów
@@ -1448,7 +1453,7 @@ pl:
             assessment: Montaż
             client_admins: Administratorzy klienta
             created_at: Utworzono w
-            id: Id
+            id: ID
             name: Nazwa
             report: Sprawozdanie
             report_bundle: Pakiet raportów
@@ -1947,7 +1952,7 @@ pl:
       list:
         active: Aktywny
         created_at: Data utworzenia
-        id: Id
+        id: ID
         name: Nazwa
         updated_at: Data modyfikacji
       new:
@@ -2054,7 +2059,7 @@ pl:
       list:
         active: Aktywny
         created_at: Data utworzenia
-        id: Id
+        id: ID
         name: Nazwa
         updated_at: Data modyfikacji
       new:
@@ -2280,7 +2285,7 @@ pl:
         title: Style innowacji
       list:
         created_at: Data utworzenia
-        id: Id
+        id: ID
         name: Nazwa
         position: Pozycja
         updated_at: Data modyfikacji
@@ -2313,7 +2318,7 @@ pl:
       list:
         condition: Warunek
         created_at: Data utworzenia
-        id: Id
+        id: ID
         name: Nazwa
         position: Pozycja
         updated_at: Data modyfikacji
@@ -2569,7 +2574,7 @@ pl:
         active: Aktywny
         created_at: Data utworzenia
         dimension_id: Identyfikator wymiaru
-        id: Id
+        id: ID
         name: Nazwa
         updated_at: Data modyfikacji
         updated_by: Zaktualizowane przez
@@ -2630,7 +2635,7 @@ pl:
         title: Zawodów
       list:
         created_at: Data utworzenia
-        id: Id
+        id: ID
         name: Nazwa
         updated_at: Data modyfikacji
       new:
@@ -2662,7 +2667,7 @@ pl:
       list:
         condition: Warunek
         created_at: Data utworzenia
-        id: Id
+        id: ID
         name: Nazwa
         position: Pozycja
         updated_at: Data modyfikacji
@@ -2804,7 +2809,7 @@ pl:
       column_createdAt: Utworzono w
       column_created_at: Utworzono w
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Nazwa
       delete: Usunąć
       edit: Redagować
@@ -2915,7 +2920,7 @@ pl:
       column_campaigns: Kampanie
       column_created_at: Utworzono w
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Nazwa
       confirm_delete: Tak, usuń
       confirm_send: Tak, wyślij
@@ -3537,7 +3542,7 @@ pl:
       final_score_updated_successfully: Ostateczny wynik został pomyślnie zaktualizowany
       formula: Formuła
       get_started: Rozpocząć
-      id: Id
+      id: ID
       import:
         factors: Importowanie czynników kampanii
       name: Nazwa
@@ -3837,7 +3842,7 @@ pl:
         send_sms: Wyślij SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Komunikat
     smtp_settings:
       authentication: Uwierzytelnianie
@@ -3874,6 +3879,7 @@ pl:
       user_name: Nazwa użytkownika
     stats:
       assessments:
+        active: Aktywny
         columns:
           assessment_name: Nazwa oceny
           completed: Zakończone
@@ -3883,6 +3889,9 @@ pl:
           interrupted: Przerwane
           not_started: Nie rozpoczęto
           timed_out: Upłynął limit czasu
+        count: Liczyć
+        inactive: Nieaktywny
+        percentage: Procent
         title: Oceny
       title: Statystyki
       top_metrics:

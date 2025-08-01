@@ -942,7 +942,10 @@ zh-Hant:
         inactive: 閒置
         status: 狀態
       form:
+        active_notice: 廣告系列狀態將自動更改為在選定的結束日期關閉
         campaign: 活動
+        inactive_notice: 廣告系列狀態將在選定的開始日期自動更改為活動
+        instruction: 這只能在創建廣告系列時啟用
         name: 名稱
         practice_campaign: 實踐活動
         status: 狀態
@@ -965,6 +968,7 @@ zh-Hant:
             active: 活躍
             archive: 存檔
             assessment: 評估
+            category: 類別
             closed: 關閉
             empty: 空
             inactive: 閒置
@@ -974,6 +978,7 @@ zh-Hant:
             skill_rater: 技能評核員
             standard: 標準
             status: 狀態
+            type: 類型
           close:
             content: 您確定要關閉 Multi Rater Campaign Creator 嗎？ 任何未儲存的自訂工作都會遺失。 請確認您的決定。
             title: 關閉 Multi Rater Campaign Creator？
@@ -3886,6 +3891,7 @@ zh-Hant:
       user_name: 使用者名稱
     stats:
       assessments:
+        active: 積極的
         columns:
           assessment_name: 評估名稱
           completed: 已完成
@@ -3895,6 +3901,9 @@ zh-Hant:
           interrupted: 中斷
           not_started: 尚未開始
           timed_out: 超時
+        count: 計數
+        inactive: 不活動
+        percentage: 百分比
         title: 評估
       title: 統計資料
       top_metrics:

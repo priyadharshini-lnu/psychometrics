@@ -942,7 +942,10 @@ hu:
         inactive: Inaktív
         status: Állapot
       form:
+        active_notice: A kampány állapota automatikusan változik a kiválasztott befejezési dátumon
         campaign: Kampány
+        inactive_notice: A kampány állapota automatikusan aktívra változik a kiválasztott kezdési dátumon
+        instruction: Ez csak kampány létrehozásakor engedélyezhető
         name: Név
         practice_campaign: Gyakorló kampány
         status: Állapot
@@ -965,6 +968,7 @@ hu:
             active: Aktív
             archive: Archívum
             assessment: Értékelés
+            category: Kategória
             closed: Zárt
             empty: Üres
             inactive: Inaktív
@@ -974,6 +978,7 @@ hu:
             skill_rater: Skill Rater
             standard: Szabvány
             status: Állapot
+            type: Beír
           close:
             content: Biztosan be akarja zárni a Multi Rater Campaign Creatort? A nem mentett testreszabási munka elvész. Kérjük, erősítse meg döntését.
             title: Bezárja a Multi Rater Campaign Creatort?
@@ -1534,7 +1539,7 @@ hu:
             title: Archiválja a % <strong>%{name}</strong> fájlt ?
           enable:
             title: "% <strong>%{name}</strong> archiválásának megszüntetése?"
-      tenancies: Ügyfélbérleti szerződések
+      tenancies: Ügyfélcsoportok
       threesixty_campaign: 360 fokos kampány
       toggle_status:
         successfully: A(z) %{name} ügyfél bérleti jog frissítése sikeresen megtörtént.
@@ -1787,7 +1792,7 @@ hu:
       completed: 'Befejezve:'
       end: Befejezés dátuma
       start: Kezdő dátum
-      started: 'Elkezdődött:'
+      started: 'Elkezdve:'
     development_action_import:
       errors:
         blank_field: "%{row} sor: %{field} nem lehet üres"
@@ -2505,7 +2510,7 @@ hu:
     navigation:
       ai_assistants: AI asszisztensek
       assessments: Értékelések
-      assessments_reports: Értékelések és jelentések
+      assessments_reports: Felmérések és jelentések
       assessor_dashboard: Értékelő irányítópult
       assessor_workshops: Értékelési központ
       audit_logs: Auditnaplók
@@ -2514,7 +2519,7 @@ hu:
       campaign_templates: Kampány sablonok
       change_password: Jelszó módosítása
       client_admins: Ügyféladminisztrátorok
-      clients: Ügyfél bérleti  jogok
+      clients: Ügyfélcsoportok
       communication_center: Kommunikációs központ
       dashboard: Irányítópult
       data_reports: Adatjelentések
@@ -3876,6 +3881,7 @@ hu:
       user_name: Felhasználónév
     stats:
       assessments:
+        active: Aktív
         columns:
           assessment_name: Értékelés neve
           completed: Befejezett
@@ -3885,6 +3891,9 @@ hu:
           interrupted: Megszakított
           not_started: Nincs elindítva
           timed_out: Időtúllépés
+        count: Számol
+        inactive: Tétlen
+        percentage: Százalék
         title: Értékelések
       title: Statisztika
       top_metrics:

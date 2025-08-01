@@ -902,6 +902,7 @@ ja:
     invalid_job: この通知は削除されたレコードに対応する
     mark_as_read: すべて読む
     more: もっと見る
+    no_notifications: 通知はありません
     notifications: お知らせ
     results: 結果
     super_admin:
@@ -1549,7 +1550,9 @@ ja:
       in_progress: 進行中
       ineligible: 不適格
       interrupted: 中断
+      new: 新規
       not_started: 開始していません
+      progress: 進行中
       timed_out: タイムアウト
       universal_link: ユニバーサルリンク
     ungrouped_assessments_heading: グループ外
@@ -1945,6 +1948,8 @@ ja:
       timeout: セッションの期限切れです。続行するにはもう一度ログインしてください。
       unauthenticated: 続行するには、ログインまたは登録する必要があります。
       unconfirmed: 続行する前にメールアドレスを確認する必要があります。
+    invalid_captcha: キャプチャ入力が無効でした。
+    invalid_security_question: セキュリティに関する質問の回答が無効でした。
     invitations:
       edit:
         confirm_password_label: パスワードの確認
@@ -1997,6 +2002,25 @@ ja:
     omniauth_callbacks:
       failure: 理由'%{reason}'のため、%{kind} からあなたを認証できませんでした。
       success: "%{kind}アカウントから正常に認証されました。"
+    paranoid_verification_code:
+      show:
+        submit: 投稿する
+        submit_verification_code: 認証コードの送信
+        verification_code: 検証コード
+      updated: 検証コードを受理
+    paranoid_verify:
+      code_required: サポートチームが提供したコードを入力してください。
+    password_expired:
+      change_required: パスワードの有効期限が切れています。パスワードを更新してください。
+      forced_changed: アカウントに新しいパスワードを設定する必要があります。
+      password_policy_changed: パスワードポリシーが変更されました。パスワードを変更してください。
+      show:
+        change_my_password: パスワードの変更
+        current_password: 現在のパスワード
+        new_password: 新しいパスワード
+        new_password_confirmation: 新しいパスワードの確認
+        renew_your_password: パスワードを更新する
+      updated: 新しいパスワードが保存されます。
     passwords:
       edit:
         instruction: 新しいパスワードを作成するには、以下のボックスに新しいパスワードを入力してください。
@@ -2194,6 +2218,8 @@ ja:
   errors:
     assessments:
       timed_out: "%{assessment_name}評価はタイムアウトしたため、受けることはできません。"
+    equal_to_current_password: は現在のパスワードとは異なるものでなければならない。
+    equal_to_email: は電子メールとは異なるものでなければならない。
     error: エラー
     error_401: このリソースにアクセスする権限がありません。サインインしてください。
     error_403: このリソースを表示する権限がありません。
@@ -2206,6 +2232,20 @@ ja:
     max_regeneration_limit: 最大再生回数の制限を超えました。
     messages:
       data_report_blank: データレポートが存在しない
+      password_complexity:
+        digit:
+          one: には少なくとも1桁の数字が含まれていなければならない。
+          other: 少なくとも<x>count</x> 桁の数字が含まれていなければならない。
+        lower:
+          one: 少なくとも1つの小文字が含まれていなければならない
+          other: 少なくとも<x>count</x> の小文字が含まれていなければならない。
+        symbol:
+          one: 少なくとも1つの句読点または記号を含むこと。
+          other: 少なくとも<x>count</x> の句読点または記号を含むこと。
+        upper:
+          one: 少なくとも1つの大文字が含まれていなければならない
+          other: 少なくとも<x>count</x> の大文字が含まれていなければならない。
+      taken_in_past: 以前に使用したパスワードと同じであってはならない。
     module_error: このモジュールに何か問題が発生しました。
     module_error_editor: モジュールの設定を確認してください。
     module_props_error: このモジュールに何か問題があったようだ。

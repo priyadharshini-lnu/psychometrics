@@ -425,12 +425,12 @@ th:
         access_reports_at: เข้าถึงรายงานได้ที่
         access_reports_at_date: วันที่
         access_reports_at_time: เวลา
-        client_ids: การเช่าของลูกค้า
+        client_ids: บัญชีลูกค้า
         manager_ids: จัดการ
         report_ids: รายงาน
-        user_ids: คน
+        user_ids: ผู้เข้าร่วม
       assessment:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         categories:
           '360': แคมเปญ 360
           agile: ว่องไว
@@ -463,16 +463,16 @@ th:
       assign:
         completed_at: วันที่เสร็จสมบูรณ์
         statuses:
-          completed: เสร็จ สมบูรณ์
+          completed: เสร็จสมบูรณ์
           in_progress: ดำเนิน
           ineligible: ไม่มีสิทธิ์
-          interrupted: ถูก ขัด จังหวะ
+          interrupted: หยุดชะงัก
           not_started: ใหม่
           overdue: เกิน
           timed_out: หมดเวลา
       block:
-        active: กระปรี้กระเปร่า
-        assign_to_assessment_ids: ประเมิน
+        active: เปิดใช้งาน
+        assign_to_assessment_ids: การประเมิน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
@@ -491,7 +491,7 @@ th:
         licenses_used: การใช้ใบอนุญาต
         location: สถานที่
         logo: โลโก้ลูกค้า
-        memberships_count: คน
+        memberships_count: ผู้เข้าร่วม
         name: ชื่อ
         number: หมายเลขลูกค้า
         privacy_consent: เปิดใช้ความยินยอมในการประมวลผลข้อมูล
@@ -515,14 +515,14 @@ th:
         id: รหัส
         updated_at: วันที่แก้ไข
       dimension:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
         owner: เจ้าของ
         updated_at: วันที่แก้ไข
       factor:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
@@ -532,14 +532,14 @@ th:
       hogan_report_setting:
         load_report: โหลดรายงานจาก Hogan
       innovation_style:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         description: คำอธิบาย
         id: รหัส
         name: ชื่อ
         updated_at: วันที่แก้ไข
       innovation_styles_factor:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
@@ -559,13 +559,13 @@ th:
         overuse_number: ค่าเผื่อการใช้งานเกิน
         type: ใบอนุญาตสําหรับ
         types:
-          common: สามัญ
+          common: ทั่วไป
           proctoring: การคุมสอบ
           threesixty: สามหกสิบ
         unlimited: จำกัด
         used_number: หมายเลขใบอนุญาตที่ใช้
       membership:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         disabled: เก
         email: อีเมล
@@ -582,16 +582,16 @@ th:
           member: ผู้ใช้
           project_admin: ผู้ดูแลระบบโครงการ
         updated_at: วันที่แก้ไข
-        user_access: การเข้าถึงของผู้ใช้
+        user_access: สิทธิ์การเข้าถึงของผู้ใช้
       norm:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
         updated_at: วันที่แก้ไข
         updated_by: แก้ไขโดย
       occupation:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         bachelors_or_masters_qualification: วุฒิปริญญาตรีหรือปริญญาโท
         created_at: วันที่สร้าง
         description: คำอธิบาย
@@ -605,20 +605,20 @@ th:
         updated_at: วันที่แก้ไข
         work_environment: สภาพแวดล้อมในการทํางาน
       occupations_factor:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
         updated_at: วันที่แก้ไข
       product:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
         updated_at: วันที่แก้ไข
       question:
-        active: กระปรี้กระเปร่า
-        assign_to_assessment_ids: ประเมิน
+        active: เปิดใช้งาน
+        assign_to_assessment_ids: การประเมิน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
@@ -633,7 +633,7 @@ th:
         id: รหัส
         updated_at: วันที่แก้ไข
       task:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         description: คำอธิบาย
         description_label: คำอธิบาย
@@ -651,7 +651,7 @@ th:
         status: สถานะ
         status_label: เลือกสถานะ
         statuses:
-          completed: เสร็จ สมบูรณ์
+          completed: เสร็จสมบูรณ์
           in_progress: อยู่ระหว่างดําเนินการ
           not_started: ยังไม่ได้เริ่มต้น
           overdue: เกิน
@@ -660,11 +660,11 @@ th:
       threesixty:
         users_result:
           statuses:
-            completed: เสร็จ สมบูรณ์
+            completed: เสร็จสมบูรณ์
             in_progress: ดำเนิน
             not_started: ใหม่
       user:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         current_password: รหัสผ่านปัจจุบัน
         disabled: เก
@@ -711,7 +711,7 @@ th:
           identified: ผู้ใช้ที่ระบุ
         updated_at: วันที่แก้ไข
       user_form:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         current_password: รหัสผ่านปัจจุบัน
         disabled: เก
@@ -728,7 +728,7 @@ th:
       users_result:
         assessment_name: ชื่อการประเมิน
         assessment_type: ประเภทการประเมิน
-        completed_at: สร้างเสร็จเมื่อ
+        completed_at: เสร็จสิ้น
         completion_reasons:
           time_out_offline: หมดเวลา / ออฟไลน์
           time_out_online: หมดเวลา / ออนไลน์
@@ -736,19 +736,19 @@ th:
         email: อีเมล
         name: ชื่อ
         result_id: รหัสผลลัพธ์
-        started_at: เริ่มต้นที่
+        started_at: เริ่มต้น
         status: สถานะ
         statuses:
-          completed: เสร็จ สมบูรณ์
+          completed: เสร็จสมบูรณ์
           in_progress: ดำเนิน
           ineligible: ไม่มีสิทธิ์
-          interrupted: ถูก ขัด จังหวะ
+          interrupted: หยุดชะงัก
           not_started: ใหม่
           timed_out: import_raw ตั้งเวลา
     errors:
       messages:
         admin_for_another_tte: ผู้ใช้เป็นผู้ดูแลระบบใน tte อื่นแล้ว
-        invalid_http_url: URL ไม่ถูกต้อง ระบุ URL ที่สมบูรณ์ด้วยโปรโตคอล http หรือ https อยู่ในนั้น
+        invalid_http_url: URL ไม่ถูกต้อง ระบุชื่อ URL ที่สมบูรณ์ด้วยโปรโตคอล http หรือ https อยู่ในนั้น
         not_uniqueness: มอบหมายแล้ว
       models:
         campaign_assessment:
@@ -886,7 +886,7 @@ th:
         threesixty_campaign_export_scores: การส่งออกคะแนนแคมเปญ Threesixty
         workshop_status_export: การส่งออกสถานะศูนย์ประเมิน
       statuses:
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         completed_with_errors: เสร็จสมบูรณ์โดยมีข้อผิดพลาด
         failed: ล้ม เหลว
         in_progress: อยู่ระหว่างดําเนินการ
@@ -897,11 +897,12 @@ th:
       content:
         title: ลิงก์สําหรับดาวน์โหลดรายงาน
     close: ปิด
-    details: ราย ละเอียด
+    details: รายละเอียด
     errors: ข้อ ผิด พลาด
     invalid_job: การแจ้งเตือนนี้สอดคล้องกับเรกคอร์ดที่ถูกลบ
     mark_as_read: ทําเครื่องหมายอ่านทั้งหมด
     more: อีก
+    no_notifications: ไม่มีการแจ้งเตือน
     notifications: แจ้ง เตือน
     results: ผลลัพธ์
     super_admin:
@@ -933,10 +934,10 @@ th:
       back_to_dashboard: กลับไปที่แดชบอร์ด
       copy:
         success_message: การประเมิน "%{name}" ถูกคัดลอกเรียบร้อยแล้ว
-      details: ราย ละเอียด
+      details: รายละเอียด
       download_csv: ดาวน์โหลด CSV
       edit: แก้ไข
-      evaluate: ประเมิน
+      evaluate: การประเมิน
       export: ส่งออก
       export_normed: คะแนนปัจจัยปกติ
       export_raw_labels: ดิบ (พร้อมฉลาก)
@@ -971,10 +972,10 @@ th:
       unarchived:
         success_message: การประเมิน "%{name}" ถูกยกเลิกการเก็บถาวรเรียบร้อยแล้ว
       view: ดู
-    active: กระปรี้กระเปร่า
-    archived: เก็บ ถาวร
+    active: เปิดใช้งาน
+    archived: เก็บเข้าคลัง
     assessment: การประเมิน
-    assessments: ประเมิน
+    assessments: การประเมิน
     audio_response:
       pause: หยุด
       permission_denied_message: กรุณาเปิดการอนุญาตใช้งานไมโครโฟนในเบราว์เซอร์ของคุณเพื่อบันทึกคำตอบ
@@ -1006,7 +1007,7 @@ th:
         skillvue_assessment_name: ชื่อแบบประเมินทักษะในระบบ Skillvue
       translations_migrated: การแปลที่ย้ายแล้ว
     create: สร้าง
-    dashboard: แผงหน้าปัด
+    dashboard: แดชบอร์ด
     dictation:
       allow_browser_permision: โปรดอนุญาตการอนุญาตเสียงของเบราว์เซอร์เพื่อใช้การเขียนตามคําบอก
       autostopping_in: การหยุดการเขียนตามคําบอกอัตโนมัติใน %{reverseCountdown} วินาที
@@ -1147,8 +1148,8 @@ th:
     wait: รอ
   assessments_reports:
     add_group_form:
-      previous_assessments_required: การประเมินที่จะดําเนินการตามลําดับด้านล่าง
-      previous_group_required: ต้องเสร็จสิ้นกลุ่มก่อนหน้านี้
+      previous_assessments_required: การประเมินจะดำเนินการตามลำดับต่อไปนี้
+      previous_group_required: ต้องเสร็จสิ้นการประเมินกลุ่มก่อนหน้า
     menu:
       assessment_center: ศูนย์ประเมินผล
       assessment_center_invites: คําเชิญของศูนย์ประเมิน
@@ -1163,7 +1164,7 @@ th:
     sequencing:
       add_assessment_center: เพิ่มศูนย์การประเมิน
       add_group: เพิ่มกลุ่ม
-      assessments: ประเมิน
+      assessments: การประเมิน
       delete_group: ลบกลุ่ม
       edit_group_name: แก้ไขชื่อกลุ่ม
       modal:
@@ -1406,7 +1407,7 @@ th:
       external_user_id: รหัสผู้สมัคร Skillvue
       id: รหัสการประเมินแคมเปญ
       locales: ตำแหน่ง
-      norm: ค่าเฉลี่ย
+      norm: บรรทัดฐาน
       norm_id: รหัสบรรทัดฐาน
       pearson_norm_id: รหัสนอร์มอลเพียร์สัน
       pearson_schedule_id: รหัสกําหนดการเพียร์สัน
@@ -1533,7 +1534,9 @@ th:
       in_progress: อยู่ระหว่างดำเนินการ
       ineligible: ไม่มีสิทธิ์
       interrupted: ขัดจังหวะ
+      new: ใหม่
       not_started: ยังไม่ได้เริ่มต้น
+      progress: อยู่ระหว่างดำเนินการ
       timed_out: หมดเวลาแล้ว
       universal_link: ลิงก์เปิดแอปอัตโนมัติ
     ungrouped_assessments_heading: ไม่จัดกลุ่ม
@@ -1552,13 +1555,13 @@ th:
     bulk_download:
       error: การดาวน์โหลดรายงานจำนวนมากจํากัดไว้ที่จำนวน 1,000 ไฟล์ ปัจจุบันมีรายงานไฟล์ที่เลือก %{count} ไฟล์ โปรดปรับวันที่เริ่มต้นและวันที่สิ้นสุดเพื่อลดจํานวนไฟล์รายงานที่จะดาวน์โหลด
     column:
-      assessor_access: การเข้าถึงผู้ประเมิน
+      assessor_access: สิทธิ์การเข้าถึงของผู้ ประเมิน
       auto_assign: กําหนดอัตโนมัติ
       locales: Locales
       main_report: รายงานหลัก
       report_bundle: ชุดรายงาน
       report_name: ชื่อรายงาน
-      user_access: การเข้าถึงของผู้ใช้
+      user_access: สิทธิ์การเข้าถึงของผู้ใช้
       user_dashboard: แดชบอร์ดผู้ใช้
     form:
       operation: การผ่าตัด
@@ -1595,19 +1598,19 @@ th:
       extend_time: ขยายเวลา
       search_user: ค้นหาผู้ใช้
     assessments:
-      progress: ก้าวหน้า
+      progress: ความคืบหน้า
     details:
       additional_time: เวลาเพิ่มเติม
       assessment_center: ศูนย์ประเมินผล
       assessment_center_invites: คําเชิญของศูนย์ประเมิน
-      completed_at: สร้างเสร็จเมื่อ
+      completed_at: เสร็จสิ้น
       completion_status: สถานะการเสร็จสมบูรณ์
       hogan_id: รหัส Hogan
       last_login: เข้าสู่ระบบครั้งล่าสุด
       manager: ผู้จัดการ
       modals:
         create_hogan_credentials:
-          assessments: 'ประเมิน:'
+          assessments: 'การประเมิน:'
           confirmation: ป้อนอีเมลด้านล่างในกล่องข้อความเพื่อเพิ่มข้อมูลประจําตัว hogan ใหม่
           reports: 'รายงาน:'
           successfully: เพิ่มข้อมูลประจําตัว hogan ใหม่สําหรับผู้ใช้ที่มีอีเมล %{email} เรียบร้อยแล้ว
@@ -1618,12 +1621,12 @@ th:
       not_completed_yet: ยังไม่เสร็จสมบูรณ์
       not_logged_in_yet: ยังไม่ได้เข้าสู่ระบบ
       not_started_yet: ยังไม่ได้เริ่มต้น
-      started_at: เริ่มต้นที่
+      started_at: เริ่มต้น
       statuses:
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         in_progress: อยู่ระหว่างดําเนินการ
         ineligible: ไม่มีสิทธิ์
-        interrupted: ถูก ขัด จังหวะ
+        interrupted: หยุดชะงัก
         not_started: ยังไม่ได้เริ่มต้น
         timed_out: หมดเวลา
     modals:
@@ -1746,7 +1749,7 @@ th:
       reset: รีเซ็ต
       resolve: แก้ปัญหา
       restore: คืนค่า
-      return_to_home: กลับสู่บ้าน
+      return_to_home: กลับหน้าแรก
       run: วิ่ง
       save: บันทึก
       schedule: ตาราง
@@ -1766,14 +1769,14 @@ th:
       view_all_tasks: แสดงงานทั้งหมด
       view_detail: แสดงรายละเอียด
     column:
-      action: การกระทำ
-      active: กระปรี้กระเปร่า
+      action: ดำเนินการ
+      active: เปิดใช้งาน
       allow_multiple_responses: อนุญาตการตอบกลับหลายรายการ
       approval_notification_list: รายชื่อผู้ใช้การแจ้งเตือนการอนุมัติ
       approvers_list: รายชื่อผู้อนุมัติ
       assessment: การประเมิน
       assessment_name: ชื่อการประเมิน
-      assessments: ประเมิน
+      assessments: การประเมิน
       assessor: ผู้ประเมิน
       category: หมวดหมู่
       client: ลูกค้า
@@ -1783,7 +1786,7 @@ th:
       created_date: วันที่สร้าง
       default_language: ภาษาเริ่มต้น
       description: คำอธิบาย
-      details: ราย ละเอียด
+      details: รายละเอียด
       dimension: มิติ
       email: อีเมล
       external_report_id: รหัสรายงานภายนอก
@@ -1814,7 +1817,7 @@ th:
       require_scheduling: ต้องมีการจัดตารางเวลา
       responses_count: จํานวนการตอบกลับ
       schedule_time: กําหนดเวลา
-      scheduling: จัด กำหนดการ
+      scheduling: กำหนดการ
       skills: ทักษะ
       status: สถานะ
       tags: แท็ก
@@ -1834,7 +1837,7 @@ th:
       assessments: การประเมิน
       campaigns: แคมเปญ
       completion_statuses: สถานะการเสร็จสมบูรณ์
-      datasheet: เอกสารข้อมูลสินค้า
+      datasheet: เอกสารข้อมูล
       projects: โครงการ
       report: รายงาน
       reports: รายงาน
@@ -1842,7 +1845,7 @@ th:
       sms_contact: ติดต่อ SMS
       threesixty_campaign: คะแนนแคมเปญ Threesixty
     status:
-      completed: เสร็จ สมบูรณ์
+      completed: เสร็จสมบูรณ์
       dropped_out: ออกกลางคัน
       in_progress: อยู่ระหว่างดําเนินการ
       late: สาย
@@ -1929,6 +1932,8 @@ th:
       timeout: เซสชันของคุณหมดอายุแล้ว กรุณาเข้าสู่ระบบอีกครั้งเพื่อดำเนินการต่อ
       unauthenticated: คุณต้องเข้าสู่ระบบหรือลงทะเบียนก่อนดำเนินการต่อ
       unconfirmed: คุณต้องยืนยันที่อยู่อีเมลของคุณก่อนดําเนินการต่อ
+    invalid_captcha: การป้อนข้อมูล captcha ไม่ถูกต้อง
+    invalid_security_question: คำตอบของคำถามด้านความปลอดภัยไม่ถูกต้อง
     invitations:
       edit:
         confirm_password_label: ยืนยันรหัสผ่าน
@@ -2008,6 +2013,25 @@ th:
     omniauth_callbacks:
       failure: ไม่สามารถรับรองความถูกต้องของคุณจาก %{kind} เนื่องจาก "%{reason}"
       success: ตรวจสอบสิทธิ์สําเร็จจากบัญชี %{kind}
+    paranoid_verification_code:
+      show:
+        submit: ส่ง
+        submit_verification_code: กรุณาส่งรหัสยืนยัน
+        verification_code: รหัสยืนยัน
+      updated: รหัสยืนยันได้รับการยอมรับ
+    paranoid_verify:
+      code_required: กรุณากรอกรหัสที่ทีมสนับสนุนของเราได้จัดเตรียมไว้ให้
+    password_expired:
+      change_required: รหัสผ่านของคุณหมดอายุแล้ว กรุณาเปลี่ยนรหัสผ่านของคุณ
+      forced_changed: คุณต้องตั้งรหัสผ่านใหม่สำหรับบัญชีของคุณ
+      password_policy_changed: นโยบายการตั้งรหัสผ่านได้เปลี่ยนแปลง กรุณาเปลี่ยนรหัสผ่านของคุณ
+      show:
+        change_my_password: เปลี่ยนรหัสผ่านของฉัน
+        current_password: รหัสผ่านปัจจุบัน
+        new_password: รหัสผ่านใหม่
+        new_password_confirmation: ยืนยันรหัสผ่านใหม่
+        renew_your_password: ต่ออายุรหัสผ่านของคุณ
+      updated: รหัสผ่านใหม่ของคุณได้รับการบันทึกแล้ว
     passwords:
       edit:
         instruction: หากต้องการสร้างรหัสผ่านใหม่ โปรดป้อนรหัสผ่านใหม่ในช่องด้านล่าง
@@ -2205,9 +2229,11 @@ th:
   errors:
     assessments:
       timed_out: คุณจะไม่สามารถทำการทดสอบ %{assessment_name} ได้ เนื่องจากเวลาของการทดสอบหมดลงแล้ว
+    equal_to_current_password: ต้องแตกต่างจากรหัสผ่านปัจจุบัน
+    equal_to_email: ต้องแตกต่างจากอีเมล
     error: ข้อผิดพลาด
     error_401: คุณไม่ได้รับอนุญาตให้เข้าถึงทรัพยากรนี้ โปรดลงชื่อเข้าใช้
-    error_403: คุณไม่มีสิทธิ์ในการดูทรัพยากรนี้
+    error_403: คุณไม่ได้รับอนุญาตให้เข้าถึงข้อมูลนี้
     error_500: มีบางอย่างผิดพลาด โปรดติดต่อผู้ดูแลระบบของคุณ
     error_msg: มีบางอย่างผิดพลาด โปรดรีเฟรชหน้า และหากปัญหายังคงอยู่ โปรดติดต่อผู้ดูแลระบบของคุณ
     forbidden: คุณไม่สามารถเข้าถึงหน้านี้ได้
@@ -2217,6 +2243,20 @@ th:
     max_regeneration_limit: เกินขีดจํากัดการฟื้นฟูสูงสุด โปรดติดต่อฝ่ายบริหารของคุณ
     messages:
       data_report_blank: ไม่มีรายงานข้อมูล
+      password_complexity:
+        digit:
+          one: ต้องประกอบด้วยตัวเลขอย่างน้อยหนึ่งตัว
+          other: ต้องประกอบด้วยตัวเลขอย่างน้อย<x>count</x> หลัก
+        lower:
+          one: ต้องประกอบด้วยตัวอักษรตัวพิมพ์เล็กอย่างน้อยหนึ่งตัว
+          other: ต้องประกอบด้วยตัวอักษรตัวเล็กภาษาอังกฤษอย่างน้อย<x>count</x> ตัว
+        symbol:
+          one: ต้องประกอบด้วยเครื่องหมายวรรคตอนหรือสัญลักษณ์อย่างน้อยหนึ่งตัว
+          other: 'ต้องประกอบด้วยเครื่องหมายวรรคตอนหรือสัญลักษณ์อย่างน้อย<x>count</x> '
+        upper:
+          one: ต้องประกอบด้วยตัวอักษรตัวใหญ่อย่างน้อยหนึ่งตัว
+          other: ต้องประกอบด้วยตัวอักษรตัวใหญ่ภาษาอังกฤษอย่างน้อย<x>count</x> ตัว
+      taken_in_past: ต้องไม่เหมือนกับรหัสผ่านที่เคยใช้มาก่อน
     module_error: มีบางอย่างผิดพลาดกับโมดูลนี้ โปรดติดต่อผู้ดูแลระบบ
     module_error_editor: มีบางอย่างผิดพลาดกับโมดูลนี้ โปรดตรวจสอบการตั้งค่าโมดูล
     module_props_error: มีบางอย่างผิดพลาดกับโมดูลนี้
@@ -2271,7 +2311,7 @@ th:
       create_success: กลุ่มถูกสร้างขึ้นเรียบร้อยแล้ว
       update_success: กลุ่มได้รับการอัพเดตเรียบร้อยแล้ว
     availability:
-      add_new_availability: เพิ่มห้องว่างใหม่
+      add_new_availability: เพิ่มตารางนัดหมายใหม่
       create_success: ความพร้อมใช้งานถูกสร้างขึ้นเรียบร้อยแล้ว
       remove_confirm:
         content: คุณแน่ใจหรือไม่ว่าต้องการลบความพร้อมใช้งาน
@@ -2343,7 +2383,7 @@ th:
       reschedule_reason_placeholder: หากต้องการดำเนินการต่อ โปรดกรอกเหตุผลในการเลื่อนตารางเวลา
       schedule_success: การจองนี้ได้รับการกำหนดตารางเวลาเรียบร้อยแล้ว
       schedule_success_msg: เราได้ส่งคำเชิญในปฏิทิน พร้อมรายละเอียดทั้งหมด ไปยังอีเมลของคุณและผู้เข้าร่วมคนอื่น ๆ แล้ว
-      starts_at: 'เริ่มต้นที่: %{date}'
+      starts_at: 'เริ่มต้น: %{date}'
       starts_in: 'เริ่มต้นใน:'
       tab_label:
         bookings: การจอง
@@ -2480,7 +2520,7 @@ th:
       new_schedule_description: เวลาเริ่มต้นต้องเร็วกว่าเวลาสิ้นสุด
       no_slots: ไม่มีการเพิ่มสล็อต
       required_error: ไม่สามารถว่างเปล่าได้
-      save: ประหยัด
+      save: บันทึก
       saved_schedule_description: กําหนดการความพร้อมใช้งานที่บันทึกไว้ของผู้ใช้
       start_date: วันที่เริ่มต้น
       timezone_label: โซนเวลา
@@ -2517,7 +2557,7 @@ th:
       sort_by_date: จัดเรียงตามวันที่
       you: ท่าน
     convert_to_draft: แปลงเป็นแบบร่าง
-    details: ราย ละเอียด
+    details: รายละเอียด
     development_actions:
       action_private: ใช่
       action_public: ไม่ใช่
@@ -2525,10 +2565,10 @@ th:
       all: ทั้งหมด
       approved: อนุมัติ
       board_view:
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         in_progress: อยู่ระหว่างดําเนินการ
         not_started: ยังไม่ได้เริ่มต้น
-      completion: เสร็จ สมบูรณ์
+      completion: เสร็จสมบูรณ์
       create_my_own: สร้างของตัวเอง
       date_range: วันที่เริ่มต้น - วันที่สิ้นสุด
       generate_by_ai: สร้างโดย AI
@@ -2573,7 +2613,7 @@ th:
       rate_skills_title: ให้คะแนนทักษะของคุณ
       rating_column_header: คะแนนตนเองของคุณ
       reflective_questions: คําถามไตร่ตรอง
-      save: ประหยัด
+      save: บันทึก
       select_skills: เลือกทักษะของคุณ
       select_skills_placeholder: เลือกทักษะ
       selected_skills: ทักษะที่เลือก
@@ -2617,7 +2657,7 @@ th:
             title: ไทม์ไลน์
           c5:
             content: ใช้ส่วนความคืบหน้าเพื่อสนับสนุนความคืบหน้าในแทร็กที่ระบุ
-            title: ก้าวหน้า
+            title: ความคืบหน้า
         chart:
           collaboration: "<strong>20%</strong>ร่วม กัน <br /> การเรียนรู้"
           job: "<strong>70%</strong>การเรียนรู้ <br />ในการทํางาน"
@@ -2676,7 +2716,7 @@ th:
         technical: ทางเทคนิค
       statuses:
         approved: ตรวจสอบและอนุมัติแล้ว
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         draft: ร่าง
         not_reviewed: ไม่ได้รับการตรวจสอบ
         pending_approval: อยู่ระหว่างตรวจสอบ
@@ -2717,13 +2757,13 @@ th:
     technical: เทคนิค
     user_idp_status:
       approved: อนุมัติ
-      completed: เสร็จ สมบูรณ์
+      completed: เสร็จสมบูรณ์
       draft: ร่าง
       in_progress: อยู่ระหว่างดําเนินการ
       not_started: ยังไม่ได้เริ่มต้น
       pending_approval: รอการอนุมัติ
       rejected: ถูก ปฏิเสธ
-    users: คน
+    users: ผู้เข้าร่วม
     with_reflection_questions: ด้วยคําถามไตร่ตรอง
     without_reflection_questions: โดยไม่มีคําถามไตร่ตรอง
   idp_templates:
@@ -2820,7 +2860,7 @@ th:
     zh-Hant: จีน - ตัวเต็ม
     zh-TW: จีน (ไต้หวัน)
   license_usage:
-    active: กระปรี้กระเปร่า
+    active: เปิดใช้งาน
     campaign_name: ชื่อแคมเปญ
     inactive: เกียจคร้าน
     status_updated_at: การอัปเดตสถานะล่าสุด
@@ -2843,7 +2883,7 @@ th:
     title: ใบอนุญาต
     type: ประเภท
     types:
-      common: สามัญ
+      common: ทั่วไป
       idp: ผู้พลัดถิ่น
       proctoring: การคุมสอบ
       threesixty: สามหกสิบ
@@ -2951,7 +2991,7 @@ th:
     password_confirmation: การยืนยันรหัสผ่าน
     photo: ภาพถ่าย
     success_update: บันทึกโปรไฟล์เรียบร้อยแล้ว
-    timezone: เขตเวลา
+    timezone: โซนเวลา
     title: โปรไฟล์ของฉัน
     update: อัปเดต
     update_required: ต้องทำการอัปเดตโปรไฟล์
@@ -3015,11 +3055,11 @@ th:
       back_to_campaign: กลับไปที่แคมเปญ
       copy:
         success_message: คัดลอกรายงาน "%{name}" เรียบร้อยแล้ว
-      details: ราย ละเอียด
+      details: รายละเอียด
       download: ดาวน์โหลดรายงาน
       download_csv: ดาวน์โหลด CSV
       edit: แก้ไข
-      evaluate: ประเมิน
+      evaluate: การประเมิน
       extend_time: ขยายเวลา
       goto_dashboard: คลิกที่นี่เพื่อดําเนินการต่อ
       re_evaluate: คลิกที่นี่เพื่อประเมินใหม่
@@ -3035,8 +3075,8 @@ th:
         success_message: รายงาน %{name} ถูกยกเลิกการเก็บถาวรเรียบร้อยแล้ว
       update_language: อัปเดตภาษา
       view: แสดงรายงาน
-    active: กระปรี้กระเปร่า
-    archived: เก็บ ถาวร
+    active: เปิดใช้งาน
+    archived: เก็บเข้าคลัง
     builder:
       graph:
         properties:
@@ -3074,7 +3114,7 @@ th:
         saville_report_id: รหัสรายงาน Saville
       other_available_languages: ภาษาอื่นๆ ที่มี
     create: สร้าง
-    dashboard: แผงหน้าปัด
+    dashboard: แดชบอร์ด
     drawer:
       title: รายละเอียดรายงาน
     fields:
@@ -3258,7 +3298,7 @@ th:
         licenses_used: การใช้ใบอนุญาต
         location: สถานที่
         logo: โลโก้ลูกค้า
-        memberships_count: คน
+        memberships_count: ผู้เข้าร่วม
         name: ชื่อ
         number: หมายเลขลูกค้า
         privacy_consent: เปิดใช้ความยินยอมในการประมวลผลข้อมูล
@@ -3286,12 +3326,12 @@ th:
         access_reports_at: เข้าถึงรายงานได้ที่
         access_reports_at_date: วันที่
         access_reports_at_time: เวลา
-        client_ids: การเช่าของลูกค้า
+        client_ids: บัญชีลูกค้า
         manager_ids: จัดการ
         report_ids: รายงาน
-        user_ids: คน
+        user_ids: ผู้เข้าร่วม
       administrator:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         current_password: รหัสผ่านปัจจุบัน
         disabled: เก
@@ -3331,7 +3371,7 @@ th:
           identified: ผู้ใช้ที่ระบุ
         updated_at: วันที่แก้ไข
       assessment:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         categories:
           '360': แคมเปญ 360
           agile: ว่องไว
@@ -3349,10 +3389,10 @@ th:
         id: รหัส
         name: ชื่อ
         statuses:
-          completed: เสร็จ สมบูรณ์
+          completed: เสร็จสมบูรณ์
           finished: เสร็จแล้ว
           in_progress: ดำเนิน
-          interrupted: ถูก ขัด จังหวะ
+          interrupted: หยุดชะงัก
           not_started: ใหม่
           overdue: เกิน
         timing: เวลา
@@ -3362,8 +3402,8 @@ th:
           saville: การประเมิน Saville
         updated_at: วันที่แก้ไข
       block:
-        active: กระปรี้กระเปร่า
-        assign_to_assessment_ids: ประเมิน
+        active: เปิดใช้งาน
+        assign_to_assessment_ids: การประเมิน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
@@ -3382,7 +3422,7 @@ th:
         licenses_used: การใช้ใบอนุญาต
         location: สถานที่
         logo: โลโก้ลูกค้า
-        memberships_count: คน
+        memberships_count: ผู้เข้าร่วม
         name: ชื่อ
         number: หมายเลขลูกค้า
         privacy_consent: เปิดใช้ความยินยอมในการประมวลผลข้อมูล
@@ -3406,13 +3446,13 @@ th:
         id: รหัส
         updated_at: วันที่แก้ไข
       dimension:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
         updated_at: วันที่แก้ไข
       factor:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
@@ -3430,12 +3470,12 @@ th:
         overuse_number: ค่าเผื่อการใช้งานเกิน
         type: ใบอนุญาตสําหรับ
         types:
-          common: สามัญ
+          common: ทั่วไป
           threesixty: สามหกสิบ
         unlimited: จำกัด
         used_number: หมายเลขใบอนุญาตที่ใช้
       memebrship:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         disabled: เก
         email: อีเมล
@@ -3452,9 +3492,9 @@ th:
           member: ผู้ใช้
           project_admin: ผู้ดูแลระบบโครงการ
         updated_at: วันที่แก้ไข
-        user_access: การเข้าถึงของผู้ใช้
+        user_access: สิทธิ์การเข้าถึงของผู้ใช้
       norm:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         bachelors_or_masters_qualification: วุฒิปริญญาตรีหรือปริญญาโท
         created_at: วันที่สร้าง
         description: คำอธิบาย
@@ -3478,7 +3518,7 @@ th:
         status: สถานะ
         status_label: เลือกสถานะ
         statuses:
-          completed: เสร็จ สมบูรณ์
+          completed: เสร็จสมบูรณ์
           in_progress: อยู่ระหว่างดําเนินการ
           not_started: ยังไม่ได้เริ่มต้น
           overdue: เกิน
@@ -3486,8 +3526,8 @@ th:
         updated_by: แก้ไขโดย
         work_environment: สภาพแวดล้อมในการทํางาน
       question:
-        active: กระปรี้กระเปร่า
-        assign_to_assessment_ids: ประเมิน
+        active: เปิดใช้งาน
+        assign_to_assessment_ids: การประเมิน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
@@ -3499,7 +3539,7 @@ th:
         id: รหัส
         updated_at: วันที่แก้ไข
       user:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         current_password: รหัสผ่านปัจจุบัน
         disabled: เก
@@ -3540,7 +3580,7 @@ th:
           identified: ผู้ใช้ที่ระบุ
         updated_at: วันที่แก้ไข
       user_form:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         current_password: รหัสผ่านปัจจุบัน
         disabled: เก
@@ -3595,7 +3635,7 @@ th:
       checkbox_with_client_link: โดยการคลิกที่ช่องนี้ คุณยอมรับว่าคุณได้อ่านประกาศความเป็นส่วนตัวของเราและของลูกค้าของเราแล้ว และคุณยินยอมให้มีการเก็บรวบรวมและประมวลผลข้อมูลส่วนบุคคลของคุณตามที่ระบุไว้ในประกาศดังกล่าว รวมถึงการโอนข้อมูลส่วนบุคคลของคุณไปต่างประเทศ
       privacy_notice: ประกาศความเป็นส่วนตัว
       title: การยินยอมการประมวลผลข้อมูลส่วนบุคคล
-    action: การกระทำ
+    action: ดำเนินการ
     add: เพิ่ม
     and: และ
     approve: อนุมัติ
@@ -3797,7 +3837,7 @@ th:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%B %Y, %l:%M %p %:z"
   universal_links:
-    active: กระปรี้กระเปร่า
+    active: เปิดใช้งาน
     allow_multiple_respones: อนุญาตให้ผู้ใช้ส่งคําตอบหลายรายการ
     png: ภาพ PNG
     regenerate_link: สร้างลิงค์ใหม่
@@ -3825,7 +3865,7 @@ th:
     modals:
       exports:
         export_sign_in_url: ส่งออกด้วย URL ลงชื่อเข้าใช้วิเศษ
-        include_inactive_users: ส่งออกกับผู้ใช้ที่ไม่ได้ใช้งาน
+        include_inactive_users: ส่งออกรวมผู้ใช้ที่ไม่ใช้งาน
         title: ส่งออกผู้ใช้
       import:
         body: อ้างถึงฟังก์ชันการส่งออกเพื่อแยกเทมเพลตที่สามารถใช้เพื่อนําเข้าได้ที่นี่
@@ -3840,15 +3880,15 @@ th:
     toolbar:
       bulk_download_idp_reports: ดาวน์โหลดรายงาน IDP จํานวนมาก
       export: ส่งออกผู้ใช้
-      export_compact_completion_status: ข้อตกลง
-      export_detailed_completion_status: พิสดาร
+      export_compact_completion_status: แบบย่อ
+      export_detailed_completion_status: แบบละเอียด
       export_reports_and_assessments: ส่งออกรายงานและการประเมิน
       import: นําเข้าผู้ใช้
       import_reports: นําเข้ารายงานและการประเมิน
   user_assessment:
     column:
       dimension_id: รหัสมิติ
-      id: รหัสการประเมินผู้ใช้
+      id: รหัสการประเมินของผู้ใช้
       norm_id: รหัสบรรทัดฐาน
     drawer:
       copied: "%{name} ถูกคัดลอกไปยังคลิปบอร์ด"
@@ -3886,15 +3926,15 @@ th:
     progress_label: ความคืบหน้าในการประเมิน
     redirect: คุณจะถูกเปลี่ยนเส้นทางไปยังเว็บไซต์ของบุคคลที่สามสำหรับการประเมินนี้ กรุณาคลิก ดำเนินการต่อหากคุณต้องการเริ่มการประเมิน
     status:
-      completed: เสร็จ สมบูรณ์
+      completed: เสร็จสมบูรณ์
       in_progress: อยู่ระหว่างดําเนินการ
       ineligible: ไม่มีสิทธิ์
-      interrupted: ถูก ขัด จังหวะ
+      interrupted: หยุดชะงัก
       not_started: ยังไม่ได้เริ่มต้น
       timed_out: หมดเวลา
     statuses:
       evaluator_nomination_status:
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         declined: ปฏิเสธ
         waiting: การรอคอย
       manager_evaluation_status:
@@ -3903,7 +3943,7 @@ th:
         waiting: การรอคอย
       manager_nomination_status:
         approved: อนุมัติ
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         declined: ปฏิเสธ
         denied: ถูก ปฏิเสธ
         waiting: การรอคอย
@@ -3923,8 +3963,8 @@ th:
       qc_completed: QC เสร็จสมบูรณ์
       qc_in_progress: QC อยู่ระหว่างดําเนินการ
     messages:
-      async_generation: กําลังสร้างรายงาน คุณจะได้รับการแจ้งเตือนเมื่อสร้างรายงาน
-      regenerate_successful: รายงานกำหนดการสร้างงานใหม่เรียบร้อยแล้ว
+      async_generation: กำลังสร้างรายงาน ระบบจะแจ้งให้คุณทราบเมื่อรายงานเสร็จสมบูรณ์
+      regenerate_successful: ระบบได้กำหนดเวลาสร้างรายงานใหม่เรียบร้อยแล้ว
     modals:
       remove:
         content: คุณแน่ใจหรือไม่ว่าต้องการลบรายงาน %{userReportName}?
@@ -3968,7 +4008,7 @@ th:
     admins: ผู้ดูแลระบบ
     create_global_assessor: สร้างผู้ประเมินทั่วโลก
     create_superadmin: สร้างผู้ดูแลระบบขั้นสูง
-    dashboard: แผงหน้าปัด
+    dashboard: แดชบอร์ด
     drawer:
       link: ลิงก์
       role: บทบาท
@@ -3983,7 +4023,7 @@ th:
       project_admin: ผู้ดูแลระบบโครงการ
       superadmin: ผู้ดูแลระบบขั้นสูง
     superadmins: ผู้ดูแลระบบขั้นสูง
-    users: คน
+    users: ผู้เข้าร่วม
   validations:
     AudioResponse:
       in_progress:

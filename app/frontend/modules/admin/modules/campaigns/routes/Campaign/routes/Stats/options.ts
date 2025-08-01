@@ -63,12 +63,12 @@ export const buildHighchartOptions = (
     },
 
     series: [{
-      name: 'In Progress',
+      name: I18n.t('campaign_assessment.statuses.in_progress'),
       color: COLORS.in_progress,
       type: 'line',
       data: timeseries.map(t => t.started),
     }, {
-      name: 'Completed',
+      name: I18n.t('campaign_assessment.statuses.completed'),
       color: COLORS.completed,
       type: 'line',
       data: timeseries.map(t => t.completed),

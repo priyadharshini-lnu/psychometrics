@@ -3,6 +3,8 @@ import { FormInstance } from 'antd'
 import dayjs from '~/utils/dayjs'
 import { UserAvailabilityDate, UserAvailabilityDay } from './interfaces'
 
+const { locale } = document.body.dataset
+
 export const parseInitialAvailability = _.memoize((initialAvailability?: UserAvailabilityDate) => {
   if (!initialAvailability) {
     return null
@@ -34,15 +36,12 @@ export const parseInitialAvailability = _.memoize((initialAvailability?: UserAva
   }
 })
 
-export const dayOptions = [
-  { label: 'S', value: 0 },
-  { label: 'M', value: 1 },
-  { label: 'T', value: 2 },
-  { label: 'W', value: 3 },
-  { label: 'T', value: 4 },
-  { label: 'F', value: 5 },
-  { label: 'S', value: 6 },
-]
+export const dayOptions = Array.from(
+  { length: 7 }, (_, i) => ({
+    label: dayjs().locale(locale || 'en').day(i).format('dddd')[0].toLocaleUpperCase(locale || 'en'),
+    value: i,
+  }),
+)
 
 export const defaultCheckedList = [1, 2, 3, 4, 5]
 export const getInitialCheckedDayList = (

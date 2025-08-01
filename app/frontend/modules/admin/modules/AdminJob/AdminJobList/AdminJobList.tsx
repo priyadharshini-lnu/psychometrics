@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
   List, Badge, Button, Row, Col, Popover,
+  Empty,
 } from 'antd'
 import humps from 'humps'
 import { CheckOutlined } from '@ant-design/icons'
@@ -62,6 +63,11 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
       >
         <List
           className={styles.listBox}
+          locale={{
+            emptyText: (
+              <Empty description={I18n.t('admin_jobs.no_notifications')} image={Empty.PRESENTED_IMAGE_SIMPLE} />
+            ),
+          }}
           itemLayout="vertical"
           dataSource={adminJobs}
           renderItem={job => <AdminJob job={job} read={read} />}

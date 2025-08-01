@@ -77,7 +77,7 @@ de:
           actions: Aktionen
           created_at: Erstellt am
           email: E-Mail
-          id: Id
+          id: ID
           name: Name
         header:
           add_admin: Admin hinzufügen
@@ -638,7 +638,7 @@ de:
       payload: Nutzlast
       project: Projekt
       record_id: Datensatz-ID
-      request_id: Anfrage Id
+      request_id: Anfrage ID
       reset: Zurücksetzen
       search: Suche
       search_campaign: Suche nach Kampagnen
@@ -923,7 +923,7 @@ de:
           do_not_send_notifications: Benachrichtigungen nicht senden
           modal_title: Einstellungen für die Berichtsgenehmigung
           qc_users: QC-Benutzer
-          remove_modal_success: 'Genehmigungseinstellung für Bericht-ID: %{reportId} wurde erfolgreich gelöscht '
+          remove_modal_success: 'Genehmigungseinstellung für Bericht-ID: %{reportId} wurde erfolgreich gelöscht'
           remove_modal_text: 'Sind Sie sicher, dass Sie diese Einstellung für die Berichts-ID löschen möchten: %{reportId}?'
           report: Bericht
           settings: Einstellungen
@@ -942,13 +942,16 @@ de:
         inactive: Inaktiv
         status: Status
       form:
+        active_notice: Der Kampagnenstatus ändert sich automatisch auf geschlossen am ausgewählten Enddatum
         campaign: Kampagne
+        inactive_notice: Der Kampagnenstatus wechselt automatisch auf aktiv am ausgewählten Startdatum
+        instruction: Dies kann nur beim Erstellen von Kampagnen aktiviert werden
         name: Name
         practice_campaign: Praxis-Kampagne
         status: Status
       listing:
         assessments: Beurteilungen
-        id: Id
+        id: ID
         name: Name
         reports: Berichte
         status: Status
@@ -965,6 +968,7 @@ de:
             active: Aktiv
             archive: Archiv
             assessment: Bewertung
+            category: Kategorie
             closed: Geschlossen
             empty: Leere
             inactive: Inaktiv
@@ -974,6 +978,7 @@ de:
             skill_rater: Skill Rater
             standard: Standard
             status: Status
+            type: Typ
           close:
             content: Sind Sie sicher, dass Sie den Multi Rater Campaign Creator schließen möchten? Alle nicht gespeicherten Anpassungen gehen verloren. Bitte bestätigen Sie Ihre Entscheidung.
             title: Multi Rater Campaign Creator schließen?
@@ -1055,7 +1060,7 @@ de:
           all: Alle
           anonymous: Anonym
           identified: Identifiziert
-        id: Id
+        id: ID
         is_active: Aktiv
         name: Name
         no_permission_message: Sie haben nicht die Erlaubnis zu ändern
@@ -1163,7 +1168,7 @@ de:
               sub_campaigns: Unterkampagnen
               tests_allocated: Zugewiesene Tests
               users: Benutzer
-            id: Id
+            id: ID
             name: Name der Kampagne
             reports: Berichte
             updated_at: Aktualisiertes Datum
@@ -1186,7 +1191,7 @@ de:
               sub_campaigns: Unterkampagnen
               tests_allocated: Zugewiesene Tests
               users: Benutzer
-            id: Id
+            id: ID
             name: Name der Kampagne
             reports: Berichte
             updated_at: Aktualisiertes Datum
@@ -1237,7 +1242,7 @@ de:
                 sub_campaign: Unterkampagnen
                 tests_allocated: Zugewiesene Tests
                 users: Benutzer
-              id: Id
+              id: ID
               name: Name der Unter-Kampagne
               reports: Berichte
               updated_at: Aktualisiertes Datum
@@ -1260,7 +1265,7 @@ de:
                 sub_campaign: Unterkampagnen
                 tests_allocated: Zugewiesene Tests
                 users: Benutzer
-              id: Id
+              id: ID
               name: Name der Unter-Kampagne
               reports: Berichte
               updated_at: Aktualisiertes Datum
@@ -1310,7 +1315,7 @@ de:
           assigned_user: Zugewiesene Benutzer
           completed_user: Abgeschlossene Benutzer
           created_at: Erstellungsdatum
-          id: Id
+          id: ID
           name: Name des Projekts
           number: Nummer
           project_admin: Projektadministratoren
@@ -1359,7 +1364,7 @@ de:
           assigned_user: Zugewiesene Benutzer
           completed_user: Abgeschlossene Benutzer
           created_at: Erstellungsdatum
-          id: Id
+          id: ID
           name: Name des Projekts
           number: Nummer
           project_admin: Projektadministratoren
@@ -1428,7 +1433,7 @@ de:
             assessment: Einstufung
             client_admins: Client-Admins
             created_at: Erstellt am
-            id: Id
+            id: ID
             name: Name
             report: Bericht
             report_bundle: Berichtsbündel
@@ -1448,7 +1453,7 @@ de:
             assessment: Einstufung
             client_admins: Client-Admins
             created_at: Erstellt am
-            id: Id
+            id: ID
             name: Name
             report: Bericht
             report_bundle: Berichtsbündel
@@ -1724,10 +1729,10 @@ de:
       pdf: PDF
       pptx: PPTX
       preview:
-        embed_token_error_description: Bitte überprüfen Sie, ob Dataset und Report Id in den Einstellungen korrekt sind.
+        embed_token_error_description: Bitte überprüfen Sie, ob Dataset und Report ID in den Einstellungen korrekt sind.
         embed_token_error_title: Embed-Token kann nicht erzeugt werden.
       settings:
-        capacity_id: Kapazität Id
+        capacity_id: Kapazität ID
         details: Einzelheiten
         refresh: Aktualisieren
         workspace_id: Arbeitsbereich id
@@ -1743,7 +1748,7 @@ de:
         image: Bild
         project_path: Projekt Pfad
         refresh_interval: Aktualisierungsintervall (Minuten)
-        report_id: Bericht Id
+        report_id: Bericht ID
         visual_header_visibility: Visuelle Sichtbarkeit der Kopfzeile
       image_upload_failed: Bild-Upload fehlgeschlagen.
       none: Keine
@@ -1796,7 +1801,7 @@ de:
         invalid_date: Datumsformat für %{date} ist ungültig.
         invalid_date_format: 'Rij %{row}: ongeldige datumindeling voor %{field}. '
         invalid_development_action_type: 'Zeile %{row}: Ungültiger Entwicklungsaktionstyp ''%{value}''. Gültige Entwicklungsaktionstypen sind: %{valid_development_action_types}'
-        invalid_duration_format: 'Nur numerische Werte sind für die Dauer zulässig.Row %{row}: %{value} ist keine gültige Dauer. '
+        invalid_duration_format: 'Nur numerische Werte sind für die Dauer zulässig.Row %{row}: %{value} ist keine gültige Dauer.'
         invalid_image_file: 'Ungültige Bilddatei: %{message}'
         invalid_image_url: 'Ungültiges Bild-URL-Format: %{url}'
         invalid_languages: Ungültige verfügbare Sprachen %{invalid_languages} für Zeilen %{row}.
@@ -1947,7 +1952,7 @@ de:
       list:
         active: Aktiv
         created_at: Erstellungsdatum
-        id: Id
+        id: ID
         name: Name
         updated_at: Geändertes Datum
       new:
@@ -2054,7 +2059,7 @@ de:
       list:
         active: Aktiv
         created_at: Erstellungsdatum
-        id: Id
+        id: ID
         name: Name
         updated_at: Geändertes Datum
       new:
@@ -2280,7 +2285,7 @@ de:
         title: Innovationsstile
       list:
         created_at: Erstellungsdatum
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Geändertes Datum
@@ -2313,7 +2318,7 @@ de:
       list:
         condition: Zustand
         created_at: Erstellungsdatum
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Geändertes Datum
@@ -2568,8 +2573,8 @@ de:
       list:
         active: Aktiv
         created_at: Erstellungsdatum
-        dimension_id: Dimension Id
-        id: Id
+        dimension_id: Dimension ID
+        id: ID
         name: Name
         updated_at: Geändertes Datum
         updated_by: Aktualisiert von
@@ -2630,7 +2635,7 @@ de:
         title: Berufe
       list:
         created_at: Erstellt am
-        id: Id
+        id: ID
         name: Name
         updated_at: Geändertes Datum
       new:
@@ -2662,7 +2667,7 @@ de:
       list:
         condition: Zustand
         created_at: Erstellungsdatum
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Geändertes Datum
@@ -2808,7 +2813,7 @@ de:
       column_createdAt: Erstellt am
       column_created_at: Erstellt am
       column_email: E-Mail
-      column_id: Id
+      column_id: ID
       column_name: Name
       delete: Löschen
       edit: Bearbeiten
@@ -2919,7 +2924,7 @@ de:
       column_campaigns: Kampagnen
       column_created_at: Erstellt am
       column_email: E-Mail
-      column_id: Id
+      column_id: ID
       column_name: Name
       confirm_delete: Ja, löschen
       confirm_send: Ja, senden
@@ -3333,7 +3338,7 @@ de:
       config_details:
         acs_url: Assertion Consumer Service URL
         copied: Kopiert %{element}
-        issuer: Entity Id/Issuer
+        issuer: Entity ID/Issuer
         title: Konfigurieren Sie Idp mit folgenden Informationen
       email_pipetext: E-Mail an Pipetext
       enabled: Aktiviert
@@ -3544,7 +3549,7 @@ de:
       final_score_updated_successfully: Der Endstand wurde erfolgreich aktualisiert
       formula: Formel
       get_started: Los geht's
-      id: Id
+      id: ID
       import:
         factors: Faktoren der Kampagne importieren
       name: Name
@@ -3849,7 +3854,7 @@ de:
         send_sms: SMS versenden
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Nachricht
     smtp_settings:
       authentication: Authentifizierung
@@ -3886,6 +3891,7 @@ de:
       user_name: Name des Benutzers
     stats:
       assessments:
+        active: Aktiv
         columns:
           assessment_name: Bewertung Name
           completed: Abgeschlossen
@@ -3895,6 +3901,9 @@ de:
           interrupted: Unterbrochen
           not_started: Nicht begonnen
           timed_out: Zeitüberschreitung
+        count: Anzahl
+        inactive: Inaktiv
+        percentage: Prozentsatz
         title: Beurteilungen
       title: Statistiken
       top_metrics:

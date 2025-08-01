@@ -218,7 +218,7 @@ de:
             file:
               column_cannot_be_blank: Wert %{column_name} kann in Zeile %{row_number} nicht leer sein
               invalid_format: Bitte CSV-Datei hochladen
-              invalid_job_role_id: Id in Zeile %{row_number} ist keine gültige Job-Rollen-ID
+              invalid_job_role_id: ID in Zeile %{row_number} ist keine gültige Job-Rollen-ID
               invalid_locale: Gebietsschema in Zeile %{row_number} ist kein gültiges Gebietsschema
               missing_required_columns: 'Fehlende erforderliche Spalten: %{columns}'
               parsing_failed: 'Fehler beim Parsen der Datei, Fehler: %{error}.'
@@ -912,6 +912,7 @@ de:
     invalid_job: Diese Meldung entspricht einem gelöschten Datensatz
     mark_as_read: Markieren Sie alle gelesenen
     more: Mehr
+    no_notifications: Keine Benachrichtigungen
     notifications: Benachrichtigungen
     results: Ergebnisse
     super_admin:
@@ -1560,7 +1561,9 @@ de:
       in_progress: In Bearbeitung
       ineligible: Nicht förderfähig
       interrupted: Unterbrochen
+      new: Neu
       not_started: Nicht gestartet
+      progress: In Bearbeitung
       timed_out: Zeitüberschreitung
       universal_link: Universeller Link
     ungrouped_assessments_heading: Ungruppiert
@@ -1629,7 +1632,7 @@ de:
       assessment_center_invites: Assessment Center Einladungen
       completed_at: Abgeschlossen am
       completion_status: Status der Fertigstellung
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Letzte Anmeldung
       manager: Manager
       modals:
@@ -1817,7 +1820,7 @@ de:
       first_name: Vorname
       icon: Icon
       icon_color: Farbe des Symbols
-      id: Id
+      id: ID
       json:
         answer: Antwort JSON
         external_result: Externes Ergebnis JSON
@@ -1837,7 +1840,7 @@ de:
       provider: Anbieter
       qc_user_list: QC-Benutzerliste
       report: Bericht
-      report_id: Bericht Id
+      report_id: Bericht ID
       require_scheduling: Terminplanung erforderlich machen
       responses_count: Anzahl der Antworten
       schedule_time: Zeit einplanen
@@ -1956,6 +1959,8 @@ de:
       timeout: Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an, um fortzufahren.
       unauthenticated: Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.
       unconfirmed: Bevor Sie fortfahren, müssen Sie Ihre E-Mail-Adresse bestätigen.
+    invalid_captcha: Die Captcha-Eingabe ist nicht gültig.
+    invalid_security_question: Die Antwort auf die Sicherheitsfrage war ungültig.
     invitations:
       edit:
         confirm_password_label: Bestätigen Sie Ihr Passwort
@@ -2008,6 +2013,25 @@ de:
     omniauth_callbacks:
       failure: Konnte Sie nicht von %{kind} authentifizieren, weil "%{reason}".
       success: Erfolgreich authentifiziert von %{kind} Konto.
+    paranoid_verification_code:
+      show:
+        submit: Bestätigen
+        submit_verification_code: Bestätigungscode eingeben
+        verification_code: Bestätigungscode
+      updated: Verifizierungscode akzeptiert
+    paranoid_verify:
+      code_required: Bitte geben Sie den Code ein, den unser Support-Team zur Verfügung gestellt hat.
+    password_expired:
+      change_required: Ihr Passwort ist abgelaufen. Bitte vergeben Sie ein neues Passwort.
+      forced_changed: Sie müssen ein neues Passwort für Ihr Konto festlegen.
+      password_policy_changed: Passwortpolitik geändert. Bitte ändern Sie Ihr Passwort.
+      show:
+        change_my_password: Passwort ändern
+        current_password: Aktuelles Passwort
+        new_password: Neues Passwort
+        new_password_confirmation: Passwort bestätigen
+        renew_your_password: Vergeben Sie ein neues Passwort
+      updated: Das neue Passwort wurde übernommen.
     passwords:
       edit:
         instruction: Um ein neues Passwort zu erstellen, geben Sie bitte Ihr neues Passwort in die unten stehenden Felder ein
@@ -2208,6 +2232,8 @@ de:
   errors:
     assessments:
       timed_out: Sie können an der Bewertung %{assessment_name} nicht mehr teilnehmen, da die Zeit abgelaufen ist.
+    equal_to_current_password: muss sich vom aktuellen Passwort unterscheiden.
+    equal_to_email: muss anders lauten als die E-Mail.
     error: Fehler
     error_401: Sie sind nicht berechtigt, auf diese Ressource zuzugreifen. Bitte melden Sie sich an.
     error_403: Sie verfügen nicht über die Berechtigung zum Anzeigen dieser Ressource.
@@ -2220,6 +2246,20 @@ de:
     max_regeneration_limit: Maximale Regenerationsgrenze überschritten, wenden Sie sich an Ihre Verwaltung.
     messages:
       data_report_blank: Datenbericht existiert nicht
+      password_complexity:
+        digit:
+          one: muss mindestens eine Ziffer enthalten
+          other: muss mindestens <x>count</x> Ziffern enthalten
+        lower:
+          one: muss mindestens einen Kleinbuchstaben enthalten
+          other: muss mindestens <x>count</x> Kleinbuchstaben enthalten
+        symbol:
+          one: muss mindestens ein Interpunktionszeichen oder Symbol enthalten
+          other: muss mindestens <x>count</x> Interpunktionszeichen oder Symbole enthalten
+        upper:
+          one: muss mindestens einen Großbuchstaben enthalten
+          other: muss mindestens <x>count</x> Großbuchstaben enthalten
+      taken_in_past: darf nicht mit einem zuvor verwendeten Passwort übereinstimmen.
     module_error: Bei diesem Modul ist ein Fehler aufgetreten. Bitte kontaktieren Sie die Administration.
     module_error_editor: Bei diesem Modul ist etwas schief gelaufen, bitte überprüfen Sie die Moduleinstellungen.
     module_props_error: Bei diesem Modul ist etwas schief gelaufen.
@@ -2823,6 +2863,8 @@ de:
     zh-HK: Chinesisch (Hongkong)
     zh-Hant: Chinesisch - Traditionell
     zh-TW: Chinesisch (Taiwan)
+  languages_localized:
+    ro: Română
   license_usage:
     active: Aktiv
     campaign_name: Name der Kampagne

@@ -30,7 +30,7 @@ cs:
           answers:
             blank: Odpovědi nemohou být prázdné
           group_id:
-            blank: Id skupiny nemůže být prázdné
+            blank: ID skupiny nemůže být prázdné
         all_blocks_form:
           attributes:
             base:
@@ -208,7 +208,7 @@ cs:
             file:
               column_cannot_be_blank: Hodnota %{column_name} nemůže být prázdná na řádku %{row_number}
               invalid_format: Nahrajte prosím soubor CSV
-              invalid_job_role_id: Id na řádku %{row_number} není platné ID pracovní role
+              invalid_job_role_id: ID na řádku %{row_number} není platné ID pracovní role
               invalid_locale: Locale na řádku %{row_number} není platné locale
               missing_required_columns: 'Chybějící povinné sloupce: %{columns}'
               parsing_failed: 'Chyba při zpracování souboru, chyba: %{error}.'
@@ -728,7 +728,7 @@ cs:
       users_result:
         assessment_name: Název hodnocení
         assessment_type: Typ hodnocení
-        completed_at: Dokončeno v
+        completed_at: Konec
         completion_reasons:
           time_out_offline: Time out / Offline
           time_out_online: Time out / Online
@@ -817,7 +817,7 @@ cs:
         bulk_reports: Hromadné zprávy
         bulk_rescore_campaign_factors: Faktory hromadného obnovení kampaně
         bulk_update_evaluation_status: Stav vyhodnocení hromadné aktualizace
-        compact_completion_status_export: Kompaktní export stavu dokončení
+        compact_completion_status_export: souhrnné informace export stavu dokončení
         completion_status_export: Export stavu dokončení
         copy_dimension: Kopírovat rozměr
         create_threesixty_campaign: Vytvořit kampaň Threesixty
@@ -902,6 +902,7 @@ cs:
     invalid_job: Toto oznámení odpovídá smazanému záznamu
     mark_as_read: Označte všechny přečtené
     more: Více na
+    no_notifications: Žádná oznámení
     notifications: Oznámení
     results: Výsledky
     super_admin:
@@ -1548,7 +1549,9 @@ cs:
       in_progress: Probíhající
       ineligible: Nezpůsobilé
       interrupted: Přerušeno
+      new: Nové
       not_started: Nezahájené
+      progress: Probíhající
       timed_out: Časový limit vypršel
       universal_link: Univerzální odkaz
     ungrouped_assessments_heading: Neseskupené
@@ -1615,9 +1618,9 @@ cs:
       additional_time: Další čas
       assessment_center: Hodnotící centrum
       assessment_center_invites: Pozvánky do hodnotícího centra
-      completed_at: Dokončeno v
+      completed_at: Konec
       completion_status: Stav dokončení
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Poslední přihlášení
       manager: Manažer
       modals:
@@ -1645,7 +1648,7 @@ cs:
       remove: Jste si jisti, že chcete z této kampaně odstranit uživatele s e-mailem '%{email}'?
   campaigns:
     assessments_and_reports:
-      assessor_assessments: Posuzovatel Posouzení
+      assessor_assessments: Hodnocení hodnotitele
       other_assessments: Další hodnocení
       other_assessor_assessments: Ostatní hodnocení Assessor Assessments
       other_reports: Další zprávy
@@ -1819,13 +1822,13 @@ cs:
       modified_date: Datum úpravy
       name: Název
       owner: Majitel
-      package_id: Id balíčku
+      package_id: ID balíčku
       poster: Plakát
       project: Projekt
       provider: Poskytovatel
       qc_user_list: Seznam uživatelů QC
       report: Nahlásit
-      report_id: Id hlášení
+      report_id: ID hlášení
       require_scheduling: Požadavek na plánování
       responses_count: Počet odpovědí
       schedule_time: Časový plán
@@ -1944,6 +1947,8 @@ cs:
       timeout: Platnost vaší relace vypršela. Chcete-li pokračovat, přihlaste se znovu.
       unauthenticated: Před pokračováním se musíte přihlásit nebo zaregistrovat.
       unconfirmed: Před pokračováním musíte potvrdit svou e-mailovou adresu.
+    invalid_captcha: Zadání captcha bylo neplatné.
+    invalid_security_question: Odpověď na bezpečnostní otázku byla neplatná.
     invitations:
       edit:
         confirm_password_label: Potvrzení hesla
@@ -1996,6 +2001,25 @@ cs:
     omniauth_callbacks:
       failure: Nelze vás ověřit z %{kind}, protože "%{reason}".
       success: Úspěšně ověřeno z účtu %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Odeslat
+        submit_verification_code: Odeslání ověřovacího kódu
+        verification_code: Ověřovací kód
+      updated: Přijatý ověřovací kód
+    paranoid_verify:
+      code_required: Zadejte prosím kód, který vám poskytl náš tým podpory
+    password_expired:
+      change_required: Platnost vašeho hesla vypršela. Obnovte prosím své heslo.
+      forced_changed: Je třeba nastavit nové heslo k účtu.
+      password_policy_changed: Změna zásad pro zadávání hesel. Změňte si prosím heslo.
+      show:
+        change_my_password: Změna hesla
+        current_password: Aktuální heslo
+        new_password: Nové heslo
+        new_password_confirmation: Potvrzení nového hesla
+        renew_your_password: Obnovení hesla
+      updated: Vaše nové heslo je uloženo.
     passwords:
       edit:
         instruction: Chcete-li vytvořit nové heslo, zadejte ho do níže uvedených políček
@@ -2193,6 +2217,8 @@ cs:
   errors:
     assessments:
       timed_out: Hodnocení uživatele %{assessment_name} nebude možné provést, protože vypršel časový limit.
+    equal_to_current_password: musí být jiné než aktuální heslo.
+    equal_to_email: se musí lišit od e-mailu.
     error: Chyba
     error_401: Nemáte oprávnění k přístupu k tomuto zdroji. Přihlaste se prosím.
     error_403: Nemáte oprávnění k zobrazení tohoto prostředku.
@@ -2205,6 +2231,20 @@ cs:
     max_regeneration_limit: Překročení maximálního limitu regenerace, kontaktujte svou správu.
     messages:
       data_report_blank: Datová zpráva neexistuje
+      password_complexity:
+        digit:
+          one: musí obsahovat alespoň jednu číslici
+          other: musí obsahovat alespoň <x>count</x> číslic.
+        lower:
+          one: musí obsahovat alespoň jedno malé písmeno
+          other: musí obsahovat alespoň <x>count</x> malá písmena.
+        symbol:
+          one: musí obsahovat alespoň jedno interpunkční znaménko nebo symbol.
+          other: musí obsahovat alespoň <x>count</x> interpunkční znaménka nebo symboly.
+        upper:
+          one: musí obsahovat alespoň jedno velké písmeno
+          other: musí obsahovat alespoň <x>count</x> velká písmena.
+      taken_in_past: nesmí být stejné jako dříve použité heslo.
     module_error: S tímto modulem se něco pokazilo, obraťte se na správce.
     module_error_editor: S tímto modulem se něco pokazilo, zkontrolujte nastavení modulu.
     module_props_error: S tímto modulem se něco pokazilo.
@@ -3828,8 +3868,8 @@ cs:
     toolbar:
       bulk_download_idp_reports: Hromadné stahování zpráv IDP
       export: Export uživatelů
-      export_compact_completion_status: Kompaktní
-      export_detailed_completion_status: Podrobné informace na
+      export_compact_completion_status: Souhrnné informace
+      export_detailed_completion_status: Podrobné informace
       export_reports_and_assessments: Exportní zprávy a hodnocení
       import: Import uživatelů
       import_reports: Import zpráv a hodnocení

@@ -48,6 +48,10 @@ zh-HK:
           attributes:
             name:
               not_unique: 本專案已具備此整合功能。
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: 電子郵件 ID 格式無效。
         taxonomies_import_form:
           attributes:
             file:
@@ -64,43 +68,69 @@ zh-HK:
         categories:
           lead_assessor_form: 首席評估員表格
         description: 說明
+        id: ID
         name: 名稱
+      assign:
+        statuses:
+          not_started: 新款
       block:
+        id: ID
         name: 名稱
       client:
+        id: ID
         name: 名稱
+      communication:
+        id: ID
       dimension:
+        id: ID
         name: 名稱
         owner: 業主
       factor:
+        id: ID
         name: 名稱
       innovation_style:
         description: 說明
+        id: ID
         name: 名稱
       innovation_styles_factor:
+        id: ID
         name: 名稱
       library:
         description: 說明
         files: 檔案
+        id: ID
         name: 名稱
         owner: 業主
+      license:
+        id: ID
       membership:
         first_name: 名字
+        id: ID
         last_name: 姓氏
       norm:
+        id: ID
         name: 名稱
       occupation:
         description: 說明
+        id: ID
         name: 名稱
       occupations_factor:
+        id: ID
         name: 名稱
       product:
+        id: ID
         name: 名稱
       question:
+        id: ID
         name: 名稱
         owner: 業主
+      report:
+        id: ID
+      report_family:
+        id: ID
       task:
         description: 說明
+        id: ID
         statuses:
           in_progress: 進行中
           not_started: 尚未開始
@@ -110,13 +140,17 @@ zh-HK:
             in_progress: 進行中
             not_started: 尚未開始
       user:
+        current_password: 目前的密碼
         email: 電郵地址
         first_name: 名字
+        id: ID
         last_name: 姓氏
         name: 名稱
       user_form:
+        current_password: 目前的密碼
         email: 電郵地址
         first_name: 名字
+        id: ID
         last_name: 姓氏
         password: 密碼
       users_result:
@@ -159,6 +193,7 @@ zh-HK:
         import_skill_rater_taxonomies: 匯入技能評核員分類標準
       statuses:
         in_progress: 進行中
+    no_notifications: 無通知
   anonym:
     close: 關閉
     continue: 繼續
@@ -218,6 +253,8 @@ zh-HK:
     pickgrouprank:
       items: 項目
     proceed: 繼續進行
+    scoring:
+      id: ID
     unknown_error: 發生未知錯誤。
     video_response:
       device: 允許
@@ -424,7 +461,9 @@ zh-HK:
       in_progress: 進行中
       ineligible: 不符合資格
       interrupted: 中斷
+      new: 新款
       not_started: 未開始
+      progress: 進行中
       timed_out: 超時
       universal_link: 通用連結
   campaign_report:
@@ -440,6 +479,7 @@ zh-HK:
         title: 報告語言
   campaign_users:
     details:
+      hogan_id: Hogan ID
       statuses:
         in_progress: 進行中
         not_started: 尚未開始
@@ -563,6 +603,8 @@ zh-HK:
       id: ID
       name: 名稱
       owner: 業主
+      package_id: 包裝 ID
+      report_id: 報告 ID
       status: 狀態
     model:
       assessments: 評估
@@ -595,10 +637,33 @@ zh-HK:
       not_found_in_database: 無效的電郵或密碼。
       timeout: 您的會話已過期。請重新登入以繼續。
       unauthenticated: 您需要登入或註冊才能繼續。
+    invalid_captcha: 驗證碼輸入無效。
+    invalid_security_question: 安全問題答案無效。
     invitations:
       edit:
         password_label: 密碼
+    paranoid_verification_code:
+      show:
+        submit: 提交
+        submit_verification_code: 提交驗證碼
+        verification_code: 驗證碼
+      updated: 驗證碼已接受
+    paranoid_verify:
+      code_required: 請輸入支援團隊提供的代碼
+    password_expired:
+      change_required: 您的密碼已過期。請更新您的密碼。
+      forced_changed: 您需要為帳戶設定新密碼。
+      password_policy_changed: 密碼政策已變更。請變更您的密碼。
+      show:
+        change_my_password: 變更我的密碼
+        current_password: 目前的密碼
+        new_password: 新密碼
+        new_password_confirmation: 確認新密碼
+        renew_your_password: 更新您的密碼
+      updated: 您的新密碼已儲存。
     passwords:
+      edit:
+        submit: 提交
       invalid_email: 無效電子郵件
     registrations:
       communication_not_setup_error: 註冊電郵通訊尚未設定，請聯絡此項目的管理員。
@@ -661,11 +726,28 @@ zh-HK:
   errors:
     assessments:
       timed_out: 您將無法參加 %{assessment_name} 評估，因為它已超時。
+    equal_to_current_password: 必須與目前的密碼不同。
+    equal_to_email: 必須與電子郵件不同。
     error: 錯誤
     error_500: 出錯了，請聯絡您的管理員。
     forbidden: 您無法存取此頁面
     forbidden_action: 您沒有此動作的權限
     invalid_token: 出錯了，請重新載入頁面再試一次。
+    messages:
+      password_complexity:
+        digit:
+          one: 必須至少包含一位數
+          other: 必須至少包含<x>count</x> 位數
+        lower:
+          one: 必須包含至少一個小寫字母
+          other: 必須至少包含<x>count</x> 小寫字母
+        symbol:
+          one: 必須包含至少一個標點符號或符號
+          other: 必須至少包含<x>count</x> 標點符號或符號
+        upper:
+          one: 必須至少包含一個大寫字母
+          other: 必須至少包含<x>count</x> 大寫字母
+      taken_in_past: 不得與之前使用的密碼相同。
     module_error: 此模組出錯，請聯絡管理員。
     module_error_editor: 此模組出錯，請檢查模組設定。
     module_props_error: 這個模組出了問題。
@@ -1174,42 +1256,67 @@ zh-HK:
   simple_form:
     labels:
       client:
+        id: ID
         name: 名稱
     placeholders:
       administrator:
+        current_password: 目前的密碼
         email: 電郵地址
+        id: ID
         last_name: 姓氏
         name: 名稱
       assessment:
         description: 說明
+        id: ID
         name: 名稱
+        statuses:
+          not_started: 新款
       block:
+        id: ID
         name: 名稱
       client:
+        id: ID
         name: 名稱
+      communication:
+        id: ID
       dimension:
+        id: ID
         name: 名稱
       factor:
+        id: ID
         name: 名稱
+      library:
+        id: ID
+      license:
+        id: ID
       memebrship:
+        id: ID
         last_name: 姓氏
       norm:
         description: 說明
+        id: ID
         name: 名稱
         statuses:
           in_progress: 進行中
           not_started: 尚未開始
       question:
+        id: ID
         name: 名稱
+      report:
+        id: ID
       user:
+        current_password: 目前的密碼
         email: 電郵地址
         first_name: 名字
+        id: ID
         last_name: 姓氏
         name: 名稱
         password: 密碼
       user_form:
+        current_password: 目前的密碼
         email: 電郵地址
         first_name: 名字
+        id: ID
         last_name: 姓氏
         password: 密碼
   subjects:

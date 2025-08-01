@@ -1,9 +1,9 @@
 ---
 hr:
   administration:
-    actions: Akcije
+    actions: Statusi
     active_record_audits:
-      action: Akcija
+      action: Status
       audit_id: ID revizije
       auditable_id: ID zapisa
       auditable_type: Vrsta zapisa
@@ -74,10 +74,10 @@ hr:
             login_successful: Prijava uspješna.
           user_report_events: Zapisnici odobrenja izvješća
         columns:
-          actions: Akcije
+          actions: Statusi
           created_at: Stvoreno u
           email: E-pošta
-          id: Id
+          id: ID
           name: Ime
         header:
           add_admin: Dodaj administratora
@@ -615,7 +615,7 @@ hr:
         header: Uređivanje zadatka za izvješća
     attention: Pažnja
     audit_log:
-      action: Akcija
+      action: Status
       audit_logs: Zapisnici revizije
       campaign: Kampanja
       client: Klijent
@@ -712,7 +712,7 @@ hr:
       client: Najam klijenta
       clientAdmins: Klijenti administratori
       client_admins: Klijenti administratori
-      clients: Najam klijenata
+      clients: Klijenti
       communication_center: Komunikacijski centar
       create: Stvori
       data_exports: Izvoz podataka
@@ -859,11 +859,11 @@ hr:
         owner: Vlasnik
         report: Izvješće
       copy:
-        successfully: Najam klijenata %{name} uspješno je kopiran.
+        successfully: Klijenti %{name} uspješno je kopiran.
       create:
-        successfully: Najam klijenata %{name} uspješno je stvoren.
+        successfully: Klijenti %{name} uspješno je stvoren.
       destroy:
-        successfully: Najam klijenata %{name} uspješno je izbrisan.
+        successfully: Klijenti %{name} uspješno je izbrisan.
       edit:
         header: Uredi klijenta
       errors:
@@ -907,9 +907,9 @@ hr:
           delete: Izbriši klijenta
           edit: Uredi klijenta
       toggle_status:
-        successfully: Najam klijenata %{name} uspješno je ažuriran.
+        successfully: Klijenti %{name} uspješno je ažuriran.
       update:
-        successfully: Najam klijenata %{name} uspješno je ažuriran.
+        successfully: Klijenti %{name} uspješno je ažuriran.
     campaigns:
       actions: Upravljanje
       assessment_reports:
@@ -942,13 +942,16 @@ hr:
         inactive: Neaktivano
         status: Status
       form:
+        active_notice: Status kampanje automatski će se promijeniti u zatvoreni na odabrani krajnji datum
         campaign: Kampanja
+        inactive_notice: Status kampanje automatski će se promijeniti u aktivni na odabrani datum početka
+        instruction: To može biti omogućeno samo tijekom stvaranja kampanje
         name: Ime
         practice_campaign: Kampanja za vježbu
         status: Status
       listing:
         assessments: Procjene
-        id: Id
+        id: ID
         name: Ime
         reports: Izvješća
         status: Status
@@ -965,6 +968,7 @@ hr:
             active: Aktivno
             archive: Arhiv
             assessment: Procjena
+            category: Kategorija
             closed: Zatvoreno
             empty: Prazno
             inactive: Neaktivano
@@ -974,6 +978,7 @@ hr:
             skill_rater: Procjenjivač vještina
             standard: Standardno
             status: Status
+            type: Tip
           close:
             content: Jeste li sigurni da želite zatvoriti kreatora kampanje višesmjerne procjene? Svi nespremljeni radovi bit će izgubljeni. Molimo potvrdite svoju odluku.
             title: Zatvorite kreatora kampanje višesmjerne procjene?
@@ -1049,13 +1054,13 @@ hr:
       users:
         add_user: Dodaj korisnika
         completion_status: Status završetka
-        created_by: Izradio
+        created_by: Autor projekta
         email: E-pošta
         filters:
           all: Sve
           anonymous: Anonimna osoba
           identified: Identificirana osoba
-        id: Id
+        id: ID
         is_active: Aktivan
         name: Ime
         no_permission_message: Nemate dopuštenje za izmjenu
@@ -1098,11 +1103,11 @@ hr:
         type: Vrsta
         year: Godina
       copy:
-        successfully: Najam klijenata '%{name}' uspješno je kopiran.
+        successfully: Klijenti '%{name}' uspješno je kopiran.
       create:
-        successfully: Najam klijenata '%{name}' uspješno je kreiran.
+        successfully: Klijenti '%{name}' uspješno je kreiran.
       destroy:
-        successfully: Najam klijenata %{name} uspješno je izbrisan.
+        successfully: Klijenti %{name} uspješno je izbrisan.
       edit:
         header: Uredi klijenta
       form:
@@ -1154,7 +1159,7 @@ hr:
             completed_user: Korisnici koji su završili
             created_at: Datum izrade
             header:
-              actions: Akcije
+              actions: Statusi
               actual_usage: Stvarna upotreba
               assessments: Procjene
               campaigns: Kampanje
@@ -1163,7 +1168,7 @@ hr:
               sub_campaigns: Podkampanje
               tests_allocated: Dodijeljeni testovi
               users: Korisnici
-            id: Id
+            id: ID
             name: Naziv kampanje
             reports: Izvješća
             updated_at: Datum ažuriranja
@@ -1177,7 +1182,7 @@ hr:
             completed_user: Korisnici koji su završili
             created_at: Datum izrade
             header:
-              actions: Akcije
+              actions: Statusi
               actual_usage: Stvarna upotreba
               assessments: Procjene
               campaigns: Kampanje
@@ -1186,7 +1191,7 @@ hr:
               sub_campaigns: Podkampanje
               tests_allocated: Dodijeljeni testovi
               users: Korisnici
-            id: Id
+            id: ID
             name: Naziv kampanje
             reports: Izvješća
             updated_at: Datum ažuriranja
@@ -1230,19 +1235,19 @@ hr:
               completed_user: Korisnici koji su završili
               created_at: Datum izrade
               header:
-                actions: Akcije
+                actions: Statusi
                 actual_usage: Stvarna upotreba
                 archive_status: Status arhive
                 name: Ime
                 sub_campaign: Podkampanje
                 tests_allocated: Dodijeljeni testovi
                 users: Korisnici
-              id: Id
+              id: ID
               name: Naziv podkampanje
               reports: Izvješća
               updated_at: Datum ažuriranja
             header:
-              actions: Akcije
+              actions: Statusi
             index:
               export: Izvoz
               new: Dodavanje
@@ -1253,14 +1258,14 @@ hr:
               completed_user: Korisnici koji su završili
               created_at: Datum izrade
               header:
-                actions: Akcije
+                actions: Statusi
                 actual_usage: Stvarna upotreba
                 archive_status: Status arhive
                 name: Ime
                 sub_campaign: Podkampanje
                 tests_allocated: Dodijeljeni testovi
                 users: Korisnici
-              id: Id
+              id: ID
               name: Naziv podkampanje
               reports: Izvješća
               updated_at: Datum ažuriranja
@@ -1310,7 +1315,7 @@ hr:
           assigned_user: Dodijeljeni korisnici
           completed_user: Korisnici koji su završili
           created_at: Datum izrade
-          id: Id
+          id: ID
           name: Naziv projekta
           number: Broj
           project_admin: Administratori projekta
@@ -1341,7 +1346,7 @@ hr:
           webhook_password: Lozinka
           webhook_username: Korisničko ime
         header:
-          actions: Akcije
+          actions: Statusi
         index:
           export: Izvoz
           new: Dodavanje
@@ -1359,7 +1364,7 @@ hr:
           assigned_user: Dodijeljeni korisnici
           completed_user: Korisnici koji su završili
           created_at: Datum izrade
-          id: Id
+          id: ID
           name: Naziv projekta
           number: Broj
           project_admin: Administratori projekta
@@ -1428,7 +1433,7 @@ hr:
             assessment: Procjena
             client_admins: Klijenti administratori
             created_at: Stvoreno u
-            id: Id
+            id: ID
             name: Ime
             report: Izvješće
             report_bundle: Paket izvješća
@@ -1448,7 +1453,7 @@ hr:
             assessment: Procjena
             client_admins: Klijenti administratori
             created_at: Stvoreno u
-            id: Id
+            id: ID
             name: Ime
             report: Izvješće
             report_bundle: Paket izvješća
@@ -1492,9 +1497,9 @@ hr:
               assessment_type: Vrsta procjene
               title: Statistika
           toggle_status:
-            successfully: Najam klijenata %{name} uspješno je ažuriran.
+            successfully: Klijenti %{name} uspješno je ažuriran.
           update:
-            successfully: Najam klijenata %{name} uspješno je ažuriran.
+            successfully: Klijenti %{name} uspješno je ažuriran.
           url: URL
         toggle_status:
           successfully: Projekt %{name} uspješno je ažuriran.
@@ -1532,12 +1537,12 @@ hr:
             title: Arhiva <strong>%{name}</strong> ?
           enable:
             title: Poništiti arhiviranje <strong>%{name}</strong> ?
-      tenancies: Najam klijenata
+      tenancies: Klijenti
       threesixty_campaign: Kampanja višesmjerne procjene
       toggle_status:
-        successfully: Najam klijenata %{name} uspješno je ažuriran.
+        successfully: Klijenti %{name} uspješno je ažuriran.
       update:
-        successfully: Najam klijenata %{name} uspješno je ažuriran.
+        successfully: Klijenti %{name} uspješno je ažuriran.
     close: Zatvori
     common:
       add: Dodavanje
@@ -1641,13 +1646,13 @@ hr:
         title: Komunikacijski centar
         type: Tip
       list:
-        actions: Akcije
+        actions: Statusi
         assessment_center_group: Grupa centara za procjenu
-        author: Izradio
+        author: Autor projekta
         campaign: Kampanja
         client_name: Klijent
         created_at: Datum izrade
-        creator_first_name: Izradio
+        creator_first_name: Autor projekta
         delivery_rule: Isporuka
         kind: Vrsta komunikacije
         project: Projekt
@@ -1757,7 +1762,7 @@ hr:
     data_reports:
       columns:
         created_at: Stvoreno u
-        created_by: Izradio
+        created_by: Autor projekta
         last_updated_by: Posljednje ažuriranje od strane
         name: Ime
         owner: Vlasnik
@@ -1840,7 +1845,7 @@ hr:
         development_action_translations_title: Izvoz Razvojne akcije Prijevodi
         development_actions_title: Izvozne razvojne akcije
       export_development_action_translations: Prijevodi razvojnih akcija
-      export_development_action_translations_project: Razvoj Akcija Prijevodi na temelju projekta
+      export_development_action_translations_project: Razvoj Status Prijevodi na temelju projekta
       export_development_actions: Razvojne akcije
       export_development_actions_project: Razvojne akcije temeljene na projektu
       export_global_development_actions: Globalne razvojne akcije
@@ -1947,7 +1952,7 @@ hr:
       list:
         active: Aktivan
         created_at: Datum izrade
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum izmjene
       new:
@@ -2010,7 +2015,7 @@ hr:
           ExternalList:
             add: Dodavanje
             table:
-              actions: Akcije
+              actions: Statusi
               jsonpath: JSON put
               type: Tip
               types:
@@ -2054,7 +2059,7 @@ hr:
       list:
         active: Aktivan
         created_at: Datum izrade
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum izmjene
       new:
@@ -2280,7 +2285,7 @@ hr:
         title: Stilovi inovacija
       list:
         created_at: Datum izrade
-        id: Id
+        id: ID
         name: Ime
         position: Pozicija
         updated_at: Datum izmjene
@@ -2313,7 +2318,7 @@ hr:
       list:
         condition: Uvjet
         created_at: Datum izrade
-        id: Id
+        id: ID
         name: Ime
         position: Pozicija
         updated_at: Datum izmjene
@@ -2512,7 +2517,7 @@ hr:
       campaign_templates: Predlošci kampanja
       change_password: Promijeni lozinku
       client_admins: Klijenti administratori
-      clients: Najam klijenata
+      clients: Klijenti
       communication_center: Komunikacijski centar
       dashboard: Nadzorna ploča
       data_reports: Izvješća o podacima
@@ -2569,7 +2574,7 @@ hr:
         active: Aktivan
         created_at: Datum izrade
         dimension_id: ID dimenzije
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum izmjene
         updated_by: Ažurirao
@@ -2630,7 +2635,7 @@ hr:
         title: Zanimanja
       list:
         created_at: Datum izrade
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum izmjene
       new:
@@ -2662,7 +2667,7 @@ hr:
       list:
         condition: Uvjet
         created_at: Datum izrade
-        id: Id
+        id: ID
         name: Ime
         position: Pozicija
         updated_at: Datum izmjene
@@ -2799,12 +2804,12 @@ hr:
         workshop_status_export_success: Izvoz statusa radionice uspješno je zakazan.
     project_participants:
       cancel: Otkazati
-      column_actions: Akcije
+      column_actions: Statusi
       column_campaigns: Kampanje
       column_createdAt: Stvoreno u
       column_created_at: Stvoreno u
       column_email: E-pošta
-      column_id: Id
+      column_id: ID
       column_name: Ime
       delete: Izbrisati
       edit: Urediti
@@ -2911,11 +2916,11 @@ hr:
     project_users:
       cancel: Otkazati
       change_password: Promjena lozinke
-      column_actions: Akcije
+      column_actions: Statusi
       column_campaigns: Kampanje
       column_created_at: Stvoreno u
       column_email: E-pošta
-      column_id: Id
+      column_id: ID
       column_name: Ime
       confirm_delete: Da, izbriši
       confirm_send: Da, pošalji
@@ -3133,13 +3138,13 @@ hr:
         qc_in_progress: QC u tijeku
       bulk_approve_success: "%{sent_for_approval} poslano na odobrenje. %{approved} odobrenih izvješća. %{ignored} izvješća zahtijevaju ručno odobrenje zbog promjena/komentara QC-a."
       columns:
-        actions: Akcije
+        actions: Statusi
         approval_status: Status odobrenja
         approved_by: Odobrio
         campaign_name: Naziv kampanje
-        qc_by: QC Autor
+        qc_by: Autor
         report_name: Naziv izvješća
-        user_email: Korisnička e-pošta
+        user_email: Email adresa korisnika
         user_name: Korisničko ime
       dashboard: Nadzorna ploča
       download: Preuzimanje
@@ -3537,7 +3542,7 @@ hr:
       final_score_updated_successfully: Konačni rezultat uspješno je ažuriran
       formula: Formula
       get_started: Započnite
-      id: Id
+      id: ID
       import:
         factors: Faktori uvozne kampanje
       name: Ime
@@ -3574,7 +3579,7 @@ hr:
       show_weightages: Prikaži težine
       subject: Ispitanik
       subject_list:
-        actions: Akcije
+        actions: Statusi
         bulk_mark_finalized: Skupna oznaka dovršena
         bulk_mark_finalized_confirm: Finalizacijom ocjene za odabrane korisnike generirat će se izvješće koje koristi faktor kampanje za korisnike. Jeste li sigurni da želite nastaviti?
         bulk_mark_not_finalized: Skupna oznaka nije dovršena
@@ -3792,7 +3797,7 @@ hr:
         add: Dodavanje SMS kontakta
       columns:
         created_at: Stvoreno u
-        created_by: Izradio
+        created_by: Autor projekta
         email: E-pošta
         first_name: Ime
         last_name: Prezime
@@ -3837,7 +3842,7 @@ hr:
         send_sms: Pošalji SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Poruka
     smtp_settings:
       authentication: Provjera autentičnosti
@@ -3874,6 +3879,7 @@ hr:
       user_name: Korisničko ime
     stats:
       assessments:
+        active: Aktivan
         columns:
           assessment_name: Naziv procjene
           completed: Završen
@@ -3883,6 +3889,9 @@ hr:
           interrupted: Prekinut
           not_started: Nije pokrenuto
           timed_out: Isteklo je vrijeme
+        count: Broj
+        inactive: Neaktivan
+        percentage: Postotak
         title: Procjene
       title: Statistika
       top_metrics:
@@ -4163,7 +4172,7 @@ hr:
           description: Ova će se poruka prikazati ispitanicima kada se prijave kako bi započeli procjenu ili pregledali svoj popis zadataka
           name: Poruka dobrodošlice
       mail_history:
-        actions: Akcije
+        actions: Statusi
         date: Datum
         download_details: Preuzmite pojedinosti
         emails_sent: Poslane e-pošte
@@ -4177,7 +4186,7 @@ hr:
         report: Izvješće
         title: Upravljanje
       menu:
-        actions: Akcije
+        actions: Statusi
         datasheet:
           title: Podatkovna tablica
         messages:
@@ -4186,7 +4195,7 @@ hr:
           title: Poruke
         participants:
           columns:
-            action: Akcija
+            action: Status
             email: E-pošta
             evaluations_completed: Dovršene evaluacije
             evaluations_received: Primljene evaluacije

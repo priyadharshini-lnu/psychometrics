@@ -425,7 +425,7 @@ id:
         access_reports_at: Akses Laporan di
         access_reports_at_date: Tanggal
         access_reports_at_time: Waktu
-        client_ids: Penyewaan Klien
+        client_ids: Klien Pengguna
         manager_ids: Manajer
         report_ids: Laporan
         user_ids: Pengguna
@@ -459,7 +459,7 @@ id:
           iiht: Penilaian IIHT
           pearson: Penilaian Pearson
           saville: Penilaian Saville
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       assign:
         completed_at: Tanggal Penyelesaian
         statuses:
@@ -476,7 +476,7 @@ id:
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       client:
         applicable_level: Tingkat yang Berlaku
         applicable_levels:
@@ -508,19 +508,19 @@ id:
           partner: Partner
           retail: Retail
           tte: TTE
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
         year: Tahun Klien
       communication:
         created_at: Tanggal Dibuat
         id: ID
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       dimension:
         active: Aktif
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
         owner: Pemilik
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       factor:
         active: Aktif
         created_at: Tanggal Dibuat
@@ -528,7 +528,7 @@ id:
         name: Nama
         parent_id: Ortu
         questions_count: Tidak. Pertanyaan
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       hogan_report_setting:
         load_report: Muat laporan dari Hogan
       innovation_style:
@@ -537,13 +537,13 @@ id:
         description: Deskripsi
         id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       innovation_styles_factor:
         active: Aktif
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       library:
         created_at: Tanggal Dibuat
         description: Deskripsi
@@ -552,7 +552,7 @@ id:
         name: Nama
         owner: Pemilik
         type: Gambar mini
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       license:
         id: ID
         number: Nomor Lisensi
@@ -581,14 +581,14 @@ id:
           manager: Manajer
           member: Pengguna
           project_admin: Admin Proyek
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
         user_access: Akses Pengguna
       norm:
         active: Aktif
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
         updated_by: Diedit oleh
       occupation:
         active: Aktif
@@ -602,20 +602,20 @@ id:
         key_career_tracks: Jalur Karir Utama
         name: Nama
         potential_areas_of_study: Bidang Studi Potensial
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
         work_environment: Lingkungan Kerja
       occupations_factor:
         active: Aktif
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       product:
         active: Aktif
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       question:
         active: Aktif
         assign_to_assessment_ids: Penilaian
@@ -623,15 +623,15 @@ id:
         id: ID
         name: Nama
         owner: Pemilik
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       report:
         created_at: Tanggal Dibuat
         id: ID
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       report_family:
         created_at: Tanggal Dibuat
         id: ID
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       task:
         active: Aktif
         created_at: Tanggal Dibuat
@@ -648,14 +648,14 @@ id:
         planned_completed_at_label: PILIH TANGGAL JATUH TEMPO
         priority: Prioritas
         priority_label: PRIORITAS
-        status: Keadaan
+        status: Status
         status_label: PILIH STATUS
         statuses:
           completed: Selesai
           in_progress: Sedang Berlangsung
           not_started: Belum Dimulai
           overdue: Terlambat
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
         updated_by: Diedit oleh
       threesixty:
         users_result:
@@ -672,8 +672,8 @@ id:
         first_name: Nama depan
         id: ID
         last_name: Nama belakang
-        manage_client_ids: Penyewaan Klien
-        memberships: Penyewaan Klien
+        manage_client_ids: Klien Pengguna
+        memberships: Klien Pengguna
         name: Nama
         password: Kata sandi
         password_confirmation: Konfirmasi kata sandi
@@ -709,7 +709,7 @@ id:
         types:
           anonymous: Pengguna Anonim
           identified: Pengguna yang Teridentifikasi
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       user_form:
         active: Aktif
         created_at: Tanggal Dibuat
@@ -724,11 +724,11 @@ id:
         password: Kata sandi
         password_confirmation: Konfirmasi kata sandi
         role: Peranan
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       users_result:
         assessment_name: Nama Penilaian
         assessment_type: Jenis Penilaian
-        completed_at: Selesai Pada
+        completed_at: Selesai
         completion_reasons:
           time_out_offline: Waktu habis / Offline
           time_out_online: Waktu habis / Online
@@ -736,8 +736,8 @@ id:
         email: Email
         name: Nama
         result_id: ID Hasil
-        started_at: Dimulai Pada
-        status: Keadaan
+        started_at: Dimulai
+        status: Status
         statuses:
           completed: Selesai
           in_progress: Melanjutkan
@@ -899,10 +899,11 @@ id:
     close: Tutup
     details: Rincian
     errors: Kesalahan
-    invalid_job: Pemberitahuan ini sesuai dengan catatan yang dihapus
+    invalid_job: Notifikasi ini sesuai dengan catatan yang dihapus
     mark_as_read: Tandai semua baca
     more: Lebih
-    notifications: Pemberitahuan
+    no_notifications: Tidak ada pemberitahuan
+    notifications: Notifikasi
     results: Hasil
     super_admin:
       errors:
@@ -1157,9 +1158,9 @@ id:
       assessment_center_invites: Undangan Pusat Penilaian
       assessments_and_reports: Penilaian & Laporan
       idp: IDP
-      manage: Urus
+      manage: Kelola
       report_approval: Pengaturan Persetujuan Laporan
-      sequencing: Sekuensing
+      sequencing: Urutan
     report_approval:
       add_settings: Tambahkan Pengaturan
       create_seetings: Membuat Pengaturan
@@ -1540,7 +1541,9 @@ id:
       in_progress: Sedang Berlangsung
       ineligible: Tidak memenuhi syarat
       interrupted: Terputus
+      new: Baru
       not_started: Tidak Dimulai
+      progress: Sedang Berlangsung
       timed_out: Waktu habis
       universal_link: Tautan universal
     ungrouped_assessments_heading: Tidak dikelompokkan
@@ -1607,9 +1610,9 @@ id:
       additional_time: Waktu tambahan
       assessment_center: Pusat Penilaian
       assessment_center_invites: Undangan Pusat Penilaian
-      completed_at: Selesai Pada
+      completed_at: Selesai
       completion_status: Status penyelesaian
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Login terakhir
       manager: Manajer
       modals:
@@ -1625,7 +1628,7 @@ id:
       not_completed_yet: Belum selesai
       not_logged_in_yet: Belum masuk
       not_started_yet: Belum dimulai
-      started_at: Dimulai Pada
+      started_at: Dimulai
       statuses:
         completed: Selesai
         in_progress: Sedang Berlangsung
@@ -1776,7 +1779,7 @@ id:
       action: Tindakan
       active: Aktif
       allow_multiple_responses: Mengizinkan beberapa respons
-      approval_notification_list: Daftar Pengguna Pemberitahuan Persetujuan
+      approval_notification_list: Daftar Pengguna Notifikasi Persetujuan
       approvers_list: Daftar Persetujuan
       assessment: Penilaian
       assessment_name: Nama Penilaian
@@ -1797,7 +1800,7 @@ id:
       first_name: Nama depan
       icon: Ikon
       icon_color: Warna ikon
-      id: Id
+      id: ID
       json:
         answer: Jawab JSON
         external_result: JSON Hasil Eksternal
@@ -1808,7 +1811,7 @@ id:
       linked_assessment: Penilaian Tertaut
       meeting_link: Tautan Rapat
       modified_by: Dimodifikasi oleh
-      modified_date: Tanggal yang Dimodifikasi
+      modified_date: Tanggal Dimodifikasi
       name: Nama
       owner: Pemilik
       package_id: ID Paket
@@ -1818,7 +1821,7 @@ id:
       qc_user_list: Daftar Pengguna QC
       report: Lapor
       report_id: ID Laporan
-      require_scheduling: Memerlukan Penjadwalan
+      require_scheduling: Perlu Penjadwalan
       responses_count: Jumlah Tanggapan
       schedule_time: Jadwal Waktu
       scheduling: Penjadwalan
@@ -1936,6 +1939,8 @@ id:
       timeout: Sesi Anda telah kedaluwarsa, silakan masuk lagi untuk melanjutkan.
       unauthenticated: Anda harus masuk atau mendaftar sebelum melanjutkan.
       unconfirmed: Anda harus mengonfirmasi alamat email Anda sebelum melanjutkan.
+    invalid_captcha: Masukan captcha tidak valid.
+    invalid_security_question: Jawaban pertanyaan keamanan tidak valid.
     invitations:
       edit:
         confirm_password_label: Konfirmasi Kata Sandi
@@ -1974,7 +1979,7 @@ id:
         login: Masuk ke Mercusuar
         sections:
           campaign: 'Kampanye: %{section_name}'
-          client: 'Penyewaan Klien: %{section_name}'
+          client: 'Klien Pengguna: %{section_name}'
           project: 'Proyek: %{section_name}'
         subject: Undangan ke Mercusuar
       password_change:
@@ -2015,6 +2020,25 @@ id:
     omniauth_callbacks:
       failure: Tidak dapat mengautentikasi Anda dari %{kind} karena "%{reason}".
       success: Berhasil diautentikasi dari akun %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Kirim
+        submit_verification_code: Kirimkan kode verifikasi
+        verification_code: Kode verifikasi
+      updated: Kode verifikasi diterima
+    paranoid_verify:
+      code_required: Silakan masukkan kode yang diberikan tim dukungan kami
+    password_expired:
+      change_required: Kata sandi Anda telah kedaluwarsa. Harap perbarui kata sandi Anda.
+      forced_changed: Anda perlu mengatur kata sandi baru untuk akun Anda.
+      password_policy_changed: Kebijakan kata sandi berubah. Harap ubah kata sandi Anda.
+      show:
+        change_my_password: Mengubah kata sandi saya
+        current_password: Kata sandi saat ini
+        new_password: Kata sandi baru
+        new_password_confirmation: Konfirmasi kata sandi baru
+        renew_your_password: Memperbarui kata sandi Anda
+      updated: Kata sandi baru Anda telah disimpan.
     passwords:
       edit:
         instruction: Untuk membuat kata sandi baru, silakan masukkan kata sandi baru Anda di kotak di bawah ini
@@ -2212,6 +2236,8 @@ id:
   errors:
     assessments:
       timed_out: Anda tidak akan dapat mengambil penilaian %{assessment_name} karena waktunya telah habis.
+    equal_to_current_password: Kata sandi baru harus berbeda dari kata sandi saat ini.
+    equal_to_email: Kata sandi baru harus berbeda dari email.
     error: Kesalahan
     error_401: Anda tidak berwenang untuk mengakses sumber daya ini. Silakan masuk.
     error_403: Anda tidak memiliki izin untuk melihat sumber daya ini.
@@ -2224,6 +2250,20 @@ id:
     max_regeneration_limit: Batas regenerasi maksimum terlampaui, hubungi administrasi Anda.
     messages:
       data_report_blank: Laporan Data tidak ada
+      password_complexity:
+        digit:
+          one: Harus ada minimal satu digit angka
+          other: Harus mengandung setidaknya %{count} digit.
+        lower:
+          one: Harus ada minimal satu huruf kecil
+          other: Harus mengandung setidaknya %{count} huruf kecil.
+        symbol:
+          one: Harus ada minimal satu tanda baca atau simbol
+          other: Harus mengandung setidaknya %{count} tanda baca atau simbol.
+        upper:
+          one: Harus mengandung setidaknya satu huruf besar.
+          other: Harus mengandung setidaknya %{count} huruf besar.
+      taken_in_past: Tanggal tidak boleh diatur ke masa lalu.
     module_error: Ada yang salah dengan modul ini, silakan hubungi bagian administrasi.
     module_error_editor: Ada yang salah dengan modul ini, silakan periksa pengaturan modul.
     module_props_error: Ada yang salah dengan modul ini.
@@ -2720,7 +2760,7 @@ id:
       words: Kata
     skill_gap_report:
       title: Laporan Kesenjangan Keterampilan
-    status: Keadaan
+    status: Status
     technical: Teknis
     user_idp_status:
       approved: Disetujui
@@ -3282,7 +3322,7 @@ id:
           partner: Partner
           retail: Retail
           tte: TTE
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
         year: Tahun Klien
       membership:
         role: Peran keanggotaan
@@ -3293,7 +3333,7 @@ id:
         access_reports_at: Akses Laporan di
         access_reports_at_date: Tanggal
         access_reports_at_time: Waktu
-        client_ids: Penyewaan Klien
+        client_ids: Klien Pengguna
         manager_ids: Manajer
         report_ids: Laporan
         user_ids: Pengguna
@@ -3306,8 +3346,8 @@ id:
         first_name: Nama depan
         id: ID
         last_name: Nama belakang
-        manage_client_ids: Penyewaan Klien
-        memberships: Penyewaan Klien
+        manage_client_ids: Klien Pengguna
+        memberships: Klien Pengguna
         name: Nama
         password: Kata sandi
         password_confirmation: Konfirmasi kata sandi
@@ -3336,7 +3376,7 @@ id:
         types:
           anonymous: Pengguna Anonim
           identified: Pengguna yang Teridentifikasi
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       assessment:
         active: Aktif
         categories:
@@ -3367,14 +3407,14 @@ id:
           common: Penilaian TTE
           hogan: Hogan
           saville: Penilaian Saville
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       block:
         active: Aktif
         assign_to_assessment_ids: Penilaian
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       client:
         applicable_level: Tingkat yang Berlaku
         applicable_levels:
@@ -3406,18 +3446,18 @@ id:
           partner: Partner
           retail: Retail
           tte: TTE
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
         year: Tahun Klien
       communication:
         created_at: Tanggal Dibuat
         id: ID
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       dimension:
         active: Aktif
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       factor:
         active: Aktif
         created_at: Tanggal Dibuat
@@ -3425,12 +3465,12 @@ id:
         name: Nama
         parent_id: Ortu
         questions_count: Tidak. Pertanyaan
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       library:
         created_at: Tanggal Dibuat
         id: ID
         type: Gambar mini
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       license:
         id: ID
         number: Nomor Lisensi
@@ -3458,7 +3498,7 @@ id:
           manager: Manajer
           member: Pengguna
           project_admin: Admin Proyek
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
         user_access: Akses Pengguna
       norm:
         active: Aktif
@@ -3482,14 +3522,14 @@ id:
         potential_areas_of_study: Bidang Studi Potensial
         priority: Prioritas
         priority_label: PRIORITAS
-        status: Keadaan
+        status: Status
         status_label: PILIH STATUS
         statuses:
           completed: Selesai
           in_progress: Sedang Berlangsung
           not_started: Belum Dimulai
           overdue: Terlambat
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
         updated_by: Diedit oleh
         work_environment: Lingkungan Kerja
       question:
@@ -3498,13 +3538,13 @@ id:
         created_at: Tanggal Dibuat
         id: ID
         name: Nama
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       regenerate_reports:
         report_ids: Laporan
       report:
         created_at: Tanggal Dibuat
         id: ID
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       user:
         active: Aktif
         created_at: Tanggal Dibuat
@@ -3514,8 +3554,8 @@ id:
         first_name: Nama depan
         id: ID
         last_name: Nama belakang
-        manage_client_ids: Penyewaan Klien
-        memberships: Penyewaan Klien
+        manage_client_ids: Klien Pengguna
+        memberships: Klien Pengguna
         name: Nama
         old_password: Kata Sandi Lama
         password: Kata sandi
@@ -3545,7 +3585,7 @@ id:
         types:
           anonymous: Pengguna Anonim
           identified: Pengguna yang Teridentifikasi
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
       user_form:
         active: Aktif
         created_at: Tanggal Dibuat
@@ -3560,7 +3600,7 @@ id:
         password: Kata sandi
         password_confirmation: Konfirmasi kata sandi
         role: Peranan
-        updated_at: Tanggal yang Dimodifikasi
+        updated_at: Tanggal Dimodifikasi
     required:
       mark: "*"
       text: Diperlukan
@@ -3600,7 +3640,7 @@ id:
       accept: Terima
       checkbox: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami tentang pengumpulan dan pemrosesan informasi pribadi Anda sebagaimana dijelaskan di dalamnya, termasuk transfer internasional atas informasi pribadi Anda.
       checkbox_with_client_link: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami dan pemberitahuan privasi klien kami dan Anda menyetujui pengumpulan dan pemrosesan informasi pribadi Anda seperti yang dijelaskan di dalamnya, termasuk transfer internasional atas informasi pribadi Anda.
-      privacy_notice: Pemberitahuan Privasi
+      privacy_notice: Notifikasi Privasi
       title: Persetujuan untuk Memproses dan Memindahkan Informasi Pribadi
     action: Tindakan
     add: Menambahkan
@@ -3784,7 +3824,7 @@ id:
     yourself: Diri sendiri
   threesixty.accept_privacy_modal:
     checkbox_with_client_link: Dengan mengklik kotak ini, Anda setuju bahwa Anda telah membaca pemberitahuan privasi kami dan pemberitahuan privasi klien kami dan Anda menyetujui pengumpulan dan pemrosesan informasi pribadi Anda seperti yang dijelaskan di dalamnya, termasuk transfer internasional atas informasi pribadi Anda.
-    privacy_notice: Pemberitahuan Privasi
+    privacy_notice: Notifikasi Privasi
   time:
     formats:
       date: "%d/%m/%y"
@@ -3832,7 +3872,7 @@ id:
     modals:
       exports:
         export_sign_in_url: Ekspor dengan URL masuk ajaib
-        include_inactive_users: Ekspor dengan pengguna yang tidak aktif
+        include_inactive_users: Ekspor berikut pengguna yang tidak aktif
         title: Ekspor Pengguna
       import:
         body: Lihat fungsionalitas Ekspor untuk mengekstrak templat yang dapat digunakan untuk Mengimpor di sini.
@@ -3921,7 +3961,7 @@ id:
     actions:
       add: Tambahkan Laporan
       download: Mengunduh
-      generate: Menghasilkan
+      generate: Perbarui
     approval_statuses:
       approved: Disetujui
       change_requested: Perubahan yang Diminta

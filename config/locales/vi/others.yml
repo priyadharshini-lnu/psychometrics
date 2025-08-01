@@ -360,7 +360,7 @@ vi:
         smtp_setting_form:
           attributes:
             test_email_id:
-              invalid: Định dạng Id Email không hợp lệ.
+              invalid: Định dạng ID Email không hợp lệ.
         super_admin_edit:
           attributes:
             email:
@@ -902,6 +902,7 @@ vi:
     invalid_job: Thông báo này tương ứng với bản ghi đã xóa
     mark_as_read: Đánh dấu tất cả đã đọc
     more: Nhiều hơn
+    no_notifications: Không có thông báo
     notifications: Thông báo
     results: Kết quả
     super_admin:
@@ -1530,7 +1531,9 @@ vi:
       in_progress: Đang tiến hành
       ineligible: Không đủ điều kiện
       interrupted: Bị gián đoạn
+      new: Mới
       not_started: Chưa bắt đầu
+      progress: Đang tiến hành
       timed_out: Đã hết thời gian
       universal_link: Liên kết phổ quát
     ungrouped_assessments_heading: Không được nhóm
@@ -1926,6 +1929,8 @@ vi:
       timeout: Phiên của bạn đã hết hạn. Vui lòng đăng nhập lại để tiếp tục.
       unauthenticated: Bạn cần đăng nhập hoặc đăng ký trước khi tiếp tục.
       unconfirmed: Bạn phải xác nhận địa chỉ email của mình trước khi tiếp tục.
+    invalid_captcha: Thông tin nhập vào captcha không hợp lệ.
+    invalid_security_question: Câu trả lời cho câu hỏi bảo mật không hợp lệ.
     invitations:
       edit:
         confirm_password_label: Xác nhận mật khẩu
@@ -2005,6 +2010,25 @@ vi:
     omniauth_callbacks:
       failure: Không thể xác thực bạn từ %{kind} vì "%{reason}".
       success: Đã xác thực thành công từ tài khoản %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Gửi
+        submit_verification_code: Nhập mã xác minh
+        verification_code: Mã xác minh
+      updated: Mã xác minh đã được chấp nhận
+    paranoid_verify:
+      code_required: Vui lòng nhập mã mà đội ngũ hỗ trợ của chúng tôi đã cung cấp.
+    password_expired:
+      change_required: Mật khẩu của bạn đã hết hạn. Vui lòng cập nhật mật khẩu của bạn.
+      forced_changed: Bạn cần thiết lập mật khẩu mới cho tài khoản của mình.
+      password_policy_changed: Chính sách mật khẩu đã được thay đổi. Vui lòng thay đổi mật khẩu của bạn.
+      show:
+        change_my_password: Thay đổi mật khẩu của tôi
+        current_password: Mật khẩu hiện tại
+        new_password: Mật khẩu mới
+        new_password_confirmation: Xác nhận mật khẩu mới
+        renew_your_password: Đổi mật khẩu
+      updated: Mật khẩu mới của bạn đã được lưu.
     passwords:
       edit:
         instruction: Để tạo mật khẩu mới, vui lòng nhập mật khẩu mới của bạn vào các ô bên dưới
@@ -2202,6 +2226,8 @@ vi:
   errors:
     assessments:
       timed_out: Bạn sẽ không thể làm bài đánh giá %{assessment_name} vì thời gian làm bài đã hết.
+    equal_to_current_password: Phải khác với mật khẩu hiện tại.
+    equal_to_email: Phải khác với email.
     error: Lỗi
     error_401: Bạn không được phép truy cập tài nguyên này. Vui lòng đăng nhập.
     error_403: Bạn không có quyền xem tài nguyên này.
@@ -2214,6 +2240,20 @@ vi:
     max_regeneration_limit: Vượt quá giới hạn tái tạo tối đa, hãy liên hệ với ban quản trị của bạn.
     messages:
       data_report_blank: Báo cáo dữ liệu không tồn tại
+      password_complexity:
+        digit:
+          one: Phải chứa ít nhất một chữ số.
+          other: Phải chứa ít nhất 1 ký tự số, 1 ký tự chữ cái ( <x>count</x> )
+        lower:
+          one: Phải chứa ít nhất một chữ cái viết thường.
+          other: Phải chứa ít nhất 1 ký tự đặc biệt ( <x>count</x> ) và chữ thường.
+        symbol:
+          one: Phải chứa ít nhất một dấu câu hoặc ký hiệu.
+          other: 'Phải chứa ít nhất các dấu câu hoặc ký hiệu sau: <x>count</x> '
+        upper:
+          one: Phải chứa ít nhất một chữ cái viết hoa.
+          other: Phải chứa ít nhất 1 ký tự đặc biệt ( <x>count</x> ) và 1 chữ cái viết hoa.
+      taken_in_past: Không được trùng với bất kỳ mật khẩu nào đã sử dụng trước đó.
     module_error: Có lỗi xảy ra với module này, vui lòng liên hệ với ban quản trị.
     module_error_editor: Có lỗi xảy ra với module này, vui lòng kiểm tra cài đặt module.
     module_props_error: Có lỗi xảy ra với mô-đun này.

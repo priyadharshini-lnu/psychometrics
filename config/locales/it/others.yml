@@ -399,7 +399,7 @@ it:
               invalid_header: Intestazione non valida, prendere l'intestazione dall'esportazione
               invalid_reports_header: Intestazione non valida, prendere l'intestazione dal file di esempio
               manager_not_found: 'Riga %{row_number}: il gestore con email %{email} non è presente nella campagna o nel CSV'
-              user_update_failed: Aggiornamento utente fallito per %{email} con l'errore "%{error}"
+              user_update_failed: Aggiorna utente fallito per %{email} con l'errore "%{error}"
             locale:
               inclusion: Localizzazione errata
             name:
@@ -425,12 +425,12 @@ it:
         access_reports_at: Accedi al Rapporto su
         access_reports_at_date: Data
         access_reports_at_time: Tempo
-        client_ids: Locazioni dei clienti
+        client_ids: Clienti
         manager_ids: Dirigenti
-        report_ids: Rapporti
+        report_ids: Report
         user_ids: Utenti
       assessment:
-        active: Attivo
+        active: Attivi
         categories:
           '360': campagna 360
           agile: AGILE
@@ -463,16 +463,16 @@ it:
       assign:
         completed_at: Data di completamento
         statuses:
-          completed: Completato
+          completed: Completati
           in_progress: Il curriculum
           ineligible: Non ammissibile
-          interrupted: Interrotto
+          interrupted: Interrotti
           not_started: Nuovo
           overdue: In ritardo
           timed_out: Timed Out
       block:
-        active: Attivo
-        assign_to_assessment_ids: Valutazioni
+        active: Attivi
+        assign_to_assessment_ids: Assessment
         created_at: Data di creazione
         id: ID
         name: Nome
@@ -497,7 +497,7 @@ it:
         privacy_consent: Consentire il consenso al trattamento dei dati
         project_manager: Responsabile del progetto TTE
         project_manager_id: Responsabile del progetto TTE
-        report_ids: Rapporti
+        report_ids: Report
         strong_password_enabled: Abilita la password forte
         subdomain: Sottodominio
         types:
@@ -515,14 +515,14 @@ it:
         id: ID
         updated_at: Data di modifica
       dimension:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         id: ID
         name: Nome
         owner: Proprietario
         updated_at: Data di modifica
       factor:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         id: ID
         name: Nome
@@ -532,14 +532,14 @@ it:
       hogan_report_setting:
         load_report: Rapporto di carico da Hogan
       innovation_style:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         description: Descrizione
         id: ID
         name: Nome
         updated_at: Data di modifica
       innovation_styles_factor:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         id: ID
         name: Nome
@@ -565,7 +565,7 @@ it:
         unlimited: Illimitato
         used_number: Numero di licenza usato
       membership:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         disabled: Disattivare
         email: Email
@@ -576,22 +576,22 @@ it:
         parent_id: Responsabile diretto
         report_ids: ID rapporto
         roles:
-          campaign_admin: Amministrazione della campagna
+          campaign_admin: Admin della campagna
           client_admin: Amministratore del cliente
-          manager: Direttore
+          manager: Manager
           member: Utente
           project_admin: Progetto Admin
         updated_at: Data di modifica
         user_access: Accesso utente
       norm:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         id: ID
         name: Nome
         updated_at: Data di modifica
         updated_by: A cura di
       occupation:
-        active: Attivo
+        active: Attivi
         bachelors_or_masters_qualification: Qualifica di laurea o master
         created_at: Data di creazione
         description: Descrizione
@@ -605,20 +605,20 @@ it:
         updated_at: Data di modifica
         work_environment: Ambiente di lavoro
       occupations_factor:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         id: ID
         name: Nome
         updated_at: Data di modifica
       product:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         id: ID
         name: Nome
         updated_at: Data di modifica
       question:
-        active: Attivo
-        assign_to_assessment_ids: Valutazioni
+        active: Attivi
+        assign_to_assessment_ids: Assessment
         created_at: Data di creazione
         id: ID
         name: Nome
@@ -633,7 +633,7 @@ it:
         id: ID
         updated_at: Data di modifica
       task:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         description: Descrizione
         description_label: DESCRIZIONE
@@ -651,20 +651,20 @@ it:
         status: Stato
         status_label: SELEZIONARE LO STATO
         statuses:
-          completed: Completato
+          completed: Completati
           in_progress: In corso
-          not_started: Non iniziato
+          not_started: Da iniziare
           overdue: In ritardo
         updated_at: Data di modifica
         updated_by: A cura di
       threesixty:
         users_result:
           statuses:
-            completed: Completato
+            completed: Completati
             in_progress: Il curriculum
             not_started: Nuovo
       user:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         current_password: Password attuale
         disabled: Disattivare
@@ -682,19 +682,19 @@ it:
           admin: Admin
           admins:
             admin: Admin
-            campaign_admin: Amministrazione della campagna
+            campaign_admin: Admin della campagna
             project_admin: Progetto Admin
             regular: Amministratore del cliente
             superadmin: Super Admin
           agile: AGILE
           assessor: Valutatore
           assessor_form: Modulo per il valutatore
-          campaign_admin: Amministrazione della campagna
+          campaign_admin: Admin della campagna
           case_study: Studio di caso
           client_admin: Amministratore del cliente
           hogan: Hogan
           iiht: IIHT
-          manager: Direttore
+          manager: Manager
           meeting: Riunione
           member: Utente
           organisational: Organizzazione
@@ -711,7 +711,7 @@ it:
           identified: Utenti identificati
         updated_at: Data di modifica
       user_form:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         current_password: Password attuale
         disabled: Disattivare
@@ -726,9 +726,9 @@ it:
         role: Ruolo
         updated_at: Data di modifica
       users_result:
-        assessment_name: Nome della valutazione
+        assessment_name: Nome dell’assessment
         assessment_type: Tipo di valutazione
-        completed_at: Completato a
+        completed_at: Completati
         completion_reasons:
           time_out_offline: Time out / Offline
           time_out_online: Time out / Online
@@ -736,13 +736,13 @@ it:
         email: Email
         name: Nome
         result_id: Risultato ID
-        started_at: Iniziato a
+        started_at: Iniziato
         status: Stato
         statuses:
-          completed: Completato
+          completed: Completati
           in_progress: Il curriculum
           ineligible: Non ammissibile
-          interrupted: Interrotto
+          interrupted: Interrotti
           not_started: Nuovo
           timed_out: Importazione temporizzata
     errors:
@@ -801,55 +801,55 @@ it:
     attrs:
       operations:
         add_campaign_reports: Aggiungere i rapporti della campagna
-        assessment_norm_export: Esportazione dei risultati normalizzati
-        assessment_raw_factor_export: Punteggi fattoriali grezzi Esportazione
-        assessment_raw_result_export: Esportazione dei risultati grezzi
-        assessment_scoring_export: Esportazione dei risultati del punteggio
+        assessment_norm_export: Esporta dei risultati normalizzati
+        assessment_raw_factor_export: Punteggi fattoriali grezzi Esporta
+        assessment_raw_result_export: Esporta dei risultati grezzi
+        assessment_scoring_export: Esporta dei risultati del punteggio
         assign_idp_to_users: Assegnare IDP agli utenti
         assign_reports_and_assessments: Assegnare rapporti e valutazioni
         bulk_create_workshop_invites: Inviti massivi al centro di valutazione
         bulk_download_idp_reports: Download in blocco dei rapporti IDP
-        bulk_download_reports: Rapporti scaricati in blocco
+        bulk_download_reports: Report scaricati in blocco
         bulk_download_user_reports: Scaricamento massivo dei rapporti utente
         bulk_regenerate_reports: Rigenerare i rapporti della campagna
         bulk_regenerate_threesixty_reports: Rigenerare trecentosessanta rapporti di soggetto
         bulk_regenerate_user_reports: Rigenerare i rapporti utente
-        bulk_reports: Rapporti di massa
+        bulk_reports: Report di massa
         bulk_rescore_campaign_factors: Fattori della campagna Bulk Rescore
         bulk_update_evaluation_status: Stato di valutazione dell'aggiornamento in blocco
-        compact_completion_status_export: Esportazione dello stato di completamento compatto
-        completion_status_export: Esportazione dello stato di completamento
+        compact_completion_status_export: Esporta dello stato di completamento compatto
+        completion_status_export: Esporta dello stato di completamento
         copy_dimension: Copiare la dimensione
         create_threesixty_campaign: Creare una campagna Threesixty
-        data_report_export: Esportazione di rapporti di dati
+        data_report_export: Esporta di rapporti di dati
         export_admin_with_permissions: Esportare l'amministratore con i permessi
         export_assessment_questions: Domande di valutazione sull'esportazione
         export_campaign_factors: Fattori della campagna di esportazione
-        export_campaign_scorings: Esportazione delle Attività
+        export_campaign_scorings: Esporta delle Campagne
         export_dashboard_as_file: Esporta dashboard come file
-        export_development_action_translations: Azione di sviluppo delle esportazioni Traduzioni
+        export_development_action_translations: Azioni di sviluppo delle esportazioni Traduzioni
         export_development_actions: Azioni di sviluppo delle esportazioni
-        export_dimension_as_json: Esportazione della dimensione JSON
+        export_dimension_as_json: Esporta della dimensione JSON
         export_factor_translations: Traduzioni dei fattori di esportazione
-        export_job_roles_translations: Esportazione di ruoli lavorativi Traduzioni
+        export_job_roles_translations: Esporta di ruoli lavorativi Traduzioni
         export_norm: Norma di esportazione
-        export_occupations: Occupazioni Esportazione
-        export_proficiency_level_translations: Esportazione di traduzioni con livello di competenza
+        export_occupations: Occupazioni Esporta
+        export_proficiency_level_translations: Esporta di traduzioni con livello di competenza
         export_proficiency_levels: Livelli di competenza per l'esportazione
         export_reflection_questions: Esporta domande di riflessione
-        export_report_data: Esportazione dei dati del rapporto
-        export_reports_and_assessments: Esportazione di rapporti e valutazioni
+        export_report_data: Esporta dei dati del rapporto
+        export_reports_and_assessments: Esporta di rapporti e valutazioni
         export_skill_translations: Traduzioni di competenze per l'esportazione
         export_skills: Competenze per l'esportazione
-        export_user_report_events: Esportazione degli eventi del rapporto utente
-        export_users: Esportazione degli utenti della campagna
-        external_assessment_export: Esportazione esterna dei risultati
+        export_user_report_events: Esporta degli eventi del rapporto utente
+        export_users: Esporta degli utenti della campagna
+        external_assessment_export: Esporta esterna dei risultati
         import_accesssheet: Importazione di Accessheet
         import_assessment_questions: Domande di valutazione sull'importazione
         import_assessors: Valutatori di importazione
         import_campaign_factors: Fattori della campagna di importazione
         import_datasheet: Scheda tecnica di importazione
-        import_development_action_translations: Importazione Sviluppo Azione Traduzioni
+        import_development_action_translations: Importazione Sviluppo Azioni Traduzioni
         import_development_actions: Importazione delle azioni di sviluppo
         import_dimension_from_json: Importare una dimensione da JSON
         import_external_campaign_scoring: Importazione del punteggio della campagna esterna
@@ -877,17 +877,17 @@ it:
         rescore_assessment: Valutazione Rescore
         rescore_user_assessment: Valutazione utente Rescore
         send_sms_invites: Invito via SMS
-        super_admin_assessment_norm_export: Esportazione dei risultati della norma Super Admin
-        super_admin_assessment_raw_factor_export: Esportazione dei punteggi dei fattori grezzi di Super Admin
-        super_admin_assessment_raw_result_export: Esportazione dei risultati grezzi di Super Admin
-        super_admin_datasheet_export: Esportazione del foglio dati di Super Admin
-        super_admin_external_assessment_export: Super Admin Esportazione della valutazione esterna
+        super_admin_assessment_norm_export: Esporta dei risultati della norma Super Admin
+        super_admin_assessment_raw_factor_export: Esporta dei punteggi dei fattori grezzi di Super Admin
+        super_admin_assessment_raw_result_export: Esporta dei risultati grezzi di Super Admin
+        super_admin_datasheet_export: Esporta del foglio dati di Super Admin
+        super_admin_external_assessment_export: Super Admin Esporta della valutazione esterna
         threesixty_campaign_export_completion_status: Stato di completamento dell'esportazione della campagna Threesixty
-        threesixty_campaign_export_scores: Esportazione dei punteggi della campagna Threesixty
-        workshop_status_export: Esportazione dello stato dell'Assessment Center
+        threesixty_campaign_export_scores: Esporta dei punteggi della campagna Threesixty
+        workshop_status_export: Esporta dello stato dell'Assessment Center
       statuses:
-        completed: Completato
-        completed_with_errors: Completato con errori
+        completed: Completati
+        completed_with_errors: Completati con errori
         failed: Fallito
         in_progress: In corso
         scheduled: In programma
@@ -900,8 +900,9 @@ it:
     details: Dettagli
     errors: Errori
     invalid_job: Questa notifica corrisponde al record cancellato
-    mark_as_read: Contrassegnare tutte le letture
+    mark_as_read: Segna come già letto
     more: Di più
+    no_notifications: Nessun messaggio
     notifications: Notifiche
     results: Risultati
     super_admin:
@@ -937,7 +938,7 @@ it:
       download_csv: Scarica il CSV
       edit: Modifica
       evaluate: Valutare
-      export: Esportazione
+      export: Esporta
       export_normed: Punteggi fattoriali normalizzati
       export_raw_labels: Crudo (con etichette)
       export_raw_scores: Punteggi grezzi dei fattori
@@ -971,10 +972,10 @@ it:
       unarchived:
         success_message: La valutazione "%{name}" è stata disarchiviata con successo
       view: Vista
-    active: Attivo
-    archived: Archiviato
+    active: Attivi
+    archived: Archiviati
     assessment: Valutazione
-    assessments: Valutazioni
+    assessments: Assessment
     audio_response:
       pause: Pausa
       permission_denied_message: Attivare l'autorizzazione al microfono nel browser per registrare la risposta
@@ -995,18 +996,18 @@ it:
       enable_network_check: Abilita il controllo di rete
       enable_video_check: Abilita il controllo video
       external_settings:
-        hogan_assessment_name: Hogan Nome della valutazione
+        hogan_assessment_name: Hogan Nome dell’assessment
         iiht_assessment_name: Valutazione IIHT Nome
         iiht_schedule_config: Configurazione del programma
-        mettl_assessment_name: Nome della valutazione METTL
-        pearson_assessment_name: Nome della valutazione Pearson
+        mettl_assessment_name: Nome dell’assessment METTL
+        pearson_assessment_name: Nome dell’assessment Pearson
         pearson_norm_id: ID norma Pearson
         saville_assessment_name: Valutazione Saville Nome
-        simulation_assessment_name: Simulazione Nome della valutazione
-        skillvue_assessment_name: Nome della valutazione Skillvue
+        simulation_assessment_name: Simulazione Nome dell’assessment
+        skillvue_assessment_name: Nome dell’assessment Skillvue
       translations_migrated: Traduzione migrata
     create: Creare
-    dashboard: Cruscotto
+    dashboard: Dashboard
     dictation:
       allow_browser_permision: Consentire l'autorizzazione audio del browser per l'utilizzo della dettatura
       autostopping_in: Arresto automatico della dettatura in %{reverseCountdown} secondi
@@ -1090,7 +1091,7 @@ it:
       warning: ATTENZIONE
     pages:
       edit:
-        assets: Attività
+        assets: Campagne
         general_settings: Impostazioni generali
         translations: Traduzioni
     pickgrouprank:
@@ -1115,7 +1116,7 @@ it:
       display_linked_questions: Visualizzazione delle risposte collegate alla domanda attualmente selezionata.
     trash: Rifiuti
     unknown_error: Si è verificato un errore sconosciuto.
-    update: Aggiornamento
+    update: Aggiorna
     upload: Caricare
     video_response:
       device: Consentire
@@ -1147,23 +1148,23 @@ it:
     wait: Attendere
   assessments_reports:
     add_group_form:
-      previous_assessments_required: Valutazioni da eseguire nell'ordine seguente
+      previous_assessments_required: Assessment da eseguire nell'ordine seguente
       previous_group_required: È richiesto un precedente completamento del gruppo
     menu:
       assessment_center: Centro di valutazione
       assessment_center_invites: Inviti al Centro Valutazione
-      assessments_and_reports: Valutazioni e rapporti
+      assessments_and_reports: Assessment e report
       idp: IDP
-      manage: Gestire
+      manage: Gestisci
       report_approval: Impostazioni di approvazione dei rapporti
-      sequencing: Sequenziamento
+      sequencing: Raggruppamento
     report_approval:
       add_settings: Aggiungi impostazione
       create_seetings: Crea impostazioni
     sequencing:
       add_assessment_center: Aggiungi centro di valutazione
       add_group: Aggiungi gruppo
-      assessments: Valutazioni
+      assessments: Assessment
       delete_group: Cancellare il gruppo
       edit_group_name: Modifica del nome del gruppo
       modal:
@@ -1176,7 +1177,7 @@ it:
           title: Cancellare il gruppo
       no_assessments: Trascinare e rilasciare le valutazioni
       no_ungrouped_assessments: Trascinare e rilasciare le valutazioni qui per disaggregarle
-      ungrouped_assessments: Valutazioni non raggruppate
+      ungrouped_assessments: Assessment non raggruppate
   assessors:
     campaigns_list:
       column:
@@ -1282,13 +1283,13 @@ it:
       chrome: https://www.google.com/chrome/
       edge: https://www.microsoft.com/en-us/edge
       firefox: https://www.mozilla.org/en-US/firefox/new/
-      instruction: Scaricare
+      instruction: Scarica
       safari: https://www.apple.com/safari/
     edge: Microsoft Edge
     firefox: Mozilla Firefox
     safari: Apple Safari
     support:
-      instruction: Scaricare e utilizzare uno dei seguenti browser.
+      instruction: Scarica e utilizzare uno dei seguenti browser.
       message: Il browser utilizzato non è supportato da Lighthouse.
     upgrade:
       instruction: Aggiorna ora
@@ -1300,17 +1301,17 @@ it:
     begin: Iniziare le attività
     begin_btn_msg_before_prework: Prima di iniziare la campagna a tempo, è necessario completare le seguenti attività
     begin_campaign_msg: Avviare la campagna prima di effettuare le valutazioni
-    campaigns: Attività
+    campaigns: Campagne
     closed_campaign_message: Questa campagna è chiusa. Non è possibile eseguire alcuna valutazione all'interno di questa campagna.
     code_usage_limit_reached: Limite di utilizzo del codice raggiunto, contattare l'amministratore
     complete_prev: Completare tutte le valutazioni precedenti
     complete_tasks: Prima di intraprendere questa azione, completare le operazioni indicate di seguito.
     continue: Continuare a svolgere i propri compiti
-    dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le Attività.
+    dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le Campagne.
     dashboard_menu:
       bookings: Prenotazioni
-      campaign: Attività
-      change_password: Modifica della password
+      campaign: Campagne
+      change_password: Modifica la password
       development: Sviluppo
       direct_reportees: Collegati
       home: Home
@@ -1318,7 +1319,7 @@ it:
       my_plan: Il mio piano
       profile: Profilo
       profile_details: Dettagli
-      tasks: Attività
+      tasks: Campagne
     details: Dettagli
     edit_evaluation:
       body: Vi informiamo che una volta cliccato su Rivaluta, verrete indirizzati all'inizio del sondaggio, dove potrete modificare le risposte. Le risposte precedenti saranno ancora disponibili, ma potrete modificarle a vostro piacimento. Dopo la modifica, dovrete inviare nuovamente la valutazione per completare il processo.
@@ -1352,8 +1353,8 @@ it:
       single_lang: Questa attività è disponibile solo in %{lang}. Fare clic su "Procedi" per continuare.
       title: Selezionare la lingua
     panels:
-      dashboard: Cruscotto
-      reports: Rapporti
+      dashboard: Dashboard
+      reports: Report
     profile:
       complete_heading: Il Tuo profilo è completo
       complete_profile_label: Completa ora
@@ -1400,9 +1401,9 @@ it:
       reset_participant: Azzeramento di tutti i partecipanti
     allow_msg_proctoring_workshop_activity: Le attività dell'Assessment Center non vengono verificate.
     assessment_center_heading_label: Dettagli della sessione
-    assessments_heading: Le tue Attività
+    assessments_heading: Le tue Campagne
     column:
-      assessment_name: Nome della valutazione
+      assessment_name: Nome dell’assessment
       assessor_form: Modulo per il valutatore
       auto_assign: Assegnazione automatica
       dimension_id: Dimensione ID
@@ -1447,12 +1448,12 @@ it:
         successfully: Contrassegnato correttamente come %{status}.
         title: Contrassegnare in blocco come %{status}?
       import_raw:
-        body: Fare riferimento alla funzionalità Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
+        body: Fare riferimento alla funzionalità Esporta per estrarre un modello che può essere utilizzato per Importare qui.
         success_msg: L'importazione è stata caricata con successo
         title: Importazione dei dati dei risultati grezzi
         upload: Caricare
       import_scoring:
-        body: Fare riferimento alla funzionalità Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
+        body: Fare riferimento alla funzionalità Esporta per estrarre un modello che può essere utilizzato per Importare qui.
         success_msg: L'importazione è stata caricata con successo
         title: Importazione dei dati dei risultati del punteggio
         upload: Caricare
@@ -1483,11 +1484,11 @@ it:
         select_assessor: Selezionare il modulo per la valutazione
         success_msg: Il modulo del valutatore è stato caricato con successo
         title: Modulo di aggiornamento del valutatore
-        update: Aggiornamento
+        update: Aggiorna
       update_content_variation:
         select_schedule: Selezionare la variante di contenuto
         success_msg: La variazione del contenuto della simulazione è stata aggiornata con successo
-        update: Aggiornamento
+        update: Aggiorna
       update_external_config:
         text_placeholder: Configurazione json esterna
         title: Aggiornare la configurazione esterna
@@ -1498,19 +1499,19 @@ it:
       update_mettl_schedule:
         select_schedule: Selezionare il programma
         success_msg: I programmi Mettl sono stati aggiornati con successo
-        update: Aggiornamento
+        update: Aggiorna
       update_norm:
         apply: Applicare questa modifica agli utenti esistenti in questa campagna
         cannot_remove_norm: Non è possibile rimuovere la norma per la valutazione completata.
         select_norm: Selezionare la norma
         success_msg: Le norme sono state aggiornate con successo
-        title: Aggiornamento Norm
-        update: Aggiornamento
+        title: Aggiorna Norm
+        update: Aggiorna
       update_simulation_time_extension:
         success_msg: L'estensione del tempo di simulazione è stata aggiornata con successo
         title: Estensione del tempo
         tooltip: Estensione del tempo come fattore (ad esempio, 1,5 per il 50% di tempo in più)
-        update: Aggiornamento
+        update: Aggiorna
       update_time:
         additional_time: Tempo (min)
         title: Prolungare il tempo
@@ -1525,7 +1526,7 @@ it:
     pearson_variation_form:
       apply_to_existing_users: Applicare questa modifica agli utenti esistenti in questa campagna
       select: Selezionare la variante
-      update: Aggiornamento
+      update: Aggiorna
       update_success: Variazione Pearson aggiornata con successo
     scheduled_successfully: La valutazione è stata programmata con successo
     scheduling:
@@ -1535,8 +1536,10 @@ it:
       completed: Completati
       in_progress: In corso
       ineligible: Non ammissibile
-      interrupted: Interrotto
+      interrupted: Interrotti
+      new: Nuove
       not_started: Da iniziare
+      progress: In corso
       timed_out: Timed Out
       universal_link: Collegamento universale
     ungrouped_assessments_heading: Non raggruppati
@@ -1551,18 +1554,18 @@ it:
         enqueue_message: Il lavoro Add Reports è stato eseguito con successo
         success_message: I rapporti sono stati aggiunti con successo
       bulk_download: Scaricamento in blocco
-      export_data: Esportazione dei dati
+      export_data: Esporta dei dati
     bulk_download:
       error: Il download massivo è limitato a 1000 file di report. La selezione attuale contiene %{count} file di report. Si prega di regolare le date di inizio e fine per ridurre il numero di file di report da scaricare.
     column:
-      assessor_access: Accesso al valutatore
+      assessor_access: Accesso assessor
       auto_assign: Assegnazione automatica
       locales: Località
-      main_report: Rapporto principale
-      report_bundle: Pacchetto di rapporti
-      report_name: Nome del rapporto
+      main_report: Report principale
+      report_bundle: Pacchetto report
+      report_name: Nome del report
       user_access: Accesso utente
-      user_dashboard: Cruscotto utente
+      user_dashboard: Dashboard utente
     form:
       operation: Operazione
       operation_options:
@@ -1596,23 +1599,23 @@ it:
     actions:
       add_manager: Aggiungi manager
       extend_time: Prolungare il tempo
-      search_user: Ricerca utente
+      search_user: Cerca utente
     assessments:
-      progress: Progressi
+      progress: Progresso
     details:
       additional_time: Tempo supplementare
       assessment_center: Centro di valutazione
       assessment_center_invites: Inviti all'Assessment Center
-      completed_at: Completato a
+      completed_at: Completati
       completion_status: Stato di completamento
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Ultimo accesso
-      manager: Direttore
+      manager: Manager
       modals:
         create_hogan_credentials:
-          assessments: 'Valutazioni:'
+          assessments: 'Assessment:'
           confirmation: Immettere l'e-mail indicata di seguito nella casella di testo per aggiungere una nuova credenziale hogan
-          reports: 'Rapporti:'
+          reports: 'Report:'
           successfully: La nuova credenziale hogan per l'utente con email %{email} è stata aggiunta con successo.
           warning: La creazione di una nuova credenziale Hogan rimuoverà le seguenti valutazioni e report associati alla vecchia credenziale Hogan per %{email}
         remove:
@@ -1621,21 +1624,21 @@ it:
       not_completed_yet: Non ancora completato
       not_logged_in_yet: Non è ancora stato effettuato l'accesso
       not_started_yet: Non ancora avviato
-      started_at: Iniziato a
+      started_at: Iniziato
       statuses:
-        completed: Completato
+        completed: Completati
         in_progress: In corso
         ineligible: Non ammissibile
-        interrupted: Interrotto
-        not_started: Non iniziato
+        interrupted: Interrotti
+        not_started: Da iniziare
         timed_out: Timed Out
     modals:
       remove: Si è sicuri di voler rimuovere l'utente con email '%{email}' da questa campagna?
   campaigns:
     assessments_and_reports:
-      assessor_assessments: Valutatore Valutazioni
+      assessor_assessments: Valutatore Assessment
       other_assessments: Altre valutazioni
-      other_assessor_assessments: Altre Valutazioni dell'Assessore
+      other_assessor_assessments: Altre Assessment dell'Assessore
       other_reports: Altri rapporti
     card:
       duration: Durata
@@ -1645,8 +1648,8 @@ it:
   change_password_page:
     old_password: Vecchia password
     password: Password
-    password_confirmation: Conferma della password
-    title: Modifica della password
+    password_confirmation: Conferma password
+    title: Modifica password
     warning_message: 'Importante: la modifica della password comporta la disconnessione.'
   checking_wizard:
     audio_check:
@@ -1668,7 +1671,7 @@ it:
       test_message: è stato un piacere parlare con voi
     network_check:
       continue: Continua
-      download: Scaricare
+      download: Scarica
       please_check_connection: Controllare la connessione a Internet
       processing: Elaborazione
       run_again: Correre di nuovo
@@ -1734,9 +1737,9 @@ it:
       create: Creare
       delete: Cancellare
       done: Fatto
-      download: Scaricare
+      download: Scarica
       edit: Modifica
-      export: Esportazione
+      export: Esporta
       filter: Filtro
       filter_by_tags: Filtrare per tag
       go_back: Indietro
@@ -1753,7 +1756,7 @@ it:
       run: Correre
       save: Salva
       schedule: Programma
-      search: Ricerca
+      search: Cerca
       send: Inviare
       sign_in: Accedi
       start: Inizio
@@ -1761,7 +1764,7 @@ it:
       unarchive: Disarchivio
       unpublish: Non pubblicare
       unresolve: Non risolvere
-      update: Aggiornamento
+      update: Aggiorna
       upload: Caricare
       upload_file: Caricare il file
       verify: Verifica
@@ -1769,19 +1772,19 @@ it:
       view_all_tasks: Visualizza tutti i compiti
       view_detail: Visualizza il dettaglio
     column:
-      action: Azione
-      active: Attivo
+      action: Azioni
+      active: Attivi
       allow_multiple_responses: Consentire risposte multiple
       approval_notification_list: Elenco degli utenti della notifica di approvazione
       approvers_list: Elenco degli approvatori
       assessment: Valutazione
-      assessment_name: Nome della valutazione
-      assessments: Valutazioni
+      assessment_name: Nome dell’assessment
+      assessments: Assessment
       assessor: Valutatore
       category: Categoria
       client: Cliente
       code: Codice
-      created_at: Creato a
+      created_at: Creato il
       created_by: Creato da
       created_date: Data di creazione
       default_language: Lingua predefinita
@@ -1793,27 +1796,27 @@ it:
       first_name: Nome
       icon: Icona
       icon_color: Colore dell'icona
-      id: Id
+      id: ID
       json:
         answer: Risposta JSON
         external_result: Risultato esterno JSON
         scoring: Punteggio JSON
       key: Chiave
       last_name: Cognome
-      linked_activities: Attività collegate
+      linked_activities: Campagne collegate
       linked_assessment: Valutazione collegata
       meeting_link: Collegamento alla riunione
       modified_by: Modificato da
       modified_date: Data di modifica
       name: Nome
       owner: Proprietario
-      package_id: Id pacchetto
+      package_id: ID pacchetto
       poster: Poster
       project: Progetto
       provider: Fornitore
       qc_user_list: Elenco utenti QC
       report: Rapporto
-      report_id: Rapporto Id
+      report_id: Rapporto ID
       require_scheduling: Richiedere la programmazione
       responses_count: Conteggio delle risposte
       schedule_time: Orario di programmazione
@@ -1834,23 +1837,23 @@ it:
     model:
       admins: Amministratori
       assessment: Valutazione
-      assessments: Valutazioni
-      campaigns: Attività
+      assessments: Assessment
+      campaigns: Campagne
       completion_statuses: Stati di completamento
       datasheet: Scheda tecnica
       projects: Progetti
       report: Rapporto
-      reports: Rapporti
+      reports: Report
       scoring: Punteggio
       sms_contact: Contatto SMS
       threesixty_campaign: Punteggi della campagna Threesixty
     status:
-      completed: Completato
+      completed: Completati
       dropped_out: Abbandonato
       in_progress: In corso
       late: In ritardo
       no_show: Non si presenta
-      not_started: Non iniziato
+      not_started: Da iniziare
       not_status: Nessuno stato
       on_time: In tempo
     text:
@@ -1861,14 +1864,14 @@ it:
       continue: Continua
       copied: Copiato negli appunti
       default: Predefinito
-      download: Scaricare
+      download: Scarica
       file: File
       global_import: L'importazione globale?
       minutes: Verbale
       na: N/D
       none: Nessuno
       ok: Ok
-      refer_export_file: Fare riferimento alla funzionalità Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
+      refer_export_file: Fare riferimento alla funzionalità Esporta per estrarre un modello che può essere utilizzato per Importare qui.
       reference_language: Lingua di riferimento
       response: Risposta
       select: Selezionare
@@ -1932,6 +1935,8 @@ it:
       timeout: La sessione è scaduta. Effettuare nuovamente il login per continuare.
       unauthenticated: È necessario effettuare il login o la registrazione prima di continuare.
       unconfirmed: È necessario confermare l'indirizzo e-mail prima di continuare.
+    invalid_captcha: L'inserimento del captcha non era valido.
+    invalid_security_question: La risposta alla domanda di sicurezza non è valida.
     invitations:
       edit:
         confirm_password_label: Conferma la password
@@ -1971,7 +1976,7 @@ it:
         subject: La password di Lighthouse è cambiata
       reset_password_instructions:
         body: 'Ciao %{name}! Qualcuno ha richiesto un link per cambiare la tua password. Puoi farlo attraverso il link qui sotto. '
-        change_password: Modifica della password
+        change_password: Modifica la password
         footer: Se non l'avete richiesto, potete tranquillamente ignorare questa e-mail. La vostra password non cambierà finché non accederete al link di cui sopra e ne creerete una nuova.
         regards: 'Saluti, team Lighthouse '
         subject: Istruzioni per reimpostare la password
@@ -1984,6 +1989,25 @@ it:
     omniauth_callbacks:
       failure: Non è stato possibile autenticarsi da %{kind} perché "%{reason}".
       success: Autenticato con successo dall'account %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Invia
+        submit_verification_code: Invia il codice di verifica
+        verification_code: Codice di verifica
+      updated: Codice di verifica accettato
+    paranoid_verify:
+      code_required: Inserire il codice fornito dal nostro team di assistenza
+    password_expired:
+      change_required: La password è scaduta. Si prega di rinnovare la password.
+      forced_changed: È necessario impostare una nuova password per il proprio account.
+      password_policy_changed: La politica delle password è stata modificata. Si prega di cambiare la password.
+      show:
+        change_my_password: Cambiare la password
+        current_password: Password attuale
+        new_password: Nuova password
+        new_password_confirmation: Confermare la nuova password
+        renew_your_password: Rinnovare la password
+      updated: La nuova password viene salvata.
     passwords:
       edit:
         instruction: Per creare una nuova password, inserire la nuova password nelle caselle sottostanti
@@ -2119,7 +2143,7 @@ it:
         report_exists: L'impostazione di approvazione del rapporto per questo rapporto esiste già.
         validates_admins: Gli amministratori non hanno accesso alla campagna.
       report_families_reports:
-        report_exists: Questo Rapporto è già parte del Pacchetto di rapporti
+        report_exists: Questo Rapporto è già parte del Pacchetto report
       size?: dovrebbe essere inferiore a %{size}
       skill:
         already_added: Skill con lo stesso nome già aggiunta.
@@ -2181,6 +2205,8 @@ it:
   errors:
     assessments:
       timed_out: Non sarà possibile eseguire la valutazione %{assessment_name} perché il tempo è scaduto.
+    equal_to_current_password: deve essere diversa dalla password corrente.
+    equal_to_email: deve essere diverso dall'e-mail.
     error: Errore
     error_401: Non si è autorizzati ad accedere a questa risorsa. Effettua l'accesso.
     error_403: Non si dispone dell'autorizzazione per visualizzare questa risorsa.
@@ -2193,6 +2219,20 @@ it:
     max_regeneration_limit: Superato il limite massimo di rigenerazione, contattare l'amministrazione.
     messages:
       data_report_blank: Il rapporto dati non esiste
+      password_complexity:
+        digit:
+          one: deve contenere almeno una cifra
+          other: deve contenere almeno <x>count</x> cifre
+        lower:
+          one: deve contenere almeno una lettera minuscola
+          other: deve contenere almeno <x>count</x> lettere minuscole
+        symbol:
+          one: deve contenere almeno un segno di punteggiatura o un simbolo
+          other: deve contenere almeno <x>count</x> segni di punteggiatura o simboli
+        upper:
+          one: deve contenere almeno una lettera maiuscola
+          other: deve contenere almeno <x>count</x> lettere maiuscole
+      taken_in_past: non deve essere uguale a una password usata in precedenza.
     module_error: Qualcosa è andato storto con questo modulo, si prega di contattare l'amministrazione.
     module_error_editor: Qualcosa è andato storto con questo modulo, controllare le impostazioni del modulo.
     module_props_error: Qualcosa è andato storto con questo modulo.
@@ -2247,7 +2287,7 @@ it:
       create_success: Il gruppo è stato creato con successo
       update_success: Il gruppo è stato aggiornato con successo
     availability:
-      add_new_availability: Aggiungere una nuova disponibilità
+      add_new_availability: Aggiungi una nuova disponibilità
       create_success: La disponibilità è stata creata con successo.
       remove_confirm:
         content: Siete sicuri di voler rimuovere la disponibilità?
@@ -2341,12 +2381,12 @@ it:
             details: Utenti della campagna
             scheduled: L'esportazione dell'utente è stata pianificata con successo.
           export_reports_and_assessments:
-            details: Rapporti e valutazioni
+            details: Report e valutazioni
         completion_statuses:
-          completed: Completato
+          completed: Completati
           in_progress: In corso
-          not_started: Non iniziato
-    change_password: Modifica della password
+          not_started: Da iniziare
+    change_password: Modifica la password
     clients:
       actions:
         create:
@@ -2371,7 +2411,7 @@ it:
     login: Accesso
     maintenance:
       notification: Il Lighthouse sarà disattivato per manutenzione programmata tra 60 secondi
-    manage: Gestire
+    manage: Azioni
     'no': 'false'
     passwordSetting:
       update_success: Le impostazioni di sicurezza sono state aggiornate con successo
@@ -2411,7 +2451,7 @@ it:
     test_webhook:
       create_success: Test del webhook riuscito.
       success: Il successo
-    update: Aggiornamento
+    update: Aggiorna
     upload: Caricare
     workshop_invited_subjects:
       statuses:
@@ -2449,10 +2489,10 @@ it:
     input_duration:
       max_duration: La durata massima è %{duration}
     schedule_availability:
-      copy_to_all: Copia a tutti
+      copy_to_all: Copia per tutti
       end_date: Data di fine
       from: Da
-      new_schedule: Aggiungere un nuovo programma
+      new_schedule: Crea un nuovo appuntamento
       new_schedule_description: L'ora di inizio deve essere precedente all'ora di fine
       no_slots: Nessuna slot aggiunta
       required_error: non può essere vuoto
@@ -2499,11 +2539,11 @@ it:
       action_public: 'false'
       add_development_action: Aggiungi azione di sviluppo
       all: Tutti
-      approved: Approvato
+      approved: Approvati
       board_view:
-        completed: Completato
+        completed: Completati
         in_progress: In corso
-        not_started: Non iniziato
+        not_started: Da iniziare
       completion: Completamento
       create_my_own: Creare il mio personale
       date_range: Data di inizio - Data di fine
@@ -2556,7 +2596,7 @@ it:
       skill_column_header: Competenza
       skill_gap_report: Report sul Divario di Competenze
     list: Lista
-    manage_plan: Gestisci piano
+    manage_plan: Gestire piano
     mark_as_complete: Contrassegna come completato
     mark_as_incomplete: Contrassegna come incompleto
     my_plan:
@@ -2593,7 +2633,7 @@ it:
             title: Competenza
           c3:
             content: Questa sezione include le tue azioni di sviluppo basate sul modello di apprendimento 70-20-10 elencato di seguito. Si consiglia di selezionare una combinazione di ciascuno dei tre elementi per garantire un approccio di apprendimento e sviluppo variegato.
-            title: Attività
+            title: Campagne
           c4:
             content: Assicurati che le tue tempistiche siano realistiche in base a quando l'obiettivo può essere completato. Modificale quando e se appropriato.
             title: Tempistica
@@ -2657,8 +2697,8 @@ it:
         behavioral: Comportamentale
         technical: Tecnico
       statuses:
-        approved: Rivisto e Approvato
-        completed: Completato
+        approved: Rivisto e Approvati
+        completed: Completati
         draft: Bozza
         not_reviewed: Non Rivisto
         pending_approval: In Revisione
@@ -2698,11 +2738,11 @@ it:
     status: Stato
     technical: Tecnica
     user_idp_status:
-      approved: Approvato
+      approved: Approvati
       completed: Finito
       draft: Bozza
       in_progress: In corso
-      not_started: Non iniziato
+      not_started: Da iniziare
       pending_approval: In attesa
       rejected: Respinto
     users: Utenti
@@ -2802,7 +2842,7 @@ it:
     zh-Hant: Cinese tradizionale
     zh-TW: Cinese (Taiwan)
   license_usage:
-    active: Attivo
+    active: Attivi
     campaign_name: Nome della campagna
     inactive: Inattivo
     status_updated_at: Ultimo aggiornamento di stato
@@ -2916,7 +2956,7 @@ it:
     add_field: Aggiungi campo
     add_photo: Aggiungi foto
     age: Età
-    change_password: Modifica della password
+    change_password: Modifica la password
     change_photo: Cambia foto
     email: Email
     female: Donna
@@ -2935,7 +2975,7 @@ it:
     success_update: Il profilo è stato salvato con successo
     timezone: Fuso orario
     title: Il mio profilo
-    update: Aggiornamento
+    update: Aggiorna
     update_required: Sono necessari aggiornamenti del profilo
   profiles:
     edit:
@@ -2972,15 +3012,15 @@ it:
       updated_text: testo aggiornato
     tabs:
       all: Tutti
-      approved: Approvato
-      my_tasks: I miei compiti
+      approved: Approvati
+      my_tasks: Le mie attività
   report_bundles:
     actions:
       remove:
         confirm_message: Si è sicuri di voler eliminare il bundle dei report "%{name}"?
         confirm_title: Conferma richiesta
         success_message: Il bundle %{name} è stato cancellato
-    report_bundle: Pacchetto di rapporti
+    report_bundle: Pacchetto report
     report_bundles: Pacchetti di rapporti
     reports:
       actions:
@@ -2998,7 +3038,7 @@ it:
       copy:
         success_message: Il rapporto "%{name}" è stato copiato con successo.
       details: Dettagli
-      download: Scarica il rapporto
+      download: Scarica il report
       download_csv: Scarica il CSV
       edit: Modifica
       evaluate: Valutare
@@ -3015,10 +3055,10 @@ it:
         success_message: Il report %{name} è stato ripristinato con successo
       unarchived:
         success_message: Il rapporto %{name} è stato disarchiviato con successo
-      update_language: Aggiornamento della lingua
-      view: Visualizza il rapporto
-    active: Attivo
-    archived: Archiviato
+      update_language: Aggiorna della lingua
+      view: Visualizza il report
+    active: Attivi
+    archived: Archiviati
     builder:
       graph:
         properties:
@@ -3056,7 +3096,7 @@ it:
         saville_report_id: ID rapporto Saville
       other_available_languages: Altre lingue disponibili
     create: Creare
-    dashboard: Cruscotto
+    dashboard: Dashboard
     drawer:
       title: Dettagli del rapporto
     fields:
@@ -3162,7 +3202,7 @@ it:
         statistic: Statistica
         value: Valore
       three_sixty_report_summary:
-        completed: Completato
+        completed: Completati
         footnote: "* Escluso a causa del requisito della soglia minima"
         invited: Invitato
         relationships: Relazioni
@@ -3171,17 +3211,17 @@ it:
         no_results: Nessun video registrato
     pages:
       edit:
-        assets: Attività
+        assets: Campagne
         general_settings: Impostazioni generali
         translations: Traduzioni
     report: Rapporto
-    reports: Rapporti
+    reports: Report
     reset: Reset
     show:
-      export_pdf: Esportazione in PDF
+      export_pdf: Esporta in PDF
       header: Rapporto
     statuses:
-      approved: Approvato
+      approved: Approvati
       available: Disponibile
       denied: Negato
       incomplete: Incompleto
@@ -3189,12 +3229,12 @@ it:
       on_hold: In attesa
       released: Rilasciato
     trash: Rifiuti
-    update: Aggiornamento
+    update: Aggiorna
     upload: Caricare
   reset_password_modal:
     fields:
       automatically_generate_password: Generazione automatica della password
-      change_password_on_login: Modifica della password all'accesso
+      change_password_on_login: Modifica la password all'accesso
       login_link: Collegamento di accesso
       new_password: Nuova password
       password_placeholder: Inserire la password
@@ -3246,7 +3286,7 @@ it:
         privacy_consent: Consentire il consenso al trattamento dei dati
         project_manager: Responsabile del progetto TTE
         project_manager_id: Responsabile del progetto TTE
-        report_ids: Rapporti
+        report_ids: Report
         strong_password_enabled: Abilita la password forte
         subdomain: Sottodominio
         types:
@@ -3268,12 +3308,12 @@ it:
         access_reports_at: Accedi al Rapporto su
         access_reports_at_date: Data
         access_reports_at_time: Tempo
-        client_ids: Locazioni dei clienti
+        client_ids: Clienti
         manager_ids: Dirigenti
-        report_ids: Rapporti
+        report_ids: Report
         user_ids: Utenti
       administrator:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         current_password: Password attuale
         disabled: Disattivare
@@ -3298,7 +3338,7 @@ it:
           case_study: Studio di caso
           client_admin: Amministratore del cliente
           hogan: Hogan
-          manager: Direttore
+          manager: Manager
           member: Utente
           organisational: Organizzazione
           project_admin: Progetto Admin
@@ -3313,7 +3353,7 @@ it:
           identified: Utenti identificati
         updated_at: Data di modifica
       assessment:
-        active: Attivo
+        active: Attivi
         categories:
           '360': campagna 360
           agile: AGILE
@@ -3331,10 +3371,10 @@ it:
         id: ID
         name: Nome
         statuses:
-          completed: Completato
+          completed: Completati
           finished: finito
           in_progress: Il curriculum
-          interrupted: Interrotto
+          interrupted: Interrotti
           not_started: Nuovo
           overdue: In ritardo
         timing: Tempistica
@@ -3344,8 +3384,8 @@ it:
           saville: Valutazione Saville
         updated_at: Data di modifica
       block:
-        active: Attivo
-        assign_to_assessment_ids: Valutazioni
+        active: Attivi
+        assign_to_assessment_ids: Assessment
         created_at: Data di creazione
         id: ID
         name: Nome
@@ -3370,7 +3410,7 @@ it:
         privacy_consent: Consentire il consenso al trattamento dei dati
         project_manager: Responsabile del progetto TTE
         project_manager_id: Responsabile del progetto TTE
-        report_ids: Rapporti
+        report_ids: Report
         strong_password_enabled: Abilita la password forte
         subdomain: Sottodominio
         types:
@@ -3388,13 +3428,13 @@ it:
         id: ID
         updated_at: Data di modifica
       dimension:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         id: ID
         name: Nome
         updated_at: Data di modifica
       factor:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         id: ID
         name: Nome
@@ -3417,7 +3457,7 @@ it:
         unlimited: Illimitato
         used_number: Numero di licenza usato
       memebrship:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         disabled: Disattivare
         email: Email
@@ -3428,15 +3468,15 @@ it:
         parent_id: Responsabile diretto
         report_ids: ID rapporto
         roles:
-          campaign_admin: Amministrazione della campagna
+          campaign_admin: Admin della campagna
           client_admin: Amministratore del cliente
-          manager: Direttore
+          manager: Manager
           member: Utente
           project_admin: Progetto Admin
         updated_at: Data di modifica
         user_access: Accesso utente
       norm:
-        active: Attivo
+        active: Attivi
         bachelors_or_masters_qualification: Qualifica di laurea o master
         created_at: Data di creazione
         description: Descrizione
@@ -3460,28 +3500,28 @@ it:
         status: Stato
         status_label: SELEZIONARE LO STATO
         statuses:
-          completed: Completato
+          completed: Completati
           in_progress: In corso
-          not_started: Non iniziato
+          not_started: Da iniziare
           overdue: In ritardo
         updated_at: Data di modifica
         updated_by: A cura di
         work_environment: Ambiente di lavoro
       question:
-        active: Attivo
-        assign_to_assessment_ids: Valutazioni
+        active: Attivi
+        assign_to_assessment_ids: Assessment
         created_at: Data di creazione
         id: ID
         name: Nome
         updated_at: Data di modifica
       regenerate_reports:
-        report_ids: Rapporti
+        report_ids: Report
       report:
         created_at: Data di creazione
         id: ID
         updated_at: Data di modifica
       user:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         current_password: Password attuale
         disabled: Disattivare
@@ -3507,7 +3547,7 @@ it:
           case_study: Studio di caso
           client_admin: Amministratore del cliente
           hogan: Hogan
-          manager: Direttore
+          manager: Manager
           member: Utente
           organisational: Organizzazione
           project_admin: Progetto Admin
@@ -3522,7 +3562,7 @@ it:
           identified: Utenti identificati
         updated_at: Data di modifica
       user_form:
-        active: Attivo
+        active: Attivi
         created_at: Data di creazione
         current_password: Password attuale
         disabled: Disattivare
@@ -3542,11 +3582,11 @@ it:
     'yes': Sì
   subjects:
     approval_statuses:
-      approved: Approvato
+      approved: Approvati
       denied: Negato
       waiting: Necessità di approvazione
     report_approval_status:
-      approved: Approvato
+      approved: Approvati
       denied: Negato
       waiting: In attesa
     report_release_status:
@@ -3554,7 +3594,7 @@ it:
       released: Rilasciato
       waiting: In attesa
     report_statuses:
-      approved: Approvato
+      approved: Approvati
       available: Disponibile
       denied: Negato
       incomplete: Incompleto
@@ -3564,7 +3604,7 @@ it:
       prepared: Fatto
       released: Rilasciato
     statuses:
-      completed: Completato
+      completed: Completati
       declined: Declinato
       denied: Negato
       done: Fatto
@@ -3577,7 +3617,7 @@ it:
       checkbox_with_client_link: Facendo clic su questa casella, l'utente accetta di aver letto la nostra informativa sulla privacy e l'informativa sulla privacy del nostro cliente e acconsente alla raccolta e all'elaborazione dei suoi dati personali come descritto in esse, compreso il trasferimento internazionale dei suoi dati personali.
       privacy_notice: Informativa sulla privacy
       title: Consenso al trattamento e al trasferimento dei dati personali
-    action: Azione
+    action: Azioni
     add: Aggiungi
     and: E
     approve: Approvare
@@ -3586,7 +3626,7 @@ it:
     approve_evaluations: Approvare le valutazioni
     approve_nominations: Approvare le nomine
     approve_reports: Approvare i rapporti
-    approved: Approvato
+    approved: Approvati
     approving_mail_sent: La posta per l'approvazione della candidatura è stata inviata ai dirigenti
     as_my: come il mio
     assessment: Valutazione
@@ -3597,7 +3637,7 @@ it:
       message: Una volta visualizzato il rapporto, %{pronoun_or_name} non potrà ricevere ulteriori valutazioni
       title: Siete sicuri di voler visualizzare il rapporto?
     closed_campaign_message: Questa campagna 360 è chiusa. Non è possibile nominare o valutare nessuno per questa campagna.
-    completed: Completato
+    completed: Completati
     confirm: Sei sicuro?
     confirmation_for_nomination_removal: È sicuro di voler rimuovere la nomina?
     confirmation_required: Richiesta di conferma
@@ -3611,8 +3651,8 @@ it:
     deny: Negare
     deny_all: Rifiuta tutto
     deny_all_successful: Negate tutte le candidature
-    download_pdf: Scaricare PDF
-    download_report: Scarica il rapporto
+    download_pdf: Scarica PDF
+    download_report: Scarica il report
     download_reports: Scarica i rapporti
     edit_user: Modifica utente
     email_approve_request: Richiesta di approvazione via e-mail
@@ -3625,9 +3665,9 @@ it:
     evaluation_closed_nomination_message: Non è possibile candidarsi per questo argomento perché la valutazione è chiusa per questo argomento
     evaluation_help_modal:
       title: Aiuto alla valutazione
-    evaluations: Valutazioni
+    evaluations: Assessment
     evaluator: Valutatore
-    export_pdf: Esportazione PDF
+    export_pdf: Esporta PDF
     first_name: Nome
     first_name_error: Inserire il nome
     help: Aiuto
@@ -3639,7 +3679,7 @@ it:
       statuses:
         success: Il successo
         undelivered: Non consegnato
-    more_info_evaluation_label: Ulteriori informazioni - Valutazioni
+    more_info_evaluation_label: Ulteriori informazioni - Assessment
     more_info_nomination_label: Ulteriori informazioni - Nomine
     my_projects: I miei progetti
     name_label: Nome
@@ -3688,7 +3728,7 @@ it:
     participant_list:
       actions:
         approve_report: Approvare il rapporto
-        download_report: Scarica il rapporto
+        download_report: Scarica il report
         edit: Modifica
         hold_report: Rapporto di attesa
         login: Accesso
@@ -3701,7 +3741,7 @@ it:
         remove_subject: Rimuovere l'oggetto
         reset_password: Reimpostare la password
         unmark_as_done: Deselezionare come fatto
-        view_report: Visualizza il rapporto
+        view_report: Visualizza il report
         view_responses: Visualizza le risposte
       confirmation_messages:
         approve_report: È sicuro di voler approvare il rapporto?
@@ -3734,7 +3774,7 @@ it:
     remind_mail_sent: Promemoria inviati ai valutatori che non hanno completato la valutazione
     report_for: Rapporto per
     report_generation_in_progress: Il rapporto è in fase di generazione e vi informeremo quando sarà pronto.
-    reports: Rapporti
+    reports: Report
     reports_help_modal:
       title: Aiuto per i rapporti
     reset_campaign_confirmation: Immettere il nome della campagna attuale indicato di seguito nella casella di testo per resettare tutti i partecipanti
@@ -3748,7 +3788,7 @@ it:
     subject: Oggetto
     submit: Invia
     timed_out: Timed Out
-    total_progress: Progressi totali
+    total_progress: Progresso totali
     user_name_input_placeholder: digitare il nome o l'e-mail...
     validation_errors: Errori di convalida
     view_my_report: Visualizza il mio rapporto
@@ -3779,7 +3819,7 @@ it:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Attivo
+    active: Attivi
     allow_multiple_respones: Consentire agli utenti di inviare risposte multiple
     png: PNG
     regenerate_link: Link rigenerato
@@ -3806,11 +3846,11 @@ it:
         skip_existing: Salta l'utente esistente
     modals:
       exports:
-        export_sign_in_url: Esportazione con URL di accesso magico
-        include_inactive_users: Esportazione con utenti inattivi
-        title: Esportazione di utenti
+        export_sign_in_url: Esporta con URL di accesso magico
+        include_inactive_users: Esporta con utenti inattivi
+        title: Esporta utenti
       import:
-        body: Fare riferimento alla funzionalità Esportazione per estrarre un modello che può essere utilizzato per Importare qui.
+        body: Fare riferimento alla funzionalità Esporta per estrarre un modello che può essere utilizzato per Importare qui.
         imported_reports: I rapporti e le valutazioni sono stati importati
         imported_users: 'Il numero di utenti importati: %{number}'
         success_msg: Il file caricato è stato messo in coda per l'importazione. Controllare lo stato nelle notifiche
@@ -3821,10 +3861,10 @@ it:
         title: Assegnare rapporti e valutazioni
     toolbar:
       bulk_download_idp_reports: Download in blocco dei rapporti IDP
-      export: Esportazione di utenti
+      export: Esporta utenti
       export_compact_completion_status: Compatto
       export_detailed_completion_status: Dettagliato
-      export_reports_and_assessments: Esportazione di rapporti e valutazioni
+      export_reports_and_assessments: Esporta di rapporti e valutazioni
       import: Importazione di utenti
       import_reports: Importazione di rapporti e valutazioni
   user_assessment:
@@ -3865,44 +3905,44 @@ it:
         title: Inviare un evento Webhook di prova
     normalize_factor_scores:
       no_scoring_data: La normalizzazione dei punteggi dei fattori non può essere completata in quanto non sono disponibili dati di punteggio.
-    progress_label: Progressi nella valutazione
+    progress_label: Progresso nella valutazione
     redirect: Verrai reindirizzato a un sito esterno per questa valutazione. Fare clic su continua se si desidera avviare la valutazione.
     status:
-      completed: Completato
+      completed: Completati
       in_progress: In corso
       ineligible: Non ammissibile
-      interrupted: Interrotto
-      not_started: Non iniziato
+      interrupted: Interrotti
+      not_started: Da iniziare
       timed_out: Timed Out
     statuses:
       evaluator_nomination_status:
-        completed: Completato
+        completed: Completati
         declined: Declinato
         waiting: In attesa
       manager_evaluation_status:
-        approved: Approvato
+        approved: Approvati
         denied: Negato
         waiting: In attesa
       manager_nomination_status:
-        approved: Approvato
-        completed: Completato
+        approved: Approvati
+        completed: Completati
         declined: Declinato
         denied: Negato
         waiting: In attesa
     timer_title:
       assessment: Valutazione
-      campaign: Attività
+      campaign: Campagne
   user_reports:
     actions:
       add: Aggiungi rapporto
-      download: Scaricare
+      download: Scarica
       generate: Generare
     approval_statuses:
-      approved: Approvato
+      approved: Approvati
       change_requested: Modifica richiesta
       not_ready: Non pronto
       pending_qc: In attesa del CQ
-      qc_completed: CQ Completato
+      qc_completed: CQ Completati
       qc_in_progress: CQ in corso
     messages:
       async_generation: La generazione del rapporto è in corso e l'utente riceverà una notifica una volta generato il rapporto.
@@ -3950,7 +3990,7 @@ it:
     admins: Amministratori
     create_global_assessor: Creare un valutatore globale
     create_superadmin: Creare un super amministratore
-    dashboard: Cruscotto
+    dashboard: Dashboard
     drawer:
       link: Collegamento
       role: Ruolo
@@ -3958,7 +3998,7 @@ it:
     global_assessors: Valutatori globali
     password_change_success: La password è stata modificata con successo. Si prega di effettuare il login con la nuova password.
     roles:
-      campaign_admin: Amministrazione della campagna
+      campaign_admin: Admin della campagna
       campaign_assessor: Valutatore della campagna
       campaign_user: Utente della campagna
       client_admin: Amministratore del cliente
