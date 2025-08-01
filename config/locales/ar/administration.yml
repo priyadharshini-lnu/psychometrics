@@ -3854,8 +3854,6 @@ ar:
         send_sms: Send SMS
     sms_records:
       columns:
-        id: ID
-        message: Message
         id: المعرف
         message: الرسالة
     smtp_settings:
@@ -3882,9 +3880,6 @@ ar:
       send_test_email: Send Test Email
       smtp: SMTP
       test_email_modal:
-        input_hint: Your email setting will not saved until test email was sent successfully.
-        input_placeholder: Test Email ID
-        title: Test Email ID
         input_hint: لن يتم حفظ إعداد البريد الإلكتروني الخاص بك حتى يتم إرسال البريد الإلكتروني الاختباري بنجاح.
         input_placeholder: معرف البريد الإلكتروني الاختباري
         title: معرف البريد الإلكتروني الاختباري
