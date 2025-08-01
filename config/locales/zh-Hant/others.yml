@@ -902,6 +902,7 @@ zh-Hant:
     invalid_job: 此通知對應已刪除的記錄
     mark_as_read: 標記所有讀取
     more: 更多資訊
+    no_notifications: 沒有通知
     notifications: 通知
     results: 結果
     super_admin:
@@ -1536,7 +1537,9 @@ zh-Hant:
       in_progress: 進行中
       ineligible: 不符合資格
       interrupted: 中斷
+      new: 新
       not_started: 尚未開始
+      progress: 進行中
       timed_out: 超時
       universal_link: 通用連結
     ungrouped_assessments_heading: 未分類
@@ -1605,7 +1608,7 @@ zh-Hant:
       assessment_center_invites: 評估中心邀請
       completed_at: 完成於
       completion_status: 完成狀態
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: 最後一次登入
       manager: 經理
       modals:
@@ -1932,6 +1935,8 @@ zh-Hant:
       timeout: 您的會話已過期，請重新登入以繼續。
       unauthenticated: 您需要登入或註冊後才能繼續。
       unconfirmed: 您必須先確認電子郵件地址，才能繼續。
+    invalid_captcha: 驗證碼輸入無效。
+    invalid_security_question: 安全問題答案無效。
     invitations:
       edit:
         confirm_password_label: 確認密碼
@@ -1988,6 +1993,25 @@ zh-Hant:
     omniauth_callbacks:
       failure: 因為「%{reason}」，無法從 %{kind} 驗證您的身份。
       success: 從 %{kind} 帳戶成功驗證。
+    paranoid_verification_code:
+      show:
+        submit: 提交
+        submit_verification_code: 提交驗證碼
+        verification_code: 驗證碼
+      updated: 驗證碼已接受
+    paranoid_verify:
+      code_required: 請輸入支援團隊提供的代碼
+    password_expired:
+      change_required: 您的密碼已過期。請更新您的密碼。
+      forced_changed: 您需要為帳戶設定新密碼。
+      password_policy_changed: 密碼政策已變更。請變更您的密碼。
+      show:
+        change_my_password: 變更我的密碼
+        current_password: 目前的密碼
+        new_password: 新密碼
+        new_password_confirmation: 確認新密碼
+        renew_your_password: 更新您的密碼
+      updated: 您的新密碼已儲存。
     passwords:
       edit:
         instruction: 若要建立新密碼，請在下列方塊中輸入您的新密碼
@@ -2185,6 +2209,8 @@ zh-Hant:
   errors:
     assessments:
       timed_out: 您將無法參加 %{assessment_name} 評估，因為它已超時。
+    equal_to_current_password: 必須與目前的密碼不同。
+    equal_to_email: 必須與電子郵件不同。
     error: 錯誤
     error_401: 您無權訪問此資源。請登錄。
     error_403: 您沒有查看此資源的許可權。
@@ -2197,6 +2223,20 @@ zh-Hant:
     max_regeneration_limit: 超出最大再生限制，請聯絡您的管理人員。
     messages:
       data_report_blank: 資料報告不存在
+      password_complexity:
+        digit:
+          one: 必須至少包含一位數
+          other: 必須至少包含<x>count</x> 位數
+        lower:
+          one: 必須包含至少一個小寫字母
+          other: 必須至少包含<x>count</x> 小寫字母
+        symbol:
+          one: 必須包含至少一個標點符號或符號
+          other: 必須至少包含<x>count</x> 標點符號或符號
+        upper:
+          one: 必須至少包含一個大寫字母
+          other: 必須至少包含<x>count</x> 大寫字母
+      taken_in_past: 不得與之前使用的密碼相同。
     module_error: 此模組出錯，請聯絡管理員。
     module_error_editor: 此模組出錯，請檢查模組設定。
     module_props_error: 這個模組出了問題。

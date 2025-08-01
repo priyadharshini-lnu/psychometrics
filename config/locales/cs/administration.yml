@@ -4,8 +4,8 @@ cs:
     actions: Akce
     active_record_audits:
       action: Akce
-      audit_id: Id auditu
-      auditable_id: Id záznamu
+      audit_id: ID auditu
+      auditable_id: ID záznamu
       auditable_type: Typ záznamu
       audited_changes: Auditované změny
       new_diff:
@@ -79,7 +79,7 @@ cs:
           actions: Akce
           created_at: Vytvořeno v
           email: E-mail
-          id: Id
+          id: ID
           name: Název
         header:
           add_admin: Přidat správce
@@ -549,7 +549,7 @@ cs:
         reset_successfully: Vyhodnocení resetování předmětu s e-mailem "%{subjectEmail}" proběhlo úspěšně.
         subject_email: Předmět E-mail
         subject_name: Jméno subjektu
-      completed_at: Dokončeno v
+      completed_at: Konec
       count: "%{count} Hodnotitelé"
       create_assessor: Přidat hodnotitele
       evaluations: Hodnocení
@@ -604,7 +604,7 @@ cs:
       modals:
         add_assessor_assessment:
           assessment_placeholder: Výběr hodnocení
-      name: Posuzovatel Posouzení
+      name: Hodnocení hodnotitele
     assessor_campaigns:
       statuses:
         completed: Dokončeno
@@ -654,8 +654,8 @@ cs:
       outcome: Výsledek
       payload: Užitečné zatížení
       project: Projekt
-      record_id: Id záznamu
-      request_id: Id žádosti
+      record_id: ID záznamu
+      request_id: ID žádosti
       reset: Obnovení
       search: Vyhledávání
       search_campaign: Vyhledávání podle kampaně
@@ -843,7 +843,7 @@ cs:
       errors:
         assessment_not_found_in_campaign: ID hodnocení '%{assessment_id}' nebylo v kampani nalezeno
         code_already_exists: Faktor se stejným kódem '%{code}' již existuje.
-        factor_not_in_assessment_dimension: Id faktoru '%{factor_id}' není součástí dimenze hodnocení
+        factor_not_in_assessment_dimension: ID faktoru '%{factor_id}' není součástí dimenze hodnocení
         invalid_lua_name: Kód '%{code}' by měl být platný název proměnné lua
         invalid_name_format: Název '%{name}' by měl odpovídat očekávanému formátu.
         max_limit_reached: Nelze vytvořit více než %{count} faktorů kampaně.
@@ -940,7 +940,7 @@ cs:
           do_not_send_notifications: Neodesílat oznámení
           modal_title: Nastavení schvalování zpráv
           qc_users: Uživatelé QC
-          remove_modal_success: 'Nastavení schválení pro id zprávy: %{reportId} bylo úspěšně odstraněno '
+          remove_modal_success: 'Nastavení schválení pro id zprávy: %{reportId} bylo úspěšně odstraněno'
           remove_modal_text: 'Opravdu chcete odstranit toto nastavení pro id sestavy: %{reportId}?'
           report: Nahlásit
           settings: Nastavení
@@ -959,13 +959,16 @@ cs:
         inactive: Neaktivní
         status: Stav
       form:
+        active_notice: Stav kampaně se automaticky změní na uzavřené datum ukončení
         campaign: Kampaň
+        inactive_notice: Stav kampaně se v vybraném datu zahájení automaticky změní na aktivní
+        instruction: To lze povolit pouze při vytváření kampaně
         name: Název
         practice_campaign: Praktická kampaň
         status: Stav
       listing:
         assessments: Hodnocení
-        id: Id
+        id: ID
         name: Název
         reports: Zprávy
         status: Stav
@@ -982,6 +985,7 @@ cs:
             active: Aktivní
             archive: Archiv
             assessment: Hodnocení
+            category: Kategorie
             closed: Uzavřeno
             empty: Prázdné stránky
             inactive: Neaktivní
@@ -991,6 +995,7 @@ cs:
             skill_rater: Hodnocení dovedností
             standard: Standardní
             status: Stav
+            type: Typ
           close:
             content: Opravdu chcete zavřít nástroj Multi Rater Campaign Creator? Veškeré neuložené úpravy budou ztraceny. Potvrďte prosím své rozhodnutí.
             title: Zavřít nástroj Multi Rater Campaign Creator?
@@ -1071,8 +1076,8 @@ cs:
         filters:
           all: Všechny
           anonymous: Anonymní
-          identified: Identifikováno
-        id: Id
+          identified: Identifikovaní
+        id: ID
         is_active: Aktivní
         name: Název
         no_permission_message: Nemáte oprávnění upravovat
@@ -1180,7 +1185,7 @@ cs:
               sub_campaigns: Dílčí kampaně
               tests_allocated: Přidělené testy
               users: Uživatelé
-            id: Id
+            id: ID
             name: Název kampaně
             reports: Zprávy
             updated_at: Aktualizované datum
@@ -1203,7 +1208,7 @@ cs:
               sub_campaigns: Dílčí kampaně
               tests_allocated: Přidělené testy
               users: Uživatelé
-            id: Id
+            id: ID
             name: Název kampaně
             reports: Zprávy
             updated_at: Aktualizované datum
@@ -1254,7 +1259,7 @@ cs:
                 sub_campaign: Dílčí kampaně
                 tests_allocated: Přidělené testy
                 users: Uživatelé
-              id: Id
+              id: ID
               name: Název dílčí kampaně
               reports: Zprávy
               updated_at: Aktualizované datum
@@ -1277,7 +1282,7 @@ cs:
                 sub_campaign: Dílčí kampaně
                 tests_allocated: Přidělené testy
                 users: Uživatelé
-              id: Id
+              id: ID
               name: Název dílčí kampaně
               reports: Zprávy
               updated_at: Aktualizované datum
@@ -1327,7 +1332,7 @@ cs:
           assigned_user: Přiřazení uživatelé
           completed_user: Dokončení uživatelé
           created_at: Datum vytvoření
-          id: Id
+          id: ID
           name: Název projektu
           number: Číslo
           project_admin: Administrátoři projektu
@@ -1376,7 +1381,7 @@ cs:
           assigned_user: Přiřazení uživatelé
           completed_user: Dokončení uživatelé
           created_at: Datum vytvoření
-          id: Id
+          id: ID
           name: Název projektu
           number: Číslo
           project_admin: Administrátoři projektu
@@ -1445,7 +1450,7 @@ cs:
             assessment: Assement
             client_admins: Správci klientů
             created_at: Vytvořeno v
-            id: Id
+            id: ID
             name: Název
             report: Nahlásit
             report_bundle: Svazek zpráv
@@ -1465,7 +1470,7 @@ cs:
             assessment: Assement
             client_admins: Správci klientů
             created_at: Vytvořeno v
-            id: Id
+            id: ID
             name: Název
             report: Nahlásit
             report_bundle: Svazek zpráv
@@ -1741,13 +1746,13 @@ cs:
       pdf: PDF
       pptx: PPTX
       preview:
-        embed_token_error_description: Zkontrolujte, zda je Dataset a Report Id v nastavení správné.
+        embed_token_error_description: Zkontrolujte, zda je Dataset a Report ID v nastavení správné.
         embed_token_error_title: Nelze vygenerovat vložený token.
       settings:
-        capacity_id: Id kapacity
+        capacity_id: ID kapacity
         details: Podrobnosti na
         refresh: Obnovit
-        workspace_id: Id pracovního prostoru
+        workspace_id: ID pracovního prostoru
       tabs:
         accesssheet: Přístupový list
         accesssheet_setting: Nastavení přístupového listu
@@ -1755,12 +1760,12 @@ cs:
         settings: Nastavení
     dashboard_form:
       fields:
-        dataset_id: Id datové sady
+        dataset_id: ID datové sady
         enabled: Povoleno
         image: Obrázek
         project_path: Cesta projektu
         refresh_interval: Interval obnovení (minuty)
-        report_id: Id hlášení
+        report_id: ID hlášení
         visual_header_visibility: Vizuální viditelnost záhlaví
       image_upload_failed: Nahrávání obrázků se nezdařilo.
       none: Žádné
@@ -1799,10 +1804,10 @@ cs:
     datasheet:
       threesixty_warning: Odtud nelze nahrát sloupce datového listu pro sestavu 360. Pro sestavu 360 se sloupce datového listu načítají z kampaně, ke které je tato sestava připojena
     dates:
-      completed: Dokončeno v
+      completed: Konec
       end: Datum ukončení
       start: Datum zahájení
-      started: Začínáme v
+      started: Začátek
     development_action_import:
       errors:
         blank_field: 'Řádek %{row}: %{field} nemůže být prázdné'
@@ -1813,7 +1818,7 @@ cs:
         invalid_date: Formát data pro %{date} je neplatný.
         invalid_date_format: 'Row %{row}: Neplatný formát data pro %{field}.'
         invalid_development_action_type: 'Řádek %{row}: Neplatná kategorie ''%{value}''. Platné kategorie jsou: %{valid_development_action_types}'
-        invalid_duration_format: 'Po dobu trvání jsou povoleny pouze číselné hodnoty.Row %{row}: %{value} není platné trvání. '
+        invalid_duration_format: 'Po dobu trvání jsou povoleny pouze číselné hodnoty.Row %{row}: %{value} není platné trvání.'
         invalid_image_file: 'Neplatný soubor obrázku: %{message}'
         invalid_image_url: 'Nesprávný formát adresy URL obrázku: %{url}'
         invalid_languages: Neplatné dostupné jazyky %{invalid_languages} pro řádek %{row}.
@@ -1964,7 +1969,7 @@ cs:
       list:
         active: Aktivní
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         updated_at: Datum úpravy
       new:
@@ -2071,7 +2076,7 @@ cs:
       list:
         active: Aktivní
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         updated_at: Datum úpravy
       new:
@@ -2298,7 +2303,7 @@ cs:
         title: Inovační styly
       list:
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         position: Pozice
         updated_at: Datum úpravy
@@ -2331,7 +2336,7 @@ cs:
       list:
         condition: Stav
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         position: Pozice
         updated_at: Datum úpravy
@@ -2401,7 +2406,7 @@ cs:
       validations:
         iiht:
           tenancy_name_present: Název nájmu je již uveden v jiném projektu
-          tenant_id_present: Id nájemce je již uvedeno v jiném projektu
+          tenant_id_present: ID nájemce je již uvedeno v jiném projektu
         mettl:
           public_key_present: Veřejný klíč se již nachází v jiném projektu
         skillvue:
@@ -2586,8 +2591,8 @@ cs:
       list:
         active: Aktivní
         created_at: Datum vytvoření
-        dimension_id: Rozměr Id
-        id: Id
+        dimension_id: Rozměr ID
+        id: ID
         name: Název
         updated_at: Datum úpravy
         updated_by: Aktualizováno
@@ -2648,7 +2653,7 @@ cs:
         title: Povolání
       list:
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         updated_at: Datum úpravy
       new:
@@ -2680,7 +2685,7 @@ cs:
       list:
         condition: Stav
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         position: Pozice
         updated_at: Datum úpravy
@@ -2727,12 +2732,12 @@ cs:
     proctoring_sessions:
       columns:
         comment: Komentář
-        completed_at: Dokončeno v
+        completed_at: Konec
         conclusion: Závěr
         links: Odkazy
         score: Skóre
-        session_id: Id relace
-        started_at: Začínáme v
+        session_id: ID relace
+        started_at: Začátek
       links:
         report: Nahlásit
         review: Recenze
@@ -2826,7 +2831,7 @@ cs:
       column_createdAt: Vytvořeno v
       column_created_at: Vytvořeno v
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Název
       delete: Odstranit
       edit: Upravit
@@ -2937,7 +2942,7 @@ cs:
       column_campaigns: Kampaně
       column_created_at: Vytvořeno v
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Název
       confirm_delete: Ano, vymazat
       confirm_send: Ano, pošlete
@@ -3351,7 +3356,7 @@ cs:
       config_details:
         acs_url: Adresa URL služby Assertion Consumer Service
         copied: Zkopírováno %{element}
-        issuer: Id subjektu/Issuer
+        issuer: ID subjektu/Issuer
         title: Konfigurace Idp s následujícími informacemi
       email_pipetext: E-mail Pipetext
       enabled: Povoleno
@@ -3562,7 +3567,7 @@ cs:
       final_score_updated_successfully: Konečné skóre bylo úspěšně aktualizováno
       formula: Vzorec
       get_started: Začněte
-      id: Id
+      id: ID
       import:
         factors: Faktory importní kampaně
       name: Název
@@ -3868,7 +3873,7 @@ cs:
         send_sms: Odesílání SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Zpráva
     smtp_settings:
       authentication: Ověřování
@@ -3905,6 +3910,7 @@ cs:
       user_name: Uživatelské jméno
     stats:
       assessments:
+        active: Aktivní
         columns:
           assessment_name: Název hodnocení
           completed: Dokončeno
@@ -3914,6 +3920,9 @@ cs:
           interrupted: Přerušeno
           not_started: Nebylo zahájeno
           timed_out: Vypršel časový limit
+        count: Počet
+        inactive: Neaktivní
+        percentage: Procenta
         title: Hodnocení
       title: Statistiky
       top_metrics:

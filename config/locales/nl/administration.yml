@@ -79,7 +79,7 @@ nl:
           actions: Acties
           created_at: Gemaakt op
           email: E-mail
-          id: Id
+          id: ID
           name: Naam
         header:
           add_admin: Beheerder toevoegen
@@ -323,7 +323,7 @@ nl:
     api:
       campaigns:
         validate_form:
-          external_id_taken: Externe Id '%{external_id}' is al bezet'
+          external_id_taken: Externe ID '%{external_id}' is al bezet'
       users:
         form:
           campaign_ids_not_existing: Niet alle campagne-id's bestaan
@@ -940,7 +940,7 @@ nl:
           do_not_send_notifications: Geen meldingen verzenden
           modal_title: Instellingen voor goedkeuring van rapporten
           qc_users: QC gebruikers
-          remove_modal_success: 'Goedkeuringsinstelling voor rapport id: %{reportId} is succesvol verwijderd '
+          remove_modal_success: 'Goedkeuringsinstelling voor rapport id: %{reportId} is succesvol verwijderd'
           remove_modal_text: 'Weet je zeker dat je deze instelling wilt verwijderen voor rapport id: %{reportId}?'
           report: Rapporteer
           settings: Instellingen
@@ -959,13 +959,16 @@ nl:
         inactive: Inactief
         status: Status
       form:
+        active_notice: Campagnestatus wordt automatisch gewijzigd in gesloten op de geselecteerde einddatum
         campaign: Campagne
+        inactive_notice: Campagnestatus wordt automatisch gewijzigd in Active op de geselecteerde startdatum
+        instruction: Dit kan alleen worden ingeschakeld tijdens het maken van campagne
         name: Naam
         practice_campaign: Praktijk Campagne
         status: Status
       listing:
         assessments: Beoordeling
-        id: Id
+        id: ID
         name: Naam
         reports: Rapporten
         status: Status
@@ -982,6 +985,7 @@ nl:
             active: Actief
             archive: Archief
             assessment: Beoordeling
+            category: Categorie
             closed: Gesloten
             empty: Leeg
             inactive: Inactief
@@ -991,6 +995,7 @@ nl:
             skill_rater: Vaardigheden beoordelaar
             standard: Standaard
             status: Status
+            type: Type
           close:
             content: Weet je zeker dat je de Multi Rater Campaign Creator wilt sluiten? Alle niet-opgeslagen aanpassingen zullen verloren gaan. Bevestig alsjeblieft je beslissing.
             title: Campagnecreator met meerdere beoordelaars sluiten?
@@ -1072,7 +1077,7 @@ nl:
           all: Alle
           anonymous: Anonieme
           identified: Geïdentificeerd
-        id: Id
+        id: ID
         is_active: Actief
         name: Naam
         no_permission_message: U hebt geen toestemming om
@@ -1180,7 +1185,7 @@ nl:
               sub_campaigns: Subcampagnes
               tests_allocated: Tests toegewezen
               users: Gebruikers
-            id: Id
+            id: ID
             name: Naam campagne
             reports: Rapporten
             updated_at: Bijgewerkte datum
@@ -1203,7 +1208,7 @@ nl:
               sub_campaigns: Subcampagnes
               tests_allocated: Tests toegewezen
               users: Gebruikers
-            id: Id
+            id: ID
             name: Naam campagne
             reports: Rapporten
             updated_at: Bijgewerkte datum
@@ -1254,7 +1259,7 @@ nl:
                 sub_campaign: Subcampagnes
                 tests_allocated: Tests Toegewezen
                 users: Gebruikers
-              id: Id
+              id: ID
               name: Naam subcampagne
               reports: Rapporten
               updated_at: Bijgewerkte datum
@@ -1277,7 +1282,7 @@ nl:
                 sub_campaign: Subcampagnes
                 tests_allocated: Tests Toegewezen
                 users: Gebruikers
-              id: Id
+              id: ID
               name: Naam subcampagne
               reports: Rapporten
               updated_at: Bijgewerkte datum
@@ -1327,7 +1332,7 @@ nl:
           assigned_user: Toegewezen gebruikers
           completed_user: Voltooide gebruikers
           created_at: Datum aangemaakt
-          id: Id
+          id: ID
           name: Naam project
           number: Aantal
           project_admin: Projectbeheerders
@@ -1376,7 +1381,7 @@ nl:
           assigned_user: Toegewezen gebruikers
           completed_user: Voltooide gebruikers
           created_at: Datum aangemaakt
-          id: Id
+          id: ID
           name: Naam project
           number: Aantal
           project_admin: Projectbeheerders
@@ -1445,7 +1450,7 @@ nl:
             assessment: Assement
             client_admins: Klanten-admins
             created_at: Gemaakt op
-            id: Id
+            id: ID
             name: Naam
             report: Rapporteer
             report_bundle: Bundel rapporten
@@ -1465,7 +1470,7 @@ nl:
             assessment: Assement
             client_admins: Klanten-admins
             created_at: Gemaakt op
-            id: Id
+            id: ID
             name: Naam
             report: Rapporteer
             report_bundle: Bundel rapporten
@@ -1744,7 +1749,7 @@ nl:
         embed_token_error_description: Controleer of de Dataset en Rapport-id in de instellingen correct zijn.
         embed_token_error_title: Embed token kan niet worden gegenereerd.
       settings:
-        capacity_id: Capaciteit Id
+        capacity_id: Capaciteit ID
         details: Details
         refresh: Vernieuw
         workspace_id: Werkruimte id
@@ -1760,7 +1765,7 @@ nl:
         image: Afbeelding
         project_path: Projectpad
         refresh_interval: Verversingsinterval (minuten)
-        report_id: Rapport Id
+        report_id: Rapport ID
         visual_header_visibility: Visuele kop Zichtbaarheid
       image_upload_failed: Het uploaden van afbeeldingen is mislukt.
       none: Geen
@@ -1813,7 +1818,7 @@ nl:
         invalid_date: Datumformaat voor %{date} is ongeldig.
         invalid_date_format: 'Row %{row}: ongeldige datumindeling voor %{field}.'
         invalid_development_action_type: 'Rij %{row}: Ongeldig type ontwikkelingsactie ''%{value}''. Geldige typen ontwikkelingsacties zijn: %{valid_development_action_types}'
-        invalid_duration_format: 'Alleen numerieke waarden zijn toegestaan ​​voor de duur.Rij %{row}: %{value} is geen geldige duur. '
+        invalid_duration_format: 'Alleen numerieke waarden zijn toegestaan ​​voor de duur.Rij %{row}: %{value} is geen geldige duur.'
         invalid_image_file: 'Ongeldig afbeeldingsbestand: %{message}'
         invalid_image_url: 'Ongeldig URL-formaat voor afbeelding: %{url}'
         invalid_languages: Ongeldige beschikbare talen %{invalid_languages} voor rij %{row}.
@@ -1964,7 +1969,7 @@ nl:
       list:
         active: Actief
         created_at: Datum aangemaakt
-        id: Id
+        id: ID
         name: Naam
         updated_at: Gewijzigde datum
       new:
@@ -2071,7 +2076,7 @@ nl:
       list:
         active: Actief
         created_at: Datum aangemaakt
-        id: Id
+        id: ID
         name: Naam
         updated_at: Gewijzigde datum
       new:
@@ -2298,7 +2303,7 @@ nl:
         title: Innovatiestijlen
       list:
         created_at: Datum aangemaakt
-        id: Id
+        id: ID
         name: Naam
         position: Positie
         updated_at: Gewijzigde datum
@@ -2331,7 +2336,7 @@ nl:
       list:
         condition: Voorwaarde
         created_at: Datum aangemaakt
-        id: Id
+        id: ID
         name: Naam
         position: Positie
         updated_at: Gewijzigde datum
@@ -2586,8 +2591,8 @@ nl:
       list:
         active: Actief
         created_at: Datum aangemaakt
-        dimension_id: Afmeting Id
-        id: Id
+        dimension_id: Afmeting ID
+        id: ID
         name: Naam
         updated_at: Gewijzigde datum
         updated_by: Bijgewerkt door
@@ -2648,7 +2653,7 @@ nl:
         title: Beroepen
       list:
         created_at: Datum aangemaakt
-        id: Id
+        id: ID
         name: Naam
         updated_at: Gewijzigde datum
       new:
@@ -2680,7 +2685,7 @@ nl:
       list:
         condition: Voorwaarde
         created_at: Datum aangemaakt
-        id: Id
+        id: ID
         name: Naam
         position: Positie
         updated_at: Gewijzigde datum
@@ -2826,7 +2831,7 @@ nl:
       column_createdAt: Gemaakt op
       column_created_at: Gemaakt op
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Naam
       delete: Verwijder
       edit: Bewerk
@@ -2937,7 +2942,7 @@ nl:
       column_campaigns: Campagnes
       column_created_at: Gemaakt op
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Naam
       confirm_delete: Ja, verwijderen
       confirm_send: Ja, stuur
@@ -3351,7 +3356,7 @@ nl:
       config_details:
         acs_url: URL voor bevestiging Consumentenservice
         copied: Gekopieerd %{element}
-        issuer: Entiteit Id/Uitgever
+        issuer: Entiteit ID/Uitgever
         title: Idp configureren met volgende info
       email_pipetext: E-mail Pipetext
       enabled: Ingeschakeld
@@ -3562,7 +3567,7 @@ nl:
       final_score_updated_successfully: De eindscore is succesvol bijgewerkt
       formula: Formule
       get_started: Aan de slag
-      id: Id
+      id: ID
       import:
         factors: Campagnefactoren importeren
       name: Naam
@@ -3868,7 +3873,7 @@ nl:
         send_sms: SMS verzenden
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Bericht
     smtp_settings:
       authentication: Authenticatie
@@ -3905,6 +3910,7 @@ nl:
       user_name: Gebruikersnaam
     stats:
       assessments:
+        active: Actief
         columns:
           assessment_name: Naam beoordeling
           completed: Voltooid
@@ -3914,6 +3920,9 @@ nl:
           interrupted: Onderbroken
           not_started: Niet gestart
           timed_out: Uitgetimed
+        count: Aantal
+        inactive: Inactief
+        percentage: Percentage
         title: Beoordeling
       title: Stats
       top_metrics:

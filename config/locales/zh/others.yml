@@ -208,7 +208,7 @@ zh:
             file:
               column_cannot_be_blank: 行 %{row_number} 上的值 %{column_name} 不能为空
               invalid_format: 请上传 CSV 文件
-              invalid_job_role_id: 行 %{row_number} 中的 Id 不是有效的工作角色 ID
+              invalid_job_role_id: 行 %{row_number} 中的 ID 不是有效的工作角色 ID
               invalid_locale: 第 %{row_number} 行上的本地语言不是有效的本地语言
               missing_required_columns: 缺少必填列： %{columns}
               parsing_failed: 解析文件时出错，错误：%{error}.
@@ -425,7 +425,7 @@ zh:
         access_reports_at: 访问报告
         access_reports_at_date: 日期
         access_reports_at_time: 时间
-        client_ids: 客户租约
+        client_ids: 客户平台
         manager_ids: 管理人员
         report_ids: 报告
         user_ids: 用户
@@ -672,8 +672,8 @@ zh:
         first_name: 名
         id: 身份证
         last_name: 姓
-        manage_client_ids: 客户租约
-        memberships: 客户租约
+        manage_client_ids: 客户平台
+        memberships: 客户平台
         name: 名称
         password: 密码
         password_confirmation: 确认密码
@@ -728,10 +728,10 @@ zh:
       users_result:
         assessment_name: 评估名称
         assessment_type: 评估类型
-        completed_at: 在
+        completed_at: 完成于
         completion_reasons:
           time_out_offline: 超时/脱机
-          time_out_online: 暂停 / 在线
+          time_out_online: 暂停 / 完成于线
           user_completed: 用户已完成
         email: 电子邮件
         name: 名称
@@ -802,7 +802,7 @@ zh:
       operations:
         add_campaign_reports: 添加活动报告
         assessment_norm_export: 标准结果导出
-        assessment_raw_factor_export: 原始因子得分 出口
+        assessment_raw_factor_export: 原始因子得分 导出
         assessment_raw_result_export: 原始结果导出
         assessment_scoring_export: 评分结果导出
         assign_idp_to_users: 为用户分配 IDP
@@ -817,8 +817,8 @@ zh:
         bulk_reports: 批量报告
         bulk_rescore_campaign_factors: 批量重新评分活动因素
         bulk_update_evaluation_status: 批量更新评估状态
-        compact_completion_status_export: 紧凑型完工状态导出
-        completion_status_export: 完工状态导出
+        compact_completion_status_export: 简要完成状态
+        completion_status_export: 详细完成状态
         copy_dimension: 复制尺寸
         create_threesixty_campaign: 创建 Threesixty 活动
         data_report_export: 数据报告导出
@@ -833,7 +833,7 @@ zh:
         export_factor_translations: 出口系数换算
         export_job_roles_translations: 导出工作角色翻译
         export_norm: 出口规范
-        export_occupations: 职业 出口
+        export_occupations: 职业 导出
         export_proficiency_level_translations: 导出熟练程度翻译
         export_proficiency_levels: 出口能力水平
         export_reflection_questions: 导出反射问题
@@ -902,6 +902,7 @@ zh:
     invalid_job: 该通知对应已删除的记录
     mark_as_read: 标记所有已读内容
     more: 更多信息
+    no_notifications: 没有通知
     notifications: 通知
     results: 成果
     super_admin:
@@ -937,7 +938,7 @@ zh:
       download_csv: 下载 CSV
       edit: 编辑
       evaluate: 评估
-      export: 出口
+      export: 导出
       export_normed: 标准因子得分
       export_raw_labels: 原装（带标签）
       export_raw_scores: 原始因子得分
@@ -1391,7 +1392,7 @@ zh:
       bulk_update_evaluation_as_done: 标记为已完成
       bulk_update_evaluation_as_undone: 取消标记为已完成
       download: 下载报告
-      export_completion_status: 出口完成状态
+      export_completion_status: 导出完成状态
       export_external: 外部
       export_normed: 标准因子得分
       export_occupations: 职业
@@ -1419,8 +1420,8 @@ zh:
       external_user_id: Skillvue 候选人 ID
       id: 活动评估 ID
       locales: 地点
-      norm: 规范
-      norm_id: 规范 ID
+      norm: 常模
+      norm_id: 常模 ID
       pearson_norm_id: 皮尔逊规范 ID
       pearson_schedule_id: Pearson 计划 ID
       pearson_variation: 皮尔逊变异
@@ -1546,7 +1547,9 @@ zh:
       in_progress: 进行中
       ineligible: 不符合条件
       interrupted: 中断
+      new: 新的
       not_started: 未开始
+      progress: 进行中
       timed_out: 超时
       universal_link: 通用链接
     ungrouped_assessments_heading: 未分组
@@ -1613,9 +1616,9 @@ zh:
       additional_time: 额外时间
       assessment_center: 评估中心
       assessment_center_invites: 评估中心邀请函
-      completed_at: 在
+      completed_at: 完成于
       completion_status: 完成情况
-      hogan_id: 霍根 Id
+      hogan_id: 霍根 ID
       last_login: 最后登录
       manager: 经理
       modals:
@@ -1746,7 +1749,7 @@ zh:
       done: 已完成
       download: 下载
       edit: 编辑
-      export: 出口
+      export: 导出
       filter: 滤波器
       filter_by_tags: 按标签筛选
       go_back: 回去
@@ -1824,7 +1827,7 @@ zh:
       qc_user_list: 质量控制用户列表
       report: 报告
       report_id: 报告编号
-      require_scheduling: 要求调度
+      require_scheduling: 需要安排
       responses_count: 答复数
       schedule_time: 时间安排
       scheduling: 日程安排
@@ -1942,6 +1945,8 @@ zh:
       timeout: 你的会话已过期。请重新登录以继续。
       unauthenticated: 你需要登录或注册才能继续。
       unconfirmed: 您必须先确认电子邮件地址，然后才能继续。
+    invalid_captcha: 验证码输入无效。
+    invalid_security_question: 安全问题答案无效。
     invitations:
       edit:
         confirm_password_label: 确认密码
@@ -1974,7 +1979,7 @@ zh:
         login: 登录灯塔
         sections:
           campaign: 活动： %{section_name}
-          client: 客户租约： %{section_name}
+          client: 客户平台： %{section_name}
           project: 项目： %{section_name}
         subject: 灯塔邀请函
       password_change:
@@ -1998,6 +2003,25 @@ zh:
     omniauth_callbacks:
       failure: 由于"%{reason}"，无法从 %{kind} 验证您的身份。
       success: 成功验证 %{kind} 账户。
+    paranoid_verification_code:
+      show:
+        submit: 提交
+        submit_verification_code: 提交验证码
+        verification_code: 验证码
+      updated: 接受验证码
+    paranoid_verify:
+      code_required: 请输入支持团队提供的代码
+    password_expired:
+      change_required: 您的密码已过期。请更新密码。
+      forced_changed: 您需要为账户设置新密码。
+      password_policy_changed: 密码政策已更改。请更改密码。
+      show:
+        change_my_password: 更改我的密码
+        current_password: 当前密码
+        new_password: 新密码
+        new_password_confirmation: 确认新密码
+        renew_your_password: 更新密码
+      updated: 新密码已保存。
     passwords:
       edit:
         instruction: 要创建新密码，请在以下框中输入您的新密码
@@ -2195,6 +2219,8 @@ zh:
   errors:
     assessments:
       timed_out: 由于 %{assessment_name} 测评超时，您将无法参加该评估。
+    equal_to_current_password: 必须与当前密码不同。
+    equal_to_email: 必须与电子邮件不同。
     error: 错误
     error_401: 您无权访问此资源。请登录。
     error_403: 您没有查看此资源的权限。
@@ -2207,6 +2233,20 @@ zh:
     max_regeneration_limit: 超出最大再生限制，请联系管理部门。
     messages:
       data_report_blank: 数据报告不存在
+      password_complexity:
+        digit:
+          one: 必须至少包含一个数字
+          other: 必须至少包含<x>count</x> 位数
+        lower:
+          one: 必须至少包含一个小写字母
+          other: 必须至少包含<x>count</x> 小写字母
+        symbol:
+          one: 必须至少包含一个标点符号或符号
+          other: 必须至少包含<x>count</x> 标点符号或符号
+        upper:
+          one: 必须至少包含一个大写字母
+          other: 必须至少包含<x>count</x> 大写字母
+      taken_in_past: 不得与之前使用的任何密码相同。
     module_error: 此模块出错，请联系管理部门。
     module_error_editor: 此模块出错，请检查模块设置。
     module_props_error: 这个模块出了问题。
@@ -2845,7 +2885,7 @@ zh:
       proctoring: 监考
       threesixty: Threesixty
     used_number: 二手许可证
-    used_out_of: 在 %{used}中 %{total}。
+    used_out_of: 完成于 %{used}中 %{total}。
   mailer:
     from: 人才企业
     idp:
@@ -2907,7 +2947,7 @@ zh:
     users:
       account_disable: 您的帐户因未活动而被禁用
       warning: 您的帐户将很快因未活动而被禁用
-  maintenance_message: 灯塔将于 %{start_date} 进行计划维护，并将在 %{duration} 小时内无法使用。
+  maintenance_message: 灯塔将于 %{start_date} 进行计划维护，并将完成于 %{duration} 小时内无法使用。
   maintenance_submessage: 维护完成后，请刷新页面。 您将被重定向到登录页面
   my: 我的
   myself: 我自己
@@ -3283,7 +3323,7 @@ zh:
         access_reports_at: 访问报告
         access_reports_at_date: 日期
         access_reports_at_time: 时间
-        client_ids: 客户租约
+        client_ids: 客户平台
         manager_ids: 管理人员
         report_ids: 报告
         user_ids: 用户
@@ -3296,8 +3336,8 @@ zh:
         first_name: 姓名
         id: 身份证
         last_name: 姓
-        manage_client_ids: 客户租约
-        memberships: 客户租约
+        manage_client_ids: 客户平台
+        memberships: 客户平台
         name: 名称
         password: 密码
         password_confirmation: 确认密码
@@ -3504,8 +3544,8 @@ zh:
         first_name: 名
         id: 身份证
         last_name: 姓
-        manage_client_ids: 客户租约
-        memberships: 客户租约
+        manage_client_ids: 客户平台
+        memberships: 客户平台
         name: 名称
         old_password: 旧密码
         password: 密码
@@ -3635,7 +3675,7 @@ zh:
       delete_successful: 已成功移除邮箱日程
     evaluate: 评估
     evaluation: 评估
-    evaluation_all_closed_message: 当前所有提名正在等待批准
+    evaluation_all_closed_message: 当前所有提名正完成于等待批准
     evaluation_closed_message: 该主题的评估已结束
     evaluation_closed_nomination_message: 你无法提名此主题，因为此主题的评估已关闭
     evaluation_help_modal:
@@ -3837,8 +3877,8 @@ zh:
     toolbar:
       bulk_download_idp_reports: 批量下载 IDP 报告
       export: 导出用户
-      export_compact_completion_status: 紧凑型
-      export_detailed_completion_status: 详细
+      export_compact_completion_status: 简要状态
+      export_detailed_completion_status: 详细状态
       export_reports_and_assessments: 出口报告和评估
       import: 导入用户
       import_reports: 导入报告和评估
@@ -3846,7 +3886,7 @@ zh:
     column:
       dimension_id: 尺寸 ID
       id: 用户评估 ID
-      norm_id: 规范 ID
+      norm_id: 常模 ID
     drawer:
       copied: "%{name} 已复制到剪贴板。"
       copy: 复制到剪贴板

@@ -208,7 +208,7 @@ en:
             file:
               column_cannot_be_blank: Value %{column_name} cannot be blank at row %{row_number}
               invalid_format: Please upload CSV file
-              invalid_job_role_id: Id at row %{row_number} is not a valid job role ID
+              invalid_job_role_id: ID at row %{row_number} is not a valid job role ID
               invalid_locale: Locale at row %{row_number} is not a valid locale
               missing_required_columns: 'Missing required columns: %{columns}'
               parsing_failed: 'Error while parsing file, error: %{error}.'
@@ -360,7 +360,7 @@ en:
         smtp_setting_form:
           attributes:
             test_email_id:
-              invalid: Email Id format is not valid.
+              invalid: Email ID format is not valid.
         super_admin_edit:
           attributes:
             email:
@@ -902,6 +902,7 @@ en:
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
     more: More
+    no_notifications: No notifications
     notifications: Notifications
     results: Results
     super_admin:
@@ -1548,7 +1549,9 @@ en:
       in_progress: In Progress
       ineligible: Ineligible
       interrupted: Interrupted
+      new: New
       not_started: Not Started
+      progress: In Progress
       timed_out: Timed Out
       universal_link: Universal link
     ungrouped_assessments_heading: Ungrouped
@@ -1617,7 +1620,7 @@ en:
       assessment_center_invites: Assessment Center Invites
       completed_at: Completed At
       completion_status: Completion status
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Last login
       manager: Manager
       modals:
@@ -1805,7 +1808,7 @@ en:
       first_name: First Name
       icon: Icon
       icon_color: Icon color
-      id: Id
+      id: ID
       json:
         answer: Answer JSON
         external_result: External Result JSON
@@ -1819,13 +1822,13 @@ en:
       modified_date: Modified Date
       name: Name
       owner: Owner
-      package_id: Package Id
+      package_id: Package ID
       poster: Poster
       project: Project
       provider: Provider
       qc_user_list: QC Users List
       report: Report
-      report_id: Report Id
+      report_id: Report ID
       require_scheduling: Require Scheduling
       responses_count: Responses Count
       schedule_time: Schedule Time
@@ -1944,6 +1947,8 @@ en:
       timeout: Your session expired. Please login again to continue.
       unauthenticated: You need to login or register before continuing.
       unconfirmed: You have to confirm your email address before continuing.
+    invalid_captcha: The captcha input was invalid.
+    invalid_security_question: The security question answer was invalid.
     invitations:
       edit:
         confirm_password_label: Confirm Password
@@ -2023,6 +2028,25 @@ en:
     omniauth_callbacks:
       failure: Could not authenticate you from %{kind} because "%{reason}".
       success: Successfully authenticated from %{kind} account.
+    paranoid_verification_code:
+      show:
+        submit: Submit
+        submit_verification_code: Submit verification code
+        verification_code: Verification code
+      updated: Verification code accepted
+    paranoid_verify:
+      code_required: Please enter the code our support team provided
+    password_expired:
+      change_required: Your password is expired. Please renew your password.
+      forced_changed: You need to set new password for your account.
+      password_policy_changed: Password policy changed. Please change your password.
+      show:
+        change_my_password: Change my password
+        current_password: Current password
+        new_password: New password
+        new_password_confirmation: Confirm new password
+        renew_your_password: Renew your password
+      updated: Your new password is saved.
     passwords:
       edit:
         instruction: To create a new password, please enter your new password in the boxes below
@@ -2220,6 +2244,8 @@ en:
   errors:
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
+    equal_to_current_password: must be different than the current password.
+    equal_to_email: must be different than the email.
     error: Error
     error_401: You are not authorized to access this resource. Please sign in.
     error_403: You do not have permission to view this resource.
@@ -2232,6 +2258,20 @@ en:
     max_regeneration_limit: Maximum regeneration limit exceeded, contact your administration.
     messages:
       data_report_blank: Data Report doesn not exist
+      password_complexity:
+        digit:
+          one: must contain at least one digit
+          other: must contain at least %{count} digits
+        lower:
+          one: must contain at least one lower-case letter
+          other: must contain at least %{count} lower-case letters
+        symbol:
+          one: must contain at least one punctuation mark or symbol
+          other: must contain at least %{count} punctuation marks or symbols
+        upper:
+          one: must contain at least one upper-case letter
+          other: must contain at least %{count} upper-case letters
+      taken_in_past: must not be same as any previously used password.
     module_error: Something went wrong with this module, please contact administration.
     module_error_editor: Something went wrong with this module, please check module settings.
     module_props_error: Something went wrong with this module.
@@ -2814,7 +2854,7 @@ en:
     pt-BR: Brazilian Portuguese
     pt-PT: Portuguese (Portugal)
     pt_BR: Portuguese (Brazil)
-    ro: Romanian
+    ro: Română
     ru: Russian
     sk: Slovak
     sl: Slovenian
@@ -2883,7 +2923,7 @@ en:
     pt-BR: Português (Brasil)
     pt-PT: Português (Portugal)
     pt_BR: Português (Brasil)
-    ro: Romanian
+    ro: Română
     ru: Russian
     sk: Slovak
     sl: Slovenian

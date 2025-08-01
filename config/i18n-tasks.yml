@@ -213,6 +213,7 @@ ignore_unused:
   - 'administration.sub_factors.toggle_status.successfully'
   - 'administration.users.new.header'
   - 'administration.users.spoof.successfully'
+  - 'errors.*'
   - 'administration'
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:

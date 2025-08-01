@@ -208,7 +208,7 @@ sk:
             file:
               column_cannot_be_blank: Hodnota %{column_name} nemôže byť prázdna v riadku %{row_number}
               invalid_format: Nahrajte prosím súbor CSV
-              invalid_job_role_id: Id v riadku %{row_number} nie je platné ID úlohy
+              invalid_job_role_id: ID v riadku %{row_number} nie je platné ID úlohy
               invalid_locale: Locale v riadku %{row_number} nie je platné locale
               missing_required_columns: 'Chýbajúce požadované stĺpce: %{columns}'
               parsing_failed: 'Chyba pri analyzovaní súboru, chyba: %{error}.'
@@ -902,6 +902,7 @@ sk:
     invalid_job: Toto oznámenie zodpovedá vymazanému záznamu
     mark_as_read: Označiť všetko ako prečítané
     more: Viacej
+    no_notifications: Žiadne upozornenia
     notifications: Oznámenia
     results: Výsledky
     super_admin:
@@ -1536,7 +1537,9 @@ sk:
       in_progress: V štádiu rozpracovanosti
       ineligible: Neoprávnené
       interrupted: Prerušené
+      new: Nové
       not_started: Nezačalo sa
+      progress: V štádiu rozpracovanosti
       timed_out: Vypršal čas
       universal_link: Univerzálne prepojenie
     ungrouped_assessments_heading: Nezskupené
@@ -1605,7 +1608,7 @@ sk:
       assessment_center_invites: Pozvánky do hodnotiaceho centra
       completed_at: Dokončené v
       completion_status: Stav dokončenia
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Posledné prihlásenie
       manager: Manažér
       modals:
@@ -1793,7 +1796,7 @@ sk:
       first_name: Krstné meno
       icon: Ikona
       icon_color: Farba ikony
-      id: Id
+      id: ID
       json:
         answer: Odpoveď JSON
         external_result: Externý výsledok JSON
@@ -1932,6 +1935,8 @@ sk:
       timeout: Vaša relácia vypršala. Ak chcete pokračovať, prihláste sa znova.
       unauthenticated: Pred pokračovaním sa musíte prihlásiť alebo zaregistrovať.
       unconfirmed: Pred pokračovaním musíte potvrdiť svoju e-mailovú adresu.
+    invalid_captcha: Zadanie captcha bolo neplatné.
+    invalid_security_question: Odpoveď na bezpečnostnú otázku bola neplatná.
     invitations:
       edit:
         confirm_password_label: Potvrdiť heslo
@@ -2011,6 +2016,25 @@ sk:
     omniauth_callbacks:
       failure: Nepodarilo sa vám overiť z %{kind}, pretože "%{reason}".
       success: Úspešne overené z účtu %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Odoslať
+        submit_verification_code: Odoslať overovací kód
+        verification_code: Overovací kód
+      updated: Prijatý overovací kód
+    paranoid_verify:
+      code_required: Zadajte kód, ktorý vám poskytol náš tím podpory
+    password_expired:
+      change_required: Platnosť vášho hesla vypršala. Prosím, obnovte si heslo.
+      forced_changed: Musíte nastaviť nové heslo pre svoje konto.
+      password_policy_changed: Zmena zásad používania hesiel. Prosím, zmeňte si heslo.
+      show:
+        change_my_password: Zmena môjho hesla
+        current_password: Aktuálne heslo
+        new_password: Nové heslo
+        new_password_confirmation: Potvrdenie nového hesla
+        renew_your_password: Obnovenie hesla
+      updated: Vaše nové heslo je uložené.
     passwords:
       edit:
         instruction: Ak chcete vytvoriť nové heslo, zadajte svoje nové heslo do políčok nižšie
@@ -2208,6 +2232,8 @@ sk:
   errors:
     assessments:
       timed_out: Hodnotenie %{assessment_name} nemôžete vykonať, pretože jeho čas vypršal.
+    equal_to_current_password: sa musí líšiť od aktuálneho hesla.
+    equal_to_email: sa musí líšiť od e-mailu.
     error: Chyba
     error_401: Nemáte oprávnenie na prístup k tomuto zdroju. Prihláste sa.
     error_403: Nemáte povolenie na zobrazenie tohto zdroja.
@@ -2220,6 +2246,20 @@ sk:
     max_regeneration_limit: Prekročenie maximálneho limitu regenerácie, kontaktujte svoju správu.
     messages:
       data_report_blank: Zostava údajov neexistuje
+      password_complexity:
+        digit:
+          one: musí obsahovať aspoň jednu číslicu
+          other: musí obsahovať aspoň <x>count</x> číslice
+        lower:
+          one: musí obsahovať aspoň jedno malé písmeno
+          other: musí obsahovať aspoň <x>count</x> malé písmená
+        symbol:
+          one: musí obsahovať aspoň jedno interpunkčné znamienko alebo symbol
+          other: musí obsahovať aspoň <x>count</x> interpunkčné znamienka alebo symboly
+        upper:
+          one: musí obsahovať aspoň jedno veľké písmeno
+          other: musí obsahovať aspoň <x>count</x> veľké písmená
+      taken_in_past: nesmie byť rovnaké ako predtým použité heslo.
     module_error: Niečo sa s týmto modulom pokazilo, kontaktujte prosím administráciu.
     module_error_editor: Niečo sa s týmto modulom pokazilo, skontrolujte prosím nastavenia modulu.
     module_props_error: S týmto modulom sa niečo pokazilo.

@@ -902,6 +902,7 @@ bg:
     invalid_job: Това уведомление съответства на изтрит запис
     mark_as_read: Маркиране на всички прочетени
     more: Още
+    no_notifications: Няма известия
     notifications: Уведомления
     results: Резултати
     super_admin:
@@ -1536,7 +1537,9 @@ bg:
       in_progress: В процес на изпълнение
       ineligible: Недопустим
       interrupted: Прекъснат
+      new: Нов
       not_started: Не е започнато
+      progress: В процес на изпълнение
       timed_out: Изтичане на времето
       universal_link: Универсална връзка
     ungrouped_assessments_heading: Негрупирани
@@ -1932,6 +1935,8 @@ bg:
       timeout: Сесията Ви е изтекла. Моля, влезте отново, за да продължите.
       unauthenticated: Трябва да влезете или да се регистрирате, преди да продължите.
       unconfirmed: Трябва да потвърдите имейл адреса си, преди да продължите.
+    invalid_captcha: Въведената captcha е невалидна.
+    invalid_security_question: Отговорът на въпроса за сигурността е невалиден.
     invitations:
       edit:
         confirm_password_label: Потвърдете паролата
@@ -2011,6 +2016,25 @@ bg:
     omniauth_callbacks:
       failure: Не мога да ви удостоверя от %{kind}, защото "%{reason}".
       success: Успешно удостоверен от %{kind} акаунт.
+    paranoid_verification_code:
+      show:
+        submit: Подаване на
+        submit_verification_code: Подаване на код за проверка
+        verification_code: Код за проверка
+      updated: Приет код за проверка
+    paranoid_verify:
+      code_required: Моля, въведете кода, предоставен от нашия екип за поддръжка
+    password_expired:
+      change_required: Паролата ви е изтекла. Моля, подновете паролата си.
+      forced_changed: Трябва да зададете нова парола за профила си.
+      password_policy_changed: Променена е политиката за паролите. Моля, сменете паролата си.
+      show:
+        change_my_password: Промяна на моята парола
+        current_password: Текуща парола
+        new_password: Нова парола
+        new_password_confirmation: Потвърждаване на новата парола
+        renew_your_password: Подновяване на паролата ви
+      updated: Новата ви парола е запазена.
     passwords:
       edit:
         instruction: За да създадете нова парола, моля, въведете новата си парола в полетата по-долу
@@ -2208,6 +2232,8 @@ bg:
   errors:
     assessments:
       timed_out: Няма да можете да се явите на теста %{assessment_name}, тъй като е изтекъл.
+    equal_to_current_password: трябва да е различна от текущата парола.
+    equal_to_email: трябва да е различен от имейла.
     error: Грешка
     error_401: Нямате право на достъп до този ресурс. Моля, влезте в профила си.
     error_403: Нямате разрешение да преглеждате този ресурс.
@@ -2220,6 +2246,20 @@ bg:
     max_regeneration_limit: Максималната граница на регенерация е надвишена, свържете се с вашата администрация.
     messages:
       data_report_blank: Отчет за данни не съществува
+      password_complexity:
+        digit:
+          one: трябва да съдържа поне една цифра
+          other: трябва да съдържа най-малко <x>count</x> цифри.
+        lower:
+          one: трябва да съдържа поне една малка буква.
+          other: трябва да съдържа поне <x>count</x> малки букви.
+        symbol:
+          one: трябва да съдържа поне един препинателен знак или символ.
+          other: трябва да съдържа поне <x>count</x> препинателни знаци или символи.
+        upper:
+          one: трябва да съдържа поне една главна буква.
+          other: трябва да съдържа поне <x>count</x> главни букви.
+      taken_in_past: не трябва да е същата като предишна парола.
     module_error: Нещо се е объркало с този модул, моля, свържете се с администрацията.
     module_error_editor: Нещо се е объркало с този модул, моля, проверете настройките на модула.
     module_props_error: Нещо се е объркало с този модул.

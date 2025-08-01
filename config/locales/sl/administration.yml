@@ -77,7 +77,7 @@ sl:
           actions: Dejanja
           created_at: Ustvarjeno v
           email: E-pošta
-          id: Id
+          id: ID
           name: Ime
         header:
           add_admin: Dodajanje skrbnika
@@ -941,13 +941,16 @@ sl:
         inactive: Neaktiven
         status: Stanje
       form:
+        active_notice: Status kampanje se bo samodejno spremenil v zaprto na izbrani končni datum
         campaign: Kampanja
+        inactive_notice: Status kampanje se bo samodejno spremenil v aktivni na izbrani datum začetka
+        instruction: To je mogoče omogočiti le med ustvarjanjem kampanje
         name: Ime
         practice_campaign: Vadbena kampanja
         status: Stanje
       listing:
         assessments: Ocene
-        id: Id
+        id: ID
         name: Ime
         reports: Poročila
         status: Stanje
@@ -964,6 +967,7 @@ sl:
             active: Dejaven
             archive: Arhiv
             assessment: Ocena
+            category: Kategorija
             closed: Zaprt
             empty: Izprazniti
             inactive: Neaktiven
@@ -973,6 +977,7 @@ sl:
             skill_rater: Ocenjevalec spretnosti
             standard: Standard
             status: Stanje
+            type: Tip
           close:
             content: Ali ste prepričani, da želite zapreti ustvarjalca oglaševalskih akcij Multi Rater? Vsa neshranjena prilagoditvena dela bodo izgubljena. Prosimo, potrdite svojo odločitev.
             title: Zaprite ustvarjalca kampanje Multi Rater?
@@ -1054,7 +1059,7 @@ sl:
           all: Ves
           anonymous: Anonimen
           identified: Opredeljene
-        id: Id
+        id: ID
         is_active: Dejaven
         name: Ime
         no_permission_message: Nimate dovoljenja za spreminjanje
@@ -1162,7 +1167,7 @@ sl:
               sub_campaigns: Podkampanje
               tests_allocated: Dodeljeni testi
               users: Uporabniki
-            id: Id
+            id: ID
             name: Ime oglaševalske akcije
             reports: Poročila
             updated_at: Datum posodobitve
@@ -1185,7 +1190,7 @@ sl:
               sub_campaigns: Podkampanje
               tests_allocated: Dodeljeni testi
               users: Uporabniki
-            id: Id
+            id: ID
             name: Ime oglaševalske akcije
             reports: Poročila
             updated_at: Datum posodobitve
@@ -1236,7 +1241,7 @@ sl:
                 sub_campaign: Podkampanje
                 tests_allocated: Dodeljeni testi
                 users: Uporabniki
-              id: Id
+              id: ID
               name: Ime podoglaševalske akcije
               reports: Poročila
               updated_at: Datum posodobitve
@@ -1259,7 +1264,7 @@ sl:
                 sub_campaign: Podkampanje
                 tests_allocated: Dodeljeni testi
                 users: Uporabniki
-              id: Id
+              id: ID
               name: Ime podoglaševalske akcije
               reports: Poročila
               updated_at: Datum posodobitve
@@ -1309,7 +1314,7 @@ sl:
           assigned_user: Dodeljeni uporabniki
           completed_user: Zaključeni uporabniki
           created_at: Datum nastanka
-          id: Id
+          id: ID
           name: Ime projekta
           number: Številka
           project_admin: Skrbniki projekta
@@ -1358,7 +1363,7 @@ sl:
           assigned_user: Dodeljeni uporabniki
           completed_user: Zaključeni uporabniki
           created_at: Datum nastanka
-          id: Id
+          id: ID
           name: Ime projekta
           number: Številka
           project_admin: Skrbniki projekta
@@ -1427,7 +1432,7 @@ sl:
             assessment: Ocenjevanje
             client_admins: Skrbniki odjemalcev
             created_at: Ustvarjeno v
-            id: Id
+            id: ID
             name: Ime
             report: Poročilo
             report_bundle: Sveženj poročil
@@ -1447,7 +1452,7 @@ sl:
             assessment: Ocenjevanje
             client_admins: Skrbniki odjemalcev
             created_at: Ustvarjeno v
-            id: Id
+            id: ID
             name: Ime
             report: Poročilo
             report_bundle: Sveženj poročil
@@ -1946,7 +1951,7 @@ sl:
       list:
         active: Dejaven
         created_at: Datum nastanka
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum spremembe
       new:
@@ -2053,7 +2058,7 @@ sl:
       list:
         active: Dejaven
         created_at: Datum nastanka
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum spremembe
       new:
@@ -2279,7 +2284,7 @@ sl:
         title: Inovativni slogi
       list:
         created_at: Datum nastanka
-        id: Id
+        id: ID
         name: Ime
         position: Položaj
         updated_at: Datum spremembe
@@ -2312,7 +2317,7 @@ sl:
       list:
         condition: Pogoj
         created_at: Datum nastanka
-        id: Id
+        id: ID
         name: Ime
         position: Položaj
         updated_at: Datum spremembe
@@ -2568,7 +2573,7 @@ sl:
         active: Dejaven
         created_at: Datum nastanka
         dimension_id: ID dimenzije
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum spremembe
         updated_by: Posodobil
@@ -2629,7 +2634,7 @@ sl:
         title: Poklicev
       list:
         created_at: Datum ustvarjanja
-        id: Id
+        id: ID
         name: Ime
         updated_at: Datum spremembe
       new:
@@ -2661,7 +2666,7 @@ sl:
       list:
         condition: Pogoj
         created_at: Datum nastanka
-        id: Id
+        id: ID
         name: Ime
         position: Položaj
         updated_at: Datum spremembe
@@ -2803,7 +2808,7 @@ sl:
       column_createdAt: Ustvarjeno v
       column_created_at: Ustvarjeno v
       column_email: E-pošta
-      column_id: Id
+      column_id: ID
       column_name: Ime
       delete: Izbrisati
       edit: Urediti
@@ -2914,7 +2919,7 @@ sl:
       column_campaigns: Kampanje
       column_created_at: Ustvarjeno v
       column_email: E-pošta
-      column_id: Id
+      column_id: ID
       column_name: Ime
       confirm_delete: Da, izbriši
       confirm_send: Da, pošlji
@@ -3536,7 +3541,7 @@ sl:
       final_score_updated_successfully: Končni rezultat je bil uspešno posodobljen
       formula: Formula
       get_started: Začnite
-      id: Id
+      id: ID
       import:
         factors: Uvoz dejavnikov oglaševalske akcije
       name: Ime
@@ -3836,7 +3841,7 @@ sl:
         send_sms: Pošlji SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Sporočilo
     smtp_settings:
       authentication: Preverjanje pristnosti
@@ -3873,6 +3878,7 @@ sl:
       user_name: Uporabniško ime
     stats:
       assessments:
+        active: Aktivno
         columns:
           assessment_name: Ime ocenjevanja
           completed: Dokončan
@@ -3882,6 +3888,9 @@ sl:
           interrupted: Prekinjen
           not_started: Ni začeto
           timed_out: Časovna omejitev
+        count: Štetje
+        inactive: Neaktiven
+        percentage: Odstotek
         title: Ocene
       title: Statistika
       top_metrics:

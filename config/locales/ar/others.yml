@@ -926,6 +926,7 @@ ar:
     invalid_job: يتوافق هذا الإشعار مع السجل المحذوف
     mark_as_read: ضع علامة على الكل مقروءا
     more: أكثر
+    no_notifications: لا توجد إشعارات
     notifications: الاخطارات
     results: النتائج
     super_admin:
@@ -1573,7 +1574,9 @@ ar:
       in_progress: قيد التنفيذ
       ineligible: غير مؤهل
       interrupted: مقاطعة
+      new: جديد
       not_started: لم يبدأ بعد
+      progress: قيد التنفيذ
       timed_out: انتهت المهلة
       universal_link: رابط عالمي
     ungrouped_assessments_heading: فك تجميع
@@ -1969,6 +1972,8 @@ ar:
       timeout: انتهت جلستك. الرجاء تسجيل الدخول مرة أخرى للمتابعة.
       unauthenticated: تحتاج إلى تسجيل الدخول أو التسجيل قبل المتابعة.
       unconfirmed: يجب عليك تأكيد عنوان بريدك الإلكتروني قبل المتابعة.
+    invalid_captcha: كان إدخال كلمة التحقق غير صالح.
+    invalid_security_question: كانت إجابة سؤال الأمان غير صالحة.
     invitations:
       edit:
         confirm_password_label: تأكيد كلمة المرور
@@ -2048,6 +2053,25 @@ ar:
     omniauth_callbacks:
       failure: تعذر المصادقة عليك من %{kind} لأن "%{reason}".
       success: تمت المصادقة بنجاح من حساب %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: إرسال
+        submit_verification_code: إرسال رمز التحقق
+        verification_code: رمز التحقق
+      updated: تم قبول رمز التحقق
+    paranoid_verify:
+      code_required: يرجى إدخال الرمز الذي قدمه فريق الدعم لدينا
+    password_expired:
+      change_required: انتهت صلاحية كلمة المرور الخاصة بك. يرجى تجديد كلمة المرور الخاصة بك.
+      forced_changed: تحتاج إلى تعيين كلمة مرور جديدة لحسابك.
+      password_policy_changed: تم تغيير سياسة كلمة المرور. يرجى تغيير كلمة المرور الخاصة بك.
+      show:
+        change_my_password: تغيير كلمة المرور الخاصة بي
+        current_password: كلمة المرور الحالية
+        new_password: كلمة مرور جديدة
+        new_password_confirmation: تأكيد كلمة المرور الجديدة
+        renew_your_password: تجديد كلمة المرور الخاصة بك
+      updated: كلمة المرور الجديدة محفوظة.
     passwords:
       edit:
         instruction: لإنشاء كلمة مرور جديدة ، يرجى إدخال كلمة المرور الجديدة في المربعات أدناه
@@ -2245,6 +2269,8 @@ ar:
   errors:
     assessments:
       timed_out: لن تتمكن من إجراء تقييم %{assessment_name} نظرًا لانتهاء المهلة المحددة له.
+    equal_to_current_password: يجب أن تكون مختلفة عن كلمة المرور الحالية.
+    equal_to_email: يجب أن تكون مختلفة عن البريد الإلكتروني.
     error: الخطأ
     error_401: أنت غير مصرح لك بالوصول إلى هذا المورد. يرجى تسجيل الدخول.
     error_403: ليس لديك إذن لعرض هذا المورد.
@@ -2257,6 +2283,20 @@ ar:
     max_regeneration_limit: تجاوز الحد الأقصى للتجديد ، اتصل بإدارتك.
     messages:
       data_report_blank: تقرير البيانات غير موجود
+      password_complexity:
+        digit:
+          one: يجب أن يحتوي على رقم واحد على الأقل
+          other: يجب أن تحتوي على <x>count</x> رقم على الأقل
+        lower:
+          one: يجب أن يحتوي على حرف واحد على الأقل من الأحرف الصغيرة
+          other: 'يجب أن تحتوي على <x>count</x> على الأقل على حروف صغيرة '
+        symbol:
+          one: يجب أن يحتوي على علامة أو رمز ترقيم واحدة على الأقل
+          other: 'يجب أن تحتوي على <x>count</x> على الأقل على علامات أو رموز ترقيم '
+        upper:
+          one: يجب أن يحتوي على حرف واحد كبير على الأقل
+          other: 'يجب أن تحتوي على <x>count</x> على الأقل على حروف كبيرة '
+      taken_in_past: يجب ألا تكون هي نفسها كلمة المرور المستخدمة سابقاً.
     module_error: حدث خطأ ما في هذه الوحدة، يرجى الاتصال بالإدارة.
     module_error_editor: حدث خطأ ما في هذه الوحدة، يرجى التحقق من إعدادات الوحدة.
     module_props_error: حدث خطأ ما في هذه الوحدة.

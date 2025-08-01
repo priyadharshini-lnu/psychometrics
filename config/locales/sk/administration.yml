@@ -77,7 +77,7 @@ sk:
           actions: Akcie
           created_at: Vytvorené v
           email: E-mail
-          id: Id
+          id: ID
           name: Meno
         header:
           add_admin: Pridať správcu
@@ -941,13 +941,16 @@ sk:
         inactive: Neaktívny
         status: Stav
       form:
+        active_notice: Stav kampane sa automaticky zmení na uzavretý v deň vybraného konca dátumu
         campaign: Kampaň
+        inactive_notice: Stav kampane sa automaticky zmení na aktívny k zvolenému dátumu začiatku
+        instruction: To sa dá povoliť iba pri vytváraní kampane
         name: Meno
         practice_campaign: Cvičná kampaň
         status: Stav
       listing:
         assessments: Hodnotenia
-        id: Id
+        id: ID
         name: Meno
         reports: Správy
         status: Stav
@@ -964,6 +967,7 @@ sk:
             active: Aktívny
             archive: Archív
             assessment: Hodnotenie
+            category: Kategória
             closed: Zatvorený
             empty: Prázdny
             inactive: Neaktívny
@@ -973,6 +977,7 @@ sk:
             skill_rater: Hodnotiteľ zručností
             standard: Štandard
             status: Stav
+            type: Typ
           close:
             content: Naozaj chcete zavrieť Tvorcu kampaní Multi Rater? Akákoľvek neuložená práca na prispôsobení sa stratí. Potvrďte svoje rozhodnutie.
             title: Zavrieť tvorcu kampane s viacerými hodnotiteľmi?
@@ -1054,7 +1059,7 @@ sk:
           all: Všetko
           anonymous: Anonymný
           identified: Identifikované
-        id: Id
+        id: ID
         is_active: Aktívny
         name: Meno
         no_permission_message: Nemáte povolenie na úpravu
@@ -1162,7 +1167,7 @@ sk:
               sub_campaigns: Čiastkové kampane
               tests_allocated: Pridelené testy
               users: Používateľov
-            id: Id
+            id: ID
             name: Názov kampane
             reports: Správy
             updated_at: Dátum aktualizácie
@@ -1185,7 +1190,7 @@ sk:
               sub_campaigns: Čiastkové kampane
               tests_allocated: Pridelené testy
               users: Používateľov
-            id: Id
+            id: ID
             name: Názov kampane
             reports: Správy
             updated_at: Dátum aktualizácie
@@ -1236,7 +1241,7 @@ sk:
                 sub_campaign: Čiastkové kampane
                 tests_allocated: Pridelené testy
                 users: Používateľov
-              id: Id
+              id: ID
               name: Názov podkampane
               reports: Správy
               updated_at: Dátum aktualizácie
@@ -1259,7 +1264,7 @@ sk:
                 sub_campaign: Čiastkové kampane
                 tests_allocated: Pridelené testy
                 users: Používateľov
-              id: Id
+              id: ID
               name: Názov podkampane
               reports: Správy
               updated_at: Dátum aktualizácie
@@ -1309,7 +1314,7 @@ sk:
           assigned_user: Priradení používatelia
           completed_user: Dokončení používatelia
           created_at: Dátum vytvorenia
-          id: Id
+          id: ID
           name: Názov projektu
           number: Číslo
           project_admin: Správcovia projektov
@@ -1358,7 +1363,7 @@ sk:
           assigned_user: Priradení používatelia
           completed_user: Dokončení používatelia
           created_at: Dátum vytvorenia
-          id: Id
+          id: ID
           name: Názov projektu
           number: Číslo
           project_admin: Správcovia projektov
@@ -1427,7 +1432,7 @@ sk:
             assessment: Hodnotenie
             client_admins: Správcovia klientov
             created_at: Vytvorené v
-            id: Id
+            id: ID
             name: Meno
             report: Správa
             report_bundle: Balík zostáv
@@ -1447,7 +1452,7 @@ sk:
             assessment: Hodnotenie
             client_admins: Správcovia klientov
             created_at: Vytvorené v
-            id: Id
+            id: ID
             name: Meno
             report: Správa
             report_bundle: Balík zostáv
@@ -1946,7 +1951,7 @@ sk:
       list:
         active: Aktívny
         created_at: Dátum vytvorenia
-        id: Id
+        id: ID
         name: Meno
         updated_at: Dátum úpravy
       new:
@@ -2053,7 +2058,7 @@ sk:
       list:
         active: Aktívny
         created_at: Dátum vytvorenia
-        id: Id
+        id: ID
         name: Meno
         updated_at: Dátum úpravy
       new:
@@ -2279,7 +2284,7 @@ sk:
         title: Štýly inovácií
       list:
         created_at: Dátum vytvorenia
-        id: Id
+        id: ID
         name: Meno
         position: Pozícia
         updated_at: Dátum úpravy
@@ -2312,7 +2317,7 @@ sk:
       list:
         condition: Podmienka
         created_at: Dátum vytvorenia
-        id: Id
+        id: ID
         name: Meno
         position: Pozícia
         updated_at: Dátum úpravy
@@ -2568,7 +2573,7 @@ sk:
         active: Aktívny
         created_at: Dátum vytvorenia
         dimension_id: ID dimenzie
-        id: Id
+        id: ID
         name: Meno
         updated_at: Dátum úpravy
         updated_by: Aktualizované používateľom
@@ -2629,7 +2634,7 @@ sk:
         title: Povolania
       list:
         created_at: Dátum vytvorenia
-        id: Id
+        id: ID
         name: Meno
         updated_at: Dátum úpravy
       new:
@@ -2661,7 +2666,7 @@ sk:
       list:
         condition: Podmienka
         created_at: Dátum vytvorenia
-        id: Id
+        id: ID
         name: Meno
         position: Pozícia
         updated_at: Dátum úpravy
@@ -2803,7 +2808,7 @@ sk:
       column_createdAt: Vytvorené v
       column_created_at: Vytvorené v
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Meno
       delete: Odstrániť
       edit: Editovať
@@ -2914,7 +2919,7 @@ sk:
       column_campaigns: Kampane
       column_created_at: Vytvorené v
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Meno
       confirm_delete: Áno, odstrániť
       confirm_send: Áno, odoslať
@@ -3536,7 +3541,7 @@ sk:
       final_score_updated_successfully: Konečné skóre bolo úspešne aktualizované
       formula: Vzorec
       get_started: Začať
-      id: Id
+      id: ID
       import:
         factors: Importovať faktory kampane
       name: Meno
@@ -3836,7 +3841,7 @@ sk:
         send_sms: Poslať SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Správa
     smtp_settings:
       authentication: Overovanie
@@ -3873,6 +3878,7 @@ sk:
       user_name: Používateľské meno
     stats:
       assessments:
+        active: Aktívny
         columns:
           assessment_name: Názov hodnotenia
           completed: Dokončený
@@ -3882,6 +3888,9 @@ sk:
           interrupted: Prerušený
           not_started: Nezačalo sa
           timed_out: Vypršal
+        count: Počet
+        inactive: Neaktívny
+        percentage: Percentá
         title: Hodnotenia
       title: Štatistiky
       top_metrics:

@@ -902,6 +902,7 @@ fr:
     invalid_job: Cette notification correspond à un enregistrement supprimé
     mark_as_read: Marquer toutes les lectures
     more: Plus d'informations
+    no_notifications: Aucune notification
     notifications: Notifications
     results: Résultats
     super_admin:
@@ -1536,7 +1537,9 @@ fr:
       in_progress: En cours
       ineligible: Inéligible
       interrupted: Interrompu
+      new: Nouveau
       not_started: Pas commencé
+      progress: En cours
       timed_out: Délai d'attente
       universal_link: Lien universel
     ungrouped_assessments_heading: Non groupé
@@ -1605,7 +1608,7 @@ fr:
       assessment_center_invites: Invitations au centre d'évaluation
       completed_at: Terminé le
       completion_status: État d'avancement
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Dernière connexion
       manager: Gestionnaire
       modals:
@@ -1793,7 +1796,7 @@ fr:
       first_name: Prénom
       icon: Icône
       icon_color: Couleur de l'icône
-      id: Id
+      id: ID
       json:
         answer: Réponse JSON
         external_result: Résultat externe JSON
@@ -1807,13 +1810,13 @@ fr:
       modified_date: Date de modification
       name: Nom
       owner: Propriétaire
-      package_id: Id du paquet
+      package_id: ID du paquet
       poster: Affiche
       project: Projet
       provider: Fournisseur
       qc_user_list: Liste d'utilisateurs QC
       report: Rapport
-      report_id: Rapport Id
+      report_id: Rapport ID
       require_scheduling: Planification des besoins
       responses_count: Réponses Nombre
       schedule_time: Horaire
@@ -1932,6 +1935,8 @@ fr:
       timeout: Votre session a expiré. Veuillez vous connecter à nouveau pour continuer.
       unauthenticated: Vous devez vous connecter ou vous enregistrer avant de continuer.
       unconfirmed: Vous devez confirmer votre adresse électronique avant de continuer.
+    invalid_captcha: L'entrée captcha n'était pas valide.
+    invalid_security_question: La réponse à la question de sécurité n'est pas valide.
     invitations:
       confirmation_instructions:
         subject: Instructions de confirmation
@@ -2006,6 +2011,25 @@ fr:
     omniauth_callbacks:
       failure: Impossible de vous authentifier auprès de %{kind} car "%{reason}".
       success: Authentification réussie à partir du compte %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Soumettre
+        submit_verification_code: Soumettre le code de vérification
+        verification_code: Code de vérification
+      updated: Code de vérification accepté
+    paranoid_verify:
+      code_required: Veuillez saisir le code fourni par notre équipe d'assistance
+    password_expired:
+      change_required: Votre mot de passe a expiré. Veuillez le renouveler.
+      forced_changed: Vous devez définir un nouveau mot de passe pour votre compte.
+      password_policy_changed: La politique en matière de mot de passe a été modifiée. Veuillez modifier votre mot de passe.
+      show:
+        change_my_password: Modifier mon mot de passe
+        current_password: Mot de passe actuel
+        new_password: Nouveau mot de passe
+        new_password_confirmation: Confirmer le nouveau mot de passe
+        renew_your_password: Renouveler votre mot de passe
+      updated: Votre nouveau mot de passe est enregistré.
     passwords:
       edit:
         instruction: Pour créer un nouveau mot de passe, veuillez saisir votre nouveau mot de passe dans les cases ci-dessous
@@ -2206,6 +2230,8 @@ fr:
   errors:
     assessments:
       timed_out: Vous ne pourrez pas passer l'évaluation %{assessment_name} car elle a dépassé le temps imparti.
+    equal_to_current_password: doit être différent du mot de passe actuel.
+    equal_to_email: doit être différent de l'email.
     error: Erreur
     error_401: Vous n’êtes pas autorisé à accéder à cette ressource. Veuillez vous connecter.
     error_403: Vous n’êtes pas autorisé à afficher cette ressource.
@@ -2218,6 +2244,20 @@ fr:
     max_regeneration_limit: Limite maximale de régénération dépassée, contactez votre administration.
     messages:
       data_report_blank: Le rapport de données n'existe pas
+      password_complexity:
+        digit:
+          one: doit contenir au moins un chiffre
+          other: doit contenir au moins <x>count</x> chiffres
+        lower:
+          one: doit contenir au moins une lettre minuscule
+          other: doit contenir au moins <x>count</x> lettres minuscules
+        symbol:
+          one: doit contenir au moins un signe de ponctuation ou un symbole
+          other: doit contenir au moins <x>count</x> signes de ponctuation ou symboles
+        upper:
+          one: doit contenir au moins une lettre majuscule
+          other: doit contenir au moins <x>count</x> lettres majuscules
+      taken_in_past: ne doit pas être identique à un mot de passe utilisé précédemment.
     module_error: Un problème est survenu avec ce module, veuillez contacter l'administration.
     module_error_editor: Quelque chose n'a pas fonctionné avec ce module, veuillez vérifier les paramètres du module.
     module_props_error: Quelque chose n'a pas fonctionné avec ce module.

@@ -902,6 +902,7 @@ sl:
     invalid_job: To obvestilo ustreza izbrisanemu zapisu
     mark_as_read: Označi vse prebrane
     more: Več
+    no_notifications: Brez obvestil
     notifications: Obvestila
     results: Rezultati
     super_admin:
@@ -1545,7 +1546,9 @@ sl:
       in_progress: V teku
       ineligible: Ni dovoljeno
       interrupted: Prekinjeno
+      new: Novo
       not_started: Ni začeto
+      progress: V teku
       timed_out: Čas je potekel
       universal_link: Splošna povezava
     ungrouped_assessments_heading: Razdružiti
@@ -1614,7 +1617,7 @@ sl:
       assessment_center_invites: Vabila ocenjevalnega centra
       completed_at: Dokončano ob
       completion_status: Stanje dokončanja
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Zadnja prijava
       manager: Menedžer
       modals:
@@ -1750,6 +1753,7 @@ sl:
       search: Iskanje
       send: Pošlji
       start: Začetek
+      submit: Pošlji
       unarchive: Odprava arhiviranja
       unpublish: Odprava objave
       unresolve: Nerazrešitev
@@ -1783,7 +1787,7 @@ sl:
       first_name: Ime
       icon: Ikona
       icon_color: Barva ikone
-      id: Id
+      id: ID
       json:
         answer: Odgovori JSON
         external_result: JSON zunanjega rezultata
@@ -1922,6 +1926,8 @@ sl:
       timeout: Vaša seja je potekla. Za nadaljevanje se ponovno prijavite.
       unauthenticated: Pred nadaljevanjem se morate prijaviti ali registrirati.
       unconfirmed: Pred nadaljevanjem morate potrditi svoj e-poštni naslov.
+    invalid_captcha: Vnos captcha je bil neveljaven.
+    invalid_security_question: Odgovor na varnostno vprašanje je bil neveljaven.
     invitations:
       edit:
         confirm_password_label: Potrdi geslo
@@ -2001,6 +2007,25 @@ sl:
     omniauth_callbacks:
       failure: Ni bilo mogoče preveriti vaše pristnosti iz %{kind} zaradi "%{reason}".
       success: Uspešno preverjena pristnost iz računa %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Pošlji
+        submit_verification_code: Pošljite kodo za preverjanje
+        verification_code: Koda za preverjanje
+      updated: Sprejeta koda preverjanja
+    paranoid_verify:
+      code_required: Vnesite kodo, ki jo je zagotovila naša ekipa za podporo
+    password_expired:
+      change_required: Vaše geslo je poteklo. Obnovite svoje geslo.
+      forced_changed: Za svoj račun morate nastaviti novo geslo.
+      password_policy_changed: Pravilnik o geslih je bil spremenjen. Spremenite geslo.
+      show:
+        change_my_password: Spremeni moje geslo
+        current_password: Trenutno geslo
+        new_password: Novo geslo
+        new_password_confirmation: Potrditev novega gesla
+        renew_your_password: Obnovite svoje geslo
+      updated: Novo geslo je shranjeno.
     passwords:
       edit:
         instruction: Če želite ustvariti novo geslo, vnesite novo geslo v spodnja polja
@@ -2198,6 +2223,8 @@ sl:
   errors:
     assessments:
       timed_out: Ocenjevanja %{assessment_name} ne boste mogli opraviti, ker je čas potekel.
+    equal_to_current_password: mora biti drugačno od trenutnega gesla.
+    equal_to_email: mora biti drugačen od e-poštnega sporočila.
     error: Napaka
     error_401: Nimate dovoljenja za dostop do tega vira. Prosimo, prijavite se.
     error_403: Nimate dovoljenja za ogled tega vira.
@@ -2210,6 +2237,20 @@ sl:
     max_regeneration_limit: Presežena najvišja meja regeneracije, se obrnite na svojo upravo.
     messages:
       data_report_blank: Poročilo o podatkih ne obstaja
+      password_complexity:
+        digit:
+          one: mora vsebovati vsaj eno številko.
+          other: vsebovati mora vsaj <x>count</x> številk.
+        lower:
+          one: mora vsebovati vsaj eno malo črko.
+          other: vsebovati mora vsaj <x>count</x> malih črk.
+        symbol:
+          one: mora vsebovati vsaj eno ločilo ali simbol.
+          other: vsebovati mora vsaj <x>count</x> ločil ali simbolov.
+        upper:
+          one: vsebovati mora vsaj eno veliko črko.
+          other: vsebovati mora vsaj <x>count</x> velike tiskane črke.
+      taken_in_past: ne sme biti enako prej uporabljenemu geslu.
     module_error: Prišlo je do napake v tem modulu. Obrnite se na skrbnika sistema.
     module_error_editor: Prišlo je do napake v tem modulu. Preverite nastavitve modula.
     module_props_error: Prišlo je do napake v tem modulu.

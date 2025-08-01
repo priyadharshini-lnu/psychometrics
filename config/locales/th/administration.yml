@@ -531,10 +531,10 @@ th:
         reset_successfully: รีเซ็ตการประเมินสําหรับหัวเรื่องด้วยอีเมล "%{subjectEmail}" สําเร็จ
         subject_email: หัวเรื่อง อีเมล
         subject_name: ชื่อเรื่อง
-      completed_at: สร้างเสร็จเมื่อ
+      completed_at: เสร็จสิ้น
       count: "%{count} ผู้ประเมิน"
       create_assessor: เพิ่มผู้ประเมิน
-      evaluations: ประเมิน
+      evaluations: การประเมิน
       mailer:
         subject: เพิ่มวิชาใหม่สําหรับการประเมินของคุณ
       modals:
@@ -545,14 +545,14 @@ th:
             add: เพิ่ม
             add_lead_assessor: เพิ่มเป็นผู้ประเมินหลัก
             add_lead_assessor_hint: โปรดเพิ่มแบบฟอร์มหัวหน้าผู้ประเมินก่อน
-            assessments: ประเมิน
+            assessments: การประเมิน
             assessor: ผู้ประเมิน
             assessor_placeholder: ค้นหาผู้ประเมิน...
             lead_assessment: การประเมินโอกาสในการขาย
             subject: ชื่อเรื่อง
             subject_placeholder: หัวข้อค้นหา...
           sheet:
-            assessments: ประเมิน
+            assessments: การประเมิน
             assessments_placeholder: เลือก
             assessor_email: อีเมลของผู้ประเมิน
             assessor_first_name: ชื่อผู้ประเมิน
@@ -575,12 +575,12 @@ th:
       overview: ภาพรวม
       remove_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ประเมินที่มีอีเมล %{email} ออกจากแคมเปญนี้?
       statuses:
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         not_completed: ยังไม่เสร็จสมบูรณ์
       toolbar:
         export: ผู้ประเมินการส่งออก
         import: ผู้ประเมินนําเข้า
-        tools: เครื่อง มือ
+        tools: เครื่องมือ
     assessor_assessment:
       add: เพิ่ม
       modals:
@@ -589,12 +589,12 @@ th:
       name: การประเมินผู้ประเมิน
     assessor_campaigns:
       statuses:
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         in_progress: อยู่ระหว่างดําเนินการ
         not_started: ยังไม่ได้เริ่ม
     assessor_subjects:
       statuses:
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         in_progress: อยู่ระหว่างดําเนินการ
         not_started: ยังไม่ได้เริ่ม
     assigns:
@@ -620,7 +620,7 @@ th:
       client: ลูกค้า
       client_ip: IP ไคลเอ็นต์
       collapse_filters: ยุบตัวกรอง
-      dashboard: แผงหน้าปัด
+      dashboard: แดชบอร์ด
       date_presets:
         last_30_days: 30 วันที่ผ่านมา
         last_7_days: 7 วันที่ผ่านมา
@@ -700,7 +700,7 @@ th:
         seats_not_available: ไม่มีที่นั่งว่าง
     breadcrumbs:
       admins: ผู้ดูแลระบบ
-      assessments: ประเมิน
+      assessments: การประเมิน
       assessor_dashboard: แดชบอร์ดผู้ประเมิน
       assessors: ผู้ประเมิน
       audit_log_info: ข้อมูลบันทึกการตรวจสอบ
@@ -711,17 +711,17 @@ th:
       client: การเช่าลูกค้า
       clientAdmins: ผู้ดูแลระบบไคลเอ็นต์
       client_admins: ผู้ดูแลระบบไคลเอ็นต์
-      clients: การเช่าของลูกค้า
+      clients: บัญชีลูกค้า
       communication_center: ศูนย์สื่อสาร
       create: สร้าง
       data_exports: การส่งออกข้อมูล
       data_reports: รายงานข้อมูล
-      datasheets: เอกสารข้อมูลสินค้า
+      datasheets: เอกสารข้อมูล
       design: ออกแบบ
       dimension: มิติ
       dimensions: มิติ
       factors: ปัจจัย
-      home: แผงหน้าปัด
+      home: แดชบอร์ด
       innovation_styles: รูปแบบนวัตกรรม
       innovation_styles_factors: ปัจจัย
       libraries: ห้องสมุดสื่อ
@@ -733,7 +733,7 @@ th:
       norms_editor: เครื่องมือแก้ไขค่ามาตรฐาน
       occupations: อาชีพ
       occupations_factors: ปัจจัย
-      participants: คน
+      participants: ผู้เข้าร่วม
       products: ผลิตภัณฑ์
       project_admins: ผู้ดูแลระบบโครงการ
       projects: โครงการ
@@ -749,7 +749,7 @@ th:
       sub_factors: ปัจจัยย่อย
       survey: สํารวจ
       surveys: สำรวจ
-      users: คน
+      users: ผู้เข้าร่วม
       users_add: เพิ่มใหม่
       users_import: นําเข้า
     bulk_reports:
@@ -934,19 +934,22 @@ th:
       edit: แก้ไข
       extend_time_success_message: ขยายเวลาแคมเปญเป็น %{minutes} นาที
       filters:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         all: ทั้งหมด
-        archived: เก็บ ถาวร
+        archived: เก็บเข้าคลัง
         closed: ปิด
         inactive: เกียจคร้าน
         status: สถานะ
       form:
+        active_notice: สถานะแคมเปญจะเปลี่ยนเป็นปิดโดยอัตโนมัติในวันที่สิ้นสุดที่เลือก
         campaign: แคมเปญ
+        inactive_notice: สถานะแคมเปญจะเปลี่ยนไปใช้งานโดยอัตโนมัติในวันที่เริ่มต้นที่เลือก
+        instruction: สามารถเปิดใช้งานได้ในขณะที่สร้างแคมเปญเท่านั้น
         name: ชื่อ
         practice_campaign: แคมเปญฝึกหัด
         status: สถานะ
       listing:
-        assessments: ประเมิน
+        assessments: การประเมิน
         id: รหัส
         name: ชื่อ
         reports: รายงาน
@@ -961,9 +964,10 @@ th:
             campaign_template: เทมเพลตแคมเปญ
             factors: ปัจจัย
           base_settings:
-            active: กระปรี้กระเปร่า
+            active: เปิดใช้งาน
             archive: หอจดหมายเหตุ
             assessment: การประเมิน
+            category: หมวดหมู่
             closed: ปิด
             empty: เปล่า
             inactive: เกียจคร้าน
@@ -973,6 +977,7 @@ th:
             skill_rater: ผู้ประเมินทักษะ
             standard: มาตรฐาน
             status: สถานะ
+            type: พิมพ์
           close:
             content: คุณแน่ใจหรือไม่ว่าต้องการปิดผู้สร้างแคมเปญ Multi Rater งานปรับแต่งที่ยังไม่ได้บันทึกจะสูญหายไป โปรดยืนยันการตัดสินใจของคุณ
             title: ปิดผู้สร้างแคมเปญ Multi Rater?
@@ -1043,8 +1048,8 @@ th:
         watermark_info: หากคุณไม่เพิ่มเนื้อหาใด ๆ โดยค่าเริ่มต้นอีเมลของผู้ใช้จะปรากฏเป็นเครื่องหมายน้ํา คุณสามารถใช้ pipetext ต่อไปนี้ -<br> {{id}} - รหัสผู้เข้าร่วม </br> {{first_name}} - ชื่อผู้เข้าร่วม <br> {{last_name}} - นามสกุลของผู้เข้าร่วม </br> {{email}} - อีเมลผู้เข้าร่วม
       pdf_password: รหัสผ่าน PDF
       types:
-        common: สามัญ
-        threesixty: ผู้ประเมินหลายตัว
+        common: ทั่วไป
+        threesixty: เฉพาะกลุ่ม
       users:
         add_user: เพิ่มผู้ใช้
         completion_status: สถานะการเสร็จสมบูรณ์
@@ -1052,10 +1057,10 @@ th:
         email: อีเมล
         filters:
           all: ทั้งหมด
-          anonymous: นิรนาม
-          identified: ระบุ
+          anonymous: ไม่ระบุชื่อ
+          identified: ระบุชื่อ
         id: รหัส
-        is_active: กระปรี้กระเปร่า
+        is_active: เปิดใช้งาน
         name: ชื่อ
         no_permission_message: คุณไม่มีสิทธิ์ในการแก้ไข
         updated_by: อัพเดทโดย
@@ -1087,8 +1092,8 @@ th:
       archive:
         successfully: สำเร็จ
       base:
-        active: กระปรี้กระเปร่า
-        archived: เก็บ ถาวร
+        active: เปิดใช้งาน
+        archived: เก็บเข้าคลัง
         disable: หอจดหมายเหตุ
         enable: ยกเลิกการเก็บถาวร
       columns:
@@ -1132,7 +1137,7 @@ th:
           title: โครงการเก็บถาวร
         assign_assessments:
           add_assessment: เพิ่มการประเมิน
-          assessments: ประเมิน
+          assessments: การประเมิน
         assign_reports:
           add_report: เพิ่มรายงาน
         campaigns:
@@ -1148,20 +1153,20 @@ th:
           edit:
             header: แก้ไขแคมเปญ
           export:
-            assessments: ประเมิน
+            assessments: การประเมิน
             assigned_user: ผู้ใช้ที่ได้รับมอบหมาย
             completed_user: ผู้ใช้ที่เสร็จสมบูรณ์
             created_at: วันที่สร้าง
             header:
               actions: การดําเนินการ
               actual_usage: การใช้งานจริง
-              assessments: ประเมิน
+              assessments: การประเมิน
               campaigns: แคมเปญ
               name: ชื่อ
               reports: รายงาน
               sub_campaigns: แคมเปญย่อย
               tests_allocated: การทดสอบที่จัดสรร
-              users: คน
+              users: ผู้เข้าร่วม
             id: รหัส
             name: ชื่อแคมเปญ
             reports: รายงาน
@@ -1171,20 +1176,20 @@ th:
             new: เพิ่ม
             title: แคมเปญ
           list:
-            assessments: ประเมิน
+            assessments: การประเมิน
             assigned_user: ผู้ใช้ที่ได้รับมอบหมาย
             completed_user: ผู้ใช้ที่เสร็จสมบูรณ์
             created_at: วันที่สร้าง
             header:
               actions: การดําเนินการ
               actual_usage: การใช้งานจริง
-              assessments: ประเมิน
+              assessments: การประเมิน
               campaigns: แคมเปญ
               name: ชื่อ
               reports: รายงาน
               sub_campaigns: แคมเปญย่อย
               tests_allocated: การทดสอบที่จัดสรร
-              users: คน
+              users: ผู้เข้าร่วม
             id: รหัส
             name: ชื่อแคมเปญ
             reports: รายงาน
@@ -1224,7 +1229,7 @@ th:
             edit:
               header: แก้ไขแคมเปญย่อย
             export:
-              assessments: ประเมิน
+              assessments: การประเมิน
               assigned_user: ผู้ใช้ที่ได้รับมอบหมาย
               completed_user: ผู้ใช้ที่เสร็จสมบูรณ์
               created_at: วันที่สร้าง
@@ -1235,7 +1240,7 @@ th:
                 name: ชื่อ
                 sub_campaign: แคมเปญย่อย
                 tests_allocated: การทดสอบที่จัดสรร
-                users: คน
+                users: ผู้เข้าร่วม
               id: รหัส
               name: ชื่อแคมเปญย่อย
               reports: รายงาน
@@ -1247,7 +1252,7 @@ th:
               new: เพิ่ม
               title: แคมเปญย่อย
             list:
-              assessments: ประเมิน
+              assessments: การประเมิน
               assigned_user: ผู้ใช้ที่ได้รับมอบหมาย
               completed_user: ผู้ใช้ที่เสร็จสมบูรณ์
               created_at: วันที่สร้าง
@@ -1258,7 +1263,7 @@ th:
                 name: ชื่อ
                 sub_campaign: แคมเปญย่อย
                 tests_allocated: การทดสอบที่จัดสรร
-                users: คน
+                users: ผู้เข้าร่วม
               id: รหัส
               name: ชื่อแคมเปญย่อย
               reports: รายงาน
@@ -1305,7 +1310,7 @@ th:
           admin: ผู้ดูแลระบบไคลเอ็นต์
           applicable_level: ระดับที่ใช้งานได้
           archive_status: สถานะ
-          assessments: ประเมิน
+          assessments: การประเมิน
           assigned_user: ผู้ใช้ที่ได้รับมอบหมาย
           completed_user: ผู้ใช้ที่เสร็จสมบูรณ์
           created_at: วันที่สร้าง
@@ -1354,7 +1359,7 @@ th:
           admin: ผู้ดูแลระบบไคลเอ็นต์
           applicable_level: ระดับที่ใช้งานได้
           archive_status: สถานะ
-          assessments: ประเมิน
+          assessments: การประเมิน
           assigned_user: ผู้ใช้ที่ได้รับมอบหมาย
           completed_user: ผู้ใช้ที่เสร็จสมบูรณ์
           created_at: วันที่สร้าง
@@ -1373,7 +1378,7 @@ th:
         resource:
           add_assessment: เพิ่มการประเมิน
           add_report: เพิ่มรายงาน
-          assessments: ประเมิน
+          assessments: การประเมิน
           tooltips:
             copy: คัดลอกโครงการ
             create_admin: สร้างผู้ดูแลระบบโครงการ
@@ -1394,17 +1399,17 @@ th:
           title: ตัวเลือกของโครงการ
           view_licenses: ดูใบอนุญาต
         status:
-          active: กระปรี้กระเปร่า
-          archived: เก็บ ถาวร
+          active: เปิดใช้งาน
+          archived: เก็บเข้าคลัง
         threesixty_campaigns:
           base:
-            active: กระปรี้กระเปร่า
-            archived: เก็บ ถาวร
+            active: เปิดใช้งาน
+            archived: เก็บเข้าคลัง
             disable: หอจดหมายเหตุ
             enable: ยกเลิกการเก็บถาวร
           completion_statuses:
             approved: อนุมัติ
-            completed: เสร็จ สมบูรณ์
+            completed: เสร็จสมบูรณ์
             denied: ถูก ปฏิเสธ
             in_progress: อยู่ระหว่างดําเนินการ
             not_started: ยังไม่ได้เริ่มต้น
@@ -1531,7 +1536,7 @@ th:
             title: เก็บถาวร <strong>%{name}</strong> ?
           enable:
             title: ยกเลิกการเก็บถาวร <strong>%{name}</strong> ?
-      tenancies: การเช่าของลูกค้า
+      tenancies: บัญชีลูกค้า
       threesixty_campaign: แคมเปญ Threesixty
       toggle_status:
         successfully: พื้นที่เช่าของลูกค้า %{name} อัปเดตเรียบร้อยแล้ว
@@ -1550,7 +1555,7 @@ th:
       minute: นาที
       next: ต่อไป
       reset: รี เซ็ต
-      save: ประหยัด
+      save: บันทึก
       select_all: เลือกทั้งหมด
       type: ประเภท
       unselect_all: ยกเลิกการเลือกทั้งหมด
@@ -1590,7 +1595,7 @@ th:
         campaign: แคมเปญ
         campaign_assessment_group: กลุ่มประเมินผลแคมเปญ
         client: ลูกค้า
-        completion: เสร็จ สมบูรณ์
+        completion: เสร็จสมบูรณ์
         delivery_at: จัดส่งที่ (GST)
         delivery_delay_hours: ความล่าช้าในการจัดส่ง (ชั่วโมง)
         delivery_interval: ระยะเวลาการส่งมอบ
@@ -1690,7 +1695,7 @@ th:
         stop_reminder_datetime: วันที่สิ้นสุดการช่วยเตือน (GST)
         sub_campaign: 'แคมเปญย่อย:'
         subject: 'ชื่อเรื่อง:'
-        users: 'คน:'
+        users: 'ผู้เข้าร่วม:'
       sidebar:
         copy: คัดลอกการสื่อสาร
         destroy: ลบการสื่อสาร
@@ -1727,13 +1732,13 @@ th:
         embed_token_error_title: ไม่สามารถสร้างโทเค็นแบบฝังได้
       settings:
         capacity_id: รหัสความจุ
-        details: ราย ละเอียด
+        details: รายละเอียด
         refresh: ฟื้นฟู
         workspace_id: รหัสพื้นที่ทํางาน
       tabs:
         accesssheet: แผ่นเข้าใช้งาน
         accesssheet_setting: การตั้งค่าแผ่นการเข้าถึง
-        dashboard: แผงหน้าปัด
+        dashboard: แดชบอร์ด
         settings: การตั้งค่า
     dashboard_form:
       fields:
@@ -1781,10 +1786,10 @@ th:
     datasheet:
       threesixty_warning: คุณไม่สามารถอัปโหลดคอลัมน์แผ่นข้อมูลสําหรับรายงาน 360 จากที่นี่ได้ สําหรับรายงาน 360 องศา คอลัมน์แผ่นข้อมูลจะถูกโหลดจากแคมเปญที่รายงานนี้เชื่อมโยงไป
     dates:
-      completed: สร้างเสร็จเมื่อ
+      completed: เสร็จสิ้น
       end: วันที่สิ้นสุด
       start: วันที่เริ่มต้น
-      started: เริ่มต้นที่
+      started: เริ่มต้น
     development_action_import:
       errors:
         blank_field: 'แถว %{row}: %{field} ต้องไม่ว่างเปล่า'
@@ -1834,7 +1839,7 @@ th:
         failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
         success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่ โปรดตรวจสอบสถานะในการแจ้งเตือน
         title: ส่งออก
-        translation_details: ราย ละเอียด
+        translation_details: รายละเอียด
       export_actions:
         development_action_translations_title: ส่งออกการดําเนินการพัฒนาการแปล
         development_actions_title: การดําเนินการพัฒนาการส่งออก
@@ -1944,7 +1949,7 @@ th:
         owner: เจ้าของ
         title: มิติ
       list:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
@@ -2030,7 +2035,7 @@ th:
           sub_factors_average: ค่าเฉลี่ยถ่วงน้ําหนักของปัจจัย
           sub_factors_conditional_average: ค่าเฉลี่ยถ่วงน้ําหนักแบบมีเงื่อนไขของปัจจัย
           sub_factors_sum: ผลรวมถ่วงน้ําหนักของปัจจัย
-        scoring_strategies_tip: "<strong>คําถาม (เฉลี่ย):</strong> นี่เหมือนกับวิธีการให้คะแนนปัจจุบันเมื่อมีคําถามที่เชื่อมโยงกับปัจจัย<br /> <br /><strong>คําถาม (SUM):</strong> นี่เหมือนกับคําถาม (เฉลี่ย) แต่ใช้ SUM<br /> <br /><strong>คําถามเกี่ยวกับปัจจัยอื่น ๆ (ค่าเฉลี่ย):</strong> นี่เหมือนกับวิธีการให้คะแนนปัจจุบันเมื่อมีปัจจัยย่อยสําหรับปัจจัยการเปลี่ยนแปลงเพียงอย่างเดียวคือการเพิ่มน้ําหนัก<br /> <br /><strong>คําถามเกี่ยวกับปัจจัยอื่น ๆ (SUM):</strong> นี่เหมือนกับปัจจัยอื่น ๆ (ค่าเฉลี่ย) แต่ใช้ SUM<br /> <br />ผล <strong>รวมถ่วงน้ําหนักของปัจจัย:</strong> ที่นี่คะแนนของปัจจัยอื่น ๆ ที่เลือกจะถูกคูณด้วยน้ําหนักจะถูกเพิ่มเข้ามา"
+        scoring_strategies_tip: "<strong>คําถาม (เฉลี่ย):</strong> นี่เหมือนกับวิธีการให้คะแนนปัจจุบันเมื่อมีคําถามที่เชื่อมโยงกับปัจจัย<br /> <br /><strong>คําถาม (SUM):</strong> นี่เหมือนกับคําถาม (เฉลี่ย) แต่ใช้ SUM<br /> <br /><strong>คําถามเกี่ยวกับปัจจัยอื่น ๆ (บรรทัดฐาน):</strong> นี่เหมือนกับวิธีการให้คะแนนปัจจุบันเมื่อมีปัจจัยย่อยสําหรับปัจจัยการเปลี่ยนแปลงเพียงอย่างเดียวคือการเพิ่มน้ําหนัก<br /> <br /><strong>คําถามเกี่ยวกับปัจจัยอื่น ๆ (SUM):</strong> นี่เหมือนกับปัจจัยอื่น ๆ (บรรทัดฐาน) แต่ใช้ SUM<br /> <br />ผล <strong>รวมถ่วงน้ําหนักของปัจจัย:</strong> ที่นี่คะแนนของปัจจัยอื่น ๆ ที่เลือกจะถูกคูณด้วยน้ําหนักจะถูกเพิ่มเข้ามา"
         scoring_strategy: กลยุทธ์การให้คะแนน
         use_sub_factor_norm_score: ใช้คะแนนปัจจัยค่ามาตรฐาน
       index:
@@ -2051,7 +2056,7 @@ th:
         sub_factors: ปัจจัยย่อย
         title: ปัจจัย
       list:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         id: รหัส
         name: ชื่อ
@@ -2101,7 +2106,7 @@ th:
       common:
         view: ดู
       dashboard:
-        name: แผงหน้าปัด
+        name: แดชบอร์ด
         permissions:
           accesssheet_manage: จัดการ Accesssheet
           accesssheet_settings: การตั้งค่าแผ่นการเข้าถึง
@@ -2264,7 +2269,7 @@ th:
     individual_invite:
       tabs:
         assessment_center: ศูนย์ประเมินผล
-        subjects: วัตถุ
+        subjects: หัวข้อ
     innovation_styles:
       create:
         successfully: รูปแบบนวัตกรรม %{name} ถูกสร้างขึ้นเรียบร้อยแล้ว
@@ -2340,8 +2345,8 @@ th:
         load_mettl_catalog: โหลดแคตตาล็อกการประเมิน Mettl
         load_skillvue_catalog: โหลดแคตตาล็อกการประเมิน Skillvue
       columns:
-        active: กระปรี้กระเปร่า
-        details: ราย ละเอียด
+        active: เปิดใช้งาน
+        details: รายละเอียด
         name: ชื่อการรวม
       details:
         provider: ชื่อผู้ให้บริการ
@@ -2439,7 +2444,7 @@ th:
     job_roles:
       export:
         translations:
-          details: ราย ละเอียด
+          details: รายละเอียด
       translations:
         import:
           errors:
@@ -2501,19 +2506,19 @@ th:
     meta_title: แผงการดูแลระบบ
     navigation:
       ai_assistants: ผู้ช่วย AI
-      assessments: ประเมิน
+      assessments: การประเมิน
       assessments_reports: การประเมินและรายงาน
       assessor_dashboard: แดชบอร์ดผู้ประเมิน
       assessor_workshops: ศูนย์ประเมินผล
       audit_logs: บันทึกการตรวจสอบ
-      availability: ความสะดวก
+      availability: กำหนดการ
       back_to_main: เมนูหลัก
       campaign_templates: เทมเพลตแคมเปญ
       change_password: เปลี่ยนรหัสผ่าน
       client_admins: ผู้ดูแลระบบไคลเอ็นต์
-      clients: การเช่าของลูกค้า
+      clients: บัญชีลูกค้า
       communication_center: ศูนย์สื่อสาร
-      dashboard: แผงหน้าปัด
+      dashboard: แดชบอร์ด
       data_reports: รายงานข้อมูล
       development_actions: การดําเนินการพัฒนา
       dimensions: มิติ
@@ -2523,20 +2528,20 @@ th:
       norms: ค่ามาตรฐาน
       occupations: อาชีพ
       options: ตัวเลือก
-      participants: คน
+      participants: ผู้เข้าร่วม
       profile: โปรไฟล์
-      profile_details: ราย ละเอียด
+      profile_details: รายละเอียด
       project_admins: ผู้ดูแลระบบโครงการ
       question_center: ศูนย์คําถาม
       registration_codes: รหัสการลงทะเบียน
       report_approvals: การอนุมัติรายงาน
       reports: รายงาน
-      scheduling: จัด กำหนดการ
+      scheduling: กำหนดการ
       show_submenu: แสดงเมนูย่อย
       skills_taxonomy: อนุกรมวิธานทักษะ
       user_profile_details: รายละเอียดโปรไฟล์
       user_report_events: เหตุการณ์รายงานผู้ใช้
-      users: คน
+      users: ผู้เข้าร่วม
     no_data_found: ไม่พบข้อมูล
     norms:
       copy:
@@ -2565,7 +2570,7 @@ th:
         owner: เจ้าของ
         title: บรรทัดฐาน
       list:
-        active: กระปรี้กระเปร่า
+        active: เปิดใช้งาน
         created_at: วันที่สร้าง
         dimension_id: รหัสมิติ
         id: รหัส
@@ -2688,7 +2693,7 @@ th:
       tabs:
         assessors: ผู้ประเมิน
         sms_contacts: ติดต่อ SMS
-        subjects: วัตถุ
+        subjects: หัวข้อ
     piped_text_modal:
       assessment_id: รหัสการประเมิน
       campaign_id: รหัสแคมเปญ
@@ -2713,7 +2718,7 @@ th:
         links: เชื่อม โยง
         score: คะแนน
         session_id: รหัสเซสชัน
-        started_at: เริ่มต้นที่
+        started_at: เริ่มต้น
       links:
         report: รายงาน
         review: ตรวจสอบ
@@ -2737,7 +2742,7 @@ th:
           project_level_default_exists: ระดับความสามารถ 'เริ่มต้น' มีอยู่แล้ว
           skill_must_exist: ต้องมีทักษะสําหรับ 'by_skill' proficiency_type
       export:
-        details: ราย ละเอียด
+        details: รายละเอียด
         failure_msg: ข้อผิดพลาดขณะส่งออกระดับความชํานาญ
         success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
         translations:
@@ -2783,7 +2788,7 @@ th:
         default: ค่าเริ่มต้น
     profile:
       change_password: เปลี่ยนรหัสผ่าน
-      details: ราย ละเอียด
+      details: รายละเอียด
       profile: โปรไฟล์
     profiles:
       edit:
@@ -2812,7 +2817,7 @@ th:
       form_first_name: ชื่อ
       form_last_name: นามสกุล
       reset_password: รีเซ็ตรหัสผ่าน
-      save: ประหยัด
+      save: บันทึก
       search_user: ค้นหาผู้ใช้
       send_email: ส่งอีเมล
     project_tabs:
@@ -2831,7 +2836,7 @@ th:
           assessment_required: จําเป็นต้องมีการประเมิน
           normalize_factor_scores: ทําให้คะแนนปัจจัยเป็นมาตรฐาน
           user_result_validity_in_days: ผลการสอบเป็นวัน
-        title: ประเมิน
+        title: การประเมิน
       design: ออกแบบ
       general: ทั่วไป
       privacy: ความเป็นส่วนตัว
@@ -2853,8 +2858,8 @@ th:
             label: ขีดจํากัดคําขอที่ยอมรับได้
             request_per: คําขอต่อ
           active:
-            label: กระปรี้กระเปร่า
-            name: กระปรี้กระเปร่า
+            label: เปิดใช้งาน
+            name: เปิดใช้งาน
           auth_type:
             api_key:
               label: คีย์ API
@@ -2933,7 +2938,7 @@ th:
       no_edit_permission: คุณไม่มีสิทธิ์แก้ไขผู้ประเมิน '%{name}'
       reset_mail_error: ไม่สามารถส่งลิงก์รีเซ็ตรหัสผ่านไปยัง '%{email}' โปรดติดต่อผู้ดูแลระบบของคุณ
       reset_mail_success: ลิงก์รีเซ็ตรหัสผ่านถูกส่งไปยัง '%{email}' เรียบร้อยแล้ว
-      save: ประหยัด
+      save: บันทึก
       search_accessor: ผู้เข้าถึงการค้นหา
       send_email: ส่งอีเมล
     projects:
@@ -3068,7 +3073,7 @@ th:
             title: ชื่อเรื่อง
       webhook_settings:
         add: เพิ่มเว็บฮุค
-        column_active: กระปรี้กระเปร่า
+        column_active: เปิดใช้งาน
         column_created_date: วันที่สร้าง
         column_description: คำอธิบาย
         column_manage: จัดการ
@@ -3136,11 +3141,11 @@ th:
         approval_status: สถานะการอนุมัติ
         approved_by: อนุมัติโดย
         campaign_name: ชื่อแคมเปญ
-        qc_by: QC โดย
+        qc_by: ตรวจสอบโดย
         report_name: ชื่อรายงาน
         user_email: อีเมลผู้ใช้
         user_name: ชื่อผู้ใช้
-      dashboard: แผงหน้าปัด
+      dashboard: แดชบอร์ด
       download: ดาวน์โหลด
       report_approval_settings: การตั้งค่าการอนุมัติรายงาน
       report_approvals: การอนุมัติรายงาน
@@ -3149,7 +3154,7 @@ th:
         actions:
           clear_filters: ล้างฟิลเตอร์
           delete_filter: ลบตัวกรอง
-          save_filter: ประหยัด
+          save_filter: บันทึก
           save_new_filter: บันทึกเป็นตัวกรองใหม่
           saved_filters: ตัวกรองที่บันทึกไว้
         delete_saved_filters: ตัวกรองที่ถูกลบ
@@ -3174,7 +3179,7 @@ th:
         name: ชื่อ
         no_boundary_space: ชื่อไม่สามารถขึ้นต้นหรือลงท้ายด้วยช่องว่าง
         too_many_factors: สร้างปัจจัยแคมเปญมากกว่า %{count} ไม่ได้
-        tools: เครื่อง มือ
+        tools: เครื่องมือ
         type: ประเภท
       pagination:
         edit_frame: แก้ไขกรอบการแบ่งหน้า
@@ -3343,7 +3348,7 @@ th:
       save: บันทึกการตั้งค่า
       sso_service_url: URL บริการ SSO
       successfully_saved_msg: บันทึกการตั้งค่า SAML เรียบร้อยแล้ว
-    save: ประหยัด
+    save: บันทึก
     scheduling:
       add_activity: เพิ่มกิจกรรม
       add_assessment_center: เพิ่มศูนย์การประเมิน
@@ -3388,7 +3393,7 @@ th:
         scheduling_lead_time_label: ระยะเวลารอคอยสินค้าสําหรับการจัดกําหนดการ
         seats_label: ที่นั่ง
         time_label: เวลา
-        timezone_label: เขตเวลา
+        timezone_label: โซนเวลา
         url_label: URL
         video_call_type:
           custom: ธรรมเนียม
@@ -3419,7 +3424,7 @@ th:
         managers: จัดการ
         meeting_link: ลิงค์การประชุม
         name: ชื่อ
-        participants: คน
+        participants: ผู้เข้าร่วม
         prework: ก่อนทํางาน
         resource_link: ลิงก์
         resource_name: ชื่อ
@@ -3454,13 +3459,13 @@ th:
         scheduling_lead_time: การจัดตารางเวลานํา
         scheduling_tooltip: ผู้ใช้จะสามารถจองสล็อตได้จนถึง %{date}
         search_placehoder: ค้นหาตาม ID อีเมล หรือชื่อ
-        timezone: เขตเวลา
+        timezone: โซนเวลา
         total_seats: จํานวนที่นั่งทั้งหมด
       resources:
         confirm_message: คุณแน่ใจหรือไม่ว่าต้องการลบทรัพยากร '%{resource_name}'
         confirm_title: ต้องยืนยัน
         create: สร้างทรัพยากร
-        invalid_url: URL ไม่ถูกต้อง ระบุ URL ที่สมบูรณ์ด้วยโปรโตคอล http หรือ https อยู่ในนั้น
+        invalid_url: URL ไม่ถูกต้อง ระบุชื่อ URL ที่สมบูรณ์ด้วยโปรโตคอล http หรือ https อยู่ในนั้น
         resource: ทรัพยากร
         successful_remove: ทรัพยากรศูนย์การประเมิน %{resource_name} ถูกลบเรียบร้อยแล้ว
       schedule_assessments: กําหนดการประเมิน
@@ -3472,7 +3477,7 @@ th:
         scheduled: ถึงกําหนด
       search_participant: ผู้เข้าร่วมแคมเปญการค้นหา
       status:
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         dropped_out: ออกกลางคัน
         in_progress: อยู่ระหว่างดําเนินการ
         late: สาย
@@ -3484,7 +3489,7 @@ th:
       subjects:
         activities: กิจกรรม
         add_assessor_form: เพิ่มแบบฟอร์มผู้ประเมิน
-        assessments: ประเมิน
+        assessments: การประเมิน
         assessor_forms: แบบฟอร์มผู้ประเมิน
         confirm_message: คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการเข้าร่วมของหัวข้อด้วยอีเมล '%{subject_email}'<br />เมื่อทําเครื่องหมายว่ายกเลิกแล้ว วิชานี้จะไม่สามารถเข้าร่วมในศูนย์ประเมินได้
         confirm_title: ต้องยืนยัน
@@ -3507,10 +3512,10 @@ th:
         assessment_center: ศูนย์ประเมินผล
         invites: เชิญ
         resources: ทรัพยากร
-        subjects: วัตถุ
+        subjects: หัวข้อ
     scoring:
       action_prohibited: การกระทําที่ต้องห้าม
-      active: กระปรี้กระเปร่า
+      active: เปิดใช้งาน
       actual_average: ค่าเฉลี่ยที่แท้จริง
       add_factor: เพิ่มปัจจัย
       add_group: เพิ่มกลุ่ม
@@ -3556,7 +3561,7 @@ th:
       remove_factor_group_confirmation_content: คุณแน่ใจหรือไม่ว่าต้องการลบกลุ่มตัวประกอบ '%{group_name}'
       remove_factor_group_confirmation_title: ลบกลุ่มปัจจัย
       required_error: ไม่สามารถว่างเปล่าได้
-      save: ประหยัด
+      save: บันทึก
       save_all: บันทึกทั้งหมด
       score_range: ช่วงคะแนน
       score_types:
@@ -3595,7 +3600,7 @@ th:
         rank: ยศ
         rescore: ให้คะแนนใหม่
         rescore_confirm: ให้คะแนนผู้ใช้ '%{email}' ใหม่ คุณแน่ใจหรือไม่ว่าต้องการดําเนินการต่อ?
-        tools: เครื่อง มือ
+        tools: เครื่องมือ
       tabs:
         settings: การตั้งค่า
         subject_scores: คะแนนวิชา
@@ -3604,7 +3609,7 @@ th:
       weightages:
         assessorForms: แบบฟอร์มผู้ประเมิน
         successful_update: ค่าน้ําหนักอัปเดตเรียบร้อยแล้ว
-        tools: เครื่อง มือ
+        tools: เครื่องมือ
         weightages: น้ําหนัก
       weighted_average: ค่าเฉลี่ยถ่วงน้ําหนัก
     search: ค้น
@@ -3682,7 +3687,7 @@ th:
           markdown:
             preview: ดูตัวอย่าง
             title: มาร์คดาวน์
-          save: ประหยัด
+          save: บันทึก
           saving: การประหยัด
           success_message_add: เพิ่มระเบียนใหม่
           success_message_edit: อัปเดตบันทึกแล้ว
@@ -3732,7 +3737,7 @@ th:
           invalid_skill_type: ต้องเป็นประเภททักษะที่ถูกต้อง
           query_too_short: ต้องมีความยาวมากกว่า 3 อักขระ
       export:
-        details: ราย ละเอียด
+        details: รายละเอียด
         failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
         success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
         translations:
@@ -3817,7 +3822,7 @@ th:
           locale: สถานที่เกิดเหตุ
           message: ข้อความ
           statuses: สถานะ
-          users: คน
+          users: ผู้เข้าร่วม
         modal:
           btn_name: ส่ง SMS
           title: ส่ง SMS
@@ -3873,24 +3878,28 @@ th:
       user_name: ชื่อผู้ใช้
     stats:
       assessments:
+        active: คล่องแคล่ว
         columns:
           assessment_name: ชื่อการประเมิน
-          completed: เสร็จ สมบูรณ์
+          completed: เสร็จสมบูรณ์
           id: รหัส
           in_progress: อยู่ระหว่างดําเนินการ
           ineligible: ไม่มีสิทธิ์
-          interrupted: ถูก ขัด จังหวะ
+          interrupted: หยุดชะงัก
           not_started: ยังไม่ได้เริ่มต้น
           timed_out: หมดเวลา
-        title: ประเมิน
+        count: จำนวน
+        inactive: ไม่ทำงาน
+        percentage: เปอร์เซ็นต์
+        title: การประเมิน
       title: สถิติ
       top_metrics:
-        completed: เสร็จ สมบูรณ์
+        completed: เสร็จสมบูรณ์
         in_progress: อยู่ระหว่างดําเนินการ
-        interrupted: ถูก ขัด จังหวะ
+        interrupted: หยุดชะงัก
         not_started: ยังไม่ได้เริ่ม
         timed_out: หมดเวลา
-        users: คน
+        users: ผู้เข้าร่วม
       users:
         date_presets:
           last_30_days: 30 วันที่ผ่านมา
@@ -4010,7 +4019,7 @@ th:
           tooltips:
             create: สร้าง
         list:
-          active: กระปรี้กระเปร่า
+          active: เปิดใช้งาน
           created_at: วันที่สร้าง
           linked_assessments: การประเมินที่เชื่อมโยง
           name: ชื่อ
@@ -4053,7 +4062,7 @@ th:
           tooltips:
             create: สร้าง
         list:
-          active: กระปรี้กระเปร่า
+          active: เปิดใช้งาน
           created_at: วันที่สร้าง
           linked_assessments: การประเมินที่เชื่อมโยง
           name: ชื่อ
@@ -4162,7 +4171,7 @@ th:
           description: ข้อความนี้จะแสดงต่อผู้เข้ารับการทดสอบเมื่อพวกเขาเข้าสู่ระบบเพื่อเริ่มการประเมินหรือดูรายการงานของพวกเขา
           name: ข้อความต้อนรับ
       mail_history:
-        actions: การกระทำ
+        actions: ดำเนินการ
         date: วันที่
         download_details: รายละเอียดการดาวน์โหลด
         emails_sent: อีเมลที่ส่งแล้ว
@@ -4176,16 +4185,16 @@ th:
         report: รายงาน
         title: จัดการ
       menu:
-        actions: การกระทำ
+        actions: ดำเนินการ
         datasheet:
-          title: เอกสารข้อมูลสินค้า
+          title: เอกสารข้อมูล
         messages:
           allow_subjects_to_send_reminders: อนุญาตให้ผู้เข้าร่วมส่งการแจ้งเตือนไปยังผู้ประเมิน
           automatically_send_invites: ส่งคำเชิญไปยังผู้ประเมินใหม่โดยอัตโนมัติ
           title: ข้อความ
         participants:
           columns:
-            action: การกระทำ
+            action: ดำเนินการ
             email: อีเมล
             evaluations_completed: การประเมินเสร็จสิ้น
             evaluations_received: การประเมินที่ได้รับ
@@ -4215,7 +4224,7 @@ th:
             locale: สถานที่เกิดเหตุ
             target_job_role: บทบาทงานเป้าหมาย
             title: หัวข้อ
-          title: คน
+          title: ผู้เข้าร่วม
         report:
           menu:
             report_approval:
@@ -4250,8 +4259,8 @@ th:
         subject_can_access_reports: ผู้ใช้สามารถเข้าถึงรายงานของตนได้
       reset_campaign_confirmation:
         mark_licenses_as_deactivated: มาร์คใบอนุญาตเป็นยกเลิกการใช้งาน
-    time_zone: เขตเวลา
-    tools: เครื่อง มือ
+    time_zone: โซนเวลา
+    tools: เครื่องมือ
     translations:
       assessments:
         new:
@@ -4311,7 +4320,7 @@ th:
       toggle_status:
         successfully: ผู้ใช้ %{name} อัปเดตเรียบร้อยแล้ว
       toolbar:
-        title: เครื่อง มือ
+        title: เครื่องมือ
       update:
         successfully: ผู้ใช้ %{name} อัปเดตเรียบร้อยแล้ว
       user: ผู้ใช้

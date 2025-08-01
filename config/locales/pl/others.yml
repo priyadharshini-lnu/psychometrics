@@ -902,6 +902,7 @@ pl:
     invalid_job: To powiadomienie odpowiada usuniętemu rekordowi
     mark_as_read: Oznacz wszystko jako przeczytane
     more: Więcej
+    no_notifications: Brak powiadomień
     notifications: Powiadomienia
     results: Wyniki
     super_admin:
@@ -1540,7 +1541,9 @@ pl:
       in_progress: W trakcie
       ineligible: Nieposiadający kwalifikacji
       interrupted: Przerwano
+      new: Nowy
       not_started: Nie rozpoczęto
+      progress: W trakcie
       timed_out: Przekroczono limit czasu
       universal_link: Łącze uniwersalne
     ungrouped_assessments_heading: Rozgrupować
@@ -1797,7 +1800,7 @@ pl:
       first_name: Imię
       icon: Ikona
       icon_color: Kolor ikony
-      id: Id
+      id: ID
       json:
         answer: Odpowiedź JSON
         external_result: Kod JSON wyniku zewnętrznego
@@ -1936,6 +1939,8 @@ pl:
       timeout: Twoja sesja wygasła. Zaloguj się ponownie, aby kontynuować.
       unauthenticated: Przed kontynuowaniem musisz się zalogować lub zarejestrować.
       unconfirmed: Zanim przejdziesz dalej, musisz potwierdzić swój adres e-mail.
+    invalid_captcha: Wprowadzony captcha był nieprawidłowy.
+    invalid_security_question: Odpowiedź na pytanie bezpieczeństwa była nieprawidłowa.
     invitations:
       edit:
         confirm_password_label: Potwierdź hasło
@@ -2015,6 +2020,25 @@ pl:
     omniauth_callbacks:
       failure: Nie można uwierzytelnić Cię z %{kind}, ponieważ "%{reason}".
       success: Pomyślnie uwierzytelniono z konta %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Prześlij
+        submit_verification_code: Prześlij kod weryfikacyjny
+        verification_code: Kod weryfikacyjny
+      updated: Kod weryfikacyjny zaakceptowany
+    paranoid_verify:
+      code_required: Wprowadź kod dostarczony przez nasz zespół pomocy technicznej
+    password_expired:
+      change_required: Twoje hasło wygasło. Prosimy o odnowienie hasła.
+      forced_changed: Musisz ustawić nowe hasło do swojego konta.
+      password_policy_changed: Zmieniono zasady dotyczące haseł. Prosimy o zmianę hasła.
+      show:
+        change_my_password: Zmień moje hasło
+        current_password: Aktualne hasło
+        new_password: Nowe hasło
+        new_password_confirmation: Potwierdź nowe hasło
+        renew_your_password: Odnów hasło
+      updated: Nowe hasło zostanie zapisane.
     passwords:
       edit:
         instruction: Aby utworzyć nowe hasło, wprowadź nowe hasło w polach poniżej
@@ -2212,6 +2236,8 @@ pl:
   errors:
     assessments:
       timed_out: Nie będziesz mógł wziąć udziału w ocenie %{assessment_name}, ponieważ upłynął limit czasu.
+    equal_to_current_password: musi być inne niż bieżące hasło.
+    equal_to_email: musi być inny niż adres e-mail.
     error: Błąd
     error_401: Nie masz uprawnień dostępu do tego zasobu. Zaloguj się.
     error_403: Nie masz uprawnień do wyświetlania tego zasobu.
@@ -2224,6 +2250,20 @@ pl:
     max_regeneration_limit: Przekroczono maksymalny limit regeneracji, skontaktuj się z administracją.
     messages:
       data_report_blank: Raport danych nie istnieje
+      password_complexity:
+        digit:
+          one: musi zawierać co najmniej jedną cyfrę
+          other: musi zawierać co najmniej <x>count</x> cyfr
+        lower:
+          one: musi zawierać co najmniej jedną małą literę
+          other: musi zawierać co najmniej <x>count</x> małych liter
+        symbol:
+          one: musi zawierać co najmniej jeden znak interpunkcyjny lub symbol
+          other: musi zawierać co najmniej <x>count</x> znaków interpunkcyjnych lub symboli
+        upper:
+          one: musi zawierać co najmniej jedną wielką literę
+          other: musi zawierać co najmniej <x>count</x> wielkich liter
+      taken_in_past: nie może być takie samo jak poprzednio używane hasło.
     module_error: Coś poszło nie tak z tym modułem, prosimy o kontakt z administracją.
     module_error_editor: Coś poszło nie tak z tym modułem, sprawdź ustawienia modułu.
     module_props_error: Coś poszło nie tak z tym modułem.

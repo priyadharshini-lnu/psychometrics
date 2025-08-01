@@ -123,7 +123,7 @@ const BaseSettingsForm = ({
                   <Flex vertical className="w-100">
                     <Form.Item
                       name="threesixty_category"
-                      label="Category"
+                      label={I18n.t('administration.campaigns.modals.create_threesixity.base_settings.category')}
                       required
                     >
                       <Radio.Group className="ps-4">
@@ -147,7 +147,7 @@ const BaseSettingsForm = ({
             <Flex vertical className="w-100">
               <Form.Item
                 name="threesixty_type"
-                label="Type"
+                label={I18n.t('administration.campaigns.modals.create_threesixity.base_settings.type')}
                 required
               >
                 <Radio.Group className="ps-4">

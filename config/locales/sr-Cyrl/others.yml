@@ -13,6 +13,10 @@ sr-Cyrl:
         select_operation: Изаберите операцију
     errors:
       models:
+        job_roles_translations_form:
+          attributes:
+            file:
+              invalid_job_role_id: ИД у реду %{row_number} није важећи ИД радне улоге
         skill_rater_block_form:
           attributes:
             base:
@@ -20,49 +24,79 @@ sr-Cyrl:
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Најмање један тип вештине мора бити омогућен са изабраном радном улогом за %{block_name}
               invalid_job_role_type: 'Неважећа радна улога %{job_role} за %{skill_type} за %{block_name}. Дозвољене опције: %{valid_options}'
               props_missing: Недостаје конфигурација вештина за %{block_name}
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: Формат ИД-а е-поште није важећи.
   activerecord:
     attributes:
       assessment:
         categories:
           lead_assessor_form: Образац главног процењивача
         description: Опис
+        id: ИД
         name: Име
+      assign:
+        statuses:
+          not_started: Нов
       block:
+        id: ИД
         name: Име
       client:
+        id: ИД
         name: Име
+      communication:
+        id: ИД
       dimension:
+        id: ИД
         name: Име
         owner: Власник
       factor:
+        id: ИД
         name: Име
       innovation_style:
         description: Опис
+        id: ИД
         name: Име
       innovation_styles_factor:
+        id: ИД
         name: Име
       library:
         description: Опис
         files: Фајлови
+        id: ИД
         name: Име
         owner: Власник
+      license:
+        id: ИД
       membership:
         first_name: Име
+        id: ИД
         last_name: Презиме
       norm:
+        id: ИД
         name: Име
       occupation:
         description: Опис
+        id: ИД
         name: Име
       occupations_factor:
+        id: ИД
         name: Име
       product:
+        id: ИД
         name: Име
       question:
+        id: ИД
         name: Име
         owner: Власник
+      report:
+        id: ИД
+      report_family:
+        id: ИД
       task:
         description: Опис
+        id: ИД
         statuses:
           in_progress: У току
           not_started: Није започето
@@ -72,13 +106,17 @@ sr-Cyrl:
             in_progress: У току
             not_started: Није започето
       user:
+        current_password: Тренутна лозинка
         email: Адреса е-поште
         first_name: Име
+        id: ИД
         last_name: Презиме
         name: Име
       user_form:
+        current_password: Тренутна лозинка
         email: Адреса е-поште
         first_name: Име
+        id: ИД
         last_name: Презиме
         password: Лозинка
       users_result:
@@ -107,6 +145,7 @@ sr-Cyrl:
         import_skill_rater_taxonomies: Увоз таксономија процењивача вештина
       statuses:
         in_progress: У току
+    no_notifications: Нема обавештења
   administration: Администрација
   anonym:
     close: Затвори
@@ -158,6 +197,8 @@ sr-Cyrl:
     pickgrouprank:
       items: Ставке
     proceed: Ипак настави
+    scoring:
+      id: ИД
     unknown_error: Дошло је до непознате грешке.
     video_response:
       device: Дозволи
@@ -334,7 +375,9 @@ sr-Cyrl:
       in_progress: У току
       ineligible: Неиспуњава услове
       interrupted: Прекинуто
+      new: Нови
       not_started: Није започето
+      progress: У току
       timed_out: Временски истекло
       universal_link: Универзална веза
   campaign_report:
@@ -350,6 +393,7 @@ sr-Cyrl:
         title: Језик извештаја
   campaign_users:
     details:
+      hogan_id: Хоган ИД
       statuses:
         in_progress: У току
         not_started: Није започето
@@ -454,6 +498,7 @@ sr-Cyrl:
       search: Претрага
       send: Пошаљи
       start: Почетак
+      submit: Пошаљи
       unarchive: Врати из архиве
       unpublish: Повуци објаву
       unresolve: Нерешено
@@ -471,6 +516,8 @@ sr-Cyrl:
       id: ИД
       name: Име
       owner: Власник
+      package_id: ИД пакета
+      report_id: ИД извештаја
       status: Статус
     model:
       assessments: Процене
@@ -502,10 +549,33 @@ sr-Cyrl:
       not_found_in_database: Неважећа имејл адреса или лозинка.
       timeout: Ваша сесија је истекла. Молимо вас да се поново пријавите да бисте наставили.
       unauthenticated: Морате се пријавити или регистровати пре него што наставите.
+    invalid_captcha: Унос за captcha није важећи.
+    invalid_security_question: Одговор на безбедносно питање није важећи.
     invitations:
       edit:
         password_label: Лозинка
+    paranoid_verification_code:
+      show:
+        submit: Пошаљи
+        submit_verification_code: Пошаљи верификациони код
+        verification_code: Верификациони код
+      updated: Верификациони код је прихваћен
+    paranoid_verify:
+      code_required: Унесите код који вам је доставио наш тим за подршку
+    password_expired:
+      change_required: Ваша лозинка је истекла. Молимо вас да обновите лозинку.
+      forced_changed: Потребно је да поставите нову лозинку за свој налог.
+      password_policy_changed: Политика лозинке је промењена. Молимо вас да промените лозинку.
+      show:
+        change_my_password: Промените моју лозинку
+        current_password: Тренутна лозинка
+        new_password: Нова лозинка
+        new_password_confirmation: Потврдите нову лозинку
+        renew_your_password: Обновите лозинку
+      updated: Ваша нова лозинка је сачувана.
     passwords:
+      edit:
+        submit: Пошаљи
       invalid_email: Неважећа имејл адреса
     registrations:
       communication_not_setup_error: Комуникација путем имејла за регистрацију није подешена, контактирајте администратора овог пројекта.
@@ -559,11 +629,28 @@ sr-Cyrl:
   errors:
     assessments:
       timed_out: Нећете моћи да полажете %{assessment_name} тест јер је истекао.
+    equal_to_current_password: мора бити различита од тренутне лозинке.
+    equal_to_email: мора бити различита од имејла.
     error: Грешка
     error_500: Дошло је до грешке. Контактирајте администратора.
     forbidden: Немате приступ овој страници
     forbidden_action: Немате дозволе за ову радњу
     invalid_token: Дошло је до грешке. Поново учитајте страницу и покушајте поново.
+    messages:
+      password_complexity:
+        digit:
+          one: мора да садржи најмање једну цифру
+          other: мора да садржи најмање %{count} цифре
+        lower:
+          one: мора да садржи најмање једно мало слово
+          other: мора да садржи најмање %{count} малих слова
+        symbol:
+          one: мора да садржи најмање један интерпункцијски знак или симбол
+          other: мора да садржи најмање %{count} интерпункцијских знакова или симбола
+        upper:
+          one: мора да садржи најмање једно велико слово
+          other: мора да садржи најмање %{count} великих слова
+      taken_in_past: не сме бити исти као билоја раније коришћена лозинка.
     module_error: Дошло је до грешке са овим модулом, контактирајте администрацију.
     module_error_editor: Дошло је до грешке са овим модулом, проверите подешавања модула.
     module_props_error: Нешто је пошло наопако са овим модулом.
@@ -993,42 +1080,67 @@ sr-Cyrl:
   simple_form:
     labels:
       client:
+        id: ИД
         name: Име
     placeholders:
       administrator:
+        current_password: Тренутна лозинка
         email: Адреса е-поште
+        id: ИД
         last_name: Презиме
         name: Име
       assessment:
         description: Опис
+        id: ИД
         name: Име
+        statuses:
+          not_started: Нов
       block:
+        id: ИД
         name: Име
       client:
+        id: ИД
         name: Име
+      communication:
+        id: ИД
       dimension:
+        id: ИД
         name: Име
       factor:
+        id: ИД
         name: Име
+      library:
+        id: ИД
+      license:
+        id: ИД
       memebrship:
+        id: ИД
         last_name: Презиме
       norm:
         description: Опис
+        id: ИД
         name: Име
         statuses:
           in_progress: У току
           not_started: Није започето
       question:
+        id: ИД
         name: Име
+      report:
+        id: ИД
       user:
+        current_password: Тренутна лозинка
         email: Адреса е-поште
         first_name: Име
+        id: ИД
         last_name: Презиме
         name: Име
         password: Лозинка
       user_form:
+        current_password: Тренутна лозинка
         email: Адреса е-поште
         first_name: Име
+        id: ИД
         last_name: Презиме
         password: Лозинка
   subjects:

@@ -5,7 +5,7 @@ fr:
     active_record_audits:
       action: Action
       audit_id: Identité d'audit
-      auditable_id: Id d'enregistrement
+      auditable_id: ID d'enregistrement
       auditable_type: Type d'enregistrement
       audited_changes: Changements audités
       new_diff:
@@ -79,7 +79,7 @@ fr:
           actions: Actions
           created_at: Créé à
           email: Courriel
-          id: Id
+          id: ID
           name: Nom
         header:
           add_admin: Ajouter un administrateur
@@ -654,8 +654,8 @@ fr:
       outcome: Résultats
       payload: Charge utile
       project: Projet
-      record_id: Id d'enregistrement
-      request_id: Id de la demande
+      record_id: ID d'enregistrement
+      request_id: ID de la demande
       reset: Remise à zéro
       search: Recherche
       search_campaign: Recherche par campagne
@@ -940,7 +940,7 @@ fr:
           do_not_send_notifications: Ne pas envoyer de notifications
           modal_title: Paramètres d'approbation des rapports
           qc_users: Utilisateurs du CQ
-          remove_modal_success: 'Le paramètre d''approbation du rapport : %{reportId} a été supprimé avec succès '
+          remove_modal_success: 'Le paramètre d''approbation du rapport : %{reportId} a été supprimé avec succès'
           remove_modal_text: 'Êtes-vous sûr de vouloir supprimer ce paramètre pour l''identifiant du rapport : %{reportId} ?'
           report: Rapport
           settings: Paramètres
@@ -959,13 +959,16 @@ fr:
         inactive: Inactif
         status: Statut
       form:
+        active_notice: L'état de la campagne passera automatiquement à fermer à la date de fin sélectionnée
         campaign: Campagne
+        inactive_notice: L'état de la campagne passera automatiquement à actif à la date de début sélectionnée
+        instruction: Cela ne peut être activé que lors de la création de la campagne
         name: Nom
         practice_campaign: Campagne d'entraînement
         status: Statut
       listing:
         assessments: Évaluations
-        id: Id
+        id: ID
         name: Nom
         reports: Rapports
         status: Statut
@@ -982,6 +985,7 @@ fr:
             active: Actif
             archive: Archives
             assessment: L'évaluation
+            category: Catégorie
             closed: Fermé
             empty: Vide
             inactive: Inactif
@@ -991,6 +995,7 @@ fr:
             skill_rater: Évaluateur de compétences
             standard: Standard
             status: Statut
+            type: Taper
           close:
             content: Êtes-vous sûr de vouloir fermer le Créateur de campagne à évaluateurs multiples ? Tout travail de personnalisation non sauvegardé sera perdu. Veuillez confirmer votre décision.
             title: Fermer Créateur de campagne multi-évaluateurs ?
@@ -1072,7 +1077,7 @@ fr:
           all: Tous
           anonymous: Anonyme
           identified: Identifié
-        id: Id
+        id: ID
         is_active: Actif
         name: Nom
         no_permission_message: Vous n'avez pas le droit de modifier
@@ -1180,7 +1185,7 @@ fr:
               sub_campaigns: Sous-campagnes
               tests_allocated: Tests attribués
               users: Utilisateurs
-            id: Id
+            id: ID
             name: Nom de la campagne
             reports: Rapports
             updated_at: Date de mise à jour
@@ -1203,7 +1208,7 @@ fr:
               sub_campaigns: Sous-campagnes
               tests_allocated: Tests attribués
               users: Utilisateurs
-            id: Id
+            id: ID
             name: Nom de la campagne
             reports: Rapports
             updated_at: Date de mise à jour
@@ -1254,7 +1259,7 @@ fr:
                 sub_campaign: Sous-campagnes
                 tests_allocated: Tests alloués
                 users: Utilisateurs
-              id: Id
+              id: ID
               name: Nom de la sous-campagne
               reports: Rapports
               updated_at: Date de mise à jour
@@ -1277,7 +1282,7 @@ fr:
                 sub_campaign: Sous-campagnes
                 tests_allocated: Tests alloués
                 users: Utilisateurs
-              id: Id
+              id: ID
               name: Nom de la sous-campagne
               reports: Rapports
               updated_at: Date de mise à jour
@@ -1327,7 +1332,7 @@ fr:
           assigned_user: Utilisateurs assignés
           completed_user: Utilisateurs terminés
           created_at: Date de création
-          id: Id
+          id: ID
           name: Nom du projet
           number: Nombre
           project_admin: Administrateurs de projets
@@ -1376,7 +1381,7 @@ fr:
           assigned_user: Utilisateurs assignés
           completed_user: Utilisateurs terminés
           created_at: Date de création
-          id: Id
+          id: ID
           name: Nom du projet
           number: Nombre
           project_admin: Administrateurs de projets
@@ -1445,7 +1450,7 @@ fr:
             assessment: Assement
             client_admins: Administrateurs clients
             created_at: Créé à
-            id: Id
+            id: ID
             name: Nom
             report: Rapport
             report_bundle: L'ensemble des rapports
@@ -1465,7 +1470,7 @@ fr:
             assessment: Assement
             client_admins: Administrateurs clients
             created_at: Créé à
-            id: Id
+            id: ID
             name: Nom
             report: Rapport
             report_bundle: L'ensemble des rapports
@@ -1744,7 +1749,7 @@ fr:
         embed_token_error_description: Veuillez vérifier si l'ensemble de données et l'identifiant du rapport sont corrects dans les paramètres.
         embed_token_error_title: Impossible de générer un jeton intégré.
       settings:
-        capacity_id: Capacité Id
+        capacity_id: Capacité ID
         details: Détails
         refresh: Rafraîchir
         workspace_id: Identifiant de l'espace de travail
@@ -1755,12 +1760,12 @@ fr:
         settings: Paramètres
     dashboard_form:
       fields:
-        dataset_id: Id de l'ensemble de données
+        dataset_id: ID de l'ensemble de données
         enabled: Activé
         image: Image
         project_path: Trajectoire du projet
         refresh_interval: Intervalle de rafraîchissement (minutes)
-        report_id: Rapport Id
+        report_id: Rapport ID
         visual_header_visibility: Visibilité de l'en-tête
       image_upload_failed: Le téléchargement de l'image a échoué.
       none: Aucun
@@ -1813,7 +1818,7 @@ fr:
         invalid_date: Le format de date pour %{date} n'est pas valide.
         invalid_date_format: 'Row %{row}: format de date non valide pour %{field}.'
         invalid_development_action_type: 'Ligne %{row} : Type d''action de développement « %{value} » non valide. Les types d''action de développement valides sont : %{valid_development_action_types}.'
-        invalid_duration_format: 'Nur numerische Werte sind für die Dauer zulässig.Row %{row}: %{value} ist keine gültige Dauer. '
+        invalid_duration_format: 'Nur numerische Werte sind für die Dauer zulässig.Row %{row}: %{value} ist keine gültige Dauer.'
         invalid_image_file: 'Fichier image non valide : %{message}'
         invalid_image_url: 'Format d''URL d''image non valide : %{url}'
         invalid_languages: Nicht -Valid verfügbare Sprachen %{invalid_languages} für die %{row} -Leile.
@@ -1964,7 +1969,7 @@ fr:
       list:
         active: Actif
         created_at: Date de création
-        id: Id
+        id: ID
         name: Nom
         updated_at: Date de modification
       new:
@@ -2071,7 +2076,7 @@ fr:
       list:
         active: Actif
         created_at: Date de création
-        id: Id
+        id: ID
         name: Nom
         updated_at: Date de modification
       new:
@@ -2298,7 +2303,7 @@ fr:
         title: Styles d'innovation
       list:
         created_at: Date de création
-        id: Id
+        id: ID
         name: Nom
         position: Position
         updated_at: Date de modification
@@ -2331,7 +2336,7 @@ fr:
       list:
         condition: Condition
         created_at: Date de création
-        id: Id
+        id: ID
         name: Nom
         position: Position
         updated_at: Date de modification
@@ -2586,8 +2591,8 @@ fr:
       list:
         active: Actif
         created_at: Date de création
-        dimension_id: Dimension Id
-        id: Id
+        dimension_id: Dimension ID
+        id: ID
         name: Nom
         updated_at: Date de modification
         updated_by: Mise à jour par
@@ -2648,7 +2653,7 @@ fr:
         title: Professions
       list:
         created_at: Date de création
-        id: Id
+        id: ID
         name: Nom
         updated_at: Date de modification
       new:
@@ -2680,7 +2685,7 @@ fr:
       list:
         condition: Condition
         created_at: Date de création
-        id: Id
+        id: ID
         name: Nom
         position: Position
         updated_at: Date de modification
@@ -2826,7 +2831,7 @@ fr:
       column_createdAt: Créé à
       column_created_at: Créé à
       column_email: Courriel
-      column_id: Id
+      column_id: ID
       column_name: Nom
       delete: Supprimer
       edit: Editer
@@ -2937,7 +2942,7 @@ fr:
       column_campaigns: Campagnes
       column_created_at: Créé à
       column_email: Courriel
-      column_id: Id
+      column_id: ID
       column_name: Nom
       confirm_delete: Oui, supprimer
       confirm_send: Oui, envoyer
@@ -3562,7 +3567,7 @@ fr:
       final_score_updated_successfully: Le score final a été mis à jour avec succès
       formula: Formule
       get_started: Commencer
-      id: Id
+      id: ID
       import:
         factors: Facteurs de la campagne d'importation
       name: Nom
@@ -3868,7 +3873,7 @@ fr:
         send_sms: Envoyer un SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Message
     smtp_settings:
       authentication: Authentification
@@ -3905,6 +3910,7 @@ fr:
       user_name: Nom de l'utilisateur
     stats:
       assessments:
+        active: Actif
         columns:
           assessment_name: Nom de l'évaluation
           completed: Terminé
@@ -3914,6 +3920,9 @@ fr:
           interrupted: Interrompu
           not_started: Pas commencé
           timed_out: Délai d'attente
+        count: Compte
+        inactive: Inactif
+        percentage: Pourcentage
         title: Évaluations
       title: Statistiques
       top_metrics:

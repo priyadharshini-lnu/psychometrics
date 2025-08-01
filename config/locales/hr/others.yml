@@ -431,7 +431,7 @@ hr:
         access_reports_at: Pristupite izvješću na
         access_reports_at_date: Datum
         access_reports_at_time: Vrijeme
-        client_ids: Najam klijenata
+        client_ids: Klijenti
         manager_ids: Menadžeri
         report_ids: Izvješća
         user_ids: Korisnici
@@ -508,7 +508,7 @@ hr:
         subdomain: Poddomena
         types:
           associate: Suradnik
-          corporate: Korporativnu
+          corporate: Kompanija
           distributer: Distributer
           other: Drugi
           partner: Partner
@@ -908,6 +908,7 @@ hr:
     invalid_job: Ova obavijest odgovara izbrisanom zapisu
     mark_as_read: Označi sve kao pročitano
     more: Više
+    no_notifications: Nema obavijesti
     notifications: Obavijesti
     results: Rezultati
     super_admin:
@@ -1543,7 +1544,9 @@ hr:
       in_progress: U tijeku
       ineligible: Ne ispunjava uvjete
       interrupted: Prekinuto
+      new: Novi
       not_started: Nije započeto
+      progress: U tijeku
       timed_out: Isteklo je vrijeme
       universal_link: Univerzalna poveznica
     ungrouped_assessments_heading: Razdvojiti
@@ -1612,7 +1615,7 @@ hr:
       assessment_center_invites: Pozivnice za centar za procjenu
       completed_at: Dovršeno u
       completion_status: Status završetka
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Zadnja prijava
       manager: Upravitelj
       modals:
@@ -1776,7 +1779,7 @@ hr:
       view_all_tasks: Pogledajte sve zadatke
       view_detail: Pogledajte detalje
     column:
-      action: Akcija
+      action: Status
       active: Aktivan
       allow_multiple_responses: Dopuštanje višestrukih odgovora
       approval_notification_list: Popis korisnika obavijesti o odobrenju
@@ -1789,7 +1792,7 @@ hr:
       client: Klijent
       code: Kod
       created_at: Kreirano u
-      created_by: Izradio
+      created_by: Autor projekta
       created_date: Datum izrade
       default_language: Zadani jezik
       description: Opis
@@ -1810,7 +1813,7 @@ hr:
       linked_activities: Povezane aktivnosti
       linked_assessment: Povezana procjena
       meeting_link: Veza za sastanak
-      modified_by: Izmijenio
+      modified_by: Autor izmjene
       modified_date: Datum izmjene
       name: Ime
       owner: Vlasnik
@@ -1845,7 +1848,7 @@ hr:
       campaigns: Kampanje
       completion_statuses: Statusi dovršetka
       datasheet: Podatkovna tablica
-      projects: Projekata
+      projects: Projekti
       report: Izvješće
       reports: Izvješća
       scoring: Bodovanja
@@ -1939,6 +1942,8 @@ hr:
       timeout: Vaša je sesija istekla. Molimo, ponovno se prijavite za nastavak.
       unauthenticated: Morate se prijaviti ili registrirati prije nego što nastavite.
       unconfirmed: Prije nastavka morate potvrditi svoju adresu e-pošte.
+    invalid_captcha: Unos captche nije valjan.
+    invalid_security_question: Odgovor na sigurnosno pitanje nije valjan.
     invitations:
       edit:
         confirm_password_label: Potvrdite lozinku
@@ -2018,6 +2023,33 @@ hr:
     omniauth_callbacks:
       failure: Nisam vas mogao autentificirati iz %{kind} jer "%{reason}".
       success: Uspješno autentificirana s %{kind} računa.
+    paranoid_verification_code:
+      show:
+        submit: Pošalji
+        submit_verification_code: Pošalji kod za verifikaciju
+        verification_code: Kod za verifikaciju
+      submit: Pošalji
+      submit_verification_code: Pošalji kod za verifikaciju
+      updated: Kod za verifikaciju je prihvaćen
+      verification_code: Kod za verifikaciju
+    paranoid_verify:
+      code_required: Unesite kod koji vam je dala naša podrška
+    password_expired:
+      change_my_password: Promijeni moju lozinku
+      change_required: Vaša lozinka je istekla. Molimo obnovite svoju lozinku.
+      current_password: Trenutna lozinka
+      forced_changed: Morate postaviti novu lozinku za svoj račun.
+      new_password: Nova lozinka
+      new_password_confirmation: Potvrdite novu lozinku
+      password_policy_changed: Pravila lozinke su promijenjena. Molimo promijenite svoju lozinku.
+      renew_your_password: Obnovite svoju lozinku
+      show:
+        change_my_password: Promijeni moju lozinku
+        current_password: Trenutna lozinka
+        new_password: Nova lozinka
+        new_password_confirmation: Potvrdi novu lozinku
+        renew_your_password: Obnovi svoju lozinku
+      updated: Vaša nova lozinka je spremljena.
     passwords:
       edit:
         instruction: Da biste stvorili novu lozinku, unesite svoju novu lozinku u donje okvire
@@ -2215,6 +2247,8 @@ hr:
   errors:
     assessments:
       timed_out: Nećete moći pristupiti procjeni %{assessment_name} jer Vam je isteklo vrijeme.
+    equal_to_current_password: mora biti drugačija od trenutne lozinke.
+    equal_to_email: mora biti drugačija od e-pošte.
     error: Pogreška
     error_401: Niste ovlašteni za pristup ovom resursu. Molimo prijavite se.
     error_403: Nemate dozvolu za prikaz ovog resursa.
@@ -2227,6 +2261,20 @@ hr:
     max_regeneration_limit: Prekoračena maksimalna granica regeneracije, obratite se svojoj upravi.
     messages:
       data_report_blank: Izvješće o podacima ne postoji
+      password_complexity:
+        digit:
+          one: mora sadržavati najmanje jednu znamenku
+          other: mora sadržavati najmanje %{count} znamenki
+        lower:
+          one: mora sadržavati najmanje jedno malo slovo
+          other: mora sadržavati najmanje %{count} malih slova
+        symbol:
+          one: mora sadržavati najmanje jedan interpunkcijski znak ili simbol
+          other: mora sadržavati najmanje %{count} interpunkcijskih znakova ili simbola
+        upper:
+          one: mora sadržavati najmanje jedno veliko slovo
+          other: mora sadržavati najmanje %{count} velikih slova
+      taken_in_past: ne smije biti ista kao bilo koja prethodno korištena lozinka.
     module_error: Došlo je do pogreške s ovim modulom, obratite se administratoru.
     module_error_editor: Nešto nije u redu s ovim modulom, provjerite postavke modula.
     module_props_error: Došlo je do pogreške u ovom modulu.
@@ -2500,7 +2548,7 @@ hr:
       aria_list_view: Prikaz popisa
       aria_selected: Odabrani
   idp:
-    actions: Akcije
+    actions: Statusi
     behavioral: Bihevioralne
     board: Odbor
     comment_details:
@@ -2693,7 +2741,7 @@ hr:
       summary:
         ai_count: Generativna umjetna inteligencija
         collaborative_learn: Suradničko učenje
-        created_by: Izradio/la
+        created_by: Autor projekta/la
         current_status: Trenutni status IDP-a
         custom: Običaj
         custom_count: Običaj
@@ -3610,7 +3658,7 @@ hr:
       checkbox_with_client_link: Klikom na ovaj okvir potvrđujete da ste pročitali našu Izjavu o privatnosti te da pristajete na prikupljanje i obradu Vaših osobnih podataka kako je u njoj opisano, uključujući i internacionalni prijenos Vaših osobnih podataka.
       privacy_notice: Obavijest o privatnosti
       title: Privola za obradu i prijenos osobnih podataka
-    action: Akcija
+    action: Status
     add: Dodati
     and: I
     approve: Odobriti

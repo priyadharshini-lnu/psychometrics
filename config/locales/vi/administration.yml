@@ -305,7 +305,7 @@ vi:
     api:
       campaigns:
         validate_form:
-          external_id_taken: Id bên ngoài '%{external_id}' đã được sử dụng'
+          external_id_taken: ID bên ngoài '%{external_id}' đã được sử dụng'
       users:
         form:
           campaign_ids_not_existing: Không phải tất cả các mã chiến dịch đều tồn tại
@@ -636,7 +636,7 @@ vi:
       outcome: Kết quả
       payload: Tải trọng
       project: Dự án
-      record_id: Id bản ghi
+      record_id: ID bản ghi
       request_id: ID yêu cầu
       reset: Reset
       search: Tìm kiếm
@@ -941,13 +941,16 @@ vi:
         inactive: Không hoạt động
         status: Tình trạng
       form:
+        active_notice: Trạng thái chiến dịch sẽ tự động thay đổi thành đóng vào ngày kết thúc đã chọn
         campaign: Chiến dịch
+        inactive_notice: Trạng thái chiến dịch sẽ tự động thay đổi thành hoạt động vào ngày bắt đầu đã chọn
+        instruction: Điều này chỉ có thể được bật trong khi tạo chiến dịch
         name: Tên
         practice_campaign: Chiến dịch thực hành
         status: Tình trạng
       listing:
         assessments: Đánh giá
-        id: Id
+        id: ID
         name: Tên
         reports: Báo cáo
         status: Tình trạng
@@ -964,6 +967,7 @@ vi:
             active: Hoạt động
             archive: Lưu trữ
             assessment: Thuế
+            category: Loại
             closed: Khép kín
             empty: Trống
             inactive: Không hoạt động
@@ -973,6 +977,7 @@ vi:
             skill_rater: Người đánh giá kỹ năng
             standard: Chuẩn
             status: Tình trạng
+            type: Kiểu
           close:
             content: Bạn có chắc chắn muốn đóng Multi Rater Campaign Creator không? Mọi công việc tùy chỉnh chưa lưu sẽ bị mất. Vui lòng xác nhận quyết định của bạn.
             title: Đóng Multi Rater Campaign Creator?
@@ -1054,7 +1059,7 @@ vi:
           all: Tất cả
           anonymous: Vô danh
           identified: Xác định
-        id: Id
+        id: ID
         is_active: Hoạt động
         name: Tên
         no_permission_message: Bạn không có quyền sửa đổi
@@ -1162,7 +1167,7 @@ vi:
               sub_campaigns: Chiến dịch phụ
               tests_allocated: Các xét nghiệm được phân bổ
               users: Người dùng
-            id: Id
+            id: ID
             name: Tên chiến dịch
             reports: Báo cáo
             updated_at: Ngày cập nhật
@@ -1185,7 +1190,7 @@ vi:
               sub_campaigns: Chiến dịch phụ
               tests_allocated: Các xét nghiệm được phân bổ
               users: Người dùng
-            id: Id
+            id: ID
             name: Tên chiến dịch
             reports: Báo cáo
             updated_at: Ngày cập nhật
@@ -1236,7 +1241,7 @@ vi:
                 sub_campaign: Chiến dịch phụ
                 tests_allocated: Các bài kiểm tra được phân bổ
                 users: Người dùng
-              id: Id
+              id: ID
               name: Tên chiến dịch phụ
               reports: Báo cáo
               updated_at: Ngày cập nhật
@@ -1259,7 +1264,7 @@ vi:
                 sub_campaign: Chiến dịch phụ
                 tests_allocated: Các bài kiểm tra được phân bổ
                 users: Người dùng
-              id: Id
+              id: ID
               name: Tên chiến dịch phụ
               reports: Báo cáo
               updated_at: Ngày cập nhật
@@ -1309,7 +1314,7 @@ vi:
           assigned_user: Người dùng được chỉ định
           completed_user: Người dùng đã hoàn thành
           created_at: Ngày tạo
-          id: Id
+          id: ID
           name: Tên dự án
           number: Số
           project_admin: Quản trị viên dự án
@@ -1358,7 +1363,7 @@ vi:
           assigned_user: Người dùng được chỉ định
           completed_user: Người dùng đã hoàn thành
           created_at: Ngày tạo
-          id: Id
+          id: ID
           name: Tên dự án
           number: Số
           project_admin: Quản trị viên dự án
@@ -1427,7 +1432,7 @@ vi:
             assessment: Đánh giá
             client_admins: Quản trị viên khách hàng
             created_at: Được tạo tại
-            id: Id
+            id: ID
             name: Tên
             report: Báo cáo
             report_bundle: Gói báo cáo
@@ -1447,7 +1452,7 @@ vi:
             assessment: Đánh giá
             client_admins: Quản trị viên khách hàng
             created_at: Được tạo tại
-            id: Id
+            id: ID
             name: Tên
             report: Báo cáo
             report_bundle: Gói báo cáo
@@ -1726,7 +1731,7 @@ vi:
         embed_token_error_description: Vui lòng kiểm tra xem Tập dữ liệu và ID báo cáo trong cài đặt có chính xác không.
         embed_token_error_title: Không thể tạo mã thông báo nhúng.
       settings:
-        capacity_id: Id dung lượng
+        capacity_id: ID dung lượng
         details: Chi tiết
         refresh: Làm tươi
         workspace_id: ID không gian làm việc
@@ -1737,7 +1742,7 @@ vi:
         settings: Cài đặt
     dashboard_form:
       fields:
-        dataset_id: Id tập dữ liệu
+        dataset_id: ID tập dữ liệu
         enabled: Kích hoạt
         image: Ảnh
         project_path: Lộ trình dự án
@@ -1946,7 +1951,7 @@ vi:
       list:
         active: Hoạt động
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         updated_at: Ngày sửa đổi
       new:
@@ -2053,7 +2058,7 @@ vi:
       list:
         active: Hoạt động
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         updated_at: Ngày sửa đổi
       new:
@@ -2279,7 +2284,7 @@ vi:
         title: Phong cách đổi mới
       list:
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         position: Vị trí
         updated_at: Ngày sửa đổi
@@ -2312,7 +2317,7 @@ vi:
       list:
         condition: Điều kiện
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         position: Vị trí
         updated_at: Ngày sửa đổi
@@ -2382,7 +2387,7 @@ vi:
       validations:
         iiht:
           tenancy_name_present: Tên thuê nhà đã có trong dự án khác
-          tenant_id_present: Id người thuê đã có trong dự án khác
+          tenant_id_present: ID người thuê đã có trong dự án khác
         mettl:
           public_key_present: Khóa công khai đã có trong dự án khác
         skillvue:
@@ -2567,8 +2572,8 @@ vi:
       list:
         active: Hoạt động
         created_at: Ngày tạo
-        dimension_id: Id thứ nguyên
-        id: Id
+        dimension_id: ID thứ nguyên
+        id: ID
         name: Tên
         updated_at: Ngày sửa đổi
         updated_by: Cập nhật bởi
@@ -2629,7 +2634,7 @@ vi:
         title: Nghề
       list:
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         updated_at: Ngày sửa đổi
       new:
@@ -2661,7 +2666,7 @@ vi:
       list:
         condition: Điều kiện
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         position: Vị trí
         updated_at: Ngày sửa đổi
@@ -2803,7 +2808,7 @@ vi:
       column_createdAt: Được tạo tại
       column_created_at: Được tạo tại
       column_email: Email
-      column_id: Id
+      column_id: ID
       column_name: Tên
       delete: Xóa
       edit: Biên tập
@@ -2914,7 +2919,7 @@ vi:
       column_campaigns: Chiến dịch
       column_created_at: Được tạo tại
       column_email: Email
-      column_id: Id
+      column_id: ID
       column_name: Tên
       confirm_delete: Có, xóa
       confirm_send: Có, gửi
@@ -3536,7 +3541,7 @@ vi:
       final_score_updated_successfully: Điểm chung cuộc đã được cập nhật thành công
       formula: Công thức
       get_started: Bắt đầu
-      id: Id
+      id: ID
       import:
         factors: Các yếu tố chiến dịch nhập khẩu
       name: Tên
@@ -3836,7 +3841,7 @@ vi:
         send_sms: Gửi SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Thông điệp
     smtp_settings:
       authentication: Xác thực
@@ -3873,6 +3878,7 @@ vi:
       user_name: Tên người dùng
     stats:
       assessments:
+        active: Tích cực
         columns:
           assessment_name: Tên đánh giá
           completed: Hoàn thành
@@ -3882,6 +3888,9 @@ vi:
           interrupted: Gián đoạn
           not_started: Chưa bắt đầu
           timed_out: Hết thời gian chờ
+        count: Đếm
+        inactive: Không hoạt động
+        percentage: Tỷ lệ phần trăm
         title: Đánh giá
       title: Thống kê
       top_metrics:
