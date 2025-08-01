@@ -300,7 +300,6 @@ ar:
         name: الاسم
         provider: المزود
         system_prompt: موجه النظام
-        title: مساعد الذكاء الاصطناعي
         user_prompt: موجه المستخدم
     any: " - أي -"
     api:
