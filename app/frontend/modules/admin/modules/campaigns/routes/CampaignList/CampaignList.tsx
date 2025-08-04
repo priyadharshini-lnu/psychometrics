@@ -9,6 +9,7 @@ import {
   Input,
   Pagination,
   Avatar,
+  Tag,
   Space,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
@@ -50,6 +51,8 @@ import { PDFPasswordModal } from './PDFPasswordModal'
 import ToolsDropdown from './ToolsDropdown'
 import { useWindowSize } from '~/hooks/useWindowSize'
 import { UserFilterModal } from '../Campaign/routes/Participants/Subjects/UserFilterModal'
+import ConvertOrCopyAsTemplateModal from
+  '~/modules/admin/modules/threeSixtyCampaign/routes/Participants/ConvertOrCopyAsTemplateModal'
 
 const MODALS = {
   CommonCampaignFormModal,
@@ -58,6 +61,7 @@ const MODALS = {
   PDFPasswordModal,
   CopyCampaignModal,
   UserFilterModal,
+  ConvertOrCopyAsTemplateModal,
 }
 
 const { I18n } = window
@@ -167,8 +171,17 @@ const CampaignListComponent: React.FC<Props> = ({
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
-              render={({ name, campaignUrl }) => (
-                <Link to={campaignUrl}>{name}</Link>
+              render={({ name, campaignUrl, isTemplate }) => (
+                <div>
+                  <Link to={campaignUrl}>{name}</Link>
+                  {isTemplate && (
+                    <div>
+                      <Tag color="gold">
+                        {I18n.t('administration.campaigns.listing.template')}
+                      </Tag>
+                    </div>
+                  )}
+                </div>
               )}
             />
             <Column
@@ -253,6 +266,13 @@ const CampaignListComponent: React.FC<Props> = ({
                           campaign,
                         })
                       },
+                      onConvert: () => {
+                        openModal('ConvertOrCopyAsTemplateModal', {
+                          visible: true,
+                          campaignId: campaign.id,
+                          projectId,
+                        })
+                      },
                       showPDFPasswordModal,
                       campaign,
                     })
@@ -310,6 +330,7 @@ interface ActionMenuData {
   onEdit(): void
   onDelete(): void
   onCopy(): void
+  onConvert(): void
   campaign: Campaign
   showPDFPasswordModal: (campaignId: number) => void
 }
@@ -317,6 +338,7 @@ interface ActionMenuData {
 const getActionsMenuProps = ({
   onEdit,
   onDelete,
+  onConvert,
   onCopy,
   campaign,
   showPDFPasswordModal,
@@ -342,6 +364,11 @@ const getActionsMenuProps = ({
     label: I18n.t('administration.campaigns.pdf_password'),
   })
 
+  campaign.isThreesixty && !campaign.isTemplate && permissions.convertToTemplate && menuItems.push({
+    key: 'convert_to_template',
+    label: I18n.t('administration.campaigns.convert_to_template'),
+  })
+
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       return onEdit()
@@ -354,6 +381,9 @@ const getActionsMenuProps = ({
     }
     if (key === 'pdfPassword') {
       return showPDFPasswordModal(campaign.id)
+    }
+    if (key === 'convert_to_template') {
+      return onConvert()
     }
   }
 

@@ -217,7 +217,8 @@ CREATE TABLE public.campaigns (
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
     practice_campaign boolean DEFAULT false,
-    default_idp_template_id bigint
+    default_idp_template_id bigint,
+    is_template boolean DEFAULT false
 );
 
 
@@ -2033,7 +2034,8 @@ CREATE TABLE public.campaign_templates (
     report_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    owner_id integer
+    owner_id integer,
+    campaign_id bigint
 );
 
 
@@ -12086,6 +12088,13 @@ CREATE INDEX index_campaign_reports_on_report_id ON public.campaign_reports USIN
 
 
 --
+-- Name: index_campaign_templates_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_templates_on_campaign_id ON public.campaign_templates USING btree (campaign_id);
+
+
+--
 -- Name: index_campaign_users_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15116,6 +15125,14 @@ ALTER TABLE ONLY public.assigns
 
 
 --
+-- Name: campaign_templates fk_rails_1c9a1bba8f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_templates
+    ADD CONSTRAINT fk_rails_1c9a1bba8f FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
 -- Name: course_schedules fk_rails_1df435457d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17506,6 +17523,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250714092101'),
+('20250714084320'),
 ('20250723144840'),
 ('20250723095133'),
 ('20250711074243'),

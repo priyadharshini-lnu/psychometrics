@@ -48,6 +48,9 @@ const CampaignTemplate = t.type({
   id: t.number,
   name: t.string,
   assessmentId: t.number,
+  campaignId: t.union([t.null, t.number]),
+  ownerId: t.union([t.null, t.number]),
+  skillRater: t.boolean,
 })
 export type CampaignTemplate = t.TypeOf<typeof CampaignTemplate>
 

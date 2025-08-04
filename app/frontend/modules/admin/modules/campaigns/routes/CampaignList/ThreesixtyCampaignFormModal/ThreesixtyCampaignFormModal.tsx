@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import {
   Flex,
   Modal,
@@ -13,7 +13,7 @@ import styles from './ThreesixtyCampaignFormModal.less'
 import BaseSettingsForm from './BaseSettingsForm'
 import AdvancedSettingsForm from './AdvancedSettingsForm'
 import { useResources } from '~/hooks/useResources'
-import { TYPES as THREESIXTY_TYPES } from '~/modules/admin/constants/threesixtyCampaign'
+import { THREESIXTY_CATEGORY, TYPES as THREESIXTY_TYPES } from '~/modules/admin/constants/threesixtyCampaign'
 import { CampaignTemplate, Assessment } from '~/modules/admin/modules/campaigns/core/list'
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 
@@ -44,6 +44,14 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   const [campaignTemplates, setCampaignTemplates] = useState<CampaignTemplate[]>([])
   const [assessments, setAssessments] = useState<Assessment[]>([])
 
+  const filteredCampaignTemplates = useMemo(() => {
+    if (!baseSettings) return campaignTemplates
+    return campaignTemplates.filter(
+      campaignTemplate => (baseSettings.threesixty_category === THREESIXTY_CATEGORY.SKILLS_RATER
+        ? campaignTemplate.skillRater
+        : !campaignTemplate.skillRater),
+    )
+  }, [baseSettings, campaignTemplates])
 
   const { collectionAction: createCampaign, isLoading } = useResources(
     'threesixty_campaigns',
@@ -158,7 +166,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
             onClose={handleClose}
             onBack={handleBack}
             onFinish={handlesAdvancedSettingsFinish}
-            campaignTemplates={campaignTemplates}
+            campaignTemplates={filteredCampaignTemplates}
             isSubmitting={isCreatingCampaign}
           />
         ) : (

@@ -26,6 +26,7 @@ export interface State {
   campaign: {
     id?: number,
     name?: string,
+    tags?: string[],
   }
   threesixty: {
     id?: number,

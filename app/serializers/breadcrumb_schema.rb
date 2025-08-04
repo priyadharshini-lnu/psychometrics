@@ -16,6 +16,7 @@ class BreadcrumbSchema < BaseSchema
       optional(:campaign).schema do
         required(:id).filled(:int?)
         required(:name).filled(:str?)
+        required(:tags).value(:array)
       end
       optional(:threesixty).schema do
         required(:id).filled(:int?)

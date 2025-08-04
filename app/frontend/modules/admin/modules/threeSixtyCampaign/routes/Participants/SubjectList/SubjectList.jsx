@@ -43,6 +43,7 @@ function SubjectList ({
   reportIcon,
   reportName,
   category,
+  template,
 }) {
   const { projectId, campaignId } = useParams()
   const [params] = useSearchParams()
@@ -104,18 +105,22 @@ function SubjectList ({
             searchTerm={searchTerm}
           />
           <Manage />
-          <ToolsDropdown permissions={permissions} />
-          {permissions.addSubject && (
+          {!template
+          && (
+            <ToolsDropdown
+              isBulk
+              title={I18n.t('administration.threesixty_campaigns.menu.actions')}
+              permissions={permissions}
+              selectedKeys={selectedKeys}
+              excludedKeys={excludedKeys}
+              isAllSelected={isAllSelected}
+            />
+          )
+          }
+          {!template && <ToolsDropdown permissions={permissions} />}
+          {permissions.addSubject && !template && (
             <CreateSubjectsDropdown />
           )}
-          <ToolsDropdown
-            isBulk
-            title={I18n.t('administration.threesixty_campaigns.menu.actions')}
-            permissions={permissions}
-            selectedKeys={selectedKeys}
-            excludedKeys={excludedKeys}
-            isAllSelected={isAllSelected}
-          />
         </Col>
       </Row>
       <div className="pb-4 ps-3 pe-5">

@@ -1,0 +1,3 @@
+import ConvertOrCopyAsTemplateModal from './ConvertOrCopyAsTemplateModal'
+
+export default ConvertOrCopyAsTemplateModal

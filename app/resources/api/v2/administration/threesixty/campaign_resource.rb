@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::Threesixty::CampaignResource < Api::V2::Administration::BaseResource
-  attributes :assessment_id, :report_id, :name, :dimension_id, :category
+  attributes :assessment_id, :report_id, :name, :dimension_id, :category, :template
 
   has_one :assessment
   has_one :report
   delegate :dimension_id, to: :assessment
+
+  def template
+    @model.campaign.template?
+  end
 
   def meta_details
     {

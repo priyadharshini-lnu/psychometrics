@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Breadcrumb as AntBreadcrumb } from 'antd'
+import { Breadcrumb as AntBreadcrumb, Tag } from 'antd'
 import { Request, State } from '~/modules/admin/core/ui/breadcrumbs'
 import useTitle from '~/hooks/useTitle'
 import styles from './styles.less'
@@ -31,16 +31,43 @@ const Breadcrumb: React.FC<Props> = ({
   crumbsForTitle.push(`${I18n.t('frontend.lighthouse_app')}`)
   useTitle({ title: crumbsForTitle.join(' - ') })
 
-  const breadcrumbItems = crumbs.map(crumb => ({
-    title: crumb.link ? (
-      <a
-        className={styles.breadcrumbLink}
-        href={crumb.link(state)}
-      >
-        {crumb.label(state)}
-      </a>
-    ) : crumb.label(state),
-  }))
+  const breadcrumbItems = crumbs.map((crumb) => {
+    const label = crumb.label(state)
+
+    const tags = request?.fields
+      ?.map(field => state[field as keyof State] as { name?: string; tags?: string[] })
+      ?.find(resource => resource?.name === label)
+      ?.tags || []
+
+    const titleContent = tags.length > 0 ? (
+      <span className={styles.breadcrumbItem}>
+        <span>{label}</span>
+        {tags.length > 0 && (
+          <span>
+            {tags.map((tag, index) => (
+              <Tag
+                key={index}
+                color="gold"
+              >
+                {tag}
+              </Tag>
+            ))}
+          </span>
+        )}
+      </span>
+    ) : label
+
+    return {
+      title: crumb.link ? (
+        <a
+          className={styles.breadcrumbLink}
+          href={crumb.link(state)}
+        >
+          {titleContent}
+        </a>
+      ) : titleContent,
+    }
+  })
 
   return (
     <div className={styles.container} data-testid="breadcrumbs">

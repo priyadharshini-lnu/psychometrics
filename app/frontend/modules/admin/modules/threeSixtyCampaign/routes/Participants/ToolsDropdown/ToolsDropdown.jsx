@@ -9,7 +9,7 @@ const getCustomMenuProps = ({
   threesixtyCampaignId, campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
   handleExportThreeSixtyScores, handleBulkDownloads, openModal, isBulk, handleBulkMarkAsDone,
-  selectedKeys, excludedKeys, isAllSelected,
+  selectedKeys, excludedKeys, isAllSelected, handleTemplateConversion,
 }) => {
   const handleMenuClick = ({ key }) => {
     if (key === 'export_raw_labels') {
@@ -44,6 +44,9 @@ const getCustomMenuProps = ({
     }
     if (key === 'completed' || key === 'in_progress') {
       return handleBulkMarkAsDone(campaignId, key, isAllSelected, selectedKeys, excludedKeys)
+    }
+    if (key === 'convert_to_template') {
+      return handleTemplateConversion()
     }
   }
 
@@ -105,6 +108,10 @@ const getCustomMenuProps = ({
       key: 'bulk_downloads',
       label: I18n.t('campaign_assessment.actions.bulk_download'),
     },
+    permissions.convertToTemplate && {
+      key: 'convert_to_template',
+      label: I18n.t('campaign_assessment.actions.convert_to_template'),
+    },
   ]
 
   const bulkActionItems = [
@@ -125,15 +132,26 @@ export default function ToolsDropdown ({
   threesixtyCampaignId, campaignId, dimensionId, resetCampaign, resetAllNominations, openModal,
   rescoreAssessment, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
-  reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys, excludedKeys, title, isAllSelected,
+  reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys,
+  excludedKeys, title, isAllSelected,
 }) {
   const { projectId } = useParams()
+
   const resetCampaignWithConfirmation = (campaignId) => {
     openModal('ResetCampaignModal', {
       onConfirm: removeLicenceUsage => resetCampaign(campaignId, removeLicenceUsage),
     })
   }
   const { modal, message } = App.useApp()
+
+
+  const handleTemplateConversion = () => {
+    openModal('ConvertOrCopyAsTemplateModal', {
+      visible: true,
+      campaignId,
+      projectId,
+    })
+  }
 
   const handleRescoreAssessment = (threesixtyCampaignId) => {
     modal.confirm({
@@ -289,6 +307,7 @@ export default function ToolsDropdown ({
           handleExportThreeSixtyScores,
           handleBulkDownloads,
           handleBulkMarkAsDone,
+          handleTemplateConversion,
           isBulk,
           selectedKeys,
           excludedKeys,

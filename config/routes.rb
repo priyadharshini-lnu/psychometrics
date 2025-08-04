@@ -1313,6 +1313,8 @@ as: :simulation_progress_notification
             jsonapi_resources :threesixty_campaigns do
               jsonapi_resource :report_approval_setting, only: %i[index create update destroy]
               post :create_campaign, on: :collection
+              post :convert_to_template, on: :member
+              post :copy_as_template, on: :member
             end
           end
           jsonapi_resources :profile_settings, only: %i[index update]

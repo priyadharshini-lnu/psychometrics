@@ -873,6 +873,7 @@ en:
       campaign_templates: Campaign Templates
       column:
         assessment: Assessment
+        campaign: Campaign
         owner: Owner
         report: Report
       copy:
@@ -947,6 +948,7 @@ en:
       assessors:
         spoof:
           successfully: You was successfully login as %{name}
+      convert_to_template: Convert to Template
       copy: Copy
       delete: Delete
       edit: Edit
@@ -972,6 +974,7 @@ en:
         name: Name
         reports: Reports
         status: Status
+        template: Template
         type: Type
       menus:
         add_common_campaign: Add Common Campaign
@@ -4129,6 +4132,21 @@ en:
         toggle_status:
           successfully: Successfully
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Already a template
+        has_user_data: Please manually reset the campaign by clicking "Reset all participants" from the Tools dropdown before converting to a template.
+      convert_template_modal:
+        cancel: Cancel
+        confirm: Confirm
+        convert:
+          success: Template successfully converted
+        convert_option: Convert this campaign into a template
+        copy:
+          success: Campaign template creation job was scheduled successfully, please check your notifications for status.
+        copy_option: Create a new template from this campaign
+        description: Choose how you want to create a template from this campaign.
+        failed: Template creation failed.
+        title: Convert to Template
       email_templates:
         approve_nomination:
           description: This message is sent to a manager when a nomination, made by a direct report, needs to be approved

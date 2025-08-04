@@ -27,6 +27,7 @@ export interface CommonCampaignPermissions {
   viewAuditReports: boolean
   viewAssessmentsAndReports: boolean
   manageReportApprovalSettings: boolean
+  convertToTemplate: boolean
 }
 
 export default interface Campaign {
@@ -43,6 +44,7 @@ export default interface Campaign {
   isThreesixty?: boolean | null
   permissions: CommonCampaignPermissions
   practiceCampaign?: boolean | null
+  isTemplate?: boolean
 }
 
 export interface Entity {

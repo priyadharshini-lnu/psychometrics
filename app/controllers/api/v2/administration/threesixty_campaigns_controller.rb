@@ -5,6 +5,8 @@ module Api
     validate_crud_requests Api::V2::ThreesixtyCampaign::Schema
     validates_request_schema :create_campaign, -> { Api::V2::ThreesixtyCampaign::Schema.create_campaign }
 
+    before_action :find_campaign, only: %i[copy_as_template convert_to_template]
+
     def create_campaign
       form = ::Threesixty::Campaigns::CreateForm.from_params(params[:data][:attributes])
       unless form.valid?
@@ -27,6 +29,34 @@ module Api
         )
         render json: :ok
       end
+    end
+
+    def copy_as_template
+      audit! :copy_as_template, @campaign, campaign: @campaign, user: current_user
+      AdminJob.call(
+        :copy_as_template_or_campaign,
+        { campaign_id: params[:id], is_template: true },
+        current_user
+      )
+      render json: :ok
+    end
+
+    def convert_to_template
+      result = ::Threesixty::Campaigns::ConvertToTemplate.call(@campaign)
+      if result[:ok]
+        audit! :convert_to_template, @campaign, campaign: @campaign, user: current_user
+
+        render json: ::Administration::Campaigns::CampaignSerializer.new({ context: { current_user: current_user } }).
+          serialize(result[:ok][:campaign])
+      else
+        render json: { error: result[:error] }, status: :unprocessable_entity
+      end
+    end
+
+    private
+
+    def find_campaign
+      @campaign = Campaign.find(params[:id])
     end
 
     def policy_class

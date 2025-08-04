@@ -20,7 +20,8 @@ class BreadcrumbSerializer < Panko::Serializer
   def campaign
     {
       id: object['campaign'].id,
-      name: object['campaign'].name
+      name: object['campaign'].name,
+      tags: generate_campaign_tags(object['campaign'])
     }
   end
 
@@ -29,5 +30,13 @@ class BreadcrumbSerializer < Panko::Serializer
       id: object['threesixty'].id,
       name: object['threesixty'].name
     }
+  end
+
+  private
+
+  def generate_campaign_tags(campaign)
+    tags = []
+    tags << 'template' if campaign.template?
+    tags
   end
 end

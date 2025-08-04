@@ -162,11 +162,9 @@ const BaseSettingsForm = ({
                     >
                       {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.previous')}
                     </Radio>
-                    {category !== THREESIXTY_CATEGORY.SKILLS_RATER && (
-                      <Radio value={THREESIXTY_TYPES.STANDARD_360}>
-                        {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.standard')}
-                      </Radio>
-                    )}
+                    <Radio value={THREESIXTY_TYPES.STANDARD_360}>
+                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.standard')}
+                    </Radio>
                   </Space>
                 </Radio.Group>
               </Form.Item>

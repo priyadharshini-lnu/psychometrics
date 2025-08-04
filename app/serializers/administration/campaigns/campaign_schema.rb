@@ -19,6 +19,7 @@ module Administration
           required(:status).filled(:str?)
           required(:campaign_url).filled(:str?)
           required(:is_threesixty).maybe(:bool?)
+          required(:is_template).maybe(:bool?)
           required(:is_fixed_time).filled(:bool?)
           required(:project_id).maybe(:int?)
           required(:practice_campaign).filled(:bool?)

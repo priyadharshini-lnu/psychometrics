@@ -13,7 +13,7 @@ const CampaignTemplatesList: React.FC = () => {
     trackUrl: true,
     responseType: CampaignTemplateTR,
     apiConfig: {
-      include: ['owner', 'assessment', 'report'],
+      include: ['owner', 'assessment', 'report', 'campaign'],
     },
   }
   const openModal = (campaignTemplate: CampaignTemplate) => {

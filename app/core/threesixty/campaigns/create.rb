@@ -12,6 +12,10 @@ module Threesixty
       end
 
       def call
+        if clone_from_campaign_template?
+          return clone_from_campaign_template
+        end
+
         threesixty_campaign = ApplicationRecord.transaction do
           threesixty_campaign = if assessment
                                   ::Threesixty::Campaigns::CreateFromAssessmentAndReport.call!(
@@ -60,6 +64,24 @@ module Threesixty
       def load_templates(threesixty_campaign, prev_campaign)
         Threesixty::EmailTemplates::Load.call(threesixty_campaign, prev_campaign)
         Threesixty::InstructionTemplates::Load.call(threesixty_campaign, prev_campaign)
+      end
+
+      def clone_from_campaign_template?
+        form.threesixty_type == Campaign::STANDARD_360 && campaign_template.campaign_id.present?
+      end
+
+      def clone_from_campaign_template
+        result = ::Threesixty::Campaigns::CopyAsTemplateOrCampaign.call(
+          campaign_template.campaign,
+          is_template: false,
+          form: form,
+          project: project
+        )
+        if result[:ok]
+          broadcast :ok, result[:ok][:campaign].threesixty_campaign
+        else
+          broadcast :error, result[:error]
+        end
       end
     end
   end

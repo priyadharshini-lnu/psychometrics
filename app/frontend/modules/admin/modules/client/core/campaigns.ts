@@ -70,7 +70,10 @@ export const CampaignTR = t.intersection([
       t.type({
         id: t.string,
         name: t.string,
+        reportId: t.number,
+        assessmentId: t.number,
         category: t.string,
+        template: t.boolean,
         meta: t.type({
           permissions: ThreesixtyCampaignPermissionsTR,
         }),

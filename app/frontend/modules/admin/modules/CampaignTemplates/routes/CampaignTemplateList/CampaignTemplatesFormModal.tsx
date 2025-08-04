@@ -25,6 +25,8 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
   const { resource } = useResourceContext<CampaignTemplate, BaseMeta>()
   const [form] = Form.useForm()
 
+  const disabled = !!campaignTemplate?.campaign?.id
+
   const {
     data: assessments, fetch: fetchAssessments, isLoading,
   } = useResources<Assessment>('assessments')
@@ -119,6 +121,7 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
             rules={[{ required: true }]}
           >
             <Select
+              disabled={disabled}
               showSearch
               filterOption={false}
               placeholder={
@@ -140,6 +143,7 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
             rules={[{ required: true }]}
           >
             <Select
+              disabled={disabled}
               showSearch
               filterOption={false}
               placeholder={
@@ -160,6 +164,7 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
             label={I18n.t('administration.campaign_templates.form.owner')}
           >
             <Select
+              disabled={disabled}
               showSearch
               filterOption={false}
               placeholder={
