@@ -27,7 +27,7 @@ module Workshops
     private
 
     def platform_link_for(user)
-      return assessor_platform_link if user.assessor?
+      return assessor_platform_link if user.admin?
 
       Utility::Url.generate(:invites_url, subdomain: user.project.subdomain)
     end
@@ -71,14 +71,25 @@ module Workshops
       path.gsub('/administration/', '/admin/')
     end
 
+    def organizer_email
+      no_reply_email = "no-reply@#{Settings.domain}"
+      user.project&.smtp_setting&.from_email.presence || no_reply_email
+    end
+
+    def organizer_name
+      user.project&.smtp_setting&.from_name.presence || I18n.t('mailer.from')
+    end
+
     def add_event_to_calendar(cal, start_time, end_time, tzid)
       cal.event do |e|
         e.uid = "#{workshop.id}-#{user.id}-facilitators-booking@#{Settings.domain}"
         e.status = type == :booking ? 'CONFIRMED' : 'CANCELLED'
         e.dtstart = Icalendar::Values::DateTime.new(start_time, 'tzid' => tzid)
         e.dtend = Icalendar::Values::DateTime.new(end_time, 'tzid' => tzid)
-        e.organizer = Icalendar::Values::CalAddress.new("mailto:#{user.email}", cn: user.decorate.full_name,
+        e.organizer = Icalendar::Values::CalAddress.new("mailto:#{organizer_email}", cn: organizer_name,
                                                         role: 'REQ-PARTICIPANT')
+        e.append_attendee(Icalendar::Values::CalAddress.new("mailto:#{user.email}", cn: user.decorate.full_name,
+                                                            role: 'REQ-PARTICIPANT'))
         e.summary = "Booked for center on #{I18n.l(start_time, format: :workshop_date)} " \
                     "for campaign #{workshop.campaign.name} and project #{workshop.campaign.project.name}"
 
