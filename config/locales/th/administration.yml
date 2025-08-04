@@ -696,7 +696,7 @@ th:
         cancelled_and_rebook_deadline_passed: ยกเลิกและกําหนดเส้นตายสําหรับหนังสืออีกครั้ง
         late_cancellation_not_allowed: ไม่อนุญาตให้ยกเลิกล่าช้า
         late_rescheduling_not_allowed: ไม่อนุญาตให้เปลี่ยนกําหนดการล่าช้า
-        prework_not_completed: โปรดทํากิจกรรมก่อนทํางานทั้งหมดให้เสร็จสิ้นก่อนจองช่องสําหรับศูนย์ประเมิน
+        prework_not_completed: โปรดทํากิจกรรมงานก่อนเริ่มทั้งหมดให้เสร็จสิ้นก่อนจองช่องสําหรับศูนย์ประเมิน
         reschedule_deadline_passed: กําหนดเวลาใหม่ผ่านไปแล้ว
         seats_not_available: ไม่มีที่นั่งว่าง
     breadcrumbs:
@@ -3426,7 +3426,7 @@ th:
         meeting_link: ลิงค์การประชุม
         name: ชื่อ
         participants: ผู้เข้าร่วม
-        prework: ก่อนทํางาน
+        prework: งานก่อนเริ่ม
         resource_link: ลิงก์
         resource_name: ชื่อ
         schedule_time: กําหนดเวลา
@@ -3505,7 +3505,7 @@ th:
         meeting_link_title: ลิงค์การประชุม
         no_change: ไม่มีการเปลี่ยนแปลง
         override_existing: แทนที่กําหนดการที่มีอยู่สําหรับหัวเรื่อง
-        preworks: ก่อนทํางาน
+        preworks: งานก่อนเริ่ม
         schedule: ตาราง
         unschedule: ยกเลิกกําหนดเวลา
       tabs:

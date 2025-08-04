@@ -502,7 +502,7 @@ pt:
         subdomain: Subdomínio
         types:
           associate: Associado
-          corporate: Empresa
+          corporate: Corporativo
           distributer: Distribuidor
           other: Outros
           partner: Parceiro
@@ -3304,7 +3304,7 @@ pt:
         subdomain: Subdomínio
         types:
           associate: Associado
-          corporate: Empresa
+          corporate: Corporativo
           distributer: Distribuidor
           other: Outros
           partner: Parceiro
@@ -3428,7 +3428,7 @@ pt:
         subdomain: Subdomínio
         types:
           associate: Associado
-          corporate: Empresa
+          corporate: Corporativo
           distributer: Distribuidor
           other: Outros
           partner: Parceiro
