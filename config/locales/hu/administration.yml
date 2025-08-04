@@ -2271,7 +2271,6 @@ hu:
     individual_invite:
       tabs:
         assessment_center: Értékelési Központ
-        subjects: Témák
     innovation_styles:
       create:
         successfully: A(z) %{name} innovációs stílus létrehozása sikeres.

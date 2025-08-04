@@ -2269,7 +2269,6 @@ sl:
     individual_invite:
       tabs:
         assessment_center: Ocenjevalni center
-        subjects: Predmetov
     innovation_styles:
       create:
         successfully: Slog inovacij %{name} je bil uspešno ustvarjen.

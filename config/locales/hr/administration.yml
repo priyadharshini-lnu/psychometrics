@@ -2269,7 +2269,6 @@ hr:
     individual_invite:
       tabs:
         assessment_center: Centar za procjenu
-        subjects: Ispitanici
     innovation_styles:
       create:
         successfully: Stil inovacije %{name} uspješno je kreiran.

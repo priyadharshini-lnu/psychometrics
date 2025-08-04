@@ -2288,7 +2288,6 @@ cs:
     individual_invite:
       tabs:
         assessment_center: Hodnotící centrum
-        subjects: Předměty
     innovation_styles:
       create:
         successfully: Inovační styl %{name} byl úspěšně vytvořen.

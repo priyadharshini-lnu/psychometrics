@@ -2288,7 +2288,6 @@ nl:
     individual_invite:
       tabs:
         assessment_center: Beoordelingscentrum
-        subjects: Onderwerpen
     innovation_styles:
       create:
         successfully: Innovatiestijl %{name} is succesvol aangemaakt.

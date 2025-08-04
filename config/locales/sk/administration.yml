@@ -2269,7 +2269,6 @@ sk:
     individual_invite:
       tabs:
         assessment_center: Hodnotiace centrum
-        subjects: Predmety
     innovation_styles:
       create:
         successfully: Štýl inovácie %{name} bol úspešne vytvorený.

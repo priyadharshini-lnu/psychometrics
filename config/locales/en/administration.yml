@@ -2291,7 +2291,7 @@ en:
     individual_invite:
       tabs:
         assessment_center: Assessment Center
-        subjects: Subjects
+        invitation_status: Invitation Status
     innovation_styles:
       create:
         successfully: Innovation Style %{name} was created successfully.
@@ -2421,6 +2421,7 @@ en:
       booked_at: 'Booked At:'
       column:
         participant: Participant
+        scheduling_details: Scheduling Details
       remove_confirm:
         content: Are you sure you want to remove the subject with email '%{subjectEmail}'?
         success: Subject with email '%{subjectEmail}'' was successfully removed.
@@ -2428,6 +2429,8 @@ en:
       statuses:
         accepted: Accepted
         cancelled: Cancelled
+        late_cancelled: Late Cancelled
+        late_rescheduled: Late Rescheduled
         pending: Pending
         requested_cancellation: Requested Cancellation
         requested_cancellation_rejected: Cancellation Rejected

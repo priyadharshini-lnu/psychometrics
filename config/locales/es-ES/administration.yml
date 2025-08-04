@@ -2287,8 +2287,7 @@ es-ES:
         header: Importar usuarios
     individual_invite:
       tabs:
-        assessment_center: Assessment Center
-        subjects: Temas
+        assessment_center: Centro de Evaluación
     innovation_styles:
       create:
         successfully: El estilo de innovación %{name} se ha creado correctamente.

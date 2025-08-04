@@ -2288,7 +2288,6 @@ ko:
     individual_invite:
       tabs:
         assessment_center: 평가 센터
-        subjects: 주제
     innovation_styles:
       create:
         successfully: 혁신 스타일 %{name}을(를) 성공적으로 만들었습니다.

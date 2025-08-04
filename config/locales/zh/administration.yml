@@ -2288,7 +2288,6 @@ zh:
     individual_invite:
       tabs:
         assessment_center: 评估中心
-        subjects: 主题
     innovation_styles:
       create:
         successfully: 创新风格 %{name} 创建成功。

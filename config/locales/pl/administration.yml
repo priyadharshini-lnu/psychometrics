@@ -2269,7 +2269,6 @@ pl:
     individual_invite:
       tabs:
         assessment_center: Centrum oceny zintegrowanej
-        subjects: Tematy
     innovation_styles:
       create:
         successfully: Styl innowacji %{name} został utworzony pomyślnie.

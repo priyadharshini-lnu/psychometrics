@@ -2288,7 +2288,6 @@ ja:
     individual_invite:
       tabs:
         assessment_center: アセスメント・センター
-        subjects: 対象
     innovation_styles:
       create:
         successfully: イノベーション・スタイル %{name} が正常に作成されました。

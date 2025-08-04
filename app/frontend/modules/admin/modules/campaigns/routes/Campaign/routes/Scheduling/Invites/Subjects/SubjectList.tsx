@@ -83,12 +83,27 @@ export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
             )}
           />
           <Resource.Column<WorkshopInvitedSubject>
-            title={I18n.t('common.column.details')}
+            title={I18n.t('administration.invited_subject.column.scheduling_details')}
             id="details"
             sorter
             render={(_, subject) => {
-              const bookedAt = dayjs(subject.bookedAt)
-              const assessmentCenterBooked = dayjs(subject.subjectWorkshopDateTime)
+              const bookedAt = subject.bookedAt ? dayjs(subject.bookedAt) : null
+              const assessmentCenterBooked = subject.subjectWorkshopDateTime
+                ? dayjs(subject.subjectWorkshopDateTime)
+                : null
+
+              if (subject.schedulingStatus === 'late_cancelled') {
+                return (
+                  <Tag>{I18n.t('administration.invited_subject.statuses.late_cancelled')}</Tag>
+                )
+              }
+
+              if (subject.schedulingStatus === 'late_rescheduled') {
+                return (
+                  <Tag>{I18n.t('administration.invited_subject.statuses.late_rescheduled')}</Tag>
+                )
+              }
+
               if ((subject.status !== 'accepted'
                       && subject.status !== 'rescheduled'
               ) || (!bookedAt && !assessmentCenterBooked)) {
@@ -98,28 +113,31 @@ export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
               }
               return (
                 <Flex vertical gap={8}>
-                  <Flex vertical>
-                    <Typography.Text strong>
-                      {I18n.t('administration.invited_subject.booked_at')}
-                    </Typography.Text>
-                    <Typography.Text>
-                      {`${bookedAt.format('DD MMM, HH:mm')} ${bookedAt.format(' (z)')}`}
-                    </Typography.Text>
-                  </Flex>
-                  <Flex vertical>
-                    <Typography.Text strong>
-                      {I18n.t('administration.invited_subject.assessment_center')}
-                    </Typography.Text>
-                    <Typography.Text>
-                      <Link
-                        to={`${assessmentCenterPath}${subject.workshopId}`}
-                        state={{ search: location.search }}
-                      >
-                        {`${assessmentCenterBooked.format('DD MMM, HH:mm')} 
-                      ${assessmentCenterBooked.format(' (z)')}`}
-                      </Link>
-                    </Typography.Text>
-                  </Flex>
+                  {bookedAt && (
+                    <Flex vertical>
+                      <Typography.Text strong>
+                        {I18n.t('administration.invited_subject.booked_at')}
+                      </Typography.Text>
+                      <Typography.Text>
+                        {`${bookedAt.format('DD MMM, HH:mm')} ${bookedAt.format(' (z)')}`}
+                      </Typography.Text>
+                    </Flex>
+                  )}
+                  {assessmentCenterBooked && (
+                    <Flex vertical>
+                      <Typography.Text strong>
+                        {I18n.t('administration.invited_subject.assessment_center')}
+                      </Typography.Text>
+                      <Typography.Text>
+                        <Link
+                          to={`${assessmentCenterPath}${subject.workshopId}`}
+                          state={{ search: location.search }}
+                        >
+                          {`${assessmentCenterBooked.format('DD MMM, HH:mm')} ${assessmentCenterBooked.format(' (z)')}`}
+                        </Link>
+                      </Typography.Text>
+                    </Flex>
+                  )}
                 </Flex>
               )
             }}

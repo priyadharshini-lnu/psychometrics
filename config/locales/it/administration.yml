@@ -2288,7 +2288,6 @@ it:
     individual_invite:
       tabs:
         assessment_center: Centro di valutazione
-        subjects: Partecipanti
     innovation_styles:
       create:
         successfully: Lo stile di innovazione %{name} è stato creato con successo.

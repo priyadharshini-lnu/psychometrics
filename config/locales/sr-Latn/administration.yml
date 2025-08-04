@@ -2269,7 +2269,6 @@ sr-Latn:
     individual_invite:
       tabs:
         assessment_center: Centar za procenu
-        subjects: Subjekti
     innovation_styles:
       create:
         successfully: Stil inovacija %{name} je uspešno kreiran.

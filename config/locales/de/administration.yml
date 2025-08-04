@@ -2288,7 +2288,6 @@ de:
     individual_invite:
       tabs:
         assessment_center: Assessment Center
-        subjects: Themen
     innovation_styles:
       create:
         successfully: Innovation Style %{name} wurde erfolgreich erstellt.

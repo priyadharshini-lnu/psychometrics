@@ -2268,8 +2268,7 @@ ar:
         header: Import Users
     individual_invite:
       tabs:
-        assessment_center: Assessment Center
-        subjects: Subjects
+        assessment_center: مركز التقييم
     innovation_styles:
       create:
         successfully: Innovation Style %{name} was created successfully.
