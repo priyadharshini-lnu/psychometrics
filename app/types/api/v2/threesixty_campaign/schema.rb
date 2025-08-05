@@ -46,6 +46,8 @@ module Api
               required(:id).filled(:integer)
               required(:selected_choice_indexes).array(:integer)
             end
+            optional(:default_assessment_locale).filled(:string)
+            optional(:default_report_language).filled(:string)
           end
         end
 

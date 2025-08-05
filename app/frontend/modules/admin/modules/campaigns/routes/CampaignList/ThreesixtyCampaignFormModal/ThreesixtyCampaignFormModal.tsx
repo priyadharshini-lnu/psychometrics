@@ -26,10 +26,12 @@ interface OwnProps {
 type Props = OwnProps & PropsFromRedux
 type baseSettings = {
   name: string,
-   threesixty_type: string,
-   status: string,
-   threesixty_category: string
-  }
+  threesixty_type: string,
+  status: string,
+  threesixty_category: string,
+  default_assessment_locale?: string,
+  default_report_language?: string
+}
 
 const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   projectId,

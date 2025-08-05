@@ -990,11 +990,15 @@ en:
             assessment: Assessment
             category: Category
             closed: Closed
+            default_assessment_language: Assessment default language
+            default_report_language: Report default language
             empty: Empty
             inactive: Inactive
             name: Name
             normal: Normal
             previous: Previous
+            select_assessment_language: Select assessment language
+            select_report_language: Select report language
             skill_rater: Skill Rater
             standard: Standard
             status: Status
