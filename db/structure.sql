@@ -1960,7 +1960,8 @@ CREATE TABLE public.campaign_options (
     show_watermark boolean DEFAULT false,
     watermark_content character varying DEFAULT ''::character varying,
     workshop_invite_requires_prework_completion boolean DEFAULT false,
-    proctoring_enabled_on_workshop_activity boolean DEFAULT true
+    proctoring_enabled_on_workshop_activity boolean DEFAULT true,
+    enable_video_call_recording boolean DEFAULT false NOT NULL
 );
 
 
@@ -4129,6 +4130,40 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 
 
 --
+-- Name: meeting_recordings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.meeting_recordings (
+    id bigint NOT NULL,
+    meeting_room_id uuid NOT NULL,
+    external_id character varying,
+    s3key character varying,
+    status integer DEFAULT 0 NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: meeting_recordings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.meeting_recordings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: meeting_recordings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.meeting_recordings_id_seq OWNED BY public.meeting_recordings.id;
+
+
+--
 -- Name: meeting_rooms; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4853,7 +4888,10 @@ CREATE TABLE public.privacy_settings (
     mask_identity_for_examus boolean DEFAULT false,
     mask_identity_for_mettl boolean DEFAULT false,
     disable_data_processing boolean DEFAULT false,
-    mask_identity_for_skillvue boolean DEFAULT false
+    mask_identity_for_skillvue boolean DEFAULT false,
+    allow_video_call_recording boolean DEFAULT false NOT NULL,
+    enable_video_call_recording_for_all_new_campaigns boolean DEFAULT false NOT NULL,
+    video_call_recording_expiry_in_seconds integer
 );
 
 
@@ -8775,6 +8813,13 @@ ALTER TABLE ONLY public.media_responses ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: meeting_recordings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.meeting_recordings ALTER COLUMN id SET DEFAULT nextval('public.meeting_recordings_id_seq'::regclass);
+
+
+--
 -- Name: membership_grants id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10336,6 +10381,14 @@ ALTER TABLE ONLY public.licenses
 
 ALTER TABLE ONLY public.media_responses
     ADD CONSTRAINT media_responses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: meeting_recordings meeting_recordings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.meeting_recordings
+    ADD CONSTRAINT meeting_recordings_pkey PRIMARY KEY (id);
 
 
 --
@@ -12981,6 +13034,13 @@ CREATE INDEX index_media_responses_on_question_id ON public.media_responses USIN
 --
 
 CREATE INDEX index_media_responses_on_users_result_id ON public.media_responses USING btree (users_result_id);
+
+
+--
+-- Name: index_meeting_recordings_on_meeting_room_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_meeting_recordings_on_meeting_room_id ON public.meeting_recordings USING btree (meeting_room_id);
 
 
 --
@@ -16221,6 +16281,14 @@ ALTER TABLE ONLY public.hogan_credentials
 
 
 --
+-- Name: meeting_recordings fk_rails_8babb7808d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.meeting_recordings
+    ADD CONSTRAINT fk_rails_8babb7808d FOREIGN KEY (meeting_room_id) REFERENCES public.meeting_rooms(id) ON DELETE CASCADE;
+
+
+--
 -- Name: job_groups fk_rails_8bebc41e84; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17523,12 +17591,16 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20250714092101'),
-('20250714084320'),
-('20250723144840'),
-('20250723095133'),
 ('20250711074243'),
+('20250714084320'),
+('20250714092101'),
 ('20250715133541'),
+('20250718071328'),
+('20250723095133'),
+('20250723144840'),
+('20250728141620'),
+('20250712120001'),
+('20250712120000'),
 ('20250709102014'),
 ('20250709100241'),
 ('20250704103208'),

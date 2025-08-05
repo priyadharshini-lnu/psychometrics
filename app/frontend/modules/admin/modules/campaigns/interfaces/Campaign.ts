@@ -79,4 +79,5 @@ export interface CampaignOptions {
   availableDescriptionLocales: string[]
   integrationType: 'iframe' | 'ldb'
   trial: boolean
+  enableVideoCallRecording?: boolean;
 }

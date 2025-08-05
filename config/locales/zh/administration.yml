@@ -1024,6 +1024,7 @@ zh:
           name: 说明
           save: 保存说明
           save_success: 说明已成功保存
+        enable_video_call_recording: 启用视频通话录音
         fixed_time: 固定时间
         instructions:
           actions:
@@ -3059,6 +3060,7 @@ zh:
         dp_consent_custom: 定制数据处理同意书
         dp_consent_version: 政策版本
         errors:
+          cannot_disable_while_campaign_enabled: 无法禁用视频通话录音，因为此项目中的一个或多个活动已启用该功能
           policy_version_format: 只允许使用整数
         mask_identity_for_examus: Examus Proctoring 的屏蔽数据
         mask_identity_for_hogan: 霍根的面具数据
@@ -3072,6 +3074,9 @@ zh:
         privacy_link_placeholder: 输入隐私链接
         privacy_text: 隐私文本
         privacy_text_placeholder: 输入隐私文本
+        video_call_recording: 允许视频通话录音
+        video_call_recording_expiry_duration: 视频通话记录的保存期限（天数）
+        video_call_recording_scope: 启用所有新活动的视频录制功能
       profile_settings:
         form_fields:
           enabled: 已启用

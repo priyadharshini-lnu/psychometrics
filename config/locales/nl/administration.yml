@@ -1024,6 +1024,7 @@ nl:
           name: Beschrijving
           save: Beschrijving opslaan
           save_success: Beschrijving succesvol opgeslagen
+        enable_video_call_recording: Video-opname inschakelen
         fixed_time: Vaste tijd
         instructions:
           actions:
@@ -3059,6 +3060,7 @@ nl:
         dp_consent_custom: Toestemming voor gegevensverwerking aanpassen
         dp_consent_version: Beleidsversie
         errors:
+          cannot_disable_while_campaign_enabled: Kan opnemen van videogesprekken niet uitschakelen omdat dit is ingeschakeld voor een of meer campagnes in dit project
           policy_version_format: Alleen gehele getallen zijn toegestaan
         mask_identity_for_examus: Maskergegevens voor Examus Proctoring
         mask_identity_for_hogan: Maskergegevens voor Hogan
@@ -3072,6 +3074,9 @@ nl:
         privacy_link_placeholder: Privacylink invoeren
         privacy_text: Privacy tekst
         privacy_text_placeholder: Privacy invoeren
+        video_call_recording: Opname van videogesprekken toestaan
+        video_call_recording_expiry_duration: Bewaarperiode voor opnamen van videogesprekken (in dagen)
+        video_call_recording_scope: Video-opname inschakelen voor alle nieuwe campagnes
       profile_settings:
         form_fields:
           enabled: Ingeschakeld

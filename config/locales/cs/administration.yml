@@ -1024,6 +1024,7 @@ cs:
           name: Popis
           save: Uložit Popis
           save_success: Popis úspěšně uložen
+        enable_video_call_recording: Povolení nahrávání videohovorů
         fixed_time: Pevný čas
         instructions:
           actions:
@@ -3059,6 +3060,7 @@ cs:
         dp_consent_custom: Přizpůsobení souhlasu se zpracováním údajů
         dp_consent_version: Verze politiky
         errors:
+          cannot_disable_while_campaign_enabled: Nahrávání videohovorů nelze zakázat, protože je povoleno pro jednu nebo více kampaní v tomto projektu.
           policy_version_format: Povolena jsou pouze celá čísla
         mask_identity_for_examus: Údaje o masce pro Examus Proctoring
         mask_identity_for_hogan: Údaje o masce pro Hogan
@@ -3072,6 +3074,9 @@ cs:
         privacy_link_placeholder: Zadejte odkaz na ochranu osobních údajů
         privacy_text: Text o ochraně osobních údajů
         privacy_text_placeholder: Zadejte text o ochraně osobních údajů
+        video_call_recording: Povolení nahrávání videohovorů
+        video_call_recording_expiry_duration: Doba uchovávání záznamů videohovorů (ve dnech)
+        video_call_recording_scope: Povolení nahrávání videa pro všechny nové kampaně
       profile_settings:
         form_fields:
           enabled: Povoleno

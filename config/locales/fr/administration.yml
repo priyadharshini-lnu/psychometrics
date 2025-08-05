@@ -1024,6 +1024,7 @@ fr:
           name: Description
           save: Enregistrer la description
           save_success: Description enregistrée avec succès
+        enable_video_call_recording: Activer l'enregistrement des appels vidéo
         fixed_time: Temps fixe
         instructions:
           actions:
@@ -3059,6 +3060,7 @@ fr:
         dp_consent_custom: Personnaliser le consentement au traitement des données
         dp_consent_version: Version de la politique
         errors:
+          cannot_disable_while_campaign_enabled: Impossible de désactiver l'enregistrement des appels vidéo parce qu'il est activé pour une ou plusieurs campagnes dans ce projet.
           policy_version_format: Seuls les nombres entiers sont autorisés
         mask_identity_for_examus: Données sur les masques pour Examus Proctoring
         mask_identity_for_hogan: Données sur les masques pour Hogan
@@ -3072,6 +3074,9 @@ fr:
         privacy_link_placeholder: Entrer le lien de confidentialité
         privacy_text: Texte sur la protection de la vie privée
         privacy_text_placeholder: Saisir le texte sur la protection de la vie privée
+        video_call_recording: Permettre l'enregistrement des appels vidéo
+        video_call_recording_expiry_duration: Période de conservation des enregistrements d'appels vidéo (en jours)
+        video_call_recording_scope: Activer l'enregistrement vidéo pour toutes les nouvelles campagnes
       profile_settings:
         form_fields:
           enabled: Activé

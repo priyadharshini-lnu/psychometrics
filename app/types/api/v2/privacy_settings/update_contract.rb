@@ -15,6 +15,38 @@ module Api
         end
 
         rule(data: { attributes: :privacy_link_url }).validate(http_url_format: { allow_blank: true })
+
+        rule(data: { attributes: :enable_video_call_recording_for_all_new_campaigns }) do
+          key.failure(:filled?) if values.dig(:data, :attributes, :allow_video_call_recording) && value.nil?
+        end
+
+        rule(data: { attributes: :video_call_recording_expiry_in_seconds }) do
+          key.failure(:filled?) if values.dig(:data, :attributes, :allow_video_call_recording) && value.blank?
+        end
+
+        rule(data: { attributes: :allow_video_call_recording }) do
+          next unless value == false
+
+          privacy_setting_id = values.dig(:data, :id)
+          next unless privacy_setting_id
+
+          privacy_setting = ::PrivacySetting.find_by(id: privacy_setting_id)
+          next unless privacy_setting&.project_id
+
+          if campaigns_with_recording_enabled?(privacy_setting.project_id)
+            key.failure(
+              I18n.t('administration.projects.privacy_settings.errors.cannot_disable_while_campaign_enabled')
+            )
+          end
+        end
+
+        private
+
+        def campaigns_with_recording_enabled?(project_id)
+          ::Campaign.joins(:campaign_options).
+            exists?(project_id: project_id,
+                    campaign_options: { enable_video_call_recording: true })
+        end
       end
     end
   end

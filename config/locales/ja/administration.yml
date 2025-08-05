@@ -1024,6 +1024,7 @@ ja:
           name: 説明
           save: 詳細を保存
           save_success: 説明が正常に保存された
+        enable_video_call_recording: ビデオ通話録音を有効にする
         fixed_time: 固定時間
         instructions:
           actions:
@@ -3059,6 +3060,7 @@ ja:
         dp_consent_custom: データ処理同意のカスタマイズ
         dp_consent_version: 政策バージョン
         errors:
+          cannot_disable_while_campaign_enabled: このプロジェクトの1つまたは複数のキャンペーンでビデオ通話録音が有効になっているため、無効にできません。
           policy_version_format: 整数のみ使用可
         mask_identity_for_examus: エグザムス・プロテクターのマスクデータ
         mask_identity_for_hogan: ホーガンのマスクデータ
@@ -3072,6 +3074,9 @@ ja:
         privacy_link_placeholder: プライバシーリンク
         privacy_text: プライバシーテキスト
         privacy_text_placeholder: プライバシーテキストを入力
+        video_call_recording: ビデオ通話の録音を許可する
+        video_call_recording_expiry_duration: ビデオ通話録画の保存期間（単位：日）
+        video_call_recording_scope: すべての新規キャンペーンでビデオ録画を有効にする
       profile_settings:
         form_fields:
           enabled: 有効

@@ -1024,6 +1024,7 @@ zh-Hant:
           name: 說明
           save: 儲存說明
           save_success: 說明已成功儲存
+        enable_video_call_recording: 啟用視訊通話錄影
         fixed_time: 固定時間
         instructions:
           actions:
@@ -3059,6 +3060,7 @@ zh-Hant:
         dp_consent_custom: 自訂資料處理同意書
         dp_consent_version: 政策版本
         errors:
+          cannot_disable_while_campaign_enabled: 無法停用視訊通話錄影，因為此專案中的一個或多個活動已啟用此功能
           policy_version_format: 只允許使用整數
         mask_identity_for_examus: Examus Proctoring 的掩模資料
         mask_identity_for_hogan: Hogan 的面具資料
@@ -3072,6 +3074,9 @@ zh-Hant:
         privacy_link_placeholder: 輸入隱私權連結
         privacy_text: 隱私權文字
         privacy_text_placeholder: 輸入隱私權文字
+        video_call_recording: 允許視訊通話錄影
+        video_call_recording_expiry_duration: 視訊通話錄影的保留期限（天數）
+        video_call_recording_scope: 啟用所有新活動的視訊錄製
       profile_settings:
         form_fields:
           enabled: 已啟用

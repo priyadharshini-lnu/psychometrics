@@ -52,3 +52,13 @@ s3_private_bucket:
   public: <%= false %>
   upload:
     cache_control: <%= "public, max-age=#{365.days.to_i}" %>
+
+s3_dailyco_bucket:
+  service: S3
+  access_key_id: <%= Settings.secrets.s3_compatible_storage[:access_key_id] %>
+  secret_access_key: <%= Settings.secrets.s3_compatible_storage[:secret_access_key] %>
+  region: <%= Settings.secrets.s3_compatible_storage[:region] %>
+  bucket: <%= Settings.secrets.s3_compatible_storage[:dailyco_bucket] %>
+  public: <%= false %>
+  upload:
+    cache_control: <%= "public, max-age=#{365.days.to_i}" %>

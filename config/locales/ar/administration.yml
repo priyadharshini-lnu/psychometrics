@@ -1006,6 +1006,7 @@ ar:
           name: الوصف
           save: حفظ الوصف
           save_success: تم حفظ الوصف بنجاح
+        enable_video_call_recording: تمكين تسجيل مكالمات الفيديو
         fixed_time: وقت ثابت
         instructions:
           actions:
@@ -3040,6 +3041,7 @@ ar:
         dp_consent_custom: Customise Data Processing consent
         dp_consent_version: Policy Version
         errors:
+          cannot_disable_while_campaign_enabled: لا يمكن تعطيل تسجيل مكالمات الفيديو لأنه ممكّن لحملة واحدة أو أكثر في هذا المشروع
           policy_version_format: Only whole numbers are allowed
         mask_identity_for_examus: Mask data for Examus Proctoring
         mask_identity_for_hogan: Mask data for Hogan
@@ -3053,6 +3055,9 @@ ar:
         privacy_link_placeholder: Enter Privacy Link
         privacy_text: Privacy Text
         privacy_text_placeholder: Enter Privacy Text
+        video_call_recording: السماح بتسجيل مكالمات الفيديو
+        video_call_recording_expiry_duration: فترة الاحتفاظ بتسجيلات مكالمات الفيديو (بالأيام)
+        video_call_recording_scope: تمكين تسجيل الفيديو لجميع الحملات الجديدة
       profile_settings:
         form_fields:
           enabled: ممكّنة

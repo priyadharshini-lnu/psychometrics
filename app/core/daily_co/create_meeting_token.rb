@@ -27,6 +27,12 @@ module DailyCo
         ud: current_user.id,
         iat: Time.now.to_i
       }
+
+      if meeting_room.video_recording_enabled?
+        payload[:er] = 'cloud'
+        payload[:sr] = true
+      end
+
       {
         token: JWT.encode(payload, Settings.secrets.daily_co[:api_key], 'HS256'),
         url: "https://#{Settings.secrets.daily_co[:subdomain]}.daily.co/#{meeting_room.name}"

@@ -25,6 +25,9 @@ class Api::V2::PrivacySettings::Schema < Api::Base::Schema
       optional(:enable_privacy_link).maybe(:bool)
       optional(:privacy_link_text).maybe(:string)
       optional(:privacy_link_url).maybe(:string)
+      optional(:allow_video_call_recording).maybe(:bool)
+      optional(:enable_video_call_recording_for_all_new_campaigns).maybe(:bool)
+      optional(:video_call_recording_expiry_in_seconds).maybe(:integer)
     end
   end
 end

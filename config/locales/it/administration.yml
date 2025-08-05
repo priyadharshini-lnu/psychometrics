@@ -1024,6 +1024,7 @@ it:
           name: Descrizione
           save: Salva Descrizione
           save_success: Descrizione salvata con successo
+        enable_video_call_recording: Abilita la registrazione delle videochiamate
         fixed_time: Tempo fisso
         instructions:
           actions:
@@ -3059,6 +3060,7 @@ it:
         dp_consent_custom: Personalizzare il consenso al trattamento dei dati
         dp_consent_version: Versione della politica
         errors:
+          cannot_disable_while_campaign_enabled: Non è possibile disattivare la registrazione delle videochiamate perché è abilitata per una o più campagne in questo progetto.
           policy_version_format: Sono ammessi solo numeri interi
         mask_identity_for_examus: Dati della maschera per Examus Proctoring
         mask_identity_for_hogan: Dati della maschera per Hogan
@@ -3072,6 +3074,9 @@ it:
         privacy_link_placeholder: Inserire il link alla privacy
         privacy_text: Testo sulla privacy
         privacy_text_placeholder: Inserire il testo della privacy
+        video_call_recording: Consentire la registrazione delle videochiamate
+        video_call_recording_expiry_duration: Periodo di conservazione delle registrazioni delle videochiamate (in giorni)
+        video_call_recording_scope: Abilitare la registrazione video per tutte le nuove campagne
       profile_settings:
         form_fields:
           enabled: Abilitato

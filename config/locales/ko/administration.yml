@@ -1024,6 +1024,7 @@ ko:
           name: 설명
           save: 설명 저장
           save_success: 설명이 성공적으로 저장되었습니다
+        enable_video_call_recording: 영상 통화 녹화 사용
         fixed_time: 고정 시간
         instructions:
           actions:
@@ -3059,6 +3060,7 @@ ko:
         dp_consent_custom: 데이터 처리 동의 사용자 지정
         dp_consent_version: 정책 버전
         errors:
+          cannot_disable_while_campaign_enabled: 이 프로젝트에서 하나 이상의 캠페인에 화상 통화 녹화가 활성화되어 있으므로 비활성화할 수 없습니다.
           policy_version_format: 정수만 허용됩니다
         mask_identity_for_examus: Examus 감독을 위한 마스크 데이터
         mask_identity_for_hogan: Hogan의 마스크 데이터
@@ -3072,6 +3074,9 @@ ko:
         privacy_link_placeholder: 개인정보 보호 링크 입력
         privacy_text: 개인 정보 텍스트
         privacy_text_placeholder: 개인정보 보호 텍스트 입력
+        video_call_recording: 영상 통화 녹화 허용
+        video_call_recording_expiry_duration: 영상 통화 녹화의 보존 기간(일 단위)
+        video_call_recording_scope: 모든 신규 캠페인에 동영상 녹화 사용
       profile_settings:
         form_fields:
           enabled: 활성화됨
