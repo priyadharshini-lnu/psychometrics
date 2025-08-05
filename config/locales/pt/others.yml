@@ -2341,8 +2341,6 @@ pt:
       add_to_yahoo_calendar: Adicionar ao calendário do yahoo
       assessment_center_alert:
         btn_title: Campanha
-        message_part1: Conclua todas as atividades prévias nisto
-        message_part2: antes de reservar um horário.
       assessment_center_group_name: Centro de avaliação
       booking_failed_msg: 'Falha ao reservar o horário: %{error}'
       buttons:

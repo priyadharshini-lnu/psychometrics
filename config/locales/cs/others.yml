@@ -2322,8 +2322,6 @@ cs:
       add_to_yahoo_calendar: Přidat do kalendáře yahoo
       assessment_center_alert:
         btn_title: Kampaň
-        message_part1: Dokončete všechny předběžné práce v rámci tohoto
-        message_part2: před rezervací místa.
       assessment_center_group_name: Centrum hodnocení
       booking_failed_msg: 'Rezervace místa se nezdařila: %{error}'
       buttons:

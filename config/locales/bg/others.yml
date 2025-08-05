@@ -2333,8 +2333,6 @@ bg:
       add_to_yahoo_calendar: Добавяне към календара на yahoo
       assessment_center_alert:
         btn_title: Кампания
-        message_part1: Изпълнете всички предварителни задачи в тази
-        message_part2: преди да резервирате слот.
       assessment_center_group_name: Център за оценяване
       booking_failed_msg: 'Не успя да резервира слот: %{error}'
       buttons:

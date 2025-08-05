@@ -2316,8 +2316,6 @@ ko:
       add_to_yahoo_calendar: 야후 캘린더에 추가
       assessment_center_alert:
         btn_title: 캠페인
-        message_part1: 모든 사전 작업을 완료하세요
-        message_part2: 슬롯을 예약하기 전에
       assessment_center_group_name: 평가 센터
       booking_failed_msg: '슬롯을 예약하지 못했습니다: %{error}'
       buttons:

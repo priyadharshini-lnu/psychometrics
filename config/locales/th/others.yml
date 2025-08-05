@@ -2330,8 +2330,6 @@ th:
       add_to_yahoo_calendar: เพิ่มลงในปฏิทิน yahoo
       assessment_center_alert:
         btn_title: แคมเปญ
-        message_part1: ดำเนินการเตรียมงานทั้งหมดนี้ให้เสร็จ
-        message_part2: ก่อนที่จะจองเวลา
       assessment_center_group_name: ศูนย์การประเมิน
       booking_failed_msg: 'การจองเวลาล้มเหลว: %{error}'
       buttons:

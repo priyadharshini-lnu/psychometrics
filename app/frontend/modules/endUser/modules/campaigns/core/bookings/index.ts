@@ -64,6 +64,7 @@ const fetchSingleInviteResponseTR = t.type({
   cancellationLeadTime: t.union([t.number, t.null]),
   schedulingLeadTime: t.union([t.number, t.null]),
   bookingPreworkConditionUnsatisfied: t.union([t.boolean, t.null]),
+  previousGroupsCompletionUnsatisfied: t.union([t.boolean, t.null]),
   campaignId: t.number,
 })
 export const FETCH_SINGLE_INVITE = 'invites/FETCH_SINGLE'

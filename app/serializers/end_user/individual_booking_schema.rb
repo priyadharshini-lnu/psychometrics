@@ -36,6 +36,7 @@ module EndUser
         required(:cancellation_lead_time).maybe(:int?)
         required(:neurodivergent).maybe(:bool?)
         required(:booking_prework_condition_unsatisfied).maybe(:bool?)
+        required(:previous_groups_completion_unsatisfied).filled(:bool?)
         required(:campaign_id).filled(:int?)
       end
     end

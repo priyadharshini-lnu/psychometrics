@@ -2286,8 +2286,6 @@ es-ES:
       add_to_yahoo_calendar: Añadir al calendario yahoo
       assessment_center_alert:
         btn_title: Campaña
-        message_part1: Complete todos los trabajos previos en este/a
-        message_part2: antes de reservar una plaza.
       assessment_center_group_name: Assessment Center
       booking_failed_msg: 'No se ha podido reservar una plaza: %{error}'
       buttons:

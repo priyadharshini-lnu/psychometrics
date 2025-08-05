@@ -2348,8 +2348,6 @@ hr:
       add_to_yahoo_calendar: Dodaj u yahoo kalendar
       assessment_center_alert:
         btn_title: Kampanja
-        message_part1: Završite sve predradnje
-        message_part2: prije rezervacije termina.
       assessment_center_group_name: Centar za procjenu
       booking_failed_msg: 'Rezervacija termina nije uspjela: %{error}'
       buttons:

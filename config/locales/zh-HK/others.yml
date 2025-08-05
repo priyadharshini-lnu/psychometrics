@@ -772,8 +772,6 @@ zh-HK:
       add_to_calendar_tour_description: 將此預訂新增至日曆
       assessment_center_alert:
         btn_title: 市場推廣
-        message_part1: 在此處完成所有預備工作
-        message_part2: 方可預訂位置。
       assessment_center_group_name: 評估中心
       booking_failed_msg: 預訂位置失敗：%{error}
       buttons:

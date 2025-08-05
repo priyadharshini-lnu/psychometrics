@@ -17,6 +17,13 @@ CREATE SCHEMA bi_models;
 
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -1671,7 +1678,8 @@ CREATE TABLE public.campaign_assessment_groups (
     "position" integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    group_type integer DEFAULT 0 NOT NULL
+    group_type integer DEFAULT 0 NOT NULL,
+    require_previous_groups_completion_for_booking boolean DEFAULT false
 );
 
 
@@ -17591,10 +17599,11 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20250711074243'),
+('20250731114640'),
 ('20250714084320'),
 ('20250714092101'),
 ('20250715133541'),
+('20250711074243'),
 ('20250718071328'),
 ('20250723095133'),
 ('20250723144840'),
@@ -18467,3 +18476,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

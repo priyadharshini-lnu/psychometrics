@@ -2331,8 +2331,6 @@ fr:
       add_to_yahoo_calendar: Ajouter au calendrier Yahoo
       assessment_center_alert:
         btn_title: Campagne
-        message_part1: Complétez tous les travaux préliminaires dans cette
-        message_part2: avant de réserver un créneau.
       assessment_center_group_name: Centre d'évaluation
       booking_failed_msg: 'Échec de la réservation du créneau : %{error}'
       buttons:

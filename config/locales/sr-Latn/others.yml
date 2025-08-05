@@ -2351,8 +2351,6 @@ sr-Latn:
       add_to_yahoo_calendar: Dodaj u Iahoo kalendar
       assessment_center_alert:
         btn_title: Kampanja
-        message_part1: Popunite sve predradove
-        message_part2: pre rezervacije slota.
       assessment_center_group_name: Centar za procenu
       booking_failed_msg: 'Neuspešna rezervacija slota: %{error}'
       buttons:

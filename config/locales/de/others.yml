@@ -2355,8 +2355,6 @@ de:
       add_to_yahoo_calendar: Zum Yahoo-Kalender hinzufügen
       assessment_center_alert:
         btn_title: Event
-        message_part1: Schließen Sie alle Vorarbeiten in dieser
-        message_part2: ab, bevor Sie einen Platz buchen.
       assessment_center_group_name: Assessment Center
       booking_failed_msg: 'Buchung des Platzes fehlgeschlagen: %{error}'
       buttons:

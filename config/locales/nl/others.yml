@@ -2328,8 +2328,6 @@ nl:
       add_to_yahoo_calendar: Toevoegen aan yahoo agenda
       assessment_center_alert:
         btn_title: Campagne
-        message_part1: Voltooi alle voorwerken in deze
-        message_part2: voordat je een slot boekt.
       assessment_center_group_name: Beoordelingscentrum
       booking_failed_msg: 'Boeking mislukt: %{error}'
       buttons:

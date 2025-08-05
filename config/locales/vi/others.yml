@@ -2327,8 +2327,6 @@ vi:
       add_to_yahoo_calendar: Thêm vào lịch yahoo
       assessment_center_alert:
         btn_title: Chiến dịch
-        message_part1: Hoàn thành tất cả các công việc chuẩn bị trong này
-        message_part2: trước khi đặt chỗ.
       assessment_center_group_name: Trung tâm đánh giá
       booking_failed_msg: 'Không đặt được chỗ: %{error}'
       buttons:

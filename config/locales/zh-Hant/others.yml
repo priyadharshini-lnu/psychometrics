@@ -2310,8 +2310,6 @@ zh-Hant:
       add_to_yahoo_calendar: 新增至 yahoo 行事曆
       assessment_center_alert:
         btn_title: 活動
-        message_part1: 完成其中的所有預備工作
-        message_part2: 預約時段之前。
       assessment_center_group_name: 評估中心
       booking_failed_msg: 預約時段失敗： %{error}
       buttons:

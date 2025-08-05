@@ -675,8 +675,6 @@ sr-Cyrl:
       add_to_calendar_tour_description: Додајте ову резервацију у свој календар
       assessment_center_alert:
         btn_title: Кампања
-        message_part1: Завршите све припремне радове у овом
-        message_part2: пре резервације термина.
       assessment_center_group_name: Центар за процену
       booking_failed_msg: 'Резервисање термина није успело: %{error}'
       buttons:

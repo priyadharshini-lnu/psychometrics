@@ -2333,8 +2333,6 @@ ro:
       add_to_yahoo_calendar: Adăugați la yahoo calendar
       assessment_center_alert:
         btn_title: Campanie
-        message_part1: Completați toate prelucrările din acest
-        message_part2: înainte de a rezerva un slot.
       assessment_center_group_name: Centrul de evaluare
       booking_failed_msg: 'Nu s-a reușit rezervarea slotului: %{error}'
       buttons:

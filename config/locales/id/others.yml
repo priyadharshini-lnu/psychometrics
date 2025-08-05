@@ -2337,8 +2337,6 @@ id:
       add_to_yahoo_calendar: Tambahkan ke kalender yahoo
       assessment_center_alert:
         btn_title: Kampanye
-        message_part1: Selesaikan semua tugas pendahuluan dalam hal ini
-        message_part2: sebelum memesan slot.
       assessment_center_group_name: Pusat Penilaian
       booking_failed_msg: 'Gagal memesan slot: %{error}'
       buttons:

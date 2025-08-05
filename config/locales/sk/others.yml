@@ -2333,8 +2333,6 @@ sk:
       add_to_yahoo_calendar: Pridať do kalendára Yahoo
       assessment_center_alert:
         btn_title: Kampaň
-        message_part1: Dokončite všetky prípravné práce v tejto
-        message_part2: pred rezerváciou voľného miesta.
       assessment_center_group_name: Hodnotiace centrum
       booking_failed_msg: 'Nepodarilo sa rezervovať slot: %{error}'
       buttons:

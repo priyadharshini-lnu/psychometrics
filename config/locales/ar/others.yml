@@ -2370,8 +2370,6 @@ ar:
       add_to_yahoo_calendar: إضافة إلى تقويم ياهو
       assessment_center_alert:
         btn_title: حملة
-        message_part1: أكمل جميع الأعمال السابقة في هذا الشأن
-        message_part2: قبل حجز فتحة.
       assessment_center_group_name: مركز التقييم
       booking_failed_msg: 'فشل حجز الفتحة: %{error}'
       buttons:

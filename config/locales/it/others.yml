@@ -2328,8 +2328,6 @@ it:
       add_to_yahoo_calendar: Aggiungi al calendario di Yahoo
       assessment_center_alert:
         btn_title: Campagna
-        message_part1: Completare tutti i lavori preliminari in questo
-        message_part2: prima di prenotare uno slot.
       assessment_center_group_name: Centro di valutazione
       booking_failed_msg: 'Impossibile prenotare lo slot: %{error}'
       buttons:

@@ -2333,8 +2333,6 @@ hu:
       add_to_yahoo_calendar: Hozzáadás a yahoo naptárhoz
       assessment_center_alert:
         btn_title: Kampány
-        message_part1: Végezze el az összes előmunkálatot ebben a
-        message_part2: mielőtt időpontot foglal.
       assessment_center_group_name: Értékelő központ
       booking_failed_msg: 'Nem sikerült foglalni: %{error}'
       buttons:

@@ -1154,6 +1154,7 @@ en:
     add_group_form:
       previous_assessments_required: Assessments to runs in below order
       previous_group_required: Previous group completion required
+      require_previous_groups_completion_for_booking: Require completion of all previous groups before booking
     menu:
       assessment_center: Assessment Center
       assessment_center_invites: Assessment Center Invites
@@ -2347,8 +2348,13 @@ en:
       add_to_yahoo_calendar: Add to yahoo calendar
       assessment_center_alert:
         btn_title: Campaign
-        message_part1: Complete all the preworks in this
-        message_part2: before booking a slot.
+        complete_previous_groups: Complete all previous group activities
+        complete_preworks: Complete all preworks
+        please_visit: Please visit the
+        requirements_message: You can only make a booking once you complete the following requirement
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: to complete these requirements.
       assessment_center_group_name: Assessment Center
       booking_failed_msg: 'Failed to book slot: %{error}'
       buttons:

@@ -2320,8 +2320,6 @@ zh:
       add_to_yahoo_calendar: 添加到雅虎日历
       assessment_center_alert:
         btn_title: 项目
-        message_part1: 在此处完成所有准备工作
-        message_part2: 在预约名额之前。
       assessment_center_group_name: 评估中心
       booking_failed_msg: 预约名额失败：%{error}
       buttons:

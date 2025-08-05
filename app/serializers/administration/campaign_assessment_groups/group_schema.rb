@@ -12,6 +12,7 @@ module Administration
           required(:position).filled(:int?)
           required(:previous_group_required).filled(:bool?)
           required(:previous_assessments_required).filled(:bool?)
+          required(:require_previous_groups_completion_for_booking).filled(:bool?)
           required(:campaign_id).filled(:int?)
           required(:campaign_assessment_ids).maybe(:array?)
           required(:group_type).filled(:str?)

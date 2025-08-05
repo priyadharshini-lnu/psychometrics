@@ -2324,8 +2324,6 @@ sl:
       add_to_yahoo_calendar: Dodaj v yahoo koledar
       assessment_center_alert:
         btn_title: Kampanja
-        message_part1: Zaključite vse pripravljalne naloge
-        message_part2: pred rezervacijo termina
       assessment_center_group_name: Ocenjevalni center
       booking_failed_msg: 'Rezervacija termina ni uspela: %{error}'
       buttons:

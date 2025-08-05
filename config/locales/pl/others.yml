@@ -2337,8 +2337,6 @@ pl:
       add_to_yahoo_calendar: Dodaj do kalendarza Yahoo
       assessment_center_alert:
         btn_title: Kampania
-        message_part1: Ukończ wszystkie zadania wstępne w tym
-        message_part2: przed dokonaniem rezerwacji.
       assessment_center_group_name: Centrum oceny
       booking_failed_msg: 'Nie udało się zarezerwować slotu: %{error}'
       buttons:
