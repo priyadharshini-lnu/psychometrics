@@ -73,11 +73,11 @@ const BaseFormFieldsComp: React.FC<Props> = ({
   }
 
   const getClients = (): OptionsType[] => {
-    if (!assessment || !assessment.owner || clients.find(d => assessment?.owner?.id === d.id)) {
-      return clients
+    if (assessment) {
+      return assessment?.owner ? [assessment.owner] : []
     }
 
-    return [...clients, assessment.owner]
+    return clients
   }
 
   const getAssessments = (): OptionsType[] => {
@@ -120,8 +120,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({
         initialValue={assessment?.owner?.id || null}
       >
         <Select
-          disabled={!!assessment}
-          showSearch
+          showSearch={!assessment}
           onSearch={(value) => {
             fetchClients({
               apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
