@@ -92,59 +92,53 @@ export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
                 ? dayjs(subject.subjectWorkshopDateTime)
                 : null
 
-              if (subject.schedulingStatus === 'late_cancelled') {
-                return (
-                  <Tag>{I18n.t('administration.invited_subject.statuses.late_cancelled')}</Tag>
-                )
-              }
-
-              if (subject.schedulingStatus === 'late_rescheduled') {
-                return (
-                  <Tag>{I18n.t('administration.invited_subject.statuses.late_rescheduled')}</Tag>
-                )
-              }
-
-              if ((subject.status !== 'accepted'
-                      && subject.status !== 'rescheduled'
-              ) || (!bookedAt && !assessmentCenterBooked)) {
-                return (
-                  '-'
-                )
-              }
               return (
-                <Flex vertical gap={8}>
-                  {bookedAt && (
-                    <Flex vertical>
-                      <Typography.Text strong>
-                        {I18n.t('administration.invited_subject.booked_at')}
-                      </Typography.Text>
-                      <Typography.Text>
-                        {`${bookedAt.format('DD MMM, HH:mm')} ${bookedAt.format(' (z)')}`}
-                      </Typography.Text>
-                    </Flex>
+                <>
+                  {subject.schedulingStatus !== null ? (
+                    <Tag color={STATUSES_TO_COLOR[subject.schedulingStatus]}>
+                      {I18n.t(`administration.invited_subject.statuses.${subject.schedulingStatus}`)}
+                    </Tag>
+                  ) : (
+                    '-'
                   )}
-                  {assessmentCenterBooked && (
-                    <Flex vertical>
-                      <Typography.Text strong>
-                        {I18n.t('administration.invited_subject.assessment_center')}
-                      </Typography.Text>
-                      <Typography.Text>
-                        <Link
-                          to={`${assessmentCenterPath}${subject.workshopId}`}
-                          state={{ search: location.search }}
-                        >
-                          {`${assessmentCenterBooked.format('DD MMM, HH:mm')} ${assessmentCenterBooked.format(' (z)')}`}
-                        </Link>
-                      </Typography.Text>
-                    </Flex>
-                  )}
-                </Flex>
+                  <Flex vertical gap={8}>
+
+
+                    {bookedAt && (
+                      <Flex vertical>
+                        <Typography.Text strong>
+                          {I18n.t('administration.invited_subject.booked_at')}
+                        </Typography.Text>
+                        <Typography.Text>
+                          {`${bookedAt.format('DD MMM, HH:mm')} ${bookedAt.format(' (z)')}`}
+                        </Typography.Text>
+                      </Flex>
+                    )}
+                    {assessmentCenterBooked && (
+                      <Flex vertical>
+                        <Typography.Text strong>
+                          {I18n.t('administration.invited_subject.assessment_center')}
+                        </Typography.Text>
+                        <Typography.Text>
+                          <Link
+                            to={`${assessmentCenterPath}${subject.workshopId}`}
+                            state={{ search: location.search }}
+                          >
+                            {
+                            `${assessmentCenterBooked.format('DD MMM, HH:mm')} ${assessmentCenterBooked.format(' (z)')}`
+                            }
+                          </Link>
+                        </Typography.Text>
+                      </Flex>
+                    )}
+                  </Flex>
+                </>
               )
             }}
           />
           <Resource.Column<WorkshopInvitedSubject>
             id="status"
-            title={I18n.t('common.column.status')}
+            title={I18n.t('administration.invited_subject.column.invitation_status')}
             sorter
             render={(_, { status }) => (
               <Tag color={STATUSES_TO_COLOR[status]}>{I18n.t(`administration.invited_subject.statuses.${status}`)}</Tag>

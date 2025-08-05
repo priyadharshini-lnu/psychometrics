@@ -2424,6 +2424,7 @@ en:
       assessment_center: 'Assessment center:'
       booked_at: 'Booked At:'
       column:
+        invitation_status: Invitation Status
         participant: Participant
         scheduling_details: Scheduling Details
       remove_confirm:
