@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
   Row, Col, Form, Switch, Button,
+  Flex,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { IdpSettings, IdpSettingsTR } from '~/modules/admin/modules/client/core/idpSettings'
@@ -45,54 +46,66 @@ export const Settings: React.FC = () => {
           resource={idpSettings}
           showSuccessMessages
           storeManager={{ form }}
-          formProps={{
-            layout: 'horizontal',
-            labelCol: {
-              sm: 24, md: 12, lg: 12, xl: 12,
-            },
-            labelAlign: 'left',
-          }}
           request={{
             updateResource,
           }}
           scrollToFirstError
         >
           {() => (
-            <>
+            <Flex vertical gap={16}>
               {meta?.permissions?.manageGlobalSkills && (
+                <Flex gap={8} align="center">
+                  <Form.Item
+                    name="allowGlobalSkills"
+                    valuePropName="checked"
+                    className="mb-0"
+                  >
+                    <Switch />
+                  </Form.Item>
+                  {I18n.t('administration.idp_setting.allow_global_skills')}
+                </Flex>
+              )}
+              <Flex gap={8} align="center">
                 <Form.Item
-                  name="allowGlobalSkills"
-                  label={I18n.t('administration.idp_setting.allow_global_skills')}
+                  name="managerApprovesIdp"
                   valuePropName="checked"
+                  className="mb-0"
                 >
                   <Switch />
                 </Form.Item>
-              )}
-              <Form.Item
-                name="managerApprovesIdp"
-                label={I18n.t('administration.idp_setting.manager_approves_idp')}
-                valuePropName="checked"
+                {I18n.t('administration.idp_setting.manager_approves_idp')}
+              </Flex>
+              <Flex gap={8} align="center">
+                <Form.Item
+                  name="managerCanEditIdp"
+                  valuePropName="checked"
+                  className="mb-0"
+                >
+                  <Switch />
+                </Form.Item>
+                {I18n.t('administration.idp_setting.manager_can_edit_idp')}
+              </Flex>
+              <Flex gap={8} align="center">
+
+                <Form.Item
+                  name="requireAllDevelopmentActionsComplete"
+                  valuePropName="checked"
+                  className="mb-0"
+                >
+                  <Switch />
+                </Form.Item>
+                {I18n.t('administration.idp_setting.require_all_development_actions_complete')}
+              </Flex>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="mb-16"
+                loading={isLoading}
+                style={{ alignSelf: 'flex-start' }}
               >
-                <Switch />
-              </Form.Item>
-              <Form.Item
-                name="managerCanEditIdp"
-                label={I18n.t('administration.idp_setting.manager_can_edit_idp')}
-                valuePropName="checked"
-              >
-                <Switch />
-              </Form.Item>
-              <Form.Item
-                name="requireAllDevelopmentActionsComplete"
-                label={I18n.t('administration.idp_setting.require_all_development_actions_complete')}
-                valuePropName="checked"
-              >
-                <Switch />
-              </Form.Item>
-              <Button type="primary" htmlType="submit" className="mb-16" loading={isLoading}>
                 {I18n.t('administration.save')}
               </Button>
-            </>
+            </Flex>
           )}
         </ResourceForm>
       </Col>
