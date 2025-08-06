@@ -2438,8 +2438,6 @@ sl:
         expected_proficiency_level: Pričakovana raven strokovnosti
       form:
         title: Skill Job Mapping
-      import:
-        taxonomy: Taksonomija
     job_roles:
       export:
         translations:

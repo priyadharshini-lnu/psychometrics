@@ -2438,8 +2438,6 @@ vi:
         expected_proficiency_level: Mức độ thành thạo dự kiến
       form:
         title: Lập bản đồ công việc kỹ năng
-      import:
-        taxonomy: Phân loại học
     job_roles:
       export:
         translations:

@@ -2458,8 +2458,6 @@ zh-Hant:
         expected_proficiency_level: 預期能力等級
       form:
         title: 技能工作映射
-      import:
-        taxonomy: 分類學
     job_roles:
       export:
         translations:

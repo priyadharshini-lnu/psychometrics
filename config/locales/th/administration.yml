@@ -2438,8 +2438,6 @@ th:
         expected_proficiency_level: ระดับความชํานาญที่คาดหวัง
       form:
         title: การทําแผนที่งานทักษะ
-      import:
-        taxonomy: อนุกรมวิธาน
     job_roles:
       export:
         translations:

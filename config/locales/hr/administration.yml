@@ -2438,8 +2438,6 @@ hr:
         expected_proficiency_level: Očekivana razina stručnosti
       form:
         title: Mapiranje poslova vještina
-      import:
-        taxonomy: Taksonomija
     job_roles:
       export:
         translations:

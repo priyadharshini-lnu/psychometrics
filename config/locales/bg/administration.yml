@@ -2438,8 +2438,6 @@ bg:
         expected_proficiency_level: Очаквано ниво на владеене
       form:
         title: Картографиране на работни места за умения
-      import:
-        taxonomy: Таксономия
     job_roles:
       export:
         translations:

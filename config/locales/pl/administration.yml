@@ -2438,8 +2438,6 @@ pl:
         expected_proficiency_level: Oczekiwany poziom biegłości
       form:
         title: Mapowanie umiejętności zawodowych
-      import:
-        taxonomy: Taksonomia
     job_roles:
       export:
         translations:

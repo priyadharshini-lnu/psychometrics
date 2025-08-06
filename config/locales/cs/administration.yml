@@ -2458,8 +2458,6 @@ cs:
         expected_proficiency_level: Očekávaná úroveň znalostí
       form:
         title: Mapování dovedností
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:

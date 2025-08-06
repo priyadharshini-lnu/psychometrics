@@ -2438,8 +2438,6 @@ ro:
         expected_proficiency_level: Nivelul de competență așteptat
       form:
         title: Cartografierea locurilor de muncă
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:

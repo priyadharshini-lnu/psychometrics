@@ -2458,8 +2458,6 @@ it:
         expected_proficiency_level: Livello di competenza previsto
       form:
         title: Associazione
-      import:
-        taxonomy: Tassonomia
     job_roles:
       export:
         translations:

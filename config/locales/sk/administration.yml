@@ -2438,8 +2438,6 @@ sk:
         expected_proficiency_level: Očakávaná úroveň odbornosti
       form:
         title: Mapovanie zručností
-      import:
-        taxonomy: Taxonómia
     job_roles:
       export:
         translations:

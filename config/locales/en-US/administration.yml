@@ -2438,8 +2438,6 @@ en-US:
         expected_proficiency_level: Expected Proficiency Level
       form:
         title: Skill Job Mapping
-      import:
-        taxonomy: Taxonomy
     job_roles:
       export:
         translations:

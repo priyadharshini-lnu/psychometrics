@@ -2439,8 +2439,6 @@ ar:
         expected_proficiency_level: مستوى الكفاءة المتوقع
       form:
         title: التعيين
-      import:
-        taxonomy: التصنيف
     job_roles:
       export:
         translations:

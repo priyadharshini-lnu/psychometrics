@@ -2458,8 +2458,6 @@ ja:
         expected_proficiency_level: 期待される能力レベル
       form:
         title: スキル・ジョブ・マッピング
-      import:
-        taxonomy: 分類学
     job_roles:
       export:
         translations:

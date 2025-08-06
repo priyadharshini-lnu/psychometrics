@@ -2458,8 +2458,6 @@ fr:
         expected_proficiency_level: Niveau de compétence attendu
       form:
         title: Correspondance
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:

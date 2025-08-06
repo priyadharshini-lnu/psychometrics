@@ -2440,8 +2440,6 @@ hu:
         expected_proficiency_level: Elvárt tudásszint
       form:
         title: Készségek feltérképezése
-      import:
-        taxonomy: Taxonómia
     job_roles:
       export:
         translations:

@@ -2438,8 +2438,6 @@ sr-Latn:
         expected_proficiency_level: Očekivani nivo stručnosti
       form:
         title: Mapiranje veština za poslove
-      import:
-        taxonomy: Taksonomija
     job_roles:
       export:
         translations:

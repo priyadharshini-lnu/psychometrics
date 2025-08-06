@@ -2458,8 +2458,6 @@ pt:
         expected_proficiency_level: Nível de proficiência esperado
       form:
         title: Mapeamento de funções de competências
-      import:
-        taxonomy: Taxonomia
     job_roles:
       export:
         translations:

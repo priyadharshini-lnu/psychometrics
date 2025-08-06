@@ -2458,8 +2458,6 @@ es-ES:
         expected_proficiency_level: Nivel de competencia esperado
       form:
         title: Asignación
-      import:
-        taxonomy: Taxonomía
     job_roles:
       export:
         translations:

@@ -2458,8 +2458,6 @@ zh:
         expected_proficiency_level: 预期能力水平
       form:
         title: 技能岗位制图
-      import:
-        taxonomy: 分类学
     job_roles:
       export:
         translations:

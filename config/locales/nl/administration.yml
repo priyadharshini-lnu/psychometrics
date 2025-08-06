@@ -2458,8 +2458,6 @@ nl:
         expected_proficiency_level: Verwacht vaardigheidsniveau
       form:
         title: Vaardigheden Functie in kaart brengen
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:

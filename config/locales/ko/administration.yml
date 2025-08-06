@@ -2458,8 +2458,6 @@ ko:
         expected_proficiency_level: 예상 숙련도 수준
       form:
         title: 스킬 작업 매핑
-      import:
-        taxonomy: 분류
     job_roles:
       export:
         translations:

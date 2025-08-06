@@ -2458,8 +2458,6 @@ de:
         expected_proficiency_level: Erwartetes Kompetenzniveau
       form:
         title: Zuordnung
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:

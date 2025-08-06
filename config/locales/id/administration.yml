@@ -2438,8 +2438,6 @@ id:
         expected_proficiency_level: Tingkat Kemahiran yang Diharapkan
       form:
         title: Pemetaan Pekerjaan Keterampilan
-      import:
-        taxonomy: Taksonomi
     job_roles:
       export:
         translations:
