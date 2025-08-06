@@ -8,7 +8,6 @@ module Users
     before_action :check_if_saml_is_enforced, only: [:create]
     before_action :compute_after_signout_path, only: [:destroy]
     before_action :perform_browser_check, only: [:new]
-    after_action :redirect_to_return_url, only: [:new]
     skip_before_action :ensure_user_profile_completed, only: [:destroy]
     after_action :set_user_flash_message, only: [:create]
     after_action :set_return_url_for_redirect, only: [:new]
@@ -37,15 +36,6 @@ module Users
 
     def check_if_saml_is_enforced
       redirect_to(new_saml_user_session_path) if @current_project.saml_enforced?
-    end
-
-    def redirect_to_return_url
-      return if flash[:timedout].blank?
-      return if params[:return_url].blank?
-
-      uri = URI.parse params[:return_url]
-      uri.query = [uri.query, 'status=session_expired'].compact.join('&')
-      redirect_to uri.to_s
     end
 
     def after_sign_in_path_for(resource)

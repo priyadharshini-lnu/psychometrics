@@ -45,7 +45,7 @@ class HomeController < ApplicationController
       expires: 6.hours
     }
     redirect_url = params.fetch(:redirect_url) { root_path }
-    redirect_to(redirect_url)
+    Utility::Url.redirect_to_safe_internal_url(self, redirect_url)
   end
 
   # Browser upgrade notification
