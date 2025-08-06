@@ -108,16 +108,14 @@ export const getActionsMenuProps = ({
     if (reportAvailableLanguages.length === 0) {
       return requestDownloadReport(campaignId, subjectId, reportDefaultLanguage)
     }
-    openModal('DownloadReportModal', {
-      visible: true,
-      onClose: () => {},
+    openModal('DownloadIndividualReportModal', {
       allLocales: reportAvailableLanguages,
       reportName,
       reportIcon,
       reportDownloadUrl,
       defaultLocale: reportDefaultLanguage,
       requestDownloadReport,
-      onConfirm: (selectedLocales) => {
+      onRegenerateReport: (selectedLocales) => {
         requestRegenerateReport(campaignId, subjectId, selectedLocales)
       },
       subjectId,

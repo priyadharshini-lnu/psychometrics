@@ -3,9 +3,10 @@
 module Administration
   class UserReportSerializer < Panko::Serializer
     attributes :id, :permissions, :report_id, :name, :user_access,
-               :report_family_name, :status, :internal, :report_url,
+               :report_family_name, :status, :internal,
                :report_provider, :custom_upload, :comments_count, :edits_count,
-               :hogan_participant_id, :effective_default_language, :available_languages
+               :hogan_participant_id, :effective_default_language, :available_languages,
+               :report_download_urls
 
     delegate :name, to: :report
     delegate :provider, to: :report, prefix: true
@@ -19,8 +20,13 @@ module Administration
       report.provider_custom_upload?
     end
 
-    def report_url
-      object.pdf_download_url
+    def report_download_urls
+      expected_locales = [object.effective_default_language, available_languages].flatten.compact.uniq
+      return {} if expected_locales.blank?
+
+      expected_locales.index_with do |locale|
+        object.pdf_download_url(locale: locale)
+      end
     end
 
     def all_assessments_are_completed

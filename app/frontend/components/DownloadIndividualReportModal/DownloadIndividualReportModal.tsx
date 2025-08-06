@@ -1,16 +1,15 @@
-import { Modal, Button } from 'antd'
-import bg from '../../../../../endUser/modules/campaigns/routes/Insights/media/Background2.png'
+import { Modal } from 'antd'
+import bg from '../../modules/endUser/modules/campaigns/routes/Insights/media/Background2.png'
 
 const { I18n } = window
 
-export default function DownloadReportModal ({
-  visible,
+export default function DownloadIndividualReportModal ({
   close,
   reportName,
   reportIcon,
   allLocales,
   defaultLocale,
-  onConfirm,
+  onRegenerateReport,
   reportDownloadUrl,
 }) {
   const locales = [defaultLocale, ...allLocales]
@@ -18,7 +17,7 @@ export default function DownloadReportModal ({
   const subjectReportDownloadUrl = reportDownloadUrl || {}
 
   const handleRegenerateReport = (locale) => {
-    onConfirm([locale])
+    onRegenerateReport([locale])
     close()
   }
 
@@ -26,13 +25,9 @@ export default function DownloadReportModal ({
     <Modal
       width={650}
       title={I18n.t('campaign_assessment.actions.download')}
-      open={visible}
+      open
       onCancel={close}
-      footer={[
-        <Button key="back" onClick={close}>
-          {I18n.t('common.actions.cancel')}
-        </Button>,
-      ]}
+      footer=""
     >
       <div
         style={{

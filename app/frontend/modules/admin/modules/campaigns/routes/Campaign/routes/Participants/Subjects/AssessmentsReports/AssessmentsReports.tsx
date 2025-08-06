@@ -88,7 +88,7 @@ const AssessmentsReports: React.FC<Props> = ({
                     },
                   )}
                   disabled={_.isEmpty(selectedIds) || regenerateInProgress}
-                  loading={regenerateInProgress}
+                  loading={_.isEmpty(selectedIds) ? false : regenerateInProgress}
                 >
                   <span>{I18n.t('user_reports.actions.generate')}</span>
                 </Button>
