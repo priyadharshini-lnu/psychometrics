@@ -1,5 +1,5 @@
 import { Modal } from 'antd'
-import bg from '../../modules/endUser/modules/campaigns/routes/Insights/media/Background2.png'
+import bg from '~/modules/endUser/modules/campaigns/routes/Insights/media/Background2.png'
 
 const { I18n } = window
 

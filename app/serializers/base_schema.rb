@@ -47,6 +47,6 @@ class BaseSchema
      UsersResultUpdateSchema, ProfileFieldSchema, FactorSchema, UserReportEventSchema, AuditLogInfoSchema,
      Threesixty::NominationSchema, ::Api::V1::UserCampaignSchema, ::Api::V1::UserSchema,
      UserSkillGapReportSchema, Threesixty::SubjectSchema, EndUser::UserIdpCommentSchema,
-     Administration::UserReportSchema, Administration::UserDetailSchema]
+     Administration::UserReportSchema, Administration::UserDetailSchema, EndUser::UserReportSchema]
   end
 end

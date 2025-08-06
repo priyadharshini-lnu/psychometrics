@@ -1,3 +1,0 @@
-import DownloadIndividualReportModal from './DownloadIndividualReportModal'
-
-export default DownloadIndividualReportModal
