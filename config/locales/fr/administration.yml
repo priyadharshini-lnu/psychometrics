@@ -39,7 +39,7 @@ fr:
           last_name_required: Le nom de famille est obligatoire
           no_edit_permission: Vous n'avez pas la permission de modifier l'admin '%{name}'
           save: Économiser
-          update: Mise à jour
+          update: Mettre à jour
           update_success: L'administrateur '%{name}' a été mis à jour avec succès
         notes:
           threesixty_permission: Permissions spécifiques aux campagnes 360
@@ -3401,7 +3401,7 @@ fr:
         dates_label: Dates
         duration_label: Durée de l'accord
         duration_max_error: Ne peut être supérieur à 16 heures
-        duration_min_error: La durée ne peut être inférieure à 15 minutes
+        duration_min_error: Duréene peut être inférieure à 15 minutes
         duration_placeholder: Par exemple, 4h 30m
         manager_ids_label: Gestionnaires de centre
         meeting_link: Lien vers la réunion
@@ -3410,7 +3410,7 @@ fr:
         next: Suivant
         required_error: Exigée
         reschedule_duration_max_error: Ne peut être supérieur à 30 jours
-        reschedule_duration_min_error: La durée ne peut être inférieure à 1 minute
+        reschedule_duration_min_error: Duréene peut être inférieure à 1 minute
         resources_panel:
           description: Ajoutez les liens vers les ressources auxquelles vous souhaitez que les animateurs aient accès.
           resource_name_placeholder: Nom de la ressource
@@ -3447,7 +3447,7 @@ fr:
         booked_at: Réservé à
         campaign_assessment_group: Groupe du centre d'évaluation
         campaign_name: Nom de la campagne
-        duration: La durée
+        duration: Durée
         managers: Gestionnaires
         meeting_link: Lien vers la réunion
         name: Nom
@@ -3475,7 +3475,7 @@ fr:
         cancellation_lead_time: Délai d'annulation
         cancellation_tooltip: L'utilisateur pourra annuler la réservation jusqu'à %{date}
         date: Date et heure
-        duration: La durée
+        duration: Durée
         join_meeting: Salle de réunion
         late_cancellation_and_scheduling: Annulation tardive et programmation
         link: Lien de la réunion
@@ -4313,7 +4313,7 @@ fr:
         import: Traductions des importations
         import_descr: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
     tte: TTE
-    update: Mise à jour
+    update: Mettre à jour
     users:
       create:
         successfully: L'utilisateur %{name} a été créé avec succès.

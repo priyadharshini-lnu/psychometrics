@@ -304,9 +304,9 @@ fr:
         security_setting_forms:
           attributes:
             magic_link_expiry_in_seconds:
-              greater_than_or_equal_to: La durée doit être d'au moins 5 minutes
+              greater_than_or_equal_to: Duréedoit être d'au moins 5 minutes
             session_inactivity_timeout_in_seconds:
-              greater_than_or_equal_to: La durée doit être d'au moins 60 minutes
+              greater_than_or_equal_to: Duréedoit être d'au moins 60 minutes
         sheet:
           attributes:
             file:
@@ -1116,7 +1116,7 @@ fr:
       display_linked_questions: Affichage des réponses liées à la question sélectionnée.
     trash: Poubelle
     unknown_error: Une erreur inconnue s'est produite.
-    update: Mise à jour
+    update: Mettre à jour
     upload: Télécharger
     video_response:
       device: Autoriser
@@ -1484,11 +1484,11 @@ fr:
         select_assessor: Formulaire de sélection de l'évaluateur
         success_msg: Le formulaire de l'évaluateur a été téléchargé avec succès
         title: Mise à jour du formulaire de l'évaluateur
-        update: Mise à jour
+        update: Mettre à jour
       update_content_variation:
         select_schedule: Sélectionner une variation de contenu
         success_msg: La variation du contenu de la simulation a été mise à jour avec succès
-        update: Mise à jour
+        update: Mettre à jour
       update_external_config:
         text_placeholder: Configuration json externe
         title: Mise à jour de la configuration externe
@@ -1499,19 +1499,19 @@ fr:
       update_mettl_schedule:
         select_schedule: Sélectionner l'horaire
         success_msg: Le programme Mettl a été mis à jour avec succès
-        update: Mise à jour
+        update: Mettre à jour
       update_norm:
         apply: Appliquer cette modification aux utilisateurs existants de cette campagne
         cannot_remove_norm: Il n'est pas possible de supprimer la norme pour une évaluation terminée.
         select_norm: Sélectionner la norme
         success_msg: Les normes ont été mises à jour avec succès
         title: Mise à jour de la norme
-        update: Mise à jour
+        update: Mettre à jour
       update_simulation_time_extension:
         success_msg: L'extension du temps de simulation a été mise à jour avec succès
         title: Prolongation du délai
         tooltip: Prolongation du temps en tant que facteur (par exemple, 1,5 pour 50 % de temps en plus)
-        update: Mise à jour
+        update: Mettre à jour
       update_time:
         additional_time: Temps (min)
         title: Prolonger le temps
@@ -1526,7 +1526,7 @@ fr:
     pearson_variation_form:
       apply_to_existing_users: Appliquer cette modification aux utilisateurs existants de cette campagne
       select: Sélectionner une variation
-      update: Mise à jour
+      update: Mettre à jour
       update_success: La variation de Pearson a été mise à jour avec succès
     scheduled_successfully: L'évaluation a été programmée avec succès
     scheduling:
@@ -1641,7 +1641,7 @@ fr:
       other_assessor_assessments: Autres évaluations de l'Assesseur
       other_reports: Autres rapports
     card:
-      duration: La durée
+      duration: Durée
       starts_in: 'Commence en :'
       starts_on: Commence le %{date}
       will_start_shortly: La campagne va démarrer sous peu, veuillez patienter
@@ -1764,7 +1764,7 @@ fr:
       unarchive: Désarchiver
       unpublish: Dépublier
       unresolve: Non résolu
-      update: Mise à jour
+      update: Mettre à jour
       upload: Télécharger
       upload_file: Télécharger le fichier
       verify: Vérifier
@@ -2474,7 +2474,7 @@ fr:
     test_webhook:
       create_success: Test du webhook réussi.
       success: Succès
-    update: Mise à jour
+    update: Mettre à jour
     upload: Télécharger
     workshop_invited_subjects:
       statuses:
@@ -2510,7 +2510,7 @@ fr:
       increase_font: Augmenter la taille de la police
       reset_font: Réinitialiser la taille de la police
     input_duration:
-      max_duration: La durée maximale est de %{duration}
+      max_duration: Durée maximale est de %{duration}
     schedule_availability:
       copy_to_all: Copie à tous
       end_date: Date de fin
@@ -2983,7 +2983,7 @@ fr:
   profile:
     add_field: Ajouter un champ
     add_photo: Ajouter une photo
-    age: L'âge
+    age: Age
     change_password: Modifier le mot de passe
     change_photo: Changer de photo
     email: Courriel
@@ -2995,7 +2995,7 @@ fr:
     locale: Langue préférée
     male: Homme
     mandatory_fields: Indique les champs obligatoires
-    not_disclosed: Préfère ne pas divulguer
+    not_disclosed: Préfère ne pas répondre
     old_data: Les données de votre profil datent de %{months} mois. Veuillez confirmer les détails pour continuer
     password: Mot de passe
     password_confirmation: Confirmation du mot de passe
@@ -3003,7 +3003,7 @@ fr:
     success_update: Le profil a été enregistré avec succès
     timezone: Fuseau horaire
     title: Mon profil
-    update: Mise à jour
+    update: Mettre à jour
     update_required: Mises à jour du profil requises
   profiles:
     edit:
@@ -3257,7 +3257,7 @@ fr:
       on_hold: En attente
       released: Libéré
     trash: Poubelle
-    update: Mise à jour
+    update: Mettre à jour
     upload: Télécharger
   reset_password_modal:
     fields:
@@ -3616,11 +3616,11 @@ fr:
     report_approval_status:
       approved: Approuvé
       denied: Refusé
-      waiting: Attente
+      waiting: En attente
     report_release_status:
       on_hold: En attente
       released: Libéré
-      waiting: Attente
+      waiting: En attente
     report_statuses:
       approved: Approuvé
       available: Disponible
@@ -3637,7 +3637,7 @@ fr:
       denied: Refusé
       done: Terminé
       not_completed: Non achevé
-      waiting: Attente
+      waiting: En attente
   threesixty:
     accept_privacy_modal:
       accept: Accepter
@@ -3657,7 +3657,7 @@ fr:
     approved: Approuvé
     approving_mail_sent: Le courrier d'approbation de la nomination a été envoyé aux gestionnaires
     as_my: comme mon
-    assessment: L'évaluation
+    assessment: Statut d'évaluation?
     back_to_tasks: Retour aux tâches
     begin: Commencer
     cancel: Annuler
@@ -3687,7 +3687,7 @@ fr:
     email_schedules:
       delete_successful: Le calendrier des courriels a été supprimé avec succès
     evaluate: Évaluer
-    evaluation: L'évaluation
+    evaluation: Statut d'évaluation?
     evaluation_all_closed_message: Actuellement, toutes les nominations sont en attente d'approbation
     evaluation_closed_message: L'évaluation est terminée pour ce sujet
     evaluation_closed_nomination_message: Vous ne pouvez pas proposer de candidature pour ce sujet car l'évaluation est terminée pour ce sujet
@@ -3710,9 +3710,9 @@ fr:
     more_info_evaluation_label: Plus d'informations - Evaluations
     more_info_nomination_label: Plus d'informations - Candidatures
     my_projects: Mes projets
-    name_label: Nom
+    name_label: Name / Email
     nominate: Nommer
-    nominate_evaluators: Nommer des évaluateurs pour
+    nominate_evaluators: Nommer des évaluateurs
     nomination: Nomination
     nomination_help_modal:
       title: Aide à la nomination
@@ -3812,7 +3812,7 @@ fr:
     select_relationship: Sélectionner la relation
     self: Autonome
     set_name_for_evaluator: Définir le nom de l'évaluateur
-    setup_nominations: Mise en place des nominations
+    setup_nominations: Effectuer les nominations
     subject: Sujet
     submit: Soumettre
     timed_out: Délai d'attente
@@ -3822,7 +3822,7 @@ fr:
     view_my_report: Voir mon rapport
     view_nominations: Voir les nominations
     view_reports: Voir les rapports
-    waiting: Attente
+    waiting: En attente
     you: Vous
     yourself: Vous-même
   threesixty.accept_privacy_modal:
@@ -3946,17 +3946,17 @@ fr:
       evaluator_nomination_status:
         completed: Terminé
         declined: Refusé
-        waiting: Attente
+        waiting: En attente
       manager_evaluation_status:
         approved: Approuvé
         denied: Refusé
-        waiting: Attente
+        waiting: En attente
       manager_nomination_status:
         approved: Approuvé
         completed: Terminé
         declined: Refusé
         denied: Refusé
-        waiting: Attente
+        waiting: En attente
     timer_title:
       assessment: L'évaluation
       campaign: Campagne
