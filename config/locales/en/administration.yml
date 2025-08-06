@@ -2147,6 +2147,9 @@ en:
         remove_confirm: Enter current template name given below in text box to remove template
         success: "%{idpName} was removed successfully."
       add_idp_template: Add IDP Template
+      ai_assisted_idp_enabled: AI Assisted IDP Enabled
+      ai_enabled: AI Enabled
+      ai_settings: AI Settings
       all: All
       appearance: Appearance
       appearance_hint: To modify the appearance, please save the IDP template first to enable these settings.
@@ -2190,6 +2193,7 @@ en:
       logo_type_label: Logo Type
       no_reflection_questions_selected: No Reflection Questions selected
       none: None
+      one_click_idp_enabled: One Click IDP Enabled
       reference_locale: Reference Locale
       reflection_questions: Reflection Questions
       reflection_questions_hint: To modify the reflection questions, please save the IDP template first to enable these settings.

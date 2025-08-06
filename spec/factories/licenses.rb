@@ -18,5 +18,10 @@ FactoryBot.define do
       used_number { 0 }
       type { 'proctoring' }
     end
+
+    factory :ai_assistant_license do
+      used_number { 0 }
+      type { 'ai_assistant' }
+    end
   end
 end

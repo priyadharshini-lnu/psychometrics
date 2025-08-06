@@ -25,6 +25,7 @@ const IDPTemplateForm = ({
   const [form] = Form.useForm()
   const [isModalVisible, setIsModalVisible] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
+  const aiEnabled = Form.useWatch('aiEnabled', form)
 
   const {
     fetch: fetchAvailableReports, data: availableReports, isLoading: isReportLoading,
@@ -50,6 +51,9 @@ const IDPTemplateForm = ({
         description: values.description,
         project: { id: projectId, type: 'projects' },
         report: values.reportId ? { id: values.reportId, type: 'reports' } : undefined,
+        aiEnabled: values.aiEnabled,
+        aiAssistedIdpEnabled: values.aiAssistedIdpEnabled,
+        oneClickIdpEnabled: values.oneClickIdpEnabled,
       }
 
       let hasError = false
@@ -150,6 +154,31 @@ const IDPTemplateForm = ({
               <Form.Item name="selfRatingEnabled" label={I18n.t('administration.idp.self_rating')}>
                 <Switch checkedChildren={I18n.t('yes')} unCheckedChildren={I18n.t('no')} />
               </Form.Item>
+              <Form.Item
+                name="aiEnabled"
+                label={I18n.t('administration.idp.ai_enabled')}
+                valuePropName="checked"
+              >
+                <Switch />
+              </Form.Item>
+              {aiEnabled && (
+                <>
+                  <Form.Item
+                    name="aiAssistedIdpEnabled"
+                    label={I18n.t('administration.idp.ai_assisted_idp_enabled')}
+                    valuePropName="checked"
+                  >
+                    <Switch />
+                  </Form.Item>
+                  <Form.Item
+                    name="oneClickIdpEnabled"
+                    label={I18n.t('administration.idp.one_click_idp_enabled')}
+                    valuePropName="checked"
+                  >
+                    <Switch />
+                  </Form.Item>
+                </>
+              )}
             </Card>
           </Col>
         </Row>

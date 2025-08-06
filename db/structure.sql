@@ -155,9 +155,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT id,
-    name,
-    category
+ SELECT assessments.id,
+    assessments.name,
+    assessments.category
    FROM public.assessments;
 
 
@@ -180,10 +180,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT id,
-    campaign_id,
-    name,
-    "position"
+ SELECT campaign_factor_groups.id,
+    campaign_factor_groups.campaign_id,
+    campaign_factor_groups.name,
+    campaign_factor_groups."position"
    FROM public.campaign_factor_groups;
 
 
@@ -303,9 +303,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT id,
-    name,
-    project_id
+ SELECT campaigns.id,
+    campaigns.name,
+    campaigns.project_id
    FROM public.campaigns;
 
 
@@ -425,8 +425,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT id,
-    name
+ SELECT factors.id,
+    factors.name
    FROM public.factors;
 
 
@@ -741,11 +741,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT id,
-    project_id,
-    first_name,
-    last_name,
-    email
+ SELECT users.id,
+    users.project_id,
+    users.first_name,
+    users.last_name,
+    users.email
    FROM public.users;
 
 
@@ -1104,7 +1104,9 @@ CREATE TABLE public.ai_assistant_requests (
     model_id character varying,
     ai_assistant_id bigint,
     ai_assistant_chat_id bigint NOT NULL,
-    ai_assistant_tool_call_id bigint
+    ai_assistant_tool_call_id bigint,
+    extras jsonb DEFAULT '{}'::jsonb NOT NULL,
+    interaction_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -3680,7 +3682,12 @@ CREATE TABLE public.idp_templates (
     logo_type integer DEFAULT 3,
     show_reflections boolean DEFAULT true,
     instructions jsonb DEFAULT '{"content": ""}'::jsonb NOT NULL,
-    status integer DEFAULT 0
+    status integer DEFAULT 0,
+    ai_enabled boolean DEFAULT false NOT NULL,
+    ai_assisted_idp_enabled boolean DEFAULT false NOT NULL,
+    ai_assistant_id bigint,
+    one_click_idp_enabled boolean DEFAULT false NOT NULL,
+    one_click_ai_assistant_id bigint
 );
 
 
@@ -4410,13 +4417,13 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT id,
-    factor_id,
-    user_assessment_id,
-    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((scores ->> 'score'::text))::double precision AS score,
-    ((scores ->> 'zscore'::text))::double precision AS zscore,
-    ((scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT user_assessment_factor_scores.id,
+    user_assessment_factor_scores.factor_id,
+    user_assessment_factor_scores.user_assessment_id,
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -7346,7 +7353,14 @@ CREATE TABLE public.user_idp_plans (
     active boolean DEFAULT true,
     end_date date,
     completed_at timestamp(6) without time zone,
-    started_at timestamp(6) without time zone
+    started_at timestamp(6) without time zone,
+    ai_chat_id bigint,
+    ai_flow_status integer DEFAULT 0 NOT NULL,
+    chat_collected boolean DEFAULT false NOT NULL,
+    documents_collected boolean DEFAULT false NOT NULL,
+    summary_generated boolean DEFAULT false NOT NULL,
+    last_saved_at timestamp(6) without time zone,
+    metadata jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -12828,6 +12842,20 @@ CREATE INDEX index_idp_template_translations_on_locale ON public.idp_template_tr
 
 
 --
+-- Name: index_idp_templates_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_templates_on_ai_assistant_id ON public.idp_templates USING btree (ai_assistant_id);
+
+
+--
+-- Name: index_idp_templates_on_one_click_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_templates_on_one_click_ai_assistant_id ON public.idp_templates USING btree (one_click_ai_assistant_id);
+
+
+--
 -- Name: index_idp_templates_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14330,6 +14358,13 @@ CREATE INDEX index_user_idp_development_actions_on_user_idp_plan_id ON public.us
 --
 
 CREATE INDEX index_user_idp_development_actions_on_user_idp_skill_id ON public.user_idp_development_actions USING btree (user_idp_skill_id);
+
+
+--
+-- Name: index_user_idp_plans_on_ai_chat_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_plans_on_ai_chat_id ON public.user_idp_plans USING btree (ai_chat_id);
 
 
 --
@@ -15841,6 +15876,14 @@ ALTER TABLE ONLY public.workshop_invite_logs
 
 
 --
+-- Name: user_idp_plans fk_rails_609956b3b2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_plans
+    ADD CONSTRAINT fk_rails_609956b3b2 FOREIGN KEY (ai_chat_id) REFERENCES public.ai_assistant_chats(id) ON DELETE SET NULL;
+
+
+--
 -- Name: user_assessments fk_rails_60c2fd6734; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16777,6 +16820,14 @@ ALTER TABLE ONLY public.sheet_columns
 
 
 --
+-- Name: idp_templates fk_rails_bce39bdbc9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_templates
+    ADD CONSTRAINT fk_rails_bce39bdbc9 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id) ON DELETE SET NULL;
+
+
+--
 -- Name: proctoring_sessions fk_rails_be5ab3be9f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17174,6 +17225,14 @@ ALTER TABLE ONLY public.user_availability_days
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_dc18fe0d04 FOREIGN KEY (creator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: idp_templates fk_rails_dd38452656; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_templates
+    ADD CONSTRAINT fk_rails_dd38452656 FOREIGN KEY (one_click_ai_assistant_id) REFERENCES public.ai_assistants(id) ON DELETE SET NULL;
 
 
 --
@@ -17599,6 +17658,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250713120000'),
 ('20250731114640'),
 ('20250714084320'),
 ('20250714092101'),
@@ -18476,4 +18536,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-
