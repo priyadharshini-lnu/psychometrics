@@ -8192,6 +8192,7 @@ CREATE TABLE public.workshops (
     status integer DEFAULT 0,
     allow_late_cancellation_and_rescheduling boolean DEFAULT false NOT NULL,
     campaign_assessment_group_id bigint,
+    disable_cancellation_and_rescheduling boolean DEFAULT false NOT NULL,
     CONSTRAINT booked_seats_not_exceed_total_seats CHECK ((booked_seats <= total_seats)),
     CONSTRAINT booked_seats_positive CHECK ((booked_seats >= 0))
 );
@@ -17750,6 +17751,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250731114640'),
 ('20250714084320'),
 ('20250714092101'),
+('20250730134619'),
 ('20250715133541'),
 ('20250711074243'),
 ('20250718071328'),

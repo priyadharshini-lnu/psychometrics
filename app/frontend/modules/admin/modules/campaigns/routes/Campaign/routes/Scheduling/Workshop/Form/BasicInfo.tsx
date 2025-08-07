@@ -41,6 +41,7 @@ interface AssessmentCenterGroup {
 
 export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel }) => {
   const [form] = Form.useForm()
+  const disableCancellationAndRescheduling = Form.useWatch('disable_cancellation_and_rescheduling', form)
 
   const [selectedDates, setSelectedDates] = useState<dayjs.Dayjs[]>(initialValues.dates || [])
   const [videoCallType, setVideoCallType] = useState<number>(initialValues.video_call_type)
@@ -269,70 +270,89 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
               </Form.Item>
             </Col>
           </Row>
-          <Row gutter={16}>
-            <Col xs={12} lg={8}>
-              <Form.Item
-                name="cancellation_lead_time"
-                label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
-                {...fieldLayout}
-                rules={[
-                  {
-                    validator: durationValidator({
-                      minMinutes: 1,
-                      maxMinutes: 24 * 60 * 30,
-                      // eslint-disable-next-line max-len
-                      minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
-                      // eslint-disable-next-line max-len
-                      maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
-                      requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
-                    }),
-                  },
-                ]}
-              >
-                <InputDuration
-                  value=""
-                  onChange={() => {}}
-                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
-                />
-              </Form.Item>
-            </Col>
-            <Col xs={12} lg={8}>
-              <Form.Item
-                name="scheduling_lead_time"
-                label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
-                {...fieldLayout}
-                rules={[
-                  {
-                    validator: durationValidator({
-                      minMinutes: 1,
-                      maxMinutes: 24 * 60 * 30, // 30 days
-                      // eslint-disable-next-line max-len
-                      minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
-                      // eslint-disable-next-line max-len
-                      maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
-                      requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
-                    }),
-                  },
-                ]}
-              >
-                <InputDuration
-                  value=""
-                  onChange={() => {}}
-                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
-                />
-              </Form.Item>
-            </Col>
-          </Row>
           <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_scheduling')}
+            label={I18n.t('administration.scheduling.assessment_center_form.disable_cancellation_and_rescheduling')}
             {...fieldLayout}
-            name="allow_late_cancellation_and_rescheduling"
+            name="disable_cancellation_and_rescheduling"
             rules={[{ required: true }]}
             valuePropName="checked"
             initialValue={false}
           >
             <Switch />
           </Form.Item>
+          {!disableCancellationAndRescheduling && (
+            <>
+              <Row gutter={16}>
+                <Col xs={12} lg={8}>
+                  <Form.Item
+                    name="cancellation_lead_time"
+                    label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
+                    {...fieldLayout}
+                    rules={[
+                      {
+                        validator: durationValidator({
+                          minMinutes: 1,
+                          maxMinutes: 24 * 60 * 30,
+                          // eslint-disable-next-line max-len
+                          minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
+                          // eslint-disable-next-line max-len
+                          maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
+                          requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
+                        }),
+                      },
+                    ]}
+                  >
+                    <InputDuration
+                      value=""
+                      onChange={() => {}}
+                      placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col xs={12} lg={8}>
+                  <Form.Item
+                    name="scheduling_lead_time"
+                    label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
+                    {...fieldLayout}
+                    rules={[
+                      {
+                        validator: durationValidator({
+                          minMinutes: 1,
+                          maxMinutes: 24 * 60 * 30, // 30 days
+                          // eslint-disable-next-line max-len
+                          minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
+                          // eslint-disable-next-line max-len
+                          maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
+                          requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
+                        }),
+                      },
+                    ]}
+                  >
+                    <InputDuration
+                      value=""
+                      onChange={() => {}}
+                      placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+
+              <Form.Item
+                label={
+                  I18n.t(
+                    'administration.scheduling.assessment_center_form.allow_late_cancellation_and_scheduling',
+                  )
+                }
+                {...fieldLayout}
+                name="allow_late_cancellation_and_rescheduling"
+                rules={[{ required: true }]}
+                valuePropName="checked"
+                initialValue={false}
+              >
+                <Switch />
+              </Form.Item>
+            </>
+          )}
           <Form.Item
             label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
             {...fieldLayout}

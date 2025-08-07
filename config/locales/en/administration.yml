@@ -3418,6 +3418,7 @@ en:
         copy_to_all: Copy to other Assessment Centers
         create: Create
         dates_label: Dates
+        disable_cancellation_and_rescheduling: Disable cancellation and rescheduling
         duration_label: Duration
         duration_max_error: Cannot be greater than 16 hours
         duration_min_error: Cannot be less than 15 minutes

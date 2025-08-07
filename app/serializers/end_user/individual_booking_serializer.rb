@@ -6,10 +6,11 @@ module EndUser
                :neurodivergent_comments, :allow_language_preference, :timezone, :scheduling_lead_time,
                :available_dates, :booked_date, :allow_neurodiversity_option, :allowed_languages,
                :cancellation_lead_time, :neurodivergent, :booking_prework_condition_unsatisfied,
-               :campaign_id, :allow_late_cancellation_and_rescheduling, :previous_groups_completion_unsatisfied
+               :campaign_id, :allow_late_cancellation_and_rescheduling, :previous_groups_completion_unsatisfied,
+               :disable_cancellation_and_rescheduling
 
-    delegate :duration, :allow_late_cancellation_and_rescheduling, :scheduling_lead_time, :cancellation_lead_time,
-             :timezone, to: :workshop, allow_nil: true
+    delegate :duration, :allow_late_cancellation_and_rescheduling, :disable_cancellation_and_rescheduling,
+             :scheduling_lead_time, :cancellation_lead_time, :timezone, to: :workshop, allow_nil: true
     delegate :id, to: :workshop, prefix: true, allow_nil: true
     delegate :status, to: :workshop_invited_subject
     delegate :preferred_language, :neurodivergent, :neurodivergent_comments, to: :workshop_subject, allow_nil: true
