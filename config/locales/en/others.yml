@@ -1086,6 +1086,7 @@ en:
         description: This evaluation session has been invalidated. This can happen if you continued the evaluation in a separate tab, browser or device.
         title: Last Request Failed
       next: Next
+      no_skill_mapping_message: There is no skill mapping done for this job role, contact your admin.
       read_only: Is read only mode, you can not change any results.
       save: Save
       submissionFailedAlert:

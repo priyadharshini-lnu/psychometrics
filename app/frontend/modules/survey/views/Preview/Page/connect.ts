@@ -26,9 +26,9 @@ export default connect(
     return {
       preview,
       hasPrevPage: initialized && getPrevPage(preview),
-      page: initialized && getCurrentPage(preview),
+      page: initialized && (getCurrentPage(preview) || {}),
       questions: initialized && pageQuestionsWithoutHidden(preview),
-      block: initialized && getCurrentBlock(preview),
+      block: initialized && (getCurrentBlock(preview) || {}),
       errors: initialized && pageErrors(preview),
       progress: initialized && getProgress(preview),
       I18n: getI18n(preview),
