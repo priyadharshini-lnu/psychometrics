@@ -10,10 +10,16 @@ import routeUtils from '~/utils/route'
 export default connect(
   ({
     threeSixtyCampaign: {
+      campaignDetails: { id: threeSixtyCampaignId },
       evaluators: { list, total, permissions },
     },
   }) => ({
-    evaluators: list, total, permissions, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
+    evaluators: list,
+    threeSixtyCampaignId,
+    total,
+    permissions,
+    page: routeUtils.getPage(),
+    searchTerm: routeUtils.getSearchTerm(),
   }),
   dispatch => ({
     fetchEvaluators: (campaignId, page, query) => dispatch(fetchEvaluators(campaignId, page, query)),
