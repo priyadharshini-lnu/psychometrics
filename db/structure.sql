@@ -4189,7 +4189,8 @@ CREATE TABLE public.meeting_rooms (
     meetable_type character varying,
     meetable_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    use_old_dailyco_api boolean DEFAULT false NOT NULL
 );
 
 
@@ -17658,6 +17659,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250806140955'),
+('20250806102146'),
 ('20250713120000'),
 ('20250731114640'),
 ('20250714084320'),

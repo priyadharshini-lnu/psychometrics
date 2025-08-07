@@ -56,7 +56,7 @@ oac:
 storage:
   public_storage_service: <%= ENV.fetch('PUBLIC_BUCKET_STORAGE_SERVICE_KEY', nil) %>
   private_storage_service: <%= ENV.fetch('PRIVATE_BUCKET_STORAGE_SERVICE_KEY', nil) %>
-  dailyco_storage_service: <%= ENV.fetch('DAILYCO_BUCKET_STORAGE_SERVICE_KEY', nil) %>
+  dailyco_storage_service: <%= ENV.fetch('DAILY_CO_BUCKET_STORAGE_SERVICE_KEY', nil) %>
 iiht:
   token_api_url: <%= ENV.fetch('IIHT_TOKEN_API_URL', nil) %>
   base_api_url: <%= ENV.fetch('IIHT_BASE_API_URL', nil) %>
