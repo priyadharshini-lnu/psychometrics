@@ -51,7 +51,8 @@ module Administration
             'manage_campaign_scoring',
             'view_audit_reports',
             'view_assessments_and_reports',
-            'manage_report_approval_settings'
+            'manage_report_approval_settings',
+            'export_dashboard_to_file'
           ],
           {
             project_id: project.id,

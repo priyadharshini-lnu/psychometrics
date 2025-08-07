@@ -149,6 +149,7 @@ en:
             accesssheet_manage: Accesssheet Manage
             accesssheet_settings: Accesssheet Settings
             accesssheet_view: Accesssheet View
+            export: Export
             title: Dashboards
             view: View
           datasheets:

@@ -47,6 +47,7 @@ module Administration
             required(:view_audit_reports).filled(:bool?)
             required(:view_assessments_and_reports).filled(:bool?)
             required(:manage_report_approval_settings).filled(:bool?)
+            required(:export_dashboard_to_file).filled(:bool?)
           end
           required(:assessments).array(Administration::Campaigns::AssessmentSchema.schema(_, _))
           required(:reports).array(Administration::Campaigns::ReportSchema.schema(_, _))
