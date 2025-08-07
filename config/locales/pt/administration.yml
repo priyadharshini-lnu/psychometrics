@@ -4363,6 +4363,10 @@ pt:
       update:
         successfully: O utilizador %{name} foi atualizado com êxito.
       user: Utilizador
+    validations:
+      idp:
+        end_date_cannot_be_in_past: A data final não pode ser no passado
+        start_date_cannot_be_in_past: A data de início não pode ser no passado
     webhook:
       connection_failure: Não foi possível estabelecer ligação ao url do webhook. Verifique se o url do webhook está correto.
       delete_success: As definições do webhook foram eliminadas com êxito

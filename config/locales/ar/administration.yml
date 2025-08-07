@@ -4341,8 +4341,12 @@ ar:
       toolbar:
         title: الأدوات
       update:
-        successfully: User %{name} was updated successfully.
-      user: User
+        successfully: تم تحديث المستخدم %{name} بنجاح.
+      user: المستخدم
+    validations:
+      idp:
+        end_date_cannot_be_in_past: لا يمكن أن يكون تاريخ الانتهاء في الماضي
+        start_date_cannot_be_in_past: لا يمكن أن يكون تاريخ البدء في الماضي
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
       delete_success: Webhook settings was deleted successfully

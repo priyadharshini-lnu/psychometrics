@@ -4363,6 +4363,10 @@ zh:
       update:
         successfully: 用户 %{name} 已成功更新。
       user: 用户
+    validations:
+      idp:
+        end_date_cannot_be_in_past: 结束日期不能是过去
+        start_date_cannot_be_in_past: 开始日期不能是过去
     webhook:
       connection_failure: 无法连接到 webhook 网址。 请确认 webhook 网址是否正确。
       delete_success: Webhook 设置已成功删除

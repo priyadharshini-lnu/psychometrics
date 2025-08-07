@@ -4363,6 +4363,10 @@ ja:
       update:
         successfully: ユーザ %{name} は正常に更新されました。
       user: ユーザー
+    validations:
+      idp:
+        end_date_cannot_be_in_past: 終了日を過去にすることはできない
+        start_date_cannot_be_in_past: 開始日が過去であることは許されない
     webhook:
       connection_failure: webhook urlに接続できません。 webhook urlが正しいか確認してください。
       delete_success: Webhookの設定が正常に削除されました

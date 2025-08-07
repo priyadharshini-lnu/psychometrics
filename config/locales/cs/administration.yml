@@ -4363,6 +4363,10 @@ cs:
       update:
         successfully: Uživatel %{name} byl úspěšně aktualizován.
       user: Uživatel
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Datum ukončení nesmí být v minulosti
+        start_date_cannot_be_in_past: Datum zahájení nesmí být v minulosti
     webhook:
       connection_failure: Nelze se připojit k url adrese webhooku. Ověřte prosím, zda je url adresa webhooku správná..
       delete_success: Nastavení webhooku bylo úspěšně odstraněno
