@@ -1533,7 +1533,7 @@ it:
       update_exists: Sovrascrivere il programma esistente
     scheduling_time: Programmare l'orario di valutazione
     statuses:
-      completed: Completati
+      completed: Completate
       in_progress: In corso
       ineligible: Non ammissibile
       interrupted: Interrotti

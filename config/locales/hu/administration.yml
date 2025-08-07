@@ -1052,7 +1052,7 @@ hu:
         threesixty: Többszörös értékelő
       users:
         add_user: Felhasználó hozzáadása
-        completion_status: Befejezési állapot
+        completion_status: Teljesítési állapotok
         created_by: 'Készítette:'
         email: E-mail
         filters:

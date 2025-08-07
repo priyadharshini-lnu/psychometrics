@@ -653,8 +653,8 @@ ro:
     base:
       top_sidebar:
         sign_out_message:
-          body: "<p>Sigur vrei să te deconectezi?</p> <p>Apăsați Nu dacă doriți să continuați lucrul. Apăsați Da pentru a vă deconecta de la utilizatorul curent.</p>"
-          title: Deconectați-vă ?<strong></strong>
+          body: "<p>Sigur doriți să vă deconectați?</p> <p>Apăsați Nu dacă doriți să continuați lucrul. Apăsați Da pentru a deconecta utilizatorul curent.</p>"
+          title: Deconectare?<strong></strong>
     block_settings:
       modal:
         add_layer: Adăugare strat
@@ -970,7 +970,7 @@ ro:
             category: Categorie
             closed: Închis
             empty: Gol
-            inactive: Inactiv
+            inactive: Inactivă
             name: Nume
             normal: Normal
             previous: Precedent
@@ -3886,7 +3886,7 @@ ro:
           not_started: Neînceput
           timed_out: Expirat
         count: Numărare
-        inactive: Inactiv
+        inactive: Inactivă
         percentage: Procent
         title: Evaluări
       title: Statistici

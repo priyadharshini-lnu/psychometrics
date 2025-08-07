@@ -818,7 +818,7 @@ hu:
         bulk_rescore_campaign_factors: Tömeges újrapontozási kampánytényezők
         bulk_update_evaluation_status: Tömeges frissítés kiértékelési állapota
         compact_completion_status_export: Kompakt teljesítési állapot exportálása
-        completion_status_export: Befejezési állapot exportálása
+        completion_status_export: Teljesítési állapotok exportálása
         copy_dimension: Méret másolása
         create_threesixty_campaign: Hozzon létre Threesixty kampányt
         data_report_export: Adatjelentés exportálása
@@ -1428,7 +1428,7 @@ hu:
       mettl_schedule_name: Mettl ütemezés neve
       title: Az értékelés részletei
     messages:
-      export_completion_statuses_scheduled: A befejezési állapotok exportálási feladatának ütemezése sikeresen megtörtént
+      export_completion_statuses_scheduled: A teljesítési állapot  exportálási feladatának ütemezése sikeresen megtörtént
       export_occupations_job_scheduled: Foglalkozások Az exportálási feladat ütemezése sikeresen megtörtént
       export_reports_and_assessments_statuses_scheduled: A jelentések és értékelések exportálása feladat ütemezése sikeresen megtörtént
       external_results_export_scheduled: A külső értékelési exportálási feladat ütemezése sikeresen megtörtént
@@ -1607,7 +1607,7 @@ hu:
       assessment_center: Assessment Center
       assessment_center_invites: Értékelőközpont-meghívók
       completed_at: 'Befejezve:'
-      completion_status: Befejezési állapot
+      completion_status: Teljesítési állapotok
       hogan_id: Hogan ID
       last_login: Utolsó bejelentkezés
       manager: Menedzser
@@ -2761,7 +2761,7 @@ hu:
   jobs:
     threesixty:
       bulk_downloads: A tömeges letöltési feladat ütemezése sikeresen megtörtént
-      export_completion_statuses_scheduled: A befejezési állapotok exportálási feladatának ütemezése sikeresen megtörtént
+      export_completion_statuses_scheduled: A teljesítési állapot exportálási feladatának ütemezése sikeresen megtörtént
       export_raw_results_scheduled: A nyers eredmények exportálási feladatának ütemezése sikeresen megtörtént
       export_scores_scheduled: A pontszám-exportálási feladat ütemezése sikeresen megtörtént
       reports:

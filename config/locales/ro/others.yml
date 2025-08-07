@@ -2864,7 +2864,7 @@ ro:
   license_usage:
     active: Active
     campaign_name: Numele campaniei
-    inactive: Inactiv
+    inactive: Inactivă
     status_updated_at: Ultima actualizare de stare
     status_updated_by: Ultima actualizare de către
     subject_email: Subiectul e-mailului
