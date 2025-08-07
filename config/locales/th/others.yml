@@ -1412,7 +1412,7 @@ th:
       pearson_norm_id: รหัสนอร์มอลเพียร์สัน
       pearson_schedule_id: รหัสกําหนดการเพียร์สัน
       pearson_variation: รูปแบบเพียร์สัน
-      prework: ก่อนทํางาน
+      prework: งานก่อนเริ่ม
       saville_candidate_id: รหัสผู้สมัคร
       saville_data_separator: ตัวคั่นข้อมูล Saville
       simulation_content_variation: รูปแบบเนื้อหาจําลอง
