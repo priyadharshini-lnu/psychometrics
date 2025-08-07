@@ -71,8 +71,6 @@ hashids_length:
   default: 6
 saml_enforced_email_domains:
   - mercer.com
-recaptcha:
-  recaptcha_minimum_score: <%= ENV.fetch('RECAPTCHA_MINIMUM_SCORE', '0.5') %>
 features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
   new_campaign: <%= ENV.fetch('NEW_CAMPAIGN_ENABLED', 'false') == 'true' %>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
-  Typography, Input, Form,
+  Typography, Input,
 } from 'antd'
 import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import styles from './styles.less'
@@ -10,12 +10,11 @@ import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
 import { Flash } from '~/components/Flash'
 import { MagicLink } from '../MagicLink'
-import { fetchRecaptchaToken } from '~/utils/recaptcha'
+import { useRecaptcha } from '~/hooks/useRecaptcha'
 
 
 const { I18n } = window
 const { disable_recaptcha } = window.PsyGlobalState.features
-const { recaptchaSiteKey } = window.PsyGlobalState
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
@@ -31,16 +30,31 @@ const LoginComponent: React.FC<Props> = ({
   if (projectConfig.disallow_password_login) {
     return <MagicLink />
   }
-  const [recaptchaToken, setRecaptchaToken] = useState<string>('')
-  const enable_recaptcha = !disable_recaptcha && projectConfig.enable_recaptcha
 
-  useEffect(() => {
+  const enable_recaptcha = !disable_recaptcha && projectConfig.enable_recaptcha
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const {
+    recaptchaToken,
+    recaptchaReady,
+    recaptchaWidgetId,
+  } = useRecaptcha(formRef, !enable_recaptcha)
+
+
+  const handleSubmit = (e) => {
     if (enable_recaptcha) {
-      fetchRecaptchaToken(recaptchaSiteKey, 'login').then((token) => {
-        setRecaptchaToken(token)
-      })
+      if (!recaptchaReady || recaptchaWidgetId.current === null) {
+        e.preventDefault()
+        return
+      }
+      if (!recaptchaToken) {
+        e.preventDefault()
+        // eslint-disable-next-line no-console
+        console.log('Executing reCAPTCHA')
+        window.grecaptcha.execute(recaptchaWidgetId.current)
+      }
     }
-  }, [])
+  }
 
   return (
     <div className={styles.container}>
@@ -83,12 +97,14 @@ const LoginComponent: React.FC<Props> = ({
       {!projectConfig.saml_enforced && !projectConfig.disallow_password_login && (
         <>
           <Flash />
-          <Form
+          <form
             id="form-login"
-            layout="vertical"
+            ref={formRef}
+            className={styles.form}
+            // layout="vertical"
             action="/users/sign_in"
             method="post"
-            onFinish={() => (document.getElementById('form-login') as HTMLFormElement).submit()}
+            onSubmit={handleSubmit}
           >
             <Input type="hidden" name="authenticity_token" value={csrfToken} />
             {enable_recaptcha && (
@@ -132,7 +148,9 @@ const LoginComponent: React.FC<Props> = ({
                 </Link>
               </div>
             ) : null}
-          </Form>
+          </form>
+          {/* Hidden div for reCAPTCHA widget */}
+          {enable_recaptcha && <div id="recaptcha-button" style={{ display: 'none' }} />}
         </>
       )}
     </div>

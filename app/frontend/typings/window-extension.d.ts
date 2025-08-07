@@ -31,9 +31,17 @@ declare global {
     $chatwoot: unknnown
     Buffer: unknown
     FaceMesh: unknown
-    grecaptcha:{
+    grecaptcha: {
       ready: (callback: () => void) => void
-      execute: (siteKey: string, options: { action: string }) => Promise<string>
+      render: (
+        container: string | HTMLElement,
+        parameters: {
+          sitekey: string
+          size: 'invisible'
+          callback: (token: string) => void
+        }
+      ) => number
+      execute: (widgetId?: number) => void
     }
   }
   interface WindowEventMap {
