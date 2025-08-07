@@ -47,7 +47,7 @@ module Api
 
       def can_export_file?
         user.is?(:superadmin) || user.has_permission?(
-          :dashboards, :export_file, project_id: project_id, campaign_id: campaign_id
+          :dashboards, :export, project_id: project_id, campaign_id: campaign_id
         )
       end
 
