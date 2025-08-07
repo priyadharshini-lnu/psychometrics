@@ -1622,6 +1622,7 @@ en:
         campaign_assessment_group: Campaign Assessment Group
         client: Client
         completion: Completion
+        custom: Custom
         delivery_at: Delivery at (GST)
         delivery_delay_hours: Delivery delay (hours)
         delivery_interval: Delivery Interval
@@ -1653,6 +1654,7 @@ en:
         recipients: Recipients
         reminder: Reminder
         report_available: Report Available
+        select_assessments: Choose which assessments to check for completion
         selected: Selected
         selected_cc_recipients: Selected CC Recipients
         selected_recipients: Selected Recipients

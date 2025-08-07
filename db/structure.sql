@@ -2582,6 +2582,38 @@ CREATE TABLE public.communications (
 
 
 --
+-- Name: communications_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communications_assessments (
+    id bigint NOT NULL,
+    communication_id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: communications_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communications_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communications_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communications_assessments_id_seq OWNED BY public.communications_assessments.id;
+
+
+--
 -- Name: communications_copy_memberships; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8542,6 +8574,13 @@ ALTER TABLE ONLY public.communications ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: communications_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications_assessments ALTER COLUMN id SET DEFAULT nextval('public.communications_assessments_id_seq'::regclass);
+
+
+--
 -- Name: communications_users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10055,6 +10094,14 @@ ALTER TABLE ONLY public.communication_translations
 
 
 --
+-- Name: communications_assessments communications_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications_assessments
+    ADD CONSTRAINT communications_assessments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: communications communications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11429,6 +11476,13 @@ CREATE UNIQUE INDEX idx_on_campaign_id_user_id_campaign_factor_id_5dd941be00 ON 
 
 
 --
+-- Name: idx_on_communication_id_assessment_id_d9ce30e955; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_communication_id_assessment_id_d9ce30e955 ON public.communications_assessments USING btree (communication_id, assessment_id);
+
+
+--
 -- Name: idx_on_description_locale_02e909ba33; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12420,6 +12474,20 @@ CREATE INDEX index_communication_emails_on_workshop_invite_id ON public.communic
 --
 
 CREATE INDEX index_communication_translations_on_locale ON public.communication_translations USING btree (locale);
+
+
+--
+-- Name: index_communications_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_assessments_on_assessment_id ON public.communications_assessments USING btree (assessment_id);
+
+
+--
+-- Name: index_communications_assessments_on_communication_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_assessments_on_communication_id ON public.communications_assessments USING btree (communication_id);
 
 
 --
@@ -17197,6 +17265,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 
 --
+-- Name: communications_assessments fk_rails_d9557c0769; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications_assessments
+    ADD CONSTRAINT fk_rails_d9557c0769 FOREIGN KEY (communication_id) REFERENCES public.communications(id);
+
+
+--
 -- Name: profile_field_values fk_rails_da47a0e23d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17338,6 +17414,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_e471e365a3 FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communications_assessments fk_rails_e5086a4dc7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications_assessments
+    ADD CONSTRAINT fk_rails_e5086a4dc7 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
 
 
 --
@@ -17659,6 +17743,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250801074743'),
 ('20250806140955'),
 ('20250806102146'),
 ('20250713120000'),

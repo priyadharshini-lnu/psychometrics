@@ -23,6 +23,8 @@ module Forms
       property :reminder_type, default: 'custom'
       property :stop_reminder, type: Types::Params::Bool | Types::Params::Nil
       property :campaign_assessment_group_id, type: Types::Params::Integer | Types::Params::Nil
+      property :assessment_selection
+      property :selected_assessment_ids, type: Types::Params::Array, default: []
 
       validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client, presence: true
 
@@ -76,6 +78,7 @@ module Forms
       validates_with ::Validators::Forms::Communications::SelectedMembers, if: proc { recipients == 'selected' }
 
       validate :body_content
+      validate :selected_assessments_presence, if: -> { assessment_selection == 'selected' }
 
       def owner
         Client.find_by(id: owner_id)
@@ -110,6 +113,7 @@ module Forms
         self.client_id = owner_id if user.is?(:superadmin) && owner_id.present?
         self.owner_id = client_id unless user.is?(:superadmin)
         self.end_level_id = campaign_id || project_id || client_id
+        self.assessment_selection ||= model.selected_assessments.any? ? 'selected' : 'all'
       end
 
       def stop_reminder_datetime
@@ -121,6 +125,12 @@ module Forms
       end
 
       private
+
+      def selected_assessments_presence
+        if assessment_selection == 'selected' && selected_assessment_ids.compact_blank.empty?
+          errors.add(:selected_assessment_ids, :blank)
+        end
+      end
 
       def body_content
         Mustache.render(body)
