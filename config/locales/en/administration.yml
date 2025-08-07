@@ -3545,6 +3545,7 @@ en:
         form_title: Schedule Assessments
         language: Language
         language_not_selected: Not Selected
+        mark_cancel: Mark Cancel
         mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
         meeting_link_custom: Custom
         meeting_link_internal: Internal
@@ -3553,6 +3554,9 @@ en:
         no_change: No Change
         override_existing: Override existing schedules for subjects
         preworks: Prework
+        re_enroll: Re-Enroll
+        re_enroll_confirm_message: Are you sure you want to re-enroll the subject with the email '%{subject_email}'?
+        re_enroll_success: Re-enrolled subject with email %{subject_email}.
         schedule: Schedule
         unschedule: Unschedule
       tabs:

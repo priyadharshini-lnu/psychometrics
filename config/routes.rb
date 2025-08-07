@@ -1353,6 +1353,7 @@ as: :simulation_progress_notification
               jsonapi_relationships
               jsonapi_resources :workshop_subjects, only: %i[show index create update destroy] do
                 post :mark_cancelled, on: :member
+                post :re_enroll, on: :member
               end
               jsonapi_resources :workshop_activities
               jsonapi_resources :workshop_resources

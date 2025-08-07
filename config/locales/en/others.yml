@@ -2218,6 +2218,10 @@ en:
       workshop_subject_create:
         already_exists: Subject already exists in this Assessment Center.
         part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: No seats available for this workshop.
+        scheduling_lead_time_passed: "Scheduling Lead Time\t has passed, you cannot re-enroll the subject."
+        workshop_subject_not_found: Workshop subject not found
       workshops:
         no_available_assessor_slots: No available slots for assessor %{assessor}
         no_available_manager_slots: No available slots for manager %{manager}

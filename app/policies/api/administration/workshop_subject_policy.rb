@@ -35,6 +35,10 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def re_enroll?
+        has_permission?(:workshops, :manage)
+      end
+
       class Scope < BasePolicy::Scope
         def resolve
           return scope if user.superadmin?
