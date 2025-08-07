@@ -147,8 +147,12 @@ const Project: FC<Props> = ({
 
   const menuItems: MenuItem[] = [
     { key: 'new_campaigns', icon: <ShopOutlined />, label: I18n.t('common.model.campaigns') },
-    { key: 'datasheet', icon: <DatabaseOutlined />, label: I18n.t('common.model.datasheet') },
   ]
+  currentUser.permissions.viewDatasheets && menuItems.push({
+    key: 'datasheet',
+    icon: <DatabaseOutlined />,
+    label: I18n.t('common.model.datasheet'),
+  })
   currentUser.permissions.manageProjectAdmins && menuItems.push({
     key: 'admins',
     icon: <SolutionOutlined />,
