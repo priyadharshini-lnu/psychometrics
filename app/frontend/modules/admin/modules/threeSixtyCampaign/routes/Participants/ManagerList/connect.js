@@ -10,10 +10,16 @@ import routeUtils from '~/utils/route'
 export default connect(
   ({
     threeSixtyCampaign: {
+      campaignDetails: { id: threeSixtyCampaignId },
       managers: { list, total, permissions },
     },
   }) => ({
-    managers: list, total, permissions, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
+    managers: list,
+    threeSixtyCampaignId,
+    total,
+    permissions,
+    page: routeUtils.getPage(),
+    searchTerm: routeUtils.getSearchTerm(),
   }),
   dispatch => ({
     fetchManagers: (campaignId, page, query) => dispatch(fetchManagers(campaignId, page, query)),
