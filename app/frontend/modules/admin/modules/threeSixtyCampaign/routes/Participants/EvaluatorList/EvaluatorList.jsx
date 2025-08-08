@@ -23,6 +23,7 @@ export default function EvaluatorList ({
   permissions,
   searchTerm,
   template,
+  threeSixtyCampaignId,
 }) {
   const { campaignId } = useParams()
   const [params] = useSearchParams()
@@ -58,6 +59,7 @@ export default function EvaluatorList ({
       <Row>
         <Col span={24}>
           <EvaluatorTable
+            threeSixtyCampaignId={threeSixtyCampaignId}
             campaignId={campaignId}
             openModal={openModal}
             evaluators={evaluators}
