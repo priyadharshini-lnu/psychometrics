@@ -179,7 +179,7 @@ pl:
             manage: Zarządzać
             title: Role zawodowe
             view: Widok
-          mediaLibraries:
+          libraries:
             manage: Zarządzać
             title: Biblioteki multimediów
             view: Widok

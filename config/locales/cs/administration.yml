@@ -181,7 +181,7 @@ cs:
             manage: Správa
             title: Pracovní role
             view: Zobrazit
-          mediaLibraries:
+          libraries:
             manage: Správa
             title: Knihovny médií
             view: Zobrazit

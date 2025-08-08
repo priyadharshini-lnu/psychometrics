@@ -179,7 +179,7 @@ th:
             manage: จัดการ
             title: บทบาทในงาน
             view: ดู
-          mediaLibraries:
+          libraries:
             manage: จัดการ
             title: ห้องสมุดสื่อ
             view: ดู

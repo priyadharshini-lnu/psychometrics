@@ -181,7 +181,7 @@ nl:
             manage: Beheer
             title: Functierollen
             view: Bekijk
-          mediaLibraries:
+          libraries:
             manage: Beheer
             title: Media Bibliotheken
             view: Bekijk

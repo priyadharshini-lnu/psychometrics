@@ -17,13 +17,6 @@ CREATE SCHEMA bi_models;
 
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -134,8 +127,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
+    instructions json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -223,8 +216,8 @@ CREATE TABLE public.campaigns (
     uniq_code character varying,
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
-    practice_campaign boolean DEFAULT false,
     default_idp_template_id bigint,
+    practice_campaign boolean DEFAULT false,
     is_template boolean DEFAULT false
 );
 
@@ -727,9 +720,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
+    manager_id bigint,
     mobile_number character varying,
     mobile_verified boolean DEFAULT false,
-    manager_id bigint,
     unique_session_id character varying,
     external_id character varying,
     disabled_at timestamp(6) without time zone
@@ -1104,9 +1097,7 @@ CREATE TABLE public.ai_assistant_requests (
     model_id character varying,
     ai_assistant_id bigint,
     ai_assistant_chat_id bigint NOT NULL,
-    ai_assistant_tool_call_id bigint,
-    extras jsonb DEFAULT '{}'::jsonb NOT NULL,
-    interaction_type integer DEFAULT 0 NOT NULL
+    ai_assistant_tool_call_id bigint
 );
 
 
@@ -1434,10 +1425,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
@@ -1643,8 +1634,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -1722,8 +1712,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[],
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
@@ -2254,7 +2244,9 @@ ALTER SEQUENCE public.client_features_id_seq OWNED BY public.client_features.id;
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false
+    disable_data_processing boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -2408,40 +2400,6 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
-
-
---
--- Name: comments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.comments (
-    id integer NOT NULL,
-    text character varying,
-    created_by integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    commentable_id integer,
-    commentable_type character varying
-);
-
-
---
--- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.comments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
@@ -4215,7 +4173,7 @@ ALTER SEQUENCE public.meeting_recordings_id_seq OWNED BY public.meeting_recordin
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -4443,21 +4401,6 @@ CREATE SEQUENCE public.mettl_user_assessments_id_seq
 --
 
 ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_assessments.id;
-
-
---
--- Name: normalized_factor_scores; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
-   FROM public.user_assessment_factor_scores;
 
 
 --
@@ -5489,12 +5432,12 @@ CREATE TABLE public.reports (
     owner_id integer,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -5506,7 +5449,7 @@ CREATE TABLE public.reports (
     external_settings jsonb DEFAULT '{}'::jsonb,
     campaign_factors_deprecated_on_2024_12_23 jsonb DEFAULT '[]'::jsonb NOT NULL,
     styles jsonb DEFAULT '{}'::jsonb,
-    other_languages text[] DEFAULT '{}'::text[]
+    other_languages jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -7386,14 +7329,7 @@ CREATE TABLE public.user_idp_plans (
     active boolean DEFAULT true,
     end_date date,
     completed_at timestamp(6) without time zone,
-    started_at timestamp(6) without time zone,
-    ai_chat_id bigint,
-    ai_flow_status integer DEFAULT 0 NOT NULL,
-    chat_collected boolean DEFAULT false NOT NULL,
-    documents_collected boolean DEFAULT false NOT NULL,
-    summary_generated boolean DEFAULT false NOT NULL,
-    last_saved_at timestamp(6) without time zone,
-    metadata jsonb DEFAULT '{}'::jsonb NOT NULL
+    started_at timestamp(6) without time zone
 );
 
 
@@ -8537,13 +8473,6 @@ ALTER TABLE ONLY public.clients ALTER COLUMN id SET DEFAULT nextval('public.clie
 --
 
 ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('public.clients_reports_id_seq'::regclass);
-
-
---
--- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
 
 
 --
@@ -14431,13 +14360,6 @@ CREATE INDEX index_user_idp_development_actions_on_user_idp_skill_id ON public.u
 
 
 --
--- Name: index_user_idp_plans_on_ai_chat_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_user_idp_plans_on_ai_chat_id ON public.user_idp_plans USING btree (ai_chat_id);
-
-
---
 -- Name: index_user_idp_plans_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15946,14 +15868,6 @@ ALTER TABLE ONLY public.workshop_invite_logs
 
 
 --
--- Name: user_idp_plans fk_rails_609956b3b2; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_idp_plans
-    ADD CONSTRAINT fk_rails_609956b3b2 FOREIGN KEY (ai_chat_id) REFERENCES public.ai_assistant_chats(id) ON DELETE SET NULL;
-
-
---
 -- Name: user_assessments fk_rails_60c2fd6734; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17006,7 +16920,7 @@ ALTER TABLE ONLY public.skills
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -17744,22 +17658,23 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20250801074743'),
+('20250807052600'),
 ('20250806140955'),
 ('20250806102146'),
-('20250713120000'),
+('20250801074743'),
 ('20250731114640'),
-('20250714084320'),
-('20250714092101'),
 ('20250730134619'),
-('20250715133541'),
-('20250711074243'),
-('20250718071328'),
-('20250723095133'),
-('20250723144840'),
 ('20250728141620'),
+('20250723144840'),
+('20250723095133'),
+('20250718071328'),
+('20250715133541'),
+('20250714092101'),
+('20250714084320'),
+('20250713120000'),
 ('20250712120001'),
 ('20250712120000'),
+('20250711074243'),
 ('20250709102014'),
 ('20250709100241'),
 ('20250704103208'),
@@ -17845,7 +17760,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250305105355'),
 ('20250304084629'),
 ('20250304060832'),
-('20250228123228'),
 ('20250228060708'),
 ('20250226084133'),
 ('20250224095420'),
@@ -17885,7 +17799,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250102162920'),
 ('20250102114258'),
 ('20241226171404'),
-('20241225073418'),
 ('20241224114259'),
 ('20241224114214'),
 ('20241224114112'),
@@ -18626,3 +18539,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

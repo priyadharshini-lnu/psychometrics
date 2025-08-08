@@ -48,7 +48,7 @@ module AllowedPermissions
     'dimensions' => %w[view manage],
     'assessments' => %w[view manage],
     'questions' => %w[view manage],
-    'media_libraries' => %w[view manage],
+    'libraries' => %w[view manage],
     'communications' => %w[view manage],
     'reports' => %w[view manage],
     'results' => %w[

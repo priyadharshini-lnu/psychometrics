@@ -181,7 +181,7 @@ pt:
             manage: Gerenciar
             title: Funções
             view: Ver
-          mediaLibraries:
+          libraries:
             manage: Gerenciar
             title: Bibliotecas de média
             view: Ver

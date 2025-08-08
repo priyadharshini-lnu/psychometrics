@@ -179,7 +179,7 @@ id:
             manage: Kelola
             title: Peran Pekerjaan
             view: Melihat
-          mediaLibraries:
+          libraries:
             manage: Atur
             title: Media Perpustakaan
             view: Melihat

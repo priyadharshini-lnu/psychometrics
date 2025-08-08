@@ -181,7 +181,7 @@ ko:
             manage: 관리
             title: 직무 역할
             view: 보기
-          mediaLibraries:
+          libraries:
             manage: 관리
             title: 미디어 라이브러리
             view: 보기

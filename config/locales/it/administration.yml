@@ -181,7 +181,7 @@ it:
             manage: Azioni
             title: Ruoli lavorativi
             view: Vista
-          mediaLibraries:
+          libraries:
             manage: Azioni
             title: Biblioteche multimediali
             view: Vista
