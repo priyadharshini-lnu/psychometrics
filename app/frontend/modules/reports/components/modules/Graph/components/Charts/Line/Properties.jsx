@@ -108,7 +108,7 @@ const Properties = ({ modules, questions }) => {
       >
         Show Legend
       </Checkbox>
-      {lineModule.props.source.type === 'Factor' && (
+      {lineModule.props?.source?.type === 'Factor' && (
         <>
           <Checkbox
             checked={lineModule.props.hideEmptyColumns || false}
