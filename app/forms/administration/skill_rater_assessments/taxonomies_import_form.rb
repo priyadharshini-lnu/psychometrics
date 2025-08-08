@@ -134,6 +134,7 @@ module Administration
 
             if value.blank?
               errors.add(:file, :missing_value, row: row_index, field: header)
+              next
             end
 
             unique_column = unique_columns.find { |col| normalize_header(header) == normalize_header(col) }
