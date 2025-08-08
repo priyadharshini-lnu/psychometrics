@@ -208,7 +208,7 @@ ro:
             file:
               column_cannot_be_blank: Valoarea %{column_name} nu poate fi goală la rândul %{row_number}
               invalid_format: Vă rugăm să încărcați fișierul CSV
-              invalid_job_role_id: Id-ul de la rândul %{row_number} nu este un ID valid al rolului postului
+              invalid_job_role_id: ID-ul de la rândul %{row_number} nu este un ID valid al rolului postului
               invalid_locale: Localul de la rândul %{row_number} nu este un local valabil
               missing_required_columns: 'Lipsesc coloanele necesare: %{columns}'
               parsing_failed: 'Eroare în timpul analizării fișierului, eroare: %{error}.'
@@ -425,12 +425,12 @@ ro:
         access_reports_at: Accesați raportul la
         access_reports_at_date: Dată
         access_reports_at_time: Oră
-        client_ids: Închirieri pentru clienți
+        client_ids: Clienți
         manager_ids: Manageri
         report_ids: Rapoarte
         user_ids: Utilizatorii
       assessment:
-        active: Activ
+        active: Active
         categories:
           '360': Campania 360
           agile: AGIL
@@ -471,7 +471,7 @@ ro:
           overdue: Restante
           timed_out: Expirat
       block:
-        active: Activ
+        active: Active
         assign_to_assessment_ids: Evaluări
         created_at: Data creării
         id: ID
@@ -515,13 +515,14 @@ ro:
         id: ID
         updated_at: Data modificării
       dimension:
-        active: Activ
+        active: Active
         created_at: Data creării
         id: ID
         name: Nume
+        owner: Proprietar
         updated_at: Data modificării
       factor:
-        active: Activ
+        active: Active
         created_at: Data creării
         id: ID
         name: Nume
@@ -531,21 +532,25 @@ ro:
       hogan_report_setting:
         load_report: Încărcați raportul de la Hogan
       innovation_style:
-        active: Activ
+        active: Active
         created_at: Data creării
         description: Descriere
         id: ID
         name: Nume
         updated_at: Data modificării
       innovation_styles_factor:
-        active: Activ
+        active: Active
         created_at: Data creării
         id: ID
         name: Nume
         updated_at: Data modificării
       library:
         created_at: Data creării
+        description: Descriere
+        files: Fișiere
         id: ID
+        name: Nume și prenume
+        owner: Proprietar
         type: Miniatură
         updated_at: Data modificării
       license:
@@ -560,11 +565,11 @@ ro:
         unlimited: Nelimitat
         used_number: Număr de licență folosit
       membership:
-        active: Activ
+        active: Active
         created_at: Data creării
         disabled: Dezactiva
         email: E-mail
-        first_name: Numele și prenumele
+        first_name: Prenumele
         id: ID
         last_name: Numele de familie
         parent: Direct Manager
@@ -579,14 +584,14 @@ ro:
         updated_at: Data modificării
         user_access: Acces utilizator
       norm:
-        active: Activ
+        active: Active
         created_at: Data creării
         id: ID
         name: Nume
         updated_at: Data modificării
         updated_by: Editat de
       occupation:
-        active: Activ
+        active: Active
         bachelors_or_masters_qualification: Calificare de licență sau master
         created_at: Data creării
         description: Descriere
@@ -600,23 +605,24 @@ ro:
         updated_at: Data modificării
         work_environment: Mediul de lucru
       occupations_factor:
-        active: Activ
+        active: Active
         created_at: Data creării
         id: ID
         name: Nume
         updated_at: Data modificării
       product:
-        active: Activ
+        active: Active
         created_at: Data creării
         id: ID
         name: Nume
         updated_at: Data modificării
       question:
-        active: Activ
+        active: Active
         assign_to_assessment_ids: Evaluări
         created_at: Data creării
         id: ID
         name: Nume
+        owner: Proprietar
         updated_at: Data modificării
       report:
         created_at: Data creării
@@ -627,7 +633,7 @@ ro:
         id: ID
         updated_at: Data modificării
       task:
-        active: Activ
+        active: Active
         created_at: Data creării
         description: Descriere
         description_label: DESCRIERE
@@ -658,12 +664,12 @@ ro:
             in_progress: Relua
             not_started: Nou
       user:
-        active: Activ
+        active: Active
         created_at: Data creării
         current_password: Parolă curentă
         disabled: Dezactiva
         email: Adresă de e-mail
-        first_name: Numele și prenumele
+        first_name: Prenumele
         id: ID
         last_name: Numele de familie
         manage_client_ids: Închirierea clientului
@@ -705,12 +711,12 @@ ro:
           identified: Utilizatori identificați
         updated_at: Data modificării
       user_form:
-        active: Activ
+        active: Active
         created_at: Data creării
         current_password: Parolă curentă
         disabled: Dezactiva
         email: Adresa de e-mail
-        first_name: Numele și prenumele
+        first_name: Prenumele
         id: ID
         last_name: Numele de familie
         parent: Direct Manager
@@ -730,7 +736,7 @@ ro:
         email: E-mail
         name: Nume
         result_id: ID rezultat
-        started_at: A început la
+        started_at: Început la
         status: Stare
         statuses:
           completed: Completat
@@ -785,6 +791,8 @@ ro:
           attributes:
             current_password:
               invalid: Parola curentă este incorectă
+            manager_id:
+              cannot_be_self: Utilizatorul nu poate fi desemnat ca manager propriu
         user_idp_comment:
           reply_to_reply: nu poate răspunde la un răspuns (este permis un singur nivel de imbricare)
         user_idp_plan:
@@ -792,7 +800,7 @@ ro:
   admin_jobs:
     attrs:
       operations:
-        add_campaign_reports: Adăugați rapoarte de campanie
+        add_campaign_reports: Adaugă rapoarte de campanie
         assessment_norm_export: Exportul rezultatelor normate
         assessment_raw_factor_export: Exportul scorurilor factorului brut
         assessment_raw_result_export: Exportul rezultatelor brute
@@ -809,8 +817,9 @@ ro:
         bulk_reports: Rapoarte în bloc
         bulk_rescore_campaign_factors: Factorii campaniei de reevaluare în bloc
         bulk_update_evaluation_status: Stare evaluare actualizare în bloc
-        compact_completion_status_export: Export compact al stării de finalizare
+        compact_completion_status_export: Exportați compact al stării de finalizare
         completion_status_export: Exportul stării de finalizare
+        copy_as_template_or_campaign: Copiați campania ca șablon
         copy_dimension: Copiere parametru
         create_threesixty_campaign: Creați campania Threesixty
         data_report_export: Exportul raportului de date
@@ -820,29 +829,29 @@ ro:
         export_campaign_scorings: Exportați scorurile campaniei
         export_dashboard_as_file: Exportați tabloul de bord ca fișier
         export_development_action_translations: Traduceri pentru acțiuni de dezvoltare a exporturilor
-        export_development_actions: Acțiuni de dezvoltare a exporturilor
+        export_development_actions: Acțiune de dezvoltare a exporturilor
         export_dimension_as_json: Exportați dimensiunea JSON
         export_factor_translations: Traduceri cu factor de export
-        export_job_roles_translations: Export Rolul postului Traduceri
+        export_job_roles_translations: Exportați Rolul postului Traduceri
         export_norm: Norma de export
-        export_occupations: Ocupații Export
+        export_occupations: Ocupații Exportați
         export_proficiency_level_translations: Traduceri la nivel de competență de export
         export_proficiency_levels: Niveluri de competență pentru export
         export_reflection_questions: Întrebări de reflecție pentru export
         export_report_data: Exportați datele rapoartelor
-        export_reports_and_assessments: Rapoarte și evaluări de export
+        export_reports_and_assessments: Exportați rapoarte și evaluări
         export_skill_translations: Traduceri de abilități de export
         export_skills: Abilități de export
         export_user_report_events: Exportați evenimentele din rapoartele utilizatorilor
         export_users: Exportul utilizatorilor campaniei
-        external_assessment_export: Export rezultate externe
+        external_assessment_export: Exportați rezultate externe
         import_accesssheet: Import Accessheet
         import_assessment_questions: Întrebări de evaluare a importurilor
         import_assessors: Evaluatori de import
         import_campaign_factors: Importați factori de campanie
         import_datasheet: Fișa tehnică de import
         import_development_action_translations: Importul de traduceri pentru acțiuni de dezvoltare
-        import_development_actions: Acțiuni de dezvoltare a importurilor
+        import_development_actions: Acțiune de dezvoltare a importurilor
         import_dimension_from_json: Importați dimensiunea din JSON
         import_external_campaign_scoring: Importați scorul campaniei externe
         import_factor_translations: Traduceri cu factor de import
@@ -871,9 +880,9 @@ ro:
         send_sms_invites: Trimiteți invitații prin SMS
         super_admin_assessment_norm_export: Exportul rezultatelor Super Admin Norm
         super_admin_assessment_raw_factor_export: Exportul scorurilor Super Admin Raw Factor
-        super_admin_assessment_raw_result_export: Export rezultate brute Super Admin
-        super_admin_datasheet_export: Export fișă tehnică Super Admin
-        super_admin_external_assessment_export: Export de evaluare externă Super Admin
+        super_admin_assessment_raw_result_export: Exportați rezultate brute Super Admin
+        super_admin_datasheet_export: Exportați fișă tehnică Super Admin
+        super_admin_external_assessment_export: Exportați de evaluare externă Super Admin
         threesixty_campaign_export_completion_status: Starea de finalizare a exportului campaniei Threesixty
         threesixty_campaign_export_scores: Exportul scorurilor campaniei Threesixty
         workshop_status_export: Exportul stării centrului de evaluare
@@ -894,6 +903,7 @@ ro:
     invalid_job: Această notificare corespunde înregistrării șterse
     mark_as_read: Marcați toate citite
     more: Mai mult
+    no_notifications: Fără notificări
     notifications: Notificări
     results: Rezultatele
     super_admin:
@@ -927,9 +937,9 @@ ro:
         success_message: Evaluarea "%{name}" a fost copiată cu succes.
       details: Detalii
       download_csv: Descărcați CSV
-      edit: Editare
+      edit: Editați
       evaluate: Evalua
-      export: Export
+      export: Exportați
       export_normed: Scoruri factoriale normate
       export_raw_labels: Raw (cu etichete)
       export_raw_scores: Scorurile factorului brut
@@ -963,7 +973,7 @@ ro:
       unarchived:
         success_message: Evaluarea "%{name}" a fost dezarhivată cu succes
       view: Vedere
-    active: Activ
+    active: Active
     archived: Arhivate
     assessment: Evaluare
     assessments: Evaluări
@@ -1019,7 +1029,7 @@ ro:
       use_speech_instructions: Utilizați intrarea vocală pentru a scrie acest răspuns
     drawer:
       title: Detalii de evaluare
-    edit: Editare
+    edit: Editați
     fields:
       category:
         agile: AGIL
@@ -1057,7 +1067,7 @@ ro:
         show_uniq_identifier: Afișați identificatorul unic respondenților (pentru sondaje anonime)
     instructions:
       begin_assessment: Începeți
-      cancel: Anulează
+      cancel: Anulați
       default: Aceasta este o activitate cronometrată, odată ce faceți clic pe Începe evaluarea, veți avea %{time} minute la dispoziție.
       title: Instrucțiuni
     messages:
@@ -1073,6 +1083,7 @@ ro:
         description: Această sesiune de evaluare a fost invalidată. Acest lucru se poate întâmpla dacă ați continuat evaluarea într-o filă, browser sau dispozitiv separat.
         title: Ultima solicitare a eșuat
       next: Următorul
+      no_skill_mapping_message: Nu există o cartografiere a competențelor pentru acest post, contactați administratorul.
       read_only: Este modul numai citire, nu puteți modifica niciun rezultat.
       save: Salvați
       submissionFailedAlert:
@@ -1141,12 +1152,13 @@ ro:
     add_group_form:
       previous_assessments_required: Evaluări pentru rulare în ordinea de mai jos
       previous_group_required: Este necesară finalizarea anterioară a grupului
+      require_previous_groups_completion_for_booking: Este necesară finalizarea tuturor grupurilor anterioare înainte de rezervare
     menu:
       assessment_center: Centrul de evaluare
       assessment_center_invites: Invitații la centrul de evaluare
       assessments_and_reports: Evaluări și rapoarte
       idp: IDP
-      manage: Gestiona
+      manage: Acțiuni
       report_approval: Setări de aprobare a rapoartelor
       sequencing: Secvenţiere
     report_approval:
@@ -1154,13 +1166,13 @@ ro:
       create_seetings: Creează setări
     sequencing:
       add_assessment_center: Adăugați centrul de evaluare
-      add_group: Adăugare grup
+      add_group: Adăugați grup
       assessments: Evaluări
       delete_group: Ștergeți grupul
       edit_group_name: Editați numele grupului
       modal:
         delete:
-          cancel: Anula
+          cancel: Anulați
           cannot_delete_with_workshops: Nu se poate șterge grupul care conține ateliere, șterge mai întâi atelierele
           failed: Nu s-a putut șterge grupul "%{name}", vă rugăm să contactați administratorul
           ok: Da, ștergeți
@@ -1233,14 +1245,14 @@ ro:
       sms_description: Vă rugăm să introduceți OTP-ul care a fost trimis pe numărul dvs. de telefon mobil.
       submit: Verificare
       title: Parolă unică
-    password: Parolă
+    password: Parola
     password_confirmation: Confirmați parola
     password_confirmation_placeholder: Introduceți confirmarea parolei
     password_placeholder: Introduceți parola
     registration:
       description: Completați datele de mai jos pentru a vă înregistra și a crea un cont nou
       email_hint: Vă respectăm confidențialitatea și nu tolerăm spam-ul. Nu vom da niciodată informațiile dvs. unei terțe părți
-      first_name: Numele și prenumele
+      first_name: Prenumele
       first_name_placeholder: Introduceți prenumele
       have_account: Aveți deja un cont?
       last_name: Numele de familie
@@ -1248,20 +1260,20 @@ ro:
       login_now: Conectați-vă acum!
       registration_code: Codul de înregistrare
       registration_code_placeholder: Introduceți codul de înregistrare
-      terms_notice: Prin înregistrare, sunteți de acord cu <a href="%{terms_url}">Termenii</a> și <a href="%{terms_url}">condițiile</a> noastre <a href="%{terms_url}">de utilizare și cu Politica de confidențialitate</a>
-      title: Înscriere
+      terms_notice: Prin înregistrare, confirmați că sunteți de acord cu <a href="%{terms_url}">Termenii de utilizare și Politica de confidențialitate </a>
+      title: Înregistrare
     reset_password:
       back_to_sign_in: Înapoi la Conectare
       description: Introduceți adresa de e-mail asociată contului dvs
       submit: Resetați parola
       title: Ați uitat parola?
     set_password:
-      description: Pentru a crea o parolă nouă, vă rugăm să introduceți noua parolă în casetele de mai jos
+      description: Pentru a crea o parolă nouă, vă rugăm să introduceți noua parolă în câmpurile de mai jos
       submit: Trimite
       title: Crearea parolei
     sign_out: Conectați-vă ca utilizator diferit
-    sign_up: Înscriere
-    terms_link: <a href="%{terms_url}">Termeni și declarație de confidențialitate</a>
+    sign_up: Înregistrare
+    terms_link: <a href="%{terms_url}">Termenii de utilizare și Politica de confidențialitate</a>
     verify_mobile_number:
       error:
         blocked: Acest număr este blocat din cauza prea multor încercări.
@@ -1349,7 +1361,7 @@ ro:
     profile:
       complete_heading: Profilul dvs. este complet
       complete_profile_label: Completați acum
-      edit_profile_label: Editare profil
+      edit_profile_label: Editați profil
       incomplete_heading: Completează-ți profilul
       last_login_text: 'Ultima autentificare pe :'
       last_updated_text: 'Profilul a fost actualizat ultima dată pe:'
@@ -1361,7 +1373,7 @@ ro:
     restart_practice_success: Practica a fost reluată cu succes
     thank_you_for_time: Vă mulțumim pentru timpul acordat
     time_left:
-      cancel: Anulează
+      cancel: Anulați
       continue: Continuați
       notification: Timpul alocat pentru această sarcină "%{assessmentName}" a fost %{totalAssessmentTime}. Din cauza timpului total scurs, aveți acum doar %{remainingCampaignTime} ca timp ajustat pentru a finaliza această sarcină.
     timer:
@@ -1372,6 +1384,7 @@ ro:
       bulk_download: Descărcare în bloc
       bulk_update_evaluation_as_done: Marcați ca terminat
       bulk_update_evaluation_as_undone: Demarcați ca terminat
+      convert_to_template: Conversie în șablon
       download: Descărcați rapoarte
       export_completion_status: Starea de finalizare a exportului
       export_external: Extern
@@ -1391,10 +1404,10 @@ ro:
       reset_all_nominations: Resetați toate nominalizările
       reset_participant: Resetați toți participanții
     allow_msg_proctoring_workshop_activity: Activitățile centrului de evaluare nu sunt supravegheate.
-    assessment_center_heading: Detalii privind centrul de evaluare
+    assessment_center_heading_label: Detalii despre sesiune
     assessments_heading: Sarcinile dvs
     column:
-      assessment_name: Denumirea evaluării
+      assessment_name: Numele evaluării
       assessor_form: Formular evaluator
       auto_assign: Atribuire automată
       dimension_id: ID dimensiune
@@ -1421,7 +1434,7 @@ ro:
     messages:
       export_completion_statuses_scheduled: Lucrarea de export a stărilor de finalizare a fost programată cu succes
       export_occupations_job_scheduled: Ocupații Locul de muncă la export a fost programat cu succes
-      export_reports_and_assessments_statuses_scheduled: Lucrarea Export rapoarte și evaluări a fost programată cu succes
+      export_reports_and_assessments_statuses_scheduled: Lucrarea Exportați rapoarte și evaluări a fost programată cu succes
       external_results_export_scheduled: Activitatea de export Evaluare externă a fost programată cu succes
       norm_results_export_scheduled: Lucrarea de export Rezultate normalizate de evaluare a fost programată cu succes
       normalize_factor_scores_scheduled: Normalizarea scorurilor factorilor a fost programată cu succes.
@@ -1496,7 +1509,7 @@ ro:
         cannot_remove_norm: Nu se poate elimina norma pentru evaluarea finalizată.
         select_norm: Selectează norma
         success_msg: Normele au fost actualizate cu succes
-        title: Actualizare normă
+        title: Actualizați normă
         update: Actualiza
       update_simulation_time_extension:
         success_msg: Prelungirea timpului de simulare a fost actualizată cu succes
@@ -1528,7 +1541,9 @@ ro:
       in_progress: În curs de desfășurare
       ineligible: Ineligibil
       interrupted: Întrerupt
+      new: Nou
       not_started: Nu a început
+      progress: În curs de desfășurare
       timed_out: Timed Out
       universal_link: Legătură universală
     ungrouped_assessments_heading: Negrupat
@@ -1549,6 +1564,7 @@ ro:
     column:
       assessor_access: Acces evaluator
       auto_assign: Atribuire automată
+      locales: Localuri
       main_report: Raport principal
       report_bundle: Pachet de rapoarte
       report_name: Numele raportului
@@ -1571,6 +1587,13 @@ ro:
         apply: Aplicați aceste modificări utilizatorilor existenți din această campanie.
         msg_text: Încercați să ștergeți raportul <strong>"%{reportName}"</strong>
         title: Eliminați raportul?
+      update_languages:
+        default_language: Limba implicită
+        other_available_languages: Alte limbi disponibile
+        select_default_language: Selectați limba implicită
+        select_languages: Selectați limbile
+        success_msg: Limbile au fost actualizate cu succes
+        title: Limba de raportare
       user_access:
         apply: Aplicați aceste modificări utilizatorilor existenți din această campanie.
         title:
@@ -1589,7 +1612,7 @@ ro:
       assessment_center_invites: Invitații la centrul de evaluare
       completed_at: Finalizat la
       completion_status: Starea de finalizare
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Ultima conectare
       manager: Manager
       modals:
@@ -1605,7 +1628,7 @@ ro:
       not_completed_yet: Nefinalizat încă
       not_logged_in_yet: Nu sunt încă conectat
       not_started_yet: Nu a început încă
-      started_at: A început la
+      started_at: Început la
       statuses:
         completed: Completat
         in_progress: În curs de desfășurare
@@ -1705,12 +1728,12 @@ ro:
       uploading: Încărcare
   common:
     actions:
-      add: Adaugă
+      add: Adăugați
       approve: Aproba
       archive: Arhivă
       back_to_dashboard: Înapoi la tabloul de bord
       back_to_responses: Înapoi la răspunsuri
-      cancel: Anulează
+      cancel: Anulați
       change: Schimbare
       close: Închidere
       continue: Continua
@@ -1719,8 +1742,8 @@ ro:
       delete: Ștergeți
       done: Făcut
       download: Descărca
-      edit: Editare
-      export: Export
+      edit: Editați
+      export: Exportați
       filter: Filtru
       filter_by_tags: Filtrează după etichete
       go_back: Întoarce-te
@@ -1745,7 +1768,7 @@ ro:
       unarchive: Dezarhivare
       unpublish: Nepublicați
       unresolve: Nerezolvat
-      update: Actualizare
+      update: Actualizați
       upload: Încărcare
       upload_file: Încărcați fișierul
       verify: Verificare
@@ -1753,8 +1776,8 @@ ro:
       view_all_tasks: Vizualizați toate sarcinile
       view_detail: Vezi detalii
     column:
-      action: Acțiune
-      active: Activ
+      action: Acțiuni
+      active: Active
       allow_multiple_responses: Permiteți mai multe răspunsuri
       approval_notification_list: Lista de utilizatori de notificare de aprobare
       approvers_list: Lista de aprobatori
@@ -1777,7 +1800,7 @@ ro:
       first_name: Prenume
       icon: Icoană
       icon_color: Culoarea pictogramei
-      id: Id
+      id: ID
       json:
         answer: Răspuns JSON
         external_result: Rezultat extern JSON
@@ -1840,7 +1863,7 @@ ro:
     text:
       accepted: Acceptate
       all_pages: Toate paginile
-      cancel: Anulează
+      cancel: Anulați
       confirm: Confirmați
       continue: Continuați
       copied: Copiat în clipboard
@@ -1852,7 +1875,7 @@ ro:
       na: N/A
       none: Niciunul
       ok: Bine
-      refer_export_file: Consultați funcționalitatea Export pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
+      refer_export_file: Consultați funcționalitatea Exportați pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
       reference_language: Limba de referință
       response: Răspuns
       select: Alege
@@ -1916,6 +1939,8 @@ ro:
       timeout: Sesiunea dvs. a expirat. Vă rugăm să vă autentificați din nou pentru a continua.
       unauthenticated: Trebuie să vă conectați sau să vă înregistrați înainte de a continua.
       unconfirmed: Trebuie să vă confirmați adresa de e-mail înainte de a continua.
+    invalid_captcha: Introducerea captcha a fost invalidă.
+    invalid_security_question: Răspunsul la întrebarea de securitate a fost invalid.
     invitations:
       edit:
         confirm_password_label: Confirmați parola
@@ -1995,6 +2020,25 @@ ro:
     omniauth_callbacks:
       failure: Nu s-a putut autentifica de la %{kind} din cauza "%{reason}".
       success: Autentificat cu succes din contul %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Trimite
+        submit_verification_code: Trimiteți codul de verificare
+        verification_code: Codul de verificare
+      updated: Codul de verificare acceptat
+    paranoid_verify:
+      code_required: Vă rugăm să introduceți codul furnizat de echipa noastră de asistență
+    password_expired:
+      change_required: Parola dvs. a expirat. Vă rugăm să vă reînnoiți parola.
+      forced_changed: Trebuie să setați o parolă nouă pentru contul dvs.
+      password_policy_changed: Politica privind parola s-a schimbat. Vă rugăm să vă schimbați parola.
+      show:
+        change_my_password: Schimbă-mi parola
+        current_password: Parola curentă
+        new_password: Parolă nouă
+        new_password_confirmation: Confirmați noua parolă
+        renew_your_password: Reînnoiți parola
+      updated: Noua dvs. parolă este salvată.
     passwords:
       edit:
         instruction: Pentru a crea o parolă nouă, introduceți noua parolă în casetele de mai jos
@@ -2011,7 +2055,7 @@ ro:
       destroyed: Pa! Contul tău a fost anulat cu succes. Sperăm să vă revedem în curând.
       new:
         email: Adresă de e-mail
-        first_name: Numele și prenumele
+        first_name: Prenumele
         instruction: Completați datele de mai jos pentru a vă înregistra și a crea un cont nou
         last_name: Numele de familie
         privacy_notice: Vă respectăm confidențialitatea și nu tolerăm spam-ul. Nu vom da niciodată informațiile dvs. unei terțe părți.
@@ -2030,7 +2074,7 @@ ro:
         actions:
           sign_in: Înregistrează-te
         instruction: Vă rugăm să vă verificați e-mailul pentru instrucțiuni suplimentare
-        title: Înscriere reușită
+        title: Înregistrare reușită
       update_needs_confirmation: V-ați actualizat contul cu succes, dar trebuie să vă confirmăm noua adresă de e-mail. Vă rugăm să vă verificați e-mailul și să urmați linkul de confirmare pentru a confirma noua adresă de e-mail.
       updated: Contul tău a fost actualizat cu succes.
     sessions:
@@ -2076,6 +2120,7 @@ ro:
         reserved_subdomain: Subdomeniul %{value} este rezervat
         uniq_subdomain: Subdomeniul ar trebui să fie unic.
       add_manager:
+        cannot_be_self: Utilizatorul nu poate fi desemnat ca manager propriu
         manager_not_found: Managerul nu a fost găsit sau nu face parte din același proiect
         user_not_found: Utilizatorul nu a fost găsit sau nu face parte din același proiect
       admin:
@@ -2161,6 +2206,10 @@ ro:
       workshop_subject_create:
         already_exists: Subiectul există deja în acest centru de evaluare.
         part_of_other_workshop: Subiectul este deja participant la '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Nu sunt locuri disponibile pentru acest atelier.
+        scheduling_lead_time_passed: A trecut timpul de programare, nu puteți reînscrie subiectul.
+        workshop_subject_not_found: Subiectul atelierului nu a fost găsit
       workshops:
         no_available_assessor_slots: Nu există locuri disponibile pentru evaluator %{assessor}
         no_available_manager_slots: Nu există sloturi disponibile pentru manager %{manager}
@@ -2191,6 +2240,8 @@ ro:
   errors:
     assessments:
       timed_out: Nu veți putea efectua evaluarea %{assessment_name}, deoarece timpul a expirat.
+    equal_to_current_password: trebuie să fie diferită de parola curentă.
+    equal_to_email: trebuie să fie diferită de adresa de e-mail.
     error: Eroare
     error_401: Nu sunteți autorizat să accesați această resursă. Vă rugăm să vă conectați.
     error_403: Nu aveți permisiunea de a vizualiza această resursă.
@@ -2203,6 +2254,20 @@ ro:
     max_regeneration_limit: Limita maximă de regenerare depășită, contactați administrația.
     messages:
       data_report_blank: Raportul de date nu există
+      password_complexity:
+        digit:
+          one: trebuie să conțină cel puțin o cifră.
+          other: trebuie să conțină cel puțin %{count} cifre.
+        lower:
+          one: trebuie să conțină cel puțin o literă mică.
+          other: trebuie să conțină cel puțin %{count} litere mici.
+        symbol:
+          one: trebuie să conțină cel puțin un semn de punctuație sau un simbol.
+          other: trebuie să conțină cel puțin %{count} simboluri sau caractere speciale.
+        upper:
+          one: trebuie să conțină cel puțin o literă mare.
+          other: trebuie să conțină cel puțin %{count} litere mari.
+      taken_in_past: data și ora nu pot fi în trecut.
     module_error: Ceva nu a mers bine cu acest modul, vă rugăm să contactați administrația.
     module_error_editor: Ceva nu a mers bine cu acest modul, vă rugăm să verificați setările modulului.
     module_props_error: Ceva nu a mers bine cu acest modul.
@@ -2213,6 +2278,9 @@ ro:
       no_active_plan: Nu s-a găsit niciun plan IDP activ
     webhooks:
       multiple_webhook_error: URL-ul nu poate fi actualizat, deoarece există mai multe webhook-uri pentru acest proiect.
+    workshop:
+      ical_generation_failed: Nu s-a putut genera invitația calendaristică
+      missing_or_invalid: ID atelier lipsă sau invalid
   evaluators:
     errors:
       can_not_processed: nu poate fi prelucrat
@@ -2273,14 +2341,19 @@ ro:
       add_to_yahoo_calendar: Adăugați la yahoo calendar
       assessment_center_alert:
         btn_title: Campanie
-        message_part1: Completați toate prelucrările din acest
-        message_part2: înainte de a rezerva un slot.
+        complete_previous_groups: Finalizarea tuturor activităților de grup anterioare
+        complete_preworks: Completați toate lucrările preliminare
+        please_visit: Vă rugăm să vizitați
+        requirements_message: Puteți face o rezervare numai după ce ați îndeplinit următoarea cerință
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: pentru a îndeplini aceste cerințe.
       assessment_center_group_name: Centrul de evaluare
       booking_failed_msg: 'Nu s-a reușit rezervarea slotului: %{error}'
       buttons:
         book: Carte
         book_again: Rezervați din nou
-        cancel: Anulează
+        cancel: Anulați
         cancel_booking: Anulare rezervare
         confirm_booking: Confirmarea rezervării
         confirm_reschedule: Confirmare Reprogramare
@@ -2333,7 +2406,7 @@ ro:
         invites: Invitații
       what: Ce
       when: Când
-      workshop_start_text: Centrul dvs. de evaluare va începe în
+      workshop_start_label: Sesiunea dvs. va începe în
     break_time: Pauză
     campaign:
       actions:
@@ -2342,6 +2415,7 @@ ro:
         remove:
           confirmation: Introduceți numele campaniei actuale în caseta de text de mai jos pentru a elimina campania
           success: "%{campaignName} a fost eliminat cu succes."
+          template_confirmation: 'Introduceți numele șablonului curent în câmpul de mai jos pentru a-l șterge. Notă: Acest lucru va șterge și șablonul de campanie asociat.'
       users:
         actions:
           export:
@@ -2370,7 +2444,7 @@ ro:
             confirmation: Introduceți numele curent al proiectului de mai jos în caseta de text pentru a elimina proiectul
             success: Proiectul cu numele "%{projectName}" a fost eliminat cu succes
     delete: Ștergeți
-    edit: Editare
+    edit: Editați
     error_warning: Ups, ceva nu a mers bine cu evaluarea ta. Vă rugăm să contactați asistența.
     hogan:
       cannot_start: Nu poți începe evaluarea hogan chiar acum. Vă rugăm să încercați după câteva minute.
@@ -2402,7 +2476,7 @@ ro:
     session_timeout_modal:
       buttons:
         close: Închidere
-        log_out: Deconectați-vă acum
+        log_out: Deconectare acum
         re_login: Conectați-vă din nou
         stay_logged_in: Rămâneți conectat
       message: Sesiunea dvs. se va încheia în 2 minute din cauza inactivității. Vă rugăm să faceți clic pe "Rămâneți conectat" pentru a vă continua sesiunea sau veți fi deconectat automat.
@@ -2418,7 +2492,7 @@ ro:
     test_webhook:
       create_success: Testul Webhook a avut succes.
       success: Succes
-    update: Actualizare
+    update: Actualizați
     upload: Încărcare
     workshop_invited_subjects:
       statuses:
@@ -2459,7 +2533,7 @@ ro:
       copy_to_all: Copiază în toate
       end_date: Data de încheiere
       from: Din
-      new_schedule: Adăugați un program nou
+      new_schedule: Adaugă un program nou
       new_schedule_description: Ora de începere trebuie să fie mai devreme decât ora de sfârșit
       no_slots: Nu au fost adăugate sloturi
       required_error: nu poate fi gol
@@ -2505,7 +2579,7 @@ ro:
       action_private: Da
       action_public: Nu
       add_development_action: Adăugarea acțiunii de dezvoltare
-      all: Tot
+      all: Toți
       approved: Aprobat
       board_view:
         completed: Completat
@@ -2517,10 +2591,10 @@ ro:
       generate_by_ai: Generați prin AI
       generate_more: Generează mai mult
       generating_development_actions: Generarea de acțiuni de dezvoltare...
-      heading: Acțiuni de dezvoltare
-      incomplete_error: Acțiuni de dezvoltare incomplete
+      heading: Acțiune de dezvoltare
+      incomplete_error: Acțiune de dezvoltare incomplete
       incomplete_error_message: Unele acțiuni de dezvoltare sunt incomplete. Vă rugăm să le completați înainte de a trimite IDP-ul.
-      incomplete_warning: Acțiuni de dezvoltare incomplete
+      incomplete_warning: Acțiune de dezvoltare incomplete
       incomplete_warning_message: Unele acțiuni de dezvoltare sunt incomplete. Sunteți sigur că doriți să vă marcați IDP-ul complet?
       learning_from_others: Învățând de la alții
       manage_skills: Gestionați abilitățile
@@ -2539,12 +2613,12 @@ ro:
       submit_plan: Trimiteți planul
       write_here: Scrie aici...
     edit_plan: Editați planul
-    edit_progress: Editare progres
+    edit_progress: Editați progres
     initial_steps:
       add_skill_group_description: Pe baza rezultatelor evaluării dvs., iată câteva dintre domeniile de puncte forte și dezvoltare pentru dvs. Alegeți abilitățile pe care doriți să le dezvoltați în continuare ca parte a planului de dezvoltare.
       add_skill_group_title: Explorarea abilităților %{category}
-      add_skills: Adăuga
-      add_skills_step: Adăugați abilități
+      add_skills: Adăugați
+      add_skills_step: Adaugă abilități
       continue_to_rate_skills: Continuați să evaluați competențele
       getting_started: Introducere
       less_skills: Afișați mai puține abilități
@@ -2690,6 +2764,7 @@ ro:
         required: Răspunsul la întrebare este necesar
       max_words: Cuvinte maxime
       min_words: Cuvinte minime
+      no_reflective_questions: Fără întrebări reflexive
       title: Întrebări reflexive
       update_failed: A apărut o eroare în timpul actualizării
       updated_successfully: Răspunsurile dumneavoastră au fost actualizate cu succes
@@ -2803,9 +2878,9 @@ ro:
     zh-Hant: Chineză - Tradițională
     zh-TW: Chineză (Taiwan)
   license_usage:
-    active: Activ
+    active: Active
     campaign_name: Numele campaniei
-    inactive: Inactiv
+    inactive: Inactivă
     status_updated_at: Ultima actualizare de stare
     status_updated_by: Ultima actualizare de către
     subject_email: Subiectul e-mailului
@@ -2833,6 +2908,12 @@ ro:
     used_number: Licențe folosite
     used_out_of: "%{used} din %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Toate drepturile rezervate
+    footer:
+      regards: Regards,
+      team_name: Echipa Lighthouse
+      technical_support: Pentru orice probleme tehnice, vă rugăm să ne scrieți la <x>email</x> și vă vom răspunde în termen de 24 de ore.
     from: Întreprinderea talentelor
     idp:
       manager_unread_comments:
@@ -2890,6 +2971,8 @@ ro:
         instructions: Faceți clic pe linkul de mai jos pentru a vă conecta la Lighthouse.
         signin_link: Link de conectare
       subject: Link de conectare pentru Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Contul a fost dezactivat din cauza inactivității
       warning: Contul tău va fi dezactivat în curând din cauza inactivității
@@ -2921,7 +3004,7 @@ ro:
     change_photo: Schimbați fotografia
     email: E-mail
     female: Femei
-    first_name: Numele și prenumele
+    first_name: Prenumele
     gender: Gen
     incomplete: Detaliile profilului dvs. sunt incomplete. Vă rugăm să completați detaliile profilului dvs
     last_name: Numele de familie
@@ -2936,7 +3019,7 @@ ro:
     success_update: Profilul a fost salvat cu succes
     timezone: Zona orară
     title: Profilul meu
-    update: Actualizare
+    update: Actualizați
     update_required: Sunt necesare actualizări ale profilului
   profiles:
     edit:
@@ -2972,7 +3055,7 @@ ro:
       status_changed: a schimbat starea de la <i>%{from}</i> la <i>%{to}</i>
       updated_text: text actualizat
     tabs:
-      all: Tot
+      all: Toți
       approved: Aprobat
       my_tasks: Sarcinile mele
   report_bundles:
@@ -2985,7 +3068,7 @@ ro:
     report_bundles: Pachete de rapoarte
     reports:
       actions:
-        add: Adăugați un raport nou
+        add: Adaugă un raport nou
         remove:
           confirm_message: Sigur doriți să ștergeți raportul "%{name}" din "%{report_bundle_name}"?
           confirm_title: Confirmare necesară
@@ -3001,7 +3084,7 @@ ro:
       details: Detalii
       download: Descărcați raportul
       download_csv: Descărcați CSV
-      edit: Editare
+      edit: Editați
       evaluate: Evalua
       extend_time: Prelungiți timpul
       goto_dashboard: Click aici pentru a continua
@@ -3018,7 +3101,7 @@ ro:
         success_message: Raportul %{name} a fost dezarhivat cu succes
       update_language: Actualizați limba
       view: Vezi raportul
-    active: Activ
+    active: Active
     archived: Arhivate
     builder:
       graph:
@@ -3082,7 +3165,7 @@ ro:
         baseline_score: Scorul de referință
         blindspots: Blindspots
         campaign_factor_conditions: Condițiile factorului de campanie
-        cancel: Anulează
+        cancel: Anulați
         color: Culoare
         delete: Ștergeți
         description: Descriere
@@ -3179,7 +3262,7 @@ ro:
     reports: Rapoarte
     reset: Reseta
     show:
-      export_pdf: Export în PDF
+      export_pdf: Exportați în PDF
       header: Raport
     statuses:
       approved: Aprobat
@@ -3206,6 +3289,9 @@ ro:
       send_password_email_success: E-mail trimis utilizatorului %{email} cu parola.
     title: Resetați parola
   select: Alege
+  sessions:
+    errors:
+      recaptcha: Verificarea Recaptcha a eșuat. Vă rugăm să încercați din nou.
   shared:
     filters:
       clear: Ștergeți filtrele
@@ -3269,12 +3355,12 @@ ro:
         access_reports_at: Accesați raportul la
         access_reports_at_date: Dată
         access_reports_at_time: Oră
-        client_ids: Închirieri pentru clienți
+        client_ids: Clienți
         manager_ids: Manageri
         report_ids: Rapoarte
         user_ids: Utilizatorii
       administrator:
-        active: Activ
+        active: Active
         created_at: Data creării
         current_password: Parolă curentă
         disabled: Dezactiva
@@ -3314,7 +3400,7 @@ ro:
           identified: Utilizatori identificați
         updated_at: Data modificării
       assessment:
-        active: Activ
+        active: Active
         categories:
           '360': Campania 360
           agile: AGIL
@@ -3345,7 +3431,7 @@ ro:
           saville: Evaluarea Saville
         updated_at: Data modificării
       block:
-        active: Activ
+        active: Active
         assign_to_assessment_ids: Evaluări
         created_at: Data creării
         id: ID
@@ -3389,13 +3475,13 @@ ro:
         id: ID
         updated_at: Data modificării
       dimension:
-        active: Activ
+        active: Active
         created_at: Data creării
         id: ID
         name: Nume
         updated_at: Data modificării
       factor:
-        active: Activ
+        active: Active
         created_at: Data creării
         id: ID
         name: Nume
@@ -3418,7 +3504,7 @@ ro:
         unlimited: Nelimitat
         used_number: Număr de licență folosit
       memebrship:
-        active: Activ
+        active: Active
         created_at: Data creării
         disabled: Dezactiva
         email: E-mail
@@ -3437,7 +3523,7 @@ ro:
         updated_at: Data modificării
         user_access: Acces utilizator
       norm:
-        active: Activ
+        active: Active
         bachelors_or_masters_qualification: Calificare de licență sau master
         created_at: Data creării
         description: Descriere
@@ -3469,7 +3555,7 @@ ro:
         updated_by: Editat de
         work_environment: Mediul de lucru
       question:
-        active: Activ
+        active: Active
         assign_to_assessment_ids: Evaluări
         created_at: Data creării
         id: ID
@@ -3482,12 +3568,12 @@ ro:
         id: ID
         updated_at: Data modificării
       user:
-        active: Activ
+        active: Active
         created_at: Data creării
         current_password: Parolă curentă
         disabled: Dezactiva
         email: Adresă de e-mail
-        first_name: Numele și prenumele
+        first_name: Prenumele
         id: ID
         last_name: Numele de familie
         manage_client_ids: Închirierea clientului
@@ -3523,12 +3609,12 @@ ro:
           identified: Utilizatori identificați
         updated_at: Data modificării
       user_form:
-        active: Activ
+        active: Active
         created_at: Data creării
         current_password: Parolă curentă
         disabled: Dezactiva
         email: Adresă de e-mail
-        first_name: Numele și prenumele
+        first_name: Prenumele
         id: ID
         last_name: Numele de familie
         parent: Direct Manager
@@ -3578,7 +3664,7 @@ ro:
       checkbox_with_client_link: Făcând clic pe această casetă, sunteți de acord că ați citit declarația noastră de confidențialitate și declarația de confidențialitate a clientului nostru și că sunteți de acord cu colectarea și prelucrarea informațiilor dvs. personale descrise în acestea, inclusiv cu transferul internațional al informațiilor dvs. personale.
       privacy_notice: Notificare privind confidențialitatea
       title: Consimțământul privind prelucrarea datelor
-    action: Acțiune
+    action: Acțiuni
     add: Adaugă
     and: Și
     approve: Aproba
@@ -3593,7 +3679,7 @@ ro:
     assessment: Evaluare
     back_to_tasks: Înapoi la sarcini
     begin: Începeți
-    cancel: Anulează
+    cancel: Anulați
     close_evaluation_modal:
       message: Odată ce ați vizualizat raportul, %{pronoun_or_name} nu va mai putea primi alte evaluări
       title: Sunteți sigur că doriți să vizualizați raportul?
@@ -3615,7 +3701,7 @@ ro:
     download_pdf: Descarcă PDF
     download_report: Descărcați raportul
     download_reports: Descărcați rapoarte
-    edit_user: Editare utilizator
+    edit_user: Editați utilizator
     email_approve_request: Cerere de aprobare prin e-mail
     email_schedules:
       delete_successful: Programul de e-mail a fost șters cu succes
@@ -3628,8 +3714,8 @@ ro:
       title: Ajutor pentru evaluare
     evaluations: Evaluări
     evaluator: Evaluator
-    export_pdf: Export PDF
-    first_name: Numele și prenumele
+    export_pdf: Exportați PDF
+    first_name: Prenumele
     first_name_error: Vă rugăm să introduceți prenumele
     help: Ajutor
     language: Limba
@@ -3690,7 +3776,7 @@ ro:
       actions:
         approve_report: Aprobă raportul
         download_report: Descărcați raportul
-        edit: Editare
+        edit: Editați
         hold_report: Raport de așteptare
         login: Autentificare
         mark_as_done: Marcați ca finalizat
@@ -3724,7 +3810,7 @@ ro:
       email_type:
         bcc: Bcc
         cc: Cc
-        edit: Editare
+        edit: Editați
         max_length_warning: "%{x} caractere rămase"
         message: Mesajul dvs
         send: Trimiteți
@@ -3780,7 +3866,7 @@ ro:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Activ
+    active: Active
     allow_multiple_respones: Permiteți utilizatorilor să trimită mai multe răspunsuri
     png: PNG
     regenerate_link: Regenerați linkul
@@ -3793,7 +3879,7 @@ ro:
       value: Valoare
     fields:
       email: Adresă de e-mail
-      first_name: Numele și prenumele
+      first_name: Prenumele
       last_name: Numele de familie
     form:
       email: E-mail
@@ -3825,7 +3911,7 @@ ro:
       export: Exportați utilizatori
       export_compact_completion_status: Compact
       export_detailed_completion_status: Detaliat
-      export_reports_and_assessments: Rapoarte și evaluări de export
+      export_reports_and_assessments: Exportați rapoarte și evaluări
       import: Importați utilizatori
       import_reports: Importați rapoarte și evaluări
   user_assessment:

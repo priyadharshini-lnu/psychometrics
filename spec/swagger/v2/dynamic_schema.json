@@ -8098,6 +8098,18 @@
                 "privacy_link_url": {
                   "type": "string",
                   "nullable": true
+                },
+                "allow_video_call_recording": {
+                  "type": "boolean",
+                  "nullable": false
+                },
+                "enable_video_call_recording_for_all_new_campaigns": {
+                  "type": "boolean",
+                  "nullable": false
+                },
+                "video_call_recording_expiry_in_seconds": {
+                  "type": "integer",
+                  "nullable": true
                 }
               },
               "required": [],
@@ -8232,6 +8244,18 @@
               },
               "privacy_link_url": {
                 "type": "string",
+                "nullable": true
+              },
+              "allow_video_call_recording": {
+                "type": "boolean",
+                "nullable": true
+              },
+              "enable_video_call_recording_for_all_new_campaigns": {
+                "type": "boolean",
+                "nullable": true
+              },
+              "video_call_recording_expiry_in_seconds": {
+                "type": "integer",
                 "nullable": true
               }
             },

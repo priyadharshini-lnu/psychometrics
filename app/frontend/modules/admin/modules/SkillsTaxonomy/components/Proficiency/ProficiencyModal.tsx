@@ -128,7 +128,15 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
       render: (_: unknown, record, index: number) => (
         <Form.Item
           name={['levelDefinition', index, 'name']}
-          rules={[{ required: true }]}
+          rules={[
+            {
+              validator: (_, value) => (value && value.trim() !== ''
+                ? Promise.resolve()
+                : Promise.reject(new Error(
+                  I18n.t('administration.proficiency_levels.errors.create.level_name_must_exist'),
+                ))),
+            },
+          ]}
         >
           <Input
             onInput={e => handleLevelDefinitionChange(index, 'name', (e.target as HTMLInputElement).value)}
@@ -143,7 +151,15 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
       render: (_: unknown, record, index: number) => (
         <Form.Item
           name={['levelDefinition', index, 'description']}
-          rules={[{ required: true }]}
+          rules={[
+            {
+              validator: (_, value) => (value && value.trim() !== ''
+                ? Promise.resolve()
+                : Promise.reject(new Error(
+                  I18n.t('administration.proficiency_levels.errors.create.level_definition_must_exist'),
+                ))),
+            },
+          ]}
         >
           <Input
             onInput={e => handleLevelDefinitionChange(index, 'description', (e.target as HTMLInputElement).value)}
@@ -177,7 +193,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
       const response = await collectionAction({
         method: 'get',
         action: 'skill_proficiency',
-        body: { skillId },
+        body: { skillId, projectId: params.projectId },
       }) as SkillProficiency
 
       if (response?.level) {

@@ -519,6 +519,7 @@ hu:
         created_at: Létrehozás dátuma
         id: AZONOSÍTÓ
         name: Név
+        owner: Tulajdonos
         updated_at: Módosítás dátuma
       factor:
         active: Aktív
@@ -545,7 +546,11 @@ hu:
         updated_at: Módosítás dátuma
       library:
         created_at: Létrehozás dátuma
+        description: Leírás
+        files: Fájlok
         id: AZONOSÍTÓ
+        name: Név
+        owner: Tulajdonos
         type: Miniatűr
         updated_at: Módosítás dátuma
       license:
@@ -617,6 +622,7 @@ hu:
         created_at: Létrehozás dátuma
         id: AZONOSÍTÓ
         name: Név
+        owner: Tulajdonos
         updated_at: Módosítás dátuma
       report:
         created_at: Létrehozás dátuma
@@ -785,6 +791,8 @@ hu:
           attributes:
             current_password:
               invalid: A jelenlegi jelszó helytelen
+            manager_id:
+              cannot_be_self: A felhasználó nem jelölhető ki saját menedzserként
         user_idp_comment:
           reply_to_reply: Nem tud válaszolni egy válaszra (csak egy beágyazási szint engedélyezett)
         user_idp_plan:
@@ -809,8 +817,9 @@ hu:
         bulk_reports: Tömeges jelentések
         bulk_rescore_campaign_factors: Tömeges újrapontozási kampánytényezők
         bulk_update_evaluation_status: Tömeges frissítés kiértékelési állapota
-        compact_completion_status_export: Kompakt befejezési állapot exportálása
-        completion_status_export: Befejezési állapot exportálása
+        compact_completion_status_export: Kompakt teljesítési állapot exportálása
+        completion_status_export: Teljesítési állapotok exportálása
+        copy_as_template_or_campaign: Kampány másolása sablonként
         copy_dimension: Méret másolása
         create_threesixty_campaign: Hozzon létre Threesixty kampányt
         data_report_export: Adatjelentés exportálása
@@ -864,7 +873,7 @@ hu:
         normalize_factor_scores: Faktorpontszámok normalizálása
         regenerate_campaign_reports: Kampányjelentések újragenerálása
         regenerate_report: Jelentés újragenerálása
-        regenerate_threesixty_report: Regenerálja a Threesixty jelentést
+        regenerate_threesixty_report: Újra generálás a Threesixty jelentést
         remap_report_assessment: Jelentés értékelésének újratervezése
         rescore_assessment: Pontozás újraértékelése
         rescore_user_assessment: Felhasználói értékelés újrapontozása
@@ -894,6 +903,7 @@ hu:
     invalid_job: Ez az értesítés a törölt rekordnak felel meg
     mark_as_read: Összes megjelölése olvasottnak
     more: Több
+    no_notifications: Nincs értesítés
     notifications: Értesítések
     results: Eredmények
     super_admin:
@@ -1073,6 +1083,7 @@ hu:
         description: Ez a kiértékelési munkamenet érvénytelenné vált. Ez akkor fordulhat elő, ha külön lapon, böngészőben vagy eszközön folytatta a kiértékelést.
         title: Az utolsó kérés sikertelen
       next: Következő
+      no_skill_mapping_message: Ehhez a munkakörhöz nem készült készségtérkép, forduljon az adminisztrátorhoz.
       read_only: Csak olvasási módban van, nem módosíthat semmilyen eredményt.
       save: Mentés
       submissionFailedAlert:
@@ -1141,6 +1152,7 @@ hu:
     add_group_form:
       previous_assessments_required: Az értékelések az alábbi sorrendben futnak
       previous_group_required: Korábbi csoportos teljesítés szükséges
+      require_previous_groups_completion_for_booking: A foglalás előtt az összes korábbi csoport befejezését megköveteljük
     menu:
       assessment_center: Assessment Center
       assessment_center_invites: Értékelőközpont-meghívók
@@ -1372,6 +1384,7 @@ hu:
       bulk_download: Tömeges letöltés
       bulk_update_evaluation_as_done: Megjelölés készként
       bulk_update_evaluation_as_undone: Készként való kijelölés törlése
+      convert_to_template: Átalakítás sablonba
       download: Jelentések letöltése
       export_completion_status: Exportálás befejezési állapota
       export_external: Külső
@@ -1391,7 +1404,7 @@ hu:
       reset_all_nominations: Összes jelölés visszaállítása
       reset_participant: Az összes résztvevő visszaállítása
     allow_msg_proctoring_workshop_activity: Az értékelő központ tevékenységeit nem ellenőrzik.
-    assessment_center_heading: Értékelő központ részletei
+    assessment_center_heading_label: A munkamenet részletei
     assessments_heading: Az Ön feladatai
     column:
       assessment_name: Értékelés neve
@@ -1419,7 +1432,7 @@ hu:
       mettl_schedule_name: Mettl ütemezés neve
       title: Az értékelés részletei
     messages:
-      export_completion_statuses_scheduled: A befejezési állapotok exportálási feladatának ütemezése sikeresen megtörtént
+      export_completion_statuses_scheduled: A teljesítési állapot  exportálási feladatának ütemezése sikeresen megtörtént
       export_occupations_job_scheduled: Foglalkozások Az exportálási feladat ütemezése sikeresen megtörtént
       export_reports_and_assessments_statuses_scheduled: A jelentések és értékelések exportálása feladat ütemezése sikeresen megtörtént
       external_results_export_scheduled: A külső értékelési exportálási feladat ütemezése sikeresen megtörtént
@@ -1528,7 +1541,9 @@ hu:
       in_progress: Folyamatban
       ineligible: Nem támogatható
       interrupted: Megszakított
+      new: Új
       not_started: Nem indult
+      progress: Folyamatban
       timed_out: Lejárt az idő
       universal_link: Univerzális kapcsolat
     ungrouped_assessments_heading: Csoportosítatlan
@@ -1549,6 +1564,7 @@ hu:
     column:
       assessor_access: Értékelői hozzáférés
       auto_assign: Automatikus hozzárendelés
+      locales: Helyszínek
       main_report: Fő jelentés
       report_bundle: Jelentéscsomag
       report_name: Jelentés neve
@@ -1571,6 +1587,13 @@ hu:
         apply: Alkalmazza ezeket a módosításokat a kampány meglévő felhasználóira.
         msg_text: <strong>"%{reportName}"</strong> jelentést próbál törölni
         title: Eltávolítja a jelentést?
+      update_languages:
+        default_language: Alapértelmezett nyelv
+        other_available_languages: Egyéb rendelkezésre álló nyelvek
+        select_default_language: Alapértelmezett nyelv kiválasztása
+        select_languages: Nyelvek kiválasztása
+        success_msg: A nyelvek sikeresen frissültek
+        title: Jelentés nyelve
       user_access:
         apply: Alkalmazza ezeket a módosításokat a kampány meglévő felhasználóira.
         title:
@@ -1588,8 +1611,8 @@ hu:
       assessment_center: Assessment Center
       assessment_center_invites: Értékelőközpont-meghívók
       completed_at: 'Befejezve:'
-      completion_status: Befejezési állapot
-      hogan_id: Hogan Id
+      completion_status: Teljesítési állapotok
+      hogan_id: Hogan ID
       last_login: Utolsó bejelentkezés
       manager: Menedzser
       modals:
@@ -1777,7 +1800,7 @@ hu:
       first_name: Keresztnév
       icon: Ikon
       icon_color: Ikon színe
-      id: Id
+      id: ID
       json:
         answer: Válasz JSON
         external_result: Külső eredmény JSON
@@ -1820,7 +1843,7 @@ hu:
       assessment: Értékelés
       assessments: Értékelések
       campaigns: Kampányok
-      completion_statuses: Befejezési állapotok
+      completion_statuses: Teljesítési állapotok
       datasheet: Adatlap
       projects: Projektek
       report: Jelentés
@@ -1916,6 +1939,8 @@ hu:
       timeout: Az Ön munkamenete lejárt. Kérjük, jelentkezzen be újra a folytatáshoz.
       unauthenticated: A folytatáshoz be kell jelentkeznie vagy regisztrálnia kell.
       unconfirmed: A folytatás előtt meg kell erősítenie e-mail címét.
+    invalid_captcha: A captcha bevitele érvénytelen volt.
+    invalid_security_question: A biztonsági kérdésre adott válasz érvénytelen volt.
     invitations:
       edit:
         confirm_password_label: Jelszó megerősítése
@@ -1995,6 +2020,25 @@ hu:
     omniauth_callbacks:
       failure: Nem sikerült hitelesíteni %{kind}-ből, mert "%{reason}".
       success: Sikeresen hitelesítve a(z) %{kind} fiókból.
+    paranoid_verification_code:
+      show:
+        submit: Küldje be a
+        submit_verification_code: Ellenőrző kód beküldése
+        verification_code: Ellenőrző kód
+      updated: Ellenőrző kód elfogadva
+    paranoid_verify:
+      code_required: Kérjük, adja meg a kódot, amit a támogató csapatunk megadott
+    password_expired:
+      change_required: A jelszava lejárt. Kérjük, újítsa meg jelszavát.
+      forced_changed: Új jelszót kell beállítania a fiókjához.
+      password_policy_changed: A jelszószabályzat megváltozott. Kérjük, változtassa meg jelszavát.
+      show:
+        change_my_password: Jelszó módosítása
+        current_password: Jelenlegi jelszó
+        new_password: Új jelszó
+        new_password_confirmation: Új jelszó megerősítése
+        renew_your_password: Jelszó megújítása
+      updated: Az új jelszó elmentésre kerül.
     passwords:
       edit:
         instruction: Új jelszó létrehozásához kérjük, írja be az új jelszót az alábbi mezőkbe
@@ -2076,6 +2120,7 @@ hu:
         reserved_subdomain: A(z) %{value} altartomány le van foglalva
         uniq_subdomain: Az altartománynak egyedinek kell lennie.
       add_manager:
+        cannot_be_self: A felhasználó nem jelölhető ki saját menedzserként
         manager_not_found: A menedzser nem található, vagy nem része ugyanannak a projektnek
         user_not_found: A felhasználó nem található, vagy nem része ugyanannak a projektnek
       admin:
@@ -2161,6 +2206,10 @@ hu:
       workshop_subject_create:
         already_exists: A tantárgy már létezik ebben az értékelési központban.
         part_of_other_workshop: Az alany már résztvevője a(z) '%{workshop_name}'-nek.
+      workshop_subject_re_enroll:
+        no_seats_available: Erre a workshopra nincs szabad hely.
+        scheduling_lead_time_passed: Az ütemezési határidő lejárt, a tantárgyat nem lehet újra beiratkozni.
+        workshop_subject_not_found: Workshop tárgya nem található
       workshops:
         no_available_assessor_slots: Nincs szabad hely a(z) %{assessor}
         no_available_manager_slots: Nincs szabad hely a(z) %{manager} menedzser számára
@@ -2191,6 +2240,8 @@ hu:
   errors:
     assessments:
       timed_out: Nem tudja elvégezni a %{assessment_name} értékelést, mivel lejárt az idő.
+    equal_to_current_password: nem lehet azonos az aktuális jelszóval.
+    equal_to_email: másnak kell lennie, mint az e-mail.
     error: Hiba
     error_401: Az erőforrás elérésére nincs jogosultsága. Kérjük, jelentkezzen be.
     error_403: Nincs engedélye az erőforrás megtekintésére.
@@ -2203,6 +2254,20 @@ hu:
     max_regeneration_limit: Túllépte a maximális regenerációs korlátot, forduljon az adminisztrációhoz.
     messages:
       data_report_blank: Az adatjelentés nem létezik
+      password_complexity:
+        digit:
+          one: legalább egy számjegyet kell tartalmaznia
+          other: legalább <x>count</x> számjegyeket kell tartalmaznia
+        lower:
+          one: legalább egy kisbetűt kell tartalmaznia
+          other: legalább <x>count</x> kisbetűket kell tartalmaznia.
+        symbol:
+          one: legalább egy írásjelet vagy szimbólumot kell tartalmaznia.
+          other: legalább <x>count</x> írásjeleket vagy szimbólumokat kell tartalmaznia.
+        upper:
+          one: legalább egy nagybetűt kell tartalmaznia
+          other: legalább <x>count</x> nagybetűket kell tartalmaznia.
+      taken_in_past: nem lehet azonos a korábban használt jelszóval.
     module_error: Valami baj történt ezzel a modullal, kérjük, lépjen kapcsolatba az adminisztrációval.
     module_error_editor: Valami elromlott ezzel a modullal, kérjük, ellenőrizze a modul beállításait.
     module_props_error: Valami elromlott ezzel a modullal.
@@ -2213,6 +2278,9 @@ hu:
       no_active_plan: Nem található aktív IDP-terv
     webhooks:
       multiple_webhook_error: Az URL nem frissíthető, mivel ehhez a projekthez több webhook is tartozik.
+    workshop:
+      ical_generation_failed: Nem tudott naptármeghívót generálni
+      missing_or_invalid: Hiányzó vagy érvénytelen workshop_id
   evaluators:
     errors:
       can_not_processed: nem dolgozható fel
@@ -2273,8 +2341,13 @@ hu:
       add_to_yahoo_calendar: Hozzáadás a yahoo naptárhoz
       assessment_center_alert:
         btn_title: Kampány
-        message_part1: Végezze el az összes előmunkálatot ebben a
-        message_part2: mielőtt időpontot foglal.
+        complete_previous_groups: Végezze el az összes korábbi csoporttevékenységet
+        complete_preworks: Az összes előmunkálat befejezése
+        please_visit: Kérjük, látogasson el a
+        requirements_message: Csak akkor tud foglalni, ha teljesíti a következő követelményt
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: hogy teljesítse ezeket a követelményeket.
       assessment_center_group_name: Értékelő központ
       booking_failed_msg: 'Nem sikerült foglalni: %{error}'
       buttons:
@@ -2333,7 +2406,7 @@ hu:
         invites: Meghívók
       what: Mi
       when: Amikor
-      workshop_start_text: Az Ön értékelőközpontja a következő időpontban indul
+      workshop_start_label: A munkamenet a következő időpontban kezdődik
     break_time: Szünet
     campaign:
       actions:
@@ -2342,6 +2415,7 @@ hu:
         remove:
           confirmation: A kampány eltávolításához írja be az alábbi szövegmezőbe az aktuális kampány nevét
           success: "%{campaignName} sikeresen eltávolításra került."
+          template_confirmation: 'A törléshez adja meg az aktuális sablon nevét az alábbi mezőben. Megjegyzés: Ezzel a kapcsolódó kampánysablon is törlődik.'
       users:
         actions:
           export:
@@ -2668,6 +2742,7 @@ hu:
         required: A kérdésre adott válasz szükséges
       max_words: Szavak maximális száma
       min_words: Minimális szavak
+      no_reflective_questions: Nincsenek reflektív kérdések
       title: Reflektív kérdések
       update_failed: Hiba történt a frissítés során
       updated_successfully: Válaszait sikeresen frissítettük
@@ -2675,6 +2750,7 @@ hu:
     skill_gap_report:
       title: Készséghiány-jelentés
     status: Állapot
+    technical: Műszaki
     user_idp_status:
       approved: Jóváhagyott
       completed: Befejezett
@@ -2701,7 +2777,7 @@ hu:
   jobs:
     threesixty:
       bulk_downloads: A tömeges letöltési feladat ütemezése sikeresen megtörtént
-      export_completion_statuses_scheduled: A befejezési állapotok exportálási feladatának ütemezése sikeresen megtörtént
+      export_completion_statuses_scheduled: A teljesítési állapot exportálási feladatának ütemezése sikeresen megtörtént
       export_raw_results_scheduled: A nyers eredmények exportálási feladatának ütemezése sikeresen megtörtént
       export_scores_scheduled: A pontszám-exportálási feladat ütemezése sikeresen megtörtént
       reports:
@@ -2810,6 +2886,12 @@ hu:
     used_number: Használt licencek
     used_out_of: "%{used} a(z) %{total} -ból"
   mailer:
+    copyright:
+      text: Lighthouse. Minden jog fenntartva
+    footer:
+      regards: Üdvözlettel,
+      team_name: Világítótorony csapat
+      technical_support: Bármilyen technikai probléma esetén kérjük, írjon nekünk a <x>email</x> címre, és 24 órán belül válaszolunk.
     from: A tehetség vállalkozás
     idp:
       manager_unread_comments:
@@ -2867,6 +2949,8 @@ hu:
         instructions: Kattintson az alábbi linkre a világítótoronyba való bejelentkezéshez.
         signin_link: Bejelentkezési link
       subject: Bejelentkezési link a Lighthouse-hoz
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Fiókját inaktivitás miatt letiltották
       warning: Fiókját hamarosan letiltjuk inaktivitás miatt
@@ -3183,6 +3267,9 @@ hu:
       send_password_email_success: A(z) %{email} felhasználónak küldött e-mail jelszóval.
     title: Jelszó visszaállítása
   select: Kiválaszt
+  sessions:
+    errors:
+      recaptcha: A Recaptcha ellenőrzése sikertelen. Kérjük, próbálja meg újra.
   shared:
     filters:
       clear: Szűrők törlése

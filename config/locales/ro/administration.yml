@@ -3,8 +3,8 @@ ro:
   administration:
     actions: Acțiuni
     active_record_audits:
-      action: Acțiune
-      audit_id: Audit Id
+      action: Acțiuni
+      audit_id: Audit ID
       auditable_id: ID înregistrare
       auditable_type: Tip de înregistrare
       audited_changes: Modificări auditate
@@ -15,6 +15,8 @@ ro:
       title: Modificări auditate
     administrator:
       sessions:
+        errors:
+          recaptcha: Verificarea Recaptcha a eșuat
         new:
           forgot_password: Ai uitat parola?
           instruction: Vă rugăm să vă conectați cu informațiile personale ale contului dvs
@@ -63,9 +65,9 @@ ro:
       list:
         actions:
           api_keys: Chei API
-          cancel_text: Anula
+          cancel_text: Anulați
           change_password: Resetați parola
-          edit: Editare
+          edit: Editați
           export_admins_with_permissions: Exportul rolurilor și permisiunilor de administrator
           export_success: Lucrarea de export de administrator a fost programată cu succes. Vă rugăm să verificați starea notificării.
           login: Login
@@ -77,7 +79,7 @@ ro:
           actions: Acțiuni
           created_at: Creat la
           email: E-mail
-          id: Id
+          id: ID
           name: Nume
         header:
           add_admin: Adăugați administrator
@@ -86,7 +88,7 @@ ro:
           export_admins_with_permissions: Exportul rolurilor și permisiunilor de administrator
       modals:
         delete:
-          cancelText: Anula
+          cancelText: Anulați
           content: Sigur doriți să eliminați utilizatorul administrator cu e-mailul "%{email}"?
           okText: Ok
           onSuccess: Administratorul cu e-mailul "%{email}" a fost eliminat cu succes
@@ -94,16 +96,16 @@ ro:
       permissions:
         labels:
           apiKeys:
-            manage: Gestiona
+            manage: Acțiuni
             title: Chei API
             view: Vedere
           assessments:
-            manage: Gestiona
+            manage: Acțiuni
             title: Evaluări
             view: Vedere
           assessors:
-            manage: Gestiona
-            title: Evaluatorilor
+            manage: Acțiuni
+            title: Evaluatori
             view: Vedere
           auditLogs:
             title: Jurnale de audit
@@ -113,13 +115,13 @@ ro:
             title: Rapoarte de audit
             user_report_events: Jurnale de aprobare a rapoartelor
           campaignFactors:
-            manage: Gestiona
+            manage: Acțiuni
             title: Factorii campaniei
             view: Vedere
           campaigns:
             bulk_download: Descărcare în bloc
             bulk_regenerate_reports: Rapoarte de regenerare în bloc
-            manage: Gestiona
+            manage: Acțiuni
             manage_admins: Gestionați administratorii
             manage_factor_benchmark_scores: Gestionați scorurile de referință ale factorilor
             manage_messages: Gestionați mesajele
@@ -135,50 +137,53 @@ ro:
             view_stats: Vezi statistici
           clients:
             export_data_report: Exportați raportul de date
-            manage: Gestiona
+            manage: Acțiuni
             title: Clientii
             view: Vedere
             view_licenses: Vizualizați licențele
           communications:
-            manage: Gestiona
+            manage: Acțiuni
             title: Comunicaţii
             view: Vedere
           dashboards:
             accesssheet_manage: Gestionarea foii de acces
             accesssheet_settings: Setări foaie de acces
             accesssheet_view: Vizualizare foaie de acces
+            export: Export
             title: Dashboards
             view: Vedere
           datasheets:
-            manage: Gestiona
+            manage: Acțiuni
             title: Fișe tehnice
             view: Vedere
           developmentActions:
-            export: Export
-            export_global: Export Global
+            export: Exportați
+            export_global: Exportați Global
             export_global_translations: Exportați traduceri globale
             export_translations: Exportați traduceri
             import: Importa
             import_global: Import Global
             import_global_translations: Importați traduceri globale
             import_translations: Importați traduceri
-            manage: Gestiona
-            title: Acțiuni de dezvoltare
+            manage: Acțiuni
+            title: Acțiune de dezvoltare
             view: Vedere
           dimensions:
-            manage: Gestiona
+            manage: Acțiuni
             title: Dimensiuni
             view: Vedere
           idpTemplates:
-            manage: Gestiona
+            manage: Acțiuni
             title: Șabloane IDP
             view: Vedere
           jobRoles:
-            manage: Gestiona
+            export_translations: Exportați Rolul postului Traduceri
+            import_translations: Import Rolul postului Traduceri
+            manage: Acțiuni
             title: Roluri de post
             view: Vedere
-          mediaLibraries:
-            manage: Gestiona
+          libraries:
+            manage: Acțiuni
             title: Biblioteci media
             view: Vedere
           messages:
@@ -187,7 +192,7 @@ ro:
             options: Opțiuni
             title: Mesaje
           norms:
-            manage: Gestiona
+            manage: Acțiuni
             title: Normele
             view: Vedere
           proficiencyLevels:
@@ -195,7 +200,7 @@ ro:
             export_translations: Traduceri ale nivelurilor de competență de export
             import: Niveluri de competență de import
             import_translations: Importați traduceri ale nivelurilor de competență
-            manage: Gestiona
+            manage: Acțiuni
             title: Niveluri de competență
             view: Vedere
           proficiency_level:
@@ -212,30 +217,30 @@ ro:
             title: Setările proiectului
             webhooks: Webhook-uri
           projects:
-            manage: Gestiona
+            manage: Acțiuni
             manage_admins: Gestionați administratorii
             manage_users: Gestionați utilizatorii
             title: Proiecte
             view: Vedere
           questions:
-            manage: Gestiona
+            manage: Acțiuni
             title: Întrebări
             view: Vedere
           reflectionQuestions:
-            export: Export
+            export: Exportați
             import: Importa
-            manage: Gestiona
+            manage: Acțiuni
             title: Întrebări de reflecție pentru IDP
             view: Vedere
           registrationCodes:
-            manage: Gestiona
+            manage: Acțiuni
             title: Coduri de înregistrare
             view: Vedere
           registrationSettings:
-            manage: Gestiona
+            manage: Acțiuni
             title: Setări de înregistrare
           reports:
-            manage: Gestiona
+            manage: Acțiuni
             title: Rapoarte
             view: Vedere
           responseMeta:
@@ -267,15 +272,15 @@ ro:
             export_translations: Traduceri de abilități de export
             import: Abilități de import
             import_translations: Traduceri de abilități de import
-            manage: Gestiona
+            manage: Acțiuni
             title: Aptitudini
             view: Vedere
           smsHistories:
-            manage: Gestiona
+            manage: Acțiuni
             title: Istoricul SMS-urilor
             view: Vedere
           smsInvites:
-            manage: Gestiona
+            manage: Acțiuni
             title: Invitații prin SMS
             view: Vedere
           users:
@@ -283,23 +288,38 @@ ro:
             title: Utilizatorii
           workshops:
             export_status: Starea exportului
-            manage: Gestiona
+            manage: Acțiuni
             title: Ateliere
             view: Vedere
     ai_assistants:
       actions:
+        create: Creați un asistent AI
+        edit: Editează asistentul AI
         playground: Joacă
       ai_assistants: Asistenți AI
       ai_assistants_playground: Asistent AI Playground
       column:
         provider: Furnizor
+      created_successfully: AI Assistant a fost creat cu succes.
       form:
+        add_output_schema_key: Adăugați cheia schemei de ieșire
+        dependencies: Dependențe
         description: Descriere
+        enter_description: Introduceți descrierea
+        enter_schema_key: Introduceți cheia schemei
+        key: Cheie
         name: Nume
+        output_schema_keys: Chei ale schemei de ieșire
         provider: Furnizor
+        remove_output_schema_key: Eliminarea cheii schemei de ieșire
+        schema_key_description_required: Schema Key Description este necesară
+        schema_key_required: Cheia schemei este necesară
+        schema_key_type: Tip cheie
+        schema_key_unique: Cheile schemei trebuie să fie unice
         system_prompt: Solicitare de sistem
-        title: Asistent AI
+        type: Tip
         user_prompt: Solicitarea utilizatorului
+      updated_successfully: AI Assistant a fost actualizat cu succes.
     any: " -Oricare- "
     api:
       campaigns:
@@ -343,7 +363,7 @@ ro:
         requests: Cereri
         save: Salvează și trimite
         send_invites:
-          add: Adăuga
+          add: Adăugați
           add_description: Puteți traduce titlul și descrierea invitației în mai multe limbi
           add_language: Adăugați limbă
           description: Descriere
@@ -357,21 +377,21 @@ ro:
           has_errors: conține erori
           send_invitation: Trimite invitație
         subjects:
-          cancel: Anula
-          count: "%{count} Subiecte"
+          cancel: Anulați
+          count: "%{count} Utilizatori"
           csv_error: 'Rând%{index}: utilizatorul cu e-mail %{email} nu se află în această campanie'
           csv_imported: "%{count} subiecte importate"
           description: Puteți adăuga subiecte individual căutând sau încărcand în bloc un fișier csv.
           download: Descărca
           file_example: Referiți-vă la fișierul exemplu pentru a încărca informații despre subiecte.
           import_from_campaign: Adăugarea tuturor din campanie
-          import_title: Subiecte de import
+          import_title: Utilizatori de import
           import_users: Importați utilizatori
           search_user: Căutați subiecte
-          title: Subiecte
+          title: Utilizatori
           upload: Încărca
           upload_csv: Încărcați fișiere CSV
-        subjects_count_added: Subiecte adăugate cu succes
+        subjects_count_added: Utilizatori adăugate cu succes
         success:
           continue: Continua
           message: Sarcina de a trimite invitațiile a fost pusă în coadă; utilizatorii le vor primi în scurt timp.
@@ -381,7 +401,7 @@ ro:
         workshop:
           title: Centre de evaluare
         workshop_list:
-          add: Adăuga
+          add: Adăugați
           name: Nume
           remove_confirm:
             content: Sigur doriți să eliminați Centrul de evaluare cu numele "%{name}"?
@@ -455,7 +475,7 @@ ro:
         header: O nouă evaluare
       preview: Previzualizare evaluare
       randomization:
-        cancel: Anula
+        cancel: Anulați
         no_randomization: Fără randomizare
         no_randomization_order_all: Randomizați ordinea tuturor
         of_total: din total
@@ -499,7 +519,7 @@ ro:
         enable_single_question_page_confirm: Acest lucru va actualiza randomizarea blocurilor pe pagină la 1. Eşti sigur?
         enable_timer: Activați cronometrul
         has_randomized_block_warning: Evaluarea curentă are blocuri aleatorii cu mai mult de o întrebare pe pagină. Activarea "Afișează o întrebare pe pagină" va suprascrie toate configurațiile de randomizare pentru a avea o singură întrebare pe pagină.
-        instructions: Instrucțiuni de activare
+        instructions: Activați instrucțiunile
         title: Setări de evaluare
       soft_delete:
         successfully: Evaluarea %{name} a fost mutată cu succes în coșul de gunoi.
@@ -535,13 +555,13 @@ ro:
       create_assessor: Adăugați evaluator
       evaluations: Evaluări
       mailer:
-        subject: Subiecte noi adăugate pentru evaluare
+        subject: Utilizatori noi adăugate pentru evaluare
       modals:
         create_assessor:
-          add: Adăuga
-          cancel: Anula
+          add: Adăugați
+          cancel: Anulați
           form:
-            add: Adăuga
+            add: Adăugați
             add_lead_assessor: Adăugare ca evaluator principal
             add_lead_assessor_hint: Vă rugăm să adăugați mai întâi formularul de evaluator principal
             assessments: Evaluări
@@ -581,7 +601,7 @@ ro:
         import: Evaluatori de import
         tools: Instrumente
     assessor_assessment:
-      add: Adăuga
+      add: Adăugați
       modals:
         add_assessor_assessment:
           assessment_placeholder: Selectați o evaluare
@@ -613,7 +633,7 @@ ro:
         header: Editați atribuirea raportului
     attention: Atenție
     audit_log:
-      action: Acțiune
+      action: Acțiuni
       audit_logs: Jurnale de audit
       campaign: Campanie
       client: Client
@@ -652,8 +672,8 @@ ro:
     base:
       top_sidebar:
         sign_out_message:
-          body: "<p>Sigur vrei să te deconectezi?</p> <p>Apăsați Nu dacă doriți să continuați lucrul. Apăsați Da pentru a vă deconecta de la utilizatorul curent.</p>"
-          title: Deconectați-vă ?<strong></strong>
+          body: "<p>Sigur doriți să vă deconectați?</p> <p>Apăsați Nu dacă doriți să continuați lucrul. Apăsați Da pentru a deconecta utilizatorul curent.</p>"
+          title: Deconectare?<strong></strong>
     block_settings:
       modal:
         add_layer: Adăugare strat
@@ -675,7 +695,7 @@ ro:
       destroy:
         successfully: Blocul %{name} a fost șters cu succes.
       edit:
-        header: Editare bloc
+        header: Editați bloc
       new:
         header: Bloc nou
       resource:
@@ -701,7 +721,7 @@ ro:
       admins: Administratori
       assessments: Evaluări
       assessor_dashboard: Tabloul de bord al evaluatorului
-      assessors: Evaluatorilor
+      assessors: Evaluatori
       audit_log_info: Informații jurnal de audit
       audit_logs: Jurnale de audit
       audit_reports: Rapoarte de audit
@@ -710,7 +730,7 @@ ro:
       client: Închirierea clientului
       clientAdmins: Administratori clienți
       client_admins: Administratori clienți
-      clients: Închirieri pentru clienți
+      clients: Clienți
       communication_center: Centrul de comunicare
       create: Crea
       data_exports: Exporturi de date
@@ -765,6 +785,8 @@ ro:
       new:
         header: Descărcare în bloc
       reports_unavailable: În acest moment, nu sunt disponibile rapoarte pentru descărcare. Vă rugăm să confirmați că rapoartele pe care doriți să le descărcați sunt disponibile.
+      select_reports_for_download: Vă rugăm să selectați cel puțin un raport pentru descărcare.
+      select_reports_for_regenerate: Vă rugăm să selectați cel puțin un raport pentru regenerare.
     cable:
       notification:
         assessment_factors: Factorii sunt preluați
@@ -842,10 +864,19 @@ ro:
     campaign_factors_import:
       errors:
         invalid_headers: 'Următoarele anteturi sunt nevalide: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Vă rugăm să selectați intervalul de date
+        modal:
+          subtitle: Selectați un interval de date și apoi selectați limba necesară pentru fiecare raport
+      generate:
+        modal:
+          subtitle: Selectați limba necesară pentru fiecare raport
     campaign_templates:
       campaign_templates: Șabloane de campanie
       column:
         assessment: Evaluare
+        campaign: Campanie
         owner: Proprietar
         report: Raport
       copy:
@@ -871,7 +902,7 @@ ro:
       image_fields:
         remove: Depărta
       index:
-        new: Adăuga
+        new: Adăugați
         title: Șabloane de campanie
       list:
         admin: Administrator client
@@ -901,7 +932,7 @@ ro:
       update:
         successfully: Client Tenancy %{name} a fost actualizat cu succes.
     campaigns:
-      actions: Gestiona
+      actions: Acțiuni
       assessment_reports:
         report_approval:
           allow_bulk_approve: Permiteți aprobarea în bloc
@@ -913,55 +944,68 @@ ro:
           do_not_send_notifications: Nu trimiteți e-mailuri utilizatorilor [QC, Aprobatori și notificare de aprobare]
           modal_title: Setări de aprobare a rapoartelor
           qc_users: Utilizatori QC
-          remove_modal_success: 'Setarea de aprobare pentru codul raportului: %{reportId} a fost ștearsă cu succes '
+          remove_modal_success: 'Setarea de aprobare pentru codul raportului: %{reportId} a fost ștearsă cu succes'
           remove_modal_text: 'Sigur doriți să ștergeți această setare pentru codul raportului: %{reportId}?'
           report: Raport
           settings: Setări
       assessors:
         spoof:
           successfully: V-ați autentificat cu succes ca %{name}
-      copy: Copie
+      convert_to_template: Conversie în șablon
+      copy: Copiază
       delete: Șterge
-      edit: Editare
+      edit: Editează
       extend_time_success_message: Cronometrul campaniei a fost extins la %{minutes} minute
       filters:
-        active: Activ
-        all: Tot
-        archived: Arhivate
-        closed: Închis
-        inactive: Inactiv
+        active: Activă
+        all: Toți
+        archived: Arhivată
+        closed: Încheiată
+        inactive: Inactivă
         status: Stare
       form:
+        active_notice: Starea campaniei se va schimba automat la închisă la data de încheiere selectată
         campaign: Campanie
+        inactive_notice: Starea campaniei se va schimba automat la Active la data de început selectată
+        instruction: Această opțiune poate fi activată doar în timpul creării campaniei.
         name: Nume
-        practice_campaign: Campanie de practică
+        practice_campaign: Campanie de probă
         status: Stare
       listing:
         assessments: Evaluări
-        id: Id
+        id: ID
         name: Nume
         reports: Rapoarte
         status: Stare
+        template: Șablon
         type: Tip
       menus:
         add_common_campaign: Adăugați o campanie comună
-        add_multi_rater_campaign: Adăugați campanie multi-evaluator
+        add_multi_rater_campaign: Adăugați o campanie multi-rater
       modals:
         create_threesixity:
           advance_settings:
             campaign_template: Șablon de campanie
             factors: Factori
           base_settings:
-            active: Activ
+            active: Activă
             archive: Arhivă
             assessment: Evaluare
+            category: Categorie
             closed: Închis
+            default_assessment_language: Limba implicită de evaluare
+            default_report_language: Limba implicită a raportului
             empty: Gol
-            inactive: Inactiv
+            inactive: Inactivă
             name: Nume
+            normal: Normal
             previous: Precedent
+            select_assessment_language: Selectați limba de evaluare
+            select_report_language: Selectați limba raportului
+            skill_rater: Evaluator de abilități
             standard: Standard
             status: Stare
+            type: Tip
           close:
             content: Sigur doriți să închideți Creatorul de campanii Multi Rater? Orice lucru de personalizare nesalvat se va pierde. Vă rugăm să vă confirmați decizia.
             title: Închideți Creatorul de campanii Multi Rater?
@@ -990,14 +1034,15 @@ ro:
           name: Descriere
           save: Salvează descrierea
           save_success: Descriere salvată cu succes
+        enable_video_call_recording: Activarea înregistrării apelurilor video
         fixed_time: Timp fix
         instructions:
           actions:
             saved: Instrucțiuni salvate cu succes
-          enable: Instrucțiuni de activare
+          enable: Activați instrucțiunile
           save: Instrucțiuni de salvare
-        prework_required: Nu permiteți rezervarea centrului dacă lucrările preliminare nu sunt finalizate
-        prework_required_for_invite: Trimiteți e-mailuri de invitație numai după finalizarea Pre-Work
+        prework_required: Nu permiteți rezer varea dacă prework-ul nu este finalizat
+        prework_required_for_invite: Trimiteți e-mailuri de invitație numai după finalizarea prework-ului
         proctoring:
           allow_on_assessment_center: Permiteți supravegherea în centrul de evaluare
           enable: Activați supravegherea
@@ -1027,9 +1072,9 @@ ro:
           rules: Reguli
           trial: Proces de supraveghere
           type: Tip
-        show_watermark: Afișați filigranul
+        show_watermark: Afișați watermark-ul
         watermark_content: Conținut filigran
-        watermark_info: Dacă nu adăugați niciun conținut, în mod implicit e-mailul utilizatorului va apărea ca filigran. Puteți utiliza oricare dintre următoarele pipetext -<br> {{id}} - Id-ul participantului </br> {{first_name}} - Prenumele participantului <br> {{last_name}} - Numele de familie al participantului </br> {{email}} - Adresa de e-mail a participantului
+        watermark_info: Dacă nu adăugați niciun conținut, în mod implicit e-mailul utilizatorului va apărea ca filigran. Puteți utiliza oricare dintre următoarele pipetext -<br> {{id}} - ID-ul participantului </br> {{first_name}} - Prenumele participantului <br> {{last_name}} - Numele de familie al participantului </br> {{email}} - Adresa de e-mail a participantului
       pdf_password: Parolă PDF
       types:
         common: Comun
@@ -1040,11 +1085,11 @@ ro:
         created_by: Creat de
         email: E-mail
         filters:
-          all: Tot
-          anonymous: Anonim
-          identified: Identificate
-        id: Id
-        is_active: Activ
+          all: Toți
+          anonymous: Anonimi
+          identified: Identificați
+        id: ID
+        is_active: Activă
         name: Nume
         no_permission_message: Nu aveți permisiunea de a modifica
         updated_by: Actualizat de
@@ -1067,6 +1112,7 @@ ro:
         ai_assistants: Asistenți AI
         ai_assisted_idp: IDP asistat de AI
         global_skills: Competențe globale
+        idp: IDP
         sms_notification: Notificare SMS
     clients:
       api_keys:
@@ -1075,7 +1121,7 @@ ro:
       archive:
         successfully: Succes
       base:
-        active: Activ
+        active: Activă
         archived: Arhivate
         disable: Arhivă
         enable: Dezarhivare
@@ -1150,13 +1196,13 @@ ro:
               sub_campaigns: Subcampanii
               tests_allocated: Teste alocate
               users: Utilizatorii
-            id: Id
+            id: ID
             name: Numele campaniei
             reports: Rapoarte
             updated_at: Data actualizării
           index:
-            export: Export
-            new: Adăuga
+            export: Exportați
+            new: Adăugați
             title: Campanii
           list:
             assessments: Evaluări
@@ -1173,7 +1219,7 @@ ro:
               sub_campaigns: Subcampanii
               tests_allocated: Teste alocate
               users: Utilizatorii
-            id: Id
+            id: ID
             name: Numele campaniei
             reports: Rapoarte
             updated_at: Data actualizării
@@ -1188,7 +1234,7 @@ ro:
               create_user: Adăugați un utilizator nou
               delete: Ștergeți campania
               edit: Editați campania
-              export: Export
+              export: Exportați
           sidebar:
             archive: Campanie de arhivă
             copy: Copiază campania
@@ -1224,15 +1270,15 @@ ro:
                 sub_campaign: Subcampanii
                 tests_allocated: Teste alocate
                 users: Utilizatorii
-              id: Id
+              id: ID
               name: Numele subcampaniei
               reports: Rapoarte
               updated_at: Data actualizării
             header:
               actions: Acțiuni
             index:
-              export: Export
-              new: Adăuga
+              export: Exportați
+              new: Adăugați
               title: Subcampanii
             list:
               assessments: Evaluări
@@ -1247,7 +1293,7 @@ ro:
                 sub_campaign: Subcampanii
                 tests_allocated: Teste alocate
                 users: Utilizatorii
-              id: Id
+              id: ID
               name: Numele subcampaniei
               reports: Rapoarte
               updated_at: Data actualizării
@@ -1297,7 +1343,7 @@ ro:
           assigned_user: Utilizatori alocați
           completed_user: Utilizatori finalizați
           created_at: Data creării
-          id: Id
+          id: ID
           name: Numele proiectului
           number: Număr
           project_admin: Administratori de proiect
@@ -1330,12 +1376,12 @@ ro:
         header:
           actions: Acțiuni
         index:
-          export: Export
-          new: Adăuga
+          export: Exportați
+          new: Adăugați
           title: Proiecte
           tooltips:
             create: Crea
-            export: Export
+            export: Exportați
         list:
           2fa_enabled: 2FA activat
           actual_usage: Utilizare reală
@@ -1346,7 +1392,7 @@ ro:
           assigned_user: Utilizatori alocați
           completed_user: Utilizatori finalizați
           created_at: Data creării
-          id: Id
+          id: ID
           name: Numele proiectului
           number: Număr
           project_admin: Administratori de proiect
@@ -1382,11 +1428,11 @@ ro:
           title: Opțiunile proiectului
           view_licenses: Vizualizați licențele
         status:
-          active: Activ
+          active: Activă
           archived: Arhivate
         threesixty_campaigns:
           base:
-            active: Activ
+            active: Activă
             archived: Arhivate
             disable: Arhivă
             enable: Dezarhivare
@@ -1415,13 +1461,13 @@ ro:
             assessment: Assement
             client_admins: Administratori clienți
             created_at: Creat la
-            id: Id
+            id: ID
             name: Nume
             report: Raport
             report_bundle: Pachet de rapoarte
             status: Stare
           index:
-            export: Export
+            export: Exportați
             new: Adăugați campanie 360
             title: Campanii 360
           license:
@@ -1435,7 +1481,7 @@ ro:
             assessment: Assement
             client_admins: Administratori clienți
             created_at: Creat la
-            id: Id
+            id: ID
             name: Nume
             report: Raport
             report_bundle: Pachet de rapoarte
@@ -1505,7 +1551,7 @@ ro:
           invalid_end_date: trebuie să fie mai mare decât data de începere
           license_issue: Nu sunt suficiente licențe.
         form:
-          active: Activ
+          active: Activă
           code: Cod
           end_date: Data de încheiere
           name: Nume și prenume
@@ -1519,7 +1565,7 @@ ro:
             title: Arhiva <strong>%{name}</strong> ?
           enable:
             title: Dezarhivează <strong>%{name}</strong> ?
-      tenancies: Închirieri pentru clienți
+      tenancies: Clienți
       threesixty_campaign: Campania Threesixty
       toggle_status:
         successfully: Client Tenancy %{name} a fost actualizat cu succes.
@@ -1527,9 +1573,9 @@ ro:
         successfully: Client Tenancy %{name} a fost actualizat cu succes.
     close: Închide
     common:
-      add: Adăuga
+      add: Adăugați
       back: Spate
-      cancel: Anula
+      cancel: Anulați
       disabled: Diasbled
       download_sample_file: Descărcați fișierul eșantion
       enabled: Activat
@@ -1540,7 +1586,9 @@ ro:
       reset: Reseta
       save: Salva
       select_all: Selectează tot
+      type: Tip
       unselect_all: Deselectați tot
+    communication_settings: Setări
     communications:
       create:
         successfully: Comunicarea a fost creată cu succes.
@@ -1559,9 +1607,9 @@ ro:
         reference_subject_label: Subiect de referință
         subject_label: Subiect
         title: Editează traducerea
-        update_button: Actualizare traducere
+        update_button: Actualizați traducere
       form:
-        all: Tot
+        all: Toți
         assessment_completion_status_code: Cod de stare de finalizare a evaluării
         assessment_completion_status_code_hint: Dacă este specificat un cod de completare, acesta va fi trimis numai dacă evaluarea utilizatorului are acest cod de stare de finalizare.
         body_mustache: |-
@@ -1573,9 +1621,17 @@ ro:
           {{email}} - Adresa de e-mail a destinatarului
           {{schedule_start_date}} - Data de începere a programului
           {{schedule_end_date}} - Data de încheiere a programului
+        campaign: Campanie
+        campaign_assessment_group: Grupul de evaluare a campaniei
+        client: Client
         completion: Terminare
+        custom: Personalizat
         delivery_at: Livrare la (GST)
         delivery_delay_hours: Întârziere de livrare (ore)
+        delivery_interval: Interval de livrare
+        delivery_interval_number: Numărul intervalului de livrare
+        delivery_interval_period: Perioada intervalului de livrare
+        delivery_rule: Regula de livrare
         delivery_rules:
           in_progress: Dacă evaluarea este în curs de desfășurare
           not_competed: Dacă evaluarea nu este finalizată
@@ -1587,20 +1643,27 @@ ro:
         idp_template_approved: Aprobat de IDP
         idp_template_assigned: IDP atribuit
         idp_template_rejected: IDP respins
+        insert_piped_text: Inserarea textului cu conducte
         invitation: Invitație
         kind: Tipuri de comunicare
         locale: Setări regionale
         magic_link_email: E-mail Magic Link
+        message_body_placeholder: Introduceți mesajul dvs. aici...
         new_assignment: Misiune nouă
         new_users: Utilizatori noi
         other: Alt
+        owner: Proprietar
+        project: Proiect
+        recipients: Beneficiari
         reminder: Memento
         report_available: Raport disponibil
+        select_assessments: Alegeți ce evaluări să verificați pentru finalizare
         selected: Selectat
         selected_cc_recipients: Destinatari CC selectați
         selected_recipients: Destinatari selectați
         stop_reminder: Opriți trimiterea mementourilor
         stop_reminder_datetime: Data de încheiere a mementourilor (GST)
+        subject: Subiect
         workshop_booked: Confirmarea rezervării centrului de evaluare
         workshop_cancelled: Centrul de evaluare anulat
         workshop_completed: Centru de evaluare finalizat
@@ -1609,11 +1672,12 @@ ro:
         workshop_upcoming_reminder: Memento viitor pentru centrul de evaluare
       index:
         clients: Clientii
-        new: Adăuga
+        new: Adăugați
         title: Centru de comunicare
         type: Tip
       list:
         actions: Acțiuni
+        assessment_center_group: Assessment Center Group
         author: Creat de
         campaign: Campanie
         client_name: Client
@@ -1709,7 +1773,7 @@ ro:
         settings: Setări
     dashboard_form:
       fields:
-        dataset_id: Id-ul setului de date
+        dataset_id: ID-ul setului de date
         enabled: Activat
         image: Imagine
         project_path: Calea proiectului
@@ -1756,11 +1820,12 @@ ro:
       completed: Finalizat la
       end: Data de încheiere
       start: Data de începere
-      started: A început la
+      started: Început la
     development_action_import:
       errors:
         blank_field: 'Rândul %{row}: %{field} nu poate fi necompletat'
         csv_file_required: Trebuie să fie un fișier CSV
+        development_action_not_in_project: 'Linia %{row}: ID-ul acțiunii de dezvoltare %{development_action_id} nu aparține acestui proiect'
         image_download_failed: 'Nu s-a reușit descărcarea imaginii de la %{url}: %{message}'
         invalid_csv_format: 'Format CSV nevalid: %{message}'
         invalid_date: Formatul de dată pentru %{date} nu este valid.
@@ -1804,16 +1869,16 @@ ro:
         details: Detalii fișier
         failure_msg: Eroare la exportul traducerilor
         success_msg: Exportul acțiunilor de dezvoltare în curs de desfășurare. Vă rugăm să verificați starea în notificări.
-        title: Export
+        title: Exportați
         translation_details: Detalii
       export_actions:
-        development_action_translations_title: Export Acțiuni de Dezvoltare Traduceri
-        development_actions_title: Acțiuni de dezvoltare a exporturilor
+        development_action_translations_title: Exportați Acțiuni de Dezvoltare Traduceri
+        development_actions_title: Acțiune de dezvoltare a exporturilor
       export_development_action_translations: Traduceri pentru acțiuni de dezvoltare
       export_development_action_translations_project: Traduceri de actiuni de dezvoltare bazate pe proiect
-      export_development_actions: Acțiuni de dezvoltare
-      export_development_actions_project: Acțiuni de dezvoltare bazate pe proiect
-      export_global_development_actions: Acțiuni de dezvoltare globală
+      export_development_actions: Acțiune de dezvoltare
+      export_development_actions_project: Acțiune de dezvoltare bazate pe proiect
+      export_global_development_actions: Acțiune de dezvoltare globală
       export_global_development_actions_translations: Traduceri Acțiuni Globale pentru Dezvoltare
       form:
         available_languages: Limbi disponibile
@@ -1833,16 +1898,16 @@ ro:
         title: Acțiune de dezvoltare
         upload: Încărca
       global: Este acțiune globală de dezvoltare?
-      heading: Acțiuni de dezvoltare
+      heading: Acțiune de dezvoltare
       import:
         download_example_csv: Descărcați exemplu csv
         failure_msg: Eroare la importul fișierului.
         info_msg: Fișierul încărcat a fost pus în coadă pentru import. Vă rugăm să verificați starea în notificări.
       import_action:
-        development_actions_title: Acțiuni de dezvoltare a importurilor
+        development_actions_title: Acțiune de dezvoltare a importurilor
         development_actions_translations_title: Importați acțiuni de dezvoltare traduceri
-      import_development_actions: Acțiuni de dezvoltare
-      import_development_actions_translations: Acțiuni de dezvoltare Traduceri
+      import_development_actions: Acțiune de dezvoltare
+      import_development_actions_translations: Acțiune de dezvoltare Traduceri
       learning_styles:
         cannot_be_blank: Nu poate fi gol
         invalid: Trebuie să fie unul dintre on_the_job, structured_learning, learning_from_others
@@ -1885,10 +1950,24 @@ ro:
         successfully: Factori de import programat pentru parametrul %{name}.
         title: Factori de import
       import_modal:
-        cancel: Anula
+        after: După
+        before: Înainte de
+        cancel: Anulați
+        change_log_input: Jurnal de modificări
         continue: Continua
+        error: Eroare
+        error_occurred: A apărut o eroare
+        errors:
+          file_error: Vă rugăm să selectați un fișier JSON înainte de a continua.
+          processing_error: Eroare la procesarea fișierului
+        field: Câmp
         import: Importa
         import_dimension: Dimensiune import
+        import_scheduled: Import programat
+        operation: Funcționare
+        owner_input_validation: Vă rugăm să selectați un proprietar
+        owner_select: Selectați un proprietar
+        select_json: Selectați fișierul JSON
       import_translations:
         error: Eroare la importul traducerilor pentru parametrul %{name}.
         successfully: Importați traduceri programate pentru dimensiunea %{name}.
@@ -1897,13 +1976,13 @@ ro:
       index:
         create_dimension: Creați dimensiunea
         import_dimension: Dimensiune import
-        new: Adăuga
+        new: Adăugați
         owner: Proprietar
         title: Dimensiuni
       list:
-        active: Activ
+        active: Activă
         created_at: Data creării
-        id: Id
+        id: ID
         name: Nume
         updated_at: Data modificării
       new:
@@ -1964,7 +2043,7 @@ ro:
       form:
         components:
           ExternalList:
-            add: Adăuga
+            add: Adăugați
             table:
               actions: Acțiuni
               jsonpath: Calea JSON
@@ -1992,7 +2071,7 @@ ro:
         use_sub_factor_norm_score: Utilizați scorul normei factorilor
       index:
         icon: Icoană
-        new: Adăuga
+        new: Adăugați
         scoring_strategies:
           custom_formula: Formulă personalizată
           external_score: Scor extern
@@ -2008,9 +2087,9 @@ ro:
         sub_factors: Subfactori
         title: Factori
       list:
-        active: Activ
+        active: Activă
         created_at: Data creării
-        id: Id
+        id: ID
         name: Nume
         updated_at: Data modificării
       new:
@@ -2073,21 +2152,29 @@ ro:
         remove_confirm: Introduceți numele șablonului curent de mai jos în caseta de text pentru a elimina șablonul
         success: "%{idpName} a fost eliminat cu succes."
       add_idp_template: Adăugați șablon IDP
-      all: Tot
+      ai_assisted_idp_enabled: IA asistată IDP activată
+      ai_enabled: AI activat
+      ai_settings: Setări AI
+      all: Toți
       appearance: Apariție
       appearance_hint: Pentru a modifica aspectul, vă rugăm să salvați mai întâi șablonul IDP pentru a activa aceste setări.
+      appearance_success: Setările aspectului au fost salvate cu succes
       background_image: Imagine de fundal
       behavioral_skills: Abilități comportamentale
       client_skills: Abilitățile clientului
+      details_updated: Detalii IDP actualizate cu succes
       edit_template: Editați șablonul IDP
+      enter_tag_or_skills_error: Selectați cel puțin o etichetă sau abilitate
       enter_template_description: Descriere
       enter_template_description_error: Este necesară descrierea șablonului.
       enter_template_name: Nume
       enter_template_name_error: Numele șablonului este obligatoriu
       errors:
+        cannot_update_progress_plan_completed: Nu se poate actualiza progresul deoarece planul IDP a fost finalizat
         update: Actualizarea nu este permisă, deoarece șablonul IDP este deja asociat cu un plan IDP al utilizatorului. Modificările de aspect au fost salvate.
       fields:
         assigned_data: Date atribuite
+        assigned_date: Data atribuirii
         completion_date: Data finalizării
         division: Divizie
         name: Nume
@@ -2111,6 +2198,7 @@ ro:
       logo_type_label: Tip logo
       no_reflection_questions_selected: Nu s-a selectat nicio întrebare de reflecție
       none: Niciunul
+      one_click_idp_enabled: Un clic IDP activat
       reference_locale: Setări regionale de referință
       reflection_questions: Întrebări de reflecție
       reflection_questions_hint: Pentru a modifica întrebările de reflecție, vă rugăm să salvați mai întâi șablonul IDP pentru a activa aceste setări.
@@ -2125,9 +2213,14 @@ ro:
       show_reflections: Afișați reflecții
       skill_gap_report: Raport privind decalajul de competențe
       skills: Aptitudini
+      skills_updated: Competențe IDP actualizate cu succes
+      status:
+        draft: Proiect
+        published: Publicat
+      status_updated: Statutul IDP actualizat cu succes
       subtitle_text: Textul subtitrării
       tab:
-        development_actions: Acțiuni de dezvoltare
+        development_actions: Acțiune de dezvoltare
         reflection_questions: Întrebări de reflecție
         settings: Setări
         templates: Şabloane
@@ -2212,7 +2305,7 @@ ro:
     individual_invite:
       tabs:
         assessment_center: Centrul de evaluare
-        subjects: Subiecte
+        invitation_status: Starea invitației
     innovation_styles:
       create:
         successfully: Stilul de inovare %{name} a fost creat cu succes.
@@ -2223,11 +2316,11 @@ ro:
       form:
         no_icon: Fără pictogramă
       index:
-        new: Adăuga
+        new: Adăugați
         title: Stiluri de inovație
       list:
         created_at: Data creării
-        id: Id
+        id: ID
         name: Nume
         position: Poziție
         updated_at: Data modificării
@@ -2243,7 +2336,7 @@ ro:
           edit: Editează stilul inovației
       sidebar:
         copy: Copiați stilul inovației
-        edit: Editare
+        edit: Editați
         title: Opțiunile Innovation Style
       toggle_status:
         successfully: Innovation Style a fost actualizat cu succes.
@@ -2255,12 +2348,12 @@ ro:
       edit:
         header: Factor de editare
       index:
-        new: Adăuga
+        new: Adăugați
         title: Factori
       list:
         condition: Condiție
         created_at: Data creării
-        id: Id
+        id: ID
         name: Nume
         position: Poziție
         updated_at: Data modificării
@@ -2277,7 +2370,7 @@ ro:
           edit: Factor de editare
       sidebar:
         destroy: Distruge
-        edit: Editare
+        edit: Editați
         title: Opțiunile Factor
       toggle_status:
         successfully: Factor a fost actualizat cu succes.
@@ -2288,7 +2381,7 @@ ro:
         load_mettl_catalog: Catalogul de evaluare Load Mettl
         load_skillvue_catalog: Încărcați catalogul de evaluare Skillvue
       columns:
-        active: Activ
+        active: Activă
         details: Detalii
         name: Nume integrare
       details:
@@ -2341,7 +2434,9 @@ ro:
       assessment_center: 'Centrul de evaluare:'
       booked_at: 'Rezervat la:'
       column:
+        invitation_status: Starea invitației
         participant: Participant
+        scheduling_details: Detalii privind programarea
       remove_confirm:
         content: Sunteți sigur că doriți să eliminați subiectul cu e-mailul "%{subjectEmail}"?
         success: Subiectul cu adresa de e-mail "%{subjectEmail}" a fost eliminat cu succes.
@@ -2349,6 +2444,8 @@ ro:
       statuses:
         accepted: Acceptate
         cancelled: Anulat
+        late_cancelled: Anulat cu întârziere
+        late_rescheduled: Întârziat Reprogramat
         pending: Până
         requested_cancellation: Anulare solicitată
         requested_cancellation_rejected: Anulare respinsă
@@ -2357,8 +2454,10 @@ ro:
         rescheduled: Reprogramat
       subject: Subiect
     job_role:
+      are_you_sure_to_remove: Sunteți sigur că doriți să eliminați?
       column:
         job_group: Grup de locuri de muncă
+        skill_name: Numele abilității
       export:
         failure_msg: Eroare la exportul traducerilor
         success_msg: Exportul acțiunilor de dezvoltare în curs de desfășurare.
@@ -2373,25 +2472,30 @@ ro:
         success_msg: Fișierul încărcat a fost pus în coadă pentru import. Vă rugăm să verificați starea în notificări.
       import_action:
         translations: Importați traduceri ale rolurilor de muncă
+      job_role_details: Detalii privind rolul postului
       translations: Traduceri de roluri
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Nivelul de competență așteptat
       form:
         title: Cartografierea locurilor de muncă
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:
           details: Detalii
+      translations:
+        import:
+          errors:
+            job_role_not_found: Rolul postului cu ID-ul %{id} nu a fost găsit
+            missing_columns: 'Lipsesc coloanele necesare: %{columns}'
+            save_failed: 'Eroare de procesare Job Role ID %{id}: %{message}'
     libraries:
       create:
         successfully: Elementul %{name} a fost creat cu succes.
       destroy:
         successfully: Elementul %{name} a fost șters cu succes.
       edit:
-        header: Editare
+        header: Editați
       index:
         new_folder: Dosar nou
         owner: Proprietar
@@ -2414,7 +2518,7 @@ ro:
             title: Ștergeți <strong>%{name}</strong> ?
         tooltips:
           delete: Șterge
-          edit: Editare
+          edit: Editați
       update:
         successfully: Elementul %{name} a fost actualizat cu succes.
     memberships:
@@ -2436,6 +2540,7 @@ ro:
         successfully: Utilizatorul %{name} a fost actualizat cu succes.
       update:
         successfully: Utilizatorul %{name} a fost actualizat cu succes.
+    message: Mesaj
     meta_title: Panou de administrare
     navigation:
       ai_assistants: Asistenți AI
@@ -2449,11 +2554,11 @@ ro:
       campaign_templates: Șabloane de campanie
       change_password: Schimbați parola
       client_admins: Administratori clienți
-      clients: Închirieri pentru clienți
+      clients: Clienți
       communication_center: Centrul de comunicare
       dashboard: Tablou
       data_reports: Rapoarte de date
-      development_actions: Acțiuni de dezvoltare
+      development_actions: Acțiune de dezvoltare
       dimensions: Dimensiuni
       factors: Factori
       innovation_styles: Stiluri de inovație
@@ -2499,14 +2604,14 @@ ro:
         title: Importul normelor
       index:
         import: Importa
-        new: Adăuga
+        new: Adăugați
         owner: Proprietar
         title: Normele
       list:
-        active: Activ
+        active: Activă
         created_at: Data creării
         dimension_id: Cod dimensiune
-        id: Id
+        id: ID
         name: Nume
         updated_at: Data modificării
         updated_by: Actualizat de
@@ -2542,6 +2647,7 @@ ro:
         editor: Editor de norme
         export: Norma de export
         title: Opțiunile lui Norm
+      title: Norma
       toggle_status:
         successfully: Norm a fost actualizat cu succes.
       update:
@@ -2562,11 +2668,11 @@ ro:
           key_career_tracks: '"+" - listă, "*" - îngroșat. Exemplu: + *Biologie* - o descriere...'
         no_icon: Fără pictogramă
       index:
-        new: Adăuga
+        new: Adăugați
         title: Ocupaţii
       list:
         created_at: Data creării
-        id: Id
+        id: ID
         name: Nume
         updated_at: Data modificării
       new:
@@ -2581,7 +2687,7 @@ ro:
           edit: Editează ocupația
       sidebar:
         copy: Copiază ocupația
-        edit: Editare
+        edit: Editați
         title: Opțiunile ocupației
       toggle_status:
         successfully: Ocupația a fost actualizată cu succes.
@@ -2593,12 +2699,12 @@ ro:
       edit:
         header: Factor de editare
       index:
-        new: Adăuga
+        new: Adăugați
         title: Factori
       list:
         condition: Condiție
         created_at: Data creării
-        id: Id
+        id: ID
         name: Nume
         position: Poziție
         updated_at: Data modificării
@@ -2615,7 +2721,7 @@ ro:
           edit: Factor de editare
       sidebar:
         destroy: Factor de distrugere
-        edit: Editare
+        edit: Editați
         title: Opțiunile Factor
       toggle_status:
         successfully: Factor a fost actualizat cu succes.
@@ -2623,18 +2729,22 @@ ro:
         successfully: Factorul %{name} a fost actualizat cu succes.
     participants:
       tabs:
-        assessors: Evaluatorilor
+        assessors: Evaluatori
         sms_contacts: Contacte SMS
-        subjects: Subiecte
+        subjects: Utilizatori
     piped_text_modal:
       assessment_id: ID evaluare
       campaign_id: Codul campaniei
+      campaign_name: Numele campaniei
+      campaigns: Campanii
       insight_page_link: Link către pagina Insight
       insight_page_url: Adresa URL a paginii Insight
       join_link: Link alăturați-vă
       magic_link: Legătura magică
       magic_url: Adresa URL magică
       profile_custom_field: Câmp personalizat profil
+      project_name: Numele proiectului
+      projects: Proiecte
       report_name: Numele raportului
       text: Text
       title: Adăugați text canalizat
@@ -2662,9 +2772,14 @@ ro:
       errors:
         create:
           invalid_format: Definirea nivelului trebuie să fie o matrice de definiții.
+          level_definition_must_exist: Definiția nivelului nu poate fi goală
           level_definition_must_match_level: trebuie să conțină exact %{expected} niveluri, dar %{actual} au fost date
+          level_name_must_exist: Numele nivelului nu poate fi gol
           must_be_unique: Trebuie să fie unic
           proficiency_level_exists: Un nivel de competență cu această abilitate și proiect există deja
+          proficiency_level_exists_for_default: Există deja un nivel de competență pentru implicit
+          proficiency_level_exists_for_type: Există deja un nivel de competență pentru acest tip
+          project_level_default_exists: Există deja un nivel "implicit" de competență
           skill_must_exist: Abilitățile trebuie să fie prezente pentru proficiency_type "by_skill"
       export:
         details: Detalii
@@ -2680,6 +2795,7 @@ ro:
         proficiency_type: Tip de competență
         skill: Îndemânare
         skill_name: Numele abilității
+        skill_type: Tip de abilitate
         title: Competenţă
       import:
         actions:
@@ -2708,6 +2824,8 @@ ro:
             save_failed: 'Eroare la procesarea ID-ului abilității %{id}: %{message}'
       type:
         by_skill: După îndemânare
+        by_skill_type: Pe tip de abilitate
+        default: Implicit
     profile:
       change_password: Schimbați parola
       details: Detalii
@@ -2724,16 +2842,16 @@ ro:
         workshop_status_export: Exportul stării atelierului
         workshop_status_export_success: Exportul de stare a atelierului a fost programat cu succes.
     project_participants:
-      cancel: Anula
+      cancel: Anulați
       column_actions: Acțiuni
       column_campaigns: Campanii
       column_createdAt: Creat la
       column_created_at: Creat la
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Nume
       delete: Șterge
-      edit: Editare
+      edit: Editați
       edit_participant: Editează participantul
       filter_campaigns: Fără campanii
       form_first_name: Prenume
@@ -2771,7 +2889,7 @@ ro:
             label: Șterge
           edit:
             key: editare
-            label: Editare
+            label: Editați
           send_test:
             key: send_test
             label: Trimite test
@@ -2780,7 +2898,7 @@ ro:
             label: Limită acceptabilă de solicitări
             request_per: cereri pe
           active:
-            label: Activ
+            label: Activă
             name: activ
           auth_type:
             api_key:
@@ -2823,7 +2941,7 @@ ro:
               scheduling_invited: Programare invitată
               scheduling_rescheduled: Programare reprogramată
               scheduling_scheduled: Programare programată
-            name: Subiecte
+            name: Utilizatori
           url:
             label: Adresă URL
             name: Adresa URL
@@ -2835,20 +2953,20 @@ ro:
           title: Șterge
         title: Webhook-uri
     project_users:
-      cancel: Anula
+      cancel: Anulați
       change_password: Schimbați parola
       column_actions: Acțiuni
       column_campaigns: Campanii
       column_created_at: Creat la
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Nume
       confirm_delete: Da, ștergeți
       confirm_send: Da, trimite
       delete: Șterge
       delete_error: Nu s-a putut șterge evaluatorul '%{name}'. Vă rugăm să contactați administratorul.
       delete_success: Evaluatorul '%{name}' a fost șters cu succes.
-      edit: Editare
+      edit: Editați
       edit_assessor: Evaluator de editare
       filter_campaigns: Fără campanii
       form_first_name: Prenume
@@ -2937,7 +3055,7 @@ ro:
         sub_domain_label: Subdomeniu
       mettl_schedule_records:
         actions:
-          edit: Editare
+          edit: Editați
         add: Adăugați program
         assessment_id: ID evaluare
         assessment_name: Numele evaluării
@@ -2959,6 +3077,7 @@ ro:
         dp_consent_custom: Personalizați consimțământul pentru prelucrarea datelor
         dp_consent_version: Versiunea politicii
         errors:
+          cannot_disable_while_campaign_enabled: Nu se poate dezactiva înregistrarea apelurilor video deoarece este activată pentru una sau mai multe campanii din acest proiect
           policy_version_format: Sunt permise doar numerele întregi
         mask_identity_for_examus: Date despre măști pentru supravegherea examenului
         mask_identity_for_hogan: Date despre măști pentru Hogan
@@ -2972,6 +3091,9 @@ ro:
         privacy_link_placeholder: Introduceți linkul de confidențialitate
         privacy_text: Text de confidențialitate
         privacy_text_placeholder: Introduceți textul de confidențialitate
+        video_call_recording: Permiteți înregistrarea apelurilor video
+        video_call_recording_expiry_duration: Perioada de păstrare a înregistrărilor apelurilor video (în zile)
+        video_call_recording_scope: Activați înregistrarea video pentru toate campaniile noi
       profile_settings:
         form_fields:
           enabled: Activat
@@ -2995,10 +3117,10 @@ ro:
             title: Titlu
       webhook_settings:
         add: Adăugați webhook
-        column_active: Activ
+        column_active: Activă
         column_created_date: Data creării
         column_description: Descriere
-        column_manage: Gestiona
+        column_manage: Acțiuni
         column_updated_date: Data modificării
         column_url: Adresa URL
         search: Căutare Webhoook
@@ -3010,7 +3132,7 @@ ro:
       destroy:
         successfully: Întrebarea "%{name}" a fost ștearsă cu succes.
       edit:
-        header: Editare întrebare
+        header: Editați întrebare
       index:
         owner: Proprietar
       new:
@@ -3104,7 +3226,7 @@ ro:
         tools: Instrumente
         type: Tip
       pagination:
-        edit_frame: Editare cadru de paginare
+        edit_frame: Editați cadru de paginare
         hints:
           frame_settings_off: Setări dezactivate ale cadrului de paginare, modulul acționează ca de obicei
           frame_settings_on: Activați setările cadrului de paginare pentru a seta dimensiunile paginii următoare pentru modul (cadrul este evidențiat cu culoare portocalie)
@@ -3122,7 +3244,7 @@ ro:
       edit:
         header: Editați numele pachetului de rapoarte
       index:
-        add: Adăuga
+        add: Adăugați
         title: Pachete de rapoarte
       new:
         header: Pachet de rapoarte noi
@@ -3160,7 +3282,7 @@ ro:
       abort_qc: Anulați QC
       approve: Aproba
       approve_changes: Aprobarea modificărilor
-      edit: Editare
+      edit: Editați
       remove_approval: Eliminați aprobarea
       request_changes: Solicitați modificări
       review: Recenzie
@@ -3193,6 +3315,8 @@ ro:
         header: Editați numele raportului
       edit_default_language:
         agreement: Da, înțeleg implicațiile schimbării limbii implicite.
+        title: Editarea limbii implicite
+        tooltip: Editarea limbii implicite
         warning:
           description_li_1: Schimbarea limbii implicite din RTL în LTR sau viceversa va afecta aspectul.
           description_li_2: Va trebui să lucrați din nou la traducerile rapoartelor dacă schimbați limba implicită.
@@ -3240,6 +3364,9 @@ ro:
         successfully: Raportul a fost actualizat cu succes.
       update:
         successfully: Raportul %{name} a fost actualizat cu succes.
+    reports_language_selection_modal:
+      download: Descărcare raport
+      generate: Generarea raportului
     resource:
       remove_confirm:
         message: Sunteți sigur că doriți să eliminați această resursă?
@@ -3279,7 +3406,7 @@ ro:
         allow_late_cancellation_and_scheduling: Permiteți anularea și programarea târzie
         assessment_center_group: Grupul centrului de evaluare
         assessment_center_group_placeholder: Selectați grupul Centru de evaluare
-        assessor_ids_label: Evaluatorilor
+        assessor_ids_label: Evaluatori
         back: Spate
         basic_info_panel:
           description: Vă rugăm să introduceți informațiile despre program mai jos. De asemenea, puteți selecta mai multe date pentru a crea mai multe centre de evaluare.
@@ -3289,6 +3416,7 @@ ro:
         copy_to_all: Copiați la alte centre de evaluare
         create: Crea
         dates_label: Curmale
+        disable_cancellation_and_rescheduling: Dezactivați anularea și reprogramarea
         duration_label: Durată
         duration_max_error: Nu poate fi mai mare de 16 ore
         duration_min_error: Nu poate fi mai puțin de 15 minute
@@ -3331,7 +3459,7 @@ ro:
       columns:
         activity: Activitate
         assessor: Evaluator
-        assessors: Evaluatorilor
+        assessors: Evaluatori
         attendance: Prezenţă
         attended: Au participat
         booked_at: Rezervat la
@@ -3359,7 +3487,7 @@ ro:
       id: ID
       info:
         allowed: Permis
-        assessors: Evaluatorilor
+        assessors: Evaluatori
         booked: Locuri rezervate
         campaign_assessment_group: Grupul centrului de evaluare
         cancellation_lead_time: Timp de anulare
@@ -3414,6 +3542,7 @@ ro:
         form_title: Programați evaluări
         language: Limbă
         language_not_selected: Neselectat
+        mark_cancel: Mark Cancel
         mark_cancel_success: Participarea anulată a subiectului cu e-mail %{subject_email}.
         meeting_link_custom: Obicei
         meeting_link_internal: Intern
@@ -3422,6 +3551,9 @@ ro:
         no_change: Nicio schimbare
         override_existing: Înlocuirea programelor existente pentru subiecte
         preworks: Prework
+        re_enroll: Reînscriere
+        re_enroll_confirm_message: Sunteți sigur că doriți să înscrieți din nou subiectul cu adresa de e-mail '%{subject_email}'?
+        re_enroll_success: Subiect reînscris cu e-mail <x>subject_email</x>.
         schedule: Orar
         unschedule: Deprogramare
       tabs:
@@ -3429,10 +3561,10 @@ ro:
         assessment_center: Centrul de evaluare
         invites: Invită
         resources: Resurse
-        subjects: Subiecte
+        subjects: Utilizatori
     scoring:
       action_prohibited: Acțiune interzisă
-      active: Activ
+      active: Activă
       actual_average: Media reală
       add_factor: Adăugare factor
       add_group: Adăugați grup
@@ -3458,7 +3590,7 @@ ro:
       final_score_updated_successfully: Scorul final a fost actualizat cu succes
       formula: Formulă
       get_started: Începe
-      id: Id
+      id: ID
       import:
         factors: Importați factori de campanie
       name: Nume
@@ -3540,6 +3672,7 @@ ro:
       disable_password_reuse: Dezactivați reutilizarea parolei
       disallow_password_login: Interzice autentificarea prin parolă
       enable_login_with_magic_link: Activați autentificarea cu link magic
+      enable_recaptcha: Activați reCAPTCHA
       enforce_password_policy: Impunerea politicii de parolă la următoarea conectare
       enforce_strong: Impuneți o parolă puternică
       expiration: Expirarea parolei
@@ -3600,7 +3733,7 @@ ro:
         save_order: Salvează comanda
       drawers:
         add_edit:
-          cancelText: Anula
+          cancelText: Anulați
           markdown:
             preview: Previzualizare
             title: Remarcă
@@ -3614,7 +3747,7 @@ ro:
             required_email: Vă rugăm să introduceți adresa de e-mail
         view:
           campaign_title: Înregistrarea la nivel de campanie
-          edit_button: Editare
+          edit_button: Editați
           project_title: Înregistrare la nivel de proiect
           title: Detalii înregistrare Rând foaie
       list:
@@ -3623,13 +3756,13 @@ ro:
           search_record: Căutați înregistrări
       modals:
         delete_records:
-          cancelText: Anula
+          cancelText: Anulați
           content: Sunteți sigur că doriți să ștergeți înregistrările {{count}} selectate?
           okText: Da, ștergeți
           successMessage: "{{count}} înregistrări au fost șterse cu succes."
           title: Ștergeți înregistrările {{count}}
         remove_columns:
-          cancelText: Anula
+          cancelText: Anulați
           content: Ștergerea unei coloane ({{columns}}) va elimina datele din această coloană pentru toate rândurile
           okText: Da, ștergeți
           successMessage: "{{count}} înregistrări șterse"
@@ -3646,6 +3779,7 @@ ro:
         import:
           missing_fields_data: 'Linia %{line_number}: Câmpuri obligatorii lipsă: %{fields}'
           save_failed: 'Linia %{line_number}: Nu s-a reușit salvarea abilității ''%{name}'': %{message}'
+          skill_not_in_project: 'Linia %{line_number}: Skill ID %{skill_id} nu face parte din acest proiect'
         search:
           all_and_project_id_mutually_exclusive: Toate nu pot fi adevărate atunci când este furnizat project_id_eq
           invalid_all_value: 'trebuie să fie una dintre: adevărat, fals'
@@ -3746,7 +3880,7 @@ ro:
         segment_length_msg: Numărul estimat de segmente pentru acest mesaj este %{segment_length}.
         segment_length_range_msg: Numărul estimat de segmente pentru acest mesaj este cuprins între %{min_segment_length} și %{max_segment_length}.
       statuses:
-        all: Tot
+        all: Toți
         failed: Eșuat
         invited: Invitat
         not_invited: Neinvitat
@@ -3757,7 +3891,7 @@ ro:
         send_sms: Trimite SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Mesaj
     smtp_settings:
       authentication: Autentificare
@@ -3794,6 +3928,7 @@ ro:
       user_name: Nume de utilizator
     stats:
       assessments:
+        active: Activă
         columns:
           assessment_name: Numele evaluării
           completed: Completat
@@ -3803,6 +3938,9 @@ ro:
           interrupted: Întrerupt
           not_started: Neînceput
           timed_out: Expirat
+        count: Numărare
+        inactive: Inactivă
+        percentage: Procent
         title: Evaluări
       title: Statistici
       top_metrics:
@@ -3837,7 +3975,25 @@ ro:
         successfully: Subfactorul a fost actualizat cu succes.
     survey_builder:
       builder_area:
+        current_job: Loc de muncă actual
+        default_not_applicable_label: Nicio oportunitate de a învăța sau de a-și demonstra abilitățile
+        enable_not_applicable: Activarea opțiunii N/A
+        enable_required_validation: Activarea validării obligatorii
+        force_response: Răspunsul forței
+        job_role_required: Vă rugăm să selectați cel puțin un rol profesional
+        not_applicable_label: Nu se aplică Etichetă
         options: Opțiuni
+        request_response: Cerere de răspuns
+        skill_rater_config: Configurarea evaluatorului de abilități
+        target_job: Job țintă
+      models:
+        block_types:
+          regular: Regular
+          skill_rater: Evaluator de abilități
+        skill_types:
+          behavioural: Comportamentale
+          other: Altele
+          technical: Tehnic
       property_panel:
         add_n_a_option: Adăugați o opțiune N/A
         allow_content_copy: Permiteți copierea conținutului
@@ -3903,9 +4059,9 @@ ro:
         destroy:
           successfully: Blocul %{name} a fost șters cu succes.
         edit:
-          header: Editare bloc
+          header: Editați bloc
         index:
-          new: Adăuga
+          new: Adăugați
           templates:
             blocks: Blocuri
             questions: Întrebări
@@ -3913,7 +4069,7 @@ ro:
           tooltips:
             create: Crea
         list:
-          active: Activ
+          active: Activă
           created_at: Data creării
           linked_assessments: Evaluări asociate
           name: Nume
@@ -3929,11 +4085,11 @@ ro:
           tooltips:
             copy: Copiere bloc
             delete: Ștergeți blocarea
-            edit: Editare bloc
+            edit: Editați bloc
         sidebar:
           destroy: Ștergeți blocarea
           disable: Dezactiva
-          edit: Editare bloc
+          edit: Editați bloc
           enable: Activa
           new: Bloc nou
           new_assign: Atribuire bloc
@@ -3946,9 +4102,9 @@ ro:
         destroy:
           successfully: Întrebarea %{name} a fost ștearsă cu succes.
         edit:
-          header: Editare întrebare
+          header: Editați întrebare
         index:
-          new: Adăuga
+          new: Adăugați
           templates:
             blocks: Blocuri
             questions: Întrebări
@@ -3956,7 +4112,7 @@ ro:
           tooltips:
             create: Crea
         list:
-          active: Activ
+          active: Activă
           created_at: Data creării
           linked_assessments: Evaluări asociate
           name: Nume
@@ -3972,11 +4128,11 @@ ro:
           tooltips:
             copy: Copiază întrebarea
             delete: Ștergeți întrebarea
-            edit: Editare întrebare
+            edit: Editați întrebare
         sidebar:
           destroy: Ștergeți întrebarea
           disable: Dezactiva
-          edit: Editare întrebare
+          edit: Editați întrebare
           enable: Activa
           new: Întrebare nouă
           new_assign: Atribuire întrebare
@@ -3984,6 +4140,21 @@ ro:
         toggle_status:
           successfully: Succes
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Deja un șablon
+        has_user_data: Vă rugăm să resetați manual campania făcând clic pe "Resetați toți participanții" din lista derulantă Instrumente înainte de a o converti într-un șablon.
+      convert_template_modal:
+        cancel: Anulează
+        confirm: Confirmați
+        convert:
+          success: Șablon convertit cu succes
+        convert_option: Convertiți această campanie într-un șablon
+        copy:
+          success: Sarcina de creare a șablonului de campanie a fost programată cu succes, vă rugăm să verificați notificările pentru starea acestora.
+        copy_option: Creați un șablon nou din această campanie
+        description: Alegeți modul în care doriți să creați un șablon din această campanie.
+        failed: Crearea șablonului a eșuat.
+        title: Conversie în șablon
       email_templates:
         approve_nomination:
           description: Acest mesaj este trimis unui manager atunci când o nominalizare, făcută de un subordonat direct, trebuie aprobată
@@ -4077,7 +4248,7 @@ ro:
         dimension: Dimensiuni
         manage_relationships: Gestionați relațiile...
         report: Raport
-        title: Gestiona
+        title: Acțiuni
       menu:
         actions: Acțiuni
         datasheet:
@@ -4088,7 +4259,7 @@ ro:
           title: Mesaje
         participants:
           columns:
-            action: Acțiune
+            action: Acțiuni
             email: E-mail
             evaluations_completed: Evaluări finalizate
             evaluations_received: Evaluări primite
@@ -4113,11 +4284,11 @@ ro:
             current_job_role: Rolul actual al postului
             email: E-mail
             first_name: Prenume
-            import_subjects: Subiecte de import
+            import_subjects: Utilizatori de import
             last_name: Nume de familie
             locale: Setări regionale
             target_job_role: Rol de post țintă
-            title: Subiecte
+            title: Utilizatori
           title: Participanţii
         report:
           menu:
@@ -4137,7 +4308,7 @@ ro:
         administrator_approves_reports: Administratorul aprobă rapoartele
         allow_manager_to_view_individual_responses: Permiteți managerului să vizualizeze răspunsurile individuale
         disable_report_download: Dezactivați descărcarea raportului
-        edit_email: Editare e-mail
+        edit_email: Editați e-mail
         email_manager_when_report_is_ready_for_approval: Trimiteți un e-mail managerului atunci când raportul este gata pentru aprobare
         email_subject_when_report_becomes_available: Subiect de e-mail atunci când raportul devine disponibil
         email_subjects_manager_when_available: Trimiteți un e-mail managerului subiectului atunci când raportul devine disponibil
@@ -4218,6 +4389,10 @@ ro:
       update:
         successfully: Utilizatorul %{name} a fost actualizat cu succes.
       user: Utilizator
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Data finală nu poate fi în trecut
+        start_date_cannot_be_in_past: Data de începere nu poate fi în trecut
     webhook:
       connection_failure: Nu se poate conecta la adresa URL a webhook-ului. Vă rugăm să verificați dacă adresa URL a webhook-ului este corectă.
       delete_success: Setările webhook-ului au fost șterse cu succes

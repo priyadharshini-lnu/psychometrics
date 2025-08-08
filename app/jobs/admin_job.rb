@@ -97,7 +97,8 @@ class AdminJob < ApplicationJob
     import_reflection_questions: AdminJobs::ImportReflectionQuestionsJob,
     export_dashboard_as_file: AdminJobs::ExportDashboardAsFile,
     bulk_download_idp_reports: AdminJobs::BulkDownloadIdpReports,
-    sync_skill_rater_assessment_entities: AdminJobs::SkillRater::SyncAssessmentEntities
+    sync_skill_rater_assessment_entities: AdminJobs::SkillRater::SyncAssessmentEntities,
+    copy_as_template_or_campaign: AdminJobs::CopyAsTemplateOrCampaign
   }.freeze
 
   def perform(record, stage = nil)

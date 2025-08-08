@@ -419,7 +419,7 @@ es-ES:
         access_reports_at: Acceda al informe en
         access_reports_at_date: Fecha
         access_reports_at_time: Tiempo
-        client_ids: Arrendamientos de clientes
+        client_ids: Clientes
         manager_ids: Gestores
         report_ids: Informes
         user_ids: Usuarios
@@ -428,7 +428,7 @@ es-ES:
         categories:
           '360': campaña 360
           agile: AGIL
-          assessor_form: Formulario para asesores
+          assessor_form: Formulario para evaluadores
           case_study: Casos prácticos
           hogan: Hogan
           iiht: IIHT
@@ -513,6 +513,7 @@ es-ES:
         created_at: Fecha de creación
         id: ID
         name: Nombre
+        owner: Propietario
         updated_at: Fecha de modificación
       factor:
         active: Activo
@@ -539,7 +540,11 @@ es-ES:
         updated_at: Fecha de modificación
       library:
         created_at: Fecha de creación
+        description: Descripción
+        files: Archivos
         id: ID
+        name: Nombre
+        owner: Propietario
         type: Miniaturas
         updated_at: Fecha de modificación
       license:
@@ -565,7 +570,7 @@ es-ES:
         parent_id: Gestor directo
         report_ids: ID de los informes
         roles:
-          campaign_admin: Administración de la campaña
+          campaign_admin: Administración
           client_admin: Administración de clientes
           manager: Director
           member: Usuario
@@ -611,6 +616,7 @@ es-ES:
         created_at: Fecha de creación
         id: ID
         name: Nombre
+        owner: Propietario
         updated_at: Fecha de modificación
       report:
         created_at: Fecha de creación
@@ -670,14 +676,14 @@ es-ES:
           admin: Admin
           admins:
             admin: Admin
-            campaign_admin: Administración de la campaña
+            campaign_admin: Administración
             project_admin: Administrador del proyecto
             regular: Administración de clientes
             superadmin: Super Admin
           agile: AGIL
           assessor: Asesor
-          assessor_form: Formulario para asesores
-          campaign_admin: Administración de la campaña
+          assessor_form: Formulario para evaluadores
+          campaign_admin: Administración
           case_study: Estudio de caso
           client_admin: Administración de clientes
           hogan: Hogan
@@ -787,7 +793,7 @@ es-ES:
         assessment_scoring_export: Exportación de resultados
         assign_idp_to_users: Asignar IDP a los usuarios
         assign_reports_and_assessments: Asignar informes y evaluaciones
-        bulk_create_workshop_invites: Envío masivo de invitaciones al Centro de Evaluación
+        bulk_create_workshop_invites: Envío masivo de invitaciones al Assessment Center
         bulk_download_reports: Descarga masiva de informes
         bulk_download_user_reports: Descarga masiva de informes de usuario
         bulk_regenerate_reports: Regenerar informes de campaña
@@ -797,6 +803,7 @@ es-ES:
         bulk_rescore_campaign_factors: Factores de la campaña Bulk Rescore
         compact_completion_status_export: Exportación de estados de finalización compactos
         completion_status_export: Exportación del estado de finalización
+        copy_as_template_or_campaign: Copiar campaña como plantilla
         copy_dimension: Copiar dimensión
         create_threesixty_campaign: Crear campaña Threesixty
         data_report_export: Exportación de informes de datos
@@ -857,7 +864,7 @@ es-ES:
         super_admin_external_assessment_export: Super Admin Exportación de evaluaciones externas
         threesixty_campaign_export_completion_status: Estado de finalización de la exportación de la campaña Threesixty
         threesixty_campaign_export_scores: Exportación de resultados de la campaña Threesixty
-        workshop_status_export: Exportación del estado del Centro de Evaluación
+        workshop_status_export: Exportación del estado del Assessment Center
       statuses:
         completed: Completado
         completed_with_errors: Completado con errores
@@ -873,6 +880,7 @@ es-ES:
     invalid_job: Esta notificación corresponde al registro suprimido
     mark_as_read: Marcar todo lo leído
     more: Más
+    no_notifications: Sin notificaciones
     notifications: Notificaciones
     results: Resultados
     super_admin:
@@ -954,7 +962,7 @@ es-ES:
       resume: Currículum
       saved:
         label: Audio guardado
-      saving: Guardar audio
+      saving: Salvar audio
       start_recording: Iniciar grabación
       stop: Stop
     card_actions:
@@ -1003,7 +1011,7 @@ es-ES:
     fields:
       category:
         agile: AGIL
-        assessor_form: Formulario para asesores
+        assessor_form: Formulario para evaluadores
         case_study: Casos prácticos
         hogan: Hogan
         iiht: IIHT
@@ -1057,8 +1065,9 @@ es-ES:
         description: Esta sesión de evaluación ha sido invalidada. Esto puede ocurrir si ha continuado la evaluación en otra pestaña, navegador o dispositivo.
         title: Última solicitud fallida
       next: Siguiente
+      no_skill_mapping_message: No se ha realizado un mapa de competencias para este puesto de trabajo, póngase en contacto con su administrador.
       read_only: Está en modo «solo lectura», no puede cambiar ningún resultado.
-      save: Guardar
+      save: Salvar
       submissionFailedAlert:
         description: No se ha podido conectar con el servidor. Actualice la página e inténtelo de nuevo. Si no funciona, póngase en contacto con el servicio de asistencia a través del chat en directo o de mte.surveys@mercer.com
         title: Última solicitud fallida
@@ -1108,7 +1117,7 @@ es-ES:
       recording_stop_label: La grabación se detendrá en
       requesting_permission: Solicitar permiso...
       response_recorded: Respuesta registrada
-      save: Guardar
+      save: Salvar
       saved:
         label: Guardado/a
       saving: Guardando...
@@ -1123,15 +1132,16 @@ es-ES:
     wait: Esperar
   assessments_reports:
     add_group_form:
-      previous_assessments_required: Evaluaciones a ejecutar en el siguiente orden
-      previous_group_required: Se requiere haber completado previamente el grupo
+      previous_assessments_required: Mostrar las evaluaciones en el siguiente orden
+      previous_group_required: Se requiere haber completado previamente la sección anterior
+      require_previous_groups_completion_for_booking: Se requiere haber completado todos los grupos anteriores antes de reservar
     menu:
-      assessment_center: Centro de Evaluación
+      assessment_center: Assessment Center
       assessments_and_reports: Evaluaciones e informes
       idp: PDI
-      manage: Gestione
+      manage: Gestión
       report_approval: Configuración de la aprobación de informes
-      sequencing: Secuenciación
+      sequencing: Agrupación
     report_approval:
       add_settings: Añadir ajuste
       create_seetings: Crear configuración
@@ -1158,7 +1168,7 @@ es-ES:
         evaluation_count: Recuento de evaluaciones
         evaluation_status: Estado de la evaluación
         moderation_count: Recuento de moderación
-        moderation_status: Estado de la moderación
+        moderation_status: Estado del proceso
   assign_reports:
     assessment_not_in_report: La evaluación con id %{assessment_id} no forma parte del informe con id %{report_id}
     errors:
@@ -1362,6 +1372,7 @@ es-ES:
   campaign_assessment:
     actions:
       bulk_download: Descarga masiva
+      convert_to_template: Convertir a plantilla
       download: Descargar informes
       export_completion_status: Estado de finalización de la exportación
       export_external: Exterior
@@ -1381,11 +1392,11 @@ es-ES:
       reset_all_nominations: Restablecer todas las candidaturas
       reset_participant: Reiniciar todos los participantes
     allow_msg_proctoring_workshop_activity: Las actividades del centro de evaluación no son supervisadas.
-    assessment_center_heading: Detalles del Centro de Evaluación
+    assessment_center_heading_label: Detalles de la sesión
     assessments_heading: Sus tareas
     column:
       assessment_name: Nombre de la evaluación
-      assessor_form: Formulario para asesores
+      assessor_form: Formulario para evaluadores
       auto_assign: Asignación automática
       dimension_id: Dimensión ID
       external_user_id: Identificación del candidato Skillvue
@@ -1417,7 +1428,7 @@ es-ES:
         error_message: Algo ha ido mal. Póngase en contacto con el administrador
         placeholder: Seleccione un grupo de centros de evaluación
         success_message: Se ha asignado con éxito el Grupo de Evaluación de la Campaña de Evaluación
-        title: Grupo del Centro de Evaluación
+        title: Grupo del Assessment Center
       import_raw:
         body: Consulte la función Exportar para extraer una plantilla que pueda utilizarse para Importar aquí.
         success_msg: La importación se ha cargado correctamente
@@ -1504,7 +1515,9 @@ es-ES:
       in_progress: En curso
       ineligible: No subvencionable
       interrupted: Interrumpido
+      new: Nuevo/a
       not_started: Sin empezar
+      progress: En curso
       timed_out: Fuera de plazo
       universal_link: Enlace universal
     ungrouped_assessments_heading: Sin agrupar
@@ -1523,8 +1536,9 @@ es-ES:
     bulk_download:
       error: La descarga masiva está limitada a 1000 archivos de informe. La selección actual tiene %{count} archivos de informe. Por favor, ajuste las fechas de inicio y fin para reducir el número de archivos de informe a descargar.
     column:
-      assessor_access: Acceso para asesores
+      assessor_access: Acceso para evaluadores
       auto_assign: Asignación automática
+      locales: Locales
       main_report: Informe principal
       report_bundle: Paquete de informes
       report_name: Nombre del informe
@@ -1547,6 +1561,13 @@ es-ES:
         apply: Aplique estos cambios a los usuarios existentes en esta campaña.
         msg_text: Está intentando eliminar el informe <strong>"%{reportName}"</strong>
         title: "¿Eliminar informe?"
+      update_languages:
+        default_language: Idioma por defecto
+        other_available_languages: Otras lenguas disponibles
+        select_default_language: Seleccionar idioma por defecto
+        select_languages: Seleccionar idiomas
+        success_msg: Los idiomas se han actualizado correctamente
+        title: Idioma del informe
       user_access:
         apply: Aplique estos cambios a los usuarios existentes en esta campaña.
         title:
@@ -1561,11 +1582,11 @@ es-ES:
       progress: Progreso
     details:
       additional_time: Tiempo adicional
-      assessment_center: Centro de Evaluación
-      assessment_center_invites: Invitaciones al Centro de Evaluación
+      assessment_center: Assessment Center
+      assessment_center_invites: Invitaciones al Assessment Center
       completed_at: Completado en
       completion_status: Estado de finalización
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Último acceso
       manager: Director
       modals:
@@ -1593,7 +1614,7 @@ es-ES:
       remove: ¿Está seguro de que desea eliminar al usuario con el correo electrónico "%{email}" de esta campaña?
   campaigns:
     assessments_and_reports:
-      assessor_assessments: Evaluador Evaluaciones
+      assessor_assessments: Evaluaciones del evaluador
       other_assessments: Otras evaluaciones
       other_assessor_assessments: Otras evaluaciones
       other_reports: Otros informes
@@ -1706,7 +1727,7 @@ es-ES:
       resolve: Resolver
       restore: Restaurar
       run: Ejecutar
-      save: Guardar
+      save: Salvar
       schedule: Horario
       search: Buscar
       send: Enviar
@@ -1761,13 +1782,13 @@ es-ES:
       modified_date: Fecha de modificación
       name: Nombre
       owner: Propietario
-      package_id: Id de paquete
+      package_id: ID de paquete
       poster: Póster
       project: Proyecto
       provider: Proveedor
       qc_user_list: Lista de usuarios de QC
       report: Informe
-      report_id: Informe Id
+      report_id: Informe ID
       require_scheduling: Requerir programación
       responses_count: Recuento de respuestas
       schedule_time: Horario
@@ -1784,7 +1805,7 @@ es-ES:
       csv_injection_validation_error: no puede empezar por =, |, +, -, @, %
       something_wrong: Algo ha ido mal. Póngase en contacto con su administrador.
     messages:
-      leave_message: "¿Estás seguro de que quieres abandonar esta página? Cualquier respuesta que tengas sin guardar se perderá."
+      leave_message: "¿Estás seguro de que quieres abandonar esta página? Cualquier respuesta que tengas sin Salvar se perderá."
     model:
       admins: Admins
       assessment: Evaluación
@@ -1885,7 +1906,11 @@ es-ES:
       timeout: Su sesión ha caducado. Vuelva a iniciar sesión para continuar.
       unauthenticated: Tiene que iniciar sesión o registrarse antes de continuar.
       unconfirmed: Tienes que confirmar tu dirección de correo electrónico antes de continuar.
+    invalid_captcha: El captcha introducido no es válido.
+    invalid_security_question: La respuesta a la pregunta de seguridad no es válida.
     invitations:
+      confirmation_instructions:
+        subject: Instrucciones de confirmación
       edit:
         confirm_password_label: Confirmar contraseña
         header: Establezca su contraseña
@@ -1894,24 +1919,6 @@ es-ES:
         submit: Establecer nueva contraseña
         submit_button: Establecer mi contraseña
         title: Crear contraseña
-      invitation_removed: Tu invitación ha sido retirada.
-      invitation_token_invalid: El código de invitación proporcionado no es válido
-      new:
-        header: Enviar invitación
-        submit_button: Enviar una invitación
-      no_invitations_remaining: No quedan invitaciones
-      send_instructions: Se ha enviado un correo electrónico de invitación a %{email}.
-      updated: Su contraseña se ha establecido correctamente. Ya ha iniciado sesión.
-      updated_not_active: Su contraseña se ha establecido correctamente.
-    mailer:
-      admin_invitation_instructions:
-        accept: Haga clic aquí para aceptar la invitación.
-        body: 'Hola %{name}, Ha sido invitado a acceder al panel de administración de Lighthouse - The Talent Enterprise assessment platform. %{accept} O puede ignorar este correo con total seguridad. Por favor, no comparta sus credenciales de acceso con nadie.
-
-          '
-        subject: Invitación a Lighthouse
-      confirmation_instructions:
-        subject: Instrucciones de confirmación
       invitation_instructions:
         body: 'Hola %{name}, Se le ha añadido a Lighthouse como administrador de la siguiente sección
 
@@ -1922,6 +1929,23 @@ es-ES:
           client: 'Cliente Tenencia: %{section_name}'
           project: 'Proyecto: %{section_name}'
         subject: Invitación a Lighthouse
+      invitation_removed: Tu invitación ha sido retirada.
+      invitation_token_invalid: El código de invitación proporcionado no es válido
+      mailer:
+        accept: Haga clic aquí para aceptar la invitación.
+        admin_invitation_instructions:
+        body: 'Hola %{name}, Ha sido invitado a acceder al panel de administración de Lighthouse - The Talent Enterprise assessment platform. %{accept} O puede ignorar este correo con total seguridad. Por favor, no comparta sus credenciales de acceso con nadie.
+
+          '
+        copyright:
+          text: Lighthouse. Todos los derechos reservados
+        powered_by:
+          text: Powered by Lighthouse.
+        subject: Invitación a Lighthouse
+      new:
+        header: Enviar invitación
+        submit_button: Enviar una invitación
+      no_invitations_remaining: No quedan invitaciones
       password_change:
         body: 'Hola %{name}! Su contraseña ha sido cambiada. Si no ha realizado esta solicitud, póngase en contacto con el servicio de asistencia inmediatamente en mte.support@mercer.com
 
@@ -1940,6 +1964,7 @@ es-ES:
 
           '
         subject: Instrucciones para restablecer la contraseña
+      send_instructions: Se ha enviado un correo electrónico de invitación a %{email}.
       unlock_instructions:
         body: 'Hola %{name}! Tu cuenta ha sido bloqueada debido a un número excesivo de intentos fallidos de inicio de sesión. Haz clic en el siguiente enlace para desbloquear tu cuenta:
 
@@ -1950,9 +1975,30 @@ es-ES:
           '
         subject: Instrucciones para desbloquear su cuenta
         unlock_account: Desbloquear mi cuenta
+      updated: Su contraseña se ha establecido correctamente. Ya ha iniciado sesión.
+      updated_not_active: Su contraseña se ha establecido correctamente.
     omniauth_callbacks:
       failure: No se le ha podido autenticar desde %{kind} porque "%{reason}".
       success: Autenticado correctamente desde la cuenta %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Enviar
+        submit_verification_code: Enviar código de verificación
+        verification_code: Código de verificación
+      updated: Código de verificación aceptado
+    paranoid_verify:
+      code_required: Introduzca el código que le ha facilitado nuestro equipo de asistencia
+    password_expired:
+      change_required: Su contraseña ha caducado. Por favor, renueve su contraseña.
+      forced_changed: Debe establecer una nueva contraseña para su cuenta.
+      password_policy_changed: La política de contraseñas ha cambiado. Por favor, cambie su contraseña.
+      show:
+        change_my_password: Cambiar mi contraseña
+        current_password: Contraseña actual
+        new_password: Nueva contraseña
+        new_password_confirmation: Confirmar nueva contraseña
+        renew_your_password: Renovar contraseña
+      updated: Tu nueva contraseña está guardada.
     passwords:
       edit:
         instruction: Para crear una nueva contraseña, introdúzcala en las casillas siguientes
@@ -2113,8 +2159,12 @@ es-ES:
       workshop_invited_subject_create:
         already_exists: El asunto ya existe en la invitación.
       workshop_subject_create:
-        already_exists: La asignatura ya existe en este Centro de Evaluación.
+        already_exists: La asignatura ya existe en este Assessment Center.
         part_of_other_workshop: El sujeto ya participa en "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: No hay plazas disponibles para este taller.
+        scheduling_lead_time_passed: Una vez transcurrido el plazo de programación, no podrá volver a matricular la asignatura.
+        workshop_subject_not_found: No se ha encontrado el tema del taller
       workshops:
         no_available_assessor_slots: No hay plazas disponibles para el evaluador %{assessor}
         no_available_manager_slots: No hay plazas disponibles para el gestor %{manager}
@@ -2145,6 +2195,8 @@ es-ES:
   errors:
     assessments:
       timed_out: No podrás realizar la evaluación %{assessment_name} porque se ha agotado el tiempo de espera.
+    equal_to_current_password: debe ser diferente de la contraseña actual.
+    equal_to_email: debe ser diferente del correo electrónico.
     error: Error
     error_500: Algo ha ido mal. Póngase en contacto con su administrador.
     error_msg: Si el problema persiste, póngase en contacto con su administrador
@@ -2155,6 +2207,20 @@ es-ES:
     max_regeneration_limit: Límite máximo de regeneración superado, póngase en contacto con su administración.
     messages:
       data_report_blank: El informe de datos no existe
+      password_complexity:
+        digit:
+          one: debe contener al menos un dígito
+          other: debe contener al menos <x>count</x> dígitos
+        lower:
+          one: debe contener al menos una letra minúscula
+          other: debe contener al menos <x>count</x> letras minúsculas
+        symbol:
+          one: debe contener al menos un signo de puntuación o símbolo
+          other: debe contener al menos <x>count</x> signos de puntuación o símbolos
+        upper:
+          one: debe contener al menos una letra mayúscula
+          other: debe contener al menos <x>count</x> letras mayúsculas
+      taken_in_past: no debe coincidir con ninguna contraseña utilizada anteriormente.
     module_error: Algo ha ido mal con este módulo, por favor contacte con la administración.
     module_error_editor: Algo ha ido mal con este módulo, por favor compruebe la configuración del módulo.
     module_props_error: Algo ha fallado en este módulo.
@@ -2165,6 +2231,9 @@ es-ES:
       no_active_plan: No se ha encontrado ningún plan PDI activo
     webhooks:
       multiple_webhook_error: url no se puede actualizar ya que hay múltiples webhook para este proyecto.
+    workshop:
+      ical_generation_failed: No se ha podido generar la invitación al calendario
+      missing_or_invalid: Falta el workshop_id o no es válido
   evaluators:
     errors:
       can_not_processed: no se puede procesar
@@ -2186,7 +2255,7 @@ es-ES:
       collapse_menu: Contraer menú
       confirm_proceed: Confirmar para continuar
       delete_message: Borrar mensaje
-      drag_drop_instructions_desktop: Active el modo de formularios para arrastrar y soltar los elementos con un lector de pantalla.
+      drag_drop_instructions_desktop: Activo el modo de formularios para arrastrar y soltar los elementos con un lector de pantalla.
       drag_drop_instructions_mobile: Con un lector de pantalla, pulse dos veces y mantenga pulsado un botón de arrastre, desplácese a otro elemento y levante el dedo para mover el elemento.
       enlarge_view_text: Ampliar vista de %{text}
       expand_menu: Ampliar el menú
@@ -2225,9 +2294,14 @@ es-ES:
       add_to_yahoo_calendar: Añadir al calendario yahoo
       assessment_center_alert:
         btn_title: Campaña
-        message_part1: Complete todos los trabajos previos en este/a
-        message_part2: antes de reservar una plaza.
-      assessment_center_group_name: Centro de Evaluación
+        complete_previous_groups: Completar todas las actividades de grupo anteriores
+        complete_preworks: Completar todos los trabajos previos
+        please_visit: Visite la página
+        requirements_message: Sólo podrá hacer una reserva si cumple los siguientes requisitos
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: para completar estos requisitos.
+      assessment_center_group_name: Assessment Center
       booking_failed_msg: 'No se ha podido reservar una plaza: %{error}'
       buttons:
         book: Reservar
@@ -2285,7 +2359,7 @@ es-ES:
         invites: Invitaciones
       what: Qué
       when: Cuándo
-      workshop_start_text: Su Centro de Evaluación comenzará dentro de
+      workshop_start_label: Su sesión comenzará en
     break_time: Descanso
     campaign:
       actions:
@@ -2294,6 +2368,7 @@ es-ES:
         remove:
           confirmation: Introduzca en el cuadro de texto el nombre de la campaña que se le ha facilitado más arriba para eliminarla
           success: La campaña %{campaignName} se ha eliminado correctamente.
+          template_confirmation: 'Introduzca el nombre de la plantilla actual en el campo inferior para eliminarla. Nota: Esto también eliminará la plantilla de campaña vinculada.'
       users:
         actions:
           export:
@@ -2415,7 +2490,7 @@ es-ES:
       new_schedule_description: La hora de inicio debe ser anterior a la hora de finalización
       no_slots: No se han añadido ranuras
       required_error: no puede estar vacío
-      save: Guardar
+      save: Salvar
       saved_schedule_description: Horario de disponibilidad guardado del usuario
       start_date: Fecha de inicio
       timezone_label: Zona horaria
@@ -2426,6 +2501,7 @@ es-ES:
       aria_selected: Selección
   idp:
     actions: Acciones
+    behavioral: Comportamiento
     board: Tablero
     comment_details:
       add_comment: Agregar comentario
@@ -2507,7 +2583,7 @@ es-ES:
       rate_skills_title: Evaluando Sus Habilidades
       rating_column_header: Su autoevaluación
       reflective_questions: Preguntas de reflexión
-      save: Guardar
+      save: Salvar
       select_skills: Seleccione sus habilidades
       select_skills_placeholder: Seleccionar habilidades
       selected_skills: Habilidades Seleccionadas
@@ -2521,7 +2597,7 @@ es-ES:
       development_plan: Plan de Desarrollo
       graphs:
         categories: Categorías
-      save_skills: Guardar Habilidades
+      save_skills: Salvar Habilidades
     new_comments: Nuevos comentarios
     pdf:
       approval_status: Estado de Aprobación
@@ -2641,6 +2717,7 @@ es-ES:
         required: La respuesta a la pregunta es obligatoria
       max_words: Palabras máximas
       min_words: Palabras mínimas
+      no_reflective_questions: Sin preguntas reflexivas
       title: Preguntas de reflexión
       update_failed: Se ha producido un error durante la actualización
       updated_successfully: Tus respuestas se han actualizado correctamente
@@ -2648,6 +2725,7 @@ es-ES:
     skill_gap_report:
       title: Informe sobre el déficit de cualificaciones
     status: Estado
+    technical: Técnico
     user_idp_status:
       approved: Aprobado
       completed: Completado
@@ -2669,7 +2747,7 @@ es-ES:
     idp_template: Plantilla del PDI
     override_exists: Anular y restablecer usuarios existentes
     placeholder: Seleccione una plantilla Idp
-    save_and_assign: Guardar y asignar
+    save_and_assign: Salvar y asignar
     success_scheduled: El trabajo para asignar IDP se ha programado correctamente
   jobs:
     threesixty:
@@ -2783,6 +2861,12 @@ es-ES:
     used_number: Licencias usadas
     used_out_of: "%{used} de %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Todos los derechos reservados
+    footer:
+      regards: Saludos,
+      team_name: Equipo Lighthouse
+      technical_support: Para cualquier problema técnico, escríbanos a %{email} y responderemos dentro de 24 horas.
     from: La empresa del talento
     license:
       expire:
@@ -2794,7 +2878,7 @@ es-ES:
           client_name: Nombre del cliente
           expiry_date: Fecha de caducidad
           overuse_limit: Límite de uso excesivo
-          project_manager: Jefe de proyecto
+          project_manager: Responsable de proyecto
           remaining_count: Recuento restante
           type: Tipo de licencia
           use_count: Utilizar recuento
@@ -2811,6 +2895,8 @@ es-ES:
         instructions: Haga clic en el siguiente enlace para iniciar sesión en lighthouse.
         signin_link: Enlace de acceso
       subject: Enlace de acceso a Lighthouse
+    powered_by:
+      text: Desarrollado por Lighthouse.
     users:
       account_disable: Su cuenta ha sido desactivada por inactividad
       warning: Su cuenta será desactivada en breve debido a la inactividad
@@ -3127,6 +3213,9 @@ es-ES:
       send_password_email_success: Correo electrónico enviado al usuario %{email} con la contraseña.
     title: Restablecer contraseña
   select: Seleccione
+  sessions:
+    errors:
+      recaptcha: Error en la verificación de Recaptcha. Por favor, inténtelo de nuevo.
   shared:
     filters:
       clear: Quitar filtros
@@ -3190,7 +3279,7 @@ es-ES:
         access_reports_at: Acceda al informe en
         access_reports_at_date: Fecha
         access_reports_at_time: Tiempo
-        client_ids: Arrendamientos de clientes
+        client_ids: Clientes
         manager_ids: Gestores
         report_ids: Informes
         user_ids: Usuarios
@@ -3239,7 +3328,7 @@ es-ES:
         categories:
           '360': campaña 360
           agile: AGIL
-          assessor_form: Formulario para asesores
+          assessor_form: Formulario para evaluadores
           case_study: Casos prácticos
           hogan: Hogan
           meeting: Reunión
@@ -3350,7 +3439,7 @@ es-ES:
         parent_id: Gestor directo
         report_ids: ID de los informes
         roles:
-          campaign_admin: Administración de la campaña
+          campaign_admin: Administración
           client_admin: Administración de clientes
           manager: Director
           member: Usuario
@@ -3661,7 +3750,7 @@ es-ES:
       title: Ayuda con los informes
     reset_campaign_confirmation: Introduzca en el cuadro de texto el nombre de la campaña que se le ha facilitado más arriba para restablecer todos los participantes
     reset_nomination_confirmation: Introduzca en el cuadro de texto el nombre de la campaña que se le ha facilitado más arriba para restablecer todas las propuestas
-    save: Guardar
+    save: Salvar
     select_relationnship: Seleccionar relación
     select_relationship: Seleccionar relación
     self: Yo mismo/a
@@ -3876,7 +3965,7 @@ es-ES:
     global_assessors: Evaluadores globales
     password_change_success: La contraseña se ha cambiado correctamente. Por favor, inicie sesión con su nueva contraseña.
     roles:
-      campaign_admin: Administración de la campaña
+      campaign_admin: Administración
       campaign_assessor: Asesor de campaña
       campaign_user: Usuario de la campaña
       client_admin: Administración de clientes

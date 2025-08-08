@@ -23,6 +23,7 @@ module EndUser
         required(:cancellation_lead_time).filled(:int?)
         required(:scheduling_lead_time).filled(:int?)
         required(:booking_prework_condition_unsatisfied).filled(:bool?)
+        required(:previous_groups_completion_unsatisfied).filled(:bool?)
         required(:campaign_id).maybe(:int?)
       end
     end

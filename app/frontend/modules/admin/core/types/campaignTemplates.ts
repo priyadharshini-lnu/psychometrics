@@ -21,6 +21,12 @@ export const CampaignTemplateTR = t.intersection([
         name: t.string,
       }),
       t.undefined]),
+    campaign: t.union([
+      t.type({
+        id: t.string,
+        name: t.string,
+      }),
+      t.undefined]),
   })])
 
 export type CampaignTemplate = t.TypeOf<typeof CampaignTemplateTR>
@@ -37,6 +43,9 @@ export const Schema = {
     },
     report: {
       type: 'reports',
+    },
+    campaign: {
+      type: 'campaigns',
     },
   },
 }

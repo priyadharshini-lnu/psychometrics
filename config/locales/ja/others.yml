@@ -519,6 +519,7 @@ ja:
         created_at: 作成日
         id: 身分証明書
         name: 名称
+        owner: オーナー
         updated_at: 変更日
       factor:
         active: アクティブ
@@ -545,7 +546,11 @@ ja:
         updated_at: 変更日
       library:
         created_at: 作成日
+        description: 説明
+        files: ファイル
         id: 身分証明書
+        name: 名称
+        owner: オーナー
         type: サムネイル
         updated_at: 変更日
       license:
@@ -617,6 +622,7 @@ ja:
         created_at: 作成日
         id: 身分証明書
         name: 名称
+        owner: オーナー
         updated_at: 変更日
       report:
         created_at: 作成日
@@ -813,6 +819,7 @@ ja:
         bulk_update_evaluation_status: 一括更新の評価ステータス
         compact_completion_status_export: コンパクト完成状況エクスポート
         completion_status_export: 完成状況のエクスポート
+        copy_as_template_or_campaign: キャンペーンをテンプレートとしてコピーする
         copy_dimension: コピー寸法
         create_threesixty_campaign: クリエイト・スリーシックスティ・キャンペーン
         data_report_export: データ・レポート・エクスポート
@@ -896,6 +903,7 @@ ja:
     invalid_job: この通知は削除されたレコードに対応する
     mark_as_read: すべて読む
     more: もっと見る
+    no_notifications: 通知はありません
     notifications: お知らせ
     results: 結果
     super_admin:
@@ -1080,6 +1088,7 @@ ja:
         description: この評価セッションは無効になりました。 これは、別のタブ、ブラウザ、またはデバイスで評価を続行した場合に発生する可能性があります。
         title: 前回のリクエスト失敗
       next: 次へ
+      no_skill_mapping_message: この職務のスキルマッピングは行われていませんので、管理者にお問い合わせください。
       read_only: 読み取り専用モードです。結果を変更することはできません。
       save: 保存
       submissionFailedAlert:
@@ -1148,6 +1157,7 @@ ja:
     add_group_form:
       previous_assessments_required: 査定は以下の順序で行われる。
       previous_group_required: 過去にグループを結成したことがあること
+      require_previous_groups_completion_for_booking: ご予約の前に、以前のすべてのグループを完了している必要があります。
     menu:
       assessment_center: アセスメント・センター
       assessment_center_invites: アセスメントセンターの招待
@@ -1387,6 +1397,7 @@ ja:
       bulk_download: 一括ダウンロード
       bulk_update_evaluation_as_done: 完了としてマーク
       bulk_update_evaluation_as_undone: 完了としてマークを解除
+      convert_to_template: テンプレートに変換
       download: レポートのダウンロード
       export_completion_status: 輸出完了ステータス
       export_external: 外部
@@ -1406,7 +1417,7 @@ ja:
       reset_all_nominations: すべての指名をリセット
       reset_participant: 全参加者をリセット
     allow_msg_proctoring_workshop_activity: アセスメントセンターでの活動は試験されない。
-    assessment_center_heading: アセスメントセンターの詳細
+    assessment_center_heading_label: セッション詳細
     assessments_heading: あなたのタスク
     column:
       assessment_name: 評価名
@@ -1543,7 +1554,9 @@ ja:
       in_progress: 進行中
       ineligible: 不適格
       interrupted: 中断
+      new: 新規
       not_started: 開始していません
+      progress: 進行中
       timed_out: タイムアウト
       universal_link: ユニバーサルリンク
     ungrouped_assessments_heading: グループ外
@@ -1564,6 +1577,7 @@ ja:
     column:
       assessor_access: アセッサーのアクセス
       auto_assign: オートアサイン
+      locales: ロケール
       main_report: 主要レポート
       report_bundle: レポート・バンドル
       report_name: レポート名
@@ -1586,6 +1600,13 @@ ja:
         apply: この変更をキャンペーンの既存ユーザーに適用します。
         msg_text: "<strong>「%{reportName}」</strong>レポートを削除しようとしています"
         title: レポートを削除しますか？
+      update_languages:
+        default_language: デフォルト言語
+        other_available_languages: その他の言語
+        select_default_language: デフォルト言語の選択
+        select_languages: 言語選択
+        success_msg: 言語が正常に更新されました
+        title: レポート言語
       user_access:
         apply: この変更をキャンペーンの既存ユーザーに適用します。
         title:
@@ -1931,6 +1952,8 @@ ja:
       timeout: セッションの期限切れです。続行するにはもう一度ログインしてください。
       unauthenticated: 続行するには、ログインまたは登録する必要があります。
       unconfirmed: 続行する前にメールアドレスを確認する必要があります。
+    invalid_captcha: キャプチャ入力が無効でした。
+    invalid_security_question: セキュリティに関する質問の回答が無効でした。
     invitations:
       edit:
         confirm_password_label: パスワードの確認
@@ -1956,6 +1979,8 @@ ja:
         subject: ライトハウスへの招待
       confirmation_instructions:
         subject: 確認事項
+      copyright:
+        text: Lighthouse. すべての権利を保有します
       invitation_instructions:
         body: 'こんにちは、%{name}, あなたは次のセクションの管理者としてLighthouseに追加されました。 '
         login: ライトハウスにサインイン
@@ -1968,6 +1993,8 @@ ja:
         body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに mte.support@mercer.com までご連絡ください。 '
         regards: 'ライトハウス・チーム '
         subject: ライトハウスのパスワードが変更されました
+      powered_by:
+        text: Powered by Lighthouse.
       reset_password_instructions:
         body: 'こんにちは、%{name}さん！パスワード変更用のリンクをリクエストされました。 以下のリンクから変更できます。 '
         change_password: パスワードの変更
@@ -1983,6 +2010,25 @@ ja:
     omniauth_callbacks:
       failure: 理由'%{reason}'のため、%{kind} からあなたを認証できませんでした。
       success: "%{kind}アカウントから正常に認証されました。"
+    paranoid_verification_code:
+      show:
+        submit: 投稿する
+        submit_verification_code: 認証コードの送信
+        verification_code: 検証コード
+      updated: 検証コードを受理
+    paranoid_verify:
+      code_required: サポートチームが提供したコードを入力してください。
+    password_expired:
+      change_required: パスワードの有効期限が切れています。パスワードを更新してください。
+      forced_changed: アカウントに新しいパスワードを設定する必要があります。
+      password_policy_changed: パスワードポリシーが変更されました。パスワードを変更してください。
+      show:
+        change_my_password: パスワードの変更
+        current_password: 現在のパスワード
+        new_password: 新しいパスワード
+        new_password_confirmation: 新しいパスワードの確認
+        renew_your_password: パスワードを更新する
+      updated: 新しいパスワードが保存されます。
     passwords:
       edit:
         instruction: 新しいパスワードを作成するには、以下のボックスに新しいパスワードを入力してください。
@@ -2150,6 +2196,10 @@ ja:
       workshop_subject_create:
         already_exists: このアセスメントセンターには既に件名が存在する。
         part_of_other_workshop: 対象者は既に '%{workshop_name}' の参加者です。
+      workshop_subject_re_enroll:
+        no_seats_available: このワークショップに空席はありません。
+        scheduling_lead_time_passed: Scheduling Lead Timeが過ぎた場合、再登録はできません。
+        workshop_subject_not_found: ワークショップのテーマが見つかりません
       workshops:
         no_available_assessor_slots: 査定者の空き枠がありません %{assessor}。
         no_available_manager_slots: マネージャ %{manager} に使用可能なスロットはありません。
@@ -2180,6 +2230,8 @@ ja:
   errors:
     assessments:
       timed_out: "%{assessment_name}評価はタイムアウトしたため、受けることはできません。"
+    equal_to_current_password: は現在のパスワードとは異なるものでなければならない。
+    equal_to_email: は電子メールとは異なるものでなければならない。
     error: エラー
     error_401: このリソースにアクセスする権限がありません。サインインしてください。
     error_403: このリソースを表示する権限がありません。
@@ -2192,6 +2244,20 @@ ja:
     max_regeneration_limit: 最大再生回数の制限を超えました。
     messages:
       data_report_blank: データレポートが存在しない
+      password_complexity:
+        digit:
+          one: には少なくとも1桁の数字が含まれていなければならない。
+          other: 少なくとも<x>count</x> 桁の数字が含まれていなければならない。
+        lower:
+          one: 少なくとも1つの小文字が含まれていなければならない
+          other: 少なくとも<x>count</x> の小文字が含まれていなければならない。
+        symbol:
+          one: 少なくとも1つの句読点または記号を含むこと。
+          other: 少なくとも<x>count</x> の句読点または記号を含むこと。
+        upper:
+          one: 少なくとも1つの大文字が含まれていなければならない
+          other: 少なくとも<x>count</x> の大文字が含まれていなければならない。
+      taken_in_past: 以前に使用したパスワードと同じであってはならない。
     module_error: このモジュールに何か問題が発生しました。
     module_error_editor: モジュールの設定を確認してください。
     module_props_error: このモジュールに何か問題があったようだ。
@@ -2202,6 +2268,9 @@ ja:
       no_active_plan: 有効なIDP計画が見つからない
     webhooks:
       multiple_webhook_error: このプロジェクトには複数のWebhookがあるため、urlは更新できません。
+    workshop:
+      ical_generation_failed: カレンダーの招待を生成できませんでした
+      missing_or_invalid: ワークショップIDの欠落または無効
   evaluators:
     errors:
       can_not_processed: 処理できない
@@ -2262,8 +2331,13 @@ ja:
       add_to_yahoo_calendar: yahooカレンダーに追加
       assessment_center_alert:
         btn_title: キャンペーン
-        message_part1: 時間枠を予約する前に
-        message_part2: この中の事前作業をすべて完了してください。
+        complete_previous_groups: これまでのグループ活動をすべて完了する
+        complete_preworks: すべての事前作業を完了する
+        please_visit: をご覧ください。
+        requirements_message: 以下の条件を満たした場合のみ予約が可能です。
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: を完了する必要がある。
       assessment_center_group_name: アセスメントセンター
       booking_failed_msg: 時間枠を予約できませんでした：%{error}
       buttons:
@@ -2322,7 +2396,7 @@ ja:
         invites: 招待
       what: 内容
       when: 日時
-      workshop_start_text: アセスメントセンターの開始まで：
+      workshop_start_label: セッションの開始時間は
     break_time: 休憩時間
     campaign:
       actions:
@@ -2331,6 +2405,7 @@ ja:
         remove:
           confirmation: キャンペーンを削除するには、以下のテキストボックスに現在のキャンペーン名を入力してください
           success: "%{campaignName}が正常に削除されました。"
+          template_confirmation: 削除するには、下のフィールドに現在のテンプレート名を入力してください。注：これはリンクされたキャンペーンテンプレートも削除します。
       users:
         actions:
           export:
@@ -2463,6 +2538,7 @@ ja:
       aria_selected: 厳選された
   idp:
     actions: 行動
+    behavioral: ビヘイビア
     board: ボード
     comment_details:
       add_comment: コメントを追加
@@ -2678,6 +2754,7 @@ ja:
         required: 質問への回答が必要
       max_words: 最大文字数
       min_words: ミニ・ワード
+      no_reflective_questions: 反省的な質問はありません
       title: 反省的な質問
       update_failed: アップデート中にエラーが発生しました。
       updated_successfully: 回答が更新されました
@@ -2685,6 +2762,7 @@ ja:
     skill_gap_report:
       title: スキル・ギャップ・レポート
     status: ステータス
+    technical: テクニカル
     user_idp_status:
       approved: 承認済み
       completed: 完了
@@ -2820,6 +2898,12 @@ ja:
     used_number: 中古ライセンス
     used_out_of: "%{total}のうち、%{used}"
   mailer:
+    copyright:
+      text: ライトハウス無断複写・転載を禁じます。
+    footer:
+      regards: ありがとう、
+      team_name: ライトハウス・チーム
+      technical_support: 技術的な問題については、<x>email</x> 。
     from: タレント・エンタープライズ
     idp:
       manager_unread_comments:
@@ -2877,6 +2961,8 @@ ja:
         instructions: 以下のリンクをクリックして、Lighthouseにサインインしてください。
         signin_link: サインインリンク
       subject: Lighthouseへのサインインリンク
+    powered_by:
+      text: パワード・バイ・ライトハウス
     users:
       account_disable: アカウントが無効になっています
       warning: アカウントが無効のため、すぐに無効になります。
@@ -3193,6 +3279,9 @@ ja:
       send_password_email_success: パスワードが記載された電子メールがユーザ %{email} に送信されました。
     title: パスワードのリセット
   select: 選択
+  sessions:
+    errors:
+      recaptcha: Recaptcha の検証に失敗しました。もう一度お試しください。
   shared:
     filters:
       clear: 絞り込みをクリア

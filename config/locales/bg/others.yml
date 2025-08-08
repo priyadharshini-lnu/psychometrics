@@ -519,6 +519,7 @@ bg:
         created_at: Дата на създаване
         id: Документ за самоличност
         name: Име
+        owner: Собственик
         updated_at: Дата на промяна
       factor:
         active: Активен
@@ -545,7 +546,11 @@ bg:
         updated_at: Дата на промяна
       library:
         created_at: Дата на създаване
+        description: Описание
+        files: Файлове
         id: Документ за самоличност
+        name: Име
+        owner: Собственик
         type: Картинка
         updated_at: Дата на промяна
       license:
@@ -617,6 +622,7 @@ bg:
         created_at: Дата на създаване
         id: Документ за самоличност
         name: Име
+        owner: Собственик
         updated_at: Дата на промяна
       report:
         created_at: Дата на създаване
@@ -813,6 +819,7 @@ bg:
         bulk_update_evaluation_status: Състояние на оценка на групово актуализиране
         compact_completion_status_export: Компактен износ на състоянието на завършване
         completion_status_export: Експортиране на състоянието на завършване
+        copy_as_template_or_campaign: Копиране на кампанията като шаблон
         copy_dimension: Копиране на величината
         create_threesixty_campaign: Създайте кампания Threesixty
         data_report_export: Експортиране на отчети за данни
@@ -896,6 +903,7 @@ bg:
     invalid_job: Това уведомление съответства на изтрит запис
     mark_as_read: Маркиране на всички прочетени
     more: Още
+    no_notifications: Няма известия
     notifications: Уведомления
     results: Резултати
     super_admin:
@@ -1075,6 +1083,7 @@ bg:
         description: Тази сесия за оценка беше обявена за невалидна. Това може да се случи, ако продължите оценката в отделен раздел, браузър или устройство.
         title: Последната заявка е неуспешна
       next: Следващ
+      no_skill_mapping_message: За тази длъжност не е извършено картографиране на уменията, свържете се с администратора си.
       read_only: Режимът е само за четене, не можете да променяте резултатите.
       save: Запазете
       submissionFailedAlert:
@@ -1143,6 +1152,7 @@ bg:
     add_group_form:
       previous_assessments_required: Оценяванията да се изпълняват в ред по-долу
       previous_group_required: Изисква се предишно попълване на групата
+      require_previous_groups_completion_for_booking: Изискване за завършване на всички предишни групи преди резервацията
     menu:
       assessment_center: Център за оценяване
       assessment_center_invites: Покани за център за оценяване
@@ -1374,6 +1384,7 @@ bg:
       bulk_download: Групово изтегляне
       bulk_update_evaluation_as_done: Маркиране като готово
       bulk_update_evaluation_as_undone: Премахване на марката като готово
+      convert_to_template: Преобразуване в шаблон
       download: Изтегляне на отчети
       export_completion_status: Състояние на завършване на експорта
       export_external: Външен
@@ -1393,7 +1404,7 @@ bg:
       reset_all_nominations: Нулиране на всички номинации
       reset_participant: Нулиране на всички участници
     allow_msg_proctoring_workshop_activity: Дейностите на центъра за оценяване не се контролират.
-    assessment_center_heading: Подробности за центъра за оценяване
+    assessment_center_heading_label: Подробности за сесията
     assessments_heading: Вашите задачи
     column:
       assessment_name: Име на оценяването
@@ -1530,7 +1541,9 @@ bg:
       in_progress: В процес на изпълнение
       ineligible: Недопустим
       interrupted: Прекъснат
+      new: Нов
       not_started: Не е започнато
+      progress: В процес на изпълнение
       timed_out: Изтичане на времето
       universal_link: Универсална връзка
     ungrouped_assessments_heading: Негрупирани
@@ -1551,6 +1564,7 @@ bg:
     column:
       assessor_access: Достъп до оценителя
       auto_assign: Автоматично присвояване
+      locales: Местоположения
       main_report: Основен доклад
       report_bundle: Пакет от отчети
       report_name: Име на отчета
@@ -1573,6 +1587,13 @@ bg:
         apply: Приложете тези промени към съществуващи потребители в тази кампания.
         msg_text: Опитвате се да изтриете <strong>отчета "%{reportName}"</strong>
         title: Премахване на доклада?
+      update_languages:
+        default_language: Език по подразбиране
+        other_available_languages: Други налични езици
+        select_default_language: Избор на език по подразбиране
+        select_languages: Изберете езици
+        success_msg: Езиците бяха актуализирани успешно
+        title: Език на доклада
       user_access:
         apply: Приложете тези промени към съществуващи потребители в тази кампания.
         title:
@@ -1918,6 +1939,8 @@ bg:
       timeout: Сесията Ви е изтекла. Моля, влезте отново, за да продължите.
       unauthenticated: Трябва да влезете или да се регистрирате, преди да продължите.
       unconfirmed: Трябва да потвърдите имейл адреса си, преди да продължите.
+    invalid_captcha: Въведената captcha е невалидна.
+    invalid_security_question: Отговорът на въпроса за сигурността е невалиден.
     invitations:
       edit:
         confirm_password_label: Потвърдете паролата
@@ -1997,6 +2020,25 @@ bg:
     omniauth_callbacks:
       failure: Не мога да ви удостоверя от %{kind}, защото "%{reason}".
       success: Успешно удостоверен от %{kind} акаунт.
+    paranoid_verification_code:
+      show:
+        submit: Подаване на
+        submit_verification_code: Подаване на код за проверка
+        verification_code: Код за проверка
+      updated: Приет код за проверка
+    paranoid_verify:
+      code_required: Моля, въведете кода, предоставен от нашия екип за поддръжка
+    password_expired:
+      change_required: Паролата ви е изтекла. Моля, подновете паролата си.
+      forced_changed: Трябва да зададете нова парола за профила си.
+      password_policy_changed: Променена е политиката за паролите. Моля, сменете паролата си.
+      show:
+        change_my_password: Промяна на моята парола
+        current_password: Текуща парола
+        new_password: Нова парола
+        new_password_confirmation: Потвърждаване на новата парола
+        renew_your_password: Подновяване на паролата ви
+      updated: Новата ви парола е запазена.
     passwords:
       edit:
         instruction: За да създадете нова парола, моля, въведете новата си парола в полетата по-долу
@@ -2164,6 +2206,10 @@ bg:
       workshop_subject_create:
         already_exists: Субектът вече съществува в този център за оценяване.
         part_of_other_workshop: Субектът вече е участник в "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: Няма свободни места за този семинар.
+        scheduling_lead_time_passed: Времето за планиране е изтекло, не можете да запишете отново предмета.
+        workshop_subject_not_found: Темата на семинара не е намерена
       workshops:
         no_available_assessor_slots: Няма свободни места за оценител %{assessor}
         no_available_manager_slots: Няма свободни слотове за мениджър %{manager}
@@ -2194,6 +2240,8 @@ bg:
   errors:
     assessments:
       timed_out: Няма да можете да се явите на теста %{assessment_name}, тъй като е изтекъл.
+    equal_to_current_password: трябва да е различна от текущата парола.
+    equal_to_email: трябва да е различен от имейла.
     error: Грешка
     error_401: Нямате право на достъп до този ресурс. Моля, влезте в профила си.
     error_403: Нямате разрешение да преглеждате този ресурс.
@@ -2206,6 +2254,20 @@ bg:
     max_regeneration_limit: Максималната граница на регенерация е надвишена, свържете се с вашата администрация.
     messages:
       data_report_blank: Отчет за данни не съществува
+      password_complexity:
+        digit:
+          one: трябва да съдържа поне една цифра
+          other: трябва да съдържа най-малко <x>count</x> цифри.
+        lower:
+          one: трябва да съдържа поне една малка буква.
+          other: трябва да съдържа поне <x>count</x> малки букви.
+        symbol:
+          one: трябва да съдържа поне един препинателен знак или символ.
+          other: трябва да съдържа поне <x>count</x> препинателни знаци или символи.
+        upper:
+          one: трябва да съдържа поне една главна буква.
+          other: трябва да съдържа поне <x>count</x> главни букви.
+      taken_in_past: не трябва да е същата като предишна парола.
     module_error: Нещо се е объркало с този модул, моля, свържете се с администрацията.
     module_error_editor: Нещо се е объркало с този модул, моля, проверете настройките на модула.
     module_props_error: Нещо се е объркало с този модул.
@@ -2216,6 +2278,9 @@ bg:
       no_active_plan: Не е намерен активен план за IDP
     webhooks:
       multiple_webhook_error: URL адресът не може да бъде актуализиран, тъй като има множество уеб кукички за този проект.
+    workshop:
+      ical_generation_failed: Не може да генерира покана за календара
+      missing_or_invalid: Липсващ или невалиден workshop_id
   evaluators:
     errors:
       can_not_processed: не може да се обработва
@@ -2276,8 +2341,13 @@ bg:
       add_to_yahoo_calendar: Добавяне към календара на yahoo
       assessment_center_alert:
         btn_title: Кампания
-        message_part1: Изпълнете всички предварителни задачи в тази
-        message_part2: преди да резервирате слот.
+        complete_previous_groups: Завършване на всички предишни групови дейности
+        complete_preworks: Завършване на всички предварителни работи
+        please_visit: Моля, посетете
+        requirements_message: Можете да направите резервация само след като сте изпълнили следното изискване
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: за да изпълните тези изисквания.
       assessment_center_group_name: Център за оценяване
       booking_failed_msg: 'Не успя да резервира слот: %{error}'
       buttons:
@@ -2336,7 +2406,7 @@ bg:
         invites: Покани
       what: Какво
       when: Кога
-      workshop_start_text: Вашият център за оценяване ще започне в
+      workshop_start_label: Сесията ви ще започне в
     break_time: Време за почивка
     campaign:
       actions:
@@ -2345,6 +2415,7 @@ bg:
         remove:
           confirmation: Въведете името на текущата кампания, дадено по-долу, в текстовото поле, за да премахнете кампанията
           success: "%{campaignName} е премахнат успешно."
+          template_confirmation: 'Въведете името на текущия шаблон в полето по-долу, за да го изтриете. Забележка: Това ще изтрие и свързания шаблон на кампанията.'
       users:
         actions:
           export:
@@ -2580,6 +2651,7 @@ bg:
       cover:
         fields:
           assigned_data: Определена дата
+          assigned_date: Присвоена дата
           completion_date: Дата на завършване
           division: Делене
           name: Име
@@ -2692,6 +2764,7 @@ bg:
         required: Отговорът на въпроса е необходим
       max_words: Максимален брой думи
       min_words: Малко думи
+      no_reflective_questions: Без отразяващи въпроси
       title: Въпроси за размисъл
       update_failed: Възникна грешка по време на актуализацията
       updated_successfully: Вашите отговори са актуализирани успешно
@@ -2835,6 +2908,12 @@ bg:
     used_number: Използвани лицензи
     used_out_of: "%{used} от %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Всички права запазени
+    footer:
+      regards: С уважение,
+      team_name: Екип на Lighthouse
+      technical_support: За всякакви технически проблеми, моля, пишете ни на <x>email</x> и ние ще ви отговорим в рамките на 24 часа.
     from: Предприятието за таланти
     idp:
       manager_unread_comments:
@@ -2892,6 +2971,8 @@ bg:
         instructions: Натиснете връзката по-долу, за да влезете в Lighthouse.
         signin_link: Връзка за влизане
       subject: Връзка за вход за Lighthouse
+    powered_by:
+      text: Захранван от Lighthouse.
     users:
       account_disable: Вашият акаунт е деактивиран поради неактивност
       warning: Акаунтът ви скоро ще бъде деактивиран поради неактивност
@@ -3208,6 +3289,9 @@ bg:
       send_password_email_success: Имейл, изпратен до потребителя %{email} с паролата.
     title: Нулиране на паролата
   select: Отбран
+  sessions:
+    errors:
+      recaptcha: Проверката на Recaptcha се провали. Моля, опитайте отново.
   shared:
     filters:
       clear: Изчистете филтрите

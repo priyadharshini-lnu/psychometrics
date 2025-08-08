@@ -3,13 +3,14 @@ import {
 } from 'antd'
 import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { useMemo } from 'react'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const getCustomMenuProps = ({
   threesixtyCampaignId, campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
   handleExportThreeSixtyScores, handleBulkDownloads, openModal, isBulk, handleBulkMarkAsDone,
-  selectedKeys, excludedKeys, isAllSelected,
+  selectedKeys, excludedKeys, isAllSelected, handleTemplateConversion,
 }) => {
   const handleMenuClick = ({ key }) => {
     if (key === 'export_raw_labels') {
@@ -44,6 +45,9 @@ const getCustomMenuProps = ({
     }
     if (key === 'completed' || key === 'in_progress') {
       return handleBulkMarkAsDone(campaignId, key, isAllSelected, selectedKeys, excludedKeys)
+    }
+    if (key === 'convert_to_template') {
+      return handleTemplateConversion()
     }
   }
 
@@ -105,6 +109,10 @@ const getCustomMenuProps = ({
       key: 'bulk_downloads',
       label: I18n.t('campaign_assessment.actions.bulk_download'),
     },
+    permissions.convertToTemplate && {
+      key: 'convert_to_template',
+      label: I18n.t('campaign_assessment.actions.convert_to_template'),
+    },
   ]
 
   const bulkActionItems = [
@@ -125,15 +133,29 @@ export default function ToolsDropdown ({
   threesixtyCampaignId, campaignId, dimensionId, resetCampaign, resetAllNominations, openModal,
   rescoreAssessment, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
-  reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys, excludedKeys, title, isAllSelected,
+  reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys,
+  excludedKeys, title, isAllSelected, normalizedSubjectsData,
 }) {
   const { projectId } = useParams()
+  const selectedUserReportIds = useMemo(() => selectedKeys.map((key) => {
+    const subject = normalizedSubjectsData[key]
+    return subject ? subject.userReportId : null
+  }).filter(Boolean), [selectedKeys, normalizedSubjectsData])
   const resetCampaignWithConfirmation = (campaignId) => {
     openModal('ResetCampaignModal', {
       onConfirm: removeLicenceUsage => resetCampaign(campaignId, removeLicenceUsage),
     })
   }
   const { modal, message } = App.useApp()
+
+
+  const handleTemplateConversion = () => {
+    openModal('ConvertOrCopyAsTemplateModal', {
+      visible: true,
+      campaignId,
+      projectId,
+    })
+  }
 
   const handleRescoreAssessment = (threesixtyCampaignId) => {
     modal.confirm({
@@ -167,7 +189,7 @@ export default function ToolsDropdown ({
         cancelText: I18n.t('common.text.cancel'),
         onOk: async () => {
           try {
-            await regenerateReports(threesixtyCampaignId, [reportDefaultLanguage], true)
+            await regenerateReports(threesixtyCampaignId, [reportDefaultLanguage], true, selectedUserReportIds)
             message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
@@ -182,7 +204,7 @@ export default function ToolsDropdown ({
         defaultLocale: reportDefaultLanguage,
         onConfirm: async (selectedLocales, forceRegenerate) => {
           try {
-            await regenerateReports(threesixtyCampaignId, selectedLocales, forceRegenerate)
+            await regenerateReports(threesixtyCampaignId, selectedLocales, forceRegenerate, selectedUserReportIds)
             message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
@@ -194,7 +216,7 @@ export default function ToolsDropdown ({
 
   const handleBulkDownloads = () => {
     if (reportAvailableLanguages.length === 0) {
-      bulkDownloads(threesixtyCampaignId, [reportDefaultLanguage])
+      bulkDownloads(threesixtyCampaignId, [reportDefaultLanguage], selectedUserReportIds)
         .then(() => {
           message.success(I18n.t('jobs.threesixty.bulk_downloads'))
         })
@@ -204,11 +226,12 @@ export default function ToolsDropdown ({
     } else {
       openModal('BulkDownloadModal', {
         visible: true,
-        onClose: () => {},
+        onClose: () => {
+        },
         allLocales: reportAvailableLanguages,
         defaultLocale: reportDefaultLanguage,
         onConfirm: (selectedLocales) => {
-          bulkDownloads(threesixtyCampaignId, selectedLocales)
+          bulkDownloads(threesixtyCampaignId, selectedLocales, selectedUserReportIds)
             .then(() => {
               message.success(I18n.t('jobs.threesixty.bulk_downloads'))
             })
@@ -289,6 +312,7 @@ export default function ToolsDropdown ({
           handleExportThreeSixtyScores,
           handleBulkDownloads,
           handleBulkMarkAsDone,
+          handleTemplateConversion,
           isBulk,
           selectedKeys,
           excludedKeys,

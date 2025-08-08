@@ -72,6 +72,8 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   const { type } = qs.parse(location.search.substr(1))
   const isRescheduleFlow = type === 'booking'
 
+  const hasBlockingConditions = inviteOrBookingDetails?.bookingPreworkConditionUnsatisfied
+    || inviteOrBookingDetails?.previousGroupsCompletionUnsatisfied
 
   const preferredLanguageFromData = inviteOrBookingDetails
     && 'preferredLanguage' in inviteOrBookingDetails && inviteOrBookingDetails.preferredLanguage
@@ -200,28 +202,49 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
             xl={22}
             xxl={18}
           >
-            {inviteOrBookingDetails?.bookingPreworkConditionUnsatisfied ? (
+            {hasBlockingConditions ? (
               <Alert
                 message={(
                   <span>
-                    <span>{I18n.t('frontend.bookings.assessment_center_alert.message_part1')}</span>
+                    <span>
+                      {I18n.t('frontend.bookings.assessment_center_alert.requirements_message')}
+                      {(inviteOrBookingDetails?.bookingPreworkConditionUnsatisfied
+                        && inviteOrBookingDetails?.previousGroupsCompletionUnsatisfied)
+                        ? I18n.t('frontend.bookings.assessment_center_alert.requirements_plural')
+                        : I18n.t('frontend.bookings.assessment_center_alert.requirements_singular')}
+                      :
+                    </span>
+                    <ul className="mt-2 mb-2 ml-4">
+                      {inviteOrBookingDetails?.bookingPreworkConditionUnsatisfied && (
+                        <li>{I18n.t('frontend.bookings.assessment_center_alert.complete_preworks')}</li>
+                      )}
+                      {inviteOrBookingDetails?.previousGroupsCompletionUnsatisfied && (
+                        <li>{I18n.t('frontend.bookings.assessment_center_alert.complete_previous_groups')}</li>
+                      )}
+                    </ul>
+                    <span>
+                      {I18n.t('frontend.bookings.assessment_center_alert.please_visit')}
+                      {' '}
+                    </span>
                     <Link
                       to={`/campaigns/${inviteOrBookingDetails.campaignId}`}
                       className="px"
                     >
                       {I18n.t('frontend.bookings.assessment_center_alert.btn_title')}
                     </Link>
-                    <span>{I18n.t('frontend.bookings.assessment_center_alert.message_part2')}</span>
+                    <span>
+                      {' '}
+                      {I18n.t('frontend.bookings.assessment_center_alert.to_complete_requirements')}
+                    </span>
                   </span>
-                     )}
+                )}
                 type="warning"
-                showIcon
                 className="mb-6"
               />
             ) : null}
             {!inviteOrBookingDetails ? <FullWidthSkeleton height="400px" rows={1} active /> : (
               <div className={styles.pageContainer}>
-                {inviteOrBookingDetails.bookingPreworkConditionUnsatisfied ? (
+                {hasBlockingConditions ? (
                   <div className={styles.pageMask} onClick={e => e.stopPropagation()} />
                 ) : null}
                 <BookingCard

@@ -67,7 +67,8 @@ module Administration
 
       def resource_params
         (params[:resource] || params[:campaign_assessment_group]).
-          permit(:name, :previous_assessments_required, :previous_group_required, :position, :group_type)
+          permit(:name, :previous_assessments_required, :previous_group_required,
+                 :require_previous_groups_completion_for_booking, :position, :group_type)
       end
 
       # rubocop:disable Naming/MemoizedInstanceVariableName

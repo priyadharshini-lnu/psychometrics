@@ -15,6 +15,8 @@ vi:
       title: Các thay đổi đã được kiểm toán
     administrator:
       sessions:
+        errors:
+          recaptcha: Xác minh reCAPTCHA đã thất bại
         new:
           forgot_password: Quên Mật khẩu?
           instruction: Vui lòng đăng nhập bằng thông tin tài khoản cá nhân của bạn
@@ -147,6 +149,7 @@ vi:
             accesssheet_manage: Quản lý bảng truy cập
             accesssheet_settings: Cài đặt bảng truy cập
             accesssheet_view: Chế độ xem Accesssheet
+            export: Xuất khẩu
             title: Dashboards
             view: Cảnh
           datasheets:
@@ -174,10 +177,12 @@ vi:
             title: Mẫu IDP
             view: Cảnh
           jobRoles:
+            export_translations: Dịch các vị trí công việc cho xuất khẩu
+            import_translations: Nhập bản dịch các vai trò công việc
             manage: Điều khiển
             title: Vai trò công việc
             view: Cảnh
-          mediaLibraries:
+          libraries:
             manage: Điều khiển
             title: Thư viện phương tiện
             view: Cảnh
@@ -288,23 +293,38 @@ vi:
             view: Cảnh
     ai_assistants:
       actions:
+        create: Tạo Trợ lý Trí tuệ Nhân tạo (AI)
+        edit: Chỉnh sửa Trợ lý AI
         playground: Sân chơi
       ai_assistants: Trợ lý AI
       ai_assistants_playground: Sân chơi trợ lý AI
       column:
         provider: Cung cấp
+      created_successfully: Trợ lý AI đã được tạo thành công.
       form:
+        add_output_schema_key: Thêm khóa lược đồ đầu ra
+        dependencies: Phụ thuộc
         description: Sự miêu tả
+        enter_description: Nhập mô tả
+        enter_schema_key: Nhập khóa lược đồ
+        key: Chìa khóa
         name: Tên
+        output_schema_keys: Các khóa lược đồ đầu ra
         provider: Cung cấp
+        remove_output_schema_key: Xóa khóa lược đồ đầu ra
+        schema_key_description_required: Mô tả khóa lược đồ là bắt buộc
+        schema_key_required: Khóa lược đồ là bắt buộc
+        schema_key_type: Loại phím
+        schema_key_unique: Các khóa lược đồ phải là duy nhất.
         system_prompt: Nhắc nhở hệ thống
-        title: Trợ lý AI
+        type: Loại
         user_prompt: Nhắc nhở người dùng
+      updated_successfully: Trợ lý AI đã được cập nhật thành công.
     any: " -Bất kì- "
     api:
       campaigns:
         validate_form:
-          external_id_taken: Id bên ngoài '%{external_id}' đã được sử dụng'
+          external_id_taken: ID bên ngoài '%{external_id}' đã được sử dụng'
       users:
         form:
           campaign_ids_not_existing: Không phải tất cả các mã chiến dịch đều tồn tại
@@ -635,7 +655,7 @@ vi:
       outcome: Kết quả
       payload: Tải trọng
       project: Dự án
-      record_id: Id bản ghi
+      record_id: ID bản ghi
       request_id: ID yêu cầu
       reset: Reset
       search: Tìm kiếm
@@ -765,6 +785,8 @@ vi:
       new:
         header: Tải xuống hàng loạt
       reports_unavailable: Hiện tại, không có báo cáo nào có sẵn để tải xuống. Vui lòng xác nhận rằng các báo cáo bạn muốn tải xuống đã có sẵn.
+      select_reports_for_download: Vui lòng chọn ít nhất một báo cáo để tải xuống.
+      select_reports_for_regenerate: Vui lòng chọn ít nhất một báo cáo để tạo lại.
     cable:
       notification:
         assessment_factors: Các yếu tố được tìm nạp
@@ -842,10 +864,19 @@ vi:
     campaign_factors_import:
       errors:
         invalid_headers: 'Các tiêu đề sau không hợp lệ: %{headers}'
+    campaign_report:
+      bulk_download:
+        data_range_error: Vui lòng chọn khoảng thời gian.
+        modal:
+          subtitle: Chọn khoảng thời gian và sau đó chọn ngôn ngữ cần thiết cho từng báo cáo.
+      generate:
+        modal:
+          subtitle: Chọn ngôn ngữ cần thiết cho từng báo cáo.
     campaign_templates:
       campaign_templates: Mẫu chiến dịch
       column:
         assessment: Thuế
+        campaign: Chiến dịch
         owner: Chủ nhân
         report: Báo cáo
       copy:
@@ -920,6 +951,7 @@ vi:
       assessors:
         spoof:
           successfully: Bạn đã đăng nhập thành công dưới dạng %{name}
+      convert_to_template: Chuyển đổi sang mẫu
       copy: Bản sao
       delete: Xóa
       edit: Biên tập
@@ -932,16 +964,20 @@ vi:
         inactive: Không hoạt động
         status: Tình trạng
       form:
+        active_notice: Trạng thái chiến dịch sẽ tự động thay đổi thành đóng vào ngày kết thúc đã chọn
         campaign: Chiến dịch
+        inactive_notice: Trạng thái chiến dịch sẽ tự động thay đổi thành hoạt động vào ngày bắt đầu đã chọn
+        instruction: Điều này chỉ có thể được bật trong khi tạo chiến dịch
         name: Tên
         practice_campaign: Chiến dịch thực hành
         status: Tình trạng
       listing:
         assessments: Đánh giá
-        id: Id
+        id: ID
         name: Tên
         reports: Báo cáo
         status: Tình trạng
+        template: Mẫu
         type: Kiểu
       menus:
         add_common_campaign: Thêm chiến dịch chung
@@ -955,13 +991,21 @@ vi:
             active: Hoạt động
             archive: Lưu trữ
             assessment: Thuế
+            category: Loại
             closed: Khép kín
+            default_assessment_language: Ngôn ngữ mặc định cho đánh giá
+            default_report_language: Báo cáo ngôn ngữ mặc định
             empty: Trống
             inactive: Không hoạt động
             name: Tên
+            normal: Bình thường
             previous: Trước
+            select_assessment_language: Chọn ngôn ngữ đánh giá
+            select_report_language: Chọn ngôn ngữ báo cáo
+            skill_rater: Người đánh giá kỹ năng
             standard: Chuẩn
             status: Tình trạng
+            type: Kiểu
           close:
             content: Bạn có chắc chắn muốn đóng Multi Rater Campaign Creator không? Mọi công việc tùy chỉnh chưa lưu sẽ bị mất. Vui lòng xác nhận quyết định của bạn.
             title: Đóng Multi Rater Campaign Creator?
@@ -990,6 +1034,7 @@ vi:
           name: Sự miêu tả
           save: Lưu mô tả
           save_success: Mô tả đã lưu thành công
+        enable_video_call_recording: Bật tính năng ghi âm cuộc gọi video
         fixed_time: Thời gian cố định
         instructions:
           actions:
@@ -1043,7 +1088,7 @@ vi:
           all: Tất cả
           anonymous: Vô danh
           identified: Xác định
-        id: Id
+        id: ID
         is_active: Hoạt động
         name: Tên
         no_permission_message: Bạn không có quyền sửa đổi
@@ -1067,6 +1112,7 @@ vi:
         ai_assistants: Trợ lý AI
         ai_assisted_idp: IDP hỗ trợ AI
         global_skills: Kỹ năng toàn cầu
+        idp: IDP
         sms_notification: Thông báo SMS
     clients:
       api_keys:
@@ -1150,7 +1196,7 @@ vi:
               sub_campaigns: Chiến dịch phụ
               tests_allocated: Các xét nghiệm được phân bổ
               users: Người dùng
-            id: Id
+            id: ID
             name: Tên chiến dịch
             reports: Báo cáo
             updated_at: Ngày cập nhật
@@ -1173,7 +1219,7 @@ vi:
               sub_campaigns: Chiến dịch phụ
               tests_allocated: Các xét nghiệm được phân bổ
               users: Người dùng
-            id: Id
+            id: ID
             name: Tên chiến dịch
             reports: Báo cáo
             updated_at: Ngày cập nhật
@@ -1224,7 +1270,7 @@ vi:
                 sub_campaign: Chiến dịch phụ
                 tests_allocated: Các bài kiểm tra được phân bổ
                 users: Người dùng
-              id: Id
+              id: ID
               name: Tên chiến dịch phụ
               reports: Báo cáo
               updated_at: Ngày cập nhật
@@ -1247,7 +1293,7 @@ vi:
                 sub_campaign: Chiến dịch phụ
                 tests_allocated: Các bài kiểm tra được phân bổ
                 users: Người dùng
-              id: Id
+              id: ID
               name: Tên chiến dịch phụ
               reports: Báo cáo
               updated_at: Ngày cập nhật
@@ -1297,7 +1343,7 @@ vi:
           assigned_user: Người dùng được chỉ định
           completed_user: Người dùng đã hoàn thành
           created_at: Ngày tạo
-          id: Id
+          id: ID
           name: Tên dự án
           number: Số
           project_admin: Quản trị viên dự án
@@ -1346,7 +1392,7 @@ vi:
           assigned_user: Người dùng được chỉ định
           completed_user: Người dùng đã hoàn thành
           created_at: Ngày tạo
-          id: Id
+          id: ID
           name: Tên dự án
           number: Số
           project_admin: Quản trị viên dự án
@@ -1415,7 +1461,7 @@ vi:
             assessment: Đánh giá
             client_admins: Quản trị viên khách hàng
             created_at: Được tạo tại
-            id: Id
+            id: ID
             name: Tên
             report: Báo cáo
             report_bundle: Gói báo cáo
@@ -1435,7 +1481,7 @@ vi:
             assessment: Đánh giá
             client_admins: Quản trị viên khách hàng
             created_at: Được tạo tại
-            id: Id
+            id: ID
             name: Tên
             report: Báo cáo
             report_bundle: Gói báo cáo
@@ -1540,7 +1586,9 @@ vi:
       reset: Reset
       save: Cứu
       select_all: Chọn tất cả
+      type: Loại
       unselect_all: Bỏ chọn tất cả
+    communication_settings: Cài đặt
     communications:
       create:
         successfully: Giao tiếp đã được tạo thành công.
@@ -1573,9 +1621,17 @@ vi:
           {{email}} - Email người nhận
           {{schedule_start_date}} - Ngày bắt đầu lịch trình
           {{schedule_end_date}} - Ngày kết thúc lịch trình
+        campaign: Chiến dịch
+        campaign_assessment_group: Nhóm Đánh giá Chiến dịch
+        client: Khách hàng
         completion: Hoàn thành
+        custom: Tùy chỉnh
         delivery_at: Giao hàng tại (GST)
         delivery_delay_hours: Giao hàng chậm trễ (giờ)
+        delivery_interval: Thời gian giao hàng
+        delivery_interval_number: Số khoảng thời gian giao hàng
+        delivery_interval_period: Thời gian giao hàng
+        delivery_rule: Quy tắc giao hàng
         delivery_rules:
           in_progress: Nếu đánh giá đang được tiến hành
           not_competed: Nếu đánh giá không hoàn thành
@@ -1587,20 +1643,27 @@ vi:
         idp_template_approved: IDP đã được phê duyệt
         idp_template_assigned: IDP được chỉ định
         idp_template_rejected: IDP bị từ chối
+        insert_piped_text: Chèn văn bản có đường dẫn
         invitation: Lời mời
         kind: Các loại giao tiếp
         locale: Locale
         magic_link_email: Email liên kết ma thuật
+        message_body_placeholder: Nhập tin nhắn của bạn vào đây...
         new_assignment: Nhiệm vụ mới
         new_users: Người dùng mới
         other: Khác
+        owner: Chủ sở hữu
+        project: Dự án
+        recipients: Người nhận
         reminder: Nhắc nhở
         report_available: Báo cáo có sẵn
+        select_assessments: Chọn các bài kiểm tra cần kiểm tra xem đã hoàn thành hay chưa.
         selected: Chọn
         selected_cc_recipients: Người nhận CC được chọn
         selected_recipients: Người nhận được chọn
         stop_reminder: Ngừng gửi lời nhắc
         stop_reminder_datetime: Ngày kết thúc lời nhắc (GST)
+        subject: Chủ đề
         workshop_booked: Xác nhận đặt phòng của trung tâm đánh giá
         workshop_cancelled: Trung tâm đánh giá bị hủy bỏ
         workshop_completed: Trung tâm đánh giá đã hoàn thành
@@ -1614,6 +1677,7 @@ vi:
         type: Kiểu
       list:
         actions: Hành động
+        assessment_center_group: Trung tâm Đánh giá Nhóm
         author: Tạo bởi
         campaign: Chiến dịch
         client_name: Khách hàng
@@ -1698,7 +1762,7 @@ vi:
         embed_token_error_description: Vui lòng kiểm tra xem Tập dữ liệu và ID báo cáo trong cài đặt có chính xác không.
         embed_token_error_title: Không thể tạo mã thông báo nhúng.
       settings:
-        capacity_id: Id dung lượng
+        capacity_id: ID dung lượng
         details: Chi tiết
         refresh: Làm tươi
         workspace_id: ID không gian làm việc
@@ -1709,7 +1773,7 @@ vi:
         settings: Cài đặt
     dashboard_form:
       fields:
-        dataset_id: Id tập dữ liệu
+        dataset_id: ID tập dữ liệu
         enabled: Kích hoạt
         image: Ảnh
         project_path: Lộ trình dự án
@@ -1761,6 +1825,7 @@ vi:
       errors:
         blank_field: 'Hàng %{row}: %{field} không được để trống'
         csv_file_required: Phải là tệp CSV
+        development_action_not_in_project: 'Dòng %{row}: ID Hành động Phát triển %{development_action_id} không thuộc dự án này.'
         image_download_failed: 'Không tải xuống hình ảnh từ %{url}: %{message}'
         invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
         invalid_date: Định dạng ngày cho %{date} không hợp lệ.
@@ -1885,10 +1950,24 @@ vi:
         successfully: Tác vụ nhập yếu tố được lên lịch cho thứ nguyên %{name}.
         title: Các yếu tố nhập khẩu
       import_modal:
+        after: Sau
+        before: Trước
         cancel: Hủy
+        change_log_input: Nhật ký thay đổi
         continue: Tiếp tục
+        error: Lỗi
+        error_occurred: Đã xảy ra lỗi
+        errors:
+          file_error: Vui lòng chọn một tệp JSON trước khi tiếp tục.
+          processing_error: Lỗi xử lý tệp
+        field: Trường
         import: Nhập khẩu
         import_dimension: Kích thước nhập khẩu
+        import_scheduled: Nhập theo lịch trình
+        operation: Hoạt động
+        owner_input_validation: Vui lòng chọn chủ sở hữu.
+        owner_select: Chọn chủ sở hữu
+        select_json: Chọn tệp JSON
       import_translations:
         error: Lỗi khi nhập bản dịch cho thứ nguyên %{name}.
         successfully: Nhập bản dịch được lên lịch cho thứ nguyên %{name}.
@@ -1903,7 +1982,7 @@ vi:
       list:
         active: Hoạt động
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         updated_at: Ngày sửa đổi
       new:
@@ -2010,7 +2089,7 @@ vi:
       list:
         active: Hoạt động
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         updated_at: Ngày sửa đổi
       new:
@@ -2073,21 +2152,29 @@ vi:
         remove_confirm: Nhập tên mẫu hiện tại được cung cấp bên dưới trong hộp văn bản để xóa mẫu
         success: "%{idpName} đã bị xóa thành công."
       add_idp_template: Thêm mẫu IDP
+      ai_assisted_idp_enabled: Hỗ trợ nhận dạng người dùng bằng trí tuệ nhân tạo (AI)
+      ai_enabled: Được trang bị trí tuệ nhân tạo (AI)
+      ai_settings: Cài đặt Trí tuệ Nhân tạo
       all: Tất cả
       appearance: Bề ngoài
       appearance_hint: Để sửa đổi giao diện, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
+      appearance_success: Cài đặt giao diện đã được lưu thành công.
       background_image: Hình nền
       behavioral_skills: Kỹ năng hành vi
       client_skills: Kỹ năng khách hàng
+      details_updated: Thông tin chi tiết về IDP đã được cập nhật thành công.
       edit_template: Chỉnh sửa mẫu IDP
+      enter_tag_or_skills_error: Chọn ít nhất một thẻ hoặc kỹ năng
       enter_template_description: Sự miêu tả
       enter_template_description_error: Mô tả mẫu là bắt buộc.
       enter_template_name: Tên
       enter_template_name_error: Tên mẫu là bắt buộc
       errors:
+        cannot_update_progress_plan_completed: Không thể cập nhật tiến độ vì kế hoạch IDP đã hoàn thành.
         update: Không được phép cập nhật vì mẫu IDP đã được liên kết với gói IDP của người dùng. Các thay đổi về ngoại hình đã được lưu.
       fields:
         assigned_data: Dữ liệu được chỉ định
+        assigned_date: Ngày được giao
         completion_date: Ngày hoàn thành
         division: Sư đoàn
         name: Tên
@@ -2111,6 +2198,7 @@ vi:
       logo_type_label: Loại logo
       no_reflection_questions_selected: Không chọn Câu hỏi phản ánh
       none: Không ai
+      one_click_idp_enabled: Bật IDP chỉ với một cú nhấp chuột
       reference_locale: Ngôn ngữ tham khảo
       reflection_questions: Câu hỏi suy ngẫm
       reflection_questions_hint: Để sửa đổi các câu hỏi phản ánh, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
@@ -2125,6 +2213,11 @@ vi:
       show_reflections: Hiển thị phản chiếu
       skill_gap_report: Báo cáo khoảng cách kỹ năng
       skills: Kỹ năng
+      skills_updated: Kỹ năng IDP đã được cập nhật thành công.
+      status:
+        draft: Bản nháp
+        published: Đã xuất bản
+      status_updated: Trạng thái IDP đã được cập nhật thành công.
       subtitle_text: Văn bản phụ đề
       tab:
         development_actions: Hành động phát triển
@@ -2212,7 +2305,7 @@ vi:
     individual_invite:
       tabs:
         assessment_center: Trung tâm đánh giá
-        subjects: Đối tượng
+        invitation_status: Tình trạng lời mời
     innovation_styles:
       create:
         successfully: Kiểu đổi mới %{name} đã được tạo thành công.
@@ -2227,7 +2320,7 @@ vi:
         title: Phong cách đổi mới
       list:
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         position: Vị trí
         updated_at: Ngày sửa đổi
@@ -2260,7 +2353,7 @@ vi:
       list:
         condition: Điều kiện
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         position: Vị trí
         updated_at: Ngày sửa đổi
@@ -2330,7 +2423,7 @@ vi:
       validations:
         iiht:
           tenancy_name_present: Tên thuê nhà đã có trong dự án khác
-          tenant_id_present: Id người thuê đã có trong dự án khác
+          tenant_id_present: ID người thuê đã có trong dự án khác
         mettl:
           public_key_present: Khóa công khai đã có trong dự án khác
         skillvue:
@@ -2341,7 +2434,9 @@ vi:
       assessment_center: 'Trung tâm đánh giá:'
       booked_at: 'Đặt tại:'
       column:
+        invitation_status: Tình trạng lời mời
         participant: Người tham gia
+        scheduling_details: Chi tiết lịch trình
       remove_confirm:
         content: Bạn có chắc chắn muốn xóa chủ đề có email '%{subjectEmail}' không?
         success: Chủ đề có email '%{subjectEmail}'' đã bị xóa thành công.
@@ -2349,6 +2444,8 @@ vi:
       statuses:
         accepted: Chấp nhận
         cancelled: Bị hủy bỏ
+        late_cancelled: Hủy đặt chỗ muộn
+        late_rescheduled: Đã hoãn lại
         pending: Chờ
         requested_cancellation: Yêu cầu hủy bỏ
         requested_cancellation_rejected: Hủy bỏ bị từ chối
@@ -2357,8 +2454,10 @@ vi:
         rescheduled: Dời
       subject: Chủ đề
     job_role:
+      are_you_sure_to_remove: Bạn chắc chắn muốn xóa?
       column:
         job_group: Nhóm công việc
+        skill_name: Tên kỹ năng
       export:
         failure_msg: Lỗi khi xuất bản dịch
         success_msg: Xuất các hành động phát triển đang được tiến hành.
@@ -2373,18 +2472,23 @@ vi:
         success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
       import_action:
         translations: Nhập bản dịch vai trò công việc
+      job_role_details: Chi tiết về vị trí công việc
       translations: Bản dịch vai trò công việc
     job_role_skill_mapping:
       column:
         expected_proficiency_level: Mức độ thành thạo dự kiến
       form:
         title: Lập bản đồ công việc kỹ năng
-      import:
-        taxonomy: Phân loại học
     job_roles:
       export:
         translations:
           details: Chi tiết
+      translations:
+        import:
+          errors:
+            job_role_not_found: Vị trí công việc có ID %{id} không được tìm thấy.
+            missing_columns: 'Thiếu các cột bắt buộc: %{columns}'
+            save_failed: 'Lỗi xử lý ID vai trò công việc %{id}: %{message}'
     libraries:
       create:
         successfully: Mục %{name} đã được tạo thành công.
@@ -2436,6 +2540,7 @@ vi:
         successfully: Người dùng %{name} đã được cập nhật thành công.
       update:
         successfully: Người dùng %{name} đã được cập nhật thành công.
+    message: Thông điệp
     meta_title: Bảng điều khiển
     navigation:
       ai_assistants: Trợ lý AI
@@ -2505,8 +2610,8 @@ vi:
       list:
         active: Hoạt động
         created_at: Ngày tạo
-        dimension_id: Id thứ nguyên
-        id: Id
+        dimension_id: ID thứ nguyên
+        id: ID
         name: Tên
         updated_at: Ngày sửa đổi
         updated_by: Cập nhật bởi
@@ -2542,6 +2647,7 @@ vi:
         editor: Trình chỉnh sửa định mức
         export: Định mức xuất khẩu
         title: Các lựa chọn của Norm
+      title: Tiêu chuẩn
       toggle_status:
         successfully: Norm đã được cập nhật thành công.
       update:
@@ -2566,7 +2672,7 @@ vi:
         title: Nghề
       list:
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         updated_at: Ngày sửa đổi
       new:
@@ -2598,7 +2704,7 @@ vi:
       list:
         condition: Điều kiện
         created_at: Ngày tạo
-        id: Id
+        id: ID
         name: Tên
         position: Vị trí
         updated_at: Ngày sửa đổi
@@ -2629,12 +2735,16 @@ vi:
     piped_text_modal:
       assessment_id: ID đánh giá
       campaign_id: ID chiến dịch
+      campaign_name: Tên chiến dịch
+      campaigns: Chiến dịch
       insight_page_link: Liên kết trang Insight
       insight_page_url: URL trang thông tin chi tiết
       join_link: Liên kết tham gia
       magic_link: Liên kết ma thuật
       magic_url: URL ma thuật
       profile_custom_field: Trường tùy chỉnh hồ sơ
+      project_name: Tên dự án
+      projects: Dự án
       report_name: Tên báo cáo
       text: Nhắn tin
       title: Thêm văn bản đường ống
@@ -2662,9 +2772,14 @@ vi:
       errors:
         create:
           invalid_format: Định nghĩa cấp độ phải là một mảng các định nghĩa.
+          level_definition_must_exist: Định nghĩa cấp độ không được để trống.
           level_definition_must_match_level: phải chứa chính xác %{expected} mức, nhưng %{actual} đã được đưa ra
+          level_name_must_exist: Tên cấp độ không được để trống.
           must_be_unique: Phải là duy nhất
           proficiency_level_exists: Mức độ thành thạo với kỹ năng và dự án này đã tồn tại
+          proficiency_level_exists_for_default: Mức độ thành thạo mặc định đã tồn tại.
+          proficiency_level_exists_for_type: Mức độ thành thạo cho loại này đã tồn tại.
+          project_level_default_exists: Mức độ thành thạo mặc định đã tồn tại.
           skill_must_exist: Kỹ năng phải có mặt cho proficiency_type 'by_skill'
       export:
         details: Chi tiết
@@ -2680,6 +2795,7 @@ vi:
         proficiency_type: Loại thông thạo
         skill: Kỹ năng
         skill_name: Tên kỹ năng
+        skill_type: Loại kỹ năng
         title: Thông thạo
       import:
         actions:
@@ -2708,6 +2824,8 @@ vi:
             save_failed: 'Lỗi xử lý ID kỹ năng %{id}: %{message}'
       type:
         by_skill: Theo kỹ năng
+        by_skill_type: Theo loại kỹ năng
+        default: Mặc định
     profile:
       change_password: Thay đổi mật khẩu
       details: Chi tiết
@@ -2730,7 +2848,7 @@ vi:
       column_createdAt: Được tạo tại
       column_created_at: Được tạo tại
       column_email: Email
-      column_id: Id
+      column_id: ID
       column_name: Tên
       delete: Xóa
       edit: Biên tập
@@ -2841,7 +2959,7 @@ vi:
       column_campaigns: Chiến dịch
       column_created_at: Được tạo tại
       column_email: Email
-      column_id: Id
+      column_id: ID
       column_name: Tên
       confirm_delete: Có, xóa
       confirm_send: Có, gửi
@@ -2959,6 +3077,7 @@ vi:
         dp_consent_custom: Tùy chỉnh sự đồng ý về xử lý dữ liệu
         dp_consent_version: Phiên bản chính sách
         errors:
+          cannot_disable_while_campaign_enabled: Không thể tắt tính năng ghi âm cuộc gọi video vì tính năng này đã được bật cho một hoặc nhiều chiến dịch trong dự án này.
           policy_version_format: Chỉ cho phép các số nguyên
         mask_identity_for_examus: Dữ liệu mặt nạ cho Examus Proctoring
         mask_identity_for_hogan: Dữ liệu mặt nạ cho Hogan
@@ -2972,6 +3091,9 @@ vi:
         privacy_link_placeholder: Nhập liên kết quyền riêng tư
         privacy_text: Văn bản bảo mật
         privacy_text_placeholder: Nhập văn bản bảo mật
+        video_call_recording: Cho phép ghi âm cuộc gọi video
+        video_call_recording_expiry_duration: Thời gian lưu trữ bản ghi cuộc gọi video (tính bằng ngày)
+        video_call_recording_scope: Bật tính năng ghi video cho tất cả các chiến dịch mới.
       profile_settings:
         form_fields:
           enabled: Kích hoạt
@@ -3193,6 +3315,8 @@ vi:
         header: Chỉnh sửa tên báo cáo
       edit_default_language:
         agreement: Vâng, tôi hiểu rõ những hậu quả của việc thay đổi ngôn ngữ mặc định.
+        title: Chỉnh sửa ngôn ngữ mặc định
+        tooltip: Chỉnh sửa ngôn ngữ mặc định
         warning:
           description_li_1: Thay đổi ngôn ngữ mặc định từ RTL sang LTR hoặc ngược lại sẽ ảnh hưởng đến bố cục.
           description_li_2: Nếu bạn thay đổi ngôn ngữ mặc định, bạn sẽ phải chỉnh sửa lại bản dịch của báo cáo.
@@ -3240,6 +3364,9 @@ vi:
         successfully: Báo cáo đã được cập nhật thành công.
       update:
         successfully: Báo cáo %{name} đã được cập nhật thành công.
+    reports_language_selection_modal:
+      download: Tải báo cáo
+      generate: Báo cáo được tạo
     resource:
       remove_confirm:
         message: Bạn có chắc chắn muốn xóa tài nguyên này không?
@@ -3289,6 +3416,7 @@ vi:
         copy_to_all: Sao chép đến các Trung tâm Đánh giá khác
         create: Tạo
         dates_label: Ngày
+        disable_cancellation_and_rescheduling: Vô hiệu hóa việc hủy bỏ và thay đổi lịch trình
         duration_label: Trường độ
         duration_max_error: Không được lớn hơn 16 giờ
         duration_min_error: Không được dưới 15 phút
@@ -3414,6 +3542,7 @@ vi:
         form_title: Lên lịch đánh giá
         language: Ngôn ngữ
         language_not_selected: Không được chọn
+        mark_cancel: Đánh dấu Hủy
         mark_cancel_success: Hủy tham gia chủ đề với email %{subject_email}.
         meeting_link_custom: Phong tục
         meeting_link_internal: Nội
@@ -3422,6 +3551,9 @@ vi:
         no_change: Không thay đổi
         override_existing: Ghi đè lịch trình hiện có cho các môn học
         preworks: Làm việc trước
+        re_enroll: Đăng ký lại
+        re_enroll_confirm_message: Bạn có chắc chắn muốn đăng ký lại môn học với địa chỉ email '%{subject_email}' không?
+        re_enroll_success: Học viên đã đăng ký lại với địa chỉ email <x>subject_email</x>.
         schedule: Lịch
         unschedule: Hủy lên lịch
       tabs:
@@ -3458,7 +3590,7 @@ vi:
       final_score_updated_successfully: Điểm chung cuộc đã được cập nhật thành công
       formula: Công thức
       get_started: Bắt đầu
-      id: Id
+      id: ID
       import:
         factors: Các yếu tố chiến dịch nhập khẩu
       name: Tên
@@ -3540,6 +3672,7 @@ vi:
       disable_password_reuse: Tắt sử dụng lại mật khẩu
       disallow_password_login: Không cho phép đăng nhập mật khẩu
       enable_login_with_magic_link: Bật Đăng nhập bằng liên kết ma thuật
+      enable_recaptcha: Bật reCAPTCHA
       enforce_password_policy: Thực thi chính sách mật khẩu khi đăng nhập tiếp theo
       enforce_strong: Thực thi mật khẩu mạnh
       expiration: Hết hạn mật khẩu
@@ -3646,6 +3779,7 @@ vi:
         import:
           missing_fields_data: 'Dòng %{line_number}: Thiếu các trường bắt buộc: %{fields}'
           save_failed: 'Dòng %{line_number}: Không lưu được kỹ năng ''%{name}'': %{message}'
+          skill_not_in_project: 'Dòng %{line_number}: ID kỹ năng %{skill_id} không thuộc dự án này.'
         search:
           all_and_project_id_mutually_exclusive: Tất cả không thể đúng khi project_id_eq được cung cấp
           invalid_all_value: 'phải là một trong các của: đúng, sai'
@@ -3757,7 +3891,7 @@ vi:
         send_sms: Gửi SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Thông điệp
     smtp_settings:
       authentication: Xác thực
@@ -3794,6 +3928,7 @@ vi:
       user_name: Tên người dùng
     stats:
       assessments:
+        active: Tích cực
         columns:
           assessment_name: Tên đánh giá
           completed: Hoàn thành
@@ -3803,6 +3938,9 @@ vi:
           interrupted: Gián đoạn
           not_started: Chưa bắt đầu
           timed_out: Hết thời gian chờ
+        count: Đếm
+        inactive: Không hoạt động
+        percentage: Tỷ lệ phần trăm
         title: Đánh giá
       title: Thống kê
       top_metrics:
@@ -3837,7 +3975,25 @@ vi:
         successfully: Sub-Factor đã được cập nhật thành công.
     survey_builder:
       builder_area:
+        current_job: Công việc hiện tại
+        default_not_applicable_label: Không có cơ hội để tìm hiểu hoặc thể hiện kỹ năng.
+        enable_not_applicable: Bật tùy chọn N/A
+        enable_required_validation: Bật xác thực bắt buộc
+        force_response: Phản ứng lực
+        job_role_required: Vui lòng chọn ít nhất một vị trí công việc.
+        not_applicable_label: Không áp dụng
         options: Tùy chọn
+        request_response: Yêu cầu phản hồi
+        skill_rater_config: Cấu hình Đánh giá kỹ năng
+        target_job: Vị trí công việc mục tiêu
+      models:
+        block_types:
+          regular: Thường xuyên
+          skill_rater: Người đánh giá kỹ năng
+        skill_types:
+          behavioural: Hành vi
+          other: Khác
+          technical: Kỹ thuật
       property_panel:
         add_n_a_option: Thêm tùy chọn N / A
         allow_content_copy: Cho phép sao chép nội dung
@@ -3984,6 +4140,21 @@ vi:
         toggle_status:
           successfully: Thành công
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Đã có sẵn mẫu
+        has_user_data: Vui lòng thiết lập lại chiến dịch bằng cách nhấp vào "Reset all participants" trong menu thả xuống "Tools" trước khi chuyển đổi sang mẫu.
+      convert_template_modal:
+        cancel: Hủy
+        confirm: Xác nhận
+        convert:
+          success: Mẫu đã được chuyển đổi thành công
+        convert_option: Chuyển đổi chiến dịch này thành mẫu.
+        copy:
+          success: Công việc tạo mẫu chiến dịch đã được lên lịch thành công, vui lòng kiểm tra thông báo để biết trạng thái.
+        copy_option: Tạo một mẫu mới từ chiến dịch này
+        description: Chọn cách bạn muốn tạo mẫu từ chiến dịch này.
+        failed: Việc tạo mẫu đã thất bại.
+        title: Chuyển đổi sang mẫu
       email_templates:
         approve_nomination:
           description: Thông báo này được gửi đến người quản lý khi một đề cử, được thực hiện bởi một báo cáo trực tiếp, cần được phê duyệt
@@ -4218,6 +4389,10 @@ vi:
       update:
         successfully: Người dùng %{name} đã được cập nhật thành công.
       user: Người dùng
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Ngày kết thúc không thể nằm trong quá khứ.
+        start_date_cannot_be_in_past: Ngày bắt đầu không thể là ngày trong quá khứ.
     webhook:
       connection_failure: Không thể kết nối với url webhook. Vui lòng xác minh xem url webhook có chính xác không.
       delete_success: Cài đặt Webhook đã bị xóa thành công

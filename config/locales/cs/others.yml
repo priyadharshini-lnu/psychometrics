@@ -30,7 +30,7 @@ cs:
           answers:
             blank: Odpovědi nemohou být prázdné
           group_id:
-            blank: Id skupiny nemůže být prázdné
+            blank: ID skupiny nemůže být prázdné
         all_blocks_form:
           attributes:
             base:
@@ -208,7 +208,7 @@ cs:
             file:
               column_cannot_be_blank: Hodnota %{column_name} nemůže být prázdná na řádku %{row_number}
               invalid_format: Nahrajte prosím soubor CSV
-              invalid_job_role_id: Id na řádku %{row_number} není platné ID pracovní role
+              invalid_job_role_id: ID na řádku %{row_number} není platné ID pracovní role
               invalid_locale: Locale na řádku %{row_number} není platné locale
               missing_required_columns: 'Chybějící povinné sloupce: %{columns}'
               parsing_failed: 'Chyba při zpracování souboru, chyba: %{error}.'
@@ -519,6 +519,7 @@ cs:
         created_at: Datum vytvoření
         id: ID
         name: Název
+        owner: Majitel
         updated_at: Datum úpravy
       factor:
         active: Aktivní
@@ -545,7 +546,11 @@ cs:
         updated_at: Datum úpravy
       library:
         created_at: Datum vytvoření
+        description: Popis
+        files: Soubory
         id: ID
+        name: Název
+        owner: Majitel
         type: Miniatury
         updated_at: Datum úpravy
       license:
@@ -617,6 +622,7 @@ cs:
         created_at: Datum vytvoření
         id: ID
         name: Název
+        owner: Majitel
         updated_at: Datum úpravy
       report:
         created_at: Datum vytvoření
@@ -722,7 +728,7 @@ cs:
       users_result:
         assessment_name: Název hodnocení
         assessment_type: Typ hodnocení
-        completed_at: Dokončeno v
+        completed_at: Konec
         completion_reasons:
           time_out_offline: Time out / Offline
           time_out_online: Time out / Online
@@ -811,8 +817,9 @@ cs:
         bulk_reports: Hromadné zprávy
         bulk_rescore_campaign_factors: Faktory hromadného obnovení kampaně
         bulk_update_evaluation_status: Stav vyhodnocení hromadné aktualizace
-        compact_completion_status_export: Kompaktní export stavu dokončení
+        compact_completion_status_export: souhrnné informace export stavu dokončení
         completion_status_export: Export stavu dokončení
+        copy_as_template_or_campaign: Kopírování kampaně jako šablony
         copy_dimension: Kopírovat rozměr
         create_threesixty_campaign: Vytvořit kampaň Threesixty
         data_report_export: Export datové zprávy
@@ -896,6 +903,7 @@ cs:
     invalid_job: Toto oznámení odpovídá smazanému záznamu
     mark_as_read: Označte všechny přečtené
     more: Více na
+    no_notifications: Žádná oznámení
     notifications: Oznámení
     results: Výsledky
     super_admin:
@@ -1078,6 +1086,7 @@ cs:
         description: Tato hodnotící relace byla zrušena. K tomu může dojít, pokud jste v hodnocení pokračovali na jiné kartě, v jiném prohlížeči nebo zařízení.
         title: Poslední požadavek se nezdařil
       next: Další
+      no_skill_mapping_message: Pro tuto pracovní pozici není provedeno mapování dovedností, obraťte se na správce.
       read_only: Režim pouze pro čtení, není možné změnit žádné výsledky.
       save: Uložit
       submissionFailedAlert:
@@ -1146,6 +1155,7 @@ cs:
     add_group_form:
       previous_assessments_required: Hodnocení probíhají v následujícím pořadí
       previous_group_required: Předchozí absolvování skupiny je vyžadováno
+      require_previous_groups_completion_for_booking: Před rezervací je nutné absolvovat všechny předchozí skupiny
     menu:
       assessment_center: Hodnotící centrum
       assessment_center_invites: Pozvánky do hodnotícího centra
@@ -1386,6 +1396,7 @@ cs:
       bulk_download: Hromadné stahování
       bulk_update_evaluation_as_done: Označit jako hotovo
       bulk_update_evaluation_as_undone: Zrušit označení jako hotovo
+      convert_to_template: Převést na šablonu
       download: Zprávy ke stažení
       export_completion_status: Stav dokončení exportu
       export_external: Externí
@@ -1405,7 +1416,7 @@ cs:
       reset_all_nominations: Obnovení všech nominací
       reset_participant: Obnovení všech účastníků
     allow_msg_proctoring_workshop_activity: Činnosti v hodnotícím centru nejsou ověřovány.
-    assessment_center_heading: Podrobnosti o hodnotícím centru
+    assessment_center_heading_label: Podrobnosti o sezení
     assessments_heading: Vaše úkoly
     column:
       assessment_name: Název hodnocení
@@ -1542,7 +1553,9 @@ cs:
       in_progress: Probíhající
       ineligible: Nezpůsobilé
       interrupted: Přerušeno
+      new: Nové
       not_started: Nezahájené
+      progress: Probíhající
       timed_out: Časový limit vypršel
       universal_link: Univerzální odkaz
     ungrouped_assessments_heading: Neseskupené
@@ -1563,6 +1576,7 @@ cs:
     column:
       assessor_access: Přístup hodnotitele
       auto_assign: Automatické přiřazení
+      locales: Lokality
       main_report: Hlavní zpráva
       report_bundle: Svazek zpráv
       report_name: Název zprávy
@@ -1585,6 +1599,13 @@ cs:
         apply: Použijte tyto změny na stávající uživatele v této kampani.
         msg_text: Pokoušíte se odstranit zprávu <strong>"%{reportName}</strong> "
         title: Odstranit zprávu?
+      update_languages:
+        default_language: Výchozí jazyk
+        other_available_languages: Další dostupné jazyky
+        select_default_language: Výběr výchozího jazyka
+        select_languages: Vybrat jazyky
+        success_msg: Jazyky byly úspěšně aktualizovány
+        title: Jazyk zprávy
       user_access:
         apply: Použijte tyto změny na stávající uživatele v této kampani.
         title:
@@ -1601,9 +1622,9 @@ cs:
       additional_time: Další čas
       assessment_center: Hodnotící centrum
       assessment_center_invites: Pozvánky do hodnotícího centra
-      completed_at: Dokončeno v
+      completed_at: Konec
       completion_status: Stav dokončení
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Poslední přihlášení
       manager: Manažer
       modals:
@@ -1631,7 +1652,7 @@ cs:
       remove: Jste si jisti, že chcete z této kampaně odstranit uživatele s e-mailem '%{email}'?
   campaigns:
     assessments_and_reports:
-      assessor_assessments: Posuzovatel Posouzení
+      assessor_assessments: Hodnocení hodnotitele
       other_assessments: Další hodnocení
       other_assessor_assessments: Ostatní hodnocení Assessor Assessments
       other_reports: Další zprávy
@@ -1805,13 +1826,13 @@ cs:
       modified_date: Datum úpravy
       name: Název
       owner: Majitel
-      package_id: Id balíčku
+      package_id: ID balíčku
       poster: Plakát
       project: Projekt
       provider: Poskytovatel
       qc_user_list: Seznam uživatelů QC
       report: Nahlásit
-      report_id: Id hlášení
+      report_id: ID hlášení
       require_scheduling: Požadavek na plánování
       responses_count: Počet odpovědí
       schedule_time: Časový plán
@@ -1930,6 +1951,8 @@ cs:
       timeout: Platnost vaší relace vypršela. Chcete-li pokračovat, přihlaste se znovu.
       unauthenticated: Před pokračováním se musíte přihlásit nebo zaregistrovat.
       unconfirmed: Před pokračováním musíte potvrdit svou e-mailovou adresu.
+    invalid_captcha: Zadání captcha bylo neplatné.
+    invalid_security_question: Odpověď na bezpečnostní otázku byla neplatná.
     invitations:
       edit:
         confirm_password_label: Potvrzení hesla
@@ -1955,6 +1978,8 @@ cs:
         subject: Pozvánka do Lighthouse
       confirmation_instructions:
         subject: Pokyny pro potvrzení
+      copyright:
+        text: Lighthouse. Všechna práva vyhrazena
       invitation_instructions:
         body: 'Dobrý den, %{name}, Byl jste přidán do Lighthouse jako správce následující sekce '
         login: Přihlášení k Lighthouse
@@ -1967,6 +1992,8 @@ cs:
         body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese mte.support@mercer.com '
         regards: 'S pozdravem, tým Lighthouse '
         subject: Vaše heslo k Majáku se změnilo
+      powered_by:
+        text: Poháněno Lighthouse.
       reset_password_instructions:
         body: 'Dobrý den, %{name}! Někdo si vyžádal odkaz na změnu hesla. Můžete tak učinit prostřednictvím níže uvedeného odkazu. '
         change_password: Změna hesla
@@ -1982,6 +2009,25 @@ cs:
     omniauth_callbacks:
       failure: Nelze vás ověřit z %{kind}, protože "%{reason}".
       success: Úspěšně ověřeno z účtu %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Odeslat
+        submit_verification_code: Odeslání ověřovacího kódu
+        verification_code: Ověřovací kód
+      updated: Přijatý ověřovací kód
+    paranoid_verify:
+      code_required: Zadejte prosím kód, který vám poskytl náš tým podpory
+    password_expired:
+      change_required: Platnost vašeho hesla vypršela. Obnovte prosím své heslo.
+      forced_changed: Je třeba nastavit nové heslo k účtu.
+      password_policy_changed: Změna zásad pro zadávání hesel. Změňte si prosím heslo.
+      show:
+        change_my_password: Změna hesla
+        current_password: Aktuální heslo
+        new_password: Nové heslo
+        new_password_confirmation: Potvrzení nového hesla
+        renew_your_password: Obnovení hesla
+      updated: Vaše nové heslo je uloženo.
     passwords:
       edit:
         instruction: Chcete-li vytvořit nové heslo, zadejte ho do níže uvedených políček
@@ -2149,6 +2195,10 @@ cs:
       workshop_subject_create:
         already_exists: Předmět již v tomto středisku hodnocení existuje.
         part_of_other_workshop: Subjekt je již účastníkem '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Pro tento seminář nejsou k dispozici žádná volná místa.
+        scheduling_lead_time_passed: Čas pro plánování vypršel, předmět nelze znovu zapsat.
+        workshop_subject_not_found: Předmět semináře nebyl nalezen
       workshops:
         no_available_assessor_slots: Žádné volné sloty pro hodnotitele %{assessor}
         no_available_manager_slots: Pro manažera nejsou k dispozici žádné sloty %{manager}
@@ -2179,6 +2229,8 @@ cs:
   errors:
     assessments:
       timed_out: Hodnocení uživatele %{assessment_name} nebude možné provést, protože vypršel časový limit.
+    equal_to_current_password: musí být jiné než aktuální heslo.
+    equal_to_email: se musí lišit od e-mailu.
     error: Chyba
     error_401: Nemáte oprávnění k přístupu k tomuto zdroji. Přihlaste se prosím.
     error_403: Nemáte oprávnění k zobrazení tohoto prostředku.
@@ -2191,6 +2243,20 @@ cs:
     max_regeneration_limit: Překročení maximálního limitu regenerace, kontaktujte svou správu.
     messages:
       data_report_blank: Datová zpráva neexistuje
+      password_complexity:
+        digit:
+          one: musí obsahovat alespoň jednu číslici
+          other: musí obsahovat alespoň <x>count</x> číslic.
+        lower:
+          one: musí obsahovat alespoň jedno malé písmeno
+          other: musí obsahovat alespoň <x>count</x> malá písmena.
+        symbol:
+          one: musí obsahovat alespoň jedno interpunkční znaménko nebo symbol.
+          other: musí obsahovat alespoň <x>count</x> interpunkční znaménka nebo symboly.
+        upper:
+          one: musí obsahovat alespoň jedno velké písmeno
+          other: musí obsahovat alespoň <x>count</x> velká písmena.
+      taken_in_past: nesmí být stejné jako dříve použité heslo.
     module_error: S tímto modulem se něco pokazilo, obraťte se na správce.
     module_error_editor: S tímto modulem se něco pokazilo, zkontrolujte nastavení modulu.
     module_props_error: S tímto modulem se něco pokazilo.
@@ -2201,6 +2267,9 @@ cs:
       no_active_plan: Nebyl nalezen žádný aktivní plán IDP
     webhooks:
       multiple_webhook_error: url nelze aktualizovat, protože pro tento projekt existuje více webhooků.
+    workshop:
+      ical_generation_failed: Nelze vygenerovat pozvánku do kalendáře
+      missing_or_invalid: Chybějící nebo neplatné workshop_id
   evaluators:
     errors:
       can_not_processed: nelze zpracovat
@@ -2261,8 +2330,13 @@ cs:
       add_to_yahoo_calendar: Přidat do kalendáře yahoo
       assessment_center_alert:
         btn_title: Kampaň
-        message_part1: Dokončete všechny předběžné práce v rámci tohoto
-        message_part2: před rezervací místa.
+        complete_previous_groups: Dokončení všech předchozích skupinových aktivit
+        complete_preworks: Dokončení všech přípravných prací
+        please_visit: Navštivte prosím
+        requirements_message: Rezervaci můžete provést až po splnění následujících požadavků.
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: splnit tyto požadavky.
       assessment_center_group_name: Centrum hodnocení
       booking_failed_msg: 'Rezervace místa se nezdařila: %{error}'
       buttons:
@@ -2321,7 +2395,7 @@ cs:
         invites: Pozvánky
       what: Co
       when: Kdy
-      workshop_start_text: Centrum hodnocení bude zahájeno za
+      workshop_start_label: Vaše sezení začne v
     break_time: Čas přestávky
     campaign:
       actions:
@@ -2330,6 +2404,7 @@ cs:
         remove:
           confirmation: Pro odstranění kampaně zadejte její aktuální název do pole níže
           success: Kampaň %{campaignName} byla úspěšně odstraněna.
+          template_confirmation: 'Chcete-li odstranit aktuální šablonu, zadejte její název do pole níže. Poznámka: Tím se odstraní také propojená šablona kampaně.'
       users:
         actions:
           export:
@@ -2462,6 +2537,7 @@ cs:
       aria_selected: Vybrané stránky
   idp:
     actions: Akce
+    behavioral: Chování
     board: Přehled
     comment_details:
       add_comment: Přidat komentář
@@ -2677,6 +2753,7 @@ cs:
         required: Odpověď na otázku je nutná
       max_words: Maximální počet slov
       min_words: Min. slov
+      no_reflective_questions: Žádné reflektivní otázky
       title: Reflektivní otázky
       update_failed: Během aktualizace došlo k chybě
       updated_successfully: Vaše odpovědi byly úspěšně aktualizovány
@@ -2684,6 +2761,7 @@ cs:
     skill_gap_report:
       title: Zpráva o nedostatku dovedností
     status: Stav
+    technical: Technická stránka
     user_idp_status:
       approved: Schváleno
       completed: Hotový
@@ -2819,6 +2897,12 @@ cs:
     used_number: Použité licence
     used_out_of: "%{used} z %{total}"
   mailer:
+    copyright:
+      text: Maják. Všechna práva vyhrazena
+    footer:
+      regards: S pozdravem,
+      team_name: Tým Lighthouse
+      technical_support: V případě jakýchkoli technických problémů nám napište na adresu <x>email</x> a my vám odpovíme do 24 hodin.
     from: Talentovaný podnik
     idp:
       manager_unread_comments:
@@ -2876,6 +2960,8 @@ cs:
         instructions: Kliknutím na níže uvedený odkaz se přihlásíte k Lighthouse.
         signin_link: Přihlašovací odkaz
       subject: Přihlašovací odkaz pro Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Váš účet byl zablokován z důvodu nečinnosti
       warning: Váš účet bude brzy deaktivován z důvodu nečinnosti
@@ -3192,6 +3278,9 @@ cs:
       send_password_email_success: Uživateli %{email} byl odeslán e-mail s heslem.
     title: Obnovení hesla
   select: Vyberte
+  sessions:
+    errors:
+      recaptcha: Ověření Recaptcha se nezdařilo. Zkuste to prosím znovu.
   shared:
     filters:
       clear: Vymazat filtry
@@ -3809,8 +3898,8 @@ cs:
     toolbar:
       bulk_download_idp_reports: Hromadné stahování zpráv IDP
       export: Export uživatelů
-      export_compact_completion_status: Kompaktní
-      export_detailed_completion_status: Podrobné informace na
+      export_compact_completion_status: Souhrnné informace
+      export_detailed_completion_status: Podrobné informace
       export_reports_and_assessments: Exportní zprávy a hodnocení
       import: Import uživatelů
       import_reports: Import zpráv a hodnocení

@@ -8,6 +8,7 @@ import FroalaEditor from 'react-froala-wysiwyg'
 import '~/libs/Editor/commands/rtlLtr'
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
+import { isRtl } from '~/utils/locales'
 
 interface Props {
   content: string
@@ -18,15 +19,21 @@ interface Props {
   withPipedText?: boolean
 }
 
+const { I18n } = window
+
 export const EmailEditor: React.FC<Props> = ({
   content, handleContentChange, type, details, className, withPipedText = false,
 }) => {
+  const direction = isRtl(I18n?.currentLocale()) ? 'rtl' : 'ltr'
+
   const [isInitialized, setIsInitialized] = useState(false)
   const config = {
     iconsTemplate: 'font_awesome',
     imageUpload: false,
     imageOutputSize: true,
     codeMirror: CodeMirror,
+    direction,
+    placeholderText: I18n.t('administration.communications.form.message_body_placeholder'),
     pluginsEnabled: [
       'image',
       'link',

@@ -15,17 +15,38 @@ interface ToolsMenuProps {
   campaignId: string
   projectId: string
   dashboard: Dashboard
+  campaignPermissions: {
+    exportDashboardToFile: boolean
+  }
 }
 
-export const ToolsMenu: React.FC<ToolsMenuProps> = ({ campaignId, projectId, dashboard }) => {
+export const ToolsMenu: React.FC<ToolsMenuProps> = ({
+  campaignId,
+  projectId,
+  dashboard,
+  campaignPermissions,
+}) => {
   const [isExporting, setIsExporting] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [exportFormat, setExportFormat] = useState<'PDF' | 'PPTX'>('PDF')
   const [onlyCurrentTab, setOnlyCurrentTab] = useState(false)
+  const [menuItems, setMenuItems] = useState<NonNullable<React.ComponentProps<typeof Menu>['items']>>([])
   const { I18n } = window
   const dispatch = useDispatch()
 
   useEffect(() => {
+    if (campaignPermissions.exportDashboardToFile) {
+      setMenuItems([
+        {
+          key: 'export-file',
+          icon: <FilePdfOutlined />,
+          label: I18n.t('administration.dashboard.export_dashboard_to_file'),
+          onClick: handleFileExport,
+          disabled: isExporting,
+        },
+        ...menuItems,
+      ])
+    }
   }, [dashboard])
 
   const handleFileExport = () => {
@@ -58,15 +79,6 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({ campaignId, projectId, das
     }
   }
 
-  const menuItems = [
-    {
-      key: 'export-file',
-      icon: <FilePdfOutlined />,
-      label: I18n.t('administration.dashboard.export_dashboard_to_file'),
-      onClick: handleFileExport,
-      disabled: isExporting,
-    },
-  ]
 
   const menu = (
     <Menu

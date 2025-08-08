@@ -69,7 +69,7 @@ export const NormsFormModalComponent: React.FC<Props> = ({
     <ResourceFormModal
       resourceName="norms"
       resource={norm}
-      readableResourceName="Norm"
+      readableResourceName={I18n.t('administration.norms.title')}
       showSuccessMessages
       close={close}
       scrollToFirstError

@@ -275,7 +275,9 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }
 
   const uploadFileAction = (action: string, body: FormData) => new Promise(async (resolve, reject) => {
+    const requestKey: RequestType = `upload/${action}`
     try {
+      setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
       const response = await window.fetch(`${resourceUrl}/${action}`, {
         method: 'post',
         body,
@@ -283,13 +285,16 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const result = await response.json()
       if (result === 'ok') {
+        setRequestStatus(requestKey, null)
         resolve(result)
       } else {
         const { error, errors } = result
+        setRequestStatus(requestKey, errors || error)
         reject(errors || error)
       }
     } catch (error) {
       message.error(error.message)
+      setRequestStatus(requestKey, error.message)
       reject(error.message)
     }
   })

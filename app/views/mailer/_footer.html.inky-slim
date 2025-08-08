@@ -1,8 +1,8 @@
 row
   columns.email-content
-    p Regards,
+    p = t('mailer.footer.regards')
     p
-      | Lighthouse Team
+      | #{t('mailer.footer.team_name')}
       spacer[size="16"]
     p
-      | For any technical issues, please write to us at #{mail_to('mte.surveys@mercer.com')} and we will respond within 24 hours.
+      | #{t('mailer.footer.technical_support', email: mail_to('mte.surveys@mercer.com'))}

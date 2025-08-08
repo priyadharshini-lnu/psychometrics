@@ -78,6 +78,19 @@ const statusToColor = {
   timed_out: 'red',
 }
 
+const CompletionStatuses = [
+  { text: I18n.t('frontend.campaign.users.completion_statuses.not_started'), value: '0' },
+  { text: I18n.t('frontend.campaign.users.completion_statuses.in_progress'), value: '1' },
+  { text: I18n.t('frontend.campaign.users.completion_statuses.completed'), value: '2' },
+]
+
+const UsersStatuses = [
+  { text: I18n.t('campaign_users.details.statuses.not_started'), value: '0' },
+  { text: I18n.t('campaign_users.details.statuses.in_progress'), value: '1' },
+  { text: I18n.t('campaign_users.details.statuses.completed'), value: '2' },
+  { text: I18n.t('campaign_users.details.statuses.interrupted'), value: '3' },
+  { text: I18n.t('campaign_users.details.statuses.timed_out'), value: '4' },
+]
 const UserList: React.FC<Props> = ({
   fetch,
   users: {
@@ -263,11 +276,7 @@ const UserList: React.FC<Props> = ({
               dataIndex="completionStatus"
               sorter
               sortOrder={getSortOrder('campaignUsersCompletionStatus')}
-              filters={[
-                { text: 'Not Started', value: '0' },
-                { text: 'In Progress', value: '1' },
-                { text: 'Completed', value: '2' },
-              ]}
+              filters={CompletionStatuses}
               filteredValue={getFilteredValue('campaignUsersCompletionStatus')}
               render={completionStatus => (
                 <Tag
@@ -283,13 +292,7 @@ const UserList: React.FC<Props> = ({
               dataIndex="status"
               sorter
               sortOrder={getSortOrder('campaignUsersStatus')}
-              filters={[
-                { text: 'Not Started', value: '0' },
-                { text: 'In Progress', value: '1' },
-                { text: 'Completed', value: '2' },
-                { text: 'Interrupted', value: '3' },
-                { text: 'Timed Out', value: '4' },
-              ]}
+              filters={UsersStatuses}
               filteredValue={getFilteredValue('campaignUsersStatus')}
               render={status => (
                 <Tag

@@ -519,6 +519,7 @@ sl:
         created_at: Datum ustvarjanja
         id: ID
         name: Ime
+        owner: Lastnik
         updated_at: Datum spremembe
       factor:
         active: Dejaven
@@ -545,7 +546,11 @@ sl:
         updated_at: Datum spremembe
       library:
         created_at: Datum ustvarjanja
+        description: Opis
+        files: Datoteke
         id: ID
+        name: Ime
+        owner: Lastnik
         type: Sličica
         updated_at: Datum spremembe
       license:
@@ -617,6 +622,7 @@ sl:
         created_at: Datum ustvarjanja
         id: ID
         name: Ime
+        owner: Lastnik
         updated_at: Datum spremembe
       report:
         created_at: Datum ustvarjanja
@@ -785,6 +791,8 @@ sl:
           attributes:
             current_password:
               invalid: Trenutno geslo je napačno
+            manager_id:
+              cannot_be_self: Uporabnik ne more biti dodeljen kot lastni vodja
         user_idp_comment:
           reply_to_reply: ne morem odgovoriti na odgovor (dovoljena je samo ena raven gnezdenja)
         user_idp_plan:
@@ -811,6 +819,7 @@ sl:
         bulk_update_evaluation_status: Stanje ocenjevanja množične posodobitve
         compact_completion_status_export: Izvoz stanja kompaktnega dokončanja
         completion_status_export: Izvoz stanja dokončanja
+        copy_as_template_or_campaign: Kopiranje kampanje kot predloge
         copy_dimension: Kopiraj dimenzijo
         create_threesixty_campaign: Ustvarite kampanjo Threesixty
         data_report_export: Izvoz poročila o podatkih
@@ -894,6 +903,7 @@ sl:
     invalid_job: To obvestilo ustreza izbrisanemu zapisu
     mark_as_read: Označi vse prebrane
     more: Več
+    no_notifications: Brez obvestil
     notifications: Obvestila
     results: Rezultati
     super_admin:
@@ -1073,6 +1083,7 @@ sl:
         description: Ta ocenjevalna seja je bila razveljavljena. To se lahko zgodi, če nadaljujete ocenjevanje na ločenem zavihku, brskalniku ali napravi.
         title: Zadnja zahteva ni uspela
       next: Naslednji
+      no_skill_mapping_message: Za to delovno mesto ni izdelan zemljevid spretnosti, zato se obrnite na upravitelja.
       read_only: V tem načinu lahko rezultate le pregledujete, ne pa spreminjate.
       save: Shrani
       submissionFailedAlert:
@@ -1141,6 +1152,7 @@ sl:
     add_group_form:
       previous_assessments_required: Ocenjevanje poteka v spodnjem vrstnem redu
       previous_group_required: Zahtevano je prejšnje dokončanje skupine
+      require_previous_groups_completion_for_booking: Pred rezervacijo je treba opraviti vse predhodne skupine
     menu:
       assessment_center: Ocenjevalni center
       assessment_center_invites: Vabila ocenjevalnega centra
@@ -1381,6 +1393,7 @@ sl:
       bulk_download: Prenos v velikem obsegu
       bulk_update_evaluation_as_done: Označi kot končano
       bulk_update_evaluation_as_undone: Odčrti oznako kot končano
+      convert_to_template: Pretvori v predlogo
       download: Prenesite poročila
       export_completion_status: Stanje dokončanja izvoza
       export_external: Zunanji
@@ -1400,7 +1413,7 @@ sl:
       reset_all_nominations: Ponastavi vse nominacije
       reset_participant: Ponastavi vse udeležence
     allow_msg_proctoring_workshop_activity: Dejavnosti ocenjevalnega centra se ne izvajajo.
-    assessment_center_heading: Podrobnosti o ocenjevalnem centru
+    assessment_center_heading_label: Podrobnosti o seji
     assessments_heading: Vaše naloge
     column:
       assessment_name: Ime ocenjevanja
@@ -1537,7 +1550,9 @@ sl:
       in_progress: V teku
       ineligible: Ni dovoljeno
       interrupted: Prekinjeno
+      new: Novo
       not_started: Ni začeto
+      progress: V teku
       timed_out: Čas je potekel
       universal_link: Splošna povezava
     ungrouped_assessments_heading: Razdružiti
@@ -1558,6 +1573,7 @@ sl:
     column:
       assessor_access: Dostop ocenjevalca
       auto_assign: Samodejna dodelitev
+      locales: Lokacije
       main_report: Glavno poročilo
       report_bundle: Sveženj poročil
       report_name: Ime poročila
@@ -1580,6 +1596,13 @@ sl:
         apply: Te spremembe uporabite za obstoječe uporabnike v tej oglaševalski akciji.
         msg_text: Poskušate izbrisati poročilo <strong>»%{reportName}«</strong>
         title: Odstraniti poročilo?
+      update_languages:
+        default_language: Privzet jezik
+        other_available_languages: Drugi razpoložljivi jeziki
+        select_default_language: Izberite privzeti jezik
+        select_languages: Izberite jezike
+        success_msg: Jeziki so bili uspešno posodobljeni
+        title: Jezik poročila
       user_access:
         apply: Te spremembe uporabite za obstoječe uporabnike v tej oglaševalski akciji.
         title:
@@ -1598,7 +1621,7 @@ sl:
       assessment_center_invites: Vabila ocenjevalnega centra
       completed_at: Dokončano ob
       completion_status: Stanje dokončanja
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Zadnja prijava
       manager: Menedžer
       modals:
@@ -1734,6 +1757,7 @@ sl:
       search: Iskanje
       send: Pošlji
       start: Začetek
+      submit: Pošlji
       unarchive: Odprava arhiviranja
       unpublish: Odprava objave
       unresolve: Nerazrešitev
@@ -1767,7 +1791,7 @@ sl:
       first_name: Ime
       icon: Ikona
       icon_color: Barva ikone
-      id: Id
+      id: ID
       json:
         answer: Odgovori JSON
         external_result: JSON zunanjega rezultata
@@ -1906,6 +1930,8 @@ sl:
       timeout: Vaša seja je potekla. Za nadaljevanje se ponovno prijavite.
       unauthenticated: Pred nadaljevanjem se morate prijaviti ali registrirati.
       unconfirmed: Pred nadaljevanjem morate potrditi svoj e-poštni naslov.
+    invalid_captcha: Vnos captcha je bil neveljaven.
+    invalid_security_question: Odgovor na varnostno vprašanje je bil neveljaven.
     invitations:
       edit:
         confirm_password_label: Potrdi geslo
@@ -1985,6 +2011,25 @@ sl:
     omniauth_callbacks:
       failure: Ni bilo mogoče preveriti vaše pristnosti iz %{kind} zaradi "%{reason}".
       success: Uspešno preverjena pristnost iz računa %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Pošlji
+        submit_verification_code: Pošljite kodo za preverjanje
+        verification_code: Koda za preverjanje
+      updated: Sprejeta koda preverjanja
+    paranoid_verify:
+      code_required: Vnesite kodo, ki jo je zagotovila naša ekipa za podporo
+    password_expired:
+      change_required: Vaše geslo je poteklo. Obnovite svoje geslo.
+      forced_changed: Za svoj račun morate nastaviti novo geslo.
+      password_policy_changed: Pravilnik o geslih je bil spremenjen. Spremenite geslo.
+      show:
+        change_my_password: Spremeni moje geslo
+        current_password: Trenutno geslo
+        new_password: Novo geslo
+        new_password_confirmation: Potrditev novega gesla
+        renew_your_password: Obnovite svoje geslo
+      updated: Novo geslo je shranjeno.
     passwords:
       edit:
         instruction: Če želite ustvariti novo geslo, vnesite novo geslo v spodnja polja
@@ -2066,6 +2111,7 @@ sl:
         reserved_subdomain: Poddomena %{value} je rezervirana
         uniq_subdomain: Poddomena mora biti edinstvena.
       add_manager:
+        cannot_be_self: Uporabnik ne more biti dodeljen kot lastni vodja
         manager_not_found: Upravitelj ni najden ali ni del istega projekta
         user_not_found: Uporabnik ni bil najden ali ni del istega projekta
       admin:
@@ -2151,6 +2197,10 @@ sl:
       workshop_subject_create:
         already_exists: Subjekt že obstaja v tem ocenjevalnem centru.
         part_of_other_workshop: Subjekt je že udeleženec '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Za to delavnico ni na voljo mest.
+        scheduling_lead_time_passed: Čas za načrtovanje je potekel, predmeta ne morete ponovno vpisati.
+        workshop_subject_not_found: Tema delavnice ni bila najdena
       workshops:
         no_available_assessor_slots: Ni prostih mest za ocenjevalca %{assessor}
         no_available_manager_slots: Ni prostih mest za managerja %{manager}
@@ -2181,6 +2231,8 @@ sl:
   errors:
     assessments:
       timed_out: Ocenjevanja %{assessment_name} ne boste mogli opraviti, ker je čas potekel.
+    equal_to_current_password: mora biti drugačno od trenutnega gesla.
+    equal_to_email: mora biti drugačen od e-poštnega sporočila.
     error: Napaka
     error_401: Nimate dovoljenja za dostop do tega vira. Prosimo, prijavite se.
     error_403: Nimate dovoljenja za ogled tega vira.
@@ -2193,6 +2245,20 @@ sl:
     max_regeneration_limit: Presežena najvišja meja regeneracije, se obrnite na svojo upravo.
     messages:
       data_report_blank: Poročilo o podatkih ne obstaja
+      password_complexity:
+        digit:
+          one: mora vsebovati vsaj eno številko.
+          other: vsebovati mora vsaj <x>count</x> številk.
+        lower:
+          one: mora vsebovati vsaj eno malo črko.
+          other: vsebovati mora vsaj <x>count</x> malih črk.
+        symbol:
+          one: mora vsebovati vsaj eno ločilo ali simbol.
+          other: vsebovati mora vsaj <x>count</x> ločil ali simbolov.
+        upper:
+          one: vsebovati mora vsaj eno veliko črko.
+          other: vsebovati mora vsaj <x>count</x> velike tiskane črke.
+      taken_in_past: ne sme biti enako prej uporabljenemu geslu.
     module_error: Prišlo je do napake v tem modulu. Obrnite se na skrbnika sistema.
     module_error_editor: Prišlo je do napake v tem modulu. Preverite nastavitve modula.
     module_props_error: Prišlo je do napake v tem modulu.
@@ -2203,6 +2269,9 @@ sl:
       no_active_plan: Ni najdenega aktivnega načrta IDP
     webhooks:
       multiple_webhook_error: URL-ja ni mogoče posodobiti, ker je za ta projekt na voljo več spletnih kavljev.
+    workshop:
+      ical_generation_failed: Ni bilo mogoče ustvariti povabila za koledar
+      missing_or_invalid: Manjkajoči ali neveljavni workshop_id
   evaluators:
     errors:
       can_not_processed: ni mogoče obdelati
@@ -2263,8 +2332,13 @@ sl:
       add_to_yahoo_calendar: Dodaj v yahoo koledar
       assessment_center_alert:
         btn_title: Kampanja
-        message_part1: Zaključite vse pripravljalne naloge
-        message_part2: pred rezervacijo termina
+        complete_previous_groups: Izvedite vse prejšnje skupinske dejavnosti.
+        complete_preworks: Dokončajte vsa pripravljalna dela
+        please_visit: Obiščite spletno stran
+        requirements_message: Rezervacijo lahko opravite šele, ko izpolnite naslednje zahteve
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: za izpolnitev teh zahtev.
       assessment_center_group_name: Ocenjevalni center
       booking_failed_msg: 'Rezervacija termina ni uspela: %{error}'
       buttons:
@@ -2323,7 +2397,7 @@ sl:
         invites: Povabila
       what: Kaj
       when: Ko
-      workshop_start_text: Vaš ocenjevalni center se začne čez
+      workshop_start_label: Srečanje se bo začelo v
     break_time: Čas za odmor
     campaign:
       actions:
@@ -2332,6 +2406,7 @@ sl:
         remove:
           confirmation: V spodnje polje vnesite ime trenutne kampanje, da jo odstranite
           success: Kampanja %{campaignName} je bila uspešno odstranjena.
+          template_confirmation: 'Če želite izbrisati trenutno predlogo, v spodnje polje vnesite njeno ime. Opomba: S tem izbrišete tudi povezano predlogo kampanje.'
       users:
         actions:
           export:
@@ -2680,6 +2755,7 @@ sl:
         required: Odgovor na vprašanje je potreben
       max_words: Največje število besed
       min_words: Najmanj besed
+      no_reflective_questions: Brez refleksivnih vprašanj
       title: Refleksivna vprašanja
       update_failed: Med posodobitvijo je prišlo do napake
       updated_successfully: Vaši odgovori so bili uspešno posodobljeni
@@ -2823,6 +2899,12 @@ sl:
     used_number: Uporabljene licence
     used_out_of: "%{used} od %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Vse pravice pridržane
+    footer:
+      regards: Pozdravi,
+      team_name: Ekipa Lighthouse
+      technical_support: Za kakršne koli tehnične težave nam pišite na <x>email</x> in odgovorili vam bomo v 24 urah.
     from: Podjetje za talente
     idp:
       manager_unread_comments:
@@ -2879,7 +2961,9 @@ sl:
         greetings: Lep pozdrav!
         instructions: Kliknite spodnjo povezavo za prijavo v Svetilnik.
         signin_link: Povezava za prijavo
-      subject: Povezava za prijavo v Svetilnik
+      subject: Povezava za prijavo za Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Vaš račun je onemogočen zaradi nedejavnosti
       warning: Vaš račun bo kmalu onemogočen zaradi nedejavnosti
@@ -3196,6 +3280,9 @@ sl:
       send_password_email_success: E-poštno sporočilo, poslano uporabniku %{email} z geslom.
     title: Ponastavi geslo
   select: Izbrati
+  sessions:
+    errors:
+      recaptcha: Preverjanje Recaptcha ni uspelo. Poskusite znova.
   shared:
     filters:
       clear: Počistite filtre

@@ -56,6 +56,7 @@ oac:
 storage:
   public_storage_service: <%= ENV.fetch('PUBLIC_BUCKET_STORAGE_SERVICE_KEY', nil) %>
   private_storage_service: <%= ENV.fetch('PRIVATE_BUCKET_STORAGE_SERVICE_KEY', nil) %>
+  dailyco_storage_service: <%= ENV.fetch('DAILY_CO_BUCKET_STORAGE_SERVICE_KEY', nil) %>
 iiht:
   token_api_url: <%= ENV.fetch('IIHT_TOKEN_API_URL', nil) %>
   base_api_url: <%= ENV.fetch('IIHT_BASE_API_URL', nil) %>
@@ -90,13 +91,14 @@ features:
   disable_inactive_users: <%= ENV.fetch('DISABLE_INACTIVE_USERS_ENABLED', 'false') == 'true' %>
   enable_intl_for_admins: <%= ENV.fetch('ENABLE_INTL_FOR_ADMINS', 'false') == 'true' %>
   ai_assistant_enabled: <%= ENV.fetch('AI_ASSISTANT_ENABLED', 'false') == 'true' %>
+  disable_recaptcha: <%= ENV.fetch('DISABLE_RECAPTCHA', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
   asset_url: <%= ENV.fetch('AGILE_ASSETS_URL', 'https://tte-static.s3.eu-west-1.amazonaws.com/interactive-assessments/') %>
 live_chat:
   base_url: <%= ENV.fetch('CHATWOOT_BASE_URL', 'https://chatwoot.tte-work.com') %>
-  token: <%= ENV.fetch('CHATWOOT_TOKEN', 'zSvNq7inRf4HuQqFmV6GiuZg') %>
+  token: <%= ENV.fetch('CHATWOOT_TOKEN', nil) %>
 browser_requirements:
   default:
     supported:
@@ -2300,8 +2302,6 @@ checking_wizard:
       - fr
       - es
 saml:
-  assertion_consumer_service_url: <%= ENV.fetch('SAML_ASSERTION_CONSUMER_SERVICE_URL', nil) %>
-  issuer: <%= ENV.fetch('SAML_ISSUER', nil) %>
   assertion_consumer_service_binding: <%= ENV.fetch('SAML_ASSERTION_CONSUMER_SERVICE_BINDING', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST') %>
   name_identifier_format: <%= ENV.fetch('SAML_NAME_IDENTIFIER_FORMAT', 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress') %>
   idp_entity_id: <%= ENV.fetch('SAML_IDP_ENTITY_ID', nil) %>
@@ -2316,3 +2316,9 @@ ai_providers:
       openai_api_key: <%= ENV.fetch('AZURE_OPENAI_API_KEY', nil) %>
       openai_api_base: <%= ENV.fetch('AZURE_OPENAI_API_BASE_ENDPOINT', nil) %>
 available_ai_providers: <%= ENV.fetch('AVAILABLE_AI_PROVIDERS', nil) %>
+
+# Default SMTP throttling limits used when a project has no SMTP setting
+smtp_default:
+  concurrency_limit: <%= ENV.fetch('SMTP_CONCURRENCY_LIMIT', 10).to_i %>
+  rate_limit: <%= ENV.fetch('SMTP_RATE_LIMIT', 100).to_i %>
+  rate_limit_period: <%= ENV.fetch('SMTP_RATE_LIMIT_PERIOD', 1).to_i %>

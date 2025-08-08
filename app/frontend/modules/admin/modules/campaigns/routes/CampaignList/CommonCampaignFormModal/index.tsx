@@ -27,8 +27,8 @@ const format = 'YYYY-MM-DD HH:mm'
 const disabledDate = current => current && current < dayjs().startOf('day')
 
 const notices = {
-  active: 'Campaign status will automatically change to closed on the selected end date & time',
-  inactive: 'Campaign status will automatically change to active on the selected start date & time',
+  active: I18n.t('administration.campaigns.form.active_notice'),
+  inactive: I18n.t('administration.campaigns.form.inactive_notice'),
 }
 
 const CommonCampaignFormModal: React.FC<Props> = ({
@@ -112,7 +112,7 @@ const CommonCampaignFormModal: React.FC<Props> = ({
             label={I18n.t('administration.campaigns.form.practice_campaign')}
           >
             {isEdit ? (
-              <Tooltip title="This can be only enabled while creating campaign.">
+              <Tooltip title={I18n.t('administration.campaigns.form.instruction')}>
                 <Switch disabled={isEdit} />
               </Tooltip>
             ) : <Switch />}

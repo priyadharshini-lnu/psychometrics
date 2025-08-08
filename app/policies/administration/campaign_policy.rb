@@ -174,6 +174,10 @@ module Administration
       has_permission?(:dashboards, :accesssheet_settings)
     end
 
+    def export_dashboard_to_file?
+      has_permission?(:dashboards, :export)
+    end
+
     def view_datasheets?
       @user.is?(:superadmin) || @user.has_permission?(
         :datasheets, :view, project_id: project_id, campaign_id: campaign_id

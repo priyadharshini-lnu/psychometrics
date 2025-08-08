@@ -55,7 +55,7 @@ export const InviteDeatilsContainer = ({
           </>
         ) : (
           <>
-            <p className="mb-0">{I18n.t('frontend.bookings.workshop_start_text')}</p>
+            <p className="mb-0">{I18n.t('frontend.bookings.workshop_start_label')}</p>
             <Title level={5} className="mb-0 mt-0">
               <CountdownTimer
                 seconds={secondsLeftToStartAssessmentCenter}

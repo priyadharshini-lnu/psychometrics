@@ -23,8 +23,12 @@ module Threesixty
                                     dimension_id: dimension.id,
                                     type: Assessment::TYPES[:common],
                                     category: Assessment::CATEGORIES[:threesixty])
+
+        assessment.default_language = form.default_assessment_locale if form.default_assessment_locale.present?
+
         assessment.set_default_color
         assessment.save!
+
         report = Report.new(name: resource_name,
                             owner_id: client.id,
                             created_by: user,
@@ -32,6 +36,9 @@ module Threesixty
                             skip_owner_validation: true,
                             assessment_id: assessment.id,
                             category: Assessment::CATEGORIES[:threesixty])
+
+        report.default_language = form.default_report_language if form.default_report_language.present?
+
         report.set_default_color
         report.assessments << assessment
         report.provider = 'internal'

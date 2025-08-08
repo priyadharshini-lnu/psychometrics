@@ -52,6 +52,7 @@ const CampaignPage: React.FC = () => {
           name: campaign.name,
           campaignId: campaign.id,
           category: campaign.threesixtyCampaign.category,
+          template: campaign.threesixtyCampaign.template,
           reportAvailableLanguages: campaignReport.availableLanguages || [],
           reportId: campaignReport.report?.id,
           campaignReportPermissions: {

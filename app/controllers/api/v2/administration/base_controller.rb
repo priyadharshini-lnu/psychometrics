@@ -194,11 +194,7 @@ module Api
         Campaign
       ).resolve
 
-      @campaign ||= if params.dig(:query, :is_threesixty) == 'true'
-                      scope.joins(:threesixty_campaign).find_by(threesixty_campaign: { id: params[:campaign_id] })
-                    else
-                      scope.find(params[:campaign_id])
-                    end
+      @campaign ||= scope.find(params[:campaign_id])
     end
 
     def project

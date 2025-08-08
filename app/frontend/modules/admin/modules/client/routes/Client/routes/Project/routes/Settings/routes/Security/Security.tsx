@@ -31,6 +31,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const { I18n } = window
+const { disable_recaptcha } = window.PsyGlobalState.features
 
 const securityComponent: React.FC<Props> = ({
   securitySetting, isSaving, isProjectLoading,
@@ -190,6 +191,17 @@ const securityComponent: React.FC<Props> = ({
                 >
                   <Switch />
                 </Form.Item>
+
+                {!disable_recaptcha && (
+                  <Form.Item
+                    name="enableRecaptcha"
+                    label={I18n.t('administration.security_setting.enable_recaptcha')}
+                    valuePropName="checked"
+                  >
+                    <Switch />
+                  </Form.Item>
+                )
+                }
 
                 <Button
                   type="primary"

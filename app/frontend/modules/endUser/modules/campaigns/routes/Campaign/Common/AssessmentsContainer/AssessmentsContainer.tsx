@@ -110,7 +110,8 @@ export const AssessmentsContainer = ({
       )}
       <ViewsContainer
         title={assessmentCenterIdFromUrl
-          ? I18n.t('campaign_assessment.assessment_center_heading') : I18n.t('campaign_assessment.assessments_heading')}
+          ? I18n.t('campaign_assessment.assessment_center_heading_label')
+          : I18n.t('campaign_assessment.assessments_heading')}
         titleHeadingLevel={1}
         defaultView="grid"
         viewTypeStorageKey="assessmentListingType"

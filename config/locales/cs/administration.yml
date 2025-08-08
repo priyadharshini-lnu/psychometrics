@@ -4,8 +4,8 @@ cs:
     actions: Akce
     active_record_audits:
       action: Akce
-      audit_id: Id auditu
-      auditable_id: Id záznamu
+      audit_id: ID auditu
+      auditable_id: ID záznamu
       auditable_type: Typ záznamu
       audited_changes: Auditované změny
       new_diff:
@@ -15,6 +15,8 @@ cs:
       title: Auditované změny
     administrator:
       sessions:
+        errors:
+          recaptcha: Ověření Recaptcha se nezdařilo
         new:
           forgot_password: Zapomněli jste heslo?
           instruction: Přihlaste se prosím pomocí údajů o svém osobním účtu
@@ -77,7 +79,7 @@ cs:
           actions: Akce
           created_at: Vytvořeno v
           email: E-mail
-          id: Id
+          id: ID
           name: Název
         header:
           add_admin: Přidat správce
@@ -147,6 +149,7 @@ cs:
             accesssheet_manage: Správa přístupových listů
             accesssheet_settings: Nastavení přístupového listu
             accesssheet_view: Zobrazení přístupového listu
+            export: Export
             title: Přístrojové panely
             view: Zobrazit
           datasheets:
@@ -179,7 +182,7 @@ cs:
             manage: Správa
             title: Pracovní role
             view: Zobrazit
-          mediaLibraries:
+          libraries:
             manage: Správa
             title: Knihovny médií
             view: Zobrazit
@@ -290,18 +293,33 @@ cs:
             view: Zobrazit
     ai_assistants:
       actions:
+        create: Vytvořit asistenta AI
+        edit: Upravit AI Assistant
         playground: Dětské hřiště
       ai_assistants: Asistenti AI
       ai_assistants_playground: AI Assistant Playground
       column:
         provider: Poskytovatel
+      created_successfully: AI Assistant byl úspěšně vytvořen.
       form:
+        add_output_schema_key: Přidání klíče výstupního schématu
+        dependencies: Závislosti
         description: Popis
+        enter_description: Zadejte popis
+        enter_schema_key: Zadejte klíč schématu
+        key: Klíč
         name: Název
+        output_schema_keys: Klíče výstupního schématu
         provider: Poskytovatel
+        remove_output_schema_key: Odstranění klíče výstupního schématu
+        schema_key_description_required: Je vyžadován popis klíče schématu
+        schema_key_required: Je vyžadován klíč schématu
+        schema_key_type: Typ klíče
+        schema_key_unique: Klíče schématu by měly být jedinečné
         system_prompt: Systémová výzva
-        title: Asistent s umělou inteligencí
+        type: Typ
         user_prompt: Výzva pro uživatele
+      updated_successfully: AI Assistant byl úspěšně aktualizován.
     any: " - Jakýkoli - "
     api:
       campaigns:
@@ -532,7 +550,7 @@ cs:
         reset_successfully: Vyhodnocení resetování předmětu s e-mailem "%{subjectEmail}" proběhlo úspěšně.
         subject_email: Předmět E-mail
         subject_name: Jméno subjektu
-      completed_at: Dokončeno v
+      completed_at: Konec
       count: "%{count} Hodnotitelé"
       create_assessor: Přidat hodnotitele
       evaluations: Hodnocení
@@ -587,7 +605,7 @@ cs:
       modals:
         add_assessor_assessment:
           assessment_placeholder: Výběr hodnocení
-      name: Posuzovatel Posouzení
+      name: Hodnocení hodnotitele
     assessor_campaigns:
       statuses:
         completed: Dokončeno
@@ -637,8 +655,8 @@ cs:
       outcome: Výsledek
       payload: Užitečné zatížení
       project: Projekt
-      record_id: Id záznamu
-      request_id: Id žádosti
+      record_id: ID záznamu
+      request_id: ID žádosti
       reset: Obnovení
       search: Vyhledávání
       search_campaign: Vyhledávání podle kampaně
@@ -767,6 +785,8 @@ cs:
       new:
         header: Hromadné stahování
       reports_unavailable: V současné době nejsou k dispozici žádné zprávy ke stažení. Potvrďte, že zprávy, které chcete stáhnout, jsou k dispozici.
+      select_reports_for_download: Vyberte alespoň jednu zprávu ke stažení.
+      select_reports_for_regenerate: Vyberte alespoň jednu zprávu, kterou chcete regenerovat.
     cable:
       notification:
         assessment_factors: Faktory jsou načteny
@@ -826,7 +846,7 @@ cs:
       errors:
         assessment_not_found_in_campaign: ID hodnocení '%{assessment_id}' nebylo v kampani nalezeno
         code_already_exists: Faktor se stejným kódem '%{code}' již existuje.
-        factor_not_in_assessment_dimension: Id faktoru '%{factor_id}' není součástí dimenze hodnocení
+        factor_not_in_assessment_dimension: ID faktoru '%{factor_id}' není součástí dimenze hodnocení
         invalid_lua_name: Kód '%{code}' by měl být platný název proměnné lua
         invalid_name_format: Název '%{name}' by měl odpovídat očekávanému formátu.
         max_limit_reached: Nelze vytvořit více než %{count} faktorů kampaně.
@@ -856,6 +876,7 @@ cs:
       campaign_templates: Šablony kampaní
       column:
         assessment: Hodnocení
+        campaign: Kampaň
         owner: Majitel
         report: Nahlásit
       copy:
@@ -923,13 +944,14 @@ cs:
           do_not_send_notifications: Neodesílat oznámení
           modal_title: Nastavení schvalování zpráv
           qc_users: Uživatelé QC
-          remove_modal_success: 'Nastavení schválení pro id zprávy: %{reportId} bylo úspěšně odstraněno '
+          remove_modal_success: 'Nastavení schválení pro id zprávy: %{reportId} bylo úspěšně odstraněno'
           remove_modal_text: 'Opravdu chcete odstranit toto nastavení pro id sestavy: %{reportId}?'
           report: Nahlásit
           settings: Nastavení
       assessors:
         spoof:
           successfully: Byl jste úspěšně přihlášen jako %{name}
+      convert_to_template: Převést na šablonu
       copy: Kopírovat
       delete: Odstranit
       edit: Upravit
@@ -942,16 +964,20 @@ cs:
         inactive: Neaktivní
         status: Stav
       form:
+        active_notice: Stav kampaně se automaticky změní na uzavřené datum ukončení
         campaign: Kampaň
+        inactive_notice: Stav kampaně se v vybraném datu zahájení automaticky změní na aktivní
+        instruction: To lze povolit pouze při vytváření kampaně
         name: Název
         practice_campaign: Praktická kampaň
         status: Stav
       listing:
         assessments: Hodnocení
-        id: Id
+        id: ID
         name: Název
         reports: Zprávy
         status: Stav
+        template: Šablona
         type: Typ
       menus:
         add_common_campaign: Přidání společné kampaně
@@ -965,15 +991,21 @@ cs:
             active: Aktivní
             archive: Archiv
             assessment: Hodnocení
+            category: Kategorie
             closed: Uzavřeno
+            default_assessment_language: Výchozí jazyk hodnocení
+            default_report_language: Výchozí jazyk zprávy
             empty: Prázdné stránky
             inactive: Neaktivní
             name: Název
             normal: Normální
             previous: Předchozí
+            select_assessment_language: Výběr jazyka hodnocení
+            select_report_language: Výběr jazyka zprávy
             skill_rater: Hodnocení dovedností
             standard: Standardní
             status: Stav
+            type: Typ
           close:
             content: Opravdu chcete zavřít nástroj Multi Rater Campaign Creator? Veškeré neuložené úpravy budou ztraceny. Potvrďte prosím své rozhodnutí.
             title: Zavřít nástroj Multi Rater Campaign Creator?
@@ -1002,6 +1034,7 @@ cs:
           name: Popis
           save: Uložit Popis
           save_success: Popis úspěšně uložen
+        enable_video_call_recording: Povolení nahrávání videohovorů
         fixed_time: Pevný čas
         instructions:
           actions:
@@ -1054,8 +1087,8 @@ cs:
         filters:
           all: Všechny
           anonymous: Anonymní
-          identified: Identifikováno
-        id: Id
+          identified: Identifikovaní
+        id: ID
         is_active: Aktivní
         name: Název
         no_permission_message: Nemáte oprávnění upravovat
@@ -1079,6 +1112,7 @@ cs:
         ai_assistants: Asistenti AI
         ai_assisted_idp: IDP s asistencí AI
         global_skills: Globální dovednosti
+        idp: IDP
         sms_notification: Upozornění SMS
     clients:
       api_keys:
@@ -1162,7 +1196,7 @@ cs:
               sub_campaigns: Dílčí kampaně
               tests_allocated: Přidělené testy
               users: Uživatelé
-            id: Id
+            id: ID
             name: Název kampaně
             reports: Zprávy
             updated_at: Aktualizované datum
@@ -1185,7 +1219,7 @@ cs:
               sub_campaigns: Dílčí kampaně
               tests_allocated: Přidělené testy
               users: Uživatelé
-            id: Id
+            id: ID
             name: Název kampaně
             reports: Zprávy
             updated_at: Aktualizované datum
@@ -1236,7 +1270,7 @@ cs:
                 sub_campaign: Dílčí kampaně
                 tests_allocated: Přidělené testy
                 users: Uživatelé
-              id: Id
+              id: ID
               name: Název dílčí kampaně
               reports: Zprávy
               updated_at: Aktualizované datum
@@ -1259,7 +1293,7 @@ cs:
                 sub_campaign: Dílčí kampaně
                 tests_allocated: Přidělené testy
                 users: Uživatelé
-              id: Id
+              id: ID
               name: Název dílčí kampaně
               reports: Zprávy
               updated_at: Aktualizované datum
@@ -1309,7 +1343,7 @@ cs:
           assigned_user: Přiřazení uživatelé
           completed_user: Dokončení uživatelé
           created_at: Datum vytvoření
-          id: Id
+          id: ID
           name: Název projektu
           number: Číslo
           project_admin: Administrátoři projektu
@@ -1358,7 +1392,7 @@ cs:
           assigned_user: Přiřazení uživatelé
           completed_user: Dokončení uživatelé
           created_at: Datum vytvoření
-          id: Id
+          id: ID
           name: Název projektu
           number: Číslo
           project_admin: Administrátoři projektu
@@ -1427,7 +1461,7 @@ cs:
             assessment: Assement
             client_admins: Správci klientů
             created_at: Vytvořeno v
-            id: Id
+            id: ID
             name: Název
             report: Nahlásit
             report_bundle: Svazek zpráv
@@ -1447,7 +1481,7 @@ cs:
             assessment: Assement
             client_admins: Správci klientů
             created_at: Vytvořeno v
-            id: Id
+            id: ID
             name: Název
             report: Nahlásit
             report_bundle: Svazek zpráv
@@ -1554,6 +1588,7 @@ cs:
       select_all: Vyberte vše
       type: Typ
       unselect_all: Zrušit výběr všech
+    communication_settings: Nastavení
     communications:
       create:
         successfully: Komunikace byla úspěšně vytvořena.
@@ -1586,9 +1621,17 @@ cs:
            {{email}} - E-mail příjemce
            {{schedule_start_date}} - Datum zahájení rozvrhu
            {{schedule_end_date}} - Datum ukončení rozvrhu"
+        campaign: Kampaň
+        campaign_assessment_group: Skupina pro hodnocení kampaní
+        client: Klient
         completion: Dokončení
+        custom: Vlastní
         delivery_at: Dodání na (GST)
         delivery_delay_hours: Zpoždění dodávky (v hodinách)
+        delivery_interval: Interval dodání
+        delivery_interval_number: Číslo intervalu dodání
+        delivery_interval_period: Období intervalu dodání
+        delivery_rule: Pravidlo doručování
         delivery_rules:
           in_progress: Pokud probíhá hodnocení
           not_competed: Pokud není hodnocení dokončeno
@@ -1600,20 +1643,27 @@ cs:
         idp_template_approved: Schválený IDP
         idp_template_assigned: Přidělený IDP
         idp_template_rejected: IDP Odmítnuto
+        insert_piped_text: Vložení textu s potrubím
         invitation: Pozvánka
         kind: Typy komunikace
         locale: Místní nastavení
         magic_link_email: Kouzelný odkaz E-mail
+        message_body_placeholder: Zde zadejte svůj vzkaz...
         new_assignment: Nové zadání
         new_users: Noví uživatelé
         other: Další
+        owner: Majitel
+        project: Projekt
+        recipients: Příjemci
         reminder: Připomínka
         report_available: Zpráva je k dispozici
+        select_assessments: Zvolte, která hodnocení chcete zkontrolovat, zda jsou dokončena
         selected: Vybrané stránky
         selected_cc_recipients: Vybraní příjemci CC
         selected_recipients: Vybraní příjemci
         stop_reminder: Přestat posílat upomínky
         stop_reminder_datetime: Datum ukončení upomínek (GST)
+        subject: Předmět
         workshop_booked: Potvrzení rezervace hodnotícího centra
         workshop_cancelled: Hodnotící centrum zrušeno
         workshop_completed: Hodnotící centrum dokončeno
@@ -1709,13 +1759,13 @@ cs:
       pdf: PDF
       pptx: PPTX
       preview:
-        embed_token_error_description: Zkontrolujte, zda je Dataset a Report Id v nastavení správné.
+        embed_token_error_description: Zkontrolujte, zda je Dataset a Report ID v nastavení správné.
         embed_token_error_title: Nelze vygenerovat vložený token.
       settings:
-        capacity_id: Id kapacity
+        capacity_id: ID kapacity
         details: Podrobnosti na
         refresh: Obnovit
-        workspace_id: Id pracovního prostoru
+        workspace_id: ID pracovního prostoru
       tabs:
         accesssheet: Přístupový list
         accesssheet_setting: Nastavení přístupového listu
@@ -1723,12 +1773,12 @@ cs:
         settings: Nastavení
     dashboard_form:
       fields:
-        dataset_id: Id datové sady
+        dataset_id: ID datové sady
         enabled: Povoleno
         image: Obrázek
         project_path: Cesta projektu
         refresh_interval: Interval obnovení (minuty)
-        report_id: Id hlášení
+        report_id: ID hlášení
         visual_header_visibility: Vizuální viditelnost záhlaví
       image_upload_failed: Nahrávání obrázků se nezdařilo.
       none: Žádné
@@ -1767,10 +1817,10 @@ cs:
     datasheet:
       threesixty_warning: Odtud nelze nahrát sloupce datového listu pro sestavu 360. Pro sestavu 360 se sloupce datového listu načítají z kampaně, ke které je tato sestava připojena
     dates:
-      completed: Dokončeno v
+      completed: Konec
       end: Datum ukončení
       start: Datum zahájení
-      started: Začínáme v
+      started: Začátek
     development_action_import:
       errors:
         blank_field: 'Řádek %{row}: %{field} nemůže být prázdné'
@@ -1781,7 +1831,7 @@ cs:
         invalid_date: Formát data pro %{date} je neplatný.
         invalid_date_format: 'Row %{row}: Neplatný formát data pro %{field}.'
         invalid_development_action_type: 'Řádek %{row}: Neplatná kategorie ''%{value}''. Platné kategorie jsou: %{valid_development_action_types}'
-        invalid_duration_format: 'Po dobu trvání jsou povoleny pouze číselné hodnoty.Row %{row}: %{value} není platné trvání. '
+        invalid_duration_format: 'Po dobu trvání jsou povoleny pouze číselné hodnoty.Row %{row}: %{value} není platné trvání.'
         invalid_image_file: 'Neplatný soubor obrázku: %{message}'
         invalid_image_url: 'Nesprávný formát adresy URL obrázku: %{url}'
         invalid_languages: Neplatné dostupné jazyky %{invalid_languages} pro řádek %{row}.
@@ -1900,10 +1950,24 @@ cs:
         successfully: Úloha importních faktorů naplánovaná pro dimenzi %{name}.
         title: Faktory dovozu
       import_modal:
+        after: Po
+        before: Před
         cancel: Zrušit
+        change_log_input: Záznam o změnách
         continue: Pokračovat
+        error: Chyba
+        error_occurred: Došlo k chybě
+        errors:
+          file_error: Před pokračováním vyberte soubor JSON.
+          processing_error: Chybné zpracování souboru
+        field: Pole
         import: Import
         import_dimension: Rozměr importu
+        import_scheduled: Plánovaný import
+        operation: Operace
+        owner_input_validation: Vyberte prosím vlastníka
+        owner_select: Výběr vlastníka
+        select_json: Výběr souboru JSON
       import_translations:
         error: Chyba při importu překladů pro rozměr %{name}.
         successfully: Import překladů naplánovaný pro dimenzi %{name}.
@@ -1918,7 +1982,7 @@ cs:
       list:
         active: Aktivní
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         updated_at: Datum úpravy
       new:
@@ -2025,7 +2089,7 @@ cs:
       list:
         active: Aktivní
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         updated_at: Datum úpravy
       new:
@@ -2088,6 +2152,9 @@ cs:
         remove_confirm: Pro odstranění šablony zadejte do textového pole aktuální název šablony uvedený níže
         success: "%{idpName} byl úspěšně odstraněn."
       add_idp_template: Přidání šablony IDP
+      ai_assisted_idp_enabled: IDP s asistencí umělé inteligence
+      ai_enabled: Povolená umělá inteligence
+      ai_settings: Nastavení umělé inteligence
       all: Všechny
       appearance: Vzhled
       appearance_hint: Chcete-li upravit vzhled, nejprve uložte šablonu IDP, abyste tato nastavení umožnili.
@@ -2103,6 +2170,7 @@ cs:
       enter_template_name: Název
       enter_template_name_error: Název šablony je povinný
       errors:
+        cannot_update_progress_plan_completed: Nelze aktualizovat pokrok, protože plán IDP byl dokončen.
         update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele.
       fields:
         assigned_data: Přiřazená data
@@ -2130,6 +2198,7 @@ cs:
       logo_type_label: Typ loga
       no_reflection_questions_selected: Nebyly vybrány žádné otázky k zamyšlení
       none: Žádné
+      one_click_idp_enabled: Povolení IDP jedním kliknutím
       reference_locale: Referenční národní prostředí
       reflection_questions: Otázky k zamyšlení
       reflection_questions_hint: Chcete-li upravit otázky k zamyšlení, nejprve uložte šablonu IDP, abyste tato nastavení umožnili.
@@ -2236,7 +2305,7 @@ cs:
     individual_invite:
       tabs:
         assessment_center: Hodnotící centrum
-        subjects: Předměty
+        invitation_status: Stav pozvánky
     innovation_styles:
       create:
         successfully: Inovační styl %{name} byl úspěšně vytvořen.
@@ -2251,7 +2320,7 @@ cs:
         title: Inovační styly
       list:
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         position: Pozice
         updated_at: Datum úpravy
@@ -2284,7 +2353,7 @@ cs:
       list:
         condition: Stav
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         position: Pozice
         updated_at: Datum úpravy
@@ -2354,7 +2423,7 @@ cs:
       validations:
         iiht:
           tenancy_name_present: Název nájmu je již uveden v jiném projektu
-          tenant_id_present: Id nájemce je již uvedeno v jiném projektu
+          tenant_id_present: ID nájemce je již uvedeno v jiném projektu
         mettl:
           public_key_present: Veřejný klíč se již nachází v jiném projektu
         skillvue:
@@ -2365,7 +2434,9 @@ cs:
       assessment_center: 'Hodnotící centrum:'
       booked_at: 'Rezervováno v:'
       column:
+        invitation_status: Stav pozvánky
         participant: Účastník
+        scheduling_details: Podrobnosti o plánování
       remove_confirm:
         content: Jste si jisti, že chcete odstranit předmět s e-mailem '%{subjectEmail}'?
         success: Předmět s e-mailem '%{subjectEmail}'' byl úspěšně odstraněn.
@@ -2373,6 +2444,8 @@ cs:
       statuses:
         accepted: Přijato
         cancelled: Zrušeno
+        late_cancelled: Pozdě zrušeno
+        late_rescheduled: Zpožděný přesun termínu
         pending: Čeká se na
         requested_cancellation: Požadované zrušení
         requested_cancellation_rejected: Odmítnutí zrušení
@@ -2406,8 +2479,6 @@ cs:
         expected_proficiency_level: Očekávaná úroveň znalostí
       form:
         title: Mapování dovedností
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:
@@ -2417,7 +2488,7 @@ cs:
           errors:
             job_role_not_found: Pracovní role s ID %{id} nebyla nalezena
             missing_columns: 'Chybějící povinné sloupce: %{columns}'
-            save_failed: 'Chyba při zpracování ID role úlohy %{id}: %{zpráva}'
+            save_failed: 'Chyba při zpracování ID role úlohy %{id}: %{message}'
     libraries:
       create:
         successfully: Položka %{name} byla úspěšně vytvořena.
@@ -2469,6 +2540,7 @@ cs:
         successfully: Uživatel %{name} byl úspěšně aktualizován.
       update:
         successfully: Uživatel %{name} byl úspěšně aktualizován.
+    message: Zpráva
     meta_title: Administrativní panel
     navigation:
       ai_assistants: Asistenti AI
@@ -2538,8 +2610,8 @@ cs:
       list:
         active: Aktivní
         created_at: Datum vytvoření
-        dimension_id: Rozměr Id
-        id: Id
+        dimension_id: Rozměr ID
+        id: ID
         name: Název
         updated_at: Datum úpravy
         updated_by: Aktualizováno
@@ -2575,6 +2647,7 @@ cs:
         editor: Normální editor
         export: Norma pro vývoz
         title: Normovy možnosti
+      title: Norm
       toggle_status:
         successfully: Norma byla úspěšně aktualizována.
       update:
@@ -2599,7 +2672,7 @@ cs:
         title: Povolání
       list:
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         updated_at: Datum úpravy
       new:
@@ -2631,7 +2704,7 @@ cs:
       list:
         condition: Stav
         created_at: Datum vytvoření
-        id: Id
+        id: ID
         name: Název
         position: Pozice
         updated_at: Datum úpravy
@@ -2662,24 +2735,28 @@ cs:
     piped_text_modal:
       assessment_id: ID hodnocení
       campaign_id: ID kampaně
+      campaign_name: Název kampaně
+      campaigns: Kampaně
       insight_page_link: Odkaz na stránku Insight
       insight_page_url: Adresa URL stránky Insight
       join_link: Připojte se k odkazu
       magic_link: Magický odkaz
       magic_url: Magická adresa URL
       profile_custom_field: Vlastní pole profilu
+      project_name: Název projektu
+      projects: Projekty
       report_name: Název zprávy
       text: Text
       title: Přidání textu s potrubím
     proctoring_sessions:
       columns:
         comment: Komentář
-        completed_at: Dokončeno v
+        completed_at: Konec
         conclusion: Závěr
         links: Odkazy
         score: Skóre
-        session_id: Id relace
-        started_at: Začínáme v
+        session_id: ID relace
+        started_at: Začátek
       links:
         report: Nahlásit
         review: Recenze
@@ -2695,7 +2772,9 @@ cs:
       errors:
         create:
           invalid_format: Definice úrovně musí být polem definic.
+          level_definition_must_exist: Definice úrovně nemůže být prázdná
           level_definition_must_match_level: musí obsahovat přesně %{expected} úrovně, ale %{actual} byly dány
+          level_name_must_exist: Název úrovně nemůže být prázdný
           must_be_unique: Musí být jedinečné
           proficiency_level_exists: Již existuje úroveň ProficiencyLevel s touto dovedností a projektem.
           proficiency_level_exists_for_default: Úroveň způsobilosti pro výchozí nastavení již existuje
@@ -2725,10 +2804,10 @@ cs:
         errors:
           by_skill_exists: 'Řádek %{row_number}: ProficiencyLevel ''by_skill'' již existuje pro tento projekt a dovednost'
           by_skill_missing: 'Řádek %{row_number}: Projekt a dovednost musí být přítomny pro typ ''by_skill'''
-          by_skill_type_exists: 'Řádek %{číslo_řádku}: ProficiencyLevel ''''by_skill_type'''' již existuje pro tento projekt a typ dovednosti'
-          by_skill_type_missing: 'Řádek %{číslo_řádku}: Typ projektu a dovednosti musí být přítomen pro typ ''''by_skill_type'''''
-          default_global_exists: 'Řádek %{číslo_řádku}: Již existuje ''''výchozí'''' úroveň ProficiencyLevel na globální úrovni'
-          default_project_exists: 'Řádek %{číslo_řádku}: Již existuje ''''výchozí'''' ProficiencyLevel na úrovni projektu'
+          by_skill_type_exists: 'Řádek %{row_number}: ProficiencyLevel ''''by_skill_type'''' již existuje pro tento projekt a typ dovednosti'
+          by_skill_type_missing: 'Řádek %{row_number}: Typ projektu a dovednosti musí být přítomen pro typ ''''by_skill_type'''''
+          default_global_exists: 'Řádek %{row_number}: Již existuje ''''výchozí'''' úroveň ProficiencyLevel na globální úrovni'
+          default_project_exists: 'Řádek %{row_number}: Již existuje ''''výchozí'''' ProficiencyLevel na úrovni projektu'
           invalid_csv_format: 'Nesprávný formát CSV: %{message}'
           invalid_proficiency_type: 'Řádek %{row_number}: Neplatný nebo chybějící ProficiencyType'
           missing_columns: 'Chybějící povinné sloupce: %{fields}'
@@ -2773,7 +2852,7 @@ cs:
       column_createdAt: Vytvořeno v
       column_created_at: Vytvořeno v
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Název
       delete: Odstranit
       edit: Upravit
@@ -2884,7 +2963,7 @@ cs:
       column_campaigns: Kampaně
       column_created_at: Vytvořeno v
       column_email: E-mail
-      column_id: Id
+      column_id: ID
       column_name: Název
       confirm_delete: Ano, vymazat
       confirm_send: Ano, pošlete
@@ -3002,6 +3081,7 @@ cs:
         dp_consent_custom: Přizpůsobení souhlasu se zpracováním údajů
         dp_consent_version: Verze politiky
         errors:
+          cannot_disable_while_campaign_enabled: Nahrávání videohovorů nelze zakázat, protože je povoleno pro jednu nebo více kampaní v tomto projektu.
           policy_version_format: Povolena jsou pouze celá čísla
         mask_identity_for_examus: Údaje o masce pro Examus Proctoring
         mask_identity_for_hogan: Údaje o masce pro Hogan
@@ -3015,6 +3095,9 @@ cs:
         privacy_link_placeholder: Zadejte odkaz na ochranu osobních údajů
         privacy_text: Text o ochraně osobních údajů
         privacy_text_placeholder: Zadejte text o ochraně osobních údajů
+        video_call_recording: Povolení nahrávání videohovorů
+        video_call_recording_expiry_duration: Doba uchovávání záznamů videohovorů (ve dnech)
+        video_call_recording_scope: Povolení nahrávání videa pro všechny nové kampaně
       profile_settings:
         form_fields:
           enabled: Povoleno
@@ -3298,7 +3381,7 @@ cs:
       config_details:
         acs_url: Adresa URL služby Assertion Consumer Service
         copied: Zkopírováno %{element}
-        issuer: Id subjektu/Issuer
+        issuer: ID subjektu/Issuer
         title: Konfigurace Idp s následujícími informacemi
       email_pipetext: E-mail Pipetext
       enabled: Povoleno
@@ -3337,6 +3420,7 @@ cs:
         copy_to_all: Kopírování do ostatních středisek pro posuzování
         create: Vytvořit
         dates_label: Data
+        disable_cancellation_and_rescheduling: Zakázat zrušení a změnu plánu
         duration_label: Doba trvání
         duration_max_error: Nesmí být delší než 16 hodin
         duration_min_error: Nesmí být kratší než 15 minut
@@ -3465,6 +3549,7 @@ cs:
         form_title: Plánování hodnocení
         language: Jazyk
         language_not_selected: Nevybráno
+        mark_cancel: Mark Cancel
         mark_cancel_success: Zrušena účast subjektu s e-mailem %{subject_email}.
         meeting_link_custom: Vlastní
         meeting_link_internal: Interní
@@ -3473,6 +3558,9 @@ cs:
         no_change: Žádná změna
         override_existing: Přepsání stávajících rozvrhů pro předměty
         preworks: Předpráce
+        re_enroll: Opětovný zápis
+        re_enroll_confirm_message: Jste si jisti, že chcete znovu zapsat předmět s e-mailem '%{subject_email}'?
+        re_enroll_success: Znovuzapsaný subjekt s e-mailem <x>subject_email</x>.
         schedule: Plán
         unschedule: Zrušit plánování
       tabs:
@@ -3509,7 +3597,7 @@ cs:
       final_score_updated_successfully: Konečné skóre bylo úspěšně aktualizováno
       formula: Vzorec
       get_started: Začněte
-      id: Id
+      id: ID
       import:
         factors: Faktory importní kampaně
       name: Název
@@ -3591,6 +3679,7 @@ cs:
       disable_password_reuse: Zakázat opakované použití hesla
       disallow_password_login: Zakázat přihlášení heslem
       enable_login_with_magic_link: Povolit přihlášení pomocí magického odkazu
+      enable_recaptcha: Povolit reCAPTCHA
       enforce_password_policy: Vynucení zásad hesla při příštím přihlášení
       enforce_strong: Vynucení silného hesla
       expiration: Vypršení platnosti hesla
@@ -3814,7 +3903,7 @@ cs:
         send_sms: Odesílání SMS
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Zpráva
     smtp_settings:
       authentication: Ověřování
@@ -3851,6 +3940,7 @@ cs:
       user_name: Uživatelské jméno
     stats:
       assessments:
+        active: Aktivní
         columns:
           assessment_name: Název hodnocení
           completed: Dokončeno
@@ -3860,6 +3950,9 @@ cs:
           interrupted: Přerušeno
           not_started: Nebylo zahájeno
           timed_out: Vypršel časový limit
+        count: Počet
+        inactive: Neaktivní
+        percentage: Procenta
         title: Hodnocení
       title: Statistiky
       top_metrics:
@@ -4064,6 +4157,21 @@ cs:
         toggle_status:
           successfully: Úspěšně
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Již šablona
+        has_user_data: Před převedením na šablonu kampaň ručně resetujte kliknutím na možnost "Resetovat všechny účastníky" v rozbalovací nabídce Nástroje.
+      convert_template_modal:
+        cancel: Zrušit
+        confirm: Potvrďte
+        convert:
+          success: Šablona byla úspěšně převedena
+        convert_option: Převést tuto kampaň na šablonu
+        copy:
+          success: Úloha vytvoření šablony kampaně byla úspěšně naplánována, zkontrolujte prosím stav oznámení.
+        copy_option: Vytvoření nové šablony z této kampaně
+        description: Vyberte, jak chcete vytvořit šablonu z této kampaně.
+        failed: Vytvoření šablony se nezdařilo.
+        title: Převést na šablonu
       email_templates:
         approve_nomination:
           description: Tato zpráva je zaslána vedoucímu pracovníkovi, když je třeba schválit nominaci provedenou přímým podřízeným
@@ -4298,6 +4406,10 @@ cs:
       update:
         successfully: Uživatel %{name} byl úspěšně aktualizován.
       user: Uživatel
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Datum ukončení nesmí být v minulosti
+        start_date_cannot_be_in_past: Datum zahájení nesmí být v minulosti
     webhook:
       connection_failure: Nelze se připojit k url adrese webhooku. Ověřte prosím, zda je url adresa webhooku správná..
       delete_success: Nastavení webhooku bylo úspěšně odstraněno

@@ -208,7 +208,7 @@ en:
             file:
               column_cannot_be_blank: Value %{column_name} cannot be blank at row %{row_number}
               invalid_format: Please upload CSV file
-              invalid_job_role_id: Id at row %{row_number} is not a valid job role ID
+              invalid_job_role_id: ID at row %{row_number} is not a valid job role ID
               invalid_locale: Locale at row %{row_number} is not a valid locale
               missing_required_columns: 'Missing required columns: %{columns}'
               parsing_failed: 'Error while parsing file, error: %{error}.'
@@ -360,7 +360,7 @@ en:
         smtp_setting_form:
           attributes:
             test_email_id:
-              invalid: Email Id format is not valid.
+              invalid: Email ID format is not valid.
         super_admin_edit:
           attributes:
             email:
@@ -519,6 +519,7 @@ en:
         created_at: Created Date
         id: ID
         name: Name
+        owner: Owner
         updated_at: Modified Date
       factor:
         active: Active
@@ -545,7 +546,11 @@ en:
         updated_at: Modified Date
       library:
         created_at: Created Date
+        description: Description
+        files: Files
         id: ID
+        name: Name
+        owner: Owner
         type: Thumbnail
         updated_at: Modified Date
       license:
@@ -617,6 +622,7 @@ en:
         created_at: Created Date
         id: ID
         name: Name
+        owner: Owner
         updated_at: Modified Date
       report:
         created_at: Created Date
@@ -813,6 +819,7 @@ en:
         bulk_update_evaluation_status: Bulk Update Evaluation Status
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
+        copy_as_template_or_campaign: Copy Campaign as Template
         copy_dimension: Copy Dimension
         create_threesixty_campaign: Create Threesixty Campaign
         data_report_export: Data Report Export
@@ -896,6 +903,7 @@ en:
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
     more: More
+    no_notifications: No notifications
     notifications: Notifications
     results: Results
     super_admin:
@@ -1078,6 +1086,7 @@ en:
         description: This evaluation session has been invalidated. This can happen if you continued the evaluation in a separate tab, browser or device.
         title: Last Request Failed
       next: Next
+      no_skill_mapping_message: There is no skill mapping done for this job role, contact your admin.
       read_only: Is read only mode, you can not change any results.
       save: Save
       submissionFailedAlert:
@@ -1146,6 +1155,7 @@ en:
     add_group_form:
       previous_assessments_required: Assessments to runs in below order
       previous_group_required: Previous group completion required
+      require_previous_groups_completion_for_booking: Require completion of all previous groups before booking
     menu:
       assessment_center: Assessment Center
       assessment_center_invites: Assessment Center Invites
@@ -1386,6 +1396,7 @@ en:
       bulk_download: Bulk Download
       bulk_update_evaluation_as_done: Mark as Done
       bulk_update_evaluation_as_undone: Unmark as Done
+      convert_to_template: Convert to Template
       download: Download Reports
       export_completion_status: Export Completion Status
       export_external: External
@@ -1405,7 +1416,7 @@ en:
       reset_all_nominations: Reset All Nominations
       reset_participant: Reset All Participants
     allow_msg_proctoring_workshop_activity: Assessment center activities are not proctored.
-    assessment_center_heading: Assessment Center Details
+    assessment_center_heading_label: Session Details
     assessments_heading: Your Tasks
     column:
       assessment_name: Assessment name
@@ -1542,7 +1553,9 @@ en:
       in_progress: In Progress
       ineligible: Ineligible
       interrupted: Interrupted
+      new: New
       not_started: Not Started
+      progress: In Progress
       timed_out: Timed Out
       universal_link: Universal link
     ungrouped_assessments_heading: Ungrouped
@@ -1611,7 +1624,7 @@ en:
       assessment_center_invites: Assessment Center Invites
       completed_at: Completed At
       completion_status: Completion status
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Last login
       manager: Manager
       modals:
@@ -1799,7 +1812,7 @@ en:
       first_name: First Name
       icon: Icon
       icon_color: Icon color
-      id: Id
+      id: ID
       json:
         answer: Answer JSON
         external_result: External Result JSON
@@ -1813,13 +1826,13 @@ en:
       modified_date: Modified Date
       name: Name
       owner: Owner
-      package_id: Package Id
+      package_id: Package ID
       poster: Poster
       project: Project
       provider: Provider
       qc_user_list: QC Users List
       report: Report
-      report_id: Report Id
+      report_id: Report ID
       require_scheduling: Require Scheduling
       responses_count: Responses Count
       schedule_time: Schedule Time
@@ -1938,6 +1951,8 @@ en:
       timeout: Your session expired. Please login again to continue.
       unauthenticated: You need to login or register before continuing.
       unconfirmed: You have to confirm your email address before continuing.
+    invalid_captcha: The captcha input was invalid.
+    invalid_security_question: The security question answer was invalid.
     invitations:
       edit:
         confirm_password_label: Confirm Password
@@ -2017,6 +2032,25 @@ en:
     omniauth_callbacks:
       failure: Could not authenticate you from %{kind} because "%{reason}".
       success: Successfully authenticated from %{kind} account.
+    paranoid_verification_code:
+      show:
+        submit: Submit
+        submit_verification_code: Submit verification code
+        verification_code: Verification code
+      updated: Verification code accepted
+    paranoid_verify:
+      code_required: Please enter the code our support team provided
+    password_expired:
+      change_required: Your password is expired. Please renew your password.
+      forced_changed: You need to set new password for your account.
+      password_policy_changed: Password policy changed. Please change your password.
+      show:
+        change_my_password: Change my password
+        current_password: Current password
+        new_password: New password
+        new_password_confirmation: Confirm new password
+        renew_your_password: Renew your password
+      updated: Your new password is saved.
     passwords:
       edit:
         instruction: To create a new password, please enter your new password in the boxes below
@@ -2184,6 +2218,10 @@ en:
       workshop_subject_create:
         already_exists: Subject already exists in this Assessment Center.
         part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: No seats available for this workshop.
+        scheduling_lead_time_passed: Scheduling Lead Time has passed, you cannot re-enroll the subject.
+        workshop_subject_not_found: Workshop subject not found
       workshops:
         no_available_assessor_slots: No available slots for assessor %{assessor}
         no_available_manager_slots: No available slots for manager %{manager}
@@ -2214,6 +2252,8 @@ en:
   errors:
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
+    equal_to_current_password: must be different than the current password.
+    equal_to_email: must be different than the email.
     error: Error
     error_401: You are not authorized to access this resource. Please sign in.
     error_403: You do not have permission to view this resource.
@@ -2226,6 +2266,20 @@ en:
     max_regeneration_limit: Maximum regeneration limit exceeded, contact your administration.
     messages:
       data_report_blank: Data Report doesn not exist
+      password_complexity:
+        digit:
+          one: must contain at least one digit
+          other: must contain at least %{count} digits
+        lower:
+          one: must contain at least one lower-case letter
+          other: must contain at least %{count} lower-case letters
+        symbol:
+          one: must contain at least one punctuation mark or symbol
+          other: must contain at least %{count} punctuation marks or symbols
+        upper:
+          one: must contain at least one upper-case letter
+          other: must contain at least %{count} upper-case letters
+      taken_in_past: must not be same as any previously used password.
     module_error: Something went wrong with this module, please contact administration.
     module_error_editor: Something went wrong with this module, please check module settings.
     module_props_error: Something went wrong with this module.
@@ -2299,8 +2353,13 @@ en:
       add_to_yahoo_calendar: Add to yahoo calendar
       assessment_center_alert:
         btn_title: Campaign
-        message_part1: Complete all the preworks in this
-        message_part2: before booking a slot.
+        complete_previous_groups: Complete all previous group activities
+        complete_preworks: Complete all preworks
+        please_visit: Please visit the
+        requirements_message: You can only make a booking once you complete the following requirement
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: to complete these requirements.
       assessment_center_group_name: Assessment Center
       booking_failed_msg: 'Failed to book slot: %{error}'
       buttons:
@@ -2359,7 +2418,7 @@ en:
         invites: Invites
       what: What
       when: When
-      workshop_start_text: Your Assessment Center will start in
+      workshop_start_label: Your session will start in
     break_time: Break Time
     campaign:
       actions:
@@ -2368,6 +2427,7 @@ en:
         remove:
           confirmation: Enter current campaign name given below in text box to remove campaign
           success: "%{campaignName} was removed successfully."
+          template_confirmation: 'Enter the name of the current template in the field below to delete it. Note: This will also delete the linked campaign template.'
       users:
         actions:
           export:
@@ -2716,6 +2776,7 @@ en:
         required: The answer to the question is required
       max_words: Max Words
       min_words: Min Words
+      no_reflective_questions: No reflective questions available
       title: Reflective Questions
       update_failed: An error occurred during the update
       updated_successfully: Your answers have been updated successfully
@@ -2807,7 +2868,7 @@ en:
     pt-BR: Brazilian Portuguese
     pt-PT: Portuguese (Portugal)
     pt_BR: Portuguese (Brazil)
-    ro: Romanian
+    ro: Română
     ru: Russian
     sk: Slovak
     sl: Slovenian
@@ -2876,7 +2937,7 @@ en:
     pt-BR: Português (Brasil)
     pt-PT: Português (Portugal)
     pt_BR: Português (Brasil)
-    ro: Romanian
+    ro: Română
     ru: Russian
     sk: Slovak
     sl: Slovenian
@@ -2928,6 +2989,12 @@ en:
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. All rights reserved
+    footer:
+      regards: Regards,
+      team_name: Lighthouse Team
+      technical_support: For any technical issues, please write to us at %{email} and we will respond within 24 hours.
     from: The Talent Enterprise
     idp:
       manager_unread_comments:
@@ -2985,6 +3052,8 @@ en:
         instructions: Click below link to signin to lighthouse.
         signin_link: Signin Link
       subject: Signin link for Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity
@@ -3301,6 +3370,9 @@ en:
       send_password_email_success: Email sent to user %{email} with the password.
     title: Reset Password
   select: Select
+  sessions:
+    errors:
+      recaptcha: Recaptcha verification failed. Please try again.
   shared:
     filters:
       clear: Clear Filters

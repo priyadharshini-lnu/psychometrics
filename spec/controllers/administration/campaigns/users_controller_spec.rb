@@ -138,7 +138,11 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'status' => 'not_prepared',
       'internal' => true,
       'custom_upload' => false,
-      'report_url' => nil,
+      'report_download_urls' => {
+        user_report.effective_default_language => user_report.pdf_download_url(
+          locale: user_report.effective_default_language
+        )
+      },
       'report_provider' => 'internal',
       'comments_count' => 0,
       'edits_count' => 0,

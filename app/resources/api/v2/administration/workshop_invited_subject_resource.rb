@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Administration::BaseResource
   attributes :status, :reason, :booked_workshop_date_time, :subject_workshop_date_time, :workshop_invite_id,
-             :booked_at, :workshop_id
+             :booked_at, :workshop_id, :scheduling_status
 
   has_one :user
   has_one :workshop_invite
@@ -31,6 +31,10 @@ class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Adminis
 
   def workshop_id
     @model.workshop_subject&.workshop_id
+  end
+
+  def scheduling_status
+    @model.workshop_subject&.scheduling_status
   end
 
   def booked_at

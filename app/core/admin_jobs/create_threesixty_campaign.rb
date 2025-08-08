@@ -12,17 +12,6 @@ module AdminJobs
       broadcast :ok
     end
 
-    def generate_title_link
-      campaign = ::Threesixty::Campaign.find_by(id: record.data['campaign_id'])
-
-      return {} unless campaign
-
-      {
-        href: administration_client_project_threesixty_campaign_path(project.client.id, project.id, campaign.id),
-        label: campaign.name
-      }
-    end
-
     def valid?
       project.present?
     end
@@ -31,6 +20,10 @@ module AdminJobs
 
     def project
       @project ||= Project.find_by(id: record.data['project_id'])
+    end
+
+    def campaign
+      @campaign ||= ::Threesixty::Campaign.find_by(id: record.data['campaign_id'])&.campaign
     end
   end
 end

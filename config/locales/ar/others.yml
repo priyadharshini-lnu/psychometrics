@@ -519,6 +519,7 @@ ar:
         created_at: تاريخ الإنشاء
         id: معرف
         name: اسم
+        owner: المالك
         updated_at: تاريخ التعديل
       factor:
         active: نشط
@@ -545,7 +546,11 @@ ar:
         updated_at: تاريخ التعديل
       library:
         created_at: تاريخ الإنشاء
+        description: الوصف
+        files: الملفات
         id: معرف
+        name: الاسم
+        owner: المالك
         type: الصوره المصغره
         updated_at: تاريخ التعديل
       license:
@@ -617,6 +622,7 @@ ar:
         created_at: تاريخ الإنشاء
         id: معرف
         name: اسم
+        owner: المالك
         updated_at: تاريخ التعديل
       report:
         created_at: تاريخ الإنشاء
@@ -775,6 +781,10 @@ ar:
           min_assessment_count: الحد الأدنى لعدد التقييمات هو %{min}
         skill_gap_report:
           not_found: لم يتم العثور على تقرير فجوة المهارات
+        user:
+          attributes:
+            manager_id:
+              cannot_be_self: لا يمكن تعيين المستخدم كمدير خاص به
         user_idp_comment:
           reply_to_reply: لا يمكن الرد على رد (يسمح بمستوى واحد فقط من التداخل)
         user_idp_plan:
@@ -833,6 +843,7 @@ ar:
         bulk_update_evaluation_status: حالة تقييم التحديث المجمع
         compact_completion_status_export: تصدير حالة الاكتمال المدمجة
         completion_status_export: تصدير حالة الإنجاز
+        copy_as_template_or_campaign: نسخ الحملة كقالب
         copy_dimension: أبعاد النسخ
         create_threesixty_campaign: إنشاء حملة Threesixty
         data_report_export: تصدير تقرير البيانات
@@ -916,6 +927,7 @@ ar:
     invalid_job: يتوافق هذا الإشعار مع السجل المحذوف
     mark_as_read: ضع علامة على الكل مقروءا
     more: أكثر
+    no_notifications: لا توجد إشعارات
     notifications: الاخطارات
     results: النتائج
     super_admin:
@@ -1099,6 +1111,7 @@ ar:
         description: وقد ألغيت جلسة التقييم هذه. يمكن أن يحدث هذا إذا واصلت التقييم في علامة تبويب أو متصفح أو جهاز منفصل.
         title: فشل الطلب الأخير
       next: التالي
+      no_skill_mapping_message: لا يوجد تخطيط للمهارات لهذه الوظيفة، تواصل مع المسؤول عنك.
       read_only: هو وضع القراءة فقط، لا يمكنك تغيير أي نتائج.
       save: حفظ
       submissionFailedAlert:
@@ -1167,6 +1180,7 @@ ar:
     add_group_form:
       previous_assessments_required: يتم إجراء التقييمات بالترتيب أدناه
       previous_group_required: مطلوب إكمال المجموعة السابقة
+      require_previous_groups_completion_for_booking: اشتراط إكمال جميع المجموعات السابقة قبل الحجز
     menu:
       assessment_center: مركز التقييم
       assessment_center_invites: مركز التقييم يدعو
@@ -1407,6 +1421,7 @@ ar:
       bulk_download: تحميل بالجملة
       bulk_update_evaluation_as_done: وضع علامة على أنه تم
       bulk_update_evaluation_as_undone: قم بإلغاء وضع علامة كما تم
+      convert_to_template: التحويل إلى قالب
       download: تنزيل التقارير
       export_completion_status: حالة اكتمال التصدير
       export_external: خارجي
@@ -1426,7 +1441,7 @@ ar:
       reset_all_nominations: إعادة تعيين جميع الترشيحات
       reset_participant: إعادة تعيين جميع المشاركين
     allow_msg_proctoring_workshop_activity: لا تتم مراقبة أنشطة مركز التقييم.
-    assessment_center_heading: تفاصيل مركز التقييم
+    assessment_center_heading_label: تفاصيل الجلسة
     assessments_heading: مهامك
     column:
       assessment_name: اسم التقييم
@@ -1563,7 +1578,9 @@ ar:
       in_progress: قيد التنفيذ
       ineligible: غير مؤهل
       interrupted: مقاطعة
+      new: جديد
       not_started: لم يبدأ بعد
+      progress: قيد التنفيذ
       timed_out: انتهت المهلة
       universal_link: رابط عالمي
     ungrouped_assessments_heading: فك تجميع
@@ -1584,6 +1601,7 @@ ar:
     column:
       assessor_access: وصول المقيم
       auto_assign: التعيين التلقائي
+      locales: المناطق المحلية
       main_report: التقرير الرئيسي
       report_bundle: حزمة التقارير
       report_name: اسم التقرير
@@ -1606,6 +1624,13 @@ ar:
         apply: قم بتطبيق هذه التغييرات على المستخدمين الحاليين في هذه الحملة.
         msg_text: أنت تحاول حذف تقرير <strong>"%{reportName}"</strong>
         title: إزالة التقرير؟
+      update_languages:
+        default_language: اللغة الافتراضية
+        other_available_languages: اللغات الأخرى المتاحة
+        select_default_language: تحديد اللغة الافتراضية
+        select_languages: اختر اللغات
+        success_msg: تم تحديث اللغات بنجاح
+        title: لغة التقرير
       user_access:
         apply: قم بتطبيق هذه التغييرات على المستخدمين الحاليين في هذه الحملة.
         title:
@@ -1951,6 +1976,8 @@ ar:
       timeout: انتهت جلستك. الرجاء تسجيل الدخول مرة أخرى للمتابعة.
       unauthenticated: تحتاج إلى تسجيل الدخول أو التسجيل قبل المتابعة.
       unconfirmed: يجب عليك تأكيد عنوان بريدك الإلكتروني قبل المتابعة.
+    invalid_captcha: كان إدخال كلمة التحقق غير صالح.
+    invalid_security_question: كانت إجابة سؤال الأمان غير صالحة.
     invitations:
       edit:
         confirm_password_label: تأكيد كلمة المرور
@@ -2030,6 +2057,25 @@ ar:
     omniauth_callbacks:
       failure: تعذر المصادقة عليك من %{kind} لأن "%{reason}".
       success: تمت المصادقة بنجاح من حساب %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: إرسال
+        submit_verification_code: إرسال رمز التحقق
+        verification_code: رمز التحقق
+      updated: تم قبول رمز التحقق
+    paranoid_verify:
+      code_required: يرجى إدخال الرمز الذي قدمه فريق الدعم لدينا
+    password_expired:
+      change_required: انتهت صلاحية كلمة المرور الخاصة بك. يرجى تجديد كلمة المرور الخاصة بك.
+      forced_changed: تحتاج إلى تعيين كلمة مرور جديدة لحسابك.
+      password_policy_changed: تم تغيير سياسة كلمة المرور. يرجى تغيير كلمة المرور الخاصة بك.
+      show:
+        change_my_password: تغيير كلمة المرور الخاصة بي
+        current_password: كلمة المرور الحالية
+        new_password: كلمة مرور جديدة
+        new_password_confirmation: تأكيد كلمة المرور الجديدة
+        renew_your_password: تجديد كلمة المرور الخاصة بك
+      updated: كلمة المرور الجديدة محفوظة.
     passwords:
       edit:
         instruction: لإنشاء كلمة مرور جديدة ، يرجى إدخال كلمة المرور الجديدة في المربعات أدناه
@@ -2197,6 +2243,10 @@ ar:
       workshop_subject_create:
         already_exists: الموضوع موجود بالفعل في مركز التقييم هذا.
         part_of_other_workshop: الموضوع مشارك بالفعل في "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: لا توجد مقاعد متاحة لهذه الورشة.
+        scheduling_lead_time_passed: انقضت مهلة الجدولة الزمنية \ لقد انقضت المهلة الزمنية \ لا يمكنك إعادة تسجيل الموضوع.
+        workshop_subject_not_found: موضوع ورشة العمل غير موجود
       workshops:
         no_available_assessor_slots: لا توجد فتحات متاحة للمقيم %{assessor}
         no_available_manager_slots: لا توجد فتحات متاحة للمدير %{manager}
@@ -2227,6 +2277,8 @@ ar:
   errors:
     assessments:
       timed_out: لن تتمكن من إجراء تقييم %{assessment_name} نظرًا لانتهاء المهلة المحددة له.
+    equal_to_current_password: يجب أن تكون مختلفة عن كلمة المرور الحالية.
+    equal_to_email: يجب أن تكون مختلفة عن البريد الإلكتروني.
     error: الخطأ
     error_401: أنت غير مصرح لك بالوصول إلى هذا المورد. يرجى تسجيل الدخول.
     error_403: ليس لديك إذن لعرض هذا المورد.
@@ -2239,6 +2291,20 @@ ar:
     max_regeneration_limit: تجاوز الحد الأقصى للتجديد ، اتصل بإدارتك.
     messages:
       data_report_blank: تقرير البيانات غير موجود
+      password_complexity:
+        digit:
+          one: يجب أن يحتوي على رقم واحد على الأقل
+          other: يجب أن تحتوي على <x>count</x> رقم على الأقل
+        lower:
+          one: يجب أن يحتوي على حرف واحد على الأقل من الأحرف الصغيرة
+          other: 'يجب أن تحتوي على <x>count</x> على الأقل على حروف صغيرة '
+        symbol:
+          one: يجب أن يحتوي على علامة أو رمز ترقيم واحدة على الأقل
+          other: 'يجب أن تحتوي على <x>count</x> على الأقل على علامات أو رموز ترقيم '
+        upper:
+          one: يجب أن يحتوي على حرف واحد كبير على الأقل
+          other: 'يجب أن تحتوي على <x>count</x> على الأقل على حروف كبيرة '
+      taken_in_past: يجب ألا تكون هي نفسها كلمة المرور المستخدمة سابقاً.
     module_error: حدث خطأ ما في هذه الوحدة، يرجى الاتصال بالإدارة.
     module_error_editor: حدث خطأ ما في هذه الوحدة، يرجى التحقق من إعدادات الوحدة.
     module_props_error: حدث خطأ ما في هذه الوحدة.
@@ -2249,6 +2315,9 @@ ar:
       no_active_plan: لم يتم العثور على خطة IDP نشطة
     webhooks:
       multiple_webhook_error: لا يمكن تحديث عنوان URL نظرا لوجود العديد من خطافات الويب لهذا المشروع.
+    workshop:
+      ical_generation_failed: تعذر إنشاء دعوة للتقويم
+      missing_or_invalid: معرف_ورشة العمل مفقود أو غير صالح
   evaluators:
     errors:
       can_not_processed: لا يمكن معالجتها
@@ -2309,8 +2378,13 @@ ar:
       add_to_yahoo_calendar: إضافة إلى تقويم ياهو
       assessment_center_alert:
         btn_title: حملة
-        message_part1: أكمل جميع الأعمال السابقة في هذا الشأن
-        message_part2: قبل حجز فتحة.
+        complete_previous_groups: أكمل جميع أنشطة المجموعة السابقة
+        complete_preworks: أكمل جميع الأعمال التمهيدية
+        please_visit: يرجى زيارة
+        requirements_message: لا يمكنك إجراء الحجز إلا بعد استكمال المتطلبات التالية
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: لاستكمال هذه المتطلبات.
       assessment_center_group_name: مركز التقييم
       booking_failed_msg: 'فشل حجز الفتحة: %{error}'
       buttons:
@@ -2369,7 +2443,7 @@ ar:
         invites: الدعوات
       what: ماذا
       when: متى
-      workshop_start_text: سيبدأ مركز التقييم الخاص بك في
+      workshop_start_label: ستبدأ جلستك في
     break_time: فترة إستراحة
     campaign:
       actions:
@@ -2378,6 +2452,7 @@ ar:
         remove:
           confirmation: 'أدخل الإسم الحالي للحملة في مربع النص أدناة لإزالة الحملة '
           success: تمت إزالة الحملة بنجاح %{campaignName}
+          template_confirmation: 'أدخل اسم القالب الحالي في الحقل أدناه لحذفه. ملاحظة: سيؤدي هذا أيضًا إلى حذف قالب الحملة المرتبط.'
       users:
         actions:
           export:
@@ -2726,6 +2801,7 @@ ar:
         required: إجابة السؤال مطلوبة
       max_words: الحد الأقصى للكلمات
       min_words: كلمات دقيقة
+      no_reflective_questions: لا توجد أسئلة عاكسة
       title: أسئلة تأملية
       update_failed: حدث خطأ أثناء التحديث
       updated_successfully: تم تحديث إجاباتك بنجاح
@@ -2869,6 +2945,12 @@ ar:
     used_number: التراخيص المستخدمة
     used_out_of: "%{used} من %{total}"
   mailer:
+    copyright:
+      text: لايت هاوس. جميع الحقوق محفوظة
+    footer:
+      regards: مع أطيب التحيات،
+      team_name: فريق لايت هاوس
+      technical_support: لأي مشاكل تقنية، يرجى الكتابة إلينا على %{email} وسنرد خلال 24 ساعة.
     from: مؤسسة المواهب
     idp:
       manager_unread_comments:
@@ -2926,6 +3008,8 @@ ar:
         instructions: انقر على الرابط أدناه لتسجيل الدخول إلى Lighthouse.
         signin_link: رابط تسجيل الدخول
       subject: رابط تسجيل الدخول إلى Lighthouse
+    powered_by:
+      text: مدعوم من لايت هاوس.
     users:
       account_disable: تم تعطيل حسابك بسبب عدم النشاط
       warning: سيتم تعطيل حسابك قريبا بسبب عدم النشاط
@@ -3242,6 +3326,9 @@ ar:
       send_password_email_success: إرسال بريد إلكتروني إلى المستخدم %{email} مع كلمة المرور.
     title: إعادة تعيين كلمة المرور
   select: اختار
+  sessions:
+    errors:
+      recaptcha: فشلت عملية التحقق من إعادة الكابتشا. يرجى المحاولة مرة أخرى.
   shared:
     filters:
       clear: امسح المُرشحات

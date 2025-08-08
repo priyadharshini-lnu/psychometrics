@@ -19,6 +19,8 @@ export default function ManagerList ({
   total,
   permissions,
   searchTerm,
+  template,
+  threeSixtyCampaignId,
 }) {
   const { campaignId } = useParams()
   const [params] = useSearchParams()
@@ -47,12 +49,13 @@ export default function ManagerList ({
             searchTerm={searchTerm}
           />
           <Manage />
-          <ToolsDropdown permissions={permissions} />
+          {!template && <ToolsDropdown permissions={permissions} />}
         </Col>
       </Row>
       <Row>
         <Col span={24}>
           <EvaluatorTable
+            threeSixtyCampaignId={threeSixtyCampaignId}
             campaignId={campaignId}
             openModal={openModal}
             evaluators={managers}

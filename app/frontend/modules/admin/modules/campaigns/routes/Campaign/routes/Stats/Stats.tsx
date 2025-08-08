@@ -103,8 +103,8 @@ const StatsComponent: React.FC<Props> = ({
             value={status}
             onChange={value => setStatus(value.length ? value : [true])}
             options={[
-              { value: true, label: 'Active' },
-              { value: false, label: 'Inactive' },
+              { value: true, label: I18n.t('administration.stats.assessments.active') },
+              { value: false, label: I18n.t('administration.stats.assessments.inactive') },
             ]}
             className={styles.statusSelect}
           />
@@ -117,8 +117,8 @@ const StatsComponent: React.FC<Props> = ({
             </Col>
             <Col className={styles.statsType}>
               <Radio.Group onChange={onChangeStatsType} defaultValue={statsType} size="small">
-                <Radio.Button value="percentage">Percentage</Radio.Button>
-                <Radio.Button value="count">Count</Radio.Button>
+                <Radio.Button value="percentage">{I18n.t('administration.stats.assessments.percentage')}</Radio.Button>
+                <Radio.Button value="count">{I18n.t('administration.stats.assessments.count')}</Radio.Button>
               </Radio.Group>
             </Col>
           </Row>

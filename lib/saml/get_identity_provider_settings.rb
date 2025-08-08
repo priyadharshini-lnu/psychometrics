@@ -2,6 +2,8 @@
 
 module Saml
   class GetIdentityProviderSettings
+    include Rails.application.routes.url_helpers
+
     def initialize(subdomain)
       @subdomain = subdomain
     end
@@ -16,6 +18,15 @@ module Saml
       Rails.logger.error "Client not found for subdomain: #{@subdomain} - #{e.message}"
     end
 
+    def url_options
+      {
+        host: Settings.domain,
+        subdomain: Settings.subdomain,
+        protocol: Settings.protocol,
+        port: Settings.port
+      }
+    end
+
     private
 
     def project_saml_settings
@@ -24,11 +35,12 @@ module Saml
     end
 
     def admin_saml_settings
+      options = url_options
       {
-        assertion_consumer_service_url: Settings.saml.assertion_consumer_service_url,
+        assertion_consumer_service_url: saml_user_session_url(options),
         assertion_consumer_service_binding: Settings.saml.assertion_consumer_service_binding,
         name_identifier_format: Settings.saml.name_identifier_format,
-        issuer: Settings.saml.issuer,
+        issuer: metadata_user_session_url(options),
         idp_entity_id: Settings.saml.idp_entity_id,
         idp_sso_service_url: Settings.saml.idp_sso_service_url,
         idp_cert: ENV.fetch('SAML_IDP_CERT', nil)

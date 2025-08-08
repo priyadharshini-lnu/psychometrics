@@ -72,29 +72,39 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   end
 
   def regenerate_reports
+    if params[:selected_user_report_ids].blank?
+      return render json: { errors: I18n.t('administration.bulk_reports.select_reports_for_regenerate') },
+                    status: :unprocessable_entity
+    end
+
     AdminJob.call(
       :bulk_regenerate_threesixty_reports,
-      { campaign_id: resource.id, locales: params[:selected_locales], force_regenerate: params[:force_regenerate] },
+      { campaign_id: resource.id, locales: params[:selected_locales], force_regenerate: params[:force_regenerate],
+        ids: params[:selected_user_report_ids] },
       current_user
     )
     render json: :ok
   end
 
   def bulk_download
-    user_report_ids = resource.campaign.user_reports.pluck(:id)
-    report_count = UserReportPdf.where(user_report_id: user_report_ids,
+    if params[:selected_user_report_ids].blank?
+      return render json: { errors: I18n.t('administration.bulk_reports.select_reports_for_download') },
+                    status: :unprocessable_entity
+    end
+
+    report_count = UserReportPdf.where(user_report_id: params[:selected_user_report_ids],
                                        locale: params[:selected_locales]).joins(:pdf_file_attachment).count
     if report_count > 1000
-      render json: { errors: I18n.t('campaign_report.messages.bulk_download_error', count: report_count) },
-             status: :unprocessable_entity
-    else
-      AdminJob.call(:bulk_download_user_reports,
-                    { campaign_id: resource.campaign_id, is_threesixty: true, locales: params[:selected_locales],
-                      is_bulk_action: true },
-                    current_user)
-      audit! :bulk_download, nil, record_type: 'UserReport', payload: {}, campaign: campaign
-      head :ok
+      return render json: { errors: I18n.t('campaign_report.messages.bulk_download_error', count: report_count) },
+                    status: :unprocessable_entity
     end
+
+    AdminJob.call(:bulk_download_user_reports,
+                  { campaign_id: resource.campaign_id, is_threesixty: true, locales: params[:selected_locales],
+                    is_bulk_action: true, ids: params[:selected_user_report_ids] },
+                  current_user)
+    audit! :bulk_download, nil, record_type: 'UserReport', payload: {}, campaign: campaign
+    head :ok
   end
 
   def destroy

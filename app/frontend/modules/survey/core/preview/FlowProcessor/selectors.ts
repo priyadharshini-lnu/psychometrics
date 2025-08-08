@@ -43,7 +43,7 @@ export const getAllAnsweredQuestions = (state): Question[] => {
 
 export const getQuestion = (state, id): Question => state.questions[id]
 export const getCurrentBlock = (state): Block => {
-  const { blockId } = getCurrentPage(state)
+  const { blockId } = getCurrentPage(state) || {}
   return state.blocks[blockId]
 }
 export const getErrors = (state): {[qId: number]: []} => state.errors
@@ -76,9 +76,9 @@ export const isValidCurrentElementAndPage = (state): boolean => {
 }
 
 export const getCurrentPage = (state): PageInterface => {
-  const block = getCurrentElement(state).props.current
+  const block = getCurrentElement(state)?.props?.current
   const pages = state.allPages[Symbol.for(block)]
-  return pages[state.currentPage]
+  return pages && pages[state.currentPage]
 }
 
 export const getNextPage = (state): PageInterface => {
@@ -113,10 +113,13 @@ export const getChildOrNextElementId = (state, element: string | null = null): s
 export const pageQuestions = createSelector(
   state => state,
   getCurrentPage,
-  (state, page) => getQuestions(state, page.questions),
+  (state, page) => getQuestions(state, page?.questions),
 )
 
-export const pageQuestionsWithoutHidden = createSelector(pageQuestions, questions => questions.filter(q => !q.hidden))
+export const pageQuestionsWithoutHidden = createSelector(
+  pageQuestions,
+  questions => questions && questions.filter(q => !q.hidden),
+)
 
 export const getQuestionErrors = createSelector(
   getQuestion,
@@ -129,7 +132,7 @@ export const pageErrors = (state): {[qId: number]: []} => state.errors
 export const getSkipLogicSelector = createSelector(getCurrentPage, page => page.skipLogic)
 export const getDisplayLogicSelector = createSelector(
   pageQuestions,
-  questions => questions[0] && questions[0].display_logic,
+  questions => questions && questions[0] && questions[0].display_logic,
 )
 
 export const getQuestionResults = createSelector(

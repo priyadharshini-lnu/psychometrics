@@ -101,6 +101,12 @@ export const GroupedAssessmentContainer = React.forwardRef(
       })
     }
 
+    const handlePreviousGroupsCompletionForBookingChange = (checked: boolean) => {
+      modifyGroup?.(group.id, {
+        requirePreviousGroupsCompletionForBooking: checked,
+      })
+    }
+
     return (
       <div ref={ref} style={{ ...style, ...dragStyle }} className="h-100">
         <BadgeWrapper groupType={group.groupType}>
@@ -169,6 +175,20 @@ export const GroupedAssessmentContainer = React.forwardRef(
                         {I18n.t('assessments_reports.add_group_form.previous_group_required')}
                       </label>
                     </Space>
+                    {(group.groupType === 'assessment_center') && (
+                      <Space>
+                        <Switch
+                          disabled={!assessmentCount}
+                          id={`require_previous_groups_completion_for_booking-${group.id}`}
+                          size="small"
+                          checked={!assessmentCount ? false : group.requirePreviousGroupsCompletionForBooking}
+                          onChange={handlePreviousGroupsCompletionForBookingChange}
+                        />
+                        <label htmlFor={`require_previous_groups_completion_for_booking-${group.id}`}>
+                          {I18n.t('assessments_reports.add_group_form.require_previous_groups_completion_for_booking')}
+                        </label>
+                      </Space>
+                    )}
                   </Space>
                 )}
               />

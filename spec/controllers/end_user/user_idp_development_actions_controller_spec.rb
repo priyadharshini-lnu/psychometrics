@@ -13,6 +13,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
   let!(:user_idp_skills) do
     skills.map { |skill| create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: skill) }
   end
+  let!(:campaign) { create(:campaign, project: project) }
 
   let!(:user_idp_development_action) do
     create(:user_idp_development_action, user_idp_plan: user_idp_plan,
@@ -84,6 +85,16 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       expect(response).to have_http_status(:ok)
       user_idp_development_action.reload
       expect(user_idp_development_action.progress).to eq(50)
+    end
+
+    it 'returns 422 if the plan is completed' do
+      user_idp_development_action.user_idp_plan.completed!
+      put :update_progress,
+          params: { user_idp_development_action: { id: user_idp_development_action.id, progress: 80 } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.parsed_body['errors']).to include(I18n.t('idp.errors.cannot_update_progress_plan_completed'))
+      user_idp_development_action.reload
+      expect(user_idp_development_action.progress).not_to eq(80)
     end
   end
 

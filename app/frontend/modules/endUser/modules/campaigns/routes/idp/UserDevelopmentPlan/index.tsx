@@ -158,7 +158,11 @@ const UserDevelopmentPlanComponent = ({
 
   const changeTab = (tab: string) => {
     setTab(tab)
-    navigate(`/idp/my_plan/${tab}`)
+    if (idpUserId !== currentUser.id) {
+      navigate(`/idp/direct_reportees/${idpUserId}/${tab}`)
+    } else {
+      navigate(`/idp/my_plan/${tab}`)
+    }
   }
 
   useEffect(() => {
@@ -430,11 +434,17 @@ const UserDevelopmentPlanComponent = ({
       key: 'plan',
       children: developmentActionViews,
     },
-    {
-      label: I18n.t('idp.reflective_questions.title'),
-      key: 'reflective_questions',
-      children: <Flex justify="center" style={{ padding: '16px 24px 0 24px' }}><ReflectiveQuestions /></Flex>,
-    },
+    ...(
+      currentUser.id === idpUserId
+        ? [
+          {
+            label: I18n.t('idp.reflective_questions.title'),
+            key: 'reflective_questions',
+            children: <Flex justify="center" style={{ padding: '16px 24px 0 24px' }}><ReflectiveQuestions /></Flex>,
+          },
+        ]
+        : []
+    ),
   ]
 
   const headerContent = header || (

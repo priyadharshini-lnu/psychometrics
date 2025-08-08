@@ -64,6 +64,7 @@ const fetchSingleInviteResponseTR = t.type({
   cancellationLeadTime: t.union([t.number, t.null]),
   schedulingLeadTime: t.union([t.number, t.null]),
   bookingPreworkConditionUnsatisfied: t.union([t.boolean, t.null]),
+  previousGroupsCompletionUnsatisfied: t.union([t.boolean, t.null]),
   campaignId: t.number,
 })
 export const FETCH_SINGLE_INVITE = 'invites/FETCH_SINGLE'
@@ -83,6 +84,7 @@ const fetchSingleBookingResponseTR = t.intersection([fetchSingleInviteResponseTR
     neurodivergent: t.union([t.boolean, t.null]),
     neurodivergentComments: t.union([t.string, t.null]),
     allowLateCancellationAndRescheduling: t.boolean,
+    disableCancellationAndRescheduling: t.boolean,
     bookedDate: t.union([
       t.type({
         id: t.number,

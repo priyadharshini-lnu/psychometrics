@@ -63,18 +63,30 @@ module Administration
     end
 
     def find_or_create_development_action(row_data)
-      skill = Skill.where(id: row_data['SkillID']).where('project_id = ? OR project_id IS NULL', @project_id).first
-      return nil if skill.nil?
+      skill_ids_string = row_data['SkillID']
+      skill_ids = skill_ids_string.to_s.split(',').map(&:strip).compact_blank.uniq
+
+      skills = []
+      skill_ids.each do |skill_id|
+        skill = Skill.where(id: skill_id).where('project_id = ? OR project_id IS NULL', @project_id).first
+        if skill.nil?
+          raise Errors::ImportError,
+                I18n.t('administration.development_action_import.errors.skill_not_found',
+                       skill_id: skill_id)
+        end
+        skills << skill
+      end
 
       development_action = find_or_new_development_action(row_data['ID'])
-      skill_ids = development_action.skill_ids
       development_action.assign_attributes(
         project_id: @project_id,
         learning_style: row_data['Type'].downcase,
         development_action_type: row_data['DevelopmentActionType'].downcase
       )
 
-      development_action.skills << skill unless skill_ids.include?(skill.id)
+      skills.each do |skill|
+        development_action.skills << skill unless development_action.skills.include?(skill)
+      end
 
       development_action
     end

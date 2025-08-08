@@ -2,6 +2,7 @@ javascript [nonce=content_security_policy_nonce]:
   var PsyGlobalState = {
     realEnv: "#{ENV['REAL_ENV']}",
     adminLocales: "#{ENV['ADMIN_LOCALES']}",
+    recaptchaSiteKey: "#{ENV['RECAPTCHA_SITE_KEY']}",
     currentUser: #{(current_user || {}).to_json(only: [:id, :email]).html_safe},
     sentryUrl: "#{ENV['SENTRY_URL']}",
     sentryDebug: "#{ENV['SENTRY_DEBUG']}",

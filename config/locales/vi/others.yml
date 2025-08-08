@@ -360,7 +360,7 @@ vi:
         smtp_setting_form:
           attributes:
             test_email_id:
-              invalid: Định dạng Id Email không hợp lệ.
+              invalid: Định dạng ID Email không hợp lệ.
         super_admin_edit:
           attributes:
             email:
@@ -519,6 +519,7 @@ vi:
         created_at: Ngày tạo
         id: ID
         name: Tên
+        owner: Chủ sở hữu
         updated_at: Ngày sửa đổi
       factor:
         active: Hoạt động
@@ -545,7 +546,11 @@ vi:
         updated_at: Ngày sửa đổi
       library:
         created_at: Ngày tạo
+        description: Mô tả
+        files: Tệp tin
         id: ID
+        name: Tên
+        owner: Chủ sở hữu
         type: Thu nhỏ
         updated_at: Ngày sửa đổi
       license:
@@ -617,6 +622,7 @@ vi:
         created_at: Ngày tạo
         id: ID
         name: Tên
+        owner: Chủ sở hữu
         updated_at: Ngày sửa đổi
       report:
         created_at: Ngày tạo
@@ -785,6 +791,8 @@ vi:
           attributes:
             current_password:
               invalid: Mật khẩu hiện tại không đúng
+            manager_id:
+              cannot_be_self: Người dùng không thể được chỉ định làm quản lý của chính mình.
         user_idp_comment:
           reply_to_reply: không thể trả lời câu trả lời (chỉ cho phép một cấp độ lồng nhau)
         user_idp_plan:
@@ -811,6 +819,7 @@ vi:
         bulk_update_evaluation_status: Cập nhật hàng loạt trạng thái đánh giá
         compact_completion_status_export: Xuất trạng thái hoàn thành nhỏ gọn
         completion_status_export: Xuất trạng thái hoàn thành
+        copy_as_template_or_campaign: Sao chép chiến dịch làm mẫu
         copy_dimension: Sao chép kích thước
         create_threesixty_campaign: Tạo chiến dịch Threesixty
         data_report_export: Xuất báo cáo dữ liệu
@@ -894,6 +903,7 @@ vi:
     invalid_job: Thông báo này tương ứng với bản ghi đã xóa
     mark_as_read: Đánh dấu tất cả đã đọc
     more: Nhiều hơn
+    no_notifications: Không có thông báo
     notifications: Thông báo
     results: Kết quả
     super_admin:
@@ -1073,6 +1083,7 @@ vi:
         description: Phiên đánh giá này đã bị vô hiệu. Điều này có thể xảy ra nếu bạn tiếp tục đánh giá trong một tab, trình duyệt hoặc thiết bị riêng biệt.
         title: Yêu cầu cuối cùng không thành công
       next: Kế tiếp
+      no_skill_mapping_message: Không có bản đồ kỹ năng nào được thiết lập cho vị trí công việc này. Vui lòng liên hệ với bộ phận hành chính.
       read_only: Ở chế độ chỉ đọc, bạn không thể thay đổi bất kỳ kết quả nào.
       save: Cứu
       submissionFailedAlert:
@@ -1141,6 +1152,7 @@ vi:
     add_group_form:
       previous_assessments_required: Đánh giá chạy theo thứ tự dưới đây
       previous_group_required: Yêu cầu hoàn thành nhóm trước đó
+      require_previous_groups_completion_for_booking: Yêu cầu hoàn thành tất cả các nhóm trước đó trước khi đặt lịch.
     menu:
       assessment_center: Trung tâm đánh giá
       assessment_center_invites: Lời mời của Trung tâm Đánh giá
@@ -1366,6 +1378,7 @@ vi:
       bulk_download: Tải xuống hàng loạt
       bulk_update_evaluation_as_done: Đánh dấu là xong
       bulk_update_evaluation_as_undone: Bỏ đánh dấu là xong
+      convert_to_template: Chuyển đổi sang mẫu
       download: Tải xuống báo cáo
       export_completion_status: Trạng thái hoàn thành xuất
       export_external: Ngoài
@@ -1385,7 +1398,7 @@ vi:
       reset_all_nominations: Đặt lại tất cả các đề cử
       reset_participant: Đặt lại tất cả người tham gia
     allow_msg_proctoring_workshop_activity: Các hoạt động của trung tâm đánh giá không được giám sát.
-    assessment_center_heading: Chi tiết về Trung tâm Đánh giá
+    assessment_center_heading_label: Chi tiết phiên họp
     assessments_heading: Nhiệm vụ của bạn
     column:
       assessment_name: Tên đánh giá
@@ -1522,7 +1535,9 @@ vi:
       in_progress: Đang tiến hành
       ineligible: Không đủ điều kiện
       interrupted: Bị gián đoạn
+      new: Mới
       not_started: Chưa bắt đầu
+      progress: Đang tiến hành
       timed_out: Đã hết thời gian
       universal_link: Liên kết phổ quát
     ungrouped_assessments_heading: Không được nhóm
@@ -1543,6 +1558,7 @@ vi:
     column:
       assessor_access: Quyền truy cập của người đánh giá
       auto_assign: Tự động chỉ định
+      locales: Vùng địa phương
       main_report: Báo cáo chính
       report_bundle: Gói báo cáo
       report_name: Tên báo cáo
@@ -1565,6 +1581,13 @@ vi:
         apply: Áp dụng thay đổi này cho người dùng hiện tại trong chiến dịch này.
         msg_text: Bạn đang cố gắng xóa Báo cáo <strong>"%{reportName}"</strong>
         title: Xóa báo cáo?
+      update_languages:
+        default_language: Ngôn ngữ mặc định
+        other_available_languages: Các ngôn ngữ khác có sẵn
+        select_default_language: Chọn ngôn ngữ mặc định
+        select_languages: Chọn ngôn ngữ
+        success_msg: Các ngôn ngữ đã được cập nhật thành công.
+        title: Ngôn ngữ báo cáo
       user_access:
         apply: Áp dụng thay đổi này cho người dùng hiện tại trong chiến dịch này.
         title:
@@ -1910,6 +1933,8 @@ vi:
       timeout: Phiên của bạn đã hết hạn. Vui lòng đăng nhập lại để tiếp tục.
       unauthenticated: Bạn cần đăng nhập hoặc đăng ký trước khi tiếp tục.
       unconfirmed: Bạn phải xác nhận địa chỉ email của mình trước khi tiếp tục.
+    invalid_captcha: Thông tin nhập vào captcha không hợp lệ.
+    invalid_security_question: Câu trả lời cho câu hỏi bảo mật không hợp lệ.
     invitations:
       edit:
         confirm_password_label: Xác nhận mật khẩu
@@ -1989,6 +2014,25 @@ vi:
     omniauth_callbacks:
       failure: Không thể xác thực bạn từ %{kind} vì "%{reason}".
       success: Đã xác thực thành công từ tài khoản %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Gửi
+        submit_verification_code: Nhập mã xác minh
+        verification_code: Mã xác minh
+      updated: Mã xác minh đã được chấp nhận
+    paranoid_verify:
+      code_required: Vui lòng nhập mã mà đội ngũ hỗ trợ của chúng tôi đã cung cấp.
+    password_expired:
+      change_required: Mật khẩu của bạn đã hết hạn. Vui lòng cập nhật mật khẩu của bạn.
+      forced_changed: Bạn cần thiết lập mật khẩu mới cho tài khoản của mình.
+      password_policy_changed: Chính sách mật khẩu đã được thay đổi. Vui lòng thay đổi mật khẩu của bạn.
+      show:
+        change_my_password: Thay đổi mật khẩu của tôi
+        current_password: Mật khẩu hiện tại
+        new_password: Mật khẩu mới
+        new_password_confirmation: Xác nhận mật khẩu mới
+        renew_your_password: Đổi mật khẩu
+      updated: Mật khẩu mới của bạn đã được lưu.
     passwords:
       edit:
         instruction: Để tạo mật khẩu mới, vui lòng nhập mật khẩu mới của bạn vào các ô bên dưới
@@ -2070,6 +2114,7 @@ vi:
         reserved_subdomain: Tên miền phụ %{value} được bảo lưu
         uniq_subdomain: Tên miền phụ phải là duy nhất.
       add_manager:
+        cannot_be_self: Người dùng không thể được chỉ định làm quản lý của chính mình.
         manager_not_found: Không tìm thấy người quản lý hoặc không phải là một phần của cùng một dự án
         user_not_found: Không tìm thấy người dùng hoặc không phải là một phần của cùng một dự án
       admin:
@@ -2155,6 +2200,10 @@ vi:
       workshop_subject_create:
         already_exists: Đối tượng đã tồn tại trong Trung tâm Đánh giá này.
         part_of_other_workshop: Đối tượng đã là người tham gia của '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Không còn chỗ trống cho buổi workshop này.
+        scheduling_lead_time_passed: Thời gian chờ đăng ký đã hết, bạn không thể đăng ký lại môn học này.
+        workshop_subject_not_found: Chủ đề hội thảo không được tìm thấy
       workshops:
         no_available_assessor_slots: Không có vị trí trống cho người đánh giá %{assessor}
         no_available_manager_slots: Không có vị trí khả dụng cho người quản lý %{manager}
@@ -2185,6 +2234,8 @@ vi:
   errors:
     assessments:
       timed_out: Bạn sẽ không thể làm bài đánh giá %{assessment_name} vì thời gian làm bài đã hết.
+    equal_to_current_password: Phải khác với mật khẩu hiện tại.
+    equal_to_email: Phải khác với email.
     error: Lỗi
     error_401: Bạn không được phép truy cập tài nguyên này. Vui lòng đăng nhập.
     error_403: Bạn không có quyền xem tài nguyên này.
@@ -2197,6 +2248,20 @@ vi:
     max_regeneration_limit: Vượt quá giới hạn tái tạo tối đa, hãy liên hệ với ban quản trị của bạn.
     messages:
       data_report_blank: Báo cáo dữ liệu không tồn tại
+      password_complexity:
+        digit:
+          one: Phải chứa ít nhất một chữ số.
+          other: Phải chứa ít nhất 1 ký tự số, 1 ký tự chữ cái ( <x>count</x> )
+        lower:
+          one: Phải chứa ít nhất một chữ cái viết thường.
+          other: Phải chứa ít nhất 1 ký tự đặc biệt ( <x>count</x> ) và chữ thường.
+        symbol:
+          one: Phải chứa ít nhất một dấu câu hoặc ký hiệu.
+          other: 'Phải chứa ít nhất các dấu câu hoặc ký hiệu sau: <x>count</x> '
+        upper:
+          one: Phải chứa ít nhất một chữ cái viết hoa.
+          other: Phải chứa ít nhất 1 ký tự đặc biệt ( <x>count</x> ) và 1 chữ cái viết hoa.
+      taken_in_past: Không được trùng với bất kỳ mật khẩu nào đã sử dụng trước đó.
     module_error: Có lỗi xảy ra với module này, vui lòng liên hệ với ban quản trị.
     module_error_editor: Có lỗi xảy ra với module này, vui lòng kiểm tra cài đặt module.
     module_props_error: Có lỗi xảy ra với mô-đun này.
@@ -2207,6 +2272,9 @@ vi:
       no_active_plan: Không tìm thấy gói IDP đang hoạt động
     webhooks:
       multiple_webhook_error: URL không thể được cập nhật vì có nhiều webhook cho dự án này.
+    workshop:
+      ical_generation_failed: Không thể tạo lời mời lịch.
+      missing_or_invalid: Thiếu hoặc không hợp lệ workshop_id
   evaluators:
     errors:
       can_not_processed: không thể xử lý
@@ -2267,8 +2335,13 @@ vi:
       add_to_yahoo_calendar: Thêm vào lịch yahoo
       assessment_center_alert:
         btn_title: Chiến dịch
-        message_part1: Hoàn thành tất cả các công việc chuẩn bị trong này
-        message_part2: trước khi đặt chỗ.
+        complete_previous_groups: Hoàn thành tất cả các hoạt động nhóm trước đó.
+        complete_preworks: Hoàn thành tất cả các công việc chuẩn bị.
+        please_visit: Vui lòng truy cập trang web
+        requirements_message: Bạn chỉ có thể đặt chỗ sau khi hoàn thành các yêu cầu sau đây.
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: Để hoàn thành các yêu cầu này.
       assessment_center_group_name: Trung tâm đánh giá
       booking_failed_msg: 'Không đặt được chỗ: %{error}'
       buttons:
@@ -2327,7 +2400,7 @@ vi:
         invites: Lời mời
       what: Cái gì
       when: Khi
-      workshop_start_text: Trung tâm đánh giá của bạn sẽ bắt đầu vào
+      workshop_start_label: Phiên làm việc của bạn sẽ bắt đầu trong
     break_time: Giờ nghỉ giải lao
     campaign:
       actions:
@@ -2336,6 +2409,7 @@ vi:
         remove:
           confirmation: Nhập tên chiến dịch hiện tại được đưa ra bên dưới vào hộp văn bản để xóa chiến dịch
           success: "%{campaignName} đã được xóa thành công."
+          template_confirmation: 'Nhập tên của mẫu hiện tại vào ô bên dưới để xóa nó. Lưu ý: Thao tác này cũng sẽ xóa mẫu chiến dịch liên kết.'
       users:
         actions:
           export:
@@ -2684,6 +2758,7 @@ vi:
         required: Câu trả lời cho câu hỏi là bắt buộc
       max_words: Số từ tối đa
       min_words: Từ tối thiểu
+      no_reflective_questions: Không có câu hỏi phản ánh
       title: Những Câu Hỏi Suy Ngẫm
       update_failed: Đã xảy ra lỗi trong quá trình cập nhật
       updated_successfully: Câu trả lời của bạn đã được cập nhật thành công
@@ -2827,6 +2902,12 @@ vi:
     used_number: Giấy phép đã sử dụng
     used_out_of: "%{used} trong số %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Bảo lưu mọi quyền
+    footer:
+      regards: Trân trọng,
+      team_name: Đội Ngọn Hải Đăng
+      technical_support: Đối với bất kỳ vấn đề kỹ thuật nào, vui lòng liên hệ với chúng tôi qua email <x>email</x> và chúng tôi sẽ phản hồi trong vòng 24 giờ.
     from: Doanh nghiệp nhân tài
     idp:
       manager_unread_comments:
@@ -2884,6 +2965,8 @@ vi:
         instructions: Nhấp vào liên kết bên dưới để đăng nhập vào lighthouse.
         signin_link: Liên kết đăng nhập
       subject: Liên kết đăng nhập cho Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Tài khoản của bạn đã bị vô hiệu hóa do không hoạt động
       warning: Tài khoản của bạn sẽ sớm bị vô hiệu hóa do không hoạt động
@@ -3200,6 +3283,9 @@ vi:
       send_password_email_success: Email được gửi đến người dùng %{email} với mật khẩu.
     title: Đặt lại mật khẩu
   select: Lựa
+  sessions:
+    errors:
+      recaptcha: Xác minh reCAPTCHA đã thất bại. Vui lòng thử lại.
   shared:
     filters:
       clear: Xóa bộ lọc

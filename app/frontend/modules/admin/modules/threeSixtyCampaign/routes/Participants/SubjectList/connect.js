@@ -19,7 +19,7 @@ export default connect(
       },
       campaignDetails: {
         id: threeSixtyCampaignId, reportAvailableLanguages, reportDefaultLanguage,
-        reportIcon, reportName, category,
+        reportIcon, reportName, category, template,
       },
     },
   }) => ({
@@ -34,6 +34,7 @@ export default connect(
     reportIcon,
     reportName,
     category,
+    template,
   }),
   dispatch => ({
     fetchSubjects: (campaignId, page, query) => dispatch(fetchSubjects(campaignId, page, query)),

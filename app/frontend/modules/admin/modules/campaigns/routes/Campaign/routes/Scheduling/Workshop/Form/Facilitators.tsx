@@ -31,6 +31,7 @@ interface Props {
     meeting_link: string
     cancellation_lead_time: number
     allow_late_cancellation_and_rescheduling: boolean
+    disable_cancellation_and_rescheduling: boolean
     scheduling_lead_time: number
     workshop_resources: {
       key: number
@@ -88,6 +89,7 @@ export const Facilitators: React.FC<Props> = ({
     cancellation_lead_time: basicInfoData.cancellation_lead_time,
     scheduling_lead_time: basicInfoData.scheduling_lead_time,
     allow_late_cancellation_and_rescheduling: basicInfoData.allow_late_cancellation_and_rescheduling,
+    disable_cancellation_and_rescheduling: basicInfoData.disable_cancellation_and_rescheduling,
     timezone: basicInfoData.timezone,
     workshop_resources: filterInvalidResources(facilitator.workshop_resources),
     campaignAssessmentGroupId: basicInfoData.campaignAssessmentGroupId,

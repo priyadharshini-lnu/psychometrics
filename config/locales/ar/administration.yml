@@ -15,6 +15,8 @@ ar:
       title: التغييرات المدققة
     administrator:
       sessions:
+        errors:
+          recaptcha: فشل التحقق من "إعادة التحقّق
         new:
           forgot_password: هل نسيت كلمة المرور؟
           instruction: يرجى تسجيل الدخول باستخدام معلومات حسابك الشخصي
@@ -147,6 +149,7 @@ ar:
             accesssheet_manage: إدارة ورقة الوصول
             accesssheet_settings: إعدادات ورقة الوصول
             accesssheet_view: عرض ورقة الوصول
+            export: التصدير
             title: لوحات المعلومات
             view: عرض
           datasheets:
@@ -179,7 +182,7 @@ ar:
             manage: الإدارة
             title: الأدوار الوظيفية
             view: عرض
-          mediaLibraries:
+          libraries:
             manage: إدارة
             title: المكتبات الإعلامية
             view: عرض
@@ -290,18 +293,33 @@ ar:
             view: منظر
     ai_assistants:
       actions:
+        create: إنشاء مساعد ذكاء اصطناعي
+        edit: تحرير مساعد الذكاء الاصطناعي
         playground: ساحة اللعب
       ai_assistants: مساعدو الذكاء الاصطناعي
       ai_assistants_playground: ملعب مساعد الذكاء الاصطناعي
       column:
         provider: المزود
+      created_successfully: تم إنشاء مساعد الذكاء الاصطناعي بنجاح.
       form:
+        add_output_schema_key: إضافة مفتاح مخطط الإخراج
+        dependencies: التبعيات
         description: الوصف
+        enter_description: أدخل الوصف
+        enter_schema_key: أدخل مفتاح المخطط
+        key: المفتاح
         name: الاسم
+        output_schema_keys: مفاتيح مخطط الإخراج
         provider: المزود
+        remove_output_schema_key: إزالة مفتاح مخطط الإخراج
+        schema_key_description_required: وصف مفتاح المخطط مطلوب
+        schema_key_required: مفتاح المخطط مطلوب
+        schema_key_type: نوع المفتاح
+        schema_key_unique: يجب أن تكون مفاتيح المخطط فريدة من نوعها
         system_prompt: موجه النظام
-        title: مساعد الذكاء الاصطناعي
+        type: النوع
         user_prompt: موجه المستخدم
+      updated_successfully: تم تحديث مساعد الذكاء الاصطناعي بنجاح.
     any: " - أي -"
     api:
       campaigns:
@@ -767,6 +785,8 @@ ar:
       new:
         header: التنزيل الجماعي
       reports_unavailable: في الوقت الحالي، لا توجد تقارير متاحة للتنزيل. يرجى التأكد من أن التقارير التي تريد تنزيلها متوفرة.
+      select_reports_for_download: يُرجى تحديد تقرير واحد على الأقل لتنزيله.
+      select_reports_for_regenerate: يُرجى تحديد تقرير واحد على الأقل لإعادة إنشائه.
     cable:
       notification:
         assessment_factors: تم جلب العوامل
@@ -856,6 +876,7 @@ ar:
       campaign_templates: قوالب الحملات
       column:
         assessment: التقييم
+        campaign: الحملة
         owner: المالك
         report: التقرير
       copy:
@@ -930,6 +951,7 @@ ar:
       assessors:
         spoof:
           successfully: تم تسجيل الدخول بنجاح كمستخدم %{name}
+      convert_to_template: التحويل إلى قالب
       copy: نسخ
       delete: حذف
       edit: تحرير
@@ -942,7 +964,10 @@ ar:
         inactive: غير نشط
         status: الحالة
       form:
+        active_notice: ستتغير حالة الحملة تلقائيًا إلى مغلق في تاريخ النهاية المحددة
         campaign: الحملة
+        inactive_notice: ستتغير حالة الحملة تلقائيًا إلى نشط في تاريخ البدء المحدد
+        instruction: يمكن تمكين هذا فقط أثناء إنشاء الحملة
         name: الاسم
         practice_campaign: حملة تدريبية
         status: الحالة
@@ -952,6 +977,7 @@ ar:
         name: الاسم
         reports: التقارير
         status: الحالة
+        template: القالب
         type: النوع
       menus:
         add_common_campaign: إضافة حملة عادية
@@ -965,15 +991,21 @@ ar:
             active: نشط
             archive: الأرشيف
             assessment: التقييم
+            category: فئة
             closed: مغلق
+            default_assessment_language: لغة التقييم الافتراضية
+            default_report_language: لغة التقرير الافتراضية
             empty: فارغة
             inactive: غير نشط
             name: الاسم
             normal: عادي
             previous: السابق
+            select_assessment_language: تحديد لغة التقييم
+            select_report_language: تحديد لغة التقرير
             skill_rater: مقيّم المهارات
             standard: قياسي
             status: الحالة
+            type: يكتب
           close:
             content: هل أنت متأكد أنك تريد إغلاق منشئ الحملة متعددة التقييمات؟ سيتم فقدان أي عمل تخصيص غير محفوظ. يرجى تأكيد قرارك.
             title: إغلاق منشئ الحملة متعددة التقييمات؟
@@ -1002,6 +1034,7 @@ ar:
           name: الوصف
           save: حفظ الوصف
           save_success: تم حفظ الوصف بنجاح
+        enable_video_call_recording: تمكين تسجيل مكالمات الفيديو
         fixed_time: وقت ثابت
         instructions:
           actions:
@@ -1079,6 +1112,7 @@ ar:
         ai_assistants: مساعدو الذكاء الاصطناعي
         ai_assisted_idp: المشردون داخلياً بمساعدة الذكاء الاصطناعي
         global_skills: المهارات العالمية
+        idp: IDP
         sms_notification: إشعار الرسائل النصية القصيرة
     clients:
       api_keys:
@@ -1554,6 +1588,7 @@ ar:
       select_all: تحديد الكل
       type: النوع
       unselect_all: إلغاء تحديد الكل
+    communication_settings: الإعدادات
     communications:
       create:
         successfully: تم إنشاء الاتصال بنجاح.
@@ -1586,9 +1621,17 @@ ar:
           {{email}} - البريد الإلكتروني للمستلم
           {{schedule_start_date}} - تاريخ بدء الجدول
           {{schedule_end_date}} - تاريخ انتهاء الجدول
+        campaign: الحملة
+        campaign_assessment_group: مجموعة تقييم الحملات الانتخابية
+        client: العميل
         completion: الإكمال
+        custom: مخصص
         delivery_at: التسليم في (GST)
         delivery_delay_hours: تأخير التسليم (بالساعات)
+        delivery_interval: فترة التسليم
+        delivery_interval_number: رقم الفاصل الزمني للتسليم
+        delivery_interval_period: الفترة الزمنية للتسليم
+        delivery_rule: قاعدة التسليم
         delivery_rules:
           in_progress: إذا كان التقييم قيد التقدم
           not_competed: إذا لم يكتمل التقييم
@@ -1600,20 +1643,27 @@ ar:
         idp_template_approved: تم اعتماد IDP
         idp_template_assigned: تم تعيين IDP
         idp_template_rejected: تم رفض IDP
+        insert_piped_text: إدراج نص مكتوب بالأنابيب
         invitation: دعوة
         kind: أنواع الاتصالات
         locale: اللغة
         magic_link_email: بريد إلكتروني برابط سحري
+        message_body_placeholder: أدخل رسالتك هنا...
         new_assignment: تعيين جديد
         new_users: مستخدمون جدد
         other: أخرى
+        owner: المالك
+        project: المشروع
+        recipients: المستلمون
         reminder: تذكير
         report_available: التقرير متاح
+        select_assessments: اختر التقييمات التي تريد التحقق من اكتمالها
         selected: المحدد
         selected_cc_recipients: المستلمون المحددون في CC
         selected_recipients: المستلمون المحددون
         stop_reminder: إيقاف إرسال التذكيرات
         stop_reminder_datetime: تاريخ انتهاء التذكيرات (GST)
+        subject: الموضوع
         workshop_booked: تأكيد حجز مركز التقييم
         workshop_cancelled: تم إلغاء مركز التقييم
         workshop_completed: تم إكمال مركز التقييم
@@ -1900,10 +1950,24 @@ ar:
         successfully: مهمة عوامل الاستيراد المجدولة للبعد %{name}.
         title: عوامل الاستيراد
       import_modal:
+        after: بعد
+        before: قبل
         cancel: إلغاء
+        change_log_input: سجل التغيير
         continue: تابع
+        error: خطأ
+        error_occurred: حدث خطأ
+        errors:
+          file_error: يرجى تحديد ملف JSON قبل المتابعة.
+          processing_error: ملف معالجة الأخطاء
+        field: الحقل
         import: الاستيراد
         import_dimension: بُعد الاستيراد
+        import_scheduled: الاستيراد المجدول
+        operation: العملية
+        owner_input_validation: يرجى اختيار المالك
+        owner_select: اختر مالكاً
+        select_json: تحديد ملف JSON
       import_translations:
         error: حدث خطأ أثناء استيراد الترجمات للبعد %{name}.
         successfully: تم جدولة استيراد الترجمات للبعد %{name}.
@@ -2023,11 +2087,11 @@ ar:
         sub_factors: Sub factors
         title: Factors
       list:
-        active: Active
-        created_at: Created date
-        id: Id
-        name: Name
-        updated_at: Modified date
+        active: نشط
+        created_at: تاريخ الإنشاء
+        id: المعرف
+        name: الاسم
+        updated_at: التاريخ المعدل
       new:
         header: New Factor
       resource:
@@ -2088,6 +2152,9 @@ ar:
         remove_confirm: Enter current template name given below in text box to remove template
         success: "%{idpName} was removed successfully."
       add_idp_template: Add IDP Template
+      ai_assisted_idp_enabled: تمكين المشردين داخلياً بمساعدة الذكاء الاصطناعي
+      ai_enabled: تمكين الذكاء الاصطناعي
+      ai_settings: إعدادات الذكاء الاصطناعي
       all: All
       appearance: المظهر
       appearance_hint: لتعديل المظهر، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
@@ -2103,6 +2170,7 @@ ar:
       enter_template_name: Name
       enter_template_name_error: Template name is required
       errors:
+        cannot_update_progress_plan_completed: لا يمكن تحديث التقدم المحرز لأن خطة IDP قد اكتملت
         update: غير مسموح بالتحديث لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم.
       fields:
         assigned_data: البيانات المعينة
@@ -2130,6 +2198,7 @@ ar:
       logo_type_label: نوع الشعار
       no_reflection_questions_selected: لم يتم اختيار أي أسئلة للتفكير
       none: None
+      one_click_idp_enabled: تم تمكين IDP بنقرة واحدة
       reference_locale: لغة مرجعية
       reflection_questions: أسئلة للتفكير
       reflection_questions_hint: لتعديل أسئلة الانعكاس، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
@@ -2235,8 +2304,8 @@ ar:
         header: Import Users
     individual_invite:
       tabs:
-        assessment_center: Assessment Center
-        subjects: Subjects
+        assessment_center: مركز التقييم
+        invitation_status: حالة الدعوة
     innovation_styles:
       create:
         successfully: Innovation Style %{name} was created successfully.
@@ -2250,11 +2319,11 @@ ar:
         new: Add
         title: Innovation Styles
       list:
-        created_at: Created date
-        id: Id
-        name: Name
-        position: Position
-        updated_at: Modified date
+        created_at: تاريخ الإنشاء
+        id: المعرف
+        name: الاسم
+        position: المنصب
+        updated_at: التاريخ المعدل
       new:
         header: New Innovation Style
       resource:
@@ -2282,13 +2351,13 @@ ar:
         new: Add
         title: Factors
       list:
-        condition: Condition
-        created_at: Created date
-        id: Id
-        name: Name
-        position: Position
-        updated_at: Modified date
-        weight: Weight
+        condition: الحالة
+        created_at: تاريخ الإنشاء
+        id: المعرف
+        name: الاسم
+        position: المنصب
+        updated_at: التاريخ المعدل
+        weight: الوزن
       new:
         header: Attach Factors
       resource:
@@ -2365,7 +2434,9 @@ ar:
       assessment_center: 'Assessment center:'
       booked_at: 'Booked At:'
       column:
+        invitation_status: حالة الدعوة
         participant: Participant
+        scheduling_details: تفاصيل الجدولة
       remove_confirm:
         content: Are you sure you want to remove the subject with email '%{subjectEmail}'?
         success: Subject with email '%{subjectEmail}'' was successfully removed.
@@ -2373,6 +2444,8 @@ ar:
       statuses:
         accepted: Accepted
         cancelled: Cancelled
+        late_cancelled: تم الإلغاء في وقت متأخر
+        late_rescheduled: إعادة الجدولة المتأخرة
         pending: Pending
         requested_cancellation: Requested Cancellation
         requested_cancellation_rejected: Cancellation Rejected
@@ -2406,8 +2479,6 @@ ar:
         expected_proficiency_level: مستوى الكفاءة المتوقع
       form:
         title: التعيين
-      import:
-        taxonomy: التصنيف
     job_roles:
       export:
         translations:
@@ -2416,8 +2487,8 @@ ar:
         import:
           errors:
             job_role_not_found: دور الوظيفة مع المعرف %{id} غير موجود
-            missing_columns: 'الأعمدة المفقودة المطلوبة: %{الأعمدة}'
-            save_failed: 'خطأ في معالجة معرف دور الوظيفة %{id}: %{الرسالة}'
+            missing_columns: 'الأعمدة المفقودة المطلوبة: %{columns}'
+            save_failed: 'خطأ في معالجة معرف دور الوظيفة %{id}: %{message}'
     libraries:
       create:
         successfully: Item %{name} was created successfully.
@@ -2469,6 +2540,7 @@ ar:
         successfully: User %{name} was updated successfully.
       update:
         successfully: User %{name} was updated successfully.
+    message: الرسالة
     meta_title: Administration panel
     navigation:
       ai_assistants: مساعدو الذكاء الاصطناعي
@@ -2536,13 +2608,13 @@ ar:
         owner: Owner
         title: Norms
       list:
-        active: Active
-        created_at: Created date
-        dimension_id: Dimension Id
-        id: Id
-        name: Name
-        updated_at: Modified date
-        updated_by: Updated by
+        active: نشط
+        created_at: تاريخ الإنشاء
+        dimension_id: معرّف البُعد
+        id: المعرف
+        name: الاسم
+        updated_at: التاريخ المعدل
+        updated_by: تم التحديث بواسطة
       new:
         header: New norm
       norms: Norms
@@ -2575,6 +2647,7 @@ ar:
         editor: Norm Editor
         export: Export Norm
         title: Norm's options
+      title: نورم
       toggle_status:
         successfully: Norm was updated successfully.
       update:
@@ -2598,10 +2671,10 @@ ar:
         new: Add
         title: Occupations
       list:
-        created_at: Created Date
-        id: Id
-        name: Name
-        updated_at: Modified Date
+        created_at: تاريخ الإنشاء
+        id: المعرف
+        name: الاسم
+        updated_at: تاريخ التعديل
       new:
         header: New occupation
       resource:
@@ -2629,13 +2702,13 @@ ar:
         new: Add
         title: Factors
       list:
-        condition: Condition
-        created_at: Created date
-        id: Id
-        name: Name
-        position: Position
-        updated_at: Modified date
-        weight: Weight
+        condition: الحالة
+        created_at: تاريخ الإنشاء
+        id: المعرف
+        name: الاسم
+        position: المنصب
+        updated_at: التاريخ المعدل
+        weight: الوزن
       new:
         header: Attach Factors
       resource:
@@ -2662,24 +2735,28 @@ ar:
     piped_text_modal:
       assessment_id: Assessment ID
       campaign_id: Campaign ID
+      campaign_name: اسم الحملة
+      campaigns: الحملات
       insight_page_link: Insight Page Link
       insight_page_url: Insight Page URL
       join_link: Join Link
       magic_link: Magic Link
       magic_url: Magic URL
       profile_custom_field: Profile Custom Field
+      project_name: اسم المشروع
+      projects: المشاريع
       report_name: Report Name
       text: Text
       title: Add Piped Text
     proctoring_sessions:
       columns:
-        comment: Comment
-        completed_at: Completed at
-        conclusion: Conclusion
-        links: Links
-        score: Score
-        session_id: Session Id
-        started_at: Started at
+        comment: تعليق
+        completed_at: اكتمل في
+        conclusion: الخاتمة
+        links: الروابط
+        score: النتيجة
+        session_id: معرّف الجلسة
+        started_at: بدأت في
       links:
         report: Report
         review: Review
@@ -2695,7 +2772,9 @@ ar:
       errors:
         create:
           invalid_format: يجب أن يكون تعريف المستوى مصفوفة من التعريفات.
+          level_definition_must_exist: لا يمكن أن يكون تعريف المستوى فارغاً
           level_definition_must_match_level: يجب أن يحتوي على %{expected} بالضبط، ولكن تم إعطاء %{actual}
+          level_name_must_exist: لا يمكن أن يكون اسم المستوى فارغاً
           must_be_unique: يجب أن تكون فريدة من نوعها
           proficiency_level_exists: مستوى الكفاءة مع هذه المهارة والمشروع موجود بالفعل
           proficiency_level_exists_for_default: خروج مستوى الكفاءة للتقصير بالفعل
@@ -2725,10 +2804,10 @@ ar:
         errors:
           by_skill_exists: 'الصف %{row_number}: مستوى الكفاءة ''حسب_المهارة'' موجود بالفعل لهذا المشروع والمهارة'
           by_skill_missing: 'الصف %{row_number}: يجب أن يكون المشروع والمهارة موجودين لنوع "حسب_المهارة'
-          by_skill_type_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "حسب_النوع" موجود بالفعل لهذا المشروع ونوع المهارة'
-          by_skill_type_missing: 'الصف %{صف_رقم}: يجب أن يكون نوع المشروع ونوع المهارة موجودين لنوع "حسب_النوع'
-          default_global_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "الافتراضي" على المستوى العام موجود بالفعل'
-          default_project_exists: 'الصف %{صف_رقم}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل'
+          by_skill_type_exists: 'الصف %{row_number}: مستوى الكفاءة "حسب_النوع" موجود بالفعل لهذا المشروع ونوع المهارة'
+          by_skill_type_missing: 'الصف %{row_number}: يجب أن يكون نوع المشروع ونوع المهارة موجودين لنوع "حسب_النوع'
+          default_global_exists: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على المستوى العام موجود بالفعل'
+          default_project_exists: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل'
           invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
           invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
           missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
@@ -2767,24 +2846,24 @@ ar:
         workshop_status_export: Workshop Status Export
         workshop_status_export_success: Workshop Status Export was scheduled successfully.
     project_participants:
-      cancel: Cancel
-      column_actions: Actions
-      column_campaigns: Campaigns
-      column_createdAt: Created At
-      column_created_at: Created at
-      column_email: Email
-      column_id: Id
-      column_name: Name
-      delete: Delete
-      edit: Edit
-      edit_participant: Edit participant
-      filter_campaigns: No campaigns
-      form_first_name: First name
-      form_last_name: Last name
-      reset_password: Reset password
-      save: Save
-      search_user: Search user
-      send_email: Send email
+      cancel: إلغاء
+      column_actions: الإجراءات
+      column_campaigns: الحملات
+      column_createdAt: تم إنشاؤها في
+      column_created_at: تم إنشاؤها في
+      column_email: البريد الإلكتروني
+      column_id: المعرف
+      column_name: الاسم
+      delete: حذف
+      edit: تحرير
+      edit_participant: تحرير المشارك
+      filter_campaigns: لا توجد حملات
+      form_first_name: الاسم الأول
+      form_last_name: اسم العائلة
+      reset_password: إعادة تعيين كلمة المرور
+      save: الحفظ
+      search_user: بحث المستخدم
+      send_email: إرسال بريد إلكتروني
     project_tabs:
       assessments:
         column:
@@ -2878,34 +2957,34 @@ ar:
           title: Delete
         title: Webhooks
     project_users:
-      cancel: Cancel
-      change_password: Change password
-      column_actions: Actions
-      column_campaigns: Campaigns
-      column_created_at: Created at
-      column_email: Email
-      column_id: Id
-      column_name: Name
-      confirm_delete: Yes, delete
-      confirm_send: Yes, send
-      delete: Delete
-      delete_error: Could not delete assessor '%{name}'. Please contact your administrator.
-      delete_success: Assessor '%{name}' was deleted successfully.
-      edit: Edit
-      edit_assessor: Edit assessor
-      filter_campaigns: With no campaigns
-      form_first_name: First name
-      form_last_name: Last name
-      modal_delete_content: Are you sure you want to delete assessor '%{name}'?
-      modal_delete_title: Delete assessor
-      modal_reset_email_content: Are you sure you want send password reset link to '%{email}'?
-      model_reset_email: Reset assessor's password
-      no_edit_permission: You do not have permission to edit assessor '%{name}'
-      reset_mail_error: Could not send reset password link to '%{email}'. Please contact your administrator.
-      reset_mail_success: Reset password link successfully sent to '%{email}'
-      save: Save
-      search_accessor: Search accessors
-      send_email: Send email
+      cancel: إلغاء
+      change_password: تغيير كلمة المرور
+      column_actions: الإجراءات
+      column_campaigns: الحملات
+      column_created_at: تم إنشاؤها في
+      column_email: البريد الإلكتروني
+      column_id: المعرف
+      column_name: الاسم
+      confirm_delete: نعم، احذف
+      confirm_send: نعم، أرسل
+      delete: حذف
+      delete_error: تعذر حذف المقيم "%{name}". يرجى الاتصال بالمسؤول.
+      delete_success: تم حذف المقيم "%{name}" بنجاح.
+      edit: تحرير
+      edit_assessor: تحرير المقيم
+      filter_campaigns: مع عدم وجود حملات
+      form_first_name: الاسم الأول
+      form_last_name: اسم العائلة
+      modal_delete_content: هل تريد بالتأكيد حذف المقيم "%{name}"؟
+      modal_delete_title: حذف المقيم
+      modal_reset_email_content: هل أنت متأكد من أنك تريد إرسال رابط إعادة تعيين كلمة المرور إلى "%{email}"؟
+      model_reset_email: إعادة تعيين كلمة مرور المقيم
+      no_edit_permission: ليس لديك إذن لتحرير المقيم '%{name}'
+      reset_mail_error: تعذر إرسال رابط إعادة تعيين كلمة المرور إلى "%{email}". يرجى الاتصال بالمسؤول.
+      reset_mail_success: تم إرسال رابط إعادة تعيين كلمة المرور بنجاح إلى "%{email}
+      save: الحفظ
+      search_accessor: ملحقات البحث
+      send_email: إرسال بريد إلكتروني
     projects:
       addProject: Add Project
       assessment_settings:
@@ -3002,6 +3081,7 @@ ar:
         dp_consent_custom: Customise Data Processing consent
         dp_consent_version: Policy Version
         errors:
+          cannot_disable_while_campaign_enabled: لا يمكن تعطيل تسجيل مكالمات الفيديو لأنه ممكّن لحملة واحدة أو أكثر في هذا المشروع
           policy_version_format: Only whole numbers are allowed
         mask_identity_for_examus: Mask data for Examus Proctoring
         mask_identity_for_hogan: Mask data for Hogan
@@ -3015,6 +3095,9 @@ ar:
         privacy_link_placeholder: Enter Privacy Link
         privacy_text: Privacy Text
         privacy_text_placeholder: Enter Privacy Text
+        video_call_recording: السماح بتسجيل مكالمات الفيديو
+        video_call_recording_expiry_duration: فترة الاحتفاظ بتسجيلات مكالمات الفيديو (بالأيام)
+        video_call_recording_scope: تمكين تسجيل الفيديو لجميع الحملات الجديدة
       profile_settings:
         form_fields:
           enabled: ممكّنة
@@ -3296,24 +3379,24 @@ ar:
       after_signout_url: After Signout Url
       cert: Certificate
       config_details:
-        acs_url: Assertion Consumer Service URL
-        copied: Copied %{element}
-        issuer: Entity Id/Issuer
-        title: Configure Idp with following info
-      email_pipetext: Email Pipetext
-      enabled: Enabled
-      enforced: Enforce SAML
-      entity_id: Entity ID/Issuer
-      name_identifier_format: Name Identifier
+        acs_url: عنوان URL خدمة مستهلك التأكيد
+        copied: تم نسخ %{element}
+        issuer: معرّف الكيان/المُصدر
+        title: تكوين Idp بالمعلومات التالية
+      email_pipetext: البريد الإلكتروني Pipetext
+      enabled: ممكّنة
+      enforced: إنفاذ SAML
+      entity_id: معرّف الكيان/المُصدر
+      name_identifier_format: معرّف الاسم
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
       saml: SAML
       saml_setting: SAML Setting
       save: إعداد الحفظ
-      sso_service_url: SSO Service Url
-      successfully_saved_msg: SAML Setting was saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
-    save: Save
+      sso_service_url: عنوان خدمة SSO
+      successfully_saved_msg: تم حفظ إعداد SAML بنجاح.
+    save: الحفظ
     scheduling:
       add_activity: Add Activity
       add_assessment_center: Add Assessment Center
@@ -3337,6 +3420,7 @@ ar:
         copy_to_all: Copy to other Assessment Centers
         create: Create
         dates_label: Dates
+        disable_cancellation_and_rescheduling: تعطيل الإلغاء وإعادة الجدولة
         duration_label: Duration
         duration_max_error: Cannot be greater than 16 hours
         duration_min_error: Cannot be less than 15 minutes
@@ -3465,6 +3549,7 @@ ar:
         form_title: Schedule Assessments
         language: Language
         language_not_selected: Not Selected
+        mark_cancel: إلغاء العلامة
         mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
         meeting_link_custom: Custom
         meeting_link_internal: Internal
@@ -3473,6 +3558,9 @@ ar:
         no_change: No Change
         override_existing: Override existing schedules for subjects
         preworks: Prework
+        re_enroll: إعادة التسجيل
+        re_enroll_confirm_message: هل أنت متأكد من رغبتك في إعادة تسجيل الموضوع بالبريد الإلكتروني "<x>subject_email</x>"؟
+        re_enroll_success: موضوع إعادة التسجيل مع البريد الإلكتروني <x>subject_email</x>.
         schedule: Schedule
         unschedule: Unschedule
       tabs:
@@ -3497,19 +3585,19 @@ ar:
       dimension: Dimension
       edit_factor: Edit Factor
       export:
-        details: Campaign scorings
-        factors: Export Campaign Factors
-      factor: Factor
-      factor_group_removed_successfully: Campaign Factor group was removed successfully
-      factor_removal_confirmation: Enter factor name given below in text box to confirm
-      factor_removed_successfully: Campaign Factor was removed successfully
-      factors_exported_successfully: Export campaign factors job was scheduled successfully
-      factors_imported_successfully: Import campaign factors job was scheduled successfully
-      final: Final
-      final_score_updated_successfully: Final score was updated successfully
-      formula: Formula
-      get_started: Get Started
-      id: Id
+        details: تصنيفات الحملة
+        factors: عوامل حملة التصدير
+      factor: العامل
+      factor_group_removed_successfully: تمت إزالة مجموعة عامل الحملة بنجاح
+      factor_removal_confirmation: أدخل اسم العامل الوارد أدناه في مربع النص للتأكيد
+      factor_removed_successfully: تمت إزالة عامل الحملة بنجاح
+      factors_exported_successfully: تمت جدولة مهمة عوامل حملة التصدير بنجاح
+      factors_imported_successfully: تمت جدولة مهمة عوامل حملة الاستيراد بنجاح
+      final: النهائي
+      final_score_updated_successfully: تم تحديث النتيجة النهائية بنجاح
+      formula: الصيغة
+      get_started: ابدأ الآن
+      id: المعرف
       import:
         factors: Import Campaign Factors
       name: Name
@@ -3591,6 +3679,7 @@ ar:
       disable_password_reuse: Disable password reuse
       disallow_password_login: Disallow password login
       enable_login_with_magic_link: Enable Login with magic link
+      enable_recaptcha: تمكين اختبار إعادة التحقق من التحقق من التحقق من صحة المعلومات (reCAPTCHA)
       enforce_password_policy: Enforce password policy at next sign-in
       enforce_strong: Enforce strong password
       expiration: Password expiration
@@ -3814,8 +3903,8 @@ ar:
         send_sms: Send SMS
     sms_records:
       columns:
-        id: Id
-        message: Message
+        id: المعرف
+        message: الرسالة
     smtp_settings:
       authentication: Authentication
       authentication_type: Authentication Type
@@ -3840,9 +3929,9 @@ ar:
       send_test_email: Send Test Email
       smtp: SMTP
       test_email_modal:
-        input_hint: Your email setting will not saved until test email was sent successfully.
-        input_placeholder: Test Email ID
-        title: Test Email Id
+        input_hint: لن يتم حفظ إعداد البريد الإلكتروني الخاص بك حتى يتم إرسال البريد الإلكتروني الاختباري بنجاح.
+        input_placeholder: معرف البريد الإلكتروني الاختباري
+        title: معرف البريد الإلكتروني الاختباري
       test_modal:
         success_message: Test Email sent to %{email_id}.
         title: Test SMTP setting
@@ -3851,17 +3940,21 @@ ar:
       user_name: User Name
     stats:
       assessments:
+        active: نشيط
         columns:
-          assessment_name: Assessment Name
-          completed: Completed
-          id: ID
-          in_progress: In Progress
-          ineligible: Ineligible
-          interrupted: Interrupted
-          not_started: Not Started
-          timed_out: Timed Out
-        title: Assessments
-      title: Stats
+          assessment_name: اسم التقييم
+          completed: مكتمل
+          id: بطاقة الهوية
+          in_progress: قيد التنفيذ
+          ineligible: غير مؤهل
+          interrupted: مقاطعة
+          not_started: لم تبدأ
+          timed_out: انتهت المهلة
+        count: عدد
+        inactive: غير نشط
+        percentage: نسبة مئوية
+        title: التقييمات
+      title: الإحصائيات
       top_metrics:
         completed: Completed
         in_progress: In Progress
@@ -4064,6 +4157,21 @@ ar:
         toggle_status:
           successfully: بنجاح
     threesixty_campaigns:
+      convert_action:
+        already_a_template: قالب بالفعل
+        has_user_data: يرجى إعادة تعيين الحملة يدويًا عن طريق النقر على "إعادة تعيين جميع المشاركين" من القائمة المنسدلة "أدوات" قبل التحويل إلى قالب.
+      convert_template_modal:
+        cancel: إلغاء
+        confirm: تأكيد
+        convert:
+          success: تم تحويل القالب بنجاح
+        convert_option: تحويل هذه الحملة إلى قالب
+        copy:
+          success: تمت جدولة مهمة إنشاء قالب الحملة بنجاح، يرجى التحقق من الإشعارات لمعرفة الحالة.
+        copy_option: إنشاء قالب جديد من هذه الحملة
+        description: اختر كيف تريد إنشاء قالب من هذه الحملة.
+        failed: فشل إنشاء القالب.
+        title: التحويل إلى قالب
       email_templates:
         approve_nomination:
           description: This message is sent to a manager when a nomination, made by a direct report, needs to be approved
@@ -4296,8 +4404,12 @@ ar:
       toolbar:
         title: الأدوات
       update:
-        successfully: User %{name} was updated successfully.
-      user: User
+        successfully: تم تحديث المستخدم %{name} بنجاح.
+      user: المستخدم
+    validations:
+      idp:
+        end_date_cannot_be_in_past: لا يمكن أن يكون تاريخ الانتهاء في الماضي
+        start_date_cannot_be_in_past: لا يمكن أن يكون تاريخ البدء في الماضي
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
       delete_success: Webhook settings was deleted successfully

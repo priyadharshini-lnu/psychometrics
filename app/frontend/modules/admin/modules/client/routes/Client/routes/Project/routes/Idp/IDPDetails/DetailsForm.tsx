@@ -37,6 +37,8 @@ const IDPDetailsForm = ({
 
   const [form] = Form.useForm()
   const [isLoading, setIsLoading] = useState(false)
+  const aiEnabled = Form.useWatch('aiEnabled', form)
+
 
   const baseApiConfig = {
     basePath: `projects/${projectId}`,
@@ -87,6 +89,9 @@ const IDPDetailsForm = ({
         project: { id: projectId, type: 'projects' },
         report: values.reportId ? { id: values.reportId, type: 'reports' } : undefined,
         selfRatingEnabled: values.selfRatingEnabled,
+        aiEnabled: values.aiEnabled,
+        aiAssistedIdpEnabled: values.aiAssistedIdpEnabled,
+        oneClickIdpEnabled: values.oneClickIdpEnabled,
       }
 
       try {
@@ -127,6 +132,9 @@ const IDPDetailsForm = ({
         fields: idp.fields,
         showReflections: idp.showReflections,
         logoType: idp.logoType,
+        aiEnabled: idp.aiEnabled,
+        aiAssistedIdpEnabled: idp.aiAssistedIdpEnabled,
+        oneClickIdpEnabled: idp.oneClickIdpEnabled,
         ...skills,
       }
     }
@@ -193,8 +201,36 @@ const IDPDetailsForm = ({
               <Form.Item name="selfRatingEnabled" label={I18n.t('administration.idp.self_rating')}>
                 <Switch checkedChildren={I18n.t('yes')} unCheckedChildren={I18n.t('no')} />
               </Form.Item>
+              <Form.Item
+                name="aiEnabled"
+                label={I18n.t('administration.idp.ai_enabled')}
+                valuePropName="checked"
+              >
+                <Switch />
+              </Form.Item>
             </Card>
           </Col>
+          {aiEnabled && (
+            <Col xs={24} md={12}>
+              <Card title={I18n.t('administration.idp.ai_settings')}>
+                <Form.Item
+                  name="aiAssistedIdpEnabled"
+                  label={I18n.t('administration.idp.ai_assisted_idp_enabled')}
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  name="oneClickIdpEnabled"
+                  label={I18n.t('administration.idp.one_click_idp_enabled')}
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
+              </Card>
+            </Col>
+          )}
         </Row>
         <Button
           key="submit"

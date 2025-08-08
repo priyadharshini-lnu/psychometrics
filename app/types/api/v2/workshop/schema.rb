@@ -44,11 +44,11 @@ module Api
         def self.update_request
           json_api_attributes do
             required(:total_seats).filled(:integer)
-            required(:allow_late_cancellation_and_rescheduling).filled(:bool)
+            optional(:allow_late_cancellation_and_rescheduling).filled(:bool)
             required(:workshop_assessors_ids).array(:string)
             required(:workshop_managers_ids).array(:string)
-            required(:scheduling_lead_time).filled(:integer)
-            required(:cancellation_lead_time).filled(:integer)
+            optional(:scheduling_lead_time).filled(:integer)
+            optional(:cancellation_lead_time).filled(:integer)
             required(:campaign_assessment_group_id).filled(:string)
           end
         end
@@ -65,8 +65,8 @@ module Api
               required(:duration).filled(:integer)
               required(:timezone).filled(:string)
               required(:duration).filled(:integer)
-              required(:cancellation_lead_time).filled(:integer)
-              required(:scheduling_lead_time).filled(:integer)
+              optional(:cancellation_lead_time).maybe(:int?)
+              optional(:scheduling_lead_time).maybe(:int?)
               required(:video_call_type).filled(:int?, included_in?: [0, 1, 2]) # Adjust the range as needed
               required(:workshop_resources).array(:hash) do
                 required(:name).filled(:string)
@@ -74,7 +74,8 @@ module Api
               end
               required(:name).filled(:string)
               required(:start_time).filled(:string)
-              required(:allow_late_cancellation_and_rescheduling).filled(:bool)
+              optional(:allow_late_cancellation_and_rescheduling).maybe(:bool)
+              optional(:disable_cancellation_and_rescheduling).maybe(:bool?)
               optional(:center_manager_ids).array(:string)
               optional(:assessor_ids).array(:string)
               optional(:meeting_link).maybe(:string)

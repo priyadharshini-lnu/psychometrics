@@ -57,10 +57,10 @@ export const IndividualInvite = () => {
           {
             key: 'subjects',
             label: (
-              <>
+              <Space>
                 <MailOutlined />
-                {I18n.t('administration.individual_invite.tabs.subjects')}
-              </>
+                {I18n.t('administration.individual_invite.tabs.invitation_status')}
+              </Space>
             ),
             children: <SubjectList />,
           },

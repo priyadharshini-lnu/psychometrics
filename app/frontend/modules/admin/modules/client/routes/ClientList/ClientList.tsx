@@ -108,6 +108,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
         <Column
           title={I18n.t('administration.clients.columns.type')}
           dataIndex="type"
+          render={(_, client: Client) => I18n.t(`activerecord.attributes.client.types.${client.type}`)}
           key="type"
         />
         <Column

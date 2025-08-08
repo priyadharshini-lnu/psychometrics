@@ -77,6 +77,22 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
         sorter
       />
       <Resource.Column<CampaignTemplate>
+        title={I18n.t('administration.campaign_templates.column.campaign')}
+        id="campaign.name"
+        render={campaignTemplate => (campaignTemplate.campaign?.id ? (
+          <Typography.Link
+            copyable
+            href={`
+              /admin/projects/${campaignTemplate.campaign?.projectId}/new_campaigns/${campaignTemplate.campaign?.id}`}
+            target="_blank"
+          >
+            {campaignTemplate.campaign?.name}
+          </Typography.Link>
+        ) : null)}
+        width={400}
+        sorter
+      />
+      <Resource.Column<CampaignTemplate>
         title={I18n.t('administration.campaign_templates.column.owner')}
         id="owner.name"
         render={campaignTemplate => (campaignTemplate.owner?.id ? (

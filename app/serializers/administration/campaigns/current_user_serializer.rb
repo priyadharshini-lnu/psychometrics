@@ -62,6 +62,12 @@ module Administration
         permissions['accessReflectionQuestions'] = Api::Administration::ReflectionQuestionPolicy.new(
           object, ReflectionQuestion, project_id: context[:project_id]
         ).index?
+        permissions['viewDatasheets'] = Administration::DatasheetPolicy.new(
+          object, Datasheet, project_id: context[:project_id], campaign_id: context[:campaign_id]
+        ).index?
+        permissions['manageDatasheets'] = Administration::DatasheetPolicy.new(
+          object, Datasheet, project_id: context[:project_id], campaign_id: context[:campaign_id]
+        ).manage?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
 

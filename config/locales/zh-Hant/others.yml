@@ -519,6 +519,7 @@ zh-Hant:
         created_at: 建立日期
         id: ID
         name: 名稱
+        owner: 業主
         updated_at: 修改日期
       factor:
         active: 活躍
@@ -545,7 +546,11 @@ zh-Hant:
         updated_at: 修改日期
       library:
         created_at: 建立日期
+        description: 說明
+        files: 檔案
         id: ID
+        name: 名稱
+        owner: 業主
         type: 縮圖
         updated_at: 修改日期
       license:
@@ -617,6 +622,7 @@ zh-Hant:
         created_at: 建立日期
         id: ID
         name: 名稱
+        owner: 業主
         updated_at: 修改日期
       report:
         created_at: 建立日期
@@ -813,6 +819,7 @@ zh-Hant:
         bulk_update_evaluation_status: 批量更新評估狀態
         compact_completion_status_export: 緊湊型完成狀態匯出
         completion_status_export: 完成狀態匯出
+        copy_as_template_or_campaign: 複製活動作為範本
         copy_dimension: 複製尺寸
         create_threesixty_campaign: 建立 Threesixty 活動
         data_report_export: 資料報告匯出
@@ -896,6 +903,7 @@ zh-Hant:
     invalid_job: 此通知對應已刪除的記錄
     mark_as_read: 標記所有讀取
     more: 更多資訊
+    no_notifications: 沒有通知
     notifications: 通知
     results: 結果
     super_admin:
@@ -1075,6 +1083,7 @@ zh-Hant:
         description: 如果您在其他標籤、瀏覽器或裝置中繼續進行評估，可能會發生這種情況。
         title: 上次請求失敗
       next: 下一頁
+      no_skill_mapping_message: 此工作角色沒有技能對應，請聯絡您的管理員。
       read_only: 為唯讀模式，您無法變更任何結果。
       save: 節省
       submissionFailedAlert:
@@ -1143,6 +1152,7 @@ zh-Hant:
     add_group_form:
       previous_assessments_required: 按以下順序進行評估
       previous_group_required: 需要完成過小組
+      require_previous_groups_completion_for_booking: 要求在預約前完成之前的所有組別
     menu:
       assessment_center: 評估中心
       assessment_center_invites: 評估中心邀請
@@ -1374,6 +1384,7 @@ zh-Hant:
       bulk_download: 大量下載
       bulk_update_evaluation_as_done: 標記為已完成
       bulk_update_evaluation_as_undone: 取消標記為已完成
+      convert_to_template: 轉換為範本
       download: 下載報告
       export_completion_status: 匯出完成狀態
       export_external: 外部
@@ -1393,7 +1404,7 @@ zh-Hant:
       reset_all_nominations: 重設所有提名
       reset_participant: 重設所有參與者
     allow_msg_proctoring_workshop_activity: 評估中心的活動不接受監考。
-    assessment_center_heading: 評估中心詳細資訊
+    assessment_center_heading_label: 會議詳情
     assessments_heading: 您的任務
     column:
       assessment_name: 評估名稱
@@ -1530,7 +1541,9 @@ zh-Hant:
       in_progress: 進行中
       ineligible: 不符合資格
       interrupted: 中斷
+      new: 新
       not_started: 尚未開始
+      progress: 進行中
       timed_out: 超時
       universal_link: 通用連結
     ungrouped_assessments_heading: 未分類
@@ -1551,6 +1564,7 @@ zh-Hant:
     column:
       assessor_access: 評估員存取
       auto_assign: 自動指定
+      locales: 地點
       main_report: 主要報告
       report_bundle: 報告套件
       report_name: 報告名稱
@@ -1573,6 +1587,13 @@ zh-Hant:
         apply: 將此變更套用至此活動中的現有使用者。
         msg_text: 您正嘗試刪除<strong>「%{reportName}」</strong>報告
         title: 移除報告？
+      update_languages:
+        default_language: 預設語言
+        other_available_languages: 其他可用語言
+        select_default_language: 選擇預設語言
+        select_languages: 選擇語言
+        success_msg: 語言已成功更新
+        title: 報告語言
       user_access:
         apply: 將此變更套用至此活動中的現有使用者。
         title:
@@ -1591,7 +1612,7 @@ zh-Hant:
       assessment_center_invites: 評估中心邀請
       completed_at: 完成於
       completion_status: 完成狀態
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: 最後一次登入
       manager: 經理
       modals:
@@ -1918,6 +1939,8 @@ zh-Hant:
       timeout: 您的會話已過期，請重新登入以繼續。
       unauthenticated: 您需要登入或註冊後才能繼續。
       unconfirmed: 您必須先確認電子郵件地址，才能繼續。
+    invalid_captcha: 驗證碼輸入無效。
+    invalid_security_question: 安全問題答案無效。
     invitations:
       edit:
         confirm_password_label: 確認密碼
@@ -1943,6 +1966,8 @@ zh-Hant:
         subject: 燈塔邀請函
       confirmation_instructions:
         subject: 確認指示
+      copyright:
+        text: Lighthouse. 版權所有
       invitation_instructions:
         body: '您好 %{name}，您已被加入 Lighthouse（兆光科技），成為以下部分的管理員 '
         login: 登入 Lighthouse
@@ -1955,6 +1980,8 @@ zh-Hant:
         body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 mte.support@mercer.com '
         regards: 'Lighthouse 團隊 '
         subject: 您的 Lighthouse 密碼已變更
+      powered_by:
+        text: Powered by Lighthouse.
       reset_password_instructions:
         body: '您好，%{name}！有人要求提供變更密碼的連結。 您可以透過以下連結變更密碼。 '
         change_password: 變更密碼
@@ -1970,6 +1997,25 @@ zh-Hant:
     omniauth_callbacks:
       failure: 因為「%{reason}」，無法從 %{kind} 驗證您的身份。
       success: 從 %{kind} 帳戶成功驗證。
+    paranoid_verification_code:
+      show:
+        submit: 提交
+        submit_verification_code: 提交驗證碼
+        verification_code: 驗證碼
+      updated: 驗證碼已接受
+    paranoid_verify:
+      code_required: 請輸入支援團隊提供的代碼
+    password_expired:
+      change_required: 您的密碼已過期。請更新您的密碼。
+      forced_changed: 您需要為帳戶設定新密碼。
+      password_policy_changed: 密碼政策已變更。請變更您的密碼。
+      show:
+        change_my_password: 變更我的密碼
+        current_password: 目前的密碼
+        new_password: 新密碼
+        new_password_confirmation: 確認新密碼
+        renew_your_password: 更新您的密碼
+      updated: 您的新密碼已儲存。
     passwords:
       edit:
         instruction: 若要建立新密碼，請在下列方塊中輸入您的新密碼
@@ -2137,6 +2183,10 @@ zh-Hant:
       workshop_subject_create:
         already_exists: 此評估中心已存在主題。
         part_of_other_workshop: 主題已經是 %{workshop_name} 的參加者。
+      workshop_subject_re_enroll:
+        no_seats_available: 本工作坊沒有座位。
+        scheduling_lead_time_passed: 排程時間已過，您無法重新註冊該科目。
+        workshop_subject_not_found: 未找到研討會主題
       workshops:
         no_available_assessor_slots: 沒有可用的評估員插槽 %{assessor}
         no_available_manager_slots: 沒有可用的管理員插槽 %{manager}
@@ -2167,6 +2217,8 @@ zh-Hant:
   errors:
     assessments:
       timed_out: 您將無法參加 %{assessment_name} 評估，因為它已超時。
+    equal_to_current_password: 必須與目前的密碼不同。
+    equal_to_email: 必須與電子郵件不同。
     error: 錯誤
     error_401: 您無權訪問此資源。請登錄。
     error_403: 您沒有查看此資源的許可權。
@@ -2179,6 +2231,20 @@ zh-Hant:
     max_regeneration_limit: 超出最大再生限制，請聯絡您的管理人員。
     messages:
       data_report_blank: 資料報告不存在
+      password_complexity:
+        digit:
+          one: 必須至少包含一位數
+          other: 必須至少包含<x>count</x> 位數
+        lower:
+          one: 必須包含至少一個小寫字母
+          other: 必須至少包含<x>count</x> 小寫字母
+        symbol:
+          one: 必須包含至少一個標點符號或符號
+          other: 必須至少包含<x>count</x> 標點符號或符號
+        upper:
+          one: 必須至少包含一個大寫字母
+          other: 必須至少包含<x>count</x> 大寫字母
+      taken_in_past: 不得與之前使用的密碼相同。
     module_error: 此模組出錯，請聯絡管理員。
     module_error_editor: 此模組出錯，請檢查模組設定。
     module_props_error: 這個模組出了問題。
@@ -2189,6 +2255,9 @@ zh-Hant:
       no_active_plan: 未找到有效的 IDP 計劃
     webhooks:
       multiple_webhook_error: 由於此專案有多個 webhook，因此無法更新 url。
+    workshop:
+      ical_generation_failed: 無法產生行事曆邀請
+      missing_or_invalid: 缺失或無效的 workshop_id
   evaluators:
     errors:
       can_not_processed: 無法處理
@@ -2249,8 +2318,13 @@ zh-Hant:
       add_to_yahoo_calendar: 新增至 yahoo 行事曆
       assessment_center_alert:
         btn_title: 活動
-        message_part1: 完成其中的所有預備工作
-        message_part2: 預約時段之前。
+        complete_previous_groups: 完成之前所有的團體活動
+        complete_preworks: 完成所有預備工作
+        please_visit: 請瀏覽
+        requirements_message: 完成下列要求後，您才能進行預訂
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: 以完成這些要求。
       assessment_center_group_name: 評估中心
       booking_failed_msg: 預約時段失敗： %{error}
       buttons:
@@ -2309,7 +2383,7 @@ zh-Hant:
         invites: 邀請
       what: 什麼
       when: 當
-      workshop_start_text: 您的評估中心將於
+      workshop_start_label: 您的課程將於
     break_time: 休息時間
     campaign:
       actions:
@@ -2318,6 +2392,7 @@ zh-Hant:
         remove:
           confirmation: 在文字方塊中輸入以下提供的目前活動名稱，以移除活動
           success: "%{campaignName} 已成功移除。"
+          template_confirmation: 在下方欄位中輸入目前範本的名稱，即可刪除該範本。注意：這也會刪除連結的活動範本。
       users:
         actions:
           export:
@@ -2450,6 +2525,7 @@ zh-Hant:
       aria_selected: 精選
   idp:
     actions: 行動
+    behavioral: 行為
     board: 董事會
     comment_details:
       add_comment: 新增評論
@@ -2671,6 +2747,7 @@ zh-Hant:
         required: 問題的答案是必需的
       max_words: 最大字數
       min_words: 最小字數
+      no_reflective_questions: 没有反思性问题
       title: 反思性問題
       update_failed: 更新期間出錯
       updated_successfully: 您的答案已成功更新
@@ -2678,6 +2755,7 @@ zh-Hant:
     skill_gap_report:
       title: 技能差距報告
     status: 狀態
+    technical: 技術
     user_idp_status:
       approved: 已核准
       completed: 完成
@@ -2813,6 +2891,12 @@ zh-Hant:
     used_number: 使用過的授權
     used_out_of: "%{used}中的%{total}。"
   mailer:
+    copyright:
+      text: Lighthouse.保留所有權利
+    footer:
+      regards: 關於
+      team_name: 燈塔團隊
+      technical_support: 如有任何技術問題，請寫信至<x>email</x> ，我們會在 24 小時內回覆。
     from: 人才企業
     idp:
       manager_unread_comments:
@@ -2870,6 +2954,8 @@ zh-Hant:
         instructions: 點選以下連結登入 lighthouse。
         signin_link: 登入連結
       subject: Lighthouse 的登入連結
+    powered_by:
+      text: 由 Lighthouse 提供。
     users:
       account_disable: 您的帳號因無活動性而被停用
       warning: 您的帳號很快就會因無活動性而停用
@@ -3186,6 +3272,9 @@ zh-Hant:
       send_password_email_success: 向使用者 %{email} 傳送包含密碼的電子郵件。
     title: 重設密碼
   select: 選擇
+  sessions:
+    errors:
+      recaptcha: Recaptcha 驗證失敗。請再試一次。
   shared:
     filters:
       clear: 清除過濾器

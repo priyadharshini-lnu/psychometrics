@@ -238,6 +238,7 @@ const Factor: FC<Props> = ({
     ? !!paginationContext?.rowIds?.bottom?.length : (gapType === GapType.ALL || gapType === GapType.NEGATIVE)
   const showTitle = gapType === GapType.ALL
   const styleProp = { fontSize: style?.fontSize, fontFamily: style?.fontFamily, color: style?.fontColor }
+  const headerStyleProp = { color: styleProp.color }
 
   return (
     <div className={cs(styles.table, styles[tableStyle])} style={styleProp}>
@@ -257,6 +258,7 @@ const Factor: FC<Props> = ({
                 hideRightFilter={hideRightFilter}
                 hideValues={hideValues}
                 columnsHeaderData={columnsHeaderData}
+                headerStyleProp={headerStyleProp}
               />
               <TBody
                 gaps={positiveGaps}
@@ -287,6 +289,7 @@ const Factor: FC<Props> = ({
                 hideRightFilter={hideRightFilter}
                 hideValues={hideValues}
                 columnsHeaderData={columnsHeaderData}
+                headerStyleProp={headerStyleProp}
               />
               <TBody
                 gaps={negativeGaps}
@@ -317,10 +320,11 @@ interface THeaderProps {
   hideRightFilter: boolean | null,
   hideValues: boolean
   columnsHeaderData: ColumnsHeaderData
+  headerStyleProp: CSSProperties
 }
 
 const THeader: FC<THeaderProps> = ({
-  leftFilter, rightFilter, hideLeftFilter, hideRightFilter, title, hideValues, columnsHeaderData,
+  leftFilter, rightFilter, hideLeftFilter, hideRightFilter, title, hideValues, columnsHeaderData, headerStyleProp,
 }) => (
   <>
     {title.length !== 0 && (
@@ -330,7 +334,7 @@ const THeader: FC<THeaderProps> = ({
         </th>
       </tr>
     )}
-    <tr className={styles.headers} data-header>
+    <tr className={styles.headers} style={headerStyleProp} data-header>
       {!columnsHeaderData.rank.hide && (
         <th className={styles.label}>
           {columnsHeaderData.rank.label}

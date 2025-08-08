@@ -2,14 +2,13 @@
 
 module MeetingRooms
   class Workshop
-    private_attr_reader :workshop, :current_user
+    private_attr_reader :workshop
 
-    def initialize(workshop, current_user)
+    def initialize(workshop)
       @workshop = workshop
-      @current_user = current_user
     end
 
-    def get_role
+    def get_role(current_user)
       return 'owner' if current_user.accessible_records(::Workshop, 'workshops.view').exists?(id: workshop.id)
 
       return 'attendee' if workshop.workshop_assessors.exists?(user_id: current_user.id)
@@ -17,6 +16,15 @@ module MeetingRooms
       return 'attendee' if workshop.workshop_subjects.find_by(user: current_user)
 
       'none'
+    end
+
+    def meeting_room_name
+      workshop.name
+    end
+
+    def video_recording_enabled?
+      campaign = workshop.campaign
+      campaign&.campaign_options&.enable_video_call_recording || false
     end
   end
 end

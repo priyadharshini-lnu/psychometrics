@@ -329,6 +329,13 @@ hr:
             email:
               blank: E-pošta ne može biti prazna
               not_uniq_email: Redak s e-poštom već je prisutan
+        skill_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_required: Potrebna je barem jedna radna uloga za %{skill_type} za %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Najmanje jedna vrsta vještine mora biti omogućena s odabranom radnom ulogom za %{block_name}
+              invalid_job_role_type: 'Nevažeća radna uloga %{job_role} za %{skill_type} za %{block_name}. Valjane opcije: %{valid_options}'
+              props_missing: Nedostaje konfiguracija vještina za %{block_name}
         skills_rater_block_form:
           attributes:
             base:
@@ -424,7 +431,7 @@ hr:
         access_reports_at: Pristupite izvješću na
         access_reports_at_date: Datum
         access_reports_at_time: Vrijeme
-        client_ids: Najam klijenata
+        client_ids: Klijenti
         manager_ids: Menadžeri
         report_ids: Izvješća
         user_ids: Korisnici
@@ -501,7 +508,7 @@ hr:
         subdomain: Poddomena
         types:
           associate: Suradnik
-          corporate: Korporativnu
+          corporate: Kompanija
           distributer: Distributer
           other: Drugi
           partner: Partner
@@ -518,6 +525,7 @@ hr:
         created_at: Datum izrade
         id: ID
         name: Ime
+        owner: Vlasnik
         updated_at: Datum izmjene
       factor:
         active: Aktivan
@@ -544,7 +552,11 @@ hr:
         updated_at: Datum izmjene
       library:
         created_at: Datum izrade
+        description: Opis
+        files: Datoteke
         id: ID
+        name: Ime
+        owner: Vlasnik
         type: Minijatura
         updated_at: Datum izmjene
       license:
@@ -616,6 +628,7 @@ hr:
         created_at: Datum izrade
         id: ID
         name: Ime
+        owner: Vlasnik
         updated_at: Datum izmjene
       report:
         created_at: Datum izrade
@@ -784,6 +797,8 @@ hr:
           attributes:
             current_password:
               invalid: Trenutna lozinka je netočna
+            manager_id:
+              cannot_be_self: Korisnik ne može biti postavljen kao vlastiti menadžer
         user_idp_comment:
           reply_to_reply: ne mogu odgovoriti na odgovor (dopuštena je samo jedna razina ugniježđenja)
         user_idp_plan:
@@ -810,6 +825,7 @@ hr:
         bulk_update_evaluation_status: Status evaluacije skupnog ažuriranja
         compact_completion_status_export: Kompaktni izvoz statusa dovršetka
         completion_status_export: Izvoz statusa dovršetka
+        copy_as_template_or_campaign: Kopiraj kampanju kao predložak
         copy_dimension: Kopiraj dimenziju
         create_threesixty_campaign: Kreirajte kampanju Threesixty
         data_report_export: Izvoz izvješća o podacima
@@ -854,6 +870,7 @@ hr:
         import_raw_data: Uvoz neobrađenih podataka
         import_reflection_questions: Uvoz pitanja za razmišljanje
         import_scoring_data: Uvoz podataka o bodovanju
+        import_skill_rater_taxonomies: Uvoz taksonomija procjenjivača vještina
         import_skill_translations: Uvoz prijevoda vještina
         import_skills: Vještine uvoza
         import_sms_invites: Uvoz SMS pozivnice
@@ -892,6 +909,7 @@ hr:
     invalid_job: Ova obavijest odgovara izbrisanom zapisu
     mark_as_read: Označi sve kao pročitano
     more: Više
+    no_notifications: Nema obavijesti
     notifications: Obavijesti
     results: Rezultati
     super_admin:
@@ -1072,6 +1090,7 @@ hr:
         description: Ova sesija evaluacije je poništena. To se može dogoditi ako ste nastavili procjenu na zasebnoj kartici, pregledniku ili uređaju.
         title: Posljednji zahtjev nije uspio
       next: Sljedeći
+      no_skill_mapping_message: Nema mapiranja vještina za ovu radnu ulogu, kontaktirajte svog administratora.
       read_only: Ovo je način rada "Samo za čitanje", ne možete mijenjati odgovore.
       save: Spremiti
       submissionFailedAlert:
@@ -1140,6 +1159,7 @@ hr:
     add_group_form:
       previous_assessments_required: Procjene se izvode nižim redoslijedom
       previous_group_required: Potreban je prethodni završetak grupe
+      require_previous_groups_completion_for_booking: Potrebno je dovršiti sve prethodne grupe prije rezervacije
     menu:
       assessment_center: Centar za procjenu
       assessment_center_invites: Pozivnice za centar za procjenu
@@ -1371,6 +1391,7 @@ hr:
       bulk_download: Skupno preuzimanje
       bulk_update_evaluation_as_done: Označi kao dovršeno
       bulk_update_evaluation_as_undone: Poništi oznaku kao gotovo
+      convert_to_template: Pretvori u predložak
       download: Preuzmite izvješća
       export_completion_status: Status dovršetka izvoza
       export_external: Vanjski
@@ -1390,7 +1411,7 @@ hr:
       reset_all_nominations: Poništi sve nominacije
       reset_participant: Resetiranje svih sudionika
     allow_msg_proctoring_workshop_activity: Aktivnosti centra za procjenu se ne provode.
-    assessment_center_heading: Detalji Razvojnog centra
+    assessment_center_heading_label: Detalji sesije
     assessments_heading: Vaši zadaci
     column:
       assessment_name: Naziv procjene
@@ -1527,7 +1548,9 @@ hr:
       in_progress: U tijeku
       ineligible: Ne ispunjava uvjete
       interrupted: Prekinuto
+      new: Novi
       not_started: Nije započeto
+      progress: U tijeku
       timed_out: Isteklo je vrijeme
       universal_link: Univerzalna poveznica
     ungrouped_assessments_heading: Razdvojiti
@@ -1548,6 +1571,7 @@ hr:
     column:
       assessor_access: Pristup procjenitelja
       auto_assign: Automatsko dodjeljivanje
+      locales: Lokalizacije
       main_report: Glavno izvješće
       report_bundle: Paket izvješća
       report_name: Naziv izvješća
@@ -1570,6 +1594,13 @@ hr:
         apply: Primijenite ove promjene na postojeće korisnike u ovoj kampanji.
         msg_text: Pokušavate izbrisati izvješće <strong>"%{reportName}"</strong>
         title: Ukloniti izvješće?
+      update_languages:
+        default_language: Zadani jezik
+        other_available_languages: Ostali dostupni jezici
+        select_default_language: Odaberite zadani jezik
+        select_languages: Odaberite jezike
+        success_msg: Jezici su uspješno ažurirani
+        title: Jezik izvješća
       user_access:
         apply: Primijenite ove promjene na postojeće korisnike u ovoj kampanji.
         title:
@@ -1588,7 +1619,7 @@ hr:
       assessment_center_invites: Pozivnice za centar za procjenu
       completed_at: Dovršeno u
       completion_status: Status završetka
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Zadnja prijava
       manager: Upravitelj
       modals:
@@ -1726,6 +1757,7 @@ hr:
       import: Uvoz
       insert: Umetnuti
       ok: OK
+      publish: Objavi
       reject: Odbiti
       remove: Ukloniti
       reset: Ponovno pokrenuti
@@ -1741,6 +1773,7 @@ hr:
       start: Započeti
       submit: Predati se
       unarchive: Poništiti arhiviranje
+      unpublish: Povuci objavu
       unresolve: Problem nije riješen
       update: Ažurirati
       upload: Prenijeti
@@ -1750,7 +1783,7 @@ hr:
       view_all_tasks: Pogledajte sve zadatke
       view_detail: Pogledajte detalje
     column:
-      action: Akcija
+      action: Status
       active: Aktivan
       allow_multiple_responses: Dopuštanje višestrukih odgovora
       approval_notification_list: Popis korisnika obavijesti o odobrenju
@@ -1763,7 +1796,7 @@ hr:
       client: Klijent
       code: Kod
       created_at: Kreirano u
-      created_by: Izradio
+      created_by: Autor projekta
       created_date: Datum izrade
       default_language: Zadani jezik
       description: Opis
@@ -1784,7 +1817,7 @@ hr:
       linked_activities: Povezane aktivnosti
       linked_assessment: Povezana procjena
       meeting_link: Veza za sastanak
-      modified_by: Izmijenio
+      modified_by: Autor izmjene
       modified_date: Datum izmjene
       name: Ime
       owner: Vlasnik
@@ -1819,7 +1852,7 @@ hr:
       campaigns: Kampanje
       completion_statuses: Statusi dovršetka
       datasheet: Podatkovna tablica
-      projects: Projekata
+      projects: Projekti
       report: Izvješće
       reports: Izvješća
       scoring: Bodovanja
@@ -1913,6 +1946,8 @@ hr:
       timeout: Vaša je sesija istekla. Molimo, ponovno se prijavite za nastavak.
       unauthenticated: Morate se prijaviti ili registrirati prije nego što nastavite.
       unconfirmed: Prije nastavka morate potvrditi svoju adresu e-pošte.
+    invalid_captcha: Unos captche nije valjan.
+    invalid_security_question: Odgovor na sigurnosno pitanje nije valjan.
     invitations:
       edit:
         confirm_password_label: Potvrdite lozinku
@@ -1992,6 +2027,33 @@ hr:
     omniauth_callbacks:
       failure: Nisam vas mogao autentificirati iz %{kind} jer "%{reason}".
       success: Uspješno autentificirana s %{kind} računa.
+    paranoid_verification_code:
+      show:
+        submit: Pošalji
+        submit_verification_code: Pošalji kod za verifikaciju
+        verification_code: Kod za verifikaciju
+      submit: Pošalji
+      submit_verification_code: Pošalji kod za verifikaciju
+      updated: Kod za verifikaciju je prihvaćen
+      verification_code: Kod za verifikaciju
+    paranoid_verify:
+      code_required: Unesite kod koji vam je dala naša podrška
+    password_expired:
+      change_my_password: Promijeni moju lozinku
+      change_required: Vaša lozinka je istekla. Molimo obnovite svoju lozinku.
+      current_password: Trenutna lozinka
+      forced_changed: Morate postaviti novu lozinku za svoj račun.
+      new_password: Nova lozinka
+      new_password_confirmation: Potvrdite novu lozinku
+      password_policy_changed: Pravila lozinke su promijenjena. Molimo promijenite svoju lozinku.
+      renew_your_password: Obnovite svoju lozinku
+      show:
+        change_my_password: Promijeni moju lozinku
+        current_password: Trenutna lozinka
+        new_password: Nova lozinka
+        new_password_confirmation: Potvrdi novu lozinku
+        renew_your_password: Obnovi svoju lozinku
+      updated: Vaša nova lozinka je spremljena.
     passwords:
       edit:
         instruction: Da biste stvorili novu lozinku, unesite svoju novu lozinku u donje okvire
@@ -2073,6 +2135,7 @@ hr:
         reserved_subdomain: Poddomena %{value} je rezervirana
         uniq_subdomain: Poddomena bi trebala biti jedinstvena.
       add_manager:
+        cannot_be_self: Korisnik ne može biti postavljen kao vlastiti menadžer
         manager_not_found: Menadžer nije pronađen ili nije dio istog projekta
         user_not_found: Korisnik nije pronađen ili nije dio istog projekta
       admin:
@@ -2158,6 +2221,10 @@ hr:
       workshop_subject_create:
         already_exists: Ispitanik već postoji u ovom centru za procjenu.
         part_of_other_workshop: Ispitanik je već sudionik '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Nema slobodnih mjesta za ovu radionicu.
+        scheduling_lead_time_passed: Vrijeme za zakazivanje je isteklo, ne možete ponovno prijaviti sudionika.
+        workshop_subject_not_found: Sudionik radionice nije pronađen
       workshops:
         no_available_assessor_slots: Nema slobodnih mjesta za procjenitelja %{assessor}
         no_available_manager_slots: Nema slobodnih mjesta za menadžera %{manager}
@@ -2188,6 +2255,8 @@ hr:
   errors:
     assessments:
       timed_out: Nećete moći pristupiti procjeni %{assessment_name} jer Vam je isteklo vrijeme.
+    equal_to_current_password: mora biti drugačija od trenutne lozinke.
+    equal_to_email: mora biti drugačija od e-pošte.
     error: Pogreška
     error_401: Niste ovlašteni za pristup ovom resursu. Molimo prijavite se.
     error_403: Nemate dozvolu za prikaz ovog resursa.
@@ -2200,6 +2269,20 @@ hr:
     max_regeneration_limit: Prekoračena maksimalna granica regeneracije, obratite se svojoj upravi.
     messages:
       data_report_blank: Izvješće o podacima ne postoji
+      password_complexity:
+        digit:
+          one: mora sadržavati najmanje jednu znamenku
+          other: mora sadržavati najmanje %{count} znamenki
+        lower:
+          one: mora sadržavati najmanje jedno malo slovo
+          other: mora sadržavati najmanje %{count} malih slova
+        symbol:
+          one: mora sadržavati najmanje jedan interpunkcijski znak ili simbol
+          other: mora sadržavati najmanje %{count} interpunkcijskih znakova ili simbola
+        upper:
+          one: mora sadržavati najmanje jedno veliko slovo
+          other: mora sadržavati najmanje %{count} velikih slova
+      taken_in_past: ne smije biti ista kao bilo koja prethodno korištena lozinka.
     module_error: Došlo je do pogreške s ovim modulom, obratite se administratoru.
     module_error_editor: Nešto nije u redu s ovim modulom, provjerite postavke modula.
     module_props_error: Došlo je do pogreške u ovom modulu.
@@ -2210,6 +2293,9 @@ hr:
       no_active_plan: Nije pronađen aktivan IDP plan
     webhooks:
       multiple_webhook_error: URL se ne može ažurirati jer postoji više web-dojavnika za ovaj projekt.
+    workshop:
+      ical_generation_failed: Nije moguće generirati pozivnicu za kalendar
+      missing_or_invalid: Nedostaje ili je nevažeći workshop_id
   evaluators:
     errors:
       can_not_processed: Ne može se obraditi
@@ -2270,8 +2356,13 @@ hr:
       add_to_yahoo_calendar: Dodaj u yahoo kalendar
       assessment_center_alert:
         btn_title: Kampanja
-        message_part1: Završite sve predradnje
-        message_part2: prije rezervacije termina.
+        complete_previous_groups: Dovršite sve aktivnosti prethodnih grupa
+        complete_preworks: Dovršite sve pripremne zadatke
+        please_visit: Molimo posjetite
+        requirements_message: Možete rezervirati tek nakon što ispunite sljedeći uvjet
+        requirements_plural: uvjeti
+        requirements_singular: uvjet
+        to_complete_requirements: za ispunjavanje ovih uvjeta.
       assessment_center_group_name: Centar za procjenu
       booking_failed_msg: 'Rezervacija termina nije uspjela: %{error}'
       buttons:
@@ -2330,7 +2421,7 @@ hr:
         invites: Pozivnice
       what: Što
       when: Kada
-      workshop_start_text: Vaš Razvojni centar počet će za
+      workshop_start_label: Vaša sesija će početi za
     break_time: Vrijeme za pauzu
     campaign:
       actions:
@@ -2339,6 +2430,7 @@ hr:
         remove:
           confirmation: Unesite trenutni naziv kampanje (naveden u nastavku) u tekstualni okvir za uklanjanje kampanje
           success: "%{campaignName} je uspješno uklonjena."
+          template_confirmation: 'Unesite naziv trenutnog predloška u polje ispod za brisanje. Napomena: Ovo će također izbrisati povezani predložak kampanje.'
       users:
         actions:
           export:
@@ -2470,7 +2562,7 @@ hr:
       aria_list_view: Prikaz popisa
       aria_selected: Odabrani
   idp:
-    actions: Akcije
+    actions: Statusi
     behavioral: Bihevioralne
     board: Odbor
     comment_details:
@@ -2663,7 +2755,7 @@ hr:
       summary:
         ai_count: Generativna umjetna inteligencija
         collaborative_learn: Suradničko učenje
-        created_by: Izradio/la
+        created_by: Autor projekta/la
         current_status: Trenutni status IDP-a
         custom: Običaj
         custom_count: Običaj
@@ -2687,6 +2779,7 @@ hr:
         required: Odgovor na ovo pitanje je obavezan
       max_words: Maksimalni broj riječi
       min_words: Minimalni broj riječi
+      no_reflective_questions: Nema reflektivnih pitanja
       title: Pitanja za razmišljanje
       update_failed: Tijekom ažuriranja je došlo do pogreške
       updated_successfully: Vaši su odgovori uspješno ažurirani
@@ -2830,6 +2923,12 @@ hr:
     used_number: Korištene licence
     used_out_of: "%{used} od %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Sva prava pridržana
+    footer:
+      regards: Srdačan pozdrav,
+      team_name: Lighthouse tim
+      technical_support: Za tehničke poteškoće pišite nam na %{email} i odgovorit ćemo u roku od 24 sata.
     from: Talent Enterprise
     idp:
       manager_unread_comments:
@@ -2887,6 +2986,8 @@ hr:
         instructions: Kliknite na donju poveznicu za prijavu na Lighthouse.
         signin_link: Povezanica za prijavu
       subject: Poveznica za prijavu na Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Vaš je račun onemogućen zbog neaktivnosti
       warning: Vaš će račun uskoro biti onemogućen zbog neaktivnosti
@@ -3203,6 +3304,9 @@ hr:
       send_password_email_success: Email poslan korisniku %{email} s lozinkom.
     title: Poništiti lozinku
   select: Odabrati
+  sessions:
+    errors:
+      recaptcha: Recaptcha provjera nije uspjela. Pokušajte ponovno.
   shared:
     filters:
       clear: Obriši filtere
@@ -3575,7 +3679,7 @@ hr:
       checkbox_with_client_link: Klikom na ovaj okvir potvrđujete da ste pročitali našu Izjavu o privatnosti te da pristajete na prikupljanje i obradu Vaših osobnih podataka kako je u njoj opisano, uključujući i internacionalni prijenos Vaših osobnih podataka.
       privacy_notice: Obavijest o privatnosti
       title: Privola za obradu i prijenos osobnih podataka
-    action: Akcija
+    action: Status
     add: Dodati
     and: I
     approve: Odobriti

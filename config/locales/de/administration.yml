@@ -15,6 +15,8 @@ de:
       title: Geprüfte Änderungen
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha-Überprüfung fehlgeschlagen
         new:
           forgot_password: Haben Sie Ihr Passwort vergessen?
           instruction: Bitte melden Sie sich mit Ihren persönlichen Kontodaten an
@@ -77,7 +79,7 @@ de:
           actions: Aktionen
           created_at: Erstellt am
           email: E-Mail
-          id: Id
+          id: ID
           name: Name
         header:
           add_admin: Admin hinzufügen
@@ -147,6 +149,7 @@ de:
             accesssheet_manage: Zugangsdatenblatt Verwalten
             accesssheet_settings: Arbeitsblatt-Einstellungen
             accesssheet_view: Zugangsblatt Ansicht
+            export: Exportieren
             title: Dashboards
             view: Siehe
           datasheets:
@@ -179,7 +182,7 @@ de:
             manage: Verwalten Sie
             title: Job-Rollen
             view: Siehe
-          mediaLibraries:
+          libraries:
             manage: Verwalten Sie
             title: Medienbibliotheken
             view: Siehe
@@ -290,18 +293,33 @@ de:
             view: Siehe
     ai_assistants:
       actions:
+        create: AI-Assistent erstellen
+        edit: AI-Assistent bearbeiten
         playground: Spielplatz
       ai_assistants: AI-Assistenten
       ai_assistants_playground: AI-Assistent Spielwiese
       column:
         provider: Anbieter
+      created_successfully: AI Assistant wurde erfolgreich erstellt.
       form:
+        add_output_schema_key: Ausgabeschema-Schlüssel hinzufügen
+        dependencies: Abhängigkeiten
         description: Beschreibung
+        enter_description: Beschreibung eingeben
+        enter_schema_key: Schema-Schlüssel eingeben
+        key: Schlüssel
         name: Name
+        output_schema_keys: Schema-Schlüssel ausgeben
         provider: Anbieter
+        remove_output_schema_key: Ausgabeschema-Schlüssel entfernen
+        schema_key_description_required: Schemaschlüssel Beschreibung ist erforderlich
+        schema_key_required: Schemaschlüssel ist erforderlich
+        schema_key_type: Schlüssel Typ
+        schema_key_unique: Schema-Schlüssel sollten eindeutig sein
         system_prompt: System-Eingabeaufforderung
-        title: KI-Assistent
+        type: Typ
         user_prompt: Benutzeraufforderung
+      updated_successfully: AI Assistant wurde erfolgreich aktualisiert.
     any: " - Jeder - "
     api:
       campaigns:
@@ -638,7 +656,7 @@ de:
       payload: Nutzlast
       project: Projekt
       record_id: Datensatz-ID
-      request_id: Anfrage Id
+      request_id: Anfrage ID
       reset: Zurücksetzen
       search: Suche
       search_campaign: Suche nach Kampagnen
@@ -767,6 +785,8 @@ de:
       new:
         header: Massendownload
       reports_unavailable: Im Moment sind keine Berichte zum Herunterladen verfügbar. Bitte bestätigen Sie, dass die Berichte, die Sie herunterladen möchten, verfügbar sind.
+      select_reports_for_download: Bitte wählen Sie mindestens einen Bericht zum Herunterladen aus.
+      select_reports_for_regenerate: Bitte wählen Sie mindestens einen Bericht aus, der neu generiert werden soll.
     cable:
       notification:
         assessment_factors: Faktoren werden abgerufen
@@ -856,6 +876,7 @@ de:
       campaign_templates: Vorlagen für Kampagnen
       column:
         assessment: Bewertung
+        campaign: Kampagne
         owner: Eigentümer
         report: Bericht
       copy:
@@ -923,13 +944,14 @@ de:
           do_not_send_notifications: Benachrichtigungen nicht senden
           modal_title: Einstellungen für die Berichtsgenehmigung
           qc_users: QC-Benutzer
-          remove_modal_success: 'Genehmigungseinstellung für Bericht-ID: %{reportId} wurde erfolgreich gelöscht '
+          remove_modal_success: 'Genehmigungseinstellung für Bericht-ID: %{reportId} wurde erfolgreich gelöscht'
           remove_modal_text: 'Sind Sie sicher, dass Sie diese Einstellung für die Berichts-ID löschen möchten: %{reportId}?'
           report: Bericht
           settings: Einstellungen
       assessors:
         spoof:
           successfully: Sie wurden erfolgreich als %{name} angemeldet
+      convert_to_template: In Vorlage umwandeln
       copy: Kopieren
       delete: Löschen
       edit: Bearbeiten
@@ -942,16 +964,20 @@ de:
         inactive: Inaktiv
         status: Status
       form:
+        active_notice: Der Kampagnenstatus ändert sich automatisch auf geschlossen am ausgewählten Enddatum
         campaign: Kampagne
+        inactive_notice: Der Kampagnenstatus wechselt automatisch auf aktiv am ausgewählten Startdatum
+        instruction: Dies kann nur beim Erstellen von Kampagnen aktiviert werden
         name: Name
         practice_campaign: Praxis-Kampagne
         status: Status
       listing:
         assessments: Beurteilungen
-        id: Id
+        id: ID
         name: Name
         reports: Berichte
         status: Status
+        template: Vorlage
         type: Typ
       menus:
         add_common_campaign: Gemeinsame Kampagne hinzufügen
@@ -965,15 +991,21 @@ de:
             active: Aktiv
             archive: Archiv
             assessment: Bewertung
+            category: Kategorie
             closed: Geschlossen
+            default_assessment_language: Standardsprache für die Bewertung
+            default_report_language: Standardsprache des Berichts
             empty: Leere
             inactive: Inaktiv
             name: Name
             normal: Normal
             previous: Vorherige
+            select_assessment_language: Bewertungssprache auswählen
+            select_report_language: Berichtssprache auswählen
             skill_rater: Skill Rater
             standard: Standard
             status: Status
+            type: Typ
           close:
             content: Sind Sie sicher, dass Sie den Multi Rater Campaign Creator schließen möchten? Alle nicht gespeicherten Anpassungen gehen verloren. Bitte bestätigen Sie Ihre Entscheidung.
             title: Multi Rater Campaign Creator schließen?
@@ -1002,6 +1034,7 @@ de:
           name: Beschreibung
           save: Beschreibung speichern
           save_success: Beschreibung erfolgreich gespeichert
+        enable_video_call_recording: Aktivieren der Videoaufzeichnung von Anrufen
         fixed_time: Feste Zeit
         instructions:
           actions:
@@ -1055,7 +1088,7 @@ de:
           all: Alle
           anonymous: Anonym
           identified: Identifiziert
-        id: Id
+        id: ID
         is_active: Aktiv
         name: Name
         no_permission_message: Sie haben nicht die Erlaubnis zu ändern
@@ -1079,6 +1112,7 @@ de:
         ai_assistants: AI-Assistenten
         ai_assisted_idp: AI-unterstützte IDP
         global_skills: Globale Fertigkeiten
+        idp: IDP
         sms_notification: SMS-Benachrichtigung
     clients:
       api_keys:
@@ -1162,7 +1196,7 @@ de:
               sub_campaigns: Unterkampagnen
               tests_allocated: Zugewiesene Tests
               users: Benutzer
-            id: Id
+            id: ID
             name: Name der Kampagne
             reports: Berichte
             updated_at: Aktualisiertes Datum
@@ -1185,7 +1219,7 @@ de:
               sub_campaigns: Unterkampagnen
               tests_allocated: Zugewiesene Tests
               users: Benutzer
-            id: Id
+            id: ID
             name: Name der Kampagne
             reports: Berichte
             updated_at: Aktualisiertes Datum
@@ -1236,7 +1270,7 @@ de:
                 sub_campaign: Unterkampagnen
                 tests_allocated: Zugewiesene Tests
                 users: Benutzer
-              id: Id
+              id: ID
               name: Name der Unter-Kampagne
               reports: Berichte
               updated_at: Aktualisiertes Datum
@@ -1259,7 +1293,7 @@ de:
                 sub_campaign: Unterkampagnen
                 tests_allocated: Zugewiesene Tests
                 users: Benutzer
-              id: Id
+              id: ID
               name: Name der Unter-Kampagne
               reports: Berichte
               updated_at: Aktualisiertes Datum
@@ -1309,7 +1343,7 @@ de:
           assigned_user: Zugewiesene Benutzer
           completed_user: Abgeschlossene Benutzer
           created_at: Erstellungsdatum
-          id: Id
+          id: ID
           name: Name des Projekts
           number: Nummer
           project_admin: Projektadministratoren
@@ -1358,7 +1392,7 @@ de:
           assigned_user: Zugewiesene Benutzer
           completed_user: Abgeschlossene Benutzer
           created_at: Erstellungsdatum
-          id: Id
+          id: ID
           name: Name des Projekts
           number: Nummer
           project_admin: Projektadministratoren
@@ -1427,7 +1461,7 @@ de:
             assessment: Einstufung
             client_admins: Client-Admins
             created_at: Erstellt am
-            id: Id
+            id: ID
             name: Name
             report: Bericht
             report_bundle: Berichtsbündel
@@ -1447,7 +1481,7 @@ de:
             assessment: Einstufung
             client_admins: Client-Admins
             created_at: Erstellt am
-            id: Id
+            id: ID
             name: Name
             report: Bericht
             report_bundle: Berichtsbündel
@@ -1554,6 +1588,7 @@ de:
       select_all: Alle auswählen
       type: Typ
       unselect_all: Alle abwählen
+    communication_settings: Einstellungen
     communications:
       create:
         successfully: Die Kommunikation wurde erfolgreich erstellt.
@@ -1586,9 +1621,17 @@ de:
            {{email}} - E-Mail des Empfängers
            {{schedule_start_date}} - Startdatum des Zeitplans
            {{schedule_end_date}} - Enddatum des Zeitplans"
+        campaign: Kampagne
+        campaign_assessment_group: Gruppe für Kampagnenbewertung
+        client: Kunde
         completion: Fertigstellung
+        custom: Benutzerdefiniert
         delivery_at: Lieferung zum (GST)
         delivery_delay_hours: Lieferverzug (Stunden)
+        delivery_interval: Lieferintervall
+        delivery_interval_number: Lieferintervall Nummer
+        delivery_interval_period: Lieferintervall Zeitraum
+        delivery_rule: Zustellungsvorschrift
         delivery_rules:
           in_progress: Wenn die Bewertung im Gange ist
           not_competed: Wenn die Bewertung nicht abgeschlossen ist
@@ -1600,20 +1643,27 @@ de:
         idp_template_approved: IDP Genehmigt
         idp_template_assigned: IDP zugewiesen
         idp_template_rejected: IDP Abgelehnt
+        insert_piped_text: Paspelierten Text einfügen
         invitation: Einladung
         kind: Kommunikationstypen
         locale: Gebietsschema
         magic_link_email: Magischer Link E-Mail
+        message_body_placeholder: Geben Sie hier Ihre Nachricht ein...
         new_assignment: Neue Aufgabe
         new_users: Neue Benutzer
         other: Andere
+        owner: Eigentümer
+        project: Projekt
+        recipients: Empfänger
         reminder: Erinnerung
         report_available: Bericht verfügbar
+        select_assessments: Wählen Sie, welche Beurteilungen auf Vollständigkeit geprüft werden sollen
         selected: Ausgewählte
         selected_cc_recipients: Ausgewählte CC-Empfänger
         selected_recipients: Ausgewählte Begünstigte
         stop_reminder: Keine Mahnungen mehr senden
         stop_reminder_datetime: Enddatum für Mahnungen (GST)
+        subject: Thema
         workshop_booked: Assessment Center Buchungsbestätigung
         workshop_cancelled: Assessment Center abgesagt
         workshop_completed: Assessment Center abgeschlossen
@@ -1709,10 +1759,10 @@ de:
       pdf: PDF
       pptx: PPTX
       preview:
-        embed_token_error_description: Bitte überprüfen Sie, ob Dataset und Report Id in den Einstellungen korrekt sind.
+        embed_token_error_description: Bitte überprüfen Sie, ob Dataset und Report ID in den Einstellungen korrekt sind.
         embed_token_error_title: Embed-Token kann nicht erzeugt werden.
       settings:
-        capacity_id: Kapazität Id
+        capacity_id: Kapazität ID
         details: Einzelheiten
         refresh: Aktualisieren
         workspace_id: Arbeitsbereich id
@@ -1728,7 +1778,7 @@ de:
         image: Bild
         project_path: Projekt Pfad
         refresh_interval: Aktualisierungsintervall (Minuten)
-        report_id: Bericht Id
+        report_id: Bericht ID
         visual_header_visibility: Visuelle Sichtbarkeit der Kopfzeile
       image_upload_failed: Bild-Upload fehlgeschlagen.
       none: Keine
@@ -1781,7 +1831,7 @@ de:
         invalid_date: Datumsformat für %{date} ist ungültig.
         invalid_date_format: 'Rij %{row}: ongeldige datumindeling voor %{field}. '
         invalid_development_action_type: 'Zeile %{row}: Ungültiger Entwicklungsaktionstyp ''%{value}''. Gültige Entwicklungsaktionstypen sind: %{valid_development_action_types}'
-        invalid_duration_format: 'Nur numerische Werte sind für die Dauer zulässig.Row %{row}: %{value} ist keine gültige Dauer. '
+        invalid_duration_format: 'Nur numerische Werte sind für die Dauer zulässig.Row %{row}: %{value} ist keine gültige Dauer.'
         invalid_image_file: 'Ungültige Bilddatei: %{message}'
         invalid_image_url: 'Ungültiges Bild-URL-Format: %{url}'
         invalid_languages: Ungültige verfügbare Sprachen %{invalid_languages} für Zeilen %{row}.
@@ -1900,10 +1950,24 @@ de:
         successfully: Für die Dimension %{name} geplanter Importfaktorenauftrag.
         title: Import-Faktoren
       import_modal:
+        after: Nach
+        before: Vor
         cancel: Abbrechen
+        change_log_input: Änderungsprotokoll
         continue: Weiter
+        error: Fehler
+        error_occurred: Es ist ein Fehler aufgetreten
+        errors:
+          file_error: Bitte wählen Sie eine JSON-Datei aus, bevor Sie fortfahren.
+          processing_error: Fehler bei der Verarbeitung der Datei
+        field: Feld
         import: Importieren
         import_dimension: Dimension importieren
+        import_scheduled: Geplanter Import
+        operation: Operation
+        owner_input_validation: Bitte wählen Sie einen Eigentümer
+        owner_select: Wählen Sie einen Eigentümer
+        select_json: JSON-Datei auswählen
       import_translations:
         error: Fehler beim Importieren von Übersetzungen für die Dimension %{name}.
         successfully: Import von Übersetzungen für Dimension %{name} geplant.
@@ -1918,7 +1982,7 @@ de:
       list:
         active: Aktiv
         created_at: Erstellungsdatum
-        id: Id
+        id: ID
         name: Name
         updated_at: Geändertes Datum
       new:
@@ -2025,7 +2089,7 @@ de:
       list:
         active: Aktiv
         created_at: Erstellungsdatum
-        id: Id
+        id: ID
         name: Name
         updated_at: Geändertes Datum
       new:
@@ -2088,6 +2152,9 @@ de:
         remove_confirm: Geben Sie den unten angegebenen Namen der aktuellen Vorlage in das Textfeld ein, um die Vorlage zu entfernen
         success: "%{idpName} wurde erfolgreich entfernt."
       add_idp_template: IDP-Vorlage hinzufügen
+      ai_assisted_idp_enabled: AI-gestützte IDP-Fähigkeit
+      ai_enabled: AI Aktiviert
+      ai_settings: AI-Einstellungen
       all: Alle
       appearance: Erscheinungsbild
       appearance_hint: Um das Erscheinungsbild zu ändern, speichern Sie bitte zuerst die IDP-Vorlage, um diese Einstellungen zu aktivieren.
@@ -2103,6 +2170,7 @@ de:
       enter_template_name: Name
       enter_template_name_error: Name der Vorlage ist erforderlich
       errors:
+        cannot_update_progress_plan_completed: Keine Fortschrittsaktualisierung möglich, da der IDP-Plan bereits abgeschlossen ist
         update: Aktualisierung nicht zulässig, da die IDP-Vorlage bereits mit einem Benutzer-IDP-Plan verknüpft ist.
       fields:
         assigned_data: Zugewiesene Daten
@@ -2130,6 +2198,7 @@ de:
       logo_type_label: Logo Typ
       no_reflection_questions_selected: Keine Reflexionsfragen ausgewählt
       none: Keine
+      one_click_idp_enabled: IDP mit einem Klick aktiviert
       reference_locale: Referenzgebietsschema
       reflection_questions: Fragen zur Reflexion
       reflection_questions_hint: Wenn Sie die Reflexionsfragen ändern möchten, speichern Sie bitte zuerst die IDP-Vorlage, um diese Einstellungen zu aktivieren.
@@ -2236,7 +2305,7 @@ de:
     individual_invite:
       tabs:
         assessment_center: Assessment Center
-        subjects: Themen
+        invitation_status: Einladungsstatus
     innovation_styles:
       create:
         successfully: Innovation Style %{name} wurde erfolgreich erstellt.
@@ -2251,7 +2320,7 @@ de:
         title: Innovationsstile
       list:
         created_at: Erstellungsdatum
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Geändertes Datum
@@ -2284,7 +2353,7 @@ de:
       list:
         condition: Zustand
         created_at: Erstellungsdatum
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Geändertes Datum
@@ -2365,7 +2434,9 @@ de:
       assessment_center: 'Assessment Center:'
       booked_at: 'Gebucht bei:'
       column:
+        invitation_status: Einladungsstatus
         participant: Teilnehmer
+        scheduling_details: Details zur Terminplanung
       remove_confirm:
         content: Sind Sie sicher, dass Sie den Betreff mit E-Mail '%{subjectEmail}' entfernen möchten?
         success: Betreff mit E-Mail '%{subjectEmail}'' wurde erfolgreich entfernt.
@@ -2373,6 +2444,8 @@ de:
       statuses:
         accepted: Angenommen
         cancelled: Abgesagt
+        late_cancelled: Verspätet abgesagt
+        late_rescheduled: Verspätet Umgeplant
         pending: Anhängig
         requested_cancellation: Beantragte Annullierung
         requested_cancellation_rejected: Annullierung Abgelehnt
@@ -2406,8 +2479,6 @@ de:
         expected_proficiency_level: Erwartetes Kompetenzniveau
       form:
         title: Zuordnung
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:
@@ -2417,7 +2488,7 @@ de:
           errors:
             job_role_not_found: Jobrolle mit ID %{id} nicht gefunden
             missing_columns: 'Fehlende erforderliche Spalten: %{columns}'
-            save_failed: 'Fehler bei der Verarbeitung der Job-Rollen-ID %{id}: %{Meldung}'
+            save_failed: 'Fehler bei der Verarbeitung der Job-Rollen-ID %{id}: %{message}'
     libraries:
       create:
         successfully: Element %{name} wurde erfolgreich erstellt.
@@ -2469,6 +2540,7 @@ de:
         successfully: Benutzer %{name} wurde erfolgreich aktualisiert.
       update:
         successfully: Benutzer %{name} wurde erfolgreich aktualisiert.
+    message: Nachricht
     meta_title: Verwaltungs-Panel
     navigation:
       ai_assistants: AI-Assistenten
@@ -2538,8 +2610,8 @@ de:
       list:
         active: Aktiv
         created_at: Erstellungsdatum
-        dimension_id: Dimension Id
-        id: Id
+        dimension_id: Dimension ID
+        id: ID
         name: Name
         updated_at: Geändertes Datum
         updated_by: Aktualisiert von
@@ -2575,6 +2647,7 @@ de:
         editor: Norm Editor
         export: Norm exportieren
         title: Norm's Optionen
+      title: Norm
       toggle_status:
         successfully: Norm wurde erfolgreich aktualisiert.
       update:
@@ -2599,7 +2672,7 @@ de:
         title: Berufe
       list:
         created_at: Erstellt am
-        id: Id
+        id: ID
         name: Name
         updated_at: Geändertes Datum
       new:
@@ -2631,7 +2704,7 @@ de:
       list:
         condition: Zustand
         created_at: Erstellungsdatum
-        id: Id
+        id: ID
         name: Name
         position: Position
         updated_at: Geändertes Datum
@@ -2662,12 +2735,16 @@ de:
     piped_text_modal:
       assessment_id: Bewertung ID
       campaign_id: Kampagnen-ID
+      campaign_name: Name der Kampagne
+      campaigns: Kampagnen
       insight_page_link: Insight Page Link
       insight_page_url: URL der Einsichtsseite
       join_link: Link verbinden
       magic_link: Magische Verbindung
       magic_url: Magische URL
       profile_custom_field: Benutzerdefiniertes Profilfeld
+      project_name: Name des Projekts
+      projects: Projekte
       report_name: Bericht Name
       text: Text
       title: Paspelierten Text hinzufügen
@@ -2695,7 +2772,9 @@ de:
       errors:
         create:
           invalid_format: Die Ebenendefinition muss ein Array von Definitionen sein.
+          level_definition_must_exist: Leveldefinition kann nicht leer sein
           level_definition_must_match_level: muss genau %{expected} Werte enthalten, aber %{actual} wurden angegeben
+          level_name_must_exist: Der Name der Ebene darf nicht leer sein.
           must_be_unique: Muss einzigartig sein
           proficiency_level_exists: Ein ProficiencyLevel mit dieser Fähigkeit und diesem Projekt existiert bereits
           proficiency_level_exists_for_default: Ein Proficiency Level für Default existiert bereits
@@ -2773,7 +2852,7 @@ de:
       column_createdAt: Erstellt am
       column_created_at: Erstellt am
       column_email: E-Mail
-      column_id: Id
+      column_id: ID
       column_name: Name
       delete: Löschen
       edit: Bearbeiten
@@ -2884,7 +2963,7 @@ de:
       column_campaigns: Kampagnen
       column_created_at: Erstellt am
       column_email: E-Mail
-      column_id: Id
+      column_id: ID
       column_name: Name
       confirm_delete: Ja, löschen
       confirm_send: Ja, senden
@@ -3002,6 +3081,7 @@ de:
         dp_consent_custom: Zustimmung zur Datenverarbeitung anpassen
         dp_consent_version: Version der Politik
         errors:
+          cannot_disable_while_campaign_enabled: Die Aufzeichnung von Videoanrufen kann nicht deaktiviert werden, da sie für eine oder mehrere Kampagnen in diesem Projekt aktiviert ist.
           policy_version_format: Nur ganze Zahlen sind erlaubt
         mask_identity_for_examus: Maskendaten für Examus Proctoring
         mask_identity_for_hogan: Maskendaten für Hogan
@@ -3015,6 +3095,9 @@ de:
         privacy_link_placeholder: Datenschutz Link eingeben
         privacy_text: Datenschutz Text
         privacy_text_placeholder: Text zum Datenschutz eingeben
+        video_call_recording: Aufzeichnung von Videoanrufen zulassen
+        video_call_recording_expiry_duration: Aufbewahrungsfrist für Videoaufzeichnungen (in Tagen)
+        video_call_recording_scope: Aktivieren Sie die Videoaufzeichnung für alle neuen Kampagnen
       profile_settings:
         form_fields:
           enabled: Aktiviert
@@ -3298,7 +3381,7 @@ de:
       config_details:
         acs_url: Assertion Consumer Service URL
         copied: Kopiert %{element}
-        issuer: Entity Id/Issuer
+        issuer: Entity ID/Issuer
         title: Konfigurieren Sie Idp mit folgenden Informationen
       email_pipetext: E-Mail an Pipetext
       enabled: Aktiviert
@@ -3337,6 +3420,7 @@ de:
         copy_to_all: Kopie an andere Assessment Center
         create: Erstellen
         dates_label: Daten
+        disable_cancellation_and_rescheduling: Stornierung und Neuplanung deaktivieren
         duration_label: Dauer
         duration_max_error: Kann nicht mehr als 16 Stunden betragen
         duration_min_error: Darf nicht kürzer als 15 Minuten sein
@@ -3465,6 +3549,7 @@ de:
         form_title: Beurteilungen einplanen
         language: Sprache
         language_not_selected: Nicht ausgewählt
+        mark_cancel: Markieren Abbrechen
         mark_cancel_success: Teilnahme des Betreffs mit E-Mail %{subject_email} abgesagt.
         meeting_link_custom: Benutzerdefiniert
         meeting_link_internal: Intern
@@ -3473,6 +3558,9 @@ de:
         no_change: Keine Änderung
         override_existing: Vorhandene Zeitpläne für Fächer außer Kraft setzen
         preworks: Vorarbeit
+        re_enroll: Neuanmeldung
+        re_enroll_confirm_message: Sind Sie sicher, dass Sie den Betreff mit der E-Mail '%{subject_email}' neu eintragen wollen?
+        re_enroll_success: Neu eingeschriebener Betreff mit E-Mail <x>subject_email</x>.
         schedule: Zeitplan
         unschedule: Abmeldung
       tabs:
@@ -3509,7 +3597,7 @@ de:
       final_score_updated_successfully: Der Endstand wurde erfolgreich aktualisiert
       formula: Formel
       get_started: Los geht's
-      id: Id
+      id: ID
       import:
         factors: Faktoren der Kampagne importieren
       name: Name
@@ -3591,6 +3679,7 @@ de:
       disable_password_reuse: Wiederverwendung von Passwörtern deaktivieren
       disallow_password_login: Passwortanmeldung verbieten
       enable_login_with_magic_link: Login mit magischem Link aktivieren
+      enable_recaptcha: reCAPTCHA aktivieren
       enforce_password_policy: Kennwortrichtlinie bei der nächsten Anmeldung durchsetzen
       enforce_strong: Erzwingen Sie ein sicheres Passwort
       expiration: Ablauf des Passworts
@@ -3814,7 +3903,7 @@ de:
         send_sms: SMS versenden
     sms_records:
       columns:
-        id: Id
+        id: ID
         message: Nachricht
     smtp_settings:
       authentication: Authentifizierung
@@ -3851,6 +3940,7 @@ de:
       user_name: Name des Benutzers
     stats:
       assessments:
+        active: Aktiv
         columns:
           assessment_name: Bewertung Name
           completed: Abgeschlossen
@@ -3860,6 +3950,9 @@ de:
           interrupted: Unterbrochen
           not_started: Nicht begonnen
           timed_out: Zeitüberschreitung
+        count: Anzahl
+        inactive: Inaktiv
+        percentage: Prozentsatz
         title: Beurteilungen
       title: Statistiken
       top_metrics:
@@ -4064,6 +4157,21 @@ de:
         toggle_status:
           successfully: Erfolgreich
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Bereits eine Vorlage
+        has_user_data: Bitte setzen Sie die Kampagne manuell zurück, indem Sie auf "Alle Teilnehmer zurücksetzen" in der Dropdown-Liste "Tools" klicken, bevor Sie sie in eine Vorlage umwandeln.
+      convert_template_modal:
+        cancel: Abbrechen
+        confirm: Bestätigen Sie
+        convert:
+          success: Vorlage erfolgreich konvertiert
+        convert_option: Diese Kampagne in eine Vorlage umwandeln
+        copy:
+          success: Der Auftrag zur Erstellung der Kampagnenvorlage wurde erfolgreich geplant. Bitte überprüfen Sie Ihre Benachrichtigungen auf den Status.
+        copy_option: Erstellen Sie eine neue Vorlage aus dieser Kampagne
+        description: Wählen Sie aus, wie Sie eine Vorlage für diese Kampagne erstellen möchten.
+        failed: Die Erstellung der Vorlage ist fehlgeschlagen.
+        title: In Vorlage umwandeln
       email_templates:
         approve_nomination:
           description: Diese Nachricht wird an einen Vorgesetzten gesendet, wenn eine Nominierung, die von einem direkten Mitarbeiter gemacht wurde, genehmigt werden muss
@@ -4298,6 +4406,10 @@ de:
       update:
         successfully: Benutzer %{name} wurde erfolgreich aktualisiert.
       user: Benutzer
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Das Enddatum darf nicht in der Vergangenheit liegen.
+        start_date_cannot_be_in_past: Das Startdatum darf nicht in der Vergangenheit liegen.
     webhook:
       connection_failure: Es kann keine Verbindung zur Webhook-Url hergestellt werden. Bitte überprüfen Sie, ob die Webhook-Url korrekt ist.
       delete_success: Webhook-Einstellungen wurden erfolgreich gelöscht

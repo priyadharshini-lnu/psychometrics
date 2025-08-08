@@ -19,6 +19,7 @@ module Administration
           required(:status).filled(:str?)
           required(:campaign_url).filled(:str?)
           required(:is_threesixty).maybe(:bool?)
+          required(:is_template).maybe(:bool?)
           required(:is_fixed_time).filled(:bool?)
           required(:project_id).maybe(:int?)
           required(:practice_campaign).filled(:bool?)
@@ -46,6 +47,7 @@ module Administration
             required(:view_audit_reports).filled(:bool?)
             required(:view_assessments_and_reports).filled(:bool?)
             required(:manage_report_approval_settings).filled(:bool?)
+            required(:export_dashboard_to_file).filled(:bool?)
           end
           required(:assessments).array(Administration::Campaigns::AssessmentSchema.schema(_, _))
           required(:reports).array(Administration::Campaigns::ReportSchema.schema(_, _))

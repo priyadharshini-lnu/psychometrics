@@ -218,7 +218,7 @@ de:
             file:
               column_cannot_be_blank: Wert %{column_name} kann in Zeile %{row_number} nicht leer sein
               invalid_format: Bitte CSV-Datei hochladen
-              invalid_job_role_id: Id in Zeile %{row_number} ist keine gültige Job-Rollen-ID
+              invalid_job_role_id: ID in Zeile %{row_number} ist keine gültige Job-Rollen-ID
               invalid_locale: Gebietsschema in Zeile %{row_number} ist kein gültiges Gebietsschema
               missing_required_columns: 'Fehlende erforderliche Spalten: %{columns}'
               parsing_failed: 'Fehler beim Parsen der Datei, Fehler: %{error}.'
@@ -529,6 +529,7 @@ de:
         created_at: Erstellt am
         id: ID
         name: Name
+        owner: Eigentümer
         updated_at: Geändertes Datum
       factor:
         active: Aktiv
@@ -555,7 +556,11 @@ de:
         updated_at: Geändertes Datum
       library:
         created_at: Erstellt am
+        description: Beschreibung
+        files: Dateien
         id: ID
+        name: Name
+        owner: Eigentümer
         type: Vorschaubild
         updated_at: Geändertes Datum
       license:
@@ -627,6 +632,7 @@ de:
         created_at: Erstellt am
         id: ID
         name: Name
+        owner: Eigentümer
         updated_at: Geändertes Datum
       report:
         created_at: Erstellt am
@@ -823,6 +829,7 @@ de:
         bulk_update_evaluation_status: Evaluierungsstatus der Massenaktualisierung
         compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
         completion_status_export: Fertigstellungsstatus Export
+        copy_as_template_or_campaign: Kampagne als Vorlage kopieren
         copy_dimension: Dimension kopieren
         create_threesixty_campaign: Threesixty-Kampagne erstellen
         data_report_export: Export von Datenberichten
@@ -906,6 +913,7 @@ de:
     invalid_job: Diese Meldung entspricht einem gelöschten Datensatz
     mark_as_read: Markieren Sie alle gelesenen
     more: Mehr
+    no_notifications: Keine Benachrichtigungen
     notifications: Benachrichtigungen
     results: Ergebnisse
     super_admin:
@@ -1090,6 +1098,7 @@ de:
         description: Diese Bewertungssitzung wurde für ungültig erklärt. Dies kann passieren, wenn Sie die Bewertung in einer anderen Registerkarte, einem anderen Browser oder auf einem anderen Gerät fortgesetzt haben.
         title: Letzte Anfrage fehlgeschlagen
       next: weiter
+      no_skill_mapping_message: Für diese Stelle gibt es kein Skill Mapping, wenden Sie sich an Ihren Administrator.
       read_only: Ist nur im Lesemodus, Sie können keine Ergebnisse ändern.
       save: Speichern Sie
       submissionFailedAlert:
@@ -1158,6 +1167,7 @@ de:
     add_group_form:
       previous_assessments_required: Beurteilungen in folgender Reihenfolge
       previous_group_required: Vorheriger Abschluss einer Gruppe erforderlich
+      require_previous_groups_completion_for_booking: Vor der Buchung müssen alle vorherigen Gruppen abgeschlossen sein.
     menu:
       assessment_center: Assessment Center
       assessment_center_invites: Einladungen zum Assessment Center
@@ -1398,6 +1408,7 @@ de:
       bulk_download: Massendownload
       bulk_update_evaluation_as_done: Als erledigt markieren
       bulk_update_evaluation_as_undone: Markierung als erledigt aufheben
+      convert_to_template: In Vorlage umwandeln
       download: Berichte herunterladen
       export_completion_status: Status des Exportabschlusses
       export_external: Extern
@@ -1417,7 +1428,7 @@ de:
       reset_all_nominations: Alle Nominierungen zurücksetzen
       reset_participant: Alle Teilnehmer zurücksetzen
     allow_msg_proctoring_workshop_activity: Assessment-Center-Aktivitäten werden nicht geprüft.
-    assessment_center_heading: Assessment Center Details
+    assessment_center_heading_label: Details zur Sitzung
     assessments_heading: Deine Aufgaben
     column:
       assessment_name: Name der Bewertung
@@ -1554,7 +1565,9 @@ de:
       in_progress: In Bearbeitung
       ineligible: Nicht förderfähig
       interrupted: Unterbrochen
+      new: Neu
       not_started: Nicht gestartet
+      progress: In Bearbeitung
       timed_out: Zeitüberschreitung
       universal_link: Universeller Link
     ungrouped_assessments_heading: Ungruppiert
@@ -1575,6 +1588,7 @@ de:
     column:
       assessor_access: Assessor Zugang
       auto_assign: Automatisch zuweisen
+      locales: Lokalitäten
       main_report: Hauptbericht
       report_bundle: Berichtsbündel
       report_name: Name des Berichts
@@ -1597,6 +1611,13 @@ de:
         apply: Wenden Sie diese Änderungen auf bestehende Benutzer in dieser Kampagne an.
         msg_text: Sie versuchen, den Bericht <strong>"%{reportName}"</strong> zu löschen
         title: Bericht entfernen?
+      update_languages:
+        default_language: Standardsprache
+        other_available_languages: Andere verfügbare Sprachen
+        select_default_language: Standardsprache auswählen
+        select_languages: Sprachen auswählen
+        success_msg: Sprachen wurden erfolgreich aktualisiert
+        title: Sprache des Berichts
       user_access:
         apply: Wenden Sie diese Änderungen auf bestehende Benutzer in dieser Kampagne an.
         title:
@@ -1615,7 +1636,7 @@ de:
       assessment_center_invites: Assessment Center Einladungen
       completed_at: Abgeschlossen am
       completion_status: Status der Fertigstellung
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Letzte Anmeldung
       manager: Manager
       modals:
@@ -1803,7 +1824,7 @@ de:
       first_name: Vorname
       icon: Icon
       icon_color: Farbe des Symbols
-      id: Id
+      id: ID
       json:
         answer: Antwort JSON
         external_result: Externes Ergebnis JSON
@@ -1823,7 +1844,7 @@ de:
       provider: Anbieter
       qc_user_list: QC-Benutzerliste
       report: Bericht
-      report_id: Bericht Id
+      report_id: Bericht ID
       require_scheduling: Terminplanung erforderlich machen
       responses_count: Anzahl der Antworten
       schedule_time: Zeit einplanen
@@ -1942,7 +1963,11 @@ de:
       timeout: Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an, um fortzufahren.
       unauthenticated: Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.
       unconfirmed: Bevor Sie fortfahren, müssen Sie Ihre E-Mail-Adresse bestätigen.
+    invalid_captcha: Die Captcha-Eingabe ist nicht gültig.
+    invalid_security_question: Die Antwort auf die Sicherheitsfrage war ungültig.
     invitations:
+      confirmation_instructions:
+        subject: Anweisungen zur Bestätigung
       edit:
         confirm_password_label: Bestätigen Sie Ihr Passwort
         header: Ihr Passwort festlegen
@@ -1975,6 +2000,23 @@ de:
           client: 'Kundenmietverhältnis: %{section_name}'
           project: 'Projekt: %{section_name}'
         subject: Einladung zum Leuchtturm
+      invitation_removed: Ihre Einladung wurde entfernt.
+      invitation_token_invalid: Das angegebene Einladungs-Token ist nicht gültig!
+      mailer:
+        accept: Klicken Sie hier, um die Einladung anzunehmen.
+        admin_invitation_instructions:
+        body: 'Hallo %{Name}, Sie wurden eingeladen, auf das Admin-Panel von Lighthouse - The Talent Enterprise Assessment Platform zuzugreifen. %{accept} Oder Sie können diese E-Mail getrost ignorieren. Bitte geben Sie Ihre Zugangsdaten an niemanden weiter.
+
+          '
+        copyright:
+          text: Lighthouse. Alle Rechte vorbehalten
+        powered_by:
+          text: Powered by Lighthouse.
+        subject: Einladung zum Leuchtturm
+      new:
+        header: Einladung versenden
+        submit_button: Eine Einladung verschicken
+      no_invitations_remaining: Keine Einladungen mehr übrig
       password_change:
         body: 'Hallo %{name}, Ihr Passwort wurde geändert. Wenn Sie dies nicht angefordert haben, wenden Sie sich bitte umgehend an den Support unter mte.support@mercer.com '
         regards: 'Mit freundlichen Grüßen, Lighthouse Team '
@@ -1985,15 +2027,37 @@ de:
         footer: Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail getrost ignorieren. Ihr Passwort wird sich erst ändern, wenn Sie den obigen Link aufrufen und ein neues Passwort erstellen.
         regards: 'Mit freundlichen Grüßen, Lighthouse Team '
         subject: Anweisungen zum Zurücksetzen Ihres Passworts
+      send_instructions: Es wurde eine Einladungs-E-Mail an %{email} gesendet.
       unlock_instructions:
         body: 'Hallo %{name}! Ihr Konto wurde aufgrund einer zu hohen Anzahl von fehlgeschlagenen Anmeldeversuchen gesperrt. Klicken Sie auf den untenstehenden Link, um Ihr Konto zu entsperren: '
         footer: Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail getrost ignorieren. Ihr Passwort wird sich erst ändern, wenn Sie den obigen Link aufrufen und ein neues Passwort erstellen.
         regards: 'Mit freundlichen Grüßen, Lighthouse Team '
         subject: Anweisungen zum Freischalten Ihres Kontos
         unlock_account: Mein Konto freischalten
+      updated: Ihr Passwort wurde erfolgreich gesetzt, Sie sind nun angemeldet.
+      updated_not_active: Ihr Passwort wurde erfolgreich gesetzt.
     omniauth_callbacks:
       failure: Konnte Sie nicht von %{kind} authentifizieren, weil "%{reason}".
       success: Erfolgreich authentifiziert von %{kind} Konto.
+    paranoid_verification_code:
+      show:
+        submit: Bestätigen
+        submit_verification_code: Bestätigungscode eingeben
+        verification_code: Bestätigungscode
+      updated: Verifizierungscode akzeptiert
+    paranoid_verify:
+      code_required: Bitte geben Sie den Code ein, den unser Support-Team zur Verfügung gestellt hat.
+    password_expired:
+      change_required: Ihr Passwort ist abgelaufen. Bitte vergeben Sie ein neues Passwort.
+      forced_changed: Sie müssen ein neues Passwort für Ihr Konto festlegen.
+      password_policy_changed: Passwortpolitik geändert. Bitte ändern Sie Ihr Passwort.
+      show:
+        change_my_password: Passwort ändern
+        current_password: Aktuelles Passwort
+        new_password: Neues Passwort
+        new_password_confirmation: Passwort bestätigen
+        renew_your_password: Vergeben Sie ein neues Passwort
+      updated: Das neue Passwort wurde übernommen.
     passwords:
       edit:
         instruction: Um ein neues Passwort zu erstellen, geben Sie bitte Ihr neues Passwort in die unten stehenden Felder ein
@@ -2161,6 +2225,10 @@ de:
       workshop_subject_create:
         already_exists: Das Thema existiert bereits in diesem Assessment Center.
         part_of_other_workshop: Betreff ist bereits Teilnehmer von '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Für diesen Workshop sind keine Plätze verfügbar.
+        scheduling_lead_time_passed: Die Vorlaufzeit für die Planung ist abgelaufen, Sie können das Fach nicht erneut einschreiben.
+        workshop_subject_not_found: Workshop-Thema nicht gefunden
       workshops:
         no_available_assessor_slots: Keine freien Slots für Assessor %{assessor}
         no_available_manager_slots: Keine freien Slots für Manager %{manager}
@@ -2194,6 +2262,8 @@ de:
   errors:
     assessments:
       timed_out: Sie können an der Bewertung %{assessment_name} nicht mehr teilnehmen, da die Zeit abgelaufen ist.
+    equal_to_current_password: muss sich vom aktuellen Passwort unterscheiden.
+    equal_to_email: muss anders lauten als die E-Mail.
     error: Fehler
     error_401: Sie sind nicht berechtigt, auf diese Ressource zuzugreifen. Bitte melden Sie sich an.
     error_403: Sie verfügen nicht über die Berechtigung zum Anzeigen dieser Ressource.
@@ -2206,6 +2276,20 @@ de:
     max_regeneration_limit: Maximale Regenerationsgrenze überschritten, wenden Sie sich an Ihre Verwaltung.
     messages:
       data_report_blank: Datenbericht existiert nicht
+      password_complexity:
+        digit:
+          one: muss mindestens eine Ziffer enthalten
+          other: muss mindestens <x>count</x> Ziffern enthalten
+        lower:
+          one: muss mindestens einen Kleinbuchstaben enthalten
+          other: muss mindestens <x>count</x> Kleinbuchstaben enthalten
+        symbol:
+          one: muss mindestens ein Interpunktionszeichen oder Symbol enthalten
+          other: muss mindestens <x>count</x> Interpunktionszeichen oder Symbole enthalten
+        upper:
+          one: muss mindestens einen Großbuchstaben enthalten
+          other: muss mindestens <x>count</x> Großbuchstaben enthalten
+      taken_in_past: darf nicht mit einem zuvor verwendeten Passwort übereinstimmen.
     module_error: Bei diesem Modul ist ein Fehler aufgetreten. Bitte kontaktieren Sie die Administration.
     module_error_editor: Bei diesem Modul ist etwas schief gelaufen, bitte überprüfen Sie die Moduleinstellungen.
     module_props_error: Bei diesem Modul ist etwas schief gelaufen.
@@ -2216,6 +2300,9 @@ de:
       no_active_plan: Kein aktiver IDP-Plan gefunden
     webhooks:
       multiple_webhook_error: url kann nicht aktualisiert werden, da es mehrere Webhooks für dieses Projekt gibt.
+    workshop:
+      ical_generation_failed: Kalendereinladung konnte nicht erstellt werden
+      missing_or_invalid: Fehlende oder ungültige workshop_id
   evaluators:
     errors:
       can_not_processed: kann nicht bearbeitet werden
@@ -2276,8 +2363,13 @@ de:
       add_to_yahoo_calendar: Zum Yahoo-Kalender hinzufügen
       assessment_center_alert:
         btn_title: Event
-        message_part1: Schließen Sie alle Vorarbeiten in dieser
-        message_part2: ab, bevor Sie einen Platz buchen.
+        complete_previous_groups: Alle vorherigen Gruppenaktivitäten abschließen
+        complete_preworks: Alle Vorarbeiten abschließen
+        please_visit: Bitte besuchen Sie die
+        requirements_message: Sie können eine Buchung nur vornehmen, wenn Sie die folgenden Voraussetzungen erfüllen
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: um diese Anforderungen zu erfüllen.
       assessment_center_group_name: Assessment Center
       booking_failed_msg: 'Buchung des Platzes fehlgeschlagen: %{error}'
       buttons:
@@ -2336,7 +2428,7 @@ de:
         invites: Einladungen
       what: What
       when: When
-      workshop_start_text: Your Assessment Center will start in
+      workshop_start_label: Ihre Sitzung beginnt in
     break_time: Pausenzeit
     campaign:
       actions:
@@ -2345,6 +2437,7 @@ de:
         remove:
           confirmation: Geben Sie den unten angegebenen Namen der aktuellen Kampagne in das Textfeld ein, um die Kampagne zu entfernen
           success: "%{campaignName} wurde erfolgreich entfernt."
+          template_confirmation: 'Geben Sie den Namen der aktuellen Vorlage in das Feld unten ein, um sie zu löschen. Hinweis: Dadurch wird auch die verknüpfte Kampagnenvorlage gelöscht.'
       users:
         actions:
           export:
@@ -2477,6 +2570,7 @@ de:
       aria_selected: Ausgewählte
   idp:
     actions: Aktionen
+    behavioral: Verhaltenstipps
     board: Vorstand
     comment_details:
       add_comment: Kommentar hinzufügen
@@ -2693,6 +2787,7 @@ de:
         required: Die Antwort auf die Frage ist erforderlich
       max_words: Max Wörter
       min_words: Min Worte
+      no_reflective_questions: Keine reflektierenden Fragen
       title: Reflektierende Fragen
       update_failed: Während der Aktualisierung ist ein Fehler aufgetreten
       updated_successfully: Ihre Antworten wurden erfolgreich aktualisiert
@@ -2700,6 +2795,7 @@ de:
     skill_gap_report:
       title: Bericht über das Qualifikationsdefizit
     status: Status
+    technical: Technisch
     user_idp_status:
       approved: Genehmigt
       completed: Abgeschlossen
@@ -2835,6 +2931,12 @@ de:
     used_number: Gebrauchte Lizenzen
     used_out_of: "%{used} von %{total}"
   mailer:
+    copyright:
+      text: Leuchtturm. Alle Rechte vorbehalten
+    footer:
+      regards: Mit freundlichen Grüßen,
+      team_name: Lighthouse-Team
+      technical_support: Bei technischen Problemen schreiben Sie uns bitte an %{email} und wir antworten innerhalb von 24 Stunden.
     from: Das Unternehmen Talent
     idp:
       manager_unread_comments:
@@ -2892,6 +2994,8 @@ de:
         instructions: Klicken Sie auf den unten stehenden Link, um sich bei Lighthouse anzumelden.
         signin_link: Anmeldung Link
       subject: Anmeldelink für Lighthouse
+    powered_by:
+      text: Angetrieben von Lighthouse.
     users:
       account_disable: Ihr Konto wurde aufgrund von Inaktivität deaktiviert
       warning: Ihr Konto wird demnächst wegen Inaktivität deaktiviert werden
@@ -3208,6 +3312,9 @@ de:
       send_password_email_success: E-Mail an Benutzer %{email} mit dem Passwort gesendet.
     title: Passwort zurücksetzen
   select: Wählen Sie
+  sessions:
+    errors:
+      recaptcha: Recaptcha-Überprüfung fehlgeschlagen. Bitte versuchen Sie es erneut.
   shared:
     filters:
       clear: Filter löschen

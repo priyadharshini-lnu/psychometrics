@@ -208,7 +208,7 @@ nl:
             file:
               column_cannot_be_blank: Waarde %{column_name} kan niet leeg zijn in rij %{row_number}
               invalid_format: CSV-bestand uploaden
-              invalid_job_role_id: Id in rij %{row_number} is geen geldige functierol-ID
+              invalid_job_role_id: ID in rij %{row_number} is geen geldige functierol-ID
               invalid_locale: Locale bij rij %{row_number} is geen geldige locale
               missing_required_columns: 'Ontbrekende verplichte kolommen: %{columns}'
               parsing_failed: 'Fout tijdens het parsen van bestand, fout: %{error}.'
@@ -519,6 +519,7 @@ nl:
         created_at: Datum aangemaakt
         id: ID
         name: Naam
+        owner: Eigenaar
         updated_at: Gewijzigde datum
       factor:
         active: Actief
@@ -545,7 +546,11 @@ nl:
         updated_at: Gewijzigde datum
       library:
         created_at: Datum aangemaakt
+        description: Beschrijving
+        files: Bestanden
         id: ID
+        name: Naam
+        owner: Eigenaar
         type: Miniaturen
         updated_at: Gewijzigde datum
       license:
@@ -617,6 +622,7 @@ nl:
         created_at: Datum aangemaakt
         id: ID
         name: Naam
+        owner: Eigenaar
         updated_at: Gewijzigde datum
       report:
         created_at: Datum aangemaakt
@@ -813,6 +819,7 @@ nl:
         bulk_update_evaluation_status: Evaluatiestatus bulkupdate
         compact_completion_status_export: Export van compacte voltooiingsstatus
         completion_status_export: Export van voltooiingsstatus
+        copy_as_template_or_campaign: Campagne kopiëren als sjabloon
         copy_dimension: Dimensie kopiëren
         create_threesixty_campaign: Creëer DrieZestig Campagne
         data_report_export: Gegevensrapport exporteren
@@ -896,6 +903,7 @@ nl:
     invalid_job: Deze melding komt overeen met verwijderde record
     mark_as_read: Markeer alle gelezen
     more: Meer
+    no_notifications: Geen meldingen
     notifications: Meldingen
     results: Resultaten
     super_admin:
@@ -1075,6 +1083,7 @@ nl:
         description: Deze evaluatiesessie is ongeldig gemaakt. Dit kan gebeuren als u de evaluatie in een ander tabblad, browser of apparaat hebt voortgezet.
         title: Laatste verzoek mislukt
       next: Volgende
+      no_skill_mapping_message: Er zijn geen vaardigheden in kaart gebracht voor deze functie, neem contact op met je admin.
       read_only: Is alleen-lezen modus, je kunt geen resultaten wijzigen.
       save: Sla
       submissionFailedAlert:
@@ -1143,6 +1152,7 @@ nl:
     add_group_form:
       previous_assessments_required: De beoordelingen worden in onderstaande volgorde uitgevoerd
       previous_group_required: Eerdere voltooiing van de groep vereist
+      require_previous_groups_completion_for_booking: Voltooiing van alle voorgaande groepen vereist voordat u boekt
     menu:
       assessment_center: Beoordelingscentrum
       assessment_center_invites: Uitnodigingen voor het assessment
@@ -1374,6 +1384,7 @@ nl:
       bulk_download: Bulk downloaden
       bulk_update_evaluation_as_done: Markeren als voltooid
       bulk_update_evaluation_as_undone: Markering als voltooid ongedaan maken
+      convert_to_template: Omzetten naar sjabloon
       download: Rapporten downloaden
       export_completion_status: Status voltooiing export
       export_external: Extern
@@ -1393,7 +1404,7 @@ nl:
       reset_all_nominations: Alle nominaties resetten
       reset_participant: Alle deelnemers resetten
     allow_msg_proctoring_workshop_activity: Assessmentactiviteiten worden niet gescreend.
-    assessment_center_heading: Details beoordelingscentrum
+    assessment_center_heading_label: Details sessie
     assessments_heading: Uw taken
     column:
       assessment_name: Naam beoordeling
@@ -1530,7 +1541,9 @@ nl:
       in_progress: In uitvoering
       ineligible: Niet-subsidiabel
       interrupted: Onderbroken
+      new: Nieuw
       not_started: Niet gestart
+      progress: In uitvoering
       timed_out: Uitgetimed
       universal_link: Universele link
     ungrouped_assessments_heading: Niet-gegroepeerd
@@ -1551,6 +1564,7 @@ nl:
     column:
       assessor_access: Toegang Assessor
       auto_assign: Automatisch toewijzen
+      locales: Locaties
       main_report: Hoofdrapport
       report_bundle: Bundel rapporten
       report_name: Naam verslag
@@ -1573,6 +1587,13 @@ nl:
         apply: Pas deze wijzigingen toe op bestaande gebruikers in deze campagne.
         msg_text: U probeert <strong>"%{reportName}"</strong> Rapport te verwijderen
         title: Rapport verwijderen?
+      update_languages:
+        default_language: Standaard Taal
+        other_available_languages: Andere beschikbare talen
+        select_default_language: Selecteer standaard taal
+        select_languages: Selecteer talen
+        success_msg: Talen zijn succesvol bijgewerkt
+        title: Rapport Taal
       user_access:
         apply: Pas deze wijzigingen toe op bestaande gebruikers in deze campagne.
         title:
@@ -1591,7 +1612,7 @@ nl:
       assessment_center_invites: Uitnodigingen voor beoordelingscentrum
       completed_at: Voltooid Op
       completion_status: Voltooiingsstatus
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Laatste login
       manager: Manager
       modals:
@@ -1779,7 +1800,7 @@ nl:
       first_name: Voornaam
       icon: Pictogram
       icon_color: Kleur pictogram
-      id: Id
+      id: ID
       json:
         answer: Antwoord JSON
         external_result: Extern resultaat JSON
@@ -1799,7 +1820,7 @@ nl:
       provider: Aanbieder
       qc_user_list: QC gebruikerslijst
       report: Rapporteer
-      report_id: Rapport Id
+      report_id: Rapport ID
       require_scheduling: Planning vereisen
       responses_count: Antwoorden Tellen
       schedule_time: Tijd plannen
@@ -1918,7 +1939,11 @@ nl:
       timeout: Uw sessie is verlopen. Log opnieuw in om verder te gaan.
       unauthenticated: U moet inloggen of registreren voordat u verder kunt gaan.
       unconfirmed: Je moet je e-mailadres bevestigen voordat je verder kunt gaan.
+    invalid_captcha: De captcha-invoer was ongeldig.
+    invalid_security_question: Het antwoord op de beveiligingsvraag was ongeldig.
     invitations:
+      confirmation_instructions:
+        subject: Instructies voor bevestiging
       edit:
         confirm_password_label: Wachtwoord bevestigen
         header: Wachtwoord instellen
@@ -1951,6 +1976,23 @@ nl:
           client: 'Huurder: %{section_name}'
           project: 'Project: %{section_name}'
         subject: Uitnodiging voor Lighthouse
+      invitation_removed: Je uitnodiging is verwijderd.
+      invitation_token_invalid: Het verstrekte uitnodigingstoken is niet geldig!
+      mailer:
+        accept: Klik hier om de uitnodiging te accepteren.
+        admin_invitation_instructions:
+        body: 'Hallo %{name}, U bent uitgenodigd om toegang te krijgen tot het beheerpaneel van Lighthouse - The Talent Enterprise assessment platform. %{accept} Of u kunt deze e-mail negeren. Deel uw toegangsgegevens met niemand.
+
+          '
+        copyright:
+          text: Lighthouse. Alle rechten voorbehouden
+        powered_by:
+          text: Powered by Lighthouse.
+        subject: Uitnodiging voor Lighthouse
+      new:
+        header: Uitnodiging versturen
+        submit_button: Een uitnodiging sturen
+      no_invitations_remaining: Geen uitnodigingen meer
       password_change:
         body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via mte.support@mercer.com '
         regards: 'Groeten, Lighthouse Team '
@@ -1961,15 +2003,37 @@ nl:
         footer: Als je dit niet hebt aangevraagd, kun je deze e-mail gerust negeren. Je wachtwoord zal pas veranderen als je de bovenstaande link opent en een nieuw wachtwoord aanmaakt.
         regards: 'Groeten, Lighthouse Team '
         subject: Instructies om je wachtwoord opnieuw in te stellen
+      send_instructions: Er is een uitnodigingsmail verstuurd naar %{email}.
       unlock_instructions:
         body: 'Hallo %{name}! Uw account is vergrendeld vanwege een buitensporig aantal mislukte aanmeldingspogingen. Klik op de onderstaande koppeling om uw account te ontgrendelen: '
         footer: Als je dit niet hebt aangevraagd, kun je deze e-mail gerust negeren. Je wachtwoord zal pas veranderen als je de bovenstaande link opent en een nieuw wachtwoord aanmaakt.
         regards: 'Groeten, Lighthouse Team '
         subject: Instructies voor het deblokkeren van je account
         unlock_account: Mijn account deblokkeren
+      updated: Uw wachtwoord is succesvol ingesteld. U bent nu aangemeld.
+      updated_not_active: Uw wachtwoord is succesvol ingesteld.
     omniauth_callbacks:
       failure: Kan u niet verifiëren van %{kind} omdat "%{reason}".
       success: Succesvol geverifieerd van %{kind} account.
+    paranoid_verification_code:
+      show:
+        submit: Stuur  in
+        submit_verification_code: Verificatiecode indienen
+        verification_code: Verificatiecode
+      updated: Verificatiecode geaccepteerd
+    paranoid_verify:
+      code_required: Voer de code in die ons supportteam heeft verstrekt
+    password_expired:
+      change_required: Je wachtwoord is verlopen. Vernieuw je wachtwoord.
+      forced_changed: Je moet een nieuw wachtwoord instellen voor je account.
+      password_policy_changed: Wachtwoordbeleid gewijzigd. Wijzig uw wachtwoord.
+      show:
+        change_my_password: Mijn wachtwoord wijzigen
+        current_password: Huidig wachtwoord
+        new_password: Nieuw wachtwoord
+        new_password_confirmation: Nieuw wachtwoord bevestigen
+        renew_your_password: Vernieuw je wachtwoord
+      updated: Uw nieuwe wachtwoord wordt opgeslagen.
     passwords:
       edit:
         instruction: Om een nieuw wachtwoord aan te maken, voert u uw nieuwe wachtwoord in de vakjes hieronder in
@@ -2137,6 +2201,10 @@ nl:
       workshop_subject_create:
         already_exists: Het onderwerp bestaat al in dit Assessment Center.
         part_of_other_workshop: Onderwerp is al deelnemer van '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Er zijn geen plaatsen beschikbaar voor deze workshop.
+        scheduling_lead_time_passed: Als de Scheduling Lead Time voorbij is, kun je het onderwerp niet opnieuw inschrijven.
+        workshop_subject_not_found: Workshop onderwerp niet gevonden
       workshops:
         no_available_assessor_slots: Geen beschikbare slots voor beoordelaar %{assessor}
         no_available_manager_slots: Geen beschikbare slots voor manager %{manager}
@@ -2167,6 +2235,8 @@ nl:
   errors:
     assessments:
       timed_out: Je kunt de %{assessment_name} beoordeling niet doen omdat deze is uitgetimed.
+    equal_to_current_password: moet anders zijn dan het huidige wachtwoord.
+    equal_to_email: moet anders zijn dan de e-mail.
     error: Fout
     error_401: U bent niet gemachtigd om toegang te krijgen tot deze bron. Gelieve in te loggen.
     error_403: U hebt geen toestemming om deze bron te bekijken.
@@ -2179,6 +2249,20 @@ nl:
     max_regeneration_limit: Maximale regeneratielimiet overschreden, neem contact op met uw administratie.
     messages:
       data_report_blank: Gegevensrapport bestaat niet
+      password_complexity:
+        digit:
+          one: moet ten minste één cijfer bevatten
+          other: moet ten minste <x>count</x> cijfers bevatten
+        lower:
+          one: moet ten minste één kleine letter bevatten
+          other: moet ten minste <x>count</x> kleine letters bevatten
+        symbol:
+          one: moet ten minste één leesteken of symbool bevatten
+          other: moet ten minste <x>count</x> leestekens of symbolen bevatten
+        upper:
+          one: moet minstens één hoofdletter bevatten
+          other: moet ten minste <x>count</x> hoofdletters bevatten
+      taken_in_past: mag niet hetzelfde zijn als een eerder gebruikt wachtwoord.
     module_error: Er is iets misgegaan met deze module. Neem contact op met de administratie.
     module_error_editor: Er is iets misgegaan met deze module. Controleer de module-instellingen.
     module_props_error: Er is iets misgegaan met deze module.
@@ -2189,6 +2273,9 @@ nl:
       no_active_plan: Geen actief IDP-plan gevonden
     webhooks:
       multiple_webhook_error: de url kan niet worden bijgewerkt omdat er meerdere webhooks zijn voor dit project.
+    workshop:
+      ical_generation_failed: Kan geen kalenderuitnodiging genereren
+      missing_or_invalid: Ontbrekend of ongeldig workshop_id
   evaluators:
     errors:
       can_not_processed: kan niet worden verwerkt
@@ -2249,8 +2336,13 @@ nl:
       add_to_yahoo_calendar: Toevoegen aan yahoo agenda
       assessment_center_alert:
         btn_title: Campagne
-        message_part1: Voltooi alle voorwerken in deze
-        message_part2: voordat je een slot boekt.
+        complete_previous_groups: Voltooi alle voorgaande groepsactiviteiten
+        complete_preworks: Voltooi alle voorwerken
+        please_visit: Bezoek de
+        requirements_message: Je kunt alleen boeken als je aan de volgende voorwaarde voldoet
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: om aan deze vereisten te voldoen.
       assessment_center_group_name: Beoordelingscentrum
       booking_failed_msg: 'Boeking mislukt: %{error}'
       buttons:
@@ -2309,7 +2401,7 @@ nl:
         invites: Nodigt  uit
       what: Wat
       when: Wanneer
-      workshop_start_text: Je Assessment Center begint in
+      workshop_start_label: Je sessie begint in
     break_time: Pauze
     campaign:
       actions:
@@ -2318,6 +2410,7 @@ nl:
         remove:
           confirmation: Voer de huidige campagnenaam hieronder in het tekstvak in om de campagne te verwijderen
           success: "%{campaignName} is succesvol verwijderd."
+          template_confirmation: 'Voer de naam van de huidige sjabloon in het onderstaande veld in om deze te verwijderen. Opmerking: hierdoor wordt ook de gekoppelde campagnesjabloon verwijderd.'
       users:
         actions:
           export:
@@ -2450,6 +2543,7 @@ nl:
       aria_selected: Geselecteerd
   idp:
     actions: Acties
+    behavioral: Gedrag
     board: Raad van bestuur
     comment_details:
       add_comment: Opmerking toevoegen
@@ -2643,6 +2737,7 @@ nl:
         required: Het antwoord op de vraag is vereist
       max_words: Max Woorden
       min_words: Min woorden
+      no_reflective_questions: Geen reflectieve vragen
       title: Reflectieve vragen
       update_failed: Er is een fout opgetreden tijdens de update
       updated_successfully: Uw antwoorden zijn met succes bijgewerkt
@@ -2650,6 +2745,7 @@ nl:
     skill_gap_report:
       title: Rapport over vaardigheidskloof
     status: Status
+    technical: Technisch
     user_idp_status:
       approved: Goedgekeurd
       completed: Volbracht
@@ -2785,6 +2881,12 @@ nl:
     used_number: Gebruikte licenties
     used_out_of: "%{used} van %{total}"
   mailer:
+    copyright:
+      text: Vuurtoren. Alle rechten voorbehouden
+    footer:
+      regards: Groeten,
+      team_name: Vuurtoren Team
+      technical_support: Voor technische problemen kunt u ons schrijven op <x>email</x> en we zullen binnen 24 uur reageren.
     from: De talentenonderneming
     idp:
       manager_unread_comments:
@@ -2842,6 +2944,8 @@ nl:
         instructions: Klik op onderstaande link om je aan te melden bij lighthouse.
         signin_link: Aanmelden Link
       subject: Aanmelden link voor Lighthouse
+    powered_by:
+      text: Aangedreven door Lighthouse.
     users:
       account_disable: Je account is uitgeschakeld wegens inactiviteit
       warning: Je account wordt binnenkort uitgeschakeld wegens inactiviteit
@@ -3158,6 +3262,9 @@ nl:
       send_password_email_success: E-mail verzonden naar gebruiker %{email} met het wachtwoord.
     title: Wachtwoord opnieuw instellen
   select: Selecteer
+  sessions:
+    errors:
+      recaptcha: Recaptcha verificatie mislukt. Probeer het opnieuw.
   shared:
     filters:
       clear: Filters wissen

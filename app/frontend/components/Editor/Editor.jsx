@@ -9,10 +9,14 @@ import events from './events'
 import '~/libs/Editor/commands/rtlLtr'
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
+import { isRtl } from '~/utils/locales'
 
 function Editor ({
   content, handleContentChange, type, details, className, withPipedText = false, configOverrides = {},
 }) {
+  const { I18n } = window
+  const direction = isRtl(I18n?.currentLocale()) ? 'rtl' : 'ltr'
+
   let config = {
     iconsTemplate: 'font_awesome',
     imageUpload: false,
@@ -100,7 +104,7 @@ function Editor ({
         events.video_link_error(this, link)
       },
     },
-    direction: 'ltr',
+    direction,
   }
 
   const [isInitialized, setIsInitialized] = useState(false)

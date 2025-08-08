@@ -519,6 +519,7 @@ ko:
         created_at: 생성 날짜
         id: ID
         name: 이름
+        owner: 소유자
         updated_at: 수정된 날짜
       factor:
         active: 활성
@@ -545,7 +546,11 @@ ko:
         updated_at: 수정된 날짜
       library:
         created_at: 생성 날짜
+        description: 설명
+        files: 파일
         id: ID
+        name: 이름
+        owner: 소유자
         type: 썸네일
         updated_at: 수정된 날짜
       license:
@@ -617,6 +622,7 @@ ko:
         created_at: 생성 날짜
         id: ID
         name: 이름
+        owner: 소유자
         updated_at: 수정된 날짜
       report:
         created_at: 생성 날짜
@@ -813,6 +819,7 @@ ko:
         bulk_update_evaluation_status: 평가 상태 대량 업데이트
         compact_completion_status_export: 컴팩트 완료 상태 내보내기
         completion_status_export: 완료 상태 내보내기
+        copy_as_template_or_campaign: 캠페인을 템플릿으로 복사
         copy_dimension: 복사 차원
         create_threesixty_campaign: 쓰리식스티 캠페인 만들기
         data_report_export: 데이터 보고서 내보내기
@@ -896,6 +903,7 @@ ko:
     invalid_job: 이 알림은 삭제된 레코드에 해당합니다
     mark_as_read: 모두 읽음 표시
     more: 자세히 보기
+    no_notifications: 알림 없음
     notifications: 알림
     results: 결과
     super_admin:
@@ -1075,6 +1083,7 @@ ko:
         description: 이 평가 세션이 무효화되었습니다. 다른 탭, 브라우저 또는 장치에서 평가를 계속한 경우 이러한 문제가 발생할 수 있습니다.
         title: 마지막 요청 실패
       next: 다음
+      no_skill_mapping_message: 이 직무 역할에 대해 수행된 스킬 매핑이 없으므로 관리자에게 문의하세요.
       read_only: 읽기 전용 모드에서는 결과를 변경할 수 없습니다.
       save: 저장
       submissionFailedAlert:
@@ -1143,6 +1152,7 @@ ko:
     add_group_form:
       previous_assessments_required: 아래 순서로 실행할 평가
       previous_group_required: 이전 그룹 완료 필요
+      require_previous_groups_completion_for_booking: 예약 전 모든 이전 그룹을 완료해야 합니다.
     menu:
       assessment_center: 평가 센터
       assessment_center_invites: 평가 센터 초대
@@ -1374,6 +1384,7 @@ ko:
       bulk_download: 대량 다운로드
       bulk_update_evaluation_as_done: 완료로 표시
       bulk_update_evaluation_as_undone: 완료로 표시 해제
+      convert_to_template: 템플릿으로 변환
       download: 보고서 다운로드
       export_completion_status: 내보내기 완료 상태
       export_external: 외부
@@ -1393,7 +1404,7 @@ ko:
       reset_all_nominations: 모든 추천 재설정
       reset_participant: 모든 참가자 초기화
     allow_msg_proctoring_workshop_activity: 평가 센터 활동은 감독되지 않습니다.
-    assessment_center_heading: 평가 센터 세부 정보
+    assessment_center_heading_label: 세션 세부 정보
     assessments_heading: 작업
     column:
       assessment_name: 평가 이름
@@ -1530,7 +1541,9 @@ ko:
       in_progress: 진행 중
       ineligible: 부적격
       interrupted: 중단됨
+      new: 새로 만들기
       not_started: 시작되지 않음
+      progress: 진행 중
       timed_out: 시간 초과
       universal_link: 유니버설 링크
     ungrouped_assessments_heading: 그룹 해제
@@ -1551,6 +1564,7 @@ ko:
     column:
       assessor_access: 평가자 액세스
       auto_assign: 자동 할당
+      locales: 로캘
       main_report: 주요 보고서
       report_bundle: 보고서 번들
       report_name: 보고서 이름
@@ -1573,6 +1587,13 @@ ko:
         apply: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용합니다.
         msg_text: <strong>"%{reportName}"</strong> 보고서를 삭제하려고 합니다
         title: 신고 삭제?
+      update_languages:
+        default_language: 기본 언어
+        other_available_languages: 기타 사용 가능한 언어
+        select_default_language: 기본 언어 선택
+        select_languages: 언어 선택
+        success_msg: 언어가 성공적으로 업데이트되었습니다.
+        title: 보고 언어
       user_access:
         apply: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용합니다.
         title:
@@ -1779,7 +1800,7 @@ ko:
       first_name: 이름
       icon: 아이콘
       icon_color: 아이콘 색상
-      id: Id
+      id: ID
       json:
         answer: 응답 JSON
         external_result: 외부 결과 JSON
@@ -1918,6 +1939,8 @@ ko:
       timeout: 세션이 만료되었습니다. 계속하려면 다시 로그인하세요.
       unauthenticated: 계속하려면 로그인하거나 등록해야 합니다.
       unconfirmed: 계속하기 전에 이메일 주소를 확인해야 합니다.
+    invalid_captcha: 캡차 입력이 잘못되었습니다.
+    invalid_security_question: 보안 질문 답변이 유효하지 않습니다.
     invitations:
       edit:
         confirm_password_label: 비밀번호 확인
@@ -1949,6 +1972,8 @@ ko:
         subject: 라이트하우스로의 초대
       confirmation_instructions:
         subject: 확인 지침
+      copyright:
+        text: Lighthouse. 모든 권리 보유
       invitation_instructions:
         body: '안녕하세요 %{name} 님, 다음 섹션의 관리자로 라이트하우스에 추가되었습니다 '
         login: 라이트하우스에 로그인
@@ -1961,6 +1986,8 @@ ko:
         body: '안녕하세요 %{name} 님! 비밀번호가 변경되었습니다. 이 요청을 하지 않은 경우 즉시 지원팀(mte.support@mercer.com)으로 문의하시기 바랍니다 '
         regards: '라이트하우스 팀 '
         subject: 라이트하우스 비밀번호가 변경되었습니다
+      powered_by:
+        text: Powered by Lighthouse.
       reset_password_instructions:
         body: '안녕하세요 %{name} 님! 누군가 비밀번호를 변경할 수 있는 링크를 요청했습니다. 아래 링크를 통해 비밀번호를 변경할 수 있습니다. '
         change_password: 비밀번호 변경
@@ -1976,6 +2003,25 @@ ko:
     omniauth_callbacks:
       failure: '"%{kind}" 때문에 %{reason}에서 사용자를 인증할 수 없습니다.'
       success: "%{kind} 계정에서 인증에 성공했습니다."
+    paranoid_verification_code:
+      show:
+        submit: 제출하기
+        submit_verification_code: 인증 코드 제출
+        verification_code: 인증 코드
+      updated: 인증 코드 수락
+    paranoid_verify:
+      code_required: 지원팀에서 제공한 코드를 입력하세요.
+    password_expired:
+      change_required: 비밀번호가 만료되었습니다. 비밀번호를 갱신하세요.
+      forced_changed: 계정에 새 비밀번호를 설정해야 합니다.
+      password_policy_changed: 비밀번호 정책이 변경되었습니다. 비밀번호를 변경하세요.
+      show:
+        change_my_password: 비밀번호 변경
+        current_password: 현재 비밀번호
+        new_password: 새 비밀번호
+        new_password_confirmation: 새 비밀번호 확인
+        renew_your_password: 비밀번호 갱신
+      updated: 새 비밀번호가 저장됩니다.
     passwords:
       edit:
         instruction: 새 비밀번호를 만들려면 아래 상자에 새 비밀번호를 입력하세요
@@ -2143,6 +2189,10 @@ ko:
       workshop_subject_create:
         already_exists: 이 평가 센터에 과목이 이미 존재합니다.
         part_of_other_workshop: 주체가 이미 '%{workshop_name}'의 참가자입니다.
+      workshop_subject_re_enroll:
+        no_seats_available: 이 워크숍에는 좌석이 없습니다.
+        scheduling_lead_time_passed: 스케줄링 리드 타임 이 지나면 주제를 다시 등록할 수 없습니다.
+        workshop_subject_not_found: 워크샵 주제를 찾을 수 없습니다.
       workshops:
         no_available_assessor_slots: 평가자 %{assessor}에 사용할 수 있는 슬롯이 없습니다
         no_available_manager_slots: 관리자 %{manager}에게 사용 가능한 슬롯이 없습니다
@@ -2173,6 +2223,8 @@ ko:
   errors:
     assessments:
       timed_out: 시간이 초과되었으므로 %{assessment_name} 평가에 응시할 수 없습니다.
+    equal_to_current_password: 는 현재 비밀번호와 달라야 합니다.
+    equal_to_email: 는 이메일과 달라야 합니다.
     error: 오류
     error_401: 이 리소스에 액세스할 수 있는 권한이 없습니다. 로그인해 주세요.
     error_403: 이 리소스를 볼 수 있는 권한이 없습니다.
@@ -2185,6 +2237,20 @@ ko:
     max_regeneration_limit: 최대 재생 한도가 초과되었으니 관리팀에 문의하세요.
     messages:
       data_report_blank: 데이터 보고서가 존재하지 않습니다
+      password_complexity:
+        digit:
+          one: 숫자 한 자리 이상 포함해야 합니다.
+          other: 최소 <x>count</x> 숫자를 포함해야 합니다.
+        lower:
+          one: 소문자 하나 이상을 포함해야 합니다.
+          other: 는 <x>count</x> 소문자 이상을 포함해야 합니다.
+        symbol:
+          one: 하나 이상의 구두점 또는 기호를 포함해야 합니다.
+          other: 최소 <x>count</x> 구두점 또는 기호를 포함해야 합니다.
+        upper:
+          one: 하나 이상의 대문자를 포함해야 합니다.
+          other: "<x>count</x> 대문자 이상을 포함해야 합니다."
+      taken_in_past: 이전에 사용한 비밀번호와 동일하지 않아야 합니다.
     module_error: 이 모듈에 문제가 발생했습니다. 관리팀에 문의하세요.
     module_error_editor: 이 모듈에 문제가 발생했습니다. 모듈 설정을 확인하세요.
     module_props_error: 이 모듈에 문제가 발생했습니다.
@@ -2195,6 +2261,9 @@ ko:
       no_active_plan: 활성 IDP 요금제를 찾을 수 없습니다
     webhooks:
       multiple_webhook_error: 이 프로젝트에 웹훅이 여러 개 있으므로 URL을 업데이트할 수 없습니다.
+    workshop:
+      ical_generation_failed: 캘린더 초대를 생성할 수 없습니다.
+      missing_or_invalid: 누락되었거나 잘못된 워크샵_id
   evaluators:
     errors:
       can_not_processed: 처리할 수 없습니다
@@ -2255,8 +2324,13 @@ ko:
       add_to_yahoo_calendar: 야후 캘린더에 추가
       assessment_center_alert:
         btn_title: 캠페인
-        message_part1: 모든 사전 작업을 완료하세요
-        message_part2: 슬롯을 예약하기 전에
+        complete_previous_groups: 이전의 모든 그룹 활동 완료
+        complete_preworks: 모든 사전 작업 완료
+        please_visit: 다음을 방문하세요.
+        requirements_message: 다음 요건을 충족하는 경우에만 예약할 수 있습니다.
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: 를 사용하여 이러한 요구 사항을 완료할 수 있습니다.
       assessment_center_group_name: 평가 센터
       booking_failed_msg: '슬롯을 예약하지 못했습니다: %{error}'
       buttons:
@@ -2315,7 +2389,7 @@ ko:
         invites: 초대
       what: 무엇
       when: 언제
-      workshop_start_text: 평가 센터는 다음에서 시작됩니다
+      workshop_start_label: 세션은 다음에서 시작됩니다.
     break_time: 휴식 시간
     campaign:
       actions:
@@ -2324,6 +2398,7 @@ ko:
         remove:
           confirmation: 캠페인을 제거하려면 아래 텍스트 상자에 현재 캠페인 이름을 입력합니다
           success: "%{campaignName}이 성공적으로 제거되었습니다."
+          template_confirmation: '현재 템플릿을 삭제하려면 아래 필드에 현재 템플릿의 이름을 입력합니다. 참고: 이렇게 하면 연결된 캠페인 템플릿도 삭제됩니다.'
       users:
         actions:
           export:
@@ -2456,6 +2531,7 @@ ko:
       aria_selected: 선택됨
   idp:
     actions: 작업
+    behavioral: 행동
     board: 보드
     comment_details:
       add_comment: 댓글 추가
@@ -2649,6 +2725,7 @@ ko:
         required: 질문에 대한 답변이 필요합니다.
       max_words: 최대 단어 수
       min_words: 최소 단어 수
+      no_reflective_questions: 성찰 질문 없음
       title: 성찰적 질문
       update_failed: 업데이트하는 동안 오류가 발생했습니다.
       updated_successfully: 답변이 성공적으로 업데이트되었습니다.
@@ -2656,6 +2733,7 @@ ko:
     skill_gap_report:
       title: 기술 격차 보고서
     status: 상태
+    technical: 기술
     user_idp_status:
       approved: 승인됨
       completed: 완료
@@ -2791,6 +2869,12 @@ ko:
     used_number: 사용한 라이선스
     used_out_of: 총 %{used} 중 %{total}
   mailer:
+    copyright:
+      text: 등대. 모든 권리 보유
+    footer:
+      regards: 안녕히 계세요,
+      team_name: 라이트하우스 팀
+      technical_support: 기술적 문제가 있는 경우 이메일( <x>email</x> )로 문의해 주시면 24시간 이내에 답변해 드리겠습니다.
     from: 인재 기업
     idp:
       manager_unread_comments:
@@ -2848,6 +2932,8 @@ ko:
         instructions: 지침
         signin_link: 로그인 링크
       subject: 제목
+    powered_by:
+      text: Lighthouse에서 제공합니다.
     users:
       account_disable: 활동이 없어 계정이 비활성화되었습니다
       warning: 활동이 없어 곧 계정이 비활성화됩니다
@@ -3164,6 +3250,9 @@ ko:
       send_password_email_success: 사용자 %{email}에게 비밀번호가 포함된 이메일을 보냈습니다.
     title: 비밀번호 재설정
   select: 선택
+  sessions:
+    errors:
+      recaptcha: 보안 문자 인증에 실패했습니다. 다시 시도해 주세요.
   shared:
     filters:
       clear: 필터 지우기

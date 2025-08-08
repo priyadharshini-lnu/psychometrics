@@ -304,9 +304,9 @@ fr:
         security_setting_forms:
           attributes:
             magic_link_expiry_in_seconds:
-              greater_than_or_equal_to: La durée doit être d'au moins 5 minutes
+              greater_than_or_equal_to: Duréedoit être d'au moins 5 minutes
             session_inactivity_timeout_in_seconds:
-              greater_than_or_equal_to: La durée doit être d'au moins 60 minutes
+              greater_than_or_equal_to: Duréedoit être d'au moins 60 minutes
         sheet:
           attributes:
             file:
@@ -519,6 +519,7 @@ fr:
         created_at: Date de création
         id: ID
         name: Nom
+        owner: Propriétaire
         updated_at: Date de modification
       factor:
         active: Actif
@@ -545,7 +546,11 @@ fr:
         updated_at: Date de modification
       library:
         created_at: Date de création
+        description: Description
+        files: Dossiers
         id: ID
+        name: Nom
+        owner: Propriétaire
         type: Vignette
         updated_at: Date de modification
       license:
@@ -617,6 +622,7 @@ fr:
         created_at: Date de création
         id: ID
         name: Nom
+        owner: Propriétaire
         updated_at: Date de modification
       report:
         created_at: Date de création
@@ -785,6 +791,8 @@ fr:
           attributes:
             current_password:
               invalid: Le mot de passe actuel est incorrect
+            manager_id:
+              cannot_be_self: L'utilisateur ne peut pas être désigné comme son propre gestionnaire
         user_idp_comment:
           reply_to_reply: Impossible de répondre à une réponse (un seul niveau d’imbrication autorisé)
         user_idp_plan:
@@ -811,6 +819,7 @@ fr:
         bulk_update_evaluation_status: État de l’évaluation de la mise à jour en bloc
         compact_completion_status_export: Exportation de l'état d'achèvement compact
         completion_status_export: Exportation de l'état d'achèvement
+        copy_as_template_or_campaign: Copier la campagne comme modèle
         copy_dimension: Copier la dimension
         create_threesixty_campaign: Créer une campagne Threesixty
         data_report_export: Exportation de rapports de données
@@ -894,6 +903,7 @@ fr:
     invalid_job: Cette notification correspond à un enregistrement supprimé
     mark_as_read: Marquer toutes les lectures
     more: Plus d'informations
+    no_notifications: Aucune notification
     notifications: Notifications
     results: Résultats
     super_admin:
@@ -1073,6 +1083,7 @@ fr:
         description: Cette session d'évaluation a été invalidée, ce qui peut se produire si vous avez poursuivi l'évaluation dans un autre onglet, un autre navigateur ou un autre appareil.
         title: Échec de la dernière demande
       next: Suivant
+      no_skill_mapping_message: Il n'y a pas de cartographie des compétences pour ce poste, contactez votre administrateur.
       read_only: En mode lecture seule, vous ne pouvez pas modifier les résultats.
       save: Économiser
       submissionFailedAlert:
@@ -1107,7 +1118,7 @@ fr:
       display_linked_questions: Affichage des réponses liées à la question sélectionnée.
     trash: Poubelle
     unknown_error: Une erreur inconnue s'est produite.
-    update: Mise à jour
+    update: Mettre à jour
     upload: Télécharger
     video_response:
       device: Autoriser
@@ -1141,6 +1152,7 @@ fr:
     add_group_form:
       previous_assessments_required: Les évaluations se déroulent dans l'ordre suivant
       previous_group_required: Achèvement préalable d'un groupe requis
+      require_previous_groups_completion_for_booking: Il est nécessaire de compléter tous les groupes précédents avant de réserver.
     menu:
       assessment_center: Centre d'évaluation
       assessment_center_invites: Invitations du centre d’évaluation
@@ -1372,6 +1384,7 @@ fr:
       bulk_download: Téléchargement en masse
       bulk_update_evaluation_as_done: Marquer comme terminé
       bulk_update_evaluation_as_undone: Démarquer comme terminé
+      convert_to_template: Convertir en modèle
       download: Télécharger les rapports
       export_completion_status: Statut d'achèvement de l'exportation
       export_external: Externe
@@ -1391,7 +1404,7 @@ fr:
       reset_all_nominations: Réinitialiser toutes les nominations
       reset_participant: Réinitialiser tous les participants
     allow_msg_proctoring_workshop_activity: Les activités du centre d'évaluation ne sont pas surveillées.
-    assessment_center_heading: Détails du centre d'évaluation
+    assessment_center_heading_label: Détails de la session
     assessments_heading: Vos tâches
     column:
       assessment_name: Nom de l'évaluation
@@ -1475,11 +1488,11 @@ fr:
         select_assessor: Formulaire de sélection de l'évaluateur
         success_msg: Le formulaire de l'évaluateur a été téléchargé avec succès
         title: Mise à jour du formulaire de l'évaluateur
-        update: Mise à jour
+        update: Mettre à jour
       update_content_variation:
         select_schedule: Sélectionner une variation de contenu
         success_msg: La variation du contenu de la simulation a été mise à jour avec succès
-        update: Mise à jour
+        update: Mettre à jour
       update_external_config:
         text_placeholder: Configuration json externe
         title: Mise à jour de la configuration externe
@@ -1490,19 +1503,19 @@ fr:
       update_mettl_schedule:
         select_schedule: Sélectionner l'horaire
         success_msg: Le programme Mettl a été mis à jour avec succès
-        update: Mise à jour
+        update: Mettre à jour
       update_norm:
         apply: Appliquer cette modification aux utilisateurs existants de cette campagne
         cannot_remove_norm: Il n'est pas possible de supprimer la norme pour une évaluation terminée.
         select_norm: Sélectionner la norme
         success_msg: Les normes ont été mises à jour avec succès
         title: Mise à jour de la norme
-        update: Mise à jour
+        update: Mettre à jour
       update_simulation_time_extension:
         success_msg: L'extension du temps de simulation a été mise à jour avec succès
         title: Prolongation du délai
         tooltip: Prolongation du temps en tant que facteur (par exemple, 1,5 pour 50 % de temps en plus)
-        update: Mise à jour
+        update: Mettre à jour
       update_time:
         additional_time: Temps (min)
         title: Prolonger le temps
@@ -1517,7 +1530,7 @@ fr:
     pearson_variation_form:
       apply_to_existing_users: Appliquer cette modification aux utilisateurs existants de cette campagne
       select: Sélectionner une variation
-      update: Mise à jour
+      update: Mettre à jour
       update_success: La variation de Pearson a été mise à jour avec succès
     scheduled_successfully: L'évaluation a été programmée avec succès
     scheduling:
@@ -1528,7 +1541,9 @@ fr:
       in_progress: En cours
       ineligible: Inéligible
       interrupted: Interrompu
+      new: Nouveau
       not_started: Pas commencé
+      progress: En cours
       timed_out: Délai d'attente
       universal_link: Lien universel
     ungrouped_assessments_heading: Non groupé
@@ -1549,6 +1564,7 @@ fr:
     column:
       assessor_access: Accès à l'évaluateur
       auto_assign: Attribution automatique
+      locales: Localités
       main_report: Rapport principal
       report_bundle: Ensemble de rapports
       report_name: Nom du rapport
@@ -1571,6 +1587,13 @@ fr:
         apply: Appliquez ces modifications aux utilisateurs existants de cette campagne.
         msg_text: Vous essayez de supprimer le rapport <strong>"%{reportName}"</strong>
         title: Supprimer le rapport ?
+      update_languages:
+        default_language: Langue par défaut
+        other_available_languages: Autres langues disponibles
+        select_default_language: Sélectionner la langue par défaut
+        select_languages: Sélectionner les langues
+        success_msg: Les langues ont été mises à jour avec succès
+        title: Langue du rapport
       user_access:
         apply: Appliquez ces modifications aux utilisateurs existants de cette campagne.
         title:
@@ -1589,7 +1612,7 @@ fr:
       assessment_center_invites: Invitations au centre d'évaluation
       completed_at: Terminé le
       completion_status: État d'avancement
-      hogan_id: Hogan Id
+      hogan_id: Hogan ID
       last_login: Dernière connexion
       manager: Gestionnaire
       modals:
@@ -1622,7 +1645,7 @@ fr:
       other_assessor_assessments: Autres évaluations de l'Assesseur
       other_reports: Autres rapports
     card:
-      duration: La durée
+      duration: Durée
       starts_in: 'Commence en :'
       starts_on: Commence le %{date}
       will_start_shortly: La campagne va démarrer sous peu, veuillez patienter
@@ -1745,7 +1768,7 @@ fr:
       unarchive: Désarchiver
       unpublish: Dépublier
       unresolve: Non résolu
-      update: Mise à jour
+      update: Mettre à jour
       upload: Télécharger
       upload_file: Télécharger le fichier
       verify: Vérifier
@@ -1777,7 +1800,7 @@ fr:
       first_name: Prénom
       icon: Icône
       icon_color: Couleur de l'icône
-      id: Id
+      id: ID
       json:
         answer: Réponse JSON
         external_result: Résultat externe JSON
@@ -1791,13 +1814,13 @@ fr:
       modified_date: Date de modification
       name: Nom
       owner: Propriétaire
-      package_id: Id du paquet
+      package_id: ID du paquet
       poster: Affiche
       project: Projet
       provider: Fournisseur
       qc_user_list: Liste d'utilisateurs QC
       report: Rapport
-      report_id: Rapport Id
+      report_id: Rapport ID
       require_scheduling: Planification des besoins
       responses_count: Réponses Nombre
       schedule_time: Horaire
@@ -1916,7 +1939,11 @@ fr:
       timeout: Votre session a expiré. Veuillez vous connecter à nouveau pour continuer.
       unauthenticated: Vous devez vous connecter ou vous enregistrer avant de continuer.
       unconfirmed: Vous devez confirmer votre adresse électronique avant de continuer.
+    invalid_captcha: L'entrée captcha n'était pas valide.
+    invalid_security_question: La réponse à la question de sécurité n'est pas valide.
     invitations:
+      confirmation_instructions:
+        subject: Instructions de confirmation
       edit:
         confirm_password_label: Confirmer le mot de passe
         header: Définissez votre mot de passe
@@ -1949,6 +1976,23 @@ fr:
           client: 'Location du client : %{section_name}'
           project: 'Projet : %{section_name}'
         subject: Invitation au phare
+      invitation_removed: Votre invitation a été retirée.
+      invitation_token_invalid: Le jeton d'invitation fourni n'est pas valide !
+      mailer:
+        accept: Cliquez ici pour accepter l'invitation.
+        admin_invitation_instructions:
+        body: 'Bonjour %{name}, Vous avez été invité à accéder au panneau d''administration de Lighthouse - The Talent Enterprise assessment platform. %{accept} Ou vous pouvez ignorer cet e-mail. Veuillez ne pas partager vos identifiants d''accès avec qui que ce soit.
+
+          '
+        copyright:
+          text: Lighthouse. Tous droits réservés
+        powered_by:
+          text: Powered by Lighthouse.
+        subject: Invitation au phare
+      new:
+        header: Envoyer une invitation
+        submit_button: Envoyer une invitation
+      no_invitations_remaining: Il ne reste plus d'invitations
       password_change:
         body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse mte.support@mercer.com '
         regards: 'Cordialement, l''équipe de Lighthouse '
@@ -1959,15 +2003,37 @@ fr:
         footer: Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessus et créé un nouveau mot de passe.
         regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Instructions pour réinitialiser votre mot de passe
+      send_instructions: Un courriel d'invitation a été envoyé à %{email}.
       unlock_instructions:
         body: 'Bonjour %{name} ! Votre compte a été verrouillé en raison d''un nombre excessif de tentatives de connexion infructueuses. Cliquez sur le lien ci-dessous pour déverrouiller votre compte : '
         footer: Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessus et créé un nouveau mot de passe.
         regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Instructions pour débloquer votre compte
         unlock_account: Débloquer mon compte
+      updated: Votre mot de passe a été défini avec succès. Vous êtes maintenant connecté.
+      updated_not_active: Votre mot de passe a été défini avec succès.
     omniauth_callbacks:
       failure: Impossible de vous authentifier auprès de %{kind} car "%{reason}".
       success: Authentification réussie à partir du compte %{kind}.
+    paranoid_verification_code:
+      show:
+        submit: Soumettre
+        submit_verification_code: Soumettre le code de vérification
+        verification_code: Code de vérification
+      updated: Code de vérification accepté
+    paranoid_verify:
+      code_required: Veuillez saisir le code fourni par notre équipe d'assistance
+    password_expired:
+      change_required: Votre mot de passe a expiré. Veuillez le renouveler.
+      forced_changed: Vous devez définir un nouveau mot de passe pour votre compte.
+      password_policy_changed: La politique en matière de mot de passe a été modifiée. Veuillez modifier votre mot de passe.
+      show:
+        change_my_password: Modifier mon mot de passe
+        current_password: Mot de passe actuel
+        new_password: Nouveau mot de passe
+        new_password_confirmation: Confirmer le nouveau mot de passe
+        renew_your_password: Renouveler votre mot de passe
+      updated: Votre nouveau mot de passe est enregistré.
     passwords:
       edit:
         instruction: Pour créer un nouveau mot de passe, veuillez saisir votre nouveau mot de passe dans les cases ci-dessous
@@ -2135,6 +2201,10 @@ fr:
       workshop_subject_create:
         already_exists: Le sujet existe déjà dans ce centre d'évaluation.
         part_of_other_workshop: Le sujet est déjà un participant de '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Il n'y a pas de places disponibles pour cet atelier.
+        scheduling_lead_time_passed: Le délai de programmation est écoulé, vous ne pouvez pas réinscrire le sujet.
+        workshop_subject_not_found: Sujet de l'atelier non trouvé
       workshops:
         no_available_assessor_slots: Aucun créneau disponible pour l'évaluateur %{assessor}
         no_available_manager_slots: Aucun emplacement disponible pour le manager %{manager}
@@ -2168,6 +2238,8 @@ fr:
   errors:
     assessments:
       timed_out: Vous ne pourrez pas passer l'évaluation %{assessment_name} car elle a dépassé le temps imparti.
+    equal_to_current_password: doit être différent du mot de passe actuel.
+    equal_to_email: doit être différent de l'email.
     error: Erreur
     error_401: Vous n’êtes pas autorisé à accéder à cette ressource. Veuillez vous connecter.
     error_403: Vous n’êtes pas autorisé à afficher cette ressource.
@@ -2180,6 +2252,20 @@ fr:
     max_regeneration_limit: Limite maximale de régénération dépassée, contactez votre administration.
     messages:
       data_report_blank: Le rapport de données n'existe pas
+      password_complexity:
+        digit:
+          one: doit contenir au moins un chiffre
+          other: doit contenir au moins <x>count</x> chiffres
+        lower:
+          one: doit contenir au moins une lettre minuscule
+          other: doit contenir au moins <x>count</x> lettres minuscules
+        symbol:
+          one: doit contenir au moins un signe de ponctuation ou un symbole
+          other: doit contenir au moins <x>count</x> signes de ponctuation ou symboles
+        upper:
+          one: doit contenir au moins une lettre majuscule
+          other: doit contenir au moins <x>count</x> lettres majuscules
+      taken_in_past: ne doit pas être identique à un mot de passe utilisé précédemment.
     module_error: Un problème est survenu avec ce module, veuillez contacter l'administration.
     module_error_editor: Quelque chose n'a pas fonctionné avec ce module, veuillez vérifier les paramètres du module.
     module_props_error: Quelque chose n'a pas fonctionné avec ce module.
@@ -2190,6 +2276,9 @@ fr:
       no_active_plan: Aucun plan d'action actif n'a été trouvé
     webhooks:
       multiple_webhook_error: l'url ne peut pas être mise à jour car il y a plusieurs webhooks pour ce projet.
+    workshop:
+      ical_generation_failed: Impossible de générer une invitation au calendrier
+      missing_or_invalid: Numéro d'atelier manquant ou invalide
   evaluators:
     errors:
       can_not_processed: ne peut être traité
@@ -2250,8 +2339,13 @@ fr:
       add_to_yahoo_calendar: Ajouter au calendrier Yahoo
       assessment_center_alert:
         btn_title: Campagne
-        message_part1: Complétez tous les travaux préliminaires dans cette
-        message_part2: avant de réserver un créneau.
+        complete_previous_groups: Réaliser toutes les activités de groupe précédentes
+        complete_preworks: Terminer tous les travaux préliminaires
+        please_visit: Veuillez consulter le site
+        requirements_message: Vous ne pouvez effectuer une réservation que si vous remplissez les conditions suivantes
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: pour remplir ces conditions.
       assessment_center_group_name: Centre d'évaluation
       booking_failed_msg: 'Échec de la réservation du créneau : %{error}'
       buttons:
@@ -2310,7 +2404,7 @@ fr:
         invites: Invitations
       what: Ce qu'il faut faire
       when: Quand
-      workshop_start_text: Votre centre d'évaluation débutera en
+      workshop_start_label: Votre session commencera à
     break_time: Temps de pause
     campaign:
       actions:
@@ -2319,6 +2413,7 @@ fr:
         remove:
           confirmation: Saisir le nom de la campagne actuelle dans la zone de texte pour supprimer la campagne
           success: "%{campaignName} a été supprimé avec succès."
+          template_confirmation: 'Saisissez le nom du modèle actuel dans le champ ci-dessous pour le supprimer. Remarque : cette opération supprimera également le modèle de campagne lié.'
       users:
         actions:
           export:
@@ -2395,7 +2490,7 @@ fr:
     test_webhook:
       create_success: Test du webhook réussi.
       success: Succès
-    update: Mise à jour
+    update: Mettre à jour
     upload: Télécharger
     workshop_invited_subjects:
       statuses:
@@ -2431,7 +2526,7 @@ fr:
       increase_font: Augmenter la taille de la police
       reset_font: Réinitialiser la taille de la police
     input_duration:
-      max_duration: La durée maximale est de %{duration}
+      max_duration: Durée maximale est de %{duration}
     schedule_availability:
       copy_to_all: Copie à tous
       end_date: Date de fin
@@ -2673,6 +2768,7 @@ fr:
         required: La réponse à la question est requise
       max_words: Mots maximums
       min_words: Mots minuscules
+      no_reflective_questions: Pas de questions de réflexion
       title: Questions de réflexion
       update_failed: Une erreur s'est produite lors de la mise à jour
       updated_successfully: Vos réponses ont été mises à jour avec succès
@@ -2816,6 +2912,12 @@ fr:
     used_number: Licences utilisées
     used_out_of: "%{used} sur %{total}"
   mailer:
+    copyright:
+      text: Phare. Tous droits réservés
+    footer:
+      regards: Cordialement,
+      team_name: Équipe Lighthouse
+      technical_support: Pour tout problème technique, écrivez-nous à %{email} et nous répondrons dans les 24 heures.
     from: L'entreprise des talents
     idp:
       manager_unread_comments:
@@ -2873,6 +2975,8 @@ fr:
         instructions: Cliquez sur le lien ci-dessous pour vous connecter à lighthouse.
         signin_link: Lien de connexion
       subject: Lien de connexion pour Lighthouse
+    powered_by:
+      text: Propulsé par Lighthouse.
     users:
       account_disable: Votre compte a été désactivé pour cause d'inactivité
       warning: Votre compte sera bientôt désactivé pour cause d'inactivité
@@ -2899,7 +3003,7 @@ fr:
   profile:
     add_field: Ajouter un champ
     add_photo: Ajouter une photo
-    age: L'âge
+    age: Age
     change_password: Modifier le mot de passe
     change_photo: Changer de photo
     email: Courriel
@@ -2911,7 +3015,7 @@ fr:
     locale: Langue préférée
     male: Homme
     mandatory_fields: Indique les champs obligatoires
-    not_disclosed: Préfère ne pas divulguer
+    not_disclosed: Préfère ne pas répondre
     old_data: Les données de votre profil datent de %{months} mois. Veuillez confirmer les détails pour continuer
     password: Mot de passe
     password_confirmation: Confirmation du mot de passe
@@ -2919,7 +3023,7 @@ fr:
     success_update: Le profil a été enregistré avec succès
     timezone: Fuseau horaire
     title: Mon profil
-    update: Mise à jour
+    update: Mettre à jour
     update_required: Mises à jour du profil requises
   profiles:
     edit:
@@ -3173,7 +3277,7 @@ fr:
       on_hold: En attente
       released: Libéré
     trash: Poubelle
-    update: Mise à jour
+    update: Mettre à jour
     upload: Télécharger
   reset_password_modal:
     fields:
@@ -3189,6 +3293,9 @@ fr:
       send_password_email_success: Courriel envoyé à l'utilisateur %{email} avec le mot de passe.
     title: Réinitialiser le mot de passe
   select: Sélectionner
+  sessions:
+    errors:
+      recaptcha: La vérification du Recaptcha a échoué. Veuillez réessayer.
   shared:
     filters:
       clear: Effacer les filtres
@@ -3532,11 +3639,11 @@ fr:
     report_approval_status:
       approved: Approuvé
       denied: Refusé
-      waiting: Attente
+      waiting: En attente
     report_release_status:
       on_hold: En attente
       released: Libéré
-      waiting: Attente
+      waiting: En attente
     report_statuses:
       approved: Approuvé
       available: Disponible
@@ -3553,7 +3660,7 @@ fr:
       denied: Refusé
       done: Terminé
       not_completed: Non achevé
-      waiting: Attente
+      waiting: En attente
   threesixty:
     accept_privacy_modal:
       accept: Accepter
@@ -3573,7 +3680,7 @@ fr:
     approved: Approuvé
     approving_mail_sent: Le courrier d'approbation de la nomination a été envoyé aux gestionnaires
     as_my: comme mon
-    assessment: L'évaluation
+    assessment: Statut d'évaluation?
     back_to_tasks: Retour aux tâches
     begin: Commencer
     cancel: Annuler
@@ -3603,7 +3710,7 @@ fr:
     email_schedules:
       delete_successful: Le calendrier des courriels a été supprimé avec succès
     evaluate: Évaluer
-    evaluation: L'évaluation
+    evaluation: Statut d'évaluation?
     evaluation_all_closed_message: Actuellement, toutes les nominations sont en attente d'approbation
     evaluation_closed_message: L'évaluation est terminée pour ce sujet
     evaluation_closed_nomination_message: Vous ne pouvez pas proposer de candidature pour ce sujet car l'évaluation est terminée pour ce sujet
@@ -3626,9 +3733,9 @@ fr:
     more_info_evaluation_label: Plus d'informations - Evaluations
     more_info_nomination_label: Plus d'informations - Candidatures
     my_projects: Mes projets
-    name_label: Nom
+    name_label: Name / Email
     nominate: Nommer
-    nominate_evaluators: Nommer des évaluateurs pour
+    nominate_evaluators: Nommer des évaluateurs
     nomination: Nomination
     nomination_help_modal:
       title: Aide à la nomination
@@ -3728,7 +3835,7 @@ fr:
     select_relationship: Sélectionner la relation
     self: Autonome
     set_name_for_evaluator: Définir le nom de l'évaluateur
-    setup_nominations: Mise en place des nominations
+    setup_nominations: Effectuer les nominations
     subject: Sujet
     submit: Soumettre
     timed_out: Délai d'attente
@@ -3738,7 +3845,7 @@ fr:
     view_my_report: Voir mon rapport
     view_nominations: Voir les nominations
     view_reports: Voir les rapports
-    waiting: Attente
+    waiting: En attente
     you: Vous
     yourself: Vous-même
   threesixty.accept_privacy_modal:
@@ -3862,17 +3969,17 @@ fr:
       evaluator_nomination_status:
         completed: Terminé
         declined: Refusé
-        waiting: Attente
+        waiting: En attente
       manager_evaluation_status:
         approved: Approuvé
         denied: Refusé
-        waiting: Attente
+        waiting: En attente
       manager_nomination_status:
         approved: Approuvé
         completed: Terminé
         declined: Refusé
         denied: Refusé
-        waiting: Attente
+        waiting: En attente
     timer_title:
       assessment: L'évaluation
       campaign: Campagne

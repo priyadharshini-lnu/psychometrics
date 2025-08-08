@@ -10,20 +10,22 @@ export const AiAssistantTR = t.intersection([
     systemPrompt: t.string,
     userPrompt: t.string,
     assistantType: t.string,
-    assistantOutputSchemaKeys: t.union([
-      t.array(t.type({
-        id: t.string,
-        key: t.string,
-        description: t.string,
-        keyType: t.string,
-      })),
-      t.null,
-    ]),
-  })])
+    assistantOutputSchemaKeysAttributes: t.array(t.type({
+      id: t.number,
+      key: t.string,
+      description: t.string,
+      keyType: t.string,
+    })),
+  }),
+])
 
 export type AiAssistant = t.TypeOf<typeof AiAssistantTR>
 
-
 export const Schema = {
   type: 'assistants',
+  relationships: {
+    assistantOutputSchemaKeys: {
+      type: 'assistant_output_schema_keys',
+    },
+  },
 }

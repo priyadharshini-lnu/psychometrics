@@ -116,7 +116,7 @@ module Administration
       private
 
       def permissions
-        subject_permissions.merge(campaign_permissions)
+        subject_permissions.merge(campaign_permissions).merge(v2_campaign_permissions)
       end
 
       def subject_permissions
@@ -153,6 +153,21 @@ module Administration
             bulk_regenerate_reports
             bulk_download
             import_results
+          ],
+          {
+            project_id: threesixty_campaign.campaign.project_id,
+            campaign_id: threesixty_campaign.campaign_id
+          }
+        )
+      end
+
+      def v2_campaign_permissions
+        GetPermissionsHash.call!(
+          ::Api::Administration::ThreesixtyCampaignPolicy,
+          current_user,
+          nil,
+          %w[
+            convert_to_template
           ],
           {
             project_id: threesixty_campaign.campaign.project_id,

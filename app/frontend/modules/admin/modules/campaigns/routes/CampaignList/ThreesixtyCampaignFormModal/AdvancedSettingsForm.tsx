@@ -72,6 +72,7 @@ const AdvancedSettingsForm = ({
       handleTemplateSearch(templateSearchterm)
     }
   }, [campaignTemplates])
+
   const handleFinish = () => {
     const factors = checkedFactorsForFactorsTree.map((factorId) => {
       const id = factorId.split('_').pop()
@@ -266,6 +267,10 @@ const AdvancedSettingsForm = ({
     const campaignTemplate = _.find(campaignTemplates,
       (campaignTemplate: CampaignTemplate) => campaignTemplate.id === campaignTemplateId)
     setSelectedTempalte(campaignTemplate)
+    if (campaignTemplate && campaignTemplate.campaignId) {
+      resetSettings()
+      return
+    }
     if (campaignTemplate) {
       handleAssessmentChange(campaignTemplate.assessmentId)
       handleInitialLoad(campaignTemplate.assessmentId)

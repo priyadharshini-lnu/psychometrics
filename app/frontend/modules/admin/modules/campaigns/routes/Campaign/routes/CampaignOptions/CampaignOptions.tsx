@@ -391,6 +391,11 @@ const CampaignOptions: React.FC<Props> = ({
 
         {options.instructionsEnabled && <Instructions projectId={parsedProjectId} campaignId={parsedCampaignId} />}
 
+        <Option
+          label={I18n.t('administration.campaigns.options.enable_video_call_recording')}
+          {...parametersForField('enableVideoCallRecording')}
+        />
+
         <div className="mb-8 mt-8">
           <h4>{I18n.t('administration.campaigns.options.description.name')}</h4>
           <Description projectId={parsedProjectId} campaignId={parsedCampaignId} />

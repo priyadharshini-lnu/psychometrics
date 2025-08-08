@@ -15,6 +15,8 @@ zh:
       title: 经审计的变化
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha 验证失败
         new:
           forgot_password: 忘记密码？
           instruction: 请使用个人账户信息登录
@@ -77,7 +79,7 @@ zh:
           actions: 行动
           created_at: 创建于
           email: 电子邮件
-          id: 同上
+          id: ID
           name: 名称
         header:
           add_admin: 添加管理员
@@ -147,6 +149,7 @@ zh:
             accesssheet_manage: 访问表管理
             accesssheet_settings: 访问表设置
             accesssheet_view: 访问表视图
+            export: 出口
             title: 仪表板
             view: 查看
           datasheets:
@@ -154,7 +157,7 @@ zh:
             title: 数据表
             view: 查看
           developmentActions:
-            export: 出口
+            export: 导出
             export_global: 全球出口
             export_global_translations: 出口全球翻译
             export_translations: 出口翻译
@@ -179,7 +182,7 @@ zh:
             manage: 管理
             title: 工作角色
             view: 查看
-          mediaLibraries:
+          libraries:
             manage: 管理
             title: 媒体图书馆
             view: 查看
@@ -190,7 +193,7 @@ zh:
             title: 信息
           norms:
             manage: 管理
-            title: 规范
+            title: 常模
             view: 查看
           proficiencyLevels:
             export: 出口能力水平
@@ -224,7 +227,7 @@ zh:
             title: 问题
             view: 查看
           reflectionQuestions:
-            export: 出口
+            export: 导出
             import: 进口
             manage: 管理
             title: IDP 反思问题
@@ -265,7 +268,7 @@ zh:
             view_report: 查看报告
             view_stats: 查看统计
           skills:
-            export: 出口
+            export: 导出
             export_translations: 出口翻译
             import: 进口
             import_translations: 进口翻译
@@ -290,18 +293,33 @@ zh:
             view: 查看
     ai_assistants:
       actions:
+        create: 创建人工智能助理
+        edit: 编辑人工智能助理
         playground: 游乐场
       ai_assistants: 人工智能助理
       ai_assistants_playground: 人工智能助理游乐场
       column:
         provider: 提供商
+      created_successfully: AI 助手创建成功。
       form:
+        add_output_schema_key: 添加输出模式密钥
+        dependencies: 依赖关系
         description: 说明
+        enter_description: 输入描述
+        enter_schema_key: 输入模式密钥
+        key: 钥匙
         name: 名称
+        output_schema_keys: 输出模式键
         provider: 提供商
+        remove_output_schema_key: 移除输出模式密钥
+        schema_key_description_required: 模式密钥描述为必填项
+        schema_key_required: 需要模式密钥
+        schema_key_type: 钥匙类型
+        schema_key_unique: 模式键应是唯一的
         system_prompt: 系统提示
-        title: 人工智能助理
+        type: 类型
         user_prompt: 用户提示
+      updated_successfully: 人工智能助理已成功更新。
     any: " - 任何 - "
     api:
       campaigns:
@@ -532,7 +550,7 @@ zh:
         reset_successfully: 使用电子邮件"%{subjectEmail}"对主题进行的重置评估成功。
         subject_email: 主题电子邮件
         subject_name: 科目名称
-      completed_at: 在
+      completed_at: 完成于
       count: "%{count} 评估员"
       create_assessor: 添加评估员
       evaluations: 评估
@@ -709,10 +727,10 @@ zh:
       audit_reports: 审计报告
       campaign_templates: 活动模板
       campaigns: 活动
-      client: 客户租约
+      client: 客户平台
       clientAdmins: 客户管理员
       client_admins: 客户管理员
-      clients: 客户租约
+      clients: 客户平台
       communication_center: 通信中心
       create: 创建
       data_exports: 数据导出
@@ -729,12 +747,12 @@ zh:
       license_usages: 许可证的使用
       licenses: 许可证
       new_campaign: 新活动
-      norm: 规范
-      norms: 规范
+      norm: 常模
+      norms: 常模
       norms_editor: 规范编辑
       occupations: 职业
       occupations_factors: 因素
-      participants: 与会者
+      participants: 参与者
       products: 产品
       project_admins: 项目管理员
       projects: 项目
@@ -767,6 +785,8 @@ zh:
       new:
         header: 批量下载
       reports_unavailable: 目前没有可供下载的报告，请确认您要下载的报告是否可用。
+      select_reports_for_download: 请至少选择一份报告下载。
+      select_reports_for_regenerate: 请至少选择一份报告进行再生。
     cable:
       notification:
         assessment_factors: 获取因子
@@ -856,14 +876,15 @@ zh:
       campaign_templates: 活动模板
       column:
         assessment: 评估
+        campaign: 活动
         owner: 业主
         report: 报告
       copy:
-        successfully: 客户租约 %{name} 已成功复制。
+        successfully: 客户平台 %{name} 已成功复制。
       create:
-        successfully: 客户租约 %{name} 创建成功。
+        successfully: 客户平台 %{name} 创建成功。
       destroy:
-        successfully: 客户租约 %{name} 已成功删除。
+        successfully: 客户平台 %{name} 已成功删除。
       edit:
         header: 编辑客户端
       errors:
@@ -907,9 +928,9 @@ zh:
           delete: 删除客户
           edit: 编辑客户端
       toggle_status:
-        successfully: 客户租约 %{name} 已成功更新。
+        successfully: 客户平台 %{name} 已成功更新。
       update:
-        successfully: 客户租约 %{name} 已成功更新。
+        successfully: 客户平台 %{name} 已成功更新。
     campaigns:
       actions: 管理
       assessment_reports:
@@ -930,6 +951,7 @@ zh:
       assessors:
         spoof:
           successfully: 您已成功登录 %{name}
+      convert_to_template: 转换为模板
       copy: 复制
       delete: 删除
       edit: 编辑
@@ -942,16 +964,20 @@ zh:
         inactive: 不活动
         status: 现状
       form:
+        active_notice: 广告系列状态将自动更改为在选定的结束日期关闭
         campaign: 活动
+        inactive_notice: 广告系列状态将在选定的开始日期自动更改为活动
+        instruction: 这只能在创建广告系列时启用
         name: 名称
         practice_campaign: 实践活动
         status: 现状
       listing:
         assessments: 评估
-        id: 同上
+        id: ID
         name: 名称
         reports: 报告
         status: 现状
+        template: 模板
         type: 类型
       menus:
         add_common_campaign: 添加共同活动
@@ -965,15 +991,21 @@ zh:
             active: 活跃
             archive: 档案
             assessment: 评估
+            category: 类别
             closed: 关闭
+            default_assessment_language: 评估默认语言
+            default_report_language: 报告默认语言
             empty: 空
             inactive: 不活动
             name: 名称
             normal: 正常
             previous: 上一页
+            select_assessment_language: 选择评估语言
+            select_report_language: 选择报告语言
             skill_rater: 技能评级员
             standard: 标准
             status: 现状
+            type: 类型
           close:
             content: 您确定要关闭多评级活动创建器吗？ 任何未保存的自定义工作都将丢失。 请确认您的决定。
             title: 关闭多评级活动创建器？
@@ -1002,6 +1034,7 @@ zh:
           name: 说明
           save: 保存说明
           save_success: 说明已成功保存
+        enable_video_call_recording: 启用视频通话录音
         fixed_time: 固定时间
         instructions:
           actions:
@@ -1055,11 +1088,11 @@ zh:
           all: 全部
           anonymous: 匿名
           identified: 已确定
-        id: 同上
+        id: ID
         is_active: 活跃
         name: 名称
         no_permission_message: 您没有权限修改
-        updated_by: 更新时间
+        updated_by: 更新者
       validations:
         dates:
           end: 必须在开始日期之后
@@ -1079,6 +1112,7 @@ zh:
         ai_assistants: 人工智能助理
         ai_assisted_idp: AI 援助的境内流离失所者
         global_skills: 全球技能
+        idp: IDP
         sms_notification: 短信通知
     clients:
       api_keys:
@@ -1097,11 +1131,11 @@ zh:
         type: 类型
         year: 年份
       copy:
-        successfully: 客户租约"%{name}"已成功复制。
+        successfully: 客户平台"%{name}"已成功复制。
       create:
         successfully: 客户租户"%{name}"创建成功。
       destroy:
-        successfully: 客户租约 %{name} 已成功删除。
+        successfully: 客户平台 %{name} 已成功删除。
       edit:
         header: 编辑客户端
       form:
@@ -1162,12 +1196,12 @@ zh:
               sub_campaigns: 子活动
               tests_allocated: 分配的测试
               users: 用户
-            id: 同上
+            id: ID
             name: 活动名称
             reports: 报告
             updated_at: 更新日期
           index:
-            export: 出口
+            export: 导出
             new: 添加
             title: 活动
           list:
@@ -1185,7 +1219,7 @@ zh:
               sub_campaigns: 子活动
               tests_allocated: 分配的测试
               users: 用户
-            id: 同上
+            id: ID
             name: 活动名称
             reports: 报告
             updated_at: 更新日期
@@ -1200,7 +1234,7 @@ zh:
               create_user: 添加新用户
               delete: 删除活动
               edit: 编辑活动
-              export: 出口
+              export: 导出
           sidebar:
             archive: 存档活动
             copy: 复制活动
@@ -1236,14 +1270,14 @@ zh:
                 sub_campaign: 子活动
                 tests_allocated: 分配的测试
                 users: 用户
-              id: 同上
+              id: ID
               name: 子活动名称
               reports: 报告
               updated_at: 更新日期
             header:
               actions: 行动
             index:
-              export: 出口
+              export: 导出
               new: 添加
               title: 次级活动
             list:
@@ -1259,7 +1293,7 @@ zh:
                 sub_campaign: 子活动
                 tests_allocated: 分配的测试
                 users: 用户
-              id: 同上
+              id: ID
               name: 子活动名称
               reports: 报告
               updated_at: 更新日期
@@ -1309,7 +1343,7 @@ zh:
           assigned_user: 指定用户
           completed_user: 已完成用户
           created_at: 创建日期
-          id: 同上
+          id: ID
           name: 项目名称
           number: 数量
           project_admin: 项目管理员
@@ -1342,12 +1376,12 @@ zh:
         header:
           actions: 行动
         index:
-          export: 出口
+          export: 导出
           new: 添加
           title: 项目
           tooltips:
             create: 创建
-            export: 出口
+            export: 导出
         list:
           2fa_enabled: 已启用 2FA
           actual_usage: 实际使用情况
@@ -1358,7 +1392,7 @@ zh:
           assigned_user: 指定用户
           completed_user: 已完成用户
           created_at: 创建日期
-          id: 同上
+          id: ID
           name: 项目名称
           number: 数量
           project_admin: 项目管理员
@@ -1410,7 +1444,7 @@ zh:
             not_started: 未开始
           copy:
             error: 未复制客户租约"%{name}"。
-            successfully: 客户租约"%{name}"已成功复制。
+            successfully: 客户平台"%{name}"已成功复制。
           create:
             successfully: 客户租户"%{name}"创建成功。
           designs:
@@ -1419,7 +1453,7 @@ zh:
               no_logo: 尚无徽标
           destroy:
             error: 无法删除"%{name}"，因为存在一些主体或评价器的从属关联。
-            successfully: 客户租约"%{name}"已成功删除。
+            successfully: 客户平台"%{name}"已成功删除。
           edit:
             header: 编辑 360 活动
           export:
@@ -1427,13 +1461,13 @@ zh:
             assessment: 会议
             client_admins: 客户管理员
             created_at: 创建于
-            id: 同上
+            id: ID
             name: 名称
             report: 报告
             report_bundle: 报告包
             status: 现状
           index:
-            export: 出口
+            export: 导出
             new: 添加 360 活动
             title: 360 活动
           license:
@@ -1447,7 +1481,7 @@ zh:
             assessment: 会议
             client_admins: 客户管理员
             created_at: 创建于
-            id: 同上
+            id: ID
             name: 名称
             report: 报告
             report_bundle: 报告包
@@ -1491,9 +1525,9 @@ zh:
               assessment_type: 评估类型
               title: 统计资料
           toggle_status:
-            successfully: 客户租约 %{name} 已成功更新。
+            successfully: 客户平台 %{name} 已成功更新。
           update:
-            successfully: 客户租约 %{name} 已成功更新。
+            successfully: 客户平台 %{name} 已成功更新。
           url: 网址
         toggle_status:
           successfully: 项目 %{name} 已成功更新。
@@ -1531,12 +1565,12 @@ zh:
             title: 存档<strong>%{name}</strong>?
           enable:
             title: 取消存档<strong>%{name}</strong>?
-      tenancies: 客户租约
+      tenancies: 客户平台
       threesixty_campaign: 三六零运动
       toggle_status:
-        successfully: 客户租约 %{name} 已成功更新。
+        successfully: 客户平台 %{name} 已成功更新。
       update:
-        successfully: 客户租约 %{name} 已成功更新。
+        successfully: 客户平台 %{name} 已成功更新。
     close: 关闭
     common:
       add: 添加
@@ -1554,6 +1588,7 @@ zh:
       select_all: 选择所有
       type: 类型
       unselect_all: 全部取消选择
+    communication_settings: 设置
     communications:
       create:
         successfully: 通信已成功创建。
@@ -1586,9 +1621,17 @@ zh:
            {{email}} - 接收者电子邮件
            {{schedule_start_date}} - 计划开始日期
            {{schedule_end_date}} - 计划结束日期"
+        campaign: 活动
+        campaign_assessment_group: 活动评估小组
+        client: 客户
         completion: 完工
+        custom: 定制
         delivery_at: 交货价格（消费税）
         delivery_delay_hours: 交货延迟（小时）
+        delivery_interval: 交付间隔
+        delivery_interval_number: 交付间隔编号
+        delivery_interval_period: 交付间隔期
+        delivery_rule: 交付规则
         delivery_rules:
           in_progress: 如果评估正在进行中
           not_competed: 如果未完成评估
@@ -1600,20 +1643,27 @@ zh:
         idp_template_approved: IDP 批准
         idp_template_assigned: 分配的 IDP
         idp_template_rejected: 拒绝的境内流离失所者
+        insert_piped_text: 插入管道文字
         invitation: 邀请函
         kind: 通信类型
         locale: 区域设置
         magic_link_email: 魔法链接电子邮件
+        message_body_placeholder: 在此输入您的信息...
         new_assignment: 新任务
         new_users: 新用户
         other: 其他
+        owner: 业主
+        project: 项目
+        recipients: 受援国
         reminder: 提醒
         report_available: 现有报告
+        select_assessments: 选择要检查完成情况的评估
         selected: 精选
         selected_cc_recipients: 选定的 CC 接受者
         selected_recipients: 选定受援国
         stop_reminder: 停止发送提醒
         stop_reminder_datetime: 提醒的结束日期（消费税）
+        subject: 主题
         workshop_booked: 评估中心预约确认
         workshop_cancelled: 评估中心取消
         workshop_completed: 评估中心已完成
@@ -1767,7 +1817,7 @@ zh:
     datasheet:
       threesixty_warning: 您不能从此处上传 360 报告的数据表列。 360 报告的数据表列是从与该报告链接的活动中加载的
     dates:
-      completed: 在
+      completed: 完成于
       end: 结束日期
       start: 开始日期
       started: 开始于
@@ -1819,7 +1869,7 @@ zh:
         details: 文件详情
         failure_msg: 导出翻译时出错
         success_msg: 导出开发操作正在进行中，请查看通知中的状态。
-        title: 出口
+        title: 导出
         translation_details: 详细信息
       export_actions:
         development_action_translations_title: 出口发展行动 翻译
@@ -1900,10 +1950,24 @@ zh:
         successfully: 为维度 %{name} 计划了导入因子作业。
         title: 进口因素
       import_modal:
+        after: 之后
+        before: 之前
         cancel: 取消
+        change_log_input: 更改日志
         continue: 继续
+        error: 错误
+        error_occurred: 发生错误
+        errors:
+          file_error: 请在继续之前选择一个 JSON 文件。
+          processing_error: 文件处理错误
+        field: 现场
         import: 进口
         import_dimension: 进口尺寸
+        import_scheduled: 计划导入
+        operation: 运行
+        owner_input_validation: 请选择业主
+        owner_select: 选择所有者
+        select_json: 选择 JSON 文件
       import_translations:
         error: 为维度 %{name} 导入翻译时出错。
         successfully: 为维度 %{name} 计划的导入翻译。
@@ -1918,7 +1982,7 @@ zh:
       list:
         active: 活跃
         created_at: 创建日期
-        id: 同上
+        id: ID
         name: 名称
         updated_at: 修改日期
       new:
@@ -2025,7 +2089,7 @@ zh:
       list:
         active: 活跃
         created_at: 创建日期
-        id: 同上
+        id: ID
         name: 名称
         updated_at: 修改日期
       new:
@@ -2088,6 +2152,9 @@ zh:
         remove_confirm: 在文本框中输入当前模板名称，删除模板
         success: "%{idpName} 已成功删除。"
       add_idp_template: 添加 IDP 模板
+      ai_assisted_idp_enabled: 启用人工智能辅助 IDP
+      ai_enabled: 支持人工智能
+      ai_settings: 人工智能设置
       all: 全部
       appearance: 外观
       appearance_hint: 要修改外观，请先保存 IDP 模板，以启用这些设置。
@@ -2103,6 +2170,7 @@ zh:
       enter_template_name: 名称
       enter_template_name_error: 模板名称为必填项
       errors:
+        cannot_update_progress_plan_completed: 无法更新进度，因为 IDP 计划已经完成
         update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。
       fields:
         assigned_data: 指定数据
@@ -2130,6 +2198,7 @@ zh:
       logo_type_label: 徽标类型
       no_reflection_questions_selected: 未选择反思问题
       none: 无
+      one_click_idp_enabled: 启用一键式 IDP
       reference_locale: 参考区域设置
       reflection_questions: 思考题
       reflection_questions_hint: 要修改反思问题，请先保存 IDP 模板以启用这些设置。
@@ -2236,7 +2305,7 @@ zh:
     individual_invite:
       tabs:
         assessment_center: 评估中心
-        subjects: 主题
+        invitation_status: 邀请状态
     innovation_styles:
       create:
         successfully: 创新风格 %{name} 创建成功。
@@ -2251,7 +2320,7 @@ zh:
         title: 创新风格
       list:
         created_at: 创建日期
-        id: 同上
+        id: ID
         name: 名称
         position: 职位
         updated_at: 修改日期
@@ -2284,7 +2353,7 @@ zh:
       list:
         condition: 条件
         created_at: 创建日期
-        id: 同上
+        id: ID
         name: 名称
         position: 职位
         updated_at: 修改日期
@@ -2365,7 +2434,9 @@ zh:
       assessment_center: 评估中心：
       booked_at: 预订地点
       column:
+        invitation_status: 邀请状态
         participant: 参与者
+        scheduling_details: 日程安排详情
       remove_confirm:
         content: 您确定要删除邮件主题"%{subjectEmail}"吗？
         success: 带有电子邮件"%{subjectEmail}"的主题已成功删除。
@@ -2373,6 +2444,8 @@ zh:
       statuses:
         accepted: 已接受
         cancelled: 已取消
+        late_cancelled: 延迟取消
+        late_rescheduled: 改期
         pending: 待定
         requested_cancellation: 申请取消
         requested_cancellation_rejected: 拒绝取消
@@ -2406,8 +2479,6 @@ zh:
         expected_proficiency_level: 预期能力水平
       form:
         title: 技能岗位制图
-      import:
-        taxonomy: 分类学
     job_roles:
       export:
         translations:
@@ -2469,6 +2540,7 @@ zh:
         successfully: 用户 %{name} 已成功更新。
       update:
         successfully: 用户 %{name} 已成功更新。
+    message: 留言
     meta_title: 管理面板
     navigation:
       ai_assistants: 人工智能助理
@@ -2482,7 +2554,7 @@ zh:
       campaign_templates: 活动模板
       change_password: 更改密码
       client_admins: 客户管理员
-      clients: 客户租约
+      clients: 客户平台
       communication_center: 通信中心
       dashboard: 仪表板
       data_reports: 数据报告
@@ -2491,10 +2563,10 @@ zh:
       factors: 因素
       innovation_styles: 创新风格
       libraries: 媒体图书馆
-      norms: 规范
+      norms: 常模
       occupations: 职业
       options: 选项
-      participants: 与会者
+      participants: 参与者
       profile: 简介
       profile_details: 详细信息
       project_admins: 项目管理员
@@ -2511,12 +2583,12 @@ zh:
     no_data_found: 未找到数据
     norms:
       copy:
-        error: '规范 #%{id} 未被复制。'
+        error: '常模 #%{id} 未被复制。'
         successfully: 已成功复制规范"%{name}"。
       create:
         successfully: 已成功创建规范"%{name}"。
       destroy:
-        successfully: 规范"%{name}"已成功删除。
+        successfully: 常模"%{name}"已成功删除。
       edit:
         header: 重命名规范
       editor:
@@ -2526,7 +2598,7 @@ zh:
       export:
         success_msg: 规范导出任务已成功安排，请查看通知中的状态。
       import:
-        download_example_csv: 规范 CSV 样本
+        download_example_csv: 常模 CSV 样本
         select_file_validation: 提交前请选择所有者和文件。
         success_msg: 上传的文件已排队等待导入，请查看通知中的状态。
         title: 规范导入
@@ -2534,18 +2606,18 @@ zh:
         import: 进口
         new: 添加
         owner: 业主
-        title: 规范
+        title: 常模
       list:
         active: 活跃
         created_at: 创建日期
         dimension_id: 尺寸同上
-        id: 同上
+        id: ID
         name: 名称
         updated_at: 修改日期
         updated_by: 更新人
       new:
         header: 新标准
-      norms: 规范
+      norms: 常模
       remove:
         confirm: 在文本框中输入以下标准名称进行确认
         warning: 您确定要删除规范"%{name}"吗？
@@ -2575,10 +2647,11 @@ zh:
         editor: 规范编辑
         export: 出口规范
         title: 诺姆的选择
+      title: 常模
       toggle_status:
         successfully: 规范已成功更新。
       update:
-        successfully: 规范 %{name} 已成功更新。
+        successfully: 常模 %{name} 已成功更新。
     notification_bell_icon: 通知铃图标
     noty:
       error_408: 此操作耗时过长，请尝试重新加载页面。
@@ -2599,7 +2672,7 @@ zh:
         title: 职业
       list:
         created_at: 创建日期
-        id: 同上
+        id: ID
         name: 名称
         updated_at: 修改日期
       new:
@@ -2631,7 +2704,7 @@ zh:
       list:
         condition: 条件
         created_at: 创建日期
-        id: 同上
+        id: ID
         name: 名称
         position: 职位
         updated_at: 修改日期
@@ -2662,19 +2735,23 @@ zh:
     piped_text_modal:
       assessment_id: 评估 ID
       campaign_id: 活动 ID
+      campaign_name: 活动名称
+      campaigns: 活动
       insight_page_link: 洞察力页面链接
       insight_page_url: 洞察页面 URL
       join_link: 加入链接
       magic_link: 魔法链接
       magic_url: 神奇的 URL
       profile_custom_field: 配置文件自定义字段
+      project_name: 项目名称
+      projects: 项目
       report_name: 报告名称
       text: 文本
       title: 添加管道文字
     proctoring_sessions:
       columns:
         comment: 评论
-        completed_at: 在
+        completed_at: 完成于
         conclusion: 结论
         links: 链接
         score: 得分
@@ -2695,7 +2772,9 @@ zh:
       errors:
         create:
           invalid_format: 级别定义必须是一个定义数组。
+          level_definition_must_exist: 级别定义不能为空
           level_definition_must_match_level: 必须完全包含 %{expected}水平，但给出了 %{actual}水平。
+          level_name_must_exist: 级别名称不能为空
           must_be_unique: 必须独一无二
           proficiency_level_exists: 已存在具有该技能和项目的 ProficiencyLevel
           proficiency_level_exists_for_default: 已退出默认设置的熟练级别
@@ -2773,7 +2852,7 @@ zh:
       column_createdAt: 创建于
       column_created_at: 创建于
       column_email: 电子邮件
-      column_id: 同上
+      column_id: ID
       column_name: 名称
       delete: 删除
       edit: 编辑
@@ -2884,7 +2963,7 @@ zh:
       column_campaigns: 活动
       column_created_at: 创建于
       column_email: 电子邮件
-      column_id: 同上
+      column_id: ID
       column_name: 名称
       confirm_delete: 是，删除
       confirm_send: 是，发送
@@ -3002,6 +3081,7 @@ zh:
         dp_consent_custom: 定制数据处理同意书
         dp_consent_version: 政策版本
         errors:
+          cannot_disable_while_campaign_enabled: 无法禁用视频通话录音，因为此项目中的一个或多个活动已启用该功能
           policy_version_format: 只允许使用整数
         mask_identity_for_examus: Examus Proctoring 的屏蔽数据
         mask_identity_for_hogan: 霍根的面具数据
@@ -3015,6 +3095,9 @@ zh:
         privacy_link_placeholder: 输入隐私链接
         privacy_text: 隐私文本
         privacy_text_placeholder: 输入隐私文本
+        video_call_recording: 允许视频通话录音
+        video_call_recording_expiry_duration: 视频通话记录的保存期限（天数）
+        video_call_recording_scope: 启用所有新活动的视频录制功能
       profile_settings:
         form_fields:
           enabled: 已启用
@@ -3337,6 +3420,7 @@ zh:
         copy_to_all: 抄送其他评估中心
         create: 创建
         dates_label: 日期
+        disable_cancellation_and_rescheduling: 禁用取消和重新安排
         duration_label: 持续时间
         duration_max_error: 不能超过 16 小时
         duration_min_error: 不能少于 15 分钟
@@ -3389,7 +3473,7 @@ zh:
         managers: 管理人员
         meeting_link: 会议链接
         name: 名称
-        participants: 与会者
+        participants: 参与者
         prework: 前期工作
         resource_link: 链接
         resource_name: 名称
@@ -3465,6 +3549,7 @@ zh:
         form_title: 安排评估
         language: 语言
         language_not_selected: 未选定
+        mark_cancel: 马克 取消
         mark_cancel_success: 取消主题的参与，电子邮件 %{subject_email}。
         meeting_link_custom: 定制
         meeting_link_internal: 内部
@@ -3473,6 +3558,9 @@ zh:
         no_change: 无变化
         override_existing: 覆盖现有的科目时间表
         preworks: 前期工作
+        re_enroll: 重新注册
+        re_enroll_confirm_message: 您确定要使用电子邮件 "<x>subject_email</x>"重新注册主题吗？
+        re_enroll_success: 重新注册主题，电子邮件：<x>subject_email</x> 。
         schedule: 时间安排
         unschedule: 取消计划
       tabs:
@@ -3509,7 +3597,7 @@ zh:
       final_score_updated_successfully: 最终得分已成功更新
       formula: 计算公式
       get_started: 开始
-      id: 同上
+      id: ID
       import:
         factors: 导入活动因素
       name: 名称
@@ -3591,6 +3679,7 @@ zh:
       disable_password_reuse: 禁用密码重用
       disallow_password_login: 禁止密码登录
       enable_login_with_magic_link: 启用魔法链接登录
+      enable_recaptcha: 启用验证码
       enforce_password_policy: 下次登录时执行密码策略
       enforce_strong: 执行强密码
       expiration: 密码过期
@@ -3814,7 +3903,7 @@ zh:
         send_sms: 发送短信
     sms_records:
       columns:
-        id: 同上
+        id: ID
         message: 留言
     smtp_settings:
       authentication: 认证
@@ -3851,6 +3940,7 @@ zh:
       user_name: 用户名
     stats:
       assessments:
+        active: 积极的
         columns:
           assessment_name: 评估名称
           completed: 已完成
@@ -3860,6 +3950,9 @@ zh:
           interrupted: 中断
           not_started: 未开始
           timed_out: 超时
+        count: 数量
+        inactive: 不活动
+        percentage: 百分比
         title: 评估
       title: 统计数据
       top_metrics:
@@ -4064,6 +4157,21 @@ zh:
         toggle_status:
           successfully: 成功
     threesixty_campaigns:
+      convert_action:
+        already_a_template: 已有模板
+        has_user_data: 在转换为模板之前，请从 "工具 "下拉菜单中单击 "重置所有参与者"，手动重置活动。
+      convert_template_modal:
+        cancel: 取消
+        confirm: 确认
+        convert:
+          success: 模板转换成功
+        convert_option: 将此活动转换为模板
+        copy:
+          success: 活动模板创建任务已成功安排，请查看通知状态。
+        copy_option: 在此活动中创建新模板
+        description: 选择从该广告系列创建模板的方式。
+        failed: 模板创建失败。
+        title: 转换为模板
       email_templates:
         approve_nomination:
           description: 当直接报告的提名需要批准时，该信息将发送给经理
@@ -4198,7 +4306,7 @@ zh:
             locale: 地点
             target_job_role: 目标工作角色
             title: 主题
-          title: 与会者
+          title: 参与者
         report:
           menu:
             report_approval:
@@ -4298,6 +4406,10 @@ zh:
       update:
         successfully: 用户 %{name} 已成功更新。
       user: 用户
+    validations:
+      idp:
+        end_date_cannot_be_in_past: 结束日期不能是过去
+        start_date_cannot_be_in_past: 开始日期不能是过去
     webhook:
       connection_failure: 无法连接到 webhook 网址。 请确认 webhook 网址是否正确。
       delete_success: Webhook 设置已成功删除
