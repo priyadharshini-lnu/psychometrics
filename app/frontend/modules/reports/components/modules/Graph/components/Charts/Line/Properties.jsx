@@ -108,6 +108,24 @@ const Properties = ({ modules, questions }) => {
       >
         Show Legend
       </Checkbox>
+      {lineModule.props.source.type === 'Factor' && (
+        <>
+          <Checkbox
+            checked={lineModule.props.hideEmptyColumns || false}
+            onChange={e => checkboxHandler('hideEmptyColumns', e)}
+            className="font-normal"
+          >
+            {I18n.t('reports.builder.graph.properties.hideEmptyColumns')}
+          </Checkbox>
+          <Checkbox
+            checked={lineModule.props.hideZeroValueColumns || false}
+            onChange={e => checkboxHandler('hideZeroValueColumns', e)}
+            className="font-normal"
+          >
+            {I18n.t('reports.builder.graph.properties.hideZeroValueColumns')}
+          </Checkbox>
+        </>
+      )}
     </div>
   )
 }

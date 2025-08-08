@@ -37,6 +37,7 @@ export const Bar: React.FC<Props> = ({
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
   const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
+  const { hideEmptyColumns, hideZeroValueColumns } = model.props
 
   useEffect(() => {
     renderChart()
@@ -68,19 +69,6 @@ export const Bar: React.FC<Props> = ({
     changeLabel(model, labelObj.value, collectionName)
   }
 
-  const checkAndFilterValues = (results) => {
-    results.forEach((result) => {
-      if (!result.data) { return }
-      if (model.props.hideEmptyColumns === true) {
-        result.data = Utils.filterItemsWithEmptyValues(result.data, 'y')
-      }
-      if (model.props.hideZeroValueColumns === true) {
-        result.data = Utils.filterItemsWithZeroValues(result.data, 'y')
-      }
-    })
-    return results
-  }
-
   const renderChart = () => {
     if (chartRef.current) {
       chartRef.current.destroy()
@@ -99,7 +87,8 @@ export const Bar: React.FC<Props> = ({
     if (!data) {
       return null
     }
-    const series = checkAndFilterValues(
+    const series = Utils.checkAndFilterValues(
+      { hideEmptyColumns, hideZeroValueColumns },
       data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors),
     )
 
