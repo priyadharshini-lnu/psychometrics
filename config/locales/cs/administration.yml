@@ -149,6 +149,7 @@ cs:
             accesssheet_manage: Správa přístupových listů
             accesssheet_settings: Nastavení přístupového listu
             accesssheet_view: Zobrazení přístupového listu
+            export: Export
             title: Přístrojové panely
             view: Zobrazit
           datasheets:
@@ -784,6 +785,8 @@ cs:
       new:
         header: Hromadné stahování
       reports_unavailable: V současné době nejsou k dispozici žádné zprávy ke stažení. Potvrďte, že zprávy, které chcete stáhnout, jsou k dispozici.
+      select_reports_for_download: Vyberte alespoň jednu zprávu ke stažení.
+      select_reports_for_regenerate: Vyberte alespoň jednu zprávu, kterou chcete regenerovat.
     cable:
       notification:
         assessment_factors: Faktory jsou načteny
@@ -873,6 +876,7 @@ cs:
       campaign_templates: Šablony kampaní
       column:
         assessment: Hodnocení
+        campaign: Kampaň
         owner: Majitel
         report: Nahlásit
       copy:
@@ -947,6 +951,7 @@ cs:
       assessors:
         spoof:
           successfully: Byl jste úspěšně přihlášen jako %{name}
+      convert_to_template: Převést na šablonu
       copy: Kopírovat
       delete: Odstranit
       edit: Upravit
@@ -972,6 +977,7 @@ cs:
         name: Název
         reports: Zprávy
         status: Stav
+        template: Šablona
         type: Typ
       menus:
         add_common_campaign: Přidání společné kampaně
@@ -987,11 +993,15 @@ cs:
             assessment: Hodnocení
             category: Kategorie
             closed: Uzavřeno
+            default_assessment_language: Výchozí jazyk hodnocení
+            default_report_language: Výchozí jazyk zprávy
             empty: Prázdné stránky
             inactive: Neaktivní
             name: Název
             normal: Normální
             previous: Předchozí
+            select_assessment_language: Výběr jazyka hodnocení
+            select_report_language: Výběr jazyka zprávy
             skill_rater: Hodnocení dovedností
             standard: Standardní
             status: Stav
@@ -1615,6 +1625,7 @@ cs:
         campaign_assessment_group: Skupina pro hodnocení kampaní
         client: Klient
         completion: Dokončení
+        custom: Vlastní
         delivery_at: Dodání na (GST)
         delivery_delay_hours: Zpoždění dodávky (v hodinách)
         delivery_interval: Interval dodání
@@ -1646,6 +1657,7 @@ cs:
         recipients: Příjemci
         reminder: Připomínka
         report_available: Zpráva je k dispozici
+        select_assessments: Zvolte, která hodnocení chcete zkontrolovat, zda jsou dokončena
         selected: Vybrané stránky
         selected_cc_recipients: Vybraní příjemci CC
         selected_recipients: Vybraní příjemci
@@ -2140,6 +2152,9 @@ cs:
         remove_confirm: Pro odstranění šablony zadejte do textového pole aktuální název šablony uvedený níže
         success: "%{idpName} byl úspěšně odstraněn."
       add_idp_template: Přidání šablony IDP
+      ai_assisted_idp_enabled: IDP s asistencí umělé inteligence
+      ai_enabled: Povolená umělá inteligence
+      ai_settings: Nastavení umělé inteligence
       all: Všechny
       appearance: Vzhled
       appearance_hint: Chcete-li upravit vzhled, nejprve uložte šablonu IDP, abyste tato nastavení umožnili.
@@ -2183,6 +2198,7 @@ cs:
       logo_type_label: Typ loga
       no_reflection_questions_selected: Nebyly vybrány žádné otázky k zamyšlení
       none: Žádné
+      one_click_idp_enabled: Povolení IDP jedním kliknutím
       reference_locale: Referenční národní prostředí
       reflection_questions: Otázky k zamyšlení
       reflection_questions_hint: Chcete-li upravit otázky k zamyšlení, nejprve uložte šablonu IDP, abyste tato nastavení umožnili.
@@ -2289,6 +2305,7 @@ cs:
     individual_invite:
       tabs:
         assessment_center: Hodnotící centrum
+        invitation_status: Stav pozvánky
     innovation_styles:
       create:
         successfully: Inovační styl %{name} byl úspěšně vytvořen.
@@ -2417,7 +2434,9 @@ cs:
       assessment_center: 'Hodnotící centrum:'
       booked_at: 'Rezervováno v:'
       column:
+        invitation_status: Stav pozvánky
         participant: Účastník
+        scheduling_details: Podrobnosti o plánování
       remove_confirm:
         content: Jste si jisti, že chcete odstranit předmět s e-mailem '%{subjectEmail}'?
         success: Předmět s e-mailem '%{subjectEmail}'' byl úspěšně odstraněn.
@@ -2425,6 +2444,8 @@ cs:
       statuses:
         accepted: Přijato
         cancelled: Zrušeno
+        late_cancelled: Pozdě zrušeno
+        late_rescheduled: Zpožděný přesun termínu
         pending: Čeká se na
         requested_cancellation: Požadované zrušení
         requested_cancellation_rejected: Odmítnutí zrušení
@@ -2751,7 +2772,9 @@ cs:
       errors:
         create:
           invalid_format: Definice úrovně musí být polem definic.
+          level_definition_must_exist: Definice úrovně nemůže být prázdná
           level_definition_must_match_level: musí obsahovat přesně %{expected} úrovně, ale %{actual} byly dány
+          level_name_must_exist: Název úrovně nemůže být prázdný
           must_be_unique: Musí být jedinečné
           proficiency_level_exists: Již existuje úroveň ProficiencyLevel s touto dovedností a projektem.
           proficiency_level_exists_for_default: Úroveň způsobilosti pro výchozí nastavení již existuje
@@ -3397,6 +3420,7 @@ cs:
         copy_to_all: Kopírování do ostatních středisek pro posuzování
         create: Vytvořit
         dates_label: Data
+        disable_cancellation_and_rescheduling: Zakázat zrušení a změnu plánu
         duration_label: Doba trvání
         duration_max_error: Nesmí být delší než 16 hodin
         duration_min_error: Nesmí být kratší než 15 minut
@@ -3525,6 +3549,7 @@ cs:
         form_title: Plánování hodnocení
         language: Jazyk
         language_not_selected: Nevybráno
+        mark_cancel: Mark Cancel
         mark_cancel_success: Zrušena účast subjektu s e-mailem %{subject_email}.
         meeting_link_custom: Vlastní
         meeting_link_internal: Interní
@@ -3533,6 +3558,9 @@ cs:
         no_change: Žádná změna
         override_existing: Přepsání stávajících rozvrhů pro předměty
         preworks: Předpráce
+        re_enroll: Opětovný zápis
+        re_enroll_confirm_message: Jste si jisti, že chcete znovu zapsat předmět s e-mailem '%{subject_email}'?
+        re_enroll_success: Znovuzapsaný subjekt s e-mailem <x>subject_email</x>.
         schedule: Plán
         unschedule: Zrušit plánování
       tabs:
@@ -4129,6 +4157,21 @@ cs:
         toggle_status:
           successfully: Úspěšně
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Již šablona
+        has_user_data: Před převedením na šablonu kampaň ručně resetujte kliknutím na možnost "Resetovat všechny účastníky" v rozbalovací nabídce Nástroje.
+      convert_template_modal:
+        cancel: Zrušit
+        confirm: Potvrďte
+        convert:
+          success: Šablona byla úspěšně převedena
+        convert_option: Převést tuto kampaň na šablonu
+        copy:
+          success: Úloha vytvoření šablony kampaně byla úspěšně naplánována, zkontrolujte prosím stav oznámení.
+        copy_option: Vytvoření nové šablony z této kampaně
+        description: Vyberte, jak chcete vytvořit šablonu z této kampaně.
+        failed: Vytvoření šablony se nezdařilo.
+        title: Převést na šablonu
       email_templates:
         approve_nomination:
           description: Tato zpráva je zaslána vedoucímu pracovníkovi, když je třeba schválit nominaci provedenou přímým podřízeným

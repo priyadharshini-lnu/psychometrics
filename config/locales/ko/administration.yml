@@ -149,6 +149,7 @@ ko:
             accesssheet_manage: 액세스 시트 관리
             accesssheet_settings: 액세스 시트 설정
             accesssheet_view: 액세스 시트 보기
+            export: 내보내기
             title: 대시보드
             view: 보기
           datasheets:
@@ -784,6 +785,8 @@ ko:
       new:
         header: 대량 다운로드
       reports_unavailable: 현재 다운로드할 수 있는 보고서가 없습니다. 다운로드하려는 보고서가 있는지 확인해 주세요.
+      select_reports_for_download: 다운로드할 보고서를 하나 이상 선택해 주세요.
+      select_reports_for_regenerate: 재생성할 보고서를 하나 이상 선택해 주세요.
     cable:
       notification:
         assessment_factors: 팩터가 가져옵니다
@@ -873,6 +876,7 @@ ko:
       campaign_templates: 캠페인 템플릿
       column:
         assessment: 평가
+        campaign: 캠페인
         owner: 소유자
         report: 신고
       copy:
@@ -947,6 +951,7 @@ ko:
       assessors:
         spoof:
           successfully: 이름 %{name}으로 로그인했습니다
+      convert_to_template: 템플릿으로 변환
       copy: 복사
       delete: 삭제
       edit: 편집
@@ -972,6 +977,7 @@ ko:
         name: 이름
         reports: 보고서
         status: 상태
+        template: 템플릿
         type: 유형
       menus:
         add_common_campaign: 공통 캠페인 추가
@@ -987,11 +993,15 @@ ko:
             assessment: 평가
             category: 범주
             closed: 닫힘
+            default_assessment_language: 평가 기본 언어
+            default_report_language: 기본 언어 보고
             empty: 비어 있음
             inactive: 비활성
             name: 이름
             normal: 보통
             previous: 이전 게시물
+            select_assessment_language: 평가 언어 선택
+            select_report_language: 보고서 언어 선택
             skill_rater: 스킬 평가자
             standard: 표준
             status: 상태
@@ -1615,6 +1625,7 @@ ko:
         campaign_assessment_group: 캠페인 평가 그룹
         client: 클라이언트
         completion: 완료
+        custom: 사용자 지정
         delivery_at: 배송 (GST)
         delivery_delay_hours: 배송 지연(시간)
         delivery_interval: 배달 간격
@@ -1646,6 +1657,7 @@ ko:
         recipients: 수신자
         reminder: 알림
         report_available: 보고서 사용 가능
+        select_assessments: 완료 여부를 확인할 평가 선택
         selected: 선택됨
         selected_cc_recipients: 선택한 CC 수신자
         selected_recipients: 선택한 수신자
@@ -2140,6 +2152,9 @@ ko:
         remove_confirm: 템플릿을 제거하려면 아래 텍스트 상자에 현재 템플릿 이름을 입력합니다
         success: "%{idpName}이(가) 성공적으로 제거되었습니다."
       add_idp_template: IDP 템플릿 추가
+      ai_assisted_idp_enabled: AI 지원 IDP 사용
+      ai_enabled: AI 사용
+      ai_settings: AI 설정
       all: 모두
       appearance: 모양
       appearance_hint: 모양을 수정하려면 먼저 IDP 템플릿을 저장하여 이러한 설정을 활성화하세요.
@@ -2183,6 +2198,7 @@ ko:
       logo_type_label: 로고 유형
       no_reflection_questions_selected: 선택된 반영 문제 없음
       none: 없음
+      one_click_idp_enabled: 원클릭 IDP 사용
       reference_locale: 참조 로케일
       reflection_questions: 성찰 질문
       reflection_questions_hint: 반영 문제를 수정하려면 먼저 IDP 템플릿을 저장하여 이러한 설정을 활성화하세요.
@@ -2289,6 +2305,7 @@ ko:
     individual_invite:
       tabs:
         assessment_center: 평가 센터
+        invitation_status: 초대 상태
     innovation_styles:
       create:
         successfully: 혁신 스타일 %{name}을(를) 성공적으로 만들었습니다.
@@ -2417,7 +2434,9 @@ ko:
       assessment_center: '평가 센터:'
       booked_at: '예약됨:'
       column:
+        invitation_status: 초대 상태
         participant: 참가자
+        scheduling_details: 예약 세부 정보
       remove_confirm:
         content: "'%{subjectEmail}' 이메일의 제목을 제거하시겠습니까?"
         success: 이메일 '%{subjectEmail}''이 포함된 제목을 성공적으로 제거했습니다.
@@ -2425,6 +2444,8 @@ ko:
       statuses:
         accepted: 수락됨
         cancelled: 취소됨
+        late_cancelled: 늦게 취소됨
+        late_rescheduled: 늦은 일정 변경
         pending: 보류 중
         requested_cancellation: 취소 요청
         requested_cancellation_rejected: 취소 거부됨
@@ -2751,7 +2772,9 @@ ko:
       errors:
         create:
           invalid_format: 레벨 정의는 정의의 배열이어야 합니다.
+          level_definition_must_exist: 레벨 정의는 비워둘 수 없습니다.
           level_definition_must_match_level: 정확히 %{expected} 레벨을 포함해야 하지만 %{actual} 레벨이 제공되었습니다.
+          level_name_must_exist: 레벨 이름은 비워둘 수 없습니다.
           must_be_unique: 고유해야 합니다.
           proficiency_level_exists: 이 스킬과 프로젝트의 숙련도 레벨이 이미 존재합니다.
           proficiency_level_exists_for_default: 기본 숙련도 레벨은 이미 종료되었습니다.
@@ -3397,6 +3420,7 @@ ko:
         copy_to_all: 다른 평가 센터로 복사
         create: 만들기
         dates_label: 날짜
+        disable_cancellation_and_rescheduling: 취소 및 일정 변경 비활성화
         duration_label: 기간
         duration_max_error: 16시간을 초과할 수 없습니다
         duration_min_error: 15분 미만일 수 없습니다
@@ -3525,6 +3549,7 @@ ko:
         form_title: 평가 일정 예약
         language: 언어
         language_not_selected: 선택되지 않음
+        mark_cancel: 마크 취소
         mark_cancel_success: 이메일 %{subject_email} 주제 참여 취소.
         meeting_link_custom: 사용자 지정
         meeting_link_internal: 내부
@@ -3533,6 +3558,9 @@ ko:
         no_change: 변경 없음
         override_existing: 과목에 대한 기존 스케줄 재정의
         preworks: 사전 작업
+        re_enroll: 재등록
+        re_enroll_confirm_message: "'%{subject_email}' 이메일로 주제를 다시 등록하시겠습니까?"
+        re_enroll_success: 이메일로 주제를 재등록 <x>subject_email</x>.
         schedule: 일정
         unschedule: 일정 취소
       tabs:
@@ -4129,6 +4157,21 @@ ko:
         toggle_status:
           successfully: 성공적
     threesixty_campaigns:
+      convert_action:
+        already_a_template: 이미 템플릿이 있습니다.
+        has_user_data: 템플릿으로 변환하기 전에 도구 드롭다운에서 '모든 참가자 초기화'를 클릭하여 캠페인을 수동으로 초기화하세요.
+      convert_template_modal:
+        cancel: 취소
+        confirm: 확인
+        convert:
+          success: 템플릿이 성공적으로 변환되었습니다.
+        convert_option: 이 캠페인을 템플릿으로 변환
+        copy:
+          success: 캠페인 템플릿 생성 작업이 성공적으로 예약되었습니다. 알림에서 상태를 확인하세요.
+        copy_option: 이 캠페인에서 새 템플릿 만들기
+        description: 이 캠페인에서 템플릿을 만드는 방법을 선택합니다.
+        failed: 템플릿을 만들지 못했습니다.
+        title: 템플릿으로 변환
       email_templates:
         approve_nomination:
           description: 이 메시지는 직속 상사가 작성한 지명을 승인해야 할 때 관리자에게 전송됩니다

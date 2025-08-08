@@ -149,6 +149,7 @@ ja:
             accesssheet_manage: アクセスシート管理
             accesssheet_settings: アクセスシートの設定
             accesssheet_view: アクセスシートビュー
+            export: 輸出
             title: ダッシュボード
             view: 表示
           datasheets:
@@ -784,6 +785,8 @@ ja:
       new:
         header: 一括ダウンロード
       reports_unavailable: 現在、ダウンロード可能なレポートはありません。 ダウンロードしたいレポートがあるかどうかご確認ください。
+      select_reports_for_download: ダウンロードするレポートを1つ以上選択してください。
+      select_reports_for_regenerate: 再生するレポートを少なくとも1つ選択してください。
     cable:
       notification:
         assessment_factors: 要因の取得
@@ -873,6 +876,7 @@ ja:
       campaign_templates: キャンペーンテンプレート
       column:
         assessment: 評価
+        campaign: キャンペーン
         owner: オーナー
         report: レポート
       copy:
@@ -947,6 +951,7 @@ ja:
       assessors:
         spoof:
           successfully: "%{name} としてログインしました"
+      convert_to_template: テンプレートに変換
       copy: コピー
       delete: 削除
       edit: 編集
@@ -972,6 +977,7 @@ ja:
         name: 名称
         reports: レポート
         status: ステータス
+        template: テンプレート
         type: タイプ
       menus:
         add_common_campaign: 共通キャンペーンの追加
@@ -987,11 +993,15 @@ ja:
             assessment: 評価
             category: カテゴリ
             closed: クローズド
+            default_assessment_language: 評価のデフォルト言語
+            default_report_language: 報告書のデフォルト言語
             empty: 空
             inactive: 活動休止中
             name: 名称
             normal: ノーマル
             previous: 前へ
+            select_assessment_language: 評価言語の選択
+            select_report_language: レポート言語の選択
             skill_rater: 技能評価者
             standard: スタンダード
             status: ステータス
@@ -1615,6 +1625,7 @@ ja:
         campaign_assessment_group: キャンペーン評価グループ
         client: クライアント
         completion: 完成
+        custom: カスタム
         delivery_at: 配送料（GST）
         delivery_delay_hours: 配達遅延（時間）
         delivery_interval: 配達間隔
@@ -1646,6 +1657,7 @@ ja:
         recipients: 受賞者
         reminder: リマインダー
         report_available: 報告書あり
+        select_assessments: 完了をチェックする評価を選択する
         selected: 厳選された
         selected_cc_recipients: 厳選されたCC受賞者
         selected_recipients: 主な受賞者
@@ -2140,6 +2152,9 @@ ja:
         remove_confirm: テンプレートを削除するには、以下のテキストボックスに現在のテンプレート名を入力してください。
         success: "%{idpName}は正常に削除されました。"
       add_idp_template: IDPテンプレートの追加
+      ai_assisted_idp_enabled: AIアシストIDP対応
+      ai_enabled: AI対応
+      ai_settings: AI設定
       all: すべて
       appearance: 外観
       appearance_hint: 外観を変更するには、まずIDPテンプレートを保存して、これらの設定を有効にしてください。
@@ -2183,6 +2198,7 @@ ja:
       logo_type_label: ロゴタイプ
       no_reflection_questions_selected: 選択された振り返りの質問はありません
       none: なし
+      one_click_idp_enabled: ワンクリックIDP有効
       reference_locale: 参照ロケール
       reflection_questions: 振り返りの質問
       reflection_questions_hint: 振り返りの質問を変更するには、まず IDP テンプレートを保存して、これらの設定を有効にしてください。
@@ -2289,6 +2305,7 @@ ja:
     individual_invite:
       tabs:
         assessment_center: アセスメント・センター
+        invitation_status: 招待状況
     innovation_styles:
       create:
         successfully: イノベーション・スタイル %{name} が正常に作成されました。
@@ -2417,7 +2434,9 @@ ja:
       assessment_center: アセスメントセンター
       booked_at: で予約：
       column:
+        invitation_status: 招待状況
         participant: 参加者
+        scheduling_details: スケジュール詳細
       remove_confirm:
         content: メール '%{subjectEmail}' の件名を本当に削除しますか？
         success: 電子メール '%{subjectEmail}' を含む件名が正常に削除されました。
@@ -2425,6 +2444,8 @@ ja:
       statuses:
         accepted: 受諾
         cancelled: キャンセル
+        late_cancelled: レイト・キャンセル
+        late_rescheduled: レイト・リスケジュール
         pending: 申請中
         requested_cancellation: キャンセルのお申し出
         requested_cancellation_rejected: キャンセル拒否
@@ -2751,7 +2772,9 @@ ja:
       errors:
         create:
           invalid_format: レベル定義は定義の配列でなければならない。
+          level_definition_must_exist: レベル定義は空白にできない
           level_definition_must_match_level: は正確に%{expected}レベルを含んでいなければならないが、%{actual}は与えられた。
+          level_name_must_exist: レベル名は空白にできない
           must_be_unique: ユニークでなければならない
           proficiency_level_exists: このスキルとプロジェクトを持つProficiencyLevelがすでに存在する。
           proficiency_level_exists_for_default: デフォルトの熟練度はすでに終了している。
@@ -3397,6 +3420,7 @@ ja:
         copy_to_all: 他のアセスメント・センターへのコピー
         create: 作成
         dates_label: 日程
+        disable_cancellation_and_rescheduling: キャンセルと再スケジューリングを無効にする
         duration_label: 期間
         duration_max_error: 16時間を超えてはならない
         duration_min_error: 15分以内
@@ -3525,6 +3549,7 @@ ja:
         form_title: 査定スケジュール
         language: 言語
         language_not_selected: 不採用
+        mark_cancel: マーク・キャンセル
         mark_cancel_success: 電子メール %{subject_email} による件名の参加をキャンセルしました。
         meeting_link_custom: カスタム
         meeting_link_internal: 内部
@@ -3533,6 +3558,9 @@ ja:
         no_change: 変更なし
         override_existing: 既存のスケジュールを上書きする
         preworks: プレワーク
+        re_enroll: 再登録
+        re_enroll_confirm_message: 件名を「<x>subject_email</x> 」に変更しますか？
+        re_enroll_success: 電子メールでの再登録対象<x>subject_email</x>.
         schedule: スケジュール
         unschedule: スケジュール解除
       tabs:
@@ -4129,6 +4157,21 @@ ja:
         toggle_status:
           successfully: 成功裏に
     threesixty_campaigns:
+      convert_action:
+        already_a_template: すでにテンプレート
+        has_user_data: テンプレートに変換する前に、ツールドロップダウンから「すべての参加者をリセット」をクリックしてキャンペーンを手動でリセットしてください。
+      convert_template_modal:
+        cancel: キャンセル
+        confirm: 確認
+        convert:
+          success: テンプレートの変換に成功
+        convert_option: このキャンペーンをテンプレートに変換する
+        copy:
+          success: キャンペーンテンプレート作成ジョブは正常にスケジュールされました。
+        copy_option: このキャンペーンから新しいテンプレートを作成する
+        description: このキャンペーンからテンプレートを作成する方法を選択します。
+        failed: テンプレートの作成に失敗しました。
+        title: テンプレートに変換
       email_templates:
         approve_nomination:
           description: このメッセージは、直属の部下による指名を承認する必要がある場合に、マネージャーに送信されます。

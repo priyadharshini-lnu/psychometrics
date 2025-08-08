@@ -803,6 +803,7 @@ es-ES:
         bulk_rescore_campaign_factors: Factores de la campaña Bulk Rescore
         compact_completion_status_export: Exportación de estados de finalización compactos
         completion_status_export: Exportación del estado de finalización
+        copy_as_template_or_campaign: Copiar campaña como plantilla
         copy_dimension: Copiar dimensión
         create_threesixty_campaign: Crear campaña Threesixty
         data_report_export: Exportación de informes de datos
@@ -1064,6 +1065,7 @@ es-ES:
         description: Esta sesión de evaluación ha sido invalidada. Esto puede ocurrir si ha continuado la evaluación en otra pestaña, navegador o dispositivo.
         title: Última solicitud fallida
       next: Siguiente
+      no_skill_mapping_message: No se ha realizado un mapa de competencias para este puesto de trabajo, póngase en contacto con su administrador.
       read_only: Está en modo «solo lectura», no puede cambiar ningún resultado.
       save: Salvar
       submissionFailedAlert:
@@ -1132,6 +1134,7 @@ es-ES:
     add_group_form:
       previous_assessments_required: Mostrar las evaluaciones en el siguiente orden
       previous_group_required: Se requiere haber completado previamente la sección anterior
+      require_previous_groups_completion_for_booking: Se requiere haber completado todos los grupos anteriores antes de reservar
     menu:
       assessment_center: Assessment Center
       assessments_and_reports: Evaluaciones e informes
@@ -1369,6 +1372,7 @@ es-ES:
   campaign_assessment:
     actions:
       bulk_download: Descarga masiva
+      convert_to_template: Convertir a plantilla
       download: Descargar informes
       export_completion_status: Estado de finalización de la exportación
       export_external: Exterior
@@ -2157,6 +2161,10 @@ es-ES:
       workshop_subject_create:
         already_exists: La asignatura ya existe en este Assessment Center.
         part_of_other_workshop: El sujeto ya participa en "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: No hay plazas disponibles para este taller.
+        scheduling_lead_time_passed: Una vez transcurrido el plazo de programación, no podrá volver a matricular la asignatura.
+        workshop_subject_not_found: No se ha encontrado el tema del taller
       workshops:
         no_available_assessor_slots: No hay plazas disponibles para el evaluador %{assessor}
         no_available_manager_slots: No hay plazas disponibles para el gestor %{manager}
@@ -2286,6 +2294,13 @@ es-ES:
       add_to_yahoo_calendar: Añadir al calendario yahoo
       assessment_center_alert:
         btn_title: Campaña
+        complete_previous_groups: Completar todas las actividades de grupo anteriores
+        complete_preworks: Completar todos los trabajos previos
+        please_visit: Visite la página
+        requirements_message: Sólo podrá hacer una reserva si cumple los siguientes requisitos
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: para completar estos requisitos.
       assessment_center_group_name: Assessment Center
       booking_failed_msg: 'No se ha podido reservar una plaza: %{error}'
       buttons:
@@ -2353,6 +2368,7 @@ es-ES:
         remove:
           confirmation: Introduzca en el cuadro de texto el nombre de la campaña que se le ha facilitado más arriba para eliminarla
           success: La campaña %{campaignName} se ha eliminado correctamente.
+          template_confirmation: 'Introduzca el nombre de la plantilla actual en el campo inferior para eliminarla. Nota: Esto también eliminará la plantilla de campaña vinculada.'
       users:
         actions:
           export:
@@ -2845,6 +2861,8 @@ es-ES:
     used_number: Licencias usadas
     used_out_of: "%{used} de %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Todos los derechos reservados
     footer:
       regards: Saludos,
       team_name: Equipo Lighthouse
@@ -2877,6 +2895,8 @@ es-ES:
         instructions: Haga clic en el siguiente enlace para iniciar sesión en lighthouse.
         signin_link: Enlace de acceso
       subject: Enlace de acceso a Lighthouse
+    powered_by:
+      text: Desarrollado por Lighthouse.
     users:
       account_disable: Su cuenta ha sido desactivada por inactividad
       warning: Su cuenta será desactivada en breve debido a la inactividad
@@ -3193,6 +3213,9 @@ es-ES:
       send_password_email_success: Correo electrónico enviado al usuario %{email} con la contraseña.
     title: Restablecer contraseña
   select: Seleccione
+  sessions:
+    errors:
+      recaptcha: Error en la verificación de Recaptcha. Por favor, inténtelo de nuevo.
   shared:
     filters:
       clear: Quitar filtros

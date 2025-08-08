@@ -819,6 +819,7 @@ id:
         bulk_update_evaluation_status: Status Evaluasi Pembaruan Massal
         compact_completion_status_export: Ekspor Status Penyelesaian Kompak
         completion_status_export: Ekspor Status Penyelesaian
+        copy_as_template_or_campaign: Salin Kampanye sebagai Templat
         copy_dimension: Salin Dimensi
         create_threesixty_campaign: Buat Kampanye Threesixty
         data_report_export: Ekspor Laporan Data
@@ -1085,6 +1086,7 @@ id:
         description: Sesi evaluasi ini telah dibatalkan. Hal ini dapat terjadi jika Anda melanjutkan evaluasi di tab, browser, atau perangkat terpisah.
         title: Permintaan Terakhir Gagal
       next: Berikutnya
+      no_skill_mapping_message: Tidak ada pemetaan keterampilan yang dilakukan untuk peran pekerjaan ini, hubungi admin Anda.
       read_only: Ini adalah mode 'Read only', Anda tidak dapat mengubah hasil apa pun.
       save: Simpan
       submissionFailedAlert:
@@ -1153,6 +1155,7 @@ id:
     add_group_form:
       previous_assessments_required: Penilaian yang akan dijalankan dalam urutan di bawah ini
       previous_group_required: Diperlukan penyelesaian grup sebelumnya
+      require_previous_groups_completion_for_booking: Wajib menyelesaikan semua grup sebelumnya sebelum memesan
     menu:
       assessment_center: Pusat Penilaian
       assessment_center_invites: Undangan Pusat Penilaian
@@ -1385,6 +1388,7 @@ id:
       bulk_download: Unduh Massal
       bulk_update_evaluation_as_done: Tandai sebagai Selesai
       bulk_update_evaluation_as_undone: Hapus tanda sebagai selesai
+      convert_to_template: Mengonversi ke Templat
       download: Unduh Laporan
       export_completion_status: Status Penyelesaian Ekspor
       export_external: Eksternal
@@ -2206,6 +2210,10 @@ id:
       workshop_subject_create:
         already_exists: Subjek sudah ada di Pusat Penilaian ini.
         part_of_other_workshop: Subjek sudah menjadi peserta '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Tidak ada kursi yang tersedia untuk lokakarya ini.
+        scheduling_lead_time_passed: Waktu tunggu penjadwalan telah berlalu, Anda tidak dapat mendaftarkan ulang mata pelajaran tersebut.
+        workshop_subject_not_found: Subjek lokakarya tidak ditemukan
       workshops:
         no_available_assessor_slots: Tidak ada slot yang tersedia untuk penilai %{assessor}
         no_available_manager_slots: Tidak ada slot yang tersedia untuk manajer %{manager}
@@ -2337,6 +2345,13 @@ id:
       add_to_yahoo_calendar: Tambahkan ke kalender yahoo
       assessment_center_alert:
         btn_title: Kampanye
+        complete_previous_groups: Selesaikan semua kegiatan kelompok sebelumnya
+        complete_preworks: Selesaikan semua pekerjaan awal
+        please_visit: Silakan kunjungi halaman
+        requirements_message: Anda hanya dapat melakukan pemesanan setelah Anda melengkapi persyaratan berikut
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: untuk melengkapi persyaratan ini.
       assessment_center_group_name: Pusat Penilaian
       booking_failed_msg: 'Gagal memesan slot: %{error}'
       buttons:
@@ -2404,6 +2419,7 @@ id:
         remove:
           confirmation: Masukkan nama kampanye saat ini yang diberikan di bawah ini dalam kotak teks untuk menghapus kampanye
           success: "%{campaignName} berhasil dihapus."
+          template_confirmation: 'Masukkan nama templat saat ini di bidang di bawah ini untuk menghapusnya. Catatan: Tindakan ini juga akan menghapus templat kampanye yang ditautkan.'
       users:
         actions:
           export:
@@ -2898,6 +2914,10 @@ id:
   mailer:
     copyright:
       text: Lighthouse. Hak cipta dilindungi
+    footer:
+      regards: Salam,
+      team_name: Tim Mercusuar
+      technical_support: Untuk masalah teknis apa pun, silakan kirim email kepada kami di <x>email</x> dan kami akan merespons dalam waktu 24 jam.
     from: Perusahaan Bakat
     idp:
       manager_unread_comments:
@@ -3273,6 +3293,9 @@ id:
       send_password_email_success: Email dikirim ke pengguna %{email} dengan kata sandi.
     title: Atur Ulang Kata Sandi
   select: Pilih
+  sessions:
+    errors:
+      recaptcha: Verifikasi recaptcha gagal. Silakan coba lagi.
   shared:
     filters:
       clear: Hapus Filter

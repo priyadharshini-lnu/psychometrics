@@ -819,6 +819,7 @@ ro:
         bulk_update_evaluation_status: Stare evaluare actualizare în bloc
         compact_completion_status_export: Exportați compact al stării de finalizare
         completion_status_export: Exportul stării de finalizare
+        copy_as_template_or_campaign: Copiați campania ca șablon
         copy_dimension: Copiere parametru
         create_threesixty_campaign: Creați campania Threesixty
         data_report_export: Exportul raportului de date
@@ -1082,6 +1083,7 @@ ro:
         description: Această sesiune de evaluare a fost invalidată. Acest lucru se poate întâmpla dacă ați continuat evaluarea într-o filă, browser sau dispozitiv separat.
         title: Ultima solicitare a eșuat
       next: Următorul
+      no_skill_mapping_message: Nu există o cartografiere a competențelor pentru acest post, contactați administratorul.
       read_only: Este modul numai citire, nu puteți modifica niciun rezultat.
       save: Salvați
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ ro:
     add_group_form:
       previous_assessments_required: Evaluări pentru rulare în ordinea de mai jos
       previous_group_required: Este necesară finalizarea anterioară a grupului
+      require_previous_groups_completion_for_booking: Este necesară finalizarea tuturor grupurilor anterioare înainte de rezervare
     menu:
       assessment_center: Centrul de evaluare
       assessment_center_invites: Invitații la centrul de evaluare
@@ -1381,6 +1384,7 @@ ro:
       bulk_download: Descărcare în bloc
       bulk_update_evaluation_as_done: Marcați ca terminat
       bulk_update_evaluation_as_undone: Demarcați ca terminat
+      convert_to_template: Conversie în șablon
       download: Descărcați rapoarte
       export_completion_status: Starea de finalizare a exportului
       export_external: Extern
@@ -2202,6 +2206,10 @@ ro:
       workshop_subject_create:
         already_exists: Subiectul există deja în acest centru de evaluare.
         part_of_other_workshop: Subiectul este deja participant la '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Nu sunt locuri disponibile pentru acest atelier.
+        scheduling_lead_time_passed: A trecut timpul de programare, nu puteți reînscrie subiectul.
+        workshop_subject_not_found: Subiectul atelierului nu a fost găsit
       workshops:
         no_available_assessor_slots: Nu există locuri disponibile pentru evaluator %{assessor}
         no_available_manager_slots: Nu există sloturi disponibile pentru manager %{manager}
@@ -2333,6 +2341,13 @@ ro:
       add_to_yahoo_calendar: Adăugați la yahoo calendar
       assessment_center_alert:
         btn_title: Campanie
+        complete_previous_groups: Finalizarea tuturor activităților de grup anterioare
+        complete_preworks: Completați toate lucrările preliminare
+        please_visit: Vă rugăm să vizitați
+        requirements_message: Puteți face o rezervare numai după ce ați îndeplinit următoarea cerință
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: pentru a îndeplini aceste cerințe.
       assessment_center_group_name: Centrul de evaluare
       booking_failed_msg: 'Nu s-a reușit rezervarea slotului: %{error}'
       buttons:
@@ -2400,6 +2415,7 @@ ro:
         remove:
           confirmation: Introduceți numele campaniei actuale în caseta de text de mai jos pentru a elimina campania
           success: "%{campaignName} a fost eliminat cu succes."
+          template_confirmation: 'Introduceți numele șablonului curent în câmpul de mai jos pentru a-l șterge. Notă: Acest lucru va șterge și șablonul de campanie asociat.'
       users:
         actions:
           export:
@@ -2894,6 +2910,10 @@ ro:
   mailer:
     copyright:
       text: Lighthouse. Toate drepturile rezervate
+    footer:
+      regards: Regards,
+      team_name: Echipa Lighthouse
+      technical_support: Pentru orice probleme tehnice, vă rugăm să ne scrieți la <x>email</x> și vă vom răspunde în termen de 24 de ore.
     from: Întreprinderea talentelor
     idp:
       manager_unread_comments:
@@ -3269,6 +3289,9 @@ ro:
       send_password_email_success: E-mail trimis utilizatorului %{email} cu parola.
     title: Resetați parola
   select: Alege
+  sessions:
+    errors:
+      recaptcha: Verificarea Recaptcha a eșuat. Vă rugăm să încercați din nou.
   shared:
     filters:
       clear: Ștergeți filtrele

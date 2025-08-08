@@ -149,6 +149,7 @@ de:
             accesssheet_manage: Zugangsdatenblatt Verwalten
             accesssheet_settings: Arbeitsblatt-Einstellungen
             accesssheet_view: Zugangsblatt Ansicht
+            export: Exportieren
             title: Dashboards
             view: Siehe
           datasheets:
@@ -784,6 +785,8 @@ de:
       new:
         header: Massendownload
       reports_unavailable: Im Moment sind keine Berichte zum Herunterladen verfügbar. Bitte bestätigen Sie, dass die Berichte, die Sie herunterladen möchten, verfügbar sind.
+      select_reports_for_download: Bitte wählen Sie mindestens einen Bericht zum Herunterladen aus.
+      select_reports_for_regenerate: Bitte wählen Sie mindestens einen Bericht aus, der neu generiert werden soll.
     cable:
       notification:
         assessment_factors: Faktoren werden abgerufen
@@ -873,6 +876,7 @@ de:
       campaign_templates: Vorlagen für Kampagnen
       column:
         assessment: Bewertung
+        campaign: Kampagne
         owner: Eigentümer
         report: Bericht
       copy:
@@ -947,6 +951,7 @@ de:
       assessors:
         spoof:
           successfully: Sie wurden erfolgreich als %{name} angemeldet
+      convert_to_template: In Vorlage umwandeln
       copy: Kopieren
       delete: Löschen
       edit: Bearbeiten
@@ -972,6 +977,7 @@ de:
         name: Name
         reports: Berichte
         status: Status
+        template: Vorlage
         type: Typ
       menus:
         add_common_campaign: Gemeinsame Kampagne hinzufügen
@@ -987,11 +993,15 @@ de:
             assessment: Bewertung
             category: Kategorie
             closed: Geschlossen
+            default_assessment_language: Standardsprache für die Bewertung
+            default_report_language: Standardsprache des Berichts
             empty: Leere
             inactive: Inaktiv
             name: Name
             normal: Normal
             previous: Vorherige
+            select_assessment_language: Bewertungssprache auswählen
+            select_report_language: Berichtssprache auswählen
             skill_rater: Skill Rater
             standard: Standard
             status: Status
@@ -1615,6 +1625,7 @@ de:
         campaign_assessment_group: Gruppe für Kampagnenbewertung
         client: Kunde
         completion: Fertigstellung
+        custom: Benutzerdefiniert
         delivery_at: Lieferung zum (GST)
         delivery_delay_hours: Lieferverzug (Stunden)
         delivery_interval: Lieferintervall
@@ -1646,6 +1657,7 @@ de:
         recipients: Empfänger
         reminder: Erinnerung
         report_available: Bericht verfügbar
+        select_assessments: Wählen Sie, welche Beurteilungen auf Vollständigkeit geprüft werden sollen
         selected: Ausgewählte
         selected_cc_recipients: Ausgewählte CC-Empfänger
         selected_recipients: Ausgewählte Begünstigte
@@ -2140,6 +2152,9 @@ de:
         remove_confirm: Geben Sie den unten angegebenen Namen der aktuellen Vorlage in das Textfeld ein, um die Vorlage zu entfernen
         success: "%{idpName} wurde erfolgreich entfernt."
       add_idp_template: IDP-Vorlage hinzufügen
+      ai_assisted_idp_enabled: AI-gestützte IDP-Fähigkeit
+      ai_enabled: AI Aktiviert
+      ai_settings: AI-Einstellungen
       all: Alle
       appearance: Erscheinungsbild
       appearance_hint: Um das Erscheinungsbild zu ändern, speichern Sie bitte zuerst die IDP-Vorlage, um diese Einstellungen zu aktivieren.
@@ -2183,6 +2198,7 @@ de:
       logo_type_label: Logo Typ
       no_reflection_questions_selected: Keine Reflexionsfragen ausgewählt
       none: Keine
+      one_click_idp_enabled: IDP mit einem Klick aktiviert
       reference_locale: Referenzgebietsschema
       reflection_questions: Fragen zur Reflexion
       reflection_questions_hint: Wenn Sie die Reflexionsfragen ändern möchten, speichern Sie bitte zuerst die IDP-Vorlage, um diese Einstellungen zu aktivieren.
@@ -2289,6 +2305,7 @@ de:
     individual_invite:
       tabs:
         assessment_center: Assessment Center
+        invitation_status: Einladungsstatus
     innovation_styles:
       create:
         successfully: Innovation Style %{name} wurde erfolgreich erstellt.
@@ -2417,7 +2434,9 @@ de:
       assessment_center: 'Assessment Center:'
       booked_at: 'Gebucht bei:'
       column:
+        invitation_status: Einladungsstatus
         participant: Teilnehmer
+        scheduling_details: Details zur Terminplanung
       remove_confirm:
         content: Sind Sie sicher, dass Sie den Betreff mit E-Mail '%{subjectEmail}' entfernen möchten?
         success: Betreff mit E-Mail '%{subjectEmail}'' wurde erfolgreich entfernt.
@@ -2425,6 +2444,8 @@ de:
       statuses:
         accepted: Angenommen
         cancelled: Abgesagt
+        late_cancelled: Verspätet abgesagt
+        late_rescheduled: Verspätet Umgeplant
         pending: Anhängig
         requested_cancellation: Beantragte Annullierung
         requested_cancellation_rejected: Annullierung Abgelehnt
@@ -2751,7 +2772,9 @@ de:
       errors:
         create:
           invalid_format: Die Ebenendefinition muss ein Array von Definitionen sein.
+          level_definition_must_exist: Leveldefinition kann nicht leer sein
           level_definition_must_match_level: muss genau %{expected} Werte enthalten, aber %{actual} wurden angegeben
+          level_name_must_exist: Der Name der Ebene darf nicht leer sein.
           must_be_unique: Muss einzigartig sein
           proficiency_level_exists: Ein ProficiencyLevel mit dieser Fähigkeit und diesem Projekt existiert bereits
           proficiency_level_exists_for_default: Ein Proficiency Level für Default existiert bereits
@@ -3397,6 +3420,7 @@ de:
         copy_to_all: Kopie an andere Assessment Center
         create: Erstellen
         dates_label: Daten
+        disable_cancellation_and_rescheduling: Stornierung und Neuplanung deaktivieren
         duration_label: Dauer
         duration_max_error: Kann nicht mehr als 16 Stunden betragen
         duration_min_error: Darf nicht kürzer als 15 Minuten sein
@@ -3525,6 +3549,7 @@ de:
         form_title: Beurteilungen einplanen
         language: Sprache
         language_not_selected: Nicht ausgewählt
+        mark_cancel: Markieren Abbrechen
         mark_cancel_success: Teilnahme des Betreffs mit E-Mail %{subject_email} abgesagt.
         meeting_link_custom: Benutzerdefiniert
         meeting_link_internal: Intern
@@ -3533,6 +3558,9 @@ de:
         no_change: Keine Änderung
         override_existing: Vorhandene Zeitpläne für Fächer außer Kraft setzen
         preworks: Vorarbeit
+        re_enroll: Neuanmeldung
+        re_enroll_confirm_message: Sind Sie sicher, dass Sie den Betreff mit der E-Mail '%{subject_email}' neu eintragen wollen?
+        re_enroll_success: Neu eingeschriebener Betreff mit E-Mail <x>subject_email</x>.
         schedule: Zeitplan
         unschedule: Abmeldung
       tabs:
@@ -4129,6 +4157,21 @@ de:
         toggle_status:
           successfully: Erfolgreich
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Bereits eine Vorlage
+        has_user_data: Bitte setzen Sie die Kampagne manuell zurück, indem Sie auf "Alle Teilnehmer zurücksetzen" in der Dropdown-Liste "Tools" klicken, bevor Sie sie in eine Vorlage umwandeln.
+      convert_template_modal:
+        cancel: Abbrechen
+        confirm: Bestätigen Sie
+        convert:
+          success: Vorlage erfolgreich konvertiert
+        convert_option: Diese Kampagne in eine Vorlage umwandeln
+        copy:
+          success: Der Auftrag zur Erstellung der Kampagnenvorlage wurde erfolgreich geplant. Bitte überprüfen Sie Ihre Benachrichtigungen auf den Status.
+        copy_option: Erstellen Sie eine neue Vorlage aus dieser Kampagne
+        description: Wählen Sie aus, wie Sie eine Vorlage für diese Kampagne erstellen möchten.
+        failed: Die Erstellung der Vorlage ist fehlgeschlagen.
+        title: In Vorlage umwandeln
       email_templates:
         approve_nomination:
           description: Diese Nachricht wird an einen Vorgesetzten gesendet, wenn eine Nominierung, die von einem direkten Mitarbeiter gemacht wurde, genehmigt werden muss

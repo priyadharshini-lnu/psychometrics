@@ -819,6 +819,7 @@ nl:
         bulk_update_evaluation_status: Evaluatiestatus bulkupdate
         compact_completion_status_export: Export van compacte voltooiingsstatus
         completion_status_export: Export van voltooiingsstatus
+        copy_as_template_or_campaign: Campagne kopiëren als sjabloon
         copy_dimension: Dimensie kopiëren
         create_threesixty_campaign: Creëer DrieZestig Campagne
         data_report_export: Gegevensrapport exporteren
@@ -1082,6 +1083,7 @@ nl:
         description: Deze evaluatiesessie is ongeldig gemaakt. Dit kan gebeuren als u de evaluatie in een ander tabblad, browser of apparaat hebt voortgezet.
         title: Laatste verzoek mislukt
       next: Volgende
+      no_skill_mapping_message: Er zijn geen vaardigheden in kaart gebracht voor deze functie, neem contact op met je admin.
       read_only: Is alleen-lezen modus, je kunt geen resultaten wijzigen.
       save: Sla
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ nl:
     add_group_form:
       previous_assessments_required: De beoordelingen worden in onderstaande volgorde uitgevoerd
       previous_group_required: Eerdere voltooiing van de groep vereist
+      require_previous_groups_completion_for_booking: Voltooiing van alle voorgaande groepen vereist voordat u boekt
     menu:
       assessment_center: Beoordelingscentrum
       assessment_center_invites: Uitnodigingen voor het assessment
@@ -1381,6 +1384,7 @@ nl:
       bulk_download: Bulk downloaden
       bulk_update_evaluation_as_done: Markeren als voltooid
       bulk_update_evaluation_as_undone: Markering als voltooid ongedaan maken
+      convert_to_template: Omzetten naar sjabloon
       download: Rapporten downloaden
       export_completion_status: Status voltooiing export
       export_external: Extern
@@ -2197,6 +2201,10 @@ nl:
       workshop_subject_create:
         already_exists: Het onderwerp bestaat al in dit Assessment Center.
         part_of_other_workshop: Onderwerp is al deelnemer van '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Er zijn geen plaatsen beschikbaar voor deze workshop.
+        scheduling_lead_time_passed: Als de Scheduling Lead Time voorbij is, kun je het onderwerp niet opnieuw inschrijven.
+        workshop_subject_not_found: Workshop onderwerp niet gevonden
       workshops:
         no_available_assessor_slots: Geen beschikbare slots voor beoordelaar %{assessor}
         no_available_manager_slots: Geen beschikbare slots voor manager %{manager}
@@ -2328,6 +2336,13 @@ nl:
       add_to_yahoo_calendar: Toevoegen aan yahoo agenda
       assessment_center_alert:
         btn_title: Campagne
+        complete_previous_groups: Voltooi alle voorgaande groepsactiviteiten
+        complete_preworks: Voltooi alle voorwerken
+        please_visit: Bezoek de
+        requirements_message: Je kunt alleen boeken als je aan de volgende voorwaarde voldoet
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: om aan deze vereisten te voldoen.
       assessment_center_group_name: Beoordelingscentrum
       booking_failed_msg: 'Boeking mislukt: %{error}'
       buttons:
@@ -2395,6 +2410,7 @@ nl:
         remove:
           confirmation: Voer de huidige campagnenaam hieronder in het tekstvak in om de campagne te verwijderen
           success: "%{campaignName} is succesvol verwijderd."
+          template_confirmation: 'Voer de naam van de huidige sjabloon in het onderstaande veld in om deze te verwijderen. Opmerking: hierdoor wordt ook de gekoppelde campagnesjabloon verwijderd.'
       users:
         actions:
           export:
@@ -2865,6 +2881,12 @@ nl:
     used_number: Gebruikte licenties
     used_out_of: "%{used} van %{total}"
   mailer:
+    copyright:
+      text: Vuurtoren. Alle rechten voorbehouden
+    footer:
+      regards: Groeten,
+      team_name: Vuurtoren Team
+      technical_support: Voor technische problemen kunt u ons schrijven op <x>email</x> en we zullen binnen 24 uur reageren.
     from: De talentenonderneming
     idp:
       manager_unread_comments:
@@ -2922,6 +2944,8 @@ nl:
         instructions: Klik op onderstaande link om je aan te melden bij lighthouse.
         signin_link: Aanmelden Link
       subject: Aanmelden link voor Lighthouse
+    powered_by:
+      text: Aangedreven door Lighthouse.
     users:
       account_disable: Je account is uitgeschakeld wegens inactiviteit
       warning: Je account wordt binnenkort uitgeschakeld wegens inactiviteit
@@ -3238,6 +3262,9 @@ nl:
       send_password_email_success: E-mail verzonden naar gebruiker %{email} met het wachtwoord.
     title: Wachtwoord opnieuw instellen
   select: Selecteer
+  sessions:
+    errors:
+      recaptcha: Recaptcha verificatie mislukt. Probeer het opnieuw.
   shared:
     filters:
       clear: Filters wissen

@@ -819,6 +819,7 @@ bg:
         bulk_update_evaluation_status: Състояние на оценка на групово актуализиране
         compact_completion_status_export: Компактен износ на състоянието на завършване
         completion_status_export: Експортиране на състоянието на завършване
+        copy_as_template_or_campaign: Копиране на кампанията като шаблон
         copy_dimension: Копиране на величината
         create_threesixty_campaign: Създайте кампания Threesixty
         data_report_export: Експортиране на отчети за данни
@@ -1082,6 +1083,7 @@ bg:
         description: Тази сесия за оценка беше обявена за невалидна. Това може да се случи, ако продължите оценката в отделен раздел, браузър или устройство.
         title: Последната заявка е неуспешна
       next: Следващ
+      no_skill_mapping_message: За тази длъжност не е извършено картографиране на уменията, свържете се с администратора си.
       read_only: Режимът е само за четене, не можете да променяте резултатите.
       save: Запазете
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ bg:
     add_group_form:
       previous_assessments_required: Оценяванията да се изпълняват в ред по-долу
       previous_group_required: Изисква се предишно попълване на групата
+      require_previous_groups_completion_for_booking: Изискване за завършване на всички предишни групи преди резервацията
     menu:
       assessment_center: Център за оценяване
       assessment_center_invites: Покани за център за оценяване
@@ -1381,6 +1384,7 @@ bg:
       bulk_download: Групово изтегляне
       bulk_update_evaluation_as_done: Маркиране като готово
       bulk_update_evaluation_as_undone: Премахване на марката като готово
+      convert_to_template: Преобразуване в шаблон
       download: Изтегляне на отчети
       export_completion_status: Състояние на завършване на експорта
       export_external: Външен
@@ -2202,6 +2206,10 @@ bg:
       workshop_subject_create:
         already_exists: Субектът вече съществува в този център за оценяване.
         part_of_other_workshop: Субектът вече е участник в "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: Няма свободни места за този семинар.
+        scheduling_lead_time_passed: Времето за планиране е изтекло, не можете да запишете отново предмета.
+        workshop_subject_not_found: Темата на семинара не е намерена
       workshops:
         no_available_assessor_slots: Няма свободни места за оценител %{assessor}
         no_available_manager_slots: Няма свободни слотове за мениджър %{manager}
@@ -2333,6 +2341,13 @@ bg:
       add_to_yahoo_calendar: Добавяне към календара на yahoo
       assessment_center_alert:
         btn_title: Кампания
+        complete_previous_groups: Завършване на всички предишни групови дейности
+        complete_preworks: Завършване на всички предварителни работи
+        please_visit: Моля, посетете
+        requirements_message: Можете да направите резервация само след като сте изпълнили следното изискване
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: за да изпълните тези изисквания.
       assessment_center_group_name: Център за оценяване
       booking_failed_msg: 'Не успя да резервира слот: %{error}'
       buttons:
@@ -2400,6 +2415,7 @@ bg:
         remove:
           confirmation: Въведете името на текущата кампания, дадено по-долу, в текстовото поле, за да премахнете кампанията
           success: "%{campaignName} е премахнат успешно."
+          template_confirmation: 'Въведете името на текущия шаблон в полето по-долу, за да го изтриете. Забележка: Това ще изтрие и свързания шаблон на кампанията.'
       users:
         actions:
           export:
@@ -2894,6 +2910,10 @@ bg:
   mailer:
     copyright:
       text: Lighthouse. Всички права запазени
+    footer:
+      regards: С уважение,
+      team_name: Екип на Lighthouse
+      technical_support: За всякакви технически проблеми, моля, пишете ни на <x>email</x> и ние ще ви отговорим в рамките на 24 часа.
     from: Предприятието за таланти
     idp:
       manager_unread_comments:
@@ -3269,6 +3289,9 @@ bg:
       send_password_email_success: Имейл, изпратен до потребителя %{email} с паролата.
     title: Нулиране на паролата
   select: Отбран
+  sessions:
+    errors:
+      recaptcha: Проверката на Recaptcha се провали. Моля, опитайте отново.
   shared:
     filters:
       clear: Изчистете филтрите

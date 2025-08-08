@@ -149,6 +149,7 @@ zh:
             accesssheet_manage: 访问表管理
             accesssheet_settings: 访问表设置
             accesssheet_view: 访问表视图
+            export: 出口
             title: 仪表板
             view: 查看
           datasheets:
@@ -784,6 +785,8 @@ zh:
       new:
         header: 批量下载
       reports_unavailable: 目前没有可供下载的报告，请确认您要下载的报告是否可用。
+      select_reports_for_download: 请至少选择一份报告下载。
+      select_reports_for_regenerate: 请至少选择一份报告进行再生。
     cable:
       notification:
         assessment_factors: 获取因子
@@ -873,6 +876,7 @@ zh:
       campaign_templates: 活动模板
       column:
         assessment: 评估
+        campaign: 活动
         owner: 业主
         report: 报告
       copy:
@@ -947,6 +951,7 @@ zh:
       assessors:
         spoof:
           successfully: 您已成功登录 %{name}
+      convert_to_template: 转换为模板
       copy: 复制
       delete: 删除
       edit: 编辑
@@ -972,6 +977,7 @@ zh:
         name: 名称
         reports: 报告
         status: 现状
+        template: 模板
         type: 类型
       menus:
         add_common_campaign: 添加共同活动
@@ -987,11 +993,15 @@ zh:
             assessment: 评估
             category: 类别
             closed: 关闭
+            default_assessment_language: 评估默认语言
+            default_report_language: 报告默认语言
             empty: 空
             inactive: 不活动
             name: 名称
             normal: 正常
             previous: 上一页
+            select_assessment_language: 选择评估语言
+            select_report_language: 选择报告语言
             skill_rater: 技能评级员
             standard: 标准
             status: 现状
@@ -1615,6 +1625,7 @@ zh:
         campaign_assessment_group: 活动评估小组
         client: 客户
         completion: 完工
+        custom: 定制
         delivery_at: 交货价格（消费税）
         delivery_delay_hours: 交货延迟（小时）
         delivery_interval: 交付间隔
@@ -1646,6 +1657,7 @@ zh:
         recipients: 受援国
         reminder: 提醒
         report_available: 现有报告
+        select_assessments: 选择要检查完成情况的评估
         selected: 精选
         selected_cc_recipients: 选定的 CC 接受者
         selected_recipients: 选定受援国
@@ -2140,6 +2152,9 @@ zh:
         remove_confirm: 在文本框中输入当前模板名称，删除模板
         success: "%{idpName} 已成功删除。"
       add_idp_template: 添加 IDP 模板
+      ai_assisted_idp_enabled: 启用人工智能辅助 IDP
+      ai_enabled: 支持人工智能
+      ai_settings: 人工智能设置
       all: 全部
       appearance: 外观
       appearance_hint: 要修改外观，请先保存 IDP 模板，以启用这些设置。
@@ -2183,6 +2198,7 @@ zh:
       logo_type_label: 徽标类型
       no_reflection_questions_selected: 未选择反思问题
       none: 无
+      one_click_idp_enabled: 启用一键式 IDP
       reference_locale: 参考区域设置
       reflection_questions: 思考题
       reflection_questions_hint: 要修改反思问题，请先保存 IDP 模板以启用这些设置。
@@ -2289,6 +2305,7 @@ zh:
     individual_invite:
       tabs:
         assessment_center: 评估中心
+        invitation_status: 邀请状态
     innovation_styles:
       create:
         successfully: 创新风格 %{name} 创建成功。
@@ -2417,7 +2434,9 @@ zh:
       assessment_center: 评估中心：
       booked_at: 预订地点
       column:
+        invitation_status: 邀请状态
         participant: 参与者
+        scheduling_details: 日程安排详情
       remove_confirm:
         content: 您确定要删除邮件主题"%{subjectEmail}"吗？
         success: 带有电子邮件"%{subjectEmail}"的主题已成功删除。
@@ -2425,6 +2444,8 @@ zh:
       statuses:
         accepted: 已接受
         cancelled: 已取消
+        late_cancelled: 延迟取消
+        late_rescheduled: 改期
         pending: 待定
         requested_cancellation: 申请取消
         requested_cancellation_rejected: 拒绝取消
@@ -2751,7 +2772,9 @@ zh:
       errors:
         create:
           invalid_format: 级别定义必须是一个定义数组。
+          level_definition_must_exist: 级别定义不能为空
           level_definition_must_match_level: 必须完全包含 %{expected}水平，但给出了 %{actual}水平。
+          level_name_must_exist: 级别名称不能为空
           must_be_unique: 必须独一无二
           proficiency_level_exists: 已存在具有该技能和项目的 ProficiencyLevel
           proficiency_level_exists_for_default: 已退出默认设置的熟练级别
@@ -3397,6 +3420,7 @@ zh:
         copy_to_all: 抄送其他评估中心
         create: 创建
         dates_label: 日期
+        disable_cancellation_and_rescheduling: 禁用取消和重新安排
         duration_label: 持续时间
         duration_max_error: 不能超过 16 小时
         duration_min_error: 不能少于 15 分钟
@@ -3525,6 +3549,7 @@ zh:
         form_title: 安排评估
         language: 语言
         language_not_selected: 未选定
+        mark_cancel: 马克 取消
         mark_cancel_success: 取消主题的参与，电子邮件 %{subject_email}。
         meeting_link_custom: 定制
         meeting_link_internal: 内部
@@ -3533,6 +3558,9 @@ zh:
         no_change: 无变化
         override_existing: 覆盖现有的科目时间表
         preworks: 前期工作
+        re_enroll: 重新注册
+        re_enroll_confirm_message: 您确定要使用电子邮件 "<x>subject_email</x>"重新注册主题吗？
+        re_enroll_success: 重新注册主题，电子邮件：<x>subject_email</x> 。
         schedule: 时间安排
         unschedule: 取消计划
       tabs:
@@ -4129,6 +4157,21 @@ zh:
         toggle_status:
           successfully: 成功
     threesixty_campaigns:
+      convert_action:
+        already_a_template: 已有模板
+        has_user_data: 在转换为模板之前，请从 "工具 "下拉菜单中单击 "重置所有参与者"，手动重置活动。
+      convert_template_modal:
+        cancel: 取消
+        confirm: 确认
+        convert:
+          success: 模板转换成功
+        convert_option: 将此活动转换为模板
+        copy:
+          success: 活动模板创建任务已成功安排，请查看通知状态。
+        copy_option: 在此活动中创建新模板
+        description: 选择从该广告系列创建模板的方式。
+        failed: 模板创建失败。
+        title: 转换为模板
       email_templates:
         approve_nomination:
           description: 当直接报告的提名需要批准时，该信息将发送给经理

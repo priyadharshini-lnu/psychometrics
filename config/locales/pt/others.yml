@@ -819,6 +819,7 @@ pt:
         bulk_update_evaluation_status: Status da avaliação de atualização em massa
         compact_completion_status_export: Exportação do estado de conclusão compacto
         completion_status_export: Exportação do estado de conclusão
+        copy_as_template_or_campaign: Copiar campanha como modelo
         copy_dimension: Dimensão da cópia
         create_threesixty_campaign: Criar campanha Threesixty
         data_report_export: Exportação de relatórios de dados
@@ -1086,6 +1087,7 @@ pt:
         description: Esta sessão de avaliação foi invalidada, o que pode acontecer se continuar a avaliação num outro separador, navegador ou dispositivo.
         title: Último pedido falhou
       next: Avançar
+      no_skill_mapping_message: Não existe um mapeamento de competências para esta função, contacte o seu administrador.
       read_only: O modo é apenas de leitura, não pode alterar nenhum resultado.
       save: Salvar
       submissionFailedAlert:
@@ -1154,6 +1156,7 @@ pt:
     add_group_form:
       previous_assessments_required: As avaliações devem ser efectuadas pela seguinte ordem
       previous_group_required: Conclusão anterior do grupo necessária
+      require_previous_groups_completion_for_booking: É necessário completar todos os grupos anteriores antes de efetuar a reserva
     menu:
       assessment_center: Centro de avaliação
       assessment_center_invites: Centro de Avaliação convida
@@ -1394,6 +1397,7 @@ pt:
       bulk_download: Transferência em massa
       bulk_update_evaluation_as_done: Marcar como concluído
       bulk_update_evaluation_as_undone: Desmarcar como concluído
+      convert_to_template: Converter para modelo
       download: Descarregar relatórios
       export_completion_status: Estado de conclusão da exportação
       export_external: Externo
@@ -2210,6 +2214,10 @@ pt:
       workshop_subject_create:
         already_exists: O assunto já existe neste centro de avaliação.
         part_of_other_workshop: O sujeito já é um participante de "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: Não há lugares disponíveis para este seminário.
+        scheduling_lead_time_passed: Se o tempo de espera para o agendamento tiver passado, não é possível voltar a inscrever a disciplina.
+        workshop_subject_not_found: Assunto do workshop não encontrado
       workshops:
         no_available_assessor_slots: Não existem faixas horárias disponíveis para o avaliador %{assessor}
         no_available_manager_slots: Não há faixas horárias disponíveis para o gestor %{manager}
@@ -2341,6 +2349,13 @@ pt:
       add_to_yahoo_calendar: Adicionar ao calendário do yahoo
       assessment_center_alert:
         btn_title: Campanha
+        complete_previous_groups: Concluir todas as actividades de grupo anteriores
+        complete_preworks: Completar todos os trabalhos preparatórios
+        please_visit: Visite a página
+        requirements_message: Só pode efetuar uma reserva se preencher os seguintes requisitos
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: para completar estes requisitos.
       assessment_center_group_name: Centro de avaliação
       booking_failed_msg: 'Falha ao reservar o horário: %{error}'
       buttons:
@@ -2408,6 +2423,7 @@ pt:
         remove:
           confirmation: Insira o nome da campanha atual fornecido abaixo na caixa de texto para remover a campanha
           success: "%{campaignName} removida com êxito."
+          template_confirmation: 'Introduza o nome do modelo atual no campo abaixo para o eliminar. Nota: Esta ação também elimina o modelo de campanha associado.'
       users:
         actions:
           export:
@@ -2906,6 +2922,12 @@ pt:
     used_number: Licenças usadas
     used_out_of: "%{used} de %{total}"
   mailer:
+    copyright:
+      text: Farol. Todos os direitos reservados
+    footer:
+      regards: Com os meus cumprimentos,
+      team_name: Equipa do Farol
+      technical_support: Para quaisquer problemas técnicos, escreva-nos para <x>email</x> e responderemos no prazo de 24 horas.
     from: A Empresa de Talentos
     idp:
       manager_unread_comments:
@@ -2963,6 +2985,8 @@ pt:
         instructions: Clique na ligação abaixo para iniciar sessão no lighthouse.
         signin_link: Ligação de registo
       subject: Ligação de início de sessão para o Lighthouse
+    powered_by:
+      text: Desenvolvido por Lighthouse.
     users:
       account_disable: A sua conta foi desactivada devido a inatividade
       warning: A sua conta será desactivada em breve devido a inatividade
@@ -3279,6 +3303,9 @@ pt:
       send_password_email_success: Correio eletrónico enviado ao utilizador %{email} com a palavra-passe.
     title: Repor a palavra-passe
   select: Selecionar
+  sessions:
+    errors:
+      recaptcha: A verificação do Recaptcha falhou. Por favor, tente novamente.
   shared:
     filters:
       clear: Limpar filtros

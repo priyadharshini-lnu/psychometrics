@@ -825,6 +825,7 @@ hr:
         bulk_update_evaluation_status: Status evaluacije skupnog ažuriranja
         compact_completion_status_export: Kompaktni izvoz statusa dovršetka
         completion_status_export: Izvoz statusa dovršetka
+        copy_as_template_or_campaign: Kopiraj kampanju kao predložak
         copy_dimension: Kopiraj dimenziju
         create_threesixty_campaign: Kreirajte kampanju Threesixty
         data_report_export: Izvoz izvješća o podacima
@@ -1089,6 +1090,7 @@ hr:
         description: Ova sesija evaluacije je poništena. To se može dogoditi ako ste nastavili procjenu na zasebnoj kartici, pregledniku ili uređaju.
         title: Posljednji zahtjev nije uspio
       next: Sljedeći
+      no_skill_mapping_message: Nema mapiranja vještina za ovu radnu ulogu, kontaktirajte svog administratora.
       read_only: Ovo je način rada "Samo za čitanje", ne možete mijenjati odgovore.
       save: Spremiti
       submissionFailedAlert:
@@ -1157,6 +1159,7 @@ hr:
     add_group_form:
       previous_assessments_required: Procjene se izvode nižim redoslijedom
       previous_group_required: Potreban je prethodni završetak grupe
+      require_previous_groups_completion_for_booking: Potrebno je dovršiti sve prethodne grupe prije rezervacije
     menu:
       assessment_center: Centar za procjenu
       assessment_center_invites: Pozivnice za centar za procjenu
@@ -1388,6 +1391,7 @@ hr:
       bulk_download: Skupno preuzimanje
       bulk_update_evaluation_as_done: Označi kao dovršeno
       bulk_update_evaluation_as_undone: Poništi oznaku kao gotovo
+      convert_to_template: Pretvori u predložak
       download: Preuzmite izvješća
       export_completion_status: Status dovršetka izvoza
       export_external: Vanjski
@@ -2217,6 +2221,10 @@ hr:
       workshop_subject_create:
         already_exists: Ispitanik već postoji u ovom centru za procjenu.
         part_of_other_workshop: Ispitanik je već sudionik '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Nema slobodnih mjesta za ovu radionicu.
+        scheduling_lead_time_passed: Vrijeme za zakazivanje je isteklo, ne možete ponovno prijaviti sudionika.
+        workshop_subject_not_found: Sudionik radionice nije pronađen
       workshops:
         no_available_assessor_slots: Nema slobodnih mjesta za procjenitelja %{assessor}
         no_available_manager_slots: Nema slobodnih mjesta za menadžera %{manager}
@@ -2348,6 +2356,13 @@ hr:
       add_to_yahoo_calendar: Dodaj u yahoo kalendar
       assessment_center_alert:
         btn_title: Kampanja
+        complete_previous_groups: Dovršite sve aktivnosti prethodnih grupa
+        complete_preworks: Dovršite sve pripremne zadatke
+        please_visit: Molimo posjetite
+        requirements_message: Možete rezervirati tek nakon što ispunite sljedeći uvjet
+        requirements_plural: uvjeti
+        requirements_singular: uvjet
+        to_complete_requirements: za ispunjavanje ovih uvjeta.
       assessment_center_group_name: Centar za procjenu
       booking_failed_msg: 'Rezervacija termina nije uspjela: %{error}'
       buttons:
@@ -2415,6 +2430,7 @@ hr:
         remove:
           confirmation: Unesite trenutni naziv kampanje (naveden u nastavku) u tekstualni okvir za uklanjanje kampanje
           success: "%{campaignName} je uspješno uklonjena."
+          template_confirmation: 'Unesite naziv trenutnog predloška u polje ispod za brisanje. Napomena: Ovo će također izbrisati povezani predložak kampanje.'
       users:
         actions:
           export:
@@ -2909,6 +2925,10 @@ hr:
   mailer:
     copyright:
       text: Lighthouse. Sva prava pridržana
+    footer:
+      regards: Srdačan pozdrav,
+      team_name: Lighthouse tim
+      technical_support: Za tehničke poteškoće pišite nam na %{email} i odgovorit ćemo u roku od 24 sata.
     from: Talent Enterprise
     idp:
       manager_unread_comments:
@@ -3284,6 +3304,9 @@ hr:
       send_password_email_success: Email poslan korisniku %{email} s lozinkom.
     title: Poništiti lozinku
   select: Odabrati
+  sessions:
+    errors:
+      recaptcha: Recaptcha provjera nije uspjela. Pokušajte ponovno.
   shared:
     filters:
       clear: Obriši filtere

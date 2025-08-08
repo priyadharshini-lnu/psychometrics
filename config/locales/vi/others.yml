@@ -819,6 +819,7 @@ vi:
         bulk_update_evaluation_status: Cập nhật hàng loạt trạng thái đánh giá
         compact_completion_status_export: Xuất trạng thái hoàn thành nhỏ gọn
         completion_status_export: Xuất trạng thái hoàn thành
+        copy_as_template_or_campaign: Sao chép chiến dịch làm mẫu
         copy_dimension: Sao chép kích thước
         create_threesixty_campaign: Tạo chiến dịch Threesixty
         data_report_export: Xuất báo cáo dữ liệu
@@ -1082,6 +1083,7 @@ vi:
         description: Phiên đánh giá này đã bị vô hiệu. Điều này có thể xảy ra nếu bạn tiếp tục đánh giá trong một tab, trình duyệt hoặc thiết bị riêng biệt.
         title: Yêu cầu cuối cùng không thành công
       next: Kế tiếp
+      no_skill_mapping_message: Không có bản đồ kỹ năng nào được thiết lập cho vị trí công việc này. Vui lòng liên hệ với bộ phận hành chính.
       read_only: Ở chế độ chỉ đọc, bạn không thể thay đổi bất kỳ kết quả nào.
       save: Cứu
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ vi:
     add_group_form:
       previous_assessments_required: Đánh giá chạy theo thứ tự dưới đây
       previous_group_required: Yêu cầu hoàn thành nhóm trước đó
+      require_previous_groups_completion_for_booking: Yêu cầu hoàn thành tất cả các nhóm trước đó trước khi đặt lịch.
     menu:
       assessment_center: Trung tâm đánh giá
       assessment_center_invites: Lời mời của Trung tâm Đánh giá
@@ -1375,6 +1378,7 @@ vi:
       bulk_download: Tải xuống hàng loạt
       bulk_update_evaluation_as_done: Đánh dấu là xong
       bulk_update_evaluation_as_undone: Bỏ đánh dấu là xong
+      convert_to_template: Chuyển đổi sang mẫu
       download: Tải xuống báo cáo
       export_completion_status: Trạng thái hoàn thành xuất
       export_external: Ngoài
@@ -2196,6 +2200,10 @@ vi:
       workshop_subject_create:
         already_exists: Đối tượng đã tồn tại trong Trung tâm Đánh giá này.
         part_of_other_workshop: Đối tượng đã là người tham gia của '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Không còn chỗ trống cho buổi workshop này.
+        scheduling_lead_time_passed: Thời gian chờ đăng ký đã hết, bạn không thể đăng ký lại môn học này.
+        workshop_subject_not_found: Chủ đề hội thảo không được tìm thấy
       workshops:
         no_available_assessor_slots: Không có vị trí trống cho người đánh giá %{assessor}
         no_available_manager_slots: Không có vị trí khả dụng cho người quản lý %{manager}
@@ -2327,6 +2335,13 @@ vi:
       add_to_yahoo_calendar: Thêm vào lịch yahoo
       assessment_center_alert:
         btn_title: Chiến dịch
+        complete_previous_groups: Hoàn thành tất cả các hoạt động nhóm trước đó.
+        complete_preworks: Hoàn thành tất cả các công việc chuẩn bị.
+        please_visit: Vui lòng truy cập trang web
+        requirements_message: Bạn chỉ có thể đặt chỗ sau khi hoàn thành các yêu cầu sau đây.
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: Để hoàn thành các yêu cầu này.
       assessment_center_group_name: Trung tâm đánh giá
       booking_failed_msg: 'Không đặt được chỗ: %{error}'
       buttons:
@@ -2394,6 +2409,7 @@ vi:
         remove:
           confirmation: Nhập tên chiến dịch hiện tại được đưa ra bên dưới vào hộp văn bản để xóa chiến dịch
           success: "%{campaignName} đã được xóa thành công."
+          template_confirmation: 'Nhập tên của mẫu hiện tại vào ô bên dưới để xóa nó. Lưu ý: Thao tác này cũng sẽ xóa mẫu chiến dịch liên kết.'
       users:
         actions:
           export:
@@ -2888,6 +2904,10 @@ vi:
   mailer:
     copyright:
       text: Lighthouse. Bảo lưu mọi quyền
+    footer:
+      regards: Trân trọng,
+      team_name: Đội Ngọn Hải Đăng
+      technical_support: Đối với bất kỳ vấn đề kỹ thuật nào, vui lòng liên hệ với chúng tôi qua email <x>email</x> và chúng tôi sẽ phản hồi trong vòng 24 giờ.
     from: Doanh nghiệp nhân tài
     idp:
       manager_unread_comments:
@@ -3263,6 +3283,9 @@ vi:
       send_password_email_success: Email được gửi đến người dùng %{email} với mật khẩu.
     title: Đặt lại mật khẩu
   select: Lựa
+  sessions:
+    errors:
+      recaptcha: Xác minh reCAPTCHA đã thất bại. Vui lòng thử lại.
   shared:
     filters:
       clear: Xóa bộ lọc

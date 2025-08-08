@@ -843,6 +843,7 @@ ar:
         bulk_update_evaluation_status: حالة تقييم التحديث المجمع
         compact_completion_status_export: تصدير حالة الاكتمال المدمجة
         completion_status_export: تصدير حالة الإنجاز
+        copy_as_template_or_campaign: نسخ الحملة كقالب
         copy_dimension: أبعاد النسخ
         create_threesixty_campaign: إنشاء حملة Threesixty
         data_report_export: تصدير تقرير البيانات
@@ -1110,6 +1111,7 @@ ar:
         description: وقد ألغيت جلسة التقييم هذه. يمكن أن يحدث هذا إذا واصلت التقييم في علامة تبويب أو متصفح أو جهاز منفصل.
         title: فشل الطلب الأخير
       next: التالي
+      no_skill_mapping_message: لا يوجد تخطيط للمهارات لهذه الوظيفة، تواصل مع المسؤول عنك.
       read_only: هو وضع القراءة فقط، لا يمكنك تغيير أي نتائج.
       save: حفظ
       submissionFailedAlert:
@@ -1178,6 +1180,7 @@ ar:
     add_group_form:
       previous_assessments_required: يتم إجراء التقييمات بالترتيب أدناه
       previous_group_required: مطلوب إكمال المجموعة السابقة
+      require_previous_groups_completion_for_booking: اشتراط إكمال جميع المجموعات السابقة قبل الحجز
     menu:
       assessment_center: مركز التقييم
       assessment_center_invites: مركز التقييم يدعو
@@ -1418,6 +1421,7 @@ ar:
       bulk_download: تحميل بالجملة
       bulk_update_evaluation_as_done: وضع علامة على أنه تم
       bulk_update_evaluation_as_undone: قم بإلغاء وضع علامة كما تم
+      convert_to_template: التحويل إلى قالب
       download: تنزيل التقارير
       export_completion_status: حالة اكتمال التصدير
       export_external: خارجي
@@ -2239,6 +2243,10 @@ ar:
       workshop_subject_create:
         already_exists: الموضوع موجود بالفعل في مركز التقييم هذا.
         part_of_other_workshop: الموضوع مشارك بالفعل في "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: لا توجد مقاعد متاحة لهذه الورشة.
+        scheduling_lead_time_passed: انقضت مهلة الجدولة الزمنية \ لقد انقضت المهلة الزمنية \ لا يمكنك إعادة تسجيل الموضوع.
+        workshop_subject_not_found: موضوع ورشة العمل غير موجود
       workshops:
         no_available_assessor_slots: لا توجد فتحات متاحة للمقيم %{assessor}
         no_available_manager_slots: لا توجد فتحات متاحة للمدير %{manager}
@@ -2370,6 +2378,13 @@ ar:
       add_to_yahoo_calendar: إضافة إلى تقويم ياهو
       assessment_center_alert:
         btn_title: حملة
+        complete_previous_groups: أكمل جميع أنشطة المجموعة السابقة
+        complete_preworks: أكمل جميع الأعمال التمهيدية
+        please_visit: يرجى زيارة
+        requirements_message: لا يمكنك إجراء الحجز إلا بعد استكمال المتطلبات التالية
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: لاستكمال هذه المتطلبات.
       assessment_center_group_name: مركز التقييم
       booking_failed_msg: 'فشل حجز الفتحة: %{error}'
       buttons:
@@ -2437,6 +2452,7 @@ ar:
         remove:
           confirmation: 'أدخل الإسم الحالي للحملة في مربع النص أدناة لإزالة الحملة '
           success: تمت إزالة الحملة بنجاح %{campaignName}
+          template_confirmation: 'أدخل اسم القالب الحالي في الحقل أدناه لحذفه. ملاحظة: سيؤدي هذا أيضًا إلى حذف قالب الحملة المرتبط.'
       users:
         actions:
           export:
@@ -3310,6 +3326,9 @@ ar:
       send_password_email_success: إرسال بريد إلكتروني إلى المستخدم %{email} مع كلمة المرور.
     title: إعادة تعيين كلمة المرور
   select: اختار
+  sessions:
+    errors:
+      recaptcha: فشلت عملية التحقق من إعادة الكابتشا. يرجى المحاولة مرة أخرى.
   shared:
     filters:
       clear: امسح المُرشحات

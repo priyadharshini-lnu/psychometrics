@@ -819,6 +819,7 @@ fr:
         bulk_update_evaluation_status: État de l’évaluation de la mise à jour en bloc
         compact_completion_status_export: Exportation de l'état d'achèvement compact
         completion_status_export: Exportation de l'état d'achèvement
+        copy_as_template_or_campaign: Copier la campagne comme modèle
         copy_dimension: Copier la dimension
         create_threesixty_campaign: Créer une campagne Threesixty
         data_report_export: Exportation de rapports de données
@@ -1082,6 +1083,7 @@ fr:
         description: Cette session d'évaluation a été invalidée, ce qui peut se produire si vous avez poursuivi l'évaluation dans un autre onglet, un autre navigateur ou un autre appareil.
         title: Échec de la dernière demande
       next: Suivant
+      no_skill_mapping_message: Il n'y a pas de cartographie des compétences pour ce poste, contactez votre administrateur.
       read_only: En mode lecture seule, vous ne pouvez pas modifier les résultats.
       save: Économiser
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ fr:
     add_group_form:
       previous_assessments_required: Les évaluations se déroulent dans l'ordre suivant
       previous_group_required: Achèvement préalable d'un groupe requis
+      require_previous_groups_completion_for_booking: Il est nécessaire de compléter tous les groupes précédents avant de réserver.
     menu:
       assessment_center: Centre d'évaluation
       assessment_center_invites: Invitations du centre d’évaluation
@@ -1381,6 +1384,7 @@ fr:
       bulk_download: Téléchargement en masse
       bulk_update_evaluation_as_done: Marquer comme terminé
       bulk_update_evaluation_as_undone: Démarquer comme terminé
+      convert_to_template: Convertir en modèle
       download: Télécharger les rapports
       export_completion_status: Statut d'achèvement de l'exportation
       export_external: Externe
@@ -2197,6 +2201,10 @@ fr:
       workshop_subject_create:
         already_exists: Le sujet existe déjà dans ce centre d'évaluation.
         part_of_other_workshop: Le sujet est déjà un participant de '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Il n'y a pas de places disponibles pour cet atelier.
+        scheduling_lead_time_passed: Le délai de programmation est écoulé, vous ne pouvez pas réinscrire le sujet.
+        workshop_subject_not_found: Sujet de l'atelier non trouvé
       workshops:
         no_available_assessor_slots: Aucun créneau disponible pour l'évaluateur %{assessor}
         no_available_manager_slots: Aucun emplacement disponible pour le manager %{manager}
@@ -2331,6 +2339,13 @@ fr:
       add_to_yahoo_calendar: Ajouter au calendrier Yahoo
       assessment_center_alert:
         btn_title: Campagne
+        complete_previous_groups: Réaliser toutes les activités de groupe précédentes
+        complete_preworks: Terminer tous les travaux préliminaires
+        please_visit: Veuillez consulter le site
+        requirements_message: Vous ne pouvez effectuer une réservation que si vous remplissez les conditions suivantes
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: pour remplir ces conditions.
       assessment_center_group_name: Centre d'évaluation
       booking_failed_msg: 'Échec de la réservation du créneau : %{error}'
       buttons:
@@ -2398,6 +2413,7 @@ fr:
         remove:
           confirmation: Saisir le nom de la campagne actuelle dans la zone de texte pour supprimer la campagne
           success: "%{campaignName} a été supprimé avec succès."
+          template_confirmation: 'Saisissez le nom du modèle actuel dans le champ ci-dessous pour le supprimer. Remarque : cette opération supprimera également le modèle de campagne lié.'
       users:
         actions:
           export:
@@ -2896,6 +2912,8 @@ fr:
     used_number: Licences utilisées
     used_out_of: "%{used} sur %{total}"
   mailer:
+    copyright:
+      text: Phare. Tous droits réservés
     footer:
       regards: Cordialement,
       team_name: Équipe Lighthouse
@@ -2957,6 +2975,8 @@ fr:
         instructions: Cliquez sur le lien ci-dessous pour vous connecter à lighthouse.
         signin_link: Lien de connexion
       subject: Lien de connexion pour Lighthouse
+    powered_by:
+      text: Propulsé par Lighthouse.
     users:
       account_disable: Votre compte a été désactivé pour cause d'inactivité
       warning: Votre compte sera bientôt désactivé pour cause d'inactivité
@@ -3273,6 +3293,9 @@ fr:
       send_password_email_success: Courriel envoyé à l'utilisateur %{email} avec le mot de passe.
     title: Réinitialiser le mot de passe
   select: Sélectionner
+  sessions:
+    errors:
+      recaptcha: La vérification du Recaptcha a échoué. Veuillez réessayer.
   shared:
     filters:
       clear: Effacer les filtres

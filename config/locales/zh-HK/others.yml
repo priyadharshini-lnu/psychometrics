@@ -186,6 +186,7 @@ zh-HK:
   admin_jobs:
     attrs:
       operations:
+        copy_as_template_or_campaign: 複製活動作為範本
         export_job_roles_translations: 匯出工作角色翻譯
         export_proficiency_levels: 出口能力等級
         import_job_roles_translations: 匯入工作角色翻譯
@@ -247,6 +248,7 @@ zh-HK:
 
         按一下**返回**以最後一次檢查您的回覆，或在完成後按一下**提交**。
       next: 下一步
+      no_skill_mapping_message: 此工作角色沒有技能對應，請聯絡您的管理員。
       read_only: 是唯讀模式，您無法更改任何結果。
       save: 儲存
       submit: 提交
@@ -283,6 +285,8 @@ zh-HK:
         ready: 準備好錄影時請按「錄影」按鈕
     wait: 等等
   assessments_reports:
+    add_group_form:
+      require_previous_groups_completion_for_booking: 要求在預約前完成之前的所有組別
     sequencing:
       modal:
         delete:
@@ -443,6 +447,8 @@ zh-HK:
       notification_hours: 您有 %{hours} 小時 完成
       notification_minutes: 您有 %{minutes} 分 完成
   campaign_assessment:
+    actions:
+      convert_to_template: 轉換為範本
     assessment_center_heading_label: 會議詳情
     assessments_heading: 您的任務
     column:
@@ -718,6 +724,10 @@ zh-HK:
       uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
       user_idp_plan:
         idp_template_not_published: 該IDP模板尚未發布，請在分配給用戶之前將其發布。
+      workshop_subject_re_enroll:
+        no_seats_available: 本工作坊沒有座位。
+        scheduling_lead_time_passed: 排程時間已過，您無法重新註冊該科目。
+        workshop_subject_not_found: 未找到研討會主題
   emails:
     subject_relationship_table:
       subject_email: 主題電子郵件
@@ -772,6 +782,13 @@ zh-HK:
       add_to_calendar_tour_description: 將此預訂新增至日曆
       assessment_center_alert:
         btn_title: 市場推廣
+        complete_previous_groups: 完成之前所有的團體活動
+        complete_preworks: 完成所有預備工作
+        please_visit: 請瀏覽
+        requirements_message: 完成下列要求後，您才能進行預訂
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: 以完成這些要求。
       assessment_center_group_name: 評估中心
       booking_failed_msg: 預訂位置失敗：%{error}
       buttons:
@@ -835,6 +852,7 @@ zh-HK:
         remove:
           confirmation: 在下面的文本框中輸入目前活動名稱以刪除
           success: 已成功刪除%{campaignName}。
+          template_confirmation: 在下方欄位中輸入目前範本的名稱，即可刪除該範本。注意：這也會刪除連結的活動範本。
       users:
         completion_statuses:
           completed: 已完成
@@ -1097,11 +1115,17 @@ zh-HK:
   idp_templates:
     errors:
       user_idp_template_not_found: 尚未為您指定 IDP 模版。
+  languages:
+    ro: 羅馬尼亞
   licenses:
     title: 許可證
   mailer:
     copyright:
       text: Lighthouse. 版權所有
+    footer:
+      regards: 關於
+      team_name: 燈塔團隊
+      technical_support: 如有任何技術問題，請寫信至<x>email</x> ，我們會在 24 小時內回覆。
     magic_link:
       body:
         dear: 親愛的 %{name}、
@@ -1250,6 +1274,9 @@ zh-HK:
       not_available: 無法使用
       on_hold: 擱置中
       released: 已發佈
+  sessions:
+    errors:
+      recaptcha: Recaptcha 驗證失敗。請再試一次。
   shared:
     filters:
       clear: 清除篩選器

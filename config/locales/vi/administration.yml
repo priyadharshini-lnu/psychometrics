@@ -15,6 +15,8 @@ vi:
       title: Các thay đổi đã được kiểm toán
     administrator:
       sessions:
+        errors:
+          recaptcha: Xác minh reCAPTCHA đã thất bại
         new:
           forgot_password: Quên Mật khẩu?
           instruction: Vui lòng đăng nhập bằng thông tin tài khoản cá nhân của bạn
@@ -147,6 +149,7 @@ vi:
             accesssheet_manage: Quản lý bảng truy cập
             accesssheet_settings: Cài đặt bảng truy cập
             accesssheet_view: Chế độ xem Accesssheet
+            export: Xuất khẩu
             title: Dashboards
             view: Cảnh
           datasheets:
@@ -290,17 +293,33 @@ vi:
             view: Cảnh
     ai_assistants:
       actions:
+        create: Tạo Trợ lý Trí tuệ Nhân tạo (AI)
+        edit: Chỉnh sửa Trợ lý AI
         playground: Sân chơi
       ai_assistants: Trợ lý AI
       ai_assistants_playground: Sân chơi trợ lý AI
       column:
         provider: Cung cấp
+      created_successfully: Trợ lý AI đã được tạo thành công.
       form:
+        add_output_schema_key: Thêm khóa lược đồ đầu ra
+        dependencies: Phụ thuộc
         description: Sự miêu tả
+        enter_description: Nhập mô tả
+        enter_schema_key: Nhập khóa lược đồ
+        key: Chìa khóa
         name: Tên
+        output_schema_keys: Các khóa lược đồ đầu ra
         provider: Cung cấp
+        remove_output_schema_key: Xóa khóa lược đồ đầu ra
+        schema_key_description_required: Mô tả khóa lược đồ là bắt buộc
+        schema_key_required: Khóa lược đồ là bắt buộc
+        schema_key_type: Loại phím
+        schema_key_unique: Các khóa lược đồ phải là duy nhất.
         system_prompt: Nhắc nhở hệ thống
+        type: Loại
         user_prompt: Nhắc nhở người dùng
+      updated_successfully: Trợ lý AI đã được cập nhật thành công.
     any: " -Bất kì- "
     api:
       campaigns:
@@ -766,6 +785,8 @@ vi:
       new:
         header: Tải xuống hàng loạt
       reports_unavailable: Hiện tại, không có báo cáo nào có sẵn để tải xuống. Vui lòng xác nhận rằng các báo cáo bạn muốn tải xuống đã có sẵn.
+      select_reports_for_download: Vui lòng chọn ít nhất một báo cáo để tải xuống.
+      select_reports_for_regenerate: Vui lòng chọn ít nhất một báo cáo để tạo lại.
     cable:
       notification:
         assessment_factors: Các yếu tố được tìm nạp
@@ -855,6 +876,7 @@ vi:
       campaign_templates: Mẫu chiến dịch
       column:
         assessment: Thuế
+        campaign: Chiến dịch
         owner: Chủ nhân
         report: Báo cáo
       copy:
@@ -929,6 +951,7 @@ vi:
       assessors:
         spoof:
           successfully: Bạn đã đăng nhập thành công dưới dạng %{name}
+      convert_to_template: Chuyển đổi sang mẫu
       copy: Bản sao
       delete: Xóa
       edit: Biên tập
@@ -954,6 +977,7 @@ vi:
         name: Tên
         reports: Báo cáo
         status: Tình trạng
+        template: Mẫu
         type: Kiểu
       menus:
         add_common_campaign: Thêm chiến dịch chung
@@ -969,11 +993,15 @@ vi:
             assessment: Thuế
             category: Loại
             closed: Khép kín
+            default_assessment_language: Ngôn ngữ mặc định cho đánh giá
+            default_report_language: Báo cáo ngôn ngữ mặc định
             empty: Trống
             inactive: Không hoạt động
             name: Tên
             normal: Bình thường
             previous: Trước
+            select_assessment_language: Chọn ngôn ngữ đánh giá
+            select_report_language: Chọn ngôn ngữ báo cáo
             skill_rater: Người đánh giá kỹ năng
             standard: Chuẩn
             status: Tình trạng
@@ -1006,6 +1034,7 @@ vi:
           name: Sự miêu tả
           save: Lưu mô tả
           save_success: Mô tả đã lưu thành công
+        enable_video_call_recording: Bật tính năng ghi âm cuộc gọi video
         fixed_time: Thời gian cố định
         instructions:
           actions:
@@ -1596,6 +1625,7 @@ vi:
         campaign_assessment_group: Nhóm Đánh giá Chiến dịch
         client: Khách hàng
         completion: Hoàn thành
+        custom: Tùy chỉnh
         delivery_at: Giao hàng tại (GST)
         delivery_delay_hours: Giao hàng chậm trễ (giờ)
         delivery_interval: Thời gian giao hàng
@@ -1627,6 +1657,7 @@ vi:
         recipients: Người nhận
         reminder: Nhắc nhở
         report_available: Báo cáo có sẵn
+        select_assessments: Chọn các bài kiểm tra cần kiểm tra xem đã hoàn thành hay chưa.
         selected: Chọn
         selected_cc_recipients: Người nhận CC được chọn
         selected_recipients: Người nhận được chọn
@@ -2121,6 +2152,9 @@ vi:
         remove_confirm: Nhập tên mẫu hiện tại được cung cấp bên dưới trong hộp văn bản để xóa mẫu
         success: "%{idpName} đã bị xóa thành công."
       add_idp_template: Thêm mẫu IDP
+      ai_assisted_idp_enabled: Hỗ trợ nhận dạng người dùng bằng trí tuệ nhân tạo (AI)
+      ai_enabled: Được trang bị trí tuệ nhân tạo (AI)
+      ai_settings: Cài đặt Trí tuệ Nhân tạo
       all: Tất cả
       appearance: Bề ngoài
       appearance_hint: Để sửa đổi giao diện, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
@@ -2136,6 +2170,7 @@ vi:
       enter_template_name: Tên
       enter_template_name_error: Tên mẫu là bắt buộc
       errors:
+        cannot_update_progress_plan_completed: Không thể cập nhật tiến độ vì kế hoạch IDP đã hoàn thành.
         update: Không được phép cập nhật vì mẫu IDP đã được liên kết với gói IDP của người dùng. Các thay đổi về ngoại hình đã được lưu.
       fields:
         assigned_data: Dữ liệu được chỉ định
@@ -2163,6 +2198,7 @@ vi:
       logo_type_label: Loại logo
       no_reflection_questions_selected: Không chọn Câu hỏi phản ánh
       none: Không ai
+      one_click_idp_enabled: Bật IDP chỉ với một cú nhấp chuột
       reference_locale: Ngôn ngữ tham khảo
       reflection_questions: Câu hỏi suy ngẫm
       reflection_questions_hint: Để sửa đổi các câu hỏi phản ánh, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
@@ -2269,6 +2305,7 @@ vi:
     individual_invite:
       tabs:
         assessment_center: Trung tâm đánh giá
+        invitation_status: Tình trạng lời mời
     innovation_styles:
       create:
         successfully: Kiểu đổi mới %{name} đã được tạo thành công.
@@ -2397,7 +2434,9 @@ vi:
       assessment_center: 'Trung tâm đánh giá:'
       booked_at: 'Đặt tại:'
       column:
+        invitation_status: Tình trạng lời mời
         participant: Người tham gia
+        scheduling_details: Chi tiết lịch trình
       remove_confirm:
         content: Bạn có chắc chắn muốn xóa chủ đề có email '%{subjectEmail}' không?
         success: Chủ đề có email '%{subjectEmail}'' đã bị xóa thành công.
@@ -2405,6 +2444,8 @@ vi:
       statuses:
         accepted: Chấp nhận
         cancelled: Bị hủy bỏ
+        late_cancelled: Hủy đặt chỗ muộn
+        late_rescheduled: Đã hoãn lại
         pending: Chờ
         requested_cancellation: Yêu cầu hủy bỏ
         requested_cancellation_rejected: Hủy bỏ bị từ chối
@@ -2731,7 +2772,9 @@ vi:
       errors:
         create:
           invalid_format: Định nghĩa cấp độ phải là một mảng các định nghĩa.
+          level_definition_must_exist: Định nghĩa cấp độ không được để trống.
           level_definition_must_match_level: phải chứa chính xác %{expected} mức, nhưng %{actual} đã được đưa ra
+          level_name_must_exist: Tên cấp độ không được để trống.
           must_be_unique: Phải là duy nhất
           proficiency_level_exists: Mức độ thành thạo với kỹ năng và dự án này đã tồn tại
           proficiency_level_exists_for_default: Mức độ thành thạo mặc định đã tồn tại.
@@ -3034,6 +3077,7 @@ vi:
         dp_consent_custom: Tùy chỉnh sự đồng ý về xử lý dữ liệu
         dp_consent_version: Phiên bản chính sách
         errors:
+          cannot_disable_while_campaign_enabled: Không thể tắt tính năng ghi âm cuộc gọi video vì tính năng này đã được bật cho một hoặc nhiều chiến dịch trong dự án này.
           policy_version_format: Chỉ cho phép các số nguyên
         mask_identity_for_examus: Dữ liệu mặt nạ cho Examus Proctoring
         mask_identity_for_hogan: Dữ liệu mặt nạ cho Hogan
@@ -3047,6 +3091,9 @@ vi:
         privacy_link_placeholder: Nhập liên kết quyền riêng tư
         privacy_text: Văn bản bảo mật
         privacy_text_placeholder: Nhập văn bản bảo mật
+        video_call_recording: Cho phép ghi âm cuộc gọi video
+        video_call_recording_expiry_duration: Thời gian lưu trữ bản ghi cuộc gọi video (tính bằng ngày)
+        video_call_recording_scope: Bật tính năng ghi video cho tất cả các chiến dịch mới.
       profile_settings:
         form_fields:
           enabled: Kích hoạt
@@ -3369,6 +3416,7 @@ vi:
         copy_to_all: Sao chép đến các Trung tâm Đánh giá khác
         create: Tạo
         dates_label: Ngày
+        disable_cancellation_and_rescheduling: Vô hiệu hóa việc hủy bỏ và thay đổi lịch trình
         duration_label: Trường độ
         duration_max_error: Không được lớn hơn 16 giờ
         duration_min_error: Không được dưới 15 phút
@@ -3494,6 +3542,7 @@ vi:
         form_title: Lên lịch đánh giá
         language: Ngôn ngữ
         language_not_selected: Không được chọn
+        mark_cancel: Đánh dấu Hủy
         mark_cancel_success: Hủy tham gia chủ đề với email %{subject_email}.
         meeting_link_custom: Phong tục
         meeting_link_internal: Nội
@@ -3502,6 +3551,9 @@ vi:
         no_change: Không thay đổi
         override_existing: Ghi đè lịch trình hiện có cho các môn học
         preworks: Làm việc trước
+        re_enroll: Đăng ký lại
+        re_enroll_confirm_message: Bạn có chắc chắn muốn đăng ký lại môn học với địa chỉ email '%{subject_email}' không?
+        re_enroll_success: Học viên đã đăng ký lại với địa chỉ email <x>subject_email</x>.
         schedule: Lịch
         unschedule: Hủy lên lịch
       tabs:
@@ -3620,6 +3672,7 @@ vi:
       disable_password_reuse: Tắt sử dụng lại mật khẩu
       disallow_password_login: Không cho phép đăng nhập mật khẩu
       enable_login_with_magic_link: Bật Đăng nhập bằng liên kết ma thuật
+      enable_recaptcha: Bật reCAPTCHA
       enforce_password_policy: Thực thi chính sách mật khẩu khi đăng nhập tiếp theo
       enforce_strong: Thực thi mật khẩu mạnh
       expiration: Hết hạn mật khẩu
@@ -4087,6 +4140,21 @@ vi:
         toggle_status:
           successfully: Thành công
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Đã có sẵn mẫu
+        has_user_data: Vui lòng thiết lập lại chiến dịch bằng cách nhấp vào "Reset all participants" trong menu thả xuống "Tools" trước khi chuyển đổi sang mẫu.
+      convert_template_modal:
+        cancel: Hủy
+        confirm: Xác nhận
+        convert:
+          success: Mẫu đã được chuyển đổi thành công
+        convert_option: Chuyển đổi chiến dịch này thành mẫu.
+        copy:
+          success: Công việc tạo mẫu chiến dịch đã được lên lịch thành công, vui lòng kiểm tra thông báo để biết trạng thái.
+        copy_option: Tạo một mẫu mới từ chiến dịch này
+        description: Chọn cách bạn muốn tạo mẫu từ chiến dịch này.
+        failed: Việc tạo mẫu đã thất bại.
+        title: Chuyển đổi sang mẫu
       email_templates:
         approve_nomination:
           description: Thông báo này được gửi đến người quản lý khi một đề cử, được thực hiện bởi một báo cáo trực tiếp, cần được phê duyệt
@@ -4321,6 +4389,10 @@ vi:
       update:
         successfully: Người dùng %{name} đã được cập nhật thành công.
       user: Người dùng
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Ngày kết thúc không thể nằm trong quá khứ.
+        start_date_cannot_be_in_past: Ngày bắt đầu không thể là ngày trong quá khứ.
     webhook:
       connection_failure: Không thể kết nối với url webhook. Vui lòng xác minh xem url webhook có chính xác không.
       delete_success: Cài đặt Webhook đã bị xóa thành công

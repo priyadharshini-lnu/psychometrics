@@ -2220,7 +2220,7 @@ en:
         part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.
       workshop_subject_re_enroll:
         no_seats_available: No seats available for this workshop.
-        scheduling_lead_time_passed: "Scheduling Lead Time\t has passed, you cannot re-enroll the subject."
+        scheduling_lead_time_passed: Scheduling Lead Time has passed, you cannot re-enroll the subject.
         workshop_subject_not_found: Workshop subject not found
       workshops:
         no_available_assessor_slots: No available slots for assessor %{assessor}

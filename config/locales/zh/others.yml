@@ -819,6 +819,7 @@ zh:
         bulk_update_evaluation_status: 批量更新评估状态
         compact_completion_status_export: 简要完成状态
         completion_status_export: 详细完成状态
+        copy_as_template_or_campaign: 复制活动作为模板
         copy_dimension: 复制尺寸
         create_threesixty_campaign: 创建 Threesixty 活动
         data_report_export: 数据报告导出
@@ -1085,6 +1086,7 @@ zh:
         description: 如果您在其他标签页、浏览器或设备上继续进行评估，可能会出现这种情况。
         title: 上次请求失败
       next: 下一步
+      no_skill_mapping_message: 该职位没有技能图谱，请联系您的管理员。
       read_only: 处于只读模式，你无法更改任何结果。
       save: 保存
       submissionFailedAlert:
@@ -1153,6 +1155,7 @@ zh:
     add_group_form:
       previous_assessments_required: 按以下顺序进行评估
       previous_group_required: 要求完成过小组活动
+      require_previous_groups_completion_for_booking: 要求在预订前完成之前的所有组别
     menu:
       assessment_center: 评估中心
       assessment_center_invites: 评估中心邀请
@@ -1391,6 +1394,7 @@ zh:
       bulk_download: 批量下载
       bulk_update_evaluation_as_done: 标记为已完成
       bulk_update_evaluation_as_undone: 取消标记为已完成
+      convert_to_template: 转换为模板
       download: 下载报告
       export_completion_status: 导出完成状态
       export_external: 外部
@@ -2189,6 +2193,10 @@ zh:
       workshop_subject_create:
         already_exists: 该评估中心已有主题。
         part_of_other_workshop: 主题已是"%{workshop_name}"的参与者。
+      workshop_subject_re_enroll:
+        no_seats_available: 本次研讨会没有名额。
+        scheduling_lead_time_passed: 时间已过，您不能重新注册该科目。
+        workshop_subject_not_found: 未找到研讨会主题
       workshops:
         no_available_assessor_slots: 没有可供评估员使用的时段 %{assessor}
         no_available_manager_slots: 没有可供经理使用的插槽 %{manager}
@@ -2320,6 +2328,13 @@ zh:
       add_to_yahoo_calendar: 添加到雅虎日历
       assessment_center_alert:
         btn_title: 项目
+        complete_previous_groups: 完成之前的所有小组活动
+        complete_preworks: 完成所有前期工作
+        please_visit: 请访问
+        requirements_message: 只有完成以下要求后，您才能进行预订
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: 完成这些要求。
       assessment_center_group_name: 评估中心
       booking_failed_msg: 预约名额失败：%{error}
       buttons:
@@ -2387,6 +2402,7 @@ zh:
         remove:
           confirmation: 在下面的文本框中输入当前项目的名称以移除项目
           success: 已成功移除 %{campaignName}。
+          template_confirmation: 在下面的字段中输入当前模板的名称即可删除该模板。注意：这也将删除链接的营销活动模板。
       users:
         actions:
           export:
@@ -2885,6 +2901,12 @@ zh:
     used_number: 二手许可证
     used_out_of: 完成于 %{used}中 %{total}。
   mailer:
+    copyright:
+      text: 莱皓思。保留所有权利
+    footer:
+      regards: 谢谢、
+      team_name: 灯塔团队
+      technical_support: 如有任何技术问题，请致信<x>email</x> ，我们将在 24 小时内给予答复。
     from: 人才企业
     idp:
       manager_unread_comments:
@@ -2942,6 +2964,8 @@ zh:
         instructions: 点击以下链接登录灯塔测评。
         signin_link: 登录链接
       subject: 灯塔登录链接
+    powered_by:
+      text: 由 Lighthouse 提供技术支持。
     users:
       account_disable: 您的帐户因未活动而被禁用
       warning: 您的帐户将很快因未活动而被禁用
@@ -3258,6 +3282,9 @@ zh:
       send_password_email_success: 向用户 %{email} 发送包含密码的电子邮件。
     title: 重置密码
   select: 选择
+  sessions:
+    errors:
+      recaptcha: Recaptcha 验证失败。请重试。
   shared:
     filters:
       clear: 清除筛选

@@ -819,6 +819,7 @@ sk:
         bulk_update_evaluation_status: Stav vyhodnotenia hromadnej aktualizácie
         compact_completion_status_export: Export stavu kompaktného dokončenia
         completion_status_export: Export stavu dokončenia
+        copy_as_template_or_campaign: Kopírovanie kampane ako šablóny
         copy_dimension: Kopírovať kótu
         create_threesixty_campaign: Vytvorte kampaň Threesixty
         data_report_export: Export zostavy údajov
@@ -1082,6 +1083,7 @@ sk:
         description: Táto hodnotiaca relácia bola neplatná. Môže sa to stať, ak ste pokračovali v hodnotení na samostatnej karte, prehliadači alebo zariadení.
         title: Posledná požiadavka zlyhala
       next: Ďalšie
+      no_skill_mapping_message: Pre túto pracovnú pozíciu nie je vytvorené mapovanie zručností, obráťte sa na správcu.
       read_only: Je v režime len na čítanie, nemôžete meniť žiadne výsledky.
       save: Uložiť
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ sk:
     add_group_form:
       previous_assessments_required: Hodnotenia prebiehajú v nižšiem poradí
       previous_group_required: Vyžaduje sa predchádzajúce vyplnenie skupiny
+      require_previous_groups_completion_for_booking: Pred rezerváciou je potrebné absolvovať všetky predchádzajúce skupiny
     menu:
       assessment_center: Hodnotiace centrum
       assessment_center_invites: Pozvánky do hodnotiaceho centra
@@ -1381,6 +1384,7 @@ sk:
       bulk_download: Hromadné sťahovanie
       bulk_update_evaluation_as_done: Označiť ako dokončené
       bulk_update_evaluation_as_undone: Zrušiť označenie ako dokončené
+      convert_to_template: Konvertovať do šablóny
       download: Stiahnutie správ
       export_completion_status: Stav dokončenia exportu
       export_external: Externý
@@ -2202,6 +2206,10 @@ sk:
       workshop_subject_create:
         already_exists: Subjekt už v tomto hodnotiacom centre existuje.
         part_of_other_workshop: Subjekt je už účastníkom '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Na tomto seminári nie sú k dispozícii žiadne miesta.
+        scheduling_lead_time_passed: Čas na plánovanie vypršal, nemôžete predmet opätovne zapísať.
+        workshop_subject_not_found: Predmet seminára nebol nájdený
       workshops:
         no_available_assessor_slots: Nie sú k dispozícii žiadne voľné sloty pre hodnotiteľa %{assessor}
         no_available_manager_slots: Nie sú k dispozícii žiadne sloty pre manažéra %{manager}
@@ -2333,6 +2341,13 @@ sk:
       add_to_yahoo_calendar: Pridať do kalendára Yahoo
       assessment_center_alert:
         btn_title: Kampaň
+        complete_previous_groups: Dokončiť všetky predchádzajúce skupinové aktivity
+        complete_preworks: Dokončenie všetkých prípravných prác
+        please_visit: Navštívte prosím
+        requirements_message: Rezerváciu môžete vykonať až po splnení nasledujúcich požiadaviek
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: splniť tieto požiadavky.
       assessment_center_group_name: Hodnotiace centrum
       booking_failed_msg: 'Nepodarilo sa rezervovať slot: %{error}'
       buttons:
@@ -2400,6 +2415,7 @@ sk:
         remove:
           confirmation: Zadajte aktuálny názov kampane uvedený nižšie v textovom poli na odstránenie kampane
           success: "%{campaignName} bolo úspešne odstránené."
+          template_confirmation: 'Ak chcete odstrániť aktuálnu šablónu, zadajte jej názov do poľa nižšie. Poznámka: Tým sa odstráni aj prepojená šablóna kampane.'
       users:
         actions:
           export:
@@ -2894,6 +2910,10 @@ sk:
   mailer:
     copyright:
       text: Lighthouse. Všetky práva vyhradené
+    footer:
+      regards: S pozdravom,
+      team_name: Tím Lighthouse
+      technical_support: V prípade akýchkoľvek technických problémov nám napíšte na <x>email</x> a my vám odpovieme do 24 hodín.
     from: Talentový podnik
     idp:
       manager_unread_comments:
@@ -3269,6 +3289,9 @@ sk:
       send_password_email_success: E-mail odoslaný používateľovi %{email} s heslom.
     title: Obnoviť heslo
   select: Vybrať
+  sessions:
+    errors:
+      recaptcha: Overenie Recaptcha zlyhalo. Skúste to prosím znova.
   shared:
     filters:
       clear: Vymazať filtre

@@ -819,6 +819,7 @@ hu:
         bulk_update_evaluation_status: Tömeges frissítés kiértékelési állapota
         compact_completion_status_export: Kompakt teljesítési állapot exportálása
         completion_status_export: Teljesítési állapotok exportálása
+        copy_as_template_or_campaign: Kampány másolása sablonként
         copy_dimension: Méret másolása
         create_threesixty_campaign: Hozzon létre Threesixty kampányt
         data_report_export: Adatjelentés exportálása
@@ -1082,6 +1083,7 @@ hu:
         description: Ez a kiértékelési munkamenet érvénytelenné vált. Ez akkor fordulhat elő, ha külön lapon, böngészőben vagy eszközön folytatta a kiértékelést.
         title: Az utolsó kérés sikertelen
       next: Következő
+      no_skill_mapping_message: Ehhez a munkakörhöz nem készült készségtérkép, forduljon az adminisztrátorhoz.
       read_only: Csak olvasási módban van, nem módosíthat semmilyen eredményt.
       save: Mentés
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ hu:
     add_group_form:
       previous_assessments_required: Az értékelések az alábbi sorrendben futnak
       previous_group_required: Korábbi csoportos teljesítés szükséges
+      require_previous_groups_completion_for_booking: A foglalás előtt az összes korábbi csoport befejezését megköveteljük
     menu:
       assessment_center: Assessment Center
       assessment_center_invites: Értékelőközpont-meghívók
@@ -1381,6 +1384,7 @@ hu:
       bulk_download: Tömeges letöltés
       bulk_update_evaluation_as_done: Megjelölés készként
       bulk_update_evaluation_as_undone: Készként való kijelölés törlése
+      convert_to_template: Átalakítás sablonba
       download: Jelentések letöltése
       export_completion_status: Exportálás befejezési állapota
       export_external: Külső
@@ -2202,6 +2206,10 @@ hu:
       workshop_subject_create:
         already_exists: A tantárgy már létezik ebben az értékelési központban.
         part_of_other_workshop: Az alany már résztvevője a(z) '%{workshop_name}'-nek.
+      workshop_subject_re_enroll:
+        no_seats_available: Erre a workshopra nincs szabad hely.
+        scheduling_lead_time_passed: Az ütemezési határidő lejárt, a tantárgyat nem lehet újra beiratkozni.
+        workshop_subject_not_found: Workshop tárgya nem található
       workshops:
         no_available_assessor_slots: Nincs szabad hely a(z) %{assessor}
         no_available_manager_slots: Nincs szabad hely a(z) %{manager} menedzser számára
@@ -2333,6 +2341,13 @@ hu:
       add_to_yahoo_calendar: Hozzáadás a yahoo naptárhoz
       assessment_center_alert:
         btn_title: Kampány
+        complete_previous_groups: Végezze el az összes korábbi csoporttevékenységet
+        complete_preworks: Az összes előmunkálat befejezése
+        please_visit: Kérjük, látogasson el a
+        requirements_message: Csak akkor tud foglalni, ha teljesíti a következő követelményt
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: hogy teljesítse ezeket a követelményeket.
       assessment_center_group_name: Értékelő központ
       booking_failed_msg: 'Nem sikerült foglalni: %{error}'
       buttons:
@@ -2400,6 +2415,7 @@ hu:
         remove:
           confirmation: A kampány eltávolításához írja be az alábbi szövegmezőbe az aktuális kampány nevét
           success: "%{campaignName} sikeresen eltávolításra került."
+          template_confirmation: 'A törléshez adja meg az aktuális sablon nevét az alábbi mezőben. Megjegyzés: Ezzel a kapcsolódó kampánysablon is törlődik.'
       users:
         actions:
           export:
@@ -2872,6 +2888,10 @@ hu:
   mailer:
     copyright:
       text: Lighthouse. Minden jog fenntartva
+    footer:
+      regards: Üdvözlettel,
+      team_name: Világítótorony csapat
+      technical_support: Bármilyen technikai probléma esetén kérjük, írjon nekünk a <x>email</x> címre, és 24 órán belül válaszolunk.
     from: A tehetség vállalkozás
     idp:
       manager_unread_comments:
@@ -3247,6 +3267,9 @@ hu:
       send_password_email_success: A(z) %{email} felhasználónak küldött e-mail jelszóval.
     title: Jelszó visszaállítása
   select: Kiválaszt
+  sessions:
+    errors:
+      recaptcha: A Recaptcha ellenőrzése sikertelen. Kérjük, próbálja meg újra.
   shared:
     filters:
       clear: Szűrők törlése

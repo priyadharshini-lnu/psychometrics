@@ -149,6 +149,7 @@ fr:
             accesssheet_manage: Feuille d'accès Gérer
             accesssheet_settings: Paramètres de la feuille d'accès
             accesssheet_view: Vue de la feuille d'accès
+            export: Exportation
             title: Tableaux de bord
             view: Voir
           datasheets:
@@ -784,6 +785,8 @@ fr:
       new:
         header: Téléchargement en masse
       reports_unavailable: Pour le moment, aucun rapport n'est disponible au téléchargement. Veuillez confirmer que les rapports que vous souhaitez télécharger sont disponibles.
+      select_reports_for_download: Veuillez sélectionner au moins un rapport à télécharger.
+      select_reports_for_regenerate: Veuillez sélectionner au moins un rapport à régénérer.
     cable:
       notification:
         assessment_factors: Les facteurs sont recherchés
@@ -873,6 +876,7 @@ fr:
       campaign_templates: Modèles de campagne
       column:
         assessment: L'évaluation
+        campaign: Campagne
         owner: Propriétaire
         report: Rapport
       copy:
@@ -947,6 +951,7 @@ fr:
       assessors:
         spoof:
           successfully: Vous vous êtes connecté avec succès en tant que %{name}
+      convert_to_template: Convertir en modèle
       copy: Copie
       delete: Supprimer
       edit: Editer
@@ -972,6 +977,7 @@ fr:
         name: Nom
         reports: Rapports
         status: Statut
+        template: Modèle
         type: Type
       menus:
         add_common_campaign: Ajouter une campagne commune
@@ -987,11 +993,15 @@ fr:
             assessment: L'évaluation
             category: Catégorie
             closed: Fermé
+            default_assessment_language: Langue par défaut de l'évaluation
+            default_report_language: Langue par défaut du rapport
             empty: Vide
             inactive: Inactif
             name: Nom
             normal: Normal
             previous: Précédent
+            select_assessment_language: Sélectionner la langue d'évaluation
+            select_report_language: Sélectionner la langue du rapport
             skill_rater: Évaluateur de compétences
             standard: Standard
             status: Statut
@@ -1615,6 +1625,7 @@ fr:
         campaign_assessment_group: Groupe d'évaluation de la campagne
         client: Client
         completion: Achèvement
+        custom: Sur mesure
         delivery_at: Livraison à (GST)
         delivery_delay_hours: Délai de livraison (heures)
         delivery_interval: Intervalle de livraison
@@ -1646,6 +1657,7 @@ fr:
         recipients: Bénéficiaires
         reminder: Rappel
         report_available: Rapport disponible
+        select_assessments: Choisir les évaluations dont l'achèvement doit être vérifié
         selected: Sélectionné
         selected_cc_recipients: Bénéficiaires de la CC sélectionnés
         selected_recipients: Bénéficiaires sélectionnés
@@ -2140,6 +2152,9 @@ fr:
         remove_confirm: Saisir le nom du modèle actuel indiqué ci-dessous dans la zone de texte pour supprimer le modèle
         success: "%{idpName} a été supprimé avec succès."
       add_idp_template: Ajouter un modèle de PDI
+      ai_assisted_idp_enabled: Assistée par l'IA et activée par l'IDP
+      ai_enabled: L'IA est activée
+      ai_settings: Paramètres de l'IA
       all: Tous
       appearance: Apparence
       appearance_hint: Pour modifier l'apparence, veuillez d'abord enregistrer le modèle IDP afin d'activer ces paramètres.
@@ -2183,6 +2198,7 @@ fr:
       logo_type_label: Type de logo
       no_reflection_questions_selected: Aucune question de réflexion sélectionnée
       none: Aucun
+      one_click_idp_enabled: IDP en un clic activé
       reference_locale: Paramètres régionaux de référence
       reflection_questions: Questions de réflexion
       reflection_questions_hint: Pour modifier les questions de réflexion, veuillez d'abord enregistrer le modèle IDP afin d'activer ces paramètres.
@@ -2289,6 +2305,7 @@ fr:
     individual_invite:
       tabs:
         assessment_center: Centre d'évaluation
+        invitation_status: Statut de l'invitation
     innovation_styles:
       create:
         successfully: Le style d'innovation %{name} a été créé avec succès.
@@ -2417,7 +2434,9 @@ fr:
       assessment_center: 'Centre d''évaluation :'
       booked_at: 'Réservé à :'
       column:
+        invitation_status: Statut de l'invitation
         participant: Participant
+        scheduling_details: Détails de la programmation
       remove_confirm:
         content: Êtes-vous sûr de vouloir supprimer l'objet avec l'e-mail "%{subjectEmail}" ?
         success: Le sujet avec l'email '%{subjectEmail}'' a été supprimé avec succès.
@@ -2425,6 +2444,8 @@ fr:
       statuses:
         accepted: Accepté
         cancelled: Annulé
+        late_cancelled: Annulé tardivement
+        late_rescheduled: Retard Reprogrammé
         pending: En attente
         requested_cancellation: Annulation demandée
         requested_cancellation_rejected: Annulation Rejetée
@@ -2751,7 +2772,9 @@ fr:
       errors:
         create:
           invalid_format: La définition du niveau doit être un tableau de définitions.
+          level_definition_must_exist: La définition du niveau ne peut pas être vide
           level_definition_must_match_level: doit contenir exactement %{expected} niveaux, mais %{actual} ont été donnés
+          level_name_must_exist: Le nom du niveau ne peut pas être vide
           must_be_unique: Doit être unique
           proficiency_level_exists: Un niveau de compétence avec cette compétence et ce projet existe déjà
           proficiency_level_exists_for_default: Un niveau de compétence par défaut existe déjà
@@ -3397,6 +3420,7 @@ fr:
         copy_to_all: Copie à d'autres centres d'évaluation
         create: Créer
         dates_label: Dates
+        disable_cancellation_and_rescheduling: Désactiver l'annulation et la reprogrammation
         duration_label: Durée de l'accord
         duration_max_error: Ne peut être supérieur à 16 heures
         duration_min_error: Duréene peut être inférieure à 15 minutes
@@ -3525,6 +3549,7 @@ fr:
         form_title: Planifier les évaluations
         language: Langue
         language_not_selected: Non sélectionné
+        mark_cancel: Mark Cancel
         mark_cancel_success: Participation annulée du sujet avec l'email %{subject_email}.
         meeting_link_custom: Sur mesure
         meeting_link_internal: Interne
@@ -3533,6 +3558,9 @@ fr:
         no_change: Pas de changement
         override_existing: Remplacer les horaires existants pour les sujets
         preworks: Prétravail
+        re_enroll: Réinscription
+        re_enroll_confirm_message: Etes-vous sûr de vouloir réinscrire le sujet avec l'email '%{subject_email}' ?
+        re_enroll_success: Sujet réinscrit à l'adresse électronique <x>subject_email</x>.
         schedule: Calendrier
         unschedule: Déprogrammation
       tabs:
@@ -4129,6 +4157,21 @@ fr:
         toggle_status:
           successfully: Avec succès
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Déjà un modèle
+        has_user_data: Veuillez réinitialiser manuellement la campagne en cliquant sur "Réinitialiser tous les participants" dans le menu déroulant Outils avant de la convertir en modèle.
+      convert_template_modal:
+        cancel: Annuler
+        confirm: Confirmer
+        convert:
+          success: Modèle converti avec succès
+        convert_option: Convertir cette campagne en modèle
+        copy:
+          success: Le travail de création de modèle de campagne a été planifié avec succès, veuillez vérifier l'état de vos notifications.
+        copy_option: Créer un nouveau modèle à partir de cette campagne
+        description: Choisissez comment vous souhaitez créer un modèle à partir de cette campagne.
+        failed: La création du modèle a échoué.
+        title: Convertir en modèle
       email_templates:
         approve_nomination:
           description: Ce message est envoyé à un responsable lorsqu'une nomination, faite par un subordonné direct, doit être approuvée

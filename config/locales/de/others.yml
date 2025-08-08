@@ -829,6 +829,7 @@ de:
         bulk_update_evaluation_status: Evaluierungsstatus der Massenaktualisierung
         compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
         completion_status_export: Fertigstellungsstatus Export
+        copy_as_template_or_campaign: Kampagne als Vorlage kopieren
         copy_dimension: Dimension kopieren
         create_threesixty_campaign: Threesixty-Kampagne erstellen
         data_report_export: Export von Datenberichten
@@ -1097,6 +1098,7 @@ de:
         description: Diese Bewertungssitzung wurde für ungültig erklärt. Dies kann passieren, wenn Sie die Bewertung in einer anderen Registerkarte, einem anderen Browser oder auf einem anderen Gerät fortgesetzt haben.
         title: Letzte Anfrage fehlgeschlagen
       next: weiter
+      no_skill_mapping_message: Für diese Stelle gibt es kein Skill Mapping, wenden Sie sich an Ihren Administrator.
       read_only: Ist nur im Lesemodus, Sie können keine Ergebnisse ändern.
       save: Speichern Sie
       submissionFailedAlert:
@@ -1165,6 +1167,7 @@ de:
     add_group_form:
       previous_assessments_required: Beurteilungen in folgender Reihenfolge
       previous_group_required: Vorheriger Abschluss einer Gruppe erforderlich
+      require_previous_groups_completion_for_booking: Vor der Buchung müssen alle vorherigen Gruppen abgeschlossen sein.
     menu:
       assessment_center: Assessment Center
       assessment_center_invites: Einladungen zum Assessment Center
@@ -1405,6 +1408,7 @@ de:
       bulk_download: Massendownload
       bulk_update_evaluation_as_done: Als erledigt markieren
       bulk_update_evaluation_as_undone: Markierung als erledigt aufheben
+      convert_to_template: In Vorlage umwandeln
       download: Berichte herunterladen
       export_completion_status: Status des Exportabschlusses
       export_external: Extern
@@ -2221,6 +2225,10 @@ de:
       workshop_subject_create:
         already_exists: Das Thema existiert bereits in diesem Assessment Center.
         part_of_other_workshop: Betreff ist bereits Teilnehmer von '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Für diesen Workshop sind keine Plätze verfügbar.
+        scheduling_lead_time_passed: Die Vorlaufzeit für die Planung ist abgelaufen, Sie können das Fach nicht erneut einschreiben.
+        workshop_subject_not_found: Workshop-Thema nicht gefunden
       workshops:
         no_available_assessor_slots: Keine freien Slots für Assessor %{assessor}
         no_available_manager_slots: Keine freien Slots für Manager %{manager}
@@ -2355,6 +2363,13 @@ de:
       add_to_yahoo_calendar: Zum Yahoo-Kalender hinzufügen
       assessment_center_alert:
         btn_title: Event
+        complete_previous_groups: Alle vorherigen Gruppenaktivitäten abschließen
+        complete_preworks: Alle Vorarbeiten abschließen
+        please_visit: Bitte besuchen Sie die
+        requirements_message: Sie können eine Buchung nur vornehmen, wenn Sie die folgenden Voraussetzungen erfüllen
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: um diese Anforderungen zu erfüllen.
       assessment_center_group_name: Assessment Center
       booking_failed_msg: 'Buchung des Platzes fehlgeschlagen: %{error}'
       buttons:
@@ -2422,6 +2437,7 @@ de:
         remove:
           confirmation: Geben Sie den unten angegebenen Namen der aktuellen Kampagne in das Textfeld ein, um die Kampagne zu entfernen
           success: "%{campaignName} wurde erfolgreich entfernt."
+          template_confirmation: 'Geben Sie den Namen der aktuellen Vorlage in das Feld unten ein, um sie zu löschen. Hinweis: Dadurch wird auch die verknüpfte Kampagnenvorlage gelöscht.'
       users:
         actions:
           export:
@@ -2884,8 +2900,6 @@ de:
     zh-HK: Chinesisch (Hongkong)
     zh-Hant: Chinesisch - Traditionell
     zh-TW: Chinesisch (Taiwan)
-  languages_localized:
-    ro: Română
   license_usage:
     active: Aktiv
     campaign_name: Name der Kampagne
@@ -2917,6 +2931,8 @@ de:
     used_number: Gebrauchte Lizenzen
     used_out_of: "%{used} von %{total}"
   mailer:
+    copyright:
+      text: Leuchtturm. Alle Rechte vorbehalten
     footer:
       regards: Mit freundlichen Grüßen,
       team_name: Lighthouse-Team
@@ -2978,6 +2994,8 @@ de:
         instructions: Klicken Sie auf den unten stehenden Link, um sich bei Lighthouse anzumelden.
         signin_link: Anmeldung Link
       subject: Anmeldelink für Lighthouse
+    powered_by:
+      text: Angetrieben von Lighthouse.
     users:
       account_disable: Ihr Konto wurde aufgrund von Inaktivität deaktiviert
       warning: Ihr Konto wird demnächst wegen Inaktivität deaktiviert werden
@@ -3294,6 +3312,9 @@ de:
       send_password_email_success: E-Mail an Benutzer %{email} mit dem Passwort gesendet.
     title: Passwort zurücksetzen
   select: Wählen Sie
+  sessions:
+    errors:
+      recaptcha: Recaptcha-Überprüfung fehlgeschlagen. Bitte versuchen Sie es erneut.
   shared:
     filters:
       clear: Filter löschen

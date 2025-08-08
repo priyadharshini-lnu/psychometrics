@@ -15,6 +15,8 @@ bg:
       title: Одитирани промени
     administrator:
       sessions:
+        errors:
+          recaptcha: Проверката на Recaptcha е неуспешна
         new:
           forgot_password: Забравили сте паролата си?
           instruction: Моля, влезте с информацията за личния си акаунт
@@ -147,6 +149,7 @@ bg:
             accesssheet_manage: Управление на формуляр за достъп
             accesssheet_settings: Настройки на листа за достъп
             accesssheet_view: Изглед на формуляр за достъп
+            export: Експорт
             title: Табла
             view: Изглед
           datasheets:
@@ -290,17 +293,33 @@ bg:
             view: Изглед
     ai_assistants:
       actions:
+        create: Създаване на AI Assistant
+        edit: Редактиране на AI Assistant
         playground: Площадка
       ai_assistants: ИИ асистенти
       ai_assistants_playground: ИИ асистент детска площадка
       column:
         provider: Доставчик
+      created_successfully: AI Assistant е създаден успешно.
       form:
+        add_output_schema_key: Добавяне на ключ на изходната схема
+        dependencies: Зависимости
         description: Описание
+        enter_description: Въведете описание
+        enter_schema_key: Въвеждане на ключ на схемата
+        key: Ключ
         name: Име
+        output_schema_keys: Ключове на изходната схема
         provider: Доставчик
+        remove_output_schema_key: Премахване на ключа на изходната схема
+        schema_key_description_required: Изисква се описание на ключа на схемата
+        schema_key_required: Изисква се ключ на схемата
+        schema_key_type: Тип на ключа
+        schema_key_unique: Ключовете на схемата трябва да са уникални
         system_prompt: Системна подкана
+        type: Тип
         user_prompt: Потребителска подкана
+      updated_successfully: AI Assistant е актуализиран успешно.
     any: " -Всякакъв- "
     api:
       campaigns:
@@ -766,6 +785,8 @@ bg:
       new:
         header: Групово изтегляне
       reports_unavailable: В момента няма отчети за изтегляне. Моля, потвърдете, че отчетите, които искате да изтеглите, са налице.
+      select_reports_for_download: Моля, изберете поне един доклад за изтегляне.
+      select_reports_for_regenerate: Моля, изберете поне един отчет, който да регенерирате.
     cable:
       notification:
         assessment_factors: Извличат се фактори
@@ -855,6 +876,7 @@ bg:
       campaign_templates: Шаблони за кампании
       column:
         assessment: Оценка
+        campaign: Кампания
         owner: Собственик
         report: Доклад
       copy:
@@ -929,6 +951,7 @@ bg:
       assessors:
         spoof:
           successfully: Вие влязохте успешно като %{name}
+      convert_to_template: Преобразуване в шаблон
       copy: Копирам
       delete: Изтривам
       edit: Редактирам
@@ -954,6 +977,7 @@ bg:
         name: Име
         reports: Доклади
         status: Статус
+        template: Шаблон
         type: Вид
       menus:
         add_common_campaign: Добавяне на обща кампания
@@ -969,11 +993,15 @@ bg:
             assessment: Оценяване
             category: Категория
             closed: Затворен
+            default_assessment_language: Език по подразбиране на оценката
+            default_report_language: Език по подразбиране на доклада
             empty: Празен
             inactive: Неактивен
             name: Име
             normal: Нормален
             previous: Предишен
+            select_assessment_language: Избор на език за оценяване
+            select_report_language: Избор на език на отчета
             skill_rater: Оценяване на уменията
             standard: Стандартен
             status: Статус
@@ -1006,6 +1034,7 @@ bg:
           name: Описание
           save: Запазване на описанието
           save_success: Описанието е запазено успешно
+        enable_video_call_recording: Активиране на запис на видеоразговори
         fixed_time: Фиксирано време
         instructions:
           actions:
@@ -1596,6 +1625,7 @@ bg:
         campaign_assessment_group: Група за оценка на кампанията
         client: Клиент
         completion: Завършване
+        custom: Потребителски
         delivery_at: Доставка при (GST)
         delivery_delay_hours: Забавяне на доставката (часове)
         delivery_interval: Интервал на доставка
@@ -1627,6 +1657,7 @@ bg:
         recipients: Получатели
         reminder: Напомняне
         report_available: Наличен отчет
+        select_assessments: Изберете кои оценки да се проверяват за завършване
         selected: Избран
         selected_cc_recipients: Избрани получатели на CC
         selected_recipients: Избрани получатели
@@ -2121,6 +2152,9 @@ bg:
         remove_confirm: Въведете текущото име на шаблона, дадено по-долу, в текстовото поле, за да премахнете шаблона
         success: "%{idpName} беше премахнат успешно."
       add_idp_template: Добавяне на шаблон за IDP
+      ai_assisted_idp_enabled: Подпомагана от AI IDP
+      ai_enabled: Активиран AI
+      ai_settings: Настройки на AI
       all: Цял
       appearance: Външен вид
       appearance_hint: За да промените външния вид, моля, първо запазете шаблона IDP, за да активирате тези настройки.
@@ -2136,6 +2170,7 @@ bg:
       enter_template_name: Име
       enter_template_name_error: Задължително е име на шаблона
       errors:
+        cannot_update_progress_plan_completed: Не може да се актуализира напредъкът, тъй като планът за ИДП е завършен
         update: Актуализацията не е разрешена, тъй като шаблонът за IDP вече е свързан с потребителски IDP план. Промените във външния вид са запазени.
       fields:
         assigned_data: Присвоени данни
@@ -2163,6 +2198,7 @@ bg:
       logo_type_label: Тип лого
       no_reflection_questions_selected: Не са избрани въпроси за размисъл
       none: Никой
+      one_click_idp_enabled: Разрешен IDP с едно кликване
       reference_locale: Референтна езикова променлива
       reflection_questions: Въпроси за размисъл
       reflection_questions_hint: За да промените въпросите за размисъл, моля, първо запазете шаблона за IDP, за да активирате тези настройки.
@@ -2269,6 +2305,7 @@ bg:
     individual_invite:
       tabs:
         assessment_center: Център за оценяване
+        invitation_status: Статус на поканата
     innovation_styles:
       create:
         successfully: Иновационният стил %{name} е създаден успешно.
@@ -2397,7 +2434,9 @@ bg:
       assessment_center: 'Център за оценяване:'
       booked_at: 'Резервирано на:'
       column:
+        invitation_status: Статус на поканата
         participant: Участник
+        scheduling_details: Подробности за планирането
       remove_confirm:
         content: Сигурни ли сте, че искате да премахнете темата с имейл '%{subjectEmail}'?
         success: Темата с имейл '%{subjectEmail}'' беше успешно премахната.
@@ -2405,6 +2444,8 @@ bg:
       statuses:
         accepted: Приети
         cancelled: Отменени
+        late_cancelled: Късно отменен
+        late_rescheduled: Късно пренасрочени
         pending: Очакване
         requested_cancellation: Заявено анулиране
         requested_cancellation_rejected: Отхвърлянето е отхвърлено
@@ -2731,7 +2772,9 @@ bg:
       errors:
         create:
           invalid_format: Дефиницията на нивото трябва да бъде масив от дефиниции.
+          level_definition_must_exist: Определението на нивото не може да бъде празно
           level_definition_must_match_level: трябва да съдържа точно %{expected} нива, но са дадени %{actual}
+          level_name_must_exist: Името на нивото не може да бъде празно
           must_be_unique: Трябва да е уникално
           proficiency_level_exists: Ниво на владеене с това умение и проект вече съществува
           proficiency_level_exists_for_default: Вече има ниво на владеене на езика по подразбиране
@@ -3034,6 +3077,7 @@ bg:
         dp_consent_custom: Персонализиране на съгласието за обработка на данни
         dp_consent_version: Версия на политиката
         errors:
+          cannot_disable_while_campaign_enabled: Не можете да забраните записването на видеоразговори, защото то е разрешено за една или повече кампании в този проект
           policy_version_format: Допускат се само цели числа
         mask_identity_for_examus: Данни за маски за Examus Proctoring
         mask_identity_for_hogan: Данни за маски за Хоган
@@ -3047,6 +3091,9 @@ bg:
         privacy_link_placeholder: Въведете връзка за поверителност
         privacy_text: Текст за поверителност
         privacy_text_placeholder: Въведете текст за поверителност
+        video_call_recording: Разрешаване на запис на видеоразговори
+        video_call_recording_expiry_duration: Период на съхранение на записите на видеоразговори (в дни)
+        video_call_recording_scope: Активиране на запис на видео за всички нови кампании
       profile_settings:
         form_fields:
           enabled: Разрешено
@@ -3369,6 +3416,7 @@ bg:
         copy_to_all: Копиране в други центрове за оценяване
         create: Създавам
         dates_label: Дати
+        disable_cancellation_and_rescheduling: Деактивиране на анулирането и препланирането
         duration_label: Времетраене
         duration_max_error: Не може да бъде по-дълъг от 16 часа
         duration_min_error: Не може да бъде по-малко от 15 минути
@@ -3494,6 +3542,7 @@ bg:
         form_title: Планиране на оценявания
         language: Език
         language_not_selected: Не е избрано
+        mark_cancel: Марк Отказ
         mark_cancel_success: Отменено участие на тема с имейл %{subject_email}.
         meeting_link_custom: Обичай
         meeting_link_internal: Вътрешния
@@ -3502,6 +3551,9 @@ bg:
         no_change: Без промяна
         override_existing: Заместване на съществуващи графици за обекти
         preworks: Предварителна работа
+        re_enroll: Презаписване
+        re_enroll_confirm_message: Сигурни ли сте, че искате да запишете отново темата с имейл '%{subject_email}'?
+        re_enroll_success: Отново регистриран субект с имейл <x>subject_email</x>.
         schedule: Разписание
         unschedule: Непланирано
       tabs:
@@ -3620,6 +3672,7 @@ bg:
       disable_password_reuse: Деактивиране на повторното използване на парола
       disallow_password_login: Забранете влизането с парола
       enable_login_with_magic_link: Активиране на вход с магическа връзка
+      enable_recaptcha: Активиране на reCAPTCHA
       enforce_password_policy: Налагане на правила за пароли при следващо влизане
       enforce_strong: Налагане на надеждна парола
       expiration: Изтичане на паролата
@@ -4087,6 +4140,21 @@ bg:
         toggle_status:
           successfully: Успешно
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Вече има шаблон
+        has_user_data: Преди да конвертирате кампанията в шаблон, моля, нулирайте я ръчно, като кликнете върху "Нулиране на всички участници" от падащото меню "Инструменти".
+      convert_template_modal:
+        cancel: Отмяна на
+        confirm: Потвърдете
+        convert:
+          success: Шаблонът е успешно конвертиран
+        convert_option: Конвертиране на тази кампания в шаблон
+        copy:
+          success: Задачата за създаване на шаблона на кампанията е планирана успешно, моля, проверете известията си за състоянието.
+        copy_option: Създаване на нов шаблон от тази кампания
+        description: Изберете как искате да създадете шаблон от тази кампания.
+        failed: Създаването на шаблона е неуспешно.
+        title: Преобразуване в шаблон
       email_templates:
         approve_nomination:
           description: Това съобщение се изпраща на мениджър, когато номинация, направена от пряк подчинен, трябва да бъде одобрена
@@ -4321,6 +4389,10 @@ bg:
       update:
         successfully: Потребител %{name} е актуализиран успешно.
       user: Потребител
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Крайната дата не може да бъде в миналото
+        start_date_cannot_be_in_past: Началната дата не може да бъде в миналото
     webhook:
       connection_failure: Не може да се свърже с URL адреса на уеб куката. Моля, проверете дали URL адресът на уеб кукичката е правилен.
       delete_success: Настройките на уеб кукичката бяха изтрити успешно

@@ -149,6 +149,7 @@ pt:
             accesssheet_manage: Folha de acesso Gerenciar
             accesssheet_settings: Definições da folha de acesso
             accesssheet_view: Visualização da folha de acesso
+            export: Exportação
             title: Painéis de controlo
             view: Ver
           datasheets:
@@ -784,6 +785,8 @@ pt:
       new:
         header: Transferência em massa
       reports_unavailable: De momento, não existem relatórios disponíveis para descarregar. Confirme se os relatórios que pretende descarregar estão disponíveis.
+      select_reports_for_download: Selecione pelo menos um relatório para descarregar.
+      select_reports_for_regenerate: Selecione pelo menos um relatório para regenerar.
     cable:
       notification:
         assessment_factors: Os factores são obtidos
@@ -873,6 +876,7 @@ pt:
       campaign_templates: Modelos de campanha
       column:
         assessment: Avaliação
+        campaign: Campanha
         owner: Proprietário
         report: Relatório
       copy:
@@ -947,6 +951,7 @@ pt:
       assessors:
         spoof:
           successfully: O seu login foi efectuado com sucesso como %{name}
+      convert_to_template: Converter para modelo
       copy: Cópia
       delete: Eliminar
       edit: Editar
@@ -972,6 +977,7 @@ pt:
         name: Nome
         reports: Relatórios
         status: Estado
+        template: Modelo
         type: Tipo
       menus:
         add_common_campaign: Adicionar campanha comum
@@ -987,11 +993,15 @@ pt:
             assessment: Avaliação
             category: Categoria
             closed: Fechado
+            default_assessment_language: Língua de avaliação por defeito
+            default_report_language: Idioma predefinido do relatório
             empty: Vazio
             inactive: Inativo
             name: Nome
             normal: Normal
             previous: Anterior
+            select_assessment_language: Selecionar a língua de avaliação
+            select_report_language: Selecionar o idioma do relatório
             skill_rater: Avaliador de competências
             standard: Padrão
             status: Estado
@@ -1615,6 +1625,7 @@ pt:
         campaign_assessment_group: Grupo de Avaliação da Campanha
         client: Cliente
         completion: Conclusão
+        custom: Personalizado
         delivery_at: Entrega em (GST)
         delivery_delay_hours: Prazo de entrega (horas)
         delivery_interval: Intervalo de entrega
@@ -1646,6 +1657,7 @@ pt:
         recipients: Beneficiários
         reminder: Lembrete
         report_available: Relatório disponível
+        select_assessments: Selecionar as avaliações a verificar quanto à sua conclusão
         selected: Selecionado
         selected_cc_recipients: Beneficiários de CC selecionados
         selected_recipients: Beneficiários selecionados
@@ -2140,6 +2152,9 @@ pt:
         remove_confirm: Introduzir o nome do modelo atual indicado abaixo na caixa de texto para remover o modelo
         success: "%{idpName} foi removido com êxito."
       add_idp_template: Adicionar modelo de PDI
+      ai_assisted_idp_enabled: Ativado por IDP assistido por IA
+      ai_enabled: Ativado por IA
+      ai_settings: Definições de IA
       all: Todos
       appearance: Aparência
       appearance_hint: Para modificar o aspeto, guarde primeiro o modelo IDP para ativar estas definições.
@@ -2183,6 +2198,7 @@ pt:
       logo_type_label: Tipo de logótipo
       no_reflection_questions_selected: Nenhuma pergunta de reflexão selecionada
       none: Nenhum
+      one_click_idp_enabled: IDP de um clique ativado
       reference_locale: Local de referência
       reflection_questions: Perguntas de reflexão
       reflection_questions_hint: Para modificar as perguntas de reflexão, guarde primeiro o modelo do PDI para ativar estas definições.
@@ -2289,6 +2305,7 @@ pt:
     individual_invite:
       tabs:
         assessment_center: Centro de avaliação
+        invitation_status: Estado do convite
     innovation_styles:
       create:
         successfully: O estilo de inovação %{name} foi criado com êxito.
@@ -2417,7 +2434,9 @@ pt:
       assessment_center: 'Centro de avaliação:'
       booked_at: 'Reservado em:'
       column:
+        invitation_status: Estado do convite
         participant: Participante
+        scheduling_details: Detalhes da programação
       remove_confirm:
         content: Tem a certeza de que pretende remover o assunto com o e-mail '%{subjectEmail}'?
         success: O assunto com o e-mail '%{subjectEmail}'' foi removido com êxito.
@@ -2425,6 +2444,8 @@ pt:
       statuses:
         accepted: Aceite
         cancelled: Cancelado
+        late_cancelled: Atraso cancelado
+        late_rescheduled: Atrasado Reprogramado
         pending: Pendente
         requested_cancellation: Pedido de cancelamento
         requested_cancellation_rejected: Cancelamento Rejeitado
@@ -2751,7 +2772,9 @@ pt:
       errors:
         create:
           invalid_format: A definição de nível deve ser um conjunto de definições.
+          level_definition_must_exist: A definição do nível não pode estar em branco
           level_definition_must_match_level: deve conter exatamente os níveis %{expected}, mas foram dados %{actual}
+          level_name_must_exist: O nome do nível não pode estar em branco
           must_be_unique: Deve ser único
           proficiency_level_exists: Já existe um ProficiencyLevel com esta competência e projeto
           proficiency_level_exists_for_default: Já existe um nível de proficiência por defeito
@@ -3397,6 +3420,7 @@ pt:
         copy_to_all: Cópia para outros centros de avaliação
         create: Criar
         dates_label: Datas
+        disable_cancellation_and_rescheduling: Desativar o cancelamento e o reagendamento
         duration_label: Duração
         duration_max_error: Não pode ser superior a 16 horas
         duration_min_error: Não pode ser inferior a 15 minutos
@@ -3525,6 +3549,7 @@ pt:
         form_title: Agendar avaliações
         language: Língua
         language_not_selected: Não selecionado
+        mark_cancel: Mark Cancel
         mark_cancel_success: Participação cancelada do sujeito com o correio eletrónico %{subject_email}.
         meeting_link_custom: Personalizado
         meeting_link_internal: Interno
@@ -3533,6 +3558,9 @@ pt:
         no_change: Sem alterações
         override_existing: Anular os horários existentes para as disciplinas
         preworks: Pré-trabalho
+        re_enroll: Reinscrever-se
+        re_enroll_confirm_message: Tem a certeza de que pretende voltar a registar o assunto com o e-mail '%{subject_email}'?
+        re_enroll_success: Assunto reinscrito com o correio eletrónico <x>subject_email</x>.
         schedule: Horário
         unschedule: Anular o agendamento
       tabs:
@@ -4129,6 +4157,21 @@ pt:
         toggle_status:
           successfully: Com sucesso
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Já é um modelo
+        has_user_data: Reponha manualmente a campanha clicando em "Repor todos os participantes" no menu pendente Ferramentas antes de converter para um modelo.
+      convert_template_modal:
+        cancel: Cancelar
+        confirm: Confirmar
+        convert:
+          success: Modelo convertido com sucesso
+        convert_option: Converter esta campanha num modelo
+        copy:
+          success: A tarefa de criação de modelos de campanha foi agendada com êxito, verifique o estado das suas notificações.
+        copy_option: Criar um novo modelo a partir desta campanha
+        description: Escolha como pretende criar um modelo a partir desta campanha.
+        failed: A criação do modelo falhou.
+        title: Converter para modelo
       email_templates:
         approve_nomination:
           description: Esta mensagem é enviada a um gestor quando uma nomeação, feita por um subordinado direto, precisa de ser aprovada

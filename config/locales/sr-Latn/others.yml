@@ -825,6 +825,7 @@ sr-Latn:
         bulk_update_evaluation_status: Bulk Update Evaluation Status
         compact_completion_status_export: Kompaktan Završetak Status Izvoz
         completion_status_export: Završetak Status Izvoz
+        copy_as_template_or_campaign: Kopiraj kampanju kao šablon
         copy_dimension: Kopiraj dimenziju
         create_threesixty_campaign: Kreirajte Threesixty kampanju
         data_report_export: Izvoz izveštaja o podacima
@@ -1092,6 +1093,7 @@ sr-Latn:
         description: Ova sesija evaluacije je poništena. To se može desiti ako ste nastavili evaluaciju na posebnoj kartici, pretraživaču ili uređaju.
         title: Poslednji zahtev nije uspeo
       next: Dalje
+      no_skill_mapping_message: Nema mapiranja veština za ovu ulogu posla, kontaktirajte administratora.
       read_only: Ovo je režim samo za čitanje, ne možete da promenite nikakve rezultate.
       save: Sačuvaj
       submissionFailedAlert:
@@ -1160,6 +1162,7 @@ sr-Latn:
     add_group_form:
       previous_assessments_required: Procene da radi u nižem redosledu
       previous_group_required: Potreban je prethodni završetak grupe
+      require_previous_groups_completion_for_booking: Zahteva završetak svih prethodnih grupa pre rezervacije
     menu:
       assessment_center: Centar za procenu
       assessment_center_invites: Centar za procenu poziva
@@ -1391,6 +1394,7 @@ sr-Latn:
       bulk_download: Zbirno preuzimanje
       bulk_update_evaluation_as_done: Označi kao urađeno
       bulk_update_evaluation_as_undone: Unmark as Done
+      convert_to_template: Konvertuj u šablon
       download: Preuzmite izveštaje
       export_completion_status: Status završetka izvoza
       export_external: Spoljnih
@@ -2220,6 +2224,10 @@ sr-Latn:
       workshop_subject_create:
         already_exists: Subjekat već postoji u ovom Centru za procenu.
         part_of_other_workshop: Subjekat je već učesnik '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Nema dostupnih mesta za ovu radionicu.
+        scheduling_lead_time_passed: Vreme za zakazivanje je prošlo, ne možete ponovo upisati subjekta.
+        workshop_subject_not_found: Subjekt radionice nije pronađen
       workshops:
         no_available_assessor_slots: Nema slobodnih slotova za procenjivača %{assessor}
         no_available_manager_slots: Nema slobodnih slotova za menadžera %{manager}
@@ -2351,6 +2359,13 @@ sr-Latn:
       add_to_yahoo_calendar: Dodaj u Iahoo kalendar
       assessment_center_alert:
         btn_title: Kampanja
+        complete_previous_groups: Završite sve aktivnosti prethodnih grupa
+        complete_preworks: Završite sve prethodne zadatke
+        please_visit: Molimo posetite
+        requirements_message: Možete rezervisati termin tek kada završite sledeći uslov
+        requirements_plural: e
+        requirements_singular: ''
+        to_complete_requirements: za završavanje ovih uslova.
       assessment_center_group_name: Centar za procenu
       booking_failed_msg: 'Neuspešna rezervacija slota: %{error}'
       buttons:
@@ -2418,6 +2433,7 @@ sr-Latn:
         remove:
           confirmation: Unesite trenutni naziv kampanje naveden ispod u tekstualnom polju da biste uklonili kampanju
           success: "%{campaignName} je uspešno uklonjeno."
+          template_confirmation: 'Unesite ime trenutnog šablona u polje ispod da biste ga obrisali. Napomena: Ovo će takođe obrisati povezani šablon kampanje.'
       users:
         actions:
           export:
@@ -2744,6 +2760,7 @@ sr-Latn:
         required: Odgovor na pitanje je potreban
       max_words: Maks reči
       min_words: Minimalne reči
+      no_reflective_questions: Nema dostupnih refleksivnih pitanja
       title: Refleksivna pitanja
       update_failed: Došlo je do greške tokom ažuriranja
       updated_successfully: Vaši odgovori su uspešno ažurirani
@@ -2887,6 +2904,12 @@ sr-Latn:
     used_number: Korišćene licence
     used_out_of: "%{used} od %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Sva prava zadržana
+    footer:
+      regards: Pozdrav,
+      team_name: Lighthouse tim
+      technical_support: Za bilo kakve tehničke probleme, pišite nam na %{email} i odgovoriće vam u roku od 24 sata.
     from: Preduzeće za talente
     idp:
       manager_unread_comments:
@@ -2944,6 +2967,8 @@ sr-Latn:
         instructions: Kliknite ispod link da biste se prijavili na svetionik.
         signin_link: Prijavite se putem linka
       subject: Link za prijavljivanje za svetionik
+    powered_by:
+      text: Pokreće Lighthouse.
     users:
       account_disable: Vaš nalog je onemogućen zbog neaktivnosti
       warning: Vaš nalog će uskoro biti onemogućen zbog neaktivnosti
@@ -3260,6 +3285,9 @@ sr-Latn:
       send_password_email_success: E-pošta poslata korisniku %{email} sa lozinkom.
     title: Poništi lozinku
   select: Izaberite
+  sessions:
+    errors:
+      recaptcha: Verifikacija reCAPTCHA nije uspela. Molimo pokušajte ponovo.
   shared:
     filters:
       clear: Obriši filtere

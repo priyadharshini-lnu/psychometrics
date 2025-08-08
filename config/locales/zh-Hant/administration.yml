@@ -149,6 +149,7 @@ zh-Hant:
             accesssheet_manage: 存取表管理
             accesssheet_settings: 存取表設定
             accesssheet_view: 存取表檢視
+            export: 出口
             title: 儀表板
             view: 檢視
           datasheets:
@@ -784,6 +785,8 @@ zh-Hant:
       new:
         header: 大量下載
       reports_unavailable: 目前沒有可供下載的報告，請確認您要下載的報告是否可用。
+      select_reports_for_download: 請至少選擇一份報告下載。
+      select_reports_for_regenerate: 請至少選擇一份報告進行再生。
     cable:
       notification:
         assessment_factors: 取得因子
@@ -873,6 +876,7 @@ zh-Hant:
       campaign_templates: 活動範本
       column:
         assessment: 評估
+        campaign: 活動
         owner: 業主
         report: 報告
       copy:
@@ -947,6 +951,7 @@ zh-Hant:
       assessors:
         spoof:
           successfully: 您已成功登入 %{name}
+      convert_to_template: 轉換為範本
       copy: 複製
       delete: 刪除
       edit: 編輯
@@ -972,6 +977,7 @@ zh-Hant:
         name: 名稱
         reports: 報告
         status: 狀態
+        template: 範本
         type: 類型
       menus:
         add_common_campaign: 新增共同活動
@@ -987,11 +993,15 @@ zh-Hant:
             assessment: 評估
             category: 類別
             closed: 關閉
+            default_assessment_language: 評估預設語言
+            default_report_language: 報告預設語言
             empty: 空
             inactive: 閒置
             name: 名稱
             normal: 正常
             previous: 上一頁
+            select_assessment_language: 選擇評估語言
+            select_report_language: 選擇報告語言
             skill_rater: 技能評核員
             standard: 標準
             status: 狀態
@@ -1615,6 +1625,7 @@ zh-Hant:
         campaign_assessment_group: 活動評估小組
         client: 客戶
         completion: 完成
+        custom: 自訂
         delivery_at: 運費 (GST)
         delivery_delay_hours: 交貨延遲（小時）
         delivery_interval: 交貨間隔
@@ -1646,6 +1657,7 @@ zh-Hant:
         recipients: 收件人
         reminder: 提醒事項
         report_available: 提供報告
+        select_assessments: 選擇要檢查完成的評估
         selected: 精選
         selected_cc_recipients: 選定的 CC 獲獎人
         selected_recipients: 選定受助人
@@ -2140,6 +2152,9 @@ zh-Hant:
         remove_confirm: 在文字方塊中輸入以下的目前範本名稱，即可移除範本
         success: "%{idpName} 已成功移除。"
       add_idp_template: 新增 IDP 範本
+      ai_assisted_idp_enabled: AI 輔助 IDP 啟用
+      ai_enabled: 啟用 AI
+      ai_settings: AI 設定
       all: 全部
       appearance: 外觀
       appearance_hint: 若要修改外觀，請先儲存 IDP 模版，以啟用這些設定。
@@ -2183,6 +2198,7 @@ zh-Hant:
       logo_type_label: 標誌類型
       no_reflection_questions_selected: 未選擇反思問題
       none: 無
+      one_click_idp_enabled: 啟用一鍵式 IDP
       reference_locale: 參考區域設定
       reflection_questions: 反思問題
       reflection_questions_hint: 若要修改反思問題，請先儲存 IDP 模版，以啟用這些設定。
@@ -2289,6 +2305,7 @@ zh-Hant:
     individual_invite:
       tabs:
         assessment_center: 評估中心
+        invitation_status: 邀請狀態
     innovation_styles:
       create:
         successfully: 創新風格 %{name} 已成功建立。
@@ -2417,7 +2434,9 @@ zh-Hant:
       assessment_center: 評估中心：
       booked_at: 預訂於：
       column:
+        invitation_status: 邀請狀態
         participant: 參與者
+        scheduling_details: 排程細節
       remove_confirm:
         content: 您確定要移除電子郵件標題「%{subjectEmail}」嗎？
         success: 包含電子郵件 '%{subjectEmail}' 的主旨已成功移除。
@@ -2425,6 +2444,8 @@ zh-Hant:
       statuses:
         accepted: 已接受
         cancelled: 已取消
+        late_cancelled: 遲到取消
+        late_rescheduled: 遲到改期
         pending: 待定
         requested_cancellation: 要求取消
         requested_cancellation_rejected: 拒絕取消
@@ -2751,7 +2772,9 @@ zh-Hant:
       errors:
         create:
           invalid_format: Level 定義必須是一個定義陣列。
+          level_definition_must_exist: 等級定義不能為空
           level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
+          level_name_must_exist: 等級名稱不能為空
           must_be_unique: 必須獨一無二
           proficiency_level_exists: 已存在具有此技能和專案的 ProficiencyLevel
           proficiency_level_exists_for_default: 已退出預設的精通等級
@@ -3397,6 +3420,7 @@ zh-Hant:
         copy_to_all: 複製到其他評估中心
         create: 建立
         dates_label: 日期
+        disable_cancellation_and_rescheduling: 停用取消和重新排程
         duration_label: 時間長度
         duration_max_error: 不能超過 16 小時
         duration_min_error: 不得少於 15 分鐘
@@ -3525,6 +3549,7 @@ zh-Hant:
         form_title: 安排評估
         language: 語言
         language_not_selected: 未選取
+        mark_cancel: 馬克 取消
         mark_cancel_success: 以電子郵件 %{subject_email} 取消主題的參與。
         meeting_link_custom: 自訂
         meeting_link_internal: 內部
@@ -3533,6 +3558,9 @@ zh-Hant:
         no_change: 無變更
         override_existing: 覆寫科目的現有時間表
         preworks: 前期工作
+        re_enroll: 重新註冊
+        re_enroll_confirm_message: 您確定要重新註冊電子郵件 '%{subject_email}' 的主旨嗎？
+        re_enroll_success: 重新註冊的主題與電子郵件<x>subject_email</x> 。
         schedule: 時間表
         unschedule: 取消排程
       tabs:
@@ -4129,6 +4157,21 @@ zh-Hant:
         toggle_status:
           successfully: 成功
     threesixty_campaigns:
+      convert_action:
+        already_a_template: 已有範本
+        has_user_data: 請在轉換為範本之前，從「工具」下拉選項中按一下「重設所有參與者」，手動重設活動。
+      convert_template_modal:
+        cancel: 取消
+        confirm: 確認
+        convert:
+          success: 範本成功轉換
+        convert_option: 將此活動轉換為範本
+        copy:
+          success: 廣告系列範本建立工作已排程成功，請檢查您的通知以瞭解狀態。
+        copy_option: 從此活動建立新範本
+        description: 選擇要如何從此廣告系列建立範本。
+        failed: 範本建立失敗。
+        title: 轉換為範本
       email_templates:
         approve_nomination:
           description: 當直接報告的提名需要核准時，此訊息會傳送給經理

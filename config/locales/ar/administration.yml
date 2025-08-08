@@ -15,6 +15,8 @@ ar:
       title: التغييرات المدققة
     administrator:
       sessions:
+        errors:
+          recaptcha: فشل التحقق من "إعادة التحقّق
         new:
           forgot_password: هل نسيت كلمة المرور؟
           instruction: يرجى تسجيل الدخول باستخدام معلومات حسابك الشخصي
@@ -147,6 +149,7 @@ ar:
             accesssheet_manage: إدارة ورقة الوصول
             accesssheet_settings: إعدادات ورقة الوصول
             accesssheet_view: عرض ورقة الوصول
+            export: التصدير
             title: لوحات المعلومات
             view: عرض
           datasheets:
@@ -290,17 +293,33 @@ ar:
             view: منظر
     ai_assistants:
       actions:
+        create: إنشاء مساعد ذكاء اصطناعي
+        edit: تحرير مساعد الذكاء الاصطناعي
         playground: ساحة اللعب
       ai_assistants: مساعدو الذكاء الاصطناعي
       ai_assistants_playground: ملعب مساعد الذكاء الاصطناعي
       column:
         provider: المزود
+      created_successfully: تم إنشاء مساعد الذكاء الاصطناعي بنجاح.
       form:
+        add_output_schema_key: إضافة مفتاح مخطط الإخراج
+        dependencies: التبعيات
         description: الوصف
+        enter_description: أدخل الوصف
+        enter_schema_key: أدخل مفتاح المخطط
+        key: المفتاح
         name: الاسم
+        output_schema_keys: مفاتيح مخطط الإخراج
         provider: المزود
+        remove_output_schema_key: إزالة مفتاح مخطط الإخراج
+        schema_key_description_required: وصف مفتاح المخطط مطلوب
+        schema_key_required: مفتاح المخطط مطلوب
+        schema_key_type: نوع المفتاح
+        schema_key_unique: يجب أن تكون مفاتيح المخطط فريدة من نوعها
         system_prompt: موجه النظام
+        type: النوع
         user_prompt: موجه المستخدم
+      updated_successfully: تم تحديث مساعد الذكاء الاصطناعي بنجاح.
     any: " - أي -"
     api:
       campaigns:
@@ -766,6 +785,8 @@ ar:
       new:
         header: التنزيل الجماعي
       reports_unavailable: في الوقت الحالي، لا توجد تقارير متاحة للتنزيل. يرجى التأكد من أن التقارير التي تريد تنزيلها متوفرة.
+      select_reports_for_download: يُرجى تحديد تقرير واحد على الأقل لتنزيله.
+      select_reports_for_regenerate: يُرجى تحديد تقرير واحد على الأقل لإعادة إنشائه.
     cable:
       notification:
         assessment_factors: تم جلب العوامل
@@ -855,6 +876,7 @@ ar:
       campaign_templates: قوالب الحملات
       column:
         assessment: التقييم
+        campaign: الحملة
         owner: المالك
         report: التقرير
       copy:
@@ -929,6 +951,7 @@ ar:
       assessors:
         spoof:
           successfully: تم تسجيل الدخول بنجاح كمستخدم %{name}
+      convert_to_template: التحويل إلى قالب
       copy: نسخ
       delete: حذف
       edit: تحرير
@@ -954,6 +977,7 @@ ar:
         name: الاسم
         reports: التقارير
         status: الحالة
+        template: القالب
         type: النوع
       menus:
         add_common_campaign: إضافة حملة عادية
@@ -969,11 +993,15 @@ ar:
             assessment: التقييم
             category: فئة
             closed: مغلق
+            default_assessment_language: لغة التقييم الافتراضية
+            default_report_language: لغة التقرير الافتراضية
             empty: فارغة
             inactive: غير نشط
             name: الاسم
             normal: عادي
             previous: السابق
+            select_assessment_language: تحديد لغة التقييم
+            select_report_language: تحديد لغة التقرير
             skill_rater: مقيّم المهارات
             standard: قياسي
             status: الحالة
@@ -1597,6 +1625,7 @@ ar:
         campaign_assessment_group: مجموعة تقييم الحملات الانتخابية
         client: العميل
         completion: الإكمال
+        custom: مخصص
         delivery_at: التسليم في (GST)
         delivery_delay_hours: تأخير التسليم (بالساعات)
         delivery_interval: فترة التسليم
@@ -1628,6 +1657,7 @@ ar:
         recipients: المستلمون
         reminder: تذكير
         report_available: التقرير متاح
+        select_assessments: اختر التقييمات التي تريد التحقق من اكتمالها
         selected: المحدد
         selected_cc_recipients: المستلمون المحددون في CC
         selected_recipients: المستلمون المحددون
@@ -2122,6 +2152,9 @@ ar:
         remove_confirm: Enter current template name given below in text box to remove template
         success: "%{idpName} was removed successfully."
       add_idp_template: Add IDP Template
+      ai_assisted_idp_enabled: تمكين المشردين داخلياً بمساعدة الذكاء الاصطناعي
+      ai_enabled: تمكين الذكاء الاصطناعي
+      ai_settings: إعدادات الذكاء الاصطناعي
       all: All
       appearance: المظهر
       appearance_hint: لتعديل المظهر، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
@@ -2137,6 +2170,7 @@ ar:
       enter_template_name: Name
       enter_template_name_error: Template name is required
       errors:
+        cannot_update_progress_plan_completed: لا يمكن تحديث التقدم المحرز لأن خطة IDP قد اكتملت
         update: غير مسموح بالتحديث لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم.
       fields:
         assigned_data: البيانات المعينة
@@ -2164,6 +2198,7 @@ ar:
       logo_type_label: نوع الشعار
       no_reflection_questions_selected: لم يتم اختيار أي أسئلة للتفكير
       none: None
+      one_click_idp_enabled: تم تمكين IDP بنقرة واحدة
       reference_locale: لغة مرجعية
       reflection_questions: أسئلة للتفكير
       reflection_questions_hint: لتعديل أسئلة الانعكاس، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
@@ -2270,6 +2305,7 @@ ar:
     individual_invite:
       tabs:
         assessment_center: مركز التقييم
+        invitation_status: حالة الدعوة
     innovation_styles:
       create:
         successfully: Innovation Style %{name} was created successfully.
@@ -2398,7 +2434,9 @@ ar:
       assessment_center: 'Assessment center:'
       booked_at: 'Booked At:'
       column:
+        invitation_status: حالة الدعوة
         participant: Participant
+        scheduling_details: تفاصيل الجدولة
       remove_confirm:
         content: Are you sure you want to remove the subject with email '%{subjectEmail}'?
         success: Subject with email '%{subjectEmail}'' was successfully removed.
@@ -2406,6 +2444,8 @@ ar:
       statuses:
         accepted: Accepted
         cancelled: Cancelled
+        late_cancelled: تم الإلغاء في وقت متأخر
+        late_rescheduled: إعادة الجدولة المتأخرة
         pending: Pending
         requested_cancellation: Requested Cancellation
         requested_cancellation_rejected: Cancellation Rejected
@@ -2732,7 +2772,9 @@ ar:
       errors:
         create:
           invalid_format: يجب أن يكون تعريف المستوى مصفوفة من التعريفات.
+          level_definition_must_exist: لا يمكن أن يكون تعريف المستوى فارغاً
           level_definition_must_match_level: يجب أن يحتوي على %{expected} بالضبط، ولكن تم إعطاء %{actual}
+          level_name_must_exist: لا يمكن أن يكون اسم المستوى فارغاً
           must_be_unique: يجب أن تكون فريدة من نوعها
           proficiency_level_exists: مستوى الكفاءة مع هذه المهارة والمشروع موجود بالفعل
           proficiency_level_exists_for_default: خروج مستوى الكفاءة للتقصير بالفعل
@@ -3378,6 +3420,7 @@ ar:
         copy_to_all: Copy to other Assessment Centers
         create: Create
         dates_label: Dates
+        disable_cancellation_and_rescheduling: تعطيل الإلغاء وإعادة الجدولة
         duration_label: Duration
         duration_max_error: Cannot be greater than 16 hours
         duration_min_error: Cannot be less than 15 minutes
@@ -3506,6 +3549,7 @@ ar:
         form_title: Schedule Assessments
         language: Language
         language_not_selected: Not Selected
+        mark_cancel: إلغاء العلامة
         mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
         meeting_link_custom: Custom
         meeting_link_internal: Internal
@@ -3514,6 +3558,9 @@ ar:
         no_change: No Change
         override_existing: Override existing schedules for subjects
         preworks: Prework
+        re_enroll: إعادة التسجيل
+        re_enroll_confirm_message: هل أنت متأكد من رغبتك في إعادة تسجيل الموضوع بالبريد الإلكتروني "<x>subject_email</x>"؟
+        re_enroll_success: موضوع إعادة التسجيل مع البريد الإلكتروني <x>subject_email</x>.
         schedule: Schedule
         unschedule: Unschedule
       tabs:
@@ -3632,6 +3679,7 @@ ar:
       disable_password_reuse: Disable password reuse
       disallow_password_login: Disallow password login
       enable_login_with_magic_link: Enable Login with magic link
+      enable_recaptcha: تمكين اختبار إعادة التحقق من التحقق من التحقق من صحة المعلومات (reCAPTCHA)
       enforce_password_policy: Enforce password policy at next sign-in
       enforce_strong: Enforce strong password
       expiration: Password expiration
@@ -4109,6 +4157,21 @@ ar:
         toggle_status:
           successfully: بنجاح
     threesixty_campaigns:
+      convert_action:
+        already_a_template: قالب بالفعل
+        has_user_data: يرجى إعادة تعيين الحملة يدويًا عن طريق النقر على "إعادة تعيين جميع المشاركين" من القائمة المنسدلة "أدوات" قبل التحويل إلى قالب.
+      convert_template_modal:
+        cancel: إلغاء
+        confirm: تأكيد
+        convert:
+          success: تم تحويل القالب بنجاح
+        convert_option: تحويل هذه الحملة إلى قالب
+        copy:
+          success: تمت جدولة مهمة إنشاء قالب الحملة بنجاح، يرجى التحقق من الإشعارات لمعرفة الحالة.
+        copy_option: إنشاء قالب جديد من هذه الحملة
+        description: اختر كيف تريد إنشاء قالب من هذه الحملة.
+        failed: فشل إنشاء القالب.
+        title: التحويل إلى قالب
       email_templates:
         approve_nomination:
           description: This message is sent to a manager when a nomination, made by a direct report, needs to be approved

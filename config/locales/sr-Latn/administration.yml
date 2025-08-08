@@ -15,6 +15,8 @@ sr-Latn:
       title: Revidirane promene
     administrator:
       sessions:
+        errors:
+          recaptcha: Verifikacija Recaptcha nije uspela
         new:
           forgot_password: Zaboravili ste lozinku?
           instruction: Molimo Vas da se ulogujete sa informacijama sa Vašeg ličnog naloga
@@ -147,6 +149,7 @@ sr-Latn:
             accesssheet_manage: Upravljanje pristupnim listom
             accesssheet_settings: Podešavanja pristupnog lista
             accesssheet_view: Pregled prisutpnog lista
+            export: Izvoz
             title: Kontrolne table
             view: Prikaz
           datasheets:
@@ -290,17 +293,33 @@ sr-Latn:
             view: Prikaz
     ai_assistants:
       actions:
+        create: Kreiraj AI asistenta
+        edit: Uredi AI asistenta
         playground: Igralište
       ai_assistants: AI asistenti
       ai_assistants_playground: AI pomoćnik igralište
       column:
         provider: Dobavljač
+      created_successfully: AI asistent je uspešno kreiran.
       form:
+        add_output_schema_key: Dodaj izlazni ključ šeme
+        dependencies: Zavisnosti
         description: Opis
+        enter_description: Unesite opis
+        enter_schema_key: Unesite ključ šeme
+        key: Ključ
         name: Ime
+        output_schema_keys: Izlazni ključevi šeme
         provider: Dobavljač
+        remove_output_schema_key: Ukloni izlazni ključ šeme
+        schema_key_description_required: Opis ključa šeme je obavezan
+        schema_key_required: Ključ šeme je obavezan
+        schema_key_type: Tip ključa
+        schema_key_unique: Ključevi šeme moraju biti jedinstveni
         system_prompt: Sistem prompt
+        type: Tip
         user_prompt: Korisnička uputstva
+      updated_successfully: AI asistent je uspešno ažuriran.
     any: " - Bilo koji - "
     api:
       campaigns:
@@ -766,6 +785,8 @@ sr-Latn:
       new:
         header: Zbirno preuzimanje
       reports_unavailable: U ovom trenutku, nema izveštaja dostupnih za preuzimanje. Molimo Vas da potvrdite da su izveštaji koje želite da preuzmete dostupni.
+      select_reports_for_download: Molimo izaberite bar jedan izveštaj za preuzimanje.
+      select_reports_for_regenerate: Molimo izaberite bar jedan izveštaj za regeneraciju.
     cable:
       notification:
         assessment_factors: Faktori su prikupljeni
@@ -855,6 +876,7 @@ sr-Latn:
       campaign_templates: Šabloni kampanje
       column:
         assessment: Procena
+        campaign: Kampanja
         owner: Vlasnik
         report: Izveštaj
       copy:
@@ -929,6 +951,7 @@ sr-Latn:
       assessors:
         spoof:
           successfully: Uspešno ste se prijavili kao %{name}
+      convert_to_template: Pretvori u šablon
       copy: Kopiraj
       delete: Izbriši
       edit: Uredi
@@ -954,6 +977,7 @@ sr-Latn:
         name: Ime
         reports: Izveštaji
         status: Status
+        template: Šablon
         type: Tip
       menus:
         add_common_campaign: Dodaj zajedničku kampanju
@@ -969,11 +993,15 @@ sr-Latn:
             assessment: Procena
             category: Категорија
             closed: Zatvoreno
+            default_assessment_language: Podrazumevani jezik procene
+            default_report_language: Podrazumevani jezik izveštaja
             empty: Prazno
             inactive: Neaktivno
             name: Ime
             normal: Normalno
             previous: Prethodno
+            select_assessment_language: Izaberite jezik procene
+            select_report_language: Izaberite jezik izveštaja
             skill_rater: Procena veština
             standard: Standardno
             status: Status
@@ -1006,6 +1034,7 @@ sr-Latn:
           name: Opis
           save: Sačuvaj opis
           save_success: Opis je uspešno sačuvan
+        enable_video_call_recording: Omogući snimanje video poziva
         fixed_time: Fiksno vreme
         instructions:
           actions:
@@ -1596,6 +1625,7 @@ sr-Latn:
         campaign_assessment_group: Grupa procene kampanje
         client: Klijent
         completion: Završetak
+        custom: Prilagođeno
         delivery_at: Isporuka na (GST)
         delivery_delay_hours: Kašnjenje isporuke (sati)
         delivery_interval: Interval isporuke
@@ -1627,6 +1657,7 @@ sr-Latn:
         recipients: Primaoci
         reminder: Opomene
         report_available: Izveštaj dostupan
+        select_assessments: Izaberite koje procene treba proveriti za završetak
         selected: Izabrano
         selected_cc_recipients: Izabrani primaoci CC
         selected_recipients: Izabrani primaoci
@@ -2121,6 +2152,9 @@ sr-Latn:
         remove_confirm: Unesite trenutno ime šablona dato ispod u polje za tekst da biste uklonili predložak
         success: "%{idpName} je uspešno uklonjen."
       add_idp_template: Dodaj IDP šablon
+      ai_assisted_idp_enabled: AI asistirani IDP omogućen
+      ai_enabled: AI omogućen
+      ai_settings: AI podešavanja
       all: Sve
       appearance: Izgled
       appearance_hint: Da biste promenili izgled, prvo sačuvajte IDP šablon da biste omogućili ova podešavanja.
@@ -2136,6 +2170,7 @@ sr-Latn:
       enter_template_name: Ime
       enter_template_name_error: Naziv šablona je obavezan
       errors:
+        cannot_update_progress_plan_completed: Ne možete ažurirati napredak jer je IDP plan već završen
         update: Ažuriranje nije dozvoljeno jer je IDP šablon već povezan sa korisničkim IDP planom. Promene izgleda su sačuvane.
       fields:
         assigned_data: Dodeljeni podaci
@@ -2163,6 +2198,7 @@ sr-Latn:
       logo_type_label: Tip logotipa
       no_reflection_questions_selected: Nisu izabrana pitanja za razmišljanje
       none: Ništa
+      one_click_idp_enabled: Jednim klikom IDP omogućen
       reference_locale: Referentni lokal
       reflection_questions: Pitanja za razmišljanje
       reflection_questions_hint: Da biste izmeni pitanja refleksije, molimo vas da prvo sačuvate IDP šablon da biste omogućili ove postavke.
@@ -2269,6 +2305,7 @@ sr-Latn:
     individual_invite:
       tabs:
         assessment_center: Centar za procenu
+        invitation_status: Status pozivnice
     innovation_styles:
       create:
         successfully: Stil inovacija %{name} je uspešno kreiran.
@@ -2397,7 +2434,9 @@ sr-Latn:
       assessment_center: 'Centar za procenu:'
       booked_at: 'Rezervisano u:'
       column:
+        invitation_status: Status pozivnice
         participant: Učesnik
+        scheduling_details: Detalji planiranja
       remove_confirm:
         content: Da li ste sigurni da želite da uklonite predmet sa imejlom '%{subjectEmail}'?
         success: Predmet sa imejlom '%{subjectEmail}'' je uspešno uklonjen.
@@ -2405,6 +2444,8 @@ sr-Latn:
       statuses:
         accepted: Prihvaćeno
         cancelled: Otkazano
+        late_cancelled: Kasno otkazano
+        late_rescheduled: Kasno prebačeno
         pending: Neobrađeno
         requested_cancellation: Traženo otkazivanje
         requested_cancellation_rejected: Otkazivanje odbijeno
@@ -2731,7 +2772,9 @@ sr-Latn:
       errors:
         create:
           invalid_format: Definicija nivoa mora biti niz definicija.
+          level_definition_must_exist: Definicija nivoa ne može biti prazna
           level_definition_must_match_level: mora da sadrži tačno %{expected} nivoa, ali %{actual} je dato
+          level_name_must_exist: Ime nivoa ne može biti prazno
           must_be_unique: Mora biti jedinstveno
           proficiency_level_exists: Nivo stručnosti sa ovom veštinom i projektom već postoji
           proficiency_level_exists_for_default: Nivo stručnosti za podrazumevani već postoji
@@ -3034,6 +3077,7 @@ sr-Latn:
         dp_consent_custom: Prilagodit saglasnost za obradu podataka
         dp_consent_version: Verzija politike
         errors:
+          cannot_disable_while_campaign_enabled: Ne možete onemogućiti snimanje video poziva jer je omogućeno za jednu ili više kampanja u ovom projektu
           policy_version_format: Dozvoljeni su samo celi brojevi
         mask_identity_for_examus: Maskiraj podatke za Examus proktoring
         mask_identity_for_hogan: Maskiraj podatke za Hogan
@@ -3047,6 +3091,9 @@ sr-Latn:
         privacy_link_placeholder: Unesi vezu za privatnost
         privacy_text: Tekst o privatnosti
         privacy_text_placeholder: Unesi tekst privatnosti
+        video_call_recording: Dozvoli snimanje video poziva
+        video_call_recording_expiry_duration: Period zadržavanja snimaka video poziva (u danima)
+        video_call_recording_scope: Omogući video snimanje za sve nove kampanje
       profile_settings:
         form_fields:
           enabled: Omogućeno
@@ -3369,6 +3416,7 @@ sr-Latn:
         copy_to_all: Kopirajte u druge centre za procenu
         create: Kreirajte
         dates_label: Datumi
+        disable_cancellation_and_rescheduling: Onemogući otkazivanje i ponovno zakazivanje
         duration_label: Trajanje
         duration_max_error: Ne može biti duže od 16 sati
         duration_min_error: Ne može biti manje od 15 minuta
@@ -3494,6 +3542,7 @@ sr-Latn:
         form_title: Raspored procene
         language: Jezik
         language_not_selected: Nije izabrano
+        mark_cancel: Označi kao otkazano
         mark_cancel_success: Otkazano učešće subjekta sa imejlom %{subject_email}.
         meeting_link_custom: Prilagođeno
         meeting_link_internal: Interno
@@ -3502,6 +3551,9 @@ sr-Latn:
         no_change: Nema promene
         override_existing: Izmeni postojeće rasporede za subjekte
         preworks: Predrad
+        re_enroll: Ponovo upiši
+        re_enroll_confirm_message: Da li ste sigurni da želite ponovo da upišete subjekta sa imejlom '%{subject_email}'?
+        re_enroll_success: Subjekt sa imejlom %{subject_email} je ponovo upisan.
         schedule: Zakaži
         unschedule: Otkaži
       tabs:
@@ -3620,6 +3672,7 @@ sr-Latn:
       disable_password_reuse: Onemogući ponovnu upotrebu lozinka
       disallow_password_login: Zabrani prijavljivanje lozinkom
       enable_login_with_magic_link: Omogući prijavu sa magičnim linkom
+      enable_recaptcha: Omogući reCAPTCHA
       enforce_password_policy: Sprovedi politiku lozinka na sledećem prijavljivanja
       enforce_strong: Sprovedite jaku lozinku
       expiration: Istek lozinka
@@ -4087,6 +4140,21 @@ sr-Latn:
         toggle_status:
           successfully: Uspešno
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Već je šablon
+        has_user_data: Molimo ručno resetujte kampanju klikom na "Resetuj sve učesnike" iz menija Alatke pre konvertovanja u šablon.
+      convert_template_modal:
+        cancel: Otkaži
+        confirm: Potvrdi
+        convert:
+          success: Šablon je uspešno konvertovan
+        convert_option: Konvertuj ovu kampanju u šablon
+        copy:
+          success: Posao kreiranja šablona kampanje je uspešno zakazan, molimo proverite obaveštenja za status.
+        copy_option: Kreiraj novi šablon od ove kampanje
+        description: Izaberite kako želite da kreirate šablon od ove kampanje.
+        failed: Kreiranje šablona nije uspelo.
+        title: Konvertuj u šablon
       email_templates:
         approve_nomination:
           description: Ova poruka se šalje menadžeru kada nominacija, napravljena od strane direktnog izveštaja, treba da bude odobrena
@@ -4321,6 +4389,10 @@ sr-Latn:
       update:
         successfully: Korisnik %{name} je uspešno ažuriran.
       user: Korisnik
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Datum završetka ne može biti u prošlosti
+        start_date_cannot_be_in_past: Datum početka ne može biti u prošlosti
     webhook:
       connection_failure: Nije moguće povezati se sa URL-om webhook-a. Proverite da li je webhook URL tačan..
       delete_success: Podešavanja Webhook je uspešno izbrisano
