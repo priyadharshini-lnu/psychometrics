@@ -626,6 +626,8 @@ sr-Cyrl:
         only_global_skills_allowed: Одабране вештине морају бити глобалне вештине.
         skills_not_belong_to_project: Одабране вештине морају да припадају наведеном пројекту.
         skills_required: Изаберите бар једну вештину.
+      update_workshop:
+        bookings_exist: Није могуће изменити распоред јер су учесници већ резервисали овај термин.
       user_idp_plan:
         idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кориснику.
       workshop_subject_re_enroll:
