@@ -66,7 +66,7 @@ module AdminJobs
 
     def user_reports
       @user_reports ||= if record.data['is_threesixty']
-                          campaign.user_reports.with_pdf_attachments
+                          campaign.user_reports.where(id: record.data['ids']).with_pdf_attachments
                         else
                           common_campaign_user_reports
                         end

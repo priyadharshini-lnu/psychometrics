@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import _ from 'lodash'
 import {
   Table, Row, Col, App, Checkbox,
@@ -55,6 +55,8 @@ function SubjectList ({
   const {
     isAllSelected, excludedKeys, selectedKeys, onSelectionChange, onAllSelect,
   } = useSelectAll(false, subjects)
+
+  const normalizedSubjectsData = useMemo(() => _.keyBy(subjects, 'id'), [subjects])
 
   const [selectedCount, setSelectedCount] = useState(0)
 
@@ -114,10 +116,19 @@ function SubjectList ({
               selectedKeys={selectedKeys}
               excludedKeys={excludedKeys}
               isAllSelected={isAllSelected}
+              normalizedSubjectsData={normalizedSubjectsData}
             />
           )
           }
-          {!template && <ToolsDropdown permissions={permissions} />}
+          {!template && (
+            <ToolsDropdown
+              permissions={permissions}
+              selectedKeys={selectedKeys}
+              excludedKeys={excludedKeys}
+              isAllSelected={isAllSelected}
+              normalizedSubjectsData={normalizedSubjectsData}
+            />
+          )}
           {permissions.addSubject && !template && (
             <CreateSubjectsDropdown />
           )}

@@ -3,6 +3,7 @@ import {
 } from 'antd'
 import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { useMemo } from 'react'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const getCustomMenuProps = ({
@@ -133,10 +134,13 @@ export default function ToolsDropdown ({
   rescoreAssessment, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
   reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys,
-  excludedKeys, title, isAllSelected,
+  excludedKeys, title, isAllSelected, normalizedSubjectsData,
 }) {
   const { projectId } = useParams()
-
+  const selectedUserReportIds = useMemo(() => selectedKeys.map((key) => {
+    const subject = normalizedSubjectsData[key]
+    return subject ? subject.userReportId : null
+  }).filter(Boolean), [selectedKeys, normalizedSubjectsData])
   const resetCampaignWithConfirmation = (campaignId) => {
     openModal('ResetCampaignModal', {
       onConfirm: removeLicenceUsage => resetCampaign(campaignId, removeLicenceUsage),
@@ -185,7 +189,7 @@ export default function ToolsDropdown ({
         cancelText: I18n.t('common.text.cancel'),
         onOk: async () => {
           try {
-            await regenerateReports(threesixtyCampaignId, [reportDefaultLanguage], true)
+            await regenerateReports(threesixtyCampaignId, [reportDefaultLanguage], true, selectedUserReportIds)
             message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
@@ -200,7 +204,7 @@ export default function ToolsDropdown ({
         defaultLocale: reportDefaultLanguage,
         onConfirm: async (selectedLocales, forceRegenerate) => {
           try {
-            await regenerateReports(threesixtyCampaignId, selectedLocales, forceRegenerate)
+            await regenerateReports(threesixtyCampaignId, selectedLocales, forceRegenerate, selectedUserReportIds)
             message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
@@ -212,7 +216,7 @@ export default function ToolsDropdown ({
 
   const handleBulkDownloads = () => {
     if (reportAvailableLanguages.length === 0) {
-      bulkDownloads(threesixtyCampaignId, [reportDefaultLanguage])
+      bulkDownloads(threesixtyCampaignId, [reportDefaultLanguage], selectedUserReportIds)
         .then(() => {
           message.success(I18n.t('jobs.threesixty.bulk_downloads'))
         })
@@ -222,11 +226,12 @@ export default function ToolsDropdown ({
     } else {
       openModal('BulkDownloadModal', {
         visible: true,
-        onClose: () => {},
+        onClose: () => {
+        },
         allLocales: reportAvailableLanguages,
         defaultLocale: reportDefaultLanguage,
         onConfirm: (selectedLocales) => {
-          bulkDownloads(threesixtyCampaignId, selectedLocales)
+          bulkDownloads(threesixtyCampaignId, selectedLocales, selectedUserReportIds)
             .then(() => {
               message.success(I18n.t('jobs.threesixty.bulk_downloads'))
             })
