@@ -32,7 +32,8 @@ class Api::V2::Administration::ReportApprovalResource < Api::V2::Administration:
   end
 
   def allow_qc_bulk_submit
-    @model.allow_qc_bulk_submit && %i[pending_qc qc_in_progress change_requested].include?(@model.approval_status)
+    @model.allow_qc_bulk_submit && %i[pending_qc qc_in_progress
+                                      change_requested].include?(@model.approval_status.to_sym)
   end
 
   def project_id
