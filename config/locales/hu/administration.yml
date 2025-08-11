@@ -3429,8 +3429,6 @@ hu:
         name_label: Név
         next: Következő
         required_error: Szükséges
-        reschedule_duration_max_error: Nem lehet hosszabb 30 napnál
-        reschedule_duration_min_error: Nem lehet kevesebb, mint 1 perc
         resources_panel:
           description: Add hozzá a linkeket minden olyan forráshoz, amelyhez szeretnéd, hogy a facilitátorok hozzáférjenek.
           resource_name_placeholder: Erőforrás neve

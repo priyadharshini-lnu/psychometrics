@@ -3431,8 +3431,6 @@ pt:
         name_label: Nome
         next: Seguinte
         required_error: Necessário
-        reschedule_duration_max_error: Não pode ser superior a 30 dias
-        reschedule_duration_min_error: Não pode ser inferior a 1 minuto
         resources_panel:
           description: Acrescente as ligações para os recursos a que gostaria que os facilitadores tivessem acesso.
           resource_name_placeholder: Nome do recurso

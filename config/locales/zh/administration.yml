@@ -3431,8 +3431,6 @@ zh:
         name_label: 名称
         next: 下一页
         required_error: 需要
-        reschedule_duration_max_error: 不能超过 30 天
-        reschedule_duration_min_error: 不能少于 1 分钟
         resources_panel:
           description: 添加您希望主持人访问的任何资源的链接。
           resource_name_placeholder: 资源名称

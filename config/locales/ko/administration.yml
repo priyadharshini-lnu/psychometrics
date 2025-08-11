@@ -3431,8 +3431,6 @@ ko:
         name_label: 이름
         next: 다음
         required_error: 필수
-        reschedule_duration_max_error: 30일을 초과할 수 없습니다
-        reschedule_duration_min_error: 1분 이상일 수 없습니다
         resources_panel:
           description: 진행자가 액세스할 수 있도록 하려는 리소스에 대한 링크를 추가합니다.
           resource_name_placeholder: 리소스 이름

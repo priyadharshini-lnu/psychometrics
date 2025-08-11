@@ -3427,8 +3427,6 @@ en-US:
         name_label: Name
         next: Next
         required_error: Required
-        reschedule_duration_max_error: Cannot be greater than 30 days
-        reschedule_duration_min_error: Cannot be less than 1 minute
         resources_panel:
           description: Add the links to any resources you would like the facilitators to have access to.
           resource_name_placeholder: Resource Name

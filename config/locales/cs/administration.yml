@@ -3431,8 +3431,6 @@ cs:
         name_label: Název
         next: Další
         required_error: Požadované
-        reschedule_duration_max_error: Nesmí být delší než 30 dní
-        reschedule_duration_min_error: Nesmí být kratší než 1 minuta
         resources_panel:
           description: Přidejte odkazy na všechny zdroje, ke kterým chcete, aby měli facilitátoři přístup.
           resource_name_placeholder: Název zdroje

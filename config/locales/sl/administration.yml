@@ -3427,8 +3427,6 @@ sl:
         name_label: Ime
         next: Naslednji
         required_error: Zahteva
-        reschedule_duration_max_error: Ne sme biti daljši od 30 dni
-        reschedule_duration_min_error: Ne sme biti krajši od 1 minute
         resources_panel:
           description: Dodajte povezave do vseh virov, za katere želite, da imajo moderatorji dostop.
           resource_name_placeholder: Ime vira

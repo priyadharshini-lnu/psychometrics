@@ -3431,8 +3431,6 @@ nl:
         name_label: Naam
         next: Volgende
         required_error: Vereist
-        reschedule_duration_max_error: Kan niet langer zijn dan 30 dagen
-        reschedule_duration_min_error: Kan niet korter zijn dan 1 minuut
         resources_panel:
           description: Voeg links toe naar bronnen waartoe de begeleiders toegang moeten hebben.
           resource_name_placeholder: Naam bron

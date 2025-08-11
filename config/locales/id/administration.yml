@@ -3427,8 +3427,6 @@ id:
         name_label: Nama
         next: Depan
         required_error: Diperlukan
-        reschedule_duration_max_error: Tidak boleh lebih dari 30 hari
-        reschedule_duration_min_error: Tidak boleh kurang dari 1 menit
         resources_panel:
           description: Tambahkan tautan ke sumber daya apa pun yang Anda inginkan untuk diakses oleh fasilitator.
           resource_name_placeholder: Nama Sumber Daya

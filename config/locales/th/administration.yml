@@ -3427,8 +3427,6 @@ th:
         name_label: ชื่อ
         next: ต่อไป
         required_error: ต้องระบุ
-        reschedule_duration_max_error: ไม่เกิน 30 วัน
-        reschedule_duration_min_error: ต้องไม่น้อยกว่า 1 นาที
         resources_panel:
           description: เพิ่มลิงก์ไปยังแหล่งข้อมูลที่คุณต้องการให้ผู้อํานวยความสะดวกสามารถเข้าถึงได้
           resource_name_placeholder: ชื่อทรัพยากร

@@ -3431,8 +3431,6 @@ fr:
         name_label: Nom
         next: Suivant
         required_error: Exigée
-        reschedule_duration_max_error: Ne peut être supérieur à 30 jours
-        reschedule_duration_min_error: Duréene peut être inférieure à 1 minute
         resources_panel:
           description: Ajoutez les liens vers les ressources auxquelles vous souhaitez que les animateurs aient accès.
           resource_name_placeholder: Nom de la ressource

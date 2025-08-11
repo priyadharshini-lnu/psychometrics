@@ -3431,8 +3431,6 @@ de:
         name_label: Name
         next: Weiter
         required_error: Erforderlich
-        reschedule_duration_max_error: Kann nicht länger als 30 Tage sein
-        reschedule_duration_min_error: Darf nicht kürzer als 1 Minute sein
         resources_panel:
           description: Fügen Sie die Links zu allen Ressourcen hinzu, zu denen die Moderatoren Zugang haben sollen.
           resource_name_placeholder: Ressource Name

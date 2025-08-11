@@ -3427,8 +3427,6 @@ sr-Latn:
         name_label: Ime
         next: Sledeći
         required_error: Potrebno
-        reschedule_duration_max_error: Ne može biti više od 30 dana
-        reschedule_duration_min_error: Ne može biti manje od 1 minuta
         resources_panel:
           description: Dodajte linkove na sve resurse za koje želite da facilitatori imaju pristup.
           resource_name_placeholder: Naziv resursa

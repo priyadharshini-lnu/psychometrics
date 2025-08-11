@@ -288,19 +288,6 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
                     name="cancellation_lead_time"
                     label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
                     {...fieldLayout}
-                    rules={[
-                      {
-                        validator: durationValidator({
-                          minMinutes: 1,
-                          maxMinutes: 24 * 60 * 30,
-                          // eslint-disable-next-line max-len
-                          minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
-                          // eslint-disable-next-line max-len
-                          maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
-                          requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
-                        }),
-                      },
-                    ]}
                   >
                     <InputDuration
                       value=""
@@ -314,19 +301,6 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
                     name="scheduling_lead_time"
                     label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
                     {...fieldLayout}
-                    rules={[
-                      {
-                        validator: durationValidator({
-                          minMinutes: 1,
-                          maxMinutes: 24 * 60 * 30, // 30 days
-                          // eslint-disable-next-line max-len
-                          minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
-                          // eslint-disable-next-line max-len
-                          maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
-                          requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
-                        }),
-                      },
-                    ]}
                   >
                     <InputDuration
                       value=""

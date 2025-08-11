@@ -3427,8 +3427,6 @@ bg:
         name_label: Име
         next: Следващ
         required_error: Изисква
-        reschedule_duration_max_error: Не може да бъде по-дълъг от 30 дни
-        reschedule_duration_min_error: Не може да бъде по-малко от 1 минута
         resources_panel:
           description: Добавете връзките към всички ресурси, до които бихте искали фасилитаторите да имат достъп.
           resource_name_placeholder: Име на ресурса

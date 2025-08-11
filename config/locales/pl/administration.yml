@@ -3427,8 +3427,6 @@ pl:
         name_label: Nazwa
         next: Następny
         required_error: Wymagane
-        reschedule_duration_max_error: Nie może być dłuższa niż 30 dni
-        reschedule_duration_min_error: Nie może być krótszy niż 1 minuta
         resources_panel:
           description: Dodaj linki do wszystkich zasobów, do których moderatorzy mają mieć dostęp.
           resource_name_placeholder: Nazwa zasobu

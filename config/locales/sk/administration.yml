@@ -3427,8 +3427,6 @@ sk:
         name_label: Meno
         next: Budúci
         required_error: Požadovaný
-        reschedule_duration_max_error: Nesmie byť dlhší ako 30 dní
-        reschedule_duration_min_error: Nesmie byť kratšie ako 1 minúta
         resources_panel:
           description: Pridajte odkazy na všetky zdroje, ku ktorým chcete, aby facilitátori mali prístup.
           resource_name_placeholder: Názov zdroja

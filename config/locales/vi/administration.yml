@@ -3427,8 +3427,6 @@ vi:
         name_label: Tên
         next: Sau
         required_error: Bắt buộc
-        reschedule_duration_max_error: Không được lớn hơn 30 ngày
-        reschedule_duration_min_error: Không được dưới 1 phút
         resources_panel:
           description: Thêm liên kết đến bất kỳ tài nguyên nào bạn muốn người hướng dẫn có quyền truy cập.
           resource_name_placeholder: Tên tài nguyên

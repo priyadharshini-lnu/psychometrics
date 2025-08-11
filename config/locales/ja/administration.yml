@@ -3431,8 +3431,6 @@ ja:
         name_label: 名称
         next: 次のページ
         required_error: 必須
-        reschedule_duration_max_error: 30日以上は不可
-        reschedule_duration_min_error: 1分以内
         resources_panel:
           description: ファシリテーターにアクセスさせたいリソースへのリンクを追加してください。
           resource_name_placeholder: リソース名
