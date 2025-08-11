@@ -2735,21 +2735,31 @@ hu:
         sms_contacts: SMS-kapcsolatok
         subjects: Témák
     piped_text_modal:
+      assessment_center: Értékelő központ
       assessment_id: Értékelési azonosító
       campaign_id: Kampány azonosítója
       campaign_name: Kampány neve
       campaigns: Kampányok
+      description: Leírás
+      duration: Időtartam
+      end_time: Végidő
       insight_page_link: Elemzési oldal linkje
       insight_page_url: Elemzési oldal URL-címe
+      invite_title: Cím
+      invites: Meghívók
       join_link: Csatlakozás link
       magic_link: Magic link
       magic_url: Mágikus URL
+      platform_url_links: Platform Url és linkek
       profile_custom_field: Profil egyéni mező
       project_name: Projekt neve
       projects: Projektek
       report_name: Jelentés neve
+      start_time: A kezdési időpont
       text: Szöveges üzenet
       title: Továbbított szöveg hozzáadása
+      user_reports: Felhasználói jelentések
+      users: Felhasználók
     proctoring_sessions:
       columns:
         comment: Megjegyzés

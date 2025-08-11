@@ -2733,21 +2733,31 @@ ko:
         sms_contacts: SMS 연락처
         subjects: 주제
     piped_text_modal:
+      assessment_center: 평가 센터
       assessment_id: 평가 ID
       campaign_id: 캠페인 ID
       campaign_name: 캠페인 이름
       campaigns: 캠페인
+      description: 설명
+      duration: 기간
+      end_time: 종료 시간
       insight_page_link: 인사이트 페이지 링크
       insight_page_url: 인사이트 페이지 URL
+      invite_title: 제목
+      invites: 초대
       join_link: 가입 링크
       magic_link: 매직 링크
       magic_url: 매직 URL
+      platform_url_links: 플랫폼 URL 및 링크
       profile_custom_field: 프로필 사용자 지정 필드
       project_name: 프로젝트 이름
       projects: 프로젝트
       report_name: 보고서 이름
+      start_time: 시작 시간
       text: 텍스트
       title: 파이프 텍스트 추가
+      user_reports: 사용자 보고서
+      users: 사용자
     proctoring_sessions:
       columns:
         comment: 댓글

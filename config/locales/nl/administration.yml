@@ -2733,21 +2733,31 @@ nl:
         sms_contacts: SMS Contacten
         subjects: Onderwerpen
     piped_text_modal:
+      assessment_center: Beoordelingscentrum
       assessment_id: Beoordeling ID
       campaign_id: Campagne-ID
       campaign_name: Naam campagne
       campaigns: Campagnes
+      description: Beschrijving
+      duration: Duur
+      end_time: Eindtijd
       insight_page_link: Inzicht pagina link
       insight_page_url: Inzicht pagina URL
+      invite_title: Titel
+      invites: Nodigt  uit
       join_link: Word lid Link
       magic_link: Magische link
       magic_url: Magische URL
+      platform_url_links: Platform Url en koppelingen
       profile_custom_field: Profiel aangepast veld
       project_name: Naam project
       projects: Projecten
       report_name: Rapport Naam
+      start_time: Starttijd
       text: Tekst
       title: Tekst met passepoil toevoegen
+      user_reports: Rapporten van gebruikers
+      users: Gebruikers
     proctoring_sessions:
       columns:
         comment: Opmerking

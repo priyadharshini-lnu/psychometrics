@@ -2734,21 +2734,31 @@ en:
         sms_contacts: SMS Contacts
         subjects: Subjects
     piped_text_modal:
+      assessment_center: Assessment Center
       assessment_id: Assessment ID
       campaign_id: Campaign ID
       campaign_name: Campaign Name
       campaigns: Campaigns
+      description: Description
+      duration: Duration
+      end_time: End time
       insight_page_link: Insight Page Link
       insight_page_url: Insight Page URL
+      invite_title: Title
+      invites: Invites
       join_link: Join Link
       magic_link: Magic Link
       magic_url: Magic URL
+      platform_url_links: Platform Url and Links
       profile_custom_field: Profile Custom Field
       project_name: Project Name
       projects: Projects
       report_name: Report Name
+      start_time: Start time
       text: Text
       title: Add Piped Text
+      user_reports: User Reports
+      users: Users
     proctoring_sessions:
       columns:
         comment: Comment

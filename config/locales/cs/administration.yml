@@ -2733,21 +2733,31 @@ cs:
         sms_contacts: Kontakty SMS
         subjects: Předměty
     piped_text_modal:
+      assessment_center: Hodnotící centrum
       assessment_id: ID hodnocení
       campaign_id: ID kampaně
       campaign_name: Název kampaně
       campaigns: Kampaně
+      description: Popis
+      duration: Doba trvání
+      end_time: Čas ukončení
       insight_page_link: Odkaz na stránku Insight
       insight_page_url: Adresa URL stránky Insight
+      invite_title: Název
+      invites: Pozvánky
       join_link: Připojte se k odkazu
       magic_link: Magický odkaz
       magic_url: Magická adresa URL
+      platform_url_links: Url a odkazy na platformu
       profile_custom_field: Vlastní pole profilu
       project_name: Název projektu
       projects: Projekty
       report_name: Název zprávy
+      start_time: Čas zahájení
       text: Text
       title: Přidání textu s potrubím
+      user_reports: Uživatelské zprávy
+      users: Uživatelé
     proctoring_sessions:
       columns:
         comment: Komentář

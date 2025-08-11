@@ -2733,21 +2733,31 @@ sl:
         sms_contacts: SMS stiki
         subjects: Predmetov
     piped_text_modal:
+      assessment_center: Center za ocenjevanje
       assessment_id: ID ocenjevanja
       campaign_id: ID oglaševalske akcije
       campaign_name: Ime kampanje
       campaigns: Kampanje
+      description: Opis
+      duration: Trajanje
+      end_time: Končni čas
       insight_page_link: Povezava do strani »Vpogled«
       insight_page_url: URL strani z vpogledi
+      invite_title: Naslov
+      invites: Vabi
       join_link: Povezava za pridružitev
       magic_link: Čarobna povezava
       magic_url: Čarobni URL
+      platform_url_links: Platforma Url in povezave
       profile_custom_field: Polje »Profil po meri«
       project_name: Ime projekta
       projects: Projekti
       report_name: Ime poročila
+      start_time: Čas začetka
       text: Besedilno sporočilo
       title: Dodajanje besedila v cevi
+      user_reports: Poročila uporabnikov
+      users: Uporabniki
     proctoring_sessions:
       columns:
         comment: Komentar

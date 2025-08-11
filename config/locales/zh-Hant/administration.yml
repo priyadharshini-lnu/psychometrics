@@ -2733,21 +2733,31 @@ zh-Hant:
         sms_contacts: 簡訊聯絡人
         subjects: 主題
     piped_text_modal:
+      assessment_center: 評估中心
       assessment_id: 評估 ID
       campaign_id: 活動 ID
       campaign_name: 活動名稱
       campaigns: 活動
+      description: 說明
+      duration: 時間長度
+      end_time: 結束時間
       insight_page_link: 洞察頁連結
       insight_page_url: 洞察頁面 URL
+      invite_title: 標題
+      invites: 邀請
       join_link: 加入連結
       magic_link: 魔術連結
       magic_url: 魔術網址
+      platform_url_links: 平台 Url 與連結
       profile_custom_field: 個人資料自訂欄位
       project_name: 專案名稱
       projects: 專案
       report_name: 報告名稱
+      start_time: 開始時間
       text: 正文
       title: 新增管道文字
+      user_reports: 使用者報告
+      users: 使用者
     proctoring_sessions:
       columns:
         comment: 評論

@@ -2733,21 +2733,31 @@ id:
         sms_contacts: Kontak SMS
         subjects: Mata pelajaran
     piped_text_modal:
+      assessment_center: Pusat Penilaian
       assessment_id: ID Penilaian
       campaign_id: ID Kampanye
       campaign_name: Nama Kampanye
       campaigns: Kampanye
+      description: Deskripsi
+      duration: Durasi
+      end_time: Akhir zaman
       insight_page_link: Tautan Halaman Insight
       insight_page_url: URL Halaman Insight
+      invite_title: Judul
+      invites: Mengundang
       join_link: Link Bergabung
       magic_link: Tautan Ajaib
       magic_url: URL ajaib
+      platform_url_links: Url dan Tautan Platform
       profile_custom_field: Bidang Kustom Profil
       project_name: Nama Proyek
       projects: Proyek
       report_name: Nama Laporan
+      start_time: Waktu mulai
       text: Teks
       title: Tambahkan Teks Piped
+      user_reports: Laporan Pengguna
+      users: Pengguna
     proctoring_sessions:
       columns:
         comment: Komentar

@@ -2733,21 +2733,31 @@ bg:
         sms_contacts: SMS контакти
         subjects: Теми
     piped_text_modal:
+      assessment_center: Център за оценяване
       assessment_id: Идентификационен номер на оценяването
       campaign_id: Идентификационен номер на кампанията
       campaign_name: Име на кампанията
       campaigns: Кампании
+      description: Описание
+      duration: Продължителност
+      end_time: Краен час
       insight_page_link: Връзка към страницата с прозрения
       insight_page_url: URL адрес на страницата Insight
+      invite_title: Заглавие
+      invites: Покани
       join_link: Присъединете се към връзката
       magic_link: Вълшебна връзка
       magic_url: Магически URL адрес
+      platform_url_links: Платформа Url и връзки
       profile_custom_field: Персонализирано поле за профил
       project_name: Име на проекта
       projects: Проекти
       report_name: Име на отчета
+      start_time: Начален час
       text: Текст
       title: Добавяне на тръбопроводен текст
+      user_reports: Доклади на потребителите
+      users: Потребители
     proctoring_sessions:
       columns:
         comment: Коментирам

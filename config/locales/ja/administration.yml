@@ -2733,21 +2733,31 @@ ja:
         sms_contacts: SMSコンタクト
         subjects: 対象
     piped_text_modal:
+      assessment_center: アセスメント・センター
       assessment_id: アセスメントID
       campaign_id: キャンペーンID
       campaign_name: キャンペーン名
       campaigns: キャンペーン
+      description: 説明
+      duration: 期間
+      end_time: 終了時間
       insight_page_link: インサイトページリンク
       insight_page_url: インサイトページURL
+      invite_title: タイトル
+      invites: 招待
       join_link: リンク
       magic_link: マジックリンク
       magic_url: マジックURL
+      platform_url_links: プラットフォームのURLとリンク
       profile_custom_field: プロフィール・カスタム・フィールド
       project_name: プロジェクト名
       projects: プロジェクト
       report_name: レポート名
+      start_time: 開始時間
       text: テキスト
       title: パイピング・テキストを追加する
+      user_reports: ユーザーレポート
+      users: ユーザー
     proctoring_sessions:
       columns:
         comment: コメント

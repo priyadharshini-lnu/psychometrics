@@ -2733,21 +2733,31 @@ pl:
         sms_contacts: Kontakty SMS
         subjects: Tematy
     piped_text_modal:
+      assessment_center: Centrum oceny
       assessment_id: Identyfikator oceny
       campaign_id: Identyfikator kampanii
       campaign_name: Nazwa kampanii
       campaigns: Kampanie
+      description: Opis
+      duration: Czas trwania
+      end_time: Czas zakończenia
       insight_page_link: Link do strony Insight
       insight_page_url: Adres URL strony statystyk
+      invite_title: Tytuł
+      invites: Zaproszenia
       join_link: Dołącz do linku
       magic_link: Magiczny link
       magic_url: Magiczny adres URL
+      platform_url_links: Adres URL platformy i łącza
       profile_custom_field: Pole niestandardowe profilu
       project_name: Nazwa projektu
       projects: Projekty
       report_name: Nazwa raportu
+      start_time: Czas rozpoczęcia
       text: Tekst
       title: Dodawanie tekstu z potoku
+      user_reports: Raporty użytkowników
+      users: Użytkownicy
     proctoring_sessions:
       columns:
         comment: Komentarz

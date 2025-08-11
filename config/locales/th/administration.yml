@@ -2733,21 +2733,31 @@ th:
         sms_contacts: ติดต่อ SMS
         subjects: หัวข้อ
     piped_text_modal:
+      assessment_center: ศูนย์ประเมินผล
       assessment_id: รหัสการประเมิน
       campaign_id: รหัสแคมเปญ
       campaign_name: ชื่อแคมเปญ
       campaigns: แคมเปญ
+      description: คำอธิบาย
+      duration: ระยะเวลา
+      end_time: เวลาสิ้นสุด
       insight_page_link: ลิงค์หน้าข้อมูลเชิงลึก
       insight_page_url: URL ของหน้าข้อมูลเชิงลึก
+      invite_title: ชื่อเรื่อง
+      invites: คำเชิญ
       join_link: ลิงค์เข้าร่วม
       magic_link: ลิงค์เมจิก
       magic_url: URL เมจิก
+      platform_url_links: แพลตฟอร์ม URL และลิงก์
       profile_custom_field: โปรไฟล์ฟิลด์ที่กําหนดเอง
       project_name: ชื่อโครงการ
       projects: โครงการ
       report_name: ชื่อรายงาน
+      start_time: เวลาเริ่มต้น
       text: ข้อความ
       title: เพิ่มข้อความท่อ
+      user_reports: รายงานของผู้ใช้
+      users: ผู้ใช้
     proctoring_sessions:
       columns:
         comment: ติชม

@@ -2733,21 +2733,31 @@ it:
         sms_contacts: Contatti SMS
         subjects: Partecipanti
     piped_text_modal:
+      assessment_center: Centro di valutazione
       assessment_id: ID di valutazione
       campaign_id: ID campagna
       campaign_name: Nome della campagna
       campaigns: Campagne
+      description: Descrizione
+      duration: Durata
+      end_time: Ora di fine
       insight_page_link: Link alla pagina di approfondimento
       insight_page_url: URL della pagina di approfondimento
+      invite_title: Titolo
+      invites: Inviti
       join_link: Unisciti al link
       magic_link: Collegamento magico
       magic_url: URL magico
+      platform_url_links: Url e link della piattaforma
       profile_custom_field: Campo personalizzato del profilo
       project_name: Nome del progetto
       projects: Progetti
       report_name: Nome del report
+      start_time: Ora di inizio
       text: Testo
       title: Aggiunta di testo con tubature
+      user_reports: Rapporti degli utenti
+      users: Utenti
     proctoring_sessions:
       columns:
         comment: Commento

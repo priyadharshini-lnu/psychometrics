@@ -2733,21 +2733,31 @@ zh:
         sms_contacts: 短信联系人
         subjects: 主题
     piped_text_modal:
+      assessment_center: 评估中心
       assessment_id: 评估 ID
       campaign_id: 活动 ID
       campaign_name: 活动名称
       campaigns: 活动
+      description: 说明
+      duration: 持续时间
+      end_time: 结束时间
       insight_page_link: 洞察力页面链接
       insight_page_url: 洞察页面 URL
+      invite_title: 标题
+      invites: 邀请
       join_link: 加入链接
       magic_link: 魔法链接
       magic_url: 神奇的 URL
+      platform_url_links: 平台网址和链接
       profile_custom_field: 配置文件自定义字段
       project_name: 项目名称
       projects: 项目
       report_name: 报告名称
+      start_time: 开始时间
       text: 文本
       title: 添加管道文字
+      user_reports: 用户报告
+      users: 用户
     proctoring_sessions:
       columns:
         comment: 评论

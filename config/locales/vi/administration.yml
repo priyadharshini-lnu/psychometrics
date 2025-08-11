@@ -2733,21 +2733,31 @@ vi:
         sms_contacts: Danh bạ SMS
         subjects: Đối tượng
     piped_text_modal:
+      assessment_center: Trung tâm Đánh giá
       assessment_id: ID đánh giá
       campaign_id: ID chiến dịch
       campaign_name: Tên chiến dịch
       campaigns: Chiến dịch
+      description: Mô tả
+      duration: Thời gian
+      end_time: Thời gian kết thúc
       insight_page_link: Liên kết trang Insight
       insight_page_url: URL trang thông tin chi tiết
+      invite_title: Tiêu đề
+      invites: Mời
       join_link: Liên kết tham gia
       magic_link: Liên kết ma thuật
       magic_url: URL ma thuật
+      platform_url_links: Địa chỉ URL và các liên kết của nền tảng
       profile_custom_field: Trường tùy chỉnh hồ sơ
       project_name: Tên dự án
       projects: Dự án
       report_name: Tên báo cáo
+      start_time: Thời gian bắt đầu
       text: Nhắn tin
       title: Thêm văn bản đường ống
+      user_reports: Báo cáo của người dùng
+      users: Người dùng
     proctoring_sessions:
       columns:
         comment: Bình luận
