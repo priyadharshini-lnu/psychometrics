@@ -84,6 +84,32 @@ describe Communications::WorkshopInviteReminderJob, type: :job do
     expect(communication_email).to eq(nil)
   end
 
+  it "doesn't create communication_email if campaign_user is removed (nil)" do
+    workshop_invite, _workshop_invited_subject = create_workshop__with_invite(1.day.from_now + 8.1.hours)
+
+    allow_any_instance_of(WorkshopInvitedSubject).to receive(:campaign_user).and_return(nil)
+
+    described_class.perform_now(communication)
+
+    communication_email = CommunicationEmail.find_by(
+      campaign_user: campaign_user, workshop_invite: workshop_invite
+    )
+    expect(communication_email).to eq(nil)
+  end
+
+  it "doesn't create communication_email if campaign_user is inactive" do
+    workshop_invite, = create_workshop__with_invite(1.day.from_now + 8.1.hours)
+
+    campaign_user.update!(active: false)
+
+    described_class.perform_now(communication)
+
+    communication_email = CommunicationEmail.find_by(
+      campaign_user: campaign_user, workshop_invite: workshop_invite
+    )
+    expect(communication_email).to eq(nil)
+  end
+
   def create_workshop__with_invite(start_time)
     workshop = create(:workshop, start_time: start_time, campaign: campaign, scheduling_lead_time: 1.day)
     workshop_invite = create(:workshop_invite, workshops: [workshop], campaign: campaign,
