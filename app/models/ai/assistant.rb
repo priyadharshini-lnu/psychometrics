@@ -55,7 +55,7 @@ class AI::Assistant < ApplicationRecord
     context_lines = ['Following is the assistant schema:']
     context_lines << '<assistant_output_schema>'
     assistant_output_schema_keys.each do |osk|
-      context_lines << "- **#{osk.key}** (#{osk.type}): #{osk.description}"
+      context_lines << "- **#{osk.key}** (#{osk.key_type}): #{osk.description}"
     end
     context_lines << '</assistant_output_schema>'
     context_lines.join("\n")
