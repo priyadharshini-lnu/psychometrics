@@ -307,6 +307,12 @@ module Api
 
       { 'errors' => converted_errors }
     end
+
+    private
+
+    def ignore_password_expire?
+      session[:saml_login]
+    end
   end
 end
 # rubocop:enable Metrics/ClassLength
