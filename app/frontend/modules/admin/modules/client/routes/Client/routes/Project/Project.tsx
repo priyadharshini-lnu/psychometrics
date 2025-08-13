@@ -47,7 +47,7 @@ const Project: FC<Props> = ({
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const [isProjectLoaded, setIsProjectLoaded] = useState(false)
-  const { idpEnabled } = camelizeKeys(features)
+  const { idpEnabled, skillRaterEnabled } = camelizeKeys(features)
 
   useEffect(() => {
     fetchProject(parseInt(projectId, 10)).then(() => {
@@ -175,13 +175,15 @@ const Project: FC<Props> = ({
     label: I18n.t('administration.idp.idp'),
   })
 
-  idpEnabled && currentUser.permissions.accessProjectTaxonomy && menuItems.push(
-    {
-      key: 'taxonomy',
-      icon: <ApartmentOutlined />,
-      label: I18n.t('administration.taxonomy.title'),
-    },
-  )
+  if ((idpEnabled || skillRaterEnabled) && currentUser.permissions.accessProjectTaxonomy) {
+    menuItems.push(
+      {
+        key: 'taxonomy',
+        icon: <ApartmentOutlined />,
+        label: I18n.t('administration.taxonomy.title'),
+      },
+    )
+  }
 
 
   return (
