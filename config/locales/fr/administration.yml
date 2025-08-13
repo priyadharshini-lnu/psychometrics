@@ -2772,7 +2772,6 @@ fr:
       errors:
         create:
           invalid_format: La définition du niveau doit être un tableau de définitions.
-          level_definition_must_exist: La définition du niveau ne peut pas être vide
           level_definition_must_match_level: doit contenir exactement %{expected} niveaux, mais %{actual} ont été donnés
           level_name_must_exist: Le nom du niveau ne peut pas être vide
           must_be_unique: Doit être unique

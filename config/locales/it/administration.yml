@@ -2772,7 +2772,6 @@ it:
       errors:
         create:
           invalid_format: La definizione del livello deve essere un array di definizioni.
-          level_definition_must_exist: La definizione del livello non può essere vuota
           level_definition_must_match_level: deve contenere esattamente i livelli %{expected}, ma quelli %{actual} sono stati dati
           level_name_must_exist: Il nome del livello non può essere vuoto
           must_be_unique: Deve essere unico

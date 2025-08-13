@@ -2772,7 +2772,6 @@ nl:
       errors:
         create:
           invalid_format: De niveaudefinitie moet een array van definities zijn.
-          level_definition_must_exist: Niveaudefinitie kan niet leeg zijn
           level_definition_must_match_level: moet precies %{expected} niveaus bevatten, maar %{actual} werden gegeven
           level_name_must_exist: Naam van niveau kan niet leeg zijn
           must_be_unique: Moet uniek zijn

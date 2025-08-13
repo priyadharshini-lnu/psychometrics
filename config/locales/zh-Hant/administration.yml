@@ -2772,7 +2772,6 @@ zh-Hant:
       errors:
         create:
           invalid_format: Level 定義必須是一個定義陣列。
-          level_definition_must_exist: 等級定義不能為空
           level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
           level_name_must_exist: 等級名稱不能為空
           must_be_unique: 必須獨一無二

@@ -2772,7 +2772,6 @@ ja:
       errors:
         create:
           invalid_format: レベル定義は定義の配列でなければならない。
-          level_definition_must_exist: レベル定義は空白にできない
           level_definition_must_match_level: は正確に%{expected}レベルを含んでいなければならないが、%{actual}は与えられた。
           level_name_must_exist: レベル名は空白にできない
           must_be_unique: ユニークでなければならない

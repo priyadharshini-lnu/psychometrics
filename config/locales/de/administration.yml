@@ -2772,7 +2772,6 @@ de:
       errors:
         create:
           invalid_format: Die Ebenendefinition muss ein Array von Definitionen sein.
-          level_definition_must_exist: Leveldefinition kann nicht leer sein
           level_definition_must_match_level: muss genau %{expected} Werte enthalten, aber %{actual} wurden angegeben
           level_name_must_exist: Der Name der Ebene darf nicht leer sein.
           must_be_unique: Muss einzigartig sein

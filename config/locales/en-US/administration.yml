@@ -2772,7 +2772,6 @@ en-US:
       errors:
         create:
           invalid_format: Level definition must be an array of definitions.
-          level_definition_must_exist: Level definition can't be blank
           level_definition_must_match_level: must contain exactly %{expected} levels, but %{actual} were given
           level_name_must_exist: Level name can't be blank
           must_be_unique: Must be unique

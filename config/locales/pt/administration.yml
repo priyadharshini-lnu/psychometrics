@@ -2772,7 +2772,6 @@ pt:
       errors:
         create:
           invalid_format: A definição de nível deve ser um conjunto de definições.
-          level_definition_must_exist: A definição do nível não pode estar em branco
           level_definition_must_match_level: deve conter exatamente os níveis %{expected}, mas foram dados %{actual}
           level_name_must_exist: O nome do nível não pode estar em branco
           must_be_unique: Deve ser único

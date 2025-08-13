@@ -2772,7 +2772,6 @@ zh:
       errors:
         create:
           invalid_format: 级别定义必须是一个定义数组。
-          level_definition_must_exist: 级别定义不能为空
           level_definition_must_match_level: 必须完全包含 %{expected}水平，但给出了 %{actual}水平。
           level_name_must_exist: 级别名称不能为空
           must_be_unique: 必须独一无二

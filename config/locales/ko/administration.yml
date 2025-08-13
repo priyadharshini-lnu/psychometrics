@@ -2772,7 +2772,6 @@ ko:
       errors:
         create:
           invalid_format: 레벨 정의는 정의의 배열이어야 합니다.
-          level_definition_must_exist: 레벨 정의는 비워둘 수 없습니다.
           level_definition_must_match_level: 정확히 %{expected} 레벨을 포함해야 하지만 %{actual} 레벨이 제공되었습니다.
           level_name_must_exist: 레벨 이름은 비워둘 수 없습니다.
           must_be_unique: 고유해야 합니다.

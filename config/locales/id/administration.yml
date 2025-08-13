@@ -2772,7 +2772,6 @@ id:
       errors:
         create:
           invalid_format: Definisi level harus berupa array definisi.
-          level_definition_must_exist: Definisi level tidak boleh kosong
           level_definition_must_match_level: harus berisi persis %{expected} level, tetapi %{actual} diberikan
           level_name_must_exist: Nama level tidak boleh kosong
           must_be_unique: Harus unik

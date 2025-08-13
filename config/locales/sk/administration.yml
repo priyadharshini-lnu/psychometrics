@@ -2772,7 +2772,6 @@ sk:
       errors:
         create:
           invalid_format: Definícia úrovne musí byť pole definícií.
-          level_definition_must_exist: Definícia úrovne nemôže byť prázdna
           level_definition_must_match_level: musia obsahovať presne %{expected} úrovne, ale %{actual} boli uvedené
           level_name_must_exist: Názov úrovne nemôže byť prázdny
           must_be_unique: Musí byť jedinečný

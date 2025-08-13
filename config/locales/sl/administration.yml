@@ -2772,7 +2772,6 @@ sl:
       errors:
         create:
           invalid_format: Definicija ravni mora biti niz definicij.
-          level_definition_must_exist: Opredelitev ravni ne more biti prazna
           level_definition_must_match_level: mora vsebovati natančno %{expected} ravni, vendar so bili podani %{actual}
           level_name_must_exist: Ime ravni ne more biti prazno
           must_be_unique: Mora biti edinstven

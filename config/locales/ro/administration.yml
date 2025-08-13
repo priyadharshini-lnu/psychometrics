@@ -2772,7 +2772,6 @@ ro:
       errors:
         create:
           invalid_format: Definirea nivelului trebuie să fie o matrice de definiții.
-          level_definition_must_exist: Definiția nivelului nu poate fi goală
           level_definition_must_match_level: trebuie să conțină exact %{expected} niveluri, dar %{actual} au fost date
           level_name_must_exist: Numele nivelului nu poate fi gol
           must_be_unique: Trebuie să fie unic

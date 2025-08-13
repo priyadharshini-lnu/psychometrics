@@ -2772,7 +2772,6 @@ vi:
       errors:
         create:
           invalid_format: Định nghĩa cấp độ phải là một mảng các định nghĩa.
-          level_definition_must_exist: Định nghĩa cấp độ không được để trống.
           level_definition_must_match_level: phải chứa chính xác %{expected} mức, nhưng %{actual} đã được đưa ra
           level_name_must_exist: Tên cấp độ không được để trống.
           must_be_unique: Phải là duy nhất

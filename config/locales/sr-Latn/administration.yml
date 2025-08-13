@@ -2772,7 +2772,6 @@ sr-Latn:
       errors:
         create:
           invalid_format: Definicija nivoa mora biti niz definicija.
-          level_definition_must_exist: Definicija nivoa ne može biti prazna
           level_definition_must_match_level: mora da sadrži tačno %{expected} nivoa, ali %{actual} je dato
           level_name_must_exist: Ime nivoa ne može biti prazno
           must_be_unique: Mora biti jedinstveno

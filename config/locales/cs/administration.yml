@@ -2772,7 +2772,6 @@ cs:
       errors:
         create:
           invalid_format: Definice úrovně musí být polem definic.
-          level_definition_must_exist: Definice úrovně nemůže být prázdná
           level_definition_must_match_level: musí obsahovat přesně %{expected} úrovně, ale %{actual} byly dány
           level_name_must_exist: Název úrovně nemůže být prázdný
           must_be_unique: Musí být jedinečné

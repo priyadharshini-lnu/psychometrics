@@ -2772,7 +2772,6 @@ hr:
       errors:
         create:
           invalid_format: Definicija razine mora biti niz definicija.
-          level_definition_must_exist: Definicija razine ne smije biti prazna
           level_definition_must_match_level: mora sadržavati točno %{expected} razine, ali %{actual} je dano
           level_name_must_exist: Naziv razine ne smije biti prazan
           must_be_unique: Mora biti jedinstven

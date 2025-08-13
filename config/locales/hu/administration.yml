@@ -2774,7 +2774,6 @@ hu:
       errors:
         create:
           invalid_format: A szintmeghatározásnak meghatározások tömegét kell jelentenie.
-          level_definition_must_exist: A szintdefiníció nem lehet üres
           level_definition_must_match_level: pontosan %{expected} szinteket kell tartalmaznia, de %{actual} meg van adva
           level_name_must_exist: A szint neve nem lehet üres
           must_be_unique: Egyedinek kell lennie
