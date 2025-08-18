@@ -73,7 +73,7 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def regenerate_reports
     if params[:selected_user_report_ids].blank?
-      return render json: { errors: I18n.t('administration.bulk_reports.select_reports_for_regenerate') },
+      return render json: { errors: I18n.t('administration.bulk_reports.select_users_for_regenerate') },
                     status: :unprocessable_entity
     end
 
@@ -88,7 +88,7 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def bulk_download
     if params[:selected_user_report_ids].blank?
-      return render json: { errors: I18n.t('administration.bulk_reports.select_reports_for_download') },
+      return render json: { errors: I18n.t('administration.bulk_reports.select_users_for_download') },
                     status: :unprocessable_entity
     end
 
