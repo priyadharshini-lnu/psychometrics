@@ -35,6 +35,7 @@ module Utility
     end
 
     def self.generate(method, options = {})
+      options[:subdomain] ||= Settings.subdomain
       Rails.application.routes.url_helpers.public_send(
         method,
         get_params(options)
