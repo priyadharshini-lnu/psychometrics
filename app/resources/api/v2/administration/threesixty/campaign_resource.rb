@@ -38,6 +38,7 @@ class Api::V2::Administration::Threesixty::CampaignResource < Api::V2::Administr
           regenerate_report
           manage_admins
           manage_reports_options
+          view_datasheets
         ],
         project_id: @model.campaign.project_id,
         campaign_id: @model.campaign_id
