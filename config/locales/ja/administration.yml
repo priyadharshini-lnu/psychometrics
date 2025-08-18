@@ -785,8 +785,8 @@ ja:
       new:
         header: 一括ダウンロード
       reports_unavailable: 現在、ダウンロード可能なレポートはありません。 ダウンロードしたいレポートがあるかどうかご確認ください。
-      select_reports_for_download: ダウンロードするレポートを1つ以上選択してください。
-      select_reports_for_regenerate: 再生するレポートを少なくとも1つ選択してください。
+      select_users_for_download: レポートをダウンロードするには、少なくとも1人のユーザーを選択してください。
+      select_users_for_regenerate: レポートを再生するには、少なくとも1人のユーザーを選択してください。
     cable:
       notification:
         assessment_factors: 要因の取得

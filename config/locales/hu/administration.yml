@@ -785,8 +785,8 @@ hu:
       new:
         header: Tömeges letöltés
       reports_unavailable: Jelenleg nem tölthetők le jelentések. Kérjük, ellenőrizze, hogy a letölteni kívánt jelentések elérhetők-e.
-      select_reports_for_download: Kérjük, válasszon ki legalább egy jelentést a letöltéshez.
-      select_reports_for_regenerate: Kérjük, válasszon ki legalább egy jelentést a regeneráláshoz.
+      select_users_for_download: Kérjük, válasszon legalább egy felhasználót a jelentések letöltéséhez.
+      select_users_for_regenerate: Kérjük, válasszon legalább egy felhasználót a jelentések regenerálásához.
     cable:
       notification:
         assessment_factors: A tényezők bekerültek

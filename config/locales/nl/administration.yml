@@ -785,8 +785,8 @@ nl:
       new:
         header: Bulk downloaden
       reports_unavailable: Op dit moment zijn er geen rapporten beschikbaar om te downloaden. Controleer of de rapporten die je wilt downloaden beschikbaar zijn.
-      select_reports_for_download: Selecteer ten minste één rapport om te downloaden.
-      select_reports_for_regenerate: Selecteer minstens één rapport om te regenereren.
+      select_users_for_download: Selecteer ten minste één gebruiker om rapporten te downloaden.
+      select_users_for_regenerate: Selecteer ten minste één gebruiker om rapporten te regenereren.
     cable:
       notification:
         assessment_factors: Factoren worden opgehaald

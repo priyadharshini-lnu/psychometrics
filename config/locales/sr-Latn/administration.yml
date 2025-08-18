@@ -785,8 +785,8 @@ sr-Latn:
       new:
         header: Zbirno preuzimanje
       reports_unavailable: U ovom trenutku, nema izveštaja dostupnih za preuzimanje. Molimo Vas da potvrdite da su izveštaji koje želite da preuzmete dostupni.
-      select_reports_for_download: Molimo izaberite bar jedan izveštaj za preuzimanje.
-      select_reports_for_regenerate: Molimo izaberite bar jedan izveštaj za regeneraciju.
+      select_users_for_download: Placere eligere saltem unus User ad download tradit.
+      select_users_for_regenerate: Placere eligere saltem unus user ad regenerare tradit.
     cable:
       notification:
         assessment_factors: Faktori su prikupljeni

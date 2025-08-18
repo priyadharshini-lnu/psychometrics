@@ -785,8 +785,8 @@ zh-Hant:
       new:
         header: 大量下載
       reports_unavailable: 目前沒有可供下載的報告，請確認您要下載的報告是否可用。
-      select_reports_for_download: 請至少選擇一份報告下載。
-      select_reports_for_regenerate: 請至少選擇一份報告進行再生。
+      select_users_for_download: 請選擇至少一個用戶下載報告。
+      select_users_for_regenerate: 請選擇至少一個用戶重新生成報告。
     cable:
       notification:
         assessment_factors: 取得因子

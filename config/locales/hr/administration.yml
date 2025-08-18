@@ -785,8 +785,8 @@ hr:
       new:
         header: Skupno preuzimanje
       reports_unavailable: Trenutno nema dostupnih izvješća za preuzimanje. Potvrdite da su izvješća koja želite preuzeti dostupna.
-      select_reports_for_download: Molimo odaberite barem jedno izvješće za preuzimanje.
-      select_reports_for_regenerate: Molimo odaberite barem jedno izvješće za ponovno generiranje.
+      select_users_for_download: Odaberite barem jednog korisnika za preuzimanje izvještaja.
+      select_users_for_regenerate: Odaberite barem jednog korisnika za regeneriranje izvještaja.
     cable:
       notification:
         assessment_factors: Faktori se dohvaćaju

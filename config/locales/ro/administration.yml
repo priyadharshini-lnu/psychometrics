@@ -785,8 +785,8 @@ ro:
       new:
         header: Descărcare în bloc
       reports_unavailable: În acest moment, nu sunt disponibile rapoarte pentru descărcare. Vă rugăm să confirmați că rapoartele pe care doriți să le descărcați sunt disponibile.
-      select_reports_for_download: Vă rugăm să selectați cel puțin un raport pentru descărcare.
-      select_reports_for_regenerate: Vă rugăm să selectați cel puțin un raport pentru regenerare.
+      select_users_for_download: Vă rugăm să selectați cel puțin un utilizator pentru a descărca rapoarte.
+      select_users_for_regenerate: Vă rugăm să selectați cel puțin un utilizator pentru a regenera rapoartele.
     cable:
       notification:
         assessment_factors: Factorii sunt preluați

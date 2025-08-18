@@ -785,8 +785,8 @@ vi:
       new:
         header: Tải xuống hàng loạt
       reports_unavailable: Hiện tại, không có báo cáo nào có sẵn để tải xuống. Vui lòng xác nhận rằng các báo cáo bạn muốn tải xuống đã có sẵn.
-      select_reports_for_download: Vui lòng chọn ít nhất một báo cáo để tải xuống.
-      select_reports_for_regenerate: Vui lòng chọn ít nhất một báo cáo để tạo lại.
+      select_users_for_download: Vui lòng chọn ít nhất một người dùng để tải xuống báo cáo.
+      select_users_for_regenerate: Vui lòng chọn ít nhất một người dùng để tái tạo báo cáo.
     cable:
       notification:
         assessment_factors: Các yếu tố được tìm nạp

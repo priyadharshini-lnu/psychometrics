@@ -785,8 +785,8 @@ pt:
       new:
         header: Transferência em massa
       reports_unavailable: De momento, não existem relatórios disponíveis para descarregar. Confirme se os relatórios que pretende descarregar estão disponíveis.
-      select_reports_for_download: Selecione pelo menos um relatório para descarregar.
-      select_reports_for_regenerate: Selecione pelo menos um relatório para regenerar.
+      select_users_for_download: Selecione pelo menos um usuário para baixar relatórios.
+      select_users_for_regenerate: Selecione pelo menos um usuário para regenerar os relatórios.
     cable:
       notification:
         assessment_factors: Os factores são obtidos

@@ -785,8 +785,8 @@ sk:
       new:
         header: Hromadné sťahovanie
       reports_unavailable: Momentálne nie sú k dispozícii žiadne správy na stiahnutie. Potvrďte, že správy, ktoré chcete stiahnuť, sú k dispozícii.
-      select_reports_for_download: Vyberte aspoň jednu správu na stiahnutie.
-      select_reports_for_regenerate: Vyberte aspoň jednu správu, ktorú chcete regenerovať.
+      select_users_for_download: Vyberte aspoň jedného používateľa na stiahnutie prehľadov.
+      select_users_for_regenerate: Vyberte aspoň jedného používateľa na regeneráciu správ.
     cable:
       notification:
         assessment_factors: Faktory sa načítajú

@@ -785,8 +785,8 @@ zh:
       new:
         header: 批量下载
       reports_unavailable: 目前没有可供下载的报告，请确认您要下载的报告是否可用。
-      select_reports_for_download: 请至少选择一份报告下载。
-      select_reports_for_regenerate: 请至少选择一份报告进行再生。
+      select_users_for_download: 请选择至少一个用户下载报告。
+      select_users_for_regenerate: 请选择至少一个用户重新生成报告。
     cable:
       notification:
         assessment_factors: 获取因子

@@ -785,8 +785,8 @@ ar:
       new:
         header: التنزيل الجماعي
       reports_unavailable: في الوقت الحالي، لا توجد تقارير متاحة للتنزيل. يرجى التأكد من أن التقارير التي تريد تنزيلها متوفرة.
-      select_reports_for_download: يُرجى تحديد تقرير واحد على الأقل لتنزيله.
-      select_reports_for_regenerate: يُرجى تحديد تقرير واحد على الأقل لإعادة إنشائه.
+      select_users_for_download: يرجى تحديد مستخدم واحد على الأقل لتنزيل التقارير.
+      select_users_for_regenerate: يرجى تحديد مستخدم واحد على الأقل لتجديد التقارير.
     cable:
       notification:
         assessment_factors: تم جلب العوامل

@@ -785,8 +785,8 @@ id:
       new:
         header: Unduh Massal
       reports_unavailable: Saat ini, tidak ada laporan yang tersedia untuk diunduh. Harap konfirmasikan bahwa laporan yang ingin Anda unduh tersedia.
-      select_reports_for_download: Pilihlah setidaknya satu laporan untuk diunduh.
-      select_reports_for_regenerate: Pilih setidaknya satu laporan untuk dibuat ulang.
+      select_users_for_download: Pilih setidaknya satu pengguna untuk mengunduh laporan.
+      select_users_for_regenerate: Pilih setidaknya satu pengguna untuk meregenerasi laporan.
     cable:
       notification:
         assessment_factors: Faktor diambil

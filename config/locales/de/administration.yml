@@ -785,8 +785,8 @@ de:
       new:
         header: Massendownload
       reports_unavailable: Im Moment sind keine Berichte zum Herunterladen verfügbar. Bitte bestätigen Sie, dass die Berichte, die Sie herunterladen möchten, verfügbar sind.
-      select_reports_for_download: Bitte wählen Sie mindestens einen Bericht zum Herunterladen aus.
-      select_reports_for_regenerate: Bitte wählen Sie mindestens einen Bericht aus, der neu generiert werden soll.
+      select_users_for_download: Bitte wählen Sie mindestens einen Benutzer aus, um Berichte herunterzuladen.
+      select_users_for_regenerate: Bitte wählen Sie mindestens einen Benutzer aus, um Berichte zu regenerieren.
     cable:
       notification:
         assessment_factors: Faktoren werden abgerufen

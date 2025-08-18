@@ -785,8 +785,8 @@ fr:
       new:
         header: Téléchargement en masse
       reports_unavailable: Pour le moment, aucun rapport n'est disponible au téléchargement. Veuillez confirmer que les rapports que vous souhaitez télécharger sont disponibles.
-      select_reports_for_download: Veuillez sélectionner au moins un rapport à télécharger.
-      select_reports_for_regenerate: Veuillez sélectionner au moins un rapport à régénérer.
+      select_users_for_download: Veuillez sélectionner au moins un utilisateur pour télécharger des rapports.
+      select_users_for_regenerate: Veuillez sélectionner au moins un utilisateur pour régénérer les rapports.
     cable:
       notification:
         assessment_factors: Les facteurs sont recherchés

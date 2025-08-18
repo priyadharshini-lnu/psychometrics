@@ -785,8 +785,8 @@ sl:
       new:
         header: Prenos v velikem obsegu
       reports_unavailable: Trenutno poročila niso na voljo za prenos. Potrdite, da so poročila, ki jih želite prenesti, na voljo.
-      select_reports_for_download: Izberite vsaj eno poročilo za prenos.
-      select_reports_for_regenerate: Izberite vsaj eno poročilo, ki ga želite obnoviti.
+      select_users_for_download: Za prenos poročil izberite vsaj enega uporabnika.
+      select_users_for_regenerate: Izberite vsaj enega uporabnika, da obnovi poročila.
     cable:
       notification:
         assessment_factors: Dejavniki se pridobijo

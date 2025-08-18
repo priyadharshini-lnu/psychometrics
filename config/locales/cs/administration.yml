@@ -785,8 +785,8 @@ cs:
       new:
         header: Hromadné stahování
       reports_unavailable: V současné době nejsou k dispozici žádné zprávy ke stažení. Potvrďte, že zprávy, které chcete stáhnout, jsou k dispozici.
-      select_reports_for_download: Vyberte alespoň jednu zprávu ke stažení.
-      select_reports_for_regenerate: Vyberte alespoň jednu zprávu, kterou chcete regenerovat.
+      select_users_for_download: Vyberte prosím alespoň jednoho uživatele pro stažení přehledů.
+      select_users_for_regenerate: Vyberte prosím alespoň jednoho uživatele pro regeneraci zpráv.
     cable:
       notification:
         assessment_factors: Faktory jsou načteny

@@ -785,8 +785,8 @@ en-US:
       new:
         header: Bulk Download
       reports_unavailable: At the moment, no reports are available to download. Please confirm that the reports you want to download are available.
-      select_reports_for_download: Please select at least one report to download.
-      select_reports_for_regenerate: Please select at least one report to regenerate.
+      select_users_for_download: Please select at least one user to download reports.
+      select_users_for_regenerate: Please select at least one user to regenerate reports.
     cable:
       notification:
         assessment_factors: Factors are fetched

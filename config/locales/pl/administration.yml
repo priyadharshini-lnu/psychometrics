@@ -785,8 +785,8 @@ pl:
       new:
         header: Pobieranie zbiorcze
       reports_unavailable: W tej chwili nie są dostępne żadne raporty do pobrania. Upewnij się, że raporty, które chcesz pobrać, są dostępne.
-      select_reports_for_download: Wybierz co najmniej jeden raport do pobrania.
-      select_reports_for_regenerate: Wybierz co najmniej jeden raport do regeneracji.
+      select_users_for_download: Wybierz co najmniej jednego użytkownika do pobrania raportów.
+      select_users_for_regenerate: Wybierz co najmniej jednego użytkownika do regeneracji raportów.
     cable:
       notification:
         assessment_factors: Czynniki są pobierane

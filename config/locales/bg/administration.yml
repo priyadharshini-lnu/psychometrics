@@ -785,8 +785,8 @@ bg:
       new:
         header: Групово изтегляне
       reports_unavailable: В момента няма отчети за изтегляне. Моля, потвърдете, че отчетите, които искате да изтеглите, са налице.
-      select_reports_for_download: Моля, изберете поне един доклад за изтегляне.
-      select_reports_for_regenerate: Моля, изберете поне един отчет, който да регенерирате.
+      select_users_for_download: Моля, изберете поне един потребител за изтегляне на отчети.
+      select_users_for_regenerate: Моля, изберете поне един потребител, който да регенерира отчети.
     cable:
       notification:
         assessment_factors: Извличат се фактори

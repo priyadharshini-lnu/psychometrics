@@ -785,8 +785,8 @@ th:
       new:
         header: ดาวน์โหลดจำนวนมาก
       reports_unavailable: ในขณะนี้ยังไม่มีรายงานให้ดาวน์โหลด โปรดยืนยันว่ารายงานที่คุณต้องการดาวน์โหลดพร้อมใช้งาน
-      select_reports_for_download: กรุณาเลือกอย่างน้อยหนึ่งรายงานเพื่อดาวน์โหลด
-      select_reports_for_regenerate: กรุณาเลือกอย่างน้อยหนึ่งรายงานเพื่อสร้างใหม่
+      select_users_for_download: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนในการดาวน์โหลดรายงาน
+      select_users_for_regenerate: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนเพื่อสร้างรายงานใหม่
     cable:
       notification:
         assessment_factors: ดึงปัจจัย

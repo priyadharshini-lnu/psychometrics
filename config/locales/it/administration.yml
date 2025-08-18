@@ -785,8 +785,8 @@ it:
       new:
         header: Scaricamento in blocco
       reports_unavailable: Al momento non sono disponibili rapporti da scaricare. Si prega di confermare che i rapporti che si desidera scaricare sono disponibili.
-      select_reports_for_download: Selezionare almeno un rapporto da scaricare.
-      select_reports_for_regenerate: Selezionare almeno un rapporto da rigenerare.
+      select_users_for_download: Seleziona almeno un utente per scaricare i report.
+      select_users_for_regenerate: Seleziona almeno un utente per rigenerare i report.
     cable:
       notification:
         assessment_factors: I fattori vengono recuperati
