@@ -133,6 +133,8 @@ export const ReportList = connector(ReportListComponent)
 const DownloadReportInMultipleLocales = ({ report, close }) => {
   const { posterUrl, pdfUrls, reportName } = report
   const locales = Object.keys(pdfUrls)
+  const formattedLocale = (locale: string) => locale.replace(/([a-z]{2})([A-Z]\w+)/, '$1-$2')
+
   return (
     <Modal
       width={650}
@@ -180,7 +182,7 @@ const DownloadReportInMultipleLocales = ({ report, close }) => {
                   <img src={bg} alt={`Report for ${locale}`} width={100} height={100} />
                 )}
                 <Typography.Text style={{ marginTop: '8px' }}>
-                  {I18n.t(`languages_localized.${locale}`)}
+                  {I18n.t(`languages_localized.${formattedLocale(locale)}`)}
                 </Typography.Text>
                 <a
                   href="#"
