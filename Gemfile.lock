@@ -373,6 +373,7 @@ GEM
       declarative (>= 0.0.9, < 1.0.0)
       representable (>= 3.1.1, < 4)
     docile (1.4.1)
+    dotenv (3.1.8)
     dotiw (5.3.3)
       activesupport
       i18n
@@ -1150,6 +1151,7 @@ DEPENDENCIES
   devise-security (~> 0.18.0)
   devise_invitable (~> 2.0.9)
   devise_saml_authenticatable (~> 1.9.1)
+  dotenv
   dotiw (~> 5.3.3)
   draper (~> 4.0.2)
   dry-cli (~> 1.2.0)
