@@ -14,6 +14,8 @@ class SheetColumn < ApplicationRecord
 
   belongs_to :sheet
   has_many :sheet_row_data, dependent: :destroy
+  has_many :campaign_ai_artifact_dependencies, class_name: 'AI::CampaignArtifactDependency',
+            foreign_key: 'dependency_id', dependent: :destroy
 
   acts_as_list scope: :sheet, top_of_list: 0
   enum :column_type, { email: 0, number: 1, string: 2, text: 3, markdown: 4, html: 5 }

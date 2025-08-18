@@ -41,6 +41,7 @@ module Builders
         @report.update!(@report_params.slice(:name, :props, :data_sheet_columns, :styles))
 
         Reports::UpdateCampaignFactors.call(@report, @report_params[:campaign_factors])
+        Reports::UpdateCampaignAIArtifacts.call(@report, @report_params[:campaign_ai_artifacts])
 
         @report_params[:pages].each do |page_params|
           id = page_params.delete(:id)

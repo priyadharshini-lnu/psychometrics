@@ -564,4 +564,62 @@ campaign_assessment_group: assessment_group)
       end
     end
   end
+
+  describe 'callbacks' do
+    describe '#generate_campaign_scoring_and_artifacts_results' do
+      let(:campaign) { create(:campaign) }
+      let(:user) { create(:user) }
+      let(:assessment) { create(:assessment) }
+      let(:user_assessment) do
+        create(:user_assessment, campaign: campaign, subject: user, evaluator: user, assessment: assessment)
+      end
+
+      before do
+        create(:campaign_user, campaign: campaign, user: user)
+      end
+
+      context 'when score_calculated changes and assessment is completed' do
+        it 'schedules CampaignResults::ScoringAndArtifactsGeneratorJob with delay' do
+          expect do
+            user_assessment.update!(score_calculated: true, status: :completed)
+          end.to have_enqueued_job(CampaignResults::ScoringAndArtifactsGeneratorJob).
+            with(campaign, user).
+            at(30.seconds.from_now)
+        end
+      end
+
+      context 'when CampaignUser does not exist for the subject' do
+        before do
+          CampaignUser.where(campaign: campaign, user: user).destroy_all
+        end
+
+        it 'does not schedule the job' do
+          expect do
+            user_assessment.update!(score_calculated: true, status: :completed)
+          end.not_to have_enqueued_job(CampaignResults::ScoringAndArtifactsGeneratorJob)
+        end
+      end
+
+      context 'when assessment is not completed' do
+        it 'does not schedule the job' do
+          expect do
+            user_assessment.update!(score_calculated: true, status: :in_progress)
+          end.not_to have_enqueued_job(CampaignResults::ScoringAndArtifactsGeneratorJob)
+        end
+      end
+
+      context 'when score_calculated does not change' do
+        before do
+          user_assessment.update!(score_calculated: true, status: :completed)
+          clear_enqueued_jobs
+        end
+
+        it 'does not schedule the job again' do
+          expect do
+            user_assessment.update!(status: :completed) # score_calculated doesn't change
+          end.not_to have_enqueued_job(CampaignResults::ScoringAndArtifactsGeneratorJob)
+        end
+      end
+    end
+  end
 end

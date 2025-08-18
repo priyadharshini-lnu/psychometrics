@@ -1,0 +1,45 @@
+
+.artifactResultsDrawer {
+    :global(.ant-drawer-header) {
+        padding: 16px 8px;
+    }
+    :global(.ant-drawer-body) {
+        padding: 0;
+    }
+}
+
+.warning {
+    color: var(--ant-error-color);
+ }
+
+ .border-light {
+    border: 1px solid #f0f0f0;
+ }
+
+ .bg-light {
+    background: #fafafa;
+ }
+
+ .color-dark-gray {
+    color: #757575;
+ }
+
+ .result-cell {
+    position: relative;
+
+    .raw-toggle-button {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        font-size: 12px;
+        padding: 2px 6px;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        pointer-events: none;
+    }
+
+    &:hover .raw-toggle-button {
+        opacity: 1;
+        pointer-events: auto;
+    }
+ }

@@ -72,6 +72,19 @@ module Administration
       )
     end
 
+    def client
+      return nil if project_id.nil? && campaign_id.nil?
+      return @client if defined?(@client)
+
+      @client = if project_id.present?
+                  Client.find_by(id: project_id)
+                elsif campaign_id.present?
+                  Campaign.includes(:project).find_by(id: campaign_id)&.project
+                end
+
+      @client = @client.parent unless @client&.tenancy?
+    end
+
     class Scope
       attr_reader :user, :scope
 

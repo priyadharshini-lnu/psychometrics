@@ -29,6 +29,7 @@ export interface CommonCampaignPermissions {
   manageReportApprovalSettings: boolean
   convertToTemplate: boolean
   exportDashboardToFile: boolean
+  viewAiArtifacts: boolean
 }
 
 export default interface Campaign {

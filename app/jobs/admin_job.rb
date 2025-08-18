@@ -98,6 +98,7 @@ class AdminJob < ApplicationJob
     export_dashboard_as_file: AdminJobs::ExportDashboardAsFile,
     bulk_download_idp_reports: AdminJobs::BulkDownloadIdpReports,
     sync_skill_rater_assessment_entities: AdminJobs::SkillRater::SyncAssessmentEntities,
+    bulk_generate_user_campaign_ai_artifact_results: AdminJobs::BulkGenerateUserCampaignAIArtifactResults,
     copy_as_template_or_campaign: AdminJobs::CopyAsTemplateOrCampaign
   }.freeze
 

@@ -3,6 +3,7 @@ import {
   Form, Input, Select, Button, Flex, Divider, Tooltip,
 } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
+import { SCHEMA_KEY_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
 
 const { I18n } = window
 
@@ -47,12 +48,9 @@ export const OutputSchemaKeyFields: React.FC<Props> = ({
       >
         <Select
           filterOption={false}
-          defaultValue="string"
-        >
-          {['string'].map(type => (
-            <Select.Option key={type} value={type}>{type}</Select.Option>
-          ))}
-        </Select>
+          defaultValue={SCHEMA_KEY_TYPES.string.value}
+          options={Object.values(SCHEMA_KEY_TYPES)}
+        />
       </Form.Item>
       <Form.Item
         style={{ flex: 1 }}

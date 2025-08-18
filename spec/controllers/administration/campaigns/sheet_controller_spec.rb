@@ -133,4 +133,27 @@ RSpec.describe Administration::Campaigns::SheetsController, type: :controller do
       expect(row.reload.sheet_row_data.map(&:string_value)).to eq(['James'])
     end
   end
+
+  describe 'GET datasheet_columns' do
+    it 'returns merged datasheet columns from project and campaign' do
+      new_campaign = create(:campaign)
+      project = new_campaign.project
+      project_datasheet = create(:datasheet, project: project)
+      campaign_datasheet = create(:datasheet, campaign: new_campaign)
+
+      create(:sheet_column, sheet: project_datasheet, name: 'Project Column', column_type: 'string')
+      create(:sheet_column, sheet: campaign_datasheet, name: 'Campaign Column', column_type: 'text')
+
+      get :datasheet_columns, params: { new_campaign_id: new_campaign.id }, format: :json
+
+      expect(response).to have_http_status(:success)
+      parsed_response = response.parsed_body
+
+      expect(parsed_response).to be_an(Array)
+      expect(parsed_response.length).to eq(2)
+
+      column_names = parsed_response.map { |col| col['name'] }
+      expect(column_names).to include('Project Column', 'Campaign Column')
+    end
+  end
 end

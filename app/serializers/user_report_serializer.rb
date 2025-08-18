@@ -2,8 +2,9 @@
 
 class UserReportSerializer < Panko::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject,
-             :report_data, :permissions, :comments, :require_approval, :campaign_factor_results, :module_overrides,
-             :user_report_events, :user, :options, :threesixty_campaign_id, :campaign
+             :report_data, :permissions, :comments, :require_approval, :campaign_factor_results,
+             :module_overrides, :user_report_events, :user, :options,
+             :threesixty_campaign_id, :campaign, :campaign_ai_artifact_results
 
   has_one :report, serializer: ReportSerializer
 
@@ -70,6 +71,17 @@ class UserReportSerializer < Panko::Serializer
         description: cfv.campaign_factor.description
       }
     end
+  end
+
+  def campaign_ai_artifact_results
+    results = Campaigns::AIArtifactResultsQuery.new(
+      object.campaign_id, object.user_id
+    ).query
+
+    Panko::ArraySerializer.new(
+      results,
+      each_serializer: AI::CampaignArtifactResultSerializer
+    ).to_a
   end
 
   def report_data

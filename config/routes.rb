@@ -193,7 +193,11 @@ Rails.application.routes.draw do
         end
         resources :sms_records, only: %i[create]
 
-        resources :sheets, concerns: :sheet_management
+        resources :sheets, concerns: :sheet_management do
+          collection do
+            get :datasheet_columns
+          end
+        end
         resources :sheet_rows, concerns: :sheet_row_management
 
         resources :stats, only: %i[index] do
@@ -1405,6 +1409,20 @@ as: :simulation_progress_notification
             end
 
             jsonapi_resources :campaign_idps, controller: 'campaigns/campaign_idps', only: %i[index create update]
+
+            jsonapi_resources :ai_artifact_results, controller: 'campaigns/ai_artifact_results',
+              only: %i[index show], param: :user_id
+
+            jsonapi_resources :ai_artifacts, controller: 'campaigns/ai_artifacts' do
+              collection do
+                post :bulk_generate
+              end
+
+              member do
+                post :generate
+                post :test_generate
+              end
+            end
 
             jsonapi_resources :campaign_factor_groups, only: %i[index create update destroy] do
               collection do

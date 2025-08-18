@@ -1,3 +1,5 @@
+// TODO: THis is not being used anymore, ensure
+
 /* eslint-disable react/no-find-dom-node */
 import { Component } from 'react'
 import { Provider } from 'react-redux'
@@ -16,7 +18,7 @@ class PreviewContainer extends Component {
   componentDidMount () {
     const parent = findDOMNode(this).parentNode
     const {
-      data, results, pdfExport, skipLogic, campaignFactorResults,
+      data, results, pdfExport, skipLogic, campaignFactorResults, campaignAiArtifactResults,
     } = parent.dataset
     const { user, campaign } = parent.dataset
     const parsedData = JSON.parse(data)
@@ -44,6 +46,7 @@ class PreviewContainer extends Component {
       campaign,
       userReportData,
       campaignFactorResults ? JSON.parse(campaignFactorResults) : null,
+      campaignAiArtifactResults ? JSON.parse(campaignAiArtifactResults) : null,
     )
     rstore.dispatch(init(normalizedData, userReportData))
   }

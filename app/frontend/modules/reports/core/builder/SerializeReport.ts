@@ -41,6 +41,7 @@ const SerializeReport = {
       props: object,
       data_sheet_columns: string[],
       campaign_factors: object[],
+      campaign_ai_artifacts: object[],
       filters: object[],
       styles: {[id: string]: object}
       pages?: object[]
@@ -50,6 +51,7 @@ const SerializeReport = {
       props: state.builder.props,
       data_sheet_columns: state.builder.data_sheet_columns,
       campaign_factors: humps.decamelizeKeys(state.builder.campaign_factors),
+      campaign_ai_artifacts: humps.decamelizeKeys(state.builder.campaign_ai_artifacts),
       filters: state.builder.filters,
       styles: state.builder.styles,
     }

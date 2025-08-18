@@ -13,6 +13,7 @@ require 'rspec/mocks'
 require 'webmock/rspec'
 require 'savon/mock/spec_helper'
 require 'redlock/testing'
+require 'wisper/rspec/stub_wisper_publisher'
 
 require Rails.root.join('spec/fixtures/models/base_resource.rb')
 Rails.root.glob('spec/fixtures/**/*.rb').each { |file| require file }

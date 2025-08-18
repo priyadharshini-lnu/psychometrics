@@ -22,6 +22,7 @@ interface SanitizeConfig {
   error: Config
   report: Config
   richTextQuestion: Config
+  artifactResults: Config
 }
 
 const sanitizeConfig: SanitizeConfig = {
@@ -52,6 +53,14 @@ const sanitizeConfig: SanitizeConfig = {
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
     ],
     ALLOWED_ATTR: ['dir'],
+  },
+
+  artifactResults: {
+    ALLOWED_TAGS: [
+      'span', 'div', 'p', 'ul', 'ol', 'li', 'b', 'strong', 'sub', 'sup', 'em',
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'u',
+    ],
+    ALLOWED_ATTR: ['dir', 'style'],
   },
 }
 

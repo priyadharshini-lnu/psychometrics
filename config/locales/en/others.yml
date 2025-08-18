@@ -811,6 +811,7 @@ en:
         bulk_download_idp_reports: Bulk Download IDP Reports
         bulk_download_reports: Bulk Download Reports
         bulk_download_user_reports: Bulk Download User Reports
+        bulk_generate_user_campaign_ai_artifact_results: Bulk Generate Campaign AI Artifact Results
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
         bulk_regenerate_user_reports: Regenerate User Reports
@@ -1790,6 +1791,7 @@ en:
     column:
       action: Action
       active: Active
+      ai_assistant: AI Assistant
       allow_multiple_responses: Allow multiple responses
       approval_notification_list: Approval Notification Users List
       approvers_list: Approvers List

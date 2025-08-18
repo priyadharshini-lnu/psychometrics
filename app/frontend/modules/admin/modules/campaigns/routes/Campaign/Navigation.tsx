@@ -12,6 +12,7 @@ import {
   CalendarOutlined,
   RadarChartOutlined,
   ExportOutlined,
+  RobotOutlined,
 } from '@ant-design/icons'
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from '~/utils/route'
@@ -71,6 +72,11 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     label: <Link route={`${basePath}/scoring`}>{I18n.t('common.model.scoring')}</Link>,
     icon: <RadarChartOutlined />,
   } : null,
+  permissions.viewAiArtifacts ? {
+    key: 'ai_artifacts',
+    label: <Link route={`${basePath}/ai_artifacts`}>{I18n.t('administration.navigation.ai_artifacts')}</Link>,
+    icon: <RobotOutlined />,
+  } : null,
   permissions.manageCampaignAdmins ? {
     key: 'admins',
     label:
@@ -125,6 +131,9 @@ const getSelected = (pathname): string => {
   }
   if (pathname.includes('/scoring')) {
     return 'scoring'
+  }
+  if (pathname.includes('/ai_artifacts')) {
+    return 'ai_artifacts'
   }
   if (pathname.includes('/audit_reports')) {
     return 'audit_reports'

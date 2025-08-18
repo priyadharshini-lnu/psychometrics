@@ -16,6 +16,7 @@ export const AiAssistantTR = t.intersection([
       description: t.string,
       keyType: t.string,
     })),
+    dependencies: t.union([t.array(t.string), t.null]),
   }),
 ])
 

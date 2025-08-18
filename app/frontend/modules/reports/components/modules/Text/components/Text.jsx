@@ -101,6 +101,9 @@ class Text extends Component {
     if (sourceType === 'ResultText') {
       return renderToStaticMarkup(LookupResultTextValue.run(model))
     }
+    if (sourceType === 'AIContent') {
+      return renderToStaticMarkup(LookupResultTextValue.run(model))
+    }
     return I18nStore.tModule(model, 'text')
   }
 
@@ -302,7 +305,7 @@ class Text extends Component {
             html={this.pipedText()}
           />
         )
-      } if (sourceType === 'ResultText') {
+      } if (sourceType === 'ResultText' || sourceType === 'AIContent') {
         const textValue = LookupResultTextValue.run(model)
         return (
           <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
@@ -320,7 +323,7 @@ class Text extends Component {
         />
       )
     }
-    if (sourceType === 'ResultText') {
+    if (sourceType === 'ResultText' || sourceType === 'AIContent') {
       return (
         <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
           {/* TODO: Render as markdown only for Datasheet where the column is markdown */}

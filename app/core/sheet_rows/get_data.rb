@@ -12,7 +12,7 @@ module SheetRows
     def call
       default_column_attr = { id: datasheet_row.id }
 
-      valid_columns = (opts[:sheet] || datasheet_row.sheet).sheet_columns
+      valid_columns = load_valid_columns
       if opts[:without_types]
         valid_columns = valid_columns.select do |column|
           opts[:without_types].exclude?(column.column_type)
@@ -24,6 +24,20 @@ module SheetRows
         acc
       end
       broadcast :ok, default_column_attr.merge(data)
+    end
+
+    private
+
+    def load_valid_columns
+      sheet = opts[:sheet] || datasheet_row.sheet
+      columns = sheet.sheet_columns
+
+      load_columns = opts[:load_columns]
+      if load_columns.present?
+        columns = columns.where(name: load_columns)
+      end
+
+      columns
     end
   end
 end

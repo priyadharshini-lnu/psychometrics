@@ -6,7 +6,7 @@ module Api
       module AI
         class AssistantOutputSchemaKeyResource < BaseResource
           model_name 'AI::AssistantOutputSchemaKey'
-          attributes :id, :key, :description, :key_type
+          attributes :key, :description, :key_type
         end
       end
     end

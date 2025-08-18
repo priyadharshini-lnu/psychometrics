@@ -1658,6 +1658,111 @@ ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
 
 
 --
+-- Name: campaign_ai_artifact_dependencies; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_ai_artifact_dependencies (
+    id bigint NOT NULL,
+    campaign_ai_artifact_id bigint NOT NULL,
+    dependency_type character varying NOT NULL,
+    dependency_id bigint NOT NULL,
+    meta jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_ai_artifact_dependencies_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_ai_artifact_dependencies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_ai_artifact_dependencies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_ai_artifact_dependencies_id_seq OWNED BY public.campaign_ai_artifact_dependencies.id;
+
+
+--
+-- Name: campaign_ai_artifact_results; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_ai_artifact_results (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    campaign_ai_artifact_id bigint NOT NULL,
+    error text,
+    results jsonb DEFAULT '{}'::jsonb NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    parsed_dependencies text
+);
+
+
+--
+-- Name: campaign_ai_artifact_results_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_ai_artifact_results_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_ai_artifact_results_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_ai_artifact_results_id_seq OWNED BY public.campaign_ai_artifact_results.id;
+
+
+--
+-- Name: campaign_ai_artifacts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_ai_artifacts (
+    id bigint NOT NULL,
+    ai_assistant_id bigint NOT NULL,
+    code character varying NOT NULL,
+    name character varying NOT NULL,
+    campaign_id bigint NOT NULL,
+    include_all_datasheet_columns boolean DEFAULT false,
+    instructions text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_ai_artifacts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_ai_artifacts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_ai_artifacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_ai_artifacts_id_seq OWNED BY public.campaign_ai_artifacts.id;
+
+
+--
 -- Name: campaign_assessment_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5488,6 +5593,40 @@ ALTER SEQUENCE public.reports_accesses_id_seq OWNED BY public.reports_accesses.i
 
 
 --
+-- Name: reports_campaign_ai_artifacts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reports_campaign_ai_artifacts (
+    id bigint NOT NULL,
+    code character varying NOT NULL,
+    report_id bigint NOT NULL,
+    name character varying NOT NULL,
+    ai_assistant_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: reports_campaign_ai_artifacts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reports_campaign_ai_artifacts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reports_campaign_ai_artifacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reports_campaign_ai_artifacts_id_seq OWNED BY public.reports_campaign_ai_artifacts.id;
+
+
+--
 -- Name: reports_campaign_factors; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8330,6 +8469,27 @@ ALTER TABLE ONLY public.bulk_reports ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: campaign_ai_artifact_dependencies id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifact_dependencies ALTER COLUMN id SET DEFAULT nextval('public.campaign_ai_artifact_dependencies_id_seq'::regclass);
+
+
+--
+-- Name: campaign_ai_artifact_results id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifact_results ALTER COLUMN id SET DEFAULT nextval('public.campaign_ai_artifact_results_id_seq'::regclass);
+
+
+--
+-- Name: campaign_ai_artifacts id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifacts ALTER COLUMN id SET DEFAULT nextval('public.campaign_ai_artifacts_id_seq'::regclass);
+
+
+--
 -- Name: campaign_assessment_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9086,6 +9246,13 @@ ALTER TABLE ONLY public.reports_accesses ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: reports_campaign_ai_artifacts id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_campaign_ai_artifacts ALTER COLUMN id SET DEFAULT nextval('public.reports_campaign_ai_artifacts_id_seq'::regclass);
+
+
+--
 -- Name: reports_campaign_factors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9830,6 +9997,30 @@ ALTER TABLE ONLY public.blocks
 
 ALTER TABLE ONLY public.bulk_reports
     ADD CONSTRAINT bulk_reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_ai_artifact_dependencies campaign_ai_artifact_dependencies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifact_dependencies
+    ADD CONSTRAINT campaign_ai_artifact_dependencies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_ai_artifact_results campaign_ai_artifact_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifact_results
+    ADD CONSTRAINT campaign_ai_artifact_results_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_ai_artifacts campaign_ai_artifacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifacts
+    ADD CONSTRAINT campaign_ai_artifacts_pkey PRIMARY KEY (id);
 
 
 --
@@ -10705,6 +10896,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 
 --
+-- Name: reports_campaign_ai_artifacts reports_campaign_ai_artifacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_campaign_ai_artifacts
+    ADD CONSTRAINT reports_campaign_ai_artifacts_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: reports_campaign_factors reports_campaign_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11386,6 +11585,20 @@ CREATE INDEX idx_on_assessment_id_3b131a93ee ON public.campaign_assessor_assessm
 
 
 --
+-- Name: idx_on_campaign_ai_artifact_id_aaea21b6d6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_campaign_ai_artifact_id_aaea21b6d6 ON public.campaign_ai_artifact_dependencies USING btree (campaign_ai_artifact_id);
+
+
+--
+-- Name: idx_on_campaign_ai_artifact_id_user_id_e6019df2d3; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_campaign_ai_artifact_id_user_id_e6019df2d3 ON public.campaign_ai_artifact_results USING btree (campaign_ai_artifact_id, user_id);
+
+
+--
 -- Name: idx_on_campaign_assessment_group_id_b2579ac76b; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11950,6 +12163,48 @@ CREATE INDEX index_blocks_on_template_id ON public.blocks USING btree (template_
 --
 
 CREATE INDEX index_bulk_reports_on_user_id ON public.bulk_reports USING btree (user_id);
+
+
+--
+-- Name: index_campaign_ai_artifact_dependencies_on_dependency; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_ai_artifact_dependencies_on_dependency ON public.campaign_ai_artifact_dependencies USING btree (dependency_type, dependency_id);
+
+
+--
+-- Name: index_campaign_ai_artifact_results_on_campaign_ai_artifact_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_ai_artifact_results_on_campaign_ai_artifact_id ON public.campaign_ai_artifact_results USING btree (campaign_ai_artifact_id);
+
+
+--
+-- Name: index_campaign_ai_artifact_results_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_ai_artifact_results_on_user_id ON public.campaign_ai_artifact_results USING btree (user_id);
+
+
+--
+-- Name: index_campaign_ai_artifacts_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_ai_artifacts_on_ai_assistant_id ON public.campaign_ai_artifacts USING btree (ai_assistant_id);
+
+
+--
+-- Name: index_campaign_ai_artifacts_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_ai_artifacts_on_campaign_id ON public.campaign_ai_artifacts USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_ai_artifacts_on_campaign_id_and_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_ai_artifacts_on_campaign_id_and_code ON public.campaign_ai_artifacts USING btree (campaign_id, code);
 
 
 --
@@ -13563,6 +13818,27 @@ CREATE UNIQUE INDEX index_reports_accesses_on_report_id_membership_id_assessment
 
 
 --
+-- Name: index_reports_campaign_ai_artifacts_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_campaign_ai_artifacts_on_ai_assistant_id ON public.reports_campaign_ai_artifacts USING btree (ai_assistant_id);
+
+
+--
+-- Name: index_reports_campaign_ai_artifacts_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_campaign_ai_artifacts_on_report_id ON public.reports_campaign_ai_artifacts USING btree (report_id);
+
+
+--
+-- Name: index_reports_campaign_ai_artifacts_on_report_id_and_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_reports_campaign_ai_artifacts_on_report_id_and_code ON public.reports_campaign_ai_artifacts USING btree (report_id, code);
+
+
+--
 -- Name: index_reports_campaign_factors_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14183,6 +14459,13 @@ CREATE INDEX index_translations_on_resource_type_and_resource_id ON public.trans
 --
 
 CREATE INDEX index_translations_on_translateable_type_and_translateable_id ON public.translations USING btree (translateable_type, translateable_id);
+
+
+--
+-- Name: index_unique_dependency_per_artifact; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_unique_dependency_per_artifact ON public.campaign_ai_artifact_dependencies USING btree (campaign_ai_artifact_id, dependency_type, dependency_id);
 
 
 --
@@ -15540,6 +15823,14 @@ ALTER TABLE ONLY public.dimensions
 
 
 --
+-- Name: campaign_ai_artifacts fk_rails_38577b2c69; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifacts
+    ADD CONSTRAINT fk_rails_38577b2c69 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
+
+
+--
 -- Name: memberships fk_rails_385eeb68ea; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16060,6 +16351,14 @@ ALTER TABLE ONLY public.workshop_invite_logs
 
 
 --
+-- Name: campaign_ai_artifact_dependencies fk_rails_6e28ba4651; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifact_dependencies
+    ADD CONSTRAINT fk_rails_6e28ba4651 FOREIGN KEY (campaign_ai_artifact_id) REFERENCES public.campaign_ai_artifacts(id) ON DELETE CASCADE;
+
+
+--
 -- Name: questions fk_rails_6ec04ddf91; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16401,6 +16700,14 @@ ALTER TABLE ONLY public.factors_sub_factors
 
 ALTER TABLE ONLY public.communications
     ADD CONSTRAINT fk_rails_904f7c8764 FOREIGN KEY (sub_campaign_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_ai_artifacts fk_rails_90ae173860; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifacts
+    ADD CONSTRAINT fk_rails_90ae173860 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
 
 
 --
@@ -16756,6 +17063,14 @@ ALTER TABLE ONLY public.norms
 
 
 --
+-- Name: campaign_ai_artifact_results fk_rails_b521fdef07; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifact_results
+    ADD CONSTRAINT fk_rails_b521fdef07 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: privacy_links fk_rails_b70067b747; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16905,6 +17220,14 @@ ALTER TABLE ONLY public.workshop_subjects
 
 ALTER TABLE ONLY public.factor_benchmark_scores
     ADD CONSTRAINT fk_rails_c83a2d4b31 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
+-- Name: reports_campaign_ai_artifacts fk_rails_c8d4637ba7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_campaign_ai_artifacts
+    ADD CONSTRAINT fk_rails_c8d4637ba7 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
 
 
 --
@@ -17292,6 +17615,14 @@ ALTER TABLE ONLY public.assessments_reports
 
 
 --
+-- Name: campaign_ai_artifact_results fk_rails_e04a43ba55; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifact_results
+    ADD CONSTRAINT fk_rails_e04a43ba55 FOREIGN KEY (campaign_ai_artifact_id) REFERENCES public.campaign_ai_artifacts(id);
+
+
+--
 -- Name: user_saved_filters fk_rails_e25c5bac06; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17465,6 +17796,14 @@ ALTER TABLE ONLY public.campaign_factors
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_ef32d4a334 FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: reports_campaign_ai_artifacts fk_rails_ef96ec6fef; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_campaign_ai_artifacts
+    ADD CONSTRAINT fk_rails_ef96ec6fef FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -17669,8 +18008,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250807052600'),
 ('20250806140955'),
 ('20250806102146'),
+('20250804045044'),
+('20250802165525'),
 ('20250801074743'),
 ('20250731114640'),
+('20250731101510'),
 ('20250730134619'),
 ('20250728141620'),
 ('20250723144840'),
@@ -17683,6 +18025,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250712120001'),
 ('20250712120000'),
 ('20250711074243'),
+('20250710074104'),
 ('20250709102014'),
 ('20250709100241'),
 ('20250704103208'),
@@ -18548,4 +18891,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

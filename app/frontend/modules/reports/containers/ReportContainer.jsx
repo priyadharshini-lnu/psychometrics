@@ -32,7 +32,10 @@ class ReportContainer extends Component {
 
     data.skipLogic = skipLogic
     const normalizedData = normalize(data, schema)
-    store.init(data, results, user, campaign, userReport.reportData || [], userReport.campaignFactorResults || [])
+    store.init(
+      data, results, user, campaign,
+      userReport.reportData || [], userReport.campaignFactorResults || [], userReport.campaignAiArtifactResults || [],
+    )
     rstore.dispatch(init(normalizedData, userReport))
 
     this.setState({ selectedLocale })

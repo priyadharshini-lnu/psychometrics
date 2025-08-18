@@ -65,6 +65,82 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   end
 
   describe 'GET show' do
+    context 'when campaign has factors and AI artifacts' do
+      let!(:campaign_factor) do
+        create(:campaign_factor,
+               campaign: campaign,
+               code: 'test_factor',
+               name: 'Test Factor',
+               description: 'A test factor',
+               public_visibility: true)
+      end
+
+      let!(:campaign_factor_value) do
+        create(:campaign_factor_value,
+               campaign: campaign,
+               user: user,
+               campaign_factor: campaign_factor,
+               numeric_value: 85)
+      end
+
+      let!(:ai_assistant) do
+        assistant = create(:assistant)
+        assistant.assistant_output_schema_keys.create!(key: 'summary')
+        assistant.assistant_output_schema_keys.create!(key: 'feedback')
+        assistant
+      end
+
+      let!(:campaign_ai_artifact) do
+        create(:campaign_ai_artifact,
+               campaign: campaign,
+               ai_assistant: ai_assistant,
+               code: 'test_artifact',
+               name: 'Test AI Artifact')
+      end
+
+      let!(:campaign_ai_artifact_result) do
+        create(:campaign_ai_artifact_result,
+               campaign_ai_artifact: campaign_ai_artifact,
+               user: user,
+               results: { 'summary' => 'Test summary', 'feedback' => 'Test feedback' })
+      end
+
+      it 'renders json response with campaign factors and AI artifacts' do
+        get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :json
+
+        parsed_response = response.parsed_body
+
+        expect(parsed_response.keys).to include('report', 'results', 'status', 'user', 'campaign_factor_results',
+                                                'campaign_ai_artifact_results')
+
+        expect(parsed_response['campaign_factor_results']).to be_an(Array)
+        expect(parsed_response['campaign_factor_results'].length).to eq(1)
+
+        factor_result = parsed_response['campaign_factor_results'].first
+        expect(factor_result).to include(
+          'code' => 'test_factor',
+          'value' => 85,
+          'name' => 'Test Factor',
+          'description' => 'A test factor'
+        )
+
+        expect(parsed_response['campaign_ai_artifact_results']).to be_an(Array)
+        expect(parsed_response['campaign_ai_artifact_results'].length).to eq(1)
+
+        ai_result = parsed_response['campaign_ai_artifact_results'].first
+        expect(ai_result).to include(
+          'code' => 'test_artifact',
+          'name' => 'Test AI Artifact'
+        )
+        expect(ai_result['results']).to be_an(Array)
+        expect(ai_result['results'].length).to eq(2)
+        expect(ai_result['results']).to contain_exactly(
+          { 'key' => 'summary', 'value' => 'Test summary', 'type' => 'string' },
+          { 'key' => 'feedback', 'value' => 'Test feedback', 'type' => 'string' }
+        )
+      end
+    end
+
     it 'renders json response' do
       get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :json
 
