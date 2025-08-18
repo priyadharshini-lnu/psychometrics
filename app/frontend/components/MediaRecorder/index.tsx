@@ -17,7 +17,6 @@ import {
   AudioOutlined,
   CheckCircleFilled,
 } from '@ant-design/icons'
-import CryptoJS from 'crypto-js'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useReactMediaRecorder } from './components/MediaRecorder'
 import { useRecording } from '~/context/RecordingContext'
@@ -69,7 +68,6 @@ interface UrlDetails {
   asset_key: string;
   upload_id: string;
   urls: string[];
-  checksum: string;
 }
 
 interface DeviceDetails {
@@ -81,13 +79,6 @@ const formatDuration = (durationInSeconds: number): string => {
   const minutes = Math.floor(durationInSeconds / 60)
   const seconds = durationInSeconds % 60
   return `${minutes.toString().padStart(2, '0')}m:${seconds.toString().padStart(2, '0')}s`
-}
-
-const calculateMD5Checksum = async (blob: Blob) => {
-  const arrayBuffer = await blob.arrayBuffer()
-  const wordArray = CryptoJS.lib.WordArray.create(arrayBuffer)
-  const md5 = CryptoJS.MD5(wordArray)
-  return CryptoJS.enc.Base64.stringify(md5)
 }
 
 const MediaRecorderComponent: React.FC<Props> = ({
@@ -218,7 +209,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
   }
 
-  const completeMediaUpload = async (completeBlob): Promise<void> => {
+  const completeMediaUpload = async (): Promise<void> => {
     if (!urlDetailsRef.current) {
       console.error('No URL details available for completing upload')
       setError('complete')('Failed to complete upload: No URL details available')
@@ -231,7 +222,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
         etag: resolvedPromise.headers.etag,
         part_number: index + 1,
       }))
-      const checksum = await calculateMD5Checksum(completeBlob)
       const { data } = await axios.put(
         `${mediaUrl}/complete_multipart_upload`,
         {
@@ -240,7 +230,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
           asset_key: urlDetailsRef.current.asset_key,
           upload_id: urlDetailsRef.current.upload_id,
           file_size: totalSize,
-          checksum,
           content_type: supportedMimeType,
         },
         {
@@ -278,14 +267,14 @@ const MediaRecorderComponent: React.FC<Props> = ({
     uploadChunk(chunk)
   }, [])
 
-  const onStop = useCallback(async (blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
+  const onStop = useCallback(async (blobUrl: string, lastBlob: Blob) => {
     setVisualizing(false)
     if (stream) {
       stream.getTracks().forEach(track => track.stop())
     }
     setIsUploading(true)
     uploadChunk(lastBlob)
-      .then(() => completeMediaUpload(completeBlob))
+      .then(() => completeMediaUpload())
       .finally(() => setIsUploading(false))
   }, [stream])
 

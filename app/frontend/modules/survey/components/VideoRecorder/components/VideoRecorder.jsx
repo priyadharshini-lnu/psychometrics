@@ -12,7 +12,6 @@ import videojs from 'videojs'
 import cs from 'classnames'
 import humps from 'humps'
 import { unset, set } from 'lodash/fp'
-import CryptoJS from 'crypto-js'
 import { axiosWithRetry } from '~/modules/survey/utils/network'
 import styles from './VideoRecorder.less'
 import 'videojs-record/dist/videojs.record'
@@ -341,18 +340,6 @@ class VideoRecorder extends Component {
     })
   }
 
-  async calculateMD5Checksum () {
-    let allBlobs = this.player.recordedData
-    if (!Array.isArray(allBlobs)) {
-      allBlobs = [allBlobs]
-    }
-    const fullBlob = new Blob(allBlobs, { type: this.supportedMimeType?.mimeType || 'video/webm' })
-    const arrayBuffer = await fullBlob.arrayBuffer()
-    const wordArray = CryptoJS.lib.WordArray.create(arrayBuffer)
-    const md5 = CryptoJS.MD5(wordArray)
-    return CryptoJS.enc.Base64.stringify(md5)
-  }
-
   handleFinishRecording = async () => {
     const {
       preview, fitInFrame, model, markQuestionInProgress,
@@ -420,7 +407,6 @@ class VideoRecorder extends Component {
 
   completeMediaUpload = (uploadPartsArray) => {
     const { mediaUrl } = this.props
-    const checksum = this.calculateMD5Checksum()
     axiosInstance.put(
       `${mediaUrl}/complete_multipart_upload`,
       {
@@ -429,7 +415,6 @@ class VideoRecorder extends Component {
         asset_key: this.urlDetails.asset_key,
         upload_id: this.urlDetails.upload_id,
         file_size: this.player.recordedData.size,
-        checksum,
         content_type: this.supportedMimeType,
       },
       {
