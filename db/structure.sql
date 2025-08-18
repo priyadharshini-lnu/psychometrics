@@ -148,9 +148,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT assessments.id,
-    assessments.name,
-    assessments.category
+ SELECT id,
+    name,
+    category
    FROM public.assessments;
 
 
@@ -173,10 +173,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT campaign_factor_groups.id,
-    campaign_factor_groups.campaign_id,
-    campaign_factor_groups.name,
-    campaign_factor_groups."position"
+ SELECT id,
+    campaign_id,
+    name,
+    "position"
    FROM public.campaign_factor_groups;
 
 
@@ -296,9 +296,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT campaigns.id,
-    campaigns.name,
-    campaigns.project_id
+ SELECT id,
+    name,
+    project_id
    FROM public.campaigns;
 
 
@@ -418,8 +418,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT factors.id,
-    factors.name
+ SELECT id,
+    name
    FROM public.factors;
 
 
@@ -734,11 +734,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT users.id,
-    users.project_id,
-    users.first_name,
-    users.last_name,
-    users.email
+ SELECT id,
+    project_id,
+    first_name,
+    last_name,
+    email
    FROM public.users;
 
 
@@ -7361,7 +7361,8 @@ CREATE TABLE public.user_idp_skills (
     user_idp_plan_id bigint NOT NULL,
     skill_id bigint NOT NULL,
     initial_rating double precision,
-    final_rating double precision
+    final_rating double precision,
+    private boolean DEFAULT false NOT NULL
 );
 
 
@@ -14395,6 +14396,13 @@ CREATE UNIQUE INDEX index_user_idp_plans_on_user_id_and_active ON public.user_id
 
 
 --
+-- Name: index_user_idp_skills_on_private; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_skills_on_private ON public.user_idp_skills USING btree (private);
+
+
+--
 -- Name: index_user_idp_skills_on_skill_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17803,6 +17811,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241224114214'),
 ('20241224114112'),
 ('20241223122302'),
+('20241220000000'),
 ('20241219131514'),
 ('20241219060937'),
 ('20241216104819'),

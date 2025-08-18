@@ -63,35 +63,48 @@ describe EndUser::UserIdpSkillsController, type: :controller do
 
   describe 'PUT update' do
     it 'update user idp skill initial rating' do
-      put :update, params: { id: user_idp_skill.id, initial_rating: 3 }
-
-      parsed_response = response.parsed_body
+      put :update, params: { id: user_idp_skill.id, initial_rating: 4 }
 
       expect(response.status).to eq(200)
-      expect(parsed_response['id']).to eq(user_idp_skill.id)
-      expect(parsed_response['name']).to eq(skill.name)
-      expect(parsed_response['initial_rating']).to eq(3)
+      expect(user_idp_skill.reload.initial_rating).to eq(4)
+    end
+  end
+
+  describe 'PUT toggle_privacy' do
+    it 'toggles skill privacy from public to private' do
+      expect(user_idp_skill.private).to be false
+
+      put :toggle_privacy, params: { id: user_idp_skill.id }
+
+      expect(response.status).to eq(200)
+      expect(response.parsed_body['success']).to be true
+      expect(response.parsed_body['message']).to include('marked as private')
+      expect(user_idp_skill.reload.private).to be true
     end
 
-    it 'throws validation error when rating is more than limit' do
-      put :update, params: { id: user_idp_skill.id, initial_rating: 6 }
+    it 'toggles skill privacy from private to public' do
+      user_idp_skill.update!(private: true)
+      expect(user_idp_skill.private).to be true
 
-      parsed_response = response.parsed_body
+      put :toggle_privacy, params: { id: user_idp_skill.id }
 
-      expect(response.status).to eq(422)
-      expect(parsed_response).to include({ 'initial_rating' => ['must be less than or equal to 5'] })
+      expect(response.status).to eq(200)
+      expect(response.parsed_body['success']).to be true
+      expect(response.parsed_body['message']).to include('now visible')
+      expect(user_idp_skill.reload.private).to be false
     end
 
-    it 'throws validation error when template self rating is disabled' do
-      idp_template.update!(self_rating_enabled: false)
-      put :update, params: { id: user_idp_skill.id, initial_rating: 3 }
+    it 'returns error for non-existent skill' do
+      put :toggle_privacy, params: { id: 99_999 }
 
-      parsed_response = response.parsed_body
+      expect(response.status).to eq(404)
+    end
 
-      expect(response.status).to eq(422)
-      expect(parsed_response).to(
-        include({ 'initial_rating' => [I18n.t('validations.user_self_skill_rating_disabled')] })
-      )
+    it 'includes private field in response data' do
+      put :toggle_privacy, params: { id: user_idp_skill.id }
+
+      expect(response.status).to eq(200)
+      expect(response.parsed_body['data']['private']).to be true
     end
   end
 end

@@ -1087,6 +1087,7 @@ as: :simulation_progress_notification
     resources :skill_gap_reports, only: %i[show], controller: 'end_user/skill_gap_reports'
     resources :user_idp_skills, only: %i[index update], controller: 'end_user/user_idp_skills' do
       post :save_skills, on: :collection
+      put :toggle_privacy, on: :member
     end
     resources :direct_reportees, only: %i[index], controller: 'end_user/direct_reportees'
 

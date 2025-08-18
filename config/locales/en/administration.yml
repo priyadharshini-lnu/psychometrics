@@ -2213,6 +2213,11 @@ en:
       show_reflections: Show Reflections
       skill_gap_report: Skill Gap Report
       skills: Skills
+      skills_privacy_messages:
+        made_private: Skill '%{skill_name}' has been marked as private and will be hidden from your manager
+        made_public: Skill '%{skill_name}' is now visible to your manager
+        skill_not_found: Skill not found
+        unauthorized: Unauthorized to modify this skill
       skills_updated: IDP Skills updated successfully
       status:
         draft: Draft
