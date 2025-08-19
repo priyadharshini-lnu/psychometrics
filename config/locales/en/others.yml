@@ -4035,7 +4035,7 @@ en:
     normalize_factor_scores:
       no_scoring_data: Normalization of factor scores cannot be completed as no scoring data is available.
     progress_label: Assessment Progress
-    redirect: You would be redirected to third-party site for this assessment. Please click continue if you want to start the assessment.
+    redirect: You will be redirected to third-party site for this assessment. Please click continue if you want to start the assessment.
     status:
       completed: Completed
       in_progress: In Progress
