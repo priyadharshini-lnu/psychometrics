@@ -2,30 +2,10 @@
 
 module Administration
   class BulkReportsController < Administration::BaseController
-    prepend_before_action :set_resource_class
-    prepend_before_action :set_resource, only: %i[download]
-    append_before_action :pundit_authorize
-
-    def new
-      respond_to(&:js)
-    end
-
-    def create
-      @client = Client.find(report_params[:client_id])
-      reports = query(export_params[:client]).call(export_params[:client].id, export_params[:report_ids],
-                                                   export_params[:start_date], export_params[:end_date])
-      if reports.any?
-        ::BulkReports::ExportAllJob.perform_later(export_params)
-        respond_to(&:js)
-      else
-        flash.now[:error] = t('.no_data')
-        respond_to do |format|
-          format.js { render :new }
-        end
-      end
-    end
+    before_action :skip_authorization
 
     def download
+      resource = current_user.bulk_reports.find(params[:id])
       index = params[:index].to_i || 0
 
       report_blob = resource.files[index]&.blob
@@ -35,38 +15,6 @@ module Administration
       else
         redirect_to(admin_path, error: t('.removed'))
       end
-    end
-
-    private
-
-    def set_resource
-      @_resource = current_user.bulk_reports.find(params[:id])
-    end
-
-    def query(client)
-      if client.project?
-        ::Queries::Reports::ProjectLevel::BulkReportWithOptions
-      else
-        ::Queries::Reports::SubProjectLevel::BulkReportWithOptions
-      end
-    end
-
-    def export_params
-      {
-        current_user: current_user,
-        client: client,
-        report_ids: report_params[:ids].compact_blank,
-        start_date: report_params[:start_date],
-        end_date: report_params[:end_date]
-      }
-    end
-
-    def report_params
-      params.require(:report).permit([:client_id, { ids: [] }, :start_date, :end_date])
-    end
-
-    def set_resource_class
-      @_resource_class ||= BulkReport # rubocop:disable Naming/MemoizedInstanceVariableName
     end
   end
 end
