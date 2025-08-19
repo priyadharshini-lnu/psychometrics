@@ -2452,6 +2452,7 @@ cs:
         requested_rescheduling: Požadované přeplánování
         requested_rescheduling_rejected: Změna termínu Zamítnuto
         rescheduled: Přeloženo na
+        scheduled: Plánované
       subject: Předmět
     job_role:
       are_you_sure_to_remove: Určitě je chcete odstranit?

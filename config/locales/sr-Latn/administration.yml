@@ -2452,6 +2452,7 @@ sr-Latn:
         requested_rescheduling: Traženo ponovno zakazivanje
         requested_rescheduling_rejected: Ponovno zakazivanje odbijeno
         rescheduled: Ponovno zakazano
+        scheduled: zakazano
       subject: Subjekat
     job_role:
       are_you_sure_to_remove: Da li ste sigurni da želite da uklonite?

@@ -2452,6 +2452,7 @@ pt:
         requested_rescheduling: Reagendamento solicitado
         requested_rescheduling_rejected: Reagendamento Rejeitado
         rescheduled: Reagendado
+        scheduled: Programado
       subject: Assunto
     job_role:
       are_you_sure_to_remove: Tem a certeza de que vai retirar?

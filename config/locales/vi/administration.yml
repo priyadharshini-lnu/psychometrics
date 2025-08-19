@@ -2452,6 +2452,7 @@ vi:
         requested_rescheduling: Yêu cầu lên lịch lại
         requested_rescheduling_rejected: Lên lịch lại bị từ chối
         rescheduled: Dời
+        scheduled: Đã lên lịch
       subject: Chủ đề
     job_role:
       are_you_sure_to_remove: Bạn chắc chắn muốn xóa?

@@ -2452,6 +2452,7 @@ pl:
         requested_rescheduling: Żądana zmiana terminu
         requested_rescheduling_rejected: Odrzucenie zmiany harmonogramu
         rescheduled: Przełożony
+        scheduled: Zaplanowane
       subject: Temat
     job_role:
       are_you_sure_to_remove: Czy na pewno usunąć?

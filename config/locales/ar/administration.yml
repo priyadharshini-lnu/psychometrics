@@ -2452,6 +2452,7 @@ ar:
         requested_rescheduling: Requested Rescheduling
         requested_rescheduling_rejected: Rescheduling Rejected
         rescheduled: Rescheduled
+        scheduled: المقرر
       subject: Subject
     job_role:
       are_you_sure_to_remove: هل أنت متأكد من الإزالة؟

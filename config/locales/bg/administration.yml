@@ -2452,6 +2452,7 @@ bg:
         requested_rescheduling: Заявено разсрочване
         requested_rescheduling_rejected: Отхвърлено разсрочване
         rescheduled: Пренасрочен
+        scheduled: Планирано
       subject: Предмет
     job_role:
       are_you_sure_to_remove: Сигурни ли сте, че ще премахнете?

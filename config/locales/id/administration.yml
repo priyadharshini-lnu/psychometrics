@@ -2452,6 +2452,7 @@ id:
         requested_rescheduling: Diminta Penjadwalan Ulang
         requested_rescheduling_rejected: Penjadwalan Ulang Ditolak
         rescheduled: Dijadwalkan Ulang
+        scheduled: Terjadwal
       subject: Subyek
     job_role:
       are_you_sure_to_remove: Apakah Anda yakin untuk menghapusnya?

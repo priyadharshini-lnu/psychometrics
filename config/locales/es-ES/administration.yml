@@ -2452,6 +2452,7 @@ es-ES:
         requested_rescheduling: Reprogramación solicitada
         requested_rescheduling_rejected: Reprogramación Rechazada
         rescheduled: Reprogramado
+        scheduled: Programado
       subject: Sujeto
     job_role:
       are_you_sure_to_remove: "¿Estás seguro de quitarlo?"

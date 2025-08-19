@@ -2452,6 +2452,7 @@ it:
         requested_rescheduling: Ripianificazione Richiesta
         requested_rescheduling_rejected: Ripianificazione Rifiutata
         rescheduled: Ripianificato
+        scheduled: In programma
       subject: Soggetto
     job_role:
       are_you_sure_to_remove: Siete sicuri di poterlo rimuovere?

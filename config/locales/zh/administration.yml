@@ -2452,6 +2452,7 @@ zh:
         requested_rescheduling: 要求改期
         requested_rescheduling_rejected: 重新安排 拒绝
         rescheduled: 改期
+        scheduled: 计划
       subject: 主题
     job_role:
       are_you_sure_to_remove: 你确定要删除吗？

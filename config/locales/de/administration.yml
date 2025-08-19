@@ -2452,6 +2452,7 @@ de:
         requested_rescheduling: Gewünschte Umterminierung
         requested_rescheduling_rejected: Umterminierung Abgelehnt
         rescheduled: Umgeplant
+        scheduled: Geplant
       subject: Thema
     job_role:
       are_you_sure_to_remove: Sind Sie sicher, dass Sie sie entfernen wollen?

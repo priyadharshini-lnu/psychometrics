@@ -2452,6 +2452,7 @@ hr:
         requested_rescheduling: Zatražena promjena termina
         requested_rescheduling_rejected: Promjena termina odbijena
         rescheduled: Odgođeno
+        scheduled: zakazano
       subject: Ispitanik
     job_role:
       are_you_sure_to_remove: Jeste li sigurni da želite ukloniti?

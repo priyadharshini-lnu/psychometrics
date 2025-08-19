@@ -2452,6 +2452,7 @@ nl:
         requested_rescheduling: Aangevraagde herplanning
         requested_rescheduling_rejected: Herschikking Afgewezen
         rescheduled: Verpland
+        scheduled: Gepland
       subject: Onderwerp
     job_role:
       are_you_sure_to_remove: Weet je zeker dat je moet verwijderen?

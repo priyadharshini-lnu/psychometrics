@@ -2452,6 +2452,7 @@ ko:
         requested_rescheduling: 일정 변경 요청
         requested_rescheduling_rejected: 일정 변경 거부됨
         rescheduled: 일정 변경
+        scheduled: 예약됨
       subject: 제목
     job_role:
       are_you_sure_to_remove: 정말 제거하시겠습니까?

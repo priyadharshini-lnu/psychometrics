@@ -2452,6 +2452,7 @@ th:
         requested_rescheduling: การขอเปลี่ยนกําหนดการ
         requested_rescheduling_rejected: การกําหนดเวลาใหม่ถูกปฏิเสธ
         rescheduled: เลื่อนกําหนดเวลา
+        scheduled: กำหนดไว้แล้ว
       subject: ชื่อเรื่อง
     job_role:
       are_you_sure_to_remove: คุณแน่ใจหรือไม่ที่จะลบ?

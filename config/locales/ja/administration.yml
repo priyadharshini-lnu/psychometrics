@@ -2452,6 +2452,7 @@ ja:
         requested_rescheduling: リスケジュールのリクエスト
         requested_rescheduling_rejected: リスケジュール却下
         rescheduled: 予定変更
+        scheduled: 予定
       subject: 対象
     job_role:
       are_you_sure_to_remove: 本当に外していいのか？

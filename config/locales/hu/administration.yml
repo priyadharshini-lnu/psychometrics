@@ -2454,6 +2454,7 @@ hu:
         requested_rescheduling: Kért átütemezés
         requested_rescheduling_rejected: Átütemezés elutasítva
         rescheduled: Átütemezve
+        scheduled: Tervezett
       subject: Tárgy
     job_role:
       are_you_sure_to_remove: Biztos, hogy el akarja távolítani?

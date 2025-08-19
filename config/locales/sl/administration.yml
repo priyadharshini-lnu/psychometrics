@@ -2452,6 +2452,7 @@ sl:
         requested_rescheduling: Zahtevana sprememba termina
         requested_rescheduling_rejected: Prerazporeditev zavrnjena
         rescheduled: Prestavljeno
+        scheduled: Načrtovani
       subject: Predmet
     job_role:
       are_you_sure_to_remove: Ali ste prepričani, da ga odstranite?
