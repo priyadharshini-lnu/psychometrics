@@ -15,6 +15,8 @@ ko:
       title: 감사된 변경 사항
     administrator:
       sessions:
+        errors:
+          recaptcha: 리캡차 인증 실패
         new:
           forgot_password: 비밀번호를 잊으셨나요?
           instruction: 개인 계정 정보로 로그인하세요
@@ -147,6 +149,7 @@ ko:
             accesssheet_manage: 액세스 시트 관리
             accesssheet_settings: 액세스 시트 설정
             accesssheet_view: 액세스 시트 보기
+            export: 내보내기
             title: 대시보드
             view: 보기
           datasheets:
@@ -179,7 +182,7 @@ ko:
             manage: 관리
             title: 직무 역할
             view: 보기
-          mediaLibraries:
+          libraries:
             manage: 관리
             title: 미디어 라이브러리
             view: 보기
@@ -290,18 +293,33 @@ ko:
             view: 보기
     ai_assistants:
       actions:
+        create: AI 어시스턴트 만들기
+        edit: AI 어시스턴트 편집
         playground: 놀이터
       ai_assistants: AI 어시스턴트
       ai_assistants_playground: AI 어시스턴트 플레이그라운드
       column:
         provider: 공급자
+      created_successfully: AI 어시스턴트가 성공적으로 생성되었습니다.
       form:
+        add_output_schema_key: 출력 스키마 키 추가
+        dependencies: 종속성
         description: 설명
+        enter_description: 설명 입력
+        enter_schema_key: 스키마 키 입력
+        key: 키
         name: 이름
+        output_schema_keys: 출력 스키마 키
         provider: 공급자
+        remove_output_schema_key: 출력 스키마 키 제거
+        schema_key_description_required: 스키마 키 설명은 필수입니다.
+        schema_key_required: 스키마 키가 필요합니다.
+        schema_key_type: 키 유형
+        schema_key_unique: 스키마 키는 고유해야 합니다.
         system_prompt: 시스템 프롬프트
-        title: AI 어시스턴트
+        type: 유형
         user_prompt: 사용자 프롬프트
+      updated_successfully: AI 어시스턴트가 성공적으로 업데이트되었습니다.
     any: " - 모든 - "
     api:
       campaigns:
@@ -767,6 +785,8 @@ ko:
       new:
         header: 대량 다운로드
       reports_unavailable: 현재 다운로드할 수 있는 보고서가 없습니다. 다운로드하려는 보고서가 있는지 확인해 주세요.
+      select_users_for_download: 보고서를 다운로드하려면 하나 이상의 사용자를 선택하십시오.
+      select_users_for_regenerate: 보고서를 재생하려면 하나 이상의 사용자를 선택하십시오.
     cable:
       notification:
         assessment_factors: 팩터가 가져옵니다
@@ -856,6 +876,7 @@ ko:
       campaign_templates: 캠페인 템플릿
       column:
         assessment: 평가
+        campaign: 캠페인
         owner: 소유자
         report: 신고
       copy:
@@ -930,6 +951,7 @@ ko:
       assessors:
         spoof:
           successfully: 이름 %{name}으로 로그인했습니다
+      convert_to_template: 템플릿으로 변환
       copy: 복사
       delete: 삭제
       edit: 편집
@@ -955,6 +977,7 @@ ko:
         name: 이름
         reports: 보고서
         status: 상태
+        template: 템플릿
         type: 유형
       menus:
         add_common_campaign: 공통 캠페인 추가
@@ -970,11 +993,15 @@ ko:
             assessment: 평가
             category: 범주
             closed: 닫힘
+            default_assessment_language: 평가 기본 언어
+            default_report_language: 기본 언어 보고
             empty: 비어 있음
             inactive: 비활성
             name: 이름
             normal: 보통
             previous: 이전 게시물
+            select_assessment_language: 평가 언어 선택
+            select_report_language: 보고서 언어 선택
             skill_rater: 스킬 평가자
             standard: 표준
             status: 상태
@@ -1007,6 +1034,7 @@ ko:
           name: 설명
           save: 설명 저장
           save_success: 설명이 성공적으로 저장되었습니다
+        enable_video_call_recording: 영상 통화 녹화 사용
         fixed_time: 고정 시간
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ ko:
         campaign_assessment_group: 캠페인 평가 그룹
         client: 클라이언트
         completion: 완료
+        custom: 사용자 지정
         delivery_at: 배송 (GST)
         delivery_delay_hours: 배송 지연(시간)
         delivery_interval: 배달 간격
@@ -1628,6 +1657,7 @@ ko:
         recipients: 수신자
         reminder: 알림
         report_available: 보고서 사용 가능
+        select_assessments: 완료 여부를 확인할 평가 선택
         selected: 선택됨
         selected_cc_recipients: 선택한 CC 수신자
         selected_recipients: 선택한 수신자
@@ -2122,6 +2152,9 @@ ko:
         remove_confirm: 템플릿을 제거하려면 아래 텍스트 상자에 현재 템플릿 이름을 입력합니다
         success: "%{idpName}이(가) 성공적으로 제거되었습니다."
       add_idp_template: IDP 템플릿 추가
+      ai_assisted_idp_enabled: AI 지원 IDP 사용
+      ai_enabled: AI 사용
+      ai_settings: AI 설정
       all: 모두
       appearance: 모양
       appearance_hint: 모양을 수정하려면 먼저 IDP 템플릿을 저장하여 이러한 설정을 활성화하세요.
@@ -2137,6 +2170,7 @@ ko:
       enter_template_name: 이름
       enter_template_name_error: 템플릿 이름은 필수입니다
       errors:
+        cannot_update_progress_plan_completed: IDP 계획이 완료되었으므로 진행 상황을 업데이트할 수 없습니다.
         update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다.
       fields:
         assigned_data: 할당된 데이터
@@ -2164,6 +2198,7 @@ ko:
       logo_type_label: 로고 유형
       no_reflection_questions_selected: 선택된 반영 문제 없음
       none: 없음
+      one_click_idp_enabled: 원클릭 IDP 사용
       reference_locale: 참조 로케일
       reflection_questions: 성찰 질문
       reflection_questions_hint: 반영 문제를 수정하려면 먼저 IDP 템플릿을 저장하여 이러한 설정을 활성화하세요.
@@ -2270,7 +2305,7 @@ ko:
     individual_invite:
       tabs:
         assessment_center: 평가 센터
-        subjects: 주제
+        invitation_status: 초대 상태
     innovation_styles:
       create:
         successfully: 혁신 스타일 %{name}을(를) 성공적으로 만들었습니다.
@@ -2399,7 +2434,9 @@ ko:
       assessment_center: '평가 센터:'
       booked_at: '예약됨:'
       column:
+        invitation_status: 초대 상태
         participant: 참가자
+        scheduling_details: 예약 세부 정보
       remove_confirm:
         content: "'%{subjectEmail}' 이메일의 제목을 제거하시겠습니까?"
         success: 이메일 '%{subjectEmail}''이 포함된 제목을 성공적으로 제거했습니다.
@@ -2407,12 +2444,15 @@ ko:
       statuses:
         accepted: 수락됨
         cancelled: 취소됨
+        late_cancelled: 늦게 취소됨
+        late_rescheduled: 늦은 일정 변경
         pending: 보류 중
         requested_cancellation: 취소 요청
         requested_cancellation_rejected: 취소 거부됨
         requested_rescheduling: 일정 변경 요청
         requested_rescheduling_rejected: 일정 변경 거부됨
         rescheduled: 일정 변경
+        scheduled: 예약됨
       subject: 제목
     job_role:
       are_you_sure_to_remove: 정말 제거하시겠습니까?
@@ -2440,8 +2480,6 @@ ko:
         expected_proficiency_level: 예상 숙련도 수준
       form:
         title: 스킬 작업 매핑
-      import:
-        taxonomy: 분류
     job_roles:
       export:
         translations:
@@ -2696,21 +2734,31 @@ ko:
         sms_contacts: SMS 연락처
         subjects: 주제
     piped_text_modal:
+      assessment_center: 평가 센터
       assessment_id: 평가 ID
       campaign_id: 캠페인 ID
       campaign_name: 캠페인 이름
       campaigns: 캠페인
+      description: 설명
+      duration: 기간
+      end_time: 종료 시간
       insight_page_link: 인사이트 페이지 링크
       insight_page_url: 인사이트 페이지 URL
+      invite_title: 제목
+      invites: 초대
       join_link: 가입 링크
       magic_link: 매직 링크
       magic_url: 매직 URL
+      platform_url_links: 플랫폼 URL 및 링크
       profile_custom_field: 프로필 사용자 지정 필드
       project_name: 프로젝트 이름
       projects: 프로젝트
       report_name: 보고서 이름
+      start_time: 시작 시간
       text: 텍스트
       title: 파이프 텍스트 추가
+      user_reports: 사용자 보고서
+      users: 사용자
     proctoring_sessions:
       columns:
         comment: 댓글
@@ -2735,7 +2783,9 @@ ko:
       errors:
         create:
           invalid_format: 레벨 정의는 정의의 배열이어야 합니다.
+          level_definition_must_exist: 레벨 정의는 비워둘 수 없습니다.
           level_definition_must_match_level: 정확히 %{expected} 레벨을 포함해야 하지만 %{actual} 레벨이 제공되었습니다.
+          level_name_must_exist: 레벨 이름은 비워둘 수 없습니다.
           must_be_unique: 고유해야 합니다.
           proficiency_level_exists: 이 스킬과 프로젝트의 숙련도 레벨이 이미 존재합니다.
           proficiency_level_exists_for_default: 기본 숙련도 레벨은 이미 종료되었습니다.
@@ -3042,6 +3092,7 @@ ko:
         dp_consent_custom: 데이터 처리 동의 사용자 지정
         dp_consent_version: 정책 버전
         errors:
+          cannot_disable_while_campaign_enabled: 이 프로젝트에서 하나 이상의 캠페인에 화상 통화 녹화가 활성화되어 있으므로 비활성화할 수 없습니다.
           policy_version_format: 정수만 허용됩니다
         mask_identity_for_examus: Examus 감독을 위한 마스크 데이터
         mask_identity_for_hogan: Hogan의 마스크 데이터
@@ -3055,6 +3106,9 @@ ko:
         privacy_link_placeholder: 개인정보 보호 링크 입력
         privacy_text: 개인 정보 텍스트
         privacy_text_placeholder: 개인정보 보호 텍스트 입력
+        video_call_recording: 영상 통화 녹화 허용
+        video_call_recording_expiry_duration: 영상 통화 녹화의 보존 기간(일 단위)
+        video_call_recording_scope: 모든 신규 캠페인에 동영상 녹화 사용
       profile_settings:
         form_fields:
           enabled: 활성화됨
@@ -3377,6 +3431,7 @@ ko:
         copy_to_all: 다른 평가 센터로 복사
         create: 만들기
         dates_label: 날짜
+        disable_cancellation_and_rescheduling: 취소 및 일정 변경 비활성화
         duration_label: 기간
         duration_max_error: 16시간을 초과할 수 없습니다
         duration_min_error: 15분 미만일 수 없습니다
@@ -3387,8 +3442,6 @@ ko:
         name_label: 이름
         next: 다음
         required_error: 필수
-        reschedule_duration_max_error: 30일을 초과할 수 없습니다
-        reschedule_duration_min_error: 1분 이상일 수 없습니다
         resources_panel:
           description: 진행자가 액세스할 수 있도록 하려는 리소스에 대한 링크를 추가합니다.
           resource_name_placeholder: 리소스 이름
@@ -3505,6 +3558,7 @@ ko:
         form_title: 평가 일정 예약
         language: 언어
         language_not_selected: 선택되지 않음
+        mark_cancel: 마크 취소
         mark_cancel_success: 이메일 %{subject_email} 주제 참여 취소.
         meeting_link_custom: 사용자 지정
         meeting_link_internal: 내부
@@ -3513,6 +3567,9 @@ ko:
         no_change: 변경 없음
         override_existing: 과목에 대한 기존 스케줄 재정의
         preworks: 사전 작업
+        re_enroll: 재등록
+        re_enroll_confirm_message: "'%{subject_email}' 이메일로 주제를 다시 등록하시겠습니까?"
+        re_enroll_success: 이메일로 주제를 재등록 <x>subject_email</x>.
         schedule: 일정
         unschedule: 일정 취소
       tabs:
@@ -3631,6 +3688,7 @@ ko:
       disable_password_reuse: 비밀번호 재사용 비활성화
       disallow_password_login: 비밀번호 로그인 허용
       enable_login_with_magic_link: 매직링크로 로그인 사용
+      enable_recaptcha: 재캡차 사용
       enforce_password_policy: 다음 로그인 시 비밀번호 정책 적용
       enforce_strong: 강력한 비밀번호 적용
       expiration: 비밀번호 만료
@@ -4108,6 +4166,21 @@ ko:
         toggle_status:
           successfully: 성공적
     threesixty_campaigns:
+      convert_action:
+        already_a_template: 이미 템플릿이 있습니다.
+        has_user_data: 템플릿으로 변환하기 전에 도구 드롭다운에서 '모든 참가자 초기화'를 클릭하여 캠페인을 수동으로 초기화하세요.
+      convert_template_modal:
+        cancel: 취소
+        confirm: 확인
+        convert:
+          success: 템플릿이 성공적으로 변환되었습니다.
+        convert_option: 이 캠페인을 템플릿으로 변환
+        copy:
+          success: 캠페인 템플릿 생성 작업이 성공적으로 예약되었습니다. 알림에서 상태를 확인하세요.
+        copy_option: 이 캠페인에서 새 템플릿 만들기
+        description: 이 캠페인에서 템플릿을 만드는 방법을 선택합니다.
+        failed: 템플릿을 만들지 못했습니다.
+        title: 템플릿으로 변환
       email_templates:
         approve_nomination:
           description: 이 메시지는 직속 상사가 작성한 지명을 승인해야 할 때 관리자에게 전송됩니다
@@ -4342,6 +4415,10 @@ ko:
       update:
         successfully: 사용자 %{name}이 업데이트되었습니다.
       user: 사용자
+    validations:
+      idp:
+        end_date_cannot_be_in_past: 종료 날짜는 과거일 수 없습니다.
+        start_date_cannot_be_in_past: 시작 날짜는 과거일 수 없습니다.
     webhook:
       connection_failure: 웹훅 URL에 연결할 수 없습니다. 웹훅 URL이 올바른지 확인하세요...
       delete_success: 웹훅 설정이 성공적으로 삭제되었습니다

@@ -85,6 +85,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   const allowCancelByUser = !!deadlineToAllowCancelByUser && currentTime.isSameOrBefore(deadlineToAllowCancelByUser)
   const allowRescheduleByUser = !!deadlineToAllowRescheduleByUser
   && currentTime.isSameOrBefore(deadlineToAllowRescheduleByUser)
+  const disableCancelAndReschedule = bookingDetails?.disableCancellationAndRescheduling
 
   useEffect(() => {
     fetchSingleBooking(inviteOrBookingId).then(({ response }) => {
@@ -240,7 +241,8 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   )
 
   const footerContent = (
-    !allowRescheduleByUser
+    !!disableCancelAndReschedule
+     && !allowRescheduleByUser
      && !allowCancelByUser
      && !bookingDetails?.allowLateCancellationAndRescheduling)
     ? null : (
@@ -255,6 +257,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
         cancelInProgress={cancelInProgress}
         allowLateCancellationAndRescheduling={bookingDetails?.allowLateCancellationAndRescheduling || false}
         allowRescheduleByUser={allowRescheduleByUser}
+        disableCancelAndReschedule={!!disableCancelAndReschedule}
       />
     )
 

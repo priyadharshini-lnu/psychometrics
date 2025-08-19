@@ -70,12 +70,12 @@
       strong.mrs = t('.subject')
       - if @available_locales.length > 1
         span.label.label-info.mrs#subject-locale-badge = @selected_locale.upcase
-      span#translated-subject = @translated_subject.presence
+      span#translated-subject dir=(Settings.rtl_languages.include?(@selected_locale) ? 'rtl' : 'ltr') style="text-align: start" = @translated_subject.presence
     li.list-group-item
       strong.mrs = t('.body')
       - if @available_locales.length > 1
         span.label.label-info.mls#body-locale-badge = @selected_locale.upcase
-      div#translated-body
+      div#translated-body dir=(Settings.rtl_languages.include?(@selected_locale) ? 'rtl' : 'ltr') style="text-align: start"
         = @translated_body.present? ? raw(Utility::SanitizeHtml.process(@translated_body)) : ""
 
 .col-md-1
@@ -83,8 +83,42 @@
 
 javascript [nonce=content_security_policy_nonce]:
   $(document).ready(function() {
+    var initialLocale = '#{@selected_locale}';
+    $('body').attr('data-locale', initialLocale);
+
     $('#show_page_locale').on('change', function() {
       var selectedLocale = $(this).val();
+
+      $('body').attr('data-locale', selectedLocale);
+      var isRtl = #{Settings.rtl_languages.to_json}.includes(selectedLocale);
+      var $subject = $('#translated-subject');
+      var $body = $('#translated-body');
+
+      if (isRtl) {
+        $subject.attr('dir', 'rtl').addClass('rtl').css({
+          'direction': 'rtl',
+          'text-align': 'start',
+          'unicode-bidi': 'embed',
+          'display': 'block'
+        });
+        $body.attr('dir', 'rtl').addClass('rtl').css({
+          'direction': 'rtl',
+          'text-align': 'start',
+          'unicode-bidi': 'embed'
+        });
+      } else {
+        $subject.attr('dir', 'ltr').removeClass('rtl').css({
+          'direction': 'ltr',
+          'text-align': 'start',
+          'unicode-bidi': 'normal',
+          'display': 'inline'
+        });
+        $body.attr('dir', 'ltr').removeClass('rtl').css({
+          'direction': 'ltr',
+          'text-align': 'start',
+          'unicode-bidi': 'normal'
+        });
+      }
 
       $.ajax({
         url: '#{administration_communication_path(@communication)}',

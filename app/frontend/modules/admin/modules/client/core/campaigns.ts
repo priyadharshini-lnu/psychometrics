@@ -27,6 +27,7 @@ const CommonPermissionsTR = t.type({
   viewAuditReports: t.union([t.boolean, t.undefined]),
   viewAssessmentsAndReports: t.union([t.boolean, t.undefined]),
   manageReportApprovalSettings: t.union([t.boolean, t.undefined]),
+  exportDashboardToFile: t.union([t.boolean, t.undefined]),
 })
 
 const ThreesixtyCampaignPermissionsTR = t.type({
@@ -38,6 +39,7 @@ const ThreesixtyCampaignPermissionsTR = t.type({
   editParticipantOptions: t.union([t.boolean, t.undefined]),
   editReportOptions: t.union([t.boolean, t.undefined]),
   manageAdmins: t.union([t.boolean, t.undefined]),
+  viewDatasheets: t.union([t.boolean, t.undefined]),
 })
 export const CampaignTR = t.intersection([
   ResourceIdentifierTR,
@@ -70,7 +72,10 @@ export const CampaignTR = t.intersection([
       t.type({
         id: t.string,
         name: t.string,
+        reportId: t.number,
+        assessmentId: t.number,
         category: t.string,
+        template: t.boolean,
         meta: t.type({
           permissions: ThreesixtyCampaignPermissionsTR,
         }),

@@ -3,10 +3,11 @@
 module Users
   class SessionsController < Devise::SessionsController
     layout 'devise'
+
+    prepend_before_action :verify_recaptcha_or_redirect, only: [:create]
     before_action :check_if_saml_is_enforced, only: [:create]
     before_action :compute_after_signout_path, only: [:destroy]
     before_action :perform_browser_check, only: [:new]
-    after_action :redirect_to_return_url, only: [:new]
     skip_before_action :ensure_user_profile_completed, only: [:destroy]
     after_action :set_user_flash_message, only: [:create]
     after_action :set_return_url_for_redirect, only: [:new]
@@ -37,15 +38,6 @@ module Users
       redirect_to(new_saml_user_session_path) if @current_project.saml_enforced?
     end
 
-    def redirect_to_return_url
-      return if flash[:timedout].blank?
-      return if params[:return_url].blank?
-
-      uri = URI.parse params[:return_url]
-      uri.query = [uri.query, 'status=session_expired'].compact.join('&')
-      redirect_to uri.to_s
-    end
-
     def after_sign_in_path_for(resource)
       flash.delete(:notice)
       resource.memberships.join_user.find_by(client_id: @current_project)&.set_user_invited_for_current_project
@@ -56,6 +48,18 @@ module Users
       @browser_detections = helpers.detect_browser(request.user_agent)
 
       redirect_to upgrade_url unless @browser_detections.supported_browser?
+    end
+
+    def verify_recaptcha_or_redirect
+      return if Settings.features.disable_recaptcha
+
+      @current_project = GetProjectBySubdomain.call!(request.subdomain)
+      return unless @current_project&.security_setting&.enable_recaptcha
+
+      unless verify_recaptcha(response: params[:recaptcha_token])
+        flash[:alert] = I18n.t('sessions.errors.recaptcha')
+        redirect_to new_user_session_path and return
+      end
     end
   end
 end

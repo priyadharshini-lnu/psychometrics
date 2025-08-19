@@ -58,7 +58,7 @@ class BaseController < ActionController::Base
     return if @current_project.nil? && request.controller_class.to_s == 'Users::SamlSessionsController'
 
     unless @current_project
-      return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}", allow_other_host: true)
+      return redirect_to root_url(subdomain: Settings.subdomain)
     end
 
     @current_client = @current_project.client
@@ -108,9 +108,9 @@ class BaseController < ActionController::Base
     skip_session_limitable = found_by == :spoof
     sign_in(user, skip_session_limitable: skip_session_limitable)
 
-    return redirect_to(url_without_spoof) if found_by == :spoof
+    return Utility::Url.redirect_to_safe_internal_url(self, url_without_spoof) if found_by == :spoof
 
-    redirect_to(url_without_jwt) if found_by == :jwt
+    Utility::Url.redirect_to_safe_internal_url(self, url_without_jwt) if found_by == :jwt
   end
 
   def send_tmp_file(file_path, options = {})

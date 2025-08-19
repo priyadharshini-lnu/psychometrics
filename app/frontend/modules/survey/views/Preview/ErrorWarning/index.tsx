@@ -5,11 +5,15 @@ import styles from './ErrorWarning.less'
 
 const { I18n } = window
 
-const ErrorWarning: FC<{}> = () => (
+type Props = {
+  message?: string
+}
+
+const ErrorWarning: FC<Props> = ({ message }) => (
   <div className={cs(styles.container)}>
     <Alert
       message="Warning"
-      description={I18n.t('frontend.error_warning')}
+      description={message || I18n.t('frontend.error_warning')}
       type="warning"
       showIcon
     />

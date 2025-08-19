@@ -3,6 +3,7 @@ import * as t from 'io-ts'
 export const WorkshopInvitedSubjectTR = t.type({
   id: t.string,
   status: t.string,
+  schedulingStatus: t.union([t.string, t.null]),
   user: t.type({
     id: t.string,
     email: t.string,

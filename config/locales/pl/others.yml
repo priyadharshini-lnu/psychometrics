@@ -819,6 +819,7 @@ pl:
         bulk_update_evaluation_status: Stan oceny aktualizacji zbiorczej
         compact_completion_status_export: Kompaktowy eksport statusu ukończenia
         completion_status_export: Eksport statusu ukończenia
+        copy_as_template_or_campaign: Kopiuj kampanię jako szablon
         copy_dimension: Kopiuj wymiar
         create_threesixty_campaign: Stwórz kampanię Threesixty
         data_report_export: Eksport raportu danych
@@ -1082,6 +1083,7 @@ pl:
         description: Ta sesja ewaluacyjna została unieważniona. Może się tak zdarzyć, jeśli kontynuujesz ocenę w osobnej karcie, przeglądarce lub urządzeniu.
         title: Ostatnie żądanie nie powiodło się
       next: Następny
+      no_skill_mapping_message: Nie wykonano mapowania umiejętności dla tego stanowiska, skontaktuj się z administratorem.
       read_only: Jest to tryb tylko do odczytu, nie można zmienić żadnych wyników.
       save: Zapisz
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ pl:
     add_group_form:
       previous_assessments_required: Oceny do uruchomienia w poniższej kolejności
       previous_group_required: Wymagane wcześniejsze ukończenie grupy
+      require_previous_groups_completion_for_booking: Wymagane ukończenie wszystkich poprzednich grup przed dokonaniem rezerwacji
     menu:
       assessment_center: Centrum oceny zintegrowanej
       assessment_center_invites: Zaproszenia do Assessment Center
@@ -1385,6 +1388,7 @@ pl:
       bulk_download: Pobieranie zbiorcze
       bulk_update_evaluation_as_done: Oznacz jako gotowe
       bulk_update_evaluation_as_undone: Odznacz jako gotowe
+      convert_to_template: Konwertuj na szablon
       download: Pobieranie raportów
       export_completion_status: Stan ukończenia eksportu
       export_external: Zewnętrzny
@@ -2189,6 +2193,7 @@ pl:
       uniq_simulation: Ta ocena symulacyjna jest już obecna w systemie. Identyfikator tej oceny to %{id}
       uniq_skillvue: Ta ocena Skillvue jest już obecna w systemie. Identyfikator tej oceny to %{id}
       update_workshop:
+        bookings_exist: Nie można zmodyfikować harmonogramu, ponieważ uczestnicy już zarezerwowali ten przedział czasowy.
         less_than_booked: Łączna liczba miejsc musi być większa niż zarezerwowana
       user_availability_date:
         overlaps_date: Nakłada się na inną dostępność %{range}
@@ -2206,6 +2211,10 @@ pl:
       workshop_subject_create:
         already_exists: Temat już istnieje w tym Assessment Center.
         part_of_other_workshop: Podmiot jest już uczestnikiem '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Brak wolnych miejsc na ten warsztat.
+        scheduling_lead_time_passed: Po upływie czasu na ustalenie harmonogramu nie można ponownie zarejestrować przedmiotu.
+        workshop_subject_not_found: Nie znaleziono tematu warsztatu
       workshops:
         no_available_assessor_slots: Brak dostępnych miejsc dla asesora %{assessor}
         no_available_manager_slots: Brak dostępnych miejsc dla menedżera %{manager}
@@ -2337,8 +2346,13 @@ pl:
       add_to_yahoo_calendar: Dodaj do kalendarza Yahoo
       assessment_center_alert:
         btn_title: Kampania
-        message_part1: Ukończ wszystkie zadania wstępne w tym
-        message_part2: przed dokonaniem rezerwacji.
+        complete_previous_groups: Ukończ wszystkie poprzednie aktywności grupowe
+        complete_preworks: Ukończ wszystkie prace wstępne
+        please_visit: Zapraszamy do odwiedzenia strony
+        requirements_message: Rezerwacji można dokonać tylko po spełnieniu następujących warunków
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: aby spełnić te wymagania.
       assessment_center_group_name: Centrum oceny
       booking_failed_msg: 'Nie udało się zarezerwować slotu: %{error}'
       buttons:
@@ -2406,6 +2420,7 @@ pl:
         remove:
           confirmation: Wprowadź aktualną nazwę kampanii podaną poniżej w polu tekstowym, aby usunąć kampanię
           success: "%{campaignName} został pomyślnie usunięty."
+          template_confirmation: 'Wprowadź nazwę bieżącego szablonu w polu poniżej, aby go usunąć. Uwaga: Spowoduje to również usunięcie powiązanego szablonu kampanii.'
       users:
         actions:
           export:
@@ -2754,6 +2769,7 @@ pl:
         required: Odpowiedź na pytanie jest wymagana
       max_words: Maksymalna liczba słów
       min_words: Min Words
+      no_reflective_questions: Żadnych refleksyjnych pytań
       title: Pytania refleksyjne
       update_failed: Wystąpił błąd podczas aktualizacji
       updated_successfully: Twoje odpowiedzi zostały pomyślnie zaktualizowane
@@ -2897,6 +2913,12 @@ pl:
     used_number: Używane licencje
     used_out_of: "%{used} z %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Wszelkie prawa zastrzeżone
+    footer:
+      regards: Pozdrawiam,
+      team_name: Zespół Lighthouse
+      technical_support: W przypadku jakichkolwiek problemów technicznych prosimy o kontakt pod adresem <x>email</x>, a my odpowiemy w ciągu 24 godzin.
     from: Przedsiębiorstwo Talentów
     idp:
       manager_unread_comments:
@@ -2954,6 +2976,8 @@ pl:
         instructions: Kliknij poniższy link, aby zalogować się do lighthouse.
         signin_link: Link do logowania
       subject: Łącze logowania do Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Twoje konto zostało wyłączone z powodu braku aktywności
       warning: Twoje konto zostanie wkrótce wyłączone z powodu braku aktywności
@@ -3270,6 +3294,9 @@ pl:
       send_password_email_success: Wiadomość e-mail wysłana do użytkownika %{email} z hasłem.
     title: Zresetuj hasło
   select: Wybrać
+  sessions:
+    errors:
+      recaptcha: Weryfikacja Recaptcha nie powiodła się. Spróbuj ponownie.
   shared:
     filters:
       clear: Wyczyść filtry

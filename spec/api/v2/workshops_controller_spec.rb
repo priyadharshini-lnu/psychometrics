@@ -213,7 +213,8 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
               scheduling_lead_time: 60,
               cancellation_lead_time: 60,
               allow_late_cancellation_and_rescheduling: false,
-              campaign_assessment_group_id: '1'
+              campaign_assessment_group_id: '1',
+              start_time: DateTime.now
             }
           }
         }
@@ -233,7 +234,8 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
                 scheduling_lead_time: 60,
                 cancellation_lead_time: 60,
                 allow_late_cancellation_and_rescheduling: false,
-                campaign_assessment_group_id: campaign_assessment_group.id.to_s
+                campaign_assessment_group_id: campaign_assessment_group.id.to_s,
+                start_time: DateTime.now
               }
             }
           }

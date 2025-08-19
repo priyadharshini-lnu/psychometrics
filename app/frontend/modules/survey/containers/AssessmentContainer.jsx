@@ -90,7 +90,7 @@ class AssessmentContainer extends Component {
           /> */}
             {type === 'preview_assessment' && <Header langs={this.langPartial} />}
             <DndProvider backend={HTML5Backend}>
-              <div translate="no" className={containerStyles.previewConainer}>
+              <div translate="no" className={containerStyles.previewContainer}>
                 {disabled && this.overlay()}
                 {!showAsSinglePage
                   && <ParallaxWrapper loading={loading} onLoaded={() => { this.setState({ loading: false }) }} />}

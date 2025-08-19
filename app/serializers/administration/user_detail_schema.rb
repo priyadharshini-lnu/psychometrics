@@ -8,7 +8,7 @@ module Administration
   class UserDetailSchema < BaseSchema
     def self.schema(_, _)
       Dry::Schema.JSON do
-        config.validate_keys = true
+        config.validate_keys = false
 
         required(:id).filled(:int?)
         required(:full_name).filled(:str?)

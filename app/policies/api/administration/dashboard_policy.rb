@@ -36,13 +36,27 @@ module Api
       end
 
       def export_file?
-        can_manage_dashboard?
+        can_export_file?
       end
 
       private
 
       def can_manage_dashboard?
         user.is?(:superadmin)
+      end
+
+      def can_export_file?
+        user.is?(:superadmin) || user.has_permission?(
+          :dashboards, :export, project_id: project_id, campaign_id: campaign_id
+        )
+      end
+
+      def project_id
+        record.try(:project)&.id || record.try(:project_id)
+      end
+
+      def campaign_id
+        record.try(:campaign_id)
       end
 
       class Scope < BasePolicy::Scope

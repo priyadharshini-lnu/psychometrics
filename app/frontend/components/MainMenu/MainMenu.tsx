@@ -7,6 +7,8 @@ import {
 } from 'antd'
 import { useMedia } from 'use-media'
 import { useLocation } from 'react-router-dom'
+import cs from 'classnames'
+
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { getFeatures } from '~/core/config'
 import { DefaultAntThemeWrapper, AccessibleMenu } from '~/glint'
@@ -47,7 +49,7 @@ const MainMenuComponent:FC<Props> = ({
   currentUser, hasSubmenu, openSubmenu, collapsed, triggerCollapse, links,
   showSubmenu, selected, features,
 }) => {
-  const isMobile = useMedia({
+  const isSmallScreen = useMedia({
     maxWidth: 1024,
   })
   const onSelect = ({ key }): ReturnType<typeof openSubmenu> | void => {
@@ -79,12 +81,12 @@ const MainMenuComponent:FC<Props> = ({
   const isMeet = location.href.match(/\/(meet)/)
   if (isMeet) return null
 
-  return isMobile
+  return isSmallScreen
     ? (
       <>
         <Button
           onClick={() => triggerCollapse()}
-          className={styles.trigger}
+          className={cs(styles.trigger, styles.mobile)}
           aria-label={collapsed ? I18n.t('frontend.aria.expand_menu') : I18n.t('frontend.aria.collapse_menu')}
           type="link"
           icon={collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}

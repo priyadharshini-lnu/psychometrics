@@ -27,6 +27,8 @@ export interface CommonCampaignPermissions {
   viewAuditReports: boolean
   viewAssessmentsAndReports: boolean
   manageReportApprovalSettings: boolean
+  convertToTemplate: boolean
+  exportDashboardToFile: boolean
 }
 
 export default interface Campaign {
@@ -43,6 +45,7 @@ export default interface Campaign {
   isThreesixty?: boolean | null
   permissions: CommonCampaignPermissions
   practiceCampaign?: boolean | null
+  isTemplate?: boolean
 }
 
 export interface Entity {
@@ -77,4 +80,5 @@ export interface CampaignOptions {
   availableDescriptionLocales: string[]
   integrationType: 'iframe' | 'ldb'
   trial: boolean
+  enableVideoCallRecording?: boolean;
 }

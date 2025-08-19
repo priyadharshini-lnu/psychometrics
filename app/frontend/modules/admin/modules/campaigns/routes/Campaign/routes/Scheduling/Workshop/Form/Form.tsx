@@ -33,6 +33,7 @@ interface BasicInfoData {
   cancellation_lead_time: number,
   scheduling_lead_time: number,
   allow_late_cancellation_and_rescheduling: boolean,
+  disable_cancellation_and_rescheduling: boolean,
   campaignAssessmentGroupId: number,
   workshop_resources: {
     key: number,
@@ -61,6 +62,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
     cancellation_lead_time: workshop?.cancellationLeadTime,
     scheduling_lead_time: workshop?.schedulingLeadTime,
     allow_late_cancellation_and_rescheduling: workshop?.allowLateCancellationAndRescheduling,
+    disable_cancellation_and_rescheduling: workshop?.disableCancellationAndRescheduling,
     campaignAssessmentGroupId: workshop?.campaignAssessmentGroupId,
   })
   const navigate = useNavigate()

@@ -124,7 +124,7 @@ export const Client: FC<Props> = ({ currentUser }) => {
     label: I18n.t('administration.breadcrumbs.settings'),
   })
 
-  menuItems.push({
+  client?.meta.permissions.viewDataReports && menuItems.push({
     key: 'data_reports',
     icon: <DatabaseOutlined />,
     label: I18n.t('administration.breadcrumbs.data_reports'),

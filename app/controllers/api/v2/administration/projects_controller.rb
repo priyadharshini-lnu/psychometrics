@@ -19,7 +19,9 @@ module Api
     end
 
     def seach_user
+      campaign_id = params[:filter][:campaign_id]
       users = User.where(project_id: project_id).filterable_fields(params[:filter][:search_query])
+      users = users.joins(:campaigns).where(campaigns: { id: campaign_id }) if campaign_id
 
       users = users.where.not(id: params[:filter][:exclude_user_id]) if params.dig(:filter, :exclude_user_id)
 

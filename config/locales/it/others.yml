@@ -819,6 +819,7 @@ it:
         bulk_update_evaluation_status: Stato di valutazione dell'aggiornamento in blocco
         compact_completion_status_export: Esporta dello stato di completamento compatto
         completion_status_export: Esporta dello stato di completamento
+        copy_as_template_or_campaign: Copiare la campagna come modello
         copy_dimension: Copiare la dimensione
         create_threesixty_campaign: Creare una campagna Threesixty
         data_report_export: Esporta di rapporti di dati
@@ -1082,6 +1083,7 @@ it:
         description: Questa sessione di valutazione è stata invalidata. Questo può accadere se si continua la valutazione in una scheda, un browser o un dispositivo diverso.
         title: Ultima richiesta fallita
       next: Avanti
+      no_skill_mapping_message: Non esiste una mappatura delle competenze per questo ruolo, contattate il vostro amministratore.
       read_only: È in modalità di sola lettura, non è possibile modificare alcun risultato.
       save: Salva
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ it:
     add_group_form:
       previous_assessments_required: Assessment da eseguire nell'ordine seguente
       previous_group_required: È richiesto un precedente completamento del gruppo
+      require_previous_groups_completion_for_booking: Richiedere il completamento di tutti i gruppi precedenti prima della prenotazione
     menu:
       assessment_center: Centro di valutazione
       assessment_center_invites: Inviti al Centro Valutazione
@@ -1381,6 +1384,7 @@ it:
       bulk_download: Scaricamento in blocco
       bulk_update_evaluation_as_done: Segna come fatto
       bulk_update_evaluation_as_undone: Deseleziona come fatto
+      convert_to_template: Convertire in modello
       download: Scarica i rapporti
       export_completion_status: Stato di completamento dell'esportazione
       export_external: Esterno
@@ -1938,6 +1942,8 @@ it:
     invalid_captcha: L'inserimento del captcha non era valido.
     invalid_security_question: La risposta alla domanda di sicurezza non è valida.
     invitations:
+      confirmation_instructions:
+        subject: Istruzioni di conferma
       edit:
         confirm_password_label: Conferma la password
         header: Impostare la password
@@ -1970,6 +1976,23 @@ it:
           client: 'Affitto cliente: %{section_name}'
           project: 'Progetto: %{section_name}'
         subject: Invito al Faro
+      invitation_removed: Il vostro invito è stato rimosso.
+      invitation_token_invalid: Il token di invito fornito non è valido!
+      mailer:
+        accept: Fare clic qui per accettare l'invito.
+        admin_invitation_instructions:
+        body: 'Ciao %{name}, Sei stato invitato ad accedere al pannello di amministrazione di Lighthouse - La piattaforma di valutazione di Talent Enterprise. %{accept} Oppure puoi tranquillamente ignorare questa e-mail. Ti preghiamo di non condividere le tue credenziali di accesso con nessuno.
+
+          '
+        copyright:
+          text: Lighthouse. Tutti i diritti riservati
+        powered_by:
+          text: Powered by Lighthouse.
+        subject: Invito al Faro
+      new:
+        header: Inviare l'invito
+        submit_button: Inviare un invito
+      no_invitations_remaining: Non ci sono inviti rimanenti
       password_change:
         body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo mte.support@mercer.com '
         regards: 'Saluti, team Lighthouse '
@@ -1980,12 +2003,15 @@ it:
         footer: Se non l'avete richiesto, potete tranquillamente ignorare questa e-mail. La vostra password non cambierà finché non accederete al link di cui sopra e ne creerete una nuova.
         regards: 'Saluti, team Lighthouse '
         subject: Istruzioni per reimpostare la password
+      send_instructions: È stata inviata un'e-mail di invito a %{email}.
       unlock_instructions:
         body: 'Salve %{name}! Il suo account è stato bloccato a causa di un numero eccessivo di tentativi di accesso non riusciti. Clicchi sul link sottostante per sbloccare il suo account: '
         footer: Se non l'avete richiesto, potete tranquillamente ignorare questa e-mail. La vostra password non cambierà finché non accederete al link di cui sopra e ne creerete una nuova.
         regards: 'Saluti, team Lighthouse '
         subject: Istruzioni per lo sblocco del conto
         unlock_account: Sbloccare il mio account
+      updated: La password è stata impostata con successo e l'accesso è stato effettuato.
+      updated_not_active: La password è stata impostata con successo.
     omniauth_callbacks:
       failure: Non è stato possibile autenticarsi da %{kind} perché "%{reason}".
       success: Autenticato con successo dall'account %{kind}.
@@ -2158,6 +2184,7 @@ it:
       uniq_simulation: Questa valutazione di simulazione è già presente nel sistema. L'ID di questa valutazione è %{id}
       uniq_skillvue: Questa valutazione Skillvue è già presente nel sistema. L'ID di questa valutazione è %{id}
       update_workshop:
+        bookings_exist: Non è possibile modificare l'orario perché i partecipanti hanno già prenotato questa fascia oraria.
         less_than_booked: I posti totali devono essere maggiori di quelli prenotati
       user_availability_date:
         overlaps_date: Si sovrappone ad un'altra disponibilità %{range}
@@ -2175,6 +2202,10 @@ it:
       workshop_subject_create:
         already_exists: Il soggetto esiste già in questo Assessment Center.
         part_of_other_workshop: Il soggetto è già un partecipante di "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: Non ci sono posti disponibili per questo workshop.
+        scheduling_lead_time_passed: Se il tempo di programmazione è scaduto, non è possibile iscrivere nuovamente il soggetto.
+        workshop_subject_not_found: Oggetto del workshop non trovato
       workshops:
         no_available_assessor_slots: Non ci sono slot disponibili per il valutatore %{assessor}
         no_available_manager_slots: Non ci sono slot disponibili per il manager %{manager}
@@ -2306,8 +2337,13 @@ it:
       add_to_yahoo_calendar: Aggiungi al calendario di Yahoo
       assessment_center_alert:
         btn_title: Campagna
-        message_part1: Completare tutti i lavori preliminari in questo
-        message_part2: prima di prenotare uno slot.
+        complete_previous_groups: Completare tutte le attività di gruppo precedenti
+        complete_preworks: Completare tutti i lavori preliminari
+        please_visit: Visitare il sito
+        requirements_message: È possibile effettuare una prenotazione solo dopo aver soddisfatto i seguenti requisiti
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: per completare questi requisiti.
       assessment_center_group_name: Centro di valutazione
       booking_failed_msg: 'Impossibile prenotare lo slot: %{error}'
       buttons:
@@ -2375,6 +2411,7 @@ it:
         remove:
           confirmation: Per rimuovere la campagna, inserire il nome attuale della campagna indicato di seguito nella casella di testo
           success: "%{campaignName} è stato rimosso con successo."
+          template_confirmation: 'Inserire il nome del modello corrente nel campo sottostante per eliminarlo. Nota: questa operazione eliminerà anche il modello di campagna collegato.'
       users:
         actions:
           export:
@@ -2729,6 +2766,7 @@ it:
         required: La risposta alla domanda è richiesta
       max_words: Parole massime
       min_words: Parole Min
+      no_reflective_questions: Nessuna domanda riflessiva
       title: Domande di riflessione
       update_failed: Si è verificato un errore durante l'aggiornamento
       updated_successfully: Le risposte sono state aggiornate con successo
@@ -2872,6 +2910,12 @@ it:
     used_number: Licenze usate
     used_out_of: "%{used} su %{total}"
   mailer:
+    copyright:
+      text: Faro. Tutti i diritti riservati
+    footer:
+      regards: Saluti,
+      team_name: Squadra del Faro
+      technical_support: Per qualsiasi problema tecnico, scriveteci a <x>email</x> e vi risponderemo entro 24 ore.
     from: L'impresa dei talenti
     idp:
       manager_unread_comments:
@@ -2929,6 +2973,8 @@ it:
         instructions: Fare clic sul link sottostante per accedere a lighthouse.
         signin_link: Link di accesso
       subject: Link di accesso per Lighthouse
+    powered_by:
+      text: Alimentato da Lighthouse.
     users:
       account_disable: L'account è stato disattivato per inattività
       warning: Il tuo account sarà presto disabilitato a causa dell'inattività
@@ -3245,6 +3291,9 @@ it:
       send_password_email_success: Email inviata all'utente %{email} con la password.
     title: Reimpostare la password
   select: Selezionare
+  sessions:
+    errors:
+      recaptcha: Verifica Recaptcha fallita. Riprovare.
   shared:
     filters:
       clear: Cancella i filtri

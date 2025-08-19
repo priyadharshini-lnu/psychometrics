@@ -230,5 +230,158 @@ RSpec.describe Administration::ImportDevelopmentActions do
         )
       end
     end
+
+    context 'with multiple comma-separated skill IDs' do
+      let!(:additional_skill) { create(:skill, project: nil) }
+
+      before do
+        stub_request(:get, file_url).
+          to_return(
+            status: 200,
+            headers: { 'Content-Type' => 'text/csv' },
+            body: <<~CSV
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
+              1,"#{global_skill.id},#{project_skill.id},#{additional_skill.id}",Multi-Skill Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31
+            CSV
+          )
+      end
+
+      it 'imports development action with multiple skills' do
+        expect { described_class.new(file, project.id).call }.not_to raise_error
+
+        development_action = DevelopmentAction.last
+
+        expect(development_action.name).to eq('Multi-Skill Workshop')
+        expect(development_action.description).to eq('Attend workshop')
+        expect(development_action.learning_style).to eq('structured_learning')
+        expect(development_action.development_action_type).to eq('course')
+        expect(development_action.project_id).to eq(project.id)
+
+        expect(development_action.skills).to include(global_skill)
+        expect(development_action.skills).to include(project_skill)
+        expect(development_action.skills).to include(additional_skill)
+        expect(development_action.skills.count).to eq(3)
+      end
+    end
+
+    context 'with multiple skill IDs with spaces' do
+      let!(:additional_skill) { create(:skill, project: nil) }
+
+      before do
+        stub_request(:get, file_url).
+          to_return(
+            status: 200,
+            headers: { 'Content-Type' => 'text/csv' },
+            body: <<~CSV
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
+              1," #{global_skill.id} , #{project_skill.id} , #{additional_skill.id} ",Spaced Skills Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31
+            CSV
+          )
+      end
+
+      it 'handles spaces around comma-separated skill IDs correctly' do
+        expect { described_class.new(file, project.id).call }.not_to raise_error
+
+        development_action = DevelopmentAction.last
+
+        expect(development_action.skills).to include(global_skill)
+        expect(development_action.skills).to include(project_skill)
+        expect(development_action.skills).to include(additional_skill)
+        expect(development_action.skills.count).to eq(3)
+      end
+    end
+
+    context 'with one non-existent skill in comma-separated list' do
+      before do
+        stub_request(:get, file_url).
+          to_return(
+            status: 200,
+            headers: { 'Content-Type' => 'text/csv' },
+            body: <<~CSV
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
+              1,"#{global_skill.id},999999,#{project_skill.id}",Mixed Skills Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31
+            CSV
+          )
+      end
+
+      it 'raises an error for the non-existent skill ID' do
+        expect { described_class.new(file, project.id).call }.to raise_error(
+          Errors::ImportError,
+          I18n.t('administration.development_action_import.errors.skill_not_found', skill_id: '999999')
+        )
+      end
+    end
+
+    context 'with empty skill IDs in comma-separated list' do
+      before do
+        stub_request(:get, file_url).
+          to_return(
+            status: 200,
+            headers: { 'Content-Type' => 'text/csv' },
+            body: <<~CSV
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
+              1,"#{global_skill.id},,#{project_skill.id}",Workshop with Empty Skill,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31
+            CSV
+          )
+      end
+
+      it 'ignores empty skill IDs and processes valid ones' do
+        expect { described_class.new(file, project.id).call }.not_to raise_error
+
+        development_action = DevelopmentAction.last
+
+        expect(development_action.skills).to include(global_skill)
+        expect(development_action.skills).to include(project_skill)
+        expect(development_action.skills.count).to eq(2)
+      end
+    end
+
+    context 'with single skill ID (backward compatibility)' do
+      before do
+        stub_request(:get, file_url).
+          to_return(
+            status: 200,
+            headers: { 'Content-Type' => 'text/csv' },
+            body: <<~CSV
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
+              1,#{global_skill.id},Single Skill Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31
+            CSV
+          )
+      end
+
+      it 'still works with single skill ID for backward compatibility' do
+        expect { described_class.new(file, project.id).call }.not_to raise_error
+
+        development_action = DevelopmentAction.last
+
+        expect(development_action.name).to eq('Single Skill Workshop')
+        expect(development_action.skills).to include(global_skill)
+        expect(development_action.skills.count).to eq(1)
+      end
+    end
+
+    context 'with duplicate skill IDs in comma-separated list' do
+      before do
+        stub_request(:get, file_url).
+          to_return(
+            status: 200,
+            headers: { 'Content-Type' => 'text/csv' },
+            body: <<~CSV
+              ID,SkillID,Name,Description,Type,DevelopmentActionType,CourseURL,CourseStartDate,CourseEndDate
+              1,"#{global_skill.id},#{global_skill.id},#{project_skill.id}",Duplicate Skills Workshop,Attend workshop,structured_learning,course,https://example.com/course,2025-01-01,2025-12-31
+            CSV
+          )
+      end
+
+      it 'handles duplicate skill IDs without creating duplicate associations' do
+        expect { described_class.new(file, project.id).call }.not_to raise_error
+
+        development_action = DevelopmentAction.last
+
+        expect(development_action.skills).to include(global_skill)
+        expect(development_action.skills).to include(project_skill)
+        expect(development_action.skills.count).to eq(2)
+      end
+    end
   end
 end

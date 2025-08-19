@@ -38,6 +38,7 @@ import UploadFileModal from './AssessmentsReports/UploadFileModal'
 import { getFeatures } from '~/core/config'
 import CreateHoganCredentialsModal from './CreateHoganCredentialsModal'
 import ReportsLanguageSelectionModal from '~/modules/admin/components/ReportsLanguageSelectionModal'
+import DownloadIndividualReportModal from '~/components/DownloadIndividualReportModal'
 
 const { I18n } = window
 
@@ -52,6 +53,7 @@ const MODALS = {
   UploadFileModal,
   CreateHoganCredentialsModal,
   ReportsLanguageSelectionModal,
+  DownloadIndividualReportModal,
 }
 
 export const connecter = connect(
@@ -263,6 +265,7 @@ export const UserDetails: React.FC<Props> = ({
                 <EditOutlined
                   onClick={() => openModal('AssignManagerFormModal', {
                     projectId,
+                    campaignId: parsedCampaignId,
                     userId,
                     manager: user.manager,
                   })

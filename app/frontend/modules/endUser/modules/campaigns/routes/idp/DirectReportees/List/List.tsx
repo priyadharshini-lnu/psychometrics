@@ -1,5 +1,5 @@
 import {
-  FC, useEffect, useCallback,
+  FC, useEffect, useCallback, useState,
 } from 'react'
 import {
   Typography, Avatar, Table, Tag,
@@ -101,6 +101,7 @@ export const Component: FC<PropsFromRedux> = ({
   fetchDirectReportees,
 }) => {
   const [searchParams, setSearchParams] = useSearchParams()
+  const [isLoading, setIsLoading] = useState(false)
   const page = parseInt(searchParams.get('page') || '1', 10)
 
   const handleTableChange = useCallback((pagination) => {
@@ -109,7 +110,10 @@ export const Component: FC<PropsFromRedux> = ({
   }, [fetchDirectReportees, setSearchParams])
 
   useEffect(() => {
-    fetchDirectReportees({ page, pageSize: DEFAULT_PAGE_SIZE })
+    setIsLoading(true)
+    fetchDirectReportees({ page, pageSize: DEFAULT_PAGE_SIZE }).then(() => {
+      setIsLoading(false)
+    })
   }, [fetchDirectReportees, page])
 
   return (
@@ -137,6 +141,7 @@ export const Component: FC<PropsFromRedux> = ({
                 total: directReporteesTotalCount,
                 hideOnSinglePage: true,
               }}
+              loading={isLoading}
               onChange={handleTableChange}
               rowKey={item => item.user.id}
             />

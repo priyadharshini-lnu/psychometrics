@@ -15,6 +15,8 @@ en:
       title: Audited Changes
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha verification failed
         new:
           forgot_password: Forgot your password?
           instruction: Please login with your personal account information
@@ -147,6 +149,7 @@ en:
             accesssheet_manage: Accesssheet Manage
             accesssheet_settings: Accesssheet Settings
             accesssheet_view: Accesssheet View
+            export: Export
             title: Dashboards
             view: View
           datasheets:
@@ -179,7 +182,7 @@ en:
             manage: Manage
             title: Job Roles
             view: View
-          mediaLibraries:
+          libraries:
             manage: Manage
             title: Media Libraries
             view: View
@@ -290,18 +293,33 @@ en:
             view: View
     ai_assistants:
       actions:
+        create: Create AI Assistant
+        edit: Edit AI Assistant
         playground: Playground
       ai_assistants: AI Assistants
       ai_assistants_playground: AI Assistant Playground
       column:
         provider: Provider
+      created_successfully: AI Assistant was created successfully.
       form:
+        add_output_schema_key: Add Output Schema Key
+        dependencies: Dependencies
         description: Description
+        enter_description: Enter Description
+        enter_schema_key: Enter Schema Key
+        key: Key
         name: Name
+        output_schema_keys: Output Schema Keys
         provider: Provider
+        remove_output_schema_key: Remove Output Schema Key
+        schema_key_description_required: Schema Key Description is required
+        schema_key_required: Schema Key is required
+        schema_key_type: Key Type
+        schema_key_unique: Schema Keys should be unique
         system_prompt: System Prompt
-        title: AI Assistant
+        type: Type
         user_prompt: User Prompt
+      updated_successfully: AI Assistant was updated successfully.
     any: " - Any - "
     api:
       campaigns:
@@ -767,6 +785,8 @@ en:
       new:
         header: Bulk Download
       reports_unavailable: At the moment, no reports are available to download. Please confirm that the reports you want to download are available.
+      select_users_for_download: Please select at least one user to download reports.
+      select_users_for_regenerate: Please select at least one user to regenerate reports.
     cable:
       notification:
         assessment_factors: Factors are fetched
@@ -856,6 +876,7 @@ en:
       campaign_templates: Campaign Templates
       column:
         assessment: Assessment
+        campaign: Campaign
         owner: Owner
         report: Report
       copy:
@@ -930,6 +951,7 @@ en:
       assessors:
         spoof:
           successfully: You was successfully login as %{name}
+      convert_to_template: Convert to Template
       copy: Copy
       delete: Delete
       edit: Edit
@@ -955,6 +977,7 @@ en:
         name: Name
         reports: Reports
         status: Status
+        template: Template
         type: Type
       menus:
         add_common_campaign: Add Common Campaign
@@ -970,11 +993,15 @@ en:
             assessment: Assessment
             category: Category
             closed: Closed
+            default_assessment_language: Assessment default language
+            default_report_language: Report default language
             empty: Empty
             inactive: Inactive
             name: Name
             normal: Normal
             previous: Previous
+            select_assessment_language: Select assessment language
+            select_report_language: Select report language
             skill_rater: Skill Rater
             standard: Standard
             status: Status
@@ -1007,6 +1034,7 @@ en:
           name: Description
           save: Save Description
           save_success: Description saved successfully
+        enable_video_call_recording: Enable Video Call Recording
         fixed_time: Fixed Time
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ en:
         campaign_assessment_group: Campaign Assessment Group
         client: Client
         completion: Completion
+        custom: Custom
         delivery_at: Delivery at (GST)
         delivery_delay_hours: Delivery delay (hours)
         delivery_interval: Delivery Interval
@@ -1628,6 +1657,7 @@ en:
         recipients: Recipients
         reminder: Reminder
         report_available: Report Available
+        select_assessments: Choose which assessments to check for completion
         selected: Selected
         selected_cc_recipients: Selected CC Recipients
         selected_recipients: Selected Recipients
@@ -2122,6 +2152,9 @@ en:
         remove_confirm: Enter current template name given below in text box to remove template
         success: "%{idpName} was removed successfully."
       add_idp_template: Add IDP Template
+      ai_assisted_idp_enabled: AI Assisted IDP Enabled
+      ai_enabled: AI Enabled
+      ai_settings: AI Settings
       all: All
       appearance: Appearance
       appearance_hint: To modify the appearance, please save the IDP template first to enable these settings.
@@ -2137,6 +2170,7 @@ en:
       enter_template_name: Name
       enter_template_name_error: Template name is required
       errors:
+        cannot_update_progress_plan_completed: Cannot update progress because the IDP plan has been completed
         update: Update not allowed because the IDP template is already associated with a user IDP plan.
       fields:
         assigned_data: Assigned Data
@@ -2164,6 +2198,7 @@ en:
       logo_type_label: Logo Type
       no_reflection_questions_selected: No Reflection Questions selected
       none: None
+      one_click_idp_enabled: One Click IDP Enabled
       reference_locale: Reference Locale
       reflection_questions: Reflection Questions
       reflection_questions_hint: To modify the reflection questions, please save the IDP template first to enable these settings.
@@ -2270,7 +2305,7 @@ en:
     individual_invite:
       tabs:
         assessment_center: Assessment Center
-        subjects: Subjects
+        invitation_status: Invitation Status
     innovation_styles:
       create:
         successfully: Innovation Style %{name} was created successfully.
@@ -2399,7 +2434,9 @@ en:
       assessment_center: 'Assessment center:'
       booked_at: 'Booked At:'
       column:
+        invitation_status: Invitation Status
         participant: Participant
+        scheduling_details: Scheduling Details
       remove_confirm:
         content: Are you sure you want to remove the subject with email '%{subjectEmail}'?
         success: Subject with email '%{subjectEmail}'' was successfully removed.
@@ -2407,12 +2444,15 @@ en:
       statuses:
         accepted: Accepted
         cancelled: Cancelled
+        late_cancelled: Late Cancelled
+        late_rescheduled: Late Rescheduled
         pending: Pending
         requested_cancellation: Requested Cancellation
         requested_cancellation_rejected: Cancellation Rejected
         requested_rescheduling: Requested Rescheduling
         requested_rescheduling_rejected: Rescheduling Rejected
         rescheduled: Rescheduled
+        scheduled: Scheduled
       subject: Subject
     job_role:
       are_you_sure_to_remove: Are you sure to remove?
@@ -2440,8 +2480,6 @@ en:
         expected_proficiency_level: Expected Proficiency Level
       form:
         title: Skill Job Mapping
-      import:
-        taxonomy: Skills Taxonomy
     job_roles:
       export:
         translations:
@@ -2696,21 +2734,31 @@ en:
         sms_contacts: SMS Contacts
         subjects: Subjects
     piped_text_modal:
+      assessment_center: Assessment Center
       assessment_id: Assessment ID
       campaign_id: Campaign ID
       campaign_name: Campaign Name
       campaigns: Campaigns
+      description: Description
+      duration: Duration
+      end_time: End time
       insight_page_link: Insight Page Link
       insight_page_url: Insight Page URL
+      invite_title: Title
+      invites: Invites
       join_link: Join Link
       magic_link: Magic Link
       magic_url: Magic URL
+      platform_url_links: Platform Url and Links
       profile_custom_field: Profile Custom Field
       project_name: Project Name
       projects: Projects
       report_name: Report Name
+      start_time: Start time
       text: Text
       title: Add Piped Text
+      user_reports: User Reports
+      users: Users
     proctoring_sessions:
       columns:
         comment: Comment
@@ -2735,7 +2783,9 @@ en:
       errors:
         create:
           invalid_format: Level definition must be an array of definitions.
+          level_definition_must_exist: Level definition can't be blank
           level_definition_must_match_level: must contain exactly %{expected} levels, but %{actual} were given
+          level_name_must_exist: Level name can't be blank
           must_be_unique: Must be unique
           proficiency_level_exists: A Proficiency Level with this skill and project already exists
           proficiency_level_exists_for_default: A Proficiency Level for default already exits
@@ -3042,6 +3092,7 @@ en:
         dp_consent_custom: Customise Data Processing consent
         dp_consent_version: Policy Version
         errors:
+          cannot_disable_while_campaign_enabled: Can not disable video call recording because it is enabled for one or more campaigns in this project
           policy_version_format: Only whole numbers are allowed
         mask_identity_for_examus: Mask data for Examus Proctoring
         mask_identity_for_hogan: Mask data for Hogan
@@ -3055,6 +3106,9 @@ en:
         privacy_link_placeholder: Enter Privacy Link
         privacy_text: Privacy Text
         privacy_text_placeholder: Enter Privacy Text
+        video_call_recording: Allow video call recording
+        video_call_recording_expiry_duration: Retention period for video call recordings (in days)
+        video_call_recording_scope: Enable video recording for all new campaigns
       profile_settings:
         form_fields:
           enabled: Enabled
@@ -3377,6 +3431,7 @@ en:
         copy_to_all: Copy to other Assessment Centers
         create: Create
         dates_label: Dates
+        disable_cancellation_and_rescheduling: Disable cancellation and rescheduling
         duration_label: Duration
         duration_max_error: Cannot be greater than 16 hours
         duration_min_error: Cannot be less than 15 minutes
@@ -3387,8 +3442,6 @@ en:
         name_label: Name
         next: Next
         required_error: Required
-        reschedule_duration_max_error: Cannot be greater than 30 days
-        reschedule_duration_min_error: Cannot be less than 1 minute
         resources_panel:
           description: Add the links to any resources you would like the facilitators to have access to.
           resource_name_placeholder: Resource Name
@@ -3505,6 +3558,7 @@ en:
         form_title: Schedule Assessments
         language: Language
         language_not_selected: Not Selected
+        mark_cancel: Mark Cancel
         mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
         meeting_link_custom: Custom
         meeting_link_internal: Internal
@@ -3513,6 +3567,9 @@ en:
         no_change: No Change
         override_existing: Override existing schedules for subjects
         preworks: Prework
+        re_enroll: Re-Enroll
+        re_enroll_confirm_message: Are you sure you want to re-enroll the subject with the email '%{subject_email}'?
+        re_enroll_success: Re-enrolled subject with email %{subject_email}.
         schedule: Schedule
         unschedule: Unschedule
       tabs:
@@ -3631,6 +3688,7 @@ en:
       disable_password_reuse: Disable password reuse
       disallow_password_login: Disallow password login
       enable_login_with_magic_link: Enable Login with magic link
+      enable_recaptcha: Enable reCAPTCHA
       enforce_password_policy: Enforce password policy at next sign-in
       enforce_strong: Enforce strong password
       expiration: Password expiration
@@ -4108,6 +4166,21 @@ en:
         toggle_status:
           successfully: Successfully
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Already a template
+        has_user_data: Please manually reset the campaign by clicking "Reset all participants" from the Tools dropdown before converting to a template.
+      convert_template_modal:
+        cancel: Cancel
+        confirm: Confirm
+        convert:
+          success: Template successfully converted
+        convert_option: Convert this campaign into a template
+        copy:
+          success: Campaign template creation job was scheduled successfully, please check your notifications for status.
+        copy_option: Create a new template from this campaign
+        description: Choose how you want to create a template from this campaign.
+        failed: Template creation failed.
+        title: Convert to Template
       email_templates:
         approve_nomination:
           description: This message is sent to a manager when a nomination, made by a direct report, needs to be approved
@@ -4342,6 +4415,10 @@ en:
       update:
         successfully: User %{name} was updated successfully.
       user: User
+    validations:
+      idp:
+        end_date_cannot_be_in_past: End date cannot be in the past
+        start_date_cannot_be_in_past: Start date cannot be in the past
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
       delete_success: Webhook settings was deleted successfully

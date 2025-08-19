@@ -20,7 +20,7 @@ module Threesixty
       def reports
         Panko::ArraySerializer.new(
           user_reports,
-          each_serializer: Threesixty::UserReportSerializer,
+          each_serializer: Threesixty::EndUser::ShortUserReportSerializer,
           context: {
             current_user: current_user,
             current_option: current_option,

@@ -107,6 +107,8 @@ function CreateSubjectModal ({
   } = useResources(`job_roles?project_id=${projectId}`)
 
   useEffect(() => {
+    if (!isSkillRater) return
+
     fetchJobRoles()
   }, [])
   const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled

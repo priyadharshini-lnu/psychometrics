@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
 import Editor from '~/components/Editor'
+import InputDuration from '~/components/InputDuration'
 import {
   ProjectPrivacySettings as PrivacySettingsType, ProjectPrivacySettingsTR,
 } from '~/modules/admin/modules/client/projectPrivacySettings'
@@ -24,6 +25,7 @@ export const Privacy: React.FC = () => {
 
   const enablePrivacyLink = Form.useWatch('enablePrivacyLink', form)
   const enableCustomPolicy = Form.useWatch('customPrivacyConsent', form)
+  const allowVideoCallRecording = Form.useWatch('allowVideoCallRecording', form)
 
   const {
     data, fetch, updateResource, isLoading,
@@ -231,6 +233,34 @@ export const Privacy: React.FC = () => {
               >
                 <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_skillvue')}</Checkbox>
               </Form.Item>
+              <Form.Item name="allowVideoCallRecording" valuePropName="checked">
+                <Checkbox>
+                  {I18n.t('administration.projects.privacy_settings.video_call_recording')}
+                </Checkbox>
+              </Form.Item>
+              {
+                allowVideoCallRecording && (
+                  <div style={{ marginLeft: 32 }}>
+                    <Form.Item
+                      name="enableVideoCallRecordingForAllNewCampaigns"
+                      valuePropName="checked"
+                    >
+                      <Checkbox>
+                        {I18n.t('administration.projects.privacy_settings.video_call_recording_scope')}
+                      </Checkbox>
+                    </Form.Item>
+                    <Form.Item
+                      name="videoCallRecordingExpiryInSeconds"
+                      label={I18n.t('administration.projects.privacy_settings.video_call_recording_expiry_duration')}
+                      rules={[
+                        { required: true },
+                      ]}
+                    >
+                      <InputDuration placeholder={I18n.t('administration.components.input_duration.placeholder')} />
+                    </Form.Item>
+                  </div>
+                )
+              }
               <Button
                 type="primary"
                 htmlType="submit"

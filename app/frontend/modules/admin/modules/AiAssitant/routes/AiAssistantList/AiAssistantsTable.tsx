@@ -11,10 +11,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 
-type Props = {
-  openModal: (aiAssistant?: AiAssistant) => void
-}
-export const AiAssistantsTable: React.FC<Props> = ({ openModal }) => (
+export const AiAssistantsTable = () => (
   <Resource.Table pagination>
     <Resource.Column<AiAssistant>
       title={I18n.t('common.column.id')}
@@ -105,7 +102,6 @@ export const AiAssistantsTable: React.FC<Props> = ({ openModal }) => (
       render={(_, aiAssistant) => (
         <Dropdown
           aiAssistant={aiAssistant}
-          openModal={openModal}
         />
       )}
       width={100}
@@ -115,20 +111,18 @@ export const AiAssistantsTable: React.FC<Props> = ({ openModal }) => (
 
 type DropDownProps = {
   aiAssistant: AiAssistant,
-    openModal: Props['openModal']
 }
-const Dropdown: React.FC<DropDownProps> = ({ aiAssistant, openModal }) => (
+const Dropdown: React.FC<DropDownProps> = ({ aiAssistant }) => (
   <ConditionalDropdown
-    menu={getActionsMenuProps({ aiAssistant, openModal })}
+    menu={getActionsMenuProps({ aiAssistant })}
   />
 )
 
 interface ActionMenuData {
   aiAssistant: AiAssistant,
-  openModal: Props['openModal']
 }
 
-const getActionsMenuProps = ({ aiAssistant, openModal }: ActionMenuData):MenuProps => {
+const getActionsMenuProps = ({ aiAssistant }: ActionMenuData):MenuProps => {
   const { resource } = useResourceContext<AiAssistant>()
   const navigate = useNavigate()
 
@@ -142,7 +136,7 @@ const getActionsMenuProps = ({ aiAssistant, openModal }: ActionMenuData):MenuPro
       label: (
         <Button
           type="link"
-          onClick={() => openModal(aiAssistant)}
+          onClick={() => navigate(`${aiAssistant.id}/edit/`)}
           className="ps-0"
         >
           {I18n.t('common.actions.edit')}

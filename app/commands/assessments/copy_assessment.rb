@@ -10,7 +10,8 @@ module Assessments
       @assessment = Assessment.includes(blocks: {
         questions: %i[factors_scorings question_recodings translations]
       }).find(assessment_id)
-      @owner_id = owner_id || @assessment.owner_id
+
+      @owner_id = owner_id
       @current_user = current_user
       @blocks_mapping = {}
       @questions_to_copy = questions_to_copy

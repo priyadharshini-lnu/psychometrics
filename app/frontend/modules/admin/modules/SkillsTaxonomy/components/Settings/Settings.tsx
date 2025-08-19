@@ -5,29 +5,19 @@ import { getFeatures } from '~/core/config'
 import { RootState } from '~/core/reducers'
 import { Tabs } from '../Tabs'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
-import { SettingsHeader } from './SettingsHeader'
-import { openModal } from '~/modules/admin/core/ui/modals'
-import Modals from '~/modules/admin/components/Modals'
-import { TaxonomyImportModal } from './TaxonomyImportModal'
-
-const MODALS = {
-  TaxonomyImportModal,
-}
+import { TaxonomyImport } from './TaxonomyImport'
 
 const connecter = connect(
   (state: RootState) => ({
     features: getFeatures(state),
   }),
-  {
-    openModal,
-  },
 )
 
 type PropsFromRedux = ConnectedProps<typeof connecter>
 
 const { I18n } = window
 
-const Settings: React.FC<PropsFromRedux> = ({ features, openModal }) => {
+const Settings: React.FC<PropsFromRedux> = ({ features }) => {
   const { projectId } = useParams()
 
   return (
@@ -46,8 +36,7 @@ const Settings: React.FC<PropsFromRedux> = ({ features, openModal }) => {
         />
       )}
       { !projectId && <Tabs featureFlags={features} />}
-      <SettingsHeader openModal={openModal} />
-      <Modals modals={MODALS} />
+      <TaxonomyImport />
     </>
   )
 }

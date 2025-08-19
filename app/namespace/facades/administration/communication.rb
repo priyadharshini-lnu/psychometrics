@@ -8,6 +8,8 @@ module Facades
 
       include EmailDelivery
 
+      delegate :assessment_selection, to: :form
+
       def initialize(current_user, communication)
         @form = ::Forms::Communications::Simple.new(communication)
         @form.prepopulate!(current_user: current_user)
@@ -129,6 +131,14 @@ module Facades
 
       def reminder_types
         [%w[Timeframes timeframes], %w[Custom custom]]
+      end
+
+      def show_assessment_selection?
+        form.delivery_rule == 'not_competed' && form.kind == 'reminder'
+      end
+
+      def show_assessment_multiselect?
+        show_assessment_selection? && form.assessment_selection == 'selected'
       end
 
       private

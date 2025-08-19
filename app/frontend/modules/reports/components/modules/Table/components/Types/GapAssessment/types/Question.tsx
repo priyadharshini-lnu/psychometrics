@@ -241,6 +241,7 @@ const QuestionTypeComponent: FC<Props> = ({
 
   const showTitle = gapType === GapType.ALL
   const styleProp = { fontSize: style?.fontSize, fontFamily: style?.fontFamily, color: style?.fontColor }
+  const headerStyleProp = { color: styleProp.color }
 
   return (
     <div className={cs(styles.table, styles[tableStyle])} style={styleProp}>
@@ -257,6 +258,7 @@ const QuestionTypeComponent: FC<Props> = ({
                 hideRightFilter={hideRightFilter}
                 hideValues={hideValues}
                 columnsHeaderData={columnsHeaderData}
+                headerStyleProp={headerStyleProp}
               />
               <TBody
                 gaps={positiveGaps}
@@ -283,6 +285,7 @@ const QuestionTypeComponent: FC<Props> = ({
                 hideRightFilter={hideRightFilter}
                 hideValues={hideValues}
                 columnsHeaderData={columnsHeaderData}
+                headerStyleProp={headerStyleProp}
               />
               <TBody
                 gaps={negativeGaps}
@@ -411,10 +414,11 @@ interface THeaderProps {
   hideRightFilter: boolean | null
   hideValues: boolean
   columnsHeaderData: ColumnsHeaderData
+  headerStyleProp: CSSProperties
 }
 
 const THeader: FC<THeaderProps> = ({
-  title, leftFilter, rightFilter, hideLeftFilter, hideRightFilter, hideValues, columnsHeaderData,
+  title, leftFilter, rightFilter, hideLeftFilter, hideRightFilter, hideValues, columnsHeaderData, headerStyleProp,
 }) => (
   <>
     {title.length !== 0 && (
@@ -424,7 +428,7 @@ const THeader: FC<THeaderProps> = ({
         </th>
       </tr>
     )}
-    <tr className={styles.headers} data-header>
+    <tr className={styles.headers} style={headerStyleProp} data-header>
       {!columnsHeaderData.rank.hide && (
         <th className={styles.label}>
           {columnsHeaderData.rank.label}

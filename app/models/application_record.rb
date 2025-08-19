@@ -27,4 +27,9 @@ class ApplicationRecord < ActiveRecord::Base
   def self.read_from_replica(&)
     connected_to(role: :reading, prevent_writes: true, &)
   end
+
+  def psy_debug
+    klass = "PsyDebug::#{self.class.name}".safe_constantize || PsyDebug::Base
+    klass.new(self)
+  end
 end

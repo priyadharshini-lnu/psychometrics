@@ -15,6 +15,8 @@ fr:
       title: Changements audités
     administrator:
       sessions:
+        errors:
+          recaptcha: La vérification du Recaptcha a échoué
         new:
           forgot_password: Vous avez oublié votre mot de passe ?
           instruction: Veuillez vous connecter avec les informations de votre compte personnel
@@ -37,7 +39,7 @@ fr:
           last_name_required: Le nom de famille est obligatoire
           no_edit_permission: Vous n'avez pas la permission de modifier l'admin '%{name}'
           save: Économiser
-          update: Mise à jour
+          update: Mettre à jour
           update_success: L'administrateur '%{name}' a été mis à jour avec succès
         notes:
           threesixty_permission: Permissions spécifiques aux campagnes 360
@@ -147,6 +149,7 @@ fr:
             accesssheet_manage: Feuille d'accès Gérer
             accesssheet_settings: Paramètres de la feuille d'accès
             accesssheet_view: Vue de la feuille d'accès
+            export: Exportation
             title: Tableaux de bord
             view: Voir
           datasheets:
@@ -179,7 +182,7 @@ fr:
             manage: Gérer
             title: Rôles professionnels
             view: Voir
-          mediaLibraries:
+          libraries:
             manage: Gérer
             title: Bibliothèques des médias
             view: Voir
@@ -290,18 +293,33 @@ fr:
             view: Voir
     ai_assistants:
       actions:
+        create: Créer un assistant IA
+        edit: Modifier l'assistant IA
         playground: Terrain de jeux
       ai_assistants: Assistants IA
       ai_assistants_playground: Terrain de jeu de l'assistant IA
       column:
         provider: Fournisseur
+      created_successfully: L'assistant AI a été créé avec succès.
       form:
+        add_output_schema_key: Ajouter une clé de schéma de sortie
+        dependencies: Dépendances
         description: Description
+        enter_description: Saisir la description
+        enter_schema_key: Saisir la clé de schéma
+        key: Clé
         name: Nom
+        output_schema_keys: Clés du schéma de sortie
         provider: Fournisseur
+        remove_output_schema_key: Supprimer la clé de schéma de sortie
+        schema_key_description_required: La description de la clé de schéma est obligatoire
+        schema_key_required: La clé de schéma est requise
+        schema_key_type: Type de clé
+        schema_key_unique: Les clés de schéma doivent être uniques
         system_prompt: Invite du système
-        title: Assistant IA
+        type: Type
         user_prompt: Invite de l'utilisateur
+      updated_successfully: L'assistant AI a été mis à jour avec succès.
     any: " - Tous - "
     api:
       campaigns:
@@ -767,6 +785,8 @@ fr:
       new:
         header: Téléchargement en masse
       reports_unavailable: Pour le moment, aucun rapport n'est disponible au téléchargement. Veuillez confirmer que les rapports que vous souhaitez télécharger sont disponibles.
+      select_users_for_download: Veuillez sélectionner au moins un utilisateur pour télécharger des rapports.
+      select_users_for_regenerate: Veuillez sélectionner au moins un utilisateur pour régénérer les rapports.
     cable:
       notification:
         assessment_factors: Les facteurs sont recherchés
@@ -856,6 +876,7 @@ fr:
       campaign_templates: Modèles de campagne
       column:
         assessment: L'évaluation
+        campaign: Campagne
         owner: Propriétaire
         report: Rapport
       copy:
@@ -930,6 +951,7 @@ fr:
       assessors:
         spoof:
           successfully: Vous vous êtes connecté avec succès en tant que %{name}
+      convert_to_template: Convertir en modèle
       copy: Copie
       delete: Supprimer
       edit: Editer
@@ -955,6 +977,7 @@ fr:
         name: Nom
         reports: Rapports
         status: Statut
+        template: Modèle
         type: Type
       menus:
         add_common_campaign: Ajouter une campagne commune
@@ -970,11 +993,15 @@ fr:
             assessment: L'évaluation
             category: Catégorie
             closed: Fermé
+            default_assessment_language: Langue par défaut de l'évaluation
+            default_report_language: Langue par défaut du rapport
             empty: Vide
             inactive: Inactif
             name: Nom
             normal: Normal
             previous: Précédent
+            select_assessment_language: Sélectionner la langue d'évaluation
+            select_report_language: Sélectionner la langue du rapport
             skill_rater: Évaluateur de compétences
             standard: Standard
             status: Statut
@@ -1007,6 +1034,7 @@ fr:
           name: Description
           save: Enregistrer la description
           save_success: Description enregistrée avec succès
+        enable_video_call_recording: Activer l'enregistrement des appels vidéo
         fixed_time: Temps fixe
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ fr:
         campaign_assessment_group: Groupe d'évaluation de la campagne
         client: Client
         completion: Achèvement
+        custom: Sur mesure
         delivery_at: Livraison à (GST)
         delivery_delay_hours: Délai de livraison (heures)
         delivery_interval: Intervalle de livraison
@@ -1628,6 +1657,7 @@ fr:
         recipients: Bénéficiaires
         reminder: Rappel
         report_available: Rapport disponible
+        select_assessments: Choisir les évaluations dont l'achèvement doit être vérifié
         selected: Sélectionné
         selected_cc_recipients: Bénéficiaires de la CC sélectionnés
         selected_recipients: Bénéficiaires sélectionnés
@@ -2122,6 +2152,9 @@ fr:
         remove_confirm: Saisir le nom du modèle actuel indiqué ci-dessous dans la zone de texte pour supprimer le modèle
         success: "%{idpName} a été supprimé avec succès."
       add_idp_template: Ajouter un modèle de PDI
+      ai_assisted_idp_enabled: Assistée par l'IA et activée par l'IDP
+      ai_enabled: L'IA est activée
+      ai_settings: Paramètres de l'IA
       all: Tous
       appearance: Apparence
       appearance_hint: Pour modifier l'apparence, veuillez d'abord enregistrer le modèle IDP afin d'activer ces paramètres.
@@ -2137,6 +2170,7 @@ fr:
       enter_template_name: Nom
       enter_template_name_error: Le nom du modèle est obligatoire
       errors:
+        cannot_update_progress_plan_completed: Impossible de mettre à jour l'état d'avancement car le plan IDP a été achevé.
         update: La mise à jour n'est pas autorisée car le modèle IDP est déjà associé à un plan IDP utilisateur.
       fields:
         assigned_data: Données attribuées
@@ -2164,6 +2198,7 @@ fr:
       logo_type_label: Type de logo
       no_reflection_questions_selected: Aucune question de réflexion sélectionnée
       none: Aucun
+      one_click_idp_enabled: IDP en un clic activé
       reference_locale: Paramètres régionaux de référence
       reflection_questions: Questions de réflexion
       reflection_questions_hint: Pour modifier les questions de réflexion, veuillez d'abord enregistrer le modèle IDP afin d'activer ces paramètres.
@@ -2270,7 +2305,7 @@ fr:
     individual_invite:
       tabs:
         assessment_center: Centre d'évaluation
-        subjects: Thèmes
+        invitation_status: Statut de l'invitation
     innovation_styles:
       create:
         successfully: Le style d'innovation %{name} a été créé avec succès.
@@ -2399,7 +2434,9 @@ fr:
       assessment_center: 'Centre d''évaluation :'
       booked_at: 'Réservé à :'
       column:
+        invitation_status: Statut de l'invitation
         participant: Participant
+        scheduling_details: Détails de la programmation
       remove_confirm:
         content: Êtes-vous sûr de vouloir supprimer l'objet avec l'e-mail "%{subjectEmail}" ?
         success: Le sujet avec l'email '%{subjectEmail}'' a été supprimé avec succès.
@@ -2407,12 +2444,15 @@ fr:
       statuses:
         accepted: Accepté
         cancelled: Annulé
+        late_cancelled: Annulé tardivement
+        late_rescheduled: Retard Reprogrammé
         pending: En attente
         requested_cancellation: Annulation demandée
         requested_cancellation_rejected: Annulation Rejetée
         requested_rescheduling: Report demandé
         requested_rescheduling_rejected: Reprogrammation Rejeté
         rescheduled: Reporté
+        scheduled: Prévu
       subject: Sujet
     job_role:
       are_you_sure_to_remove: Êtes-vous sûr de vouloir le supprimer ?
@@ -2440,8 +2480,6 @@ fr:
         expected_proficiency_level: Niveau de compétence attendu
       form:
         title: Correspondance
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:
@@ -2696,21 +2734,31 @@ fr:
         sms_contacts: Contacts SMS
         subjects: Thèmes
     piped_text_modal:
+      assessment_center: Centre d'évaluation
       assessment_id: ID de l'évaluation
       campaign_id: ID de la campagne
       campaign_name: Nom de la campagne
       campaigns: Campagnes
+      description: Description
+      duration: Durée de l'accord
+      end_time: Heure de fin
       insight_page_link: Lien vers la page Insight
       insight_page_url: URL de la page Insight
+      invite_title: Titre
+      invites: Invitations
       join_link: Lien d'adhésion
       magic_link: Lien magique
       magic_url: URL magique
+      platform_url_links: Url et liens de la plate-forme
       profile_custom_field: Champ personnalisé du profil
       project_name: Nom du projet
       projects: Projets
       report_name: Nom du rapport
+      start_time: Heure de début
       text: Texte
       title: Ajout d'un texte en pointillé
+      user_reports: Rapports des utilisateurs
+      users: Utilisateurs
     proctoring_sessions:
       columns:
         comment: Commentaire
@@ -2735,7 +2783,9 @@ fr:
       errors:
         create:
           invalid_format: La définition du niveau doit être un tableau de définitions.
+          level_definition_must_exist: La définition du niveau ne peut pas être vide
           level_definition_must_match_level: doit contenir exactement %{expected} niveaux, mais %{actual} ont été donnés
+          level_name_must_exist: Le nom du niveau ne peut pas être vide
           must_be_unique: Doit être unique
           proficiency_level_exists: Un niveau de compétence avec cette compétence et ce projet existe déjà
           proficiency_level_exists_for_default: Un niveau de compétence par défaut existe déjà
@@ -3042,6 +3092,7 @@ fr:
         dp_consent_custom: Personnaliser le consentement au traitement des données
         dp_consent_version: Version de la politique
         errors:
+          cannot_disable_while_campaign_enabled: Impossible de désactiver l'enregistrement des appels vidéo parce qu'il est activé pour une ou plusieurs campagnes dans ce projet.
           policy_version_format: Seuls les nombres entiers sont autorisés
         mask_identity_for_examus: Données sur les masques pour Examus Proctoring
         mask_identity_for_hogan: Données sur les masques pour Hogan
@@ -3055,6 +3106,9 @@ fr:
         privacy_link_placeholder: Entrer le lien de confidentialité
         privacy_text: Texte sur la protection de la vie privée
         privacy_text_placeholder: Saisir le texte sur la protection de la vie privée
+        video_call_recording: Permettre l'enregistrement des appels vidéo
+        video_call_recording_expiry_duration: Période de conservation des enregistrements d'appels vidéo (en jours)
+        video_call_recording_scope: Activer l'enregistrement vidéo pour toutes les nouvelles campagnes
       profile_settings:
         form_fields:
           enabled: Activé
@@ -3377,9 +3431,10 @@ fr:
         copy_to_all: Copie à d'autres centres d'évaluation
         create: Créer
         dates_label: Dates
+        disable_cancellation_and_rescheduling: Désactiver l'annulation et la reprogrammation
         duration_label: Durée de l'accord
         duration_max_error: Ne peut être supérieur à 16 heures
-        duration_min_error: La durée ne peut être inférieure à 15 minutes
+        duration_min_error: Duréene peut être inférieure à 15 minutes
         duration_placeholder: Par exemple, 4h 30m
         manager_ids_label: Gestionnaires de centre
         meeting_link: Lien vers la réunion
@@ -3387,8 +3442,6 @@ fr:
         name_label: Nom
         next: Suivant
         required_error: Exigée
-        reschedule_duration_max_error: Ne peut être supérieur à 30 jours
-        reschedule_duration_min_error: La durée ne peut être inférieure à 1 minute
         resources_panel:
           description: Ajoutez les liens vers les ressources auxquelles vous souhaitez que les animateurs aient accès.
           resource_name_placeholder: Nom de la ressource
@@ -3425,7 +3478,7 @@ fr:
         booked_at: Réservé à
         campaign_assessment_group: Groupe du centre d'évaluation
         campaign_name: Nom de la campagne
-        duration: La durée
+        duration: Durée
         managers: Gestionnaires
         meeting_link: Lien vers la réunion
         name: Nom
@@ -3453,7 +3506,7 @@ fr:
         cancellation_lead_time: Délai d'annulation
         cancellation_tooltip: L'utilisateur pourra annuler la réservation jusqu'à %{date}
         date: Date et heure
-        duration: La durée
+        duration: Durée
         join_meeting: Salle de réunion
         late_cancellation_and_scheduling: Annulation tardive et programmation
         link: Lien de la réunion
@@ -3505,6 +3558,7 @@ fr:
         form_title: Planifier les évaluations
         language: Langue
         language_not_selected: Non sélectionné
+        mark_cancel: Mark Cancel
         mark_cancel_success: Participation annulée du sujet avec l'email %{subject_email}.
         meeting_link_custom: Sur mesure
         meeting_link_internal: Interne
@@ -3513,6 +3567,9 @@ fr:
         no_change: Pas de changement
         override_existing: Remplacer les horaires existants pour les sujets
         preworks: Prétravail
+        re_enroll: Réinscription
+        re_enroll_confirm_message: Etes-vous sûr de vouloir réinscrire le sujet avec l'email '%{subject_email}' ?
+        re_enroll_success: Sujet réinscrit à l'adresse électronique <x>subject_email</x>.
         schedule: Calendrier
         unschedule: Déprogrammation
       tabs:
@@ -3631,6 +3688,7 @@ fr:
       disable_password_reuse: Désactiver la réutilisation du mot de passe
       disallow_password_login: Interdire la connexion par mot de passe
       enable_login_with_magic_link: Activer la connexion par lien magique
+      enable_recaptcha: Activer reCAPTCHA
       enforce_password_policy: Appliquer la politique de mot de passe lors de la prochaine connexion
       enforce_strong: Appliquer un mot de passe fort
       expiration: Expiration du mot de passe
@@ -4108,6 +4166,21 @@ fr:
         toggle_status:
           successfully: Avec succès
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Déjà un modèle
+        has_user_data: Veuillez réinitialiser manuellement la campagne en cliquant sur "Réinitialiser tous les participants" dans le menu déroulant Outils avant de la convertir en modèle.
+      convert_template_modal:
+        cancel: Annuler
+        confirm: Confirmer
+        convert:
+          success: Modèle converti avec succès
+        convert_option: Convertir cette campagne en modèle
+        copy:
+          success: Le travail de création de modèle de campagne a été planifié avec succès, veuillez vérifier l'état de vos notifications.
+        copy_option: Créer un nouveau modèle à partir de cette campagne
+        description: Choisissez comment vous souhaitez créer un modèle à partir de cette campagne.
+        failed: La création du modèle a échoué.
+        title: Convertir en modèle
       email_templates:
         approve_nomination:
           description: Ce message est envoyé à un responsable lorsqu'une nomination, faite par un subordonné direct, doit être approuvée
@@ -4290,7 +4363,7 @@ fr:
         import: Traductions des importations
         import_descr: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
     tte: TTE
-    update: Mise à jour
+    update: Mettre à jour
     users:
       create:
         successfully: L'utilisateur %{name} a été créé avec succès.
@@ -4342,6 +4415,10 @@ fr:
       update:
         successfully: L'utilisateur %{name} a été mis à jour avec succès.
       user: Utilisateur
+    validations:
+      idp:
+        end_date_cannot_be_in_past: La date de fin ne peut pas se situer dans le passé
+        start_date_cannot_be_in_past: La date de début ne peut pas être dans le passé
     webhook:
       connection_failure: Impossible de se connecter à l'url du webhook. Veuillez vérifier si l'url du webhook est correcte.
       delete_success: Les paramètres du webhook ont été supprimés avec succès

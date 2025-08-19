@@ -7,6 +7,7 @@ import { getCorrectResults } from '../ResultManager'
 import styles from './Line.less'
 import ChartOptions from './ChartOptions'
 import Series from './Series'
+import Utils from '~/modules/reports/utils/Utils'
 
 const Formats = {
   Count: '{point.name}<br/> {point.y}',
@@ -38,10 +39,13 @@ class Line extends Component {
     changeLabel(model, value, collectionName)
   }
 
+  getCategoriesFromSeriesData = seriesData => seriesData.map(data => data.name)
+
   renderChart () {
     const {
       model, animation, factors, isRTL,
     } = this.props
+    const { hideEmptyColumns, hideZeroValueColumns } = model.props
 
     if (this.chart) {
       this.chart.destroy()
@@ -57,10 +61,16 @@ class Line extends Component {
 
     if (!data) { return null }
     if (sourceType === 'Question' && sourceModel.type === 'TextEntry') { return null }
-    const series = data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors)
+    const series = Utils.checkAndFilterValues(
+      { hideEmptyColumns, hideZeroValueColumns },
+      data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors),
+    )
     const format = data.format ? data.format(model.props.dataFormat) : Formats[model.props.dataFormat]
     const labels = data.labels ? data.labels(sourceModel, model) : []
     let xAxis = _.invoke(data, 'xAxis', sourceModel, model, model.props.dataFormat, getCorrectResults(model)) || {}
+    if ((hideEmptyColumns || hideZeroValueColumns) && series[0]) {
+      xAxis.categories = this.getCategoriesFromSeriesData(series[0].data)
+    }
     if (model.props.xAxisLinesHide) {
       xAxis = _.merge(xAxis, {
         lineWidth: 0,

@@ -15,6 +15,8 @@ hr:
       title: Revidirane promjene
     administrator:
       sessions:
+        errors:
+          recaptcha: Verifikacija Recaptcha nije uspjela
         new:
           forgot_password: Zaboravili ste lozinku?
           instruction: Prijavite se sa svojim osobnim podacima
@@ -147,6 +149,7 @@ hr:
             accesssheet_manage: Upravljanje pristupnom tablicom
             accesssheet_settings: Postavke pristupne tablice
             accesssheet_view: Pregled pristupne tablice
+            export: Izvoz
             title: Nadzorne ploče
             view: Pregled
           datasheets:
@@ -179,7 +182,7 @@ hr:
             manage: Upravljanje
             title: Poslovne uloge
             view: Pregled
-          mediaLibraries:
+          libraries:
             manage: Upravljanje
             title: Medijske biblioteke
             view: Pregled
@@ -290,18 +293,33 @@ hr:
             view: Pregled
     ai_assistants:
       actions:
+        create: Stvori AI asistenta
+        edit: Uredi AI asistenta
         playground: Testna okolina
       ai_assistants: AI pomoćnici
       ai_assistants_playground: Testna okolina AI pomoćnika
       column:
         provider: Pružatelj usluga
+      created_successfully: AI asistent je uspješno stvoren.
       form:
+        add_output_schema_key: Dodaj ključ izlazne sheme
+        dependencies: Ovisnosti
         description: Opis
+        enter_description: Unesite opis
+        enter_schema_key: Unesite ključ sheme
+        key: Ključ
         name: Ime
+        output_schema_keys: Ključevi izlazne sheme
         provider: Pružatelj usluga
+        remove_output_schema_key: Ukloni ključ izlazne sheme
+        schema_key_description_required: Opis ključa sheme je obavezan
+        schema_key_required: Ključ sheme je obavezan
+        schema_key_type: Tip ključa
+        schema_key_unique: Ključevi sheme moraju biti jedinstveni
         system_prompt: Upit sustava
-        title: AI pomoćnik
+        type: Tip
         user_prompt: Upit korisnika
+      updated_successfully: AI asistent je uspješno ažuriran.
     any: " -Ikakav- "
     api:
       campaigns:
@@ -767,6 +785,8 @@ hr:
       new:
         header: Skupno preuzimanje
       reports_unavailable: Trenutno nema dostupnih izvješća za preuzimanje. Potvrdite da su izvješća koja želite preuzeti dostupna.
+      select_users_for_download: Odaberite barem jednog korisnika za preuzimanje izvještaja.
+      select_users_for_regenerate: Odaberite barem jednog korisnika za regeneriranje izvještaja.
     cable:
       notification:
         assessment_factors: Faktori se dohvaćaju
@@ -856,6 +876,7 @@ hr:
       campaign_templates: Predlošci kampanja
       column:
         assessment: Procjena
+        campaign: Kampanja
         owner: Vlasnik
         report: Izvješće
       copy:
@@ -930,6 +951,7 @@ hr:
       assessors:
         spoof:
           successfully: Uspješno ste prijavljeni kao %{name}
+      convert_to_template: Pretvori u predložak
       copy: Kopiraj
       delete: Izbriši
       edit: Uredi
@@ -955,6 +977,7 @@ hr:
         name: Ime
         reports: Izvješća
         status: Status
+        template: Predložak
         type: Vrsta
       menus:
         add_common_campaign: Dodavanje zajedničke kampanje
@@ -970,11 +993,15 @@ hr:
             assessment: Procjena
             category: Kategorija
             closed: Zatvoreno
+            default_assessment_language: Zadani jezik procjene
+            default_report_language: Zadani jezik izvješća
             empty: Prazno
             inactive: Neaktivano
             name: Ime
             normal: Normalno
             previous: Prethodno
+            select_assessment_language: Odaberite jezik procjene
+            select_report_language: Odaberite jezik izvješća
             skill_rater: Procjenjivač vještina
             standard: Standardno
             status: Status
@@ -1007,6 +1034,7 @@ hr:
           name: Opis
           save: Spremi opis
           save_success: Opis je uspješno spremljen
+        enable_video_call_recording: Omogući snimanje video poziva
         fixed_time: Fiksno vrijeme
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ hr:
         campaign_assessment_group: Grupa procjene kampanje
         client: Klijent
         completion: Završetak
+        custom: Prilagođeno
         delivery_at: Dostava po (GST)
         delivery_delay_hours: Kašnjenje isporuke (sati)
         delivery_interval: Interval dostave
@@ -1628,6 +1657,7 @@ hr:
         recipients: Primatelji
         reminder: Opomena
         report_available: Dostupno izvješće
+        select_assessments: Odaberite koje procjene treba provjeriti za dovršetak
         selected: Odabrani
         selected_cc_recipients: Odabrani primatelji CC-a
         selected_recipients: Odabrani primatelji
@@ -2122,6 +2152,9 @@ hr:
         remove_confirm: Unesite trenutni naziv predloška naveden u nastavku u tekstni okvir da biste uklonili predložak
         success: "%{idpName} uspješno je uklonjen."
       add_idp_template: Dodajte IDP predložak
+      ai_assisted_idp_enabled: Omogućeno AI potpomognuto IDP
+      ai_enabled: Omogućena umjetna inteligencija
+      ai_settings: Postavke umjetne inteligencije
       all: Sve
       appearance: Izgled
       appearance_hint: Da biste izmijenili izgled, prvo spremite IDP predložak da biste omogućili ove postavke.
@@ -2137,6 +2170,7 @@ hr:
       enter_template_name: Ime
       enter_template_name_error: Naziv predloška je obavezan
       errors:
+        cannot_update_progress_plan_completed: Nije moguće ažurirati napredak jer je IDP plan dovršen
         update: Ažuriranje nije dopušteno jer je predložak IDP-a već povezan s korisničkim IDP planom. Promjene izgleda su spremljene.
       fields:
         assigned_data: Dodijeljeni podaci
@@ -2164,6 +2198,7 @@ hr:
       logo_type_label: Vrsta logotipa
       no_reflection_questions_selected: Nisu odabrana pitanja za razmišljanje
       none: Nijedan
+      one_click_idp_enabled: Omogućen IDP jednim klikom
       reference_locale: Referentna regija
       reflection_questions: Pitanja za razmišljanje
       reflection_questions_hint: Da biste izmijenili pitanja za razmišljanje, prvo spremite predložak IDP-a da biste omogućili ove postavke.
@@ -2270,7 +2305,7 @@ hr:
     individual_invite:
       tabs:
         assessment_center: Centar za procjenu
-        subjects: Ispitanici
+        invitation_status: Status pozivnice
     innovation_styles:
       create:
         successfully: Stil inovacije %{name} uspješno je kreiran.
@@ -2399,7 +2434,9 @@ hr:
       assessment_center: 'Centar za procjenu:'
       booked_at: 'Rezervirano na:'
       column:
+        invitation_status: Status pozivnice
         participant: Sudionik
+        scheduling_details: Detalji zakazivanja
       remove_confirm:
         content: Jeste li sigurni da želite ukloniti ispitanika s e-poštom '%{subjectEmail}'?
         success: Ispitanik s e-poštom '%{subjectEmail}'' uspješno je uklonjen.
@@ -2407,12 +2444,15 @@ hr:
       statuses:
         accepted: Prihvaćeno
         cancelled: Poništeno
+        late_cancelled: Kasno otkazano
+        late_rescheduled: Kasno prebačeno
         pending: Na čekanju
         requested_cancellation: Zatraženo otkazivanje
         requested_cancellation_rejected: Otkazivanje odbijeno
         requested_rescheduling: Zatražena promjena termina
         requested_rescheduling_rejected: Promjena termina odbijena
         rescheduled: Odgođeno
+        scheduled: zakazano
       subject: Ispitanik
     job_role:
       are_you_sure_to_remove: Jeste li sigurni da želite ukloniti?
@@ -2440,8 +2480,6 @@ hr:
         expected_proficiency_level: Očekivana razina stručnosti
       form:
         title: Mapiranje poslova vještina
-      import:
-        taxonomy: Taksonomija
     job_roles:
       export:
         translations:
@@ -2696,21 +2734,31 @@ hr:
         sms_contacts: SMS kontakti
         subjects: Ispitanici
     piped_text_modal:
+      assessment_center: Centar za procjenu
       assessment_id: ID procjene
       campaign_id: ID kampanje
       campaign_name: Naziv kampanje
       campaigns: Kampanje
+      description: Opis
+      duration: Trajanje
+      end_time: Vrijeme završetka
       insight_page_link: Poveznica na stranicu Uvid
       insight_page_url: URL stranice uvida
+      invite_title: Naslov
+      invites: Pozivnice
       join_link: Veza za pridruživanje
       magic_link: Čarobna veza
       magic_url: Čarobni URL
+      platform_url_links: URL platforme i linkovi
       profile_custom_field: Prilagođeno polje profila
       project_name: Naziv projekta
       projects: Projekti
       report_name: Naziv izvješća
+      start_time: Vrijeme početka
       text: Tekstualna poruka
       title: Dodavanje teksta s cijevima
+      user_reports: Korisnička izvješća
+      users: Korisnici
     proctoring_sessions:
       columns:
         comment: Komentar
@@ -2735,7 +2783,9 @@ hr:
       errors:
         create:
           invalid_format: Definicija razine mora biti niz definicija.
+          level_definition_must_exist: Definicija razine ne smije biti prazna
           level_definition_must_match_level: mora sadržavati točno %{expected} razine, ali %{actual} je dano
+          level_name_must_exist: Naziv razine ne smije biti prazan
           must_be_unique: Mora biti jedinstven
           proficiency_level_exists: Razina stručnosti s ovom vještinom i projektom već postoji
           proficiency_level_exists_for_default: Razina stručnosti za zadanu vrijednost već postoji
@@ -3038,6 +3088,7 @@ hr:
         dp_consent_custom: Prilagodba pristanka za obradu podataka
         dp_consent_version: Verzija pravila
         errors:
+          cannot_disable_while_campaign_enabled: Nije moguće onemogućiti snimanje video poziva jer je omogućeno za jednu ili više kampanja u ovom projektu
           policy_version_format: Dopušteni su samo cijeli brojevi
         mask_identity_for_examus: Podaci o maski za Examus Proctoring
         mask_identity_for_hogan: Podaci o maski za Hogana
@@ -3051,6 +3102,9 @@ hr:
         privacy_link_placeholder: Unesite vezu za privatnost
         privacy_text: Tekst o privatnosti
         privacy_text_placeholder: Unesite tekst privatnosti
+        video_call_recording: Dopusti snimanje video poziva
+        video_call_recording_expiry_duration: Razdoblje zadržavanja snimki video poziva (u danima)
+        video_call_recording_scope: Omogući snimanje videa za sve nove kampanje
       profile_settings:
         form_fields:
           enabled: Omogućen
@@ -3373,6 +3427,7 @@ hr:
         copy_to_all: Kopiraj u druge centre za procjenu
         create: Stvoriti
         dates_label: Datumi
+        disable_cancellation_and_rescheduling: Onemogući otkazivanje i ponovno zakazivanje
         duration_label: Trajanje
         duration_max_error: Ne može biti dulje od 16 sati
         duration_min_error: Ne može biti kraće od 15 minuta
@@ -3383,8 +3438,6 @@ hr:
         name_label: Ime
         next: Sljedeći
         required_error: Potreban
-        reschedule_duration_max_error: Ne može biti dulje od 30 dana
-        reschedule_duration_min_error: Ne može biti kraće od 1 minute
         resources_panel:
           description: Dodajte poveznice na sve resurse kojima želite da facilitatori imaju pristup.
           resource_name_placeholder: Naziv resursa
@@ -3498,6 +3551,7 @@ hr:
         form_title: Raspored procjena
         language: Jezik
         language_not_selected: Nije odabrano
+        mark_cancel: Označi kao otkazano
         mark_cancel_success: Otkazano sudjelovanje ispitanika s e-poštom %{subject_email}.
         meeting_link_custom: Običaj
         meeting_link_internal: Unutrašnji
@@ -3506,6 +3560,9 @@ hr:
         no_change: Nema promjene
         override_existing: Nadjačavanje postojećih rasporeda za predmete
         preworks: Priprema
+        re_enroll: Ponovno upiši
+        re_enroll_confirm_message: Jeste li sigurni da želite ponovno upisati ispitanika s e-poštom '%{subject_email}'?
+        re_enroll_success: Ponovno upisan ispitanik s e-poštom %{subject_email}.
         schedule: Raspored
         unschedule: Poništiti raspored
       tabs:
@@ -3624,6 +3681,7 @@ hr:
       disable_password_reuse: Onemogućite ponovnu upotrebu lozinke
       disallow_password_login: Zabrani prijavu lozinkom
       enable_login_with_magic_link: Omogućite prijavu pomoću čarobne veze
+      enable_recaptcha: Omogući reCAPTCHA
       enforce_password_policy: Nametanje pravila o lozinkama pri sljedećoj prijavi
       enforce_strong: Nametnite jaku lozinku
       expiration: Istek lozinke
@@ -4091,6 +4149,21 @@ hr:
         toggle_status:
           successfully: Uspješno
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Već je predložak
+        has_user_data: Molimo ručno resetirajte kampanju klikom na "Resetiraj sve sudionike" u izborniku Alati prije pretvaranja u predložak.
+      convert_template_modal:
+        cancel: Odustani
+        confirm: Potvrdi
+        convert:
+          success: Predložak je uspješno pretvoren
+        convert_option: Pretvori ovu kampanju u predložak
+        copy:
+          success: Zadatak za izradu predloška kampanje je uspješno zakazan, provjerite svoje obavijesti za status.
+        copy_option: Izradi novi predložak iz ove kampanje
+        description: Odaberite kako želite izraditi predložak iz ove kampanje.
+        failed: Izrada predloška nije uspjela.
+        title: Pretvori u predložak
       email_templates:
         approve_nomination:
           description: Ova se poruka šalje menadžeru kada je potrebno odobriti nominaciju, koju je napravio izravni podređen
@@ -4325,6 +4398,10 @@ hr:
       update:
         successfully: Korisnik %{name} uspješno je ažuriran.
       user: Korisnik
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Datum završetka ne može biti u prošlosti
+        start_date_cannot_be_in_past: Datum početka ne može biti u prošlosti
     webhook:
       connection_failure: Nije moguće povezati se s URL-om web-dojavnika. Provjerite je li URL webhooka točan..
       delete_success: Postavke web-dojavnika uspješno su izbrisane

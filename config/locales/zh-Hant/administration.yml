@@ -15,6 +15,8 @@ zh-Hant:
       title: 經審核的變更
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha 驗證失敗
         new:
           forgot_password: 忘記密碼？
           instruction: 請使用您的個人帳戶資訊登入
@@ -147,6 +149,7 @@ zh-Hant:
             accesssheet_manage: 存取表管理
             accesssheet_settings: 存取表設定
             accesssheet_view: 存取表檢視
+            export: 出口
             title: 儀表板
             view: 檢視
           datasheets:
@@ -179,7 +182,7 @@ zh-Hant:
             manage: 管理
             title: 工作角色
             view: 檢視
-          mediaLibraries:
+          libraries:
             manage: 管理
             title: 媒體圖書館
             view: 檢視
@@ -290,18 +293,33 @@ zh-Hant:
             view: 檢視
     ai_assistants:
       actions:
+        create: 建立 AI 助理
+        edit: 編輯 AI 助理
         playground: 遊樂場
       ai_assistants: AI 助理
       ai_assistants_playground: AI 助理遊樂場
       column:
         provider: 供應商
+      created_successfully: AI Assistant 已成功建立。
       form:
+        add_output_schema_key: 新增輸出模式金鑰
+        dependencies: 依賴
         description: 說明
+        enter_description: 輸入說明
+        enter_schema_key: 輸入模式金鑰
+        key: 鑰匙
         name: 名稱
+        output_schema_keys: 輸出模式鍵
         provider: 供應商
+        remove_output_schema_key: 移除輸出模式鍵
+        schema_key_description_required: 模式關鍵描述為必填項目
+        schema_key_required: 模式鍵為必填項目
+        schema_key_type: 鑰匙類型
+        schema_key_unique: 模式鍵應該是唯一的
         system_prompt: 系統提示
-        title: AI 助理
+        type: 類型
         user_prompt: 使用者提示
+      updated_successfully: AI Assistant 已成功更新。
     any: " - 任何 - "
     api:
       campaigns:
@@ -767,6 +785,8 @@ zh-Hant:
       new:
         header: 大量下載
       reports_unavailable: 目前沒有可供下載的報告，請確認您要下載的報告是否可用。
+      select_users_for_download: 請選擇至少一個用戶下載報告。
+      select_users_for_regenerate: 請選擇至少一個用戶重新生成報告。
     cable:
       notification:
         assessment_factors: 取得因子
@@ -856,6 +876,7 @@ zh-Hant:
       campaign_templates: 活動範本
       column:
         assessment: 評估
+        campaign: 活動
         owner: 業主
         report: 報告
       copy:
@@ -930,6 +951,7 @@ zh-Hant:
       assessors:
         spoof:
           successfully: 您已成功登入 %{name}
+      convert_to_template: 轉換為範本
       copy: 複製
       delete: 刪除
       edit: 編輯
@@ -955,6 +977,7 @@ zh-Hant:
         name: 名稱
         reports: 報告
         status: 狀態
+        template: 範本
         type: 類型
       menus:
         add_common_campaign: 新增共同活動
@@ -970,11 +993,15 @@ zh-Hant:
             assessment: 評估
             category: 類別
             closed: 關閉
+            default_assessment_language: 評估預設語言
+            default_report_language: 報告預設語言
             empty: 空
             inactive: 閒置
             name: 名稱
             normal: 正常
             previous: 上一頁
+            select_assessment_language: 選擇評估語言
+            select_report_language: 選擇報告語言
             skill_rater: 技能評核員
             standard: 標準
             status: 狀態
@@ -1007,6 +1034,7 @@ zh-Hant:
           name: 說明
           save: 儲存說明
           save_success: 說明已成功儲存
+        enable_video_call_recording: 啟用視訊通話錄影
         fixed_time: 固定時間
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ zh-Hant:
         campaign_assessment_group: 活動評估小組
         client: 客戶
         completion: 完成
+        custom: 自訂
         delivery_at: 運費 (GST)
         delivery_delay_hours: 交貨延遲（小時）
         delivery_interval: 交貨間隔
@@ -1628,6 +1657,7 @@ zh-Hant:
         recipients: 收件人
         reminder: 提醒事項
         report_available: 提供報告
+        select_assessments: 選擇要檢查完成的評估
         selected: 精選
         selected_cc_recipients: 選定的 CC 獲獎人
         selected_recipients: 選定受助人
@@ -2122,6 +2152,9 @@ zh-Hant:
         remove_confirm: 在文字方塊中輸入以下的目前範本名稱，即可移除範本
         success: "%{idpName} 已成功移除。"
       add_idp_template: 新增 IDP 範本
+      ai_assisted_idp_enabled: AI 輔助 IDP 啟用
+      ai_enabled: 啟用 AI
+      ai_settings: AI 設定
       all: 全部
       appearance: 外觀
       appearance_hint: 若要修改外觀，請先儲存 IDP 模版，以啟用這些設定。
@@ -2137,6 +2170,7 @@ zh-Hant:
       enter_template_name: 名稱
       enter_template_name_error: 模板名稱為必填項目
       errors:
+        cannot_update_progress_plan_completed: 無法更新進度，因為 IDP 計劃已完成
         update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。
       fields:
         assigned_data: 指定資料
@@ -2164,6 +2198,7 @@ zh-Hant:
       logo_type_label: 標誌類型
       no_reflection_questions_selected: 未選擇反思問題
       none: 無
+      one_click_idp_enabled: 啟用一鍵式 IDP
       reference_locale: 參考區域設定
       reflection_questions: 反思問題
       reflection_questions_hint: 若要修改反思問題，請先儲存 IDP 模版，以啟用這些設定。
@@ -2270,7 +2305,7 @@ zh-Hant:
     individual_invite:
       tabs:
         assessment_center: 評估中心
-        subjects: 主題
+        invitation_status: 邀請狀態
     innovation_styles:
       create:
         successfully: 創新風格 %{name} 已成功建立。
@@ -2399,7 +2434,9 @@ zh-Hant:
       assessment_center: 評估中心：
       booked_at: 預訂於：
       column:
+        invitation_status: 邀請狀態
         participant: 參與者
+        scheduling_details: 排程細節
       remove_confirm:
         content: 您確定要移除電子郵件標題「%{subjectEmail}」嗎？
         success: 包含電子郵件 '%{subjectEmail}' 的主旨已成功移除。
@@ -2407,12 +2444,15 @@ zh-Hant:
       statuses:
         accepted: 已接受
         cancelled: 已取消
+        late_cancelled: 遲到取消
+        late_rescheduled: 遲到改期
         pending: 待定
         requested_cancellation: 要求取消
         requested_cancellation_rejected: 拒絕取消
         requested_rescheduling: 要求改期
         requested_rescheduling_rejected: 重新排程 拒絕
         rescheduled: 改期
+        scheduled: 排程
       subject: 主題
     job_role:
       are_you_sure_to_remove: 您確定要移除嗎？
@@ -2440,8 +2480,6 @@ zh-Hant:
         expected_proficiency_level: 預期能力等級
       form:
         title: 技能工作映射
-      import:
-        taxonomy: 分類學
     job_roles:
       export:
         translations:
@@ -2696,21 +2734,31 @@ zh-Hant:
         sms_contacts: 簡訊聯絡人
         subjects: 主題
     piped_text_modal:
+      assessment_center: 評估中心
       assessment_id: 評估 ID
       campaign_id: 活動 ID
       campaign_name: 活動名稱
       campaigns: 活動
+      description: 說明
+      duration: 時間長度
+      end_time: 結束時間
       insight_page_link: 洞察頁連結
       insight_page_url: 洞察頁面 URL
+      invite_title: 標題
+      invites: 邀請
       join_link: 加入連結
       magic_link: 魔術連結
       magic_url: 魔術網址
+      platform_url_links: 平台 Url 與連結
       profile_custom_field: 個人資料自訂欄位
       project_name: 專案名稱
       projects: 專案
       report_name: 報告名稱
+      start_time: 開始時間
       text: 正文
       title: 新增管道文字
+      user_reports: 使用者報告
+      users: 使用者
     proctoring_sessions:
       columns:
         comment: 評論
@@ -2735,7 +2783,9 @@ zh-Hant:
       errors:
         create:
           invalid_format: Level 定義必須是一個定義陣列。
+          level_definition_must_exist: 等級定義不能為空
           level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
+          level_name_must_exist: 等級名稱不能為空
           must_be_unique: 必須獨一無二
           proficiency_level_exists: 已存在具有此技能和專案的 ProficiencyLevel
           proficiency_level_exists_for_default: 已退出預設的精通等級
@@ -3042,6 +3092,7 @@ zh-Hant:
         dp_consent_custom: 自訂資料處理同意書
         dp_consent_version: 政策版本
         errors:
+          cannot_disable_while_campaign_enabled: 無法停用視訊通話錄影，因為此專案中的一個或多個活動已啟用此功能
           policy_version_format: 只允許使用整數
         mask_identity_for_examus: Examus Proctoring 的掩模資料
         mask_identity_for_hogan: Hogan 的面具資料
@@ -3055,6 +3106,9 @@ zh-Hant:
         privacy_link_placeholder: 輸入隱私權連結
         privacy_text: 隱私權文字
         privacy_text_placeholder: 輸入隱私權文字
+        video_call_recording: 允許視訊通話錄影
+        video_call_recording_expiry_duration: 視訊通話錄影的保留期限（天數）
+        video_call_recording_scope: 啟用所有新活動的視訊錄製
       profile_settings:
         form_fields:
           enabled: 已啟用
@@ -3377,6 +3431,7 @@ zh-Hant:
         copy_to_all: 複製到其他評估中心
         create: 建立
         dates_label: 日期
+        disable_cancellation_and_rescheduling: 停用取消和重新排程
         duration_label: 時間長度
         duration_max_error: 不能超過 16 小時
         duration_min_error: 不得少於 15 分鐘
@@ -3387,8 +3442,6 @@ zh-Hant:
         name_label: 名稱
         next: 下一頁
         required_error: 必須
-        reschedule_duration_max_error: 不得超過 30 天
-        reschedule_duration_min_error: 不能少於 1 分鐘
         resources_panel:
           description: 加入您希望主持人可以存取的任何資源的連結。
           resource_name_placeholder: 資源名稱
@@ -3505,6 +3558,7 @@ zh-Hant:
         form_title: 安排評估
         language: 語言
         language_not_selected: 未選取
+        mark_cancel: 馬克 取消
         mark_cancel_success: 以電子郵件 %{subject_email} 取消主題的參與。
         meeting_link_custom: 自訂
         meeting_link_internal: 內部
@@ -3513,6 +3567,9 @@ zh-Hant:
         no_change: 無變更
         override_existing: 覆寫科目的現有時間表
         preworks: 前期工作
+        re_enroll: 重新註冊
+        re_enroll_confirm_message: 您確定要重新註冊電子郵件 '%{subject_email}' 的主旨嗎？
+        re_enroll_success: 重新註冊的主題與電子郵件<x>subject_email</x> 。
         schedule: 時間表
         unschedule: 取消排程
       tabs:
@@ -3631,6 +3688,7 @@ zh-Hant:
       disable_password_reuse: 停用密碼重複使用
       disallow_password_login: 禁止以密碼登入
       enable_login_with_magic_link: 啟用魔法連結登入
+      enable_recaptcha: 啟用 reCAPTCHA
       enforce_password_policy: 在下次登入時強制執行密碼政策
       enforce_strong: 強化密碼
       expiration: 密碼到期
@@ -4108,6 +4166,21 @@ zh-Hant:
         toggle_status:
           successfully: 成功
     threesixty_campaigns:
+      convert_action:
+        already_a_template: 已有範本
+        has_user_data: 請在轉換為範本之前，從「工具」下拉選項中按一下「重設所有參與者」，手動重設活動。
+      convert_template_modal:
+        cancel: 取消
+        confirm: 確認
+        convert:
+          success: 範本成功轉換
+        convert_option: 將此活動轉換為範本
+        copy:
+          success: 廣告系列範本建立工作已排程成功，請檢查您的通知以瞭解狀態。
+        copy_option: 從此活動建立新範本
+        description: 選擇要如何從此廣告系列建立範本。
+        failed: 範本建立失敗。
+        title: 轉換為範本
       email_templates:
         approve_nomination:
           description: 當直接報告的提名需要核准時，此訊息會傳送給經理
@@ -4342,6 +4415,10 @@ zh-Hant:
       update:
         successfully: 使用者 %{name} 已成功更新。
       user: 使用者
+    validations:
+      idp:
+        end_date_cannot_be_in_past: 結束日期不能是過去
+        start_date_cannot_be_in_past: 開始日期不能是過去
     webhook:
       connection_failure: 無法連線至 webhook URL。 請確認 webhook URL 是否正確。
       delete_success: Webhook 設定已成功刪除

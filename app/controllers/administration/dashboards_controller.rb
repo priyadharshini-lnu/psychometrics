@@ -4,6 +4,7 @@ class Administration::DashboardsController < Administration::BaseController
   include AsyncRequestHandler
 
   before_action :skip_policy_scope
+  before_action :set_dashboard, only: [:export_file]
 
   async_request :get_embed_token_async, handler: OracleAnalytics::GetEmbedToken,
     permit_params: ->(params) { params.require(:dashboard).permit(:id) }
@@ -33,7 +34,7 @@ class Administration::DashboardsController < Administration::BaseController
   end
 
   def export_file
-    authorize Dashboard, :export_file?, policy_class: Api::Administration::DashboardPolicy
+    authorize @dashboard, :export_file?, policy_class: Api::Administration::DashboardPolicy
 
     AdminJob.call(
       :export_dashboard_as_file,
@@ -43,6 +44,10 @@ class Administration::DashboardsController < Administration::BaseController
   end
 
   private
+
+  def set_dashboard
+    @dashboard = Dashboard.find(params[:id])
+  end
 
   def job_params
     params.permit(:jobType, parameters: {})

@@ -35,6 +35,7 @@ module Utility
     end
 
     def self.generate(method, options = {})
+      options[:subdomain] ||= Settings.subdomain
       Rails.application.routes.url_helpers.public_send(
         method,
         get_params(options)
@@ -62,6 +63,36 @@ module Utility
 
       uri.query = URI.encode_www_form(new_query_params)
       uri.to_s
+    end
+
+    def self.redirect_to_safe_internal_url(controller, url, options = {})
+      if safe_internal_url?(url)
+        controller.redirect_to(url, options)
+      else
+        controller.head(:forbidden)
+      end
+    end
+
+    def self.safe_internal_url?(url)
+      return false if url.blank?
+
+      uri = parse_uri(url)
+      return false unless uri
+      return true if relative_url?(uri)
+
+      # Only allow main domain or subdomains
+      domain_regex = /\A([a-z0-9-]+\.)*#{Regexp.escape(Settings.domain)}\z/i
+      uri.host.present? && uri.host.match?(domain_regex)
+    end
+
+    def self.parse_uri(url)
+      URI.parse(url)
+    rescue URI::InvalidURIError
+      nil
+    end
+
+    def self.relative_url?(uri)
+      uri.host.nil?
     end
   end
 end

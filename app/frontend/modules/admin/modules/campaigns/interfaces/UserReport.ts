@@ -6,6 +6,14 @@ export default interface UserReport {
   reportFamilyName: string
   reportProvider: string
   hoganParticipantId: string | null
+  commentsCount: number
+  editsCount: number
+  customUpload: boolean
+  internal: boolean
+  availableLanguages: string[]
+  effectiveDefaultLanguage: string
+  reportIconUrl: string | null
+  reportDownloadUrls: Record<string, string>[]
   approvalStatus: 'not_ready' | 'pending_qc' | 'qc_in_progress' | 'qc_completed' | 'change_requested' | 'approved'
   permissions: {
     downloadReport: boolean

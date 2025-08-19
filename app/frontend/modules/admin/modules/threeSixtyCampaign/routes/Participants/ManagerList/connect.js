@@ -12,6 +12,9 @@ export default connect(
     threeSixtyCampaign: {
       campaignDetails: { id: threeSixtyCampaignId },
       managers: { list, total, permissions },
+      campaignDetails: {
+        template,
+      },
     },
   }) => ({
     managers: list,
@@ -20,6 +23,7 @@ export default connect(
     permissions,
     page: routeUtils.getPage(),
     searchTerm: routeUtils.getSearchTerm(),
+    template,
   }),
   dispatch => ({
     fetchManagers: (campaignId, page, query) => dispatch(fetchManagers(campaignId, page, query)),

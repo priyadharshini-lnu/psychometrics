@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import _ from 'lodash'
 import {
   Table, Row, Col, App, Checkbox,
@@ -43,6 +43,7 @@ function SubjectList ({
   reportIcon,
   reportName,
   category,
+  template,
 }) {
   const { projectId, campaignId } = useParams()
   const [params] = useSearchParams()
@@ -54,6 +55,8 @@ function SubjectList ({
   const {
     isAllSelected, excludedKeys, selectedKeys, onSelectionChange, onAllSelect,
   } = useSelectAll(false, subjects)
+
+  const normalizedSubjectsData = useMemo(() => _.keyBy(subjects, 'id'), [subjects])
 
   const [selectedCount, setSelectedCount] = useState(0)
 
@@ -104,18 +107,31 @@ function SubjectList ({
             searchTerm={searchTerm}
           />
           <Manage />
-          <ToolsDropdown permissions={permissions} />
-          {permissions.addSubject && (
+          {!template
+          && (
+            <ToolsDropdown
+              isBulk
+              title={I18n.t('administration.threesixty_campaigns.menu.actions')}
+              permissions={permissions}
+              selectedKeys={selectedKeys}
+              excludedKeys={excludedKeys}
+              isAllSelected={isAllSelected}
+              normalizedSubjectsData={normalizedSubjectsData}
+            />
+          )
+          }
+          {!template && (
+            <ToolsDropdown
+              permissions={permissions}
+              selectedKeys={selectedKeys}
+              excludedKeys={excludedKeys}
+              isAllSelected={isAllSelected}
+              normalizedSubjectsData={normalizedSubjectsData}
+            />
+          )}
+          {permissions.addSubject && !template && (
             <CreateSubjectsDropdown />
           )}
-          <ToolsDropdown
-            isBulk
-            title={I18n.t('administration.threesixty_campaigns.menu.actions')}
-            permissions={permissions}
-            selectedKeys={selectedKeys}
-            excludedKeys={excludedKeys}
-            isAllSelected={isAllSelected}
-          />
         </Col>
       </Row>
       <div className="pb-4 ps-3 pe-5">

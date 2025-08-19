@@ -95,4 +95,21 @@ export default {
       return value !== 0
     })
   },
+
+  checkAndFilterValues (filters, results) {
+    if (!filters.hideEmptyColumns && !filters.hideZeroValueColumns) {
+      return results
+    }
+    results.forEach((result) => {
+      if (!result.data) { return }
+      if (filters.hideEmptyColumns === true) {
+        result.data = this.filterItemsWithEmptyValues(result.data, 'y')
+      }
+      if (filters.hideZeroValueColumns === true) {
+        result.data = this.filterItemsWithZeroValues(result.data, 'y')
+      }
+    })
+
+    return results
+  },
 }

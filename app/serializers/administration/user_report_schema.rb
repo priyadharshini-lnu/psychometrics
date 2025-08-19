@@ -4,7 +4,7 @@ module Administration
   class UserReportSchema < BaseSchema
     def self.schema(_, _)
       Dry::Schema.JSON do
-        config.validate_keys = true
+        config.validate_keys = false
 
         required(:id).filled(:int?)
         required(:permissions).hash do
@@ -23,13 +23,13 @@ module Administration
         required(:status).filled(:str?)
         required(:internal).filled(:bool?)
         required(:custom_upload).filled(:bool?)
-        required(:report_url).maybe(:str?)
         required(:report_provider).maybe(:str?)
         required(:comments_count).filled(:int?)
         required(:edits_count).filled(:int?)
         required(:hogan_participant_id).maybe(:str?)
         required(:effective_default_language).filled(:str?)
         required(:available_languages).maybe(:array?)
+        required(:report_download_urls).maybe(:hash?)
       end
     end
   end

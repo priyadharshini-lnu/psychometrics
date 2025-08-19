@@ -7,6 +7,7 @@ import QuestionList from '~/modules/survey/views/Preview/QuestionList'
 import Utils from '~/modules/survey/utils/Utils'
 import StaticContent from '~/modules/survey/views/Preview/StaticContent'
 import { LEFT, RIGHT } from '~/modules/survey/views/Block/components/StaticContent/settings'
+import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
 import Footer from './PageFooter'
 import styles from './Page.less'
 
@@ -26,15 +27,19 @@ class Page extends Component {
       fetchCampaignOptions(parseInt(path[1], 10))
     }
 
-    this.ref.addEventListener('copy', this.disableCopyHandler)
-    this.ref.addEventListener('cut', this.disableCopyHandler)
-    this.ref.addEventListener('contextmenu', this.disableCopyHandler)
+    if (this.ref) {
+      this.ref.addEventListener('copy', this.disableCopyHandler)
+      this.ref.addEventListener('cut', this.disableCopyHandler)
+      this.ref.addEventListener('contextmenu', this.disableCopyHandler)
+    }
   }
 
   componentWillUnmount () {
-    this.ref.removeEventListener('copy', this.disableCopyHandler)
-    this.ref.removeEventListener('cut', this.disableCopyHandler)
-    this.ref.removeEventListener('contextmenu', this.disableCopyHandler)
+    if (this.ref) {
+      this.ref.removeEventListener('copy', this.disableCopyHandler)
+      this.ref.removeEventListener('cut', this.disableCopyHandler)
+      this.ref.removeEventListener('contextmenu', this.disableCopyHandler)
+    }
   }
 
   componentDidUpdate (prevProps) {
@@ -46,19 +51,19 @@ class Page extends Component {
 
 
   getBlockClasses () {
-    const { block: { props: { staticContent } } } = this.props
+    const { block: { props: blockProps } } = this.props
 
-    if (!staticContent) return
-    const { layout } = staticContent
+    if (!blockProps?.staticContent) return
+    const { layout } = blockProps.staticContent
     return cs({ [styles.blockWithSideStaticContent]: (layout === LEFT || layout === RIGHT) })
   }
 
   getQuestionContainerClasses () {
     const { isMobile } = this.context
-    const { block: { props: { staticContent } } } = this.props
+    const { block: { props: blockProps } } = this.props
 
-    if (isMobile || !staticContent) return ''
-    const { layout } = staticContent
+    if (isMobile || !blockProps?.staticContent) return ''
+    const { layout } = blockProps.staticContent
     return cs({
       [styles.sideStaticContent]: (layout === LEFT || layout === RIGHT),
       [styles.rightStaticContent]: (layout === RIGHT),
@@ -83,6 +88,19 @@ class Page extends Component {
     Utils.scroll(hash)
   }
 
+  getErrorMessageForEmptyBlock = () => {
+    const { preview } = this.props
+    const emptyBlockIdSymbols = Object.getOwnPropertySymbols(preview.allPages)
+      .filter(symbol => !preview.allPages[symbol].length)
+
+    const emptyBlockIds = emptyBlockIdSymbols.map(symbol => Symbol.keyFor(symbol))
+    const pageHasEmptySkillRaterBlock = emptyBlockIds.find(
+      emptyBlockId => preview.blocks[emptyBlockId].block_type === 'skill_rater',
+    )
+
+    return pageHasEmptySkillRaterBlock ? I18n.t('assessments.page.no_skill_mapping_message') : ''
+  }
+
   renderErrors () {
     const { errors, I18n } = this.props
     const validationTitle = I18n.t('validations.title', { count: Object.keys(errors).length })
@@ -98,7 +116,7 @@ class Page extends Component {
     const {
       page, questions, errors, nextPage, preview, prevPage, hasPrevPage, defaultLanguage,
       block: {
-        props: { staticContent },
+        props: blockProps,
         id: blockId,
       },
       preview: {
@@ -107,7 +125,13 @@ class Page extends Component {
       },
       isDisconnected,
     } = this.props
-    if (!page) { return }
+    if (!page || _.isEmpty(page)) {
+      return (
+        <ErrorWarning
+          message={this.getErrorMessageForEmptyBlock()}
+        />
+      )
+    }
     return (
       <div
         ref={(ref) => { this.ref = ref }}
@@ -120,8 +144,8 @@ class Page extends Component {
           </div>
         )}
         <div className={this.getQuestionContainerClasses()}>
-          {staticContent && <StaticContent key={blockId} />}
-          <div className={cs(styles.questionsBlock, { staticBlockQuestionList: staticContent })}>
+          {blockProps?.staticContent && <StaticContent key={blockId} />}
+          <div className={cs(styles.questionsBlock, { staticBlockQuestionList: blockProps?.staticContent })}>
             <div aria-live="assertive" role="status">
               {!ignoreValidation && !_.isEmpty(errors) && this.renderErrors(page)}
             </div>

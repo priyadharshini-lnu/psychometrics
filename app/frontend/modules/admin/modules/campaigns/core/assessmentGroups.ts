@@ -10,6 +10,7 @@ const CampaignAssessmentGroupTR = t.type({
   position: t.number,
   previousAssessmentsRequired: t.boolean,
   previousGroupRequired: t.boolean,
+  requirePreviousGroupsCompletionForBooking: t.boolean,
   campaignAssessmentIds: t.array(t.number),
   groupType: t.string,
 })

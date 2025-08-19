@@ -83,6 +83,15 @@ describe Api::V2::Administration::PrivacySettingsController, swagger_doc: 'v2/sw
           ).to have_attribute(
             :mask_identity_for_mettl
           ).with_value(privacy_setting_recotrd.mask_identity_for_mettl)
+          expect(privacy_setting_response).
+            to have_attribute(:allow_video_call_recording).
+            with_value(privacy_setting_recotrd.allow_video_call_recording)
+          expect(privacy_setting_response).
+            to have_attribute(:enable_video_call_recording_for_all_new_campaigns).
+            with_value(privacy_setting_recotrd.enable_video_call_recording_for_all_new_campaigns)
+          expect(privacy_setting_response).
+            to have_attribute(:video_call_recording_expiry_in_seconds).
+            with_value(privacy_setting_recotrd.video_call_recording_expiry_in_seconds)
         end
       end
     end

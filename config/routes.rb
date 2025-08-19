@@ -831,6 +831,7 @@ as: :simulation_progress_notification
     post '/:project_id/skillvue/completion_notification', to: 'skillvue#completion_notification',
                                                             as: :skillvue_completion_notification
     post '/:project_id/skillvue/results', to: 'skillvue#results', as: :skillvue_results_notification
+    post '/dailyco/recordings', to: 'daily_co#recordings', as: :dailyco_recordings
   end
 
   devise_scope :user do
@@ -1313,6 +1314,8 @@ as: :simulation_progress_notification
             jsonapi_resources :threesixty_campaigns do
               jsonapi_resource :report_approval_setting, only: %i[index create update destroy]
               post :create_campaign, on: :collection
+              post :convert_to_template, on: :member
+              post :copy_as_template, on: :member
             end
           end
           jsonapi_resources :profile_settings, only: %i[index update]
@@ -1350,6 +1353,7 @@ as: :simulation_progress_notification
               jsonapi_relationships
               jsonapi_resources :workshop_subjects, only: %i[show index create update destroy] do
                 post :mark_cancelled, on: :member
+                post :re_enroll, on: :member
               end
               jsonapi_resources :workshop_activities
               jsonapi_resources :workshop_resources

@@ -381,7 +381,7 @@ jobs:
             cp config/database.yml.sample config/database.yml
             bundle exec rake i18n:js:export
             (find tmp/cache/vitest -type f -mtime +15 -delete) || echo "No old cache files to prune"
-            yarn test --coverage --maxWorkers 6 --minWorkers 5 --shard $((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL --max-concurrency=8
+            yarn test --coverage --maxWorkers 1 --minWorkers 1 --shard $((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL --max-concurrency=1 && yarn run coveralls < coverage/lcov.info
       - run:
           name: Vitest flag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.vitest.flag

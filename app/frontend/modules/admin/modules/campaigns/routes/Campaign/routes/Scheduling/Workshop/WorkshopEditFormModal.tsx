@@ -1,10 +1,9 @@
 import _ from 'lodash'
 import { FC, useState, useEffect } from 'react'
 import {
-  Form, Typography, InputNumber, Input, Radio, Switch, Select,
+  Form, Typography, InputNumber, Input, Radio, Switch, Select, Row, Col, DatePicker, TimePicker,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { durationValidator } from '~/components/DurationValidator'
 import InputDuration from '~/components/InputDuration'
 import dayjs from '~/utils/dayjs'
 import ResourceFormModal from '~/components/ResourceFormModal'
@@ -13,6 +12,8 @@ import {
 } from '~/modules/admin/modules/campaigns/core/workshop'
 import { UsersSelectWithTags } from '~/glint'
 import { useResources } from '~/hooks/useResources'
+import { mergeDateAndTime } from '~/utils/time'
+import { formatWorkshopDate } from '~/utils/workshop'
 
 const { I18n } = window
 const { Text } = Typography
@@ -33,12 +34,17 @@ interface AssessmentCenterGroup {
   name: string
 }
 
+const startDateTime = (date, time, timezone) => (
+  mergeDateAndTime(date, time, timezone)
+)
+
 export const WorkshopEditFormModal: FC<Props> = ({
   close,
   workshop,
   updateWorkshop,
 }) => {
   const [form] = Form.useForm()
+  const disableCancellationAndRescheduling = Form.useWatch('disableCancellationAndRescheduling', form)
   const [workshopManagers, setWorkshopManagers] = useState<UserDetails[]>([])
   const [workshopAssessors, setWorkshopAssessors] = useState<UserDetails[]>([])
   const { campaignId } = useParams() as { campaignId: string }
@@ -112,12 +118,30 @@ export const WorkshopEditFormModal: FC<Props> = ({
       storeManager={{ form }}
       scrollToFirstError
       modalProps={{ width: 700 }}
+      formProps={{
+        initialValues: {
+          date: workshop.startTime ? dayjs(workshop.startTime) : undefined,
+          time: workshop.startTime ? dayjs(workshop.startTime) : undefined,
+        },
+      }}
       request={{
-        updateResource: (data: {workshopManagersIds: string[], workshopAssessorsIds: string[]}) => updateWorkshop({
-          ...data,
-          workshopManagersIds: (data.workshopManagersIds || []).map(id => id.toString()),
-          workshopAssessorsIds: (data.workshopAssessorsIds || []).map(id => id.toString()),
-        }),
+        updateResource: (data: { workshopManagersIds: string[], workshopAssessorsIds: string[],
+          date: string, time: string }) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { date, time, ...cleanedData } = data
+
+          let startTime: string | undefined
+          if (data.date && data.time) {
+            startTime = startDateTime(data.date, data.time, workshop.timezone)?.format()
+          }
+          return updateWorkshop({
+            ...cleanedData,
+            workshopManagersIds: (data.workshopManagersIds || []).map(id => id.toString()),
+            workshopAssessorsIds: (data.workshopAssessorsIds || []).map(id => id.toString()),
+            ...(startTime ? { start_time: startTime } : {}),
+            ...(startTime ? { name: formatWorkshopDate(startTime) } : {}),
+          })
+        },
       }}
     >
       {() => (
@@ -129,6 +153,35 @@ export const WorkshopEditFormModal: FC<Props> = ({
           >
             <Input name="workshop_name" />
           </Form.Item>
+          {!(workshop.bookedSeats > 0) && (
+            <Row gutter={16}>
+              <Col xs={12} lg={8}>
+                <Form.Item
+                  name="date"
+                  label={I18n.t('licenses.start_date')}
+                >
+                  <DatePicker
+                    style={{ width: '100%' }}
+                    format="YYYY-MM-DD"
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={12} lg={8}>
+                <Form.Item
+                  name="time"
+                  label={I18n.t('administration.scheduling.assessment_center_form.time_label')}
+                >
+                  <TimePicker
+                    format="h:mm A"
+                    use12Hours
+                    minuteStep={15}
+                    showNow={false}
+                    style={{ width: '100%' }}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+          )}
 
           <Form.Item
             name="campaignAssessmentGroupId"
@@ -144,14 +197,22 @@ export const WorkshopEditFormModal: FC<Props> = ({
               ))}
             </Select>
           </Form.Item>
-          <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_scheduling')}
-            name="allowLateCancellationAndRescheduling"
-            rules={[{ required: true }]}
-            valuePropName="checked"
-          >
-            <Switch />
-          </Form.Item>
+          {!disableCancellationAndRescheduling && (
+            <>
+              <Form.Item
+                label={
+                  I18n.t(
+                    'administration.scheduling.assessment_center_form.allow_late_cancellation_and_scheduling',
+                  )
+                }
+                name="allowLateCancellationAndRescheduling"
+                rules={[{ required: true }]}
+                valuePropName="checked"
+              >
+                <Switch />
+              </Form.Item>
+            </>
+          )}
           <Form.Item
             label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
             name="videoCallType"
@@ -184,53 +245,39 @@ export const WorkshopEditFormModal: FC<Props> = ({
             </Form.Item>
           )}
           <Form.Item
-            name="schedulingLeadTime"
-            label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
-            {...fieldLayout}
-            rules={[
-              {
-                validator: durationValidator({
-                  minMinutes: 1,
-                  maxMinutes: 24 * 60 * 30, // 30 days
-                  // eslint-disable-next-line max-len
-                  minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
-                  // eslint-disable-next-line max-len
-                  maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
-                  requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
-                }),
-              },
-            ]}
+            label={I18n.t('administration.scheduling.assessment_center_form.disable_cancellation_and_rescheduling')}
+            name="disableCancellationAndRescheduling"
+            rules={[{ required: true }]}
+            valuePropName="checked"
           >
-            <InputDuration
-              value={60}
-              onChange={() => {}}
-              placeholder={I18n.t('administration.components.input_duration.placeholder')}
-            />
+            <Switch />
           </Form.Item>
-          <Form.Item
-            name="cancellationLeadTime"
-            label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
-            {...fieldLayout}
-            rules={[
-              {
-                validator: durationValidator({
-                  minMinutes: 1,
-                  maxMinutes: 24 * 60 * 30,
-                  // eslint-disable-next-line max-len
-                  minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
-                  // eslint-disable-next-line max-len
-                  maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
-                  requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
-                }),
-              },
-            ]}
-          >
-            <InputDuration
-              value={60}
-              onChange={() => {}}
-              placeholder={I18n.t('administration.components.input_duration.placeholder')}
-            />
-          </Form.Item>
+          {!disableCancellationAndRescheduling && (
+            <>
+              <Form.Item
+                name="schedulingLeadTime"
+                label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
+                {...fieldLayout}
+              >
+                <InputDuration
+                  value={60}
+                  onChange={() => {}}
+                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                />
+              </Form.Item>
+              <Form.Item
+                name="cancellationLeadTime"
+                label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
+                {...fieldLayout}
+              >
+                <InputDuration
+                  value={60}
+                  onChange={() => {}}
+                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                />
+              </Form.Item>
+            </>
+          )}
           <Form.Item
             name="workshopManagersIds"
             label={<Text className="font-normal">{I18n.t('administration.scheduling.info.managers')}</Text>}

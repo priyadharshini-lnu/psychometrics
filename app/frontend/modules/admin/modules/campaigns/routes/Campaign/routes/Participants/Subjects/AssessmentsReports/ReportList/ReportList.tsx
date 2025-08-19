@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import {
   Table, MenuProps, Row, Col, Switch, App,
   Typography,
@@ -17,13 +18,7 @@ const { Column } = Table
 const { I18n } = window
 
 interface OwnProps {
-  openModal(name: string, data?: {
-    projectId?: number
-    campaignId?: number
-    parentId?: number
-    parentType?: ParentResourceType
-    testMode?: boolean
- }): void
+  openModal(name: string, data?): void
 }
 
 export type Props = OwnProps & PropsFromRedux
@@ -35,13 +30,20 @@ const ReportList: React.FC<Props> = ({
   selectRecords,
   remove,
   openModal,
+  regenerateReports,
   toggleUserAccess,
   removeFile,
 }) => {
-  const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
+  const { campaignId, projectId, id: userId } = useParams() as { campaignId: string, projectId: string, id: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedProjectId = parseInt(projectId, 10)
   const { modal, message } = App.useApp()
+
+  const handleRegenerateReports = (selectedReports: { [key: string]: string[] }, reportId: number) => {
+    regenerateReports(parsedCampaignId, selectedReports, userId, [reportId]).then(() => {
+      message.success(I18n.t('user_reports.messages.regenerate_successful'))
+    })
+  }
 
   return (
     <Row>
@@ -107,22 +109,17 @@ const ReportList: React.FC<Props> = ({
           <Column
             title={I18n.t('common.column.action')}
             key="action"
-            render={userReport => (
+            render={(userReport: UserReport) => (
               <ConditionalDropdown
                 menu={
                   getActionsMenuProps({
                     projectId: parsedProjectId,
                     campaignId: parsedCampaignId,
-                    userReportId: userReport.id,
-                    userReportName: userReport.name,
-                    commentsCount: userReport.commentsCount,
-                    editsCount: userReport.editsCount,
+                    userId,
+                    userReport,
                     remove: () => remove(parsedCampaignId, userReport.id),
                     removeFile: () => removeFile(parsedCampaignId, userReport.id),
-                    internal: userReport.internal,
-                    customUpload: userReport.customUpload,
-                    reportUrl: userReport.reportUrl,
-                    permissions: userReport.permissions,
+                    onRegenerateReports: handleRegenerateReports,
                     openModal,
                     modal,
                     message,
@@ -145,38 +142,26 @@ const ReportList: React.FC<Props> = ({
 interface ActionMenuData {
   projectId: number
   campaignId: number
-  userReportId: number
-  userReportName: string
-  internal: boolean
-  customUpload: boolean
-  reportUrl: string
-  commentsCount: number
-  editsCount: number
+  userId: string
+  userReport: UserReport
   remove(): void
   removeFile(): void
-  permissions: {
-    downloadReport: boolean
-    remove: boolean
-    viewReport: boolean
-    pushWebhook: boolean
-    uploadFile: boolean
-    removeFile: boolean
-  }
-  openModal(string, data?: {
-    campaignId?: number,
-    parentId?: number,
-    projectId?: number
-    parentType?: ParentResourceType
-    testMode?: boolean
-  }): void
+  onRegenerateReports(selectedReports: { [key: string]: string[] }, reportId: number): void
+  openModal(string, data?): void
   modal: Omit<ModalStaticFunctions, 'warn'>
   message: MessageInstance
 }
 
 const getActionsMenuProps = ({
-  campaignId, userReportId, projectId, userReportName, editsCount, commentsCount, remove, internal, reportUrl,
-  permissions, openModal, modal, message, removeFile, customUpload,
+  campaignId, userReport, projectId, remove,
+  openModal, removeFile, modal, message, userId, onRegenerateReports,
 }:ActionMenuData):MenuProps => {
+  const {
+    id: userReportId, name: userReportName, commentsCount, editsCount, permissions,
+    internal, customUpload, availableLanguages, reportDownloadUrls, reportIconUrl, effectiveDefaultLanguage,
+  } = userReport
+
+  const reportUrlExists = !_.isEmpty(reportDownloadUrls)
   const previewUrl = () => {
     if (internal) {
       return `/admin/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`
@@ -242,22 +227,22 @@ const getActionsMenuProps = ({
   }
 
   const menuItems: MenuItem[] = []
-  permissions.viewReport && (internal || reportUrl) && menuItems.push({
+  permissions.viewReport && (internal || reportUrlExists) && menuItems.push({
     key: 'viewReport',
     label: (
       <Link to={previewUrl()}>
         {I18n.t('reports.actions.view')}
       </Link>),
   })
-  reportUrl && permissions.downloadReport && menuItems.push({
+  reportUrlExists && permissions.downloadReport && menuItems.push({
     key: 'downloadReport',
-    label: <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>,
+    label: I18n.t('reports.actions.download'),
   })
   permissions.uploadFile && customUpload && menuItems.push({
     key: 'uploadFile',
     label: 'Upload File',
   })
-  permissions.removeFile && customUpload && reportUrl?.length > 0 && menuItems.push({
+  permissions.removeFile && customUpload && reportUrlExists && menuItems.push({
     key: 'removeFile',
     label: 'Remove File',
   })
@@ -291,6 +276,22 @@ const getActionsMenuProps = ({
     }
     if (key === 'removeFile') {
       handleRemoveFile()
+    }
+    if (key === 'downloadReport') {
+      openModal('DownloadIndividualReportModal', {
+        allLocales: availableLanguages,
+        defaultLocale: effectiveDefaultLanguage,
+        reportName: userReportName,
+        reportIcon: reportIconUrl,
+        reportDownloadUrl: reportDownloadUrls,
+        onRegenerateReport: (selectedLocale) => {
+          onRegenerateReports({
+            [userReport.reportId]: selectedLocale,
+          }, userReport.id)
+        },
+        subjectId: userId,
+        campaignId,
+      })
     }
   }
 

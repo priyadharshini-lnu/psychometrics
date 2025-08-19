@@ -16,6 +16,7 @@ module Campaigns
       attribute :proctoring_type, String
       attribute :rules, Hash
       attribute :description, String
+      attribute :enable_video_call_recording, { String => Boolean }
 
       validates :campaign_id, presence: true
       validates :fixed_time_duration, numericality: { only_integer: true }, allow_nil: true
@@ -24,6 +25,19 @@ module Campaigns
       validate :time_zone do
         unless time_zone.nil? || ActiveSupport::TimeZone[time_zone]
           errors.add(:time_zone, :invalid)
+        end
+      end
+
+      validate :video_call_recording_allowed
+
+      private
+
+      def video_call_recording_allowed
+        campaign = Campaign.find_by(id: campaign_id)
+        privacy_setting = campaign&.project&.privacy_setting
+
+        if enable_video_call_recording && privacy_setting && !privacy_setting.allow_video_call_recording
+          errors.add(:enable_video_call_recording, :invalid)
         end
       end
     end

@@ -30,10 +30,10 @@ module AdminJobs
     end
 
     def data_row(development_action)
-      development_action.skills.map do |skill|
+      [
         [
           development_action.id,
-          skill.id,
+          development_action.skills.pluck(:id).join(', '),
           development_action.name,
           development_action.description,
           development_action.learning_style,
@@ -46,7 +46,7 @@ module AdminJobs
           development_action.image_url,
           development_action.duration
         ]
-      end
+      ]
     end
 
     def file_name

@@ -2,7 +2,7 @@ import { Button } from 'antd'
 import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
-const CreateEvaluatorsDropdown = ({ openModal, permissions }) => {
+const CreateEvaluatorsDropdown = ({ openModal, permissions, template }) => {
   const menuItems = []
   permissions.addEvaluator && menuItems.push({
     key: 'add',
@@ -21,6 +21,8 @@ const CreateEvaluatorsDropdown = ({ openModal, permissions }) => {
       openModal('EvaluatorImportModal')
     }
   }
+
+  if (template) return
 
   return (
     <ConditionalDropdown

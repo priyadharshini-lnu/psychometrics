@@ -51,45 +51,45 @@ interface FieldConfig {
 }
 const FIELDS: FieldConfig[] = [
   {
-    branch: 'Assessment Center',
+    branch: I18n.t('administration.piped_text_modal.assessment_center'),
     supportedCommunicationKind: [
       'workshop_booked', 'workshop_upcoming_reminder', 'workshop_cancelled', 'workshop_completed',
     ],
     fields: [
       {
-        name: 'Start time',
+        name: I18n.t('administration.piped_text_modal.start_time'),
         type: 'dropdown',
         items: () => _.map(DATE_FORMATS, f => ({ key: f.format, value: f.name })),
         getValue: (item?: { key?: string }) => `\${w://Workshop/Field/StartTime?format=${item?.key}}`,
       },
       {
-        name: 'End time',
+        name: I18n.t('administration.piped_text_modal.end_time'),
         type: 'dropdown',
         items: () => _.map(DATE_FORMATS, f => ({ key: f.format, value: f.name })),
         getValue: (item?: { key?: string }) => `\${w://Workshop/Field/EndTime?format=${item?.key}}`,
       },
       {
-        name: 'Duration',
+        name: I18n.t('administration.piped_text_modal.duration'),
         type: 'link',
         value: '${w://Workshop/Field/Duration}',
       },
     ],
   },
   {
-    branch: 'Invites',
+    branch: I18n.t('administration.piped_text_modal.invites'),
     supportedCommunicationKind: [
       'workshop_invite', 'workshop_invite_reminder', 'workshop_booked', 'workshop_upcoming_reminder',
       'workshop_cancelled', 'workshop_completed',
     ],
     fields: [
       {
-        name: 'Title',
+        name: I18n.t('administration.piped_text_modal.invite_title'),
         type: 'dropdown',
         items: () => _.map(LOCALES, f => ({ key: f.value, value: f.name })),
         getValue: (item?: { key?: string }) => `\${wi://WorkshopInvite/Field/Title?locale=${item?.key}}`,
       },
       {
-        name: 'Description',
+        name: I18n.t('administration.piped_text_modal.description'),
         type: 'dropdown',
         items: () => _.map(LOCALES, f => ({ key: f.value, value: f.name })),
         getValue: (item?: { key?: string }) => `\${wi://WorkshopInvite/Field/Description?locale=${item?.key}}`,
@@ -97,17 +97,17 @@ const FIELDS: FieldConfig[] = [
     ],
   },
   {
-    branch: 'Users',
+    branch: I18n.t('administration.piped_text_modal.users'),
     fields: [
       {
-        name: 'Magic URL',
+        name: I18n.t('administration.piped_text_modal.magic_url'),
         type: 'magic_url',
         getValue: (campaignId, assessmentId) => (
           `\${u://User/Field/MagicURL?campaign_id=${campaignId}&assessment_id=${assessmentId}}`
         ),
       },
       {
-        name: 'Magic Link',
+        name: I18n.t('administration.piped_text_modal.magic_link'),
         type: 'magic_link',
         getValue: (campaignId, assessmentId) => (
           // eslint-disable-next-line max-len
@@ -117,10 +117,10 @@ const FIELDS: FieldConfig[] = [
     ],
   },
   {
-    branch: 'Campaigns',
+    branch: I18n.t('administration.piped_text_modal.campaigns'),
     fields: [
       {
-        name: 'Join Link',
+        name: I18n.t('administration.piped_text_modal.magic_url'),
         type: 'campaign_join_link',
 
         getValue: (campaignId, expire, text) => (
@@ -135,7 +135,7 @@ const FIELDS: FieldConfig[] = [
     ],
   },
   {
-    branch: 'Projects',
+    branch: I18n.t('administration.piped_text_modal.projects'),
     fields: [
       {
         name: I18n.t('administration.piped_text_modal.project_name'),
@@ -145,7 +145,7 @@ const FIELDS: FieldConfig[] = [
     ],
   },
   {
-    branch: 'Platform Url and Links',
+    branch: I18n.t('administration.piped_text_modal.platform_url_links'),
     fields: [
       {
         name: I18n.t('administration.piped_text_modal.insight_page_url'),
@@ -162,7 +162,7 @@ const FIELDS: FieldConfig[] = [
     ],
   },
   {
-    branch: 'User Reports',
+    branch: I18n.t('administration.piped_text_modal.user_reports'),
     fields: [
       {
         name: I18n.t('administration.piped_text_modal.report_name'),

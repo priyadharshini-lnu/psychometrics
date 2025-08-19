@@ -15,6 +15,8 @@ th:
       title: ตรวจสอบการเปลี่ยนแปลง
     administrator:
       sessions:
+        errors:
+          recaptcha: การยืนยันตัวตนด้วย Recaptcha ล้มเหลว
         new:
           forgot_password: ลืมรหัสผ่านใช่ไหม?
           instruction: กรุณาเข้าสู่ระบบด้วยข้อมูลบัญชีส่วนตัวของคุณ
@@ -147,6 +149,7 @@ th:
             accesssheet_manage: จัดการ Accesssheet
             accesssheet_settings: ตั้งค่า Accesssheet
             accesssheet_view: แสดง Accesssheet
+            export: ส่งออก
             title: แดชบอร์ด
             view: ดู
           datasheets:
@@ -179,7 +182,7 @@ th:
             manage: จัดการ
             title: บทบาทในงาน
             view: ดู
-          mediaLibraries:
+          libraries:
             manage: จัดการ
             title: ห้องสมุดสื่อ
             view: ดู
@@ -290,18 +293,33 @@ th:
             view: ดู
     ai_assistants:
       actions:
+        create: สร้างผู้ช่วย AI
+        edit: แก้ไขผู้ช่วย AI
         playground: สนามทดลอง
       ai_assistants: ผู้ช่วย AI
       ai_assistants_playground: สนามทดลองผู้ช่วย AI
       column:
         provider: ผู้จัดหา
+      created_successfully: ผู้ช่วย AI ถูกสร้างขึ้นสำเร็จแล้ว
       form:
+        add_output_schema_key: เพิ่มคีย์แบบแผนเอาต์พุต
+        dependencies: การพึ่งพา
         description: คำอธิบาย
+        enter_description: กรอกคำอธิบาย
+        enter_schema_key: ป้อนคีย์สคีมา
+        key: คีย์
         name: ชื่อ
+        output_schema_keys: คีย์สคีมาเอาต์พุต
         provider: ผู้จัดหา
+        remove_output_schema_key: ลบคีย์สคีมาเอาต์พุต
+        schema_key_description_required: คำอธิบายคีย์ของสคีมา จำเป็นต้องมี
+        schema_key_required: จำเป็นต้องใช้คีย์สคีมา
+        schema_key_type: ประเภทของคีย์
+        schema_key_unique: คีย์ของสคีมาควรมีเอกลักษณ์เฉพาะตัว
         system_prompt: คำสั่งของระบบ
-        title: ผู้ช่วย AI
+        type: ประเภท
         user_prompt: คำสั่งของผู้ใช้
+      updated_successfully: ผู้ช่วย AI ได้รับการอัปเดตสำเร็จแล้ว
     any: " -ใดๆ- "
     api:
       campaigns:
@@ -767,6 +785,8 @@ th:
       new:
         header: ดาวน์โหลดจำนวนมาก
       reports_unavailable: ในขณะนี้ยังไม่มีรายงานให้ดาวน์โหลด โปรดยืนยันว่ารายงานที่คุณต้องการดาวน์โหลดพร้อมใช้งาน
+      select_users_for_download: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนในการดาวน์โหลดรายงาน
+      select_users_for_regenerate: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนเพื่อสร้างรายงานใหม่
     cable:
       notification:
         assessment_factors: ดึงปัจจัย
@@ -856,6 +876,7 @@ th:
       campaign_templates: เทมเพลตแคมเปญ
       column:
         assessment: การประเมิน
+        campaign: แคมเปญ
         owner: เจ้าของ
         report: รายงาน
       copy:
@@ -930,6 +951,7 @@ th:
       assessors:
         spoof:
           successfully: คุณเข้าสู่ระบบเป็น %{name} เรียบร้อยแล้ว
+      convert_to_template: แปลงเป็นเทมเพลต
       copy: ลอก
       delete: ลบ
       edit: แก้ไข
@@ -955,6 +977,7 @@ th:
         name: ชื่อ
         reports: รายงาน
         status: สถานะ
+        template: เทมเพลต
         type: ประเภท
       menus:
         add_common_campaign: เพิ่มแคมเปญทั่วไป
@@ -970,11 +993,15 @@ th:
             assessment: การประเมิน
             category: หมวดหมู่
             closed: ปิด
+            default_assessment_language: ภาษาเริ่มต้นสำหรับการประเมิน
+            default_report_language: รายงานภาษาเริ่มต้น
             empty: เปล่า
             inactive: เกียจคร้าน
             name: ชื่อ
             normal: ปกติ
             previous: ก่อน
+            select_assessment_language: เลือกภาษาการประเมิน
+            select_report_language: เลือกภาษาของรายงาน
             skill_rater: ผู้ประเมินทักษะ
             standard: มาตรฐาน
             status: สถานะ
@@ -1007,6 +1034,7 @@ th:
           name: คำอธิบาย
           save: บันทึกคําอธิบาย
           save_success: บันทึกคําอธิบายสําเร็จ
+        enable_video_call_recording: เปิดใช้งานการบันทึกการโทรผ่านวิดีโอ
         fixed_time: เวลาคงที่
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ th:
         campaign_assessment_group: กลุ่มประเมินผลแคมเปญ
         client: ลูกค้า
         completion: เสร็จสมบูรณ์
+        custom: กำหนดเอง
         delivery_at: จัดส่งที่ (GST)
         delivery_delay_hours: ความล่าช้าในการจัดส่ง (ชั่วโมง)
         delivery_interval: ระยะเวลาการส่งมอบ
@@ -1628,6 +1657,7 @@ th:
         recipients: ผู้รับ
         reminder: หมายเหตุ
         report_available: มีรายงาน
+        select_assessments: เลือกการประเมินที่ต้องการตรวจสอบว่าเสร็จสมบูรณ์แล้ว
         selected: เลือก
         selected_cc_recipients: ผู้รับ CC ที่เลือก
         selected_recipients: ผู้รับที่เลือก
@@ -2122,6 +2152,9 @@ th:
         remove_confirm: ป้อนชื่อเทมเพลตปัจจุบันที่ระบุด้านล่างในกล่องข้อความเพื่อลบเทมเพลต
         success: "%{idpName} ถูกลบออกเรียบร้อยแล้ว"
       add_idp_template: เพิ่มเทมเพลต IDP
+      ai_assisted_idp_enabled: ระบบช่วยเหลือด้วย AI สำหรับการระบุตัวตนภายในประเทศ
+      ai_enabled: ขับเคลื่อนด้วยปัญญาประดิษฐ์
+      ai_settings: การตั้งค่า AI
       all: ทั้งหมด
       appearance: ลักษณะ
       appearance_hint: หากต้องการแก้ไขรูปลักษณ์ โปรดบันทึกเทมเพลต IDP ก่อนเพื่อเปิดใช้งานการตั้งค่าเหล่านี้
@@ -2137,6 +2170,7 @@ th:
       enter_template_name: ชื่อ
       enter_template_name_error: ต้องระบุชื่อเทมเพลต
       errors:
+        cannot_update_progress_plan_completed: ไม่สามารถอัปเดตความคืบหน้าได้เนื่องจากแผน IDP ได้เสร็จสิ้นแล้ว
         update: ไม่อนุญาตให้อัปเดตเนื่องจากเทมเพลต IDP เชื่อมโยงกับแผน IDP ของผู้ใช้อยู่แล้ว การเปลี่ยนแปลงรูปลักษณ์ถูกบันทึกไว้
       fields:
         assigned_data: ข้อมูลที่ได้รับมอบหมาย
@@ -2164,6 +2198,7 @@ th:
       logo_type_label: ประเภทโลโก้
       no_reflection_questions_selected: ไม่ได้เลือกคําถามไตร่ตรอง
       none: ไม่มีใคร
+      one_click_idp_enabled: เปิดใช้งาน IDP ด้วยคลิกเดียว
       reference_locale: ตําแหน่งที่ตั้งอ้างอิง
       reflection_questions: คําถามไตร่ตรอง
       reflection_questions_hint: หากต้องการแก้ไขคําถามเกี่ยวกับการสะท้อน โปรดบันทึกเทมเพลต IDP ก่อนเพื่อเปิดใช้งานการตั้งค่าเหล่านี้
@@ -2270,7 +2305,7 @@ th:
     individual_invite:
       tabs:
         assessment_center: ศูนย์ประเมินผล
-        subjects: หัวข้อ
+        invitation_status: สถานะคำเชิญ
     innovation_styles:
       create:
         successfully: รูปแบบนวัตกรรม %{name} ถูกสร้างขึ้นเรียบร้อยแล้ว
@@ -2399,7 +2434,9 @@ th:
       assessment_center: 'ศูนย์ประเมิน:'
       booked_at: 'จองเมื่อ:'
       column:
+        invitation_status: สถานะคำเชิญ
         participant: ผู้มีส่วนร่วม
+        scheduling_details: รายละเอียดการนัดหมาย
       remove_confirm:
         content: คุณแน่ใจหรือไม่ว่าต้องการลบหัวเรื่องที่มีอีเมล '%{subjectEmail}'
         success: หัวข้อที่มีอีเมล '%{subjectEmail}'' ถูกลบออกเรียบร้อยแล้ว
@@ -2407,12 +2444,15 @@ th:
       statuses:
         accepted: ยอม รับ
         cancelled: ยก เลิก
+        late_cancelled: ยกเลิกในนาทีสุดท้าย
+        late_rescheduled: เลื่อนกำหนดส่ง
         pending: รอ
         requested_cancellation: การยกเลิกที่ร้องขอ
         requested_cancellation_rejected: การยกเลิกถูกปฏิเสธ
         requested_rescheduling: การขอเปลี่ยนกําหนดการ
         requested_rescheduling_rejected: การกําหนดเวลาใหม่ถูกปฏิเสธ
         rescheduled: เลื่อนกําหนดเวลา
+        scheduled: กำหนดไว้แล้ว
       subject: ชื่อเรื่อง
     job_role:
       are_you_sure_to_remove: คุณแน่ใจหรือไม่ที่จะลบ?
@@ -2440,8 +2480,6 @@ th:
         expected_proficiency_level: ระดับความชํานาญที่คาดหวัง
       form:
         title: การทําแผนที่งานทักษะ
-      import:
-        taxonomy: อนุกรมวิธาน
     job_roles:
       export:
         translations:
@@ -2696,21 +2734,31 @@ th:
         sms_contacts: ติดต่อ SMS
         subjects: หัวข้อ
     piped_text_modal:
+      assessment_center: ศูนย์ประเมินผล
       assessment_id: รหัสการประเมิน
       campaign_id: รหัสแคมเปญ
       campaign_name: ชื่อแคมเปญ
       campaigns: แคมเปญ
+      description: คำอธิบาย
+      duration: ระยะเวลา
+      end_time: เวลาสิ้นสุด
       insight_page_link: ลิงค์หน้าข้อมูลเชิงลึก
       insight_page_url: URL ของหน้าข้อมูลเชิงลึก
+      invite_title: ชื่อเรื่อง
+      invites: คำเชิญ
       join_link: ลิงค์เข้าร่วม
       magic_link: ลิงค์เมจิก
       magic_url: URL เมจิก
+      platform_url_links: แพลตฟอร์ม URL และลิงก์
       profile_custom_field: โปรไฟล์ฟิลด์ที่กําหนดเอง
       project_name: ชื่อโครงการ
       projects: โครงการ
       report_name: ชื่อรายงาน
+      start_time: เวลาเริ่มต้น
       text: ข้อความ
       title: เพิ่มข้อความท่อ
+      user_reports: รายงานของผู้ใช้
+      users: ผู้ใช้
     proctoring_sessions:
       columns:
         comment: ติชม
@@ -2735,7 +2783,9 @@ th:
       errors:
         create:
           invalid_format: คําจํากัดความระดับต้องเป็นอาร์เรย์ของคําจํากัดความ
+          level_definition_must_exist: การกำหนดระดับไม่สามารถเว้นว่างได้
           level_definition_must_match_level: ต้องมีระดับ %{expected} พอดี แต่ได้รับ %{actual}
+          level_name_must_exist: ชื่อระดับไม่สามารถเว้นว่างได้
           must_be_unique: ต้องไม่ซ้ํากัน
           proficiency_level_exists: ระดับความชํานาญที่มีทักษะและโครงการนี้มีอยู่แล้ว
           proficiency_level_exists_for_default: ระดับความสามารถสำหรับค่าเริ่มต้นมีอยู่แล้ว
@@ -3038,6 +3088,7 @@ th:
         dp_consent_custom: ปรับแต่งความยินยอมในการประมวลผลข้อมูล
         dp_consent_version: เวอร์ชันของนโยบาย
         errors:
+          cannot_disable_while_campaign_enabled: ไม่สามารถปิดการบันทึกการโทรวิดีโอได้ เนื่องจากมีการเปิดใช้งานสำหรับแคมเปญหนึ่งหรือมากกว่าในโครงการนี้
           policy_version_format: อนุญาตให้ใช้ได้เฉพาะจํานวนเต็มเท่านั้น
         mask_identity_for_examus: ข้อมูลหน้ากากสําหรับ Examus Proctoring
         mask_identity_for_hogan: ข้อมูลหน้ากากสําหรับ Hogan
@@ -3051,6 +3102,9 @@ th:
         privacy_link_placeholder: ป้อนลิงก์ความเป็นส่วนตัว
         privacy_text: ข้อความความเป็นส่วนตัว
         privacy_text_placeholder: ป้อนข้อความความเป็นส่วนตัว
+        video_call_recording: อนุญาตให้บันทึกการโทรผ่านวิดีโอ
+        video_call_recording_expiry_duration: ระยะเวลาการเก็บรักษาสำหรับการบันทึกการโทรผ่านวิดีโอ (เป็นวัน)
+        video_call_recording_scope: เปิดใช้งานการบันทึกวิดีโอสำหรับแคมเปญใหม่ทั้งหมด
       profile_settings:
         form_fields:
           enabled: เปิด
@@ -3373,6 +3427,7 @@ th:
         copy_to_all: คัดลอกไปยังศูนย์ประเมินอื่น ๆ
         create: สร้าง
         dates_label: วัน
+        disable_cancellation_and_rescheduling: ปิดการยกเลิกและการเลื่อนนัด
         duration_label: ระยะเวลา
         duration_max_error: ไม่เกิน 16 ชั่วโมง
         duration_min_error: ต้องไม่น้อยกว่า 15 นาที
@@ -3383,8 +3438,6 @@ th:
         name_label: ชื่อ
         next: ต่อไป
         required_error: ต้องระบุ
-        reschedule_duration_max_error: ไม่เกิน 30 วัน
-        reschedule_duration_min_error: ต้องไม่น้อยกว่า 1 นาที
         resources_panel:
           description: เพิ่มลิงก์ไปยังแหล่งข้อมูลที่คุณต้องการให้ผู้อํานวยความสะดวกสามารถเข้าถึงได้
           resource_name_placeholder: ชื่อทรัพยากร
@@ -3498,6 +3551,7 @@ th:
         form_title: กําหนดการประเมิน
         language: ภาษา
         language_not_selected: ไม่ได้เลือก
+        mark_cancel: มาร์ค ยกเลิก
         mark_cancel_success: ยกเลิกการเข้าร่วมของหัวเรื่องที่มีอีเมล %{subject_email}
         meeting_link_custom: ธรรมเนียม
         meeting_link_internal: ภายใน
@@ -3506,6 +3560,9 @@ th:
         no_change: ไม่มีการเปลี่ยนแปลง
         override_existing: แทนที่กําหนดการที่มีอยู่สําหรับหัวเรื่อง
         preworks: งานก่อนเริ่ม
+        re_enroll: ลงทะเบียนใหม่
+        re_enroll_confirm_message: คุณแน่ใจหรือไม่ว่าต้องการลงทะเบียนวิชาใหม่ด้วยอีเมล '%{subject_email}'
+        re_enroll_success: นักเรียนลงทะเบียนใหม่ด้วยอีเมล<x>subject_email</x>
         schedule: ตาราง
         unschedule: ยกเลิกกําหนดเวลา
       tabs:
@@ -3624,6 +3681,7 @@ th:
       disable_password_reuse: ปิดใช้งานการใช้รหัสผ่านซ้ํา
       disallow_password_login: ไม่อนุญาตให้เข้าสู่ระบบด้วยรหัสผ่าน
       enable_login_with_magic_link: เปิดใช้งานการเข้าสู่ระบบด้วยลิงค์วิเศษ
+      enable_recaptcha: เปิดใช้งาน reCAPTCHA
       enforce_password_policy: บังคับใช้นโยบายรหัสผ่านเมื่อลงชื่อเข้าใช้ครั้งถัดไป
       enforce_strong: บังคับใช้รหัสผ่านที่คาดเดายาก
       expiration: รหัสผ่านหมดอายุ
@@ -4091,6 +4149,21 @@ th:
         toggle_status:
           successfully: สำเร็จ
     threesixty_campaigns:
+      convert_action:
+        already_a_template: เป็นเทมเพลตอยู่แล้ว
+        has_user_data: กรุณารีเซ็ตแคมเปญด้วยตนเองโดยคลิกที่ "รีเซ็ตผู้เข้าร่วมทั้งหมด" จากเมนูแบบเลื่อนลงของเครื่องมือ ก่อนที่จะแปลงเป็นเทมเพลต
+      convert_template_modal:
+        cancel: ยกเลิก
+        confirm: ยืนยัน
+        convert:
+          success: เทมเพลตถูกแปลงสำเร็จ
+        convert_option: แปลงแคมเปญนี้เป็นเทมเพลต
+        copy:
+          success: การสร้างแม่แบบแคมเปญได้รับการกำหนดเวลาเรียบร้อยแล้ว กรุณาตรวจสอบการแจ้งเตือนของคุณเพื่อดูสถานะ
+        copy_option: สร้างเทมเพลตใหม่จากแคมเปญนี้
+        description: เลือกวิธีที่คุณต้องการสร้างเทมเพลตจากแคมเปญนี้
+        failed: การสร้างเทมเพลตล้มเหลว
+        title: แปลงเป็นเทมเพลต
       email_templates:
         approve_nomination:
           description: ข้อความนี้จะถูกส่งไปยังผู้จัดการเมื่อการเสนอชื่อที่ทําโดยผู้ใต้บังคับบัญชาโดยตรงจําเป็นต้องได้รับการอนุมัติ
@@ -4325,6 +4398,10 @@ th:
       update:
         successfully: ผู้ใช้ %{name} อัปเดตเรียบร้อยแล้ว
       user: ผู้ใช้
+    validations:
+      idp:
+        end_date_cannot_be_in_past: วันที่สิ้นสุดไม่สามารถเป็นวันที่ผ่านมาได้
+        start_date_cannot_be_in_past: วันที่เริ่มต้นไม่สามารถเป็นอดีตได้
     webhook:
       connection_failure: ไม่สามารถเชื่อมต่อกับ URL ของเว็บฮุคได้ โปรดตรวจสอบว่า URL เว็บฮุคถูกต้องหรือไม่
       delete_success: ลบการตั้งค่าเว็บฮุคเรียบร้อยแล้ว

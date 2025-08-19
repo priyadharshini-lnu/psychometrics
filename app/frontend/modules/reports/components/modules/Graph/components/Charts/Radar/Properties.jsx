@@ -54,11 +54,9 @@ const Properties = ({ modules }) => {
           onChange={e => checkboxHandler('hideEmptyFilters', e)}
           className="font-normal"
         >
-          Hide Empty filters
-
+          Hide Empty Filters
         </Checkbox>
       </div>
-
       <div className={styles.block}>
         <Checkbox
           checked={model.props.showLegend || false}

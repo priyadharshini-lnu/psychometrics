@@ -4,7 +4,7 @@ module EndUser
   class UserReportSchema < BaseSchema
     def self.schema(_, _)
       Dry::Schema.JSON do
-        config.validate_keys = true
+        config.validate_keys = false
 
         required(:id).filled(:int?)
         required(:report_name).filled(:str?)
@@ -14,6 +14,7 @@ module EndUser
         required(:pdf_url).maybe(:str?)
         required(:require_approval).filled(:bool?)
         required(:poster_url).maybe(:str?)
+        required(:pdf_urls).maybe(:hash?)
       end
     end
   end

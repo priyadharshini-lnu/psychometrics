@@ -95,6 +95,7 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
             campaignId={campaignId}
             projectId={projectId}
             dashboard={dashboard}
+            campaignPermissions={campaignPermissions}
           />
         )}
       </div>

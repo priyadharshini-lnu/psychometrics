@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import {
   Form, Input, Select, Spin,
 } from 'antd'
@@ -11,32 +11,46 @@ import { Report } from '~/modules/admin/modules/client/core/reports'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
+import { isSuperAdmin } from '~/core/currentUser'
+import { useCurrentUser } from '~/hooks/useCurrentUser'
 
 const { Option } = Select
 
 type Props = {
-  close(): void
+  close (): void
   campaignTemplate?: CampaignTemplate
 }
 
 const { I18n } = window
 
-export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTemplate }) => {
+export const CampaignTemplatesFormModal: React.FC<Props> = ({
+  close,
+  campaignTemplate,
+}) => {
+  const { currentUser } = useCurrentUser()
   const { resource } = useResourceContext<CampaignTemplate, BaseMeta>()
   const [form] = Form.useForm()
 
+  const disabled = !!campaignTemplate?.campaign?.id
+
   const {
-    data: assessments, fetch: fetchAssessments, isLoading,
+    data: assessments,
+    fetch: fetchAssessments,
+    isLoading,
   } = useResources<Assessment>('assessments')
   const assessmentsLoading = isLoading('fetch')
 
   const {
-    data: reports, fetch: fetchReports, isLoading: isReportLoading,
+    data: reports,
+    fetch: fetchReports,
+    isLoading: isReportLoading,
   } = useResources<Report>('reports')
   const reportsLoading = isReportLoading('fetch')
 
   const {
-    data: owners, fetch: fetchOwners, isLoading: isOwnerLoading,
+    data: owners,
+    fetch: fetchOwners,
+    isLoading: isOwnerLoading,
   } = useResources<Client>('clients')
   const ownersLoading = isOwnerLoading('fetch')
 
@@ -88,6 +102,15 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
     fetchOwnersByValue('')
   }, [])
 
+  const ownerId = useMemo(() => {
+    if (campaignTemplate?.owner) {
+      return campaignTemplate.owner.id
+    } if (campaignTemplate && !campaignTemplate.owner) {
+      return null
+    }
+    return undefined
+  }, [campaignTemplate])
+
   return (
     <ResourceFormModal
       resourceName="campaign_templates"
@@ -98,14 +121,20 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
       storeManager={{ form }}
       scrollToFirstError
       modalProps={{ width: 720 }}
-      request={{ createResource: resource.createResource, updateResource: resource.updateResource }}
+      request={{
+        createResource: resource.createResource,
+        updateResource: resource.updateResource,
+      }}
     >
       {() => (
         <>
           <Form.Item
             name="name"
             label={I18n.t('administration.campaign_templates.form.name')}
-            rules={[{ required: true, transform: value => value.trim() }]}
+            rules={[{
+              required: true,
+              transform: value => value.trim(),
+            }]}
           >
             <Input
               placeholder={
@@ -119,6 +148,7 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
             rules={[{ required: true }]}
           >
             <Select
+              disabled={disabled}
               showSearch
               filterOption={false}
               placeholder={
@@ -128,7 +158,10 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
               notFoundContent={assessmentsLoading ? <Spin size="small" /> : null}
             >
               {
-                assessmentsOpts.map(({ id, name }) => (
+                assessmentsOpts.map(({
+                  id,
+                  name,
+                }) => (
                   <Option key={id} value={id}>{name}</Option>
                 ))
               }
@@ -140,6 +173,7 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
             rules={[{ required: true }]}
           >
             <Select
+              disabled={disabled}
               showSearch
               filterOption={false}
               placeholder={
@@ -149,7 +183,10 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
               notFoundContent={reportsLoading ? <Spin size="small" /> : null}
             >
               {
-                reportsOpts.map(({ id, name }) => (
+                reportsOpts.map(({
+                  id,
+                  name,
+                }) => (
                   <Option key={id} value={id}>{name}</Option>
                 ))
               }
@@ -158,8 +195,10 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
           <Form.Item
             name="ownerId"
             label={I18n.t('administration.campaign_templates.form.owner')}
+            initialValue={ownerId}
           >
             <Select
+              disabled={disabled}
               showSearch
               filterOption={false}
               placeholder={
@@ -168,8 +207,12 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({ close, campaignTem
               onSearch={searchAvailableOwners}
               notFoundContent={ownersLoading ? <Spin size="small" /> : null}
             >
+              {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
               {
-                ownerOpts.map(({ id, name }) => (
+                ownerOpts.map(({
+                  id,
+                  name,
+                }) => (
                   <Option key={id} value={id}>{name}</Option>
                 ))
               }

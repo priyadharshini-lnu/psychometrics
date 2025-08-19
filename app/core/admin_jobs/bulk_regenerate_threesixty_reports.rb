@@ -6,6 +6,8 @@ module AdminJobs
       campaign_options = threesixty_campaign.option
       user_reports = threesixty_campaign.campaign.user_reports
 
+      user_reports = user_reports.where(id: record.data['ids']) if record.data['ids'].present?
+
       subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
         user_reports.pluck(:user_id),
         threesixty_campaign

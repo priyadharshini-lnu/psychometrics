@@ -819,6 +819,7 @@ zh-Hant:
         bulk_update_evaluation_status: 批量更新評估狀態
         compact_completion_status_export: 緊湊型完成狀態匯出
         completion_status_export: 完成狀態匯出
+        copy_as_template_or_campaign: 複製活動作為範本
         copy_dimension: 複製尺寸
         create_threesixty_campaign: 建立 Threesixty 活動
         data_report_export: 資料報告匯出
@@ -1082,6 +1083,7 @@ zh-Hant:
         description: 如果您在其他標籤、瀏覽器或裝置中繼續進行評估，可能會發生這種情況。
         title: 上次請求失敗
       next: 下一頁
+      no_skill_mapping_message: 此工作角色沒有技能對應，請聯絡您的管理員。
       read_only: 為唯讀模式，您無法變更任何結果。
       save: 節省
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ zh-Hant:
     add_group_form:
       previous_assessments_required: 按以下順序進行評估
       previous_group_required: 需要完成過小組
+      require_previous_groups_completion_for_booking: 要求在預約前完成之前的所有組別
     menu:
       assessment_center: 評估中心
       assessment_center_invites: 評估中心邀請
@@ -1381,6 +1384,7 @@ zh-Hant:
       bulk_download: 大量下載
       bulk_update_evaluation_as_done: 標記為已完成
       bulk_update_evaluation_as_undone: 取消標記為已完成
+      convert_to_template: 轉換為範本
       download: 下載報告
       export_completion_status: 匯出完成狀態
       export_external: 外部
@@ -1962,6 +1966,8 @@ zh-Hant:
         subject: 燈塔邀請函
       confirmation_instructions:
         subject: 確認指示
+      copyright:
+        text: Lighthouse. 版權所有
       invitation_instructions:
         body: '您好 %{name}，您已被加入 Lighthouse（兆光科技），成為以下部分的管理員 '
         login: 登入 Lighthouse
@@ -1974,6 +1980,8 @@ zh-Hant:
         body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 mte.support@mercer.com '
         regards: 'Lighthouse 團隊 '
         subject: 您的 Lighthouse 密碼已變更
+      powered_by:
+        text: Powered by Lighthouse.
       reset_password_instructions:
         body: '您好，%{name}！有人要求提供變更密碼的連結。 您可以透過以下連結變更密碼。 '
         change_password: 變更密碼
@@ -2158,6 +2166,7 @@ zh-Hant:
       uniq_simulation: 該模擬評估已存在於系統中。 該評估的 ID 為 %{id}
       uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
       update_workshop:
+        bookings_exist: 由於參加者已預約此時段，因此無法修改時間表。
         less_than_booked: 總座位數必須大於預訂座位數
       user_availability_date:
         overlaps_date: 與其他可用性重疊 %{range}
@@ -2175,6 +2184,10 @@ zh-Hant:
       workshop_subject_create:
         already_exists: 此評估中心已存在主題。
         part_of_other_workshop: 主題已經是 %{workshop_name} 的參加者。
+      workshop_subject_re_enroll:
+        no_seats_available: 本工作坊沒有座位。
+        scheduling_lead_time_passed: 排程時間已過，您無法重新註冊該科目。
+        workshop_subject_not_found: 未找到研討會主題
       workshops:
         no_available_assessor_slots: 沒有可用的評估員插槽 %{assessor}
         no_available_manager_slots: 沒有可用的管理員插槽 %{manager}
@@ -2306,8 +2319,13 @@ zh-Hant:
       add_to_yahoo_calendar: 新增至 yahoo 行事曆
       assessment_center_alert:
         btn_title: 活動
-        message_part1: 完成其中的所有預備工作
-        message_part2: 預約時段之前。
+        complete_previous_groups: 完成之前所有的團體活動
+        complete_preworks: 完成所有預備工作
+        please_visit: 請瀏覽
+        requirements_message: 完成下列要求後，您才能進行預訂
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: 以完成這些要求。
       assessment_center_group_name: 評估中心
       booking_failed_msg: 預約時段失敗： %{error}
       buttons:
@@ -2375,6 +2393,7 @@ zh-Hant:
         remove:
           confirmation: 在文字方塊中輸入以下提供的目前活動名稱，以移除活動
           success: "%{campaignName} 已成功移除。"
+          template_confirmation: 在下方欄位中輸入目前範本的名稱，即可刪除該範本。注意：這也會刪除連結的活動範本。
       users:
         actions:
           export:
@@ -2729,6 +2748,7 @@ zh-Hant:
         required: 問題的答案是必需的
       max_words: 最大字數
       min_words: 最小字數
+      no_reflective_questions: 没有反思性问题
       title: 反思性問題
       update_failed: 更新期間出錯
       updated_successfully: 您的答案已成功更新
@@ -2872,6 +2892,12 @@ zh-Hant:
     used_number: 使用過的授權
     used_out_of: "%{used}中的%{total}。"
   mailer:
+    copyright:
+      text: Lighthouse.保留所有權利
+    footer:
+      regards: 關於
+      team_name: 燈塔團隊
+      technical_support: 如有任何技術問題，請寫信至<x>email</x> ，我們會在 24 小時內回覆。
     from: 人才企業
     idp:
       manager_unread_comments:
@@ -2929,6 +2955,8 @@ zh-Hant:
         instructions: 點選以下連結登入 lighthouse。
         signin_link: 登入連結
       subject: Lighthouse 的登入連結
+    powered_by:
+      text: 由 Lighthouse 提供。
     users:
       account_disable: 您的帳號因無活動性而被停用
       warning: 您的帳號很快就會因無活動性而停用
@@ -3245,6 +3273,9 @@ zh-Hant:
       send_password_email_success: 向使用者 %{email} 傳送包含密碼的電子郵件。
     title: 重設密碼
   select: 選擇
+  sessions:
+    errors:
+      recaptcha: Recaptcha 驗證失敗。請再試一次。
   shared:
     filters:
       clear: 清除過濾器
