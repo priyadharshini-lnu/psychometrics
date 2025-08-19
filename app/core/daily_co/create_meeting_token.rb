@@ -13,23 +13,52 @@ module DailyCo
 
     def call
       role = meeting_room.get_role(current_user)
-      return broadcast(:error) if role == 'none' || ROLES.exclude?(role) || meeting_room.external_id.blank?
+      return broadcast(:error) if invalid_role?(role)
 
       broadcast :ok, token(role)
     end
 
+    private
+
+    def invalid_role?(role)
+      role == 'none' || ROLES.exclude?(role) || meeting_room.external_id.blank?
+    end
+
+    def dailyco_config
+      if meeting_room.use_old_dailyco_api
+        {
+          api_key: Settings.secrets.daily_co[:old_api_key],
+          domain_id: Settings.secrets.daily_co[:old_domain_id],
+          subdomain: Settings.secrets.daily_co[:old_subdomain]
+        }
+      else
+        {
+          api_key: Settings.secrets.daily_co[:api_key],
+          domain_id: Settings.secrets.daily_co[:domain_id],
+          subdomain: Settings.secrets.daily_co[:subdomain]
+        }
+      end
+    end
+
     def token(role)
+      config = dailyco_config
+
       payload = {
         r: meeting_room.name,
         o: role == 'owner',
-        d: Settings.secrets.daily_co[:domain_id],
+        d: config[:domain_id],
         u: current_user.decorate.display_name,
         ud: current_user.id,
         iat: Time.now.to_i
       }
+
+      if meeting_room.video_recording_enabled?
+        payload[:sr] = true
+      end
+
       {
-        token: JWT.encode(payload, Settings.secrets.daily_co[:api_key], 'HS256'),
-        url: "https://#{Settings.secrets.daily_co[:subdomain]}.daily.co/#{meeting_room.name}"
+        token: JWT.encode(payload, config[:api_key], 'HS256'),
+        url: "https://#{config[:subdomain]}.daily.co/#{meeting_room.name}"
       }
     end
   end

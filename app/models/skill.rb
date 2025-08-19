@@ -25,7 +25,7 @@ class Skill < ApplicationRecord
 
   enum :skill_type, { behavioral: 0, technical: 1, other: 2 }
 
-  after_create_commit :create_associated_question, unless: :question_exists?
+  after_create_commit :create_associated_entities
 
   acts_as_taggable_on :tags
   acts_as_taggable_tenant :project_id
@@ -70,16 +70,7 @@ class Skill < ApplicationRecord
 
   private
 
-  def create_associated_question
-    Question.create!(
-      name: "#{name} Question",
-      skill: self,
-      owner_id: project_id,
-      type: 'SkillRater'
-    )
-  end
-
-  def question_exists?
-    Question.exists?(skill_id: id)
+  def create_associated_entities
+    Skills::CreateSkillFactorAndQuestion.call(self)
   end
 end

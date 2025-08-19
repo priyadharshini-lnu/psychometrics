@@ -819,6 +819,7 @@ ja:
         bulk_update_evaluation_status: 一括更新の評価ステータス
         compact_completion_status_export: コンパクト完成状況エクスポート
         completion_status_export: 完成状況のエクスポート
+        copy_as_template_or_campaign: キャンペーンをテンプレートとしてコピーする
         copy_dimension: コピー寸法
         create_threesixty_campaign: クリエイト・スリーシックスティ・キャンペーン
         data_report_export: データ・レポート・エクスポート
@@ -1087,6 +1088,7 @@ ja:
         description: この評価セッションは無効になりました。 これは、別のタブ、ブラウザ、またはデバイスで評価を続行した場合に発生する可能性があります。
         title: 前回のリクエスト失敗
       next: 次へ
+      no_skill_mapping_message: この職務のスキルマッピングは行われていませんので、管理者にお問い合わせください。
       read_only: 読み取り専用モードです。結果を変更することはできません。
       save: 保存
       submissionFailedAlert:
@@ -1155,6 +1157,7 @@ ja:
     add_group_form:
       previous_assessments_required: 査定は以下の順序で行われる。
       previous_group_required: 過去にグループを結成したことがあること
+      require_previous_groups_completion_for_booking: ご予約の前に、以前のすべてのグループを完了している必要があります。
     menu:
       assessment_center: アセスメント・センター
       assessment_center_invites: アセスメントセンターの招待
@@ -1394,6 +1397,7 @@ ja:
       bulk_download: 一括ダウンロード
       bulk_update_evaluation_as_done: 完了としてマーク
       bulk_update_evaluation_as_undone: 完了としてマークを解除
+      convert_to_template: テンプレートに変換
       download: レポートのダウンロード
       export_completion_status: 輸出完了ステータス
       export_external: 外部
@@ -1975,6 +1979,8 @@ ja:
         subject: ライトハウスへの招待
       confirmation_instructions:
         subject: 確認事項
+      copyright:
+        text: Lighthouse. すべての権利を保有します
       invitation_instructions:
         body: 'こんにちは、%{name}, あなたは次のセクションの管理者としてLighthouseに追加されました。 '
         login: ライトハウスにサインイン
@@ -1987,6 +1993,8 @@ ja:
         body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに mte.support@mercer.com までご連絡ください。 '
         regards: 'ライトハウス・チーム '
         subject: ライトハウスのパスワードが変更されました
+      powered_by:
+        text: Powered by Lighthouse.
       reset_password_instructions:
         body: 'こんにちは、%{name}さん！パスワード変更用のリンクをリクエストされました。 以下のリンクから変更できます。 '
         change_password: パスワードの変更
@@ -2171,6 +2179,7 @@ ja:
       uniq_simulation: このシミュレーション評価はシステムに既に存在しています。 この評価のIDは%{id}です。
       uniq_skillvue: このスキルビューアセスメントはすでにシステムに存在しています。このアセスメントのIDは %{id} です。
       update_workshop:
+        bookings_exist: 参加者がこの時間帯をすでに予約しているため、スケジュールの変更はできません。
         less_than_booked: 総座席数が予約席数を上回っていること
       user_availability_date:
         overlaps_date: 別の可用性と重なる %{range}。
@@ -2188,6 +2197,10 @@ ja:
       workshop_subject_create:
         already_exists: このアセスメントセンターには既に件名が存在する。
         part_of_other_workshop: 対象者は既に '%{workshop_name}' の参加者です。
+      workshop_subject_re_enroll:
+        no_seats_available: このワークショップに空席はありません。
+        scheduling_lead_time_passed: Scheduling Lead Timeが過ぎた場合、再登録はできません。
+        workshop_subject_not_found: ワークショップのテーマが見つかりません
       workshops:
         no_available_assessor_slots: 査定者の空き枠がありません %{assessor}。
         no_available_manager_slots: マネージャ %{manager} に使用可能なスロットはありません。
@@ -2319,8 +2332,13 @@ ja:
       add_to_yahoo_calendar: yahooカレンダーに追加
       assessment_center_alert:
         btn_title: キャンペーン
-        message_part1: 時間枠を予約する前に
-        message_part2: この中の事前作業をすべて完了してください。
+        complete_previous_groups: これまでのグループ活動をすべて完了する
+        complete_preworks: すべての事前作業を完了する
+        please_visit: をご覧ください。
+        requirements_message: 以下の条件を満たした場合のみ予約が可能です。
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: を完了する必要がある。
       assessment_center_group_name: アセスメントセンター
       booking_failed_msg: 時間枠を予約できませんでした：%{error}
       buttons:
@@ -2388,6 +2406,7 @@ ja:
         remove:
           confirmation: キャンペーンを削除するには、以下のテキストボックスに現在のキャンペーン名を入力してください
           success: "%{campaignName}が正常に削除されました。"
+          template_confirmation: 削除するには、下のフィールドに現在のテンプレート名を入力してください。注：これはリンクされたキャンペーンテンプレートも削除します。
       users:
         actions:
           export:
@@ -2736,6 +2755,7 @@ ja:
         required: 質問への回答が必要
       max_words: 最大文字数
       min_words: ミニ・ワード
+      no_reflective_questions: 反省的な質問はありません
       title: 反省的な質問
       update_failed: アップデート中にエラーが発生しました。
       updated_successfully: 回答が更新されました
@@ -2879,6 +2899,12 @@ ja:
     used_number: 中古ライセンス
     used_out_of: "%{total}のうち、%{used}"
   mailer:
+    copyright:
+      text: ライトハウス無断複写・転載を禁じます。
+    footer:
+      regards: ありがとう、
+      team_name: ライトハウス・チーム
+      technical_support: 技術的な問題については、<x>email</x> 。
     from: タレント・エンタープライズ
     idp:
       manager_unread_comments:
@@ -2936,6 +2962,8 @@ ja:
         instructions: 以下のリンクをクリックして、Lighthouseにサインインしてください。
         signin_link: サインインリンク
       subject: Lighthouseへのサインインリンク
+    powered_by:
+      text: パワード・バイ・ライトハウス
     users:
       account_disable: アカウントが無効になっています
       warning: アカウントが無効のため、すぐに無効になります。
@@ -3252,6 +3280,9 @@ ja:
       send_password_email_success: パスワードが記載された電子メールがユーザ %{email} に送信されました。
     title: パスワードのリセット
   select: 選択
+  sessions:
+    errors:
+      recaptcha: Recaptcha の検証に失敗しました。もう一度お試しください。
   shared:
     filters:
       clear: 絞り込みをクリア

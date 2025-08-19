@@ -11,7 +11,7 @@ export type HttpAction = 'get' | 'post' | 'put' | 'patch' | 'delete'
 
 export type RequestType = 'fetch' | 'add' | `update@${string}` | `delete@${string}` | `fetch@${string}`
   | `${HttpAction}/${string}@${string}` | `${HttpAction}/${string}` | `removeRelationships@${string}` |
-  `addRelationships@${string}`
+  `addRelationships@${string}` | `upload/${string}`
 
 export type Requests = {
   [key in RequestType]?: {

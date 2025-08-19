@@ -11,3 +11,18 @@ export const ASSISTANT_TYPES = {
     name: 'Content Writer',
   },
 }
+
+export const DEPENDENCY_TYPES = {
+  datasheet: {
+    id: 'datasheet',
+    name: 'Datasheet',
+  },
+  assessments: {
+    id: 'assessments',
+    name: 'Assessments',
+  },
+  campaign_factors: {
+    id: 'campaign_factors',
+    name: 'Campaign Factors',
+  },
+}

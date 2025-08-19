@@ -15,6 +15,8 @@ nl:
       title: Gecontroleerde wijzigingen
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha verificatie mislukt
         new:
           forgot_password: Wachtwoord vergeten?
           instruction: Log in met uw persoonlijke accountgegevens
@@ -147,6 +149,7 @@ nl:
             accesssheet_manage: Toegangsblad Beheer
             accesssheet_settings: Toegangsblad Instellingen
             accesssheet_view: Toegangsblad bekijken
+            export: Exporteer
             title: Dashboards
             view: Bekijk
           datasheets:
@@ -179,7 +182,7 @@ nl:
             manage: Beheer
             title: Functierollen
             view: Bekijk
-          mediaLibraries:
+          libraries:
             manage: Beheer
             title: Media Bibliotheken
             view: Bekijk
@@ -290,18 +293,33 @@ nl:
             view: Bekijk
     ai_assistants:
       actions:
+        create: AI-assistent maken
+        edit: AI-assistent bewerken
         playground: Speeltuin
       ai_assistants: AI assistenten
       ai_assistants_playground: AI assistent speeltuin
       column:
         provider: Aanbieder
+      created_successfully: AI Assistant is succesvol aangemaakt.
       form:
+        add_output_schema_key: Uitvoerschema sleutel toevoegen
+        dependencies: Afhankelijkheden
         description: Beschrijving
+        enter_description: Beschrijving invoeren
+        enter_schema_key: Schemasleutel invoeren
+        key: Sleutel
         name: Naam
+        output_schema_keys: Uitvoerschema sleutels
         provider: Aanbieder
+        remove_output_schema_key: Uitvoerschema sleutel verwijderen
+        schema_key_description_required: Beschrijving van schemasleutel is vereist
+        schema_key_required: Schemasleutel is vereist
+        schema_key_type: Type sleutel
+        schema_key_unique: Schemasleutels moeten uniek zijn
         system_prompt: Systeem prompt
-        title: AI-assistent
+        type: Type
         user_prompt: Gebruikersprompt
+      updated_successfully: AI Assistant is succesvol bijgewerkt.
     any: " - Elke - "
     api:
       campaigns:
@@ -767,6 +785,8 @@ nl:
       new:
         header: Bulk downloaden
       reports_unavailable: Op dit moment zijn er geen rapporten beschikbaar om te downloaden. Controleer of de rapporten die je wilt downloaden beschikbaar zijn.
+      select_users_for_download: Selecteer ten minste één gebruiker om rapporten te downloaden.
+      select_users_for_regenerate: Selecteer ten minste één gebruiker om rapporten te regenereren.
     cable:
       notification:
         assessment_factors: Factoren worden opgehaald
@@ -856,6 +876,7 @@ nl:
       campaign_templates: Campagnesjablonen
       column:
         assessment: Beoordeling
+        campaign: Campagne
         owner: Eigenaar
         report: Rapporteer
       copy:
@@ -930,6 +951,7 @@ nl:
       assessors:
         spoof:
           successfully: U bent succesvol ingelogd als %{name}
+      convert_to_template: Omzetten naar sjabloon
       copy: Kopie
       delete: Verwijder
       edit: Bewerk
@@ -955,6 +977,7 @@ nl:
         name: Naam
         reports: Rapporten
         status: Status
+        template: Sjabloon
         type: Type
       menus:
         add_common_campaign: Gemeenschappelijke campagne toevoegen
@@ -970,11 +993,15 @@ nl:
             assessment: Beoordeling
             category: Categorie
             closed: Gesloten
+            default_assessment_language: Standaard taal voor beoordeling
+            default_report_language: Standaard taal rapporteren
             empty: Leeg
             inactive: Inactief
             name: Naam
             normal: Normaal
             previous: Vorige
+            select_assessment_language: Taal voor beoordeling kiezen
+            select_report_language: Rapporttaal selecteren
             skill_rater: Vaardigheden beoordelaar
             standard: Standaard
             status: Status
@@ -1007,6 +1034,7 @@ nl:
           name: Beschrijving
           save: Beschrijving opslaan
           save_success: Beschrijving succesvol opgeslagen
+        enable_video_call_recording: Video-opname inschakelen
         fixed_time: Vaste tijd
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ nl:
         campaign_assessment_group: Campagnebeoordelingsgroep
         client: Klant
         completion: Voltooiing
+        custom: Aangepast
         delivery_at: Levering bij (GST)
         delivery_delay_hours: Vertraging bij levering (uren)
         delivery_interval: Levering Interval
@@ -1628,6 +1657,7 @@ nl:
         recipients: Ontvangers
         reminder: Herinnering
         report_available: Rapport beschikbaar
+        select_assessments: Kies welke beoordelingen je wilt controleren op voltooiing
         selected: Geselecteerd
         selected_cc_recipients: Geselecteerde CC-ontvangers
         selected_recipients: Geselecteerde ontvangers
@@ -2122,6 +2152,9 @@ nl:
         remove_confirm: Voer de huidige sjabloonnaam hieronder in het tekstvak in om de sjabloon te verwijderen
         success: "%{idpName} is succesvol verwijderd."
       add_idp_template: IDP-sjabloon toevoegen
+      ai_assisted_idp_enabled: AI-ondersteund IDP
+      ai_enabled: AI ingeschakeld
+      ai_settings: AI-instellingen
       all: Alle
       appearance: Uiterlijk
       appearance_hint: Om het uiterlijk aan te passen, moet je de IDP-sjabloon eerst opslaan om deze instellingen te activeren.
@@ -2137,6 +2170,7 @@ nl:
       enter_template_name: Naam
       enter_template_name_error: Sjabloonnaam is vereist
       errors:
+        cannot_update_progress_plan_completed: Kan de voortgang niet bijwerken omdat het IDP-plan is voltooid
         update: Bijwerken niet toegestaan omdat de IDP-sjabloon al gekoppeld is aan een IDP-plan van een gebruiker.
       fields:
         assigned_data: Toegewezen gegevens
@@ -2164,6 +2198,7 @@ nl:
       logo_type_label: Type logo
       no_reflection_questions_selected: Geen reflectievragen geselecteerd
       none: Geen
+      one_click_idp_enabled: Eén klik IDP ingeschakeld
       reference_locale: Referentieland
       reflection_questions: Reflectie vragen
       reflection_questions_hint: Om de reflectievragen aan te passen, moet je de IDP-sjabloon eerst opslaan om deze instellingen te activeren.
@@ -2270,7 +2305,7 @@ nl:
     individual_invite:
       tabs:
         assessment_center: Beoordelingscentrum
-        subjects: Onderwerpen
+        invitation_status: Status uitnodiging
     innovation_styles:
       create:
         successfully: Innovatiestijl %{name} is succesvol aangemaakt.
@@ -2399,7 +2434,9 @@ nl:
       assessment_center: 'Beoordelingscentrum:'
       booked_at: 'Geboekt bij:'
       column:
+        invitation_status: Status uitnodiging
         participant: Deelnemer
+        scheduling_details: Details planning
       remove_confirm:
         content: Weet je zeker dat je het onderwerp met e-mail '%{subjectEmail}' wilt verwijderen?
         success: Onderwerp met e-mail '%{subjectEmail}' is succesvol verwijderd.
@@ -2407,6 +2444,8 @@ nl:
       statuses:
         accepted: Geaccepteerd
         cancelled: Geannuleerd
+        late_cancelled: Te laat geannuleerd
+        late_rescheduled: Laat Verpland
         pending: In afwachting van
         requested_cancellation: Aangevraagde annulering
         requested_cancellation_rejected: Annulering Afgewezen
@@ -2440,8 +2479,6 @@ nl:
         expected_proficiency_level: Verwacht vaardigheidsniveau
       form:
         title: Vaardigheden Functie in kaart brengen
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:
@@ -2696,21 +2733,31 @@ nl:
         sms_contacts: SMS Contacten
         subjects: Onderwerpen
     piped_text_modal:
+      assessment_center: Beoordelingscentrum
       assessment_id: Beoordeling ID
       campaign_id: Campagne-ID
       campaign_name: Naam campagne
       campaigns: Campagnes
+      description: Beschrijving
+      duration: Duur
+      end_time: Eindtijd
       insight_page_link: Inzicht pagina link
       insight_page_url: Inzicht pagina URL
+      invite_title: Titel
+      invites: Nodigt  uit
       join_link: Word lid Link
       magic_link: Magische link
       magic_url: Magische URL
+      platform_url_links: Platform Url en koppelingen
       profile_custom_field: Profiel aangepast veld
       project_name: Naam project
       projects: Projecten
       report_name: Rapport Naam
+      start_time: Starttijd
       text: Tekst
       title: Tekst met passepoil toevoegen
+      user_reports: Rapporten van gebruikers
+      users: Gebruikers
     proctoring_sessions:
       columns:
         comment: Opmerking
@@ -2735,7 +2782,9 @@ nl:
       errors:
         create:
           invalid_format: De niveaudefinitie moet een array van definities zijn.
+          level_definition_must_exist: Niveaudefinitie kan niet leeg zijn
           level_definition_must_match_level: moet precies %{expected} niveaus bevatten, maar %{actual} werden gegeven
+          level_name_must_exist: Naam van niveau kan niet leeg zijn
           must_be_unique: Moet uniek zijn
           proficiency_level_exists: Er bestaat al een ProficiencyLevel met deze vaardigheid en dit project
           proficiency_level_exists_for_default: Er is al een vaardigheidsniveau voor standaardinstellingen
@@ -3042,6 +3091,7 @@ nl:
         dp_consent_custom: Toestemming voor gegevensverwerking aanpassen
         dp_consent_version: Beleidsversie
         errors:
+          cannot_disable_while_campaign_enabled: Kan opnemen van videogesprekken niet uitschakelen omdat dit is ingeschakeld voor een of meer campagnes in dit project
           policy_version_format: Alleen gehele getallen zijn toegestaan
         mask_identity_for_examus: Maskergegevens voor Examus Proctoring
         mask_identity_for_hogan: Maskergegevens voor Hogan
@@ -3055,6 +3105,9 @@ nl:
         privacy_link_placeholder: Privacylink invoeren
         privacy_text: Privacy tekst
         privacy_text_placeholder: Privacy invoeren
+        video_call_recording: Opname van videogesprekken toestaan
+        video_call_recording_expiry_duration: Bewaarperiode voor opnamen van videogesprekken (in dagen)
+        video_call_recording_scope: Video-opname inschakelen voor alle nieuwe campagnes
       profile_settings:
         form_fields:
           enabled: Ingeschakeld
@@ -3377,6 +3430,7 @@ nl:
         copy_to_all: Kopiëren naar andere beoordelingscentra
         create: Maak
         dates_label: Data
+        disable_cancellation_and_rescheduling: Annulering en herschikking uitschakelen
         duration_label: Duur
         duration_max_error: Kan niet langer zijn dan 16 uur
         duration_min_error: Kan niet korter zijn dan 15 minuten
@@ -3387,8 +3441,6 @@ nl:
         name_label: Naam
         next: Volgende
         required_error: Vereist
-        reschedule_duration_max_error: Kan niet langer zijn dan 30 dagen
-        reschedule_duration_min_error: Kan niet korter zijn dan 1 minuut
         resources_panel:
           description: Voeg links toe naar bronnen waartoe de begeleiders toegang moeten hebben.
           resource_name_placeholder: Naam bron
@@ -3505,6 +3557,7 @@ nl:
         form_title: Plan beoordelingen
         language: Taal
         language_not_selected: Niet geselecteerd
+        mark_cancel: Mark Annuleren
         mark_cancel_success: Deelname van onderwerp geannuleerd met e-mail %{subject_email}.
         meeting_link_custom: Aangepast
         meeting_link_internal: Intern
@@ -3513,6 +3566,9 @@ nl:
         no_change: Geen verandering
         override_existing: Bestaande schema's voor onderwerpen overschrijven
         preworks: Voorwerk
+        re_enroll: Opnieuw inschrijven
+        re_enroll_confirm_message: Weet je zeker dat je het onderwerp opnieuw wilt opgeven met de e-mail '%{subject_email}'?
+        re_enroll_success: Opnieuw ingeschreven onderwerp met e-mail <x>subject_email</x>.
         schedule: Schema
         unschedule: Uitschakelen
       tabs:
@@ -3631,6 +3687,7 @@ nl:
       disable_password_reuse: Hergebruik van wachtwoorden uitschakelen
       disallow_password_login: Aanmelden met wachtwoord weigeren
       enable_login_with_magic_link: Inloggen met magische link inschakelen
+      enable_recaptcha: ReCAPTCHA inschakelen
       enforce_password_policy: Wachtwoordbeleid afdwingen bij volgende aanmelding
       enforce_strong: Krachtig wachtwoord afdwingen
       expiration: Vervaldatum wachtwoord
@@ -4108,6 +4165,21 @@ nl:
         toggle_status:
           successfully: Succesvol
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Al een sjabloon
+        has_user_data: Reset de campagne handmatig door te klikken op "Alle deelnemers resetten" in de vervolgkeuzelijst Hulpmiddelen voordat u de campagne converteert naar een sjabloon.
+      convert_template_modal:
+        cancel: Annuleren
+        confirm: Bevestig
+        convert:
+          success: Sjabloon met succes geconverteerd
+        convert_option: Zet deze campagne om in een sjabloon
+        copy:
+          success: De taak voor het maken van campagnesjablonen is met succes ingepland. Controleer uw meldingen voor de status.
+        copy_option: Maak een nieuwe sjabloon van deze campagne
+        description: Kies hoe je een sjabloon van deze campagne wilt maken.
+        failed: Sjabloon maken mislukt.
+        title: Omzetten naar sjabloon
       email_templates:
         approve_nomination:
           description: Dit bericht wordt naar een manager gestuurd als een nominatie, gemaakt door een direct rapport, moet worden goedgekeurd
@@ -4342,6 +4414,10 @@ nl:
       update:
         successfully: Gebruiker %{name} is succesvol bijgewerkt.
       user: Gebruiker
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Einddatum kan niet in het verleden liggen
+        start_date_cannot_be_in_past: De begindatum kan niet in het verleden liggen
     webhook:
       connection_failure: Kan geen verbinding maken met de webhook url. Controleer of de webhook url correct is.
       delete_success: Webhook instellingen is succesvol verwijderd

@@ -21,7 +21,7 @@ axios.interceptors.response.use(
       const { setException } = useExceptionStore.getState()
       setException(error.response.data)
     }
-    if (CLIENT_ERRORS.includes(String(error.response.status))) {
+    if (error?.response && CLIENT_ERRORS.includes(String(error?.response?.status))) {
       adminStore.dispatch(setRequestErrors('axios', String(error.response.status) as ClientErrorStatus))
       clientStore.dispatch(setRequestErrors('axios', String(error.response.status) as ClientErrorStatus))
       surveyStore.dispatch(setRequestErrors('axios', String(error.response.status) as ClientErrorStatus))

@@ -22,7 +22,7 @@ module Administration
       end
 
       def render_license_error(e)
-        render json: { errors: { licenses: [e.message] } }, status: 403
+        render json: { errors: { licenses: [e.message] } }, status: 402
       end
     end
   end

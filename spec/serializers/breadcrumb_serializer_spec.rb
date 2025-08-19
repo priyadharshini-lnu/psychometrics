@@ -46,7 +46,25 @@ describe BreadcrumbSerializer do
         'campaign' => build(:campaign, id: 3, name: 'campaign')
       }).deep_symbolize_keys
 
-      expect(data).to eq({ client: { id: 1, name: 'client' }, campaign: { id: 3, name: 'campaign' } })
+      expect(data).to eq({
+        client: { id: 1, name: 'client' },
+        campaign: { id: 3, name: 'campaign', tags: [] }
+      })
+    end
+
+    it 'campaign with template tag' do
+      data = described_class.new({
+        only: %w[campaign].map(&:to_sym),
+        context: {
+          fields: %w[campaign]
+        }
+      }).serialize({
+        'campaign' => build(:campaign, id: 3, name: 'campaign', is_template: true)
+      }).deep_symbolize_keys
+
+      expect(data).to eq({
+        campaign: { id: 3, name: 'campaign', tags: ['template'] }
+      })
     end
   end
 end

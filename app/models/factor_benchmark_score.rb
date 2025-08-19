@@ -2,6 +2,6 @@
 
 class FactorBenchmarkScore < ApplicationRecord
   belongs_to :factor
-  belongs_to :assesmsent
+  belongs_to :assessment
   belongs_to :campaign
 end

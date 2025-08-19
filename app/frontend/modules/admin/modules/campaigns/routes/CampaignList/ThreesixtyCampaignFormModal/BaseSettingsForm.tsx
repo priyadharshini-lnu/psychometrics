@@ -38,6 +38,7 @@ const BaseSettingsForm = ({
 }: Props) => {
   const [form] = Form.useForm()
   const category = Form.useWatch('threesixty_category', form)
+  const threesixtyType = Form.useWatch('threesixty_type', form)
   const [isCreate, setIsCreate] = useState((initialSettings
     && initialSettings.threesixty_type === THREESIXTY_TYPES.EMPTY) ?? true)
   const [isPrevious360, setIsPrevious360] = useState((initialSettings
@@ -47,6 +48,13 @@ const BaseSettingsForm = ({
   const assessmentOptions = assessments.filter(assessment => (category === THREESIXTY_CATEGORY.SKILLS_RATER
     ? assessment.skillRater
     : !assessment.skillRater))
+
+  // Available locales for the form
+  const availableLocales = I18n.availableLocales || ['en']
+  const localeOptions = availableLocales.map(locale => ({
+    label: I18n.t(`languages.${locale}`),
+    value: locale,
+  }))
 
   const handleFinish = (values) => {
     onFinish(values)
@@ -76,6 +84,8 @@ const BaseSettingsForm = ({
         status: initialSettings?.status || STATUSES.ACTIVE,
         threesixty_type: initialSettings?.threesixty_type || THREESIXTY_TYPES.EMPTY,
         threesixty_category: initialSettings?.threesixty_category || THREESIXTY_CATEGORY.NORMAL,
+        default_assessment_locale: 'en',
+        default_report_language: 'en',
       }}
       form={form}
       className="h-100"
@@ -162,11 +172,9 @@ const BaseSettingsForm = ({
                     >
                       {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.previous')}
                     </Radio>
-                    {category !== THREESIXTY_CATEGORY.SKILLS_RATER && (
-                      <Radio value={THREESIXTY_TYPES.STANDARD_360}>
-                        {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.standard')}
-                      </Radio>
-                    )}
+                    <Radio value={THREESIXTY_TYPES.STANDARD_360}>
+                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.standard')}
+                    </Radio>
                   </Space>
                 </Radio.Group>
               </Form.Item>
@@ -187,6 +195,45 @@ const BaseSettingsForm = ({
                 </Form.Item>
               </Flex>
             ) : null}
+
+            {/* Default Assessment Locale */}
+            {threesixtyType === THREESIXTY_TYPES.EMPTY && (
+              <Flex vertical className="w-100">
+                <Form.Item
+                  name="default_assessment_locale"
+                  label={I18n.t(
+                    'administration.campaigns.modals.create_threesixity.base_settings.default_assessment_language',
+                  )}
+                >
+                  <Select
+                    placeholder={
+                    I18n.t(
+                      'administration.campaigns.modals.create_threesixity.base_settings.select_assessment_language',
+                    )}
+                    options={localeOptions}
+                  />
+                </Form.Item>
+              </Flex>
+            )}
+
+            {/* Default Report Language */}
+            {threesixtyType === THREESIXTY_TYPES.EMPTY && (
+              <Flex vertical className="w-100">
+                <Form.Item
+                  name="default_report_language"
+                  label={I18n.t(
+                    'administration.campaigns.modals.create_threesixity.base_settings.default_report_language',
+                  )}
+                >
+                  <Select
+                    placeholder={I18n.t(
+                      'administration.campaigns.modals.create_threesixty.base_settings.select_report_language',
+                    )}
+                    options={localeOptions}
+                  />
+                </Form.Item>
+              </Flex>
+            )}
           </Flex>
           <Flex
             flex="auto"

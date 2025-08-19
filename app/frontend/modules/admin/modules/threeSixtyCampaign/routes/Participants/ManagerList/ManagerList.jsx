@@ -19,6 +19,7 @@ export default function ManagerList ({
   total,
   permissions,
   searchTerm,
+  template,
   threeSixtyCampaignId,
 }) {
   const { campaignId } = useParams()
@@ -48,7 +49,7 @@ export default function ManagerList ({
             searchTerm={searchTerm}
           />
           <Manage />
-          <ToolsDropdown permissions={permissions} />
+          {!template && <ToolsDropdown permissions={permissions} />}
         </Col>
       </Row>
       <Row>

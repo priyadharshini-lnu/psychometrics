@@ -803,6 +803,7 @@ es-ES:
         bulk_rescore_campaign_factors: Factores de la campaña Bulk Rescore
         compact_completion_status_export: Exportación de estados de finalización compactos
         completion_status_export: Exportación del estado de finalización
+        copy_as_template_or_campaign: Copiar campaña como plantilla
         copy_dimension: Copiar dimensión
         create_threesixty_campaign: Crear campaña Threesixty
         data_report_export: Exportación de informes de datos
@@ -1064,6 +1065,7 @@ es-ES:
         description: Esta sesión de evaluación ha sido invalidada. Esto puede ocurrir si ha continuado la evaluación en otra pestaña, navegador o dispositivo.
         title: Última solicitud fallida
       next: Siguiente
+      no_skill_mapping_message: No se ha realizado un mapa de competencias para este puesto de trabajo, póngase en contacto con su administrador.
       read_only: Está en modo «solo lectura», no puede cambiar ningún resultado.
       save: Salvar
       submissionFailedAlert:
@@ -1132,6 +1134,7 @@ es-ES:
     add_group_form:
       previous_assessments_required: Mostrar las evaluaciones en el siguiente orden
       previous_group_required: Se requiere haber completado previamente la sección anterior
+      require_previous_groups_completion_for_booking: Se requiere haber completado todos los grupos anteriores antes de reservar
     menu:
       assessment_center: Assessment Center
       assessments_and_reports: Evaluaciones e informes
@@ -1369,6 +1372,7 @@ es-ES:
   campaign_assessment:
     actions:
       bulk_download: Descarga masiva
+      convert_to_template: Convertir a plantilla
       download: Descargar informes
       export_completion_status: Estado de finalización de la exportación
       export_external: Exterior
@@ -1905,6 +1909,8 @@ es-ES:
     invalid_captcha: El captcha introducido no es válido.
     invalid_security_question: La respuesta a la pregunta de seguridad no es válida.
     invitations:
+      confirmation_instructions:
+        subject: Instrucciones de confirmación
       edit:
         confirm_password_label: Confirmar contraseña
         header: Establezca su contraseña
@@ -1913,24 +1919,6 @@ es-ES:
         submit: Establecer nueva contraseña
         submit_button: Establecer mi contraseña
         title: Crear contraseña
-      invitation_removed: Tu invitación ha sido retirada.
-      invitation_token_invalid: El código de invitación proporcionado no es válido
-      new:
-        header: Enviar invitación
-        submit_button: Enviar una invitación
-      no_invitations_remaining: No quedan invitaciones
-      send_instructions: Se ha enviado un correo electrónico de invitación a %{email}.
-      updated: Su contraseña se ha establecido correctamente. Ya ha iniciado sesión.
-      updated_not_active: Su contraseña se ha establecido correctamente.
-    mailer:
-      admin_invitation_instructions:
-        accept: Haga clic aquí para aceptar la invitación.
-        body: 'Hola %{name}, Ha sido invitado a acceder al panel de administración de Lighthouse - The Talent Enterprise assessment platform. %{accept} O puede ignorar este correo con total seguridad. Por favor, no comparta sus credenciales de acceso con nadie.
-
-          '
-        subject: Invitación a Lighthouse
-      confirmation_instructions:
-        subject: Instrucciones de confirmación
       invitation_instructions:
         body: 'Hola %{name}, Se le ha añadido a Lighthouse como administrador de la siguiente sección
 
@@ -1941,6 +1929,23 @@ es-ES:
           client: 'Cliente Tenencia: %{section_name}'
           project: 'Proyecto: %{section_name}'
         subject: Invitación a Lighthouse
+      invitation_removed: Tu invitación ha sido retirada.
+      invitation_token_invalid: El código de invitación proporcionado no es válido
+      mailer:
+        accept: Haga clic aquí para aceptar la invitación.
+        admin_invitation_instructions:
+        body: 'Hola %{name}, Ha sido invitado a acceder al panel de administración de Lighthouse - The Talent Enterprise assessment platform. %{accept} O puede ignorar este correo con total seguridad. Por favor, no comparta sus credenciales de acceso con nadie.
+
+          '
+        copyright:
+          text: Lighthouse. Todos los derechos reservados
+        powered_by:
+          text: Powered by Lighthouse.
+        subject: Invitación a Lighthouse
+      new:
+        header: Enviar invitación
+        submit_button: Enviar una invitación
+      no_invitations_remaining: No quedan invitaciones
       password_change:
         body: 'Hola %{name}! Su contraseña ha sido cambiada. Si no ha realizado esta solicitud, póngase en contacto con el servicio de asistencia inmediatamente en mte.support@mercer.com
 
@@ -1959,6 +1964,7 @@ es-ES:
 
           '
         subject: Instrucciones para restablecer la contraseña
+      send_instructions: Se ha enviado un correo electrónico de invitación a %{email}.
       unlock_instructions:
         body: 'Hola %{name}! Tu cuenta ha sido bloqueada debido a un número excesivo de intentos fallidos de inicio de sesión. Haz clic en el siguiente enlace para desbloquear tu cuenta:
 
@@ -1969,6 +1975,8 @@ es-ES:
           '
         subject: Instrucciones para desbloquear su cuenta
         unlock_account: Desbloquear mi cuenta
+      updated: Su contraseña se ha establecido correctamente. Ya ha iniciado sesión.
+      updated_not_active: Su contraseña se ha establecido correctamente.
     omniauth_callbacks:
       failure: No se le ha podido autenticar desde %{kind} porque "%{reason}".
       success: Autenticado correctamente desde la cuenta %{kind}.
@@ -2136,6 +2144,7 @@ es-ES:
       uniq_simulation: Esta evaluación de simulación ya está presente en el sistema. El ID de esta evaluación es %{id}
       uniq_skillvue: Esta evaluación Skillvue ya está presente en el sistema. El ID de esta evaluación es %{id}.
       update_workshop:
+        bookings_exist: No se puede modificar el horario porque los participantes ya han reservado esta franja horaria.
         less_than_booked: El total de plazas debe ser superior al reservado
       user_availability_date:
         overlaps_date: Se solapa con otra disponibilidad %{range}
@@ -2153,6 +2162,10 @@ es-ES:
       workshop_subject_create:
         already_exists: La asignatura ya existe en este Assessment Center.
         part_of_other_workshop: El sujeto ya participa en "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: No hay plazas disponibles para este taller.
+        scheduling_lead_time_passed: Una vez transcurrido el plazo de programación, no podrá volver a matricular la asignatura.
+        workshop_subject_not_found: No se ha encontrado el tema del taller
       workshops:
         no_available_assessor_slots: No hay plazas disponibles para el evaluador %{assessor}
         no_available_manager_slots: No hay plazas disponibles para el gestor %{manager}
@@ -2282,8 +2295,13 @@ es-ES:
       add_to_yahoo_calendar: Añadir al calendario yahoo
       assessment_center_alert:
         btn_title: Campaña
-        message_part1: Complete todos los trabajos previos en este/a
-        message_part2: antes de reservar una plaza.
+        complete_previous_groups: Completar todas las actividades de grupo anteriores
+        complete_preworks: Completar todos los trabajos previos
+        please_visit: Visite la página
+        requirements_message: Sólo podrá hacer una reserva si cumple los siguientes requisitos
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: para completar estos requisitos.
       assessment_center_group_name: Assessment Center
       booking_failed_msg: 'No se ha podido reservar una plaza: %{error}'
       buttons:
@@ -2351,6 +2369,7 @@ es-ES:
         remove:
           confirmation: Introduzca en el cuadro de texto el nombre de la campaña que se le ha facilitado más arriba para eliminarla
           success: La campaña %{campaignName} se ha eliminado correctamente.
+          template_confirmation: 'Introduzca el nombre de la plantilla actual en el campo inferior para eliminarla. Nota: Esto también eliminará la plantilla de campaña vinculada.'
       users:
         actions:
           export:
@@ -2699,6 +2718,7 @@ es-ES:
         required: La respuesta a la pregunta es obligatoria
       max_words: Palabras máximas
       min_words: Palabras mínimas
+      no_reflective_questions: Sin preguntas reflexivas
       title: Preguntas de reflexión
       update_failed: Se ha producido un error durante la actualización
       updated_successfully: Tus respuestas se han actualizado correctamente
@@ -2842,6 +2862,12 @@ es-ES:
     used_number: Licencias usadas
     used_out_of: "%{used} de %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Todos los derechos reservados
+    footer:
+      regards: Saludos,
+      team_name: Equipo Lighthouse
+      technical_support: Para cualquier problema técnico, escríbanos a %{email} y responderemos dentro de 24 horas.
     from: La empresa del talento
     license:
       expire:
@@ -2870,6 +2896,8 @@ es-ES:
         instructions: Haga clic en el siguiente enlace para iniciar sesión en lighthouse.
         signin_link: Enlace de acceso
       subject: Enlace de acceso a Lighthouse
+    powered_by:
+      text: Desarrollado por Lighthouse.
     users:
       account_disable: Su cuenta ha sido desactivada por inactividad
       warning: Su cuenta será desactivada en breve debido a la inactividad
@@ -3186,6 +3214,9 @@ es-ES:
       send_password_email_success: Correo electrónico enviado al usuario %{email} con la contraseña.
     title: Restablecer contraseña
   select: Seleccione
+  sessions:
+    errors:
+      recaptcha: Error en la verificación de Recaptcha. Por favor, inténtelo de nuevo.
   shared:
     filters:
       clear: Quitar filtros

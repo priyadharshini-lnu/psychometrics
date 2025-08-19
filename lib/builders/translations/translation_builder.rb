@@ -26,7 +26,8 @@ module Builders
           'title',
           'titleDescription',
           'labelLow',
-          'labelHigh'
+          'labelHigh',
+          'formTypes[*](optionList)'
         ],
         validation: [
           'customValidations[*](message)'

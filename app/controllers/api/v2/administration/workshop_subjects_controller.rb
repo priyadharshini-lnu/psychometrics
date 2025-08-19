@@ -4,6 +4,7 @@ module Api
   class V2::Administration::WorkshopSubjectsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::WorkshopSubject::Schema
     validates_request_schema :create, -> { Api::V2::WorkshopSubject::CreateContract.new }
+    validates_request_schema :re_enroll, -> { Api::V2::WorkshopSubject::ReEnrollContract.new }
 
     def update_subject_details_and_assessments
       response = WorkshopSubjects::UpdateSubjectData.call(
@@ -29,6 +30,20 @@ module Api
       audit! :mark_cancelled, subject, payload: params, campaign: campaign
 
       jsonapi_render json: subject
+    end
+
+    def re_enroll
+      subject = WorkshopSubject.find(params[:id])
+
+      if subject&.cancelled?
+        subject.update!(scheduling_status: :scheduled)
+        subject.workshop.increment!(:booked_seats)
+
+        audit! :re_enroll, subject, payload: params, campaign: campaign
+        jsonapi_render json: subject
+      else
+        render json: {}, status: 422
+      end
     end
 
     def meta_details

@@ -15,6 +15,8 @@ de:
       title: Geprüfte Änderungen
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha-Überprüfung fehlgeschlagen
         new:
           forgot_password: Haben Sie Ihr Passwort vergessen?
           instruction: Bitte melden Sie sich mit Ihren persönlichen Kontodaten an
@@ -147,6 +149,7 @@ de:
             accesssheet_manage: Zugangsdatenblatt Verwalten
             accesssheet_settings: Arbeitsblatt-Einstellungen
             accesssheet_view: Zugangsblatt Ansicht
+            export: Exportieren
             title: Dashboards
             view: Siehe
           datasheets:
@@ -179,7 +182,7 @@ de:
             manage: Verwalten Sie
             title: Job-Rollen
             view: Siehe
-          mediaLibraries:
+          libraries:
             manage: Verwalten Sie
             title: Medienbibliotheken
             view: Siehe
@@ -290,18 +293,33 @@ de:
             view: Siehe
     ai_assistants:
       actions:
+        create: AI-Assistent erstellen
+        edit: AI-Assistent bearbeiten
         playground: Spielplatz
       ai_assistants: AI-Assistenten
       ai_assistants_playground: AI-Assistent Spielwiese
       column:
         provider: Anbieter
+      created_successfully: AI Assistant wurde erfolgreich erstellt.
       form:
+        add_output_schema_key: Ausgabeschema-Schlüssel hinzufügen
+        dependencies: Abhängigkeiten
         description: Beschreibung
+        enter_description: Beschreibung eingeben
+        enter_schema_key: Schema-Schlüssel eingeben
+        key: Schlüssel
         name: Name
+        output_schema_keys: Schema-Schlüssel ausgeben
         provider: Anbieter
+        remove_output_schema_key: Ausgabeschema-Schlüssel entfernen
+        schema_key_description_required: Schemaschlüssel Beschreibung ist erforderlich
+        schema_key_required: Schemaschlüssel ist erforderlich
+        schema_key_type: Schlüssel Typ
+        schema_key_unique: Schema-Schlüssel sollten eindeutig sein
         system_prompt: System-Eingabeaufforderung
-        title: KI-Assistent
+        type: Typ
         user_prompt: Benutzeraufforderung
+      updated_successfully: AI Assistant wurde erfolgreich aktualisiert.
     any: " - Jeder - "
     api:
       campaigns:
@@ -767,6 +785,8 @@ de:
       new:
         header: Massendownload
       reports_unavailable: Im Moment sind keine Berichte zum Herunterladen verfügbar. Bitte bestätigen Sie, dass die Berichte, die Sie herunterladen möchten, verfügbar sind.
+      select_users_for_download: Bitte wählen Sie mindestens einen Benutzer aus, um Berichte herunterzuladen.
+      select_users_for_regenerate: Bitte wählen Sie mindestens einen Benutzer aus, um Berichte zu regenerieren.
     cable:
       notification:
         assessment_factors: Faktoren werden abgerufen
@@ -856,6 +876,7 @@ de:
       campaign_templates: Vorlagen für Kampagnen
       column:
         assessment: Bewertung
+        campaign: Kampagne
         owner: Eigentümer
         report: Bericht
       copy:
@@ -930,6 +951,7 @@ de:
       assessors:
         spoof:
           successfully: Sie wurden erfolgreich als %{name} angemeldet
+      convert_to_template: In Vorlage umwandeln
       copy: Kopieren
       delete: Löschen
       edit: Bearbeiten
@@ -955,6 +977,7 @@ de:
         name: Name
         reports: Berichte
         status: Status
+        template: Vorlage
         type: Typ
       menus:
         add_common_campaign: Gemeinsame Kampagne hinzufügen
@@ -970,11 +993,15 @@ de:
             assessment: Bewertung
             category: Kategorie
             closed: Geschlossen
+            default_assessment_language: Standardsprache für die Bewertung
+            default_report_language: Standardsprache des Berichts
             empty: Leere
             inactive: Inaktiv
             name: Name
             normal: Normal
             previous: Vorherige
+            select_assessment_language: Bewertungssprache auswählen
+            select_report_language: Berichtssprache auswählen
             skill_rater: Skill Rater
             standard: Standard
             status: Status
@@ -1007,6 +1034,7 @@ de:
           name: Beschreibung
           save: Beschreibung speichern
           save_success: Beschreibung erfolgreich gespeichert
+        enable_video_call_recording: Aktivieren der Videoaufzeichnung von Anrufen
         fixed_time: Feste Zeit
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ de:
         campaign_assessment_group: Gruppe für Kampagnenbewertung
         client: Kunde
         completion: Fertigstellung
+        custom: Benutzerdefiniert
         delivery_at: Lieferung zum (GST)
         delivery_delay_hours: Lieferverzug (Stunden)
         delivery_interval: Lieferintervall
@@ -1628,6 +1657,7 @@ de:
         recipients: Empfänger
         reminder: Erinnerung
         report_available: Bericht verfügbar
+        select_assessments: Wählen Sie, welche Beurteilungen auf Vollständigkeit geprüft werden sollen
         selected: Ausgewählte
         selected_cc_recipients: Ausgewählte CC-Empfänger
         selected_recipients: Ausgewählte Begünstigte
@@ -2122,6 +2152,9 @@ de:
         remove_confirm: Geben Sie den unten angegebenen Namen der aktuellen Vorlage in das Textfeld ein, um die Vorlage zu entfernen
         success: "%{idpName} wurde erfolgreich entfernt."
       add_idp_template: IDP-Vorlage hinzufügen
+      ai_assisted_idp_enabled: AI-gestützte IDP-Fähigkeit
+      ai_enabled: AI Aktiviert
+      ai_settings: AI-Einstellungen
       all: Alle
       appearance: Erscheinungsbild
       appearance_hint: Um das Erscheinungsbild zu ändern, speichern Sie bitte zuerst die IDP-Vorlage, um diese Einstellungen zu aktivieren.
@@ -2137,6 +2170,7 @@ de:
       enter_template_name: Name
       enter_template_name_error: Name der Vorlage ist erforderlich
       errors:
+        cannot_update_progress_plan_completed: Keine Fortschrittsaktualisierung möglich, da der IDP-Plan bereits abgeschlossen ist
         update: Aktualisierung nicht zulässig, da die IDP-Vorlage bereits mit einem Benutzer-IDP-Plan verknüpft ist.
       fields:
         assigned_data: Zugewiesene Daten
@@ -2164,6 +2198,7 @@ de:
       logo_type_label: Logo Typ
       no_reflection_questions_selected: Keine Reflexionsfragen ausgewählt
       none: Keine
+      one_click_idp_enabled: IDP mit einem Klick aktiviert
       reference_locale: Referenzgebietsschema
       reflection_questions: Fragen zur Reflexion
       reflection_questions_hint: Wenn Sie die Reflexionsfragen ändern möchten, speichern Sie bitte zuerst die IDP-Vorlage, um diese Einstellungen zu aktivieren.
@@ -2270,7 +2305,7 @@ de:
     individual_invite:
       tabs:
         assessment_center: Assessment Center
-        subjects: Themen
+        invitation_status: Einladungsstatus
     innovation_styles:
       create:
         successfully: Innovation Style %{name} wurde erfolgreich erstellt.
@@ -2399,7 +2434,9 @@ de:
       assessment_center: 'Assessment Center:'
       booked_at: 'Gebucht bei:'
       column:
+        invitation_status: Einladungsstatus
         participant: Teilnehmer
+        scheduling_details: Details zur Terminplanung
       remove_confirm:
         content: Sind Sie sicher, dass Sie den Betreff mit E-Mail '%{subjectEmail}' entfernen möchten?
         success: Betreff mit E-Mail '%{subjectEmail}'' wurde erfolgreich entfernt.
@@ -2407,6 +2444,8 @@ de:
       statuses:
         accepted: Angenommen
         cancelled: Abgesagt
+        late_cancelled: Verspätet abgesagt
+        late_rescheduled: Verspätet Umgeplant
         pending: Anhängig
         requested_cancellation: Beantragte Annullierung
         requested_cancellation_rejected: Annullierung Abgelehnt
@@ -2440,8 +2479,6 @@ de:
         expected_proficiency_level: Erwartetes Kompetenzniveau
       form:
         title: Zuordnung
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:
@@ -2696,21 +2733,31 @@ de:
         sms_contacts: SMS-Kontakte
         subjects: Themen
     piped_text_modal:
+      assessment_center: Assessment Center
       assessment_id: Bewertung ID
       campaign_id: Kampagnen-ID
       campaign_name: Name der Kampagne
       campaigns: Kampagnen
+      description: Beschreibung
+      duration: Dauer
+      end_time: Endzeit
       insight_page_link: Insight Page Link
       insight_page_url: URL der Einsichtsseite
+      invite_title: Titel
+      invites: Einladungen
       join_link: Link verbinden
       magic_link: Magische Verbindung
       magic_url: Magische URL
+      platform_url_links: Plattform Url und Links
       profile_custom_field: Benutzerdefiniertes Profilfeld
       project_name: Name des Projekts
       projects: Projekte
       report_name: Bericht Name
+      start_time: Startzeit
       text: Text
       title: Paspelierten Text hinzufügen
+      user_reports: Benutzerberichte
+      users: Benutzer
     proctoring_sessions:
       columns:
         comment: Kommentar
@@ -2735,7 +2782,9 @@ de:
       errors:
         create:
           invalid_format: Die Ebenendefinition muss ein Array von Definitionen sein.
+          level_definition_must_exist: Leveldefinition kann nicht leer sein
           level_definition_must_match_level: muss genau %{expected} Werte enthalten, aber %{actual} wurden angegeben
+          level_name_must_exist: Der Name der Ebene darf nicht leer sein.
           must_be_unique: Muss einzigartig sein
           proficiency_level_exists: Ein ProficiencyLevel mit dieser Fähigkeit und diesem Projekt existiert bereits
           proficiency_level_exists_for_default: Ein Proficiency Level für Default existiert bereits
@@ -3042,6 +3091,7 @@ de:
         dp_consent_custom: Zustimmung zur Datenverarbeitung anpassen
         dp_consent_version: Version der Politik
         errors:
+          cannot_disable_while_campaign_enabled: Die Aufzeichnung von Videoanrufen kann nicht deaktiviert werden, da sie für eine oder mehrere Kampagnen in diesem Projekt aktiviert ist.
           policy_version_format: Nur ganze Zahlen sind erlaubt
         mask_identity_for_examus: Maskendaten für Examus Proctoring
         mask_identity_for_hogan: Maskendaten für Hogan
@@ -3055,6 +3105,9 @@ de:
         privacy_link_placeholder: Datenschutz Link eingeben
         privacy_text: Datenschutz Text
         privacy_text_placeholder: Text zum Datenschutz eingeben
+        video_call_recording: Aufzeichnung von Videoanrufen zulassen
+        video_call_recording_expiry_duration: Aufbewahrungsfrist für Videoaufzeichnungen (in Tagen)
+        video_call_recording_scope: Aktivieren Sie die Videoaufzeichnung für alle neuen Kampagnen
       profile_settings:
         form_fields:
           enabled: Aktiviert
@@ -3377,6 +3430,7 @@ de:
         copy_to_all: Kopie an andere Assessment Center
         create: Erstellen
         dates_label: Daten
+        disable_cancellation_and_rescheduling: Stornierung und Neuplanung deaktivieren
         duration_label: Dauer
         duration_max_error: Kann nicht mehr als 16 Stunden betragen
         duration_min_error: Darf nicht kürzer als 15 Minuten sein
@@ -3387,8 +3441,6 @@ de:
         name_label: Name
         next: Weiter
         required_error: Erforderlich
-        reschedule_duration_max_error: Kann nicht länger als 30 Tage sein
-        reschedule_duration_min_error: Darf nicht kürzer als 1 Minute sein
         resources_panel:
           description: Fügen Sie die Links zu allen Ressourcen hinzu, zu denen die Moderatoren Zugang haben sollen.
           resource_name_placeholder: Ressource Name
@@ -3505,6 +3557,7 @@ de:
         form_title: Beurteilungen einplanen
         language: Sprache
         language_not_selected: Nicht ausgewählt
+        mark_cancel: Markieren Abbrechen
         mark_cancel_success: Teilnahme des Betreffs mit E-Mail %{subject_email} abgesagt.
         meeting_link_custom: Benutzerdefiniert
         meeting_link_internal: Intern
@@ -3513,6 +3566,9 @@ de:
         no_change: Keine Änderung
         override_existing: Vorhandene Zeitpläne für Fächer außer Kraft setzen
         preworks: Vorarbeit
+        re_enroll: Neuanmeldung
+        re_enroll_confirm_message: Sind Sie sicher, dass Sie den Betreff mit der E-Mail '%{subject_email}' neu eintragen wollen?
+        re_enroll_success: Neu eingeschriebener Betreff mit E-Mail <x>subject_email</x>.
         schedule: Zeitplan
         unschedule: Abmeldung
       tabs:
@@ -3631,6 +3687,7 @@ de:
       disable_password_reuse: Wiederverwendung von Passwörtern deaktivieren
       disallow_password_login: Passwortanmeldung verbieten
       enable_login_with_magic_link: Login mit magischem Link aktivieren
+      enable_recaptcha: reCAPTCHA aktivieren
       enforce_password_policy: Kennwortrichtlinie bei der nächsten Anmeldung durchsetzen
       enforce_strong: Erzwingen Sie ein sicheres Passwort
       expiration: Ablauf des Passworts
@@ -4108,6 +4165,21 @@ de:
         toggle_status:
           successfully: Erfolgreich
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Bereits eine Vorlage
+        has_user_data: Bitte setzen Sie die Kampagne manuell zurück, indem Sie auf "Alle Teilnehmer zurücksetzen" in der Dropdown-Liste "Tools" klicken, bevor Sie sie in eine Vorlage umwandeln.
+      convert_template_modal:
+        cancel: Abbrechen
+        confirm: Bestätigen Sie
+        convert:
+          success: Vorlage erfolgreich konvertiert
+        convert_option: Diese Kampagne in eine Vorlage umwandeln
+        copy:
+          success: Der Auftrag zur Erstellung der Kampagnenvorlage wurde erfolgreich geplant. Bitte überprüfen Sie Ihre Benachrichtigungen auf den Status.
+        copy_option: Erstellen Sie eine neue Vorlage aus dieser Kampagne
+        description: Wählen Sie aus, wie Sie eine Vorlage für diese Kampagne erstellen möchten.
+        failed: Die Erstellung der Vorlage ist fehlgeschlagen.
+        title: In Vorlage umwandeln
       email_templates:
         approve_nomination:
           description: Diese Nachricht wird an einen Vorgesetzten gesendet, wenn eine Nominierung, die von einem direkten Mitarbeiter gemacht wurde, genehmigt werden muss
@@ -4342,6 +4414,10 @@ de:
       update:
         successfully: Benutzer %{name} wurde erfolgreich aktualisiert.
       user: Benutzer
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Das Enddatum darf nicht in der Vergangenheit liegen.
+        start_date_cannot_be_in_past: Das Startdatum darf nicht in der Vergangenheit liegen.
     webhook:
       connection_failure: Es kann keine Verbindung zur Webhook-Url hergestellt werden. Bitte überprüfen Sie, ob die Webhook-Url korrekt ist.
       delete_success: Webhook-Einstellungen wurden erfolgreich gelöscht

@@ -12,6 +12,9 @@ export default connect(
     threeSixtyCampaign: {
       campaignDetails: { id: threeSixtyCampaignId },
       evaluators: { list, total, permissions },
+      campaignDetails: {
+        template,
+      },
     },
   }) => ({
     evaluators: list,
@@ -20,6 +23,7 @@ export default connect(
     permissions,
     page: routeUtils.getPage(),
     searchTerm: routeUtils.getSearchTerm(),
+    template,
   }),
   dispatch => ({
     fetchEvaluators: (campaignId, page, query) => dispatch(fetchEvaluators(campaignId, page, query)),

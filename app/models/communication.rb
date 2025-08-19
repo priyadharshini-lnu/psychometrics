@@ -19,7 +19,7 @@ class Communication < ApplicationRecord
     send_now: ::Communications::InvitationTypeJob
   }.freeze
 
-  attr_accessor :delivery_interval_number, :delivery_interval_period, :reminder_type
+  attr_accessor :delivery_interval_number, :delivery_interval_period, :reminder_type, :assessment_selection
 
   has_and_belongs_to_many :memberships, join_table: :communications_memberships
   has_and_belongs_to_many :copy_memberships, join_table: :communications_copy_memberships, class_name: 'Membership'
@@ -27,6 +27,9 @@ class Communication < ApplicationRecord
   has_many :emails, dependent: :destroy, inverse_of: :communication, class_name: 'CommunicationEmail'
   has_many :communications_users, dependent: :destroy
   has_many :users, through: :communications_users
+  has_many :communications_assessments, dependent: :destroy
+  has_many :selected_assessments, through: :communications_assessments, source: :assessment
+
   belongs_to :assessment
   belongs_to :client
   belongs_to :owner, class_name: 'Client'

@@ -7,45 +7,87 @@ class CommunicationEmailMailer < ApplicationMailer
     @communication_email = CommunicationEmail.preload(:communication, :communication_email_resources).find(email_id)
     @resource = recipient
 
-    # Set locale based on recipient's preference
     user_locale = recipient&.locale || I18n.default_locale
+    @is_rtl = user_locale.to_s == 'ar'
 
     I18n.with_locale(user_locale) do
-      attach_ical
-      data = recipient.slice(:first_name, :last_name, :email)
-      data[:user_link] = accept_invitation_link
-      data[:user_url] = accept_invitation_url
-      data[:user_link_qrcode] = accept_invitation_qrcode
-
-      campaign_user = @communication_email.campaign_user
-      if campaign_user
-        time_zone = campaign_user.campaign.time_zone
-        data[:schedule_start_date] = format_date(campaign_user&.schedule_start_date, time_zone)
-        data[:schedule_end_date] = format_date(campaign_user&.schedule_end_date, time_zone)
-      end
-
-      # These will now return translated content based on the current locale
-      @body = Mustache.render(replace_new_piped_texts(@communication_email.communication.body), data)
-      subject = Mustache.render(
-        replace_new_piped_texts(@communication_email.communication.subject),
-        data.slice(:first_name, :last_name)
-      )
-
-      Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{@body}")
-      smtp_setting = recipient.project.smtp_setting
-      send_email(
-        recipient,
-        from: smtp_setting.from_name_and_email,
-        subject: subject,
-        template_path: 'mailer/communication_email',
-        delivery_method_options: smtp_setting.settings_for_email
-      )
+      prepare_and_send_email
     end
 
     @communication_email.update(sent_at: Time.current)
   end
 
   private
+
+  def prepare_and_send_email
+    attach_ical
+    data = build_template_data
+    body_content = process_body_content
+    @body = Mustache.render(replace_new_piped_texts(body_content), data)
+    subject = build_subject(data)
+
+    Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{@body}")
+    send_configured_email(subject)
+  end
+
+  def build_template_data
+    data = recipient.slice(:first_name, :last_name, :email)
+    data[:user_link] = accept_invitation_link
+    data[:user_url] = accept_invitation_url
+    data[:user_link_qrcode] = accept_invitation_qrcode
+
+    campaign_user = @communication_email.campaign_user
+    if campaign_user
+      time_zone = campaign_user.campaign.time_zone
+      data[:schedule_start_date] = format_date(campaign_user&.schedule_start_date, time_zone)
+      data[:schedule_end_date] = format_date(campaign_user&.schedule_end_date, time_zone)
+    end
+
+    data
+  end
+
+  def process_body_content
+    body_content = Mobility.with_locale(I18n.locale) do
+      @communication_email.communication.body
+    end
+
+    return body_content unless @is_rtl && body_content.present?
+
+    apply_rtl_styling(body_content)
+  end
+
+  def apply_rtl_styling(content)
+    unless content.include?('dir=')
+      content = %(<div dir="rtl" style="text-align: start; direction: rtl;">#{content}</div>)
+    end
+
+    content = content.gsub(/<p(?!\s[^>]*dir=)/i,
+                           '<p dir="rtl" style="text-align: start; direction: rtl;"')
+    content.gsub(/<div(?!\s[^>]*dir=)/i,
+                 '<div dir="rtl" style="text-align: start; direction: rtl;"')
+  end
+
+  def build_subject(data)
+    subject_content = Mobility.with_locale(I18n.locale) do
+      @communication_email.communication.subject
+    end
+
+    Mustache.render(
+      replace_new_piped_texts(subject_content),
+      data.slice(:first_name, :last_name)
+    )
+  end
+
+  def send_configured_email(subject)
+    smtp_setting = recipient.project.smtp_setting
+    send_email(
+      recipient,
+      from: smtp_setting.from_name_and_email,
+      subject: subject,
+      template_path: 'mailer/communication_email',
+      delivery_method_options: smtp_setting.settings_for_email
+    )
+  end
 
   def attach_ical
     if workshop

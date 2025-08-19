@@ -111,7 +111,7 @@ bundle config set --global build.rlua "--with-cflags=-Wno-error=incompatible-fun
 $> rails c
 $> Users::SuperAdmin.create(
   email: 'email@gmail.com',
-  password: 'Pass123$',
+  password: 'Password@123',
   first_name: 'FirstName',
   last_name: 'LastName'
 )

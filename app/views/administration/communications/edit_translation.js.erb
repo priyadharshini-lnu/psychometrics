@@ -3,6 +3,15 @@ var $modal = $('#modal-container .modal');
 $modal.modal('show');
 
 $modal.on('shown.bs.modal', function() {
+  var initialLocale = $('#locale').val();
+  if (initialLocale === 'ar') {
+    $('body').attr('data-locale', 'ar');
+  }
+
+  if (window.I18n && initialLocale) {
+    window.I18n.locale = initialLocale;
+  }
+
   if (typeof renderTranslationForm === 'function') {
     renderTranslationForm('translation_froala_editor');
   }
@@ -13,6 +22,8 @@ $('#edit_translation_form').off('ajax:success ajax:error');
 $modal.on('change', '#locale', function() {
   var selectedLocale = $(this).val();
   var communicationId = '<%= @communication.id %>';
+
+  $('body').attr('data-locale', selectedLocale);
 
   $.ajax({
     url: '<%= edit_translation_administration_communication_path(@communication) %>',
@@ -28,9 +39,16 @@ $modal.on('change', '#locale', function() {
       $referenceBody.html(response.reference_body ? response.reference_body.replace(/\n/g, '<br>') : 'No reference body available');
       $('[data-copy-text]').last().attr('data-copy-text', response.reference_body);
       $('#translation_body_value').val(response.translated_body);
+
       if (window.FroalaEditor && $('#translation_froala_editor').data('froala.editor')) {
-        $('#translation_froala_editor').froalaEditor('html.set', response.translated_body || '');
-      } else if (typeof renderTranslationForm === 'function') {
+        $('#translation_froala_editor').froalaEditor('destroy');
+      }
+
+      if (window.I18n) {
+        window.I18n.locale = selectedLocale;
+      }
+
+      if (typeof renderTranslationForm === 'function') {
         renderTranslationForm('translation_froala_editor');
       }
     },

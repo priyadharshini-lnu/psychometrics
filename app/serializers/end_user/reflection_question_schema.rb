@@ -8,7 +8,7 @@ module EndUser
 
         required(:id).filled(:integer)
         required(:question).filled(:string)
-        required(:answer).filled(:string)
+        required(:answer).maybe(:string)
         required(:mandatory).filled(:bool)
         optional(:min_words).maybe(:integer)
         optional(:max_words).maybe(:integer)

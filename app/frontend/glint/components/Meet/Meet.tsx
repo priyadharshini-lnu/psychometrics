@@ -9,6 +9,7 @@ const CALL_OPTIONS: DailyCallOptions = {
   },
   showLeaveButton: true,
   showFullscreenButton: true,
+  cssText: '.record-controls { display: none !important; }',
   theme: {
     colors: {
       // TODO: use theme colors, variables don't work here

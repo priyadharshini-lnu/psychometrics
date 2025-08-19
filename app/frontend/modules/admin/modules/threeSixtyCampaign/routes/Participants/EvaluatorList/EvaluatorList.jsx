@@ -22,6 +22,7 @@ export default function EvaluatorList ({
   total,
   permissions,
   searchTerm,
+  template,
   threeSixtyCampaignId,
 }) {
   const { campaignId } = useParams()
@@ -51,8 +52,8 @@ export default function EvaluatorList ({
             searchTerm={searchTerm}
           />
           <Manage />
-          <ToolsDropdown permissions={permissions} />
-          <CreateEvaluatorsDropdown permissions={permissions} />
+          {!template && <ToolsDropdown permissions={permissions} />}
+          <CreateEvaluatorsDropdown template={template} permissions={permissions} />
         </Col>
       </Row>
       <Row>

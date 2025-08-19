@@ -15,6 +15,8 @@ ro:
       title: Modificări auditate
     administrator:
       sessions:
+        errors:
+          recaptcha: Verificarea Recaptcha a eșuat
         new:
           forgot_password: Ai uitat parola?
           instruction: Vă rugăm să vă conectați cu informațiile personale ale contului dvs
@@ -147,6 +149,7 @@ ro:
             accesssheet_manage: Gestionarea foii de acces
             accesssheet_settings: Setări foaie de acces
             accesssheet_view: Vizualizare foaie de acces
+            export: Export
             title: Dashboards
             view: Vedere
           datasheets:
@@ -179,7 +182,7 @@ ro:
             manage: Acțiuni
             title: Roluri de post
             view: Vedere
-          mediaLibraries:
+          libraries:
             manage: Acțiuni
             title: Biblioteci media
             view: Vedere
@@ -290,18 +293,33 @@ ro:
             view: Vedere
     ai_assistants:
       actions:
+        create: Creați un asistent AI
+        edit: Editează asistentul AI
         playground: Joacă
       ai_assistants: Asistenți AI
       ai_assistants_playground: Asistent AI Playground
       column:
         provider: Furnizor
+      created_successfully: AI Assistant a fost creat cu succes.
       form:
+        add_output_schema_key: Adăugați cheia schemei de ieșire
+        dependencies: Dependențe
         description: Descriere
+        enter_description: Introduceți descrierea
+        enter_schema_key: Introduceți cheia schemei
+        key: Cheie
         name: Nume
+        output_schema_keys: Chei ale schemei de ieșire
         provider: Furnizor
+        remove_output_schema_key: Eliminarea cheii schemei de ieșire
+        schema_key_description_required: Schema Key Description este necesară
+        schema_key_required: Cheia schemei este necesară
+        schema_key_type: Tip cheie
+        schema_key_unique: Cheile schemei trebuie să fie unice
         system_prompt: Solicitare de sistem
-        title: Asistent AI
+        type: Tip
         user_prompt: Solicitarea utilizatorului
+      updated_successfully: AI Assistant a fost actualizat cu succes.
     any: " -Oricare- "
     api:
       campaigns:
@@ -767,6 +785,8 @@ ro:
       new:
         header: Descărcare în bloc
       reports_unavailable: În acest moment, nu sunt disponibile rapoarte pentru descărcare. Vă rugăm să confirmați că rapoartele pe care doriți să le descărcați sunt disponibile.
+      select_users_for_download: Vă rugăm să selectați cel puțin un utilizator pentru a descărca rapoarte.
+      select_users_for_regenerate: Vă rugăm să selectați cel puțin un utilizator pentru a regenera rapoartele.
     cable:
       notification:
         assessment_factors: Factorii sunt preluați
@@ -856,6 +876,7 @@ ro:
       campaign_templates: Șabloane de campanie
       column:
         assessment: Evaluare
+        campaign: Campanie
         owner: Proprietar
         report: Raport
       copy:
@@ -930,6 +951,7 @@ ro:
       assessors:
         spoof:
           successfully: V-ați autentificat cu succes ca %{name}
+      convert_to_template: Conversie în șablon
       copy: Copiază
       delete: Șterge
       edit: Editează
@@ -955,6 +977,7 @@ ro:
         name: Nume
         reports: Rapoarte
         status: Stare
+        template: Șablon
         type: Tip
       menus:
         add_common_campaign: Adăugați o campanie comună
@@ -970,11 +993,15 @@ ro:
             assessment: Evaluare
             category: Categorie
             closed: Închis
+            default_assessment_language: Limba implicită de evaluare
+            default_report_language: Limba implicită a raportului
             empty: Gol
             inactive: Inactivă
             name: Nume
             normal: Normal
             previous: Precedent
+            select_assessment_language: Selectați limba de evaluare
+            select_report_language: Selectați limba raportului
             skill_rater: Evaluator de abilități
             standard: Standard
             status: Stare
@@ -1007,6 +1034,7 @@ ro:
           name: Descriere
           save: Salvează descrierea
           save_success: Descriere salvată cu succes
+        enable_video_call_recording: Activarea înregistrării apelurilor video
         fixed_time: Timp fix
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ ro:
         campaign_assessment_group: Grupul de evaluare a campaniei
         client: Client
         completion: Terminare
+        custom: Personalizat
         delivery_at: Livrare la (GST)
         delivery_delay_hours: Întârziere de livrare (ore)
         delivery_interval: Interval de livrare
@@ -1628,6 +1657,7 @@ ro:
         recipients: Beneficiari
         reminder: Memento
         report_available: Raport disponibil
+        select_assessments: Alegeți ce evaluări să verificați pentru finalizare
         selected: Selectat
         selected_cc_recipients: Destinatari CC selectați
         selected_recipients: Destinatari selectați
@@ -2122,6 +2152,9 @@ ro:
         remove_confirm: Introduceți numele șablonului curent de mai jos în caseta de text pentru a elimina șablonul
         success: "%{idpName} a fost eliminat cu succes."
       add_idp_template: Adăugați șablon IDP
+      ai_assisted_idp_enabled: IA asistată IDP activată
+      ai_enabled: AI activat
+      ai_settings: Setări AI
       all: Toți
       appearance: Apariție
       appearance_hint: Pentru a modifica aspectul, vă rugăm să salvați mai întâi șablonul IDP pentru a activa aceste setări.
@@ -2137,6 +2170,7 @@ ro:
       enter_template_name: Nume
       enter_template_name_error: Numele șablonului este obligatoriu
       errors:
+        cannot_update_progress_plan_completed: Nu se poate actualiza progresul deoarece planul IDP a fost finalizat
         update: Actualizarea nu este permisă, deoarece șablonul IDP este deja asociat cu un plan IDP al utilizatorului. Modificările de aspect au fost salvate.
       fields:
         assigned_data: Date atribuite
@@ -2164,6 +2198,7 @@ ro:
       logo_type_label: Tip logo
       no_reflection_questions_selected: Nu s-a selectat nicio întrebare de reflecție
       none: Niciunul
+      one_click_idp_enabled: Un clic IDP activat
       reference_locale: Setări regionale de referință
       reflection_questions: Întrebări de reflecție
       reflection_questions_hint: Pentru a modifica întrebările de reflecție, vă rugăm să salvați mai întâi șablonul IDP pentru a activa aceste setări.
@@ -2270,7 +2305,7 @@ ro:
     individual_invite:
       tabs:
         assessment_center: Centrul de evaluare
-        subjects: Utilizatori
+        invitation_status: Starea invitației
     innovation_styles:
       create:
         successfully: Stilul de inovare %{name} a fost creat cu succes.
@@ -2399,7 +2434,9 @@ ro:
       assessment_center: 'Centrul de evaluare:'
       booked_at: 'Rezervat la:'
       column:
+        invitation_status: Starea invitației
         participant: Participant
+        scheduling_details: Detalii privind programarea
       remove_confirm:
         content: Sunteți sigur că doriți să eliminați subiectul cu e-mailul "%{subjectEmail}"?
         success: Subiectul cu adresa de e-mail "%{subjectEmail}" a fost eliminat cu succes.
@@ -2407,6 +2444,8 @@ ro:
       statuses:
         accepted: Acceptate
         cancelled: Anulat
+        late_cancelled: Anulat cu întârziere
+        late_rescheduled: Întârziat Reprogramat
         pending: Până
         requested_cancellation: Anulare solicitată
         requested_cancellation_rejected: Anulare respinsă
@@ -2440,8 +2479,6 @@ ro:
         expected_proficiency_level: Nivelul de competență așteptat
       form:
         title: Cartografierea locurilor de muncă
-      import:
-        taxonomy: Taxonomie
     job_roles:
       export:
         translations:
@@ -2696,21 +2733,31 @@ ro:
         sms_contacts: Contacte SMS
         subjects: Utilizatori
     piped_text_modal:
+      assessment_center: Centrul de evaluare
       assessment_id: ID evaluare
       campaign_id: Codul campaniei
       campaign_name: Numele campaniei
       campaigns: Campanii
+      description: Descriere
+      duration: Durată
+      end_time: Ora de sfârșit
       insight_page_link: Link către pagina Insight
       insight_page_url: Adresa URL a paginii Insight
+      invite_title: Titlu
+      invites: Invitații
       join_link: Link alăturați-vă
       magic_link: Legătura magică
       magic_url: Adresa URL magică
+      platform_url_links: Url și linkuri ale platformei
       profile_custom_field: Câmp personalizat profil
       project_name: Numele proiectului
       projects: Proiecte
       report_name: Numele raportului
+      start_time: Ora de începere
       text: Text
       title: Adăugați text canalizat
+      user_reports: Rapoarte ale utilizatorilor
+      users: Utilizatori
     proctoring_sessions:
       columns:
         comment: Comentariu
@@ -2735,7 +2782,9 @@ ro:
       errors:
         create:
           invalid_format: Definirea nivelului trebuie să fie o matrice de definiții.
+          level_definition_must_exist: Definiția nivelului nu poate fi goală
           level_definition_must_match_level: trebuie să conțină exact %{expected} niveluri, dar %{actual} au fost date
+          level_name_must_exist: Numele nivelului nu poate fi gol
           must_be_unique: Trebuie să fie unic
           proficiency_level_exists: Un nivel de competență cu această abilitate și proiect există deja
           proficiency_level_exists_for_default: Există deja un nivel de competență pentru implicit
@@ -3038,6 +3087,7 @@ ro:
         dp_consent_custom: Personalizați consimțământul pentru prelucrarea datelor
         dp_consent_version: Versiunea politicii
         errors:
+          cannot_disable_while_campaign_enabled: Nu se poate dezactiva înregistrarea apelurilor video deoarece este activată pentru una sau mai multe campanii din acest proiect
           policy_version_format: Sunt permise doar numerele întregi
         mask_identity_for_examus: Date despre măști pentru supravegherea examenului
         mask_identity_for_hogan: Date despre măști pentru Hogan
@@ -3051,6 +3101,9 @@ ro:
         privacy_link_placeholder: Introduceți linkul de confidențialitate
         privacy_text: Text de confidențialitate
         privacy_text_placeholder: Introduceți textul de confidențialitate
+        video_call_recording: Permiteți înregistrarea apelurilor video
+        video_call_recording_expiry_duration: Perioada de păstrare a înregistrărilor apelurilor video (în zile)
+        video_call_recording_scope: Activați înregistrarea video pentru toate campaniile noi
       profile_settings:
         form_fields:
           enabled: Activat
@@ -3373,6 +3426,7 @@ ro:
         copy_to_all: Copiați la alte centre de evaluare
         create: Crea
         dates_label: Curmale
+        disable_cancellation_and_rescheduling: Dezactivați anularea și reprogramarea
         duration_label: Durată
         duration_max_error: Nu poate fi mai mare de 16 ore
         duration_min_error: Nu poate fi mai puțin de 15 minute
@@ -3383,8 +3437,6 @@ ro:
         name_label: Nume
         next: Următor
         required_error: Necesar
-        reschedule_duration_max_error: Nu poate fi mai mare de 30 de zile
-        reschedule_duration_min_error: Nu poate fi mai mic de 1 minut
         resources_panel:
           description: Adăugați linkurile către orice resurse la care doriți să aibă acces facilitatorii.
           resource_name_placeholder: Nume resursă
@@ -3498,6 +3550,7 @@ ro:
         form_title: Programați evaluări
         language: Limbă
         language_not_selected: Neselectat
+        mark_cancel: Mark Cancel
         mark_cancel_success: Participarea anulată a subiectului cu e-mail %{subject_email}.
         meeting_link_custom: Obicei
         meeting_link_internal: Intern
@@ -3506,6 +3559,9 @@ ro:
         no_change: Nicio schimbare
         override_existing: Înlocuirea programelor existente pentru subiecte
         preworks: Prework
+        re_enroll: Reînscriere
+        re_enroll_confirm_message: Sunteți sigur că doriți să înscrieți din nou subiectul cu adresa de e-mail '%{subject_email}'?
+        re_enroll_success: Subiect reînscris cu e-mail <x>subject_email</x>.
         schedule: Orar
         unschedule: Deprogramare
       tabs:
@@ -3624,6 +3680,7 @@ ro:
       disable_password_reuse: Dezactivați reutilizarea parolei
       disallow_password_login: Interzice autentificarea prin parolă
       enable_login_with_magic_link: Activați autentificarea cu link magic
+      enable_recaptcha: Activați reCAPTCHA
       enforce_password_policy: Impunerea politicii de parolă la următoarea conectare
       enforce_strong: Impuneți o parolă puternică
       expiration: Expirarea parolei
@@ -4091,6 +4148,21 @@ ro:
         toggle_status:
           successfully: Succes
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Deja un șablon
+        has_user_data: Vă rugăm să resetați manual campania făcând clic pe "Resetați toți participanții" din lista derulantă Instrumente înainte de a o converti într-un șablon.
+      convert_template_modal:
+        cancel: Anulează
+        confirm: Confirmați
+        convert:
+          success: Șablon convertit cu succes
+        convert_option: Convertiți această campanie într-un șablon
+        copy:
+          success: Sarcina de creare a șablonului de campanie a fost programată cu succes, vă rugăm să verificați notificările pentru starea acestora.
+        copy_option: Creați un șablon nou din această campanie
+        description: Alegeți modul în care doriți să creați un șablon din această campanie.
+        failed: Crearea șablonului a eșuat.
+        title: Conversie în șablon
       email_templates:
         approve_nomination:
           description: Acest mesaj este trimis unui manager atunci când o nominalizare, făcută de un subordonat direct, trebuie aprobată
@@ -4325,6 +4397,10 @@ ro:
       update:
         successfully: Utilizatorul %{name} a fost actualizat cu succes.
       user: Utilizator
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Data finală nu poate fi în trecut
+        start_date_cannot_be_in_past: Data de începere nu poate fi în trecut
     webhook:
       connection_failure: Nu se poate conecta la adresa URL a webhook-ului. Vă rugăm să verificați dacă adresa URL a webhook-ului este corectă.
       delete_success: Setările webhook-ului au fost șterse cu succes

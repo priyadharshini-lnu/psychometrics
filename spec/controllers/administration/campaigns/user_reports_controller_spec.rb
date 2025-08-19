@@ -600,7 +600,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   def check_report_response(report_response)
     expect(report_response.keys).to contain_exactly(
       *%w[id permissions report_id name user_access report_family_name
-          status internal report_url custom_upload report_provider
+          status internal custom_upload report_provider report_download_urls
           comments_count edits_count hogan_participant_id available_languages effective_default_language]
     )
     expect(report_response).to include({
@@ -612,8 +612,12 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       'status' => 'not_prepared',
       'internal' => true,
       'custom_upload' => false,
-      'report_url' => nil,
-      'hogan_participant_id' => nil
+      'hogan_participant_id' => nil,
+      'report_download_urls' => {
+        user_report.effective_default_language => user_report.pdf_download_url(
+          locale: user_report.effective_default_language
+        )
+      }
     })
   end
 

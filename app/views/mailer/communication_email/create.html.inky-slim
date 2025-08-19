@@ -1,4 +1,4 @@
 container.email-container
   row
-    columns.email-content 
+    columns.email-content[dir=(I18n.locale.to_s == 'ar' ? 'rtl' : 'ltr')]
       = raw @body

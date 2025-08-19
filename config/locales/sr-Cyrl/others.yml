@@ -142,6 +142,7 @@ sr-Cyrl:
   admin_jobs:
     attrs:
       operations:
+        copy_as_template_or_campaign: Копирај кампању као шаблон
         import_skill_rater_taxonomies: Увоз таксономија процењивача вештина
       statuses:
         in_progress: У току
@@ -191,6 +192,7 @@ sr-Cyrl:
       back: Назад
       confirm_message: "## Ваши одговори ће бити послати и не могу се мењати након овога. Кликните на **Назад** да бисте још једном прегледали своје одговоре или кликните на **Пошаљи** ако сте завршили."
       next: Следеће
+      no_skill_mapping_message: Нема мапирања вештина за ову радну улогу, контактирајте администратора.
       read_only: Само је у режиму читања, не можете мењати резултате.
       save: Сачувај
       submit: Пошаљи
@@ -226,6 +228,9 @@ sr-Cyrl:
         frame: Молимо вас да се уверите да је ваше лице поравнато са оквиром
         ready: Притисните дугме за снимање када сте спремни за снимање
     wait: Чекај
+  assessments_reports:
+    add_group_form:
+      require_previous_groups_completion_for_booking: Потребно је завршити све претходне групе пре резервације
   auth:
     current_password: Тренутна лозинка
     current_password_placeholder: Унесите тренутну лозинку
@@ -366,6 +371,8 @@ sr-Cyrl:
       notification_hours: Остало вам је %{hours} сат
       notification_minutes: Остало вам је %{minutes} минута
   campaign_assessment:
+    actions:
+      convert_to_template: Претвори у шаблон
     assessment_center_heading_label: Детаљи сесије
     assessments_heading: Ваши задаци
     column:
@@ -619,8 +626,14 @@ sr-Cyrl:
         only_global_skills_allowed: Одабране вештине морају бити глобалне вештине.
         skills_not_belong_to_project: Одабране вештине морају да припадају наведеном пројекту.
         skills_required: Изаберите бар једну вештину.
+      update_workshop:
+        bookings_exist: Није могуће изменити распоред јер су учесници већ резервисали овај термин.
       user_idp_plan:
         idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кориснику.
+      workshop_subject_re_enroll:
+        no_seats_available: Нема слободних места за ову радионицу.
+        scheduling_lead_time_passed: Време за заказивање је истекло, не можете поново пријавити учесника.
+        workshop_subject_not_found: Учесник радионице није пронађен
   emails:
     subject_relationship_table:
       subject_email: Наслов имејла
@@ -675,8 +688,13 @@ sr-Cyrl:
       add_to_calendar_tour_description: Додајте ову резервацију у свој календар
       assessment_center_alert:
         btn_title: Кампања
-        message_part1: Завршите све припремне радове у овом
-        message_part2: пре резервације термина.
+        complete_previous_groups: Завршите све активности претходних група
+        complete_preworks: Завршите све припремне задатке
+        please_visit: Молимо посетите
+        requirements_message: Можете резервисати тек након што испуните следећи услов
+        requirements_plural: услови
+        requirements_singular: услов
+        to_complete_requirements: да бисте испунили ове услове.
       assessment_center_group_name: Центар за процену
       booking_failed_msg: 'Резервисање термина није успело: %{error}'
       buttons:
@@ -740,6 +758,7 @@ sr-Cyrl:
         remove:
           confirmation: Унесите тренутни назив кампање наведен испод у текстуално поље да бисте уклонили кампању
           success: Кампања %{campaignName} је успешно уклоњена.
+          template_confirmation: 'Унесите назив тренутног шаблона у поље испод за брисање. Напомена: Ово ће такође обрисати повезани шаблон кампање.'
       users:
         completion_statuses:
           completed: Завршено
@@ -899,6 +918,7 @@ sr-Cyrl:
         required: Одговор на питање је обавезан
       max_words: Максимум речи
       min_words: Минимум речи
+      no_reflective_questions: Без рефлексивних питања
       title: Рефлексивна питања
       update_failed: Дошло је до грешке при ажурирању
       updated_successfully: Ваши одговори су успешно ажурирани
@@ -924,6 +944,12 @@ sr-Cyrl:
   licenses:
     title: Лиценца
   mailer:
+    copyright:
+      text: Lighthouse. Сва права задржана
+    footer:
+      regards: Срдачан поздрав,
+      team_name: Lighthouse тим
+      technical_support: За техничке потешкоће пишите нам на %{email} и одговорићемо у року од 24 сата.
     magic_link:
       body:
         dear: Драги/а %{name},
@@ -931,6 +957,8 @@ sr-Cyrl:
         instructions: Кликните на линк испод да бисте се пријавили на светионик.
         signin_link: Линк за пријаву
       subject: Линк за пријаву на Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
   navigation:
     logout: Одјавите се
   norms:
@@ -1066,6 +1094,9 @@ sr-Cyrl:
       not_available: Није доступно
       on_hold: На чекању
       released: Објављено
+  sessions:
+    errors:
+      recaptcha: Recaptcha верификација није успела. Покушајте поново.
   shared:
     filters:
       clear: Обриши филтере

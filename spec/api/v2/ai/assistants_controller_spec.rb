@@ -135,6 +135,49 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
           expect(data['model_id']).to eq('azure-openai')
         end
       end
+
+      response '201', 'Assistant created with output schema keys' do
+        let(:assistant_params) do
+          {
+            data: {
+              type: 'assistants',
+              attributes: {
+                name: 'Test Assistant with Schema',
+                description: 'A test assistant with output schema keys',
+                system_prompt: 'You are a helpful assistant',
+                user_prompt: 'How can I help you?',
+                assistant_type: 'content_writer',
+                model_id: 'azure-openai',
+                assistant_output_schema_keys_attributes: [
+                  {
+                    key: 'summary',
+                    description: 'The summary of the content',
+                    key_type: 'string'
+                  }
+                ]
+              }
+            }
+          }
+        end
+
+        run_test! do |response|
+          expect(response.status).to eq(201)
+          data = JSON.parse(response.body)['data']
+
+          expect(data['attributes']['name']).to eq('Test Assistant with Schema')
+          expect(data['attributes']['model_id']).to eq('azure-openai')
+
+          assistant = AI::Assistant.find(data['id'])
+          expect(assistant.assistant_output_schema_keys.count).to eq(1)
+
+          schema_keys = assistant.assistant_output_schema_keys
+          summary_key = schema_keys.find { |k| k.key == 'summary' }
+
+          expect(summary_key).to be_present
+          expect(summary_key.description).to eq('The summary of the content')
+          expect(summary_key.key_type).to eq('string')
+        end
+      end
     end
   end
 
@@ -215,6 +258,54 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
           expect(assistant_response).to have_key('attributes')
           expect(assistant_response['attributes']).to have_key('name')
           expect(assistant_response['attributes']['name']).to eq('Updated Assistant')
+        end
+      end
+      response '200', 'Assistant updated with existing schema key modified' do
+        let!(:assistant_with_schema) do
+          create(:assistant, owner: client, model_id: 'azure-openai').tap do |asst|
+            asst.assistant_output_schema_keys.create!(
+              key: 'original_summary',
+              description: 'Original description',
+              key_type: 'string'
+            )
+          end
+        end
+        let(:id) { assistant_with_schema.id }
+        let(:schema_key_id) { assistant_with_schema.assistant_output_schema_keys.first.id }
+
+        let(:update_params) do
+          {
+            data: {
+              id: id,
+              type: 'assistants',
+              attributes: {
+                name: 'Updated Assistant with Schema',
+                assistant_output_schema_keys_attributes: [
+                  {
+                    id: schema_key_id,
+                    key: 'updated_summary',
+                    description: 'Updated description for summary',
+                    key_type: 'string'
+                  }
+                ]
+              }
+            }
+          }
+        end
+
+        run_test! do |response|
+          expect(response.status).to eq(200)
+          data = JSON.parse(response.body)
+
+          expect(data['data']['attributes']['name']).to eq('Updated Assistant with Schema')
+
+          assistant = AI::Assistant.find(id)
+          expect(assistant.assistant_output_schema_keys.count).to eq(1) # Still only 1 record
+
+          updated_key = assistant.assistant_output_schema_keys.first
+          expect(updated_key.id).to eq(schema_key_id)
+          expect(updated_key.key).to eq('updated_summary')
+          expect(updated_key.description).to eq('Updated description for summary')
         end
       end
     end

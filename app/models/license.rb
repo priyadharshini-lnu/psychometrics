@@ -28,7 +28,7 @@ class License < ApplicationRecord
                               date: Time.zone.today)
                     }
 
-  enum :type, { common: 0, threesixty: 1, proctoring: 2, idp: 3 }, prefix: :type
+  enum :type, { common: 0, threesixty: 1, proctoring: 2, idp: 3, ai_assistant: 4 }, prefix: :type
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id]

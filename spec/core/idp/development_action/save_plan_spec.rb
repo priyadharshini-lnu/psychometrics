@@ -175,10 +175,7 @@ describe Idp::DevelopmentAction::SavePlan do
 
       expect do
         described_class.call!(user_idp_plan, body_params)
-      end.to raise_error(
-        ArgumentError,
-        "'invalid_style' is not a valid custom_action_learning_style"
-      )
+      end.to raise_error(ArgumentError, /'invalid_style' is not a valid custom_action_learning_style/)
     end
   end
 end

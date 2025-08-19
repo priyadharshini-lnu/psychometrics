@@ -47,7 +47,7 @@ const Project: FC<Props> = ({
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const [isProjectLoaded, setIsProjectLoaded] = useState(false)
-  const { idpEnabled } = camelizeKeys(features)
+  const { idpEnabled, skillRaterEnabled } = camelizeKeys(features)
 
   useEffect(() => {
     fetchProject(parseInt(projectId, 10)).then(() => {
@@ -147,8 +147,12 @@ const Project: FC<Props> = ({
 
   const menuItems: MenuItem[] = [
     { key: 'new_campaigns', icon: <ShopOutlined />, label: I18n.t('common.model.campaigns') },
-    { key: 'datasheet', icon: <DatabaseOutlined />, label: I18n.t('common.model.datasheet') },
   ]
+  currentUser.permissions.viewDatasheets && menuItems.push({
+    key: 'datasheet',
+    icon: <DatabaseOutlined />,
+    label: I18n.t('common.model.datasheet'),
+  })
   currentUser.permissions.manageProjectAdmins && menuItems.push({
     key: 'admins',
     icon: <SolutionOutlined />,
@@ -171,13 +175,15 @@ const Project: FC<Props> = ({
     label: I18n.t('administration.idp.idp'),
   })
 
-  idpEnabled && currentUser.permissions.accessProjectTaxonomy && menuItems.push(
-    {
-      key: 'taxonomy',
-      icon: <ApartmentOutlined />,
-      label: I18n.t('administration.taxonomy.title'),
-    },
-  )
+  if ((idpEnabled || skillRaterEnabled) && currentUser.permissions.accessProjectTaxonomy) {
+    menuItems.push(
+      {
+        key: 'taxonomy',
+        icon: <ApartmentOutlined />,
+        label: I18n.t('administration.taxonomy.title'),
+      },
+    )
+  }
 
 
   return (

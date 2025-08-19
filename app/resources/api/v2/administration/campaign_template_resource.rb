@@ -6,6 +6,7 @@ class Api::V2::Administration::CampaignTemplateResource < Api::V2::Administratio
   has_one :owner
   has_one :assessment
   has_one :report
+  has_one :campaign
 
   ransack_filters %i[filterable_fields]
 

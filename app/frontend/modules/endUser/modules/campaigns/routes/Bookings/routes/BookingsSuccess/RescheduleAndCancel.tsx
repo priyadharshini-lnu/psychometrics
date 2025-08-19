@@ -20,11 +20,12 @@ type Props = {
   allowRescheduleByUser: boolean,
   cancelInProgress: boolean
   allowLateCancellationAndRescheduling: boolean
+  disableCancelAndReschedule: boolean
 }
 export const RescheduleAndCancel: FC<Props> = ({
   cancelBooking, onCancelBooking, onRescheduleBooking, requestForRescheduleInProgress, requestForCancelInProgress,
   onRequestCancellation, allowCancelByUser, cancelInProgress, allowRescheduleByUser,
-  allowLateCancellationAndRescheduling,
+  allowLateCancellationAndRescheduling, disableCancelAndReschedule,
 }) => {
   const [openConfirmPopup, setOpenConfirmPopup] = useState(false)
   const [requestCancelForm] = Form.useForm()
@@ -91,44 +92,46 @@ export const RescheduleAndCancel: FC<Props> = ({
 
   return (
     <>
-      <Space size={2}>
-        <span>{I18n.t('frontend.bookings.need_changes')}</span>
-        {allowCancelByUser ? (
-          <Popconfirm
-            destroyTooltipOnHide
-            title={I18n.t('frontend.bookings.cancel_booking_confirmation')}
-            okButtonProps={{
-              loading: cancelInProgress,
-              'aria-description': I18n.t('frontend.bookings.cancel_booking_confirmation'),
-            }}
-            cancelButtonProps={{
-              disabled: cancelInProgress,
-              'aria-description': I18n.t('frontend.bookings.cancel_booking_confirmation'),
-            }}
-            onConfirm={() => onCancelBooking(true)}
-            onCancel={() => setOpenConfirmPopup(false)}
-            open={openConfirmPopup}
-            okText={I18n.t('frontend.bookings.buttons.yes_text')}
-            cancelText={I18n.t('frontend.bookings.buttons.no_text')}
-            getPopupContainer={(trigger) => {
-              cancelConfirmRef.current = trigger.parentElement
-              return trigger.parentElement || document.body
-            }}
-          >
-            {cancelBtn}
-          </Popconfirm>
-        ) : null}
-        {!allowCancelByUser && allowLateCancellationAndRescheduling ? cancelBtn : null}
-        {(allowCancelByUser && allowRescheduleByUser && !allowLateCancellationAndRescheduling)
-        || (allowLateCancellationAndRescheduling)
-          ? <span>{I18n.t('frontend.bookings.or')}</span>
-          : null}
-        {(!allowRescheduleByUser && allowLateCancellationAndRescheduling) || allowRescheduleByUser ? (
-          <Button className="ps-2 pe-2" type="link" onClick={() => onRescheduleBooking()}>
-            {I18n.t('frontend.bookings.buttons.reschedule')}
-          </Button>
-        ) : null}
-      </Space>
+      {!disableCancelAndReschedule ? (
+        <Space size={2}>
+          <span>{I18n.t('frontend.bookings.need_changes')}</span>
+          {allowCancelByUser ? (
+            <Popconfirm
+              destroyTooltipOnHide
+              title={I18n.t('frontend.bookings.cancel_booking_confirmation')}
+              okButtonProps={{
+                loading: cancelInProgress,
+                'aria-description': I18n.t('frontend.bookings.cancel_booking_confirmation'),
+              }}
+              cancelButtonProps={{
+                disabled: cancelInProgress,
+                'aria-description': I18n.t('frontend.bookings.cancel_booking_confirmation'),
+              }}
+              onConfirm={() => onCancelBooking(true)}
+              onCancel={() => setOpenConfirmPopup(false)}
+              open={openConfirmPopup}
+              okText={I18n.t('frontend.bookings.buttons.yes_text')}
+              cancelText={I18n.t('frontend.bookings.buttons.no_text')}
+              getPopupContainer={(trigger) => {
+                cancelConfirmRef.current = trigger.parentElement
+                return trigger.parentElement || document.body
+              }}
+            >
+              {cancelBtn}
+            </Popconfirm>
+          ) : null}
+          {!allowCancelByUser && allowLateCancellationAndRescheduling ? cancelBtn : null}
+          {(allowCancelByUser && allowRescheduleByUser && !allowLateCancellationAndRescheduling)
+          || (allowLateCancellationAndRescheduling)
+            ? <span>{I18n.t('frontend.bookings.or')}</span>
+            : null}
+          {(!allowRescheduleByUser && allowLateCancellationAndRescheduling) || allowRescheduleByUser ? (
+            <Button className="ps-2 pe-2" type="link" onClick={() => onRescheduleBooking()}>
+              {I18n.t('frontend.bookings.buttons.reschedule')}
+            </Button>
+          ) : null}
+        </Space>
+      ) : null}
     </>
   )
 }

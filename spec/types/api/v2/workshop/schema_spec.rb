@@ -69,7 +69,6 @@ RSpec.describe Api::V2::Workshop::Schema do
             timezone: ["can't be blank"],
             cancellation_lead_time: ['must be an integer'],
             scheduling_lead_time: ['must be an integer'],
-            allow_late_cancellation_and_rescheduling: ["can't be blank"],
             video_call_type: ["can't be blank"],
             workshop_resources: {
               0 => {

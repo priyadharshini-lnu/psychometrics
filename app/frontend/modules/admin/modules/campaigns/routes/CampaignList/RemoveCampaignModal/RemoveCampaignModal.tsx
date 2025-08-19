@@ -10,6 +10,7 @@ export interface OwnProps {
   campaign: {
     id: number
     name: string
+    isTemplate: boolean
   }
   projectId: number
 }
@@ -31,7 +32,9 @@ const RemoveCampaignModal: React.FC<Props> = ({
   return (
     <AnswerableConfirmationModal
       requiredAnswer={campaign.name}
-      confirmationMessage={I18n.t('frontend.campaign.actions.remove.confirmation')}
+      confirmationMessage={campaign.isTemplate
+        ? I18n.t('frontend.campaign.actions.remove.template_confirmation')
+        : I18n.t('frontend.campaign.actions.remove.confirmation')}
       onConfirm={handleOnConfirm}
       onCancel={close}
     />

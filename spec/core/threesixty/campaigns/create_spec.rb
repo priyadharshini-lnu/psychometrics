@@ -36,6 +36,21 @@ describe Threesixty::Campaigns::Create do
 
       described_class.call!(project, form, user)
     end
+
+    it 'calls CopyAsTemplateOrCampaign when campaign_template has campaign_id' do
+      existing_campaign = create(:campaign)
+      campaign_template = create(:campaign_template, campaign: existing_campaign)
+      cloned_threesixty_campaign = create(:threesixty_campaign)
+
+      form.threesixty_type = Threesixty::Campaign::STANDARD_360
+      form.campaign_template_id = campaign_template.id
+
+      expect(Threesixty::Campaigns::CopyAsTemplateOrCampaign).to receive(:call).
+        with(existing_campaign, is_template: false, form: form, project: project).
+        and_return({ ok: { campaign: double(threesixty_campaign: cloned_threesixty_campaign) } })
+
+      described_class.call!(project, form, user)
+    end
   end
 
   describe 'Standard 360' do

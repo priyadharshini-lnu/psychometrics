@@ -819,6 +819,7 @@ sl:
         bulk_update_evaluation_status: Stanje ocenjevanja množične posodobitve
         compact_completion_status_export: Izvoz stanja kompaktnega dokončanja
         completion_status_export: Izvoz stanja dokončanja
+        copy_as_template_or_campaign: Kopiranje kampanje kot predloge
         copy_dimension: Kopiraj dimenzijo
         create_threesixty_campaign: Ustvarite kampanjo Threesixty
         data_report_export: Izvoz poročila o podatkih
@@ -1082,6 +1083,7 @@ sl:
         description: Ta ocenjevalna seja je bila razveljavljena. To se lahko zgodi, če nadaljujete ocenjevanje na ločenem zavihku, brskalniku ali napravi.
         title: Zadnja zahteva ni uspela
       next: Naslednji
+      no_skill_mapping_message: Za to delovno mesto ni izdelan zemljevid spretnosti, zato se obrnite na upravitelja.
       read_only: V tem načinu lahko rezultate le pregledujete, ne pa spreminjate.
       save: Shrani
       submissionFailedAlert:
@@ -1150,6 +1152,7 @@ sl:
     add_group_form:
       previous_assessments_required: Ocenjevanje poteka v spodnjem vrstnem redu
       previous_group_required: Zahtevano je prejšnje dokončanje skupine
+      require_previous_groups_completion_for_booking: Pred rezervacijo je treba opraviti vse predhodne skupine
     menu:
       assessment_center: Ocenjevalni center
       assessment_center_invites: Vabila ocenjevalnega centra
@@ -1390,6 +1393,7 @@ sl:
       bulk_download: Prenos v velikem obsegu
       bulk_update_evaluation_as_done: Označi kot končano
       bulk_update_evaluation_as_undone: Odčrti oznako kot končano
+      convert_to_template: Pretvori v predlogo
       download: Prenesite poročila
       export_completion_status: Stanje dokončanja izvoza
       export_external: Zunanji
@@ -2176,6 +2180,7 @@ sl:
       uniq_simulation: Ta simulacijska ocena je že prisotna v sistemu. ID te ocene je %{id}
       uniq_skillvue: 'To ocenjevanje Skillvue je že v sistemu. ID ocenjevanja: %{id}'
       update_workshop:
+        bookings_exist: Razporeda ni mogoče spremeniti, saj so udeleženci že rezervirali ta časovni interval.
         less_than_booked: Skupno število sedežev mora biti večje od rezerviranih
       user_availability_date:
         overlaps_date: Prekriva se z drugo razpoložljivostjo %{range}
@@ -2193,6 +2198,10 @@ sl:
       workshop_subject_create:
         already_exists: Subjekt že obstaja v tem ocenjevalnem centru.
         part_of_other_workshop: Subjekt je že udeleženec '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Za to delavnico ni na voljo mest.
+        scheduling_lead_time_passed: Čas za načrtovanje je potekel, predmeta ne morete ponovno vpisati.
+        workshop_subject_not_found: Tema delavnice ni bila najdena
       workshops:
         no_available_assessor_slots: Ni prostih mest za ocenjevalca %{assessor}
         no_available_manager_slots: Ni prostih mest za managerja %{manager}
@@ -2324,8 +2333,13 @@ sl:
       add_to_yahoo_calendar: Dodaj v yahoo koledar
       assessment_center_alert:
         btn_title: Kampanja
-        message_part1: Zaključite vse pripravljalne naloge
-        message_part2: pred rezervacijo termina
+        complete_previous_groups: Izvedite vse prejšnje skupinske dejavnosti.
+        complete_preworks: Dokončajte vsa pripravljalna dela
+        please_visit: Obiščite spletno stran
+        requirements_message: Rezervacijo lahko opravite šele, ko izpolnite naslednje zahteve
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: za izpolnitev teh zahtev.
       assessment_center_group_name: Ocenjevalni center
       booking_failed_msg: 'Rezervacija termina ni uspela: %{error}'
       buttons:
@@ -2393,6 +2407,7 @@ sl:
         remove:
           confirmation: V spodnje polje vnesite ime trenutne kampanje, da jo odstranite
           success: Kampanja %{campaignName} je bila uspešno odstranjena.
+          template_confirmation: 'Če želite izbrisati trenutno predlogo, v spodnje polje vnesite njeno ime. Opomba: S tem izbrišete tudi povezano predlogo kampanje.'
       users:
         actions:
           export:
@@ -2741,6 +2756,7 @@ sl:
         required: Odgovor na vprašanje je potreben
       max_words: Največje število besed
       min_words: Najmanj besed
+      no_reflective_questions: Brez refleksivnih vprašanj
       title: Refleksivna vprašanja
       update_failed: Med posodobitvijo je prišlo do napake
       updated_successfully: Vaši odgovori so bili uspešno posodobljeni
@@ -2884,6 +2900,12 @@ sl:
     used_number: Uporabljene licence
     used_out_of: "%{used} od %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. Vse pravice pridržane
+    footer:
+      regards: Pozdravi,
+      team_name: Ekipa Lighthouse
+      technical_support: Za kakršne koli tehnične težave nam pišite na <x>email</x> in odgovorili vam bomo v 24 urah.
     from: Podjetje za talente
     idp:
       manager_unread_comments:
@@ -2940,7 +2962,9 @@ sl:
         greetings: Lep pozdrav!
         instructions: Kliknite spodnjo povezavo za prijavo v Svetilnik.
         signin_link: Povezava za prijavo
-      subject: Povezava za prijavo v Svetilnik
+      subject: Povezava za prijavo za Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Vaš račun je onemogočen zaradi nedejavnosti
       warning: Vaš račun bo kmalu onemogočen zaradi nedejavnosti
@@ -3257,6 +3281,9 @@ sl:
       send_password_email_success: E-poštno sporočilo, poslano uporabniku %{email} z geslom.
     title: Ponastavi geslo
   select: Izbrati
+  sessions:
+    errors:
+      recaptcha: Preverjanje Recaptcha ni uspelo. Poskusite znova.
   shared:
     filters:
       clear: Počistite filtre

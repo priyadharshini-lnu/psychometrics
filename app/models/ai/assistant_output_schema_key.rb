@@ -8,4 +8,6 @@ class AI::AssistantOutputSchemaKey < ApplicationRecord
   enum :key_type, {
     string: 0
   }
+
+  validates :key, presence: true, uniqueness: { scope: :ai_assistant_id }
 end

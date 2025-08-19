@@ -15,6 +15,8 @@ pl:
       title: Kontrolowane zmiany
     administrator:
       sessions:
+        errors:
+          recaptcha: Weryfikacja Recaptcha nie powiodła się
         new:
           forgot_password: Nie pamiętasz hasła?
           instruction: Zaloguj się za pomocą danych swojego konta osobistego
@@ -147,6 +149,7 @@ pl:
             accesssheet_manage: Zarządzanie arkuszem dostępu
             accesssheet_settings: Ustawienia arkusza dostępu
             accesssheet_view: Widok arkusza dostępu
+            export: Eksport
             title: Pulpity nawigacyjne
             view: Widok
           datasheets:
@@ -179,7 +182,7 @@ pl:
             manage: Zarządzać
             title: Role zawodowe
             view: Widok
-          mediaLibraries:
+          libraries:
             manage: Zarządzać
             title: Biblioteki multimediów
             view: Widok
@@ -290,18 +293,33 @@ pl:
             view: Widok
     ai_assistants:
       actions:
+        create: Stwórz asystenta AI
+        edit: Edytuj asystenta AI
         playground: Plac zabaw
       ai_assistants: Asystenci AI
       ai_assistants_playground: Plac zabaw dla asystentów AI
       column:
         provider: Dostawca
+      created_successfully: Asystent AI został pomyślnie utworzony.
       form:
+        add_output_schema_key: Dodaj klucz schematu wyjściowego
+        dependencies: Zależności
         description: Opis
+        enter_description: Wprowadź opis
+        enter_schema_key: Wprowadź klucz schematu
+        key: Klucz
         name: Nazwa
+        output_schema_keys: Klucze schematu wyjściowego
         provider: Dostawca
+        remove_output_schema_key: Usuń klucz schematu wyjściowego
+        schema_key_description_required: Opis klucza schematu jest wymagany
+        schema_key_required: Klucz schematu jest wymagany
+        schema_key_type: Typ klucza
+        schema_key_unique: Klucze schematu powinny być unikalne
         system_prompt: Monit systemowy
-        title: Asystent AI
+        type: Typ
         user_prompt: Monit użytkownika
+      updated_successfully: AI Assistant został pomyślnie zaktualizowany.
     any: " -Jakikolwiek- "
     api:
       campaigns:
@@ -767,6 +785,8 @@ pl:
       new:
         header: Pobieranie zbiorcze
       reports_unavailable: W tej chwili nie są dostępne żadne raporty do pobrania. Upewnij się, że raporty, które chcesz pobrać, są dostępne.
+      select_users_for_download: Wybierz co najmniej jednego użytkownika do pobrania raportów.
+      select_users_for_regenerate: Wybierz co najmniej jednego użytkownika do regeneracji raportów.
     cable:
       notification:
         assessment_factors: Czynniki są pobierane
@@ -856,6 +876,7 @@ pl:
       campaign_templates: Szablony kampanii
       column:
         assessment: Ocena
+        campaign: Kampania
         owner: Właściciel
         report: Sprawozdanie
       copy:
@@ -930,6 +951,7 @@ pl:
       assessors:
         spoof:
           successfully: Udało Ci się zalogować jako %{name}
+      convert_to_template: Konwertuj na szablon
       copy: Kopiować
       delete: Usunąć
       edit: Redagować
@@ -955,6 +977,7 @@ pl:
         name: Nazwa
         reports: Raporty
         status: Stan
+        template: Szablon
         type: Typ
       menus:
         add_common_campaign: Dodaj wspólną kampanię
@@ -970,11 +993,15 @@ pl:
             assessment: Ocena
             category: Kategoria
             closed: Zamknięty
+            default_assessment_language: Domyślny język oceny
+            default_report_language: Domyślny język raportu
             empty: Pusty
             inactive: Nieaktywny
             name: Nazwa
             normal: Normalny
             previous: Poprzedni
+            select_assessment_language: Wybierz język oceny
+            select_report_language: Wybierz język raportu
             skill_rater: Ocena umiejętności
             standard: Norma
             status: Stan
@@ -1007,6 +1034,7 @@ pl:
           name: Opis
           save: Zapisz opis
           save_success: Opis zapisany pomyślnie
+        enable_video_call_recording: Włącz nagrywanie rozmów wideo
         fixed_time: Stały czas
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ pl:
         campaign_assessment_group: Grupa ds. oceny kampanii
         client: Klient
         completion: Ukończenie
+        custom: Niestandardowe
         delivery_at: Dostawa po cenie (GST)
         delivery_delay_hours: Opóźnienie dostawy (godziny)
         delivery_interval: Interwał dostawy
@@ -1628,6 +1657,7 @@ pl:
         recipients: Odbiorcy
         reminder: Przypomnienie
         report_available: Dostępny raport
+        select_assessments: Wybierz, które oceny mają być sprawdzane pod kątem ukończenia
         selected: Wybrany
         selected_cc_recipients: Wybrani odbiorcy DW
         selected_recipients: Wybrani adresaci
@@ -2122,6 +2152,9 @@ pl:
         remove_confirm: Wprowadź aktualną nazwę szablonu podaną poniżej w polu tekstowym, aby usunąć szablon
         success: Plik %{idpName} został pomyślnie usunięty.
       add_idp_template: Dodaj szablon IDP
+      ai_assisted_idp_enabled: IDP wspomagane przez sztuczną inteligencję
+      ai_enabled: AI Enabled
+      ai_settings: Ustawienia AI
       all: Cały
       appearance: Wygląd
       appearance_hint: Aby zmodyfikować wygląd, najpierw zapisz szablon IDP, aby włączyć te ustawienia.
@@ -2137,6 +2170,7 @@ pl:
       enter_template_name: Nazwa
       enter_template_name_error: Nazwa szablonu jest wymagana
       errors:
+        cannot_update_progress_plan_completed: Nie można zaktualizować postępów, ponieważ plan IDP został ukończony.
         update: Aktualizacja nie jest dozwolona, ponieważ szablon dostawcy tożsamości jest już skojarzony z planem dostawcy tożsamości użytkownika. Zmiany wyglądu zostały zapisane.
       fields:
         assigned_data: Przypisane dane
@@ -2164,6 +2198,7 @@ pl:
       logo_type_label: Typ logo
       no_reflection_questions_selected: Nie wybrano pytań do refleksji
       none: Żaden
+      one_click_idp_enabled: Włączone IDP jednym kliknięciem
       reference_locale: Referencyjne ustawienia regionalne
       reflection_questions: Pytania do refleksji
       reflection_questions_hint: Aby zmodyfikować pytania do refleksji, najpierw zapisz szablon IDP, aby włączyć te ustawienia.
@@ -2270,7 +2305,7 @@ pl:
     individual_invite:
       tabs:
         assessment_center: Centrum oceny zintegrowanej
-        subjects: Tematy
+        invitation_status: Status zaproszenia
     innovation_styles:
       create:
         successfully: Styl innowacji %{name} został utworzony pomyślnie.
@@ -2399,7 +2434,9 @@ pl:
       assessment_center: 'Centrum oceny:'
       booked_at: 'Zarezerwowano w:'
       column:
+        invitation_status: Status zaproszenia
         participant: Uczestnik
+        scheduling_details: Szczegóły harmonogramu
       remove_confirm:
         content: Czy na pewno chcesz usunąć temat z adresem e-mail "%{subjectEmail}"?
         success: Temat z adresem e-mail "%{subjectEmail}" został pomyślnie usunięty.
@@ -2407,6 +2444,8 @@ pl:
       statuses:
         accepted: Akceptowane
         cancelled: Anulowane
+        late_cancelled: Opóźnienie anulowane
+        late_rescheduled: Opóźniona zmiana harmonogramu
         pending: Oczekujące
         requested_cancellation: Prośba o anulowanie
         requested_cancellation_rejected: Anulowanie odrzucone
@@ -2440,8 +2479,6 @@ pl:
         expected_proficiency_level: Oczekiwany poziom biegłości
       form:
         title: Mapowanie umiejętności zawodowych
-      import:
-        taxonomy: Taksonomia
     job_roles:
       export:
         translations:
@@ -2696,21 +2733,31 @@ pl:
         sms_contacts: Kontakty SMS
         subjects: Tematy
     piped_text_modal:
+      assessment_center: Centrum oceny
       assessment_id: Identyfikator oceny
       campaign_id: Identyfikator kampanii
       campaign_name: Nazwa kampanii
       campaigns: Kampanie
+      description: Opis
+      duration: Czas trwania
+      end_time: Czas zakończenia
       insight_page_link: Link do strony Insight
       insight_page_url: Adres URL strony statystyk
+      invite_title: Tytuł
+      invites: Zaproszenia
       join_link: Dołącz do linku
       magic_link: Magiczny link
       magic_url: Magiczny adres URL
+      platform_url_links: Adres URL platformy i łącza
       profile_custom_field: Pole niestandardowe profilu
       project_name: Nazwa projektu
       projects: Projekty
       report_name: Nazwa raportu
+      start_time: Czas rozpoczęcia
       text: Tekst
       title: Dodawanie tekstu z potoku
+      user_reports: Raporty użytkowników
+      users: Użytkownicy
     proctoring_sessions:
       columns:
         comment: Komentarz
@@ -2735,7 +2782,9 @@ pl:
       errors:
         create:
           invalid_format: Definicja poziomu musi być tablicą definicji.
+          level_definition_must_exist: Definicja poziomu nie może być pusta
           level_definition_must_match_level: musi zawierać dokładnie %{expected} poziomy, ale podano %{actual}
+          level_name_must_exist: Nazwa poziomu nie może być pusta
           must_be_unique: Musi być unikatowy
           proficiency_level_exists: Poziom biegłości w tej umiejętności i projekcie już istnieje
           proficiency_level_exists_for_default: Poziom biegłości dla domyślnych ustawień już istnieje
@@ -3038,6 +3087,7 @@ pl:
         dp_consent_custom: Dostosuj zgodę na przetwarzanie danych
         dp_consent_version: Wersja zasad
         errors:
+          cannot_disable_while_campaign_enabled: Nie można wyłączyć nagrywania rozmów wideo, ponieważ jest ono włączone dla jednej lub więcej kampanii w tym projekcie.
           policy_version_format: Dozwolone są tylko liczby całkowite
         mask_identity_for_examus: Dane maski dla Examus Proctoring
         mask_identity_for_hogan: Dane maski dla Hogana
@@ -3051,6 +3101,9 @@ pl:
         privacy_link_placeholder: Wejdź w link do prywatności
         privacy_text: Tekst dotyczący prywatności
         privacy_text_placeholder: Wprowadź tekst prywatności
+        video_call_recording: Zezwalaj na nagrywanie rozmów wideo
+        video_call_recording_expiry_duration: Okres przechowywania nagrań rozmów wideo (w dniach)
+        video_call_recording_scope: Włącz nagrywanie wideo dla wszystkich nowych kampanii
       profile_settings:
         form_fields:
           enabled: Włączone
@@ -3373,6 +3426,7 @@ pl:
         copy_to_all: Kopiowanie do innych ośrodków oceny
         create: Tworzyć
         dates_label: Daty
+        disable_cancellation_and_rescheduling: Wyłączenie anulowania i zmiany harmonogramu
         duration_label: Czas trwania
         duration_max_error: Nie może być dłuższy niż 16 godzin
         duration_min_error: Nie może być krótszy niż 15 minut
@@ -3383,8 +3437,6 @@ pl:
         name_label: Nazwa
         next: Następny
         required_error: Wymagane
-        reschedule_duration_max_error: Nie może być dłuższa niż 30 dni
-        reschedule_duration_min_error: Nie może być krótszy niż 1 minuta
         resources_panel:
           description: Dodaj linki do wszystkich zasobów, do których moderatorzy mają mieć dostęp.
           resource_name_placeholder: Nazwa zasobu
@@ -3498,6 +3550,7 @@ pl:
         form_title: Zaplanuj oceny
         language: Język
         language_not_selected: Nie wybrano
+        mark_cancel: Mark Cancel
         mark_cancel_success: Anulowano udział tematu z adresem e-mail %{subject_email}.
         meeting_link_custom: Zwyczaj
         meeting_link_internal: Wewnętrzny
@@ -3506,6 +3559,9 @@ pl:
         no_change: Bez zmian
         override_existing: Zastępowanie istniejących zestawień dla tematów
         preworks: Przygotowanie do pracy
+        re_enroll: Ponowna rejestracja
+        re_enroll_confirm_message: Czy na pewno chcesz ponownie zarejestrować temat za pomocą wiadomości e-mail "<x>subject_email</x>"?
+        re_enroll_success: Ponownie zarejestrowany temat z adresem e-mail <x>subject_email</x>.
         schedule: Harmonogram
         unschedule: Bez harmonogramu
       tabs:
@@ -3624,6 +3680,7 @@ pl:
       disable_password_reuse: Wyłącz ponowne użycie hasła
       disallow_password_login: Nie zezwalaj na logowanie za pomocą hasła
       enable_login_with_magic_link: Włącz logowanie za pomocą magicznego linku
+      enable_recaptcha: Włącz reCAPTCHA
       enforce_password_policy: Wymuszanie zasad haseł przy następnym logowaniu
       enforce_strong: Egzekwuj silne hasło
       expiration: Wygaśnięcie hasła
@@ -4091,6 +4148,21 @@ pl:
         toggle_status:
           successfully: Pomyślnie
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Już szablon
+        has_user_data: Przed konwersją do szablonu należy ręcznie zresetować kampanię, klikając opcję "Zresetuj wszystkich uczestników" w menu rozwijanym Narzędzia.
+      convert_template_modal:
+        cancel: Anuluj
+        confirm: Potwierdzenie
+        convert:
+          success: Szablon został pomyślnie przekonwertowany
+        convert_option: Przekształć tę kampanię w szablon
+        copy:
+          success: Zadanie tworzenia szablonu kampanii zostało zaplanowane pomyślnie, sprawdź status powiadomień.
+        copy_option: Utwórz nowy szablon na podstawie tej kampanii
+        description: Wybierz sposób utworzenia szablonu z tej kampanii.
+        failed: Tworzenie szablonu nie powiodło się.
+        title: Konwertuj na szablon
       email_templates:
         approve_nomination:
           description: Ta wiadomość jest wysyłana do menedżera, gdy nominacja dokonana przez bezpośredniego podwładnego musi zostać zatwierdzona
@@ -4325,6 +4397,10 @@ pl:
       update:
         successfully: Użytkownik %{name} został pomyślnie zaktualizowany.
       user: Użytkownik
+    validations:
+      idp:
+        end_date_cannot_be_in_past: Data końcowa nie może być przeszła
+        start_date_cannot_be_in_past: Data rozpoczęcia nie może być w przeszłości
     webhook:
       connection_failure: Nie można nawiązać połączenia z adresem URL elementu webhook. Sprawdź, czy adres URL elementu webhook jest poprawny.
       delete_success: Ustawienia elementu webhook zostały pomyślnie usunięte

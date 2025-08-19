@@ -144,7 +144,7 @@ class Text extends Component {
   }
 
   buildStyles (styles, overrides) {
-    const { module, flipContent } = this.props
+    const { flipContent } = this.props
 
     let style = styles
     const outerStyle = {}
@@ -155,16 +155,18 @@ class Text extends Component {
     } = overrides
     let horizontalAlignNew = assignStyle(style, 'textAlign', horizontalAlign)
 
-    if (window.I18n.locale === 'ar' && horizontalAlignNew === 'left' && I18nStore.isExistTModule(module, 'text')) {
-      horizontalAlignNew = 'right'
+    if (horizontalAlignNew === 'left') {
+      horizontalAlignNew = 'start'
+    } else if (horizontalAlignNew === 'right') {
+      horizontalAlignNew = 'end'
     }
 
     if (flipContent && horizontalAlign === 'left') {
-      horizontalAlignNew = horizontalAlign === 'left' ? 'right' : 'left'
+      horizontalAlignNew = 'end'
     }
 
     if (flipContent && horizontalAlign === 'right') {
-      horizontalAlignNew = horizontalAlign === 'right' ? 'left' : 'right'
+      horizontalAlignNew = 'start'
     }
 
     if (!style.border && !overrides.borderColor) {

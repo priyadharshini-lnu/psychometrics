@@ -819,6 +819,7 @@ pt:
         bulk_update_evaluation_status: Status da avaliação de atualização em massa
         compact_completion_status_export: Exportação do estado de conclusão compacto
         completion_status_export: Exportação do estado de conclusão
+        copy_as_template_or_campaign: Copiar campanha como modelo
         copy_dimension: Dimensão da cópia
         create_threesixty_campaign: Criar campanha Threesixty
         data_report_export: Exportação de relatórios de dados
@@ -1086,6 +1087,7 @@ pt:
         description: Esta sessão de avaliação foi invalidada, o que pode acontecer se continuar a avaliação num outro separador, navegador ou dispositivo.
         title: Último pedido falhou
       next: Avançar
+      no_skill_mapping_message: Não existe um mapeamento de competências para esta função, contacte o seu administrador.
       read_only: O modo é apenas de leitura, não pode alterar nenhum resultado.
       save: Salvar
       submissionFailedAlert:
@@ -1154,6 +1156,7 @@ pt:
     add_group_form:
       previous_assessments_required: As avaliações devem ser efectuadas pela seguinte ordem
       previous_group_required: Conclusão anterior do grupo necessária
+      require_previous_groups_completion_for_booking: É necessário completar todos os grupos anteriores antes de efetuar a reserva
     menu:
       assessment_center: Centro de avaliação
       assessment_center_invites: Centro de Avaliação convida
@@ -1394,6 +1397,7 @@ pt:
       bulk_download: Transferência em massa
       bulk_update_evaluation_as_done: Marcar como concluído
       bulk_update_evaluation_as_undone: Desmarcar como concluído
+      convert_to_template: Converter para modelo
       download: Descarregar relatórios
       export_completion_status: Estado de conclusão da exportação
       export_external: Externo
@@ -1951,6 +1955,8 @@ pt:
     invalid_captcha: A introdução do captcha era inválida.
     invalid_security_question: A resposta à pergunta de segurança era inválida.
     invitations:
+      confirmation_instructions:
+        subject: Instruções de confirmação
       edit:
         confirm_password_label: Confirmar a palavra-passe
         header: Definir a sua palavra-passe
@@ -1983,6 +1989,23 @@ pt:
           client: 'Arrendamento do cliente: %{section_name}'
           project: 'Projeto: %{section_name}'
         subject: Convite para o Lighthouse
+      invitation_removed: O seu convite foi retirado.
+      invitation_token_invalid: O código de convite fornecido não é válido!
+      mailer:
+        accept: Clique aqui para aceitar o convite.
+        admin_invitation_instructions:
+        body: 'Olá %{name}, Foi convidado a aceder ao painel de administração da plataforma de avaliação Lighthouse - The Talent Enterprise. %{accept} Ou pode ignorar esta mensagem de correio eletrónico. Não partilhe as suas credenciais de acesso com ninguém.
+
+          '
+        copyright:
+          text: Lighthouse. Todos os direitos reservados
+        powered_by:
+          text: Powered by Lighthouse.
+        subject: Convite para o Lighthouse
+      new:
+        header: Enviar convite
+        submit_button: Enviar um convite
+      no_invitations_remaining: Não restam convites
       password_change:
         body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em mte.support@mercer.com '
         regards: 'Cumprimentos, Equipa do Farol '
@@ -1993,12 +2016,15 @@ pt:
         footer: Se não o solicitou, pode ignorar esta mensagem de correio eletrónico. A sua palavra-passe não será alterada até aceder à ligação acima e criar uma nova.
         regards: 'Cumprimentos, Equipa do Farol '
         subject: Instruções para repor a sua palavra-passe
+      send_instructions: Foi enviado um convite por correio eletrónico para %{email}.
       unlock_instructions:
         body: 'Olá %{name}! A sua conta foi bloqueada devido a um número excessivo de tentativas de início de sessão sem êxito. Clique na ligação abaixo para desbloquear a sua conta: '
         footer: Se não o solicitou, pode ignorar esta mensagem de correio eletrónico. A sua palavra-passe não será alterada até aceder à ligação acima e criar uma nova.
         regards: 'Cumprimentos, Equipa do Farol '
         subject: Instruções para desbloquear a sua conta
         unlock_account: Desbloquear a minha conta
+      updated: A sua palavra-passe foi definida com êxito. Está agora ligado.
+      updated_not_active: A sua palavra-passe foi definida com êxito.
     omniauth_callbacks:
       failure: Não foi possível autenticá-lo a partir de %{kind} porque "%{reason}".
       success: Autenticação bem sucedida da conta %{kind}.
@@ -2171,6 +2197,7 @@ pt:
       uniq_simulation: Esta avaliação de simulação já está presente no sistema. O ID desta avaliação é %{id}
       uniq_skillvue: Esta avaliação Skillvue já está presente no sistema. O ID desta avaliação é %{id}
       update_workshop:
+        bookings_exist: Não é possível alterar o horário porque os participantes já reservaram esta faixa horária.
         less_than_booked: O total de lugares deve ser superior ao reservado
       user_availability_date:
         overlaps_date: Sobrepõe-se a outra disponibilidade %{range}
@@ -2188,6 +2215,10 @@ pt:
       workshop_subject_create:
         already_exists: O assunto já existe neste centro de avaliação.
         part_of_other_workshop: O sujeito já é um participante de "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: Não há lugares disponíveis para este seminário.
+        scheduling_lead_time_passed: Se o tempo de espera para o agendamento tiver passado, não é possível voltar a inscrever a disciplina.
+        workshop_subject_not_found: Assunto do workshop não encontrado
       workshops:
         no_available_assessor_slots: Não existem faixas horárias disponíveis para o avaliador %{assessor}
         no_available_manager_slots: Não há faixas horárias disponíveis para o gestor %{manager}
@@ -2319,8 +2350,13 @@ pt:
       add_to_yahoo_calendar: Adicionar ao calendário do yahoo
       assessment_center_alert:
         btn_title: Campanha
-        message_part1: Conclua todas as atividades prévias nisto
-        message_part2: antes de reservar um horário.
+        complete_previous_groups: Concluir todas as actividades de grupo anteriores
+        complete_preworks: Completar todos os trabalhos preparatórios
+        please_visit: Visite a página
+        requirements_message: Só pode efetuar uma reserva se preencher os seguintes requisitos
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: para completar estes requisitos.
       assessment_center_group_name: Centro de avaliação
       booking_failed_msg: 'Falha ao reservar o horário: %{error}'
       buttons:
@@ -2388,6 +2424,7 @@ pt:
         remove:
           confirmation: Insira o nome da campanha atual fornecido abaixo na caixa de texto para remover a campanha
           success: "%{campaignName} removida com êxito."
+          template_confirmation: 'Introduza o nome do modelo atual no campo abaixo para o eliminar. Nota: Esta ação também elimina o modelo de campanha associado.'
       users:
         actions:
           export:
@@ -2742,6 +2779,7 @@ pt:
         required: A resposta à pergunta é necessária
       max_words: Máximo de palavras
       min_words: Palavras mínimas
+      no_reflective_questions: Sem perguntas reflexivas
       title: Perguntas de reflexão
       update_failed: Ocorreu um erro durante a atualização
       updated_successfully: As suas respostas foram actualizadas com sucesso
@@ -2885,6 +2923,12 @@ pt:
     used_number: Licenças usadas
     used_out_of: "%{used} de %{total}"
   mailer:
+    copyright:
+      text: Farol. Todos os direitos reservados
+    footer:
+      regards: Com os meus cumprimentos,
+      team_name: Equipa do Farol
+      technical_support: Para quaisquer problemas técnicos, escreva-nos para <x>email</x> e responderemos no prazo de 24 horas.
     from: A Empresa de Talentos
     idp:
       manager_unread_comments:
@@ -2942,6 +2986,8 @@ pt:
         instructions: Clique na ligação abaixo para iniciar sessão no lighthouse.
         signin_link: Ligação de registo
       subject: Ligação de início de sessão para o Lighthouse
+    powered_by:
+      text: Desenvolvido por Lighthouse.
     users:
       account_disable: A sua conta foi desactivada devido a inatividade
       warning: A sua conta será desactivada em breve devido a inatividade
@@ -3258,6 +3304,9 @@ pt:
       send_password_email_success: Correio eletrónico enviado ao utilizador %{email} com a palavra-passe.
     title: Repor a palavra-passe
   select: Selecionar
+  sessions:
+    errors:
+      recaptcha: A verificação do Recaptcha falhou. Por favor, tente novamente.
   shared:
     filters:
       clear: Limpar filtros

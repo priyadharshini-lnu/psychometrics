@@ -42,6 +42,7 @@ const SCHEDULING_STATUS_TO_TAG_COLOR = {
   late_rescheduled: 'error',
 }
 const UNACTIONABLE_SCHEDULING_STATUSES = ['rescheduled', 'cancelled', 'late_rescheduled', 'late_cancelled']
+const RE_ENROLL_SCHEDULING_STATUSES = ['cancelled']
 
 interface OwnProps {
   workshop: Workshop
@@ -336,16 +337,60 @@ const getActionsMenuProps = ({
     })
   }
 
+  const handleReEnroll = () => {
+    modal.confirm({
+      title: I18n.t('administration.scheduling.subjects.confirm_title'),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      width: 650,
+      content: (
+        <SafeHTML
+          html={
+            I18n.t('administration.scheduling.subjects.re_enroll_confirm_message',
+              { subject_email: subject?.user?.email })
+          }
+        />
+      ),
+      onOk: () => {
+        resource.memberAction({
+          id: subject.id,
+          action: 're_enroll',
+          method: 'post',
+          body: { subjectId: subject.id },
+          updateStore: true,
+        }).then(() => {
+          message.success(
+            I18n.t('administration.scheduling.subjects.re_enroll_success', { subject_email: subject?.user?.email }),
+          )
+        }).catch((errors) => {
+          message.error(errors?.base[0]?.title || I18n.t('common.errors.something_wrong'))
+        })
+      },
+    })
+  }
+
   const menuItems:MenuItem[] = []
 
-  resource.meta.permissions?.remove && !UNACTIONABLE_SCHEDULING_STATUSES.includes(
+  resource.meta.permissions?.manage && !UNACTIONABLE_SCHEDULING_STATUSES.includes(
     subject.schedulingStatus,
   ) && menuItems.push({
     key: 'remove',
     label: (
       <>
         <Button type="link" onClick={handleMarkCancel} className="ps-0">
-          Mark Cancel
+          {I18n.t('administration.scheduling.subjects.mark_cancel')}
+        </Button>
+      </>
+    ),
+  })
+  resource.meta.permissions?.manage && RE_ENROLL_SCHEDULING_STATUSES.includes(
+    subject.schedulingStatus,
+  ) && menuItems.push({
+    key: 'reEnroll',
+    label: (
+      <>
+        <Button type="link" onClick={handleReEnroll} className="ps-0">
+          {I18n.t('administration.scheduling.subjects.re_enroll')}
         </Button>
       </>
     ),

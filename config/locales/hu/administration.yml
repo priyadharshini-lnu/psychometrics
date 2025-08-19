@@ -15,6 +15,8 @@ hu:
       title: Ellenőrzött változtatások
     administrator:
       sessions:
+        errors:
+          recaptcha: Recaptcha ellenőrzés sikertelen
         new:
           forgot_password: Elfelejtette jelszavát?
           instruction: Kérjük, jelentkezzen be személyes fiókadataival
@@ -147,6 +149,7 @@ hu:
             accesssheet_manage: Hozzáférési lap kezelése
             accesssheet_settings: Hozzáférési lap beállításai
             accesssheet_view: Hozzáférési lap nézet
+            export: Exportálás
             title: Irányítópultok
             view: Nézet
           datasheets:
@@ -179,7 +182,7 @@ hu:
             manage: Kezel
             title: Munkakörök
             view: Nézet
-          mediaLibraries:
+          libraries:
             manage: Kezel
             title: Médiakönyvtárak
             view: Nézet
@@ -290,18 +293,33 @@ hu:
             view: Nézet
     ai_assistants:
       actions:
+        create: AI asszisztens létrehozása
+        edit: AI asszisztens szerkesztése
         playground: Játszótér
       ai_assistants: AI-asszisztensek
       ai_assistants_playground: AI-asszisztens játszótér
       column:
         provider: Szolgáltató
+      created_successfully: Az AI Assistant sikeresen létrejött.
       form:
+        add_output_schema_key: Kimeneti séma kulcs hozzáadása
+        dependencies: Függőségek
         description: Leírás
+        enter_description: Adja meg a leírást
+        enter_schema_key: Sémakulcs megadása
+        key: Kulcs
         name: Név
+        output_schema_keys: Kimeneti séma kulcsok
         provider: Szolgáltató
+        remove_output_schema_key: Kimeneti séma kulcs eltávolítása
+        schema_key_description_required: A séma kulcs leírása kötelező
+        schema_key_required: Séma kulcs szükséges
+        schema_key_type: Kulcs típusa
+        schema_key_unique: A séma kulcsoknak egyedinek kell lenniük
         system_prompt: Rendszerkérés
-        title: AI-asszisztens
+        type: Típus
         user_prompt: Felhasználói kérés
+      updated_successfully: Az AI Assistant sikeresen frissült.
     any: " -Bármely- "
     api:
       campaigns:
@@ -767,6 +785,8 @@ hu:
       new:
         header: Tömeges letöltés
       reports_unavailable: Jelenleg nem tölthetők le jelentések. Kérjük, ellenőrizze, hogy a letölteni kívánt jelentések elérhetők-e.
+      select_users_for_download: Kérjük, válasszon legalább egy felhasználót a jelentések letöltéséhez.
+      select_users_for_regenerate: Kérjük, válasszon legalább egy felhasználót a jelentések regenerálásához.
     cable:
       notification:
         assessment_factors: A tényezők bekerültek
@@ -856,6 +876,7 @@ hu:
       campaign_templates: Kampánysablonok
       column:
         assessment: Értékelés
+        campaign: Kampány
         owner: Tulajdonos
         report: Jelentés
       copy:
@@ -930,6 +951,7 @@ hu:
       assessors:
         spoof:
           successfully: Sikeresen bejelentkezett a(z) %{name} néven
+      convert_to_template: Átalakítás sablonba
       copy: Másolat
       delete: Töröl
       edit: Szerkeszt
@@ -955,6 +977,7 @@ hu:
         name: Név
         reports: Jelentések
         status: Állapot
+        template: Sablon
         type: Típus
       menus:
         add_common_campaign: Közös kampány hozzáadása
@@ -970,11 +993,15 @@ hu:
             assessment: Értékelés
             category: Kategória
             closed: Zárt
+            default_assessment_language: Az értékelés alapértelmezett nyelve
+            default_report_language: Jelentés alapértelmezett nyelv
             empty: Üres
             inactive: Inaktív
             name: Név
             normal: Normál
             previous: Előző
+            select_assessment_language: Értékelési nyelv kiválasztása
+            select_report_language: Jelentés nyelvének kiválasztása
             skill_rater: Skill Rater
             standard: Szabvány
             status: Állapot
@@ -1007,6 +1034,7 @@ hu:
           name: Leírás
           save: Leírás mentése
           save_success: Leírás sikeresen mentve
+        enable_video_call_recording: Video hívásfelvétel engedélyezése
         fixed_time: Rögzített idő
         instructions:
           actions:
@@ -1599,6 +1627,7 @@ hu:
         campaign_assessment_group: Kampányértékelő csoport
         client: Ügyfél
         completion: Teljesítés
+        custom: Custom
         delivery_at: Szállítás (GST)
         delivery_delay_hours: Szállítási késedelem (óra)
         delivery_interval: Szállítási intervallum
@@ -1630,6 +1659,7 @@ hu:
         recipients: Címzettek
         reminder: Emlékeztető
         report_available: Jelentés elérhető
+        select_assessments: Válassza ki, hogy mely értékelések kitöltését ellenőrizze
         selected: Kiválasztott
         selected_cc_recipients: Kiválasztott CC-címzettek
         selected_recipients: Kiválasztott címzettek
@@ -2124,6 +2154,9 @@ hu:
         remove_confirm: Írja be az alábbi sablon nevét a szövegmezőbe a sablon eltávolításához
         success: A(z) %{idpName} sikeresen el lett távolítva.
       add_idp_template: IDP-sablon hozzáadása
+      ai_assisted_idp_enabled: AI támogatott IDP Enabled
+      ai_enabled: AI Enabled
+      ai_settings: AI beállítások
       all: Összes
       appearance: Megjelenés
       appearance_hint: A megjelenés módosításához először mentse el az IDP-sablont a beállítások engedélyezéséhez.
@@ -2139,6 +2172,7 @@ hu:
       enter_template_name: Név
       enter_template_name_error: A sablon neve kötelező
       errors:
+        cannot_update_progress_plan_completed: Nem lehet frissíteni az előrehaladást, mivel a belsőépítészeti terv már elkészült.
         update: A frissítés nem engedélyezett, mert az IDP-sablon már társítva van egy felhasználói IDP-csomaghoz. A megjelenés változásai mentésre kerültek.
       fields:
         assigned_data: Hozzárendelt adatok
@@ -2166,6 +2200,7 @@ hu:
       logo_type_label: Logó típusa
       no_reflection_questions_selected: Nincs kiválasztva reflexiós kérdés
       none: Egyik sem
+      one_click_idp_enabled: Egy kattintással IDP engedélyezve
       reference_locale: Referenciahelyszín
       reflection_questions: Reflexiós kérdések
       reflection_questions_hint: A reflexiós kérdések módosításához először mentse el az IDP-sablont a beállítások engedélyezéséhez.
@@ -2272,7 +2307,7 @@ hu:
     individual_invite:
       tabs:
         assessment_center: Értékelési Központ
-        subjects: Témák
+        invitation_status: Meghívás státusz
     innovation_styles:
       create:
         successfully: A(z) %{name} innovációs stílus létrehozása sikeres.
@@ -2401,7 +2436,9 @@ hu:
       assessment_center: 'Értékelő központ:'
       booked_at: 'Foglalás ideje:'
       column:
+        invitation_status: Meghívás státusz
         participant: Résztvevő
+        scheduling_details: Ütemezés részletei
       remove_confirm:
         content: Biztos vagy benne, hogy el akarod távolítani a tárgyat a(z) "%{subjectEmail}" e-mailben?
         success: A(z) "%{subjectEmail}" e-mail tárgya sikeresen el lett távolítva.
@@ -2409,6 +2446,8 @@ hu:
       statuses:
         accepted: Elfogadott
         cancelled: Törölt
+        late_cancelled: Késve törölték
+        late_rescheduled: Későn átütemezett
         pending: Függő
         requested_cancellation: Kért lemondás
         requested_cancellation_rejected: Lemondás elutasítva
@@ -2442,8 +2481,6 @@ hu:
         expected_proficiency_level: Elvárt tudásszint
       form:
         title: Készségek feltérképezése
-      import:
-        taxonomy: Taxonómia
     job_roles:
       export:
         translations:
@@ -2698,21 +2735,31 @@ hu:
         sms_contacts: SMS-kapcsolatok
         subjects: Témák
     piped_text_modal:
+      assessment_center: Értékelő központ
       assessment_id: Értékelési azonosító
       campaign_id: Kampány azonosítója
       campaign_name: Kampány neve
       campaigns: Kampányok
+      description: Leírás
+      duration: Időtartam
+      end_time: Végidő
       insight_page_link: Elemzési oldal linkje
       insight_page_url: Elemzési oldal URL-címe
+      invite_title: Cím
+      invites: Meghívók
       join_link: Csatlakozás link
       magic_link: Magic link
       magic_url: Mágikus URL
+      platform_url_links: Platform Url és linkek
       profile_custom_field: Profil egyéni mező
       project_name: Projekt neve
       projects: Projektek
       report_name: Jelentés neve
+      start_time: A kezdési időpont
       text: Szöveges üzenet
       title: Továbbított szöveg hozzáadása
+      user_reports: Felhasználói jelentések
+      users: Felhasználók
     proctoring_sessions:
       columns:
         comment: Megjegyzés
@@ -2737,7 +2784,9 @@ hu:
       errors:
         create:
           invalid_format: A szintmeghatározásnak meghatározások tömegét kell jelentenie.
+          level_definition_must_exist: A szintdefiníció nem lehet üres
           level_definition_must_match_level: pontosan %{expected} szinteket kell tartalmaznia, de %{actual} meg van adva
+          level_name_must_exist: A szint neve nem lehet üres
           must_be_unique: Egyedinek kell lennie
           proficiency_level_exists: Ezzel a készséggel és projekttel már létezik tudásszint
           proficiency_level_exists_for_default: A Proficiency Level alapértelmezett már létezik
@@ -3040,6 +3089,7 @@ hu:
         dp_consent_custom: Adatfeldolgozási hozzájárulás testreszabása
         dp_consent_version: Szabályzat verziója
         errors:
+          cannot_disable_while_campaign_enabled: Nem lehet letiltani a videóhívás rögzítését, mivel az engedélyezve van egy vagy több kampány számára ebben a projektben.
           policy_version_format: Csak egész számok engedélyezettek
         mask_identity_for_examus: Adatok maszkolása az Examus Proctoring számára
         mask_identity_for_hogan: Adatok maszkolása a Hogan számára
@@ -3053,6 +3103,9 @@ hu:
         privacy_link_placeholder: Adja meg az adatvédelmi hivatkozást
         privacy_text: Adatvédelmi szöveg
         privacy_text_placeholder: Adja meg az adatvédelmi szöveget
+        video_call_recording: Videohívás rögzítésének engedélyezése
+        video_call_recording_expiry_duration: A videohívás felvételek megőrzési ideje (napokban)
+        video_call_recording_scope: Videófelvétel engedélyezése minden új kampányhoz
       profile_settings:
         form_fields:
           enabled: Engedélyezve
@@ -3375,6 +3428,7 @@ hu:
         copy_to_all: Másolás más értékelőközpontokba
         create: Létrehoz
         dates_label: Dátumok
+        disable_cancellation_and_rescheduling: Törlés és átütemezés letiltása
         duration_label: Időtartam
         duration_max_error: Nem lehet hosszabb 16 óránál
         duration_min_error: Nem lehet kevesebb, mint 15 perc
@@ -3385,8 +3439,6 @@ hu:
         name_label: Név
         next: Következő
         required_error: Szükséges
-        reschedule_duration_max_error: Nem lehet hosszabb 30 napnál
-        reschedule_duration_min_error: Nem lehet kevesebb, mint 1 perc
         resources_panel:
           description: Add hozzá a linkeket minden olyan forráshoz, amelyhez szeretnéd, hogy a facilitátorok hozzáférjenek.
           resource_name_placeholder: Erőforrás neve
@@ -3500,6 +3552,7 @@ hu:
         form_title: Értékelések ütemezése
         language: Nyelv
         language_not_selected: Nincs kiválasztva
+        mark_cancel: Mark Mégsem
         mark_cancel_success: A tárgy a(z) %{subject_email} e-mail címmel való törlése.
         meeting_link_custom: Szokás
         meeting_link_internal: Belső
@@ -3508,6 +3561,9 @@ hu:
         no_change: Nincs változás
         override_existing: A témák meglévő ütemezésének felülbírálása
         preworks: Előkészítés
+        re_enroll: Újbóli beiratkozás
+        re_enroll_confirm_message: Biztos, hogy újra be akarja írni a tárgyat a '%{subject_email}' e-mail címmel?
+        re_enroll_success: Újra beiratkozott téma az <x>subject_email</x> e-mail címen.
         schedule: Ütemezés
         unschedule: Ütemezés törlése
       tabs:
@@ -3626,6 +3682,7 @@ hu:
       disable_password_reuse: Jelszó újbóli felhasználásának letiltása
       disallow_password_login: Jelszóval történő bejelentkezés letiltása
       enable_login_with_magic_link: Bejelentkezés engedélyezése mágikus linkkel
+      enable_recaptcha: A reCAPTCHA engedélyezése
       enforce_password_policy: Jelszószabályzat kényszerítése a következő bejelentkezéskor
       enforce_strong: Erős jelszó kényszerítése
       expiration: Jelszó lejárata
@@ -4093,6 +4150,21 @@ hu:
         toggle_status:
           successfully: Sikeresen
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Már egy sablon
+        has_user_data: Kérjük, a sablonba való konvertálás előtt manuálisan állítsa vissza a kampányt az Eszközök legördülő menüpont "Összes résztvevő visszaállítása" gombjára kattintva.
+      convert_template_modal:
+        cancel: Törölje
+        confirm: Megerősítés
+        convert:
+          success: Sablon sikeresen átalakítva
+        convert_option: A kampány átalakítása sablonná
+        copy:
+          success: A kampány sablonkészítési feladatot sikeresen ütemeztük, kérjük, ellenőrizze az értesítések állapotát.
+        copy_option: Új sablon létrehozása ebből a kampányból
+        description: Válassza ki, hogyan szeretne sablont készíteni ebből a kampányból.
+        failed: A sablon létrehozása sikertelen.
+        title: Átalakítás sablonba
       email_templates:
         approve_nomination:
           description: Ezt az üzenetet akkor küldi el a menedzsernek, ha egy közvetlen beosztott által benyújtott jelölést jóvá kell hagyni
@@ -4327,6 +4399,10 @@ hu:
       update:
         successfully: A(z) %{name} felhasználó frissítése sikeresen megtörtént.
       user: Felhasználó
+    validations:
+      idp:
+        end_date_cannot_be_in_past: A végdátum nem lehet a múltban
+        start_date_cannot_be_in_past: A kezdeti dátum nem lehet a múltban
     webhook:
       connection_failure: Nem lehet csatlakozni a webhook URL-címéhez. Kérjük, ellenőrizze, hogy a webhook URL-je helyes-e.
       delete_success: A webhook beállításai sikeresen törölve lettek

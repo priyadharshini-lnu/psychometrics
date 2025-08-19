@@ -819,6 +819,7 @@ en:
         bulk_update_evaluation_status: Bulk Update Evaluation Status
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
+        copy_as_template_or_campaign: Copy Campaign as Template
         copy_dimension: Copy Dimension
         create_threesixty_campaign: Create Threesixty Campaign
         data_report_export: Data Report Export
@@ -1085,6 +1086,7 @@ en:
         description: This evaluation session has been invalidated. This can happen if you continued the evaluation in a separate tab, browser or device.
         title: Last Request Failed
       next: Next
+      no_skill_mapping_message: There is no skill mapping done for this job role, contact your admin.
       read_only: Is read only mode, you can not change any results.
       save: Save
       submissionFailedAlert:
@@ -1153,6 +1155,7 @@ en:
     add_group_form:
       previous_assessments_required: Assessments to runs in below order
       previous_group_required: Previous group completion required
+      require_previous_groups_completion_for_booking: Require completion of all previous groups before booking
     menu:
       assessment_center: Assessment Center
       assessment_center_invites: Assessment Center Invites
@@ -1393,6 +1396,7 @@ en:
       bulk_download: Bulk Download
       bulk_update_evaluation_as_done: Mark as Done
       bulk_update_evaluation_as_undone: Unmark as Done
+      convert_to_template: Convert to Template
       download: Download Reports
       export_completion_status: Export Completion Status
       export_external: External
@@ -2197,6 +2201,7 @@ en:
       uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}
       uniq_skillvue: This Skillvue assessment is already present in the system. ID of this assessment is %{id}
       update_workshop:
+        bookings_exist: Cannot modify the schedule as participants have already booked this time slot.
         less_than_booked: The total seats must be greater than booked
       user_availability_date:
         overlaps_date: Overlaps another availability %{range}
@@ -2214,6 +2219,10 @@ en:
       workshop_subject_create:
         already_exists: Subject already exists in this Assessment Center.
         part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: No seats available for this workshop.
+        scheduling_lead_time_passed: Scheduling Lead Time has passed, you cannot re-enroll the subject.
+        workshop_subject_not_found: Workshop subject not found
       workshops:
         no_available_assessor_slots: No available slots for assessor %{assessor}
         no_available_manager_slots: No available slots for manager %{manager}
@@ -2345,8 +2354,13 @@ en:
       add_to_yahoo_calendar: Add to yahoo calendar
       assessment_center_alert:
         btn_title: Campaign
-        message_part1: Complete all the preworks in this
-        message_part2: before booking a slot.
+        complete_previous_groups: Complete all previous group activities
+        complete_preworks: Complete all preworks
+        please_visit: Please visit the
+        requirements_message: You can only make a booking once you complete the following requirement
+        requirements_plural: s
+        requirements_singular: ''
+        to_complete_requirements: to complete these requirements.
       assessment_center_group_name: Assessment Center
       booking_failed_msg: 'Failed to book slot: %{error}'
       buttons:
@@ -2414,6 +2428,7 @@ en:
         remove:
           confirmation: Enter current campaign name given below in text box to remove campaign
           success: "%{campaignName} was removed successfully."
+          template_confirmation: 'Enter the name of the current template in the field below to delete it. Note: This will also delete the linked campaign template.'
       users:
         actions:
           export:
@@ -2762,6 +2777,7 @@ en:
         required: The answer to the question is required
       max_words: Max Words
       min_words: Min Words
+      no_reflective_questions: No reflective questions available
       title: Reflective Questions
       update_failed: An error occurred during the update
       updated_successfully: Your answers have been updated successfully
@@ -2974,6 +2990,12 @@ en:
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
   mailer:
+    copyright:
+      text: Lighthouse. All rights reserved
+    footer:
+      regards: Regards,
+      team_name: Lighthouse Team
+      technical_support: For any technical issues, please write to us at %{email} and we will respond within 24 hours.
     from: The Talent Enterprise
     idp:
       manager_unread_comments:
@@ -3031,6 +3053,8 @@ en:
         instructions: Click below link to signin to lighthouse.
         signin_link: Signin Link
       subject: Signin link for Lighthouse
+    powered_by:
+      text: Powered by Lighthouse.
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity
@@ -3347,6 +3371,9 @@ en:
       send_password_email_success: Email sent to user %{email} with the password.
     title: Reset Password
   select: Select
+  sessions:
+    errors:
+      recaptcha: Recaptcha verification failed. Please try again.
   shared:
     filters:
       clear: Clear Filters

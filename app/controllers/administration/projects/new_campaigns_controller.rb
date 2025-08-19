@@ -240,7 +240,7 @@ module Administration
           :fixed_time, :fixed_time_duration, :workshop_booking_requires_prework_completion, :show_watermark, :time_zone,
           :instructions_enabled, :instructions, :proctoring_enabled, :proctoring_trial, :watermark_content,
           :identification, :description, :integration_type, :proctoring_type, :proctoring_enabled_on_workshop_activity,
-          :workshop_invite_requires_prework_completion,
+          :workshop_invite_requires_prework_completion, :enable_video_call_recording,
           rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
                      allow_to_use_websites allow_absence_in_frame allow_to_use_calculator
                      allow_to_use_messengers allow_wrong_gaze_direction

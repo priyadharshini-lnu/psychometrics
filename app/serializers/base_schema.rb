@@ -46,6 +46,7 @@ class BaseSchema
      Assessments::QuestionSchema, Assessments::AssessmentSchema, Assessments::BlockSchema, Assessments::FactorSchema,
      UsersResultUpdateSchema, ProfileFieldSchema, FactorSchema, UserReportEventSchema, AuditLogInfoSchema,
      Threesixty::NominationSchema, ::Api::V1::UserCampaignSchema, ::Api::V1::UserSchema,
-     UserSkillGapReportSchema, Threesixty::SubjectSchema, EndUser::UserIdpCommentSchema]
+     UserSkillGapReportSchema, Threesixty::SubjectSchema, EndUser::UserIdpCommentSchema,
+     Administration::UserReportSchema, Administration::UserDetailSchema, EndUser::UserReportSchema]
   end
 end

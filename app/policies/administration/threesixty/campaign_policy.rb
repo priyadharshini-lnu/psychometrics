@@ -121,5 +121,9 @@ module Administration::Threesixty
     def manage_reports_options?
       has_permission?(:campaigns, :report_options)
     end
+
+    def view_datasheets?
+      has_permission?(:datasheets, :view)
+    end
   end
 end

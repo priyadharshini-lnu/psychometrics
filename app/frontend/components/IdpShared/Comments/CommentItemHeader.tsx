@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons'
 import { UserIdpComment } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { ArrowRightOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { getUserName, formatDate } from './Utils'
-import { useCurrentUser } from './useCurrentUser'
+import { useCurrentUser } from '~/hooks/useCurrentUser'
 import styles from './Comments.less'
 
 const { I18n } = window
@@ -86,7 +86,11 @@ export const CommentItemHeader = ({
             </Tooltip>
           )}
         </Flex>
-        <Typography.Text style={{ fontSize: '0.875rem', fontWeight: '500' }}>
+        <Typography.Text style={{
+          fontSize: '0.875rem',
+          fontWeight: '500',
+        }}
+        >
           {comment.content}
         </Typography.Text>
         <Flex gap={0} justify="space-between" style={{ flex: 1 }}>

@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons'
 import { UserIdpComment } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { getUserName, formatDate } from './Utils'
 import { CustomSender } from './CustomSender'
-import { useCurrentUser } from './useCurrentUser'
+import { useCurrentUser } from '~/hooks/useCurrentUser'
 import styles from './Comments.less'
 
 const { I18n } = window
@@ -66,7 +66,11 @@ export const CommentItemContent = ({
                           </Flex>
                         </Typography.Text>
                       </Flex>
-                      <Typography.Text style={{ fontSize: '0.875rem', fontWeight: '500' }}>
+                      <Typography.Text style={{
+                        fontSize: '0.875rem',
+                        fontWeight: '500',
+                      }}
+                      >
                         {reply.content}
                       </Typography.Text>
                     </Flex>
@@ -85,7 +89,10 @@ export const CommentItemContent = ({
             onChange={handleReplyChange}
             onSubmit={() => handleSend(reply, comment.id)}
             placeholder={I18n.t('idp.comment_details.add_reply_placeholder')}
-            autoSize={{ minRows: 1, maxRows: 3 }}
+            autoSize={{
+              minRows: 1,
+              maxRows: 3,
+            }}
             className={styles.inputSender}
           />
         </div>

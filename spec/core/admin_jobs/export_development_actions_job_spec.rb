@@ -21,7 +21,6 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
     action.skills << skill
     action.skills << global_skill
 
-    # Attach test image
     action.image.attach(
       io: Rails.root.join('spec/fixtures/files/profile.png').open,
       filename: 'profile.png',
@@ -55,44 +54,31 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
   end
 
   describe '#data_row' do
-    let(:expected_base_row) do
-      [
-        development_action.id,
-        nil, # skill ID will be filled in per row
-        'Test Action',
-        'Test Description',
-        'structured_learning',
-        project.id,
-        'course',
-        'en, ar',
-        'https://example.com',
-        development_action.course_start_date.to_date.strftime('%Y-%m-%d'),
-        development_action.course_end_date.to_date.strftime('%Y-%m-%d'),
-        'http://example.com/test-image.png',
-        120
-      ]
-    end
-
-    it 'returns formatted rows of data for csv' do
+    it 'returns a single formatted row with comma-separated skill IDs' do
       development_action = job.records_for_export.first
       allow(development_action).to receive(:image_url).and_return('http://example.com/test-image.png')
       data_rows = job.data_row(development_action)
 
-      expect(data_rows.size).to eq(2) # One row per skill
+      expect(data_rows.size).to eq(1)
 
-      # Sort rows by skill ID to ensure consistent ordering
-      sorted_rows = data_rows.sort_by { |row| row[1] }
-      project_skill_row = sorted_rows.find { |row| row[1] == skill.id }
-      global_skill_row = sorted_rows.find { |row| row[1] == global_skill.id }
+      row = data_rows.first
+      expect(row[0]).to eq(development_action.id)
 
-      # Check project skill row
-      expect(project_skill_row).to match_array(expected_base_row.dup.tap { |row| row[1] = skill.id })
+      skill_ids = row[1].split(', ').map(&:to_i).sort
+      expected_skill_ids = [skill.id, global_skill.id].sort
+      expect(skill_ids).to eq(expected_skill_ids)
 
-      # Check global skill row
-      expect(global_skill_row).to match_array(expected_base_row.dup.tap { |row| row[1] = global_skill.id })
-
-      # Verify both rows share the same development action ID
-      expect(project_skill_row[0]).to eq(global_skill_row[0])
+      expect(row[2]).to eq('Test Action')
+      expect(row[3]).to eq('Test Description')
+      expect(row[4]).to eq('structured_learning')
+      expect(row[5]).to eq(project.id)
+      expect(row[6]).to eq('course')
+      expect(row[7]).to eq('en, ar')
+      expect(row[8]).to eq('https://example.com')
+      expect(row[9]).to eq(development_action.course_start_date.to_date.strftime('%Y-%m-%d'))
+      expect(row[10]).to eq(development_action.course_end_date.to_date.strftime('%Y-%m-%d'))
+      expect(row[11]).to eq('http://example.com/test-image.png')
+      expect(row[12]).to eq(120)
     end
 
     it 'handles missing image_url gracefully' do
@@ -100,7 +86,7 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
       allow(development_action).to receive(:image_url).and_return(nil)
 
       data_rows = job.data_row(development_action)
-      expect(data_rows.map { |row| row[-2] }).to all(be_nil)
+      expect(data_rows.first[-2]).to be_nil
     end
   end
 

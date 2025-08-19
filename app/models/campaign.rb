@@ -24,6 +24,7 @@ class Campaign < ApplicationRecord
   has_one :campaign_datasheet, class_name: 'Datasheet', dependent: :destroy
   has_one :dashboard
   has_one :campaign_idp
+  has_one :campaign_template, dependent: :destroy
 
   has_many :sheets, dependent: :destroy
   has_many :workshops, dependent: :destroy
@@ -51,6 +52,7 @@ class Campaign < ApplicationRecord
            :campaign_scoring_variables,
            :proctoring_type,
            to: :campaign_options
+  delegate :skill_rater?, to: :threesixty_campaign, allow_nil: true
 
   has_many :license_usages, inverse_of: :campaign
   has_many :subjects, class_name: 'Threesixty::Subject', dependent: :destroy
@@ -103,6 +105,9 @@ class Campaign < ApplicationRecord
     )
   }
   scope :fixed_time, -> { joins(:campaign_options).where(campaign_options: { fixed_time: true }) }
+
+  scope :templates, -> { where(is_template: true) }
+  scope :not_templates, -> { where(is_template: false) }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name status type start_date end_date]
@@ -180,6 +185,10 @@ class Campaign < ApplicationRecord
       joins(:workshop_subjects).
       merge(WorkshopSubject.participatable).
       first
+  end
+
+  def template?
+    is_template
   end
 
   private

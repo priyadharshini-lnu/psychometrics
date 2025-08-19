@@ -8,9 +8,10 @@ import {
   Radio, message, Button, Tag, Tooltip, Flex,
 } from 'antd'
 import {
-  ArrowLeftOutlined, CopyOutlined, EditOutlined, InfoCircleOutlined,
+  ArrowLeftOutlined, CopyOutlined, InfoCircleOutlined,
 } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import type { DescriptionsProps } from 'antd'
 import dayjs from '~/utils/dayjs'
 import { WorkshopEditFormModal } from './WorkshopEditFormModal'
 import settings from '~/modules/admin/modules/campaigns/settings'
@@ -34,7 +35,9 @@ const STATUS_TAG_COLOR = {
 
 export const WorkshopPage: FC = () => {
   const {
-    id, campaignId, tab,
+    id,
+    campaignId,
+    tab,
   } = useParams() as { id: string, campaignId: string, tab?: string }
   const location = useLocation()
   const [currentTab, setCurrentTab] = useState(tab || 'subjects')
@@ -49,7 +52,10 @@ export const WorkshopPage: FC = () => {
   }
 
   const {
-    fetchSingle, getResource, updateResource, memberAction,
+    fetchSingle,
+    getResource,
+    updateResource,
+    memberAction,
   } = useResources<Workshop>(
     'workshops',
     {
@@ -68,17 +74,21 @@ export const WorkshopPage: FC = () => {
     },
   )
 
-  useEffect(() => { fetchSingle({ id }) }, [])
+  useEffect(() => {
+    fetchSingle({ id })
+  }, [])
   const workshop = getResource(id)
 
   const cancellationTooltip = (workshop: Workshop) => {
-    const date = dayjs(workshop.startTime).subtract(workshop.cancellationLeadTime, 's')
+    const date = dayjs(workshop.startTime)
+      .subtract(workshop.cancellationLeadTime, 's')
     return (I18n.t('administration.scheduling.info.cancellation_tooltip',
       { date: `${date.format('DD/MM/YYYY hh:mm A')} ${date.format(' (z)')}` }))
   }
 
   const schedulingTooltip = (workshop: Workshop) => {
-    const date = dayjs(workshop.startTime).subtract(workshop.schedulingLeadTime, 's')
+    const date = dayjs(workshop.startTime)
+      .subtract(workshop.schedulingLeadTime, 's')
     return (I18n.t('administration.scheduling.info.scheduling_tooltip',
       { date: `${date.format('DD/MM/YYYY hh:mm A')} ${date.format(' (z)')}` }))
   }
@@ -91,126 +101,155 @@ export const WorkshopPage: FC = () => {
 
   const backUrl = location?.state?.search ? `/assessment_center${location.state?.search}` : '/assessment_center'
 
+  const items: DescriptionsProps['items'] = [
+    {
+      label: I18n.t('administration.scheduling.info.date'),
+      children: <DateTimeWithZone dateString={workshop.startTime} />,
+      span: {
+        sm: 2,
+      },
+    },
+    {
+      label: I18n.t('administration.scheduling.info.duration'),
+      children: `${secondsToDayHoursAndMinutes(workshop.duration)}`,
+    },
+    {
+      label: I18n.t('common.column.status'),
+      children: (
+        <>
+          <Tag color={STATUS_TAG_COLOR[workshop.status]}>
+            {I18n.t(`administration.workshop.statuses.${workshop.status}`)}
+          </Tag>
+          <Button type="link" onClick={() => setOpenChangeStatusModal(true)} className="p-0">
+            {I18n.t('common.actions.change')}
+          </Button>
+        </>
+      ),
+    },
+    {
+      label: I18n.t('administration.scheduling.info.booked'),
+      children: `${workshop.bookedSeats}`,
+    },
+    {
+      label: I18n.t('administration.scheduling.info.remaining'),
+      children: `${workshop.remainingSeats}`,
+    },
+    {
+      label: I18n.t('administration.scheduling.info.campaign_assessment_group'),
+      children: `${workshop.campaignAssessmentGroup?.name}`,
+      span: {
+        sm: 2,
+      },
+    },
+    {
+      label: I18n.t('administration.scheduling.info.link'),
+      children: (
+        <>
+          {workshop.meetingLink ? (
+            <Space>
+              <a href={workshop.meetingLink} target="_blank" rel="noreferrer">
+                {I18n.t('administration.scheduling.info.join_meeting')}
+              </a>
+              <CopyToClipboard
+                text={workshop.meetingLink}
+                onCopy={() => message.info(I18n.t('common.text.copied'))}
+              >
+                <CopyOutlined />
+              </CopyToClipboard>
+            </Space>
+          ) : I18n.t('administration.scheduling.info.none')}
+        </>),
+    },
+    {
+      label: I18n.t('administration.scheduling.info.timezone'),
+      children: `${workshop.timezone}`,
+    },
+    {
+      label: I18n.t('administration.scheduling.info.managers'),
+      children: <ResourcesTag resources={workshop.workshopManagers} />,
+    },
+    {
+      label: I18n.t('administration.scheduling.info.assessors'),
+      children: <ResourcesTag resources={workshop.workshopAssessors} />,
+    },
+    {
+      label: I18n.t('administration.scheduling.info.scheduling_lead_time'),
+      children: (
+        <Flex gap={4}>
+          <span>
+            {secondsToDayHoursAndMinutes(workshop.schedulingLeadTime)}
+          </span>
+          <Tooltip
+            title={schedulingTooltip(workshop)}
+          >
+            <InfoCircleOutlined />
+          </Tooltip>
+        </Flex>
+      ),
+    },
+    {
+      label: I18n.t('administration.scheduling.info.cancellation_lead_time'),
+      children: (
+        <Flex gap={4}>
+          <span>
+            {secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)}
+          </span>
+          <Tooltip
+            title={cancellationTooltip(workshop)}
+          >
+            <InfoCircleOutlined />
+          </Tooltip>
+        </Flex>),
+    },
+    {
+      label: I18n.t('administration.scheduling.info.late_cancellation_and_scheduling'),
+      children: (
+        <>
+          {workshop.allowLateCancellationAndRescheduling ? I18n.t('administration.scheduling.info.allowed')
+            : I18n.t('administration.scheduling.info.not_allowed')}
+        </>
+      ),
+      span: {
+        xs: 1,
+        sm: 2,
+        md: 3,
+        lg: 3,
+      },
+    },
+  ]
+
   return (
     <>
       <div className="pt-6 ps-6 pe-6">
         <Descriptions
           title={(
-            <>
-              <Space>
-                <ArrowLeftOutlined onClick={() => routeUtils.moveTo(navigate, prefixPath, backUrl)} />
-                {workshop.name}
-              </Space>
-            </>
+            <Flex gap={8}>
+              <ArrowLeftOutlined onClick={() => routeUtils.moveTo(navigate, prefixPath, backUrl)} />
+              {workshop.name}
+            </Flex>
           )}
+          bordered
           column={{
-            xxl: 5, xl: 4, lg: 3, md: 2, sm: 1,
+            xs: 1,
+            sm: 2,
+            md: 2,
+            lg: 2,
+            xl: 3,
+            xxl: 3,
           }}
+          items={items}
           extra={
             workshop.meta?.permissions?.update && (
               <Button
-                icon={<EditOutlined />}
                 onClick={() => setShowForm(true)}
                 size="large"
-                type="link"
-              />
+              >
+                {I18n.t('common.actions.edit')}
+              </Button>
             )
           }
-          contentStyle={{ paddingInlineEnd: '5px' }}
-          labelStyle={{ fontWeight: 'bold' }}
           size="small"
-        >
-          <Descriptions.Item label={I18n.t('administration.scheduling.info.date')}>
-            <DateTimeWithZone dateString={workshop.startTime} />
-          </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('administration.scheduling.info.campaign_assessment_group')}>
-            {workshop.campaignAssessmentGroup?.name}
-          </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('administration.scheduling.info.duration')}>
-            {secondsToDayHoursAndMinutes(workshop.duration)}
-          </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('administration.scheduling.info.booked')}>
-            {workshop.bookedSeats}
-          </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('common.column.status')} labelStyle={{ alignItems: 'center' }}>
-            <Tag color={STATUS_TAG_COLOR[workshop.status]}>
-              {I18n.t(`administration.workshop.statuses.${workshop.status}`)}
-            </Tag>
-            <Button type="link" onClick={() => setOpenChangeStatusModal(true)} className="p-0">
-              {I18n.t('common.actions.change')}
-            </Button>
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={I18n.t('administration.scheduling.info.managers')}
-            className={styles.workshopAvatar}
-          >
-            <ResourcesTag resources={workshop.workshopManagers} />
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={I18n.t('administration.scheduling.info.scheduling_lead_time')}
-          >
-            <Flex gap={4}>
-              <span>
-                {secondsToDayHoursAndMinutes(workshop.schedulingLeadTime)}
-              </span>
-              <Tooltip
-                title={schedulingTooltip(workshop)}
-              >
-                <InfoCircleOutlined />
-              </Tooltip>
-            </Flex>
-          </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('administration.scheduling.info.link')}>
-            {workshop.meetingLink ? (
-              <Space>
-                <a href={workshop.meetingLink} target="_blank" rel="noreferrer">
-                  {I18n.t('administration.scheduling.info.join_meeting')}
-                </a>
-                <CopyToClipboard
-                  text={workshop.meetingLink}
-                  onCopy={() => message.info(I18n.t('common.text.copied'))}
-                >
-                  <CopyOutlined />
-                </CopyToClipboard>
-              </Space>
-            ) : I18n.t('administration.scheduling.info.none')}
-          </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('administration.scheduling.info.timezone')}>
-            {workshop.timezone}
-          </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('administration.scheduling.info.remaining')}>
-            {workshop.remainingSeats}
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={I18n.t('administration.scheduling.info.assessors')}
-            className={styles.workshopAvatar}
-          >
-            <ResourcesTag resources={workshop.workshopAssessors} />
-          </Descriptions.Item>
-          <Descriptions.Item
-            span={2}
-            label={I18n.t('administration.scheduling.info.late_cancellation_and_scheduling')}
-          >
-            {workshop.allowLateCancellationAndRescheduling
-              ? I18n.t('administration.scheduling.info.allowed')
-              : I18n.t('administration.scheduling.info.not_allowed')
-            }
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={I18n.t('administration.scheduling.info.cancellation_lead_time')}
-          >
-            <Flex gap={4}>
-              <span>
-                {secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)}
-              </span>
-              <Tooltip
-                title={cancellationTooltip(workshop)}
-              >
-                <InfoCircleOutlined />
-              </Tooltip>
-            </Flex>
-          </Descriptions.Item>
-        </Descriptions>
+        />
         <Divider />
         <div>
           <div className={styles.controls}>
@@ -254,10 +293,11 @@ interface Resource {
 interface ResourcesProps {
   resources: Resource[]
 }
+
 const MAX_AVATARS = 3
 const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
   resources && (
-    <Avatar.Group maxCount={MAX_AVATARS}>
+    <Avatar.Group max={{ count: MAX_AVATARS }}>
       {resources.map((resource: Resource) => (
         <ResourceAvatar
           key={resource.id}

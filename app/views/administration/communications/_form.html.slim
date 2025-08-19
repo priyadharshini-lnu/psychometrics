@@ -83,11 +83,26 @@
               = f.input :delivery_at, as: :datetimepicker, initialize_time_now: true,
                 label: t('.delivery_at'),
                 min_date: date_without_seconds_and_timezone
+      - if @communication_facade.show_assessment_selection?
+        .form-group
+          = f.collection_radio_buttons :assessment_selection,
+                                      [['all', t('.all')], ['selected', t('.custom')]],
+                                      :first, :last, {},
+                                      data: { behavior: 'communication-changeable' } do |b|
+            = b.label(class: 'radio-inline mrl') { b.radio_button(class: 'mrs') + b.text }
+      - if @communication_facade.show_assessment_multiselect?
+        = f.association :selected_assessments,
+          collection: @communication_facade.assessments,
+          label_method: :name,
+          value_method: :id,
+          include_blank: false,
+          input_html: {multiple: true, data: { live_search: true }},
+          label: t('.select_assessments')
       - if @communication_facade.show_delivery_intervals?
         .form-group
           = f.collection_radio_buttons :reminder_type, @communication_facade.reminder_types, :last, :first, {},
             data: { behavior: 'communication-changeable' } do |b|
-            = b.label(class: 'mrl') { b.radio_button(class: 'mrs') + b.text }
+            = b.label(class: 'radio-inline mrl') { b.radio_button(class: 'mrs') + b.text }
 
         - if @communication_facade.show_timeframes_reminder?
           = f.input :delivery_interval, collection: ::Helpers::Communications.reminder_timeframes, label: t('.delivery_interval')
@@ -98,7 +113,7 @@
                 as: :select,
                 collection: @communication_facade.delivery_interval_periods,
                 label: t('.delivery_interval_period')
-            .col-md-4
+            .col-md-4.pln
               = f.input :delivery_interval_number, as: :integer, label: t('.delivery_interval_number')
         - if @communication_facade.show_stop_reminder?
           .row.mbl

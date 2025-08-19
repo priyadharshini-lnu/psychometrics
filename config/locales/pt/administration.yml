@@ -15,6 +15,8 @@ pt:
       title: Alterações auditadas
     administrator:
       sessions:
+        errors:
+          recaptcha: A verificação do Recaptcha falhou
         new:
           forgot_password: Esqueceu-se da sua palavra-passe?
           instruction: Inicie sessão com as informações da sua conta pessoal
@@ -147,6 +149,7 @@ pt:
             accesssheet_manage: Folha de acesso Gerenciar
             accesssheet_settings: Definições da folha de acesso
             accesssheet_view: Visualização da folha de acesso
+            export: Exportação
             title: Painéis de controlo
             view: Ver
           datasheets:
@@ -179,7 +182,7 @@ pt:
             manage: Gerenciar
             title: Funções
             view: Ver
-          mediaLibraries:
+          libraries:
             manage: Gerenciar
             title: Bibliotecas de média
             view: Ver
@@ -290,18 +293,33 @@ pt:
             view: Ver
     ai_assistants:
       actions:
+        create: Criar assistente de IA
+        edit: Editar Assistente de IA
         playground: Parque infantil
       ai_assistants: Assistentes de IA
       ai_assistants_playground: Parque de jogos do assistente de IA
       column:
         provider: Fornecedor
+      created_successfully: O Assistente de IA foi criado com êxito.
       form:
+        add_output_schema_key: Adicionar chave de esquema de saída
+        dependencies: Dependências
         description: Descrição
+        enter_description: Introduzir Descrição
+        enter_schema_key: Introduzir chave de esquema
+        key: Chave
         name: Nome
+        output_schema_keys: Chaves do esquema de saída
         provider: Fornecedor
+        remove_output_schema_key: Remover chave do esquema de saída
+        schema_key_description_required: A descrição da chave de esquema é obrigatória
+        schema_key_required: A chave de esquema é necessária
+        schema_key_type: Tipo de chave
+        schema_key_unique: As chaves de esquema devem ser únicas
         system_prompt: Prompt do sistema
-        title: Assistente de IA
+        type: Tipo
         user_prompt: Prompt do utilizador
+      updated_successfully: O Assistente de IA foi atualizado com êxito.
     any: " - Qualquer - "
     api:
       campaigns:
@@ -767,6 +785,8 @@ pt:
       new:
         header: Transferência em massa
       reports_unavailable: De momento, não existem relatórios disponíveis para descarregar. Confirme se os relatórios que pretende descarregar estão disponíveis.
+      select_users_for_download: Selecione pelo menos um usuário para baixar relatórios.
+      select_users_for_regenerate: Selecione pelo menos um usuário para regenerar os relatórios.
     cable:
       notification:
         assessment_factors: Os factores são obtidos
@@ -856,6 +876,7 @@ pt:
       campaign_templates: Modelos de campanha
       column:
         assessment: Avaliação
+        campaign: Campanha
         owner: Proprietário
         report: Relatório
       copy:
@@ -930,6 +951,7 @@ pt:
       assessors:
         spoof:
           successfully: O seu login foi efectuado com sucesso como %{name}
+      convert_to_template: Converter para modelo
       copy: Cópia
       delete: Eliminar
       edit: Editar
@@ -955,6 +977,7 @@ pt:
         name: Nome
         reports: Relatórios
         status: Estado
+        template: Modelo
         type: Tipo
       menus:
         add_common_campaign: Adicionar campanha comum
@@ -970,11 +993,15 @@ pt:
             assessment: Avaliação
             category: Categoria
             closed: Fechado
+            default_assessment_language: Língua de avaliação por defeito
+            default_report_language: Idioma predefinido do relatório
             empty: Vazio
             inactive: Inativo
             name: Nome
             normal: Normal
             previous: Anterior
+            select_assessment_language: Selecionar a língua de avaliação
+            select_report_language: Selecionar o idioma do relatório
             skill_rater: Avaliador de competências
             standard: Padrão
             status: Estado
@@ -1007,6 +1034,7 @@ pt:
           name: Descrição
           save: Salvar Descrição
           save_success: Descrição guardada com sucesso
+        enable_video_call_recording: Ativar a gravação de chamadas de vídeo
         fixed_time: Tempo fixo
         instructions:
           actions:
@@ -1597,6 +1625,7 @@ pt:
         campaign_assessment_group: Grupo de Avaliação da Campanha
         client: Cliente
         completion: Conclusão
+        custom: Personalizado
         delivery_at: Entrega em (GST)
         delivery_delay_hours: Prazo de entrega (horas)
         delivery_interval: Intervalo de entrega
@@ -1628,6 +1657,7 @@ pt:
         recipients: Beneficiários
         reminder: Lembrete
         report_available: Relatório disponível
+        select_assessments: Selecionar as avaliações a verificar quanto à sua conclusão
         selected: Selecionado
         selected_cc_recipients: Beneficiários de CC selecionados
         selected_recipients: Beneficiários selecionados
@@ -2122,6 +2152,9 @@ pt:
         remove_confirm: Introduzir o nome do modelo atual indicado abaixo na caixa de texto para remover o modelo
         success: "%{idpName} foi removido com êxito."
       add_idp_template: Adicionar modelo de PDI
+      ai_assisted_idp_enabled: Ativado por IDP assistido por IA
+      ai_enabled: Ativado por IA
+      ai_settings: Definições de IA
       all: Todos
       appearance: Aparência
       appearance_hint: Para modificar o aspeto, guarde primeiro o modelo IDP para ativar estas definições.
@@ -2137,6 +2170,7 @@ pt:
       enter_template_name: Nome
       enter_template_name_error: O nome do modelo é obrigatório
       errors:
+        cannot_update_progress_plan_completed: Não é possível atualizar os progressos porque o plano PDI já foi concluído
         update: Atualização não permitida porque o modelo IDP já está associado a um plano IDP do utilizador.
       fields:
         assigned_data: Dados atribuídos
@@ -2164,6 +2198,7 @@ pt:
       logo_type_label: Tipo de logótipo
       no_reflection_questions_selected: Nenhuma pergunta de reflexão selecionada
       none: Nenhum
+      one_click_idp_enabled: IDP de um clique ativado
       reference_locale: Local de referência
       reflection_questions: Perguntas de reflexão
       reflection_questions_hint: Para modificar as perguntas de reflexão, guarde primeiro o modelo do PDI para ativar estas definições.
@@ -2270,7 +2305,7 @@ pt:
     individual_invite:
       tabs:
         assessment_center: Centro de avaliação
-        subjects: Assuntos
+        invitation_status: Estado do convite
     innovation_styles:
       create:
         successfully: O estilo de inovação %{name} foi criado com êxito.
@@ -2399,7 +2434,9 @@ pt:
       assessment_center: 'Centro de avaliação:'
       booked_at: 'Reservado em:'
       column:
+        invitation_status: Estado do convite
         participant: Participante
+        scheduling_details: Detalhes da programação
       remove_confirm:
         content: Tem a certeza de que pretende remover o assunto com o e-mail '%{subjectEmail}'?
         success: O assunto com o e-mail '%{subjectEmail}'' foi removido com êxito.
@@ -2407,6 +2444,8 @@ pt:
       statuses:
         accepted: Aceite
         cancelled: Cancelado
+        late_cancelled: Atraso cancelado
+        late_rescheduled: Atrasado Reprogramado
         pending: Pendente
         requested_cancellation: Pedido de cancelamento
         requested_cancellation_rejected: Cancelamento Rejeitado
@@ -2440,8 +2479,6 @@ pt:
         expected_proficiency_level: Nível de proficiência esperado
       form:
         title: Mapeamento de funções de competências
-      import:
-        taxonomy: Taxonomia
     job_roles:
       export:
         translations:
@@ -2696,21 +2733,31 @@ pt:
         sms_contacts: Contactos SMS
         subjects: Temas
     piped_text_modal:
+      assessment_center: Centro de avaliação
       assessment_id: ID de avaliação
       campaign_id: ID da campanha
       campaign_name: Nome da campanha
       campaigns: Campanhas
+      description: Descrição
+      duration: Duração
+      end_time: Hora de fim
       insight_page_link: Ligação da página Insight
       insight_page_url: URL da página de informação
+      invite_title: Título
+      invites: Convites
       join_link: Ligação de adesão
       magic_link: Ligação mágica
       magic_url: URL mágico
+      platform_url_links: Url da plataforma e ligações
       profile_custom_field: Campo personalizado de perfil
       project_name: Nome do projeto
       projects: Projectos
       report_name: Nome do relatório
+      start_time: Hora de início
       text: Texto
       title: Adicionar texto com tubagem
+      user_reports: Relatórios de utilizadores
+      users: Utilizadores
     proctoring_sessions:
       columns:
         comment: Comentário
@@ -2735,7 +2782,9 @@ pt:
       errors:
         create:
           invalid_format: A definição de nível deve ser um conjunto de definições.
+          level_definition_must_exist: A definição do nível não pode estar em branco
           level_definition_must_match_level: deve conter exatamente os níveis %{expected}, mas foram dados %{actual}
+          level_name_must_exist: O nome do nível não pode estar em branco
           must_be_unique: Deve ser único
           proficiency_level_exists: Já existe um ProficiencyLevel com esta competência e projeto
           proficiency_level_exists_for_default: Já existe um nível de proficiência por defeito
@@ -3042,6 +3091,7 @@ pt:
         dp_consent_custom: Personalizar o consentimento para o tratamento de dados
         dp_consent_version: Versão da política
         errors:
+          cannot_disable_while_campaign_enabled: Não é possível desativar a gravação de videochamadas porque está activada para uma ou mais campanhas neste projeto
           policy_version_format: Só são permitidos números inteiros
         mask_identity_for_examus: Dados de máscara para Examus Proctoring
         mask_identity_for_hogan: Dados de máscara para Hogan
@@ -3055,6 +3105,9 @@ pt:
         privacy_link_placeholder: Introduzir ligação de privacidade
         privacy_text: Texto de privacidade
         privacy_text_placeholder: Introduzir texto de privacidade
+        video_call_recording: Permitir a gravação de chamadas de vídeo
+        video_call_recording_expiry_duration: Período de conservação das gravações de videochamadas (em dias)
+        video_call_recording_scope: Ativar a gravação de vídeo para todas as novas campanhas
       profile_settings:
         form_fields:
           enabled: Ativado
@@ -3377,6 +3430,7 @@ pt:
         copy_to_all: Cópia para outros centros de avaliação
         create: Criar
         dates_label: Datas
+        disable_cancellation_and_rescheduling: Desativar o cancelamento e o reagendamento
         duration_label: Duração
         duration_max_error: Não pode ser superior a 16 horas
         duration_min_error: Não pode ser inferior a 15 minutos
@@ -3387,8 +3441,6 @@ pt:
         name_label: Nome
         next: Seguinte
         required_error: Necessário
-        reschedule_duration_max_error: Não pode ser superior a 30 dias
-        reschedule_duration_min_error: Não pode ser inferior a 1 minuto
         resources_panel:
           description: Acrescente as ligações para os recursos a que gostaria que os facilitadores tivessem acesso.
           resource_name_placeholder: Nome do recurso
@@ -3505,6 +3557,7 @@ pt:
         form_title: Agendar avaliações
         language: Língua
         language_not_selected: Não selecionado
+        mark_cancel: Mark Cancel
         mark_cancel_success: Participação cancelada do sujeito com o correio eletrónico %{subject_email}.
         meeting_link_custom: Personalizado
         meeting_link_internal: Interno
@@ -3513,6 +3566,9 @@ pt:
         no_change: Sem alterações
         override_existing: Anular os horários existentes para as disciplinas
         preworks: Pré-trabalho
+        re_enroll: Reinscrever-se
+        re_enroll_confirm_message: Tem a certeza de que pretende voltar a registar o assunto com o e-mail '%{subject_email}'?
+        re_enroll_success: Assunto reinscrito com o correio eletrónico <x>subject_email</x>.
         schedule: Horário
         unschedule: Anular o agendamento
       tabs:
@@ -3631,6 +3687,7 @@ pt:
       disable_password_reuse: Desativar a reutilização da palavra-passe
       disallow_password_login: Não permitir o início de sessão com palavra-passe
       enable_login_with_magic_link: Ativar o início de sessão com ligação mágica
+      enable_recaptcha: Ativar o reCAPTCHA
       enforce_password_policy: Aplicar a política de palavra-passe no próximo início de sessão
       enforce_strong: Aplicar uma palavra-passe forte
       expiration: Expiração da palavra-passe
@@ -4108,6 +4165,21 @@ pt:
         toggle_status:
           successfully: Com sucesso
     threesixty_campaigns:
+      convert_action:
+        already_a_template: Já é um modelo
+        has_user_data: Reponha manualmente a campanha clicando em "Repor todos os participantes" no menu pendente Ferramentas antes de converter para um modelo.
+      convert_template_modal:
+        cancel: Cancelar
+        confirm: Confirmar
+        convert:
+          success: Modelo convertido com sucesso
+        convert_option: Converter esta campanha num modelo
+        copy:
+          success: A tarefa de criação de modelos de campanha foi agendada com êxito, verifique o estado das suas notificações.
+        copy_option: Criar um novo modelo a partir desta campanha
+        description: Escolha como pretende criar um modelo a partir desta campanha.
+        failed: A criação do modelo falhou.
+        title: Converter para modelo
       email_templates:
         approve_nomination:
           description: Esta mensagem é enviada a um gestor quando uma nomeação, feita por um subordinado direto, precisa de ser aprovada
@@ -4342,6 +4414,10 @@ pt:
       update:
         successfully: O utilizador %{name} foi atualizado com êxito.
       user: Utilizador
+    validations:
+      idp:
+        end_date_cannot_be_in_past: A data final não pode ser no passado
+        start_date_cannot_be_in_past: A data de início não pode ser no passado
     webhook:
       connection_failure: Não foi possível estabelecer ligação ao url do webhook. Verifique se o url do webhook está correto.
       delete_success: As definições do webhook foram eliminadas com êxito

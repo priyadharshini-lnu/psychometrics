@@ -73,6 +73,7 @@ module Api
           :start_time,
           :timezone,
           :allow_late_cancellation_and_rescheduling,
+          :disable_cancellation_and_rescheduling,
           :campaign_assessment_group_id,
           {
             workshop_resources: %i[name url],
@@ -112,6 +113,8 @@ module Api
                                                         :allow_late_cancellation_and_rescheduling,
                                                         :scheduling_lead_time, :cancellation_lead_time,
                                                         :campaign_assessment_group_id,
+                                                        :disable_cancellation_and_rescheduling,
+                                                        :start_time,
                                                         workshop_managers_ids: [],
                                                         workshop_assessors_ids: [])
     end
