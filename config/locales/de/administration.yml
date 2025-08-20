@@ -4342,8 +4342,6 @@ de:
       assessments:
         new:
           header: Übersetzungen importieren
-      import:
-        successfully: Übersetzungen wurden erfolgreich importiert
       reports:
         export: Übersetzungen exportieren
         import: Übersetzungen importieren

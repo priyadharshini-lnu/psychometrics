@@ -848,6 +848,7 @@ en:
         external_assessment_export: External Results Export
         import_accesssheet: Import Accessheet
         import_assessment_questions: Import Assessment Questions
+        import_assessment_translations: Import Assessment Translations
         import_assessors: Import Assessors
         import_campaign_factors: Import Campaign Factors
         import_datasheet: Import Datasheet

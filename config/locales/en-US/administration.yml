@@ -4333,8 +4333,6 @@ en-US:
       assessments:
         new:
           header: Import Translations
-      import:
-        successfully: Translations were imported successfully
       reports:
         export: Export Translations
         import: Import Translations

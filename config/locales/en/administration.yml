@@ -4436,7 +4436,7 @@ en:
         new:
           header: Import Translations
       import:
-        successfully: Translations were imported successfully
+        successfully_scheduled: Translation Import was scheduled successfully.
       reports:
         export: Export Translations
         import: Import Translations

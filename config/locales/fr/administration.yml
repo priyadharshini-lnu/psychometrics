@@ -4342,8 +4342,6 @@ fr:
       assessments:
         new:
           header: Traductions des importations
-      import:
-        successfully: Les traductions ont été importées avec succès
       reports:
         export: Traductions pour l'exportation
         import: Traductions des importations
