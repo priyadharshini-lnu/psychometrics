@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Form, Checkbox, Input, Select, Button, InputNumber,
   Skeleton,
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
+import { getFeatures } from '~/core/config'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
 import Editor from '~/components/Editor'
@@ -15,7 +18,15 @@ import {
 
 const { I18n } = window
 
-export const Privacy: React.FC = () => {
+const mapState = (state: RootState) => ({
+  features: getFeatures(state),
+})
+
+const connector = connect(mapState)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
   const { projectId } = useParams() as { projectId: string }
   const [form] = Form.useForm()
   const [customPrivacyConsentTexts, setCustomPrivacyConsentTexts] = useState<{
@@ -233,34 +244,40 @@ export const Privacy: React.FC = () => {
               >
                 <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_skillvue')}</Checkbox>
               </Form.Item>
-              <Form.Item name="allowVideoCallRecording" valuePropName="checked">
-                <Checkbox>
-                  {I18n.t('administration.projects.privacy_settings.video_call_recording')}
-                </Checkbox>
-              </Form.Item>
-              {
-                allowVideoCallRecording && (
-                  <div style={{ marginLeft: 32 }}>
-                    <Form.Item
-                      name="enableVideoCallRecordingForAllNewCampaigns"
-                      valuePropName="checked"
-                    >
-                      <Checkbox>
-                        {I18n.t('administration.projects.privacy_settings.video_call_recording_scope')}
-                      </Checkbox>
-                    </Form.Item>
-                    <Form.Item
-                      name="videoCallRecordingExpiryInSeconds"
-                      label={I18n.t('administration.projects.privacy_settings.video_call_recording_expiry_duration')}
-                      rules={[
-                        { required: true },
-                      ]}
-                    >
-                      <InputDuration placeholder={I18n.t('administration.components.input_duration.placeholder')} />
-                    </Form.Item>
-                  </div>
-                )
-              }
+              {!features?.disable_meeting_recording && (
+                <>
+                  <Form.Item
+                    name="allowVideoCallRecording"
+                    valuePropName="checked"
+                  >
+                    <Checkbox>
+                      {I18n.t('administration.projects.privacy_settings.video_call_recording')}
+                    </Checkbox>
+                  </Form.Item>
+                  {allowVideoCallRecording && (
+                    <div style={{ marginLeft: 32 }}>
+                      <Form.Item
+                        name="enableVideoCallRecordingForAllNewCampaigns"
+                        valuePropName="checked"
+                      >
+                        <Checkbox>
+                          {I18n.t('administration.projects.privacy_settings.video_call_recording_scope')}
+                        </Checkbox>
+                      </Form.Item>
+                      <Form.Item
+                        name="videoCallRecordingExpiryInSeconds"
+                        label={I18n.t('administration.projects.privacy_settings.video_call_recording_expiry_duration')}
+                        rules={[
+                          { required: true },
+                        ]}
+                      >
+                        <InputDuration placeholder={I18n.t('administration.components.input_duration.placeholder')} />
+                      </Form.Item>
+                    </div>
+                  )
+                  }
+                </>
+              )}
               <Button
                 type="primary"
                 htmlType="submit"
@@ -276,3 +293,5 @@ export const Privacy: React.FC = () => {
     </Row>
   )
 }
+
+export const Privacy = connector(PrivacyComponent)

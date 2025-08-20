@@ -353,6 +353,16 @@ const CampaignOptions: React.FC<Props> = ({
           label={I18n.t('administration.campaigns.options.prework_required_for_invite')}
           {...parametersForWorkshopInviteRequiresPreworkCompletionField()}
         />
+
+        {!features?.disable_meeting_recording && (
+          options.allowVideoCallRecording && (
+            <Option
+              label={I18n.t('administration.campaigns.options.enable_video_call_recording')}
+              {...parametersForField('enableVideoCallRecording')}
+            />
+          )
+        )}
+
         <Option
           label={I18n.t('administration.campaigns.options.show_watermark')}
           {...parametersForShowWatermark()}
@@ -390,11 +400,6 @@ const CampaignOptions: React.FC<Props> = ({
         />
 
         {options.instructionsEnabled && <Instructions projectId={parsedProjectId} campaignId={parsedCampaignId} />}
-
-        <Option
-          label={I18n.t('administration.campaigns.options.enable_video_call_recording')}
-          {...parametersForField('enableVideoCallRecording')}
-        />
 
         <div className="mb-8 mt-8">
           <h4>{I18n.t('administration.campaigns.options.description.name')}</h4>

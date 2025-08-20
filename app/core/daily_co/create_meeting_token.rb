@@ -52,7 +52,12 @@ module DailyCo
         iat: Time.now.to_i
       }
 
-      if meeting_room.video_recording_enabled?
+      recording_enabled = !Settings.features.disable_meeting_recording &&
+                          !meeting_room.use_old_dailyco_api &&
+                          meeting_room.video_recording_enabled?
+
+      if recording_enabled
+        payload[:er] = 'cloud'
         payload[:sr] = true
       end
 
