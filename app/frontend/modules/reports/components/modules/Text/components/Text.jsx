@@ -24,8 +24,11 @@ import PipedText from './PipedText'
 import {
   convertColor, useAssignStyle, joinStyles, gradientStyle, borderRadiusStyle,
 } from '../../CommonMethods/styles'
+import { isRtl } from '~/utils/locales'
 
 const assignStyle = useAssignStyle('Text')
+
+const { I18n } = window
 
 class Text extends Component {
   editor = null
@@ -144,7 +147,7 @@ class Text extends Component {
   }
 
   buildStyles (styles, overrides) {
-    const { flipContent } = this.props
+    const { module, flipContent } = this.props
 
     let style = styles
     const outerStyle = {}
@@ -155,18 +158,16 @@ class Text extends Component {
     } = overrides
     let horizontalAlignNew = assignStyle(style, 'textAlign', horizontalAlign)
 
-    if (horizontalAlignNew === 'left') {
-      horizontalAlignNew = 'start'
-    } else if (horizontalAlignNew === 'right') {
-      horizontalAlignNew = 'end'
+    if (isRtl(I18n.locale) && horizontalAlignNew === 'left' && I18nStore.isExistTModule(module, 'text')) {
+      horizontalAlignNew = 'right'
     }
 
     if (flipContent && horizontalAlign === 'left') {
-      horizontalAlignNew = 'end'
+      horizontalAlignNew = horizontalAlign === 'left' ? 'right' : 'left'
     }
 
     if (flipContent && horizontalAlign === 'right') {
-      horizontalAlignNew = 'start'
+      horizontalAlignNew = horizontalAlign === 'right' ? 'left' : 'right'
     }
 
     if (!style.border && !overrides.borderColor) {
