@@ -121,7 +121,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
       formProps={{
         initialValues: {
           date: workshop.startTime ? dayjs(workshop.startTime) : undefined,
-          time: workshop.startTime ? dayjs(workshop.startTime) : undefined,
+          time: workshop.startTime ? dayjs(workshop.startTime).tz(workshop.timezone) : undefined,
         },
       }}
       request={{
@@ -134,12 +134,13 @@ export const WorkshopEditFormModal: FC<Props> = ({
           if (data.date && data.time) {
             startTime = startDateTime(data.date, data.time, workshop.timezone)?.format()
           }
+
           return updateWorkshop({
             ...cleanedData,
             workshopManagersIds: (data.workshopManagersIds || []).map(id => id.toString()),
             workshopAssessorsIds: (data.workshopAssessorsIds || []).map(id => id.toString()),
             ...(startTime ? { start_time: startTime } : {}),
-            ...(startTime ? { name: formatWorkshopDate(startTime) } : {}),
+            ...(startTime ? { name: formatWorkshopDate(dayjs(startTime).tz(workshop.timezone)) } : {}),
           })
         },
       }}
