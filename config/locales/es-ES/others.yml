@@ -2144,7 +2144,6 @@ es-ES:
       uniq_simulation: Esta evaluación de simulación ya está presente en el sistema. El ID de esta evaluación es %{id}
       uniq_skillvue: Esta evaluación Skillvue ya está presente en el sistema. El ID de esta evaluación es %{id}.
       update_workshop:
-        bookings_exist: No se puede modificar el horario porque los participantes ya han reservado esta franja horaria.
         less_than_booked: El total de plazas debe ser superior al reservado
       user_availability_date:
         overlaps_date: Se solapa con otra disponibilidad %{range}

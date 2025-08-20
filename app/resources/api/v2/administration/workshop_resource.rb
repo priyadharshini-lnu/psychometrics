@@ -49,8 +49,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
        disable_cancellation_and_rescheduling
        campaign_assessment_group_id
        name
-       video_call_type meeting_link status
-       start_time]
+       video_call_type meeting_link status]
   end
 
   def campaign_assessment_group_id

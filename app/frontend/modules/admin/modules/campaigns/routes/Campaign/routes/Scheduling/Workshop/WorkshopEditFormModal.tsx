@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { FC, useState, useEffect } from 'react'
 import {
-  Form, Typography, InputNumber, Input, Radio, Switch, Select, Row, Col, DatePicker, TimePicker,
+  Form, Typography, InputNumber, Input, Radio, Switch, Select,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import InputDuration from '~/components/InputDuration'
@@ -12,8 +12,6 @@ import {
 } from '~/modules/admin/modules/campaigns/core/workshop'
 import { UsersSelectWithTags } from '~/glint'
 import { useResources } from '~/hooks/useResources'
-import { mergeDateAndTime } from '~/utils/time'
-import { formatWorkshopDate } from '~/utils/workshop'
 
 const { I18n } = window
 const { Text } = Typography
@@ -33,10 +31,6 @@ interface AssessmentCenterGroup {
   id: string
   name: string
 }
-
-const startDateTime = (date, time, timezone) => (
-  mergeDateAndTime(date, time, timezone)
-)
 
 export const WorkshopEditFormModal: FC<Props> = ({
   close,
@@ -118,30 +112,12 @@ export const WorkshopEditFormModal: FC<Props> = ({
       storeManager={{ form }}
       scrollToFirstError
       modalProps={{ width: 700 }}
-      formProps={{
-        initialValues: {
-          date: workshop.startTime ? dayjs(workshop.startTime) : undefined,
-          time: workshop.startTime ? dayjs(workshop.startTime) : undefined,
-        },
-      }}
       request={{
-        updateResource: (data: { workshopManagersIds: string[], workshopAssessorsIds: string[],
-          date: string, time: string }) => {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { date, time, ...cleanedData } = data
-
-          let startTime: string | undefined
-          if (data.date && data.time) {
-            startTime = startDateTime(data.date, data.time, workshop.timezone)?.format()
-          }
-          return updateWorkshop({
-            ...cleanedData,
-            workshopManagersIds: (data.workshopManagersIds || []).map(id => id.toString()),
-            workshopAssessorsIds: (data.workshopAssessorsIds || []).map(id => id.toString()),
-            ...(startTime ? { start_time: startTime } : {}),
-            ...(startTime ? { name: formatWorkshopDate(startTime) } : {}),
-          })
-        },
+        updateResource: (data: {workshopManagersIds: string[], workshopAssessorsIds: string[]}) => updateWorkshop({
+          ...data,
+          workshopManagersIds: (data.workshopManagersIds || []).map(id => id.toString()),
+          workshopAssessorsIds: (data.workshopAssessorsIds || []).map(id => id.toString()),
+        }),
       }}
     >
       {() => (
@@ -153,35 +129,6 @@ export const WorkshopEditFormModal: FC<Props> = ({
           >
             <Input name="workshop_name" />
           </Form.Item>
-          {!(workshop.bookedSeats > 0) && (
-            <Row gutter={16}>
-              <Col xs={12} lg={8}>
-                <Form.Item
-                  name="date"
-                  label={I18n.t('licenses.start_date')}
-                >
-                  <DatePicker
-                    style={{ width: '100%' }}
-                    format="YYYY-MM-DD"
-                  />
-                </Form.Item>
-              </Col>
-              <Col xs={12} lg={8}>
-                <Form.Item
-                  name="time"
-                  label={I18n.t('administration.scheduling.assessment_center_form.time_label')}
-                >
-                  <TimePicker
-                    format="h:mm A"
-                    use12Hours
-                    minuteStep={15}
-                    showNow={false}
-                    style={{ width: '100%' }}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-          )}
 
           <Form.Item
             name="campaignAssessmentGroupId"

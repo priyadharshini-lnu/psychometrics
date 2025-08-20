@@ -50,7 +50,6 @@ module Api
             optional(:scheduling_lead_time).filled(:integer)
             optional(:cancellation_lead_time).filled(:integer)
             required(:campaign_assessment_group_id).filled(:string)
-            optional(:start_time).filled(:string)
           end
         end
 

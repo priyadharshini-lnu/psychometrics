@@ -722,8 +722,6 @@ zh-HK:
         must_belong_to_same_project_or_be_global: 技能和工作角色必須屬於同一個專案，或是全球性的。
         unique_mappings: 具有相同技能和工作角色的映射已經存在。
       uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
-      update_workshop:
-        bookings_exist: 由於參加者已預約此時段，因此無法修改時間表。
       user_idp_plan:
         idp_template_not_published: 該IDP模板尚未發布，請在分配給用戶之前將其發布。
       workshop_subject_re_enroll:

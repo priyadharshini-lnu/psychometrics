@@ -2176,7 +2176,6 @@ zh:
       uniq_simulation: 该模拟评估已存在于系统中。 该评估的 ID 是 %{id}
       uniq_skillvue: 系统中已存在此技能评估。该评估的 ID 是 %{id}
       update_workshop:
-        bookings_exist: 由于参与者已经预订了该时段，因此无法修改时间表。
         less_than_booked: 总席位数必须大于预订席位数
       user_availability_date:
         overlaps_date: 与另一个可用性重叠 %{range}

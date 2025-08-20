@@ -114,7 +114,6 @@ module Api
                                                         :scheduling_lead_time, :cancellation_lead_time,
                                                         :campaign_assessment_group_id,
                                                         :disable_cancellation_and_rescheduling,
-                                                        :start_time,
                                                         workshop_managers_ids: [],
                                                         workshop_assessors_ids: [])
     end

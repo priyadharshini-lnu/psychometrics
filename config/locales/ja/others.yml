@@ -2179,7 +2179,6 @@ ja:
       uniq_simulation: このシミュレーション評価はシステムに既に存在しています。 この評価のIDは%{id}です。
       uniq_skillvue: このスキルビューアセスメントはすでにシステムに存在しています。このアセスメントのIDは %{id} です。
       update_workshop:
-        bookings_exist: 参加者がこの時間帯をすでに予約しているため、スケジュールの変更はできません。
         less_than_booked: 総座席数が予約席数を上回っていること
       user_availability_date:
         overlaps_date: 別の可用性と重なる %{range}。

@@ -2184,7 +2184,6 @@ nl:
       uniq_simulation: Deze Simulatie beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       uniq_skillvue: Deze Skillvue beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       update_workshop:
-        bookings_exist: Kan het schema niet wijzigen omdat deelnemers dit tijdslot al hebben geboekt.
         less_than_booked: Het totaal aantal geboekte zitplaatsen moet groter zijn dan
       user_availability_date:
         overlaps_date: Overlapt een andere beschikbaarheid %{range}

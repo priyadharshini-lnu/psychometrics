@@ -2178,7 +2178,6 @@ cs:
       uniq_simulation: Toto posouzení simulace je již v systému přítomno. ID tohoto posouzení je %{id}
       uniq_skillvue: Toto hodnocení dovedností je již v systému obsaženo. ID tohoto hodnocení je %{id}
       update_workshop:
-        bookings_exist: Časový rozvrh nelze změnit, protože účastníci si tento časový úsek již rezervovali.
         less_than_booked: Celkový počet míst musí být větší než rezervovaný
       user_availability_date:
         overlaps_date: Překrývá jinou dostupnost %{range}

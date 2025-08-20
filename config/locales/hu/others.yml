@@ -2189,7 +2189,6 @@ hu:
       uniq_simulation: 'Ez a szimulációs értékelés már jelen van a rendszerben. Az értékelés azonosítója: %{id}'
       uniq_skillvue: Ez a Skillvue-értékelés már jelen van a rendszerben. Az értékelés azonosítója %{id}
       update_workshop:
-        bookings_exist: A menetrendet nem lehet módosítani, mivel a résztvevők már lefoglalták ezt az időpontot.
         less_than_booked: Az összes ülőhelynek nagyobbnak kell lennie, mint amennyit lefoglaltak
       user_availability_date:
         overlaps_date: 'Átfedésben van egy másik rendelkezésre állás: %{range}'

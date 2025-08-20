@@ -2187,7 +2187,6 @@ en-US:
       uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}
       uniq_skillvue: This Skillvue assessment is already present in the system. ID of this assessment is %{id}
       update_workshop:
-        bookings_exist: Cannot modify the schedule as participants have already booked this time slot.
         less_than_booked: The total seats must be greater than booked
       user_availability_date:
         overlaps_date: Overlaps another availability %{range}
