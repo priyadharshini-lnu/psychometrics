@@ -244,7 +244,7 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
               >
                 <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_skillvue')}</Checkbox>
               </Form.Item>
-              {!features?.disable_meeting_recording && (
+              {!features?.disableMeetingRecording && (
                 <>
                   <Form.Item
                     name="allowVideoCallRecording"
