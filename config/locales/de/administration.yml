@@ -773,13 +773,9 @@ de:
       users_import: Importieren
     bulk_reports:
       create:
-        no_data: Keine Daten
         successfully: Die Berichte werden gerade erstellt und Sie werden per E-Mail benachrichtigt, sobald sie fertig sind
       download:
         removed: Entfernt
-      form:
-        end_date: Datum des Endes
-        start_date: Datum des Beginns
       mailer:
         subject: Massenberichte herunterladen
       new:

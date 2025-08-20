@@ -773,13 +773,9 @@ fr:
       users_import: Importation
     bulk_reports:
       create:
-        no_data: Pas de données
         successfully: Les rapports sont en cours de création et vous serez informés par courrier électronique lorsqu'ils seront prêts
       download:
         removed: Supprimé
-      form:
-        end_date: Date de fin
-        start_date: Date de début
       mailer:
         subject: Télécharger des rapports en masse
       new:

@@ -773,13 +773,9 @@ id:
       users_import: Mengimpor
     bulk_reports:
       create:
-        no_data: Tidak ada data
         successfully: Laporan sedang dibuat dan Anda akan diberi tahu melalui email saat sudah siap
       download:
         removed: Dihapus
-      form:
-        end_date: Tanggal akhir
-        start_date: Tanggal mulai
       mailer:
         subject: Mendownload laporan massal
       new:

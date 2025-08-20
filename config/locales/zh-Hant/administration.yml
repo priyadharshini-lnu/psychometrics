@@ -773,13 +773,9 @@ zh-Hant:
       users_import: 進口
     bulk_reports:
       create:
-        no_data: 無資料
         successfully: 報告正在建立中，完成後會透過電子郵件通知您。
       download:
         removed: 已移除
-      form:
-        end_date: 結束日期
-        start_date: 開始日期
       mailer:
         subject: 下載大量報告
       new:

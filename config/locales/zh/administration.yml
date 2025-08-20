@@ -773,13 +773,9 @@ zh:
       users_import: 进口
     bulk_reports:
       create:
-        no_data: 无数据
         successfully: 报告正在创建中，创建完成后将通过电子邮件通知您
       download:
         removed: 已删除
-      form:
-        end_date: 结束日期
-        start_date: 开始日期
       mailer:
         subject: 下载批量报告
       new:

@@ -773,13 +773,9 @@ ar:
       users_import: استيراد
     bulk_reports:
       create:
-        no_data: لا توجد بيانات
         successfully: يتم الآن إنشاء التقارير وسيتم إعلامك عبر البريد الإلكتروني عند الانتهاء.
       download:
         removed: تمت الإزالة
-      form:
-        end_date: تاريخ الانتهاء
-        start_date: تاريخ البدء
       mailer:
         subject: تنزيل التقارير الجماعية
       new:

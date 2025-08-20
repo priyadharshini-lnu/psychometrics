@@ -773,13 +773,9 @@ hr:
       users_import: Uvoz
     bulk_reports:
       create:
-        no_data: Nema podataka
         successfully: Izvješća se izrađuju i bit ćete obaviješteni e-poštom kada budete spremni
       download:
         removed: Uklonjeno
-      form:
-        end_date: Datum završetka
-        start_date: Datum početka
       mailer:
         subject: Preuzmanje skupnih izvješća
       new:

@@ -773,13 +773,9 @@ hu:
       users_import: Importál
     bulk_reports:
       create:
-        no_data: Nincs adat
         successfully: A jelentések készülnek, és e-mailben értesítjük, ha elkészültek
       download:
         removed: Eltávolított
-      form:
-        end_date: Befejezés dátuma
-        start_date: Kezdő dátum
       mailer:
         subject: Tömeges jelentések letöltése
       new:

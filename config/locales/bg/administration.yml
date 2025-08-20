@@ -773,13 +773,9 @@ bg:
       users_import: Импортирам
     bulk_reports:
       create:
-        no_data: Няма данни
         successfully: Отчетите се създават и ще бъдете уведомени по имейл, когато са готови
       download:
         removed: Отстранени
-      form:
-        end_date: Крайна дата
-        start_date: Начална дата
       mailer:
         subject: Изтегляне на групови отчети
       new:

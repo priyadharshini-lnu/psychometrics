@@ -773,13 +773,9 @@ en-US:
       users_import: Import
     bulk_reports:
       create:
-        no_data: No data
         successfully: The reports are being created and you will be notified via email when ready
       download:
         removed: Removed
-      form:
-        end_date: End date
-        start_date: Start date
       mailer:
         subject: Download bulk reports
       new:

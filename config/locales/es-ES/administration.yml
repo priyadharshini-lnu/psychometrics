@@ -773,13 +773,9 @@ es-ES:
       users_import: Importar
     bulk_reports:
       create:
-        no_data: Sin datos
         successfully: Los informes se están creando y se le notificará por correo electrónico cuando estén listos
       download:
         removed: Eliminado
-      form:
-        end_date: Fecha final
-        start_date: Fecha de inicio
       mailer:
         subject: Descargar informes masivos
       new:

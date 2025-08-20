@@ -773,13 +773,9 @@ vi:
       users_import: Nhập khẩu
     bulk_reports:
       create:
-        no_data: Không có dữ liệu
         successfully: Các báo cáo đang được tạo và bạn sẽ được thông báo qua email khi sẵn sàng
       download:
         removed: Gỡ bỏ
-      form:
-        end_date: Ngày kết thúc
-        start_date: Ngày bắt đầu
       mailer:
         subject: Tải báo cáo hàng loạt xuống
       new:

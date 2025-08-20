@@ -773,13 +773,9 @@ ro:
       users_import: Importa
     bulk_reports:
       create:
-        no_data: Fără date
         successfully: Rapoartele sunt create și veți fi notificat prin e-mail când sunteți gata
       download:
         removed: Scos
-      form:
-        end_date: Data de încheiere
-        start_date: Data de începere
       mailer:
         subject: Descărcați rapoarte în bloc
       new:

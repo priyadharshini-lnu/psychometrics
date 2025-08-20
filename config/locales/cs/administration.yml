@@ -773,13 +773,9 @@ cs:
       users_import: Import
     bulk_reports:
       create:
-        no_data: Žádné údaje
         successfully: Zprávy se vytvářejí a po jejich dokončení budete informováni e-mailem
       download:
         removed: Odstraněno
-      form:
-        end_date: Datum ukončení
-        start_date: Datum zahájení
       mailer:
         subject: Stahování hromadných zpráv
       new:

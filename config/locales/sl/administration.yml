@@ -773,13 +773,9 @@ sl:
       users_import: Uvoz
     bulk_reports:
       create:
-        no_data: Ni podatkov
         successfully: Poročila se ustvarjajo in ko boste pripravljeni, boste obveščeni po e-pošti
       download:
         removed: Odstranjen
-      form:
-        end_date: Končni datum
-        start_date: Datum začetka
       mailer:
         subject: Prenos poročil v velikem obsegu
       new:

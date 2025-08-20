@@ -773,13 +773,9 @@ ja:
       users_import: 輸入
     bulk_reports:
       create:
-        no_data: データなし
         successfully: レポートは現在作成中で、準備ができ次第Eメールでお知らせします。
       download:
         removed: 削除
-      form:
-        end_date: 終了日
-        start_date: 開始日
       mailer:
         subject: レポートの一括ダウンロード
       new:

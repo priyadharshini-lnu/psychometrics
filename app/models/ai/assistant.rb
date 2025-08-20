@@ -37,7 +37,8 @@ class AI::Assistant < ApplicationRecord
   def for_user(user)
     chat = chats.create!(ai_assistant: self, user: user, model_id: model_id)
     chat.with_instructions(parsed_system_prompt.strip)
-    chat.with_context(ruby_llm_context)
+    chat.to_llm.with_context(ruby_llm_context)
+    chat
   end
 
   def self.ransackable_scopes(_auth_object = nil)

@@ -773,13 +773,9 @@ sr-Latn:
       users_import: Uvoz
     bulk_reports:
       create:
-        no_data: Nema podataka
         successfully: Izveštaji se kreiraju i bićete obavešteni putem imejla kada budu spremni
       download:
         removed: Uklonjeno
-      form:
-        end_date: Datum završetka
-        start_date: Datum početka
       mailer:
         subject: Preuzmite zbirne izveštaje
       new:

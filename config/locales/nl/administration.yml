@@ -773,13 +773,9 @@ nl:
       users_import: Importeren
     bulk_reports:
       create:
-        no_data: Geen gegevens
         successfully: De rapporten worden momenteel gemaakt en je ontvangt een e-mail als ze klaar zijn
       download:
         removed: Verwijderd
-      form:
-        end_date: Einddatum
-        start_date: Startdatum
       mailer:
         subject: Bulkrapporten downloaden
       new:

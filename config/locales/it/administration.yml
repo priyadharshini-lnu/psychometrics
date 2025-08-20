@@ -773,13 +773,9 @@ it:
       users_import: Importazione
     bulk_reports:
       create:
-        no_data: Nessun dato
         successfully: I rapporti sono in fase di creazione e sarete avvisati via e-mail quando saranno pronti
       download:
         removed: Rimosso
-      form:
-        end_date: Data di fine
-        start_date: Data di inizio
       mailer:
         subject: Scarica i report in blocco
       new:

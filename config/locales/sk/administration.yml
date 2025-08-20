@@ -773,13 +773,9 @@ sk:
       users_import: Import
     bulk_reports:
       create:
-        no_data: Žiadne údaje
         successfully: Zostavy sa vytvárajú a keď budete pripravení, budete informovaní e-mailom
       download:
         removed: Odstránený
-      form:
-        end_date: Dátum ukončenia
-        start_date: Dátum začiatku
       mailer:
         subject: Stiahnutie hromadných prehľadov
       new:

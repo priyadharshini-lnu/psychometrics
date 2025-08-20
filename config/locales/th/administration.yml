@@ -773,13 +773,9 @@ th:
       users_import: นําเข้า
     bulk_reports:
       create:
-        no_data: ไม่มีข้อมูล
         successfully: รายงานกําลังถูกสร้างขึ้นและคุณจะได้รับแจ้งทางอีเมลเมื่อพร้อม
       download:
         removed: ถูก เอา ออก
-      form:
-        end_date: วันที่สิ้นสุด
-        start_date: วันที่เริ่มต้น
       mailer:
         subject: ดาวน์โหลดรายงานจํานวนมาก
       new:

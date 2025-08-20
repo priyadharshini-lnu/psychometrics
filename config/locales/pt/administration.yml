@@ -773,13 +773,9 @@ pt:
       users_import: Importação
     bulk_reports:
       create:
-        no_data: Sem dados
         successfully: Os relatórios estão a ser criados e será notificado por correio eletrónico quando estiverem prontos
       download:
         removed: Removido
-      form:
-        end_date: Data final
-        start_date: Data de início
       mailer:
         subject: Descarregar relatórios em massa
       new:

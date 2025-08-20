@@ -773,13 +773,9 @@ pl:
       users_import: Import
     bulk_reports:
       create:
-        no_data: Brak danych
         successfully: Raporty są tworzone, a gdy będą gotowe, otrzymasz powiadomienie e-mailem
       download:
         removed: Usunięte
-      form:
-        end_date: Data zakończenia
-        start_date: Data rozpoczęcia
       mailer:
         subject: Pobieranie raportów zbiorczych
       new:
