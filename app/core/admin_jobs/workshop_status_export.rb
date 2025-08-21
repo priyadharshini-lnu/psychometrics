@@ -51,32 +51,43 @@ module AdminJobs
     end
 
     def data_row(campaign_user) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
-      prework_status = prework_status(campaign_user)
-      latest_workshop_subject = campaign_user.workshop_subjects.max_by(&:created_at)
-      latest_workshop = latest_workshop_subject&.workshop
-      scheduling_status = latest_workshop_subject&.scheduling_status
-      assessment_group_name = latest_workshop_subject&.workshop&.campaign_assessment_group&.name
+      prework_status_value = prework_status(campaign_user)
 
-      [
-        campaign_user.user_id,
-        campaign_user.user.first_name,
-        campaign_user.user.last_name,
-        campaign_user.user.email,
-        campaign_user.campaign.name,
-        campaign_user.active? ? 'Yes' : 'No',
-        prework_status,
-        prework_status == 'Completed' ? last_prework_completed_at(campaign_user)&.to_s : nil,
-        scheduling_status&.humanize,
-        assessment_group_name,
-        latest_workshop&.name,
-        campaign_user.workshop_invited_subjects.present? ? 'Invited' : 'Not Invited',
-        scheduling_status == 'scheduled' ? assessment_center_status(campaign_user) : nil,
-        latest_workshop_subject&.attendance_status&.humanize,
-        latest_workshop&.start_time&.to_s,
-        latest_workshop_subject ? latest_workshop_subject.preferred_language || 'Not Selected' : nil,
-        campaign_user.workshop_subjects.count { |ws| ws.scheduling_status == 'late_cancelled' },
-        campaign_user.workshop_subjects.count { |ws| ws.scheduling_status == 'late_rescheduled' }
-      ]
+      workshop_groups = get_workshop_groups(campaign_user)
+
+      workshop_groups = { nil => [] } if workshop_groups.empty?
+
+      rows = []
+
+      workshop_groups.each do |assessment_group, workshop_subjects|
+        latest_workshop_subject = workshop_subjects.max_by(&:created_at)
+        latest_workshop = latest_workshop_subject&.workshop
+        scheduling_status = latest_workshop_subject&.scheduling_status
+        assessment_group_name = assessment_group&.name
+
+        rows << [
+          campaign_user.user_id,
+          campaign_user.user.first_name,
+          campaign_user.user.last_name,
+          campaign_user.user.email,
+          campaign_user.campaign.name,
+          campaign_user.active? ? 'Yes' : 'No',
+          prework_status_value,
+          prework_status_value == 'Completed' ? last_prework_completed_at(campaign_user)&.to_s : nil,
+          scheduling_status&.humanize,
+          assessment_group_name,
+          latest_workshop&.name,
+          workshop_invite_status(campaign_user, assessment_group),
+          scheduling_status == 'scheduled' ? assessment_center_status(campaign_user) : nil,
+          latest_workshop_subject&.attendance_status&.humanize,
+          latest_workshop&.start_time&.to_s,
+          latest_workshop_subject ? latest_workshop_subject.preferred_language || 'Not Selected' : nil,
+          workshop_subjects.count { |ws| ws.scheduling_status == 'late_cancelled' },
+          workshop_subjects.count { |ws| ws.scheduling_status == 'late_rescheduled' }
+        ]
+      end
+
+      rows
     end
 
     def assessment_center_status(campaign_user)
@@ -118,6 +129,32 @@ module AdminJobs
 
     def include_inactive_users
       record.data['include_inactive_users'] || false
+    end
+
+    def workshop_invite_status(campaign_user, assessment_group)
+      return 'Not Invited' if assessment_group.nil?
+
+      invited_to_group = campaign_user.workshop_invited_subjects.joins(:workshop_invite).
+                         exists?(workshop_invites: { campaign_assessment_group: assessment_group })
+
+      invited_to_group ? 'Invited' : 'Not Invited'
+    end
+
+    def get_workshop_groups(campaign_user)
+      workshop_groups = campaign_user.workshop_subjects.joins(workshop: :campaign_assessment_group).group_by do |ws|
+        ws.workshop.campaign_assessment_group
+      end
+
+      invited_groups = campaign_user.workshop_invited_subjects.joins(:workshop_invite).
+                       includes(workshop_invite: :campaign_assessment_group).
+                       filter_map { |wis| wis.workshop_invite.campaign_assessment_group }.
+                       uniq
+
+      invited_groups.each do |assessment_group|
+        workshop_groups[assessment_group] ||= []
+      end
+
+      workshop_groups
     end
   end
 end
