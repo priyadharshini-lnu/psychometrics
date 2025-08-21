@@ -1384,7 +1384,11 @@ as: :simulation_progress_notification
                 get :import_subjects_from_campaign
                 post :import_subjects_from_csv
               end
-              jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy]
+              jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy] do
+                collection do
+                  post :resend_invite
+                end
+              end
             end
             jsonapi_resources :workshop_invited_subjects, only: %i[index] do
               member do

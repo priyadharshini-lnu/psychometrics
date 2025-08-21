@@ -2519,6 +2519,10 @@ en:
         content: Are you sure you want to remove the subject with email '%{subjectEmail}'?
         success: Subject with email '%{subjectEmail}'' was successfully removed.
         title: Remove Subject
+      resend_invite:
+        content: Resend invite to the selected subjects. Are you sure you want to proceed?
+        success: Invitations successfully resent.
+        title: Resend Invite
       statuses:
         accepted: Accepted
         cancelled: Cancelled
