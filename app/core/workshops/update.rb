@@ -19,6 +19,7 @@ module Workshops
                                        :disable_cancellation_and_rescheduling,
                                        :allow_late_cancellation_and_rescheduling,
                                        :campaign_assessment_group_id,
+                                       :start_time,
                                        :meeting_link))
 
         workshop.workshop_assessors.where.not(user_id: params[:workshop_assessors_ids]).destroy_all
