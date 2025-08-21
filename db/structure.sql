@@ -3790,7 +3790,8 @@ CREATE TABLE public.idp_templates (
     ai_assisted_idp_enabled boolean DEFAULT false NOT NULL,
     ai_assistant_id bigint,
     one_click_idp_enabled boolean DEFAULT false NOT NULL,
-    one_click_ai_assistant_id bigint
+    one_click_ai_assistant_id bigint,
+    skill_source_preference integer DEFAULT 0
 );
 
 
@@ -18039,6 +18040,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250806080321'),
 ('20250807052600'),
 ('20250806140955'),
 ('20250806102146'),
@@ -18925,4 +18927,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

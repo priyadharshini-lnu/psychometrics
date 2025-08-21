@@ -2281,6 +2281,10 @@ en:
       self_rating: Enable Self Rating
       show_reflections: Show Reflections
       skill_gap_report: Skill Gap Report
+      skill_source_preference: Skill Source
+      skill_sources:
+        from_ai: From General AI Knowledge
+        from_template: From Template & Mappings
       skills: Skills
       skills_privacy_messages:
         made_private: Skill '%{skill_name}' has been marked as private and will be hidden from your manager

@@ -68,6 +68,7 @@ export const IdpTR = t.intersection([
     aiEnabled: t.boolean,
     aiAssistedIdpEnabled: t.boolean,
     oneClickIdpEnabled: t.boolean,
+    skillSourcePreference: t.string,
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),
