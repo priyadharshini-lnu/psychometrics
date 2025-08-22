@@ -99,7 +99,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
 
   const videoRef = useRef<HTMLVideoElement>(null)
-  const promisesArrayRef = useRef<AxiosResponse[]>([])
+  const promisesArrayRef = useRef<Promise<AxiosResponse<unknown> | undefined>[]>([])
   const urlDetailsRef = useRef<UrlDetails | null>(null)
   const mediaStreamRef = useRef<MediaStream | null>(null)
 
@@ -171,7 +171,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
   const chunkCounterRef = useRef<number>(0)
 
-  const uploadChunk = async (chunk: Blob): Promise<void> => {
+  const uploadChunk = async (chunk: Blob): Promise<AxiosResponse<unknown> | undefined> => {
     if (!urlDetailsRef.current) {
       await getUploadUrl()
       if (!urlDetailsRef.current) {
@@ -188,7 +188,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
 
     const uploadUrl = urlDetailsRef.current.urls[chunkNumber]
-
+    chunkCounterRef.current += 1
     try {
       const uploadResp = await axios.put(uploadUrl, chunk, {
         headers: { 'Content-Type': supportedMimeType?.mimeType },
@@ -200,26 +200,26 @@ const MediaRecorderComponent: React.FC<Props> = ({
         },
       })
 
-      promisesArrayRef.current.push(uploadResp)
-      chunkCounterRef.current += 1
       removeError('upload')
+      return uploadResp
     } catch (err) {
       console.error('Error uploading chunk:', err)
       setError('upload')((err as Error).message)
+      throw err
     }
   }
 
   const completeMediaUpload = async (): Promise<void> => {
     if (!urlDetailsRef.current) {
       console.error('No URL details available for completing upload')
-      setError('complete')('Failed to complete upload: No URL details available')
+      setError('complete')(I18n.t('assessments.video_response.failed_to_complete_upload'))
       return
     }
 
     try {
       const resolvedArray = await Promise.all(promisesArrayRef.current)
       const uploadPartsArray = resolvedArray.map((resolvedPromise, index) => ({
-        etag: resolvedPromise.headers.etag,
+        etag: resolvedPromise?.headers.etag,
         part_number: index + 1,
       }))
       const { data } = await axios.put(
@@ -241,7 +241,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       stopVideoRecording()
     } catch (error) {
       console.error('Error completing media upload:', error)
-      setError('complete')('An unknown error occurred while completing the upload')
+      setError('complete')(I18n.t('assessments.video_response.error_while_uploading'))
     }
   }
 
@@ -264,7 +264,8 @@ const MediaRecorderComponent: React.FC<Props> = ({
     const chunkSize = chunk.size
     setTotalSize(prevSize => prevSize + chunkSize)
     chunksRef.current.push({ size: chunkSize })
-    uploadChunk(chunk)
+    const uploadPromise = uploadChunk(chunk)
+    promisesArrayRef.current.push(uploadPromise)
   }, [])
 
   const onStop = useCallback(async (blobUrl: string, lastBlob: Blob) => {
@@ -273,9 +274,18 @@ const MediaRecorderComponent: React.FC<Props> = ({
       stream.getTracks().forEach(track => track.stop())
     }
     setIsUploading(true)
-    uploadChunk(lastBlob)
-      .then(() => completeMediaUpload())
-      .finally(() => setIsUploading(false))
+
+    try {
+      const finalUploadPromise = uploadChunk(lastBlob)
+      promisesArrayRef.current.push(finalUploadPromise)
+
+      await finalUploadPromise
+      await completeMediaUpload()
+    } catch (error) {
+      setError('upload')(I18n.t('assessments.video_response.error_while_uploading'))
+    } finally {
+      setIsUploading(false)
+    }
   }, [stream])
 
   const {
@@ -310,7 +320,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       handleStartRecording()
     } catch (error) {
       console.error('Permission denied:', error)
-      setError('permission')('Failed to access camera and microphone')
+      setError('permission')(I18n.t('assessments.video_response.failed_to_access_permission'))
     } finally {
       setIsRequestingPermission(false)
     }
@@ -362,7 +372,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         onDeleteMedia()
       } catch (error) {
         console.error('Error discarding existing video:', error)
-        setError('discard')('Failed to discard existing video')
+        setError('discard')(I18n.t('assessments.video_response.error_while_discarding'))
         return
       }
     } else {

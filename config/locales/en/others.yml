@@ -1132,6 +1132,10 @@ en:
         mic: Mic
       discard: Discard
       discard_record_again: Discard & Record Again
+      error_while_discarding: Failed to discard existing video
+      error_while_uploading: An unknown error occurred while completing the upload
+      failed_to_access_permission: Failed to access camera and microphone
+      failed_to_complete_upload: 'Failed to complete upload: No URL details available'
       media_recorder:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
