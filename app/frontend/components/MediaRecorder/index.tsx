@@ -4,7 +4,7 @@
 import {
   useState, useRef, useEffect, useCallback,
 } from 'react'
-import axios, { AxiosResponse, AxiosProgressEvent } from 'axios'
+import { AxiosResponse, AxiosProgressEvent } from 'axios'
 import _ from 'lodash'
 import {
   Button, Flex, Alert,
@@ -17,6 +17,7 @@ import {
   AudioOutlined,
   CheckCircleFilled,
 } from '@ant-design/icons'
+import { axiosWithRetry } from '~/modules/survey/utils/network'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useReactMediaRecorder } from './components/MediaRecorder'
 import { useRecording } from '~/context/RecordingContext'
@@ -25,6 +26,8 @@ import ProgressWithCountdown, { ProgressWithCountdownProps } from './components/
 import styles from './styles.less'
 
 const { I18n } = window
+
+const axiosInstance = axiosWithRetry()
 
 interface MimeType {
   mimeType: string;
@@ -152,7 +155,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
   const getUploadUrl = useCallback(async (): Promise<void> => {
     try {
-      const response = await axios.get<UrlDetails>(
+      const response = await axiosInstance.get<UrlDetails>(
         `${mediaUrl}/upload_media_url.json?question_id=${questionId}&file_name=video.${supportedMimeType?.extension}`,
       )
       urlDetailsRef.current = response.data
@@ -190,7 +193,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     const uploadUrl = urlDetailsRef.current.urls[chunkNumber]
     chunkCounterRef.current += 1
     try {
-      const uploadResp = await axios.put(uploadUrl, chunk, {
+      const uploadResp = await axiosInstance.put(uploadUrl, chunk, {
         headers: { 'Content-Type': supportedMimeType?.mimeType },
         onUploadProgress: (progressEvent: AxiosProgressEvent) => {
           if (progressEvent.total) {
@@ -222,7 +225,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         etag: resolvedPromise?.headers.etag,
         part_number: index + 1,
       }))
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${mediaUrl}/complete_multipart_upload`,
         {
           parts: uploadPartsArray,
@@ -363,7 +366,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
   const handleDiscard = useCallback(async (): Promise<void> => {
     if (existingMedia) {
       try {
-        await axios.delete(`${mediaUrl}/remove_media`, {
+        await axiosInstance.delete(`${mediaUrl}/remove_media`, {
           headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') },
           data: { media_id: existingMedia?.id },
         })
