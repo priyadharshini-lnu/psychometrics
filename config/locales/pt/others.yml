@@ -2197,6 +2197,7 @@ pt:
       uniq_simulation: Esta avaliação de simulação já está presente no sistema. O ID desta avaliação é %{id}
       uniq_skillvue: Esta avaliação Skillvue já está presente no sistema. O ID desta avaliação é %{id}
       update_workshop:
+        bookings_exist: Não é possível alterar o horário porque os participantes já reservaram esta faixa horária.
         less_than_booked: O total de lugares deve ser superior ao reservado
       user_availability_date:
         overlaps_date: Sobrepõe-se a outra disponibilidade %{range}
