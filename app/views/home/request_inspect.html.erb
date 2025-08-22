@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Request Headers Inspection</title>
+</head>
+<body>
+  <h1>Request Headers</h1>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Header Name</th>
+        <th>Header Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @headers.each do |name, value| %>
+        <tr>
+          <td><%= name %></td>
+          <td><%= value %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>

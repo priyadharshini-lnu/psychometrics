@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   post 'extend_session', to: 'users/session_extensions#extend'
   get 'privacy-statement', to: 'home#privacy_statement'
   get 'privacy-statement/:lang', to: 'home#privacy_statement'
+  get 'request_inspect', to: 'home#request_inspect'
 
   concern :media_uploades do
     member do
@@ -1089,7 +1090,6 @@ as: :simulation_progress_notification
       post :save_skills, on: :collection
     end
     resources :direct_reportees, only: %i[index], controller: 'end_user/direct_reportees'
-
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify', as: :identify
