@@ -11,9 +11,7 @@ import { ConnectedProps, connect } from 'react-redux'
 import { WorkshopShort, WorkshopShortTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
-import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { WorkshopAddFormModal } from './WorkshopAddFormModal'
 import { formatWorkshopDate } from '~/utils/workshop'
 import { useResources } from '~/hooks/useResources'
 
@@ -59,7 +57,6 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
             render={(_, workshop) => <RemoveWorkshop campaignId={campaignId} inviteId={inviteId} workshop={workshop} />}
           />
         </Resource.Table>
-        <Modals modals={{ WorkshopAddFormModal }} />
       </Resource>
     </>
   )

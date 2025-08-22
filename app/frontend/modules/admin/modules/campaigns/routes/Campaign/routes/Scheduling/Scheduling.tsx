@@ -3,7 +3,7 @@ import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { WorkshopList } from './Workshop'
-import { Invites, InvitesForm } from './Invites'
+import { Invites } from './Invites'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
@@ -53,7 +53,7 @@ const SchedulingComponent: React.FC<Props> = ({ campaignPermissions }) => {
           { redirect: true, from: '', to: 'assessment_center' },
           { path: '/assessment_center', component: <WorkshopList /> },
           { path: '/:tab', component: <Invites /> },
-          { path: '/invites/add_invite', component: <InvitesForm /> }]}
+        ]}
         urlPrefix=""
       />
     </div>

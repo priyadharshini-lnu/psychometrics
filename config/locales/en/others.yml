@@ -1887,7 +1887,9 @@ en:
       continue: Continue
       copied: Copied to clipboard
       default: Default
+      disabled: Disabled
       download: Download
+      enabled: Enabled
       file: File
       global_import: Is Global Import?
       minutes: Minutes

@@ -343,14 +343,18 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
     return new Promise(async (resolve, reject) => {
       const {
-        data: response, error, errors,
+        data: response, meta, error, errors,
       } = await client.fetch<R>([fetchResourceName, id, apiConfig || {}])
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
         captureSchemaValidationError(response)
         const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
+        const camelizedMeta = humps.camelizeKeys(meta)
         updateIndividualRecord(camelizedResponse)
+        if (meta) {
+          setState((previousState: ResourceState<R[], M>) => ({ ...previousState, meta: camelizedMeta }))
+        }
         resolve(camelizedResponse)
         if (responseType || args.responseType) {
           responseTypeValidation(args.responseType || responseType, camelizedResponse)

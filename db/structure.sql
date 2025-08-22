@@ -8122,7 +8122,8 @@ CREATE TABLE public.workshop_invites (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     campaign_id bigint,
-    campaign_assessment_group_id bigint
+    campaign_assessment_group_id bigint,
+    name character varying
 );
 
 
@@ -18040,6 +18041,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250820163652'),
 ('20250806080321'),
 ('20250807052600'),
 ('20250806140955'),

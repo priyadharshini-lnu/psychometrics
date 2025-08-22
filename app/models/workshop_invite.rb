@@ -31,6 +31,6 @@ class WorkshopInvite < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id title campaign_id]
+    %w[id title name campaign_id]
   end
 end

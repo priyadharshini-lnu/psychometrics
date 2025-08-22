@@ -7,6 +7,10 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def update?
+        has_permission?(:workshops, :manage)
+      end
+
       def show?
         has_permission?(:workshops, :view)
       end

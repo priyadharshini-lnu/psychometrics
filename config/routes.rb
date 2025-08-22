@@ -1378,7 +1378,7 @@ as: :simulation_progress_notification
                 get :subject_assessor_assessments, on: :collection
               end
             end
-            jsonapi_resources :workshop_invites, only: %i[index create destroy show] do
+            jsonapi_resources :workshop_invites, only: %i[index create destroy show update] do
               jsonapi_relationships
               collection do
                 get :import_subjects_from_campaign

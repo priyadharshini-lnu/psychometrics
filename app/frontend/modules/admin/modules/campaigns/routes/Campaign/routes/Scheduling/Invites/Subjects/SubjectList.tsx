@@ -15,9 +15,7 @@ import {
 } from '~/modules/admin/modules/UserAvailability/core/workshopInvitedSubjects'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { ResourceAvatar } from '~/glint'
-import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { SubjectAddFormModal } from './SubjectAddFormModal'
 import dayjs from '~/utils/dayjs'
 import { ActionsDropdown } from './ActionsDropdown'
 
@@ -243,7 +241,6 @@ const SubjectsTable = ({ openModal, assessmentCenterPath }) => {
           render={(_, workshopInvitedSubject) => <RemoveSubject workshopInvitedSubject={workshopInvitedSubject} />}
         />
       </Resource.Table>
-      <Modals modals={{ SubjectAddFormModal }} />
     </>
   )
 }

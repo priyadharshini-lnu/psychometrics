@@ -427,6 +427,8 @@ en:
         exceeded_subjects_count: Campaign has %{users} subjects. You can only add %{count} subjects per invite
         id: ID
         invites: Invites
+        name: Name
+        name_placeholder: Enter invite name
         next: Next
         not_selected: Not selected
         requests: Requests
