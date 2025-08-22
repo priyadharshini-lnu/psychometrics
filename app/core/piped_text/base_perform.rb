@@ -39,7 +39,7 @@ module PipedText
 
             value
           else
-            ''
+            "{{#{match}}}"
           end
         end
       broadcast :ok, result
