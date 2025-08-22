@@ -781,8 +781,8 @@ sl:
       new:
         header: Prenos v velikem obsegu
       reports_unavailable: Trenutno poročila niso na voljo za prenos. Potrdite, da so poročila, ki jih želite prenesti, na voljo.
-      select_reports_for_download: Izberite vsaj eno poročilo za prenos.
-      select_reports_for_regenerate: Izberite vsaj eno poročilo, ki ga želite obnoviti.
+      select_users_for_download: Za prenos poročil izberite vsaj enega uporabnika.
+      select_users_for_regenerate: Izberite vsaj enega uporabnika, da obnovi poročila.
     cable:
       notification:
         assessment_factors: Dejavniki se pridobijo
@@ -2448,6 +2448,7 @@ sl:
         requested_rescheduling: Zahtevana sprememba termina
         requested_rescheduling_rejected: Prerazporeditev zavrnjena
         rescheduled: Prestavljeno
+        scheduled: Načrtovani
       subject: Predmet
     job_role:
       are_you_sure_to_remove: Ali ste prepričani, da ga odstranite?
@@ -2729,21 +2730,31 @@ sl:
         sms_contacts: SMS stiki
         subjects: Predmetov
     piped_text_modal:
+      assessment_center: Center za ocenjevanje
       assessment_id: ID ocenjevanja
       campaign_id: ID oglaševalske akcije
       campaign_name: Ime kampanje
       campaigns: Kampanje
+      description: Opis
+      duration: Trajanje
+      end_time: Končni čas
       insight_page_link: Povezava do strani »Vpogled«
       insight_page_url: URL strani z vpogledi
+      invite_title: Naslov
+      invites: Vabi
       join_link: Povezava za pridružitev
       magic_link: Čarobna povezava
       magic_url: Čarobni URL
+      platform_url_links: Platforma Url in povezave
       profile_custom_field: Polje »Profil po meri«
       project_name: Ime projekta
       projects: Projekti
       report_name: Ime poročila
+      start_time: Čas začetka
       text: Besedilno sporočilo
       title: Dodajanje besedila v cevi
+      user_reports: Poročila uporabnikov
+      users: Uporabniki
     proctoring_sessions:
       columns:
         comment: Komentar
@@ -3422,8 +3433,6 @@ sl:
         name_label: Ime
         next: Naslednji
         required_error: Zahteva
-        reschedule_duration_max_error: Ne sme biti daljši od 30 dni
-        reschedule_duration_min_error: Ne sme biti krajši od 1 minute
         resources_panel:
           description: Dodajte povezave do vseh virov, za katere želite, da imajo moderatorji dostop.
           resource_name_placeholder: Ime vira

@@ -781,8 +781,8 @@ hu:
       new:
         header: Tömeges letöltés
       reports_unavailable: Jelenleg nem tölthetők le jelentések. Kérjük, ellenőrizze, hogy a letölteni kívánt jelentések elérhetők-e.
-      select_reports_for_download: Kérjük, válasszon ki legalább egy jelentést a letöltéshez.
-      select_reports_for_regenerate: Kérjük, válasszon ki legalább egy jelentést a regeneráláshoz.
+      select_users_for_download: Kérjük, válasszon legalább egy felhasználót a jelentések letöltéséhez.
+      select_users_for_regenerate: Kérjük, válasszon legalább egy felhasználót a jelentések regenerálásához.
     cable:
       notification:
         assessment_factors: A tényezők bekerültek
@@ -2450,6 +2450,7 @@ hu:
         requested_rescheduling: Kért átütemezés
         requested_rescheduling_rejected: Átütemezés elutasítva
         rescheduled: Átütemezve
+        scheduled: Tervezett
       subject: Tárgy
     job_role:
       are_you_sure_to_remove: Biztos, hogy el akarja távolítani?
@@ -2731,21 +2732,31 @@ hu:
         sms_contacts: SMS-kapcsolatok
         subjects: Témák
     piped_text_modal:
+      assessment_center: Értékelő központ
       assessment_id: Értékelési azonosító
       campaign_id: Kampány azonosítója
       campaign_name: Kampány neve
       campaigns: Kampányok
+      description: Leírás
+      duration: Időtartam
+      end_time: Végidő
       insight_page_link: Elemzési oldal linkje
       insight_page_url: Elemzési oldal URL-címe
+      invite_title: Cím
+      invites: Meghívók
       join_link: Csatlakozás link
       magic_link: Magic link
       magic_url: Mágikus URL
+      platform_url_links: Platform Url és linkek
       profile_custom_field: Profil egyéni mező
       project_name: Projekt neve
       projects: Projektek
       report_name: Jelentés neve
+      start_time: A kezdési időpont
       text: Szöveges üzenet
       title: Továbbított szöveg hozzáadása
+      user_reports: Felhasználói jelentések
+      users: Felhasználók
     proctoring_sessions:
       columns:
         comment: Megjegyzés
@@ -3424,8 +3435,6 @@ hu:
         name_label: Név
         next: Következő
         required_error: Szükséges
-        reschedule_duration_max_error: Nem lehet hosszabb 30 napnál
-        reschedule_duration_min_error: Nem lehet kevesebb, mint 1 perc
         resources_panel:
           description: Add hozzá a linkeket minden olyan forráshoz, amelyhez szeretnéd, hogy a facilitátorok hozzáférjenek.
           resource_name_placeholder: Erőforrás neve

@@ -2226,6 +2226,7 @@ ar:
       uniq_simulation: تقييم المحاكاة هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
       uniq_skillvue: تقييم Skillvue هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
       update_workshop:
+        bookings_exist: لا يمكن تعديل الجدول الزمني لأن المشاركين قد حجزوا هذه الفترة الزمنية بالفعل.
         less_than_booked: يجب أن يكون إجمالي المقاعد أكبر من الحجز
       user_availability_date:
         overlaps_date: يتداخل مع توفر آخر %{range}

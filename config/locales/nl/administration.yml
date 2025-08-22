@@ -781,8 +781,8 @@ nl:
       new:
         header: Bulk downloaden
       reports_unavailable: Op dit moment zijn er geen rapporten beschikbaar om te downloaden. Controleer of de rapporten die je wilt downloaden beschikbaar zijn.
-      select_reports_for_download: Selecteer ten minste één rapport om te downloaden.
-      select_reports_for_regenerate: Selecteer minstens één rapport om te regenereren.
+      select_users_for_download: Selecteer ten minste één gebruiker om rapporten te downloaden.
+      select_users_for_regenerate: Selecteer ten minste één gebruiker om rapporten te regenereren.
     cable:
       notification:
         assessment_factors: Factoren worden opgehaald
@@ -2448,6 +2448,7 @@ nl:
         requested_rescheduling: Aangevraagde herplanning
         requested_rescheduling_rejected: Herschikking Afgewezen
         rescheduled: Verpland
+        scheduled: Gepland
       subject: Onderwerp
     job_role:
       are_you_sure_to_remove: Weet je zeker dat je moet verwijderen?
@@ -2729,21 +2730,31 @@ nl:
         sms_contacts: SMS Contacten
         subjects: Onderwerpen
     piped_text_modal:
+      assessment_center: Beoordelingscentrum
       assessment_id: Beoordeling ID
       campaign_id: Campagne-ID
       campaign_name: Naam campagne
       campaigns: Campagnes
+      description: Beschrijving
+      duration: Duur
+      end_time: Eindtijd
       insight_page_link: Inzicht pagina link
       insight_page_url: Inzicht pagina URL
+      invite_title: Titel
+      invites: Nodigt  uit
       join_link: Word lid Link
       magic_link: Magische link
       magic_url: Magische URL
+      platform_url_links: Platform Url en koppelingen
       profile_custom_field: Profiel aangepast veld
       project_name: Naam project
       projects: Projecten
       report_name: Rapport Naam
+      start_time: Starttijd
       text: Tekst
       title: Tekst met passepoil toevoegen
+      user_reports: Rapporten van gebruikers
+      users: Gebruikers
     proctoring_sessions:
       columns:
         comment: Opmerking
@@ -3426,8 +3437,6 @@ nl:
         name_label: Naam
         next: Volgende
         required_error: Vereist
-        reschedule_duration_max_error: Kan niet langer zijn dan 30 dagen
-        reschedule_duration_min_error: Kan niet korter zijn dan 1 minuut
         resources_panel:
           description: Voeg links toe naar bronnen waartoe de begeleiders toegang moeten hebben.
           resource_name_placeholder: Naam bron

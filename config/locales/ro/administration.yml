@@ -781,8 +781,8 @@ ro:
       new:
         header: Descărcare în bloc
       reports_unavailable: În acest moment, nu sunt disponibile rapoarte pentru descărcare. Vă rugăm să confirmați că rapoartele pe care doriți să le descărcați sunt disponibile.
-      select_reports_for_download: Vă rugăm să selectați cel puțin un raport pentru descărcare.
-      select_reports_for_regenerate: Vă rugăm să selectați cel puțin un raport pentru regenerare.
+      select_users_for_download: Vă rugăm să selectați cel puțin un utilizator pentru a descărca rapoarte.
+      select_users_for_regenerate: Vă rugăm să selectați cel puțin un utilizator pentru a regenera rapoartele.
     cable:
       notification:
         assessment_factors: Factorii sunt preluați
@@ -2448,6 +2448,7 @@ ro:
         requested_rescheduling: Reprogramare solicitată
         requested_rescheduling_rejected: Reprogramare respinsă
         rescheduled: Reprogramat
+        scheduled: Programat
       subject: Subiect
     job_role:
       are_you_sure_to_remove: Sunteți sigur că doriți să eliminați?
@@ -2729,21 +2730,31 @@ ro:
         sms_contacts: Contacte SMS
         subjects: Utilizatori
     piped_text_modal:
+      assessment_center: Centrul de evaluare
       assessment_id: ID evaluare
       campaign_id: Codul campaniei
       campaign_name: Numele campaniei
       campaigns: Campanii
+      description: Descriere
+      duration: Durată
+      end_time: Ora de sfârșit
       insight_page_link: Link către pagina Insight
       insight_page_url: Adresa URL a paginii Insight
+      invite_title: Titlu
+      invites: Invitații
       join_link: Link alăturați-vă
       magic_link: Legătura magică
       magic_url: Adresa URL magică
+      platform_url_links: Url și linkuri ale platformei
       profile_custom_field: Câmp personalizat profil
       project_name: Numele proiectului
       projects: Proiecte
       report_name: Numele raportului
+      start_time: Ora de începere
       text: Text
       title: Adăugați text canalizat
+      user_reports: Rapoarte ale utilizatorilor
+      users: Utilizatori
     proctoring_sessions:
       columns:
         comment: Comentariu
@@ -3422,8 +3433,6 @@ ro:
         name_label: Nume
         next: Următor
         required_error: Necesar
-        reschedule_duration_max_error: Nu poate fi mai mare de 30 de zile
-        reschedule_duration_min_error: Nu poate fi mai mic de 1 minut
         resources_panel:
           description: Adăugați linkurile către orice resurse la care doriți să aibă acces facilitatorii.
           resource_name_placeholder: Nume resursă

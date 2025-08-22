@@ -781,8 +781,8 @@ es-ES:
       new:
         header: Descarga masiva
       reports_unavailable: En este momento, no hay informes disponibles para descargar. Por favor, confirme que los informes que desea descargar están disponibles.
-      select_reports_for_download: Seleccione al menos un informe para descargar.
-      select_reports_for_regenerate: Seleccione al menos un informe para regenerar.
+      select_users_for_download: Seleccione al menos un usuario para descargar informes.
+      select_users_for_regenerate: Seleccione al menos una usuario para regenerar informes.
     cable:
       notification:
         assessment_factors: Los factores se recuperan
@@ -2448,6 +2448,7 @@ es-ES:
         requested_rescheduling: Reprogramación solicitada
         requested_rescheduling_rejected: Reprogramación Rechazada
         rescheduled: Reprogramado
+        scheduled: Programado
       subject: Sujeto
     job_role:
       are_you_sure_to_remove: "¿Estás seguro de quitarlo?"
@@ -2729,21 +2730,31 @@ es-ES:
         sms_contacts: Contactos SMS
         subjects: Temas
     piped_text_modal:
+      assessment_center: Centro de Evaluación
       assessment_id: Identificación de la evaluación
       campaign_id: ID de campaña
       campaign_name: Nombre de la campaña
       campaigns: Campañas
+      description: Descripción
+      duration: Duración
+      end_time: Hora de finalización
       insight_page_link: Enlace a la página Insight
       insight_page_url: URL de la página Insight
+      invite_title: Título
+      invites: Invita
       join_link: Enlace
       magic_link: Enlace mágico
       magic_url: URL mágica
+      platform_url_links: Url y enlaces de la plataforma
       profile_custom_field: Campo personalizado del perfil
       project_name: Nombre del proyecto
       projects: Proyectos
       report_name: Nombre del informe
+      start_time: Hora de inicio
       text: Texto
       title: Añadir texto
+      user_reports: Informes de usuarios
+      users: Usuarios
     proctoring_sessions:
       columns:
         comment: Comentario
@@ -3426,8 +3437,6 @@ es-ES:
         name_label: Nombre
         next: Siguiente
         required_error: Requerido
-        reschedule_duration_max_error: No puede ser superior a 30 días
-        reschedule_duration_min_error: No puede ser inferior a 1 minuto
         resources_panel:
           description: Añade los enlaces a los recursos a los que quieras que tengan acceso los facilitadores.
           resource_name_placeholder: Nombre del recurso

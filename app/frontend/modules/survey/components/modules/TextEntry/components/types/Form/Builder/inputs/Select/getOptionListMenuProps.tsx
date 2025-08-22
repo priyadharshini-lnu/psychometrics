@@ -5,10 +5,13 @@ import {
   MenuProps, Input, InputRef, Row,
 } from 'antd'
 
+import { useSearchParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { MenuItem } from '~/interfaces/Antd'
 import Utils from '~/modules/survey/utils/Utils'
 import { useInputFocus } from '~/hooks/useInputFocus'
 import { BuilderModel } from '~/modules/survey/interfaces/questions/TextEntry'
+import { RootState } from '~/modules/survey/core/rootReducers'
 
 import { DnDElement } from '~/components/DnD'
 import styles from '../../../FormStyle.less'
@@ -31,6 +34,10 @@ export const getOptionListMenuProps = ({
   const [text, setText] = useState<string>('')
   const inputRef = useRef<InputRef>(null)
   const setFocus = useInputFocus(inputRef)
+  const [params] = useSearchParams()
+  const { defaultLanguage } = useSelector((state:RootState) => state.survey.builder?.assessment || {})
+  const currentLocale = params.get('assessmentLang') || 'en'
+  const allowRemoveOrAddOption = defaultLanguage === currentLocale
 
   // eslint-disable-next-line arrow-body-style
   const addIdToOptionList = (optionList: string[]): OptionListState[] => {
@@ -81,6 +88,20 @@ export const getOptionListMenuProps = ({
     }, false)
   }
 
+  const handleEditOption = (i: number, newValue: string): void => {
+    const updatedOptions = options.map((option, index) => {
+      if (index === i) {
+        return { ...option, text: newValue }
+      }
+      return option
+    })
+    model.changeArrayProps({
+      collection: 'formTypes',
+      i: index,
+      val: { ...type, optionList: updatedOptions.map(o => o.text) },
+    }, false)
+  }
+
   const updateOptionList = (): void => {
     model.changeArrayProps({
       collection: 'formTypes',
@@ -106,13 +127,15 @@ export const getOptionListMenuProps = ({
             option={option.text}
             i={i}
             removeOption={removeOption}
+            onEditOption={handleEditOption}
+            allowRemoveOption={allowRemoveOrAddOption}
           />
         </DnDElement>
       ),
     }
   ))
-  menuItems = [
-    ...menuItems,
+
+  const addNewOptionMenuItems: MenuItem[] = [
     { type: 'divider' },
     {
       key: 'input',
@@ -128,8 +151,9 @@ export const getOptionListMenuProps = ({
           />
           <a className="ant-dropdown-link" onClick={addOptionEventHandler}>Add</a>
         </Row>),
-    },
-  ]
+    }]
+
+  menuItems = allowRemoveOrAddOption ? [...menuItems, ...addNewOptionMenuItems] : menuItems
 
   return ({ items: menuItems, className: styles.optionList })
 }

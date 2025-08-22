@@ -781,8 +781,8 @@ cs:
       new:
         header: Hromadné stahování
       reports_unavailable: V současné době nejsou k dispozici žádné zprávy ke stažení. Potvrďte, že zprávy, které chcete stáhnout, jsou k dispozici.
-      select_reports_for_download: Vyberte alespoň jednu zprávu ke stažení.
-      select_reports_for_regenerate: Vyberte alespoň jednu zprávu, kterou chcete regenerovat.
+      select_users_for_download: Vyberte prosím alespoň jednoho uživatele pro stažení přehledů.
+      select_users_for_regenerate: Vyberte prosím alespoň jednoho uživatele pro regeneraci zpráv.
     cable:
       notification:
         assessment_factors: Faktory jsou načteny
@@ -2448,6 +2448,7 @@ cs:
         requested_rescheduling: Požadované přeplánování
         requested_rescheduling_rejected: Změna termínu Zamítnuto
         rescheduled: Přeloženo na
+        scheduled: Plánované
       subject: Předmět
     job_role:
       are_you_sure_to_remove: Určitě je chcete odstranit?
@@ -2729,21 +2730,31 @@ cs:
         sms_contacts: Kontakty SMS
         subjects: Předměty
     piped_text_modal:
+      assessment_center: Hodnotící centrum
       assessment_id: ID hodnocení
       campaign_id: ID kampaně
       campaign_name: Název kampaně
       campaigns: Kampaně
+      description: Popis
+      duration: Doba trvání
+      end_time: Čas ukončení
       insight_page_link: Odkaz na stránku Insight
       insight_page_url: Adresa URL stránky Insight
+      invite_title: Název
+      invites: Pozvánky
       join_link: Připojte se k odkazu
       magic_link: Magický odkaz
       magic_url: Magická adresa URL
+      platform_url_links: Url a odkazy na platformu
       profile_custom_field: Vlastní pole profilu
       project_name: Název projektu
       projects: Projekty
       report_name: Název zprávy
+      start_time: Čas zahájení
       text: Text
       title: Přidání textu s potrubím
+      user_reports: Uživatelské zprávy
+      users: Uživatelé
     proctoring_sessions:
       columns:
         comment: Komentář
@@ -3426,8 +3437,6 @@ cs:
         name_label: Název
         next: Další
         required_error: Požadované
-        reschedule_duration_max_error: Nesmí být delší než 30 dní
-        reschedule_duration_min_error: Nesmí být kratší než 1 minuta
         resources_panel:
           description: Přidejte odkazy na všechny zdroje, ke kterým chcete, aby měli facilitátoři přístup.
           resource_name_placeholder: Název zdroje

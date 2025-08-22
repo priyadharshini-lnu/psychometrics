@@ -62,6 +62,8 @@ class UserReport < ApplicationRecord
     end
     state :pending_qc do
       event :start_qc, transitions_to: :qc_in_progress
+      event :send_for_approval, transitions_to: :qc_completed
+      event :approve, transitions_to: :approved # Allow direct approval for one-level QC
     end
     state :qc_in_progress do
       event :abort_qc, transitions_to: :pending_qc

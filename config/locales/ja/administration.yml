@@ -781,8 +781,8 @@ ja:
       new:
         header: 一括ダウンロード
       reports_unavailable: 現在、ダウンロード可能なレポートはありません。 ダウンロードしたいレポートがあるかどうかご確認ください。
-      select_reports_for_download: ダウンロードするレポートを1つ以上選択してください。
-      select_reports_for_regenerate: 再生するレポートを少なくとも1つ選択してください。
+      select_users_for_download: レポートをダウンロードするには、少なくとも1人のユーザーを選択してください。
+      select_users_for_regenerate: レポートを再生するには、少なくとも1人のユーザーを選択してください。
     cable:
       notification:
         assessment_factors: 要因の取得
@@ -2448,6 +2448,7 @@ ja:
         requested_rescheduling: リスケジュールのリクエスト
         requested_rescheduling_rejected: リスケジュール却下
         rescheduled: 予定変更
+        scheduled: 予定
       subject: 対象
     job_role:
       are_you_sure_to_remove: 本当に外していいのか？
@@ -2729,21 +2730,31 @@ ja:
         sms_contacts: SMSコンタクト
         subjects: 対象
     piped_text_modal:
+      assessment_center: アセスメント・センター
       assessment_id: アセスメントID
       campaign_id: キャンペーンID
       campaign_name: キャンペーン名
       campaigns: キャンペーン
+      description: 説明
+      duration: 期間
+      end_time: 終了時間
       insight_page_link: インサイトページリンク
       insight_page_url: インサイトページURL
+      invite_title: タイトル
+      invites: 招待
       join_link: リンク
       magic_link: マジックリンク
       magic_url: マジックURL
+      platform_url_links: プラットフォームのURLとリンク
       profile_custom_field: プロフィール・カスタム・フィールド
       project_name: プロジェクト名
       projects: プロジェクト
       report_name: レポート名
+      start_time: 開始時間
       text: テキスト
       title: パイピング・テキストを追加する
+      user_reports: ユーザーレポート
+      users: ユーザー
     proctoring_sessions:
       columns:
         comment: コメント
@@ -3426,8 +3437,6 @@ ja:
         name_label: 名称
         next: 次のページ
         required_error: 必須
-        reschedule_duration_max_error: 30日以上は不可
-        reschedule_duration_min_error: 1分以内
         resources_panel:
           description: ファシリテーターにアクセスさせたいリソースへのリンクを追加してください。
           resource_name_placeholder: リソース名

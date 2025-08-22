@@ -15,6 +15,10 @@ class CampaignOptions < ApplicationRecord
   before_create :set_enable_video_call_recording_from_project
   before_update :disable_proctoring_on_workshop_activity, if: :proctoring_enabled_changed?
 
+  def allow_video_call_recording
+    campaign.project.privacy_setting.allow_video_call_recording
+  end
+
   private
 
   def disable_proctoring_on_workshop_activity

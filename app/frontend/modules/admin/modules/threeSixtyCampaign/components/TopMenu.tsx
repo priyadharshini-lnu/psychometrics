@@ -69,7 +69,7 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
     icon: <PieChartOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.report.title'),
   })
-  menuItems.push({
+  campaignPermissions.viewDatasheets && menuItems.push({
     key: 'datasheet',
     icon: <DatabaseOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.datasheet.title'),

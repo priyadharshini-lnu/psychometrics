@@ -92,6 +92,7 @@ features:
   enable_intl_for_admins: <%= ENV.fetch('ENABLE_INTL_FOR_ADMINS', 'false') == 'true' %>
   ai_assistant_enabled: <%= ENV.fetch('AI_ASSISTANT_ENABLED', 'false') == 'true' %>
   disable_recaptcha: <%= ENV.fetch('DISABLE_RECAPTCHA', 'false') == 'true' %>
+  disable_meeting_recording: <%= ENV.fetch('DISABLE_MEETING_RECORDING', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:

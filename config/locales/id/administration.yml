@@ -781,8 +781,8 @@ id:
       new:
         header: Unduh Massal
       reports_unavailable: Saat ini, tidak ada laporan yang tersedia untuk diunduh. Harap konfirmasikan bahwa laporan yang ingin Anda unduh tersedia.
-      select_reports_for_download: Pilihlah setidaknya satu laporan untuk diunduh.
-      select_reports_for_regenerate: Pilih setidaknya satu laporan untuk dibuat ulang.
+      select_users_for_download: Pilih setidaknya satu pengguna untuk mengunduh laporan.
+      select_users_for_regenerate: Pilih setidaknya satu pengguna untuk meregenerasi laporan.
     cable:
       notification:
         assessment_factors: Faktor diambil
@@ -2448,6 +2448,7 @@ id:
         requested_rescheduling: Diminta Penjadwalan Ulang
         requested_rescheduling_rejected: Penjadwalan Ulang Ditolak
         rescheduled: Dijadwalkan Ulang
+        scheduled: Terjadwal
       subject: Subyek
     job_role:
       are_you_sure_to_remove: Apakah Anda yakin untuk menghapusnya?
@@ -2729,21 +2730,31 @@ id:
         sms_contacts: Kontak SMS
         subjects: Mata pelajaran
     piped_text_modal:
+      assessment_center: Pusat Penilaian
       assessment_id: ID Penilaian
       campaign_id: ID Kampanye
       campaign_name: Nama Kampanye
       campaigns: Kampanye
+      description: Deskripsi
+      duration: Durasi
+      end_time: Akhir zaman
       insight_page_link: Tautan Halaman Insight
       insight_page_url: URL Halaman Insight
+      invite_title: Judul
+      invites: Mengundang
       join_link: Link Bergabung
       magic_link: Tautan Ajaib
       magic_url: URL ajaib
+      platform_url_links: Url dan Tautan Platform
       profile_custom_field: Bidang Kustom Profil
       project_name: Nama Proyek
       projects: Proyek
       report_name: Nama Laporan
+      start_time: Waktu mulai
       text: Teks
       title: Tambahkan Teks Piped
+      user_reports: Laporan Pengguna
+      users: Pengguna
     proctoring_sessions:
       columns:
         comment: Komentar
@@ -3422,8 +3433,6 @@ id:
         name_label: Nama
         next: Depan
         required_error: Diperlukan
-        reschedule_duration_max_error: Tidak boleh lebih dari 30 hari
-        reschedule_duration_min_error: Tidak boleh kurang dari 1 menit
         resources_panel:
           description: Tambahkan tautan ke sumber daya apa pun yang Anda inginkan untuk diakses oleh fasilitator.
           resource_name_placeholder: Nama Sumber Daya

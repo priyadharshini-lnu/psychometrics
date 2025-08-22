@@ -2189,6 +2189,7 @@ sk:
       uniq_simulation: Toto simulačné hodnotenie je už v systéme prítomné. ID tohto hodnotenia je %{id}
       uniq_skillvue: Toto hodnotenie Skillvue je už v systéme prítomné. ID tohto hodnotenia je %{id}
       update_workshop:
+        bookings_exist: Rozvrh nie je možné upraviť, pretože účastníci si už tento časový interval rezervovali.
         less_than_booked: Celkový počet miest musí byť väčší ako rezervovaný
       user_availability_date:
         overlaps_date: Prekrýva inú dostupnosť %{range}

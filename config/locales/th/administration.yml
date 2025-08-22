@@ -781,8 +781,8 @@ th:
       new:
         header: ดาวน์โหลดจำนวนมาก
       reports_unavailable: ในขณะนี้ยังไม่มีรายงานให้ดาวน์โหลด โปรดยืนยันว่ารายงานที่คุณต้องการดาวน์โหลดพร้อมใช้งาน
-      select_reports_for_download: กรุณาเลือกอย่างน้อยหนึ่งรายงานเพื่อดาวน์โหลด
-      select_reports_for_regenerate: กรุณาเลือกอย่างน้อยหนึ่งรายงานเพื่อสร้างใหม่
+      select_users_for_download: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนในการดาวน์โหลดรายงาน
+      select_users_for_regenerate: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนเพื่อสร้างรายงานใหม่
     cable:
       notification:
         assessment_factors: ดึงปัจจัย
@@ -2448,6 +2448,7 @@ th:
         requested_rescheduling: การขอเปลี่ยนกําหนดการ
         requested_rescheduling_rejected: การกําหนดเวลาใหม่ถูกปฏิเสธ
         rescheduled: เลื่อนกําหนดเวลา
+        scheduled: กำหนดไว้แล้ว
       subject: ชื่อเรื่อง
     job_role:
       are_you_sure_to_remove: คุณแน่ใจหรือไม่ที่จะลบ?
@@ -2729,21 +2730,31 @@ th:
         sms_contacts: ติดต่อ SMS
         subjects: หัวข้อ
     piped_text_modal:
+      assessment_center: ศูนย์ประเมินผล
       assessment_id: รหัสการประเมิน
       campaign_id: รหัสแคมเปญ
       campaign_name: ชื่อแคมเปญ
       campaigns: แคมเปญ
+      description: คำอธิบาย
+      duration: ระยะเวลา
+      end_time: เวลาสิ้นสุด
       insight_page_link: ลิงค์หน้าข้อมูลเชิงลึก
       insight_page_url: URL ของหน้าข้อมูลเชิงลึก
+      invite_title: ชื่อเรื่อง
+      invites: คำเชิญ
       join_link: ลิงค์เข้าร่วม
       magic_link: ลิงค์เมจิก
       magic_url: URL เมจิก
+      platform_url_links: แพลตฟอร์ม URL และลิงก์
       profile_custom_field: โปรไฟล์ฟิลด์ที่กําหนดเอง
       project_name: ชื่อโครงการ
       projects: โครงการ
       report_name: ชื่อรายงาน
+      start_time: เวลาเริ่มต้น
       text: ข้อความ
       title: เพิ่มข้อความท่อ
+      user_reports: รายงานของผู้ใช้
+      users: ผู้ใช้
     proctoring_sessions:
       columns:
         comment: ติชม
@@ -3422,8 +3433,6 @@ th:
         name_label: ชื่อ
         next: ต่อไป
         required_error: ต้องระบุ
-        reschedule_duration_max_error: ไม่เกิน 30 วัน
-        reschedule_duration_min_error: ต้องไม่น้อยกว่า 1 นาที
         resources_panel:
           description: เพิ่มลิงก์ไปยังแหล่งข้อมูลที่คุณต้องการให้ผู้อํานวยความสะดวกสามารถเข้าถึงได้
           resource_name_placeholder: ชื่อทรัพยากร

@@ -82,4 +82,5 @@ export interface CampaignOptions {
   integrationType: 'iframe' | 'ldb'
   trial: boolean
   enableVideoCallRecording?: boolean;
+  allowVideoCallRecording?: boolean;
 }

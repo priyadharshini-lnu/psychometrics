@@ -180,11 +180,14 @@ const AddEditDrawerComponent: FC<Props> = ({
   }, [adminId, isEditMode])
 
   useEffect(() => {
-    fetchAdminRoles()
+    // Condition should be removed when the backend supports fetching roles for all admins
+    if (isSuperAdmin) {
+      fetchAdminRoles()
+    }
     form.setFieldsValue({
       adminRoleIds: admin?.adminRoles.map(adminRole => adminRole?.id),
     })
-  }, [admin])
+  }, [admin, isSuperAdmin])
 
   useEffect(() => {
     if (isEditMode) {
@@ -261,20 +264,18 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const buttons = (
     <Space>
-      {true && (
-        <Button
-          htmlType="submit"
-          key="submit"
-          form="add_edit_admin_form"
-          type="primary"
-          onClick={() => {
-            form.submit()
-          }}
-          loading={addOrUpdateInProgress}
-        >
-          {actionButtonText}
-        </Button>
-      )}
+      <Button
+        htmlType="submit"
+        key="submit"
+        form="add_edit_admin_form"
+        type="primary"
+        onClick={() => {
+          form.submit()
+        }}
+        loading={addOrUpdateInProgress}
+      >
+        {actionButtonText}
+      </Button>
       <Button
         htmlType="reset"
         form="add_edit_admin_form"
@@ -425,21 +426,23 @@ const AddEditDrawerComponent: FC<Props> = ({
                 </Form.Item>
               </>
             )}
-            <Form.Item
-              label={I18n.t('administration.administrators.drawers.edit.admin_roles')}
-              name="adminRoleIds"
-            >
-              <Select
-                mode="multiple"
-                showSearch={false}
-                placeholder={I18n.t('administration.administrators.drawers.edit.admin_role_select')}
-                options={_.map(adminRoles, role => ({ label: role.name, value: role.id }))}
-                open={adminRolesOpen}
-                onFocus={() => setAdminRolesOpen(true)}
-                onBlur={() => setAdminRolesOpen(false)}
-                notFoundContent={isAdminRolesLoading('fetch') ? <Spin size="small" /> : null}
-              />
-            </Form.Item>
+            {isSuperAdmin ? (
+              <Form.Item
+                label={I18n.t('administration.administrators.drawers.edit.admin_roles')}
+                name="adminRoleIds"
+              >
+                <Select
+                  mode="multiple"
+                  showSearch={false}
+                  placeholder={I18n.t('administration.administrators.drawers.edit.admin_role_select')}
+                  options={_.map(adminRoles, role => ({ label: role.name, value: role.id }))}
+                  open={adminRolesOpen}
+                  onFocus={() => setAdminRolesOpen(true)}
+                  onBlur={() => setAdminRolesOpen(false)}
+                  notFoundContent={isAdminRolesLoading('fetch') ? <Spin size="small" /> : null}
+                />
+              </Form.Item>
+            ) : null}
             {_.map(availablePermissions, (grants, grantFor) => (
               <Fragment key={grantFor}>
                 <Form.Item

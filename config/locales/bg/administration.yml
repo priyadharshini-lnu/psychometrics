@@ -781,8 +781,8 @@ bg:
       new:
         header: Групово изтегляне
       reports_unavailable: В момента няма отчети за изтегляне. Моля, потвърдете, че отчетите, които искате да изтеглите, са налице.
-      select_reports_for_download: Моля, изберете поне един доклад за изтегляне.
-      select_reports_for_regenerate: Моля, изберете поне един отчет, който да регенерирате.
+      select_users_for_download: Моля, изберете поне един потребител за изтегляне на отчети.
+      select_users_for_regenerate: Моля, изберете поне един потребител, който да регенерира отчети.
     cable:
       notification:
         assessment_factors: Извличат се фактори
@@ -2448,6 +2448,7 @@ bg:
         requested_rescheduling: Заявено разсрочване
         requested_rescheduling_rejected: Отхвърлено разсрочване
         rescheduled: Пренасрочен
+        scheduled: Планирано
       subject: Предмет
     job_role:
       are_you_sure_to_remove: Сигурни ли сте, че ще премахнете?
@@ -2729,21 +2730,31 @@ bg:
         sms_contacts: SMS контакти
         subjects: Теми
     piped_text_modal:
+      assessment_center: Център за оценяване
       assessment_id: Идентификационен номер на оценяването
       campaign_id: Идентификационен номер на кампанията
       campaign_name: Име на кампанията
       campaigns: Кампании
+      description: Описание
+      duration: Продължителност
+      end_time: Краен час
       insight_page_link: Връзка към страницата с прозрения
       insight_page_url: URL адрес на страницата Insight
+      invite_title: Заглавие
+      invites: Покани
       join_link: Присъединете се към връзката
       magic_link: Вълшебна връзка
       magic_url: Магически URL адрес
+      platform_url_links: Платформа Url и връзки
       profile_custom_field: Персонализирано поле за профил
       project_name: Име на проекта
       projects: Проекти
       report_name: Име на отчета
+      start_time: Начален час
       text: Текст
       title: Добавяне на тръбопроводен текст
+      user_reports: Доклади на потребителите
+      users: Потребители
     proctoring_sessions:
       columns:
         comment: Коментирам
@@ -3422,8 +3433,6 @@ bg:
         name_label: Име
         next: Следващ
         required_error: Изисква
-        reschedule_duration_max_error: Не може да бъде по-дълъг от 30 дни
-        reschedule_duration_min_error: Не може да бъде по-малко от 1 минута
         resources_panel:
           description: Добавете връзките към всички ресурси, до които бихте искали фасилитаторите да имат достъп.
           resource_name_placeholder: Име на ресурса

@@ -781,8 +781,8 @@ sr-Latn:
       new:
         header: Zbirno preuzimanje
       reports_unavailable: U ovom trenutku, nema izveštaja dostupnih za preuzimanje. Molimo Vas da potvrdite da su izveštaji koje želite da preuzmete dostupni.
-      select_reports_for_download: Molimo izaberite bar jedan izveštaj za preuzimanje.
-      select_reports_for_regenerate: Molimo izaberite bar jedan izveštaj za regeneraciju.
+      select_users_for_download: Placere eligere saltem unus User ad download tradit.
+      select_users_for_regenerate: Placere eligere saltem unus user ad regenerare tradit.
     cable:
       notification:
         assessment_factors: Faktori su prikupljeni
@@ -2448,6 +2448,7 @@ sr-Latn:
         requested_rescheduling: Traženo ponovno zakazivanje
         requested_rescheduling_rejected: Ponovno zakazivanje odbijeno
         rescheduled: Ponovno zakazano
+        scheduled: zakazano
       subject: Subjekat
     job_role:
       are_you_sure_to_remove: Da li ste sigurni da želite da uklonite?
@@ -2729,21 +2730,31 @@ sr-Latn:
         sms_contacts: SMS kontakti
         subjects: Subjekti
     piped_text_modal:
+      assessment_center: Centar za procenu
       assessment_id: Procena ID
       campaign_id: ID kampanje
       campaign_name: Naziv kampanje
       campaigns: Kampanje
+      description: Opis
+      duration: Trajanje
+      end_time: Vreme završetka
       insight_page_link: Link na stranicu uvida
       insight_page_url: URL stranice uvida
+      invite_title: Naslov
+      invites: Pozivnice
       join_link: Pridružite se linku
       magic_link: Magični link
       magic_url: Magična URL adresa
+      platform_url_links: URL platforme i linkovi
       profile_custom_field: Prilagođeno polje profila
       project_name: Naziv projekta
       projects: Projekti
       report_name: Naziv izveštaja
+      start_time: Vreme početka
       text: Tekst
       title: Dodaj piped tekst
+      user_reports: Korisnički izveštaji
+      users: Korisnici
     proctoring_sessions:
       columns:
         comment: Komentar
@@ -3422,8 +3433,6 @@ sr-Latn:
         name_label: Ime
         next: Sledeći
         required_error: Potrebno
-        reschedule_duration_max_error: Ne može biti više od 30 dana
-        reschedule_duration_min_error: Ne može biti manje od 1 minuta
         resources_panel:
           description: Dodajte linkove na sve resurse za koje želite da facilitatori imaju pristup.
           resource_name_placeholder: Naziv resursa

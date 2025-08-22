@@ -781,8 +781,8 @@ zh-Hant:
       new:
         header: 大量下載
       reports_unavailable: 目前沒有可供下載的報告，請確認您要下載的報告是否可用。
-      select_reports_for_download: 請至少選擇一份報告下載。
-      select_reports_for_regenerate: 請至少選擇一份報告進行再生。
+      select_users_for_download: 請選擇至少一個用戶下載報告。
+      select_users_for_regenerate: 請選擇至少一個用戶重新生成報告。
     cable:
       notification:
         assessment_factors: 取得因子
@@ -2448,6 +2448,7 @@ zh-Hant:
         requested_rescheduling: 要求改期
         requested_rescheduling_rejected: 重新排程 拒絕
         rescheduled: 改期
+        scheduled: 排程
       subject: 主題
     job_role:
       are_you_sure_to_remove: 您確定要移除嗎？
@@ -2729,21 +2730,31 @@ zh-Hant:
         sms_contacts: 簡訊聯絡人
         subjects: 主題
     piped_text_modal:
+      assessment_center: 評估中心
       assessment_id: 評估 ID
       campaign_id: 活動 ID
       campaign_name: 活動名稱
       campaigns: 活動
+      description: 說明
+      duration: 時間長度
+      end_time: 結束時間
       insight_page_link: 洞察頁連結
       insight_page_url: 洞察頁面 URL
+      invite_title: 標題
+      invites: 邀請
       join_link: 加入連結
       magic_link: 魔術連結
       magic_url: 魔術網址
+      platform_url_links: 平台 Url 與連結
       profile_custom_field: 個人資料自訂欄位
       project_name: 專案名稱
       projects: 專案
       report_name: 報告名稱
+      start_time: 開始時間
       text: 正文
       title: 新增管道文字
+      user_reports: 使用者報告
+      users: 使用者
     proctoring_sessions:
       columns:
         comment: 評論
@@ -3426,8 +3437,6 @@ zh-Hant:
         name_label: 名稱
         next: 下一頁
         required_error: 必須
-        reschedule_duration_max_error: 不得超過 30 天
-        reschedule_duration_min_error: 不能少於 1 分鐘
         resources_panel:
           description: 加入您希望主持人可以存取的任何資源的連結。
           resource_name_placeholder: 資源名稱

@@ -781,8 +781,8 @@ de:
       new:
         header: Massendownload
       reports_unavailable: Im Moment sind keine Berichte zum Herunterladen verfügbar. Bitte bestätigen Sie, dass die Berichte, die Sie herunterladen möchten, verfügbar sind.
-      select_reports_for_download: Bitte wählen Sie mindestens einen Bericht zum Herunterladen aus.
-      select_reports_for_regenerate: Bitte wählen Sie mindestens einen Bericht aus, der neu generiert werden soll.
+      select_users_for_download: Bitte wählen Sie mindestens einen Benutzer aus, um Berichte herunterzuladen.
+      select_users_for_regenerate: Bitte wählen Sie mindestens einen Benutzer aus, um Berichte zu regenerieren.
     cable:
       notification:
         assessment_factors: Faktoren werden abgerufen
@@ -2448,6 +2448,7 @@ de:
         requested_rescheduling: Gewünschte Umterminierung
         requested_rescheduling_rejected: Umterminierung Abgelehnt
         rescheduled: Umgeplant
+        scheduled: Geplant
       subject: Thema
     job_role:
       are_you_sure_to_remove: Sind Sie sicher, dass Sie sie entfernen wollen?
@@ -2729,21 +2730,31 @@ de:
         sms_contacts: SMS-Kontakte
         subjects: Themen
     piped_text_modal:
+      assessment_center: Assessment Center
       assessment_id: Bewertung ID
       campaign_id: Kampagnen-ID
       campaign_name: Name der Kampagne
       campaigns: Kampagnen
+      description: Beschreibung
+      duration: Dauer
+      end_time: Endzeit
       insight_page_link: Insight Page Link
       insight_page_url: URL der Einsichtsseite
+      invite_title: Titel
+      invites: Einladungen
       join_link: Link verbinden
       magic_link: Magische Verbindung
       magic_url: Magische URL
+      platform_url_links: Plattform Url und Links
       profile_custom_field: Benutzerdefiniertes Profilfeld
       project_name: Name des Projekts
       projects: Projekte
       report_name: Bericht Name
+      start_time: Startzeit
       text: Text
       title: Paspelierten Text hinzufügen
+      user_reports: Benutzerberichte
+      users: Benutzer
     proctoring_sessions:
       columns:
         comment: Kommentar
@@ -3426,8 +3437,6 @@ de:
         name_label: Name
         next: Weiter
         required_error: Erforderlich
-        reschedule_duration_max_error: Kann nicht länger als 30 Tage sein
-        reschedule_duration_min_error: Darf nicht kürzer als 1 Minute sein
         resources_panel:
           description: Fügen Sie die Links zu allen Ressourcen hinzu, zu denen die Moderatoren Zugang haben sollen.
           resource_name_placeholder: Ressource Name

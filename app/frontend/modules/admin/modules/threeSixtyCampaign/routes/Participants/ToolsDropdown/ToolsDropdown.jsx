@@ -137,7 +137,7 @@ export default function ToolsDropdown ({
   excludedKeys, title, isAllSelected, normalizedSubjectsData,
 }) {
   const { projectId } = useParams()
-  const selectedUserReportIds = useMemo(() => selectedKeys.map((key) => {
+  const selectedUserReportIds = useMemo(() => selectedKeys?.map((key) => {
     const subject = normalizedSubjectsData[key]
     return subject ? subject.userReportId : null
   }).filter(Boolean), [selectedKeys, normalizedSubjectsData])

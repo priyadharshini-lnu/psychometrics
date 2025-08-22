@@ -781,8 +781,8 @@ ar:
       new:
         header: التنزيل الجماعي
       reports_unavailable: في الوقت الحالي، لا توجد تقارير متاحة للتنزيل. يرجى التأكد من أن التقارير التي تريد تنزيلها متوفرة.
-      select_reports_for_download: يُرجى تحديد تقرير واحد على الأقل لتنزيله.
-      select_reports_for_regenerate: يُرجى تحديد تقرير واحد على الأقل لإعادة إنشائه.
+      select_users_for_download: يرجى تحديد مستخدم واحد على الأقل لتنزيل التقارير.
+      select_users_for_regenerate: يرجى تحديد مستخدم واحد على الأقل لتجديد التقارير.
     cable:
       notification:
         assessment_factors: تم جلب العوامل
@@ -2448,6 +2448,7 @@ ar:
         requested_rescheduling: Requested Rescheduling
         requested_rescheduling_rejected: Rescheduling Rejected
         rescheduled: Rescheduled
+        scheduled: المقرر
       subject: Subject
     job_role:
       are_you_sure_to_remove: هل أنت متأكد من الإزالة؟
@@ -2729,21 +2730,31 @@ ar:
         sms_contacts: SMS Contacts
         subjects: Subjects
     piped_text_modal:
+      assessment_center: مركز التقييم
       assessment_id: Assessment ID
       campaign_id: Campaign ID
       campaign_name: اسم الحملة
       campaigns: الحملات
+      description: الوصف
+      duration: المدة
+      end_time: وقت الانتهاء
       insight_page_link: Insight Page Link
       insight_page_url: Insight Page URL
+      invite_title: العنوان
+      invites: الدعوات
       join_link: Join Link
       magic_link: Magic Link
       magic_url: Magic URL
+      platform_url_links: عنوان النظام الأساسي والروابط
       profile_custom_field: Profile Custom Field
       project_name: اسم المشروع
       projects: المشاريع
       report_name: Report Name
+      start_time: وقت البدء
       text: Text
       title: Add Piped Text
+      user_reports: تقارير المستخدمين
+      users: المستخدمون
     proctoring_sessions:
       columns:
         comment: تعليق
@@ -3426,8 +3437,6 @@ ar:
         name_label: Name
         next: Next
         required_error: Required
-        reschedule_duration_max_error: Cannot be greater than 30 days
-        reschedule_duration_min_error: Cannot be less than 1 minute
         resources_panel:
           description: Add the links to any resources you would like the facilitators to have access to.
           resource_name_placeholder: Resource Name

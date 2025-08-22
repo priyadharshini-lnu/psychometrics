@@ -781,8 +781,8 @@ it:
       new:
         header: Scaricamento in blocco
       reports_unavailable: Al momento non sono disponibili rapporti da scaricare. Si prega di confermare che i rapporti che si desidera scaricare sono disponibili.
-      select_reports_for_download: Selezionare almeno un rapporto da scaricare.
-      select_reports_for_regenerate: Selezionare almeno un rapporto da rigenerare.
+      select_users_for_download: Seleziona almeno un utente per scaricare i report.
+      select_users_for_regenerate: Seleziona almeno un utente per rigenerare i report.
     cable:
       notification:
         assessment_factors: I fattori vengono recuperati
@@ -2448,6 +2448,7 @@ it:
         requested_rescheduling: Ripianificazione Richiesta
         requested_rescheduling_rejected: Ripianificazione Rifiutata
         rescheduled: Ripianificato
+        scheduled: In programma
       subject: Soggetto
     job_role:
       are_you_sure_to_remove: Siete sicuri di poterlo rimuovere?
@@ -2729,21 +2730,31 @@ it:
         sms_contacts: Contatti SMS
         subjects: Partecipanti
     piped_text_modal:
+      assessment_center: Centro di valutazione
       assessment_id: ID di valutazione
       campaign_id: ID campagna
       campaign_name: Nome della campagna
       campaigns: Campagne
+      description: Descrizione
+      duration: Durata
+      end_time: Ora di fine
       insight_page_link: Link alla pagina di approfondimento
       insight_page_url: URL della pagina di approfondimento
+      invite_title: Titolo
+      invites: Inviti
       join_link: Unisciti al link
       magic_link: Collegamento magico
       magic_url: URL magico
+      platform_url_links: Url e link della piattaforma
       profile_custom_field: Campo personalizzato del profilo
       project_name: Nome del progetto
       projects: Progetti
       report_name: Nome del report
+      start_time: Ora di inizio
       text: Testo
       title: Aggiunta di testo con tubature
+      user_reports: Rapporti degli utenti
+      users: Utenti
     proctoring_sessions:
       columns:
         comment: Commento
@@ -3426,8 +3437,6 @@ it:
         name_label: Nome
         next: Avanti
         required_error: Richiesto
-        reschedule_duration_max_error: Non può essere superiore a 30 giorni
-        reschedule_duration_min_error: Non può essere inferiore a 1 minuto
         resources_panel:
           description: Aggiungete i link alle risorse a cui volete che i facilitatori abbiano accesso.
           resource_name_placeholder: Nome della risorsa

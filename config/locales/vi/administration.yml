@@ -781,8 +781,8 @@ vi:
       new:
         header: Tải xuống hàng loạt
       reports_unavailable: Hiện tại, không có báo cáo nào có sẵn để tải xuống. Vui lòng xác nhận rằng các báo cáo bạn muốn tải xuống đã có sẵn.
-      select_reports_for_download: Vui lòng chọn ít nhất một báo cáo để tải xuống.
-      select_reports_for_regenerate: Vui lòng chọn ít nhất một báo cáo để tạo lại.
+      select_users_for_download: Vui lòng chọn ít nhất một người dùng để tải xuống báo cáo.
+      select_users_for_regenerate: Vui lòng chọn ít nhất một người dùng để tái tạo báo cáo.
     cable:
       notification:
         assessment_factors: Các yếu tố được tìm nạp
@@ -2448,6 +2448,7 @@ vi:
         requested_rescheduling: Yêu cầu lên lịch lại
         requested_rescheduling_rejected: Lên lịch lại bị từ chối
         rescheduled: Dời
+        scheduled: Đã lên lịch
       subject: Chủ đề
     job_role:
       are_you_sure_to_remove: Bạn chắc chắn muốn xóa?
@@ -2729,21 +2730,31 @@ vi:
         sms_contacts: Danh bạ SMS
         subjects: Đối tượng
     piped_text_modal:
+      assessment_center: Trung tâm Đánh giá
       assessment_id: ID đánh giá
       campaign_id: ID chiến dịch
       campaign_name: Tên chiến dịch
       campaigns: Chiến dịch
+      description: Mô tả
+      duration: Thời gian
+      end_time: Thời gian kết thúc
       insight_page_link: Liên kết trang Insight
       insight_page_url: URL trang thông tin chi tiết
+      invite_title: Tiêu đề
+      invites: Mời
       join_link: Liên kết tham gia
       magic_link: Liên kết ma thuật
       magic_url: URL ma thuật
+      platform_url_links: Địa chỉ URL và các liên kết của nền tảng
       profile_custom_field: Trường tùy chỉnh hồ sơ
       project_name: Tên dự án
       projects: Dự án
       report_name: Tên báo cáo
+      start_time: Thời gian bắt đầu
       text: Nhắn tin
       title: Thêm văn bản đường ống
+      user_reports: Báo cáo của người dùng
+      users: Người dùng
     proctoring_sessions:
       columns:
         comment: Bình luận
@@ -3422,8 +3433,6 @@ vi:
         name_label: Tên
         next: Sau
         required_error: Bắt buộc
-        reschedule_duration_max_error: Không được lớn hơn 30 ngày
-        reschedule_duration_min_error: Không được dưới 1 phút
         resources_panel:
           description: Thêm liên kết đến bất kỳ tài nguyên nào bạn muốn người hướng dẫn có quyền truy cập.
           resource_name_placeholder: Tên tài nguyên

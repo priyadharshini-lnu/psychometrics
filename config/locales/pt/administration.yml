@@ -781,8 +781,8 @@ pt:
       new:
         header: Transferência em massa
       reports_unavailable: De momento, não existem relatórios disponíveis para descarregar. Confirme se os relatórios que pretende descarregar estão disponíveis.
-      select_reports_for_download: Selecione pelo menos um relatório para descarregar.
-      select_reports_for_regenerate: Selecione pelo menos um relatório para regenerar.
+      select_users_for_download: Selecione pelo menos um usuário para baixar relatórios.
+      select_users_for_regenerate: Selecione pelo menos um usuário para regenerar os relatórios.
     cable:
       notification:
         assessment_factors: Os factores são obtidos
@@ -2448,6 +2448,7 @@ pt:
         requested_rescheduling: Reagendamento solicitado
         requested_rescheduling_rejected: Reagendamento Rejeitado
         rescheduled: Reagendado
+        scheduled: Programado
       subject: Assunto
     job_role:
       are_you_sure_to_remove: Tem a certeza de que vai retirar?
@@ -2729,21 +2730,31 @@ pt:
         sms_contacts: Contactos SMS
         subjects: Temas
     piped_text_modal:
+      assessment_center: Centro de avaliação
       assessment_id: ID de avaliação
       campaign_id: ID da campanha
       campaign_name: Nome da campanha
       campaigns: Campanhas
+      description: Descrição
+      duration: Duração
+      end_time: Hora de fim
       insight_page_link: Ligação da página Insight
       insight_page_url: URL da página de informação
+      invite_title: Título
+      invites: Convites
       join_link: Ligação de adesão
       magic_link: Ligação mágica
       magic_url: URL mágico
+      platform_url_links: Url da plataforma e ligações
       profile_custom_field: Campo personalizado de perfil
       project_name: Nome do projeto
       projects: Projectos
       report_name: Nome do relatório
+      start_time: Hora de início
       text: Texto
       title: Adicionar texto com tubagem
+      user_reports: Relatórios de utilizadores
+      users: Utilizadores
     proctoring_sessions:
       columns:
         comment: Comentário
@@ -3426,8 +3437,6 @@ pt:
         name_label: Nome
         next: Seguinte
         required_error: Necessário
-        reschedule_duration_max_error: Não pode ser superior a 30 dias
-        reschedule_duration_min_error: Não pode ser inferior a 1 minuto
         resources_panel:
           description: Acrescente as ligações para os recursos a que gostaria que os facilitadores tivessem acesso.
           resource_name_placeholder: Nome do recurso

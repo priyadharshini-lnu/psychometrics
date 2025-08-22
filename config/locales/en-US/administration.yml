@@ -781,8 +781,8 @@ en-US:
       new:
         header: Bulk Download
       reports_unavailable: At the moment, no reports are available to download. Please confirm that the reports you want to download are available.
-      select_reports_for_download: Please select at least one report to download.
-      select_reports_for_regenerate: Please select at least one report to regenerate.
+      select_users_for_download: Please select at least one user to download reports.
+      select_users_for_regenerate: Please select at least one user to regenerate reports.
     cable:
       notification:
         assessment_factors: Factors are fetched
@@ -2448,6 +2448,7 @@ en-US:
         requested_rescheduling: Requested Rescheduling
         requested_rescheduling_rejected: Rescheduling Rejected
         rescheduled: Rescheduled
+        scheduled: Scheduled
       subject: Subject
     job_role:
       are_you_sure_to_remove: Are you sure to remove?
@@ -2729,21 +2730,31 @@ en-US:
         sms_contacts: SMS Contacts
         subjects: Subjects
     piped_text_modal:
+      assessment_center: Assessment Center
       assessment_id: Assessment ID
       campaign_id: Campaign ID
       campaign_name: Campaign Name
       campaigns: Campaigns
+      description: Description
+      duration: Duration
+      end_time: End time
       insight_page_link: Insight Page Link
       insight_page_url: Insight Page URL
+      invite_title: Title
+      invites: Invites
       join_link: Join Link
       magic_link: Magic Link
       magic_url: Magic URL
+      platform_url_links: Platform Url and Links
       profile_custom_field: Profile Custom Field
       project_name: Project Name
       projects: Projects
       report_name: Report Name
+      start_time: Start time
       text: Text
       title: Add Piped Text
+      user_reports: User Reports
+      users: Users
     proctoring_sessions:
       columns:
         comment: Comment
@@ -3422,8 +3433,6 @@ en-US:
         name_label: Name
         next: Next
         required_error: Required
-        reschedule_duration_max_error: Cannot be greater than 30 days
-        reschedule_duration_min_error: Cannot be less than 1 minute
         resources_panel:
           description: Add the links to any resources you would like the facilitators to have access to.
           resource_name_placeholder: Resource Name

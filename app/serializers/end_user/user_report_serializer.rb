@@ -29,7 +29,7 @@ module EndUser
 
       expected_locales.index_with do |locale|
         object.pdf_download_url(locale: locale)
-      end
+      end.compact
     end
 
     def report_name

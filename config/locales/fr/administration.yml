@@ -781,8 +781,8 @@ fr:
       new:
         header: Téléchargement en masse
       reports_unavailable: Pour le moment, aucun rapport n'est disponible au téléchargement. Veuillez confirmer que les rapports que vous souhaitez télécharger sont disponibles.
-      select_reports_for_download: Veuillez sélectionner au moins un rapport à télécharger.
-      select_reports_for_regenerate: Veuillez sélectionner au moins un rapport à régénérer.
+      select_users_for_download: Veuillez sélectionner au moins un utilisateur pour télécharger des rapports.
+      select_users_for_regenerate: Veuillez sélectionner au moins un utilisateur pour régénérer les rapports.
     cable:
       notification:
         assessment_factors: Les facteurs sont recherchés
@@ -2448,6 +2448,7 @@ fr:
         requested_rescheduling: Report demandé
         requested_rescheduling_rejected: Reprogrammation Rejeté
         rescheduled: Reporté
+        scheduled: Prévu
       subject: Sujet
     job_role:
       are_you_sure_to_remove: Êtes-vous sûr de vouloir le supprimer ?
@@ -2729,21 +2730,31 @@ fr:
         sms_contacts: Contacts SMS
         subjects: Thèmes
     piped_text_modal:
+      assessment_center: Centre d'évaluation
       assessment_id: ID de l'évaluation
       campaign_id: ID de la campagne
       campaign_name: Nom de la campagne
       campaigns: Campagnes
+      description: Description
+      duration: Durée de l'accord
+      end_time: Heure de fin
       insight_page_link: Lien vers la page Insight
       insight_page_url: URL de la page Insight
+      invite_title: Titre
+      invites: Invitations
       join_link: Lien d'adhésion
       magic_link: Lien magique
       magic_url: URL magique
+      platform_url_links: Url et liens de la plate-forme
       profile_custom_field: Champ personnalisé du profil
       project_name: Nom du projet
       projects: Projets
       report_name: Nom du rapport
+      start_time: Heure de début
       text: Texte
       title: Ajout d'un texte en pointillé
+      user_reports: Rapports des utilisateurs
+      users: Utilisateurs
     proctoring_sessions:
       columns:
         comment: Commentaire
@@ -3426,8 +3437,6 @@ fr:
         name_label: Nom
         next: Suivant
         required_error: Exigée
-        reschedule_duration_max_error: Ne peut être supérieur à 30 jours
-        reschedule_duration_min_error: Duréene peut être inférieure à 1 minute
         resources_panel:
           description: Ajoutez les liens vers les ressources auxquelles vous souhaitez que les animateurs aient accès.
           resource_name_placeholder: Nom de la ressource

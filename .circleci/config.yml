@@ -365,7 +365,6 @@ jobs:
           command: |
             FILE=~/cachedflags/job.vitest.flag
             if test -f "$FILE"; then
-              yarn run coveralls < coverage/lcov.info
               circleci-agent step halt
             else
               echo "Compiled files do not exist"
@@ -382,7 +381,7 @@ jobs:
             cp config/database.yml.sample config/database.yml
             bundle exec rake i18n:js:export
             (find tmp/cache/vitest -type f -mtime +15 -delete) || echo "No old cache files to prune"
-            yarn test --coverage --maxWorkers 1 --minWorkers 1 --shard $((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL --max-concurrency=1 && yarn run coveralls < coverage/lcov.info
+            yarn test --coverage --maxWorkers 1 --minWorkers 1 --shard $((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL --max-concurrency=1
       - run:
           name: Vitest flag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.vitest.flag
