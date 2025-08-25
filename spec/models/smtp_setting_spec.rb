@@ -7,13 +7,13 @@ describe SmtpSetting, type: :model do
     it 'returns default from name and email if smtp_setting is disabled' do
       smtp_setting = build(:smtp_setting, enabled: false, from_name: 'James', from_email: 'james@cc.com')
 
-      expect(smtp_setting.from_name_and_email).to eq('The Talent Enterprise <no-reply@ttedev.me>')
+      expect(smtp_setting.from_name_and_email).to eq('The Talent Enterprise <no-reply@localhost>')
     end
 
     it 'returns from_name from smtp_setting if enabled' do
       smtp_setting = build(:smtp_setting, enabled: true, from_name: 'James', from_email: nil)
 
-      expect(smtp_setting.from_name_and_email).to eq('James <no-reply@ttedev.me>')
+      expect(smtp_setting.from_name_and_email).to eq('James <no-reply@localhost>')
     end
 
     it 'returns from_name and email from the smtp_setting if enabeld and both present' do

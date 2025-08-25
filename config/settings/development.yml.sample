@@ -1,4 +1,4 @@
-domain: ttedev.me # psychometrics.co.uk
+domain: localhost # psychometrics.co.uk
 subdomain:  # subdomain
 port: 3030
 protocol: 'http'

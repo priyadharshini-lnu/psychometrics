@@ -28,7 +28,7 @@ describe Skillvue::StartAssessment do
           'name' => '23740',
           'surname' => '23740',
           'email' => 'wy5p7w-ac068a3c0a@example.com',
-          'redirect_url' => 'https://mercer.ttedev.me:3030/simulation_user_assessments/26110/redirect?jwt=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIzNzQwLCJleHAiOjE3NTE1MjkyODN9.eWwvIlBLN2Jhsa8eHi6Sy2Ozc-bO7Qsx3_dli0ZKW10&project_id=288'
+          'redirect_url' => 'https://mercer.localhost:3030/simulation_user_assessments/26110/redirect?jwt=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIzNzQwLCJleHAiOjE3NTE1MjkyODN9.eWwvIlBLN2Jhsa8eHi6Sy2Ozc-bO7Qsx3_dli0ZKW10&project_id=288'
         }
       }
     }

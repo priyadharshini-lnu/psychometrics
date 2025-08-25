@@ -33,11 +33,11 @@ prevent bundle secure warnings with
 
     if error: `An error occurred while installing mimemagic (0.4.3), and Bundler cannot continue.`
     on mac: `$> brew install shared-mime-info` and try step 1 again.
-3. `$> cp config/application.yml.sample config/application.yml`
+3. `$> cp .env.sample .env`
 4. `$> cp config/database.yml.sample config/database.yml`
 5. `$> cp config/settings/development.yml.sample config/settings/development.yml`
 
-    Uncomment and set values for `ENCRYPTED_KEY`, `SECRET_KEY_BASE` and `SECRET_TOKEN_FOR_GENERATE` in `application.yml`.
+    Uncomment and set values for `ENCRYPTED_KEY`, `SECRET_KEY_BASE` and `SECRET_TOKEN_FOR_GENERATE` in `.env`.
 
     Edit and setup `database.yml` as appropriate.
 
@@ -117,42 +117,48 @@ $> Users::SuperAdmin.create(
 )
 ```
 
-1. Setup a loopback address to `ttedev.me` or another preferred local domain
+1. Setup a loopback address to `localhost` or another preferred local domain
 2. start redis server `brew services start redis` or `redis-server`
 3. Run the server `bundle exec rails s -p 3030`
 4. start vite server with command `./bin/vite dev`.
-5. Visit https://ttedev.me:3030
+5. Visit http://localhost:3030
 
 or `./bin/dev` insted of points 3 and 4
 
 
 # SSL
-Add the following environment variables with your **file paths**. Use appropriate local development domains if not using `ttedev.me`
 
+## For localhost SSL setup
 
-```
-SSL="true"
-SSL_KEY="./support/dev-ssl/ttedev.me.key"
-SSL_CERT="./support/dev-ssl/ttedev.me.pem"
-```
+1. Generate SSL certificates for localhost:
+   ```bash
+   cd support/dev-ssl && ./generate-localhost-ssl.sh
+   ```
 
-1. Add to development section of `config/vite.json`
+2. Add the following environment variables to your `.env` file:
+   ```
+   SSL="true"
+   SSL_KEY="./support/dev-ssl/localhost.key"
+   SSL_CERT="./support/dev-ssl/localhost.pem"
+   ```
 
-    `"https": true`
-2. Run the server
+3. Add to development section of `config/vite.json`:
+   ```json
+   "https": true
+   ```
 
-   `bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/ttedev.me.key&cert=support/dev-ssl/ttedev.me.pem"`
-3. Start Vite server with command `./bin/vite dev` or `SSL_KEY="./support/dev-ssl/ttedev.me.key" SSL_CERT="./support/dev-ssl/ttedev.me.pem" SSL=true ./bin/vite dev`
-3. Visit https://ttedev.me:3030
+4. Run the server:
+   ```bash
+   bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/localhost.key&cert=support/dev-ssl/localhost.pem"
+   ```
 
-## Using other local domains with SSL
-Example of using `psy.loc`
+5. Start Vite server:
+   ```bash
+   SSL_KEY="./support/dev-ssl/localhost.key" SSL_CERT="./support/dev-ssl/localhost.pem" SSL=true ./bin/vite dev
+   ```
 
-1. Generate SSL key and certificates using the [instructions](support/dev-ssl/steps.md)
-2. Ensure the key is named `psy.loc.key` and certificate is named `psy.loc.pem`
-3. Run the server with
+6. Visit https://localhost:3030
 
-   `bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/psy.loc.key&cert=support/dev-ssl/psy.loc.pem"`
 
 # Reverse Proxy
 Reverse proxy can be used to publicly expose local development environment to receive webhooks.
