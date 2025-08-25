@@ -167,6 +167,7 @@
     "seedrandom": "^3.0.5",
     "siriwave": "^2.4.0",
     "sms-segments-calculator": "^1.1.1",
+    "spark-md5": "^3.0.2",
     "type-fest": "^2.12.2",
     "ua-parser-js": "0.7.33",
     "use-debounce": "^9.0.4",

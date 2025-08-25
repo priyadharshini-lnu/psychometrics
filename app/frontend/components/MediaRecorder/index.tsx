@@ -17,6 +17,7 @@ import {
   AudioOutlined,
   CheckCircleFilled,
 } from '@ant-design/icons'
+import SparkMD5 from 'spark-md5'
 import { axiosWithRetry } from '~/modules/survey/utils/network'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useReactMediaRecorder } from './components/MediaRecorder'
@@ -71,6 +72,7 @@ interface UrlDetails {
   asset_key: string;
   upload_id: string;
   urls: string[];
+  checksum: string;
 }
 
 interface DeviceDetails {
@@ -82,6 +84,21 @@ const formatDuration = (durationInSeconds: number): string => {
   const minutes = Math.floor(durationInSeconds / 60)
   const seconds = durationInSeconds % 60
   return `${minutes.toString().padStart(2, '0')}m:${seconds.toString().padStart(2, '0')}s`
+}
+
+const calculateMD5Checksum = async (blob: Blob): Promise<string> => {
+  const fileReader = new FileReader()
+  const spark = new SparkMD5.ArrayBuffer()
+
+  const arrayBuffer = await new Promise<ArrayBuffer>((resolve, reject) => {
+    fileReader.onload = () => resolve(fileReader.result as ArrayBuffer)
+    fileReader.onerror = () => reject(new Error('Failed to read file'))
+    fileReader.readAsArrayBuffer(blob)
+  })
+
+  spark.append(arrayBuffer)
+  const base64 = btoa(spark.end(true))
+  return base64
 }
 
 const MediaRecorderComponent: React.FC<Props> = ({
@@ -212,7 +229,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
   }
 
-  const completeMediaUpload = async (): Promise<void> => {
+  const completeMediaUpload = async (completeBlob: Blob): Promise<void> => {
     if (!urlDetailsRef.current) {
       console.error('No URL details available for completing upload')
       setError('complete')(I18n.t('assessments.video_response.failed_to_complete_upload'))
@@ -225,6 +242,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         etag: resolvedPromise?.headers.etag,
         part_number: index + 1,
       }))
+      const checksum = await calculateMD5Checksum(completeBlob)
       const { data } = await axiosInstance.put(
         `${mediaUrl}/complete_multipart_upload`,
         {
@@ -233,6 +251,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
           asset_key: urlDetailsRef.current.asset_key,
           upload_id: urlDetailsRef.current.upload_id,
           file_size: totalSize,
+          checksum,
           content_type: supportedMimeType,
         },
         {
@@ -271,7 +290,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     promisesArrayRef.current.push(uploadPromise)
   }, [])
 
-  const onStop = useCallback(async (blobUrl: string, lastBlob: Blob) => {
+  const onStop = useCallback(async (blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
     setVisualizing(false)
     if (stream) {
       stream.getTracks().forEach(track => track.stop())
@@ -283,7 +302,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       promisesArrayRef.current.push(finalUploadPromise)
 
       await finalUploadPromise
-      await completeMediaUpload()
+      await completeMediaUpload(completeBlob)
     } catch (error) {
       setError('upload')(I18n.t('assessments.video_response.error_while_uploading'))
     } finally {

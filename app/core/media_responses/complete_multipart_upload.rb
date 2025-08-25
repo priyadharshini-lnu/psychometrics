@@ -2,7 +2,7 @@
 
 module MediaResponses
   class CompleteMultipartUpload < BaseCommand
-    private_attr_reader :media_response, :asset_key, :upload_id, :parts, :content_type
+    private_attr_reader :media_response, :asset_key, :upload_id, :parts, :file_size, :content_type, :checksum
 
     def initialize(media_response, options = {})
       @media_response = media_response
@@ -10,6 +10,8 @@ module MediaResponses
       @upload_id = options[:upload_id]
       @parts = options[:parts]
       @content_type = options[:content_type]
+      @checksum = options[:checksum]
+      @file_size = options[:file_size]
     end
 
     def call
@@ -24,15 +26,10 @@ module MediaResponses
 
       file_name = asset_key.split('/').last
 
-      metadata = Utility::S3.metadata(s3key: asset_key)
-
-      byte_size = metadata[:byte_size]
-      checksum = metadata[:checksum]
-
       blob = ActiveStorage::Blob.create_before_direct_upload!(
         key: asset_key,
         filename: file_name,
-        byte_size: byte_size,
+        byte_size: file_size,
         checksum: checksum,
         content_type: content_type,
         service_name: Settings.storage.private_storage_service

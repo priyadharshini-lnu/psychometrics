@@ -12,6 +12,7 @@ import videojs from 'videojs'
 import cs from 'classnames'
 import humps from 'humps'
 import { unset, set } from 'lodash/fp'
+import SparkMD5 from 'spark-md5'
 import { axiosWithRetry } from '~/modules/survey/utils/network'
 import styles from './VideoRecorder.less'
 import 'videojs-record/dist/videojs.record'
@@ -340,6 +341,33 @@ class VideoRecorder extends Component {
     })
   }
 
+  async calculateMD5Checksum () {
+    let allBlobs = this.player.recordedData
+    if (!Array.isArray(allBlobs)) {
+      allBlobs = [allBlobs]
+    }
+    const fullBlob = new Blob(allBlobs, {
+      type: this.supportedMimeType?.mimeType || 'video/webm',
+    })
+
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader()
+      const spark = new SparkMD5.ArrayBuffer()
+
+      fileReader.onload = () => {
+        spark.append(fileReader.result)
+        const base64 = btoa(spark.end(true))
+        resolve(base64)
+      }
+
+      fileReader.onerror = () => {
+        reject(new Error('Failed to read file'))
+      }
+
+      fileReader.readAsArrayBuffer(fullBlob)
+    })
+  }
+
   handleFinishRecording = async () => {
     const {
       preview, fitInFrame, model, markQuestionInProgress,
@@ -405,30 +433,33 @@ class VideoRecorder extends Component {
     }
   }
 
-  completeMediaUpload = (uploadPartsArray) => {
+  async completeMediaUpload (uploadPartsArray) {
     const { mediaUrl } = this.props
-    axiosInstance.put(
-      `${mediaUrl}/complete_multipart_upload`,
-      {
-        parts: uploadPartsArray,
-        media_id: this.urlDetails.media_id,
-        asset_key: this.urlDetails.asset_key,
-        upload_id: this.urlDetails.upload_id,
-        file_size: this.player.recordedData.size,
-        content_type: this.supportedMimeType,
-      },
-      {
-        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-      },
-    ).then(({ data }) => {
+    try {
+      const checksum = await this.calculateMD5Checksum()
+      const { data } = await axiosInstance.put(
+        `${mediaUrl}/complete_multipart_upload`,
+        {
+          parts: uploadPartsArray,
+          media_id: this.urlDetails.media_id,
+          asset_key: this.urlDetails.asset_key,
+          upload_id: this.urlDetails.upload_id,
+          file_size: this.player.recordedData.size,
+          checksum,
+          content_type: this.supportedMimeType,
+        },
+        {
+          headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+        },
+      )
+
       const camelizedData = humps.camelizeKeys(data)
       this.handleRecordingSaved(camelizedData)
       this.resetMultipartUpload()
-    }).catch((error) => {
-      // eslint-disable-next-line no-console
+    } catch (error) {
       console.error(error)
       this.setError('complete', I18n.t('assessments.unknown_error'))
-    })
+    }
   }
 
   resetMultipartUpload = () => {
