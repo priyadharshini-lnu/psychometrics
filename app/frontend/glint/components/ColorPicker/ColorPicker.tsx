@@ -132,12 +132,14 @@ export const ColorPicker: FC<props> = ({
               </Space>
             </Space>
         )}
-          overlayClassName={styles.popover}
           trigger="click"
           open={isOpen}
           onOpenChange={handlePopover}
           placement={colorPickerPosition && colorPickerPosition}
-          arrowPointAtCenter
+          arrow={{ pointAtCenter: true }}
+          classNames={{
+            root: styles.popover,
+          }}
         >
           <ColorSwatchItem
             color={pickedColorHex}
