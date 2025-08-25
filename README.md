@@ -159,6 +159,43 @@ or `./bin/dev` insted of points 3 and 4
 
 6. Visit https://localhost:3030
 
+## For ttedev.me SSL setup
+
+1. Generate SSL certificates for ttedev.me:
+   ```bash
+   cd support/dev-ssl && ./generate-ttedev-ssl.sh
+   ```
+
+2. Add the following environment variables to your `.env` file. Use appropriate local development domains if not using ttedev.me:
+   ```
+   APP_DOMAIN='ttedev.me'
+   VITE_RUBY_HOST='ttedev.me'
+   SSL="true"
+   SSL_KEY="./support/dev-ssl/ttedev.me.key"
+   SSL_CERT="./support/dev-ssl/ttedev.me.pem"
+   ```
+
+3. Add to development section of `config/vite.json`:
+   ```json
+   "https": true
+   ```
+
+4. Run the server:
+   ```bash
+   bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/ttedev.me.key&cert=support/dev-ssl/ttedev.me.pem"
+   ```
+
+5. Start Vite server with command:
+   ```bash
+   ./bin/vite dev
+   ```
+   Or with explicit SSL configuration:
+   ```bash
+   SSL_KEY="./support/dev-ssl/ttedev.me.key" SSL_CERT="./support/dev-ssl/ttedev.me.pem" SSL=true ./bin/vite dev
+   ```
+
+6. Visit https://ttedev.me:3030
+
 
 # Reverse Proxy
 Reverse proxy can be used to publicly expose local development environment to receive webhooks.

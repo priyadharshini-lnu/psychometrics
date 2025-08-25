@@ -1,5 +1,5 @@
-domain: localhost # psychometrics.co.uk
-subdomain:  # subdomain
+domain: <%= ENV["APP_DOMAIN"] || 'localhost' %> # psychometrics.co.uk
+subdomain: <%= ENV["APP_SUB_DOMAIN"] || '' %> # subdomain
 port: 3030
 protocol: 'http'
 react_dev:
