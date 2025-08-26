@@ -1696,6 +1696,7 @@ en:
           {{schedule_end_date}} - Schedule End Date
         campaign: Campaign
         campaign_assessment_group: Campaign Assessment Group
+        cc_recipients: CC Recipients
         client: Client
         completion: Completion
         custom: Custom
@@ -1788,6 +1789,7 @@ en:
         back: Back
         body: 'Body:'
         campaign: 'Campaign:'
+        cc_recipients: 'CC Recipients:'
         client: 'Client:'
         communication_type: 'Communication type:'
         delivery_rule: 'Delivery rule:'

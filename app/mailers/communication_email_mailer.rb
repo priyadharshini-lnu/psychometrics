@@ -80,10 +80,13 @@ class CommunicationEmailMailer < ApplicationMailer
 
   def send_configured_email(subject)
     smtp_setting = recipient.project.smtp_setting
+    cc_emails = @communication_email.communication.cc_users.pluck(:email)
+
     send_email(
       recipient,
       from: smtp_setting.from_name_and_email,
       subject: subject,
+      cc: cc_emails,
       template_path: 'mailer/communication_email',
       delivery_method_options: smtp_setting.settings_for_email
     )

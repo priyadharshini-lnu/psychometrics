@@ -29,6 +29,8 @@ class Communication < ApplicationRecord
   has_many :users, through: :communications_users
   has_many :communications_assessments, dependent: :destroy
   has_many :selected_assessments, through: :communications_assessments, source: :assessment
+  has_many :communication_cc_users, dependent: :destroy
+  has_many :cc_users, through: :communication_cc_users, source: :user
 
   belongs_to :assessment
   belongs_to :client

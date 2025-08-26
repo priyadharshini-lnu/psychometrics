@@ -47,6 +47,14 @@ module Facades
         show_recipients? && form.model.selected_recipients?
       end
 
+      def cc_users
+        fetch_cc_users
+      end
+
+      def show_cc_users?
+        form.end_level_id.present?
+      end
+
       def show_kind?
         form.end_level_id.present?
       end
@@ -109,6 +117,10 @@ module Facades
       end
 
       def memberships_behavior
+        'owner-resettable client-resettable project-resettable campaign-resettable sub_campaign-resettable'
+      end
+
+      def cc_behavior
         'owner-resettable client-resettable project-resettable campaign-resettable sub_campaign-resettable'
       end
 
@@ -180,7 +192,7 @@ module Facades
       end
 
       def fetch_memberships
-        return User.none if form.end_level.blank? || !form.model.selected_recipients?
+        return User.none if form.end_level.blank? || !form.model.selected_recipients? || form.campaign.blank?
 
         form.campaign.users.
           where(campaign_users: { active: true }, users: { disabled: false })
@@ -194,6 +206,33 @@ module Facades
 
       def kind_type_symbol
         form.kind&.to_sym
+      end
+
+      def fetch_cc_users
+        return [] if form.end_level_id.blank?
+
+        User.distinct.
+          joins(:memberships).
+          where(disabled: false).
+          where(memberships: { disabled: false }).
+          where(
+            '(
+              memberships.client_id = :client_id AND
+              memberships.role = :client_admin_role
+            ) OR (
+              memberships.client_id = :project_id AND
+              memberships.role = :project_admin_role
+            ) OR (
+              memberships.campaign_id = :campaign_id AND
+              memberships.role = :campaign_admin_role
+            )',
+            client_id: form.client_id,
+            project_id: form.project_id,
+            campaign_id: form.campaign_id,
+            client_admin_role: Membership.roles[:client_admin],
+            project_admin_role: Membership.roles[:project_admin],
+            campaign_admin_role: Membership.roles[:campaign_admin]
+          )
       end
     end
   end

@@ -2516,6 +2516,38 @@ ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
 
 
 --
+-- Name: communication_cc_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_cc_users (
+    id bigint NOT NULL,
+    communication_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: communication_cc_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_cc_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_cc_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_cc_users_id_seq OWNED BY public.communication_cc_users.id;
+
+
+--
 -- Name: communication_email_resources; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8673,6 +8705,13 @@ ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: communication_cc_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_cc_users ALTER COLUMN id SET DEFAULT nextval('public.communication_cc_users_id_seq'::regclass);
+
+
+--
 -- Name: communication_email_resources id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10225,6 +10264,14 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.clients_reports
     ADD CONSTRAINT clients_reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communication_cc_users communication_cc_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_cc_users
+    ADD CONSTRAINT communication_cc_users_pkey PRIMARY KEY (id);
 
 
 --
@@ -12640,6 +12687,27 @@ CREATE INDEX index_clients_reports_on_client_id ON public.clients_reports USING 
 --
 
 CREATE INDEX index_clients_reports_on_report_id ON public.clients_reports USING btree (report_id);
+
+
+--
+-- Name: index_communication_cc_users_on_communication_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_cc_users_on_communication_id ON public.communication_cc_users USING btree (communication_id);
+
+
+--
+-- Name: index_communication_cc_users_on_communication_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_communication_cc_users_on_communication_id_and_user_id ON public.communication_cc_users USING btree (communication_id, user_id);
+
+
+--
+-- Name: index_communication_cc_users_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_cc_users_on_user_id ON public.communication_cc_users USING btree (user_id);
 
 
 --
@@ -16035,6 +16103,14 @@ ALTER TABLE ONLY public.threesixty_instruction_template_translations
 
 
 --
+-- Name: communication_cc_users fk_rails_495dba4204; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_cc_users
+    ADD CONSTRAINT fk_rails_495dba4204 FOREIGN KEY (communication_id) REFERENCES public.communications(id) ON DELETE CASCADE;
+
+
+--
 -- Name: resource_hogan_credentials fk_rails_49693360a7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17803,6 +17879,14 @@ ALTER TABLE ONLY public.norms
 
 
 --
+-- Name: communication_cc_users fk_rails_ed3adcc70f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_cc_users
+    ADD CONSTRAINT fk_rails_ed3adcc70f FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: campaign_assessor_assessments fk_rails_ee2e737b88; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18041,6 +18125,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250825030208'),
 ('20250820163652'),
 ('20250806080321'),
 ('20250807052600'),
