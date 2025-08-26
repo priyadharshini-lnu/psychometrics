@@ -1088,6 +1088,7 @@ zh:
         is_active: 活跃
         name: 名称
         no_permission_message: 您没有权限修改
+        title: 用户
         updated_by: 更新者
       validations:
         dates:

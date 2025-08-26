@@ -506,6 +506,7 @@ en:
       errors:
         doesnt_have_header: "'%{sub_header}' does not have header"
         invalid_headers: 'Following headers are invalid: %{headers}'
+        invalid_question: Invalid question ID
         invalid_scores: Scores for factor %{factor_name} are invalid. Scores should be comma separated numeric values
         invalid_sub_header: "'%{sub_header}' is not a valid subheader for header '%{header}'"
         scores_not_allowed: Scores can only be added for MultiChoice and Matrix type question
@@ -1159,6 +1160,7 @@ en:
         is_active: Active
         name: Name
         no_permission_message: You do not have permission to modify
+        title: Users
         updated_by: Updated By
       validations:
         dates:

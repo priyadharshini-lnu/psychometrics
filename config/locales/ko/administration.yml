@@ -1088,6 +1088,7 @@ ko:
         is_active: 활성
         name: 이름
         no_permission_message: 수정할 수 있는 권한이 없습니다
+        title: 사용자
         updated_by: 업데이트 담당자
       validations:
         dates:

@@ -1088,6 +1088,7 @@ sr-Latn:
         is_active: Aktivno
         name: Ime
         no_permission_message: Nemate dozvolu za modifikaciju
+        title: Korisnici
         updated_by: Ažurirano od strane
       validations:
         dates:

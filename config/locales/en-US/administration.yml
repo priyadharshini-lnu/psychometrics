@@ -1088,6 +1088,7 @@ en-US:
         is_active: Active
         name: Name
         no_permission_message: You do not have permission to modify
+        title: Users
         updated_by: Updated By
       validations:
         dates:

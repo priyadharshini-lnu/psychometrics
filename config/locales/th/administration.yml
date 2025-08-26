@@ -1088,6 +1088,7 @@ th:
         is_active: เปิดใช้งาน
         name: ชื่อ
         no_permission_message: คุณไม่มีสิทธิ์ในการแก้ไข
+        title: ผู้เข้าร่วม
         updated_by: อัพเดทโดย
       validations:
         dates:

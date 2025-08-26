@@ -1088,6 +1088,7 @@ ro:
         is_active: Activă
         name: Nume
         no_permission_message: Nu aveți permisiunea de a modifica
+        title: Utilizatorii
         updated_by: Actualizat de
       validations:
         dates:

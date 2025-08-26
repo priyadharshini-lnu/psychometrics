@@ -1088,6 +1088,7 @@ bg:
         is_active: Активен
         name: Име
         no_permission_message: Нямате разрешение за промяна
+        title: Потребители
         updated_by: Актуализирано от
       validations:
         dates:

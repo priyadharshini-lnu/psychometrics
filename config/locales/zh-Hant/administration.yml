@@ -1088,6 +1088,7 @@ zh-Hant:
         is_active: 活躍
         name: 名稱
         no_permission_message: 您無權修改
+        title: 使用者
         updated_by: 更新日期
       validations:
         dates:

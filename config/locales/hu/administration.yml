@@ -1088,6 +1088,7 @@ hu:
         is_active: Aktív
         name: Név
         no_permission_message: Nincs engedélye a módosításra
+        title: Felhasználók
         updated_by: 'Frissítette:'
       validations:
         dates:

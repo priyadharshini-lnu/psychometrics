@@ -1088,6 +1088,7 @@ hr:
         is_active: Aktivan
         name: Ime
         no_permission_message: Nemate dopuštenje za izmjenu
+        title: Korisnici
         updated_by: Ažurirao
       validations:
         dates:

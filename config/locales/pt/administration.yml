@@ -1088,6 +1088,7 @@ pt:
         is_active: Ativo
         name: Nome
         no_permission_message: Não tem permissão para modificar
+        title: Utilizadores
         updated_by: Atualizado por
       validations:
         dates:

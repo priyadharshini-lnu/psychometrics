@@ -1088,6 +1088,7 @@ sk:
         is_active: Aktívny
         name: Meno
         no_permission_message: Nemáte povolenie na úpravu
+        title: Používateľov
         updated_by: Aktualizované používateľom
       validations:
         dates:

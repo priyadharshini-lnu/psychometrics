@@ -1088,6 +1088,7 @@ vi:
         is_active: Hoạt động
         name: Tên
         no_permission_message: Bạn không có quyền sửa đổi
+        title: Người dùng
         updated_by: Cập nhật bởi
       validations:
         dates:

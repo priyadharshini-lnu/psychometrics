@@ -1088,6 +1088,7 @@ ja:
         is_active: アクティブ
         name: 名称
         no_permission_message: を変更する権限がありません。
+        title: ユーザー
         updated_by: 更新者
       validations:
         dates:

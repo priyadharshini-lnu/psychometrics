@@ -1088,6 +1088,7 @@ id:
         is_active: Aktif
         name: Nama
         no_permission_message: Anda tidak memiliki izin untuk memodifikasi
+        title: Pengguna
         updated_by: Diperbarui Oleh
       validations:
         dates:

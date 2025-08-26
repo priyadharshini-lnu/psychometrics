@@ -1088,6 +1088,7 @@ cs:
         is_active: Aktivní
         name: Název
         no_permission_message: Nemáte oprávnění upravovat
+        title: Uživatelé
         updated_by: Aktualizováno
       validations:
         dates:

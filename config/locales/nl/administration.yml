@@ -1088,6 +1088,7 @@ nl:
         is_active: Actief
         name: Naam
         no_permission_message: U hebt geen toestemming om
+        title: Gebruikers
         updated_by: Bijgewerkt door
       validations:
         dates:

@@ -440,10 +440,13 @@ en:
           iiht: IIHT
           lead_assessor_form: Lead Assessor Form
           meeting: Meeting
+          mettl: Mettl
           organisational: Surveys
           pearson: Pearson
           psychometric: Assessment
           saville: Saville
+          simulation: Simulation
+          skillvue: Skillvue
           threesixty: 360 Campaign
         category: Category
         created_at: Created Date
@@ -457,8 +460,11 @@ en:
           common: TTE Assessment
           hogan: Hogan
           iiht: IIHT Assessment
+          mettl: Mettl Assessment
           pearson: Pearson Assessment
           saville: Saville Assessment
+          simulation: Simulation Assessment
+          skillvue: Skillvue Assessment
         updated_at: Modified Date
       assign:
         completed_at: Completion Date
@@ -2881,7 +2887,7 @@ en:
     ro: Română
     ru: Russian
     sk: Slovak
-    sl: Slovenian
+    sl: Slovenščina
     sr-Cyrl: Serbian Cyrillic
     sr-Latn: Serbian Latin
     sv: Swedish
@@ -2950,7 +2956,7 @@ en:
     ro: Română
     ru: Russian
     sk: Slovak
-    sl: Slovenian
+    sl: Slovenščina
     sr-Cyrl: Serbian Cyrillic
     sr-Latn: Serbian Latin
     sv: Swedish

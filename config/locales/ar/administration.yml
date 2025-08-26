@@ -1088,6 +1088,7 @@ ar:
         is_active: نشط
         name: الاسم
         no_permission_message: ليس لديك إذن للتعديل
+        title: المستخدمون
         updated_by: تم التحديث بواسطة
       validations:
         dates:

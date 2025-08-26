@@ -1088,6 +1088,7 @@ fr:
         is_active: Actif
         name: Nom
         no_permission_message: Vous n'avez pas le droit de modifier
+        title: Utilisateurs
         updated_by: Mise à jour par
       validations:
         dates:

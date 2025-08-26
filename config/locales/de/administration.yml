@@ -1088,6 +1088,7 @@ de:
         is_active: Aktiv
         name: Name
         no_permission_message: Sie haben nicht die Erlaubnis zu ändern
+        title: Benutzer
         updated_by: Aktualisiert von
       validations:
         dates:
