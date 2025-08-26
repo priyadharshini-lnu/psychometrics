@@ -711,7 +711,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     expect(assessment_response).to include({
       'assessment_id' => assessment.id,
       'name' => assessment.name,
-      'category' => assessment.category,
+      'category' => assessment.decorate.category,
       'norm_name' => nil,
       'norms' => [],
       'status' => 'not_started',
