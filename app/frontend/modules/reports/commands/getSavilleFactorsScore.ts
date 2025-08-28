@@ -15,12 +15,13 @@ interface Inputs {
   assessmentId: number
   allFactors: Factor[]
   scoreKey?: ScoreKeys
+  addBarColor?: (value: number) => string | undefined
 }
 
-type ScoreOutput ={ name: string } & Record<ScoreKeys, number>
+type ScoreOutput ={ name: string, color: string | undefined } & Record<ScoreKeys, number>
 
 export function getSavilleFactorsScore ({
-  scores, scoreType, valueType, scoreForFactorIds, assessmentId, allFactors, scoreKey = 'score',
+  scores, scoreType, valueType, scoreForFactorIds, assessmentId, allFactors, scoreKey = 'score', addBarColor,
 }: Inputs): ScoreOutput[] {
   const factorsById = keyBy(allFactors, f => f.id)
   const data = (scoreForFactorIds || []).map((f) => {
@@ -32,7 +33,8 @@ export function getSavilleFactorsScore ({
       return {
         name: I18nStore.tSavilleFactorName(assessmentId, factor),
         [scoreKey]: externalScore.score,
-      } as { name: string } & Record<ScoreKeys, number>
+        color: addBarColor ? addBarColor(externalScore.score) : undefined,
+      } as { name: string, color: string | undefined } & Record<ScoreKeys, number>
     }
     return null
   })

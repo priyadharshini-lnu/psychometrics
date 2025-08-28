@@ -97,7 +97,14 @@ export const ColorPicker: FC<props> = ({
               <HexAlphaColorPicker className={styles.colorPicker} color={pickedColorHex} onChange={handleColorChange} />
               <div className={styles.inputContainer}>
                 {eyeDroppeSupported()
-                  ? <Button className={styles.eyeDropperButton} icon={<EyeDropperIcon />} onClick={pickColor} /> : null}
+                  ? (
+                    <Button
+                      type="text"
+                      className={styles.eyeDropperButton}
+                      icon={<EyeDropperIcon />}
+                      onClick={pickColor}
+                    />
+                  ) : null}
                 <HexColorInput
                   alpha
                   color={pickedColorHex}
@@ -106,7 +113,12 @@ export const ColorPicker: FC<props> = ({
                   className={cs([styles.colorInput, 'ant-input'])}
                   data-testid="color-input"
                 />
-                <Button icon={<CopyOutlined />} onClick={handleCopyButtonClick} className={styles.copyButton} />
+                <Button
+                  type="text"
+                  icon={<CopyOutlined />}
+                  onClick={handleCopyButtonClick}
+                  className={styles.copyButton}
+                />
               </div>
               <Space direction="vertical">
                 {recommendedColors && recommendedColors.length

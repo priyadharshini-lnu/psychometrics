@@ -1,3 +1,5 @@
+@import '~/styles/spacing.less';
+
 .colorPicker {
   gap: 12px;
   &:global(.react-colorful) {
@@ -22,6 +24,7 @@
 .colorInput {
   text-align: center;
   width: 100%;
+  padding-block: @space-1;
 }
 .inputContainer {
   position: relative;
@@ -34,6 +37,7 @@
 }
 .eyeDropperButton {
   z-index: 1;
+  align-items: flex-end;
 }
 .popover:global(.ant-popover) {
   z-index: 9999;
