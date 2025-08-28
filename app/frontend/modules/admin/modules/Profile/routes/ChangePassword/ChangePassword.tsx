@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Form, Layout, Typography, Row, Col, Space, Button, Image, Alert,
+  Input,
 } from 'antd'
 import { AccessiblePasswordInput, DirectionalArrowIcon } from '~/glint'
 import { useResources } from '~/hooks/useResources'
@@ -10,11 +11,21 @@ import styles from './ChangePassword.less'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { SuccessMessageTR } from '~/modules/admin/modules/client/core/successMessage'
 import illustration from '../../assets/images/ChangePassword.png'
+import { useRecaptcha } from '~/hooks/useRecaptcha'
 
 const { I18n } = window
+const { disable_recaptcha } = window.PsyGlobalState.features
 
 const ChangePassword: React.FC = () => {
   const { collectionAction } = useResources<UserDetails>('users')
+
+  const [form] = Form.useForm()
+
+  const {
+    recaptchaToken,
+    recaptchaReady,
+    recaptchaWidgetId,
+  } = useRecaptcha({ formInstance: form, disable_recaptcha })
 
   const updateResource = (body: Record<string, string | undefined | null>) => collectionAction({
     action: 'change_password',
@@ -50,6 +61,7 @@ const ChangePassword: React.FC = () => {
           <Col xs={24} lg={12} xl={6}>
             <ResourceForm
               resourceName="users"
+              storeManager={{ form }}
               readableResourceName="User"
               scrollToFirstError
               request={{
@@ -76,14 +88,37 @@ const ChangePassword: React.FC = () => {
                   >
                     <AccessiblePasswordInput />
                   </Form.Item>
+                  {!disable_recaptcha && (
+                    <Form.Item
+                      name="recaptcha_token"
+                      style={{ display: 'none' }}
+                    >
+                      <Input type="hidden" />
+                    </Form.Item>
+                  )
+
+                  }
                   <>
                     <Alert message={I18n.t('change_password_page.warning_message')} type="warning" />
                   </>
                   <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
+
                     <Button
                       type="primary"
                       htmlType="submit"
                       className={styles.actionButton}
+                      onClick={(e) => {
+                        if (!disable_recaptcha) {
+                          if (!recaptchaReady || recaptchaWidgetId.current === null) {
+                            e.preventDefault()
+                            return
+                          }
+                          if (!recaptchaToken) {
+                            e.preventDefault()
+                            window.grecaptcha.execute(recaptchaWidgetId.current)
+                          }
+                        }
+                      }}
                     >
                       {I18n.t('profile.update')}
                       <DirectionalArrowIcon className={styles.buttonIcon} />
@@ -92,6 +127,8 @@ const ChangePassword: React.FC = () => {
                 </>
               )}
             </ResourceForm>
+            {/* Hidden div for reCAPTCHA widget */}
+            {!disable_recaptcha && <div id="recaptcha-button" style={{ display: 'none' }} />}
           </Col>
         </Row>
       </Layout.Content>
