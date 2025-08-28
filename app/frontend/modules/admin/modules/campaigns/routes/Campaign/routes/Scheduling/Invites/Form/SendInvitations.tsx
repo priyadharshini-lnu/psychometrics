@@ -41,8 +41,6 @@ export const SendInvitation: FC<Props> = ({
     },
   })
 
-  const [inviteName, setInviteName] = useState<string>('')
-
   useEffect(() => {
     form.setFieldValue('translations', _.map(languages, v => v))
   }, [languages])
@@ -68,20 +66,6 @@ export const SendInvitation: FC<Props> = ({
   return (
     <div>
       <Form layout="vertical" form={form}>
-        <Row>
-          <Col sm={24} md={12} lg={8}>
-            <Form.Item
-              label={I18n.t('administration.assessment_center.invite.name')}
-              name="name"
-            >
-              <Input
-                value={inviteName}
-                onChange={e => setInviteName(e.currentTarget.value)}
-                placeholder={I18n.t('administration.assessment_center.invite.name_placeholder')}
-              />
-            </Form.Item>
-          </Col>
-        </Row>
         {_.map(languages, (lang, code) => {
           index += 1
           return (

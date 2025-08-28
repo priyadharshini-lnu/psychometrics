@@ -14,15 +14,11 @@ import { BaseMeta } from '~/hooks/useResources/interfaces'
 import Modals from '~/modules/admin/components/Modals'
 import { InviteEditFormModal } from './InviteEditFormModal'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { WorkshopAddFormModal } from './Workshops/WorkshopAddFormModal'
-import { SubjectAddFormModal } from './Subjects/SubjectAddFormModal'
 
 const { I18n } = window
 
 const MODALS = {
   InviteEditFormModal,
-  WorkshopAddFormModal,
-  SubjectAddFormModal,
 }
 
 export const IndividualInvite = () => {
