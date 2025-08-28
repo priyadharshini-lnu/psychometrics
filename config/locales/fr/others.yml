@@ -440,10 +440,13 @@ fr:
           iiht: IIHT
           lead_assessor_form: Formulaire de l'évaluateur principal
           meeting: Réunion
+          mettl: Mettl
           organisational: Enquêtes
           pearson: Pearson
           psychometric: L'évaluation
           saville: Saville
+          simulation: Simulation
+          skillvue: Skillvue
           threesixty: campagne 360
         category: Catégorie
         created_at: Date de création
@@ -457,8 +460,11 @@ fr:
           common: Évaluation TTE
           hogan: Hogan
           iiht: Évaluation de l'IIHT
+          mettl: Évaluation du Mettl
           pearson: Évaluation de Pearson
           saville: Évaluation de Saville
+          simulation: Évaluation par simulation
+          skillvue: Évaluation de Skillvue
         updated_at: Date de modification
       assign:
         completed_at: Date d'achèvement
@@ -811,6 +817,7 @@ fr:
         bulk_download_idp_reports: Téléchargement en masse des rapports IDP
         bulk_download_reports: Téléchargement en masse de rapports
         bulk_download_user_reports: Téléchargement en masse de rapports d'utilisateurs
+        bulk_generate_user_campaign_ai_artifact_results: Générer en bloc les résultats de l’artefact AI de la campagne
         bulk_regenerate_reports: Régénérer les rapports de campagne
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Rapports sur les sujets
         bulk_regenerate_user_reports: Régénérer les rapports des utilisateurs
@@ -847,6 +854,7 @@ fr:
         external_assessment_export: Exportation des résultats externes
         import_accesssheet: Importer une feuille d'accès
         import_assessment_questions: Questions d'évaluation des importations
+        import_assessment_translations: Traductions d’évaluation à l’importation
         import_assessors: Évaluateurs des importations
         import_campaign_factors: Facteurs de la campagne d'importation
         import_datasheet: Fiche technique d'importation
@@ -1127,6 +1135,10 @@ fr:
         mic: Micro
       discard: Rejeter
       discard_record_again: Jeter et enregistrer à nouveau
+      error_while_discarding: Impossible de supprimer la vidéo existante
+      error_while_uploading: Une erreur inconnue s’est produite lors de la fin du téléchargement
+      failed_to_access_permission: Impossible d’accéder à la caméra et au microphone
+      failed_to_complete_upload: 'Echec du téléchargement : aucune adresse URL n’est disponible'
       media_recorder:
         failure: Ce navigateur ne prend pas en charge l'enregistrement vidéo. Veuillez utiliser Chrome ou Firefox pour l'enregistrement vidéo
         success: Veuillez autoriser l'utilisation d'un appareil photo et d'un microphone pour l'enregistrement audio et vidéo
@@ -1778,6 +1790,7 @@ fr:
     column:
       action: Action
       active: Actif
+      ai_assistant: Assistant IA
       allow_multiple_responses: Permettre des réponses multiples
       approval_notification_list: Liste des utilisateurs de la notification d'approbation
       approvers_list: Liste des approbateurs
@@ -1868,7 +1881,9 @@ fr:
       continue: Continuer
       copied: Copié dans le presse-papiers
       default: Défaut
+      disabled: Handicapé
       download: Télécharger
+      enabled: Activé
       file: Fichier
       global_import: Est-ce que Global Import ?
       minutes: Procès-verbal
@@ -2882,6 +2897,8 @@ fr:
     zh-HK: Chinois (Hong Kong)
     zh-Hant: Chinois - Traditionnel
     zh-TW: Chinois (Taiwan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Actif
     campaign_name: Nom de la campagne

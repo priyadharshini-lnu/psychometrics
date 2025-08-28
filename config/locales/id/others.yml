@@ -440,10 +440,13 @@ id:
           iiht: IIHT
           lead_assessor_form: Formulir Penilai Utama
           meeting: Rapat
+          mettl: Mettl
           organisational: Survei
           pearson: Pearson
           psychometric: Penilaian
           saville: Saville
+          simulation: Simulasi
+          skillvue: Keterampilan
           threesixty: Kampanye 360
         category: Golongan
         created_at: Tanggal Dibuat
@@ -457,8 +460,11 @@ id:
           common: Penilaian TTE
           hogan: Hogan
           iiht: Penilaian IIHT
+          mettl: Penilaian Mettl
           pearson: Penilaian Pearson
           saville: Penilaian Saville
+          simulation: Penilaian Simulasi
+          skillvue: Penilaian Skillvue
         updated_at: Tanggal Dimodifikasi
       assign:
         completed_at: Tanggal Penyelesaian
@@ -811,6 +817,7 @@ id:
         bulk_download_idp_reports: Unduh Laporan IDP Massal
         bulk_download_reports: Laporan Unduh Massal
         bulk_download_user_reports: Unduh Laporan Pengguna Secara Massal
+        bulk_generate_user_campaign_ai_artifact_results: Hasilkan Hasil Artefak AI Kampanye Secara Massal
         bulk_regenerate_reports: Buat Ulang Laporan Kampanye
         bulk_regenerate_threesixty_reports: Buat Ulang Laporan Subjek Threesixty
         bulk_regenerate_user_reports: Buat Ulang Laporan Pengguna
@@ -847,6 +854,7 @@ id:
         external_assessment_export: Ekspor Hasil Eksternal
         import_accesssheet: Impor Accessheet
         import_assessment_questions: Pertanyaan Penilaian Impor
+        import_assessment_translations: Impor Terjemahan Penilaian
         import_assessors: Penilai Impor
         import_campaign_factors: Impor Faktor Kampanye
         import_datasheet: Lembar Data Impor
@@ -1130,6 +1138,10 @@ id:
         mic: Mikrofon
       discard: Buang
       discard_record_again: Buang & Rekam Lagi
+      error_while_discarding: Gagal membuang video yang ada
+      error_while_uploading: Terjadi kesalahan yang tidak diketahui saat menyelesaikan pengunggahan
+      failed_to_access_permission: Gagal mengakses kamera dan mikrofon
+      failed_to_complete_upload: 'Gagal menyelesaikan upload: Tidak ada detail URL yang tersedia'
       media_recorder:
         failure: Browser ini tidak mendukung Perekaman Video. Silakan gunakan Chrome atau Firefox untuk Perekaman Video
         success: Izinkan penggunaan kamera dan mikrofon untuk merekam audio dan Video
@@ -1782,6 +1794,7 @@ id:
     column:
       action: Tindakan
       active: Aktif
+      ai_assistant: Asisten AI
       allow_multiple_responses: Mengizinkan beberapa respons
       approval_notification_list: Daftar Pengguna Notifikasi Persetujuan
       approvers_list: Daftar Persetujuan
@@ -1872,7 +1885,9 @@ id:
       continue: Lanjutkan
       copied: Disalin ke clipboard
       default: Default
+      disabled: Cacat
       download: Unduh
+      enabled: Diaktifkan
       file: Arsip
       global_import: Apakah Impor Global?
       minutes: Menit
@@ -2882,6 +2897,8 @@ id:
     zh-HK: Cina (Hong Kong)
     zh-Hant: Cina - Tradisional
     zh-TW: Cina (Taiwan)
+  languages_localized:
+    sl: Slovenia
   license_usage:
     active: Aktif
     campaign_name: Nama kampanye

@@ -440,10 +440,13 @@ it:
           iiht: IIHT
           lead_assessor_form: Modulo per il valutatore responsabile
           meeting: Riunione
+          mettl: Mettl
           organisational: Sondaggi
           pearson: Pearson
           psychometric: Valutazione
           saville: Saville
+          simulation: Simulazione
+          skillvue: Skillvue
           threesixty: campagna 360
         category: Categoria
         created_at: Data di creazione
@@ -457,8 +460,11 @@ it:
           common: Valutazione TTE
           hogan: Hogan
           iiht: Valutazione IIHT
+          mettl: Valutazione Mettl
           pearson: Valutazione Pearson
           saville: Valutazione Saville
+          simulation: Valutazione della simulazione
+          skillvue: Valutazione Skillvue
         updated_at: Data di modifica
       assign:
         completed_at: Data di completamento
@@ -811,6 +817,7 @@ it:
         bulk_download_idp_reports: Download in blocco dei rapporti IDP
         bulk_download_reports: Report scaricati in blocco
         bulk_download_user_reports: Scaricamento massivo dei rapporti utente
+        bulk_generate_user_campaign_ai_artifact_results: Genera in blocco i risultati degli artefatti AI della campagna
         bulk_regenerate_reports: Rigenerare i rapporti della campagna
         bulk_regenerate_threesixty_reports: Rigenerare trecentosessanta rapporti di soggetto
         bulk_regenerate_user_reports: Rigenerare i rapporti utente
@@ -847,6 +854,7 @@ it:
         external_assessment_export: Esporta esterna dei risultati
         import_accesssheet: Importazione di Accessheet
         import_assessment_questions: Domande di valutazione sull'importazione
+        import_assessment_translations: Importazione di traduzioni di valutazione
         import_assessors: Valutatori di importazione
         import_campaign_factors: Fattori della campagna di importazione
         import_datasheet: Scheda tecnica di importazione
@@ -1127,6 +1135,10 @@ it:
         mic: Microfono
       discard: Scartare
       discard_record_again: Scartare e registrare di nuovo
+      error_while_discarding: Impossibile eliminare il video esistente
+      error_while_uploading: Si è verificato un errore sconosciuto durante il completamento del caricamento
+      failed_to_access_permission: Impossibile accedere alla fotocamera e al microfono
+      failed_to_complete_upload: 'Impossibile completare il caricamento: nessun dettaglio URL disponibile'
       media_recorder:
         failure: Questo browser non supporta la registrazione video. Utilizzare Chrome o Firefox per la registrazione video
         success: Consentire l'uso della fotocamera e del microfono per registrare audio e video
@@ -1778,6 +1790,7 @@ it:
     column:
       action: Azioni
       active: Attivi
+      ai_assistant: Assistente AI
       allow_multiple_responses: Consentire risposte multiple
       approval_notification_list: Elenco degli utenti della notifica di approvazione
       approvers_list: Elenco degli approvatori
@@ -1868,7 +1881,9 @@ it:
       continue: Continua
       copied: Copiato negli appunti
       default: Predefinito
+      disabled: Disabile
       download: Scarica
+      enabled: Abilitato
       file: File
       global_import: L'importazione globale?
       minutes: Verbale
@@ -2879,6 +2894,8 @@ it:
     zh-HK: Cinese (Hong Kong)
     zh-Hant: Cinese tradizionale
     zh-TW: Cinese (Taiwan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Attivi
     campaign_name: Nome della campagna

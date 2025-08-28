@@ -291,6 +291,45 @@ vi:
             manage: Điều khiển
             title: Hội thảo
             view: Cảnh
+    ai_artifacts:
+      artifact_results: Kết quả hiện vật
+      code: Mã
+      form:
+        ai_assistant: Trợ lý AI
+        assessments: Đánh giá
+        campaign_factors: Các yếu tố chiến dịch
+        configuration: Cấu hình
+        datasheet: Bảng dữ liệu
+        datasheet_columns: Cột bảng dữ liệu
+        include_all_datasheet_columns: Bao gồm tất cả các cột biểu dữ liệu
+        select_ai_assistant: Chọn Trợ lý AI
+        select_assessment: Chọn Đánh giá
+        select_campaign_factors: Chọn các yếu tố chiến dịch
+        select_datasheet_columns: Chọn cột biểu dữ liệu
+        select_questions: Chọn câu hỏi
+        title: Tạo tác AI
+      generate: Đẻ ra
+      generate_result_info_message: Kết quả đang được tạo, vui lòng làm mới trang để xem kết quả cập nhật.
+      generate_results: Tạo kết quả
+      generated_at: Được tạo tại
+      generated_at_time: Được tạo tại %{time}
+      generated_value: Giá trị được tạo ra
+      id: ID
+      key: Chìa khoá
+      name: Tên
+      parsed_dependencies:
+        help: Các phần phụ thuộc được phân tích cú pháp cho người dùng được Trợ lý AI sử dụng để tạo kết quả tạo tác
+        title: Các phụ thuộc được phân tích cú pháp
+        view: Xem các phần phụ thuộc được phân tích cú pháp
+      playground: Sân chơi
+      playground_info: Kiểm tra cấu phần phần mềm của bạn với dữ liệu mẫu để xem trước kết quả được tạo.
+      playground_placeholder: Nhập dữ liệu thử nghiệm
+      raw: SỐNG
+      tabs:
+        results: Kết quả
+        settings: Cài đặt
+      test_generate: Tạo thử nghiệm
+      unsaved_changes: Có các thay đổi chưa lưu, hãy cân nhắc gửi biểu mẫu để tạo phản hồi cập nhật từ Playground.
     ai_assistants:
       actions:
         create: Tạo Trợ lý Trí tuệ Nhân tạo (AI)
@@ -298,9 +337,34 @@ vi:
         playground: Sân chơi
       ai_assistants: Trợ lý AI
       ai_assistants_playground: Sân chơi trợ lý AI
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: Cấu hình đánh giá thiếu id của đánh giá
+            assessment_missing_questions: Cấu hình đánh giá thiếu câu hỏi cho %{assessment_id} đánh giá
+            no_assessments_configured: Không có đánh giá nào được đặt cấu hình
+            no_assessments_configured_for_artifact: Không có đánh giá nào được đặt cấu hình cho cấu phần mềm này
+            no_completed_results: Không tìm thấy kết quả đánh giá hoàn chỉnh cho %{assessment_name} đánh giá
+            no_valid_assessment_data: Không có dữ liệu đánh giá hợp lệ
+          base:
+            dependency_not_configured: Phần phụ thuộc '%{dependency}' không được định cấu hình
+          campaign_factor:
+            factor_empty_value: Hệ số chiến dịch "%{code}" (%{name}) có giá trị trống cho %{email} người dùng
+            factor_no_value: Yếu tố chiến dịch "%{code}" (%{name}) không có giá trị được chỉ định cho %{email} người dùng
+            no_campaign_factors_configured: Không có yếu tố chiến dịch nào được định cấu hình cho cấu phần mềm này
+            no_valid_factor_data: Không có dữ liệu hệ số chiến dịch hợp lệ
+          datasheet:
+            column_no_value: Cột '%{column}' không có giá trị cho %{email} người dùng
+            no_datasheet_columns_configured: Không có cột biểu dữ liệu cụ thể nào được đặt cấu hình
+            no_datasheet_configured: Không có biểu dữ liệu nào được định cấu hình cho chiến dịch này
+            no_datasheet_data: Không có dữ liệu bảng dữ liệu nào có sẵn cho người dùng %{email}
+            user_not_found_in_datasheet: Không tìm thấy người dùng trong bảng dữ liệu chiến dịch
+      campaign_ai_artifacts: Tạo tác AI chiến dịch
       column:
         provider: Cung cấp
       created_successfully: Trợ lý AI đã được tạo thành công.
+      errors:
+        cannot_delete_in_use: Không thể xóa AI Assistant '%{name}' vì nó đang được sử dụng.
       form:
         add_output_schema_key: Thêm khóa lược đồ đầu ra
         dependencies: Phụ thuộc
@@ -319,6 +383,11 @@ vi:
         system_prompt: Nhắc nhở hệ thống
         type: Loại
         user_prompt: Nhắc nhở người dùng
+      selector:
+        choose_artifact: Chọn AI Artifact
+        choose_schema_key: Chọn Schema Key
+        no_assistants_found: Không tìm thấy Trợ lý AI
+        placeholder: Chọn Trợ lý AI
       updated_successfully: Trợ lý AI đã được cập nhật thành công.
     any: " -Bất kì- "
     api:
@@ -358,6 +427,8 @@ vi:
         exceeded_subjects_count: Chiến dịch có %{users} chủ đề. Bạn chỉ có thể thêm %{count} chủ đề cho mỗi lời mời
         id: ID
         invites: Mời
+        name: Tên
+        name_placeholder: Nhập tên lời mời
         next: Sau
         not_selected: Không được chọn
         requests: Yêu cầu
@@ -435,6 +506,7 @@ vi:
       errors:
         doesnt_have_header: "'%{sub_header}' không có tiêu đề"
         invalid_headers: 'Các tiêu đề sau không hợp lệ: %{headers}'
+        invalid_question: ID câu hỏi không hợp lệ
         invalid_scores: Điểm số cho yếu tố %{factor_name} không hợp lệ. Điểm số phải là các giá trị số được phân tách bằng dấu phẩy
         invalid_sub_header: "'%{sub_header}' không phải là tiêu đề phụ hợp lệ cho tiêu đề '%{header}'"
         scores_not_allowed: Điểm chỉ có thể được thêm cho câu hỏi loại MultiChoice và Matrix
@@ -1573,12 +1645,16 @@ vi:
       add: Thêm
       back: Lưng
       cancel: Hủy
+      code: Mã
       disabled: Diasbled
       download_sample_file: Tải xuống tệp mẫu
       enabled: Kích hoạt
       import:
         failure_msg: Lỗi khi nhập tệp.
+      instructions: Chỉ thị
+      loading: Tải...
       minute: phút
+      name: Tên
       next: Sau
       reset: Reset
       save: Cứu
@@ -1620,6 +1696,7 @@ vi:
           {{schedule_end_date}} - Ngày kết thúc lịch trình
         campaign: Chiến dịch
         campaign_assessment_group: Nhóm Đánh giá Chiến dịch
+        cc_recipients: Người nhận CC
         client: Khách hàng
         completion: Hoàn thành
         custom: Tùy chỉnh
@@ -1712,6 +1789,7 @@ vi:
         back: Lưng
         body: 'Thân thể:'
         campaign: 'Chiến dịch:'
+        cc_recipients: 'Người nhận CC:'
         client: 'Khách hàng:'
         communication_type: 'Loại giao tiếp:'
         delivery_rule: 'Quy tắc giao hàng:'
@@ -2209,7 +2287,16 @@ vi:
       self_rating: Bật tự đánh giá
       show_reflections: Hiển thị phản chiếu
       skill_gap_report: Báo cáo khoảng cách kỹ năng
+      skill_source_preference: Nguồn kỹ năng
+      skill_sources:
+        from_ai: Từ kiến thức AI chung
+        from_template: Từ Template & Mappings
       skills: Kỹ năng
+      skills_privacy_messages:
+        made_private: Kỹ năng '%{skill_name}' đã được đánh dấu là riêng tư và sẽ bị ẩn với người quản lý của bạn
+        made_public: Kỹ năng '%{skill_name}' hiện hiển thị với người quản lý của bạn
+        skill_not_found: Không tìm thấy kỹ năng
+        unauthorized: Không được phép sửa đổi kỹ năng này
       skills_updated: Kỹ năng IDP đã được cập nhật thành công.
       status:
         draft: Bản nháp
@@ -2438,6 +2525,10 @@ vi:
         content: Bạn có chắc chắn muốn xóa chủ đề có email '%{subjectEmail}' không?
         success: Chủ đề có email '%{subjectEmail}'' đã bị xóa thành công.
         title: Loại bỏ đối tượng
+      resend_invite:
+        content: Gửi lại lời mời đến các chủ đề đã chọn. Bạn có chắc chắn muốn tiếp tục?
+        success: Lời mời được gửi lại thành công.
+        title: Gửi lại lời mời
       statuses:
         accepted: Chấp nhận
         cancelled: Bị hủy bỏ
@@ -2541,6 +2632,7 @@ vi:
     message: Thông điệp
     meta_title: Bảng điều khiển
     navigation:
+      ai_artifacts: Đồ tạo tác AI
       ai_assistants: Trợ lý AI
       assessments: Đánh giá
       assessments_reports: Đánh giá & Báo cáo
@@ -2781,6 +2873,7 @@ vi:
         create:
           invalid_format: Định nghĩa cấp độ phải là một mảng các định nghĩa.
           level_definition_must_match_level: phải chứa chính xác %{expected} mức, nhưng %{actual} đã được đưa ra
+          level_description_must_exist: Mô tả cấp độ không được để trống
           level_name_must_exist: Tên cấp độ không được để trống.
           must_be_unique: Phải là duy nhất
           proficiency_level_exists: Mức độ thành thạo với kỹ năng và dự án này đã tồn tại
@@ -3301,6 +3394,19 @@ vi:
         pending_qc: QC đang chờ xử lý
         qc_completed: QC đã hoàn thành
         qc_in_progress: QC đang tiến hành
+    report_settings:
+      data_source_types:
+        assessment: Thuế
+        campaign_factors: Các yếu tố chiến dịch
+        datasheet: Bảng dữ liệu
+        report_data: Dữ liệu báo cáo
+      tabs:
+        campaign_ai_artifacts: Tạo tác AI chiến dịch
+        campaign_factors: Các yếu tố chiến dịch
+        data_sheets: Bảng dữ liệu
+        page_settings: Cài đặt trang
+        translations: Bản dịch
+      title: Cài đặt báo cáo
     reports:
       bulk_marked_as_done: Hàng loạt được đánh dấu là xong
       bulk_upload:
@@ -4337,6 +4443,7 @@ vi:
           header: Nhập bản dịch
       import:
         successfully: Bản dịch đã được nhập thành công
+        successfully_scheduled: Nhập bản dịch đã được lên lịch thành công.
       reports:
         export: Xuất bản dịch
         import: Nhập bản dịch

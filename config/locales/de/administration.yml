@@ -291,6 +291,45 @@ de:
             manage: Verwalten Sie
             title: Werkstätten
             view: Siehe
+    ai_artifacts:
+      artifact_results: Ergebnisse des Artefakts
+      code: Code
+      form:
+        ai_assistant: KI-Assistent
+        assessments: Veranlagungen
+        campaign_factors: Faktoren der Kampagne
+        configuration: Konfiguration
+        datasheet: Datenblatt
+        datasheet_columns: Datenblatt-Spalten
+        include_all_datasheet_columns: Alle Datenblattspalten einschließen
+        select_ai_assistant: Wählen Sie AI Assistant aus
+        select_assessment: Bewertung auswählen
+        select_campaign_factors: Kampagnenfaktoren auswählen
+        select_datasheet_columns: Auswählen von Datenblattspalten
+        select_questions: Fragen auswählen
+        title: KI-Artefakt
+      generate: Erzeugen
+      generate_result_info_message: Ergebnisse werden generiert, bitte aktualisieren Sie die Seite, um die aktualisierten Ergebnisse zu sehen.
+      generate_results: Ergebnisse generieren
+      generated_at: Generiert um
+      generated_at_time: Generiert bei %{time}
+      generated_value: Generierter Wert
+      id: ID
+      key: Schlüssel
+      name: Name
+      parsed_dependencies:
+        help: Analysierte Abhängigkeiten für den Benutzer, die vom KI-Assistenten für die Generierung von Artefaktergebnissen verwendet werden
+        title: Analysierte Abhängigkeiten
+        view: Analysierte Abhängigkeiten anzeigen
+      playground: Spielplatz
+      playground_info: Testen Sie Ihr Artefakt mit Beispieldaten, um eine Vorschau der generierten Ergebnisse anzuzeigen.
+      playground_placeholder: Eingabe von Testdaten
+      raw: ROH
+      tabs:
+        results: Befund
+        settings: Einstellungen
+      test_generate: Test Generieren
+      unsaved_changes: Nicht gespeicherte Änderungen sind vorhanden, erwägen Sie, das Formular zu senden, um eine aktualisierte Antwort von Playground zu generieren.
     ai_assistants:
       actions:
         create: AI-Assistent erstellen
@@ -298,9 +337,34 @@ de:
         playground: Spielplatz
       ai_assistants: AI-Assistenten
       ai_assistants_playground: AI-Assistent Spielwiese
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: In der Bewertungskonfiguration fehlt die ID der Bewertung
+            assessment_missing_questions: In der Bewertungskonfiguration fehlen Fragen zur Bewertung %{assessment_id}
+            no_assessments_configured: Es sind keine Bewertungen konfiguriert
+            no_assessments_configured_for_artifact: Für dieses Artefakt sind keine Bewertungen konfiguriert
+            no_completed_results: Es wurden keine abgeschlossenen Bewertungsergebnisse für die Bewertung gefunden %{assessment_name}
+            no_valid_assessment_data: Keine validen Bewertungsdaten verfügbar
+          base:
+            dependency_not_configured: Die Abhängigkeit '%{dependency}' ist nicht konfiguriert
+          campaign_factor:
+            factor_empty_value: Der Kampagnenfaktor '%{code}' (%{name}) hat einen leeren Wert für den Nutzer %{email}
+            factor_no_value: Dem Kampagnenfaktor '%{code}' (%{name}) ist kein Wert für den Benutzer zugeordnet %{email}
+            no_campaign_factors_configured: Für dieses Artefakt sind keine Kampagnenfaktoren konfiguriert
+            no_valid_factor_data: Keine gültigen Daten zu Kampagnenfaktoren verfügbar
+          datasheet:
+            column_no_value: Die Spalte '%{column}' hat keinen Wert für den Benutzer %{email}
+            no_datasheet_columns_configured: Es sind keine spezifischen Datenblattspalten konfiguriert
+            no_datasheet_configured: Für diese Kampagne ist kein Datenblatt konfiguriert
+            no_datasheet_data: Für den Benutzer sind keine Datenblattdaten verfügbar %{email}
+            user_not_found_in_datasheet: Benutzer nicht im Datenblatt der Kampagne gefunden
+      campaign_ai_artifacts: KI-Artefakte für Kampagnen
       column:
         provider: Anbieter
       created_successfully: AI Assistant wurde erfolgreich erstellt.
+      errors:
+        cannot_delete_in_use: AI Assistant '%{name}' kann nicht gelöscht werden, da er verwendet wird.
       form:
         add_output_schema_key: Ausgabeschema-Schlüssel hinzufügen
         dependencies: Abhängigkeiten
@@ -319,6 +383,11 @@ de:
         system_prompt: System-Eingabeaufforderung
         type: Typ
         user_prompt: Benutzeraufforderung
+      selector:
+        choose_artifact: Wählen Sie AI Artifact
+        choose_schema_key: Schemaschlüssel auswählen
+        no_assistants_found: Keine KI-Assistenten gefunden
+        placeholder: Wählen Sie AI Assistant aus
       updated_successfully: AI Assistant wurde erfolgreich aktualisiert.
     any: " - Jeder - "
     api:
@@ -358,6 +427,8 @@ de:
         exceeded_subjects_count: Kampagne hat %{users} Themen. Sie können nur %{count} Themen pro Einladung hinzufügen
         id: ID
         invites: Einladungen
+        name: Name
+        name_placeholder: Geben Sie den Namen der Einladung ein
         next: Weiter
         not_selected: Nicht ausgewählt
         requests: Anfragen an
@@ -435,6 +506,7 @@ de:
       errors:
         doesnt_have_header: "%{sub_header}' hat keine Kopfzeile"
         invalid_headers: 'Folgende Header sind ungültig: %{headers}'
+        invalid_question: Ungültige Frage-ID
         invalid_scores: Die Werte für den Faktor %{factor_name} sind ungültig und sollten durch Komma getrennt sein
         invalid_sub_header: "%{sub_header}' ist kein gültiger Subheader für den Header '%{header}'"
         scores_not_allowed: Punkte können nur für MultiChoice- und Matrixfragen hinzugefügt werden
@@ -1573,12 +1645,16 @@ de:
       add: Hinzufügen
       back: Zurück
       cancel: Abbrechen
+      code: Code
       disabled: Diasbled
       download_sample_file: Beispieldatei herunterladen
       enabled: Aktiviert
       import:
         failure_msg: Fehler beim Importieren der Datei.
+      instructions: Anweisungen
+      loading: Laden...
       minute: Minute
+      name: Name
       next: Weiter
       reset: Zurücksetzen
       save: Speichern Sie
@@ -1620,6 +1696,7 @@ de:
            {{schedule_end_date}} - Enddatum des Zeitplans"
         campaign: Kampagne
         campaign_assessment_group: Gruppe für Kampagnenbewertung
+        cc_recipients: CC-Empfänger
         client: Kunde
         completion: Fertigstellung
         custom: Benutzerdefiniert
@@ -1712,6 +1789,7 @@ de:
         back: Zurück
         body: 'Körper:'
         campaign: 'Kampagne:'
+        cc_recipients: 'CC-Empfänger:'
         client: 'Kunde:'
         communication_type: 'Art der Kommunikation:'
         delivery_rule: 'Lieferregel:'
@@ -2209,7 +2287,16 @@ de:
       self_rating: Selbstbewertung einschalten
       show_reflections: Reflektionen zeigen
       skill_gap_report: Bericht über das Qualifikationsdefizit
+      skill_source_preference: Skill-Quelle
+      skill_sources:
+        from_ai: Aus allgemeinem KI-Wissen
+        from_template: Aus Template & Mappings
       skills: Fertigkeiten
+      skills_privacy_messages:
+        made_private: Die Fertigkeit "%{skill_name}" wurde als privat markiert und wird vor Ihrem Manager verborgen
+        made_public: Die Fähigkeit "%{skill_name}" ist jetzt für Ihren Vorgesetzten sichtbar
+        skill_not_found: Skill nicht gefunden
+        unauthorized: Nicht berechtigt, diese Fertigkeit zu ändern
       skills_updated: IDP Skills erfolgreich aktualisiert
       status:
         draft: Entwurf
@@ -2438,6 +2525,10 @@ de:
         content: Sind Sie sicher, dass Sie den Betreff mit E-Mail '%{subjectEmail}' entfernen möchten?
         success: Betreff mit E-Mail '%{subjectEmail}'' wurde erfolgreich entfernt.
         title: Thema entfernen
+      resend_invite:
+        content: Senden Sie die Einladung erneut an die ausgewählten Betreffzeilen. Sind Sie sicher, dass Sie fortfahren möchten?
+        success: Einladungen werden erfolgreich verschickt.
+        title: Einladung erneut senden
       statuses:
         accepted: Angenommen
         cancelled: Abgesagt
@@ -2541,6 +2632,7 @@ de:
     message: Nachricht
     meta_title: Verwaltungs-Panel
     navigation:
+      ai_artifacts: KI-Artefakte
       ai_assistants: AI-Assistenten
       assessments: Beurteilungen
       assessments_reports: Beurteilungen und Berichte
@@ -2781,6 +2873,7 @@ de:
         create:
           invalid_format: Die Ebenendefinition muss ein Array von Definitionen sein.
           level_definition_must_match_level: muss genau %{expected} Werte enthalten, aber %{actual} wurden angegeben
+          level_description_must_exist: Die Beschreibung der Ebene darf nicht leer sein
           level_name_must_exist: Der Name der Ebene darf nicht leer sein.
           must_be_unique: Muss einzigartig sein
           proficiency_level_exists: Ein ProficiencyLevel mit dieser Fähigkeit und diesem Projekt existiert bereits
@@ -3305,6 +3398,19 @@ de:
         pending_qc: Ausstehende QC
         qc_completed: QC Abgeschlossen
         qc_in_progress: QC in Bearbeitung
+    report_settings:
+      data_source_types:
+        assessment: Bewertung
+        campaign_factors: Faktoren der Kampagne
+        datasheet: Datenblatt
+        report_data: Daten melden
+      tabs:
+        campaign_ai_artifacts: KI-Artefakte für Kampagnen
+        campaign_factors: Faktoren der Kampagne
+        data_sheets: Datenblätter
+        page_settings: Seiten-Einstellungen
+        translations: Übersetzungen
+      title: Berichts-Einstellungen
     reports:
       bulk_marked_as_done: Als erledigt markierter Bulk
       bulk_upload:
@@ -4352,6 +4458,8 @@ de:
       assessments:
         new:
           header: Übersetzungen importieren
+      import:
+        successfully_scheduled: Der Import der Übersetzung wurde erfolgreich geplant.
       reports:
         export: Übersetzungen exportieren
         import: Übersetzungen importieren

@@ -291,6 +291,45 @@ it:
             manage: Azioni
             title: Laboratori
             view: Vista
+    ai_artifacts:
+      artifact_results: Risultati degli artefatti
+      code: Codice
+      form:
+        ai_assistant: Assistente AI
+        assessments: Valutazioni
+        campaign_factors: Fattori della campagna
+        configuration: Configurazione
+        datasheet: Scheda tecnica
+        datasheet_columns: Colonne della scheda tecnica
+        include_all_datasheet_columns: Includi tutte le colonne del foglio dati
+        select_ai_assistant: Seleziona Assistente AI
+        select_assessment: Seleziona valutazione
+        select_campaign_factors: Seleziona i fattori della campagna
+        select_datasheet_columns: Seleziona colonne del foglio dati
+        select_questions: Seleziona le domande
+        title: Artefatto AI
+      generate: Generare
+      generate_result_info_message: I risultati sono in fase di generazione, aggiorna la pagina per vedere i risultati aggiornati.
+      generate_results: Genera risultati
+      generated_at: Generato il
+      generated_at_time: Generato a %{time}
+      generated_value: Valore Generato
+      id: ID
+      key: Chiave
+      name: Nome
+      parsed_dependencies:
+        help: Dipendenze analizzate per l'utente utilizzato dall'Assistente AI per la generazione dei risultati degli artefatti
+        title: Dipendenze analizzate
+        view: Visualizzazione delle dipendenze analizzate
+      playground: Parco giochi
+      playground_info: Testare l'artefatto con dati di esempio per visualizzare in anteprima i risultati generati.
+      playground_placeholder: Immettere i dati del test
+      raw: CRUDO
+      tabs:
+        results: Risultati
+        settings: Impostazioni
+      test_generate: Genera test
+      unsaved_changes: Sono presenti modifiche non salvate, prendi in considerazione l'invio del modulo per generare una risposta aggiornata da Playground.
     ai_assistants:
       actions:
         create: Creare l'assistente AI
@@ -298,9 +337,34 @@ it:
         playground: Parco giochi
       ai_assistants: Assistenti AI
       ai_assistants_playground: Parco giochi per assistenti AI
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: Nella configurazione della valutazione manca l'ID della valutazione
+            assessment_missing_questions: Nella configurazione della valutazione mancano le domande per la valutazione %{assessment_id}
+            no_assessments_configured: Non sono configurate valutazioni
+            no_assessments_configured_for_artifact: Non sono configurate valutazioni per questo artefatto
+            no_completed_results: Non sono stati trovati risultati della valutazione completati per la valutazione %{assessment_name}
+            no_valid_assessment_data: Non sono disponibili dati di valutazione validi
+          base:
+            dependency_not_configured: La dipendenza '%{dependency}' non è configurata
+          campaign_factor:
+            factor_empty_value: Il fattore campagna '%{code}' (%{name}) ha un valore vuoto per l'utente %{email}
+            factor_no_value: Al fattore di campagna '%{code}' (%{name}) non è assegnato alcun valore per l'utente %{email}
+            no_campaign_factors_configured: Per questo artefatto non è configurato alcun fattore della campagna
+            no_valid_factor_data: Non sono disponibili dati validi sui fattori della campagna
+          datasheet:
+            column_no_value: La colonna '%{column}' non ha alcun valore per l'utente %{email}
+            no_datasheet_columns_configured: Non sono configurate colonne specifiche del foglio dati
+            no_datasheet_configured: Per questa campagna non è configurata alcuna scheda tecnica
+            no_datasheet_data: Nessun dato della scheda tecnica disponibile per l'utente %{email}
+            user_not_found_in_datasheet: Utente non trovato nella scheda tecnica della campagna
+      campaign_ai_artifacts: Artefatti dell'IA della campagna
       column:
         provider: Fornitore
       created_successfully: L'assistente AI è stato creato con successo.
+      errors:
+        cannot_delete_in_use: Impossibile eliminare AI Assistant '%{name}' perché è in uso.
       form:
         add_output_schema_key: Aggiungere la chiave dello schema di output
         dependencies: Dipendenze
@@ -319,6 +383,11 @@ it:
         system_prompt: Prompt del sistema
         type: Tipo
         user_prompt: Prompt dell'utente
+      selector:
+        choose_artifact: Scegli l'artefatto AI
+        choose_schema_key: Scegli la chiave dello schema
+        no_assistants_found: Nessun assistente AI trovato
+        placeholder: Seleziona Assistente AI
       updated_successfully: L'assistente AI è stato aggiornato con successo.
     any: " - Qualsiasi - "
     api:
@@ -358,6 +427,8 @@ it:
         exceeded_subjects_count: La campagna ha %{users} soggetti. È possibile aggiungere solo %{count} soggetti per ogni invito
         id: ID
         invites: Inviti
+        name: Nome
+        name_placeholder: Inserisci il nome dell'invito
         next: Avanti
         not_selected: Non selezionato
         requests: Richieste
@@ -435,6 +506,7 @@ it:
       errors:
         doesnt_have_header: "'%{sub_header}' non ha un'intestazione"
         invalid_headers: 'Le seguenti intestazioni non sono valide: %{headers}'
+        invalid_question: ID domanda non valido
         invalid_scores: I punteggi per il fattore %{factor_name} non sono validi. I punteggi devono essere valori numerici separati da virgole
         invalid_sub_header: "'%{sub_header}' non è una sottovoce valida per l'intestazione '%{header}'"
         scores_not_allowed: I punteggi possono essere aggiunti solo per le domande a scelta multipla e a matrice
@@ -1573,12 +1645,16 @@ it:
       add: Aggiungi
       back: Indietro
       cancel: Annullamento
+      code: Codice
       disabled: Diasbled
       download_sample_file: Scarica il file di esempio
       enabled: Abilitato
       import:
         failure_msg: Errore durante l'importazione del file.
+      instructions: Disposizioni
+      loading: Caricamento...
       minute: minuto
+      name: Nome
       next: Avanti
       reset: Reset
       save: Risparmiare
@@ -1620,6 +1696,7 @@ it:
            {{schedule_end_date}} - Data di fine del calendario"
         campaign: Campagna
         campaign_assessment_group: Gruppo di valutazione della campagna
+        cc_recipients: Destinatari CC
         client: Cliente
         completion: Completamento
         custom: Personalizzato
@@ -1712,6 +1789,7 @@ it:
         back: Indietro
         body: 'Corpo:'
         campaign: 'Campagna:'
+        cc_recipients: 'Destinatari CC:'
         client: 'Cliente:'
         communication_type: 'Tipo di comunicazione:'
         delivery_rule: 'Regola di consegna:'
@@ -2209,7 +2287,16 @@ it:
       self_rating: Abilita l'autovalutazione
       show_reflections: Mostra Riflessioni
       skill_gap_report: Rapporto sul divario di competenze
+      skill_source_preference: Fonte di abilità
+      skill_sources:
+        from_ai: Da Conoscenza generale dell'intelligenza artificiale
+        from_template: Da Template & Mappature
       skills: Competenze
+      skills_privacy_messages:
+        made_private: La competenza "%{skill_name}" è stata contrassegnata come privata e verrà nascosta al tuo manager
+        made_public: La competenza "%{skill_name}" è ora visibile al tuo manager
+        skill_not_found: Abilità non trovata
+        unauthorized: Non autorizzato a modificare questa competenza
       skills_updated: Competenze IDP aggiornate con successo
       status:
         draft: Bozza
@@ -2438,6 +2525,10 @@ it:
         content: Si è sicuri di voler rimuovere l'oggetto con l'email '%{subjectEmail}'?
         success: L'oggetto con email '%{subjectEmail}' è stato rimosso con successo.
         title: Rimuovi soggetto
+      resend_invite:
+        content: Invia nuovamente l'invito ai soggetti selezionati. Sei sicuro di voler procedere?
+        success: Gli inviti vengono inviati di nuovo.
+        title: Invia nuovamente l'invito
       statuses:
         accepted: Accettato
         cancelled: Annullato
@@ -2541,6 +2632,7 @@ it:
     message: Messaggio
     meta_title: Pannello di amministrazione
     navigation:
+      ai_artifacts: Artefatti AI
       ai_assistants: Assistenti AI
       assessments: Assessment
       assessments_reports: Assessment e report
@@ -2781,6 +2873,7 @@ it:
         create:
           invalid_format: La definizione del livello deve essere un array di definizioni.
           level_definition_must_match_level: deve contenere esattamente i livelli %{expected}, ma quelli %{actual} sono stati dati
+          level_description_must_exist: La descrizione del livello non può essere vuota
           level_name_must_exist: Il nome del livello non può essere vuoto
           must_be_unique: Deve essere unico
           proficiency_level_exists: Esiste già un livello di competenza con questa abilità e questo progetto.
@@ -3305,6 +3398,19 @@ it:
         pending_qc: In attesa del CQ
         qc_completed: CQ Completati
         qc_in_progress: CQ in corso
+    report_settings:
+      data_source_types:
+        assessment: Valutazione
+        campaign_factors: Fattori della campagna
+        datasheet: Scheda tecnica
+        report_data: Dati del rapporto
+      tabs:
+        campaign_ai_artifacts: Artefatti dell'IA della campagna
+        campaign_factors: Fattori della campagna
+        data_sheets: Schede tecniche
+        page_settings: Impostazioni pagina
+        translations: Traduzioni
+      title: Impostazioni report
     reports:
       bulk_marked_as_done: Segnato come fatto
       bulk_upload:
@@ -4354,6 +4460,7 @@ it:
           header: Importazione di traduzioni
       import:
         successfully: Le traduzioni sono state importate con successo
+        successfully_scheduled: L'importazione delle traduzioni è stata pianificata correttamente.
       reports:
         export: Traduzioni per l'esportazione
         import: Importazione di traduzioni

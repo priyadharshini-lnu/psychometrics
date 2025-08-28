@@ -440,10 +440,13 @@ sl:
           iiht: IIHT
           lead_assessor_form: Obrazec glavni ocenjevalec
           meeting: Sestanek
+          mettl: Mettl
           organisational: Raziskave
           pearson: Pearson
           psychometric: Psihometrija
           saville: Saville
+          simulation: Simulacija
+          skillvue: Skillvue
           threesixty: 360-stopinjska kampanja
         category: Kategorija
         created_at: Ustvarjeno dne
@@ -814,6 +817,7 @@ sl:
         bulk_download_idp_reports: Množični prenos poročil IDP
         bulk_download_reports: Poročila o množičnem prenosu
         bulk_download_user_reports: Prenos poročil uporabnikov v velikem obsegu
+        bulk_generate_user_campaign_ai_artifact_results: Množično ustvarjanje rezultatov artefaktov AI kampanje
         bulk_regenerate_reports: Vnovična generacija poročil o oglaševalskih akcijah
         bulk_regenerate_threesixty_reports: Obnovite poročila o treh šestdesetih predmetih
         bulk_regenerate_user_reports: Znova generirajte poročila uporabnikov
@@ -850,6 +854,7 @@ sl:
         external_assessment_export: Izvoz zunanjih rezultatov
         import_accesssheet: Uvoz dodatka
         import_assessment_questions: Vprašanja za oceno uvoza
+        import_assessment_translations: Prevodi ocenjevanja uvoza
         import_assessors: Ocenjevalci uvoza
         import_campaign_factors: Uvoz dejavnikov oglaševalske akcije
         import_datasheet: Uvoz podatkovnega lista
@@ -1130,6 +1135,10 @@ sl:
         mic: Mikrofon
       discard: Zavrni
       discard_record_again: Zavrnite in ponovno posnemite
+      error_while_discarding: Obstoječega videoposnetka ni bilo mogoče zavrniti
+      error_while_uploading: Med nalaganjem je prišlo do neznane napake
+      failed_to_access_permission: Dostop do kamere in mikrofona ni bil mogoč
+      failed_to_complete_upload: 'Nalaganje ni bilo mogoče dokončati: podrobnosti o URL-ju niso na voljo'
       media_recorder:
         failure: Vaš brskalnik ne omogoča snemanja videa. Priporočamo uporabo brskalnika Chrome ali Firefox
         success: Prosimo dovolite uporabo kamere in mikrofona za snemanje
@@ -1776,6 +1785,7 @@ sl:
     column:
       action: Aktivnost
       active: Aktivni
+      ai_assistant: Pomočnik za umetno inteligenco
       allow_multiple_responses: Omogočanje več odgovorov
       approval_notification_list: Seznam uporabnikov obvestila o odobritvi
       approvers_list: Seznam odobritev
@@ -1866,7 +1876,9 @@ sl:
       continue: Nadaljuj
       copied: Kopirano v odložišče
       default: Privzeto
+      disabled: Onemogočen
       download: Prenesi
+      enabled: Omogočeno
       file: Datoteka
       global_import: Je globalni uvoz?
       minutes: Minut
@@ -2876,6 +2888,8 @@ sl:
     zh-HK: kitajščina (Hongkong)
     zh-Hant: kitajščina - tradicionalna
     zh-TW: kitajščina (Tajvan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Aktivni
     campaign_name: Ime kampanje

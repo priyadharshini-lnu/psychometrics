@@ -440,10 +440,13 @@ hu:
           iiht: IIHT
           lead_assessor_form: Vezető értékelő űrlap
           meeting: Találkozó
+          mettl: Mettl
           organisational: Felmérések
           pearson: Pearson
           psychometric: Értékelés
           saville: Saville
+          simulation: Szimuláció
+          skillvue: Skillvue
           threesixty: 360 fokos kampány
         category: Kategória
         created_at: Létrehozás dátuma
@@ -457,8 +460,11 @@ hu:
           common: TTE értékelés
           hogan: Hogan
           iiht: IIHT értékelés
+          mettl: Mettl értékelés
           pearson: Pearson értékelés
           saville: Saville-értékelés
+          simulation: Szimulációs értékelés
+          skillvue: Skillvue értékelés
         updated_at: Módosítás dátuma
       assign:
         completed_at: Befejezés dátuma
@@ -811,6 +817,7 @@ hu:
         bulk_download_idp_reports: IDP-jelentések tömeges letöltése
         bulk_download_reports: Jelentések tömeges letöltése
         bulk_download_user_reports: Felhasználói jelentések tömeges letöltése
+        bulk_generate_user_campaign_ai_artifact_results: Kampány AI-műtermékek eredményeinek tömeges generálása
         bulk_regenerate_reports: Kampányjelentések újragenerálása
         bulk_regenerate_threesixty_reports: Háromhatven tárgyi jelentés újragenerálása
         bulk_regenerate_user_reports: Felhasználói jelentések újragenerálása
@@ -847,6 +854,7 @@ hu:
         external_assessment_export: Külső eredmények exportálása
         import_accesssheet: Accessheet importálása
         import_assessment_questions: Import értékelési kérdések
+        import_assessment_translations: Import Assessment fordítások
         import_assessors: Importértékelők
         import_campaign_factors: Kampánytényezők importálása
         import_datasheet: Adatlap importálása
@@ -1127,6 +1135,10 @@ hu:
         mic: Mic
       discard: Dobja el a
       discard_record_again: Dobja el és rögzítse újra
+      error_while_discarding: Nem sikerült elvetni a meglévő videót
+      error_while_uploading: Ismeretlen hiba történt a feltöltés befejezése közben
+      failed_to_access_permission: Nem sikerült elérni a kamerát és a mikrofont
+      failed_to_complete_upload: 'Nem sikerült befejezni a feltöltést: Nem állnak rendelkezésre URL-adatok'
       media_recorder:
         failure: Ez a böngésző nem támogatja a videófelvételt. Kérjük, használja a Chrome vagy Firefox böngészőt a videófelvételhez
         success: Kérjük, engedélyezze a kamera és a mikrofon használatát hang- és videofelvételek rögzítéséhez
@@ -1778,6 +1790,7 @@ hu:
     column:
       action: Akció
       active: Aktív
+      ai_assistant: AI asszisztens
       allow_multiple_responses: Több válasz engedélyezése
       approval_notification_list: Jóváhagyási értesítés felhasználóinak listája
       approvers_list: Jóváhagyók listája
@@ -1868,7 +1881,9 @@ hu:
       continue: Folytatás
       copied: Vágólapra másolva
       default: Alapértelmezett
+      disabled: Fogyatékos
       download: Letöltés
+      enabled: Engedélyezve
       file: Fájl
       global_import: Globális import?
       minutes: Jegyzőkönyv
@@ -2856,6 +2871,8 @@ hu:
     zh-HK: Kínai (Hongkong)
     zh-Hant: Kínai - hagyományos
     zh-TW: Kínai (Tajvan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Aktív
     campaign_name: Kampány neve

@@ -291,6 +291,45 @@ sl:
             manage: Upravljanje
             title: Delavnice
             view: Pogled
+    ai_artifacts:
+      artifact_results: Rezultati artefaktov
+      code: Koda
+      form:
+        ai_assistant: Pomočnik za umetno inteligenco
+        assessments: Ocene
+        campaign_factors: Dejavniki oglaševalske akcije
+        configuration: Konfiguracijo
+        datasheet: Podatkovni list
+        datasheet_columns: Stolpci podatkovnega lista
+        include_all_datasheet_columns: Vključi vse stolpce podatkovnega lista
+        select_ai_assistant: Izberite pomočnika AI
+        select_assessment: Izberite Ocenjevanje
+        select_campaign_factors: Izberite dejavnike oglaševalske akcije
+        select_datasheet_columns: Izberite stolpce podatkovnega lista
+        select_questions: Izberite vprašanja
+        title: Artefakt umetne inteligence
+      generate: Ustvariti
+      generate_result_info_message: Rezultati se ustvarjajo, prosimo, osvežite stran, da si ogledate posodobljene rezultate.
+      generate_results: Ustvarjanje rezultatov
+      generated_at: Ustvarjeno pri
+      generated_at_time: Ustvarjeno ob %{time}
+      generated_value: Ustvarjena vrednost
+      id: ID
+      key: Ključ
+      name: Ime
+      parsed_dependencies:
+        help: Razčlenjene odvisnosti za uporabnika, ki ga uporablja AI Assistant za generiranje rezultatov artefaktov
+        title: Razčlenjene odvisnosti
+        view: Ogled razčlenjenih odvisnosti
+      playground: Igrišče
+      playground_info: Preskusite artefakt z vzorčnimi podatki za predogled ustvarjenih rezultatov.
+      playground_placeholder: Vnos testnih podatkov
+      raw: SUROV
+      tabs:
+        results: Rezultati
+        settings: Nastavitve
+      test_generate: Testno generiranje
+      unsaved_changes: Neshranjene spremembe so prisotne, razmislite o pošiljanju obrazca za ustvarjanje posodobljenega odgovora iz Playground.
     ai_assistants:
       actions:
         create: Ustvarite pomočnika AI
@@ -298,9 +337,34 @@ sl:
         playground: Igrišče
       ai_assistants: Pomočniki za umetno inteligenco
       ai_assistants_playground: Igrišče pomočnika AI
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: V konfiguraciji ocenjevanja manjka id ocenjevanja
+            assessment_missing_questions: V konfiguraciji ocenjevanja manjkajo vprašanja za ocenjevanje %{assessment_id}
+            no_assessments_configured: Ocenjevanja niso konfigurirana
+            no_assessments_configured_for_artifact: Za ta artefakt niso konfigurirane nobene ocene
+            no_completed_results: Za ocenjevanje niso bili ugotovljeni zaključeni rezultati ocenjevanja %{assessment_name}
+            no_valid_assessment_data: Veljavni podatki o oceni niso na voljo
+          base:
+            dependency_not_configured: Odvisnost »%{dependency}« ni konfigurirana
+          campaign_factor:
+            factor_empty_value: Faktor oglaševalske akcije »%{code}« (%{name}) ima prazno vrednost za %{email} uporabnika
+            factor_no_value: Faktor oglaševalske akcije »%{code}« (%{name}) nima dodeljene vrednosti za %{email} uporabnikov
+            no_campaign_factors_configured: Za ta artefakt niso konfigurirani nobeni dejavniki oglaševalske akcije
+            no_valid_factor_data: Veljavni podatki o faktorjih oglaševalske akcije niso na voljo
+          datasheet:
+            column_no_value: Stolpec »%{column}« nima vrednosti za %{email} uporabnika
+            no_datasheet_columns_configured: Določeni stolpci podatkovnega lista niso konfigurirani
+            no_datasheet_configured: Za to oglaševalsko akcijo ni konfiguriran noben podatkovni list
+            no_datasheet_data: Podatki iz podatkovnega lista niso na voljo za %{email} uporabnikov
+            user_not_found_in_datasheet: Uporabnika ni mogoče najti v podatkovnem listu oglaševalske akcije
+      campaign_ai_artifacts: Artefakti umetne inteligence kampanje
       column:
         provider: Ponudnik
       created_successfully: Pomočnik umetne inteligence je bil uspešno ustvarjen.
+      errors:
+        cannot_delete_in_use: Pomočnika AI ni mogoče izbrisati »%{name}«, ker se uporablja.
       form:
         add_output_schema_key: Dodajanje ključa izhodne sheme
         dependencies: Odvisnosti
@@ -319,6 +383,11 @@ sl:
         system_prompt: Sistemski poziv
         type: Tip
         user_prompt: Poziv uporabnika
+      selector:
+        choose_artifact: Izberite artefakt umetne inteligence
+        choose_schema_key: Izberite ključ sheme
+        no_assistants_found: Pomočnikov AI ni mogoče najti
+        placeholder: Izberite pomočnika AI
       updated_successfully: Pomočnik umetne inteligence je bil uspešno posodobljen.
     any: " -Poljuben- "
     api:
@@ -358,6 +427,8 @@ sl:
         exceeded_subjects_count: Oglaševalska akcija ima %{users} zadev. Na povabilo lahko dodate samo %{count} predmetov
         id: ID
         invites: Vabi
+        name: Ime
+        name_placeholder: Vnesite ime povabila
         next: Naslednji
         not_selected: Ni izbrano
         requests: Zahteve
@@ -435,6 +506,7 @@ sl:
       errors:
         doesnt_have_header: "'%{sub_header}' nima glave"
         invalid_headers: 'Naslednje glave so neveljavne: %{headers}'
+        invalid_question: ID neveljavnega vprašanja
         invalid_scores: Rezultati za faktor %{factor_name} so neveljavni. Rezultati morajo biti številske vrednosti, ločene z vejico
         invalid_sub_header: "'%{sub_header}' ni veljaven podnaslov za glavo '%{header}'"
         scores_not_allowed: Ocenjevanja je mogoče dodati samo za vprašanja tipa MultiChoice in Matrix
@@ -1573,12 +1645,16 @@ sl:
       add: Dodati
       back: Hrbet
       cancel: Prekliči
+      code: Koda
       disabled: Diasbled
       download_sample_file: Prenesite vzorčno datoteko
       enabled: Omogočeno
       import:
         failure_msg: Napaka pri uvozu datoteke.
+      instructions: Navodila
+      loading: Nakladanje...
       minute: minuta
+      name: Ime
       next: Naslednji
       reset: Ponastavi
       save: Shrani
@@ -1620,6 +1696,7 @@ sl:
           {{schedule_end_date}} - Datum zaključka razporeda
         campaign: Kampanja
         campaign_assessment_group: Skupina za ocenjevanje kampanj
+        cc_recipients: Prejemniki CC
         client: Stranka
         completion: Zaključku
         custom: Po meri
@@ -1712,6 +1789,7 @@ sl:
         back: Hrbet
         body: 'Telo:'
         campaign: 'Kampanja:'
+        cc_recipients: 'Prejemniki CC:'
         client: 'Odjemalec:'
         communication_type: 'Vrsta komunikacije:'
         delivery_rule: 'Pravilo dostave:'
@@ -2209,7 +2287,16 @@ sl:
       self_rating: Omogoči samoocenjevanje
       show_reflections: Pokaži odseve
       skill_gap_report: Poročilo o vrzeli v znanju in spretnostih
+      skill_source_preference: Vir spretnosti
+      skill_sources:
+        from_ai: Iz splošnega znanja o umetni inteligenci
+        from_template: Iz predloge in preslikav
       skills: Spretnosti
+      skills_privacy_messages:
+        made_private: Spretnost »%{skill_name}« je bila označena kot zasebna in bo skrita pred vašim upraviteljem
+        made_public: Spretnost »%{skill_name}« je zdaj vidna vašemu vodji
+        skill_not_found: Spretnosti ni mogoče najti
+        unauthorized: Nepooblaščeno spreminjanje te spretnosti
       skills_updated: Uspešno posodobljene spretnosti IDP
       status:
         draft: Osnutek
@@ -2438,6 +2525,10 @@ sl:
         content: Ali ste prepričani, da želite odstraniti zadevo z e-poštnim sporočilom »%{subjectEmail}«?
         success: Zadeva z e-poštnim naslovom »%{subjectEmail}« je bila uspešno odstranjena.
         title: Odstrani zadevo
+      resend_invite:
+        content: Znova pošljite povabilo izbranim predmetom. Ste prepričani, da želite nadaljevati?
+        success: Vabila so uspešno poslana.
+        title: Znova pošlji povabilo
       statuses:
         accepted: Sprejeta
         cancelled: Preklicana
@@ -2541,6 +2632,7 @@ sl:
     message: Sporočilo
     meta_title: Upravna plošča
     navigation:
+      ai_artifacts: Artefakti umetne inteligence
       ai_assistants: Pomočniki za umetno inteligenco
       assessments: Ocenjevanja
       assessments_reports: Ocenjevanja in poročila
@@ -2781,6 +2873,7 @@ sl:
         create:
           invalid_format: Definicija ravni mora biti niz definicij.
           level_definition_must_match_level: mora vsebovati natančno %{expected} ravni, vendar so bili podani %{actual}
+          level_description_must_exist: Opis ravni ne sme biti prazen
           level_name_must_exist: Ime ravni ne more biti prazno
           must_be_unique: Mora biti edinstven
           proficiency_level_exists: Raven strokovnosti s to spretnostjo in projektom že obstaja
@@ -3301,6 +3394,19 @@ sl:
         pending_qc: Čakanje na preverjanje kakovosti
         qc_completed: QC zaključen
         qc_in_progress: Poteka preverjanje kakovosti
+    report_settings:
+      data_source_types:
+        assessment: Ocena
+        campaign_factors: Dejavniki oglaševalske akcije
+        datasheet: Podatkovni list
+        report_data: Podatki poročila
+      tabs:
+        campaign_ai_artifacts: Artefakti umetne inteligence kampanje
+        campaign_factors: Dejavniki oglaševalske akcije
+        data_sheets: Podatkovni listi
+        page_settings: Nastavitve strani
+        translations: Prevodi
+      title: Nastavitve poročila
     reports:
       bulk_marked_as_done: Skupno označeno kot končano
       bulk_upload:
@@ -4337,6 +4443,7 @@ sl:
           header: Uvoz prevodov
       import:
         successfully: Prevodi so bili uspešno uvoženi
+        successfully_scheduled: Uvoz prevoda je bil uspešno načrtovan.
       reports:
         export: Izvoz prevodov
         import: Uvoz prevodov

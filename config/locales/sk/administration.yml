@@ -291,6 +291,45 @@ sk:
             manage: Ovládať
             title: Dielne
             view: Pohľad
+    ai_artifacts:
+      artifact_results: Výsledky artefaktov
+      code: Kód
+      form:
+        ai_assistant: Asistent AI
+        assessments: Hodnotenia
+        campaign_factors: Faktory kampane
+        configuration: Konfigurácia
+        datasheet: Dátový hárok
+        datasheet_columns: Stĺpce údajového hárka
+        include_all_datasheet_columns: Zahrnúť všetky stĺpce údajového hárka
+        select_ai_assistant: Vyberte Asistenta AI
+        select_assessment: Vyberte položku Hodnotenie
+        select_campaign_factors: Vyberte faktory kampane
+        select_datasheet_columns: Výber stĺpcov údajového hárka
+        select_questions: Vyberte otázky
+        title: Artefakt AI
+      generate: Generovať
+      generate_result_info_message: Výsledky sa generujú, obnovte stránku, aby ste videli aktualizované výsledky.
+      generate_results: Generovanie výsledkov
+      generated_at: Generované v
+      generated_at_time: Generované v %{time}
+      generated_value: Vytvorená hodnota
+      id: ID
+      key: Kľúč
+      name: Meno
+      parsed_dependencies:
+        help: Analyzované závislosti pre používateľa, ktoré používa AI Assistant na generovanie výsledkov artefaktov
+        title: Analyzované závislosti
+        view: Zobrazenie analyzovaných závislostí
+      playground: Ihrisko
+      playground_info: Otestujte artefakt pomocou vzorových údajov a zobrazte ukážku vygenerovaných výsledkov.
+      playground_placeholder: Zadanie testovacích údajov
+      raw: SUROVÝ
+      tabs:
+        results: Výsledky
+        settings: Nastavenia
+      test_generate: Testovanie generovania
+      unsaved_changes: Neuložené zmeny sú prítomné, zvážte odoslanie formulára na vygenerovanie aktualizovanej odpovede z Playground.
     ai_assistants:
       actions:
         create: Vytvorenie asistenta AI
@@ -298,9 +337,34 @@ sk:
         playground: Ihrisko
       ai_assistants: Asistenti AI
       ai_assistants_playground: Ihrisko AI Assistant
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: V konfigurácii hodnotenia chýba id hodnotenia
+            assessment_missing_questions: V konfigurácii hodnotenia chýbajú otázky na hodnotenie %{assessment_id}
+            no_assessments_configured: Nie sú nakonfigurované žiadne hodnotenia
+            no_assessments_configured_for_artifact: Pre tento artefakt nie sú nakonfigurované žiadne hodnotenia
+            no_completed_results: Nenašli sa žiadne dokončené výsledky hodnotenia pre hodnotenie %{assessment_name}
+            no_valid_assessment_data: Nie sú k dispozícii žiadne platné údaje z hodnotenia
+          base:
+            dependency_not_configured: Závislosť "%{dependency}" nie je nakonfigurovaná
+          campaign_factor:
+            factor_empty_value: Faktor kampane "%{code}" (%{name}) má prázdnu hodnotu pre %{email} používateľov
+            factor_no_value: Faktor kampane "%{code}" (%{name}) nemá pre %{email} používateľov priradenú žiadnu hodnotu.
+            no_campaign_factors_configured: Pre tento artefakt nie sú nakonfigurované žiadne faktory kampane
+            no_valid_factor_data: Nie sú k dispozícii žiadne platné údaje o faktoroch kampane
+          datasheet:
+            column_no_value: Stĺpec "%{column}" nemá žiadnu hodnotu pre %{email} používateľa
+            no_datasheet_columns_configured: Nie sú nakonfigurované žiadne konkrétne stĺpce údajového hárka
+            no_datasheet_configured: Pre túto kampaň nie je nakonfigurovaný žiadny údajový hárok
+            no_datasheet_data: Nie sú k dispozícii žiadne údaje z údajového listu pre používateľa %{email}
+            user_not_found_in_datasheet: Používateľ sa nenašiel v údajovom hárku kampane
+      campaign_ai_artifacts: Artefakty AI kampane
       column:
         provider: Poskytovateľ
       created_successfully: AI Assistant bol úspešne vytvorený.
+      errors:
+        cannot_delete_in_use: Nie je možné odstrániť AI Assistant "%{name}", pretože sa používa.
       form:
         add_output_schema_key: Pridanie kľúča výstupnej schémy
         dependencies: Závislosti
@@ -319,6 +383,11 @@ sk:
         system_prompt: Systémová výzva
         type: Typ
         user_prompt: Výzva používateľa
+      selector:
+        choose_artifact: Výber artefaktu AI
+        choose_schema_key: Výber kľúča schémy
+        no_assistants_found: Nenašli sa žiadni asistenti AI
+        placeholder: Vyberte Asistenta AI
       updated_successfully: AI Assistant bol úspešne aktualizovaný.
     any: " -Akýkoľvek- "
     api:
@@ -358,6 +427,8 @@ sk:
         exceeded_subjects_count: Kampaň má %{users} predmetov. Na pozvánku môžete pridať iba %{count} predmetov
         id: ID
         invites: Vyzýva
+        name: Meno
+        name_placeholder: Zadajte meno pozvánky
         next: Budúci
         not_selected: Nie je vybraté
         requests: Žiadosti
@@ -435,6 +506,7 @@ sk:
       errors:
         doesnt_have_header: "'%{sub_header}' nemá hlavičku"
         invalid_headers: 'Nasledujúce hlavičky sú neplatné: %{headers}'
+        invalid_question: Neplatné ID otázky
         invalid_scores: Skóre pre faktor %{factor_name} je neplatné. Skóre by malo byť číselné hodnoty oddelené čiarkou
         invalid_sub_header: "'%{sub_header}' nie je platný podnadpis pre hlavičku '%{header}'"
         scores_not_allowed: Skóre je možné pridať iba pre otázky typu MultiChoice a Matrix
@@ -1573,12 +1645,16 @@ sk:
       add: Sčítať
       back: Chrbát
       cancel: Zrušiť
+      code: Kód
       disabled: Diasbled
       download_sample_file: Stiahnuť vzorový súbor
       enabled: Povolené
       import:
         failure_msg: Chyba pri importovaní súboru.
+      instructions: Inštrukcie
+      loading: Nakladanie...
       minute: minúta
+      name: Meno
       next: Budúci
       reset: Vynulovanie
       save: Zachrániť
@@ -1620,6 +1696,7 @@ sk:
           {{schedule_end_date}} - Dátum ukončenia plánu
         campaign: Kampaň
         campaign_assessment_group: Skupina pre hodnotenie kampaní
+        cc_recipients: Príjemcovia CC
         client: Klient
         completion: Dokončenie
         custom: Vlastné
@@ -1712,6 +1789,7 @@ sk:
         back: Chrbát
         body: 'Telo:'
         campaign: 'Kampaň:'
+        cc_recipients: 'Príjemcovia CC:'
         client: 'Klient:'
         communication_type: 'Typ komunikácie:'
         delivery_rule: 'Dodacie pravidlo:'
@@ -2209,7 +2287,16 @@ sk:
       self_rating: Povoliť vlastné hodnotenie
       show_reflections: Zobraziť odrazy
       skill_gap_report: Správa o nedostatku zručností
+      skill_source_preference: Zdroj zručností
+      skill_sources:
+        from_ai: Zo všeobecných znalostí o umelej inteligencii
+        from_template: Zo šablóny a mapovania
       skills: Zručnosti
+      skills_privacy_messages:
+        made_private: Zručnosť "%{skill_name}" bola označená ako súkromná a bude skrytá pred vaším manažérom
+        made_public: Zručnosť "%{skill_name}" je teraz viditeľná pre vášho manažéra
+        skill_not_found: Zručnosť sa nenašla
+        unauthorized: Neoprávnené upraviť túto zručnosť
       skills_updated: IDP Skills úspešne aktualizovaný
       status:
         draft: Návrh
@@ -2438,6 +2525,10 @@ sk:
         content: Naozaj chcete odstrániť predmet s e-mailom "%{subjectEmail}"?
         success: Predmet s e-mailom "%{subjectEmail}" bol úspešne odstránený.
         title: Odstrániť predmet
+      resend_invite:
+        content: Znova odošlite pozvánku vybraným predmetom. Naozaj chcete pokračovať?
+        success: Pozvánky úspešne odoslané.
+        title: Znova odoslať pozvánku
       statuses:
         accepted: Akceptovaný
         cancelled: Zrušené
@@ -2541,6 +2632,7 @@ sk:
     message: Správa
     meta_title: Panel správy
     navigation:
+      ai_artifacts: Artefakty AI
       ai_assistants: Asistenti AI
       assessments: Hodnotenia
       assessments_reports: Hodnotenia a správy
@@ -2781,6 +2873,7 @@ sk:
         create:
           invalid_format: Definícia úrovne musí byť pole definícií.
           level_definition_must_match_level: musia obsahovať presne %{expected} úrovne, ale %{actual} boli uvedené
+          level_description_must_exist: Popis úrovne nemôže byť prázdny
           level_name_must_exist: Názov úrovne nemôže byť prázdny
           must_be_unique: Musí byť jedinečný
           proficiency_level_exists: Úroveň odbornosti s touto zručnosťou a projektom už existuje
@@ -3301,6 +3394,19 @@ sk:
         pending_qc: Čaká sa na kontrolu kvality
         qc_completed: QC dokončené
         qc_in_progress: Prebieha kontrola kvality
+    report_settings:
+      data_source_types:
+        assessment: Hodnotenie
+        campaign_factors: Faktory kampane
+        datasheet: Dátový hárok
+        report_data: Údaje zostavy
+      tabs:
+        campaign_ai_artifacts: Artefakty AI kampane
+        campaign_factors: Faktory kampane
+        data_sheets: Technické listy
+        page_settings: Nastavenia stránky
+        translations: Preklady
+      title: Nastavenia prehľadu
     reports:
       bulk_marked_as_done: Hromadne označené ako hotové
       bulk_upload:
@@ -4337,6 +4443,7 @@ sk:
           header: Importovať preklady
       import:
         successfully: Preklady boli úspešne importované
+        successfully_scheduled: Import prekladu bol úspešne naplánovaný.
       reports:
         export: Exportovať preklady
         import: Importovať preklady

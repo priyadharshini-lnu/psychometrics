@@ -440,10 +440,13 @@ ja:
           iiht: IIHT
           lead_assessor_form: 主任査定者フォーム
           meeting: ミーティング
+          mettl: メトル
           organisational: アンケート調査
           pearson: ピアソン
           psychometric: 評価
           saville: サヴィル
+          simulation: シミュレーション
+          skillvue: スキルビュー
           threesixty: 360キャンペーン
         category: カテゴリー
         created_at: 作成日
@@ -457,8 +460,11 @@ ja:
           common: TTEアセスメント
           hogan: ホーガン
           iiht: IIHTアセスメント
+          mettl: Mettl 評価
           pearson: ピアソン・アセスメント
           saville: サヴィル査定
+          simulation: シミュレーション評価
+          skillvue: Skillvue評価
         updated_at: 変更日
       assign:
         completed_at: 完了日
@@ -811,6 +817,7 @@ ja:
         bulk_download_idp_reports: IDP レポートの一括ダウンロード
         bulk_download_reports: レポートの一括ダウンロード
         bulk_download_user_reports: ユーザーレポートの一括ダウンロード
+        bulk_generate_user_campaign_ai_artifact_results: キャンペーン AI アーティファクト結果の一括生成
         bulk_regenerate_reports: キャンペーン・レポートの再生成
         bulk_regenerate_threesixty_reports: スリーシックスティ課題レポートを再生
         bulk_regenerate_user_reports: ユーザーレポートの再生成
@@ -847,6 +854,7 @@ ja:
         external_assessment_export: 外部結果エクスポート
         import_accesssheet: アクセスシートのインポート
         import_assessment_questions: 輸入評価に関する質問
+        import_assessment_translations: アセスメント翻訳のインポート
         import_assessors: インポートアセッサー
         import_campaign_factors: インポート・キャンペーン要因
         import_datasheet: データシートのインポート
@@ -1132,6 +1140,10 @@ ja:
         mic: マイク
       discard: 破棄
       discard_record_again: 破棄して再び記録する
+      error_while_discarding: 既存のビデオを破棄できませんでした
+      error_while_uploading: アップロードの完了中に不明なエラーが発生しました
+      failed_to_access_permission: カメラとマイクにアクセスできませんでした
+      failed_to_complete_upload: 'アップロードの完了に失敗しました: URL の詳細がありません'
       media_recorder:
         failure: このブラウザはビデオ録画をサポートしていません。ビデオ録画にはChromeまたはFirefoxをお使いください
         success: 音声付きビデオを録画するには、カメラとマイクの使用を許可してください
@@ -1791,6 +1803,7 @@ ja:
     column:
       action: アクション
       active: アクティブ
+      ai_assistant: AIアシスタント
       allow_multiple_responses: 複数の回答を許可する
       approval_notification_list: 承認通知ユーザーリスト
       approvers_list: 承認者リスト
@@ -1881,7 +1894,9 @@ ja:
       continue: 続行
       copied: クリップボードにコピー
       default: デフォルト
+      disabled: 無効
       download: ダウンロード
+      enabled: 有効
       file: ファイル
       global_import: グローバル・インポート？
       minutes: 議事録
@@ -2868,6 +2883,8 @@ ja:
     zh-HK: 中国語（香港）
     zh-Hant: 中国語 - 繁体字
     zh-TW: 中国語（台湾）
+  languages_localized:
+    sl: スロヴェンシュチナ
   license_usage:
     active: アクティブ
     campaign_name: キャンペーン名

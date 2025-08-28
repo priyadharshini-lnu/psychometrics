@@ -291,6 +291,45 @@ fr:
             manage: Gérer
             title: Ateliers
             view: Voir
+    ai_artifacts:
+      artifact_results: Résultats de l’artefact
+      code: Code
+      form:
+        ai_assistant: Assistant IA
+        assessments: Évaluations
+        campaign_factors: Facteurs de campagne
+        configuration: Configuration
+        datasheet: Fiche technique
+        datasheet_columns: Colonnes de la feuille de données
+        include_all_datasheet_columns: Inclure toutes les colonnes de la feuille de données
+        select_ai_assistant: Sélectionnez Assistant IA
+        select_assessment: Sélectionnez Évaluation
+        select_campaign_factors: Sélectionnez les facteurs de campagne
+        select_datasheet_columns: Sélectionner les colonnes de la feuille de données
+        select_questions: Sélectionner des questions
+        title: Artéfact IA
+      generate: Générer
+      generate_result_info_message: Les résultats sont en cours de génération, veuillez actualiser la page pour voir les résultats mis à jour.
+      generate_results: Générer des résultats
+      generated_at: Généré à
+      generated_at_time: Généré à %{time}
+      generated_value: Valeur générée
+      id: ID
+      key: Clé
+      name: Nom
+      parsed_dependencies:
+        help: Dépendances analysées pour l’utilisateur utilisé par l’assistant IA pour la génération des résultats d’artefact
+        title: Dépendances analysées
+        view: Afficher les dépendances analysées
+      playground: Terrain de jeu
+      playground_info: Testez votre artefact à l’aide d’exemples de données pour prévisualiser les résultats générés.
+      playground_placeholder: Entrez les données de test
+      raw: CRU
+      tabs:
+        results: Résultats
+        settings: Paramètres
+      test_generate: Tester Générer
+      unsaved_changes: Des modifications non enregistrées sont présentes, envisagez d’envoyer un formulaire pour générer une réponse mise à jour à partir de Playground.
     ai_assistants:
       actions:
         create: Créer un assistant IA
@@ -298,9 +337,34 @@ fr:
         playground: Terrain de jeux
       ai_assistants: Assistants IA
       ai_assistants_playground: Terrain de jeu de l'assistant IA
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: La configuration de l’évaluation est manquante identifiant de l’évaluation
+            assessment_missing_questions: Il manque des questions pour la configuration de l’évaluation pour les %{assessment_id} d’évaluation
+            no_assessments_configured: Aucune évaluation n’est configurée
+            no_assessments_configured_for_artifact: Aucune évaluation n’est configurée pour cet artefact
+            no_completed_results: Aucun résultat d’évaluation n’a été trouvé pour l’évaluation %{assessment_name}
+            no_valid_assessment_data: Aucune donnée d’évaluation valide n’est disponible
+          base:
+            dependency_not_configured: La dépendance '%{dependency}' n’est pas configurée
+          campaign_factor:
+            factor_empty_value: Le facteur de campagne '%{code}' (%{name}) a une valeur vide pour l’utilisateur %{email}
+            factor_no_value: Le facteur de campagne '%{code}' (%{name}) n’a pas de valeur attribuée pour l’%{email} de l’utilisateur
+            no_campaign_factors_configured: Aucun facteur de campagne n’est configuré pour cet artefact
+            no_valid_factor_data: Aucune donnée valide sur le facteur de campagne n’est disponible
+          datasheet:
+            column_no_value: La colonne '%{column}' n’a pas de valeur pour l’utilisateur %{email}
+            no_datasheet_columns_configured: Aucune colonne de feuille de données spécifique n’est configurée
+            no_datasheet_configured: Aucune fiche technique n’est configurée pour cette campagne
+            no_datasheet_data: Aucune donnée de fiche technique disponible pour l’utilisateur %{email}
+            user_not_found_in_datasheet: Utilisateur introuvable dans la fiche technique de la campagne
+      campaign_ai_artifacts: Artéfacts de l’IA de la campagne
       column:
         provider: Fournisseur
       created_successfully: L'assistant AI a été créé avec succès.
+      errors:
+        cannot_delete_in_use: Impossible de supprimer l’assistant IA %{name}' car il est utilisé.
       form:
         add_output_schema_key: Ajouter une clé de schéma de sortie
         dependencies: Dépendances
@@ -319,6 +383,11 @@ fr:
         system_prompt: Invite du système
         type: Type
         user_prompt: Invite de l'utilisateur
+      selector:
+        choose_artifact: Choisissez AI Artifact
+        choose_schema_key: Choisissez la clé de schéma
+        no_assistants_found: Aucun assistant IA trouvé
+        placeholder: Sélectionnez Assistant IA
       updated_successfully: L'assistant AI a été mis à jour avec succès.
     any: " - Tous - "
     api:
@@ -358,6 +427,8 @@ fr:
         exceeded_subjects_count: La campagne a %{users} sujets. Vous ne pouvez ajouter que %{count} sujets par invitation
         id: ID
         invites: Invitations
+        name: Nom
+        name_placeholder: Entrez le nom de l’invitation
         next: Suivant
         not_selected: Non sélectionné
         requests: Demandes
@@ -435,6 +506,7 @@ fr:
       errors:
         doesnt_have_header: "'%{sub_header}' n'a pas d'en-tête"
         invalid_headers: 'Les en-têtes suivants ne sont pas valides : %{headers}'
+        invalid_question: ID de question non valide
         invalid_scores: Les scores pour le facteur %{factor_name} ne sont pas valides. Les scores doivent être des valeurs numériques séparées par des virgules
         invalid_sub_header: "'%{sub_header}' n'est pas un sous-en-tête valide pour l'en-tête '%{header}'"
         scores_not_allowed: Les scores ne peuvent être ajoutés que pour les questions à choix multiples et les questions matricielles
@@ -1573,12 +1645,16 @@ fr:
       add: Ajouter
       back: Retour
       cancel: Annuler
+      code: Code
       disabled: Diasbled
       download_sample_file: Télécharger le fichier d'exemple
       enabled: Activé
       import:
         failure_msg: Erreur lors de l'importation du fichier.
+      instructions: Instructions
+      loading: Chargement...
       minute: minute
+      name: Nom
       next: Suivant
       reset: Remise à zéro
       save: Économiser
@@ -1620,6 +1696,7 @@ fr:
            {{schedule_end_date}} - Date de fin de la programmation"
         campaign: Campagne
         campaign_assessment_group: Groupe d'évaluation de la campagne
+        cc_recipients: Récipiendaires CC
         client: Client
         completion: Achèvement
         custom: Sur mesure
@@ -1712,6 +1789,7 @@ fr:
         back: Retour
         body: 'Le corps :'
         campaign: 'Campagne :'
+        cc_recipients: 'Récipiendaires CC :'
         client: 'Client :'
         communication_type: 'Type de communication :'
         delivery_rule: 'Règle de livraison :'
@@ -2209,7 +2287,16 @@ fr:
       self_rating: Activer l'auto-évaluation
       show_reflections: Montrer les réflexions
       skill_gap_report: Rapport sur les lacunes en matière de compétences
+      skill_source_preference: Source de la compétence
+      skill_sources:
+        from_ai: De la connaissance générale de l’IA
+        from_template: À partir de Template & Mappings
       skills: Compétences
+      skills_privacy_messages:
+        made_private: La compétence « %{skill_name} » a été marquée comme privée et sera cachée à votre responsable
+        made_public: La compétence « %{skill_name} » est désormais visible par votre responsable
+        skill_not_found: Compétence introuvable
+        unauthorized: Il n’est pas autorisé de modifier cette compétence
       skills_updated: Mise à jour réussie des compétences du PDI
       status:
         draft: Projet
@@ -2438,6 +2525,10 @@ fr:
         content: Êtes-vous sûr de vouloir supprimer l'objet avec l'e-mail "%{subjectEmail}" ?
         success: Le sujet avec l'email '%{subjectEmail}'' a été supprimé avec succès.
         title: Supprimer le sujet
+      resend_invite:
+        content: Renvoyez l’invitation aux sujets sélectionnés. Êtes-vous sûr de vouloir continuer ?
+        success: Les invitations sont renvoyées avec succès.
+        title: Resend Invite
       statuses:
         accepted: Accepté
         cancelled: Annulé
@@ -2541,6 +2632,7 @@ fr:
     message: Message
     meta_title: Panneau d'administration
     navigation:
+      ai_artifacts: Artefacts de l’IA
       ai_assistants: Assistants IA
       assessments: Évaluations
       assessments_reports: Évaluations et rapports
@@ -2781,6 +2873,7 @@ fr:
         create:
           invalid_format: La définition du niveau doit être un tableau de définitions.
           level_definition_must_match_level: doit contenir exactement %{expected} niveaux, mais %{actual} ont été donnés
+          level_description_must_exist: La description du niveau ne peut pas être vide
           level_name_must_exist: Le nom du niveau ne peut pas être vide
           must_be_unique: Doit être unique
           proficiency_level_exists: Un niveau de compétence avec cette compétence et ce projet existe déjà
@@ -3305,6 +3398,19 @@ fr:
         pending_qc: En attente de QC
         qc_completed: CQ achevé
         qc_in_progress: CQ en cours
+    report_settings:
+      data_source_types:
+        assessment: Évaluation
+        campaign_factors: Facteurs de campagne
+        datasheet: Fiche technique
+        report_data: Données du rapport
+      tabs:
+        campaign_ai_artifacts: Artéfacts de l’IA de la campagne
+        campaign_factors: Facteurs de campagne
+        data_sheets: Fiches techniques
+        page_settings: Paramètres de la page
+        translations: Traductions
+      title: Paramètres du rapport
     reports:
       bulk_marked_as_done: En vrac Marqué comme fait
       bulk_upload:
@@ -4352,6 +4458,8 @@ fr:
       assessments:
         new:
           header: Traductions des importations
+      import:
+        successfully_scheduled: L’importation de la traduction a été planifiée avec succès.
       reports:
         export: Traductions pour l'exportation
         import: Traductions des importations

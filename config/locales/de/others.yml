@@ -450,10 +450,13 @@ de:
           iiht: IIHT
           lead_assessor_form: Formular für Hauptgutachter
           meeting: Treffen
+          mettl: Mettl
           organisational: Erhebungen
           pearson: Pearson
           psychometric: Bewertung
           saville: Saville
+          simulation: Simulation
+          skillvue: Geschicklichkeit
           threesixty: 360-Kampagne
         category: Kategorie
         created_at: Erstellt am
@@ -467,8 +470,11 @@ de:
           common: TTE-Bewertung
           hogan: Hogan
           iiht: IIHT-Bewertung
+          mettl: Mettl Assessment
           pearson: Pearson-Bewertung
           saville: Saville-Bewertung
+          simulation: Simulations-Bewertung
+          skillvue: Skillvue-Bewertung
         updated_at: Geändertes Datum
       assign:
         completed_at: Datum der Fertigstellung
@@ -821,6 +827,7 @@ de:
         bulk_download_idp_reports: Massendownload von IDP-Berichten
         bulk_download_reports: Bulk Download Berichte
         bulk_download_user_reports: Bulk-Download von Benutzerberichten
+        bulk_generate_user_campaign_ai_artifact_results: Massengenerierung von KI-Artefaktergebnissen für Kampagnen
         bulk_regenerate_reports: Kampagnenberichte neu generieren
         bulk_regenerate_threesixty_reports: Dreißig Themenberichte neu generieren
         bulk_regenerate_user_reports: Benutzerberichte neu generieren
@@ -857,6 +864,7 @@ de:
         external_assessment_export: Export von externen Ergebnissen
         import_accesssheet: Zugangsdatenblatt importieren
         import_assessment_questions: Bewertungsfragen importieren
+        import_assessment_translations: Importieren von Assessment-Übersetzungen
         import_assessors: Prüfer importieren
         import_campaign_factors: Faktoren der Kampagne importieren
         import_datasheet: Datenblatt importieren
@@ -1142,6 +1150,10 @@ de:
         mic: Mikrofon
       discard: Ablegen
       discard_record_again: Verwerfen und neu aufnehmen
+      error_while_discarding: Vorhandenes Video konnte nicht verworfen werden
+      error_while_uploading: Beim Abschließen des Uploads ist ein unbekannter Fehler aufgetreten
+      failed_to_access_permission: Fehler beim Zugriff auf Kamera und Mikrofon
+      failed_to_complete_upload: 'Upload konnte nicht abgeschlossen werden: Keine URL-Details verfügbar'
       media_recorder:
         failure: Dieser Browser unterstützt keine Videoaufzeichnung. Bitte verwenden Sie Chrome oder Firefox für Videoaufzeichnungen
         success: Bitte erlauben Sie die Verwendung von Kamera und Mikrofon für Audio- und Videoaufnahmen
@@ -1802,6 +1814,7 @@ de:
     column:
       action: Aktion
       active: Aktiv
+      ai_assistant: KI-Assistent
       allow_multiple_responses: Mehrere Antworten zulassen
       approval_notification_list: Benutzerliste für Genehmigungsbenachrichtigungen
       approvers_list: Liste der Genehmiger
@@ -1892,7 +1905,9 @@ de:
       continue: fortfahren
       copied: In die Zwischenablage kopiert
       default: Standard
+      disabled: Arbeitsunfähig
       download: Herunterladen
+      enabled: Ermöglichte
       file: Datei
       global_import: Ist Global Import?
       minutes: Protokoll
@@ -2901,6 +2916,8 @@ de:
     zh-HK: Chinesisch (Hongkong)
     zh-Hant: Chinesisch - Traditionell
     zh-TW: Chinesisch (Taiwan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Aktiv
     campaign_name: Name der Kampagne

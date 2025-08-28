@@ -291,6 +291,45 @@ zh:
             manage: 管理
             title: 工作坊
             view: 查看
+    ai_artifacts:
+      artifact_results: 工件结果
+      code: 法典
+      form:
+        ai_assistant: AI助手
+        assessments: 评估
+        campaign_factors: 活动因素
+        configuration: 配置
+        datasheet: 数据表
+        datasheet_columns: 数据表列
+        include_all_datasheet_columns: 包括所有数据表列
+        select_ai_assistant: 选择 AI 助手
+        select_assessment: 选择评估
+        select_campaign_factors: 选择广告系列因素
+        select_datasheet_columns: 选择数据表列
+        select_questions: 选择问题
+        title: AI神器
+      generate: 生成
+      generate_result_info_message: 结果正在生成中，请刷新页面以查看更新的结果。
+      generate_results: 生成结果
+      generated_at: 生成时间
+      generated_at_time: 生成时间%{time}
+      generated_value: 产生的价值
+      id: 身份证
+      key: 钥匙
+      name: 名字
+      parsed_dependencies:
+        help: AI 助手用于生成项目结果的用户的解析依赖项
+        title: 解析的依赖项
+        view: 查看解析的依赖项
+      playground: 操场
+      playground_info: 使用示例数据测试您的项目，以预览生成的结果。
+      playground_placeholder: 输入测试数据
+      raw: 生
+      tabs:
+        results: 结果
+        settings: 设置
+      test_generate: 测试生成
+      unsaved_changes: 存在未保存的更改，请考虑提交表单以从 Playground 生成更新的响应。
     ai_assistants:
       actions:
         create: 创建人工智能助理
@@ -298,9 +337,34 @@ zh:
         playground: 游乐场
       ai_assistants: 人工智能助理
       ai_assistants_playground: 人工智能助理游乐场
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: 评估配置缺少评估的 ID
+            assessment_missing_questions: 评估配置缺少评估%{assessment_id}问题
+            no_assessments_configured: 未配置任何评估
+            no_assessments_configured_for_artifact: 未为此项目配置任何评估
+            no_completed_results: 未找到已完成的评估结果进行评估%{assessment_name}
+            no_valid_assessment_data: 没有可用的有效评估数据
+          base:
+            dependency_not_configured: 未配置依赖项“%{dependency}”
+          campaign_factor:
+            factor_empty_value: 广告系列因子“%{code}”（%{name}） 的用户%{email}值为空
+            factor_no_value: 广告系列因子“%{code}”（%{name}）未为用户%{email}分配值
+            no_campaign_factors_configured: 未为此项目配置任何活动因素
+            no_valid_factor_data: 没有可用的有效广告系列因子数据
+          datasheet:
+            column_no_value: 列“%{column}”没有用户%{email}值
+            no_datasheet_columns_configured: 未配置特定数据表列
+            no_datasheet_configured: 未为此活动配置数据表
+            no_datasheet_data: 没有可供用户%{email}的数据表数据
+            user_not_found_in_datasheet: 在市场活动数据表中找不到用户
+      campaign_ai_artifacts: 活动 AI 工件
       column:
         provider: 提供商
       created_successfully: AI 助手创建成功。
+      errors:
+        cannot_delete_in_use: 无法删除 AI 助手“%{name}”，因为它正在使用中。
       form:
         add_output_schema_key: 添加输出模式密钥
         dependencies: 依赖关系
@@ -319,6 +383,11 @@ zh:
         system_prompt: 系统提示
         type: 类型
         user_prompt: 用户提示
+      selector:
+        choose_artifact: 选择 AI 神器
+        choose_schema_key: 选择架构键
+        no_assistants_found: 未找到 AI 助手
+        placeholder: 选择 AI 助手
       updated_successfully: 人工智能助理已成功更新。
     any: " - 任何 - "
     api:
@@ -358,6 +427,8 @@ zh:
         exceeded_subjects_count: 活动有 %{users}主题。 每次邀请只能添加 %{count}主题
         id: 身份证
         invites: 邀请
+        name: 名字
+        name_placeholder: 输入邀请名称
         next: 下一页
         not_selected: 未选择
         requests: 要求
@@ -435,6 +506,7 @@ zh:
       errors:
         doesnt_have_header: "%{sub_header}' 没有标题"
         invalid_headers: 以下标头无效： %{headers}
+        invalid_question: 问题 ID 无效
         invalid_scores: 因子 %{factor_name} 的分数无效。 分数应为逗号分隔的数值
         invalid_sub_header: '%{sub_header}"不是标题"%{header}"的有效副标题'
         scores_not_allowed: 只能为多选题和矩阵题增加分数
@@ -1573,12 +1645,16 @@ zh:
       add: 添加
       back: 返回
       cancel: 取消
+      code: 法典
       disabled: Diasbled
       download_sample_file: 下载样本文件
       enabled: 已启用
       import:
         failure_msg: 导入文件时出错。
+      instructions: 指示
+      loading: 装载。。。
       minute: 分钟
+      name: 名字
       next: 下一页
       reset: 重置
       save: 节省
@@ -1620,6 +1696,7 @@ zh:
            {{schedule_end_date}} - 计划结束日期"
         campaign: 活动
         campaign_assessment_group: 活动评估小组
+        cc_recipients: CC 收件人
         client: 客户
         completion: 完工
         custom: 定制
@@ -1712,6 +1789,7 @@ zh:
         back: 返回
         body: 身体
         campaign: 活动：
+        cc_recipients: CC 收件人：
         client: 客户：
         communication_type: 通信类型：
         delivery_rule: 交货规则：
@@ -2209,7 +2287,16 @@ zh:
       self_rating: 启用自我评级
       show_reflections: 展示反思
       skill_gap_report: 技能差距报告
+      skill_source_preference: 技能来源
+      skill_sources:
+        from_ai: 来自通用人工智能知识
+        from_template: 从模板和映射
       skills: 技能
+      skills_privacy_messages:
+        made_private: 技能“%{skill_name}”已被标记为私有技能，并将对您的经理隐藏
+        made_public: 技能“%{skill_name}”现在对您的经理可见
+        skill_not_found: 未找到技能
+        unauthorized: 未经授权修改此技能
       skills_updated: IDP 技能更新成功
       status:
         draft: 草案
@@ -2438,6 +2525,10 @@ zh:
         content: 您确定要删除邮件主题"%{subjectEmail}"吗？
         success: 带有电子邮件"%{subjectEmail}"的主题已成功删除。
         title: 删除主题
+      resend_invite:
+        content: 向所选主题重新发送邀请。你确定要继续吗？
+        success: 邀请成功重新发送。
+        title: 重新发送邀请
       statuses:
         accepted: 已接受
         cancelled: 已取消
@@ -2541,6 +2632,7 @@ zh:
     message: 留言
     meta_title: 管理面板
     navigation:
+      ai_artifacts: AI 工件
       ai_assistants: 人工智能助理
       assessments: 评估
       assessments_reports: 评估与报告
@@ -2781,6 +2873,7 @@ zh:
         create:
           invalid_format: 级别定义必须是一个定义数组。
           level_definition_must_match_level: 必须完全包含 %{expected}水平，但给出了 %{actual}水平。
+          level_description_must_exist: 关卡描述不能为空
           level_name_must_exist: 级别名称不能为空
           must_be_unique: 必须独一无二
           proficiency_level_exists: 已存在具有该技能和项目的 ProficiencyLevel
@@ -3305,6 +3398,19 @@ zh:
         pending_qc: 待质检
         qc_completed: 质量控制已完成
         qc_in_progress: 质量控制进行中
+    report_settings:
+      data_source_types:
+        assessment: 评估
+        campaign_factors: 活动因素
+        datasheet: 数据表
+        report_data: 报告数据
+      tabs:
+        campaign_ai_artifacts: 活动 AI 工件
+        campaign_factors: 活动因素
+        data_sheets: 数据表
+        page_settings: 页面设置
+        translations: 翻译
+      title: 报告设置
     reports:
       bulk_marked_as_done: 批量标记为已完成
       bulk_upload:
@@ -4354,6 +4460,7 @@ zh:
           header: 进口翻译
       import:
         successfully: 翻译已成功导入
+        successfully_scheduled: 已成功安排翻译导入。
       reports:
         export: 出口翻译
         import: 进口翻译

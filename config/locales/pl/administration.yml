@@ -291,6 +291,45 @@ pl:
             manage: Zarządzać
             title: Warsztaty
             view: Widok
+    ai_artifacts:
+      artifact_results: Wyniki artefaktu
+      code: Kod
+      form:
+        ai_assistant: Asystent AI
+        assessments: Oceny
+        campaign_factors: Czynniki kampanii
+        configuration: Konfiguracja
+        datasheet: Arkusz danych
+        datasheet_columns: Kolumny arkusza danych
+        include_all_datasheet_columns: Uwzględnij wszystkie kolumny arkusza danych
+        select_ai_assistant: Wybierz Asystenta AI
+        select_assessment: Wybierz ocenę
+        select_campaign_factors: Wybieranie czynników kampanii
+        select_datasheet_columns: Wybieranie kolumn arkusza danych
+        select_questions: Wybierz pytania
+        title: Artefakt AI
+      generate: Stworzyć
+      generate_result_info_message: Wyniki są generowane, odśwież stronę, aby zobaczyć zaktualizowane wyniki.
+      generate_results: Generowanie wyników
+      generated_at: Wygenerowane o
+      generated_at_time: Wygenerowane w %{time}
+      generated_value: Wygenerowana wartość
+      id: ID
+      key: Klucz
+      name: Nazwa
+      parsed_dependencies:
+        help: Przeanalizowane zależności dla użytkownika używanego przez Asystenta AI do generowania wyników artefaktów
+        title: Przeanalizowane zależności
+        view: Wyświetlanie przeanalizowanych zależności
+      playground: Plac zabaw
+      playground_info: Przetestuj artefakt z przykładowymi danymi, aby wyświetlić podgląd wygenerowanych wyników.
+      playground_placeholder: Wprowadzanie danych testowych
+      raw: SUROWY
+      tabs:
+        results: Wyniki
+        settings: Ustawienia
+      test_generate: Generowanie testowe
+      unsaved_changes: Niezapisane zmiany są obecne, rozważ przesłanie formularza, aby wygenerować zaktualizowaną odpowiedź z Playground.
     ai_assistants:
       actions:
         create: Stwórz asystenta AI
@@ -298,9 +337,34 @@ pl:
         playground: Plac zabaw
       ai_assistants: Asystenci AI
       ai_assistants_playground: Plac zabaw dla asystentów AI
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: Brak identyfikatora konfiguracji oceny
+            assessment_missing_questions: W konfiguracji oceny brakuje pytań do oceny %{assessment_id}
+            no_assessments_configured: Nie skonfigurowano żadnych ocen
+            no_assessments_configured_for_artifact: Dla tego artefaktu nie skonfigurowano żadnych ocen
+            no_completed_results: Nie znaleziono ukończonych wyników oceny dla %{assessment_name} oceny
+            no_valid_assessment_data: Brak dostępnych ważnych danych oceny
+          base:
+            dependency_not_configured: Zależność "%{dependency}" nie jest skonfigurowana
+          campaign_factor:
+            factor_empty_value: Czynnik kampanii "%{code}" (%{name}) ma pustą wartość dla %{email} użytkowników
+            factor_no_value: Czynnik kampanii "%{code}" (%{name}) nie ma przypisanej wartości do %{email} użytkowników
+            no_campaign_factors_configured: Dla tego artefaktu nie skonfigurowano żadnych czynników kampanii
+            no_valid_factor_data: Brak dostępnych prawidłowych danych o czynniku kampanii
+          datasheet:
+            column_no_value: Kolumna "%{column}" nie ma wartości dla %{email} użytkownika
+            no_datasheet_columns_configured: Nie skonfigurowano żadnych określonych kolumn arkusza danych
+            no_datasheet_configured: Dla tej kampanii nie skonfigurowano żadnego arkusza danych
+            no_datasheet_data: Brak dostępnych danych arkusza danych dla %{email} użytkownika
+            user_not_found_in_datasheet: Nie znaleziono użytkownika w arkuszu danych kampanii
+      campaign_ai_artifacts: Artefakty SI kampanii
       column:
         provider: Dostawca
       created_successfully: Asystent AI został pomyślnie utworzony.
+      errors:
+        cannot_delete_in_use: Nie można usunąć Asystenta AI "%{name}", ponieważ jest on używany.
       form:
         add_output_schema_key: Dodaj klucz schematu wyjściowego
         dependencies: Zależności
@@ -319,6 +383,11 @@ pl:
         system_prompt: Monit systemowy
         type: Typ
         user_prompt: Monit użytkownika
+      selector:
+        choose_artifact: Wybierz artefakt AI
+        choose_schema_key: Wybierz klucz schematu
+        no_assistants_found: Nie znaleziono asystentów AI
+        placeholder: Wybierz Asystenta AI
       updated_successfully: AI Assistant został pomyślnie zaktualizowany.
     any: " -Jakikolwiek- "
     api:
@@ -358,6 +427,8 @@ pl:
         exceeded_subjects_count: Kampania składa się z %{users} tematów. Możesz dodać tylko %{count} tematów na zaproszenie
         id: ID
         invites: Zaprasza
+        name: Nazwa
+        name_placeholder: Wprowadź nazwę zaproszenia
         next: Następny
         not_selected: Nie wybrano
         requests: Żądania
@@ -435,6 +506,7 @@ pl:
       errors:
         doesnt_have_header: '"%{sub_header}" nie ma nagłówka'
         invalid_headers: 'Następujące nagłówki są nieprawidłowe: %{headers}'
+        invalid_question: Nieprawidłowy identyfikator pytania
         invalid_scores: Wyniki dla czynnika %{factor_name} są nieprawidłowe. Wyniki powinny być wartościami liczbowymi oddzielonymi przecinkami
         invalid_sub_header: '"%{sub_header}" nie jest prawidłowym podnagłówkiem dla nagłówka "%{header}"'
         scores_not_allowed: Punktacja może być dodawana tylko dla pytań typu MultiChoice i Matrix
@@ -1573,12 +1645,16 @@ pl:
       add: Dodawać
       back: Wstecz
       cancel: Anuluj
+      code: Kod
       disabled: Zdiagnozowany
       download_sample_file: Pobierz przykładowy plik
       enabled: Włączone
       import:
         failure_msg: Błąd podczas importowania pliku.
+      instructions: Instrukcje
+      loading: Ładowania...
       minute: minuta
+      name: Nazwa
       next: Następny
       reset: Resetować
       save: Zapisać
@@ -1620,6 +1696,7 @@ pl:
           {{schedule_end_date}} - Data zakończenia harmonogramu
         campaign: Kampania
         campaign_assessment_group: Grupa ds. oceny kampanii
+        cc_recipients: Odbiorcy DW
         client: Klient
         completion: Ukończenie
         custom: Niestandardowe
@@ -1712,6 +1789,7 @@ pl:
         back: Wstecz
         body: 'Ciało:'
         campaign: 'Kampania:'
+        cc_recipients: 'Odbiorcy CC:'
         client: 'Klient:'
         communication_type: 'Typ komunikacji:'
         delivery_rule: 'Zasada dostawy:'
@@ -2209,7 +2287,16 @@ pl:
       self_rating: Włącz samoocenę
       show_reflections: Pokaż odbicia
       skill_gap_report: Raport o brakach w umiejętnościach
+      skill_source_preference: Źródło umiejętności
+      skill_sources:
+        from_ai: Z ogólnej wiedzy na temat sztucznej inteligencji
+        from_template: Z szablonu i mapowań
       skills: Umiejętności
+      skills_privacy_messages:
+        made_private: Umiejętność "%{skill_name}" została oznaczona jako prywatna i będzie ukryta przed twoim menedżerem.
+        made_public: Umiejętność "%{skill_name}" jest teraz widoczna dla twojego menedżera.
+        skill_not_found: Nie znaleziono umiejętności
+        unauthorized: Nie można modyfikować tej umiejętności
       skills_updated: Umiejętności IDP zostały pomyślnie zaktualizowane
       status:
         draft: Wersja robocza
@@ -2438,6 +2525,10 @@ pl:
         content: Czy na pewno chcesz usunąć temat z adresem e-mail "%{subjectEmail}"?
         success: Temat z adresem e-mail "%{subjectEmail}" został pomyślnie usunięty.
         title: Usuń temat
+      resend_invite:
+        content: Wyślij ponownie zaproszenie do wybranych tematów. Czy na pewno chcesz kontynuować?
+        success: Zaproszenia zostały pomyślnie wysłane ponownie.
+        title: Wyślij ponownie zaproszenie
       statuses:
         accepted: Akceptowane
         cancelled: Anulowane
@@ -2541,6 +2632,7 @@ pl:
     message: Wiadomość
     meta_title: Panel administracyjny
     navigation:
+      ai_artifacts: Artefakty SI
       ai_assistants: Asystenci AI
       assessments: Oceny
       assessments_reports: Oceny i raporty
@@ -2781,6 +2873,7 @@ pl:
         create:
           invalid_format: Definicja poziomu musi być tablicą definicji.
           level_definition_must_match_level: musi zawierać dokładnie %{expected} poziomy, ale podano %{actual}
+          level_description_must_exist: Opis poziomu nie może być pusty
           level_name_must_exist: Nazwa poziomu nie może być pusta
           must_be_unique: Musi być unikatowy
           proficiency_level_exists: Poziom biegłości w tej umiejętności i projekcie już istnieje
@@ -3301,6 +3394,19 @@ pl:
         pending_qc: Oczekiwanie na kontrolę jakości
         qc_completed: Kontrola jakości zakończona
         qc_in_progress: Kontrola jakości w toku
+    report_settings:
+      data_source_types:
+        assessment: Ocena
+        campaign_factors: Czynniki kampanii
+        datasheet: Arkusz danych
+        report_data: Dane raportu
+      tabs:
+        campaign_ai_artifacts: Artefakty SI kampanii
+        campaign_factors: Czynniki kampanii
+        data_sheets: Arkusze danych
+        page_settings: Ustawienia strony
+        translations: Tłumaczenia
+      title: Ustawienia raportu
     reports:
       bulk_marked_as_done: Zbiorczo oznaczone jako gotowe
       bulk_upload:
@@ -4337,6 +4443,7 @@ pl:
           header: Importowanie tłumaczeń
       import:
         successfully: Tłumaczenia zostały zaimportowane pomyślnie
+        successfully_scheduled: Import tłumaczeń został zaplanowany pomyślnie.
       reports:
         export: Eksport tłumaczeń
         import: Importowanie tłumaczeń
