@@ -89,10 +89,9 @@ describe Threesixty::PipedText::Perform do
       )
     end
 
-    it 'empty if error occurs' do
+    it 'returns pipetext as it is when lookup_branch fails' do
       response = described_class.call!('{{d://Current?f=%--}}')
-      expect { response.call }.to raise_error(Exception)
-      expect(response).to eq(Time.zone.now.strftime(''))
+      expect(response).to eq('{{d://Current?f=%--}}')
     end
 
     it do

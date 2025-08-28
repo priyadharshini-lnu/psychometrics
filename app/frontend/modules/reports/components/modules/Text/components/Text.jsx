@@ -302,7 +302,7 @@ class Text extends Component {
         return (
           <SafeHTML
             ref={(ref) => { this.editor = ref }}
-            className={cs(styles.editor, 'ltr')}
+            className={cs(styles.editor)}
             html={this.pipedText()}
           />
         )
