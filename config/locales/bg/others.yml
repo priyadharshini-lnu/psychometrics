@@ -376,9 +376,11 @@ bg:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, ред %{row}: Дублираща се стойност %{value} за %{field}"
               invalid_format: Моля, качете xlsx файл
               missing_headers: "%{sheet_name} липсват задължителните заглавия на листа: %{headers}"
               missing_sheets: 'Липсват необходимите листове: %{sheets}'
+              missing_value: "%{sheet_name}, ред %{row}: Липсваща стойност за %{field}"
             project:
               must_exist: Проектът трябва да съществува
         update_norm:

@@ -295,6 +295,7 @@ zh-Hant:
       artifact_results: 神器結果
       code: 法典
       form:
+        add_assessment: 新增評量
         ai_assistant: AI助手
         assessments: 評量
         campaign_factors: 活動因素
@@ -302,6 +303,8 @@ zh-Hant:
         datasheet: 數據表
         datasheet_columns: 資料表欄
         include_all_datasheet_columns: 包括所有資料表欄
+        no_assessment_selected: 尚未新增評估。點擊「新增」開始。
+        questions_required: 必須至少選擇一個問題
         select_ai_assistant: 選擇 AI 助手
         select_assessment: 選取評量
         select_campaign_factors: 選取廣告活動因素
@@ -3340,6 +3343,29 @@ zh-Hant:
           repeat_modules: 選取的模組將在插入的 exta 頁面上重複顯示，指模組名稱
         module_pagination: 模組分頁
         repeat_modules: 重複模組
+      property_panel:
+        add_new_condition: 新增條件
+        apply_color_label: 然後應用以下顏色：
+        graph_condition_types:
+          default: 預設
+          graph_value: 圖形值
+        graph_value_condition_not_supported_msg: 此圖形型別不支援圖形值條件。此選項目前僅適用於以下圖表型別。
+        graph_value_conditions_title: 圖形值條件
+        if_graph_value_is: 如果圖形值為：
+        manage_graph_value_condition: 管理圖形值條件
+        manage_styles_condition: 管理樣式條件
+        missing_value: 遺漏值
+        predicates:
+          equal_to: 等於
+          greater_than: 大於
+          greater_than_or_equal: 大於或等於
+          less_than: 以內
+          less_than_or_equal: 小於或等於
+          not_equal_to: 不等於
+        prefixes:
+          and: 和
+          or: 或
+        text_condition_type: 文字條件類型：
     report_families:
       create:
         successfully: 報告束 %{name} 已成功建立。
@@ -4116,6 +4142,7 @@ zh-Hant:
         skill_types:
           behavioural: 行為
           other: 其他
+          qualification: 資格
           technical: 技術
       property_panel:
         add_n_a_option: 新增不適用選項

@@ -376,9 +376,11 @@ ar:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}، الصف %{row}: %{value} قيمة مكررة ل %{field}"
               invalid_format: يُرجى تحميل ملف xlsx
               missing_headers: "%{sheet_name} الورقة ناقصة الرؤوس المطلوبة: %{headers}"
               missing_sheets: 'الأوراق المطلوبة مفقودة: %{sheets}'
+              missing_value: "%{sheet_name}، الصف %{row}: قيمة مفقودة ل %{field}"
             project:
               must_exist: يجب أن يكون المشروع موجوداً
         update_norm:

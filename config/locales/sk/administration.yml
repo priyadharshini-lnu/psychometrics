@@ -295,6 +295,7 @@ sk:
       artifact_results: Výsledky artefaktov
       code: Kód
       form:
+        add_assessment: Pridanie hodnotenia
         ai_assistant: Asistent AI
         assessments: Hodnotenia
         campaign_factors: Faktory kampane
@@ -302,6 +303,8 @@ sk:
         datasheet: Dátový hárok
         datasheet_columns: Stĺpce údajového hárka
         include_all_datasheet_columns: Zahrnúť všetky stĺpce údajového hárka
+        no_assessment_selected: Zatiaľ neboli pridané žiadne hodnotenia. Začnite kliknutím na "Pridať".
+        questions_required: Musí byť vybraná aspoň jedna otázka
         select_ai_assistant: Vyberte Asistenta AI
         select_assessment: Vyberte položku Hodnotenie
         select_campaign_factors: Vyberte faktory kampane
@@ -3336,6 +3339,29 @@ sk:
           repeat_modules: Vybrané moduly sa budú opakovať na vložených stránkach exta, odkazuje na názov modulu
         module_pagination: Stránkovanie modulov
         repeat_modules: Opakovať moduly
+      property_panel:
+        add_new_condition: Pridať novú podmienku
+        apply_color_label: 'Potom naneste nasledujúcu farbu:'
+        graph_condition_types:
+          default: Predvolený
+          graph_value: Hodnota grafu
+        graph_value_condition_not_supported_msg: Podmienky hodnoty grafu nie sú pre tento typ grafu podporované. Táto možnosť je momentálne dostupná len pre nižšie uvedené typy grafov.
+        graph_value_conditions_title: Podmienky hodnoty grafu
+        if_graph_value_is: 'Ak je hodnota grafu:'
+        manage_graph_value_condition: Spravovanie podmienky hodnoty grafu
+        manage_styles_condition: Podmienka Správa štýlov
+        missing_value: Chýbajúca hodnota
+        predicates:
+          equal_to: Rovná sa
+          greater_than: Väčšie ako
+          greater_than_or_equal: Väčšie alebo rovné
+          less_than: Menej ako
+          less_than_or_equal: Menšie alebo rovné
+          not_equal_to: Nerovná sa
+        prefixes:
+          and: A
+          or: ALEBO
+        text_condition_type: 'Typ textovej podmienky:'
     report_families:
       create:
         successfully: Balík zostáv %{name} bol úspešne vytvorený.
@@ -4104,6 +4130,7 @@ sk:
         skill_types:
           behavioural: Správanie
           other: Iné
+          qualification: Kvalifikácia
           technical: Technická stránka
       property_panel:
         add_n_a_option: Pridať možnosť Nie je k dispozícii

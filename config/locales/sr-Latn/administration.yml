@@ -295,6 +295,7 @@ sr-Latn:
       artifact_results: Artefakt Rezultati
       code: Šifru
       form:
+        add_assessment: Dodaj procenu
         ai_assistant: AI pomoćnik
         assessments: Procene
         campaign_factors: Faktori kampanje
@@ -302,6 +303,8 @@ sr-Latn:
         datasheet: Mapa podataka
         datasheet_columns: Kolumne sa tablama
         include_all_datasheet_columns: Uključite sve kolone Datasheet-a
+        no_assessment_selected: Još uvek nema procena. Kliknite na "Dodaj" da biste započeli.
+        questions_required: Najmanje jedno pitanje mora biti izabrano
         select_ai_assistant: Izaberite AI pomoćnika
         select_assessment: Izaberite procenu
         select_campaign_factors: Izaberite faktore kampanje
@@ -3336,6 +3339,29 @@ sr-Latn:
           repeat_modules: Izabrani moduli će se ponoviti na dodatno ubačenim stranicama, odnosi se na ime modula
         module_pagination: Paginacija modula
         repeat_modules: Ponovi module
+      property_panel:
+        add_new_condition: Dodaj novi uslov
+        apply_color_label: 'Zatim nanesite sledeću boju:'
+        graph_condition_types:
+          default: Podrazumevani
+          graph_value: Vrednost grafikona
+        graph_value_condition_not_supported_msg: Uslovi vrednosti grafa nisu podržani za ovaj tip grafikona. Ova opcija je trenutno dostupna samo za tipove grafikona ispod.
+        graph_value_conditions_title: Uslovi vrednosti grafikona
+        if_graph_value_is: 'Ako je vrednost grafikona:'
+        manage_graph_value_condition: Upravljajte uslovom vrednosti grafikona
+        manage_styles_condition: Upravljanje stilovima stanje
+        missing_value: Nedostajuća vrednost
+        predicates:
+          equal_to: Jednako
+          greater_than: Veći od
+          greater_than_or_equal: Veći od ili jednak
+          less_than: Manje od
+          less_than_or_equal: Manje od ili jednako
+          not_equal_to: Nije jednako
+        prefixes:
+          and: I
+          or: ILI
+        text_condition_type: 'Tekst Uslov Tip:'
     report_families:
       create:
         successfully: Paket izveštaja %{name} je uspešno kreiran.
@@ -4104,6 +4130,7 @@ sr-Latn:
         skill_types:
           behavioural: Bihejvioralni
           other: Ostalo
+          qualification: Kvalifikacije
           technical: Tehnički
       property_panel:
         add_n_a_option: Dodaj opciju N / A

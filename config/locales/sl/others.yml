@@ -376,9 +376,11 @@ sl:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, vrstica %{row}: podvojena vrednost %{value} za %{field}"
               invalid_format: Naložite datoteko v obliki xlsx
               missing_headers: 'Na listu %{sheet_name} manjkajo naslovi: %{headers}'
               missing_sheets: 'Manjkajo zahtevani listi: %{sheets}'
+              missing_value: "%{sheet_name}, vrstica %{row}: manjkajoča vrednost za %{field}"
             project:
               must_exist: Projekt mora obstajati
         update_norm:

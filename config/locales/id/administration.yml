@@ -295,6 +295,7 @@ id:
       artifact_results: Hasil Artefak
       code: Kode
       form:
+        add_assessment: Tambahkan Penilaian
         ai_assistant: Asisten AI
         assessments: Penilaian
         campaign_factors: Faktor Kampanye
@@ -302,6 +303,8 @@ id:
         datasheet: Lembar data
         datasheet_columns: Kolom Lembar Data
         include_all_datasheet_columns: Sertakan Semua Kolom Datasheet
+        no_assessment_selected: Belum ada penilaian yang ditambahkan. Klik "Tambahkan" untuk memulai.
+        questions_required: Setidaknya satu pertanyaan harus dipilih
         select_ai_assistant: Pilih Asisten AI
         select_assessment: Pilih Penilaian
         select_campaign_factors: Pilih Faktor Kampanye
@@ -3336,6 +3339,29 @@ id:
           repeat_modules: Modul yang dipilih akan diulang pada halaman yang disisipkan exta, mengacu pada nama modul
         module_pagination: Penomoran Halaman Modul
         repeat_modules: Ulangi Modul
+      property_panel:
+        add_new_condition: Tambahkan kondisi baru
+        apply_color_label: 'Kemudian oleskan warna berikut:'
+        graph_condition_types:
+          default: Default
+          graph_value: Nilai grafik
+        graph_value_condition_not_supported_msg: Kondisi Nilai Grafik tidak didukung untuk jenis grafik ini. Opsi ini saat ini hanya tersedia untuk jenis Grafik di bawah ini.
+        graph_value_conditions_title: Kondisi nilai grafik
+        if_graph_value_is: 'Jika Nilai Grafik adalah:'
+        manage_graph_value_condition: Mengelola kondisi nilai grafik
+        manage_styles_condition: Kelola kondisi gaya
+        missing_value: Nilai yang hilang
+        predicates:
+          equal_to: Sama dengan
+          greater_than: Lebih Besar dari
+          greater_than_or_equal: Lebih Besar Dari atau Sama Dengan
+          less_than: Kurang
+          less_than_or_equal: Kurang Dari atau Sama Dengan
+          not_equal_to: Tidak sama dengan
+        prefixes:
+          and: DAN
+          or: ATAU
+        text_condition_type: 'Jenis Kondisi Teks:'
     report_families:
       create:
         successfully: Bundel Laporan %{name} berhasil dibuat.
@@ -4104,6 +4130,7 @@ id:
         skill_types:
           behavioural: Perilaku
           other: Lainnya
+          qualification: Kualifikasi
           technical: Teknis
       property_panel:
         add_n_a_option: Tambahkan opsi N/A

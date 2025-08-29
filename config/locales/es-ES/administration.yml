@@ -295,6 +295,7 @@ es-ES:
       artifact_results: Resultados de artefactos
       code: Código
       form:
+        add_assessment: Agregar evaluación
         ai_assistant: Asistente de IA
         assessments: Evaluaciones
         campaign_factors: Factores de campaña
@@ -302,6 +303,8 @@ es-ES:
         datasheet: Hoja de datos
         datasheet_columns: Columnas de hoja de datos
         include_all_datasheet_columns: Incluir todas las columnas de la hoja de datos
+        no_assessment_selected: Aún no se han añadido evaluaciones. Haga clic en "Agregar" para comenzar.
+        questions_required: Se debe seleccionar al menos una pregunta
         select_ai_assistant: Seleccione Asistente de IA
         select_assessment: Seleccione Evaluación
         select_campaign_factors: Seleccionar factores de campaña
@@ -3340,6 +3343,29 @@ es-ES:
           repeat_modules: Los módulos seleccionados se repetirán en las páginas exta insertadas, se refiere al nombre del módulo
         module_pagination: Módulo Paginación
         repeat_modules: Módulos de repetición
+      property_panel:
+        add_new_condition: Agregar nueva condición
+        apply_color_label: 'Luego aplique el siguiente color:'
+        graph_condition_types:
+          default: Predeterminado
+          graph_value: Valor del gráfico
+        graph_value_condition_not_supported_msg: Las condiciones de valor de gráfico no son compatibles con este tipo de gráfico. Actualmente, esta opción solo está disponible para los siguientes tipos de gráficos.
+        graph_value_conditions_title: Condiciones de valor de gráfico
+        if_graph_value_is: 'Si el valor del gráfico es:'
+        manage_graph_value_condition: Administrar la condición del valor del gráfico
+        manage_styles_condition: Administrar la condición de los estilos
+        missing_value: Valor faltante
+        predicates:
+          equal_to: Igual a
+          greater_than: Mayor que
+          greater_than_or_equal: Mayor o igual que
+          less_than: Menos que
+          less_than_or_equal: Menor o igual que
+          not_equal_to: No es igual a
+        prefixes:
+          and: Y
+          or: O
+        text_condition_type: 'Tipo de condición de texto:'
     report_families:
       create:
         successfully: El paquete de informes %{name} se ha creado correctamente.
@@ -4116,6 +4142,7 @@ es-ES:
         skill_types:
           behavioural: Comportamiento
           other: Otros
+          qualification: Calificación
           technical: Técnico
       property_panel:
         add_n_a_option: Añadir opción N/A

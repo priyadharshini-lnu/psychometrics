@@ -295,6 +295,7 @@ th:
       artifact_results: ผลลัพธ์สิ่งประดิษฐ์
       code: รหัส
       form:
+        add_assessment: เพิ่มการประเมิน
         ai_assistant: ผู้ช่วย AI
         assessments: ประเมิน
         campaign_factors: ปัจจัยของแคมเปญ
@@ -302,6 +303,8 @@ th:
         datasheet: เอกสารข้อมูลสินค้า
         datasheet_columns: คอลัมน์แผ่นข้อมูล
         include_all_datasheet_columns: รวมคอลัมน์แผ่นข้อมูลทั้งหมด
+        no_assessment_selected: ยังไม่มีการเพิ่มการประเมิน คลิก "เพิ่ม" เพื่อเริ่มต้น
+        questions_required: ต้องเลือกคําถามอย่างน้อยหนึ่งข้อ
         select_ai_assistant: เลือก AI Assistant
         select_assessment: เลือก การประเมิน
         select_campaign_factors: เลือกปัจจัยของแคมเปญ
@@ -3336,6 +3339,29 @@ th:
           repeat_modules: โมดูลที่เลือกจะทําซ้ําในหน้าที่แทรก exta อ้างอิงถึงชื่อโมดูล
         module_pagination: การแบ่งหน้าโมดูล
         repeat_modules: ทําซ้ําโมดูล
+      property_panel:
+        add_new_condition: เพิ่มเงื่อนไขใหม่
+        apply_color_label: 'จากนั้นใช้สีต่อไปนี้:'
+        graph_condition_types:
+          default: เริ่ม ต้น
+          graph_value: ค่ากราฟ
+        graph_value_condition_not_supported_msg: เงื่อนไขค่ากราฟไม่ได้รับการสนับสนุนสําหรับกราฟประเภทนี้ ขณะนี้ตัวเลือกนี้ใช้ได้กับประเภทกราฟด้านล่างเท่านั้น
+        graph_value_conditions_title: เงื่อนไขค่ากราฟ
+        if_graph_value_is: 'ถ้าค่ากราฟเป็น:'
+        manage_graph_value_condition: จัดการเงื่อนไขค่ากราฟ
+        manage_styles_condition: จัดการเงื่อนไขสไตล์
+        missing_value: ค่าที่หายไป
+        predicates:
+          equal_to: เท่ากับ
+          greater_than: มากกว่า
+          greater_than_or_equal: มากกว่าหรือเท่ากับ
+          less_than: น้อยกว่า
+          less_than_or_equal: น้อยกว่าหรือเท่ากับ
+          not_equal_to: ไม่เท่ากับ
+        prefixes:
+          and: และ
+          or: หรือ
+        text_condition_type: 'ประเภทเงื่อนไขข้อความ:'
     report_families:
       create:
         successfully: สร้างชุดรายงาน %{name} เรียบร้อยแล้ว
@@ -4104,6 +4130,7 @@ th:
         skill_types:
           behavioural: พฤติกรรม
           other: อื่นๆ
+          qualification: คุณสมบัติ
           technical: เทคนิค
       property_panel:
         add_n_a_option: เพิ่มตัวเลือก N/A

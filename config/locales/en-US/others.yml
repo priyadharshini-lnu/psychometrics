@@ -376,9 +376,11 @@ en-US:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, Row %{row}: Duplicate value %{value} for %{field}"
               invalid_format: Please upload xlsx file
               missing_headers: "%{sheet_name} sheet is missing required headers: %{headers}"
               missing_sheets: 'Missing required sheets: %{sheets}'
+              missing_value: "%{sheet_name}, Row %{row}: Missing value for %{field}"
             project:
               must_exist: Project must exist
         update_norm:

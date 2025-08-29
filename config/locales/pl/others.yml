@@ -376,9 +376,11 @@ pl:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, wiersz %{row}: Zduplikowana wartość %{value} dla %{field}"
               invalid_format: Prześlij plik xlsx
               missing_headers: 'W arkuszu %{sheet_name} brakuje wymaganych nagłówków: %{headers}'
               missing_sheets: 'Brakujące wymagane arkusze: %{sheets}'
+              missing_value: "%{sheet_name}, wiersz %{row}: Brak wartości dla %{field}"
             project:
               must_exist: Projekt musi istnieć
         update_norm:

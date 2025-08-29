@@ -376,9 +376,11 @@ zh-Hant:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}，第 %{row} 列：%{field}的重複值%{value}"
               invalid_format: 請上傳 xlsx 檔案
               missing_headers: "%{sheet_name} 工作表缺少所需的標題： %{headers}"
               missing_sheets: 缺少所需的工作表：%{sheets}
+              missing_value: "%{sheet_name}，第 %{row} 列：%{field} 的遺漏值"
             project:
               must_exist: 專案必須存在
         update_norm:

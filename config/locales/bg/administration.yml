@@ -295,6 +295,7 @@ bg:
       artifact_results: Резултати от артефакти
       code: Код
       form:
+        add_assessment: Добавяне на оценяване
         ai_assistant: AI асистент
         assessments: Оценки
         campaign_factors: Фактори на кампанията
@@ -302,6 +303,8 @@ bg:
         datasheet: Лист с данни
         datasheet_columns: Колони на листа с данни
         include_all_datasheet_columns: Включване на всички колони на листа с данни
+        no_assessment_selected: Все още не са добавени оценки. Щракнете върху "Добавяне", за да започнете.
+        questions_required: Трябва да се избере поне един въпрос
         select_ai_assistant: Изберете AI Assistant
         select_assessment: Изберете оценяване
         select_campaign_factors: Изберете фактори на кампанията
@@ -3336,6 +3339,29 @@ bg:
           repeat_modules: Избраните модули ще бъдат повторени на exta insert страници, препраща към името на модула
         module_pagination: Пагинация на модули
         repeat_modules: Повтарящи се модули
+      property_panel:
+        add_new_condition: Добавяне на ново условие
+        apply_color_label: 'След това нанесете следния цвят:'
+        graph_condition_types:
+          default: По подразбиране
+          graph_value: Стойност на графиката
+        graph_value_condition_not_supported_msg: Условията за стойност на графиката не се поддържат за този тип графика. Понастоящем тази опция е налична само за типовете графики по-долу.
+        graph_value_conditions_title: Условия на стойността на графиката
+        if_graph_value_is: 'Ако стойността на графиката е:'
+        manage_graph_value_condition: Управление на условието на стойността на графиката
+        manage_styles_condition: Управление на състоянието на стиловете
+        missing_value: Липсваща стойност
+        predicates:
+          equal_to: Равен на
+          greater_than: По-голям от
+          greater_than_or_equal: По-голямо или равно на
+          less_than: По-малко от
+          less_than_or_equal: По-малко или равно на
+          not_equal_to: Не е равно на
+        prefixes:
+          and: И
+          or: ИЛИ
+        text_condition_type: 'Тип условие на текста:'
     report_families:
       create:
         successfully: Пакетът за отчети %{name} е създаден успешно.
@@ -4104,6 +4130,7 @@ bg:
         skill_types:
           behavioural: Поведенчески
           other: Други
+          qualification: Квалификация
           technical: Технически
       property_panel:
         add_n_a_option: Добавяне на опция N/A

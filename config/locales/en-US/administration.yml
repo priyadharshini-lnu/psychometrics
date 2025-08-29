@@ -295,6 +295,7 @@ en-US:
       artifact_results: Artifact Results
       code: Code
       form:
+        add_assessment: Add Assessment
         ai_assistant: AI Assistant
         assessments: Assessments
         campaign_factors: Campaign Factors
@@ -302,6 +303,8 @@ en-US:
         datasheet: Datasheet
         datasheet_columns: Datasheet Columns
         include_all_datasheet_columns: Include All Datasheet Columns
+        no_assessment_selected: No assessments added yet. Click "Add" to get started.
+        questions_required: At least one question must be selected
         select_ai_assistant: Select AI Assistant
         select_assessment: Select Assessment
         select_campaign_factors: Select Campaign Factors
@@ -3336,6 +3339,29 @@ en-US:
           repeat_modules: Selected modules will be repeated on the exta inserted pages, refers to module name
         module_pagination: Module Pagination
         repeat_modules: Repeat Modules
+      property_panel:
+        add_new_condition: Add new condition
+        apply_color_label: 'Then apply the following color:'
+        graph_condition_types:
+          default: Default
+          graph_value: Graph value
+        graph_value_condition_not_supported_msg: Graph Value Conditions are not supported for this graph type. This option is currently available only for below Graph types.
+        graph_value_conditions_title: Graph value conditions
+        if_graph_value_is: 'If Graph Value is:'
+        manage_graph_value_condition: Manage graph value condition
+        manage_styles_condition: Manage styles condition
+        missing_value: Missing Value
+        predicates:
+          equal_to: Equal to
+          greater_than: Greater Than
+          greater_than_or_equal: Greater Than or Equal To
+          less_than: Less Than
+          less_than_or_equal: Less Than or Equal To
+          not_equal_to: Not equal to
+        prefixes:
+          and: AND
+          or: OR
+        text_condition_type: 'Text Condition Type:'
     report_families:
       create:
         successfully: Report Bundle %{name} was created successfully.
@@ -4112,6 +4138,7 @@ en-US:
         skill_types:
           behavioural: Behavioural
           other: Other
+          qualification: Qualification
           technical: Technical
       property_panel:
         add_n_a_option: Add N/A option

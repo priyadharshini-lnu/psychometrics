@@ -376,9 +376,11 @@ de:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, Zeile %{row}: Doppelter Wert %{value} für %{field}"
               invalid_format: Bitte xlsx-Datei hochladen
               missing_headers: "%{sheet_name} Blatt fehlt erforderliche Kopfzeile: %{headers}"
               missing_sheets: 'Fehlende erforderliche Blätter: %{sheets}'
+              missing_value: "%{sheet_name}, Zeile %{row}: Fehlender Wert für %{field}"
             project:
               must_exist: Projekt muss existieren
         update_norm:

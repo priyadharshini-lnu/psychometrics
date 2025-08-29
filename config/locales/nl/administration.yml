@@ -295,6 +295,7 @@ nl:
       artifact_results: Artefact resultaten
       code: Code
       form:
+        add_assessment: Beoordeling toevoegen
         ai_assistant: AI-assistent
         assessments: Beoordelingen
         campaign_factors: Campagne factoren
@@ -302,6 +303,8 @@ nl:
         datasheet: Technische fiche
         datasheet_columns: Gegevensblad kolommen
         include_all_datasheet_columns: Alle kolommen van gegevensbladen opnemen
+        no_assessment_selected: Er zijn nog geen assessments toegevoegd. Klik op "Toevoegen" om aan de slag te gaan.
+        questions_required: Er moet ten minste één vraag worden geselecteerd
         select_ai_assistant: Selecteer AI-assistent
         select_assessment: Selecteer Assessment
         select_campaign_factors: Selecteer campagnefactoren
@@ -3340,6 +3343,29 @@ nl:
           repeat_modules: Geselecteerde modules worden herhaald op de exta ingevoegde pagina's, verwijst naar modulenaam
         module_pagination: Module Paginering
         repeat_modules: Modules herhalen
+      property_panel:
+        add_new_condition: Nieuwe conditie toevoegen
+        apply_color_label: 'Breng vervolgens de volgende kleur aan:'
+        graph_condition_types:
+          default: Verstek
+          graph_value: Grafiek waarde
+        graph_value_condition_not_supported_msg: Grafiekwaardevoorwaarden worden niet ondersteund voor dit grafiektype. Deze optie is momenteel alleen beschikbaar voor onderstaande grafiektypen.
+        graph_value_conditions_title: Voorwaarden voor grafiekwaarde
+        if_graph_value_is: 'Als de grafiekwaarde het volgende is:'
+        manage_graph_value_condition: De voorwaarde van de grafiekwaarde beheren
+        manage_styles_condition: Conditie van stijlen beheren
+        missing_value: Ontbrekende waarde
+        predicates:
+          equal_to: Gelijk aan
+          greater_than: Groter dan
+          greater_than_or_equal: Groter dan of gelijk aan
+          less_than: Minder dan
+          less_than_or_equal: Kleiner dan of gelijk aan
+          not_equal_to: Niet gelijk aan
+        prefixes:
+          and: EN
+          or: OF
+        text_condition_type: 'Tekst Conditie Type:'
     report_families:
       create:
         successfully: Rapportbundel %{name} is succesvol aangemaakt.
@@ -4116,6 +4142,7 @@ nl:
         skill_types:
           behavioural: Gedrag
           other: Andere
+          qualification: Kwalificatie
           technical: Technisch
       property_panel:
         add_n_a_option: N.v.t.-optie toevoegen

@@ -295,6 +295,7 @@ vi:
       artifact_results: Kết quả hiện vật
       code: Mã
       form:
+        add_assessment: Thêm đánh giá
         ai_assistant: Trợ lý AI
         assessments: Đánh giá
         campaign_factors: Các yếu tố chiến dịch
@@ -302,6 +303,8 @@ vi:
         datasheet: Bảng dữ liệu
         datasheet_columns: Cột bảng dữ liệu
         include_all_datasheet_columns: Bao gồm tất cả các cột biểu dữ liệu
+        no_assessment_selected: Chưa có đánh giá nào được thêm vào. Nhấp vào "Thêm" để bắt đầu.
+        questions_required: Ít nhất một câu hỏi phải được chọn
         select_ai_assistant: Chọn Trợ lý AI
         select_assessment: Chọn Đánh giá
         select_campaign_factors: Chọn các yếu tố chiến dịch
@@ -3336,6 +3339,29 @@ vi:
           repeat_modules: Các mô-đun đã chọn sẽ được lặp lại trên các trang chèn exta, đề cập đến tên mô-đun
         module_pagination: Phân trang mô-đun
         repeat_modules: Lặp lại các mô-đun
+      property_panel:
+        add_new_condition: Thêm điều kiện mới
+        apply_color_label: 'Sau đó áp dụng màu sau:'
+        graph_condition_types:
+          default: Mặc định
+          graph_value: Giá trị đồ thị
+        graph_value_condition_not_supported_msg: Điều kiện giá trị đồ thị không được hỗ trợ cho loại biểu đồ này. Tùy chọn này hiện chỉ khả dụng cho các loại Đồ thị bên dưới.
+        graph_value_conditions_title: Điều kiện giá trị đồ thị
+        if_graph_value_is: 'Nếu Giá trị đồ thị là:'
+        manage_graph_value_condition: Quản lý điều kiện giá trị đồ thị
+        manage_styles_condition: Quản lý điều kiện kiểu
+        missing_value: Giá trị bị thiếu
+        predicates:
+          equal_to: Bằng với
+          greater_than: Lớn hơn
+          greater_than_or_equal: Lớn hơn hoặc bằng
+          less_than: Ít hơn
+          less_than_or_equal: Nhỏ hơn hoặc bằng
+          not_equal_to: Không bằng
+        prefixes:
+          and: VÀ
+          or: HOẶC
+        text_condition_type: 'Loại điều kiện văn bản:'
     report_families:
       create:
         successfully: Báo cáo Gói %{name} đã được tạo thành công.
@@ -4104,6 +4130,7 @@ vi:
         skill_types:
           behavioural: Hành vi
           other: Khác
+          qualification: Trình độ chuyên môn
           technical: Kỹ thuật
       property_panel:
         add_n_a_option: Thêm tùy chọn N / A

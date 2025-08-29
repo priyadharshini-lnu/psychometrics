@@ -295,6 +295,7 @@ zh:
       artifact_results: 工件结果
       code: 法典
       form:
+        add_assessment: 添加评估
         ai_assistant: AI助手
         assessments: 评估
         campaign_factors: 活动因素
@@ -302,6 +303,8 @@ zh:
         datasheet: 数据表
         datasheet_columns: 数据表列
         include_all_datasheet_columns: 包括所有数据表列
+        no_assessment_selected: 尚未添加任何评估。单击“添加”开始。
+        questions_required: 必须至少选择一个问题
         select_ai_assistant: 选择 AI 助手
         select_assessment: 选择评估
         select_campaign_factors: 选择广告系列因素
@@ -3340,6 +3343,29 @@ zh:
           repeat_modules: 所选模块将在插入的 exta 页面上重复出现，指模块名称
         module_pagination: 模块分页
         repeat_modules: 重复模块
+      property_panel:
+        add_new_condition: 添加新条件
+        apply_color_label: 然后应用以下颜色：
+        graph_condition_types:
+          default: 违约
+          graph_value: 图值
+        graph_value_condition_not_supported_msg: 此图形类型不支持图形值条件。此选项目前仅适用于以下图表类型。
+        graph_value_conditions_title: 图值条件
+        if_graph_value_is: 如果图形值为：
+        manage_graph_value_condition: 管理图形值条件
+        manage_styles_condition: 管理样式条件
+        missing_value: 缺失值
+        predicates:
+          equal_to: 等于
+          greater_than: 大于
+          greater_than_or_equal: 大于或等于
+          less_than: 小于
+          less_than_or_equal: 小于或等于
+          not_equal_to: 不等于
+        prefixes:
+          and: 和
+          or: 或
+        text_condition_type: 文本条件类型：
     report_families:
       create:
         successfully: 报告捆绑包 %{name} 创建成功。
@@ -4116,6 +4142,7 @@ zh:
         skill_types:
           behavioural: 行为
           other: 其他
+          qualification: 资格
           technical: 技术
       property_panel:
         add_n_a_option: 添加不适用选项

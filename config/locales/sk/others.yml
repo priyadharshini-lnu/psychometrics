@@ -376,9 +376,11 @@ sk:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, riadok %{row}: duplicitná hodnota %{value} pre %{field}"
               invalid_format: Prosím, nahrajte súbor xlsx
               missing_headers: "%{sheet_name} chýbajú požadované hlavičky: %{headers}"
               missing_sheets: 'Chýbajúce požadované listy: %{sheets}'
+              missing_value: "%{sheet_name}, riadok %{row}: chýbajúca hodnota pre %{field}"
             project:
               must_exist: Projekt musí existovať
         update_norm:

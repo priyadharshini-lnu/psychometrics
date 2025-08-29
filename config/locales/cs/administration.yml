@@ -295,6 +295,7 @@ cs:
       artifact_results: Výsledky artefaktů
       code: Kód
       form:
+        add_assessment: Přidat hodnocení
         ai_assistant: Asistent AI
         assessments: Posudky
         campaign_factors: Faktory kampaně
@@ -302,6 +303,8 @@ cs:
         datasheet: Datový list
         datasheet_columns: Sloupce datového listu
         include_all_datasheet_columns: Zahrnout všechny sloupce datového listu
+        no_assessment_selected: Zatím nejsou přidána žádná hodnocení. Klikněte na "Přidat" a začněte.
+        questions_required: Musí být vybrána alespoň jedna otázka
         select_ai_assistant: Vyberte Asistent AI
         select_assessment: Vyberte možnost Hodnocení
         select_campaign_factors: Vyberte faktory kampaně
@@ -3340,6 +3343,29 @@ cs:
           repeat_modules: Vybrané moduly se budou opakovat na vložených stránkách exta, odkazuje na název modulu
         module_pagination: Stránkování modulů
         repeat_modules: Opakování modulů
+      property_panel:
+        add_new_condition: Přidat novou podmínku
+        apply_color_label: 'Poté použijte následující barvu:'
+        graph_condition_types:
+          default: Výchozí
+          graph_value: Hodnota grafu
+        graph_value_condition_not_supported_msg: Podmínky hodnoty grafu nejsou pro tento typ grafu podporovány. Tato možnost je v současné době k dispozici pouze pro níže uvedené typy grafů.
+        graph_value_conditions_title: Podmínky hodnoty grafu
+        if_graph_value_is: 'Pokud je hodnota grafu:'
+        manage_graph_value_condition: Správa podmínky hodnoty grafu
+        manage_styles_condition: Podmínka správy stylů
+        missing_value: Chybějící hodnota
+        predicates:
+          equal_to: Rovná se
+          greater_than: Větší než
+          greater_than_or_equal: Větší než nebo rovno
+          less_than: Méně než
+          less_than_or_equal: Menší nebo rovno
+          not_equal_to: Nerovná se
+        prefixes:
+          and: A
+          or: NEBO
+        text_condition_type: 'Typ textové podmínky:'
     report_families:
       create:
         successfully: Svazek sestav %{name} byl úspěšně vytvořen.
@@ -4116,6 +4142,7 @@ cs:
         skill_types:
           behavioural: Chování
           other: Další
+          qualification: Kvalifikace
           technical: Technická stránka
       property_panel:
         add_n_a_option: Přidat možnost N/A

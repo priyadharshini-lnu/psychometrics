@@ -295,6 +295,7 @@ hu:
       artifact_results: Műtermék eredményei
       code: Kód
       form:
+        add_assessment: Értékelés hozzáadása
         ai_assistant: AI asszisztens
         assessments: Értékelések
         campaign_factors: Kampány tényezők
@@ -302,6 +303,8 @@ hu:
         datasheet: Adatlap
         datasheet_columns: Adatlap oszlopok
         include_all_datasheet_columns: Az adatlap összes oszlopának belefoglalása
+        no_assessment_selected: Még nincs értékelés. Kattintson a "Hozzáadás" gombra a kezdéshez.
+        questions_required: Legalább egy kérdést ki kell választani
         select_ai_assistant: Válassza az AI Assistant lehetőséget
         select_assessment: Válassza az Értékelés lehetőséget
         select_campaign_factors: Válassza ki a kampánytényezőket
@@ -3338,6 +3341,29 @@ hu:
           repeat_modules: A kiválasztott modulok megismétlődnek a beillesztett exta oldalakon, a modul nevére utalva
         module_pagination: Modul oldalszámozása
         repeat_modules: Modulok ismétlése
+      property_panel:
+        add_new_condition: Új feltétel hozzáadása
+        apply_color_label: 'Ezután alkalmazza a következő színt:'
+        graph_condition_types:
+          default: Alapértelmezett
+          graph_value: Grafikon értéke
+        graph_value_condition_not_supported_msg: A gráférték-feltételek nem támogatottak ennél a gráftípusnál. Ez a lehetőség jelenleg csak az alábbi gráftípusok esetében érhető el.
+        graph_value_conditions_title: Grafikonérték feltételei
+        if_graph_value_is: 'Ha a grafikon értéke:'
+        manage_graph_value_condition: Grafikonérték-feltétel kezelése
+        manage_styles_condition: Stílusok feltételének kezelése
+        missing_value: Hiányzó érték
+        predicates:
+          equal_to: Egyenlő
+          greater_than: Nagyobb, mint
+          greater_than_or_equal: Nagyobb vagy egyenlő, mint
+          less_than: Kevesebb, mint
+          less_than_or_equal: Kisebb vagy egyenlő
+          not_equal_to: Nem egyenlő
+        prefixes:
+          and: ÉS
+          or: VAGY
+        text_condition_type: 'Szövegfeltétel típusa:'
     report_families:
       create:
         successfully: A(z) %{name} jelentéscsomag létrehozása sikeresen megtörtént.
@@ -4106,6 +4132,7 @@ hu:
         skill_types:
           behavioural: Viselkedés
           other: Egyéb
+          qualification: Minősítés
           technical: Műszaki
       property_panel:
         add_n_a_option: N/A opció hozzáadása

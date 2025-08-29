@@ -295,6 +295,7 @@ de:
       artifact_results: Ergebnisse des Artefakts
       code: Code
       form:
+        add_assessment: Bewertung hinzufügen
         ai_assistant: KI-Assistent
         assessments: Veranlagungen
         campaign_factors: Faktoren der Kampagne
@@ -302,6 +303,8 @@ de:
         datasheet: Datenblatt
         datasheet_columns: Datenblatt-Spalten
         include_all_datasheet_columns: Alle Datenblattspalten einschließen
+        no_assessment_selected: Es wurden noch keine Bewertungen hinzugefügt. Klicken Sie auf "Hinzufügen", um loszulegen.
+        questions_required: Mindestens eine Frage muss ausgewählt werden
         select_ai_assistant: Wählen Sie AI Assistant aus
         select_assessment: Bewertung auswählen
         select_campaign_factors: Kampagnenfaktoren auswählen
@@ -3340,6 +3343,29 @@ de:
           repeat_modules: Ausgewählte Module werden auf den eingefügten Exta-Seiten wiederholt, bezieht sich auf Modulname
         module_pagination: Modul Paginierung
         repeat_modules: Module wiederholen
+      property_panel:
+        add_new_condition: Neue Bedingung hinzufügen
+        apply_color_label: 'Tragen Sie dann die folgende Farbe auf:'
+        graph_condition_types:
+          default: Vorgabe
+          graph_value: Wert des Diagramms
+        graph_value_condition_not_supported_msg: Diagrammwertbedingungen werden für diesen Diagrammtyp nicht unterstützt. Diese Option ist derzeit nur für die folgenden Diagrammtypen verfügbar.
+        graph_value_conditions_title: Bedingungen für Diagrammwerte
+        if_graph_value_is: 'Wenn der Diagrammwert ist:'
+        manage_graph_value_condition: Verwalten der Diagrammwertbedingung
+        manage_styles_condition: Bedingung "Stile" verwalten
+        missing_value: Fehlender Wert
+        predicates:
+          equal_to: Gleich
+          greater_than: Größer als
+          greater_than_or_equal: Größer als oder gleich
+          less_than: Weniger als
+          less_than_or_equal: Kleiner als oder gleich
+          not_equal_to: Ungleich
+        prefixes:
+          and: UND
+          or: ODER
+        text_condition_type: 'Art der Textbedingung:'
     report_families:
       create:
         successfully: Berichtsbündel %{name} wurde erfolgreich erstellt.
@@ -4116,6 +4142,7 @@ de:
         skill_types:
           behavioural: Verhaltensweisen
           other: Andere
+          qualification: Qualifikation
           technical: Technisch
       property_panel:
         add_n_a_option: Option N/A hinzufügen

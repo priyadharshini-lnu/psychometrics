@@ -376,9 +376,11 @@ th:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name} แถวที่ %{row}: %{value} ค่าที่ซ้ํากันสําหรับ %{field}"
               invalid_format: กรุณาอัปโหลดไฟล์ xlsx
               missing_headers: 'แผ่นงาน %{sheet_name} ขาดหัวตารางที่จำเป็น: %{headers}'
               missing_sheets: 'แผ่นงานที่จำเป็นขาดหายไป: %{sheets}'
+              missing_value: "%{sheet_name} แถวที่ %{row}: ค่าที่ขาดหายไปสําหรับ %{field}"
             project:
               must_exist: โครงการต้องมีอยู่
         update_norm:

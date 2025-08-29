@@ -295,6 +295,7 @@ pl:
       artifact_results: Wyniki artefaktu
       code: Kod
       form:
+        add_assessment: Dodaj ocenę
         ai_assistant: Asystent AI
         assessments: Oceny
         campaign_factors: Czynniki kampanii
@@ -302,6 +303,8 @@ pl:
         datasheet: Arkusz danych
         datasheet_columns: Kolumny arkusza danych
         include_all_datasheet_columns: Uwzględnij wszystkie kolumny arkusza danych
+        no_assessment_selected: Nie dodano jeszcze żadnych ocen. Kliknij "Dodaj", aby rozpocząć.
+        questions_required: Należy wybrać co najmniej jedno pytanie
         select_ai_assistant: Wybierz Asystenta AI
         select_assessment: Wybierz ocenę
         select_campaign_factors: Wybieranie czynników kampanii
@@ -3336,6 +3339,29 @@ pl:
           repeat_modules: Wybrane moduły będą powtarzane na wstawionych stronach exta, odnosi się do nazwy modułu
         module_pagination: Podział modułów na strony
         repeat_modules: Powtarzanie modułów
+      property_panel:
+        add_new_condition: Dodaj nowy warunek
+        apply_color_label: 'Następnie nałóż następujący kolor:'
+        graph_condition_types:
+          default: Domyślny
+          graph_value: Wartość wykresu
+        graph_value_condition_not_supported_msg: Warunki wartości wykresu nie są obsługiwane dla tego typu wykresu. Ta opcja jest obecnie dostępna tylko dla poniższych typów wykresów.
+        graph_value_conditions_title: Warunki wartości wykresu
+        if_graph_value_is: 'Jeśli wartość wykresu wynosi:'
+        manage_graph_value_condition: Zarządzanie warunkiem wartości wykresu
+        manage_styles_condition: Zarządzanie warunkiem stylów
+        missing_value: Brakująca wartość
+        predicates:
+          equal_to: Równy
+          greater_than: Większe niż
+          greater_than_or_equal: Większe lub równe
+          less_than: Mniej niż
+          less_than_or_equal: Mniejsze lub równe
+          not_equal_to: Nie równa się
+        prefixes:
+          and: I
+          or: LUB
+        text_condition_type: 'Typ warunku tekstowego:'
     report_families:
       create:
         successfully: Pakiet raportów %{name} został utworzony pomyślnie.
@@ -4104,6 +4130,7 @@ pl:
         skill_types:
           behavioural: Zachowanie
           other: Inne
+          qualification: Kwalifikacja
           technical: Techniczne
       property_panel:
         add_n_a_option: Dodaj opcję Nie dotyczy

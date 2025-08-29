@@ -295,6 +295,7 @@ sl:
       artifact_results: Rezultati artefaktov
       code: Koda
       form:
+        add_assessment: Dodajanje ocene
         ai_assistant: Pomočnik za umetno inteligenco
         assessments: Ocene
         campaign_factors: Dejavniki oglaševalske akcije
@@ -302,6 +303,8 @@ sl:
         datasheet: Podatkovni list
         datasheet_columns: Stolpci podatkovnega lista
         include_all_datasheet_columns: Vključi vse stolpce podatkovnega lista
+        no_assessment_selected: Ocene še niso dodane. Za začetek kliknite »Dodaj«.
+        questions_required: Izbrati je treba vsaj eno vprašanje
         select_ai_assistant: Izberite pomočnika AI
         select_assessment: Izberite Ocenjevanje
         select_campaign_factors: Izberite dejavnike oglaševalske akcije
@@ -3336,6 +3339,29 @@ sl:
           repeat_modules: Izbrani moduli se bodo ponovili na vstavljenih straneh exta, nanaša se na ime modula
         module_pagination: Strmoglavljenje modulov
         repeat_modules: Ponavljanje modulov
+      property_panel:
+        add_new_condition: Dodajanje novega pogoja
+        apply_color_label: 'Nato uporabite naslednjo barvo:'
+        graph_condition_types:
+          default: Privzeto
+          graph_value: Vrednost grafa
+        graph_value_condition_not_supported_msg: Pogoji vrednosti grafa niso podprti za to vrsto grafa. Ta možnost je trenutno na voljo le za spodnje vrste grafov.
+        graph_value_conditions_title: Pogoji vrednosti grafa
+        if_graph_value_is: 'Če je vrednost grafa:'
+        manage_graph_value_condition: Upravljanje pogoja vrednosti grafa
+        manage_styles_condition: Pogoj upravljanja slogov
+        missing_value: Manjkajoča vrednost
+        predicates:
+          equal_to: Enako
+          greater_than: Večje od
+          greater_than_or_equal: Večje ali enako
+          less_than: Manj kot
+          less_than_or_equal: Manjše ali enako
+          not_equal_to: Ni enako
+        prefixes:
+          and: IN
+          or: ALI
+        text_condition_type: 'Vrsta besedilnega pogoja:'
     report_families:
       create:
         successfully: Sklop poročil%{name} je bil uspešno ustvarjen.
@@ -4104,6 +4130,7 @@ sl:
         skill_types:
           behavioural: Vedenjski
           other: Drugo
+          qualification: Kvalifikacija
           technical: Tehnični
       property_panel:
         add_n_a_option: Dodaj možnost Ni na voljo

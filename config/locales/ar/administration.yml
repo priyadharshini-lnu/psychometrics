@@ -295,6 +295,7 @@ ar:
       artifact_results: نتائج القطع الأثرية
       code: رمز
       form:
+        add_assessment: إضافة تقييم
         ai_assistant: مساعد الذكاء الاصطناعي
         assessments: تقييمات
         campaign_factors: عوامل الحملة
@@ -302,6 +303,8 @@ ar:
         datasheet: ورقة البيانات
         datasheet_columns: أعمدة ورقة البيانات
         include_all_datasheet_columns: تضمين جميع أعمدة ورقة البيانات
+        no_assessment_selected: لم تتم إضافة أي تقييمات حتى الآن. انقر فوق "إضافة" للبدء.
+        questions_required: يجب تحديد سؤال واحد على الأقل
         select_ai_assistant: حدد مساعد الذكاء الاصطناعي
         select_assessment: حدد التقييم
         select_campaign_factors: حدد عوامل الحملة
@@ -3340,6 +3343,29 @@ ar:
           repeat_modules: Selected modules will be repeated on the exta inserted pages, refers to module name
         module_pagination: Module Pagination
         repeat_modules: Repeat Modules
+      property_panel:
+        add_new_condition: إضافة شرط جديد
+        apply_color_label: 'ثم قم بتطبيق اللون التالي:'
+        graph_condition_types:
+          default: افتراضي
+          graph_value: قيمة الرسم البياني
+        graph_value_condition_not_supported_msg: شروط قيمة الرسم البياني غير مدعومة لهذا النوع من الرسم البياني. هذا الخيار متاح حاليا فقط لأنواع الرسوم البيانية أدناه.
+        graph_value_conditions_title: شروط قيمة الرسم البياني
+        if_graph_value_is: 'إذا كانت قيمة الرسم البياني هي:'
+        manage_graph_value_condition: إدارة شرط قيمة الرسم البياني
+        manage_styles_condition: إدارة حالة الأنماط
+        missing_value: القيمة المفقودة
+        predicates:
+          equal_to: يساوي
+          greater_than: اكبر
+          greater_than_or_equal: أكبر من أو يساوي
+          less_than: اقل
+          less_than_or_equal: أقل من أو يساوي
+          not_equal_to: لا يساوي
+        prefixes:
+          and: و
+          or: أو
+        text_condition_type: 'نوع شرط النص:'
     report_families:
       create:
         successfully: Report Bundle %{name} was created successfully.
@@ -4116,6 +4142,7 @@ ar:
         skill_types:
           behavioural: السلوكيات
           other: أخرى
+          qualification: تأهيل
           technical: التقنية
       property_panel:
         add_n_a_option: Add N/A option

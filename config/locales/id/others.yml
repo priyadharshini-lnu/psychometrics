@@ -376,9 +376,11 @@ id:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, Baris %{row}: Nilai duplikat %{value} untuk %{field}"
               invalid_format: Silakan unggah dokumen xlsx
               missing_headers: 'Lembar %{sheet_name} tidak memiliki judul yang diperlukan: %{headers}'
               missing_sheets: 'Lembaran yang diperlukan hilang: %{sheets}'
+              missing_value: "%{sheet_name}, Baris %{row}: Nilai tidak ada untuk %{field}"
             project:
               must_exist: Proyek harus ada
         update_norm:

@@ -382,9 +382,11 @@ sr-Latn:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, red %{row}: Duplikat vrednosti %{value} za %{field}"
               invalid_format: Molimo Vas da otpremite xlsx datoteku
               missing_headers: "%{sheet_name} stranici nedostaju obavezna zaglavlja: %{headers}"
               missing_sheets: 'Nedostaju potrebne stranice: %{sheets}'
+              missing_value: "%{sheet_name}, red %{row}: Nedostaje vrednost za %{field}"
             project:
               must_exist: Projekat mora postojati
         update_norm:

@@ -295,6 +295,7 @@ it:
       artifact_results: Risultati degli artefatti
       code: Codice
       form:
+        add_assessment: Aggiungi valutazione
         ai_assistant: Assistente AI
         assessments: Valutazioni
         campaign_factors: Fattori della campagna
@@ -302,6 +303,8 @@ it:
         datasheet: Scheda tecnica
         datasheet_columns: Colonne della scheda tecnica
         include_all_datasheet_columns: Includi tutte le colonne del foglio dati
+        no_assessment_selected: Ancora nessuna valutazione aggiunta. Fai clic su "Aggiungi" per iniziare.
+        questions_required: Deve essere selezionata almeno una domanda
         select_ai_assistant: Seleziona Assistente AI
         select_assessment: Seleziona valutazione
         select_campaign_factors: Seleziona i fattori della campagna
@@ -3340,6 +3343,29 @@ it:
           repeat_modules: I moduli selezionati saranno ripetuti nelle pagine exta inserite, in base al nome del modulo
         module_pagination: Paginazione dei moduli
         repeat_modules: Ripetere i moduli
+      property_panel:
+        add_new_condition: Aggiungi nuova condizione
+        apply_color_label: 'Quindi applicare il seguente colore:'
+        graph_condition_types:
+          default: Default
+          graph_value: Valore del grafico
+        graph_value_condition_not_supported_msg: Le condizioni del valore del grafico non sono supportate per questo tipo di grafico. Questa opzione è attualmente disponibile solo per i seguenti tipi di grafico.
+        graph_value_conditions_title: Condizioni del valore del grafico
+        if_graph_value_is: 'Se il valore del grafico è:'
+        manage_graph_value_condition: Gestire la condizione del valore del grafico
+        manage_styles_condition: Gestire la condizione degli stili
+        missing_value: Valore mancante
+        predicates:
+          equal_to: Uguale a
+          greater_than: Maggiore
+          greater_than_or_equal: maggiore o uguale a
+          less_than: Meno di
+          less_than_or_equal: minore o uguale a
+          not_equal_to: Non uguale a
+        prefixes:
+          and: E
+          or: O
+        text_condition_type: 'Tipo di condizione del testo:'
     report_families:
       create:
         successfully: Il bundle di report %{name} è stato creato con successo.
@@ -4116,6 +4142,7 @@ it:
         skill_types:
           behavioural: Comportamentale
           other: Altro
+          qualification: Qualificazione
           technical: Tecnica
       property_panel:
         add_n_a_option: Aggiungere l'opzione N/A

@@ -295,6 +295,7 @@ ko:
       artifact_results: 아티팩트 결과
       code: 코드
       form:
+        add_assessment: 평가 추가
         ai_assistant: AI 어시스턴트
         assessments: 평가
         campaign_factors: 캠페인 요인
@@ -302,6 +303,8 @@ ko:
         datasheet: 데이터시트
         datasheet_columns: 데이터시트 열
         include_all_datasheet_columns: 모든 데이터시트 열 포함
+        no_assessment_selected: 아직 추가된 평가가 없습니다. 시작하려면 "추가"를 클릭하십시오.
+        questions_required: 하나 이상의 질문을 선택해야 합니다.
         select_ai_assistant: AI 어시스턴트 선택
         select_assessment: 평가 선택
         select_campaign_factors: 캠페인 요인 선택
@@ -3340,6 +3343,29 @@ ko:
           repeat_modules: 선택한 모듈은 익스트라 삽입된 페이지에서 반복되며 모듈 이름을 참조합니다
         module_pagination: 모듈 페이지 매김
         repeat_modules: 반복 모듈
+      property_panel:
+        add_new_condition: 새 조건 추가
+        apply_color_label: 그런 다음 다음 색상을 적용합니다.
+        graph_condition_types:
+          default: 기본값
+          graph_value: 그래프 값
+        graph_value_condition_not_supported_msg: 그래프 값 조건은 이 그래프 유형에 대해 지원되지 않습니다. 이 옵션은 현재 아래 그래프 유형에만 사용할 수 있습니다.
+        graph_value_conditions_title: 그래프 값 조건
+        if_graph_value_is: '그래프 값이 다음과 같은 경우:'
+        manage_graph_value_condition: 그래프 값 조건 관리
+        manage_styles_condition: 스타일 관리 조건
+        missing_value: 누락된 값
+        predicates:
+          equal_to: 같음
+          greater_than: 보다 큼
+          greater_than_or_equal: 크거나 같음
+          less_than: 미만
+          less_than_or_equal: 작거나 같음
+          not_equal_to: 같지 않음
+        prefixes:
+          and: 그리고
+          or: 또는
+        text_condition_type: '텍스트 조건 유형:'
     report_families:
       create:
         successfully: 보고서 번들 %{name}을(를) 성공적으로 만들었습니다.
@@ -4116,6 +4142,7 @@ ko:
         skill_types:
           behavioural: 행동
           other: 기타
+          qualification: 자격
           technical: 기술
       property_panel:
         add_n_a_option: N/A 옵션 추가

@@ -376,9 +376,11 @@ ro:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, Rând %{row}: Valoarea dublată %{value} pentru %{field}"
               invalid_format: Vă rugăm să încărcați fișierul xlsx
               missing_headers: "%{sheet_name} foii îi lipsesc antetele necesare: %{headers}"
               missing_sheets: 'Lipsesc foile necesare: %{sheets}'
+              missing_value: "%{sheet_name}, rând %{row}: Lipsește valoarea pentru %{field}"
             project:
               must_exist: Proiectul trebuie să existe
         update_norm:

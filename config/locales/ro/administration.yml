@@ -295,6 +295,7 @@ ro:
       artifact_results: Rezultatele artefactelor
       code: Cod
       form:
+        add_assessment: Adăugare evaluare
         ai_assistant: Asistent AI
         assessments: Evaluări
         campaign_factors: Factorii campaniei
@@ -302,6 +303,8 @@ ro:
         datasheet: Fișă tehnică
         datasheet_columns: Coloane pentru fișa tehnică
         include_all_datasheet_columns: Includeți toate coloanele din fișa de date
+        no_assessment_selected: Nu s-au adăugat încă evaluări. Faceți clic pe "Adăugați" pentru a începe.
+        questions_required: Trebuie selectat cel puțin o întrebare
         select_ai_assistant: Selectați AI Assistant
         select_assessment: Selectați Evaluare
         select_campaign_factors: Selectați factorii campaniei
@@ -3336,6 +3339,29 @@ ro:
           repeat_modules: Modulele selectate vor fi repetate pe paginile inserate exta, se referă la numele modulului
         module_pagination: Paginarea modulului
         repeat_modules: Module repetate
+      property_panel:
+        add_new_condition: Adăugați o nouă condiție
+        apply_color_label: 'Apoi aplicați următoarea culoare:'
+        graph_condition_types:
+          default: Implicit
+          graph_value: Valoarea graficului
+        graph_value_condition_not_supported_msg: Condițiile de valoare a graficului nu sunt acceptate pentru acest tip de grafic. Această opțiune este disponibilă în prezent numai pentru tipurile de grafic de mai jos.
+        graph_value_conditions_title: Condiții de valoare grafică
+        if_graph_value_is: 'Dacă valoarea graficului este:'
+        manage_graph_value_condition: Gestionați condiția valorii graficului
+        manage_styles_condition: Gestionarea stării stilurilor
+        missing_value: Valoare lipsă
+        predicates:
+          equal_to: Egal cu
+          greater_than: Mai mare decât
+          greater_than_or_equal: Mai mare sau egal cu
+          less_than: Mai puţin
+          less_than_or_equal: Mai mic sau egal cu
+          not_equal_to: Nu este egal cu
+        prefixes:
+          and: ȘI
+          or: SAU
+        text_condition_type: 'Tip de condiție text:'
     report_families:
       create:
         successfully: Pachetul de rapoarte %{name} a fost creat cu succes.
@@ -4104,6 +4130,7 @@ ro:
         skill_types:
           behavioural: Comportamentale
           other: Altele
+          qualification: Calificare
           technical: Tehnic
       property_panel:
         add_n_a_option: Adăugați o opțiune N/A

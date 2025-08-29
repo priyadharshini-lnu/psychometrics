@@ -376,9 +376,11 @@ pt:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, Linha %{row}: Duplicar %{value} de valor para %{field}"
               invalid_format: Por favor, envie um arquivo xlsx
               missing_headers: 'A planilha %{sheet_name} está sem os cabeçalhos obrigatórios: %{headers}'
               missing_sheets: 'Faltam as planilhas obrigatórias: %{sheets}'
+              missing_value: "%{sheet_name}, Linha %{row}: Valor ausente para %{field}"
             project:
               must_exist: O projeto deve existir
         update_norm:

@@ -295,6 +295,7 @@ fr:
       artifact_results: Résultats de l’artefact
       code: Code
       form:
+        add_assessment: Ajouter une évaluation
         ai_assistant: Assistant IA
         assessments: Évaluations
         campaign_factors: Facteurs de campagne
@@ -302,6 +303,8 @@ fr:
         datasheet: Fiche technique
         datasheet_columns: Colonnes de la feuille de données
         include_all_datasheet_columns: Inclure toutes les colonnes de la feuille de données
+        no_assessment_selected: Aucune évaluation n’a encore été ajoutée. Cliquez sur « Ajouter » pour commencer.
+        questions_required: Au moins une question doit être sélectionnée
         select_ai_assistant: Sélectionnez Assistant IA
         select_assessment: Sélectionnez Évaluation
         select_campaign_factors: Sélectionnez les facteurs de campagne
@@ -3340,6 +3343,29 @@ fr:
           repeat_modules: Les modules sélectionnés seront répétés sur les pages insérées dans l'exta, en référence au nom du module
         module_pagination: Module Pagination
         repeat_modules: Répétition des modules
+      property_panel:
+        add_new_condition: Ajouter une nouvelle condition
+        apply_color_label: 'Appliquez ensuite la couleur suivante :'
+        graph_condition_types:
+          default: Faire défaut
+          graph_value: Valeur du graphique
+        graph_value_condition_not_supported_msg: Les conditions de valeur de graphique ne sont pas prises en charge pour ce type de graphique. Cette option n’est actuellement disponible que pour les types de graphiques ci-dessous.
+        graph_value_conditions_title: Conditions de valeur du graphique
+        if_graph_value_is: 'Si la valeur du graphique est :'
+        manage_graph_value_condition: Gérer la condition de valeur du graphique
+        manage_styles_condition: Gérer la condition des styles
+        missing_value: Valeur manquante
+        predicates:
+          equal_to: Égal à
+          greater_than: Plus grand que
+          greater_than_or_equal: Supérieur ou égal à
+          less_than: Moins de
+          less_than_or_equal: Inférieur ou égal à
+          not_equal_to: Différent de
+        prefixes:
+          and: ET
+          or: OU
+        text_condition_type: 'Type de condition de texte :'
     report_families:
       create:
         successfully: L'ensemble de rapports %{name} a été créé avec succès.
@@ -4116,6 +4142,7 @@ fr:
         skill_types:
           behavioural: Comportementale
           other: Autres
+          qualification: Qualification
           technical: Technique
       property_panel:
         add_n_a_option: Ajouter l'option N/A

@@ -28,6 +28,11 @@ sr-Cyrl:
           attributes:
             test_email_id:
               invalid: Формат ИД-а е-поште није важећи.
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'ИНТЕРПОЛАТИОН_ВАР_0 , ред ИНТЕРПОЛАТИОН_ВАР_1: Дупликат вредности ИНТЕРПОЛАТИОН_ВАР_2 за ИНТЕРПОЛАТИОН_ВАР_3'
+              missing_value: 'ИНТЕРПОЛАТИОН_ВАР_0 , ред ИНТЕРПОЛАТИОН_ВАР_1: Недостаје вредност за ИНТЕРПОЛАТИОН_ВАР_2'
   activerecord:
     attributes:
       assessment:

@@ -376,9 +376,11 @@ hu:
         taxonomies_import_form:
           attributes:
             file:
+              duplicate_value: "%{sheet_name}, %{row}. sor: Ismétlődő érték %{value} a %{field}"
               invalid_format: Kérjük, töltse fel az xlsx fájlt
               missing_headers: "%{sheet_name} lapról hiányoznak a szükséges fejlécek: %{headers}"
               missing_sheets: 'Hiányzó kötelező lapok: %{sheets}'
+              missing_value: "%{sheet_name}, %{row}. sor: Hiányzó érték a %{field}"
             project:
               must_exist: A projektnek léteznie kell
         update_norm:
