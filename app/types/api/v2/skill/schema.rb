@@ -15,7 +15,7 @@ module Api
             else
               attribute[:name].filled(:string)
               attribute[:skill_type].filled(:string)
-              attribute[:description].filled(:string)
+              optional(:description).maybe(:string)
               optional(:global).maybe(:bool)
               optional(:skill_group_id).maybe(:string)
             end

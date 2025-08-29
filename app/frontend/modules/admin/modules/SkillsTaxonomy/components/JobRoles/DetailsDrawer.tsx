@@ -168,7 +168,9 @@ const DetailsDrawerComponent: FC<Props> = ({
     project_id: (params.projectId || jobRole?.project?.id) ? Number(params.projectId || jobRole?.project?.id) : null,
     job_role_id: Number(jobRole?.id),
     skill_id: Number(values.skillId || editMapping?.skillId),
-    expected_proficiency_level: Number(values.expectedProficiencyLevel),
+    expected_proficiency_level: (values.expectedProficiencyLevel === null || values.expectedProficiencyLevel === '')
+      ? null
+      : Number(values.expectedProficiencyLevel),
   })
 
   return (
@@ -287,12 +289,14 @@ const DetailsDrawerComponent: FC<Props> = ({
                       (editMapping?.id === mapping.id || (!mapping.id && addMapping)) ? (
                         <Form.Item
                           name="expectedProficiencyLevel"
-                          rules={[{ required: true }]}
                           style={{ marginBottom: 0 }}
                         >
                           <Select
                             style={{ width: '100%' }}
                           >
+                            <Select.Option key="not-applicable" value={null}>
+                              {I18n.t('common.text.na')}
+                            </Select.Option>
                             {
                               getAllowedProfLevelsForSkill(skills, editMapping?.skillId || selectedSkill).map(item => (
                                 <Select.Option key={item.value} value={item.value}>
@@ -304,7 +308,11 @@ const DetailsDrawerComponent: FC<Props> = ({
                         </Form.Item>
                       ) : (
                         <Typography.Text>
-                          {mapping?.allowedProficiencyLevels?.[mapping?.expectedProficiencyLevel]}
+                          {(mapping?.expectedProficiencyLevel == null
+                            || !mapping?.allowedProficiencyLevels?.[mapping?.expectedProficiencyLevel])
+                            ? I18n.t('common.text.na')
+                            : mapping?.allowedProficiencyLevels?.[mapping?.expectedProficiencyLevel]
+                          }
                         </Typography.Text>
                       )
                     ),

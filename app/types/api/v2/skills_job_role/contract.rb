@@ -10,10 +10,6 @@ module Api
           key.failure(:filled?) if key? && value.blank?
         end
 
-        rule(data: { attributes: :expected_proficiency_level }) do
-          key.failure(:filled?) if key? && value.blank?
-        end
-
         rule(data: { attributes: :job_role_id }) do
           key.failure(:filled?) if key? && value.blank?
         end

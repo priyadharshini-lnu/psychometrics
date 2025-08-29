@@ -376,11 +376,9 @@ nl:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Rij %{row}: Dubbele waarde %{value} voor %{field}'
               invalid_format: Upload xlsx-bestand
               missing_headers: "%{sheet_name} blad mist vereiste koppen: %{headers}"
               missing_sheets: 'Ontbrekende vereiste bladen: %{sheets}'
-              missing_value: 'Rij %{row}: Ontbrekende waarde voor %{field}'
             project:
               must_exist: Project moet bestaan
         update_norm:

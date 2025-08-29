@@ -382,11 +382,9 @@ hr:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Red %{row}: Dvostruka vrijednost %{value} za %{field}'
               invalid_format: Molimo, prenesite .xlsx datoteku
               missing_headers: Nedostaju obavezna zaglavlja %{headers} u radnom listu %{sheet_name}
               missing_sheets: Nedostaju radni listovi %{sheets}
-              missing_value: 'Red %{row}: nedostaje vrijednost za %{field}'
             project:
               must_exist: Projekt mora postojati
         update_norm:

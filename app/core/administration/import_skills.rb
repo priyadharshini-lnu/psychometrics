@@ -82,7 +82,7 @@ module Administration
 
     def normalize_skill_type(skill_type)
       skill_type = skill_type.to_s.strip.downcase
-      %w[behavioral technical other].include?(skill_type) ? skill_type : 'other'
+      ::Skill.skill_types.key?(skill_type) ? skill_type : 'other'
     end
   end
 end

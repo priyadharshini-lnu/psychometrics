@@ -376,11 +376,9 @@ vi:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Dòng %{row}: Giá trị trùng lặp %{value} cho trường %{field}'
               invalid_format: Vui lòng tải lên tệp xlsx.
               missing_headers: 'Bảng %{sheet_name} thiếu các tiêu đề bắt buộc: %{headers}'
               missing_sheets: 'Thiếu các trang bắt buộc: %{sheets}'
-              missing_value: 'Dòng %{row}: Thiếu giá trị cho %{field}'
             project:
               must_exist: Dự án phải tồn tại.
         update_norm:

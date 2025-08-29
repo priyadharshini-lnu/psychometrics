@@ -121,7 +121,7 @@ RSpec.describe Administration::SkillRaterAssessments::TaxonomiesImportForm do
       end
     end
 
-    context 'when dynamic headers are invalid' do
+    context 'when headers are invalid' do
       before do
         allow(mock_excel).to receive(:sheet).with('Job Group Levels').
           and_return(double(row: ['Job Group', 'Label'], last_row: 3)) # 3 rows = 2 levels
@@ -130,14 +130,13 @@ RSpec.describe Administration::SkillRaterAssessments::TaxonomiesImportForm do
           and_return(double(row: ['Incorrect Header'], last_row: 1))
       end
 
-      it 'adds error for invalid dynamic headers' do
+      it 'adds error for invalid headers' do
         expect(form.valid?).to be false
         expected_error = [
           'Job Roles sheet is missing required headers:',
-          'Job Group 1 - Code, Job Group 1 - Name,',
-          'Job Group 2 - Code, Job Group 2 - Name,',
-          'Job Title Code, Job Description, Job Title Name'
+          'Job Title Code, Job Title Name'
         ].join(' ')
+
         expect(form.errors[:file]).to include(/#{Regexp.escape(expected_error)}/)
       end
     end

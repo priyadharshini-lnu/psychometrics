@@ -376,11 +376,9 @@ ko:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: '행 %{row}: %{field}에 대한 중복 값 %{value}'
               invalid_format: xlsx 파일을 업로드하세요.
               missing_headers: "%{sheet_name} 시트에 필수 헤더가 없습니다: %{headers}"
               missing_sheets: '필요한 시트가 누락되었습니다: %{sheets}'
-              missing_value: '행 %{row}: %{field}에 대한 누락된 값'
             project:
               must_exist: 프로젝트가 존재해야 합니다.
         update_norm:

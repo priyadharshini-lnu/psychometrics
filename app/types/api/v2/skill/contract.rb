@@ -44,7 +44,7 @@ module Api
             next if values.dig(:filter, :skill_type_in).blank?
 
             skill_types = value.split(',').map(&:strip)
-            unless skill_types.all? { |skill_type| skill_type.in?(%w[behavioral technical other]) }
+            unless skill_types.all? { |skill_type| ::Skill.skill_types.key?(skill_type) }
               key.failure(I18n.t('administration.skills.errors.search.invalid_skill_type'))
             end
           end
@@ -85,7 +85,7 @@ module Api
           rule('filter.skill_type_in') do
             if value.present?
               skill_types = value.split(',').map(&:strip)
-              unless skill_types.all? { |skill_type| skill_type.in?(%w[behavioral technical other]) }
+              unless skill_types.all? { |skill_type| ::Skill.skill_types.key?(skill_type) }
                 key.failure(I18n.t('administration.skills.errors.search.invalid_skill_type'))
               end
             end

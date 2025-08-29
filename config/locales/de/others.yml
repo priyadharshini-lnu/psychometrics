@@ -55,16 +55,6 @@ de:
               blank: Berichtsbündel-ID kann nicht leer sein
             report_id:
               blank: Die Berichts-ID darf nicht leer sein
-        axonomies_import_form:
-          attributes:
-            file:
-              duplicate_value: 'Zeile %{row}: Doppelter Wert %{value} für %{field}'
-              invalid_format: Bitte laden Sie eine xlsx-Datei hoch
-              missing_headers: "%{sheet_name}-Blatt fehlt die erforderlichen Kopfzeilen: %{headers}"
-              missing_sheets: 'Fehlende erforderliche Blätter: %{sheets}'
-              missing_value: 'Zeile %{row}: Fehlender Wert für %{field}'
-            project:
-              must_exist: Projekt muss existieren
         campaign_factor_import_form:
           attributes:
             file:
@@ -386,11 +376,9 @@ de:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Zeile %{row}: Duplizierter Wert %{value} für %{field}'
               invalid_format: Bitte xlsx-Datei hochladen
               missing_headers: "%{sheet_name} Blatt fehlt erforderliche Kopfzeile: %{headers}"
               missing_sheets: 'Fehlende erforderliche Blätter: %{sheets}'
-              missing_value: 'Zeile %{row}: Fehlender Wert für %{field}'
             project:
               must_exist: Projekt muss existieren
         update_norm:

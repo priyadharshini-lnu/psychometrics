@@ -4139,6 +4139,7 @@ en:
         skill_types:
           behavioural: Behavioural
           other: Other
+          qualification: Qualification
           technical: Technical
       property_panel:
         add_n_a_option: Add N/A option

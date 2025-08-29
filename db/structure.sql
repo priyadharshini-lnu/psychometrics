@@ -4062,7 +4062,7 @@ ALTER SEQUENCE public.job_role_translations_id_seq OWNED BY public.job_role_tran
 CREATE TABLE public.job_roles (
     id bigint NOT NULL,
     name character varying NOT NULL,
-    description character varying NOT NULL,
+    description character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     code character varying,
@@ -6342,7 +6342,7 @@ ALTER SEQUENCE public.skill_translations_id_seq OWNED BY public.skill_translatio
 CREATE TABLE public.skills (
     id bigint NOT NULL,
     name character varying NOT NULL,
-    description character varying NOT NULL,
+    description character varying,
     skill_type integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
@@ -18127,10 +18127,11 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250825030208'),
 ('20250820163652'),
-('20250806080321'),
+('20250825062532'),
 ('20250807052600'),
 ('20250806140955'),
 ('20250806102146'),
+('20250806080321'),
 ('20250804045044'),
 ('20250802165525'),
 ('20250801074743'),
@@ -19014,3 +19015,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

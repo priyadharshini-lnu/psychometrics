@@ -370,11 +370,9 @@ es-ES:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Fila %{row}: Valor duplicado %{value} para %{field}'
               invalid_format: Por favor, sube un archivo xlsx
               missing_headers: 'La hoja %{sheet_name} no tiene los encabezados requeridos: %{headers}'
               missing_sheets: 'Faltan hojas requeridas: %{sheets}'
-              missing_value: 'Fila %{row}: Falta valor para %{field}'
             project:
               must_exist: El proyecto debe existir
         update_norm:

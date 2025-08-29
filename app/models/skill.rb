@@ -23,7 +23,7 @@ class Skill < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { scope: :project_id, case_sensitive: false }
 
-  enum :skill_type, { behavioral: 0, technical: 1, other: 2 }
+  enum :skill_type, { behavioral: 0, technical: 1, other: 2, qualification: 3 }
 
   after_create_commit :create_associated_entities
 

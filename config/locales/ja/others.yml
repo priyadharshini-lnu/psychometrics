@@ -376,11 +376,9 @@ ja:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: '行 %{row}: フィールド %{field} に重複する値 %{value}'
               invalid_format: xlsxファイルをアップロードしてください
               missing_headers: "%{sheet_name} シートに必要なヘッダーがありません: %{headers}"
               missing_sheets: '必要なシートが見つかりません: %{sheets}'
-              missing_value: '行 %{row}: フィールド %{field} の値がありません'
             project:
               must_exist: プロジェクトが存在する必要があります
         update_norm:

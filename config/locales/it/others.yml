@@ -376,11 +376,9 @@ it:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Riga %{row}: Valore duplicato %{value} per %{field}'
               invalid_format: Caricare il file xlsx
               missing_headers: 'Il foglio %{sheet_name} manca di intestazioni necessarie: %{headers}'
               missing_sheets: 'Mancano i fogli richiesti: %{sheets}'
-              missing_value: 'Riga %{row}: Valore mancante per %{field}'
             project:
               must_exist: Il progetto deve esistere
         update_norm:
