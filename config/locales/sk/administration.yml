@@ -2817,6 +2817,7 @@ sk:
           by_skill_missing: 'Riadok %{row_number}: Projekt a zručnosť musia byť prítomné pre typ "by_skill"'
           invalid_csv_format: 'Neplatný formát CSV: %{message}'
           invalid_proficiency_type: 'Riadok %{row_number}: Neplatný alebo chýbajúci ProficiencyType'
+          invalid_skill_type: 'Riadok %{row_number}: Neplatný typ zručnosti "%{skill_type}". Platné typy sú: %{valid_types}'
           missing_columns: 'Chýbajú povinné stĺpce: %{fields}'
           skill_not_found: 'Riadok %{row_number}: Neplatná alebo chýbajúca zručnosť'
         job_queued: Úloha importu úrovní odbornosti bola zaradená do frontu

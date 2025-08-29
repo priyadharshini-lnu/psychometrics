@@ -2821,6 +2821,7 @@ it:
           default_project_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''predefinito'''' a livello di progetto.'
           invalid_csv_format: 'Formato CSV non valido: %{message}'
           invalid_proficiency_type: 'Riga %{row_number}: Tipo di competenza non valido o mancante'
+          invalid_skill_type: 'Riga %{row_number}: Tipo di abilità non valida "%{skill_type}". I tipi validi sono: %{valid_types}'
           missing_columns: 'Colonne obbligatorie mancanti: %{fields}'
           skill_not_found: 'Riga %{row_number}: Skill non valido o mancante'
         job_queued: Il lavoro di importazione dei livelli di competenza è stato messo in coda

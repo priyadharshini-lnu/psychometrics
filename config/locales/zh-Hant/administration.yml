@@ -2821,6 +2821,7 @@ zh-Hant:
           default_project_exists: 行 %{row_number}：專案層級的 '「預設」 ProficiencyLevel 已經存在
           invalid_csv_format: 無效的 CSV 格式：%{message}。
           invalid_proficiency_type: 行 %{row_number}：無效或遺失 ProficiencyType
+          invalid_skill_type: '行 %{row_number}: 無效的技能類型 "%{skill_type}"。有效的類型是：%{valid_types}'
           missing_columns: 缺少必填欄位：%{fields}。
           skill_not_found: 行 %{row_number}：無效或遺失技能
         job_queued: 能力等級匯入工作已排隊

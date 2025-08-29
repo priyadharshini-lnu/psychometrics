@@ -2817,6 +2817,7 @@ th:
           by_skill_missing: 'แถว %{row_number}: ต้องมีโครงการและทักษะสําหรับประเภท ''by_skill'''
           invalid_csv_format: 'รูปแบบ CSV ไม่ถูกต้อง: %{message}'
           invalid_proficiency_type: 'แถว %{row_number}: ProficiencyType ไม่ถูกต้องหรือขาดหายไป'
+          invalid_skill_type: 'แถว %{row_number}: ประเภททักษะไม่ถูกต้อง "%{skill_type}". ประเภทที่ใช้งานได้คือ: %{valid_types}'
           missing_columns: 'คอลัมน์ที่ต้องมีหายไป: %{fields}'
           skill_not_found: 'แถว %{row_number}: สกิลไม่ถูกต้องหรือขาดหายไป'
         job_queued: งานนําเข้าระดับความชํานาญถูกจัดคิว

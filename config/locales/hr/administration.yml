@@ -2817,6 +2817,7 @@ hr:
           by_skill_missing: 'Redak %{row_number}: Projekt i vještina moraju biti prisutni za vrstu ''by_skill'''
           invalid_csv_format: 'Nevažeći CSV format: %{message}'
           invalid_proficiency_type: 'Redak %{row_number}: Nevažeći ili nedostaje ProficiencyType'
+          invalid_skill_type: '[HR] Row %{row_number}: Invalid skill type "%{skill_type}". Valid types are: %{valid_types}'
           missing_columns: 'Nedostaju obavezni stupci: %{fields}'
           skill_not_found: 'Redak %{row_number}: Nevažeća ili nedostajuća vještina'
         job_queued: Posao uvoza razina stručnosti stavljen je u red čekanja

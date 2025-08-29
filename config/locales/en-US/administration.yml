@@ -2817,6 +2817,7 @@ en-US:
           by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
           invalid_csv_format: 'Invalid CSV format: %{message}'
           invalid_proficiency_type: 'Row %{row_number}: Invalid or missing ProficiencyType'
+          invalid_skill_type: 'Row %{row_number}: Invalid skill type "%{skill_type}". Valid types are: %{valid_types}'
           missing_columns: 'Missing required columns: %{fields}'
           skill_not_found: 'Row %{row_number}: Invalid or missing Skill'
         job_queued: Proficiency levels import job has been queued

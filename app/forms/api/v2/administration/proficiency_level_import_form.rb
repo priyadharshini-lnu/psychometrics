@@ -103,7 +103,7 @@ module Api
           end
 
           # Find skill by name
-          skill = ::Skill.find_by(name: skill_name)
+          skill = ::Skill.find_by(name: skill_name, project_id: project_id)
           if skill.nil?
             errors.add(:base,
                        I18n.t('administration.proficiency_levels.import.errors.skill_not_found',
@@ -128,9 +128,23 @@ module Api
             errors.add(:base,
                        I18n.t('administration.proficiency_levels.import.errors.by_skill_type_missing',
                               row_number: row_number))
-          elsif ::ProficiencyLevel.exists?(proficiency_type: 'by_skill_type',
-                                           project_id: project_id,
-                                           skill_type: skill_type)
+            return
+          end
+
+          # Validate skill type is valid
+          valid_skill_types = ::ProficiencyLevel.skill_types.keys
+          unless valid_skill_types.include?(skill_type)
+            errors.add(:base,
+                       I18n.t('administration.proficiency_levels.import.errors.invalid_skill_type',
+                              row_number: row_number,
+                              skill_type: skill_type,
+                              valid_types: valid_skill_types.join(', ')))
+            return
+          end
+
+          if ::ProficiencyLevel.exists?(proficiency_type: 'by_skill_type',
+                                        project_id: project_id,
+                                        skill_type: skill_type)
             errors.add(:base,
                        I18n.t('administration.proficiency_levels.import.errors.by_skill_type_exists',
                               row_number: row_number))

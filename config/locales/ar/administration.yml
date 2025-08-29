@@ -2821,6 +2821,7 @@ ar:
           default_project_exists: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل'
           invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
           invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
+          invalid_skill_type: 'الصف %{row_number}: نوع المهارة غير صالح "<x>skill_type</x>". الأنواع الصالحة هي: %{valid_types}'
           missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
           skill_not_found: 'الصف %{row_number}: مهارة غير صالحة أو مفقودة'
         job_queued: تم وضع مهمة استيراد مستويات الكفاءة في قائمة الانتظار

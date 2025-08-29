@@ -2821,6 +2821,7 @@ pt:
           default_project_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel "predefinido" ao nível do projeto'
           invalid_csv_format: 'Formato CSV inválido: %{message}'
           invalid_proficiency_type: 'Linha %{row_number}: ProficiencyType inválido ou em falta'
+          invalid_skill_type: 'Linha %{row_number}: Tipo de competência inválido "%{skill_type}". Os tipos válidos são: %{valid_types}'
           missing_columns: 'Colunas obrigatórias em falta: %{fields}'
           skill_not_found: 'Linha %{row_number}: Competência inválida ou em falta'
         job_queued: A tarefa de importação de níveis de proficiência foi colocada em fila de espera

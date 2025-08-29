@@ -2817,6 +2817,7 @@ sl:
           by_skill_missing: 'Vrstica %{row_number}: Projekt in spretnost morata biti prisotna za vrsto »by_skill«'
           invalid_csv_format: 'Neveljavna oblika zapisa CSV: %{message}'
           invalid_proficiency_type: 'Vrstica %{row_number}: Neveljavna ali manjka ProficiencyType'
+          invalid_skill_type: 'Vrstica %{row_number}: Nepravilna vrsta spretnosti "%{skill_type}". Veljavni tipi so: %{valid_types}'
           missing_columns: 'Manjkajo obvezni stolpci: %{fields}'
           skill_not_found: 'Vrstica %{row_number}: Neveljavna ali manjkajoča spretnost'
         job_queued: Uvozno delo ravni strokovnosti je bilo v čakalni vrsti
