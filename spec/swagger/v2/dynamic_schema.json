@@ -11153,6 +11153,10 @@
           "attributes": {
             "type": "object",
             "properties": {
+              "name": {
+                "type": "string",
+                "nullable": true
+              },
               "allowed_languages": {
                 "type": "array",
                 "items": {
@@ -11171,6 +11175,7 @@
               }
             },
             "required": [
+              "name",
               "allowed_languages",
               "allow_language_preference",
               "allow_neurodiversity_option"
@@ -11272,6 +11277,10 @@
             "attributes": {
               "type": "object",
               "properties": {
+                "name": {
+                  "type": "string",
+                  "nullable": true
+                },
                 "allowed_languages": {
                   "type": "array",
                   "items": {
@@ -11290,6 +11299,7 @@
                 }
               },
               "required": [
+                "name",
                 "allowed_languages",
                 "allow_language_preference",
                 "allow_neurodiversity_option"
@@ -11340,6 +11350,10 @@
           "attributes": {
             "type": "object",
             "properties": {
+              "name": {
+                "type": "string",
+                "nullable": true
+              },
               "allowed_languages": {
                 "type": "array",
                 "items": {
@@ -13580,8 +13594,7 @@
               "total_seats",
               "workshop_assessors_ids",
               "workshop_managers_ids",
-              "campaign_assessment_group_id",
-              "start_time"
+              "campaign_assessment_group_id"
             ],
             "nullable": false
           }

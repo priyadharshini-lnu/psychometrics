@@ -45,10 +45,19 @@ module AI
         def format_assessment_xml(data)
           assessment = data[:assessment]
           questions_data = data[:questions_data] || []
+          evaluation_context = data[:evaluation_context] || {}
 
           questions_content = questions_data.map do |question|
             format_question_xml(question)
           end.join("\n")
+
+          evaluation_info = if evaluation_context[:is_self_assessment]
+                              '<evaluation_type>self_assessment</evaluation_type>'
+                            elsif evaluation_context[:is_assessor_evaluation]
+                              '<evaluation_type>assessor_evaluation</evaluation_type>'
+                            else
+                              '<evaluation_type>other</evaluation_type>'
+                            end
 
           <<~ASSESSMENT.strip
             <assessment>
@@ -56,6 +65,8 @@ module AI
               <name>#{assessment[:name]}</name>
               <type>#{assessment[:type]}</type>
               <category>#{assessment[:category]}</category>
+              #{evaluation_info}
+              <relationship>#{evaluation_context[:relationship] || 'unknown'}</relationship>
               <questions>
             #{questions_content}
               </questions>

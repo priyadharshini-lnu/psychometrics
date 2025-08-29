@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
 module AI
   module Utils
     module DependencyParser
@@ -77,6 +78,7 @@ module AI
 
           def extract_assessment_data(users_result, question_ids)
             assessment = users_result.assessment
+            user_assessment = users_result.user_assessment
             answers_data = users_result.answers || {}
 
             filtered_answers = if question_ids.present?
@@ -120,6 +122,13 @@ module AI
                 id: users_result.id,
                 answers: users_result.answers,
                 completed_at: users_result.user_assessment&.completed_at
+              },
+              evaluation_context: {
+                evaluator_id: user_assessment.evaluator_id,
+                subject_id: user_assessment.subject_id,
+                relationship: user_assessment.relationship&.name,
+                is_self_assessment: user_assessment.evaluator_id == user_assessment.subject_id,
+                is_assessor_evaluation: user_assessment.relationship&.name == 'Assessor'
               }
             }
           end
@@ -175,7 +184,6 @@ module AI
             selected_choices.join(', ')
           end
 
-          # rubocop:disable Metrics/PerceivedComplexity
           def format_text_entry_answer(answers, question)
             return 'No text provided' if answers.blank?
 
@@ -200,3 +208,4 @@ module AI
     end
   end
 end
+# rubocop:enable Metrics/CyclomaticComplexity

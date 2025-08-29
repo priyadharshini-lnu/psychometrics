@@ -295,6 +295,7 @@ en:
       artifact_results: Artifact Results
       code: Code
       form:
+        add_assessment: Add Assessment
         ai_assistant: AI Assistant
         assessments: Assessments
         campaign_factors: Campaign Factors
@@ -302,6 +303,8 @@ en:
         datasheet: Datasheet
         datasheet_columns: Datasheet Columns
         include_all_datasheet_columns: Include All Datasheet Columns
+        no_assessment_selected: No assessments added yet. Click "Add" to get started.
+        questions_required: At least one question must be selected
         select_ai_assistant: Select AI Assistant
         select_assessment: Select Assessment
         select_campaign_factors: Select Campaign Factors

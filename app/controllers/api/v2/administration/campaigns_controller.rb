@@ -3,5 +3,26 @@
 module Api
   class V2::Administration::CampaignsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::Campaign::Schema
+
+    before_action :load_campaign, only: [:all_assessments]
+
+    def all_assessments
+      search_query = params.dig(:filter, :filterable_fields)
+      assessments = ::Campaigns::AllAssessmentsQuery.new(@campaign, search_query, params[:page],
+                                                         params[:page_size]).query
+      render json: jsonapi_format(assessments.to_a, resource: Api::V2::Administration::AssessmentResource)
+    end
+
+    private
+
+    # This is needed for member routes that use :id instead of :campaign_id
+    def load_campaign
+      scope = Api::Administration::CampaignPolicy::Scope.new(
+        current_user,
+        Campaign
+      ).resolve
+
+      @campaign = scope.find(params[:id])
+    end
   end
 end

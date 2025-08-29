@@ -17,6 +17,9 @@ export const AiArtifactTR = t.intersection([
       })),
       questions: t.array(t.type({
         id: t.string,
+        assessmentId: t.string,
+        name: t.string,
+        assessmentName: t.string,
       })),
     }),
     aiAssistant: AiAssistantTR,

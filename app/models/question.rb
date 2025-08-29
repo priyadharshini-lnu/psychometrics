@@ -5,6 +5,7 @@ class Question < ApplicationRecord
 
   include Copyable
   include OwnerValidations
+  include RansackSearchableFields
 
   # For assessment builder
   attr_accessor :save_as_template, :permanent_remove
@@ -76,7 +77,11 @@ class Question < ApplicationRecord
   scope :skill_rater, -> { where.not(skill_id: nil) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name created_at updated_at]
+    %w[id name type created_at updated_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[assessment]
   end
 
   # Using for deep clone in Assessment model

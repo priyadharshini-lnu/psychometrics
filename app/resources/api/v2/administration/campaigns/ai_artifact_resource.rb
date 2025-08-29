@@ -49,9 +49,10 @@ class Api::V2::Administration::Campaigns::AIArtifactResource < Api::V2::Administ
   def build_questions_dependencies
     @model.questions.includes(:assessment).map do |question|
       {
-        id: question.id,
-        text: question.props&.dig('questionText') || question.name,
-        assessment_id: question.assessment.id,
+        id: question.id.to_s,
+        question_text: question.props&.dig('questionText'),
+        name: question.name,
+        assessment_id: question.assessment.id.to_s,
         assessment_name: question.assessment.name
       }
     end

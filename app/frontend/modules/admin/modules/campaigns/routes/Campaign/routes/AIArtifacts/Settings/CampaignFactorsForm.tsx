@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Form, Select, Spin } from 'antd'
+import {
+  Flex, Form, Select, Spin,
+} from 'antd'
 import { useParams } from 'react-router-dom'
 import { uniqBy } from 'lodash'
 import { useResources } from '~/hooks/useResources'
@@ -48,7 +50,7 @@ export const CampaignFactorsForm: React.FC<Props> = ({ aiArtifact }) => {
   }, [])
   return (
     isLoading ? (
-      <Spin />
+      <Flex justify="center"><Spin /></Flex>
     ) : (
       <Form.Item name="campaignFactors">
         <Select

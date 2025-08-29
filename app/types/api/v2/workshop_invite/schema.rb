@@ -10,7 +10,7 @@ module Api
 
         def self.attributes(attribute, _)
           proc do
-            attribute[:name].filled(:string)
+            attribute[:name].maybe(:string)
             attribute[:allowed_languages].array(:string)
             attribute[:allow_language_preference].filled(:bool)
             attribute[:allow_neurodiversity_option].filled(:bool)
@@ -29,7 +29,7 @@ module Api
           end
 
           json_api_attributes do
-            optional(:name).filled(:string)
+            optional(:name).maybe(:string)
             optional(:allowed_languages).array(:string)
             required(:allow_language_preference).filled(:bool)
             required(:allow_neurodiversity_option).filled(:bool)
@@ -48,7 +48,7 @@ module Api
           end
 
           json_api_attributes do
-            optional(:name).filled(:string)
+            optional(:name).maybe(:string)
             optional(:allowed_languages).array(:string)
             optional(:allow_language_preference).filled(:bool)
             optional(:allow_neurodiversity_option).filled(:bool)

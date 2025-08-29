@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import { Resource } from '~/modules/admin/components/Resource'
 import { SettingsTable } from './SettingsTable'
 import { SettingsFilter } from './SettingsFilter'
-import { SettingsFormDrawer } from './SettingsFormDrawer'
+import { SettingsDrawer } from './SettingsDrawer'
 import { AiArtifact } from '~/modules/admin/modules/campaigns/core/aiArtifacts'
 
 
@@ -28,8 +28,8 @@ const Settings: React.FC = () => {
   }
 
   const handleCloseDrawer = () => {
-    setIsDrawerOpen(false)
     setSelectedAiArtifact(undefined)
+    setIsDrawerOpen(false)
   }
 
   return (
@@ -37,7 +37,7 @@ const Settings: React.FC = () => {
       <Resource config={config} name="ai_artifacts">
         <SettingsFilter onCreateAIArtifact={handleOpenDrawer} />
         <SettingsTable onEditAIArtifact={handleOpenDrawer} />
-        <SettingsFormDrawer
+        <SettingsDrawer
           onClose={handleCloseDrawer}
           isOpen={isDrawerOpen}
           aiArtifact={selectedAiArtifact}

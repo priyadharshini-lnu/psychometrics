@@ -1338,6 +1338,9 @@ as: :simulation_progress_notification
           end
 
           resources :campaigns, only: %i[update show] do
+            member do
+              get :all_assessments
+            end
             scope module: :campaigns do
               jsonapi_resources :sms_histories, only: %i[index]
             end
@@ -1585,6 +1588,7 @@ as: :simulation_progress_notification
           jsonapi_resources :skills_job_roles, only: %i[index create update destroy]
           jsonapi_resources :job_groups, only: %i[index]
           jsonapi_resources :skill_groups, only: %i[index]
+          jsonapi_resources :questions, only: %i[index]
 
           namespace :ai do
             jsonapi_resources :assistants do

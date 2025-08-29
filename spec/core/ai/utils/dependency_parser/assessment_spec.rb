@@ -8,6 +8,7 @@ describe AI::Utils::DependencyParser::Assessment do
   let(:ai_assistant) { create(:assistant, dependencies: ['assessments']) }
   let(:assessment) { create(:assessment) }
   let(:question) { create(:question, assessment: assessment, name: 'Test Question', type: 'MultipleChoice') }
+  let!(:self_relationship) { create(:relationship, name: 'Self', type: :global) }
 
   subject { described_class.new(campaign_assistant_artifact, user) }
 
@@ -40,6 +41,8 @@ describe AI::Utils::DependencyParser::Assessment do
         create(:user_assessment,
                assessment: assessment,
                subject: user,
+               evaluator: user,
+               relationship: self_relationship,
                status: :completed)
       end
       let!(:users_result) do
@@ -68,6 +71,8 @@ describe AI::Utils::DependencyParser::Assessment do
         expect(result).to include('<assessment>')
         expect(result).to include("<id>#{assessment.id}</id>")
         expect(result).to include("<name>#{assessment.name}</name>")
+        expect(result).to include('<evaluation_type>self_assessment</evaluation_type>')
+        expect(result).to include('<relationship>Self</relationship>')
         expect(result).to include('<questions>')
         expect(result).to include("<id>#{question.id}</id>")
         expect(result).to include('<text>What is your favorite color?</text>')
@@ -117,6 +122,8 @@ describe AI::Utils::DependencyParser::Assessment do
         create(:user_assessment,
                assessment: assessment,
                subject: user,
+               evaluator: user,
+               relationship: self_relationship,
                status: :completed)
       end
       let!(:users_result) do
@@ -149,6 +156,8 @@ describe AI::Utils::DependencyParser::Assessment do
         expect(result).to include('<assessment>')
         expect(result).to include("<id>#{assessment.id}</id>")
         expect(result).to include("<name>#{assessment.name}</name>")
+        expect(result).to include('<evaluation_type>self_assessment</evaluation_type>')
+        expect(result).to include('<relationship>Self</relationship>')
         expect(result).to include('<questions>')
         expect(result).to include("<id>#{multiple_choice_question.id}</id>")
         expect(result).to include('<text>Which programming languages do you know?</text>')
@@ -179,6 +188,8 @@ describe AI::Utils::DependencyParser::Assessment do
         create(:user_assessment,
                assessment: assessment,
                subject: user,
+               evaluator: user,
+               relationship: self_relationship,
                status: :completed)
       end
       let!(:users_result) do
@@ -209,6 +220,8 @@ describe AI::Utils::DependencyParser::Assessment do
         expect(result).to include('<assessment>')
         expect(result).to include("<id>#{assessment.id}</id>")
         expect(result).to include("<name>#{assessment.name}</name>")
+        expect(result).to include('<evaluation_type>self_assessment</evaluation_type>')
+        expect(result).to include('<relationship>Self</relationship>')
         expect(result).to include('<questions>')
         expect(result).to include("<id>#{text_entry_question.id}</id>")
         expect(result).to include('<text>Please describe your experience:</text>')
@@ -233,6 +246,8 @@ describe AI::Utils::DependencyParser::Assessment do
         create(:user_assessment,
                assessment: assessment,
                subject: user,
+               evaluator: user,
+               relationship: self_relationship,
                status: :completed)
       end
       let!(:users_result) do
@@ -266,6 +281,8 @@ describe AI::Utils::DependencyParser::Assessment do
         expect(result).to include('<assessment>')
         expect(result).to include("<id>#{assessment.id}</id>")
         expect(result).to include("<name>#{assessment.name}</name>")
+        expect(result).to include('<evaluation_type>self_assessment</evaluation_type>')
+        expect(result).to include('<relationship>Self</relationship>')
         expect(result).to include('<questions>')
         expect(result).to include("<id>#{text_entry_form_question.id}</id>")
         expect(result).to include('<text>Please fill out your contact information:</text>')
@@ -278,6 +295,64 @@ describe AI::Utils::DependencyParser::Assessment do
           '<user_answer>Full Name: John Doe; Email Address: john.doe@example.com; ' \
           'Job Title: Software Engineer</user_answer>'
         )
+        expect(result).to include('</questions>')
+        expect(result).to include('</assessment>')
+        expect(result).to include('</assessments>')
+      end
+    end
+
+    context 'with assessor evaluation' do
+      let(:assessor_user) { create(:user) }
+      let!(:assessor_relationship) { create(:relationship, name: 'Assessor', type: :global) }
+      let(:assessor_question) do
+        create(:question, assessment: assessment, name: 'Assessor Question', type: 'MultipleChoice')
+      end
+      let(:campaign_assistant_artifact) do
+        create(:campaign_ai_artifact,
+               campaign: campaign,
+               ai_assistant: ai_assistant,
+               questions: [assessor_question.id])
+      end
+      let!(:user_assessment) do
+        create(:user_assessment,
+               assessment: assessment,
+               subject: user,
+               evaluator: assessor_user,
+               relationship: assessor_relationship,
+               status: :completed)
+      end
+      let!(:users_result) do
+        create(:users_result,
+               user_assessment: user_assessment,
+               answers: {
+                 assessor_question.id.to_s => {
+                   'answers' => [{ 'index' => 1, 'value' => true }],
+                   'question_id' => assessor_question.id
+                 }
+               })
+      end
+
+      before do
+        user_assessment.update!(users_result: users_result)
+        assessor_question.update!(props: {
+          'questionText' => 'How would you rate this person?',
+          'choicesTexts' => %w[Poor Average Good Excellent]
+        })
+      end
+
+      it 'successfully parses assessor evaluation data' do
+        result = subject.parse
+
+        expect(result).to include('<assessments>')
+        expect(result).to include('<assessment>')
+        expect(result).to include("<id>#{assessment.id}</id>")
+        expect(result).to include("<name>#{assessment.name}</name>")
+        expect(result).to include('<evaluation_type>assessor_evaluation</evaluation_type>')
+        expect(result).to include('<relationship>Assessor</relationship>')
+        expect(result).to include('<questions>')
+        expect(result).to include("<id>#{assessor_question.id}</id>")
+        expect(result).to include('<text>How would you rate this person?</text>')
+        expect(result).to include('<user_answer>Average</user_answer>')
         expect(result).to include('</questions>')
         expect(result).to include('</assessment>')
         expect(result).to include('</assessments>')

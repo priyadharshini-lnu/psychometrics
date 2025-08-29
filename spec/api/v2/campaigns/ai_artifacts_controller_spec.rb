@@ -305,16 +305,16 @@ describe Api::V2::Administration::Campaigns::AIArtifactsController, swagger_doc:
 
           questions_data = d['attributes']['dependencies_attributes']['questions']
           question_ids = questions_data.map { |q| q['id'] }
-          expect(question_ids).to contain_exactly(question1.id, question2.id)
+          expect(question_ids).to contain_exactly(question1.id.to_s, question2.id.to_s)
 
-          question1_data = questions_data.find { |q| q['id'] == question1.id }
-          expect(question1_data['text']).to eq('What is your favorite color?')
-          expect(question1_data['assessment_id']).to eq(assessment.id)
+          question1_data = questions_data.find { |q| q['id'] == question1.id.to_s }
+          expect(question1_data['question_text']).to eq('What is your favorite color?')
+          expect(question1_data['assessment_id']).to eq(assessment.id.to_s)
           expect(question1_data['assessment_name']).to eq(assessment.name)
 
-          question2_data = questions_data.find { |q| q['id'] == question2.id }
-          expect(question2_data['text']).to eq('Please describe your experience.')
-          expect(question2_data['assessment_id']).to eq(assessment.id)
+          question2_data = questions_data.find { |q| q['id'] == question2.id.to_s }
+          expect(question2_data['question_text']).to eq('Please describe your experience.')
+          expect(question2_data['assessment_id']).to eq(assessment.id.to_s)
           expect(question2_data['assessment_name']).to eq(assessment.name)
         end
       end
@@ -482,7 +482,7 @@ describe Api::V2::Administration::Campaigns::AIArtifactsController, swagger_doc:
 
           questions_data = d['attributes']['dependencies_attributes']['questions']
           question_ids = questions_data.map { |q| q['id'] }
-          expect(question_ids).to contain_exactly(question1.id, question2.id)
+          expect(question_ids).to contain_exactly(question1.id.to_s, question2.id.to_s)
 
           updated_artifact = AI::CampaignArtifact.find(id)
 
@@ -568,7 +568,7 @@ describe Api::V2::Administration::Campaigns::AIArtifactsController, swagger_doc:
           expect(d['attributes']['dependencies_attributes']['questions'].length).to eq(1)
 
           questions_data = d['attributes']['dependencies_attributes']['questions']
-          expect(questions_data.first['id']).to eq(question2.id)
+          expect(questions_data.first['id']).to eq(question2.id.to_s)
 
           # Verify only question2 dependency exists in database
           updated_artifact = AI::CampaignArtifact.find(id)
