@@ -12,8 +12,8 @@ module Api
           proc do
             attribute[:name].filled(:string)
             attribute[:code].filled(:string)
-            attribute[:description].filled(:string)
-            attribute[:job_group_id].filled(:integer)
+            optional(:description).maybe(:string)
+            optional(:job_group_id).maybe(:integer)
             optional(:project_id).maybe(:integer)
           end
         end

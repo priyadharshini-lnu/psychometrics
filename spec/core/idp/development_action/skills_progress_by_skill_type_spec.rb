@@ -30,6 +30,7 @@ describe Idp::DevelopmentAction::SkillsProgressBySkillType do
       expect(skills_progress_by_skill_type).to eq(
         behavioral: 25.0,
         technical: 59.67,
+        qualification: 0.0,
         other: 100.0
       )
     end
@@ -47,6 +48,7 @@ describe Idp::DevelopmentAction::SkillsProgressBySkillType do
       expect(skills_progress_by_skill_type).to eq(
         behavioral: 25.0,
         technical: 81.5,
+        qualification: 0.0,
         other: 0.0
       )
     end

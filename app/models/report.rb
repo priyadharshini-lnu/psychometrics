@@ -38,6 +38,7 @@ class Report < ApplicationRecord
   has_many :modules, through: :pages, dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
   has_many :campaign_factors, class_name: 'Reports::CampaignFactor', dependent: :destroy
+  has_many :campaign_ai_artifacts, class_name: 'Reports::CampaignAIArtifact', dependent: :destroy
   has_many :translations, as: :resource, dependent: :destroy
   has_many :user_reports, dependent: :restrict_with_error
   has_many :campaign_reports, dependent: :restrict_with_error

@@ -86,4 +86,69 @@ describe Api::V2::Administration::CampaignsController, swagger_doc: 'v2/swagger.
       end
     end
   end
+
+  path '/campaigns/{campaign_id}/all_assessments' do
+    get 'Get All Campaign Assessments' do
+      operationId 'GetAllCampaignAssessments'
+      tags 'Campaigns'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+
+      response '200', 'All assessments found' do
+        let(:campaign_id) { campaign.id }
+
+        let!(:regular_assessment) { create(:assessment) }
+        let!(:assessor_form_assessment) { create(:assessment, category: :assessor_form) }
+        let!(:lead_assessor_form_assessment) { create(:assessment, category: :lead_assessor_form) }
+        let!(:user_only_assessment) { create(:assessment) }
+
+        let!(:campaign_assessment) do
+          create(:campaign_assessment, campaign: campaign, assessment: regular_assessment)
+        end
+
+        let!(:campaign_assessor_assessment) do
+          create(:campaign_assessor_assessment,
+                 campaign: campaign,
+                 assessment: assessor_form_assessment,
+                 campaign_assessment_group: create(:campaign_assessment_group, campaign: campaign))
+        end
+
+        let!(:lead_assessor_campaign_assessment) do
+          create(:campaign_assessor_assessment,
+                 campaign: campaign,
+                 assessment: lead_assessor_form_assessment,
+                 campaign_assessment_group: create(:campaign_assessment_group, campaign: campaign))
+        end
+
+        let!(:user_assessment_only) do
+          create(:user_assessment,
+                 campaign: campaign,
+                 assessment: user_only_assessment,
+                 subject: create(:user),
+                 evaluator: create(:user))
+        end
+
+        run_test! do |response|
+          assessments_response = JSON.parse(response.body)['data']
+          assessment_ids = assessments_response.map { |a| a['id'].to_i }
+
+          expect(assessment_ids).to contain_exactly(
+            regular_assessment.id,
+            assessor_form_assessment.id,
+            lead_assessor_form_assessment.id,
+            user_only_assessment.id
+          )
+
+          assessments_response.each do |assessment|
+            expect(assessment).to have_key('id')
+            expect(assessment).to have_key('type')
+            expect(assessment['type']).to eq('assessments')
+            expect(assessment).to have_key('attributes')
+            expect(assessment['attributes']).to have_key('name')
+          end
+        end
+      end
+    end
+  end
 end

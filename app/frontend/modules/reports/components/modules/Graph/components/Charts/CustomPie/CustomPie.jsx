@@ -12,6 +12,7 @@ import { getCorrectResults } from '../ResultManager'
 import ChartOptions from './ChartOptions'
 import Series from './Series'
 import { STRATEGIES } from './consts'
+import { getColorForGraphValue, isGraphValueCondition } from '~/modules/reports/utils/GraphValueCondition'
 
 const OUTER_RADIUS = 112
 const RADIUS_INTERVAL = 24
@@ -73,14 +74,17 @@ class CustomPie extends Component {
   }
 
   prepareSerie (name, color, y, index, description) {
+    const { model } = this.props
+    const finalColor = isGraphValueCondition(model.props.textConditionType)
+      ? getColorForGraphValue(model.props.graphValueConditions, y) : color
     return {
       name,
       marker: { enabled: false },
-      borderColor: color,
-      color,
+      borderColor: finalColor,
+      color: finalColor,
       data: [
         {
-          color,
+          color: finalColor,
           radius: `${100 - 25 * index}%`,
           innerRadius: `${100 - 25 * index}%`,
           y,
@@ -125,7 +129,6 @@ class CustomPie extends Component {
     }
 
     const sourceType = model.getSourceType()
-    const sourceModel = this.getSourceModel()
     const data = Series[sourceType]
     if (!data) {
       return null
@@ -134,6 +137,13 @@ class CustomPie extends Component {
     if (!series.length) {
       return null
     }
+
+    const background = series.map(({ color }, i) => ({
+      outerRadius: `${OUTER_RADIUS - RADIUS_INTERVAL * i - i}%`,
+      innerRadius: `${OUTER_RADIUS - RADIUS_INTERVAL * (i + 1) - i}%`,
+      backgroundColor: Highcharts.Color.parse(color).setOpacity(0.3).get(),
+      borderWidth: 0,
+    }))
 
     const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
 
@@ -151,15 +161,7 @@ class CustomPie extends Component {
         pane: {
           startAngle: isRTL ? 360 : 0,
           endAngle: isRTL ? 0 : 360,
-          background: _.times(sourceModel.length, i => ({
-            // Track for Move
-            outerRadius: `${OUTER_RADIUS - RADIUS_INTERVAL * i - i}%`,
-            innerRadius: `${OUTER_RADIUS - RADIUS_INTERVAL * (i + 1) - i}%`,
-            backgroundColor: Highcharts.Color.parse(colors[i])
-              .setOpacity(0.3)
-              .get(),
-            borderWidth: 0,
-          })),
+          background,
         },
         legend: {
           enabled: model.props.showLegend,

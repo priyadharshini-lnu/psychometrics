@@ -29,6 +29,7 @@ export interface CommonCampaignPermissions {
   manageReportApprovalSettings: boolean
   convertToTemplate: boolean
   exportDashboardToFile: boolean
+  viewAiArtifacts: boolean
 }
 
 export default interface Campaign {
@@ -81,4 +82,5 @@ export interface CampaignOptions {
   integrationType: 'iframe' | 'ldb'
   trial: boolean
   enableVideoCallRecording?: boolean;
+  allowVideoCallRecording?: boolean;
 }

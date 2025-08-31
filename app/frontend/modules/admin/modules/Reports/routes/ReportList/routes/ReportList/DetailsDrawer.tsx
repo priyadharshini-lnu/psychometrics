@@ -75,7 +75,7 @@ export const DetailsDrawer: FC<Props> = ({
             {report.poster && <Avatar shape="square" src={report.poster} />}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.assessments')} key="assessments" className="va-t">
-            <Avatar.Group maxCount={2}>
+            <Avatar.Group max={{ count: 2 }}>
               {report.assessments.map(assessment => (
                 <ResourceAvatar
                   key={assessment.id}

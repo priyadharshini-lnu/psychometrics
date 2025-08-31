@@ -75,7 +75,7 @@ describe Api::V2::Administration::WorkshopResourcesController, swagger_doc: 'v2/
           data: {
             id: '14',
             type: 'workshop_resources',
-            links: { self: 'http://ttedev.me:3030/api/v2/administration/workshop_resources/14' },
+            links: { self: 'http://localhost:3030/api/v2/administration/workshop_resources/14' },
             attributes: {
               name: 'test resource',
               url: 'http://resource.com',
@@ -133,7 +133,7 @@ describe Api::V2::Administration::WorkshopResourcesController, swagger_doc: 'v2/
           data: {
             id: '14',
             type: 'workshop_resources',
-            links: { self: 'http://ttedev.me:3030/api/v2/administration/workshop_resources/14' },
+            links: { self: 'http://localhost:3030/api/v2/administration/workshop_resources/14' },
             attributes: {
               name: 'test resource',
               url: 'http://resource.com',

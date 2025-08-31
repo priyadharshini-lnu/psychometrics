@@ -365,7 +365,6 @@ jobs:
           command: |
             FILE=~/cachedflags/job.vitest.flag
             if test -f "$FILE"; then
-              yarn run coveralls < coverage/lcov.info
               circleci-agent step halt
             else
               echo "Compiled files do not exist"
@@ -382,7 +381,7 @@ jobs:
             cp config/database.yml.sample config/database.yml
             bundle exec rake i18n:js:export
             (find tmp/cache/vitest -type f -mtime +15 -delete) || echo "No old cache files to prune"
-            yarn test --coverage --maxWorkers 1 --minWorkers 1 --shard $((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL --max-concurrency=1 && yarn run coveralls < coverage/lcov.info
+            yarn test --coverage --maxWorkers 1 --minWorkers 1 --shard $((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL --max-concurrency=1
       - run:
           name: Vitest flag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.vitest.flag
@@ -646,6 +645,7 @@ orbs:
   node: circleci/node@7.0.0
   kubernetes: circleci/kubernetes@2.0.0
   helm: circleci/helm@3.1.0
+  ggshield: gitguardian/ggshield@volatile
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
@@ -662,6 +662,10 @@ workflows:
       - brakeman:
           requires:
             - bundle
+      - ggshield/scan:
+          name: git_guardian
+          base_revision: <<pipeline.git.base_revision>>
+          revision: <<pipeline.git.revision>>
       - rubocop:
           requires:
             - bundle
@@ -693,6 +697,7 @@ workflows:
             - bundle_assets
             - rubocop
             - brakeman
+            - git_guardian
             - eslint
             - typescript
       - other_checks:
@@ -703,6 +708,7 @@ workflows:
             - bundle_assets
             - rubocop
             - brakeman
+            - git_guardian
             - eslint
             - typescript
       - coveralls:

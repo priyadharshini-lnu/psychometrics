@@ -19,6 +19,7 @@ import ModulesTranslates from './ModulesTranslates'
 
 export const DATA_SHEET = 'DataSheet'
 export const CAMPAIGN_FACTORS = 'CampaignFactors'
+export const CAMPAIGN_AI_ARTIFACTS = 'CampaignAIArtifacts'
 export const REPORT_DATA = 'ReportData'
 export const ASSESSMENT_DATA = 'AssessmentData'
 const ALL_FACTORS = 'All Factors'
@@ -123,6 +124,9 @@ _.extend(Module.prototype, {
     if (source === 'CampaignFactors') {
       return 'CampaignFactors'
     }
+    if (source === 'CampaignAIArtifacts') {
+      return 'CampaignAIArtifacts'
+    }
     if (assessment.category === HOGAN) {
       if (source === 'Factor') return 'Factor'
 
@@ -163,6 +167,8 @@ _.extend(Module.prototype, {
       case 'DataSheet':
         return this.props.source.columns
       case 'CampaignFactors':
+        return this.props.source.codes
+      case 'CampaignAIArtifacts':
         return this.props.source.codes
       case 'ReportData':
         return (this.props.source.reportDataColumns || []).map(c => c.value)
@@ -211,7 +217,7 @@ _.extend(Module.prototype, {
 
   canShowDataSet (type, category) {
     if ([HOGAN, SAVILLE, PSYCHOMETRIC, AGILE].includes(category)) { return true }
-    if (this.props.sourceType === 'ResultText') {
+    if (this.props.sourceType === 'ResultText' || this.props.sourceType === 'AIContent') {
       if (['Question', 'Factor', 'EmbeddedData'].includes(type)) { return false }
     }
     const filter = this.moduleConfig.filtersDataSet && this.moduleConfig.filtersDataSet[this.props.type]
@@ -328,12 +334,17 @@ _.extend(Module.prototype, {
     return this.props.source && this.props.source.type === CAMPAIGN_FACTORS
   },
 
+  isBasedOnCampaignAIArtifacts () {
+    return this.props.source && this.props.source.type === CAMPAIGN_AI_ARTIFACTS
+  },
+
   isBasedOnReportData () {
     return this.props.source && this.props.source.type === REPORT_DATA
   },
 
   isBasedOnAssessment () {
-    return !this.isBasedOnDataSheet() && !this.isBasedOnReportData() && !this.isBasedOnCampaignFactors()
+    return !this.isBasedOnDataSheet() && !this.isBasedOnReportData()
+      && !this.isBasedOnCampaignFactors() && !this.isBasedOnCampaignAIArtifacts()
   },
 
   shift () {

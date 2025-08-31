@@ -44,6 +44,7 @@ export const InvitesForm = () => {
   const submitForm = () => {
     setErrors(null)
     createResource({
+      name: form.getFieldValue('name'),
       title: form.getFieldValue('title'),
       allowLanguagePreference: form.getFieldValue('allowLanguagePreference'),
       allowedLanguages: form.getFieldValue('languagesAllowed'),

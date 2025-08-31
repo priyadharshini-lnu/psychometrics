@@ -49,6 +49,12 @@
         = select_tag :recipients,
           options_from_collection_for_select(@communication.users.decorate, :display_name, :display_name),
           class: 'form-control'
+    - if @communication.cc_users.any?
+      li.list-group-item
+        strong.mrs = t('.cc_recipients')
+        = select_tag :cc_recipients,
+          options_from_collection_for_select(@communication.cc_users.decorate, :id, ->(user) { "#{user.display_name} (#{user.object.email})" }),
+          class: 'form-control'
     - if @communication.delivery_rule
       li.list-group-item
         strong.mrs = t('.delivery_rule')

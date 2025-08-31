@@ -291,6 +291,48 @@ ja:
             manage: 管理
             title: ワークショップ
             view: 表示
+    ai_artifacts:
+      artifact_results: アーティファクトの結果
+      code: コード
+      form:
+        add_assessment: 評価の追加
+        ai_assistant: AIアシスタント
+        assessments: 評価
+        campaign_factors: キャンペーン要因
+        configuration: 構成
+        datasheet: データシート
+        datasheet_columns: データシートの列
+        include_all_datasheet_columns: すべてのデータシート列を含める
+        no_assessment_selected: 評価はまだ追加されていません。「追加」をクリックして開始します。
+        questions_required: 少なくとも 1 つの質問を選択する必要があります
+        select_ai_assistant: AIアシスタントを選択
+        select_assessment: 評価の選択
+        select_campaign_factors: キャンペーンファクターの選択
+        select_datasheet_columns: データシートの列の選択
+        select_questions: 質問を選択
+        title: AIアーティファクト
+      generate: 生成する
+      generate_result_info_message: 結果が生成されていますので、ページを更新して更新された結果を確認してください。
+      generate_results: 結果の生成
+      generated_at: 生成時間
+      generated_at_time: "%{time}で生成"
+      generated_value: 生成された価値
+      id: 身分証明書
+      key: 鍵
+      name: 名前
+      parsed_dependencies:
+        help: 成果物結果の生成に AI アシスタントによって使用されるユーザーの解析された依存関係
+        title: 解析された依存関係
+        view: 解析された依存関係の表示
+      playground: 遊び場
+      playground_info: サンプルデータを使用して成果物をテストし、生成された結果をプレビューします。
+      playground_placeholder: テストデータの入力
+      raw: 生
+      tabs:
+        results: 業績
+        settings: 設定
+      test_generate: テスト生成
+      unsaved_changes: 未保存の変更が存在する場合は、フォームを送信して Playground から更新された応答を生成することを検討してください。
     ai_assistants:
       actions:
         create: AIアシスタントを作る
@@ -298,9 +340,34 @@ ja:
         playground: 遊び場
       ai_assistants: AIアシスタント
       ai_assistants_playground: AIアシスタント・プレイグラウンド
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: 評価構成に評価の ID がありません
+            assessment_missing_questions: 評価構成に評価%{assessment_id}の質問がありません
+            no_assessments_configured: 評価が構成されていません
+            no_assessments_configured_for_artifact: この成果物に対して評価は構成されていません
+            no_completed_results: 評価%{assessment_name}で完了した評価結果が見つかりません
+            no_valid_assessment_data: 有効な評価データがありません
+          base:
+            dependency_not_configured: 依存関係 '%{dependency}' が構成されていません
+          campaign_factor:
+            factor_empty_value: キャンペーン ファクター '%{code}'(%{name})のユーザー %{email}値が空です
+            factor_no_value: キャンペーン ファクター '%{code}'(%{name})には、ユーザー %{email}に値が割り当てられていません
+            no_campaign_factors_configured: この成果物にはキャンペーン要素が構成されていません
+            no_valid_factor_data: 有効なキャンペーンファクターデータがありません
+          datasheet:
+            column_no_value: 列 '%{column}' にはユーザー %{email}の値がありません
+            no_datasheet_columns_configured: 特定のデータシート列は構成されていません
+            no_datasheet_configured: このキャンペーンにはデータシートが構成されていません
+            no_datasheet_data: ユーザー %{email}に利用できるデータシートデータはありません
+            user_not_found_in_datasheet: キャンペーン データシートにユーザーが見つかりません
+      campaign_ai_artifacts: キャンペーン AI アーティファクト
       column:
         provider: プロバイダー
       created_successfully: AIアシスタントが正常に作成されました。
+      errors:
+        cannot_delete_in_use: AI アシスタントの「%{name}」は使用中であるため、削除できません。
       form:
         add_output_schema_key: 出力スキーマ・キーの追加
         dependencies: 依存関係
@@ -319,6 +386,11 @@ ja:
         system_prompt: システムプロンプト
         type: タイプ
         user_prompt: ユーザープロンプト
+      selector:
+        choose_artifact: AI アーティファクトを選択する
+        choose_schema_key: スキーマキーの選択
+        no_assistants_found: AI アシスタントが見つかりませんでした
+        placeholder: AIアシスタントを選択
       updated_successfully: AIアシスタントは正常に更新されました。
     any: " - どれでも "
     api:
@@ -358,6 +430,8 @@ ja:
         exceeded_subjects_count: キャンペーンには %{users}件名があります。 招待ごとに追加できる件名は %{count}件名のみです。
         id: 身分証明書
         invites: 招待
+        name: 名前
+        name_placeholder: 招待名を入力
         next: 次のページ
         not_selected: 落選
         requests: リクエスト
@@ -435,6 +509,7 @@ ja:
       errors:
         doesnt_have_header: "'%{sub_header}' はヘッダを持っていません。"
         invalid_headers: '以下のヘッダは無効です: %{headers}.'
+        invalid_question: 無効な質問 ID
         invalid_scores: 要因 %{factor_name} のスコアが無効です。 スコアはカンマ区切りの数値でなければなりません。
         invalid_sub_header: "'%{sub_header}' はヘッダ '%{header}' の有効なサブヘッダではありません。"
         scores_not_allowed: スコアはマルチチョイスとマトリックスタイプの問題にのみ追加できます。
@@ -773,13 +848,9 @@ ja:
       users_import: 輸入
     bulk_reports:
       create:
-        no_data: データなし
         successfully: レポートは現在作成中で、準備ができ次第Eメールでお知らせします。
       download:
         removed: 削除
-      form:
-        end_date: 終了日
-        start_date: 開始日
       mailer:
         subject: レポートの一括ダウンロード
       new:
@@ -1092,6 +1163,7 @@ ja:
         is_active: アクティブ
         name: 名称
         no_permission_message: を変更する権限がありません。
+        title: ユーザー
         updated_by: 更新者
       validations:
         dates:
@@ -1576,12 +1648,16 @@ ja:
       add: 追加
       back: バック
       cancel: キャンセル
+      code: コード
       disabled: ディアスブル
       download_sample_file: サンプルファイルのダウンロード
       enabled: 有効
       import:
         failure_msg: ファイルのインポート中にエラーが発生しました。
+      instructions: 指示
+      loading: 積載。。。
       minute: 微細
+      name: 名前
       next: 次のページ
       reset: リセット
       save: セーブ
@@ -1623,6 +1699,7 @@ ja:
            {{schedule_end_date}} - スケジュール終了日"
         campaign: キャンペーン
         campaign_assessment_group: キャンペーン評価グループ
+        cc_recipients: CC受信者
         client: クライアント
         completion: 完成
         custom: カスタム
@@ -1715,6 +1792,7 @@ ja:
         back: バック
         body: ボディ
         campaign: キャンペーン
+        cc_recipients: 'CC受信者:'
         client: クライアント
         communication_type: 通信タイプ：
         delivery_rule: 配達規則：
@@ -2212,7 +2290,16 @@ ja:
       self_rating: 自己評価を有効にする
       show_reflections: ショー・リフレクションズ
       skill_gap_report: スキル・ギャップ・レポート
+      skill_source_preference: スキルソース
+      skill_sources:
+        from_ai: 一般的なAI知識から
+        from_template: テンプレートとマッピングから
       skills: スキル
+      skills_privacy_messages:
+        made_private: スキル「%{skill_name}」は非公開としてマークされており、マネージャーには非表示になります
+        made_public: スキル「%{skill_name}」がマネージャーに表示されるようになりました
+        skill_not_found: スキルが見つかりません
+        unauthorized: このスキルを変更する権限がありません
       skills_updated: IDPスキルの更新に成功
       status:
         draft: ドラフト
@@ -2441,6 +2528,10 @@ ja:
         content: メール '%{subjectEmail}' の件名を本当に削除しますか？
         success: 電子メール '%{subjectEmail}' を含む件名が正常に削除されました。
         title: 主題の削除
+      resend_invite:
+        content: 選択した件名に招待を再送信します。続行してもよろしいですか?
+        success: 招待状の再送信に成功しました。
+        title: 招待を再送信
       statuses:
         accepted: 受諾
         cancelled: キャンセル
@@ -2452,6 +2543,7 @@ ja:
         requested_rescheduling: リスケジュールのリクエスト
         requested_rescheduling_rejected: リスケジュール却下
         rescheduled: 予定変更
+        scheduled: 予定
       subject: 対象
     job_role:
       are_you_sure_to_remove: 本当に外していいのか？
@@ -2543,6 +2635,7 @@ ja:
     message: メッセージ
     meta_title: 管理パネル
     navigation:
+      ai_artifacts: AIアーティファクト
       ai_assistants: AIアシスタント
       assessments: アセスメント
       assessments_reports: アセスメント＆レポート
@@ -2782,8 +2875,8 @@ ja:
       errors:
         create:
           invalid_format: レベル定義は定義の配列でなければならない。
-          level_definition_must_exist: レベル定義は空白にできない
           level_definition_must_match_level: は正確に%{expected}レベルを含んでいなければならないが、%{actual}は与えられた。
+          level_description_must_exist: レベルの説明を空白にすることはできません
           level_name_must_exist: レベル名は空白にできない
           must_be_unique: ユニークでなければならない
           proficiency_level_exists: このスキルとプロジェクトを持つProficiencyLevelがすでに存在する。
@@ -3250,6 +3343,29 @@ ja:
           repeat_modules: 選択されたモジュールは、挿入された外部ページで繰り返し表示されます。
         module_pagination: モジュールのページネーション
         repeat_modules: リピート・モジュール
+      property_panel:
+        add_new_condition: 新しい条件を追加する
+        apply_color_label: 次に、次の色を適用します。
+        graph_condition_types:
+          default: デフォルト
+          graph_value: グラフ値
+        graph_value_condition_not_supported_msg: グラフ値条件は、このグラフタイプではサポートされていません。このオプションは現在、以下のグラフタイプでのみ使用できます。
+        graph_value_conditions_title: グラフ値の条件
+        if_graph_value_is: 'グラフ値が次の場合:'
+        manage_graph_value_condition: グラフ値の条件を管理する
+        manage_styles_condition: スタイルの管理条件
+        missing_value: 欠損値
+        predicates:
+          equal_to: 等しい
+          greater_than: より大きい
+          greater_than_or_equal: 以上
+          less_than: 未満
+          less_than_or_equal: 以下
+          not_equal_to: 等しくない
+        prefixes:
+          and: そして
+          or: 又は
+        text_condition_type: 'テキスト条件タイプ:'
     report_families:
       create:
         successfully: レポート・バンドル %{name} が正常に作成されました。
@@ -3308,6 +3424,19 @@ ja:
         pending_qc: QC申請中
         qc_completed: QC完了
         qc_in_progress: 進行中のQC
+    report_settings:
+      data_source_types:
+        assessment: 査定
+        campaign_factors: キャンペーン要因
+        datasheet: データシート
+        report_data: レポートデータ
+      tabs:
+        campaign_ai_artifacts: キャンペーン AI アーティファクト
+        campaign_factors: キャンペーン要因
+        data_sheets: データシート
+        page_settings: ページ設定
+        translations: 翻訳
+      title: レポート設定
     reports:
       bulk_marked_as_done: 完了として一括マーク
       bulk_upload:
@@ -4013,6 +4142,7 @@ ja:
         skill_types:
           behavioural: 行動
           other: その他
+          qualification: 資格
           technical: テクニカル
       property_panel:
         add_n_a_option: N/Aオプションを追加
@@ -4357,6 +4487,7 @@ ja:
           header: 輸入翻訳
       import:
         successfully: 翻訳は正常にインポートされました
+        successfully_scheduled: 翻訳インポートは正常にスケジュールされました。
       reports:
         export: 輸出翻訳
         import: 輸入翻訳

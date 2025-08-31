@@ -26,6 +26,7 @@ export const COPY_MODULE = 'report/COPY_MODULE'
 export const PASTE_MODULE = 'report/PASTE_MODULE'
 export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
 export const SAVE_CAMPAIGN_FACTORS = 'report/SAVE_CAMPAIGN_FACTORS'
+export const SAVE_CAMPAIGN_AI_ARTIFACTS = 'report/SAVE_CAMPAIGN_AI_ARTIFACTS'
 export const UPLOAD_DATA_SHEET = 'report/UPLOAD_DATA_SHEET'
 export const CHANGE_SKIP_LOGIC = 'report/CHANGE_SKIP_LOGIC'
 export const SET_REPORT_LOADING = 'report/SET_REPORT_LOADING'
@@ -77,6 +78,7 @@ export const pasteModule = (pageId: number, module: ModuleInterface) => ({
 
 export const saveDataSheet = (data: object[]) => ({ type: SAVE_DATA_SHEET, data })
 export const saveCampaignFactors = (data: object[]) => ({ type: SAVE_CAMPAIGN_FACTORS, data })
+export const saveCampaignAIArtifacts = (data: object[]) => ({ type: SAVE_CAMPAIGN_AI_ARTIFACTS, data })
 
 export const uploadDataSheet = (id: number, body: FormData) => ({
   type: UPLOAD_DATA_SHEET,
@@ -159,4 +161,5 @@ export type UpdatePagePositionType = ReturnType<typeof updatePagePositions>
 export type SetPagePositionType = ReturnType<typeof setPagePositions>
 export type SaveDataSheetType = ApiActionResponse<{data: {}}>
 export type SaveCampaignFactorsType = ApiActionResponse<{data: {}}>
+export type SaveCampaignAIArtifactsType = ApiActionResponse<{data: {}}>
 export type SetReportLoading = ReturnType<typeof setReportLoading>

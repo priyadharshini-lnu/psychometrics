@@ -1,64 +1,80 @@
-import { PageHeader } from '@ant-design/pro-layout'
 import { Space, Tabs } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
-import { MailOutlined } from '@ant-design/icons'
 import { useEffect } from 'react'
-import styles from './styles.less'
 
+import { useDispatch } from 'react-redux'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import { SubjectList } from './Subjects/SubjectList'
 import { WorkshopList } from './Workshops/WorkshopList'
+import InviteDetails from './InviteDetails'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { useResources } from '~/hooks/useResources'
 import routeUtils from '~/utils/route'
+import { BaseMeta } from '~/hooks/useResources/interfaces'
+import Modals from '~/modules/admin/components/Modals'
+import { InviteEditFormModal } from './InviteEditFormModal'
+import { openModal } from '~/modules/admin/core/ui/modals'
 
 const { I18n } = window
 
+const MODALS = {
+  InviteEditFormModal,
+}
+
 export const IndividualInvite = () => {
   const {
-    inviteId, campaignId, projectId, tabName,
-  } = useParams() as { projectId: string, inviteId: string, campaignId: string, tabName: string }
+    inviteId, campaignId, tabName,
+  } = useParams() as { inviteId: string, campaignId: string, tabName: string }
   const navigate = useNavigate()
-  const { fetchSingle, getResource } = useResources<WorkshopInvite>(
+  const dispatch = useDispatch()
+  const {
+    fetchSingle, updateResource, getResource, meta,
+  } = useResources<WorkshopInvite, BaseMeta>(
     'workshop_invites',
     {
       basePath: `/campaigns/${campaignId}`,
+      apiConfig: {
+        include_meta: ['permissions'],
+      },
     },
   )
-  const workshopInvite = getResource(inviteId)
-  const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling/invites/${inviteId}`
 
+
+  const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling/invites/${inviteId}`
+  const workshopInvite = getResource(inviteId)
   useEffect(() => {
-    fetchSingle({ id: inviteId, apiConfig: { fields: { workshop_invites: ['title'] } } })
+    fetchSingle({ id: inviteId })
   }, [])
+
+  const handleUpdate = () => {
+    dispatch(openModal('InviteEditFormModal', {
+      workshopInvite,
+      updateWorkshopInvite: updateResource,
+    }))
+  }
 
   return (
     <>
-      <PageHeader
-        className={styles.pageHeader}
-        onBack={() => navigate(
-          `/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/invites`,
+      <div className="p-6">
+        {workshopInvite && (
+          <InviteDetails
+            updateWorkshopInvite={handleUpdate}
+            workshopInvite={workshopInvite}
+            permissions={meta?.permissions}
+          />
         )}
-        title={(
-          <>
-            <Space>
-              {workshopInvite?.title}
-            </Space>
-          </>
-        )}
-      />
+      </div>
       <Tabs
-        tabBarStyle={{ paddingInline: '10px' }}
         style={{ paddingInline: '20px' }}
         onTabClick={tab => routeUtils.moveTo(navigate, prefixPath, `/${tab}`, true)}
         activeKey={tabName}
         destroyInactiveTabPane
+        type="card"
         items={[
           {
             key: 'subjects',
             label: (
               <Space>
-                <MailOutlined />
                 {I18n.t('administration.individual_invite.tabs.invitation_status')}
               </Space>
             ),
@@ -71,6 +87,7 @@ export const IndividualInvite = () => {
           },
         ]}
       />
+      <Modals modals={MODALS} />
     </>
   )
 }

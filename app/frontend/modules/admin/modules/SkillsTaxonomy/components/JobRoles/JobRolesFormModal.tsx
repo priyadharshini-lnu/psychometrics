@@ -99,7 +99,6 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
           <Form.Item
             name="description"
             label={I18n.t('administration.job_role.form.description')}
-            rules={[{ required: true }]}
           >
             <Input.TextArea />
           </Form.Item>
@@ -107,7 +106,6 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
           <Form.Item
             name="jobGroupId"
             label={I18n.t('administration.job_role.form.job_group')}
-            rules={[{ required: true }]}
           >
             <Select
               showSearch

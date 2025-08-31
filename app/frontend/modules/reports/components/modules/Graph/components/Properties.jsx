@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Button, Radio, Typography } from 'antd'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
@@ -12,10 +13,14 @@ import iconsStyles from './Graph.less'
 import Menu from './ChartsMenu'
 import connect from '../connect'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
+import { GRAPH_CONDITION_TYPES } from '~/modules/reports/consts/Report'
+import { isGraphValueCondition } from '~/modules/reports/utils/GraphValueCondition'
 import { STYLE_TYPE } from '~/modules/reports/components/PropertyFonts/components/constants'
 
+const { I18n } = window
+
 const Properties = ({
-  reportStlyes, openConditionalText, modules,
+  reportStlyes, openConditionalText, openGraphValueCondition, modules,
 }) => {
   useEffect(() => {
     const appListener = AppStore.addListener('change', () => forceUpdate())
@@ -27,6 +32,8 @@ const Properties = ({
 
   const model = modules[0]
   if (!model) { return null }
+
+  const isGraphValueConditionSelected = isGraphValueCondition(model.props?.textConditionType)
 
   const forceUpdate = () => {
     model.update()
@@ -59,13 +66,25 @@ const Properties = ({
   }
 
   const openConditionModal = () => {
-    openConditionalText({ modules })
+    if (isGraphValueConditionSelected) {
+      openGraphValueCondition({ modules })
+    } else {
+      openConditionalText({ modules })
+    }
   }
 
   const changePrecision = (val) => {
     modules.forEach((model) => {
       model.props.precision = val
       update()
+    })
+  }
+
+  const handleConditionTypeChange = (e) => {
+    const { value } = e.target
+    modules.forEach((model) => {
+      model.props.textConditionType = value
+      model.update()
     })
   }
 
@@ -109,15 +128,28 @@ const Properties = ({
       </div>
       <DataSource modules={modules} onSelect={update} onlyNumbers />
       <hr className={styles.divider} />
-      <div className="margin-top-10 margin-bottom-10">
-        <div
-          style={{ width: '100%' }}
-          onClick={openConditionModal}
-          className="btn btn-default"
-        >
-          Manage styles condition
-        </div>
-      </div>
+      <Typography.Paragraph level={5}>
+        {I18n.t('administration.report_builder.property_panel.text_condition_type')}
+      </Typography.Paragraph>
+      <Radio.Group
+        value={model.props?.textConditionType || GRAPH_CONDITION_TYPES.DEFAULT}
+        onChange={handleConditionTypeChange}
+      >
+        <Radio value={GRAPH_CONDITION_TYPES.DEFAULT}>
+          {I18n.t('administration.report_builder.property_panel.graph_condition_types.default')}
+        </Radio>
+        <Radio value={GRAPH_CONDITION_TYPES.GRAPH_VALUE}>
+          {I18n.t('administration.report_builder.property_panel.graph_condition_types.graph_value')}
+        </Radio>
+      </Radio.Group>
+      <Button
+        onClick={openConditionModal}
+        className="w-100 mt-4"
+      >
+        {isGraphValueConditionSelected
+          ? I18n.t('administration.report_builder.property_panel.manage_graph_value_condition')
+          : I18n.t('administration.report_builder.property_panel.manage_styles_condition')}
+      </Button>
       {renderCustomProperties()}
       <div className="margin-top-10">
         <PropertyFilter modules={modules} />

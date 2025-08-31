@@ -22,8 +22,7 @@ RSpec.describe Api::V2::Skill::Schema do
 
       expect(schema).to have_jsonapi_attr_error({
         name: ["can't be blank"],
-        skill_type: ["can't be blank"],
-        description: ["can't be blank"]
+        skill_type: ["can't be blank"]
       })
     end
 

@@ -34,6 +34,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
       tags 'AI Assistants'
       consumes 'application/vnd.api+json'
       security [basic: []]
+      parameter name: :'filter[filterable_fields]', in: :query, required: false
 
       response '200', 'Fetched Assistants' do
         schema '$ref' => '#/components/schemas/AssistantsMultipleResponse'
@@ -69,6 +70,22 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
           expect(assistant_response['attributes']).to have_key('created_at')
           expect(assistant_response['attributes']).to have_key('updated_at')
           expect(assistant_response['type']).to eq('assistants')
+        end
+      end
+
+      response '200', 'Fetched Assistants filtered by name' do
+        let!(:searched_assistant) do
+          create(:assistant, owner: client, name: 'Alpha Assistant', model_id: 'azure-openai')
+        end
+        let!(:searched_assistant2) do
+          create(:assistant, owner: client, name: 'Alpha Assistant 2', model_id: 'azure-openai')
+        end
+        let(:'filter[filterable_fields]') { 'Alpha' }
+
+        run_test! do |response, _req|
+          data = JSON.parse(response.body)['data']
+          expect(data.length).to eq(2)
+          expect(data.first['attributes']['name']).to include('Alpha')
         end
       end
     end

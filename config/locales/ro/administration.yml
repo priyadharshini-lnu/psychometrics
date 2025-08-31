@@ -291,6 +291,48 @@ ro:
             manage: Acțiuni
             title: Ateliere
             view: Vedere
+    ai_artifacts:
+      artifact_results: Rezultatele artefactelor
+      code: Cod
+      form:
+        add_assessment: Adăugare evaluare
+        ai_assistant: Asistent AI
+        assessments: Evaluări
+        campaign_factors: Factorii campaniei
+        configuration: Configurație
+        datasheet: Fișă tehnică
+        datasheet_columns: Coloane pentru fișa tehnică
+        include_all_datasheet_columns: Includeți toate coloanele din fișa de date
+        no_assessment_selected: Nu s-au adăugat încă evaluări. Faceți clic pe "Adăugați" pentru a începe.
+        questions_required: Trebuie selectat cel puțin o întrebare
+        select_ai_assistant: Selectați AI Assistant
+        select_assessment: Selectați Evaluare
+        select_campaign_factors: Selectați factorii campaniei
+        select_datasheet_columns: Selectați coloanele din foaia de date
+        select_questions: Selectează întrebări
+        title: Artefact AI
+      generate: Genera
+      generate_result_info_message: Rezultatele sunt în curs de generare, vă rugăm să reîmprospătați pagina pentru a vedea rezultatele actualizate.
+      generate_results: Generați rezultate
+      generated_at: Generat la
+      generated_at_time: Generat la %{time}
+      generated_value: Valoare generată
+      id: ID
+      key: Cheie
+      name: Nume
+      parsed_dependencies:
+        help: Dependențe analizate pentru utilizator utilizate de AI Assistant pentru generarea rezultatelor artefactelor
+        title: Dependențe analizate
+        view: Vizualizarea dependențelor analizate
+      playground: Joacă
+      playground_info: Testați artefactul cu date eșantion pentru a previzualiza rezultatele generate.
+      playground_placeholder: Introduceți datele de testare
+      raw: CRUD
+      tabs:
+        results: Rezultatele
+        settings: Setări
+      test_generate: Testați generați
+      unsaved_changes: Modificările nesalvate sunt prezente, luați în considerare trimiterea formularului pentru a genera un răspuns actualizat de la Playground.
     ai_assistants:
       actions:
         create: Creați un asistent AI
@@ -298,9 +340,34 @@ ro:
         playground: Joacă
       ai_assistants: Asistenți AI
       ai_assistants_playground: Asistent AI Playground
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: Configurația evaluării lipsește id-ul evaluării
+            assessment_missing_questions: Configurația de evaluare lipsește întrebări pentru evaluarea %{assessment_id}
+            no_assessments_configured: Nu sunt configurate evaluări
+            no_assessments_configured_for_artifact: Nu sunt configurate evaluări pentru acest artefact
+            no_completed_results: Nu s-au găsit rezultate ale evaluării finalizate pentru evaluarea %{assessment_name}
+            no_valid_assessment_data: Nu sunt disponibile date de evaluare valide
+          base:
+            dependency_not_configured: Dependența "%{dependency}" nu este configurată
+          campaign_factor:
+            factor_empty_value: Factorul de campanie "%{code}" (%{name}) are o valoare goală pentru utilizatorul %{email}
+            factor_no_value: Factorul de campanie "%{code}" (%{name}) nu are nicio valoare atribuită pentru utilizatorul %{email}
+            no_campaign_factors_configured: Nu sunt configurați factori de campanie pentru acest artefact
+            no_valid_factor_data: Nu sunt disponibile date valide privind factorii de campanie
+          datasheet:
+            column_no_value: Coloana "%{column}" nu are valoare pentru utilizator %{email}
+            no_datasheet_columns_configured: Nu sunt configurate coloane specifice fișei de date
+            no_datasheet_configured: Nu este configurată nicio foaie de date pentru această campanie
+            no_datasheet_data: Nu sunt disponibile date din fișa tehnică pentru %{email} utilizatorului
+            user_not_found_in_datasheet: Utilizatorul nu a fost găsit în fișa tehnică a campaniei
+      campaign_ai_artifacts: Artefacte AI de campanie
       column:
         provider: Furnizor
       created_successfully: AI Assistant a fost creat cu succes.
+      errors:
+        cannot_delete_in_use: Nu se poate șterge AI Assistant "%{name}" deoarece este utilizat.
       form:
         add_output_schema_key: Adăugați cheia schemei de ieșire
         dependencies: Dependențe
@@ -319,6 +386,11 @@ ro:
         system_prompt: Solicitare de sistem
         type: Tip
         user_prompt: Solicitarea utilizatorului
+      selector:
+        choose_artifact: Alegeți artefactul AI
+        choose_schema_key: Alegeți cheia de schemă
+        no_assistants_found: Nu au fost găsiți asistenți AI
+        placeholder: Selectați AI Assistant
       updated_successfully: AI Assistant a fost actualizat cu succes.
     any: " -Oricare- "
     api:
@@ -358,6 +430,8 @@ ro:
         exceeded_subjects_count: Campania are %{users} subiecte. Puteți adăuga doar %{count} subiecte per invitație
         id: ID
         invites: Invită
+        name: Nume
+        name_placeholder: Introduceți numele invitației
         next: Următor
         not_selected: Neselectat
         requests: Cereri
@@ -435,6 +509,7 @@ ro:
       errors:
         doesnt_have_header: "'%{sub_header}' nu are antet"
         invalid_headers: 'Următoarele anteturi sunt nevalide: %{headers}'
+        invalid_question: ID întrebare nevalid
         invalid_scores: Scorurile pentru factorul %{factor_name} sunt nevalide. Scorurile trebuie să fie valori numerice separate prin virgulă
         invalid_sub_header: "'%{sub_header}' nu este un subtitlu valid pentru antet '%{header}'"
         scores_not_allowed: Scorurile pot fi adăugate numai pentru întrebările de tip MultiChoice și Matrix
@@ -773,13 +848,9 @@ ro:
       users_import: Importa
     bulk_reports:
       create:
-        no_data: Fără date
         successfully: Rapoartele sunt create și veți fi notificat prin e-mail când sunteți gata
       download:
         removed: Scos
-      form:
-        end_date: Data de încheiere
-        start_date: Data de începere
       mailer:
         subject: Descărcați rapoarte în bloc
       new:
@@ -1092,6 +1163,7 @@ ro:
         is_active: Activă
         name: Nume
         no_permission_message: Nu aveți permisiunea de a modifica
+        title: Utilizatorii
         updated_by: Actualizat de
       validations:
         dates:
@@ -1576,12 +1648,16 @@ ro:
       add: Adăugați
       back: Spate
       cancel: Anulați
+      code: Cod
       disabled: Diasbled
       download_sample_file: Descărcați fișierul eșantion
       enabled: Activat
       import:
         failure_msg: Eroare la importul fișierului.
+      instructions: Instrucţiuni
+      loading: Încărcare...
       minute: minut
+      name: Nume
       next: Următor
       reset: Reseta
       save: Salva
@@ -1623,6 +1699,7 @@ ro:
           {{schedule_end_date}} - Data de încheiere a programului
         campaign: Campanie
         campaign_assessment_group: Grupul de evaluare a campaniei
+        cc_recipients: Destinatari CC
         client: Client
         completion: Terminare
         custom: Personalizat
@@ -1715,6 +1792,7 @@ ro:
         back: Spate
         body: 'Corp:'
         campaign: 'Campanie:'
+        cc_recipients: 'Beneficiari CC:'
         client: 'Client:'
         communication_type: 'Tip de comunicare:'
         delivery_rule: 'Regula de livrare:'
@@ -2212,7 +2290,16 @@ ro:
       self_rating: Activați autoevaluarea
       show_reflections: Afișați reflecții
       skill_gap_report: Raport privind decalajul de competențe
+      skill_source_preference: Sursa abilităților
+      skill_sources:
+        from_ai: Din cunoștințe generale de inteligență artificială
+        from_template: Din șablon și mapări
       skills: Aptitudini
+      skills_privacy_messages:
+        made_private: Abilitatea "%{skill_name}" a fost marcată ca privată și va fi ascunsă de managerul tău
+        made_public: Abilitatea "%{skill_name}" este acum vizibilă pentru managerul dvs.
+        skill_not_found: Abilitate negăsită
+        unauthorized: Neautorizat să modifice această abilitate
       skills_updated: Competențe IDP actualizate cu succes
       status:
         draft: Proiect
@@ -2441,6 +2528,10 @@ ro:
         content: Sunteți sigur că doriți să eliminați subiectul cu e-mailul "%{subjectEmail}"?
         success: Subiectul cu adresa de e-mail "%{subjectEmail}" a fost eliminat cu succes.
         title: Elimină subiectul
+      resend_invite:
+        content: Retrimiteți invitația la subiectele selectate. Sunteți sigur că doriți să continuați?
+        success: Invitațiile sunt retrimise cu succes.
+        title: Retrimite invitația
       statuses:
         accepted: Acceptate
         cancelled: Anulat
@@ -2452,6 +2543,7 @@ ro:
         requested_rescheduling: Reprogramare solicitată
         requested_rescheduling_rejected: Reprogramare respinsă
         rescheduled: Reprogramat
+        scheduled: Programat
       subject: Subiect
     job_role:
       are_you_sure_to_remove: Sunteți sigur că doriți să eliminați?
@@ -2543,6 +2635,7 @@ ro:
     message: Mesaj
     meta_title: Panou de administrare
     navigation:
+      ai_artifacts: Artefacte AI
       ai_assistants: Asistenți AI
       assessments: Evaluări
       assessments_reports: Evaluări și rapoarte
@@ -2782,8 +2875,8 @@ ro:
       errors:
         create:
           invalid_format: Definirea nivelului trebuie să fie o matrice de definiții.
-          level_definition_must_exist: Definiția nivelului nu poate fi goală
           level_definition_must_match_level: trebuie să conțină exact %{expected} niveluri, dar %{actual} au fost date
+          level_description_must_exist: Descrierea nivelului nu poate fi goală
           level_name_must_exist: Numele nivelului nu poate fi gol
           must_be_unique: Trebuie să fie unic
           proficiency_level_exists: Un nivel de competență cu această abilitate și proiect există deja
@@ -3246,6 +3339,29 @@ ro:
           repeat_modules: Modulele selectate vor fi repetate pe paginile inserate exta, se referă la numele modulului
         module_pagination: Paginarea modulului
         repeat_modules: Module repetate
+      property_panel:
+        add_new_condition: Adăugați o nouă condiție
+        apply_color_label: 'Apoi aplicați următoarea culoare:'
+        graph_condition_types:
+          default: Implicit
+          graph_value: Valoarea graficului
+        graph_value_condition_not_supported_msg: Condițiile de valoare a graficului nu sunt acceptate pentru acest tip de grafic. Această opțiune este disponibilă în prezent numai pentru tipurile de grafic de mai jos.
+        graph_value_conditions_title: Condiții de valoare grafică
+        if_graph_value_is: 'Dacă valoarea graficului este:'
+        manage_graph_value_condition: Gestionați condiția valorii graficului
+        manage_styles_condition: Gestionarea stării stilurilor
+        missing_value: Valoare lipsă
+        predicates:
+          equal_to: Egal cu
+          greater_than: Mai mare decât
+          greater_than_or_equal: Mai mare sau egal cu
+          less_than: Mai puţin
+          less_than_or_equal: Mai mic sau egal cu
+          not_equal_to: Nu este egal cu
+        prefixes:
+          and: ȘI
+          or: SAU
+        text_condition_type: 'Tip de condiție text:'
     report_families:
       create:
         successfully: Pachetul de rapoarte %{name} a fost creat cu succes.
@@ -3304,6 +3420,19 @@ ro:
         pending_qc: În așteptare QC
         qc_completed: QC finalizat
         qc_in_progress: QC în curs de desfășurare
+    report_settings:
+      data_source_types:
+        assessment: Evaluare
+        campaign_factors: Factorii campaniei
+        datasheet: Fișă tehnică
+        report_data: Date de raportare
+      tabs:
+        campaign_ai_artifacts: Artefacte AI de campanie
+        campaign_factors: Factorii campaniei
+        data_sheets: Fișe tehnice
+        page_settings: Setări pagină
+        translations: Traduceri
+      title: Setările raportului
     reports:
       bulk_marked_as_done: În bloc marcat ca terminat
       bulk_upload:
@@ -4001,6 +4130,7 @@ ro:
         skill_types:
           behavioural: Comportamentale
           other: Altele
+          qualification: Calificare
           technical: Tehnic
       property_panel:
         add_n_a_option: Adăugați o opțiune N/A
@@ -4340,6 +4470,7 @@ ro:
           header: Importați traduceri
       import:
         successfully: Traducerile au fost importate cu succes
+        successfully_scheduled: Importul traducerii a fost programat cu succes.
       reports:
         export: Exportați traduceri
         import: Importați traduceri

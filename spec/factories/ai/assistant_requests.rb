@@ -3,7 +3,6 @@
 FactoryBot.define do
   factory :assistant_request, class: 'AI::AssistantRequest' do
     association :chat, factory: :assistant_chat
-    association :ai_assistant, factory: :assistant
 
     role { 'user' }
     content { 'This is a test message' }

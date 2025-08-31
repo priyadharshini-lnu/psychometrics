@@ -15,6 +15,7 @@ import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
 import AssessorsDetails from './Participants/Assessors/AssessorDetails'
 import { DataExports } from './DataExports'
 import IdpReportPreview from './IdpReportPreview'
+import { AIArtifacts } from './AIArtifacts'
 
 
 const routes = [
@@ -31,6 +32,7 @@ const routes = [
   { path: '/scheduling/invites/add_invite', component: <InvitesForm /> },
   { path: '/scheduling/invites/:inviteId/:tabName', component: <IndividualInvite /> },
   { path: '/scoring/*', component: <Scoring /> },
+  { path: '/ai_artifacts/*', component: <AIArtifacts /> },
   { path: '/assessments_reports/*', component: <AssessmentsReports /> },
   { path: '/stats', component: <Stats /> },
   { path: '/dashboard/*', component: <Dashboard /> },

@@ -78,11 +78,35 @@ module ReportApprovals
       end
     end
 
-    def update_user_report(user_report, status)
+    def update_user_report(report_approval, status)
+      # Convert ReportApproval to UserReport to access workflow methods
+      user_report = report_approval.as_user_report
+
+      case status
+        when 'approved'
+          approve_report(user_report)
+        else
+          send_for_approval(user_report)
+      end
+    end
+
+    def approve_report(user_report)
+      return unless user_report.can_approve?
+
+      user_report.approve!
       user_report.update!(
         approver_user_id: current_user.id,
-        approved_at: Time.current,
-        approval_status: status
+        approved_at: Time.current
+      )
+    end
+
+    def send_for_approval(user_report)
+      return unless user_report.can_send_for_approval?
+
+      user_report.send_for_approval!
+      user_report.update!(
+        qc_user_id: current_user.id,
+        qc_at: Time.current
       )
     end
   end

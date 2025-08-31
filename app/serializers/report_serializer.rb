@@ -8,6 +8,7 @@ class ReportSerializer < Panko::Serializer
 
   has_many :filters, each_serializer: Reports::FilterSerializer
   has_many :campaign_factors, each_serializer: Reports::CampaignFactorSerializer
+  has_many :campaign_ai_artifacts, each_serializer: Reports::CampaignAIArtifactSerializer
 
   def assessments
     Panko::ArraySerializer.new(

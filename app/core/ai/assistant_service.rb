@@ -2,26 +2,30 @@
 
 module AI
   class AssistantService < BaseCommand
-    private_attr_reader :assistant_id, :prompt_data, :current_user
+    private_attr_reader :assistant_id, :prompt, :current_user, :options
 
-    # TODO(sritabh): Extra prompt data is only good for playground, add safeguard against what should be passed.
-    def initialize(assistant_id, current_user, prompt_data = nil)
+    def initialize(assistant_id, current_user, prompt = nil, options = {})
       @assistant_id = assistant_id
-      @prompt_data = prompt_data
+      @prompt = prompt
       @current_user = current_user
+      @options = options
     end
 
     def call
+      # TODO: Add license check
       broadcast(:ok, response)
     rescue RubyLLM::Error => e
-      broadcast(:error, "AI Error: #{e.message}")
+      broadcast(:error, e.message)
     end
 
     private
 
     def response
       chat = assistant.for_user(current_user)
-      res = chat.ask(user_prompt)
+      tools = options[:tools] || []
+      chat = chat.with_tools(*tools)
+
+      res = chat.ask(user_prompt.strip)
 
       {
         message: res.content,
@@ -33,8 +37,11 @@ module AI
     def user_prompt
       base_prompt = assistant.user_prompt
 
-      if prompt_data.present?
-        "#{base_prompt} <data>#{prompt_data}</data>".strip
+      if prompt.present?
+        <<~USER_PROMPT
+          #{base_prompt}
+          #{prompt}
+        USER_PROMPT
       else
         base_prompt
       end

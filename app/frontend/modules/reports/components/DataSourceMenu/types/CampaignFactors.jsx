@@ -31,6 +31,9 @@ class CampaignFactors extends Component {
     const { modules: [model], singleChoice } = this.props
     if (singleChoice) {
       const resultingValue = _.result(model, 'props.source.codes.0')
+
+      if (!resultingValue) return null
+
       return {
         value: resultingValue,
         label: resultingValue,

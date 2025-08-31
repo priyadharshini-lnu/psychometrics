@@ -19,7 +19,7 @@ module UserAssessments
           )
         elsif user_assessment.external?
           user_result.update!(scoring: ::UsersResults::CalculateScoring.call!(user_result))
-          user_assessment.calculate_and_save_campaign_scoring
+          user_assessment.generate_campaign_scoring_and_artifacts_results
         else
           user_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(user_result)
           user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result) if user_result.completed?

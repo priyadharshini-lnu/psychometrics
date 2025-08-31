@@ -240,8 +240,8 @@ export const AiAssistantPlayground: React.FC = () => {
                       </Select>
                     </Form.Item>
                     <Form.Item
-                      name="action"
-                      label="Action"
+                      name="assistantType"
+                      label="Type"
                     >
                       <Select>
                         {Object.values(ASSISTANT_TYPES).map(type => (

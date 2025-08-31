@@ -10,7 +10,7 @@ module Api
 
         def self.attributes(attribute, _type)
           proc do
-            attribute[:expected_proficiency_level].filled(:integer)
+            optional(:expected_proficiency_level).maybe(:integer)
             attribute[:job_role_id].filled(:integer)
             attribute[:skill_id].filled(:integer)
             attribute[:project_id].maybe(:integer)

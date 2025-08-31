@@ -376,11 +376,11 @@ pl:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Wiersz %{row}: Zduplikowana wartość %{value} dla %{field}.'
+              duplicate_value: "%{sheet_name}, wiersz %{row}: Zduplikowana wartość %{value} dla %{field}"
               invalid_format: Prześlij plik xlsx
               missing_headers: 'W arkuszu %{sheet_name} brakuje wymaganych nagłówków: %{headers}'
               missing_sheets: 'Brakujące wymagane arkusze: %{sheets}'
-              missing_value: 'Wiersz %{row}: Brakująca wartość dla %{field}'
+              missing_value: "%{sheet_name}, wiersz %{row}: Brak wartości dla %{field}"
             project:
               must_exist: Projekt musi istnieć
         update_norm:
@@ -440,10 +440,13 @@ pl:
           iiht: Międzynarodowa Biblioteka Medyczna (IIH
           lead_assessor_form: Formularz Głównego Asesora
           meeting: Spotkanie
+          mettl: 'Mettl powiedział:'
           organisational: Badania
           pearson: Pearson
           psychometric: Ocena
           saville: Saville (Wyspa Saville
+          simulation: Symulacja
+          skillvue: Umiejętne
           threesixty: Kampania 360
         category: Kategoria
         created_at: Data utworzenia
@@ -457,8 +460,11 @@ pl:
           common: Ocena TTE
           hogan: Hogan
           iiht: Ocena IIHT
+          mettl: Ocena Mettl
           pearson: Ocena Pearsona
           saville: Ocena Saville'a
+          simulation: Ocena symulacyjna
+          skillvue: Ocena Skillvue
         updated_at: Data modyfikacji
       assign:
         completed_at: Data realizacji
@@ -811,6 +817,7 @@ pl:
         bulk_download_idp_reports: Zbiorcze pobieranie raportów IDP
         bulk_download_reports: Zbiorcze pobieranie raportów
         bulk_download_user_reports: Zbiorcze pobieranie raportów o użytkownikach
+        bulk_generate_user_campaign_ai_artifact_results: Zbiorcze generowanie wyników artefaktów AI kampanii
         bulk_regenerate_reports: Ponowne generowanie raportów kampanii
         bulk_regenerate_threesixty_reports: Regeneracja Trzysześćdziesiąt Raportów Tematycznych
         bulk_regenerate_user_reports: Ponowne generowanie raportów o użytkownikach
@@ -847,6 +854,7 @@ pl:
         external_assessment_export: Eksport wyników zewnętrznych
         import_accesssheet: Import Accessheet
         import_assessment_questions: Pytania oceniające import
+        import_assessment_translations: Importowanie tłumaczeń oceny
         import_assessors: Asesorzy importowi
         import_campaign_factors: Importowanie czynników kampanii
         import_datasheet: Arkusz danych importu
@@ -1127,6 +1135,10 @@ pl:
         mic: Mikrofon
       discard: Odrzucić
       discard_record_again: Odrzuć i nagraj ponownie
+      error_while_discarding: Nie udało się odrzucić istniejącego filmu
+      error_while_uploading: Wystąpił nieznany błąd podczas kończenia przesyłania
+      failed_to_access_permission: Nie można uzyskać dostępu do kamery i mikrofonu
+      failed_to_complete_upload: 'Nie udało się ukończyć przesyłania: brak dostępnych informacji o adresie URL'
       media_recorder:
         failure: Ta przeglądarka nie umożliwia nagrywania wideo. Do nagrywania wideo użyj przeglądarki Chrome lub Firefox
         success: Zezwól na używanie kamery i mikrofonu do nagrywania dźwięku i wideo
@@ -1782,6 +1794,7 @@ pl:
     column:
       action: Działanie
       active: Aktywny
+      ai_assistant: Asystent AI
       allow_multiple_responses: Zezwalaj na wielokrotne odpowiedzi
       approval_notification_list: Lista użytkowników powiadomień o zatwierdzeniu
       approvers_list: Lista osób zatwierdzających
@@ -1872,7 +1885,9 @@ pl:
       continue: Kontynuuj
       copied: Skopiowano do schowka
       default: Domyślne
+      disabled: Niepełnosprawny
       download: Pobierz
+      enabled: Włączone
       file: Plik
       global_import: Czy jest to import globalny?
       minutes: Protokół
@@ -2882,6 +2897,8 @@ pl:
     zh-HK: Chiński (Hongkong)
     zh-Hant: Chiński - Tradycyjny
     zh-TW: Chiński (Tajwan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Aktywny
     campaign_name: Nazwa kampanii

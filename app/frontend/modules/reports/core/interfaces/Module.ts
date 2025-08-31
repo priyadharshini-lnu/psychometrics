@@ -22,7 +22,7 @@ export default interface Module {
       type: string
     }
     sourceType: 'Factor' | 'Question' | 'ConditionalText' | 'ConditionalFactorOccupationText' |
-      'PipedText' | 'ResultText' | 'ResponseText'
+      'PipedText' | 'ResultText' | 'ResponseText' | 'AIContent'
     mainHeaderColor: RgbaColor | string
     secondHeaderColor: RgbaColor | string
     scoreBackgroundColor: RgbaColor | string

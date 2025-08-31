@@ -12,6 +12,8 @@ class CampaignFactor < ApplicationRecord
   has_one :dimension, through: :factor
 
   has_many :campaign_factor_values, dependent: :destroy
+  has_many :campaign_ai_artifact_dependencies, class_name: 'AI::CampaignArtifactDependency',
+            foreign_key: 'dependency_id', dependent: :destroy
 
   enum :factor_type, { assessment: 1, assessor_scoring: 2, formula: 3, external_score: 4 }
   enum :output_type, { numeric: 0, string: 1 }, suffix: true

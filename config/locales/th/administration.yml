@@ -291,6 +291,48 @@ th:
             manage: จัดการ
             title: เวิร์กช็อป
             view: ดู
+    ai_artifacts:
+      artifact_results: ผลลัพธ์สิ่งประดิษฐ์
+      code: รหัส
+      form:
+        add_assessment: เพิ่มการประเมิน
+        ai_assistant: ผู้ช่วย AI
+        assessments: ประเมิน
+        campaign_factors: ปัจจัยของแคมเปญ
+        configuration: การกําหนดค่า
+        datasheet: เอกสารข้อมูลสินค้า
+        datasheet_columns: คอลัมน์แผ่นข้อมูล
+        include_all_datasheet_columns: รวมคอลัมน์แผ่นข้อมูลทั้งหมด
+        no_assessment_selected: ยังไม่มีการเพิ่มการประเมิน คลิก "เพิ่ม" เพื่อเริ่มต้น
+        questions_required: ต้องเลือกคําถามอย่างน้อยหนึ่งข้อ
+        select_ai_assistant: เลือก AI Assistant
+        select_assessment: เลือก การประเมิน
+        select_campaign_factors: เลือกปัจจัยของแคมเปญ
+        select_datasheet_columns: เลือกคอลัมน์แผ่นข้อมูล
+        select_questions: เลือกคําถาม
+        title: สิ่งประดิษฐ์ AI
+      generate: ผลิต
+      generate_result_info_message: กําลังสร้างผลลัพธ์ โปรดรีเฟรชหน้าเพื่อดูผลลัพธ์ที่อัปเดต
+      generate_results: สร้างผลลัพธ์
+      generated_at: สร้างขึ้นเมื่อ
+      generated_at_time: สร้างขึ้นที่ %{time}
+      generated_value: มูลค่าที่สร้างขึ้น
+      id: รหัส
+      key: กุญแจ
+      name: ชื่อ
+      parsed_dependencies:
+        help: การพึ่งพาที่แยกวิเคราะห์สําหรับผู้ใช้ที่ใช้โดย AI Assistant สําหรับการสร้างผลลัพธ์สิ่งประดิษฐ์
+        title: การพึ่งพาที่แยกวิเคราะห์
+        view: ดูการพึ่งพาที่แยกวิเคราะห์
+      playground: สนามเด็กเล่น
+      playground_info: ทดสอบสิ่งประดิษฐ์ของคุณด้วยข้อมูลตัวอย่างเพื่อดูตัวอย่างผลลัพธ์ที่สร้างขึ้น
+      playground_placeholder: ป้อนข้อมูลการทดสอบ
+      raw: ดิบ
+      tabs:
+        results: ผลลัพธ์
+        settings: การตั้งค่า
+      test_generate: ทดสอบสร้าง
+      unsaved_changes: มีการเปลี่ยนแปลงที่ไม่ได้บันทึก ให้พิจารณาส่งแบบฟอร์มเพื่อสร้างการตอบกลับที่อัปเดตจาก Playground
     ai_assistants:
       actions:
         create: สร้างผู้ช่วย AI
@@ -298,9 +340,34 @@ th:
         playground: สนามทดลอง
       ai_assistants: ผู้ช่วย AI
       ai_assistants_playground: สนามทดลองผู้ช่วย AI
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: การกําหนดค่าการประเมินไม่มีรหัสของการประเมิน
+            assessment_missing_questions: การกําหนดค่าการประเมินไม่มีคําถามสําหรับ %{assessment_id} การประเมิน
+            no_assessments_configured: ไม่มีการกําหนดค่าการประเมิน
+            no_assessments_configured_for_artifact: ไม่มีการกําหนดค่าการประเมินสําหรับสิ่งประดิษฐ์นี้
+            no_completed_results: ไม่พบผลการประเมินที่สมบูรณ์สําหรับ %{assessment_name} การประเมิน
+            no_valid_assessment_data: ไม่มีข้อมูลการประเมินที่ถูกต้อง
+          base:
+            dependency_not_configured: ไม่ได้กําหนดค่าการพึ่งพา '%{dependency}'
+          campaign_factor:
+            factor_empty_value: ปัจจัยแคมเปญ "%{code}" (%{name}) มีค่าว่างสําหรับ %{email} ของผู้ใช้
+            factor_no_value: ปัจจัยแคมเปญ "%{code}" (%{name}) ไม่มีค่าที่กําหนดไว้สําหรับ %{email} ของผู้ใช้
+            no_campaign_factors_configured: ไม่มีการกําหนดค่าปัจจัยแคมเปญสําหรับสิ่งประดิษฐ์นี้
+            no_valid_factor_data: ไม่มีข้อมูลปัจจัยของแคมเปญที่ถูกต้อง
+          datasheet:
+            column_no_value: คอลัมน์ "%{column}" ไม่มีค่าสําหรับ %{email} ผู้ใช้
+            no_datasheet_columns_configured: ไม่มีการกําหนดค่าคอลัมน์แผ่นข้อมูลเฉพาะ
+            no_datasheet_configured: ไม่มีการกําหนดค่าแผ่นข้อมูลสําหรับแคมเปญนี้
+            no_datasheet_data: ไม่มีข้อมูลแผ่นข้อมูลสําหรับ %{email} ผู้ใช้
+            user_not_found_in_datasheet: ไม่พบผู้ใช้ในเอกสารข้อมูลแคมเปญ
+      campaign_ai_artifacts: สิ่งประดิษฐ์ AI ของแคมเปญ
       column:
         provider: ผู้จัดหา
       created_successfully: ผู้ช่วย AI ถูกสร้างขึ้นสำเร็จแล้ว
+      errors:
+        cannot_delete_in_use: ไม่สามารถลบ AI Assistant '%{name}' ได้เนื่องจากมีการใช้งานอยู่
       form:
         add_output_schema_key: เพิ่มคีย์แบบแผนเอาต์พุต
         dependencies: การพึ่งพา
@@ -319,6 +386,11 @@ th:
         system_prompt: คำสั่งของระบบ
         type: ประเภท
         user_prompt: คำสั่งของผู้ใช้
+      selector:
+        choose_artifact: เลือก AI Artifact
+        choose_schema_key: เลือกคีย์สคีมา
+        no_assistants_found: ไม่พบผู้ช่วย AI
+        placeholder: เลือก AI Assistant
       updated_successfully: ผู้ช่วย AI ได้รับการอัปเดตสำเร็จแล้ว
     any: " -ใดๆ- "
     api:
@@ -358,6 +430,8 @@ th:
         exceeded_subjects_count: แคมเปญมี %{users} หัวข้อ คุณสามารถเพิ่มได้เฉพาะ %{count} หัวข้อต่อคำเชิญ
         id: รหัส
         invites: เชิญ
+        name: ชื่อ
+        name_placeholder: ป้อนชื่อคําเชิญ
         next: ต่อไป
         not_selected: ไม่ได้เลือก
         requests: คำขอ
@@ -435,6 +509,7 @@ th:
       errors:
         doesnt_have_header: "'%{sub_header}' ไม่มีหัวข้อ"
         invalid_headers: 'หัวข้อต่อไปนี้ไม่ถูกต้อง: %{headers}'
+        invalid_question: รหัสคําถามไม่ถูกต้อง
         invalid_scores: คะแนนสําหรับปัจจัย %{factor_name} ไม่ถูกต้อง คะแนนควรเป็นค่าตัวเลขที่คั่นด้วยจุลภาค
         invalid_sub_header: หัวข้อย่อย '%{sub_header}' ไม่ถูกต้องสำหรับหัวข้อ '%{header}'
         scores_not_allowed: สามารถเพิ่มคะแนนได้เฉพาะคําถามประเภท MultiChoice และ Matrix เท่านั้น
@@ -773,13 +848,9 @@ th:
       users_import: นําเข้า
     bulk_reports:
       create:
-        no_data: ไม่มีข้อมูล
         successfully: รายงานกําลังถูกสร้างขึ้นและคุณจะได้รับแจ้งทางอีเมลเมื่อพร้อม
       download:
         removed: ถูก เอา ออก
-      form:
-        end_date: วันที่สิ้นสุด
-        start_date: วันที่เริ่มต้น
       mailer:
         subject: ดาวน์โหลดรายงานจํานวนมาก
       new:
@@ -1092,6 +1163,7 @@ th:
         is_active: เปิดใช้งาน
         name: ชื่อ
         no_permission_message: คุณไม่มีสิทธิ์ในการแก้ไข
+        title: ผู้เข้าร่วม
         updated_by: อัพเดทโดย
       validations:
         dates:
@@ -1576,12 +1648,16 @@ th:
       add: เพิ่ม
       back: ย้อนกลับ
       cancel: ยกเลิก
+      code: รหัส
       disabled: ไดอะสบลเลอร์
       download_sample_file: ดาวน์โหลดไฟล์ตัวอย่าง
       enabled: เปิด
       import:
         failure_msg: ข้อผิดพลาดขณะนําเข้าไฟล์
+      instructions: คำ แนะ นำ
+      loading: 'การโหลด   '
       minute: นาที
+      name: ชื่อ
       next: ต่อไป
       reset: รี เซ็ต
       save: บันทึก
@@ -1623,6 +1699,7 @@ th:
           {{schedule_end_date}} - วันที่สิ้นสุดกําหนดการ
         campaign: แคมเปญ
         campaign_assessment_group: กลุ่มประเมินผลแคมเปญ
+        cc_recipients: ผู้รับ CC
         client: ลูกค้า
         completion: เสร็จสมบูรณ์
         custom: กำหนดเอง
@@ -1715,6 +1792,7 @@ th:
         back: ย้อนกลับ
         body: 'ร่างกาย:'
         campaign: 'รณรงค์:'
+        cc_recipients: 'ผู้รับ CC:'
         client: 'ลูกค้า:'
         communication_type: 'ประเภทการสื่อสาร:'
         delivery_rule: 'กฎการจัดส่ง:'
@@ -2212,7 +2290,16 @@ th:
       self_rating: เปิดใช้งานการให้คะแนนตนเอง
       show_reflections: แสดงภาพสะท้อน
       skill_gap_report: รายงานช่องว่างทักษะ
+      skill_source_preference: แหล่งที่มาของทักษะ
+      skill_sources:
+        from_ai: จากความรู้ทั่วไป AI
+        from_template: จากเทมเพลตและแผนที่
       skills: ทักษะ
+      skills_privacy_messages:
+        made_private: ทักษะ '%{skill_name}' ถูกทําเครื่องหมายว่าเป็นส่วนตัวและจะถูกซ่อนจากผู้จัดการของคุณ
+        made_public: ผู้จัดการของคุณเห็นทักษะ '%{skill_name}' แล้ว
+        skill_not_found: ไม่พบทักษะ
+        unauthorized: ไม่ได้รับอนุญาตให้ดัดแปลงทักษะนี้
       skills_updated: ทักษะ IDP ได้รับการอัปเดตสำเร็จ
       status:
         draft: ร่าง
@@ -2441,6 +2528,10 @@ th:
         content: คุณแน่ใจหรือไม่ว่าต้องการลบหัวเรื่องที่มีอีเมล '%{subjectEmail}'
         success: หัวข้อที่มีอีเมล '%{subjectEmail}'' ถูกลบออกเรียบร้อยแล้ว
         title: ลบหัวเรื่อง
+      resend_invite:
+        content: ส่งคําเชิญไปยังหัวข้อที่เลือกอีกครั้ง คุณแน่ใจหรือไม่ว่าต้องการดําเนินการต่อ?
+        success: ส่งคําเชิญเรียบร้อยแล้ว
+        title: ส่งคําเชิญอีกครั้ง
       statuses:
         accepted: ยอม รับ
         cancelled: ยก เลิก
@@ -2452,6 +2543,7 @@ th:
         requested_rescheduling: การขอเปลี่ยนกําหนดการ
         requested_rescheduling_rejected: การกําหนดเวลาใหม่ถูกปฏิเสธ
         rescheduled: เลื่อนกําหนดเวลา
+        scheduled: กำหนดไว้แล้ว
       subject: ชื่อเรื่อง
     job_role:
       are_you_sure_to_remove: คุณแน่ใจหรือไม่ที่จะลบ?
@@ -2543,6 +2635,7 @@ th:
     message: ข้อความ
     meta_title: แผงการดูแลระบบ
     navigation:
+      ai_artifacts: สิ่งประดิษฐ์ AI
       ai_assistants: ผู้ช่วย AI
       assessments: การประเมิน
       assessments_reports: การประเมินและรายงาน
@@ -2782,8 +2875,8 @@ th:
       errors:
         create:
           invalid_format: คําจํากัดความระดับต้องเป็นอาร์เรย์ของคําจํากัดความ
-          level_definition_must_exist: การกำหนดระดับไม่สามารถเว้นว่างได้
           level_definition_must_match_level: ต้องมีระดับ %{expected} พอดี แต่ได้รับ %{actual}
+          level_description_must_exist: คําอธิบายระดับต้องไม่ว่างเปล่า
           level_name_must_exist: ชื่อระดับไม่สามารถเว้นว่างได้
           must_be_unique: ต้องไม่ซ้ํากัน
           proficiency_level_exists: ระดับความชํานาญที่มีทักษะและโครงการนี้มีอยู่แล้ว
@@ -3246,6 +3339,29 @@ th:
           repeat_modules: โมดูลที่เลือกจะทําซ้ําในหน้าที่แทรก exta อ้างอิงถึงชื่อโมดูล
         module_pagination: การแบ่งหน้าโมดูล
         repeat_modules: ทําซ้ําโมดูล
+      property_panel:
+        add_new_condition: เพิ่มเงื่อนไขใหม่
+        apply_color_label: 'จากนั้นใช้สีต่อไปนี้:'
+        graph_condition_types:
+          default: เริ่ม ต้น
+          graph_value: ค่ากราฟ
+        graph_value_condition_not_supported_msg: เงื่อนไขค่ากราฟไม่ได้รับการสนับสนุนสําหรับกราฟประเภทนี้ ขณะนี้ตัวเลือกนี้ใช้ได้กับประเภทกราฟด้านล่างเท่านั้น
+        graph_value_conditions_title: เงื่อนไขค่ากราฟ
+        if_graph_value_is: 'ถ้าค่ากราฟเป็น:'
+        manage_graph_value_condition: จัดการเงื่อนไขค่ากราฟ
+        manage_styles_condition: จัดการเงื่อนไขสไตล์
+        missing_value: ค่าที่หายไป
+        predicates:
+          equal_to: เท่ากับ
+          greater_than: มากกว่า
+          greater_than_or_equal: มากกว่าหรือเท่ากับ
+          less_than: น้อยกว่า
+          less_than_or_equal: น้อยกว่าหรือเท่ากับ
+          not_equal_to: ไม่เท่ากับ
+        prefixes:
+          and: และ
+          or: หรือ
+        text_condition_type: 'ประเภทเงื่อนไขข้อความ:'
     report_families:
       create:
         successfully: สร้างชุดรายงาน %{name} เรียบร้อยแล้ว
@@ -3304,6 +3420,19 @@ th:
         pending_qc: รอดําเนินการ QC
         qc_completed: QC เสร็จสมบูรณ์
         qc_in_progress: QC อยู่ระหว่างดําเนินการ
+    report_settings:
+      data_source_types:
+        assessment: การประเมิน
+        campaign_factors: ปัจจัยของแคมเปญ
+        datasheet: เอกสารข้อมูลสินค้า
+        report_data: รายงานข้อมูล
+      tabs:
+        campaign_ai_artifacts: สิ่งประดิษฐ์ AI ของแคมเปญ
+        campaign_factors: ปัจจัยของแคมเปญ
+        data_sheets: เอกสารข้อมูล
+        page_settings: การตั้งค่าหน้า
+        translations: แปล
+      title: การตั้งค่ารายงาน
     reports:
       bulk_marked_as_done: ทําเครื่องหมายเป็นจํานวนมากว่าเสร็จสิ้น
       bulk_upload:
@@ -4001,6 +4130,7 @@ th:
         skill_types:
           behavioural: พฤติกรรม
           other: อื่นๆ
+          qualification: คุณสมบัติ
           technical: เทคนิค
       property_panel:
         add_n_a_option: เพิ่มตัวเลือก N/A
@@ -4340,6 +4470,7 @@ th:
           header: นําเข้าคําแปล
       import:
         successfully: นําเข้าคําแปลเรียบร้อยแล้ว
+        successfully_scheduled: การนําเข้าการแปลถูกกําหนดเวลาเรียบร้อยแล้ว
       reports:
         export: ส่งออกคําแปล
         import: นําเข้าคําแปล

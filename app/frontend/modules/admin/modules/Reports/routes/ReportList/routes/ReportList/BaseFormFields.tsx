@@ -253,33 +253,46 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
         <Flex gap={4}>
           <Form.Item
             name="defaultLanguage"
-            initialValue={report?.defaultLanguage || 'en'}
             style={{ flex: '1 1 auto' }}
           >
             <Select
               disabled={isEditForm}
               onChange={value => handleLanguageChange(value)}
             >
-              {availableLocales.map(locale => (
-                <Select.Option key={locale} value={locale}>
-                  {I18n.t(`languages.${locale}`)}
-                </Select.Option>
-              ))}
+              {availableLocales
+                .filter(locale => locale)
+                .map(locale => (
+                  <Select.Option key={locale} value={locale}>
+                    {I18n.t(`languages.${locale}`)}
+                  </Select.Option>
+                ))}
             </Select>
           </Form.Item>
-          <Tooltip title={I18n.t('administration.reports.edit_default_language.tooltip')}>
-            <Button
-              icon={<EditOutlined />}
-              onClick={showLanguageModal}
-              type="text"
-            />
-          </Tooltip>
+          {isEditForm && (
+            <Tooltip title={I18n.t('administration.reports.edit_default_language.tooltip')}>
+              <Button
+                icon={<EditOutlined />}
+                onClick={showLanguageModal}
+                type="text"
+              />
+            </Tooltip>
+          )}
         </Flex>
       </Form.Item>
       <Form.Item name="otherLanguages" label={I18n.t('reports.columns.other_available_languages')}>
-        <Select mode="multiple">
+        <Select
+          mode="multiple"
+          showSearch
+          filterOption={(input, option) => {
+            if (!option?.children) return false
+            const label = option.children.toString().toLowerCase()
+            const value = option.value?.toString().toLowerCase() || ''
+            const searchInput = input.toLowerCase()
+            return label.includes(searchInput) || value.includes(searchInput)
+          }}
+        >
           {availableLocales
-            .filter(locale => locale !== form.getFieldValue('defaultLanguage'))
+            .filter(locale => locale && locale !== form.getFieldValue('defaultLanguage'))
             .map(locale => (
               <Select.Option key={locale} value={locale}>
                 {I18n.t(`languages.${locale}`)}
@@ -319,11 +332,13 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
             name="tempDefaultLanguage"
           >
             <Select>
-              {availableLocales.map(locale => (
-                <Select.Option key={locale} value={locale}>
-                  {I18n.t(`languages.${locale}`)}
-                </Select.Option>
-              ))}
+              {availableLocales
+                .filter(locale => locale)
+                .map(locale => (
+                  <Select.Option key={locale} value={locale}>
+                    {I18n.t(`languages.${locale}`)}
+                  </Select.Option>
+                ))}
             </Select>
           </Form.Item>
           <Alert

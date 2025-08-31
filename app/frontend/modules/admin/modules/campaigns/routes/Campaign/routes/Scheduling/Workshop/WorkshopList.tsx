@@ -219,7 +219,7 @@ const DEFAULT_RANGE: [dayjs.Dayjs, dayjs.Dayjs] = [
 
 const MAX_AVATARS = 3
 const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
-  <Avatar.Group maxCount={MAX_AVATARS}>
+  <Avatar.Group max={{ count: MAX_AVATARS }}>
     {resources.map((resource: Resource) => (
       <ResourceAvatar
         key={resource.id}

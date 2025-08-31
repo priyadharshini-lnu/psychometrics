@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
   Row, Steps, Result, Button, Layout, Col, Space,
-  Flex,
+  Flex, theme,
 } from 'antd'
 import qs from 'qs'
 import { connect, ConnectedProps } from 'react-redux'
@@ -82,6 +82,8 @@ const CheckingWizardComponent: React.FC<Props> = ({
   const { isMobile } = useContext(MediaQueryContext)
   const { search } = useLocation()
   const mode = new URLSearchParams(search).get('mode')
+  const { token } = theme.useToken()
+
   if (checks.video) {
     checks.audio = false
   }
@@ -160,7 +162,7 @@ const CheckingWizardComponent: React.FC<Props> = ({
             <div
               style={{
                 background: index < currentStep || getSteps()[currentStep].key === step.key
-                  ? '#009ea7' : '#fff',
+                  ? token.colorPrimary : token.colorWhite,
               }}
               className={styles.rounded}
             >

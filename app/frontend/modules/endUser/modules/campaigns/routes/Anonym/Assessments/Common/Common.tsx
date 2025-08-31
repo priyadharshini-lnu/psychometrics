@@ -56,7 +56,9 @@ const CommonComponent: React.FC<Props> = ({
     },
   },
   preview,
-  preview: { enableProgress, initialized, started },
+  preview: {
+    enableProgress, initialized, started, extraOptions,
+  },
   progress,
   markAssessmentTimedOut,
 }) => {
@@ -82,6 +84,8 @@ const CommonComponent: React.FC<Props> = ({
   const reset = () => {
     window.location.href = `${window.location.pathname}/restart${window.location.search}`
   }
+
+  const hideNavigationBack = extraOptions?.disable_navigation_back
 
   return (
     <>
@@ -126,6 +130,7 @@ const CommonComponent: React.FC<Props> = ({
         >
           <SubHeader
             title={assessment.name}
+            hideBackIcon={hideNavigationBack}
             extra={enableProgress
             && (
               <Progress

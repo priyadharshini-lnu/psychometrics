@@ -376,11 +376,11 @@ ko:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: '행 %{row}: %{field}에 대한 중복 값 %{value}'
+              duplicate_value: "%{sheet_name}, 행 %{row}: %{field}에 대한 중복 값 %{value}"
               invalid_format: xlsx 파일을 업로드하세요.
               missing_headers: "%{sheet_name} 시트에 필수 헤더가 없습니다: %{headers}"
               missing_sheets: '필요한 시트가 누락되었습니다: %{sheets}'
-              missing_value: '행 %{row}: %{field}에 대한 누락된 값'
+              missing_value: "%{sheet_name}, 행 %{row}: %{field}에 대한 누락된 값"
             project:
               must_exist: 프로젝트가 존재해야 합니다.
         update_norm:
@@ -440,10 +440,13 @@ ko:
           iiht: IIHT
           lead_assessor_form: 리드 평가자 양식
           meeting: 회의
+          mettl: 메틀
           organisational: 설문조사
           pearson: Pearson
           psychometric: 평가
           saville: Saville
+          simulation: 시뮬레이션
+          skillvue: 스킬뷰
           threesixty: 360 캠페인
         category: 카테고리
         created_at: 생성 날짜
@@ -457,8 +460,11 @@ ko:
           common: TTE 평가
           hogan: Hogan
           iiht: IIHT 평가
+          mettl: Mettl 평가
           pearson: 피어슨 평가
           saville: 새빌 평가
+          simulation: 시뮬레이션 평가
+          skillvue: Skillvue 평가
         updated_at: 수정된 날짜
       assign:
         completed_at: 완료 날짜
@@ -811,6 +817,7 @@ ko:
         bulk_download_idp_reports: IDP 보고서 대량 다운로드
         bulk_download_reports: 보고서 대량 다운로드
         bulk_download_user_reports: 사용자 보고서 대량 다운로드
+        bulk_generate_user_campaign_ai_artifact_results: 캠페인 AI 아티팩트 결과 대량 생성
         bulk_regenerate_reports: 캠페인 보고서 재생성
         bulk_regenerate_threesixty_reports: 주제 보고서 3십 개 재생성하기
         bulk_regenerate_user_reports: 사용자 보고서 다시 생성
@@ -847,6 +854,7 @@ ko:
         external_assessment_export: 외부 결과 내보내기
         import_accesssheet: 액세스 시트 가져오기
         import_assessment_questions: 가져오기 평가 질문
+        import_assessment_translations: 평가 번역 가져오기
         import_assessors: 평가자 가져오기
         import_campaign_factors: 캠페인 요소 가져오기
         import_datasheet: 데이터시트 가져오기
@@ -1127,6 +1135,10 @@ ko:
         mic: 마이크
       discard: 폐기
       discard_record_again: 삭제 후 다시 기록
+      error_while_discarding: 기존 비디오를 삭제하지 못했습니다.
+      error_while_uploading: 업로드를 완료하는 동안 알 수 없는 오류가 발생했습니다.
+      failed_to_access_permission: 카메라 및 마이크에 액세스하지 못했습니다.
+      failed_to_complete_upload: '업로드 완료 실패: 사용할 수 있는 URL 세부 정보가 없습니다.'
       media_recorder:
         failure: 이 브라우저는 동영상 녹화를 지원하지 않습니다. 동영상 녹화를 위해서는 Chrome 또는 Firefox를 사용하세요
         success: 성공
@@ -1778,6 +1790,7 @@ ko:
     column:
       action: 액션
       active: 활성
+      ai_assistant: AI 어시스턴트
       allow_multiple_responses: 여러 개의 응답 허용
       approval_notification_list: 승인 알림 사용자 목록
       approvers_list: 승인자 목록
@@ -1868,7 +1881,9 @@ ko:
       continue: 계속하기
       copied: 클립보드에 복사
       default: 기본값
+      disabled: 비활성화
       download: 다운로드
+      enabled: 사용
       file: 파일
       global_import: 글로벌 가져오기란 무엇인가요?
       minutes: 분
@@ -2839,6 +2854,8 @@ ko:
     zh-HK: 중국어(홍콩)
     zh-Hant: 중국어 - 번체
     zh-TW: 중국어(대만)
+  languages_localized:
+    sl: 슬로벤슈치나
   license_usage:
     active: 활성
     campaign_name: 캠페인 이름
@@ -3811,22 +3828,22 @@ ko:
     privacy_notice: 개인정보 고지
   time:
     formats:
-      date: d/%m/%y
+      date: "%d/%m/%y"
       datetimepicker_client: DD/MM/YYYY hh:mm A
       datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z
-      datetimepicker_server: d/%m/%Y %I:%M %p
-      datetimepicker_server_with_timezone: d %b %Y / %H:%M %:z
+      datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
       datetimepicker_without_time_client: DD/MM/YYYY
-      datetimepicker_without_time_server: d/%m/%Y
+      datetimepicker_without_time_server: "%d/%m/%Y"
       devise:
         mailer:
           invitation_instructions:
-            accept_until_format: b %d, %Y %I:%M %p
-      iso8601_without_seconds_and_timezone: y-%m-%dT%H:%M
-      short: d %b %Y / %H:%M
-      short_date: d %b %Y
-      with_time_zone: d %b %Y %I:%M %p %:z
-      workshop_date: e %B %Y, %l:%M %p %:z
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
+      short_date: "%d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
     active: 활성
     allow_multiple_respones: 사용자가 여러 개의 응답을 제출할 수 있도록 허용

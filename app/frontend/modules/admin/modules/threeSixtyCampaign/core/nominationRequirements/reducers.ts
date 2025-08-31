@@ -82,7 +82,7 @@ const HANDLERS = {
           {
             relationshipId,
             comparator: 'atleast',
-            value: 2,
+            value: '2',
           },
         ],
       }],

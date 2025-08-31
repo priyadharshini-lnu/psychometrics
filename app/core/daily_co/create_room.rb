@@ -46,8 +46,7 @@ module DailyCo
         geo: 'eu-central-1'
       }
 
-      if meeting_room.video_recording_enabled?
-        properties[:enable_recording] = 'cloud'
+      unless Settings.features.disable_meeting_recording
         properties[:recordings_bucket] = {
           bucket_name: Settings.secrets.s3_compatible_storage[:dailyco_bucket],
           bucket_region: Settings.secrets.s3_compatible_storage[:region],

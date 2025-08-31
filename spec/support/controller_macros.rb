@@ -2,7 +2,7 @@
 
 module ControllerMacros
   def login_user(user)
-    request.host = "#{user.project.subdomain}.ttedev.me" if user.project
+    request.host = "#{user.project.subdomain}.localhost" if user.project
     sign_in(user)
   end
 end

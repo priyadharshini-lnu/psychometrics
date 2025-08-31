@@ -36,7 +36,6 @@ const DataSourceOptionsDropdown = (props:Props) => {
       isMulti={isMulti}
       formatOptionLabel={formatOptionLabel}
       components={{ Option: CustomOption }}
-      placeholder={isMulti ? 'Choose Factor' : 'Choose Factors'}
     />
   )
 }

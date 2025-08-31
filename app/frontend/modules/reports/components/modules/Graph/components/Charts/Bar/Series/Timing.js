@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import AppStore from '~/modules/reports/store/AppStore'
+import { getColorForGraphValue, isGraphValueCondition } from '~/modules/reports/utils/GraphValueCondition'
 
 export const TYPES = {
   firstClick: 'First Click',
@@ -22,15 +23,19 @@ export const Functions = {
 
 export default {
   series (results, question, model, func = 'Mean') {
-    const colors = _.map(model.props.colors, 'color')
+    const useColorsFromGraphValueConditions = isGraphValueCondition(model.props.textConditionType)
+    const colors = !useColorsFromGraphValueConditions ? _.map(model.props.colors, 'color') : []
     if (Array.isArray(results)) {
       return _.map(results, (res, i) => {
         const commonData = _.map(TYPES, (label, key) => {
           const data = (Functions[func] || Functions.Mean)(res.results.questions[question.id], key)
+          const barColor = useColorsFromGraphValueConditions
+            ? getColorForGraphValue(model.props.graphValueConditions, data) : colors[i]
           return {
             name: model.props.choicesTexts[i] || label,
             y: data,
             drilldown: label,
+            color: barColor,
           }
         })
         return {

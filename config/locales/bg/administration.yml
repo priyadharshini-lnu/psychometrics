@@ -291,6 +291,48 @@ bg:
             manage: Управлявам
             title: Семинари
             view: Изглед
+    ai_artifacts:
+      artifact_results: Резултати от артефакти
+      code: Код
+      form:
+        add_assessment: Добавяне на оценяване
+        ai_assistant: AI асистент
+        assessments: Оценки
+        campaign_factors: Фактори на кампанията
+        configuration: Конфигурация
+        datasheet: Лист с данни
+        datasheet_columns: Колони на листа с данни
+        include_all_datasheet_columns: Включване на всички колони на листа с данни
+        no_assessment_selected: Все още не са добавени оценки. Щракнете върху "Добавяне", за да започнете.
+        questions_required: Трябва да се избере поне един въпрос
+        select_ai_assistant: Изберете AI Assistant
+        select_assessment: Изберете оценяване
+        select_campaign_factors: Изберете фактори на кампанията
+        select_datasheet_columns: Изберете колони на лист с данни
+        select_questions: Изберете въпроси
+        title: AI артефакт
+      generate: Пораждам
+      generate_result_info_message: Резултатите се генерират, моля, опреснете страницата, за да видите актуализираните резултати.
+      generate_results: Генериране на резултати
+      generated_at: Генерирано в
+      generated_at_time: Генерирано в %{time}
+      generated_value: Генерирана стойност
+      id: Документ за самоличност
+      key: Ключ
+      name: Име
+      parsed_dependencies:
+        help: Анализирани зависимости за потребителя, използвани от AI Assistant за генериране на резултати от артефакти
+        title: Анализирани зависимости
+        view: Преглед на анализирани зависимости
+      playground: Площадка
+      playground_info: Тествайте артефакта си с примерни данни, за да прегледате генерираните резултати.
+      playground_placeholder: Въведете тестови данни
+      raw: СУРОВИ
+      tabs:
+        results: Резултати
+        settings: Настройки
+      test_generate: Генериране на тест
+      unsaved_changes: Налице са незапазени промени, помислете за изпращане на формуляр, за да генерирате актуализиран отговор от Playground.
     ai_assistants:
       actions:
         create: Създаване на AI Assistant
@@ -298,9 +340,34 @@ bg:
         playground: Площадка
       ai_assistants: ИИ асистенти
       ai_assistants_playground: ИИ асистент детска площадка
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: Липсва идентификатор на конфигурацията на оценяването
+            assessment_missing_questions: В конфигурацията на оценяването липсват въпроси за оценяване %{assessment_id}
+            no_assessments_configured: Не са конфигурирани оценявания
+            no_assessments_configured_for_artifact: За този артефакт не са конфигурирани оценки
+            no_completed_results: Не са открити завършени резултати от оценката за %{assessment_name}
+            no_valid_assessment_data: Няма валидни данни за оценка
+          base:
+            dependency_not_configured: Зависимостта "%{dependency}" не е конфигурирана
+          campaign_factor:
+            factor_empty_value: Факторът на кампанията "%{code}" (%{name}) има празна стойност за потребителски %{email}
+            factor_no_value: Факторът на кампанията "%{code}" (%{name}) няма стойност, определена за потребителски %{email}
+            no_campaign_factors_configured: За този артефакт не са конфигурирани фактори на кампанията
+            no_valid_factor_data: Няма валидни данни за факторите на кампанията
+          datasheet:
+            column_no_value: Колона "%{column}" няма стойност за потребителски %{email}
+            no_datasheet_columns_configured: Не са конфигурирани конкретни колони на лист с данни
+            no_datasheet_configured: За тази кампания не е конфигуриран лист с данни
+            no_datasheet_data: Няма налични данни в листа с данни за потребителски %{email}
+            user_not_found_in_datasheet: Потребителят не е намерен в информационния лист на кампанията
+      campaign_ai_artifacts: Артефакти с изкуствен интелект на кампанията
       column:
         provider: Доставчик
       created_successfully: AI Assistant е създаден успешно.
+      errors:
+        cannot_delete_in_use: Не може да се изтрие AI Assistant '%{name}', защото се използва.
       form:
         add_output_schema_key: Добавяне на ключ на изходната схема
         dependencies: Зависимости
@@ -319,6 +386,11 @@ bg:
         system_prompt: Системна подкана
         type: Тип
         user_prompt: Потребителска подкана
+      selector:
+        choose_artifact: Изберете AI артефакт
+        choose_schema_key: Изберете ключ на схемата
+        no_assistants_found: Няма намерени AI асистенти
+        placeholder: Изберете AI Assistant
       updated_successfully: AI Assistant е актуализиран успешно.
     any: " -Всякакъв- "
     api:
@@ -358,6 +430,8 @@ bg:
         exceeded_subjects_count: Кампанията има %{users} теми. Можете да добавяте само %{count} теми на покана
         id: Идентификатор
         invites: Покани
+        name: Име
+        name_placeholder: Въведете име на поканата
         next: Следващ
         not_selected: Не е избрано
         requests: Заявки
@@ -435,6 +509,7 @@ bg:
       errors:
         doesnt_have_header: "'%{sub_header}' няма заглавие"
         invalid_headers: 'Следните заглавия са невалидни: %{headers}'
+        invalid_question: Невалиден идентификационен номер на въпроса
         invalid_scores: Резултатите за фактор %{factor_name} са невалидни. Резултатите трябва да бъдат числови стойности, разделени със запетая
         invalid_sub_header: "'%{sub_header}' не е валидно подзаглавие за заглавие '%{header}'"
         scores_not_allowed: Резултати могат да се добавят само за въпроси от типа MultiChoice и Matrix
@@ -773,13 +848,9 @@ bg:
       users_import: Импортирам
     bulk_reports:
       create:
-        no_data: Няма данни
         successfully: Отчетите се създават и ще бъдете уведомени по имейл, когато са готови
       download:
         removed: Отстранени
-      form:
-        end_date: Крайна дата
-        start_date: Начална дата
       mailer:
         subject: Изтегляне на групови отчети
       new:
@@ -1092,6 +1163,7 @@ bg:
         is_active: Активен
         name: Име
         no_permission_message: Нямате разрешение за промяна
+        title: Потребители
         updated_by: Актуализирано от
       validations:
         dates:
@@ -1576,12 +1648,16 @@ bg:
       add: Добавям
       back: Гръб
       cancel: Отмени
+      code: Код
       disabled: Диасблеиран
       download_sample_file: Изтеглете примерен файл
       enabled: Разрешено
       import:
         failure_msg: Грешка при импортиране на файл.
+      instructions: Инструкции
+      loading: Зареждане...
       minute: минута
+      name: Име
       next: Следващ
       reset: Проучване
       save: Спасявам
@@ -1623,6 +1699,7 @@ bg:
           {{schedule_end_date}} - Крайна дата на графика
         campaign: Кампания
         campaign_assessment_group: Група за оценка на кампанията
+        cc_recipients: Получатели на CC
         client: Клиент
         completion: Завършване
         custom: Потребителски
@@ -1715,6 +1792,7 @@ bg:
         back: Гръб
         body: 'Тяло:'
         campaign: 'Кампания:'
+        cc_recipients: 'Получатели на CC:'
         client: 'Клиент:'
         communication_type: 'Тип комуникация:'
         delivery_rule: 'Правило за доставка:'
@@ -2212,7 +2290,16 @@ bg:
       self_rating: Активиране на самооценка
       show_reflections: Показване на размисли
       skill_gap_report: Доклад за пропуските в уменията
+      skill_source_preference: Източник на умения
+      skill_sources:
+        from_ai: От общите познания за AI
+        from_template: От шаблони и съпоставяния
       skills: Умения
+      skills_privacy_messages:
+        made_private: Умението "%{skill_name}" е маркирано като лично и ще бъде скрито от вашия мениджър
+        made_public: Умението "%{skill_name}" вече е видимо за вашия мениджър
+        skill_not_found: Умението не е намерено
+        unauthorized: Неупълномощено е да променя това умение
       skills_updated: Успешно актуализиране на уменията в IDP
       status:
         draft: Проект
@@ -2441,6 +2528,10 @@ bg:
         content: Сигурни ли сте, че искате да премахнете темата с имейл '%{subjectEmail}'?
         success: Темата с имейл '%{subjectEmail}'' беше успешно премахната.
         title: Премахване на темата
+      resend_invite:
+        content: Изпратете отново покана за избраните теми. Сигурни ли сте, че искате да продължите?
+        success: Поканите успешно се възмущават.
+        title: Повторно изпращане на покана
       statuses:
         accepted: Приети
         cancelled: Отменени
@@ -2452,6 +2543,7 @@ bg:
         requested_rescheduling: Заявено разсрочване
         requested_rescheduling_rejected: Отхвърлено разсрочване
         rescheduled: Пренасрочен
+        scheduled: Планирано
       subject: Предмет
     job_role:
       are_you_sure_to_remove: Сигурни ли сте, че ще премахнете?
@@ -2543,6 +2635,7 @@ bg:
     message: Съобщение
     meta_title: Административен панел
     navigation:
+      ai_artifacts: Артефакти с изкуствен интелект
       ai_assistants: AI асистенти
       assessments: Оценки
       assessments_reports: Оценки и отчети
@@ -2782,8 +2875,8 @@ bg:
       errors:
         create:
           invalid_format: Дефиницията на нивото трябва да бъде масив от дефиниции.
-          level_definition_must_exist: Определението на нивото не може да бъде празно
           level_definition_must_match_level: трябва да съдържа точно %{expected} нива, но са дадени %{actual}
+          level_description_must_exist: Описанието на нивото не може да е празно
           level_name_must_exist: Името на нивото не може да бъде празно
           must_be_unique: Трябва да е уникално
           proficiency_level_exists: Ниво на владеене с това умение и проект вече съществува
@@ -3246,6 +3339,29 @@ bg:
           repeat_modules: Избраните модули ще бъдат повторени на exta insert страници, препраща към името на модула
         module_pagination: Пагинация на модули
         repeat_modules: Повтарящи се модули
+      property_panel:
+        add_new_condition: Добавяне на ново условие
+        apply_color_label: 'След това нанесете следния цвят:'
+        graph_condition_types:
+          default: По подразбиране
+          graph_value: Стойност на графиката
+        graph_value_condition_not_supported_msg: Условията за стойност на графиката не се поддържат за този тип графика. Понастоящем тази опция е налична само за типовете графики по-долу.
+        graph_value_conditions_title: Условия на стойността на графиката
+        if_graph_value_is: 'Ако стойността на графиката е:'
+        manage_graph_value_condition: Управление на условието на стойността на графиката
+        manage_styles_condition: Управление на състоянието на стиловете
+        missing_value: Липсваща стойност
+        predicates:
+          equal_to: Равен на
+          greater_than: По-голям от
+          greater_than_or_equal: По-голямо или равно на
+          less_than: По-малко от
+          less_than_or_equal: По-малко или равно на
+          not_equal_to: Не е равно на
+        prefixes:
+          and: И
+          or: ИЛИ
+        text_condition_type: 'Тип условие на текста:'
     report_families:
       create:
         successfully: Пакетът за отчети %{name} е създаден успешно.
@@ -3304,6 +3420,19 @@ bg:
         pending_qc: Изчакване на КК
         qc_completed: Завършен QC
         qc_in_progress: QC в процес на обучение
+    report_settings:
+      data_source_types:
+        assessment: Оценка
+        campaign_factors: Фактори на кампанията
+        datasheet: Лист с данни
+        report_data: Отчет Данни
+      tabs:
+        campaign_ai_artifacts: Артефакти с изкуствен интелект на кампанията
+        campaign_factors: Фактори на кампанията
+        data_sheets: Информационни листове
+        page_settings: Настройки на страницата
+        translations: Преводи
+      title: Настройки на отчета
     reports:
       bulk_marked_as_done: Групово маркирано като готово
       bulk_upload:
@@ -4001,6 +4130,7 @@ bg:
         skill_types:
           behavioural: Поведенчески
           other: Други
+          qualification: Квалификация
           technical: Технически
       property_panel:
         add_n_a_option: Добавяне на опция N/A
@@ -4340,6 +4470,7 @@ bg:
           header: Импортиране на преводи
       import:
         successfully: Преводите бяха импортирани успешно
+        successfully_scheduled: Импортирането на преводи беше планирано успешно.
       reports:
         export: Експортиране на преводи
         import: Импортиране на преводи

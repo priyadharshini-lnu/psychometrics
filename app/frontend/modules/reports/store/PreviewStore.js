@@ -12,13 +12,15 @@ const PreviewStore = function () {
 PreviewStore.prototype = new EventEmitter()
 
 _.extend(PreviewStore.prototype, {
-  init (data, results, user, campaign = null, userReportData = [], campaignFactorResults = []) {
+  init (data, results, user, campaign = null, userReportData = [],
+    campaignFactorResults = [], campaignAiArtifactResults = []) {
     this.reset()
     AppStore.init(data)
     _.each(data.assessments, (assessment) => { ResultStore.results[assessment.id] = new Result(assessment.id) })
     if (results) {
       const assessmentIds = _.map(data.assessments, assessment => assessment.id)
-      ResultStore.setResults(results, user, assessmentIds, campaign, userReportData, campaignFactorResults)
+      ResultStore.setResults(results, user, assessmentIds, campaign, userReportData,
+        campaignFactorResults, campaignAiArtifactResults)
     } else {
       PageList.load(data.pages, data.completed_assessments)
     }

@@ -41,6 +41,54 @@ describe Campaign, type: :model do
     end
   end
 
+  describe '#datasheet_column_records' do
+    it 'returns campaign datasheet column records when no project datasheet exists' do
+      datasheet = create(:datasheet, campaign: campaign)
+      column = create(:sheet_column, name: 'Name', column_type: 'string', sheet: datasheet)
+
+      records = campaign.datasheet_column_records
+      expect(records).to have_attributes(length: 1)
+      expect(records.first).to eq(column)
+    end
+
+    it 'returns project datasheet column records when no campaign datasheet exists' do
+      datasheet = create(:datasheet, project: project)
+      column = create(:sheet_column, name: 'Name', column_type: 'string', sheet: datasheet)
+
+      records = campaign.datasheet_column_records
+      expect(records).to have_attributes(length: 1)
+      expect(records.first).to eq(column)
+    end
+
+    it 'returns combined datasheet column records from both project and campaign' do
+      c_datasheet = create(:datasheet, campaign: campaign)
+      p_datasheet = create(:datasheet, project: project)
+      campaign_column = create(:sheet_column, name: 'Title', column_type: 'text', sheet: c_datasheet)
+      project_column = create(:sheet_column, name: 'Name', column_type: 'string', sheet: p_datasheet)
+
+      records = campaign.datasheet_column_records
+      expect(records).to have_attributes(length: 2)
+      expect(records).to include(project_column, campaign_column)
+    end
+
+    it 'prioritizes campaign column over project column when names are the same' do
+      c_datasheet = create(:datasheet, campaign: campaign)
+      p_datasheet = create(:datasheet, project: project)
+      campaign_column = create(:sheet_column, name: 'Name', column_type: 'text', sheet: c_datasheet)
+      project_column = create(:sheet_column, name: 'Name', column_type: 'string', sheet: p_datasheet)
+
+      records = campaign.datasheet_column_records
+      expect(records).to have_attributes(length: 1)
+      expect(records.first).to eq(campaign_column)
+      expect(records.first).not_to eq(project_column)
+    end
+
+    it 'returns empty array when no datasheets exist' do
+      records = campaign.datasheet_column_records
+      expect(records).to eq([])
+    end
+  end
+
   describe '#datasheet_column_names' do
     it 'return keys for datasheet_columns' do
       allow(campaign).to receive(:datasheet_columns).and_return([{ 'name' => 'Name', 'type' => 'String' },

@@ -69,4 +69,5 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
 
   config.assets.precompile += %w[test.scss]
+  config.action_dispatch.tld_length = 0 if Settings.domain == 'localhost'
 end

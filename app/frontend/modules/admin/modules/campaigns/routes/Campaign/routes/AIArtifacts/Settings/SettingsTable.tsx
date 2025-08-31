@@ -1,0 +1,106 @@
+import React from 'react'
+import {
+  Button,
+} from 'antd'
+import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { MenuItem } from '~/interfaces/Antd'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { AiArtifact } from '~/modules/admin/modules/campaigns/core/aiArtifacts'
+
+const { I18n } = window
+
+type Props = {
+    onEditAIArtifact: (aiArtifact: AiArtifact) => void
+}
+export const SettingsTable: React.FC<Props> = ({ onEditAIArtifact }:Props) => {
+  const { resource } = useResourceContext<AiArtifact>()
+
+  const handleDeleteAIArtifact = (id: string) => {
+    resource.removeResource(id)
+  }
+  return (
+    <>
+      <Resource.Table pagination>
+        <Resource.Column<AiArtifact>
+          title={I18n.t('common.column.id')}
+          id="id"
+          sorter
+          width={100}
+        />
+        <Resource.Column<AiArtifact>
+          title={I18n.t('common.column.name')}
+          id="name"
+          sorter
+          width={200}
+        />
+        <Resource.Column<AiArtifact>
+          title={I18n.t('administration.ai_artifacts.code')}
+          id="code"
+          width={200}
+          render={(_, aiArtifact) => <span>{aiArtifact.code}</span>}
+        />
+        <Resource.Column<AiArtifact>
+          title={I18n.t('common.column.ai_assistant')}
+          id="aiAssistant"
+          width={200}
+          render={(_, aiArtifact) => (
+            <span>{aiArtifact.aiAssistant?.name}</span>
+          )}
+        />
+        <Resource.Column<AiArtifact>
+          title={I18n.t('common.column.action')}
+          id="action"
+          render={(_, aiArtifact) => (
+            <Dropdown
+              aiArtifact={aiArtifact}
+              onEditAIArtifact={onEditAIArtifact}
+              onDeleteAIArtifact={handleDeleteAIArtifact}
+            />
+          )}
+          width={100}
+        />
+      </Resource.Table>
+    </>
+  )
+}
+
+const Dropdown = props => (
+  <ConditionalDropdown
+    menu={getActionsMenuProps(props)}
+  />
+)
+
+type MenuProps = {
+    aiArtifact: AiArtifact
+    onEditAIArtifact: (aiArtifact: AiArtifact) => void
+    onDeleteAIArtifact: (id: string) => void
+}
+
+const getActionsMenuProps = ({ aiArtifact, onEditAIArtifact, onDeleteAIArtifact }: MenuProps) => {
+  const menuItems = [
+    {
+      key: 'edit',
+      label: (
+        <Button
+          type="link"
+          className="ps-0"
+          onClick={() => onEditAIArtifact(aiArtifact)}
+        >
+          {I18n.t('common.actions.edit')}
+        </Button>),
+    },
+    {
+      key: 'delete',
+      label: (
+        <Button
+          type="link"
+          className="ps-0"
+          onClick={() => onDeleteAIArtifact(aiArtifact.id)}
+        >
+          {I18n.t('common.actions.delete')}
+        </Button>),
+    },
+  ].filter(m => m) as MenuItem[]
+
+  return ({ items: menuItems })
+}

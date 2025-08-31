@@ -13,13 +13,15 @@ const ResultStore = function () {
 ResultStore.prototype = new EventEmitter()
 
 _.extend(ResultStore.prototype, {
-  setResults (resultGroups, user, assessmentIds, campaign = {}, userReportData = [], campaignFactorResults = []) {
+  setResults (resultGroups, user, assessmentIds, campaign = {}, userReportData = [],
+    campaignFactorResults = [], campaignAiArtifactResults = []) {
     _.each(assessmentIds, (id) => {
       this.results[id] = new Result(id)
     })
     this.user = JSON.parse(user)
     this.userReportData = userReportData
     this.campaignFactorResults = campaignFactorResults
+    this.campaignAiArtifactResults = campaignAiArtifactResults
     this.campaignDetails = JSON.parse(campaign)
     _.each(resultGroups, (results, assessmentId) => {
       this.results[assessmentId].init(results,

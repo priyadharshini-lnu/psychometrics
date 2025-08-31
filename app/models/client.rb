@@ -333,6 +333,10 @@ class Client < ApplicationRecord
     )
   end
 
+  def feature_enabled?(feature_flag)
+    client_feature.send(:"#{feature_flag}?")
+  end
+
   private
 
   def generate_hogan_group_name

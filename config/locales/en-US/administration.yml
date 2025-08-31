@@ -291,6 +291,48 @@ en-US:
             manage: Manage
             title: Workshops
             view: View
+    ai_artifacts:
+      artifact_results: Artifact Results
+      code: Code
+      form:
+        add_assessment: Add Assessment
+        ai_assistant: AI Assistant
+        assessments: Assessments
+        campaign_factors: Campaign Factors
+        configuration: Configuration
+        datasheet: Datasheet
+        datasheet_columns: Datasheet Columns
+        include_all_datasheet_columns: Include All Datasheet Columns
+        no_assessment_selected: No assessments added yet. Click "Add" to get started.
+        questions_required: At least one question must be selected
+        select_ai_assistant: Select AI Assistant
+        select_assessment: Select Assessment
+        select_campaign_factors: Select Campaign Factors
+        select_datasheet_columns: Select Datasheet Columns
+        select_questions: Select Questions
+        title: AI Artifact
+      generate: Generate
+      generate_result_info_message: Results are being generated, please refresh the page to see the updated results.
+      generate_results: Generate Results
+      generated_at: Generated At
+      generated_at_time: Generated at %{time}
+      generated_value: Generated Value
+      id: ID
+      key: Key
+      name: Name
+      parsed_dependencies:
+        help: Parsed dependencies for the user used by the AI Assistant for artifact results generation
+        title: Parsed Dependencies
+        view: View Parsed Dependencies
+      playground: Playground
+      playground_info: Test your artifact with sample data to preview generated results.
+      playground_placeholder: Enter test data
+      raw: RAW
+      tabs:
+        results: Results
+        settings: Settings
+      test_generate: Test Generate
+      unsaved_changes: Unsaved changes are present, consider submitting form to generate updated response from Playground.
     ai_assistants:
       actions:
         create: Create AI Assistant
@@ -298,9 +340,34 @@ en-US:
         playground: Playground
       ai_assistants: AI Assistants
       ai_assistants_playground: AI Assistant Playground
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: Assessment configuration is missing id of the assessment
+            assessment_missing_questions: Assessment configuration is missing questions for assessment %{assessment_id}
+            no_assessments_configured: No assessments are configured
+            no_assessments_configured_for_artifact: No assessments are configured for this artifact
+            no_completed_results: No completed assessment results found for assessment %{assessment_name}
+            no_valid_assessment_data: No valid assessment data available
+          base:
+            dependency_not_configured: Dependency '%{dependency}' is not configured
+          campaign_factor:
+            factor_empty_value: Campaign factor '%{code}' (%{name}) has an empty value for user %{email}
+            factor_no_value: Campaign factor '%{code}' (%{name}) has no value assigned for user %{email}
+            no_campaign_factors_configured: No campaign factors are configured for this artifact
+            no_valid_factor_data: No valid campaign factor data available
+          datasheet:
+            column_no_value: Column '%{column}' has no value for user %{email}
+            no_datasheet_columns_configured: No specific datasheet columns are configured
+            no_datasheet_configured: No datasheet is configured for this campaign
+            no_datasheet_data: No datasheet data available for user %{email}
+            user_not_found_in_datasheet: User not found in the campaign datasheet
+      campaign_ai_artifacts: Campaign AI Artifacts
       column:
         provider: Provider
       created_successfully: AI Assistant was created successfully.
+      errors:
+        cannot_delete_in_use: Cannot delete AI Assistant '%{name}' because it is being used.
       form:
         add_output_schema_key: Add Output Schema Key
         dependencies: Dependencies
@@ -319,6 +386,11 @@ en-US:
         system_prompt: System Prompt
         type: Type
         user_prompt: User Prompt
+      selector:
+        choose_artifact: Choose AI Artifact
+        choose_schema_key: Choose Schema Key
+        no_assistants_found: No AI Assistants found
+        placeholder: Select AI Assistant
       updated_successfully: AI Assistant was updated successfully.
     any: " - Any - "
     api:
@@ -358,6 +430,8 @@ en-US:
         exceeded_subjects_count: Campaign has %{users} subjects. You can only add %{count} subjects per invite
         id: ID
         invites: Invites
+        name: Name
+        name_placeholder: Enter invite name
         next: Next
         not_selected: Not selected
         requests: Requests
@@ -435,6 +509,7 @@ en-US:
       errors:
         doesnt_have_header: "'%{sub_header}' does not have header"
         invalid_headers: 'Following headers are invalid: %{headers}'
+        invalid_question: Invalid question ID
         invalid_scores: Scores for factor %{factor_name} are invalid. Scores should be comma separated numeric values
         invalid_sub_header: "'%{sub_header}' is not a valid subheader for header '%{header}'"
         scores_not_allowed: Scores can only be added for MultiChoice and Matrix type question
@@ -773,13 +848,9 @@ en-US:
       users_import: Import
     bulk_reports:
       create:
-        no_data: No data
         successfully: The reports are being created and you will be notified via email when ready
       download:
         removed: Removed
-      form:
-        end_date: End date
-        start_date: Start date
       mailer:
         subject: Download bulk reports
       new:
@@ -1092,6 +1163,7 @@ en-US:
         is_active: Active
         name: Name
         no_permission_message: You do not have permission to modify
+        title: Users
         updated_by: Updated By
       validations:
         dates:
@@ -1576,12 +1648,16 @@ en-US:
       add: Add
       back: Back
       cancel: Cancel
+      code: Code
       disabled: Diasbled
       download_sample_file: Download Sample File
       enabled: Enabled
       import:
         failure_msg: Error while importing file.
+      instructions: Instructions
+      loading: Loading...
       minute: minute
+      name: Name
       next: Next
       reset: Reset
       save: Save
@@ -1623,6 +1699,7 @@ en-US:
           {{schedule_end_date}} - Schedule End Date
         campaign: Campaign
         campaign_assessment_group: Campaign Assessment Group
+        cc_recipients: CC Recipients
         client: Client
         completion: Completion
         custom: Custom
@@ -1715,6 +1792,7 @@ en-US:
         back: Back
         body: 'Body:'
         campaign: 'Campaign:'
+        cc_recipients: 'CC Recipients:'
         client: 'Client:'
         communication_type: 'Communication type:'
         delivery_rule: 'Delivery rule:'
@@ -2212,7 +2290,16 @@ en-US:
       self_rating: Enable Self Rating
       show_reflections: Show Reflections
       skill_gap_report: Skill Gap Report
+      skill_source_preference: Skill Source
+      skill_sources:
+        from_ai: From General AI Knowledge
+        from_template: From Template & Mappings
       skills: Skills
+      skills_privacy_messages:
+        made_private: Skill '%{skill_name}' has been marked as private and will be hidden from your manager
+        made_public: Skill '%{skill_name}' is now visible to your manager
+        skill_not_found: Skill not found
+        unauthorized: Unauthorized to modify this skill
       skills_updated: IDP Skills updated successfully
       status:
         draft: Draft
@@ -2441,6 +2528,10 @@ en-US:
         content: Are you sure you want to remove the subject with email '%{subjectEmail}'?
         success: Subject with email '%{subjectEmail}'' was successfully removed.
         title: Remove Subject
+      resend_invite:
+        content: Resend invite to the selected subjects. Are you sure you want to proceed?
+        success: Invitations successfully resent.
+        title: Resend Invite
       statuses:
         accepted: Accepted
         cancelled: Cancelled
@@ -2452,6 +2543,7 @@ en-US:
         requested_rescheduling: Requested Rescheduling
         requested_rescheduling_rejected: Rescheduling Rejected
         rescheduled: Rescheduled
+        scheduled: Scheduled
       subject: Subject
     job_role:
       are_you_sure_to_remove: Are you sure to remove?
@@ -2543,6 +2635,7 @@ en-US:
     message: Message
     meta_title: Administration panel
     navigation:
+      ai_artifacts: AI Artifacts
       ai_assistants: AI Assistants
       assessments: Assessments
       assessments_reports: Assessments & Reports
@@ -2782,8 +2875,8 @@ en-US:
       errors:
         create:
           invalid_format: Level definition must be an array of definitions.
-          level_definition_must_exist: Level definition can't be blank
           level_definition_must_match_level: must contain exactly %{expected} levels, but %{actual} were given
+          level_description_must_exist: Level description can't be blank
           level_name_must_exist: Level name can't be blank
           must_be_unique: Must be unique
           proficiency_level_exists: A Proficiency Level with this skill and project already exists
@@ -3246,6 +3339,29 @@ en-US:
           repeat_modules: Selected modules will be repeated on the exta inserted pages, refers to module name
         module_pagination: Module Pagination
         repeat_modules: Repeat Modules
+      property_panel:
+        add_new_condition: Add new condition
+        apply_color_label: 'Then apply the following color:'
+        graph_condition_types:
+          default: Default
+          graph_value: Graph value
+        graph_value_condition_not_supported_msg: Graph Value Conditions are not supported for this graph type. This option is currently available only for below Graph types.
+        graph_value_conditions_title: Graph value conditions
+        if_graph_value_is: 'If Graph Value is:'
+        manage_graph_value_condition: Manage graph value condition
+        manage_styles_condition: Manage styles condition
+        missing_value: Missing Value
+        predicates:
+          equal_to: Equal to
+          greater_than: Greater Than
+          greater_than_or_equal: Greater Than or Equal To
+          less_than: Less Than
+          less_than_or_equal: Less Than or Equal To
+          not_equal_to: Not equal to
+        prefixes:
+          and: AND
+          or: OR
+        text_condition_type: 'Text Condition Type:'
     report_families:
       create:
         successfully: Report Bundle %{name} was created successfully.
@@ -3304,6 +3420,19 @@ en-US:
         pending_qc: Pending QC
         qc_completed: QC Completed
         qc_in_progress: QC in Progress
+    report_settings:
+      data_source_types:
+        assessment: Assessment
+        campaign_factors: Campaign Factors
+        datasheet: Datasheet
+        report_data: Report Data
+      tabs:
+        campaign_ai_artifacts: Campaign AI Artifacts
+        campaign_factors: Campaign Factors
+        data_sheets: Data Sheets
+        page_settings: Page Settings
+        translations: Translations
+      title: Report Settings
     reports:
       bulk_marked_as_done: Bulk Marked as Done
       bulk_upload:
@@ -4009,6 +4138,7 @@ en-US:
         skill_types:
           behavioural: Behavioural
           other: Other
+          qualification: Qualification
           technical: Technical
       property_panel:
         add_n_a_option: Add N/A option
@@ -4347,7 +4477,7 @@ en-US:
         new:
           header: Import Translations
       import:
-        successfully: Translations were imported successfully
+        successfully_scheduled: Translation Import was scheduled successfully.
       reports:
         export: Export Translations
         import: Import Translations

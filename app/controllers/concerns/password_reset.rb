@@ -5,6 +5,7 @@ module PasswordReset
 
   included do
     before_action :set_project, only: %i[new create edit update]
+    prepend_before_action :verify_recaptcha_or_redirect, only: [:update]
   end
 
   def new
@@ -35,5 +36,18 @@ module PasswordReset
 
   def set_project
     @current_project = GetProjectBySubdomain.call!(request.subdomain)
+  end
+
+  def verify_recaptcha_or_redirect
+    return if Settings.features.disable_recaptcha
+
+    @current_project = GetProjectBySubdomain.call!(request.subdomain)
+
+    return unless @current_project.present? && @current_project.security_setting&.enable_recaptcha
+
+    unless verify_recaptcha(response: params[:recaptcha_token])
+      flash[:alert] = I18n.t('sessions.errors.recaptcha')
+      redirect_to @current_project ? new_user_password_path : new_administration_password_path
+    end
   end
 end

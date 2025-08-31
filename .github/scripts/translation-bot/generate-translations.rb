@@ -4,78 +4,75 @@
 require 'yaml'
 require 'json'
 require 'fileutils'
+require 'net/http'
+require 'uri'
 
-# Try to load DeepL gem
-begin
-  require 'deepl'
-  DEEPL_AVAILABLE = true
-  puts 'DeepL gem loaded successfully'
-rescue LoadError => e
-  DEEPL_AVAILABLE = false
-  puts "DeepL gem not available: #{e.message}"
-  puts 'Will use placeholder translations instead'
+# Microsoft Translator configuration
+MICROSOFT_AVAILABLE = ENV.fetch('MICROSOFT_TRANSLATION_API_KEY',
+                                nil) && ENV.fetch('MICROSOFT_TRANSLATION_API_REGION', nil)
+
+if MICROSOFT_AVAILABLE
+  puts 'Microsoft Translator configured successfully'
+else
+  puts 'Microsoft Translator not available - using placeholder translations'
+  puts 'Please set MICROSOFT_TRANSLATION_API_KEY and MICROSOFT_TRANSLATION_API_REGION'
 end
 
-LOCALE_MAPPING = {
-  ar: 'AR', # Arabic
-  bg: 'BG', # Bulgarian
-  cs: 'CS', # Czech
-  da: 'DA', # Danish
-  de: 'DE', # German
-  el: 'EL', # Greek
-  en: 'EN', # English (unspecified variant)
-  'en-GB': 'EN-GB', # English (British)
-  'en-US': 'EN-US', # English (American)
-  es: 'ES', # Spanish
-  'es-ES': 'ES', # Spanish (Spain)
-  et: 'ET', # Estonian
-  fi: 'FI', # Finnish
-  fr: 'FR', # French
-  he: 'HE', # Hebrew
-  hu: 'HU', # Hungarian
-  id: 'ID', # Indonesian
-  it: 'IT', # Italian
-  ja: 'JA', # Japanese
-  ko: 'KO', # Korean
-  lt: 'LT', # Lithuanian
-  lv: 'LV', # Latvian
-  nb: 'NB', # Norwegian Bokmål
-  nl: 'NL', # Dutch
-  pl: 'PL', # Polish
-  pt: 'PT', # Portuguese (unspecified variant)
-  'pt-BR': 'PT-BR', # Portuguese (Brazilian)
-  'pt-PT': 'PT-PT', # Portuguese (excluding Brazilian)
-  ro: 'RO', # Romanian
-  ru: 'RU', # Russian
-  sk: 'SK', # Slovak
-  sl: 'SL', # Slovenian
-  sv: 'SV', # Swedish
-  th: 'TH', # Thai
-  tr: 'TR', # Turkish
-  uk: 'UK', # Ukrainian
-  vi: 'VI', # Vietnamese
-  zh: 'ZH', # Chinese (unspecified variant)
-  'zh-Hans': 'ZH-HANS', # Chinese (simplified)
-  'zh-Hant': 'ZH-HANT', # Chinese (traditional)
-  'zh-HK': 'ZH-HANT' # Chinese (Hong Kong)
+# Microsoft Translator locale mapping (updated to match all locales in config/locales/)
+MICROSOFT_LOCALE_MAPPING = {
+  'ar' => 'ar',           # Arabic
+  'bg' => 'bg',           # Bulgarian
+  'cs' => 'cs',           # Czech
+  'de' => 'de',           # German
+  'el' => 'el',           # Greek (if you add it later)
+  'en' => 'en',           # English
+  'en-us' => 'en',        # English US
+  'es' => 'es',           # Spanish
+  'es-es' => 'es',        # Spanish ES
+  'et' => 'et',           # Estonian (if you add it later)
+  'fi' => 'fi',           # Finnish (if you add it later)
+  'fr' => 'fr',           # French
+  'he' => 'he',           # Hebrew (if you add it later)
+  'hr' => 'hr',           # Croatian
+  'hu' => 'hu',           # Hungarian
+  'id' => 'id',           # Indonesian
+  'it' => 'it',           # Italian
+  'ja' => 'ja',           # Japanese
+  'ko' => 'ko',           # Korean
+  'lt' => 'lt',           # Lithuanian (if you add it later)
+  'lv' => 'lv',           # Latvian (if you add it later)
+  'nb' => 'nb',           # Norwegian (if you add it later)
+  'nl' => 'nl',           # Dutch
+  'pl' => 'pl',           # Polish
+  'pt' => 'pt',           # Portuguese
+  'pt-br' => 'pt',        # Portuguese BR (if you add it later)
+  'pt-pt' => 'pt',        # Portuguese PT (if you add it later)
+  'ro' => 'ro',           # Romanian
+  'ru' => 'ru',           # Russian
+  'sk' => 'sk',           # Slovak
+  'sl' => 'sl',           # Slovenian
+  'sr-cyrl' => 'sr-Cyrl', # Serbian Cyrillic
+  'sr-latn' => 'sr-Latn', # Serbian Latin
+  'sv' => 'sv',           # Swedish (if you add it later)
+  'th' => 'th',           # Thai
+  'tr' => 'tr',           # Turkish
+  'uk' => 'uk',           # Ukrainian
+  'vi' => 'vi',           # Vietnamese
+  'zh' => 'zh',           # Chinese
+  'zh-hk' => 'zh-Hant',   # Chinese Hong Kong (maps to Traditional)
+  'zh-hans' => 'zh-Hans', # Chinese Simplified (if you add it later)
+  'zh-hant' => 'zh-Hant'  # Chinese Traditional
 }.freeze
 
 class TranslationProcessor
   def initialize
     @changes_made = false
-    @deepl_cache = {}
+    @microsoft_cache = {}
 
-    if DEEPL_AVAILABLE && ENV['DEEPL_AUTH_KEY']
-      begin
-        DeepL.configure do |config|
-          config.auth_key = ENV['DEEPL_AUTH_KEY']
-        end
-        puts 'DeepL configured successfully'
-      rescue StandardError => e
-        puts "Failed to configure DeepL: #{e.message}"
-      end
+    if MICROSOFT_AVAILABLE
+      puts 'Microsoft Translator configured successfully'
     else
-      puts 'DeepL not available - using placeholder translations'
+      puts 'Microsoft Translator not available - using placeholder translations'
     end
   end
 
@@ -271,36 +268,27 @@ class TranslationProcessor
   def format_and_translate_value(value, language_code)
     return value if language_code == 'en'
 
-    unless DEEPL_AVAILABLE && ENV['DEEPL_AUTH_KEY']
+    unless MICROSOFT_AVAILABLE
       return "[#{language_code.upcase}] #{value}" # Fallback
     end
 
     cache_key = "#{language_code}|#{value}"
-    return @deepl_cache[cache_key] if @deepl_cache.key?(cache_key)
+    return @microsoft_cache[cache_key] if @microsoft_cache.key?(cache_key)
 
-    # Map the language code to DeepL target language
-    target = get_deepl_target_language(language_code)
+    # Map the language code to Microsoft Translator target language
+    target = get_microsoft_target_language(language_code)
 
     unless target
-      puts "    Warning: Language '#{language_code}' not supported by DeepL, using fallback"
+      puts "    Warning: Language '#{language_code}' not supported by Microsoft Translator, using fallback"
       return "[#{language_code.upcase}] #{value}"
     end
 
     begin
       translated_text = with_retry(max_attempts: 3, delay: 2) do
-        protected_text = protect_interpolation_variables(value)
-
-        translation = DeepL.translate(
-          protected_text,
-          'EN',
-          target,
-          tag_handling: 'xml',
-          ignore_tags: ['x']
-        )
-        restore_interpolation_variables(translation.text)
+        translate_with_microsoft(value, target)
       end
 
-      @deepl_cache[cache_key] = translated_text
+      @microsoft_cache[cache_key] = translated_text
       translated_text
     rescue StandardError => e
       handle_translation_error(e, language_code)
@@ -308,32 +296,82 @@ class TranslationProcessor
     end
   end
 
-  def get_deepl_target_language(language_code)
+  def get_microsoft_target_language(language_code)
     # First try direct mapping
-    mapped = LOCALE_MAPPING[language_code.to_sym]
+    mapped = MICROSOFT_LOCALE_MAPPING[language_code.downcase]
     return mapped if mapped
 
     # Try with string keys for backwards compatibility
-    mapped = LOCALE_MAPPING[language_code]
+    mapped = MICROSOFT_LOCALE_MAPPING[language_code]
     return mapped if mapped
-
-    # Try uppercase version
-    return language_code.upcase if LOCALE_MAPPING.value?(language_code.upcase)
 
     nil
   end
 
-  def handle_translation_error(error, language_code)
-    case error
-      when DeepL::Exceptions::LimitExceeded
-        puts "    Warning: DeepL API limit exceeded for #{language_code}"
-      when DeepL::Exceptions::AuthorizationError
-        puts "    Warning: DeepL authorization failed for #{language_code}"
-      when DeepL::Exceptions::BadRequest
-        puts "    Warning: Bad request for #{language_code}: #{error.message}"
-      else
-        puts "    Warning: Translation failed for #{language_code}: #{error.message}"
+  def translate_with_microsoft(text, target_locale)
+    # Protect interpolation variables for Microsoft API
+    protected_text = protect_interpolation_variables_microsoft(text)
+
+    uri = URI('https://api.cognitive.microsofttranslator.com/translate')
+    uri.query = URI.encode_www_form({
+      'api-version' => '3.0',
+      'to' => target_locale
+    })
+
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Post.new(uri)
+    request['Ocp-Apim-Subscription-Key'] = ENV.fetch('MICROSOFT_TRANSLATION_API_KEY', nil)
+    request['Ocp-Apim-Subscription-Region'] = ENV.fetch('MICROSOFT_TRANSLATION_API_REGION', nil)
+    request['Content-Type'] = 'application/json'
+    request.body = [{ text: protected_text }].to_json
+
+    response = http.request(request)
+
+    if response.code == '200'
+      result = JSON.parse(response.body)
+      translated_text = result[0]['translations'][0]['text']
+      # Restore interpolation variables
+      restore_interpolation_variables_microsoft(translated_text)
+    else
+      raise "Microsoft Translator API error: #{response.code} - #{response.body}"
     end
+  rescue StandardError => e
+    raise "Microsoft Translator error: #{e.message}"
+  end
+
+  def protect_interpolation_variables_microsoft(text)
+    # Replace %{variable} with unique placeholder that won't be translated
+    placeholders = {}
+    counter = 0
+
+    protected_text = text.gsub(/%\{[^}]+\}/) do |match|
+      placeholder = "INTERPOLATION_VAR_#{counter}"
+      placeholders[placeholder] = match
+      counter += 1
+      placeholder
+    end
+
+    @interpolation_placeholders = placeholders
+    protected_text
+  end
+
+  def restore_interpolation_variables_microsoft(text)
+    # Restore the original interpolation variables
+    return text unless @interpolation_placeholders
+
+    restored_text = text
+    @interpolation_placeholders.each do |placeholder, original|
+      restored_text = restored_text.gsub(placeholder, original)
+    end
+
+    @interpolation_placeholders = nil
+    restored_text
+  end
+
+  def handle_translation_error(error, language_code)
+    puts "    Warning: Translation failed for #{language_code}: #{error.message}"
   end
 
   def yaml_to_file(yaml_data)

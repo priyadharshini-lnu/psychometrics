@@ -12,6 +12,8 @@ module Api
         has_one :last_modified_by, class_name: 'User'
         has_many :assistant_output_schema_keys, class_name: 'AssistantOutputSchemaKey'
 
+        ransack_filters %i[filterable_fields assistant_type_eq]
+
         before_save do
           @model.last_modified_by_id = context[:user].id
         end

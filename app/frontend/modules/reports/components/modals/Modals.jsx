@@ -14,6 +14,7 @@ import PipedTextModal from './PipedTextModal'
 import { ReportSettings } from './ReportSettings'
 import RemapAssessment from './RemapAssessment'
 import CampaignFactorConditionModal from './CampaignFactorConditionModal'
+import { GraphValueConditionModal } from './GraphValueConditionModal/GraphValueConditionModal'
 
 const MODALS = {
   filter: FilterModal,
@@ -31,6 +32,7 @@ const MODALS = {
   reportSettings: ReportSettings,
   remapAssessment: RemapAssessment,
   CampaignFactorCondition: CampaignFactorConditionModal,
+  graphValueConditionModal: GraphValueConditionModal,
 }
 
 
