@@ -113,7 +113,7 @@ export const getChildOrNextElementId = (state, element: string | null = null): s
 export const pageQuestions = createSelector(
   state => state,
   getCurrentPage,
-  (state, page) => getQuestions(state, page?.questions),
+  (state, page: PageInterface) => getQuestions(state, page?.questions),
 )
 
 export const pageQuestionsWithoutHidden = createSelector(
@@ -255,7 +255,7 @@ export const getHighlightByType = ({ preview },
   resourceType: type,
 }
 
-export const getI18n = ({ locales, instructions }): I18nInterface => ({
+export const getI18n = ({ locales, instructions, locale }): I18nInterface => ({
   t (code: string, data: any): string {
     return I18n.t(code, data)
   },
@@ -266,12 +266,10 @@ export const getI18n = ({ locales, instructions }): I18nInterface => ({
     question.isNeedToAddLtrManually = false
     question.isAnyArabicTranslateExist = true
 
-    if (locales && locales.question && locales.question[question.id]) {
-      if (locales.question[question.id][field]) {
-        question.isNeedToAddLtrManually = false
-        question.isAnyArabicTranslateExist = true
-        return locales.question[question.id][field]
-      }
+    if (locales?.question?.[question.id] || locale === 'ar') {
+      question.isNeedToAddLtrManually = false
+      question.isAnyArabicTranslateExist = true
+      return _.get(locales, ['question', question.id, field], question.props[field])
     }
     if (question.id) {
       question.isNeedToAddLtrManually = true
