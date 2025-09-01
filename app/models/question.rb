@@ -5,6 +5,7 @@ class Question < ApplicationRecord
 
   include Copyable
   include OwnerValidations
+  include RansackSearchableFields
 
   # For assessment builder
   attr_accessor :save_as_template, :permanent_remove
@@ -23,6 +24,8 @@ class Question < ApplicationRecord
   has_many :factors_scorings_with_props, -> { with_props }, class_name: 'FactorsScoring', foreign_key: :question_id
   has_many :translations, as: :translateable, dependent: :destroy
   has_many :media_responses, dependent: :nullify
+  has_many :campaign_ai_artifact_dependencies, class_name: 'AI::CampaignArtifactDependency',
+            foreign_key: 'dependency_id', dependent: :destroy
 
   enum :view, { assessments: 0, templates: 1, blocks: 2 }
 
@@ -74,7 +77,11 @@ class Question < ApplicationRecord
   scope :skill_rater, -> { where.not(skill_id: nil) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name created_at updated_at]
+    %w[id name type created_at updated_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[assessment]
   end
 
   # Using for deep clone in Assessment model

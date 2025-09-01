@@ -7,6 +7,7 @@ class EndUser::UsersController < ApplicationController
   before_action :set_locale, except: %i[change_locale]
   initial_state_for %i[dashboard]
   skip_before_action :authenticate_user!, only: %i[change_locale]
+  prepend_before_action :verify_recaptcha_or_redirect, only: %i[change_password]
 
   def show
     redirect_to new_user_session_path
@@ -154,5 +155,13 @@ class EndUser::UsersController < ApplicationController
         current_user: current_user, include: '**'
       }
     ).to_a
+  end
+
+  def verify_recaptcha_or_redirect
+    return if Settings.features.disable_recaptcha
+
+    unless verify_recaptcha(response: params[:recaptcha_token])
+      render json: { errors: [{ detail: I18n.t('sessions.errors.recaptcha') }] }, status: 422 and return
+    end
   end
 end

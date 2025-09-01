@@ -376,11 +376,11 @@ zh-Hant:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 行 %{row}：%{field} 的 %{value} 值重複
+              duplicate_value: "%{sheet_name}，第 %{row} 列：%{field}的重複值%{value}"
               invalid_format: 請上傳 xlsx 檔案
               missing_headers: "%{sheet_name} 工作表缺少所需的標題： %{headers}"
               missing_sheets: 缺少所需的工作表：%{sheets}
-              missing_value: 行 %{row}：缺少 %{field} 的值
+              missing_value: "%{sheet_name}，第 %{row} 列：%{field} 的遺漏值"
             project:
               must_exist: 專案必須存在
         update_norm:
@@ -440,10 +440,13 @@ zh-Hant:
           iiht: IIHT
           lead_assessor_form: 首席評估員表格
           meeting: 會議
+          mettl: 梅特爾
           organisational: 調查
           pearson: 培生
           psychometric: 評估
           saville: 薩維爾
+          simulation: 模擬
+          skillvue: 技能
           threesixty: 360 活動
         category: 類別
         created_at: 建立日期
@@ -457,8 +460,11 @@ zh-Hant:
           common: TTE 評估
           hogan: Hogan
           iiht: IIHT 評估
+          mettl: Mettl 評估
           pearson: 培生評估
           saville: 薩維爾評估
+          simulation: 模擬評估
+          skillvue: Skillvue 評估
         updated_at: 修改日期
       assign:
         completed_at: 完成日期
@@ -811,6 +817,7 @@ zh-Hant:
         bulk_download_idp_reports: 批量下載IDP報告
         bulk_download_reports: 大量下載報告
         bulk_download_user_reports: 大量下載使用者報告
+        bulk_generate_user_campaign_ai_artifact_results: 批量生成活動 AI 成品結果
         bulk_regenerate_reports: 再生活動報告
         bulk_regenerate_threesixty_reports: 再生三六零主題報告
         bulk_regenerate_user_reports: 重新產生使用者報告
@@ -847,6 +854,7 @@ zh-Hant:
         external_assessment_export: 外部結果匯出
         import_accesssheet: 匯入 Accessheet
         import_assessment_questions: 進口評估問題
+        import_assessment_translations: 匯入評量翻譯
         import_assessors: 進口評估員
         import_campaign_factors: 匯入活動因素
         import_datasheet: 匯入資料表
@@ -1127,6 +1135,10 @@ zh-Hant:
         mic: 麥克風
       discard: 丟棄
       discard_record_again: 丟棄與重新記錄
+      error_while_discarding: 無法捨棄現有視訊
+      error_while_uploading: 完成上傳時發生未知錯誤
+      failed_to_access_permission: 無法存取攝影機和麥克風
+      failed_to_complete_upload: 無法完成上傳：沒有可用的 URL 詳細資料
       media_recorder:
         failure: 此瀏覽器不支援視訊錄影，請使用 Chrome 或 Firefox 進行視訊錄影
         success: 請允許使用攝影機和麥克風錄製音訊和視訊
@@ -1778,6 +1790,7 @@ zh-Hant:
     column:
       action: 行動
       active: 活躍
+      ai_assistant: AI助手
       allow_multiple_responses: 允許多重回應
       approval_notification_list: 批准通知使用者清單
       approvers_list: 批准人清單
@@ -1868,7 +1881,9 @@ zh-Hant:
       continue: 繼續
       copied: 複製到剪貼簿
       default: 預設
+      disabled: 已停用
       download: 下載
+      enabled: 已啟用
       file: 檔案
       global_import: 全球進口？
       minutes: 分鐘
@@ -2166,6 +2181,7 @@ zh-Hant:
       uniq_simulation: 該模擬評估已存在於系統中。 該評估的 ID 為 %{id}
       uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
       update_workshop:
+        bookings_exist: 由於參加者已預約此時段，因此無法修改時間表。
         less_than_booked: 總座位數必須大於預訂座位數
       user_availability_date:
         overlaps_date: 與其他可用性重疊 %{range}
@@ -2860,6 +2876,8 @@ zh-Hant:
     zh-HK: 中文（香港）
     zh-Hant: 繁體中文
     zh-TW: 中文（台灣）
+  languages_localized:
+    sl: 斯洛文什奇納
   license_usage:
     active: 活躍
     campaign_name: 活動名稱

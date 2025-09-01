@@ -28,7 +28,7 @@ export const TextModuleContent = {
     if (module.props.sourceType === 'PipedText') {
       return PipedText.run(I18nStore.tModule(module, 'text'), module)
     }
-    if (module.props.sourceType === 'ResultText') {
+    if (module.props.sourceType === 'ResultText' || module.props.sourceType === 'AIContent') {
       const result = LookupResultTextValue.run(module)
       return result ? renderToStaticMarkup(result as ReactElement) : ''
     }

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class DataReport < ApplicationRecord
+  include GeoFilterable
+
   audited
 
   belongs_to :owner, class_name: 'Client'
@@ -9,6 +11,12 @@ class DataReport < ApplicationRecord
   before_save :update_last_updated_by
 
   has_many :data_report_jobs, dependent: :destroy
+
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    joins(:owner).where.not(clients: { tte_id: restricted_client_subquery })
+  end
 
   def update_last_updated_by
     self.last_updated_by = Current.user

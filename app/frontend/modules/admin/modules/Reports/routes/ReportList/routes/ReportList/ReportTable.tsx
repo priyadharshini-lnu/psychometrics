@@ -104,7 +104,7 @@ const ReportTableCompnent: React.FC<Props> = ({
           filterDropdown={AssessmentsFilterDropdown}
           width={100}
           render={report => (
-            <Avatar.Group maxCount={2}>
+            <Avatar.Group max={{ count: 2 }}>
               {report.assessments.map(assessment => (
                 <ResourceAvatar
                   key={assessment.id}

@@ -17,6 +17,8 @@ module CampaignReports
           user_access: campaign_report.user_access
         )
       end
+
+      UserReports::ScheduleReportAvailableNotificationJob.perform_later(campaign.id, campaign_report.report_id)
     end
   end
 end

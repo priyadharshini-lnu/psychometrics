@@ -147,13 +147,28 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
           name="assistantType"
           label={I18n.t('administration.ai_assistants.form.type')}
         >
-          <Select defaultValue={ASSISTANT_TYPES.content_writer.id}>
+          <Select>
             {Object.values(ASSISTANT_TYPES).map(type => (
               <Select.Option key={type.id} value={type.id}>
                 {type.name}
               </Select.Option>
             ))}
           </Select>
+        </Form.Item>
+
+        <Form.Item
+          name="systemPrompt"
+          label={I18n.t('administration.ai_assistants.form.system_prompt')}
+          rules={[{ required: true }]}
+        >
+          <Input.TextArea rows={4} />
+        </Form.Item>
+        <Form.Item
+          name="userPrompt"
+          label={I18n.t('administration.ai_assistants.form.user_prompt')}
+          rules={[{ required: true }]}
+        >
+          <Input.TextArea rows={4} />
         </Form.Item>
 
         <Form.Item
@@ -221,21 +236,6 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
             </Typography.Text>
           )}
         </div>
-
-        <Form.Item
-          name="systemPrompt"
-          label={I18n.t('administration.ai_assistants.form.system_prompt')}
-          rules={[{ required: true }]}
-        >
-          <Input.TextArea rows={4} />
-        </Form.Item>
-        <Form.Item
-          name="userPrompt"
-          label={I18n.t('administration.ai_assistants.form.user_prompt')}
-          rules={[{ required: true }]}
-        >
-          <Input.TextArea rows={4} />
-        </Form.Item>
         <Button type="primary" htmlType="submit" onClick={handleSubmit}>
           {aiAssistant?.id ? I18n.t('administration.ai_assistants.actions.edit')
             : I18n.t('administration.ai_assistants.actions.create')}

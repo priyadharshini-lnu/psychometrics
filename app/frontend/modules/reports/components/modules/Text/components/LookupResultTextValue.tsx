@@ -74,6 +74,33 @@ const LookupResultTextValue = {
         }
         return ''
       }
+      case 'CampaignAIArtifacts': {
+        if (model?.props?.source?.code) {
+          const artifactResults = _.get(ResultStore, ['campaignAiArtifactResults'])
+          const { code } = model.props.source
+          const { key } = model.props.source
+
+          if (artifactResults && key) {
+            const artifactResult = _.find(artifactResults, { code })
+            const keyResult = _.find(artifactResult?.results, { key })
+
+            const keyValue = keyResult?.value ?? ''
+            const keyType = keyResult?.type ?? 'string'
+
+            if (keyType === 'markdown') {
+              return <ReactMarkdown>{keyValue}</ReactMarkdown>
+            }
+            if (keyType === 'html') {
+              return <SafeHTML config="artifactResults" html={keyValue} />
+            }
+
+            return keyValue
+          }
+        }
+
+        return ''
+      }
+
       default:
     }
     return ''

@@ -266,6 +266,10 @@ module Administration
       )
     end
 
+    def view_ai_artifacts?
+      client.feature_enabled?(:ai_assistants) && @user.is?(:superadmin)
+    end
+
     class Scope < Scope
       def initialize(user, scope, options = {})
         @user = user

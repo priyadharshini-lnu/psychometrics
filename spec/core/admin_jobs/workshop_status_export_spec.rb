@@ -80,7 +80,9 @@ describe AdminJobs::WorkshopStatusExport do
 
   it 'export correct details for invited subject that have not accepted the invite' do
     create(:campaign_user, campaign: campaign, user: user)
-    create(:workshop_invited_subject, user: user, workshop_invite: create(:workshop_invite, campaign: campaign))
+    assessment_group = create(:campaign_assessment_group, campaign: campaign, name: 'Test Group')
+    create(:workshop_invited_subject, user: user,
+workshop_invite: create(:workshop_invite, campaign: campaign, campaign_assessment_group: assessment_group))
     described_class.call!(job_record)
 
     actual_second_row = job_record.file.open do |f|
@@ -98,7 +100,7 @@ describe AdminJobs::WorkshopStatusExport do
       'Completed',
       nil,
       nil,
-      nil,
+      'Test Group',
       nil,
       'Invited',
       nil,
@@ -114,7 +116,8 @@ describe AdminJobs::WorkshopStatusExport do
     create(:campaign_user, campaign: campaign, user: user)
     assessment_group = create(:campaign_assessment_group, campaign: campaign, name: 'Test Group')
     workshop = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group)
-    create(:workshop_invited_subject, user: user, workshop_invite: create(:workshop_invite, campaign: campaign))
+    create(:workshop_invited_subject, user: user,
+workshop_invite: create(:workshop_invite, campaign: campaign, campaign_assessment_group: assessment_group))
     create(
       :workshop_subject, user: user, campaign: campaign, preferred_language: 'en', scheduling_status: :late_cancelled,
       created_at: 1.day.ago
@@ -135,12 +138,12 @@ describe AdminJobs::WorkshopStatusExport do
 
     described_class.call!(job_record)
 
-    actual_second_row = job_record.file.open do |f|
+    actual_last_row = job_record.file.open do |f|
       csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-      csv.row(2)
+      csv.row(4)
     end
 
-    expect(actual_second_row).to eq([
+    expect(actual_last_row).to eq([
       user.id,
       user.first_name,
       user.last_name,
@@ -157,8 +160,8 @@ describe AdminJobs::WorkshopStatusExport do
       workshop_subject.attendance_status.humanize,
       workshop.start_time.to_s,
       workshop_subject.preferred_language,
-      1,
-      1
+      0,
+      0
     ])
   end
 
@@ -166,7 +169,8 @@ describe AdminJobs::WorkshopStatusExport do
     create(:campaign_user, campaign: campaign, user: user)
     assessment_group = create(:campaign_assessment_group, campaign: campaign, name: 'Test Group')
     workshop = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group)
-    create(:workshop_invited_subject, user: user, workshop_invite: create(:workshop_invite, campaign: campaign))
+    create(:workshop_invited_subject, user: user,
+workshop_invite: create(:workshop_invite, campaign: campaign, campaign_assessment_group: assessment_group))
     workshop_subject = create(
       :workshop_subject, user: user, workshop: workshop, campaign: campaign, preferred_language: 'en'
     )
@@ -240,5 +244,42 @@ describe AdminJobs::WorkshopStatusExport do
 
     user_ids_in_csv = csv[1..].map { |row| row[0] }
     expect(user_ids_in_csv).to include(active_user.id.to_s, inactive_user.id.to_s)
+  end
+
+  it 'exports separate rows for user with multiple workshop assessment groups' do
+    create(:campaign_user, campaign: campaign, user: user)
+
+    assessment_group1 = create(:campaign_assessment_group, campaign: campaign, name: 'Group A')
+    assessment_group2 = create(:campaign_assessment_group, campaign: campaign, name: 'Group B')
+
+    workshop1 = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group1, name: 'Workshop A')
+    workshop2 = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group2, name: 'Workshop B')
+
+    create(
+      :workshop_subject, user: user, workshop: workshop1, campaign: campaign,
+      preferred_language: 'en', scheduling_status: :scheduled
+    )
+    create(
+      :workshop_subject, user: user, workshop: workshop2, campaign: campaign,
+      preferred_language: 'ar', scheduling_status: :late_cancelled
+    )
+
+    described_class.call!(job_record)
+
+    csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
+
+    expect(csv.size).to eq(3)
+
+    expect(csv[1][0]).to eq(user.id.to_s)
+    expect(csv[2][0]).to eq(user.id.to_s)
+
+    assessment_group_names = [csv[1][9], csv[2][9]]
+    expect(assessment_group_names).to contain_exactly('Group A', 'Group B')
+
+    workshop_names = [csv[1][10], csv[2][10]]
+    expect(workshop_names).to contain_exactly('Workshop A', 'Workshop B')
+
+    scheduling_statuses = [csv[1][8], csv[2][8]]
+    expect(scheduling_statuses).to contain_exactly('Scheduled', 'Late cancelled')
   end
 end

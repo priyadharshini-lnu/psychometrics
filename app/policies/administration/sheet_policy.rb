@@ -12,6 +12,10 @@ module Administration
       )
     end
 
+    def datasheet_columns?
+      get_columns?
+    end
+
     def add_column?
       manage?
     end

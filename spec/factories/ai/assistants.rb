@@ -8,8 +8,25 @@ FactoryBot.define do
     user_prompt { 'Ask me anything' }
     system_prompt { 'Be helpful and concise' }
     model_id { 'gpt-4o-mini' }
+    dependencies { [] }
 
     association :owner, factory: :tenancy
     association :last_modified_by, factory: :user
+
+    trait :with_datasheet_dependency do
+      dependencies { ['datasheet'] }
+    end
+
+    trait :with_campaign_factors_dependency do
+      dependencies { ['campaign_factors'] }
+    end
+
+    trait :with_assessments_dependency do
+      dependencies { ['assessments'] }
+    end
+
+    trait :with_all_dependencies do
+      dependencies { %w[datasheet campaign_factors assessments] }
+    end
   end
 end

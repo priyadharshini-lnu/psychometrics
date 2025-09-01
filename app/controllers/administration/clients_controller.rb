@@ -3,6 +3,7 @@
 module Administration
   class ClientsController < Administration::BaseController
     include Administration::Clients
+    skip_before_action :enforce_geo_restriction
     prepend_before_action :set_resource_class
     before_action :set_resource, only: %i[show edit update destroy sidebar toggle_status copy archive]
     before_action :skip_authorization, only: [:sidebar]

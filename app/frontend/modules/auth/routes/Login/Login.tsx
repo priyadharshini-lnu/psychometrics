@@ -31,28 +31,28 @@ const LoginComponent: React.FC<Props> = ({
     return <MagicLink />
   }
 
-  const enable_recaptcha = !disable_recaptcha && projectConfig.enable_recaptcha
+  let recaptchaEnabled = !disable_recaptcha
+  if (projectConfig?.enable_recaptcha) {
+    recaptchaEnabled = recaptchaEnabled && projectConfig?.enable_recaptcha
+  }
   const formRef = useRef<HTMLFormElement>(null)
 
   const {
     recaptchaToken,
     recaptchaReady,
     recaptchaWidgetId,
-  } = useRecaptcha(formRef, !enable_recaptcha)
+  } = useRecaptcha({ formRef, disable_recaptcha: !recaptchaEnabled })
 
 
   const handleSubmit = (e) => {
-    if (enable_recaptcha) {
-      if (!recaptchaReady || recaptchaWidgetId.current === null) {
-        e.preventDefault()
-        return
-      }
-      if (!recaptchaToken) {
-        e.preventDefault()
-        // eslint-disable-next-line no-console
-        console.log('Executing reCAPTCHA')
-        window.grecaptcha.execute(recaptchaWidgetId.current)
-      }
+    if (!recaptchaEnabled) { return }
+    if (!recaptchaReady || recaptchaWidgetId.current === null) {
+      e.preventDefault()
+      return
+    }
+    if (!recaptchaToken) {
+      e.preventDefault()
+      window.grecaptcha.execute(recaptchaWidgetId.current)
     }
   }
 
@@ -107,7 +107,7 @@ const LoginComponent: React.FC<Props> = ({
             onSubmit={handleSubmit}
           >
             <Input type="hidden" name="authenticity_token" value={csrfToken} />
-            {enable_recaptcha && (
+            {recaptchaEnabled && (
               <Input type="hidden" name="recaptcha_token" value={recaptchaToken} />
             )}
             <InputField
@@ -150,7 +150,7 @@ const LoginComponent: React.FC<Props> = ({
             ) : null}
           </form>
           {/* Hidden div for reCAPTCHA widget */}
-          {enable_recaptcha && <div id="recaptcha-button" style={{ display: 'none' }} />}
+          {recaptchaEnabled && <div id="recaptcha-button" style={{ display: 'none' }} />}
         </>
       )}
     </div>

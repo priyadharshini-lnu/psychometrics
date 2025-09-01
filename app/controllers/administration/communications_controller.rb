@@ -2,6 +2,7 @@
 
 module Administration
   class CommunicationsController < Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     prepend_before_action :set_resource_class
     before_action :set_resource,
                   only: %i[destroy copy download_history toggle_status sidebar
@@ -199,6 +200,7 @@ module Administration
       clone_resource = resource.clone
       clone_resource.user_ids = resource.user_ids
       clone_resource.selected_assessment_ids = resource.selected_assessment_ids
+      clone_resource.cc_user_ids = resource.cc_user_ids
       @_resource = clone_resource
     end
 
@@ -215,7 +217,7 @@ module Administration
         :project_id, :campaign_id, :sub_campaign_id,
         :kind, :delivery_at, :stop_reminder, :stop_reminder_datetime,
         :locale, :campaign_assessment_group_id, :assessment_selection,
-        user_ids: [], selected_assessment_ids: []
+        user_ids: [], selected_assessment_ids: [], cc_user_ids: []
       )
     end
 

@@ -216,7 +216,7 @@ const TasksListComponent: React.FC<Props> = ({
     if (!checked) { return setSelected([]) }
 
     const ids = data.filter(({ allowQcBulkSubmit, allowBulkApprove }) => (
-      (type === 'myTasks' && allowQcBulkSubmit) || (type === 'approved' && allowBulkApprove)
+      (type === 'myTasks' && (allowQcBulkSubmit || allowBulkApprove)) || (type === 'approved' && allowBulkApprove)
     )).map(({ id }) => id)
     setSelected(ids)
   }

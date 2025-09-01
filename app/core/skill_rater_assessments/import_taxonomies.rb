@@ -40,7 +40,7 @@ module SkillRaterAssessments
     end
 
     def import_job_group_and_job_roles
-      level_count = number_of_group_levels('Job Group Levels')
+      group_levels = get_group_levels('Job Group Levels')
       sheet = sheet('Job Roles')
       job_roles_headers = sheet.row(1)
 
@@ -50,29 +50,25 @@ module SkillRaterAssessments
         current_parent = nil
         job_group = nil
 
-        level_count.times do |level|
-          code_index = level * 2
-          name_index = code_index + 1
-
-          # code = row[code_index]
-          name = row[name_index]
-          job_group = find_or_create_job_group(name, current_parent)
+        group_levels.each_key do |key|
+          name = row[find_header_index(job_roles_headers, "#{key} - Name")]
+          job_group = find_or_create_job_group(name, current_parent) if name.present?
 
           # This group becomes parent for next level
-          current_parent = job_group
+          current_parent = job_group if job_group.present?
         end
 
         # After processing all job group levels, create job role
-        job_title_code = row[find_header_index(job_roles_headers, 'Job Title Code') || (level_count * 2)]
-        job_description = row[find_header_index(job_roles_headers, 'Job Description') || ((level_count * 2) + 1)]
-        job_title_name = row[find_header_index(job_roles_headers, 'Job Title Name') || ((level_count * 2) + 2)]
+        job_title_code = row[find_header_index(job_roles_headers, 'Job Title Code')]
+        job_description = row[find_header_index(job_roles_headers, 'Job Description')]
+        job_title_name = row[find_header_index(job_roles_headers, 'Job Title Name')]
 
         find_or_create_job_role(job_title_name, job_title_code, job_description, job_group)
       end
     end
 
     def import_skill_group_and_skills
-      level_count = number_of_group_levels('Skill Group Levels')
+      group_levels = get_group_levels('Skill Group Levels')
       sheet = sheet('Skills')
       skill_headers = sheet.row(1)
 
@@ -82,19 +78,17 @@ module SkillRaterAssessments
         current_parent = nil
         skill_group = nil
 
-        level_count.times do |level|
-          code_index = level * 2
-          name_index = code_index + 1
-          name = row[name_index]
+        group_levels.each_key do |key|
+          name = row[find_header_index(skill_headers, "#{key} - Name")]
 
-          skill_group = find_or_create_skill_group(name, current_parent)
+          skill_group = find_or_create_skill_group(name, current_parent) if name.present?
           current_parent = skill_group
         end
 
         # Skill data starts after all group levels
-        skill_name = row[find_header_index(skill_headers, 'Skill Name') || ((level_count * 2) + 1)]
-        skill_definition = row[find_header_index(skill_headers, 'Skill Definition') || ((level_count * 2) + 2)]
-        skill_type = row[find_header_index(skill_headers, 'Skill Type') || ((level_count * 2) + 3)]
+        skill_name = row[find_header_index(skill_headers, 'Skill Name')]
+        skill_definition = row[find_header_index(skill_headers, 'Skill Definition')]
+        skill_type = row[find_header_index(skill_headers, 'Skill Type')]
 
         find_or_create_skill(
           skill_name,
@@ -119,7 +113,6 @@ module SkillRaterAssessments
         job_role = JobRole.find_by(code: job_role_code, project_id: project&.id)
         skill = Skill.find_by(name: skill_name, project_id: project&.id)
         next unless job_role && skill
-        next if proficiency_level.blank?
 
         create_job_role_skill_mapping(job_role, skill, proficiency_level)
       end

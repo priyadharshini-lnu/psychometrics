@@ -3,7 +3,7 @@
 # TODO: Policy is required
 class EndUser::UserIdpSkillsController < ApplicationController
   append_before_action :pundit_authorize
-  before_action :load_user_idp_skill, only: %i[update]
+  before_action :load_user_idp_skill, only: %i[update toggle_privacy]
 
   def index
     user_idp_skills = user.user_idp_skills
@@ -44,6 +44,24 @@ class EndUser::UserIdpSkillsController < ApplicationController
     end
   end
 
+  def toggle_privacy
+    ::Idp::ToggleSkillPrivacy.call(@user_idp_skill, current_user) do
+      on(:ok) do |result|
+        render json: {
+          success: true,
+          message: result[:message],
+          data: ::EndUser::UserIdpSkillSerializer.new.serialize(result[:skill])
+        }
+      end
+      on(:error) do |error_message|
+        render json: {
+          success: false,
+          error: error_message
+        }, status: 422
+      end
+    end
+  end
+
   private
 
   def user_idp_plan
@@ -64,6 +82,11 @@ class EndUser::UserIdpSkillsController < ApplicationController
 
   def load_user_idp_skill
     @user_idp_skill = user.user_idp_skills.includes(user_idp_plan: :idp_template).find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: {
+      success: false,
+      error: 'Skill not found'
+    }, status: 404
   end
 
   def pundit_authorize

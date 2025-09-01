@@ -5,6 +5,9 @@ import _ from 'lodash'
 import { Provider } from 'react-redux'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
+import { BrowserRouter } from 'react-router-dom'
+import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
+import humps from 'humps'
 import { ErrorBoundary } from 'react-error-boundary'
 import Dashboard from '~/modules/reports/views/layouts/Dashboard'
 import I18nStore from '~/modules/reports/store/I18nStore'
@@ -15,6 +18,7 @@ import '~/modules/reports/styles/globals.less'
 import store from '../store'
 import { DefaultAntThemeWrapper } from '~/glint'
 import ErrorWarning from '~/modules/reports/views/Preview/ErrorWarning'
+import { Schema } from '~/libs/jsonApi/schema'
 
 class AppContainer extends Component {
   undoListener = null
@@ -42,15 +46,24 @@ class AppContainer extends Component {
   }
 
   render () {
+    const client = new ApiClient({
+      url: `${window.location.origin}/api/v2/administration`,
+      schema: humps.decamelizeKeys(Schema),
+    })
+
     return (
       <DefaultAntThemeWrapper>
         <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
           <Provider store={store}>
-            <div className="row">
-              <DndProvider backend={HTML5Backend}>
-                <Dashboard />
-              </DndProvider>
-            </div>
+            <ApiProvider client={client}>
+              <BrowserRouter>
+                <div className="row">
+                  <DndProvider backend={HTML5Backend}>
+                    <Dashboard />
+                  </DndProvider>
+                </div>
+              </BrowserRouter>
+            </ApiProvider>
           </Provider>
         </ErrorBoundary>
       </DefaultAntThemeWrapper>

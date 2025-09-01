@@ -38,6 +38,9 @@ declare class AppStore {
     }>
     dataSheetColumns: Array<{type: string, name: string}>
     campaignFactors: Array<{outputType: string, name: string, code: string}>
+    campaignAIArtifacts: Array<{
+      aiAssistant: {id: number, name: string, assistantOutputSchemaKeys: object[]} | null, name: string, code: string
+    }>
   }
 }
 

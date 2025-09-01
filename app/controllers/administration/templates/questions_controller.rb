@@ -3,6 +3,7 @@
 module Administration
   module Templates
     class QuestionsController < Administration::BaseController
+      skip_before_action :enforce_geo_restriction
       prepend_before_action :set_resource_class
       before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar]
       before_action :skip_authorization, only: [:sidebar]

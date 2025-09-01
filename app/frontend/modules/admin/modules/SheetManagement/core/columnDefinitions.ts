@@ -58,6 +58,15 @@ export const fetch = (
   },
 })
 
+export const fetchDatasheetColumns = (campaignId: number) => ({
+  type: FETCH_COLUMNS,
+  request: {
+    typedResponse: ColumnsResponseTR,
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/sheets/datasheet_columns`,
+  },
+})
+
 export const saveColumn = (
   parentType: ParentResourceType,
   parentId: number,

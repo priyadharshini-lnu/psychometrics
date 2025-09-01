@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Dashboard < ApplicationRecord
+  include GeoFilterable
+
   audited
 
   include ActiveStorageAttachable
@@ -31,5 +33,12 @@ class Dashboard < ApplicationRecord
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name campaign_id]
+  end
+
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    joins(:project).
+      where.not(clients: { tte_id: restricted_client_subquery })
   end
 end

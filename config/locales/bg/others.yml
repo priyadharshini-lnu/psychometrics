@@ -376,11 +376,11 @@ bg:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Ред %{row}: Дублираща се стойност %{value} за %{field}'
+              duplicate_value: "%{sheet_name}, ред %{row}: Дублираща се стойност %{value} за %{field}"
               invalid_format: Моля, качете xlsx файл
               missing_headers: "%{sheet_name} липсват задължителните заглавия на листа: %{headers}"
               missing_sheets: 'Липсват необходимите листове: %{sheets}'
-              missing_value: 'Ред %{row}: Липсваща стойност за %{field}'
+              missing_value: "%{sheet_name}, ред %{row}: Липсваща стойност за %{field}"
             project:
               must_exist: Проектът трябва да съществува
         update_norm:
@@ -440,10 +440,13 @@ bg:
           iiht: ИИХТ
           lead_assessor_form: Формуляр за водещ оценител
           meeting: Събрание
+          mettl: Метл
           organisational: Изследвания
           pearson: Пиърсън
           psychometric: Оценка
           saville: Савил
+          simulation: Симулация
+          skillvue: Skillvue
           threesixty: Кампания 360
         category: Категория
         created_at: Дата на създаване
@@ -457,8 +460,11 @@ bg:
           common: Оценка на TTE
           hogan: Хоган
           iiht: Оценка на IIHT
+          mettl: Оценка на Mettl
           pearson: Оценка на Пиърсън
           saville: Оценка на Saville
+          simulation: Оценка на симулацията
+          skillvue: Оценка на Skillvue
         updated_at: Дата на промяна
       assign:
         completed_at: Дата на завършване
@@ -811,6 +817,7 @@ bg:
         bulk_download_idp_reports: Групово изтегляне на отчети за IDP
         bulk_download_reports: Групово изтегляне на отчети
         bulk_download_user_reports: Групово изтегляне на потребителски отчети
+        bulk_generate_user_campaign_ai_artifact_results: Групово генериране на резултати от AI артефакт на кампанията
         bulk_regenerate_reports: Генериране на отчети за кампании
         bulk_regenerate_threesixty_reports: Регенерирайте тришестдесет тематични доклада
         bulk_regenerate_user_reports: Повторно генериране на потребителски отчети
@@ -847,6 +854,7 @@ bg:
         external_assessment_export: Експортиране на външни резултати
         import_accesssheet: Импортиране на accessheet
         import_assessment_questions: Въпроси за оценка на импортиране
+        import_assessment_translations: Импортиране на преводи за оценяване
         import_assessors: Оценители на вноса
         import_campaign_factors: Импортиране на фактори на кампанията
         import_datasheet: Лист с данни за импортиране
@@ -1127,6 +1135,10 @@ bg:
         mic: Микрофон
       discard: Отхвърлете
       discard_record_again: Отхвърлете и запишете отново
+      error_while_discarding: Неуспешно изхвърляне на съществуващ видеоклип
+      error_while_uploading: Възникна неизвестна грешка при завършване на качването
+      failed_to_access_permission: Неуспешен достъп до камерата и микрофона
+      failed_to_complete_upload: 'Неуспешно качване: Няма налични подробности за URL адреса'
       media_recorder:
         failure: Този браузър не поддържа видеозапис. Моля, използвайте Chrome или Firefox за видеозапис
         success: Моля, разрешете използването на камера и микрофон за запис на аудио и видео
@@ -1778,6 +1790,7 @@ bg:
     column:
       action: Действие
       active: Активен
+      ai_assistant: AI асистент
       allow_multiple_responses: Разрешаване на множество отговори
       approval_notification_list: Списък с потребители на известие за одобрение
       approvers_list: Списък на одобряващите
@@ -1868,7 +1881,9 @@ bg:
       continue: Продължете
       copied: Копирано в клипборда
       default: По подразбиране
+      disabled: Инвалид
       download: Изтеглете
+      enabled: Разрешено
       file: Файл
       global_import: Глобален внос ли е?
       minutes: Минути
@@ -2189,6 +2204,7 @@ bg:
       uniq_simulation: Тази оценка на симулацията вече присъства в системата. ИД на тази оценка е %{id}
       uniq_skillvue: Тази оценка на уменията вече е налична в системата. ID на тази оценка е %{id}
       update_workshop:
+        bookings_exist: Не може да се промени графикът, тъй като участниците вече са резервирали този времеви интервал.
         less_than_booked: Общият брой места трябва да е по-голям от резервирания
       user_availability_date:
         overlaps_date: Припокрива друга наличност %{range}
@@ -2877,6 +2893,8 @@ bg:
     zh-HK: Китайски (Хонконг)
     zh-Hant: Китайски - традиционен
     zh-TW: Китайски (Тайван)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Активен
     campaign_name: Име на кампанията

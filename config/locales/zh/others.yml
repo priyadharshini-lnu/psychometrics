@@ -376,11 +376,11 @@ zh:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 第 %{row} 行：字段 %{field} 的值 %{value} 重复
+              duplicate_value: "%{sheet_name}，第 %{row} 行：%{field}的重复值%{value}"
               invalid_format: 请上传 xlsx 文件
               missing_headers: "%{sheet_name} 工作表缺少必要的表头：%{headers}"
               missing_sheets: 缺少必要的工作表：%{sheets}
-              missing_value: 第 %{row} 行：字段 %{field} 的值缺失
+              missing_value: "%{sheet_name}，第 %{row} 行：%{field} 的缺失值"
             project:
               must_exist: 项目必须存在
         update_norm:
@@ -440,10 +440,13 @@ zh:
           iiht: IIHT
           lead_assessor_form: 主任评估员表格
           meeting: 会议
+          mettl: 梅特尔
           organisational: 调查
           pearson: 皮尔森
           psychometric: 评估
           saville: 萨维尔
+          simulation: 模拟
+          skillvue: 技能
           threesixty: 360 活动
         category: 类别
         created_at: 创建日期
@@ -457,8 +460,11 @@ zh:
           common: TTE 评估
           hogan: 霍根
           iiht: IIHT 评估
+          mettl: Mettl 评估
           pearson: 培生评估
           saville: 萨维尔评估
+          simulation: 模拟评估
+          skillvue: Skillvue 评估
         updated_at: 修改日期
       assign:
         completed_at: 完成日期
@@ -811,6 +817,7 @@ zh:
         bulk_download_idp_reports: 批量下载 IDP 报告
         bulk_download_reports: 批量下载报告
         bulk_download_user_reports: 批量下载用户报告
+        bulk_generate_user_campaign_ai_artifact_results: 批量生成活动 AI 工件结果
         bulk_regenerate_reports: 再生活动报告
         bulk_regenerate_threesixty_reports: 再生三六零主题报告
         bulk_regenerate_user_reports: 重新生成用户报告
@@ -847,6 +854,7 @@ zh:
         external_assessment_export: 外部结果导出
         import_accesssheet: 导入 Accessheet
         import_assessment_questions: 进口评估问题
+        import_assessment_translations: 导入评估翻译
         import_assessors: 进口评估员
         import_campaign_factors: 导入活动因素
         import_datasheet: 导入数据表
@@ -1130,6 +1138,10 @@ zh:
         mic: 麦克风
       discard: 放弃
       discard_record_again: 丢弃并重新记录
+      error_while_discarding: 无法丢弃现有视频
+      error_while_uploading: 完成上传时发生未知错误
+      failed_to_access_permission: 无法访问摄像头和麦克风
+      failed_to_complete_upload: 无法完成上传：没有可用的网址详细信息
       media_recorder:
         failure: 此浏览器不支持视频录制。请使用 Chrome 或 Firefox 进行视频录制
         success: 请允许使用摄像头和麦克风来录制音频和视频
@@ -1788,6 +1800,7 @@ zh:
     column:
       action: 操作
       active: 活跃
+      ai_assistant: AI助手
       allow_multiple_responses: 允许多个回复
       approval_notification_list: 批准通知用户列表
       approvers_list: 批准人名单
@@ -1878,7 +1891,9 @@ zh:
       continue: 继续
       copied: 复制到剪贴板
       default: 默认
+      disabled: 禁用
       download: 下载
+      enabled: 启用
       file: 文件
       global_import: 全球进口是什么？
       minutes: 分钟
@@ -2176,6 +2191,7 @@ zh:
       uniq_simulation: 该模拟评估已存在于系统中。 该评估的 ID 是 %{id}
       uniq_skillvue: 系统中已存在此技能评估。该评估的 ID 是 %{id}
       update_workshop:
+        bookings_exist: 由于参与者已经预订了该时段，因此无法修改时间表。
         less_than_booked: 总席位数必须大于预订席位数
       user_availability_date:
         overlaps_date: 与另一个可用性重叠 %{range}
@@ -2870,6 +2886,8 @@ zh:
     zh-HK: 中文（香港）
     zh-Hant: 繁体中文
     zh-TW: 中文（台湾）
+  languages_localized:
+    sl: 斯洛文什奇纳
   license_usage:
     active: 活跃
     campaign_name: 活动名称

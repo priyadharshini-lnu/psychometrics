@@ -2,6 +2,7 @@
 
 module Administration
   class InnovationStylesController < Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     prepend_before_action :set_resource_class
     before_action :set_resource, only: %i[edit update destroy sidebar]
     before_action :skip_authorization, only: [:sidebar]

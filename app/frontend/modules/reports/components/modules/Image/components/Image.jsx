@@ -68,10 +68,10 @@ export class Image extends Component {
     }
     if (preview && model.props.sourceType === 'ResponseImage') {
       const result = ResultStore.results[model.assessment_id]
-      if (!result) { return this.renderText() }
+      if (!result) { return null }
 
       const mediaResponse = _.find(result.mediaResponses, mr => mr.question_id === model.props.sourceQuestion)
-      if (!mediaResponse) { return this.renderText() }
+      if (!mediaResponse) { return null }
       return (
         <img
           className={`${styles.image} ${styles.responseImage}`}
@@ -85,7 +85,7 @@ export class Image extends Component {
         />
       )
     }
-    return (this.renderText())
+    return (preview ? null : this.renderText())
   }
 
   buildStyles (flipContent) {

@@ -1,10 +1,10 @@
 /* eslint-disable react/no-danger */
 
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
-  Typography, Input, Alert, Row, Col, Form,
+  Typography, Input, Alert, Row, Col,
 } from 'antd'
 
 import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
@@ -12,8 +12,10 @@ import styles from './styles.less'
 import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
 import { MobileNumberRegistrationComponent } from './MobileNumberRegistrationComponent'
+import { useRecaptcha } from '~/hooks/useRecaptcha'
 
 const { I18n } = window
+const { disable_recaptcha } = window.PsyGlobalState.features
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
@@ -30,12 +32,20 @@ const RegistrationComponent: React.FC<Props> = ({
   )
   const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     try {
       clearVerificationTokens()
 
-      const formElement = document.getElementById('form-registration') as HTMLFormElement
-      formElement.submit()
+      if (!disable_recaptcha) {
+        if (!recaptchaReady || recaptchaWidgetId.current === null) {
+          // e.preventDefault()
+          return
+        }
+        if (!recaptchaToken) {
+          e.preventDefault()
+          window.grecaptcha.execute(recaptchaWidgetId.current)
+        }
+      }
     } catch (e) { /* empty */ }
   }
 
@@ -43,6 +53,14 @@ const RegistrationComponent: React.FC<Props> = ({
     const keysToRemove = Object.keys(localStorage).filter(key => key.startsWith('verificationToken_'))
     keysToRemove.forEach(key => localStorage.removeItem(key))
   }
+
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const {
+    recaptchaToken,
+    recaptchaReady,
+    recaptchaWidgetId,
+  } = useRecaptcha({ formRef, disable_recaptcha })
 
 
   return (
@@ -64,14 +82,17 @@ const RegistrationComponent: React.FC<Props> = ({
 
       {error && <Alert message={error} type="error" />}
 
-      <Form
+      <form
         id="form-registration"
-        layout="vertical"
+        ref={formRef}
         action="/users"
         method="post"
-        onFinish={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <Input type="hidden" name="authenticity_token" value={csrfToken} />
+        {!disable_recaptcha && (
+          <Input type="hidden" name="recaptcha_token" value={recaptchaToken} />
+        )}
         <Row gutter={16}>
           <Col span={12}>
             <InputField
@@ -157,7 +178,9 @@ const RegistrationComponent: React.FC<Props> = ({
             {I18n.t('auth.registration.login_now')}
           </Link>
         </div>
-      </Form>
+      </form>
+      {/* Hidden div for reCAPTCHA widget */}
+      {!disable_recaptcha && <div id="recaptcha-button" style={{ display: 'none' }} />}
     </div>
   )
 }

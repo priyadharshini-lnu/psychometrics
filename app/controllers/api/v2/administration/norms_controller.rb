@@ -4,6 +4,8 @@ module Api
   class V2::Administration::NormsController < Api::V2::Administration::BaseController
     include Api::V2::Administration::Concerns::MockedResponse
 
+    skip_before_action :enforce_geo_restriction
+
     mock_custom_actions %i[editor]
     validate_crud_requests Api::V2::Norm::Schema
 

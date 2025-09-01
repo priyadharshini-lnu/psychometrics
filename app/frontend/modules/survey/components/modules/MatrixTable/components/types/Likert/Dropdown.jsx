@@ -56,7 +56,7 @@ export default class extends Component {
   }
 
   renderPreview () {
-    const { model: { props, moduleConfig } } = this.props // Ensure moduleConfig is defined
+    const { model: { props, moduleConfig } } = this.props
 
     return (
       <div className={styles.table}>

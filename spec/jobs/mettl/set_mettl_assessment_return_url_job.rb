@@ -8,7 +8,7 @@ RSpec.describe Mettl::SetMettlAssessmentReturnUrlJob, type: :job do
   let(:project) { create(:project, subdomain: 'example') }
   let(:mettl_assessment) { create(:mettl_assessment, project: project, product_id: '12345') }
   let(:external_assessment_id) { '12345' }
-  let(:request_body) { { exitRedirectionURL: "http://example.ttedev.me:31338/mettl/assessment/#{mettl_assessment.id}" } }
+  let(:request_body) { { exitRedirectionURL: "http://example.localhost:31338/mettl/assessment/#{mettl_assessment.id}" } }
 
   before do
     allow(Mettl::EditAssessment).to receive(:call!).with(mettl_assessment, request_body)

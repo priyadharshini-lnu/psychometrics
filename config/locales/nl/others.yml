@@ -376,11 +376,11 @@ nl:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Rij %{row}: Dubbele waarde %{value} voor %{field}'
+              duplicate_value: "%{sheet_name}, rij %{row}: Dubbele waarde %{value} voor %{field}"
               invalid_format: Upload xlsx-bestand
               missing_headers: "%{sheet_name} blad mist vereiste koppen: %{headers}"
               missing_sheets: 'Ontbrekende vereiste bladen: %{sheets}'
-              missing_value: 'Rij %{row}: Ontbrekende waarde voor %{field}'
+              missing_value: "%{sheet_name}, Rij %{row}: Ontbrekende waarde voor %{field}"
             project:
               must_exist: Project moet bestaan
         update_norm:
@@ -440,10 +440,13 @@ nl:
           iiht: IIHT
           lead_assessor_form: Formulier hoofdbeoordelaar
           meeting: Vergadering
+          mettl: Mettl
           organisational: Enquêtes
           pearson: Pearson
           psychometric: Beoordeling
           saville: Saville
+          simulation: Simulatie
+          skillvue: Skillvue
           threesixty: 360 Campagne
         category: Categorie
         created_at: Datum aangemaakt
@@ -457,8 +460,11 @@ nl:
           common: TTE-beoordeling
           hogan: Hogan
           iiht: IIHT-beoordeling
+          mettl: Mettl Beoordeling
           pearson: Pearson Beoordeling
           saville: Beoordeling Saville
+          simulation: Simulatie Assessment
+          skillvue: Skillvue Assessment
         updated_at: Gewijzigde datum
       assign:
         completed_at: Datum van voltooiing
@@ -811,6 +817,7 @@ nl:
         bulk_download_idp_reports: IDP-rapporten in bulk downloaden
         bulk_download_reports: Bulkrapporten downloaden
         bulk_download_user_reports: Bulk Download Gebruikersrapporten
+        bulk_generate_user_campaign_ai_artifact_results: Genereer bulksgewijs resultaten van AI-artefacten voor campagnes
         bulk_regenerate_reports: Campagneverslagen opnieuw genereren
         bulk_regenerate_threesixty_reports: Regenereren van drieënzestig onderwerpsrapporten
         bulk_regenerate_user_reports: Gebruikersrapporten opnieuw genereren
@@ -847,6 +854,7 @@ nl:
         external_assessment_export: Exporteren van externe resultaten
         import_accesssheet: Accessheet importeren
         import_assessment_questions: Vragen over importeren
+        import_assessment_translations: Import Assessment Vertalingen
         import_assessors: Importeurs
         import_campaign_factors: Campagnefactoren importeren
         import_datasheet: Gegevensblad importeren
@@ -1127,6 +1135,10 @@ nl:
         mic: Mic
       discard: Gooi weg
       discard_record_again: Weggooien en opnieuw opnemen
+      error_while_discarding: Kan bestaande video niet verwijderen
+      error_while_uploading: Er is een onbekende fout opgetreden tijdens het voltooien van de upload
+      failed_to_access_permission: Geen toegang tot camera en microfoon
+      failed_to_complete_upload: 'Upload kan niet worden voltooid: geen URL-details beschikbaar'
       media_recorder:
         failure: Deze browser ondersteunt het opnemen van video's niet. Gebruik Chrome of Firefox voor het opnemen van video's
         success: Sta het gebruik van camera en microfoon toe om audio en video op te nemen
@@ -1778,6 +1790,7 @@ nl:
     column:
       action: Actie
       active: Actief
+      ai_assistant: AI-assistent
       allow_multiple_responses: Meerdere reacties toestaan
       approval_notification_list: Gebruikerslijst voor goedkeuringsmeldingen
       approvers_list: Lijst met goedkeurders
@@ -1868,7 +1881,9 @@ nl:
       continue: Ga verder
       copied: Gekopieerd naar klembord
       default: Standaard
+      disabled: Invalide
       download: Downloaden
+      enabled: Ingeschakeld
       file: Bestand
       global_import: Is Global Import?
       minutes: Notulen
@@ -2184,6 +2199,7 @@ nl:
       uniq_simulation: Deze Simulatie beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       uniq_skillvue: Deze Skillvue beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       update_workshop:
+        bookings_exist: Kan het schema niet wijzigen omdat deelnemers dit tijdslot al hebben geboekt.
         less_than_booked: Het totaal aantal geboekte zitplaatsen moet groter zijn dan
       user_availability_date:
         overlaps_date: Overlapt een andere beschikbaarheid %{range}
@@ -2850,6 +2866,8 @@ nl:
     zh-HK: Chinees (Hongkong)
     zh-Hant: Chinees - Traditioneel
     zh-TW: Chinees (Taiwan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Actief
     campaign_name: Naam campagne

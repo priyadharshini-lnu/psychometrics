@@ -70,6 +70,15 @@
           input_html: { data: { live_search: true,
             behavior: @communication_facade.memberships_behavior },
             multiple: true }, label: t('.selected_recipients')
+      - if @communication_facade.show_cc_users?
+        = f.association :cc_users,
+          collection: @communication_facade.cc_users,
+          label_method: proc { |u| "#{u.decorate.display_name} (#{u.email})" },
+          value_method: proc { |u| u.id },
+          include_blank: false,
+          input_html: { data: { live_search: true,
+            behavior: @communication_facade.cc_behavior },
+            multiple: true }, label: t('.cc_recipients')
       - if @communication_facade.show_delivery_rules?
         .row.mbl
           .col-md-4.pln

@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::DataReportsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     validates_request_schema :create,
                              lambda {
                                Api::V2::DataReport::Contract.new(schema: Api::V2::DataReport::Schema.create_request)

@@ -12,7 +12,8 @@ module Forms
       properties :subject, :body, :recipients, :owner, :client, :project, :campaign, :end_level,
                  :membership_ids, :kind, :delivery_rule, :delivery_at,
                  :assessment, :delivery_interval, :delivery_interval_number, :delivery_interval_period,
-                 :user_ids, :stop_reminder_datetime, :assessment_completion_status_code, :delivery_delay_hours
+                 :user_ids, :stop_reminder_datetime, :assessment_completion_status_code, :delivery_delay_hours,
+                 :cc_user_ids
 
       property :assessment_id
       property :owner_id, type: Types::Params::Integer | Types::Params::Nil
@@ -25,6 +26,7 @@ module Forms
       property :campaign_assessment_group_id, type: Types::Params::Integer | Types::Params::Nil
       property :assessment_selection
       property :selected_assessment_ids, type: Types::Params::Array, default: []
+      property :cc_user_ids, type: Types::Params::Array, default: []
 
       validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client, presence: true
 

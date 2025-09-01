@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::ReportFamiliesController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     validate_crud_requests Api::V2::ReportFamily::Schema
 
     private

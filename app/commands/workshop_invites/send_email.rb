@@ -2,19 +2,20 @@
 
 module WorkshopInvites
   class SendEmail < BaseCommand
-    attr_reader :workshop_invited_subject, :campaign, :campaign_user
+    attr_reader :workshop_invited_subject, :campaign, :campaign_user, :resent
 
-    def initialize(workshop_invited_subject)
+    def initialize(workshop_invited_subject, resent: false)
       @workshop_invited_subject = workshop_invited_subject
       @campaign = workshop_invited_subject.campaign
       @campaign_user = CampaignUser.find_by(
         campaign: @campaign,
         user: workshop_invited_subject.user
       )
+      @resent = resent
     end
 
     def call
-      return false if email_already_sent?
+      return false if !resent && email_already_sent?
       return false if invite_no_longer_pending?
       return false if prework_not_completed?
 

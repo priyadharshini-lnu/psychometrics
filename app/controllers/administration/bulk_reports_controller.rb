@@ -2,36 +2,17 @@
 
 module Administration
   class BulkReportsController < Administration::BaseController
-    prepend_before_action :set_resource_class
-    prepend_before_action :set_resource, only: %i[download]
-    append_before_action :pundit_authorize
-
-    def new
-      respond_to(&:js)
-    end
-
-    def create
-      @client = Client.find(report_params[:client_id])
-      reports = query(export_params[:client]).call(export_params[:client].id, export_params[:report_ids],
-                                                   export_params[:start_date], export_params[:end_date])
-      if reports.any?
-        ::BulkReports::ExportAllJob.perform_later(export_params)
-        respond_to(&:js)
-      else
-        flash.now[:error] = t('.no_data')
-        respond_to do |format|
-          format.js { render :new }
-        end
-      end
-    end
+    skip_before_action :enforce_geo_restriction
+    before_action :skip_authorization
+    before_action :set_bulk_report
+    before_action :check_geo_access
 
     def download
-      index = params[:index].to_i || 0
-
-      report_blob = resource.files[index]&.blob
+      index = params[:index].to_i
+      report_blob = @bulk_report.files[index]&.blob
 
       if report_blob&.service&.exist?(report_blob.key)
-        redirect_to resource.private_download_url(index)
+        redirect_to @bulk_report.private_download_url(index)
       else
         redirect_to(admin_path, error: t('.removed'))
       end
@@ -39,34 +20,15 @@ module Administration
 
     private
 
-    def set_resource
-      @_resource = current_user.bulk_reports.find(params[:id])
+    def set_bulk_report
+      @bulk_report = current_user.bulk_reports.find(params[:id])
     end
 
-    def query(client)
-      if client.project?
-        ::Queries::Reports::ProjectLevel::BulkReportWithOptions
-      else
-        ::Queries::Reports::SubProjectLevel::BulkReportWithOptions
-      end
-    end
+    def check_geo_access
+      campaign = @bulk_report.campaign
+      return if campaign.blank?
 
-    def export_params
-      {
-        current_user: current_user,
-        client: client,
-        report_ids: report_params[:ids].compact_blank,
-        start_date: report_params[:start_date],
-        end_date: report_params[:end_date]
-      }
-    end
-
-    def report_params
-      params.require(:report).permit([:client_id, { ids: [] }, :start_date, :end_date])
-    end
-
-    def set_resource_class
-      @_resource_class ||= BulkReport # rubocop:disable Naming/MemoizedInstanceVariableName
+      campaign.client.check_geo_restriction!
     end
   end
 end

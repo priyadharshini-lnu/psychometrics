@@ -2,7 +2,7 @@
 
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!, only: %I[identify upgrade privacy_statement]
-  skip_before_action :set_client_by_subdomain, only: %i[privacy_statement]
+  skip_before_action :set_client_by_subdomain, only: %i[privacy_statement request_inspect]
 
   AVAILABLE_POLICY_LANGS = %w[en fr de it es-ES bg hr cs hu pl ro sr-Cyrl sk sl vi nl pt id zh zh-Hant ja ko th].freeze
 
@@ -60,6 +60,16 @@ class HomeController < ApplicationController
     locale = params[:lang]
     I18n.locale = AVAILABLE_POLICY_LANGS.include?(locale) ? locale : I18n.default_locale
     render html: nil, layout: 'policy'
+  end
+
+  def request_inspect
+    raise ActionController::RoutingError, 'Not Found' unless current_user.is?(:superadmin)
+
+    @headers = request.headers.to_h
+    @ip = request.remote_ip
+    @country = Current.user_country
+
+    render 'request_inspect', layout: false
   end
 
   private

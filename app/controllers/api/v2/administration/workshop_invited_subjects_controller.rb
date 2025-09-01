@@ -41,11 +41,22 @@ module Api
             ::Api::Administration::WorkshopInvitedSubjectPolicy,
             context[:user],
             @model,
-            %w[create],
+            %w[create resend_invite],
             { project_id: context[:campaign]&.project_id }
           )
         }
       }
+    end
+
+    def resend_invite
+      workshop_invite_subject_ids = params.dig(:data, :attributes, :workshop_invite_subject_ids) || []
+
+      audit! :resend_invite, current_user, record_type: WorkshopInvitedSubject,
+        payload: { workshop_invite_subject_ids: workshop_invite_subject_ids },
+        campaign: campaign
+
+      result = Workshops::InviteRequest::ResendRequest.call!(workshop_invite_subject_ids)
+      render json: { results: result }, status: :ok
     end
 
     private

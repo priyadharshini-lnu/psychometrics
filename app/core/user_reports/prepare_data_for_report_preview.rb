@@ -18,6 +18,7 @@ module UserReports
                 results: UserReports::GroupedResultsByAssessment.call!(user_report, view_report_as).to_json,
                 user_report_data: UserReports::PrepareUserReportData.call!(user_report).to_json,
                 campaign_factor_results: campaign_factor_results.to_json,
+                campaign_ai_artifact_results: campaign_ai_artifact_results.to_json,
                 data: ReportSerializer.new(
                   context: {
                     user_results: user_report.user_results,
@@ -42,6 +43,17 @@ module UserReports
           description: cfv.campaign_factor.description
         }
       end
+    end
+
+    def campaign_ai_artifact_results
+      results = Campaigns::AIArtifactResultsQuery.new(
+        user_report.campaign_id, user_report.user_id
+      ).query
+
+      Panko::ArraySerializer.new(
+        results,
+        each_serializer: AI::CampaignArtifactResultSerializer
+      ).to_a
     end
   end
 end

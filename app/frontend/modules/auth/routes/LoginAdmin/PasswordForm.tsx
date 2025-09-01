@@ -23,7 +23,7 @@ const PasswordForm: React.FC<LoginFormProps> = ({ csrfToken, user }) => {
     recaptchaToken,
     recaptchaReady,
     recaptchaWidgetId,
-  } = useRecaptcha(formRef, disable_recaptcha)
+  } = useRecaptcha({ formRef, disable_recaptcha })
 
   return (
     <>
@@ -40,8 +40,6 @@ const PasswordForm: React.FC<LoginFormProps> = ({ csrfToken, user }) => {
             }
             if (!recaptchaToken) {
               e.preventDefault()
-              // eslint-disable-next-line no-console
-              console.log('Executing reCAPTCHA')
               window.grecaptcha.execute(recaptchaWidgetId.current)
             }
           }

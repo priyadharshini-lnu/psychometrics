@@ -4,6 +4,7 @@ module Administration
   class AdminJobsController < Administration::BaseController
     before_action :skip_authorization
     skip_before_action :init_state
+    skip_before_action :enforce_geo_restriction
 
     def index
       jobs = policy_scope(AdminJobRecord).

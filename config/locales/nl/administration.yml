@@ -291,6 +291,48 @@ nl:
             manage: Beheer
             title: Workshops
             view: Bekijk
+    ai_artifacts:
+      artifact_results: Artefact resultaten
+      code: Code
+      form:
+        add_assessment: Beoordeling toevoegen
+        ai_assistant: AI-assistent
+        assessments: Beoordelingen
+        campaign_factors: Campagne factoren
+        configuration: Configuratie
+        datasheet: Technische fiche
+        datasheet_columns: Gegevensblad kolommen
+        include_all_datasheet_columns: Alle kolommen van gegevensbladen opnemen
+        no_assessment_selected: Er zijn nog geen assessments toegevoegd. Klik op "Toevoegen" om aan de slag te gaan.
+        questions_required: Er moet ten minste één vraag worden geselecteerd
+        select_ai_assistant: Selecteer AI-assistent
+        select_assessment: Selecteer Assessment
+        select_campaign_factors: Selecteer campagnefactoren
+        select_datasheet_columns: Gegevensbladkolommen selecteren
+        select_questions: Selecteer Vragen
+        title: AI-artefact
+      generate: Genereren
+      generate_result_info_message: Resultaten worden gegenereerd, vernieuw de pagina om de bijgewerkte resultaten te zien.
+      generate_results: Resultaten genereren
+      generated_at: Gegenereerd op
+      generated_at_time: Gegenereerd op %{time}
+      generated_value: Gegenereerde waarde
+      id: LEGITIMATIEBEWIJS
+      key: Sleutel
+      name: Naam
+      parsed_dependencies:
+        help: Geparseerde afhankelijkheden voor de gebruiker die door de AI-assistent wordt gebruikt voor het genereren van artefactresultaten
+        title: Geparseerde afhankelijkheden
+        view: Geparseerde afhankelijkheden weergeven
+      playground: Speelplaats
+      playground_info: Test uw artefact met voorbeeldgegevens om een voorbeeld van de gegenereerde resultaten te bekijken.
+      playground_placeholder: Testgegevens invoeren
+      raw: RAUW
+      tabs:
+        results: Resultaten
+        settings: Instellingen
+      test_generate: Test genereren
+      unsaved_changes: Niet-opgeslagen wijzigingen zijn aanwezig, overweeg om het formulier in te dienen om een bijgewerkte reactie van Playground te genereren.
     ai_assistants:
       actions:
         create: AI-assistent maken
@@ -298,9 +340,34 @@ nl:
         playground: Speeltuin
       ai_assistants: AI assistenten
       ai_assistants_playground: AI assistent speeltuin
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: De configuratie van de beoordeling ontbreekt in de ID van de beoordeling
+            assessment_missing_questions: Er ontbreken vragen in de beoordelingsconfiguratie voor %{assessment_id}
+            no_assessments_configured: Er zijn geen assessments geconfigureerd
+            no_assessments_configured_for_artifact: Er zijn geen evaluaties geconfigureerd voor dit artefact
+            no_completed_results: Geen ingevulde assessmentresultaten gevonden voor assessment %{assessment_name}
+            no_valid_assessment_data: Geen geldige beoordelingsgegevens beschikbaar
+          base:
+            dependency_not_configured: Afhankelijkheid '%{dependency}' is niet geconfigureerd
+          campaign_factor:
+            factor_empty_value: Campagnefactor '%{code}' (%{name}) heeft een lege waarde voor de %{email} van de gebruiker
+            factor_no_value: Aan de campagnefactor '%{code}' (%{name}) is geen waarde toegewezen voor de %{email} van de gebruiker
+            no_campaign_factors_configured: Er zijn geen campagnefactoren geconfigureerd voor dit artefact
+            no_valid_factor_data: Er zijn geen geldige gegevens over campagnefactoren beschikbaar
+          datasheet:
+            column_no_value: Kolom '%{column}' heeft geen waarde voor de %{email} van de gebruiker
+            no_datasheet_columns_configured: Er zijn geen specifieke kolommen voor gegevensbladen geconfigureerd
+            no_datasheet_configured: Er is geen gegevensblad geconfigureerd voor deze campagne
+            no_datasheet_data: Er zijn geen gegevensbladgegevens beschikbaar voor %{email} van de gebruiker
+            user_not_found_in_datasheet: Gebruiker niet gevonden in het gegevensblad van de campagne
+      campaign_ai_artifacts: Campagne AI-artefacten
       column:
         provider: Aanbieder
       created_successfully: AI Assistant is succesvol aangemaakt.
+      errors:
+        cannot_delete_in_use: Kan AI Assistant '%{name}' niet verwijderen omdat deze wordt gebruikt.
       form:
         add_output_schema_key: Uitvoerschema sleutel toevoegen
         dependencies: Afhankelijkheden
@@ -319,6 +386,11 @@ nl:
         system_prompt: Systeem prompt
         type: Type
         user_prompt: Gebruikersprompt
+      selector:
+        choose_artifact: Kies AI-artefact
+        choose_schema_key: Schemasleutel kiezen
+        no_assistants_found: Geen AI-assistenten gevonden
+        placeholder: Selecteer AI-assistent
       updated_successfully: AI Assistant is succesvol bijgewerkt.
     any: " - Elke - "
     api:
@@ -358,6 +430,8 @@ nl:
         exceeded_subjects_count: Campagne heeft %{users} onderwerpen. Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
         id: ID
         invites: Nodigt  uit
+        name: Naam
+        name_placeholder: Voer de naam van de uitnodiging in
         next: Volgende
         not_selected: Niet geselecteerd
         requests: Verzoeken
@@ -435,6 +509,7 @@ nl:
       errors:
         doesnt_have_header: "%{sub_header}' heeft geen header"
         invalid_headers: 'De volgende headers zijn ongeldig: %{headers}'
+        invalid_question: Ongeldige vraag-ID
         invalid_scores: Scores voor factor %{factor_name} zijn ongeldig. Scores moeten numerieke waarden zijn die door komma's worden gescheiden
         invalid_sub_header: "%{sub_header}' is geen geldige subheader voor header '%{header}'"
         scores_not_allowed: Scores kunnen alleen worden toegevoegd voor meerkeuzevragen en matrixvragen
@@ -773,20 +848,16 @@ nl:
       users_import: Importeren
     bulk_reports:
       create:
-        no_data: Geen gegevens
         successfully: De rapporten worden momenteel gemaakt en je ontvangt een e-mail als ze klaar zijn
       download:
         removed: Verwijderd
-      form:
-        end_date: Einddatum
-        start_date: Startdatum
       mailer:
         subject: Bulkrapporten downloaden
       new:
         header: Bulk downloaden
       reports_unavailable: Op dit moment zijn er geen rapporten beschikbaar om te downloaden. Controleer of de rapporten die je wilt downloaden beschikbaar zijn.
-      select_reports_for_download: Selecteer ten minste één rapport om te downloaden.
-      select_reports_for_regenerate: Selecteer minstens één rapport om te regenereren.
+      select_users_for_download: Selecteer ten minste één gebruiker om rapporten te downloaden.
+      select_users_for_regenerate: Selecteer ten minste één gebruiker om rapporten te regenereren.
     cable:
       notification:
         assessment_factors: Factoren worden opgehaald
@@ -1092,6 +1163,7 @@ nl:
         is_active: Actief
         name: Naam
         no_permission_message: U hebt geen toestemming om
+        title: Gebruikers
         updated_by: Bijgewerkt door
       validations:
         dates:
@@ -1576,12 +1648,16 @@ nl:
       add: Voeg  toe
       back: Terug
       cancel: Annuleren
+      code: Code
       disabled: Diasbled
       download_sample_file: Voorbeeldbestand downloaden
       enabled: Ingeschakeld
       import:
         failure_msg: Fout bij importeren bestand.
+      instructions: Aanwijzingen
+      loading: Laden...
       minute: minuut
+      name: Naam
       next: Volgende
       reset: Reset
       save: Sla
@@ -1623,6 +1699,7 @@ nl:
           {{schedule_end_date}} - Einddatum planning"
         campaign: Campagne
         campaign_assessment_group: Campagnebeoordelingsgroep
+        cc_recipients: CC-ontvangers
         client: Klant
         completion: Voltooiing
         custom: Aangepast
@@ -1715,6 +1792,7 @@ nl:
         back: Terug
         body: 'Lichaam:'
         campaign: 'Campagne:'
+        cc_recipients: 'CC-ontvangers:'
         client: 'Klant:'
         communication_type: 'Type communicatie:'
         delivery_rule: 'Leveringsregel:'
@@ -2212,7 +2290,16 @@ nl:
       self_rating: Zelfclassificatie inschakelen
       show_reflections: Reflecties tonen
       skill_gap_report: Rapport over vaardigheidskloof
+      skill_source_preference: Bron van vaardigheden
+      skill_sources:
+        from_ai: Vanuit algemene AI-kennis
+        from_template: Van sjabloon en toewijzingen
       skills: Vaardigheden
+      skills_privacy_messages:
+        made_private: Vaardigheid '%{skill_name}' is gemarkeerd als privé en wordt verborgen voor je manager
+        made_public: Vaardigheid '%{skill_name}' is nu zichtbaar voor je manager
+        skill_not_found: Vaardigheid niet gevonden
+        unauthorized: Niet toegestaan om deze vaardigheid te wijzigen
       skills_updated: IDP Vaardigheden succesvol bijgewerkt
       status:
         draft: Ontwerp
@@ -2441,6 +2528,10 @@ nl:
         content: Weet je zeker dat je het onderwerp met e-mail '%{subjectEmail}' wilt verwijderen?
         success: Onderwerp met e-mail '%{subjectEmail}' is succesvol verwijderd.
         title: Onderwerp verwijderen
+      resend_invite:
+        content: Stuur de uitnodiging opnieuw naar de geselecteerde onderwerpen. Weet je zeker dat je verder wilt gaan?
+        success: Uitnodigingen worden opnieuw verzonden.
+        title: Uitnodiging opnieuw verzenden
       statuses:
         accepted: Geaccepteerd
         cancelled: Geannuleerd
@@ -2452,6 +2543,7 @@ nl:
         requested_rescheduling: Aangevraagde herplanning
         requested_rescheduling_rejected: Herschikking Afgewezen
         rescheduled: Verpland
+        scheduled: Gepland
       subject: Onderwerp
     job_role:
       are_you_sure_to_remove: Weet je zeker dat je moet verwijderen?
@@ -2543,6 +2635,7 @@ nl:
     message: Bericht
     meta_title: Administratiepaneel
     navigation:
+      ai_artifacts: AI-artefacten
       ai_assistants: AI assistenten
       assessments: Beoordeling
       assessments_reports: Beoordelingen en rapporten
@@ -2733,21 +2826,31 @@ nl:
         sms_contacts: SMS Contacten
         subjects: Onderwerpen
     piped_text_modal:
+      assessment_center: Beoordelingscentrum
       assessment_id: Beoordeling ID
       campaign_id: Campagne-ID
       campaign_name: Naam campagne
       campaigns: Campagnes
+      description: Beschrijving
+      duration: Duur
+      end_time: Eindtijd
       insight_page_link: Inzicht pagina link
       insight_page_url: Inzicht pagina URL
+      invite_title: Titel
+      invites: Nodigt  uit
       join_link: Word lid Link
       magic_link: Magische link
       magic_url: Magische URL
+      platform_url_links: Platform Url en koppelingen
       profile_custom_field: Profiel aangepast veld
       project_name: Naam project
       projects: Projecten
       report_name: Rapport Naam
+      start_time: Starttijd
       text: Tekst
       title: Tekst met passepoil toevoegen
+      user_reports: Rapporten van gebruikers
+      users: Gebruikers
     proctoring_sessions:
       columns:
         comment: Opmerking
@@ -2773,6 +2876,7 @@ nl:
         create:
           invalid_format: De niveaudefinitie moet een array van definities zijn.
           level_definition_must_match_level: moet precies %{expected} niveaus bevatten, maar %{actual} werden gegeven
+          level_description_must_exist: Niveaubeschrijving mag niet leeg zijn
           level_name_must_exist: Naam van niveau kan niet leeg zijn
           must_be_unique: Moet uniek zijn
           proficiency_level_exists: Er bestaat al een ProficiencyLevel met deze vaardigheid en dit project
@@ -3239,6 +3343,29 @@ nl:
           repeat_modules: Geselecteerde modules worden herhaald op de exta ingevoegde pagina's, verwijst naar modulenaam
         module_pagination: Module Paginering
         repeat_modules: Modules herhalen
+      property_panel:
+        add_new_condition: Nieuwe conditie toevoegen
+        apply_color_label: 'Breng vervolgens de volgende kleur aan:'
+        graph_condition_types:
+          default: Verstek
+          graph_value: Grafiek waarde
+        graph_value_condition_not_supported_msg: Grafiekwaardevoorwaarden worden niet ondersteund voor dit grafiektype. Deze optie is momenteel alleen beschikbaar voor onderstaande grafiektypen.
+        graph_value_conditions_title: Voorwaarden voor grafiekwaarde
+        if_graph_value_is: 'Als de grafiekwaarde het volgende is:'
+        manage_graph_value_condition: De voorwaarde van de grafiekwaarde beheren
+        manage_styles_condition: Conditie van stijlen beheren
+        missing_value: Ontbrekende waarde
+        predicates:
+          equal_to: Gelijk aan
+          greater_than: Groter dan
+          greater_than_or_equal: Groter dan of gelijk aan
+          less_than: Minder dan
+          less_than_or_equal: Kleiner dan of gelijk aan
+          not_equal_to: Niet gelijk aan
+        prefixes:
+          and: EN
+          or: OF
+        text_condition_type: 'Tekst Conditie Type:'
     report_families:
       create:
         successfully: Rapportbundel %{name} is succesvol aangemaakt.
@@ -3297,6 +3424,19 @@ nl:
         pending_qc: In afwachting van QC
         qc_completed: QC Voltooid
         qc_in_progress: QC in uitvoering
+    report_settings:
+      data_source_types:
+        assessment: Beoordeling
+        campaign_factors: Campagne factoren
+        datasheet: Technische fiche
+        report_data: Rapporteer gegevens
+      tabs:
+        campaign_ai_artifacts: Campagne AI-artefacten
+        campaign_factors: Campagne factoren
+        data_sheets: Technische fiches
+        page_settings: Pagina-instellingen
+        translations: Translations
+      title: Rapportinstellingen
     reports:
       bulk_marked_as_done: Bulk Gemarkeerd als Gereed
       bulk_upload:
@@ -3430,8 +3570,6 @@ nl:
         name_label: Naam
         next: Volgende
         required_error: Vereist
-        reschedule_duration_max_error: Kan niet langer zijn dan 30 dagen
-        reschedule_duration_min_error: Kan niet korter zijn dan 1 minuut
         resources_panel:
           description: Voeg links toe naar bronnen waartoe de begeleiders toegang moeten hebben.
           resource_name_placeholder: Naam bron
@@ -4004,6 +4142,7 @@ nl:
         skill_types:
           behavioural: Gedrag
           other: Andere
+          qualification: Kwalificatie
           technical: Technisch
       property_panel:
         add_n_a_option: N.v.t.-optie toevoegen
@@ -4348,6 +4487,7 @@ nl:
           header: Vertalingen importeren
       import:
         successfully: Vertalingen zijn succesvol geïmporteerd
+        successfully_scheduled: Het importeren van vertalingen is gepland.
       reports:
         export: Vertalingen exporteren
         import: Vertalingen importeren

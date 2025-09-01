@@ -5,6 +5,8 @@ class AI::Assistant < ApplicationRecord
 
   ALLOWED_DEPENDENCIES = %w[datasheet assessments campaign_factors].freeze
 
+  include RansackSearchableFields
+
   self.inheritance_column = :_type_disabled
 
   belongs_to :owner, class_name: 'Client', optional: true
@@ -12,11 +14,14 @@ class AI::Assistant < ApplicationRecord
   has_many :chats, class_name: 'AI::AssistantChat', foreign_key: 'ai_assistant_id', dependent: :destroy
   has_many :assistant_output_schema_keys,
            class_name: 'AI::AssistantOutputSchemaKey', foreign_key: 'ai_assistant_id', dependent: :destroy
+  has_many :campaign_ai_artifacts, class_name: 'AI::CampaignArtifact', foreign_key: 'ai_assistant_id'
 
   accepts_nested_attributes_for :assistant_output_schema_keys, allow_destroy: true
 
   validates :model_id, presence: true
   validate :dependencies_must_be_valid
+
+  before_destroy :check_ai_assistant_in_use
 
   enum :assistant_type, {
     content_writer: 0
@@ -27,10 +32,21 @@ class AI::Assistant < ApplicationRecord
     published: 1
   }
 
+  ransacker :assistant_type, formatter: proc { |v| assistant_types[v] }
+
   def for_user(user)
     chat = chats.create!(ai_assistant: self, user: user, model_id: model_id)
     chat.with_instructions(parsed_system_prompt.strip)
-    chat.with_context(ruby_llm_context)
+    chat.to_llm.with_context(ruby_llm_context)
+    chat
+  end
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[filterable_fields]
+  end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[assistant_type]
   end
 
   private
@@ -89,5 +105,13 @@ class AI::Assistant < ApplicationRecord
     unless invalid.empty?
       errors.add(:dependencies, "contains invalid entry(ies): #{invalid.join(', ')}")
     end
+  end
+
+  # TODO: This should be replaced with published/draft status in future instead of not allowing deletion
+  def check_ai_assistant_in_use
+    return unless campaign_ai_artifacts.exists?
+
+    errors.add(:base, I18n.t('administration.ai_assistants.errors.cannot_delete_in_use', name: name))
+    throw(:abort)
   end
 end

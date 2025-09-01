@@ -77,49 +77,23 @@ module Administration
       end
 
       def validate_job_roles_headers
-        validate_dynamic_headers(
-          sheet_name: 'Job Roles',
-          group_levels_sheet_name: 'Job Group Levels',
-          group_label: 'Job Group',
-          extra_columns: ['Job Title Code', 'Job Description', 'Job Title Name']
-        )
+        validate_sheet_headers('Job Roles', ['Job Title Code', 'Job Title Name'])
       end
 
       def validate_skills_headers
-        validate_dynamic_headers(
-          sheet_name: 'Skills',
-          group_levels_sheet_name: 'Skill Group Levels',
-          group_label: 'Skill Group',
-          extra_columns: ['Skill Code', 'Skill Name', 'Skill Definition', 'Skill Type']
-        )
-      end
-
-      def validate_dynamic_headers(sheet_name:, group_levels_sheet_name:, group_label:, extra_columns:)
-        return unless roo_excel.sheets.include?(sheet_name) && roo_excel.sheets.include?(group_levels_sheet_name)
-
-        group_levels_sheet = roo_excel.sheet(group_levels_sheet_name)
-        level_count = group_levels_sheet.last_row - 1
-
-        required_headers = []
-        (1..level_count).each do |level|
-          required_headers << "#{group_label} #{level} - Code"
-          required_headers << "#{group_label} #{level} - Name"
-        end
-
-        required_headers += extra_columns
-
-        validate_sheet_headers(sheet_name, required_headers)
+        validate_sheet_headers('Skills', ['Skill Code', 'Skill Name', 'Skill Definition', 'Skill Type'])
       end
 
       def validate_file_content
-        validate_sheet('Job Group Levels')
-        validate_sheet('Skill Group Levels')
-        validate_sheet('Job Roles', unique_columns: ['Job Title Code', 'Job Title Name'])
-        validate_sheet('Skills', unique_columns: ['Skill Name'])
-        validate_sheet('Job Roles And Skills Mapping')
+        validate_sheet('Job Group Levels', mandatory_columns: ['Job Group', 'Label'])
+        validate_sheet('Skill Group Levels', mandatory_columns: ['Skill Group', 'Label'])
+        validate_sheet('Job Roles', mandatory_columns: ['Job Title Code', 'Job Title Name'],
+unique_columns: ['Job Title Code', 'Job Title Name'])
+        validate_sheet('Skills', unique_columns: ['Skill Name'], mandatory_columns: ['Skill Name', 'Skill Type'])
+        validate_sheet('Job Roles And Skills Mapping', mandatory_columns: ['Job Title Code', 'Skill Name'])
       end
 
-      def validate_sheet(sheet_name, unique_columns: [])
+      def validate_sheet(sheet_name, unique_columns: [], mandatory_columns: []) # rubocop:disable Metrics/PerceivedComplexity
         return unless roo_excel.sheets.include?(sheet_name)
 
         sheet = roo_excel.sheet(sheet_name)
@@ -132,16 +106,16 @@ module Administration
           headers.each_with_index do |header, column_index|
             value = row[column_index]
 
-            if value.blank?
-              errors.add(:file, :missing_value, row: row_index, field: header)
+            if value.blank? && mandatory_columns.include?(header)
+              errors.add(:file, :missing_value, sheet_name: sheet_name, row: row_index, field: header)
               next
             end
 
             unique_column = unique_columns.find { |col| normalize_header(header) == normalize_header(col) }
 
             if unique_column
-              if unique_trackers[unique_column].include?(value)
-                errors.add(:file, :duplicate_value, row: row_index, value: value, field: header)
+              if unique_trackers[unique_column].include?(value) && value.present?
+                errors.add(:file, :duplicate_value, sheet_name: sheet_name, row: row_index, value: value, field: header)
               else
                 unique_trackers[unique_column].add(value)
               end

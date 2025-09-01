@@ -43,7 +43,7 @@ sl:
           attributes:
             adding_report_ids:
               not_linked_to_report_family: Izbrali ste poročila, ki niso povezana z izbranim svežnjem poročil
-              report_family_disabled: Izbrali ste onemogočen sveženj poročil
+              report_family_disabled: Izbrali ste onemogočen Sklop poročil
               reports_disabled: Izbrali ste onemogočena poročila
             removing_report_ids:
               not_linked_to_report_family: Izbrali ste poročila, ki niso povezana z izbranim svežnjem poročil
@@ -376,11 +376,11 @@ sl:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Vrstica %{row}: Podvojena vrednost %{value} v %{field}'
+              duplicate_value: "%{sheet_name}, vrstica %{row}: podvojena vrednost %{value} za %{field}"
               invalid_format: Naložite datoteko v obliki xlsx
               missing_headers: 'Na listu %{sheet_name} manjkajo naslovi: %{headers}'
               missing_sheets: 'Manjkajo zahtevani listi: %{sheets}'
-              missing_value: 'Vrstica %{row}: Manjkajoča vrednost v polju %{field}'
+              missing_value: "%{sheet_name}, vrstica %{row}: manjkajoča vrednost za %{field}"
             project:
               must_exist: Projekt mora obstajati
         update_norm:
@@ -425,28 +425,31 @@ sl:
         access_reports_at: Poročilo o dostopu na
         access_reports_at_date: Datelj
         access_reports_at_time: Čas
-        client_ids: Najem strank
+        client_ids: Spletno okolje naročnika
         manager_ids: Upravljavci
         report_ids: Poročila
         user_ids: Uporabniki
       assessment:
-        active: Dejaven
+        active: Aktivni
         categories:
           '360': 360-stopinjska kampanja
           agile: AGILE
-          assessor_form: Obrazec ocenjevalca
-          case_study: Študije primerov
+          assessor_form: Obrazec ocenjevalec
+          case_study: Študija primera
           hogan: Hogan
           iiht: IIHT
-          lead_assessor_form: Obrazec za vodilnega ocenjevalca
-          meeting: Srečanje
+          lead_assessor_form: Obrazec glavni ocenjevalec
+          meeting: Sestanek
+          mettl: Mettl
           organisational: Raziskave
           pearson: Pearson
-          psychometric: Ocena
+          psychometric: Psihometrija
           saville: Saville
+          simulation: Simulacija
+          skillvue: Skillvue
           threesixty: 360-stopinjska kampanja
         category: Kategorija
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         description: Opis
         id: ID
         name: Ime
@@ -457,23 +460,26 @@ sl:
           common: Ocena TTE
           hogan: Hogan
           iiht: Ocena IIHT
+          mettl: Ocena Mettl
           pearson: Pearsonova ocena
           saville: Ocena Saville
+          simulation: Ocena Simulation
+          skillvue: Ocena Skillvue
         updated_at: Datum spremembe
       assign:
         completed_at: Datum zaključka
         statuses:
-          completed: Dokončan
+          completed: Dokončano
           in_progress: Življenjepis
-          ineligible: Neupravičene
-          interrupted: Prekinjen
+          ineligible: Neupravičeno
+          interrupted: Prekinjeno
           not_started: Nov
           overdue: Zapadla
-          timed_out: Časovna omejitev
+          timed_out: Čas za izvedbo je potekel
       block:
-        active: Dejaven
-        assign_to_assessment_ids: Ocene
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        assign_to_assessment_ids: Ocenjevanja
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         updated_at: Datum spremembe
@@ -484,7 +490,7 @@ sl:
           project: Projekt
           sub_campaign: Podkampanja
         category: Kategorija
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         id: ID
         licenses: Številka licence
         licenses_expire: Datum poteka licence
@@ -502,7 +508,7 @@ sl:
         subdomain: Poddomena
         types:
           associate: Sodelavec
-          corporate: Podjetij
+          corporate: Podjetje
           distributer: Distributer
           other: Drugi
           partner: Partner
@@ -511,19 +517,19 @@ sl:
         updated_at: Datum spremembe
         year: Leto stranke
       communication:
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         id: ID
         updated_at: Datum spremembe
       dimension:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         owner: Lastnik
         updated_at: Datum spremembe
       factor:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         parent_id: Starš
@@ -532,20 +538,20 @@ sl:
       hogan_report_setting:
         load_report: Poročilo o nalaganju iz Hogana
       innovation_style:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         description: Opis
         id: ID
         name: Ime
         updated_at: Datum spremembe
       innovation_styles_factor:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         updated_at: Datum spremembe
       library:
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         description: Opis
         files: Datoteke
         id: ID
@@ -559,14 +565,14 @@ sl:
         overuse_number: Dodatek za prekomerno uporabo
         type: Licenca za
         types:
-          common: Običajen
+          common: Običajno
           proctoring: Nadzorovanje
           threesixty: Trišestdeset
         unlimited: Neomejeno
         used_number: Uporabljena številka licence
       membership:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         disabled: Onesposobiti
         email: E-pošta
         first_name: Ime
@@ -584,16 +590,16 @@ sl:
         updated_at: Datum spremembe
         user_access: Uporabniški dostop
       norm:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         updated_at: Datum spremembe
         updated_by: Uredil
       occupation:
-        active: Dejaven
+        active: Aktivni
         bachelors_or_masters_qualification: Diploma ali magistrska kvalifikacija
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         description: Opis
         diploma_qualification: Kvalifikacija diplome
         full_description: Celoten opis
@@ -605,36 +611,36 @@ sl:
         updated_at: Datum spremembe
         work_environment: Delovno okolje
       occupations_factor:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         updated_at: Datum spremembe
       product:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         updated_at: Datum spremembe
       question:
-        active: Dejaven
-        assign_to_assessment_ids: Ocene
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        assign_to_assessment_ids: Ocenjevanja
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         owner: Lastnik
         updated_at: Datum spremembe
       report:
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         id: ID
         updated_at: Datum spremembe
       report_family:
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         id: ID
         updated_at: Datum spremembe
       task:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         description: Opis
         description_label: OPIS
         factor_id: Usposobljenosti
@@ -642,16 +648,16 @@ sl:
         id: ID
         membership_id: Dodeljevalec
         membership_id_label: IZBERITE DODELJEVALCA
-        name: Dejanje
+        name: Aktivnost
         name_label: UKREPANJE
         planned_completed_at: Rok
         planned_completed_at_label: IZBERITE ROK
         priority: Prednost
         priority_label: PREDNOST
-        status: Stanje
+        status: Status
         status_label: IZBERITE STANJE
         statuses:
-          completed: Dokončan
+          completed: Dokončano
           in_progress: V teku
           not_started: Ni začeto
           overdue: Zapadla
@@ -660,12 +666,12 @@ sl:
       threesixty:
         users_result:
           statuses:
-            completed: Dokončan
+            completed: Dokončano
             in_progress: Življenjepis
             not_started: Nov
       user:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         current_password: Trenutno geslo
         disabled: Onesposobiti
         email: E-poštni naslov
@@ -711,8 +717,8 @@ sl:
           identified: Identificirani uporabniki
         updated_at: Datum spremembe
       user_form:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         current_password: Trenutno geslo
         disabled: Onesposobiti
         email: E-poštni naslov
@@ -728,7 +734,7 @@ sl:
       users_result:
         assessment_name: Ime ocenjevanja
         assessment_type: Vrsta ocenjevanja
-        completed_at: Dokončano ob
+        completed_at: Zaključek ob
         completion_reasons:
           time_out_offline: Časovna omejitev / brez povezave
           time_out_online: Prekinitev časa / Na spletu
@@ -736,13 +742,13 @@ sl:
         email: E-pošta
         name: Ime
         result_id: ID rezultata
-        started_at: Začelo se je
-        status: Stanje
+        started_at: Začetek
+        status: Status
         statuses:
-          completed: Dokončan
+          completed: Dokončano
           in_progress: Življenjepis
-          ineligible: Neupravičene
-          interrupted: Prekinjen
+          ineligible: Neupravičeno
+          interrupted: Prekinjeno
           not_started: Nov
           timed_out: Časovno omejena import_raw
     errors:
@@ -811,12 +817,13 @@ sl:
         bulk_download_idp_reports: Množični prenos poročil IDP
         bulk_download_reports: Poročila o množičnem prenosu
         bulk_download_user_reports: Prenos poročil uporabnikov v velikem obsegu
+        bulk_generate_user_campaign_ai_artifact_results: Množično ustvarjanje rezultatov artefaktov AI kampanje
         bulk_regenerate_reports: Vnovična generacija poročil o oglaševalskih akcijah
         bulk_regenerate_threesixty_reports: Obnovite poročila o treh šestdesetih predmetih
         bulk_regenerate_user_reports: Znova generirajte poročila uporabnikov
         bulk_reports: Poročila v velikem obsegu
         bulk_rescore_campaign_factors: Dejavniki množične ponovne ocene oglaševalske akcije
-        bulk_update_evaluation_status: Stanje ocenjevanja množične posodobitve
+        bulk_update_evaluation_status: Status ocenjevanja množične posodobitve
         compact_completion_status_export: Izvoz stanja kompaktnega dokončanja
         completion_status_export: Izvoz stanja dokončanja
         copy_as_template_or_campaign: Kopiranje kampanje kot predloge
@@ -847,6 +854,7 @@ sl:
         external_assessment_export: Izvoz zunanjih rezultatov
         import_accesssheet: Uvoz dodatka
         import_assessment_questions: Vprašanja za oceno uvoza
+        import_assessment_translations: Prevodi ocenjevanja uvoza
         import_assessors: Ocenjevalci uvoza
         import_campaign_factors: Uvoz dejavnikov oglaševalske akcije
         import_datasheet: Uvoz podatkovnega lista
@@ -883,12 +891,12 @@ sl:
         super_admin_assessment_raw_result_export: Izvoz neobdelanih rezultatov Super Admin
         super_admin_datasheet_export: Izvoz podatkovnega lista Super Admin
         super_admin_external_assessment_export: Izvoz zunanjega ocenjevanja super skrbnika
-        threesixty_campaign_export_completion_status: Stanje dokončanja izvoza kampanje Threesixty
+        threesixty_campaign_export_completion_status: Status dokončanja izvoza kampanje Threesixty
         threesixty_campaign_export_scores: Izvoz rezultatov kampanje Threesixty
         workshop_status_export: Izvoz stanja ocenjevalnega središča
       statuses:
-        completed: Dokončan
-        completed_with_errors: Dokončano z napakami
+        completed: Dokončano
+        completed_with_errors: Zaključek z napakami
         failed: Ni uspela
         in_progress: V teku
         scheduled: Načrtovano
@@ -937,12 +945,12 @@ sl:
         success_message: Ocena »%{name}« je bila uspešno kopirana.
       details: Podrobnosti
       download_csv: Prenesite datoteko CSV
-      edit: Urediti
+      edit: Uredi
       evaluate: Oceni
       export: Izvoz
       export_normed: Normirani faktorski rezultati
       export_raw_labels: Surovo (z nalepkami)
-      export_raw_scores: Ocene surovih faktorjev
+      export_raw_scores: Ocenjevanja surovih faktorjev
       export_raw_without_labels: Surovo (brez nalepk)
       extend_time: Podaljšajte čas
       external_scores_export: Zunanji rezultati
@@ -973,10 +981,10 @@ sl:
       unarchived:
         success_message: Ocena »%{name}« je bila uspešno nearhivirana
       view: Pogled
-    active: Dejaven
-    archived: Arhivirajo
+    active: Aktivni
+    archived: Arhivirani
     assessment: Ocena
-    assessments: Ocene
+    assessments: Ocenjevanja
     audio_response:
       pause: Pavza
       permission_denied_message: V brskalniku omogočite dostop do mikrofona, da boste lahko posneli odgovor
@@ -1008,7 +1016,7 @@ sl:
         skillvue_assessment_name: Ime ocenjevanja Skillvue
       translations_migrated: Prevajanje je bilo seljeno
     create: Ustvariti
-    dashboard: Armaturni plošči
+    dashboard: Nadzorna plošča
     dictation:
       allow_browser_permision: Dovolite zvočno dovoljenje brskalnika za uporabo narekovanja
       autostopping_in: Samodejno ustavitev narekovanja v %{reverseCountdown} sekundah
@@ -1029,7 +1037,7 @@ sl:
       use_speech_instructions: Za pisanje tega odgovora uporabite govorni vnos
     drawer:
       title: Podrobnosti ocenjevanja
-    edit: Urediti
+    edit: Uredi
     fields:
       category:
         agile: AGILE
@@ -1127,6 +1135,10 @@ sl:
         mic: Mikrofon
       discard: Zavrni
       discard_record_again: Zavrnite in ponovno posnemite
+      error_while_discarding: Obstoječega videoposnetka ni bilo mogoče zavrniti
+      error_while_uploading: Med nalaganjem je prišlo do neznane napake
+      failed_to_access_permission: Dostop do kamere in mikrofona ni bil mogoč
+      failed_to_complete_upload: 'Nalaganje ni bilo mogoče dokončati: podrobnosti o URL-ju niso na voljo'
       media_recorder:
         failure: Vaš brskalnik ne omogoča snemanja videa. Priporočamo uporabo brskalnika Chrome ali Firefox
         success: Prosimo dovolite uporabo kamere in mikrofona za snemanje
@@ -1151,12 +1163,12 @@ sl:
   assessments_reports:
     add_group_form:
       previous_assessments_required: Ocenjevanje poteka v spodnjem vrstnem redu
-      previous_group_required: Zahtevano je prejšnje dokončanje skupine
+      previous_group_required: Najprej morate zaključiti prejšnjo skupino
       require_previous_groups_completion_for_booking: Pred rezervacijo je treba opraviti vse predhodne skupine
     menu:
       assessment_center: Ocenjevalni center
       assessment_center_invites: Vabila ocenjevalnega centra
-      assessments_and_reports: Ocene in poročila
+      assessments_and_reports: Ocenjevanja in poročila
       idp: IDP
       manage: Upravljanje
       report_approval: Nastavitve odobritve poročila
@@ -1165,21 +1177,21 @@ sl:
       add_settings: Dodaj nastavitev
       create_seetings: Ustvari nastavitve
     sequencing:
-      add_assessment_center: Dodajanje ocenjevalnega središča
+      add_assessment_center: Dodajte ocenjevalni center
       add_group: Dodajanje skupine
-      assessments: Ocene
+      assessments: Ocenjevanja
       delete_group: Brisanje skupine
       edit_group_name: Urejanje imena skupine
       modal:
         delete:
-          cancel: Odpovedati
+          cancel: Prekliči
           cannot_delete_with_workshops: Skupine, ki vsebuje delavnice, ni mogoče izbrisati, najprej izbrišite delavnice
           failed: Ni uspelo izbrisati skupine »%{name}«, obrnite se na skrbnika
           ok: Da, izbriši
           text: Ali ste prepričani, da želite izbrisati skupino »%{name}«?
           title: Izbriši skupino
-      no_assessments: Povlecite in spustite ocene
-      no_ungrouped_assessments: Tukaj povlecite in spustite ocene za razdruživanje
+      no_assessments: Povlecite in spustite ocenjevanja
+      no_ungrouped_assessments: Ocenjevanja povlecite in spustite sem, da jih razdružite.
       ungrouped_assessments: Nezdružene ocene
   assessors:
     campaigns_list:
@@ -1187,13 +1199,13 @@ sl:
         evaluation_count: Število ocen
         evaluation_status: Status ocenjevanja
         moderation_count: Število moderiranja
-        moderation_status: Stanje moderiranja
+        moderation_status: Status moderiranja
   assign_reports:
     assessment_not_in_report: Ocena z id %{assessment_id} ni del poročila z id %{report_id}
     errors:
       not_enought_licenses: Paket z id %{bundle_id} nima licenc
       user_not_found: 'Vrstica %{row}: uporabnik z e-poštnim naslovom »%{email}'' ni bil najden'
-    report_bundle_not_found: Sveženj poročil z id %{bundle_id} ni bil najden
+    report_bundle_not_found: Sklop poročilz id %{bundle_id} ni bil najden
     report_not_found: Poročila z id %{report_id} ni mogoče najti
     report_not_in_bundle: Poročilo z id %{report_id} ni del paketa poročil z id %{bundle_id}
   assigns:
@@ -1390,17 +1402,17 @@ sl:
       notification_minutes: ostalo vam je še %{minutes} minut
   campaign_assessment:
     actions:
-      bulk_download: Prenos v velikem obsegu
+      bulk_download: Hkratni prenos večih datotek
       bulk_update_evaluation_as_done: Označi kot končano
       bulk_update_evaluation_as_undone: Odčrti oznako kot končano
       convert_to_template: Pretvori v predlogo
       download: Prenesite poročila
-      export_completion_status: Stanje dokončanja izvoza
+      export_completion_status: Status izvoza
       export_external: Zunanji
       export_normed: Normirani faktorski rezultati
       export_occupations: Poklicev
       export_raw_labels: Surovo (z nalepkami)
-      export_raw_scores: Ocene surovih faktorjev
+      export_raw_scores: Ocenjevanja surovih faktorjev
       export_raw_without_labels: Surovo (brez nalepk)
       export_scores: Rezultate
       export_scoring: Točkovanja
@@ -1419,12 +1431,12 @@ sl:
       assessment_name: Ime ocenjevanja
       assessor_form: Obrazec ocenjevalca
       auto_assign: Samodejna dodelitev
-      dimension_id: ID razsežnosti
+      dimension_id: ID kategorija
       external_user_id: ID kandidata za Skillvue
-      id: ID ocenjevanja oglaševalske akcije
-      locales: Locales
+      id: ID kampanje
+      locales: Lokalizacije
       norm: Norma
-      norm_id: ID norme
+      norm_id: ID norma
       pearson_norm_id: Pearsonova normativna izkaznica
       pearson_schedule_id: ID urnika Pearson
       pearson_variation: Pearsonova različica
@@ -1531,7 +1543,7 @@ sl:
       workshop_activity_duration:
         form:
           duration: Trajanje v minutah
-        title: Trajanje aktivnosti delavnice
+        title: Trajanje posamezne aktivnosti
     normalize_factor_scores:
       normalization_not_allowed: Normalizacija faktorskih ocen je trenutno onemogočena za to ocenjevanje v nastavitvah projekta. Omogočite nadaljevanje.
       success: Uspešno zaključena normalizacija faktorskih rezultatov
@@ -1549,7 +1561,7 @@ sl:
       completed: Zaključeno
       in_progress: V teku
       ineligible: Ni dovoljeno
-      interrupted: Prekinjeno
+      interrupted: Prekinjenoo
       new: Novo
       not_started: Ni začeto
       progress: V teku
@@ -1566,7 +1578,7 @@ sl:
       add_reports:
         enqueue_message: Opravilo dodajanja poročil je uspešno uvrščeno v čakalno vrsto
         success_message: Poročila so bila uspešno dodana
-      bulk_download: Prenos v velikem obsegu
+      bulk_download: Hkratni prenos večih datotek
       export_data: Izvoz podatkov
     bulk_download:
       error: Prenos v velikem obsegu je omejen na 1000 datotek poročil. Trenutna izbira ima %{count} datotek poročil. Prilagodite začetni in končni datum, da zmanjšate število datotek poročil za prenos.
@@ -1575,7 +1587,7 @@ sl:
       auto_assign: Samodejna dodelitev
       locales: Lokacije
       main_report: Glavno poročilo
-      report_bundle: Sveženj poročil
+      report_bundle: Sklop poročil
       report_name: Ime poročila
       user_access: Uporabniški dostop
       user_dashboard: Uporabniška nadzorna plošča
@@ -1586,7 +1598,7 @@ sl:
         add_with_existing_response: Dodajanje poročila obstoječemu uporabniku in ohranitev obstoječega odgovora
         skip_existing: Preskoči obstoječega uporabnika
       report: Poročilo
-      report_bundle_placeholder: Izberite sveženj poročil
+      report_bundle_placeholder: Izberite Sklop poročil
     messages:
       bulk_download_error: Prenos v velikem obsegu je omejen na 1000 datotek poročil. Če ste izbrali veliko jezikov, jih zmanjšajte.
       bulk_download_successful: Opravilo prenosa poročila v velikem obsegu je bilo uspešno načrtovano
@@ -1619,39 +1631,39 @@ sl:
       additional_time: Dodatni čas
       assessment_center: Ocenjevalni center
       assessment_center_invites: Vabila ocenjevalnega centra
-      completed_at: Dokončano ob
-      completion_status: Stanje dokončanja
+      completed_at: Zaključek ob
+      completion_status: Status dokončanja
       hogan_id: Hogan ID
       last_login: Zadnja prijava
       manager: Menedžer
       modals:
         create_hogan_credentials:
-          assessments: 'Ocene:'
-          confirmation: V besedilno polje vnesite spodnji e-poštni naslov, da dodate novo poverilnico hogan
+          assessments: 'Ocenjevanja:'
+          confirmation: 'V polje ponovno vpišite spodnji e-poštni naslov. S tem boste ustvarili nove dostopne podatke za Hoganove vprašalnike:'
           reports: 'Poročila:'
           successfully: Uspešno je bila dodana nova poverilnica hogan za uporabnika z e-poštnim naslovom %{email}.
-          warning: Ustvarjanje nove Hoganove poverilnice bo odstranilo naslednje ocene in poročila, povezana s staro Hoganovo poverilnico za %{email}
+          warning: Z ustvarjanjem novih podatkov za dostop do Hoganovih vprašalnikov boste odstranili obstoječe ocene in poročila za osebo %{email}
         remove:
           successfully: Uporabnik z e-poštnim naslovom %{email} je bil uspešno odstranjen.
           title: Ali želite tega uporabnika odstraniti iz oglaševalske akcije %{campaignName}?
       not_completed_yet: Še ni dokončano
       not_logged_in_yet: Še niste prijavljeni
       not_started_yet: Še se ni začelo
-      started_at: Začelo se je
+      started_at: Začetek
       statuses:
-        completed: Dokončan
+        completed: Dokončano
         in_progress: V teku
-        ineligible: Neupravičene
-        interrupted: Prekinjen
+        ineligible: Neupravičeno
+        interrupted: Prekinjeno
         not_started: Ni začeto
-        timed_out: Časovna omejitev
+        timed_out: Čas za izvedbo je potekel
     modals:
       remove: Ali ste prepričani, da želite odstraniti uporabnika z e-poštnim naslovom '%{email}' iz te kampanje?
   campaigns:
     assessments_and_reports:
       assessor_assessments: Ocenjevanje ocenjevalcev
-      other_assessments: Druge ocene
-      other_assessor_assessments: Druge ocene ocenjevalcev
+      other_assessments: Druga ocenjevanja
+      other_assessor_assessments: Druga ocenjevanja ocenjevalcev
       other_reports: Druga poročila
     card:
       duration: Trajanje
@@ -1660,8 +1672,8 @@ sl:
       will_start_shortly: Kampanja se bo kmalu začela. Prosimo, počakajte
   change_password_page:
     old_password: Staro geslo
-    password: Geslo
-    password_confirmation: Potrditev gesla
+    password: Novo geslo
+    password_confirmation: Potrditev novega gesla
     title: Spremenite geslo
     warning_message: 'Pozor: Če spremenite geslo, boste samodejno odjavljeni.'
   checking_wizard:
@@ -1747,13 +1759,17 @@ sl:
       close: Zapri
       copy: Kopiraj
       delete: Izbriši
+      done: Opravljeno
       edit: Uredi
+      go_back: Nazaj
       publish: Objavite
       remove: Odstranite
       reset: Ponastavitev
       resolve: Reševanje
       restore: Obnovitev
+      return_to_home: Vrnitev na domačo stran
       save: Shrani
+      schedule: Načrtuj
       search: Iskanje
       send: Pošlji
       start: Začetek
@@ -1767,21 +1783,22 @@ sl:
       view_all_tasks: Prikaži vse naloge
       view_detail: Poglej podrobnosti
     column:
-      action: Dejanje
-      active: Dejaven
+      action: Aktivnost
+      active: Aktivni
+      ai_assistant: Pomočnik za umetno inteligenco
       allow_multiple_responses: Omogočanje več odgovorov
       approval_notification_list: Seznam uporabnikov obvestila o odobritvi
       approvers_list: Seznam odobritev
       assessment: Ocena
       assessment_name: Ime ocenjevanja
-      assessments: Ocene
+      assessments: Ocenjevanja
       assessor: Ocenjevalec
       category: Kategorija
       client: Odjemalec
       code: Koda
       created_at: Ustvarjeno
       created_by: Ustvaril
-      created_date: Datum ustvarjanja
+      created_date: Ustvarjeno dne
       default_language: Privzeti jezik
       description: Opis
       details: Podrobnosti
@@ -1836,14 +1853,14 @@ sl:
       campaigns: Kampanje
       completion_statuses: Statusi dokončanja
       datasheet: Podatkovni list
-      projects: Projektov
+      projects: Projekti
       report: Poročilo
       reports: Poročila
       scoring: Točkovanja
       sms_contact: SMS stik
       threesixty_campaign: Rezultati kampanje Threesixty
     status:
-      completed: Dokončan
+      completed: Dokončano
       dropped_out: Izpadli
       in_progress: V teku
       late: Pozno
@@ -1859,7 +1876,9 @@ sl:
       continue: Nadaljuj
       copied: Kopirano v odložišče
       default: Privzeto
+      disabled: Onemogočen
       download: Prenesi
+      enabled: Omogočeno
       file: Datoteka
       global_import: Je globalni uvoz?
       minutes: Minut
@@ -2180,6 +2199,7 @@ sl:
       uniq_simulation: Ta simulacijska ocena je že prisotna v sistemu. ID te ocene je %{id}
       uniq_skillvue: 'To ocenjevanje Skillvue je že v sistemu. ID ocenjevanja: %{id}'
       update_workshop:
+        bookings_exist: Razporeda ni mogoče spremeniti, saj so udeleženci že rezervirali ta časovni interval.
         less_than_booked: Skupno število sedežev mora biti večje od rezerviranih
       user_availability_date:
         overlaps_date: Prekriva se z drugo razpoložljivostjo %{range}
@@ -2235,7 +2255,7 @@ sl:
     equal_to_email: mora biti drugačen od e-poštnega sporočila.
     error: Napaka
     error_401: Nimate dovoljenja za dostop do tega vira. Prosimo, prijavite se.
-    error_403: Nimate dovoljenja za ogled tega vira.
+    error_403: Nimate dovoljenja za dostop do teh podatkov.
     error_500: Prišlo je do napake. Obrnite se na skrbnika sistema.
     error_msg: Nekaj je šlo narobe. Osvežite stran in če težave še vedno ne morete, se obrnite na skrbnika
     forbidden: Nimate dostopa do te strani
@@ -2306,7 +2326,7 @@ sl:
       send_message: Pošlji sporočilo
       slider_label_instruction: 'min: %{min} in max: %{max}'
       task_btn_description: opravilo %{assessmentName}
-      task_progress_label: Dokončanje opravila je
+      task_progress_label: Dokončanoje opravila je
       write_message: Napišite svoje sporočilo
     assessment: Ocenjevanje
     assessment_groups:
@@ -2522,13 +2542,13 @@ sl:
       max_duration: Najdaljše trajanje je %{duration}
     schedule_availability:
       copy_to_all: Kopiraj vsem
-      end_date: Končni datum
+      end_date: Datum zaključka
       from: Od
       new_schedule: Dodajanje novega urnika
-      new_schedule_description: Začetni čas mora biti zgodnejši od končnega časa
+      new_schedule_description: Čas začetka mora biti pred časom zaključka
       no_slots: Ni dodanih slotov
       required_error: ne more biti prazno
-      save: Shraniti
+      save: Shrani
       saved_schedule_description: Shranjen razpored razpoložljivosti uporabnika
       start_date: Datum začetka
       timezone_label: Časovni pas
@@ -2538,7 +2558,7 @@ sl:
       aria_list_view: Pogled seznama
       aria_selected: Izbrane
   idp:
-    actions: Dejanja
+    actions: Aktivnosti
     behavioral: Vedenjski
     board: Deska
     comment_details:
@@ -2570,10 +2590,10 @@ sl:
       action_private: Da
       action_public: Ne
       add_development_action: Dodajanje razvojnega dejanja
-      all: Ves
-      approved: Odobren
+      all: Prikaže vse
+      approved: Odobreno
       board_view:
-        completed: Dokončan
+        completed: Dokončano
         in_progress: V teku
         not_started: Ni začeto
       completion: Zaključku
@@ -2621,7 +2641,7 @@ sl:
       rate_skills_title: Ocenite svoje spretnosti
       rating_column_header: Vaša samoocena
       reflective_questions: Refleksivna vprašanja
-      save: Shraniti
+      save: Shrani
       select_skills: Izberite svoje spretnosti
       select_skills_placeholder: Izberite spretnosti
       selected_skills: Izbrana znanja in spretnosti
@@ -2638,7 +2658,7 @@ sl:
       save_skills: Shranite spretnosti
     new_comments: Novi komentarji
     pdf:
-      approval_status: Stanje odobritve
+      approval_status: Status odobritve
       cover:
         fields:
           assigned_data: Dodeljeni datum
@@ -2707,7 +2727,7 @@ sl:
             title: Formalno učenje (10 %) <br/> Razvoj s strukturiranim učenjem
         title: Smernice za vodenje vašega IDP
       idp:
-        end_date: Končni datum
+        end_date: Datum zaključka
         self_rating: Samoocena
         start_date: Datum začetka
         subtitle:
@@ -2724,7 +2744,7 @@ sl:
         technical: Tehnične
       statuses:
         approved: Pregledano in odobreno
-        completed: Dokončan
+        completed: Dokončano
         draft: Osnutek
         not_reviewed: Ni ocenjeno
         pending_approval: V pregledu
@@ -2762,11 +2782,11 @@ sl:
       words: Besede
     skill_gap_report:
       title: Poročilo o vrzeli v znanju in spretnostih
-    status: Stanje
+    status: Status
     technical: Tehnični
     user_idp_status:
-      approved: Odobren
-      completed: Dokončan
+      approved: Odobreno
+      completed: Dokončano
       draft: Osnutek
       in_progress: V teku
       not_started: Ni začeto
@@ -2868,9 +2888,11 @@ sl:
     zh-HK: kitajščina (Hongkong)
     zh-Hant: kitajščina - tradicionalna
     zh-TW: kitajščina (Tajvan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
-    active: Dejaven
-    campaign_name: Ime oglaševalske akcije
+    active: Aktivni
+    campaign_name: Ime kampanje
     inactive: Neaktiven
     status_updated_at: Zadnja posodobitev stanja
     status_updated_by: Nazadnje posodobil
@@ -2880,19 +2902,19 @@ sl:
     usages: Rabe
   licenses:
     enabled: Omogočeno
-    end_date: Končni datum
+    end_date: Datum zaključka
     not_enough_idp_license: Ni dovolj licenc IDP, se obrnite na skrbnika
     not_enough_license: "'%{client_name}' nima dovolj licenc za '%{report_name}'"
     not_enough_license_count: Ni dovolj licenc, obrnite se na skrbnika
     not_enough_proctoring_credits: Premalo kreditov za začetek nadzorne seje
     number: Številka
     overuse_number: Nadomestilo za prekomerno uporabo
-    report_family: Sveženj poročil
+    report_family: Sklop poročil
     start_date: Datum začetka
     title: Licenca
     type: Vrsta
     types:
-      common: Običajen
+      common: Običajno
       idp: IDP
       proctoring: Nadzorovanje
       threesixty: Trišestdeset
@@ -3046,16 +3068,16 @@ sl:
       status_changed: spremenjeno stanje iz <i>%{from}</i> v <i>%{to}</i>
       updated_text: Posodobljeno besedilo
     tabs:
-      all: Ves
-      approved: Odobren
+      all: Prikaže vse
+      approved: Odobreno
       my_tasks: Moja opravila
   report_bundles:
     actions:
       remove:
-        confirm_message: Ali ste prepričani, da želite izbrisati sveženj poročil »%{name}«?
+        confirm_message: Ali ste prepričani, da želite izbrisati Sklop poročil »%{name}«?
         confirm_title: Potrebna je potrditev
-        success_message: Sveženj poročil %{name} je bil izbrisan
-    report_bundle: Sveženj poročil
+        success_message: Sklop poročil%{name} je bil izbrisan
+    report_bundle: Sklop poročil
     report_bundles: Svežnji poročil
     reports:
       actions:
@@ -3075,7 +3097,7 @@ sl:
       details: Podrobnosti
       download: Prenesite poročilo
       download_csv: Prenesite datoteko CSV
-      edit: Urediti
+      edit: Uredi
       evaluate: Oceni
       extend_time: Podaljšanje časa
       goto_dashboard: Kliknite tukaj za nadaljevanje
@@ -3092,8 +3114,8 @@ sl:
         success_message: Poročilo %{name} je bilo uspešno nearhivirano
       update_language: Posodabljanje jezika
       view: Ogled poročila
-    active: Dejaven
-    archived: Arhivirajo
+    active: Aktivni
+    archived: Arhivirani
     builder:
       graph:
         properties:
@@ -3131,7 +3153,7 @@ sl:
         saville_report_id: ID poročila Saville
       other_available_languages: Drugi razpoložljivi jeziki
     create: Ustvariti
-    dashboard: Armaturni plošči
+    dashboard: Nadzorna plošča
     drawer:
       title: Podrobnosti poročila
     fields:
@@ -3311,7 +3333,7 @@ sl:
           project: Projekt
           sub_campaign: Podkampanja
         category: Kategorija
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         id: ID
         licenses: Številka licence
         licenses_expire: Datum poteka licence
@@ -3329,7 +3351,7 @@ sl:
         subdomain: Poddomena
         types:
           associate: Sodelavec
-          corporate: Podjetij
+          corporate: Podjetje
           distributer: Distributer
           other: Drugi
           partner: Partner
@@ -3346,13 +3368,13 @@ sl:
         access_reports_at: Poročilo o dostopu na
         access_reports_at_date: Datelj
         access_reports_at_time: Čas
-        client_ids: Najem strank
+        client_ids: Spletno okolje naročnika
         manager_ids: Upravljavci
         report_ids: Poročila
         user_ids: Uporabniki
       administrator:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         current_password: Trenutno geslo
         disabled: Onesposobiti
         email: E-poštni naslov
@@ -3391,7 +3413,7 @@ sl:
           identified: Identificirani uporabniki
         updated_at: Datum spremembe
       assessment:
-        active: Dejaven
+        active: Aktivni
         categories:
           '360': 360-stopinjska kampanja
           agile: AGILE
@@ -3404,15 +3426,15 @@ sl:
           saville: Saville
         category: Kategorija
         completed_at: Datum zaključka
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         description: Opis
         id: ID
         name: Ime
         statuses:
-          completed: Dokončan
+          completed: Dokončano
           finished: Končal
           in_progress: Življenjepis
-          interrupted: Prekinjen
+          interrupted: Prekinjeno
           not_started: Nov
           overdue: Zapadla
         timing: Čas
@@ -3422,9 +3444,9 @@ sl:
           saville: Ocena Saville
         updated_at: Datum spremembe
       block:
-        active: Dejaven
-        assign_to_assessment_ids: Ocene
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        assign_to_assessment_ids: Ocenjevanja
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         updated_at: Datum spremembe
@@ -3435,7 +3457,7 @@ sl:
           project: Projekt
           sub_campaign: Podkampanja
         category: Kategorija
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         id: ID
         licenses: Številka licence
         licenses_expire: Datum poteka licence
@@ -3453,7 +3475,7 @@ sl:
         subdomain: Poddomena
         types:
           associate: Sodelavec
-          corporate: Podjetij
+          corporate: Podjetje
           distributer: Distributer
           other: Drugi
           partner: Partner
@@ -3462,25 +3484,25 @@ sl:
         updated_at: Datum spremembe
         year: Leto stranke
       communication:
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         id: ID
         updated_at: Datum spremembe
       dimension:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         updated_at: Datum spremembe
       factor:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         parent_id: Starš
         questions_count: Ne. Število vprašanj
         updated_at: Datum spremembe
       library:
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         id: ID
         type: Sličica
         updated_at: Datum spremembe
@@ -3490,13 +3512,13 @@ sl:
         overuse_number: Dodatek za prekomerno uporabo
         type: Licenca za
         types:
-          common: Običajen
+          common: Običajno
           threesixty: Trišestdeset
         unlimited: Neomejeno
         used_number: Uporabljena številka licence
       memebrship:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         disabled: Onesposobiti
         email: E-pošta
         first_name: Ime
@@ -3514,9 +3536,9 @@ sl:
         updated_at: Datum spremembe
         user_access: Uporabniški dostop
       norm:
-        active: Dejaven
+        active: Aktivni
         bachelors_or_masters_qualification: Diploma ali magistrska kvalifikacija
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         description: Opis
         description_label: OPIS
         diploma_qualification: Kvalifikacija diplome
@@ -3535,10 +3557,10 @@ sl:
         potential_areas_of_study: Potencialna področja študija
         priority: Prednost
         priority_label: PREDNOST
-        status: Stanje
+        status: Status
         status_label: IZBERITE STANJE
         statuses:
-          completed: Dokončan
+          completed: Dokončano
           in_progress: V teku
           not_started: Ni začeto
           overdue: Zapadla
@@ -3546,21 +3568,21 @@ sl:
         updated_by: Uredil
         work_environment: Delovno okolje
       question:
-        active: Dejaven
-        assign_to_assessment_ids: Ocene
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        assign_to_assessment_ids: Ocenjevanja
+        created_at: Ustvarjeno dne
         id: ID
         name: Ime
         updated_at: Datum spremembe
       regenerate_reports:
         report_ids: Poročila
       report:
-        created_at: Datum ustvarjanja
+        created_at: Ustvarjeno dne
         id: ID
         updated_at: Datum spremembe
       user:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         current_password: Trenutno geslo
         disabled: Onesposobiti
         email: E-poštni naslov
@@ -3600,8 +3622,8 @@ sl:
           identified: Identificirani uporabniki
         updated_at: Datum spremembe
       user_form:
-        active: Dejaven
-        created_at: Datum ustvarjanja
+        active: Aktivni
+        created_at: Ustvarjeno dne
         current_password: Trenutno geslo
         disabled: Onesposobiti
         email: E-poštni naslov
@@ -3655,7 +3677,7 @@ sl:
       checkbox_with_client_link: S klikom na to polje potrjujete, da ste prebrali naš pravilnik o zasebnosti in obvestilo o zasebnosti naše stranke ter soglašate z zbiranjem in obdelavo svojih osebnih podatkov, kot je opisano v teh dokumentih, vključno z njihovim prenosom v tujino.
       privacy_notice: Izjava o zasebnosti
       title: Soglasje za obdelavo in prenos osebnih podatkov
-    action: Dejanje
+    action: Aktivnost
     add: Dodaj
     and: In
     approve: Odobriti
@@ -3680,7 +3702,7 @@ sl:
     confirmation_for_nomination_removal: Ste prepričani, da želite odstraniti nominacijo
     confirmation_required: Potrebna je potrditev
     confirmation_text_incorrect: Potrditveno besedilo ni pravilno
-    confirmation_text_placeholder: Tukaj vnesite potrditveno besedilo
+    confirmation_text_placeholder: Tukaj vnesite besedilo za potrditev
     continue: Nadaljuj
     dashboard_title: Dobrodošli %{name}
     decline: Zavrni
@@ -3717,7 +3739,7 @@ sl:
       statuses:
         success: Uspeh
         undelivered: Nedostavljeno
-    more_info_evaluation_label: Več informacij - Ocene
+    more_info_evaluation_label: Več informacij - Ocenjevanja
     more_info_nomination_label: Več informacij - Nominacije
     my_projects: Moji projekti
     name_label: Ime
@@ -3825,7 +3847,7 @@ sl:
     setup_nominations: Nastavite nominacije
     subject: Zadeva
     submit: Pošlji
-    timed_out: Časovna omejitev
+    timed_out: Čas za izvedbo je potekel
     total_progress: Skupni napredek
     user_name_input_placeholder: vnesite ime ali e-pošto...
     validation_errors: Napake pri preverjanju
@@ -3857,7 +3879,7 @@ sl:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Dejaven
+    active: Aktivni
     allow_multiple_respones: Omogočanje uporabnikom, da pošljejo več odgovorov
     png: PNG
     regenerate_link: Obnovi povezavo
@@ -3900,16 +3922,16 @@ sl:
     toolbar:
       bulk_download_idp_reports: Množični prenos poročil IDP
       export: Izvoz uporabnikov
-      export_compact_completion_status: Kompakten
-      export_detailed_completion_status: Podroben
+      export_compact_completion_status: Kompaktno
+      export_detailed_completion_status: Podrobno
       export_reports_and_assessments: Izvozna poročila in ocene
       import: Uvoz uporabnikov
       import_reports: Uvoz poročil in ocen
   user_assessment:
     column:
-      dimension_id: ID razsežnosti
-      id: ID ocenjevanja uporabnikov
-      norm_id: ID norme
+      dimension_id: ID kategorija
+      id: ID ocenjenega uporabnika
+      norm_id: ID norma
     drawer:
       copied: "%{name} kopirano v odložišče."
       copy: Kopiraj v odložišče
@@ -3946,24 +3968,24 @@ sl:
     progress_label: Napredek ocenjevanja
     redirect: Za to ocenjevanje boste preusmerjeni na zunanje spletno mesto. Kliknite »Nadaljuj«, če želite začeti.
     status:
-      completed: Dokončan
+      completed: Dokončano
       in_progress: V teku
-      ineligible: Neupravičene
-      interrupted: Prekinjen
+      ineligible: Neupravičeno
+      interrupted: Prekinjeno
       not_started: Ni začeto
-      timed_out: Časovna omejitev
+      timed_out: Čas za izvedbo je potekel
     statuses:
       evaluator_nomination_status:
-        completed: Dokončan
+        completed: Dokončano
         declined: Zmanjšala
         waiting: Čaka
       manager_evaluation_status:
-        approved: Odobren
+        approved: Odobreno
         denied: Zavrnjen
         waiting: Čaka
       manager_nomination_status:
-        approved: Odobren
-        completed: Dokončan
+        approved: Odobreno
+        completed: Dokončano
         declined: Zmanjšala
         denied: Zavrnjen
         waiting: Čaka
@@ -3973,15 +3995,15 @@ sl:
   user_reports:
     actions:
       add: Dodajanje poročila
-      download: Prenesti
-      generate: Ustvariti
+      download: Prenesi
+      generate: Ustvari
     approval_statuses:
-      approved: Odobren
+      approved: Odobreno
       change_requested: Zahtevana sprememba
-      not_ready: Ni pripravljen
+      not_ready: Ni pripravljeno
       pending_qc: Čakanje na preverjanje kakovosti
       qc_completed: QC zaključen
-      qc_in_progress: QC v teku
+      qc_in_progress: Poteka preverjanje kakovosti
     messages:
       async_generation: Ustvarjanje poročil v teku. Ko bo poročilo ustvarjeno, boste obveščeni.
       regenerate_successful: Zahteva za ponovno izdelavo poročila je bila uspešno oddana
@@ -4028,7 +4050,7 @@ sl:
     admins: Skrbniki
     create_global_assessor: Ustvarite globalnega ocenjevalca
     create_superadmin: Ustvarjanje super skrbnika
-    dashboard: Armaturni plošči
+    dashboard: Nadzorna plošča
     drawer:
       link: Povezava
       role: Vloga

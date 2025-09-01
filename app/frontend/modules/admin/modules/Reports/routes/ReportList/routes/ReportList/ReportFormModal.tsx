@@ -26,6 +26,9 @@ export const ReportFormModal: React.FC<Props> = ({ close }) => {
       scrollToFirstError
       modalProps={{ width: 720 }}
       request={{ createResource: createNewResource, updateResource: resource.updateResource }}
+      formProps={{
+        initialValues: { defaultLanguage: 'en' },
+      }}
     >
       {() => (
         <>

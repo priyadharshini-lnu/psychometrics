@@ -291,6 +291,48 @@ id:
             manage: Kelola
             title: Lokakarya
             view: Melihat
+    ai_artifacts:
+      artifact_results: Hasil Artefak
+      code: Kode
+      form:
+        add_assessment: Tambahkan Penilaian
+        ai_assistant: Asisten AI
+        assessments: Penilaian
+        campaign_factors: Faktor Kampanye
+        configuration: Konfigurasi
+        datasheet: Lembar data
+        datasheet_columns: Kolom Lembar Data
+        include_all_datasheet_columns: Sertakan Semua Kolom Datasheet
+        no_assessment_selected: Belum ada penilaian yang ditambahkan. Klik "Tambahkan" untuk memulai.
+        questions_required: Setidaknya satu pertanyaan harus dipilih
+        select_ai_assistant: Pilih Asisten AI
+        select_assessment: Pilih Penilaian
+        select_campaign_factors: Pilih Faktor Kampanye
+        select_datasheet_columns: Pilih Kolom Lembar Data
+        select_questions: Pilih Pertanyaan
+        title: Artefak AI
+      generate: Menghasilkan
+      generate_result_info_message: Hasil sedang dibuat, silakan segarkan halaman untuk melihat hasil yang diperbarui.
+      generate_results: Hasilkan Hasil
+      generated_at: Dihasilkan Pada
+      generated_at_time: Dihasilkan pada %{time}
+      generated_value: Nilai yang Dihasilkan
+      id: ID
+      key: Kunci
+      name: Nama
+      parsed_dependencies:
+        help: Dependensi yang diurai untuk pengguna yang digunakan oleh Asisten AI untuk pembuatan hasil artefak
+        title: Dependensi yang diurai
+        view: Lihat dependensi yang diurai
+      playground: Taman bermain anak
+      playground_info: Uji artefak Anda dengan data sampel untuk melihat pratinjau hasil yang dihasilkan.
+      playground_placeholder: Masukkan data pengujian
+      raw: MENTAH
+      tabs:
+        results: Hasil
+        settings: Pengaturan
+      test_generate: Uji Menghasilkan
+      unsaved_changes: Perubahan yang belum disimpan ada, pertimbangkan untuk mengirimkan formulir untuk menghasilkan respons terbaru dari Playground.
     ai_assistants:
       actions:
         create: Buat Asisten AI
@@ -298,9 +340,34 @@ id:
         playground: Taman bermain anak
       ai_assistants: Asisten AI
       ai_assistants_playground: Taman Bermain Asisten AI
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: Konfigurasi penilaian tidak ada id penilaian
+            assessment_missing_questions: Konfigurasi penilaian tidak ada pertanyaan untuk penilaian %{assessment_id}
+            no_assessments_configured: Tidak ada penilaian yang dikonfigurasi
+            no_assessments_configured_for_artifact: Tidak ada penilaian yang dikonfigurasi untuk artefak ini
+            no_completed_results: Tidak ada hasil penilaian lengkap yang ditemukan untuk penilaian %{assessment_name}
+            no_valid_assessment_data: Tidak ada data penilaian yang valid yang tersedia
+          base:
+            dependency_not_configured: Dependensi '%{dependency}' tidak dikonfigurasi
+          campaign_factor:
+            factor_empty_value: Faktor kampanye '%{code}' (%{name}) memiliki nilai kosong untuk pengguna %{email}
+            factor_no_value: Faktor kampanye '%{code}' (%{name}) tidak memiliki nilai yang ditetapkan untuk %{email} pengguna
+            no_campaign_factors_configured: Tidak ada faktor kampanye yang dikonfigurasi untuk artefak ini
+            no_valid_factor_data: Tidak ada data faktor kampanye yang valid yang tersedia
+          datasheet:
+            column_no_value: Kolom '%{column}' tidak memiliki nilai untuk %{email} pengguna
+            no_datasheet_columns_configured: Tidak ada kolom lembar data tertentu yang dikonfigurasi
+            no_datasheet_configured: Tidak ada lembar data yang dikonfigurasi untuk kampanye ini
+            no_datasheet_data: Tidak ada data lembar data yang tersedia untuk pengguna %{email}
+            user_not_found_in_datasheet: Pengguna tidak ditemukan di lembar data kampanye
+      campaign_ai_artifacts: Artefak AI Kampanye
       column:
         provider: Penyedia
       created_successfully: Asisten AI berhasil dibuat.
+      errors:
+        cannot_delete_in_use: Tidak dapat menghapus '%{name}' Asisten AI karena sedang digunakan.
       form:
         add_output_schema_key: Tambahkan Kunci Skema Keluaran
         dependencies: Ketergantungan
@@ -319,6 +386,11 @@ id:
         system_prompt: Prompt Sistem
         type: Jenis
         user_prompt: Permintaan Pengguna
+      selector:
+        choose_artifact: Pilih Artefak AI
+        choose_schema_key: Pilih Kunci Skema
+        no_assistants_found: Tidak ada Asisten AI yang ditemukan
+        placeholder: Pilih Asisten AI
       updated_successfully: Asisten AI berhasil diperbarui.
     any: " - Setiap - "
     api:
@@ -358,6 +430,8 @@ id:
         exceeded_subjects_count: Kampanye memiliki subjek %{users}. Anda hanya dapat menambahkan %{count} subjek per undangan
         id: ID
         invites: Mengundang
+        name: Nama
+        name_placeholder: Masukkan nama undangan
         next: Selanjutnya
         not_selected: Tidak dipilih
         requests: Permintaan
@@ -435,6 +509,7 @@ id:
       errors:
         doesnt_have_header: "'%{sub_header}' tidak memiliki header"
         invalid_headers: 'Header berikut tidak valid: %{headers}'
+        invalid_question: ID pertanyaan tidak valid
         invalid_scores: Skor untuk faktor %{factor_name} tidak valid. Skor harus berupa nilai numerik yang dipisahkan koma
         invalid_sub_header: "'%{sub_header}' bukan subheader yang valid untuk header '%{header}'"
         scores_not_allowed: Skor hanya dapat ditambahkan untuk pertanyaan tipe MultiChoice dan Matrix
@@ -773,20 +848,16 @@ id:
       users_import: Mengimpor
     bulk_reports:
       create:
-        no_data: Tidak ada data
         successfully: Laporan sedang dibuat dan Anda akan diberi tahu melalui email saat sudah siap
       download:
         removed: Dihapus
-      form:
-        end_date: Tanggal akhir
-        start_date: Tanggal mulai
       mailer:
         subject: Mendownload laporan massal
       new:
         header: Unduh Massal
       reports_unavailable: Saat ini, tidak ada laporan yang tersedia untuk diunduh. Harap konfirmasikan bahwa laporan yang ingin Anda unduh tersedia.
-      select_reports_for_download: Pilihlah setidaknya satu laporan untuk diunduh.
-      select_reports_for_regenerate: Pilih setidaknya satu laporan untuk dibuat ulang.
+      select_users_for_download: Pilih setidaknya satu pengguna untuk mengunduh laporan.
+      select_users_for_regenerate: Pilih setidaknya satu pengguna untuk meregenerasi laporan.
     cable:
       notification:
         assessment_factors: Faktor diambil
@@ -1092,6 +1163,7 @@ id:
         is_active: Aktif
         name: Nama
         no_permission_message: Anda tidak memiliki izin untuk memodifikasi
+        title: Pengguna
         updated_by: Diperbarui Oleh
       validations:
         dates:
@@ -1576,12 +1648,16 @@ id:
       add: Tambah
       back: Belakang
       cancel: Membatalkan
+      code: Kode
       disabled: Diusir
       download_sample_file: Unduh File Sampel
       enabled: Diaktifkan
       import:
         failure_msg: Kesalahan saat mengimpor file.
+      instructions: Peraturan
+      loading: Loading...
       minute: menit
+      name: Nama
       next: Depan
       reset: Reset
       save: Simpan
@@ -1623,6 +1699,7 @@ id:
           {{schedule_end_date}} - Jadwalkan Tanggal Akhir
         campaign: Kampanye
         campaign_assessment_group: Kelompok Penilai Kampanye
+        cc_recipients: Penerima CC
         client: Klien
         completion: Penyelesaian
         custom: Kustom
@@ -1715,6 +1792,7 @@ id:
         back: Belakang
         body: 'Badan:'
         campaign: 'Kampanye:'
+        cc_recipients: 'Penerima CC:'
         client: 'Klien:'
         communication_type: 'Jenis komunikasi:'
         delivery_rule: 'Aturan pengiriman:'
@@ -2212,7 +2290,16 @@ id:
       self_rating: Aktifkan Peringkat Mandiri
       show_reflections: Tampilkan Refleksi
       skill_gap_report: Laporan Kesenjangan Keterampilan
+      skill_source_preference: Sumber Keterampilan
+      skill_sources:
+        from_ai: Dari Pengetahuan AI Umum
+        from_template: Dari Template & Pemetaan
       skills: Keterampilan
+      skills_privacy_messages:
+        made_private: Skill '%{skill_name}' telah ditandai sebagai pribadi dan akan disembunyikan dari manajer Anda
+        made_public: Keterampilan '%{skill_name}' sekarang terlihat oleh manajer Anda
+        skill_not_found: Keterampilan tidak ditemukan
+        unauthorized: Tidak sah untuk memodifikasi keterampilan ini
       skills_updated: Keterampilan IDP berhasil diperbarui
       status:
         draft: Konsep
@@ -2441,6 +2528,10 @@ id:
         content: Apakah Anda yakin ingin menghapus subjek dengan email '%{subjectEmail}'?
         success: Subjek dengan email '%{subjectEmail}'' berhasil dihapus.
         title: Hapus Subjek
+      resend_invite:
+        content: Kirim ulang undangan ke subjek yang dipilih. Apakah Anda yakin ingin melanjutkan?
+        success: Undangan berhasil dikirim.
+        title: Kirim Ulang Undangan
       statuses:
         accepted: Diterima
         cancelled: Dibatalkan
@@ -2452,6 +2543,7 @@ id:
         requested_rescheduling: Diminta Penjadwalan Ulang
         requested_rescheduling_rejected: Penjadwalan Ulang Ditolak
         rescheduled: Dijadwalkan Ulang
+        scheduled: Terjadwal
       subject: Subyek
     job_role:
       are_you_sure_to_remove: Apakah Anda yakin untuk menghapusnya?
@@ -2543,6 +2635,7 @@ id:
     message: Pesan
     meta_title: Panel administrasi
     navigation:
+      ai_artifacts: Artefak AI
       ai_assistants: Asisten AI
       assessments: Penilaian
       assessments_reports: Penilaian & Laporan
@@ -2733,21 +2826,31 @@ id:
         sms_contacts: Kontak SMS
         subjects: Mata pelajaran
     piped_text_modal:
+      assessment_center: Pusat Penilaian
       assessment_id: ID Penilaian
       campaign_id: ID Kampanye
       campaign_name: Nama Kampanye
       campaigns: Kampanye
+      description: Deskripsi
+      duration: Durasi
+      end_time: Akhir zaman
       insight_page_link: Tautan Halaman Insight
       insight_page_url: URL Halaman Insight
+      invite_title: Judul
+      invites: Mengundang
       join_link: Link Bergabung
       magic_link: Tautan Ajaib
       magic_url: URL ajaib
+      platform_url_links: Url dan Tautan Platform
       profile_custom_field: Bidang Kustom Profil
       project_name: Nama Proyek
       projects: Proyek
       report_name: Nama Laporan
+      start_time: Waktu mulai
       text: Teks
       title: Tambahkan Teks Piped
+      user_reports: Laporan Pengguna
+      users: Pengguna
     proctoring_sessions:
       columns:
         comment: Komentar
@@ -2773,6 +2876,7 @@ id:
         create:
           invalid_format: Definisi level harus berupa array definisi.
           level_definition_must_match_level: harus berisi persis %{expected} level, tetapi %{actual} diberikan
+          level_description_must_exist: Deskripsi level tidak boleh kosong
           level_name_must_exist: Nama level tidak boleh kosong
           must_be_unique: Harus unik
           proficiency_level_exists: Tingkat Kecakapan dengan keterampilan dan proyek ini sudah ada
@@ -3235,6 +3339,29 @@ id:
           repeat_modules: Modul yang dipilih akan diulang pada halaman yang disisipkan exta, mengacu pada nama modul
         module_pagination: Penomoran Halaman Modul
         repeat_modules: Ulangi Modul
+      property_panel:
+        add_new_condition: Tambahkan kondisi baru
+        apply_color_label: 'Kemudian oleskan warna berikut:'
+        graph_condition_types:
+          default: Default
+          graph_value: Nilai grafik
+        graph_value_condition_not_supported_msg: Kondisi Nilai Grafik tidak didukung untuk jenis grafik ini. Opsi ini saat ini hanya tersedia untuk jenis Grafik di bawah ini.
+        graph_value_conditions_title: Kondisi nilai grafik
+        if_graph_value_is: 'Jika Nilai Grafik adalah:'
+        manage_graph_value_condition: Mengelola kondisi nilai grafik
+        manage_styles_condition: Kelola kondisi gaya
+        missing_value: Nilai yang hilang
+        predicates:
+          equal_to: Sama dengan
+          greater_than: Lebih Besar dari
+          greater_than_or_equal: Lebih Besar Dari atau Sama Dengan
+          less_than: Kurang
+          less_than_or_equal: Kurang Dari atau Sama Dengan
+          not_equal_to: Tidak sama dengan
+        prefixes:
+          and: DAN
+          or: ATAU
+        text_condition_type: 'Jenis Kondisi Teks:'
     report_families:
       create:
         successfully: Bundel Laporan %{name} berhasil dibuat.
@@ -3293,6 +3420,19 @@ id:
         pending_qc: QC Tertunda
         qc_completed: QC Selesai
         qc_in_progress: QC sedang berlangsung
+    report_settings:
+      data_source_types:
+        assessment: Penilaian
+        campaign_factors: Faktor Kampanye
+        datasheet: Lembar data
+        report_data: Laporkan Data
+      tabs:
+        campaign_ai_artifacts: Artefak AI Kampanye
+        campaign_factors: Faktor Kampanye
+        data_sheets: Lembar Data
+        page_settings: Pengaturan Halaman
+        translations: Terjemahan
+      title: Pengaturan Laporan
     reports:
       bulk_marked_as_done: Massal Ditandai sebagai Selesai
       bulk_upload:
@@ -3426,8 +3566,6 @@ id:
         name_label: Nama
         next: Depan
         required_error: Diperlukan
-        reschedule_duration_max_error: Tidak boleh lebih dari 30 hari
-        reschedule_duration_min_error: Tidak boleh kurang dari 1 menit
         resources_panel:
           description: Tambahkan tautan ke sumber daya apa pun yang Anda inginkan untuk diakses oleh fasilitator.
           resource_name_placeholder: Nama Sumber Daya
@@ -3992,6 +4130,7 @@ id:
         skill_types:
           behavioural: Perilaku
           other: Lainnya
+          qualification: Kualifikasi
           technical: Teknis
       property_panel:
         add_n_a_option: Tambahkan opsi N/A
@@ -4331,6 +4470,7 @@ id:
           header: Impor Terjemahan
       import:
         successfully: Terjemahan berhasil diimpor
+        successfully_scheduled: Impor Terjemahan berhasil dijadwalkan.
       reports:
         export: Ekspor Terjemahan
         import: Impor Terjemahan

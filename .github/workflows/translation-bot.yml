@@ -45,10 +45,10 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: false
 
-      - name: Install DeepL gem
+      - name: Install Microsoft Translator dependencies
         run: |
-          gem install deepl-rb
-          echo "DeepL gem installed successfully"
+          echo "Microsoft Translator uses standard Ruby libraries - no gems needed"
+          echo "Microsoft Translator dependencies ready"
 
       - name: Find new translation keys
         id: find_keys
@@ -61,7 +61,8 @@ jobs:
         if: steps.find_keys.outputs.new_keys != '[]'
         env:
           NEW_KEYS: ${{ steps.find_keys.outputs.new_keys }}
-          DEEPL_AUTH_KEY: ${{ secrets.DEEPL_AUTH_KEY }}
+          MICROSOFT_TRANSLATION_API_KEY: ${{ secrets.MICROSOFT_TRANSLATION_API_KEY }}
+          MICROSOFT_TRANSLATION_API_REGION: ${{ vars.MICROSOFT_TRANSLATION_API_REGION }}
         run: |
           ruby .github/scripts/translation-bot/generate-translations.rb "$NEW_KEYS"
 

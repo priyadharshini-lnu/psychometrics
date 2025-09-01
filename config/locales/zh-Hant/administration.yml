@@ -291,6 +291,48 @@ zh-Hant:
             manage: 管理
             title: 工作坊
             view: 檢視
+    ai_artifacts:
+      artifact_results: 神器結果
+      code: 法典
+      form:
+        add_assessment: 新增評量
+        ai_assistant: AI助手
+        assessments: 評量
+        campaign_factors: 活動因素
+        configuration: 組態
+        datasheet: 數據表
+        datasheet_columns: 資料表欄
+        include_all_datasheet_columns: 包括所有資料表欄
+        no_assessment_selected: 尚未新增評估。點擊「新增」開始。
+        questions_required: 必須至少選擇一個問題
+        select_ai_assistant: 選擇 AI 助手
+        select_assessment: 選取評量
+        select_campaign_factors: 選取廣告活動因素
+        select_datasheet_columns: 選取資料表欄
+        select_questions: 選擇問題
+        title: AI神器
+      generate: 產生
+      generate_result_info_message: 結果正在產生中，請重新整理頁面以查看更新的結果。
+      generate_results: 產生結果
+      generated_at: 產生時間
+      generated_at_time: 生成於%{time}
+      generated_value: 產生的價值
+      id: ID
+      key: 鑰匙
+      name: 名字
+      parsed_dependencies:
+        help: AI 助理用於產生成品結果的使用者剖析相依性
+        title: 剖析的相依性
+        view: 檢視剖析的相依性
+      playground: 操場
+      playground_info: 使用範例資料測試您的構件，以預覽產生的結果。
+      playground_placeholder: 輸入測試數據
+      raw: 生
+      tabs:
+        results: 結果
+        settings: 設定
+      test_generate: 測試產生
+      unsaved_changes: 存在未儲存的變更，請考慮提交表單以從 Playground 產生更新的回應。
     ai_assistants:
       actions:
         create: 建立 AI 助理
@@ -298,9 +340,34 @@ zh-Hant:
         playground: 遊樂場
       ai_assistants: AI 助理
       ai_assistants_playground: AI 助理遊樂場
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: 評量設定遺漏評定的識別碼
+            assessment_missing_questions: 評量設定缺少評量%{assessment_id}的問題
+            no_assessments_configured: 未設定任何評量
+            no_assessments_configured_for_artifact: 未為此成品設定任何評估
+            no_completed_results: 未找到已完成的評估結果進行評估%{assessment_name}
+            no_valid_assessment_data: 沒有有效的評估數據可用
+          base:
+            dependency_not_configured: 未設定相依性 '%{dependency}'
+          campaign_factor:
+            factor_empty_value: 廣告活動因素「%{code}」（%{name}）的使用者%{email}值為空
+            factor_no_value: 廣告活動因素「%{code}」（%{name}）沒有為使用者%{email}指派值
+            no_campaign_factors_configured: 未為此構件設定任何行銷活動因素
+            no_valid_factor_data: 沒有可用的有效行銷活動因素資料
+          datasheet:
+            column_no_value: 資料行 '%{column}' 沒有使用者%{email}值
+            no_datasheet_columns_configured: 未設定特定規格書欄
+            no_datasheet_configured: 未為此活動設定任何資料工作表
+            no_datasheet_data: 沒有可供用戶%{email}的數據表數據
+            user_not_found_in_datasheet: 在行銷活動資料表中找不到使用者
+      campaign_ai_artifacts: 活動 AI 成品
       column:
         provider: 供應商
       created_successfully: AI Assistant 已成功建立。
+      errors:
+        cannot_delete_in_use: 無法刪除 AI 助理「%{name}」，因為它正在使用中。
       form:
         add_output_schema_key: 新增輸出模式金鑰
         dependencies: 依賴
@@ -319,6 +386,11 @@ zh-Hant:
         system_prompt: 系統提示
         type: 類型
         user_prompt: 使用者提示
+      selector:
+        choose_artifact: 選擇 AI 神器
+        choose_schema_key: 選擇結構描述索引鍵
+        no_assistants_found: 未找到 AI 助手
+        placeholder: 選擇 AI 助手
       updated_successfully: AI Assistant 已成功更新。
     any: " - 任何 - "
     api:
@@ -358,6 +430,8 @@ zh-Hant:
         exceeded_subjects_count: 廣告系列有 %{users} 主題，每次邀請只能新增 %{count} 主題
         id: ID
         invites: 邀請
+        name: 名字
+        name_placeholder: 輸入邀請名稱
         next: 下一頁
         not_selected: 未選擇
         requests: 請求
@@ -435,6 +509,7 @@ zh-Hant:
       errors:
         doesnt_have_header: "%{sub_header}'沒有標頭"
         invalid_headers: 下列標頭無效： %{headers}
+        invalid_question: 問題 ID 無效
         invalid_scores: 因子 %{factor_name} 的分數無效。 分數應該是以逗號分隔的數值
         invalid_sub_header: "%{sub_header}「 不是標頭 」%{header}' 的有效副標頭"
         scores_not_allowed: 只有多選和矩陣類型的問題才可加入分數
@@ -773,20 +848,16 @@ zh-Hant:
       users_import: 進口
     bulk_reports:
       create:
-        no_data: 無資料
         successfully: 報告正在建立中，完成後會透過電子郵件通知您。
       download:
         removed: 已移除
-      form:
-        end_date: 結束日期
-        start_date: 開始日期
       mailer:
         subject: 下載大量報告
       new:
         header: 大量下載
       reports_unavailable: 目前沒有可供下載的報告，請確認您要下載的報告是否可用。
-      select_reports_for_download: 請至少選擇一份報告下載。
-      select_reports_for_regenerate: 請至少選擇一份報告進行再生。
+      select_users_for_download: 請選擇至少一個用戶下載報告。
+      select_users_for_regenerate: 請選擇至少一個用戶重新生成報告。
     cable:
       notification:
         assessment_factors: 取得因子
@@ -1092,6 +1163,7 @@ zh-Hant:
         is_active: 活躍
         name: 名稱
         no_permission_message: 您無權修改
+        title: 使用者
         updated_by: 更新日期
       validations:
         dates:
@@ -1576,12 +1648,16 @@ zh-Hant:
       add: 新增
       back: 返回
       cancel: 取消
+      code: 法典
       disabled: Diasbled
       download_sample_file: 下載樣本檔案
       enabled: 已啟用
       import:
         failure_msg: 匯入檔案時發生錯誤。
+      instructions: 說明
+      loading: 載入中...
       minute: 分
+      name: 名字
       next: 下一頁
       reset: 重設
       save: 節省
@@ -1623,6 +1699,7 @@ zh-Hant:
            {{schedule_end_date}} - 排程結束日期"
         campaign: 活動
         campaign_assessment_group: 活動評估小組
+        cc_recipients: 副本收件人
         client: 客戶
         completion: 完成
         custom: 自訂
@@ -1715,6 +1792,7 @@ zh-Hant:
         back: 返回
         body: 身體：
         campaign: 活動：
+        cc_recipients: CC 收件人：
         client: 客戶：
         communication_type: 通訊類型：
         delivery_rule: 交貨規則：
@@ -2212,7 +2290,16 @@ zh-Hant:
       self_rating: 啟用自我評級
       show_reflections: 展覽反思
       skill_gap_report: 技能差距報告
+      skill_source_preference: 技能來源
+      skill_sources:
+        from_ai: 來自一般人工智慧知識
+        from_template: 從範本和映射
       skills: 技術
+      skills_privacy_messages:
+        made_private: 技能「%{skill_name}」已被標記為私人技能，並且將對您的經理隱藏
+        made_public: 技能「%{skill_name}」現在對您的經理可見
+        skill_not_found: 未找到技能
+        unauthorized: 未經授權修改此技能
       skills_updated: IDP 技能更新成功
       status:
         draft: 草案
@@ -2441,6 +2528,10 @@ zh-Hant:
         content: 您確定要移除電子郵件標題「%{subjectEmail}」嗎？
         success: 包含電子郵件 '%{subjectEmail}' 的主旨已成功移除。
         title: 移除主題
+      resend_invite:
+        content: 重新傳送邀請給所選主題。你確定要繼續嗎？
+        success: 邀請成功重新發送。
+        title: 重新傳送邀請
       statuses:
         accepted: 已接受
         cancelled: 已取消
@@ -2452,6 +2543,7 @@ zh-Hant:
         requested_rescheduling: 要求改期
         requested_rescheduling_rejected: 重新排程 拒絕
         rescheduled: 改期
+        scheduled: 排程
       subject: 主題
     job_role:
       are_you_sure_to_remove: 您確定要移除嗎？
@@ -2543,6 +2635,7 @@ zh-Hant:
     message: 訊息
     meta_title: 管理面板
     navigation:
+      ai_artifacts: 人工智慧神器
       ai_assistants: AI 助理
       assessments: 評估
       assessments_reports: 評估與報告
@@ -2733,21 +2826,31 @@ zh-Hant:
         sms_contacts: 簡訊聯絡人
         subjects: 主題
     piped_text_modal:
+      assessment_center: 評估中心
       assessment_id: 評估 ID
       campaign_id: 活動 ID
       campaign_name: 活動名稱
       campaigns: 活動
+      description: 說明
+      duration: 時間長度
+      end_time: 結束時間
       insight_page_link: 洞察頁連結
       insight_page_url: 洞察頁面 URL
+      invite_title: 標題
+      invites: 邀請
       join_link: 加入連結
       magic_link: 魔術連結
       magic_url: 魔術網址
+      platform_url_links: 平台 Url 與連結
       profile_custom_field: 個人資料自訂欄位
       project_name: 專案名稱
       projects: 專案
       report_name: 報告名稱
+      start_time: 開始時間
       text: 正文
       title: 新增管道文字
+      user_reports: 使用者報告
+      users: 使用者
     proctoring_sessions:
       columns:
         comment: 評論
@@ -2773,6 +2876,7 @@ zh-Hant:
         create:
           invalid_format: Level 定義必須是一個定義陣列。
           level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
+          level_description_must_exist: 層級描述不能是空白的
           level_name_must_exist: 等級名稱不能為空
           must_be_unique: 必須獨一無二
           proficiency_level_exists: 已存在具有此技能和專案的 ProficiencyLevel
@@ -3239,6 +3343,29 @@ zh-Hant:
           repeat_modules: 選取的模組將在插入的 exta 頁面上重複顯示，指模組名稱
         module_pagination: 模組分頁
         repeat_modules: 重複模組
+      property_panel:
+        add_new_condition: 新增條件
+        apply_color_label: 然後應用以下顏色：
+        graph_condition_types:
+          default: 預設
+          graph_value: 圖形值
+        graph_value_condition_not_supported_msg: 此圖形型別不支援圖形值條件。此選項目前僅適用於以下圖表型別。
+        graph_value_conditions_title: 圖形值條件
+        if_graph_value_is: 如果圖形值為：
+        manage_graph_value_condition: 管理圖形值條件
+        manage_styles_condition: 管理樣式條件
+        missing_value: 遺漏值
+        predicates:
+          equal_to: 等於
+          greater_than: 大於
+          greater_than_or_equal: 大於或等於
+          less_than: 以內
+          less_than_or_equal: 小於或等於
+          not_equal_to: 不等於
+        prefixes:
+          and: 和
+          or: 或
+        text_condition_type: 文字條件類型：
     report_families:
       create:
         successfully: 報告束 %{name} 已成功建立。
@@ -3297,6 +3424,19 @@ zh-Hant:
         pending_qc: 等待 QC
         qc_completed: QC 已完成
         qc_in_progress: QC 進行中
+    report_settings:
+      data_source_types:
+        assessment: 評價
+        campaign_factors: 活動因素
+        datasheet: 數據表
+        report_data: 報表資料
+      tabs:
+        campaign_ai_artifacts: 活動 AI 成品
+        campaign_factors: 活動因素
+        data_sheets: 數據表
+        page_settings: 頁面設定
+        translations: 翻譯
+      title: 報告設定
     reports:
       bulk_marked_as_done: 大量標記為已完成
       bulk_upload:
@@ -3430,8 +3570,6 @@ zh-Hant:
         name_label: 名稱
         next: 下一頁
         required_error: 必須
-        reschedule_duration_max_error: 不得超過 30 天
-        reschedule_duration_min_error: 不能少於 1 分鐘
         resources_panel:
           description: 加入您希望主持人可以存取的任何資源的連結。
           resource_name_placeholder: 資源名稱
@@ -4004,6 +4142,7 @@ zh-Hant:
         skill_types:
           behavioural: 行為
           other: 其他
+          qualification: 資格
           technical: 技術
       property_panel:
         add_n_a_option: 新增不適用選項
@@ -4348,6 +4487,7 @@ zh-Hant:
           header: 進口翻譯
       import:
         successfully: 翻譯已成功匯入
+        successfully_scheduled: 翻譯匯入已成功排程。
       reports:
         export: 出口翻譯
         import: 進口翻譯

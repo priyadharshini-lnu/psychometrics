@@ -376,11 +376,11 @@ ro:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Rând %{row}: Valoare duplicată %{value} pentru %{field}'
+              duplicate_value: "%{sheet_name}, Rând %{row}: Valoarea dublată %{value} pentru %{field}"
               invalid_format: Vă rugăm să încărcați fișierul xlsx
               missing_headers: "%{sheet_name} foii îi lipsesc antetele necesare: %{headers}"
               missing_sheets: 'Lipsesc foile necesare: %{sheets}'
-              missing_value: 'Rând %{row}: Lipsește valoarea pentru %{field}'
+              missing_value: "%{sheet_name}, rând %{row}: Lipsește valoarea pentru %{field}"
             project:
               must_exist: Proiectul trebuie să existe
         update_norm:
@@ -440,10 +440,13 @@ ro:
           iiht: IIHT
           lead_assessor_form: Formular de evaluator principal
           meeting: Ședință
+          mettl: Mettl
           organisational: Anchete
           pearson: Pearson
           psychometric: Evaluare
           saville: Saville
+          simulation: Simulare
+          skillvue: Skillvue
           threesixty: Campania 360
         category: Categorie
         created_at: Data creării
@@ -457,8 +460,11 @@ ro:
           common: Evaluarea TTE
           hogan: Hogan
           iiht: Evaluarea IIHT
+          mettl: Evaluarea Mettl
           pearson: Evaluarea Pearson
           saville: Evaluarea Saville
+          simulation: Evaluarea simulării
+          skillvue: Evaluarea Skillvue
         updated_at: Data modificării
       assign:
         completed_at: Data finalizării
@@ -811,6 +817,7 @@ ro:
         bulk_download_idp_reports: Descărcați în bloc rapoarte IDP
         bulk_download_reports: Rapoarte de descărcare în bloc
         bulk_download_user_reports: Descărcați în bloc rapoartele utilizatorilor
+        bulk_generate_user_campaign_ai_artifact_results: Generați în bloc rezultate ale artefactelor AI ale campaniei
         bulk_regenerate_reports: Regenerarea rapoartelor de campanie
         bulk_regenerate_threesixty_reports: Regenerarea rapoartelor Three6ty Subject
         bulk_regenerate_user_reports: Regenerarea rapoartelor utilizatorilor
@@ -847,6 +854,7 @@ ro:
         external_assessment_export: Exportați rezultate externe
         import_accesssheet: Import Accessheet
         import_assessment_questions: Întrebări de evaluare a importurilor
+        import_assessment_translations: Importați traduceri de evaluare
         import_assessors: Evaluatori de import
         import_campaign_factors: Importați factori de campanie
         import_datasheet: Fișa tehnică de import
@@ -1127,6 +1135,10 @@ ro:
         mic: Microfon
       discard: Aruncă
       discard_record_again: Aruncați și înregistrați din nou
+      error_while_discarding: Nu s-a reușit să renunțați la videoclipul existent
+      error_while_uploading: A apărut o eroare necunoscută la finalizarea încărcării
+      failed_to_access_permission: Nu s-a reușit să acceseze camera și microfonul
+      failed_to_complete_upload: 'Încărcarea nu a reușit: nu sunt disponibile detalii despre adresa URL'
       media_recorder:
         failure: Acest browser nu acceptă înregistrarea video. Vă rugăm să utilizați Chrome sau Firefox pentru înregistrarea video
         success: Vă rugăm să permiteți utilizarea camerei și a microfonului pentru înregistrarea audio și video
@@ -1778,6 +1790,7 @@ ro:
     column:
       action: Acțiuni
       active: Active
+      ai_assistant: Asistent AI
       allow_multiple_responses: Permiteți mai multe răspunsuri
       approval_notification_list: Lista de utilizatori de notificare de aprobare
       approvers_list: Lista de aprobatori
@@ -1868,7 +1881,9 @@ ro:
       continue: Continuați
       copied: Copiat în clipboard
       default: Implicit
+      disabled: Dezactivat
       download: Descărcare
+      enabled: Activat
       file: Fișier
       global_import: Este import global?
       minutes: Minute
@@ -2189,6 +2204,7 @@ ro:
       uniq_simulation: Această evaluare de simulare este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
       uniq_skillvue: Această evaluare Skillvue este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
       update_workshop:
+        bookings_exist: Nu se poate modifica programul, deoarece participanții au rezervat deja acest interval orar.
         less_than_booked: Numărul total de locuri trebuie să fie mai mare decât cel rezervat
       user_availability_date:
         overlaps_date: Se suprapune cu o altă disponibilitate %{range}
@@ -2877,6 +2893,8 @@ ro:
     zh-HK: Chineză (Hong Kong)
     zh-Hant: Chineză - Tradițională
     zh-TW: Chineză (Taiwan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Active
     campaign_name: Numele campaniei

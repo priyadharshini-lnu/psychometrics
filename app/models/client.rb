@@ -6,6 +6,7 @@ class Client < ApplicationRecord
 
   include Copyable
   include RansackSearchableFields
+  include GeoFilterable
   extend Mobility
 
   attr_writer :license_msg
@@ -195,6 +196,18 @@ class Client < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
+  scope :restricted_clients, lambda { |country|
+    where(tte_id: nil).
+      where("restricted_to_countries IS NOT NULL AND restricted_to_countries != '{}'").
+      where('? != ALL(restricted_to_countries)', country)
+  }
+
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    where.not(id: restricted_client_subquery)
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name applicable_level disabled]
   end
@@ -331,6 +344,22 @@ class Client < ApplicationRecord
     SimulationUserAssessment.joins(:user_assessment).exists?(
       user_assessments: { campaign_id: project_campaigns.ids }
     )
+  end
+
+  def feature_enabled?(feature_flag)
+    client_feature.send(:"#{feature_flag}?")
+  end
+
+  def geo_restricted?
+    restricted_to_countries.present?
+  end
+
+  def check_geo_restriction!
+    return if Settings.features.disable_geo_restriction
+
+    return unless geo_restricted?
+    raise Geo::Exceptions::RestrictedEndpoint if Current.user_country.blank?
+    raise Geo::Exceptions::RestrictedEndpoint unless restricted_to_countries.include?(Current.user_country)
   end
 
   private

@@ -8101,11 +8101,11 @@
                 },
                 "allow_video_call_recording": {
                   "type": "boolean",
-                  "nullable": false
+                  "nullable": true
                 },
                 "enable_video_call_recording_for_all_new_campaigns": {
                   "type": "boolean",
-                  "nullable": false
+                  "nullable": true
                 },
                 "video_call_recording_expiry_in_seconds": {
                   "type": "integer",
@@ -11153,6 +11153,10 @@
           "attributes": {
             "type": "object",
             "properties": {
+              "name": {
+                "type": "string",
+                "nullable": true
+              },
               "allowed_languages": {
                 "type": "array",
                 "items": {
@@ -11171,6 +11175,7 @@
               }
             },
             "required": [
+              "name",
               "allowed_languages",
               "allow_language_preference",
               "allow_neurodiversity_option"
@@ -11272,6 +11277,10 @@
             "attributes": {
               "type": "object",
               "properties": {
+                "name": {
+                  "type": "string",
+                  "nullable": true
+                },
                 "allowed_languages": {
                   "type": "array",
                   "items": {
@@ -11290,6 +11299,7 @@
                 }
               },
               "required": [
+                "name",
                 "allowed_languages",
                 "allow_language_preference",
                 "allow_neurodiversity_option"
@@ -11340,6 +11350,10 @@
           "attributes": {
             "type": "object",
             "properties": {
+              "name": {
+                "type": "string",
+                "nullable": true
+              },
               "allowed_languages": {
                 "type": "array",
                 "items": {
@@ -13570,15 +13584,16 @@
               "campaign_assessment_group_id": {
                 "type": "string",
                 "nullable": false
+              },
+              "start_time": {
+                "type": "string",
+                "nullable": false
               }
             },
             "required": [
               "total_seats",
-              "allow_late_cancellation_and_rescheduling",
               "workshop_assessors_ids",
               "workshop_managers_ids",
-              "scheduling_lead_time",
-              "cancellation_lead_time",
               "campaign_assessment_group_id"
             ],
             "nullable": false

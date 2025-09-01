@@ -8,4 +8,15 @@ class UserIdpSkill < ApplicationRecord
   has_one :user, through: :user_idp_plan
   has_many :user_idp_development_actions, dependent: :destroy
   validates :initial_rating, numericality: { greater_than: 0, less_than_or_equal_to: MAX_RATING }, allow_blank: true
+
+  scope :private_skills, -> { where(private: true) }
+  scope :public_skills, -> { where(private: false) }
+
+  def toggle_privacy!
+    toggle!(:private)
+  end
+
+  def public?
+    !private
+  end
 end

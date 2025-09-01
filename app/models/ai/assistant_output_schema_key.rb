@@ -6,7 +6,9 @@ class AI::AssistantOutputSchemaKey < ApplicationRecord
   belongs_to :ai_assistant, class_name: 'AI::Assistant'
 
   enum :key_type, {
-    string: 0
+    string: 0,
+    html: 1,
+    markdown: 2
   }
 
   validates :key, presence: true, uniqueness: { scope: :ai_assistant_id }

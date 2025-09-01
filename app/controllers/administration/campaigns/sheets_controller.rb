@@ -5,6 +5,12 @@ module Administration
     class SheetsController < Administration::Campaigns::BaseController
       include Administration::SheetManagement
 
+      def datasheet_columns
+        columns = campaign.datasheet_column_records
+        render json: Panko::ArraySerializer.new(columns,
+                                                each_serializer: ::Administration::SheetColumnSerializer).to_a
+      end
+
       private
 
       def sheet

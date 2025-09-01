@@ -7,6 +7,7 @@ import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
 import styles from './styles.less'
 
+
 const { I18n } = window
 
 export const Invites = () => {

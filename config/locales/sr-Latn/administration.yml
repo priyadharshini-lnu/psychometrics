@@ -291,6 +291,48 @@ sr-Latn:
             manage: Upravljanje
             title: Radionice
             view: Prikaz
+    ai_artifacts:
+      artifact_results: Artefakt Rezultati
+      code: Šifru
+      form:
+        add_assessment: Dodaj procenu
+        ai_assistant: AI pomoćnik
+        assessments: Procene
+        campaign_factors: Faktori kampanje
+        configuration: Konfiguracija
+        datasheet: Mapa podataka
+        datasheet_columns: Kolumne sa tablama
+        include_all_datasheet_columns: Uključite sve kolone Datasheet-a
+        no_assessment_selected: Još uvek nema procena. Kliknite na "Dodaj" da biste započeli.
+        questions_required: Najmanje jedno pitanje mora biti izabrano
+        select_ai_assistant: Izaberite AI pomoćnika
+        select_assessment: Izaberite procenu
+        select_campaign_factors: Izaberite faktore kampanje
+        select_datasheet_columns: Izaberite kolone Datasheet-a
+        select_questions: Izaberite pitanja
+        title: AI artefakt
+      generate: Generisanje
+      generate_result_info_message: Rezultati se generišu, molimo vas da osvežite stranicu da biste videli ažurirane rezultate.
+      generate_results: Generišite rezultate
+      generated_at: Generisano u
+      generated_at_time: Generisano u %{time}
+      generated_value: Generisana vrednost
+      id: ID
+      key: Ključ
+      name: Ime
+      parsed_dependencies:
+        help: Obrađene zavisnosti za korisnika koje koristi AI Assistant za generisanje rezultata artefakata
+        title: Obrađene zavisnosti
+        view: Pogledaj obrađene zavisnosti
+      playground: Igraliљte
+      playground_info: Testirajte svoj artefakt sa uzorkom podataka da biste pregledali generisane rezultate.
+      playground_placeholder: Unesite podatke o testu
+      raw: SIROVO
+      tabs:
+        results: Rezultate
+        settings: Postavke
+      test_generate: Test Generisanje
+      unsaved_changes: Nesačuvane izmene su prisutne, razmislite o slanju obrasca za generisanje ažuriranog odgovora od Playground-a.
     ai_assistants:
       actions:
         create: Kreiraj AI asistenta
@@ -298,9 +340,34 @@ sr-Latn:
         playground: Igralište
       ai_assistants: AI asistenti
       ai_assistants_playground: AI pomoćnik igralište
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: Konfiguracija procene nedostaje id procene
+            assessment_missing_questions: Konfiguraciji procene nedostaju pitanja za procenu %{assessment_id}
+            no_assessments_configured: Nisu konfigurisane procene
+            no_assessments_configured_for_artifact: Za ovaj artefakt nisu konfigurisane procene
+            no_completed_results: Nisu pronađeni završeni rezultati procene za procenu %{assessment_name}
+            no_valid_assessment_data: Nema dostupnih važećih podataka o proceni
+          base:
+            dependency_not_configured: Zavisnost '%{dependency}' nije konfigurisana
+          campaign_factor:
+            factor_empty_value: Faktor kampanje "%{code}" (%{name}) ima praznu vrednost za korisničku %{email}
+            factor_no_value: Faktor kampanje "%{code}" (%{name}) nema vrednost dodeljenu za %{email} korisnika
+            no_campaign_factors_configured: Za ovaj artefakt nisu konfigurisani faktori kampanje
+            no_valid_factor_data: Nema važećih podataka o faktoru kampanje
+          datasheet:
+            column_no_value: Kolona '%{column}' nema nikakvu vrednost za %{email} korisnika
+            no_datasheet_columns_configured: Nisu konfigurisane posebne kolone sa podacima
+            no_datasheet_configured: Za ovu kampanju nije konfigurisan nijedan datasheet
+            no_datasheet_data: Nema podataka o podacima dostupnim za korisničke %{email}
+            user_not_found_in_datasheet: Korisnik nije pronađen u tabli sa podacima kampanje
+      campaign_ai_artifacts: Kampanja AI artefakti
       column:
         provider: Dobavljač
       created_successfully: AI asistent je uspešno kreiran.
+      errors:
+        cannot_delete_in_use: Ne mogu izbrisati AI Assistant '%{name}' jer se koristi.
       form:
         add_output_schema_key: Dodaj izlazni ključ šeme
         dependencies: Zavisnosti
@@ -319,6 +386,11 @@ sr-Latn:
         system_prompt: Sistem prompt
         type: Tip
         user_prompt: Korisnička uputstva
+      selector:
+        choose_artifact: Izaberite AI artefakt
+        choose_schema_key: Izaberite ključ šeme
+        no_assistants_found: Nisu pronađeni AI asistenti
+        placeholder: Izaberite AI pomoćnika
       updated_successfully: AI asistent je uspešno ažuriran.
     any: " - Bilo koji - "
     api:
@@ -358,6 +430,8 @@ sr-Latn:
         exceeded_subjects_count: Kampanja ima %{users} subjekata. Možete dodati samo %{count} subjekata po pozivu
         id: ID
         invites: Pozivi
+        name: Ime
+        name_placeholder: Unesite ime pozivnice
         next: Sledeći
         not_selected: Nije izabrano
         requests: Zahtevi
@@ -435,6 +509,7 @@ sr-Latn:
       errors:
         doesnt_have_header: "'%{sub_header}' nema zaglavlje"
         invalid_headers: 'Sledeći zaglavlja su nevažeća: %{headers}'
+        invalid_question: Nevažeći ID pitanja
         invalid_scores: Rezultati za faktor %{factor_name} su nevažeći. Rezultati treba da budu numeričke vrednosti odvojene zarezom
         invalid_sub_header: "'%{sub_header}' nije važeći podnaslov za zaglavlje '%{header}'"
         scores_not_allowed: Rezultati se mogu dodati samo za MultiChoice i Matrix tip pitanja
@@ -773,20 +848,16 @@ sr-Latn:
       users_import: Uvoz
     bulk_reports:
       create:
-        no_data: Nema podataka
         successfully: Izveštaji se kreiraju i bićete obavešteni putem imejla kada budu spremni
       download:
         removed: Uklonjeno
-      form:
-        end_date: Datum završetka
-        start_date: Datum početka
       mailer:
         subject: Preuzmite zbirne izveštaje
       new:
         header: Zbirno preuzimanje
       reports_unavailable: U ovom trenutku, nema izveštaja dostupnih za preuzimanje. Molimo Vas da potvrdite da su izveštaji koje želite da preuzmete dostupni.
-      select_reports_for_download: Molimo izaberite bar jedan izveštaj za preuzimanje.
-      select_reports_for_regenerate: Molimo izaberite bar jedan izveštaj za regeneraciju.
+      select_users_for_download: Placere eligere saltem unus User ad download tradit.
+      select_users_for_regenerate: Placere eligere saltem unus user ad regenerare tradit.
     cable:
       notification:
         assessment_factors: Faktori su prikupljeni
@@ -1092,6 +1163,7 @@ sr-Latn:
         is_active: Aktivno
         name: Ime
         no_permission_message: Nemate dozvolu za modifikaciju
+        title: Korisnici
         updated_by: Ažurirano od strane
       validations:
         dates:
@@ -1576,12 +1648,16 @@ sr-Latn:
       add: Dodaj
       back: Povratak
       cancel: Otkaži
+      code: Šifru
       disabled: Onemogućeno
       download_sample_file: Preuzmi uzorak datoteke
       enabled: Omogućeno
       import:
         failure_msg: Greška prilikom uvoza datoteke.
+      instructions: Uputstva
+      loading: Učitavanje...
       minute: Minut
+      name: Ime
       next: Sledeće
       reset: Resetuj
       save: Sačuvaj
@@ -1623,6 +1699,7 @@ sr-Latn:
           {{schedule_end_date}} - Datum završetka rasporeda
         campaign: Kampanja
         campaign_assessment_group: Grupa procene kampanje
+        cc_recipients: CC Primaoci
         client: Klijent
         completion: Završetak
         custom: Prilagođeno
@@ -1715,6 +1792,7 @@ sr-Latn:
         back: Povratak
         body: 'Telo teksta:'
         campaign: 'Kampanju:'
+        cc_recipients: 'CC Primaoci:'
         client: 'Klijent:'
         communication_type: 'Tip komunikacije:'
         delivery_rule: 'Pravilo isporuke:'
@@ -2212,7 +2290,16 @@ sr-Latn:
       self_rating: Omogući samoocenjivanje
       show_reflections: Pokaži razmišljanja
       skill_gap_report: Izveštaj o jazu u veštinama
+      skill_source_preference: Izvor veštine
+      skill_sources:
+        from_ai: Iz opšteg AI znanja
+        from_template: Iz šablona i mapiranja
       skills: Veštine
+      skills_privacy_messages:
+        made_private: Veština "%{skill_name}" je označena kao privatna i biće skrivena od vašeg menadžera
+        made_public: Veština "%{skill_name}" je sada vidljiva vašem menadžeru
+        skill_not_found: Veština nije pronađena
+        unauthorized: Neovlašćeno da modifikuje ovu veštinu
       skills_updated: Veštine IDP-a su uspešno ažurirane
       status:
         draft: Nacrt
@@ -2441,6 +2528,10 @@ sr-Latn:
         content: Da li ste sigurni da želite da uklonite predmet sa imejlom '%{subjectEmail}'?
         success: Predmet sa imejlom '%{subjectEmail}'' je uspešno uklonjen.
         title: Ukloni subjekta
+      resend_invite:
+        content: Ponovo pošalji poziv na izabrane predmete. Da li ste sigurni da želite da nastavite?
+        success: Pozivnice uspešno šalju.
+        title: Ponovo pošalji poziv
       statuses:
         accepted: Prihvaćeno
         cancelled: Otkazano
@@ -2452,6 +2543,7 @@ sr-Latn:
         requested_rescheduling: Traženo ponovno zakazivanje
         requested_rescheduling_rejected: Ponovno zakazivanje odbijeno
         rescheduled: Ponovno zakazano
+        scheduled: zakazano
       subject: Subjekat
     job_role:
       are_you_sure_to_remove: Da li ste sigurni da želite da uklonite?
@@ -2543,6 +2635,7 @@ sr-Latn:
     message: Poruka
     meta_title: Administrativni panel
     navigation:
+      ai_artifacts: AI artefakti
       ai_assistants: AI asistenti
       assessments: Procene
       assessments_reports: Procene i izveštaji
@@ -2733,21 +2826,31 @@ sr-Latn:
         sms_contacts: SMS kontakti
         subjects: Subjekti
     piped_text_modal:
+      assessment_center: Centar za procenu
       assessment_id: Procena ID
       campaign_id: ID kampanje
       campaign_name: Naziv kampanje
       campaigns: Kampanje
+      description: Opis
+      duration: Trajanje
+      end_time: Vreme završetka
       insight_page_link: Link na stranicu uvida
       insight_page_url: URL stranice uvida
+      invite_title: Naslov
+      invites: Pozivnice
       join_link: Pridružite se linku
       magic_link: Magični link
       magic_url: Magična URL adresa
+      platform_url_links: URL platforme i linkovi
       profile_custom_field: Prilagođeno polje profila
       project_name: Naziv projekta
       projects: Projekti
       report_name: Naziv izveštaja
+      start_time: Vreme početka
       text: Tekst
       title: Dodaj piped tekst
+      user_reports: Korisnički izveštaji
+      users: Korisnici
     proctoring_sessions:
       columns:
         comment: Komentar
@@ -2773,6 +2876,7 @@ sr-Latn:
         create:
           invalid_format: Definicija nivoa mora biti niz definicija.
           level_definition_must_match_level: mora da sadrži tačno %{expected} nivoa, ali %{actual} je dato
+          level_description_must_exist: Opis nivoa ne može biti prazan
           level_name_must_exist: Ime nivoa ne može biti prazno
           must_be_unique: Mora biti jedinstveno
           proficiency_level_exists: Nivo stručnosti sa ovom veštinom i projektom već postoji
@@ -3235,6 +3339,29 @@ sr-Latn:
           repeat_modules: Izabrani moduli će se ponoviti na dodatno ubačenim stranicama, odnosi se na ime modula
         module_pagination: Paginacija modula
         repeat_modules: Ponovi module
+      property_panel:
+        add_new_condition: Dodaj novi uslov
+        apply_color_label: 'Zatim nanesite sledeću boju:'
+        graph_condition_types:
+          default: Podrazumevani
+          graph_value: Vrednost grafikona
+        graph_value_condition_not_supported_msg: Uslovi vrednosti grafa nisu podržani za ovaj tip grafikona. Ova opcija je trenutno dostupna samo za tipove grafikona ispod.
+        graph_value_conditions_title: Uslovi vrednosti grafikona
+        if_graph_value_is: 'Ako je vrednost grafikona:'
+        manage_graph_value_condition: Upravljajte uslovom vrednosti grafikona
+        manage_styles_condition: Upravljanje stilovima stanje
+        missing_value: Nedostajuća vrednost
+        predicates:
+          equal_to: Jednako
+          greater_than: Veći od
+          greater_than_or_equal: Veći od ili jednak
+          less_than: Manje od
+          less_than_or_equal: Manje od ili jednako
+          not_equal_to: Nije jednako
+        prefixes:
+          and: I
+          or: ILI
+        text_condition_type: 'Tekst Uslov Tip:'
     report_families:
       create:
         successfully: Paket izveštaja %{name} je uspešno kreiran.
@@ -3293,6 +3420,19 @@ sr-Latn:
         pending_qc: Čekanje QC
         qc_completed: QC Završen
         qc_in_progress: QCC u toku
+    report_settings:
+      data_source_types:
+        assessment: Procena
+        campaign_factors: Faktori kampanje
+        datasheet: Mapa podataka
+        report_data: Izveštaj o podacima
+      tabs:
+        campaign_ai_artifacts: Kampanja AI artefakti
+        campaign_factors: Faktori kampanje
+        data_sheets: Listovi sa podacima
+        page_settings: Podešavanja straniцe
+        translations: Prevode
+      title: Podešavanja izveštaja
     reports:
       bulk_marked_as_done: Zbirno označi kao urađeno
       bulk_upload:
@@ -3426,8 +3566,6 @@ sr-Latn:
         name_label: Ime
         next: Sledeći
         required_error: Potrebno
-        reschedule_duration_max_error: Ne može biti više od 30 dana
-        reschedule_duration_min_error: Ne može biti manje od 1 minuta
         resources_panel:
           description: Dodajte linkove na sve resurse za koje želite da facilitatori imaju pristup.
           resource_name_placeholder: Naziv resursa
@@ -3992,6 +4130,7 @@ sr-Latn:
         skill_types:
           behavioural: Bihejvioralni
           other: Ostalo
+          qualification: Kvalifikacije
           technical: Tehnički
       property_panel:
         add_n_a_option: Dodaj opciju N / A
@@ -4331,6 +4470,7 @@ sr-Latn:
           header: Uvezi prevod
       import:
         successfully: Prevodi su uspešno uvezeni
+        successfully_scheduled: Uvoz prevoda je uspešno zakazan.
       reports:
         export: Izvezi prevode
         import: Uvezi prevod

@@ -143,6 +143,7 @@ const SkillRater = ({ model, updateBlockProps, showOptions }) => {
   const technicalEnabled = Form.useWatch(['technical', 'enabled'], form)
   const behavioralEnabled = Form.useWatch(['behavioral', 'enabled'], form)
   const otherEnabled = Form.useWatch(['other', 'enabled'], form)
+  const qualificationEnabled = Form.useWatch(['qualification', 'enabled'], form)
   const requireValidationEnabled = Form.useWatch(['required_validation', 'enabled'], form)
   const notApplicableEnabled = Form.useWatch(['not_applicable', 'enabled'], form)
 
@@ -209,6 +210,16 @@ const SkillRater = ({ model, updateBlockProps, showOptions }) => {
         </Checkbox>
       </Form.Item>
       {behavioralEnabled && <JobRoleFormItem name="behavioral" />}
+      <Form.Item
+        className="mb-0"
+        name={['qualification', 'enabled']}
+        valuePropName="checked"
+      >
+        <Checkbox>
+          {I18n.t('administration.survey_builder.models.skill_types.qualification')}
+        </Checkbox>
+      </Form.Item>
+      {qualificationEnabled && <JobRoleFormItem name="qualification" />}
       <Form.Item
         className="mb-0"
         name={['other', 'enabled']}

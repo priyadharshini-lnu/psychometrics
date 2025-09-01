@@ -2,11 +2,13 @@
 
 module Api
   class V2::Administration::UsersController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     validates_request_schema :create_superadmin, -> { Api::V2::User::CreateSuperadminContract.new }
     validates_request_schema :create_global_assessor, -> { Api::V2::User::CreateGlobalAssessorContract.new }
     validates_request_schema :reset_password, -> { Api::V2::User::ResetPasswordContract.new }
 
     prepend_before_action :set_resource, only: %i[reset_password roles unlock_user_access]
+    prepend_before_action :verify_recaptcha_or_redirect, only: %i[change_password]
 
     def reset_password
       attrs = params.dig(:data, :attributes)
@@ -108,6 +110,16 @@ module Api
 
     def create_resource_params
       params.require(:data).require(:attributes).permit(:first_name, :last_name, :email)
+    end
+
+    def verify_recaptcha_or_redirect
+      return if Settings.features.disable_recaptcha
+
+      attrs = params.dig(:data, :attributes)
+
+      unless verify_recaptcha(response: attrs[:recaptcha_token])
+        render json: { errors: [{ detail: I18n.t('sessions.errors.recaptcha') }] }, status: 422 and return
+      end
     end
   end
 end

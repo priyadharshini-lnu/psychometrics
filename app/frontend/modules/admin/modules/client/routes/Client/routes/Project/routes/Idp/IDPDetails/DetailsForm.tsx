@@ -135,6 +135,7 @@ const IDPDetailsForm = ({
         aiEnabled: idp.aiEnabled,
         aiAssistedIdpEnabled: idp.aiAssistedIdpEnabled,
         oneClickIdpEnabled: idp.oneClickIdpEnabled,
+        skillSourcePreference: idp.skillSourcePreference,
         ...skills,
       }
     }
@@ -228,6 +229,13 @@ const IDPDetailsForm = ({
                 >
                   <Switch />
                 </Form.Item>
+                {/* commented till AI Skill generation implemented
+                  <Form.Item name="skillSourcePreference" label={I18n.t('administration.idp.skill_source_preference')}>
+                  <Radio.Group>
+                    <Radio value="from_template">{I18n.t('administration.idp.skill_sources.from_template')}</Radio>
+                    <Radio value="from_ai">{I18n.t('administration.idp.skill_sources.from_ai')}</Radio>
+                  </Radio.Group>
+                </Form.Item> */}
               </Card>
             </Col>
           )}

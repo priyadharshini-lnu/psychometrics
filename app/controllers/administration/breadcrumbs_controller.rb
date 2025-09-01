@@ -2,6 +2,7 @@
 
 module Administration
   class BreadcrumbsController < Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     skip_after_action :verify_policy_scoped
     before_action :pundit_authorize, except: %i[index]
     skip_before_action :init_state

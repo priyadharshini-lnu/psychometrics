@@ -2,6 +2,7 @@
 
 module Administration
   class AuditLogsController < Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     before_action :authenticate_user!
     before_action :set_log, only: %i[show destroy]
 
@@ -9,7 +10,7 @@ module Administration
 
     def index
       ApplicationRecord.read_from_replica do
-        @q = policy_scope(::AuditLog).ransack(params[:filters])
+        @q = policy_scope(::AuditLog).geo_scoped(Current.user_country).ransack(params[:filters])
 
         @logs = @q.result.
                 select('audit_logs.id, audit_logs.action, audit_logs.created_at, audit_logs.user_id,

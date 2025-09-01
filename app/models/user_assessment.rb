@@ -113,7 +113,7 @@ class UserAssessment < ApplicationRecord
   after_commit -> { sync_assessor_form_status_to_subject_meeting },
                if: proc { status_previously_changed? }, on: %i[update]
 
-  after_commit -> { calculate_and_save_campaign_scoring },
+  after_commit -> { generate_campaign_scoring_and_artifacts_results },
                if: proc { score_calculated_previously_changed? && completed? }, on: %i[update]
 
   after_commit :publish_assessment_started_webhook, if: -> { saved_change_to_status == %w[not_started in_progress] }
@@ -146,11 +146,11 @@ class UserAssessment < ApplicationRecord
     campaign_user.finish_proctoring_session if campaign_user.all_proctored_assessments_completed?
   end
 
-  def calculate_and_save_campaign_scoring
+  def generate_campaign_scoring_and_artifacts_results
     return unless CampaignUser.exists?(campaign_id: campaign_id, user_id: subject_id)
 
     # TODO: Investigate why users_result.scoring is nil if we don't add delay of 30 seconds
-    CampaignScoring::CalculateAndSaveJob.set(wait: 30.seconds).perform_later(campaign, subject)
+    CampaignResults::ScoringAndArtifactsGeneratorJob.set(wait: 30.seconds).perform_later(campaign, subject)
   end
 
   def sync_assessor_form_status_to_subject_meeting

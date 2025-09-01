@@ -192,8 +192,9 @@ if __FILE__ == $PROGRAM_NAME
     puts '  HEAD_REF   Head reference/branch (optional, for PR creation)'
     puts
     puts 'Environment variables:'
-    puts '  DEEPL_AUTH_KEY  DeepL API key for translations'
-    puts '  GH_TOKEN        GitHub token for PR creation (optional)'
+    puts '  MICROSOFT_TRANSLATION_API_KEY  Microsoft Translator API key'
+    puts '  MICROSOFT_TRANSLATION_API_REGION Microsoft Translator region'
+    puts '  GH_TOKEN                        GitHub token for PR creation (optional)'
     puts
     puts 'Examples:'
     puts "  #{File.basename($0)}                           # Find and translate keys against develop"
@@ -203,9 +204,11 @@ if __FILE__ == $PROGRAM_NAME
   end
 
   # Validate required environment variables
-  unless ENV['DEEPL_AUTH_KEY']
-    puts '❌ Error: DEEPL_AUTH_KEY environment variable is required'
-    puts "Please set your DeepL API key: export DEEPL_AUTH_KEY='your-api-key'"
+  unless ENV['MICROSOFT_TRANSLATION_API_KEY'] && ENV['MICROSOFT_TRANSLATION_API_REGION']
+    puts '❌ Error: Microsoft Translator API credentials are required'
+    puts 'Please set:'
+    puts "  export MICROSOFT_TRANSLATION_API_KEY='your-api-key'"
+    puts "  export MICROSOFT_TRANSLATION_API_REGION='your-region'"
     exit(1)
   end
 

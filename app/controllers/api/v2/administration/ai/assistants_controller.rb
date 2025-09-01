@@ -4,6 +4,7 @@ module Api
   module V2
     module Administration
       class AI::AssistantsController < BaseController
+        skip_before_action :enforce_geo_restriction
         validate_crud_requests Api::V2::AI::Assistant::Schema
 
         def generate

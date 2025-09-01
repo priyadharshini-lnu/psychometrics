@@ -11,7 +11,7 @@ RSpec.describe Skill, type: :model do
   it { should have_many(:development_actions).through(:skills_development_actions) }
 
   # Enum tests
-  it { should define_enum_for(:skill_type).with_values(behavioral: 0, technical: 1, other: 2) }
+  it { should define_enum_for(:skill_type).with_values(behavioral: 0, technical: 1, other: 2, qualification: 3) }
 
   # Translation tests
   describe 'translations' do

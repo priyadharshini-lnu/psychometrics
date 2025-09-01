@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import I18nStore from '~/modules/reports/store/I18nStore'
+import { getColorForGraphValue, isGraphValueCondition } from '~/modules/reports/utils/GraphValueCondition'
 
 export const Functions = {
   Count (data, indexChoice, indexScalePoint) {
@@ -40,6 +41,7 @@ export const Formats = {
 
 export default {
   series (res, question, model, func = 'Count') {
+    const useColorsFromGraphValueConditions = isGraphValueCondition(model.props.textConditionType)
     const { results } = res[0]
     const result = []
 
@@ -52,9 +54,12 @@ export default {
       }
       typeResult.data = _.map(question.props.choicesTexts, (labelChoice, indexChoice) => {
         labelChoice = I18nStore.tQuestion(question, `choicesTexts${indexChoice + 1}`, { choice: indexChoice })
+        const y = (Functions[func] || Functions.Count)(results.questions[question.id], indexChoice, indexScalePoint)
         return {
           name: model.props.choicesTexts[indexChoice] || labelChoice,
-          y: (Functions[func] || Functions.Count)(results.questions[question.id], indexChoice, indexScalePoint),
+          y,
+          color: useColorsFromGraphValueConditions
+            ? getColorForGraphValue(model.props.graphValueConditions, y) : undefined,
         }
       })
       result.push(typeResult)

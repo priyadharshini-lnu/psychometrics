@@ -144,7 +144,7 @@ const UserList: React.FC<Props> = ({
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('administration.navigation.users')}`}</span>
+          <span className="mlm">{`${total} ${I18n.t('administration.campaigns.users.title')}`}</span>
         </Col>
         <div>
           <ToolsDropdown

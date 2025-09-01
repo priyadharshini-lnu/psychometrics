@@ -4,7 +4,7 @@
 import {
   useState, useRef, useEffect, useCallback,
 } from 'react'
-import axios, { AxiosResponse, AxiosProgressEvent } from 'axios'
+import { AxiosResponse, AxiosProgressEvent } from 'axios'
 import _ from 'lodash'
 import {
   Button, Flex, Alert,
@@ -17,7 +17,8 @@ import {
   AudioOutlined,
   CheckCircleFilled,
 } from '@ant-design/icons'
-import CryptoJS from 'crypto-js'
+import SparkMD5 from 'spark-md5'
+import { axiosWithRetry } from '~/modules/survey/utils/network'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useReactMediaRecorder } from './components/MediaRecorder'
 import { useRecording } from '~/context/RecordingContext'
@@ -26,6 +27,8 @@ import ProgressWithCountdown, { ProgressWithCountdownProps } from './components/
 import styles from './styles.less'
 
 const { I18n } = window
+
+const axiosInstance = axiosWithRetry()
 
 interface MimeType {
   mimeType: string;
@@ -83,11 +86,19 @@ const formatDuration = (durationInSeconds: number): string => {
   return `${minutes.toString().padStart(2, '0')}m:${seconds.toString().padStart(2, '0')}s`
 }
 
-const calculateMD5Checksum = async (blob: Blob) => {
-  const arrayBuffer = await blob.arrayBuffer()
-  const wordArray = CryptoJS.lib.WordArray.create(arrayBuffer)
-  const md5 = CryptoJS.MD5(wordArray)
-  return CryptoJS.enc.Base64.stringify(md5)
+const calculateMD5Checksum = async (blob: Blob): Promise<string> => {
+  const fileReader = new FileReader()
+  const spark = new SparkMD5.ArrayBuffer()
+
+  const arrayBuffer = await new Promise<ArrayBuffer>((resolve, reject) => {
+    fileReader.onload = () => resolve(fileReader.result as ArrayBuffer)
+    fileReader.onerror = () => reject(new Error('Failed to read file'))
+    fileReader.readAsArrayBuffer(blob)
+  })
+
+  spark.append(arrayBuffer)
+  const base64 = btoa(spark.end(true))
+  return base64
 }
 
 const MediaRecorderComponent: React.FC<Props> = ({
@@ -108,7 +119,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
 
   const videoRef = useRef<HTMLVideoElement>(null)
-  const promisesArrayRef = useRef<AxiosResponse[]>([])
+  const promisesArrayRef = useRef<Promise<AxiosResponse<unknown> | undefined>[]>([])
   const urlDetailsRef = useRef<UrlDetails | null>(null)
   const mediaStreamRef = useRef<MediaStream | null>(null)
 
@@ -161,7 +172,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
   const getUploadUrl = useCallback(async (): Promise<void> => {
     try {
-      const response = await axios.get<UrlDetails>(
+      const response = await axiosInstance.get<UrlDetails>(
         `${mediaUrl}/upload_media_url.json?question_id=${questionId}&file_name=video.${supportedMimeType?.extension}`,
       )
       urlDetailsRef.current = response.data
@@ -180,7 +191,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
   const chunkCounterRef = useRef<number>(0)
 
-  const uploadChunk = async (chunk: Blob): Promise<void> => {
+  const uploadChunk = async (chunk: Blob): Promise<AxiosResponse<unknown> | undefined> => {
     if (!urlDetailsRef.current) {
       await getUploadUrl()
       if (!urlDetailsRef.current) {
@@ -197,9 +208,9 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
 
     const uploadUrl = urlDetailsRef.current.urls[chunkNumber]
-
+    chunkCounterRef.current += 1
     try {
-      const uploadResp = await axios.put(uploadUrl, chunk, {
+      const uploadResp = await axiosInstance.put(uploadUrl, chunk, {
         headers: { 'Content-Type': supportedMimeType?.mimeType },
         onUploadProgress: (progressEvent: AxiosProgressEvent) => {
           if (progressEvent.total) {
@@ -209,30 +220,30 @@ const MediaRecorderComponent: React.FC<Props> = ({
         },
       })
 
-      promisesArrayRef.current.push(uploadResp)
-      chunkCounterRef.current += 1
       removeError('upload')
+      return uploadResp
     } catch (err) {
       console.error('Error uploading chunk:', err)
       setError('upload')((err as Error).message)
+      throw err
     }
   }
 
-  const completeMediaUpload = async (completeBlob): Promise<void> => {
+  const completeMediaUpload = async (completeBlob: Blob): Promise<void> => {
     if (!urlDetailsRef.current) {
       console.error('No URL details available for completing upload')
-      setError('complete')('Failed to complete upload: No URL details available')
+      setError('complete')(I18n.t('assessments.video_response.failed_to_complete_upload'))
       return
     }
 
     try {
       const resolvedArray = await Promise.all(promisesArrayRef.current)
       const uploadPartsArray = resolvedArray.map((resolvedPromise, index) => ({
-        etag: resolvedPromise.headers.etag,
+        etag: resolvedPromise?.headers.etag,
         part_number: index + 1,
       }))
       const checksum = await calculateMD5Checksum(completeBlob)
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${mediaUrl}/complete_multipart_upload`,
         {
           parts: uploadPartsArray,
@@ -252,7 +263,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       stopVideoRecording()
     } catch (error) {
       console.error('Error completing media upload:', error)
-      setError('complete')('An unknown error occurred while completing the upload')
+      setError('complete')(I18n.t('assessments.video_response.error_while_uploading'))
     }
   }
 
@@ -275,7 +286,8 @@ const MediaRecorderComponent: React.FC<Props> = ({
     const chunkSize = chunk.size
     setTotalSize(prevSize => prevSize + chunkSize)
     chunksRef.current.push({ size: chunkSize })
-    uploadChunk(chunk)
+    const uploadPromise = uploadChunk(chunk)
+    promisesArrayRef.current.push(uploadPromise)
   }, [])
 
   const onStop = useCallback(async (blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
@@ -284,9 +296,18 @@ const MediaRecorderComponent: React.FC<Props> = ({
       stream.getTracks().forEach(track => track.stop())
     }
     setIsUploading(true)
-    uploadChunk(lastBlob)
-      .then(() => completeMediaUpload(completeBlob))
-      .finally(() => setIsUploading(false))
+
+    try {
+      const finalUploadPromise = uploadChunk(lastBlob)
+      promisesArrayRef.current.push(finalUploadPromise)
+
+      await finalUploadPromise
+      await completeMediaUpload(completeBlob)
+    } catch (error) {
+      setError('upload')(I18n.t('assessments.video_response.error_while_uploading'))
+    } finally {
+      setIsUploading(false)
+    }
   }, [stream])
 
   const {
@@ -321,7 +342,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       handleStartRecording()
     } catch (error) {
       console.error('Permission denied:', error)
-      setError('permission')('Failed to access camera and microphone')
+      setError('permission')(I18n.t('assessments.video_response.failed_to_access_permission'))
     } finally {
       setIsRequestingPermission(false)
     }
@@ -364,7 +385,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
   const handleDiscard = useCallback(async (): Promise<void> => {
     if (existingMedia) {
       try {
-        await axios.delete(`${mediaUrl}/remove_media`, {
+        await axiosInstance.delete(`${mediaUrl}/remove_media`, {
           headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') },
           data: { media_id: existingMedia?.id },
         })
@@ -373,7 +394,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         onDeleteMedia()
       } catch (error) {
         console.error('Error discarding existing video:', error)
-        setError('discard')('Failed to discard existing video')
+        setError('discard')(I18n.t('assessments.video_response.error_while_discarding'))
         return
       }
     } else {

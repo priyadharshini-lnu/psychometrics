@@ -376,11 +376,11 @@ cs:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Řádek %{row}: Duplicitní hodnota %{value} pro %{field}'
+              duplicate_value: "%{sheet_name}, řádek %{row}: Duplicitní hodnota %{value} pro %{field}"
               invalid_format: Nahrajte prosím soubor xlsx
               missing_headers: "%{sheet_name} chybí požadované záhlaví: %{headers}"
               missing_sheets: 'Chybějící požadované listy: %{sheets}'
-              missing_value: 'Řádek %{row}: Chybějící hodnota pro %{field}'
+              missing_value: "%{sheet_name}, řádek %{row}: Chybějící hodnota pro %{field}"
             project:
               must_exist: Projekt musí existovat
         update_norm:
@@ -440,10 +440,13 @@ cs:
           iiht: IIHT
           lead_assessor_form: Formulář vedoucího hodnotitele
           meeting: Setkání
+          mettl: Mettl
           organisational: Průzkumy
           pearson: Pearson
           psychometric: Hodnocení
           saville: Saville
+          simulation: Simulace
+          skillvue: Dovednost
           threesixty: kampaň 360
         category: Kategorie
         created_at: Datum vytvoření
@@ -457,8 +460,11 @@ cs:
           common: Hodnocení TTE
           hogan: Hogan
           iiht: Hodnocení IIHT
+          mettl: Hodnocení Mettl
           pearson: Hodnocení Pearson
           saville: Hodnocení Saville
+          simulation: Posouzení simulace
+          skillvue: Hodnocení dovedností
         updated_at: Datum úpravy
       assign:
         completed_at: Datum dokončení
@@ -811,6 +817,7 @@ cs:
         bulk_download_idp_reports: Hromadné stahování zpráv IDP
         bulk_download_reports: Hromadné stahování zpráv
         bulk_download_user_reports: Hromadné stahování uživatelských zpráv
+        bulk_generate_user_campaign_ai_artifact_results: Hromadné generování výsledků artefaktů AI kampaně
         bulk_regenerate_reports: Regenerovat zprávy o kampani
         bulk_regenerate_threesixty_reports: Regenerovat třistašedesát předmětových zpráv
         bulk_regenerate_user_reports: Regenerovat uživatelské zprávy
@@ -847,6 +854,7 @@ cs:
         external_assessment_export: Export externích výsledků
         import_accesssheet: Importovat Accessheet
         import_assessment_questions: Otázky pro posouzení importu
+        import_assessment_translations: Import překladů hodnocení
         import_assessors: Posuzovatelé dovozu
         import_campaign_factors: Faktory importní kampaně
         import_datasheet: Import datového listu
@@ -1130,6 +1138,10 @@ cs:
         mic: Mikrofon
       discard: Zahodit
       discard_record_again: Zahodit a nahrát znovu
+      error_while_discarding: Nepodařilo se zahodit existující video
+      error_while_uploading: Při dokončování nahrávání došlo k neznámé chybě
+      failed_to_access_permission: Nepodařilo se získat přístup ke kameře a mikrofonu
+      failed_to_complete_upload: 'Nahrávání se nezdařilo: Nejsou k dispozici žádné podrobnosti adresy URL'
       media_recorder:
         failure: Tento prohlížeč nepodporuje nahrávání videa. Pro nahrávání videa použijte Chrome nebo Firefox
         success: Povolte použití kamery a mikrofonu k nahrávání zvuku a videa
@@ -1790,6 +1802,7 @@ cs:
     column:
       action: Akce
       active: Aktivní
+      ai_assistant: Asistent AI
       allow_multiple_responses: Povolit více odpovědí
       approval_notification_list: Seznam uživatelů oznámení o schválení
       approvers_list: Seznam schvalovatelů
@@ -1880,7 +1893,9 @@ cs:
       continue: Pokračovat
       copied: Zkopírováno do schránky
       default: Výchozí
+      disabled: Invalidní
       download: Stáhnout
+      enabled: Zpřístupněný
       file: Soubor
       global_import: Je globální import?
       minutes: Zápis
@@ -2178,6 +2193,7 @@ cs:
       uniq_simulation: Toto posouzení simulace je již v systému přítomno. ID tohoto posouzení je %{id}
       uniq_skillvue: Toto hodnocení dovedností je již v systému obsaženo. ID tohoto hodnocení je %{id}
       update_workshop:
+        bookings_exist: Časový rozvrh nelze změnit, protože účastníci si tento časový úsek již rezervovali.
         less_than_booked: Celkový počet míst musí být větší než rezervovaný
       user_availability_date:
         overlaps_date: Překrývá jinou dostupnost %{range}
@@ -2866,6 +2882,8 @@ cs:
     zh-HK: Čínština (Hongkong)
     zh-Hant: Čínština - tradiční
     zh-TW: Čínština (Tchaj-wan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Aktivní
     campaign_name: Název kampaně

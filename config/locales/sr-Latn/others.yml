@@ -382,11 +382,11 @@ sr-Latn:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Red %{row}: Duplikat vrednosti %{value} za %{field}'
+              duplicate_value: "%{sheet_name}, red %{row}: Duplikat vrednosti %{value} za %{field}"
               invalid_format: Molimo Vas da otpremite xlsx datoteku
               missing_headers: "%{sheet_name} stranici nedostaju obavezna zaglavlja: %{headers}"
               missing_sheets: 'Nedostaju potrebne stranice: %{sheets}'
-              missing_value: 'Red %{row}: Nedostaje vrednost za %{field}'
+              missing_value: "%{sheet_name}, red %{row}: Nedostaje vrednost za %{field}"
             project:
               must_exist: Projekat mora postojati
         update_norm:
@@ -446,10 +446,13 @@ sr-Latn:
           iiht: OMILjENO
           lead_assessor_form: Obrazac glavnog procenjivača
           meeting: Sastanak
+          mettl: OMILjENO
           organisational: Ankete
           pearson: Pirson
           psychometric: Procena
           saville: San-Tome i Prinsipi
+          simulation: Simulacija
+          skillvue: OMILjENO
           threesixty: 360 Kampanja
         category: Kategorija
         created_at: Datum kreiranja
@@ -463,8 +466,11 @@ sr-Latn:
           common: TTE Procena
           hogan: Hogan
           iiht: IIHT procena
+          mettl: Mettl Procena
           pearson: Pirsonova procena
           saville: Savil Procena
+          simulation: Simulacija Procena
+          skillvue: Skillvue Procena
         updated_at: Datum izmene
       assign:
         completed_at: Datum završetka
@@ -817,6 +823,7 @@ sr-Latn:
         bulk_download_idp_reports: Zbirno preuzimanje IDP izveštaji
         bulk_download_reports: Zbirno preuzimanje Izveštaji
         bulk_download_user_reports: Bulk Preuzimanje korisničkih izveštaja
+        bulk_generate_user_campaign_ai_artifact_results: Bulk Generate Campaign AI Artifact Rezultati
         bulk_regenerate_reports: Regenerišite izveštaje o kampanji
         bulk_regenerate_threesixty_reports: Regenerišite Threesixty Subject Reports
         bulk_regenerate_user_reports: Regenerišite korisničke izveštaje
@@ -853,6 +860,7 @@ sr-Latn:
         external_assessment_export: Eksterni Rezultati Izvoz
         import_accesssheet: Uvoz Pristupa
         import_assessment_questions: Pitanja za procenu uvoza
+        import_assessment_translations: Uvoz Procena Prevodi
         import_assessors: Procenjivači uvoza
         import_campaign_factors: Faktori uvozne kampanje
         import_datasheet: Uvoz Datasheet
@@ -1137,6 +1145,10 @@ sr-Latn:
         mic: Mikrofon
       discard: Odbaci
       discard_record_again: Odbaci i ponovo snimi
+      error_while_discarding: Failed to odbaciti postojeći video
+      error_while_uploading: Došlo je do nepoznate greške prilikom završetka otpremanja
+      failed_to_access_permission: Nije uspeo da pristupi kameri i mikrofonu
+      failed_to_complete_upload: 'Nije uspelo da se završi otpremanje: Nema dostupnih detalja o URL-u'
       media_recorder:
         failure: Ovaj pretraživač ne podržava video snimanje. Molimo Vas da koristite Chrome ili Firefox za snimanje video zapisa
         success: Dozvolite da koristite kameru i mikrofon za snimanje audio i video
@@ -1788,6 +1800,7 @@ sr-Latn:
     column:
       action: Akcija
       active: Aktivni
+      ai_assistant: AI pomoćnik
       allow_multiple_responses: Dozvoli više odgovora
       approval_notification_list: Lista korisnika obaveštenja o odobrenju
       approvers_list: Osoba spisak odobravača
@@ -1878,7 +1891,9 @@ sr-Latn:
       continue: Nastavi
       copied: Kopirano u ostavu
       default: Ponuđeno
+      disabled: Onemogućen
       download: Preuzmi
+      enabled: Omogućen
       file: Datoteke
       global_import: Da li je globalni uvoz?
       minutes: Minuta
@@ -2207,6 +2222,7 @@ sr-Latn:
       uniq_simulation: Ova procena simulacije je već prisutna u sistemu. ID ove procene je %{id}
       uniq_skillvue: Ova procena Skillvue je već prisutna u sistemu. ID ove procene je %{id}
       update_workshop:
+        bookings_exist: Nije moguće mijenjati raspored jer su učesnici već rezervisali ovaj termin.
         less_than_booked: Ukupan broj mesta mora biti veći od rezervisanog
       user_availability_date:
         overlaps_date: Preklapa se sa drugom dostupnošću %{range}
@@ -2873,6 +2889,8 @@ sr-Latn:
     zh-HK: Srpski (Srbija)
     zh-Hant: Kineski - Tradicionalni
     zh-TW: Kineski (Tajvan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Aktivni
     campaign_name: Naziv kampanje

@@ -291,6 +291,48 @@ hu:
             manage: Kezel
             title: Workshopok
             view: Nézet
+    ai_artifacts:
+      artifact_results: Műtermék eredményei
+      code: Kód
+      form:
+        add_assessment: Értékelés hozzáadása
+        ai_assistant: AI asszisztens
+        assessments: Értékelések
+        campaign_factors: Kampány tényezők
+        configuration: Konfiguráció
+        datasheet: Adatlap
+        datasheet_columns: Adatlap oszlopok
+        include_all_datasheet_columns: Az adatlap összes oszlopának belefoglalása
+        no_assessment_selected: Még nincs értékelés. Kattintson a "Hozzáadás" gombra a kezdéshez.
+        questions_required: Legalább egy kérdést ki kell választani
+        select_ai_assistant: Válassza az AI Assistant lehetőséget
+        select_assessment: Válassza az Értékelés lehetőséget
+        select_campaign_factors: Válassza ki a kampánytényezőket
+        select_datasheet_columns: Adatlaposzlopok kiválasztása
+        select_questions: Kérdések kiválasztása
+        title: AI műtermék
+      generate: Létrehoz
+      generate_result_info_message: Az eredmények generálódnak, kérjük, frissítse az oldalt a frissített eredmények megtekintéséhez.
+      generate_results: Eredmények generálása
+      generated_at: Generált
+      generated_at_time: Generálva %{time}
+      generated_value: Generált érték
+      id: AZONOSÍTÓ
+      key: Kulcs
+      name: Név
+      parsed_dependencies:
+        help: Az AI Assistant által az összetevő-eredmények létrehozásához használt felhasználó elemzett függőségei
+        title: Elemzett függőségek
+        view: Elemzett függőségek megtekintése
+      playground: Játszótér
+      playground_info: Tesztelje az összetevőt mintaadatokkal a generált eredmények előnézetéhez.
+      playground_placeholder: Tesztadatok megadása
+      raw: NYERS
+      tabs:
+        results: Eredmények
+        settings: Beállítások
+      test_generate: Teszt generálása
+      unsaved_changes: A nem mentett módosítások jelen vannak, fontolja meg az űrlap elküldését, hogy frissített választ generáljon a Playgroundtól.
     ai_assistants:
       actions:
         create: AI asszisztens létrehozása
@@ -298,9 +340,34 @@ hu:
         playground: Játszótér
       ai_assistants: AI-asszisztensek
       ai_assistants_playground: AI-asszisztens játszótér
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: Az értékelési konfigurációból hiányzik az értékelés azonosítója
+            assessment_missing_questions: Az értékelési konfigurációból hiányoznak az értékelési %{assessment_id}
+            no_assessments_configured: Nincsenek konfigurálva értékelések
+            no_assessments_configured_for_artifact: Ehhez az összetevőhöz nincs beállítva értékelés
+            no_completed_results: Nem találtak befejezett értékelési eredményeket az értékeléshez %{assessment_name}
+            no_valid_assessment_data: Érvényes értékelési adatok nem állnak rendelkezésre
+          base:
+            dependency_not_configured: A "%{dependency}" függőség nincs konfigurálva
+          campaign_factor:
+            factor_empty_value: A "%{code}" (%{name}) kampánytényező üres értéket tartalmaz a felhasználói %{email} számára
+            factor_no_value: A "%{code}" (%{name}) kampánytényezőhöz nincs hozzárendelve érték a felhasználói %{email}
+            no_campaign_factors_configured: Ehhez az összetevőhöz nincs beállítva kampánytényező
+            no_valid_factor_data: Nincsenek érvényes kampánytényező-adatok
+          datasheet:
+            column_no_value: A "%{column}" oszlopnak nincs értéke a felhasználói %{email}
+            no_datasheet_columns_configured: Nincsenek konfigurálva konkrét adatlaposzlopok
+            no_datasheet_configured: Ehhez a kampányhoz nincs adatlap konfigurálva
+            no_datasheet_data: Felhasználói %{email} nem állnak rendelkezésre adatlapadatok
+            user_not_found_in_datasheet: A felhasználó nem található a kampány adatlapján
+      campaign_ai_artifacts: Kampány AI-ereklyék
       column:
         provider: Szolgáltató
       created_successfully: Az AI Assistant sikeresen létrejött.
+      errors:
+        cannot_delete_in_use: Nem lehet törölni az AI Assistant "%{name}" fájlt, mert használatban van.
       form:
         add_output_schema_key: Kimeneti séma kulcs hozzáadása
         dependencies: Függőségek
@@ -319,6 +386,11 @@ hu:
         system_prompt: Rendszerkérés
         type: Típus
         user_prompt: Felhasználói kérés
+      selector:
+        choose_artifact: AI-összetevő kiválasztása
+        choose_schema_key: Sémakulcs kiválasztása
+        no_assistants_found: Nem található AI Assistant
+        placeholder: Válassza az AI Assistant lehetőséget
       updated_successfully: Az AI Assistant sikeresen frissült.
     any: " -Bármely- "
     api:
@@ -358,6 +430,8 @@ hu:
         exceeded_subjects_count: A kampánynak %{users} témái vannak. Meghívónként csak %{count} témát adhat hozzá
         id: AZONOSÍTÓ
         invites: Meghívók
+        name: Név
+        name_placeholder: Adja meg a meghívó nevét
         next: Következő
         not_selected: Nincs kiválasztva
         requests: Kérelmek
@@ -435,6 +509,7 @@ hu:
       errors:
         doesnt_have_header: A(z) %{sub_header}' nem rendelkezik fejléccel
         invalid_headers: 'A következő fejlécek érvénytelenek: %{headers}'
+        invalid_question: Érvénytelen kérdésazonosító
         invalid_scores: A(z) %{factor_name} tényező pontszámai érvénytelenek. A pontszámoknak vesszővel elválasztott numerikus értékeknek kell lenniük
         invalid_sub_header: A(z) %{sub_header} nem érvényes alfejléc a(z) "%{header}" fejléchez
         scores_not_allowed: Pontszámok csak feleletválasztós és mátrix típusú kérdések esetén adhatók hozzá
@@ -773,20 +848,16 @@ hu:
       users_import: Importál
     bulk_reports:
       create:
-        no_data: Nincs adat
         successfully: A jelentések készülnek, és e-mailben értesítjük, ha elkészültek
       download:
         removed: Eltávolított
-      form:
-        end_date: Befejezés dátuma
-        start_date: Kezdő dátum
       mailer:
         subject: Tömeges jelentések letöltése
       new:
         header: Tömeges letöltés
       reports_unavailable: Jelenleg nem tölthetők le jelentések. Kérjük, ellenőrizze, hogy a letölteni kívánt jelentések elérhetők-e.
-      select_reports_for_download: Kérjük, válasszon ki legalább egy jelentést a letöltéshez.
-      select_reports_for_regenerate: Kérjük, válasszon ki legalább egy jelentést a regeneráláshoz.
+      select_users_for_download: Kérjük, válasszon legalább egy felhasználót a jelentések letöltéséhez.
+      select_users_for_regenerate: Kérjük, válasszon legalább egy felhasználót a jelentések regenerálásához.
     cable:
       notification:
         assessment_factors: A tényezők bekerültek
@@ -1092,6 +1163,7 @@ hu:
         is_active: Aktív
         name: Név
         no_permission_message: Nincs engedélye a módosításra
+        title: Felhasználók
         updated_by: 'Frissítette:'
       validations:
         dates:
@@ -1578,12 +1650,16 @@ hu:
       add: Hozzáad
       back: Vissza
       cancel: Mégse
+      code: Kód
       disabled: Letiltva
       download_sample_file: Mintafájl letöltése
       enabled: Engedélyezve
       import:
         failure_msg: Hiba a fájl importálása közben.
+      instructions: Előírás
+      loading: Berakás...
       minute: perc
+      name: Név
       next: Következő
       reset: Visszaállít
       save: Mentés
@@ -1625,6 +1701,7 @@ hu:
           {{schedule_end_date}} - Ütemezés befejezési dátuma
         campaign: Kampány
         campaign_assessment_group: Kampányértékelő csoport
+        cc_recipients: CC-címzettek
         client: Ügyfél
         completion: Teljesítés
         custom: Custom
@@ -1717,6 +1794,7 @@ hu:
         back: Vissza
         body: 'Testület:'
         campaign: 'Kampány:'
+        cc_recipients: 'CC-ben részesülők:'
         client: 'Ügyfél:'
         communication_type: 'Közlemény típusa:'
         delivery_rule: 'Szállítási szabály:'
@@ -2214,7 +2292,16 @@ hu:
       self_rating: Önértékelés engedélyezése
       show_reflections: Reflexiók megjelenítése
       skill_gap_report: Valamilyen készség hiányáról szóló jelentés kiválasztása
+      skill_source_preference: Készség forrása
+      skill_sources:
+        from_ai: Az általános mesterséges intelligencia ismeretekből
+        from_template: Sablonból és leképezésekből
       skills: Készségek
+      skills_privacy_messages:
+        made_private: A "%{skill_name}" képesség privátként lett megjelölve, és el lesz rejtve a felettesed elől
+        made_public: A "%{skill_name}" képesség mostantól látható a felettese számára
+        skill_not_found: A készség nem található
+        unauthorized: A képesség módosítása jogosulatlan
       skills_updated: IDP készségek sikeresen frissítve
       status:
         draft: Tervezet
@@ -2443,6 +2530,10 @@ hu:
         content: Biztos vagy benne, hogy el akarod távolítani a tárgyat a(z) "%{subjectEmail}" e-mailben?
         success: A(z) "%{subjectEmail}" e-mail tárgya sikeresen el lett távolítva.
         title: Tárgy eltávolítása
+      resend_invite:
+        content: Küldje el újra a meghívót a kiválasztott témákhoz. Biztos benne, hogy folytatni akarja?
+        success: A meghívók sikeresen újraküldtek.
+        title: Meghívó újraküldése
       statuses:
         accepted: Elfogadott
         cancelled: Törölt
@@ -2454,6 +2545,7 @@ hu:
         requested_rescheduling: Kért átütemezés
         requested_rescheduling_rejected: Átütemezés elutasítva
         rescheduled: Átütemezve
+        scheduled: Tervezett
       subject: Tárgy
     job_role:
       are_you_sure_to_remove: Biztos, hogy el akarja távolítani?
@@ -2545,6 +2637,7 @@ hu:
     message: Üzenet
     meta_title: Adminisztrációs panel
     navigation:
+      ai_artifacts: AI-összetevők
       ai_assistants: AI asszisztensek
       assessments: Értékelések
       assessments_reports: Felmérések és jelentések
@@ -2735,21 +2828,31 @@ hu:
         sms_contacts: SMS-kapcsolatok
         subjects: Témák
     piped_text_modal:
+      assessment_center: Értékelő központ
       assessment_id: Értékelési azonosító
       campaign_id: Kampány azonosítója
       campaign_name: Kampány neve
       campaigns: Kampányok
+      description: Leírás
+      duration: Időtartam
+      end_time: Végidő
       insight_page_link: Elemzési oldal linkje
       insight_page_url: Elemzési oldal URL-címe
+      invite_title: Cím
+      invites: Meghívók
       join_link: Csatlakozás link
       magic_link: Magic link
       magic_url: Mágikus URL
+      platform_url_links: Platform Url és linkek
       profile_custom_field: Profil egyéni mező
       project_name: Projekt neve
       projects: Projektek
       report_name: Jelentés neve
+      start_time: A kezdési időpont
       text: Szöveges üzenet
       title: Továbbított szöveg hozzáadása
+      user_reports: Felhasználói jelentések
+      users: Felhasználók
     proctoring_sessions:
       columns:
         comment: Megjegyzés
@@ -2775,6 +2878,7 @@ hu:
         create:
           invalid_format: A szintmeghatározásnak meghatározások tömegét kell jelentenie.
           level_definition_must_match_level: pontosan %{expected} szinteket kell tartalmaznia, de %{actual} meg van adva
+          level_description_must_exist: A szint leírása nem lehet üres
           level_name_must_exist: A szint neve nem lehet üres
           must_be_unique: Egyedinek kell lennie
           proficiency_level_exists: Ezzel a készséggel és projekttel már létezik tudásszint
@@ -3237,6 +3341,29 @@ hu:
           repeat_modules: A kiválasztott modulok megismétlődnek a beillesztett exta oldalakon, a modul nevére utalva
         module_pagination: Modul oldalszámozása
         repeat_modules: Modulok ismétlése
+      property_panel:
+        add_new_condition: Új feltétel hozzáadása
+        apply_color_label: 'Ezután alkalmazza a következő színt:'
+        graph_condition_types:
+          default: Alapértelmezett
+          graph_value: Grafikon értéke
+        graph_value_condition_not_supported_msg: A gráférték-feltételek nem támogatottak ennél a gráftípusnál. Ez a lehetőség jelenleg csak az alábbi gráftípusok esetében érhető el.
+        graph_value_conditions_title: Grafikonérték feltételei
+        if_graph_value_is: 'Ha a grafikon értéke:'
+        manage_graph_value_condition: Grafikonérték-feltétel kezelése
+        manage_styles_condition: Stílusok feltételének kezelése
+        missing_value: Hiányzó érték
+        predicates:
+          equal_to: Egyenlő
+          greater_than: Nagyobb, mint
+          greater_than_or_equal: Nagyobb vagy egyenlő, mint
+          less_than: Kevesebb, mint
+          less_than_or_equal: Kisebb vagy egyenlő
+          not_equal_to: Nem egyenlő
+        prefixes:
+          and: ÉS
+          or: VAGY
+        text_condition_type: 'Szövegfeltétel típusa:'
     report_families:
       create:
         successfully: A(z) %{name} jelentéscsomag létrehozása sikeresen megtörtént.
@@ -3295,6 +3422,19 @@ hu:
         pending_qc: Függőben lévő minőségellenőrzés
         qc_completed: Minőségellenőrzés befejeződött
         qc_in_progress: Minőségellenőrzés folyamatban
+    report_settings:
+      data_source_types:
+        assessment: Értékelés
+        campaign_factors: Kampány tényezők
+        datasheet: Adatlap
+        report_data: Jelentés adatai
+      tabs:
+        campaign_ai_artifacts: Kampány AI-ereklyék
+        campaign_factors: Kampány tényezők
+        data_sheets: Adatlapok
+        page_settings: Oldalbeállítások
+        translations: Fordítások
+      title: Jelentés beállításai
     reports:
       bulk_marked_as_done: A köteg készként megjelölve
       bulk_upload:
@@ -3428,8 +3568,6 @@ hu:
         name_label: Név
         next: Következő
         required_error: Szükséges
-        reschedule_duration_max_error: Nem lehet hosszabb 30 napnál
-        reschedule_duration_min_error: Nem lehet kevesebb, mint 1 perc
         resources_panel:
           description: Add hozzá a linkeket minden olyan forráshoz, amelyhez szeretnéd, hogy a facilitátorok hozzáférjenek.
           resource_name_placeholder: Erőforrás neve
@@ -3994,6 +4132,7 @@ hu:
         skill_types:
           behavioural: Viselkedés
           other: Egyéb
+          qualification: Minősítés
           technical: Műszaki
       property_panel:
         add_n_a_option: N/A opció hozzáadása
@@ -4333,6 +4472,7 @@ hu:
           header: Fordítások importálása
       import:
         successfully: A fordítások importálása sikeresen megtörtént
+        successfully_scheduled: A fordítás importálása sikeresen ütemezve megtörtént.
       reports:
         export: Fordítások exportálása
         import: Fordítások importálása

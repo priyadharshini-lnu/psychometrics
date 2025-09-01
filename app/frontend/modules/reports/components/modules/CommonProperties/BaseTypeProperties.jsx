@@ -6,12 +6,15 @@ import {
 } from '~/modules/reports/models/Module'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 
-const OPTIONS = [
-  { label: 'Assessment', value: ASSESSMENT_DATA },
-  { label: 'Datasheet', value: DATA_SHEET },
-  { label: 'Campaign Factors', value: CAMPAIGN_FACTORS },
-  { label: 'Report Data', value: REPORT_DATA },
-]
+const { I18n } = window
+
+const getOptions = () => [
+  { label: I18n.t('administration.report_settings.data_source_types.assessment'), value: ASSESSMENT_DATA },
+  { label: I18n.t('administration.report_settings.data_source_types.datasheet'), value: DATA_SHEET },
+  { label: I18n.t('administration.report_settings.data_source_types.campaign_factors'), value: CAMPAIGN_FACTORS },
+  { label: I18n.t('administration.report_settings.data_source_types.report_data'), value: REPORT_DATA },
+].filter(Boolean)
+
 class BaseTypeProperties extends Component {
   onChange = ({ value }) => {
     const { model, onSelect } = this.props
@@ -22,21 +25,22 @@ class BaseTypeProperties extends Component {
     onSelect()
   }
 
-  getSelectValue = (model) => {
-    const value = getValue(OPTIONS, _.get(model, ['props', 'source', 'type']))
+  getSelectValue = (model, options) => {
+    const value = getValue(options, _.get(model, ['props', 'source', 'type']))
 
-    return value || OPTIONS[0]
+    return value || options[0]
   }
 
   render () {
     const { model } = this.props
+    const options = getOptions()
 
     return (
       <div>
         <Select
           name="form-field-name"
-          value={this.getSelectValue(model)}
-          options={OPTIONS}
+          value={this.getSelectValue(model, options)}
+          options={options}
           isClearable={false}
           autoFocus={false}
           onChange={this.onChange}

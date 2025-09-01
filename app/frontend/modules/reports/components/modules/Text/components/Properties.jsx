@@ -13,9 +13,11 @@ import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 import localStyles from './Properties.less'
 import ResponseText from './SourceTypeForms/ResponseText'
 import ResultText from './SourceTypeForms/ResultText'
+import AIContent from './SourceTypeForms/AIContent'
 import connect from '../connect'
 import { rgba2hex } from '~/utils/color'
 import DefaultProps from '~/modules/reports/consts/DefaultProps'
+import { isAiAssistantEnabled } from '~/modules/reports/utils/features'
 
 const SELECT_OPTIONS = [
   { label: 'Text', value: 'Text' },
@@ -24,7 +26,8 @@ const SELECT_OPTIONS = [
   { label: 'Conditional Subfactor / Occupation Text', value: 'ConditionalFactorOccupationText' },
   { label: 'Response Text', value: 'ResponseText' },
   { label: 'Result/DataSheet Text', value: 'ResultText' },
-]
+  isAiAssistantEnabled() && { label: 'AI Content', value: 'AIContent' },
+].filter(Boolean)
 
 const Properties = ({
   modules, reportStyles, openConditionalText, openConditionalFactorOccupationText, questions,
@@ -218,8 +221,15 @@ const Properties = ({
     )
   }
 
+  const renderAIContentForm = () => {
+    if (model.props.sourceType !== 'AIContent') { return null }
+    return (
+      <AIContent modules={modules} update={update} />
+    )
+  }
+
   const renderDataSourceOptions = () => {
-    if (model.props.sourceType === 'ResultText') return null
+    if (model.props.sourceType === 'ResultText' || model.props.sourceType === 'AIContent') return null
 
     return (
       <div>
@@ -247,27 +257,28 @@ const Properties = ({
           onChange={changeSourceType}
         />
         {model.props.sourceType === 'ConditionalText'
-            && (
-              <div
-                style={{ width: '100%' }}
-                onClick={openConditionModal}
-                className="btn btn-default"
-              >
-                Manage condition
-              </div>
-            )}
+          && (
+            <div
+              style={{ width: '100%' }}
+              onClick={openConditionModal}
+              className="btn btn-default"
+            >
+              Manage condition
+            </div>
+          )}
         {model.props.sourceType === 'ConditionalFactorOccupationText'
-            && (
-              <div
-                style={{ width: '100%' }}
-                onClick={openConditionalFactorOccupationModal}
-                className="btn btn-default"
-              >
-                Manage condition
-              </div>
-            )}
+          && (
+            <div
+              style={{ width: '100%' }}
+              onClick={openConditionalFactorOccupationModal}
+              className="btn btn-default"
+            >
+              Manage condition
+            </div>
+          )}
         {renderResponseTextForm()}
         {renderResultTextForm()}
+        {renderAIContentForm()}
         {
           model.props.sourceType === 'PipedText'
           && (

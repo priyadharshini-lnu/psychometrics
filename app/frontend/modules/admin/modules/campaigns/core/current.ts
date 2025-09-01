@@ -1,5 +1,6 @@
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import _ from 'lodash'
+import ApiAction from '~/interfaces/ApiAction'
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { createReducer } from '~/utils/redux'
@@ -38,7 +39,8 @@ export const update = (id: number, projectId: number, body: Partial<Campaign>) =
   },
 })
 
-export const fetchAssessmentAndReports = (campaignId: string) => ({
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export const fetchAssessmentAndReports = (campaignId: string): ApiAction<any> => ({
   type: FETCH_ASSESSMENTS_AND_REPORTS,
   request: {
     method: 'get',

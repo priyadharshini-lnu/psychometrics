@@ -24,8 +24,11 @@ import PipedText from './PipedText'
 import {
   convertColor, useAssignStyle, joinStyles, gradientStyle, borderRadiusStyle,
 } from '../../CommonMethods/styles'
+import { isRtl } from '~/utils/locales'
 
 const assignStyle = useAssignStyle('Text')
+
+const { I18n } = window
 
 class Text extends Component {
   editor = null
@@ -101,6 +104,9 @@ class Text extends Component {
     if (sourceType === 'ResultText') {
       return renderToStaticMarkup(LookupResultTextValue.run(model))
     }
+    if (sourceType === 'AIContent') {
+      return renderToStaticMarkup(LookupResultTextValue.run(model))
+    }
     return I18nStore.tModule(model, 'text')
   }
 
@@ -144,7 +150,7 @@ class Text extends Component {
   }
 
   buildStyles (styles, overrides) {
-    const { flipContent } = this.props
+    const { module, flipContent } = this.props
 
     let style = styles
     const outerStyle = {}
@@ -155,18 +161,16 @@ class Text extends Component {
     } = overrides
     let horizontalAlignNew = assignStyle(style, 'textAlign', horizontalAlign)
 
-    if (horizontalAlignNew === 'left') {
-      horizontalAlignNew = 'start'
-    } else if (horizontalAlignNew === 'right') {
-      horizontalAlignNew = 'end'
+    if (isRtl(I18n.locale) && horizontalAlignNew === 'left' && I18nStore.isExistTModule(module, 'text')) {
+      horizontalAlignNew = 'right'
     }
 
     if (flipContent && horizontalAlign === 'left') {
-      horizontalAlignNew = 'end'
+      horizontalAlignNew = horizontalAlign === 'left' ? 'right' : 'left'
     }
 
     if (flipContent && horizontalAlign === 'right') {
-      horizontalAlignNew = 'start'
+      horizontalAlignNew = horizontalAlign === 'right' ? 'left' : 'right'
     }
 
     if (!style.border && !overrides.borderColor) {
@@ -298,11 +302,11 @@ class Text extends Component {
         return (
           <SafeHTML
             ref={(ref) => { this.editor = ref }}
-            className={cs(styles.editor, 'ltr')}
+            className={cs(styles.editor)}
             html={this.pipedText()}
           />
         )
-      } if (sourceType === 'ResultText') {
+      } if (sourceType === 'ResultText' || sourceType === 'AIContent') {
         const textValue = LookupResultTextValue.run(model)
         return (
           <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
@@ -320,7 +324,7 @@ class Text extends Component {
         />
       )
     }
-    if (sourceType === 'ResultText') {
+    if (sourceType === 'ResultText' || sourceType === 'AIContent') {
       return (
         <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
           {/* TODO: Render as markdown only for Datasheet where the column is markdown */}

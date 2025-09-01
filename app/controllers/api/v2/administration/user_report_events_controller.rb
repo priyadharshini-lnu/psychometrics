@@ -2,6 +2,8 @@
 
 module Api
   class V2::Administration::UserReportEventsController < V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
+
     def export
       AdminJob.call(
         :export_user_report_events,

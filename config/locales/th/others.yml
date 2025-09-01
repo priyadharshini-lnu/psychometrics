@@ -376,11 +376,11 @@ th:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'แถว %{row}: ค่าซ้ำ %{value} สำหรับ %{field}'
+              duplicate_value: "%{sheet_name} แถวที่ %{row}: %{value} ค่าที่ซ้ํากันสําหรับ %{field}"
               invalid_format: กรุณาอัปโหลดไฟล์ xlsx
               missing_headers: 'แผ่นงาน %{sheet_name} ขาดหัวตารางที่จำเป็น: %{headers}'
               missing_sheets: 'แผ่นงานที่จำเป็นขาดหายไป: %{sheets}'
-              missing_value: 'แถว %{row}: ไม่มีค่าสำหรับ %{field}'
+              missing_value: "%{sheet_name} แถวที่ %{row}: ค่าที่ขาดหายไปสําหรับ %{field}"
             project:
               must_exist: โครงการต้องมีอยู่
         update_norm:
@@ -440,10 +440,13 @@ th:
           iiht: ไอเอชที
           lead_assessor_form: แบบฟอร์มผู้ประเมินหลัก
           meeting: การประชุม
+          mettl: เมทเทล
           organisational: สำรวจ
           pearson: เพียร์สัน
           psychometric: การประเมิน
           saville: ซาวิลล์
+          simulation: การลอกเลียนแบบ
+          skillvue: สกิลวิว
           threesixty: แคมเปญ 360
         category: ประเภท
         created_at: วันที่สร้าง
@@ -457,8 +460,11 @@ th:
           common: การประเมิน TTE
           hogan: โฮแกน
           iiht: การประเมิน IIHT
+          mettl: การประเมิน Mettl
           pearson: การประเมินเพียร์สัน
           saville: การประเมิน Saville
+          simulation: การประเมินการจําลอง
+          skillvue: การประเมิน Skillvue
         updated_at: วันที่แก้ไข
       assign:
         completed_at: วันที่เสร็จสมบูรณ์
@@ -811,6 +817,7 @@ th:
         bulk_download_idp_reports: ดาวน์โหลดรายงาน IDP จำนวนมาก
         bulk_download_reports: รายงานการดาวน์โหลดจำนวนมาก
         bulk_download_user_reports: ดาวน์โหลดรายงานผู้ใช้จำนวนมาก
+        bulk_generate_user_campaign_ai_artifact_results: สร้างผลลัพธ์สิ่งประดิษฐ์ AI ของแคมเปญจํานวนมาก
         bulk_regenerate_reports: สร้างรายงานแคมเปญใหม่
         bulk_regenerate_threesixty_reports: สร้างรายงานเรื่อง Threesixty ใหม่
         bulk_regenerate_user_reports: สร้างรายงานผู้ใช้ใหม่
@@ -847,6 +854,7 @@ th:
         external_assessment_export: ส่งออกผลลัพธ์ภายนอก
         import_accesssheet: นําเข้าอุปกรณ์เสริม
         import_assessment_questions: คําถามการประเมินการนําเข้า
+        import_assessment_translations: การแปลการประเมินการนําเข้า
         import_assessors: ผู้ประเมินนําเข้า
         import_campaign_factors: นําเข้าปัจจัยแคมเปญ
         import_datasheet: นําเข้าเอกสารข้อมูล
@@ -1127,6 +1135,10 @@ th:
         mic: ไมค์
       discard: ลบทิ้ง
       discard_record_again: ลบทิ้ง & บันทึกใหม่
+      error_while_discarding: ไม่สามารถทิ้งวิดีโอที่มีอยู่ได้
+      error_while_uploading: เกิดข้อผิดพลาดที่ไม่รู้จักขณะอัปโหลดให้เสร็จสิ้น
+      failed_to_access_permission: ไม่สามารถเข้าถึงกล้องและไมโครโฟนได้
+      failed_to_complete_upload: 'อัปโหลดไม่เสร็จสมบูรณ์: ไม่มีรายละเอียด URL'
       media_recorder:
         failure: เบราว์เซอร์นี้ไม่รองรับการบันทึกวิดีโอ โปรดใช้ Chrome หรือ Firefox สำหรับการบันทึกวิดีโอ
         success: กรุณาอนุญาตให้ใช้กล้องและไมโครโฟนในการบันทึกเสียงและวิดีโอ
@@ -1775,6 +1787,7 @@ th:
     column:
       action: ดำเนินการ
       active: เปิดใช้งาน
+      ai_assistant: ผู้ช่วย AI
       allow_multiple_responses: อนุญาตการตอบกลับหลายรายการ
       approval_notification_list: รายชื่อผู้ใช้การแจ้งเตือนการอนุมัติ
       approvers_list: รายชื่อผู้อนุมัติ
@@ -1865,7 +1878,9 @@ th:
       continue: ดำเนินการต่อ
       copied: คัดลอกไปยังคลิปบอร์ด
       default: ค่าเริ่มต้น
+      disabled: พิการ
       download: ดาวน์โหลด
+      enabled: เปิด
       file: แฟ้ม
       global_import: นําเข้าทั่วโลกหรือไม่?
       minutes: รายงานการประชุม
@@ -2186,6 +2201,7 @@ th:
       uniq_simulation: การประเมินการจําลองนี้มีอยู่ในระบบแล้ว รหัสของการประเมินนี้คือ %{id}
       uniq_skillvue: การประเมิน Skillvue นี้มีอยู่ในระบบแล้ว รหัสการประเมินนี้คือ %{id}
       update_workshop:
+        bookings_exist: ไม่สามารถแก้ไขตารางได้เนื่องจากผู้เข้าร่วมได้จองช่วงเวลาดังกล่าวไว้แล้ว
         less_than_booked: ที่นั่งทั้งหมดต้องมากกว่าที่จองไว้
       user_availability_date:
         overlaps_date: ทับซ้อนกับความพร้อมใช้งานอื่น %{range}
@@ -2874,6 +2890,8 @@ th:
     zh-HK: จีน (ฮ่องกง)
     zh-Hant: จีน - ตัวเต็ม
     zh-TW: จีน (ไต้หวัน)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: เปิดใช้งาน
     campaign_name: ชื่อแคมเปญ

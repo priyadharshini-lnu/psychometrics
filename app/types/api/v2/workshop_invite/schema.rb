@@ -10,6 +10,7 @@ module Api
 
         def self.attributes(attribute, _)
           proc do
+            attribute[:name].maybe(:string)
             attribute[:allowed_languages].array(:string)
             attribute[:allow_language_preference].filled(:bool)
             attribute[:allow_neurodiversity_option].filled(:bool)
@@ -28,6 +29,7 @@ module Api
           end
 
           json_api_attributes do
+            optional(:name).maybe(:string)
             optional(:allowed_languages).array(:string)
             required(:allow_language_preference).filled(:bool)
             required(:allow_neurodiversity_option).filled(:bool)
@@ -35,6 +37,22 @@ module Api
             optional(:workshop_ids).array(:string)
             optional(:subjects).array(subject)
             required(:translations).array(translation)
+          end
+        end
+
+        def self.update_request
+          translation = Dry::Schema.define do
+            required(:locale).filled(:string)
+            required(:title).filled(:string)
+            required(:description).filled(:string)
+          end
+
+          json_api_attributes do
+            optional(:name).maybe(:string)
+            optional(:allowed_languages).array(:string)
+            optional(:allow_language_preference).filled(:bool)
+            optional(:allow_neurodiversity_option).filled(:bool)
+            optional(:translations).array(translation)
           end
         end
 

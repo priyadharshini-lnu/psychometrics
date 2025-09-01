@@ -376,11 +376,11 @@ sk:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Riadok %{row}: Duplicitná hodnota %{value} pre %{field}'
+              duplicate_value: "%{sheet_name}, riadok %{row}: duplicitná hodnota %{value} pre %{field}"
               invalid_format: Prosím, nahrajte súbor xlsx
               missing_headers: "%{sheet_name} chýbajú požadované hlavičky: %{headers}"
               missing_sheets: 'Chýbajúce požadované listy: %{sheets}'
-              missing_value: 'Riadok %{row}: Chýbajúca hodnota pre %{field}'
+              missing_value: "%{sheet_name}, riadok %{row}: chýbajúca hodnota pre %{field}"
             project:
               must_exist: Projekt musí existovať
         update_norm:
@@ -440,10 +440,13 @@ sk:
           iiht: IIHT
           lead_assessor_form: Formulár vedúceho posudzovateľa
           meeting: Schôdza
+          mettl: Mettl
           organisational: Prieskumy
           pearson: Pearson
           psychometric: Hodnotenie
           saville: Saville
+          simulation: Simulácia
+          skillvue: Skillvue
           threesixty: 360° Kampaň
         category: Kategória
         created_at: Dátum vytvorenia
@@ -457,8 +460,11 @@ sk:
           common: Hodnotenie TTE
           hogan: Hogan
           iiht: Hodnotenie IIHT
+          mettl: Hodnotenie Mettl
           pearson: Pearsonovo hodnotenie
           saville: Hodnotenie Saville
+          simulation: Simulačné hodnotenie
+          skillvue: Hodnotenie zručností
         updated_at: Dátum úpravy
       assign:
         completed_at: Dátum dokončenia
@@ -811,6 +817,7 @@ sk:
         bulk_download_idp_reports: Hromadné sťahovanie správ IDP
         bulk_download_reports: Hromadné stiahnutie správ
         bulk_download_user_reports: Hromadné sťahovanie hlásení používateľov
+        bulk_generate_user_campaign_ai_artifact_results: Hromadné generovanie výsledkov artefaktov AI kampane
         bulk_regenerate_reports: Opätovné generovanie prehľadov kampaní
         bulk_regenerate_threesixty_reports: Regenerujte správy o predmetoch Threesixty
         bulk_regenerate_user_reports: Opätovné generovanie používateľských prehľadov
@@ -847,6 +854,7 @@ sk:
         external_assessment_export: Export externých výsledkov
         import_accesssheet: Import prístupu
         import_assessment_questions: Otázky na hodnotenie dovozu
+        import_assessment_translations: Preklady hodnotenia importu
         import_assessors: Hodnotitelia dovozu
         import_campaign_factors: Importovať faktory kampane
         import_datasheet: Importovať údajový hárok
@@ -1127,6 +1135,10 @@ sk:
         mic: Mikrofón
       discard: Vyradiť
       discard_record_again: Vyradenie a opätovný záznam
+      error_while_discarding: Nepodarilo sa zahodiť existujúce video
+      error_while_uploading: Pri dokončovaní nahrávania sa vyskytla neznáma chyba
+      failed_to_access_permission: Nepodarilo sa získať prístup ku kamere a mikrofónu
+      failed_to_complete_upload: 'Nahrávanie sa nepodarilo dokončiť: nie sú k dispozícii žiadne podrobnosti o webovej adrese'
       media_recorder:
         failure: Tento prehliadač nepodporuje nahrávanie videa. Na nahrávanie videa použite prehliadač Chrome alebo Firefox
         success: Povoľte používanie kamery a mikrofónu na nahrávanie zvuku a videa
@@ -1778,6 +1790,7 @@ sk:
     column:
       action: Akcia
       active: Aktívny
+      ai_assistant: Asistent AI
       allow_multiple_responses: Povolenie viacerých odpovedí
       approval_notification_list: Zoznam používateľov upozornení na schválenie
       approvers_list: Zoznam schvaľovateľov
@@ -1868,7 +1881,9 @@ sk:
       continue: Pokračovať
       copied: Skopírované do schránky
       default: Predvolené nastavenie
+      disabled: Invalidný
       download: Stiahnite si
+      enabled: Povolené
       file: Súbor
       global_import: Je globálny dovoz?
       minutes: Zápis
@@ -2189,6 +2204,7 @@ sk:
       uniq_simulation: Toto simulačné hodnotenie je už v systéme prítomné. ID tohto hodnotenia je %{id}
       uniq_skillvue: Toto hodnotenie Skillvue je už v systéme prítomné. ID tohto hodnotenia je %{id}
       update_workshop:
+        bookings_exist: Rozvrh nie je možné upraviť, pretože účastníci si už tento časový interval rezervovali.
         less_than_booked: Celkový počet miest musí byť väčší ako rezervovaný
       user_availability_date:
         overlaps_date: Prekrýva inú dostupnosť %{range}
@@ -2877,6 +2893,8 @@ sk:
     zh-HK: čínština (Hongkong)
     zh-Hant: Čínština - tradičná
     zh-TW: čínština (Taiwan)
+  languages_localized:
+    sl: Slovensko
   license_usage:
     active: Aktívny
     campaign_name: Názov kampane

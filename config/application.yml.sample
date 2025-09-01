@@ -1,5 +1,5 @@
 
-# APP_DOMAIN: ttedev.me
+# APP_DOMAIN: localhost
 # APP_PROTOCOL: http
 # APP_SUB_DOMAIN: www
 # HTTP_AUTH_CREDENTIALS:
