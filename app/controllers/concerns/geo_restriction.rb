@@ -25,7 +25,7 @@ module GeoRestriction
   def handle_geo_restriction(exception)
     case request.format
       when Mime[:json], Mime[:api_json]
-        render json: { error: exception.message }, status: :unauthorized
+        render json: { error: exception.message }, status: :forbidden
       when Mime[:html], Mime[:js]
         redirect_to '/403'
       else

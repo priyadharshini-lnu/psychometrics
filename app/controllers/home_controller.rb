@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  include SetCurrentCountry
+
+  before_action :set_current_country, only: :request_inspect
   skip_before_action :authenticate_user!, only: %I[identify upgrade privacy_statement]
   skip_before_action :set_client_by_subdomain, only: %i[privacy_statement request_inspect]
 
