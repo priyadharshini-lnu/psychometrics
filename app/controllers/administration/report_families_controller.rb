@@ -2,6 +2,7 @@
 
 module Administration
   class ReportFamiliesController < Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     append_before_action :pundit_authorize
     render_entrypoint :index, element: 'reports', entry: 'admin/reports'
 

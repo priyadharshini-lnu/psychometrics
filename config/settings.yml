@@ -89,6 +89,7 @@ features:
   disable_session_timeout: <%= ENV.fetch('DISABLE_SESSION_TIMEOUT', 'false') == 'true' %>
   disable_saml_for_admins: <%= ENV.fetch('DISABLE_SAML_FOR_ADMINS', 'false') == 'true' %>
   disable_inactive_users: <%= ENV.fetch('DISABLE_INACTIVE_USERS_ENABLED', 'false') == 'true' %>
+  disable_geo_restriction: <%= ENV.fetch('DISABLE_GEO_RESTRICTION', 'false') == 'true' %>
   enable_intl_for_admins: <%= ENV.fetch('ENABLE_INTL_FOR_ADMINS', 'false') == 'true' %>
   ai_assistant_enabled: <%= ENV.fetch('AI_ASSISTANT_ENABLED', 'false') == 'true' %>
   disable_recaptcha: <%= ENV.fetch('DISABLE_RECAPTCHA', 'false') == 'true' %>

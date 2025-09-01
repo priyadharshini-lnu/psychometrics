@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Administration::AssessmentsController < Administration::BaseController
+  skip_before_action :enforce_geo_restriction
   include Archivable
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[

@@ -160,7 +160,7 @@ module Facades
       end
 
       def fetch_owners(user)
-        client_policy_scope(user).roots.order(:name)
+        client_policy_scope(user).geo_scoped(Current.user_country).roots.order(:name)
       end
 
       def fetch_projects(user)

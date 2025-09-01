@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::ExternalAssessmentsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     append_before_action :pundit_authorize, except: [:index]
     append_after_action :verify_authorized, except: :index
 

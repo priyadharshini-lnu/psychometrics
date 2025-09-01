@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::IdpSettingsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction, only: :update
     validate_crud_requests Api::V2::IdpSetting::Schema
     validates_request_schema :update, -> { V2::IdpSetting::UpdateContract.new }
 

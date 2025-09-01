@@ -22,12 +22,14 @@ module Api
 
       class Scope < Administration::BasePolicy::Scope
         def resolve
+          geo_filtered_scope = @scope.geo_scoped(Current.user_country)
+
           if @user.is?(:superadmin)
-            @scope.all
+            geo_filtered_scope.all
           elsif @user.is?(:client_admin)
-            @scope.where(owner: @user.client_admin_clients)
+            geo_filtered_scope.where(owner: @user.client_admin_clients)
           else
-            @scope.none
+            geo_filtered_scope.none
           end
         end
       end

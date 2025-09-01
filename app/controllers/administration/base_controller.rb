@@ -2,6 +2,8 @@
 
 module Administration
   class BaseController < ::BaseController
+    include SetCurrentCountry
+    include GeoRestriction
     include Administration::Policies
     include Administration::Helpers
     layout 'administration'

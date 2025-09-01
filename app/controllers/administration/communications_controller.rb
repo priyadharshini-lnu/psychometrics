@@ -2,6 +2,7 @@
 
 module Administration
   class CommunicationsController < Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     prepend_before_action :set_resource_class
     before_action :set_resource,
                   only: %i[destroy copy download_history toggle_status sidebar

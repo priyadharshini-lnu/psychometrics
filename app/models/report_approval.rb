@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ReportApproval < ApplicationRecord
+  include GeoFilterable
+
   audited
 
   self.table_name = 'user_reports'
@@ -30,5 +32,16 @@ class ReportApproval < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[campaign report user]
+  end
+
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    restricted_campaign_subquery =
+      Campaign.joins(:project).
+      where(clients: { tte_id: restricted_client_subquery }).
+      select(:id)
+
+    where.not(campaign_id: restricted_campaign_subquery)
   end
 end

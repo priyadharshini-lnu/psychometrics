@@ -609,6 +609,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
+    maxminddb (0.1.22)
     memory_profiler (0.9.14)
     meta_request (0.8.5)
       rack-contrib (>= 1.1, < 3)
@@ -1184,6 +1185,7 @@ DEPENDENCIES
   jwt (~> 2.2.2)
   kaminari!
   listen (~> 3.7.1)
+  maxminddb
   meta_request (~> 0.8.2)
   mimemagic
   mini_magick (~> 4.11.0)

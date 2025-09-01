@@ -2,6 +2,7 @@
 
 class Administration::ImportsController < Administration::BaseController
   before_action :init_import
+  skip_before_action :enforce_geo_restriction
   append_before_action :pundit_authorize
 
   def init_import

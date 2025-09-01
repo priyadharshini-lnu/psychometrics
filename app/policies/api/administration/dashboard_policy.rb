@@ -61,14 +61,15 @@ module Api
 
       class Scope < BasePolicy::Scope
         def resolve
-          return Dashboard.all if user.is?(:superadmin)
+          geo_filtered_scope = scope.geo_scoped(Current.user_country)
+          return geo_filtered_scope if user.is?(:superadmin)
 
           options = { group: :dashboards, permission: :view }
           campaign_ids = ::Administration::CampaignPolicy::Scope.new(user, Campaign,
                                                                      options).resolve.select do |campaign|
             user.has_permission?(:dashboards, :view, project_id: campaign.project_id, campaign_id: campaign.id)
           end
-          Dashboard.where(campaign_id: campaign_ids)
+          geo_filtered_scope.where(campaign_id: campaign_ids)
         end
       end
     end

@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::WorkshopFacilitatorsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction, only: :search_assessors
     before_action :check_search_term, only: %i[search_managers search_assessors]
 
     def search_managers

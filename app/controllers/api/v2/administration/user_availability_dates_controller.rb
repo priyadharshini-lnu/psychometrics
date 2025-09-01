@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::UserAvailabilityDatesController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     validate_crud_requests Api::V2::UserAvailabilityDate::Schema
     validates_request_schema :create, :create_contract
     validates_request_schema :update, :update_contract

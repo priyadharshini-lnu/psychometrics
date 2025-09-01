@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::UserIdpDevelopmentActionsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     before_action :load_skill!, only: %i[generate_by_ai]
 
     validate_crud_requests Api::V2::UserIdpDevelopmentAction::Schema

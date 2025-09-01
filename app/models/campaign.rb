@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
+  include GeoFilterable
+
   audited except: %i[encrypted_pdf_password encrypted_pdf_password_iv]
 
   include RansackSearchableFields
@@ -109,6 +111,13 @@ class Campaign < ApplicationRecord
 
   scope :templates, -> { where(is_template: true) }
   scope :not_templates, -> { where(is_template: false) }
+
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    joins(:project).
+      where.not(clients: { tte_id: restricted_client_subquery })
+  end
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name status type start_date end_date]
