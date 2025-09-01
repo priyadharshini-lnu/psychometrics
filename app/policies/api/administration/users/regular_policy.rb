@@ -6,7 +6,10 @@ module Api
       class RegularPolicy < Api::Administration::UserPolicy
         class Scope < BasePolicy::Scope
           def resolve
-            return scope.includes(user_profile: { photo_attachment: :blob }) if @user.is?(:superadmin)
+            geo_filtered_scope = scope.geo_scoped(Current.user_country).
+                                 includes(user_profile: { photo_attachment: :blob })
+
+            return geo_filtered_scope if @user.is?(:superadmin)
 
             permitted_client_admin_project_ids = @user.client_admin_project_ids.select do |project_id|
               @user.has_permission?(:projects, :manage_users, project_id: project_id)
@@ -22,7 +25,7 @@ module Api
               )
             end.pluck(:project_id)
 
-            scope.where(
+            geo_filtered_scope.where(
               project_id: permitted_client_admin_project_ids.concat(
                 permitted_project_admin_project_ids, permitted_campaign_admin_project_ids
               )

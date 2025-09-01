@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class Assessors::CampaignsController < Assessors::BaseController
+  skip_before_action :enforce_geo_restriction
   skip_after_action :verify_policy_scoped, only: :index
 
   def index
-    search = policy_scope(Campaign).ransack(params[:filters])
+    search = policy_scope(Campaign).geo_scoped(Current.user_country).ransack(params[:filters])
     search.sorts = 'id desc' if search.sorts.empty?
 
     campaigns = search.result

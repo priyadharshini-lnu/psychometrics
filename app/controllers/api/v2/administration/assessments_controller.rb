@@ -4,6 +4,8 @@ module Api
   class V2::Administration::AssessmentsController < Api::V2::Administration::BaseController
     include Api::V2::Administration::Concerns::Taggable
 
+    skip_before_action :enforce_geo_restriction
+
     validates_request_schema :create, :create_contract_based_on_assessment_type
     validates_request_schema :update, :update_contract_based_on_assessment_type
     validates_request_schema :copy, -> { Api::V2::Assessment::CopyContract.new }

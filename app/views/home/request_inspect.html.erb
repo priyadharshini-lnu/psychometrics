@@ -20,6 +20,19 @@
           <td><%= value %></td>
         </tr>
       <% end %>
+
+      <!-- Sub-header row for additional details -->
+      <tr>
+        <td colspan="2">Additional Details</td>
+      </tr>
+      <tr>
+        <td>IP Address</td>
+        <td><%= @ip %></td>
+      </tr>
+      <tr>
+        <td>Country</td>
+        <td><%= @country %></td>
+      </tr>
     </tbody>
   </table>
 </body>

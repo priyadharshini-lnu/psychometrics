@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::DesignSettingsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction, only: :update
     validate_crud_requests Api::V2::DesignSetting::Schema
 
     def project_id

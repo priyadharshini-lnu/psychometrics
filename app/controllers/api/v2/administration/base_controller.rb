@@ -9,6 +9,8 @@ module Api
     include V2::Administration::Concerns::ApiController
     include Pundit
     include AddCookie
+    include SetCurrentCountry
+    include GeoRestriction
 
     ACTION_TO_SCHEMA_NAME = {
       create: :create_request, update: :update_request, create_relationship:

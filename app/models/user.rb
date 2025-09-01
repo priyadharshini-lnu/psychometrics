@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
+  include GeoFilterable
+
   audited except: %i[encrypted_password encrypted_invitation_raw authentication_token spoof_token]
 
   include UserScopes
@@ -167,6 +169,23 @@ class User < ApplicationRecord
   delegate :subdomain, to: :project, allow_nil: true
   delegate :age, :gender, :timezone, :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
   delegate :email, to: :manager, prefix: true, allow_nil: true
+
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    case name
+      when UserRoles::REGULAR_ROLE
+        joins(:project).
+          merge(Client.projects.where.not(tte_id: restricted_client_subquery))
+
+      when UserRoles::ADMIN_ROLE
+        joins(:memberships).
+          where.not(memberships: { client_id: restricted_client_subquery })
+
+      when UserRoles::SUPER_ADMIN_ROLE
+        all
+    end
+  end
 
   def skip_session_limitable?
     Settings.features.skip_session_limitable

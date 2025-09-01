@@ -2,6 +2,7 @@
 
 module Administration
   class ProfilesController < Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     before_action :set_profile, only: %i[edit update]
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), :admin_path
 

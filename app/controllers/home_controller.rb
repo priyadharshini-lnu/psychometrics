@@ -66,6 +66,8 @@ class HomeController < ApplicationController
     raise ActionController::RoutingError, 'Not Found' unless current_user.is?(:superadmin)
 
     @headers = request.headers.to_h
+    @ip = request.remote_ip
+    @country = Current.user_country
 
     render 'request_inspect', layout: false
   end

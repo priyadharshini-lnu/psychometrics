@@ -92,13 +92,15 @@ module Administration
 
     class Scope < Administration::BasePolicy::Scope
       def resolve
-        return scope if @user.is?(:superadmin)
+        geo_filtered_scope = scope.geo_scoped(Current.user_country)
+
+        return geo_filtered_scope if @user.is?(:superadmin)
 
         # find memberships for clients with 'admin' role and it's subclients
         clients_scope = @user.is?(:client_admin) ? @user.client_admin_clients : @user.project_admin_clients
         client_ids = clients_scope.not_retails.enabled.ids
         descendant_ids = Client.descendants_of_arr(client_ids).ids
-        scope.where(client_id: client_ids + descendant_ids)
+        geo_filtered_scope.where(client_id: client_ids + descendant_ids)
       end
     end
   end
