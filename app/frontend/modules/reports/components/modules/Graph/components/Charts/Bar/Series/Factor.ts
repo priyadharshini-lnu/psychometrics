@@ -32,7 +32,7 @@ export default {
         const data = factors && factors.map((factor) => {
           const y = (Functions[func] || Functions.Count)(result(res.results.scoring[factor.id], 'results', []))
           const barColor = useColorsFromGraphValueConditions
-            ? getColorForGraphValue(model.props.graphValueConditions, data) : undefined
+            ? getColorForGraphValue(model.props.graphValueConditions, y) : undefined
           return ({
             name: I18nStore.tFactor(factor, 'name'),
             y,

@@ -1,5 +1,5 @@
 import {
-  Button, Form, Input, Space, Select, Row, Col, Modal, Typography, Alert,
+  Button, Form, InputNumber, Space, Select, Row, Col, Modal, Typography, Alert,
 } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -100,13 +100,15 @@ export const GraphValueConditionModal = () => {
               <Space direction="vertical" className="w-100" size="middle">
                 {fields.map((field, index) => (
                   <div className={styles.conditionContainer}>
-                    <Button
-                      type="text"
-                      icon={<DeleteOutlined />}
-                      onClick={() => remove(field.name)}
-                      danger
-                      className={styles.removeBtn}
-                    />
+                    {fields.length > 1 && (
+                      <Button
+                        type="text"
+                        icon={<DeleteOutlined />}
+                        onClick={() => remove(field.name)}
+                        danger
+                        className={styles.removeBtn}
+                      />
+                    )}
                     <Space className="w-100" direction="vertical">
                       <Form.List name={[field.name, 'conditions']}>
                         {(fields, { add, remove }) => (
@@ -157,7 +159,7 @@ export const GraphValueConditionModal = () => {
                                       }]}
                                       className="mb-4"
                                     >
-                                      <Input />
+                                      <InputNumber />
                                     </Form.Item>
                                   </Col>
                                   <Button
