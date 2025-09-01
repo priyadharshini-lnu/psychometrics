@@ -2,7 +2,7 @@
 
 module Api
   class V2::Administration::MembershipsController < Api::V2::Administration::BaseController
-    skip_before_action :enforce_geo_restriction
+    skip_before_action :enforce_geo_restriction, except: %i[index create]
     validates_request_schema :create, -> { Api::V2::Membership::CreateContract.new }
     validate_crud_requests Api::V2::Membership::Schema
 
