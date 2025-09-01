@@ -79,8 +79,8 @@ test('It should show correct minimum browser support values for unsupported feat
   )
   expect(result.current[0]).toBeFalsy()
   expect(result.current[1]).toEqual({
-    and_chr: 114,
-    and_ff: 113,
+    and_chr: 139,
+    and_ff: 142,
     chrome: 50,
     edge: 17,
     firefox: 44,
@@ -95,8 +95,8 @@ test('It should show correct minimum browser support values for unsupported feat
   rerender()
   expect(result.current[0]).toBeFalsy()
   expect(result.current[1]).toEqual({
-    and_chr: 114,
-    and_ff: 113,
+    and_chr: 139,
+    and_ff: 142,
     chrome: 21,
     edge: 12,
     firefox: 28,

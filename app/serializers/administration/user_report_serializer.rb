@@ -48,7 +48,7 @@ module Administration
     end
 
     def available_languages
-      object.campaign_report&.available_languages
+      object.campaign_report&.available_languages || []
     end
 
     def permissions

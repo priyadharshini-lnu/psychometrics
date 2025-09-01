@@ -188,6 +188,7 @@ exports[`initializing base assessment > init action should init assessment data 
     "isTimedCampaign": undefined,
     "linear": false,
     "linkedQuestions": undefined,
+    "locale": undefined,
     "locales": undefined,
     "mediaResponses": undefined,
     "mediaUrl": "/assigns/1",
