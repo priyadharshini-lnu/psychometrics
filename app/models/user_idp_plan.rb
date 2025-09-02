@@ -2,6 +2,7 @@
 
 class UserIdpPlan < ApplicationRecord
   include WorkflowActiverecord
+  include ActiveStorageAttachable
 
   belongs_to :user
   belongs_to :campaign
@@ -20,9 +21,17 @@ class UserIdpPlan < ApplicationRecord
   has_many :reflection_questions, through: :idp_template
   has_many :idp_template_reflection_questions, through: :idp_template
   has_many :user_reflection_question_answers, dependent: :destroy
+  has_one :ai_assisted_idp_session,
+          -> { where(type: 'AI::AssistedUserIdpSession') },
+          as: :assistable,
+          class_name: 'AI::AssistedUserSession'
 
   delegate :client, to: :campaign
   delegate :project, to: :campaign
+
+  has_one_attachment :user_document,
+                     service: Settings.storage.private_storage_service,
+                     content_type: %w[application/pdf]
 
   enum :status,
        { not_started: 0, draft: 1, pending_approval: 2, approved: 3, rejected: 4, in_progress: 5, completed: 6 }
@@ -116,6 +125,10 @@ class UserIdpPlan < ApplicationRecord
 
   def manager_editable?
     rejected? || pending_approval?
+  end
+
+  def attachment_storage_path(attribute_name, filename)
+    "private/projects/#{campaign.project_id}/user_idp_plans/#{id}/#{attribute_name}/#{filename}"
   end
 
   private

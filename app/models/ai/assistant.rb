@@ -24,7 +24,9 @@ class AI::Assistant < ApplicationRecord
   before_destroy :check_ai_assistant_in_use
 
   enum :assistant_type, {
-    content_writer: 0
+    content_writer: 0,
+    idp_assistant: 1,
+    assistant_tool: 2
   }
 
   enum :status, {
@@ -34,11 +36,35 @@ class AI::Assistant < ApplicationRecord
 
   ransacker :assistant_type, formatter: proc { |v| assistant_types[v] }
 
-  def for_user(user)
+  def for_user(user, options = {})
     chat = chats.create!(ai_assistant: self, user: user, model_id: model_id)
     chat.with_instructions(parsed_system_prompt.strip)
     chat.to_llm.with_context(ruby_llm_context)
+
+    if has_ruby_llm_schema?
+      chat = chat.with_schema(output_schema_class)
+    end
+
+    if options[:tools]
+      chat = chat.with_tools(*options[:tools], replace: true)
+    end
+
+    if options[:params]
+      chat = chat.with_params(**options[:params])
+    end
+
     chat
+  end
+
+  # Returns the RubyLLM::Schema class for this assistant if configured
+  def output_schema_class
+    return nil unless has_ruby_llm_schema?
+
+    AI::OutputSchemas::Registry.schema_for(assistant_type)
+  end
+
+  def has_ruby_llm_schema?
+    AI::OutputSchemas::Registry.has_schema?(assistant_type)
   end
 
   def self.ransackable_scopes(_auth_object = nil)
@@ -48,8 +74,6 @@ class AI::Assistant < ApplicationRecord
   def self.ransackable_attributes(_auth_object = nil)
     %w[assistant_type]
   end
-
-  private
 
   def ruby_llm_context
     RubyLLM.context do |config|
@@ -65,16 +89,23 @@ class AI::Assistant < ApplicationRecord
     end
   end
 
-  def output_schema_as_context
-    return '' if assistant_output_schema_keys.blank?
+  private
 
-    context_lines = ['Following is the assistant schema:']
-    context_lines << '<assistant_output_schema>'
-    assistant_output_schema_keys.each do |osk|
-      context_lines << "- **#{osk.key}** (#{osk.key_type}): #{osk.description}"
+  # Generate text-based schema context for system prompt
+  def output_schema_as_context
+    if has_ruby_llm_schema?
+      output_schema_class.as_context
+    elsif assistant_type == 'content_writer' && assistant_output_schema_keys.present?
+      context_lines = ['Following is the assistant output schema:']
+      context_lines << '<assistant_output_schema>'
+      assistant_output_schema_keys.each do |osk|
+        context_lines << "- **#{osk.key}** (#{osk.key_type}): #{osk.description}"
+      end
+      context_lines << '</assistant_output_schema>'
+      context_lines.join("\n")
+    else
+      ''
     end
-    context_lines << '</assistant_output_schema>'
-    context_lines.join("\n")
   end
 
   def parsed_system_prompt

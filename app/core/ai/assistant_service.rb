@@ -2,13 +2,14 @@
 
 module AI
   class AssistantService < BaseCommand
-    private_attr_reader :assistant_id, :prompt, :current_user, :options
+    private_attr_reader :assistant_id, :prompt, :current_user, :options, :chat
 
     def initialize(assistant_id, current_user, prompt = nil, options = {})
       @assistant_id = assistant_id
       @prompt = prompt
       @current_user = current_user
       @options = options
+      @chat = options[:chat]
     end
 
     def call
@@ -21,17 +22,19 @@ module AI
     private
 
     def response
-      chat = assistant.for_user(current_user)
-      tools = options[:tools] || []
-      chat = chat.with_tools(*tools)
-
-      res = chat.ask(user_prompt.strip)
+      active_chat = chat || create_new_chat
+      res = active_chat.ask(user_prompt.strip)
 
       {
         message: res.content,
         input_tokens: res.input_tokens,
         output_tokens: res.output_tokens
       }
+    end
+
+    def create_new_chat
+      tools = options[:tools] || []
+      assistant.for_user(current_user, tools: tools)
     end
 
     def user_prompt
