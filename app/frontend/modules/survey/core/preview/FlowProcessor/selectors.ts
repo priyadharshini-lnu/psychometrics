@@ -269,7 +269,7 @@ export const getI18n = ({ locales, instructions, locale }): I18nInterface => ({
     if (locales?.question?.[question.id] || locale === 'ar') {
       question.isNeedToAddLtrManually = false
       question.isAnyArabicTranslateExist = true
-      return _.get(locales, ['question', question.id, field], question.props[field])
+      return locales?.question?.[question.id]?.[field] || question?.props?.[field]
     }
     if (question.id) {
       question.isNeedToAddLtrManually = true
