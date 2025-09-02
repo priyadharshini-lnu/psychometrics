@@ -28,7 +28,9 @@ export default class extends Component {
         <select className={styles.selectBox}>
           {_.times(props.choices, i => (
             <option key={i} value={`choice_${model.name}_${model.id}`}>
-              {props.choicesTexts[i] || moduleConfig.defaultChoiceText(i + 1)}
+              {(props.choicesTexts[i] || props.choicesTexts[i] === 0)
+                ? props.choicesTexts[i]
+                : moduleConfig.defaultChoiceText(i + 1)}
             </option>
           ))}
           {this.renderNotApplicableOption()}
