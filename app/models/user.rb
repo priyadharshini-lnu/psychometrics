@@ -182,7 +182,7 @@ class User < ApplicationRecord
         joins(:memberships).
           where.not(memberships: { client_id: restricted_client_subquery })
 
-      when UserRoles::SUPER_ADMIN_ROLE
+      else
         all
     end
   end
