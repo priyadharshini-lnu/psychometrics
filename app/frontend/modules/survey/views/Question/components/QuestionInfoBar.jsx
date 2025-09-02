@@ -6,10 +6,12 @@ import {
 } from 'antd'
 import {
   EyeOutlined, SaveOutlined, PartitionOutlined, SettingOutlined, CheckCircleOutlined,
-  EyeInvisibleOutlined, DeleteOutlined,
+  EyeInvisibleOutlined, DeleteOutlined, SwapOutlined,
 } from '@ant-design/icons'
 import LogicElement from '~/modules/survey/models/logic/LogicElement'
 import styles from './Question.less'
+
+const { I18n } = window
 
 class Question extends Component {
   static propTypes = {
@@ -75,7 +77,7 @@ class Question extends Component {
         {
           key: 'randomization',
           icon: <span className={`icon fa fa-random ${styles.menuicon}`} />,
-          label: 'Randomization',
+          label: I18n.t('administration.survey_builder.question_info_bar.randomization'),
           onClick: this.randomization,
         },
       ]
@@ -89,13 +91,25 @@ class Question extends Component {
       return [
         {
           key: 'add_to_template',
-          label: 'Save as a Template',
+          label: I18n.t('administration.survey_builder.question_info_bar.save_as_a_template'),
           icon: <SaveOutlined />,
           onClick: this.saveAsTemplate,
         },
       ]
     }
     return []
+  }
+
+  moveQuestionToPositionMenuItem () {
+    const { model, openMoveQuestionModal } = this.props
+    return [
+      {
+        key: 'move_question_to_position',
+        label: I18n.t('administration.survey_builder.question_info_bar.move_question'),
+        icon: <SwapOutlined />,
+        onClick: () => openMoveQuestionModal({ question: model }),
+      },
+    ]
   }
 
   defaultValueMenuItem () {
@@ -105,7 +119,7 @@ class Question extends Component {
         {
           key: 'add_default_choice',
           icon: <CheckCircleOutlined />,
-          label: 'Default Choices',
+          label: I18n.t('administration.survey_builder.question_info_bar.default_choices'),
           onClick: this.defaultValue,
         },
       ]
@@ -122,30 +136,33 @@ class Question extends Component {
             {
               key: 'add_display_logic',
               icon: <EyeOutlined />,
-              label: 'Add Display Logic',
+              label: I18n.t('administration.survey_builder.question_info_bar.add_display_logic'),
               onClick: this.displayLogic,
             },
             {
               key: 'add_skip_logic',
               icon: <EyeInvisibleOutlined />,
-              label: 'Add Skip Logic',
+              label: I18n.t('administration.survey_builder.question_info_bar.add_skip_logic'),
               onClick: this.addSkipLogic,
             },
             ...this.defaultValueMenuItem(),
             ...this.linkedQuestionsMenuItem(),
             ...this.randomizationMenuItem(),
+            ...this.moveQuestionToPositionMenuItem(),
             ...this.renderAddToTemplate(),
             {
               key: 'delete_question',
               label: (
                 <Popconfirm
-                  title="Delete the question"
-                  description="Are you sure to delete this question?"
+                  title={I18n.t('administration.survey_builder.question_info_bar.delete_the_question')}
+                  description={
+                    I18n.t('administration.survey_builder.question_info_bar.are_you_sure_to_delete_this_question')
+                  }
                   onConfirm={() => this.remove()}
-                  okText="Yes"
-                  cancelText="No"
+                  okText={I18n.t('common.text.confirm')}
+                  cancelText={I18n.t('common.text.cancel')}
                 >
-                  Delete Question
+                  {I18n.t('administration.survey_builder.question_info_bar.delete_question')}
                 </Popconfirm>
               ),
               icon: <DeleteOutlined />,
@@ -166,7 +183,10 @@ class Question extends Component {
     const { model, moduleConfig } = this.props
     if (moduleConfig.randomization) {
       return model.props.randomization.type !== 'No' && (
-        <div title="This question has randomization" className={styles.randomized}>
+        <div
+          title={I18n.t('administration.survey_builder.question_info_bar.this_question_has_randomization')}
+          className={styles.randomized}
+        >
           <span className="fa fa-random" />
         </div>
       )
@@ -178,7 +198,10 @@ class Question extends Component {
     const { model, moduleConfig } = this.props
     if (moduleConfig.defaultValue) {
       return this.hasDefaultValues(model) && (
-        <div title="This question has default choices" className={styles.randomized}>
+        <div
+          title={I18n.t('administration.survey_builder.question_info_bar.this_question_has_default_choices')}
+          className={styles.randomized}
+        >
           <span className="fa fa-dot-circle-o" />
         </div>
       )

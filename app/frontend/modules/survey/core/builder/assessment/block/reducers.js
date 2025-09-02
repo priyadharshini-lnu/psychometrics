@@ -4,7 +4,7 @@ import { createReducer } from '~/utils/redux'
 import { INIT, EMPTY_TRASH } from '../actions'
 import {
   CREATE, ADD_QUESTION, REMOVE_QUESTION, MOVE_QUESTION_UP,
-  MOVE_QUESTION_DOWN, INSERT_BEFORE_QUESTION, INSERT_AFTER_QUESTION,
+  MOVE_QUESTION_DOWN, MOVE_QUESTION_TO_POSITION, INSERT_BEFORE_QUESTION, INSERT_AFTER_QUESTION,
   UPDATE_POSITIONS, REMOVE, ADD_PAGE_BREAK, UPDATE_BLOCK_PROPS, COPY_QUESTION,
   CLONE_BLOCK, UPDATE_QUESTION_IDS, RENAME_BLOCK, PERMANENT_REMOVE, RESTORE_BLOCK,
   RESTORE_QUESTION, SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, UPDATE_BLOCKS,
@@ -89,6 +89,71 @@ const HANDLERS = {
       return setIn(newState, [nextBlockId], newNextBlock)
     }
     return state
+  },
+  [MOVE_QUESTION_TO_POSITION]: (state, {
+    question, targetQuestion, position,
+  }) => {
+    const sourceBlockId = question.block_id
+    const targetBlockId = targetQuestion.block_id
+
+    if (!sourceBlockId || !targetBlockId) {
+      return state
+    }
+
+    // Handle case where both blocks are the same
+    if (sourceBlockId === targetBlockId) {
+      const block = _.cloneDeep(state[sourceBlockId])
+      const targetIndex = _.findIndex(block.questions, id => id === targetQuestion.id)
+
+      if (targetIndex === -1) {
+        return state
+      }
+
+      // Remove question from current position
+      _.pull(block.questions, question.id)
+
+      // Calculate new position
+      let newIndex
+      if (position === 'before') {
+        newIndex = targetIndex - 1
+      } else {
+        newIndex = targetIndex
+      }
+
+      // Add question to new position
+      block.questions.splice(newIndex, 0, question.id)
+
+      return setIn(state, [sourceBlockId], block)
+    }
+
+    // Handle case where blocks are different
+    const sourceBlock = _.cloneDeep(state[sourceBlockId])
+    const targetBlock = _.cloneDeep(state[targetBlockId])
+
+    const targetIndex = _.findIndex(targetBlock.questions, id => id === targetQuestion.id)
+
+    if (targetIndex === -1) {
+      return state
+    }
+
+    let newIndex
+    if (position === 'before') {
+      newIndex = targetIndex
+    } else {
+      newIndex = targetIndex + 1
+    }
+
+    // Remove question from source block
+    _.pull(sourceBlock.questions, question.id)
+
+    // Add question to target block
+    targetBlock.questions.splice(newIndex, 0, question.id)
+
+    // Update both blocks
+    let newState = setIn(state, [sourceBlockId], sourceBlock)
+    newState = setIn(newState, [targetBlockId], targetBlock)
+
+    return newState
   },
   [UPDATE_POSITIONS]: (state, { ids }) => {
     const blocks = _.cloneDeep(state)
