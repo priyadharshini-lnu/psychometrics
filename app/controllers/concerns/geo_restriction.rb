@@ -14,7 +14,6 @@ module GeoRestriction
   def enforce_geo_restriction
     return if Settings.features.disable_geo_restriction
     return if devise_controller?
-    return if request.subdomain.present? # Skip for EUI
 
     set_client
     raise Geo::Exceptions::ClientNotFound unless @client
