@@ -21,7 +21,13 @@ module Api
         end
 
         rule(data: { attributes: :video_call_recording_expiry_in_seconds }) do
-          key.failure(:filled?) if values.dig(:data, :attributes, :allow_video_call_recording) && value.blank?
+          if values.dig(:data, :attributes, :allow_video_call_recording)
+            if value.blank?
+              key.failure(:filled?)
+            elsif value.to_i < 1440
+              key.failure(I18n.t('administration.projects.privacy_settings.errors.min_retention'))
+            end
+          end
         end
 
         rule(data: { attributes: :allow_video_call_recording }) do
