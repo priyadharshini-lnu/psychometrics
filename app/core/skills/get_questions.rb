@@ -13,11 +13,23 @@ module Skills
       return broadcast(:ok, questions: []) if campaign_user.blank?
 
       skill_ids = collect_skill_ids
-      questions = Question.includes(:skill).where(skill_id: skill_ids)
+      questions = get_latest_questions_for_skills(skill_ids)
       broadcast :ok, questions: questions
     end
 
     private
+
+    def get_latest_questions_for_skills(skill_ids)
+      return [] if skill_ids.blank?
+
+      latest_ids = Question.
+                   where(skill_id: skill_ids).
+                   group(:skill_id).
+                   maximum(:id).
+                   values
+
+      Question.includes(:skill).where(id: latest_ids)
+    end
 
     def collect_skill_ids
       skills_config.each_with_object([]) do |(skill_type, config), skill_ids|
