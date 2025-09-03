@@ -17,6 +17,8 @@ class UserIdpDevelopmentAction < ApplicationRecord
 
   validates :custom_action_learning_style, presence: true, if: :custom_action?
 
+  scope :with_public_skills, -> { joins(:user_idp_skill).where(user_idp_skills: { private: false }) }
+
   def learning_style
     return nil if custom_action?
 
