@@ -54,6 +54,8 @@ import Icon, {
   FilterFilled as AntdFilterFilled,
   PlusCircleOutlined as AntdPlusCircleOutlined,
   MinusCircleOutlined as AntdMinusCircleOutlined,
+  MessageOutlined as AntdMessageOutlined,
+  WarningFilled as AntWarningFilled,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -117,3 +119,5 @@ export const CloudDownloadOutlined = withAccessibilityProps(AntdCloudDownloadOut
 export const FilterFilled = withAccessibilityProps(AntdFilterFilled)
 export const PlusCircleOutlined = withAccessibilityProps(AntdPlusCircleOutlined)
 export const MinusCircleOutlined = withAccessibilityProps(AntdMinusCircleOutlined)
+export const MessageOutlined = withAccessibilityProps(AntdMessageOutlined)
+export const WarningFilled = withAccessibilityProps(AntWarningFilled)

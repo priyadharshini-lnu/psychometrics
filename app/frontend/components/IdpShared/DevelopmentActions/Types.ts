@@ -21,8 +21,7 @@ export type DevelopmentAction = {
     progress: number;
     startDateTime: null | string;
     endDateTime: null | string;
-    private: boolean;
-    learningStyle?: 'on_the_job' | 'structured_learning' | 'learning_from_others',
+    learningStyle: DevelopmentActionLearningStyle,
     customActionLearningStyle?: DevelopmentActionLearningStyle,
     image: string | null,
     localData?: boolean,
@@ -43,7 +42,7 @@ export type Skill = {
     skillId: string | number;
 }
 
-export type UserIdpSkill = Omit<Skill, 'skillType' | 'description'> & {
+export type UserIdpSkill = Omit<Skill, 'description'> & {
     skillId: string | number;
 }
 

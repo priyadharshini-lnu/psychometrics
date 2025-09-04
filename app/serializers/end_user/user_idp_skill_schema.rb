@@ -12,6 +12,7 @@ module EndUser
         required(:initial_rating).maybe { int? | float? }
         required(:final_rating).maybe { int? | float? }
         optional(:skill_type).filled(:str?)
+        optional(:private).filled(:bool?)
       end
     end
   end

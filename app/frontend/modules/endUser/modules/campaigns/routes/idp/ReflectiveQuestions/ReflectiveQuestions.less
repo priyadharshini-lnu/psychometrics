@@ -8,11 +8,12 @@
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  gap: @space-4;
 }
 
 .questionsBox {
   padding: 24px;
+  background-color: var(--ant-primary-1);
+  border: 1px solid var(--light-grey-border);
 }
 
 .minmaxInfo {
@@ -26,6 +27,13 @@
 
 .questionInput {
   margin-bottom: @space-2;
+}
+
+.questionCounter {
+  border: 1px solid #595959;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .editor {
@@ -45,4 +53,10 @@
       }
     }
   }
+}
+
+.editBtn {
+  width: '2rem';
+  height: '2rem';
+  border-radius: 50%;
 }

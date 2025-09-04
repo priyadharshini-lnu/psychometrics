@@ -1,11 +1,17 @@
 import { FC, useState, useContext } from 'react'
-import _ from 'lodash'
+import { includes, debounce } from 'lodash'
 import {
-  Space, Avatar, Typography, Button, Select, Row, Col,
+  Space, Avatar, Typography, Select, Row, Col, Flex,
   Spin,
 } from 'antd'
-import { PlusOutlined, CloseOutlined } from '@ant-design/icons'
-import { BoxWithShadow, ButtonWithArrow, MediaQueryContext } from '~/glint'
+import cs from 'classnames'
+import {
+  PlusCircleOutlined,
+  CheckCircleOutlined,
+  CloseOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
+
+import { MediaQueryContext } from '~/glint'
 import { TypeWithSkillsSummary, UserIdpSkill } from '../DevelopmentActions'
 import styles from './SkillsGroupCard.less'
 import { renderSkillTypeIcon } from '../utils'
@@ -16,7 +22,7 @@ type Props = {
   onRemoveSkill: (skillId: number) => void
   selectedSkills: UserIdpSkill[],
   isSearching: boolean,
-  searchResults: { id: string|number; name: string }[],
+  searchResults: { id: string|number; name: string, skillType: string }[],
   handleSearch: (value: string, skillType: string)=> void
 }
 
@@ -35,19 +41,20 @@ export const SkillsGroupCard: FC<Props> = ({
   const [selectedCategorySkills, setSelectedCategorySkills] = useState<
     { skillId: number; id: number | string; name: string; }[]
   >([])
+
   const { isMobile } = useContext(MediaQueryContext)
 
-  const handleSkillSearch = _.debounce((value) => {
+  const handleSkillSearch = debounce((value) => {
+    if (value.length < 3) return
     handleSearch(value, skillType.skillType)
   }, 300)
+
 
   const handleSelectSkill = (skillId) => {
     const skill = searchResults.find(({ id }) => id === skillId)
     if (!skill) return
-
     const userIdpSkill = { ...skill, skillId }
-
-    setSelectedCategorySkills(_.uniqBy([...selectedCategorySkills, userIdpSkill], 'skillId'))
+    onAddSkill([userIdpSkill])
   }
 
   const handleDeselectSkill = (id) => {
@@ -55,16 +62,13 @@ export const SkillsGroupCard: FC<Props> = ({
     onRemoveSkill(id)
   }
 
-  const isAddSelectedCategorySkillsDisabled = _.every(selectedCategorySkills,
-    categorySkill => (_.includes(selectedSkills.map(skill => skill.skillId), categorySkill.skillId))
-    || _.includes(selectedSkills.map(skill => skill.skillId), Number(categorySkill.skillId)))
-
   return (
-    <BoxWithShadow style={{ padding: '24px 24px' }}>
-      <Space className={`${styles.heading} w-100`}>
+    <>
+      <Space>
         <Avatar
           size={64}
           src={renderSkillTypeIcon(skillType.skillType)}
+          alt=""
           // API changes not available yet
           // src={skillCategory.iconUrl}
         />
@@ -80,72 +84,100 @@ export const SkillsGroupCard: FC<Props> = ({
         </div>
       </Space>
       <Title level={5}>{I18n.t('idp.initial_steps.select_skills')}</Title>
-      <Space className="w-100" size="large" direction="vertical">
-        <Space wrap>
-          {skillType.skills.map(skill => (
-            <Button onClick={() => onAddSkill([skill])} size="small" type="primary" key={skill.name} ghost>
+      <Flex gap={4} wrap>
+        {selectedSkills.filter(skill => skill.skillType === skillType.skillType).map(skill => (
+          <div
+            className={styles['skill-btn']}
+            key={skill.id}
+          >
+            <span style={{ marginRight: '4px' }}>
               {skill.name}
-            </Button>
-          ))}
-        </Space>
-        <MoreSkillsContainer>
-          <Row gutter={isMobile ? [0, 16] : [0, 0]} className="mt-4">
-            <Col xs={{ span: 24 }} sm={{ span: 16 }}>
-              <Select
-                className="w-100"
-                placeholder={I18n.t('idp.initial_steps.select_skills_placeholder')}
-                showSearch
-                onSearch={handleSkillSearch}
-                mode="multiple"
-                onSelect={handleSelectSkill}
-                notFoundContent={isSearching ? <Spin size="small" /> : null}
-                filterOption={false}
-                onDeselect={handleDeselectSkill}
-              >
-                {searchResults.map(({ id, name }) => (
-                  <Select.Option
-                    key={id}
-                    value={id}
-                  >
-                    {name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Col>
-          </Row>
-          <Row justify="end">
-            <ButtonWithArrow
-              onClick={() => onAddSkill(selectedCategorySkills)}
-              disabled={isAddSelectedCategorySkillsDisabled}
-              size="small"
-              type="primary"
-              label={I18n.t('idp.initial_steps.add_skills')}
+            </span>
+            <CloseOutlined
+              role="button"
+              tabIndex={0}
+              onClick={() => {
+                onRemoveSkill(Number(skill.id))
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  onRemoveSkill(Number(skill.id))
+                }
+              }}
             />
-          </Row>
-        </MoreSkillsContainer>
-      </Space>
-    </BoxWithShadow>
-  )
-}
+          </div>
+        ))}
+      </Flex>
+      <Row gutter={isMobile ? [0, 16] : [0, 0]} className="mt-4 mb-4">
+        <Col xs={{ span: 24 }} sm={{ span: 16 }}>
+          <Select
+            className="w-100"
+            placeholder={I18n.t('idp.initial_steps.select_skills_placeholder')}
+            showSearch
+            onSearch={handleSkillSearch}
+            onSelect={handleSelectSkill}
+            notFoundContent={isSearching ? <Spin size="small" /> : null}
+            filterOption={false}
+            onDeselect={handleDeselectSkill}
+            value={null}
+          >
+            {searchResults
+              .filter(result => !includes(selectedSkills
+                .map(skill => skill.skillId), result.id))
+              .map(({ id, name }) => (
+                <Select.Option
+                  key={id}
+                  value={id}
+                >
+                  {name}
+                </Select.Option>
+              ))}
+          </Select>
+        </Col>
+      </Row>
+      <Flex wrap gap={4} className="mb-4">
+        <Flex align="center">
+          <strong>{I18n.t('idp.suggestions')}</strong>
+        </Flex>
+        {skillType.skills.map(skill => (
+          <div
+            role="button"
+            tabIndex={0}
+            className={cs(styles['skill-btn'],
+              includes(selectedSkills.map(s => s.skillId), skill.id) ? styles['skill-btn-suggestion-selected']
+                : styles['skill-btn-suggestion'])}
+            key={skill.id}
+            onClick={() => {
+              if (includes(selectedSkills.map(s => s.skillId), skill.id)) {
+                onRemoveSkill(Number(skill.id))
+                return
+              }
+              onAddSkill([skill])
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                if (includes(selectedSkills.map(s => s.skillId), skill.id)) {
+                  onRemoveSkill(Number(skill.id))
+                  return
+                }
+                onAddSkill([skill])
+              }
+            }}
+          >
+            {includes(selectedSkills.map(s => s.skillId), skill.id)
 
-const MoreSkillsContainer = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(true)
-
-  if (collapsed) {
-    return (
-      <Button className="ps-0" ghost type="link" onClick={() => setCollapsed(false)}>
-        <PlusOutlined />
-        {I18n.t('idp.initial_steps.more_skills')}
-      </Button>
-    )
-  }
-  return (
-    <Space className="w-100" direction="vertical" size={12}>
-      <Button className="ps-0" ghost type="link" onClick={() => setCollapsed(true)}>
-        <CloseOutlined />
-        {I18n.t('idp.initial_steps.less_skills')}
-      </Button>
-      {children}
-    </Space>
+              ? (
+                <CheckCircleOutlined className="mr4" />
+              ) : (
+                <PlusCircleOutlined className="mr4" />
+              )
+            }
+            <span>
+              {skill.name}
+            </span>
+          </div>
+        ))}
+      </Flex>
+    </>
   )
 }

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Col, Layout } from 'antd'
+import { Col, Layout, Flex } from 'antd'
 
 import { PageHeader as GlintPageHeader } from '~/glint'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
@@ -11,7 +11,7 @@ type Props = {
 }
 
 const IdpPageLayoutWrapper: FC<Props> = ({ children }) => (
-  <>
+  <Flex vertical style={{ height: 'calc(100vh - 50px)' }}>
     <GlintPageHeader>
       <Col flex="auto" span={24} className="ta-e">
         <LangDropdownWithChangeLocale />
@@ -20,7 +20,7 @@ const IdpPageLayoutWrapper: FC<Props> = ({ children }) => (
     <Layout.Content className={styles.pageContent}>
       {children}
     </Layout.Content>
-  </>
+  </Flex>
 )
 
 export default IdpPageLayoutWrapper

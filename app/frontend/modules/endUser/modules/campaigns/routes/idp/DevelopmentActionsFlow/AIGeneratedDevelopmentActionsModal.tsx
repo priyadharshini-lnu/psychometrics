@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import {
   Button, message,
-  Flex, Modal, Spin,
+  Flex, Modal, Spin, Typography,
 } from 'antd'
 import { SyncOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
-import { BoxWithShadow } from '~/glint'
-import { DevelopmentAction, UserIdpSkill } from './Types'
-import { DevelopmentActionsList } from './Common'
+import {
+  ButtonWithArrow, BoxWithShadow,
+} from '~/glint'
+import { AvailableDevelopmentActions, DevelopmentAction, UserIdpSkill }
+  from '~/components/IdpShared/DevelopmentActions/Types'
+import { AIGeneratedDevelopmentActionsList } from '~/components/IdpShared/DevelopmentActions/Common'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   generateDevelopmentActionsByAI,
@@ -16,10 +19,11 @@ import {
 const { I18n } = window
 
 type ManualProps = {
-  onAddDevelopmentAction: (developmentAction: Partial<DevelopmentAction>) => void,
+  onAddDevelopmentAction: (developmentAction: Partial<AvailableDevelopmentActions | DevelopmentAction>[]) => void,
   onCancel: () => void,
   open: boolean,
   skill: UserIdpSkill | null
+  selectedAIGeneratedDevelopmentActions: Partial< AvailableDevelopmentActions | DevelopmentAction>[]
 }
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & ManualProps
@@ -38,9 +42,12 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
   generatedDevelopmentActions,
   generateDevelopmentActionsByAI,
   skill,
+  selectedAIGeneratedDevelopmentActions,
 }) => {
   const [isLoading, setIsLoading] = useState(false)
   const developmentActions = skill?.skillId ? generatedDevelopmentActions[skill.skillId] ?? [] : []
+
+  const [selectedDA, setSelectedDA] = useState<Partial<DevelopmentAction>[]>([])
 
   const fetchAIGeneratedDevelopmentActions = (generateMore = false) => {
     if (skill) {
@@ -62,39 +69,76 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
     fetchAIGeneratedDevelopmentActions(true)
   }
 
+  const onAddDA = () => {
+    onAddDevelopmentAction(selectedDA)
+    setSelectedDA([])
+  }
+
   useEffect(() => {
     if (open && !developmentActions.length) {
       fetchAIGeneratedDevelopmentActions()
     }
   }, [open])
 
+  const areAllDAsSelected = selectedAIGeneratedDevelopmentActions.length === developmentActions.length
+
   return (
     <Modal
-      title={I18n.t('idp.development_actions.generate_by_ai')}
+      title={I18n.t('idp.development_actions.create_development_actions_with_ai', { skillName: skill?.name })}
       open={open}
       onCancel={onCancel}
+      maskClosable={false}
       footer={!!developmentActions.length && [
-        <Flex justify="center" align="middle">
+        <Flex vertical flex={1} align="end">
           <Button
             key="generate_more"
             type="link"
             loading={isLoading}
             onClick={handleGenerateMoreActions}
+            style={{
+              width: '80px',
+              alignSelf: 'center',
+            }}
             icon={<SyncOutlined spin={isLoading} />}
           >
             {I18n.t('idp.development_actions.generate_more')}
           </Button>
+          <Flex flex={1} gap={4}>
+            {selectedDA.length > 0 && <Typography.Text>{`${selectedDA.length} selected`}</Typography.Text>}
+            <ButtonWithArrow
+              label="Add"
+              size="small"
+              type="primary"
+              disabled={isLoading || areAllDAsSelected || selectedDA.length === 0}
+              style={{
+                width: '80px',
+              }}
+              onClick={onAddDA}
+            />
+          </Flex>
+
         </Flex>,
       ]}
       width={800}
     >
       <Spin spinning={isLoading} tip={I18n.t('idp.development_actions.generating_development_actions')} size="large">
-        <Flex vertical gap={18}>
-          <BoxWithShadow>
-            <DevelopmentActionsList
+        <Flex
+          vertical
+          gap={18}
+          style={{
+            fontSize: '1rem',
+          }}
+        >
+          <BoxWithShadow style={{
+            opacity: isLoading ? 0.2 : 1,
+          }}
+          >
+            <AIGeneratedDevelopmentActionsList
               availableActions={developmentActions}
-              onDevelopmentActionClick={onAddDevelopmentAction}
               highlightNewlyAddedActions
+              selectedAIGeneratedDevelopmentActions={selectedAIGeneratedDevelopmentActions}
+              selectedDA={selectedDA}
+              setSelectedDA={setSelectedDA}
             />
           </BoxWithShadow>
         </Flex>

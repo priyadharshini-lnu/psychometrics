@@ -10,18 +10,12 @@ import { SkillGapReportStep } from './SkillGapReport'
 import { AddSkills } from './AddSkills'
 import { RateSkills } from './RateSkills'
 import { ReflectiveQuestionsStep } from './ReflectiveQuestions'
-import { BoxWithShadow } from '~/glint'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
-
-
 import {
   fetchUserIdpPlan,
   updateUserIdpPlan,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
-
 import { RootState } from '~/modules/endUser/core/rootReducers'
-
-
 import styles from './Steps.less'
 
 const { I18n } = window
@@ -121,6 +115,18 @@ const InitialStepsComponent = ({
     }
   }
 
+  const handlePrevForAddSkillsStep = () => {
+    if (skillGapReportAvailable) {
+      navigate(`/idp/steps/${STEPS.skillGapReport}`)
+    } else {
+      navigate(`/idp/steps/${STEPS.gettingStarted}`)
+    }
+  }
+
+  const handlePrevForSkillGapReportStep = () => {
+    navigate(`/idp/steps/${STEPS.gettingStarted}`)
+  }
+
   useEffect(() => {
     setIsLoading(true)
     fetchUserIdpPlan(currentUser.id).finally(() => {
@@ -139,12 +145,12 @@ const InitialStepsComponent = ({
       {isLoading ? <Flex className="h-full" align="center"><Spin size="large" /></Flex>
         : (
           <Layout.Content className={styles.pageContent}>
-            <BoxWithShadow className={styles.steps}>
+            <div className="pt-4 mb-4">
               <Steps
                 current={currentStep === -1 ? 0 : currentStep}
                 items={visibleSteps.map(({ title }) => ({ title }))}
               />
-            </BoxWithShadow>
+            </div>
             {paramStep === STEPS.gettingStarted && (
               <GettingStart
                 introMessage={introMessage}
@@ -154,6 +160,7 @@ const InitialStepsComponent = ({
             {paramStep === STEPS.skillGapReport && (
               <SkillGapReportStep
                 next={() => next(STEPS.addSkills)}
+                prev={handlePrevForSkillGapReportStep}
               />
             )}
             {paramStep === STEPS.addSkills && (
@@ -161,17 +168,24 @@ const InitialStepsComponent = ({
                 selfRatingEnabled={selfRatingEnabled}
                 next={handleNextForAddSkillsStep}
                 isSubmittingPlan={isSubmitting}
+                prev={handlePrevForAddSkillsStep}
               />
             )}
             {paramStep === STEPS.rateSkills && (
               <RateSkills
                 next={handleNextForReflectiveQuestionsStep}
                 isSubmittingPlan={isSubmitting}
+                prev={() => {
+                  navigate(`/idp/steps/${STEPS.addSkills}`)
+                }}
               />
             )}
             {paramStep === STEPS.reflectionQuestions && (
               <ReflectiveQuestionsStep
                 next={handleSubmit}
+                prev={() => {
+                  navigate(`/idp/steps/${STEPS.rateSkills}`)
+                }}
               />
             )}
           </Layout.Content>

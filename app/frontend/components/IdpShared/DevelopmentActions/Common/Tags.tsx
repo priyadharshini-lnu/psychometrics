@@ -17,21 +17,9 @@ const Tags = ({ type }: Props) => {
 }
 
 const TagsData = {
-  on_the_job: {
-    color: 'geekblue',
-    text: I18n.t('idp.development_actions.marathon'),
-    duration: 70,
-  },
-  structured_learning: {
-    color: 'green',
-    text: I18n.t('idp.development_actions.sprint'),
-    duration: 20,
-  },
-  learning_from_others: {
-    color: 'blue',
-    text: I18n.t('idp.development_actions.other'),
-    duration: 10,
-  },
+  on_the_job: I18n.t('idp.development_actions.learning_on_the_job'),
+  structured_learning: I18n.t('idp.development_actions.structured_learning'),
+  learning_from_others: I18n.t('idp.development_actions.learning_from_others'),
 }
 
 export default Tags
