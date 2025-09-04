@@ -168,7 +168,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def real_meeting_link(user)
-    if meeting_internal? && meeting_room.present?
+    if meeting_internal? && meeting_room.present? && meeting_room.external_id.present?
       route = user.admin? ? :admin_meeting_url : :meeting_url
       Utility::Url.generate(route, room_id: meeting_room.id, subdomain: user.subdomain)
     elsif meeting_custom?
