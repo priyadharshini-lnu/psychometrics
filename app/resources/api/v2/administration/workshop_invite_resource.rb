@@ -40,5 +40,5 @@ class Api::V2::Administration::WorkshopInviteResource < Api::V2::Administration:
     end
   end
 
-  ransack_filters %i[campaign_id_eq title_cont name_cont]
+  ransack_filters %i[filterable_fields campaign_id_eq title_cont name_cont]
 end
