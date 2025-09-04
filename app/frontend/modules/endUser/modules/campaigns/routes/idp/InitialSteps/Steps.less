@@ -2,8 +2,25 @@
 
 .pageContent {
   overflow-x: hidden;
-  max-width: 1200px;
-  padding: @space-4;
+  padding: @space-8;
+
+  & :global(.ant-steps-item-wait .ant-steps-item-title) {
+    color: var(--grey-text) !important;
+  }
+  & :global(.ant-steps-item-wait .ant-steps-item-icon) {
+    background-color: transparent;
+    border-color: var(--grey-border) !important;
+    color: var(--grey-text) !important;
+  }
+
+  & :global(.ant-steps-item-wait .ant-steps-icon) {
+    color: var(--grey-text) !important;
+  }
+
+  & :global(.ant-steps-item-finish .ant-steps-item-icon) {
+    background-color: transparent !important;
+    border-color: var(--ant-primary-color);
+  }
 }
 
 .steps {

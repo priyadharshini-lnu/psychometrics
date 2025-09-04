@@ -1,6 +1,8 @@
 import { useEffect, useState, useMemo } from 'react'
 import _ from 'lodash'
-import { Spin } from 'antd'
+import {
+  useParams,
+} from 'react-router-dom'
 import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
 import { useResources } from '~/hooks/useResources'
 import { useSearchSkills } from './useSearchSkills'
@@ -12,16 +14,20 @@ export const AdminAddSkills = ({
   userIdpSkills,
   next,
   idpTemplateId,
+  prev,
 }: {
   userIdpSkills:UserIdpSkills[],
   next: (selectedSkills:UserIdpSkills[])=>void,
   idpTemplateId:string
+  prev?: ()=> void
 }) => {
   const [skills, setSkills] = useState<UserIdpSkills[]>([])
   const [selectedSkills, setSelectedSkills] = useState<UserIdpSkills[]>(([]))
   const [isSkillsLoading, setIsSkillsLoading] = useState(false)
 
   const searchSkillResource = useSearchSkills(idpTemplateId)
+
+  const { projectId } = useParams()
 
   const {
     fetch: fetchIdpSkillDetails,
@@ -52,6 +58,7 @@ export const AdminAddSkills = ({
         // },
         filter: {
           by_idp_template_id: idpTemplateId as string,
+          project_id_eq: projectId as string,
         },
         include: ['development_actions'],
       },
@@ -72,7 +79,7 @@ export const AdminAddSkills = ({
   }
 
   const handleDeselectSkill = (skillId) => {
-    setSelectedSkills(selectedSkills.filter((userIdpSkill:UserIdpSkills) => userIdpSkill.skillId !== skillId))
+    setSelectedSkills(selectedSkills.filter((userIdpSkill:UserIdpSkills) => Number(userIdpSkill.skillId) !== skillId))
   }
 
   const skillTypes = _.map(_.groupBy(skills, 'skillType'), (skills, skillType) => ({
@@ -91,11 +98,7 @@ export const AdminAddSkills = ({
   }, [normalizedUserIdpSkills, skills])
 
 
-  return isSkillsLoading ? (
-    <div style={{ height: '80vh' }} className="flex justify-center items-center h-100">
-      <Spin size="large" />
-    </div>
-  ) : (
+  return (
     <AddSkillsStep
       addSkillButtonText={I18n.t('idp.initial_steps.save')}
       onAddSkill={handleAddSkill}
@@ -103,7 +106,10 @@ export const AdminAddSkills = ({
       skillTypes={skillTypes}
       onDeselectSkill={handleDeselectSkill}
       onFinishAddSkill={handleFinishAddinSkill}
+      skillGapReportData={null}
       searchSkillResource={searchSkillResource}
+      prev={prev}
+      isSkillsLoading={isSkillsLoading}
     />
   )
 }

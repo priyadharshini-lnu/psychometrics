@@ -1,37 +1,39 @@
 import React, { useState } from 'react'
 import {
-  Avatar, Button, Flex, Typography,
+  Avatar, Button, Flex, Typography, Empty,
 } from 'antd'
-import _ from 'lodash'
-import { EditOutlined } from '@ant-design/icons'
+import { map, filter } from 'lodash'
 import { v4 as uuidv4 } from 'uuid'
 import { useMedia } from 'use-media'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { Separator } from '~/components/IdpShared/Separator'
 import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard'
-import { BoxWithShadow } from '~/glint'
 import {
-  AvailableDevelopmentActions,
   TypeWithSkills,
   DevelopmentAction,
   DevelopmentActionLearningStyle,
   SkillWithDevelopmentActions,
-} from './Types'
-import { CreateCustomDevelopmentActionModal } from './CreateCustomDevelopmentActionModal'
-import { AddDevelopmentActionModal } from './AddDevelopmentActionModal'
+} from '~/components/IdpShared/DevelopmentActions/Types'
+import { CreateCustomDevelopmentActionModal }
+  from '~/components/IdpShared/DevelopmentActions/CreateCustomDevelopmentActionModal'
+import { AddDevelopmentActionModal } from '~/components/IdpShared/DevelopmentActions/AddDevelopmentActionModal'
 import styles from './DevelopmentActionListView.less'
 import { AIGeneratedDevelopmentActionsModal } from './AIGeneratedDevelopmentActionsModal'
-import { renderSkillTypeIcon } from '../utils'
+import { renderSkillTypeIcon } from '~/components/IdpShared/utils'
 
 const { I18n } = window
 
 type SkillsContainerProps = {
   editMode?: boolean
   categories: TypeWithSkills[]
-  availableDevelopmentActions: AvailableDevelopmentActions[]
-  onAddDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
+  availableDevelopmentActions: DevelopmentAction[]
+  onAddDevelopmentAction?: (developmentAction: Record<string, DevelopmentAction>) => void
   onShowAvailableDevelopmentAction?: (skillId: string | number | null) => void
   onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id'| 'progress'>) => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onAddMoreSkills: () => void;
+  isDALoading: boolean;
+  isViewingReportee?:boolean
 }
 
 export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
@@ -43,6 +45,8 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   onShowAvailableDevelopmentAction,
   onUpdateDevelopmentAction,
   onUpdateDevelopmentActionProgress,
+  isDALoading,
+  isViewingReportee = false,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
   const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
@@ -52,9 +56,15 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     maxWidth: 768,
   })
 
-  const selectedDevelopmentActionIds = _.map(
-    _.filter(selectedSkill?.developmentActions ?? [], 'developmentActionId'),
+  const selectedDevelopmentActionIds = map(
+    filter(selectedSkill?.developmentActions ?? [], 'developmentActionId'),
     'developmentActionId',
+  )
+
+  // TODO: Use AI related flag here
+  const selectedAIGeneratedDevelopmentActions: Partial<DevelopmentAction>[] = filter(
+    selectedSkill?.developmentActions ?? [],
+    'customAction',
   )
 
   const handleCancel = () => {
@@ -68,19 +78,22 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     setSelectedSkill(skill)
   }
 
-  const handleAddDevelopmentAction = (developmentAction: Partial<DevelopmentAction>) => {
+  const handleAddDevelopmentAction = (developmentActions: DevelopmentAction[]) => {
     if (selectedSkill) {
-      const uniqueId = uuidv4()
-      const action = {
-        ...developmentAction,
-        id: uniqueId,
-        developmentActionId: developmentAction.id,
-        userIdpSkillId: selectedSkill.id,
-        progress: 0,
-        private: false,
-        localData: true, // Flag to add data in redux store with ID and remove ID when we send data to backend
-      }
-      onAddDevelopmentAction?.(action)
+      onAddDevelopmentAction?.(developmentActions.reduce((acc, developmentAction) => {
+        const uniqueId = uuidv4()
+        acc[uniqueId] = {
+          ...developmentAction,
+          id: uniqueId,
+          developmentActionId: developmentAction.id,
+          userIdpSkillId: selectedSkill.id,
+          progress: 0,
+          private: false,
+          localData: true,
+        }
+        return acc
+        // Flag to add data in redux store with ID and remove ID when we send data to backend
+      }, {}))
     }
     setIsAddDevelopmentActionModalOpen(false)
     setSelectedSkill(null)
@@ -92,7 +105,8 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   ) => {
     if (selectedSkill) {
       const uniqueId = uuidv4()
-      const action = {
+      const action = {}
+      action[uniqueId] = {
         customAction,
         customActionLearningStyle,
         id: uniqueId,
@@ -107,17 +121,33 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     setSelectedSkill(null)
   }
 
-  const handleAddAIGeneratedDevelopmentAction = (developmentAction: Partial<DevelopmentAction>) => {
-    if (developmentAction.description && developmentAction.learningStyle) {
-      handleCreateCustomDevelopmentAction(developmentAction.description, developmentAction.learningStyle)
-    }
-    setIsAddDevelopmentActionModalOpen(false)
+  const handleAddAIGeneratedDevelopmentAction = (developmentActions: DevelopmentAction[]) => {
+    onAddDevelopmentAction?.(developmentActions.reduce((acc, developmentAction) => {
+      const uniqueId = uuidv4()
+      acc[uniqueId] = {
+        customAction: developmentAction.description,
+        customActionLearningStyle: developmentAction.learningStyle,
+        id: uniqueId,
+        developmentActionId: developmentAction.id,
+        userIdpSkillId: selectedSkill?.id,
+        progress: 0,
+        private: false,
+        localData: true,
+      }
+      return acc
+      // Flag to add data in redux store with ID and remove ID when we send data to backend
+    }, {}))
     setIsAIGeneratedDevelopmentActionsModalOpen(false)
   }
 
-  const handleShowCustomDevelopmentAction = () => {
+  const handleShowCustomDevelopmentAction = (skill) => {
+    setSelectedSkill(skill)
     setIsCreateCustomDevelopmentActionModalOpen(true)
-    setIsAddDevelopmentActionModalOpen(false)
+  }
+
+  const handleShowAIGeneratedDevelopmentActions = (skill) => {
+    setSelectedSkill(skill)
+    setIsAIGeneratedDevelopmentActionsModalOpen(true)
   }
 
   const renderCards = (skills: SkillWithDevelopmentActions[]) => {
@@ -127,6 +157,8 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         key={skill.id}
         editMode={editMode}
         onAddDevelopmentAction={() => handleShowAvailableDevelopmentAction(skill)}
+        onShowCustomDevelopmentAction={() => handleShowCustomDevelopmentAction(skill)}
+        onShowAIGeneratedDevelopmentActions={() => { handleShowAIGeneratedDevelopmentActions(skill) }}
         onUpdateDevelopmentAction={onUpdateDevelopmentAction}
         onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
         userIdpSkillId={skill.id as number}
@@ -137,63 +169,82 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
 
   return (
     <>
-      {!isTablet ? (
-        <BoxWithShadow className={`${styles.mt_8} ${styles.px_16}`}>
+      {!isTablet && categories.length ? (
+        <Flex vertical gap={4} className="ps-8 pe-8 pt-4">
           <Flex
-            align="stretch"
+            flex={1}
+            justify="space-between"
+            align="center"
           >
-            <Flex
-              vertical
-              flex={5}
-              className={`${styles.borderWithPadding} ${styles.pl_none}`}
-            >
-              <Typography.Text>
+            <Flex flex={1}>
+              <Typography.Text className="font-semi-bold">
                 {I18n.t('idp.development_actions.heading')}
               </Typography.Text>
             </Flex>
-            <Flex flex={5}>
-              <Flex
-                flex={9}
-                className={styles.borderWithPadding}
-              >
-                <Typography.Text>
+            <Flex flex={1}>
+              <Flex flex={1} className="ms-2">
+                <Typography.Text className="font-semi-bold">
                   {I18n.t('idp.development_actions.date_range')}
                 </Typography.Text>
               </Flex>
-              <Flex
-                flex={6}
-                className={styles.borderWithPadding}
-              >
-                <Typography.Text>
+              <Flex flex={1} className="ms-4">
+                <Typography.Text className="font-semi-bold">
                   {I18n.t('idp.development_actions.completion')}
                 </Typography.Text>
               </Flex>
             </Flex>
           </Flex>
-        </BoxWithShadow>
+          <Separator
+            className="mb-0 mt-1"
+          />
+        </Flex>
       ) : null}
-      <Flex vertical gap={12}>
+      <Flex vertical gap={8} className="ps-8 pe-8 pt-2">
+        {categories.length === 0 && (
+          <Flex justify="center" align="center" className="p-4 mt-2">
+            <Empty description="" style={{ marginLeft: '-2rem' }} />
+            <Flex vertical align="start" style={{ marginLeft: '-2rem' }}>
+              {isViewingReportee ? (
+                <strong className="ta-s">
+                  {I18n.t('idp.no_skills_added_by_reportee')}
+                </strong>
+              ) : (
+                <>
+                  {' '}
+                  <strong className="ta-s">
+                    {I18n.t('idp.no_skills_added')}
+                  </strong>
+                  <Typography.Text type="secondary" className="ta-s">
+                    {I18n.t('idp.edit_plan_and_add_skills')}
+                  </Typography.Text>
+                </>
+              )}
+            </Flex>
+          </Flex>
+        )}
         {categories.map(category => (
-          <BoxWithShadow key={category.skillType} className={`${styles.p_16} ${styles.mt_8}`}>
-            <Flex vertical gap={16}>
+          <div key={category.skillType} className="mt-2">
+            <Flex vertical gap={4}>
               <Flex align="center" gap={12}>
                 <Avatar size={24} src={renderSkillTypeIcon(category.skillType)} />
-                <h3 className={styles.h3}>
+                <Typography.Title
+                  className="font-semi-bold m-0 mb-0 transform-capitalize"
+                  level={3}
+                >
                   {I18n.t(`idp.${category.skillType.toLowerCase()}`)}
-                </h3>
+                </Typography.Title>
               </Flex>
               <Flex gap={12} vertical>
                 {renderCards(category.skills)}
               </Flex>
             </Flex>
-
-          </BoxWithShadow>
+          </div>
         ))}
         {editMode ? (
           <Button
             onClick={() => onAddMoreSkills()}
-            icon={<EditOutlined />}
-            style={{ alignSelf: 'center' }}
+            icon={<PlusOutlined />}
+            className={styles['manage-skills-btn']}
           >
             {I18n.t('idp.development_actions.manage_skills')}
           </Button>
@@ -202,22 +253,24 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
       <AddDevelopmentActionModal
         data={availableDevelopmentActions}
         onAddAction={handleAddDevelopmentAction}
-        onShowCustomDevelopmentAction={handleShowCustomDevelopmentAction}
         onCancel={handleCancel}
+        skillName={selectedSkill?.name as string}
         open={isAddDevelopmentActionModalOpen}
-        onShowAIGeneratedDevelopmentActions={() => setIsAIGeneratedDevelopmentActionsModalOpen(true)}
         selectedDevelopmentActionIds={selectedDevelopmentActionIds as (string | number)[]}
+        isDALoading={isDALoading}
       />
       <CreateCustomDevelopmentActionModal
         open={isCreateCustomDevelopmentActionModalOpen}
         onCreateCustomDevelopmentAction={handleCreateCustomDevelopmentAction}
         onCancel={handleCancel}
+        skillName={selectedSkill?.name as string}
       />
       <AIGeneratedDevelopmentActionsModal
         open={isAIGeneratedDevelopmentActionsModalOpen}
         onCancel={() => setIsAIGeneratedDevelopmentActionsModalOpen(false)}
         skill={selectedSkill}
         onAddDevelopmentAction={handleAddAIGeneratedDevelopmentAction}
+        selectedAIGeneratedDevelopmentActions={selectedAIGeneratedDevelopmentActions}
       />
     </>
 

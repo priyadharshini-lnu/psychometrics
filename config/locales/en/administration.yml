@@ -2240,7 +2240,22 @@ en:
       background_image: Background image
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
+      delete_skill: Are you sure you want to delete skill because it will delete all the connected development actions as well?
       details_updated: IDP Details updated successfully
+      development_actions:
+        add_from_library: Add from Library
+        completion: Completion
+        create_development_actions_with_ai: Create Development Actions with AI for %{skillName}
+        create_from_ai: Create from AI
+        create_my_own: Create my own
+        custom: Custom
+        date_range: Start Date - End Date
+        edit_plan_to_add_development_actions: Edit Plan and to add Development Actions.
+        generate_by_ai: Generate by AI
+        generate_more: Generate More
+        heading: Skills/Development Actions
+        manage_skills: Manage Skills
+        no_development_actions: You have no Development Actions
       edit_template: Edit IDP Template
       enter_tag_or_skills_error: Select at least one tag or skill
       enter_template_description: Description
@@ -2282,6 +2297,7 @@ en:
       reflection_questions_hint: To modify the reflection questions, please save the IDP template first to enable these settings.
       reflection_questions_updated: Reflection Questions updated successfully.
       remove: Remove
+      remove_skill: Remove Skill
       select_by_tags: Select by Tags
       select_reflection_question: Start typing to search and select question
       select_skill_gap_report: Select skill gap report

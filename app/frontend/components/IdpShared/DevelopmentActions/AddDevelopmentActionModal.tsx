@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Button,
-  Flex, Radio, Modal,
+  Flex, Radio, Modal, Input, Spin,
+  Typography,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
-import { BoxWithShadow } from '~/glint'
-import { AvailableDevelopmentActions, DevelopmentAction } from './Types'
+import {
+  ButtonWithArrow, BoxWithShadow,
+} from '~/glint'
+import { DevelopmentAction } from './Types'
 import { DevelopmentActionsList } from './Common'
+
 
 const { I18n } = window
 type Props = {
-  data: AvailableDevelopmentActions[]
-  onAddAction: (developmentAction: Partial<DevelopmentAction>) => void,
-  onShowCustomDevelopmentAction: () => void,
-  onShowAIGeneratedDevelopmentActions: () => void,
+  data: DevelopmentAction[]
+  onAddAction: (developmentAction: Partial<DevelopmentAction[]>) => void,
   onCancel: () => void,
   open: boolean,
   selectedDevelopmentActionIds: (string | number)[],
+  isDALoading?: boolean;
+  skillName: string;
 }
 
 const tabs = [
@@ -29,68 +31,118 @@ const tabs = [
 export const AddDevelopmentActionModal: React.FC<Props> = ({
   data,
   onAddAction,
-  onShowCustomDevelopmentAction,
-  onShowAIGeneratedDevelopmentActions,
   onCancel,
   open,
   selectedDevelopmentActionIds,
+  isDALoading = false,
+  skillName,
 }) => {
   const [selectedTab, setSelectedTab] = useState('all')
-  const [availableActions, setAvailableActions] = useState(data)
-  const handleAddAction = (developmentAction: Partial<DevelopmentAction>) => {
-    if (developmentAction.id && (selectedDevelopmentActionIds.includes(developmentAction.id)
-      || selectedDevelopmentActionIds.includes(Number(developmentAction.id)))) return
 
+  const [availableActions, setAvailableActions] = useState<DevelopmentAction[]>([])
+
+  const [selectedDA, setSelectedDA] = useState<DevelopmentAction[]>([])
+
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const handleAddAction = (developmentAction: Partial<DevelopmentAction[]>) => {
     onAddAction(developmentAction)
   }
 
   useEffect(() => {
-    if (selectedTab === 'all') return setAvailableActions(data)
-    setAvailableActions(data.filter(action => action.learningStyle === selectedTab))
-  }, [data, selectedTab])
+    if (selectedTab === 'all') {
+      return setAvailableActions(data.filter(action => action.name.toLowerCase().includes(searchTerm.toLowerCase())
+        || action.description.toLowerCase().includes(searchTerm.toLowerCase())))
+    }
+    setAvailableActions(data.filter(action => action.learningStyle === selectedTab)
+      .filter(action => action.name.toLowerCase().includes(searchTerm.toLowerCase())
+       || action.description.toLowerCase().includes(searchTerm.toLowerCase())))
+  }, [data, selectedTab, searchTerm])
 
   const handleTabChange = (e) => {
     setSelectedTab(e.target.value)
   }
 
-  const handleShowCustomDevelopmentAction = () => {
-    onShowCustomDevelopmentAction()
-  }
-
   const handleCancel = () => {
+    resetFields()
     onCancel()
   }
 
+  const onAddDA = () => {
+    resetFields()
+    handleAddAction(selectedDA)
+  }
+
+  const resetFields = () => {
+    setSelectedTab('all')
+    setSearchTerm('')
+    setAvailableActions([])
+    setSelectedDA([])
+  }
+
+  const areAllDAsSelected = selectedDevelopmentActionIds.length === data.length
+
   return (
     <Modal
-      title={I18n.t('idp.development_actions.heading')}
+      title={I18n.t('idp.development_actions.add_development_actions_modal_title', { skillName })}
       open={open}
       onCancel={handleCancel}
-      footer={null}
       width={800}
+      styles={{
+        wrapper: {
+          overflow: 'hidden',
+        },
+      }}
+      maskClosable={false}
+      footer={(
+        <Flex justify="flex-end" flex={1} gap={12}>
+          {selectedDA.length > 0 && <Typography.Text>{`${selectedDA.length} selected`}</Typography.Text>}
+          <ButtonWithArrow
+            label="Add"
+            size="small"
+            type="primary"
+            disabled={areAllDAsSelected || selectedDA.length === 0}
+            onClick={onAddDA}
+          />
+        </Flex>
+      )}
     >
       <Flex vertical gap={18}>
-        <Flex justify="flex-end" gap={8}>
-          <Button icon={<PlusOutlined />} onClick={onShowAIGeneratedDevelopmentActions}>
-            {I18n.t('idp.development_actions.generate_by_ai')}
-          </Button>
-          <Button icon={<PlusOutlined />} onClick={handleShowCustomDevelopmentAction}>
-            {I18n.t('idp.development_actions.create_my_own')}
-          </Button>
-        </Flex>
         <Radio.Group value={selectedTab} onChange={handleTabChange}>
           {tabs.map(tab => (
-            <Radio.Button key={tab.key} value={tab.key}>
+            <Radio.Button
+              style={{
+                fontWeight:
+              'normal',
+              }}
+              key={tab.key}
+              value={tab.key}
+            >
               {tab.label}
             </Radio.Button>
           ))}
         </Radio.Group>
+        <Input
+          onChange={(e) => {
+            setSearchTerm(e.target.value)
+          }}
+          value={searchTerm}
+          placeholder="Search Development Actions"
+        />
         <BoxWithShadow>
-          <DevelopmentActionsList
-            availableActions={availableActions}
-            onDevelopmentActionClick={handleAddAction}
-            selectedDevelopmentActionIds={selectedDevelopmentActionIds}
-          />
+          {isDALoading ? (
+            <Flex justify="center" align="center" style={{ height: '200px' }}>
+              <Spin />
+            </Flex>
+          ) : (
+            <DevelopmentActionsList
+              availableActions={availableActions}
+              selectedDA={selectedDA}
+              setSelectedDA={setSelectedDA}
+              selectedDevelopmentActionIds={selectedDevelopmentActionIds}
+            />
+          )}
+
         </BoxWithShadow>
       </Flex>
     </Modal>

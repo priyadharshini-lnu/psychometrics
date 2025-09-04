@@ -22,12 +22,14 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type SkillGapReportWrapperProps = {
   next: () => void
   skillGapReportId: number
+  prev: () => void
 } & PropsFromRedux
 
 const SkillGapReportWrapper:FC<SkillGapReportWrapperProps> = ({
   fetchReport,
   skillGapReportId,
   next,
+  prev,
 }) => {
   const { campaignId } = useParams()
 
@@ -54,6 +56,7 @@ const SkillGapReportWrapper:FC<SkillGapReportWrapperProps> = ({
   return (
     <SkillGapReport
       next={next}
+      prev={prev}
       reportUrl={skillGapData?.pdf.url}
       skillGapData={skillGapData}
       isLoading={isLoading}

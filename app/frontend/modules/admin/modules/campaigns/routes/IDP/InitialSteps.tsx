@@ -107,12 +107,23 @@ export const InitialStepsComponent = () => {
     navigate(`${currentPath.split('step')[0]}step/add_skills`)
   }
 
+  const handlePrevForSkillGapReportStep = () => {
+    navigate(`${currentPath.split('step')[0]}step/getting_started`)
+  }
+
+  const handlePrevForAddSkillsStep = () => {
+    if (userIdpPlanData?.skillGapReportAvailable) {
+      navigate(`${currentPath.split('step')[0]}step/skill_gap_report`)
+    } else {
+      navigate(`${currentPath.split('step')[0]}step/getting_started`)
+    }
+  }
+
   const handleNextForAddSkillsStep = (selectedSkills) => {
     setIsLoading(true)
 
     const planPayload = userIdpPlanData
     const skillPayload = {
-
       skills: selectedSkills.map(skill => ({
         id: skill.id,
         category: skill.category,
@@ -137,7 +148,7 @@ export const InitialStepsComponent = () => {
   }
 
   const idpSteps = (
-    <>
+    <Flex vertical className="p-4" style={{ fontSize: '16px' }}>
       <Steps
         current={currentStepIndex === -1 ? 0 : currentStepIndex}
         items={visibleSteps.map(({ title }) => ({ title }))}
@@ -153,6 +164,7 @@ export const InitialStepsComponent = () => {
         <SkillGapReportStep
           skillGapReportId={userIdpPlanData?.skillGapReportId}
           next={handleNextForSkillGapReportStep}
+          prev={handlePrevForSkillGapReportStep}
         />
       )}
       {paramStep === STEPS.addSkills && (
@@ -160,9 +172,10 @@ export const InitialStepsComponent = () => {
           userIdpSkills={userIdpPlanData?.skills}
           next={handleNextForAddSkillsStep}
           idpTemplateId={userIdpPlanData?.idpTemplateId as string}
+          prev={handlePrevForAddSkillsStep}
         />
       )}
-    </>
+    </Flex>
   )
 
 

@@ -1799,6 +1799,7 @@ en:
       view: View
       view_all_tasks: View all tasks
       view_detail: View Detail
+      yes_delete: Yes, Delete
     column:
       action: Action
       active: Active
@@ -2581,6 +2582,7 @@ en:
     comment_details:
       add_comment: Add Comment
       add_comment_placeholder: Add a comment...
+      add_comments: Add Comments
       add_reply_placeholder: Add a reply...
       go_to_skill: Go to skill
     comments:
@@ -2602,11 +2604,15 @@ en:
       sort_by_date: Sort by date
       you: You
     convert_to_draft: Convert to Draft
+    delete_skill: Are you sure you want to delete skill because it will delete all the connected development actions as well?
     details: Details
     development_actions:
       action_private: 'Yes'
       action_public: 'No'
       add_development_action: Add Development Action
+      add_development_actions_from_below_options: Add Development Actions from below options.
+      add_development_actions_modal_title: Development Actions Library for %{skillName}
+      add_from_library: Add from Library
       all: All
       approved: Approved
       board_view:
@@ -2614,40 +2620,59 @@ en:
         in_progress: In Progress
         not_started: Not Started
       completion: Completion
-      create_my_own: Create My Own
+      create_custom_development_action_title: Create my own Development Action for %{skillName}
+      create_development_actions_with_ai: Create Development Actions with AI for %{skillName}
+      create_from_ai: Create from AI
+      create_my_own: Create my own
+      custom: Custom
       date_range: Start Date - End Date
+      edit_plan_to_add_development_actions: Edit Plan and to add Development Actions.
       generate_by_ai: Generate by AI
       generate_more: Generate More
       generating_development_actions: Generating development actions...
-      heading: Development Actions
+      generative_ai: Generative AI
+      heading: Skills/Development Actions
+      idp_library: IDP Library
       incomplete_error: Incomplete Development Actions
       incomplete_error_message: Some development actions are incomplete. Please complete them before submitting your IDP.
       incomplete_warning: Incomplete Development Actions
       incomplete_warning_message: Some development actions are incomplete. Are you sure you want to mark your IDP complete?
+      info_popover_title: Different type of Development Actions
       learning_from_others: Learning from others
+      learning_from_others_label: Learning from Others
+      learning_on_the_job_label: Learning on the job
       manage_skills: Manage Skills
       marathon: Marathon
       mark_as_complete: Mark as Complete
-      no_development_actions: No development actions
+      no_development_actions: You have no Development Actions
       on_the_job: On the job
+      one: 1
       other: Other
       private: Private
       publish_plan: Publish Plan
-      remove: Remove
+      remove: Remove Development Action
+      save_plan: Save Plan
       skill: Skill
       sprint: Sprint
       start_plan: Start Plan
       structured_learning: Structured learning
+      structured_learning_label: Collaborative Learning
       submit_plan: Submit Plan
+      success: Development Actions completed successfully
+      three: 3
+      two: 2
       write_here: Write here...
+    direct_reportee_details: Direct Reportees Detail
     edit_plan: Edit Plan
+    edit_plan_and_add_skills: Edit Plan and and click on Manage Skills to add Skills.
     edit_progress: Edit Progress
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills
       add_skills: Add
       add_skills_step: Add Skills
-      continue_to_rate_skills: Continue to rate skills
+      back: Back
+      continue_to_rate_skills: Continue to Rate skills
       getting_started: Getting Started
       less_skills: Show less skills
       more_skills: Explore more skills
@@ -2655,7 +2680,7 @@ en:
       no_skills_selected: No skills selected.
       rate_skills: Rate Skills
       rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
-      rate_skills_title: Rating Your Skills
+      rate_skills_title: Rate Skills
       rating_column_header: Your self rating
       reflective_questions: Reflective Questions
       save: Save
@@ -2674,6 +2699,8 @@ en:
         categories: Categories
       save_skills: Save Skills
     new_comments: New comment(s)
+    no_skills_added: You have no Skills added yet.
+    no_skills_added_by_reportee: Reportee has not added Skills yet.
     pdf:
       approval_status: Approval Status
       cover:
@@ -2792,14 +2819,20 @@ en:
         required: The answer to the question is required
       max_words: Max Words
       min_words: Min Words
+      no_answer_provided: No answer provided yet
       no_reflective_questions: No reflective questions available
+      optional: "(Optional)"
       title: Reflective Questions
       update_failed: An error occurred during the update
       updated_successfully: Your answers have been updated successfully
+      word_limit: Must be between %{min} and %{max} words
       words: Words
+    remove_skill: Remove Skill
     skill_gap_report:
+      download: Download Skill Gap Report
       title: Skill Gap Report
     status: Status
+    suggestions: Suggestions
     technical: Technical
     user_idp_status:
       approved: Approved

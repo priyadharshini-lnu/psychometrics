@@ -4,8 +4,8 @@ import {
   Flex, Modal, Spin,
 } from 'antd'
 import { SyncOutlined } from '@ant-design/icons'
-import { BoxWithShadow } from '~/glint'
-import { DevelopmentActionsList } from '~/components/IdpShared/DevelopmentActions/Common'
+import { BoxWithShadow, ButtonWithArrow } from '~/glint'
+import { AIGeneratedDevelopmentActionsList } from '~/components/IdpShared/DevelopmentActions/Common'
 import { useResources } from '~/hooks/useResources'
 import {
   DevelopmentAction,
@@ -19,6 +19,7 @@ type AIGeneratedDevelopmentActionsProps = {
   onCancel: () => void,
   open: boolean,
   skill: SkillWithDevelopmentActions
+  selectedAIGeneratedDevelopmentActions: DevelopmentAction[]
 }
 
 export const AIGeneratedDevelopmentActions: FC<AIGeneratedDevelopmentActionsProps> = ({
@@ -26,6 +27,7 @@ export const AIGeneratedDevelopmentActions: FC<AIGeneratedDevelopmentActionsProp
   onCancel,
   open,
   skill,
+  selectedAIGeneratedDevelopmentActions,
 }) => {
   const [generatedDA, setGeneratedDA] = useState({})
 
@@ -69,6 +71,8 @@ export const AIGeneratedDevelopmentActions: FC<AIGeneratedDevelopmentActionsProp
       onCancel={onCancel}
       developmentActions={generatedDA[skill?.skillId] ?? []}
       fetchDevelopmentActions={fetchAIGeneratedDevelopmentActions}
+      selectedAIGeneratedDevelopmentActions={selectedAIGeneratedDevelopmentActions}
+      skill={skill}
     />
   )
 }
@@ -78,21 +82,31 @@ const AIGeneratedDevelopmentActionsModal = ({
   developmentActions,
   fetchDevelopmentActions,
   isLoading,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onAddDevelopmentAction,
   open,
   onCancel,
+  selectedAIGeneratedDevelopmentActions,
+  skill,
 }) => {
+  const [selectedDA, setSelectedDA] = useState<Partial<DevelopmentAction>[]>([])
+
   const handleGenerateMoreActions = () => {
     fetchDevelopmentActions(true)
   }
 
+  const onAddDA = () => {
+    onAddDevelopmentAction(selectedDA)
+  }
+
   return (
     <Modal
-      title={I18n.t('idp.development_actions.generate_by_ai')}
+      title={I18n.t('administration.idp.development_actions.create_development_actions_with_ai',
+        { skillName: skill?.name })}
       open={open}
       onCancel={onCancel}
       footer={!!developmentActions.length && [
-        <Flex justify="center" align="middle">
+        <Flex vertical>
           <Button
             key="generate_more"
             type="link"
@@ -102,6 +116,17 @@ const AIGeneratedDevelopmentActionsModal = ({
           >
             {I18n.t('idp.development_actions.generate_more')}
           </Button>
+          <ButtonWithArrow
+            label="Add"
+            size="small"
+            type="primary"
+            disabled={isLoading}
+            style={{
+              width: '80px',
+              alignSelf: 'flex-end',
+            }}
+            onClick={onAddDA}
+          />
         </Flex>,
       ]}
       width={800}
@@ -111,12 +136,20 @@ const AIGeneratedDevelopmentActionsModal = ({
         tip={I18n.t('idp.development_actions.generating_development_actions')}
         size="large"
       >
-        <Flex vertical gap={18}>
+        <Flex
+          vertical
+          gap={18}
+          // style={{
+          //   fontSize: '16px',
+          // }}
+        >
           <BoxWithShadow>
-            <DevelopmentActionsList
+            <AIGeneratedDevelopmentActionsList
               availableActions={developmentActions}
-              onDevelopmentActionClick={onAddDevelopmentAction}
               highlightNewlyAddedActions
+              selectedAIGeneratedDevelopmentActions={selectedAIGeneratedDevelopmentActions}
+              selectedDA={selectedDA}
+              setSelectedDA={setSelectedDA}
             />
           </BoxWithShadow>
         </Flex>

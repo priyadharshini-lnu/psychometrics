@@ -1,41 +1,67 @@
 import {
-  Typography,
-  Row, Col, Button, Spin, Flex, Layout,
-} from 'antd'
-import { PageHeader } from '@ant-design/pro-layout'
-import { DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+  useContext,
+} from 'react'
 import {
-  ButtonWithArrow,
+  Typography,
+  Row, Col, Spin, Flex, Layout, Space,
+} from 'antd'
+import {
+  ButtonWithArrow, MediaQueryContext, BackButton,
 } from '~/glint'
 import Report from '~/modules/reports/report'
+import { DownloadButton } from '../DownloadButton'
+import { Separator } from '../Separator'
 
 const { Content } = Layout
 
 const { I18n } = window
 
 export const SkillGapReport = ({
-  next, skillGapData, reportUrl, isLoading, styles,
+  next, skillGapData, reportUrl, isLoading, styles, prev,
 }) => {
+  const { isMobile } = useContext(MediaQueryContext)
+
   const extraContent = (isLoading ? <></>
     : (
       reportUrl && (
-        <Flex className="mt-2">
-          <Button
-            key="download"
-            icon={<DownloadOutlined />}
-            disabled={skillGapData?.status !== 'prepared'}
-            href={reportUrl}
-            target="_blank"
-          >
-            {I18n.t('common.text.download')}
-          </Button>
-        </Flex>
+        <DownloadButton
+          disabled={skillGapData?.status !== 'prepared'}
+          href={reportUrl}
+          style={{ height: '2rem' }}
+        >
+          {I18n.t('idp.skill_gap_report.download')}
+        </DownloadButton>
       )
     )
   )
 
   return (
     <>
+      <Flex vertical={isMobile} className="mt-4 mb-4" flex={1} justify="space-between">
+        <Space>
+          <BackButton
+            onPrev={prev}
+          />
+          <Typography.Title
+            className="mb-0 mt-0"
+            level={3}
+          >
+            {I18n.t('idp.initial_steps.skill_gap_report')}
+          </Typography.Title>
+        </Space>
+        <Flex justify="center" align="center">
+          {extraContent}
+          <ButtonWithArrow
+            label="Add Skills"
+            size="small"
+            type="primary"
+            onClick={() => next()}
+          />
+        </Flex>
+      </Flex>
+      <Separator
+        className="mb-4 mt-0"
+      />
       <Content className={styles.reportContainer}>
         {
           isLoading ? (
@@ -47,42 +73,24 @@ export const SkillGapReport = ({
           ) : (
             <>
               {skillGapData && (
-                <>
-                  <PageHeader
-                    className={!isLoading ? styles.reportHeader : ''}
-                    ghost={false}
-                    title={(
-                      <Typography.Title level={4}>{I18n.t('idp.skill_gap_report.title')}</Typography.Title>
-                )}
-                    extra={extraContent}
+                <Flex justify="center" className="mb-5 mt-8">
+                  <Report
+                    data={skillGapData.report}
+                    results={skillGapData.results}
+                    campaign={JSON.stringify({})}
+                    user={JSON.stringify(skillGapData.user)}
+                    locales={skillGapData.report.locales}
+                    selectedLocale={I18n.locale}
+                    userReport={skillGapData}
+                    skipLogic={false}
+                    allowEdit={false}
+                    allowApprove={false}
                   />
-                  <Flex justify="center" className={`${styles.reportViewer} mb-5"`}>
-                    <Report
-                      data={skillGapData.report}
-                      results={skillGapData.results}
-                      campaign={JSON.stringify({})}
-                      user={JSON.stringify(skillGapData.user)}
-                      locales={skillGapData.report.locales}
-                      selectedLocale={I18n.locale}
-                      userReport={skillGapData}
-                      skipLogic={false}
-                      allowEdit={false}
-                      allowApprove={false}
-                    />
-                  </Flex>
-                </>
+                </Flex>
               )}
             </>
           )}
       </Content>
-      <Flex justify="center" className="mt-5 mb-5">
-        <ButtonWithArrow
-          label={I18n.t('idp.initial_steps.add_skills_step')}
-          size="small"
-          type="primary"
-          onClick={() => next()}
-        />
-      </Flex>
     </>
   )
 }
