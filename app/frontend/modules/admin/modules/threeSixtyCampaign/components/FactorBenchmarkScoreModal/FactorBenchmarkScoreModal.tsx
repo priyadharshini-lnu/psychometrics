@@ -36,7 +36,6 @@ export default function FactorBenchmarkScoreModal ({
   const [benchmarks, setBenchmarks] = useState({})
   const [currentPage, setCurrentPage] = useState(1)
   const [data, setData] = useState<Factor[]>([])
-  const [loading, setLoading] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const {
@@ -67,7 +66,7 @@ export default function FactorBenchmarkScoreModal ({
   }, [])
 
   const loadMoreData = useCallback(() => {
-    if (loading || factorsLoading('get/factors')) {
+    if (factorsLoading('fetch')) {
       return
     }
 
@@ -75,7 +74,6 @@ export default function FactorBenchmarkScoreModal ({
 
     // Only load if there are more pages available
     if (meta && meta.pageCount && nextPage <= meta.pageCount) {
-      setLoading(true)
       fetchFactors({
         apiConfig: {
           page: { size: 25, number: nextPage },
@@ -85,12 +83,9 @@ export default function FactorBenchmarkScoreModal ({
           setData(prevData => [...prevData, ...newData])
           setCurrentPage(nextPage)
         }
-        setLoading(false)
-      }).catch(() => {
-        setLoading(false)
       })
     }
-  }, [currentPage, loading, meta, fetchFactors, factorsLoading])
+  }, [currentPage, meta, fetchFactors, factorsLoading])
 
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget
@@ -165,7 +160,7 @@ export default function FactorBenchmarkScoreModal ({
           <Col flex={1}>Benchmark score:</Col>
         </Flex>
         <Flex vertical className={styles.body}>
-          {(factorsLoading('get/factors') || scoresLoading('fetch'))
+          {((factorsLoading('fetch') && !data.length) || scoresLoading('fetch'))
             ? <Skeleton />
             : (
               <div
@@ -208,7 +203,7 @@ export default function FactorBenchmarkScoreModal ({
                     </Flex>
                   </Form.Item>
                 ))}
-                {loading && (
+                {factorsLoading('fetch') && (
                   <div style={{ textAlign: 'center', padding: '12px 0' }}>
                     <Skeleton paragraph={{ rows: 1 }} active />
                   </div>
