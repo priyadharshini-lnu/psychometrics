@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::WorkshopsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction, only: :index
     validate_crud_requests Api::V2::Workshop::Schema
     validates_request_schema :update, -> { Api::V2::Workshop::UpdateContract.new }
     validates_request_schema :create_bulk_workshops, -> { Api::V2::Workshop::CreateAllContract.new }

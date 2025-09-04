@@ -3,6 +3,8 @@
 require 'icalendar/tzinfo'
 
 class Workshop < ApplicationRecord
+  include GeoFilterable
+
   audited
 
   belongs_to :campaign
@@ -47,6 +49,13 @@ class Workshop < ApplicationRecord
 
   after_save :create_meeting_room, if: -> { video_call_internal? && meeting_room.blank? }
 
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    joins(campaign: :project).
+      where.not(clients: { tte_id: restricted_client_subquery })
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[campaign_assessment_group_id campaign_id duration id name status]
   end
@@ -88,7 +97,7 @@ class Workshop < ApplicationRecord
   end
 
   def real_meeting_link(user)
-    if video_call_internal? && meeting_room.present?
+    if video_call_internal? && meeting_room.present? && meeting_room.external_id.present?
       route = user.admin? ? :admin_meeting_url : :meeting_url
       Utility::Url.generate(route, room_id: meeting_room.id, subdomain: user.subdomain)
     elsif video_call_custom?

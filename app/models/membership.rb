@@ -113,7 +113,11 @@ class Membership < ApplicationRecord
   def self.scoped_by_client(restricted_client_subquery)
     return all if restricted_client_subquery.blank?
 
-    joins(:client).where.not(clients: { tte_id: restricted_client_subquery })
+    joins(:client).where(
+      'clients.id NOT IN (?) AND (clients.tte_id IS NULL OR clients.tte_id NOT IN (?))',
+      restricted_client_subquery,
+      restricted_client_subquery
+    )
   end
 
   def self.ransackable_attributes(_auth_object = nil)

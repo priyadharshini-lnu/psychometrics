@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Assessors::UsersController < Administration::BaseController
+  skip_before_action :enforce_geo_restriction, only: :dashboard
   skip_after_action :verify_policy_scoped, only: :index
   before_action :skip_authorization, only: %i[dashboard show]
   before_action :set_resource, only: [:show]
