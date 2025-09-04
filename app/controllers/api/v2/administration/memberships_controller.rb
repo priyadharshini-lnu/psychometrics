@@ -2,7 +2,8 @@
 
 module Api
   class V2::Administration::MembershipsController < Api::V2::Administration::BaseController
-    skip_before_action :enforce_geo_restriction
+    skip_before_action :enforce_geo_restriction, except: %i[index]
+    before_action :check_geo_restriction_if_client_context, only: %i[create update]
     validates_request_schema :create, -> { Api::V2::Membership::CreateContract.new }
     validate_crud_requests Api::V2::Membership::Schema
 
@@ -101,6 +102,22 @@ module Api
           context[:user], context[:project_id]
         )
       }
+    end
+
+    def check_geo_restriction_if_client_context
+      client = client_from_attributes
+      client&.check_geo_restriction!
+    end
+
+    def client_from_attributes
+      attrs = params.dig(:data, :attributes)
+      return unless attrs
+
+      if (id = attrs[:client_id] || attrs[:project_id])
+        Client.find_by(id: id)&.client
+      elsif (id = attrs[:campaign_id])
+        Campaign.find_by(id: id)&.client
+      end
     end
   end
 end

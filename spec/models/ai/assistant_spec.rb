@@ -18,6 +18,8 @@ RSpec.describe AI::Assistant, type: :model do
       allow(assistant.chats).to receive(:create!).and_return(chat)
       allow(chat).to receive(:with_instructions)
       allow(chat).to receive(:with_context)
+      allow(chat).to receive(:with_schema).and_return(chat)
+      allow(chat).to receive(:with_tools).and_return(chat)
       allow(chat).to receive(:to_llm).and_return(chat)
       allow(assistant).to receive(:ruby_llm_context).and_return(llm_context)
     end
@@ -30,9 +32,61 @@ RSpec.describe AI::Assistant, type: :model do
 
       assistant.for_user(user)
     end
+
+    it 'includes output_schema_keys context in instructions for content_writer type assistant' do
+      content_writer_assistant = build(:assistant, assistant_type: 'content_writer')
+      schema_key = build(:assistant_output_schema_key, ai_assistant: content_writer_assistant)
+      content_writer_assistant.assistant_output_schema_keys = [schema_key]
+
+      allow(content_writer_assistant.chats).to receive(:create!).and_return(chat)
+      allow(chat).to receive(:with_context)
+      allow(chat).to receive(:with_schema).and_return(chat)
+      allow(chat).to receive(:to_llm).and_return(chat)
+      allow(content_writer_assistant).to receive(:ruby_llm_context).and_return(llm_context)
+
+      captured_instructions = nil
+      allow(chat).to receive(:with_instructions) do |instructions|
+        captured_instructions = instructions
+      end
+
+      content_writer_assistant.for_user(user)
+
+      expect(captured_instructions).to include('<assistant_output_schema>')
+      expect(captured_instructions).to include(
+        "- **#{schema_key.key}** (#{schema_key.key_type}): #{schema_key.description}"
+      )
+    end
+
+    it 'includes output schema context for IdpAssistant in instructions' do
+      idp_assistant = build(:assistant, assistant_type: 'idp_assistant')
+
+      allow(idp_assistant.chats).to receive(:create!).and_return(chat)
+      allow(chat).to receive(:with_context)
+      allow(chat).to receive(:to_llm).and_return(chat)
+      allow(idp_assistant).to receive(:ruby_llm_context).and_return(llm_context)
+
+      allow(idp_assistant).to receive(:has_ruby_llm_schema?).and_return(true)
+      allow(idp_assistant).to receive(:output_schema_class).and_return(AI::OutputSchemas::IdpAssistant)
+
+      captured_instructions = nil
+      allow(chat).to receive(:with_instructions) do |instructions|
+        captured_instructions = instructions
+      end
+
+      expect(chat).to receive(:with_schema).with(AI::OutputSchemas::IdpAssistant).and_return(chat)
+
+      idp_assistant.for_user(user)
+
+      schema_context = AI::OutputSchemas::IdpAssistant.as_context
+      expected_instructions = <<~EXPECTED
+        #{idp_assistant.system_prompt}
+        #{schema_context}
+      EXPECTED
+
+      expect(captured_instructions).to eq(expected_instructions.strip)
+    end
   end
 
-  # This is required to ensure ruby_llm default behaviour is retained even with diferent naming conventions
   describe 'deletion and cascading' do
     let(:user) { create(:user) }
     let(:assistant) { create(:assistant) }

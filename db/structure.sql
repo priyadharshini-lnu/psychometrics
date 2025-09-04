@@ -156,9 +156,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT assessments.id,
-    assessments.name,
-    assessments.category
+ SELECT id,
+    name,
+    category
    FROM public.assessments;
 
 
@@ -181,10 +181,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT campaign_factor_groups.id,
-    campaign_factor_groups.campaign_id,
-    campaign_factor_groups.name,
-    campaign_factor_groups."position"
+ SELECT id,
+    campaign_id,
+    name,
+    "position"
    FROM public.campaign_factor_groups;
 
 
@@ -304,9 +304,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT campaigns.id,
-    campaigns.name,
-    campaigns.project_id
+ SELECT id,
+    name,
+    project_id
    FROM public.campaigns;
 
 
@@ -426,8 +426,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT factors.id,
-    factors.name
+ SELECT id,
+    name
    FROM public.factors;
 
 
@@ -742,11 +742,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT users.id,
-    users.project_id,
-    users.first_name,
-    users.last_name,
-    users.email
+ SELECT id,
+    project_id,
+    first_name,
+    last_name,
+    email
    FROM public.users;
 
 
@@ -1200,6 +1200,46 @@ CREATE SEQUENCE public.ai_assistants_id_seq
 --
 
 ALTER SEQUENCE public.ai_assistants_id_seq OWNED BY public.ai_assistants.id;
+
+
+--
+-- Name: ai_assisted_user_sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_assisted_user_sessions (
+    id bigint NOT NULL,
+    ai_assistant_chat_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    assistable_type character varying,
+    assistable_id bigint,
+    checkpoint jsonb,
+    type character varying,
+    error text,
+    status integer DEFAULT 0 NOT NULL,
+    meta jsonb DEFAULT '{}'::jsonb,
+    content_checksum character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_assisted_user_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_assisted_user_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_assisted_user_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_assisted_user_sessions_id_seq OWNED BY public.ai_assisted_user_sessions.id;
 
 
 --
@@ -8455,6 +8495,13 @@ ALTER TABLE ONLY public.ai_assistants ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: ai_assisted_user_sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assisted_user_sessions ALTER COLUMN id SET DEFAULT nextval('public.ai_assisted_user_sessions_id_seq'::regclass);
+
+
+--
 -- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9970,6 +10017,14 @@ ALTER TABLE ONLY public.ai_assistant_tool_calls
 
 ALTER TABLE ONLY public.ai_assistants
     ADD CONSTRAINT ai_assistants_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ai_assisted_user_sessions ai_assisted_user_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assisted_user_sessions
+    ADD CONSTRAINT ai_assisted_user_sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -11989,6 +12044,41 @@ CREATE INDEX index_ai_assistants_on_last_modified_by_id ON public.ai_assistants 
 --
 
 CREATE INDEX index_ai_assistants_on_owner_id ON public.ai_assistants USING btree (owner_id);
+
+
+--
+-- Name: index_ai_assisted_user_sessions_on_ai_assistant_chat_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assisted_user_sessions_on_ai_assistant_chat_id ON public.ai_assisted_user_sessions USING btree (ai_assistant_chat_id);
+
+
+--
+-- Name: index_ai_assisted_user_sessions_on_assistable; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assisted_user_sessions_on_assistable ON public.ai_assisted_user_sessions USING btree (assistable_type, assistable_id);
+
+
+--
+-- Name: index_ai_assisted_user_sessions_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assisted_user_sessions_on_user_id ON public.ai_assisted_user_sessions USING btree (user_id);
+
+
+--
+-- Name: index_ai_assisted_user_sessions_on_user_id_and_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assisted_user_sessions_on_user_id_and_type ON public.ai_assisted_user_sessions USING btree (user_id, type);
+
+
+--
+-- Name: index_ai_sessions_on_assistable_and_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_sessions_on_assistable_and_type ON public.ai_assisted_user_sessions USING btree (assistable_type, assistable_id, type);
 
 
 --
@@ -16104,6 +16194,14 @@ ALTER TABLE ONLY public.sheets
 
 
 --
+-- Name: ai_assisted_user_sessions fk_rails_49182d1bb2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assisted_user_sessions
+    ADD CONSTRAINT fk_rails_49182d1bb2 FOREIGN KEY (ai_assistant_chat_id) REFERENCES public.ai_assistant_chats(id);
+
+
+--
 -- Name: threesixty_instruction_template_translations fk_rails_4950e70e58; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17584,6 +17682,14 @@ ALTER TABLE ONLY public.highlights
 
 
 --
+-- Name: ai_assisted_user_sessions fk_rails_d7280fb251; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assisted_user_sessions
+    ADD CONSTRAINT fk_rails_d7280fb251 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: relationships fk_rails_d734d0e1e6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18142,6 +18248,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250826115114'),
 ('20250828122244'),
 ('20250821102225'),
 ('20250825030208'),

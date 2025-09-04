@@ -3185,7 +3185,9 @@ en:
         dp_consent_version: Policy Version
         errors:
           cannot_disable_while_campaign_enabled: Can not disable video call recording because it is enabled for one or more campaigns in this project
+          min_retention: Cannot be less than 1 day
           policy_version_format: Only whole numbers are allowed
+          required: Required
         mask_identity_for_examus: Mask data for Examus Proctoring
         mask_identity_for_hogan: Mask data for Hogan
         mask_identity_for_iiht: Mask data for IIHT
@@ -4144,6 +4146,15 @@ en:
           other: Other
           qualification: Qualification
           technical: Technical
+      move_question:
+        cancel: Cancel
+        move: Move
+        moveAfter: Move After
+        moveBefore: Move Before
+        moveQuestion: 'Move Question: %{question}'
+        position: Position
+        selectTargetQuestion: Select Target Question
+        title: Move Question
       property_panel:
         add_n_a_option: Add N/A option
         allow_content_copy: Allow content copying
@@ -4187,6 +4198,18 @@ en:
         question_description: Row descriptions
         validation_response_type: Validation response type
         voice_dictation: Voice dictation
+      question_info_bar:
+        add_display_logic: Add Display Logic
+        add_skip_logic: Add Skip Logic
+        are_you_sure_to_delete_this_question: Are you sure to delete this question?
+        default_choices: Default Choices
+        delete_question: Delete Question
+        delete_the_question: Delete the question
+        move_question: Move Question
+        randomization: Randomization
+        save_as_a_template: Save as a Template
+        this_question_has_default_choices: This question has default choices
+        this_question_has_randomization: This question has randomization
     table:
       entries:
         selected:

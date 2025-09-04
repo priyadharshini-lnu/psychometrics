@@ -27,6 +27,7 @@ module EndUser
           required(:initial_rating) { nil? | (int? | float?) }
           required(:final_rating) { nil? | (int? | float?) }
           required(:skill_id).filled(:int?)
+          required(:private).filled(:bool?)
         end
 
         optional(:reflection_questions).array(:hash) do

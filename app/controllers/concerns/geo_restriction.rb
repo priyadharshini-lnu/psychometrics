@@ -14,7 +14,6 @@ module GeoRestriction
   def enforce_geo_restriction
     return if Settings.features.disable_geo_restriction
     return if devise_controller?
-    return if request.subdomain.present? # Skip for EUI
 
     set_client
     raise Geo::Exceptions::ClientNotFound unless @client
@@ -25,7 +24,7 @@ module GeoRestriction
   def handle_geo_restriction(exception)
     case request.format
       when Mime[:json], Mime[:api_json]
-        render json: { error: exception.message }, status: :unauthorized
+        render json: { error: exception.message }, status: :forbidden
       when Mime[:html], Mime[:js]
         redirect_to '/403'
       else

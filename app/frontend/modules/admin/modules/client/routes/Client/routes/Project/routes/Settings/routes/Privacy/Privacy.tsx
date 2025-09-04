@@ -15,6 +15,7 @@ import InputDuration from '~/components/InputDuration'
 import {
   ProjectPrivacySettings as PrivacySettingsType, ProjectPrivacySettingsTR,
 } from '~/modules/admin/modules/client/projectPrivacySettings'
+import { durationValidator } from '~/components/DurationValidator'
 
 const { I18n } = window
 
@@ -37,6 +38,8 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
   const enablePrivacyLink = Form.useWatch('enablePrivacyLink', form)
   const enableCustomPolicy = Form.useWatch('customPrivacyConsent', form)
   const allowVideoCallRecording = Form.useWatch('allowVideoCallRecording', form)
+
+  const MIN_RETENTION_MINUTES = 24 * 60
 
   const {
     data, fetch, updateResource, isLoading,
@@ -67,6 +70,14 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
     form.setFieldsValue(privacySetting)
     setCustomPrivacyConsentTexts(privacySetting?.customPrivacyConsentTexts)
   }, [privacySetting])
+
+  useEffect(() => {
+    if (allowVideoCallRecording) {
+      form.setFieldsValue({
+        videoCallRecordingExpiryInSeconds: 2592000,
+      })
+    }
+  }, [allowVideoCallRecording])
 
   const updateSelectedLocale = (locale) => {
     const consentLocaleText = _.find(customPrivacyConsentTexts, { locale })
@@ -268,7 +279,17 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
                         name="videoCallRecordingExpiryInSeconds"
                         label={I18n.t('administration.projects.privacy_settings.video_call_recording_expiry_duration')}
                         rules={[
-                          { required: true },
+                          {
+                            validator: durationValidator({
+                              minMinutes: MIN_RETENTION_MINUTES,
+                              maxMinutes: Number.MAX_SAFE_INTEGER,
+                              minError: I18n.t(
+                                'administration.projects.privacy_settings.errors.min_retention',
+                              ),
+                              maxError: '',
+                              requiredError: I18n.t('administration.projects.privacy_settings.errors.required'),
+                            }),
+                          },
                         ]}
                       >
                         <InputDuration placeholder={I18n.t('administration.components.input_duration.placeholder')} />
