@@ -63,9 +63,10 @@ module Api
                         Workshop.accessible_as_assessor_or_manager(user)
                       end
 
-          return new_scope.where(campaign_id: campaign_id) if campaign_id
+          geo_filtered_scope = new_scope.geo_scoped(Current.user_country)
+          return geo_filtered_scope.where(campaign_id: campaign_id) if campaign_id
 
-          new_scope
+          geo_filtered_scope
         end
       end
     end
