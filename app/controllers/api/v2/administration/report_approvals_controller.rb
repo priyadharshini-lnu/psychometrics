@@ -2,6 +2,8 @@
 
 module Api
   class V2::Administration::ReportApprovalsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
+
     def bulk_approve
       report_approvals, meta = ReportApprovals::BulkApprove.call!(params[:data][:attributes][:ids], current_user)
 

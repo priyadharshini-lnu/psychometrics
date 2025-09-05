@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Membership < ApplicationRecord
+  include GeoFilterable
+
   audited
 
   # Roles constant
@@ -107,6 +109,16 @@ class Membership < ApplicationRecord
     end
   }
   attr_accessor :through_registration
+
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    joins(:client).where(
+      'clients.id NOT IN (?) AND (clients.tte_id IS NULL OR clients.tte_id NOT IN (?))',
+      restricted_client_subquery,
+      restricted_client_subquery
+    )
+  end
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name campaign_id project_id campaign_id client_id]

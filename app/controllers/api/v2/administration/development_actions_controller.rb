@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::DevelopmentActionsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     validate_crud_requests Api::V2::DevelopmentAction::Schema
     validates_request_schema :create, :create_request_contract_and_schema
     validates_request_schema :update, :update_request_contract_and_schema

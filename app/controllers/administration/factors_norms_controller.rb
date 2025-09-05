@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Administration::FactorsNormsController < Administration::BaseController
+  skip_before_action :enforce_geo_restriction
   prepend_before_action :set_resource_class
   append_before_action :pundit_authorize
 

@@ -4,6 +4,7 @@ module Api
   module V2
     module Administration
       class SkillsJobRolesController < Api::V2::Administration::BaseController
+        skip_before_action :enforce_geo_restriction
         validates_request_schema :create, lambda {
           SkillsJobRole::Contract.new(schema: SkillsJobRole::Schema.create_request)
         }

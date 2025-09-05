@@ -3,10 +3,12 @@
 module Administration
   module Workshops
     class UsersController < Administration::BaseController
+      skip_before_action :enforce_geo_restriction
       before_action :set_resource, only: %i[search_subjects search_assessors]
       append_before_action :pundit_authorize
 
       def search_subjects
+        @workshop.campaign.client.check_geo_restriction!
         ids = @workshop.workshop_subjects.pluck(:user_id)
         users = Panko::ArraySerializer.new(
           ::User.where(id: ids).search_query(params[:q]),
@@ -16,6 +18,7 @@ module Administration
       end
 
       def search_assessors
+        @workshop.campaign.client.check_geo_restriction!
         ids = @workshop.workshop_assessors.pluck(:user_id)
         users = Panko::ArraySerializer.new(
           ::Users::Admin.where(id: ids).search_query(params[:q]),

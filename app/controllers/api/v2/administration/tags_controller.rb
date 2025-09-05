@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::TagsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     append_before_action :pundit_authorize
 
     def context

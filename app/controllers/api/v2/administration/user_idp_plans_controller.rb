@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::UserIdpPlansController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     validate_crud_requests Api::V2::UserIdpPlan::Schema
     validates_request_schema :create, -> { Api::V2::UserIdpPlan::CreateContract.new }
 

@@ -4,6 +4,7 @@ module Api
   module V2
     module Administration
       class ProficiencyLevelsController < Api::V2::Administration::BaseController
+        skip_before_action :enforce_geo_restriction
         validate_crud_requests Api::V2::ProficiencyLevel::Schema
         validates_request_schema :create, -> { Api::V2::ProficiencyLevel::Contract.new }
 

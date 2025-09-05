@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Communication < ApplicationRecord
+  include GeoFilterable
   extend Mobility
   translates :subject, :body
 
@@ -173,6 +174,13 @@ class Communication < ApplicationRecord
 
   def create_communication_email_with_resources(attributes, resources)
     CommunicationEmail.create_with_resources(attributes.merge(communication_id: id), resources)
+  end
+
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    where.not(client_id: restricted_client_subquery).
+      where('owner_id IS NULL OR owner_id NOT IN (?)', restricted_client_subquery)
   end
 
   private

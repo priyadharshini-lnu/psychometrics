@@ -1642,7 +1642,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    campaign_id bigint
 );
 
 
@@ -2448,7 +2449,8 @@ CREATE TABLE public.clients (
     live_chat_token character varying,
     custom_privacy_consent boolean DEFAULT false,
     custom_privacy_consent_text text,
-    custom_privacy_policy_version integer
+    custom_privacy_policy_version integer,
+    restricted_to_countries text[] DEFAULT '{}'::text[]
 );
 
 
@@ -12242,6 +12244,13 @@ CREATE INDEX index_blocks_on_template_id ON public.blocks USING btree (template_
 
 
 --
+-- Name: index_bulk_reports_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bulk_reports_on_campaign_id ON public.bulk_reports USING btree (campaign_id);
+
+
+--
 -- Name: index_bulk_reports_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16511,6 +16520,14 @@ ALTER TABLE ONLY public.user_assessment_factor_scores
 
 
 --
+-- Name: bulk_reports fk_rails_72688d2e09; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bulk_reports
+    ADD CONSTRAINT fk_rails_72688d2e09 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
 -- Name: reports_accesses fk_rails_74cd2e276f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18125,6 +18142,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250828122244'),
+('20250821102225'),
 ('20250825030208'),
 ('20250820163652'),
 ('20250825062532'),

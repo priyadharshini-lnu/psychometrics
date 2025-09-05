@@ -31,7 +31,9 @@ class ReportApprovalSetting < ApplicationRecord
   }
 
   def self.report_approvals(user)
-    scope = ReportApproval.joins(
+    geo_filtered_scope = ReportApproval.geo_scoped(Current.user_country)
+
+    scope = geo_filtered_scope.joins(
       %(
         join report_approval_settings as ras on user_reports.campaign_id = ras.campaign_id
         AND user_reports.report_id = ras.report_id

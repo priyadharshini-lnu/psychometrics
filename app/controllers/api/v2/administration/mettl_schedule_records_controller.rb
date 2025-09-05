@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::MettlScheduleRecordsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     validate_crud_requests Api::V2::MettlScheduleRecord::Schema
     validates_request_schema :create, -> { Api::V2::MettlScheduleRecord::CreateContract.new }
     validates_request_schema :update, -> { Api::V2::MettlScheduleRecord::UpdateContract.new }

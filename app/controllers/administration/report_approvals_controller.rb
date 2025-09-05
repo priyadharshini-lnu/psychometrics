@@ -2,6 +2,7 @@
 
 module Administration
   class ReportApprovalsController < Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     append_before_action :pundit_authorize
 
     render_entrypoint %i[app], element: 'report-approvals-container', entry: 'admin/report_approvals'

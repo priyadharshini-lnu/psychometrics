@@ -2,6 +2,7 @@
 
 class AuditLog < ApplicationRecord
   include RansackAssocSearchableFields
+  include ::GeoFilterable
 
   serialize :payload, coder: JSON
   serialize :request, coder: JSON
@@ -66,5 +67,12 @@ class AuditLog < ApplicationRecord
   def self.ransackable_scopes(_auth_object = nil)
     # returns an array of whitelisted scopes that can be used by ransack gem
     %i[client_search project_search campaign_search user_search]
+  end
+
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    scope = where.not(client_id: restricted_client_subquery)
+    scope.or(where(client_id: nil))
   end
 end

@@ -272,3 +272,6 @@ gem 'sidekiq-throttled', '~> 1.5.2'
 gem 'recaptcha', require: 'recaptcha/rails'
 # To integrate with LLMs
 gem 'ruby_llm', '~> 1.6.3'
+
+# Pure Ruby GeoIP2 MaxMind DB reader
+gem 'maxminddb'

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Administration::UsersController < Administration::BaseController
+  skip_before_action :enforce_geo_restriction
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[show edit update destroy toggle_status
                                         toggle_enable_2fa sidebar spoof reset_password]
