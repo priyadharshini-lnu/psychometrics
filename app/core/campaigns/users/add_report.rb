@@ -82,9 +82,7 @@ module Campaigns
           evaluator: user,
           relationship: Relationship.self_relationship
         )
-        if user_assessment
-          user_assessment.update(status: :completed) if assessment.meeting? && user_assessment.status != :completed
-        else
+        unless user_assessment
           user_assessment = create_assessment_to_user(assessment)
           AuditLogModule.audit!(
             :create, user_assessment,

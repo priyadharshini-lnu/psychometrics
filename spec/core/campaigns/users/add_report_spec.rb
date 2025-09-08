@@ -194,22 +194,6 @@ data_seprator: '4-2')
     end.to_not(change { UserAssessment.count })
   end
 
-  it 'updates existing UserAssessment status to completed when assessment is a meeting' do
-    assessment = create(:assessment, category: 'meeting')
-    report = create(:report, assessments: [assessment])
-    create(
-      :user_assessment,
-      assessment_id: report.assessments.first.id,
-      campaign: campaign_user.campaign,
-      subject: campaign_user.user,
-      evaluator: campaign_user.user,
-      relationship: Relationship.self_relationship,
-      status: 'not_started'
-    )
-    output = described_class.call!(campaign_user, report, assessments: report.assessments)
-    expect(output[:user_assessments].first.status).to eq('completed')
-  end
-
   it 'calls UserReports::GenerateAndSavePdfJob' do
     create(
       :user_assessment,
