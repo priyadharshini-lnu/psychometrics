@@ -1,9 +1,8 @@
 import {
-  ChangeEvent, KeyboardEvent, FC, useState, useEffect,
+  ChangeEvent, KeyboardEvent, useState, useEffect, forwardRef,
 } from 'react'
 import { InputProps } from 'antd/lib/input/Input'
-
-import { Flex, Typography } from 'antd'
+import { Flex, Typography, InputRef } from 'antd'
 import { MaskedInput } from '~/glint'
 
 const MINUTE = 60
@@ -18,13 +17,13 @@ interface Props extends Omit<InputProps, 'value' | 'onChange'> {
   maxDuration?: number,
 }
 
-const InputDuration: FC<Props> = ({
+const InputDuration = forwardRef<InputRef, Props>(({
   value = '',
   onChange,
   masked = false,
   maxDuration,
   ...restInputProps
-}) => {
+}, ref) => {
   const [inputValue, setInputValue] = useState(maskUp(value))
   const [showWarning, setShowWarning] = useState(false)
 
@@ -69,6 +68,7 @@ const InputDuration: FC<Props> = ({
     }
   }
 
+
   useEffect(() => {
     setInputValue(maskUp(value))
   }, [value])
@@ -76,9 +76,10 @@ const InputDuration: FC<Props> = ({
   return (
     <Flex vertical>
       <MaskedInput
+        ref={ref}
         masked={masked}
-        onChange={handleOnChange}
         onBlur={maskAndReturnIntValue}
+        onChange={handleOnChange}
         onKeyPress={handleOnKeyPress}
         value={inputValue}
         {...restInputProps}
@@ -90,7 +91,7 @@ const InputDuration: FC<Props> = ({
       ) : null}
     </Flex>
   )
-}
+})
 
 export const maskUp = (value: string | number): string => {
   const valueInNumbers = convertToInt(value)
