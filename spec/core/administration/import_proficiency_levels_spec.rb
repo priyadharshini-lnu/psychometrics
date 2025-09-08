@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Administration::ImportProficiencyLevels do
   let(:project) { create(:project) }
+  let(:another_project) { create(:project) }
   let(:file) { double('file', url: 'https://example.com/skills.csv') }
 
   let(:csv_content) do
@@ -127,7 +128,11 @@ RSpec.describe Administration::ImportProficiencyLevels do
 
     context 'with by_skill proficiency type' do
       let(:skill_name) { 'Test Skill' }
-      let!(:existing_skill) { create(:skill, name: skill_name) }
+      let!(:existing_skill) { create(:skill, name: skill_name, project_id: project.id) }
+      let!(:existing_skill_in_another_project) do
+        create(:skill, name: skill_name, project_id: another_project.id)
+      end
+
       let(:csv_content) do
         [
           ['ID', 'Project', 'ProficiencyType', 'SkillCategory', 'SkillName', 'TotalLevels', 'Level1', 'Name1',
@@ -136,9 +141,28 @@ RSpec.describe Administration::ImportProficiencyLevels do
            'Intermediate level description', 3, 'Advanced', 'Advanced level description']
         ]
       end
-      it 'saves the skill id' do
+
+      it 'saves the skill id for skill in the same project' do
         expect { import }.not_to change(Skill, :count)
         expect(ProficiencyLevel.last.skill).to eq(existing_skill)
+      end
+
+      context 'when skill exists in both current and different projects' do
+        let(:csv_content) do
+          [
+            ['ID', 'Project', 'ProficiencyType', 'SkillCategory', 'SkillName', 'TotalLevels', 'Level1', 'Name1',
+             'Description1', 'Level2', 'Name2', 'Description2', 'Level3', 'Name3', 'Description3'],
+            ['', project.id, 'default', '', skill_name, 3, 1, 'Basic', 'Basic level description', 2, 'Intermediate',
+             'Intermediate level description', 3, 'Advanced', 'Advanced level description']
+          ]
+        end
+
+        it 'attaches the skill from the current project, not from other projects' do
+          import
+          expect(ProficiencyLevel.last.skill).to eq(existing_skill)
+          expect(ProficiencyLevel.last.skill).not_to eq(existing_skill_in_another_project)
+          expect(ProficiencyLevel.last.skill.project_id).to eq(project.id)
+        end
       end
     end
   end

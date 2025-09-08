@@ -2913,6 +2913,7 @@ zh:
           default_project_exists: 行 %{row_number}：已存在项目级别的 "默认 "熟练级别
           invalid_csv_format: CSV 格式无效： %{message}
           invalid_proficiency_type: 行 %{row_number}：无效或缺少 ProficiencyType
+          invalid_skill_type: '行 %{row_number}: 无效技能类型 "%{skill_type}"。有效类型为: %{valid_types}'
           missing_columns: 缺少必填列： %{fields}
           skill_not_found: 行 %{row_number}：技能无效或缺失
         job_queued: 能力水平导入工作已排队

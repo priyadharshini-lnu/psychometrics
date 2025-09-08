@@ -137,6 +137,31 @@ describe Users::SearchByAvailability do
     expect(result.length).to eq(0) # user is only available in this time slot between 2025-07-14 - 2023-07-18
   end
 
+  it 'checks availablity between different timezones' do
+    user = create(:user)
+    user_availability_date1 = create(
+      :user_availability_date,
+      timezone: 'Europe/Berlin',
+      user: user,
+      start_date: Date.parse('2025-10-09'),
+      end_date: Date.parse('2025-10-10')
+    )
+    create(
+      :user_availability_day,
+      user_availability_date: user_availability_date1,
+      day: 5,
+      start_time: '06:00:00',
+      end_time: '19:30:00'
+    )
+
+    # 5th day of week (Friday) i.e 2025-10-10
+    result = described_class.new(
+      Time.zone.parse('2025-10-10 08:05:00 +0200'), Time.zone.parse('2025-10-10 12:25:00 +0200')
+    ).query
+    expect(result.length).to eq(1)
+    expect(result[0].id).to eq(user.id)
+  end
+
   it 'works with multiple availability dates and with multiple days' do
     user = create(:user)
     user_availability_date1 = create(

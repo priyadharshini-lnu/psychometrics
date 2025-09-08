@@ -2913,6 +2913,7 @@ de:
           default_project_exists: 'Zeile %{row_number}: Ein ''''Standard'''' ProficiencyLevel auf Projektebene existiert bereits'
           invalid_csv_format: 'Ungültiges CSV-Format: %{message}'
           invalid_proficiency_type: 'Zeile %{row_number}: Ungültiger oder fehlender ProficiencyType'
+          invalid_skill_type: 'Zeile %{row_number}: Ungültiger Fertigkeitstyp "%{skill_type}". Gültige Typen sind: %{valid_types}'
           missing_columns: 'Fehlende erforderliche Spalten: %{fields}'
           skill_not_found: 'Zeile %{row_number}: Ungültig oder fehlender Skill'
         job_queued: Der Importauftrag für die Kompetenzstufen wurde in die Warteschlange gestellt.

@@ -2913,6 +2913,7 @@ ja:
           default_project_exists: 行 %{row_number}：プロジェクト・レベルの ''default'' ProficiencyLevel が既に存在します。
           invalid_csv_format: '無効な CSV 形式: %{message} です。'
           invalid_proficiency_type: 行 %{row_number}：ProficiencyTypeが無効または見つかりません。
+          invalid_skill_type: '行%{row_number}: 無効なスキルタイプ "%{skill_type}".有効なタイプは%{valid_types}'
           missing_columns: '必須列がありません: %{fields}.'
           skill_not_found: 行 %{row_number}：無効または見つからないスキル
         job_queued: 技能レベルのインポートジョブがキューに入れられました。

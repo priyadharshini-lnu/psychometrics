@@ -2909,6 +2909,7 @@ pl:
           by_skill_missing: 'Wiersz %{row_number}: Projekt i umiejętność muszą być obecne dla typu "by_skill"'
           invalid_csv_format: 'Nieprawidłowy format CSV: %{message}'
           invalid_proficiency_type: 'Wiersz %{row_number}: Nieprawidłowy lub brakujący ProficiencyType'
+          invalid_skill_type: 'Wiersz %{row_number}: Nieprawidłowy typ umiejętności "%{skill_type}". Prawidłowe typy to: %{valid_types}'
           missing_columns: 'Brak wymaganych kolumn: %{fields}'
           skill_not_found: 'Wiersz %{row_number}: Nieprawidłowa lub brakująca umiejętność'
         job_queued: Zadanie importu poziomów biegłości zostało umieszczone w kolejce

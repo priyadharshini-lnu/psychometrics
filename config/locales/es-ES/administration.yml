@@ -2913,6 +2913,7 @@ es-ES:
           default_project_exists: 'Fila %{row_number}: Ya existe un ProficiencyLevel ''''por defecto'''' a nivel de proyecto.'
           invalid_csv_format: 'Formato CSV no válido: %{message}'
           invalid_proficiency_type: 'Fila %{row_number}: ProficiencyType inválido o faltante'
+          invalid_skill_type: 'Fila %{row_number}: Tipo de habilidad no válido "%{skill_type}". Los tipos válidos son: %{valid_types}'
           missing_columns: 'Faltan columnas obligatorias: %{fields}'
           skill_not_found: 'Fila %{row_number}: Habilidad inválida o ausente'
         job_queued: Se ha puesto en cola un trabajo de importación de niveles de competencia
