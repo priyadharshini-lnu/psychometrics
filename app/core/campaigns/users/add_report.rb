@@ -101,7 +101,7 @@ module Campaigns
         ::Hogan::HandleAssignHoganAssessments.call!(user, user_assessments, user_report, options)
       end
 
-      def create_assessment_to_user(assessment) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+      def create_assessment_to_user(assessment)
         norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         existing_result = existing_user_result_to_copy(assessment)
 
@@ -117,7 +117,7 @@ module Campaigns
           fixed_norm: norm_assessment[:norm_id].present?,
           evaluator: user,
           relationship: Relationship.self_relationship,
-          status: assessment.meeting? ? :completed : existing_result&.status || :not_started,
+          status: existing_result&.status || :not_started,
           completed_at: existing_result&.completed_at,
           completion_reason: existing_result&.completion_reason,
           score_calculated: existing_result&.score_calculated,

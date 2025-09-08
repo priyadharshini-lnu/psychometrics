@@ -180,13 +180,6 @@ data_seprator: '4-2')
     end.to change { UserAssessment.count }.by(1)
   end
 
-  it 'add UserAssessment for each report if not present with status completed if assessment category is meeting' do
-    assessment = create(:assessment, category: 'meeting')
-    report = create(:report, assessments: [assessment])
-    output = described_class.call!(campaign_user, report, assessments: report.assessments)
-    expect(output[:user_assessments].first.status).to eq('completed')
-  end
-
   it "doesn't add UserAssessment for report if it is already present" do
     create(
       :user_assessment,
