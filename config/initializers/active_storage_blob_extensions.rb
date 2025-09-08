@@ -7,16 +7,8 @@ module BlobAIAssistanceExtensions
     has_one :ai_assisted_user_document_summary,
             -> { where(type: 'AI::AssistedUserDocumentSummary') },
             as: :assistable,
-            class_name: 'AI::AssistedUserSession',
+            class_name: 'AI::AssistedUserDocumentSummary',
             dependent: :destroy
-
-    after_destroy :cleanup_ai_assistance_sessions
-  end
-
-  private
-
-  def cleanup_ai_assistance_sessions
-    AI::AssistedUserSession.where(assistable: self).destroy_all
   end
 end
 

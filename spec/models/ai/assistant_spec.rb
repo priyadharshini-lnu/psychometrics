@@ -62,6 +62,7 @@ RSpec.describe AI::Assistant, type: :model do
 
       allow(idp_assistant.chats).to receive(:create!).and_return(chat)
       allow(chat).to receive(:with_context)
+      allow(chat).to receive(:with_params).and_return(chat)
       allow(chat).to receive(:to_llm).and_return(chat)
       allow(idp_assistant).to receive(:ruby_llm_context).and_return(llm_context)
 

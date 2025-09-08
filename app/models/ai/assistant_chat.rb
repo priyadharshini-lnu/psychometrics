@@ -16,11 +16,6 @@ class AI::AssistantChat < ApplicationRecord
            -> { order(created_at: :asc) },
            class_name: 'AI::AssistantRequest', foreign_key: 'ai_assistant_chat_id', dependent: :destroy
 
-  def with_assistant_provider_context
-    to_llm.with_context(ai_assistant.ruby_llm_context)
-    self
-  end
-
   def with_assistant_context(options = {})
     to_llm.with_context(ai_assistant.ruby_llm_context)
 

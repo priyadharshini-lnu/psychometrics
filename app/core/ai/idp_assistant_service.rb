@@ -16,8 +16,7 @@ module AI
         idp_assistant.id,
         current_user,
         instructions,
-        chat: chat_with_session_context,
-        tools: idp_assistant_tools
+        chat: chat_with_session_context
       )
       ai_assisted_idp_session.mark_as_in_progress!
 
@@ -65,7 +64,7 @@ module AI
     end
 
     def create_ai_assisted_idp_session!
-      chat = idp_assistant.for_user(current_user)
+      chat = idp_assistant.for_user(current_user, contextual_information: idp_context)
       plan.create_ai_assisted_idp_session!(ai_assistant_chat: chat, user: current_user)
     end
 
@@ -74,7 +73,41 @@ module AI
     end
 
     def idp_assistant_tools
-      [AI::Tools::UserIdpDocAnalyzer.new(plan, current_user)]
+      [
+        AI::Tools::UserIdpDocAnalyzer.new(plan, current_user),
+        AI::Tools::UserIdpCreator.new(plan)
+      ]
+    end
+
+    def idp_context
+      <<~CONTEXT
+        #{user_dependency.parse}
+        #{plan_dependency}
+      CONTEXT
+    end
+
+    def user_dependency
+      AI::Utils::DependencyParser::UserData.new(
+        current_user,
+        custom_fields: %w[role department organization entity]
+      )
+    end
+
+    def plan_dependency
+      <<~CONTEXT
+        <user_idp_document>
+          <filename>#{user_idp_document.filename}</filename>
+          <document_analysis_status>#{ai_assisted_user_document_summary&.status}</document_analysis_status>
+        </user_idp_document>
+      CONTEXT
+    end
+
+    def user_idp_document
+      @user_idp_document ||= plan.user_document
+    end
+
+    def ai_assisted_user_document_summary
+      @ai_assisted_user_document_summary ||= user_idp_document.ai_assisted_user_document_summary
     end
 
     def idp_assistant_llm_params

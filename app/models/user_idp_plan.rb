@@ -24,7 +24,7 @@ class UserIdpPlan < ApplicationRecord
   has_one :ai_assisted_idp_session,
           -> { where(type: 'AI::AssistedUserIdpSession') },
           as: :assistable,
-          class_name: 'AI::AssistedUserSession'
+          class_name: 'AI::AssistedUserIdpSession'
 
   delegate :client, to: :campaign
   delegate :project, to: :campaign
