@@ -120,6 +120,7 @@ class AdminJob < ApplicationJob
   class << self
     def call(operation, data, owner, file = nil)
       JOBS[operation.to_sym].validate(data, owner)
+      data[:owner_country] = Current.user_country
       record = AdminJobRecord.create!(operation: operation, data: data, file: file, owner: owner)
 
       record.broadcast(:create)
