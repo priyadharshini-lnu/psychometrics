@@ -194,7 +194,11 @@ Rails.application.routes.draw do
         end
         resources :sms_records, only: %i[create]
 
-        resources :sheets, concerns: :sheet_management
+        resources :sheets, concerns: :sheet_management do
+          collection do
+            get :datasheet_columns
+          end
+        end
         resources :sheet_rows, concerns: :sheet_row_management
 
         resources :stats, only: %i[index] do
@@ -760,7 +764,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :bulk_reports, only: %i[new create] do
+    resources :bulk_reports, only: %i[] do
       get 'download(/:index)', to: 'bulk_reports#download', on: :member, as: :download
     end
 
@@ -1024,6 +1028,11 @@ as: :simulation_progress_notification
         end
       end
 
+      resources :ai_assisted_idp_chats, only: %i[index] do
+        post :ask
+        post :upload_document
+      end
+
       resources :user_idp_plans, param: :user_id, only: %i[show update] do
         member do
           put :update_reflection_questions
@@ -1088,6 +1097,7 @@ as: :simulation_progress_notification
     resources :skill_gap_reports, only: %i[show], controller: 'end_user/skill_gap_reports'
     resources :user_idp_skills, only: %i[index update], controller: 'end_user/user_idp_skills' do
       post :save_skills, on: :collection
+      put :toggle_privacy, on: :member
     end
     resources :direct_reportees, only: %i[index], controller: 'end_user/direct_reportees'
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
@@ -1328,6 +1338,9 @@ as: :simulation_progress_notification
           end
 
           resources :campaigns, only: %i[update show] do
+            member do
+              get :all_assessments
+            end
             scope module: :campaigns do
               jsonapi_resources :sms_histories, only: %i[index]
             end
@@ -1373,13 +1386,17 @@ as: :simulation_progress_notification
                 get :subject_assessor_assessments, on: :collection
               end
             end
-            jsonapi_resources :workshop_invites, only: %i[index create destroy show] do
+            jsonapi_resources :workshop_invites, only: %i[index create destroy show update] do
               jsonapi_relationships
               collection do
                 get :import_subjects_from_campaign
                 post :import_subjects_from_csv
               end
-              jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy]
+              jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy] do
+                collection do
+                  post :resend_invite
+                end
+              end
             end
             jsonapi_resources :workshop_invited_subjects, only: %i[index] do
               member do
@@ -1404,6 +1421,20 @@ as: :simulation_progress_notification
             end
 
             jsonapi_resources :campaign_idps, controller: 'campaigns/campaign_idps', only: %i[index create update]
+
+            jsonapi_resources :ai_artifact_results, controller: 'campaigns/ai_artifact_results',
+              only: %i[index show], param: :user_id
+
+            jsonapi_resources :ai_artifacts, controller: 'campaigns/ai_artifacts' do
+              collection do
+                post :bulk_generate
+              end
+
+              member do
+                post :generate
+                post :test_generate
+              end
+            end
 
             jsonapi_resources :campaign_factor_groups, only: %i[index create update destroy] do
               collection do
@@ -1557,6 +1588,7 @@ as: :simulation_progress_notification
           jsonapi_resources :skills_job_roles, only: %i[index create update destroy]
           jsonapi_resources :job_groups, only: %i[index]
           jsonapi_resources :skill_groups, only: %i[index]
+          jsonapi_resources :questions, only: %i[index]
 
           namespace :ai do
             jsonapi_resources :assistants do

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {
   Button, Select, Switch, Alert,
-  Form, Row, Col, Space, Tag, FormInstance,
+  Form, Row, Col, Space, Tag, FormInstance, Input,
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
@@ -306,6 +306,14 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                   />
                   {I18n.t('administration.assessment_center.invite.basic_info.neurodiversity')}
                 </Space>
+              </Form.Item>
+              <Form.Item
+                label={I18n.t('administration.assessment_center.invite.name')}
+                name="name"
+              >
+                <Input
+                  placeholder={I18n.t('administration.assessment_center.invite.name_placeholder')}
+                />
               </Form.Item>
             </Form>
           </Col>

@@ -28,14 +28,26 @@ sr-Cyrl:
           attributes:
             test_email_id:
               invalid: Формат ИД-а е-поште није важећи.
+        taxonomies_import_form:
+          attributes:
+            file:
+              duplicate_value: 'ИНТЕРПОЛАТИОН_ВАР_0 , ред ИНТЕРПОЛАТИОН_ВАР_1: Дупликат вредности ИНТЕРПОЛАТИОН_ВАР_2 за ИНТЕРПОЛАТИОН_ВАР_3'
+              missing_value: 'ИНТЕРПОЛАТИОН_ВАР_0 , ред ИНТЕРПОЛАТИОН_ВАР_1: Недостаје вредност за ИНТЕРПОЛАТИОН_ВАР_2'
   activerecord:
     attributes:
       assessment:
         categories:
           lead_assessor_form: Образац главног процењивача
+          mettl: ОМИЉЕНО
+          simulation: Симулација
+          skillvue: ОМИЉЕНО
         description: Опис
         id: ИД
         name: Име
+        types:
+          mettl: Меттл Процена
+          simulation: Симулација Процена
+          skillvue: Скиллвуе Процена
       assign:
         statuses:
           not_started: Нов
@@ -142,7 +154,9 @@ sr-Cyrl:
   admin_jobs:
     attrs:
       operations:
+        bulk_generate_user_campaign_ai_artifact_results: Булк Генерате Цампаигн АИ Артифацт Резултати
         copy_as_template_or_campaign: Копирај кампању као шаблон
+        import_assessment_translations: Увоз Процена Преводи
         import_skill_rater_taxonomies: Увоз таксономија процењивача вештина
       statuses:
         in_progress: У току
@@ -179,8 +193,15 @@ sr-Cyrl:
     fields:
       category:
         lead_assessor_form: Образац главног процењивача
+        mettl: ОМИЉЕНО
+        simulation: Симулација
+        skillvue: ОМИЉЕНО
       status:
         in_progress: У току
+      type:
+        mettl: Меттл Процена
+        simulation: Симулација Процена
+        skillvue: Скиллвуе Процена
     instructions:
       begin_assessment: Почетак
       cancel: Откажи
@@ -209,6 +230,10 @@ sr-Cyrl:
         mic: Микрофон
       discard: Одбаци
       discard_record_again: Одбаци и поново сними
+      error_while_discarding: Фаилед то одбацити постојећи видео
+      error_while_uploading: Дошло је до непознате грешке приликом завршетка отпремања
+      failed_to_access_permission: Није успео да приступи камери и микрофону
+      failed_to_complete_upload: 'Није успело да се заврши отпремање: Нема доступних детаља о УРЛ-у'
       media_recorder:
         failure: Овај прегледач не подржава снимање видеа. Користите Chrome или Firefox за снимање видеа.
         success: Молимо вас да дозволите коришћење камере и микрофона за снимање звука и видеа
@@ -516,6 +541,7 @@ sr-Cyrl:
       view_detail: Виев Детаил
     column:
       action: Акција
+      ai_assistant: АИ помоћник
       category: Категорија
       created_at: Направљено у
       default_language: Подразумевани језик
@@ -538,7 +564,9 @@ sr-Cyrl:
       confirm: Потврди
       continue: Настави
       default: Подразумевано
+      disabled: Онемогућен
       download: Преузми
+      enabled: Омогућен
       na: Н/Д
       ok: У реду
       response: Одговор
@@ -941,7 +969,12 @@ sr-Cyrl:
   idp_templates:
     errors:
       user_idp_template_not_found: Није вам додељен ниједан шаблон за идентификацију личности.
+  languages:
+    sl: Словеншчина
+  languages_localized:
+    sl: Словеншчина
   licenses:
+    enabled: Омогућен
     title: Лиценца
   mailer:
     copyright:
@@ -996,6 +1029,10 @@ sr-Cyrl:
       view: Прикажи извештај
     columns:
       default_language: Подразумевани језик
+    fields:
+      provider:
+        mettl: ОМИЉЕНО
+        skillvue: ОМИЉЕНО
     language: Језик извештаја
     modules:
       campaign_factors_table:

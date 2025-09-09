@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  include SetCurrentCountry
+
+  before_action :set_current_country, only: :request_inspect
   skip_before_action :authenticate_user!, only: %I[identify upgrade privacy_statement]
   skip_before_action :set_client_by_subdomain, only: %i[privacy_statement request_inspect]
 
@@ -66,6 +69,8 @@ class HomeController < ApplicationController
     raise ActionController::RoutingError, 'Not Found' unless current_user.is?(:superadmin)
 
     @headers = request.headers.to_h
+    @ip = request.remote_ip
+    @country = Current.user_country
 
     render 'request_inspect', layout: false
   end

@@ -88,7 +88,9 @@ export const BulkSchedule: React.FC<Props> = ({
     <Drawer width="60%" title={I18n.t('administration.scheduling.subjects.form_title')} open={open} onClose={onClose}>
       <Avatar.Group
         size="large"
-        maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
+        max={{
+          style: { color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' },
+        }}
       >
         {subjects.map(subject => <ResourceAvatar name={subject?.user?.fullName || ''} />)}
       </Avatar.Group>

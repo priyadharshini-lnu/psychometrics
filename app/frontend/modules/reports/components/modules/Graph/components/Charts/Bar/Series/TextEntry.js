@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import AppStore from '~/modules/reports/store/AppStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
+import { getColorForGraphValue, isGraphValueCondition } from '~/modules/reports/utils/GraphValueCondition'
 
 export const Functions = {
   Count (data) {
@@ -9,11 +10,14 @@ export const Functions = {
 }
 export default {
   series (results, question, model, func = 'Count') {
-    const colors = _.map(model.props.colors, 'color')
+    const useColorsFromGraphValueConditions = isGraphValueCondition(model.props.textConditionType)
+    const colors = !useColorsFromGraphValueConditions ? _.map(model.props.colors, 'color') : []
     if (Array.isArray(results)) {
       return _.map(results, (res, i) => {
         func = Functions[func] ? Functions[func] : Functions.Count
         const data = func(res.results.questions[question.id])
+        const barColor = useColorsFromGraphValueConditions
+          ? getColorForGraphValue(model.props.graphValueConditions, data) : undefined
         return {
           name: res.desc || AppStore.report.getFilterNameById(res.filterId),
           color: colors[i],
@@ -21,6 +25,7 @@ export default {
             name: I18nStore.tQuestion(question, 'questionText'),
             y: data,
             drilldown: 'Count',
+            color: barColor,
           }],
         }
       })

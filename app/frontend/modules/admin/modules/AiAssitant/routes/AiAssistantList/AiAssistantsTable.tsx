@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, MenuProps, Typography,
+  Button, MenuProps, message, Typography,
 } from 'antd'
 import { AiAssistant } from 'modules/admin/modules/AiAssitant/core/aiAssistant'
 import { useNavigate } from 'react-router-dom'
@@ -127,7 +127,9 @@ const getActionsMenuProps = ({ aiAssistant }: ActionMenuData):MenuProps => {
   const navigate = useNavigate()
 
   const handleDelete = () => {
-    resource.removeResource(aiAssistant.id)
+    resource.removeResource(aiAssistant.id).catch((error) => {
+      message.error(error?.base?.[0].title)
+    })
   }
 
   const menuItems = [

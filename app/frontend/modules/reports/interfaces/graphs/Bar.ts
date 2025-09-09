@@ -4,7 +4,7 @@ export interface PreviewModel extends BasePreviewModel<Props, 'Graph'> {}
 
 export interface PropertiesModel extends BasePropertiesModel<Props, 'Graph'> {}
 
-interface Props {
+interface Props extends TextCondition {
   dataFormat: string
   graphicalRepresentation: string
   graphicalPosition: string
@@ -40,4 +40,18 @@ interface Props {
   gaugePercentage: boolean
   rounded: boolean
   reverse: boolean
+}
+
+export type TextCondition = {
+  textConditionType?: 'default' | 'graph_value'
+  graphValueConditions?: Array<{
+    conditions: Array<Condition>
+    color: string
+  }>
+}
+
+type Condition = {
+  prefix: string
+  predicate: 'EqualTo' | 'NotEqualTo' | 'GreaterThan' | 'GreaterThanOrEqual' | 'LessThan' | 'LessThanOrEqual'
+  value: number | null
 }

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
+  include GeoFilterable
+
   audited except: %i[encrypted_pdf_password encrypted_pdf_password_iv]
 
   include RansackSearchableFields
@@ -38,6 +40,7 @@ class Campaign < ApplicationRecord
   has_many :campaign_factor_values, dependent: :destroy
   has_many :campaign_assessor_assessment_factor_weights, dependent: :destroy
   has_many :factor_benchmark_scores, dependent: :destroy
+  has_many :campaign_ai_artifacts, class_name: 'AI::CampaignArtifact', dependent: :destroy
 
   delegate :fixed_time?,
            :fixed_time,
@@ -109,6 +112,13 @@ class Campaign < ApplicationRecord
   scope :templates, -> { where(is_template: true) }
   scope :not_templates, -> { where(is_template: false) }
 
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    joins(:project).
+      where.not(clients: { tte_id: restricted_client_subquery })
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name status type start_date end_date]
   end
@@ -139,13 +149,17 @@ class Campaign < ApplicationRecord
   end
 
   def datasheet_columns
-    project_datasheet_columns = project.datasheet&.sheet_columns.to_a
-    campaign_datasheet_columns = datasheet&.sheet_columns.to_a
+    datasheet_column_records.map { |c| { 'name' => c.name, 'type' => c.humanize_type } }
+  end
+
+  def datasheet_column_records
+    project_datasheet_columns = project.datasheet&.sheet_columns.to_a || []
+    campaign_datasheet_columns = datasheet&.sheet_columns.to_a || []
     column_names = (project_datasheet_columns + campaign_datasheet_columns).map(&:name).uniq
     column_names.map do |column_name|
       campaign_column = campaign_datasheet_columns.find { |dc| dc.name == column_name }
       campaign_column || project_datasheet_columns.find { |dc| dc.name == column_name }
-    end.map { |c| { 'name' => c.name, 'type' => c.humanize_type } }
+    end
   end
 
   def assessor_assessments

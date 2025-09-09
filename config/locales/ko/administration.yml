@@ -291,6 +291,48 @@ ko:
             manage: 관리
             title: 워크샵
             view: 보기
+    ai_artifacts:
+      artifact_results: 아티팩트 결과
+      code: 코드
+      form:
+        add_assessment: 평가 추가
+        ai_assistant: AI 어시스턴트
+        assessments: 평가
+        campaign_factors: 캠페인 요인
+        configuration: 구성
+        datasheet: 데이터시트
+        datasheet_columns: 데이터시트 열
+        include_all_datasheet_columns: 모든 데이터시트 열 포함
+        no_assessment_selected: 아직 추가된 평가가 없습니다. 시작하려면 "추가"를 클릭하십시오.
+        questions_required: 하나 이상의 질문을 선택해야 합니다.
+        select_ai_assistant: AI 어시스턴트 선택
+        select_assessment: 평가 선택
+        select_campaign_factors: 캠페인 요인 선택
+        select_datasheet_columns: 데이터시트 열 선택
+        select_questions: 질문 선택
+        title: AI 아티팩트
+      generate: 창조하다
+      generate_result_info_message: 결과가 생성되고 있으니 페이지를 새로 고쳐 업데이트된 결과를 확인하세요.
+      generate_results: 결과 생성
+      generated_at: 생성 날짜
+      generated_at_time: "%{time}에 생성됨"
+      generated_value: 생성된 가치
+      id: 아이디
+      key: 열쇠
+      name: 이름
+      parsed_dependencies:
+        help: 아티팩트 결과 생성을 위해 AI Assistant에서 사용하는 사용자에 대한 구문 분석된 종속성
+        title: 구문 분석된 종속성
+        view: 구문 분석된 종속성 보기
+      playground: 운동장
+      playground_info: 샘플 데이터로 아티팩트를 테스트하여 생성된 결과를 미리 봅니다.
+      playground_placeholder: 테스트 데이터 입력
+      raw: 날것의
+      tabs:
+        results: 결과
+        settings: 설정
+      test_generate: 테스트 생성
+      unsaved_changes: 저장되지 않은 변경 사항이 있는 경우 양식을 제출하여 Playground에서 업데이트된 응답을 생성하는 것이 좋습니다.
     ai_assistants:
       actions:
         create: AI 어시스턴트 만들기
@@ -298,9 +340,34 @@ ko:
         playground: 놀이터
       ai_assistants: AI 어시스턴트
       ai_assistants_playground: AI 어시스턴트 플레이그라운드
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: 평가 구성에 평가의 ID가 없습니다.
+            assessment_missing_questions: 평가 구성에 평가 %{assessment_id}에 대한 질문이 누락되었습니다.
+            no_assessments_configured: 평가가 구성되지 않았습니다.
+            no_assessments_configured_for_artifact: 이 아티팩트에 대한 평가가 구성되지 않았습니다
+            no_completed_results: 평가 %{assessment_name}에 대해 완료된 평가 결과를 찾을 수 없습니다.
+            no_valid_assessment_data: 유효한 평가 데이터가 없습니다.
+          base:
+            dependency_not_configured: 종속성 '%{dependency}'이 구성되지 않았습니다.
+          campaign_factor:
+            factor_empty_value: 캠페인 요인 '%{code}'(%{name})의 사용자 %{email} 값이 비어 있습니다.
+            factor_no_value: 캠페인 요인 '%{code}'(%{name})에는 사용자 %{email}에 할당된 값이 없습니다.
+            no_campaign_factors_configured: 이 아티팩트에 대해 구성된 캠페인 요소가 없습니다
+            no_valid_factor_data: 유효한 캠페인 요인 데이터가 없습니다.
+          datasheet:
+            column_no_value: "'%{column}'열에는 사용자 %{email} 값이 없습니다."
+            no_datasheet_columns_configured: 특정 데이터시트 열이 구성되지 않았습니다.
+            no_datasheet_configured: 이 캠페인에 대해 구성된 데이터시트가 없습니다.
+            no_datasheet_data: 사용자 %{email}에 사용할 수 있는 데이터시트 데이터가 없습니다.
+            user_not_found_in_datasheet: 캠페인 데이터시트에서 사용자를 찾을 수 없음
+      campaign_ai_artifacts: 캠페인 AI 아티팩트
       column:
         provider: 공급자
       created_successfully: AI 어시스턴트가 성공적으로 생성되었습니다.
+      errors:
+        cannot_delete_in_use: AI 어시스턴트 '%{name}'을 사용 중이므로 삭제할 수 없습니다.
       form:
         add_output_schema_key: 출력 스키마 키 추가
         dependencies: 종속성
@@ -319,6 +386,11 @@ ko:
         system_prompt: 시스템 프롬프트
         type: 유형
         user_prompt: 사용자 프롬프트
+      selector:
+        choose_artifact: AI 아티팩트 선택
+        choose_schema_key: 스키마 키 선택
+        no_assistants_found: AI 어시스턴트를 찾을 수 없습니다.
+        placeholder: AI 어시스턴트 선택
       updated_successfully: AI 어시스턴트가 성공적으로 업데이트되었습니다.
     any: " - 모든 - "
     api:
@@ -358,6 +430,8 @@ ko:
         exceeded_subjects_count: 캠페인에 %{users} 주체가 있습니다. 초대당 %{count}명의 주체만 추가할 수 있습니다
         id: ID
         invites: 초대
+        name: 이름
+        name_placeholder: 초대 이름 입력
         next: 다음
         not_selected: 선택되지 않음
         requests: 요청
@@ -435,6 +509,7 @@ ko:
       errors:
         doesnt_have_header: "'%{sub_header}'에 헤더가 없습니다"
         invalid_headers: '다음 헤더가 잘못되었습니다: %{headers}'
+        invalid_question: 잘못된 질문 ID
         invalid_scores: 요인 %{factor_name}의 점수가 유효하지 않습니다. 점수는 쉼표로 구분된 숫자 값이어야 합니다
         invalid_sub_header: "'%{sub_header}'는 '%{header}' 헤더에 대한 유효한 하위 헤더가 아닙니다"
         scores_not_allowed: 객관식(정답 하나) 및 행렬형 문제에 대해서만 점수를 추가할 수 있습니다
@@ -773,13 +848,9 @@ ko:
       users_import: 가져오기
     bulk_reports:
       create:
-        no_data: 데이터 없음
         successfully: 보고서가 작성 중이며 준비되면 이메일로 알려드립니다
       download:
         removed: 제거됨
-      form:
-        end_date: 종료 날짜
-        start_date: 시작 날짜
       mailer:
         subject: 대량 보고서 다운로드
       new:
@@ -1092,6 +1163,7 @@ ko:
         is_active: 활성
         name: 이름
         no_permission_message: 수정할 수 있는 권한이 없습니다
+        title: 사용자
         updated_by: 업데이트 담당자
       validations:
         dates:
@@ -1576,12 +1648,16 @@ ko:
       add: 추가
       back: 뒤로
       cancel: 취소
+      code: 코드
       disabled: 디아스블레드
       download_sample_file: 샘플 파일 다운로드
       enabled: 활성화됨
       import:
         failure_msg: 파일을 가져오는 동안 오류가 발생했습니다.
+      instructions: 지시
+      loading: 로드...
       minute: 분
+      name: 이름
       next: 다음
       reset: 초기화
       save: 저장
@@ -1623,6 +1699,7 @@ ko:
           {{schedule_end_date}} - 예약 종료일
         campaign: 캠페인
         campaign_assessment_group: 캠페인 평가 그룹
+        cc_recipients: 참조 수신자
         client: 클라이언트
         completion: 완료
         custom: 사용자 지정
@@ -1715,6 +1792,7 @@ ko:
         back: 뒤로
         body: 'Body:'
         campaign: '캠페인:'
+        cc_recipients: 'CC 수신자:'
         client: 'Client:'
         communication_type: '통신 유형:'
         delivery_rule: '배달 규칙:'
@@ -2212,7 +2290,16 @@ ko:
       self_rating: 자체 평가 활성화
       show_reflections: 반사 표시
       skill_gap_report: 기술 격차 보고서
+      skill_source_preference: 스킬 소스
+      skill_sources:
+        from_ai: 일반 AI 지식에서
+        from_template: 템플릿 및 매핑에서
       skills: 기술
+      skills_privacy_messages:
+        made_private: 스킬 '%{skill_name}'이 비공개로 표시되어 관리자에게 숨겨집니다.
+        made_public: 이제 '%{skill_name}' 스킬이 관리자에게 표시됩니다.
+        skill_not_found: 스킬을 찾을 수 없음
+        unauthorized: 이 기술을 수정할 수 있는 권한이 없음
       skills_updated: IDP 스킬 업데이트 성공
       status:
         draft: 초안
@@ -2441,6 +2528,10 @@ ko:
         content: "'%{subjectEmail}' 이메일의 제목을 제거하시겠습니까?"
         success: 이메일 '%{subjectEmail}''이 포함된 제목을 성공적으로 제거했습니다.
         title: 제목 제거
+      resend_invite:
+        content: 선택한 주제에 초대장을 다시 보냅니다. 계속 진행하시겠습니까?
+        success: 초대장이 성공적으로 재전송되었습니다.
+        title: 초대 다시 보내기
       statuses:
         accepted: 수락됨
         cancelled: 취소됨
@@ -2544,6 +2635,7 @@ ko:
     message: 메시지
     meta_title: 관리 패널
     navigation:
+      ai_artifacts: AI 아티팩트
       ai_assistants: AI 어시스턴트
       assessments: 평가
       assessments_reports: 평가 및 보고서
@@ -2783,8 +2875,8 @@ ko:
       errors:
         create:
           invalid_format: 레벨 정의는 정의의 배열이어야 합니다.
-          level_definition_must_exist: 레벨 정의는 비워둘 수 없습니다.
           level_definition_must_match_level: 정확히 %{expected} 레벨을 포함해야 하지만 %{actual} 레벨이 제공되었습니다.
+          level_description_must_exist: 수준 설명은 비워둘 수 없습니다.
           level_name_must_exist: 레벨 이름은 비워둘 수 없습니다.
           must_be_unique: 고유해야 합니다.
           proficiency_level_exists: 이 스킬과 프로젝트의 숙련도 레벨이 이미 존재합니다.
@@ -3252,6 +3344,29 @@ ko:
           repeat_modules: 선택한 모듈은 익스트라 삽입된 페이지에서 반복되며 모듈 이름을 참조합니다
         module_pagination: 모듈 페이지 매김
         repeat_modules: 반복 모듈
+      property_panel:
+        add_new_condition: 새 조건 추가
+        apply_color_label: 그런 다음 다음 색상을 적용합니다.
+        graph_condition_types:
+          default: 기본값
+          graph_value: 그래프 값
+        graph_value_condition_not_supported_msg: 그래프 값 조건은 이 그래프 유형에 대해 지원되지 않습니다. 이 옵션은 현재 아래 그래프 유형에만 사용할 수 있습니다.
+        graph_value_conditions_title: 그래프 값 조건
+        if_graph_value_is: '그래프 값이 다음과 같은 경우:'
+        manage_graph_value_condition: 그래프 값 조건 관리
+        manage_styles_condition: 스타일 관리 조건
+        missing_value: 누락된 값
+        predicates:
+          equal_to: 같음
+          greater_than: 보다 큼
+          greater_than_or_equal: 크거나 같음
+          less_than: 미만
+          less_than_or_equal: 작거나 같음
+          not_equal_to: 같지 않음
+        prefixes:
+          and: 그리고
+          or: 또는
+        text_condition_type: '텍스트 조건 유형:'
     report_families:
       create:
         successfully: 보고서 번들 %{name}을(를) 성공적으로 만들었습니다.
@@ -3310,6 +3425,19 @@ ko:
         pending_qc: 대기 중인 QC
         qc_completed: QC 완료
         qc_in_progress: QC 진행 중
+    report_settings:
+      data_source_types:
+        assessment: 평가
+        campaign_factors: 캠페인 요인
+        datasheet: 데이터시트
+        report_data: 보고서 데이터
+      tabs:
+        campaign_ai_artifacts: 캠페인 AI 아티팩트
+        campaign_factors: 캠페인 요인
+        data_sheets: 데이터 시트
+        page_settings: 페이지 설정
+        translations: 번역
+      title: 보고서 설정
     reports:
       bulk_marked_as_done: 대량 완료로 표시됨
       bulk_upload:
@@ -4015,6 +4143,7 @@ ko:
         skill_types:
           behavioural: 행동
           other: 기타
+          qualification: 자격
           technical: 기술
       property_panel:
         add_n_a_option: N/A 옵션 추가
@@ -4358,7 +4487,7 @@ ko:
         new:
           header: 번역 가져오기
       import:
-        successfully: 번역을 성공적으로 가져왔습니다
+        successfully_scheduled: 번역 가져오기가 성공적으로 예약되었습니다.
       reports:
         export: 번역 내보내기
         import: 번역 가져오기

@@ -55,11 +55,11 @@ zh-HK:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 行 %{row}：%{field} 的 %{value} 值重複
+              duplicate_value: "%{sheet_name}，第 %{row} 列：%{field}的重複值%{value}"
               invalid_format: 請上傳 xlsx 檔案
               missing_headers: "%{sheet_name} 工作表缺少所需的標題： %{headers}"
               missing_sheets: 缺少所需的工作表：%{sheets}
-              missing_value: 行 %{row}：缺少 %{field} 的值
+              missing_value: "%{sheet_name}，第 %{row} 列：%{field} 的遺漏值"
             project:
               must_exist: 專案必須存在
   activerecord:
@@ -67,9 +67,16 @@ zh-HK:
       assessment:
         categories:
           lead_assessor_form: 首席評估員表格
+          mettl: 梅特爾
+          simulation: 模擬
+          skillvue: 技能
         description: 說明
         id: ID
         name: 名稱
+        types:
+          mettl: Mettl 評估
+          simulation: 模擬評估
+          skillvue: Skillvue 評估
       assign:
         statuses:
           not_started: 新款
@@ -186,9 +193,11 @@ zh-HK:
   admin_jobs:
     attrs:
       operations:
+        bulk_generate_user_campaign_ai_artifact_results: 批量生成活動 AI 成品結果
         copy_as_template_or_campaign: 複製活動作為範本
         export_job_roles_translations: 匯出工作角色翻譯
         export_proficiency_levels: 出口能力等級
+        import_assessment_translations: 匯入評量翻譯
         import_job_roles_translations: 匯入工作角色翻譯
         import_proficiency_level_translations: 進口能力等級翻譯
         import_skill_rater_taxonomies: 匯入技能評核員分類標準
@@ -229,9 +238,15 @@ zh-HK:
     fields:
       category:
         lead_assessor_form: 首席評估員表格
+        mettl: 梅特爾
+        simulation: 模擬
         skillvue: Skillvue
       status:
         in_progress: 進行中
+      type:
+        mettl: Mettl 評估
+        simulation: 模擬評估
+        skillvue: Skillvue 評估
     instructions:
       begin_assessment: 開始
       cancel: 取消
@@ -265,6 +280,10 @@ zh-HK:
         mic: 麥克風
       discard: 放棄
       discard_record_again: 丟棄與重新記錄
+      error_while_discarding: 無法捨棄現有視訊
+      error_while_uploading: 完成上傳時發生未知錯誤
+      failed_to_access_permission: 無法存取攝影機和麥克風
+      failed_to_complete_upload: 無法完成上傳：沒有可用的 URL 詳細資料
       media_recorder:
         failure: 此瀏覽器不支援錄影。請使用 Chrome 或 Firefox 錄影
         success: 請允許使用相機和咪高峰錄音及錄影
@@ -601,6 +620,7 @@ zh-HK:
       view_detail: 檢視詳細內容
     column:
       action: 操作
+      ai_assistant: AI助手
       category: 類別
       code: 代碼
       created_at: 建立時間
@@ -624,7 +644,9 @@ zh-HK:
       confirm: 確認
       continue: 繼續
       default: 預設
+      disabled: 已停用
       download: 下載
+      enabled: 已啟用
       na: 不適用
       ok: 好
       refer_export_file: 請參閱匯出功能，擷取可用於在此匯入的範本。
@@ -1119,7 +1141,11 @@ zh-HK:
       user_idp_template_not_found: 尚未為您指定 IDP 模版。
   languages:
     ro: 羅馬尼亞
+    sl: 斯洛文什奇納
+  languages_localized:
+    sl: 斯洛文什奇納
   licenses:
+    enabled: 已啟用
     title: 許可證
   mailer:
     copyright:
@@ -1174,6 +1200,10 @@ zh-HK:
       view: 查看報告
     columns:
       default_language: 預設語言
+    fields:
+      provider:
+        mettl: 梅特爾
+        skillvue: 技能
     form:
       load_from_skillvue: 從 Skillvue 載入
     language: 報告語言

@@ -63,6 +63,8 @@ end
 
 Warden::Manager.before_failure do |env, opts|
   request = Rack::Request.new(env)
+  email = request.params.dig('user', 'email')
+  next if email.blank?
 
   if request.env[:sso].blank?
     session = request.env['action_dispatch.request.unsigned_session_cookie']
@@ -70,7 +72,7 @@ Warden::Manager.before_failure do |env, opts|
     reason = opts[:message] ? "devise.#{opts[:message]}" : "devise.#{opts[:action]}"
     AuditLogModule.audit! action, nil,
                           record_type: 'User',
-                          payload: { email: request.params.dig('user', 'email') },
+                          payload: { email: email },
                           outcome: 'failed',
                           request_details: { ip: request.ip, request_id: request.env['action_dispatch.request_id'] },
                           interface_details: { user_agent: request.user_agent },

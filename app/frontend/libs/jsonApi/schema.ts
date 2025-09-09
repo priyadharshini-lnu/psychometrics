@@ -39,6 +39,7 @@ import { Schema as proficiencyLevelSchema } from '~/modules/admin/modules/client
 import { Schema as reflectionQuestionSchema } from '~/modules/admin/modules/client/core/reflectionQuestion'
 import { Schema as aiAssistantSchema } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { Schema as userIdpPlanSchema } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
+import { Schema as AiArtifactsSchema } from '~/modules/admin/modules/campaigns/core/aiArtifacts'
 
 export const Schema = {
   clients: clientSchema,
@@ -77,4 +78,5 @@ export const Schema = {
   reflection_questions: reflectionQuestionSchema,
   ai_assistants: aiAssistantSchema,
   user_idp_plans: userIdpPlanSchema,
+  ai_artifacts: AiArtifactsSchema,
 }

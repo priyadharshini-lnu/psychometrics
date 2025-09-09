@@ -26,3 +26,18 @@ export const DEPENDENCY_TYPES = {
     name: 'Campaign Factors',
   },
 }
+
+export const SCHEMA_KEY_TYPES = {
+  string: {
+    value: 'string',
+    label: 'String',
+  },
+  html: {
+    value: 'html',
+    label: 'HTML',
+  },
+  markdown: {
+    value: 'markdown',
+    label: 'Markdown',
+  },
+}

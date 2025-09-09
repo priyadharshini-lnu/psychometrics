@@ -4,7 +4,8 @@ module Reports
   class ResultSerializer < Panko::Serializer
     attributes :id, :status, :scoring, :answers, :user_id, :assessment_id, :data_sheet, :relationship,
                :norm_id, :embedded_data, :manager_evaluation_status, :subject_datasheet, :external_scoring,
-               :occupations, :innovation_styles, :user, :media_responses, :campaign_factor_results
+               :occupations, :innovation_styles, :user, :media_responses,
+               :campaign_factor_results
 
     def status
       object.real_status

@@ -2,6 +2,7 @@
 
 class Assessors::EvaluationsController < Assessors::BaseController
   include ::Threesixty::SetAssessmentLocale
+  skip_before_action :enforce_geo_restriction, except: :evaluate
   before_action :set_assessor_assessment, only: %i[show new_response]
   before_action :set_subject_user_assessment, only: %i[subject_assessment]
 
@@ -49,6 +50,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
   end
 
   def show
+    @assessor_assessment.campaign.client.check_geo_restriction!
     user_result = @assessor_assessment.users_result
     attributes = {
       last_activity_at: DateTime.current,
@@ -70,6 +72,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
   end
 
   def new_response
+    @assessor_assessment.campaign.client.check_geo_restriction!
     unless @assessor_assessment.completed?
       return redirect_to assessors_campaign_evaluation_url(
         @assessor_assessment.campaign_id, @assessor_assessment.subject_id, tab: @assessor_assessment.assessment_id,
@@ -89,6 +92,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
   end
 
   def subject_assessment
+    @subject_user_assessment.campaign.client.check_geo_restriction!
     user_result = @subject_user_assessment.users_result
     @subject_user_assessment.update(last_activity_at: DateTime.current)
 

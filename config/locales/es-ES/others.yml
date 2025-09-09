@@ -370,11 +370,11 @@ es-ES:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Fila %{row}: Valor duplicado %{value} para %{field}'
+              duplicate_value: "%{sheet_name}, Fila %{row}: Valor duplicado %{value} para %{field}"
               invalid_format: Por favor, sube un archivo xlsx
               missing_headers: 'La hoja %{sheet_name} no tiene los encabezados requeridos: %{headers}'
               missing_sheets: 'Faltan hojas requeridas: %{sheets}'
-              missing_value: 'Fila %{row}: Falta valor para %{field}'
+              missing_value: "%{sheet_name}, Fila %{row}: Falta el valor de %{field}"
             project:
               must_exist: El proyecto debe existir
         update_norm:
@@ -434,10 +434,13 @@ es-ES:
           iiht: IIHT
           lead_assessor_form: Formulario del asesor principal
           meeting: Reunión
+          mettl: Mettl
           organisational: Encuestas
           pearson: Pearson
           psychometric: Evaluación
           saville: Saville
+          simulation: Simulación
+          skillvue: Skillvue
           threesixty: campaña 360
         category: Categoría
         created_at: Fecha de creación
@@ -451,8 +454,11 @@ es-ES:
           common: Evaluación TTE
           hogan: Hogan
           iiht: Evaluación del IIHT
+          mettl: Evaluación de Mettl
           pearson: Evaluación Pearson
           saville: Evaluación Saville
+          simulation: Evaluación de la simulación
+          skillvue: Evaluación de habilidades
         updated_at: Fecha de modificación
       assign:
         completed_at: Fecha de finalización
@@ -796,6 +802,7 @@ es-ES:
         bulk_create_workshop_invites: Envío masivo de invitaciones al Assessment Center
         bulk_download_reports: Descarga masiva de informes
         bulk_download_user_reports: Descarga masiva de informes de usuario
+        bulk_generate_user_campaign_ai_artifact_results: Generar de forma masiva resultados de artefactos de IA de campaña
         bulk_regenerate_reports: Regenerar informes de campaña
         bulk_regenerate_threesixty_reports: Regenerar sesenta informes temáticos
         bulk_regenerate_user_reports: Regenerar informes de usuario
@@ -828,6 +835,7 @@ es-ES:
         external_assessment_export: Exportación de resultados externos
         import_accesssheet: Importar Accessheet
         import_assessment_questions: Preguntas de evaluación de las importaciones
+        import_assessment_translations: Traducciones de evaluación de importaciones
         import_assessors: Evaluadores de importaciones
         import_campaign_factors: Factores de la campaña de importación
         import_datasheet: Hoja de datos de importación
@@ -1036,6 +1044,7 @@ es-ES:
         pearson: Evaluación Pearson
         saville: Evaluación Saville
         simulation: Evaluación de la simulación
+        skillvue: Evaluación de habilidades
     flow:
       end_assessment_modal:
         custom_message: Mensaje personalizado de fin de evaluación
@@ -1109,6 +1118,10 @@ es-ES:
         mic: Mic
       discard: Descartar
       discard_record_again: Descartar y volver a grabar
+      error_while_discarding: No se pudo descartar el video existente
+      error_while_uploading: Se produjo un error desconocido al completar la carga
+      failed_to_access_permission: No se pudo acceder a la cámara y al micrófono
+      failed_to_complete_upload: 'No se pudo completar la carga: no hay detalles de URL disponibles'
       media_recorder:
         failure: Su navegador no admite la grabación de vídeo. Use Chrome o Firefox para poder grabar vídeo.
         success: Permita el uso de la cámara y el micrófono para grabar audio y vídeo
@@ -1746,6 +1759,7 @@ es-ES:
     column:
       action: Acción
       active: Activo
+      ai_assistant: Asistente de IA
       allow_multiple_responses: Permitir respuestas múltiples
       approval_notification_list: Lista de usuarios de notificación de aprobación
       approvers_list: Lista de aprobadores
@@ -1836,7 +1850,9 @@ es-ES:
       continue: Continuar
       copied: Copiado al portapapeles
       default: Por defecto
+      disabled: Deshabilitado
       download: Descargar
+      enabled: Habilitado
       file: Archivo
       global_import: "¿Es Global Import?"
       minutes: Actas
@@ -2831,6 +2847,8 @@ es-ES:
     zh-HK: Chino (Hong Kong)
     zh-Hant: Chino - Tradicional
     zh-TW: Chino (Taiwán)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Activo
     campaign_name: Nombre de la campaña

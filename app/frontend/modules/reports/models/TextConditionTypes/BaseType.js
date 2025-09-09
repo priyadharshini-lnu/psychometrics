@@ -1,4 +1,5 @@
 import ResultStore from '~/modules/reports/store/ResultStore'
+import { GRAPH_CONDITION_TYPES } from '~/modules/reports/consts/Report'
 
 class BaseType {
   constructor (condition, assessmentId) {
@@ -6,6 +7,7 @@ class BaseType {
     this.filterScope = condition.props.filterScope
     this.assessmentId = condition.assessmentId || assessmentId
     this.skipRoundingValues = condition.collection.module.props.skipRoundingValues
+    this.textConditionType = condition.collection.module.props.textConditionType || GRAPH_CONDITION_TYPES.DEFAULT
   }
 
   isFilled () {

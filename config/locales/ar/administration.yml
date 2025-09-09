@@ -291,6 +291,48 @@ ar:
             manage: إدارة
             title: ورش العمل
             view: منظر
+    ai_artifacts:
+      artifact_results: نتائج القطع الأثرية
+      code: رمز
+      form:
+        add_assessment: إضافة تقييم
+        ai_assistant: مساعد الذكاء الاصطناعي
+        assessments: تقييمات
+        campaign_factors: عوامل الحملة
+        configuration: تكوين
+        datasheet: ورقة البيانات
+        datasheet_columns: أعمدة ورقة البيانات
+        include_all_datasheet_columns: تضمين جميع أعمدة ورقة البيانات
+        no_assessment_selected: لم تتم إضافة أي تقييمات حتى الآن. انقر فوق "إضافة" للبدء.
+        questions_required: يجب تحديد سؤال واحد على الأقل
+        select_ai_assistant: حدد مساعد الذكاء الاصطناعي
+        select_assessment: حدد التقييم
+        select_campaign_factors: حدد عوامل الحملة
+        select_datasheet_columns: حدد أعمدة ورقة البيانات
+        select_questions: حدد الأسئلة
+        title: قطعة أثرية الذكاء الاصطناعي
+      generate: ولد
+      generate_result_info_message: يتم إنشاء النتائج ، يرجى تحديث الصفحة لرؤية النتائج المحدثة.
+      generate_results: توليد النتائج
+      generated_at: تم إنشاؤه في
+      generated_at_time: تم إنشاؤه في %{time}
+      generated_value: القيمة المولدة
+      id: معرف
+      key: مفتاح
+      name: اسم
+      parsed_dependencies:
+        help: التبعيات التي تم تحليلها للمستخدم المستخدم من قبل مساعد الذكاء الاصطناعي لإنشاء نتائج البيانات الاصطناعية
+        title: التبعيات التي تم تحليلها
+        view: عرض التبعيات التي تم تحليلها
+      playground: ملعب
+      playground_info: اختبر الأداة الخاصة بك باستخدام عينة البيانات لمعاينة النتائج التي تم إنشاؤها.
+      playground_placeholder: إدخال بيانات الاختبار
+      raw: نيء
+      tabs:
+        results: النتائج
+        settings: اعدادات
+      test_generate: اختبار التوليد
+      unsaved_changes: التغييرات غير المحفوظة موجودة ، ضع في اعتبارك إرسال نموذج لإنشاء استجابة محدثة من Playground.
     ai_assistants:
       actions:
         create: إنشاء مساعد ذكاء اصطناعي
@@ -298,9 +340,34 @@ ar:
         playground: ساحة اللعب
       ai_assistants: مساعدو الذكاء الاصطناعي
       ai_assistants_playground: ملعب مساعد الذكاء الاصطناعي
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: يفتقد تكوين التقييم إلى معرف التقييم
+            assessment_missing_questions: يفتقد تكوين التقييم إلى أسئلة التقييم %{assessment_id}
+            no_assessments_configured: لم يتم تكوين أي تقييمات
+            no_assessments_configured_for_artifact: لم يتم تكوين أي تقييمات لهذه الأداة
+            no_completed_results: لم يتم العثور على نتائج تقييم مكتملة للتقييم %{assessment_name}
+            no_valid_assessment_data: لا توجد بيانات تقييم صالحة متاحة
+          base:
+            dependency_not_configured: لم يتم تكوين التبعية "%{dependency}"
+          campaign_factor:
+            factor_empty_value: عامل الحملة "%{code}" (%{name}) له قيمة فارغة %{email} المستخدم
+            factor_no_value: عامل الحملة "%{code}" (%{name}) ليس له قيمة مخصصة %{email} المستخدم
+            no_campaign_factors_configured: لم يتم ضبط أي عوامل حملة لهذه البيانات الاصطناعية
+            no_valid_factor_data: لا تتوفر بيانات صالحة لعوامل الحملة
+          datasheet:
+            column_no_value: العمود "%{column}" ليس له قيمة للمستخدم %{email}
+            no_datasheet_columns_configured: لم يتم تكوين أعمدة ورقة بيانات محددة
+            no_datasheet_configured: لم يتم ضبط ورقة بيانات لهذه الحملة
+            no_datasheet_data: لا توجد بيانات ورقة بيانات متاحة %{email} المستخدم
+            user_not_found_in_datasheet: لم يتم العثور على المستخدم في ورقة بيانات الحملة
+      campaign_ai_artifacts: القطع الأثرية للحملة في الذكاء الاصطناعي
       column:
         provider: المزود
       created_successfully: تم إنشاء مساعد الذكاء الاصطناعي بنجاح.
+      errors:
+        cannot_delete_in_use: لا يمكن حذف "%{name}" الذكاء الاصطناعي Assistant لأنه قيد الاستخدام.
       form:
         add_output_schema_key: إضافة مفتاح مخطط الإخراج
         dependencies: التبعيات
@@ -319,6 +386,11 @@ ar:
         system_prompt: موجه النظام
         type: النوع
         user_prompt: موجه المستخدم
+      selector:
+        choose_artifact: اختر قطعة الذكاء الاصطناعي
+        choose_schema_key: اختر مفتاح المخطط
+        no_assistants_found: لم يتم العثور على مساعدي الذكاء الاصطناعي
+        placeholder: حدد مساعد الذكاء الاصطناعي
       updated_successfully: تم تحديث مساعد الذكاء الاصطناعي بنجاح.
     any: " - أي -"
     api:
@@ -358,6 +430,8 @@ ar:
         exceeded_subjects_count: تحتوي الحملة على %{users} مشاركين. يمكنك فقط إضافة %{count} مشاركين لكل دعوة
         id: المعرف
         invites: الدعوات
+        name: اسم
+        name_placeholder: أدخل اسم الدعوة
         next: التالي
         not_selected: غير محدد
         requests: الطلبات
@@ -435,6 +509,7 @@ ar:
       errors:
         doesnt_have_header: "'%{sub_header}' لا يحتوي على رأس"
         invalid_headers: 'الرؤوس التالية غير صالحة: %{headers}'
+        invalid_question: معرف السؤال غير صالح
         invalid_scores: الدرجات لعامل %{factor_name} غير صالحة. يجب أن تكون الدرجات أرقامًا مفصولة بفواصل
         invalid_sub_header: "'%{sub_header}' ليس رأسًا فرعيًا صالحًا للرأس '%{header}'"
         scores_not_allowed: يمكن إضافة الدرجات فقط لأسئلة من نوع MultiChoice وMatrix
@@ -773,13 +848,9 @@ ar:
       users_import: استيراد
     bulk_reports:
       create:
-        no_data: لا توجد بيانات
         successfully: يتم الآن إنشاء التقارير وسيتم إعلامك عبر البريد الإلكتروني عند الانتهاء.
       download:
         removed: تمت الإزالة
-      form:
-        end_date: تاريخ الانتهاء
-        start_date: تاريخ البدء
       mailer:
         subject: تنزيل التقارير الجماعية
       new:
@@ -1092,6 +1163,7 @@ ar:
         is_active: نشط
         name: الاسم
         no_permission_message: ليس لديك إذن للتعديل
+        title: المستخدمون
         updated_by: تم التحديث بواسطة
       validations:
         dates:
@@ -1576,12 +1648,16 @@ ar:
       add: إضافة
       back: رجوع
       cancel: إلغاء
+      code: رمز
       disabled: معطل
       download_sample_file: تنزيل ملف العينة
       enabled: مفعل
       import:
         failure_msg: خطأ أثناء استيراد الملف.
+      instructions: تعليمات
+      loading: تحميل...
       minute: دقيقة
+      name: اسم
       next: التالي
       reset: إعادة تعيين
       save: حفظ
@@ -1623,6 +1699,7 @@ ar:
           {{schedule_end_date}} - تاريخ انتهاء الجدول
         campaign: الحملة
         campaign_assessment_group: مجموعة تقييم الحملات الانتخابية
+        cc_recipients: متلقي CC
         client: العميل
         completion: الإكمال
         custom: مخصص
@@ -1715,6 +1792,7 @@ ar:
         back: رجوع
         body: 'النص:'
         campaign: 'الحملة:'
+        cc_recipients: 'المستفيدون من CC:'
         client: 'العميل:'
         communication_type: 'نوع الاتصال:'
         delivery_rule: 'قاعدة التسليم:'
@@ -2212,7 +2290,16 @@ ar:
       self_rating: Enable Self Rating
       show_reflections: عرض الانعكاسات
       skill_gap_report: Skill Gap Report
+      skill_source_preference: مصدر المهارة
+      skill_sources:
+        from_ai: من المعرفة العامة الذكاء الاصطناعي
+        from_template: من القالب والتعيينات
       skills: المهارات
+      skills_privacy_messages:
+        made_private: تم وضع علامة على "%{skill_name}" المهارة على أنها خاصة وسيتم إخفاؤها عن مديرك
+        made_public: أصبحت "%{skill_name}" المهارة مرئية الآن لمديرك
+        skill_not_found: لم يتم العثور على مهارة
+        unauthorized: غير مصرح له بتعديل هذه المهارة
       skills_updated: تم تحديث مهارات المشردين داخلياً بنجاح
       status:
         draft: المسودة
@@ -2441,6 +2528,10 @@ ar:
         content: Are you sure you want to remove the subject with email '%{subjectEmail}'?
         success: Subject with email '%{subjectEmail}'' was successfully removed.
         title: Remove Subject
+      resend_invite:
+        content: إعادة إرسال دعوة إلى الموضوعات المحددة. هل أنت متأكد من أنك تريد المتابعة؟
+        success: تم استياء الدعوات بنجاح.
+        title: إعادة إرسال الدعوة
       statuses:
         accepted: Accepted
         cancelled: Cancelled
@@ -2544,6 +2635,7 @@ ar:
     message: الرسالة
     meta_title: Administration panel
     navigation:
+      ai_artifacts: قطع الذكاء الاصطناعي
       ai_assistants: مساعدو الذكاء الاصطناعي
       assessments: التقييمات
       assessments_reports: التقييمات والتقارير
@@ -2783,8 +2875,8 @@ ar:
       errors:
         create:
           invalid_format: يجب أن يكون تعريف المستوى مصفوفة من التعريفات.
-          level_definition_must_exist: لا يمكن أن يكون تعريف المستوى فارغاً
           level_definition_must_match_level: يجب أن يحتوي على %{expected} بالضبط، ولكن تم إعطاء %{actual}
+          level_description_must_exist: لا يمكن أن يكون وصف المستوى فارغا
           level_name_must_exist: لا يمكن أن يكون اسم المستوى فارغاً
           must_be_unique: يجب أن تكون فريدة من نوعها
           proficiency_level_exists: مستوى الكفاءة مع هذه المهارة والمشروع موجود بالفعل
@@ -3252,6 +3344,29 @@ ar:
           repeat_modules: Selected modules will be repeated on the exta inserted pages, refers to module name
         module_pagination: Module Pagination
         repeat_modules: Repeat Modules
+      property_panel:
+        add_new_condition: إضافة شرط جديد
+        apply_color_label: 'ثم قم بتطبيق اللون التالي:'
+        graph_condition_types:
+          default: افتراضي
+          graph_value: قيمة الرسم البياني
+        graph_value_condition_not_supported_msg: شروط قيمة الرسم البياني غير مدعومة لهذا النوع من الرسم البياني. هذا الخيار متاح حاليا فقط لأنواع الرسوم البيانية أدناه.
+        graph_value_conditions_title: شروط قيمة الرسم البياني
+        if_graph_value_is: 'إذا كانت قيمة الرسم البياني هي:'
+        manage_graph_value_condition: إدارة شرط قيمة الرسم البياني
+        manage_styles_condition: إدارة حالة الأنماط
+        missing_value: القيمة المفقودة
+        predicates:
+          equal_to: يساوي
+          greater_than: اكبر
+          greater_than_or_equal: أكبر من أو يساوي
+          less_than: اقل
+          less_than_or_equal: أقل من أو يساوي
+          not_equal_to: لا يساوي
+        prefixes:
+          and: و
+          or: أو
+        text_condition_type: 'نوع شرط النص:'
     report_families:
       create:
         successfully: Report Bundle %{name} was created successfully.
@@ -3310,6 +3425,19 @@ ar:
         pending_qc: Pending QC
         qc_completed: QC Completed
         qc_in_progress: QC in Progress
+    report_settings:
+      data_source_types:
+        assessment: تقييم
+        campaign_factors: عوامل الحملة
+        datasheet: ورقة البيانات
+        report_data: تقرير البيانات
+      tabs:
+        campaign_ai_artifacts: القطع الأثرية للحملة في الذكاء الاصطناعي
+        campaign_factors: عوامل الحملة
+        data_sheets: أوراق البيانات
+        page_settings: إعدادات الصفحة
+        translations: تراجم
+      title: إعدادات التقرير
     reports:
       bulk_marked_as_done: تم وضع علامة "تم" على أنه تم
       bulk_upload:
@@ -4015,6 +4143,7 @@ ar:
         skill_types:
           behavioural: السلوكيات
           other: أخرى
+          qualification: تأهيل
           technical: التقنية
       property_panel:
         add_n_a_option: Add N/A option
@@ -4358,7 +4487,7 @@ ar:
         new:
           header: Import Translations
       import:
-        successfully: Translations were imported successfully
+        successfully_scheduled: تمت جدولة استيراد الترجمة بنجاح.
       reports:
         export: Export Translations
         import: Import Translations

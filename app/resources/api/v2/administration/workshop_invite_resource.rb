@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::WorkshopInviteResource < Api::V2::Administration::BaseResource
-  attributes :title, :description, :created_at, :subjects_count, :allowed_languages, :allow_language_preference,
+  attributes :title, :description, :name, :created_at, :subjects_count, :allowed_languages, :allow_language_preference,
              :allow_neurodiversity_option, :subjects, :translations, :workshop_ids, :campaign_id,
              :campaign_assessment_group_id, :campaign_assessment_group_name
 
@@ -10,10 +10,12 @@ class Api::V2::Administration::WorkshopInviteResource < Api::V2::Administration:
 
   audit_log_for :remove_to_many_relationships, payload: '*'
   audit_log_for :create_to_many_relationships, payload: '*'
-  audit_log_for :destroy, payload: ->(_, workshop_invite) { workshop_invite.slice('id', 'title', 'description') }
+  audit_log_for :destroy, payload: lambda { |_, workshop_invite|
+    workshop_invite.slice('id', 'title', 'description', 'name')
+  }
 
   def fetchable_fields
-    super - %i[subjects translations workshop_ids]
+    super - %i[subjects workshop_ids]
   end
 
   def self.creatable_fields(context)
@@ -28,5 +30,15 @@ class Api::V2::Administration::WorkshopInviteResource < Api::V2::Administration:
     @model.campaign_assessment_group&.name
   end
 
-  ransack_filters %i[campaign_id_eq title_cont]
+  def translations
+    @model.translations.map do |translation|
+      {
+        locale: translation.locale,
+        title: translation.title,
+        description: translation.description
+      }
+    end
+  end
+
+  ransack_filters %i[filterable_fields campaign_id_eq title_cont name_cont]
 end

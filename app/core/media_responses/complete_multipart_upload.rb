@@ -9,9 +9,9 @@ module MediaResponses
       @asset_key = options[:asset_key]
       @upload_id = options[:upload_id]
       @parts = options[:parts]
-      @file_size = options[:file_size]
       @content_type = options[:content_type]
       @checksum = options[:checksum]
+      @file_size = options[:file_size]
     end
 
     def call

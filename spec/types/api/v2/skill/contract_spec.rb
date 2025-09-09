@@ -211,8 +211,9 @@ RSpec.describe Api::V2::Skill::Contract do
     end
 
     it 'accepts valid skill_type values as strings' do
-      ['behavioral', 'technical', 'other', 'behavioral,technical', 'technical,other',
-       'behavioral,technical,other'].each do |skill_type|
+      ['behavioral', 'technical', 'other', 'qualification', 'behavioral,technical', 'technical,other',
+       'behavioral,technical,other', 'behavioral,qualification', 'technical,qualification', 'other,qualification',
+       'behavioral,technical,other,qualification'].each do |skill_type|
         params = valid_tags_params.deep_merge(filter: { skill_type_in: skill_type })
         contract = described_class::TagsSearch.new.call(params, { current_user: user, params: params })
         expect(contract.failure?).to eq(false), "Failed for skill_types #{skill_type}"

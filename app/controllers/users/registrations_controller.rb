@@ -4,6 +4,7 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     layout 'devise'
     before_action :configure_permitted_parameters
+    before_action :verify_recaptcha_or_redirect, only: [:create]
     helper_method :via_sms_invite_code?
 
     def new
@@ -60,6 +61,18 @@ module Users
       devise_parameter_sanitizer.permit(:sign_up) do |u|
         u.permit(:email, :registration_code, :sms_invite_code, :first_name, :last_name, :mobile_number,
                  :mobile_verification_token)
+      end
+    end
+
+    def verify_recaptcha_or_redirect
+      return if Settings.features.disable_recaptcha
+
+      @current_project = GetProjectBySubdomain.call!(request.subdomain)
+      return unless @current_project&.security_setting&.enable_recaptcha
+
+      unless verify_recaptcha(response: params[:recaptcha_token])
+        flash[:alert] = I18n.t('sessions.errors.recaptcha')
+        redirect_to new_user_session_path and return
       end
     end
   end

@@ -3,6 +3,7 @@
 module Administration
   module Reports
     class BuildersController < Administration::BaseController
+      skip_before_action :enforce_geo_restriction
       before_action :set_report
       append_before_action :pundit_authorize
 

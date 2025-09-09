@@ -376,11 +376,11 @@ en:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Row %{row}: Duplicate value %{value} for %{field}'
+              duplicate_value: "%{sheet_name}, Row %{row}: Duplicate value %{value} for %{field}"
               invalid_format: Please upload xlsx file
               missing_headers: "%{sheet_name} sheet is missing required headers: %{headers}"
               missing_sheets: 'Missing required sheets: %{sheets}'
-              missing_value: 'Row %{row}: Missing value for %{field}'
+              missing_value: "%{sheet_name}, Row %{row}: Missing value for %{field}"
             project:
               must_exist: Project must exist
         update_norm:
@@ -440,10 +440,13 @@ en:
           iiht: IIHT
           lead_assessor_form: Lead Assessor Form
           meeting: Meeting
+          mettl: Mettl
           organisational: Surveys
           pearson: Pearson
           psychometric: Assessment
           saville: Saville
+          simulation: Simulation
+          skillvue: Skillvue
           threesixty: 360 Campaign
         category: Category
         created_at: Created Date
@@ -457,8 +460,11 @@ en:
           common: TTE Assessment
           hogan: Hogan
           iiht: IIHT Assessment
+          mettl: Mettl Assessment
           pearson: Pearson Assessment
           saville: Saville Assessment
+          simulation: Simulation Assessment
+          skillvue: Skillvue Assessment
         updated_at: Modified Date
       assign:
         completed_at: Completion Date
@@ -811,6 +817,7 @@ en:
         bulk_download_idp_reports: Bulk Download IDP Reports
         bulk_download_reports: Bulk Download Reports
         bulk_download_user_reports: Bulk Download User Reports
+        bulk_generate_user_campaign_ai_artifact_results: Bulk Generate Campaign AI Artifact Results
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
         bulk_regenerate_user_reports: Regenerate User Reports
@@ -847,6 +854,7 @@ en:
         external_assessment_export: External Results Export
         import_accesssheet: Import Accessheet
         import_assessment_questions: Import Assessment Questions
+        import_assessment_translations: Import Assessment Translations
         import_assessors: Import Assessors
         import_campaign_factors: Import Campaign Factors
         import_datasheet: Import Datasheet
@@ -1130,6 +1138,10 @@ en:
         mic: Mic
       discard: Discard
       discard_record_again: Discard & Record Again
+      error_while_discarding: Failed to discard existing video
+      error_while_uploading: An unknown error occurred while completing the upload
+      failed_to_access_permission: Failed to access camera and microphone
+      failed_to_complete_upload: 'Failed to complete upload: No URL details available'
       media_recorder:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
@@ -1790,6 +1802,7 @@ en:
     column:
       action: Action
       active: Active
+      ai_assistant: AI Assistant
       allow_multiple_responses: Allow multiple responses
       approval_notification_list: Approval Notification Users List
       approvers_list: Approvers List
@@ -1880,7 +1893,9 @@ en:
       continue: Continue
       copied: Copied to clipboard
       default: Default
+      disabled: Disabled
       download: Download
+      enabled: Enabled
       file: File
       global_import: Is Global Import?
       minutes: Minutes
@@ -2872,7 +2887,7 @@ en:
     ro: Română
     ru: Russian
     sk: Slovak
-    sl: Slovenian
+    sl: Slovenščina
     sr-Cyrl: Serbian Cyrillic
     sr-Latn: Serbian Latin
     sv: Swedish
@@ -2941,7 +2956,7 @@ en:
     ro: Română
     ru: Russian
     sk: Slovak
-    sl: Slovenian
+    sl: Slovenščina
     sr-Cyrl: Serbian Cyrillic
     sr-Latn: Serbian Latin
     sv: Swedish

@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::ClientsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     validate_crud_requests Api::V2::Client::Schema
 
     def client_auditlog_export_setting

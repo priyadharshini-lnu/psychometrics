@@ -148,7 +148,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'edits_count' => 0,
       'hogan_participant_id' => nil,
       'effective_default_language' => user_report.effective_default_language,
-      'available_languages' => user_report.campaign_report&.available_languages,
+      'available_languages' => user_report.campaign_report&.available_languages || [],
       'permissions' => {
         'download_report' => true,
         'remove' => true,
@@ -167,7 +167,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'id' => user_assessment.id,
       'assessment_id' => assessment.id,
       'name' => assessment.name,
-      'category' => assessment.category,
+      'category' => assessment.decorate.category,
       'norm_name' => nil,
       'norms' => [],
       'permissions' => {

@@ -111,7 +111,6 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
           <Form.Item
             name="description"
             label={I18n.t('administration.skills.form.description')}
-            rules={[{ required: true }]}
           >
             <Input.TextArea />
           </Form.Item>

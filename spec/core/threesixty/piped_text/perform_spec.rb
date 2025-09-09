@@ -80,12 +80,12 @@ describe Threesixty::PipedText::Perform do
       media_response = double
       allow(result).to receive_message_chain(:media_responses, :find_by) { media_response }
       allow(media_response).to receive_message_chain(:asset, :url) {
-                                 'https://ttedev.me:3030/uploads/media_response/asset/prometeus.pdf'
+                                 'https://localhost:3030/uploads/media_response/asset/prometeus.pdf'
                                }
       response = described_class.call!('{{answer://FileUpload/826?w=50%&h=500px}}', result: result)
       expect(response).to eq(
         '<object style="width: 50%; height: 500px; background: black; border: none;" ' \
-        'data="https://ttedev.me:3030/uploads/media_response/asset/prometeus.pdf" type="application/pdf"></object>'
+        'data="https://localhost:3030/uploads/media_response/asset/prometeus.pdf" type="application/pdf"></object>'
       )
     end
 

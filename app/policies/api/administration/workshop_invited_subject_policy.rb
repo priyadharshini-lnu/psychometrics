@@ -26,6 +26,10 @@ module Api
       def accept_request?
         has_permission?(:workshops, :manage)
       end
+
+      def resend_invite?
+        has_permission?(:workshops, :manage)
+      end
     end
   end
 end

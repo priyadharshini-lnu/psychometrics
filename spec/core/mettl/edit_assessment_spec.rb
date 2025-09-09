@@ -23,7 +23,7 @@ describe Mettl::EditAssessment do
         instructions: '',
         defaultInstructions: '<h2><b>THINGS TO REMEMBER</b></h2>...',
         allowCopyPaste: true,
-        exitRedirectionURL: 'http://3835.ttedev.me:3030/mettl/assessment/10000006',
+        exitRedirectionURL: 'http://3835.localhost:3030/mettl/assessment/10000006',
         customAssessmentName: '',
         showReportToCandidateOnExit: false,
         onScreenCalculator: true,

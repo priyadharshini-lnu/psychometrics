@@ -166,6 +166,7 @@ const HANDLERS = {
       timerDuration: data.timer_duration,
       metaData: result.meta_data || {},
       locales: data.locales,
+      locale: data.locale,
       agileAssetsUrl: data.agileAssetsUrl,
       agileAssignUrl: data.agileAssignUrl,
       end: data.notAnEndPage ? false : result.status === 'completed',

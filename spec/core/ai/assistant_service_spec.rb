@@ -46,10 +46,14 @@ user_prompt: 'How can I help you?')
     end
 
     context 'with prompt data' do
-      let(:prompt) { 'Show me the table' }
+      prompt = 'Show me the table'
+      expected_prompt = <<~USER_PROMPT
+        How can I help you?
+        #{prompt}
+      USER_PROMPT
       it 'sends correct concatenated prompt to the llm' do
         expect_any_instance_of(AI::AssistantChat).to receive(:ask).
-          with('How can I help you? <data>Show me the table</data>')
+          with(expected_prompt.strip)
         described_class.call!(assistant.id, user, prompt)
       end
     end
@@ -61,7 +65,7 @@ user_prompt: 'How can I help you?')
 
       it 'broadcasts an error with the AI error message' do
         result = described_class.call(assistant.id, user, nil)
-        expect(result[:error]).to eq('AI Error: RubyLLM::Error')
+        expect(result[:error]).to eq('RubyLLM::Error')
       end
     end
 

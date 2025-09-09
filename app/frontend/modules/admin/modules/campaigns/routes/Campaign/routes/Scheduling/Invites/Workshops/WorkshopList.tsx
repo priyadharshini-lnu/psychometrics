@@ -17,6 +17,7 @@ import { WorkshopAddFormModal } from './WorkshopAddFormModal'
 import { formatWorkshopDate } from '~/utils/workshop'
 import { useResources } from '~/hooks/useResources'
 
+
 const { I18n } = window
 
 const connector = connect(null, { openModal })

@@ -22,8 +22,12 @@ module Communications
       # rubocop:enable Layout/MultilineMethodCallIndentation
 
       workshop_invited_subjects.find_each do |workshop_invited_subject|
+        campaign_user = workshop_invited_subject.campaign_user
+        next if campaign_user.nil?
+        next unless campaign_user.active?
+
         communication.emails.create(
-          campaign_user: workshop_invited_subject.campaign_user,
+          campaign_user: campaign_user,
           workshop_invite_id: workshop_invited_subject.workshop_invite_id
         )
       end

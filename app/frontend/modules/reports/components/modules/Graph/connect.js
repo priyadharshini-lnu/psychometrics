@@ -9,5 +9,6 @@ export default connect(
   }),
   {
     openConditionalText: data => openModal('conditionalText', data),
+    openGraphValueCondition: data => openModal('graphValueConditionModal', data),
   },
 )

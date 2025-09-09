@@ -42,12 +42,13 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
       parsed_result = response.parsed_body
 
       expect(parsed_result).to eq({
-        'skills_by_skill_type_count' => { 'behavioral' => 1, 'technical' => 2, 'other' => 1 },
+        'skills_by_skill_type_count' => { 'behavioral' => 1, 'technical' => 2, 'other' => 1, 'qualification' => 0 },
         'development_actions_by_learning_style_count' => { 'structured_learning' => 1, 'learning_from_others' => 1,
                                                            'on_the_job' => 2 },
         'skill_progress_by_skill_type' => {
           'behavioral' => 30.0,
           'technical' => 35.0,
+          'qualification' => 0.0,
           'other' => 90.0
         }
       })

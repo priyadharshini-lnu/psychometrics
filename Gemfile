@@ -220,7 +220,7 @@ group :development do
   # TODO: We have forked the gem to just increase the version dependent gem.
   # We can remove this fork and use original gem once the next version of gem is released.
   gem 'meta_request', '~> 0.8.2'
-  gem 'ruby-lsp-rails', '~> 0.4.0'
+  gem 'ruby-lsp-rails', '~> 0.4.8'
   gem 'solargraph', '~>0.54.0'
 end
 
@@ -271,4 +271,7 @@ gem 'sidekiq-throttled', '~> 1.5.2'
 
 gem 'recaptcha', require: 'recaptcha/rails'
 # To integrate with LLMs
-gem 'ruby_llm', '~> 1.3.1'
+gem 'ruby_llm', '~> 1.6.3'
+
+# Pure Ruby GeoIP2 MaxMind DB reader
+gem 'maxminddb'

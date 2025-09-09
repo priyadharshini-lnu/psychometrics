@@ -2,6 +2,8 @@
 
 module Api
   class V2::Administration::UserReportEventsController < V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction, only: :export
+
     def export
       AdminJob.call(
         :export_user_report_events,
@@ -51,6 +53,16 @@ module Api
           }
         )
       }
+    end
+
+    def enforce_geo_restriction
+      client = if project_id
+                 Client.find_by(id: project_id)&.client
+               elsif campaign_id
+                 Campaign.find_by(id: campaign_id)&.client
+               end
+
+      client.check_geo_restriction!
     end
   end
 end

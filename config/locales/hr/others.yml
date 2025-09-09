@@ -382,11 +382,11 @@ hr:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Red %{row}: Dvostruka vrijednost %{value} za %{field}'
+              duplicate_value: "%{sheet_name}, redak %{row}: duplicirana vrijednost %{value} za %{field}"
               invalid_format: Molimo, prenesite .xlsx datoteku
               missing_headers: Nedostaju obavezna zaglavlja %{headers} u radnom listu %{sheet_name}
               missing_sheets: Nedostaju radni listovi %{sheets}
-              missing_value: 'Red %{row}: nedostaje vrijednost za %{field}'
+              missing_value: "%{sheet_name}, redak %{row}: nedostaje vrijednost za %{field}"
             project:
               must_exist: Projekt mora postojati
         update_norm:
@@ -446,10 +446,13 @@ hr:
           iiht: IIHT
           lead_assessor_form: Obrazac glavnog procjenitelja
           meeting: Sastanak
+          mettl: Mettl
           organisational: Ankete
           pearson: Pearson
           psychometric: Ocjenjivanje
           saville: Saville
+          simulation: Simulacija
+          skillvue: Vještina
           threesixty: Kampanja 360
         category: Kategorija
         created_at: Datum izrade
@@ -463,8 +466,11 @@ hr:
           common: Procjena TTE
           hogan: Hogan
           iiht: Procjena IIHT-a
+          mettl: Mettl procjena
           pearson: Pearsonova procjena
           saville: Procjena Savillea
+          simulation: Simulacijska procjena
+          skillvue: Procjena vještina
         updated_at: Datum izmjene
       assign:
         completed_at: Datum završetka
@@ -817,6 +823,7 @@ hr:
         bulk_download_idp_reports: Skupno preuzimanje izvješća IDP-a
         bulk_download_reports: Izvješća o skupnom preuzimanju
         bulk_download_user_reports: Skupno preuzimanje korisničkih izvješća
+        bulk_generate_user_campaign_ai_artifact_results: Skupno generirajte rezultate AI artefakata kampanje
         bulk_regenerate_reports: Ponovno generiranje izvješća kampanje
         bulk_regenerate_threesixty_reports: Regenerirajte cjelovita izvješća ispitanika
         bulk_regenerate_user_reports: Ponovno generirajte korisnička izvješća
@@ -853,6 +860,7 @@ hr:
         external_assessment_export: Izvoz vanjskih rezultata
         import_accesssheet: Uvoz pristupnog lista
         import_assessment_questions: Pitanja za procjenu uvoza
+        import_assessment_translations: Prijevodi procjene uvoza
         import_assessors: Procjenitelji uvoza
         import_campaign_factors: Faktori uvozne kampanje
         import_datasheet: Uvoz podatkovne tablice
@@ -1134,6 +1142,10 @@ hr:
         mic: Mikrofon
       discard: Odbaciti
       discard_record_again: Odbaciti i ponovno snimiti
+      error_while_discarding: Nije uspjelo odbaciti postojeći videozapis
+      error_while_uploading: Prilikom dovršetka prijenosa došlo je do nepoznate pogreške
+      failed_to_access_permission: Pristup kameri i mikrofonu nije uspio
+      failed_to_complete_upload: 'Prijenos nije uspješan: nisu dostupni podaci o URL-u'
       media_recorder:
         failure: Ovaj preglednik ne podržava snimanje videa. Za snimanje videa koristite Chrome ili Firefox.
         success: Molimo, dopustite korištenje kamere i mikrofona za snimanje videa i zvuka
@@ -1785,6 +1797,7 @@ hr:
     column:
       action: Status
       active: Aktivan
+      ai_assistant: AI pomoćnik
       allow_multiple_responses: Dopuštanje višestrukih odgovora
       approval_notification_list: Popis korisnika obavijesti o odobrenju
       approvers_list: Popis odobravatelja
@@ -1875,7 +1888,9 @@ hr:
       continue: Nastaviti
       copied: Kopirano u međuspremnik
       default: Zadano
+      disabled: Onemogućen
       download: Preuzeti
+      enabled: Omogućen
       file: Datoteka
       global_import: Je li globalni uvoz?
       minutes: Minuta
@@ -2893,6 +2908,8 @@ hr:
     zh-HK: Kineski (Hong Kong)
     zh-Hant: Tradicionalni kineski
     zh-TW: Kineski (Tajvan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Aktivan
     campaign_name: Naziv kampanje

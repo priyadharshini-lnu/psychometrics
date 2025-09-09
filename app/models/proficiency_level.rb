@@ -13,7 +13,7 @@ class ProficiencyLevel < ApplicationRecord
     by_skill: 2
   }
 
-  enum :skill_type, { behavioral: 0, technical: 1, other: 2 }
+  enum :skill_type, { behavioral: 0, technical: 1, other: 2, qualification: 3 }
 
   MIN_LEVEL = 2
   MAX_LEVEL = 10

@@ -4,7 +4,7 @@ export const WorkshopInviteTR = t.type({
   id: t.string,
   title: t.string,
   description: t.string,
-  duration: t.number,
+  name: t.union([t.string, t.undefined]),
   createdAt: t.string,
   allowedLanguages: t.array(t.string),
   allowLanguagePreference: t.boolean,

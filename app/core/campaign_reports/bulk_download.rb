@@ -11,7 +11,7 @@ module CampaignReports
       @campaign_reports = campaign_reports
       @current_user = current_user
       @job_record = job_record
-      @bulk_report = ::BulkReport.create(user: current_user)
+      @bulk_report = ::BulkReport.create(user: current_user, campaign_id: campaign_id)
     end
 
     def call
@@ -153,7 +153,11 @@ module CampaignReports
     # rubocop:enable Metrics/AbcSize
 
     def threesixty_campaign
-      @threesixty_campaign ||= ::Threesixty::Campaign.find_by(campaign_id: job_record.data['campaign_id'])
+      @threesixty_campaign ||= ::Threesixty::Campaign.find_by(campaign_id: campaign_id)
+    end
+
+    def campaign_id
+      job_record.data['campaign_id']
     end
   end
 end

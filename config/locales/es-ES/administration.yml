@@ -291,6 +291,48 @@ es-ES:
             manage: Gestión
             title: Talleres
             view: Ver
+    ai_artifacts:
+      artifact_results: Resultados de artefactos
+      code: Código
+      form:
+        add_assessment: Agregar evaluación
+        ai_assistant: Asistente de IA
+        assessments: Evaluaciones
+        campaign_factors: Factores de campaña
+        configuration: Configuración
+        datasheet: Hoja de datos
+        datasheet_columns: Columnas de hoja de datos
+        include_all_datasheet_columns: Incluir todas las columnas de la hoja de datos
+        no_assessment_selected: Aún no se han añadido evaluaciones. Haga clic en "Agregar" para comenzar.
+        questions_required: Se debe seleccionar al menos una pregunta
+        select_ai_assistant: Seleccione Asistente de IA
+        select_assessment: Seleccione Evaluación
+        select_campaign_factors: Seleccionar factores de campaña
+        select_datasheet_columns: Seleccionar columnas de hoja de datos
+        select_questions: Seleccionar preguntas
+        title: Artefacto de IA
+      generate: Generar
+      generate_result_info_message: Se están generando resultados, actualice la página para ver los resultados actualizados.
+      generate_results: Generar resultados
+      generated_at: Generado en
+      generated_at_time: Generado en %{time}
+      generated_value: Valor generado
+      id: IDENTIFICACIÓN
+      key: Llave
+      name: Nombre
+      parsed_dependencies:
+        help: Dependencias analizadas para el usuario utilizado por AI Assistant para la generación de resultados de artefactos
+        title: Dependencias analizadas
+        view: Ver dependencias analizadas
+      playground: Patio de recreo
+      playground_info: Pruebe el artefacto con datos de muestra para obtener una vista previa de los resultados generados.
+      playground_placeholder: Introducir datos de prueba
+      raw: CRUDO
+      tabs:
+        results: Resultados
+        settings: Configuración
+      test_generate: Generación de prueba
+      unsaved_changes: Los cambios no guardados están presentes, considere enviar un formulario para generar una respuesta actualizada desde Playground.
     ai_assistants:
       actions:
         create: Crear asistente de IA
@@ -298,9 +340,34 @@ es-ES:
         playground: Parque infantil
       ai_assistants: Asistentes de IA
       ai_assistants_playground: Asistente de inteligencia artificial
+      artifacts:
+        parsers:
+          assessment:
+            assessment_missing_id: Falta el identificador de la evaluación en la configuración de la evaluación
+            assessment_missing_questions: Faltan preguntas a la configuración de la evaluación para la evaluación %{assessment_id}
+            no_assessments_configured: No se configuran evaluaciones
+            no_assessments_configured_for_artifact: No se configura ninguna evaluación para este artefacto
+            no_completed_results: No se encontraron resultados de evaluación completados para la evaluación %{assessment_name}
+            no_valid_assessment_data: No se dispone de datos de evaluación válidos
+          base:
+            dependency_not_configured: La dependencia '%{dependency}' no está configurada
+          campaign_factor:
+            factor_empty_value: El factor de campaña '%{code}' (%{name}) tiene un valor vacío para el usuario %{email}
+            factor_no_value: El factor de campaña '%{code}' (%{name}) no tiene ningún valor asignado para el usuario %{email}
+            no_campaign_factors_configured: No se configuran factores de campaña para este artefacto
+            no_valid_factor_data: No hay datos válidos de factores de campaña disponibles
+          datasheet:
+            column_no_value: La columna '%{column}' no tiene ningún valor para el usuario %{email}
+            no_datasheet_columns_configured: No se configuran columnas específicas de la hoja de datos
+            no_datasheet_configured: No hay ninguna hoja de datos configurada para esta campaña
+            no_datasheet_data: No hay datos de hoja de datos disponibles para el usuario %{email}
+            user_not_found_in_datasheet: Usuario no encontrado en la ficha técnica de la campaña
+      campaign_ai_artifacts: Artefactos de IA de campaña
       column:
         provider: Proveedor
       created_successfully: AI Assistant se ha creado correctamente.
+      errors:
+        cannot_delete_in_use: No se puede eliminar AI Assistant '%{name}' porque se está utilizando.
       form:
         add_output_schema_key: Añadir clave de esquema de salida
         dependencies: Dependencias
@@ -319,6 +386,11 @@ es-ES:
         system_prompt: Indicación del sistema
         type: Tipo
         user_prompt: Pregunta al usuario
+      selector:
+        choose_artifact: Elige un artefacto de IA
+        choose_schema_key: Elija clave de esquema
+        no_assistants_found: No se encontraron asistentes de IA
+        placeholder: Seleccione Asistente de IA
       updated_successfully: AI Assistant se ha actualizado correctamente.
     any: " - Cualquier.. "
     api:
@@ -358,6 +430,8 @@ es-ES:
         exceeded_subjects_count: La campaña tiene %{users} asuntos. Sólo puede añadir %{count} asuntos por invitación
         id: ID
         invites: Invita
+        name: Nombre
+        name_placeholder: Ingrese el nombre de la invitación
         next: Siguiente
         not_selected: No seleccionado
         requests: Solicitudes
@@ -435,6 +509,7 @@ es-ES:
       errors:
         doesnt_have_header: "'%{sub_header}' no tiene cabecera"
         invalid_headers: 'Las siguientes cabeceras no son válidas: %{headers}'
+        invalid_question: ID de pregunta no válido
         invalid_scores: Las puntuaciones del factor %{factor_name} no son válidas. Las puntuaciones deben ser valores numéricos separados por comas
         invalid_sub_header: "%{sub_header}' no es un subencabezado válido para el encabezado '%{header}'"
         scores_not_allowed: Las puntuaciones sólo pueden añadirse a las preguntas de tipo MultiChoice y Matriz
@@ -773,13 +848,9 @@ es-ES:
       users_import: Importar
     bulk_reports:
       create:
-        no_data: Sin datos
         successfully: Los informes se están creando y se le notificará por correo electrónico cuando estén listos
       download:
         removed: Eliminado
-      form:
-        end_date: Fecha final
-        start_date: Fecha de inicio
       mailer:
         subject: Descargar informes masivos
       new:
@@ -1092,6 +1163,7 @@ es-ES:
         is_active: Activo
         name: Nombre
         no_permission_message: No tiene permiso para modificar
+        title: Usuarios
         updated_by: Actualizado por
       validations:
         dates:
@@ -1576,12 +1648,16 @@ es-ES:
       add: Añadir
       back: Volver
       cancel: Cancelar
+      code: Código
       disabled: Diasbled
       download_sample_file: Descargar archivo de muestra
       enabled: Activado
       import:
         failure_msg: Error al importar el archivo.
+      instructions: Instrucciones
+      loading: Carga...
       minute: minuto
+      name: Nombre
       next: Siguiente
       reset: Restablecer
       save: Salvar
@@ -1623,6 +1699,7 @@ es-ES:
           {{schedule_end_date}} - Fecha de finalización del programa"
         campaign: Campaña
         campaign_assessment_group: Grupo de Evaluación de Campañas
+        cc_recipients: Destinatarios de CC
         client: Cliente
         completion: Finalización
         custom: A medida
@@ -1715,6 +1792,7 @@ es-ES:
         back: Volver
         body: 'Cuerpo:'
         campaign: 'Campaña:'
+        cc_recipients: 'Destinatarios de CC:'
         client: 'Cliente:'
         communication_type: 'Tipo de comunicación:'
         delivery_rule: 'Regla de entrega:'
@@ -2212,7 +2290,16 @@ es-ES:
       self_rating: Activar la autoclasificación
       show_reflections: Mostrar reflexiones
       skill_gap_report: Informe sobre el déficit de cualificaciones
+      skill_source_preference: Fuente de habilidades
+      skill_sources:
+        from_ai: De conocimientos generales de IA
+        from_template: De plantilla y mapeos
       skills: Habilidades
+      skills_privacy_messages:
+        made_private: La habilidad "%{skill_name}" se ha marcado como privada y se ocultará a su gerente
+        made_public: La habilidad '%{skill_name}' ahora es visible para su gerente
+        skill_not_found: Habilidad no encontrada
+        unauthorized: No se permite modificar esta aptitud
       skills_updated: Competencias del PDI actualizadas con éxito
       status:
         draft: Borrador
@@ -2441,6 +2528,10 @@ es-ES:
         content: ¿Está seguro de que desea eliminar el asunto con el correo electrónico "%{subjectEmail}"?
         success: El asunto con el correo electrónico "%{subjectEmail}" se ha eliminado correctamente.
         title: Quitar Asunto
+      resend_invite:
+        content: Reenviar invitación a los sujetos seleccionados. ¿Estás seguro de que quieres continuar?
+        success: Las invitaciones se reenvían correctamente.
+        title: Reenviar invitación
       statuses:
         accepted: Aceptado
         cancelled: Cancelado
@@ -2544,6 +2635,7 @@ es-ES:
     message: Mensaje
     meta_title: Panel de administración
     navigation:
+      ai_artifacts: Artefactos de IA
       ai_assistants: Asistentes de IA
       assessments: Evaluaciones
       assessments_reports: Evaluaciones e informes
@@ -2783,8 +2875,8 @@ es-ES:
       errors:
         create:
           invalid_format: La definición de nivel debe ser una matriz de definiciones.
-          level_definition_must_exist: La definición del nivel no puede estar en blanco
           level_definition_must_match_level: debe contener exactamente %{expected} niveles, pero %{actual} se dieron
+          level_description_must_exist: La descripción del nivel no puede estar en blanco
           level_name_must_exist: El nombre del nivel no puede estar en blanco
           must_be_unique: Debe ser único
           proficiency_level_exists: Ya existe un ProficiencyLevel con esta habilidad y proyecto
@@ -3252,6 +3344,29 @@ es-ES:
           repeat_modules: Los módulos seleccionados se repetirán en las páginas exta insertadas, se refiere al nombre del módulo
         module_pagination: Módulo Paginación
         repeat_modules: Módulos de repetición
+      property_panel:
+        add_new_condition: Agregar nueva condición
+        apply_color_label: 'Luego aplique el siguiente color:'
+        graph_condition_types:
+          default: Predeterminado
+          graph_value: Valor del gráfico
+        graph_value_condition_not_supported_msg: Las condiciones de valor de gráfico no son compatibles con este tipo de gráfico. Actualmente, esta opción solo está disponible para los siguientes tipos de gráficos.
+        graph_value_conditions_title: Condiciones de valor de gráfico
+        if_graph_value_is: 'Si el valor del gráfico es:'
+        manage_graph_value_condition: Administrar la condición del valor del gráfico
+        manage_styles_condition: Administrar la condición de los estilos
+        missing_value: Valor faltante
+        predicates:
+          equal_to: Igual a
+          greater_than: Mayor que
+          greater_than_or_equal: Mayor o igual que
+          less_than: Menos que
+          less_than_or_equal: Menor o igual que
+          not_equal_to: No es igual a
+        prefixes:
+          and: Y
+          or: O
+        text_condition_type: 'Tipo de condición de texto:'
     report_families:
       create:
         successfully: El paquete de informes %{name} se ha creado correctamente.
@@ -3310,6 +3425,19 @@ es-ES:
         pending_qc: Pendiente de control de calidad
         qc_completed: Control de calidad finalizado
         qc_in_progress: Control de calidad en curso
+    report_settings:
+      data_source_types:
+        assessment: Evaluación
+        campaign_factors: Factores de campaña
+        datasheet: Hoja de datos
+        report_data: Datos del informe
+      tabs:
+        campaign_ai_artifacts: Artefactos de IA de campaña
+        campaign_factors: Factores de campaña
+        data_sheets: Hojas de datos
+        page_settings: Configuración de página
+        translations: Traducciones
+      title: Configuración del informe
     reports:
       bulk_marked_as_done: Bulto Marcado como Hecho
       bulk_upload:
@@ -4015,6 +4143,7 @@ es-ES:
         skill_types:
           behavioural: Comportamiento
           other: Otros
+          qualification: Calificación
           technical: Técnico
       property_panel:
         add_n_a_option: Añadir opción N/A
@@ -4359,6 +4488,7 @@ es-ES:
           header: Importación de traducciones
       import:
         successfully: Las traducciones se han importado correctamente
+        successfully_scheduled: La importación de traducciones se programó correctamente.
       reports:
         export: Exportar traducciones
         import: Importación de traducciones

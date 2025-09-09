@@ -9,12 +9,17 @@ module Services
 
       before :set_instances
 
-      HEADERS = ['First Name', 'Last Name', 'Email', 'Sent At'].freeze
+      HEADERS = ['First Name', 'Last Name', 'Email', 'CC Recipients', 'Sent At'].freeze
 
       def call
         query = @communication.emails.sent
         query = @communication.campaign_id? ? query.joins(campaign_user: :user) : query.joins(:user)
-        data = query.pluck('users.first_name', 'users.last_name', 'users.email', :sent_at)
+
+        cc_recipients = @communication.cc_users.pluck(:email).join(', ')
+
+        data = query.
+               pluck('users.first_name', 'users.last_name', 'users.email', :sent_at).
+               map { |first_name, last_name, email, sent_at| [first_name, last_name, email, cc_recipients, sent_at] }
 
         context.result = generate_csv(data)
       end

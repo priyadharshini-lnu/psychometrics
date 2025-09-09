@@ -45,7 +45,8 @@ class Api::V2::Administration::CampaignResource < Api::V2::Administration::BaseR
           'manage_campaign_scoring',
           'view_assessments_and_reports',
           'manage_report_approval_settings',
-          'export_dashboard_to_file'
+          'export_dashboard_to_file',
+          'view_ai_artifacts'
         ],
         {
           project_id: @model.project_id,

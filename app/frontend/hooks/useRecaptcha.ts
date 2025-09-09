@@ -1,13 +1,20 @@
+import { FormInstance } from 'antd'
 import { useEffect, useState, useRef } from 'react'
 import { loadRecaptchaScript, renderRecaptchaWidget } from '~/utils/recaptcha'
 
 const { recaptchaSiteKey } = window.PsyGlobalState
 
-export const useRecaptcha = (formRef: React.RefObject<HTMLFormElement>, disable_recaptcha) => {
+type UseRecaptchaOptions ={
+  formRef?: React.RefObject<HTMLFormElement>
+  formInstance?: FormInstance
+  disable_recaptcha?: boolean
+}
+
+
+export const useRecaptcha = ({ formRef, formInstance, disable_recaptcha }: UseRecaptchaOptions) => {
   const [recaptchaToken, setRecaptchaToken] = useState<string>('')
   const [recaptchaReady, setRecaptchaReady] = useState(false)
   const recaptchaWidgetId = useRef<number | null>(null)
-  const renderedForm = useRef<HTMLFormElement | null>(null)
 
 
   useEffect(() => {
@@ -17,22 +24,24 @@ export const useRecaptcha = (formRef: React.RefObject<HTMLFormElement>, disable_
 
   useEffect(() => {
     if (disable_recaptcha || !recaptchaReady) return
-    const formElement = formRef.current
-    if (!formElement || renderedForm.current === formElement) return
 
     window.grecaptcha.ready(() => {
       recaptchaWidgetId.current = renderRecaptchaWidget({
         sitekey: recaptchaSiteKey,
         callback: (token: string) => {
-          const input = formRef.current?.querySelector('input[name="recaptcha_token"]') as HTMLInputElement
-          if (input) input.value = token
+          if (formInstance) {
+            formInstance.setFieldsValue({ recaptcha_token: token })
+            formInstance.submit()
+          } else if (formRef && formRef.current) {
+            const input = formRef.current.querySelector('input[name="recaptcha_token"]') as HTMLInputElement
+            if (input) input.value = token
+            formRef.current.submit()
+          }
           setRecaptchaToken(token)
-          formElement.submit()
         },
       })
-      renderedForm.current = formElement
     })
-  }, [recaptchaReady, disable_recaptcha, formRef.current])
+  }, [recaptchaReady, disable_recaptcha, formRef, formInstance])
 
   return {
     recaptchaToken,

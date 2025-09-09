@@ -28,10 +28,10 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.id')}
           id="id"
           sorter
-          render={jobRole => (
-            jobRole.id
+          render={skill => (
+            skill.id
           )}
-          width={200}
+          width={150}
         />
         <Resource.Column<Skill>
           title={I18n.t('common.column.name')}

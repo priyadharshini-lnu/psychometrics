@@ -156,7 +156,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
               validator: (_, value) => (value && value.trim() !== ''
                 ? Promise.resolve()
                 : Promise.reject(new Error(
-                  I18n.t('administration.proficiency_levels.errors.create.level_definition_must_exist'),
+                  I18n.t('administration.proficiency_levels.errors.create.level_description_must_exist'),
                 ))),
             },
           ]}

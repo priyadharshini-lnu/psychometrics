@@ -106,6 +106,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
 
   const submitForm = () => {
     createResource({
+      name: form.getFieldValue('name'),
       title: form.getFieldValue('title'),
       allowLanguagePreference: form.getFieldValue('allowLanguagePreference'),
       allowedLanguages: form.getFieldValue('languagesAllowed'),

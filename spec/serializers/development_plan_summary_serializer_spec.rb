@@ -36,6 +36,7 @@ development_action: on_the_job, progress: 90)
       expect(skills_by_skill_type_count).to eq(
         behavioral: 1,
         technical: 2,
+        qualification: 0,
         other: 1
       )
     end
@@ -60,6 +61,7 @@ development_action: on_the_job, progress: 90)
       expect(skill_progress_by_skill_type).to eq(
         behavioral: 30.0,
         technical: 35.0,
+        qualification: 0.0,
         other: 90.0
       )
     end

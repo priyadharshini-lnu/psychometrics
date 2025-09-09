@@ -4,9 +4,11 @@ module Api
   class V2::Administration::WorkshopInvitesController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::WorkshopInvite::Schema
     validates_request_schema :create, -> { Api::V2::WorkshopInvite::CreateContract.new }
+    validates_request_schema :update, -> { Api::V2::WorkshopInvite::UpdateContract.new }
     validates_request_schema :create_relationship, -> { Api::V2::WorkshopInvite::CreateRelationshipsContract.new }
 
     prepend_before_action :set_workshops, only: %i[create]
+    before_action :set_resource, only: %i[update]
 
     def create
       ActiveRecord::Base.transaction do
@@ -46,6 +48,18 @@ module Api
       end
     end
 
+    def update
+      ActiveRecord::Base.transaction do
+        @workshop_invite.update!(workshop_invite_params)
+        if translations_params[:translations].present?
+          WorkshopInvites::UpdateTranslations.call!(@workshop_invite, translations_params[:translations])
+        end
+        audit! :update, @workshop_invite, payload: params
+      end
+
+      jsonapi_render json: @workshop_invite
+    end
+
     def set_workshops
       @workshops = Api::Administration::WorkshopPolicy::Scope.new(
         current_user, Workshop
@@ -67,7 +81,8 @@ module Api
     def workshop_invite_params
       params.require(:data).
         require(:attributes).
-        permit(:campaign_id, :allow_language_preference, :allow_neurodiversity_option, :campaign_assessment_group_id,
+        permit(:campaign_id, :name, :allow_language_preference, :allow_neurodiversity_option,
+               :campaign_assessment_group_id, :workshop_ids,
                allowed_languages: [])
     end
 
@@ -88,6 +103,7 @@ module Api
             model || model_class,
             [
               'create',
+              'update',
               %w[remove destroy]
             ],
             { campaign_id: campaign_id }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Form, Layout, Typography, Row, Col, Space, Button, Alert,
+  Form, Layout, Typography, Row, Col, Space, Button, Alert, Input,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -10,8 +10,10 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import { changePassword, CHANGE_PASSWORD } from '~/core/currentUser'
 import { isRequestInProgress } from '~/core/request'
 import styles from './ChangePassword.less'
+import { useRecaptcha } from '~/hooks/useRecaptcha'
 
 const { I18n } = window
+const { disable_recaptcha } = window.PsyGlobalState.features
 
 const connecter = connect((state: RootState) => ({
   saveInProgress: isRequestInProgress(state, CHANGE_PASSWORD),
@@ -25,6 +27,14 @@ type Props = PropsFromRedux
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveInProgress }) => {
+  const [form] = Form.useForm()
+
+  const {
+    recaptchaToken,
+    recaptchaReady,
+    recaptchaWidgetId,
+  } = useRecaptcha({ formInstance: form, disable_recaptcha })
+
   const handleChangePassword = values => changePassword(values).then(() => {
     window.location.href = '/users/sign_in'
   })
@@ -46,6 +56,7 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
             <ResourceForm
               resourceName="passwords"
               readableResourceName="Password"
+              storeManager={{ form }}
               scrollToFirstError
               request={{
                 submit: handleChangePassword,
@@ -71,6 +82,15 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                   >
                     <AccessiblePasswordInput />
                   </Form.Item>
+
+                  {!disable_recaptcha && (
+                    <Form.Item
+                      name="recaptcha_token"
+                      style={{ display: 'none' }}
+                    >
+                      <Input type="hidden" />
+                    </Form.Item>
+                  )}
                   <>
                     <Alert
                       message={(
@@ -87,6 +107,18 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                       type="primary"
                       htmlType="submit"
                       className={styles.actionButton}
+                      onClick={(e) => {
+                        if (!disable_recaptcha) {
+                          if (!recaptchaReady || recaptchaWidgetId.current === null) {
+                            e.preventDefault()
+                            return
+                          }
+                          if (!recaptchaToken) {
+                            e.preventDefault()
+                            window.grecaptcha.execute(recaptchaWidgetId.current)
+                          }
+                        }
+                      }}
                     >
                       {I18n.t('profile.update')}
                       <DirectionalArrowIcon className={styles.buttonIcon} />
@@ -95,6 +127,8 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                 </>
               )}
             </ResourceForm>
+            {/* Hidden div for reCAPTCHA widget */}
+            {!disable_recaptcha && <div id="recaptcha-button" style={{ display: 'none' }} />}
           </Col>
         </Row>
       </Layout.Content>

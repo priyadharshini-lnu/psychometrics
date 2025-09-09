@@ -69,7 +69,7 @@ module Swagger
       paths: {},
       security: {},
       servers: [{
-        url: 'https://ttedev.me:3030/api/v2/administration'
+        url: 'https://localhost:3030/api/v2/administration'
       }],
       schemes: %w[http https],
       consumes: [

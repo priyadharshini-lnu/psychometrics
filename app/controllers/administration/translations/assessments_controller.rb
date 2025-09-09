@@ -3,6 +3,7 @@
 module Administration
   module Translations
     class AssessmentsController < Administration::BaseController
+      skip_before_action :enforce_geo_restriction
       append_before_action :pundit_authorize
       before_action :set_assessment
 
@@ -17,12 +18,19 @@ module Administration
       end
 
       def import
-        @_resource = ::Imports::Translations::AssessmentImport.new(import_params.merge(resource_id: @assessment.id))
+        form = ::Imports::Translations::AssessmentImport.new(
+          resource_id: import_params[:resource_id], file: import_params[:file]
+        )
+
         respond_to do |format|
-          if resource.process!
+          if form.valid?
+            AdminJob.call(:import_assessment_translations,
+                          { assessment_id: import_params[:resource_id] },
+                          current_user,
+                          import_params[:file])
             format.js
           else
-            format.js { render :new }
+            format.js { render :new, errors: form.errors.full_messages }
           end
         end
       end
@@ -34,7 +42,7 @@ module Administration
       end
 
       def import_params
-        params.require(:import).permit(:file, :assessment_id)
+        params.require(:import).permit(:file, :resource_id)
       end
 
       # Authorisation user

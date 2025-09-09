@@ -645,6 +645,7 @@ orbs:
   node: circleci/node@7.0.0
   kubernetes: circleci/kubernetes@2.0.0
   helm: circleci/helm@3.1.0
+  ggshield: gitguardian/ggshield@volatile
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
@@ -661,6 +662,10 @@ workflows:
       - brakeman:
           requires:
             - bundle
+      - ggshield/scan:
+          name: git_guardian
+          base_revision: <<pipeline.git.base_revision>>
+          revision: <<pipeline.git.revision>>
       - rubocop:
           requires:
             - bundle
@@ -692,6 +697,7 @@ workflows:
             - bundle_assets
             - rubocop
             - brakeman
+            - git_guardian
             - eslint
             - typescript
       - other_checks:
@@ -702,6 +708,7 @@ workflows:
             - bundle_assets
             - rubocop
             - brakeman
+            - git_guardian
             - eslint
             - typescript
       - coveralls:

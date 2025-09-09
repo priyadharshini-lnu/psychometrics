@@ -21,12 +21,17 @@ type Props = {
 }
 
 export const SendInvitation: FC<Props> = ({
-  form, prev, submit, errors, onCancel, isLoading,
+  form,
+  prev,
+  submit,
+  errors,
+  onCancel,
+  isLoading,
 }) => {
   const allowedLanguages = form.getFieldValue('languagesAllowed')
   const [selectedLang, setSelectedLang] = useState<string>('')
   const [languages, setLanguages] = useState<{
-    [key:string]: {locale: string, name: string, title: string, description: string}
+    [key: string]: { locale: string, name: string, title: string, description: string }
   }>({
     en: {
       locale: 'en',
@@ -67,8 +72,8 @@ export const SendInvitation: FC<Props> = ({
             <Panel
               key={code}
               collapsible
-            // eslint-disable-next-line max-len
-              title={I18n.t('administration.assessment_center.invite.send_invites.title', { lang: I18n.t(`languages.${lang.locale}`) })}
+              title={I18n.t('administration.assessment_center.invite.send_invites.title',
+                { lang: I18n.t(`languages.${lang.locale}`) })}
               description={I18n.t('administration.assessment_center.invite.send_invites.description')}
             >
               <Row>
@@ -80,7 +85,11 @@ export const SendInvitation: FC<Props> = ({
                     help={errors?.[`translations/${index}/title`]?.title}
                   >
                     <Input onChange={e => setLanguages({
-                      ...languages, [code]: { ...languages[code], title: e.currentTarget.value },
+                      ...languages,
+                      [code]: {
+                        ...languages[code],
+                        title: e.currentTarget.value,
+                      },
                     })}
                     />
                   </Form.Item>
@@ -92,7 +101,11 @@ export const SendInvitation: FC<Props> = ({
                     help={errors?.[`translations/${index}/description`]?.title}
                   >
                     <Input.TextArea onChange={e => setLanguages({
-                      ...languages, [code]: { ...languages[code], description: e.currentTarget.value },
+                      ...languages,
+                      [code]: {
+                        ...languages[code],
+                        description: e.currentTarget.value,
+                      },
                     })}
                     />
                   </Form.Item>
@@ -118,7 +131,10 @@ export const SendInvitation: FC<Props> = ({
                       <Select
                         placeholder={I18n.t('administration.assessment_center.invite.send_invites.input_placeholder')}
                         options={allowedLanguages.map(lang => (
-                          { value: lang, label: I18n.t(`languages.${lang}`) }
+                          {
+                            value: lang,
+                            label: I18n.t(`languages.${lang}`),
+                          }
                         ))}
                         onChange={value => setSelectedLang(value)}
                       />

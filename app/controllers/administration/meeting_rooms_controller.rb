@@ -2,6 +2,7 @@
 
 module Administration
   class MeetingRoomsController < Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     prepend_before_action :set_resource_class
     before_action :set_resource
     append_before_action :pundit_authorize

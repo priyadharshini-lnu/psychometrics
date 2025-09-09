@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import AppStore from '~/modules/reports/store/AppStore'
+import { getColorForGraphValue, isGraphValueCondition } from '~/modules/reports/utils/GraphValueCondition'
 
 export const Functions = {
   Count (results, values) {
@@ -12,7 +13,8 @@ export const Functions = {
 
 export default {
   series (results, embeddedData, model, func = 'Count') {
-    const colors = _.map(model.props.colors, 'color')
+    const useColorsFromGraphValueConditions = isGraphValueCondition(model.props.textConditionType)
+    const colors = !useColorsFromGraphValueConditions ? _.map(model.props.colors, 'color') : []
     // find pull of possible values
     const values = {}
     if (Array.isArray(results)) {
@@ -31,10 +33,13 @@ export default {
         })
         const commonData = _.map(group, (value, key) => {
           const data = (Functions[func] || Functions.Count)(res.results.embeddedData[embeddedData.name], value)
+          const barColor = useColorsFromGraphValueConditions
+            ? getColorForGraphValue(model.props.graphValueConditions, data) : undefined
           return {
             name: key,
             y: data,
             drilldown: embeddedData.name,
+            color: barColor,
           }
         })
         return {

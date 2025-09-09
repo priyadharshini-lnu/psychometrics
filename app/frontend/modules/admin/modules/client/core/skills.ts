@@ -7,7 +7,7 @@ export const SkillTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
     name: t.union([t.string, t.undefined]),
-    description: t.union([t.string, t.undefined]),
+    description: t.union([t.string, t.undefined, t.null]),
     skillType: t.union([t.string, t.undefined]),
     project: t.union([
       t.type({

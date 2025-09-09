@@ -27,6 +27,7 @@ describe Idp::DevelopmentAction::SkillsBySkillType do
     expect(skills_by_skill_type).to eq(
       behavioral: 2,
       technical: 3,
+      qualification: 0,
       other: 1
     )
   end
@@ -44,6 +45,7 @@ describe Idp::DevelopmentAction::SkillsBySkillType do
       expect(skills_by_skill_type).to eq(
         behavioral: 2,
         technical: 1,
+        qualification: 0,
         other: 0
       )
     end

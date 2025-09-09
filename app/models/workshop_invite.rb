@@ -14,6 +14,34 @@ class WorkshopInvite < ApplicationRecord
 
   translates :title, :description
 
+  scope :filterable_fields, lambda { |search_term|
+    search_term = search_term.to_s
+    if (search_term !~ /\D/) && search_term.present?
+      where(
+        'id = ? OR name ILIKE ? OR EXISTS (
+          SELECT 1 FROM workshop_invite_translations
+          WHERE workshop_invite_id = id AND title ILIKE ? AND locale = ?
+        )',
+        search_term,
+        "%#{search_term}%",
+        "%#{search_term}%",
+        I18n.locale.to_s
+      )
+    else
+      where(
+        "workshop_invites.name ILIKE ? OR EXISTS (
+          SELECT 1 FROM workshop_invite_translations
+          WHERE workshop_invite_id = workshop_invites.id
+            AND title ILIKE ?
+            AND locale = ?
+        )",
+        "%#{search_term}%",
+        "%#{search_term}%",
+        I18n.locale.to_s
+      )
+    end
+  }
+
   RESTRICTED_SUBJECTS = 300
 
   def available_workshops_date_and_id
@@ -31,6 +59,10 @@ class WorkshopInvite < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id title campaign_id]
+    %w[id title name campaign_id]
+  end
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[filterable_fields]
   end
 end

@@ -376,11 +376,11 @@ pt:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'Linha %{row}: Valor duplicado %{value} para %{field}'
+              duplicate_value: "%{sheet_name}, Linha %{row}: Duplicar %{value} de valor para %{field}"
               invalid_format: Por favor, envie um arquivo xlsx
               missing_headers: 'A planilha %{sheet_name} está sem os cabeçalhos obrigatórios: %{headers}'
               missing_sheets: 'Faltam as planilhas obrigatórias: %{sheets}'
-              missing_value: 'Linha %{row}: Valor ausente para %{field}'
+              missing_value: "%{sheet_name}, Linha %{row}: Valor ausente para %{field}"
             project:
               must_exist: O projeto deve existir
         update_norm:
@@ -440,10 +440,13 @@ pt:
           iiht: IIHT
           lead_assessor_form: Formulário do avaliador principal
           meeting: Reunião
+          mettl: Mettl
           organisational: Inquéritos
           pearson: Pearson
           psychometric: Avaliação
           saville: Saville
+          simulation: Simulação
+          skillvue: Habilidade
           threesixty: campanha 360
         category: Categoria
         created_at: Data de criação
@@ -457,8 +460,11 @@ pt:
           common: Avaliação TTE
           hogan: Hogan
           iiht: Avaliação IIHT
+          mettl: Avaliação da Mettl
           pearson: Avaliação da Pearson
           saville: Avaliação Saville
+          simulation: Avaliação de simulação
+          skillvue: Avaliação Skillvue
         updated_at: Data de modificação
       assign:
         completed_at: Data de conclusão
@@ -811,6 +817,7 @@ pt:
         bulk_download_idp_reports: Download em massa de relatórios de IDP
         bulk_download_reports: Relatórios de transferência em massa
         bulk_download_user_reports: Transferência em massa de relatórios do utilizador
+        bulk_generate_user_campaign_ai_artifact_results: Gerar resultados de artefatos de IA de campanha em massa
         bulk_regenerate_reports: Regenerar relatórios de campanha
         bulk_regenerate_threesixty_reports: Regenerar relatórios de trinta e seis assuntos
         bulk_regenerate_user_reports: Gerar novamente relatórios de utilizadores
@@ -847,6 +854,7 @@ pt:
         external_assessment_export: Exportação de resultados externos
         import_accesssheet: Importar folha de acesso
         import_assessment_questions: Questões de avaliação da importação
+        import_assessment_translations: Traduções de avaliação de importação
         import_assessors: Avaliadores de importação
         import_campaign_factors: Factores da campanha de importação
         import_datasheet: Importar ficha de dados
@@ -1131,6 +1139,10 @@ pt:
         mic: Microfone
       discard: Eliminar
       discard_record_again: Descartar e gravar novamente
+      error_while_discarding: Falha ao descartar o vídeo existente
+      error_while_uploading: Ocorreu um erro desconhecido ao concluir o upload
+      failed_to_access_permission: Falha ao acessar a câmera e o microfone
+      failed_to_complete_upload: 'Falha ao concluir o upload: nenhum detalhe de URL disponível'
       media_recorder:
         failure: O seu navegador não suporta gravação de vídeos. Utilize o Chrome ou o Firefox para gravação de vídeos
         success: Permita o uso da câmara e do microfone para gravar áudio e vídeo
@@ -1791,6 +1803,7 @@ pt:
     column:
       action: Ação
       active: Ativo
+      ai_assistant: Assistente de IA
       allow_multiple_responses: Permitir respostas múltiplas
       approval_notification_list: Lista de utilizadores de notificações de aprovação
       approvers_list: Lista de aprovadores
@@ -1881,7 +1894,9 @@ pt:
       continue: Continuar
       copied: Copiado para a área de transferência
       default: Padrão
+      disabled: Desactivado
       download: Descarregar
+      enabled: Habilitado
       file: Ficheiro
       global_import: A importação global?
       minutes: Minutos
@@ -2892,6 +2907,8 @@ pt:
     zh-HK: Chinês (Hong Kong)
     zh-Hant: Chinês - Tradicional
     zh-TW: Chinês (Taiwan)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: Ativo
     campaign_name: Nome da campanha

@@ -3,6 +3,7 @@
 module Administration
   module Assessments
     class BuildersController < Administration::BaseController
+      skip_before_action :enforce_geo_restriction
       before_action :set_assessment, except: %i[upload_campaign_factors]
       append_before_action :pundit_authorize
 

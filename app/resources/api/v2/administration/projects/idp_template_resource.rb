@@ -9,7 +9,7 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
              :logo_type, :title_text, :subtitle_text, :fields,
              :background, :client_logo, :show_reflections, :reflection_questions,
              :instructions, :translations, :available_locales, :status, :allow_edit,
-             :ai_enabled, :ai_assisted_idp_enabled, :one_click_idp_enabled
+             :ai_enabled, :ai_assisted_idp_enabled, :one_click_idp_enabled, :skill_source_preference
 
   has_one :project, class_name: 'Client'
   has_one :report

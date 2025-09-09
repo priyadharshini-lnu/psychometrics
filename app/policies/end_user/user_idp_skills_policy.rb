@@ -25,6 +25,16 @@ class EndUser::UserIdpSkillsPolicy < BasePolicy
     end
   end
 
+  def toggle_privacy?
+    return false if @current_user_idp.blank?
+
+    if manager_of_record?
+      manager_can_edit_plan?
+    else
+      user_can_edit_own_plan?
+    end
+  end
+
   private
 
   def manager_of_record?

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Administration::NormsController < Administration::BaseController
+  skip_before_action :enforce_geo_restriction
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[edit update destroy copy toggle_status sidebar export editor]
   before_action :skip_authorization, only: [:sidebar]

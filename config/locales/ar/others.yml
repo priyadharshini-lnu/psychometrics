@@ -376,11 +376,11 @@ ar:
         taxonomies_import_form:
           attributes:
             file:
-              duplicate_value: 'الصف %{row}: القيمة المكررة %{value} لـ %{field}'
+              duplicate_value: "%{sheet_name}، الصف %{row}: %{value} قيمة مكررة ل %{field}"
               invalid_format: يُرجى تحميل ملف xlsx
               missing_headers: "%{sheet_name} الورقة ناقصة الرؤوس المطلوبة: %{headers}"
               missing_sheets: 'الأوراق المطلوبة مفقودة: %{sheets}'
-              missing_value: 'الصف %{row}: قيمة مفقودة لـ %{field}'
+              missing_value: "%{sheet_name}، الصف %{row}: قيمة مفقودة ل %{field}"
             project:
               must_exist: يجب أن يكون المشروع موجوداً
         update_norm:
@@ -440,10 +440,13 @@ ar:
           iiht: IIHT
           lead_assessor_form: نموذج المقيم الرئيسي
           meeting: اجتماع
+          mettl: ميتل
           organisational: مسوح
           pearson: بيرسون
           psychometric: تقييم
           saville: سافيل
+          simulation: محاكاة
+          skillvue: سكيلفيو
           threesixty: حملة 360
         category: باب
         created_at: تاريخ الإنشاء
@@ -457,8 +460,11 @@ ar:
           common: تقييم TTE
           hogan: هوجان
           iiht: تقييم IIHT
+          mettl: تقييم Mettl
           pearson: تقييم بيرسون
           saville: تقييم سافيل
+          simulation: تقييم المحاكاة
+          skillvue: تقييم Skillvue
         updated_at: تاريخ التعديل
       assign:
         completed_at: تاريخ الانتهاء
@@ -835,6 +841,7 @@ ar:
         bulk_download_idp_reports: تنزيل تقارير IDP بالمجمع
         bulk_download_reports: تقارير التنزيل الجماعي
         bulk_download_user_reports: تنزيل تقارير المستخدم بالجملة
+        bulk_generate_user_campaign_ai_artifact_results: الإنشاء المجمع لنتائج الذكاء الاصطناعي للحملة
         bulk_regenerate_reports: إعادة إنشاء تقارير الحملة
         bulk_regenerate_threesixty_reports: إعادة إنشاء تقارير موضوع Threesixty
         bulk_regenerate_user_reports: إعادة إنشاء تقارير المستخدم
@@ -871,6 +878,7 @@ ar:
         external_assessment_export: تصدير النتائج الخارجية
         import_accesssheet: استيراد الحجز
         import_assessment_questions: أسئلة تقييم الاستيراد
+        import_assessment_translations: استيراد ترجمات التقييم
         import_assessors: مقيمو الاستيراد
         import_campaign_factors: استيراد عوامل الحملة
         import_datasheet: استيراد ورقة البيانات
@@ -1155,6 +1163,10 @@ ar:
         mic: ميكروفون
       discard: تجاهل
       discard_record_again: تجاهل وتسجيل مرة أخرى
+      error_while_discarding: فشل تجاهل الفيديو الحالي
+      error_while_uploading: حدث خطأ غير معروف أثناء إكمال التحميل
+      failed_to_access_permission: فشل الوصول إلى الكاميرا والميكروفون
+      failed_to_complete_upload: 'تعذر إكمال التحميل: لا تتوفر تفاصيل عنوان URL'
       media_recorder:
         failure: هذا المتصفح لا يدعم تسجيل الفيديو، الرجاء استخدام كروم أو فايرفوكس للتمكن من تسجيل الفيديو
         success: يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو
@@ -1815,6 +1827,7 @@ ar:
     column:
       action: نشاط
       active: نشط
+      ai_assistant: مساعد الذكاء الاصطناعي
       allow_multiple_responses: السماح بردود متعددة
       approval_notification_list: قائمة مستخدمي إشعار الموافقة
       approvers_list: قائمة الموافقين
@@ -1905,7 +1918,9 @@ ar:
       continue: متابعة
       copied: تم النسخ إلى الحافظة
       default: الافتراضي
+      disabled: ذوي الاحتياجات الخاصه
       download: تحميل
+      enabled: تمكين
       file: ملف
       global_import: هل الاستيراد العالمي؟
       minutes: محضر
@@ -2915,6 +2930,8 @@ ar:
     zh-HK: الصينية (هونغ كونغ)
     zh-Hant: الصينية - التقليدية
     zh-TW: الصينية (تايوان)
+  languages_localized:
+    sl: Slovenščina
   license_usage:
     active: نشط
     campaign_name: اسم الحملة

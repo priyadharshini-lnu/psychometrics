@@ -2,6 +2,9 @@
 
 module Api
   class V2::Administration::UserReportCommentsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
+    before_action -> { user_report.campaign.client&.check_geo_restriction! }
+
     validate_crud_requests Api::V2::UserReportComment::Schema
 
     delegate :campaign_id, to: :user_report

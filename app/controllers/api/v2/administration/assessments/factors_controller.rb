@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::Assessments::FactorsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction
     validate_crud_requests Api::V2::Assessment::Factor::Schema
     def questions
       factor_ids = params.dig(:filter, :factor_ids)&.split(',')
