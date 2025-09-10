@@ -12,7 +12,6 @@ export default function EvaluatorTable ({
   openModal,
   onCloseParticipantModal,
   campaignId,
-  threeSixtyCampaignId,
   removeUser,
   editUser,
 }) {
@@ -78,7 +77,6 @@ export default function EvaluatorTable ({
             menu={
               getActionsMenuProps({
                 user,
-                threeSixtyCampaignId,
                 permissions,
                 campaignId,
                 removeUser,
