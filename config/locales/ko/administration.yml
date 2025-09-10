@@ -2913,6 +2913,7 @@ ko:
           default_project_exists: '행 %{row_number}: 프로젝트 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
           invalid_csv_format: '잘못된 CSV 형식: %{message}'
           invalid_proficiency_type: '행 %{row_number}: 잘못되었거나 누락된 숙련도 유형입니다.'
+          invalid_skill_type: '행 %{row_number}: 잘못된 스킬 유형 "%{skill_type}". 유효한 유형은 다음과 같습니다: %{valid_types}'
           missing_columns: '누락된 필수 열: %{fields}'
           skill_not_found: '행 %{row_number}: 유효하지 않거나 누락된 스킬입니다.'
         job_queued: 숙련도 수준 가져오기 작업이 대기열에 추가되었습니다.

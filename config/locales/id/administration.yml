@@ -2909,6 +2909,7 @@ id:
           by_skill_missing: 'Baris %{row_number}: Proyek dan Keterampilan harus ada untuk jenis ''by_skill'''
           invalid_csv_format: 'Format CSV tidak valid: %{message}'
           invalid_proficiency_type: 'Baris %{row_number}: Tidak valid atau tidak ada ProficiencyType'
+          invalid_skill_type: 'Baris %{row_number}: Jenis keterampilan yang tidak valid "%{skill_type}". Jenis yang valid adalah: %{valid_types}'
           missing_columns: 'Kolom wajib tidak ada: %{fields}'
           skill_not_found: 'Baris %{row_number}: Keterampilan tidak valid atau hilang'
         job_queued: Tugas impor tingkat kemahiran telah diantri

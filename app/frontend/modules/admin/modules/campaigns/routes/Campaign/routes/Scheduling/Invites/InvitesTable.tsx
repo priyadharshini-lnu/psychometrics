@@ -1,5 +1,5 @@
 import {
-  Tag, Button, App, MenuProps,
+  Tag, Button, App, MenuProps, Tooltip, Typography,
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
@@ -63,25 +63,42 @@ export const InvitesTable = () => {
             title={I18n.t('administration.assessment_center.invite.id')}
             id="id"
             sorter
-            width="10%"
+            width={100}
             render={(_, { id }) => <Link to={`${location.pathname}/${id}/subjects`}>{id}</Link>}
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('administration.assessment_center.invite.title')}
             id="title"
             sorter
-            width="25%"
+            render={(_, { title }) => (
+              <Tooltip placement="topLeft" title={title}>
+                <Typography.Paragraph ellipsis={
+                    { rows: 2 }}
+                >
+                  {title}
+                </Typography.Paragraph>
+              </Tooltip>
+            )}
+            width={250}
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('administration.assessment_center.invite.name')}
             id="name"
             sorter
-            width="15%"
+            render={(_, { name }) => (
+              <Tooltip placement="topLeft" title={name}>
+                <Typography.Paragraph ellipsis={
+                  { rows: 2 }}
+                >
+                  {name}
+                </Typography.Paragraph>
+              </Tooltip>
+            )}
+            width={250}
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('administration.assessment_center.invite.assessment_center')}
             id="assessmentCenter"
-            width="25%"
             render={data => (
               data.workshops[0] ? (
                 <>
@@ -95,12 +112,10 @@ export const InvitesTable = () => {
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('administration.assessment_center.invite.center_group')}
-            width="15%"
             id="campaignAssessmentGroupName"
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('administration.assessment_center.invite.subjects.title')}
-            width="15%"
             id="subjectsCount"
           />
           <Resource.Column<WorkshopInvite>
@@ -131,7 +146,7 @@ const Filter: React.FC<FilterProps> = ({ openForm }) => {
   const { resource } = useResourceContext<WorkshopInvite, { permissions: { create: boolean } }>()
 
   return (
-    <Resource.Filter placeholder={I18n.t('common.actions.search')} name="title_cont">
+    <Resource.Filter placeholder={I18n.t('common.actions.search')} name="filterable_fields">
       {resource.meta.permissions.create && (
         <Button type="primary" onClick={openForm}>
           <PlusOutlined />

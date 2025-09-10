@@ -2909,6 +2909,7 @@ bg:
           by_skill_missing: 'Ред %{row_number}: Проектът и умението трябва да присъстват за тип ''by_skill'''
           invalid_csv_format: 'Невалиден CSV формат: %{message}'
           invalid_proficiency_type: 'Ред %{row_number}: Невалиден или липсващ ProficiencyType'
+          invalid_skill_type: 'Ред %{row_number}: Невалиден тип умение "<x>skill_type</x>". Валидните типове са: %{valid_types}'
           missing_columns: 'Липсват задължителни колони: %{fields}'
           skill_not_found: 'Ред %{row_number}: Невалидно или липсващо умение'
         job_queued: Заданието за импортиране на нива на владеене е поставено на опашка
