@@ -34,6 +34,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   const availableAiProviders = useSelector(getAvailableAiProviders)
 
   const assistantOutputSchemaKeys = Form.useWatch('assistantOutputSchemaKeysAttributes', form)
+  const assistantType = Form.useWatch('assistantType', form)
 
   const handleSubmit = () => {
     form.validateFields().then(() => {
@@ -171,71 +172,75 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
           <Input.TextArea rows={4} />
         </Form.Item>
 
-        <Form.Item
-          name="dependencies"
-          label={I18n.t('administration.ai_assistants.form.dependencies')}
-          rules={[{ required: true }]}
-        >
-          <Select
-            showSearch
-            filterOption={false}
-            mode="multiple"
-          >
-            {Object.values(DEPENDENCY_TYPES).map(({ id, name }) => (
-              <Select.Option key={id} value={id}>{name}</Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
-
-        <Typography.Title style={{ fontSize: '1.167rem' }}>
-          {I18n.t('administration.ai_assistants.form.output_schema_keys')}
-        </Typography.Title>
-        <div style={{
-          border: '1px solid #d9d9d9',
-          padding: '16px',
-          borderRadius: '4px',
-          marginBottom: '16px',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-        >
-          <Form.List name="assistantOutputSchemaKeysAttributes">
-            {(fields, { add, remove }) => (
-              <>
-                {fields.map(({ name, ...restField }, index) => (
-                  <OutputSchemaKeyFields
-                    remove={remove}
-                    name={name}
-                    index={index}
-                    {...restField}
-                  />
+        {assistantType === ASSISTANT_TYPES.content_writer.id && (
+          <>
+            <Form.Item
+              name="dependencies"
+              label={I18n.t('administration.ai_assistants.form.dependencies')}
+              rules={[{ required: true }]}
+            >
+              <Select
+                showSearch
+                filterOption={false}
+                mode="multiple"
+              >
+                {Object.values(DEPENDENCY_TYPES).map(({ id, name }) => (
+                  <Select.Option key={id} value={id}>{name}</Select.Option>
                 ))}
-                <Row>
-                  <Col>
-                    <Button
-                      onClick={() => add()}
-                      icon={<PlusOutlined />}
-                    >
-                      {I18n.t('administration.ai_assistants.form.add_output_schema_key')}
-                    </Button>
-                  </Col>
-                </Row>
-              </>
-            )}
-          </Form.List>
-          <Form.Item
-            name="assistantOutputSchemaKeysAttributesValidator"
-            shouldUpdate
-            rules={[{ validator: checkKeyUniqueness }]}
-            noStyle
-            dependencies={['assistantOutputSchemaKeysAttributes']}
-          />
-          {listError && (
-            <Typography.Text type="danger" style={{ marginTop: '8px' }}>
-              {listError}
-            </Typography.Text>
-          )}
-        </div>
+              </Select>
+            </Form.Item>
+            <Typography.Title style={{ fontSize: '1.167rem' }}>
+              {I18n.t('administration.ai_assistants.form.output_schema_keys')}
+            </Typography.Title>
+            <div style={{
+              border: '1px solid #d9d9d9',
+              padding: '16px',
+              borderRadius: '4px',
+              marginBottom: '16px',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+            >
+              <Form.List name="assistantOutputSchemaKeysAttributes">
+                {(fields, { add, remove }) => (
+                  <>
+                    {fields.map(({ name, ...restField }, index) => (
+                      <OutputSchemaKeyFields
+                        remove={remove}
+                        name={name}
+                        index={index}
+                        {...restField}
+                      />
+                    ))}
+                    <Row>
+                      <Col>
+                        <Button
+                          onClick={() => add()}
+                          icon={<PlusOutlined />}
+                        >
+                          {I18n.t('administration.ai_assistants.form.add_output_schema_key')}
+                        </Button>
+                      </Col>
+                    </Row>
+                  </>
+                )}
+              </Form.List>
+              <Form.Item
+                name="assistantOutputSchemaKeysAttributesValidator"
+                shouldUpdate
+                rules={[{ validator: checkKeyUniqueness }]}
+                noStyle
+                dependencies={['assistantOutputSchemaKeysAttributes']}
+              />
+              {listError && (
+                <Typography.Text type="danger" style={{ marginTop: '8px' }}>
+                  {listError}
+                </Typography.Text>
+              )}
+            </div>
+          </>
+        )}
+
         <Button type="primary" htmlType="submit" onClick={handleSubmit}>
           {aiAssistant?.id ? I18n.t('administration.ai_assistants.actions.edit')
             : I18n.t('administration.ai_assistants.actions.create')}
