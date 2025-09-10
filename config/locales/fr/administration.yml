@@ -2913,6 +2913,7 @@ fr:
           default_project_exists: 'Ligne %{row_number} : Un niveau de compétence ''''par défaut'''' au niveau du projet existe déjà.'
           invalid_csv_format: 'Format CSV non valide : %{message}'
           invalid_proficiency_type: 'Ligne %{row_number} : Type de compétence non valide ou manquant'
+          invalid_skill_type: 'Ligne %{row_number} : Type de compétence non valide "%{skill_type}". Les types valides sont : %{valid_types}'
           missing_columns: 'Colonnes obligatoires manquantes : %{fields}'
           skill_not_found: 'Ligne %{row_number} : Compétence invalide ou manquante'
         job_queued: Niveaux de compétence Le travail d'importation a été mis en file d'attente

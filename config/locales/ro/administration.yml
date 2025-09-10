@@ -2909,6 +2909,7 @@ ro:
           by_skill_missing: 'Rândul %{row_number}: Proiectul și Skill trebuie să fie prezente pentru tipul "by_skill"'
           invalid_csv_format: 'Format CSV nevalid: %{message}'
           invalid_proficiency_type: 'Rândul %{row_number}: ProficiencyType nevalid sau lipsă'
+          invalid_skill_type: 'Rândul %{row_number}: Tip de competență invalid "%{skill_type}". Tipurile valabile sunt: %{valid_types}'
           missing_columns: 'Lipsesc coloanele obligatorii: %{fields}'
           skill_not_found: 'Rândul %{row_number}: Abilitate nevalidă sau lipsă'
         job_queued: Lucrarea de import a nivelurilor de competență a fost pusă în coadă

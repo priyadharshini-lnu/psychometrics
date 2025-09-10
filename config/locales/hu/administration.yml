@@ -2911,6 +2911,7 @@ hu:
           by_skill_missing: '%{row_number} sor: A projektnek és a készségnek jelen kell lennie a "by_skill" típushoz'
           invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
           invalid_proficiency_type: 'A(z) %{row_number} sor: Érvénytelen vagy hiányzó ProficiencyType'
+          invalid_skill_type: 'Sor %{row_number}: Érvénytelen képességtípus "%{skill_type}". Az érvényes típusok a következők: %{valid_types}'
           missing_columns: 'Hiányzó kötelező oszlopok: %{fields}'
           skill_not_found: "%{row_number} sor: Érvénytelen vagy hiányzó készség"
         job_queued: A tudásszintek importálási feladata várólistára került

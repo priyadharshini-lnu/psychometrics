@@ -2909,6 +2909,7 @@ sr-Latn:
           by_skill_missing: 'Red %{row_number}: Projekat i veština moraju biti prisutni za tip ''by_skill'''
           invalid_csv_format: 'Nevažeći CSV format: %{message}'
           invalid_proficiency_type: 'Red %{row_number}: Nevažeći ili nedostaje tip stručnosti'
+          invalid_skill_type: '[SR-LATN] Row %{row_number}: Invalid skill type "%{skill_type}". Valid types are: %{valid_types}'
           missing_columns: 'Nedostaju potrebne kolone: %{fields}'
           skill_not_found: 'Red %{row_number}: Nevažeća ili nedostajuća veština'
         job_queued: Uvoz nivoa stručnosti je stavljen u red čekanja

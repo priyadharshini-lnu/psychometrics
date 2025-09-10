@@ -54,7 +54,7 @@ module Administration
       )
 
       if row['SkillName'].present?
-        skill = Skill.find_by!(name: row['SkillName'])
+        skill = Skill.find_by(name: row['SkillName'], project_id: @project_id)
         proficiency_level.skill = skill
       end
 

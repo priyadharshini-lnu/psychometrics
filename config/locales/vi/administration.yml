@@ -2909,6 +2909,7 @@ vi:
           by_skill_missing: 'Hàng %{row_number}: Dự án và Kỹ năng phải có đối với loại ''by_skill'''
           invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
           invalid_proficiency_type: 'Hàng %{row_number}: Không hợp lệ hoặc thiếu ProficiencyType'
+          invalid_skill_type: 'Dòng %{row_number}: Loại kỹ năng không hợp lệ "%{skill_type}". Các loại hợp lệ là: %{valid_types}'
           missing_columns: 'Thiếu cột bắt buộc: %{fields}'
           skill_not_found: 'Hàng %{row_number}: Kỹ năng không hợp lệ hoặc thiếu'
         job_queued: Công việc nhập trình độ thành thạo đã được xếp hàng
