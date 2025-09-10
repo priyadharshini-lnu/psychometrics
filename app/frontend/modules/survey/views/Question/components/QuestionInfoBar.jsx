@@ -107,7 +107,10 @@ class Question extends Component {
         key: 'move_question_to_position',
         label: I18n.t('administration.survey_builder.question_info_bar.move_question'),
         icon: <SwapOutlined />,
-        onClick: () => openMoveQuestionModal({ question: model }),
+        onClick: (e) => {
+          e.domEvent.stopPropagation()
+          openMoveQuestionModal({ question: model })
+        },
       },
     ]
   }
@@ -170,7 +173,10 @@ class Question extends Component {
           ],
         }}
       >
-        <Button block>
+        <Button
+          block
+          onClick={e => e.stopPropagation()}
+        >
           <Space>
             <SettingOutlined />
           </Space>

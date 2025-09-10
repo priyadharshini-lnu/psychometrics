@@ -11,7 +11,8 @@ import {
 } from './actions'
 import { questionsWithoutDeleted, blocksWithoutDeleted } from '../selectors'
 
-const filterDeletedQuestions = (block, entities) => questionsWithoutDeleted(entities, block.questions).map(q => q.id)
+const filterDeletedQuestions = (block, entities) => questionsWithoutDeleted(entities, block.questions)
+  .map(q => q.id)
 
 const HANDLERS = {
   [INIT]: (store, { data }) => {
@@ -26,27 +27,45 @@ const HANDLERS = {
   },
   [CREATE]: (state, { block }) => setIn(state, [block.id], block),
   [REMOVE]: (state, { block }) => setIn(state, [block.id, 'deleted'], true),
-  [ADD_QUESTION]: (state, { block, question }) => {
+  [ADD_QUESTION]: (state, {
+    block,
+    question,
+  }) => {
     const newBlock = _.clone(state[block.id])
     newBlock.questions.push(question.id)
     return setIn(state, [block.id], newBlock)
   },
-  [INSERT_BEFORE_QUESTION]: (state, { block, position, question }) => {
+  [INSERT_BEFORE_QUESTION]: (state, {
+    block,
+    position,
+    question,
+  }) => {
     const newBlock = _.clone(state[block.id])
     newBlock.questions.splice(position, 0, question.id)
     return setIn(state, [block.id], newBlock)
   },
-  [INSERT_AFTER_QUESTION]: (state, { block, position, question }) => {
+  [INSERT_AFTER_QUESTION]: (state, {
+    block,
+    position,
+    question,
+  }) => {
     const newBlock = _.clone(state[block.id])
     newBlock.questions.splice(position + 1, 0, question.id)
     return setIn(state, [block.id], newBlock)
   },
-  [REMOVE_QUESTION]: (state, { block, question }) => {
+  [REMOVE_QUESTION]: (state, {
+    block,
+    question,
+  }) => {
     const newBlock = _.cloneDeep(state[block.id])
     _.pull(newBlock.questions, question.id)
     return setIn(state, [block.id], newBlock)
   },
-  [MOVE_QUESTION_UP]: (state, { block, question, blockOrder }) => {
+  [MOVE_QUESTION_UP]: (state, {
+    block,
+    question,
+    blockOrder,
+  }) => {
     const newBlock = _.cloneDeep(state[block.id])
     const index = _.findIndex(block.questions, id => id === question.id)
 
@@ -68,7 +87,11 @@ const HANDLERS = {
     }
     return state
   },
-  [MOVE_QUESTION_DOWN]: (state, { block, question, blockOrder }) => {
+  [MOVE_QUESTION_DOWN]: (state, {
+    block,
+    question,
+    blockOrder,
+  }) => {
     const newBlock = _.cloneDeep(state[block.id])
     const index = _.findIndex(block.questions, id => id === question.id)
 
@@ -91,7 +114,9 @@ const HANDLERS = {
     return state
   },
   [MOVE_QUESTION_TO_POSITION]: (state, {
-    question, targetQuestion, position,
+    question,
+    targetQuestion,
+    position,
   }) => {
     const sourceBlockId = question.block_id
     const targetBlockId = targetQuestion.block_id
@@ -103,6 +128,7 @@ const HANDLERS = {
     // Handle case where both blocks are the same
     if (sourceBlockId === targetBlockId) {
       const block = _.cloneDeep(state[sourceBlockId])
+      const currentIndex = _.findIndex(block.questions, id => id === question.id)
       const targetIndex = _.findIndex(block.questions, id => id === targetQuestion.id)
 
       if (targetIndex === -1) {
@@ -114,8 +140,18 @@ const HANDLERS = {
 
       // Calculate new position
       let newIndex
-      if (position === 'before') {
-        newIndex = targetIndex - 1
+      if (targetIndex > currentIndex) {
+        if (position === 'before') {
+          newIndex = targetIndex - 1
+        } else {
+          newIndex = targetIndex
+        }
+      } else if (targetIndex < currentIndex) {
+        if (position === 'after') {
+          newIndex = targetIndex + 1
+        } else {
+          newIndex = targetIndex
+        }
       } else {
         newIndex = targetIndex
       }
@@ -166,7 +202,10 @@ const HANDLERS = {
     })
     return blocks
   },
-  [ADD_PAGE_BREAK]: (state, { question, pb }) => {
+  [ADD_PAGE_BREAK]: (state, {
+    question,
+    pb,
+  }) => {
     const blocks = _.clone(state)
     const block = _.find(blocks, block => _.includes(block.questions, question.id))
     const index = _.findIndex(block.questions, id => id === question.id)
@@ -175,9 +214,15 @@ const HANDLERS = {
     blocks[block.id] = newBlock
     return blocks
   },
-  [UPDATE_BLOCK_PROPS]: (state, { block, props }) => setIn(state, [block.id, 'props'], { ...block.props, ...props }),
+  [UPDATE_BLOCK_PROPS]: (state, {
+    block,
+    props,
+  }) => setIn(state, [block.id, 'props'], { ...block.props, ...props }),
   [UPDATE_BLOCKS]: (state, { blocks }) => (blocks),
-  [COPY_QUESTION]: (state, { question, newQuestion }) => {
+  [COPY_QUESTION]: (state, {
+    question,
+    newQuestion,
+  }) => {
     const blocks = _.clone(state)
     const block = _.find(blocks, block => _.includes(block.questions, question.id))
     const index = _.findIndex(block.questions, id => id === question.id)
@@ -187,11 +232,20 @@ const HANDLERS = {
     return blocks
   },
   [CLONE_BLOCK]: (state, { block }) => setIn(state, [block.id], block),
-  [UPDATE_QUESTION_IDS]: (state, { block, ids }) => setIn(state, [block.id, 'questions'], ids),
-  [RENAME_BLOCK]: (state, { block, name }) => setIn(state, [block.id, 'name'], name),
+  [UPDATE_QUESTION_IDS]: (state, {
+    block,
+    ids,
+  }) => setIn(state, [block.id, 'questions'], ids),
+  [RENAME_BLOCK]: (state, {
+    block,
+    name,
+  }) => setIn(state, [block.id, 'name'], name),
   [PERMANENT_REMOVE]: (state, { block }) => setIn(state, [block.id, 'permanentRemove'], true),
   [RESTORE_BLOCK]: (state, { block }) => setIn(
-    state, [block.id], Object.assign({}, block, { deleted: false, deletedAt: null }),
+    state, [block.id], Object.assign({}, block, {
+      deleted: false,
+      deletedAt: null,
+    }),
   ),
   [RESTORE_QUESTION]: (state, { question }) => {
     const block = _.cloneDeep(state[question.block_id])
@@ -200,12 +254,17 @@ const HANDLERS = {
   },
   [EMPTY_TRASH]: (state) => {
     const blocks = _.cloneDeep(state)
-    _.each(blocks, (b) => { if (b.deleted) b.permanentRemove = true })
+    _.each(blocks, (b) => {
+      if (b.deleted) b.permanentRemove = true
+    })
     return blocks
   },
   [SAVE_AS_TEMPLATE]: (state, { block }) => setIn(state, [block.id, 'save_as_template'], true),
   [UNLINK_TEMPLATE]: (state, { block }) => setIn(
-    state, [block.id], Object.assign({}, state[block.id], { save_as_template: false, template_id: null }),
+    state, [block.id], Object.assign({}, state[block.id], {
+      save_as_template: false,
+      template_id: null,
+    }),
   ),
 }
 

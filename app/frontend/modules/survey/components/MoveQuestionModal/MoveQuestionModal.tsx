@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import {
   Modal, Select, Radio, Button, Space,
 } from 'antd'
 import Utils from '~/modules/survey/utils'
+import { Question } from './types'
 import { PropsFromRedux } from './connect'
 
 const { Option } = Select
@@ -14,12 +15,40 @@ const { I18n } = window
 export const MoveQuestionModal = ({
   currentQuestion,
   questions,
+  blocks,
   onMove,
   onClose,
   visible,
 }: Props) => {
   const [targetQuestionId, setTargetQuestionId] = useState<number | null>(null)
   const [position, setPosition] = useState<'before' | 'after'>('after')
+
+  const questionToBlockMap = useMemo(() => {
+    const map = new Map<number, number>()
+    Object.values(blocks).forEach((block) => {
+      block.questions.forEach((questionId) => {
+        map.set(questionId, block.id)
+      })
+    })
+    return map
+  }, [blocks])
+
+  const getBlockNameForQuestion = (question: Question) => {
+    if (!blocks) {
+      return ''
+    }
+    const blockId = questionToBlockMap.get(question.id)
+    if (!blockId) {
+      return ''
+    }
+    return blocks[blockId]?.name || ''
+  }
+
+  const formatQuestionDisplay = (question: Question) => {
+    const blockName = getBlockNameForQuestion(question)
+    const questionText = `${question.name} ${Utils.stripHTML(question.props?.questionText).substring(0, 24)}...`
+    return blockName ? `${blockName} : ${questionText}` : questionText
+  }
 
   const handleMove = () => {
     const targetQuestion = questions.find(q => q.id === targetQuestionId)
@@ -40,7 +69,7 @@ export const MoveQuestionModal = ({
   const getQuestionOptions = () => questions
     .map(q => ({
       value: q.id,
-      label: `${q.name} ${Utils.stripHTML(q.props?.questionText)}`,
+      label: formatQuestionDisplay(q),
     }))
 
   const questionOptions = getQuestionOptions()
@@ -71,9 +100,14 @@ export const MoveQuestionModal = ({
     >
       <div style={{ padding: '16px 0' }}>
         <div style={{ marginBottom: 16 }}>
-          <label style={{ display: 'block', marginBottom: 8, fontWeight: 500 }}>
+          <label style={{
+            display: 'block',
+            marginBottom: 8,
+            fontWeight: 500,
+          }}
+          >
             {I18n.t('administration.survey_builder.move_question.moveQuestion',
-              { question: `${currentQuestion.name} ${Utils.stripHTML(currentQuestion.props.questionText)}` })}
+              { question: formatQuestionDisplay(currentQuestion) })}
           </label>
           <Select
             placeholder={I18n.t('administration.survey_builder.move_question.selectTargetQuestion')}
@@ -90,7 +124,12 @@ export const MoveQuestionModal = ({
         </div>
 
         <div>
-          <label style={{ display: 'block', marginBottom: 8, fontWeight: 500 }}>
+          <label style={{
+            display: 'block',
+            marginBottom: 8,
+            fontWeight: 500,
+          }}
+          >
             {I18n.t('administration.survey_builder.move_question.position')}
           </label>
           <Radio.Group
