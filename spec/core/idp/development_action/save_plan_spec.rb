@@ -102,8 +102,10 @@ describe Idp::DevelopmentAction::SavePlan do
         'id' => nil,
         'development_action_id' => nil,
         'user_idp_skill_id' => user_idp_skills.last.id,
-        'custom_action' => 'New Update custom action',
-        'custom_action_learning_style' => 'on_the_job',
+        'name' => 'New custom action name',
+        'description' => 'New Update custom action',
+        'learning_style' => 'on_the_job',
+        'source_type' => 'custom',
         'progress' => 77,
         'start_date_time' => '2024-03-28 15:45',
         'end_date_time' => '2024-03-30 15:45',
@@ -111,25 +113,31 @@ describe Idp::DevelopmentAction::SavePlan do
       }]
 
       described_class.call!(user_idp_plan, body_params)
-      user_idp_development_action = UserIdpDevelopmentAction.find_by(custom_action: 'New Update custom action')
+      user_idp_development_action = UserIdpDevelopmentAction.joins(:development_action).
+                                    where(development_actions: {
+                                      description: 'New Update custom action', source_type: 'custom'
+                                    }).
+                                    first
       expect(user_idp_development_action).to be_present
+      expect(user_idp_development_action.development_action.name).to eq('New custom action name')
       expect(user_idp_development_action.progress).to be(77)
       expect(user_idp_development_action.private).to eq(false)
-      expect(user_idp_development_action.custom_action_learning_style).to eq('on_the_job')
+      expect(user_idp_development_action.development_action.learning_style).to eq('on_the_job')
+      expect(user_idp_development_action.development_action.source_type).to eq('custom')
     end
 
     it 'updates custom development action' do
       custom_development_action = create(:user_idp_development_action, :with_custom_development_action,
                                          user_idp_plan: user_idp_plan,
-                                         user_idp_skill: user_idp_skills.last,
-                                         custom_action_learning_style: 'on_the_job')
+                                         user_idp_skill: user_idp_skills.last)
 
       body_params = [{
         'id' => custom_development_action.id,
         'development_action_id' => nil,
         'user_idp_skill_id' => user_idp_skills.last.id,
-        'custom_action' => 'Updated custom development action',
-        'custom_action_learning_style' => 'structured_learning',
+        'name' => 'Updated custom action name',
+        'description' => 'Updated custom development action',
+        'learning_style' => 'structured_learning',
         'progress' => 100,
         'start_date_time' => '2024-03-28 15:45',
         'end_date_time' => '2024-03-30 15:45',
@@ -138,44 +146,8 @@ describe Idp::DevelopmentAction::SavePlan do
 
       described_class.call!(user_idp_plan, body_params)
       custom_development_action.reload
-      expect(custom_development_action.custom_action).to eq('Updated custom development action')
-      expect(custom_development_action.custom_action_learning_style).to eq('structured_learning')
-    end
-
-    it 'requires learning_style for custom actions' do
-      body_params = [{
-        'id' => nil,
-        'development_action_id' => nil,
-        'user_idp_skill_id' => user_idp_skills.last.id,
-        'custom_action' => 'New custom action',
-        'custom_action_learning_style' => nil,
-        'progress' => 77,
-        'start_date_time' => '2024-03-28 15:45',
-        'end_date_time' => '2024-03-30 15:45',
-        'private' => false
-      }]
-
-      expect do
-        described_class.call!(user_idp_plan, body_params)
-      end.to raise_error(ActiveRecord::RecordInvalid, /Custom action learning style can't be blank/)
-    end
-
-    it 'validates learning_style values' do
-      body_params = [{
-        'id' => nil,
-        'development_action_id' => nil,
-        'user_idp_skill_id' => user_idp_skills.last.id,
-        'custom_action' => 'New custom action',
-        'custom_action_learning_style' => 'invalid_style',
-        'progress' => 77,
-        'start_date_time' => '2024-03-28 15:45',
-        'end_date_time' => '2024-03-30 15:45',
-        'private' => false
-      }]
-
-      expect do
-        described_class.call!(user_idp_plan, body_params)
-      end.to raise_error(ArgumentError, /'invalid_style' is not a valid custom_action_learning_style/)
+      expect(custom_development_action.development_action.description).to eq('Updated custom development action')
+      expect(custom_development_action.development_action.learning_style).to eq('structured_learning')
     end
   end
 end

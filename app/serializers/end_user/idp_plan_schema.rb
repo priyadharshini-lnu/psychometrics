@@ -45,14 +45,13 @@ module EndUser
           required(:name).maybe(:str?)
           required(:description).maybe(:str?)
           required(:learning_style).maybe(:str?)
-          required(:custom_action_learning_style).maybe(:str?)
           required(:image).maybe(:str?)
           required(:user_idp_skill_id).filled(:int?)
-          required(:custom_action).maybe(:str?)
           required(:progress).filled(:int?)
           required(:start_date_time).maybe(:str?)
           required(:end_date_time).maybe(:str?)
-          required(:private).filled(:bool?)
+          optional(:private).maybe(:bool?)
+          required(:source_type).filled(:str?)
         end
       end
     end

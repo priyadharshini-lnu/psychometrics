@@ -156,9 +156,12 @@ export const Plan = () => {
       daPayload.developmentActionId = da.developmentActionId ? Number(da.developmentActionId) : null
       daPayload.startDateTime = da.startDateTime ?? undefined
       daPayload.endDateTime = da.endDateTime ?? undefined
-      daPayload.customAction = da.customAction ?? undefined
-      daPayload.customActionLearningStyle = da.customActionLearningStyle ?? undefined
+      daPayload.description = da.description ?? ''
+      daPayload.name = da.name ?? ''
+      daPayload.learningStyle = da.learningStyle
+      daPayload.sourceType = da.sourceType || 0
       daPayload.id = Number(da.userIdpDevelopmentActionId) ?? undefined
+      daPayload.progress = da.progress || 0
       // eslint-disable-next-line no-underscore-dangle
       daPayload._destroy = da._destroy ?? false
       return acc.concat(daPayload)

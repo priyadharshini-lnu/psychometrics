@@ -12,6 +12,7 @@ module EndUser
         required(:skill_type).filled(:str?)
         required(:initial_rating).value { nil? | int? | float? }
         required(:final_rating).value { nil? | int? | float? }
+        required(:private).filled(:bool?)
         required(:skill_id).filled(:int?)
       end
     end

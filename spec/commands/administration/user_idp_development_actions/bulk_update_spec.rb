@@ -248,7 +248,6 @@ RSpec.describe Administration::UserIdpDevelopmentActions::BulkUpdate do
         [
           {
             user_idp_skill_id: user_idp_skill.id,
-            custom_action: 'test',
             user_idp_plan_id: user_idp_plan.id
           }
         ]
@@ -309,6 +308,226 @@ RSpec.describe Administration::UserIdpDevelopmentActions::BulkUpdate do
 
       it 'skips processing development_actions with blank skill id' do
         expect { subject }.not_to(change { UserIdpDevelopmentAction.count })
+      end
+    end
+
+    context 'when destroying custom development actions' do
+      let!(:custom_development_action) do
+        create(:development_action, :custom, owner: user_idp_plan)
+      end
+
+      let!(:user_idp_dev_action_custom) do
+        create(:user_idp_development_action,
+               user_idp_plan: user_idp_plan,
+               user_idp_skill: user_idp_skill,
+               development_action: custom_development_action)
+      end
+
+      context 'when deleting all actions for plan' do
+        subject do
+          described_class.call(
+            user_idp_development_actions: [],
+            user_idp_plan_id: user_idp_plan.id
+          )
+        end
+
+        it 'deletes the user_idp_development_action and the orphaned custom development_action' do
+          expect { subject }.to change { UserIdpDevelopmentAction.count }.by(-1).
+            and change { DevelopmentAction.count }.by(-1)
+        end
+
+        it 'only deletes the custom development action owned by this plan' do
+          other_user = create(:user, :with_project_membership, project: project)
+          other_plan = create(:user_idp_plan, user: other_user, idp_template: idp_template)
+          other_custom = create(:development_action, :custom, owner: other_plan)
+
+          subject
+
+          expect(DevelopmentAction.exists?(other_custom.id)).to be true
+          expect(DevelopmentAction.exists?(custom_development_action.id)).to be false
+        end
+      end
+
+      context 'when specifically flagging for deletion' do
+        let(:development_actions) do
+          [
+            {
+              id: user_idp_dev_action_custom.id,
+              user_idp_skill_id: user_idp_skill.id,
+              _destroy: '1'
+            }
+          ]
+        end
+
+        subject do
+          described_class.call(
+            user_idp_development_actions: development_actions,
+            user_idp_plan_id: user_idp_plan.id
+          )
+        end
+
+        it 'deletes the user_idp_development_action and the orphaned custom development_action' do
+          expect { subject }.to change { UserIdpDevelopmentAction.count }.by(-1).
+            and change { DevelopmentAction.count }.by(-1)
+        end
+      end
+
+      context 'when custom development action is referenced by multiple user_idp_development_actions' do
+        let!(:another_user_idp_skill) { create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: skill) }
+        let!(:another_user_idp_dev_action) do
+          create(:user_idp_development_action,
+                 user_idp_plan: user_idp_plan,
+                 user_idp_skill: another_user_idp_skill,
+                 development_action: custom_development_action)
+        end
+
+        let(:development_actions) do
+          [
+            {
+              id: user_idp_dev_action_custom.id,
+              user_idp_skill_id: user_idp_skill.id,
+              _destroy: '1'
+            },
+            {
+              id: another_user_idp_dev_action.id,
+              user_idp_skill_id: another_user_idp_skill.id,
+              progress: 50
+            }
+          ]
+        end
+
+        subject do
+          described_class.call(
+            user_idp_development_actions: development_actions,
+            user_idp_plan_id: user_idp_plan.id
+          )
+        end
+
+        it 'deletes only the flagged user_idp_development_action but keeps the custom development_action' do
+          expect { subject }.to change { UserIdpDevelopmentAction.count }.by(-1).
+            and change { DevelopmentAction.count }.by(0)
+
+          expect(DevelopmentAction.exists?(custom_development_action.id)).to be true
+        end
+      end
+    end
+
+    context 'when destroying ai_generated development actions' do
+      let!(:ai_development_action) do
+        create(:development_action, source_type: :ai_generated, owner: user_idp_plan)
+      end
+
+      let!(:user_idp_dev_action_ai) do
+        create(:user_idp_development_action,
+               user_idp_plan: user_idp_plan,
+               user_idp_skill: user_idp_skill,
+               development_action: ai_development_action)
+      end
+
+      context 'when deleting all actions for plan' do
+        subject do
+          described_class.call(
+            user_idp_development_actions: [],
+            user_idp_plan_id: user_idp_plan.id
+          )
+        end
+
+        it 'deletes the user_idp_development_action and the orphaned ai_generated development_action' do
+          expect { subject }.to change { UserIdpDevelopmentAction.count }.by(-1).
+            and change { DevelopmentAction.count }.by(-1)
+        end
+      end
+
+      context 'when specifically flagging for deletion' do
+        let(:development_actions) do
+          [
+            {
+              id: user_idp_dev_action_ai.id,
+              user_idp_skill_id: user_idp_skill.id,
+              _destroy: '1'
+            }
+          ]
+        end
+
+        subject do
+          described_class.call(
+            user_idp_development_actions: development_actions,
+            user_idp_plan_id: user_idp_plan.id
+          )
+        end
+
+        it 'deletes the user_idp_development_action and the orphaned ai_generated development_action' do
+          expect { subject }.to change { UserIdpDevelopmentAction.count }.by(-1).
+            and change { DevelopmentAction.count }.by(-1)
+        end
+      end
+    end
+
+    context 'when destroying platform development actions' do
+      let!(:platform_development_action) do
+        create(:development_action, source_type: :platform)
+      end
+
+      let!(:user_idp_dev_action_platform) do
+        create(:user_idp_development_action,
+               user_idp_plan: user_idp_plan,
+               user_idp_skill: user_idp_skill,
+               development_action: platform_development_action)
+      end
+
+      context 'when deleting all actions for plan' do
+        subject do
+          described_class.call(
+            user_idp_development_actions: [],
+            user_idp_plan_id: user_idp_plan.id
+          )
+        end
+
+        it 'deletes only the user_idp_development_action but keeps the platform development_action' do
+          expect { subject }.to change { UserIdpDevelopmentAction.count }.by(-1).
+            and change { DevelopmentAction.count }.by(0)
+
+          expect(DevelopmentAction.exists?(platform_development_action.id)).to be true
+        end
+      end
+    end
+
+    context 'when creating custom development actions via description and learning_style' do
+      let(:development_actions) do
+        [
+          {
+            user_idp_skill_id: user_idp_skill.id,
+            name: 'custom task name',
+            description: 'Custom task for skill improvement',
+            learning_style: 'on_the_job',
+            source_type: 'custom',
+            progress: 0
+          }
+        ]
+      end
+
+      subject do
+        described_class.call(
+          user_idp_development_actions: development_actions,
+          user_idp_plan_id: user_idp_plan.id
+        )
+      end
+
+      it 'creates both the development_action and user_idp_development_action' do
+        expect { subject }.to change { DevelopmentAction.count }.by(1).
+          and change { UserIdpDevelopmentAction.count }.by(1)
+      end
+
+      it 'creates the development_action with correct ownership and attributes' do
+        subject
+
+        created_development_action = DevelopmentAction.last
+        expect(created_development_action.source_type).to eq('custom')
+        expect(created_development_action.owner_type).to eq('UserIdpPlan')
+        expect(created_development_action.owner_id).to eq(user_idp_plan.id)
+        expect(created_development_action.name).to eq('custom task name')
+        expect(created_development_action.description).to eq('Custom task for skill improvement')
+        expect(created_development_action.learning_style).to eq('on_the_job')
       end
     end
   end

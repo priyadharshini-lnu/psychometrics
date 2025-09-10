@@ -12,6 +12,9 @@ class UserIdpPlan < ApplicationRecord
   has_many :skills, through: :user_idp_skills
   has_many :user_idp_development_actions, dependent: :destroy
   has_many :development_actions, through: :user_idp_development_actions
+  has_many :custom_development_actions, lambda {
+    where(source_type: :custom)
+  }, class_name: 'DevelopmentAction', as: :owner, dependent: :destroy
   has_many :idp_template_skills, through: :idp_template
   has_many :communication_email_resources, as: :resource
   has_many :communication_emails, through: :communication_email_resources

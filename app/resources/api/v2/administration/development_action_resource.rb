@@ -39,9 +39,9 @@ class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administrati
 
   def self.records(opts = {})
     super.with_attached_image.includes(
-      :translations, :project,
+      :translations, :owner,
       skills: [:translations],
-      project: [:creator, :modifier, { design_setting: :logo_attachment }]
+      owner: [:creator, :modifier, { design_setting: :logo_attachment }]
     )
   end
 

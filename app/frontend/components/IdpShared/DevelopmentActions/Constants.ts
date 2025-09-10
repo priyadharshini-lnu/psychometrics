@@ -1,6 +1,9 @@
 import jobIcon from '~/modules/idpReport/assets/LearningJob.svg'
 import collaborativeIcon from '~/modules/idpReport/assets/CollaborativeLearning.svg'
 import learningIcon from '~/modules/idpReport/assets/FormalLearning.svg'
+import idpLibraryLogo from '~/modules/idpReport/assets/IDPLibrary.svg'
+import customDALogo from '~/modules/idpReport/assets/Custom.svg'
+import generativeAILogo from '~/modules/idpReport/assets/GenerativeAi.svg'
 
 export const DEVELOPMENT_ACTION_LEARNING_STYLE = [
   'on_the_job',
@@ -34,5 +37,26 @@ export const developmentActionLearningStylesConfig = {
     text: I18n.t('idp.development_actions.learning_from_others_label'),
     borderColor: learningStyleBorderColor.learning_from_others,
     logo: collaborativeIcon,
+  },
+}
+
+export enum DevelopmentActionSourceType {
+  PLATFORM = 'platform',
+  AI_GENERATED = 'ai_generated',
+  CUSTOM = 'custom',
+}
+
+export const sourceTypeConfig = {
+  [DevelopmentActionSourceType.PLATFORM]: {
+    label: I18n.t('idp.development_actions.idp_library'),
+    icon: idpLibraryLogo,
+  },
+  [DevelopmentActionSourceType.CUSTOM]: {
+    label: I18n.t('idp.development_actions.custom'),
+    icon: customDALogo,
+  },
+  [DevelopmentActionSourceType.AI_GENERATED]: {
+    label: I18n.t('idp.development_actions.generative_ai'),
+    icon: generativeAILogo,
   },
 }

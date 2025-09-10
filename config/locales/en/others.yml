@@ -2625,14 +2625,19 @@ en:
       create_from_ai: Create from AI
       create_my_own: Create my own
       custom: Custom
+      custom_da_description: Create a custom development action to address unique development needs.
       date_range: Start Date - End Date
       edit_plan_to_add_development_actions: Edit Plan and to add Development Actions.
+      enter_development_action_description: Enter Development Action Description
+      enter_development_action_title: Enter Development Action Title
       generate_by_ai: Generate by AI
       generate_more: Generate More
       generating_development_actions: Generating development actions...
       generative_ai: Generative AI
+      generative_ai_description: Let out AI generate a tailored development action just for you
       heading: Skills/Development Actions
       idp_library: IDP Library
+      idp_library_description: Select a proven development action from our expert-curated library.
       incomplete_error: Incomplete Development Actions
       incomplete_error_message: Some development actions are incomplete. Please complete them before submitting your IDP.
       incomplete_warning: Incomplete Development Actions

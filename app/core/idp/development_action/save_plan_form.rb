@@ -5,8 +5,10 @@ module Idp::DevelopmentAction
     VALID_LEARNING_STYLES = %w[on_the_job structured_learning learning_from_others].freeze
 
     attribute :user_idp_skill_id, Integer
-    attribute :custom_action, String
-    attribute :custom_action_learning_style, String
+    attribute :name, String, allow_blank: true
+    attribute :description, String
+    attribute :learning_style, String
+    attribute :source_type, String
     attribute :start_date_time, String
     attribute :end_date_time, String
     attribute :private, Boolean
@@ -21,7 +23,7 @@ module Idp::DevelopmentAction
     validates :private, inclusion: [true, false], allow_blank: true
     validates :user_idp_skill_id, presence: true
     validate :skill_not_exist_in_user_idp_plan
-    validate :validate_learning_style_for_custom_action
+    validate :validate_learning_style_for_development_action
     validate :start_date_not_in_past
     validate :end_date_not_in_past
 
@@ -33,17 +35,17 @@ module Idp::DevelopmentAction
 
     private
 
-    def validate_learning_style_for_custom_action
-      return if custom_action.blank?
+    def validate_learning_style_for_development_action
+      return if description.blank?
 
-      if custom_action_learning_style.blank?
+      if learning_style.blank?
         errors.add(
-          :custom_action_learning_style,
+          :learning_style,
           I18n.t('administration.development_actions.learning_styles.cannot_be_blank')
         )
-      elsif VALID_LEARNING_STYLES.exclude?(custom_action_learning_style)
+      elsif VALID_LEARNING_STYLES.exclude?(learning_style)
         errors.add(
-          :custom_action_learning_style,
+          :learning_style,
           I18n.t('administration.development_actions.learning_styles.invalid')
         )
       end

@@ -8,7 +8,8 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
   let(:global_skill) { create(:skill, project: nil) }
   let!(:development_action) do
     action = create(:development_action,
-                    project_id: project.id,
+                    owner_id: project.id,
+                    owner_type: 'Client',
                     name: 'Test Action',
                     description: 'Test Description',
                     learning_style: 'structured_learning',
@@ -55,14 +56,15 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
 
   describe '#data_row' do
     it 'returns a single formatted row with comma-separated skill IDs' do
-      development_action = job.records_for_export.first
-      allow(development_action).to receive(:image_url).and_return('http://example.com/test-image.png')
-      data_rows = job.data_row(development_action)
+      development_action # Ensure the development action is created
+      development_action_from_query = job.records_for_export.first
+      allow(development_action_from_query).to receive(:image_url).and_return('http://example.com/test-image.png')
+      data_rows = job.data_row(development_action_from_query)
 
       expect(data_rows.size).to eq(1)
 
       row = data_rows.first
-      expect(row[0]).to eq(development_action.id)
+      expect(row[0]).to eq(development_action_from_query.id)
 
       skill_ids = row[1].split(', ').map(&:to_i).sort
       expected_skill_ids = [skill.id, global_skill.id].sort
@@ -75,8 +77,8 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
       expect(row[6]).to eq('course')
       expect(row[7]).to eq('en, ar')
       expect(row[8]).to eq('https://example.com')
-      expect(row[9]).to eq(development_action.course_start_date.to_date.strftime('%Y-%m-%d'))
-      expect(row[10]).to eq(development_action.course_end_date.to_date.strftime('%Y-%m-%d'))
+      expect(row[9]).to eq(development_action_from_query.course_start_date.to_date.strftime('%Y-%m-%d'))
+      expect(row[10]).to eq(development_action_from_query.course_end_date.to_date.strftime('%Y-%m-%d'))
       expect(row[11]).to eq('http://example.com/test-image.png')
       expect(row[12]).to eq(120)
     end

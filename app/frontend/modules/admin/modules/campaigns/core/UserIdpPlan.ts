@@ -30,6 +30,7 @@ const DevelopmentActionsTR = t.type({
     skillId: t.number,
     userIdpPlanId: t.number,
   }),
+  sourceType: t.number,
 })
 
 

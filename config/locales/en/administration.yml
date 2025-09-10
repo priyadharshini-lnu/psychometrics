@@ -2251,6 +2251,9 @@ en:
         custom: Custom
         date_range: Start Date - End Date
         edit_plan_to_add_development_actions: Edit Plan and to add Development Actions.
+        errors:
+          invalid_learning_style: "'%{learning_style}' is not a valid learning style. Valid options are: %{valid_styles}"
+          learning_style_blank: Learning style can't be blank
         generate_by_ai: Generate by AI
         generate_more: Generate More
         heading: Skills/Development Actions

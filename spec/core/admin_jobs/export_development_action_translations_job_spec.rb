@@ -6,7 +6,7 @@ RSpec.describe AdminJobs::ExportDevelopmentActionTranslationsJob, type: :job do
   let(:project) { Project.find(create(:project).id) }
   let!(:development_action) do
     create(:development_action,
-           project_id: project.id,
+           owner: project,
            name: 'Test Action',
            description: 'Test Description')
   end
@@ -87,7 +87,7 @@ RSpec.describe AdminJobs::ExportDevelopmentActionTranslationsJob, type: :job do
     end
 
     it 'orders records by id' do
-      another_development_action = create(:development_action, project_id: project.id)
+      another_development_action = create(:development_action, owner: project)
       records = job.records_for_export
       expect(records.to_a).to eq([development_action, another_development_action])
     end

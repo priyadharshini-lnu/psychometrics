@@ -80,8 +80,6 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
     }
   }, [open])
 
-  const areAllDAsSelected = selectedAIGeneratedDevelopmentActions.length === developmentActions.length
-
   return (
     <Modal
       title={I18n.t('idp.development_actions.create_development_actions_with_ai', { skillName: skill?.name })}
@@ -109,7 +107,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
               label="Add"
               size="small"
               type="primary"
-              disabled={isLoading || areAllDAsSelected || selectedDA.length === 0}
+              disabled={isLoading || selectedDA.length === 0}
               style={{
                 width: '80px',
               }}

@@ -17,7 +17,8 @@ const { Option } = Select
 type Props = {
   open: boolean
   onCancel: () => void
-  onCreateCustomDevelopmentAction: (customAction: string, customActionLearningStyle: string) => void
+  onCreateCustomDevelopmentAction: (name: string,
+    description: string, learningStyle: string) => void
   skillName: string
 }
 
@@ -27,11 +28,13 @@ export const CreateCustomDevelopmentActionModal = ({
   onCreateCustomDevelopmentAction,
   skillName,
 }: Props) => {
-  const [textValue, setTextValue] = useState('')
-  const [customActionLearningStyle, setCustomActionLearningStyle] = useState(DEVELOPMENT_ACTION_LEARNING_STYLE[0])
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [learningStyle, setLearningStyle] = useState(DEVELOPMENT_ACTION_LEARNING_STYLE[0])
   const handleCreateCustomDevelopmentAction = () => {
-    onCreateCustomDevelopmentAction(textValue, customActionLearningStyle)
-    setTextValue('')
+    onCreateCustomDevelopmentAction(name, description, learningStyle)
+    setName('')
+    setDescription('')
   }
 
   return (
@@ -51,15 +54,15 @@ export const CreateCustomDevelopmentActionModal = ({
             size="small"
             type="primary"
             onClick={handleCreateCustomDevelopmentAction}
-            disabled={!textValue}
+            disabled={!name || !description}
           />
         </Flex>
       )}
     >
       <Flex vertical gap={8}>
         <Select
-          defaultValue={customActionLearningStyle}
-          onChange={e => setCustomActionLearningStyle(e)}
+          defaultValue={learningStyle}
+          onChange={e => setLearningStyle(e)}
         >
           {
             DEVELOPMENT_ACTION_LEARNING_STYLE
@@ -77,10 +80,17 @@ export const CreateCustomDevelopmentActionModal = ({
               ))
           }
         </Select>
+
+        <Input
+          placeholder={I18n.t('idp.development_actions.enter_development_action_title')}
+          value={name}
+          onChange={e => setName(e.target.value)}
+          className="fs-16"
+        />
         <TextArea
-          value={textValue}
-          onChange={e => setTextValue(e.target.value)}
-          placeholder={I18n.t('idp.development_actions.write_here')}
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          placeholder={I18n.t('idp.development_actions.enter_development_action_description')}
           autoSize={{ minRows: 8, maxRows: 20 }}
           size="large"
         />

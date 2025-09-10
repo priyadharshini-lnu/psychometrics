@@ -9,7 +9,9 @@ import cs from 'classnames'
 import dayjs from '~/utils/dayjs'
 import styles from './DevelopmentActionLandscapeCard.less'
 import { DevelopmentAction } from '~/components/IdpShared/DevelopmentActions/Types'
-import { developmentActionLearningStylesConfig } from '~/components/IdpShared/DevelopmentActions/Constants'
+import { developmentActionLearningStylesConfig, sourceTypeConfig, DevelopmentActionSourceType }
+  from '~/components/IdpShared/DevelopmentActions/Constants'
+
 
 const { RangePicker } = DatePicker
 
@@ -44,7 +46,6 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
 
 }) => {
   const [openSkillDeletionModal, setOpenSkillDeletionModal] = useState(false)
-
 
   const onDeleteSkill = () => {
     onRemoveSkill(userIdpSkillId)
@@ -257,43 +258,56 @@ const Card = ({
         >
           <div
             style={{
-              borderLeft: `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle
-                     || developmentAction.customActionLearningStyle].borderColor}`,
+              borderLeft:
+              `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
             }}
             className="p-3"
           >
-            <Typography.Title
-              level={5}
-              className="mt-0"
-              ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
-            >
-              {developmentAction.name}
-            </Typography.Title>
+            {developmentAction.sourceType !== DevelopmentActionSourceType.AI_GENERATED ? (
+              <Typography.Title
+                level={5}
+                className="mt-0"
+                ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+              >
+                {developmentAction.name}
+              </Typography.Title>
+            ) : null}
             <Typography.Paragraph
               ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
             >
-              {developmentAction.description || developmentAction.customAction}
+              {developmentAction.description}
             </Typography.Paragraph>
             <Flex>
-              {developmentAction.learningStyle || developmentAction.customActionLearningStyle
+              {developmentAction.learningStyle
                 ? (
                   <Flex gap={4} align="center">
                     <img
-                      src={developmentActionLearningStylesConfig[developmentAction.learningStyle
-                     || developmentAction.customActionLearningStyle].logo}
+                      src={developmentActionLearningStylesConfig[developmentAction.learningStyle].logo}
                     />
                     <strong>
-                      {`${developmentActionLearningStylesConfig[developmentAction.learningStyle
-                     || developmentAction.customActionLearningStyle].duration}%`}
+                      {`${developmentActionLearningStylesConfig[developmentAction.learningStyle].duration}%`}
                                                             &nbsp;
                     </strong>
                     <Typography.Text
                       className="font-normal"
                       type="secondary"
                     >
-                      {developmentActionLearningStylesConfig[developmentAction.learningStyle
-                     || developmentAction.customActionLearningStyle].text}
+                      {developmentActionLearningStylesConfig[developmentAction.learningStyle].text}
                     </Typography.Text>
+                    <Flex gap={4} className="ms-4" align="center">
+                      <img
+                        src={sourceTypeConfig[developmentAction.sourceType].icon}
+                        style={{
+                          width: '1.5rem',
+                          height: '1.5rem',
+                        }}
+                      />
+                      <Typography.Text
+                        className="font-normal"
+                      >
+                        {sourceTypeConfig[developmentAction.sourceType].label}
+                      </Typography.Text>
+                    </Flex>
                   </Flex>
                 )
                 : null}

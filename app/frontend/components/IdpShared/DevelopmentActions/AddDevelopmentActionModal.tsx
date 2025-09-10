@@ -80,8 +80,6 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
     setSelectedDA([])
   }
 
-  const areAllDAsSelected = selectedDevelopmentActionIds.length === data.length
-
   return (
     <Modal
       title={I18n.t('idp.development_actions.add_development_actions_modal_title', { skillName })}
@@ -101,7 +99,7 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
             label="Add"
             size="small"
             type="primary"
-            disabled={areAllDAsSelected || selectedDA.length === 0}
+            disabled={selectedDA.length === 0}
             onClick={onAddDA}
           />
         </Flex>

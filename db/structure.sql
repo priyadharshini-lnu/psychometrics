@@ -1,7 +1,6 @@
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
-
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -15,13 +14,6 @@ SET row_security = off;
 --
 
 CREATE SCHEMA bi_models;
-
-
---
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
 
 
 --
@@ -3126,7 +3118,7 @@ CREATE TABLE public.development_actions (
     id bigint NOT NULL,
     development_action_type integer DEFAULT 0 NOT NULL,
     learning_style integer DEFAULT 0 NOT NULL,
-    name character varying NOT NULL,
+    name character varying,
     description character varying NOT NULL,
     course_url character varying,
     course_provider character varying,
@@ -3135,9 +3127,11 @@ CREATE TABLE public.development_actions (
     image character varying,
     course_start_date timestamp(6) without time zone,
     course_end_date timestamp(6) without time zone,
-    project_id bigint,
     duration integer,
-    available_languages jsonb DEFAULT '[]'::jsonb
+    available_languages jsonb DEFAULT '[]'::jsonb,
+    owner_type character varying,
+    owner_id bigint,
+    source_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -4596,13 +4590,13 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT id,
+    factor_id,
+    user_assessment_id,
+    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((scores ->> 'score'::text))::double precision AS score,
+    ((scores ->> 'zscore'::text))::double precision AS zscore,
+    ((scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -7533,12 +7527,10 @@ CREATE TABLE public.user_idp_development_actions (
     user_idp_plan_id bigint NOT NULL,
     user_idp_skill_id bigint NOT NULL,
     development_action_id bigint,
-    custom_action text,
     progress integer DEFAULT 0 NOT NULL,
     start_date_time timestamp(6) without time zone,
     end_date_time timestamp(6) without time zone,
-    private boolean DEFAULT false,
-    custom_action_learning_style integer
+    private boolean DEFAULT false
 );
 
 
@@ -13020,10 +13012,17 @@ CREATE INDEX index_development_action_translations_on_name_and_locale ON public.
 
 
 --
--- Name: index_development_actions_on_project_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_development_actions_on_owner; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_development_actions_on_project_id ON public.development_actions USING btree (project_id);
+CREATE INDEX index_development_actions_on_owner ON public.development_actions USING btree (owner_type, owner_id);
+
+
+--
+-- Name: index_development_actions_on_source_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_development_actions_on_source_type ON public.development_actions USING btree (source_type);
 
 
 --
@@ -17506,14 +17505,6 @@ ALTER TABLE ONLY public.assessments_clients
 
 
 --
--- Name: development_actions fk_rails_cc6a4ae75e; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.development_actions
-    ADD CONSTRAINT fk_rails_cc6a4ae75e FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
 -- Name: skill_translations fk_rails_cf44d9c794; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18248,12 +18239,17 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20250826115114'),
+('20250909093543'),
+('20250904112108'),
 ('20250828122244'),
-('20250821102225'),
-('20250825030208'),
-('20250820163652'),
+('20250826115114'),
 ('20250825062532'),
+('20250825030208'),
+('20250821160002'),
+('20250821160001'),
+('20250821122411'),
+('20250821102225'),
+('20250820163652'),
 ('20250807052600'),
 ('20250806140955'),
 ('20250806102146'),

@@ -20,6 +20,7 @@ import { AddDevelopmentActionModal } from '~/components/IdpShared/DevelopmentAct
 import styles from './DevelopmentActionListView.less'
 import { AIGeneratedDevelopmentActionsModal } from './AIGeneratedDevelopmentActionsModal'
 import { renderSkillTypeIcon } from '~/components/IdpShared/utils'
+import { DevelopmentActionSourceType } from '~/components/IdpShared/DevelopmentActions/Constants'
 
 const { I18n } = window
 
@@ -87,6 +88,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
           id: uniqueId,
           developmentActionId: developmentAction.id,
           userIdpSkillId: selectedSkill.id,
+          sourceType: DevelopmentActionSourceType.PLATFORM,
           progress: 0,
           private: false,
           localData: true,
@@ -100,15 +102,18 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   }
 
   const handleCreateCustomDevelopmentAction = (
-    customAction: string,
-    customActionLearningStyle: DevelopmentActionLearningStyle,
+    name: string,
+    description: string,
+    learningStyle: DevelopmentActionLearningStyle,
   ) => {
     if (selectedSkill) {
       const uniqueId = uuidv4()
       const action = {}
       action[uniqueId] = {
-        customAction,
-        customActionLearningStyle,
+        name,
+        description,
+        learningStyle,
+        sourceType: DevelopmentActionSourceType.CUSTOM,
         id: uniqueId,
         userIdpSkillId: selectedSkill.id,
         progress: 0,
@@ -125,8 +130,9 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     onAddDevelopmentAction?.(developmentActions.reduce((acc, developmentAction) => {
       const uniqueId = uuidv4()
       acc[uniqueId] = {
-        customAction: developmentAction.description,
-        customActionLearningStyle: developmentAction.learningStyle,
+        description: developmentAction.description,
+        learningStyle: developmentAction.learningStyle,
+        sourceType: DevelopmentActionSourceType.AI_GENERATED,
         id: uniqueId,
         developmentActionId: developmentAction.id,
         userIdpSkillId: selectedSkill?.id,

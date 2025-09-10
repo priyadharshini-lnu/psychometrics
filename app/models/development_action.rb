@@ -8,12 +8,32 @@ class DevelopmentAction < ApplicationRecord
 
   translates :name, :description
 
-  belongs_to :project
+  belongs_to :owner, polymorphic: true, optional: true
+  belongs_to :project, foreign_key: :owner_id, class_name: 'Client', optional: true
   has_many :skills_development_actions, dependent: :destroy
   has_many :skills, through: :skills_development_actions
   has_many :course_schedules, dependent: :destroy
+  has_many :user_idp_development_actions, dependent: :destroy
 
-  scope :global, ->(_value = nil) { where(project_id: nil) }
+  def project
+    owner if owner_type == 'Client'
+  end
+
+  def project_id
+    owner_id if owner_type == 'Client'
+  end
+
+  def project_id=(id)
+    if id.present?
+      self.owner_type = 'Client'
+      self.owner_id = id
+    else
+      self.owner_type = nil
+      self.owner_id = nil
+    end
+  end
+
+  scope :global, ->(_value = nil) { where(owner_id: nil) }
 
   enum :development_action_type, {
     course: 0,
@@ -26,6 +46,12 @@ class DevelopmentAction < ApplicationRecord
     structured_learning: 2
   }
 
+  enum :source_type, {
+    platform: 0,
+    ai_generated: 1,
+    custom: 2
+  }
+
   # Use has_one_image_attachment with default variants
   has_one_image_attachment :image, variants: %i[thumb small medium]
 
@@ -34,17 +60,26 @@ class DevelopmentAction < ApplicationRecord
                    size: { less_than: 100.megabytes },
                    if: -> { image.attached? }
 
+  validates :name, presence: true, if: -> { platform? || custom? }
+
   validate :validate_end_date_after_start_date,
            if: -> { course? && course_start_date.present? && course_end_date.present? }
 
   before_save :clear_course_data, if: -> { development_action_type_changed? && default? }
 
+  ransacker :project_id do |parent|
+    Arel::Nodes::Case.new.
+      when(parent.table[:owner_type].eq('Client')).
+      then(parent.table[:owner_id])
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
-    %w[name]
+    %w[name source_type]
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[course_schedules image_attachment image_blob project skills skills_development_actions translations]
+    %w[course_schedules image_attachment image_blob owner project skills skills_development_actions translations
+       user_idp_development_actions]
   end
 
   def self.ransackable_scopes(_auth_object = nil)

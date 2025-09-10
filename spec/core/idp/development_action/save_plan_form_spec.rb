@@ -106,14 +106,6 @@ describe Idp::DevelopmentAction::SavePlanForm do
         expect(form.valid?).to be false
         expect(form.errors[:user_idp_skill_id]).to include("can't be blank")
       end
-
-      it 'requires learning style for custom actions' do
-        attributes = valid_attributes.merge(custom_action_learning_style: nil)
-        form = described_class.new(attributes).with_context(user_idp_plan)
-
-        expect(form.valid?).to be false
-        expect(form.errors[:custom_action_learning_style]).to be_present
-      end
     end
   end
 end

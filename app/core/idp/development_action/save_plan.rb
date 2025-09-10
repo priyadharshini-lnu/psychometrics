@@ -14,12 +14,12 @@ module Idp::DevelopmentAction
         destroy_removed_user_idp_development_actions
 
         @user_idp_development_actions_params.each do |user_idp_development_action|
-          if user_idp_development_action['development_action_id']
+          if user_idp_development_action['development_action_id'].present?
             update_or_create_user_idp_development_action(user_idp_development_action)
-          elsif user_idp_development_action['id'].nil?
-            create_custom_development_action(user_idp_development_action)
+          elsif user_idp_development_action['id'].blank?
+            create_development_action(user_idp_development_action)
           else
-            update_custom_development_action(user_idp_development_action)
+            update_development_action(user_idp_development_action)
           end
         end
       end
@@ -43,14 +43,38 @@ module Idp::DevelopmentAction
       record.update!(action_params(user_idp_development_action))
     end
 
-    def create_custom_development_action(user_idp_development_action)
-      UserIdpDevelopmentAction.create!(action_params(user_idp_development_action))
+    def create_development_action(user_idp_development_action)
+      development_action = DevelopmentAction.create!(
+        name: user_idp_development_action['name'],
+        description: user_idp_development_action['description'],
+        learning_style: user_idp_development_action['learning_style'],
+        owner: @user_idp_plan,
+        source_type: user_idp_development_action['source_type'] || 'platform'
+      )
+
+      UserIdpDevelopmentAction.create!(
+        development_action: development_action,
+        user_idp_plan_id: @user_idp_plan.id,
+        user_idp_skill_id: user_idp_development_action['user_idp_skill_id'],
+        progress: user_idp_development_action['progress'],
+        start_date_time: user_idp_development_action['start_date_time'],
+        end_date_time: user_idp_development_action['end_date_time'],
+        private: user_idp_development_action['private']
+      )
     end
 
-    def update_custom_development_action(user_idp_development_action)
-      UserIdpDevelopmentAction.where(id: user_idp_development_action['id']).
-        where(user_idp_skill_id: user_idp_development_action['user_idp_skill_id']).
-        update!(action_params(user_idp_development_action))
+    def update_development_action(user_idp_development_action)
+      record = UserIdpDevelopmentAction.find(user_idp_development_action['id'])
+
+      if record.development_action&.source_type != 'platform'
+        record.development_action.update!(
+          name: user_idp_development_action['name'],
+          description: user_idp_development_action['description'],
+          learning_style: user_idp_development_action['learning_style']
+        )
+      end
+
+      record.update!(action_params(user_idp_development_action))
     end
 
     def action_params(user_idp_development_action_params)
@@ -59,8 +83,6 @@ module Idp::DevelopmentAction
         start_date_time: user_idp_development_action_params['start_date_time'],
         end_date_time: user_idp_development_action_params['end_date_time'],
         private: user_idp_development_action_params['private'],
-        custom_action: user_idp_development_action_params['custom_action'],
-        custom_action_learning_style: user_idp_development_action_params['custom_action_learning_style'],
         user_idp_skill_id: user_idp_development_action_params['user_idp_skill_id'],
         user_idp_plan_id: @user_idp_plan.id
       }

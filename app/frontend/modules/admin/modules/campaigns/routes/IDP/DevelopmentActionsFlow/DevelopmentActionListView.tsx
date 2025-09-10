@@ -19,6 +19,7 @@ import { CreateCustomDevelopmentActionModal } from
 import { AddDevelopmentActionModal } from '~/components/IdpShared/DevelopmentActions/AddDevelopmentActionModal'
 import { AIGeneratedDevelopmentActions } from './AIGeneratedDevelopmentActions'
 import { renderSkillTypeIcon } from '~/components/IdpShared/utils'
+import { DevelopmentActionSourceType } from '~/components/IdpShared/DevelopmentActions/Constants'
 
 const { I18n } = window
 
@@ -81,6 +82,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
           ...developmentAction,
           id: uniqueId,
           developmentActionId: developmentAction.id,
+          sourceType: DevelopmentActionSourceType.PLATFORM,
           userIdpSkillId: selectedSkill.id,
           progress: 0,
           private: false,
@@ -95,15 +97,18 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
   }
 
   const handleCreateCustomDevelopmentAction = (
-    customAction: string,
-    customActionLearningStyle: DevelopmentActionLearningStyle,
+    name: string,
+    description: string,
+    learningStyle: DevelopmentActionLearningStyle,
   ) => {
     if (selectedSkill) {
       const uniqueId = uuidv4()
       const action = {}
       action[uniqueId] = {
-        customAction,
-        customActionLearningStyle,
+        name,
+        description,
+        learningStyle,
+        sourceType: DevelopmentActionSourceType.CUSTOM,
         id: uniqueId,
         userIdpSkillId: selectedSkill.id,
         progress: 0,
@@ -120,9 +125,10 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
     onAddDevelopmentAction?.(developmentActions.reduce((acc, developmentAction) => {
       const uniqueId = uuidv4()
       acc[uniqueId] = {
-        customAction: developmentAction.description,
-        customActionLearningStyle: developmentAction.learningStyle,
+        description: developmentAction.description,
+        learningStyle: developmentAction.learningStyle,
         id: uniqueId,
+        sourceType: DevelopmentActionSourceType.AI_GENERATED,
         developmentActionId: developmentAction.id,
         userIdpSkillId: selectedSkill?.id,
         progress: 0,

@@ -22,7 +22,8 @@ import { DevelopmentAction, SkillWithDevelopmentActions, UserIdpSkill } from
   '~/components/IdpShared/DevelopmentActions/Types'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { SkillCommentsPopover } from '~/components/IdpShared/DevelopmentActions/SkillCommentPopover'
-import { developmentActionLearningStylesConfig } from '~/components/IdpShared/DevelopmentActions/Constants'
+import { developmentActionLearningStylesConfig, sourceTypeConfig }
+  from '~/components/IdpShared/DevelopmentActions/Constants'
 import { DevelopmentActionInfoPopover } from './DevelopmentActionInfoPopover'
 
 
@@ -167,8 +168,12 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
                     {I18n.t('idp.development_actions.add_development_actions_from_below_options')}
                   </Typography.Text>
                   <Popover
-                    placement="right"
-                    title={I18n.t('idp.development_actions.info_popover_title')}
+                    placement="bottom"
+                    title={(
+                      <span className="p-4">
+                        {I18n.t('idp.development_actions.info_popover_title')}
+                      </span>
+                    )}
                     content={<DevelopmentActionInfoPopover />}
                   >
                     <Button
@@ -439,8 +444,8 @@ const Card = ({
         >
           <div
             style={{
-              borderLeft: `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle
-                     || developmentAction.customActionLearningStyle].borderColor}`,
+              borderLeft:
+              `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
             }}
             className="p-3"
           >
@@ -457,25 +462,36 @@ const Card = ({
               {developmentAction.description || developmentAction.customAction}
             </Typography.Paragraph>
             <Flex>
-              {developmentAction.learningStyle || developmentAction.customActionLearningStyle
+              {developmentAction.learningStyle
                 ? (
                   <Flex gap={4} align="center">
                     <img
-                      src={developmentActionLearningStylesConfig[developmentAction.learningStyle
-                     || developmentAction.customActionLearningStyle].logo}
+                      src={developmentActionLearningStylesConfig[developmentAction.learningStyle].logo}
                     />
                     <strong>
-                      {`${developmentActionLearningStylesConfig[developmentAction.learningStyle
-                     || developmentAction.customActionLearningStyle].duration}%`}
+                      {`${developmentActionLearningStylesConfig[developmentAction.learningStyle].duration}%`}
                                                             &nbsp;
                     </strong>
                     <Typography.Text
                       className="font-normal"
                       type="secondary"
                     >
-                      {developmentActionLearningStylesConfig[developmentAction.learningStyle
-                     || developmentAction.customActionLearningStyle].text}
+                      {developmentActionLearningStylesConfig[developmentAction.learningStyle].text}
                     </Typography.Text>
+                    <Flex gap={4} className="ms-4" align="center">
+                      <img
+                        src={sourceTypeConfig[developmentAction.sourceType].icon}
+                        style={{
+                          width: '1.5rem',
+                          height: '1.5rem',
+                        }}
+                      />
+                      <Typography.Text
+                        className="font-normal"
+                      >
+                        {sourceTypeConfig[developmentAction.sourceType].label}
+                      </Typography.Text>
+                    </Flex>
                   </Flex>
                 )
                 : null}
