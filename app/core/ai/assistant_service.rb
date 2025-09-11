@@ -2,7 +2,7 @@
 
 module AI
   class AssistantService < BaseCommand
-    private_attr_reader :assistant_id, :prompt, :current_user, :options, :chat
+    private_attr_reader :assistant_id, :prompt, :current_user, :options, :chat, :chat_params
 
     def initialize(assistant_id, current_user, prompt = nil, options = {})
       @assistant_id = assistant_id
@@ -10,12 +10,13 @@ module AI
       @current_user = current_user
       @options = options
       @chat = options[:chat]
+      @chat_params = options[:chat_params] || {}
     end
 
     def call
       # TODO: Add license check
       broadcast(:ok, response)
-    rescue RubyLLM::Error => e
+    rescue RubyLLM::Error, AI::Services::OpenaiResponseApi::Error => e
       broadcast(:error, e.message)
     end
 
@@ -23,7 +24,7 @@ module AI
 
     def response
       active_chat = chat || create_new_chat
-      res = active_chat.ask(user_prompt.strip)
+      res = active_chat.ask(user_prompt.strip, **chat_params)
 
       {
         message: res.content,

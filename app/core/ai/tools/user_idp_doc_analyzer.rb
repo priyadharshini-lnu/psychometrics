@@ -5,33 +5,97 @@
 module AI
   module Tools
     class UserIdpDocAnalyzer < AI::Tools::Base
-      description 'Fetches detailed analysis/summary for the document uploaded by user for their Individual Development Plan(IDP) creation purpose.'
+      class IdpDocumentNotFoundError < StandardError; end
+
+      description 'Get detailed analysis for the document uploaded by user for their Individual Development Plan(IDP) creation purpose.'
       param :context,
-            desc: 'Context to be passed to the expert assistant for analysis which would be passed with the uploaded document e.g. Document is resume by user. If no context is provided, the expert will use the default content as context and this can be nil'
+            desc: 'Context regarding the document to be passed to the expert assistant for analysis which would be passed with the uploaded document e.g. Document is resume by user. If no context is provided, the expert will use the default content as context and this can be nil'
 
-      private_attr_reader :user_idp_plan
+      private_attr_reader :user_idp_plan, :current_user, :ai_assistant
 
-      def initialize(user_idp_plan, user)
+      def initialize(user_idp_plan, current_user, ai_assistant)
         @user_idp_plan = user_idp_plan
-        @user = user
+        @current_user = current_user
+        @ai_assistant = ai_assistant
       end
 
+      # TODO: Seperate the layers of calling mechanism for clear segreation and handling of different parts
       def execute(context:)
-        # TODO: Delegate this action to tool assistant for analysis and save results
+        validate_user_idp_document_exists!
 
-        summary = <<~SUMMARY
-          The uploaded skill gap report provides a detailed evaluation of current staff competencies in relation to organizational requirements. The analysis highlights several key areas where gaps exist between existing skills and those needed for optimal performance. Technical skills, particularly in emerging software development frameworks, cloud computing, and automation tools, are identified as areas needing significant improvement. While most team members possess foundational knowledge in programming and basic data analysis, advanced capabilities with data visualization platforms and modern analytics tools are limited. Cybersecurity is another area of concern, with general awareness present but specialized expertise in risk management and incident response notably lacking.
+        return ai_assisted_doc_summary_session.summary if document_summary_exists?
 
-          On the business and communication front, the report reveals that while daily coordination and interpersonal communication are generally strong, there is a widespread need for enhanced project management abilities and formal training in structured methodologies such as Agile and Scrum. Many employees struggle to effectively communicate technical information to non-technical stakeholders, and strategic planning skills are underdeveloped across the team.
+        assistant_service = AI::AssistantService.new(
+          document_analysis_assistant.id,
+          current_user,
+          context || document_analysis_assistant.user_prompt,
+          chat: chat_with_session_context,
+          chat_params: chat_params
+        )
 
-          Leadership and teamwork are also assessed in the report. Although there is enthusiasm for leading projects and collaborating across departments, the findings suggest limited experience in people management, conflict resolution, and leveraging digital collaboration platforms. Remote teamwork practices, in particular, are highlighted as having room for improvement.
+        ai_assisted_doc_summary_session.mark_as_in_progress!
 
-          Based on these findings, the report recommends targeted training initiatives focusing on advanced technical skills, business strategy, and project management certification. It also suggests the implementation of mentorship programs to foster leadership growth and encourages participation in continuous learning opportunities such as workshops and webinars. The overall conclusion is that addressing these skill gaps through structured development efforts will not only enhance individual performance but also contribute to the organization's long-term success.
-        SUMMARY
+        assistant_service.
+          on(:ok) do |assistant_response|
+            ai_assisted_doc_summary_session.mark_as_completed!(assistant_response[:message])
 
-        # Save summary to user IDP plan
-        Rails.logger.debug { "Context by IDP Assistant #{context}" }
-        summary.strip
+            return assistant_response[:message]
+          end.
+          on(:error) do |error_message|
+            ai_assisted_doc_summary_session.mark_as_failed!(error_message)
+
+            return { error: error_message }
+          end.
+          call
+      rescue IdpDocumentNotFoundError => e
+        { error: e.message }
+      end
+
+      private
+
+      def chat_params
+        { with: user_idp_document_blob.url, service: :openai_response_api }
+      end
+
+      def chat_with_session_context
+        ai_assisted_doc_summary_session_chat.
+          with_assistant_context
+      end
+
+      def ai_assisted_doc_summary_session_chat
+        ai_assisted_doc_summary_session.ai_assistant_chat
+      end
+
+      def ai_assisted_doc_summary_session
+        user_idp_document_blob.ai_assisted_user_document_summary || create_ai_assisted_doc_summary_session
+      end
+
+      def create_ai_assisted_doc_summary_session
+        chat = create_new_chat_for_document_analysis
+        user_idp_document_blob.create_ai_assisted_user_document_summary!(
+          ai_assistant_chat: chat,
+          user: current_user
+        )
+      end
+
+      def create_new_chat_for_document_analysis
+        document_analysis_assistant.for_user(current_user)
+      end
+
+      def document_analysis_assistant
+        @document_analysis_assistant ||= ai_assistant
+      end
+
+      def user_idp_document_blob
+        @user_idp_document_blob ||= user_idp_plan.user_document.blob
+      end
+
+      def validate_user_idp_document_exists!
+        raise IdpDocumentNotFoundError, 'No document attached to the IDP plan' unless user_idp_plan.user_document.attached?
+      end
+
+      def document_summary_exists?
+        ai_assisted_doc_summary_session.summary.present?
       end
     end
   end

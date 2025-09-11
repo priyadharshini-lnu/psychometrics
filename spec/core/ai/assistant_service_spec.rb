@@ -81,5 +81,17 @@ user_prompt: 'How can I help you?')
         expect { described_class.call!(assistant.id, user, prompt) }.to change(AI::AssistantChat, :count).by(1)
       end
     end
+
+    context 'with chat_params' do
+      let(:chat_params) { { service: :openai_response_api, persist_attachment: true } }
+      let(:prompt) { 'Test message' }
+
+      it 'passes chat_params to chat.ask method' do
+        expect_any_instance_of(AI::AssistantChat).to receive(:ask).
+          with(anything, **chat_params)
+
+        described_class.call!(assistant.id, user, prompt, chat_params: chat_params)
+      end
+    end
   end
 end

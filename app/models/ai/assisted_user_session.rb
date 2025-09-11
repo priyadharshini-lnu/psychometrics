@@ -14,8 +14,8 @@ class AI::AssistedUserSession < ApplicationRecord
   validates :assistable, presence: true
   validates :ai_assistant_chat, presence: true
 
-  def mark_as_completed!
-    update!(status: :completed)
+  def mark_as_completed!(checkpoint = nil)
+    update!(status: :completed, checkpoint: checkpoint)
   end
 
   def mark_as_failed!(error_message = nil)

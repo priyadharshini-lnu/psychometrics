@@ -12,6 +12,11 @@ module AI
     end
 
     def call
+      unless one_click_idp_assistance_enabled?
+        return broadcast(:error,
+                         I18n.t('administration.ai_assistants.errors.one_click_idp_assistance_not_enabled'))
+      end
+
       assistant_service = AssistantService.new(
         idp_assistant.id,
         current_user,
@@ -33,16 +38,16 @@ module AI
           broadcast(:error, error_message)
         end.
         call
-    rescue RubyLLM::Error => e
-      ai_assisted_idp_session&.mark_as_failed!(e.message)
-      broadcast(:error, e.message)
     end
 
     private
 
     def idp_assistant
-      # TODO: Check if the feature is available
       @idp_assistant ||= idp_template.one_click_ai_assistant
+    end
+
+    def document_analysis_assistant
+      @document_analysis_assistant ||= idp_template.document_analysis_ai_assistant
     end
 
     def idp_template
@@ -55,8 +60,7 @@ module AI
 
     def chat_with_session_context
       idp_assisted_session_chat.
-        with_assistant_context(tools: idp_assistant_tools, params: idp_assistant_llm_params).
-        with_temperature(0) # TODO: Lowering temperature makes it deterministic, keeping the structure to be followed
+        with_assistant_context(tools: idp_assistant_tools)
     end
 
     def idp_assisted_session_chat
@@ -74,7 +78,7 @@ module AI
 
     def idp_assistant_tools
       [
-        AI::Tools::UserIdpDocAnalyzer.new(plan, current_user),
+        AI::Tools::UserIdpDocAnalyzer.new(plan, current_user, document_analysis_assistant),
         AI::Tools::UserIdpCreator.new(plan)
       ]
     end
@@ -108,10 +112,6 @@ module AI
 
     def ai_assisted_user_document_summary
       @ai_assisted_user_document_summary ||= user_idp_document.ai_assisted_user_document_summary
-    end
-
-    def idp_assistant_llm_params
-      { response_format: { type: 'json_object' } }
     end
   end
 end

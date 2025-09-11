@@ -8,7 +8,7 @@ class AI::AssistedUserDocumentSummary < AI::AssistedUserSession
 
   validates :assistable_type, inclusion: { in: ['ActiveStorage::Blob'] }
 
-  before_save :set_dependency_checksum
+  before_save :set_content_checksum
 
   def file
     assistable
@@ -24,7 +24,7 @@ class AI::AssistedUserDocumentSummary < AI::AssistedUserSession
 
   private
 
-  def set_dependency_checksum
-    self.dependency_checksum = file.checksum
+  def set_content_checksum
+    self.content_checksum = file.checksum
   end
 end

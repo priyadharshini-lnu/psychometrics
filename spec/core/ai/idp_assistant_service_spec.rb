@@ -43,6 +43,26 @@ describe AI::IdpAssistantService do
   end
 
   describe '#call' do
+    context 'when one-click IDP assistance is not enabled' do
+      before do
+        idp_template.update!(one_click_idp_enabled: false)
+      end
+
+      it 'returns an error with the correct translation' do
+        result = described_class.call(plan, user, instructions, options)
+
+        expect(result[:error]).to eq(I18n.t('administration.ai_assistants.errors.one_click_idp_assistance_not_enabled'))
+      end
+
+      it 'does not call AssistantService' do
+        allow(AI::AssistantService).to receive(:new)
+
+        described_class.new(plan, user, instructions, options).call
+
+        expect(AI::AssistantService).not_to have_received(:new)
+      end
+    end
+
     context 'when ai_assisted_idp_session does not exist' do
       include_context 'assistant service mocking'
 
@@ -82,20 +102,16 @@ describe AI::IdpAssistantService do
           expect(args[:tools].size).to eq(2)
           expect(args[:tools].first).to be_a(AI::Tools::UserIdpDocAnalyzer)
           expect(args[:tools].first.instance_variable_get(:@user_idp_plan)).to eq(plan)
-          expect(args[:tools].first.instance_variable_get(:@user)).to eq(user)
-
-          expect(args[:params]).to eq({ response_format: { type: 'json_object' } })
+          expect(args[:tools].first.instance_variable_get(:@current_user)).to eq(user)
 
           assistant_chat
         end
 
-        allow(assistant_chat).to receive(:with_temperature).with(0).and_return(assistant_chat)
         allow(ai_assistant).to receive(:for_user).and_return(assistant_chat)
 
         described_class.new(plan, user, instructions, options).call
 
         expect(assistant_chat).to have_received(:with_assistant_context)
-        expect(assistant_chat).to have_received(:with_temperature).with(0)
       end
 
       it 'passes correct parameters to AssistantService' do
@@ -150,23 +166,6 @@ describe AI::IdpAssistantService do
 
         expect_session_status(session, 'failed', 'AI service failed')
         expect(result[:error]).to eq('AI service failed')
-      end
-    end
-
-    context 'when RubyLLM::Error is raised' do
-      include_context 'assistant chat setup'
-      include_context 'assistant service mocking'
-
-      let!(:session) { create_existing_session }
-
-      it 'marks session as failed and broadcasts error' do
-        ruby_llm_error = RubyLLM::Error.new
-        allow(assistant_service_instance).to receive(:call).and_raise(ruby_llm_error)
-
-        result = described_class.call(plan, user, instructions, options)
-
-        expect_session_status(session, 'failed', 'RubyLLM::Error')
-        expect(result[:error]).to eq('RubyLLM::Error')
       end
     end
   end
