@@ -18,7 +18,7 @@ export default connect(
         list, total, permissions,
       },
       campaignDetails: {
-        id: threeSixtyCampaignId, reportAvailableLanguages, reportDefaultLanguage,
+        reportAvailableLanguages, reportDefaultLanguage,
         reportIcon, reportName, category, template,
       },
     },
@@ -30,7 +30,6 @@ export default connect(
     reportDefaultLanguage,
     page: routeUtils.getPage(),
     searchTerm: routeUtils.getSearchTerm(),
-    threeSixtyCampaignId,
     reportIcon,
     reportName,
     category,

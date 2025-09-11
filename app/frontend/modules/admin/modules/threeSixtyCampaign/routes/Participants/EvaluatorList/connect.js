@@ -10,7 +10,6 @@ import routeUtils from '~/utils/route'
 export default connect(
   ({
     threeSixtyCampaign: {
-      campaignDetails: { id: threeSixtyCampaignId },
       evaluators: { list, total, permissions },
       campaignDetails: {
         template,
@@ -18,7 +17,6 @@ export default connect(
     },
   }) => ({
     evaluators: list,
-    threeSixtyCampaignId,
     total,
     permissions,
     page: routeUtils.getPage(),
