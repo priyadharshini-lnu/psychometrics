@@ -10,6 +10,7 @@ class IdpTemplate < ApplicationRecord
   belongs_to :project, class_name: 'Client'
   belongs_to :report
   belongs_to :one_click_ai_assistant, class_name: 'AI::Assistant', optional: true
+  belongs_to :document_analysis_ai_assistant, class_name: 'AI::Assistant', optional: true
   has_many :idp_template_skills, dependent: :destroy
   has_many :idp_template_development_actions, dependent: :destroy
   has_many :skills, through: :idp_template_skills, dependent: :destroy

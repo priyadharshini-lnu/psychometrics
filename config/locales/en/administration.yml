@@ -2230,6 +2230,7 @@ en:
         remove_confirm: Enter current template name given below in text box to remove template
         success: "%{idpName} was removed successfully."
       add_idp_template: Add IDP Template
+      ai_assistant: AI Assistant
       ai_assisted_idp_enabled: AI Assisted IDP Enabled
       ai_enabled: AI Enabled
       ai_settings: AI Settings
@@ -2259,6 +2260,7 @@ en:
         heading: Skills/Development Actions
         manage_skills: Manage Skills
         no_development_actions: You have no Development Actions
+      document_ai_assistant: Document Analysis AI Assistant
       edit_template: Edit IDP Template
       enter_tag_or_skills_error: Select at least one tag or skill
       enter_template_description: Description

@@ -13,6 +13,13 @@ export const ReportTR = t.type({
   name: t.string,
 })
 
+export const AssistantTR = t.type({
+  id: t.string,
+  name: t.string,
+})
+
+export type IdpAssistant = t.TypeOf<typeof AssistantTR>
+
 export const ReflectionQuestionTR = t.type({
   id: t.string,
   question: t.union([t.string, t.null]),
@@ -69,12 +76,22 @@ export const IdpTR = t.intersection([
     aiAssistedIdpEnabled: t.boolean,
     oneClickIdpEnabled: t.boolean,
     skillSourcePreference: t.string,
+    oneClickAiAssistantId: t.union([t.string, t.null]),
+    documentAnalysisAiAssistantId: t.union([t.string, t.null]),
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),
     report: t.union([
       ReportTR,
       t.undefined]),
+    oneClickAiAssistant: t.union([
+      AssistantTR,
+      t.undefined,
+    ]),
+    documentAnalysisAiAssistant: t.union([
+      AssistantTR,
+      t.undefined,
+    ]),
   })])
 
 export const IntroMessageTR = t.type({
@@ -99,6 +116,12 @@ export const Schema = {
     },
     report: {
       type: 'reports',
+    },
+    one_click_ai_assistant: {
+      type: 'assistants',
+    },
+    document_analysis_ai_assistant: {
+      type: 'assistants',
     },
   },
 }

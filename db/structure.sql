@@ -3859,7 +3859,8 @@ CREATE TABLE public.idp_templates (
     ai_assistant_id bigint,
     one_click_idp_enabled boolean DEFAULT false NOT NULL,
     one_click_ai_assistant_id bigint,
-    skill_source_preference integer DEFAULT 0
+    skill_source_preference integer DEFAULT 0,
+    document_analysis_ai_assistant_id bigint
 );
 
 
@@ -13306,6 +13307,13 @@ CREATE INDEX index_idp_templates_on_ai_assistant_id ON public.idp_templates USIN
 
 
 --
+-- Name: index_idp_templates_on_document_analysis_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_templates_on_document_analysis_ai_assistant_id ON public.idp_templates USING btree (document_analysis_ai_assistant_id);
+
+
+--
 -- Name: index_idp_templates_on_one_click_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17969,6 +17977,14 @@ ALTER TABLE ONLY public.assigns_reports
 
 
 --
+-- Name: idp_templates fk_rails_eb7007f4f0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_templates
+    ADD CONSTRAINT fk_rails_eb7007f4f0 FOREIGN KEY (document_analysis_ai_assistant_id) REFERENCES public.ai_assistants(id);
+
+
+--
 -- Name: user_report_events fk_rails_eb9cac4a43; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18239,6 +18255,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250909133040'),
 ('20250909093543'),
 ('20250904112108'),
 ('20250828122244'),

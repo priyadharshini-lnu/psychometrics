@@ -15,6 +15,8 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
   has_one :report
   has_many :idp_template_skills
   has_many :skills, through: :idp_template_skills, class_name: 'Skill'
+  has_one :one_click_ai_assistant, class_name: 'AI::Assistant'
+  has_one :document_analysis_ai_assistant, class_name: 'AI::Assistant'
 
   ransack_filters %i[filterable_fields status_eq]
 
