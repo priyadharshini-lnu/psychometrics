@@ -1,0 +1,90 @@
+@import '~/styles/spacing.less';
+
+.bubble {
+}
+
+.permissionBubble {
+  border: 1px solid var(--grey-color);
+  padding: @space-8;
+  justify-content: center;
+  border-radius: @space-4;
+
+
+  .controls {
+    margin-top: @space-6;
+  }
+}
+
+.recordIcon {
+    display: block;
+    text-align: center;
+  }
+
+
+.question {
+  background-image: url('../assets/Gradient_Background@2x.png');
+  background-size: cover;
+  border-radius: 32px;
+  padding: @space-4;
+}
+
+.title {
+  margin-top: @space-2 !important;
+  text-align: center;
+}
+
+.visualizer {
+  min-height: 126px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+
+  width: 100%;
+  min-height: 22px;
+  .dot {
+    background: #fe5555;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+    margin-right: 5px;
+  }
+
+  .tag {
+    display: flex;
+    align-items: center;
+    }
+
+  .countdown {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.footer {
+  margin: @space-4 0;
+}
+
+.transcription {
+  margin: @space-4 0;
+  border-radius: @space-4;
+  padding: @space-4;
+  border: 1px solid var(--grey-color);
+}
+
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}

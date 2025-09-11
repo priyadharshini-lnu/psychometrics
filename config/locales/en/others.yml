@@ -2577,6 +2577,36 @@ en:
       aria_selected: Selected
   idp:
     actions: Actions
+    ai:
+      bubbles:
+        audio:
+          question_progress: Question %{current} of %{count}
+      compose:
+        placeholder: Type your message here...
+      finishing:
+        hint: Our AI assistant is creating IDP plan for you.
+        title: Please wait we are doing our magic…
+      retake_steps:
+        chat_hint: Let me know what information you want to provide more bellow?
+        chat_title: You want to give more information?
+        start_chat: Start Chat
+        start_chat_again: Start Chat Again
+        upload_document: Upload document
+        upload_file: Upload File
+      summary:
+        chat_title: Chant Insight Summary
+        file_title: Uploaded Documents Insights
+        hint: if yes then we will create your IDP otherwise you can retake your answers
+        title: Are you satisfied with results?
+        upload_file: Uploaded File
+        view_chat: View Chat
+      upload:
+        description: Click or drag files to this area to upload
+        drop: Drop file here
+        title: Upload files
+      welcome:
+        text: Ready to chart your growth jorney? Let's begin!
+        title: Hello, I'm your development assistant
     behavioral: Behavioral
     board: Board
     comment_details:

@@ -9,7 +9,7 @@ class EndUser::AIAssistedIdpChatsController < ApplicationController
                   permit_params: ->(params) { params.permit(:message) }
 
   async_request :upload_document, handler: AI::IdpChat::AnalyzeDocument,
-                  permit_params: ->(params) { params.permit(:message) }
+                  permit_params: ->(params) {}
 
   def index
     # response with chat user session messages
@@ -20,7 +20,14 @@ class EndUser::AIAssistedIdpChatsController < ApplicationController
     }
   end
 
+  def meta_data
+    file_name = current_user.active_user_idp_plan.user_document.blob.filename.to_s
+    {
+      file_name: file_name
+    }
+  end
+
   def save_file
-    # safe file to user_idp_plan before call async request
+    current_user.active_user_idp_plan.update(user_document: params[:file])
   end
 end

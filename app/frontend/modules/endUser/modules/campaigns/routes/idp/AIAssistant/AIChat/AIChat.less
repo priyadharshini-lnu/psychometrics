@@ -1,0 +1,59 @@
+@import '~/styles/spacing.less';
+
+.header {
+  padding: 0;
+
+}
+.chatContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.messages {
+  flex: 1;
+  overflow: auto;
+  margin-bottom: 20px;
+}
+
+.compose {
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
+  border-radius: @space-3;
+  border-color: var(--ant-primary-color-outline);
+}
+
+.bubble {
+  border-radius: 50%;
+}
+
+.upload {
+  border-radius: @space-4;
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
+
+  .uploadList {
+    border-radius: @space-4;
+  }
+}
+
+.promptItem {
+  padding: 2px 6px !important;
+  color: var(--ant-primary-color);
+  border-color: var(--ant-primary-color) !important;
+}
+
+.chatCompleted {
+  height: 100%;
+
+  .spinner {
+    position: relative;
+
+    .lighthouse {
+      position: absolute;
+      font-size: 50px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+  }
+}

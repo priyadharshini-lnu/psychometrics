@@ -1029,8 +1029,10 @@ as: :simulation_progress_notification
       end
 
       resources :ai_assisted_idp_chats, only: %i[index] do
-        post :ask
-        post :upload_document
+        collection do
+          post :ask
+          post :upload_document
+        end
       end
 
       resources :user_idp_plans, param: :user_id, only: %i[show update] do

@@ -13,12 +13,13 @@ module AI
         **Required JSON Fields:**
         - `message`: Single message string (plain text only)
         - `suggestions`: Array of response options (can be empty)
-        - `component`: One of: AssistantMessage, UserDocument, Summary, CompletionRequest, RetakeSteps
+        - `component`: One of: AssistantMessage, RequestDocument, Summary, RetakeSteps
         - `data`: Object (required for Summary component only)
 
         **Summary Component Data:**
         - `document_summary`: EXACT tool response from ai--tools--user_idp_doc_analyzer (empty string if not called)
         - `chat_summary`: Generated chat analysis (markdown allowed)
+        - Summary component also asks the user whether user wants to proceed with plan creation
 
         **MANDATORY Rules:**
         - Generate ONE JSON response only - no duplicates, no multiple objects
@@ -38,7 +39,7 @@ module AI
       array :suggestions, of: :string,
         description: "Possible suggestion for the user as response to assistant's message, can also be empty"
 
-      string :component, enum: %w[AssistantMessage UserDocument Summary CompletionRequest RetakeSteps],
+      string :component, enum: %w[AssistantMessage RequestDocument Summary RetakeSteps],
         description: 'Type of component to be used to display assistant message to user'
 
       object :data, description: 'Additional data to be sent when using Summary component' do

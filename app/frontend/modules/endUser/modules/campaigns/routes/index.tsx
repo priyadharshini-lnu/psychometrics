@@ -19,6 +19,9 @@ import { InitialSteps } from './idp/InitialSteps'
 import { ReflectiveQuestions } from './idp/ReflectiveQuestions'
 import { DirectReporteesList } from './idp/DirectReportees/List'
 import { DirectReportDetails } from './idp/DirectReportees/Details'
+import { AIStartPage } from './idp/AIAssistant/AIStartPage'
+import { AIChat } from './idp/AIAssistant/AIChat'
+
 
 const CWizard = () => {
   const { assessmentId, id } = useParams() as { assessmentId: string, id: string }
@@ -93,6 +96,14 @@ const routes = [
   {
     path: '/meet/:roomId',
     component: <MeetingRoom />,
+  },
+  {
+    path: '/idp/ai_assistant/start',
+    component: <AIStartPage />,
+  },
+  {
+    path: '/idp/ai_assistant/chat',
+    component: <AIChat />,
   },
   {
     path: '/idp/steps/:step',
