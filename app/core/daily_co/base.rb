@@ -5,7 +5,7 @@ module DailyCo
     BASE_URL = 'https://api.daily.co/v1/'
 
     def client
-      api_key = Settings.secrets.daily_co[:api_key]
+      api_key = Settings.secrets.daily_co[:v2][:api_key]
       @client ||= Faraday.new(BASE_URL) do |connection|
         connection.request :url_encoded
         connection.adapter Faraday.default_adapter
