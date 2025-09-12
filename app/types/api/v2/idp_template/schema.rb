@@ -41,6 +41,17 @@ module Api
           end
         end
 
+        def self.update_interview_questions_request
+          json_api_attributes do
+            required(:interview_questions).array(:hash) do
+              required(:id).filled(:string)
+              required(:order).filled(:integer)
+              required(:mandatory).filled(:bool)
+              optional(:time_limit).maybe(:integer)
+            end
+          end
+        end
+
         def self.update_instructions_request
           json_api_attributes do
             required(:instructions).filled(:hash)

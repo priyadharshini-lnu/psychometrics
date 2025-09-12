@@ -57,6 +57,12 @@ module Api
       jsonapi_render json: @model
     end
 
+    def update_interview_questions
+      IdpTemplates::UpdateInterviewQuestions.call(@model, params[:data][:attributes][:interview_questions])
+
+      jsonapi_render json: @model
+    end
+
     def update_instructions
       locale = params[:data][:attributes][:locale] || I18n.default_locale
       instructions = params[:data][:attributes][:instructions]

@@ -9,6 +9,7 @@ import SkillsForm from './SkillsForm'
 import AppearanceForm from './AppearanceForm'
 import IntroMessageForm from './IntroMessageForm'
 import ReflectionQuestionsForm from './ReflectionQuestionsForm'
+import InterviewQuestionsForm from './InterviewQuestionsForm'
 
 const IdpDetails: React.FC = () => {
   const { projectId, id } = useParams() as { projectId: string, id: string }
@@ -92,6 +93,11 @@ const IdpDetails: React.FC = () => {
             key: 'reflective_questions',
             label: 'Reflective Questions',
             children: <ReflectionQuestionsForm idp={idp} fetch={fetch} />,
+          },
+          {
+            key: 'interview_questions',
+            label: 'Interview Questions',
+            children: <InterviewQuestionsForm idp={idp} fetch={fetch} />,
           },
         ]}
       />

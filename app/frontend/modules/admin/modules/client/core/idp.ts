@@ -28,6 +28,14 @@ export const ReflectionQuestionTR = t.type({
   maxWords: t.union([t.number, t.null]),
 })
 
+export const InterviewQuestionTR = t.type({
+  id: t.string,
+  question: t.union([t.string, t.null]),
+  mandatory: t.boolean,
+  timeLimit: t.union([t.number, t.null]),
+  questionType: t.union([t.string, t.null]),
+})
+
 export const IdpListItemTR = t.type({
   id: t.string,
   name: t.string,
@@ -66,6 +74,7 @@ export const IdpTR = t.intersection([
     }),
     availableLocales: t.array(t.string),
     reflectionQuestions: t.array(ReflectionQuestionTR),
+    interviewQuestions: t.array(InterviewQuestionTR),
     translations: t.record(t.string, t.partial({
       titleText: t.union([t.string, t.null]),
       subtitleText: t.union([t.string, t.null]),
@@ -101,6 +110,7 @@ export const IntroMessageTR = t.type({
 })
 
 export type IdpTemplateReflectionQuestion = t.TypeOf<typeof ReflectionQuestionTR>
+export type IdpTemplateInterviewQuestion = t.TypeOf<typeof InterviewQuestionTR>
 export type Idp = t.TypeOf<typeof IdpTR>
 export type Skill = t.TypeOf<typeof SkillTR>
 export type Report = t.TypeOf<typeof ReportTR>

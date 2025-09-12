@@ -2,6 +2,7 @@ import IdpList from './IdpList'
 import DevelopmentActionList from '~/modules/admin/modules/DevelopmentActions/components/DevelopmentActionList'
 import Settings from './Settings'
 import ReflectionQuestions from './ReflectionQuestions'
+import InterviewQuestions from './InterviewQuestions'
 import IdpDetails from './IDPDetails'
 
 export const routes = [
@@ -29,5 +30,9 @@ export const routes = [
   {
     path: '/reflection_questions',
     component: <ReflectionQuestions />,
+  },
+  {
+    path: '/interview_questions',
+    component: <InterviewQuestions />,
   },
 ]

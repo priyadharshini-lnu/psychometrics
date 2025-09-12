@@ -148,9 +148,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT id,
-    name,
-    category
+ SELECT assessments.id,
+    assessments.name,
+    assessments.category
    FROM public.assessments;
 
 
@@ -173,10 +173,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT id,
-    campaign_id,
-    name,
-    "position"
+ SELECT campaign_factor_groups.id,
+    campaign_factor_groups.campaign_id,
+    campaign_factor_groups.name,
+    campaign_factor_groups."position"
    FROM public.campaign_factor_groups;
 
 
@@ -296,9 +296,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT id,
-    name,
-    project_id
+ SELECT campaigns.id,
+    campaigns.name,
+    campaigns.project_id
    FROM public.campaigns;
 
 
@@ -418,8 +418,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT id,
-    name
+ SELECT factors.id,
+    factors.name
    FROM public.factors;
 
 
@@ -734,11 +734,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT id,
-    project_id,
-    first_name,
-    last_name,
-    email
+ SELECT users.id,
+    users.project_id,
+    users.first_name,
+    users.last_name,
+    users.email
    FROM public.users;
 
 
@@ -3714,6 +3714,41 @@ ALTER SEQUENCE public.idp_template_development_actions_id_seq OWNED BY public.id
 
 
 --
+-- Name: idp_template_interview_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.idp_template_interview_questions (
+    id bigint NOT NULL,
+    idp_template_id bigint NOT NULL,
+    interview_question_id bigint NOT NULL,
+    "order" integer,
+    time_limit integer,
+    mandatory boolean,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: idp_template_interview_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.idp_template_interview_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: idp_template_interview_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.idp_template_interview_questions_id_seq OWNED BY public.idp_template_interview_questions.id;
+
+
+--
 -- Name: idp_template_reflection_questions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4022,6 +4057,42 @@ CREATE SEQUENCE public.integrations_id_seq
 --
 
 ALTER SEQUENCE public.integrations_id_seq OWNED BY public.integrations.id;
+
+
+--
+-- Name: interview_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.interview_questions (
+    id bigint NOT NULL,
+    question character varying,
+    description character varying,
+    time_limit integer,
+    mandatory boolean DEFAULT false,
+    question_type integer DEFAULT 0,
+    project_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: interview_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.interview_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: interview_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.interview_questions_id_seq OWNED BY public.interview_questions.id;
 
 
 --
@@ -4591,13 +4662,13 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT id,
-    factor_id,
-    user_assessment_id,
-    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((scores ->> 'score'::text))::double precision AS score,
-    ((scores ->> 'zscore'::text))::double precision AS zscore,
-    ((scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT user_assessment_factor_scores.id,
+    user_assessment_factor_scores.factor_id,
+    user_assessment_factor_scores.user_assessment_id,
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -8971,6 +9042,13 @@ ALTER TABLE ONLY public.idp_template_development_actions ALTER COLUMN id SET DEF
 
 
 --
+-- Name: idp_template_interview_questions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_interview_questions ALTER COLUMN id SET DEFAULT nextval('public.idp_template_interview_questions_id_seq'::regclass);
+
+
+--
 -- Name: idp_template_reflection_questions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9024,6 +9102,13 @@ ALTER TABLE ONLY public.innovation_styles_factors ALTER COLUMN id SET DEFAULT ne
 --
 
 ALTER TABLE ONLY public.integrations ALTER COLUMN id SET DEFAULT nextval('public.integrations_id_seq'::regclass);
+
+
+--
+-- Name: interview_questions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.interview_questions ALTER COLUMN id SET DEFAULT nextval('public.interview_questions_id_seq'::regclass);
 
 
 --
@@ -10581,6 +10666,14 @@ ALTER TABLE ONLY public.idp_template_development_actions
 
 
 --
+-- Name: idp_template_interview_questions idp_template_interview_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_interview_questions
+    ADD CONSTRAINT idp_template_interview_questions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: idp_template_reflection_questions idp_template_reflection_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10642,6 +10735,14 @@ ALTER TABLE ONLY public.innovation_styles
 
 ALTER TABLE ONLY public.integrations
     ADD CONSTRAINT integrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: interview_questions interview_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.interview_questions
+    ADD CONSTRAINT interview_questions_pkey PRIMARY KEY (id);
 
 
 --
@@ -11792,6 +11893,13 @@ CREATE UNIQUE INDEX idx_on_idp_template_id_development_action_id_catego_bd39b965
 --
 
 CREATE UNIQUE INDEX idx_on_idp_template_id_skill_id_category_11f5232638 ON public.idp_template_skills USING btree (idp_template_id, skill_id, category);
+
+
+--
+-- Name: idx_on_interview_question_id_cf15f719f7; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_interview_question_id_cf15f719f7 ON public.idp_template_interview_questions USING btree (interview_question_id);
 
 
 --
@@ -13251,6 +13359,13 @@ CREATE INDEX index_idp_template_development_actions_on_idp_template_id ON public
 
 
 --
+-- Name: index_idp_template_interview_questions_on_idp_template_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_interview_questions_on_idp_template_id ON public.idp_template_interview_questions USING btree (idp_template_id);
+
+
+--
 -- Name: index_idp_template_reflection_questions_on_idp_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13367,6 +13482,13 @@ CREATE INDEX index_innovation_styles_on_dimension_id ON public.innovation_styles
 --
 
 CREATE INDEX index_integrations_on_project_id ON public.integrations USING btree (project_id);
+
+
+--
+-- Name: index_interview_questions_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_interview_questions_on_project_id ON public.interview_questions USING btree (project_id);
 
 
 --
@@ -15505,6 +15627,14 @@ ALTER TABLE ONLY public.sheets
 
 
 --
+-- Name: idp_template_interview_questions fk_rails_04a975ec35; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_interview_questions
+    ADD CONSTRAINT fk_rails_04a975ec35 FOREIGN KEY (interview_question_id) REFERENCES public.interview_questions(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_email_template_translations fk_rails_04c41c48a8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16318,6 +16448,14 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.workshop_assessors
     ADD CONSTRAINT fk_rails_524f182ee9 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
+
+
+--
+-- Name: interview_questions fk_rails_53c904b7d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.interview_questions
+    ADD CONSTRAINT fk_rails_53c904b7d5 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -17337,6 +17475,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: idp_template_interview_questions fk_rails_b9b361c335; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_interview_questions
+    ADD CONSTRAINT fk_rails_b9b361c335 FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id) ON DELETE CASCADE;
+
+
+--
 -- Name: workshops fk_rails_bad3af4e15; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18267,6 +18413,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250821122411'),
 ('20250821102225'),
 ('20250820163652'),
+('20250807144839'),
+('20250807141543'),
 ('20250807052600'),
 ('20250806140955'),
 ('20250806102146'),

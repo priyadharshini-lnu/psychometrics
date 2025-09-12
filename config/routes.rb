@@ -1224,10 +1224,15 @@ as: :simulation_progress_notification
                 post :uploads, on: :member
                 post :update_appearance, on: :member
                 post :update_reflection_questions, on: :member
+                post :update_interview_questions, on: :member
                 post :update_instructions, on: :member
               end
             jsonapi_resources :reflection_questions, controller: 'projects/reflection_questions' do
               post :uploads, on: :member
+              post :import, on: :collection
+              post :export, on: :collection
+            end
+            jsonapi_resources :interview_questions, controller: 'projects/interview_questions' do
               post :import, on: :collection
               post :export, on: :collection
             end

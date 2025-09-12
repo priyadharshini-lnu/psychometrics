@@ -839,6 +839,7 @@ en:
         export_development_actions: Export Development Actions
         export_dimension_as_json: Export Dimension JSON
         export_factor_translations: Export Factor Translations
+        export_interview_questions: Export Interview Questions
         export_job_roles_translations: Export Job Roles Translations
         export_norm: Export Norm
         export_occupations: Occupations Export
@@ -864,6 +865,7 @@ en:
         import_external_campaign_scoring: Import External Campaign Scoring
         import_factor_translations: Import Factor Translations
         import_factors: Import Factors
+        import_interview_questions: Import Interview Questions
         import_job_roles_translations: Import Job Roles Translations
         import_norm: Import Norm
         import_proficiency_level_translations: Import Proficiency Level Translations
