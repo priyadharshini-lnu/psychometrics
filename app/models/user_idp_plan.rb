@@ -9,9 +9,15 @@ class UserIdpPlan < ApplicationRecord
   belongs_to :idp_template
   belongs_to :creator, class_name: 'User'
   has_many :user_idp_skills, dependent: :destroy
+  has_many :public_user_idp_skills, -> { where(private: false) }, class_name: 'UserIdpSkill'
+  has_many :public_user_idp_development_actions, -> { with_public_skills }, class_name: 'UserIdpDevelopmentAction'
   has_many :skills, through: :user_idp_skills
+  has_many :public_skills, -> { where(user_idp_skills: { private: false }) }, through: :user_idp_skills, source: :skill
   has_many :user_idp_development_actions, dependent: :destroy
   has_many :development_actions, through: :user_idp_development_actions
+  has_many :public_development_actions, lambda {
+    where(user_idp_development_actions: { private: false })
+  }, through: :user_idp_development_actions, source: :development_action
   has_many :custom_development_actions, lambda {
     where(source_type: :custom)
   }, class_name: 'DevelopmentAction', as: :owner, dependent: :destroy

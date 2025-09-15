@@ -1100,6 +1100,7 @@ as: :simulation_progress_notification
     resources :user_idp_skills, only: %i[index update], controller: 'end_user/user_idp_skills' do
       post :save_skills, on: :collection
       put :toggle_privacy, on: :member
+      put :revert_to_public, on: :member
     end
     resources :direct_reportees, only: %i[index], controller: 'end_user/direct_reportees'
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?

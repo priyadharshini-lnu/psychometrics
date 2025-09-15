@@ -2307,6 +2307,13 @@ en:
       reflection_questions_updated: Reflection Questions updated successfully.
       remove: Remove
       remove_skill: Remove Skill
+      revert_skill_to_public:
+        errors:
+          skill_already_public: Skill is already public
+          skill_not_found: Skill not found
+        success:
+          base_message: Skill '%{skill_name}' is now visible to your manager
+          with_approval: "%{base_message} and your IDP plan has been submitted for approval"
       select_by_tags: Select by Tags
       select_interview_question: Start typing to search and select question
       select_reflection_question: Start typing to search and select question

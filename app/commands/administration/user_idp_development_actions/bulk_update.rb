@@ -17,7 +17,11 @@ module Administration
           process_development_actions_by_skill
         end
 
-        broadcast :ok, { all_records: UserIdpDevelopmentAction.where(user_idp_plan_id: user_idp_plan_id) }
+        broadcast :ok, {
+          all_records: UserIdpDevelopmentAction.
+            with_public_skills.
+            where(user_idp_plan_id: user_idp_plan_id)
+        }
       rescue ActiveRecord::RecordInvalid => e
         broadcast :invalid, e.message
       rescue ActiveRecord::RecordNotFound => e
@@ -39,6 +43,7 @@ module Administration
         return if user_idp_plan_id.blank?
 
         records_to_delete = UserIdpDevelopmentAction.
+                            with_public_skills.
                             where(user_idp_plan_id: user_idp_plan_id).
                             includes(:development_action)
         cleanup_orphaned_development_actions(records_to_delete)
@@ -57,6 +62,8 @@ module Administration
       end
 
       def process_development_actions_by_skill_id(user_idp_skill_id, development_actions)
+        return unless public_user_idp_skill?(user_idp_skill_id)
+
         development_actions_for_deletion,
          development_actions_to_upsert = partition_development_actions(development_actions)
 
@@ -75,10 +82,11 @@ module Administration
         ids_to_delete = development_actions_for_deletion.filter_map { |action_data| action_data[:id].presence }
         return if ids_to_delete.empty?
 
-        records_to_delete = UserIdpDevelopmentAction.where(id: ids_to_delete).includes(:development_action)
+        records_to_delete = UserIdpDevelopmentAction.
+                            with_public_skills.
+                            where(id: ids_to_delete).
+                            includes(:development_action)
         cleanup_orphaned_development_actions(records_to_delete)
-
-        UserIdpDevelopmentAction.where(id: ids_to_delete).delete_all
       end
 
       def delete_unretained_development_actions(user_idp_skill_id, development_actions_to_upsert)
@@ -91,6 +99,7 @@ module Administration
         cleanup_orphaned_development_actions(records_to_delete)
 
         UserIdpDevelopmentAction.
+          with_public_skills.
           where(user_idp_skill_id: user_idp_skill_id, user_idp_plan_id: user_idp_plan_id).
           where.not(id: retained_ids).
           delete_all
@@ -192,6 +201,10 @@ module Administration
 
       def sanitize_development_action_data(action_data)
         action_data.except(:_destroy, :name, :description, :learning_style, :source_type)
+      end
+
+      def public_user_idp_skill?(user_idp_skill_id)
+        UserIdpSkill.public_skills.exists?(id: user_idp_skill_id)
       end
     end
   end
