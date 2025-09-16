@@ -12,6 +12,7 @@ import BulletGraph from '~/modules/reports/components/BulletGraph'
 import PieGraph from '~/modules/reports/components/PieGraph'
 import styles from './CampaignFactorsTable.less'
 import { PaginationContext } from '../FactorsTable/PaginationContext'
+import LookupSourceName from '~/modules/reports/commands/LookupSourceName'
 
 const campaignFactorMockData = [
   {
@@ -239,7 +240,7 @@ class CampaignFactorsTable extends Component {
           conditionBaselineScore = 3.5
         }
 
-        conditionTitle = conditionTitle ?? I18nStore.tFactorName(campaignfactor)
+        conditionTitle = conditionTitle ?? LookupSourceName.call({}, campaignfactor.code, 'CampaignFactors')
         conditionText = conditionText ?? I18nStore.tFactor(campaignfactor, 'description')
         conditionColor = conditionColor ?? '#666666'
 

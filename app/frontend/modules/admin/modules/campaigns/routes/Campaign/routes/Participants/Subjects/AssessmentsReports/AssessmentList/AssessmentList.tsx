@@ -132,7 +132,10 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('common.column.category')}
             key="category"
-            render={({ category }) => _.capitalize(category)}
+            render={({ category }) => (
+              I18n.t(`activerecord.attributes.assessment.categories.${category}`,
+                { defaultValue: _.capitalize(category) })
+            )}
           />
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
