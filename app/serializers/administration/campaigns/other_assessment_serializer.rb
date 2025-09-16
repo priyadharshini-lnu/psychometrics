@@ -5,10 +5,6 @@ module Administration
     class OtherAssessmentSerializer < Panko::Serializer
       attributes :id, :name, :category, :permissions
 
-      def category
-        object.decorate.category
-      end
-
       def permissions
         GetPermissionsHash.call!(
           Administration::CampaignAssessmentPolicy,

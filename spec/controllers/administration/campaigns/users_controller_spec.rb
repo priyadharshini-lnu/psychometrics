@@ -167,7 +167,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'id' => user_assessment.id,
       'assessment_id' => assessment.id,
       'name' => assessment.name,
-      'category' => assessment.decorate.category,
+      'category' => assessment.category,
       'norm_name' => nil,
       'norms' => [],
       'permissions' => {
