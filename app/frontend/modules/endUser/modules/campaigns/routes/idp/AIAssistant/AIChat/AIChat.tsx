@@ -14,6 +14,7 @@ import {
   FC, useEffect, useRef, useState,
 } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { DirectionalNavigateBackIcon } from '~/glint'
 import { AIAssistantLayout } from '../AIAssistantLayout'
 import styles from './AIChat.less'
@@ -22,6 +23,8 @@ import Lighthouse from './assets/LighthouseIcon.svg?react'
 import { BotIcon } from './bubbles/BotIcon'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import BubbleTypes from './bubbles'
+import { AWS_SPEECH_TO_TEXT_URL } from '~/modules/survey/core/preview/FlowProcessor/consts'
+import { useSpeechToText } from '~/hooks/useSpeechToText'
 
 const { I18n } = window
 
@@ -68,6 +71,25 @@ export const AIChat = () => {
   const [suggestions, setSuggestions] = useState<string[]>([])
   const listBottom = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [recording, setRecording] = useState(false)
+
+  const changeValue = (value:string) => {
+    setUserPrompt(value)
+  }
+
+  const fetchAwsSpeechTextPresignedUrl = () => dispatch({
+    type: AWS_SPEECH_TO_TEXT_URL,
+    request:
+    {
+      method: 'get',
+      url: '/transcribe/pre_sign_url',
+    },
+  }) as unknown as Promise<{ response: { url: string } }>
+
+  const { startDictation, stopDictation } = useSpeechToText({
+    value: userPrompt, onChange: changeValue, fetchPresignUrl: fetchAwsSpeechTextPresignedUrl,
+  })
 
   const addUserMessage = (message) => {
     setMessages(prev => [...prev, { component: 'UserMessage', message }])
@@ -207,6 +229,18 @@ export const AIChat = () => {
       onSubmit={(value) => {
         addUserMessage(value)
         setUserPrompt('')
+      }}
+      allowSpeech={{
+        // When setting `recording`, the built-in speech recognition feature will be disabled
+        recording,
+        onRecordingChange: (nextRecording) => {
+          setRecording(nextRecording)
+          if (nextRecording) {
+            startDictation()
+          } else {
+            stopDictation()
+          }
+        },
       }}
       autoSize={{ minRows: 3, maxRows: 6 }}
     />
