@@ -18,6 +18,8 @@ module Skills
 
         broadcast :ok, { question: question, factor: factor }
       end
+    rescue ActiveRecord::RecordNotUnique
+      broadcast :ok
     end
 
     private

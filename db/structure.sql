@@ -13257,7 +13257,7 @@ CREATE INDEX index_factors_on_parent_id ON public.factors USING btree (parent_id
 -- Name: index_factors_on_skill_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_factors_on_skill_id ON public.factors USING btree (skill_id);
+CREATE UNIQUE INDEX index_factors_on_skill_id ON public.factors USING btree (skill_id) WHERE (skill_id IS NOT NULL);
 
 
 --
@@ -14041,7 +14041,7 @@ CREATE INDEX index_questions_on_created_by_id ON public.questions USING btree (c
 -- Name: index_questions_on_skill_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_questions_on_skill_id ON public.questions USING btree (skill_id);
+CREATE UNIQUE INDEX index_questions_on_skill_id ON public.questions USING btree (skill_id) WHERE (skill_id IS NOT NULL);
 
 
 --
@@ -18401,6 +18401,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250911053831'),
 ('20250901091203'),
 ('20250901084702'),
 ('20250901060902'),
@@ -19305,4 +19306,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-
