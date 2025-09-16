@@ -1038,6 +1038,7 @@ en:
       form:
         active_notice: Campaign status will automatically change to closed on the selected end date & time
         campaign: Campaign
+        copy_factors: Copy Factors
         inactive_notice: Campaign status will automatically change to active on the selected start date & time
         instruction: This can be only enabled while creating
         name: Name
