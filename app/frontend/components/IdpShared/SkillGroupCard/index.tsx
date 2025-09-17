@@ -123,7 +123,7 @@ export const SkillsGroupCard: FC<Props> = ({
           >
             {searchResults
               .filter(result => !includes(selectedSkills
-                .map(skill => skill.skillId), result.id))
+                .map(skill => Number(skill.skillId)), Number(result.id)))
               .map(({ id, name }) => (
                 <Select.Option
                   key={id}
@@ -144,11 +144,12 @@ export const SkillsGroupCard: FC<Props> = ({
             role="button"
             tabIndex={0}
             className={cs(styles['skill-btn'],
-              includes(selectedSkills.map(s => s.skillId), skill.id) ? styles['skill-btn-suggestion-selected']
+              includes(selectedSkills.map(s => Number(s.skillId)),
+                Number(skill.id)) ? styles['skill-btn-suggestion-selected']
                 : styles['skill-btn-suggestion'])}
             key={skill.id}
             onClick={() => {
-              if (includes(selectedSkills.map(s => s.skillId), skill.id)) {
+              if (includes(selectedSkills.map(s => Number(s.skillId)), Number(skill.id))) {
                 onRemoveSkill(Number(skill.id))
                 return
               }
@@ -156,7 +157,7 @@ export const SkillsGroupCard: FC<Props> = ({
             }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                if (includes(selectedSkills.map(s => s.skillId), skill.id)) {
+                if (includes(selectedSkills.map(s => Number(s.skillId)), Number(skill.id))) {
                   onRemoveSkill(Number(skill.id))
                   return
                 }
@@ -164,7 +165,7 @@ export const SkillsGroupCard: FC<Props> = ({
               }
             }}
           >
-            {includes(selectedSkills.map(s => s.skillId), skill.id)
+            {includes(selectedSkills.map(s => Number(s.skillId)), Number(skill.id))
 
               ? (
                 <CheckCircleOutlined className="mr4" />

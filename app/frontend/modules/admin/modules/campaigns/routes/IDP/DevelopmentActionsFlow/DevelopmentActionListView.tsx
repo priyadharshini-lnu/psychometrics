@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  Avatar, Button, Flex, Typography,
+  Avatar, Button, Flex, Typography, Empty,
 } from 'antd'
 import _ from 'lodash'
 import { EditOutlined } from '@ant-design/icons'
@@ -155,7 +155,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
 
   const renderCards = (skills: SkillWithDevelopmentActions[]) => {
     if (skills.length === 0) return <span>{I18n.t('idp.development_actions.no_development_actions')}</span>
-    return skills.map(skill => (
+    return skills.filter(skill => !skill.private).map(skill => (
       <DevelopmentActionLandscapeCard
         key={skill.id}
         editMode={editMode}
@@ -175,7 +175,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
   return (
     <>
       {!isTablet ? (
-        <Flex vertical gap={12} className="pt-2">
+        <Flex vertical gap={4} className="pt-2">
           <Flex
             flex={1}
             justify="space-between"
@@ -211,8 +211,24 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
         </Flex>
       ) : null}
       <Flex vertical gap={12}>
+        {categories.length === 0 && (
+          <Flex justify="center" align="center" className="p-4 mt-2">
+            <Empty description="" style={{ marginLeft: '-2rem' }} />
+            <Flex vertical align="start" style={{ marginLeft: '-2rem' }}>
+              <>
+                {' '}
+                <strong className="ta-s">
+                  {I18n.t('idp.no_skills_added')}
+                </strong>
+                <Typography.Text type="secondary" className="ta-s">
+                  {I18n.t('idp.edit_plan_and_add_skills')}
+                </Typography.Text>
+              </>
+            </Flex>
+          </Flex>
+        )}
         {categories.map(category => (
-          <div key={category.skillType} className="p-4 mt-2">
+          <div key={category.skillType} className="pt-4 pb-4 mt-2">
             <Flex vertical gap={16}>
               <Flex align="center" gap={12}>
                 <Avatar size={24} src={renderSkillTypeIcon(category.skillType)} />

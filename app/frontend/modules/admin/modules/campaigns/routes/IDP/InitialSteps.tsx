@@ -150,6 +150,7 @@ export const InitialStepsComponent = () => {
   const idpSteps = (
     <Flex vertical className="p-4" style={{ fontSize: '16px' }}>
       <Steps
+        className="mb-4"
         current={currentStepIndex === -1 ? 0 : currentStepIndex}
         items={visibleSteps.map(({ title }) => ({ title }))}
       />

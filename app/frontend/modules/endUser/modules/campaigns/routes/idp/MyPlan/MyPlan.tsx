@@ -1,6 +1,6 @@
 import {
   Button, Flex, message, Modal, Dropdown,
-  notification, Space, Tooltip,
+  notification, Space, Tooltip, Spin,
 } from 'antd'
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
@@ -77,6 +77,7 @@ const MyPlanComponent = ({
   saveUserIdpDevelopmentActions,
 }: Props) => {
   const [editMode, setEditMode] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const { tab: paramTab } = useParams() as {tab: string}
 
   const { requireAllDevelopmentActionsComplete, managerApprovesIdp } = idpConfig
@@ -129,33 +130,45 @@ const MyPlanComponent = ({
   }
 
   const handleSubmitPlan = () => {
+    setIsLoading(true)
     if (managerApprovesIdp) {
       updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PENDING_APPROVAL).catch((error) => {
         message.error(error)
+      }).finally(() => {
+        setIsLoading(false)
       })
     } else {
       updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.APPROVED).catch((error) => {
         message.error(error)
+      }).finally(() => {
+        setIsLoading(false)
       })
     }
   }
 
   const handleStartPlan = () => {
+    setIsLoading(true)
     updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.IN_PROGRESS).catch((error) => {
       message.error(error)
+    }).finally(() => {
+      setIsLoading(false)
     })
   }
 
   const handleSave = () => {
     setEditMode(false)
+    setIsLoading(true)
     const actionsArray = _.values(filteredDevelopmentActions(idpDevelopmentActions))
     saveUserIdpDevelopmentActions(currentUser.id, actionsArray).then(() => (
       fetchUserIdpPlan(currentUser.id)
     )).then(() => {
-      message.success('Changes saved to the plan')
+      message.success(I18n.t('idp.changes_saved_to_plan'))
     })
       .catch((error) => {
         message.error(error)
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }
 
@@ -266,11 +279,14 @@ const MyPlanComponent = ({
   return (
     <IdpPageLayoutWrapper>
       <Flex className={styles.pageContent}>
-        <UserDevelopmentPlan
-          idpUserId={currentUser.id}
-          editMode={editMode}
-          operations={operations}
-        />
+        <Spin spinning={isLoading}>
+          <UserDevelopmentPlan
+            idpUserId={currentUser.id}
+            editMode={editMode}
+            operations={operations}
+          />
+        </Spin>
+
       </Flex>
     </IdpPageLayoutWrapper>
   )

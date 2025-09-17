@@ -106,7 +106,6 @@ export const RateSkillsComponent = ({
           <ButtonWithArrow
             loading={isSubmittingPlan}
             label={I18n.t('idp.initial_steps.next')}
-            size="small"
             type="primary"
             onClick={next}
           />

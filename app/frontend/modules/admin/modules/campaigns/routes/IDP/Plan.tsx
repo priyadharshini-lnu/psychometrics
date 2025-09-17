@@ -1,7 +1,7 @@
-import { map, groupBy } from 'lodash'
+import { map, groupBy, includes } from 'lodash'
 import { useState, useEffect, useMemo } from 'react'
 import {
-  Typography, Button, Tabs, Flex, Spin,
+  Typography, Button, Tabs, Flex, Spin, message,
 } from 'antd'
 import { CloseOutlined } from '@ant-design/icons'
 import {
@@ -18,6 +18,8 @@ import {
 import { InformationBanner } from './InformationBanner'
 import { USER_IDP_PLAN_STATUS } from './constants'
 import { useSearchSkills } from './AdminAddSkills/useSearchSkills'
+import { SkillGapReportTab } from './SkillGapReportTab'
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './Plan.less'
 
@@ -101,12 +103,6 @@ export const Plan = () => {
     normalizedUserIdpDevelopmentActions),
   [userIdpSkills, normalizedUserIdpDevelopmentActions])
 
-
-  // Commenting board data to avoid unnecessary changes
-  // const boardData =  useMemo(() => groupDevelopmentActionsBySkillType(normalizedUserIdpDevelopmentActions,
-  //   userIdpSkills),
-  // [normalizedUserIdpDevelopmentActions, userIdpSkills])
-
   const changeTab = (tab: string) => {
     setTab(tab)
   }
@@ -147,6 +143,7 @@ export const Plan = () => {
   }
 
   const handleSave = () => {
+    setIsLoading(true)
     setEditMode(false)
     const idpDaCollection = idpDevelopmentActionsPayload.reduce((acc, da) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -174,6 +171,10 @@ export const Plan = () => {
         user_idp_development_actions: idpDaCollection,
       },
     }).then(() => {
+      message.success(I18n.t('idp.changes_saved_to_plan'))
+    }).catch((error) => {
+      message.error(error)
+    }).finally(() => {
       setIsLoading(false)
     })
   }
@@ -190,8 +191,9 @@ export const Plan = () => {
       },
     }).then((response) => {
       setSkills(response.data)
-      setIsLoading(false)
       setShowAddSkill(true)
+    }).finally(() => {
+      setIsLoading(false)
     })
   }
 
@@ -201,7 +203,8 @@ export const Plan = () => {
   }
 
   const handleDeselectSkill = (skillId) => {
-    setSelectedSkills(selectedSkills.filter(skill => Number(skill.id) !== skillId))
+    setSelectedSkills(selectedSkills.filter(skill => (Number(skill.id) !== skillId)
+    && (Number(skill.skillId) !== skillId)))
   }
 
   const onRemoveSkillFromPlan = (skillId) => {
@@ -243,6 +246,7 @@ export const Plan = () => {
     }).then(() => {
       setIsLoading(false)
       setEditMode(false)
+      message.success(I18n.t('idp.skills_updated'))
     })
   }
 
@@ -322,12 +326,13 @@ export const Plan = () => {
 
   const skillTypes = map(groupBy(allSkills, 'skillType'), (skills, skillType) => ({
     skillType,
-    skills,
+    skills: skills.filter(result => (!includes(selectedSkills
+      .map(skill => Number(skill.skillId)), Number(result.id)) && !result.private)),
   }))
 
 
   const plan = showAddSkill ? (
-    <div>
+    <div className="p-4">
       <Button
         type="text"
         icon={<CloseOutlined />}
@@ -337,7 +342,7 @@ export const Plan = () => {
         addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
         skillTypes={skillTypes}
         onFinishAddSkill={handleFinishAddSkill}
-        selectedSkills={selectedSkills}
+        selectedSkills={selectedSkills.filter(skill => !skill.private)}
         onDeselectSkill={handleDeselectSkill}
         onAddSkill={handleSelectSkill}
         skillGapReportData={null}
@@ -354,7 +359,7 @@ export const Plan = () => {
         activeKey={tab}
         onChange={tab => changeTab(tab)}
       >
-        <Tabs.TabPane tab={I18n.t('idp.list')} key="list">
+        <Tabs.TabPane tab={I18n.t('idp.plan')} key="list">
           <DevelopmentActionListView
             editMode={editMode}
             categories={listData}
@@ -367,6 +372,11 @@ export const Plan = () => {
             onRemoveSkill={onRemoveSkillFromPlan}
           />
         </Tabs.TabPane>
+        {userIdpPlanData[0]?.skillGapReportAvailable && (
+          <Tabs.TabPane tab={I18n.t('idp.skill_gap_report.title')} key="skill_gap_report">
+            <SkillGapReportTab skillGapReportId={userIdpPlanData[0]?.skillGapReportId} />
+          </Tabs.TabPane>
+        )}
       </Tabs>
     </Flex>
   )
@@ -374,11 +384,12 @@ export const Plan = () => {
   return (
     <>
       <InformationBanner />
-      <Flex className={styles['user-idp-plan']} justify="center" align="middle" vertical>
-        {isLoading ? (
-          <Spin size="large" />
-        ) : plan}
-      </Flex>
+      <Spin size="large" spinning={isLoading}>
+        <Flex className={styles['user-idp-plan']} justify="center" align="middle" vertical>
+          {plan}
+        </Flex>
+      </Spin>
+
     </>
 
   )

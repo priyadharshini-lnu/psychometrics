@@ -1,15 +1,15 @@
-import { FC, useEffect, useState } from 'react'
+import {
+  FC, useState, useEffect,
+} from 'react'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   useParams,
 } from 'react-router-dom'
-import { connect, ConnectedProps } from 'react-redux'
+import { SkillGapReportContent } from '~/components/IdpShared/SkillGapReport/SkillGapReportContent'
 import {
   fetchSingle as fetchReport,
 } from '~/modules/admin/modules/campaigns/core/userReports'
-import { SkillGapReport } from '~/components/IdpShared/SkillGapReport/SkillGapReport'
 import { FetchSkillGapsResponse } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
-
-const { I18n } = window
 
 const connector = connect(() => ({
 }), {
@@ -19,16 +19,14 @@ const connector = connect(() => ({
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 type SkillGapReportWrapperProps = {
-  next: () => void
   skillGapReportId: number
-  prev: () => void
 } & PropsFromRedux
 
-const SkillGapReportWrapper:FC<SkillGapReportWrapperProps> = ({
-  fetchReport,
-  skillGapReportId,
-  next,
-  prev,
+
+const { I18n } = window
+
+const SkillGapReportTabComponent: FC<SkillGapReportWrapperProps> = ({
+  skillGapReportId, fetchReport,
 }) => {
   const { campaignId } = useParams()
 
@@ -53,14 +51,8 @@ const SkillGapReportWrapper:FC<SkillGapReportWrapperProps> = ({
 
 
   return (
-    <SkillGapReport
-      next={next}
-      prev={prev}
-      reportUrl={skillGapData?.pdf.url}
-      skillGapData={skillGapData}
-      isLoading={isLoading}
-    />
+    <SkillGapReportContent skillGapData={skillGapData} isLoading={isLoading} />
   )
 }
 
-export const SkillGapReportStep = connector(SkillGapReportWrapper)
+export const SkillGapReportTab = connector(SkillGapReportTabComponent)

@@ -168,6 +168,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onUpdateDevelopmentAction={onUpdateDevelopmentAction}
         onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
         userIdpSkillId={skill.id as number}
+        isPrivate={skill.private}
         {...skill}
       />
     ))

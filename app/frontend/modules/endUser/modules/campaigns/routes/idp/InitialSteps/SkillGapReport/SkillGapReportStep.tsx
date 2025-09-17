@@ -6,7 +6,6 @@ import {
 } from 'react-redux'
 import { message } from 'antd'
 import { SkillGapReport } from '~/components/IdpShared/SkillGapReport/SkillGapReport'
-import styles from '~/components/IdpShared/SkillGapReport/SkillGapReport.less'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { FetchSkillGapsResponse } from
   '~/modules/endUser/modules/campaigns/core/idp/idpForm'
@@ -44,7 +43,6 @@ const SkillGapReportComponent: FC<SkillGapReportProps> = ({
       fetchSkillGaps(currentUser.id, { lang: I18n.locale }).catch((error) => { message.error(error) })
         .then((data:{response:FetchSkillGapsResponse}) => {
           setSkillGapData(data.response)
-        // dispatch(setSkillGapReportData(data.response))
         }).finally(() => {
           window.scrollTo({
             top: 0,
@@ -71,10 +69,6 @@ const SkillGapReportComponent: FC<SkillGapReportProps> = ({
       reportUrl={skillGapData?.report_url}
       skillGapData={skillGapData}
       isLoading={isLoading}
-      styles={{
-        reportContainer: styles.reportContainer,
-        reportViewer: styles.reportViewer,
-      }}
     />
   )
 }

@@ -44,6 +44,7 @@ const SkillsTR = t.type({
   defaultLanguage: t.string,
   developmentActions: t.array(DevelopmentActionsTR),
   skillId: t.string,
+  private: t.boolean,
 })
 
 export const UserIdpPlanTR = t.type({

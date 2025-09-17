@@ -49,6 +49,7 @@ export const useSetCssVars = (cssVars?: CssVar[]) => {
         { varName: '--grey-border', value: '#8F8F8F' },
         { varName: '--light-grey-border', value: '#d9d9d9' },
         { varName: '--blue-bg', value: '#009de0' },
+        { varName: '--shadow-color', value: 'rgba(0,0,0,0.08)' },
       ]
       addCssVars(rootElement, [...cssVarsFromToken, ...cssVarColors])
     }

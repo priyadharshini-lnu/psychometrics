@@ -1,6 +1,7 @@
 
 import {
-  Row, Col, Spin, Flex, Layout,
+  Spin, Flex, Layout,
+  Typography,
 } from 'antd'
 import Report from '~/modules/reports/report'
 import styles from './SkillGapReport.less'
@@ -13,11 +14,12 @@ export const SkillGapReportContent = ({ skillGapData, isLoading }) => (
   <Content className={styles.reportContainer}>
     {
           isLoading ? (
-            <Row style={{ height: '80vh' }} justify="center" align="middle">
-              <Col>
-                <Spin size="large" />
-              </Col>
-            </Row>
+            <Flex gap={4} vertical style={{ height: '80vh' }} justify="center" align="center">
+              <Spin size="large" />
+              <Typography.Text style={{ color: 'var(--ant-primary-color)' }}>
+                {I18n.t('idp.fetching_skill_gap_report')}
+              </Typography.Text>
+            </Flex>
           ) : (
             <>
               {skillGapData && (

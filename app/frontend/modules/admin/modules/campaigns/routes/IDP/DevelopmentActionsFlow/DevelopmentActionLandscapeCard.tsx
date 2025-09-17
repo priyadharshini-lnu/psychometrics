@@ -6,6 +6,7 @@ import {
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import useMedia from 'use-media'
 import cs from 'classnames'
+import { Separator } from '~/components/IdpShared/Separator'
 import dayjs from '~/utils/dayjs'
 import styles from './DevelopmentActionLandscapeCard.less'
 import { DevelopmentAction } from '~/components/IdpShared/DevelopmentActions/Types'
@@ -84,6 +85,7 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
           )}
         </Flex>
       </Flex>
+      <Separator className="mt-4 mb-0" />
       {!developmentActionCards.length ? (
         <Flex vertical>
           <Flex align="center" className="border-b-1 pt-3 pb-3">

@@ -3,21 +3,20 @@ import {
 } from 'react'
 import {
   Typography,
-  Row, Col, Spin, Flex, Layout, Space,
+  Flex, Space,
 } from 'antd'
 import {
   ButtonWithArrow, MediaQueryContext, BackButton,
 } from '~/glint'
-import Report from '~/modules/reports/report'
 import { DownloadButton } from '../DownloadButton'
 import { Separator } from '../Separator'
+import { SkillGapReportContent } from './SkillGapReportContent'
 
-const { Content } = Layout
 
 const { I18n } = window
 
 export const SkillGapReport = ({
-  next, skillGapData, reportUrl, isLoading, styles, prev,
+  next, skillGapData, reportUrl, isLoading, prev,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
 
@@ -53,7 +52,6 @@ export const SkillGapReport = ({
           {extraContent}
           <ButtonWithArrow
             label="Add Skills"
-            size="small"
             type="primary"
             onClick={() => next()}
           />
@@ -62,35 +60,7 @@ export const SkillGapReport = ({
       <Separator
         className="mb-4 mt-0"
       />
-      <Content className={styles.reportContainer}>
-        {
-          isLoading ? (
-            <Row style={{ height: '80vh' }} justify="center" align="middle">
-              <Col>
-                <Spin size="large" />
-              </Col>
-            </Row>
-          ) : (
-            <>
-              {skillGapData && (
-                <Flex justify="center" className="mb-5 mt-8">
-                  <Report
-                    data={skillGapData.report}
-                    results={skillGapData.results}
-                    campaign={JSON.stringify({})}
-                    user={JSON.stringify(skillGapData.user)}
-                    locales={skillGapData.report.locales}
-                    selectedLocale={I18n.locale}
-                    userReport={skillGapData}
-                    skipLogic={false}
-                    allowEdit={false}
-                    allowApprove={false}
-                  />
-                </Flex>
-              )}
-            </>
-          )}
-      </Content>
+      <SkillGapReportContent skillGapData={skillGapData} isLoading={isLoading} />
     </>
   )
 }

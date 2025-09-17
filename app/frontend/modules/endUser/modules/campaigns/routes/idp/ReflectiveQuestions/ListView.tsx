@@ -145,11 +145,11 @@ const ReflectiveQuestion = ({
               readOnly={status === USER_IDP_PLAN_STATUS.COMPLETED}
             />
           </Form.Item>
-          <Flex gap={8} className="mb-4">
+          <Flex gap={8} className="mb-4" justify="space-between">
             <span>
               {I18n.t('idp.reflective_questions.word_limit', { min: question.minWords, max: question.maxWords })}
             </span>
-            <Flex flex={1} gap={4}>
+            <Flex flex={1} gap={4} justify="end">
               <Button
                 size="small"
                 onClick={() => setEditMode(false)}

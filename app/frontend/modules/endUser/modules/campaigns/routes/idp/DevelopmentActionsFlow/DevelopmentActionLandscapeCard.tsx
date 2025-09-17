@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   Rate, Progress, ConfigProvider, Button, Slider, Flex, Typography, DatePicker,
   message,
-  Tooltip, Empty, Modal, Popover,
+  Tooltip, Empty, Modal, Popover, Switch, Tag,
   Divider,
 } from 'antd'
 import useMedia from 'use-media'
@@ -25,7 +25,9 @@ import { SkillCommentsPopover } from '~/components/IdpShared/DevelopmentActions/
 import { developmentActionLearningStylesConfig, sourceTypeConfig }
   from '~/components/IdpShared/DevelopmentActions/Constants'
 import { DevelopmentActionInfoPopover } from './DevelopmentActionInfoPopover'
-
+import {
+  useToggleSkillPrivacyMutation,
+} from '~/modules/endUser/modules/campaigns/core/idp/api'
 
 const { RangePicker } = DatePicker
 
@@ -53,10 +55,12 @@ type SkillCardProps = PropsFromRedux & SkillWithDevelopmentActions & {
   userIdpSkillId: number
   onShowCustomDevelopmentAction?: ()=> void
   onShowAIGeneratedDevelopmentActions?: ()=> void
+  isPrivate: boolean
 }
 
 const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   name,
+  isPrivate,
   initialRating,
   finalRating,
   userIdpSkillId,
@@ -74,7 +78,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   onShowCustomDevelopmentAction,
   onShowAIGeneratedDevelopmentActions,
 }) => {
-  const canEditProgress = currentUser.id === idpUser.id
+  const [toggleSkillPrivacy] = useToggleSkillPrivacyMutation()
+  const isCurrentUserIDPUser = currentUser.id === idpUser.id
+
+  const [isPrivateSkill, setPrivateSkill] = useState(isPrivate)
 
   const [openSkillDeletionModal, setOpenSkillDeletionModal] = useState(false)
   const handleRatingChange = (rating) => {
@@ -90,9 +97,18 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
     })
   }
 
+  const updateSkillPrivacy = () => {
+    toggleSkillPrivacy({ userIdpSkillId }).then((res) => {
+      message.success(res?.data?.message)
+      setPrivateSkill(!isPrivateSkill)
+    }).catch((res) => {
+      message.error(res?.data?.message)
+    })
+  }
+
   const header = (
     <Flex>
-      <Flex>
+      <Flex gap={4}>
         <h4 className="m-0 me-1">{name}</h4>
         {
         selfRatingEnabled
@@ -104,6 +120,18 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           />
         )
       }
+        {isCurrentUserIDPUser && (
+          editMode ? (
+            <Switch
+              checkedChildren="Private"
+              unCheckedChildren="Public"
+              value={isPrivateSkill}
+              onChange={updateSkillPrivacy}
+              className="ms-4"
+            />
+          ) : (
+            isPrivateSkill && <Tag color="var(--ant-primary-color)">Private</Tag>
+          ))}
       </Flex>
     </Flex>
   )
@@ -116,7 +144,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       onUpdateDevelopmentAction={onUpdateDevelopmentAction}
       onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
       onRemoveDevelopmentAction={removeDevelopmentActionFromPlan}
-      canEditProgress={canEditProgress}
+      canEditProgress={isCurrentUserIDPUser}
     />
   ))
 
@@ -125,6 +153,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       <Flex
         justify="space-between"
         className="pt-3 pb-3 border-b-1"
+        align="center"
       >
         <Flex gap={12}>
           {header}
@@ -503,7 +532,7 @@ const Card = ({
             flex={1}
             justify="flex-start"
             className={cs(
-              'pt-2',
+              'pt-4',
             )}
           >
             {isTablet ? (

@@ -2611,6 +2611,7 @@ en:
         title: Hello, I'm your development assistant
     behavioral: Behavioral
     board: Board
+    changes_saved_to_plan: Changes saved to the plan
     comment_details:
       add_comment: Add Comment
       add_comment_placeholder: Add a comment...
@@ -2703,6 +2704,7 @@ en:
     edit_plan: Edit Plan
     edit_plan_and_add_skills: Edit Plan and and click on Manage Skills to add Skills.
     edit_progress: Edit Progress
+    fetching_skill_gap_report: Fetching Skill Gaps Report...
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills
@@ -2868,6 +2870,7 @@ en:
     skill_gap_report:
       download: Download Skill Gap Report
       title: Skill Gap Report
+    skills_updated: Skills updated in the Plan
     status: Status
     suggestions: Suggestions
     technical: Technical

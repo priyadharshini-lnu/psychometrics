@@ -14,6 +14,7 @@ module EndUser
         required(:final_rating).value { nil? | int? | float? }
         required(:private).filled(:bool?)
         required(:skill_id).filled(:int?)
+        required(:private).filled(:bool?)
       end
     end
   end

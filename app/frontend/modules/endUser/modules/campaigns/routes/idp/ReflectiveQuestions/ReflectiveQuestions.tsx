@@ -90,7 +90,6 @@ export const ReflectiveQuestions: FC<Props> = ({
             <div className="flex justify-center">
               <ButtonWithArrow
                 label={I18n.t('idp.reflective_questions.answer_later')}
-                size="small"
                 type="primary"
                 onClick={() => onSkip?.()}
               />

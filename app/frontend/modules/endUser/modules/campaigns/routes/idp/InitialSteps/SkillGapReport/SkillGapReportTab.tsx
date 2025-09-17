@@ -4,8 +4,9 @@ import {
 import { connect, ConnectedProps } from 'react-redux'
 import { SkillGapReportContent } from '~/components/IdpShared/SkillGapReport/SkillGapReportContent'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { fetchSkillGaps, FetchSkillGapsResponse } from
+import { FetchSkillGapsResponse } from
   '~/modules/endUser/modules/campaigns/core/idp/idpForm'
+import { fetchSkillGaps } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import rstore from '~/modules/reports/store'
 import { setReportLoading } from '~/modules/reports/core/builder/actions'
 
@@ -44,6 +45,7 @@ const SkillGapReportTabComponent: FC<SkillGapReportProps> = ({
       })
     } else {
       setSkillGapData(skillGapReportData)
+      setLoading(false)
     }
 
     return () => {

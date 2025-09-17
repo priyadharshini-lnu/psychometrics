@@ -40,6 +40,7 @@ export type Skill = {
     initialRating?: number;
     finalRating?: number;
     skillId: string | number;
+    private: boolean
 }
 
 export type UserIdpSkill = Omit<Skill, 'description'> & {

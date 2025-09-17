@@ -12,7 +12,7 @@ import {
   Splitter,
   Flex,
   Badge,
-  Drawer, Tooltip,
+  Drawer, Tooltip, Spin,
 } from 'antd'
 import cs from 'classnames'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -26,6 +26,9 @@ import { Comments } from '~/components/IdpShared/Comments'
 import { SkillGapReportTab }
   from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/SkillGapReport/SkillGapReportTab'
 import styles from './styles.less'
+import { useAppSelector } from '~/modules/endUser/store/hooks'
+import { getReflectiveQuestions } from '~/modules/endUser/modules/campaigns/core/idp/idpPlanRtk'
+
 
 import {
   fetchAvailableDevelopmentActions,
@@ -154,6 +157,7 @@ const UserDevelopmentPlanComponent = ({
   const [isCommentsLoading, setIsCommentsLoading] = useState(true)
   const [isLoadingReplies, setIsLoadingReplies] = useState(false)
   const [commentsPanelSize, setCommentsPanelSize] = useState(400)
+  const reflectionQuestions = useAppSelector(getReflectiveQuestions)
 
   const listData = useMemo(() => groupSkillsBySkillType(idpSkills, idpDevelopmentActions),
     [idpSkills, idpDevelopmentActions])
@@ -234,15 +238,23 @@ const UserDevelopmentPlanComponent = ({
   }
 
   const handleFinishAddSkill = () => {
+    setIsLoading(true)
     saveUserIdpSkills(
       selectedSkills, null, idpUserId,
-    ).then(() => (
+    ).then(() => {
       setShowAddSkill(false)
-    ))
+      message.success(I18n.t('idp.skills_updated'))
+    }).catch((error) => {
+      message.error(error)
+    })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   const handleDeselectSkill = (skillId) => {
-    setSelectedSkills(selectedSkills.filter(skill => (skill.id !== skillId)))
+    setSelectedSkills(selectedSkills.filter(userIdpSkill => userIdpSkill.id !== skillId
+      && userIdpSkill.skillId !== skillId))
   }
 
   const handleUpdateDevelopmentActionProgress = (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => {
@@ -492,7 +504,7 @@ const UserDevelopmentPlanComponent = ({
 
     ),
     ...(
-      currentUser.id === idpUserId
+      currentUser.id === idpUserId && reflectionQuestions.length > 0
         ? [
           {
             label: I18n.t('idp.reflective_questions.title'),
@@ -519,7 +531,7 @@ const UserDevelopmentPlanComponent = ({
   ]
 
   const headerContent = header || (
-    <Row align="middle" justify="center" style={{ padding: '24px 24px 0 24px' }}>
+    <Row align="middle" justify="center" className="mt-2 mb-2 ps-6 pe-6">
       <Col flex="auto">
         <Space>
           <Typography.Title level={4} style={{ margin: 0 }}>
@@ -528,7 +540,7 @@ const UserDevelopmentPlanComponent = ({
         </Space>
       </Col>
       <Col>
-        <Tag color={STATUS_COLORS[status]}>{I18n.t(`idp.user_idp_status.${status}`)}</Tag>
+        <Tag className="me-0" color={STATUS_COLORS[status]}>{I18n.t(`idp.user_idp_status.${status}`)}</Tag>
       </Col>
     </Row>
   )
@@ -549,17 +561,20 @@ const UserDevelopmentPlanComponent = ({
         >
           {I18n.t('common.actions.cancel')}
         </Button>
-        <AddSkillsStep
-          addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
-          skillTypes={skillTypes}
-          onFinishAddSkill={handleFinishAddSkill}
-          selectedSkills={selectedSkills}
-          onDeselectSkill={handleDeselectSkill}
-          onAddSkill={handleSelectSkill}
-          searchSkillResource={searchSkillResource}
-          showBackButton={false}
-          skillGapReportData={null}
-        />
+        <Spin spinning={isLoading}>
+          <AddSkillsStep
+            addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
+            skillTypes={skillTypes}
+            onFinishAddSkill={handleFinishAddSkill}
+            selectedSkills={selectedSkills}
+            onDeselectSkill={handleDeselectSkill}
+            onAddSkill={handleSelectSkill}
+            searchSkillResource={searchSkillResource}
+            showBackButton={false}
+            skillGapReportData={null}
+          />
+        </Spin>
+
       </Flex>
     )
   }
@@ -578,6 +593,7 @@ const UserDevelopmentPlanComponent = ({
               tabBarStyle={{
                 marginBottom: 0,
                 padding: '0 24px',
+                boxShadow: '0 2px 2px var(--shadow-color)',
               }}
             />
           </>

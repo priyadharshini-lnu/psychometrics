@@ -18,6 +18,14 @@ export const AssistantTR = t.type({
   name: t.string,
 })
 
+export const OneClickAIAssistantTR = t.type({
+  id: t.string,
+})
+
+export const DocumentAnalysisAiAssistantTR = t.type({
+  id: t.string,
+})
+
 export type IdpAssistant = t.TypeOf<typeof AssistantTR>
 
 export const ReflectionQuestionTR = t.type({
@@ -85,8 +93,8 @@ export const IdpTR = t.intersection([
     aiAssistedIdpEnabled: t.boolean,
     oneClickIdpEnabled: t.boolean,
     skillSourcePreference: t.string,
-    oneClickAiAssistantId: t.union([t.string, t.null]),
-    documentAnalysisAiAssistantId: t.union([t.string, t.null]),
+    oneClickAiAssistantId: t.union([OneClickAIAssistantTR, t.undefined]),
+    documentAnalysisAiAssistantId: t.union([DocumentAnalysisAiAssistantTR, t.undefined]),
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),

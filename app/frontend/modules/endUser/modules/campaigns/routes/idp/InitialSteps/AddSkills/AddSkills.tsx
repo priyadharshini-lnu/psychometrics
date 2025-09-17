@@ -83,10 +83,10 @@ const AddSkillsComponent = ({
       setIsSkillsLoading(false)
     })
 
-    if (!skillGapReportData) {
+    if (!skillGapReportData && skillGapReportAvailable) {
       setIsSkillGapReportLoading(true)
       fetchSkillGaps(currentUser.id, { lang: I18n.locale }).catch((error) => {
-        message.error('Error fetching skill gaps:', error)
+        message.error(error[0].base)
       }).finally(() => {
         setIsSkillGapReportLoading(false)
       })

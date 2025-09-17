@@ -17,6 +17,8 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import styles from './Steps.less'
+import { useAppSelector } from '~/modules/endUser/store/hooks'
+import { getReflectiveQuestions } from '~/modules/endUser/modules/campaigns/core/idp/idpPlanRtk'
 
 const { I18n } = window
 
@@ -54,6 +56,8 @@ const InitialStepsComponent = ({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
+  const reflectionQuestions = useAppSelector(getReflectiveQuestions)
+
   const STEP_ITEMS = [
     {
       title: I18n.t('idp.initial_steps.getting_started'),
@@ -75,6 +79,7 @@ const InitialStepsComponent = ({
     },
     {
       title: I18n.t('idp.initial_steps.reflective_questions'),
+      hide: reflectionQuestions.length === 0,
       step: STEPS.reflectionQuestions,
     },
   ]
@@ -103,7 +108,10 @@ const InitialStepsComponent = ({
     }
   }
 
-  const handleNextForReflectiveQuestionsStep = () => {
+  const handleNextForRateSkillsStep = () => {
+    if (reflectionQuestions.length === 0) {
+      handleSubmit()
+    }
     next(STEPS.reflectionQuestions)
   }
 
@@ -173,7 +181,7 @@ const InitialStepsComponent = ({
             )}
             {paramStep === STEPS.rateSkills && (
               <RateSkills
-                next={handleNextForReflectiveQuestionsStep}
+                next={handleNextForRateSkillsStep}
                 isSubmittingPlan={isSubmitting}
                 prev={() => {
                   navigate(`/idp/steps/${STEPS.addSkills}`)
