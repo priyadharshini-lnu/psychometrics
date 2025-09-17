@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe UsersResults::CalculateSkillRaterScores do
   let(:user_result) { create(:users_result) }
   let(:skill) { create(:skill, factor: create(:factor)) }
-  let(:question) { create(:question, type: 'SkillRater', skill: skill) }
+  let(:question) { skill.question }
 
   subject(:calculator) { described_class.new(user_result) }
 
