@@ -3506,6 +3506,7 @@ en:
         translations: Translations
       title: Report Settings
     reports:
+      broken_image_url: Please verify your image URL and try importing again
       bulk_marked_as_done: Bulk Marked as Done
       bulk_upload:
         choose_file: Choose File

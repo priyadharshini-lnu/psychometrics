@@ -21,6 +21,7 @@ const TRANSLATED_MODULES = {
     'FactorsTable', 'StrengthClusters', 'InnovationStyles', 'HighestLowest',
     'ThreeSixtyReportSummary', 'Competencies', 'GapAssessment'],
   Graph: ['Circumplex'],
+  Image: true,
 }
 const EXTERNAL_CATEGORIES = ['hogan', 'saville']
 // Template Structure

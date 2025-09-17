@@ -5,6 +5,7 @@ import { LibraryStore } from '~/libs/library'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import LibraryTransport from '~/modules/reports/cable/LibraryChannel'
 import Socket from '~/modules/reports/cable'
+import I18nStore from '~/modules/reports/store/I18nStore'
 import AssessmentProperties from '~/modules/reports/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from '~/modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
@@ -174,7 +175,7 @@ const Properties = ({
               <label className={styles.inputLabel}>
                 Url
               </label>
-              <input value={model.props.url} onChange={changeUrl} />
+              <input value={I18nStore.tModule(model, 'imageUrl') || model.props.url} onChange={changeUrl} />
             </div>
           </div>
         )}

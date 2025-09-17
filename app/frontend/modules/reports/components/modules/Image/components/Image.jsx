@@ -5,6 +5,7 @@ import _ from 'lodash'
 import Foundation from '~/modules/reports/components/Foundation'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import GetImageURL from './GetImageURL'
+import I18nStore from '~/modules/reports/store/I18nStore'
 import styles from './Image.less'
 import { joinStyles, useAssignStyle, convertColor } from '../../CommonMethods/styles'
 
@@ -16,8 +17,16 @@ export class Image extends Component {
     page: PropTypes.object.isRequired,
   }
 
+  state = {
+    imageError: false,
+  }
+
   load = () => {
     this.forceUpdate()
+  }
+
+  handleImageError = () => {
+    this.setState({ imageError: true })
   }
 
   openEditor = () => {
@@ -30,7 +39,7 @@ export class Image extends Component {
 
   renderImg (flipContent) {
     const { module: model, preview } = this.props
-
+    const { imageError } = this.state
 
     const style = this.buildStyles(flipContent)
 
@@ -49,14 +58,28 @@ export class Image extends Component {
         />
       )
     }
-
     if (model.props.url) {
+      const imageUrl = I18nStore.tModule(model, 'imageUrl') || model.props.url
       return (
-        <div
-          className={styles.image}
-          style={{ ...style, backgroundImage: `url("${model.props.url}")` }}
-          onDoubleClick={this.openEditor}
-        />
+        <>
+          {!imageError && (
+            <img
+              src={imageUrl}
+              style={{ display: 'none' }}
+              onError={this.handleImageError}
+            />
+          )}
+          {imageError && (
+            <div className={styles.brokenImage}>
+              {I18n.t('administration.reports.broken_image_url')}
+            </div>
+          )}
+          <div
+            className={styles.image}
+            style={{ ...style, backgroundImage: `url("${imageUrl}")` }}
+            onDoubleClick={this.openEditor}
+          />
+        </>
       )
     } if (preview && model.props.sourceType === 'ConditionalImage') {
       return (

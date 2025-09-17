@@ -35,7 +35,7 @@ const TranslationsComponent = ({ report, importTranslations }) => {
             getContainer: () => document.getElementById('fixed_header') || document.body,
           })
           message.success({
-            content: I18n.t('administration.translations.import.successfully'),
+            content: I18n.t('administration.translations.import.successfully_scheduled'),
             style: { zIndex: 9999 },
           })
           if (file.current) {
