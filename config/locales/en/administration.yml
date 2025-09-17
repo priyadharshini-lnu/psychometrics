@@ -3326,9 +3326,12 @@ en:
         code: Code
         code_constraint: Code must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
         delete: Delete
+        description: Description
+        description_alias: Description / Alias
         import_factors: Import Factors
         invalid_factor_params: Invalid campaign factors parameters format
         name: Name
+        name_alias: Name / Alias
         no_boundary_space: Name cannot start or end with a space
         too_many_factors: Cannot create more than %{count} campaign factors
         tools: Tools

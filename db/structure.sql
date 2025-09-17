@@ -5688,7 +5688,8 @@ CREATE TABLE public.reports_campaign_factors (
     name character varying NOT NULL,
     output_type character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    description text
 );
 
 
@@ -18124,6 +18125,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250908030102'),
 ('20250910080315'),
 ('20250828122244'),
 ('20250825062532'),

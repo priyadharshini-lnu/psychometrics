@@ -8,7 +8,7 @@ import {
   Row,
 } from 'antd'
 import type { InputRef, MenuProps } from 'antd'
-import { CloseOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '@ant-design/icons'
 import { v4 as uuidv4 } from 'uuid'
 import styles from './CampaignFactorsForm.less'
 import { DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -125,7 +125,7 @@ export const CampaignFactorsForm: FC<Props> = ({
     setSelectedRowKeys(selectedRowKeys.filter(k => k !== key))
   }
 
-  const handleBulkUpload = (cfs: {code: string, name: string, outputType: string}[]) => {
+  const handleBulkUpload = (cfs: {code: string, name: string, outputType: string, description: string}[]) => {
     const newEntries = cfs.map(cf => ({
       ...cf,
       key: uuidv4(),
@@ -149,7 +149,7 @@ export const CampaignFactorsForm: FC<Props> = ({
 
   const columns = [
     {
-      title: I18n.t('administration.report_builder.campaign_factors.name'),
+      title: I18n.t('administration.report_builder.campaign_factors.name_alias'),
       dataIndex: 'name',
       render: (_: unknown, record: CampaignFactor, index: number) => (
         <Form.Item
@@ -163,7 +163,10 @@ export const CampaignFactorsForm: FC<Props> = ({
           ]}
           className={styles.formItem}
         >
-          <Input placeholder="Name" ref={index === formData.length - 1 ? lastRowRef : undefined} />
+          <Input
+            placeholder={I18n.t('administration.report_builder.campaign_factors.name')}
+            ref={index === formData.length - 1 ? lastRowRef : undefined}
+          />
         </Form.Item>
       ),
     },
@@ -182,7 +185,7 @@ export const CampaignFactorsForm: FC<Props> = ({
           ]}
           className={styles.formItem}
         >
-          <Input placeholder="Code" />
+          <Input placeholder={I18n.t('administration.report_builder.campaign_factors.code')} />
         </Form.Item>
       ),
     },
@@ -200,17 +203,29 @@ export const CampaignFactorsForm: FC<Props> = ({
       ),
     },
     {
+      title: I18n.t('administration.report_builder.campaign_factors.description_alias'),
+      dataIndex: 'description',
+      render: (_: unknown, record: CampaignFactor, index: number) => (
+        <Form.Item
+          name={['items', index, 'description']}
+          className={styles.formItem}
+        >
+          <Input.TextArea rows={1} placeholder={I18n.t('administration.report_builder.campaign_factors.description')} />
+        </Form.Item>
+      ),
+    },
+    {
       title: I18n.t('administration.report_builder.campaign_factors.delete'),
       render: (_: unknown, record: CampaignFactor) => (
         <Button
           type="text"
           danger
-          icon={<CloseOutlined />}
+          icon={<DeleteOutlined />}
           onClick={() => removeRow(record.key)}
           data-testid="remove-button"
         />
       ),
-      width: '110px',
+      width: '80px',
     },
   ]
 
