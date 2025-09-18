@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AI::Tools::UserIdpDocAnalyzer do
+describe AI::Tools::Idp::DocumentAnalyzer do
   subject { described_class.new(user_idp_plan, current_user, ai_assistant) }
 
   let(:current_user) { create(:user) }
@@ -183,7 +183,7 @@ describe AI::Tools::UserIdpDocAnalyzer do
     context 'when IdpDocumentNotFoundError is raised during execution' do
       before do
         allow(subject).to receive(:validate_user_idp_document_exists!).and_raise(
-          AI::Tools::UserIdpDocAnalyzer::IdpDocumentNotFoundError, 'Document not found'
+          AI::Tools::Idp::DocumentAnalyzer::IdpDocumentNotFoundError, 'Document not found'
         )
       end
 

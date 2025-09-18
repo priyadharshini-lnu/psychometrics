@@ -9,6 +9,7 @@ import { FetchSkillGapsResponse } from
 
 export const FETCH_USER_IDP_PLAN = 'IDP/MY_PLAN/FETCH_USER_IDP_PLAN'
 const UPDATE_USER_IDP_PLAN = 'IDP/MY_PLAN/UPDATE_USER_IDP_PLAN'
+const SET_USER_IDP_PLAN_STATUS = 'IDP/MY_PLAN/SET_USER_IDP_PLAN_STATUS'
 const FETCH_USER_IDP_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_USER_IDP_DEVELOPMENT_ACTIONS'
 const FETCH_USER_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_USER_IDP_SKILLS'
 const FETCH_AVAILABLE_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_AVAILABLE_DEVELOPMENT_ACTIONS'
@@ -50,6 +51,7 @@ export const AsyncDownloadTR = t.type({
 interface UserIdpPlan {
   status: string | null;
   selfRatingEnabled: boolean;
+  oneClickIdpEnabled: boolean;
   skillGapReportAvailable: boolean | null;
   userIdpSkills: Skill[];
   userIdpDevelopmentActions: DevelopmentAction[];
@@ -319,6 +321,11 @@ export const updateUserIdpPlan = (userId: string, status: UserIdpPlanStatus) => 
   },
 })
 
+export const setUserIdpPlanStatus = (status: UserIdpPlanStatus) => ({
+  type: SET_USER_IDP_PLAN_STATUS,
+  status,
+})
+
 export const generateDevelopmentActionsByAI = (payload: GenerateDevelopmentActionsByAIPayload) => ({
   type: GENERATE_DEVELOPMENT_ACTIONS_BY_AI,
   request: {
@@ -382,6 +389,7 @@ export const HANDLERS = {
       status: userIdpPlan.status,
       skillGapReportAvailable: userIdpPlan.skillGapReportAvailable,
       selfRatingEnabled: userIdpPlan.selfRatingEnabled,
+      oneClickIdpEnabled: userIdpPlan.oneClickIdpEnabled,
       user: userIdpPlan.user,
       introMessage: userIdpPlan.instructions.content,
       unreadCommentsCount: userIdpPlan.unreadCommentsCount,
@@ -469,6 +477,10 @@ export const HANDLERS = {
   [UPDATE_USER_IDP_PLAN]: (state, action) => ({
     ...state,
     status: action.response.status,
+  }),
+  [SET_USER_IDP_PLAN_STATUS]: (state, action) => ({
+    ...state,
+    status: action.status,
   }),
   [SAVE_USER_IDP_SKILLS]: (state, action) => {
     const { skillType: requestedSkillType, data: skills } = action.response
@@ -679,6 +691,7 @@ export const defaultState: UserIdpPlan = {
   AIGeneratedDevelopmentActions: {},
   status: null,
   selfRatingEnabled: false,
+  oneClickIdpEnabled: false,
   skillGapReportAvailable: null,
   userIdpDevelopmentActions: [],
   userIdpSkills: [],

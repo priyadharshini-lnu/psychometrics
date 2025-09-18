@@ -2,7 +2,7 @@
 
 module AI
   class AssistantService < BaseCommand
-    private_attr_reader :assistant_id, :prompt, :current_user, :options, :chat, :chat_params
+    private_attr_reader :assistant_id, :prompt, :current_user, :options, :chat, :chat_params, :ignore_user_prompt
 
     def initialize(assistant_id, current_user, prompt = nil, options = {})
       @assistant_id = assistant_id
@@ -11,6 +11,7 @@ module AI
       @options = options
       @chat = options[:chat]
       @chat_params = options[:chat_params] || {}
+      @ignore_user_prompt = options[:ignore_user_prompt] || false
     end
 
     def call
@@ -39,7 +40,7 @@ module AI
     end
 
     def user_prompt
-      base_prompt = assistant.user_prompt
+      base_prompt = ignore_user_prompt ? '' : assistant.user_prompt
 
       if prompt.present?
         <<~USER_PROMPT

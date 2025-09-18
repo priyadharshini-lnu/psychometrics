@@ -75,6 +75,7 @@ const connector = connect((state: RootState) => ({
   unreadCommentsCount: state.campaigns.idp.unreadCommentsCount,
   skillGapReportAvailable: state.campaigns.idp.skillGapReportAvailable,
   skillGapReportData: state.campaigns.idp.skillGapReportData,
+  oneClickIdpEnabled: state.campaigns.idp.oneClickIdpEnabled,
 }),
 {
   fetchAvailableDevelopmentActions,
@@ -135,6 +136,7 @@ const UserDevelopmentPlanComponent = ({
   skillGapReportAvailable,
   skillGapReportData,
   headerHeight = 0,
+  oneClickIdpEnabled,
 }: Props) => {
   const { tab: paramTab } = useParams() as {tab: string}
   const isMobile = useMedia({
@@ -202,8 +204,20 @@ const UserDevelopmentPlanComponent = ({
   }, [paramTab])
 
   useEffect(() => {
-    if (status && status === USER_IDP_PLAN_STATUS.NOT_STARTED && currentUser.id === idpUserId) {
-      navigate('/idp/steps/getting_started')
+    if (currentUser.id === idpUserId) {
+      switch (status) {
+        case USER_IDP_PLAN_STATUS.NOT_STARTED: {
+          const welcome_page = oneClickIdpEnabled ? '/idp/ai_assistant/start' : '/idp/steps/getting_started'
+          navigate(welcome_page)
+          break
+        }
+        case USER_IDP_PLAN_STATUS.AI_ASSISTED_IDP_IN_PROGRESS: {
+          navigate('/idp/ai_assistant/chat')
+          break
+        }
+        default:
+          break
+      }
     }
   }, [status])
 

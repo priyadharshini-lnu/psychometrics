@@ -33,7 +33,8 @@ class UserIdpPlan < ApplicationRecord
   has_one :ai_assisted_idp_session,
           -> { where(type: 'AI::AssistedUserIdpSession') },
           as: :assistable,
-          class_name: 'AI::AssistedUserIdpSession'
+          class_name: 'AI::AssistedUserIdpSession',
+          dependent: :destroy
 
   delegate :client, to: :campaign
   delegate :project, to: :campaign
@@ -43,7 +44,16 @@ class UserIdpPlan < ApplicationRecord
                      content_type: %w[application/pdf]
 
   enum :status,
-       { not_started: 0, draft: 1, pending_approval: 2, approved: 3, rejected: 4, in_progress: 5, completed: 6 }
+       {
+         not_started: 0,
+         draft: 1,
+         pending_approval: 2,
+         approved: 3,
+         rejected: 4,
+         in_progress: 5,
+         completed: 6,
+         ai_assisted_idp_in_progress: 7
+       }
 
   scope :active, -> { where(active: true) }
 
@@ -61,6 +71,7 @@ class UserIdpPlan < ApplicationRecord
       event :submit_for_approval, transitions_to: :pending_approval
       event :approve, transitions_to: :approved
       event :start, transitions_to: :in_progress
+      event :start_ai_assistance, transitions_to: :ai_assisted_idp_in_progress
     end
     state :pending_approval do
       event :approve, transitions_to: :approved
@@ -80,6 +91,10 @@ class UserIdpPlan < ApplicationRecord
     state :completed
     state :not_started do
       event :draft, transitions_to: :draft
+      event :start_ai_assistance, transitions_to: :ai_assisted_idp_in_progress
+    end
+    state :ai_assisted_idp_in_progress do
+      event :complete_ai_assistance, transitions_to: :draft
     end
 
     on_transition do |_from, to, _event, *_|

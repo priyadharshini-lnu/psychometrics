@@ -16,6 +16,8 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { DirectionalNavigateBackIcon } from '~/glint'
+import { setUserIdpPlanStatus } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
+import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
 import { AIAssistantLayout } from '../AIAssistantLayout'
 import styles from './AIChat.less'
 import { RecordingProvider } from '~/context/RecordingContext'
@@ -23,6 +25,7 @@ import Lighthouse from './assets/LighthouseIcon.svg?react'
 import { BotIcon } from './bubbles/BotIcon'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import BubbleTypes from './bubbles'
+import { ASSISTANT_FAILURE_FALLBACK_CONTENT } from './constants'
 import { AWS_SPEECH_TO_TEXT_URL } from '~/modules/survey/core/preview/FlowProcessor/consts'
 import { useSpeechToText } from '~/hooks/useSpeechToText'
 
@@ -119,15 +122,26 @@ export const AIChat = () => {
       const response = await askRequest.makeAsyncRequest({ message })
       const { content } = response.responseData
 
-      setMessages(prev => [...prev, {
-        component: content.component,
-        message: content.message,
-        data: content.data,
-        suggestions: content.suggestions || [],
-      }])
+      setMessages(prev => [...prev, parseAssistantMessage(content)])
     } finally {
       setRequestProcessing(false)
     }
+  }
+
+  const parseAssistantMessage = (content) => {
+    // We need to ensure that even if for some reason content is not object, we let the user re-try
+    // Using ASSISTANT_FAILURE_FALLBACK_CONTENT to handle such cases
+
+    const messageContent = (typeof content === 'object')
+      ? {
+        component: content.component,
+        message: content.message,
+        suggestions: content.suggestions || [],
+        data: content.data || {},
+      }
+      : ASSISTANT_FAILURE_FALLBACK_CONTENT
+
+    return messageContent
   }
 
   const uploadDocument = async (file) => {
@@ -145,12 +159,7 @@ export const AIChat = () => {
       const response = await uploadRequest.makeAsyncRequest(formData)
       const { content } = response.responseData
 
-      setMessages(prev => [...prev, {
-        component: content.component,
-        message: content.message,
-        data: content.data,
-        suggestions: content.suggestions || [],
-      }])
+      setMessages(prev => [...prev, parseAssistantMessage(content)])
     } finally {
       setRequestProcessing(false)
     }
@@ -175,6 +184,8 @@ export const AIChat = () => {
         setSuggestions(messages[messages.length - 1].suggestions || [])
       }
       if (messages[messages.length - 1].component === 'IdpCreated') {
+        // Update the status in Redux store to draft before navigating
+        dispatch(setUserIdpPlanStatus(USER_IDP_PLAN_STATUS.DRAFT))
         navigate('/idp/my_plan')
       }
     }
@@ -182,11 +193,7 @@ export const AIChat = () => {
 
   useEffect(() => {
     askRequest.startPolling()?.then(({ responseData: { content } }) => {
-      setMessages(prev => [...prev, {
-        component: content.component,
-        message: content.message,
-        suggestions: content.suggestions || [],
-      }])
+      setMessages(prev => [...prev, parseAssistantMessage(content)])
     })
 
     return () => {
@@ -210,7 +217,7 @@ export const AIChat = () => {
     //   addUserMessage('Finish interview')
     // }
     if (action === 'complete') {
-      addUserMessage('Yes')
+      addUserMessage('Yes, proceed with plan creation.')
       setStatus('completed')
     }
     if (action === 'changeAnswers') {

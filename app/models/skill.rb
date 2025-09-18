@@ -36,7 +36,7 @@ class Skill < ApplicationRecord
   scope :all_skills, ->(_value = nil) { all }
 
   scope :filter_by_skill_type, lambda { |skill_type|
-    where(skill_type: Skill.skill_types[skill_type]) if Skill.skill_types.key?(skill_type)
+    where(skill_type: ::Skill.skill_types[skill_type]) if ::Skill.skill_types.key?(skill_type)
   }
 
   scope :sample_by_skill_types, lambda {

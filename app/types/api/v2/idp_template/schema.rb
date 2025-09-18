@@ -71,7 +71,11 @@ module Api
           [
             { name: :skills, resource: :skills, relationship: :many, required: false, allowed_blank: true },
             { name: :project, resource: :clients, relationship: :one, required: false },
-            { name: :report, resource: :reports, relationship: :one, required: false, allowed_blank: true }
+            { name: :report, resource: :reports, relationship: :one, required: false, allowed_blank: true },
+            { name: :one_click_ai_assistant, resource: :assistants, relationship: :one, required: false,
+              allowed_blank: true },
+            { name: :document_analysis_ai_assistant, resource: :assistants, relationship: :one, required: false,
+              allowed_blank: true }
           ]
         end
 

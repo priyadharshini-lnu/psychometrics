@@ -6,8 +6,11 @@ module AI
       # Default parameters for IDP Assistant
       def default_params
         {
-          temperature: 0.0,
-          response_format: { type: 'json_object' }
+          temperature: 0.2,
+          response_format: { type: 'json_object' },
+          max_tokens: 1500,
+          # This is to ensure number of database connections are not exhaused in single process
+          parallel_tool_calls: false
         }
       end
 

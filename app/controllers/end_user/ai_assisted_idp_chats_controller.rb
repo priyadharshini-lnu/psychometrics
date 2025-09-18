@@ -21,7 +21,7 @@ class EndUser::AIAssistedIdpChatsController < ApplicationController
   end
 
   def meta_data
-    file_name = current_user.active_user_idp_plan.user_document.blob.filename.to_s
+    file_name = current_user.active_user_idp_plan.user_document.blob&.filename.to_s
     {
       file_name: file_name
     }

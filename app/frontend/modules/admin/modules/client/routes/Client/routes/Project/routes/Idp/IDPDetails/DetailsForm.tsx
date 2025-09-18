@@ -118,8 +118,12 @@ const IDPDetailsForm = ({
         aiEnabled: values.aiEnabled,
         aiAssistedIdpEnabled: values.aiAssistedIdpEnabled,
         oneClickIdpEnabled: values.oneClickIdpEnabled,
-        oneClickAiAssistantId: values.oneClickAiAssistantId,
-        documentAnalysisAiAssistantId: values.documentAnalysisAiAssistantId,
+        oneClickAiAssistant: values.oneClickAiAssistantId
+          ? { id: values.oneClickAiAssistantId, type: 'assistants' }
+          : undefined,
+        documentAnalysisAiAssistant: values.documentAnalysisAiAssistantId
+          ? { id: values.documentAnalysisAiAssistantId, type: 'assistants' }
+          : undefined,
       }
 
       try {
@@ -162,8 +166,8 @@ const IDPDetailsForm = ({
         logoType: idp.logoType,
         aiEnabled: idp.aiEnabled,
         aiAssistedIdpEnabled: idp.aiAssistedIdpEnabled,
-        oneClickAiAssistant: idp.oneClickAiAssistant,
-        documentAnalysisAiAssistant: idp.documentAnalysisAiAssistant,
+        oneClickAiAssistantId: idp.oneClickAiAssistant?.id,
+        documentAnalysisAiAssistantId: idp.documentAnalysisAiAssistant?.id,
         oneClickIdpEnabled: idp.oneClickIdpEnabled,
         skillSourcePreference: idp.skillSourcePreference,
         ...skills,

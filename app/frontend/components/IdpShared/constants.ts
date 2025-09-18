@@ -20,6 +20,7 @@ export const USER_IDP_PLAN_STATUS = {
   COMPLETED: 'completed',
   APPROVED: 'approved',
   REJECTED: 'rejected',
+  AI_ASSISTED_IDP_IN_PROGRESS: 'ai_assisted_idp_in_progress',
 }
 
 export const STATUS_COLORS = {

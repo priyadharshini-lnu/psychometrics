@@ -33,7 +33,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
 
   const availableAiProviders = useSelector(getAvailableAiProviders)
 
-  const assistantOutputSchemaKeys = Form.useWatch('assistantOutputSchemaKeysAttributes', form)
+  const assistantOutputSchemaKeys = Form.useWatch('assistantOutputSchemaKeysAttributes', form) || []
   const assistantType = Form.useWatch('assistantType', form)
 
   const handleSubmit = () => {

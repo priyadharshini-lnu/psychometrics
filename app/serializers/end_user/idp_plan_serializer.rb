@@ -2,9 +2,10 @@
 
 module EndUser
   class IdpPlanSerializer < Panko::Serializer
-    attributes :status, :self_rating_enabled, :skill_gap_report_available, :reflection_questions,
-               :unread_comments_count, :instructions, :user_idp_skills, :user_idp_development_actions
-    delegate :instructions, :self_rating_enabled, to: :idp_template
+    attributes :status, :self_rating_enabled, :one_click_idp_enabled, :skill_gap_report_available,
+               :reflection_questions, :unread_comments_count, :instructions,
+               :user_idp_skills, :user_idp_development_actions
+    delegate :instructions, :self_rating_enabled, :one_click_idp_enabled, to: :idp_template
 
     has_one :user, serializer: ::IdpUserSerializer
 

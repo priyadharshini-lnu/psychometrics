@@ -21,7 +21,8 @@ module AI
         idp_assistant.id,
         current_user,
         instructions,
-        chat: chat_with_session_context
+        chat: chat_with_session_context,
+        ignore_user_prompt: true
       )
       ai_assisted_idp_session.mark_as_in_progress!
 
@@ -68,6 +69,7 @@ module AI
     end
 
     def create_ai_assisted_idp_session!
+      mark_plan_in_ai_assisted_idp_in_progress!
       chat = idp_assistant.for_user(current_user, contextual_information: idp_context)
       plan.create_ai_assisted_idp_session!(ai_assistant_chat: chat, user: current_user)
     end
@@ -76,10 +78,15 @@ module AI
       plan.ai_assisted_idp_session || create_ai_assisted_idp_session!
     end
 
+    def mark_plan_in_ai_assisted_idp_in_progress!
+      plan.update!(status: :ai_assisted_idp_in_progress) unless plan.ai_assisted_idp_in_progress?
+    end
+
     def idp_assistant_tools
       [
-        AI::Tools::UserIdpDocAnalyzer.new(plan, current_user, document_analysis_assistant),
-        AI::Tools::UserIdpCreator.new(plan)
+        AI::Tools::Idp::DocumentAnalyzer.new(plan, current_user, document_analysis_assistant),
+        AI::Tools::Idp::AddSkillToPlan.new(plan),
+        AI::Tools::Idp::AvailableSkillsAndDevelopmentActions.new(idp_template)
       ]
     end
 

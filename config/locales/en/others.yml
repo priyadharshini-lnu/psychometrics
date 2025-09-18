@@ -2580,6 +2580,10 @@ en:
   idp:
     actions: Actions
     ai:
+      assistant:
+        failure_fallback:
+          message: Oops! Something went wrong while showing this message. Please try again!
+          try_again: I didn't get that. Try Again!
       bubbles:
         audio:
           question_progress: Question %{current} of %{count}
@@ -2596,7 +2600,7 @@ en:
         upload_document: Upload document
         upload_file: Upload File
       summary:
-        chat_title: Chant Insight Summary
+        chat_title: Chat Insight Summary
         file_title: Uploaded Documents Insights
         hint: if yes then we will create your IDP otherwise you can retake your answers
         title: Are you satisfied with results?

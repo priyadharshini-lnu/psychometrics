@@ -22,6 +22,7 @@ module Idp::DevelopmentAction
     allow_blank: true
     validates :private, inclusion: [true, false], allow_blank: true
     validates :user_idp_skill_id, presence: true
+    validates :learning_style, presence: true, if: -> { source_type != 'platform' }
     validate :skill_not_exist_in_user_idp_plan
     validate :validate_learning_style_for_development_action
     validate :start_date_not_in_past

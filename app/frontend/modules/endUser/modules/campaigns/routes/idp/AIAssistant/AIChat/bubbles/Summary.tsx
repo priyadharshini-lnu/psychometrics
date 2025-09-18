@@ -3,6 +3,7 @@ import {
   Flex, Space, Typography, Divider,
 } from 'antd'
 import { Bubble, Attachments } from '@ant-design/x'
+import ReactMarkdown from 'react-markdown'
 import { CheckOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BotIcon } from './BotIcon'
 import styles from './styles.less'
@@ -28,9 +29,9 @@ export const Summary = ({
         <Divider />
         <Typography.Title level={3}>{I18n.t('idp.ai.summary.chat_title')}</Typography.Title>
         <Card className={styles.card}>
-          <Typography.Paragraph>
+          <ReactMarkdown>
             {data.chatSummary}
-          </Typography.Paragraph>
+          </ReactMarkdown>
         </Card>
         <Card className={styles.card} styles={{ body: { width: '100%' } }}>
           <Flex justify="space-between" flex={1}>
@@ -44,9 +45,9 @@ export const Summary = ({
           <Typography.Title level={3}>{I18n.t('idp.ai.summary.file_title')}</Typography.Title>
         </Flex>
         <Card className={styles.card}>
-          <Typography.Paragraph>
+          <ReactMarkdown>
             {data.documentSummary}
-          </Typography.Paragraph>
+          </ReactMarkdown>
         </Card>
         <Card className={styles.card} styles={{ body: { width: '100%' } }}>
           <Flex vertical justify="space-between" flex={1}>
@@ -74,7 +75,7 @@ export const Summary = ({
                 danger
                 icon={<CloseOutlined />}
               >
-                {I18n.t('no')}
+                {I18n.t('frontend.no')}
               </Button>
               <Button
                 style={{ boxShadow: 'none' }}
@@ -83,7 +84,7 @@ export const Summary = ({
                 size="small"
                 icon={<CheckOutlined />}
               >
-                {I18n.t('yes')}
+                {I18n.t('frontend.yes')}
               </Button>
             </Space>
           )}

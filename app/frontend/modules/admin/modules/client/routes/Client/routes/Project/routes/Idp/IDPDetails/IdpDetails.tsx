@@ -23,7 +23,7 @@ const IdpDetails: React.FC = () => {
       fields: {
         skills: ['id', 'name', 'skill_type', 'project_id'],
       },
-      include: ['skills', 'report'],
+      include: ['skills', 'report', 'one_click_ai_assistant', 'document_analysis_ai_assistant'],
     },
   }
 

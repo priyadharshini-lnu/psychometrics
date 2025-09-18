@@ -12,22 +12,15 @@ module AI
 
         **Required JSON Fields:**
         - `message`: Single message string (plain text only)
-        - `suggestions`: Array of response options (can be empty)
+        - `suggestions`: Array of possible responses by the user to the message of assistant (can be empty)
         - `component`: One of: AssistantMessage, RequestDocument, Summary, RetakeSteps
         - `data`: Object (required for Summary component only)
 
-        **Summary Component Data:**
-        - `document_summary`: EXACT tool response from ai--tools--user_idp_doc_analyzer (empty string if not called)
+        **Summary Component Schema:**
+        When selecting `Summary` component, the `data` object must include:
+        - `document_summary`: EXACT tool response from document analysis tool (empty string if not called).
         - `chat_summary`: Generated chat analysis (markdown allowed)
-        - Summary component also asks the user whether user wants to proceed with plan creation
-
-        **MANDATORY Rules:**
-        - Generate ONE JSON response only - no duplicates, no multiple objects
-        - ONE message should be generated per response to ensure the message can be displayed
-        - Use EXACT tool output for document_summary - never generate it
-        - Only Summary fields support markdown
-
-        WARNING: Generating multiple JSON objects or duplicates will cause system errors.
+        - Summary component by default will ask user to proceed for plan creation
       SCHEMA_CONTEXT
 
       def self.as_context
@@ -39,12 +32,25 @@ module AI
       array :suggestions, of: :string,
         description: "Possible suggestion for the user as response to assistant's message, can also be empty"
 
-      string :component, enum: %w[AssistantMessage RequestDocument Summary RetakeSteps],
-        description: 'Type of component to be used to display assistant message to user'
+      string :component, enum: %w[AssistantMessage RequestDocument Summary RetakeSteps IdpCreated],
+        description: <<~DESC
+          Type of component to be used to display assistant message to user
+          AssistantMessage: Regular message from assistant
+          RequestDocument: Request user to upload document, once uploaded it must be analyzed immediately
+          Summary: Show summary of document analysis and chat. Component by DEFAULT also asks user if they want to proceed with plan creation or not.
+          RetakeSteps: Should be used when user does not want to proceed with plan creation after summary generation.
+          IdpCreated: Inform user that IDP has been created successfully. Should be used only AFTER the IDP is created as it redirects to user's plan page.
+        DESC
 
       object :data, description: 'Additional data to be sent when using Summary component' do
-        string :document_summary, description: 'Analysis of the document as it is'
-        string :chat_summary, description: 'Summary of the chat'
+        string :document_summary, description: <<~DESC
+          Complete unmodified analysis from document analysis tool. Do not interpret or condense the analysis - return verbatim.
+
+          CORRECT: Return complete analysis as received.
+          INCORRECT: "Based on the analysis, I can see.."
+          INCORRECT: "The key insights from this document are..."
+        DESC
+        string :chat_summary, description: 'Summary of the chat interaction with user (markdown allowed)'
       end
     end
   end

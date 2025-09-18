@@ -75,6 +75,14 @@ describe AI::IdpAssistantService do
         expect(ai_session).to be_present
         expect(ai_session.user).to eq(user)
       end
+
+      it 'updates plan status to ai_assisted_idp_in_progress when creating a new session' do
+        expect(plan.status).not_to eq('ai_assisted_idp_in_progress')
+
+        described_class.new(plan, user, instructions, options).call
+
+        expect(plan.reload.status).to eq('ai_assisted_idp_in_progress')
+      end
     end
 
     context 'when ai_assisted_idp_session already exists' do
@@ -99,10 +107,10 @@ describe AI::IdpAssistantService do
 
         allow(assistant_chat).to receive(:with_assistant_context) do |args|
           expect(args[:tools]).to be_an(Array)
-          expect(args[:tools].size).to eq(2)
-          expect(args[:tools].first).to be_a(AI::Tools::UserIdpDocAnalyzer)
-          expect(args[:tools].first.instance_variable_get(:@user_idp_plan)).to eq(plan)
-          expect(args[:tools].first.instance_variable_get(:@current_user)).to eq(user)
+          expect(args[:tools].size).to eq(3)
+          expect(args[:tools]).to include(AI::Tools::Idp::AddSkillToPlan)
+          expect(args[:tools]).to include(AI::Tools::Idp::AvailableSkillsAndDevelopmentActions)
+          expect(args[:tools]).to include(AI::Tools::Idp::DocumentAnalyzer)
 
           assistant_chat
         end
@@ -127,7 +135,8 @@ describe AI::IdpAssistantService do
           ai_assistant.id,
           user,
           instructions,
-          chat: assistant_chat
+          chat: assistant_chat,
+          ignore_user_prompt: true
         )
       end
     end
