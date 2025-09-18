@@ -17,6 +17,7 @@ import {
   reset as resetCampaign,
   resetPracticeCampaign,
   setCampaignUser,
+  updateUserAssessmentStatus,
 } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { STATUSES } from '~/constants/campaign'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
@@ -25,6 +26,9 @@ import {
   AsyncRequestResponse,
 } from '~/modules/admin/modules/client/core/asyncRequestResponse'
 import { CountdownTimer, DetailsCard, DirectionalArrowIcon } from '~/glint'
+import {
+  markMeetingAssessmentComplete,
+} from '~/modules/endUser/modules/campaigns/core/userAssessment'
 
 import styles from './styles.less'
 import { isProctored } from '~/utils/isProctored'
@@ -224,8 +228,13 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
 
   const showMeetingInfo = meetingLink && workshopBooked && workshopAttended && isWorkshopActivity
   const footerElement = showMeetingInfo ? (
-    <MeetingInfo meetingLink={meetingLink} meetingTime={meetingTime} />
+    <MeetingInfo
+      meetingLink={meetingLink}
+      meetingTime={meetingTime}
+      userAssessmentId={userAssessment.id}
+    />
   ) : null
+
   const workshopActivityDurationText = workshopActivityDuration
     ? secondsToDayHoursAndMinutes(workshopActivityDuration * 60, undefined, 'hr', 'mins') : ''
   const showDuration = timing || isWorkshopActivity
@@ -270,6 +279,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
 type MeetingInfoProps = {
   meetingLink: string | null
   meetingTime: string | null
+  userAssessmentId: number
 }
 
 interface StartTimeDisplayProps {
@@ -306,16 +316,22 @@ const StartTimeDisplay = ({ userAssessment, onCountdownFinish }: StartTimeDispla
   return null
 }
 
-const MeetingInfo: FC<MeetingInfoProps> = ({ meetingLink, meetingTime }) => {
+const MeetingInfo: FC<MeetingInfoProps> = ({ meetingLink, meetingTime, userAssessmentId }) => {
   const currentTime = dayjs.tz()
+  const dispatch = useDispatch()
   const meetingTimeMomentObj = dayjs(meetingTime)
   const [canJoinMeeting, setCanJoinMeeting] = useState(
     meetingTime ? currentTime.isSameOrAfter(meetingTimeMomentObj) : true,
   )
   const secondsLeftToStartMeeting = meetingTimeMomentObj.diff(currentTime, 'seconds')
+  const handleJoinClick = () => {
+    dispatch(markMeetingAssessmentComplete(userAssessmentId)).then((response) => {
+      dispatch(updateUserAssessmentStatus(response))
+    })
+  }
 
   return canJoinMeeting ? (
-    <Button type="link" href={meetingLink || '#'} target="_blank">
+    <Button type="link" href={meetingLink || '#'} target="_blank" onClick={handleJoinClick}>
       {I18n.t('frontend.bookings.join_activity_meeting')}
       {' '}
       <DirectionalArrowIcon />

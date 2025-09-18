@@ -55,6 +55,10 @@ module AdminJobs
       true
     end
 
+    def owner_country
+      record.data['owner_country']
+    end
+
     def file_link
       content_tag(:a, record.file.filename.to_s, href: record.file.url) if record.file.present?
     end

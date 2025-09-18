@@ -4099,9 +4099,14 @@ en:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: Mark as Completed
+          success_message: Assessment %{name} is marked as completed
         reset_progress:
           name: Reset Progress
           success_message: Assessment %{name} is ready for edit
+      mark_as_completed:
+        content: Are you sure you want to mark as completed "%{name}"?
       push_test_webhook:
         copy_request_data_success: Rquest Payload copied to clipboard successfully.
         copy_response_body_success: Response body copied to clipboard successfully.

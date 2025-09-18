@@ -1027,7 +1027,7 @@ describe Api::V2::Administration::Campaigns::AIArtifactsController, swagger_doc:
         run_test! do |_response|
           job = AdminJobRecord.last
           expect(job.operation).to eq('bulk_generate_user_campaign_ai_artifact_results')
-          expect(job.data).to eq({
+          expect(job.data).to include({
             'user_ids' => user_ids,
             'campaign_id' => campaign.id
           })

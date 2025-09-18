@@ -65,7 +65,7 @@ describe Api::V2::Administration::ThreesixtyCampaignsController, swagger_doc: 'v
           response = response.body
           expect(JSON.parse(response)).to eq('ok')
           expect(AdminJobRecord.last.operation).to eq('create_threesixty_campaign')
-          expect(AdminJobRecord.last.data).to eq({
+          expect(AdminJobRecord.last.data).to include({
             'project_id' => project_id,
             'data' => { 'campaign_template_id' => campaign_template.id.to_s,
                         'factors' => assessment.dimension.factor_ids,

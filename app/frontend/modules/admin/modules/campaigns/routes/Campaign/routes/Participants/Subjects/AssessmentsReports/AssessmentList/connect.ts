@@ -2,7 +2,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   get as getAssessments, rescoreResponse, reset, remove, resetProgress,
   toggleRequireScheduling, togglePrework, updateMettlSchedule, normalizeFactorScores,
-  updateContentVariation, UPDATE_CONTENT_VARIATION, UPDATE_METTL_SCHEDULE,
+  updateContentVariation, UPDATE_CONTENT_VARIATION, UPDATE_METTL_SCHEDULE, markComplete,
 } from '~/modules/admin/modules/campaigns/core/userAssessments'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -26,6 +26,7 @@ const connecter = connect(
     updateMettlSchedule,
     normalizeFactorScores,
     updateContentVariation,
+    markComplete,
   },
 )
 

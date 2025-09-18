@@ -368,6 +368,7 @@ Rails.application.routes.draw do
             put :update_content_variation
             put :update_simulation_time_extension
             put :toggle_prework
+            post :mark_complete
           end
         end
 
@@ -894,6 +895,7 @@ as: :simulation_progress_notification
 
         get :insights
         put :reset_practice_campaign
+        post :mark_meeting_assessment_complete
       end
       get 'assessment_centers/:id', to: 'workshops#show', as: :workshop_page
       get :dashboard, to: 'users#dashboard'
@@ -998,6 +1000,7 @@ as: :simulation_progress_notification
           get :validate_session
           post :upload_user_verification_image_url
           put :user_verification_image_upload_callback
+          post :mark_completed
         end
       end
 

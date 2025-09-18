@@ -320,7 +320,7 @@ describe Api::V2::Administration::MembershipsController, swagger_doc: 'v2/swagge
 
         run_test! do
           expect(AdminJobRecord.last.operation).to eq('export_admin_with_permissions')
-          expect(AdminJobRecord.last.data).to eq({ 'client_id' => client_admin.client_id })
+          expect(AdminJobRecord.last.data).to include({ 'client_id' => client_admin.client_id })
         end
       end
 
@@ -349,7 +349,7 @@ describe Api::V2::Administration::MembershipsController, swagger_doc: 'v2/swagge
 
         run_test! do
           expect(AdminJobRecord.last.operation).to eq('export_admin_with_permissions')
-          expect(AdminJobRecord.last.data).to eq({ 'project_id' => project.id })
+          expect(AdminJobRecord.last.data).to include({ 'project_id' => project.id })
         end
       end
 
@@ -379,7 +379,7 @@ describe Api::V2::Administration::MembershipsController, swagger_doc: 'v2/swagge
 
         run_test! do
           expect(AdminJobRecord.last.operation).to eq('export_admin_with_permissions')
-          expect(AdminJobRecord.last.data).to eq({ 'campaign_id' => campaign.id })
+          expect(AdminJobRecord.last.data).to include({ 'campaign_id' => campaign.id })
         end
       end
     end

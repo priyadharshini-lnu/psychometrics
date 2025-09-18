@@ -24,6 +24,11 @@ module Administration
       has_permission?(:project_settings, :webhooks, project_id: project_id)
     end
 
+    def mark_complete?
+      has_permission?(:campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id) &&
+        record.assessment.meeting? && !record.completed?
+    end
+
     def destroy?
       @user.is?(:superadmin)
     end

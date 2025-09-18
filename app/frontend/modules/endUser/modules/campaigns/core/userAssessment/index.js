@@ -16,6 +16,7 @@ const FETCH_FAILURE = 'userAssessment/FETCH_FAILURE'
 export const FETCH_ASSESSMENT = 'userAssessment/FETCH_ASSESSMENT'
 
 const VALIDATE_SESSION = 'userAssessment/VALIDATE_SESSION'
+const MARK_MEETING_ASSESSMENT_COMPLETE = 'userAssessment/MARK_MEETING_ASSESSMENT_COMPLETE'
 
 export const setInvalidated = () => ({
   type: SET_INVALIDATED,
@@ -48,6 +49,15 @@ export const fetchResults = (userAssessmentId, isEdit) => ({
     url: `/user_assessments/${userAssessmentId}/users_results`,
     body: { edit: isEdit, cache: new Date().valueOf() },
     camelize: false,
+    loader: true,
+  },
+})
+
+export const markMeetingAssessmentComplete = userAssessmentId => ({
+  type: MARK_MEETING_ASSESSMENT_COMPLETE,
+  request: {
+    url: `/user_assessments/${userAssessmentId}/mark_completed`,
+    method: 'POST',
     loader: true,
   },
 })

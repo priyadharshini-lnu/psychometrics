@@ -58,6 +58,7 @@ export default interface UserAssessment {
     normalizeFactorScores: boolean
     updateContentVariation: boolean
     updateSimulationTimeExtension: boolean
+    markComplete: boolean
   }
   usersResultId: number
 }

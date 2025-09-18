@@ -183,7 +183,7 @@ export const AssessmentsContainer = ({
                   userAssessments = workshopActivities.length
                     ? removeWorkshopActivities(userAssessments) : userAssessments
                 }
-                if (!userAssessments?.length) {
+                if (!userAssessments?.length && !workshopMeetingLink) {
                   return null
                 }
 

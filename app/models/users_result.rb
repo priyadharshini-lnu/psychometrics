@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersResult < ApplicationRecord
+  include GeoFilterable
+
   audited
 
   include EncodableId
@@ -61,5 +63,12 @@ class UsersResult < ApplicationRecord
 
   def generate_randomseed
     self.seedrandom = rand(1..100).to_s
+  end
+
+  def self.scoped_by_client(restricted_client_subquery)
+    return all if restricted_client_subquery.blank?
+
+    joins(user_assessment: { campaign: :project }).
+      where.not(clients: { tte_id: restricted_client_subquery })
   end
 end

@@ -22,7 +22,7 @@ module AdminJobs
       end
 
       def users_results
-        query = UsersResult.joins(:user_assessment).
+        query = UsersResult.geo_scoped(owner_country).joins(:user_assessment).
                 where(user_assessments: { assessment_id: assessment.id }).
                 merge(UserAssessment.scored).
                 includes(campaign: :project, user_assessment: :subject)

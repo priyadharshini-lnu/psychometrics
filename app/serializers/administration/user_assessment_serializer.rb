@@ -92,6 +92,7 @@ module Administration
           %w[remove destroy],
           'reset_progress',
           'push_webhook',
+          'mark_complete',
           'normalize_factor_scores',
           %w[reset_results reset]
         ],
