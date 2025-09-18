@@ -3,7 +3,6 @@
 module AI::IdpChat
   class AskChat < AsyncResponseRequest::AsyncRequestHandler
     def call
-      # call AI::IDPAssistantService.chat
       params = context[:params]
 
       AI::IdpAssistantService.call(plan, current_user, params['message']) do

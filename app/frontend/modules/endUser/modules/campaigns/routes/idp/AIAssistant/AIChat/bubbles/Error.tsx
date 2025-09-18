@@ -4,14 +4,16 @@ import {
 import Icon, {
 } from '@ant-design/icons'
 import Lighthouse from '../assets/LighthouseIcon.svg?react'
+import styles from './styles.less'
 
 
-export const AssistantMessage = ({ message, isCurrent }) => (
+export const Error = ({ message, isCurrent }) => (
   <Bubble
-    typing={isCurrent ? { step: 5 } : false}
+    typing={isCurrent ? false : { step: 5 }}
     placement="start"
     variant="borderless"
     content={message}
+    classNames={{ content: styles.errorBubble }}
     avatar={{ icon: <Icon style={{ fontSize: 32 }} component={Lighthouse} /> }}
   />
 )

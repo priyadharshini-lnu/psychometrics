@@ -8,6 +8,7 @@ import Icon, {
   CloudUploadOutlined, LoadingOutlined,
 } from '@ant-design/icons'
 import * as t from 'io-ts'
+import humps from 'humps'
 
 import { PageHeader } from '@ant-design/pro-layout'
 import {
@@ -36,6 +37,7 @@ interface BubbleProps {
     component?: string,
     message?: string | { file: File }
     data?: { [key: string]: string }
+    role?: string
   },
   onAction?: (action: string) => void,
   isCurrent?: boolean,
@@ -45,8 +47,13 @@ interface BubbleProps {
 export const Bubble: FC<BubbleProps> = ({
   content, onAction, isCurrent, status,
 }) => {
-  const { component, message, data } = content
-  const Bubble = BubbleTypes[component || 'AssistantMessage'] || BubbleTypes.AssistantMessage
+  const {
+    component, message, data, role,
+  } = content
+
+  const bubbleType = role === 'user' ? 'UserMessage' : 'AssistantMessage'
+  const Bubble = BubbleTypes[component || bubbleType] || BubbleTypes.AssistantMessage
+
   return <Bubble message={message} data={data} onAction={onAction} isCurrent={isCurrent} status={status} />
 }
 
@@ -67,7 +74,7 @@ export const AsyncChatTR = t.type({
 export const AIChat = () => {
   const [status, setStatus] = useState<'chat' | 'document_upload' | 'interview' | 'confirmation' | 'completed'>('chat')
   const [messages, setMessages] = useState<{
-    component: string, suggestions?: string[], message?: string | { file: File }
+    component: string, suggestions?: string[], message?: string | { file: File }, role?: string
   }[]>([])
   const [userPrompt, setUserPrompt] = useState('')
   const [requestProcessing, setRequestProcessing] = useState(false)
@@ -89,6 +96,15 @@ export const AIChat = () => {
       url: '/transcribe/pre_sign_url',
     },
   }) as unknown as Promise<{ response: { url: string } }>
+
+  const fetchMessages = () => dispatch({
+    type: 'FETCH/AI_CHAT_MESSAGES',
+    request:
+    {
+      method: 'get',
+      url: '/ai_assisted_idp_chats',
+    },
+  }) as unknown as Promise<{ response: {role: string, content: string}[] }>
 
   const { startDictation, stopDictation } = useSpeechToText({
     value: userPrompt, onChange: changeValue, fetchPresignUrl: fetchAwsSpeechTextPresignedUrl,
@@ -165,9 +181,9 @@ export const AIChat = () => {
     }
   }
 
-  const scrollToBottom = () => {
+  const scrollToBottom = (smooth = true) => {
     setTimeout(() => {
-      listBottom.current?.scrollIntoView({ behavior: 'smooth' })
+      listBottom.current?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' })
     }, 200)
   }
 
@@ -194,6 +210,24 @@ export const AIChat = () => {
   useEffect(() => {
     askRequest.startPolling()?.then(({ responseData: { content } }) => {
       setMessages(prev => [...prev, parseAssistantMessage(content)])
+    })
+
+    fetchMessages().then(({ response }) => {
+      const messages = response.map((msg) => {
+        try {
+          return {
+            ...humps.camelizeKeys(JSON.parse(msg.content)),
+            role: msg.role,
+          }
+        } catch {
+          return {
+            message: msg.content,
+            role: msg.role,
+          }
+        }
+      })
+      setMessages(messages)
+      scrollToBottom(false)
     })
 
     return () => {

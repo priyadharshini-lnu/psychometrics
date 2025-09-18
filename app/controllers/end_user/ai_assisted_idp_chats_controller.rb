@@ -12,12 +12,12 @@ class EndUser::AIAssistedIdpChatsController < ApplicationController
                   permit_params: ->(params) {}
 
   def index
-    # response with chat user session messages
-    render json: {
-      messages: [
-        { role: 'system', type: 'Welcome', message: 'Welcome to the AI-assisted chat! How can I help you today?' }
-      ]
-    }
+    messages = current_user.active_user_idp_plan.ai_assisted_idp_session.
+               ai_assistant_chat.messages.
+               where(role: %w[user assistant]).
+               where.missing(:tool_calls)
+
+    render json: Panko::ArraySerializer.new(messages, each_serializer: EndUser::IdpAIChatMessageSerializer).to_a
   end
 
   def meta_data
