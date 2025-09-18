@@ -10,7 +10,7 @@ import { questionsSelector } from '../selectors'
 import {
   REMOVE, CREATE, RESTORE_BLOCK, CLONE_BLOCK,
   ADD_QUESTION, COPY_QUESTION, RESTORE_QUESTION, MOVE_QUESTION_UP,
-  MOVE_QUESTION_DOWN, REMOVE_QUESTION, ADD_PAGE_BREAK,
+  MOVE_QUESTION_DOWN, MOVE_QUESTION_TO_POSITION, REMOVE_QUESTION, ADD_PAGE_BREAK,
   INSERT_BEFORE_QUESTION, INSERT_AFTER_QUESTION,
   updatePositions, updateQuestionIds, createBlock,
 } from './actions'
@@ -79,6 +79,7 @@ export const watchers = [
   takeEvery(RESTORE_QUESTION, genUpdateQuestionsPositions),
   takeEvery(MOVE_QUESTION_UP, genUpdateQuestionsPositions),
   takeEvery(MOVE_QUESTION_DOWN, genUpdateQuestionsPositions),
+  takeEvery(MOVE_QUESTION_TO_POSITION, genUpdateQuestionsPositions),
   takeEvery(REMOVE_QUESTION, genUpdateQuestionsPositions),
   takeEvery(ADD_PAGE_BREAK, genUpdateQuestionsPositions),
 
