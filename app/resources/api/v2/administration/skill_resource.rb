@@ -75,5 +75,6 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
     filterable_fields
     by_idp_template_id
     filter_by_skill_type
+    available_skills_by_plan_id
   ]
 end

@@ -67,7 +67,7 @@ class IdpTemplate < ApplicationRecord
     end
   end
 
-  def available_skills
+  def available_skills(plan_id: nil)
     technical_client_skills = load_setting_based_skill(technical_client_skill_settings, 'technical', project).to_sql
     technical_global_skills = load_setting_based_skill(technical_global_skill_settings, 'technical', nil).to_sql
     behavioral_client_skills = load_setting_based_skill(behavioral_client_skill_settings, 'behavioral', project).to_sql
@@ -80,8 +80,7 @@ class IdpTemplate < ApplicationRecord
       behavioral_global_skills,
       skills_by_tags
     ].join(' UNION ')
-
-    Skill.from("(#{combined_query}) AS skills")
+    Skill.from("(#{combined_query}) AS skills").excluding_plan(plan_id: plan_id)
   end
 
   private

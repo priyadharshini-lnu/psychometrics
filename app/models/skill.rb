@@ -51,6 +51,15 @@ class Skill < ApplicationRecord
     IdpTemplate.includes(:project, :skills).find_by(id: idp_template_id)&.available_skills || Skill.none
   }
 
+  scope :available_skills_by_plan_id, lambda { |plan_id|
+    idp_template = UserIdpPlan.find_by(id: plan_id)&.idp_template
+    idp_template ? idp_template.available_skills(plan_id: plan_id) : idp_template.available_skills
+  }
+
+  scope :excluding_plan, lambda { |plan_id: nil|
+    plan_id.nil? ? all : where.not(id: UserIdpSkill.where(user_idp_plan_id: plan_id).select(:skill_id))
+  }
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name skill_type project_id]
   end
@@ -60,7 +69,8 @@ class Skill < ApplicationRecord
   end
 
   def self.ransackable_scopes(_auth_object = nil)
-    %w[all_skills global by_project filter_by_skill_type filterable_fields by_idp_template_id]
+    %w[all_skills global by_project filter_by_skill_type filterable_fields by_idp_template_id
+       available_skills_by_plan_id]
   end
 
   # Custom ransacker for skill_type enum
