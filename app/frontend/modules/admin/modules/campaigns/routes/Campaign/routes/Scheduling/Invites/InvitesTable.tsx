@@ -203,24 +203,14 @@ const getActionsMenuProps = ({
   const menuItems:MenuItem[] = []
   resource.meta.permissions?.update && menuItems.push({
     key: 'edit',
-    label: (
-      <>
-        <Button type="link" onClick={handleEditInvite} className="ps-0">
-          {I18n.t('common.actions.edit')}
-        </Button>
-      </>
-    ),
+    label: I18n.t('common.actions.edit'),
+    onClick: handleEditInvite,
   })
 
   resource.meta.permissions?.remove && menuItems.push({
     key: 'remove',
-    label: (
-      <>
-        <Button type="link" onClick={handleRemove} className="ps-0">
-          {I18n.t('common.actions.remove')}
-        </Button>
-      </>
-    ),
+    label: I18n.t('common.actions.remove'),
+    onClick: handleRemove,
   })
 
   return ({ items: menuItems })
