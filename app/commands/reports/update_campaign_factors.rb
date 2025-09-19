@@ -58,13 +58,14 @@ module Reports
           code: factor_params['code'],
           name: factor_params['name'],
           output_type: factor_params['output_type'],
+          description: factor_params['description'],
           report_id: report.id
         }
       end
 
       CampaignFactor.import(
         factors,
-        on_duplicate_key_update: { conflict_target: %i[code report_id], columns: %i[name output_type] }
+        on_duplicate_key_update: { conflict_target: %i[code report_id], columns: %i[name output_type description] }
       )
     end
 
