@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { message } from 'antd'
 import ApiAction from 'interfaces/ApiAction'
 import * as t from 'io-ts'
+import { useLocalStorage } from './useLocalStorage'
 
 const POST_QUEUE_REQUEST = 'userAssessment/POST_QUEUE_REQUEST'
 const QUERY_QUEUE_STATUS = 'userAssessment/QUERY_QUEUE_STATUS'
@@ -45,17 +46,20 @@ const useAsyncRequestResponse = <T>({
   const attemptRef = useRef(1)
   const intervalIdRef: React.MutableRefObject<NodeJS.Timeout> = useRef(setTimeout(() => {}, 0))
 
+  const [storedRequest, saveAsyncRequest, removeRequest] = useLocalStorage(`async/${url}`, null)
+
   const postQueueRequest = async (
-    data: { [key: string]: unknown },
+    data: FormData | { [key: string]: unknown },
   ): Promise<ApiAction<PostToQueueResponse>> => {
     const action = {
       type: POST_QUEUE_REQUEST,
       request: {
         url,
         method: 'POST',
-        body: {
+        body: data instanceof FormData ? data : {
           ...data,
         },
+        contentType: (data instanceof FormData ? 'multipart/form-data;' as const : 'application/json' as const),
         typedResponse: PostToQueueResponseTR,
       },
     }
@@ -91,6 +95,7 @@ const useAsyncRequestResponse = <T>({
   const startPollingForStatus = async (asyncRequestUuid: string) => {
     try {
       const { response: { status, response } } = await queryQueueStatus(asyncRequestUuid)
+
       if (status === 'completed') {
         if (response.responseType === 'redirect') {
           const redirectUrl = response.responseData
@@ -100,6 +105,7 @@ const useAsyncRequestResponse = <T>({
           setAsyncLoading(false)
         }
 
+        removeRequest()
         clearTimeout(intervalIdRef.current)
         setAsyncLoading(false)
         return response
@@ -107,6 +113,7 @@ const useAsyncRequestResponse = <T>({
 
       if (status === 'failed' || status === 'request_not_found' || (attemptRef.current >= numberOfTimesToPoll)) {
         if (onFailure) {
+          removeRequest()
           onFailure(response)
           clearTimeout(intervalIdRef.current)
           setAsyncLoading(false)
@@ -123,12 +130,17 @@ const useAsyncRequestResponse = <T>({
     }
   }
 
-  const makeAsyncRequest = (extraData = {}): Promise<ApiAction<T>> => {
+  const makeAsyncRequest = (extraData: FormData | {} = {}): Promise<ApiAction<T>> => {
     setAsyncLoading(true)
     return new Promise(async (resolve, reject) => {
       try {
-        const { response } = await postQueueRequest({ ...data, ...extraData })
+        const { response } = await postQueueRequest(
+          extraData instanceof FormData ? extraData : { ...data, ...extraData },
+        )
+
         const { asyncRequestUuid } = response
+        saveAsyncRequest(asyncRequestUuid)
+
 
         if (asyncRequestUuid === undefined) {
           setAsyncLoading(false)
@@ -161,8 +173,15 @@ const useAsyncRequestResponse = <T>({
     }
   }, [])
 
+  const startPolling = () => {
+    if (storedRequest) {
+      return startPollingForStatus(storedRequest)
+    }
+    return null
+  }
+
   return {
-    asyncLoading, makeAsyncRequest,
+    asyncLoading, makeAsyncRequest, startPolling,
   }
 }
 

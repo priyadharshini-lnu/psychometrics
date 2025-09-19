@@ -569,6 +569,21 @@ module Swagger
         ),
         IdpTemplateUpdateReflectionQuestionsRequest: Api::Base::GenerateSwagger.call!(
           Api::V2::IdpTemplate::Schema.update_reflection_questions_request
+        ),
+        InterviewQuestionsListResponse: Api::Base::GenerateSwagger.call!(
+          Api::V2::InterviewQuestion::Schema.multiple_resource_response
+        ),
+        InterviewQuestionResponse: Api::Base::GenerateSwagger.call!(
+          Api::V2::InterviewQuestion::Schema.single_resource_response
+        ),
+        InterviewQuestionCreateRequest: Api::Base::GenerateSwagger.call!(
+          Api::V2::InterviewQuestion::Schema.create_request
+        ),
+        InterviewQuestionUpdateRequest: Api::Base::GenerateSwagger.call!(
+          Api::V2::InterviewQuestion::Schema.update_request
+        ),
+        IdpTemplateUpdateInterviewQuestionsRequest: Api::Base::GenerateSwagger.call!(
+          Api::V2::IdpTemplate::Schema.update_interview_questions_request
         )
       }
     end

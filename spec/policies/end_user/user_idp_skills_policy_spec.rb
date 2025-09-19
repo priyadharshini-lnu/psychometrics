@@ -151,4 +151,54 @@ RSpec.describe EndUser::UserIdpSkillsPolicy do
       end
     end
   end
+
+  describe '#revert_to_public?' do
+    context 'when current_user_idp is blank' do
+      subject { described_class.new(policy_context(another_user), user, extra_params) }
+
+      it 'denies access' do
+        expect(subject.revert_to_public?).to be_falsey
+      end
+    end
+
+    context 'when user can edit their own plan' do
+      subject { described_class.new(policy_context(user), user, extra_params) }
+
+      context 'with editable status' do
+        before { user_idp_plan.update(status: :draft) }
+
+        it 'allows access' do
+          expect(subject.revert_to_public?).to be_truthy
+        end
+      end
+
+      context 'with non-editable status' do
+        before { user_idp_plan.update(status: :approved) }
+
+        it 'denies access' do
+          expect(subject.revert_to_public?).to be_falsey
+        end
+      end
+    end
+
+    context 'when manager can edit plan' do
+      subject { described_class.new(policy_context(manager), user, extra_params) }
+
+      context 'with manager editable status' do
+        before { user_idp_plan.update(status: :pending_approval) }
+
+        it 'allows access' do
+          expect(subject.revert_to_public?).to be_truthy
+        end
+      end
+
+      context 'with non-manager editable status' do
+        before { user_idp_plan.update(status: :approved) }
+
+        it 'denies access' do
+          expect(subject.revert_to_public?).to be_falsey
+        end
+      end
+    end
+  end
 end

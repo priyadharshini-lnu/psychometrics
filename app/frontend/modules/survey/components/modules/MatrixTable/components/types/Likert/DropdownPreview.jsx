@@ -65,7 +65,7 @@ export default class extends Component {
                       key={scale}
                       value={scale}
                     >
-                      {props.scalePoints[scale] || moduleConfig.defaultScalePointText(scale)}
+                      {props.scalePointsTexts[scale] || moduleConfig.defaultScalePointText(scale + 1)}
                     </option>
                   ))}
                   {this.renderNotApplicableOption()}

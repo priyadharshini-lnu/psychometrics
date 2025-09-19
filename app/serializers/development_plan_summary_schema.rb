@@ -6,7 +6,7 @@ class DevelopmentPlanSummarySchema < BaseSchema
       config.validate_keys = true
 
       required(:skills_by_skill_type_count).hash do
-        Skill.skill_types.each_key do |skill_type|
+        ::Skill.skill_types.each_key do |skill_type|
           optional(skill_type.to_sym).value(:int?)
         end
       end
@@ -18,7 +18,7 @@ class DevelopmentPlanSummarySchema < BaseSchema
       end
 
       required(:skill_progress_by_skill_type).hash do
-        Skill.skill_types.each_key do |skill_type|
+        ::Skill.skill_types.each_key do |skill_type|
           optional(skill_type.to_sym).value(:float?)
         end
       end

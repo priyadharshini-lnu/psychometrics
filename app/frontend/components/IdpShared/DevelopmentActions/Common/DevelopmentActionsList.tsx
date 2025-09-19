@@ -1,109 +1,119 @@
-/* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState, useRef } from 'react'
-import { Flex, Typography, Empty } from 'antd'
+import React, {
+  useEffect, useState, useRef,
+} from 'react'
+import {
+  Flex, Typography, Empty, Checkbox,
+} from 'antd'
 import cs from 'classnames'
-import { AvailableDevelopmentActions } from '../Types'
-import Tags from './Tags'
+import { includes, uniqBy } from 'lodash'
+import { Separator } from '../../Separator'
+import { DevelopmentAction } from '../Types'
 import styles from './DevelopmentActionsList.less'
+import { developmentActionLearningStylesConfig } from '../Constants'
 
 type Props = {
-  availableActions: AvailableDevelopmentActions[];
-  onDevelopmentActionClick: (developmentAction: Partial<AvailableDevelopmentActions>) => void;
-  highlightNewlyAddedActions?: boolean;
+  availableActions: DevelopmentAction[];
+  selectedDA: DevelopmentAction[];
   selectedDevelopmentActionIds?: (string | number)[];
+  setSelectedDA: (da:DevelopmentAction[]) => void
 };
 
 const DevelopmentActionsList: React.FC<Props> = ({
   availableActions,
-  onDevelopmentActionClick,
-  highlightNewlyAddedActions = false,
   selectedDevelopmentActionIds = [],
+  selectedDA,
+  setSelectedDA,
 }) => {
-  const [highlightedIdsState, setHighlightedIdsState] = useState<(string | number)[]>([])
-  const previousDevelopmentActionsIdRef = useRef<Set<string | number>>(new Set())
   const listRef = useRef<HTMLDivElement | null>(null)
 
+  const [selectedDAIds, setSelectedDAIds] = useState<number[]>(selectedDA.map(da => Number(da.id)))
+
   useEffect(() => {
-    if (!highlightNewlyAddedActions) {
-      return
-    }
+    setSelectedDAIds(selectedDA.map(da => Number(da.id)))
+  }, [selectedDA])
 
-    const newIds = availableActions
-      .map((action, index) => action.id ?? index)
-      .filter(
-        id => !previousDevelopmentActionsIdRef.current.has(id),
-      )
-
-    if (newIds.length > 0 && newIds.length !== availableActions.length) {
-      setHighlightedIdsState(newIds)
-
-      const firstNewElement = listRef.current?.querySelector(`[data-id="${newIds[0]}"]`)
-      if (firstNewElement) {
-        firstNewElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    }
-
-    previousDevelopmentActionsIdRef.current = new Set(availableActions.map((action, index) => action.id ?? index))
-
-    const timeout = setTimeout(() => {
-      setHighlightedIdsState([])
-    }, 3000)
-
-    return () => clearTimeout(timeout)
-  }, [availableActions])
-
-
+  const filteredActions = availableActions
+    .filter((da => !selectedDevelopmentActionIds.includes(Number(da.id))))
   return (
     <Flex vertical className={styles.card_content} ref={listRef}>
-      {availableActions.length > 0 ? (
-        availableActions.map((developmentAction, index) => (
-          <Flex
-            onClick={() => onDevelopmentActionClick(developmentAction)}
-            className={cs(styles.card, {
-              [styles.highlight]: highlightedIdsState.includes(developmentAction.id ?? index),
-              [styles.disabled]: selectedDevelopmentActionIds.includes(developmentAction.id)
-              || selectedDevelopmentActionIds.includes(Number(developmentAction.id)),
-            })}
-            gap={16}
-            key={developmentAction.id ?? index}
-            data-id={developmentAction.id ?? index}
-          >
-            <Flex vertical flex={1}>
-              {developmentAction.name ? (
-                <Typography.Title
-                  level={5}
-                  ellipsis={{
-                    rows: 2,
-                    expandable: true,
-                    symbol: 'more',
-                    onExpand: e => e.stopPropagation(),
-                  }}
-                >
-                  {developmentAction.name}
-                </Typography.Title>
-              ) : null}
-              <Typography.Paragraph
-                className="mb-1"
-                ellipsis={{
-                  rows: 2,
-                  expandable: true,
-                  symbol: 'more',
-                  onExpand: e => e.stopPropagation(),
-                }}
+      {filteredActions.length > 0 ? (
+        <Checkbox.Group
+          value={selectedDAIds}
+          onChange={(checkedValues) => {
+            if (checkedValues.length === 0) {
+              // DAs which are selected but not part of availableActions due to filtering, shall remain unaffected
+              const untouchedDAs = selectedDA.filter(da => !availableActions.map(da => da.id).includes(da.id as number))
+              setSelectedDA(uniqBy([...selectedDA.filter(da => !includes(filteredActions.map(da => da.id), da.id)),
+                ...untouchedDAs], 'id'))
+              return
+            }
+
+            setSelectedDA([...selectedDA.filter(da => !includes(filteredActions.map(da => da.id), da.id)),
+              ...filteredActions.filter(da => checkedValues.map(value => Number(value)).includes(Number(da.id)))])
+          }}
+        >
+          {filteredActions.map((developmentAction, index) => (
+
+            <Flex
+              vertical
+              className={cs('w-100', styles.card, {
+                [styles.card_selected]: includes(selectedDevelopmentActionIds, developmentAction.id)
+                  || includes(selectedDAIds, Number(developmentAction.id)),
+              })}
+              key={developmentAction.id}
+            >
+              <Checkbox
+                value={Number(developmentAction.id)}
+                disabled={includes(selectedDevelopmentActionIds, developmentAction.id)}
               >
-                {developmentAction.description}
-              </Typography.Paragraph>
-              <Flex>
-                <Tags type={developmentAction.learningStyle} />
-              </Flex>
+                <Flex
+                  gap={16}
+                  data-id={developmentAction.id ?? index}
+                >
+                  <Flex vertical flex={1}>
+                    {developmentAction.name ? (
+                      <Typography.Title
+                        level={5}
+                        className="mb-0"
+                        ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+                      >
+                        {developmentAction.name}
+                      </Typography.Title>
+                    ) : null}
+                    <Typography.Paragraph
+                      className="mb-2 font-normal fs-14"
+                      ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+                    >
+                      {developmentAction.description}
+                    </Typography.Paragraph>
+                    <Flex gap={4} align="center">
+                      <img
+                        src={developmentActionLearningStylesConfig[developmentAction.learningStyle].logo}
+                      />
+                      <strong>
+                        {`${developmentActionLearningStylesConfig[developmentAction.learningStyle].duration}%`}
+                      </strong>
+                      <Typography.Text
+                        className="font-normal"
+                        type="secondary"
+                      >
+                        {developmentActionLearningStylesConfig[developmentAction.learningStyle].text}
+                      </Typography.Text>
+                    </Flex>
+                  </Flex>
+                  {developmentAction.image ? (
+                    <Flex>
+                      <img src={developmentAction.image} className={styles.image} />
+                    </Flex>
+                  ) : null}
+                </Flex>
+              </Checkbox>
+              <Separator
+                className="mb-0 mt-4"
+              />
             </Flex>
-            {developmentAction.image ? (
-              <Flex>
-                <img src={developmentAction.image} className={styles.image} />
-              </Flex>
-            ) : null}
-          </Flex>
-        ))
+          ))}
+        </Checkbox.Group>
       ) : (
         <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
       )}

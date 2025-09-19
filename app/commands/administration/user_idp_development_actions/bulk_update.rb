@@ -17,7 +17,11 @@ module Administration
           process_development_actions_by_skill
         end
 
-        broadcast :ok, { all_records: UserIdpDevelopmentAction.where(user_idp_plan_id: user_idp_plan_id) }
+        broadcast :ok, {
+          all_records: UserIdpDevelopmentAction.
+            with_public_skills.
+            where(user_idp_plan_id: user_idp_plan_id)
+        }
       rescue ActiveRecord::RecordInvalid => e
         broadcast :invalid, e.message
       rescue ActiveRecord::RecordNotFound => e
@@ -38,9 +42,13 @@ module Administration
       def delete_all_development_actions_for_plan
         return if user_idp_plan_id.blank?
 
-        UserIdpDevelopmentAction.
-          where(user_idp_plan_id: user_idp_plan_id).
-          delete_all
+        records_to_delete = UserIdpDevelopmentAction.
+                            with_public_skills.
+                            where(user_idp_plan_id: user_idp_plan_id).
+                            includes(:development_action)
+        cleanup_orphaned_development_actions(records_to_delete)
+
+        UserIdpDevelopmentAction.where(user_idp_plan_id: user_idp_plan_id).delete_all
       end
 
       def process_development_actions_by_skill
@@ -54,6 +62,8 @@ module Administration
       end
 
       def process_development_actions_by_skill_id(user_idp_skill_id, development_actions)
+        return unless public_user_idp_skill?(user_idp_skill_id)
+
         development_actions_for_deletion,
          development_actions_to_upsert = partition_development_actions(development_actions)
 
@@ -72,16 +82,51 @@ module Administration
         ids_to_delete = development_actions_for_deletion.filter_map { |action_data| action_data[:id].presence }
         return if ids_to_delete.empty?
 
-        UserIdpDevelopmentAction.where(id: ids_to_delete).delete_all
+        records_to_delete = UserIdpDevelopmentAction.
+                            with_public_skills.
+                            where(id: ids_to_delete).
+                            includes(:development_action)
+        cleanup_orphaned_development_actions(records_to_delete)
       end
 
       def delete_unretained_development_actions(user_idp_skill_id, development_actions_to_upsert)
         retained_ids = development_actions_to_upsert.filter_map { |action| action[:id].presence }
 
+        records_to_delete = UserIdpDevelopmentAction.
+                            where(user_idp_skill_id: user_idp_skill_id, user_idp_plan_id: user_idp_plan_id).
+                            where.not(id: retained_ids).
+                            includes(:development_action)
+        cleanup_orphaned_development_actions(records_to_delete)
+
         UserIdpDevelopmentAction.
-          where(user_idp_skill_id: user_idp_skill_id).
+          with_public_skills.
+          where(user_idp_skill_id: user_idp_skill_id, user_idp_plan_id: user_idp_plan_id).
           where.not(id: retained_ids).
           delete_all
+      end
+
+      def cleanup_orphaned_development_actions(records_to_delete)
+        return if records_to_delete.empty?
+
+        deletable_da_ids = DevelopmentAction.
+                           where(source_type: %w[custom
+                                                 ai_generated], owner_type: 'UserIdpPlan', owner_id: user_idp_plan_id).
+                           joins(:user_idp_development_actions).
+                           where(user_idp_development_actions: { id: records_to_delete.select(:id) }).
+                           distinct.
+                           pluck(:id)
+
+        return if deletable_da_ids.empty?
+
+        retained_da_ids = UserIdpDevelopmentAction.
+                          where(development_action_id: deletable_da_ids).
+                          where.not(id: records_to_delete.select(:id)).
+                          distinct.
+                          pluck(:development_action_id)
+
+        safe_to_delete_ids = deletable_da_ids - retained_da_ids
+
+        DevelopmentAction.where(id: safe_to_delete_ids).destroy_all
       end
 
       def upsert_development_actions(development_actions_to_upsert)
@@ -90,14 +135,8 @@ module Administration
           action_data[:id].present?
         end
 
-        records_by_id = UserIdpDevelopmentAction.where(id: development_actions_to_update.pluck(:id)).index_by(&:id)
-
         development_actions_to_update.each do |action_data|
-          record = records_by_id[action_data[:id]]
-          next if record.blank?
-
-          clean_data = sanitize_development_action_data(action_data)
-          record.update!(clean_data.except(:id))
+          update_existing_development_action(action_data)
         end
 
         development_actions_to_create.each do |action_data|
@@ -105,13 +144,67 @@ module Administration
         end
       end
 
+      def update_existing_development_action(action_data)
+        record = UserIdpDevelopmentAction.find(action_data[:id])
+
+        if record.development_action&.source_type != 'platform' && needs_development_action?(action_data)
+          record.development_action.update!(
+            name: action_data[:name].presence,
+            description: action_data[:description],
+            learning_style: action_data[:learning_style]
+          )
+        end
+
+        clean_data = sanitize_development_action_data(action_data)
+        record.update!(clean_data.except(:id))
+      end
+
       def create_new_development_action(action_data)
         clean_data = sanitize_development_action_data(action_data).except(:id)
-        UserIdpDevelopmentAction.create!(clean_data)
+
+        if action_data[:development_action_id].present?
+          UserIdpDevelopmentAction.create!(clean_data)
+        elsif needs_development_action?(action_data)
+          create_development_action_with_user_association(action_data)
+        end
+      end
+
+      def create_development_action_with_user_association(action_data)
+        source_type = action_data[:source_type] || 'platform'
+
+        development_action = DevelopmentAction.create!(
+          name: action_data[:name].presence,
+          description: action_data[:description],
+          learning_style: action_data[:learning_style],
+          owner: user_idp_plan,
+          source_type: source_type
+        )
+
+        UserIdpDevelopmentAction.create!(
+          development_action: development_action,
+          user_idp_plan_id: user_idp_plan_id,
+          user_idp_skill_id: action_data[:user_idp_skill_id],
+          progress: action_data[:progress],
+          start_date_time: action_data[:start_date_time],
+          end_date_time: action_data[:end_date_time],
+          private: action_data[:private]
+        )
+      end
+
+      def needs_development_action?(action_data)
+        action_data[:description].present? && action_data[:learning_style].present?
+      end
+
+      def user_idp_plan
+        @user_idp_plan ||= UserIdpPlan.find(user_idp_plan_id)
       end
 
       def sanitize_development_action_data(action_data)
-        action_data.except(:_destroy)
+        action_data.except(:_destroy, :name, :description, :learning_style, :source_type)
+      end
+
+      def public_user_idp_skill?(user_idp_skill_id)
+        UserIdpSkill.public_skills.exists?(id: user_idp_skill_id)
       end
     end
   end

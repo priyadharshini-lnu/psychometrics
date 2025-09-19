@@ -9,12 +9,17 @@ class IdpTemplate < ApplicationRecord
   translates :instructions, :title_text, :subtitle_text
   belongs_to :project, class_name: 'Client'
   belongs_to :report
+  belongs_to :one_click_ai_assistant, class_name: 'AI::Assistant', optional: true
+  belongs_to :document_analysis_ai_assistant, class_name: 'AI::Assistant', optional: true
   has_many :idp_template_skills, dependent: :destroy
   has_many :idp_template_development_actions, dependent: :destroy
   has_many :skills, through: :idp_template_skills, dependent: :destroy
   has_many :development_actions, through: :idp_template_development_actions, dependent: :destroy
   has_many :idp_template_reflection_questions, dependent: :destroy
   has_many :reflection_questions, through: :idp_template_reflection_questions
+
+  has_many :idp_template_interview_questions, dependent: :destroy
+  has_many :interview_questions, through: :idp_template_interview_questions
 
   enum :available_development_actions_selection_type, { none: 0, all: 1, selected: 2 },
        prefix: :available_development_actions
@@ -62,7 +67,7 @@ class IdpTemplate < ApplicationRecord
     end
   end
 
-  def available_skills
+  def available_skills(plan_id: nil)
     technical_client_skills = load_setting_based_skill(technical_client_skill_settings, 'technical', project).to_sql
     technical_global_skills = load_setting_based_skill(technical_global_skill_settings, 'technical', nil).to_sql
     behavioral_client_skills = load_setting_based_skill(behavioral_client_skill_settings, 'behavioral', project).to_sql
@@ -75,8 +80,7 @@ class IdpTemplate < ApplicationRecord
       behavioral_global_skills,
       skills_by_tags
     ].join(' UNION ')
-
-    Skill.from("(#{combined_query}) AS skills")
+    Skill.from("(#{combined_query}) AS skills").excluding_plan(plan_id: plan_id)
   end
 
   private

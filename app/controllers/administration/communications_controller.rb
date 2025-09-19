@@ -150,7 +150,7 @@ module Administration
 
     def edit_translation
       @communication = resource
-      @selected_locale = params[:locale] || params[:lang]
+      @selected_locale = params[:locale] || params[:lang] || I18n.default_locale.to_s
 
       @available_locales = I18n.available_locales.map(&:to_s).sort
 

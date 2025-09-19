@@ -16,6 +16,7 @@ import { LinkedAssessmentModal } from '../LinkedAssessmentModal/LinkedAssessment
 import { ImportQuestionsModal } from '../ImportQuestionsModal'
 import BlockSettingsModal from '../BlockSettingsModal'
 import { CampaignFactorsFormModal } from '../CampaignFactorsFormModal'
+import MoveQuestionModal from '../MoveQuestionModal'
 
 const MODALS = {
   dataSheetModal: DataSheetModal,
@@ -35,6 +36,7 @@ const MODALS = {
   importQuestionsModal: ImportQuestionsModal,
   blockSettings: BlockSettingsModal,
   campaignFactorsModal: CampaignFactorsFormModal,
+  moveQuestion: MoveQuestionModal,
 }
 
 
@@ -42,9 +44,9 @@ export default function Modals ({ current }) {
   if (!_.size(current)) return null
   return (
     <>
-      {_.map(current, (modal) => {
+      {_.map(current, (modal, index) => {
         const ModalComponent = MODALS[modal]
-        return <ModalComponent key={modal} />
+        return <ModalComponent key={`${modal}-${index}`} />
       })}
     </>
   )

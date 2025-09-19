@@ -6,7 +6,6 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   fetchSingle as fetchReport,
 } from '~/modules/admin/modules/campaigns/core/userReports'
-import styles from '~/components/IdpShared/SkillGapReport/SkillGapReport.less'
 import { SkillGapReport } from '~/components/IdpShared/SkillGapReport/SkillGapReport'
 import { FetchSkillGapsResponse } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 
@@ -22,12 +21,14 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type SkillGapReportWrapperProps = {
   next: () => void
   skillGapReportId: number
+  prev: () => void
 } & PropsFromRedux
 
 const SkillGapReportWrapper:FC<SkillGapReportWrapperProps> = ({
   fetchReport,
   skillGapReportId,
   next,
+  prev,
 }) => {
   const { campaignId } = useParams()
 
@@ -54,13 +55,10 @@ const SkillGapReportWrapper:FC<SkillGapReportWrapperProps> = ({
   return (
     <SkillGapReport
       next={next}
+      prev={prev}
       reportUrl={skillGapData?.pdf.url}
       skillGapData={skillGapData}
       isLoading={isLoading}
-      styles={{
-        reportContainer: styles.reportContainer,
-        reportViewer: styles.reportViewer,
-      }}
     />
   )
 }

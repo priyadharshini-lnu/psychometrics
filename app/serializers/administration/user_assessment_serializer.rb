@@ -9,11 +9,7 @@ module Administration
                :saville_user_assessment_details, :simulation_user_assessment_details, :pearson_user_assessment_details,
                :skillvue_user_assessment_details
 
-    delegate :name, :dimension_id, to: :assessment
-
-    def category
-      object.assessment.decorate.category
-    end
+    delegate :name, :category, :dimension_id, to: :assessment
 
     def status
       return :not_started if user_result.nil?
@@ -96,6 +92,7 @@ module Administration
           %w[remove destroy],
           'reset_progress',
           'push_webhook',
+          'mark_complete',
           'normalize_factor_scores',
           %w[reset_results reset]
         ],

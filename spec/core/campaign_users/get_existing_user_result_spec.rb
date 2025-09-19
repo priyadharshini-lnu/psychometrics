@@ -103,4 +103,52 @@ hogan_credential: old_hogan_credential)
 
     expect(result).to be_nil
   end
+
+  it 'prioritizes completed assessment over more recent in-progress assessment' do
+    completed_user_assessment = create(:user_assessment,
+                                       assessment: assessment,
+                                       subject: user,
+                                       evaluator: user,
+                                       status: :completed,
+                                       completed_at: 20.days.ago,
+                                       created_at: 25.days.ago)
+    completed_users_result = create(:users_result, created_at: 25.days.ago, user_assessment: completed_user_assessment)
+
+    in_progress_user_assessment = create(:user_assessment,
+                                         assessment: assessment,
+                                         subject: user,
+                                         evaluator: user,
+                                         status: :in_progress,
+                                         completed_at: nil,
+                                         created_at: 10.days.ago)
+    create(:users_result, created_at: 10.days.ago, user_assessment: in_progress_user_assessment)
+
+    result = described_class.call!(campaign_user, assessment, project.id)
+
+    expect(result).to eq(completed_users_result)
+  end
+
+  it 'returns latest completed assessment when multiple completed assessments exist' do
+    older_completed_assessment = create(:user_assessment,
+                                        assessment: assessment,
+                                        subject: user,
+                                        evaluator: user,
+                                        status: :completed,
+                                        completed_at: 30.days.ago,
+                                        created_at: 35.days.ago)
+    create(:users_result, user_assessment: older_completed_assessment)
+
+    newer_completed_assessment = create(:user_assessment,
+                                        assessment: assessment,
+                                        subject: user,
+                                        evaluator: user,
+                                        status: :completed,
+                                        completed_at: 15.days.ago,
+                                        created_at: 20.days.ago)
+    newer_completed_users_result = create(:users_result, user_assessment: newer_completed_assessment)
+
+    result = described_class.call!(campaign_user, assessment, project.id)
+
+    expect(result).to eq(newer_completed_users_result)
+  end
 end

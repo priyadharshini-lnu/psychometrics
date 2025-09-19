@@ -43,6 +43,11 @@
   &-14 {
     font-size: 0.875rem;
   }
+
+  &-14emp {
+    font-size: 0.875em;
+  }
+
   &-16 {
     font-size: 1rem !important;
   }
@@ -176,6 +181,9 @@ each(@spacing-scale, {
 .justify-evenly {
   justify-content: space-evenly;
 }
+.justify-self-end {
+  justify-self: end;
+}
 
 .items-start {
   align-items: flex-start;
@@ -209,6 +217,9 @@ each(@spacing-scale, {
   align-self: stretch;
 }
 
+.flex-column {
+  flex-direction: column;
+}
 
 // Cursor
 .cursor-default {
@@ -243,6 +254,14 @@ each(@spacing-scale, {
 
 .font-normal {
   font-weight: normal;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-semi-bold {
+  font-weight: 600;
 }
 
 .clear-float {
@@ -291,4 +310,17 @@ each(@spacing-scale, {
 
 .border-none {
   border: none;
+}
+
+
+.border-b-1{
+  border-bottom: 1px solid var(--light-grey-border);
+}
+
+.border-r-1 {
+  border-right: 1px solid var(--light-grey-border);
+}
+
+.transform-capitalize {
+  text-transform: capitalize;
 }

@@ -57,6 +57,7 @@ export default class extends Component {
 
   renderPreview () {
     const { model: { props, moduleConfig } } = this.props
+
     return (
       <div className={styles.table}>
         {_.times(props.choices, i => (
@@ -66,16 +67,16 @@ export default class extends Component {
                 <LabelEditor
                   onChange={e => this.changeLabel('choicesTexts', i, e)}
                   maxWidth={150}
-                  value={props.choicesTexts[i] || moduleConfig.defaultChoiceText(i + 1)}
+                  value={props.choicesTexts[i] || ''}
                 />
               </div>
             </div>
             <div className={styles.controls}>
               <select className={`form-control ${styles.select}`}>
                 <option />
-                {_.times(props.scalePoints, j => (
+                {props.scalePointsTexts.map((text, j) => (
                   <option key={j} value={`scale_points_${j}`}>
-                    {props.scalePoints[j] || moduleConfig.defaultScalePointText(j)}
+                    {text === '' ? moduleConfig.defaultScalePointText(j + 1) : text}
                   </option>
                 ))}
                 {this.renderNotApplicableOption(i)}

@@ -11,7 +11,7 @@ import { useEventCallback } from './useEventCallback'
 
 type SetValue<T> = Dispatch<SetStateAction<T>>
 
-export function useLocalStorage<T> (key: string, initialValue: T): [T, SetValue<T>] {
+export function useLocalStorage<T> (key: string, initialValue: T): [T, SetValue<T>, () => void] {
   const readValue = useCallback((): T => {
     if (typeof window === 'undefined') {
       return initialValue
@@ -45,6 +45,10 @@ export function useLocalStorage<T> (key: string, initialValue: T): [T, SetValue<
     }
   })
 
+  const removeValue = useCallback(() => {
+    window.localStorage.removeItem(key)
+  }, [key, readValue])
+
   useEffect(() => {
     setStoredValue(readValue())
   }, [])
@@ -60,7 +64,7 @@ export function useLocalStorage<T> (key: string, initialValue: T): [T, SetValue<
   )
   useEventListener('storage', handleStorageChange)
   useEventListener('local-storage', handleStorageChange)
-  return [storedValue, setValue]
+  return [storedValue, setValue, removeValue]
 }
 
 function parseJSON<T> (value: string | null): T | undefined {

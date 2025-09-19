@@ -12,15 +12,23 @@ import {
   Splitter,
   Flex,
   Badge,
-  Drawer,
+  Drawer, Tooltip, Spin,
 } from 'antd'
+import cs from 'classnames'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { CloseOutlined, MessageOutlined } from '@ant-design/icons'
 import { useMedia } from 'use-media'
+import { MessageOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { DownloadButton } from '~/components/IdpShared/DownloadButton'
 import { useSearchSkills } from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/AddSkills/useSearchSkills'
 import { PageLoadSpinner } from '~/glint'
 import { Comments } from '~/components/IdpShared/Comments'
+import { SkillGapReportTab }
+  from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/SkillGapReport/SkillGapReportTab'
+import styles from './styles.less'
+import { useAppSelector } from '~/modules/endUser/store/hooks'
+import { getReflectiveQuestions } from '~/modules/endUser/modules/campaigns/core/idp/idpPlanRtk'
+
 
 import {
   fetchAvailableDevelopmentActions,
@@ -42,14 +50,16 @@ import {
 
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
-  DevelopmentActionListView,
   DevelopmentAction,
   Skill,
 } from '~/components/IdpShared/DevelopmentActions'
+import {
+  DevelopmentActionListView,
+} from '../DevelopmentActionsFlow/DevelopmentActionListView'
 import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
 import { groupSkillsBySkillType } from './utils'
 import { USER_IDP_PLAN_STATUS, STATUS_COLORS } from '~/components/IdpShared/constants'
-import { ReflectiveQuestions } from '~/modules/endUser/modules/campaigns/routes/idp/ReflectiveQuestions'
+import { ListView } from '~/modules/endUser/modules/campaigns/routes/idp/ReflectiveQuestions'
 import { Filters } from '~/components/IdpShared/Comments/Types'
 
 const { I18n } = window
@@ -63,6 +73,9 @@ const connector = connect((state: RootState) => ({
   idpComments: state.campaigns.idp.userIdpComments,
   idpCommentsTotalCount: state.campaigns.idp.userIdpCommentsTotalCount,
   unreadCommentsCount: state.campaigns.idp.unreadCommentsCount,
+  skillGapReportAvailable: state.campaigns.idp.skillGapReportAvailable,
+  skillGapReportData: state.campaigns.idp.skillGapReportData,
+  oneClickIdpEnabled: state.campaigns.idp.oneClickIdpEnabled,
 }),
 {
   fetchAvailableDevelopmentActions,
@@ -88,6 +101,7 @@ type Props = PropsFromRedux & {
   operations?: React.ReactNode | null;
   viewType?: 'tabs' | 'list';
   header?: React.ReactNode;
+  headerHeight?: number;
 }
 
 const UserDevelopmentPlanComponent = ({
@@ -119,13 +133,17 @@ const UserDevelopmentPlanComponent = ({
   showCommentsForSkillId,
   unreadCommentsCount,
   header,
+  skillGapReportAvailable,
+  skillGapReportData,
+  headerHeight = 0,
+  oneClickIdpEnabled,
 }: Props) => {
   const { tab: paramTab } = useParams() as {tab: string}
   const isMobile = useMedia({
     maxWidth: 768,
   })
 
-  const [tab, setTab] = useState(paramTab || 'list')
+  const [tab, setTab] = useState(paramTab)
   const [isCommentsDrawerOpen, setIsCommentsDrawerOpen] = useState(false)
   const [showAddSkill, setShowAddSkill] = useState(false)
   const [allSkills, setAllSkills] = useState<Skill[]>(([]))
@@ -133,6 +151,7 @@ const UserDevelopmentPlanComponent = ({
   const [selectedSkills, setSelectedSkills] = useState<Skill[]>([])
 
   const [isLoading, setIsLoading] = useState(false)
+  const [isDALoading, setIsDALoading] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -140,6 +159,7 @@ const UserDevelopmentPlanComponent = ({
   const [isCommentsLoading, setIsCommentsLoading] = useState(true)
   const [isLoadingReplies, setIsLoadingReplies] = useState(false)
   const [commentsPanelSize, setCommentsPanelSize] = useState(400)
+  const reflectionQuestions = useAppSelector(getReflectiveQuestions)
 
   const listData = useMemo(() => groupSkillsBySkillType(idpSkills, idpDevelopmentActions),
     [idpSkills, idpDevelopmentActions])
@@ -178,13 +198,26 @@ const UserDevelopmentPlanComponent = ({
 
   useEffect(() => {
     if (paramTab !== tab) {
-      setTab(paramTab || 'list')
+      setTab(paramTab)
     }
+    // changeTab(paramTab)
   }, [paramTab])
 
   useEffect(() => {
-    if (status && status === USER_IDP_PLAN_STATUS.NOT_STARTED && currentUser.id === idpUserId) {
-      navigate('/idp/steps/getting_started')
+    if (currentUser.id === idpUserId) {
+      switch (status) {
+        case USER_IDP_PLAN_STATUS.NOT_STARTED: {
+          const welcome_page = oneClickIdpEnabled ? '/idp/ai_assistant/start' : '/idp/steps/getting_started'
+          navigate(welcome_page)
+          break
+        }
+        case USER_IDP_PLAN_STATUS.AI_ASSISTED_IDP_IN_PROGRESS: {
+          navigate('/idp/ai_assistant/chat')
+          break
+        }
+        default:
+          break
+      }
     }
   }, [status])
 
@@ -198,12 +231,15 @@ const UserDevelopmentPlanComponent = ({
     }
   }, [showAddSkill])
 
-  const handleAddDevelopmentAction = (developmentAction: DevelopmentAction) => {
-    addDevelopmentActionInPlan(developmentAction)
+  const handleAddDevelopmentAction = (developmentActionsObj) => {
+    addDevelopmentActionInPlan(developmentActionsObj)
   }
 
   const handleShowAvailableDevelopmentAction = (skillId) => {
-    fetchAvailableDevelopmentActions(idpUserId, skillId)
+    setIsDALoading(true)
+    fetchAvailableDevelopmentActions(idpUserId, skillId).then(() => {
+      setIsDALoading(false)
+    })
   }
 
   const handleSelectSkill = (skills) => {
@@ -216,15 +252,23 @@ const UserDevelopmentPlanComponent = ({
   }
 
   const handleFinishAddSkill = () => {
+    setIsLoading(true)
     saveUserIdpSkills(
       selectedSkills, null, idpUserId,
-    ).then(() => (
+    ).then(() => {
       setShowAddSkill(false)
-    ))
+      message.success(I18n.t('idp.skills_updated'))
+    }).catch((error) => {
+      message.error(error)
+    })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   const handleDeselectSkill = (skillId) => {
-    setSelectedSkills(selectedSkills.filter(skill => (skill.skillId !== skillId)))
+    setSelectedSkills(selectedSkills.filter(userIdpSkill => userIdpSkill.id !== skillId
+      && userIdpSkill.skillId !== skillId))
   }
 
   const handleUpdateDevelopmentActionProgress = (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => {
@@ -274,7 +318,9 @@ const UserDevelopmentPlanComponent = ({
     }
     if (skillElement) {
       skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      showCommentsForSkillId(resourceId)
+      setTimeout(() => {
+        showCommentsForSkillId(resourceId)
+      }, 400)
     }
   }
 
@@ -284,17 +330,34 @@ const UserDevelopmentPlanComponent = ({
 
   const enhancedOperations = (
     <Flex gap={8}>
-      <Badge count={unreadCommentsCount} size="small">
-        <Button
-          color="default"
-          variant="solid"
-          icon={<MessageOutlined />}
-          onClick={() => setIsCommentsDrawerOpen(!isCommentsDrawerOpen)}
-        >
-          {I18n.t('idp.comments.comments')}
-        </Button>
-      </Badge>
-      {operations}
+      {tab === 'skill_gap_report' ? (
+        skillGapReportAvailable && skillGapReportData && (
+          <DownloadButton
+            disabled={skillGapReportData?.status !== 'prepared'}
+            href={skillGapReportData?.reportUrl}
+          >
+            {I18n.t('idp.skill_gap_report.download')}
+          </DownloadButton>
+        )
+      ) : (
+        <>
+          {operations}
+          <Badge count={unreadCommentsCount} size="small">
+            <Tooltip title={I18n.t('idp.comment_details.add_comments')}>
+              <Button
+                color="default"
+                icon={<MessageOutlined />}
+                style={{
+                  backgroundColor: isCommentsDrawerOpen ? '#0B0B0B' : 'transparent',
+                  color: isCommentsDrawerOpen ? 'white' : 'inherit',
+                }}
+                onClick={() => setIsCommentsDrawerOpen(!isCommentsDrawerOpen)}
+              />
+            </Tooltip>
+
+          </Badge>
+        </>
+      )}
     </Flex>
   )
 
@@ -345,9 +408,8 @@ const UserDevelopmentPlanComponent = ({
   const developmentActionViews = isMobile ? (
     <>
       <div
+        className={styles['tab-container']}
         style={{
-          padding: '16px 24px 0 24px',
-          overflow: 'auto',
           height: '100%',
         }}
       >
@@ -361,6 +423,7 @@ const UserDevelopmentPlanComponent = ({
             onUpdateDevelopmentAction={updateDevelopmentActionInPlan}
             onShowAvailableDevelopmentAction={handleShowAvailableDevelopmentAction}
             onAddMoreSkills={handleAddMoreSkill}
+            isDALoading={isDALoading}
           />
         </div>
       </div>
@@ -391,10 +454,9 @@ const UserDevelopmentPlanComponent = ({
       }}
     >
       <Splitter.Panel
+        className={styles['tab-container']}
         style={{
-          padding: '16px 24px 0 24px',
-          overflow: 'auto',
-          height: '100%',
+          maxHeight: `calc(100vh - (220px + ${headerHeight}px))`,
         }}
       >
         <div ref={containerRef}>
@@ -407,6 +469,8 @@ const UserDevelopmentPlanComponent = ({
             onUpdateDevelopmentAction={updateDevelopmentActionInPlan}
             onShowAvailableDevelopmentAction={handleShowAvailableDevelopmentAction}
             onAddMoreSkills={handleAddMoreSkill}
+            isDALoading={isDALoading}
+            isViewingReportee={currentUser.id !== idpUserId}
           />
         </div>
       </Splitter.Panel>
@@ -415,11 +479,10 @@ const UserDevelopmentPlanComponent = ({
           max={600}
           min={300}
           size={commentsPanelSize}
+          className="flex flex-column"
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            overflow: 'hidden',
+            overflowY: 'auto',
+            maxHeight: `calc(100vh - (220px + ${headerHeight}px))`,
           }}
         >
           {commentsComponent}
@@ -435,12 +498,46 @@ const UserDevelopmentPlanComponent = ({
       children: developmentActionViews,
     },
     ...(
-      currentUser.id === idpUserId
+      skillGapReportAvailable ? [
+        {
+          label: I18n.t('idp.skill_gap_report.title'),
+          key: 'skill_gap_report',
+          children:
+        <Flex
+          justify="center"
+          className={styles['tab-container']}
+          style={{
+            maxHeight: `calc(100vh - (220px + ${headerHeight}px))`,
+          }}
+        >
+          <SkillGapReportTab />
+        </Flex>,
+        },
+      ]
+        : []
+
+    ),
+    ...(
+      currentUser.id === idpUserId && reflectionQuestions.length > 0
         ? [
           {
             label: I18n.t('idp.reflective_questions.title'),
             key: 'reflective_questions',
-            children: <Flex justify="center" style={{ padding: '16px 24px 0 24px' }}><ReflectiveQuestions /></Flex>,
+            children:
+          <Flex
+            vertical
+            align="start"
+            className={styles['tab-container']}
+            style={{
+              maxHeight: 'calc(100vh - 220px)',
+            }}
+          >
+            <ListView />
+            <div style={{
+              minHeight: '200px',
+            }}
+            />
+          </Flex>,
           },
         ]
         : []
@@ -448,7 +545,7 @@ const UserDevelopmentPlanComponent = ({
   ]
 
   const headerContent = header || (
-    <Row align="middle" justify="center" style={{ padding: '24px 24px 0 24px' }}>
+    <Row align="middle" justify="center" className="mt-2 mb-2 ps-6 pe-6">
       <Col flex="auto">
         <Space>
           <Typography.Title level={4} style={{ margin: 0 }}>
@@ -457,29 +554,42 @@ const UserDevelopmentPlanComponent = ({
         </Space>
       </Col>
       <Col>
-        <Tag color={STATUS_COLORS[status]}>{I18n.t(`idp.user_idp_status.${status}`)}</Tag>
+        <Tag className="me-0" color={STATUS_COLORS[status]}>{I18n.t(`idp.user_idp_status.${status}`)}</Tag>
       </Col>
     </Row>
   )
 
+
   if (showAddSkill) {
     return (
-      <div>
+      <Flex
+        vertical
+        className={styles['tab-container']}
+        style={{
+          maxHeight: '100%',
+        }}
+      >
         <Button
-          type="text"
-          icon={<CloseOutlined />}
           onClick={() => setShowAddSkill(false)}
-        />
-        <AddSkillsStep
-          addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
-          skillTypes={skillTypes}
-          onFinishAddSkill={handleFinishAddSkill}
-          selectedSkills={selectedSkills}
-          onDeselectSkill={handleDeselectSkill}
-          onAddSkill={handleSelectSkill}
-          searchSkillResource={searchSkillResource}
-        />
-      </div>
+          className={cs(styles['cancel-btn'], 'mb-4')}
+        >
+          {I18n.t('common.actions.cancel')}
+        </Button>
+        <Spin spinning={isLoading}>
+          <AddSkillsStep
+            addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
+            skillTypes={skillTypes}
+            onFinishAddSkill={handleFinishAddSkill}
+            selectedSkills={selectedSkills}
+            onDeselectSkill={handleDeselectSkill}
+            onAddSkill={handleSelectSkill}
+            searchSkillResource={searchSkillResource}
+            showBackButton={false}
+            skillGapReportData={null}
+          />
+        </Spin>
+
+      </Flex>
     )
   }
   return (
@@ -492,9 +602,12 @@ const UserDevelopmentPlanComponent = ({
               onChange={changeTab}
               tabBarExtraContent={tab !== 'reflective_questions' ? enhancedOperations : null}
               items={tabItems}
+              activeKey={tab}
+              className={styles['user-idp-plan']}
               tabBarStyle={{
                 marginBottom: 0,
                 padding: '0 24px',
+                boxShadow: '0 2px 2px var(--shadow-color)',
               }}
             />
           </>

@@ -1,10 +1,10 @@
 export const getActionsMenuProps = ({
-  user, threeSixtyCampaignId, campaignId, removeUser, openModal, onUserUpdate, editUser, permissions,
+  user, campaignId, removeUser, openModal, onUserUpdate, editUser, permissions,
 }) => {
   const removeUserWithConfirmation = () => {
     // eslint-disable-next-line no-alert
     if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_from_campaign'))) {
-      removeUser(threeSixtyCampaignId, user.id)
+      removeUser(campaignId, user.id)
     }
   }
 

@@ -35,6 +35,8 @@ module Assessments
         new_assessment.skip_owner_validation = skip_owner_validation
         new_assessment.save!
 
+        copy_instruction_translations(assessment, new_assessment)
+
         scoring_question_ids = assessment.factors_scoring.pluck(:question_id)
         no_scoring_questions = assessment.question_ids - scoring_question_ids
         question_ids = questions_to_copy ? questions_to_copy.pluck(:id) : assessment.question_ids
@@ -50,6 +52,8 @@ module Assessments
 
           @new_block = make_copy(block, new_assessment)
           @new_block.save!
+
+          copy_block_translations(block, @new_block, assessment, new_assessment)
 
           @blocks_mapping[block.id] = @new_block.id
 
@@ -72,7 +76,7 @@ module Assessments
             new_question.save!
             @new_block.questions << new_question
 
-            copy_translations(question, new_question, new_assessment)
+            copy_question_translations(question, new_question, new_assessment)
           end
         end
         # rubocop:enable Metrics/BlockLength
@@ -131,12 +135,40 @@ module Assessments
       end
     end
 
-    def copy_translations(old_question, new_question, assessment)
+    def copy_question_translations(old_question, new_question, assessment)
       old_question.translations.each do |translation|
         new_translation = make_copy(translation, assessment, 'resource_id')
         new_translation.translateable_id = new_question.id
         new_question.translations << new_translation
       end
+    end
+
+    def copy_instruction_translations(assessment, new_assessment)
+      translation = Translation.find_by(
+        resource_type: assessment.type,
+        resource_id: assessment.id,
+        translateable_type: 'Instructions'
+      )
+
+      return unless translation
+
+      new_translation = make_copy(translation, new_assessment, 'resource_id')
+      new_translation.save!
+    end
+
+    def copy_block_translations(old_block, new_block, assessment, new_assessment)
+      translation = Translation.find_by(
+        resource_type: assessment.type,
+        resource_id: assessment.id,
+        translateable_type: 'Block',
+        translateable_id: old_block.id
+      )
+
+      return unless translation
+
+      new_translation = make_copy(translation, new_assessment, 'resource_id')
+      new_translation.translateable_id = new_block.id
+      new_translation.save!
     end
 
     def update_json_configurations!(assessment)

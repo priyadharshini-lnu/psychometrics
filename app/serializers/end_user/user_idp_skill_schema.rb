@@ -11,6 +11,7 @@ module EndUser
         required(:name).filled(:str?)
         required(:initial_rating).maybe { int? | float? }
         required(:final_rating).maybe { int? | float? }
+        required(:private).filled(:bool?)
         optional(:skill_type).filled(:str?)
       end
     end

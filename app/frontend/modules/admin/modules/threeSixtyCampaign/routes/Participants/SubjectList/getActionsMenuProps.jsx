@@ -15,7 +15,6 @@ export const getActionsMenuProps = ({
   regenerateReport,
   message,
   setShowResetSubjectModal,
-  threeSixtyCampaignId,
   reportAvailableLanguages,
   reportDefaultLanguage,
   reportName,
@@ -32,7 +31,7 @@ export const getActionsMenuProps = ({
   const removeUserWithConfirmation = () => {
     // eslint-disable-next-line no-alert
     if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_from_campaign'))) {
-      removeUser(threeSixtyCampaignId, user.id)
+      removeUser(campaignId, user.id)
     }
   }
 

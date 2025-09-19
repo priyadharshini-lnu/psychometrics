@@ -7,7 +7,7 @@ import { useMemo } from 'react'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const getCustomMenuProps = ({
-  threesixtyCampaignId, campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
+  campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
   handleExportThreeSixtyScores, handleBulkDownloads, openModal, isBulk, handleBulkMarkAsDone,
   selectedKeys, excludedKeys, isAllSelected, handleTemplateConversion,
@@ -23,25 +23,25 @@ const getCustomMenuProps = ({
       return onExport()
     }
     if (key === 'import_raw') {
-      return openModal('ImportRawModal', { campaignId: threesixtyCampaignId })
+      return openModal('ImportRawModal', { campaignId })
     }
     if (key === 'reset_participant') {
-      return resetCampaignWithConfirmation(threesixtyCampaignId)
+      return resetCampaignWithConfirmation(campaignId)
     }
     if (key === 'reset_all_nominations') {
-      return resetAllNominationsWithConfirmation(threesixtyCampaignId)
+      return resetAllNominationsWithConfirmation(campaignId)
     }
     if (key === 'rescore_assessment') {
-      return handleRescoreAssessment(threesixtyCampaignId)
+      return handleRescoreAssessment(campaignId)
     }
     if (key === 'regenerate_reports') {
-      return regenerateReports(threesixtyCampaignId)
+      return regenerateReports(campaignId)
     }
     if (key === 'export_360_scores') {
-      return handleExportThreeSixtyScores(threesixtyCampaignId)
+      return handleExportThreeSixtyScores(campaignId)
     }
     if (key === 'bulk_downloads') {
-      return handleBulkDownloads(threesixtyCampaignId)
+      return handleBulkDownloads(campaignId)
     }
     if (key === 'completed' || key === 'in_progress') {
       return handleBulkMarkAsDone(campaignId, key, isAllSelected, selectedKeys, excludedKeys)
@@ -130,7 +130,7 @@ const getCustomMenuProps = ({
 }
 
 export default function ToolsDropdown ({
-  threesixtyCampaignId, campaignId, dimensionId, resetCampaign, resetAllNominations, openModal,
+  campaignId, dimensionId, resetCampaign, resetAllNominations, openModal,
   rescoreAssessment, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
   reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys,
@@ -157,7 +157,7 @@ export default function ToolsDropdown ({
     })
   }
 
-  const handleRescoreAssessment = (threesixtyCampaignId) => {
+  const handleRescoreAssessment = (campaignId) => {
     modal.confirm({
       title: I18n.t('campaign_assessment.modals.rescore.title'),
       icon: <ExclamationCircleOutlined />,
@@ -168,7 +168,7 @@ export default function ToolsDropdown ({
       cancelText: I18n.t('common.text.cancel'),
       onOk: async () => {
         try {
-          await rescoreAssessment(threesixtyCampaignId)
+          await rescoreAssessment(campaignId)
           message.success(I18n.t('campaign_assessment.modals.rescore.successfully'))
         } catch (error) {
           message.error(error, 5)
@@ -177,7 +177,7 @@ export default function ToolsDropdown ({
     })
   }
 
-  const handleRegenerateReports = (threesixtyCampaignId) => {
+  const handleRegenerateReports = (campaignId) => {
     if (reportAvailableLanguages.length === 0) {
       modal.confirm({
         title: I18n.t('campaign_assessment.modals.regenerate.title'),
@@ -189,7 +189,7 @@ export default function ToolsDropdown ({
         cancelText: I18n.t('common.text.cancel'),
         onOk: async () => {
           try {
-            await regenerateReports(threesixtyCampaignId, [reportDefaultLanguage], true, selectedUserReportIds)
+            await regenerateReports(campaignId, [reportDefaultLanguage], true, selectedUserReportIds)
             message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
@@ -204,7 +204,7 @@ export default function ToolsDropdown ({
         defaultLocale: reportDefaultLanguage,
         onConfirm: async (selectedLocales, forceRegenerate) => {
           try {
-            await regenerateReports(threesixtyCampaignId, selectedLocales, forceRegenerate, selectedUserReportIds)
+            await regenerateReports(campaignId, selectedLocales, forceRegenerate, selectedUserReportIds)
             message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
@@ -216,7 +216,7 @@ export default function ToolsDropdown ({
 
   const handleBulkDownloads = () => {
     if (reportAvailableLanguages.length === 0) {
-      bulkDownloads(threesixtyCampaignId, [reportDefaultLanguage], selectedUserReportIds)
+      bulkDownloads(campaignId, [reportDefaultLanguage], selectedUserReportIds)
         .then(() => {
           message.success(I18n.t('jobs.threesixty.bulk_downloads'))
         })
@@ -231,7 +231,7 @@ export default function ToolsDropdown ({
         allLocales: reportAvailableLanguages,
         defaultLocale: reportDefaultLanguage,
         onConfirm: (selectedLocales) => {
-          bulkDownloads(threesixtyCampaignId, selectedLocales, selectedUserReportIds)
+          bulkDownloads(campaignId, selectedLocales, selectedUserReportIds)
             .then(() => {
               message.success(I18n.t('jobs.threesixty.bulk_downloads'))
             })
@@ -243,7 +243,7 @@ export default function ToolsDropdown ({
     }
   }
 
-  const handleBulkMarkAsDone = (threesixtyCampaignId, status_key, isAllSelected, selectedKeys, excludedKeys) => {
+  const handleBulkMarkAsDone = (campaignId, status_key, isAllSelected, selectedKeys, excludedKeys) => {
     const status = status_key === 'completed' ? 'done' : 'undone'
 
     modal.confirm({
@@ -256,7 +256,7 @@ export default function ToolsDropdown ({
       cancelText: I18n.t('common.text.cancel'),
       onOk: async () => {
         try {
-          await markAsDone(threesixtyCampaignId, status_key, isAllSelected, selectedKeys, excludedKeys)
+          await markAsDone(campaignId, status_key, isAllSelected, selectedKeys, excludedKeys)
           message.success(
             I18n.t('campaign_assessment.modals.bulk_update_evaluation.successfully', { status }),
           )
@@ -268,27 +268,27 @@ export default function ToolsDropdown ({
   }
 
 
-  const resetAllNominationsWithConfirmation = (threesixtyCampaignId) => {
+  const resetAllNominationsWithConfirmation = (campaignId) => {
     openModal('CampaignNameConfirmationModal', {
-      onConfirm: () => resetAllNominations(threesixtyCampaignId),
+      onConfirm: () => resetAllNominations(campaignId),
       confirmationMessage: I18n.t('threesixty.reset_nomination_confirmation'),
     })
   }
 
   const onExport = () => {
-    exportCompletionStatuses(threesixtyCampaignId).then(() => {
+    exportCompletionStatuses(campaignId).then(() => {
       message.success(I18n.t('jobs.threesixty.export_completion_statuses_scheduled'))
     })
   }
 
   const handleExportRawResults = (withLabels) => {
-    exportRawResults(threesixtyCampaignId, withLabels).then(() => {
+    exportRawResults(campaignId, withLabels).then(() => {
       message.success(I18n.t('jobs.threesixty.export_raw_results_scheduled'))
     })
   }
 
   const handleExportThreeSixtyScores = () => {
-    exportThreeSixtyScores(threesixtyCampaignId).then(() => {
+    exportThreeSixtyScores(campaignId).then(() => {
       message.success(I18n.t('jobs.threesixty.export_scores_scheduled'))
     })
   }
@@ -298,7 +298,6 @@ export default function ToolsDropdown ({
       menu={
         getCustomMenuProps({
           projectId,
-          threesixtyCampaignId,
           dimensionId,
           campaignId,
           resetCampaignWithConfirmation,

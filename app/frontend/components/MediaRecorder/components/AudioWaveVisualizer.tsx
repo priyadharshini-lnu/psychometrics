@@ -4,11 +4,13 @@ import SiriWave from 'siriwave'
 interface AudioWaveVisualizerProps {
     getMediaStream: () => Promise<MediaStream | null>;
     audioBlobUrl?: string;
+    style?: React.CSSProperties;
 }
 
 const AudioWaveVisualizer: React.FC<AudioWaveVisualizerProps> = ({
   getMediaStream,
   audioBlobUrl,
+  style = { height: '22px' },
 }) => {
   const audioWaveRef = useRef<SiriWave | null>(null)
   const analyserRef = useRef<AnalyserNode | null>(null)
@@ -119,7 +121,7 @@ const AudioWaveVisualizer: React.FC<AudioWaveVisualizerProps> = ({
     }
   }, [getMediaStream, audioBlobUrl])
 
-  return <div ref={audioContainerRef} style={{ height: '22px' }} />
+  return <div ref={audioContainerRef} style={style} />
 }
 
 export default AudioWaveVisualizer

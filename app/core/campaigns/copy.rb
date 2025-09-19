@@ -17,6 +17,9 @@ module Campaigns
         copy_assessments_and_reports(new_campaign)
         copy_sequencing(new_campaign)
         copy_datasheet_columns(new_campaign)
+        if form.copy_campaign_factors
+          copy_campaign_factors_and_groups(new_campaign)
+        end
         new_campaign
       end
 
@@ -26,7 +29,8 @@ module Campaigns
     def copy_campaign(campaign)
       campaign.dup.tap do |new_campaign|
         new_campaign.campaign_options = campaign.campaign_options.dup
-        new_campaign.update!(form.attributes)
+        attrs = form.attributes.except(:copy_campaign_factors)
+        new_campaign.update!(attrs)
       end
     end
 
@@ -60,6 +64,23 @@ module Campaigns
       new_campaign.create_campaign_datasheet
       campaign.campaign_datasheet.sheet_columns.each do |column|
         new_campaign.datasheet.sheet_columns << column.dup
+      end
+    end
+
+    def copy_campaign_factors_and_groups(new_campaign)
+      group_id_map = {}
+      campaign.campaign_factor_groups.order(:position).each do |group|
+        new_group = group.dup
+        new_group.campaign_id = new_campaign.id
+        new_group.save!
+        group_id_map[group.id] = new_group.id
+      end
+
+      campaign.campaign_factors.order(:position).each do |factor|
+        new_factor = factor.dup
+        new_factor.campaign_id = new_campaign.id
+        new_factor.campaign_factor_group_id = group_id_map[factor.campaign_factor_group_id]
+        new_factor.save!
       end
     end
   end

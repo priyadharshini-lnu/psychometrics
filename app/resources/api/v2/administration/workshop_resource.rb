@@ -4,7 +4,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   attributes :campaign_id, :start_time, :timezone, :duration, :video_call_type, :total_seats, :cancellation_lead_time,
              :scheduling_lead_time, :booked_seats, :remaining_seats, :meeting_link, :workshop_assessors_ids,
              :workshop_managers_ids, :name, :status, :allow_late_cancellation_and_rescheduling,
-             :campaign_assessment_group_id, :disable_cancellation_and_rescheduling
+             :campaign_assessment_group_id, :disable_cancellation_and_rescheduling, :video_recording_enabled
 
   has_many :workshop_managers
   has_many :workshop_assessors
@@ -84,10 +84,14 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
           Api::Administration::WorkshopPolicy,
           context[:user],
           @model,
-          %w[update],
+          %w[update view_recordings],
           { campaign_id: @model.campaign_id }
         )
       }
     }
+  end
+
+  def video_recording_enabled
+    @model.meeting_room&.video_recording_enabled? || false
   end
 end

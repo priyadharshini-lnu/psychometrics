@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
-  Row, Col, Radio, Tooltip,
+  Row, Col, Radio, Tooltip, InputRef,
 } from 'antd'
 import snakeCase from 'lodash/snakeCase'
 import { QuestionCircleOutlined } from '@ant-design/icons'
@@ -55,6 +55,9 @@ const CampaignOptions: React.FC<Props> = ({
   const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
   const [watermarkContent, setWatermarkContent] = useState<string>('')
 
+  const [localFixedTime, setLocalFixedTime] = useState<boolean>(false)
+  const inputDurationRef = useRef<InputRef>(null)
+
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
 
@@ -70,6 +73,25 @@ const CampaignOptions: React.FC<Props> = ({
     setWatermarkContent(options.watermarkContent || '')
   }, [options.watermarkContent])
 
+  useEffect(() => {
+    if (options && Object.keys(options).length > 0) {
+      setLocalFixedTime(options.fixedTime || false)
+    }
+  }, [options.fixedTime])
+
+  const sendFixedTimeUpdate = (fixedTimeValue: boolean, durationValue: number) => {
+    if (!fixedTimeValue || (fixedTimeValue && durationValue > 0)) {
+      update(
+        parsedProjectId, parsedCampaignId, {
+          ...options,
+          fixedTime: fixedTimeValue,
+          fixedTimeDuration: durationValue,
+          proctoringEnabled: fixedTimeValue ? options.proctoringEnabled : false,
+          proctoringEnabledOnWorkshopActivity: fixedTimeValue ? options.proctoringEnabledOnWorkshopActivity : false,
+        },
+      )
+    }
+  }
 
   const parametersForField = name => ({
     value: (options || {})[name],
@@ -79,15 +101,18 @@ const CampaignOptions: React.FC<Props> = ({
   })
 
   const parametersForFixedTimeField = () => ({
-    value: (options || {}).fixedTime,
-    onChange: (value: boolean) => update(
-      parsedProjectId, parsedCampaignId, {
-        ...options,
-        fixedTime: value,
-        proctoringEnabled: value ? options.proctoringEnabled : false,
-        proctoringEnabledOnWorkshopActivity: value ? options.proctoringEnabledOnWorkshopActivity : false,
-      },
-    ),
+    value: localFixedTime,
+    onChange: (value: boolean) => {
+      setLocalFixedTime(value)
+
+      if (!value) {
+        sendFixedTimeUpdate(value, 0)
+      } else {
+        requestAnimationFrame(() => {
+          inputDurationRef.current?.focus()
+        })
+      }
+    },
   })
 
   const parametersForWorkshopInviteRequiresPreworkCompletionField = () => ({
@@ -112,12 +137,14 @@ const CampaignOptions: React.FC<Props> = ({
 
   const parametersForShowWatermark = () => ({
     value: (options || {}).showWatermark,
-    onChange: (value: boolean) => update(
-      parsedProjectId, parsedCampaignId, {
-        ...options,
-        showWatermark: value,
-      },
-    ),
+    onChange: (value: boolean) => {
+      update(
+        parsedProjectId, parsedCampaignId, {
+          ...options,
+          showWatermark: value,
+        },
+      )
+    },
   })
 
   const handleWatermarkContentChange = (e) => {
@@ -130,21 +157,27 @@ const CampaignOptions: React.FC<Props> = ({
   const parametersWatermarkContent = ({
     value: watermarkContent,
     defaultValue: options.watermarkContent,
-    onBlur: () => update(
-      parsedProjectId,
-      parsedCampaignId,
-      { ...options, watermarkContent },
-    ),
+    onBlur: () => {
+      update(
+        parsedProjectId,
+        parsedCampaignId,
+        { ...options, watermarkContent },
+      )
+    },
     onChange: handleWatermarkContentChange,
   })
 
   const parametersForFixedTimeDuration = ({
     value: options.fixedTimeDuration ? options.fixedTimeDuration : 0,
-    onChange: (value: number) => update(
-      parsedProjectId,
-      parsedCampaignId,
-      { ...options, fixedTimeDuration: value },
-    ),
+    onChange: (value: number) => {
+      if (value === 0 && localFixedTime) {
+        setLocalFixedTime(false)
+        sendFixedTimeUpdate(false, 0)
+      } else if (value > 0) {
+        sendFixedTimeUpdate(localFixedTime, value)
+      }
+    },
+    ref: inputDurationRef,
   })
 
   const parametersForRules = name => ({
@@ -181,6 +214,7 @@ const CampaignOptions: React.FC<Props> = ({
     ),
   })
 
+
   return (
     <div className="pt-4 pb-4 ps-4 pe-4">
       <Section>
@@ -206,144 +240,136 @@ const CampaignOptions: React.FC<Props> = ({
           {...parametersForFixedTimeField()}
         />
 
-        {options.fixedTime && (
-          <>
-            <div className="mbl">
-              <Row>
-                <Col span={24}>
-                  <Row align="middle">
-                    <Col span={5} offset={2}>
-                      <InputDuration
-                        masked
-                        placeholder={I18n.t('administration.components.input_duration.placeholder')}
-                        {...parametersForFixedTimeDuration}
-                      />
-                    </Col>
-                    <Col>
-                      <Tooltip title={I18n.t('administration.components.input_duration.placeholder')}>
-                        <QuestionCircleOutlined className="ms-4" />
-                      </Tooltip>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </div>
-            {/* Features Check */}
-            {features.proctoring && (
-              <>
-                <Option
-                  label={I18n.t('administration.campaigns.options.proctoring.enable')}
-                  {...parametersForEnableProctoring('proctoringEnabled')}
-                />
-                {options.proctoringEnabled && (
-                  <Option
-                    label={I18n.t('administration.campaigns.options.proctoring.allow_on_assessment_center')}
-                    {...parametersForField('proctoringEnabledOnWorkshopActivity')}
-                  />
-                )}
-
-                {options.proctoringEnabled && (
-                  <>
-                    <Option
-                      label={I18n.t('administration.campaigns.options.proctoring.trial')}
-                      {...parametersForField('proctoringTrial')}
+        <div style={{ display: localFixedTime ? 'block' : 'none' }}>
+          <div className="mbl">
+            <Row>
+              <Col span={24}>
+                <Row align="middle">
+                  <Col span={5} offset={2}>
+                    <InputDuration
+                      masked
+                      placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                      {...parametersForFixedTimeDuration}
                     />
-                    <div className="mbl">
-                      <Row>
-                        <Col span={2}>
-                          <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
-                        </Col>
-                        <Col span={22}>
-                          {Object.keys(options.rules || {}).map(
-                            key => (
-                              <Option
-                                key={key}
-                                label={
-                                  I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)
-                                }
-                                {...parametersForRules(key)}
-                              />
-                            ),
-                          )}
-                        </Col>
-                      </Row>
-                    </div>
+                  </Col>
+                  <Col>
+                    <Tooltip title={I18n.t('administration.components.input_duration.placeholder')}>
+                      <QuestionCircleOutlined className="ms-4" />
+                    </Tooltip>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </div>
+          <div style={{ display: features.proctoring ? 'block' : 'none' }}>
+            <Option
+              label={I18n.t('administration.campaigns.options.proctoring.enable')}
+              {...parametersForEnableProctoring('proctoringEnabled')}
+            />
+            <div style={{ display: options.proctoringEnabled ? 'block' : 'none' }}>
+              <Option
+                label={I18n.t('administration.campaigns.options.proctoring.allow_on_assessment_center')}
+                {...parametersForField('proctoringEnabledOnWorkshopActivity')}
+              />
+            </div>
 
-                    <div className="mbl">
-                      <Row>
-                        <Col span={24}>
-                          <Row>
-                            <Col span={2}>
-                              <label>
-                                {I18n.t('administration.campaigns.options.proctoring.identification')}
-                              </label>
-                            </Col>
-                            <Col span={22}>
-                              <Radio.Group
-                                defaultValue="passport"
-                                onChange={saveIdentificationType}
-                                value={options.identification}
-                              >
-                                {Object.entries(identifications).map(
-                                  ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
-                                )}
-                              </Radio.Group>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col span={24}>
-                          <Row>
-                            <Col span={2}>
-                              <label>
-                                {I18n.t('administration.campaigns.options.proctoring.integration_type')}
-                              </label>
-                            </Col>
-                            <Col span={22}>
-                              <Radio.Group
-                                defaultValue="iframe"
-                                onChange={saveIntegrationType}
-                                value={options.integrationType}
-                              >
-                                {Object.entries(integrationTypes).map(
-                                  ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
-                                )}
-                              </Radio.Group>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col span={24}>
-                              <Row>
-                                <Col span={2}>
-                                  <label>
-                                    {I18n.t('administration.campaigns.options.proctoring.type')}
-                                  </label>
-                                </Col>
-                                <Col span={22}>
-                                  <Radio.Group
-                                    defaultValue="offline"
-                                    onChange={saveProctoringType}
-                                    value={options.proctoringType}
-                                  >
-                                    {Object.entries(proctoringTypes).map(
-                                      ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
-                                    )}
-                                  </Radio.Group>
-                                </Col>
-                              </Row>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                    </div>
-                  </>
-                )}
-              </>
-            )}
-            {/* End Features Check */}
-          </>
-        )}
+            <div style={{ display: options.proctoringEnabled ? 'block' : 'none' }}>
+              <Option
+                label={I18n.t('administration.campaigns.options.proctoring.trial')}
+                {...parametersForField('proctoringTrial')}
+              />
+              <div className="mbl">
+                <Row>
+                  <Col span={2}>
+                    <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
+                  </Col>
+                  <Col span={22}>
+                    {Object.keys(options.rules || {}).map(
+                      key => (
+                        <Option
+                          key={key}
+                          label={
+                            I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)
+                          }
+                          {...parametersForRules(key)}
+                        />
+                      ),
+                    )}
+                  </Col>
+                </Row>
+              </div>
+
+              <div className="mbl">
+                <Row>
+                  <Col span={24}>
+                    <Row>
+                      <Col span={2}>
+                        <label>
+                          {I18n.t('administration.campaigns.options.proctoring.identification')}
+                        </label>
+                      </Col>
+                      <Col span={22}>
+                        <Radio.Group
+                          defaultValue="passport"
+                          onChange={saveIdentificationType}
+                          value={options.identification}
+                        >
+                          {Object.entries(identifications).map(
+                            ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                          )}
+                        </Radio.Group>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={24}>
+                    <Row>
+                      <Col span={2}>
+                        <label>
+                          {I18n.t('administration.campaigns.options.proctoring.integration_type')}
+                        </label>
+                      </Col>
+                      <Col span={22}>
+                        <Radio.Group
+                          defaultValue="iframe"
+                          onChange={saveIntegrationType}
+                          value={options.integrationType}
+                        >
+                          {Object.entries(integrationTypes).map(
+                            ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                          )}
+                        </Radio.Group>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col span={24}>
+                        <Row>
+                          <Col span={2}>
+                            <label>
+                              {I18n.t('administration.campaigns.options.proctoring.type')}
+                            </label>
+                          </Col>
+                          <Col span={22}>
+                            <Radio.Group
+                              defaultValue="offline"
+                              onChange={saveProctoringType}
+                              value={options.proctoringType}
+                            >
+                              {Object.entries(proctoringTypes).map(
+                                ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                              )}
+                            </Radio.Group>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <Option
           label={I18n.t('administration.campaigns.options.prework_required')}

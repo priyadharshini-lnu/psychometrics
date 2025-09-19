@@ -50,7 +50,7 @@ module Api
         raise Api::Errors::ResourceNotFound, "Report with id=#{params[:id]} was not found" unless @user_report
 
         render json: {
-          url: @user_report.pdf&.url,
+          url: @user_report.pdf_file&.url,
           status: @user_report.decorate.api_status,
           campaign_id: @user_report.campaign_id
         }

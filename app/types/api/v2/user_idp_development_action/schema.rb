@@ -14,10 +14,12 @@ module Api
               required(:user_idp_skill_id).filled(:integer)
               optional(:development_action_id).maybe(:integer)
               optional(:user_idp_plan_id).filled(:integer)
-              optional(:custom_action).maybe(:string)
-              optional(:custom_action_learning_style).maybe(:string)
+              optional(:description).maybe(:string)
+              optional(:learning_style).maybe(:string)
+              optional(:source_type).maybe(:string)
               optional(:start_date_time).maybe(:string)
               optional(:end_date_time).maybe(:string)
+              optional(:private).maybe(:bool)
             end
           end
         end
@@ -29,10 +31,15 @@ module Api
               optional(:user_idp_skill_id).maybe(:integer)
               optional(:development_action_id).maybe(:integer)
               optional(:user_idp_plan_id).maybe(:integer)
-              optional(:custom_action).maybe(:string)
-              optional(:custom_action_learning_style).maybe(:string)
+              optional(:name).maybe(:string)
+              optional(:description).maybe(:string)
+              optional(:learning_style).maybe(:string)
+              optional(:source_type).maybe(:string)
               optional(:start_date_time).maybe(:string)
               optional(:end_date_time).maybe(:string)
+              optional(:progress).maybe(:integer)
+              optional(:private).maybe(:bool)
+              optional(:_destroy).maybe(:bool)
             end
           end
         end

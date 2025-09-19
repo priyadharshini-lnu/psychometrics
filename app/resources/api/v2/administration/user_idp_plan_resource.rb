@@ -5,10 +5,11 @@ class Api::V2::Administration::UserIdpPlanResource < Api::V2::Administration::Ba
              :skill_gap_report_available, :instructions
 
   has_one :idp_template
-  has_many :skills, through: :user_idp_skills
-  has_many :user_idp_development_actions
-  has_many :user_idp_skills
-  has_many :development_actions, through: :user_idp_development_actions
+
+  has_many :skills, relation_name: :public_skills
+  has_many :user_idp_development_actions, relation_name: :public_user_idp_development_actions
+  has_many :development_actions, relation_name: :public_development_actions
+  has_many :user_idp_skills, relation_name: :public_user_idp_skills
 
   def skill_gap_report_id
     report_id = IdpTemplate.find_by(id: @model.idp_template_id)&.report_id

@@ -13,12 +13,35 @@ export const ReportTR = t.type({
   name: t.string,
 })
 
+export const AssistantTR = t.type({
+  id: t.string,
+  name: t.string,
+})
+
+export const OneClickAIAssistantTR = t.type({
+  id: t.string,
+})
+
+export const DocumentAnalysisAiAssistantTR = t.type({
+  id: t.string,
+})
+
+export type IdpAssistant = t.TypeOf<typeof AssistantTR>
+
 export const ReflectionQuestionTR = t.type({
   id: t.string,
   question: t.union([t.string, t.null]),
   mandatory: t.boolean,
   minWords: t.union([t.number, t.null]),
   maxWords: t.union([t.number, t.null]),
+})
+
+export const InterviewQuestionTR = t.type({
+  id: t.string,
+  question: t.union([t.string, t.null]),
+  mandatory: t.boolean,
+  timeLimit: t.union([t.number, t.null]),
+  questionType: t.union([t.string, t.null]),
 })
 
 export const IdpListItemTR = t.type({
@@ -59,6 +82,7 @@ export const IdpTR = t.intersection([
     }),
     availableLocales: t.array(t.string),
     reflectionQuestions: t.array(ReflectionQuestionTR),
+    interviewQuestions: t.array(InterviewQuestionTR),
     translations: t.record(t.string, t.partial({
       titleText: t.union([t.string, t.null]),
       subtitleText: t.union([t.string, t.null]),
@@ -69,12 +93,22 @@ export const IdpTR = t.intersection([
     aiAssistedIdpEnabled: t.boolean,
     oneClickIdpEnabled: t.boolean,
     skillSourcePreference: t.string,
+    oneClickAiAssistantId: t.union([OneClickAIAssistantTR, t.undefined]),
+    documentAnalysisAiAssistantId: t.union([DocumentAnalysisAiAssistantTR, t.undefined]),
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),
     report: t.union([
       ReportTR,
       t.undefined]),
+    oneClickAiAssistant: t.union([
+      AssistantTR,
+      t.undefined,
+    ]),
+    documentAnalysisAiAssistant: t.union([
+      AssistantTR,
+      t.undefined,
+    ]),
   })])
 
 export const IntroMessageTR = t.type({
@@ -84,6 +118,7 @@ export const IntroMessageTR = t.type({
 })
 
 export type IdpTemplateReflectionQuestion = t.TypeOf<typeof ReflectionQuestionTR>
+export type IdpTemplateInterviewQuestion = t.TypeOf<typeof InterviewQuestionTR>
 export type Idp = t.TypeOf<typeof IdpTR>
 export type Skill = t.TypeOf<typeof SkillTR>
 export type Report = t.TypeOf<typeof ReportTR>
@@ -99,6 +134,12 @@ export const Schema = {
     },
     report: {
       type: 'reports',
+    },
+    one_click_ai_assistant: {
+      type: 'assistants',
+    },
+    document_analysis_ai_assistant: {
+      type: 'assistants',
     },
   },
 }

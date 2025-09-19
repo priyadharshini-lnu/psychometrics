@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import humps from 'humps'
-import { setIn } from '~/utils/immutable'
+import { setIn, updateIn } from '~/utils/immutable'
 
 const FETCH = 'campaign/FETCH'
 export const FETCH_INSIGHTS = 'campaign/FETCH_INSIGHTS'
@@ -9,6 +9,7 @@ const DECLINE_EVALUATION = 'campaign/DECLINE_EVALUATION'
 const RESET = 'campaign/RESET_DATA'
 const RESET_PRACTICE_CAMPAIGN = 'campaign/RESET_PRACTICE_CAMPAIGN'
 const SET_CAMPAIGN_USER = 'campaign/SET_CAMPAIGN_USER'
+const UPDATE_USER_ASSESSMENT_STATUS = 'campaign/UPDATE_USER_ASSESSMENT_STATUS'
 
 export const fetchCampaign = url => ({
   type: FETCH,
@@ -55,6 +56,11 @@ export const setCampaignUser = state => ({
   payload: state,
 })
 
+export const updateUserAssessmentStatus = state => ({
+  type: UPDATE_USER_ASSESSMENT_STATUS,
+  payload: state,
+})
+
 
 export const reset = () => ({ type: RESET })
 
@@ -97,6 +103,14 @@ const HANDLERS = {
   },
   [RESET_PRACTICE_CAMPAIGN]: (state, action) => ({ ...state, ...action.response, loaded: true }),
   [SET_CAMPAIGN_USER]: (state, { payload }) => setIn(state, 'campaignUser', payload),
+  [UPDATE_USER_ASSESSMENT_STATUS]: (state, { payload }) => updateIn(
+    state,
+    ['userAssessments'],
+    (userAssessments) => {
+      const assessmentsFromResponse = _.keyBy(payload, 'id')
+      return userAssessments.map(ua => assessmentsFromResponse[ua.id] || ua)
+    },
+  ),
 }
 
 export default function reducer (state = defaultState, action) {

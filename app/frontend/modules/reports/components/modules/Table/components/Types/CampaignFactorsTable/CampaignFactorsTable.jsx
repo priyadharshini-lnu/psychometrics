@@ -12,6 +12,7 @@ import BulletGraph from '~/modules/reports/components/BulletGraph'
 import PieGraph from '~/modules/reports/components/PieGraph'
 import styles from './CampaignFactorsTable.less'
 import { PaginationContext } from '../FactorsTable/PaginationContext'
+import LookupSourceName from '~/modules/reports/commands/LookupSourceName'
 
 const campaignFactorMockData = [
   {
@@ -193,7 +194,12 @@ class CampaignFactorsTable extends Component {
 
   renderCampaignFactors () {
     const { model, module } = this.props
-    const { fontFamily } = module.props.style
+    const { fontSize, fontFamily, fontColor } = module.props.style
+    const style = {
+      fontSize,
+      fontFamily,
+      color: fontColor,
+    }
     return (
       this.campaignFactorsData.map((campaignfactor, i) => {
         const conditions = _.filter(module.textConditions, { campaignFactorCode: campaignfactor.code })
@@ -234,7 +240,7 @@ class CampaignFactorsTable extends Component {
           conditionBaselineScore = 3.5
         }
 
-        conditionTitle = conditionTitle ?? I18nStore.tFactorName(campaignfactor)
+        conditionTitle = conditionTitle ?? LookupSourceName.call({}, campaignfactor.code, 'CampaignFactors')
         conditionText = conditionText ?? I18nStore.tFactor(campaignfactor, 'description')
         conditionColor = conditionColor ?? '#666666'
 
@@ -261,6 +267,7 @@ class CampaignFactorsTable extends Component {
                   percent={Math.min(percent, 100)}
                   progressColor={scoreProgressColor}
                   backgroundColor={scoreBackgroundColor}
+                  scoreStyle={{ ...style, fill: fontColor }}
                 />
               )
             )}
@@ -275,6 +282,7 @@ class CampaignFactorsTable extends Component {
                   showScoreText={showScoreText}
                   score={score}
                   scoreBulletGraphHeight={scoreBulletGraphHeight}
+                  scoreStyle={style}
                 />
               )
             )}
@@ -291,11 +299,11 @@ class CampaignFactorsTable extends Component {
               </td>
             )}
             {(showName || showDescription || (showScore && scorePosition === 'block')) && (
-              <td className={styles.description}>
+              <td style={style} className={styles.description}>
                 {(showName || showDescription || showStrengthsBlindspots || (showScore && scorePosition === 'block')) && (
                   <div className={styles.content}>
                     {showName && (
-                      <div className={styles.strength}>
+                      <div style={style} className={styles.strength}>
                         {_.isEmpty(conditionTitle) ? I18nStore.tFactor(campaignfactor, 'alias') : conditionTitle}
                       </div>
                     )}
@@ -306,7 +314,7 @@ class CampaignFactorsTable extends Component {
                       </ReactMarkdown>
                     )}
                     {showStrengthsBlindspots && (
-                      <div className={cs(styles.strengthsBlindspots, 'mt8')}>
+                      <div style={style} className={cs(styles.strengthsBlindspots, 'mt8')}>
                         <ReactMarkdown className={styles.strengths}>
                           {conditionStrengths}
                         </ReactMarkdown>
@@ -351,7 +359,6 @@ class CampaignFactorsTable extends Component {
     if (!headerShown) {
       return null
     }
-
     const { model } = this.props
     const {
       scorePosition = 'inline', showStrengthsBlindspots, showName, showDescription,

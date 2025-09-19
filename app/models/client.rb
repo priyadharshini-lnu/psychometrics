@@ -112,7 +112,7 @@ class Client < ApplicationRecord
            through: :projects, source: :users
   has_many :idp_templates, dependent: :destroy, foreign_key: 'project_id'
   has_many :sheets, foreign_key: :project_id, dependent: :destroy
-  has_many :development_actions, dependent: :destroy, foreign_key: :project_id
+  has_many :development_actions, as: :owner, dependent: :destroy
   has_one :datasheet, class_name: 'Datasheet', foreign_key: :project_id, dependent: :destroy
   has_one :client_auditlog_export_setting, dependent: :destroy
   has_one :client_feature, dependent: :destroy

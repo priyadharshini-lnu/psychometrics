@@ -22,6 +22,12 @@ module Api
       def generate_by_ai?
         has_permission?(:idp_plan, :manage)
       end
+
+      class Scope < BasePolicy::Scope
+        def resolve
+          scope.with_public_skills
+        end
+      end
     end
   end
 end

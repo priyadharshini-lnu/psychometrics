@@ -76,9 +76,11 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
           <Button type="primary" ghost>
             {I18n.t('administration.projects.design_settings.primary_button')}
           </Button>
-          <Button ghost>Default</Button>
+          <Button ghost>
+            {I18n.t('administration.projects.design_settings.default_button')}
+          </Button>
           <Button type="dashed" ghost>
-            {I18n.t('administration.projects.design_settings.dashed')}
+            {I18n.t('administration.projects.design_settings.dashed_button')}
           </Button>
           <Button type="primary" ghost danger>
             {I18n.t('administration.projects.design_settings.primary_button')}
@@ -87,7 +89,7 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
             {I18n.t('administration.projects.design_settings.default_button')}
           </Button>
           <Button type="dashed" ghost danger>
-            {I18n.t('administration.projects.design_settings.dashed')}
+            {I18n.t('administration.projects.design_settings.dashed_button')}
           </Button>
         </SplitSpace>
         <SplitSpace>

@@ -10,6 +10,7 @@ import customIcon from '../../../assets/Custom.svg'
 import libIcon from '../../../assets/IDPLibrary.svg'
 import dayjs from '~/utils/dayjs'
 import { useI18n } from '~/modules/idpReport/I18nContext'
+import { DevelopmentActionSourceType } from '~/components/IdpShared/DevelopmentActions/Constants'
 
 const COLORS = {
   on_the_job: '#009DE0',
@@ -24,14 +25,14 @@ const LEARN_STYLE_ICONS = {
 }
 
 const TYPE_ICONS = {
-  ai_generated: aiIcon,
-  library: libIcon,
-  custom_action: customIcon,
+  [DevelopmentActionSourceType.AI_GENERATED]: aiIcon,
+  [DevelopmentActionSourceType.PLATFORM]: libIcon,
+  [DevelopmentActionSourceType.CUSTOM]: customIcon,
 }
 
 
 export const Skill = ({ skill, developmentActions }) => {
-  const das = _.groupBy(developmentActions, da => da.custom_action_learning_style || da.learning_style)
+  const das = _.groupBy(developmentActions, da => da.learning_style)
   const I18n = useI18n()
 
   return (
@@ -60,15 +61,16 @@ export const Skill = ({ skill, developmentActions }) => {
 const DevelopmentAction = ({ developmentAction }) => {
   const I18n = useI18n()
 
-  const learnStyle = developmentAction.custom_action_learning_style || developmentAction.learning_style
+  const learnStyle = developmentAction.learning_style
   const color = COLORS[learnStyle]
   const icon = LEARN_STYLE_ICONS[learnStyle]
-  const customIcon = TYPE_ICONS[developmentAction.type]
+  const customIcon = TYPE_ICONS[developmentAction.source_type]
 
   return (
     <Flex className={styles.developAction} align="center">
       <div className={cs(styles.description)} style={{ borderColor: color }}>
-        {developmentAction.custom_action || developmentAction.name}
+        {developmentAction.source_type === DevelopmentActionSourceType.AI_GENERATED
+          ? developmentAction.description : developmentAction.name}
       </div>
 
       <Flex vertical flex={1} gap={8}>

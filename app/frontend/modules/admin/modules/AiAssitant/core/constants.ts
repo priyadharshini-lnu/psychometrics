@@ -10,6 +10,14 @@ export const ASSISTANT_TYPES = {
     id: 'content_writer',
     name: 'Content Writer',
   },
+  idp_assistant: {
+    id: 'idp_assistant',
+    name: 'IDP Assistant',
+  },
+  assistant_tool: {
+    id: 'assistant_tool',
+    name: 'Assistant Tool',
+  },
 }
 
 export const DEPENDENCY_TYPES = {

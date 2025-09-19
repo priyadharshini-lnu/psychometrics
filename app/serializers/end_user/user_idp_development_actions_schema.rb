@@ -13,11 +13,11 @@ module EndUser
         required(:description).maybe(:str?)
         required(:learning_style).maybe(:str?)
         required(:image).maybe(:str?)
-        required(:custom_action).maybe(:str?)
-        required(:private).filled(:bool?)
+        optional(:private).maybe(:bool?)
         required(:progress).value { int? | float? }
         required(:start_date_time).maybe(:str?)
         required(:end_date_time).maybe(:str?)
+        required(:source_type).maybe(:str?)
       end
     end
   end

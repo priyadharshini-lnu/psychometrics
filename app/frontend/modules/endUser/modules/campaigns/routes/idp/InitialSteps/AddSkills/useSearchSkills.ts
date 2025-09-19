@@ -5,15 +5,16 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 export const useSearchSkills = () => {
-  const [searchResults, setSearchResults] = useState<{ id: string; name: string }[]>([])
+  const [searchResults, setSearchResults] = useState<{ id: string; name: string, skillType: string }[]>([])
   const [isSearching, setIsSearching] = useState(false)
 
   const dispatch = useDispatch()
 
   const handleSearch = (value, skillType) => {
     setIsSearching(true)
+    setSearchResults([])
     dispatch(fetchIdpSkills({
-      filterByCategory: skillType,
+      filterBySkillType: skillType,
       nameCont: value,
     })).then(({ response }) => {
       setIsSearching(false)
