@@ -232,6 +232,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
       meetingLink={meetingLink}
       meetingTime={meetingTime}
       userAssessmentId={userAssessment.id}
+      assessmentCategory={assessmentCategory}
     />
   ) : null
 
@@ -280,6 +281,7 @@ type MeetingInfoProps = {
   meetingLink: string | null
   meetingTime: string | null
   userAssessmentId: number
+  assessmentCategory?: string | null
 }
 
 interface StartTimeDisplayProps {
@@ -316,7 +318,9 @@ const StartTimeDisplay = ({ userAssessment, onCountdownFinish }: StartTimeDispla
   return null
 }
 
-const MeetingInfo: FC<MeetingInfoProps> = ({ meetingLink, meetingTime, userAssessmentId }) => {
+const MeetingInfo: FC<MeetingInfoProps> = ({
+  meetingLink, meetingTime, userAssessmentId, assessmentCategory,
+}) => {
   const currentTime = dayjs.tz()
   const dispatch = useDispatch()
   const meetingTimeMomentObj = dayjs(meetingTime)
@@ -331,7 +335,12 @@ const MeetingInfo: FC<MeetingInfoProps> = ({ meetingLink, meetingTime, userAsses
   }
 
   return canJoinMeeting ? (
-    <Button type="link" href={meetingLink || '#'} target="_blank" onClick={handleJoinClick}>
+    <Button
+      type="link"
+      href={meetingLink || '#'}
+      target="_blank"
+      onClick={() => assessmentCategory === 'meeting' && handleJoinClick()}
+    >
       {I18n.t('frontend.bookings.join_activity_meeting')}
       {' '}
       <DirectionalArrowIcon />
