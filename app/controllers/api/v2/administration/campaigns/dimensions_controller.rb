@@ -19,7 +19,7 @@ module Api
       factors = ::Api::Administration::Campaigns::DimensionPolicy::Scope.new(
         current_user, ::Dimension,
         campaign_id: campaign_id
-      ).resolve(assessment_ids).find(params[:id]).all_factors.ransack(params[:filter]).result
+      ).resolve(assessment_ids).find(params[:id]).non_skill_factors.ransack(params[:filter]).result
 
       jsonapi_render json: factors.to_a, options: { resource: Api::V2::Administration::FactorResource }
     end

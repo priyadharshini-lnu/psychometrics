@@ -90,6 +90,13 @@ module Threesixty
             class_name: 'Threesixty::PipedText::Branches::SkillFactor',
             required_context: %i[subject threesixty_campaign assessment],
             allow_html: true
+          },
+          {
+            key: 'cu',
+            name: 'campaign_user',
+            class_name: 'Threesixty::PipedText::Branches::CampaignUser',
+            required_context: %i[subject threesixty_campaign],
+            allow_html: true
           }
         ].freeze
       end

@@ -23,7 +23,7 @@ class SkillRaterQuestionSerializer < Panko::Serializer
       base_props = {
         skillName: skill.name,
         skillDescription: skill.description,
-        proficiencyLevels: proficiency_level.level_definition,
+        proficiencyLevels: proficiency_level&.level_definition,
         notApplicable: not_applicable_config['enabled'] || false,
         notApplicableLabel: not_applicable_config['label']
       }

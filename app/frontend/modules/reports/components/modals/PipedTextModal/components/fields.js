@@ -163,6 +163,16 @@ const FIELDS = [
         value: '{{s://Field/RelationshipName}}',
       },
       {
+        name: 'Current Job Role',
+        type: 'link',
+        value: '{{cu://Field/CurrentJobRole}}',
+      },
+      {
+        name: 'Target Job Role',
+        type: 'link',
+        value: '{{cu://Field/TargetJobRole}}',
+      },
+      {
         name: 'ProfileCustomField',
         type: 'profile_custom_field',
         getValue: fieldName => `{{s://ProfileCustomField/${fieldName}}}`,
