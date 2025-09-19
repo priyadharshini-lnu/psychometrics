@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, MenuProps, Switch, Typography,
+  MenuProps, Switch, Typography,
 } from 'antd'
 import { MenuItem } from '~/interfaces/Antd'
 import { APIKey } from '~/modules/admin/modules/client/core/apiKeys'
@@ -101,14 +101,8 @@ const getActionsMenuProps = ({ apiKey, openModal }: ActionMenuData):MenuProps =>
   const menuItems = [
     apiKey && {
       key: 'edit',
-      label: (
-        <Button
-          type="link"
-          onClick={() => openModal(apiKey)}
-          className="ps-0"
-        >
-          {I18n.t('common.actions.edit')}
-        </Button>),
+      label: I18n.t('common.actions.edit'),
+      onClick: () => openModal(apiKey),
     },
   ].filter(m => m) as MenuItem[]
 

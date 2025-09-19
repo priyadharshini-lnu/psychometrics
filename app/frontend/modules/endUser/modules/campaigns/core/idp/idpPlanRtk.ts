@@ -40,6 +40,12 @@ const idp = createSlice({
   },
 })
 
+export const getReflectiveQuestions = (
+  state: {
+  campaigns: { idpRtk: UserIdpPlan }
+},
+) => state.campaigns.idpRtk.reflectionQuestions
+
 export const { actions } = idp
 
 export default idp.reducer

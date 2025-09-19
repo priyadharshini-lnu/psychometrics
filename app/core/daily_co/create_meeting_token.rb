@@ -25,19 +25,13 @@ module DailyCo
     end
 
     def dailyco_config
-      if meeting_room.use_old_dailyco_api
-        {
-          api_key: Settings.secrets.daily_co[:old_api_key],
-          domain_id: Settings.secrets.daily_co[:old_domain_id],
-          subdomain: Settings.secrets.daily_co[:old_subdomain]
-        }
-      else
-        {
-          api_key: Settings.secrets.daily_co[:api_key],
-          domain_id: Settings.secrets.daily_co[:domain_id],
-          subdomain: Settings.secrets.daily_co[:subdomain]
-        }
-      end
+      version = meeting_room.dailyco_api_version.presence || 'v2'
+      config = Settings.secrets.daily_co[version.to_sym]
+      {
+        api_key: config[:api_key],
+        domain_id: config[:domain_id],
+        subdomain: config[:subdomain]
+      }
     end
 
     def token(role)
@@ -52,11 +46,7 @@ module DailyCo
         iat: Time.now.to_i
       }
 
-      recording_enabled = !Settings.features.disable_meeting_recording &&
-                          !meeting_room.use_old_dailyco_api &&
-                          meeting_room.video_recording_enabled?
-
-      if recording_enabled
+      if meeting_room.video_recording_enabled?
         payload[:er] = 'cloud'
         payload[:sr] = true
       end

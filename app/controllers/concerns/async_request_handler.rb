@@ -27,9 +27,12 @@ module AsyncRequestHandler
     {
       project: @current_project,
       current_user: current_user,
-      async_request_uuid: async_request_uuid
+      async_request_uuid: async_request_uuid,
+      meta: meta_data
     }
   end
+
+  def meta_data; end
 
   def async_request_uuid
     @async_request_uuid ||= "#{uuid}|#{current_user&.id}"

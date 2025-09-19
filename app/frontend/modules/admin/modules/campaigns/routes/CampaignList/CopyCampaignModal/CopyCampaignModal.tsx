@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Modal, Button, Input, message,
-  Form, DatePicker, Select,
+  Form, DatePicker, Select, Checkbox,
 } from 'antd'
 import _ from 'lodash'
 import { PropsFromRedux } from './connect'
@@ -58,7 +58,7 @@ const RemoveCampaignModal: React.FC<Props> = ({
         </Button>,
       ]}
     >
-      <Form form={form} layout="vertical">
+      <Form form={form} layout="vertical" initialValues={{ copyCampaignFactors: true }}>
         <Form.Item
           name="name"
           label={I18n.t('common.column.name')}
@@ -88,6 +88,14 @@ const RemoveCampaignModal: React.FC<Props> = ({
           label={I18n.t('administration.dates.end')}
         >
           <DatePicker showTime format={format} disabledDate={disabledDate} />
+        </Form.Item>
+        <Form.Item
+          name="copyCampaignFactors"
+          valuePropName="checked"
+        >
+          <Checkbox defaultChecked>
+            {I18n.t('administration.campaigns.form.copy_factors')}
+          </Checkbox>
         </Form.Item>
       </Form>
     </Modal>

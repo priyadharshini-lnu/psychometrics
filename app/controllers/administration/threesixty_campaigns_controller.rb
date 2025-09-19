@@ -135,6 +135,6 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   end
 
   def set_resource
-    @_resource = ::Threesixty::Campaign.find(params[:id])
+    @_resource = ::Campaign.find(params[:id]).threesixty_campaign
   end
 end

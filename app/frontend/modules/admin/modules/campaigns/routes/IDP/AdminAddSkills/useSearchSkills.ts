@@ -4,7 +4,7 @@ import { useResources } from '~/hooks/useResources'
 import { UserIdpSkills } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 
 export const useSearchSkills = (idpTemplateId) => {
-  const [searchResults, setSearchResults] = useState<{ id: string; name: string }[]>([])
+  const [searchResults, setSearchResults] = useState<{ id: string; name: string, skillType: string }[]>([])
   const [isSearching, setIsSearching] = useState(false)
 
   const {

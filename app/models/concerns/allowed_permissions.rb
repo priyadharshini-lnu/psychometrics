@@ -75,7 +75,7 @@ module AllowedPermissions
     'registration_codes' => %w[view manage],
     'datasheets' => %w[view manage],
     'auditLogs' => ['view'],
-    'workshops' => %w[view manage export_status],
+    'workshops' => %w[view manage export_status view_recordings],
     'idp_templates' => %w[view manage],
     'proficiency_levels' => %w[view manage import export import_translations export_translations],
     'job_roles' => %w[view manage import_translations export_translations],
@@ -148,7 +148,7 @@ module AllowedPermissions
     'assessors' => %w[view manage],
     'reports' => %w[view manage],
     'datasheets' => %w[view manage],
-    'workshops' => %w[view manage export_status],
+    'workshops' => %w[view manage export_status view_recordings],
     'idp_templates' => %w[view manage],
     'proficiency_levels' => %w[view manage import export import_translations export_translations],
     'skills' => %w[view manage import export import_translations export_translations],
@@ -195,7 +195,7 @@ module AllowedPermissions
       bulk_download
       bulk_update_evaluation_status
     ],
-    'workshops' => %w[view manage],
+    'workshops' => %w[view manage view_recordings],
     'idp_templates' => %w[view manage],
     'job_roles' => %w[view],
     'proficiency_levels' => %w[view],

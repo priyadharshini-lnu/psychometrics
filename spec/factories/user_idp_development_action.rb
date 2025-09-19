@@ -10,13 +10,7 @@ FactoryBot.define do
     end_date_time { 1.day.from_now }
 
     trait :with_custom_development_action do
-      development_action { nil }
-      custom_action { Faker::Lorem.characters(number: 5) }
-    end
-
-    trait :with_custom_development_action do
-      custom_action { 'Custom Development Task' }
-      learning_style { 'on_the_job' }
+      association :development_action, factory: %i[development_action custom]
     end
   end
 end

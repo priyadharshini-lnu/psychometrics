@@ -37,6 +37,7 @@ import { Schema as campaignIdpSchema } from '~/modules/admin/modules/campaigns/c
 import { Schema as idpTemplateSchema } from '~/modules/admin/modules/client/core/idp'
 import { Schema as proficiencyLevelSchema } from '~/modules/admin/modules/client/core/proficiencyLevels'
 import { Schema as reflectionQuestionSchema } from '~/modules/admin/modules/client/core/reflectionQuestion'
+import { Schema as interviewQuestionSchema } from '~/modules/admin/modules/client/core/interviewQuestion'
 import { Schema as aiAssistantSchema } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { Schema as userIdpPlanSchema } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 import { Schema as AiArtifactsSchema } from '~/modules/admin/modules/campaigns/core/aiArtifacts'
@@ -76,6 +77,7 @@ export const Schema = {
   user_saved_filters: userSavedFilterSchema,
   proficiency_levels: proficiencyLevelSchema,
   reflection_questions: reflectionQuestionSchema,
+  interview_questions: interviewQuestionSchema,
   ai_assistants: aiAssistantSchema,
   user_idp_plans: userIdpPlanSchema,
   ai_artifacts: AiArtifactsSchema,

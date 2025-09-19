@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Button, MenuProps, Typography,
+  MenuProps, Typography,
 } from 'antd'
 import { useResourceContext, Resource } from '~/modules/admin/components/Resource'
 import { MenuItem } from '~/interfaces/Antd'
@@ -111,14 +111,8 @@ const getActionsMenuProps = ({ skill, openModal }: ActionMenuData):MenuProps => 
   const menuItems = [
     skill && {
       key: 'edit',
-      label: (
-        <Button
-          type="link"
-          onClick={() => openModal(skill)}
-          className="ps-0"
-        >
-          {I18n.t('common.actions.edit')}
-        </Button>),
+      label: I18n.t('common.actions.edit'),
+      onClick: () => openModal(skill),
     },
   ].filter(m => m) as MenuItem[]
 

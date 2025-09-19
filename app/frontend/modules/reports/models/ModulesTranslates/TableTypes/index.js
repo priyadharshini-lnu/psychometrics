@@ -5,6 +5,7 @@ import InnovationStyles from './InnovationStyles'
 import HighestLowest from './HighestLowest'
 import GapAssessment from './GapAssessment'
 import ThreeSixtyReportSummary from './ThreeSixtyReportSummary'
+import CampaignFactorsTable from './CampaignFactorsTable'
 
 export default {
   FactorsTable,
@@ -14,4 +15,5 @@ export default {
   GapAssessment,
   Competencies,
   ThreeSixtyReportSummary,
+  CampaignFactorsTable,
 }

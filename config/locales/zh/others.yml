@@ -839,6 +839,7 @@ zh:
         export_development_actions: 出口发展行动
         export_dimension_as_json: 导出尺寸 JSON
         export_factor_translations: 出口系数换算
+        export_interview_questions: 出口面试问题
         export_job_roles_translations: 导出工作角色翻译
         export_norm: 出口规范
         export_occupations: 职业 导出
@@ -864,6 +865,7 @@ zh:
         import_external_campaign_scoring: 导入外部营销活动评分
         import_factor_translations: 进口系数翻译
         import_factors: 进口因素
+        import_interview_questions: 导入面试问题
         import_job_roles_translations: 导入工作角色翻译
         import_norm: 进口规范
         import_proficiency_level_translations: 进口熟练程度翻译
@@ -1797,6 +1799,7 @@ zh:
       view: 查看
       view_all_tasks: 查看所有任务
       view_detail: 查看详情
+      yes_delete: 是，删除
     column:
       action: 操作
       active: 活跃
@@ -2551,11 +2554,47 @@ zh:
       aria_selected: 精选
   idp:
     actions: 行动
+    ai:
+      assistant:
+        failure_fallback:
+          message: 哎呀！显示此消息时出现问题。请重试！
+          try_again: 我没有明白。再试一次！
+      bubbles:
+        audio:
+          question_progress: "%{count}问题%{current}"
+      compose:
+        placeholder: 在这里输入您的消息...
+      finishing:
+        hint: 我们的人工智能助手正在为您创建 IDP 计划。
+        title: 请稍等，我们正在施展我们的魔法......
+      retake_steps:
+        chat_hint: 让我知道您想提供更多信息？
+        chat_title: 您想提供更多信息吗？
+        start_chat: 开始聊天
+        start_chat_again: 重新开始聊天
+        upload_document: 上传文档
+        upload_file: 上传文件
+      summary:
+        chat_title: 聊天洞察摘要
+        file_title: 上传的文档见解
+        hint: 如果是，那么我们将创建您的 IDP，否则您可以重新回答
+        title: 你对结果满意吗？
+        upload_file: 上传的文件
+        view_chat: 查看聊天
+      upload:
+        description: 单击或拖动文件到此区域进行上传
+        drop: 将文件拖放到此处
+        title: 上传文件
+      welcome:
+        text: 准备好绘制您的成长乔恩了吗？让我们开始吧！
+        title: 您好，我是你们的开发助手
     behavioral: 行为
     board: 董事会
+    changes_saved_to_plan: 保存到计划的更改
     comment_details:
       add_comment: 添加评论
       add_comment_placeholder: 添加评论...
+      add_comments: 添加注释
       add_reply_placeholder: 添加回复...
       go_to_skill: 查看技能
     comments:
@@ -2577,11 +2616,15 @@ zh:
       sort_by_date: 按日期排序
       you: 您
     convert_to_draft: 轉換為草稿
+    delete_skill: 您是否确定要删除技能，因为它也会删除所有连接的开发作？
     details: 详细信息
     development_actions:
       action_private: 是
       action_public: 没有
       add_development_action: 添加开发行动
+      add_development_actions_from_below_options: 从下面的选项添加开发作。
+      add_development_actions_modal_title: "%{skillName}开发作库"
+      add_from_library: 从库添加
       all: 全部
       approved: 批准
       board_view:
@@ -2589,17 +2632,32 @@ zh:
         in_progress: 进行中
         not_started: 未开始
       completion: 完工
+      create_custom_development_action_title: 为%{skillName}创建我自己的开发行动
+      create_development_actions_with_ai: 使用 AI 创建开发行动 for %{skillName}
+      create_from_ai: 从 AI 创建
       create_my_own: 创建我自己的
+      custom: 习惯
+      custom_da_description: 创建自定义开发作以满足独特的开发需求。
       date_range: 开始日期 - 结束日期
+      edit_plan_to_add_development_actions: 编辑计划并添加开发作。
+      enter_development_action_description: 输入开发作描述
+      enter_development_action_title: 输入开发作标题
       generate_by_ai: 人工智能生成
       generate_more: 生成更多
       generating_development_actions: 生成发展行动...
+      generative_ai: 生成式人工智能
+      generative_ai_description: 让人工智能生成专为您量身定制的开发行动
       heading: 发展行动
+      idp_library: IDP 图书馆
+      idp_library_description: 从我们专家策划的库中选择经过验证的开发作。
       incomplete_error: 未完成的开发作
       incomplete_error_message: 某些开发作未完成。请在提交 IDP 之前完成它们。
       incomplete_warning: 未完成的开发作
       incomplete_warning_message: 某些开发作未完成。您确定要将 IDP 标记为完整吗？
+      info_popover_title: 不同类型的开发行动
       learning_from_others: 向他人学习
+      learning_from_others_label: 向他人学习
+      learning_on_the_job_label: 在工作中学习
       manage_skills: 管理技能
       marathon: 马拉松
       mark_as_complete: 标记为完成
@@ -2609,19 +2667,26 @@ zh:
       private: 私人
       publish_plan: 发布计划
       remove: 移除
+      save_plan: 保存计划
       skill: 技能
       sprint: 冲刺
       start_plan: 开始计划
       structured_learning: 结构化学习
+      structured_learning_label: 协作学习
       submit_plan: 提交计划
+      success: 开发行动成功完成
       write_here: 在此处写入...
+    direct_reportee_details: 直接报告者详细信息
     edit_plan: 编辑计划
+    edit_plan_and_add_skills: 编辑计划，然后单击管理技能以添加技能。
     edit_progress: 编辑进度
+    fetching_skill_gap_report: 获取技能差距报告...
     initial_steps:
       add_skill_group_description: 根据你的评估结果，以下是你的一些优势和发展领域。 选择你希望进一步发展的技能，作为你发展计划的一部分。
       add_skill_group_title: 探索您的 %{category} 技能
       add_skills: 添加
       add_skills_step: 添加技能
+      back: 返回
       continue_to_rate_skills: 继续评定技能
       getting_started: 入门
       less_skills: 显示更少技能
@@ -2655,6 +2720,8 @@ zh:
         technical: 技术
       save_skills: 保存技能
     new_comments: 新评论
+    no_skills_added: 您尚未添加任何技能。
+    no_skills_added_by_reportee: 被举报人尚未添加技能。
     pdf:
       approval_status: 审批状态
       cover:
@@ -2773,14 +2840,21 @@ zh:
         required: 必须回答问题
       max_words: 最大字数
       min_words: 分词
+      no_answer_provided: 尚未提供答案
       no_reflective_questions: 沒有反思性問題
+      optional: "（可选）"
       title: 思考题
       update_failed: 更新过程中出现错误
       updated_successfully: 您的答案已成功更新
+      word_limit: 必须介于 %{min} 到 %{max} 个单词之间
       words: 字数
+    remove_skill: 移除技能
     skill_gap_report:
+      download: 下载技能差距报告
       title: 技能差距报告
+    skills_updated: 计划中更新的技能
     status: 现状
+    suggestions: 建议
     technical: 技术
     user_idp_status:
       approved: 批准
@@ -3940,9 +4014,14 @@ zh:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: 标记为已完成
+          success_message: 评估%{name}标记为已完成
         reset_progress:
           name: 重置进度
           success_message: 评估 %{name} 已可编辑
+      mark_as_completed:
+        content: 您确定要标记为已完成的“%{name}”吗？
       push_test_webhook:
         copy_request_data_success: Rquest 有效载荷已成功复制到剪贴板。
         copy_response_body_success: 响应正文已成功复制到剪贴板。

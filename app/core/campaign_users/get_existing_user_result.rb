@@ -39,8 +39,14 @@ module CampaignUsers
     end
 
     def latest_result(results)
-      results.order(created_at: :desc).
-        find_by(user_assessments: { assessment_id: assessment.id })
+      assessment_results = results.where(user_assessments: { assessment_id: assessment.id })
+
+      completed_result = assessment_results.joins(:user_assessment).
+                         where(user_assessments: { status: [:completed] }).
+                         order('user_assessments.completed_at DESC').
+                         first
+
+      completed_result || assessment_results.order(created_at: :desc).first
     end
 
     def validity_period

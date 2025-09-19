@@ -10,6 +10,7 @@ interface Props {
   text: string
   progressColor?: string
   backgroundColor?: RgbaColor
+  scoreStyle?: React.CSSProperties
 }
 
 const strokeWidth = 10
@@ -21,6 +22,7 @@ const PieGraph: React.FC<Props> = ({
   className,
   progressColor,
   backgroundColor,
+  scoreStyle,
 }) => {
   const radius = (size - strokeWidth) / 2
   const innerRadius = radius - (strokeWidth * 1.2)
@@ -65,6 +67,7 @@ const PieGraph: React.FC<Props> = ({
           strokeWidth="0"
         />
         <text
+          style={scoreStyle}
           className={styles.circleText}
           x="50%"
           y="50%"

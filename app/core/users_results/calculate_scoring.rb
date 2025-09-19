@@ -41,7 +41,7 @@ module UsersResults
 
       factors_scoring_map = factors_scoring.group_by(&:factor_id)
       questions_ids = factors_scoring.map(&:question_id).uniq
-      questions_map = Question.where(id: questions_ids).all.group_by(&:id)
+      questions_map = Question.not_deleted.where(id: questions_ids).all.group_by(&:id)
 
       factors_question_count = {}
 

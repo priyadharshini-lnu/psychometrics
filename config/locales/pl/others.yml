@@ -839,6 +839,7 @@ pl:
         export_development_actions: Działania na rzecz rozwoju eksportu
         export_dimension_as_json: Eksportowanie formatu JSON wymiaru
         export_factor_translations: Tłumaczenia czynników eksportowych
+        export_interview_questions: Eksportuj pytania do rozmowy kwalifikacyjnej
         export_job_roles_translations: Eksportuj tłumaczenia ról zawodowych
         export_norm: Norma eksportowa
         export_occupations: Zawody Eksport
@@ -864,6 +865,7 @@ pl:
         import_external_campaign_scoring: Importowanie zewnętrznego punktacji kampanii
         import_factor_translations: Importowanie tłumaczeń czynników
         import_factors: Czynniki importu
+        import_interview_questions: Importowanie pytań do rozmowy kwalifikacyjnej
         import_job_roles_translations: Importowanie tłumaczeń ról zadań
         import_norm: Norma importowa
         import_proficiency_level_translations: Importuj tłumaczenia na poziomie biegłości
@@ -1791,6 +1793,7 @@ pl:
       view: Widok
       view_all_tasks: Wyświetl wszystkie zadania
       view_detail: Zobacz szczegóły
+      yes_delete: Tak, usuń
     column:
       action: Działanie
       active: Aktywny
@@ -2568,11 +2571,47 @@ pl:
       aria_selected: Wybrany
   idp:
     actions: Działania
+    ai:
+      assistant:
+        failure_fallback:
+          message: Oops! Coś poszło nie tak podczas wyświetlania tego komunikatu. Spróbuj ponownie!
+          try_again: Nie zrozumiałem tego. Spróbuj ponownie!
+      bubbles:
+        audio:
+          question_progress: Pytanie %{current} %{count}
+      compose:
+        placeholder: Wpisz tutaj swoją wiadomość...
+      finishing:
+        hint: Nasz asystent AI tworzy dla Ciebie plan IDP.
+        title: Proszę, czekaj, robimy naszą magię...
+      retake_steps:
+        chat_hint: Daj mi znać, jakie informacje chcesz podać poniżej?
+        chat_title: Chcesz podać więcej informacji?
+        start_chat: Rozpocznij czat
+        start_chat_again: Rozpocznij czat ponownie
+        upload_document: Prześlij dokument
+        upload_file: Prześlij plik
+      summary:
+        chat_title: Podsumowanie funkcji Chat Insight
+        file_title: Statystyki przesłanych dokumentów
+        hint: jeśli tak, utworzymy Twój IDP, w przeciwnym razie możesz ponownie uzyskać odpowiedzi
+        title: Czy jesteś zadowolony z efektów?
+        upload_file: Przesłany plik
+        view_chat: Zobacz czat
+      upload:
+        description: Kliknij lub przeciągnij pliki do tego obszaru, aby je przesłać
+        drop: Upuść plik tutaj
+        title: Przesyłanie plików
+      welcome:
+        text: Gotowy, aby nakreślić swój jorney wzrostu? Zaczynamy!
+        title: Cześć, jestem Twoim asystentem ds. rozwoju
     behavioral: Zachowanie
     board: Tablica
+    changes_saved_to_plan: Zmiany zapisane w planie
     comment_details:
       add_comment: Dodaj komentarz
       add_comment_placeholder: Dodaj komentarz...
+      add_comments: Dodawanie komentarzy
       add_reply_placeholder: Dodaj odpowiedź...
       go_to_skill: Przejdź do umiejętności
     comments:
@@ -2594,11 +2633,15 @@ pl:
       sort_by_date: Sortuj według daty
       you: Ty
     convert_to_draft: Konwertuj na wersję roboczą
+    delete_skill: Czy na pewno chcesz usunąć umiejętność, ponieważ spowoduje to również usunięcie wszystkich powiązanych działań programistycznych?
     details: Szczegóły
     development_actions:
       action_private: Tak
       action_public: Nie
       add_development_action: Dodaj działanie rozwojowe
+      add_development_actions_from_below_options: Dodaj akcje programistyczne z poniższych opcji.
+      add_development_actions_modal_title: Biblioteka działań rozwojowych dla %{skillName}
+      add_from_library: Dodaj z biblioteki
       all: Wszystkie
       approved: Zatwierdzone
       board_view:
@@ -2606,17 +2649,32 @@ pl:
         in_progress: W trakcie
         not_started: Nie rozpoczęte
       completion: Ukończenie
+      create_custom_development_action_title: Stwórz własną Akcję Rozwojową dla %{skillName}
+      create_development_actions_with_ai: Twórz działania programistyczne za pomocą sztucznej inteligencji dla %{skillName}
+      create_from_ai: Tworzenie na podstawie sztucznej inteligencji
       create_my_own: Utwórz własne
+      custom: Zwyczaj
+      custom_da_description: Utwórz niestandardową akcję programistyczną, aby zaspokoić unikatowe potrzeby programistyczne.
       date_range: Data rozpoczęcia - Data zakończenia
+      edit_plan_to_add_development_actions: Edytuj plan i dodaj działania rozwojowe.
+      enter_development_action_description: Wprowadź opis działania programistycznego
+      enter_development_action_title: Wprowadź tytuł działania rozwojowego
       generate_by_ai: Wygeneruj przez AI
       generate_more: Wygeneruj więcej
       generating_development_actions: Generowanie działań rozwojowych...
+      generative_ai: Generatna sztuczna inteligencja
+      generative_ai_description: Pozwól, aby sztuczna inteligencja wygenerowała dostosowaną do Twoich potrzeb akcję programistyczną
       heading: Działania rozwojowe
+      idp_library: Biblioteka IDP
+      idp_library_description: Wybierz sprawdzoną akcję programistyczną z naszej biblioteki wyselekcjonowanej przez ekspertów.
       incomplete_error: Niekompletne działania rozwojowe
       incomplete_error_message: Niektóre działania rozwojowe są niekompletne. Uzupełnij je przed przesłaniem swojego IDP.
       incomplete_warning: Niekompletne działania rozwojowe
       incomplete_warning_message: Niektóre działania rozwojowe są niekompletne. Czy na pewno chcesz oznaczyć swój IDP jako ukończony?
+      info_popover_title: Różne rodzaje działań rozwojowych
       learning_from_others: Uczenie się od innych
+      learning_from_others_label: Uczenie się od innych
+      learning_on_the_job_label: Nauka w miejscu pracy
       manage_skills: Zarządzaj umiejętnościami
       marathon: Maraton
       mark_as_complete: Oznacz jako ukończone
@@ -2626,19 +2684,26 @@ pl:
       private: Prywatne
       publish_plan: Publikuj plan
       remove: Usuń
+      save_plan: Plan oszczędzania
       skill: Umiejętność
       sprint: Sprint
       start_plan: Rozpocznij plan
       structured_learning: Zorganizowane uczenie się
+      structured_learning_label: Uczenie się oparte na współpracy
       submit_plan: Prześlij plan
+      success: Działania rozwojowe zakończone sukcesem
       write_here: Pisz tutaj...
+    direct_reportee_details: Szczegółowe informacje o bezpośrednich podwładnych
     edit_plan: Edytuj plan
+    edit_plan_and_add_skills: Edytuj plan i kliknij Zarządzaj umiejętnościami, aby dodać umiejętności.
     edit_progress: Edytuj postęp
+    fetching_skill_gap_report: Pobieranie raportu o brakach w umiejętnościach...
     initial_steps:
       add_skill_group_description: Na podstawie wyników Twojej oceny, oto niektóre obszary Twoich mocnych stron i rozwoju. Wybierz umiejętności, które chcesz dalej rozwijać w ramach swojego planu rozwoju.
       add_skill_group_title: Eksploracja Twoich umiejętności %{category}
       add_skills: Dodaj
       add_skills_step: Dodaj umiejętności
+      back: Wstecz
       continue_to_rate_skills: Kontynuuj, aby ocenić umiejętności
       getting_started: Rozpoczęcie
       less_skills: Pokaż mniej umiejętności
@@ -2666,6 +2731,8 @@ pl:
         categories: Kategorie
       save_skills: Zapisz umiejętności
     new_comments: Nowe komentarze
+    no_skills_added: Nie masz jeszcze dodanych umiejętności.
+    no_skills_added_by_reportee: Zgłaszający nie dodał jeszcze umiejętności.
     pdf:
       approval_status: Status zatwierdzenia
       cover:
@@ -2784,14 +2851,21 @@ pl:
         required: Odpowiedź na pytanie jest wymagana
       max_words: Maksymalna liczba słów
       min_words: Min Words
+      no_answer_provided: Nie udzielono jeszcze odpowiedzi
       no_reflective_questions: Żadnych refleksyjnych pytań
+      optional: "(Opcjonalnie)"
       title: Pytania refleksyjne
       update_failed: Wystąpił błąd podczas aktualizacji
       updated_successfully: Twoje odpowiedzi zostały pomyślnie zaktualizowane
+      word_limit: Musi zawierać się w przedziale od %{min} do %{max} słów
       words: Słowa
+    remove_skill: Usuń umiejętność
     skill_gap_report:
+      download: Pobierz raport o brakach w umiejętnościach
       title: Raport luk w umiejętnościach
+    skills_updated: Umiejętności zaktualizowane w Planie
     status: Stan
+    suggestions: Sugestie
     technical: Techniczne
     user_idp_status:
       approved: Zatwierdzony
@@ -3951,9 +4025,14 @@ pl:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: Oznacz jako ukończone
+          success_message: Ocena %{name} jest oznaczona jako zakończona
         reset_progress:
           name: Resetuj postęp
           success_message: Ocena %{name} jest gotowa do edycji
+      mark_as_completed:
+        content: Czy na pewno chcesz oznaczyć jako ukończone "%{name}"?
       push_test_webhook:
         copy_request_data_success: Ładunek Rquest został pomyślnie skopiowany do schowka.
         copy_response_body_success: Treść odpowiedzi została pomyślnie skopiowana do schowka.

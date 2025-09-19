@@ -8,7 +8,7 @@ module Idp
       end
 
       def call
-        default_progress = Skill.skill_types.keys.to_h { |skill_type| [skill_type.to_sym, 0.0] }
+        default_progress = ::Skill.skill_types.keys.to_h { |skill_type| [skill_type.to_sym, 0.0] }
 
         user_idp_development_actions.
           includes(:user_idp_skill, :skill).

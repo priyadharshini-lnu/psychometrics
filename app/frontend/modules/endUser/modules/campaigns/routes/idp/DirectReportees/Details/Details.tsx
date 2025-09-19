@@ -3,7 +3,7 @@ import {
   useState, FC,
 } from 'react'
 import {
-  Typography, Flex, Button,
+  Typography, Flex, Button, Space,
   message,
   Tag,
   Avatar,
@@ -22,10 +22,10 @@ import {
   fetchUserIdpComments,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { DirectionalNavigateBackIcon } from '~/glint'
-
 import styles from '../DirectReportees.less'
 import { CheckCircleOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import UserDevelopmentPlan from '../../UserDevelopmentPlan'
+import { Separator } from '~/components/IdpShared/Separator'
 
 const { I18n } = window
 
@@ -147,19 +147,34 @@ const DirectReportDetailsComponent: FC<Props> = ({
       align="center"
       justify="space-between"
       className="p-5 pt-2"
-      style={{
-        borderBottom: '1px solid #f0f0f0',
-      }}
     >
-      <Flex align="center" gap={16} style={{ flex: 1 }}>
-        <DirectionalNavigateBackIcon
-          onClick={() => navigate('/idp/direct_reportees')}
+      <Flex vertical gap={4} flex={1}>
+        <Flex className={`${styles.heading}`} flex={1} justify="space-between">
+          <Space>
+            <DirectionalNavigateBackIcon
+              onClick={() => navigate('/idp/direct_reportees')}
+            />
+            <Typography.Title
+              className="mt-3"
+              level={3}
+            >
+              {I18n.t('idp.direct_reportee_details')}
+            </Typography.Title>
+          </Space>
+          <Space>
+            <Tag color={STATUS_COLORS[status]}>
+              {I18n.t(`idp.user_idp_status.${status}`)}
+            </Tag>
+          </Space>
+        </Flex>
+        <Separator
+          className="mb-2 mt-0"
         />
         <Flex align="center" gap={16}>
           <Avatar
             size={32}
             src={idpUser?.avatarUrl}
-            style={{ fontSize: 16 }}
+            className="fs-16"
           >
             {idpUser?.name ? idpUser.name[0].toUpperCase() : 'U'}
           </Avatar>
@@ -169,13 +184,8 @@ const DirectReportDetailsComponent: FC<Props> = ({
           </Flex>
         </Flex>
       </Flex>
-      <Tag color={STATUS_COLORS[status]}>
-        {I18n.t(`idp.user_idp_status.${status}`)}
-      </Tag>
     </Flex>
-
   )
-
 
   return (
     <IdpPageLayoutWrapper>
@@ -185,6 +195,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
           idpUserId={idpUserId}
           editMode={editMode}
           viewType="tabs"
+          headerHeight={80}
           operations={operations}
         />
       </Flex>

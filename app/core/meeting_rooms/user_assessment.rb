@@ -30,5 +30,13 @@ module MeetingRooms
       campaign = user_assessment.campaign
       campaign&.campaign_options&.enable_video_call_recording || false
     end
+
+    def assessors
+      Array(user_assessment.linked_assessor_user_assessment&.evaluator).compact
+    end
+
+    def participants
+      Array(user_assessment.subject).compact
+    end
   end
 end

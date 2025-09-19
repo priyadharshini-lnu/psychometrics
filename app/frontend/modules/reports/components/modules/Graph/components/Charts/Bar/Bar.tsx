@@ -79,11 +79,12 @@ export const Bar: React.FC<Props> = ({
     }
 
     const sourceType = model.getSourceType()
+    const isCustomFactor = sourceType === 'Factor' && model.props.source.subType === 'custom'
     const sourceModel: SourceModel = model.getSourceModel()
     if (sourceType === 'EmbeddedData' && !sourceModel.name) {
       return null
     }
-    const data = Series[sourceType]
+    const data = isCustomFactor ? Series.CustomFactorValueFields : Series[sourceType]
     if (!data) {
       return null
     }
@@ -107,15 +108,20 @@ export const Bar: React.FC<Props> = ({
       oppositeX = false
       reversedY = false
     } else if (model.props.graphicalPosition === 'Horizontal' && !model.props.reverse && isRTL) {
-      reversedX = false
+      reversedX = true
       reversedY = true
       oppositeX = true
       oppositeY = false
+    } else if (model.props.graphicalPosition === 'Horizontal' && !model.props.reverse && !isRTL) {
+      reversedX = true
+      reversedY = false
+      oppositeY = false
+      oppositeX = false
     } else if (model.props.graphicalPosition === 'Vertical' && !model.props.reverse && isRTL) {
       reversedX = true
       oppositeY = true
     } else {
-      reversedX = true
+      reversedX = false
       reversedY = false
       oppositeY = false
       oppositeX = false

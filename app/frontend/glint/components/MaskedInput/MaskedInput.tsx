@@ -1,7 +1,7 @@
 import {
-  ChangeEvent, FC, useState,
+  ChangeEvent, useState, forwardRef,
 } from 'react'
-import { Input } from 'antd'
+import { Input, InputRef } from 'antd'
 import { InputProps } from 'antd/lib/input/Input'
 import styles from './MaskedInput.less'
 
@@ -9,12 +9,12 @@ type Props = InputProps & {
   masked?: boolean
 }
 
-export const MaskedInput: FC<Props> = ({
+export const MaskedInput = forwardRef<InputRef, Props>(({
   masked = false,
   onBlur,
   onChange,
   ...restInputProps
-}) => {
+}, ref) => {
   const [showMask, setShowMask] = useState(false)
 
   const handleOnBlur = (e) => {
@@ -37,6 +37,7 @@ export const MaskedInput: FC<Props> = ({
         />
       )}
       <Input
+        ref={ref}
         style={{ zIndex: (masked && showMask) ? 5001 : 'initial' }}
         onBlur={handleOnBlur}
         onChange={handleOnChange}
@@ -45,4 +46,4 @@ export const MaskedInput: FC<Props> = ({
       />
     </>
   )
-}
+})

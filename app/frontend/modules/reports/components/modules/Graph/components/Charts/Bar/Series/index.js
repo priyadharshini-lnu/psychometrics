@@ -16,6 +16,7 @@ import DataSheet from './DataSheet'
 import CampaignFactors from './CampaignFactors'
 import SavilleFactor from './SavilleFactor'
 import ReportData from './ReportData'
+import CustomFactorValueFields from './CustomFactorValueFields'
 
 export default {
   Slider,
@@ -36,4 +37,5 @@ export default {
   CampaignFactors,
   SavilleFactor,
   ReportData,
+  CustomFactorValueFields,
 }

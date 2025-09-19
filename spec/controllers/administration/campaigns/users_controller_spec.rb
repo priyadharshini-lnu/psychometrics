@@ -167,7 +167,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'id' => user_assessment.id,
       'assessment_id' => assessment.id,
       'name' => assessment.name,
-      'category' => assessment.decorate.category,
+      'category' => assessment.category,
       'norm_name' => nil,
       'norms' => [],
       'permissions' => {
@@ -181,6 +181,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'update_mettl_schedule' => false,
         'normalize_factor_scores' => policy.normalize_factor_scores?,
         'update_content_variation' => false,
+        'mark_complete' => policy.mark_complete?,
         'update_simulation_time_extension' => false
       },
       'norm_id' => nil,

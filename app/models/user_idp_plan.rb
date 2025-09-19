@@ -2,15 +2,25 @@
 
 class UserIdpPlan < ApplicationRecord
   include WorkflowActiverecord
+  include ActiveStorageAttachable
 
   belongs_to :user
   belongs_to :campaign
   belongs_to :idp_template
   belongs_to :creator, class_name: 'User'
   has_many :user_idp_skills, dependent: :destroy
+  has_many :public_user_idp_skills, -> { where(private: false) }, class_name: 'UserIdpSkill'
+  has_many :public_user_idp_development_actions, -> { with_public_skills }, class_name: 'UserIdpDevelopmentAction'
   has_many :skills, through: :user_idp_skills
+  has_many :public_skills, -> { where(user_idp_skills: { private: false }) }, through: :user_idp_skills, source: :skill
   has_many :user_idp_development_actions, dependent: :destroy
   has_many :development_actions, through: :user_idp_development_actions
+  has_many :public_development_actions, lambda {
+    where(user_idp_development_actions: { private: false })
+  }, through: :user_idp_development_actions, source: :development_action
+  has_many :custom_development_actions, lambda {
+    where(source_type: :custom)
+  }, class_name: 'DevelopmentAction', as: :owner, dependent: :destroy
   has_many :idp_template_skills, through: :idp_template
   has_many :communication_email_resources, as: :resource
   has_many :communication_emails, through: :communication_email_resources
@@ -20,12 +30,30 @@ class UserIdpPlan < ApplicationRecord
   has_many :reflection_questions, through: :idp_template
   has_many :idp_template_reflection_questions, through: :idp_template
   has_many :user_reflection_question_answers, dependent: :destroy
+  has_one :ai_assisted_idp_session,
+          -> { where(type: 'AI::AssistedUserIdpSession') },
+          as: :assistable,
+          class_name: 'AI::AssistedUserIdpSession',
+          dependent: :destroy
 
   delegate :client, to: :campaign
   delegate :project, to: :campaign
 
+  has_one_attachment :user_document,
+                     service: Settings.storage.private_storage_service,
+                     content_type: %w[application/pdf]
+
   enum :status,
-       { not_started: 0, draft: 1, pending_approval: 2, approved: 3, rejected: 4, in_progress: 5, completed: 6 }
+       {
+         not_started: 0,
+         draft: 1,
+         pending_approval: 2,
+         approved: 3,
+         rejected: 4,
+         in_progress: 5,
+         completed: 6,
+         ai_assisted_idp_in_progress: 7
+       }
 
   scope :active, -> { where(active: true) }
 
@@ -43,6 +71,7 @@ class UserIdpPlan < ApplicationRecord
       event :submit_for_approval, transitions_to: :pending_approval
       event :approve, transitions_to: :approved
       event :start, transitions_to: :in_progress
+      event :start_ai_assistance, transitions_to: :ai_assisted_idp_in_progress
     end
     state :pending_approval do
       event :approve, transitions_to: :approved
@@ -62,6 +91,10 @@ class UserIdpPlan < ApplicationRecord
     state :completed
     state :not_started do
       event :draft, transitions_to: :draft
+      event :start_ai_assistance, transitions_to: :ai_assisted_idp_in_progress
+    end
+    state :ai_assisted_idp_in_progress do
+      event :complete_ai_assistance, transitions_to: :draft
     end
 
     on_transition do |_from, to, _event, *_|
@@ -116,6 +149,10 @@ class UserIdpPlan < ApplicationRecord
 
   def manager_editable?
     rejected? || pending_approval?
+  end
+
+  def attachment_storage_path(attribute_name, filename)
+    "private/projects/#{campaign.project_id}/user_idp_plans/#{id}/#{attribute_name}/#{filename}"
   end
 
   private

@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import {
   Button, Modal, Space, Switch, Row, Col, Alert, Popconfirm, Tooltip,
+  Select,
 } from 'antd'
 import { QuestionCircleOutlined, FieldTimeOutlined } from '@ant-design/icons'
 import _ from 'lodash'
@@ -22,6 +24,7 @@ const connecter = connect(
     ...getData(state.survey).settings,
     assessment: state.survey.builder.assessment,
     blocks: state.survey.builder.blocks,
+    factorsData: state.survey.builder.factors,
   }),
   {
     close: () => closeModal('settings'),
@@ -38,11 +41,12 @@ const connecter = connect(
 
 const SettingsModalComponent = ({
   assessment, close, toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage,
-  updateExtra, toggleInstructions, blocks, updateBlocks, toggleEnableSave,
+  updateExtra, toggleInstructions, blocks, updateBlocks, toggleEnableSave, factorsData,
 }) => {
   const { extra } = assessment
   const isAssessmentTimerAdded = extra && Object.prototype.hasOwnProperty.call(extra, 'timer')
   const isThreeSixtyAssessment = assessment && assessment.category === CAMPAIGN_TYPES.THREESIXTY
+  const [enableSelectMainFactor, setEnableSelectMainFactor] = useState(extra && extra.main_factor_id)
 
   const hasRandomizedBlockWithMultiQuestionsPerPage = checkRandomizedBlockWithMultiQuestionsPerPage(blocks)
 
@@ -73,6 +77,13 @@ const SettingsModalComponent = ({
       updateBlocks(_.keyBy(updatedBlocks, 'id'))
     }
     toggleSingleQuestionPage()
+  }
+
+  const handleToggleSelectMainFactor = (value) => {
+    setEnableSelectMainFactor(value)
+    if (!value) {
+      updateExtraOptions('main_factor_id', null)
+    }
   }
 
   return (
@@ -146,11 +157,10 @@ const SettingsModalComponent = ({
 
         {isAssessmentTimerAdded && (
           <>
-            <Col span={4}>
+            <Col offset={2} span={4}>
               <InputDuration
                 placeholder="1h 30m"
                 value={extra.timer}
-                className="mhs"
                 onChange={updateTimer}
                 prefix={<FieldTimeOutlined />}
               />
@@ -180,6 +190,25 @@ const SettingsModalComponent = ({
             {I18n.t('administration.assessments.settings.disable_continue_to_dashboard')}
           </Space>
         </Col>
+        <Col span={24}>
+          <Space>
+            <Switch
+              defaultChecked={enableSelectMainFactor}
+              onChange={handleToggleSelectMainFactor}
+            />
+            {I18n.t('administration.assessments.settings.enable_select_main_factor')}
+          </Space>
+        </Col>
+        {enableSelectMainFactor && (
+          <Col offset={2} span={24}>
+            <Select
+              value={extra.main_factor_id}
+              options={_.map(factorsData.factors, factor => ({ label: factor.name, value: factor.id }))}
+              style={{ width: '40%' }}
+              onChange={value => updateExtraOptions('main_factor_id', value)}
+            />
+          </Col>
+        )}
       </Row>
     </Modal>
   )

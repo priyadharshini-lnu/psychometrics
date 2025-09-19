@@ -31,8 +31,8 @@ module Threesixty
 
         def campaign_user
           if context[:subject]
-            CampaignUser.find_by(user_id: context[:subject].id,
-                                 campaign_id: context[:threesixty_campaign].campaign_id)
+            ::CampaignUser.find_by(user_id: context[:subject].id,
+                                   campaign_id: context[:threesixty_campaign].campaign_id)
           end
         end
       end

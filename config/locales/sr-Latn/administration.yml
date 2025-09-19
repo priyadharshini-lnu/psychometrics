@@ -291,6 +291,7 @@ sr-Latn:
             manage: Upravljanje
             title: Radionice
             view: Prikaz
+            view_recordings: Pogledaj snimke
     ai_artifacts:
       artifact_results: Artefakt Rezultati
       code: Šifru
@@ -368,6 +369,7 @@ sr-Latn:
       created_successfully: AI asistent je uspešno kreiran.
       errors:
         cannot_delete_in_use: Ne mogu izbrisati AI Assistant '%{name}' jer se koristi.
+        one_click_idp_assistance_not_enabled: AI-povered IDP pomoć nije dostupna sa vašim trenutnim planom. Molimo Vas da kontaktirate administratora.
       form:
         add_output_schema_key: Dodaj izlazni ključ šeme
         dependencies: Zavisnosti
@@ -590,6 +592,7 @@ sr-Latn:
         enable_back: Omogući dugme za povratak
         enable_progress: Omogući traku napretka
         enable_save: Omogući dugme za sačuvavanje
+        enable_select_main_factor: Izaberite faktor kao glavni faktor
         enable_single_question_page: Pokaži jedno pitanje po stranici
         enable_single_question_page_confirm: Ovo će ažurirati randomizaciju blokova po stranici na 1. Da li ste sigurni?
         enable_timer: Omogući tajmer
@@ -1037,6 +1040,7 @@ sr-Latn:
       form:
         active_notice: Статус кампање ће се аутоматски предомислити на затворену на одабрани крајњи датум
         campaign: Kampanja
+        copy_factors: Faktori kopiranja
         inactive_notice: Статус кампање аутоматски ће се пребацити на активно на одабрани датум почетка
         instruction: То се може омогућити само истовремено стварање кампање
         name: Ime
@@ -2230,6 +2234,7 @@ sr-Latn:
         remove_confirm: Unesite trenutno ime šablona dato ispod u polje za tekst da biste uklonili predložak
         success: "%{idpName} je uspešno uklonjen."
       add_idp_template: Dodaj IDP šablon
+      ai_assistant: AI asistent
       ai_assisted_idp_enabled: AI asistirani IDP omogućen
       ai_enabled: AI omogućen
       ai_settings: AI podešavanja
@@ -2240,7 +2245,26 @@ sr-Latn:
       background_image: Pozadinska slika
       behavioral_skills: Veštine ponašanja
       client_skills: Veštine u vezi sa klijentima
+      delete_skill: Da li ste sigurni da želite da izbrišete veštinu jer će izbrisati i sve povezane razvojne akcije?
       details_updated: Detalji IDP-a su uspešno ažurirani
+      development_actions:
+        add_from_library: Dodaj iz biblioteke
+        completion: Završetka
+        create_development_actions_with_ai: Kreirajte razvojne akcije sa AI za %{skillName}
+        create_from_ai: Kreirajte iz AI
+        create_my_own: Kreirajte sopstveni
+        custom: Prilagođene
+        date_range: Datum početka - Datum završetka
+        edit_plan_to_add_development_actions: Izmeni plan i da dodate razvojne akcije.
+        errors:
+          invalid_learning_style: '"%{learning_style}" nije validan stil učenja. Važeće opcije su: %{valid_styles}'
+          learning_style_blank: Stil učenja ne može biti prazan
+        generate_by_ai: Generišite AI
+        generate_more: Generišite više
+        heading: Veštine / razvojne akcije
+        manage_skills: Upravljajte veštinama
+        no_development_actions: Nemate razvojne akcije
+      document_ai_assistant: Analiza dokumenata AI asistent
       edit_template: Uredi IDP šablon
       enter_tag_or_skills_error: Izaberite bar jedan tag ili veštinu
       enter_template_description: Opis
@@ -2263,6 +2287,8 @@ sr-Latn:
       global_skills: Globalne veštine
       idp: IDP
       idp_template: Dodaj IDP šablon
+      interview_questions: Pitanja za intervju
+      interview_questions_updated: Pitanja za intervju uspešno ažurirana.
       intro_message: Uvodna poruka
       intro_message_hint: Da biste modifikovali uvodnu poruku, molimo vas da prvo sačuvate IDP šablon da biste omogućili ove postavke.
       intro_message_success: Uvodna poruka je uspešno sačuvana
@@ -2274,6 +2300,7 @@ sr-Latn:
         mercer_only: Samo Mercer logo
         none: Bez logotipa
       logo_type_label: Tip logotipa
+      no_interview_questions_selected: Nisu izabrana pitanja za intervju
       no_reflection_questions_selected: Nisu izabrana pitanja za razmišljanje
       none: Ništa
       one_click_idp_enabled: Jednim klikom IDP omogućen
@@ -2282,7 +2309,16 @@ sr-Latn:
       reflection_questions_hint: Da biste izmeni pitanja refleksije, molimo vas da prvo sačuvate IDP šablon da biste omogućili ove postavke.
       reflection_questions_updated: Pitanja za razmišljanje uspešno ažurirana.
       remove: Ukloni
+      remove_skill: Ukloni veštinu
+      revert_skill_to_public:
+        errors:
+          skill_already_public: Veština je već javna
+          skill_not_found: Veština nije pronađena
+        success:
+          base_message: Veština '%{skill_name}' je sada vidljiva vašem menadžeru
+          with_approval: "%{base_message} i vaš plan IDP je dostavljen na odobrenje"
       select_by_tags: Izaberi po tagovima
+      select_interview_question: Počnite da kucate da biste pretražili i izabrali pitanje
       select_reflection_question: Počnite da kucate da biste pretražili i izaberite pitanje
       select_skill_gap_report: Izaberite izveštaj o jazu u veštinama
       select_specific_skills: Izaberite specifične veštine
@@ -2308,12 +2344,14 @@ sr-Latn:
       subtitle_text: Tekst podnaslova
       tab:
         development_actions: Razvojne akcije
+        interview_questions: Pitanja za intervju
         reflection_questions: Pitanja za razmišljanje
         settings: Podešavanja
         templates: Šabloni
       technical_skills: Tehničke veštine
       template_details: Detalji šablona
       title_text: Tekst naslova
+      update_interview_questions: Ažurirajte pitanja za intervju
       update_reflection_questions: Ažurirajte pitanja o refleksiji
     idp_setting:
       allow_global_skills: Dozvolite globalne veštine
@@ -2516,6 +2554,35 @@ sr-Latn:
         skillvue:
           api_key_present: API ključ je već prisutan u drugom projektu
       view_all_schedules: Pogledaj sve Mettl rasporede
+    interview_questions:
+      delete_confirmation: Da li ste sigurni da želite da izbrišete ovo pitanje za intervju?
+      description: Deskripton
+      export:
+        action: Pitanja za intervju za izvoz
+        details: Detalji datoteke
+        failure_msg: Greška prilikom izvoza datoteke.
+        success_msg: Izvoz pitanja za intervju u toku. Molimo Vas da proverite status u obaveštenjima.
+      form:
+        description: Deskripton
+        mandatory: Obavezna
+        question: Pitanje
+        question_type: Tip pitanja
+        question_type_audio: Audio
+        question_type_video: Prijava
+        time_limit: Rok (sek)
+        title: Pitanje za intervju
+      import:
+        action: Uvoz pitanja za intervju
+        errors:
+          invalid_required_column_format: Nevažeći Obavezni format vrednosti kolone %{row}
+          invalid_required_type_format: Neispravan format vrednosti kolone QuestionTipe %{row}
+          invalid_time_limit_column_format: Neispravan format vrednosti kolone vremenskog ograničenja %{row}
+          missing_description: Nedostaje opis sadržaja %{row}
+          missing_question: Sadržaj pitanja koji nedostaje %{row}
+          save_failed: Sačuvaj nije uspeo %{message}
+        failure_msg: Greška prilikom uvoza datoteke.
+        success_msg: Uvoz pitanja za intervju u toku. Molimo Vas da proverite status u obaveštenjima.
+      question: Pitanje
     invited_subject:
       add_btn: Dodaj subjekta
       assessment_center: 'Centar za procenu:'
@@ -3182,7 +3249,9 @@ sr-Latn:
         dp_consent_version: Verzija politike
         errors:
           cannot_disable_while_campaign_enabled: Ne možete onemogućiti snimanje video poziva jer je omogućeno za jednu ili više kampanja u ovom projektu
+          min_retention: Ne može biti manje od 1 dana
           policy_version_format: Dozvoljeni su samo celi brojevi
+          required: Potrebne
         mask_identity_for_examus: Maskiraj podatke za Examus proktoring
         mask_identity_for_hogan: Maskiraj podatke za Hogan
         mask_identity_for_iiht: Maskiraj podatke za IIHT
@@ -3322,9 +3391,12 @@ sr-Latn:
         code: Kod
         code_constraint: Kod mora početi malim slovom i može da sadrži samo mala slova, brojeve i podvlake
         delete: Izbriši
+        description: Opis
+        description_alias: Opis / Pseudonim
         import_factors: Uvezi faktore
         invalid_factor_params: Nevažeći format parametera faktora kampanje
         name: Ime
+        name_alias: Ime / pseudonim
         no_boundary_space: Ime ne može da počne ili se završava razmakom
         too_many_factors: Nemoguće kreirati više od%{count} faktora kampanje
         tools: Alatke
@@ -3343,6 +3415,19 @@ sr-Latn:
       property_panel:
         add_new_condition: Dodaj novi uslov
         apply_color_label: 'Zatim nanesite sledeću boju:'
+        custom_factor_fields:
+          percentage: Procenat
+          questions_attempted: Pokuљaj
+          questions_correct: Ispravan
+          questions_incorrect: Netačna
+          questions_not_attempted: Nije pokušao
+          questions_partial_correct: Delimično tačno
+          total_questions: Ukupno
+        custom_factor_placeholder: Izaberite prilagođena polja faktora
+        factor_value_type:
+          custom: Prilagođene
+          default: Podrazumevani
+          label: Tip vrednosti faktora
         graph_condition_types:
           default: Podrazumevani
           graph_value: Vrednost grafikona
@@ -3352,6 +3437,7 @@ sr-Latn:
         manage_graph_value_condition: Upravljajte uslovom vrednosti grafikona
         manage_styles_condition: Upravljanje stilovima stanje
         missing_value: Nedostajuća vrednost
+        pie_semi_circle: Polukrug
         predicates:
           equal_to: Jednako
           greater_than: Veći od
@@ -3435,6 +3521,7 @@ sr-Latn:
         translations: Prevode
       title: Podešavanja izveštaja
     reports:
+      broken_image_url: Proverite URL adresu slike i pokušajte ponovo da uvezete
       bulk_marked_as_done: Zbirno označi kao urađeno
       bulk_upload:
         choose_file: Izaberi datoteku
@@ -3604,16 +3691,19 @@ sr-Latn:
         campaign_assessment_group: Grupa centra za procenu
         campaign_name: Ime kampanje
         duration: Trajanje
+        link_to_view_recordings: Link za prikaz snimaka
         managers: Menadžeri
         meeting_link: Link za sastanak
         name: Ime
         participants: Učesnici
         prework: Predrad
+        recording_date: Datum snimanja
         resource_link: Link
         resource_name: Ime
         schedule_time: Vreme rasporeda
         scheduling_status: Status rasporeda
         seats: Mesta
+        serial_no: Serijski br
         start_time: Datum i vreme
         subject: Subjekat
         title: Naslov
@@ -3638,6 +3728,7 @@ sr-Latn:
         managers: Menadžeri centara
         none: Ništa
         not_allowed: Nije dozvoljeno
+        recording_enabled: Snimanje omogućeno
         remaining: Preostala mesta
         scheduling_lead_time: Vreme za zakazivanje
         scheduling_tooltip: Korisnik bi mogao da rezerviše mesto do %{date}
@@ -3698,6 +3789,7 @@ sr-Latn:
         activities: Aktivnosti
         assessment_center: Centar za procenu
         invites: Pozivi
+        recordings: Snimke
         resources: Resursi
         subjects: Subjekti
     scoring:
@@ -4133,6 +4225,15 @@ sr-Latn:
           other: Ostalo
           qualification: Kvalifikacije
           technical: Tehnički
+      move_question:
+        cancel: Otkaži
+        move: Premestite
+        moveAfter: Pomeri se posle
+        moveBefore: Premesti pre
+        moveQuestion: 'Premesti pitanje: %{question}'
+        position: Poziciju
+        selectTargetQuestion: Izaberite ciljno pitanje
+        title: Premesti pitanje
       property_panel:
         add_n_a_option: Dodaj opciju N / A
         allow_content_copy: Dozvolite kopiranje sadržaja
@@ -4176,6 +4277,18 @@ sr-Latn:
         question_description: Opisi redova
         validation_response_type: Tip odgovora za validaciju
         voice_dictation: Glasovno diktiranje
+      question_info_bar:
+        add_display_logic: Dodaj logiku prikaza
+        add_skip_logic: Add Skip Logic
+        are_you_sure_to_delete_this_question: Da li ste sigurni da izbrišete ovo pitanje?
+        default_choices: Default Choices
+        delete_question: Izbriši pitanje
+        delete_the_question: Izbriši pitanje
+        move_question: Premesti pitanje
+        randomization: Pretraživanje
+        save_as_a_template: Sačuvaj kao predložak
+        this_question_has_default_choices: Ovo pitanje ima podrazumevane izbore
+        this_question_has_randomization: Ovo pitanje ima randomizaciju
     table:
       entries:
         selected: Izabran 1 red

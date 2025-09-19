@@ -259,8 +259,8 @@ describe UsersResults::Scoring::AddScore do
     result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
                                      norm: five_scale_norm })
 
-    expect(result).to eq(
-      factor1.id.to_s => {
+    expect(result).to including(
+      factor1.id.to_s => hash_including(
         'results' => [
           { 'value' => [2, 3, 4], 'question_id' => 1 },
           { 'value' => 5, 'question_id' => 2 },
@@ -268,7 +268,7 @@ describe UsersResults::Scoring::AddScore do
         ],
         'score' => 3.33, # (((2 + 3 + 4) / 3) + 5 + 2) / 3.0 = 3.33,
         'norm_score' => nil
-      },
+      ),
       factor2.id.to_s => { 'results' => [], 'score' => nil, 'norm_score' => nil }
     )
   end
@@ -297,8 +297,8 @@ describe UsersResults::Scoring::AddScore do
     result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
                                      norm: five_scale_norm })
 
-    expect(result).to eq(
-      factor1.id.to_s => {
+    expect(result).to include(
+      factor1.id.to_s => hash_including(
         'results' => [
           { 'value' => [2, 3, 4], 'question_id' => 1 },
           { 'value' => 5, 'question_id' => 2 },
@@ -306,8 +306,79 @@ describe UsersResults::Scoring::AddScore do
         ],
         'score' => ((2 + 3 + 4) / 3) + 5 + 2,
         'norm_score' => nil
-      },
+      ),
       factor2.id.to_s => { 'results' => [], 'score' => nil, 'norm_score' => nil }
+    )
+  end
+
+  it 'calculates additional statistics for questions strategy' do
+    factor1 = create(:factor, scoring_strategy: :questions_sum)
+    factor2 = create(:factor, scoring_strategy: :questions_sum)
+
+    factor_hash = {
+      factor1.id => { factor: factor1, sub_factor_hash: {} },
+      factor2.id => { factor: factor2, sub_factor_hash: {} }
+    }
+
+    factor_ids = factor_hash.keys
+
+    scoring = {
+      factor1.id.to_s => {
+        'results' => [
+          { 'value' => 1, 'question_id' => 1, 'max_value' => 1 }, # correct
+          { 'value' => 0.5, 'question_id' => 2, 'max_value' => 1 }, # partial
+          { 'value' => 0, 'question_id' => 3, 'max_value' => 1 } # incorrect
+        ]
+      },
+      factor2.id.to_s => {
+        'results' => [
+          { 'value' => [2, 2], 'question_id' => 5, 'max_value' => 4 }, # correct
+          { 'value' => [1, 0], 'question_id' => 6, 'max_value' => 3 } # partial
+        ]
+      }
+    }
+
+    factors_question_count = { factor1.id => 4, factor2.id => 3 }
+
+    result = described_class.call!({
+      factor_hash: factor_hash,
+      factor_ids: factor_ids,
+      scoring: scoring,
+      norm: five_scale_norm,
+      factors_question_count: factors_question_count
+    })
+
+    expect(result[factor1.id.to_s]).to eq(
+      'results' => [
+        { 'value' => 1, 'question_id' => 1, 'max_value' => 1 },
+        { 'value' => 0.5, 'question_id' => 2, 'max_value' => 1 },
+        { 'value' => 0, 'question_id' => 3, 'max_value' => 1 }
+      ],
+      'score' => 1.5,
+      'percentage' => 50.0, # 2/4
+      'questions_attempted' => 3,
+      'total_questions' => 4,
+      'questions_correct' => 1,
+      'questions_partial_correct' => 1,
+      'questions_incorrect' => 1,
+      'questions_not_attempted' => 1,
+      'norm_score' => nil
+    )
+
+    expect(result[factor2.id.to_s]).to eq(
+      'results' => [
+        { 'value' => [2, 2], 'question_id' => 5, 'max_value' => 4 },
+        { 'value' => [1, 0], 'question_id' => 6, 'max_value' => 3 }
+      ],
+      'score' => 2.5,
+      'percentage' => 67.0, # 2/3
+      'questions_attempted' => 2,
+      'total_questions' => 3,
+      'questions_correct' => 1,
+      'questions_partial_correct' => 1,
+      'questions_incorrect' => 0,
+      'questions_not_attempted' => 1,
+      'norm_score' => nil
     )
   end
 
@@ -578,7 +649,7 @@ describe UsersResults::Scoring::AddScore do
     result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
                                      norm: five_scale_norm })
 
-    expect(result).to eq(
+    expect(result).to include(
       factor1.id.to_s => {
         'results' => [
           { 'value' => [2, 3, 4], 'question_id' => 1 },
@@ -592,22 +663,22 @@ describe UsersResults::Scoring::AddScore do
         'score' => 4.11, # ((1 + 5)/2.0 + 7 + (2 + 2 + 3)/3.0) / 3.0 = 4.11
         'norm_score' => nil
       },
-      factor3.id.to_s => {
+      factor3.id.to_s => hash_including(
         'results' => [{ 'value' => [1, 5], 'question_id' => 5 }, { 'value' => 7, 'question_id' => 8 }],
         'score' => 5.0, # ((1 + 5)/2.0 + 7) / 2.0 = 5.0
         'norm_score' => nil
-      },
-      factor4.id.to_s => {
+      ),
+      factor4.id.to_s => hash_including(
         'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }],
         'score' => 2.33, # (2 + 2 + 3) / 3.0 = 2.33
         'norm_score' => nil
-      },
-      factor5.id.to_s => { 'results' => [], 'score' => nil, 'norm_score' => nil },
-      factor6.id.to_s => {
+      ),
+      factor5.id.to_s => hash_including('results' => [], 'score' => nil, 'norm_score' => nil),
+      factor6.id.to_s => hash_including(
         'results' => [{ 'value' => [1, 1, 3], 'question_id' => 7 }],
         'score' => 1.67, # (1 + 1 + 3) / 3.0 = 1.67
         'norm_score' => nil
-      }
+      )
     )
   end
 
@@ -661,7 +732,7 @@ describe UsersResults::Scoring::AddScore do
     result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
                                      norm: five_scale_norm })
 
-    expect(result).to eq(
+    expect(result).to include(
       factor1.id.to_s => {
         'results' => [
           { 'value' => [2, 3, 4], 'question_id' => 1 },
@@ -675,20 +746,20 @@ describe UsersResults::Scoring::AddScore do
         'score' => ((1 + 5) / 2.0) + 7 + ((2 + 2 + 3) / 3.0),
         'norm_score' => nil
       },
-      factor3.id.to_s => {
+      factor3.id.to_s => hash_including(
         'results' => [{ 'value' => [1, 5], 'question_id' => 5 }, { 'value' => 7, 'question_id' => 8 }],
         'score' => ((((1 + 5) / 2.0) + 7) / 2.0).round(2),
         'norm_score' => nil
-      },
-      factor4.id.to_s => {
+      ),
+      factor4.id.to_s => hash_including(
         'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }], 'score' => ((2 + 2 + 3) / 3.0).round(2),
         'norm_score' => nil
-      },
-      factor5.id.to_s => { 'results' => [], 'score' => nil, 'norm_score' => nil },
-      factor6.id.to_s => {
+      ),
+      factor5.id.to_s => hash_including('results' => [], 'score' => nil, 'norm_score' => nil),
+      factor6.id.to_s => hash_including(
         'results' => [{ 'value' => [1, 1, 3], 'question_id' => 7 }], 'score' => ((1 + 1 + 3) / 3.0).round(2),
         'norm_score' => nil
-      }
+      )
     )
   end
 
@@ -728,7 +799,7 @@ describe UsersResults::Scoring::AddScore do
     result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
                                      norm: five_scale_norm })
 
-    expect(result).to eq(
+    expect(result).to include(
       factor1.id.to_s => {
         'results' => [
           { 'value' => [2, 3, 4], 'question_id' => 1 },
@@ -737,19 +808,19 @@ describe UsersResults::Scoring::AddScore do
         'score' => 2.42, # (1.0 * 1 + 3.0 * 3 + 2.33 * 4) / (1 + 3 + 4) = 2.42
         'norm_score' => nil
       },
-      factor2.id.to_s => {
+      factor2.id.to_s => hash_including(
         'results' => [{ 'value' => [0, 2], 'question_id' => 3 }], 'score' => 1.0, # (0 + 2) / 2.0 = 1.0
         'norm_score' => nil
-      },
-      factor3.id.to_s => {
+      ),
+      factor3.id.to_s => hash_including(
         'results' => [{ 'value' => [1, 5], 'question_id' => 5 }], 'score' => 3.0, # (1 + 5) / 2.0 = 3.0
         'norm_score' => nil
-      },
-      factor4.id.to_s => {
+      ),
+      factor4.id.to_s => hash_including(
         'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }], 'score' => 2.33, # (2 + 2 + 3) / 3.0 = 2.33
         'norm_score' => nil
-      },
-      factor5.id.to_s => { 'results' => [], 'score' => nil, 'norm_score' => nil }
+      ),
+      factor5.id.to_s => hash_including('results' => [], 'score' => nil, 'norm_score' => nil)
     )
   end
 
@@ -788,7 +859,7 @@ describe UsersResults::Scoring::AddScore do
     result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
                                      norm: five_scale_norm, factor_norm_hash: factor_norm_hash })
 
-    expect(result).to eq(
+    expect(result).to include(
       factor1.id.to_s => {
         'results' => [
           { 'value' => [2, 3, 4], 'question_id' => 1 },
@@ -797,14 +868,14 @@ describe UsersResults::Scoring::AddScore do
         'score' => 1.75, # (1.0 * 1 + 2.0 * 3) / (1 + 3) = 1.75
         'norm_score' => 1
       },
-      factor2.id.to_s => {
+      factor2.id.to_s => hash_including(
         'results' => [{ 'value' => [0, 2], 'question_id' => 3 }], 'score' => 1.0, # (0 + 2) / 2.0 = 1.0
         'norm_score' => 1
-      },
-      factor3.id.to_s => {
+      ),
+      factor3.id.to_s => hash_including(
         'results' => [{ 'value' => [1, 5], 'question_id' => 5 }], 'score' => 3.0, # (1 + 5) / 2.0 = 3.0
         'norm_score' => 2
-      }
+      )
     )
   end
 
@@ -840,7 +911,7 @@ describe UsersResults::Scoring::AddScore do
     result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
                                      norm: five_scale_norm })
 
-    expect(result).to eq(
+    expect(result).to include(
       factor1.id.to_s => {
         'results' => [
           { 'value' => [2, 3, 4], 'question_id' => 1 },
@@ -849,21 +920,21 @@ describe UsersResults::Scoring::AddScore do
         'score' => 71.43, # (1 + 4) * 100 / (1 + 2 + 4) = 71.43
         'norm_score' => nil
       },
-      factor2.id.to_s => {
+      factor2.id.to_s => hash_including(
         'results' => [{ 'value' => [0, 2], 'question_id' => 3 }],
         'score' => 1.0, # (0 + 2) / 2.0 = 1.0
         'norm_score' => nil
-      },
-      factor3.id.to_s => {
+      ),
+      factor3.id.to_s => hash_including(
         'results' => [{ 'value' => [1, 5], 'question_id' => 5 }],
         'score' => 3.0, # (1 + 5) / 2.0 = 3.0
         'norm_score' => nil
-      },
-      factor4.id.to_s => {
+      ),
+      factor4.id.to_s => hash_including(
         'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }],
         'score' => 2.33, # (2 + 2 + 3) / 3.0 = 2.33
         'norm_score' => nil
-      }
+      )
     )
   end
 
@@ -890,8 +961,8 @@ describe UsersResults::Scoring::AddScore do
         norm: five_scale_norm, factor_norm_hash: { factor.id => factors_norm } }
     )
 
-    expect(result).to eq(
-      factor.id.to_s => {
+    expect(result).to include(
+      factor.id.to_s => hash_including(
         'results' => [
           { 'value' => [2, 3, 4], 'question_id' => 1 },
           { 'value' => 5, 'question_id' => 2 },
@@ -899,7 +970,7 @@ describe UsersResults::Scoring::AddScore do
         ],
         'score' => 3.33, # (((2 + 3 + 4) / 3) + 5 + 2) / 3.0 = 3.33,
         'norm_score' => 2
-      }
+      )
     )
   end
 
@@ -921,8 +992,8 @@ describe UsersResults::Scoring::AddScore do
         scoring: scoring, norm: percentile_norm, factor_norm_hash: { factor.id => factors_norm } }
     )
 
-    expect(result).to eq(
-      factor.id.to_s => {
+    expect(result).to include(
+      factor.id.to_s => hash_including(
         'results' => [
           { 'value' => 2, 'question_id' => 2 },
           { 'value' => 1, 'question_id' => 3 }
@@ -930,7 +1001,7 @@ describe UsersResults::Scoring::AddScore do
         'score' => (2 + 1) / 2.0,
         'zscore' => 0.16667,
         'norm_score' => Ztable.percentile(0.16667)
-      }
+      )
     )
   end
 
@@ -1057,7 +1128,7 @@ describe UsersResults::Scoring::AddScore do
     result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
                                      norm: five_scale_norm })
 
-    expect(result).to eq(
+    expect(result).to include(
       factor1.id.to_s => {
         'results' => [
           { 'value' => [2, 3, 4], 'question_id' => 1 },
@@ -1066,19 +1137,19 @@ describe UsersResults::Scoring::AddScore do
         'score' => 19.32, # (1.0 * 1 + 3.0 * 3 + 2.33 * 4) = 19.32
         'norm_score' => nil
       },
-      factor2.id.to_s => {
+      factor2.id.to_s => hash_including(
         'results' => [{ 'value' => [0, 2], 'question_id' => 3 }], 'score' => 1.0, # (0 + 2) / 2.0 = 1.0
         'norm_score' => nil
-      },
-      factor3.id.to_s => {
+      ),
+      factor3.id.to_s => hash_including(
         'results' => [{ 'value' => [1, 5], 'question_id' => 5 }], 'score' => 3.0, # (1 + 5) / 2.0 = 3.0
         'norm_score' => nil
-      },
-      factor4.id.to_s => {
+      ),
+      factor4.id.to_s => hash_including(
         'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }], 'score' => 2.33, # (2 + 2 + 3) / 3.0 = 2.33
         'norm_score' => nil
-      },
-      factor5.id.to_s => { 'results' => [], 'score' => nil, 'norm_score' => nil }
+      ),
+      factor5.id.to_s => hash_including('results' => [], 'score' => nil, 'norm_score' => nil)
     )
   end
 end

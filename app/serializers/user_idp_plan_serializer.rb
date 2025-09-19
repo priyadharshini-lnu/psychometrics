@@ -2,9 +2,15 @@
 
 class UserIdpPlanSerializer < Panko::Serializer
   attributes :name, :role, :division, :reflection_questions, :status, :start_date, :assigned_date, :end_date,
-             :completed_date
+             :completed_date, :user_idp_skills
 
-  has_many :user_idp_skills, serializer: UserIdpSkillSerializer
+  def user_idp_skills
+    Panko::ArraySerializer.new(
+      object.user_idp_skills.public_skills.includes(:skill, :user_idp_development_actions),
+      each_serializer: UserIdpSkillSerializer,
+      context: context
+    ).to_a
+  end
 
   def reflection_questions
     Panko::ArraySerializer.new(

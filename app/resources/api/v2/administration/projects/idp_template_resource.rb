@@ -9,12 +9,15 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
              :logo_type, :title_text, :subtitle_text, :fields,
              :background, :client_logo, :show_reflections, :reflection_questions,
              :instructions, :translations, :available_locales, :status, :allow_edit,
-             :ai_enabled, :ai_assisted_idp_enabled, :one_click_idp_enabled, :skill_source_preference
+             :ai_enabled, :ai_assisted_idp_enabled, :one_click_idp_enabled, :interview_questions,
+             :skill_source_preference
 
   has_one :project, class_name: 'Client'
   has_one :report
   has_many :idp_template_skills
   has_many :skills, through: :idp_template_skills, class_name: 'Skill'
+  has_one :one_click_ai_assistant, class_name: 'AI::Assistant'
+  has_one :document_analysis_ai_assistant, class_name: 'AI::Assistant'
 
   ransack_filters %i[filterable_fields status_eq]
 
@@ -43,6 +46,18 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
         mandatory: itrq.mandatory,
         min_words: itrq.min_words,
         max_words: itrq.max_words
+      }
+    end
+  end
+
+  def interview_questions
+    @model.idp_template_interview_questions.order(:order).map do |itiq|
+      {
+        id: itiq.interview_question_id.to_s,
+        question: itiq.interview_question.question,
+        mandatory: itiq.mandatory,
+        time_limit: itiq.time_limit,
+        question_type: itiq.interview_question.question_type
       }
     end
   end

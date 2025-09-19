@@ -245,9 +245,11 @@ export const Comments: React.FC<CommentsProps> = ({
               <Typography.Title level={5} className={`${styles.headerTitle} m-0`}>
                 {title}
               </Typography.Title>
-              <Typography.Text type="secondary" className={styles.headerTitleCount}>
-                {totalCount && totalCount > 0 && `(${totalCount})`}
-              </Typography.Text>
+              {totalCount && totalCount > 0 && (
+                <Typography.Text type="secondary" className={styles.headerTitleCount}>
+                  { `(${totalCount})`}
+                </Typography.Text>
+              )}
             </Flex>
             {subtitle && (
               <Typography.Text type="secondary" className={styles.headerSubtitle}>

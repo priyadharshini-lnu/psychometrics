@@ -1,24 +1,26 @@
 import * as t from 'io-ts'
 
+const LearningStyles = t.union([
+  t.literal('on_the_job'),
+  t.literal('learning_from_others'),
+  t.literal('structured_learning'),
+])
+
 const DevelopmentActionsTR = t.type({
   id: t.string,
   userIdpPlanId: t.number,
   userIdpSkillId: t.number,
-  developmentActionId: t.union([t.number, t.null]),
+  developmentActionId: t.union([t.string, t.number]),
   developmentActionType: t.union([t.number, t.string]),
   customAction: t.string,
-  customActionLearningStyle: t.string,
+  customActionLearningStyle: t.union([LearningStyles, t.undefined]),
   name: t.string,
   description: t.string,
   courseUrl: t.string,
   courseStartDate: t.string,
   courseEndDate: t.string,
   userIdpDevelopmentActionId: t.number,
-  learningStyle: t.union([
-    t.literal('on_the_job'),
-    t.literal('learning_from_others'),
-    t.literal('structured_learning'),
-  ]),
+  learningStyle: LearningStyles,
   image: t.string,
   progress: t.number,
   startDateTime: t.string,
@@ -28,6 +30,7 @@ const DevelopmentActionsTR = t.type({
     skillId: t.number,
     userIdpPlanId: t.number,
   }),
+  sourceType: t.number,
 })
 
 
@@ -41,6 +44,7 @@ const SkillsTR = t.type({
   defaultLanguage: t.string,
   developmentActions: t.array(DevelopmentActionsTR),
   skillId: t.string,
+  private: t.boolean,
 })
 
 export const UserIdpPlanTR = t.type({
@@ -72,6 +76,7 @@ export const UserActiveIdpTemplateTR = t.type({
   status: t.string,
   skillGapReportId: t.number,
   skillGapReportAvailable: t.boolean,
+  oneClickIdpEnabled: t.boolean,
 })
 
 const IDPUserTR = t.type({

@@ -10,19 +10,15 @@ import { SkillGapReportStep } from './SkillGapReport'
 import { AddSkills } from './AddSkills'
 import { RateSkills } from './RateSkills'
 import { ReflectiveQuestionsStep } from './ReflectiveQuestions'
-import { BoxWithShadow } from '~/glint'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
-
-
 import {
   fetchUserIdpPlan,
   updateUserIdpPlan,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
-
 import { RootState } from '~/modules/endUser/core/rootReducers'
-
-
 import styles from './Steps.less'
+import { useAppSelector } from '~/modules/endUser/store/hooks'
+import { getReflectiveQuestions } from '~/modules/endUser/modules/campaigns/core/idp/idpPlanRtk'
 
 const { I18n } = window
 
@@ -60,6 +56,8 @@ const InitialStepsComponent = ({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
+  const reflectionQuestions = useAppSelector(getReflectiveQuestions)
+
   const STEP_ITEMS = [
     {
       title: I18n.t('idp.initial_steps.getting_started'),
@@ -81,6 +79,7 @@ const InitialStepsComponent = ({
     },
     {
       title: I18n.t('idp.initial_steps.reflective_questions'),
+      hide: reflectionQuestions.length === 0,
       step: STEPS.reflectionQuestions,
     },
   ]
@@ -109,7 +108,10 @@ const InitialStepsComponent = ({
     }
   }
 
-  const handleNextForReflectiveQuestionsStep = () => {
+  const handleNextForRateSkillsStep = () => {
+    if (reflectionQuestions.length === 0) {
+      handleSubmit()
+    }
     next(STEPS.reflectionQuestions)
   }
 
@@ -119,6 +121,18 @@ const InitialStepsComponent = ({
     } else {
       handleSubmit()
     }
+  }
+
+  const handlePrevForAddSkillsStep = () => {
+    if (skillGapReportAvailable) {
+      navigate(`/idp/steps/${STEPS.skillGapReport}`)
+    } else {
+      navigate(`/idp/steps/${STEPS.gettingStarted}`)
+    }
+  }
+
+  const handlePrevForSkillGapReportStep = () => {
+    navigate(`/idp/steps/${STEPS.gettingStarted}`)
   }
 
   useEffect(() => {
@@ -139,12 +153,12 @@ const InitialStepsComponent = ({
       {isLoading ? <Flex className="h-full" align="center"><Spin size="large" /></Flex>
         : (
           <Layout.Content className={styles.pageContent}>
-            <BoxWithShadow className={styles.steps}>
+            <div className="pt-4 mb-4">
               <Steps
                 current={currentStep === -1 ? 0 : currentStep}
                 items={visibleSteps.map(({ title }) => ({ title }))}
               />
-            </BoxWithShadow>
+            </div>
             {paramStep === STEPS.gettingStarted && (
               <GettingStart
                 introMessage={introMessage}
@@ -154,6 +168,7 @@ const InitialStepsComponent = ({
             {paramStep === STEPS.skillGapReport && (
               <SkillGapReportStep
                 next={() => next(STEPS.addSkills)}
+                prev={handlePrevForSkillGapReportStep}
               />
             )}
             {paramStep === STEPS.addSkills && (
@@ -161,17 +176,24 @@ const InitialStepsComponent = ({
                 selfRatingEnabled={selfRatingEnabled}
                 next={handleNextForAddSkillsStep}
                 isSubmittingPlan={isSubmitting}
+                prev={handlePrevForAddSkillsStep}
               />
             )}
             {paramStep === STEPS.rateSkills && (
               <RateSkills
-                next={handleNextForReflectiveQuestionsStep}
+                next={handleNextForRateSkillsStep}
                 isSubmittingPlan={isSubmitting}
+                prev={() => {
+                  navigate(`/idp/steps/${STEPS.addSkills}`)
+                }}
               />
             )}
             {paramStep === STEPS.reflectionQuestions && (
               <ReflectiveQuestionsStep
                 next={handleSubmit}
+                prev={() => {
+                  navigate(`/idp/steps/${STEPS.rateSkills}`)
+                }}
               />
             )}
           </Layout.Content>

@@ -49,4 +49,40 @@ describe Campaigns::Copy do
       expect(new_campaign.datasheet.rows.size).to eq 0
     end
   end
+
+  it 'copies all campaign factors and groups, preserving order and settings, but does not copy participants' do
+    group1 = create(:campaign_factor_group, campaign: campaign, name: 'Group 1', position: 1)
+    group2 = create(:campaign_factor_group, campaign: campaign, name: 'Group 2', position: 2)
+    create(:campaign_factor, campaign: campaign, campaign_factor_group: group1, name: 'Factor 1',
+position: 1, factor_type: 'formula', output_type: :numeric)
+    create(:campaign_factor, campaign: campaign, campaign_factor_group: group1, name: 'Factor 2',
+position: 2, factor_type: 'formula', output_type: :string)
+    create(:campaign_factor, campaign: campaign, campaign_factor_group: group2, name: 'Factor 3',
+position: 1, factor_type: 'assessment', output_type: :numeric)
+    create(:campaign_user, campaign: campaign)
+
+    form = Campaigns::CopyForm.from_params(campaign.attributes.merge(name: 'Copied Campaign',
+                                                                     copy_campaign_factors: true))
+    new_campaign = described_class.call!(form, campaign)
+
+    expect(new_campaign.name).to eq 'Copied Campaign'
+    expect(new_campaign.campaign_factor_groups.count).to eq 2
+    expect(new_campaign.campaign_factors.count).to eq 3
+
+    # Check group order and names
+    expect(new_campaign.campaign_factor_groups.order(:position).pluck(:name)).to eq ['Group 1', 'Group 2']
+    # Check factor order and names within groups
+    group1_new = new_campaign.campaign_factor_groups.find_by(name: 'Group 1')
+    group2_new = new_campaign.campaign_factor_groups.find_by(name: 'Group 2')
+    expect(group1_new.campaign_factors.order(:position).pluck(:name)).to eq ['Factor 1', 'Factor 2']
+    expect(group2_new.campaign_factors.order(:position).pluck(:name)).to eq ['Factor 3']
+
+    # Check factor types and output types
+    expect(group1_new.campaign_factors.find_by(name: 'Factor 1').factor_type).to eq 'formula'
+    expect(group1_new.campaign_factors.find_by(name: 'Factor 2').output_type).to eq 'string'
+    expect(group2_new.campaign_factors.find_by(name: 'Factor 3').factor_type).to eq 'assessment'
+
+    # No participants copied
+    expect(new_campaign.campaign_users.count).to eq 0
+  end
 end

@@ -19,8 +19,9 @@ const TRANSLATED_MODULES = {
   Text: true,
   Table: [
     'FactorsTable', 'StrengthClusters', 'InnovationStyles', 'HighestLowest',
-    'ThreeSixtyReportSummary', 'Competencies', 'GapAssessment'],
+    'ThreeSixtyReportSummary', 'Competencies', 'GapAssessment', 'CampaignFactorsTable'],
   Graph: ['Circumplex'],
+  Image: true,
 }
 const EXTERNAL_CATEGORIES = ['hogan', 'saville']
 // Template Structure
@@ -124,6 +125,15 @@ _.extend(I18nStore.prototype, {
     return factor?.name
   },
 
+  tCampaignFactorDescription (factor) {
+    if (this.locales && this.locales['reports/campaign_factor']
+      && this.locales['reports/campaign_factor'][factor.id]) {
+      return this.locales['reports/campaign_factor'][factor.id].description
+    }
+    return factor?.description
+  },
+
+
   tFactor (factor, key) {
     if (_.get(this, `locales.factor.${factor.id}.${key}`)) {
       return this.locales.factor[factor.id][key]
@@ -145,7 +155,7 @@ _.extend(I18nStore.prototype, {
     const defaultTableColumns = sourceType ? _.get(defaultTableColumnnsData, sourceType)
       : defaultTableColumnnsData
     const tableColumns = _.get(module, tableColumnsDataPath)
-        || defaultTableColumns || {}
+      || defaultTableColumns || {}
     return _.get(tableColumns, key) || ''
   },
 
@@ -220,6 +230,7 @@ _.extend(I18nStore.prototype, {
       'reports/campaign_factors': _.reduce(AppStore.report.campaignFactors, (hash, factor) => {
         hash[factor.id] = {
           name: factor.name,
+          description: factor.description,
         }
         return hash
       }, {}),

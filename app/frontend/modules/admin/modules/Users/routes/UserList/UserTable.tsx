@@ -189,56 +189,41 @@ const getActionsMenuProps = ({
   const menuItems = [
     user.meta.permissions.resetPassword && {
       key: 'reset_password',
-      label: (
-        <Button type="link" onClick={() => openResetPasswordModal(user)} className="ps-0">
-          {I18n.t('users.actions.reset_password.option')}
-        </Button>),
+      label: I18n.t('users.actions.reset_password.option'),
+      onClick: () => openResetPasswordModal(user),
     },
     user.meta.permissions.toggleEnable2fa && {
       key: '2fa',
-      label: (
-        <Button type="link" onClick={() => toggle2FA(user)} className="ps-0">
-          {I18n.t(`users.actions.2fa.${user.enable_2fa ? 'option_to_disable' : 'option_to_enable'}`)}
-        </Button>),
+      label: I18n.t(`users.actions.2fa.${user.enable_2fa ? 'option_to_disable' : 'option_to_enable'}`),
+      onClick: () => toggle2FA(user),
     },
     user.meta.permissions.remove && {
       key: 'remove',
-      label: (
-        <>
-          <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
-            {I18n.t('common.actions.remove')}
-          </Button>
-        </>
-      ),
+      label: I18n.t('common.actions.remove'),
+      onClick: () => setConfirmation(true),
     },
     (isSuperAdmin(currentUser) && userTab === 'Users::Admin') && {
       key: 'apiKeys',
-      label: (
-        <Button type="link" onClick={() => handleAPIKeysClick(user.id)} className="ps-0">
-          {I18n.t('administration.administrators.list.actions.api_keys')}
-        </Button>
-      ),
+      label: I18n.t('administration.administrators.list.actions.api_keys'),
+      onClick: () => handleAPIKeysClick(user.id),
     },
     user.meta.permissions.loginAs && {
       key: 'loginAs',
       label: (
-        <Button
-          type="link"
+        <a
           href={`/administration/users/${user.id}/spoof`}
-          rel="noopener noreferrer"
           target="_blank"
-          className="ps-0 color-primary"
+          rel="noopener noreferrer"
+          style={{ color: 'inherit' }}
         >
           {I18n.t('administration.administrators.list.actions.login')}
-        </Button>
+        </a>
       ),
     },
     user.meta.permissions.unlockUserAccess && {
       key: 'unlock_user_access',
-      label: (
-        <Button type="link" onClick={unlockUserAccess} className="ps-0">
-          {I18n.t('users.actions.unlock_user_access.title')}
-        </Button>),
+      label: I18n.t('users.actions.unlock_user_access.title'),
+      onClick: unlockUserAccess,
     },
   ]
 

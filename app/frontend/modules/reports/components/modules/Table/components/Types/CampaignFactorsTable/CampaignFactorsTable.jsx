@@ -6,12 +6,14 @@ import _ from 'lodash'
 import cs from 'classnames'
 import ReactMarkdown from 'react-markdown'
 
+import LookupSourceName from '~/modules/reports/commands/LookupSourceName'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import BulletGraph from '~/modules/reports/components/BulletGraph'
 import PieGraph from '~/modules/reports/components/PieGraph'
 import styles from './CampaignFactorsTable.less'
 import { PaginationContext } from '../FactorsTable/PaginationContext'
+import AppStore from '~/modules/reports/store/AppStore'
 
 const campaignFactorMockData = [
   {
@@ -119,9 +121,17 @@ class CampaignFactorsTable extends Component {
   }
 
   componentDidMount () {
-    const { module: model, insertPaginationPage, preview } = this.props
-    if (!model.props.pagination?.enabled) { return }
-    if (!preview) { return }
+    const {
+      module: model,
+      insertPaginationPage,
+      preview,
+    } = this.props
+    if (!model.props.pagination?.enabled) {
+      return
+    }
+    if (!preview) {
+      return
+    }
 
     if (model.pagination) {
       this.setState({ paginationContext: model.pagination })
@@ -153,7 +163,10 @@ class CampaignFactorsTable extends Component {
   }
 
   prepareCampaignFactorTableRows () {
-    const { module, module: { props } } = this.props
+    const {
+      module,
+      module: { props },
+    } = this.props
     const { paginationContext } = this.state
 
     const sourceCampaignFactors = _.get(props, ['source', 'campaignFactors'], [])
@@ -186,14 +199,26 @@ class CampaignFactorsTable extends Component {
   }
 
   canShowRank () {
-    const { model: { props: { showRankOrder, mode } } } = this.props
+    const {
+      model: {
+        props: {
+          showRankOrder,
+          mode,
+        },
+      },
+    } = this.props
 
     return (mode !== 'orderedFactors' && showRankOrder)
   }
 
   renderCampaignFactors () {
     const { model, module } = this.props
-    const { fontFamily } = module.props.style
+    const { fontSize, fontFamily, fontColor } = module.props.style
+    const style = {
+      fontSize,
+      fontFamily,
+      color: fontColor,
+    }
     return (
       this.campaignFactorsData.map((campaignfactor, i) => {
         const conditions = _.filter(module.textConditions, { campaignFactorCode: campaignfactor.code })
@@ -234,16 +259,36 @@ class CampaignFactorsTable extends Component {
           conditionBaselineScore = 3.5
         }
 
-        conditionTitle = conditionTitle ?? I18nStore.tFactorName(campaignfactor)
-        conditionText = conditionText ?? I18nStore.tFactor(campaignfactor, 'description')
+        conditionTitle = conditionTitle ?? LookupSourceName.call({}, campaignfactor.code, 'CampaignFactors')
+
+        if (!conditionText) {
+          const ReportCampaignfactor = _.find(AppStore.report.campaignFactors, { code: campaignfactor.code })
+          conditionText = I18nStore.tCampaignFactorDescription(ReportCampaignfactor)
+        }
         conditionColor = conditionColor ?? '#666666'
 
         const {
-          tableStyle = 'default', minPosition, maxPosition, reverseOrder, source: { campaignFactors },
-          showDescription, showStrengthsBlindspots, showScore, showName, showLabel,
-          scoreProgressColor, scoreBackgroundColor, maxScoreValue, scorePosition = 'inline',
-          scoreDisplay = 'circular', scoreRanges = [], scoreLineColor, scoreBulletColor, precision,
-          showScoreText, scoreBulletGraphHeight,
+          tableStyle = 'default',
+          minPosition,
+          maxPosition,
+          reverseOrder,
+          source: { campaignFactors },
+          showDescription,
+          showStrengthsBlindspots,
+          showScore,
+          showName,
+          showLabel,
+          scoreProgressColor,
+          scoreBackgroundColor,
+          maxScoreValue,
+          scorePosition = 'inline',
+          scoreDisplay = 'circular',
+          scoreRanges = [],
+          scoreLineColor,
+          scoreBulletColor,
+          precision,
+          showScoreText,
+          scoreBulletGraphHeight,
         } = model.props
 
         const startRank = reverseOrder ? Math.max(1, campaignFactors.length - maxPosition + 1) : minPosition
@@ -261,6 +306,7 @@ class CampaignFactorsTable extends Component {
                   percent={Math.min(percent, 100)}
                   progressColor={scoreProgressColor}
                   backgroundColor={scoreBackgroundColor}
+                  scoreStyle={{ ...style, fill: fontColor }}
                 />
               )
             )}
@@ -275,6 +321,7 @@ class CampaignFactorsTable extends Component {
                   showScoreText={showScoreText}
                   score={score}
                   scoreBulletGraphHeight={scoreBulletGraphHeight}
+                  scoreStyle={style}
                 />
               )
             )}
@@ -291,11 +338,11 @@ class CampaignFactorsTable extends Component {
               </td>
             )}
             {(showName || showDescription || (showScore && scorePosition === 'block')) && (
-              <td className={styles.description}>
+              <td style={style} className={styles.description}>
                 {(showName || showDescription || showStrengthsBlindspots || (showScore && scorePosition === 'block')) && (
                   <div className={styles.content}>
                     {showName && (
-                      <div className={styles.strength}>
+                      <div style={style} className={styles.strength}>
                         {_.isEmpty(conditionTitle) ? I18nStore.tFactor(campaignfactor, 'alias') : conditionTitle}
                       </div>
                     )}
@@ -306,7 +353,7 @@ class CampaignFactorsTable extends Component {
                       </ReactMarkdown>
                     )}
                     {showStrengthsBlindspots && (
-                      <div className={cs(styles.strengthsBlindspots, 'mt8')}>
+                      <div style={style} className={cs(styles.strengthsBlindspots, 'mt8')}>
                         <ReactMarkdown className={styles.strengths}>
                           {conditionStrengths}
                         </ReactMarkdown>
@@ -351,15 +398,18 @@ class CampaignFactorsTable extends Component {
     if (!headerShown) {
       return null
     }
-
     const { model } = this.props
     const {
-      scorePosition = 'inline', showStrengthsBlindspots, showName, showDescription,
+      scorePosition = 'inline',
+      showStrengthsBlindspots,
+      showName,
+      showDescription,
     } = model.props
     return (
       <thead data-table-header>
         <tr>
-          {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.t('reports.modules.factors_table.rank')}</th>}
+          {this.canShowRank()
+          && <th className={styles.rankOrder} scope="col">{I18nStore.t('reports.modules.factors_table.rank')}</th>}
           {(showName || showDescription || showStrengthsBlindspots) ? (
             <th scope="col">{I18nStore.t('reports.modules.factors_table.description')}</th>
           ) : null}
@@ -371,9 +421,19 @@ class CampaignFactorsTable extends Component {
   }
 
   render () {
-    const { module, model } = this.props
-    const { showBorder, backgroundColor } = model.props
-    const { fontSize, fontFamily, fontColor } = module.props.style
+    const {
+      module,
+      model,
+    } = this.props
+    const {
+      showBorder,
+      backgroundColor,
+    } = model.props
+    const {
+      fontSize,
+      fontFamily,
+      fontColor,
+    } = module.props.style
     const style = {
       fontSize,
       fontFamily,
@@ -400,6 +460,5 @@ class CampaignFactorsTable extends Component {
 
 export default connect(
   () => ({}),
-  {
-  },
+  {},
 )(CampaignFactorsTable)

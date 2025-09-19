@@ -70,7 +70,7 @@ module Forms
       validates :delivery_rule,
                 presence: true,
                 inclusion: { in: ::Facades::Administration::EmailDelivery::RULES[:other] },
-                if: :other?
+                if: -> { other? && %w[new_users new_assignment].exclude?(recipients) }
 
       validates :delivery_at,
                 presence: true,

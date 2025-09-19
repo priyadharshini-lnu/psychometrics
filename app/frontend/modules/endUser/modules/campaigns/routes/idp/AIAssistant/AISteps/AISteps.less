@@ -1,0 +1,56 @@
+@import '~/styles/antv4.variable.less';
+@import '~/styles/spacing.less';
+
+.icon {
+  background-color: @white;
+  width: @space-8;
+  height: @space-8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid @text-color-secondary;
+  .svg {
+    font-size: @space-4;
+  }
+
+  &.chat {
+    background-color: #a1d7d4;
+    color: #fff;
+    border: none;
+  }
+
+  &.doc {
+    background-color: #75c895;
+    color: #fff;
+    border: none;
+  }
+
+  &.audio {
+    background-color: #eaca81;
+    color: #fff;
+    border: none;
+  }
+}
+
+.title {
+  font-size: @space-3;
+  font-weight: 600;
+}
+
+.description {
+  font-size: @space-3;
+  color: var(--grey-text)
+}
+
+.steps {
+  :global {
+    .ant-steps-item-content {
+      min-height: 4rem !important;
+    }
+    .ant-steps-item-tail {
+      inset-inline-start: @space-4 !important;
+      padding: 0 !important;
+    }
+  }
+}

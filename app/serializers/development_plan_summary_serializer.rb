@@ -18,7 +18,7 @@ class DevelopmentPlanSummarySerializer < Panko::Serializer
   private
 
   def skill_types
-    Skill.skill_types.keys
+    ::Skill.skill_types.keys
   end
 
   def development_actions

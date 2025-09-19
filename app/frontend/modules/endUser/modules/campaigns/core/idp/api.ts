@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { baseQuery } from '~/core/rtkApi'
 import {
-  UpdateReflectionQuestionsResponse,
+  UpdateReflectionQuestionsResponse, SkillResponse,
 } from './interfaces'
 
 export const idpApi = createApi({
@@ -25,9 +25,17 @@ export const idpApi = createApi({
       }),
       invalidatesTags: ['IdpPlanReflectionQuestions'],
     }),
+    toggleSkillPrivacy: builder.mutation<SkillResponse, {
+      userIdpSkillId: number,
+    }>({
+      query: ({ userIdpSkillId }) => ({
+        url: `/user_idp_skills/${userIdpSkillId}/toggle_privacy`,
+        method: 'PUT',
+      }),
+    }),
   }),
 })
 
 export const {
-  useUpdateReflectionQuestionsMutation,
+  useUpdateReflectionQuestionsMutation, useToggleSkillPrivacyMutation,
 } = idpApi

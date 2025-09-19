@@ -5,5 +5,11 @@ module Administration
     def manage?
       user.is?(:superadmin)
     end
+
+    class Scope < BasePolicy::Scope
+      def resolve
+        scope.public_skills
+      end
+    end
   end
 end

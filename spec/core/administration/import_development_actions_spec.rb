@@ -132,7 +132,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
         expect(development_action.learning_style).to eq('structured_learning')
         expect(development_action.course_url).to eq('https://example.com/course')
         expect(development_action.development_action_type).to eq('course')
-        expect(development_action.project_id).to eq(project.id)
+        expect(development_action.owner_id).to eq(project.id)
 
         # Compare dates using to_date to avoid time zone issues
         expect(development_action.course_start_date.to_date).to eq(course_start_date)
@@ -160,7 +160,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
         expect { described_class.new(file, project.id).call }.not_to raise_error
         development_action = DevelopmentAction.last
         expect(development_action.skills).to include(project_skill)
-        expect(development_action.project_id).to eq(project.id)
+        expect(development_action.owner_id).to eq(project.id)
         expect(development_action.development_action_type).to eq('default')
       end
     end
@@ -255,7 +255,7 @@ RSpec.describe Administration::ImportDevelopmentActions do
         expect(development_action.description).to eq('Attend workshop')
         expect(development_action.learning_style).to eq('structured_learning')
         expect(development_action.development_action_type).to eq('course')
-        expect(development_action.project_id).to eq(project.id)
+        expect(development_action.owner_id).to eq(project.id)
 
         expect(development_action.skills).to include(global_skill)
         expect(development_action.skills).to include(project_skill)

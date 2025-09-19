@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Menu } from 'antd'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -18,7 +19,6 @@ import MailHistories from './MailHistories'
 const { I18n } = window
 
 const routes = [
-  { redirect: true, from: '', to: 'options' },
   { path: '/options', component: <Options /> },
   { path: '/email', component: <EmailList /> },
   { path: '/email/:id', component: <EmailList /> },
@@ -28,29 +28,37 @@ const routes = [
 ]
 function Messages ({ campaignPermissions }) {
   const navigate = useNavigate()
-  const selected = `/messages${routeUtils.getActiveRoutePath(routes)}`
-
-  const onSelect = ({ key }) => {
-    routeUtils.moveTo(navigate, settings.urlPrefix, key)
-  }
-  const menuItems = [
+  const menuItems = useMemo(() => [
     campaignPermissions.accessEmailMessages && {
+      id: 'email',
       key: '/messages/email',
       label: I18n.t('administration.threesixty_campaigns.messages.email_messages'),
     },
     campaignPermissions.accessInstructionMessages && {
+      id: 'instructions',
       key: '/messages/instructions',
       label: I18n.t('administration.threesixty_campaigns.messages.instruction_messages'),
     },
     campaignPermissions.accessEmailMessages && {
+      id: 'mail_histories',
       key: '/messages/mail_histories',
       label: I18n.t('administration.threesixty_campaigns.messages.mail_history'),
     },
     campaignPermissions.accessMessagesOptions && {
+      id: 'options',
       key: '/messages/options',
       label: I18n.t('administration.threesixty_campaigns.messages.options'),
     },
-  ]
+  ].filter(Boolean), [campaignPermissions])
+
+  const defaultRoute = { redirect: true, from: '', to: menuItems[0]?.id || '' }
+  const allRoutes = [defaultRoute, ...routes]
+
+  const selected = `/messages${routeUtils.getActiveRoutePath(allRoutes)}`
+
+  const onSelect = ({ key }) => {
+    routeUtils.moveTo(navigate, settings.urlPrefix, key)
+  }
 
   return (
     <>
@@ -62,7 +70,7 @@ function Messages ({ campaignPermissions }) {
           selectedKeys={[selected]}
           mode="horizontal"
         />
-        <RouteList routes={routes} urlPrefix="" />
+        <RouteList routes={allRoutes} urlPrefix="" />
         <PipedTextModal />
       </div>
     </>

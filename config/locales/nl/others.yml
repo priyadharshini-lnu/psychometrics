@@ -839,6 +839,7 @@ nl:
         export_development_actions: Acties voor exportontwikkeling
         export_dimension_as_json: Dimensie JSON exporteren
         export_factor_translations: Exportfactor Vertalingen
+        export_interview_questions: Sollicitatievragen exporteren
         export_job_roles_translations: Jobrollen exporteren Vertalingen
         export_norm: Exportnorm
         export_occupations: Beroepen Export
@@ -864,6 +865,7 @@ nl:
         import_external_campaign_scoring: Externe campagnescores importeren
         import_factor_translations: Importfactor Vertalingen
         import_factors: Importfactoren
+        import_interview_questions: Interviewvragen importeren
         import_job_roles_translations: Jobrollen importeren Vertalingen
         import_norm: Norm importeren
         import_proficiency_level_translations: Vertalingen op vaardigheidsniveau importeren
@@ -1787,6 +1789,7 @@ nl:
       view: Bekijk
       view_all_tasks: Bekijk alle taken
       view_detail: Detail bekijken
+      yes_delete: Ja, verwijderen
     column:
       action: Actie
       active: Actief
@@ -2559,11 +2562,47 @@ nl:
       aria_selected: Geselecteerd
   idp:
     actions: Acties
+    ai:
+      assistant:
+        failure_fallback:
+          message: Oeps! Er is iets misgegaan bij het tonen van dit bericht. Probeer het opnieuw!
+          try_again: Dat snapte ik niet. Probeer het opnieuw!
+      bubbles:
+        audio:
+          question_progress: Vraag %{current} van %{count}
+      compose:
+        placeholder: Typ hier uw bericht...
+      finishing:
+        hint: Onze AI-assistent maakt een IDP-plan voor u.
+        title: Even geduld, we doen onze magie...
+      retake_steps:
+        chat_hint: Laat me hieronder weten welke informatie je meer wilt geven?
+        chat_title: Wilt u meer informatie geven?
+        start_chat: Start Chat
+        start_chat_again: Start de chat opnieuw
+        upload_document: Document uploaden
+        upload_file: Bestand uploaden
+      summary:
+        chat_title: Samenvatting van Chat Insight
+        file_title: Inzichten in geüploade documenten
+        hint: zo ja, dan zullen we uw IDP aanmaken, anders kunt u uw antwoorden opnieuw opnemen
+        title: Ben je tevreden met de resultaten?
+        upload_file: Geüpload bestand
+        view_chat: Bekijk Chat
+      upload:
+        description: Klik of sleep bestanden naar dit gebied om ze te uploaden
+        drop: Plaats het bestand hier
+        title: Bestanden uploaden
+      welcome:
+        text: Klaar om je groeikaart in kaart te brengen? Laten we beginnen!
+        title: Hallo, ik ben je ontwikkelingsassistent
     behavioral: Gedrag
     board: Raad van bestuur
+    changes_saved_to_plan: Wijzigingen die in het plan zijn opgeslagen
     comment_details:
       add_comment: Opmerking toevoegen
       add_comment_placeholder: Opmerking toevoegen...
+      add_comments: Opmerkingen toevoegen
       add_reply_placeholder: Antwoord toevoegen...
       go_to_skill: Ga naar vaardigheid
     comments:
@@ -2585,11 +2624,15 @@ nl:
       sort_by_date: Sorteren op datum
       you: Jij
     convert_to_draft: Converteren naar concept
+    delete_skill: Weet je zeker dat je vaardigheid wilt verwijderen omdat dan ook alle verbonden ontwikkelingsacties worden verwijderd?
     details: Details
     development_actions:
       action_private: Ja
       action_public: Geen
       add_development_action: Ontwikkelingsactie toevoegen
+      add_development_actions_from_below_options: Voeg ontwikkelingsacties toe via onderstaande opties.
+      add_development_actions_modal_title: Bibliotheek met ontwikkelingsacties voor %{skillName}
+      add_from_library: Toevoegen uit bibliotheek
       all: Alle
       approved: Goedgekeurd
       board_view:
@@ -2597,17 +2640,32 @@ nl:
         in_progress: In uitvoering
         not_started: Niet gestart
       completion: Voltooiing
+      create_custom_development_action_title: Creëer mijn eigen ontwikkelingsactie voor %{skillName}
+      create_development_actions_with_ai: Ontwikkelacties maken met AI voor %{skillName}
+      create_from_ai: Creëer vanuit AI
       create_my_own: Maak mijn eigen
+      custom: Gewoonte
+      custom_da_description: Maak een aangepaste ontwikkelingsactie om aan unieke ontwikkelingsbehoeften te voldoen.
       date_range: Startdatum - Einddatum
+      edit_plan_to_add_development_actions: Plan bewerken en ontwikkelingsacties toevoegen.
+      enter_development_action_description: Voer de beschrijving van de ontwikkelingsactie in
+      enter_development_action_title: Voer de titel van de ontwikkelingsactie in
       generate_by_ai: Genereren door AI
       generate_more: Meer genereren
       generating_development_actions: Ontwikkelingsacties genereren...
+      generative_ai: Generatieve AI
+      generative_ai_description: Laat AI een op maat gemaakte ontwikkelingsactie voor u genereren
       heading: Ontwikkelingsacties
+      idp_library: IDP-bibliotheek
+      idp_library_description: Selecteer een bewezen ontwikkelingsactie uit onze door experts samengestelde bibliotheek.
       incomplete_error: Onvolledige ontwikkelingsacties
       incomplete_error_message: Sommige ontwikkelingsacties zijn onvolledig. Vul ze in voordat u uw IDP indient.
       incomplete_warning: Onvolledige ontwikkelingsacties
       incomplete_warning_message: Sommige ontwikkelingsacties zijn onvolledig. Weet u zeker dat u uw IDP als voltooid wilt markeren?
+      info_popover_title: Verschillende soorten ontwikkelingsacties
       learning_from_others: Leren van anderen
+      learning_from_others_label: Leren van anderen
+      learning_on_the_job_label: Leren op de werkvloer
       manage_skills: Vaardigheden beheren
       marathon: Marathon
       mark_as_complete: Markeren als voltooid
@@ -2617,19 +2675,26 @@ nl:
       private: Privé
       publish_plan: Plan publiceren
       remove: Verwijder
+      save_plan: Abonnement opslaan
       skill: Vaardigheid
       sprint: Sprint
       start_plan: Start Plan
       structured_learning: Gestructureerd leren
+      structured_learning_label: Samenwerkend leren
       submit_plan: Plan indienen
+      success: Ontwikkelingsacties succesvol afgerond
       write_here: Schrijf hier...
+    direct_reportee_details: Details van directe verslaggevers
     edit_plan: Plan bewerken
+    edit_plan_and_add_skills: Bewerk Plan en en klik op Vaardigheden beheren om Vaardigheden toe te voegen.
     edit_progress: Vooruitgang bewerken
+    fetching_skill_gap_report: Rapport over lacunes in vaardigheden ophalen...
     initial_steps:
       add_skill_group_description: Op basis van de resultaten van je assessment zijn hier een aantal sterke punten en ontwikkelingsgebieden voor jou. Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
       add_skill_group_title: Je %{category} vaardigheden verkennen
       add_skills: Voeg  toe
       add_skills_step: Vaardigheden toevoegen
+      back: Terug
       continue_to_rate_skills: Blijf vaardigheden beoordelen
       getting_started: Aan de slag
       less_skills: Minder vaardigheden tonen
@@ -2657,6 +2722,8 @@ nl:
         categories: Categorieën
       save_skills: Vaardigheden opslaan
     new_comments: Nieuwe reactie(s)
+    no_skills_added: Je hebt nog geen Skills toegevoegd.
+    no_skills_added_by_reportee: Reportee heeft nog geen Skills toegevoegd.
     pdf:
       approval_status: Status van goedkeuring
       cover:
@@ -2753,14 +2820,21 @@ nl:
         required: Het antwoord op de vraag is vereist
       max_words: Max Woorden
       min_words: Min woorden
+      no_answer_provided: Nog geen antwoord gegeven
       no_reflective_questions: Geen reflectieve vragen
+      optional: "(Optioneel)"
       title: Reflectieve vragen
       update_failed: Er is een fout opgetreden tijdens de update
       updated_successfully: Uw antwoorden zijn met succes bijgewerkt
+      word_limit: Moet tussen %{min} en %{max} woorden liggen
       words: Woorden
+    remove_skill: Vaardigheid verwijderen
     skill_gap_report:
+      download: Download het rapport over vaardigheidstekorten
       title: Rapport over vaardigheidskloof
+    skills_updated: Vaardigheden bijgewerkt in het plan
     status: Status
+    suggestions: Suggesties
     technical: Technisch
     user_idp_status:
       approved: Goedgekeurd
@@ -3920,9 +3994,14 @@ nl:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: Markeren als voltooid
+          success_message: Beoordeling %{name} is gemarkeerd als voltooid
         reset_progress:
           name: Vooruitgang resetten
           success_message: Beoordeling %{name} is klaar voor bewerking
+      mark_as_completed:
+        content: Weet u zeker dat u "%{name}" als voltooid wilt markeren?
       push_test_webhook:
         copy_request_data_success: Rquest Payload succesvol gekopieerd naar klembord.
         copy_response_body_success: Response body succesvol gekopieerd naar klembord.

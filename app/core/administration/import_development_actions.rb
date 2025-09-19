@@ -77,7 +77,7 @@ module Administration
         skills << skill
       end
 
-      development_action = find_or_new_development_action(row_data['ID'])
+      development_action = find_or_initialize_development_action(row_data['ID'])
       development_action.assign_attributes(
         project_id: @project_id,
         learning_style: row_data['Type'].downcase,
@@ -91,10 +91,10 @@ module Administration
       development_action
     end
 
-    def find_or_new_development_action(id)
+    def find_or_initialize_development_action(id)
       return DevelopmentAction.new if id.blank?
 
-      DevelopmentAction.find_by(id: id, project_id: @project_id) || DevelopmentAction.new
+      DevelopmentAction.find_by(id: id, owner_type: 'Client', owner_id: @project_id) || DevelopmentAction.new
     end
 
     def attach_image(development_action, image_url)

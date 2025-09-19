@@ -8,16 +8,13 @@ import {
   useSelector,
 } from 'react-redux'
 import cs from 'classnames'
-import { PageLoadSpinner, BoxWithShadow, ButtonWithArrow } from '~/glint'
-import {
-  useUpdateReflectionQuestionsMutation,
-} from '~/modules/endUser/modules/campaigns/core/idp/api'
-import { ReflectionQuestion } from '~/modules/endUser/modules/campaigns/core/idp/interfaces'
+import { Separator } from '~/components/IdpShared/Separator'
+import { PageLoadSpinner, ButtonWithArrow, BackButton } from '~/glint'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import styles from './ReflectiveQuestions.less'
 import Editor from './Editor'
-import { useAppSelector } from '~/modules/endUser/store/hooks'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
+import { useReflectiveQuestions } from './useReflectiveQuestions'
 
 const { I18n } = window
 
@@ -29,89 +26,41 @@ interface Props {
   onSave?: () => void
   showSkip?: boolean
   onSkip?: () => void
+  prev?: () => void
 }
 
-export const ReflectiveQuestions: FC<Props> = ({ onSave, showSkip, onSkip }) => {
+export const ReflectiveQuestions: FC<Props> = ({
+  onSave, showSkip, onSkip, prev,
+}) => {
   const status = useSelector<RootState>(state => state.campaigns.idp.status)
   const currentUser = useSelector<RootState>(state => state.currentUser) as CurrentUser
-  const reflectionQuestions = useAppSelector(
-    state => state.campaigns.idpRtk.reflectionQuestions,
-  ) as ReflectionQuestion[]
+  const {
+    reflectionQuestions, validateAnswer, updateReflectionQuestions, onChange, answers, errors,
+  } = useReflectiveQuestions()
 
-  const [updateReflectionQuestions, { isLoading }] = useUpdateReflectionQuestionsMutation()
 
-  const [answers, setAnswers] = useState<Record<number, {content: string, wordsCount?: number}>>(
-    reflectionQuestions.reduce((acc, question) => ({
-      ...acc, [question.id]: { content: question.answer || '' },
-    }), {}),
-  )
-  const [errors, setErrors] = useState<Record<number, string[]>>({})
-
-  const onChange = (questionId, content, wordsCount) => {
-    setAnswers(prevAnswers => ({
-      ...prevAnswers,
-      [questionId]: { content, wordsCount },
-    }))
-    setErrors(prevErrors => ({
-      ...prevErrors,
-      [questionId]: [],
-    }))
-  }
-
-  const validateAnswers = () => {
-    const invalidAnswers = reflectionQuestions.filter((question) => {
-      const answer = answers[question.id]
-      setErrors(prevErrors => ({ ...prevErrors, [question.id]: [] }))
-
-      if (question.mandatory && !answer.content) {
-        setErrors(prevErrors => ({
-          ...prevErrors,
-          [question.id]: [...(prevErrors[question.id] || []), I18n.t('idp.reflective_questions.errors.required')],
-        }))
-        return true
-      }
-      if (answer.content && question.minWords && answer.wordsCount < question.minWords) {
-        setErrors(prevErrors => ({
-          ...prevErrors,
-          [question.id]: [
-            ...(prevErrors[question.id] || []),
-            I18n.t('idp.reflective_questions.errors.min_words', { count: question.minWords }),
-          ],
-        }))
-        return true
-      }
-      if (question.maxWords && answer.wordsCount > question.maxWords) {
-        setErrors(prevErrors => ({
-          ...prevErrors,
-          [question.id]: [
-            ...(prevErrors[question.id] || []),
-            I18n.t('idp.reflective_questions.errors.max_words', { count: question.maxWords }),
-          ],
-        }))
-        return true
-      }
-      return false
-    })
-
-    return invalidAnswers.length === 0
-  }
+  const [currentReflectionQuestionIndex, setCurrentReflectionQuestionIndex] = useState(0)
 
   const onSubmit = async () => {
-    if (!validateAnswers()) {
+    if (!validateAnswer(currentReflectionQuestion)) {
       return
     }
-    try {
-      await updateReflectionQuestions({
-        userId: currentUser.id,
-        reflectionQuestions: _.map(answers, (answer, questionId) => ({
-          id: questionId,
-          answer: answer.content,
-        })),
-      }).unwrap()
-      message.success(I18n.t('idp.reflective_questions.updated_successfully'))
-      onSave && onSave()
-    } catch (error) {
-      message.error(error?.data?.error || I18n.t('idp.reflective_questions.update_failed'))
+    if (currentReflectionQuestionIndex < reflectionQuestions.length - 1) {
+      setCurrentReflectionQuestionIndex(currentReflectionQuestionIndex + 1)
+    } else {
+      try {
+        await updateReflectionQuestions({
+          userId: currentUser.id,
+          reflectionQuestions: _.map(answers, (answer, questionId) => ({
+            id: questionId,
+            answer: answer.content,
+          })),
+        }).unwrap()
+        message.success(I18n.t('idp.reflective_questions.updated_successfully'))
+        onSave && onSave()
+      } catch (error) {
+        message.error(error?.data?.error || I18n.t('idp.reflective_questions.update_failed'))
+      }
     }
   }
 
@@ -123,16 +72,24 @@ export const ReflectiveQuestions: FC<Props> = ({ onSave, showSkip, onSkip }) => 
     return <Empty description={I18n.t('idp.reflective_questions.no_reflective_questions')} />
   }
 
+  const currentReflectionQuestion = reflectionQuestions[currentReflectionQuestionIndex]
   return (
     <Layout.Content className={styles.pageContent}>
-      <Flex justify="space-between" align="middle" className={styles.header}>
-        <Typography.Title level={4}>{I18n.t('idp.reflective_questions.title')}</Typography.Title>
+      <Flex className="mb-4" justify="space-between" align="middle" gap={0}>
+        <Space>
+          <BackButton
+            onPrev={prev}
+          />
+          <Typography.Title level={3} className="mb-0 mt-0">
+            {I18n.t('idp.reflective_questions.title')}
+          </Typography.Title>
+        </Space>
+
         {showSkip && (
           <Space>
             <div className="flex justify-center">
               <ButtonWithArrow
                 label={I18n.t('idp.reflective_questions.answer_later')}
-                size="small"
                 type="primary"
                 onClick={() => onSkip?.()}
               />
@@ -140,47 +97,58 @@ export const ReflectiveQuestions: FC<Props> = ({ onSave, showSkip, onSkip }) => 
           </Space>
         )}
       </Flex>
+      <Separator
+        className="mb-4 mt-0"
+      />
 
-      <BoxWithShadow className={styles.questionsBox}>
+      <div className={cs(styles.questionsBox, 'mt-4')}>
         <Space direction="vertical" size="large" style={{ width: '100%' }}>
-          {reflectionQuestions.map(question => (
-            <ReflectiveQuestion
-              key={question.id}
-              status={status}
-              question={question}
-              value={answers[question.id]?.content || ''}
-              error={errors[question.id]}
-              onChange={(content, wordsCount) => onChange(question.id, content, wordsCount)}
-            />
-          ))}
+          <ReflectiveQuestion
+            key={currentReflectionQuestion.id}
+            status={status}
+            question={currentReflectionQuestion}
+            value={answers[currentReflectionQuestion.id]?.content || ''}
+            error={errors[currentReflectionQuestion.id]}
+            index={currentReflectionQuestionIndex}
+            total={reflectionQuestions.length}
+            onChange={(content, wordsCount) => onChange(currentReflectionQuestion.id, content, wordsCount)}
+          />
         </Space>
-
-      </BoxWithShadow>
-      <Flex justify="flex-end">
-        <Button
-          loading={isLoading}
-          disabled={status === USER_IDP_PLAN_STATUS.COMPLETED}
-          onClick={onSubmit}
-          type="primary"
-          size="small"
-        >
-          {I18n.t('common.actions.submit')}
-        </Button>
-      </Flex>
+        <Flex flex={1} justify="space-between">
+          <Button
+            size="small"
+            className="items-start"
+            disabled={currentReflectionQuestionIndex === 0}
+            onClick={() => setCurrentReflectionQuestionIndex(currentReflectionQuestionIndex - 1)}
+          >
+            {I18n.t('idp.initial_steps.back')}
+          </Button>
+          <ButtonWithArrow
+            label={currentReflectionQuestionIndex < reflectionQuestions.length - 1
+              ? I18n.t('idp.initial_steps.next')
+              : I18n.t('common.actions.submit')}
+            size="small"
+            type="primary"
+            className="items-end self-end"
+            onClick={onSubmit}
+          />
+        </Flex>
+      </div>
     </Layout.Content>
   )
 }
 
 const ReflectiveQuestion = ({
-  question, value, onChange, error, status,
+  question, value, onChange, error, status, index, total,
 }) => (
   <Flex vertical flex={1}>
     <Space direction="vertical">
+      <Space className={cs(styles.questionCounter, 'mb-4')}>
+        {`Question ${index + 1} of ${total}`}
+      </Space>
       <Typography.Text strong>
-        <Space>
-          {question.question}
-          {question.mandatory && <span className={styles.mandatory}>*</span>}
-        </Space>
+        {question.question}
+        {question.mandatory && <span className={cs(styles.mandatory, 'mlx')}>*</span>}
       </Typography.Text>
       <Form.Item
         validateStatus="error"
@@ -189,16 +157,10 @@ const ReflectiveQuestion = ({
       >
         <Editor content={value} handleContentChange={onChange} readOnly={status === USER_IDP_PLAN_STATUS.COMPLETED} />
       </Form.Item>
-      <Space size="large">
-        <Space className={styles.minmaxInfo}>
-          {`${I18n.t('idp.reflective_questions.min_words')}:`}
-          {question.minWords}
-        </Space>
-        <Space className={styles.minmaxInfo}>
-          {`${I18n.t('idp.reflective_questions.max_words')}:`}
-          {question.maxWords}
-        </Space>
-      </Space>
+
+      <Flex justify="start" className="mb-4">
+        {I18n.t('idp.reflective_questions.word_limit', { min: question.minWords, max: question.maxWords })}
+      </Flex>
     </Space>
   </Flex>
 )

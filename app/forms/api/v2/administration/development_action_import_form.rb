@@ -168,7 +168,9 @@ module Api
           return if row['ID'].blank? || project_id.blank?
 
           development_action = ::DevelopmentAction.find_by(id: row['ID'])
-          if development_action.present? && development_action.project_id != project_id
+          if development_action.present? &&
+             (development_action.owner_type != 'Client' ||
+              development_action.owner_id != project_id)
             errors.add(
               :base,
               I18n.t(
