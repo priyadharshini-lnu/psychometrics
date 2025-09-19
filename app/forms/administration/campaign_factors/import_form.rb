@@ -7,7 +7,7 @@ module Administration
       mimic :campaign_factors_import_form
 
       FIRST_DATA_ROW = 2
-      REQUIRED_HEADER_FIELDS = ['Name', 'Code', 'Output Type'].freeze
+      REQUIRED_HEADER_FIELDS = ['Name', 'Code', 'Output Type', 'Description'].freeze
       MAX_CAMPAIGN_FACTORS = 300
 
       attribute :file, Object
@@ -35,7 +35,8 @@ module Administration
           {
             name: sanitized_row['Name'],
             code: sanitized_row['Code'],
-            output_type: sanitized_row['Output Type']
+            output_type: sanitized_row['Output Type'],
+            description: sanitized_row['Description']
           }
         end
       end

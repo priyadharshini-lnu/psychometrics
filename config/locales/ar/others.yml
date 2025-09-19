@@ -986,7 +986,7 @@ ar:
       pending_tasks:
         one: لديك مهمة واحدة معلقة
         other: لديك %{count} مهام معلقة
-        two: لديك مهمتان معلقتان
+        two: لديك مهمتان لم تنفذ حتى الان
       re_evaluate: انقر هنا لإعادة التقييم
       reevaluate: إعادة التقييم
       remove:
@@ -1738,7 +1738,7 @@ ar:
       video_check: اختبار كاميرا الفيديو
     success:
       start: ابدأ التقييم
-      title: 'قد أكملت جميع ال....؟؟  بنجاح '
+      title: لقد اكملت جميع الفحوصات بنجاح
     system_check:
       compatibility: توافق النظام
       continue: استمرار
@@ -4032,8 +4032,8 @@ ar:
         denied: نفي
         waiting: انتظار
     timer_title:
-      assessment: تقييم
-      campaign: حملة
+      assessment: مدة التقييم الحالي
+      campaign: إجمالي مدة التقييم
   user_reports:
     actions:
       add: إضافة تقرير
