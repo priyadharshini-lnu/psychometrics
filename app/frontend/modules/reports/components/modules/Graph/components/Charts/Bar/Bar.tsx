@@ -79,11 +79,12 @@ export const Bar: React.FC<Props> = ({
     }
 
     const sourceType = model.getSourceType()
+    const isCustomFactor = sourceType === 'Factor' && model.props.source.subType === 'custom'
     const sourceModel: SourceModel = model.getSourceModel()
     if (sourceType === 'EmbeddedData' && !sourceModel.name) {
       return null
     }
-    const data = Series[sourceType]
+    const data = isCustomFactor ? Series.CustomFactorValueFields : Series[sourceType]
     if (!data) {
       return null
     }

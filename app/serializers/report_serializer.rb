@@ -28,7 +28,8 @@ class ReportSerializer < Panko::Serializer
       each_serializer: Reports::PageSerializer,
       context: {
         piped_text_context: context[:piped_text_context],
-        builder: context[:builder]
+        builder: context[:builder],
+        user_results_hash: user_results_hash
       }
     ).to_a
   end
@@ -212,20 +213,15 @@ class ReportSerializer < Panko::Serializer
     ).to_a
   end
 
-  def campaign_factors
-    return object.campaign_factors unless campaign
+  private
 
-    campaign.campaign_factors.map do |factor|
-      {
-        id: factor.id,
-        name: factor.name,
-        description: factor.description,
-        code: factor.code
-      }
+  def user_results_hash
+    return {} if results.blank?
+
+    results.includes(:user_assessment, :assessment).index_by do |result|
+      [result.user_assessment.assessment_id, result.user_assessment.subject_id]
     end
   end
-
-  private
 
   def current_lang
     context[:lang] || locale

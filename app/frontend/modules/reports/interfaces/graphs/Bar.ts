@@ -23,6 +23,7 @@ interface Props extends TextCondition {
     type: string
     id: string
     allFactors?: boolean
+    subType?: 'default' | 'custom'
   }
   showLegend: boolean
   hideEmptyColumns: boolean
@@ -40,6 +41,7 @@ interface Props extends TextCondition {
   gaugePercentage: boolean
   rounded: boolean
   reverse: boolean
+  customFactorValueFields?: string[]
 }
 
 export type TextCondition = {

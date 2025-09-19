@@ -11,6 +11,8 @@ const { Footer } = Modal
 const { Title } = Modal
 
 export class PipedTextModal extends Component {
+  state = {}
+
   insert = (value) => {
     const { editorRef, close } = this.props
     editorRef.selection.restore()
@@ -18,9 +20,17 @@ export class PipedTextModal extends Component {
     close()
   }
 
+  handleSelect = (value) => {
+    if (value) {
+      this.setState(prevState => ({ ...prevState, ...value }))
+    }
+  }
+
   render () {
     const { close } = this.props
     const datasheetFields = AppStore.report.dataSheetColumns
+    const { flatFactors: factors } = AppStore
+
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
@@ -36,12 +46,20 @@ export class PipedTextModal extends Component {
                 <div className="panel-body">
                   {branch.fields.map((field) => {
                     const Component = types[field.type]
+                    let autoCompleteProps = {}
+                    if (field.type === 'autocomplete') {
+                      autoCompleteProps = {
+                        preventInsert: field.preventInsert,
+                        onSelect: value => this.handleSelect(value, field.name),
+                      }
+                    }
                     return (
                       <Component
                         insert={this.insert}
                         key={field.name}
                         field={field}
-                        context={{ datasheetFields }}
+                        context={{ datasheetFields, factors, ...this.state }}
+                        {...autoCompleteProps}
                       />
                     )
                   })}

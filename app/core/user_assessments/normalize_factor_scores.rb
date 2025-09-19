@@ -2,7 +2,18 @@
 
 module UserAssessments
   class NormalizeFactorScores < BaseCommand
-    SCORE_TYPES = %w[score zscore norm_score percentage].freeze
+    ALLOWED_KEYS = %w[
+      score
+      zscore
+      norm_score
+      percentage
+      total_questions
+      questions_attempted
+      questions_correct
+      questions_partial_correct
+      questions_incorrect
+      questions_not_attempted
+    ].freeze
 
     private_attr_reader :user_assessment, :users_result
 
@@ -20,7 +31,7 @@ module UserAssessments
           UserAssessmentFactorScore.new(
             user_assessment_id: user_assessment.id,
             factor_id: factor_id,
-            scores: scores.slice(*SCORE_TYPES)
+            scores: scores.slice(*ALLOWED_KEYS)
           )
         end
         UserAssessmentFactorScore.import(

@@ -66,13 +66,17 @@ class Pie extends Component {
 
     const sourceType = model.getSourceType()
     const sourceModel = model.getSourceModel()
-    const data = Series[sourceType]
+    const semiCircleOptions = model.props.showSemiCircle ? {
+      startAngle: -90,
+      endAngle: 90,
+    } : {}
+    const data = sourceType === 'Factor' && model.props.source.subType === 'custom'
+      ? Series.CustomFactorValueFields : Series[sourceType]
     if (!data) { return null }
     const series = data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors)
     const format = data.format ? data.format(model.props.dataFormat) : Formats[model.props.dataFormat]
     const labels = data.labels ? data.labels(sourceModel, model) : []
     if (!series.length) { return null }
-    // clear empty results
     if (_.result(sourceModel, 'type') !== 'HotSpot') {
       series[0].data = _.filter(series[0].data, ser => ser.y > 0)
     }
@@ -121,6 +125,7 @@ class Pie extends Component {
                 },
               },
             },
+            ...semiCircleOptions,
           },
           series: {
             animation,

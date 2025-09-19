@@ -592,6 +592,7 @@ en:
         enable_back: Enable back button
         enable_progress: Enable progress bar
         enable_save: Enable save button
+        enable_select_main_factor: Select a factor as main factor
         enable_single_question_page: Show one question per page
         enable_single_question_page_confirm: This will update block randomization per page to 1. Are you sure?
         enable_timer: Enable timer
@@ -3394,9 +3395,12 @@ en:
         code: Code
         code_constraint: Code must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
         delete: Delete
+        description: Description
+        description_alias: Description / Alias
         import_factors: Import Factors
         invalid_factor_params: Invalid campaign factors parameters format
         name: Name
+        name_alias: Name / Alias
         no_boundary_space: Name cannot start or end with a space
         too_many_factors: Cannot create more than %{count} campaign factors
         tools: Tools
@@ -3415,6 +3419,19 @@ en:
       property_panel:
         add_new_condition: Add new condition
         apply_color_label: 'Then apply the following color:'
+        custom_factor_fields:
+          percentage: Percentage
+          questions_attempted: Attempted
+          questions_correct: Correct
+          questions_incorrect: Incorrect
+          questions_not_attempted: Not Attempted
+          questions_partial_correct: Partially Correct
+          total_questions: Total
+        custom_factor_placeholder: Select custom factor fields
+        factor_value_type:
+          custom: Custom
+          default: Default
+          label: Factor value type
         graph_condition_types:
           default: Default
           graph_value: Graph value
@@ -3424,6 +3441,7 @@ en:
         manage_graph_value_condition: Manage graph value condition
         manage_styles_condition: Manage styles condition
         missing_value: Missing Value
+        pie_semi_circle: Semi Circle
         predicates:
           equal_to: Equal to
           greater_than: Greater Than

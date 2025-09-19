@@ -42,25 +42,25 @@ describe UsersResults::Scoring::Extend do
       dimension: dimension,
       scoring: scoring, norm_data: norm_data,
       external_results: {}
-    })).to eq(
+    })).to include(
       factor1.id.to_s => {
         'results' => [{ 'value' => [2, 3, 4], 'question_id' => 1 },
                       { 'value' => 5, 'question_id' => 2 }],
         'score' => 2.2,
         'norm_score' => 2
       },
-      factor2.id.to_s => {
+      factor2.id.to_s => hash_including(
         'results' => [{ 'value' => [0, 2],
                         'question_id' => 3 }], 'score' => 1.0,
         'norm_score' => 1
-      },
-      factor3.id.to_s => {
+      ),
+      factor3.id.to_s => hash_including(
         'results' => [{ 'value' => [1, 5],
                         'question_id' => 5 }],
         'score' => 3.0, 'norm_score' => 3
-      },
-      factor4.id.to_s => { 'results' => [], 'score' => nil,
-                           'norm_score' => nil }
+      ),
+      factor4.id.to_s => hash_including('results' => [], 'score' => nil,
+                                        'norm_score' => nil)
     )
   end
 end

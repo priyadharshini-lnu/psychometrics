@@ -17,6 +17,7 @@ import CampaignFactors from '../../Base/Series/CampaignFactors'
 import PickGroupRank from './PickGroupRank'
 import HotSpot from './HotSpot'
 import MatrixTable from './MatrixTable'
+import CustomFactorValueFields from './CustomFactorValueFields'
 
 export default {
   Slider,
@@ -37,4 +38,5 @@ export default {
   DataSheet,
   CampaignFactors,
   ReportData,
+  CustomFactorValueFields,
 }

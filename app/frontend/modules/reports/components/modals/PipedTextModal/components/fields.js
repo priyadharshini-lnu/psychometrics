@@ -116,6 +116,11 @@ const OTHER_DATES_FORMATS = [
   },
 ]
 
+const getFactorFieldValue = (field, selectedFactorId) => {
+  if (!selectedFactorId) return 'missing_factor_id'
+  return `{{fr://Field/${field}?factor_id=${selectedFactorId}}}`
+}
+
 const FIELDS = [
   {
     branch: 'Current Date/Time',
@@ -163,6 +168,16 @@ const FIELDS = [
         value: '{{s://Field/RelationshipName}}',
       },
       {
+        name: 'Current Job Role',
+        type: 'link',
+        value: '{{cu://Field/CurrentJobRole}}',
+      },
+      {
+        name: 'Target Job Role',
+        type: 'link',
+        value: '{{cu://Field/TargetJobRole}}',
+      },
+      {
         name: 'ProfileCustomField',
         type: 'profile_custom_field',
         getValue: fieldName => `{{s://ProfileCustomField/${fieldName}}}`,
@@ -172,6 +187,68 @@ const FIELDS = [
         type: 'autocomplete',
         items: ({ datasheetFields }) => datasheetFields.map(field => ({ label: field.name })),
         getValue: ({ label }) => `{{s://Meta/${label}}}`,
+      },
+    ],
+  },
+  {
+    branch: 'Assessment',
+    fields: [
+      {
+        name: 'Time taken',
+        type: 'link',
+        value: '{{assessment://Field/timeTaken}}',
+      },
+      {
+        name: 'Max time allowed',
+        type: 'link',
+        value: '{{assessment://Field/totalTimeAllowed}}',
+      },
+    ],
+  },
+  {
+    branch: 'Factor Scores',
+    fields: [
+      {
+        name: 'Factor',
+        type: 'autocomplete',
+        items: ({ factors }) => factors.map(factor => ({ label: factor.name, value: factor.id })),
+        getValue: ({ value }) => ({ selectedFactorId: value }),
+        preventInsert: true,
+      },
+      {
+        name: 'Total questions',
+        type: 'link',
+        getValue: ({ selectedFactorId }) => getFactorFieldValue('totalQuestions', selectedFactorId),
+      },
+      {
+        name: 'Percentage',
+        type: 'link',
+        getValue: ({ selectedFactorId }) => getFactorFieldValue('percentage', selectedFactorId),
+      },
+      {
+        name: 'Questions attempted',
+        type: 'link',
+        getValue: ({ selectedFactorId }) => getFactorFieldValue('questionsAttempted', selectedFactorId),
+      },
+      {
+        name: 'Questions not attempted',
+        type: 'link',
+        getValue: ({ selectedFactorId }) => getFactorFieldValue('questionsNotAttempted', selectedFactorId),
+      },
+      {
+        name: 'Questions partially correct',
+        type: 'link',
+        getValue: ({ selectedFactorId }) => getFactorFieldValue('questionsPartialCorrect', selectedFactorId),
+      },
+      {
+        name: 'Questions correct',
+        type: 'link',
+        getValue: ({ selectedFactorId }) => getFactorFieldValue('questionsCorrect', selectedFactorId),
+      },
+      {
+        name: 'Questions incorrect',
+        type: 'link',
+        getValue: ({ selectedFactorId }) => getFactorFieldValue('questionsIncorrect', selectedFactorId),
       },
     ],
   },
