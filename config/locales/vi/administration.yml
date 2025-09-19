@@ -291,6 +291,7 @@ vi:
             manage: Điều khiển
             title: Hội thảo
             view: Cảnh
+            view_recordings: Xem bản ghi
     ai_artifacts:
       artifact_results: Kết quả hiện vật
       code: Mã
@@ -368,6 +369,7 @@ vi:
       created_successfully: Trợ lý AI đã được tạo thành công.
       errors:
         cannot_delete_in_use: Không thể xóa AI Assistant '%{name}' vì nó đang được sử dụng.
+        one_click_idp_assistance_not_enabled: Hỗ trợ IDP do AI cung cấp không khả dụng với gói hiện tại của bạn. Vui lòng liên hệ với quản trị viên.
       form:
         add_output_schema_key: Thêm khóa lược đồ đầu ra
         dependencies: Phụ thuộc
@@ -590,6 +592,7 @@ vi:
         enable_back: Bật nút quay lại
         enable_progress: Bật thanh tiến trình
         enable_save: Bật nút lưu
+        enable_select_main_factor: Chọn một yếu tố làm yếu tố chính
         enable_single_question_page: Hiển thị một câu hỏi trên mỗi trang
         enable_single_question_page_confirm: Thao tác này sẽ cập nhật ngẫu nhiên khối trên mỗi trang thành 1. Bạn có chắc không?
         enable_timer: Bật hẹn giờ
@@ -1037,6 +1040,7 @@ vi:
       form:
         active_notice: Trạng thái chiến dịch sẽ tự động thay đổi thành đóng vào ngày kết thúc đã chọn
         campaign: Chiến dịch
+        copy_factors: Yếu tố sao chép
         inactive_notice: Trạng thái chiến dịch sẽ tự động thay đổi thành hoạt động vào ngày bắt đầu đã chọn
         instruction: Điều này chỉ có thể được bật trong khi tạo chiến dịch
         name: Tên
@@ -2230,6 +2234,7 @@ vi:
         remove_confirm: Nhập tên mẫu hiện tại được cung cấp bên dưới trong hộp văn bản để xóa mẫu
         success: "%{idpName} đã bị xóa thành công."
       add_idp_template: Thêm mẫu IDP
+      ai_assistant: Trợ lý AI
       ai_assisted_idp_enabled: Hỗ trợ nhận dạng người dùng bằng trí tuệ nhân tạo (AI)
       ai_enabled: Được trang bị trí tuệ nhân tạo (AI)
       ai_settings: Cài đặt Trí tuệ Nhân tạo
@@ -2240,7 +2245,26 @@ vi:
       background_image: Hình nền
       behavioral_skills: Kỹ năng hành vi
       client_skills: Kỹ năng khách hàng
+      delete_skill: Bạn có chắc chắn muốn xóa kỹ năng vì nó cũng sẽ xóa tất cả các hành động phát triển được kết nối không?
       details_updated: Thông tin chi tiết về IDP đã được cập nhật thành công.
+      development_actions:
+        add_from_library: Thêm từ Thư viện
+        completion: Hoàn thành
+        create_development_actions_with_ai: Tạo hành động phát triển với AI cho %{skillName}
+        create_from_ai: Sáng tạo từ AI
+        create_my_own: Tạo của riêng tôi
+        custom: Phong tục
+        date_range: Ngày bắt đầu - Ngày kết thúc
+        edit_plan_to_add_development_actions: Chỉnh sửa Kế hoạch và thêm Hành động Phát triển.
+        errors:
+          invalid_learning_style: "'%{learning_style}' không phải là một phong cách học tập hợp lệ. Các tùy chọn hợp lệ là: %{valid_styles}"
+          learning_style_blank: Phong cách học tập không thể trống
+        generate_by_ai: Tạo bằng AI
+        generate_more: Tạo thêm
+        heading: Kỹ năng / Hành động phát triển
+        manage_skills: Quản lý kỹ năng
+        no_development_actions: Bạn không có hành động phát triển
+      document_ai_assistant: Trợ lý AI phân tích tài liệu
       edit_template: Chỉnh sửa mẫu IDP
       enter_tag_or_skills_error: Chọn ít nhất một thẻ hoặc kỹ năng
       enter_template_description: Sự miêu tả
@@ -2263,6 +2287,8 @@ vi:
       global_skills: Kỹ năng toàn cầu
       idp: IDP
       idp_template: Thêm mẫu IDP
+      interview_questions: Câu hỏi phỏng vấn
+      interview_questions_updated: Câu hỏi phỏng vấn được cập nhật thành công.
       intro_message: Thông điệp giới thiệu
       intro_message_hint: Để sửa đổi thông báo giới thiệu, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
       intro_message_success: Tin nhắn giới thiệu được lưu thành công
@@ -2274,6 +2300,7 @@ vi:
         mercer_only: Chỉ logo Mercer
         none: Không có logo
       logo_type_label: Loại logo
+      no_interview_questions_selected: Không có câu hỏi phỏng vấn nào được chọn
       no_reflection_questions_selected: Không chọn Câu hỏi phản ánh
       none: Không ai
       one_click_idp_enabled: Bật IDP chỉ với một cú nhấp chuột
@@ -2282,7 +2309,16 @@ vi:
       reflection_questions_hint: Để sửa đổi các câu hỏi phản ánh, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
       reflection_questions_updated: Câu hỏi suy ngẫm được cập nhật thành công.
       remove: Triệt
+      remove_skill: Loại bỏ kỹ năng
+      revert_skill_to_public:
+        errors:
+          skill_already_public: Kỹ năng đã được công khai
+          skill_not_found: Không tìm thấy kỹ năng
+        success:
+          base_message: Kỹ năng '%{skill_name}' hiện hiển thị cho người quản lý của bạn
+          with_approval: "%{base_message} và chương trình IDP của bạn đã được gửi để phê duyệt"
       select_by_tags: Chọn theo thẻ
+      select_interview_question: Bắt đầu nhập để tìm kiếm và chọn câu hỏi
       select_reflection_question: Bắt đầu nhập để tìm kiếm và chọn câu hỏi
       select_skill_gap_report: Chọn báo cáo khoảng cách kỹ năng
       select_specific_skills: Chọn kỹ năng cụ thể
@@ -2308,12 +2344,14 @@ vi:
       subtitle_text: Văn bản phụ đề
       tab:
         development_actions: Hành động phát triển
+        interview_questions: Câu hỏi phỏng vấn
         reflection_questions: Câu hỏi suy ngẫm
         settings: Cài đặt
         templates: Mẫu
       technical_skills: Kỹ năng kỹ thuật
       template_details: Chi tiết mẫu
       title_text: Văn bản tiêu đề
+      update_interview_questions: Cập nhật câu hỏi phỏng vấn
       update_reflection_questions: Cập nhật câu hỏi phản ánh
     idp_setting:
       allow_global_skills: Cho phép kỹ năng toàn cầu
@@ -2516,6 +2554,35 @@ vi:
         skillvue:
           api_key_present: Khóa API đã có trong dự án khác
       view_all_schedules: Xem tất cả lịch trình Mettl
+    interview_questions:
+      delete_confirmation: Bạn có chắc chắn muốn xóa Câu hỏi phỏng vấn này không?
+      description: Mô tả
+      export:
+        action: Xuất câu hỏi phỏng vấn
+        details: Chi tiết tệp
+        failure_msg: Lỗi trong khi xuất tệp.
+        success_msg: Đang xuất câu hỏi phỏng vấn. Vui lòng kiểm tra trạng thái trong thông báo.
+      form:
+        description: Mô tả
+        mandatory: Bắt buộc
+        question: Câu hỏi
+        question_type: Loại câu hỏi
+        question_type_audio: Âm thanh
+        question_type_video: Video
+        time_limit: Giới hạn thời gian (giây)
+        title: Câu hỏi phỏng vấn
+      import:
+        action: Nhập câu hỏi phỏng vấn
+        errors:
+          invalid_required_column_format: Định dạng giá trị cột Bắt buộc không hợp lệ %{row}
+          invalid_required_type_format: Định dạng giá trị cột QuestionType không hợp lệ %{row}
+          invalid_time_limit_column_format: Định dạng giá trị cột Giới hạn thời gian không hợp lệ %{row}
+          missing_description: Thiếu nội dung Mô tả %{row}
+          missing_question: Nội dung câu hỏi bị thiếu %{row}
+          save_failed: Lưu %{message} không thành công
+        failure_msg: Lỗi trong khi nhập tệp.
+        success_msg: Đang nhập câu hỏi phỏng vấn. Vui lòng kiểm tra trạng thái trong thông báo.
+      question: Câu hỏi
     invited_subject:
       add_btn: Thêm chủ đề
       assessment_center: 'Trung tâm đánh giá:'
@@ -3182,7 +3249,9 @@ vi:
         dp_consent_version: Phiên bản chính sách
         errors:
           cannot_disable_while_campaign_enabled: Không thể tắt tính năng ghi âm cuộc gọi video vì tính năng này đã được bật cho một hoặc nhiều chiến dịch trong dự án này.
+          min_retention: Không được ít hơn 1 ngày
           policy_version_format: Chỉ cho phép các số nguyên
+          required: Bắt buộc
         mask_identity_for_examus: Dữ liệu mặt nạ cho Examus Proctoring
         mask_identity_for_hogan: Dữ liệu mặt nạ cho Hogan
         mask_identity_for_iiht: Dữ liệu mặt nạ cho IIHT
@@ -3322,9 +3391,12 @@ vi:
         code: Mã
         code_constraint: Mã phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
         delete: Xóa
+        description: Sự miêu tả
+        description_alias: Mô tả / Bí danh
         import_factors: Các yếu tố nhập khẩu
         invalid_factor_params: Định dạng thông số yếu tố chiến dịch không hợp lệ
         name: Tên
+        name_alias: Tên / Bí danh
         no_boundary_space: Tên không được bắt đầu hoặc kết thúc bằng dấu cách
         too_many_factors: Không thể tạo nhiều hơn %{count} yếu tố chiến dịch
         tools: Công cụ
@@ -3343,6 +3415,19 @@ vi:
       property_panel:
         add_new_condition: Thêm điều kiện mới
         apply_color_label: 'Sau đó áp dụng màu sau:'
+        custom_factor_fields:
+          percentage: Tỷ lệ phần trăm
+          questions_attempted: Cố gắng
+          questions_correct: Đúng
+          questions_incorrect: Sai
+          questions_not_attempted: Không cố gắng
+          questions_partial_correct: Đúng một phần
+          total_questions: Tất cả
+        custom_factor_placeholder: Chọn trường yếu tố tùy chỉnh
+        factor_value_type:
+          custom: Phong tục
+          default: Mặc định
+          label: Loại giá trị hệ số
         graph_condition_types:
           default: Mặc định
           graph_value: Giá trị đồ thị
@@ -3352,6 +3437,7 @@ vi:
         manage_graph_value_condition: Quản lý điều kiện giá trị đồ thị
         manage_styles_condition: Quản lý điều kiện kiểu
         missing_value: Giá trị bị thiếu
+        pie_semi_circle: Bán nguyệt
         predicates:
           equal_to: Bằng với
           greater_than: Lớn hơn
@@ -3435,6 +3521,7 @@ vi:
         translations: Bản dịch
       title: Cài đặt báo cáo
     reports:
+      broken_image_url: Vui lòng xác minh URL hình ảnh của bạn và thử nhập lại
       bulk_marked_as_done: Hàng loạt được đánh dấu là xong
       bulk_upload:
         choose_file: Chọn Tệp
@@ -3604,16 +3691,19 @@ vi:
         campaign_assessment_group: Nhóm Trung tâm Đánh giá
         campaign_name: Tên chiến dịch
         duration: Trường độ
+        link_to_view_recordings: Liên kết để xem bản ghi âm
         managers: Quản lý
         meeting_link: Liên kết cuộc họp
         name: Tên
         participants: Tham gia
         prework: Làm việc trước
+        recording_date: Ngày ghi
         resource_link: Liên kết
         resource_name: Tên
         schedule_time: Lịch trình thời gian
         scheduling_status: Trạng thái lập lịch
         seats: Ghế
+        serial_no: Số sê-ri
         start_time: Ngày giờ
         subject: Chủ đề
         title: Tiêu đề
@@ -3638,6 +3728,7 @@ vi:
         managers: Quản lý trung tâm
         none: Không ai
         not_allowed: Không được phép
+        recording_enabled: Đã bật ghi âm
         remaining: Số chỗ còn lại
         scheduling_lead_time: Lên lịch thời gian thực hiện
         scheduling_tooltip: Người dùng sẽ có thể đặt một vị trí cho đến %{date}
@@ -3698,6 +3789,7 @@ vi:
         activities: Hoạt động
         assessment_center: Trung tâm đánh giá
         invites: Mời
+        recordings: Ghi
         resources: Tài nguyên
         subjects: Đối tượng
     scoring:
@@ -4133,6 +4225,15 @@ vi:
           other: Khác
           qualification: Trình độ chuyên môn
           technical: Kỹ thuật
+      move_question:
+        cancel: Hủy
+        move: Chuyển
+        moveAfter: Di chuyển sau
+        moveBefore: Di chuyển trước
+        moveQuestion: 'Di chuyển câu hỏi: %{question}'
+        position: Vị trí
+        selectTargetQuestion: Chọn câu hỏi mục tiêu
+        title: Di chuyển câu hỏi
       property_panel:
         add_n_a_option: Thêm tùy chọn N / A
         allow_content_copy: Cho phép sao chép nội dung
@@ -4176,6 +4277,18 @@ vi:
         question_description: Mô tả hàng
         validation_response_type: Loại phản hồi xác thực
         voice_dictation: Đọc chính tả bằng giọng nói
+      question_info_bar:
+        add_display_logic: Thêm logic hiển thị
+        add_skip_logic: Thêm logic bỏ qua
+        are_you_sure_to_delete_this_question: Bạn có chắc chắn xóa câu hỏi này không?
+        default_choices: Lựa chọn mặc định
+        delete_question: Xóa câu hỏi
+        delete_the_question: Xóa câu hỏi
+        move_question: Di chuyển câu hỏi
+        randomization: Ngẫu nhiên
+        save_as_a_template: Lưu dưới dạng mẫu
+        this_question_has_default_choices: Câu hỏi này có các lựa chọn mặc định
+        this_question_has_randomization: Câu hỏi này có ngẫu nhiên
     table:
       entries:
         selected: 1 hàng đã chọn

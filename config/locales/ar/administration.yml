@@ -291,6 +291,7 @@ ar:
             manage: إدارة
             title: ورش العمل
             view: منظر
+            view_recordings: عرض التسجيلات
     ai_artifacts:
       artifact_results: نتائج القطع الأثرية
       code: رمز
@@ -368,6 +369,7 @@ ar:
       created_successfully: تم إنشاء مساعد الذكاء الاصطناعي بنجاح.
       errors:
         cannot_delete_in_use: لا يمكن حذف "%{name}" الذكاء الاصطناعي Assistant لأنه قيد الاستخدام.
+        one_click_idp_assistance_not_enabled: مساعدة IDP المدعومة بالذكاء الذكاء الاصطناعي غير متوفرة مع خطتك الحالية. يرجى الاتصال بالمسؤول.
       form:
         add_output_schema_key: إضافة مفتاح مخطط الإخراج
         dependencies: التبعيات
@@ -590,6 +592,7 @@ ar:
         enable_back: تمكين زر الرجوع
         enable_progress: تمكين شريط التقدم
         enable_save: تمكين زر الحفظ
+        enable_select_main_factor: حدد عاملا كعامل رئيسي
         enable_single_question_page: عرض سؤال واحد لكل صفحة
         enable_single_question_page_confirm: سيؤدي ذلك إلى تحديث عشوائية الكتل لكل صفحة إلى 1. هل أنت متأكد؟
         enable_timer: تمكين المؤقت
@@ -1037,6 +1040,7 @@ ar:
       form:
         active_notice: ستتغير حالة الحملة تلقائيًا إلى مغلق في تاريخ النهاية المحددة
         campaign: الحملة
+        copy_factors: عوامل النسخ
         inactive_notice: ستتغير حالة الحملة تلقائيًا إلى نشط في تاريخ البدء المحدد
         instruction: يمكن تمكين هذا فقط أثناء إنشاء الحملة
         name: الاسم
@@ -2230,6 +2234,7 @@ ar:
         remove_confirm: Enter current template name given below in text box to remove template
         success: "%{idpName} was removed successfully."
       add_idp_template: Add IDP Template
+      ai_assistant: مساعد الذكاء الاصطناعي
       ai_assisted_idp_enabled: تمكين المشردين داخلياً بمساعدة الذكاء الاصطناعي
       ai_enabled: تمكين الذكاء الاصطناعي
       ai_settings: إعدادات الذكاء الاصطناعي
@@ -2240,7 +2245,26 @@ ar:
       background_image: صورة الخلفية
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
+      delete_skill: هل أنت متأكد من أنك تريد حذف المهارة لأنها ستحذف جميع إجراءات التطوير المتصلة أيضا؟
       details_updated: تم تحديث تفاصيل IDP بنجاح
+      development_actions:
+        add_from_library: إضافة من المكتبة
+        completion: انجاز
+        create_development_actions_with_ai: إنشاء إجراءات التطوير باستخدام الذكاء الاصطناعي for %{skillName}
+        create_from_ai: الإنشاء من الذكاء الاصطناعي
+        create_my_own: إنشاء بلدي الخاص
+        custom: تقليد
+        date_range: تاريخ البدء - تاريخ الانتهاء
+        edit_plan_to_add_development_actions: تحرير الخطة وإضافة إجراءات التطوير.
+        errors:
+          invalid_learning_style: '"%{learning_style}" ليس أسلوب تعلم صالحا. الخيارات الصالحة هي: %{valid_styles}'
+          learning_style_blank: لا يمكن أن يكون أسلوب التعلم فارغا
+        generate_by_ai: التوليد بواسطة الذكاء الاصطناعي
+        generate_more: توليد المزيد
+        heading: مهارات / إجراءات التطوير
+        manage_skills: إدارة المهارات
+        no_development_actions: ليس لديك إجراءات تطوير
+      document_ai_assistant: مساعد الذكاء الاصطناعي لتحليل المستندات
       edit_template: Edit IDP Template
       enter_tag_or_skills_error: حدد علامة أو مهارة واحدة على الأقل
       enter_template_description: Description
@@ -2263,6 +2287,8 @@ ar:
       global_skills: Global Skills
       idp: IDP
       idp_template: Add IDP Template
+      interview_questions: أسئلة المقابلة
+      interview_questions_updated: تم تحديث أسئلة المقابلة بنجاح.
       intro_message: رسالة مقدمة
       intro_message_hint: لتعديل رسالة المقدمة، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
       intro_message_success: تم حفظ رسالة المقدمة بنجاح
@@ -2274,6 +2300,7 @@ ar:
         mercer_only: شعار ميرسر فقط
         none: بدون شعارات
       logo_type_label: نوع الشعار
+      no_interview_questions_selected: لم يتم اختيار أي أسئلة مقابلة
       no_reflection_questions_selected: لم يتم اختيار أي أسئلة للتفكير
       none: None
       one_click_idp_enabled: تم تمكين IDP بنقرة واحدة
@@ -2282,7 +2309,16 @@ ar:
       reflection_questions_hint: لتعديل أسئلة الانعكاس، يرجى حفظ قالب IDP أولاً لتمكين هذه الإعدادات.
       reflection_questions_updated: تم تحديث أسئلة التفكير بنجاح.
       remove: إزالة
+      remove_skill: إزالة المهارة
+      revert_skill_to_public:
+        errors:
+          skill_already_public: المهارة عامة بالفعل
+          skill_not_found: لم يتم العثور على المهارة
+        success:
+          base_message: أصبحت المهارة "%{skill_name}" مرئية الآن لمديرك
+          with_approval: "%{base_message} وتم تقديم خطة آي دي بي الخاصة بك للموافقة عليها"
       select_by_tags: Select by Tags
+      select_interview_question: ابدأ الكتابة للبحث وتحديد السؤال
       select_reflection_question: ابدأ الكتابة للبحث واختيار السؤال
       select_skill_gap_report: Select skill gap report
       select_specific_skills: Select Specific Skills
@@ -2308,12 +2344,14 @@ ar:
       subtitle_text: نص الترجمة
       tab:
         development_actions: إجراءات التنمية
+        interview_questions: أسئلة المقابلة
         reflection_questions: أسئلة للتفكير
         settings: Settings
         templates: Templates
       technical_skills: Technical Skills
       template_details: Template Details
       title_text: نص العنوان
+      update_interview_questions: تحديث أسئلة المقابلة
       update_reflection_questions: تحديث أسئلة التأملات
     idp_setting:
       allow_global_skills: Allow Global Skills
@@ -2516,6 +2554,35 @@ ar:
         skillvue:
           api_key_present: مفتاح API موجود بالفعل في مشروع آخر
       view_all_schedules: View All Mettl Schedules
+    interview_questions:
+      delete_confirmation: هل أنت متأكد من أنك تريد حذف سؤال المقابلة هذا؟
+      description: الوصف
+      export:
+        action: أسئلة مقابلة التصدير
+        details: تفاصيل الملف
+        failure_msg: خطأ أثناء تصدير الملف.
+        success_msg: تصدير أسئلة المقابلة قيد التنفيذ. يرجى التحقق من الحالة في الإشعارات.
+      form:
+        description: الوصف
+        mandatory: إجباري
+        question: سؤال
+        question_type: نوع السؤال
+        question_type_audio: صوتي
+        question_type_video: فيديو
+        time_limit: الحد الزمني (ثانية)
+        title: سؤال المقابلة
+      import:
+        action: استيراد أسئلة المقابلة
+        errors:
+          invalid_required_column_format: تنسيق قيمة العمود الإلزامي غير صالح %{row}
+          invalid_required_type_format: تنسيق قيمة عمود QuestionType غير صالح %{row}
+          invalid_time_limit_column_format: تنسيق قيمة عمود الحد الزمني غير صالح %{row}
+          missing_description: محتوى الوصف المفقود %{row}
+          missing_question: محتوى السؤال المفقود %{row}
+          save_failed: حفظ فشل %{message}
+        failure_msg: خطأ أثناء استيراد الملف.
+        success_msg: استيراد أسئلة المقابلة قيد التقدم. يرجى التحقق من الحالة في الإشعارات.
+      question: سؤال
     invited_subject:
       add_btn: Add Subject
       assessment_center: 'Assessment center:'
@@ -3186,7 +3253,9 @@ ar:
         dp_consent_version: Policy Version
         errors:
           cannot_disable_while_campaign_enabled: لا يمكن تعطيل تسجيل مكالمات الفيديو لأنه ممكّن لحملة واحدة أو أكثر في هذا المشروع
+          min_retention: لا يمكن أن تقل عن 1 يوم
           policy_version_format: Only whole numbers are allowed
+          required: مطلوب
         mask_identity_for_examus: Mask data for Examus Proctoring
         mask_identity_for_hogan: Mask data for Hogan
         mask_identity_for_iiht: Mask data for IIHT
@@ -3326,9 +3395,12 @@ ar:
         code: Code
         code_constraint: Code must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
         delete: Delete
+        description: وصف
+        description_alias: الوصف / الاسم المستعار
         import_factors: Import Factors
         invalid_factor_params: Invalid campaign factors parameters format
         name: Name
+        name_alias: الاسم / الاسم المستعار
         no_boundary_space: Name cannot start or end with a space
         too_many_factors: Cannot create more than %{count} campaign factors
         tools: Tools
@@ -3347,6 +3419,19 @@ ar:
       property_panel:
         add_new_condition: إضافة شرط جديد
         apply_color_label: 'ثم قم بتطبيق اللون التالي:'
+        custom_factor_fields:
+          percentage: النسبه المئويه
+          questions_attempted: محاوله
+          questions_correct: صحيح
+          questions_incorrect: خطأ
+          questions_not_attempted: لم تتم محاولتها
+          questions_partial_correct: صحيح جزئيا
+          total_questions: مجموع
+        custom_factor_placeholder: تحديد حقول العوامل المخصصة
+        factor_value_type:
+          custom: تقليد
+          default: افتراضي
+          label: نوع قيمة العامل
         graph_condition_types:
           default: افتراضي
           graph_value: قيمة الرسم البياني
@@ -3356,6 +3441,7 @@ ar:
         manage_graph_value_condition: إدارة شرط قيمة الرسم البياني
         manage_styles_condition: إدارة حالة الأنماط
         missing_value: القيمة المفقودة
+        pie_semi_circle: نصف دائرة
         predicates:
           equal_to: يساوي
           greater_than: اكبر
@@ -3439,6 +3525,7 @@ ar:
         translations: تراجم
       title: إعدادات التقرير
     reports:
+      broken_image_url: يرجى التحقق من عنوان URL لصورتك ومحاولة الاستيراد مرة أخرى
       bulk_marked_as_done: تم وضع علامة "تم" على أنه تم
       bulk_upload:
         choose_file: Choose File
@@ -3608,16 +3695,19 @@ ar:
         campaign_assessment_group: مجموعة مركز التقييم
         campaign_name: Campaign Name
         duration: Duration
+        link_to_view_recordings: رابط لعرض التسجيلات
         managers: Mangers
         meeting_link: Meeting Link
         name: Name
         participants: Participants
         prework: Prework
+        recording_date: تاريخ التسجيل
         resource_link: Link
         resource_name: Name
         schedule_time: Schedule Time
         scheduling_status: Scheduling status
         seats: Seats
+        serial_no: الرقم التسلسلي
         start_time: Date & Time
         subject: Subject
         title: Title
@@ -3642,6 +3732,7 @@ ar:
         managers: Center Managers
         none: None
         not_allowed: Not Allowed
+        recording_enabled: تمكين التسجيل
         remaining: Seats Remaining
         scheduling_lead_time: Scheduling Lead Time
         scheduling_tooltip: User would be able to book a slot till %{date}
@@ -3705,6 +3796,7 @@ ar:
         activities: Activities
         assessment_center: Assessment Center
         invites: Invites
+        recordings: التسجيلات
         resources: Resources
         subjects: Subjects
     scoring:
@@ -4145,6 +4237,15 @@ ar:
           other: أخرى
           qualification: تأهيل
           technical: التقنية
+      move_question:
+        cancel: إلغاء الأمر
+        move: حرك
+        moveAfter: التحرك بعد
+        moveBefore: التحرك من قبل
+        moveQuestion: 'سؤال النقل: %{question}'
+        position: موضع
+        selectTargetQuestion: حدد السؤال المستهدف
+        title: نقل السؤال
       property_panel:
         add_n_a_option: Add N/A option
         allow_content_copy: Allow content copying
@@ -4188,6 +4289,18 @@ ar:
         question_description: Row descriptions
         validation_response_type: Validation response type
         voice_dictation: Voice dictation
+      question_info_bar:
+        add_display_logic: إضافة منطق العرض
+        add_skip_logic: إضافة تخطي المنطق
+        are_you_sure_to_delete_this_question: هل أنت متأكد من حذف هذا السؤال؟
+        default_choices: الخيارات الافتراضية
+        delete_question: حذف السؤال
+        delete_the_question: حذف السؤال
+        move_question: نقل السؤال
+        randomization: التعشيه
+        save_as_a_template: حفظ كقالب
+        this_question_has_default_choices: يحتوي هذا السؤال على خيارات افتراضية
+        this_question_has_randomization: هذا السؤال له توزيع عشوائي
     table:
       entries:
         selected:

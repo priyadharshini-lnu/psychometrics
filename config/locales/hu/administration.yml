@@ -291,6 +291,7 @@ hu:
             manage: Kezel
             title: Workshopok
             view: Nézet
+            view_recordings: Felvételek megtekintése
     ai_artifacts:
       artifact_results: Műtermék eredményei
       code: Kód
@@ -368,6 +369,7 @@ hu:
       created_successfully: Az AI Assistant sikeresen létrejött.
       errors:
         cannot_delete_in_use: Nem lehet törölni az AI Assistant "%{name}" fájlt, mert használatban van.
+        one_click_idp_assistance_not_enabled: A mesterséges intelligencia által vezérelt IDP-segítség nem érhető el a jelenlegi csomaggal. Kérjük, forduljon az adminisztrátorhoz.
       form:
         add_output_schema_key: Kimeneti séma kulcs hozzáadása
         dependencies: Függőségek
@@ -590,6 +592,7 @@ hu:
         enable_back: Vissza gomb engedélyezése
         enable_progress: Folyamatjelző sáv engedélyezése
         enable_save: Mentés engedélyezése gomb
+        enable_select_main_factor: Válasszon ki egy tényezőt fő tényezőként
         enable_single_question_page: Oldalanként egy kérdés megjelenítése
         enable_single_question_page_confirm: Ez frissíti az oldalankénti blokk randomizálását 1-re. Biztos vagy benne?
         enable_timer: Időzítő engedélyezése
@@ -1037,6 +1040,7 @@ hu:
       form:
         active_notice: A kampány állapota automatikusan változik a kiválasztott befejezési dátumon
         campaign: Kampány
+        copy_factors: Másolási tényezők
         inactive_notice: A kampány állapota automatikusan aktívra változik a kiválasztott kezdési dátumon
         instruction: Ez csak kampány létrehozásakor engedélyezhető
         name: Név
@@ -2232,6 +2236,7 @@ hu:
         remove_confirm: Írja be az alábbi sablon nevét a szövegmezőbe a sablon eltávolításához
         success: A(z) %{idpName} sikeresen el lett távolítva.
       add_idp_template: IDP-sablon hozzáadása
+      ai_assistant: AI asszisztens
       ai_assisted_idp_enabled: AI támogatott IDP Enabled
       ai_enabled: AI Enabled
       ai_settings: AI beállítások
@@ -2242,7 +2247,26 @@ hu:
       background_image: Háttérkép
       behavioral_skills: Viselkedési készségek
       client_skills: Ügyfélkészségek
+      delete_skill: Biztos benne, hogy törölni akarja a képességet, mert az az összes kapcsolódó fejlesztési műveletet is törli?
       details_updated: IDP részletek sikeresen frissítve
+      development_actions:
+        add_from_library: Hozzáadás a könyvtárból
+        completion: Teljesítés
+        create_development_actions_with_ai: Fejlesztési műveletek létrehozása az AI for %{skillName} segítségével
+        create_from_ai: Alkotás mesterséges intelligenciából
+        create_my_own: Készítsd el a sajátomat
+        custom: Szokás
+        date_range: Kezdő dátum - Záró dátum
+        edit_plan_to_add_development_actions: Terv szerkesztése és fejlesztési műveletek hozzáadása.
+        errors:
+          invalid_learning_style: 'A "%{learning_style}" nem érvényes tanulási stílus. Érvényes opciók: %{valid_styles}'
+          learning_style_blank: A tanulási stílus nem lehet üres
+        generate_by_ai: AI által generált
+        generate_more: Generáljon többet
+        heading: Készségfejlesztési tevékenységek
+        manage_skills: Készségek kezelése
+        no_development_actions: Nincsenek fejlesztési akciói
+      document_ai_assistant: Dokumentumelemzés AI asszisztens
       edit_template: IDP sablon szerkesztése
       enter_tag_or_skills_error: Válasszon ki legalább egy címkét vagy készséget
       enter_template_description: Leírás
@@ -2265,6 +2289,8 @@ hu:
       global_skills: Globális készségek
       idp: IDP
       idp_template: IDP-sablon hozzáadása
+      interview_questions: Interjú kérdések
+      interview_questions_updated: Az interjú kérdései sikeresen frissültek.
       intro_message: Bevezető üzenet
       intro_message_hint: A bevezető üzenet módosításához először mentse el az IDP-sablont a beállítások engedélyezéséhez.
       intro_message_success: A bevezető üzenet mentése sikeresen megtörtént
@@ -2276,6 +2302,7 @@ hu:
         mercer_only: Csak Mercer-logó
         none: Logók nélkül
       logo_type_label: Logó típusa
+      no_interview_questions_selected: Nincs kiválasztva interjúkérdés
       no_reflection_questions_selected: Nincs kiválasztva reflexiós kérdés
       none: Egyik sem
       one_click_idp_enabled: Egy kattintással IDP engedélyezve
@@ -2284,7 +2311,16 @@ hu:
       reflection_questions_hint: A reflexiós kérdések módosításához először mentse el az IDP-sablont a beállítások engedélyezéséhez.
       reflection_questions_updated: A reflexiós kérdések frissítése sikeres.
       remove: Eltávolít
+      remove_skill: Képesség eltávolítása
+      revert_skill_to_public:
+        errors:
+          skill_already_public: A készség már nyilvános
+          skill_not_found: A készség nem található
+        success:
+          base_message: A "%{skill_name}" képesség mostantól látható a felettese számára
+          with_approval: "%{base_message} és az IDP-tervet jóváhagyásra benyújtották"
       select_by_tags: Kiválasztás címkék szerint
+      select_interview_question: Kezdjen el gépelni a kereséshez és a kérdés kiválasztásához
       select_reflection_question: Kezdjen el gépelni a kereséshez és a kérdés kiválasztásához
       select_skill_gap_report: Valamilyen készség hiányáról szóló jelentés kiválasztása
       select_specific_skills: Konkrét készségek kiválasztása
@@ -2310,12 +2346,14 @@ hu:
       subtitle_text: Felirat szövege
       tab:
         development_actions: Fejlesztési tevékenységek
+        interview_questions: Interjú kérdések
         reflection_questions: Reflexiós kérdések
         settings: Beállítások
         templates: Sablonok
       technical_skills: Műszaki készségek
       template_details: Sablon részletei
       title_text: Cím szövege
+      update_interview_questions: Interjúkérdések frissítése
       update_reflection_questions: Reflexiós kérdések frissítése
     idp_setting:
       allow_global_skills: Globális készségek engedélyezése
@@ -2518,6 +2556,35 @@ hu:
         skillvue:
           api_key_present: Az API-kulcs már jelen van egy másik projektben
       view_all_schedules: Az összes Mettl-menetrend megtekintése
+    interview_questions:
+      delete_confirmation: Biztosan törölni akarja ezt az interjúkérdést?
+      description: Leírás
+      export:
+        action: Interjúkérdések exportálása
+        details: Fájl részletei
+        failure_msg: Hiba a fájl exportálása közben.
+        success_msg: Interjúkérdések exportálása folyamatban. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      form:
+        description: Leírás
+        mandatory: Kötelező
+        question: Kérdés
+        question_type: Kérdés típusa
+        question_type_audio: Hanganyag
+        question_type_video: Video
+        time_limit: Időkorlát (mp)
+        title: Interjú kérdése
+      import:
+        action: Interjúkérdések importálása
+        errors:
+          invalid_required_column_format: Érvénytelen Kötelező oszlopérték-formátum %{row}
+          invalid_required_type_format: Érvénytelen QuestionType oszlopérték-formátum %{row}
+          invalid_time_limit_column_format: Érvénytelen időkorlát oszlopérték-formátum %{row}
+          missing_description: Hiányzó leírás tartalom %{row}
+          missing_question: Hiányzó kérdés tartalma %{row}
+          save_failed: Mentés sikertelen %{message}
+        failure_msg: Hiba a fájl importálása közben.
+        success_msg: Folyamatban lévő interjúkérdések importálása. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      question: Kérdés
     invited_subject:
       add_btn: Tárgy hozzáadása
       assessment_center: 'Értékelő központ:'
@@ -3184,7 +3251,9 @@ hu:
         dp_consent_version: Szabályzat verziója
         errors:
           cannot_disable_while_campaign_enabled: Nem lehet letiltani a videóhívás rögzítését, mivel az engedélyezve van egy vagy több kampány számára ebben a projektben.
+          min_retention: Nem lehet kevesebb, mint 1 nap
           policy_version_format: Csak egész számok engedélyezettek
+          required: Szükséges
         mask_identity_for_examus: Adatok maszkolása az Examus Proctoring számára
         mask_identity_for_hogan: Adatok maszkolása a Hogan számára
         mask_identity_for_iiht: Adatok maszkolása az IIHT számára
@@ -3324,9 +3393,12 @@ hu:
         code: Kód
         code_constraint: A kódnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásjeleket tartalmazhat
         delete: Töröl
+        description: Leírás
+        description_alias: Leírás / Alias
         import_factors: Import tényezők
         invalid_factor_params: Érvénytelen a kampánytényezők paraméterformátuma
         name: Név
+        name_alias: Név / álnév
         no_boundary_space: A név nem kezdődhet vagy végződhet szóközzel
         too_many_factors: Nem hozhat létre %{count} számnál több kampánytényezőt
         tools: Eszközök
@@ -3345,6 +3417,19 @@ hu:
       property_panel:
         add_new_condition: Új feltétel hozzáadása
         apply_color_label: 'Ezután alkalmazza a következő színt:'
+        custom_factor_fields:
+          percentage: Százalék
+          questions_attempted: Kísérlet
+          questions_correct: Helyes
+          questions_incorrect: Helytelen
+          questions_not_attempted: Nem kísérelték meg
+          questions_partial_correct: Részben helyes
+          total_questions: Teljes
+        custom_factor_placeholder: Egyéni tényezőmezők kiválasztása
+        factor_value_type:
+          custom: Szokás
+          default: Alapértelmezett
+          label: Tényező értékének típusa
         graph_condition_types:
           default: Alapértelmezett
           graph_value: Grafikon értéke
@@ -3354,6 +3439,7 @@ hu:
         manage_graph_value_condition: Grafikonérték-feltétel kezelése
         manage_styles_condition: Stílusok feltételének kezelése
         missing_value: Hiányzó érték
+        pie_semi_circle: Félkör
         predicates:
           equal_to: Egyenlő
           greater_than: Nagyobb, mint
@@ -3437,6 +3523,7 @@ hu:
         translations: Fordítások
       title: Jelentés beállításai
     reports:
+      broken_image_url: Ellenőrizze a kép URL-jét, és próbálja meg újra az importálást
       bulk_marked_as_done: A köteg készként megjelölve
       bulk_upload:
         choose_file: Válassza ki a fájlt
@@ -3606,16 +3693,19 @@ hu:
         campaign_assessment_group: Étrékelési központ csoport
         campaign_name: Kampány neve
         duration: Időtartam
+        link_to_view_recordings: Link a felvételek megtekintéséhez
         managers: Vezetők
         meeting_link: Értekezlet linkje
         name: Név
         participants: Résztvevők
         prework: Előkészítés
+        recording_date: Felvétel dátuma
         resource_link: Link
         resource_name: Név
         schedule_time: Ütemezési idő
         scheduling_status: Ütemezési állapot
         seats: Ülőhely
+        serial_no: Sorozatszám
         start_time: Dátum és idő
         subject: Tárgy
         title: Cím
@@ -3640,6 +3730,7 @@ hu:
         managers: Központ vezetők
         none: Egyik sem
         not_allowed: Nem engedélyezett
+        recording_enabled: Felvétel engedélyezve
         remaining: Fennmaradó helyek
         scheduling_lead_time: Átfutási idő ütemezése
         scheduling_tooltip: A felhasználó %{date}-ig foglalhat helyet
@@ -3700,6 +3791,7 @@ hu:
         activities: Tevékenységek
         assessment_center: Értékelési központ
         invites: Meghív
+        recordings: Felvételek
         resources: Erőforrások
         subjects: Témák
     scoring:
@@ -4135,6 +4227,15 @@ hu:
           other: Egyéb
           qualification: Minősítés
           technical: Műszaki
+      move_question:
+        cancel: Érvénytelenít
+        move: Mozog
+        moveAfter: Mozgás utána
+        moveBefore: Mozgás előtt
+        moveQuestion: 'Áthelyezési kérdés: %{question}'
+        position: Pozíció
+        selectTargetQuestion: Válassza ki a célkérdést
+        title: Áthelyezési kérdés
       property_panel:
         add_n_a_option: N/A opció hozzáadása
         allow_content_copy: Tartalommásolás engedélyezése
@@ -4178,6 +4279,18 @@ hu:
         question_description: Sorok leírása
         validation_response_type: Érvényesítési válasz típusa
         voice_dictation: Hangdiktálás
+      question_info_bar:
+        add_display_logic: Megjelenítési logika hozzáadása
+        add_skip_logic: Kihagyási logika hozzáadása
+        are_you_sure_to_delete_this_question: Biztosan törli ezt a kérdést?
+        default_choices: Alapértelmezett választási lehetőségek
+        delete_question: Kérdés törlése
+        delete_the_question: A kérdés törlése
+        move_question: Áthelyezési kérdés
+        randomization: Véletlenszerű
+        save_as_a_template: Mentés sablonként
+        this_question_has_default_choices: Ez a kérdés alapértelmezett választási lehetőségekkel rendelkezik
+        this_question_has_randomization: Ez a kérdés véletlenszerűen történik
     table:
       entries:
         selected: 1 sor kiválasztva

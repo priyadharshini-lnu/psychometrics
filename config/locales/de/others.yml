@@ -839,6 +839,7 @@ de:
         export_development_actions: Maßnahmen zur Exportentwicklung
         export_dimension_as_json: Dimension JSON exportieren
         export_factor_translations: Export-Faktor-Übersetzungen
+        export_interview_questions: Fragen im Vorstellungsgespräch exportieren
         export_job_roles_translations: Exportieren von Job-Rollen-Übersetzungen
         export_norm: Norm exportieren
         export_occupations: Berufe Export
@@ -864,6 +865,7 @@ de:
         import_external_campaign_scoring: Externes Kampagnen-Scoring importieren
         import_factor_translations: Import-Faktor-Übersetzungen
         import_factors: Import-Faktoren
+        import_interview_questions: Importieren von Fragen im Vorstellungsgespräch
         import_job_roles_translations: Importieren von Job-Rollen-Übersetzungen
         import_norm: Norm importieren
         import_proficiency_level_translations: Importieren von Übersetzungen der Proficiency Level
@@ -1801,6 +1803,7 @@ de:
       view: Siehe
       view_all_tasks: Alle Aufgaben anzeigen
       view_detail: Ansicht Detail
+      yes_delete: Ja, Löschen
     column:
       action: Aktion
       active: Aktiv
@@ -2576,11 +2579,47 @@ de:
       aria_selected: Ausgewählte
   idp:
     actions: Aktionen
+    ai:
+      assistant:
+        failure_fallback:
+          message: Hoppla! Beim Anzeigen dieser Meldung ist etwas schief gelaufen. Bitte versuchen Sie es erneut!
+          try_again: Das habe ich nicht verstanden. Wiederholen!
+      bubbles:
+        audio:
+          question_progress: Frage %{current} von %{count}
+      compose:
+        placeholder: Geben Sie hier Ihre Nachricht ein...
+      finishing:
+        hint: Unser KI-Assistent erstellt für Sie einen IDP-Plan.
+        title: Bitte warten Sie, wir zaubern...
+      retake_steps:
+        chat_hint: Lassen Sie mich wissen, welche Informationen Sie weiter unten bereitstellen möchten.
+        chat_title: Sie möchten weitere Informationen geben?
+        start_chat: Chat starten
+        start_chat_again: Chat erneut starten
+        upload_document: Dokument hochladen
+        upload_file: Datei hochladen
+      summary:
+        chat_title: Chat Insight Zusammenfassung
+        file_title: Einblicke in hochgeladene Dokumente
+        hint: Wenn ja, erstellen wir Ihren IDP, andernfalls können Sie Ihre Antworten wiederholen
+        title: Sind Sie mit den Ergebnissen zufrieden?
+        upload_file: Hochgeladene Datei
+        view_chat: Chat anzeigen
+      upload:
+        description: Klicken oder ziehen Sie Dateien in diesen Bereich, um sie hochzuladen
+        drop: Datei hier ablegen
+        title: Hochladen von Dateien
+      welcome:
+        text: Sind Sie bereit, Ihre Wachstumsphase zu verfolgen? Fangen wir an!
+        title: Hallo, ich bin dein Entwicklungsassistent
     behavioral: Verhaltenstipps
     board: Vorstand
+    changes_saved_to_plan: Änderungen, die im Plan gespeichert werden
     comment_details:
       add_comment: Kommentar hinzufügen
       add_comment_placeholder: Kommentar hinzufügen...
+      add_comments: Kommentare hinzufügen
       add_reply_placeholder: Antwort hinzufügen...
       go_to_skill: Fähigkeit anzeigen
     comments:
@@ -2602,11 +2641,15 @@ de:
       sort_by_date: Nach Datum sortieren
       you: Du
     convert_to_draft: In Entwurf konvertieren
+    delete_skill: Sind Sie sicher, dass Sie den Skill löschen möchten, da dadurch auch alle verbundenen Entwicklungsaktionen gelöscht werden?
     details: Einzelheiten
     development_actions:
       action_private: Ja
       action_public: Nein
       add_development_action: Entwicklungsmaßnahme hinzufügen
+      add_development_actions_from_below_options: Fügen Sie Entwicklungsaktionen aus den folgenden Optionen hinzu.
+      add_development_actions_modal_title: Bibliothek für Entwicklungsmaßnahmen für %{skillName}
+      add_from_library: Aus Bibliothek hinzufügen
       all: Alle
       approved: Genehmigt
       board_view:
@@ -2614,17 +2657,32 @@ de:
         in_progress: In Arbeit
         not_started: Nicht begonnen
       completion: Fertigstellung
+      create_custom_development_action_title: Erstellen Sie meine eigene Entwicklungsmaßnahme für %{skillName}
+      create_development_actions_with_ai: Erstellen Sie Entwicklungsaktionen mit KI für %{skillName}
+      create_from_ai: Aus KI erstellen
       create_my_own: Eigene erstellen
+      custom: Gewohnheit
+      custom_da_description: Erstellen Sie eine benutzerdefinierte Entwicklungsaktion, um individuelle Entwicklungsanforderungen zu erfüllen.
       date_range: Startdatum - Enddatum
+      edit_plan_to_add_development_actions: Bearbeiten Sie den Plan, und fügen Sie Entwicklungsaktionen hinzu.
+      enter_development_action_description: Beschreibung der Entwicklungsmaßnahme eingeben
+      enter_development_action_title: Titel der Entwicklungsmaßnahme eingeben
       generate_by_ai: Generieren durch AI
       generate_more: Mehr generieren
       generating_development_actions: Generierung von Entwicklungsmaßnahmen...
+      generative_ai: Generative KI
+      generative_ai_description: Lassen Sie die KI eine maßgeschneiderte Entwicklungsmaßnahme nur für Sie generieren
       heading: Entwicklungspolitische Maßnahmen
+      idp_library: IDP-Bibliothek
+      idp_library_description: Wählen Sie eine bewährte Entwicklungsmaßnahme aus unserer von Experten kuratierten Bibliothek aus.
       incomplete_error: Unvollständige Entwicklungsmaßnahmen
       incomplete_error_message: Einige Entwicklungsmaßnahmen sind noch nicht abgeschlossen. Bitte füllen Sie diese aus, bevor Sie Ihren IDP einreichen.
       incomplete_warning: Unvollständige Entwicklungsmaßnahmen
       incomplete_warning_message: Einige Entwicklungsmaßnahmen sind noch nicht abgeschlossen. Sind Sie sicher, dass Sie Ihren IDP als abgeschlossen markieren möchten?
+      info_popover_title: Verschiedene Arten von Entwicklungsmaßnahmen
       learning_from_others: Von anderen lernen
+      learning_from_others_label: Von anderen lernen
+      learning_on_the_job_label: Lernen am Arbeitsplatz
       manage_skills: Fertigkeiten managen
       marathon: Marathon
       mark_as_complete: Als abgeschlossen markieren
@@ -2634,19 +2692,26 @@ de:
       private: Privat
       publish_plan: Plan veröffentlichen
       remove: Entfernen
+      save_plan: Plan speichern
       skill: Fertigkeit
       sprint: Sprint
       start_plan: Plan starten
       structured_learning: Strukturiertes Lernen
+      structured_learning_label: Kollaboratives Lernen
       submit_plan: Plan einreichen
+      success: Entwicklungsmaßnahmen erfolgreich abgeschlossen
       write_here: Hier schreiben...
+    direct_reportee_details: Detail der direkt unterstellten Mitarbeiter
     edit_plan: Plan bearbeiten
+    edit_plan_and_add_skills: Plan bearbeiten und klicken Sie auf Fertigkeiten verwalten, um Fertigkeiten hinzuzufügen.
     edit_progress: Fortschritt bearbeiten
+    fetching_skill_gap_report: Bericht über Qualifikationslücken abrufen...
     initial_steps:
       add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
       add_skill_group_title: Erkunden Sie Ihre %{category}-Fähigkeiten
       add_skills: Hinzufügen
       add_skills_step: Fertigkeiten hinzufügen
+      back: Zurück
       continue_to_rate_skills: Fähigkeiten weiter bewerten
       getting_started: Erste Schritte
       less_skills: Weniger Fähigkeiten zeigen
@@ -2675,6 +2740,8 @@ de:
         categories: Kategorien
       save_skills: Kompetenzen speichern
     new_comments: Neuer Kommentar
+    no_skills_added: Du hast noch keine Fähigkeiten hinzugefügt.
+    no_skills_added_by_reportee: Reportee hat Skills noch nicht hinzugefügt.
     pdf:
       approval_status: Genehmigungsstatus
       cover:
@@ -2793,14 +2860,21 @@ de:
         required: Die Antwort auf die Frage ist erforderlich
       max_words: Max Wörter
       min_words: Min Worte
+      no_answer_provided: Noch keine Antwort gegeben
       no_reflective_questions: Keine reflektierenden Fragen
+      optional: "(Fakultativ)"
       title: Reflektierende Fragen
       update_failed: Während der Aktualisierung ist ein Fehler aufgetreten
       updated_successfully: Ihre Antworten wurden erfolgreich aktualisiert
+      word_limit: Muss zwischen %{min} und %{max} Wörtern stehen
       words: Wörter
+    remove_skill: Skill entfernen
     skill_gap_report:
+      download: Bericht zur Qualifikationslücke herunterladen
       title: Bericht über das Qualifikationsdefizit
+    skills_updated: Im Plan aktualisierte Fertigkeiten
     status: Status
+    suggestions: Anregungen
     technical: Technisch
     user_idp_status:
       approved: Genehmigt
@@ -3027,6 +3101,7 @@ de:
         success: Norm für Faktor '%{factorName}' wurde erfolgreich aktualisiert.
       values:
         empty: Leere
+  one: '1'
   profile:
     add_field: Feld hinzufügen
     add_photo: Foto hinzufügen
@@ -3688,6 +3763,7 @@ de:
       done: Erledigt
       not_completed: nicht abgeschlossen
       waiting: warten
+  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Annehmen
@@ -3896,6 +3972,7 @@ de:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
+  two: '2'
   universal_links:
     active: Aktiv
     allow_multiple_respones: Erlauben Sie Benutzern, mehrere Antworten zu übermitteln
@@ -3960,9 +4037,14 @@ de:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: Als abgeschlossen markieren
+          success_message: Die Bewertung %{name} wird als abgeschlossen markiert
         reset_progress:
           name: Fortschritt zurücksetzen
           success_message: Bewertung %{name} ist bereit zur Bearbeitung
+      mark_as_completed:
+        content: Sind Sie sicher, dass Sie "%{name}" als abgeschlossen markieren möchten?
       push_test_webhook:
         copy_request_data_success: Rquest Payload erfolgreich in die Zwischenablage kopiert.
         copy_response_body_success: Der Antworttext wurde erfolgreich in die Zwischenablage kopiert.

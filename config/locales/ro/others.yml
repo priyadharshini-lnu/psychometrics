@@ -839,6 +839,7 @@ ro:
         export_development_actions: Acțiune de dezvoltare a exporturilor
         export_dimension_as_json: Exportați dimensiunea JSON
         export_factor_translations: Traduceri cu factor de export
+        export_interview_questions: Exportați întrebările interviului
         export_job_roles_translations: Exportați Rolul postului Traduceri
         export_norm: Norma de export
         export_occupations: Ocupații Exportați
@@ -864,6 +865,7 @@ ro:
         import_external_campaign_scoring: Importați scorul campaniei externe
         import_factor_translations: Traduceri cu factor de import
         import_factors: Factori de import
+        import_interview_questions: Importați întrebări de interviu
         import_job_roles_translations: Import Rolul postului Traduceri
         import_norm: Norma de import
         import_proficiency_level_translations: Importați traduceri la nivel de competență
@@ -1787,6 +1789,7 @@ ro:
       view: Vedere
       view_all_tasks: Vizualizați toate sarcinile
       view_detail: Vezi detalii
+      yes_delete: Da, ștergeți
     column:
       action: Acțiuni
       active: Active
@@ -2564,11 +2567,47 @@ ro:
       aria_selected: Selectat
   idp:
     actions: Acțiuni
+    ai:
+      assistant:
+        failure_fallback:
+          message: Oops! Ceva nu a mers bine în timp ce afișați acest mesaj. Vă rugăm să încercați din nou!
+          try_again: Nu am înțeles asta. Încearcă din nou!
+      bubbles:
+        audio:
+          question_progress: Întrebarea %{current} a %{count}
+      compose:
+        placeholder: Introduceți mesajul aici...
+      finishing:
+        hint: Asistentul nostru AI creează un plan IDP pentru dvs.
+        title: Vă rugăm să așteptați, ne facem magia...
+      retake_steps:
+        chat_hint: Spuneți-mi ce informații doriți să furnizați mai jos?
+        chat_title: Doriți să oferiți mai multe informații?
+        start_chat: Începeți chatul
+        start_chat_again: Începe din nou chatul
+        upload_document: Încărcați documentul
+        upload_file: Încărcați fișierul
+      summary:
+        chat_title: Rezumatul Chat Insight
+        file_title: Informații despre documentele încărcate
+        hint: dacă da, atunci vă vom crea IDP-ul, altfel vă puteți relua răspunsurile
+        title: Sunteți mulțumit de rezultate?
+        upload_file: Fișier încărcat
+        view_chat: Vizualizați chat-ul
+      upload:
+        description: Faceți clic sau trageți fișiere în această zonă pentru a le încărca
+        drop: Aruncați fișierul aici
+        title: Încărcați fișiere
+      welcome:
+        text: Ești gata să-ți trasezi ziua de creștere? Să începem!
+        title: Buna ziua, sunt asistentul tau de dezvoltare
     behavioral: Comportamental
     board: Scândură
+    changes_saved_to_plan: Modificări salvate în plan
     comment_details:
       add_comment: Adaugă comentariu
       add_comment_placeholder: Adaugă un comentariu...
+      add_comments: Adaugă comentarii
       add_reply_placeholder: Adaugă un răspuns...
       go_to_skill: Mergi la abilitate
     comments:
@@ -2590,11 +2629,15 @@ ro:
       sort_by_date: Sortează după dată
       you: Tu
     convert_to_draft: Conversie în ciornă
+    delete_skill: Sunteți sigur că doriți să ștergeți abilitatea, deoarece va șterge și toate acțiunile de dezvoltare conectate?
     details: Detalii
     development_actions:
       action_private: Da
       action_public: Nu
       add_development_action: Adăugarea acțiunii de dezvoltare
+      add_development_actions_from_below_options: Adăugați acțiuni de dezvoltare din opțiunile de mai jos.
+      add_development_actions_modal_title: Biblioteca de acțiuni de dezvoltare pentru %{skillName}
+      add_from_library: Adăugați din bibliotecă
       all: Toți
       approved: Aprobat
       board_view:
@@ -2602,17 +2645,32 @@ ro:
         in_progress: În curs de desfășurare
         not_started: Neînceput
       completion: Terminare
+      create_custom_development_action_title: Creează-mi propria acțiune de dezvoltare pentru %{skillName}
+      create_development_actions_with_ai: Creați acțiuni de dezvoltare cu AI for %{skillName}
+      create_from_ai: Creați din AI
       create_my_own: Creează-mi propriul
+      custom: Obicei
+      custom_da_description: Creați o acțiune de dezvoltare personalizată pentru a răspunde nevoilor unice de dezvoltare.
       date_range: Data de începere - Data de sfârșit
+      edit_plan_to_add_development_actions: Editați planul și adăugați acțiuni de dezvoltare.
+      enter_development_action_description: Introduceți descrierea acțiunii de dezvoltare
+      enter_development_action_title: Introduceți titlul acțiunii de dezvoltare
       generate_by_ai: Generați prin AI
       generate_more: Generează mai mult
       generating_development_actions: Generarea de acțiuni de dezvoltare...
+      generative_ai: AI generativă
+      generative_ai_description: Lăsați AI să genereze o acțiune de dezvoltare personalizată doar pentru dvs.
       heading: Acțiune de dezvoltare
+      idp_library: Biblioteca IDP
+      idp_library_description: Selectați o acțiune de dezvoltare dovedită din biblioteca noastră organizată de experți.
       incomplete_error: Acțiune de dezvoltare incomplete
       incomplete_error_message: Unele acțiuni de dezvoltare sunt incomplete. Vă rugăm să le completați înainte de a trimite IDP-ul.
       incomplete_warning: Acțiune de dezvoltare incomplete
       incomplete_warning_message: Unele acțiuni de dezvoltare sunt incomplete. Sunteți sigur că doriți să vă marcați IDP-ul complet?
+      info_popover_title: Diferite tipuri de acțiuni de dezvoltare
       learning_from_others: Învățând de la alții
+      learning_from_others_label: Învățarea de la alții
+      learning_on_the_job_label: Învățarea la locul de muncă
       manage_skills: Gestionați abilitățile
       marathon: Maraton
       mark_as_complete: Marcați ca finalizat
@@ -2622,19 +2680,26 @@ ro:
       private: Privat
       publish_plan: Publicați planul
       remove: Depărta
+      save_plan: Salvați planul
       skill: Îndemânare
       sprint: Sprint
       start_plan: Începeți planul
       structured_learning: Învățare structurată
+      structured_learning_label: Învățare colaborativă
       submit_plan: Trimiteți planul
+      success: Acțiuni de dezvoltare finalizate cu succes
       write_here: Scrie aici...
+    direct_reportee_details: Detalii raportoare directe
     edit_plan: Editați planul
+    edit_plan_and_add_skills: Editați planul și faceți clic pe Gestionați abilitățile pentru a adăuga abilități.
     edit_progress: Editați progres
+    fetching_skill_gap_report: Raport de preluare a lacunelor de abilități...
     initial_steps:
       add_skill_group_description: Pe baza rezultatelor evaluării dvs., iată câteva dintre domeniile de puncte forte și dezvoltare pentru dvs. Alegeți abilitățile pe care doriți să le dezvoltați în continuare ca parte a planului de dezvoltare.
       add_skill_group_title: Explorarea abilităților %{category}
       add_skills: Adăugați
       add_skills_step: Adaugă abilități
+      back: Spate
       continue_to_rate_skills: Continuați să evaluați competențele
       getting_started: Introducere
       less_skills: Afișați mai puține abilități
@@ -2662,6 +2727,8 @@ ro:
         categories: Categorii
       save_skills: Salvați abilități
     new_comments: Comentariu (comentarii) nou
+    no_skills_added: Nu ai încă abilități adăugate.
+    no_skills_added_by_reportee: Raportatul nu a adăugat încă abilități.
     pdf:
       approval_status: Starea aprobării
       cover:
@@ -2780,14 +2847,21 @@ ro:
         required: Răspunsul la întrebare este necesar
       max_words: Cuvinte maxime
       min_words: Cuvinte minime
+      no_answer_provided: Nu s-a dat încă niciun răspuns
       no_reflective_questions: Fără întrebări reflexive
+      optional: "(Opțional)"
       title: Întrebări reflexive
       update_failed: A apărut o eroare în timpul actualizării
       updated_successfully: Răspunsurile dumneavoastră au fost actualizate cu succes
+      word_limit: Trebuie să fie între %{min} și %{max} cuvinte
       words: Cuvinte
+    remove_skill: Eliminați abilitatea
     skill_gap_report:
+      download: Descărcați raportul privind lacunele de competențe
       title: Raport privind decalajul de competențe
+    skills_updated: Competențe actualizate în plan
     status: Stare
+    suggestions: Sugestii
     technical: Tehnic
     user_idp_status:
       approved: Aprobat
@@ -3014,6 +3088,7 @@ ro:
         success: Norma pentru factorul '%{factorName}' a fost actualizată cu succes.
       values:
         empty: Gol
+  one: '1'
   profile:
     add_field: Adaugă câmp
     add_photo: Adaugă fotografie
@@ -3675,6 +3750,7 @@ ro:
       done: Efectuat
       not_completed: Nefinalizat
       waiting: În așteptare
+  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Acceptați
@@ -3883,6 +3959,7 @@ ro:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
+  two: '2'
   universal_links:
     active: Active
     allow_multiple_respones: Permiteți utilizatorilor să trimită mai multe răspunsuri
@@ -3947,9 +4024,14 @@ ro:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: Marcați ca finalizat
+          success_message: Evaluarea %{name} este marcată ca finalizată
         reset_progress:
           name: Resetează progresul
           success_message: Evaluarea %{name} este gata pentru editare
+      mark_as_completed:
+        content: Sunteți sigur că doriți să marcați ca finalizat "%{name}"?
       push_test_webhook:
         copy_request_data_success: Sarcina utilă Rquest a fost copiată cu succes în clipboard.
         copy_response_body_success: Corpul răspunsului a fost copiat cu succes în clipboard.

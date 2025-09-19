@@ -839,6 +839,7 @@ pt:
         export_development_actions: Acções de desenvolvimento das exportações
         export_dimension_as_json: Exportar dimensão JSON
         export_factor_translations: Traduções de factores de exportação
+        export_interview_questions: Exportar perguntas da entrevista
         export_job_roles_translations: Exportação Funções de trabalho Traduções
         export_norm: Norma de exportação
         export_occupations: Profissões Exportação
@@ -864,6 +865,7 @@ pt:
         import_external_campaign_scoring: Importar pontuação de campanha externa
         import_factor_translations: Traduções de factores de importação
         import_factors: Factores de importação
+        import_interview_questions: Importar perguntas da entrevista
         import_job_roles_translations: Importar traduções de funções de trabalho
         import_norm: Norma de importação
         import_proficiency_level_translations: Importação de traduções de nível de proficiência
@@ -1800,6 +1802,7 @@ pt:
       view: Ver
       view_all_tasks: Ver todas as tarefas
       view_detail: Ver detalhes
+      yes_delete: Sim, excluir
     column:
       action: Ação
       active: Ativo
@@ -2572,11 +2575,47 @@ pt:
       aria_selected: Selecionado
   idp:
     actions: Acções
+    ai:
+      assistant:
+        failure_fallback:
+          message: Oops! Algo deu errado ao mostrar esta mensagem. Por favor, tente novamente!
+          try_again: Eu não entendi isso. Tentar novamente!
+      bubbles:
+        audio:
+          question_progress: Pergunta %{current} de %{count}
+      compose:
+        placeholder: Digite sua mensagem aqui...
+      finishing:
+        hint: Nosso assistente de IA está criando um plano IDP para você.
+        title: Por favor, espere, estamos fazendo nossa mágica...
+      retake_steps:
+        chat_hint: Deixe-me saber quais informações você deseja fornecer mais abaixo?
+        chat_title: Você quer dar mais informações?
+        start_chat: Iniciar bate-papo
+        start_chat_again: Iniciar o bate-papo novamente
+        upload_document: Carregar documento
+        upload_file: Carregar arquivo
+      summary:
+        chat_title: Resumo do Chat Insight
+        file_title: Insights de documentos carregados
+        hint: se sim, então criaremos seu IDP, caso contrário, você pode refazer suas respostas
+        title: Você está satisfeito com os resultados?
+        upload_file: Arquivo carregado
+        view_chat: Ver bate-papo
+      upload:
+        description: Clique ou arraste os arquivos para esta área para fazer o upload
+        drop: Solte o arquivo aqui
+        title: Carregar arquivos
+      welcome:
+        text: Pronto para traçar sua jornada de crescimento? Vamos começar!
+        title: Olá, sou seu assistente de desenvolvimento
     behavioral: Comportamental
     board: Direção
+    changes_saved_to_plan: Alterações salvas no plano
     comment_details:
       add_comment: Adicionar comentário
       add_comment_placeholder: Adicionar comentário...
+      add_comments: Adicionar comentários
       add_reply_placeholder: Adicionar resposta...
       go_to_skill: Ir para habilidade
     comments:
@@ -2598,11 +2637,15 @@ pt:
       sort_by_date: Ordenar por data
       you: Você
     convert_to_draft: Converter em rascunho
+    delete_skill: Tem certeza de que deseja excluir a habilidade porque ela também excluirá todas as ações de desenvolvimento conectadas?
     details: Detalhes
     development_actions:
       action_private: Sim
       action_public: Não
       add_development_action: Adicionar ação de desenvolvimento
+      add_development_actions_from_below_options: Adicione ações de desenvolvimento nas opções abaixo.
+      add_development_actions_modal_title: Biblioteca de ações de desenvolvimento para %{skillName}
+      add_from_library: Adicionar da biblioteca
       all: Todos
       approved: Aprovado
       board_view:
@@ -2610,17 +2653,32 @@ pt:
         in_progress: Em curso
         not_started: Não iniciado
       completion: Conclusão
+      create_custom_development_action_title: Criar minha própria ação de desenvolvimento para %{skillName}
+      create_development_actions_with_ai: Crie ações de desenvolvimento com IA para %{skillName}
+      create_from_ai: Crie a partir da IA
       create_my_own: Criar o meu próprio
+      custom: Costume
+      custom_da_description: Crie uma ação de desenvolvimento personalizada para atender às necessidades de desenvolvimento exclusivas.
       date_range: Data de início - Data de fim
+      edit_plan_to_add_development_actions: Edite o plano e adicione ações de desenvolvimento.
+      enter_development_action_description: Insira a descrição da ação de desenvolvimento
+      enter_development_action_title: Digite o título da ação de desenvolvimento
       generate_by_ai: Gerar por IA
       generate_more: Gerar mais
       generating_development_actions: Geração de acções de desenvolvimento...
+      generative_ai: IA generativa
+      generative_ai_description: Deixe a IA gerar uma ação de desenvolvimento sob medida só para você
       heading: Acções de desenvolvimento
+      idp_library: Biblioteca IDP
+      idp_library_description: Selecione uma ação de desenvolvimento comprovada em nossa biblioteca com curadoria de especialistas.
       incomplete_error: Ações de desenvolvimento incompletas
       incomplete_error_message: Algumas ações de desenvolvimento estão incompletas. Por favor, preencha-os antes de enviar o seu IDP.
       incomplete_warning: Ações de desenvolvimento incompletas
       incomplete_warning_message: Algumas ações de desenvolvimento estão incompletas. Tem certeza de que deseja marcar seu IDP como completo?
+      info_popover_title: Diferentes tipos de Ações de Desenvolvimento
       learning_from_others: Aprender com os outros
+      learning_from_others_label: Aprendendo com os outros
+      learning_on_the_job_label: Aprendendo no trabalho
       manage_skills: Gerenciar competências
       marathon: Maratona
       mark_as_complete: Marcar como Concluído
@@ -2630,19 +2688,26 @@ pt:
       private: Privado
       publish_plan: Publicar plano
       remove: Remover
+      save_plan: Salvar plano
       skill: Habilidade
       sprint: Sprint
       start_plan: Iniciar Plano
       structured_learning: Aprendizagem estruturada
+      structured_learning_label: Aprendizagem colaborativa
       submit_plan: Apresentar plano
+      success: Ações de desenvolvimento concluídas com sucesso
       write_here: Escreva aqui...
+    direct_reportee_details: Detalhe dos subordinados diretos
     edit_plan: Editar plano
+    edit_plan_and_add_skills: Edite o plano e clique em Gerenciar habilidades para adicionar habilidades.
     edit_progress: Editar o progresso
+    fetching_skill_gap_report: Buscando o Relatório de Lacunas de Habilidades...
     initial_steps:
       add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
       add_skill_group_title: Explorar as suas competências de %{category}
       add_skills: Adicionar
       add_skills_step: Adicionar competências
+      back: Voltar
       continue_to_rate_skills: Continuar a avaliar as competências
       getting_started: Como começar
       less_skills: Mostrar menos competências
@@ -2676,6 +2741,8 @@ pt:
         technical: Técnica
       save_skills: Salvar competências
     new_comments: Novo(s) comentário(s)
+    no_skills_added: Você ainda não adicionou Habilidades.
+    no_skills_added_by_reportee: Reportee ainda não adicionou Habilidades.
     pdf:
       approval_status: Estado de Aprovação
       cover:
@@ -2794,14 +2861,21 @@ pt:
         required: A resposta à pergunta é necessária
       max_words: Máximo de palavras
       min_words: Palavras mínimas
+      no_answer_provided: Nenhuma resposta fornecida ainda
       no_reflective_questions: Sem perguntas reflexivas
+      optional: "(Opcional)"
       title: Perguntas de reflexão
       update_failed: Ocorreu um erro durante a atualização
       updated_successfully: As suas respostas foram actualizadas com sucesso
+      word_limit: Deve estar entre %{min} e %{max} palavras
       words: Palavras
+    remove_skill: Remover habilidade
     skill_gap_report:
+      download: Baixe o Relatório de Lacunas de Habilidades
       title: Relatório de défice de competências
+    skills_updated: Habilidades atualizadas no Plano
     status: Estado
+    suggestions: Sugestões
     technical: Técnica
     user_idp_status:
       approved: Aprovado
@@ -3028,6 +3102,7 @@ pt:
         success: A norma do fator "%{factorName}" foi actualizada com êxito.
       values:
         empty: Vazio
+  one: '1'
   profile:
     add_field: Adicionar campo
     add_photo: Adicionar fotografia
@@ -3689,6 +3764,7 @@ pt:
       done: Concluído
       not_completed: Não concluído
       waiting: Em espera
+  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Aceitar
@@ -3897,6 +3973,7 @@ pt:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
+  two: '2'
   universal_links:
     active: Ativo
     allow_multiple_respones: Permitir que os utilizadores enviem várias respostas
@@ -3961,9 +4038,14 @@ pt:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: Marcar como concluído
+          success_message: A avaliação %{name} é marcada como concluída
         reset_progress:
           name: Reiniciar o progresso
           success_message: A avaliação %{name} está pronta para ser editada
+      mark_as_completed:
+        content: Tem certeza de que deseja marcar como concluído "%{name}"?
       push_test_webhook:
         copy_request_data_success: Rquest Payload copiado para a área de transferência com sucesso.
         copy_response_body_success: O corpo da resposta foi copiado para a área de transferência com êxito.

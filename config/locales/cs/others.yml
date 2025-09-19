@@ -839,6 +839,7 @@ cs:
         export_development_actions: Akce na rozvoj vývozu
         export_dimension_as_json: Export rozměru JSON
         export_factor_translations: Překlady exportních faktorů
+        export_interview_questions: Otázky k exportnímu rozhovoru
         export_job_roles_translations: Export pracovních rolí Překlady
         export_norm: Norma pro vývoz
         export_occupations: Povolání Export
@@ -864,6 +865,7 @@ cs:
         import_external_campaign_scoring: Importování externího bodování kampaní
         import_factor_translations: Překlady importních faktorů
         import_factors: Faktory dovozu
+        import_interview_questions: Importovat otázky k pohovoru
         import_job_roles_translations: Import pracovních rolí Překlady
         import_norm: Importní norma
         import_proficiency_level_translations: Importovat překlady na úrovni pokročilosti
@@ -1799,6 +1801,7 @@ cs:
       view: Zobrazit
       view_all_tasks: Zobrazit všechny úkoly
       view_detail: Zobrazit detail
+      yes_delete: Ano, odstranit
     column:
       action: Akce
       active: Aktivní
@@ -2553,11 +2556,47 @@ cs:
       aria_selected: Vybrané stránky
   idp:
     actions: Akce
+    ai:
+      assistant:
+        failure_fallback:
+          message: Jejda! Při zobrazování této zprávy se něco pokazilo. Zkuste to prosím znovu!
+          try_again: To jsem nechápal. Zkuste to znovu!
+      bubbles:
+        audio:
+          question_progress: Otázka %{current} %{count}
+      compose:
+        placeholder: Zde napište svou zprávu...
+      finishing:
+        hint: Náš AI asistent pro vás vytvoří IDP plán.
+        title: Počkejte prosím, děláme naše kouzla...
+      retake_steps:
+        chat_hint: Dejte mi vědět, jaké informace chcete poskytnout níže?
+        chat_title: Chcete poskytnout více informací?
+        start_chat: Zahájit chat
+        start_chat_again: Zahájit chat znovu
+        upload_document: Nahrát dokument
+        upload_file: Nahrát soubor
+      summary:
+        chat_title: Souhrn funkce Chat Insight
+        file_title: Nahrané dokumenty Insights
+        hint: pokud ano, vytvoříme vašeho IDP, jinak si můžete své odpovědi vzít znovu
+        title: Jste spokojeni s výsledky?
+        upload_file: Nahraný soubor
+        view_chat: Zobrazit chat
+      upload:
+        description: Kliknutím nebo přetažením souborů do této oblasti je nahrajte
+        drop: Sem přetáhněte soubor
+        title: Vkládat
+      welcome:
+        text: Jste připraveni zmapovat svůj růst, jorney? Začněme!
+        title: Dobrý den, jsem Váš asistent vývoje
     behavioral: Chování
     board: Přehled
+    changes_saved_to_plan: Změny uložené v plánu
     comment_details:
       add_comment: Přidat komentář
       add_comment_placeholder: Přidat komentář...
+      add_comments: Přidat komentáře
       add_reply_placeholder: Přidat odpověď...
       go_to_skill: Přejít na dovednost
     comments:
@@ -2579,11 +2618,15 @@ cs:
       sort_by_date: Seřadit podle data
       you: Vy
     convert_to_draft: Převést na koncept
+    delete_skill: Opravdu chcete odstranit dovednost, protože tím odstraníte i všechny související vývojové akce?
     details: Podrobnosti
     development_actions:
       action_private: Ano
       action_public: Ne
       add_development_action: Přidat rozvojovou akci
+      add_development_actions_from_below_options: Přidejte akce vývoje z níže uvedených možností.
+      add_development_actions_modal_title: Knihovna vývojových akcí pro %{skillName}
+      add_from_library: Přidat z knihovny
       all: Vše
       approved: Schváleno
       board_view:
@@ -2591,17 +2634,32 @@ cs:
         in_progress: Probíhající
         not_started: Nezahájeno
       completion: Dokončení
+      create_custom_development_action_title: Vytvořit vlastní vývojářskou akci pro %{skillName}
+      create_development_actions_with_ai: Vytváření vývojových akcí pomocí AI pro %{skillName}
+      create_from_ai: Tvořte z umělé inteligence
       create_my_own: Vytvořit vlastní
+      custom: Zvyk
+      custom_da_description: Vytvořte vlastní vývojovou akci, která řeší jedinečné potřeby vývoje.
       date_range: Datum zahájení - Datum ukončení
+      edit_plan_to_add_development_actions: Upravit plán a přidat akce vývoje.
+      enter_development_action_description: Zadejte popis vývojové akce
+      enter_development_action_title: Zadejte název vývojové akce
       generate_by_ai: Vygenerovat pomocí AI
       generate_more: Vygenerovat více
       generating_development_actions: Generování rozvojových akcí...
+      generative_ai: Generativní umělá inteligence
+      generative_ai_description: Nechte umělou inteligenci vygenerovat vývojovou akci na míru přímo pro vás
       heading: Rozvojové akce
+      idp_library: IDP knihovna
+      idp_library_description: Vyberte si osvědčenou vývojovou akci z naší knihovny spravované odborníky.
       incomplete_error: Nedokončené rozvojové akce
       incomplete_error_message: Některé rozvojové akce jsou neúplné. Dokončete je prosím před odesláním vašeho IDP.
       incomplete_warning: Nedokončené rozvojové akce
       incomplete_warning_message: Některé rozvojové akce jsou neúplné. Opravdu chcete označit váš IDP jako dokončený?
+      info_popover_title: Různé typy vývojových akcí
       learning_from_others: Učení od ostatních
+      learning_from_others_label: Učíme se od ostatních
+      learning_on_the_job_label: Učení za pochodu
       manage_skills: Spravovat dovednosti
       marathon: Maraton
       mark_as_complete: Označit jako dokončené
@@ -2611,19 +2669,26 @@ cs:
       private: Soukromé
       publish_plan: Publikovat plán
       remove: Odstranit
+      save_plan: Plán úspor
       skill: Dovednost
       sprint: Sprint
       start_plan: Zahájit plán
       structured_learning: Strukturované učení
+      structured_learning_label: Kolaborativní učení
       submit_plan: Odeslat plán
+      success: Vývojářské akce byly úspěšně dokončeny
       write_here: Pište zde...
+    direct_reportee_details: Detail přímých reportérů
     edit_plan: Upravit plán
+    edit_plan_and_add_skills: Upravit plán a kliknutím na možnost Spravovat dovednosti přidejte dovednosti.
     edit_progress: Upravit pokrok
+    fetching_skill_gap_report: Zpráva o načítání mezer v dovednostech...
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností
       add_skills: Přidat
       add_skills_step: Přidat dovednosti
+      back: Hřbet
       continue_to_rate_skills: Pokračovat k hodnocení dovedností
       getting_started: Začínáme
       less_skills: Zobrazit méně dovedností
@@ -2651,6 +2716,8 @@ cs:
         categories: Kategorie
       save_skills: Uložit dovednosti
     new_comments: Nové komentáře(e)
+    no_skills_added: Zatím nemáte přidané žádné dovednosti.
+    no_skills_added_by_reportee: Reportee ještě nepřidal Skills.
     pdf:
       approval_status: Stav schválení
       cover:
@@ -2769,14 +2836,21 @@ cs:
         required: Odpověď na otázku je nutná
       max_words: Maximální počet slov
       min_words: Min. slov
+      no_answer_provided: Zatím nebyla poskytnuta žádná odpověď
       no_reflective_questions: Žádné reflektivní otázky
+      optional: "(Volitelné)"
       title: Reflektivní otázky
       update_failed: Během aktualizace došlo k chybě
       updated_successfully: Vaše odpovědi byly úspěšně aktualizovány
+      word_limit: Musí být mezi %{min} a %{max} slovy
       words: Slova
+    remove_skill: Odebrat dovednost
     skill_gap_report:
+      download: Stáhněte si zprávu o nedostatku dovedností
       title: Zpráva o nedostatku dovedností
+    skills_updated: Dovednosti aktualizované v plánu
     status: Stav
+    suggestions: Návrhy
     technical: Technická stránka
     user_idp_status:
       approved: Schváleno
@@ -3003,6 +3077,7 @@ cs:
         success: Norma pro faktor '%{factorName}' byla úspěšně aktualizována.
       values:
         empty: Prázdné stránky
+  one: '1'
   profile:
     add_field: Přidat pole
     add_photo: Přidat fotku
@@ -3664,6 +3739,7 @@ cs:
       done: Hotovo
       not_completed: Nedokončeno
       waiting: Čekání
+  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Přijmout
@@ -3872,6 +3948,7 @@ cs:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
+  two: '2'
   universal_links:
     active: Aktivní
     allow_multiple_respones: Umožnit uživatelům odeslat více odpovědí
@@ -3936,9 +4013,14 @@ cs:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: Označit jako dokončené
+          success_message: Hodnocení %{name} je označeno jako dokončené
         reset_progress:
           name: Obnovení postupu
           success_message: Hodnocení %{name} je připraveno k editaci
+      mark_as_completed:
+        content: Opravdu chcete označit jako dokončené "%{name}"?
       push_test_webhook:
         copy_request_data_success: Rquest Payload úspěšně zkopírován do schránky.
         copy_response_body_success: Tělo odpovědi bylo úspěšně zkopírováno do schránky.

@@ -845,6 +845,7 @@ hr:
         export_development_actions: Izvozne razvojne akcije
         export_dimension_as_json: JSON dimenzija izvoza
         export_factor_translations: Prijevodi faktora izvoza
+        export_interview_questions: Izvoz pitanja za intervju
         export_job_roles_translations: Izdvajanje opisa poslova
         export_norm: Izvozna norma
         export_occupations: Zanimanja Izvoz
@@ -870,6 +871,7 @@ hr:
         import_external_campaign_scoring: Uvoz vanjskog ocjenjivanja kampanje
         import_factor_translations: Prijevodi faktora uvoza
         import_factors: Čimbenici uvoza
+        import_interview_questions: Uvezite pitanja za intervju
         import_job_roles_translations: Unošenje opisa poslova
         import_norm: Uvozna norma
         import_proficiency_level_translations: Uvoz prijevoda na razini stručnosti
@@ -1794,6 +1796,7 @@ hr:
       view: Pregled
       view_all_tasks: Pogledajte sve zadatke
       view_detail: Pogledajte detalje
+      yes_delete: Da, Izbriši
     column:
       action: Status
       active: Aktivan
@@ -2579,11 +2582,47 @@ hr:
       aria_selected: Odabrani
   idp:
     actions: Statusi
+    ai:
+      assistant:
+        failure_fallback:
+          message: Ups! Nešto je pošlo po zlu tijekom prikazivanja ove poruke. Pokušajte ponovno!
+          try_again: Nisam to shvatio. Pokušaj ponovo!
+      bubbles:
+        audio:
+          question_progress: Pitanje %{current} %{count}
+      compose:
+        placeholder: Ovdje upišite svoju poruku...
+      finishing:
+        hint: Naš AI asistent izrađuje IDP plan za vas.
+        title: Molimo pričekajte, radimo svoju magiju...
+      retake_steps:
+        chat_hint: Javite mi koje informacije želite dati u nastavku?
+        chat_title: Želite dati više informacija?
+        start_chat: Započnite čavrljanje
+        start_chat_again: Pokreni Chat Ponovno
+        upload_document: Prenesite dokument
+        upload_file: Prenesite datoteku
+      summary:
+        chat_title: Sažetak uvida u chat
+        file_title: Uvidi u učitane dokumente
+        hint: ako da, stvorit ćemo vaš IDP, inače možete ponovno preuzeti svoje odgovore
+        title: Jeste li zadovoljni rezultatima?
+        upload_file: Prenesena datoteka
+        view_chat: Pogledaj chat
+      upload:
+        description: Kliknite ili povucite datoteke u ovo područje za prijenos
+        drop: Ispustite datoteku ovdje
+        title: Prijenos datoteka
+      welcome:
+        text: Jeste li spremni zacrtati svoj rast jorney? Počnimo!
+        title: Pozdrav, ja sam vaš razvojni asistent
     behavioral: Bihevioralne
     board: Odbor
+    changes_saved_to_plan: Promjene spremljene u plan
     comment_details:
       add_comment: Dodaj komentar
       add_comment_placeholder: Dodaj komentar...
+      add_comments: Dodajte komentare
       add_reply_placeholder: Dodajte odgovor...
       go_to_skill: Idi na vještinu
     comments:
@@ -2605,11 +2644,15 @@ hr:
       sort_by_date: Sortiraj po datumu
       you: Ti
     convert_to_draft: Pretvori u skicu
+    delete_skill: Jeste li sigurni da želite izbrisati vještinu jer će izbrisati i sve povezane razvojne akcije?
     details: Detalji
     development_actions:
       action_private: Da
       action_public: Ne
       add_development_action: Dodavanje razvojne akcije
+      add_development_actions_from_below_options: Dodajte razvojne akcije iz donjih opcija.
+      add_development_actions_modal_title: Biblioteka razvojnih akcija za %{skillName}
+      add_from_library: Dodavanje iz medijateke
       all: Sve
       approved: Odobren
       board_view:
@@ -2617,17 +2660,32 @@ hr:
         in_progress: U tijeku
         not_started: Nije pokrenuto
       completion: Završetak
+      create_custom_development_action_title: Kreirajte vlastitu razvojnu akciju za %{skillName}
+      create_development_actions_with_ai: Kreirajte razvojne akcije pomoću umjetne inteligencije za %{skillName}
+      create_from_ai: Stvaranje iz umjetne inteligencije
       create_my_own: Stvori vlastiti
+      custom: Običaj
+      custom_da_description: Stvorite prilagođenu razvojnu akciju za rješavanje jedinstvenih razvojnih potreba.
       date_range: Datum početka - Datum završetka
+      edit_plan_to_add_development_actions: Uredi plan i dodati razvojne radnje.
+      enter_development_action_description: Unesite opis razvojne akcije
+      enter_development_action_title: Unesite naslov razvojne akcije
       generate_by_ai: Generirajte pomoću umjetne inteligencije
       generate_more: Generirajte više
       generating_development_actions: Generiranje razvojnih akcija...
+      generative_ai: Generativna umjetna inteligencija
+      generative_ai_description: Neka umjetna inteligencija generira prilagođenu razvojnu akciju samo za vas
       heading: Razvojne akcije
+      idp_library: IDP knjižnica
+      idp_library_description: Odaberite provjerenu razvojnu akciju iz naše biblioteke koju su pripremili stručnjaci.
       incomplete_error: Nepotpune razvojne akcije
       incomplete_error_message: Neke razvojne akcije su nepotpune. Ispunite ih prije podnošenja IDP-a.
       incomplete_warning: Nepotpune razvojne akcije
       incomplete_warning_message: Neke razvojne akcije su nepotpune. Jeste li sigurni da želite označiti svog IDP-a kao dovršenog?
+      info_popover_title: Različite vrste razvojnih akcija
       learning_from_others: Učenje od drugih
+      learning_from_others_label: Učimo od drugih
+      learning_on_the_job_label: Učenje na poslu
       manage_skills: Upravljajte vještinama
       marathon: Maraton
       mark_as_complete: Označi kao dovršeno
@@ -2637,19 +2695,26 @@ hr:
       private: Privatan
       publish_plan: Objavi plan
       remove: Odstraniti
+      save_plan: Spremi plan
       skill: Vještina
       sprint: Trčanje
       start_plan: Početni plan
       structured_learning: Strukturirano učenje
+      structured_learning_label: Suradničko učenje
       submit_plan: Pošalji plan
+      success: Razvojne akcije uspješno završene
       write_here: Napišite ovdje...
+    direct_reportee_details: Detalji izravnih izvješćivanja
     edit_plan: Uredi plan
+    edit_plan_and_add_skills: Uredite plan i kliknite na Upravljanje vještinama da biste dodali vještine.
     edit_progress: Uredi napredak
+    fetching_skill_gap_report: Izvješće o nedostacima u vještinama...
     initial_steps:
       add_skill_group_description: Na temelju rezultata vaše procjene, evo nekih od područja snaga i razvoja za vas. Odaberite vještine koje želite dalje razvijati kao dio svog razvojnog plana.
       add_skill_group_title: Istraživanje vaših vještina %{category}
       add_skills: Dodavanje
       add_skills_step: Dodavanje vještina
+      back: Leđa
       continue_to_rate_skills: Nastavite ocjenjivati vještine
       getting_started: Početak rada
       less_skills: Pokažite manje vještina
@@ -2677,6 +2742,8 @@ hr:
         categories: Kategorije
       save_skills: Spremite vještine
     new_comments: Novi komentar(i)
+    no_skills_added: Još niste dodali vještine.
+    no_skills_added_by_reportee: Reportee još nije dodao vještine.
     pdf:
       approval_status: Status odobrenja
       cover:
@@ -2795,14 +2862,21 @@ hr:
         required: Odgovor na ovo pitanje je obavezan
       max_words: Maksimalni broj riječi
       min_words: Minimalni broj riječi
+      no_answer_provided: Još nema odgovora
       no_reflective_questions: Nema reflektivnih pitanja
+      optional: "(Nije obavezno)"
       title: Pitanja za razmišljanje
       update_failed: Tijekom ažuriranja je došlo do pogreške
       updated_successfully: Vaši su odgovori uspješno ažurirani
+      word_limit: Mora biti između %{min} i %{max} riječi
       words: Riječi
+    remove_skill: Ukloni vještinu
     skill_gap_report:
+      download: Preuzmite izvješće o nedostatku vještina
       title: Izvješće o nedostatku vještina
+    skills_updated: Vještine ažurirane u Planu
     status: Status
+    suggestions: Prijedlozi
     technical: Tehnički
     user_idp_status:
       approved: Odobreno
@@ -3029,6 +3103,7 @@ hr:
         success: Norma za faktor '%{factorName}' uspješno je ažurirana.
       values:
         empty: Prazno
+  one: '1'
   profile:
     add_field: Dodati polje
     add_photo: Dodati fotografiju
@@ -3690,6 +3765,7 @@ hr:
       done: Završeno
       not_completed: Nije dovršeno
       waiting: Čekanje
+  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Prihvatiti
@@ -3898,6 +3974,7 @@ hr:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
+  two: '2'
   universal_links:
     active: Aktivno
     allow_multiple_respones: Omogućiti korisnicima da pošalju više odgovora
@@ -3962,9 +4039,14 @@ hr:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: Označi kao dovršeno
+          success_message: Procjena %{name} je označena kao dovršena
         reset_progress:
           name: Resetirati napredak
           success_message: Procjena %{name} je spremna za uređivanje
+      mark_as_completed:
+        content: Jeste li sigurni da želite označiti kao dovršeno "%{name}"?
       push_test_webhook:
         copy_request_data_success: Zahtjev za plaćanjem uspješno je kopiran u međuspremnik.
         copy_response_body_success: Odgovor je uspješno kopiran u međuspremnik.
