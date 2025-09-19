@@ -12,6 +12,13 @@ const MockResults = {
   }],
   Factor: {
     111: {
+      percentage: 85,
+      questions_attempted: 10,
+      questions_not_attempted: 2,
+      questions_partial_correct: 0,
+      questions_correct: 8,
+      questions_incorrect: 2,
+      total_questions: 10,
       name: 'Drive',
       results: [{
         value: 5,
@@ -26,6 +33,13 @@ const MockResults = {
       }],
     },
     222: {
+      percentage: 35,
+      questions_attempted: 20,
+      questions_not_attempted: 3,
+      questions_partial_correct: 2,
+      questions_correct: 8,
+      questions_incorrect: 2,
+      total_questions: 20,
       name: 'Zest',
       results: [{
         value: 3,
@@ -40,6 +54,13 @@ const MockResults = {
       }],
     },
     333: {
+      percentage: 60,
+      questions_attempted: 15,
+      questions_not_attempted: 5,
+      questions_partial_correct: 2,
+      questions_correct: 6,
+      questions_incorrect: 9,
+      total_questions: 20,
       name: 'Abs',
       results: [{
         value: 3,

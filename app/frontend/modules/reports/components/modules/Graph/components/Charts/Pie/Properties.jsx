@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { Checkbox } from 'antd'
+import { Checkbox, Space } from 'antd'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
@@ -57,14 +57,17 @@ const Properties = ({ questions, modules }) => {
     const seriesFunction = Series[model.getSourceType()]?.functions
     const funcs = typeof seriesFunction === 'function' ? seriesFunction.call(this, question) : seriesFunction
     return (
-      <select className="form-control" value={model.props.dataFormat} onChange={changeDataFormat}>
-        {_.map(funcs, (name, i) => (<option key={i} value={name}>{name}</option>))}
-      </select>
+      <div>
+        <span className={styles.label}>Data Format</span>
+        <select className="form-control" value={model.props.dataFormat} onChange={changeDataFormat}>
+          {_.map(funcs, (name, i) => (<option key={i} value={name}>{name}</option>))}
+        </select>
+      </div>
     )
   }
 
   const render3DOptions = () => (
-    <div className="margin-top-10">
+    <div>
       <span className={styles.label}>Graph Subtype</span>
       <select className="form-control" value={model.props.graphicalRepresentation} onChange={change3D}>
         {_.map(['3D', 'Standard'], (name, i) => (<option key={i} value={name}>{name}</option>))}
@@ -73,22 +76,28 @@ const Properties = ({ questions, modules }) => {
   )
 
   return (
-    <div>
-      <span className={styles.label}>Data Format</span>
+    <Space direction="vertical" className="w-100">
       {renderDataFormat()}
       {render3DOptions()}
-      <div className="margin-top-10">
+      <div>
         Inner Size
-        <ChoicesInput value={model.props.innerSize} onChange={changeInnerSize} maxValue={100} />
+        <ChoicesInput value={model.props.innerSize} onChange={changeInnerSize} />
       </div>
       <Checkbox
         checked={model.props.showLegend || false}
         onChange={e => checkboxHandler('showLegend', e)}
-        className="font-normal margin-top-10"
+        className="font-normal"
       >
         {I18n.t('reports.builder.graph.properties.showLegend')}
       </Checkbox>
-    </div>
+      <Checkbox
+        checked={model.props.showSemiCircle || false}
+        onChange={e => checkboxHandler('showSemiCircle', e)}
+        className="font-normal"
+      >
+        {I18n.t('administration.report_builder.property_panel.pie_semi_circle')}
+      </Checkbox>
+    </Space>
   )
 }
 

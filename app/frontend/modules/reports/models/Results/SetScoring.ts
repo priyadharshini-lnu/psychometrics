@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { setIn } from '~/utils/immutable'
 import AppStore from '../../store/AppStore'
 import Scoring from '../Scoring'
+import { CUSTOM_FACTOR_VALUE_FIELDS } from '~/modules/reports/consts/Report'
 import { RawResult, ResultScoring, Factor } from './interfaces'
 
 export default {
@@ -25,7 +26,17 @@ const extendScoringByData = (scoring: ResultScoring, data: RawResult, dimensionI
     const factorResults = _.get(result, [factorId, 'results']) || []
 
     if (!result[factorId]) {
-      result = { ...result, [factorId]: { id: factorId, name: factor.alias } }
+      result = {
+        ...result,
+        [factorId]: {
+          id: factorId,
+          name: factor.alias,
+          ...CUSTOM_FACTOR_VALUE_FIELDS.reduce((acc, field) => ({
+            ...acc,
+            [field]: scoringResults[field] || null,
+          }), {}),
+        },
+      }
     }
     let factorData = [...factorResults]
     if (_.isNumber(scoringResults.score) || _.isNumber(scoringResults.norm_score)) {

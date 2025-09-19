@@ -493,7 +493,13 @@ CREATE VIEW bi_models.normalized_factor_scores AS
     ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
     ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
     ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage,
+    ((user_assessment_factor_scores.scores ->> 'total_questions'::text))::integer AS total_questions,
+    ((user_assessment_factor_scores.scores ->> 'questions_attempted'::text))::integer AS questions_attempted,
+    ((user_assessment_factor_scores.scores ->> 'questions_correct'::text))::integer AS questions_correct,
+    ((user_assessment_factor_scores.scores ->> 'questions_partial_correct'::text))::integer AS questions_partial_correct,
+    ((user_assessment_factor_scores.scores ->> 'questions_incorrect'::text))::integer AS questions_incorrect,
+    ((user_assessment_factor_scores.scores ->> 'questions_not_attempted'::text))::integer AS questions_not_attempted
    FROM ((public.user_assessment_factor_scores
      JOIN public.user_assessments ON ((user_assessments.id = user_assessment_factor_scores.user_assessment_id)))
      JOIN public.campaigns ON ((campaigns.id = user_assessments.campaign_id)));
@@ -18392,6 +18398,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250917104111'),
 ('20250911053831'),
 ('20250908030102'),
 ('20250910080315'),

@@ -8,6 +8,7 @@ module UsersResults
           factor = factor_data[:factor]
           results = extended_scoring.dig(factor.id.to_s, 'results')&.
                     select { |r| !r.key?('max_value') || r['max_value'].present? }
+          total_questions = factors_question_count[factor.id] || 0
 
           if results.present?
             score = calc_score(results)
@@ -16,14 +17,17 @@ module UsersResults
                          else
                            {}
                          end
+            stats = calc_statistics(results, total_questions)
           else
             score = nil
             percentage = {}
+            stats = {}
           end
 
           broadcast(:ok, extended_scoring.
             deep_merge(factor.id.to_s => { 'score' => round_score(score, 2) }).
-            deep_merge(factor.id.to_s => percentage))
+            deep_merge(factor.id.to_s => percentage).
+            deep_merge(factor.id.to_s => stats))
         end
 
         private
@@ -52,6 +56,37 @@ module UsersResults
             end
             (correct_answer_count.to_f / total_questions).round(2) * 100
           end
+        end
+
+        def calc_statistics(results, total_questions)
+          questions_attempted = results.count { |r| r['value'].present? }
+
+          question_counts = results.each_with_object({ correct: 0, partial: 0, incorrect: 0 }) do |result, acc|
+            value = result['value']
+            next if value.blank?
+
+            total_value = Array.wrap(value).sum.to_f
+            max_val = result['max_value'].presence&.to_f || 1.0
+
+            if total_value >= max_val
+              acc[:correct] += 1
+            elsif total_value.positive?
+              acc[:partial] += 1
+            else
+              acc[:incorrect] += 1
+            end
+          end
+
+          questions_not_attempted = total_questions - questions_attempted
+
+          {
+            'questions_attempted' => questions_attempted,
+            'total_questions' => total_questions,
+            'questions_correct' => question_counts[:correct],
+            'questions_partial_correct' => question_counts[:partial],
+            'questions_incorrect' => question_counts[:incorrect],
+            'questions_not_attempted' => questions_not_attempted
+          }
         end
       end
     end

@@ -116,14 +116,15 @@ const Properties = ({
         <Menu model={model} onSelect={select} />
       </div>
       <hr className={styles.divider} />
-      <div className="margin-top-10">
+      <div>
         <label style={{ fontWeight: 'normal' }}>
           <input
             type="checkbox"
             checked={model.props.transparentBackground || false}
             onChange={changeTransparentBackground}
+            className="me-2"
           />
-          Transparent background
+          <span>Transparent background</span>
         </label>
       </div>
       <DataSource modules={modules} onSelect={update} onlyNumbers />

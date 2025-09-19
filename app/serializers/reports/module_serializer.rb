@@ -15,7 +15,7 @@ module Reports
 
       transformer = proc { |str| "<span style=\"direction: ltr; display: inline-block;\">#{str}</span>" }
       text = Threesixty::PipedText::Perform.call!(
-        object.props['text'], context[:piped_text_context], transformer
+        object.props['text'], context[:piped_text_context].merge(users_result: users_result), transformer
       )
 
       object.props.merge(
@@ -25,6 +25,17 @@ module Reports
 
     def builder?
       context[:builder]
+    end
+
+    private
+
+    def users_result
+      return nil unless context[:user_results_hash] && context[:piped_text_context][:subject]
+
+      subject_id = context[:piped_text_context][:subject].id
+      assessment_id = object.assessment_id
+
+      context[:user_results_hash][[assessment_id, subject_id]]
     end
   end
 end
