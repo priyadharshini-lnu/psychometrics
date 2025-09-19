@@ -1381,6 +1381,7 @@ as: :simulation_progress_notification
               end
               jsonapi_resources :workshop_activities
               jsonapi_resources :workshop_resources
+              jsonapi_resources :workshop_recordings, only: %i[index]
               jsonapi_resources :campaign_assessments, only: %i[index]
             end
 

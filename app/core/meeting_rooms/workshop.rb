@@ -26,5 +26,13 @@ module MeetingRooms
       campaign = workshop.campaign
       campaign&.campaign_options&.enable_video_call_recording || false
     end
+
+    def assessors
+      workshop.workshop_assessors.includes(:user).map(&:user)
+    end
+
+    def participants
+      workshop.workshop_subjects.includes(:user).map(&:user)
+    end
   end
 end

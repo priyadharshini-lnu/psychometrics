@@ -291,6 +291,7 @@ en:
             manage: Manage
             title: Workshops
             view: View
+            view_recordings: View Recordings
     ai_artifacts:
       artifact_results: Artifact Results
       code: Code
@@ -3676,16 +3677,19 @@ en:
         campaign_assessment_group: Assessment Center Group
         campaign_name: Campaign Name
         duration: Duration
+        link_to_view_recordings: Link to view recordings
         managers: Managers
         meeting_link: Meeting Link
         name: Name
         participants: Participants
         prework: Prework
+        recording_date: Recording Date
         resource_link: Link
         resource_name: Name
         schedule_time: Schedule Time
         scheduling_status: Scheduling status
         seats: Seats
+        serial_no: Serial No
         start_time: Date & Time
         subject: Subject
         title: Title
@@ -3773,6 +3777,7 @@ en:
         activities: Activities
         assessment_center: Assessment Center
         invites: Invites
+        recordings: Recordings
         resources: Resources
         subjects: Subjects
     scoring:

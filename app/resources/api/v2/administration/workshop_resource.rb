@@ -84,7 +84,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
           Api::Administration::WorkshopPolicy,
           context[:user],
           @model,
-          %w[update],
+          %w[update view_recordings],
           { campaign_id: @model.campaign_id }
         )
       }

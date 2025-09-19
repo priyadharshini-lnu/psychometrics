@@ -44,6 +44,7 @@ export const WorkshopTR = t.type({
     t.type({
       permissions: t.type({
         update: t.boolean,
+        viewRecordings: t.boolean,
       }),
     }), t.undefined]),
 })

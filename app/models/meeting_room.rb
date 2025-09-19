@@ -21,6 +21,14 @@ class MeetingRoom < ApplicationRecord
     "::MeetingRooms::#{meetable_type}".safe_constantize.new(meetable).video_recording_enabled?
   end
 
+  def assessors
+    "::MeetingRooms::#{meetable_type}".safe_constantize.new(meetable).assessors
+  end
+
+  def participants
+    "::MeetingRooms::#{meetable_type}".safe_constantize.new(meetable).participants
+  end
+
   private
 
   def create_room

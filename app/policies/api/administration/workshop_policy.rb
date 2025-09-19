@@ -47,6 +47,10 @@ module Api
         true
       end
 
+      def view_recordings?
+        has_permission?(:workshops, :view_recordings) || user.superadmin?
+      end
+
       private
 
       def can_manage?
