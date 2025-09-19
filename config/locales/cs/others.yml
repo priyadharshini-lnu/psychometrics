@@ -3077,7 +3077,6 @@ cs:
         success: Norma pro faktor '%{factorName}' byla úspěšně aktualizována.
       values:
         empty: Prázdné stránky
-  one: '1'
   profile:
     add_field: Přidat pole
     add_photo: Přidat fotku
@@ -3739,7 +3738,6 @@ cs:
       done: Hotovo
       not_completed: Nedokončeno
       waiting: Čekání
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Přijmout
@@ -3948,7 +3946,6 @@ cs:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Aktivní
     allow_multiple_respones: Umožnit uživatelům odeslat více odpovědí

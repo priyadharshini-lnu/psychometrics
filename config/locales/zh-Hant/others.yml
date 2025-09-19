@@ -3071,7 +3071,6 @@ zh-Hant:
         success: 因子 '%{factorName}' 的 Norm 已成功更新。
       values:
         empty: 空
-  one: '1'
   profile:
     add_field: 新增欄位
     add_photo: 新增照片
@@ -3733,7 +3732,6 @@ zh-Hant:
       done: 完成
       not_completed: 未完成
       waiting: 等待
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: 接受
@@ -3942,7 +3940,6 @@ zh-Hant:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: 活躍
     allow_multiple_respones: 允許使用者提交多個回覆

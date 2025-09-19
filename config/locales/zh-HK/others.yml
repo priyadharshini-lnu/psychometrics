@@ -1244,7 +1244,6 @@ zh-HK:
     percentile:
       columns:
         name: 名稱
-  one: '1'
   profile:
     add_field: 新增欄位
     add_photo: 新增相片
@@ -1487,7 +1486,6 @@ zh-HK:
       done: 完成
       not_completed: 未完成
       waiting: 正在等待
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: 接受
@@ -1662,7 +1660,6 @@ zh-HK:
     waiting: 等待中
     you: 您
     yourself: 您自己
-  two: '2'
   user:
     fields:
       email: 電郵地址

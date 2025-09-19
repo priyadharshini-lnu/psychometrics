@@ -3088,7 +3088,6 @@ sk:
         success: Norma pre faktor %{factorName} bola úspešne aktualizovaná.
       values:
         empty: Prázdny
-  one: '1'
   profile:
     add_field: Pridať pole
     add_photo: Pridať fotografiu
@@ -3750,7 +3749,6 @@ sk:
       done: Hotovo
       not_completed: Nie je dokončené
       waiting: Čakanie
-  three: '3'
   threesixty:
     accept_privacy_modal:
       checkbox_with_client_link: Kliknutím na toto políčko súhlasíte s tým, že ste si prečítali naše oznámenie o ochrane osobných údajov a oznámenie o ochrane osobných údajov nášho klienta a súhlasíte so zhromažďovaním a spracovaním vašich osobných údajov, ako je v nich uvedené, vrátane medzinárodného prenosu vašich osobných údajov.
@@ -3956,7 +3954,6 @@ sk:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Aktívny
     allow_multiple_respones: Povolenie používateľom odosielať viacero odpovedí

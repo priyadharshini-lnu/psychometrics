@@ -3049,7 +3049,6 @@ ko:
         success: "'%{factorName}' 팩터에 대한 규범이 업데이트되었습니다."
       values:
         empty: 비어 있음
-  one: '1'
   profile:
     add_field: 필드 추가
     add_photo: 사진 추가
@@ -3711,7 +3710,6 @@ ko:
       done: 완료
       not_completed: 완료되지 않음
       waiting: 대기 중
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: 수락
@@ -3920,7 +3918,6 @@ ko:
       short_date: "%d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: 활성
     allow_multiple_respones: 사용자가 여러 개의 응답을 제출할 수 있도록 허용

@@ -3088,7 +3088,6 @@ ro:
         success: Norma pentru factorul '%{factorName}' a fost actualizată cu succes.
       values:
         empty: Gol
-  one: '1'
   profile:
     add_field: Adaugă câmp
     add_photo: Adaugă fotografie
@@ -3750,7 +3749,6 @@ ro:
       done: Efectuat
       not_completed: Nefinalizat
       waiting: În așteptare
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Acceptați
@@ -3959,7 +3957,6 @@ ro:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Active
     allow_multiple_respones: Permiteți utilizatorilor să trimită mai multe răspunsuri

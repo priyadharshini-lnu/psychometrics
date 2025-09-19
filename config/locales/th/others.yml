@@ -3085,7 +3085,6 @@ th:
         success: ค่ามาตรฐานสําหรับปัจจัย '%{factorName}' อัปเดตเรียบร้อยแล้ว
       values:
         empty: เปล่า
-  one: '1'
   profile:
     add_field: เพิ่มช่องข้อมูล
     add_photo: เพิ่มรูปภาพ
@@ -3747,7 +3746,6 @@ th:
       done: เสร็จ
       not_completed: ยังไม่เสร็จสมบูรณ์
       waiting: รอ
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: ยอมรับ
@@ -3956,7 +3954,6 @@ th:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: เปิดใช้งาน
     allow_multiple_respones: อนุญาตให้ผู้ใช้ส่งคําตอบหลายรายการ

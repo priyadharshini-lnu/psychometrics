@@ -3013,7 +3013,6 @@ es-ES:
         success: La norma del factor "%{factorName}" se ha actualizado correctamente.
       values:
         empty: Vacío
-  one: '1'
   profile:
     add_field: Añadir campo
     add_photo: Añadir foto
@@ -3675,7 +3674,6 @@ es-ES:
       done: Hecho
       not_completed: No completado/a
       waiting: En espera
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Aceptar
@@ -3881,7 +3879,6 @@ es-ES:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Activo
     allow_multiple_respones: Permitir a los usuarios enviar varias respuestas

@@ -3125,7 +3125,6 @@ ar:
         success: تم تحديث معيار العامل '%{factorName}' بنجاح.
       values:
         empty: أجوف
-  one: '1'
   profile:
     add_field: إضافة حقل
     add_photo: أضف صورتك
@@ -3787,7 +3786,6 @@ ar:
       done: منجز
       not_completed: لم يتم اكماله
       waiting: منتظر
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: اقبل
@@ -3996,7 +3994,6 @@ ar:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:Z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: نشط
     allow_multiple_respones: السماح للمستخدمين بإرسال ردود متعددة

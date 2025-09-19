@@ -1082,7 +1082,6 @@ sr-Cyrl:
     percentile:
       columns:
         name: Име
-  one: '1'
   profile:
     add_field: Додај поље
     add_photo: Додај фотографију
@@ -1321,7 +1320,6 @@ sr-Cyrl:
       done: Готово
       not_completed: Није завршено
       waiting: Чекање
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Прихвати
@@ -1496,7 +1494,6 @@ sr-Cyrl:
     waiting: Чекање
     you: Ти
     yourself: Ви сами
-  two: '2'
   user:
     fields:
       email: Адреса е-поште

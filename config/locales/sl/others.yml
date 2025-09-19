@@ -3084,7 +3084,6 @@ sl:
         success: Norma za faktor »%{factorName}« je bila uspešno posodobljena.
       values:
         empty: Izprazniti
-  one: '1'
   profile:
     add_field: Dodajte polje
     add_photo: Dodajte fotografijo
@@ -3746,7 +3745,6 @@ sl:
       done: Opravljeno
       not_completed: Ni zaključeno
       waiting: V čakanju
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Sprejmi
@@ -3955,7 +3953,6 @@ sl:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Aktivni
     allow_multiple_respones: Omogočanje uporabnikom, da pošljejo več odgovorov

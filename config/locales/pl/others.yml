@@ -3092,7 +3092,6 @@ pl:
         success: Norma dla czynnika "%{factorName}" została zaktualizowana pomyślnie.
       values:
         empty: Pusty
-  one: '1'
   profile:
     add_field: Dodaj pole
     add_photo: Dodaj zdjęcie
@@ -3754,7 +3753,6 @@ pl:
       done: Gotowe
       not_completed: Nie skończone
       waiting: Czekanie
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Akceptuj
@@ -3963,7 +3961,6 @@ pl:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Aktywny
     allow_multiple_respones: Zezwalaj użytkownikom na przesyłanie wielu odpowiedzi

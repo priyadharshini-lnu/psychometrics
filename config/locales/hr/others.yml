@@ -3103,7 +3103,6 @@ hr:
         success: Norma za faktor '%{factorName}' uspješno je ažurirana.
       values:
         empty: Prazno
-  one: '1'
   profile:
     add_field: Dodati polje
     add_photo: Dodati fotografiju
@@ -3765,7 +3764,6 @@ hr:
       done: Završeno
       not_completed: Nije dovršeno
       waiting: Čekanje
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Prihvatiti
@@ -3974,7 +3972,6 @@ hr:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Aktivno
     allow_multiple_respones: Omogućiti korisnicima da pošalju više odgovora

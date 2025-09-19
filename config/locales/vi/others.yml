@@ -3082,7 +3082,6 @@ vi:
         success: Định mức cho Yếu tố '%{factorName}' đã được cập nhật thành công.
       values:
         empty: Trống
-  one: '1'
   profile:
     add_field: Thêm trường
     add_photo: Thêm ảnh
@@ -3744,7 +3743,6 @@ vi:
       done: Xong
       not_completed: Chưa hoàn thành
       waiting: Chờ
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Chấp nhận
@@ -3953,7 +3951,6 @@ vi:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Hoạt động
     allow_multiple_respones: Cho phép người dùng gửi nhiều câu trả lời

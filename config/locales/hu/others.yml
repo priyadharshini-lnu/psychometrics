@@ -3066,7 +3066,6 @@ hu:
         success: A(z) '%{factorName}' tényező normája sikeresen frissült.
       values:
         empty: Üres
-  one: '1'
   profile:
     add_field: Mező hozzáadása
     add_photo: Fénykép hozzáadása
@@ -3728,7 +3727,6 @@ hu:
       done: Kész
       not_completed: Nem fejeződött be
       waiting: Várakozás
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Elfogadom
@@ -3937,7 +3935,6 @@ hu:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Aktív
     allow_multiple_respones: Több válasz beküldésének engedélyezése a felhasználók számára

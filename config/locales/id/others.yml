@@ -3092,7 +3092,6 @@ id:
         success: Norma untuk Faktor '%{factorName}' berhasil diperbarui.
       values:
         empty: Kosong
-  one: '1'
   profile:
     add_field: Tambahkan Bidang
     add_photo: Tambahkan Foto
@@ -3754,7 +3753,6 @@ id:
       done: Selesai
       not_completed: Tidak Selesai
       waiting: Menunggu
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Terima
@@ -3963,7 +3961,6 @@ id:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Aktif
     allow_multiple_respones: Mengizinkan pengguna mengirimkan beberapa respons

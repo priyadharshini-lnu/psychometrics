@@ -3061,7 +3061,6 @@ nl:
         success: Norm voor Factor '%{factorName}' is bijgewerkt.
       values:
         empty: Leeg
-  one: '1'
   profile:
     add_field: Veld toevoegen
     add_photo: Foto toevoegen
@@ -3723,7 +3722,6 @@ nl:
       done: Gedaan
       not_completed: Niet voltooid
       waiting: Wachten
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: Accepteer
@@ -3932,7 +3930,6 @@ nl:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: Actief
     allow_multiple_respones: Gebruikers toestaan om meerdere reacties in te dienen

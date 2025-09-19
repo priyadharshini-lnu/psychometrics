@@ -3081,7 +3081,6 @@ zh:
         success: 因子"%{factorName}"的规范已成功更新。
       values:
         empty: 空
-  one: '1'
   profile:
     add_field: 添加字段
     add_photo: 添加照片
@@ -3743,7 +3742,6 @@ zh:
       done: 完成
       not_completed: 未完成
       waiting: 等待中
-  three: '3'
   threesixty:
     accept_privacy_modal:
       accept: 接受
@@ -3952,7 +3950,6 @@ zh:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
-  two: '2'
   universal_links:
     active: 活跃
     allow_multiple_respones: 允许用户提交多个回复
