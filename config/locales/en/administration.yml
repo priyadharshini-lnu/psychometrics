@@ -3714,6 +3714,7 @@ en:
         managers: Center Managers
         none: None
         not_allowed: Not Allowed
+        recording_enabled: Recording Enabled
         remaining: Seats Remaining
         scheduling_lead_time: Scheduling Lead Time
         scheduling_tooltip: User would be able to book a slot till %{date}

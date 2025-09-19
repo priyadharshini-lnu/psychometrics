@@ -18,7 +18,9 @@ class MeetingRoom < ApplicationRecord
   end
 
   def video_recording_enabled?
-    "::MeetingRooms::#{meetable_type}".safe_constantize.new(meetable).video_recording_enabled?
+    "::MeetingRooms::#{meetable_type}".safe_constantize.new(meetable).video_recording_enabled? &&
+      !Settings.features.disable_meeting_recording &&
+      dailyco_api_version != 'v1'
   end
 
   def assessors

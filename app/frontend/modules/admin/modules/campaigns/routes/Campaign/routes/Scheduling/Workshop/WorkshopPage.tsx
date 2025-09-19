@@ -227,6 +227,13 @@ export const WorkshopPage: FC = () => {
             <Flex gap={8}>
               <ArrowLeftOutlined onClick={() => routeUtils.moveTo(navigate, prefixPath, backUrl)} />
               {workshop.name}
+              {workshop.videoRecordingEnabled
+                && (
+                  <Tag color={STATUS_TAG_COLOR.open}>
+                    {I18n.t('administration.scheduling.info.recording_enabled')}
+                  </Tag>
+                )
+              }
             </Flex>
           )}
           bordered
