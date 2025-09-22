@@ -262,8 +262,8 @@ class CampaignFactorsTable extends Component {
         conditionTitle = conditionTitle ?? LookupSourceName.call({}, campaignfactor.code, 'CampaignFactors')
 
         if (!conditionText) {
-          const ReportCampaignfactor = _.find(AppStore.report.campaignFactors, { code: campaignfactor.code })
-          conditionText = I18nStore.tCampaignFactorDescription(ReportCampaignfactor)
+          const ReportCampaignFactor = _.find(AppStore.report.campaignFactors, { code: campaignfactor.code })
+          conditionText = I18nStore.tCampaignFactorDescription(ReportCampaignFactor) || I18nStore.tFactor(campaignfactor, 'description')
         }
         conditionColor = conditionColor ?? '#666666'
 
