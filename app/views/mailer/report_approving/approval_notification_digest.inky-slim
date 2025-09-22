@@ -1,0 +1,13 @@
+p Dear #{@user.decorate.full_name},
+p The following reports have been approved.
+
+p Project: #{@project.name}
+p Campaign: #{@campaign.name}
+p Report: #{@report.name}
+p Count of reports: #{@reports.size}
+
+p You are receiving this email as you have been added as the contact to receive report approval notification for the reports.
+
+p You can access the report via the following link:
+
+= link_to 'Reports', administration_to_admin_url(@url)

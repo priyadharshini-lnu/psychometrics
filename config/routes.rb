@@ -757,7 +757,8 @@ Rails.application.routes.draw do
     end
 
     get 'report_approvals', to: 'report_approvals#app', as: :report_approvals
-    get 'report_approvals/*all', to: 'report_approvals#app', constraints: { all: /.*/, format: :html }
+    get 'report_approvals/*all', to: 'report_approvals#app',
+      constraints: { all: /.*/, format: :html }, as: :report_approvals_all
 
     resources :report_families, only: [:index] do
       scope module: :report_families do

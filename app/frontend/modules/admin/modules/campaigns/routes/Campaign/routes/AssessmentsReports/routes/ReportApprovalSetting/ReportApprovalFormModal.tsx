@@ -1,6 +1,7 @@
 import {
   Collapse,
   Form, Select, Space, Spin, Switch,
+  TimePicker,
 } from 'antd'
 import _ from 'lodash'
 import { useCallback } from 'react'
@@ -11,6 +12,8 @@ import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResources } from '~/hooks/useResources'
 import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
 import { ReportApprovalSettings } from '~/modules/admin/modules/campaigns/core/reportApprovalSettings'
+import TimeZoneSelect from '~/components/TimeZoneSelect'
+import dayjs from '~/utils/dayjs'
 
 const { Option } = Select
 const { I18n } = window
@@ -31,6 +34,11 @@ type FormValueObj = {
   approversNotRequired: boolean,
   approversCanEdit: boolean,
   doNotSendNotifications: boolean,
+  sendDigestEmails: boolean,
+  digestFrequency: string,
+  digestWeekdays: number[],
+  digestTime:string,
+  digestTimezone: string,
 }
 
 const getOptionsFromApprovalSettings = (reportApprovalSettings, dataKey, fetchedData) => (
@@ -40,6 +48,14 @@ const getOptionsFromApprovalSettings = (reportApprovalSettings, dataKey, fetched
 )
 
 const getUserIds = users => users.map(user => user.id)
+
+const canShowDigest = (form) => {
+  const allowBulk = form.getFieldValue('allowQcBulkSubmit') || form.getFieldValue('allowBulkApprove')
+  const noNotifications = !form.getFieldValue('doNotSendNotifications')
+  return allowBulk && noNotifications
+}
+
+const isDigestEnabled = form => canShowDigest(form) && form.getFieldValue('sendDigestEmails')
 
 export const ReportApprovalFormModal: React.FC<Props> = ({
   reportApprovalSettings,
@@ -67,6 +83,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     qcUserIds: getUserIds(reportApprovalSettings.qcs),
     approverUserIds: getUserIds(reportApprovalSettings.approvers),
     approvalNotificationUserIds: getUserIds(reportApprovalSettings.approvalNotificationUsers),
+    digestTime: reportApprovalSettings.digestTime ? dayjs(reportApprovalSettings.digestTime, 'hh:mm A') : null,
   } : reportApprovalSettings
 
   const reportOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'report', reports)
@@ -126,6 +143,11 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           approversNotRequired: formValuesObj.approversNotRequired || false,
           approversCanEdit: formValuesObj.approversCanEdit || false,
           doNotSendNotifications: formValuesObj.doNotSendNotifications || false,
+          sendDigestEmails: formValuesObj.doNotSendNotifications ? false : formValuesObj.sendDigestEmails || false,
+          digestFrequency: formValuesObj.sendDigestEmails ? formValuesObj.digestFrequency : null,
+          digestWeekdays: formValuesObj.sendDigestEmails && formValuesObj.digestFrequency !== 'daily'
+            ? formValuesObj.digestWeekdays : [],
+          digestTime: formValuesObj.sendDigestEmails ? dayjs(formValuesObj.digestTime).format('HH:mm:ss') : null,
         }
       }}
     >
@@ -221,6 +243,119 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       {I18n.t('administration.campaigns.assessment_reports.report_approval.allow_bulk_approve')}
                     </div>
                   </Space>
+
+                  {canShowDigest(form) && (
+                    <Space align="center">
+                      <Form.Item
+                        name="sendDigestEmails"
+                        valuePropName="checked"
+                        noStyle
+                      >
+                        <Switch />
+                      </Form.Item>
+                      <div className="weight-600">
+                        {I18n.t('administration.campaigns.assessment_reports.report_approval.send_digest_emails')}
+                      </div>
+                    </Space>
+                  )}
+                  {isDigestEnabled(form) && (
+                    <>
+                      <Form.Item
+                        name="digestFrequency"
+                        label={I18n.t(
+                          'administration.campaigns.assessment_reports.report_approval.digest_frequency.form_label',
+                        )}
+                        rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
+                      >
+                        <Select>
+                          <Option value="daily">
+                            {I18n.t(
+                              'administration.campaigns.assessment_reports.report_approval.digest_frequency.daily',
+                            )}
+                          </Option>
+                          <Option value="weekly">
+                            {I18n.t(
+                              'administration.campaigns.assessment_reports.report_approval.digest_frequency.weekly',
+                            )}
+                          </Option>
+                          <Option value="weekdays">
+                            {I18n.t(
+                              'administration.campaigns.assessment_reports.report_approval.digest_frequency.weekdays',
+                            )}
+                          </Option>
+                        </Select>
+                      </Form.Item>
+                      {['weekly', 'weekdays'].includes(form.getFieldValue('digestFrequency')) && (
+                        <Form.Item
+                          name="digestWeekdays"
+                          label={I18n.t(
+                            'administration.campaigns.assessment_reports.report_approval.digest_weekdays.form_label',
+                          )}
+                          rules={[{
+                            required: form.getFieldValue('sendDigestEmails')
+                          && ['weekly', 'weekdays'].includes(form.getFieldValue('digestFrequency')),
+                          }]}
+                        >
+                          <Select
+                            mode="multiple"
+                            maxCount={form.getFieldValue('digestFrequency') === 'weekly' ? 1 : 7}
+                          >
+                            <Option value={0}>
+                              {I18n.t(
+                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.sunday',
+                              )}
+                            </Option>
+                            <Option value={1}>
+                              {I18n.t(
+                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.monday',
+                              )}
+                            </Option>
+                            <Option value={2}>
+                              {I18n.t(
+                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.tuesday',
+                              )}
+                            </Option>
+                            <Option value={3}>
+                              {I18n.t(
+                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.wednesday',
+                              )}
+                            </Option>
+                            <Option value={4}>
+                              {I18n.t(
+                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.thursday',
+                              )}
+                            </Option>
+                            <Option value={5}>
+                              {I18n.t(
+                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.friday',
+                              )}
+                            </Option>
+                            <Option value={6}>
+                              {I18n.t(
+                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.saturday',
+                              )}
+                            </Option>
+                          </Select>
+                        </Form.Item>
+                      )}
+                      <Form.Item
+                        name="digestTime"
+                        label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_time')}
+                        rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
+                      >
+                        <TimePicker format="hh:mm A" use12Hours minuteStep={15} />
+                      </Form.Item>
+                      <Form.Item
+                        name="digestTimezone"
+                        label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_timezone')}
+                        rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
+                      >
+                        <TimeZoneSelect value="" onChange={() => {}} />
+
+                      </Form.Item>
+                    </>
+                  )}
+
                 </Space>),
             }]}
           />

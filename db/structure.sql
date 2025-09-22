@@ -148,9 +148,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT assessments.id,
-    assessments.name,
-    assessments.category
+ SELECT id,
+    name,
+    category
    FROM public.assessments;
 
 
@@ -173,10 +173,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT campaign_factor_groups.id,
-    campaign_factor_groups.campaign_id,
-    campaign_factor_groups.name,
-    campaign_factor_groups."position"
+ SELECT id,
+    campaign_id,
+    name,
+    "position"
    FROM public.campaign_factor_groups;
 
 
@@ -296,9 +296,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT campaigns.id,
-    campaigns.name,
-    campaigns.project_id
+ SELECT id,
+    name,
+    project_id
    FROM public.campaigns;
 
 
@@ -418,8 +418,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT factors.id,
-    factors.name
+ SELECT id,
+    name
    FROM public.factors;
 
 
@@ -740,11 +740,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT users.id,
-    users.project_id,
-    users.first_name,
-    users.last_name,
-    users.email
+ SELECT id,
+    project_id,
+    first_name,
+    last_name,
+    email
    FROM public.users;
 
 
@@ -4669,13 +4669,13 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT id,
+    factor_id,
+    user_assessment_id,
+    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((scores ->> 'score'::text))::double precision AS score,
+    ((scores ->> 'zscore'::text))::double precision AS zscore,
+    ((scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -5607,7 +5607,12 @@ CREATE TABLE public.report_approval_settings (
     approvers_not_required boolean DEFAULT false,
     do_not_send_notifications boolean DEFAULT false,
     allow_bulk_approve boolean DEFAULT false,
-    allow_qc_bulk_submit boolean DEFAULT false
+    allow_qc_bulk_submit boolean DEFAULT false,
+    send_digest_emails boolean DEFAULT false NOT NULL,
+    digest_frequency character varying DEFAULT 'daily'::character varying,
+    digest_time time without time zone DEFAULT '21:00:00'::time without time zone,
+    digest_weekdays integer[] DEFAULT '{}'::integer[],
+    digest_timezone character varying DEFAULT 'Asia/Dubai'::character varying
 );
 
 
@@ -18399,11 +18404,13 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250917104111'),
+('20250914210724'),
 ('20250911053831'),
 ('20250910080315'),
 ('20250909133040'),
 ('20250909093543'),
 ('20250908030102'),
+('20250905055920'),
 ('20250904112108'),
 ('20250901091203'),
 ('20250901084702'),
