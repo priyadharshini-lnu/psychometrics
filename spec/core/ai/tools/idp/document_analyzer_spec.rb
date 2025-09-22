@@ -15,6 +15,7 @@ describe AI::Tools::Idp::DocumentAnalyzer do
       content_type: 'application/pdf'
     )
   end
+  let(:document_attachment) { user_idp_plan.user_document.attachment }
   let(:ai_assistant_chat) { create(:assistant_chat, ai_assistant: ai_assistant, user: current_user) }
   let(:assistant_service) { instance_double(AI::AssistantService) }
 
@@ -45,11 +46,13 @@ describe AI::Tools::Idp::DocumentAnalyzer do
         create(:assisted_user_document_summary, :completed,
                user: current_user,
                ai_assistant_chat: ai_assistant_chat,
-               document_blob: document_blob)
+               document_attachment: document_attachment)
       end
 
       before do
-        allow(document_blob).to receive(:ai_assisted_user_document_summary).and_return(ai_assisted_doc_summary_session)
+        # Mock the attachment to return the summary
+        allow_any_instance_of(ActiveStorage::Attachment).to receive(:ai_assisted_user_document_summary).
+          and_return(ai_assisted_doc_summary_session)
       end
 
       it 'returns the existing summary without calling the assistant service' do
@@ -65,41 +68,29 @@ describe AI::Tools::Idp::DocumentAnalyzer do
         create(:assisted_user_document_summary,
                user: current_user,
                ai_assistant_chat: ai_assistant_chat,
-               document_blob: document_blob)
+               document_attachment: document_attachment)
       end
 
       before do
         allow(document_blob).to receive(:url).and_return('https://example.com/document.pdf')
       end
 
-      context 'when creating new ai_assisted_doc_summary_session' do
-        it 'creates a new session when none exists' do
-          # Initially, no summary exists
-          summary_created = false
+      it 'creates a new session when none exists' do
+        stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: 'AI analysis complete' })
 
-          allow(document_blob).to receive(:ai_assisted_user_document_summary) do
-            summary_created ? ai_assisted_doc_summary_session : nil
-          end
-
-          allow(document_blob).to receive(:create_ai_assisted_user_document_summary!) do |_args|
-            summary_created = true # Mark as created
-            ai_assisted_doc_summary_session
-          end
-
-          stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: 'AI analysis complete' })
-
+        expect do
           subject.execute(context: 'Document is a resume')
+        end.to change(AI::AssistedUserDocumentSummary, :count).by(1)
 
-          expect(document_blob).to have_received(:create_ai_assisted_user_document_summary!).with(
-            ai_assistant_chat: ai_assistant_chat,
-            user: current_user
-          ).once
-        end
+        summary_session = user_idp_plan.reload.user_document.reload.ai_assisted_user_document_summary
+
+        expect(summary_session).not_to be_nil
+        expect(summary_session.summary).to eq('AI analysis complete')
       end
 
       context 'when calling assistant service' do
         before do
-          allow(document_blob).to receive(:ai_assisted_user_document_summary).
+          allow_any_instance_of(ActiveStorage::Attachment).to receive(:ai_assisted_user_document_summary).
             and_return(ai_assisted_doc_summary_session)
         end
 
@@ -145,7 +136,7 @@ describe AI::Tools::Idp::DocumentAnalyzer do
         let(:assistant_response) { { message: 'Document analysis completed successfully' } }
 
         before do
-          allow(document_blob).to receive(:ai_assisted_user_document_summary).
+          allow_any_instance_of(ActiveStorage::Attachment).to receive(:ai_assisted_user_document_summary).
             and_return(ai_assisted_doc_summary_session)
         end
 
@@ -164,7 +155,7 @@ describe AI::Tools::Idp::DocumentAnalyzer do
         let(:error_message) { 'AI service failed to analyze document' }
 
         before do
-          allow(document_blob).to receive(:ai_assisted_user_document_summary).
+          allow_any_instance_of(ActiveStorage::Attachment).to receive(:ai_assisted_user_document_summary).
             and_return(ai_assisted_doc_summary_session)
         end
 

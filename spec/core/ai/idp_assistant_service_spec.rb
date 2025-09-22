@@ -177,5 +177,43 @@ describe AI::IdpAssistantService do
         expect(result[:error]).to eq('AI service failed')
       end
     end
+
+    context 'when start_new_chat flag is passed' do
+      include_context 'assistant service mocking'
+
+      let!(:existing_session) { create_existing_session }
+      let(:original_chat) { existing_session.ai_assistant_chat }
+      let(:new_chat) { ai_assistant.for_user(user) }
+      let(:options) { { start_new_chat: true } }
+
+      before do
+        allow(ai_assistant).to receive(:for_user).and_return(new_chat)
+      end
+
+      it 'creates a new chat for the existing session' do
+        described_class.new(plan, user, instructions, options).call
+
+        expect(plan.reload.ai_assisted_idp_session.ai_assistant_chat).to eq(new_chat)
+        expect(plan.reload.ai_assisted_idp_session.ai_assistant_chat).not_to eq(original_chat)
+      end
+    end
+
+    context 'when start_new_chat flag is not passed' do
+      include_context 'assistant service mocking'
+
+      let!(:existing_session) { create_existing_session }
+      let(:original_chat) { existing_session.ai_assistant_chat }
+      let(:options) { {} }
+
+      before do
+        allow(original_chat).to receive(:with_assistant_context).and_return(original_chat)
+      end
+
+      it 'uses the existing chat without creating a new one' do
+        described_class.new(plan, user, instructions, options).call
+
+        expect(plan.reload.ai_assisted_idp_session.ai_assistant_chat).to eq(original_chat)
+      end
+    end
   end
 end

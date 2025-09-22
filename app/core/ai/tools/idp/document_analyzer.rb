@@ -21,7 +21,7 @@ module AI
         end
 
         # TODO: Seperate the layers of calling mechanism for clear segreation and handling of different parts
-        def execute(context:)
+        def execute(context: nil)
           validate_user_idp_document_exists!
 
           return ai_assisted_doc_summary_session.summary if document_summary_exists?
@@ -55,7 +55,7 @@ module AI
         private
 
         def chat_params
-          { with: user_idp_document_blob.url, service: :openai_response_api }
+          { with: user_idp_document.blob.url, service: :openai_response_api }
         end
 
         def chat_with_session_context
@@ -68,12 +68,12 @@ module AI
         end
 
         def ai_assisted_doc_summary_session
-          user_idp_document_blob.ai_assisted_user_document_summary || create_ai_assisted_doc_summary_session
+          user_idp_document.ai_assisted_user_document_summary || create_ai_assisted_doc_summary_session
         end
 
         def create_ai_assisted_doc_summary_session
           chat = create_new_chat_for_document_analysis
-          user_idp_document_blob.create_ai_assisted_user_document_summary!(
+          user_idp_document.create_ai_assisted_user_document_summary!(
             ai_assistant_chat: chat,
             user: current_user
           )
@@ -87,8 +87,8 @@ module AI
           @document_analysis_assistant ||= ai_assistant
         end
 
-        def user_idp_document_blob
-          @user_idp_document_blob ||= user_idp_plan.user_document.blob
+        def user_idp_document
+          @user_idp_document ||= user_idp_plan.user_document
         end
 
         def validate_user_idp_document_exists!

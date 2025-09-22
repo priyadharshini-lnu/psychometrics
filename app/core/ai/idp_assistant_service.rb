@@ -2,13 +2,14 @@
 
 module AI
   class IdpAssistantService < BaseCommand
-    private_attr_reader :plan, :instructions, :current_user, :options
+    private_attr_reader :plan, :instructions, :current_user, :options, :start_new_chat
 
     def initialize(plan, current_user, instructions = nil, options = {})
       @plan = plan
       @instructions = instructions
       @current_user = current_user
       @options = options
+      @start_new_chat = options[:start_new_chat] || false
     end
 
     def call
@@ -68,14 +69,20 @@ module AI
       @idp_assisted_session_chat ||= ai_assisted_idp_session.ai_assistant_chat
     end
 
-    def create_ai_assisted_idp_session!
-      mark_plan_in_ai_assisted_idp_in_progress!
-      chat = idp_assistant.for_user(current_user, contextual_information: idp_context)
-      plan.create_ai_assisted_idp_session!(ai_assistant_chat: chat, user: current_user)
-    end
-
     def ai_assisted_idp_session
-      plan.ai_assisted_idp_session || create_ai_assisted_idp_session!
+      @ai_assisted_idp_session ||= begin
+        session = AI::AssistedUserIdpSession.find_or_initialize_by(assistable: plan, user: current_user)
+
+        # Create new chat if flag is set or session is new
+        if start_new_chat || session.new_record?
+          mark_plan_in_ai_assisted_idp_in_progress! if session.new_record?
+          chat = idp_assistant.for_user(current_user, contextual_information: idp_context)
+          session.ai_assistant_chat = chat
+          session.save! if session.new_record?
+        end
+
+        session
+      end
     end
 
     def mark_plan_in_ai_assisted_idp_in_progress!
