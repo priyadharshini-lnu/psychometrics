@@ -10,6 +10,7 @@ export const UserMessage = ({ message }) => (
   <Bubble
     placement="end"
     classNames={{ content: styles.userBubble }}
+    styles={{ content: { maxWidth: '80%' } }}
     shape="round"
     content={message}
     footer={() => (

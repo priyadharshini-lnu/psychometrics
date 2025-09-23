@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Space, Typography,
+  Button, Flex, Space, Typography, Popconfirm,
 } from 'antd'
 import {
   Attachments, Sender, Welcome, Prompts,
@@ -83,6 +83,7 @@ export const AIChat = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [recording, setRecording] = useState(false)
+  const [resetChat, setResetChat] = useState(false)
 
   const changeValue = (value:string) => {
     setUserPrompt(value)
@@ -135,7 +136,8 @@ export const AIChat = () => {
   const sendMessage = async (message) => {
     setRequestProcessing(true)
     try {
-      const response = await askRequest.makeAsyncRequest({ message })
+      const response = await askRequest.makeAsyncRequest({ message, restart_chat: resetChat })
+      setResetChat(false)
       const { content } = response.responseData
 
       setMessages(prev => [...prev, parseAssistantMessage(content)])
@@ -211,12 +213,12 @@ export const AIChat = () => {
     askRequest.startPolling()?.then(({ responseData: { content } }) => {
       setMessages(prev => [...prev, parseAssistantMessage(content)])
     })
-
+    setRequestProcessing(true)
     fetchMessages().then(({ response }) => {
       const messages = response.map((msg) => {
         try {
           return {
-            ...humps.camelizeKeys(JSON.parse(msg.content)),
+            ...humps.camelizeKeys(JSON.parse(msg.content.split('\n')[0])),
             role: msg.role,
           }
         } catch {
@@ -226,6 +228,7 @@ export const AIChat = () => {
           }
         }
       })
+      setRequestProcessing(false)
       setMessages(messages)
       scrollToBottom(false)
     })
@@ -235,6 +238,13 @@ export const AIChat = () => {
       setStatus('chat')
     }
   }, [])
+
+  const handleReset = () => {
+    setResetChat(true)
+    setMessages([])
+    setStatus('chat')
+    setSuggestions([])
+  }
 
   const onAction = (action) => {
     if (action === 'scroll') {
@@ -347,6 +357,26 @@ export const AIChat = () => {
                   {I18n.t('common.actions.go_back')}
                 </Button>
               </Space>
+            )}
+            extra={(
+              messages.length > 0 && !resetChat ? (
+                <Popconfirm
+                  disabled={requestProcessing}
+                  overlayStyle={{ zIndex: 9999 }}
+                  title={I18n.t('idp.ai.reset_confirmation')}
+                  onConfirm={() => handleReset()}
+                  okText={I18n.t('common.actions.yes')}
+                  cancelText={I18n.t('common.actions.no')}
+                >
+                  <Button
+                    type="text"
+                    disabled={requestProcessing}
+                    danger
+                  >
+                    {I18n.t('idp.ai.reset_chat')}
+                  </Button>
+                </Popconfirm>
+              ) : null
             )}
           />
           <Flex gap="middle" vertical className={styles.messages}>

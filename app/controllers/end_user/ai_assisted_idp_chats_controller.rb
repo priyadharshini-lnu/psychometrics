@@ -6,7 +6,7 @@ class EndUser::AIAssistedIdpChatsController < ApplicationController
   before_action :save_file, only: [:upload_document]
 
   async_request :ask, handler: AI::IdpChat::AskChat,
-                  permit_params: ->(params) { params.permit(:message) }
+                  permit_params: ->(params) { params.permit(:message, :restart_chat) }
 
   async_request :upload_document, handler: AI::IdpChat::AnalyzeDocument,
                   permit_params: ->(params) {}

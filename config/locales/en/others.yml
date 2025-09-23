@@ -1775,6 +1775,7 @@ en:
       go_back: Go Back
       import: Import
       insert: Insert
+      'no': 'No'
       ok: OK
       publish: Publish
       reject: Reject
@@ -1801,6 +1802,7 @@ en:
       view: View
       view_all_tasks: View all tasks
       view_detail: View Detail
+      'yes': 'Yes'
       yes_delete: Yes, Delete
     column:
       action: Action
@@ -2592,6 +2594,8 @@ en:
       finishing:
         hint: Our AI assistant is creating IDP plan for you.
         title: Please wait we are doing our magic…
+      reset_chat: Reset Chat
+      reset_confirmation: Are you sure you want to discard this chat and start new?
       retake_steps:
         chat_hint: Let me know what information you want to provide more bellow?
         chat_title: You want to give more information?
