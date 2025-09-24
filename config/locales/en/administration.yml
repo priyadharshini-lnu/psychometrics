@@ -1015,6 +1015,10 @@ en:
           approvers: Approvers
           approvers_can_edit: Approvers Can Edit
           approvers_not_required: Approvers Not Required
+          digest_delivery_mode:
+            form_label: Digest Delivery Mode
+            immediate: Immediate - Send whenever there is a bulk submission
+            scheduled: Scheduled - Send a digest email at a scheduled time
           digest_frequency:
             daily: Daily
             form_label: Digest Frequency

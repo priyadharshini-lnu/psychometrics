@@ -7,6 +7,7 @@ class ReportApprovalSetting < ApplicationRecord
   belongs_to :report
 
   enum :digest_frequency, { daily: 'daily', weekly: 'weekly', weekdays: 'weekdays' }
+  enum :digest_delivery_mode, { immediate: 'immediate', scheduled: 'scheduled' }, prefix: :digest_delivery
 
   scope :for_user, lambda { |user_id|
     where(
