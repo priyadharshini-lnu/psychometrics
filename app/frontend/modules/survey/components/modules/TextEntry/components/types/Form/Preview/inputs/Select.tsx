@@ -36,11 +36,20 @@ const Select: React.FC<Props> = ({
         showSearch
         virtual={false} // this is for accessibility
       >
-        {optionList?.map((option: string, i: number) => (
-          <Option key={i} value={option}>
-            {I18n().tQuestion(model, `formOptionText${index}_${i}`, { typeIndex: index, i })}
-          </Option>
-        ))}
+        {Array.isArray(optionList)
+          ? optionList.map((option: string, i: number) => (
+            (
+              <Option key={option} value={option}>
+                {I18n().tQuestion(model, `formOptionText${index}_${i}`, { typeIndex: index, i })}
+              </Option>
+            )
+          ))
+          : Object.entries(optionList || {}).map(([key], i: number) => (
+            <Option key={key} value={key}>
+              {I18n().tQuestion(model, `formOptionText${index}_${i}`, { typeIndex: index, i })}
+            </Option>
+          ))
+        }
       </BaseSelect>
     </div>
   )

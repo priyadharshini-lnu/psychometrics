@@ -406,6 +406,12 @@ en:
       form:
         description: Description
         title: api key
+    assessment_builder:
+      form:
+        display_label: Enter display label
+        label_required: Label is required
+        value: Value
+        value_required: Value is required
     assessment_center:
       cancel_confirmation:
         message: Are you sure you want to discard the form progress?
