@@ -207,10 +207,11 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
                   >
                     <Button
                       style={{
-                        height: '1.6rem',
+                        height: '1.4rem',
+                        width: '1rem',
                       }}
                       type="link"
-                      className="p-0"
+                      className="p-0 mb-1"
                       icon={<InfoCircleOutlined />}
                     />
                   </Popover>
@@ -262,7 +263,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
         <Flex vertical align="center">
           <WarningFilled
             alt="Warning"
-            className={cs(styles['warning-icon'], 'mb-2')}
+            className={cs(styles.warningIcon, 'mb-2')}
           />
           <strong className="ta-c">
             {I18n.t('idp.delete_skill')}

@@ -251,7 +251,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
           <Button
             onClick={() => onAddMoreSkills()}
             icon={<PlusOutlined />}
-            className={styles['manage-skills-btn']}
+            className={styles.manageSkillsBtn}
           >
             {I18n.t('idp.development_actions.manage_skills')}
           </Button>

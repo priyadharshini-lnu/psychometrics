@@ -1,12 +1,14 @@
-import { map, groupBy, includes } from 'lodash'
 import { useState, useEffect, useMemo } from 'react'
 import {
   Typography, Button, Tabs, Flex, Spin, message,
 } from 'antd'
-import { CloseOutlined } from '@ant-design/icons'
+import {
+  debounce,
+} from 'lodash'
 import {
   useParams,
 } from 'react-router-dom'
+import cs from 'classnames'
 import { DevelopmentActionListView } from './DevelopmentActionsFlow/DevelopmentActionListView'
 import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
 import { groupSkillsBySkillType }
@@ -19,7 +21,7 @@ import { InformationBanner } from './InformationBanner'
 import { USER_IDP_PLAN_STATUS } from './constants'
 import { useSearchSkills } from './AdminAddSkills/useSearchSkills'
 import { SkillGapReportTab } from './SkillGapReportTab'
-
+import { SKILL_TYPE } from '~/components/IdpShared/constants'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './Plan.less'
 
@@ -58,11 +60,14 @@ export const Plan = () => {
   } = useResources<IdpSkills>(
     'skills', {
       apiConfig: {
+        filter: {
+          available_skills_by_plan_id: idpPlanId as string,
+        },
         include: ['development_actions'],
       },
     },
   )
-  const searchSkillResource = useSearchSkills(userIdpPlanData[0]?.idpTemplateId)
+  const searchSkillResource = useSearchSkills(idpPlanId)
 
   const {
     collectionAction,
@@ -184,8 +189,8 @@ export const Plan = () => {
     fetchIdpSkillDetails({
       apiConfig: {
         filter: {
-          by_idp_template_id: userIdpPlanData[0]?.idpTemplateId as string,
           project_id_eq: projectId as string,
+          available_skills_by_plan_id: idpPlanId as string,
         },
         include: ['development_actions'],
       },
@@ -202,9 +207,55 @@ export const Plan = () => {
     handleNextForAddSkillsStep()
   }
 
+  const debouncedSaveSkills = useMemo(() => debounce((userIdpSkills) => {
+    setIsLoading(true)
+
+    const planPayload = userIdpPlanData[0]
+
+    const skillPayload = {
+
+      skills: userIdpSkills.map(skill => ({
+        id: skill.skillId,
+        name: skill.name,
+      })),
+    }
+
+    updatePlan({
+      id: planPayload?.id,
+      userId: planPayload?.userId.toString(),
+      idpTemplateId: planPayload?.idpTemplateId.toString(),
+      campaignId: planPayload?.campaignId.toString(),
+      active: planPayload?.active,
+      creatorId: planPayload?.creatorId.toString(),
+      status: planPayload?.status,
+      ...skillPayload,
+    }).then(() => {
+      fetchIdpSkillDetails({
+        apiConfig: {
+          filter: {
+            project_id_eq: projectId as string,
+            available_skills_by_plan_id: idpPlanId as string,
+          },
+          include: ['development_actions'],
+        },
+      }).then((response) => {
+        setSkills(response.data)
+        setIsLoading(false)
+      })
+    })
+  }, 400),
+  [userIdpPlanData, selectedSkills])
+
+
   const handleDeselectSkill = (skillId) => {
-    setSelectedSkills(selectedSkills.filter(skill => (Number(skill.id) !== skillId)
-    && (Number(skill.skillId) !== skillId)))
+    const deletedSkill = selectedSkills.find(skill => Number(skill.id) === skillId)
+    const userIdpSkills = selectedSkills.filter(skill => (Number(skill.id) !== skillId)
+    && (Number(skill.skillId) !== skillId))
+    setSelectedSkills(userIdpSkills)
+    // eslint-disable-next-line no-prototype-builtins
+    if (deletedSkill?.hasOwnProperty('userIdpPlanId')) {
+      debouncedSaveSkills(userIdpSkills)
+    }
   }
 
   const onRemoveSkillFromPlan = (skillId) => {
@@ -244,9 +295,15 @@ export const Plan = () => {
       status: USER_IDP_PLAN_STATUS.DRAFT,
       ...skillPayload,
     }).then(() => {
+      message.success(I18n.t('idp.skills_updated'))
       setIsLoading(false)
       setEditMode(false)
-      message.success(I18n.t('idp.skills_updated'))
+      fetchUserIdpPlan({
+        id: idpPlanId as string,
+      }).then((res: UserIdpPlan) => {
+        setSelectedSkills(res.userIdpSkills)
+        setIsLoading(false)
+      })
     })
   }
 
@@ -324,20 +381,30 @@ export const Plan = () => {
     </Flex>
   )
 
-  const skillTypes = map(groupBy(allSkills, 'skillType'), (skills, skillType) => ({
-    skillType,
-    skills: skills.filter(result => (!includes(selectedSkills
-      .map(skill => Number(skill.skillId)), Number(result.id)) && !result.private)),
-  }))
+
+  const skillTypes = [{
+    skillType: SKILL_TYPE.BEHAVIORAL,
+    skills: allSkills.filter(skill => (skill.skillType === SKILL_TYPE.BEHAVIORAL)),
+  }, {
+    skillType: SKILL_TYPE.TECHNICAL,
+    skills: allSkills.filter(skill => (skill.skillType === SKILL_TYPE.TECHNICAL)),
+  }]
 
 
   const plan = showAddSkill ? (
-    <div className="p-4">
+    <Flex
+      vertical
+      className={styles.tabContainer}
+      style={{
+        maxHeight: '100%',
+      }}
+    >
       <Button
-        type="text"
-        icon={<CloseOutlined />}
         onClick={() => setShowAddSkill(false)}
-      />
+        className={cs(styles.cancelBtn, 'mb-4')}
+      >
+        {I18n.t('common.actions.cancel')}
+      </Button>
       <AddSkillsStep
         addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
         skillTypes={skillTypes}
@@ -349,7 +416,9 @@ export const Plan = () => {
         searchSkillResource={searchSkillResource}
         showBackButton={false}
       />
-    </div>
+    </Flex>
+
+
   ) : (
     <Flex vertical className="ps-4 pe-4">
       <Typography.Title level={4}>{I18n.t('idp.my_plan.development_plan')}</Typography.Title>
@@ -385,7 +454,7 @@ export const Plan = () => {
     <>
       <InformationBanner />
       <Spin size="large" spinning={isLoading}>
-        <Flex className={styles['user-idp-plan']} justify="center" align="middle" vertical>
+        <Flex className={styles.userIdpPlan} justify="center" align="middle" vertical>
           {plan}
         </Flex>
       </Spin>

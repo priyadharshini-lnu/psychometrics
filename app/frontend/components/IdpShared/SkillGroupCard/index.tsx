@@ -87,7 +87,7 @@ export const SkillsGroupCard: FC<Props> = ({
       <Flex gap={4} wrap>
         {selectedSkills.filter(skill => skill.skillType === skillType.skillType).map(skill => (
           <div
-            className={styles['skill-btn']}
+            className={styles.skillBtn}
             key={skill.id}
           >
             <span style={{ marginRight: '4px' }}>
@@ -136,17 +136,19 @@ export const SkillsGroupCard: FC<Props> = ({
         </Col>
       </Row>
       <Flex wrap gap={4} className="mb-4">
-        <Flex align="center">
-          <strong>{I18n.t('idp.suggestions')}</strong>
-        </Flex>
+        {skillType.skills.length > 0 && (
+          <Flex align="center">
+            <strong>{I18n.t('idp.suggestions')}</strong>
+          </Flex>
+        )}
         {skillType.skills.map(skill => (
           <div
             role="button"
             tabIndex={0}
-            className={cs(styles['skill-btn'],
+            className={cs(styles.skillBtn,
               includes(selectedSkills.map(s => Number(s.skillId)),
-                Number(skill.id)) ? styles['skill-btn-suggestion-selected']
-                : styles['skill-btn-suggestion'])}
+                Number(skill.id)) ? styles.skillBtnSuggestionSelected
+                : styles.skillBtnSuggestion)}
             key={skill.id}
             onClick={() => {
               if (includes(selectedSkills.map(s => Number(s.skillId)), Number(skill.id))) {
