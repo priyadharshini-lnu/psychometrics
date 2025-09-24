@@ -5613,7 +5613,8 @@ CREATE TABLE public.report_approval_settings (
     digest_time time without time zone DEFAULT '21:00:00'::time without time zone,
     digest_weekdays integer[] DEFAULT '{}'::integer[],
     digest_timezone character varying DEFAULT 'Asia/Dubai'::character varying,
-    digest_delivery_mode character varying
+    digest_delivery_mode character varying DEFAULT 'immediate'::character varying,
+    last_digest_sent_at timestamp(6) without time zone
 );
 
 
@@ -19315,3 +19316,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+
