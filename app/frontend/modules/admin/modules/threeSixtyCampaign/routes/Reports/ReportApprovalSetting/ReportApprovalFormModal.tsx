@@ -5,6 +5,8 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { useCallback } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from 'modules/admin/core/rootReducers'
 import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
 import ResourceFormModal from '~/components/ResourceFormModal'
@@ -13,6 +15,7 @@ import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
 import { ReportApprovalSettings } from '~/modules/admin/modules/campaigns/core/reportApprovalSettings'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
 import dayjs from '~/utils/dayjs'
+import { getFeatures } from '~/core/config'
 
 const { Option } = Select
 const { I18n } = window
@@ -49,13 +52,13 @@ const getOptionsFromApprovalSettings = (reportApprovalSettings, dataKey, fetched
 
 const getUserIds = users => users.map(user => user.id)
 
-const canShowDigest = (form) => {
+const showDigestToggle = (form) => {
   const allowBulk = form.getFieldValue('allowQcBulkSubmit') || form.getFieldValue('allowBulkApprove')
   const noNotifications = !form.getFieldValue('doNotSendNotifications')
   return allowBulk && noNotifications
 }
 
-const isDigestEnabled = form => canShowDigest(form) && form.getFieldValue('sendDigestEmails')
+const showDigestOptions = form => showDigestToggle(form) && form.getFieldValue('sendDigestEmails')
 
 export const ReportApprovalFormModal: React.FC<Props> = ({
   reportApprovalSettings,
@@ -114,6 +117,9 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
   const notificationUserOpts = getOptionsFromApprovalSettings(
     reportApprovalSettings, 'approvalNotificationUsers', notificationUsers,
   )
+
+  const features = useSelector((state: RootState) => getFeatures(state))
+  const isDigestEmailsEnabled = features?.digest_emails_enabled
 
   return (
     <ResourceFormModal
@@ -225,7 +231,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                     </div>
                   </Space>
 
-                  {canShowDigest(form) && (
+                  {showDigestToggle(form) && isDigestEmailsEnabled && (
                     <Space align="center">
                       <Form.Item
                         name="sendDigestEmails"
@@ -239,7 +245,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       </div>
                     </Space>
                   )}
-                  {isDigestEnabled(form) && (
+                  {showDigestOptions(form) && isDigestEmailsEnabled && (
                     <>
                       <Form.Item
                         name="digestFrequency"
