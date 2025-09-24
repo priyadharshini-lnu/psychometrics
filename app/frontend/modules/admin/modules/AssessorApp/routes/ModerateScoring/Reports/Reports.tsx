@@ -72,13 +72,15 @@ export const ReportsComponent: FC<Props> = ({
           <Space direction="vertical" size={8} style={{ width: '100%' }}>
             {userReports.map(report => (
               <Card
-                bodyStyle={{
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  padding: 12,
+                styles={{
+                  body: {
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: 12,
+                  },
                 }}
                 className={styles.card}
-                bordered={false}
+                variant="borderless"
               >
                 <div className={styles.cardContent}>
                   <Space>

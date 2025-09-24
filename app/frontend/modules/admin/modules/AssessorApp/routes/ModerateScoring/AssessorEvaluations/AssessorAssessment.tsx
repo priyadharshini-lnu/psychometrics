@@ -81,8 +81,8 @@ const UserAssessment: React.FC<Props> = ({
           </Select>
         )
       )}
-      bordered={false}
-      bodyStyle={bodyStyles}
+      variant="borderless"
+      styles={{ body: bodyStyles }}
       className={styles.card}
     >
       <Content className="fluid-container">

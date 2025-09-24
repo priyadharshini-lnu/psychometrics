@@ -226,7 +226,7 @@ export const ScheduleAvailability:FC<Props> = ({
                 />
                 {availableWeekDays.filter(day => checkedDayList.includes(day))
                   .map((day, index) => (
-                    <Row wrap={false} gutter={[4, 0]}>
+                    <Row key={day} wrap={false} gutter={[4, 0]}>
                       <Col span={20}>
                         <ScheduleDay
                           formInstance={dateSelectionForm}
