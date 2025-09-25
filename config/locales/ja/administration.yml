@@ -1015,12 +1015,29 @@ ja:
           approvers: 承認者
           approvers_can_edit: 承認者は編集できる
           approvers_not_required: 承認者 不要
+          digest_frequency:
+            daily: 日毎
+            form_label: ダイジェスト周波数
+            weekdays: 平日
+            weekly: ウィークリー
+          digest_time: ダイジェスト時間
+          digest_timezone: ダイジェスト タイムゾーン
+          digest_weekdays:
+            form_label: ダイジェスト 平日
+            friday: 金曜日
+            monday: 月曜日
+            saturday: 土曜日
+            sunday: 日曜日
+            thursday: 木曜日
+            tuesday: 火曜日
+            wednesday: 水曜日
           do_not_send_notifications: 通知を送信しない
           modal_title: レポート承認設定
           qc_users: QCユーザー
           remove_modal_success: 'レポート ID: %{reportId} の承認設定が正常に削除されました。 '
           remove_modal_text: 'レポートID: %{reportId}のこの設定を本当に削除しますか?'
           report: レポート
+          send_digest_emails: ダイジェストメールの送信
           settings: 設定
       assessors:
         spoof:

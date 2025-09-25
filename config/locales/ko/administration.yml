@@ -1015,12 +1015,29 @@ ko:
           approvers: 승인자
           approvers_can_edit: 승인자가 편집 가능
           approvers_not_required: 승인자 필요 없음
+          digest_frequency:
+            daily: 매일
+            form_label: 다이제스트 주파수
+            weekdays: 평일
+            weekly: 매주
+          digest_time: 다이제스트 시간
+          digest_timezone: 다이제스트 시간대
+          digest_weekdays:
+            form_label: 다이제스트 평일
+            friday: 금요일
+            monday: 월요일
+            saturday: 토요일
+            sunday: 일요일
+            thursday: 목요일
+            tuesday: 화요일
+            wednesday: 수요일
           do_not_send_notifications: 알림 보내기 안 함
           modal_title: 보고서 승인 설정
           qc_users: QC 사용자
           remove_modal_success: '보고서 ID에 대한 승인 설정: %{reportId}가 성공적으로 삭제되었습니다 '
           remove_modal_text: '보고서 ID: %{reportId}에 대한 이 설정을 삭제하시겠습니까?'
           report: 신고
+          send_digest_emails: 다이제스트 이메일 보내기
           settings: 설정
       assessors:
         spoof:

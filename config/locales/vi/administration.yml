@@ -1015,12 +1015,29 @@ vi:
           approvers: Người phê duyệt
           approvers_can_edit: Người phê duyệt có thể chỉnh sửa
           approvers_not_required: Không yêu cầu người phê duyệt
+          digest_frequency:
+            daily: Nhật báo
+            form_label: Tần số tiêu hóa
+            weekdays: Các ngày trong tuần
+            weekly: Tuần
+          digest_time: Thời gian tiêu hóa
+          digest_timezone: Múi giờ thông báo
+          digest_weekdays:
+            form_label: Digest (Các) ngày trong tuần
+            friday: Thứ sáu
+            monday: Thứ hai
+            saturday: Thứ bảy
+            sunday: Chủ nhật
+            thursday: Thứ năm
+            tuesday: Thứ ba
+            wednesday: Thứ tư
           do_not_send_notifications: Không gửi email cho người dùng [QC, Người phê duyệt & Thông báo phê duyệt]
           modal_title: Cài đặt phê duyệt báo cáo
           qc_users: Người dùng QC
           remove_modal_success: 'Cài đặt phê duyệt cho id báo cáo: %{reportId} đã bị xóa thành công '
           remove_modal_text: 'Bạn có chắc chắn muốn xóa cài đặt này cho id báo cáo: %{reportId} không?'
           report: Báo cáo
+          send_digest_emails: Gửi email thông báo
           settings: Cài đặt
       assessors:
         spoof:

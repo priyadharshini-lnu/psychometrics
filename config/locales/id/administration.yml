@@ -1015,12 +1015,29 @@ id:
           approvers: Pemberi persetujuan
           approvers_can_edit: Pemberi Persetujuan Dapat Mengedit
           approvers_not_required: Pemberi Persetujuan Tidak Diperlukan
+          digest_frequency:
+            daily: Harian
+            form_label: Frekuensi Digest
+            weekdays: Hari kerja
+            weekly: Unduhan
+          digest_time: Waktu Pencernaan
+          digest_timezone: Zona Waktu Intisari
+          digest_weekdays:
+            form_label: Digest Hari Kerja
+            friday: Jumat
+            monday: Senin
+            saturday: Sabtu
+            sunday: Minggu
+            thursday: Kamis
+            tuesday: Selasa
+            wednesday: Rabu
           do_not_send_notifications: Jangan mengirim email ke pengguna [QC, Notifikasi Persetujuan & Persetujuan]
           modal_title: Pengaturan Persetujuan Laporan
           qc_users: Pengguna QC
           remove_modal_success: 'Setelan persetujuan untuk id laporan: %{reportId} berhasil dihapus '
           remove_modal_text: 'Apakah Anda yakin ingin menghapus setelan ini untuk id laporan: %{reportId}?'
           report: Lapor
+          send_digest_emails: Kirim Email Ringkasan
           settings: Pengaturan
       assessors:
         spoof:

@@ -1015,12 +1015,29 @@ hu:
           approvers: Jóváhagyók
           approvers_can_edit: A jóváhagyók szerkeszthetik
           approvers_not_required: Nincs szükség jóváhagyókra
+          digest_frequency:
+            daily: Mindennapi
+            form_label: Emésztési gyakoriság
+            weekdays: Hétköznap
+            weekly: Heti
+          digest_time: Emésztési idő
+          digest_timezone: Kivonat időzóna
+          digest_weekdays:
+            form_label: Kivonat hétköznapok(ok)
+            friday: Péntek
+            monday: Hétfő
+            saturday: Szombat
+            sunday: Vasárnap
+            thursday: Csütörtök
+            tuesday: Kedd
+            wednesday: Szerda
           do_not_send_notifications: Ne küldjön e-mailt a felhasználóknak [QC, Jóváhagyók és jóváhagyási értesítés]
           modal_title: Jelentés jóváhagyási beállításai
           qc_users: Minőségellenőrző felhasználók
           remove_modal_success: 'A jelentésazonosító jóváhagyási beállítása: %{reportId} sikeresen törölve lett '
           remove_modal_text: Biztosan törölni szeretné ezt a beállítást a(z) %{reportId} jelentésazonosítóhoz?
           report: Jelentés
+          send_digest_emails: Kivonatoló e-mailek küldése
           settings: Beállítások
       assessors:
         spoof:

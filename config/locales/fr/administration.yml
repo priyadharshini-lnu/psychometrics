@@ -1015,12 +1015,29 @@ fr:
           approvers: Approbateurs
           approvers_can_edit: Les approbateurs peuvent modifier
           approvers_not_required: Approbateurs non requis
+          digest_frequency:
+            daily: Quotidien
+            form_label: Fréquence de digestion
+            weekdays: Semaine
+            weekly: Hebdomadaire
+          digest_time: Temps de digestion
+          digest_timezone: Fuseau horaire de synthèse
+          digest_weekdays:
+            form_label: Résumé(s) Jour(s) de la semaine
+            friday: Vendredi
+            monday: Lundi
+            saturday: Samedi
+            sunday: Dimanche
+            thursday: Jeudi
+            tuesday: Mardi
+            wednesday: Mercredi
           do_not_send_notifications: Ne pas envoyer de notifications
           modal_title: Paramètres d'approbation des rapports
           qc_users: Utilisateurs du CQ
           remove_modal_success: 'Le paramètre d''approbation du rapport : %{reportId} a été supprimé avec succès'
           remove_modal_text: 'Êtes-vous sûr de vouloir supprimer ce paramètre pour l''identifiant du rapport : %{reportId} ?'
           report: Rapport
+          send_digest_emails: Envoyer des e-mails de synthèse
           settings: Paramètres
       assessors:
         spoof:

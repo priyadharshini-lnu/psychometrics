@@ -1015,12 +1015,29 @@ nl:
           approvers: Goedkeurders
           approvers_can_edit: Goedkeurders kunnen bewerken
           approvers_not_required: Goedkeurders Niet vereist
+          digest_frequency:
+            daily: Dagelijks
+            form_label: Digest Frequentie
+            weekdays: Weekdagen
+            weekly: Wekelijks
+          digest_time: Tijd verteren
+          digest_timezone: Tijdzone digesteren
+          digest_weekdays:
+            form_label: Samenvattingen van weekdagen(en)
+            friday: Vrijdag
+            monday: Maandag
+            saturday: Zaterdag
+            sunday: Zondag
+            thursday: Donderdag
+            tuesday: Dinsdag
+            wednesday: Woensdag
           do_not_send_notifications: Geen meldingen verzenden
           modal_title: Instellingen voor goedkeuring van rapporten
           qc_users: QC gebruikers
           remove_modal_success: 'Goedkeuringsinstelling voor rapport id: %{reportId} is succesvol verwijderd'
           remove_modal_text: 'Weet je zeker dat je deze instelling wilt verwijderen voor rapport id: %{reportId}?'
           report: Rapporteer
+          send_digest_emails: Digest e-mails verzenden
           settings: Instellingen
       assessors:
         spoof:

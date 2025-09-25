@@ -1015,12 +1015,29 @@ pt:
           approvers: Aprovadores
           approvers_can_edit: Os aprovadores podem editar
           approvers_not_required: Aprovadores Não Necessário
+          digest_frequency:
+            daily: Diário
+            form_label: Frequência de digestão
+            weekdays: Semana
+            weekly: Semanalmente
+          digest_time: Tempo de digestão
+          digest_timezone: Resumir fuso horário
+          digest_weekdays:
+            form_label: Digest Dias(s) da semana
+            friday: Sexta-feira
+            monday: Segunda-feira
+            saturday: Sábado
+            sunday: Domingo
+            thursday: Quinta-feira
+            tuesday: Terça-feira
+            wednesday: Quarta-feira
           do_not_send_notifications: Não enviar notificações
           modal_title: Configurações de aprovação de relatório
           qc_users: Utilizadores QC
           remove_modal_success: 'A definição de aprovação para o id do relatório: %{reportId} foi eliminada com êxito'
           remove_modal_text: 'Tem a certeza de que pretende eliminar esta definição para o id do relatório: %{reportId}?'
           report: Relatório
+          send_digest_emails: Enviar e-mails de resumo
           settings: Definições
       assessors:
         spoof:

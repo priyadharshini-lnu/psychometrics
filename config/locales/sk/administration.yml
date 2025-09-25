@@ -1015,12 +1015,29 @@ sk:
           approvers: Schvaľovateľov
           approvers_can_edit: Schvaľovatelia môžu upravovať
           approvers_not_required: Schvaľovatelia nie sú povinní
+          digest_frequency:
+            daily: Denne
+            form_label: Frekvencia Digest
+            weekdays: Vo všedné dni
+            weekly: Týždenný
+          digest_time: Čas strávenia
+          digest_timezone: Časové pásmo súhrnu
+          digest_weekdays:
+            form_label: Digest Pracovné dni
+            friday: Piatok
+            monday: Pondelok
+            saturday: Sobota
+            sunday: Nedeľa
+            thursday: Štvrtok
+            tuesday: Utorok
+            wednesday: Streda
           do_not_send_notifications: Neposielajte e-maily používateľom[QC, Schvaľovatelia a oznámenie o schválení]
           modal_title: Nastavenia schválenia zostavy
           qc_users: Používatelia kontroly kvality
           remove_modal_success: 'Nastavenie schválenia pre ID zostavy: %{reportId} bolo úspešne odstránené '
           remove_modal_text: 'Naozaj chcete odstrániť toto nastavenie pre ID zostavy: %{reportId}?'
           report: Správa
+          send_digest_emails: Odosielanie súhrnných e-mailov
           settings: Nastavenia
       assessors:
         spoof:

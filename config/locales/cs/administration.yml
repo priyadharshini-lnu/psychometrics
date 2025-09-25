@@ -1015,12 +1015,29 @@ cs:
           approvers: Schvalovatelé
           approvers_can_edit: Schvalovatelé mohou upravovat
           approvers_not_required: Schvalovatelé nejsou vyžadováni
+          digest_frequency:
+            daily: Denně
+            form_label: Frekvence rozkladu
+            weekdays: Všední dny
+            weekly: Týdně
+          digest_time: Doba rozkladu
+          digest_timezone: Časové pásmo Digest
+          digest_weekdays:
+            form_label: Přehled dnů v týdnu
+            friday: Pátek
+            monday: Pondělí
+            saturday: Sobota
+            sunday: Neděle
+            thursday: Čtvrtek
+            tuesday: Úterý
+            wednesday: Středa
           do_not_send_notifications: Neodesílat oznámení
           modal_title: Nastavení schvalování zpráv
           qc_users: Uživatelé QC
           remove_modal_success: 'Nastavení schválení pro id zprávy: %{reportId} bylo úspěšně odstraněno'
           remove_modal_text: 'Opravdu chcete odstranit toto nastavení pro id sestavy: %{reportId}?'
           report: Nahlásit
+          send_digest_emails: Odesílání přehledových e-mailů
           settings: Nastavení
       assessors:
         spoof:

@@ -1015,12 +1015,29 @@ sl:
           approvers: Potrjevalce
           approvers_can_edit: Potrjevalci lahko urejajo
           approvers_not_required: Odobritve niso potrebne
+          digest_frequency:
+            daily: Dnevno
+            form_label: Pogostost izvlečka
+            weekdays: Delavniki
+            weekly: Tedenski
+          digest_time: Čas povzetka
+          digest_timezone: Časovni pas povzetka
+          digest_weekdays:
+            form_label: Digest Delovni dnevi
+            friday: Petek
+            monday: Ponedeljek
+            saturday: Sobota
+            sunday: Nedelja
+            thursday: Četrtek
+            tuesday: Torek
+            wednesday: Sreda
           do_not_send_notifications: Ne pošiljajte e-poštnih sporočil uporabnikom[QC, potrditve in obvestilo o odobritvi]
           modal_title: Nastavitve odobritve poročila
           qc_users: Uporabniki QC
           remove_modal_success: 'Nastavitev odobritve za ID poročila: %{reportId} je bil uspešno izbrisan '
           remove_modal_text: 'Ali želite izbrisati to nastavitev za ID poročila: %{reportId}?'
           report: Poročilo
+          send_digest_emails: Pošljite e-poštna sporočila s povzetkom
           settings: Nastavitve
       assessors:
         spoof:

@@ -1015,12 +1015,29 @@ ro:
           approvers: Aprobatori
           approvers_can_edit: Aprobatorii pot edita
           approvers_not_required: Aprobatori nu sunt necesari
+          digest_frequency:
+            daily: Zilnic
+            form_label: Frecvența digestiei
+            weekdays: Zile lucrătoare
+            weekly: Săptămânal
+          digest_time: Timp de rezumare
+          digest_timezone: Fus orar Digest
+          digest_weekdays:
+            form_label: Rezumați zilele săptămânii
+            friday: Vineri
+            monday: Luni
+            saturday: Sâmbătă
+            sunday: Duminică
+            thursday: Joi
+            tuesday: Marți
+            wednesday: Miercuri
           do_not_send_notifications: Nu trimiteți e-mailuri utilizatorilor [QC, Aprobatori și notificare de aprobare]
           modal_title: Setări de aprobare a rapoartelor
           qc_users: Utilizatori QC
           remove_modal_success: 'Setarea de aprobare pentru codul raportului: %{reportId} a fost ștearsă cu succes'
           remove_modal_text: 'Sigur doriți să ștergeți această setare pentru codul raportului: %{reportId}?'
           report: Raport
+          send_digest_emails: Trimiteți e-mailuri de rezumat
           settings: Setări
       assessors:
         spoof:
