@@ -17,7 +17,7 @@ module AI
         private
 
         def build_message
-          message = "Tool '#{tool_name}' exceeded maximum retry attempts. " \
+          message = "Tool '#{tool_name}' exceeded maximum retry attempts.Please contact administrator." \
                     "Attempted #{attempt_count} times, maximum allowed: #{max_retries}"
           message += ". Last error: #{last_error_message}" if last_error_message
           message

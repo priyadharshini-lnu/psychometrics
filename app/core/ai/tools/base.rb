@@ -18,6 +18,14 @@ class AI::Tools::Base < RubyLLM::Tool
     def max_retries
       @max_retry_attempts || 3
     end
+
+    def raise_error_on_maximum_retry
+      @raise_error_on_maximum_retry = true
+    end
+
+    def raise_error_on_maximum_retry_enabled?
+      @raise_error_on_maximum_retry || false
+    end
   end
 
   def self.method_added(method_name)
@@ -36,12 +44,17 @@ class AI::Tools::Base < RubyLLM::Tool
         @retry_count += 1
 
         if @retry_count > self.class.max_retries
-          raise AI::Tools::Errors::MaximumRetryAttemptsExceededError.new(
+          error = AI::Tools::Errors::MaximumRetryAttemptsExceededError.new(
             self.class.name,
             @retry_count,
             self.class.max_retries,
             result[:error]
           )
+          if self.class.raise_error_on_maximum_retry_enabled?
+            raise error
+          else
+            return { error: error.message }
+          end
         end
 
         # Return the error for potential retry by LLM

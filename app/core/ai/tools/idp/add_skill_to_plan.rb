@@ -45,8 +45,6 @@ module AI
           { error: e.message }
         rescue ActiveRecord::RecordInvalid => e
           { error: "Database validation error: #{e.message}" }
-        rescue AI::Tools::Errors::MaximumRetryAttemptsExceededError => e
-          { error: "Maximum tool retry attempts exceeded. Last tool response '#{e.message}'" }
         end
 
         private

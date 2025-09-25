@@ -419,4 +419,43 @@ describe AI::Tools::Idp::AddSkillToPlan do
       end
     end
   end
+
+  describe 'retry behavior with disabled error raising' do
+    context 'when maximum retry attempts are exceeded' do
+      it 'returns error hash instead of raising MaximumRetryAttemptsExceededError' do
+        tool_instance = described_class.new(user_idp_plan)
+
+        max_retries = described_class.max_retries
+        # Use invalid development_actions that will cause JSON::ParserError during processing
+        invalid_development_actions = 'invalid_actions'
+
+        (1..max_retries).each do |_attempt|
+          result = tool_instance.execute(skill_id: skill1.id, development_actions: invalid_development_actions)
+
+          expect(result).to be_a(Hash)
+          expect(result).to have_key(:error)
+          expect(result[:error]).to be_a(String)
+        end
+
+        final_result = tool_instance.execute(skill_id: skill1.id, development_actions: invalid_development_actions)
+
+        expect(final_result).to be_a(Hash)
+        expect(final_result).to have_key(:error)
+        expect(final_result[:error]).to include('exceeded maximum retry attempts')
+        expect(final_result[:error]).to include(described_class.name)
+        expect(final_result[:error]).to include((max_retries + 1).to_s)
+      end
+
+      it 'does not raise MaximumRetryAttemptsExceededError exception' do
+        tool_instance = described_class.new(user_idp_plan)
+        invalid_development_actions = 'invalid_actions'
+
+        (1..(described_class.max_retries + 1)).each do |_attempt|
+          expect do
+            tool_instance.execute(skill_id: skill1.id, development_actions: invalid_development_actions)
+          end.not_to raise_error
+        end
+      end
+    end
+  end
 end
