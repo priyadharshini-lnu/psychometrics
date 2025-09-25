@@ -1,105 +1,39 @@
 import { useState, useEffect } from 'react'
-import _ from 'lodash'
 import {
-  Modal, Button, Divider, Form, Form as AntForm,
+  Modal, Button, Form, Input, Select, Alert,
 } from 'antd'
-import { CheckOutlined } from '@ant-design/icons'
+import { CheckOutlined, LoadingOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import cs from 'classnames'
-import SpreadSheet from '~/components/SpreadSheet'
-import spreadSheetUtils from '~/modules/admin/utils/spreadSheet'
-import ErrorAlertBox from '~/components/ErrorAlertBox'
-import userPresenter from '~/presenters/user'
-import UserAutocomplete from '~/components/UserAutocomplete'
-import { setIn } from '~/utils/immutable'
 import { useResources } from '~/hooks/useResources'
 import { getFeatures } from '~/core/config'
-
-import styles from './CreateSubjectModal.less'
 import { getCategory } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import { camelizeKeys } from '~/utils/object'
+import UserAutocomplete from '~/components/UserAutocomplete'
+import { search } from '~/modules/admin/core/ui/autocomplete'
 
 const { I18n } = window
 
-const getTableFields = (jobRoles, isSkillRater) => {
-  const fields = [
-    { name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email'), key: 'email' },
-    {
-      name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name'),
-      key: 'firstName',
-      styles: { maxWidth: '150px' },
-    },
-    {
-      name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name'),
-      key: 'lastName',
-      styles: { maxWidth: '150px' },
-    },
-    {
-      name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.locale'),
-      key: 'locale',
-      styles: { maxWidth: '60px' },
-    },
-  ]
-
-  if (isSkillRater) {
-    fields.push(
-      {
-        name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.current_job_role'),
-        key: 'currentJobRole',
-        type: 'Select',
-        values: () => jobRoles?.map(role => ({
-          label: role.name,
-          value: role.name,
-        })) || [],
-        styles: { maxWidth: '150px' },
-      },
-      {
-        name: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.target_job_role'),
-        key: 'targetJobRole',
-        type: 'Select',
-        values: () => jobRoles?.map(role => ({
-          label: role.name,
-          value: role.name,
-        })) || [],
-        styles: { maxWidth: '150px' },
-      },
-    )
-  }
-
-  return fields
-}
-
-
-const formItemLayout = { labelCol: { span: 'auto' }, wrapperCol: { span: 10 } }
-
 function CreateSubjectModal ({
   closeModal,
-  autocompletedUsers,
-  fillSubjects,
+  autocompletedUsers = [],
   createAll,
   errors,
-  subjects,
   creationInProgress,
   clearForm,
   isSkillRater,
   features,
+  search,
 }) {
   const { campaignId, projectId } = useParams()
+  const [form] = Form.useForm()
+  const [loading, setLoading] = useState(false)
+  const [formErrors, setFormErrors] = useState([])
+  const [autocompletedUser, setAutocompletedUser] = useState('')
+
   useEffect(() => () => {
     clearForm()
   }, [])
-
-  const [autocompletedUser, setAutocompletedUser] = useState('')
-
-  const handleOk = () => createAll(campaignId, _.filter(subjects, s => s.email || s.lastName || s.firstName))
-
-  const onSelect = (user) => {
-    const data = JSON.parse(user)
-    const newSubjects = setIn(subjects, spreadSheetUtils.getFreeRowIndex(subjects), _.omit(data, ['id']))
-    setAutocompletedUser(userPresenter.getFullNameWithEmail(data))
-    fillSubjects(newSubjects)
-  }
 
   const {
     data: jobRoles = [],
@@ -108,15 +42,40 @@ function CreateSubjectModal ({
 
   useEffect(() => {
     if (!isSkillRater) return
-
     fetchJobRoles()
   }, [])
+
   const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled
+
+  const onSelectUser = (user) => {
+    const data = JSON.parse(user)
+    setAutocompletedUser(data.email)
+
+    // Pre-populate form fields
+    form.setFieldsValue({
+      email: data.email,
+      firstName: data.firstName || data.first_name,
+      lastName: data.lastName || data.last_name,
+      locale: data.locale,
+    })
+  }
+
+  const handleSubmit = async (values) => {
+    setLoading(true)
+    setFormErrors([])
+
+    try {
+      await createAll(campaignId, [values])
+      closeModal()
+    } catch (error) {
+      setFormErrors([error.message || I18n.t('common.errors.something_wrong')])
+      setLoading(false)
+    }
+  }
 
   return (
     <Modal
-      width="70%"
-      className={styles.formModal}
+      width={550}
       title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects')}
       open
       onCancel={closeModal}
@@ -124,33 +83,129 @@ function CreateSubjectModal ({
         <Button key="back" onClick={closeModal}>
           {I18n.t('common.actions.cancel')}
         </Button>,
-        <Button key="submit" type="primary" disabled={creationInProgress} onClick={handleOk}>
-          <CheckOutlined />
+        <Button
+          key="submit"
+          type="primary"
+          loading={loading || creationInProgress}
+          disabled={loading || creationInProgress}
+          onClick={() => form.submit()}
+        >
+          {(loading || creationInProgress) ? <LoadingOutlined /> : <CheckOutlined />}
           {I18n.t('common.actions.add')}
         </Button>,
       ]}
     >
-      <Form {...formItemLayout} autoComplete="off">
-        <AntForm.Item label="Subject">
+      {(formErrors.length > 0 || errors) && (
+        <Alert
+          message={I18n.t('common.errors.validation_failed')}
+          description={(
+            <ul>
+              {formErrors.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+              {errors && Array.isArray(errors) && errors.map((error, index) => (
+                <li key={`redux-${index}`}>{error}</li>
+              ))}
+            </ul>
+          )}
+          type="error"
+          className="mb-4"
+          showIcon
+        />
+      )}
+
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={handleSubmit}
+      >
+        <Form.Item
+          name="email"
+          label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email')}
+          rules={[
+            {
+              required: true,
+              message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email_is_required'),
+            },
+            {
+              type: 'email',
+              message: I18n.t(
+                'administration.threesixty_campaigns.menu.participants.subjects.please_enter_valid_email',
+              ),
+            },
+          ]}
+        >
           <UserAutocomplete
             value={autocompletedUser}
             onChange={setAutocompletedUser}
-            onSelect={onSelect}
+            onSelect={onSelectUser}
             source="users"
             users={autocompletedUsers}
-            placeholder="Search Subject..."
             url={`/administration/projects/${projectId}/search_users`}
+            search={search}
+            searchOnChange
           />
-        </AntForm.Item>
+        </Form.Item>
+
+        <Form.Item
+          name="firstName"
+          label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name')}
+          rules={[{
+            required: true,
+            message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name_is_required'),
+          }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="lastName"
+          label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name')}
+          rules={[{
+            required: true,
+            message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name_is_required'),
+          }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="locale"
+          label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.locale')}
+        >
+          <Input />
+        </Form.Item>
+
+        {skillRaterEnabled && isSkillRater && (
+          <>
+            <Form.Item
+              name="currentJobRole"
+              label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.current_job_role')}
+            >
+              <Select allowClear>
+                {jobRoles.map(role => (
+                  <Select.Option key={role.id} value={role.name}>
+                    {role.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+
+            <Form.Item
+              name="targetJobRole"
+              label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.target_job_role')}
+            >
+              <Select allowClear>
+                {jobRoles.map(role => (
+                  <Select.Option key={role.id} value={role.name}>
+                    {role.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </>
+        )}
       </Form>
-      <Divider />
-      <SpreadSheet
-        entities={subjects}
-        fields={getTableFields(jobRoles, (skillRaterEnabled && isSkillRater))}
-        updateEntities={fillSubjects}
-        className={cs({ [styles.spreadSheet]: skillRaterEnabled && isSkillRater })}
-      />
-      <ErrorAlertBox errors={errors} />
     </Modal>
   )
 }
@@ -160,4 +215,8 @@ const mapStateToProps = state => ({
   isSkillRater: getCategory(state) === 'skill_rater',
 })
 
-export default connect(mapStateToProps)(CreateSubjectModal)
+const mapDispatchToProps = {
+  search,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSubjectModal)
