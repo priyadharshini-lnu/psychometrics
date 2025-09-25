@@ -839,6 +839,7 @@ ko:
         export_development_actions: 수출 개발 작업
         export_dimension_as_json: 차원 JSON 내보내기
         export_factor_translations: 내보내기 팩터 번역
+        export_interview_questions: 수출 면접 질문
         export_job_roles_translations: 직무 역할 번역 내보내기
         export_norm: 내보내기 규범
         export_occupations: 직업 내보내기
@@ -864,6 +865,7 @@ ko:
         import_external_campaign_scoring: 외부 캠페인 점수 가져오기
         import_factor_translations: 가져오기 계수 번역
         import_factors: 가져오기 요소
+        import_interview_questions: 인터뷰 질문 가져오기
         import_job_roles_translations: 직무 역할 번역 가져오기
         import_norm: 가져오기 규범
         import_proficiency_level_translations: 숙련도 수준 번역 가져오기
@@ -1787,6 +1789,7 @@ ko:
       view: 보기
       view_all_tasks: 모든 작업 보기
       view_detail: 세부 정보 보기
+      yes_delete: 예, 삭제
     column:
       action: 액션
       active: 활성
@@ -2547,11 +2550,47 @@ ko:
       aria_selected: 선택됨
   idp:
     actions: 작업
+    ai:
+      assistant:
+        failure_fallback:
+          message: 이런! 이 메시지를 표시하는 동안 문제가 발생했습니다. 다시 시도하십시오!
+          try_again: 나는 그것을 이해하지 못했습니다. 다시 한 번 시도해 보세요!
+      bubbles:
+        audio:
+          question_progress: 질문 %{current} of %{count}
+      compose:
+        placeholder: 여기에 메시지를 입력하세요...
+      finishing:
+        hint: 우리의 AI 비서가 당신을 위해 IDP 계획을 만들고 있습니다.
+        title: 잠깐만 기다려주세요, 우리는 마법을 부리고 있습니다...
+      retake_steps:
+        chat_hint: 어떤 정보를 더 제공하고 싶은지 알려주세요.
+        chat_title: 더 많은 정보를 제공하고 싶으신가요?
+        start_chat: 채팅 시작
+        start_chat_again: 채팅 다시 시작
+        upload_document: 문서 업로드
+        upload_file: 파일 업로드
+      summary:
+        chat_title: Chat Insight 요약
+        file_title: 업로드된 문서 인사이트
+        hint: 그렇다면 IDP를 생성하지 않으면 답변을 다시 받을 수 있습니다.
+        title: 결과에 만족하십니까?
+        upload_file: 업로드된 파일
+        view_chat: 채팅 보기
+      upload:
+        description: 파일을 클릭하거나 이 영역으로 드래그하여 업로드합니다.
+        drop: 여기에 파일 드롭
+        title: 파일 업로드
+      welcome:
+        text: 성장 조니를 차트로 작성할 준비가 되셨나요? 시작하자!
+        title: 안녕하세요, 저는 개발 도우미입니다
     behavioral: 행동
     board: 보드
+    changes_saved_to_plan: 계획에 저장된 변경 사항
     comment_details:
       add_comment: 댓글 추가
       add_comment_placeholder: 댓글 추가...
+      add_comments: 주석 추가
       add_reply_placeholder: 답글 추가...
       go_to_skill: 스킬로 이동
     comments:
@@ -2573,11 +2612,15 @@ ko:
       sort_by_date: 날짜순 정렬
       you: 당신
     convert_to_draft: 초안으로 변환
+    delete_skill: 연결된 모든 개발 작업도 삭제되므로 스킬을 삭제하시겠습니까?
     details: 세부 정보
     development_actions:
       action_private: 예
       action_public: 아니요
       add_development_action: 개발 작업 추가
+      add_development_actions_from_below_options: 아래 옵션에서 개발 작업을 추가합니다.
+      add_development_actions_modal_title: "%{skillName}용 개발 작업 라이브러리"
+      add_from_library: 라이브러리에서 추가
       all: 모두
       approved: 승인됨
       board_view:
@@ -2585,17 +2628,32 @@ ko:
         in_progress: 진행 중
         not_started: 시작되지 않음
       completion: 완료
+      create_custom_development_action_title: "%{skillName}를 위한 나만의 개발 작업 만들기"
+      create_development_actions_with_ai: AI를 사용하여 개발 액션 생성 for %{skillName}
+      create_from_ai: AI로 만들기
       create_my_own: 나만의 만들기
+      custom: 관습
+      custom_da_description: 고유한 개발 요구 사항을 해결하기 위해 사용자 지정 개발 작업을 만듭니다.
       date_range: 시작 날짜 - 종료 날짜
+      edit_plan_to_add_development_actions: 계획을 편집하고 개발 작업을 추가합니다.
+      enter_development_action_description: 개발 작업 설명 입력
+      enter_development_action_title: 개발 작업 제목 입력
       generate_by_ai: AI로 생성
       generate_more: 더 많은 생성
       generating_development_actions: 개발 작업 생성...
+      generative_ai: 생성형 AI
+      generative_ai_description: AI가 귀하만을 위한 맞춤형 개발 작업을 생성하도록 하십시오.
       heading: 개발 작업
+      idp_library: IDP 라이브러리
+      idp_library_description: 전문가가 선별한 라이브러리에서 입증된 개발 작업을 선택하십시오.
       incomplete_error: 불완전한 개발 작업
       incomplete_error_message: 일부 개발 작업은 완료되지 않았습니다. IDP를 제출하기 전에 작성하십시오.
       incomplete_warning: 불완전한 개발 작업
       incomplete_warning_message: 일부 개발 작업은 완료되지 않았습니다. IDP를 완료로 표시하시겠습니까?
+      info_popover_title: 다양한 유형의 개발 작업
       learning_from_others: 다른 사람에게서 배우기
+      learning_from_others_label: 다른 사람들로부터 배우기
+      learning_on_the_job_label: 직장에서의 학습
       manage_skills: 스킬 관리
       marathon: 마라톤
       mark_as_complete: 완료로 표시
@@ -2605,19 +2663,26 @@ ko:
       private: 비공개
       publish_plan: 게시 계획
       remove: 제거
+      save_plan: 요금제 저장
       skill: 스킬
       sprint: 스프린트
       start_plan: 계획 시작
       structured_learning: 구조화된 학습
+      structured_learning_label: 협업 학습
       submit_plan: 계획 제출
+      success: 개발 작업이 성공적으로 완료되었습니다.
       write_here: 여기에 쓰기...
+    direct_reportee_details: 직접 보고자 세부 정보
     edit_plan: 계획 편집
+    edit_plan_and_add_skills: 계획을 편집하고 스킬 관리를 클릭하여 스킬을 추가합니다.
     edit_progress: 진행 상황 편집
+    fetching_skill_gap_report: 기술 격차 보고서 가져오기...
     initial_steps:
       add_skill_group_description: 평가 결과에 따라 강점과 개발이 필요한 영역은 다음과 같습니다. 개발 계획의 일부로 더 발전시키고 싶은 기술을 선택하세요.
       add_skill_group_title: "%{category} 기술 탐색"
       add_skills: 추가
       add_skills_step: 스킬 추가
+      back: 뒤로
       continue_to_rate_skills: 스킬 평가 계속하기
       getting_started: 시작하기
       less_skills: 적은 기술 표시
@@ -2645,6 +2710,8 @@ ko:
         categories: 카테고리
       save_skills: 스킬 저장
     new_comments: 새 댓글(들)
+    no_skills_added: 아직 추가된 스킬이 없습니다.
+    no_skills_added_by_reportee: 신고자 님은 아직 스킬을 추가하지 않았습니다.
     pdf:
       approval_status: 결재 현황
       cover:
@@ -2741,14 +2808,21 @@ ko:
         required: 질문에 대한 답변이 필요합니다.
       max_words: 최대 단어 수
       min_words: 최소 단어 수
+      no_answer_provided: 아직 답변이 제공되지 않았습니다.
       no_reflective_questions: 성찰 질문 없음
+      optional: "(선택 사항)"
       title: 성찰적 질문
       update_failed: 업데이트하는 동안 오류가 발생했습니다.
       updated_successfully: 답변이 성공적으로 업데이트되었습니다.
+      word_limit: "%{min}단어와 %{max}단어 사이여야 합니다."
       words: 가사
+    remove_skill: 스킬 제거
     skill_gap_report:
+      download: 기술 격차 보고서 다운로드
       title: 기술 격차 보고서
+    skills_updated: 계획에서 업데이트된 기술
     status: 상태
+    suggestions: 제안
     technical: 기술
     user_idp_status:
       approved: 승인됨
@@ -3908,9 +3982,14 @@ ko:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: 완료됨으로 표시
+          success_message: 평가 %{name}가 완료된 것으로 표시됩니다.
         reset_progress:
           name: 진행 상황 재설정
           success_message: 평가 %{name}을 수정할 준비가 되었습니다
+      mark_as_completed:
+        content: 완료된 "%{name}"로 표시하시겠습니까?
       push_test_webhook:
         copy_request_data_success: Rquest 페이로드가 클립보드에 성공적으로 복사되었습니다.
         copy_response_body_success: 응답 본문이 클립보드에 성공적으로 복사되었습니다.

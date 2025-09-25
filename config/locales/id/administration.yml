@@ -291,6 +291,7 @@ id:
             manage: Kelola
             title: Lokakarya
             view: Melihat
+            view_recordings: Lihat Rekaman
     ai_artifacts:
       artifact_results: Hasil Artefak
       code: Kode
@@ -368,6 +369,7 @@ id:
       created_successfully: Asisten AI berhasil dibuat.
       errors:
         cannot_delete_in_use: Tidak dapat menghapus '%{name}' Asisten AI karena sedang digunakan.
+        one_click_idp_assistance_not_enabled: Bantuan IDP bertenaga AI tidak tersedia dengan paket Anda saat ini. Silakan hubungi administrator.
       form:
         add_output_schema_key: Tambahkan Kunci Skema Keluaran
         dependencies: Ketergantungan
@@ -590,6 +592,7 @@ id:
         enable_back: Aktifkan tombol kembali
         enable_progress: Aktifkan bar kemajuan
         enable_save: Aktifkan tombol simpan
+        enable_select_main_factor: Pilih faktor sebagai faktor utama
         enable_single_question_page: Tampilkan satu pertanyaan per halaman
         enable_single_question_page_confirm: Ini akan memperbarui pengacakan blok per halaman menjadi 1. Kamu yakin?
         enable_timer: Aktifkan pengatur waktu
@@ -1012,12 +1015,29 @@ id:
           approvers: Pemberi persetujuan
           approvers_can_edit: Pemberi Persetujuan Dapat Mengedit
           approvers_not_required: Pemberi Persetujuan Tidak Diperlukan
+          digest_frequency:
+            daily: Harian
+            form_label: Frekuensi Digest
+            weekdays: Hari kerja
+            weekly: Unduhan
+          digest_time: Waktu Pencernaan
+          digest_timezone: Zona Waktu Intisari
+          digest_weekdays:
+            form_label: Digest Hari Kerja
+            friday: Jumat
+            monday: Senin
+            saturday: Sabtu
+            sunday: Minggu
+            thursday: Kamis
+            tuesday: Selasa
+            wednesday: Rabu
           do_not_send_notifications: Jangan mengirim email ke pengguna [QC, Notifikasi Persetujuan & Persetujuan]
           modal_title: Pengaturan Persetujuan Laporan
           qc_users: Pengguna QC
           remove_modal_success: 'Setelan persetujuan untuk id laporan: %{reportId} berhasil dihapus '
           remove_modal_text: 'Apakah Anda yakin ingin menghapus setelan ini untuk id laporan: %{reportId}?'
           report: Lapor
+          send_digest_emails: Kirim Email Ringkasan
           settings: Pengaturan
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ id:
       form:
         active_notice: Status kampanye akan secara otomatis berubah menjadi ditutup pada tanggal akhir yang dipilih
         campaign: Kampanye
+        copy_factors: Faktor Salin
         inactive_notice: Status kampanye akan secara otomatis berubah menjadi aktif pada tanggal mulai yang dipilih
         instruction: Ini hanya dapat diaktifkan saat membuat kampanye
         name: Nama
@@ -2230,6 +2251,7 @@ id:
         remove_confirm: Masukkan nama templat saat ini yang diberikan di bawah ini di kotak teks untuk menghapus templat
         success: "%{idpName} berhasil dihapus."
       add_idp_template: Tambahkan Template IDP
+      ai_assistant: Asisten AI
       ai_assisted_idp_enabled: IDP Berbantuan AI Diaktifkan
       ai_enabled: AI Diaktifkan
       ai_settings: Pengaturan AI
@@ -2240,7 +2262,26 @@ id:
       background_image: Gambar latar belakang
       behavioral_skills: Keterampilan Perilaku
       client_skills: Keterampilan Klien
+      delete_skill: Apakah Anda yakin ingin menghapus keterampilan karena itu akan menghapus semua tindakan pengembangan yang terhubung juga?
       details_updated: Detail IDP berhasil diperbarui
+      development_actions:
+        add_from_library: Tambahkan dari Perpustakaan
+        completion: Penyelesaian
+        create_development_actions_with_ai: Buat Tindakan Pengembangan dengan AI untuk %{skillName}
+        create_from_ai: Buat dari AI
+        create_my_own: Buat saya sendiri
+        custom: Adat
+        date_range: Tanggal Mulai - Tanggal Akhir
+        edit_plan_to_add_development_actions: Edit Rencana dan untuk menambahkan Tindakan Pengembangan.
+        errors:
+          invalid_learning_style: "'%{learning_style}' bukanlah gaya belajar yang valid. Opsi yang valid adalah: %{valid_styles}"
+          learning_style_blank: Gaya belajar tidak bisa kosong
+        generate_by_ai: Hasilkan oleh AI
+        generate_more: Hasilkan Lebih Banyak
+        heading: Keterampilan/Tindakan Pengembangan
+        manage_skills: Kelola Keterampilan
+        no_development_actions: Anda tidak memiliki Tindakan Pengembangan
+      document_ai_assistant: Asisten AI Analisis Dokumen
       edit_template: Edit IDP Template
       enter_tag_or_skills_error: Pilih setidaknya satu tag atau keterampilan
       enter_template_description: Deskripsi
@@ -2263,6 +2304,8 @@ id:
       global_skills: Keterampilan Global
       idp: IDP
       idp_template: Tambahkan Template IDP
+      interview_questions: Pertanyaan Wawancara
+      interview_questions_updated: Pertanyaan Wawancara berhasil diperbarui.
       intro_message: Pesan Pengantar
       intro_message_hint: Untuk mengubah pesan intro, silakan simpan templat IDP terlebih dahulu untuk mengaktifkan pengaturan ini.
       intro_message_success: Pesan intro berhasil disimpan
@@ -2274,6 +2317,7 @@ id:
         mercer_only: Hanya logo Mercer
         none: Tanpa logo
       logo_type_label: Jenis Logo
+      no_interview_questions_selected: Tidak ada Pertanyaan Wawancara yang dipilih
       no_reflection_questions_selected: Tidak ada Pertanyaan Refleksi yang dipilih
       none: Tidak
       one_click_idp_enabled: IDP Satu Klik Diaktifkan
@@ -2282,7 +2326,16 @@ id:
       reflection_questions_hint: Untuk mengubah pertanyaan refleksi, silakan simpan templat IDP terlebih dahulu untuk mengaktifkan pengaturan ini.
       reflection_questions_updated: 'Refleksi: Pertanyaan berhasil diperbarui.'
       remove: Buka
+      remove_skill: Hapus Keterampilan
+      revert_skill_to_public:
+        errors:
+          skill_already_public: Keterampilan sudah publik
+          skill_not_found: Keterampilan tidak ditemukan
+        success:
+          base_message: Keterampilan '%{skill_name}' sekarang terlihat oleh manajer Anda
+          with_approval: "%{base_message} dan rencana IDP Anda telah diajukan untuk disetujui"
       select_by_tags: Pilih berdasarkan Tag
+      select_interview_question: Mulai mengetik untuk mencari dan memilih pertanyaan
       select_reflection_question: Mulai mengetik untuk mencari dan memilih pertanyaan
       select_skill_gap_report: Pilih laporan kesenjangan keterampilan
       select_specific_skills: Pilih Keterampilan Khusus
@@ -2308,12 +2361,14 @@ id:
       subtitle_text: Teks subtitle
       tab:
         development_actions: Tindakan Pengembangan
+        interview_questions: Pertanyaan Wawancara
         reflection_questions: Pertanyaan Refleksi
         settings: Pengaturan
         templates: Template
       technical_skills: Keterampilan Teknis
       template_details: Detail Templat
       title_text: Teks judul
+      update_interview_questions: Perbarui Pertanyaan Wawancara
       update_reflection_questions: Perbarui Pertanyaan Refleksi
     idp_setting:
       allow_global_skills: Izinkan Keterampilan Global
@@ -2516,6 +2571,35 @@ id:
         skillvue:
           api_key_present: Kunci API sudah ada di proyek lain
       view_all_schedules: Lihat Semua Jadwal Mettl
+    interview_questions:
+      delete_confirmation: Apakah Anda yakin ingin menghapus Pertanyaan Wawancara ini?
+      description: Deskripsi
+      export:
+        action: Ekspor Pertanyaan Wawancara
+        details: Rincian File
+        failure_msg: Kesalahan saat mengekspor file.
+        success_msg: Mengekspor Pertanyaan Wawancara sedang berlangsung. Silakan periksa status di notifikasi.
+      form:
+        description: Deskripsi
+        mandatory: Wajib
+        question: Pertanyaan
+        question_type: Jenis Pertanyaan
+        question_type_audio: Audio
+        question_type_video: Video
+        time_limit: Batas Waktu (detik)
+        title: Pertanyaan Wawancara
+      import:
+        action: Impor Pertanyaan Wawancara
+        errors:
+          invalid_required_column_format: Format nilai kolom wajib tidak valid %{row}
+          invalid_required_type_format: Format nilai kolom QuestionType yang tidak valid %{row}
+          invalid_time_limit_column_format: Format nilai kolom Batas Waktu Tidak Valid %{row}
+          missing_description: Konten Deskripsi Hilang %{row}
+          missing_question: Konten Pertanyaan Tidak Ada %{row}
+          save_failed: Simpan %{message} yang gagal
+        failure_msg: Kesalahan saat mengimpor file.
+        success_msg: Mengimpor Pertanyaan Wawancara yang sedang berlangsung. Silakan periksa status di notifikasi.
+      question: Pertanyaan
     invited_subject:
       add_btn: Tambahkan Subjek
       assessment_center: 'Pusat penilaian:'
@@ -3182,7 +3266,9 @@ id:
         dp_consent_version: Versi Kebijakan
         errors:
           cannot_disable_while_campaign_enabled: Tidak dapat menonaktifkan perekaman panggilan video karena diaktifkan untuk satu atau beberapa kampanye dalam proyek ini
+          min_retention: Tidak boleh kurang dari 1 hari
           policy_version_format: Hanya bilangan bulat yang diperbolehkan
+          required: Diperlukan
         mask_identity_for_examus: Data masker untuk Examus Proctoring
         mask_identity_for_hogan: Data topeng untuk Hogan
         mask_identity_for_iiht: Data masker untuk IIHT
@@ -3322,9 +3408,12 @@ id:
         code: Kode
         code_constraint: Kode harus dimulai dengan huruf kecil dan hanya dapat berisi huruf kecil, angka, dan garis bawah
         delete: Menghapus
+        description: Deskripsi
+        description_alias: Deskripsi / Alias
         import_factors: Faktor Impor
         invalid_factor_params: Format parameter faktor kampanye yang tidak valid
         name: Nama
+        name_alias: Nama / Alias
         no_boundary_space: Nama tidak dapat dimulai atau diakhiri dengan spasi
         too_many_factors: Tidak dapat membuat lebih dari %{count} faktor kampanye
         tools: Perkakas
@@ -3343,6 +3432,19 @@ id:
       property_panel:
         add_new_condition: Tambahkan kondisi baru
         apply_color_label: 'Kemudian oleskan warna berikut:'
+        custom_factor_fields:
+          percentage: Persentase
+          questions_attempted: Berusaha
+          questions_correct: Benar
+          questions_incorrect: Salah
+          questions_not_attempted: Tidak Dicoba
+          questions_partial_correct: Sebagian Benar
+          total_questions: Seluruh
+        custom_factor_placeholder: Pilih bidang faktor kustom
+        factor_value_type:
+          custom: Adat
+          default: Default
+          label: Jenis nilai faktor
         graph_condition_types:
           default: Default
           graph_value: Nilai grafik
@@ -3352,6 +3454,7 @@ id:
         manage_graph_value_condition: Mengelola kondisi nilai grafik
         manage_styles_condition: Kelola kondisi gaya
         missing_value: Nilai yang hilang
+        pie_semi_circle: Semi Lingkaran
         predicates:
           equal_to: Sama dengan
           greater_than: Lebih Besar dari
@@ -3435,6 +3538,7 @@ id:
         translations: Terjemahan
       title: Pengaturan Laporan
     reports:
+      broken_image_url: Silakan verifikasi URL gambar Anda dan coba impor lagi
       bulk_marked_as_done: Massal Ditandai sebagai Selesai
       bulk_upload:
         choose_file: Pilih File
@@ -3604,16 +3708,19 @@ id:
         campaign_assessment_group: Kelompok Pusat Penilaian
         campaign_name: Nama Kampanye
         duration: Durasi
+        link_to_view_recordings: Tautan untuk melihat rekaman
         managers: Manajer
         meeting_link: Tautan Rapat
         name: Nama
         participants: Peserta
         prework: Prakerja
+        recording_date: Tanggal Perekaman
         resource_link: Tautan
         resource_name: Nama
         schedule_time: Jadwal Waktu
         scheduling_status: Status penjadwalan
         seats: Kursi
+        serial_no: Nomor Seri
         start_time: Tanggal & Waktu
         subject: Subyek
         title: Titel
@@ -3638,6 +3745,7 @@ id:
         managers: Manajer Pusat
         none: Tidak
         not_allowed: Dilarang
+        recording_enabled: Perekaman Diaktifkan
         remaining: Kursi yang Tersisa
         scheduling_lead_time: Menjadwalkan Lead Time
         scheduling_tooltip: Pengguna akan dapat memesan slot hingga %{date}
@@ -3698,6 +3806,7 @@ id:
         activities: Kegiatan
         assessment_center: Pusat Penilaian
         invites: Mengundang
+        recordings: Rekaman
         resources: Sumber daya
         subjects: Mata pelajaran
     scoring:
@@ -4133,6 +4242,15 @@ id:
           other: Lainnya
           qualification: Kualifikasi
           technical: Teknis
+      move_question:
+        cancel: Membatalkan
+        move: Bergerak
+        moveAfter: Bergerak Setelah
+        moveBefore: Bergerak Sebelum
+        moveQuestion: 'Pertanyaan Pindahkan: %{question}'
+        position: Posisi
+        selectTargetQuestion: Pilih Pertanyaan Target
+        title: Pindahkan Pertanyaan
       property_panel:
         add_n_a_option: Tambahkan opsi N/A
         allow_content_copy: Mengizinkan penyalinan konten
@@ -4176,6 +4294,18 @@ id:
         question_description: Deskripsi baris
         validation_response_type: Jenis respons validasi
         voice_dictation: Dikte suara
+      question_info_bar:
+        add_display_logic: Tambahkan Logika Tampilan
+        add_skip_logic: Tambahkan Lewati Logika
+        are_you_sure_to_delete_this_question: Apakah Anda yakin akan menghapus pertanyaan ini?
+        default_choices: Pilihan Default
+        delete_question: Hapus Pertanyaan
+        delete_the_question: Hapus pertanyaan
+        move_question: Pindahkan Pertanyaan
+        randomization: Pengacakan
+        save_as_a_template: Simpan sebagai Templat
+        this_question_has_default_choices: Pertanyaan ini memiliki pilihan default
+        this_question_has_randomization: Pertanyaan ini memiliki pengacakan
     table:
       entries:
         selected: 1 baris dipilih

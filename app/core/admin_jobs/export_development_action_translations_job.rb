@@ -13,7 +13,7 @@ module AdminJobs
     end
 
     def records_for_export
-      DevelopmentAction.where(project_id: record.data['project_id']).
+      DevelopmentAction.where(owner_type: 'Client', owner_id: record.data['project_id']).
         includes(:translations).
         order(:id)
     end

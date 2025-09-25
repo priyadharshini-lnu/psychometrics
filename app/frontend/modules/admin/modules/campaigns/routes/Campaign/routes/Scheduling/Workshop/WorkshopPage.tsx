@@ -24,6 +24,7 @@ import { SubjectList } from './SubjectList'
 import { Activities } from './Activities'
 import { ResourceList } from './ResourceList'
 import { ChangeStatusModal } from './ChangeStatusModal'
+import { Recordings } from './Recordings'
 
 import styles from './styles.less'
 
@@ -226,6 +227,13 @@ export const WorkshopPage: FC = () => {
             <Flex gap={8}>
               <ArrowLeftOutlined onClick={() => routeUtils.moveTo(navigate, prefixPath, backUrl)} />
               {workshop.name}
+              {workshop.videoRecordingEnabled
+                && (
+                  <Tag color={STATUS_TAG_COLOR.open}>
+                    {I18n.t('administration.scheduling.info.recording_enabled')}
+                  </Tag>
+                )
+              }
             </Flex>
           )}
           bordered
@@ -257,11 +265,15 @@ export const WorkshopPage: FC = () => {
               <Radio.Button value="subjects">{I18n.t('administration.scheduling.tabs.subjects')}</Radio.Button>
               <Radio.Button value="resources">{I18n.t('administration.scheduling.tabs.resources')}</Radio.Button>
               <Radio.Button value="activities">{I18n.t('administration.scheduling.tabs.activities')}</Radio.Button>
+              {workshop.meta?.permissions?.viewRecordings && (
+                <Radio.Button value="recordings">{I18n.t('administration.scheduling.tabs.recordings')}</Radio.Button>
+              )}
             </Radio.Group>
           </div>
           {currentTab === 'subjects' && <SubjectList workshop={workshop} />}
           {currentTab === 'resources' && <ResourceList />}
           {currentTab === 'activities' && <Activities />}
+          {currentTab === 'recordings' && <Recordings />}
         </div>
       </div>
       {showForm && (

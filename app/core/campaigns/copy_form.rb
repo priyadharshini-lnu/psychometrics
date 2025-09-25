@@ -6,6 +6,7 @@ module Campaigns
     attribute :status, String
     attribute :start_date, DateTime
     attribute :end_date, DateTime
+    attribute :copy_campaign_factors, Boolean
 
     validates :name, :status, presence: true
     validate :end_date_after_start_date

@@ -6,7 +6,7 @@ module Api
     before_action :load_skill!, only: %i[generate_by_ai]
 
     validate_crud_requests Api::V2::UserIdpDevelopmentAction::Schema
-    validates_request_schema :bulk_update, -> { Api::V2::UserIdpDevelopmentAction::Schema.bulk_update }
+    validates_request_schema :bulk_update, -> { Api::V2::UserIdpDevelopmentAction::BulkUpdateContract.new }
 
     def bulk_update
       plan_id = bulk_update_params[:user_idp_development_actions]&.first&.[](:user_idp_plan_id)
@@ -43,10 +43,14 @@ module Api
           user_idp_skill_id
           development_action_id
           user_idp_plan_id
-          custom_action
-          custom_action_learning_style
+          description
+          name
+          learning_style
+          source_type
           start_date_time
           end_date_time
+          progress
+          private
           id
           _destroy
         ]
@@ -62,7 +66,7 @@ module Api
         :skill_id,
         :lang,
         :generate_more,
-        generated_actions: %i[description custom_action_learning_style]
+        generated_actions: %i[description learning_style]
       )
     end
   end

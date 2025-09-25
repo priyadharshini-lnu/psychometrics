@@ -148,9 +148,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT assessments.id,
-    assessments.name,
-    assessments.category
+ SELECT id,
+    name,
+    category
    FROM public.assessments;
 
 
@@ -173,10 +173,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT campaign_factor_groups.id,
-    campaign_factor_groups.campaign_id,
-    campaign_factor_groups.name,
-    campaign_factor_groups."position"
+ SELECT id,
+    campaign_id,
+    name,
+    "position"
    FROM public.campaign_factor_groups;
 
 
@@ -296,9 +296,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT campaigns.id,
-    campaigns.name,
-    campaigns.project_id
+ SELECT id,
+    name,
+    project_id
    FROM public.campaigns;
 
 
@@ -418,8 +418,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT factors.id,
-    factors.name
+ SELECT id,
+    name
    FROM public.factors;
 
 
@@ -493,7 +493,13 @@ CREATE VIEW bi_models.normalized_factor_scores AS
     ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
     ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
     ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage,
+    ((user_assessment_factor_scores.scores ->> 'total_questions'::text))::integer AS total_questions,
+    ((user_assessment_factor_scores.scores ->> 'questions_attempted'::text))::integer AS questions_attempted,
+    ((user_assessment_factor_scores.scores ->> 'questions_correct'::text))::integer AS questions_correct,
+    ((user_assessment_factor_scores.scores ->> 'questions_partial_correct'::text))::integer AS questions_partial_correct,
+    ((user_assessment_factor_scores.scores ->> 'questions_incorrect'::text))::integer AS questions_incorrect,
+    ((user_assessment_factor_scores.scores ->> 'questions_not_attempted'::text))::integer AS questions_not_attempted
    FROM ((public.user_assessment_factor_scores
      JOIN public.user_assessments ON ((user_assessments.id = user_assessment_factor_scores.user_assessment_id)))
      JOIN public.campaigns ON ((campaigns.id = user_assessments.campaign_id)));
@@ -734,11 +740,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT users.id,
-    users.project_id,
-    users.first_name,
-    users.last_name,
-    users.email
+ SELECT id,
+    project_id,
+    first_name,
+    last_name,
+    email
    FROM public.users;
 
 
@@ -1192,6 +1198,46 @@ CREATE SEQUENCE public.ai_assistants_id_seq
 --
 
 ALTER SEQUENCE public.ai_assistants_id_seq OWNED BY public.ai_assistants.id;
+
+
+--
+-- Name: ai_assisted_user_sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_assisted_user_sessions (
+    id bigint NOT NULL,
+    ai_assistant_chat_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    assistable_type character varying,
+    assistable_id bigint,
+    checkpoint jsonb,
+    type character varying,
+    error text,
+    status integer DEFAULT 0 NOT NULL,
+    meta jsonb DEFAULT '{}'::jsonb,
+    content_checksum character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_assisted_user_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_assisted_user_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_assisted_user_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_assisted_user_sessions_id_seq OWNED BY public.ai_assisted_user_sessions.id;
 
 
 --
@@ -3079,7 +3125,7 @@ CREATE TABLE public.development_actions (
     id bigint NOT NULL,
     development_action_type integer DEFAULT 0 NOT NULL,
     learning_style integer DEFAULT 0 NOT NULL,
-    name character varying NOT NULL,
+    name character varying,
     description character varying NOT NULL,
     course_url character varying,
     course_provider character varying,
@@ -3088,9 +3134,11 @@ CREATE TABLE public.development_actions (
     image character varying,
     course_start_date timestamp(6) without time zone,
     course_end_date timestamp(6) without time zone,
-    project_id bigint,
     duration integer,
-    available_languages jsonb DEFAULT '[]'::jsonb
+    available_languages jsonb DEFAULT '[]'::jsonb,
+    owner_type character varying,
+    owner_id bigint,
+    source_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -3673,6 +3721,41 @@ ALTER SEQUENCE public.idp_template_development_actions_id_seq OWNED BY public.id
 
 
 --
+-- Name: idp_template_interview_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.idp_template_interview_questions (
+    id bigint NOT NULL,
+    idp_template_id bigint NOT NULL,
+    interview_question_id bigint NOT NULL,
+    "order" integer,
+    time_limit integer,
+    mandatory boolean,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: idp_template_interview_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.idp_template_interview_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: idp_template_interview_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.idp_template_interview_questions_id_seq OWNED BY public.idp_template_interview_questions.id;
+
+
+--
 -- Name: idp_template_reflection_questions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3818,7 +3901,8 @@ CREATE TABLE public.idp_templates (
     ai_assistant_id bigint,
     one_click_idp_enabled boolean DEFAULT false NOT NULL,
     one_click_ai_assistant_id bigint,
-    skill_source_preference integer DEFAULT 0
+    skill_source_preference integer DEFAULT 0,
+    document_analysis_ai_assistant_id bigint
 );
 
 
@@ -3980,6 +4064,42 @@ CREATE SEQUENCE public.integrations_id_seq
 --
 
 ALTER SEQUENCE public.integrations_id_seq OWNED BY public.integrations.id;
+
+
+--
+-- Name: interview_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.interview_questions (
+    id bigint NOT NULL,
+    question character varying,
+    description character varying,
+    time_limit integer,
+    mandatory boolean DEFAULT false,
+    question_type integer DEFAULT 0,
+    project_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: interview_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.interview_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: interview_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.interview_questions_id_seq OWNED BY public.interview_questions.id;
 
 
 --
@@ -4321,7 +4441,7 @@ CREATE TABLE public.meeting_rooms (
     meetable_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    use_old_dailyco_api boolean DEFAULT false NOT NULL
+    dailyco_api_version character varying DEFAULT 'v2'::character varying NOT NULL
 );
 
 
@@ -4549,13 +4669,13 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT id,
+    factor_id,
+    user_assessment_id,
+    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((scores ->> 'score'::text))::double precision AS score,
+    ((scores ->> 'zscore'::text))::double precision AS zscore,
+    ((scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -5487,7 +5607,12 @@ CREATE TABLE public.report_approval_settings (
     approvers_not_required boolean DEFAULT false,
     do_not_send_notifications boolean DEFAULT false,
     allow_bulk_approve boolean DEFAULT false,
-    allow_qc_bulk_submit boolean DEFAULT false
+    allow_qc_bulk_submit boolean DEFAULT false,
+    send_digest_emails boolean DEFAULT false NOT NULL,
+    digest_frequency character varying DEFAULT 'daily'::character varying,
+    digest_time time without time zone DEFAULT '21:00:00'::time without time zone,
+    digest_weekdays integer[] DEFAULT '{}'::integer[],
+    digest_timezone character varying DEFAULT 'Asia/Dubai'::character varying
 );
 
 
@@ -7476,12 +7601,10 @@ CREATE TABLE public.user_idp_development_actions (
     user_idp_plan_id bigint NOT NULL,
     user_idp_skill_id bigint NOT NULL,
     development_action_id bigint,
-    custom_action text,
     progress integer DEFAULT 0 NOT NULL,
     start_date_time timestamp(6) without time zone,
     end_date_time timestamp(6) without time zone,
-    private boolean DEFAULT false,
-    custom_action_learning_style integer
+    private boolean DEFAULT false
 );
 
 
@@ -8438,6 +8561,13 @@ ALTER TABLE ONLY public.ai_assistants ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: ai_assisted_user_sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assisted_user_sessions ALTER COLUMN id SET DEFAULT nextval('public.ai_assisted_user_sessions_id_seq'::regclass);
+
+
+--
 -- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8914,6 +9044,13 @@ ALTER TABLE ONLY public.idp_template_development_actions ALTER COLUMN id SET DEF
 
 
 --
+-- Name: idp_template_interview_questions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_interview_questions ALTER COLUMN id SET DEFAULT nextval('public.idp_template_interview_questions_id_seq'::regclass);
+
+
+--
 -- Name: idp_template_reflection_questions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8967,6 +9104,13 @@ ALTER TABLE ONLY public.innovation_styles_factors ALTER COLUMN id SET DEFAULT ne
 --
 
 ALTER TABLE ONLY public.integrations ALTER COLUMN id SET DEFAULT nextval('public.integrations_id_seq'::regclass);
+
+
+--
+-- Name: interview_questions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.interview_questions ALTER COLUMN id SET DEFAULT nextval('public.interview_questions_id_seq'::regclass);
 
 
 --
@@ -9956,6 +10100,14 @@ ALTER TABLE ONLY public.ai_assistants
 
 
 --
+-- Name: ai_assisted_user_sessions ai_assisted_user_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assisted_user_sessions
+    ADD CONSTRAINT ai_assisted_user_sessions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: api_keys api_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10516,6 +10668,14 @@ ALTER TABLE ONLY public.idp_template_development_actions
 
 
 --
+-- Name: idp_template_interview_questions idp_template_interview_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_interview_questions
+    ADD CONSTRAINT idp_template_interview_questions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: idp_template_reflection_questions idp_template_reflection_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10577,6 +10737,14 @@ ALTER TABLE ONLY public.innovation_styles
 
 ALTER TABLE ONLY public.integrations
     ADD CONSTRAINT integrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: interview_questions interview_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.interview_questions
+    ADD CONSTRAINT interview_questions_pkey PRIMARY KEY (id);
 
 
 --
@@ -11730,6 +11898,13 @@ CREATE UNIQUE INDEX idx_on_idp_template_id_skill_id_category_11f5232638 ON publi
 
 
 --
+-- Name: idx_on_interview_question_id_cf15f719f7; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_interview_question_id_cf15f719f7 ON public.idp_template_interview_questions USING btree (interview_question_id);
+
+
+--
 -- Name: idx_on_proficiency_level_id_locale_e9e7beb006; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11972,6 +12147,41 @@ CREATE INDEX index_ai_assistants_on_last_modified_by_id ON public.ai_assistants 
 --
 
 CREATE INDEX index_ai_assistants_on_owner_id ON public.ai_assistants USING btree (owner_id);
+
+
+--
+-- Name: index_ai_assisted_user_sessions_on_ai_assistant_chat_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assisted_user_sessions_on_ai_assistant_chat_id ON public.ai_assisted_user_sessions USING btree (ai_assistant_chat_id);
+
+
+--
+-- Name: index_ai_assisted_user_sessions_on_assistable; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assisted_user_sessions_on_assistable ON public.ai_assisted_user_sessions USING btree (assistable_type, assistable_id);
+
+
+--
+-- Name: index_ai_assisted_user_sessions_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assisted_user_sessions_on_user_id ON public.ai_assisted_user_sessions USING btree (user_id);
+
+
+--
+-- Name: index_ai_assisted_user_sessions_on_user_id_and_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assisted_user_sessions_on_user_id_and_type ON public.ai_assisted_user_sessions USING btree (user_id, type);
+
+
+--
+-- Name: index_ai_sessions_on_assistable_and_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_sessions_on_assistable_and_type ON public.ai_assisted_user_sessions USING btree (assistable_type, assistable_id, type);
 
 
 --
@@ -12913,10 +13123,17 @@ CREATE INDEX index_development_action_translations_on_name_and_locale ON public.
 
 
 --
--- Name: index_development_actions_on_project_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_development_actions_on_owner; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_development_actions_on_project_id ON public.development_actions USING btree (project_id);
+CREATE INDEX index_development_actions_on_owner ON public.development_actions USING btree (owner_type, owner_id);
+
+
+--
+-- Name: index_development_actions_on_source_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_development_actions_on_source_type ON public.development_actions USING btree (source_type);
 
 
 --
@@ -13144,6 +13361,13 @@ CREATE INDEX index_idp_template_development_actions_on_idp_template_id ON public
 
 
 --
+-- Name: index_idp_template_interview_questions_on_idp_template_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_interview_questions_on_idp_template_id ON public.idp_template_interview_questions USING btree (idp_template_id);
+
+
+--
 -- Name: index_idp_template_reflection_questions_on_idp_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13200,6 +13424,13 @@ CREATE INDEX index_idp_templates_on_ai_assistant_id ON public.idp_templates USIN
 
 
 --
+-- Name: index_idp_templates_on_document_analysis_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_templates_on_document_analysis_ai_assistant_id ON public.idp_templates USING btree (document_analysis_ai_assistant_id);
+
+
+--
 -- Name: index_idp_templates_on_one_click_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13253,6 +13484,13 @@ CREATE INDEX index_innovation_styles_on_dimension_id ON public.innovation_styles
 --
 
 CREATE INDEX index_integrations_on_project_id ON public.integrations USING btree (project_id);
+
+
+--
+-- Name: index_interview_questions_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_interview_questions_on_project_id ON public.interview_questions USING btree (project_id);
 
 
 --
@@ -15391,6 +15629,14 @@ ALTER TABLE ONLY public.sheets
 
 
 --
+-- Name: idp_template_interview_questions fk_rails_04a975ec35; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_interview_questions
+    ADD CONSTRAINT fk_rails_04a975ec35 FOREIGN KEY (interview_question_id) REFERENCES public.interview_questions(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_email_template_translations fk_rails_04c41c48a8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16087,6 +16333,14 @@ ALTER TABLE ONLY public.sheets
 
 
 --
+-- Name: ai_assisted_user_sessions fk_rails_49182d1bb2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assisted_user_sessions
+    ADD CONSTRAINT fk_rails_49182d1bb2 FOREIGN KEY (ai_assistant_chat_id) REFERENCES public.ai_assistant_chats(id);
+
+
+--
 -- Name: threesixty_instruction_template_translations fk_rails_4950e70e58; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16196,6 +16450,14 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.workshop_assessors
     ADD CONSTRAINT fk_rails_524f182ee9 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
+
+
+--
+-- Name: interview_questions fk_rails_53c904b7d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.interview_questions
+    ADD CONSTRAINT fk_rails_53c904b7d5 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -17215,6 +17477,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: idp_template_interview_questions fk_rails_b9b361c335; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_interview_questions
+    ADD CONSTRAINT fk_rails_b9b361c335 FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id) ON DELETE CASCADE;
+
+
+--
 -- Name: workshops fk_rails_bad3af4e15; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17391,14 +17661,6 @@ ALTER TABLE ONLY public.assessments_clients
 
 
 --
--- Name: development_actions fk_rails_cc6a4ae75e; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.development_actions
-    ADD CONSTRAINT fk_rails_cc6a4ae75e FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
 -- Name: skill_translations fk_rails_cf44d9c794; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17564,6 +17826,14 @@ ALTER TABLE ONLY public.ai_assistant_chats
 
 ALTER TABLE ONLY public.highlights
     ADD CONSTRAINT fk_rails_d662418e45 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: ai_assisted_user_sessions fk_rails_d7280fb251; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assisted_user_sessions
+    ADD CONSTRAINT fk_rails_d7280fb251 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -17855,6 +18125,14 @@ ALTER TABLE ONLY public.assigns_reports
 
 
 --
+-- Name: idp_templates fk_rails_eb7007f4f0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_templates
+    ADD CONSTRAINT fk_rails_eb7007f4f0 FOREIGN KEY (document_analysis_ai_assistant_id) REFERENCES public.ai_assistants(id);
+
+
+--
 -- Name: user_report_events fk_rails_eb9cac4a43; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18125,14 +18403,29 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250917104111'),
+('20250914210724'),
 ('20250911053831'),
-('20250908030102'),
 ('20250910080315'),
+('20250909133040'),
+('20250909093543'),
+('20250908030102'),
+('20250905055920'),
+('20250904112108'),
+('20250901091203'),
+('20250901084702'),
+('20250901060902'),
 ('20250828122244'),
+('20250826115114'),
 ('20250825062532'),
 ('20250825030208'),
+('20250821160002'),
+('20250821160001'),
+('20250821122411'),
 ('20250821102225'),
 ('20250820163652'),
+('20250807144839'),
+('20250807141543'),
 ('20250807052600'),
 ('20250806140955'),
 ('20250806102146'),
@@ -19020,3 +19313,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

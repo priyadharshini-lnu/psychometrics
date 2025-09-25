@@ -29,6 +29,7 @@ export const SCHEDULE_ASSESSMENT = 'campaigns/userAssessments/SCHEDULE_ASSESSMEN
 export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/userAssessments/TOGGLE_REQUIRE_SCHEDULE'
 export const TOGGLE_PREWORK = 'campaigns/userAssessments/TOGGLE_PREWORK'
 export const NORMALIZE_FACTOR_SCORES = 'campaigns/userAssessments/NORMALIZE_FACTOR_SCORES'
+export const MARK_USER_ASSESSMENT_COMPLETE = 'campaigns/userAssessments/MARK_USER_ASSESSMENT_COMPLETE'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -174,6 +175,14 @@ export const resetProgress = (campaignId: number, userAssessmentId: number) => (
   },
 })
 
+export const markComplete = (campaignId: number, userAssessmentId: number) => ({
+  type: MARK_USER_ASSESSMENT_COMPLETE,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${userAssessmentId}/mark_complete`,
+  },
+})
+
 export const normalizeFactorScores = (campaignId: number, userAssessmentId: number) => ({
   type: NORMALIZE_FACTOR_SCORES,
   request: {
@@ -197,6 +206,9 @@ const HANDLERS = {
     { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }),
   [TOGGLE_REQUIRE_SCHEDULE]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
     { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }),
+  [MARK_USER_ASSESSMENT_COMPLETE]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
+    { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }
+  ),
   [TOGGLE_PREWORK]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
     { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }),
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormType) => {

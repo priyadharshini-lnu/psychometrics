@@ -46,7 +46,7 @@ module Administration
     end
 
     def process_development_action(id, fields)
-      development_action = DevelopmentAction.find_by(id: id, project_id: @project_id)
+      development_action = DevelopmentAction.find_by(id: id, owner_type: 'Client', owner_id: @project_id)
       unless development_action
         raise Errors::ImportError,
               I18n.t(

@@ -1,7 +1,7 @@
 .card {
   position: relative;
-  border-bottom: 1px solid #DBDBDB;
-  padding: 12px 0;
+  padding: 1rem;
+  padding-bottom: 0;
   cursor: pointer;
 
   &:last-child {
@@ -49,11 +49,21 @@
 }
 
 .card_content {
-  padding: 0 16px;
   border: 1px solid #DBDBDB;
   max-height: 60vh;
   overflow-y: auto;
   position: relative;
+
+  & :global(.ant-checkbox-label) {
+    width: 100%;
+  }
+
+  & :global(.ant-checkbox) {
+    align-self: baseline;
+  }
+}
+.card_selected {
+  background-color: var(--ant-primary-1);
 }
 /* RTL styles */
 [dir="rtl"] .card {

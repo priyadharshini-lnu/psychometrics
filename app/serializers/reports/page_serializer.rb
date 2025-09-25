@@ -10,7 +10,8 @@ module Reports
         each_serializer: ModuleSerializer,
         context: {
           piped_text_context: context[:piped_text_context],
-          builder: context[:builder]
+          builder: context[:builder],
+          user_results_hash: context[:user_results_hash]
         }
       ).to_a
     end

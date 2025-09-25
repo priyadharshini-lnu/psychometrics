@@ -343,120 +343,63 @@ const getActionsMenuProps = ({
   const menuItems = [
     {
       key: 'details',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('assessments.actions.details')}
-        </Button>),
+      label: I18n.t('assessments.actions.details'),
     },
     assessment.meta.permissions.manage && {
       key: 'edit',
-      label: (
-        <Button
-          type="link"
-          className="ps-0"
-        >
-          {I18n.t('assessments.actions.edit')}
-        </Button>),
+      label: I18n.t('assessments.actions.edit'),
     },
     {
       key: 'show_usage',
-      label: (
-        <Button type="link" className="ps-0" disabled>
-          {I18n.t('assessments.actions.show_usage')}
-        </Button>),
+      label: I18n.t('assessments.actions.show_usage'),
+      disabled: true,
     },
     assessment.meta.permissions.manage && !assessment.deleted && {
       key: 'copy',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('common.actions.copy')}
-        </Button>
-      ),
+      label: I18n.t('common.actions.copy'),
     },
     assessment.meta.permissions.manage && !assessment.deleted && {
       key: 'remove_cache',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('assessments.actions.assessment_cache.remove_cache')}
-        </Button>
-      ),
+      label: I18n.t('assessments.actions.assessment_cache.remove_cache'),
     },
     assessment.meta.permissions.manage && !assessment.archived && {
       key: 'archive',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('common.actions.archive')}
-        </Button>
-      ),
+      label: I18n.t('common.actions.archive'),
     },
     assessment.meta.permissions.manage && assessment.archived && {
       key: 'archive',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('common.actions.unarchive')}
-        </Button>
-      ),
+      label: I18n.t('common.actions.unarchive'),
     },
     assessment.meta.permissions.manage && assessment.deleted && {
       key: 'restore',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('common.actions.restore')}
-        </Button>
-      ),
+      label: I18n.t('common.actions.restore'),
     },
     assessment.meta.permissions.manage && {
       key: 'remove',
-      label: (
-        <>
-          <Button type="link" className="ps-0">
-            {I18n.t('common.actions.remove')}
-          </Button>
-        </>
-      ),
+      label: I18n.t('common.actions.remove'),
     },
     assessment.meta.permissions.exportRawResults && { type: 'divider' },
     assessment.meta.permissions.exportRawResults
      && { key: 'export', label: I18n.t('assessments.actions.export') },
     assessment.meta.permissions.exportRawResults && {
       key: 'export_with_label',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('assessments.actions.export_raw_labels')}
-        </Button>
-      ),
+      label: I18n.t('assessments.actions.export_raw_labels'),
     },
     assessment.meta.permissions.exportRawResults && {
       key: 'export_without_label',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('assessments.actions.export_raw_without_labels')}
-        </Button>
-      ),
+      label: I18n.t('assessments.actions.export_raw_without_labels'),
     },
     assessment.meta.permissions.exportRawFactorScores && {
       key: 'export_raw_factor_score',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('assessments.actions.export_raw_scores')}
-        </Button>
-      ),
+      label: I18n.t('assessments.actions.export_raw_scores'),
     },
     assessment.meta.permissions.exportNormedResults && {
       key: 'export_normed_results',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('assessments.actions.export_normed')}
-        </Button>
-      ),
+      label: I18n.t('assessments.actions.export_normed'),
     },
     assessment.meta.permissions.externalScores && {
       key: 'external_scores',
-      label: (
-        <Button type="link" className="ps-0">
-          {I18n.t('assessments.actions.external_scores_export')}
-        </Button>
-      ),
+      label: I18n.t('assessments.actions.external_scores_export'),
     },
   ].filter(m => m) as MenuItem[]
 

@@ -1,20 +1,23 @@
 import {
-  useContext, useState, FC, ReactNode, useMemo,
+  useContext, FC, useMemo,
 } from 'react'
 import {
-  Row, Col, Space, Modal, Button,
+  Row, Col, Space, Flex,
+  Typography, Spin,
 } from 'antd'
-import _ from 'lodash'
+import { isEqual } from 'lodash'
 import { useLocation } from 'react-router-dom'
-import { SelectedSkillsCard } from '~/components/IdpShared/AddSkillsStep/SelectedSkillsCard'
-import { ButtonWithArrow, BoxWithShadow, MediaQueryContext } from '~/glint'
+import { ButtonWithArrow, MediaQueryContext, BackButton } from '~/glint'
 import { TypeWithSkillsSummary, UserIdpSkill } from '../DevelopmentActions'
 import { SkillsGroupCard } from '~/components/IdpShared/SkillGroupCard'
-
+import { Separator } from '~/components/IdpShared/Separator'
+import { DownloadButton } from '../DownloadButton'
+import { FetchSkillGapsResponse } from
+  '~/modules/endUser/modules/campaigns/core/idp/idpForm'
 
 type SearchSkillResourceProps = {
      isSearching: boolean,
-     searchResults: { id: string|number; name: string }[],
+     searchResults: { id: string|number; name: string, skillType: string }[],
      handleSearch: (value: string, skillType: string)=> void
   }
 
@@ -27,128 +30,110 @@ type AddSkillsStepProps = {
   onAddSkill: (skills: { id: number; name: string }[]) => void
   isSubmitting?: boolean
   searchSkillResource: SearchSkillResourceProps
+  showBackButton?: boolean
+  skillGapReportData: FetchSkillGapsResponse | null
+  isSkillGapReportLoading?:boolean
+  skillGapReportAvailable?:boolean
+  prev?: ()=>void
+  isSkillsLoading?:boolean
 }
 
-
 const { I18n } = window
-
 
 export const AddSkillsStep: FC<AddSkillsStepProps> = ({
   onFinishAddSkill, addSkillButtonText,
   skillTypes, selectedSkills, onDeselectSkill, onAddSkill,
-  isSubmitting = false, searchSkillResource,
+  isSubmitting = false, searchSkillResource, showBackButton = true,
+  skillGapReportData,
+  isSkillGapReportLoading = false,
+  skillGapReportAvailable = false,
+  prev,
+  isSkillsLoading = false,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
-  const [openSelectedSkillsModal, setOpenSelectedSkillsModal] = useState(false)
   const location = useLocation()
-  const isStepsRoute = location.pathname.includes('idp/steps')
-
+  const isStepsRoute = location.pathname.includes('idp/steps') || location.pathname.includes('step/')
   // redux stores user_idp_skills which doesn't have same id as of skills resource
   // Using name instead of id as name is also unique
   const selectedSkillsNames = selectedSkills.map(({ name }) => name)
   const initialSelectedSkillsNames = useMemo(() => selectedSkillsNames, [])
 
-  const isSelectedSkillsDirty = !_.isEqual(initialSelectedSkillsNames.sort(), selectedSkillsNames.sort())
+  const isSelectedSkillsDirty = !isEqual(initialSelectedSkillsNames.sort(), selectedSkillsNames.sort())
 
   const disableAddSkillButton = isStepsRoute ? !selectedSkillsNames.length
     : (!isSelectedSkillsDirty || !selectedSkillsNames.length
     )
+
   return (
-    <>
-      <Row gutter={[24, 24]} className="mt-6">
-        <Col xs={{ span: 24 }} sm={{ span: 18 }}>
-          <Space size={24} className="w-100" direction="vertical">
-            {
-            skillTypes.map((skillType) => {
-              const skillsAvailableForSelection = skillType.skills.filter(
-                skill => !selectedSkillsNames.includes(skill.name),
-              )
-              return (
+    <Flex vertical>
+      <Flex vertical={isMobile} className="mt-0 mb-4" flex={1} justify="space-between">
+        <Space>
+          {showBackButton && (
+            <BackButton
+              onPrev={prev}
+            />
+          )}
+          <Typography.Title level={3} className="mb-0 mt-0">
+            {I18n.t('idp.initial_steps.add_skills_step')}
+          </Typography.Title>
+        </Space>
+        <Flex justify="center" align="center">
+          {skillGapReportAvailable && (
+            <Spin spinning={isSkillGapReportLoading}>
+              <DownloadButton
+                disabled={skillGapReportData?.status !== 'prepared'}
+                href={skillGapReportData?.report_url}
+                style={{
+                  height: '2rem',
+                }}
+              >
+                {I18n.t('idp.skill_gap_report.download')}
+              </DownloadButton>
+            </Spin>
+          )}
+
+          <ButtonWithArrow
+            label={addSkillButtonText}
+            type="primary"
+            onClick={() => onFinishAddSkill()}
+            loading={isSubmitting}
+            disabled={disableAddSkillButton}
+          />
+        </Flex>
+      </Flex>
+      <Separator className="mb-4 mt-0" />
+      {isSkillsLoading ? (
+        <div className="flex justify-center items-center h-100">
+          <Spin />
+        </div>
+      )
+        : (
+          <Row gutter={[24, 24]} className="mt-6">
+            <Col>
+              <Space size={24} className="w-100" direction="vertical">
+                {
+            skillTypes.map((skillType, index) => (
+              <Flex vertical key={skillType.skillType}>
                 <SkillsGroupCard
-                  key={skillType.skillType}
-                  skillType={{ skillType: skillType.skillType, skills: skillsAvailableForSelection }}
+                  skillType={{ skillType: skillType.skillType, skills: skillType.skills }}
                   onAddSkill={onAddSkill}
                   onRemoveSkill={onDeselectSkill}
                   selectedSkills={selectedSkills}
                   handleSearch={searchSkillResource.handleSearch}
-                  searchResults={searchSkillResource.searchResults}
+                  searchResults={searchSkillResource.searchResults
+                    .filter(result => result.skillType === skillType.skillType)}
                   isSearching={searchSkillResource.isSearching}
                 />
-              )
-            })
+                {index === 0 && (
+                  <Separator className="mb-4 mt-4" />
+                )}
+              </Flex>
+            ))
           }
-          </Space>
-        </Col>
-        <SelectedSkillsCardResponsiveWrapper
-          onClose={() => setOpenSelectedSkillsModal(false)}
-          openSelectedSkillsModal={openSelectedSkillsModal}
-        >
-          <SelectedSkillsCard onRemoveSkill={onDeselectSkill} selectedSkills={selectedSkills} />
-        </SelectedSkillsCardResponsiveWrapper>
-      </Row>
-      <Row justify="space-between" className="mt-6">
-        {isMobile ? (
-          <Col span={12}>
-            <Button
-              size="small"
-              onClick={() => setOpenSelectedSkillsModal(true)}
-              ghost
-              type="primary"
-              className="w-100"
-            >
-              {`${I18n.t('idp.initial_steps.selected_skills')} (${selectedSkills.length})`}
-            </Button>
-          </Col>
-        ) : null}
-        <Col span={isMobile ? 12 : 24}>
-          <div className="flex justify-center">
-            <ButtonWithArrow
-              label={addSkillButtonText}
-              size="small"
-              type="primary"
-              onClick={() => onFinishAddSkill()}
-              loading={isSubmitting}
-              disabled={disableAddSkillButton}
-            />
-          </div>
-        </Col>
-      </Row>
-    </>
-  )
-}
-
-type SelectedSkillsCardResponsiveWrapperProps = {
-  children: ReactNode
-  openSelectedSkillsModal: boolean
-  onClose: () => void
-
-}
-
-const SelectedSkillsCardResponsiveWrapper:FC<SelectedSkillsCardResponsiveWrapperProps> = (
-  { children, openSelectedSkillsModal, onClose },
-) => {
-  const { isMobile } = useContext(MediaQueryContext)
-
-  if (isMobile) {
-    return (
-      <Modal
-        style={{ top: 0, margin: 0 }}
-        styles={{ content: { padding: '0px', height: '100vh', width: '100vw' } }}
-        onCancel={onClose}
-        closable
-        footer={null}
-        open={openSelectedSkillsModal}
-      >
-        {children}
-      </Modal>
-    )
-  }
-
-  return (
-    <Col flex="auto">
-      <BoxWithShadow>
-        {children}
-      </BoxWithShadow>
-    </Col>
+              </Space>
+            </Col>
+          </Row>
+        )}
+    </Flex>
   )
 }

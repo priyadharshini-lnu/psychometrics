@@ -110,3 +110,8 @@ send_idp_comments_notifications:
   cron: "0 */12 * * *" # At every 12th hour
   class: SendIdpCommentsNotificationsJob
   queue_as: cron_tasks
+
+delete_expired_meeting_recordings_job:
+  cron: "0 3 * * *" # Runs daily at 3 AM
+  class: MeetingRecordings::DeleteExpiredRecordingsJob
+  queue_as: cron_tasks

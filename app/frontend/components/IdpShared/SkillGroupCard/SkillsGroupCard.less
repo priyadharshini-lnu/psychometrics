@@ -3,3 +3,29 @@
 .heading {
   border-bottom: 1px solid @border-color-split;
 }
+
+.skill-btn {
+  border: 1px solid var(--light-grey-border);
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  background-color:  var(--ant-primary-1);
+  cursor: default;
+  color: initial;
+  & :global(.anticon-close) {
+    cursor: pointer;
+  }
+}
+
+.skill-btn-suggestion-selected {
+  color: var(--ant-primary-color);
+  border-color: var(--ant-primary-color);
+  background-color:  transparent;
+  cursor: pointer;
+}
+
+.skill-btn-suggestion {
+  background-color: transparent;
+  cursor: pointer;
+}

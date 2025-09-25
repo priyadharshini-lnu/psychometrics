@@ -18,6 +18,7 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
   let!(:skill2) { create(:skill, name: 'Skill 2') }
   let!(:idp_template) { create(:idp_template, project: project) }
   let!(:reflection_question) { create(:reflection_question, project_id: project.id) }
+  let!(:interview_question) { create(:interview_question, project_id: project.id) }
 
   before(:each) do
     sign_in(superadmin)
@@ -293,6 +294,50 @@ describe Api::V2::Administration::Projects::IdpTemplatesController, swagger_doc:
           expect(itrq.mandatory).to eq(true)
           expect(itrq.min_words).to eq(3)
           expect(itrq.max_words).to eq(10)
+        end
+      end
+    end
+  end
+
+  path '/projects/{project_id}/idp_templates/{id}/update_interview_questions' do
+    post 'Update Idp Template' do
+      operationId 'UpdateIdpTemplateReflectionQuestions'
+      description 'Update Idp Template interview questions'
+      tags 'IdpTemplate'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :id, in: :path, type: :string
+      parameter name: :body, in: :body,
+                schema: { '$ref' => '#/components/schemas/IdpTemplateUpdateReflectionQuestionsRequest' },
+                required: true
+
+      response '200', 'Idp Template Updated' do
+        let(:id) { idp_template.id }
+        let(:body) do
+          {
+            data: {
+              attributes: {
+                interview_questions: [
+                  id: interview_question.id.to_s,
+                  mandatory: false,
+                  time_limit: 30
+                ]
+              }
+            }
+          }
+        end
+
+        run_test! do |response|
+          idp_template.reload
+          expect(response.status).to eq(200)
+          expect(idp_template.interview_questions.count).to eq(1)
+          rq = idp_template.interview_questions.first
+          itrq = idp_template.idp_template_interview_questions.first
+          expect(rq.mandatory).to eq(true)
+          expect(rq.time_limit).to eq(180)
+          expect(itrq.mandatory).to eq(false)
+          expect(itrq.time_limit).to eq(30)
         end
       end
     end

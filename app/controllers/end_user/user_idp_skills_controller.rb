@@ -3,7 +3,7 @@
 # TODO: Policy is required
 class EndUser::UserIdpSkillsController < ApplicationController
   append_before_action :pundit_authorize
-  before_action :load_user_idp_skill, only: %i[update toggle_privacy]
+  before_action :load_user_idp_skill, only: %i[update toggle_privacy revert_to_public]
 
   def index
     user_idp_skills = user.user_idp_skills
@@ -50,6 +50,25 @@ class EndUser::UserIdpSkillsController < ApplicationController
         render json: {
           success: true,
           message: result[:message],
+          data: ::EndUser::UserIdpSkillSerializer.new.serialize(result[:skill])
+        }
+      end
+      on(:error) do |error_message|
+        render json: {
+          success: false,
+          error: error_message
+        }, status: 422
+      end
+    end
+  end
+
+  def revert_to_public
+    ::Idp::RevertSkillToPublic.call(@user_idp_skill, current_user) do
+      on(:ok) do |result|
+        render json: {
+          success: true,
+          message: result[:message],
+          requires_approval: result[:requires_approval],
           data: ::EndUser::UserIdpSkillSerializer.new.serialize(result[:skill])
         }
       end

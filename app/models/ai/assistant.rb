@@ -3,11 +3,7 @@
 class AI::Assistant < ApplicationRecord
   audited
 
-  ALLOWED_DEPENDENCIES = %w[datasheet assessments campaign_factors].freeze
-
   include RansackSearchableFields
-
-  self.inheritance_column = :_type_disabled
 
   belongs_to :owner, class_name: 'Client', optional: true
   belongs_to :last_modified_by, class_name: 'User', optional: true
@@ -19,12 +15,14 @@ class AI::Assistant < ApplicationRecord
   accepts_nested_attributes_for :assistant_output_schema_keys, allow_destroy: true
 
   validates :model_id, presence: true
-  validate :dependencies_must_be_valid
+  validate :validate_type_specific_rules
 
   before_destroy :check_ai_assistant_in_use
 
   enum :assistant_type, {
-    content_writer: 0
+    content_writer: 0,
+    idp_assistant: 1,
+    assistant_tool: 2
   }
 
   enum :status, {
@@ -34,13 +32,6 @@ class AI::Assistant < ApplicationRecord
 
   ransacker :assistant_type, formatter: proc { |v| assistant_types[v] }
 
-  def for_user(user)
-    chat = chats.create!(ai_assistant: self, user: user, model_id: model_id)
-    chat.with_instructions(parsed_system_prompt.strip)
-    chat.to_llm.with_context(ruby_llm_context)
-    chat
-  end
-
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields]
   end
@@ -49,7 +40,16 @@ class AI::Assistant < ApplicationRecord
     %w[assistant_type]
   end
 
-  private
+  def for_user(user, options = {})
+    chat = create_chat_for_user(user)
+    configure_chat(chat, options)
+    chat
+  end
+
+  # Returns the RubyLLM::Schema class for this assistant if configured
+  delegate :output_schema_class, to: :type_configuration
+
+  delegate :has_ruby_llm_schema?, to: :type_configuration
 
   def ruby_llm_context
     RubyLLM.context do |config|
@@ -65,22 +65,44 @@ class AI::Assistant < ApplicationRecord
     end
   end
 
-  def output_schema_as_context
-    return '' if assistant_output_schema_keys.blank?
+  private
 
-    context_lines = ['Following is the assistant schema:']
-    context_lines << '<assistant_output_schema>'
-    assistant_output_schema_keys.each do |osk|
-      context_lines << "- **#{osk.key}** (#{osk.key_type}): #{osk.description}"
-    end
-    context_lines << '</assistant_output_schema>'
-    context_lines.join("\n")
+  def create_chat_for_user(user)
+    chats.create!(ai_assistant: self, user: user, model_id: model_id)
   end
 
-  def parsed_system_prompt
+  def configure_chat(chat, options)
+    apply_system_prompt(chat, options[:contextual_information])
+
+    chat.to_llm.with_context(ruby_llm_context)
+    chat.with_schema(output_schema_class) if output_schema_class
+
+    chat.with_tools(*options[:tools], replace: true) if options[:tools].present?
+
+    # Use provided params or fall back to default params for this type
+    params_to_use = options[:params] || default_params
+    chat.with_params(**params_to_use) if params_to_use.any?
+  end
+
+  def apply_system_prompt(chat, contextual_information)
+    parsed_instructions = build_system_prompt(contextual_information)
+    chat.with_instructions(parsed_instructions.strip)
+  end
+
+  def default_params
+    type_configuration.default_params
+  end
+
+  # Generate text-based schema context for system prompt
+  def output_schema_as_context
+    type_configuration.output_schema_as_context
+  end
+
+  def build_system_prompt(contextual_information = nil)
     <<~SYSTEM_PROMPT
       #{system_prompt}
       #{output_schema_as_context}
+      #{contextual_information}
     SYSTEM_PROMPT
   end
 
@@ -90,20 +112,11 @@ class AI::Assistant < ApplicationRecord
     Settings.ai_providers.find { |provider| provider['model_id'] == model_id }
   end
 
-  def dependencies_must_be_valid
-    if dependencies.nil?
-      errors.add(:dependencies, 'must be present')
-      return
-    end
+  def validate_type_specific_rules
+    validation_errors = type_configuration.validate_type_specific_rules
 
-    unless dependencies.is_a?(Array)
-      errors.add(:dependencies, 'must be an array')
-      return
-    end
-
-    invalid = dependencies - ALLOWED_DEPENDENCIES
-    unless invalid.empty?
-      errors.add(:dependencies, "contains invalid entry(ies): #{invalid.join(', ')}")
+    validation_errors.each do |error|
+      errors.add(error[:field], error[:message])
     end
   end
 
@@ -113,5 +126,10 @@ class AI::Assistant < ApplicationRecord
 
     errors.add(:base, I18n.t('administration.ai_assistants.errors.cannot_delete_in_use', name: name))
     throw(:abort)
+  end
+
+  # Get the type-specific configuration instance
+  def type_configuration
+    @type_configuration ||= AI::AssistantTypeConfigurations::Factory.for(self)
   end
 end

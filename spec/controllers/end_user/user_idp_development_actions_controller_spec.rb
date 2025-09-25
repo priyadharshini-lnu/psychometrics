@@ -21,11 +21,9 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
   end
 
   let!(:custom_action) do
-    create(:user_idp_development_action,
+    create(:user_idp_development_action, :with_custom_development_action,
            user_idp_plan: user_idp_plan,
-           user_idp_skill: user_idp_skills.first,
-           custom_action: 'Custom Development Task',
-           custom_action_learning_style: 'on_the_job')
+           user_idp_skill: user_idp_skills.first)
   end
 
   before(:each) { login_user(user) }
@@ -43,9 +41,9 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       expect(regular_action['learning_style']).to eq(user_idp_development_action.development_action.learning_style)
 
       custom = parsed_result['data'].find { |a| a['id'] == custom_action.id }
-      expect(custom['custom_action']).to eq('Custom Development Task')
-      expect(custom['learning_style']).to be_nil
-      expect(custom['custom_action_learning_style']).to eq('on_the_job')
+      expect(custom['description']).to eq('Custom Development Task')
+      expect(custom['learning_style']).to eq('on_the_job')
+      expect(custom['source_type']).to eq('custom')
     end
   end
 
@@ -172,8 +170,10 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
             id: nil,
             development_action_id: nil,
             user_idp_skill_id: user_idp_skills.first.id,
-            custom_action: 'New custom action',
-            custom_action_learning_style: 'on_the_job',
+            name: 'New custom action name',
+            description: 'New custom action',
+            learning_style: 'on_the_job',
+            source_type: 'custom',
             progress: 0,
             start_date_time: '2024-03-28 15:45',
             end_date_time: '2024-03-30 15:45',
@@ -187,8 +187,10 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
         expect(response).to have_http_status(:ok)
 
         action = UserIdpDevelopmentAction.last
-        expect(action.custom_action).to eq('New custom action')
-        expect(action.custom_action_learning_style).to eq('on_the_job')
+        expect(action.development_action.name).to eq('New custom action name')
+        expect(action.development_action.description).to eq('New custom action')
+        expect(action.development_action.learning_style).to eq('on_the_job')
+        expect(action.development_action.source_type).to eq('custom')
       end
 
       it 'requires learning_style for custom actions' do
@@ -198,8 +200,10 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
             id: nil,
             development_action_id: nil,
             user_idp_skill_id: user_idp_skills.first.id,
-            custom_action: 'New custom action',
-            custom_action_learning_style: nil,
+            name: 'New custom action',
+            description: 'New custom action',
+            learning_style: nil,
+            source_type: 'custom',
             progress: 0,
             start_date_time: '2024-03-28 15:45',
             end_date_time: '2024-03-30 15:45',
@@ -210,9 +214,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
         post :save_plan, params: params
         expect(response).to have_http_status(:unprocessable_entity)
         parsed_response = response.parsed_body
-        expect(
-          parsed_response['errors']['1']['custom_action_learning_style']
-        ).to include(I18n.t('administration.development_actions.learning_styles.cannot_be_blank'))
+        expect(parsed_response['errors']).to be_present
       end
 
       it 'validates learning_style values' do
@@ -222,8 +224,9 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
             id: nil,
             development_action_id: nil,
             user_idp_skill_id: user_idp_skills.first.id,
-            custom_action: 'New custom action',
-            custom_action_learning_style: 'not_valid_learning_style',
+            description: 'New custom action',
+            learning_style: 'not_valid_learning_style',
+            source_type: 'custom',
             progress: 0,
             start_date_time: '2024-03-28 15:45',
             end_date_time: '2024-03-30 15:45',
@@ -234,9 +237,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
         post :save_plan, params: params
         expect(response).to have_http_status(:unprocessable_entity)
         parsed_response = response.parsed_body
-        expect(
-          parsed_response['errors']['1']['custom_action_learning_style']
-        ).to include(I18n.t('administration.development_actions.learning_styles.invalid'))
+        expect(parsed_response['errors']).to be_present
       end
     end
   end

@@ -17622,5 +17622,470 @@
     "required": [
       "data"
     ]
+  },
+  "InterviewQuestionsListResponse": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "nullable": false
+            },
+            "type": {
+              "type": "string",
+              "description": "Must be equal to interview_questions",
+              "nullable": false
+            },
+            "relationships": {
+              "type": "object",
+              "properties": {
+                "project": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "description": "Must be equal to clients",
+                          "nullable": false
+                        },
+                        "id": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "id"
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "project"
+              ],
+              "nullable": false
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "question": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "description": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "mandatory": {
+                  "type": "boolean",
+                  "nullable": false
+                },
+                "time_limit": {
+                  "type": "integer",
+                  "nullable": false
+                },
+                "question_type": {
+                  "type": "string",
+                  "nullable": false
+                }
+              },
+              "required": [
+                "question",
+                "description",
+                "mandatory",
+                "time_limit",
+                "question_type"
+              ],
+              "nullable": false
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "relationships",
+            "attributes"
+          ],
+          "nullable": false
+        },
+        "nullable": false
+      },
+      "meta": {
+        "type": "object",
+        "properties": {
+          "record_count": {
+            "type": "integer",
+            "nullable": false
+          },
+          "page_count": {
+            "type": "integer",
+            "nullable": false
+          }
+        },
+        "required": [
+          "record_count",
+          "page_count"
+        ],
+        "nullable": false
+      }
+    },
+    "required": [
+      "data",
+      "meta"
+    ]
+  },
+  "InterviewQuestionResponse": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false
+          },
+          "type": {
+            "type": "string",
+            "description": "Must be equal to interview_questions",
+            "nullable": false
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "project": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "description": "Must be equal to clients",
+                        "nullable": false
+                      },
+                      "id": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "data"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "project"
+            ],
+            "nullable": false
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string",
+                "nullable": false
+              },
+              "description": {
+                "type": "string",
+                "nullable": false
+              },
+              "mandatory": {
+                "type": "boolean",
+                "nullable": false
+              },
+              "time_limit": {
+                "type": "integer",
+                "nullable": false
+              },
+              "question_type": {
+                "type": "string",
+                "nullable": false
+              }
+            },
+            "required": [
+              "question",
+              "description",
+              "mandatory",
+              "time_limit",
+              "question_type"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "relationships",
+          "attributes"
+        ],
+        "nullable": false
+      }
+    },
+    "required": [
+      "data"
+    ]
+  },
+  "InterviewQuestionCreateRequest": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Must be equal to interview_questions",
+            "nullable": false
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string",
+                "nullable": false
+              },
+              "description": {
+                "type": "string",
+                "nullable": false
+              },
+              "mandatory": {
+                "type": "boolean",
+                "nullable": false
+              },
+              "time_limit": {
+                "type": "integer",
+                "nullable": false
+              },
+              "question_type": {
+                "type": "string",
+                "nullable": false
+              }
+            },
+            "required": [
+              "question",
+              "description",
+              "mandatory",
+              "time_limit",
+              "question_type"
+            ],
+            "nullable": false
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "project": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "description": "Must be equal to clients",
+                        "nullable": false
+                      },
+                      "id": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "data"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "project"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "type",
+          "attributes",
+          "relationships"
+        ],
+        "nullable": false
+      }
+    },
+    "required": [
+      "data"
+    ]
+  },
+  "InterviewQuestionUpdateRequest": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": false
+          },
+          "type": {
+            "type": "string",
+            "description": "Must be equal to interview_questions",
+            "nullable": false
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string",
+                "nullable": false
+              },
+              "description": {
+                "type": "string",
+                "nullable": false
+              },
+              "mandatory": {
+                "type": "boolean",
+                "nullable": false
+              },
+              "time_limit": {
+                "type": "integer",
+                "nullable": false
+              },
+              "question_type": {
+                "type": "string",
+                "nullable": false
+              }
+            },
+            "required": [],
+            "nullable": false
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "project": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "description": "Must be equal to clients",
+                        "nullable": false
+                      },
+                      "id": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "id"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "data"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "project"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "attributes",
+          "relationships"
+        ],
+        "nullable": false
+      }
+    },
+    "required": [
+      "data"
+    ]
+  },
+  "IdpTemplateUpdateInterviewQuestionsRequest": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "interview_questions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "order": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "mandatory": {
+                      "type": "boolean",
+                      "nullable": false
+                    },
+                    "time_limit": {
+                      "type": "integer",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "order",
+                    "mandatory"
+                  ],
+                  "nullable": false
+                },
+                "nullable": false
+              }
+            },
+            "required": [
+              "interview_questions"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "attributes"
+        ],
+        "nullable": false
+      }
+    },
+    "required": [
+      "data"
+    ]
   }
 }

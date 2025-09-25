@@ -368,6 +368,7 @@ Rails.application.routes.draw do
             put :update_content_variation
             put :update_simulation_time_extension
             put :toggle_prework
+            post :mark_complete
           end
         end
 
@@ -756,7 +757,8 @@ Rails.application.routes.draw do
     end
 
     get 'report_approvals', to: 'report_approvals#app', as: :report_approvals
-    get 'report_approvals/*all', to: 'report_approvals#app', constraints: { all: /.*/, format: :html }
+    get 'report_approvals/*all', to: 'report_approvals#app',
+      constraints: { all: /.*/, format: :html }, as: :report_approvals_all
 
     resources :report_families, only: [:index] do
       scope module: :report_families do
@@ -894,6 +896,7 @@ as: :simulation_progress_notification
 
         get :insights
         put :reset_practice_campaign
+        post :mark_meeting_assessment_complete
       end
       get 'assessment_centers/:id', to: 'workshops#show', as: :workshop_page
       get :dashboard, to: 'users#dashboard'
@@ -998,6 +1001,7 @@ as: :simulation_progress_notification
           get :validate_session
           post :upload_user_verification_image_url
           put :user_verification_image_upload_callback
+          post :mark_completed
         end
       end
 
@@ -1029,8 +1033,10 @@ as: :simulation_progress_notification
       end
 
       resources :ai_assisted_idp_chats, only: %i[index] do
-        post :ask
-        post :upload_document
+        collection do
+          post :ask
+          post :upload_document
+        end
       end
 
       resources :user_idp_plans, param: :user_id, only: %i[show update] do
@@ -1098,6 +1104,7 @@ as: :simulation_progress_notification
     resources :user_idp_skills, only: %i[index update], controller: 'end_user/user_idp_skills' do
       post :save_skills, on: :collection
       put :toggle_privacy, on: :member
+      put :revert_to_public, on: :member
     end
     resources :direct_reportees, only: %i[index], controller: 'end_user/direct_reportees'
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
@@ -1222,10 +1229,15 @@ as: :simulation_progress_notification
                 post :uploads, on: :member
                 post :update_appearance, on: :member
                 post :update_reflection_questions, on: :member
+                post :update_interview_questions, on: :member
                 post :update_instructions, on: :member
               end
             jsonapi_resources :reflection_questions, controller: 'projects/reflection_questions' do
               post :uploads, on: :member
+              post :import, on: :collection
+              post :export, on: :collection
+            end
+            jsonapi_resources :interview_questions, controller: 'projects/interview_questions' do
               post :import, on: :collection
               post :export, on: :collection
             end
@@ -1370,6 +1382,7 @@ as: :simulation_progress_notification
               end
               jsonapi_resources :workshop_activities
               jsonapi_resources :workshop_resources
+              jsonapi_resources :workshop_recordings, only: %i[index]
               jsonapi_resources :campaign_assessments, only: %i[index]
             end
 

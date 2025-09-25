@@ -178,6 +178,61 @@ describe Assessments::CopyAssessment do
       expect(translations.length).to eq(assessment.blocks.first.questions.first.translations.length)
     end
 
+    it 'copies instruction translations' do
+      Translation.create!(
+        resource_type: assessment.type,
+        resource_id: assessment.id,
+        translateable_type: 'Instructions',
+        translateable_id: 0,
+        locale: 'ar',
+        data: { 'props' => { 'content' => 'تعليمات التقييم' } }
+      )
+
+      copy_result = described_class.call(assessment.id, user, client.id,
+                                         new_assessment_name: "Copy of #{assessment.name}")[:ok][:assessment]
+
+      instruction_translation = Translation.find_by(
+        resource_type: copy_result.type,
+        resource_id: copy_result.id,
+        translateable_type: 'Instructions'
+      )
+
+      expect(instruction_translation).not_to be_nil
+      expect(instruction_translation.resource_id).to eq(copy_result.id)
+      expect(instruction_translation.translateable_type).to eq('Instructions')
+    end
+
+    it 'copies block translations' do
+      original_translation = Translation.create!(
+        resource_type: assessment.type,
+        resource_id: assessment.id,
+        translateable_type: 'Block',
+        translateable_id: block.id,
+        locale: 'ar',
+        data: { 'props' => { 'staticContent' => { 'value' => '<p>Arabic block content</p>' } } }
+      )
+
+      expect(original_translation).to be_persisted
+      expect(original_translation.translateable_id).to eq(block.id)
+
+      copy_result = described_class.call(assessment.id, user, client.id,
+                                         new_assessment_name: "Copy of #{assessment.name}")[:ok][:assessment]
+
+      copied_block = copy_result.blocks.first
+
+      block_translation = Translation.find_by(
+        resource_type: copy_result.type,
+        resource_id: copy_result.id,
+        translateable_type: 'Block',
+        translateable_id: copied_block.id
+      )
+
+      expect(block_translation).not_to be_nil
+      expect(block_translation.translateable_id).to eq(copied_block.id)
+      expect(block_translation.resource_id).to eq(copy_result.id)
+      expect(block_translation.translateable_type).to eq('Block')
+    end
+
     it 'save TTE as owner_id when owner_id is not passed' do
       superadmin = create(:superadmin)
       copy = described_class.call!(assessment.id, superadmin, nil,

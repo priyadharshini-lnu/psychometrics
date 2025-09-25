@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {
   App,
-  Button, MenuProps, Typography,
+  MenuProps, Typography,
 } from 'antd'
 import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -136,26 +136,14 @@ const getActionsMenuProps = ({ jobRole, onDelete, openModal }: ActionMenuData):M
   const menuItems = [
     jobRole && {
       key: 'edit',
-      label: (
-        <Button
-          type="link"
-          onClick={() => openModal(jobRole)}
-          className="ps-0"
-        >
-          {I18n.t('common.actions.edit')}
-        </Button>),
+      label: I18n.t('common.actions.edit'),
+      onClick: () => openModal(jobRole),
     },
     jobRole && {
       key: 'delete',
-      label: (
-        <Button
-          type="link"
-          onClick={() => onDelete(jobRole)}
-          className="ps-0"
-          danger
-        >
-          {I18n.t('common.actions.delete')}
-        </Button>),
+      label: I18n.t('common.actions.delete'),
+      onClick: () => onDelete(jobRole),
+      danger: true,
     },
   ].filter(m => m) as MenuItem[]
 

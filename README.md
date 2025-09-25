@@ -121,7 +121,7 @@ $> Users::SuperAdmin.create(
 2. start redis server `brew services start redis` or `redis-server`
 3. Run the server `bundle exec rails s -p 3030`
 4. start vite server with command `./bin/vite dev`.
-5. Visit http://localhost:3030
+5. Visit http://www.localhost:3030
 
 or `./bin/dev` insted of points 3 and 4
 
@@ -157,7 +157,7 @@ or `./bin/dev` insted of points 3 and 4
    SSL_KEY="./support/dev-ssl/localhost.key" SSL_CERT="./support/dev-ssl/localhost.pem" SSL=true ./bin/vite dev
    ```
 
-6. Visit https://localhost:3030
+6. Visit https://www.localhost:3030
 
 ## For ttedev.me SSL setup
 
@@ -194,26 +194,24 @@ or `./bin/dev` insted of points 3 and 4
    SSL_KEY="./support/dev-ssl/ttedev.me.key" SSL_CERT="./support/dev-ssl/ttedev.me.pem" SSL=true ./bin/vite dev
    ```
 
-6. Visit https://ttedev.me:3030
+6. Visit https://www.ttedev.me:3030
 
-
-# Reverse Proxy
-Reverse proxy can be used to publicly expose local development environment to receive webhooks.
-
-1. Set `domain` to `project458.com`
-1. Set `subdomain` to `www`
-1. Set `protocol` to `http`; SSL termination happens on the proxy server
-1. Run rails server without SSL
-1. Ensure your ssh public key is added in the proxy server
-1. Start reverse proxy session by running `ssh -R 3030:localhost:3030 root@reverse-proxy.tte-work.com`
-
-Following the above steps, your local development environment should be accessible via `https://www.project458.com`
 
 # Receive emails in local development environment
 
-1. Install mailhog from [here](https://github.com/mailhog/MailHog)
-2. Run mailhog server `brew services start mailhog`
-3. Visit `http://localhost:8025` in your browser to see received emails.
+## Install Mailpit
+
+```
+brew install mailpit && brew services start mailpit
+```
+
+Visit `http://localhost:8025` in your browser to see received emails.
+
+## Set ENV vars
+```
+MAIL_ADDRESS="localhost"
+MAIL_PORT=1025
+```
 
 # Run tests
 

@@ -26,6 +26,9 @@ docker run -d \
 # Install MinIO
 brew install minio/stable/minio
 
+# Install MinIO CLI
+brew install minio/stable/mc
+
 # Create data directory
 mkdir -p ~/minio/data
 
@@ -50,15 +53,25 @@ brew services stop minio/stable/minio
 2. Create required buckets:
    - s3-public-bucket
    - s3-private-bucket
-3. Create access keys for the buckets
+
+3. Set public access for bucket
+   ```
+   mc alias set local http://127.0.0.1:9000
+   mc anonymous set download local/s3-public-bucket
+   ```
 
 ## 3. Configuration Files
 
 ### Update env file
 
 ```bash
-S3_COMPATIBLE_STORAGE_ACCESS_KEY_ID=update-this-key-from-minio-console
-S3_COMPATIBLE_STORAGE_SECRET_ACCESS_KEY=update-this-key-from-minio-console
+S3_COMPATIBLE_STORAGE_PRIVATE_BUCKET="s3-private-bucket"
+S3_COMPATIBLE_STORAGE_PROVIDER="minio"
+S3_COMPATIBLE_STORAGE_PUBLIC_BUCKET="s3-public-bucket"
+S3_COMPATIBLE_STORAGE_REGION="us-east-1"
+S3_COMPATIBLE_STORAGE_ACCESS_KEY_ID="minioadmin"
+S3_COMPATIBLE_STORAGE_SECRET_ACCESS_KEY="minioadmin"
+S3_COMPATIBLE_STORAGE_ENDPOINT="http://localhost:9000"
 ```
 
 ## 4. Testing the Setup

@@ -232,7 +232,7 @@ module Administration
       end
 
       def campaign_params
-        resource_params.permit(:name, :status, :type, :start_date, :end_date)
+        resource_params.permit(:name, :status, :type, :start_date, :end_date, :copy_campaign_factors)
       end
 
       def campaign_options_params

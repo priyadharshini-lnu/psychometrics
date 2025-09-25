@@ -291,6 +291,7 @@ es-ES:
             manage: Gestión
             title: Talleres
             view: Ver
+            view_recordings: Ver grabaciones
     ai_artifacts:
       artifact_results: Resultados de artefactos
       code: Código
@@ -368,6 +369,7 @@ es-ES:
       created_successfully: AI Assistant se ha creado correctamente.
       errors:
         cannot_delete_in_use: No se puede eliminar AI Assistant '%{name}' porque se está utilizando.
+        one_click_idp_assistance_not_enabled: La asistencia de IDP impulsada por IA no está disponible con su plan actual. Póngase en contacto con el administrador.
       form:
         add_output_schema_key: Añadir clave de esquema de salida
         dependencies: Dependencias
@@ -590,6 +592,7 @@ es-ES:
         enable_back: Activar el botón Atrás
         enable_progress: Activar la barra de progreso
         enable_save: Activar el botón de Salvar
+        enable_select_main_factor: Seleccionar un factor como factor principal
         enable_single_question_page: Mostrar una pregunta por página
         enable_single_question_page_confirm: Esto actualizará la aleatorización de bloques por página a 1. ¿Estás seguro?
         enable_timer: Activar temporizador
@@ -1012,12 +1015,29 @@ es-ES:
           approvers: Aprobadores
           approvers_can_edit: Los aprobadores pueden editar
           approvers_not_required: Aprobadores No necesarios
+          digest_frequency:
+            daily: Diario
+            form_label: Frecuencia de digestión
+            weekdays: Días entre semana
+            weekly: Semanal
+          digest_time: Tiempo de resumen
+          digest_timezone: Zona horaria de resumen
+          digest_weekdays:
+            form_label: Resumen Día(s) de la semana
+            friday: Viernes
+            monday: Lunes
+            saturday: Sábado
+            sunday: Domingo
+            thursday: Jueves
+            tuesday: Martes
+            wednesday: Miércoles
           do_not_send_notifications: No enviar notificaciones
           modal_title: Configuración de la aprobación de informes
           qc_users: Usuarios de QC
           remove_modal_success: 'La configuración de aprobación para el id de informe: %{reportId} se ha eliminado correctamente'
           remove_modal_text: "¿Está seguro de que desea eliminar esta configuración para el id de informe: %{reportId}?"
           report: Informe
+          send_digest_emails: Enviar correos electrónicos de resumen
           settings: Ajustes
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ es-ES:
       form:
         active_notice: El estado de la campaña cambiará automáticamente a cerrado en la fecha de finalización seleccionada
         campaign: Campaña
+        copy_factors: Copiar factores
         inactive_notice: El estado de la campaña cambiará automáticamente a activo en la fecha de inicio seleccionada
         instruction: Esto solo se puede habilitar mientras crea una campaña
         name: Nombre
@@ -2230,6 +2251,7 @@ es-ES:
         remove_confirm: Introduzca el nombre de la plantilla actual en el cuadro de texto para eliminarla
         success: "%{idpName} se ha eliminado correctamente."
       add_idp_template: Añadir plantilla IDP
+      ai_assistant: Asistente de IA
       ai_assisted_idp_enabled: PDI asistido por IA
       ai_enabled: Inteligencia Artificial
       ai_settings: Ajustes AI
@@ -2240,7 +2262,26 @@ es-ES:
       background_image: Imagen de fondo
       behavioral_skills: Habilidades conductuales
       client_skills: Competencias de los clientes
+      delete_skill: "¿Estás seguro de que quieres eliminar la habilidad porque también eliminará todas las acciones de desarrollo conectadas?"
       details_updated: Datos del PDI actualizados correctamente
+      development_actions:
+        add_from_library: Agregar desde la biblioteca
+        completion: Terminación
+        create_development_actions_with_ai: Crear acciones de desarrollo con IA para %{skillName}
+        create_from_ai: Crear desde IA
+        create_my_own: Crear el mío
+        custom: Costumbre
+        date_range: Fecha de inicio - Fecha de finalización
+        edit_plan_to_add_development_actions: Edite Plan y agregue Acciones de Desarrollo.
+        errors:
+          invalid_learning_style: "'%{learning_style}' no es un estilo de aprendizaje válido. Las opciones válidas son: %{valid_styles}"
+          learning_style_blank: El estilo de aprendizaje no puede estar en blanco
+        generate_by_ai: Generar por IA
+        generate_more: Generar más
+        heading: Acciones de Habilidades/Desarrollo
+        manage_skills: Gestionar habilidades
+        no_development_actions: No tienes acciones de desarrollo
+      document_ai_assistant: Asistente de IA de análisis de documentos
       edit_template: Editar plantilla IDP
       enter_tag_or_skills_error: Selecciona al menos una etiqueta o habilidad
       enter_template_description: Descripción
@@ -2263,6 +2304,8 @@ es-ES:
       global_skills: Habilidades globales
       idp: PDI
       idp_template: Añadir plantilla IDP
+      interview_questions: Preguntas de la entrevista
+      interview_questions_updated: Preguntas de la entrevista actualizadas con éxito.
       intro_message: Mensaje de introducción
       intro_message_hint: Para modificar el mensaje de introducción, primero guarde la plantilla IDP para habilitar estas configuraciones.
       intro_message_success: Mensaje de introducción guardado exitosamente
@@ -2274,6 +2317,7 @@ es-ES:
         mercer_only: Sólo logotipo Mercer
         none: Sin logotipos
       logo_type_label: Tipo de logotipo
+      no_interview_questions_selected: No se seleccionaron preguntas de entrevista
       no_reflection_questions_selected: No se han seleccionado preguntas de reflexión
       none: Ninguno
       one_click_idp_enabled: IDP con un clic activado
@@ -2282,7 +2326,16 @@ es-ES:
       reflection_questions_hint: Para modificar las preguntas de reflexión, guarde primero la plantilla IDP para habilitar estos ajustes.
       reflection_questions_updated: Preguntas de reflexión actualizadas correctamente.
       remove: Eliminar
+      remove_skill: Eliminar habilidad
+      revert_skill_to_public:
+        errors:
+          skill_already_public: La habilidad ya es pública
+          skill_not_found: Habilidad no encontrada
+        success:
+          base_message: La habilidad '%{skill_name}' ahora es visible para su gerente
+          with_approval: "%{base_message} y su plan IDP se han presentado para su aprobación"
       select_by_tags: Seleccionar por etiquetas
+      select_interview_question: Comience a escribir para buscar y seleccionar la pregunta
       select_reflection_question: Empieza a escribir para buscar y seleccionar la pregunta
       select_skill_gap_report: Seleccionar el informe sobre las carencias de competencias
       select_specific_skills: Seleccionar competencias específicas
@@ -2308,12 +2361,14 @@ es-ES:
       subtitle_text: Texto del subtítulo
       tab:
         development_actions: Acciones de desarrollo
+        interview_questions: Preguntas de la entrevista
         reflection_questions: Preguntas de reflexión
         settings: Ajustes
         templates: Plantillas
       technical_skills: Competencias técnicas
       template_details: Detalles de la plantilla
       title_text: Texto del título
+      update_interview_questions: Actualizar preguntas de la entrevista
       update_reflection_questions: Preguntas de reflexión sobre la actualización
     idp_setting:
       allow_global_skills: Permitir competencias globales
@@ -2516,6 +2571,35 @@ es-ES:
         skillvue:
           api_key_present: La clave API ya está presente en otro proyecto
       view_all_schedules: Ver todos los horarios de Mettl
+    interview_questions:
+      delete_confirmation: "¿Estás seguro de que quieres eliminar esta pregunta de la entrevista?"
+      description: Descripton
+      export:
+        action: Preguntas de la entrevista de exportación
+        details: Detalles del archivo
+        failure_msg: Error al exportar el archivo.
+        success_msg: Exportación de preguntas de entrevista en curso. Por favor, comprueba el estado en las notificaciones.
+      form:
+        description: Descripton
+        mandatory: Obligatorio
+        question: Pregunta
+        question_type: Tipo de pregunta
+        question_type_audio: Audio
+        question_type_video: Vídeo
+        time_limit: Límite de tiempo (seg)
+        title: Pregunta de la entrevista
+      import:
+        action: Importar preguntas de la entrevista
+        errors:
+          invalid_required_column_format: No válido Formato de valor de columna obligatorio %{row}
+          invalid_required_type_format: Formato de valor de columna QuestionType no válido %{row}
+          invalid_time_limit_column_format: Formato de valor de columna de límite de tiempo no válido %{row}
+          missing_description: Falta contenido de descripción %{row}
+          missing_question: Contenido de la pregunta que falta %{row}
+          save_failed: Guardar %{message} fallido
+        failure_msg: Error al importar el archivo.
+        success_msg: Importación de preguntas de entrevista en curso. Por favor, comprueba el estado en las notificaciones.
+      question: Pregunta
     invited_subject:
       add_btn: Añadir asunto
       assessment_center: 'Centro de evaluación:'
@@ -3186,7 +3270,9 @@ es-ES:
         dp_consent_version: Versión política
         errors:
           cannot_disable_while_campaign_enabled: No se puede desactivar la grabación de videollamadas porque está activada para una o más campañas en este proyecto
+          min_retention: No puede ser inferior a 1 día
           policy_version_format: Sólo se admiten números enteros
+          required: Obligatorio
         mask_identity_for_examus: Datos de la máscara de Examus Proctoring
         mask_identity_for_hogan: Datos de la máscara de Hogan
         mask_identity_for_iiht: Datos de la máscara del IIHT
@@ -3326,9 +3412,12 @@ es-ES:
         code: Código
         code_constraint: El código debe empezar por una letra minúscula y sólo puede contener letras minúsculas, números y guiones bajos
         delete: Borrar
+        description: Descripción
+        description_alias: Descripción / Alias
         import_factors: Factores de importación
         invalid_factor_params: Formato de parámetros de factores de campaña no válido
         name: Nombre
+        name_alias: Nombre / Alias
         no_boundary_space: El nombre no puede empezar ni terminar con un espacio
         too_many_factors: No se pueden crear más de %{count} factores de campaña
         tools: Herramientas
@@ -3347,6 +3436,19 @@ es-ES:
       property_panel:
         add_new_condition: Agregar nueva condición
         apply_color_label: 'Luego aplique el siguiente color:'
+        custom_factor_fields:
+          percentage: Porcentaje
+          questions_attempted: Intento
+          questions_correct: Correcto
+          questions_incorrect: Incorrecto
+          questions_not_attempted: No intentado
+          questions_partial_correct: Parcialmente correcto
+          total_questions: Total
+        custom_factor_placeholder: Seleccionar campos de factor personalizados
+        factor_value_type:
+          custom: Costumbre
+          default: Predeterminado
+          label: Tipo de valor de factor
         graph_condition_types:
           default: Predeterminado
           graph_value: Valor del gráfico
@@ -3356,6 +3458,7 @@ es-ES:
         manage_graph_value_condition: Administrar la condición del valor del gráfico
         manage_styles_condition: Administrar la condición de los estilos
         missing_value: Valor faltante
+        pie_semi_circle: Semicírculo
         predicates:
           equal_to: Igual a
           greater_than: Mayor que
@@ -3439,6 +3542,7 @@ es-ES:
         translations: Traducciones
       title: Configuración del informe
     reports:
+      broken_image_url: Verifique la URL de su imagen e intente importarla nuevamente
       bulk_marked_as_done: Bulto Marcado como Hecho
       bulk_upload:
         choose_file: Elegir archivo
@@ -3608,16 +3712,19 @@ es-ES:
         campaign_assessment_group: Grupo del Assessment Center
         campaign_name: Nombre de la campaña
         duration: Duración
+        link_to_view_recordings: Enlace para ver grabaciones
         managers: Gerentes
         meeting_link: Enlace a la reunión
         name: Nombre
         participants: Participantes
         prework: Trabajo previo
+        recording_date: Fecha de grabación
         resource_link: Enlace
         resource_name: Nombre
         schedule_time: Horario
         scheduling_status: Estado de la programación
         seats: Asientos
+        serial_no: Número de serie
         start_time: Fecha y hora
         subject: Asunto
         title: Título
@@ -3642,6 +3749,7 @@ es-ES:
         managers: Directores de centro
         none: Ninguno
         not_allowed: No permitido
+        recording_enabled: Grabación habilitada
         remaining: Plazas restantes
         scheduling_lead_time: Plazos de programación
         scheduling_tooltip: El usuario podrá reservar una franja horaria hasta %{date}
@@ -3705,6 +3813,7 @@ es-ES:
         activities: Actividades
         assessment_center: Assessment Center
         invites: Invita
+        recordings: Grabaciones
         resources: Recursos
         subjects: Temas
     scoring:
@@ -4145,6 +4254,15 @@ es-ES:
           other: Otros
           qualification: Calificación
           technical: Técnico
+      move_question:
+        cancel: Cancelar
+        move: Mover
+        moveAfter: Mover después
+        moveBefore: Mover antes
+        moveQuestion: 'Pregunta de traslado: %{question}'
+        position: Posición
+        selectTargetQuestion: Seleccione la pregunta objetivo
+        title: Pregunta de traslado
       property_panel:
         add_n_a_option: Añadir opción N/A
         allow_content_copy: Permitir la copia de contenidos
@@ -4188,6 +4306,18 @@ es-ES:
         question_description: Descripción de las filas
         validation_response_type: Tipo de respuesta de validación
         voice_dictation: Dictado de voz
+      question_info_bar:
+        add_display_logic: Agregar lógica de visualización
+        add_skip_logic: Agregar lógica de exclusión
+        are_you_sure_to_delete_this_question: "¿Estás seguro de eliminar esta pregunta?"
+        default_choices: Opciones predeterminadas
+        delete_question: Eliminar pregunta
+        delete_the_question: Eliminar la pregunta
+        move_question: Pregunta de traslado
+        randomization: Aleatorización
+        save_as_a_template: Guardar como plantilla
+        this_question_has_default_choices: Esta pregunta tiene opciones predeterminadas
+        this_question_has_randomization: Esta pregunta tiene aleatorización
     table:
       entries:
         selected:

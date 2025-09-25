@@ -4,9 +4,12 @@ import _ from 'lodash'
 import ApiAction from 'interfaces/ApiAction'
 import * as t from 'io-ts'
 import { getRequestQuery, updateUserIdpSkillComments } from './utils'
+import { FetchSkillGapsResponse } from
+  '~/modules/endUser/modules/campaigns/core/idp/idpForm'
 
 export const FETCH_USER_IDP_PLAN = 'IDP/MY_PLAN/FETCH_USER_IDP_PLAN'
 const UPDATE_USER_IDP_PLAN = 'IDP/MY_PLAN/UPDATE_USER_IDP_PLAN'
+const SET_USER_IDP_PLAN_STATUS = 'IDP/MY_PLAN/SET_USER_IDP_PLAN_STATUS'
 const FETCH_USER_IDP_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_USER_IDP_DEVELOPMENT_ACTIONS'
 const FETCH_USER_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_USER_IDP_SKILLS'
 const FETCH_AVAILABLE_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_AVAILABLE_DEVELOPMENT_ACTIONS'
@@ -29,7 +32,7 @@ const ADD_USER_IDP_COMMENT_REPLY_BY_SKILL_ID = 'IDP/MY_PLAN/ADD_USER_IDP_COMMENT
 const MARK_COMMENT_RESOLVED = 'IDP/MY_PLAN/MARK_COMMENT_RESOLVED'
 const MARK_COMMENT_UNRESOLVED = 'IDP/MY_PLAN/MARK_COMMENT_UNRESOLVED'
 const SHOW_COMMENTS_FOR_SKILL_ID = 'IDP/MY_PLAN/SHOW_COMMENTS_FOR_SKILL_ID'
-
+const FETCH_SKILL_GAPS_REPORT = 'IDP/MY_PLAN/FETCH_SKILL_GAPS_REPORT'
 
 export const AsyncDownloadTR = t.type({
   status: t.string,
@@ -48,6 +51,7 @@ export const AsyncDownloadTR = t.type({
 interface UserIdpPlan {
   status: string | null;
   selfRatingEnabled: boolean;
+  oneClickIdpEnabled: boolean;
   skillGapReportAvailable: boolean | null;
   userIdpSkills: Skill[];
   userIdpDevelopmentActions: DevelopmentAction[];
@@ -62,6 +66,7 @@ interface UserIdpPlan {
   userIdpCommentsBySkillId: Record<string, UserIdpComment[]>;
   userIdpCommentsBySkillIdTotalCount: Record<string, number>;
   introMessage: string;
+  skillGapReportData:FetchSkillGapsResponse | null
 }
 
 export interface UserIdpComment {
@@ -177,6 +182,7 @@ export const updateDevelopmentActionProgressInPlan = (
     body: developmentAction,
   },
 })
+
 
 interface UserIdpCommentsResponse {
   data: UserIdpComment[]
@@ -315,6 +321,11 @@ export const updateUserIdpPlan = (userId: string, status: UserIdpPlanStatus) => 
   },
 })
 
+export const setUserIdpPlanStatus = (status: UserIdpPlanStatus) => ({
+  type: SET_USER_IDP_PLAN_STATUS,
+  status,
+})
+
 export const generateDevelopmentActionsByAI = (payload: GenerateDevelopmentActionsByAIPayload) => ({
   type: GENERATE_DEVELOPMENT_ACTIONS_BY_AI,
   request: {
@@ -354,6 +365,17 @@ export const fetchIdpSkills = (filters: object | null = null):ApiAction<Skill[]>
   },
 })
 
+
+export const fetchSkillGaps = (userId: string, params = {}):ApiAction<FetchSkillGapsResponse> => ({
+  type: FETCH_SKILL_GAPS_REPORT,
+  request: {
+    method: 'get',
+    body: params,
+    url: `/skill_gap_reports/${userId}`,
+    camelize: false,
+  },
+})
+
 export const HANDLERS = {
   [FETCH_USER_IDP_PLAN]: (state, action) => {
     const userIdpPlan = action.response.data
@@ -367,6 +389,7 @@ export const HANDLERS = {
       status: userIdpPlan.status,
       skillGapReportAvailable: userIdpPlan.skillGapReportAvailable,
       selfRatingEnabled: userIdpPlan.selfRatingEnabled,
+      oneClickIdpEnabled: userIdpPlan.oneClickIdpEnabled,
       user: userIdpPlan.user,
       introMessage: userIdpPlan.instructions.content,
       unreadCommentsCount: userIdpPlan.unreadCommentsCount,
@@ -428,13 +451,15 @@ export const HANDLERS = {
       },
     }
   },
+
   [ADD_DEVELOPMENT_ACTION]: (state, action) => {
-    const developmentAction = action.data
+    const developmentActions:Partial<DevelopmentAction>[] = action.data
+
     return {
       ...state,
       userIdpDevelopmentActions: {
         ...state.userIdpDevelopmentActions,
-        [developmentAction.id]: developmentAction,
+        ...developmentActions,
       },
     }
   },
@@ -452,6 +477,10 @@ export const HANDLERS = {
   [UPDATE_USER_IDP_PLAN]: (state, action) => ({
     ...state,
     status: action.response.status,
+  }),
+  [SET_USER_IDP_PLAN_STATUS]: (state, action) => ({
+    ...state,
+    status: action.status,
   }),
   [SAVE_USER_IDP_SKILLS]: (state, action) => {
     const { skillType: requestedSkillType, data: skills } = action.response
@@ -650,6 +679,11 @@ export const HANDLERS = {
       showCommentsForSkillId: skillId?.toString(),
     }
   },
+
+  [FETCH_SKILL_GAPS_REPORT]: (state, action) => ({
+    ...state,
+    skillGapReportData: action.response,
+  }),
 }
 
 export const defaultState: UserIdpPlan = {
@@ -657,6 +691,7 @@ export const defaultState: UserIdpPlan = {
   AIGeneratedDevelopmentActions: {},
   status: null,
   selfRatingEnabled: false,
+  oneClickIdpEnabled: false,
   skillGapReportAvailable: null,
   userIdpDevelopmentActions: [],
   userIdpSkills: [],
@@ -669,6 +704,7 @@ export const defaultState: UserIdpPlan = {
   showCommentsForSkillId: null,
   userIdpCommentsBySkillId: {},
   userIdpCommentsBySkillIdTotalCount: {},
+  skillGapReportData: null,
 }
 
 export default function reducer (state = defaultState, action) {

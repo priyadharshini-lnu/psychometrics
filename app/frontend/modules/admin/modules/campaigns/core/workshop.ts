@@ -40,10 +40,12 @@ export const WorkshopTR = t.type({
   workshopAssessors: t.array(userDetailsTR),
   workshopResources: t.array(workshopResourceTR),
   campaignAssessmentGroup: campaignAssessmentGroupTR,
+  videoRecordingEnabled: t.boolean,
   meta: t.union([
     t.type({
       permissions: t.type({
         update: t.boolean,
+        viewRecordings: t.boolean,
       }),
     }), t.undefined]),
 })

@@ -4,6 +4,7 @@ import Result from '~/modules/reports/models/Result'
 import MockResults from '~/modules/reports/consts/MockResults'
 import Scoring from '~/modules/reports/models/Scoring'
 import AppStore from './AppStore'
+import { CUSTOM_FACTOR_VALUE_FIELDS } from '~/modules/reports/consts/Report'
 
 const ResultStore = function () {
   this.results = {}
@@ -48,6 +49,10 @@ _.extend(ResultStore.prototype, {
           this.results[assessmentId].scoring[factor.id] = {
             results: _.map(MockResults[sourceType][keys[i % mockLength]].results, r => new Scoring(r)),
             name: factor.name,
+            ..._.reduce(CUSTOM_FACTOR_VALUE_FIELDS, (res, field) => {
+              res[field] = MockResults[sourceType][keys[i % mockLength]][field] || null
+              return res
+            }, {}),
           }
         })
         break

@@ -1,6 +1,6 @@
 import {
   Button, Flex, message, Modal, Dropdown,
-  notification, Space,
+  notification, Space, Tooltip, Spin,
 } from 'antd'
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
@@ -53,6 +53,8 @@ const connector = connect((state: RootState) => ({
   idpDevelopmentActions: state.campaigns.idp.userIdpDevelopmentActions,
   idpConfig: getIdpSettings(state),
   unreadCommentsCount: state.campaigns.idp.unreadCommentsCount,
+  skillGapReportAvailable: state.campaigns.idp.skillGapReportAvailable,
+  skillGapReportData: state.campaigns.idp.skillGapReportData,
 }),
 {
   updateUserIdpPlan,
@@ -75,10 +77,10 @@ const MyPlanComponent = ({
   saveUserIdpDevelopmentActions,
 }: Props) => {
   const [editMode, setEditMode] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const { tab: paramTab } = useParams() as {tab: string}
 
   const { requireAllDevelopmentActionsComplete, managerApprovesIdp } = idpConfig
-
 
   const isPlanEditable = [
     USER_IDP_PLAN_STATUS.DRAFT,
@@ -96,7 +98,6 @@ const MyPlanComponent = ({
 
   const showEditPlanButton = !['reflective_questions'].includes(paramTab)
 
-
   const handleCompletion = () => {
     const hasIncompleteDAs = _.values(idpDevelopmentActions).some(action => action.progress < 100)
     if (hasIncompleteDAs && requireAllDevelopmentActionsComplete) {
@@ -112,38 +113,64 @@ const MyPlanComponent = ({
         title: I18n.t('idp.development_actions.incomplete_warning'),
         content: I18n.t('idp.development_actions.incomplete_warning_message'),
         onOk: () => {
-          updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED)
+          updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED).then(() => {
+            message.success(I18n.t('idp.development_actions.success'))
+          }).catch((error) => {
+            message.error(error)
+          })
         },
       })
     } else {
-      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED)
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.COMPLETED).then(() => {
+        message.success(I18n.t('idp.development_actions.success'))
+      }).catch((error) => {
+        message.error(error)
+      })
     }
   }
 
   const handleSubmitPlan = () => {
+    setIsLoading(true)
     if (managerApprovesIdp) {
       updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PENDING_APPROVAL).catch((error) => {
         message.error(error)
+      }).finally(() => {
+        setIsLoading(false)
       })
     } else {
       updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.APPROVED).catch((error) => {
         message.error(error)
+      }).finally(() => {
+        setIsLoading(false)
       })
     }
   }
 
   const handleStartPlan = () => {
-    updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.IN_PROGRESS)
+    setIsLoading(true)
+    updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.IN_PROGRESS).catch((error) => {
+      message.error(error)
+    }).finally(() => {
+      setIsLoading(false)
+    })
   }
 
   const handleSave = () => {
     setEditMode(false)
+    setIsLoading(true)
     const actionsArray = _.values(filteredDevelopmentActions(idpDevelopmentActions))
     saveUserIdpDevelopmentActions(currentUser.id, actionsArray).then(() => (
       fetchUserIdpPlan(currentUser.id)
-    ))
+    )).then(() => {
+      message.success(I18n.t('idp.changes_saved_to_plan'))
+    })
+      .catch((error) => {
+        message.error(error)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
-
 
   const {
     asyncLoading, makeAsyncRequest,
@@ -153,7 +180,6 @@ const MyPlanComponent = ({
     responseType: AsyncDownloadTR,
     pollingInterval: 15,
   })
-
 
   const menu = {
     items: [{
@@ -189,30 +215,40 @@ const MyPlanComponent = ({
 
   const operations = (
     <Flex gap={8}>
+      <Dropdown menu={menu} trigger={['click']}>
+        <Tooltip title={I18n.t('common.actions.download')}>
+          <Button loading={asyncLoading} icon={<DownloadOutlined />}>
+            <Space>
+              <DownOutlined />
+            </Space>
+          </Button>
+        </Tooltip>
+      </Dropdown>
       {showEditPlanButton && (
         editMode ? (
           <Button
-            type="primary"
             onClick={handleSave}
+            type="primary"
           >
-            {I18n.t('common.actions.save')}
+            {I18n.t('idp.development_actions.save_plan')}
           </Button>
         ) : (
           (
             <Button
               disabled={!isPlanEditable}
-              type="primary"
               icon={<EditOutlined />}
               onClick={() => setEditMode(true)}
             >
               {I18n.t('idp.edit_plan')}
             </Button>
+
           )
         ))}
       {!editMode && (
         <>
           {allowSubmitting && (
             <Button
+              type="primary"
               onClick={handleSubmitPlan}
             >
               {I18n.t('idp.development_actions.submit_plan')}
@@ -234,14 +270,7 @@ const MyPlanComponent = ({
               {I18n.t('idp.development_actions.mark_as_complete')}
             </Button>
           )}
-          <Dropdown menu={menu} trigger={['click']}>
-            <Button loading={asyncLoading} icon={<DownloadOutlined />}>
-              <Space>
-                {I18n.t('common.actions.download')}
-                <DownOutlined />
-              </Space>
-            </Button>
-          </Dropdown>
+
         </>
       )}
     </Flex>
@@ -250,11 +279,14 @@ const MyPlanComponent = ({
   return (
     <IdpPageLayoutWrapper>
       <Flex className={styles.pageContent}>
-        <UserDevelopmentPlan
-          idpUserId={currentUser.id}
-          editMode={editMode}
-          operations={operations}
-        />
+        <Spin spinning={isLoading}>
+          <UserDevelopmentPlan
+            idpUserId={currentUser.id}
+            editMode={editMode}
+            operations={operations}
+          />
+        </Spin>
+
       </Flex>
     </IdpPageLayoutWrapper>
   )

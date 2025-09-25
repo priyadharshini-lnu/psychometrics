@@ -291,6 +291,7 @@ th:
             manage: จัดการ
             title: เวิร์กช็อป
             view: ดู
+            view_recordings: ดูการบันทึก
     ai_artifacts:
       artifact_results: ผลลัพธ์สิ่งประดิษฐ์
       code: รหัส
@@ -368,6 +369,7 @@ th:
       created_successfully: ผู้ช่วย AI ถูกสร้างขึ้นสำเร็จแล้ว
       errors:
         cannot_delete_in_use: ไม่สามารถลบ AI Assistant '%{name}' ได้เนื่องจากมีการใช้งานอยู่
+        one_click_idp_assistance_not_enabled: ความช่วยเหลือ IDP ที่ขับเคลื่อนด้วย AI ไม่สามารถใช้ได้กับแผนปัจจุบันของคุณ โปรดติดต่อผู้ดูแลระบบ
       form:
         add_output_schema_key: เพิ่มคีย์แบบแผนเอาต์พุต
         dependencies: การพึ่งพา
@@ -590,6 +592,7 @@ th:
         enable_back: เปิดใช้งานปุ่มย้อนกลับ
         enable_progress: เปิดใช้งานแถบความคืบหน้า
         enable_save: เปิดใช้งานปุ่มบันทึก
+        enable_select_main_factor: เลือกปัจจัยเป็นปัจจัยหลัก
         enable_single_question_page: แสดงหนึ่งคําถามต่อหน้า
         enable_single_question_page_confirm: ระบบจะเปลี่ยนค่าการสุ่มบล็อกต่อหน้าเป็น 1 คุณแน่ใจหรือไม่ว่าต้องการดำเนินการนี้?
         enable_timer: เปิดใช้งานตัวจับเวลา
@@ -1012,12 +1015,29 @@ th:
           approvers: ผู้อนุมัติ
           approvers_can_edit: ผู้อนุมัติสามารถแก้ไขได้
           approvers_not_required: ไม่จําเป็นต้องมีผู้อนุมัติ
+          digest_frequency:
+            daily: ทุกวัน
+            form_label: ความถี่ย่อย
+            weekdays: วันธรรมดา
+            weekly: รายสัปดาห์
+          digest_time: เวลาย่อย
+          digest_timezone: เขตเวลาสรุป
+          digest_weekdays:
+            form_label: Digest วันธรรมดา
+            friday: วันศุกร์
+            monday: วันจันทร์
+            saturday: วันเสาร์
+            sunday: วันอาทิตย์
+            thursday: วันพฤหัสบดี
+            tuesday: วันอังคาร
+            wednesday: วันพุธ
           do_not_send_notifications: อย่าส่งอีเมลถึงผู้ใช้[QC, Approvers & Approval notification]
           modal_title: การตั้งค่าการอนุมัติรายงาน
           qc_users: ผู้ใช้ QC
           remove_modal_success: 'การตั้งค่าการอนุมัติสําหรับรหัสรายงาน: %{reportId} ถูกลบเรียบร้อยแล้ว '
           remove_modal_text: 'คุณแน่ใจหรือไม่ว่าต้องการลบการตั้งค่านี้สําหรับรหัสรายงาน: %{reportId}'
           report: รายงาน
+          send_digest_emails: ส่งอีเมลสรุป
           settings: การตั้งค่า
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ th:
       form:
         active_notice: สถานะแคมเปญจะเปลี่ยนเป็นปิดโดยอัตโนมัติในวันที่สิ้นสุดที่เลือก
         campaign: แคมเปญ
+        copy_factors: คัดลอกปัจจัย
         inactive_notice: สถานะแคมเปญจะเปลี่ยนไปใช้งานโดยอัตโนมัติในวันที่เริ่มต้นที่เลือก
         instruction: สามารถเปิดใช้งานได้ในขณะที่สร้างแคมเปญเท่านั้น
         name: ชื่อ
@@ -2230,6 +2251,7 @@ th:
         remove_confirm: ป้อนชื่อเทมเพลตปัจจุบันที่ระบุด้านล่างในกล่องข้อความเพื่อลบเทมเพลต
         success: "%{idpName} ถูกลบออกเรียบร้อยแล้ว"
       add_idp_template: เพิ่มเทมเพลต IDP
+      ai_assistant: ผู้ช่วย AI
       ai_assisted_idp_enabled: ระบบช่วยเหลือด้วย AI สำหรับการระบุตัวตนภายในประเทศ
       ai_enabled: ขับเคลื่อนด้วยปัญญาประดิษฐ์
       ai_settings: การตั้งค่า AI
@@ -2240,7 +2262,26 @@ th:
       background_image: ภาพพื้นหลัง
       behavioral_skills: ทักษะพฤติกรรม
       client_skills: ทักษะของลูกค้า
+      delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะเพราะมันจะลบการดําเนินการพัฒนาที่เชื่อมต่อทั้งหมดด้วย?
       details_updated: รายละเอียดผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จแล้ว
+      development_actions:
+        add_from_library: เพิ่มจากห้องสมุด
+        completion: เสร็จ สมบูรณ์
+        create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ %{skillName}
+        create_from_ai: สร้างจาก AI
+        create_my_own: สร้างของตัวเอง
+        custom: ธรรมเนียม
+        date_range: วันที่เริ่มต้น - วันที่สิ้นสุด
+        edit_plan_to_add_development_actions: แก้ไขแผนและเพิ่มการดําเนินการเพื่อการพัฒนา
+        errors:
+          invalid_learning_style: "'%{learning_style}' ไม่ใช่รูปแบบการเรียนรู้ที่ถูกต้อง ตัวเลือกที่ถูกต้องคือ: %{valid_styles}"
+          learning_style_blank: รูปแบบการเรียนรู้ต้องไม่ว่างเปล่า
+        generate_by_ai: สร้างโดย AI
+        generate_more: สร้างมากขึ้น
+        heading: ทักษะ/การดําเนินการพัฒนา
+        manage_skills: จัดการทักษะ
+        no_development_actions: คุณไม่มีการดําเนินการพัฒนา
+      document_ai_assistant: ผู้ช่วย AI การวิเคราะห์เอกสาร
       edit_template: แก้ไขเทมเพลต IDP
       enter_tag_or_skills_error: เลือกอย่างน้อยหนึ่งแท็กหรือทักษะ
       enter_template_description: คำอธิบาย
@@ -2263,6 +2304,8 @@ th:
       global_skills: ทักษะระดับโลก
       idp: ผู้พลัดถิ่น
       idp_template: เพิ่มเทมเพลต IDP
+      interview_questions: คําถามสัมภาษณ์
+      interview_questions_updated: คําถามสัมภาษณ์อัปเดตเรียบร้อยแล้ว
       intro_message: ข้อความแนะนํา
       intro_message_hint: หากต้องการแก้ไขข้อความแนะนําโปรดบันทึกเทมเพลต IDP ก่อนเพื่อเปิดใช้งานการตั้งค่าเหล่านี้
       intro_message_success: บันทึกข้อความแนะนําเรียบร้อยแล้ว
@@ -2274,6 +2317,7 @@ th:
         mercer_only: โลโก้ Mercer เท่านั้น
         none: ไม่มีโลโก้
       logo_type_label: ประเภทโลโก้
+      no_interview_questions_selected: ไม่มีคําถามสัมภาษณ์ที่เลือก
       no_reflection_questions_selected: ไม่ได้เลือกคําถามไตร่ตรอง
       none: ไม่มีใคร
       one_click_idp_enabled: เปิดใช้งาน IDP ด้วยคลิกเดียว
@@ -2282,7 +2326,16 @@ th:
       reflection_questions_hint: หากต้องการแก้ไขคําถามเกี่ยวกับการสะท้อน โปรดบันทึกเทมเพลต IDP ก่อนเพื่อเปิดใช้งานการตั้งค่าเหล่านี้
       reflection_questions_updated: คําถามสะท้อนอัปเดตเรียบร้อยแล้ว
       remove: ถอด
+      remove_skill: ลบสกิลออก
+      revert_skill_to_public:
+        errors:
+          skill_already_public: ทักษะเป็นสาธารณะแล้ว
+          skill_not_found: ไม่พบทักษะ
+        success:
+          base_message: ผู้จัดการของคุณมองเห็นทักษะ '%{skill_name}' แล้ว
+          with_approval: "%{base_message} และแผน IDP ของคุณได้รับการอนุมัติแล้ว"
       select_by_tags: เลือกตามแท็ก
+      select_interview_question: เริ่มพิมพ์เพื่อค้นหาและเลือกคําถาม
       select_reflection_question: เริ่มพิมพ์เพื่อค้นหาและเลือกคําถาม
       select_skill_gap_report: เลือกรายงานช่องว่างทักษะ
       select_specific_skills: เลือกทักษะเฉพาะ
@@ -2308,12 +2361,14 @@ th:
       subtitle_text: ข้อความคําบรรยาย
       tab:
         development_actions: การดําเนินการพัฒนา
+        interview_questions: คําถามสัมภาษณ์
         reflection_questions: คําถามไตร่ตรอง
         settings: การตั้งค่า
         templates: แม่ แบบ
       technical_skills: ทักษะทางเทคนิค
       template_details: รายละเอียดเทมเพลต
       title_text: ข้อความชื่อเรื่อง
+      update_interview_questions: อัปเดตคําถามสัมภาษณ์
       update_reflection_questions: อัปเดตคําถามสะท้อน
     idp_setting:
       allow_global_skills: อนุญาตทักษะระดับโลก
@@ -2516,6 +2571,35 @@ th:
         skillvue:
           api_key_present: คีย์ API มีอยู่ในโปรเจ็กต์อื่นแล้ว
       view_all_schedules: ดูตาราง Mettl ทั้งหมด
+    interview_questions:
+      delete_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบคําถามสัมภาษณ์นี้?
+      description: คําอธิบาย
+      export:
+        action: ส่งออกคําถามสัมภาษณ์
+        details: รายละเอียดไฟล์
+        failure_msg: เกิดข้อผิดพลาดขณะส่งออกไฟล์
+        success_msg: กําลังส่งออกคําถามสัมภาษณ์ โปรดตรวจสอบสถานะในการแจ้งเตือน
+      form:
+        description: คําอธิบาย
+        mandatory: บังคับ
+        question: ปัญหา
+        question_type: ประเภทคําถาม
+        question_type_audio: เสียง
+        question_type_video: วีดิทัศน์
+        time_limit: จํากัดเวลา (วินาที)
+        title: คําถามสัมภาษณ์
+      import:
+        action: นําเข้าคําถามสัมภาษณ์
+        errors:
+          invalid_required_column_format: รูปแบบค่าคอลัมน์บังคับไม่ถูกต้อง %{row}
+          invalid_required_type_format: รูปแบบค่าคอลัมน์ QuestionType ไม่ถูกต้อง %{row}
+          invalid_time_limit_column_format: รูปแบบค่าคอลัมน์ การจํากัดเวลา ไม่ถูกต้อง %{row}
+          missing_description: ไม่มีเนื้อหาคําอธิบาย %{row}
+          missing_question: "%{row} เนื้อหาคําถามที่ขาดหายไป"
+          save_failed: บันทึก %{message} ที่ล้มเหลว
+        failure_msg: เกิดข้อผิดพลาดขณะนําเข้าไฟล์
+        success_msg: กําลังนําเข้าคําถามสัมภาษณ์ โปรดตรวจสอบสถานะในการแจ้งเตือน
+      question: ปัญหา
     invited_subject:
       add_btn: เพิ่มหัวเรื่อง
       assessment_center: 'ศูนย์ประเมิน:'
@@ -3182,7 +3266,9 @@ th:
         dp_consent_version: เวอร์ชันของนโยบาย
         errors:
           cannot_disable_while_campaign_enabled: ไม่สามารถปิดการบันทึกการโทรวิดีโอได้ เนื่องจากมีการเปิดใช้งานสำหรับแคมเปญหนึ่งหรือมากกว่าในโครงการนี้
+          min_retention: ต้องไม่น้อยกว่า 1 วัน
           policy_version_format: อนุญาตให้ใช้ได้เฉพาะจํานวนเต็มเท่านั้น
+          required: ต้องระบุ
         mask_identity_for_examus: ข้อมูลหน้ากากสําหรับ Examus Proctoring
         mask_identity_for_hogan: ข้อมูลหน้ากากสําหรับ Hogan
         mask_identity_for_iiht: ข้อมูลหน้ากากสําหรับ IIHT
@@ -3322,9 +3408,12 @@ th:
         code: รหัส
         code_constraint: โค้ดต้องขึ้นต้นด้วยตัวพิมพ์เล็ก และสามารถมีได้เฉพาะตัวพิมพ์เล็ก ตัวเลข และขีดล่างเท่านั้น
         delete: ลบ
+        description: คำอธิบาย
+        description_alias: คําอธิบาย / นามแฝง
         import_factors: ปัจจัยการนําเข้า
         invalid_factor_params: รูปแบบพารามิเตอร์ปัจจัยแคมเปญไม่ถูกต้อง
         name: ชื่อ
+        name_alias: ชื่อ / นามแฝง
         no_boundary_space: ชื่อไม่สามารถขึ้นต้นหรือลงท้ายด้วยช่องว่าง
         too_many_factors: สร้างปัจจัยแคมเปญมากกว่า %{count} ไม่ได้
         tools: เครื่องมือ
@@ -3343,6 +3432,19 @@ th:
       property_panel:
         add_new_condition: เพิ่มเงื่อนไขใหม่
         apply_color_label: 'จากนั้นใช้สีต่อไปนี้:'
+        custom_factor_fields:
+          percentage: อัตราร้อยละ
+          questions_attempted: พยายาม
+          questions_correct: ถูกต้อง
+          questions_incorrect: ผิด
+          questions_not_attempted: ไม่ได้พยายาม
+          questions_partial_correct: ถูกต้องบางส่วน
+          total_questions: ทั้งหมด
+        custom_factor_placeholder: เลือกฟิลด์ปัจจัยที่กําหนดเอง
+        factor_value_type:
+          custom: ธรรมเนียม
+          default: เริ่ม ต้น
+          label: ชนิดค่าตัวประกอบ
         graph_condition_types:
           default: เริ่ม ต้น
           graph_value: ค่ากราฟ
@@ -3352,6 +3454,7 @@ th:
         manage_graph_value_condition: จัดการเงื่อนไขค่ากราฟ
         manage_styles_condition: จัดการเงื่อนไขสไตล์
         missing_value: ค่าที่หายไป
+        pie_semi_circle: กึ่งวงกลม
         predicates:
           equal_to: เท่ากับ
           greater_than: มากกว่า
@@ -3435,6 +3538,7 @@ th:
         translations: แปล
       title: การตั้งค่ารายงาน
     reports:
+      broken_image_url: โปรดยืนยัน URL รูปภาพของคุณและลองนําเข้าอีกครั้ง
       bulk_marked_as_done: ทําเครื่องหมายเป็นจํานวนมากว่าเสร็จสิ้น
       bulk_upload:
         choose_file: เลือกไฟล์
@@ -3604,16 +3708,19 @@ th:
         campaign_assessment_group: กลุ่มศูนย์ประเมินผล
         campaign_name: ชื่อแคมเปญ
         duration: ระยะเวลา
+        link_to_view_recordings: ลิงก์เพื่อดูการบันทึก
         managers: จัดการ
         meeting_link: ลิงค์การประชุม
         name: ชื่อ
         participants: ผู้เข้าร่วม
         prework: งานก่อนเริ่ม
+        recording_date: วันที่บันทึก
         resource_link: ลิงก์
         resource_name: ชื่อ
         schedule_time: กําหนดเวลา
         scheduling_status: สถานะการตั้งเวลา
         seats: ที่นั่ง
+        serial_no: หมายเลขซีเรียล
         start_time: วันที่ & เวลา
         subject: ชื่อเรื่อง
         title: ชื่อเรื่อง
@@ -3638,6 +3745,7 @@ th:
         managers: ผู้จัดการศูนย์
         none: ไม่มีใคร
         not_allowed: ไม่อนุญาต
+        recording_enabled: เปิดใช้งานการบันทึก
         remaining: ที่นั่งที่เหลืออยู่
         scheduling_lead_time: การจัดตารางเวลานํา
         scheduling_tooltip: ผู้ใช้จะสามารถจองสล็อตได้จนถึง %{date}
@@ -3698,6 +3806,7 @@ th:
         activities: กิจกรรม
         assessment_center: ศูนย์ประเมินผล
         invites: เชิญ
+        recordings: บันทึก
         resources: ทรัพยากร
         subjects: หัวข้อ
     scoring:
@@ -4133,6 +4242,15 @@ th:
           other: อื่นๆ
           qualification: คุณสมบัติ
           technical: เทคนิค
+      move_question:
+        cancel: ยกเลิก
+        move: ย้าย
+        moveAfter: ย้ายหลังจากนั้น
+        moveBefore: ย้ายก่อน
+        moveQuestion: 'ย้ายคําถาม: %{question}'
+        position: ฐานะ
+        selectTargetQuestion: เลือกคําถามเป้าหมาย
+        title: ย้ายคําถาม
       property_panel:
         add_n_a_option: เพิ่มตัวเลือก N/A
         allow_content_copy: อนุญาตการคัดลอกเนื้อหา
@@ -4176,6 +4294,18 @@ th:
         question_description: คําอธิบายแถว
         validation_response_type: ประเภทการตอบกลับการตรวจสอบความถูกต้อง
         voice_dictation: การเขียนตามคําบอกด้วยเสียง
+      question_info_bar:
+        add_display_logic: เพิ่มตรรกะการแสดงผล
+        add_skip_logic: เพิ่มตรรกะข้าม
+        are_you_sure_to_delete_this_question: คุณแน่ใจที่จะลบคําถามนี้หรือไม่?
+        default_choices: ตัวเลือกเริ่มต้น
+        delete_question: ลบคําถาม
+        delete_the_question: ลบคําถาม
+        move_question: ย้ายคําถาม
+        randomization: การสุ่ม
+        save_as_a_template: บันทึกเป็นเทมเพลต
+        this_question_has_default_choices: คําถามนี้มีตัวเลือกเริ่มต้น
+        this_question_has_randomization: คําถามนี้มีการสุ่ม
     table:
       entries:
         selected: เลือก 1 แถว

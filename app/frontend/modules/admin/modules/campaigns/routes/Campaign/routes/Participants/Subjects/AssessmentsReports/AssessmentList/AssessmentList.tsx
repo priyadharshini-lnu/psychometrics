@@ -49,6 +49,7 @@ const AssessmentList: React.FC<Props> = ({
   togglePrework,
   updateMettlSchedule,
   normalizeFactorScores,
+  markComplete,
   loadingUpdateMettlSchedule,
   currentUser,
 }) => {
@@ -192,6 +193,7 @@ const AssessmentList: React.FC<Props> = ({
                     remove: () => remove(parsedCampaignId, assessment.id),
                     resetProgress,
                     normalizeFactorScores,
+                    markComplete,
                     modal,
                     message,
                   })
@@ -229,6 +231,7 @@ interface ActionMenuData {
   reset(campaignId: number, assessmentId: number): Promise<unknown>
   normalizeFactorScores: Props['normalizeFactorScores']
   resetProgress: Props['resetProgress']
+  markComplete: Props['markComplete']
   remove(): void
   openModal(string, data?: {
     campaignId: number,
@@ -245,7 +248,7 @@ interface ActionMenuData {
 
 const getActionsMenuProps = ({
   rescoreResponse, openModal, campaignId, userId, projectId, assessment, modal, message,
-  reset, remove, resetProgress, normalizeFactorScores,
+  reset, remove, resetProgress, normalizeFactorScores, markComplete,
 }: ActionMenuData): MenuProps => {
   const { name, permissions } = assessment
 
@@ -300,6 +303,22 @@ const getActionsMenuProps = ({
     })
   }
 
+  const handleMarkComplete = () => {
+    modal.confirm({
+      title: I18n.t('common.text.confirm'),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t('user_assessments.modals.mark_as_completed.content', { name }),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        markComplete(campaignId, assessment.id)
+        message.success(I18n.t('user_assessments.modals.actions.mark_as_completed.success_message', { name }))
+      },
+    })
+  }
+
   const handleResetProgress = () => {
     modal.confirm({
       title: I18n.t('common.text.confirm'),
@@ -348,6 +367,11 @@ const getActionsMenuProps = ({
     label: 'Push Webhook',
   })
 
+  permissions.markComplete && menuItems.push({
+    key: 'markComplete',
+    label: I18n.t('user_assessments.modals.actions.mark_as_completed.name'),
+  })
+
   permissions.normalizeFactorScores && menuItems.push({
     key: 'normalizeFactorScores',
     label: 'Normalize Factor Scores',
@@ -380,6 +404,9 @@ const getActionsMenuProps = ({
     }
     if (key === 'normalizeFactorScores') {
       return handleNormalizeFactorScores()
+    }
+    if (key === 'markComplete') {
+      return handleMarkComplete()
     }
   }
 

@@ -3,10 +3,9 @@ import { ReflectiveQuestions } from '../../ReflectiveQuestions'
 
 interface Props {
   next: () => void
+  prev: () => void
 }
 
-export const ReflectiveQuestionsStep: FC<Props> = ({ next }) => (
-  <div className="mt-6">
-    <ReflectiveQuestions onSave={next} showSkip onSkip={next} />
-  </div>
+export const ReflectiveQuestionsStep: FC<Props> = ({ next, prev }) => (
+  <ReflectiveQuestions onSave={next} showSkip onSkip={next} prev={prev} />
 )

@@ -3,9 +3,12 @@ import Select from 'react-select'
 const getFields = (field, context) => field.items(context)
   .map(item => ({ label: item.label, value: field.getValue(item) }))
 
-const Autocomplete = ({ field, context, insert }) => {
-  const onSelect = ({ value }) => {
-    insert(value)
+const Autocomplete = ({
+  field, context, insert, onSelect, preventInsert,
+}) => {
+  const handleSelect = ({ value }) => {
+    !preventInsert && insert(value)
+    onSelect && onSelect(value)
   }
 
   return (
@@ -16,7 +19,7 @@ const Autocomplete = ({ field, context, insert }) => {
         options={getFields(field, context)}
         clearable={false}
         autoFocus={false}
-        onChange={onSelect}
+        onChange={handleSelect}
       />
     </div>
   )

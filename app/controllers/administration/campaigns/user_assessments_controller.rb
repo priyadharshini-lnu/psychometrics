@@ -14,6 +14,19 @@ module Administration
         render json: { norm_name: resource.norm_name }
       end
 
+      def mark_complete
+        resource.update!(status: :completed, completed_at: Time.current)
+
+        audit! :mark_complete, resource, campaign: resource.campaign
+
+        render json: Administration::UserAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            campaign: resource.campaign
+          }
+        ).serialize(resource)
+      end
+
       def update_mettl_schedule
         resource.update_mettl_schedule!(params[:mettl_schedule_record_id])
 

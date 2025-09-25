@@ -1,7 +1,7 @@
-import _ from 'lodash'
+import { map, groupBy, includes } from 'lodash'
 import { useState, useEffect, useMemo } from 'react'
 import {
-  Typography, Button, Tabs, Flex, Spin,
+  Typography, Button, Tabs, Flex, Spin, message,
 } from 'antd'
 import { CloseOutlined } from '@ant-design/icons'
 import {
@@ -18,10 +18,14 @@ import {
 import { InformationBanner } from './InformationBanner'
 import { USER_IDP_PLAN_STATUS } from './constants'
 import { useSearchSkills } from './AdminAddSkills/useSearchSkills'
+import { SkillGapReportTab } from './SkillGapReportTab'
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import styles from './Plan.less'
 
 const { I18n } = window
 
-type UserIdpDevelopmentActionPayloadType = UserIdpDevelopmentActions & {_destroy: boolean }
+type UserIdpDevelopmentActionPayloadType = UserIdpDevelopmentActions & {_destroy?: boolean }
 
 export const Plan = () => {
   const [showAddSkill, setShowAddSkill] = useState(false)
@@ -33,8 +37,7 @@ export const Plan = () => {
   const [availableIDPDevelopmentActions, setAvailableIDPDevelopmentActions] = useState<UserIdpDevelopmentActions[]>([])
   const [selectedSkills, setSelectedSkills] = useState<UserIdpSkills[]>([])
 
-
-  const { idpPlanId } = useParams()
+  const { idpPlanId, projectId } = useParams()
   const { tab: paramTab } = useParams()
 
   const [tab, setTab] = useState(paramTab || 'list')
@@ -85,10 +88,10 @@ export const Plan = () => {
       ?.userIdpDevelopmentActions as UserIdpDevelopmentActionPayloadType[])
   }, [userIdpPlanData])
 
-  const userIdpSkills = useMemo(() => userIdpPlanData[0]?.userIdpSkills.reduce((acc, skill) => {
+  const userIdpSkills = useMemo(() => selectedSkills.reduce((acc, skill) => {
     acc[skill.id] = skill
     return acc
-  }, {}) ?? [], [userIdpPlanData])
+  }, {}) ?? [], [selectedSkills])
 
   const normalizedUserIdpDevelopmentActions = useMemo(() => idpDevelopmentActions.reduce((acc, da) => {
     acc[da.id] = da
@@ -100,12 +103,6 @@ export const Plan = () => {
     normalizedUserIdpDevelopmentActions),
   [userIdpSkills, normalizedUserIdpDevelopmentActions])
 
-
-  // Commenting board data to avoid unnecessary changes
-  // const boardData =  useMemo(() => groupDevelopmentActionsBySkillType(normalizedUserIdpDevelopmentActions,
-  //   userIdpSkills),
-  // [normalizedUserIdpDevelopmentActions, userIdpSkills])
-
   const changeTab = (tab: string) => {
     setTab(tab)
   }
@@ -116,8 +113,12 @@ export const Plan = () => {
     })
   }
   const handleAddDevelopmentAction = (developmentAction) => {
-    setIDPDevelopmentActions([...idpDevelopmentActions, developmentAction])
-    setIDPDevelopmentActionsPayload([...idpDevelopmentActions, developmentAction])
+    setIDPDevelopmentActions([...idpDevelopmentActions,
+      ...(Object.values(developmentAction) as UserIdpDevelopmentActions[])])
+    setIDPDevelopmentActionsPayload([
+      ...idpDevelopmentActions,
+      ...(Object.values(developmentAction) as UserIdpDevelopmentActionPayloadType[]),
+    ])
   }
 
   const handleRemoveDevelopmentAction = (developmentAction) => {
@@ -142,6 +143,7 @@ export const Plan = () => {
   }
 
   const handleSave = () => {
+    setIsLoading(true)
     setEditMode(false)
     const idpDaCollection = idpDevelopmentActionsPayload.reduce((acc, da) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -151,9 +153,12 @@ export const Plan = () => {
       daPayload.developmentActionId = da.developmentActionId ? Number(da.developmentActionId) : null
       daPayload.startDateTime = da.startDateTime ?? undefined
       daPayload.endDateTime = da.endDateTime ?? undefined
-      daPayload.customAction = da.customAction ?? undefined
-      daPayload.customActionLearningStyle = da.customActionLearningStyle ?? undefined
+      daPayload.description = da.description ?? ''
+      daPayload.name = da.name ?? ''
+      daPayload.learningStyle = da.learningStyle
+      daPayload.sourceType = da.sourceType || 0
       daPayload.id = Number(da.userIdpDevelopmentActionId) ?? undefined
+      daPayload.progress = da.progress || 0
       // eslint-disable-next-line no-underscore-dangle
       daPayload._destroy = da._destroy ?? false
       return acc.concat(daPayload)
@@ -166,6 +171,10 @@ export const Plan = () => {
         user_idp_development_actions: idpDaCollection,
       },
     }).then(() => {
+      message.success(I18n.t('idp.changes_saved_to_plan'))
+    }).catch((error) => {
+      message.error(error)
+    }).finally(() => {
       setIsLoading(false)
     })
   }
@@ -176,13 +185,15 @@ export const Plan = () => {
       apiConfig: {
         filter: {
           by_idp_template_id: userIdpPlanData[0]?.idpTemplateId as string,
+          project_id_eq: projectId as string,
         },
         include: ['development_actions'],
       },
     }).then((response) => {
       setSkills(response.data)
-      setIsLoading(false)
       setShowAddSkill(true)
+    }).finally(() => {
+      setIsLoading(false)
     })
   }
 
@@ -192,7 +203,12 @@ export const Plan = () => {
   }
 
   const handleDeselectSkill = (skillId) => {
-    setSelectedSkills(selectedSkills.filter(skill => skill.skillId !== skillId))
+    setSelectedSkills(selectedSkills.filter(skill => (Number(skill.id) !== skillId)
+    && (Number(skill.skillId) !== skillId)))
+  }
+
+  const onRemoveSkillFromPlan = (skillId) => {
+    setSelectedSkills(selectedSkills.filter(skill => skill.id !== skillId))
   }
 
   const handleSelectSkill = (skills) => {
@@ -230,6 +246,7 @@ export const Plan = () => {
     }).then(() => {
       setIsLoading(false)
       setEditMode(false)
+      message.success(I18n.t('idp.skills_updated'))
     })
   }
 
@@ -307,14 +324,15 @@ export const Plan = () => {
     </Flex>
   )
 
-  const skillTypes = _.map(_.groupBy(allSkills, 'skillType'), (skills, skillType) => ({
+  const skillTypes = map(groupBy(allSkills, 'skillType'), (skills, skillType) => ({
     skillType,
-    skills,
+    skills: skills.filter(result => (!includes(selectedSkills
+      .map(skill => Number(skill.skillId)), Number(result.id)) && !result.private)),
   }))
 
 
   const plan = showAddSkill ? (
-    <div>
+    <div className="p-4">
       <Button
         type="text"
         icon={<CloseOutlined />}
@@ -324,14 +342,16 @@ export const Plan = () => {
         addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
         skillTypes={skillTypes}
         onFinishAddSkill={handleFinishAddSkill}
-        selectedSkills={selectedSkills}
+        selectedSkills={selectedSkills.filter(skill => !skill.private)}
         onDeselectSkill={handleDeselectSkill}
         onAddSkill={handleSelectSkill}
+        skillGapReportData={null}
         searchSkillResource={searchSkillResource}
+        showBackButton={false}
       />
     </div>
   ) : (
-    <>
+    <Flex vertical className="ps-4 pe-4">
       <Typography.Title level={4}>{I18n.t('idp.my_plan.development_plan')}</Typography.Title>
       <Tabs
         tabBarExtraContent={tab !== 'reflective_questions'
@@ -339,7 +359,7 @@ export const Plan = () => {
         activeKey={tab}
         onChange={tab => changeTab(tab)}
       >
-        <Tabs.TabPane tab={I18n.t('idp.list')} key="list">
+        <Tabs.TabPane tab={I18n.t('idp.plan')} key="list">
           <DevelopmentActionListView
             editMode={editMode}
             categories={listData}
@@ -349,23 +369,27 @@ export const Plan = () => {
             onUpdateDevelopmentAction={updateDevelopmentAction}
             onShowAvailableDevelopmentAction={handleShowAvailableDevelopmentAction}
             onAddMoreSkills={handleAddMoreSkill}
+            onRemoveSkill={onRemoveSkillFromPlan}
           />
         </Tabs.TabPane>
-        {/* <Tabs.TabPane tab={I18n.t('idp.board')} key="board">
-          <DevelopmentActionBoardView developmentActionTypes={boardData} showRating={false} />
-        </Tabs.TabPane> */}
+        {userIdpPlanData[0]?.skillGapReportAvailable && (
+          <Tabs.TabPane tab={I18n.t('idp.skill_gap_report.title')} key="skill_gap_report">
+            <SkillGapReportTab skillGapReportId={userIdpPlanData[0]?.skillGapReportId} />
+          </Tabs.TabPane>
+        )}
       </Tabs>
-    </>
+    </Flex>
   )
 
   return (
     <>
       <InformationBanner />
-      <Flex justify="center" align="middle" vertical style={{ padding: '1rem' }}>
-        {isLoading ? (
-          <Spin size="large" />
-        ) : plan}
-      </Flex>
+      <Spin size="large" spinning={isLoading}>
+        <Flex className={styles['user-idp-plan']} justify="center" align="middle" vertical>
+          {plan}
+        </Flex>
+      </Spin>
+
     </>
 
   )

@@ -291,6 +291,7 @@ zh:
             manage: 管理
             title: 工作坊
             view: 查看
+            view_recordings: 查看录制文件
     ai_artifacts:
       artifact_results: 工件结果
       code: 法典
@@ -368,6 +369,7 @@ zh:
       created_successfully: AI 助手创建成功。
       errors:
         cannot_delete_in_use: 无法删除 AI 助手“%{name}”，因为它正在使用中。
+        one_click_idp_assistance_not_enabled: 您当前的计划不提供人工智能驱动的 IDP 援助。请联系管理员。
       form:
         add_output_schema_key: 添加输出模式密钥
         dependencies: 依赖关系
@@ -590,6 +592,7 @@ zh:
         enable_back: 启用返回按钮
         enable_progress: 启用进度条
         enable_save: 启用保存按钮
+        enable_select_main_factor: 选择一个因子作为主因子
         enable_single_question_page: 每页显示一个问题
         enable_single_question_page_confirm: 这将把每页的区块随机化更新为 1。
         enable_timer: 启用计时器
@@ -1012,12 +1015,29 @@ zh:
           approvers: 批准人
           approvers_can_edit: 审批人可以编辑
           approvers_not_required: 不需要批准人
+          digest_frequency:
+            daily: 日常
+            form_label: 摘要频率
+            weekdays: 平日
+            weekly: 周刊
+          digest_time: 消化时间
+          digest_timezone: 摘要时区
+          digest_weekdays:
+            form_label: 文摘工作日
+            friday: 星期五
+            monday: 星期一
+            saturday: 星期六
+            sunday: 星期日
+            thursday: 星期四
+            tuesday: 星期二
+            wednesday: 星期三
           do_not_send_notifications: 不发送通知
           modal_title: 报告审批设置
           qc_users: 质量控制用户
           remove_modal_success: '报告 ID：%{reportId} 的审批设置已成功删除 '
           remove_modal_text: 您确定要删除报告 ID 的此设置：%{reportId}？
           report: 报告
+          send_digest_emails: 发送摘要电子邮件
           settings: 设置
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ zh:
       form:
         active_notice: 广告系列状态将自动更改为在选定的结束日期关闭
         campaign: 活动
+        copy_factors: 复制因子
         inactive_notice: 广告系列状态将在选定的开始日期自动更改为活动
         instruction: 这只能在创建广告系列时启用
         name: 名称
@@ -2230,6 +2251,7 @@ zh:
         remove_confirm: 在文本框中输入当前模板名称，删除模板
         success: "%{idpName} 已成功删除。"
       add_idp_template: 添加 IDP 模板
+      ai_assistant: AI助手
       ai_assisted_idp_enabled: 启用人工智能辅助 IDP
       ai_enabled: 支持人工智能
       ai_settings: 人工智能设置
@@ -2240,7 +2262,26 @@ zh:
       background_image: 背景图片
       behavioral_skills: 行为技能
       client_skills: 客户技能
+      delete_skill: 您是否确定要删除技能，因为它也会删除所有连接的开发作？
       details_updated: 成功更新 IDP 详情
+      development_actions:
+        add_from_library: 从库添加
+        completion: 完成
+        create_development_actions_with_ai: 使用 AI 创建开发行动 for %{skillName}
+        create_from_ai: 从 AI 创建
+        create_my_own: 创建我自己的
+        custom: 习惯
+        date_range: 开始日期 - 结束日期
+        edit_plan_to_add_development_actions: 编辑计划并添加开发作。
+        errors:
+          invalid_learning_style: "“%{learning_style}”不是一种有效的学习方式。有效选项为：%{valid_styles}"
+          learning_style_blank: 学习风格不能空白
+        generate_by_ai: 由人工智能生成
+        generate_more: 生成更多
+        heading: 技能/发展行动
+        manage_skills: 管理技能
+        no_development_actions: 您没有开发作
+      document_ai_assistant: 文档分析 AI 助手
       edit_template: 编辑 IDP 模板
       enter_tag_or_skills_error: 选择至少一个标签或技能
       enter_template_description: 说明
@@ -2263,6 +2304,8 @@ zh:
       global_skills: 全球技能
       idp: IDP
       idp_template: 添加 IDP 模板
+      interview_questions: 面试问题
+      interview_questions_updated: 面试问题更新成功。
       intro_message: 介绍信息
       intro_message_hint: 要修改介绍信息，请先保存 IDP 模板以启用这些设置。
       intro_message_success: 简介信息已成功保存
@@ -2274,6 +2317,7 @@ zh:
         mercer_only: 仅有美世徽标
         none: 无标志
       logo_type_label: 徽标类型
+      no_interview_questions_selected: 未选择面试问题
       no_reflection_questions_selected: 未选择反思问题
       none: 无
       one_click_idp_enabled: 启用一键式 IDP
@@ -2282,7 +2326,16 @@ zh:
       reflection_questions_hint: 要修改反思问题，请先保存 IDP 模板以启用这些设置。
       reflection_questions_updated: 反思问题已成功更新。
       remove: 移除
+      remove_skill: 移除技能
+      revert_skill_to_public:
+        errors:
+          skill_already_public: 技能已经公开
+          skill_not_found: 未找到技能
+        success:
+          base_message: 技能“%{skill_name}”现在对您的经理可见
+          with_approval: "%{base_message}，您的 IDP 计划已提交批准"
       select_by_tags: 按标签选择
+      select_interview_question: 开始输入以搜索和选择问题
       select_reflection_question: 开始键入搜索并选择问题
       select_skill_gap_report: 选择技能差距报告
       select_specific_skills: 选择特定技能
@@ -2308,12 +2361,14 @@ zh:
       subtitle_text: 字幕文本
       tab:
         development_actions: 发展行动
+        interview_questions: 面试问题
         reflection_questions: 思考题
         settings: 设置
         templates: 模板
       technical_skills: 技术技能
       template_details: 模板详情
       title_text: 标题文本
+      update_interview_questions: 更新面试问题
       update_reflection_questions: 更新反思问题
     idp_setting:
       allow_global_skills: 允许使用全球技能
@@ -2516,6 +2571,35 @@ zh:
         skillvue:
           api_key_present: API 密钥已存在于其他项目中
       view_all_schedules: 查看所有梅特尔航班时刻表
+    interview_questions:
+      delete_confirmation: 你确定要删除这个面试问题吗？
+      description: 描述
+      export:
+        action: 出口面试问题
+        details: 文件详细信息
+        failure_msg: 导出文件时出错。
+        success_msg: 正在导出面试问题。请在通知中查看状态。
+      form:
+        description: 描述
+        mandatory: 命令的
+        question: 问题
+        question_type: 问题类型
+        question_type_audio: 音频
+        question_type_video: 视频
+        time_limit: 时限（秒）
+        title: 面试问题
+      import:
+        action: 导入面试问题
+        errors:
+          invalid_required_column_format: 无效的强制列值格式%{row}
+          invalid_required_type_format: 无效的 QuestionType 列值格式%{row}
+          invalid_time_limit_column_format: 无效的“时间限制”列值格式%{row}
+          missing_description: 缺少描述内容%{row}
+          missing_question: 缺少问题内容%{row}
+          save_failed: 保存失败的%{message}
+        failure_msg: 导入文件时出错。
+        success_msg: 导入面试问题正在进行中。请在通知中查看状态。
+      question: 问题
     invited_subject:
       add_btn: 添加主题
       assessment_center: 评估中心：
@@ -3186,7 +3270,9 @@ zh:
         dp_consent_version: 政策版本
         errors:
           cannot_disable_while_campaign_enabled: 无法禁用视频通话录音，因为此项目中的一个或多个活动已启用该功能
+          min_retention: 不能少于 1 天
           policy_version_format: 只允许使用整数
+          required: 必填
         mask_identity_for_examus: Examus Proctoring 的屏蔽数据
         mask_identity_for_hogan: 霍根的面具数据
         mask_identity_for_iiht: IIHT 的掩码数据
@@ -3326,9 +3412,12 @@ zh:
         code: 代码
         code_constraint: 代码必须以小写字母开头，且只能包含小写字母、数字和下划线
         delete: 删除
+        description: 描述
+        description_alias: 描述/别名
         import_factors: 进口因素
         invalid_factor_params: 活动因素参数格式无效
         name: 名称
+        name_alias: 姓名/别名
         no_boundary_space: 名称不能以空格开始或结束
         too_many_factors: 无法创建超过 %{count} 的活动因素
         tools: 工具
@@ -3347,6 +3436,19 @@ zh:
       property_panel:
         add_new_condition: 添加新条件
         apply_color_label: 然后应用以下颜色：
+        custom_factor_fields:
+          percentage: 百分比
+          questions_attempted: 企图
+          questions_correct: 正确
+          questions_incorrect: 不對
+          questions_not_attempted: 未尝试
+          questions_partial_correct: 部分正确
+          total_questions: 总
+        custom_factor_placeholder: 选择自定义因子字段
+        factor_value_type:
+          custom: 习惯
+          default: 违约
+          label: 因子值类型
         graph_condition_types:
           default: 违约
           graph_value: 图值
@@ -3356,6 +3458,7 @@ zh:
         manage_graph_value_condition: 管理图形值条件
         manage_styles_condition: 管理样式条件
         missing_value: 缺失值
+        pie_semi_circle: 半圆形
         predicates:
           equal_to: 等于
           greater_than: 大于
@@ -3439,6 +3542,7 @@ zh:
         translations: 翻译
       title: 报告设置
     reports:
+      broken_image_url: 请验证您的图片网址，然后再次尝试导入
       bulk_marked_as_done: 批量标记为已完成
       bulk_upload:
         choose_file: 选择文件
@@ -3608,16 +3712,19 @@ zh:
         campaign_assessment_group: 评估中心小组
         campaign_name: 活动名称
         duration: 持续时间
+        link_to_view_recordings: 查看录制文件的链接
         managers: 管理人员
         meeting_link: 会议链接
         name: 名称
         participants: 参与者
         prework: 前期工作
+        recording_date: 录制日期
         resource_link: 链接
         resource_name: 名称
         schedule_time: 时间安排
         scheduling_status: 调度状态
         seats: 座椅
+        serial_no: 序列号
         start_time: 日期和时间
         subject: 主题
         title: 标题
@@ -3642,6 +3749,7 @@ zh:
         managers: 中心经理
         none: 无
         not_allowed: 不允许
+        recording_enabled: 已启用录制
         remaining: 剩余席位
         scheduling_lead_time: 排产准备时间
         scheduling_tooltip: 用户可以预订 %{date}之前的时段
@@ -3705,6 +3813,7 @@ zh:
         activities: 活动
         assessment_center: 评估中心
         invites: 邀请
+        recordings: 录音
         resources: 资源
         subjects: 主题
     scoring:
@@ -4145,6 +4254,15 @@ zh:
           other: 其他
           qualification: 资格
           technical: 技术
+      move_question:
+        cancel: 取消
+        move: 移动
+        moveAfter: 移动后
+        moveBefore: 移动前
+        moveQuestion: 移动问题：%{question}
+        position: 位置
+        selectTargetQuestion: 选择目标问题
+        title: 移动问题
       property_panel:
         add_n_a_option: 添加不适用选项
         allow_content_copy: 允许复制内容
@@ -4188,6 +4306,18 @@ zh:
         question_description: 行说明
         validation_response_type: 验证响应类型
         voice_dictation: 语音听写
+      question_info_bar:
+        add_display_logic: 添加显示逻辑
+        add_skip_logic: 添加跳过逻辑
+        are_you_sure_to_delete_this_question: 你确定删除这个问题吗？
+        default_choices: 默认选择
+        delete_question: 删除问题
+        delete_the_question: 删除问题
+        move_question: 移动问题
+        randomization: 随机化
+        save_as_a_template: 另存为模板
+        this_question_has_default_choices: 此问题有默认选项
+        this_question_has_randomization: 这个问题是随机的
     table:
       entries:
         selected:

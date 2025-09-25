@@ -126,13 +126,15 @@ export const WorkshopEditFormModal: FC<Props> = ({
       }}
       request={{
         updateResource: (data: { workshopManagersIds: string[], workshopAssessorsIds: string[],
-          date: string, time: string }) => {
+          date: string, time: string, name?: string }) => {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { date, time, ...cleanedData } = data
+          const {
+            date, time, name, ...cleanedData
+          } = data
 
           let startTime: string | undefined
-          if (data.date && data.time) {
-            startTime = startDateTime(data.date, data.time, workshop.timezone)?.format()
+          if (date && time) {
+            startTime = startDateTime(date, time, workshop.timezone)?.format()
           }
 
           return updateWorkshop({
@@ -140,7 +142,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
             workshopManagersIds: (data.workshopManagersIds || []).map(id => id.toString()),
             workshopAssessorsIds: (data.workshopAssessorsIds || []).map(id => id.toString()),
             ...(startTime ? { start_time: startTime } : {}),
-            ...(startTime ? { name: formatWorkshopDate(dayjs(startTime).tz(workshop.timezone)) } : {}),
+            name: name || (startTime && formatWorkshopDate(dayjs(startTime).tz(workshop.timezone))),
           })
         },
       }}

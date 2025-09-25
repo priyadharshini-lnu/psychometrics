@@ -8,7 +8,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   initial_state_for %i[show pass begin]
   before_action :set_user_assessment,
                 only: %i[assessment details show pass begin validate_session upload_user_verification_image_url
-                         user_verification_image_upload_callback]
+                         user_verification_image_upload_callback mark_completed]
   before_action :can_start_based_on_sequencing, only: %i[pass show begin]
   before_action :ensure_user_confirm, only: %i[pass begin]
   before_action :ensure_campaign_user_is_active
@@ -37,6 +37,14 @@ class EndUser::UserAssessmentsController < ApplicationController
         ).serialize(@user_assessment)
       end
     end
+  end
+
+  def mark_completed
+    @user_assessment.update(status: :completed, completed_at: Time.current)
+
+    render json: ::EndUser::UserAssessmentSerializer.new(
+      context: { current_user: current_user }
+    ).serialize(@user_assessment), status: :ok
   end
 
   def pass

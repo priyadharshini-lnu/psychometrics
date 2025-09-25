@@ -11,7 +11,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import {
-  Idp, IdpTR, Skill, Report, ReportTR,
+  Idp, IdpTR, Skill, Report, ReportTR, IdpAssistant,
 } from '~/modules/admin/modules/client/core/idp'
 
 
@@ -22,6 +22,11 @@ export type CategorizedSkills = {
   behavioralClientSkills: Skill[],
   technicalGlobalSkills: Skill[],
   technicalClientSkills: Skill[],
+}
+
+type OptionsType = {
+  id: string
+  name: string
 }
 
 type IDPDetailsFormProps = {
@@ -38,6 +43,7 @@ const IDPDetailsForm = ({
   const [form] = Form.useForm()
   const [isLoading, setIsLoading] = useState(false)
   const aiEnabled = Form.useWatch('aiEnabled', form)
+  const oneClickIdpEnabled = Form.useWatch('oneClickIdpEnabled', form)
 
 
   const baseApiConfig = {
@@ -48,7 +54,7 @@ const IDPDetailsForm = ({
       fields: {
         skills: ['id', 'name', 'skill_type', 'project_id'],
       },
-      include: ['skills', 'report'],
+      include: ['skills', 'report', 'one_click_ai_assistant', 'document_analysis_ai_assistant'],
     },
   }
 
@@ -65,6 +71,26 @@ const IDPDetailsForm = ({
       fields: {
         reports: ['name'],
       },
+    },
+  })
+
+  const {
+    data: idpAssistants, fetch: fetchIdpAssistants, isLoading: isIdpAssistantsLoading,
+  } = useResources<IdpAssistant>('assistants', {
+    basePath: '/ai',
+    apiConfig: {
+      fields: { assistants: ['name'] },
+      filter: { assistant_type_eq: 'idp_assistant' },
+    },
+  })
+
+  const {
+    data: documentAssistants, fetch: fetchDocumentAssistants, isLoading: isDocumentAssistantsLoading,
+  } = useResources<IdpAssistant>('assistants', {
+    basePath: '/ai',
+    apiConfig: {
+      fields: { assistants: ['name'] },
+      filter: { assistant_type_eq: 'assistant_tool' },
     },
   })
 
@@ -92,6 +118,12 @@ const IDPDetailsForm = ({
         aiEnabled: values.aiEnabled,
         aiAssistedIdpEnabled: values.aiAssistedIdpEnabled,
         oneClickIdpEnabled: values.oneClickIdpEnabled,
+        oneClickAiAssistant: values.oneClickAiAssistantId
+          ? { id: values.oneClickAiAssistantId, type: 'assistants' }
+          : undefined,
+        documentAnalysisAiAssistant: values.documentAnalysisAiAssistantId
+          ? { id: values.documentAnalysisAiAssistantId, type: 'assistants' }
+          : undefined,
       }
 
       try {
@@ -134,6 +166,8 @@ const IDPDetailsForm = ({
         logoType: idp.logoType,
         aiEnabled: idp.aiEnabled,
         aiAssistedIdpEnabled: idp.aiAssistedIdpEnabled,
+        oneClickAiAssistantId: idp.oneClickAiAssistant?.id,
+        documentAnalysisAiAssistantId: idp.documentAnalysisAiAssistant?.id,
         oneClickIdpEnabled: idp.oneClickIdpEnabled,
         skillSourcePreference: idp.skillSourcePreference,
         ...skills,
@@ -158,6 +192,23 @@ const IDPDetailsForm = ({
 
   const reports = idp?.report ? availableReports.concat(idp?.report) : availableReports
 
+  const getIdpAssistants = (): OptionsType[] => {
+    if (idp.oneClickAiAssistant && idpAssistants.find(d => idp.oneClickAiAssistant?.id === d.id)) {
+      return idpAssistants
+    }
+
+    return idp.oneClickAiAssistant ? [...idpAssistants, idp.oneClickAiAssistant] : idpAssistants
+  }
+
+  const getDocumentAssistants = (): OptionsType[] => {
+    if (idp.documentAnalysisAiAssistant && documentAssistants.find(d => idp.documentAnalysisAiAssistant?.id === d.id)) {
+      return documentAssistants
+    }
+
+    return idp.documentAnalysisAiAssistant
+      ? [...documentAssistants, idp.documentAnalysisAiAssistant]
+      : documentAssistants
+  }
 
   return (
     <Form form={form} layout="vertical" initialValues={initialValues}>
@@ -229,6 +280,51 @@ const IDPDetailsForm = ({
                 >
                   <Switch />
                 </Form.Item>
+
+                {oneClickIdpEnabled && (
+                  <>
+                    <Form.Item
+                      name="oneClickAiAssistantId"
+                      label={I18n.t('administration.idp.ai_assistant')}
+                    >
+                      <Select
+                        showSearch
+                        onSearch={(value) => {
+                          fetchIdpAssistants({
+                            apiConfig: { filter: { filterable_fields: value } },
+                          })
+                        }}
+                        notFoundContent={isIdpAssistantsLoading('fetch') ? <Spin size="small" /> : null}
+                        filterOption={false}
+                      >
+                        {getIdpAssistants().map(({ id, name }) => (
+                          <Select.Option key={id} value={id}>{name}</Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+
+                    <Form.Item
+                      name="documentAnalysisAiAssistantId"
+                      label={I18n.t('administration.idp.document_ai_assistant')}
+                    >
+                      <Select
+                        showSearch
+                        onSearch={(value) => {
+                          fetchDocumentAssistants({
+                            apiConfig: { filter: { filterable_fields: value } },
+                          })
+                        }}
+                        notFoundContent={isDocumentAssistantsLoading('fetch') ? <Spin size="small" /> : null}
+                        filterOption={false}
+                      >
+                        {getDocumentAssistants().map(({ id, name }) => (
+                          <Select.Option key={id} value={id}>{name}</Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                  </>
+
+                )}
                 {/* commented till AI Skill generation implemented
                   <Form.Item name="skillSourcePreference" label={I18n.t('administration.idp.skill_source_preference')}>
                   <Radio.Group>

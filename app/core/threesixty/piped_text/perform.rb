@@ -90,6 +90,25 @@ module Threesixty
             class_name: 'Threesixty::PipedText::Branches::SkillFactor',
             required_context: %i[subject threesixty_campaign assessment],
             allow_html: true
+          },
+          {
+            key: 'fr',
+            name: 'factor_result',
+            class_name: 'Threesixty::PipedText::Branches::FactorResult',
+            required_context: %i[users_result]
+          },
+          {
+            key: 'assessment',
+            name: 'assessment',
+            class_name: 'Threesixty::PipedText::Branches::Assessment',
+            required_context: %i[users_result]
+          },
+          {
+            key: 'cu',
+            name: 'campaign_user',
+            class_name: 'Threesixty::PipedText::Branches::CampaignUser',
+            required_context: %i[subject threesixty_campaign],
+            allow_html: true
           }
         ].freeze
       end

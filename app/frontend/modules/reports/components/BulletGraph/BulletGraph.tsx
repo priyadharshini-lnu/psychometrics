@@ -21,10 +21,12 @@ interface Props {
   showScoreText?: boolean
   score?: number
   scoreBulletGraphHeight?: number
+  scoreStyle?: React.CSSProperties
 }
 
 const BulletGraph: React.FC<Props> = ({
   scoreRanges, baselineScore, scorePercentage, score, lineColor, bulletColor, showScoreText, scoreBulletGraphHeight,
+  scoreStyle,
 }) => {
   const max = _.maxBy(scoreRanges, x => x.value)
   const min = _.minBy(scoreRanges, x => x.value)
@@ -68,7 +70,7 @@ const BulletGraph: React.FC<Props> = ({
         ) : null}
       </div>
       {showScoreText && (
-        <div className={styles.scoreText}>
+        <div style={scoreStyle} className={styles.scoreText}>
           {score}
         </div>
       )}

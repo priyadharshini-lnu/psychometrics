@@ -124,8 +124,10 @@ module EndUser
           :id,
           :user_idp_skill_id,
           :development_action_id,
-          :custom_action,
-          :custom_action_learning_style,
+          :name,
+          :description,
+          :learning_style,
+          :source_type,
           :start_date_time,
           :end_date_time,
           :private,
@@ -147,7 +149,7 @@ module EndUser
         :user_idp_skill_id,
         :lang,
         :generate_more,
-        generated_actions: %i[description custom_action_learning_style]
+        generated_actions: %i[description learning_style]
       )
     end
 

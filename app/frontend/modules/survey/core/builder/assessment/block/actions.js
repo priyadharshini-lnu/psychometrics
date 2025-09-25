@@ -12,6 +12,7 @@ export const INSERT_AFTER_QUESTION = 'builder/assessment/block/INSERT_AFTER_QUES
 export const REMOVE_QUESTION = 'builder/assessment/block/REMOVE_QUESTION'
 export const MOVE_QUESTION_UP = 'builder/assessment/block/MOVE_QUESTION_UP'
 export const MOVE_QUESTION_DOWN = 'builder/assessment/block/MOVE_QUESTION_DOWN'
+export const MOVE_QUESTION_TO_POSITION = 'builder/assessment/block/MOVE_QUESTION_TO_POSITION'
 export const ADD_PAGE_BREAK = 'builder/assessment/block/ADD_PAGE_BREAK'
 export const UPDATE_BLOCK_PROPS = 'builder/assessment/block/UPDATE_BLOCK_PROPS'
 export const UPDATE_BLOCKS = 'builder/assessment/block/UPDATE_BLOCKS'
@@ -56,6 +57,10 @@ export const moveQuestionUp = (question, block, blockOrder) => ({
 
 export const moveQuestionDown = (question, block, blockOrder) => ({
   type: MOVE_QUESTION_DOWN, block, question, blockOrder,
+})
+
+export const moveQuestionToPosition = (question, targetQuestion, position) => ({
+  type: MOVE_QUESTION_TO_POSITION, question, targetQuestion, position,
 })
 
 export const updatePositions = ids => ({

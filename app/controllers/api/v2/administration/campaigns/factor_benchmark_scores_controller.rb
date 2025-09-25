@@ -15,7 +15,7 @@ module Api
       assessments_id = assessments.pluck(:id)
       dimension_ids = assessments.map(&:dimension_id)
 
-      factors = Factor.where(dimension_id: dimension_ids)
+      factors = Factor.where(dimension_id: dimension_ids, skill_id: nil)
       scores = FactorBenchmarkScore.where(campaign_id: campaign.id, assessment_id: assessments_id,
                                           factor_id: factors.pluck(:id))
 

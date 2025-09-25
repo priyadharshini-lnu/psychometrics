@@ -106,7 +106,9 @@ class AdminJobRecord < ApplicationRecord
     sync_skill_rater_assessment_entities: 82,
     copy_as_template_or_campaign: 83,
     bulk_generate_user_campaign_ai_artifact_results: 84,
-    import_assessment_translations: 85
+    import_assessment_translations: 85,
+    export_interview_questions: 86,
+    import_interview_questions: 87
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

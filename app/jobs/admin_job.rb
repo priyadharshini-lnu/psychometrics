@@ -99,6 +99,8 @@ class AdminJob < ApplicationJob
     bulk_download_idp_reports: AdminJobs::BulkDownloadIdpReports,
     sync_skill_rater_assessment_entities: AdminJobs::SkillRater::SyncAssessmentEntities,
     copy_as_template_or_campaign: AdminJobs::CopyAsTemplateOrCampaign,
+    export_interview_questions: AdminJobs::ExportInterviewQuestionsJob,
+    import_interview_questions: AdminJobs::ImportInterviewQuestionsJob,
     import_assessment_translations: AdminJobs::ImportAssessmentTranslations,
     bulk_generate_user_campaign_ai_artifact_results: AdminJobs::BulkGenerateUserCampaignAIArtifactResults
   }.freeze
@@ -120,6 +122,7 @@ class AdminJob < ApplicationJob
   class << self
     def call(operation, data, owner, file = nil)
       JOBS[operation.to_sym].validate(data, owner)
+      data[:owner_country] = Current.user_country
       record = AdminJobRecord.create!(operation: operation, data: data, file: file, owner: owner)
 
       record.broadcast(:create)

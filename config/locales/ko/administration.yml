@@ -291,6 +291,7 @@ ko:
             manage: 관리
             title: 워크샵
             view: 보기
+            view_recordings: 녹화 보기
     ai_artifacts:
       artifact_results: 아티팩트 결과
       code: 코드
@@ -368,6 +369,7 @@ ko:
       created_successfully: AI 어시스턴트가 성공적으로 생성되었습니다.
       errors:
         cannot_delete_in_use: AI 어시스턴트 '%{name}'을 사용 중이므로 삭제할 수 없습니다.
+        one_click_idp_assistance_not_enabled: AI 기반 IDP 지원은 현재 요금제에서 사용할 수 없습니다. 관리자에게 문의하십시오.
       form:
         add_output_schema_key: 출력 스키마 키 추가
         dependencies: 종속성
@@ -590,6 +592,7 @@ ko:
         enable_back: 뒤로 가기 버튼 활성화
         enable_progress: 진행률 표시줄 활성화
         enable_save: 저장 버튼 활성화
+        enable_select_main_factor: 주요인으로 요인 선택
         enable_single_question_page: 페이지당 하나의 질문 표시
         enable_single_question_page_confirm: 페이지당 블록 무작위 배정이 1로 업데이트됩니다. 확실하신가요?
         enable_timer: 타이머 사용
@@ -1012,12 +1015,29 @@ ko:
           approvers: 승인자
           approvers_can_edit: 승인자가 편집 가능
           approvers_not_required: 승인자 필요 없음
+          digest_frequency:
+            daily: 매일
+            form_label: 다이제스트 주파수
+            weekdays: 평일
+            weekly: 매주
+          digest_time: 다이제스트 시간
+          digest_timezone: 다이제스트 시간대
+          digest_weekdays:
+            form_label: 다이제스트 평일
+            friday: 금요일
+            monday: 월요일
+            saturday: 토요일
+            sunday: 일요일
+            thursday: 목요일
+            tuesday: 화요일
+            wednesday: 수요일
           do_not_send_notifications: 알림 보내기 안 함
           modal_title: 보고서 승인 설정
           qc_users: QC 사용자
           remove_modal_success: '보고서 ID에 대한 승인 설정: %{reportId}가 성공적으로 삭제되었습니다 '
           remove_modal_text: '보고서 ID: %{reportId}에 대한 이 설정을 삭제하시겠습니까?'
           report: 신고
+          send_digest_emails: 다이제스트 이메일 보내기
           settings: 설정
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ ko:
       form:
         active_notice: 캠페인 상태는 선택한 종료일에 자동으로 폐쇄됩니다.
         campaign: 캠페인
+        copy_factors: 카피 팩터
         inactive_notice: 캠페인 상태는 선택한 시작일에 자동으로 활성화됩니다.
         instruction: 이것은 캠페인을 만들 때만 활성화 될 수 있습니다
         name: 이름
@@ -2230,6 +2251,7 @@ ko:
         remove_confirm: 템플릿을 제거하려면 아래 텍스트 상자에 현재 템플릿 이름을 입력합니다
         success: "%{idpName}이(가) 성공적으로 제거되었습니다."
       add_idp_template: IDP 템플릿 추가
+      ai_assistant: AI 어시스턴트
       ai_assisted_idp_enabled: AI 지원 IDP 사용
       ai_enabled: AI 사용
       ai_settings: AI 설정
@@ -2240,7 +2262,26 @@ ko:
       background_image: 배경 이미지
       behavioral_skills: 행동 기술
       client_skills: 클라이언트 기술
+      delete_skill: 연결된 모든 개발 작업도 삭제되므로 스킬을 삭제하시겠습니까?
       details_updated: IDP 세부 정보 업데이트 성공
+      development_actions:
+        add_from_library: 라이브러리에서 추가
+        completion: 완료
+        create_development_actions_with_ai: AI를 사용하여 개발 액션 생성 for %{skillName}
+        create_from_ai: AI로 만들기
+        create_my_own: 나만의 만들기
+        custom: 관습
+        date_range: 시작 날짜 - 종료 날짜
+        edit_plan_to_add_development_actions: 계획을 편집하고 개발 작업을 추가합니다.
+        errors:
+          invalid_learning_style: "'%{learning_style}'은 유효한 학습 스타일이 아닙니다. 유효한 옵션은 다음과 같습니다%{valid_styles}"
+          learning_style_blank: 학습 스타일은 비어 있을 수 없습니다.
+        generate_by_ai: AI로 생성
+        generate_more: 더 많은 생성
+        heading: 기술/개발 조치
+        manage_skills: 기술 관리
+        no_development_actions: 개발 작업이 없습니다.
+      document_ai_assistant: 문서 분석 AI 어시스턴트
       edit_template: IDP 템플릿 편집
       enter_tag_or_skills_error: 태그 또는 스킬을 하나 이상 선택합니다.
       enter_template_description: 설명
@@ -2263,6 +2304,8 @@ ko:
       global_skills: 글로벌 기술
       idp: IDP
       idp_template: IDP 템플릿 추가
+      interview_questions: 면접 질문
+      interview_questions_updated: 면접 질문이 성공적으로 업데이트되었습니다.
       intro_message: 소개 메시지
       intro_message_hint: 소개 메시지를 수정하려면 먼저 IDP 템플릿을 저장하여 해당 설정을 활성화하세요.
       intro_message_success: 소개 메시지가 성공적으로 저장되었습니다.
@@ -2274,6 +2317,7 @@ ko:
         mercer_only: 머서 로고만 해당
         none: 로고 없음
       logo_type_label: 로고 유형
+      no_interview_questions_selected: 면접 질문 선택 없음
       no_reflection_questions_selected: 선택된 반영 문제 없음
       none: 없음
       one_click_idp_enabled: 원클릭 IDP 사용
@@ -2282,7 +2326,16 @@ ko:
       reflection_questions_hint: 반영 문제를 수정하려면 먼저 IDP 템플릿을 저장하여 이러한 설정을 활성화하세요.
       reflection_questions_updated: 반영 문제가 성공적으로 업데이트되었습니다.
       remove: 제거
+      remove_skill: 스킬 제거
+      revert_skill_to_public:
+        errors:
+          skill_already_public: 스킬은 이미 공개되어 있습니다.
+          skill_not_found: 스킬을 찾을 수 없음
+        success:
+          base_message: 이제 '%{skill_name}' 스킬이 관리자에게 표시됩니다.
+          with_approval: "%{base_message} IDP 플랜이 승인을 위해 제출되었습니다."
       select_by_tags: 태그별 선택
+      select_interview_question: 입력을 시작하여 질문 검색 및 선택
       select_reflection_question: 입력하여 질문 검색 및 선택
       select_skill_gap_report: 스킬 갭 보고서 선택
       select_specific_skills: 특정 기술 선택
@@ -2308,12 +2361,14 @@ ko:
       subtitle_text: 자막 텍스트
       tab:
         development_actions: 개발 작업
+        interview_questions: 면접 질문
         reflection_questions: 성찰 질문
         settings: 설정
         templates: 템플릿
       technical_skills: 기술 역량
       template_details: 템플릿 세부 정보
       title_text: 제목 텍스트
+      update_interview_questions: 면접 질문 업데이트
       update_reflection_questions: 반영 질문 업데이트
     idp_setting:
       allow_global_skills: 글로벌 스킬 허용
@@ -2516,6 +2571,35 @@ ko:
         skillvue:
           api_key_present: API 키가 다른 프로젝트에 이미 존재합니다.
       view_all_schedules: 모든 Mettl 일정 보기
+    interview_questions:
+      delete_confirmation: 이 인터뷰 질문을 삭제하시겠습니까?
+      description: 설명
+      export:
+        action: 수출 면접 질문
+        details: 파일 세부 정보
+        failure_msg: 파일을 내보내는 동안 오류가 발생했습니다.
+        success_msg: 인터뷰 질문 내보내기가 진행 중입니다. 알림에서 상태를 확인하십시오.
+      form:
+        description: 설명
+        mandatory: 필수
+        question: 질문
+        question_type: 질문 유형
+        question_type_audio: 오디오
+        question_type_video: 비디오
+        time_limit: 시간 제한(초)
+        title: 면접 질문
+      import:
+        action: 인터뷰 질문 가져오기
+        errors:
+          invalid_required_column_format: 잘못된 필수 열 값 형식 %{row}
+          invalid_required_type_format: 잘못된 QuestionType 열 값 형식 %{row}
+          invalid_time_limit_column_format: 잘못된 시간 제한 열 값 형식 %{row}
+          missing_description: 누락된 설명 콘텐츠 %{row}
+          missing_question: 누락된 질문 콘텐츠 %{row}
+          save_failed: 실패한 %{message} 저장
+        failure_msg: 파일을 가져오는 동안 오류가 발생했습니다.
+        success_msg: 인터뷰 질문 가져오기가 진행 중입니다. 알림에서 상태를 확인하십시오.
+      question: 질문
     invited_subject:
       add_btn: 제목 추가
       assessment_center: '평가 센터:'
@@ -3186,7 +3270,9 @@ ko:
         dp_consent_version: 정책 버전
         errors:
           cannot_disable_while_campaign_enabled: 이 프로젝트에서 하나 이상의 캠페인에 화상 통화 녹화가 활성화되어 있으므로 비활성화할 수 없습니다.
+          min_retention: 1일 미만일 수 없음
           policy_version_format: 정수만 허용됩니다
+          required: 필수
         mask_identity_for_examus: Examus 감독을 위한 마스크 데이터
         mask_identity_for_hogan: Hogan의 마스크 데이터
         mask_identity_for_iiht: IIHT용 마스크 데이터
@@ -3326,9 +3412,12 @@ ko:
         code: 코드
         code_constraint: 코드는 소문자로 시작해야 하며 소문자, 숫자 및 밑줄만 포함할 수 있습니다
         delete: 삭제
+        description: 묘사
+        description_alias: 설명 / 별칭
         import_factors: 가져오기 요소
         invalid_factor_params: 잘못된 캠페인 요소 매개 변수 형식
         name: 이름
+        name_alias: 이름/별칭
         no_boundary_space: 이름은 공백으로 시작하거나 끝낼 수 없습니다
         too_many_factors: 캠페인 요소를 %{count}개 이상 만들 수 없습니다
         tools: 도구
@@ -3347,6 +3436,19 @@ ko:
       property_panel:
         add_new_condition: 새 조건 추가
         apply_color_label: 그런 다음 다음 색상을 적용합니다.
+        custom_factor_fields:
+          percentage: 백분율
+          questions_attempted: 시도
+          questions_correct: 맞는
+          questions_incorrect: 잘못 된
+          questions_not_attempted: 시도되지 않음
+          questions_partial_correct: 부분적으로 정확함
+          total_questions: 합계
+        custom_factor_placeholder: 사용자 지정 요인 필드 선택
+        factor_value_type:
+          custom: 관습
+          default: 기본값
+          label: 요인 값 유형
         graph_condition_types:
           default: 기본값
           graph_value: 그래프 값
@@ -3356,6 +3458,7 @@ ko:
         manage_graph_value_condition: 그래프 값 조건 관리
         manage_styles_condition: 스타일 관리 조건
         missing_value: 누락된 값
+        pie_semi_circle: 세미 서클
         predicates:
           equal_to: 같음
           greater_than: 보다 큼
@@ -3439,6 +3542,7 @@ ko:
         translations: 번역
       title: 보고서 설정
     reports:
+      broken_image_url: 이미지 URL을 확인하고 다시 가져 오십시오.
       bulk_marked_as_done: 대량 완료로 표시됨
       bulk_upload:
         choose_file: 파일 선택
@@ -3608,16 +3712,19 @@ ko:
         campaign_assessment_group: 평가 센터 그룹
         campaign_name: 캠페인 이름
         duration: 기간
+        link_to_view_recordings: 녹화 보기 링크
         managers: 관리자
         meeting_link: 미팅 링크
         name: 이름
         participants: 참가자
         prework: 사전 작업
+        recording_date: 녹음 날짜
         resource_link: 링크
         resource_name: 이름
         schedule_time: 스케줄 시간
         scheduling_status: 예약 상태
         seats: 좌석
+        serial_no: 일련번호
         start_time: 날짜 및 시간
         subject: 제목
         title: 제목
@@ -3642,6 +3749,7 @@ ko:
         managers: 센터 관리자
         none: 없음
         not_allowed: 허용되지 않음
+        recording_enabled: 녹음 활성화
         remaining: 남은 좌석 수
         scheduling_lead_time: 스케줄링 리드 타임
         scheduling_tooltip: 사용자가 %{date}까지 슬롯을 예약할 수 있습니다
@@ -3705,6 +3813,7 @@ ko:
         activities: 활동
         assessment_center: 평가 센터
         invites: 초대
+        recordings: 녹음
         resources: 리소스
         subjects: 주제
     scoring:
@@ -4145,6 +4254,15 @@ ko:
           other: 기타
           qualification: 자격
           technical: 기술
+      move_question:
+        cancel: 취소
+        move: 움직이다
+        moveAfter: 이후 이동
+        moveBefore: 이동 전
+        moveQuestion: '이동 질문: %{question}'
+        position: 위치
+        selectTargetQuestion: 대상 질문 선택
+        title: 이동 질문
       property_panel:
         add_n_a_option: N/A 옵션 추가
         allow_content_copy: 콘텐츠 복사 허용
@@ -4188,6 +4306,18 @@ ko:
         question_description: 행 설명
         validation_response_type: 유효성 검사 응답 유형
         voice_dictation: 음성 받아쓰기
+      question_info_bar:
+        add_display_logic: 디스플레이 로직 추가
+        add_skip_logic: 건너뛰기 로직 추가
+        are_you_sure_to_delete_this_question: 이 질문을 삭제하시겠습니까?
+        default_choices: 기본 선택 항목
+        delete_question: 질문 삭제
+        delete_the_question: 질문 삭제
+        move_question: 이동 질문
+        randomization: 랜덤
+        save_as_a_template: 템플릿으로 저장
+        this_question_has_default_choices: 이 질문에는 기본 선택 항목이 있습니다.
+        this_question_has_randomization: 이 질문에는 무작위가 있습니다.
     table:
       entries:
         selected:

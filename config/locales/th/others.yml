@@ -839,6 +839,7 @@ th:
         export_development_actions: การดําเนินการพัฒนาการส่งออก
         export_dimension_as_json: ส่งออกมิติ JSON
         export_factor_translations: การแปลปัจจัยการส่งออก
+        export_interview_questions: ส่งออกคําถามสัมภาษณ์
         export_job_roles_translations: ส่งออกคำแปลชื่อตำแหน่งงาน
         export_norm: บรรทัดฐานการส่งออก
         export_occupations: อาชีพการส่งออก
@@ -864,6 +865,7 @@ th:
         import_external_campaign_scoring: นําเข้าการให้คะแนนแคมเปญภายนอก
         import_factor_translations: การแปลปัจจัยนําเข้า
         import_factors: ปัจจัยการนําเข้า
+        import_interview_questions: นําเข้าคําถามสัมภาษณ์
         import_job_roles_translations: นำเข้าคำแปลชื่อตำแหน่งงาน
         import_norm: บรรทัดฐานการนําเข้า
         import_proficiency_level_translations: นําเข้าการแปลระดับความชํานาญ
@@ -1784,6 +1786,7 @@ th:
       view: ดู
       view_all_tasks: แสดงงานทั้งหมด
       view_detail: แสดงรายละเอียด
+      yes_delete: ใช่ ลบ
     column:
       action: ดำเนินการ
       active: เปิดใช้งาน
@@ -2561,11 +2564,47 @@ th:
       aria_selected: เลือก
   idp:
     actions: การดําเนินการ
+    ai:
+      assistant:
+        failure_fallback:
+          message: อ๊ะ! มีบางอย่างผิดพลาดขณะแสดงข้อความนี้ โปรดลองอีกครั้ง!
+          try_again: ฉันไม่เข้าใจ ลองอีกครั้ง!
+      bubbles:
+        audio:
+          question_progress: คําถาม %{current} จาก %{count}
+      compose:
+        placeholder: พิมพ์ข้อความของคุณที่นี่...
+      finishing:
+        hint: ผู้ช่วย AI ของเรากําลังสร้างแผน IDP สําหรับคุณ
+        title: โปรดรอสักครู่ เรากําลังทําเวทมนตร์ของเรา...
+      retake_steps:
+        chat_hint: แจ้งให้เราทราบว่าคุณต้องการให้ข้อมูลอะไรเพิ่มเติม?
+        chat_title: คุณต้องการให้ข้อมูลเพิ่มเติมหรือไม่?
+        start_chat: เริ่มแชท
+        start_chat_again: เริ่มแชทอีกครั้ง
+        upload_document: อัปโหลดเอกสาร
+        upload_file: อัปโหลดไฟล์
+      summary:
+        chat_title: สรุปข้อมูลเชิงลึกของแชท
+        file_title: ข้อมูลเชิงลึกของเอกสารที่อัปโหลด
+        hint: ถ้าใช่ เราจะสร้าง IDP ของคุณ มิฉะนั้น คุณสามารถตอบคําถามของคุณใหม่ได้
+        title: คุณพอใจกับผลลัพธ์หรือไม่?
+        upload_file: ไฟล์ที่อัปโหลด
+        view_chat: ดูแชท
+      upload:
+        description: คลิกหรือลากไฟล์ไปยังพื้นที่นี้เพื่ออัปโหลด
+        drop: วางไฟล์ที่นี่
+        title: อัปโหลดไฟล์
+      welcome:
+        text: พร้อมที่จะสร้างแผนภูมิการเติบโตของคุณแล้วหรือยัง? มาเริ่มกันเลย!
+        title: สวัสดี ฉันเป็นผู้ช่วยพัฒนาของคุณ
     behavioral: พฤติกรรม
     board: กระดาน
+    changes_saved_to_plan: การเปลี่ยนแปลงที่บันทึกไว้ในแผน
     comment_details:
       add_comment: เพิ่มความคิดเห็น
       add_comment_placeholder: เพิ่มความคิดเห็น...
+      add_comments: เพิ่มความคิดเห็น
       add_reply_placeholder: เพิ่มการตอบกลับ...
       go_to_skill: ไปที่ทักษะ
     comments:
@@ -2587,11 +2626,15 @@ th:
       sort_by_date: จัดเรียงตามวันที่
       you: ท่าน
     convert_to_draft: แปลงเป็นแบบร่าง
+    delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะเพราะมันจะลบการดําเนินการพัฒนาที่เชื่อมต่อทั้งหมดด้วย?
     details: รายละเอียด
     development_actions:
       action_private: ใช่
       action_public: ไม่ใช่
       add_development_action: เพิ่มการดําเนินการพัฒนา
+      add_development_actions_from_below_options: เพิ่มการดําเนินการพัฒนาจากตัวเลือกด้านล่าง
+      add_development_actions_modal_title: ไลบรารีการดําเนินการเพื่อการพัฒนาสําหรับ %{skillName}
+      add_from_library: เพิ่มจากห้องสมุด
       all: ทั้งหมด
       approved: อนุมัติ
       board_view:
@@ -2599,17 +2642,32 @@ th:
         in_progress: อยู่ระหว่างดําเนินการ
         not_started: ยังไม่ได้เริ่มต้น
       completion: เสร็จสมบูรณ์
+      create_custom_development_action_title: สร้างการดําเนินการพัฒนาของฉันเองสําหรับ %{skillName}
+      create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ %{skillName}
+      create_from_ai: สร้างจาก AI
       create_my_own: สร้างของตัวเอง
+      custom: ธรรมเนียม
+      custom_da_description: สร้างการดําเนินการพัฒนาแบบกําหนดเองเพื่อตอบสนองความต้องการในการพัฒนาที่ไม่เหมือนใคร
       date_range: วันที่เริ่มต้น - วันที่สิ้นสุด
+      edit_plan_to_add_development_actions: แก้ไขแผนและเพิ่มการดําเนินการเพื่อการพัฒนา
+      enter_development_action_description: ป้อนคําอธิบายการดําเนินการเพื่อการพัฒนา
+      enter_development_action_title: ป้อนชื่อการดําเนินการเพื่อการพัฒนา
       generate_by_ai: สร้างโดย AI
       generate_more: สร้างมากขึ้น
       generating_development_actions: การสร้างการดําเนินการเพื่อการพัฒนา...
+      generative_ai: กําเนิด AI
+      generative_ai_description: ปล่อยให้ AI สร้างการดําเนินการพัฒนาที่ปรับให้เหมาะกับคุณโดยเฉพาะ
       heading: การดําเนินการพัฒนา
+      idp_library: ห้องสมุด IDP
+      idp_library_description: เลือกการดําเนินการพัฒนาที่ได้รับการพิสูจน์แล้วจากไลบรารีที่คัดสรรโดยผู้เชี่ยวชาญของเรา
       incomplete_error: การดําเนินการพัฒนาที่ไม่สมบูรณ์
       incomplete_error_message: การดําเนินการพัฒนาบางอย่างไม่สมบูรณ์ โปรดกรอกข้อมูลให้ครบถ้วนก่อนส่ง IDP ของคุณ
       incomplete_warning: การดําเนินการพัฒนาที่ไม่สมบูรณ์
       incomplete_warning_message: การดําเนินการพัฒนาบางอย่างไม่สมบูรณ์ คุณแน่ใจหรือไม่ว่าต้องการทําเครื่องหมาย IDP ของคุณเสร็จสมบูรณ์?
+      info_popover_title: การดําเนินการพัฒนาประเภทต่างๆ
       learning_from_others: เรียนรู้จากผู้อื่น
+      learning_from_others_label: เรียนรู้จากผู้อื่น
+      learning_on_the_job_label: เรียนรู้ในการทํางาน
       manage_skills: จัดการทักษะ
       marathon: มาราธอน
       mark_as_complete: ทําเครื่องหมายว่าเสร็จสมบูรณ์
@@ -2619,19 +2677,26 @@ th:
       private: ส่วนตัว
       publish_plan: เผยแพร่แผน
       remove: ถอด
+      save_plan: บันทึกแผน
       skill: ทักษะ
       sprint: วิ่ง
       start_plan: เริ่มแผน
       structured_learning: การเรียนรู้ที่มีโครงสร้าง
+      structured_learning_label: การเรียนรู้ร่วมกัน
       submit_plan: ส่งแผน
+      success: การดําเนินการพัฒนาเสร็จสมบูรณ์
       write_here: เขียนที่นี่...
+    direct_reportee_details: รายละเอียดผู้รายงานโดยตรง
     edit_plan: แก้ไขแผน
+    edit_plan_and_add_skills: แก้ไขแผนและคลิกที่จัดการทักษะเพื่อเพิ่มทักษะ
     edit_progress: แก้ไขความคืบหน้า
+    fetching_skill_gap_report: การดึงรายงานช่องว่างของทักษะ...
     initial_steps:
       add_skill_group_description: จากผลการประเมินของคุณต่อไปนี้คือจุดแข็งและการพัฒนาสําหรับคุณ เลือกทักษะที่คุณต้องการพัฒนาเพิ่มเติมโดยเป็นส่วนหนึ่งของแผนการพัฒนาของคุณ
       add_skill_group_title: สํารวจทักษะ %{category} ของคุณ
       add_skills: เพิ่ม
       add_skills_step: เพิ่มทักษะ
+      back: ย้อนกลับ
       continue_to_rate_skills: ให้คะแนนทักษะต่อไป
       getting_started: เริ่มต้นใช้งาน
       less_skills: แสดงทักษะน้อยลง
@@ -2659,6 +2724,8 @@ th:
         categories: ประเภท
       save_skills: บันทึกทักษะ
     new_comments: ความคิดเห็นใหม่
+    no_skills_added: คุณยังไม่ได้เพิ่มทักษะ
+    no_skills_added_by_reportee: ผู้รายงานยังไม่ได้เพิ่มทักษะ
     pdf:
       approval_status: สถานะการอนุมัติ
       cover:
@@ -2777,14 +2844,21 @@ th:
         required: จําเป็นต้องมีคําตอบสําหรับคําถาม
       max_words: คําสูงสุด
       min_words: คําขั้นต่ํา
+      no_answer_provided: ยังไม่มีคําตอบ
       no_reflective_questions: ไม่มีคำถามสะท้อน
+      optional: "(ไม่บังคับ)"
       title: คําถามไตร่ตรอง
       update_failed: เกิดข้อผิดพลาดในระหว่างการอัปเดต
       updated_successfully: คําตอบของคุณอัปเดตเรียบร้อยแล้ว
+      word_limit: ต้องอยู่ระหว่าง %{min} ถึง %{max} คํา
       words: นิรุกติ
+    remove_skill: ลบสกิลออก
     skill_gap_report:
+      download: ดาวน์โหลดรายงานช่องว่างทักษะ
       title: รายงานช่องว่างทักษะ
+    skills_updated: ทักษะที่อัปเดตในแผน
     status: สถานะ
+    suggestions: คำ แนะ นำ
     technical: เทคนิค
     user_idp_status:
       approved: อนุมัติ
@@ -3944,9 +4018,14 @@ th:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: ทําเครื่องหมายว่าเสร็จสมบูรณ์
+          success_message: "%{name} การประเมินถูกทําเครื่องหมายว่าเสร็จสมบูรณ์"
         reset_progress:
           name: รีเซ็ตความคืบหน้า
           success_message: การประเมิน %{name} พร้อมสําหรับการแก้ไข
+      mark_as_completed:
+        content: คุณแน่ใจหรือไม่ว่าต้องการทําเครื่องหมายว่าเสร็จสมบูรณ์ "%{name}"
       push_test_webhook:
         copy_request_data_success: คัดลอกเพย์โหลด Rquest ไปยังคลิปบอร์ดสําเร็จ
         copy_response_body_success: คัดลอกเนื้อหาการตอบสนองไปยังคลิปบอร์ดสําเร็จ

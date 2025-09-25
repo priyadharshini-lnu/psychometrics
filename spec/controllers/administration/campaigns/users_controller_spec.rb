@@ -181,6 +181,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'update_mettl_schedule' => false,
         'normalize_factor_scores' => policy.normalize_factor_scores?,
         'update_content_variation' => false,
+        'mark_complete' => policy.mark_complete?,
         'update_simulation_time_extension' => false
       },
       'norm_id' => nil,

@@ -27,6 +27,11 @@ module Api
             attribute[:approvers_can_edit].filled(:bool?)
             attribute[:approvers_not_required].filled(:bool?)
             attribute[:do_not_send_notifications].filled(:bool?)
+            optional(:send_digest_emails).filled(:bool?)
+            optional(:digest_frequency).maybe(:string)
+            optional(:digest_time).maybe(:string)
+            optional(:digest_timezone).maybe(:string)
+            optional(:digest_weekdays).array(:integer)
           end
         end
 

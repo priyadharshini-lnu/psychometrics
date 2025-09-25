@@ -109,3 +109,4 @@ stats.html
 vite.config.ts.timestamp*
 support/dev-ssl/ttedev.me.key
 support/dev-ssl/ttedev.me.pem
+.cursor

@@ -35,6 +35,10 @@ module Api
         has_permission?(:idp_templates, :manage)
       end
 
+      def update_interview_questions?
+        has_permission?(:idp_templates, :manage)
+      end
+
       def update_instructions?
         has_permission?(:idp_templates, :manage)
       end

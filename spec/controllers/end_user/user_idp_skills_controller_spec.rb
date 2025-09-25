@@ -107,4 +107,49 @@ describe EndUser::UserIdpSkillsController, type: :controller do
       expect(response.parsed_body['data']['private']).to be true
     end
   end
+
+  describe 'PUT #revert_to_public' do
+    before do
+      user_idp_skill.update!(private: true)
+    end
+
+    it 'successfully reverts private skill to public' do
+      put :revert_to_public, params: { id: user_idp_skill.id }
+
+      expect(response.status).to eq(200)
+      expect(response.parsed_body['success']).to be true
+      expect(response.parsed_body['data']['private']).to be false
+      expect(response.parsed_body['requires_approval']).to be_in([true, false])
+    end
+
+    it 'returns error when skill is already public' do
+      user_idp_skill.update!(private: false)
+      put :revert_to_public, params: { id: user_idp_skill.id }
+
+      expect(response.status).to eq(422)
+      expect(response.parsed_body['success']).to be false
+      expect(response.parsed_body['error']).to eq('Skill is already public')
+    end
+
+    it 'returns 404 when skill not found' do
+      put :revert_to_public, params: { id: 999_999 }
+
+      expect(response.status).to eq(404)
+    end
+
+    context 'with manager approval enabled' do
+      before do
+        user_idp_plan.campaign.project.idp_setting.update!(manager_approves_idp: true)
+        user_idp_plan.update!(status: :draft)
+      end
+
+      it 'includes requires_approval flag when reverting from draft' do
+        put :revert_to_public, params: { id: user_idp_skill.id }
+
+        expect(response.status).to eq(200)
+        expect(response.parsed_body['requires_approval']).to be false
+        expect(response.parsed_body['message']).to eq("Skill '#{skill.name}' is now visible to your manager")
+      end
+    end
+  end
 end

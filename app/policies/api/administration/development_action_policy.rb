@@ -67,10 +67,14 @@ module Api
             @user.has_permission?('development_actions', 'view', project_id: project_id)
           end
 
-          all_permitted_project_ids = permitted_client_admin_project_ids +
-                                      permitted_project_admin_project_ids
+          if permitted_client_admin_project_ids.any? || permitted_project_admin_project_ids.any?
+            all_permitted_project_ids = permitted_client_admin_project_ids +
+                                        permitted_project_admin_project_ids
 
-          scope.where(project_id: all_permitted_project_ids)
+            scope.where(owner_type: 'Client', owner_id: all_permitted_project_ids)
+          else
+            scope.none
+          end
         end
       end
     end

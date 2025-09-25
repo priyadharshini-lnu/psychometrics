@@ -48,6 +48,12 @@ export const AiAssistantsTable = () => (
       sorter
     />
     <Resource.Column<AiAssistant>
+      title={I18n.t('administration.common.type')}
+      id="assistantType"
+      render={aiAssistant => <Typography.Text>{ASSISTANT_TYPES[aiAssistant.assistantType]?.name}</Typography.Text>}
+      sorter
+    />
+    <Resource.Column<AiAssistant>
       title={I18n.t('administration.ai_assistants.column.provider')}
       id="modelId"
       render={aiAssistant => (AI_PROVIDERS[aiAssistant.modelId]?.name)}
@@ -88,12 +94,6 @@ export const AiAssistantsTable = () => (
         </Typography.Paragraph>
       )}
       width={200}
-      sorter
-    />
-    <Resource.Column<AiAssistant>
-      title={I18n.t('administration.common.type')}
-      id="assistantType"
-      render={aiAssistant => <Typography.Text>{ASSISTANT_TYPES[aiAssistant.assistantType]?.name}</Typography.Text>}
       sorter
     />
     <Resource.Column<AiAssistant>

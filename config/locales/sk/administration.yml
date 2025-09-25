@@ -291,6 +291,7 @@ sk:
             manage: Ovládať
             title: Dielne
             view: Pohľad
+            view_recordings: Zobraziť nahrávky
     ai_artifacts:
       artifact_results: Výsledky artefaktov
       code: Kód
@@ -368,6 +369,7 @@ sk:
       created_successfully: AI Assistant bol úspešne vytvorený.
       errors:
         cannot_delete_in_use: Nie je možné odstrániť AI Assistant "%{name}", pretože sa používa.
+        one_click_idp_assistance_not_enabled: Pomoc IDP s umelou inteligenciou nie je k dispozícii s vaším aktuálnym plánom. Obráťte sa na správcu.
       form:
         add_output_schema_key: Pridanie kľúča výstupnej schémy
         dependencies: Závislosti
@@ -590,6 +592,7 @@ sk:
         enable_back: Povoliť tlačidlo Späť
         enable_progress: Zapnutie indikátora priebehu
         enable_save: Povoliť tlačidlo Uložiť
+        enable_select_main_factor: Vyberte faktor ako hlavný faktor
         enable_single_question_page: Zobrazenie jednej otázky na stránku
         enable_single_question_page_confirm: Tým sa aktualizuje randomizácia blokov na stránku na 1. Si si istý?
         enable_timer: Povoliť časovač
@@ -1012,12 +1015,29 @@ sk:
           approvers: Schvaľovateľov
           approvers_can_edit: Schvaľovatelia môžu upravovať
           approvers_not_required: Schvaľovatelia nie sú povinní
+          digest_frequency:
+            daily: Denne
+            form_label: Frekvencia Digest
+            weekdays: Vo všedné dni
+            weekly: Týždenný
+          digest_time: Čas strávenia
+          digest_timezone: Časové pásmo súhrnu
+          digest_weekdays:
+            form_label: Digest Pracovné dni
+            friday: Piatok
+            monday: Pondelok
+            saturday: Sobota
+            sunday: Nedeľa
+            thursday: Štvrtok
+            tuesday: Utorok
+            wednesday: Streda
           do_not_send_notifications: Neposielajte e-maily používateľom[QC, Schvaľovatelia a oznámenie o schválení]
           modal_title: Nastavenia schválenia zostavy
           qc_users: Používatelia kontroly kvality
           remove_modal_success: 'Nastavenie schválenia pre ID zostavy: %{reportId} bolo úspešne odstránené '
           remove_modal_text: 'Naozaj chcete odstrániť toto nastavenie pre ID zostavy: %{reportId}?'
           report: Správa
+          send_digest_emails: Odosielanie súhrnných e-mailov
           settings: Nastavenia
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ sk:
       form:
         active_notice: Stav kampane sa automaticky zmení na uzavretý v deň vybraného konca dátumu
         campaign: Kampaň
+        copy_factors: Kopírovacie faktory
         inactive_notice: Stav kampane sa automaticky zmení na aktívny k zvolenému dátumu začiatku
         instruction: To sa dá povoliť iba pri vytváraní kampane
         name: Meno
@@ -2230,6 +2251,7 @@ sk:
         remove_confirm: Ak chcete šablónu odstrániť, zadajte aktuálny názov šablóny uvedený nižšie do textového poľa
         success: "%{idpName} bol úspešne odstránený."
       add_idp_template: Pridať šablónu IDP
+      ai_assistant: Asistent AI
       ai_assisted_idp_enabled: IDP s asistenciou umelej inteligencie
       ai_enabled: Aktivovaná umelá inteligencia
       ai_settings: Nastavenia AI
@@ -2240,7 +2262,26 @@ sk:
       background_image: Obrázok na pozadí
       behavioral_skills: Behaviorálne zručnosti
       client_skills: Zručnosti klienta
+      delete_skill: Naozaj chcete odstrániť zručnosť, pretože sa tým odstránia aj všetky súvisiace vývojové akcie?
       details_updated: IDP Podrobnosti úspešne aktualizované
+      development_actions:
+        add_from_library: Pridanie z knižnice
+        completion: Dokončenie
+        create_development_actions_with_ai: Vytvárajte vývojové akcie pomocou AI pre %{skillName}
+        create_from_ai: Tvorba z umelej inteligencie
+        create_my_own: Vytvorte si vlastný
+        custom: Zvyk
+        date_range: Dátum začiatku - dátum ukončenia
+        edit_plan_to_add_development_actions: Upraviť plán a pridať vývojové akcie.
+        errors:
+          invalid_learning_style: '"%{learning_style}" nie je platný štýl učenia. Platné možnosti sú: %{valid_styles}'
+          learning_style_blank: Štýl učenia nemôže byť prázdny
+        generate_by_ai: Generovanie pomocou AI
+        generate_more: Generovať viac
+        heading: Zručnosti/rozvojové akcie
+        manage_skills: Správa zručností
+        no_development_actions: Nemáte žiadne rozvojové akcie
+      document_ai_assistant: Asistent AI pre analýzu dokumentov
       edit_template: Upraviť šablónu IDP
       enter_tag_or_skills_error: Vyberte aspoň jednu značku alebo zručnosť
       enter_template_description: Popis
@@ -2263,6 +2304,8 @@ sk:
       global_skills: Globálne zručnosti
       idp: IDP
       idp_template: Pridať šablónu IDP
+      interview_questions: Otázky na pohovore
+      interview_questions_updated: Otázky na pohovore boli úspešne aktualizované.
       intro_message: Úvodná správa
       intro_message_hint: Ak chcete upraviť úvodnú správu, najskôr uložte šablónu IDP, aby ste povolili tieto nastavenia.
       intro_message_success: Úvodná správa bola úspešne uložená
@@ -2274,6 +2317,7 @@ sk:
         mercer_only: Iba logo Mercer
         none: Bez loga
       logo_type_label: Typ loga
+      no_interview_questions_selected: Nie sú vybrané žiadne otázky na pohovor
       no_reflection_questions_selected: Nie sú vybraté žiadne otázky na reflexiu
       none: Žiadny
       one_click_idp_enabled: IDP povolený jedným kliknutím
@@ -2282,7 +2326,16 @@ sk:
       reflection_questions_hint: Ak chcete upraviť otázky reflexie, najskôr uložte šablónu IDP, aby ste povolili tieto nastavenia.
       reflection_questions_updated: Reflexné otázky boli úspešne aktualizované.
       remove: Odstrániť
+      remove_skill: Odstrániť zručnosť
+      revert_skill_to_public:
+        errors:
+          skill_already_public: Zručnosť je už verejná
+          skill_not_found: Zručnosť sa nenašla
+        success:
+          base_message: Zručnosť "%{skill_name}" je teraz viditeľná pre vášho manažéra
+          with_approval: "%{base_message} a váš plán IDP bol predložený na schválenie"
       select_by_tags: Vybrať podľa značiek
+      select_interview_question: Začnite písať a vyhľadajte a vyberte otázku
       select_reflection_question: Začnite písať, aby ste hľadali a vybrali otázku
       select_skill_gap_report: Vyberte správu o medzere v zručnostiach
       select_specific_skills: Vyberte konkrétne zručnosti
@@ -2308,12 +2361,14 @@ sk:
       subtitle_text: Text titulkov
       tab:
         development_actions: Rozvojové akcie
+        interview_questions: Otázky na pohovore
         reflection_questions: Otázky na zamyslenie
         settings: Nastavenia
         templates: Šablóny
       technical_skills: Technické zručnosti
       template_details: Podrobnosti o šablóne
       title_text: Text názvu
+      update_interview_questions: Aktualizácia otázok na pohovore
       update_reflection_questions: Otázka na reflexiu aktualizácie
     idp_setting:
       allow_global_skills: Umožnite globálne zručnosti
@@ -2516,6 +2571,35 @@ sk:
         skillvue:
           api_key_present: API kľúč je už prítomný v inom projekte
       view_all_schedules: Zobraziť všetky cestovné poriadky Mettl
+    interview_questions:
+      delete_confirmation: Naozaj chcete odstrániť túto otázku na pohovore?
+      description: Opis
+      export:
+        action: Exportovať otázky na pohovor
+        details: Podrobnosti o súbore
+        failure_msg: Chyba pri exporte súboru.
+        success_msg: Prebieha export otázok na pohovor. Skontrolujte stav v upozorneniach.
+      form:
+        description: Opis
+        mandatory: Povinný
+        question: Otázka
+        question_type: Typ otázky
+        question_type_audio: Zvukový
+        question_type_video: Video
+        time_limit: Časový limit (s)
+        title: Otázka na pohovore
+      import:
+        action: Importovať otázky na pohovor
+        errors:
+          invalid_required_column_format: Neplatný Povinný formát hodnoty stĺpca %{row}
+          invalid_required_type_format: Neplatný formát hodnoty stĺpca QuestionType %{row}
+          invalid_time_limit_column_format: Neplatný formát hodnoty stĺpca Časový limit %{row}
+          missing_description: Chýbajúci popis obsahu %{row}
+          missing_question: Obsah chýbajúcej otázky %{row}
+          save_failed: Uloženie zlyhalo %{message}
+        failure_msg: Chyba pri importe súboru.
+        success_msg: Prebieha import otázok na pohovor. Skontrolujte stav v upozorneniach.
+      question: Otázka
     invited_subject:
       add_btn: Pridať predmet
       assessment_center: 'Assessment centrum:'
@@ -3182,7 +3266,9 @@ sk:
         dp_consent_version: Verzia pravidiel
         errors:
           cannot_disable_while_campaign_enabled: Nie je možné vypnúť nahrávanie videohovorov, pretože je povolené pre jednu alebo viacero kampaní v tomto projekte
+          min_retention: Nesmie byť kratšia ako 1 deň
           policy_version_format: Povolené sú iba celé čísla
+          required: Požadovaný
         mask_identity_for_examus: Údaje masky pre Examus Proctoring
         mask_identity_for_hogan: Údaje o maske pre Hogana
         mask_identity_for_iiht: Údaje masky pre IIHT
@@ -3322,9 +3408,12 @@ sk:
         code: Kód
         code_constraint: Kód sa musí začínať malým písmenom a môže obsahovať iba malé písmená, číslice a podčiarkovníky
         delete: Odstrániť
+        description: Popis
+        description_alias: Popis / Alias
         import_factors: Faktory dovozu
         invalid_factor_params: Neplatný formát parametrov faktorov kampane
         name: Meno
+        name_alias: Meno / Alias
         no_boundary_space: Názov nemôže začínať ani končiť medzerou
         too_many_factors: Nie je možné vytvoriť viac ako %{count} faktorov kampane
         tools: Náradie
@@ -3343,6 +3432,19 @@ sk:
       property_panel:
         add_new_condition: Pridať novú podmienku
         apply_color_label: 'Potom naneste nasledujúcu farbu:'
+        custom_factor_fields:
+          percentage: Percento
+          questions_attempted: Pokúsil
+          questions_correct: Správny
+          questions_incorrect: Nesprávny
+          questions_not_attempted: Nepokúsil sa
+          questions_partial_correct: Čiastočne správne
+          total_questions: Totálny
+        custom_factor_placeholder: Výber vlastných polí faktorov
+        factor_value_type:
+          custom: Zvyk
+          default: Predvolený
+          label: Typ hodnoty faktora
         graph_condition_types:
           default: Predvolený
           graph_value: Hodnota grafu
@@ -3352,6 +3454,7 @@ sk:
         manage_graph_value_condition: Spravovanie podmienky hodnoty grafu
         manage_styles_condition: Podmienka Správa štýlov
         missing_value: Chýbajúca hodnota
+        pie_semi_circle: Polkruh
         predicates:
           equal_to: Rovná sa
           greater_than: Väčšie ako
@@ -3435,6 +3538,7 @@ sk:
         translations: Preklady
       title: Nastavenia prehľadu
     reports:
+      broken_image_url: Overte adresu URL obrázka a skúste import zopakovať
       bulk_marked_as_done: Hromadne označené ako hotové
       bulk_upload:
         choose_file: Vyberte položku Súbor
@@ -3604,16 +3708,19 @@ sk:
         campaign_assessment_group: Skupina hodnotiacich centier
         campaign_name: Názov kampane
         duration: Trvanie
+        link_to_view_recordings: Prepojenie na zobrazenie záznamov
         managers: Manažéri
         meeting_link: Prepojenie na stretnutie
         name: Meno
         participants: Účastníkov
         prework: Príprava
+        recording_date: Dátum nahrávania
         resource_link: Väzba
         resource_name: Meno
         schedule_time: Naplánovať čas
         scheduling_status: Stav plánovania
         seats: Sedadlá
+        serial_no: Sériové číslo
         start_time: Dátum a čas
         subject: Predmet
         title: Titul
@@ -3638,6 +3745,7 @@ sk:
         managers: Manažéri stredísk
         none: Žiadny
         not_allowed: Nie je povolené
+        recording_enabled: Nahrávanie povolené
         remaining: Zostávajúce miesta
         scheduling_lead_time: Plánovanie dodacej lehoty
         scheduling_tooltip: Používateľ si bude môcť rezervovať miesto do %{date}
@@ -3698,6 +3806,7 @@ sk:
         activities: Činnosti
         assessment_center: Hodnotiace centrum
         invites: Vyzýva
+        recordings: Nahrávky
         resources: Zdroje
         subjects: Predmety
     scoring:
@@ -4133,6 +4242,15 @@ sk:
           other: Iné
           qualification: Kvalifikácia
           technical: Technická stránka
+      move_question:
+        cancel: Zrušiť
+        move: Hýbať
+        moveAfter: Presunúť sa po
+        moveBefore: Presunúť sa pred
+        moveQuestion: 'Otázka na presunutie: %{question}'
+        position: Pozícia
+        selectTargetQuestion: Vyberte cieľovú otázku
+        title: Presunúť otázku
       property_panel:
         add_n_a_option: Pridať možnosť Nie je k dispozícii
         allow_content_copy: Povolenie kopírovania obsahu
@@ -4176,6 +4294,18 @@ sk:
         question_description: Popisy riadkov
         validation_response_type: Typ odpovede na overenie
         voice_dictation: Hlasové diktovanie
+      question_info_bar:
+        add_display_logic: Pridanie logiky zobrazenia
+        add_skip_logic: Pridať logiku preskakovania
+        are_you_sure_to_delete_this_question: Naozaj chcete túto otázku vymazať?
+        default_choices: Predvolené voľby
+        delete_question: Odstrániť otázku
+        delete_the_question: Odstránenie otázky
+        move_question: Presunúť otázku
+        randomization: Náhodnosti
+        save_as_a_template: Uložiť ako šablónu
+        this_question_has_default_choices: Táto otázka má predvolené možnosti
+        this_question_has_randomization: Táto otázka má randomizáciu
     table:
       entries:
         selected: Vybraný 1 riadok

@@ -1,18 +1,23 @@
+import { useState } from 'react'
 import {
-  Progress, Button, Flex, Typography, DatePicker,
-  Tooltip,
+  Progress, Button, Flex, Typography, DatePicker, Divider,
+  Tooltip, Empty, Modal,
 } from 'antd'
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import useMedia from 'use-media'
 import cs from 'classnames'
+import { Separator } from '~/components/IdpShared/Separator'
 import dayjs from '~/utils/dayjs'
 import styles from './DevelopmentActionLandscapeCard.less'
 import { DevelopmentAction } from '~/components/IdpShared/DevelopmentActions/Types'
-import { Tags } from '~/components/IdpShared/DevelopmentActions/Common'
+import { developmentActionLearningStylesConfig, sourceTypeConfig, DevelopmentActionSourceType }
+  from '~/components/IdpShared/DevelopmentActions/Constants'
+
 
 const { RangePicker } = DatePicker
 
 const { I18n } = window
+
 type DevelopmentActionLandscapeCardProps = {
   editMode?: boolean
   onAddDevelopmentAction?: () => void
@@ -21,6 +26,10 @@ type DevelopmentActionLandscapeCardProps = {
   onRemoveDevelopmentAction: (developmentAction: DevelopmentAction) => void
   name: string,
   developmentActions: Partial<DevelopmentAction>[]
+  onShowCustomDevelopmentAction?: () => void
+  onShowAIGeneratedDevelopmentActions?: () => void
+  userIdpSkillId: number
+  onRemoveSkill: (userIdpSkillId: number)=>void
 }
 
 export const DevelopmentActionLandscapeCard:
@@ -31,7 +40,18 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
   onAddDevelopmentAction,
   onUpdateDevelopmentAction,
   onRemoveDevelopmentAction,
+  userIdpSkillId,
+  onShowCustomDevelopmentAction,
+  onShowAIGeneratedDevelopmentActions,
+  onRemoveSkill,
+
 }) => {
+  const [openSkillDeletionModal, setOpenSkillDeletionModal] = useState(false)
+
+  const onDeleteSkill = () => {
+    onRemoveSkill(userIdpSkillId)
+  }
+
   const developmentActionCards = developmentActions.map(developmentAction => (
     <Card
       key={developmentAction.id}
@@ -46,25 +66,84 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
     <Flex vertical>
       <Flex
         justify="space-between"
-        className={`${styles.border_b_1} ${styles.py_12}`}
       >
-        <Flex gap={12}>
-          <h4 className={`${styles.m_none} ${styles.heading}`}>{name}</h4>
+        <Flex gap={12} flex={1} justify="space-between" align="center">
+          <h4 className={`m-0 self-end ${styles.heading}`}>{name}</h4>
+          {editMode && (
+            <Tooltip title={I18n.t('administration.idp.remove_skill')}>
+              <Button
+                type="default"
+                shape="circle"
+                icon={<DeleteOutlined />}
+                danger
+                className="self-end justify-self-end"
+                onClick={() => {
+                  setOpenSkillDeletionModal(true)
+                }}
+              />
+            </Tooltip>
+          )}
         </Flex>
       </Flex>
-      {developmentActionCards}
+      <Separator className="mt-4 mb-0" />
+      {!developmentActionCards.length ? (
+        <Flex vertical>
+          <Flex align="center" className="border-b-1 pt-3 pb-3">
+            <Empty description="" style={{ marginLeft: '-2rem' }} />
+            <Flex vertical align="start" style={{ marginLeft: '-2rem' }}>
+              <strong className="ta-s">
+                {I18n.t('administration.idp.development_actions.no_development_actions')}
+              </strong>
+              <Typography.Text type="secondary" className="ta-s">
+                {I18n.t('administration.idp.development_actions.edit_plan_to_add_development_actions')}
+              </Typography.Text>
+            </Flex>
+          </Flex>
+          <Divider className="mb-4 mt-0" />
+        </Flex>
+      ) : developmentActionCards}
       {editMode ? (
-        <Flex>
+        <Flex gap={64}>
+          <Button
+            type="link"
+            icon={<PlusOutlined />}
+            onClick={onShowCustomDevelopmentAction}
+            className="p-0"
+          >
+            {I18n.t('administration.idp.development_actions.create_my_own')}
+          </Button>
           <Button
             type="link"
             icon={<PlusOutlined />}
             onClick={onAddDevelopmentAction}
-            className={styles.p_none}
+            className="p-0"
           >
-            {I18n.t('idp.development_actions.add_development_action')}
+            {I18n.t('administration.idp.development_actions.add_from_library')}
+          </Button>
+          <Button
+            type="link"
+            icon={<PlusOutlined />}
+            onClick={onShowAIGeneratedDevelopmentActions}
+            className="p-0"
+          >
+            {I18n.t('administration.idp.development_actions.create_from_ai')}
           </Button>
         </Flex>
       ) : null}
+      <Modal
+        open={openSkillDeletionModal}
+        title=""
+        footer={() => (
+          <>
+            <Button onClick={() => setOpenSkillDeletionModal(false)}>Cancel</Button>
+            <Button onClick={onDeleteSkill} danger>Yes, Delete</Button>
+          </>
+        )}
+      >
+        <Typography.Text>
+          {I18n.t('iadministration.dp.delete_skill')}
+        </Typography.Text>
+      </Modal>
     </Flex>
   )
 }
@@ -121,27 +200,40 @@ const Card = ({
 
   const progress = (
     <Flex
-      flex={6}
+      flex={1}
       className={cs(
         {
-          [styles.p_12]: !isTablet,
-          [styles.pb_8]: isTablet,
+          'pt-3': !isTablet,
+          'pb-2': isTablet,
         },
       )}
     >
       {isTablet ? (
         <Flex flex={1} className={styles.label}>
-          {I18n.t('idp.development_actions.completion')}
+          {I18n.t('administration.idp.development_actions.completion')}
         </Flex>
       ) : null}
       <Flex
         vertical
         flex={1}
         gap={4}
-        justify="flex-start"
-        align="flex-end"
+        justify="space-between"
       >
-        <Progress percent={developmentAction.progress} className={styles.m_none} />
+        <Progress percent={developmentAction.progress} className="mt-1" />
+
+        {editMode && (
+          <Tooltip title={I18n.t('idp.development_actions.remove')}>
+            <Button
+              onClick={() => onRemoveDevelopmentAction(developmentAction)}
+              type="default"
+              shape="circle"
+              icon={<DeleteOutlined />}
+              danger
+              className="self-end justify-self-end mb-2"
+            />
+          </Tooltip>
+        )
+        }
       </Flex>
     </Flex>
   )
@@ -152,69 +244,89 @@ const Card = ({
       <Flex
         align="stretch"
         justify="space-between"
-        className={styles.border_b_1}
+        className="border-b-1"
         vertical={isTablet}
       >
         <Flex
-          flex={5}
+          flex={1}
           className={cs(
             {
-              [styles.border_r_1]: !isTablet,
-              [styles.p_12]: !isTablet,
-              [styles.pl_none]: !isTablet,
-              [styles.pb_8]: isTablet,
+              'p-3': !isTablet,
+              'pb-2': isTablet,
             },
           )}
           justify="space-between"
           align="center"
         >
-          <div>
-            <Typography.Title
-              level={5}
-              ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
-            >
-              {developmentAction.name}
-            </Typography.Title>
+          <div
+            style={{
+              borderLeft:
+              `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
+            }}
+            className="p-3"
+          >
+            {developmentAction.sourceType !== DevelopmentActionSourceType.AI_GENERATED ? (
+              <Typography.Title
+                level={5}
+                className="mt-0"
+                ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+              >
+                {developmentAction.name}
+              </Typography.Title>
+            ) : null}
             <Typography.Paragraph
               ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
             >
-              {developmentAction.description || developmentAction.customAction}
+              {developmentAction.description}
             </Typography.Paragraph>
-            <Flex className={styles.mb_8}>
-              {developmentAction.learningStyle || developmentAction.customActionLearningStyle
-                ? <Tags type={developmentAction.learningStyle || developmentAction.customActionLearningStyle} />
+            <Flex>
+              {developmentAction.learningStyle
+                ? (
+                  <Flex gap={4} align="center">
+                    <img
+                      src={developmentActionLearningStylesConfig[developmentAction.learningStyle].logo}
+                    />
+                    <strong>
+                      {`${developmentActionLearningStylesConfig[developmentAction.learningStyle].duration}%`}
+                                                            &nbsp;
+                    </strong>
+                    <Typography.Text
+                      className="font-normal"
+                      type="secondary"
+                    >
+                      {developmentActionLearningStylesConfig[developmentAction.learningStyle].text}
+                    </Typography.Text>
+                    <Flex gap={4} className="ms-4" align="center">
+                      <img
+                        src={sourceTypeConfig[developmentAction.sourceType].icon}
+                        style={{
+                          width: '1.5rem',
+                          height: '1.5rem',
+                        }}
+                      />
+                      <Typography.Text
+                        className="font-normal"
+                      >
+                        {sourceTypeConfig[developmentAction.sourceType].label}
+                      </Typography.Text>
+                    </Flex>
+                  </Flex>
+                )
                 : null}
             </Flex>
           </div>
-          {
-            editMode && (
-              <Tooltip title={I18n.t('idp.development_actions.remove')}>
-                <Button
-                  onClick={() => onRemoveDevelopmentAction(developmentAction)}
-                  type="default"
-                  shape="circle"
-                  icon={<DeleteOutlined />}
-                  danger
-                />
-              </Tooltip>
-            )
-          }
         </Flex>
-        <Flex flex={5} vertical={isTablet}>
+        <Flex flex={1} vertical={isTablet}>
           <Flex
-            flex={9}
+            flex={1}
             justify="flex-start"
             className={cs(
-              {
-                [styles.border_r_1]: !isTablet,
-                [styles.p_12]: !isTablet,
-                [styles.pb_8]: isTablet,
-              },
+              'p-2',
             )}
           >
             {isTablet ? (
               <Flex flex={1} className={styles.label}>
-                {I18n.t('idp.development_actions.date_range')}
+                {I18n.t('administration.idp.development_actions.date_range')}
               </Flex>
             ) : null}
             <DateRange
