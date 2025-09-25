@@ -12,7 +12,7 @@ executors:
   tte-executor-full:
     docker:
       - &docker_image
-        image: talententerprise/tte:ruby-3.4.2-node-18.16.1-lua-5.4
+        image: talententerprise/tte:ruby-3.4.6-node-18.16.1-lua-5.4
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference

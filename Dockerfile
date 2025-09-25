@@ -1,4 +1,4 @@
-FROM ruby:3.4.2-slim as ruby-base
+FROM ruby:3.4.6-slim-trixie as ruby-base
 
 # Default env vars (applies to containers made from this image)
 # Can be overriden at run-time with -e
@@ -145,7 +145,7 @@ RUN bundle exec rake i18n:js:export \
     && DISABLE_COVERAGE=1 bundle exec rails assets:precompile \
     && rm -rf tmp/ && rm -rf node_modules
 
-FROM ruby:3.4.2-slim
+FROM ruby:3.4.6-slim-trixie
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
