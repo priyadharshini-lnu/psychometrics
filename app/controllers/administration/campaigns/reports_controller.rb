@@ -9,6 +9,8 @@ module Administration
                                             toggle_main_report toggle_auto_assign update_default_and_available_locales]
 
       def create
+        audit! :create, resource, payload: resource_params, campaign: campaign
+
         form = ::Campaigns::Reports::Form.from_params(resource_params)
         if form.valid? && form.skip_existing?
           ::Campaigns::Reports::Add.call(form, campaign, current_user) do
