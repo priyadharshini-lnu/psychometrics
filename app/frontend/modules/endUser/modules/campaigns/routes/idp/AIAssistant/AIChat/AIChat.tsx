@@ -32,12 +32,40 @@ import { useSpeechToText } from '~/hooks/useSpeechToText'
 
 const { I18n } = window
 
+export type AIChatMessageContent = {
+  component?: string,
+  message: string | { file: File }
+  data?: {
+  documentSummary?: string
+  chatSummary?: string
+  }
+  role?: string
+  suggestions?: string[]
+  error?: string
+}
+
+export type AIChatMessage = {
+  id: number
+  role: string
+  content: string
+  createdAt: string
+}
+
+export type AIAssistedIDPSession = {
+  error?: string | null
+  messages: AIChatMessage[]
+  meta?: Record<string, unknown> | null
+  checkpoint?: string | null
+  status: string
+}
+
 interface BubbleProps {
   content: {
     component?: string,
     message?: string | { file: File }
     data?: { [key: string]: string }
     role?: string
+    error?: string
   },
   onAction?: (action: string) => void,
   isCurrent?: boolean,
@@ -48,13 +76,22 @@ export const Bubble: FC<BubbleProps> = ({
   content, onAction, isCurrent, status,
 }) => {
   const {
-    component, message, data, role,
+    component, message, data, role, error,
   } = content
 
   const bubbleType = role === 'user' ? 'UserMessage' : 'AssistantMessage'
   const Bubble = BubbleTypes[component || bubbleType] || BubbleTypes.AssistantMessage
 
-  return <Bubble message={message} data={data} onAction={onAction} isCurrent={isCurrent} status={status} />
+  return (
+    <Bubble
+      message={message}
+      data={data}
+      onAction={onAction}
+      isCurrent={isCurrent}
+      status={status}
+      error={error}
+    />
+  )
 }
 
 export const AsyncChatTR = t.type({
@@ -73,9 +110,7 @@ export const AsyncChatTR = t.type({
 
 export const AIChat = () => {
   const [status, setStatus] = useState<'chat' | 'document_upload' | 'interview' | 'confirmation' | 'completed'>('chat')
-  const [messages, setMessages] = useState<{
-    component: string, suggestions?: string[], message?: string | { file: File }, role?: string
-  }[]>([])
+  const [messages, setMessages] = useState<AIChatMessageContent[]>([])
   const [userPrompt, setUserPrompt] = useState('')
   const [requestProcessing, setRequestProcessing] = useState(false)
   const [suggestions, setSuggestions] = useState<string[]>([])
@@ -105,7 +140,7 @@ export const AIChat = () => {
       method: 'get',
       url: '/ai_assisted_idp_chats',
     },
-  }) as unknown as Promise<{ response: {role: string, content: string}[] }>
+  }) as unknown as Promise<{ response: AIAssistedIDPSession }>
 
   const { startDictation, stopDictation } = useSpeechToText({
     value: userPrompt, onChange: changeValue, fetchPresignUrl: fetchAwsSpeechTextPresignedUrl,
@@ -133,12 +168,36 @@ export const AIChat = () => {
     responseType: AsyncChatTR,
   })
 
+
+  const handleErrorResponse = (content) => {
+    // Add error attribute to last message
+    setMessages((prevMessages) => {
+      const updatedMessages = [...prevMessages]
+
+      if (updatedMessages.length > 0) {
+        updatedMessages[updatedMessages.length - 1] = {
+          ...updatedMessages[updatedMessages.length - 1],
+          error: content.message || I18n.t('idp.ai.errors.generic'),
+        }
+      }
+      return updatedMessages
+    })
+  }
+
   const sendMessage = async (message) => {
     setRequestProcessing(true)
     try {
       const response = await askRequest.makeAsyncRequest({ message, restart_chat: resetChat })
       setResetChat(false)
       const { content } = response.responseData
+
+      const isErrorResponse = typeof content === 'object' && content?.component === 'Error'
+
+      // When we receive an error response, it means the last user message was not processed correctly
+      // So we add the error message to the last user message bubble
+      if (isErrorResponse) {
+        return handleErrorResponse(content)
+      }
 
       setMessages(prev => [...prev, parseAssistantMessage(content)])
     } finally {
@@ -215,7 +274,8 @@ export const AIChat = () => {
     })
     setRequestProcessing(true)
     fetchMessages().then(({ response }) => {
-      const messages = response.map((msg) => {
+      const { messages: fetchedMessages, error: aiSessionError } = response
+      const messages = fetchedMessages.map((msg) => {
         try {
           return {
             ...humps.camelizeKeys(JSON.parse(msg.content.split('\n')[0])),
@@ -228,6 +288,14 @@ export const AIChat = () => {
           }
         }
       })
+
+      if (aiSessionError) {
+        messages[messages.length - 1] = {
+          ...messages[messages.length - 1],
+          error: aiSessionError,
+        }
+      }
+
       setRequestProcessing(false)
       setMessages(messages)
       scrollToBottom(false)

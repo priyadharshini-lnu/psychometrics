@@ -173,8 +173,14 @@ describe AI::IdpAssistantService do
       it 'marks session as failed and broadcasts error' do
         result = described_class.call(plan, user, instructions, options)
 
-        expect_session_status(session, 'failed', 'AI service failed')
-        expect(result[:error]).to eq('AI service failed')
+        expected_message = I18n.t('ai.errors.generic')
+        expect_session_status(session, 'failed', expected_message)
+        expect(result[:error]).to eq(expected_message)
+
+        # Verify metadata is saved
+        session.reload
+        expect(session.meta).to include('error' => 'AI service failed')
+        expect(session.meta).to include('error_class')
       end
     end
 

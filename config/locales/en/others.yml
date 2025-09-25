@@ -919,6 +919,14 @@ en:
     super_admin:
       errors:
         data_processing_disabled: Data processing is disabled.
+  ai:
+    errors:
+      bad_request_invalid_input: Your request could not be processed due to invalid input. Please check your request and try again.
+      generic: Something went wrong while processing your request. Please contact your administrator.
+      rate_limit_exceeded: The service is currently experiencing high demand. Please wait a moment and try again.
+      server_error: The AI service is temporarily unavailable. Please try again in a few moments.
+      service_overloaded: The AI service is currently overloaded. Please wait a moment and try again.
+      service_unavailable: The AI service is currently under maintenance. Please try again later.
   anonym:
     close: Close
     continue: Continue

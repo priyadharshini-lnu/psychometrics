@@ -65,7 +65,7 @@ user_prompt: 'How can I help you?')
 
       it 'broadcasts an error with the AI error message' do
         result = described_class.call(assistant.id, user, nil)
-        expect(result[:error]).to eq('RubyLLM::Error')
+        expect(result[:error]).to include('RubyLLM::Error')
       end
     end
 

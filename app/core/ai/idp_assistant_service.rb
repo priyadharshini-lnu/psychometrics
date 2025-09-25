@@ -2,6 +2,8 @@
 
 module AI
   class IdpAssistantService < BaseCommand
+    include AI::Concerns::ErrorHandler
+
     private_attr_reader :plan, :instructions, :current_user, :options, :start_new_chat
 
     def initialize(plan, current_user, instructions = nil, options = {})
@@ -35,9 +37,10 @@ module AI
             role: 'assistant'
           })
         end.
-        on(:error) do |error_message|
-          ai_assisted_idp_session.mark_as_failed!(error_message)
-          broadcast(:error, error_message)
+        on(:error) do |error_message, error|
+          error_response, error_meta = handle_assistant_error_response(error_message, error)
+          ai_assisted_idp_session.mark_as_failed!(error_response, meta: error_meta)
+          broadcast(:error, error_response)
         end.
         call
     end

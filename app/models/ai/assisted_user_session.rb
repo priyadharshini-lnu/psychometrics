@@ -15,11 +15,13 @@ class AI::AssistedUserSession < ApplicationRecord
   validates :ai_assistant_chat, presence: true
 
   def mark_as_completed!(checkpoint = nil)
-    update!(status: :completed, checkpoint: checkpoint)
+    update!(status: :completed, checkpoint: checkpoint, error: nil, meta: nil)
   end
 
-  def mark_as_failed!(error_message = nil)
-    update!(status: :failed, error: error_message)
+  def mark_as_failed!(error_message = nil, meta: nil)
+    attributes = { status: :failed, error: error_message }
+    attributes[:meta] = meta if meta
+    update!(attributes)
   end
 
   def mark_as_in_progress!
