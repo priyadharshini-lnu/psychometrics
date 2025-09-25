@@ -2316,7 +2316,6 @@ th:
       title_text: ข้อความชื่อเรื่อง
       update_reflection_questions: อัปเดตคําถามสะท้อน
     idp_setting:
-      allow_global_skills: อนุญาตทักษะระดับโลก
       manager_approves_idp: ผู้จัดการอนุมัติ IDP
       manager_can_edit_idp: ผู้จัดการสามารถแก้ไข IDP ได้
       require_all_development_actions_complete: กําหนดให้การดําเนินการพัฒนาทั้งหมดเสร็จสมบูรณ์

@@ -2316,7 +2316,6 @@ sl:
       title_text: Besedilo naslova
       update_reflection_questions: Posodabljanje vprašanj za razmislek
     idp_setting:
-      allow_global_skills: Omogočite globalne spretnosti
       manager_approves_idp: Upravitelj odobri IDP
       manager_can_edit_idp: Upravitelj lahko ureja IDP
       require_all_development_actions_complete: Zahtevajte dokončanje vseh razvojnih ukrepov

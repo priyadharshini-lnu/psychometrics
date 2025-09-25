@@ -2316,7 +2316,6 @@ nl:
       title_text: Titel tekst
       update_reflection_questions: Update Reflectievragen
     idp_setting:
-      allow_global_skills: Wereldwijde vaardigheden toestaan
       manager_approves_idp: Manager keurt IDP goed
       manager_can_edit_idp: Manager kan IDP bewerken
       require_all_development_actions_complete: Alle ontwikkelingsacties voltooien

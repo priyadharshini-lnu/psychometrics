@@ -94,6 +94,10 @@ export const SettingsComponent: FC<Props> = ({ currentUser }) => {
     key: '/assessments',
     label: I18n.t('administration.project_tabs.assessments.title'),
   })
+  permissions.manageProjectFeatureFlags && menuItems.push({
+    key: '/features',
+    label: I18n.t('administration.settings.tabs.feature_flags'),
+  })
 
   return (
     <div>

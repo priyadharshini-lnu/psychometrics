@@ -2316,7 +2316,6 @@ zh:
       title_text: 标题文本
       update_reflection_questions: 更新反思问题
     idp_setting:
-      allow_global_skills: 允许使用全球技能
       manager_approves_idp: 经理批准 IDP
       manager_can_edit_idp: 管理员可以编辑 IDP
       require_all_development_actions_complete: 要求完成所有开发行动

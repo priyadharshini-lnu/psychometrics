@@ -6,7 +6,7 @@ module CampaignResults
 
     def perform(campaign, user)
       CampaignScoring::CalculateAndSave.call!(campaign, user)
-      Campaigns::AIArtifactResultsGeneration.call!(campaign, user)
+      Campaigns::AIArtifactResultsGeneration.call(campaign, user)
     end
   end
 end

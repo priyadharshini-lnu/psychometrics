@@ -58,7 +58,11 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         parsed_response = JSON.parse(response.body)
         names = parsed_response['data'].map { |s| s['attributes']['name'] }
         expect(names).to match_array([
-          'Engineering Leadership', 'Python Engineering'
+          'Ruby Engineering',
+          'Python Engineering',
+          'Java Engineering',
+          'Engineering Communication',
+          'Engineering Leadership'
         ])
       end
     end
@@ -114,7 +118,7 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :controller do
         expect(response).to have_http_status(:ok)
         parsed_response = JSON.parse(response.body)
         names = parsed_response['data'].map { |s| s['attributes']['name'] }
-        expect(names).to match_array(['Python Engineering'])
+        expect(names).to match_array(['Ruby Engineering', 'Python Engineering', 'Java Engineering'])
       end
 
       it 'returns skills matching name pattern and project' do

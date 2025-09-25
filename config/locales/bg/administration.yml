@@ -2316,7 +2316,6 @@ bg:
       title_text: Текст на заглавието
       update_reflection_questions: Актуализиране на въпроси за размисъл
     idp_setting:
-      allow_global_skills: Позволете на глобални умения
       manager_approves_idp: Мениджърът одобрява IDP
       manager_can_edit_idp: Мениджърът може да редактира IDP
       require_all_development_actions_complete: Изискване за завършване на всички действия за разработка

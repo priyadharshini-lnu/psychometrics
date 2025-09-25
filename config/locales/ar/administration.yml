@@ -2316,7 +2316,6 @@ ar:
       title_text: نص العنوان
       update_reflection_questions: تحديث أسئلة التأملات
     idp_setting:
-      allow_global_skills: Allow Global Skills
       manager_approves_idp: Manager approves IDP
       manager_can_edit_idp: Manager can edit IDP
       require_all_development_actions_complete: اشتراط اكتمال جميع إجراءات التطوير

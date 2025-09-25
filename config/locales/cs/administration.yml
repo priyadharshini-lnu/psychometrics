@@ -2316,7 +2316,6 @@ cs:
       title_text: Text názvu
       update_reflection_questions: Aktualizace otázek k zamyšlení
     idp_setting:
-      allow_global_skills: Povolit globální dovednosti
       manager_approves_idp: Manažer schvaluje IDP
       manager_can_edit_idp: Správce může upravovat IDP
       require_all_development_actions_complete: Požadavek na dokončení všech vývojových činností

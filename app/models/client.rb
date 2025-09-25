@@ -116,6 +116,7 @@ class Client < ApplicationRecord
   has_one :datasheet, class_name: 'Datasheet', foreign_key: :project_id, dependent: :destroy
   has_one :client_auditlog_export_setting, dependent: :destroy
   has_one :client_feature, dependent: :destroy
+  has_one :project_feature, dependent: :destroy, foreign_key: 'project_id'
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
 
@@ -154,6 +155,7 @@ class Client < ApplicationRecord
   after_create :create_client_privacy_setting, if: :root?
   after_create :create_idp_setting, if: :project?
   after_create :create_client_features
+  after_create :create_project_features, if: :project?
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
@@ -169,7 +171,7 @@ class Client < ApplicationRecord
            :mask_identity_for_iiht?, :mask_identity_for_examus?,
            :mask_identity_for_mettl?, :mask_identity_for_skillvue?, :custom_privacy_consent, to: :privacy_setting
   delegate :idp?, :ai_assistants?, :global_skills?, :sms_notification?,
-           :ai_assisted_idp?, to: :client_feature, allow_nil: true
+           :ai_assisted_idp?, to: :project_feature, allow_nil: true
 
   scope :enabled, -> { where('NOT (clients.disabled = ? AND archived = ?)', true, true) }
   scope :has_integration, ->(name) { joins(:integrations).merge(Integration.where(name: name).active) }
@@ -350,6 +352,12 @@ class Client < ApplicationRecord
     client_feature.send(:"#{feature_flag}?")
   end
 
+  def project_feature_enabled?(feature_flag)
+    return false unless project?
+
+    project_feature&.send(:"#{feature_flag}?") || false
+  end
+
   def geo_restricted?
     restricted_to_countries.present?
   end
@@ -419,6 +427,10 @@ class Client < ApplicationRecord
 
   def create_client_features
     build_client_feature.save
+  end
+
+  def create_project_features
+    build_project_feature.save
   end
 end
 # rubocop:enable Metrics/ClassLength

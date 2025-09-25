@@ -14,7 +14,7 @@ export const Settings: React.FC = () => {
   const { projectId } = useParams() as { projectId: string }
   const [isLoading, setIsLoading] = useState(false)
   const {
-    data, updateResource, fetch, meta,
+    data, updateResource, fetch,
   } = useResources<IdpSettings>('idp_settings', {
     responseType: IdpSettingsTR,
   })
@@ -53,18 +53,6 @@ export const Settings: React.FC = () => {
         >
           {() => (
             <Flex vertical gap={16}>
-              {meta?.permissions?.manageGlobalSkills && (
-                <Flex gap={8} align="center">
-                  <Form.Item
-                    name="allowGlobalSkills"
-                    valuePropName="checked"
-                    className="mb-0"
-                  >
-                    <Switch />
-                  </Form.Item>
-                  {I18n.t('administration.idp_setting.allow_global_skills')}
-                </Flex>
-              )}
               <Flex gap={8} align="center">
                 <Form.Item
                   name="managerApprovesIdp"

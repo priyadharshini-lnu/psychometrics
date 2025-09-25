@@ -2316,7 +2316,6 @@ pl:
       title_text: Tekst tytułu
       update_reflection_questions: Aktualizuj pytania do refleksji
     idp_setting:
-      allow_global_skills: Zezwalaj na umiejętności globalne
       manager_approves_idp: Menedżer zatwierdza dostawcę tożsamości
       manager_can_edit_idp: Menedżer może edytować dostawcę tożsamości
       require_all_development_actions_complete: Wymagaj ukończenia wszystkich akcji programistycznych

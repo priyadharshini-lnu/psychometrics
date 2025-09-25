@@ -2316,7 +2316,6 @@ fr:
       title_text: Titre du texte
       update_reflection_questions: Questions de réflexion sur la mise à jour
     idp_setting:
-      allow_global_skills: Permettre des compétences globales
       manager_approves_idp: Le gestionnaire approuve le PDI
       manager_can_edit_idp: Le gestionnaire peut modifier l'IDP
       require_all_development_actions_complete: Exiger que toutes les actions de développement soient achevées

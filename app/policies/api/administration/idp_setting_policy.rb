@@ -11,10 +11,6 @@ module Api
         manage_idp_settings?
       end
 
-      def manage_global_skills?
-        @user.is?(:superadmin)
-      end
-
       private
 
       def manage_idp_settings?

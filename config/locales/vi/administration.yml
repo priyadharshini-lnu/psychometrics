@@ -2316,7 +2316,6 @@ vi:
       title_text: Văn bản tiêu đề
       update_reflection_questions: Cập nhật câu hỏi phản ánh
     idp_setting:
-      allow_global_skills: Cho phép kỹ năng toàn cầu
       manager_approves_idp: Người quản lý phê duyệt IDP
       manager_can_edit_idp: Người quản lý có thể chỉnh sửa IDP
       require_all_development_actions_complete: Yêu cầu hoàn tất tất cả các hành động phát triển

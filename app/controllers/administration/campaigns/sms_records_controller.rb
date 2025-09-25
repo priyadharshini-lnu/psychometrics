@@ -4,8 +4,7 @@ module Administration
   module Campaigns
     class SmsRecordsController < Administration::Campaigns::BaseController
       def create
-        form = SmsRecords::Form.from_params(resource_params).with_context(client:)
-
+        form = SmsRecords::Form.from_params(resource_params).with_context(project:)
         if form.valid?
           sms_record = campaign.sms_records.create(form.attributes.merge(creator: current_user))
           AdminJob.call(:send_sms_invites, {

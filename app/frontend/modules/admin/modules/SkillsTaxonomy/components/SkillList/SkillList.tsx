@@ -19,7 +19,7 @@ const MODALS = {
   SkillsFormModal,
 }
 
-const connecter = connect(
+const connector = connect(
   (state: RootState) => ({
     features: getFeatures(state),
   }),
@@ -28,17 +28,21 @@ const connecter = connect(
   },
 )
 
-type PropsFromRedux = ConnectedProps<typeof connecter>
+type PropsFromRedux = ConnectedProps<typeof connector>
 
 const { I18n } = window
 
 const SkillList: React.FC<PropsFromRedux> = ({ features, openModal }) => {
   const { projectId: projectIdParam } = useParams()
 
-  let projectIdFilter
+  let skillFilters: Record<string, string>
   if (projectIdParam) {
-    projectIdFilter = {
+    skillFilters = {
       project_id_eq: projectIdParam,
+    }
+  } else {
+    skillFilters = {
+      global: 'true',
     }
   }
 
@@ -48,7 +52,7 @@ const SkillList: React.FC<PropsFromRedux> = ({ features, openModal }) => {
     apiConfig: {
       include: ['project', 'skill_group'],
       include_meta: ['permissions'],
-      filter: projectIdFilter,
+      filter: skillFilters,
       fields: { projects: ['name', 'client_id'], skill_groups: ['name'] },
     },
   }
@@ -82,4 +86,4 @@ const SkillList: React.FC<PropsFromRedux> = ({ features, openModal }) => {
   )
 }
 
-export default connecter(SkillList)
+export default connector(SkillList)

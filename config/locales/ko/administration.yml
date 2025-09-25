@@ -2316,7 +2316,6 @@ ko:
       title_text: 제목 텍스트
       update_reflection_questions: 반영 질문 업데이트
     idp_setting:
-      allow_global_skills: 글로벌 스킬 허용
       manager_approves_idp: 관리자가 IDP를 승인합니다
       manager_can_edit_idp: 관리자가 IDP를 편집할 수 있습니다
       require_all_development_actions_complete: 모든 개발 작업이 완료되어야 함

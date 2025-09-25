@@ -2316,7 +2316,6 @@ sr-Latn:
       title_text: Tekst naslova
       update_reflection_questions: Ažurirajte pitanja o refleksiji
     idp_setting:
-      allow_global_skills: Dozvolite globalne veštine
       manager_approves_idp: Menadžer odobrava IDP
       manager_can_edit_idp: Menadžer može da uređuje IDP
       require_all_development_actions_complete: Zahtevajte da sve razvojne akcije budu završene

@@ -1192,10 +1192,15 @@ en:
       client_features: Client Features
       form:
         ai_assistants: AI Assistants
+        ai_assistants_disabled_by_client: AI Assistants is disabled by client
         ai_assisted_idp: AI Assisted IDP
+        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP requires AI Assistants feature to be enabled
         global_skills: Global Skills
+        global_skills_requires_idp: To enable Global Skills for this project, please activate it under Feature Flags in the client settings.
         idp: IDP
+        idp_disabled_by_client: IDP is disabled by client
         sms_notification: SMS Notification
+        sms_notification_disabled_by_client: SMS Notification is disabled by client
     clients:
       api_keys:
         init_breadcrumbs:
@@ -2360,7 +2365,6 @@ en:
       update_interview_questions: Update Interview Questions
       update_reflection_questions: Update Reflection Questions
     idp_setting:
-      allow_global_skills: Allow Global Skills
       manager_approves_idp: Manager approves IDP
       manager_can_edit_idp: Manager can edit IDP
       require_all_development_actions_complete: Require all development actions complete
@@ -3022,6 +3026,8 @@ en:
       tools:
         workshop_status_export: Workshop Status Export
         workshop_status_export_success: Workshop Status Export was scheduled successfully.
+    project_features:
+      project_features: Project Features
     project_participants:
       cancel: Cancel
       column_actions: Actions

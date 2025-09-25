@@ -2316,7 +2316,6 @@ ro:
       title_text: Textul titlului
       update_reflection_questions: Actualizați întrebările de reflecție
     idp_setting:
-      allow_global_skills: Permiteți competențe globale
       manager_approves_idp: Managerul aprobă IDP
       manager_can_edit_idp: Managerul poate edita IDP
       require_all_development_actions_complete: Solicitați finalizarea tuturor acțiunilor de dezvoltare

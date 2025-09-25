@@ -16,6 +16,10 @@ describe AI::Tools::Idp::AddSkillToPlan do
   let(:idp_template) { create(:idp_template, :published, project: project, skill_settings: skill_settings) }
   let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }
 
+  before do
+    project.project_feature&.update(global_skills: true)
+  end
+
   let!(:skill1) { create(:skill, name: 'Leadership', skill_type: 'behavioral', project: nil) }
   let!(:skill2) { create(:skill, name: 'Communication', skill_type: 'behavioral', project: nil) }
   let!(:skill3) { create(:skill, name: 'Technical Writing', skill_type: 'technical', project: nil) }

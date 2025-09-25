@@ -2318,7 +2318,6 @@ hu:
       title_text: Cím szövege
       update_reflection_questions: Reflexiós kérdések frissítése
     idp_setting:
-      allow_global_skills: Globális készségek engedélyezése
       manager_approves_idp: A menedzser jóváhagyja az IDP-t
       manager_can_edit_idp: A menedzser szerkesztheti az IDP-t
       require_all_development_actions_complete: Az összes fejlesztési művelet befejezésének megkövetelése

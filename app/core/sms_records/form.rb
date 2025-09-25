@@ -10,7 +10,7 @@ module SmsRecords
     validate :client_sms_notification_enabled
 
     def client_sms_notification_enabled
-      return if context.client.sms_notification?
+      return if context.project.project_feature_enabled?(:sms_notification)
 
       errors.add(:base, :client_sms_notification_disabled)
     end

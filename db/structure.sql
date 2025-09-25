@@ -148,9 +148,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT assessments.id,
-    assessments.name,
-    assessments.category
+ SELECT id,
+    name,
+    category
    FROM public.assessments;
 
 
@@ -173,10 +173,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT campaign_factor_groups.id,
-    campaign_factor_groups.campaign_id,
-    campaign_factor_groups.name,
-    campaign_factor_groups."position"
+ SELECT id,
+    campaign_id,
+    name,
+    "position"
    FROM public.campaign_factor_groups;
 
 
@@ -296,9 +296,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT campaigns.id,
-    campaigns.name,
-    campaigns.project_id
+ SELECT id,
+    name,
+    project_id
    FROM public.campaigns;
 
 
@@ -418,8 +418,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT factors.id,
-    factors.name
+ SELECT id,
+    name
    FROM public.factors;
 
 
@@ -740,11 +740,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT users.id,
-    users.project_id,
-    users.first_name,
-    users.last_name,
-    users.email
+ SELECT id,
+    project_id,
+    first_name,
+    last_name,
+    email
    FROM public.users;
 
 
@@ -4669,13 +4669,13 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT id,
+    factor_id,
+    user_assessment_id,
+    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((scores ->> 'score'::text))::double precision AS score,
+    ((scores ->> 'zscore'::text))::double precision AS zscore,
+    ((scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -5377,6 +5377,42 @@ CREATE SEQUENCE public.project_assessments_id_seq
 --
 
 ALTER SEQUENCE public.project_assessments_id_seq OWNED BY public.project_assessments.id;
+
+
+--
+-- Name: project_features; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_features (
+    id bigint NOT NULL,
+    project_id integer,
+    sms_notification boolean DEFAULT false NOT NULL,
+    ai_assistants boolean DEFAULT false NOT NULL,
+    ai_assisted_idp boolean DEFAULT false NOT NULL,
+    global_skills boolean DEFAULT false NOT NULL,
+    idp boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: project_features_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_features_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_features_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_features_id_seq OWNED BY public.project_features.id;
 
 
 --
@@ -9361,6 +9397,13 @@ ALTER TABLE ONLY public.project_assessments ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: project_features id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_features ALTER COLUMN id SET DEFAULT nextval('public.project_features_id_seq'::regclass);
+
+
+--
 -- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11036,6 +11079,14 @@ ALTER TABLE ONLY public.profile_settings
 
 ALTER TABLE ONLY public.project_assessments
     ADD CONSTRAINT project_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_features project_features_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_features
+    ADD CONSTRAINT project_features_pkey PRIMARY KEY (id);
 
 
 --
@@ -13993,6 +14044,13 @@ CREATE INDEX index_project_assessments_on_project_id ON public.project_assessmen
 
 
 --
+-- Name: index_project_features_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_project_features_on_project_id ON public.project_features USING btree (project_id);
+
+
+--
 -- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15821,6 +15879,14 @@ ALTER TABLE ONLY public.privacy_settings
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT fk_rails_1805bc3762 FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: project_features fk_rails_18513d9b92; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_features
+    ADD CONSTRAINT fk_rails_18513d9b92 FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -18399,15 +18465,16 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250917104111'),
+('20250917090000'),
 ('20250911053831'),
-('20250908030102'),
 ('20250910080315'),
+('20250909133040'),
+('20250909093543'),
+('20250908030102'),
+('20250904112108'),
 ('20250901091203'),
 ('20250901084702'),
 ('20250901060902'),
-('20250909133040'),
-('20250909093543'),
-('20250904112108'),
 ('20250828122244'),
 ('20250826115114'),
 ('20250825062532'),
@@ -18416,6 +18483,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250821160001'),
 ('20250821122411'),
 ('20250821102225'),
+('20250821055720'),
 ('20250820163652'),
 ('20250807144839'),
 ('20250807141543'),
@@ -19306,3 +19374,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

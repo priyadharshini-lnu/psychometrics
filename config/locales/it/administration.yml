@@ -2316,7 +2316,6 @@ it:
       title_text: Testo del titolo
       update_reflection_questions: Domande di riflessione sull'aggiornamento
     idp_setting:
-      allow_global_skills: Consentire competenze globali
       manager_approves_idp: Il manager approva l'IDP
       manager_can_edit_idp: Il gestore può modificare l'IDP
       require_all_development_actions_complete: Richiedere il completamento di tutte le azioni di sviluppo

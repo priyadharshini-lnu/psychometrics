@@ -2316,7 +2316,6 @@ id:
       title_text: Teks judul
       update_reflection_questions: Perbarui Pertanyaan Refleksi
     idp_setting:
-      allow_global_skills: Izinkan Keterampilan Global
       manager_approves_idp: Manajer menyetujui IDP
       manager_can_edit_idp: Manajer dapat mengedit IDP
       require_all_development_actions_complete: Mengharuskan semua tindakan pengembangan selesai

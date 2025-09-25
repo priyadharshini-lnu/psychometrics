@@ -51,13 +51,20 @@ const SkillsAndTagsSelection = ({
         skill_type_in: skillType,
       }
 
-      if (projectId) {
-        filter.project_id_eq = projectId
-      } else if (isSpecific) {
+      if (type === 'Global') {
         filter.global = 'true'
+      } else if (projectId) {
+        filter.project_id_eq = projectId
       }
+
       if (query.length < 3) return
-      isSpecific ? fetchSpecificSkills({ apiConfig: { filter } }) : fetchSkillsTag({ apiConfig: { filter } })
+
+      const apiConfig: { filter: filterType; query?: { project_id: string } } = { filter }
+      if (type === 'Global' && projectId) {
+        apiConfig.query = { project_id: projectId }
+      }
+
+      isSpecific ? fetchSpecificSkills({ apiConfig }) : fetchSkillsTag({ apiConfig })
     }, 300),
     [skillType],
   )

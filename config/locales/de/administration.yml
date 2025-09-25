@@ -2316,7 +2316,6 @@ de:
       title_text: Text des Titels
       update_reflection_questions: Update Reflexionsfragen
     idp_setting:
-      allow_global_skills: Globale Fertigkeiten zulassen
       manager_approves_idp: Manager genehmigt IDP
       manager_can_edit_idp: Manager kann IDP bearbeiten
       require_all_development_actions_complete: Alle Entwicklungsmaßnahmen müssen abgeschlossen sein

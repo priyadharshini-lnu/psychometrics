@@ -2316,7 +2316,6 @@ sk:
       title_text: Text názvu
       update_reflection_questions: Otázka na reflexiu aktualizácie
     idp_setting:
-      allow_global_skills: Umožnite globálne zručnosti
       manager_approves_idp: Manažér schvaľuje IDP
       manager_can_edit_idp: Manažér môže upravovať IDP
       require_all_development_actions_complete: Vyžadovať dokončenie všetkých vývojových akcií

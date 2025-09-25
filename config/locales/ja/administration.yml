@@ -2316,7 +2316,6 @@ ja:
       title_text: タイトルテキスト
       update_reflection_questions: アップデートに関する質問
     idp_setting:
-      allow_global_skills: グローバルスキルの習得
       manager_approves_idp: マネージャーがIDPを承認
       manager_can_edit_idp: マネージャーはIDPを編集できる
       require_all_development_actions_complete: すべての開発行為の完了を要求する

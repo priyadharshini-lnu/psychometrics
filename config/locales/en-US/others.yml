@@ -2183,6 +2183,8 @@ en-US:
       not_uniq_variable: variable '%{value}' redefined on line number %{row}
       project_assessments:
         should_be_greater_than_zero: Result validity should be greater than 0 days
+      project_feature:
+        global_skills_not_enabled_on_client: To enable Global Skills for this project, please activate it under Feature Flags in the client settings.
       report_approval_settings:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
