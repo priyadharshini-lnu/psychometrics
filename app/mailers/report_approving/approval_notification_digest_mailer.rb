@@ -14,7 +14,7 @@ module ReportApproving
       @report = @reports.first.report
       @project = @campaign.project
       @url = administration_report_approvals_all_url(
-        'my_tasks',
+        'approved',
         q: {
           filter: {
             report_id_in: [@report.id],
