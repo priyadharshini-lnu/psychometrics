@@ -379,7 +379,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                         label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_time')}
                         rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
                       >
-                        <TimePicker format="hh:mm A" use12Hours minuteStep={15} />
+                        <TimePicker format="hh:mm A" use12Hours />
                       </Form.Item>
                       <Form.Item
                         name="digestTimezone"
