@@ -1015,12 +1015,29 @@ zh:
           approvers: 批准人
           approvers_can_edit: 审批人可以编辑
           approvers_not_required: 不需要批准人
+          digest_frequency:
+            daily: 日常
+            form_label: 摘要频率
+            weekdays: 平日
+            weekly: 周刊
+          digest_time: 消化时间
+          digest_timezone: 摘要时区
+          digest_weekdays:
+            form_label: 文摘工作日
+            friday: 星期五
+            monday: 星期一
+            saturday: 星期六
+            sunday: 星期日
+            thursday: 星期四
+            tuesday: 星期二
+            wednesday: 星期三
           do_not_send_notifications: 不发送通知
           modal_title: 报告审批设置
           qc_users: 质量控制用户
           remove_modal_success: '报告 ID：%{reportId} 的审批设置已成功删除 '
           remove_modal_text: 您确定要删除报告 ID 的此设置：%{reportId}？
           report: 报告
+          send_digest_emails: 发送摘要电子邮件
           settings: 设置
       assessors:
         spoof:

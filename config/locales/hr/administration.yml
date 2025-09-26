@@ -1015,12 +1015,29 @@ hr:
           approvers: Odobritelji
           approvers_can_edit: Odobravatelji mogu uređivati
           approvers_not_required: Odobravatelji nisu potrebni
+          digest_frequency:
+            daily: Dnevni
+            form_label: Učestalost digesta
+            weekdays: Radnim danom
+            weekly: Tjedni
+          digest_time: Vrijeme probave
+          digest_timezone: Vremenska zona sažetka
+          digest_weekdays:
+            form_label: Digest Radnim danima
+            friday: Petak
+            monday: Ponedjeljak
+            saturday: Subota
+            sunday: Nedjelja
+            thursday: Četvrtak
+            tuesday: Utorak
+            wednesday: Srijeda
           do_not_send_notifications: Ne šalji e-poštu korisnicima[QC, odobravatelji i obavijest o odobrenju]
           modal_title: Postavke odobrenja izvješća
           qc_users: Korisnici QC-a
           remove_modal_success: 'Postavka odobrenja za ID izvješća: %{reportId} uspješno je izbrisana '
           remove_modal_text: 'Jeste li sigurni da želite izbrisati tu postavku za ID izvješća: %{reportId}?'
           report: Izvješće
+          send_digest_emails: Slanje sažetaka e-pošte
           settings: Postavke
       assessors:
         spoof:

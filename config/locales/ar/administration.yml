@@ -1015,12 +1015,29 @@ ar:
           approvers: الموافقون
           approvers_can_edit: يمكن للموافقين التعديل
           approvers_not_required: الموافقة غير مطلوبة
+          digest_frequency:
+            daily: يومي
+            form_label: تردد الملخص
+            weekdays: ايام الاسبوع
+            weekly: أسبوعي
+          digest_time: وقت الاستيعاب
+          digest_timezone: ملخص المنطقة الزمنية
+          digest_weekdays:
+            form_label: ملخص أيام الأسبوع
+            friday: الجمعة
+            monday: الاثنين
+            saturday: السبت
+            sunday: الأحد
+            thursday: الخميس
+            tuesday: الثلاثاء
+            wednesday: الأربعاء
           do_not_send_notifications: لا ترسل إشعارات
           modal_title: إعدادات موافقة التقرير
           qc_users: مستخدمو مراقبة الجودة
           remove_modal_success: 'تم حذف إعداد الموافقة للتقرير بمعرف: %{reportId} بنجاح'
           remove_modal_text: 'هل أنت متأكد أنك تريد حذف هذا الإعداد للتقرير بمعرف: %{reportId}؟'
           report: تقرير
+          send_digest_emails: إرسال رسائل البريد الإلكتروني الملخصة
           settings: الإعدادات
       assessors:
         spoof:

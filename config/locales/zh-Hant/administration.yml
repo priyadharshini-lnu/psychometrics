@@ -1015,12 +1015,29 @@ zh-Hant:
           approvers: 批准人
           approvers_can_edit: 批准人可以編輯
           approvers_not_required: 不需要批准人
+          digest_frequency:
+            daily: 㫟
+            form_label: 消化頻率
+            weekdays: 平日
+            weekly: 每週
+          digest_time: 消化時間
+          digest_timezone: 摘要時區
+          digest_weekdays:
+            form_label: 文摘平日
+            friday: 星期五
+            monday: 星期一
+            saturday: 星期六
+            sunday: 星期日
+            thursday: 星期四
+            tuesday: 星期二
+            wednesday: 星期三
           do_not_send_notifications: 不要傳送通知
           modal_title: 報告核准設定
           qc_users: QC 使用者
           remove_modal_success: '報告 ID 的核准設定：%{reportId} 已成功刪除 '
           remove_modal_text: 您確定要刪除報告 ID 的此設定：%{reportId}？
           report: 報告
+          send_digest_emails: 發送摘要電子郵件
           settings: 設定
       assessors:
         spoof:

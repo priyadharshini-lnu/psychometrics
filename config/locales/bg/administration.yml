@@ -1015,12 +1015,29 @@ bg:
           approvers: Одобряващи
           approvers_can_edit: Одобряващите могат да редактират
           approvers_not_required: Не се изискват одобряващи
+          digest_frequency:
+            daily: Ежедневен
+            form_label: Честота на смилане
+            weekdays: Седмицата
+            weekly: Седмично
+          digest_time: Време за смилане
+          digest_timezone: Дайджест Часова зона
+          digest_weekdays:
+            form_label: Дайджест Делнични дни
+            friday: Петък
+            monday: Понеделник
+            saturday: Събота
+            sunday: Неделя
+            thursday: Четвъртък
+            tuesday: Вторник
+            wednesday: Сряда
           do_not_send_notifications: Не изпращайте имейли до потребители[QC, известие за одобряване и одобрение]
           modal_title: Настройки за одобрение на отчет
           qc_users: QC потребители
           remove_modal_success: 'Настройката за одобрение за идентификатора на отчета: %{reportId} е изтрита успешно '
           remove_modal_text: 'Сигурни ли сте, че искате да изтриете тази настройка за идентификатора на отчета: %{reportId}?'
           report: Доклад
+          send_digest_emails: Изпращайте дайджест имейли
           settings: Настройки
       assessors:
         spoof:

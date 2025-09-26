@@ -1015,12 +1015,29 @@ sr-Latn:
           approvers: Odobravači
           approvers_can_edit: Odobravači mogu da menjaju
           approvers_not_required: Odobravači nisu potrebni
+          digest_frequency:
+            daily: Svakodnevno
+            form_label: Digest Frekvencija
+            weekdays: Radnim danima
+            weekly: Nedeljni
+          digest_time: Vreme za varenje
+          digest_timezone: Digest vremenska zona
+          digest_weekdays:
+            form_label: Masturbacija Radnim danima (i)
+            friday: Petak
+            monday: Ponedeljak
+            saturday: Subota
+            sunday: Subota
+            thursday: Četvrtak
+            tuesday: Utorak
+            wednesday: Sreda
           do_not_send_notifications: Ne šaljite imejl korisnicima[KC, odobravači i obaveštenje o odobrenju]
           modal_title: Podešavanja odobrenja izveštaja
           qc_users: QC Korisnici
           remove_modal_success: 'Postavka odobrenja za ID izveštaja: %{reportId} je uspešno obrisana'
           remove_modal_text: 'Da li ste sigurni da želite da izbrišete ovu postavku za ID izveštaja: %{reportId}?'
           report: Izveštaj
+          send_digest_emails: Pošalji Digest e-poštu
           settings: Podešavanja
       assessors:
         spoof:

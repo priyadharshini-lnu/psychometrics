@@ -1015,12 +1015,29 @@ de:
           approvers: Genehmiger
           approvers_can_edit: Genehmigende können bearbeiten
           approvers_not_required: Genehmigende nicht erforderlich
+          digest_frequency:
+            daily: Täglich
+            form_label: Häufigkeit der Digests
+            weekdays: Wochentage
+            weekly: Wöchentlich
+          digest_time: Zeit für die Verdauung
+          digest_timezone: Digest Zeitzone
+          digest_weekdays:
+            form_label: Digest Wochentag(e)
+            friday: Freitag
+            monday: Montag
+            saturday: Samstag
+            sunday: Sonntag
+            thursday: Donnerstag
+            tuesday: Dienstag
+            wednesday: Mittwoch
           do_not_send_notifications: Benachrichtigungen nicht senden
           modal_title: Einstellungen für die Berichtsgenehmigung
           qc_users: QC-Benutzer
           remove_modal_success: 'Genehmigungseinstellung für Bericht-ID: %{reportId} wurde erfolgreich gelöscht'
           remove_modal_text: 'Sind Sie sicher, dass Sie diese Einstellung für die Berichts-ID löschen möchten: %{reportId}?'
           report: Bericht
+          send_digest_emails: Digest-E-Mails senden
           settings: Einstellungen
       assessors:
         spoof:

@@ -1015,12 +1015,29 @@ pl:
           approvers: Osoby zatwierdzające
           approvers_can_edit: Osoby zatwierdzające mogą edytować
           approvers_not_required: Osoby zatwierdzające nie są wymagane
+          digest_frequency:
+            daily: Codzienny
+            form_label: Częstotliwość trawienia
+            weekdays: Dni powszednie
+            weekly: Tygodniowy
+          digest_time: Czas trawienia
+          digest_timezone: Skrót strefy czasowej
+          digest_weekdays:
+            form_label: Trawić dni tygodnia
+            friday: Piątek
+            monday: Poniedziałek
+            saturday: Sobota
+            sunday: Niedziela
+            thursday: Czwartek
+            tuesday: Wtorek
+            wednesday: Środa
           do_not_send_notifications: Nie wysyłaj wiadomości e-mail do użytkowników[QC, powiadomienia o zatwierdzaniu i zatwierdzaniu]
           modal_title: Ustawienia zatwierdzania raportów
           qc_users: Użytkownicy kontroli jakości
           remove_modal_success: 'Ustawienie zatwierdzania dla identyfikatora raportu: %{reportId} zostało pomyślnie usunięte '
           remove_modal_text: 'Czy na pewno chcesz usunąć to ustawienie dla identyfikatora raportu: %{reportId}?'
           report: Sprawozdanie
+          send_digest_emails: Wysyłanie wiadomości e-mail z podsumowaniem
           settings: Ustawienia
       assessors:
         spoof:
