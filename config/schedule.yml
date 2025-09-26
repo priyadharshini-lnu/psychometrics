@@ -96,6 +96,11 @@ send_assessor_notifications:
   class: SendAssessorNotificationsJob
   queue_as: cron_tasks
 
+scheduled_digest_emails:
+  cron: "*/10 * * * *"  # Every 10 minutes
+  class: ScheduledDigestEmailsJob
+  queue_as: cron_tasks
+
 idp_deadline_notification_job:
   cron: "0 9 */1 * *" # Run at 9:00 AM every day
   class: Idp::DeadlineNotificationJob
