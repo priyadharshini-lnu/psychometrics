@@ -16,7 +16,7 @@ module ReportApprovals
       user_reports.find_each do |user_report|
         process_user_report(user_report, new_statuses, meta)
       end
-      schedule_digest_email_job
+      send_digest_emails
 
       broadcast :ok, new_statuses, meta
     end
@@ -121,7 +121,7 @@ module ReportApprovals
       )
     end
 
-    def schedule_digest_email_job
+    def send_digest_emails
       grouped_reports = UserReport.where(id: user_report_ids).
                         group_by { |report| [report.campaign_id, report.report_id] }
       grouped_reports.each do |(campaign_id, report_id), reports|
