@@ -160,7 +160,8 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           digestWeekdays: formValuesObj.sendDigestEmails && formValuesObj.digestFrequency !== 'daily'
             ? formValuesObj.digestWeekdays : [],
           digestTime: formValuesObj.sendDigestEmails ? dayjs(formValuesObj.digestTime).format('HH:mm:ss') : null,
-          digestTimezone: formValuesObj.sendDigestEmails ? formValuesObj.digestTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone : null,
+          digestTimezone: formValuesObj.sendDigestEmails
+            ? formValuesObj.digestTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone : null,
         }
       }}
     >
