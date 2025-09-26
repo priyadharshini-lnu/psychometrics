@@ -91,6 +91,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     approverUserIds: getUserIds(reportApprovalSettings.approvers),
     approvalNotificationUserIds: getUserIds(reportApprovalSettings.approvalNotificationUsers),
     digestTime: reportApprovalSettings.digestTime ? dayjs(reportApprovalSettings.digestTime, 'hh:mm A') : null,
+    digestTimezone: reportApprovalSettings.digestTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
   } : reportApprovalSettings
 
   const reportOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'report', reports)
@@ -159,6 +160,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           digestWeekdays: formValuesObj.sendDigestEmails && formValuesObj.digestFrequency !== 'daily'
             ? formValuesObj.digestWeekdays : [],
           digestTime: formValuesObj.sendDigestEmails ? dayjs(formValuesObj.digestTime).format('HH:mm:ss') : null,
+          digestTimezone: formValuesObj.sendDigestEmails ? formValuesObj.digestTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone : null,
         }
       }}
     >
@@ -384,7 +386,6 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Form.Item
                         name="digestTimezone"
                         label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_timezone')}
-                        rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
                       >
                         <TimeZoneSelect value="" onChange={() => {}} />
 
