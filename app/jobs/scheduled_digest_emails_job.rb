@@ -3,7 +3,6 @@
 class ScheduledDigestEmailsJob < ApplicationJob
   def perform
     ReportApprovalSetting.where(send_digest_emails: true, digest_delivery_mode: 'scheduled').find_each do |setting|
-      byebug
       next unless due_for_digest?(setting)
 
       reports = setting.report.user_reports.where(
