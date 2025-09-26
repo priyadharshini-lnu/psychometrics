@@ -32,6 +32,11 @@ module Imports
         if errors.blank?
           user_results.each do |user_result|
             user_result.save!
+            user_report = UserReport.find_by(
+              user_id: user_result.user_assessment.subject_id,
+              campaign_id: campaign.id
+            )
+            user_report&.update(approval_status: 'approved')
             if user_result.completed?
               ::UsersResults::Recompute.call!(user_result, user_result.user)
             end
