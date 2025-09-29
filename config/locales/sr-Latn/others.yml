@@ -845,6 +845,7 @@ sr-Latn:
         export_development_actions: Izvozne razvojne akcije
         export_dimension_as_json: Izvoz Dimenzija JSON
         export_factor_translations: Izvozni faktor Prevodi
+        export_interview_questions: Pitanja za intervju za izvoz
         export_job_roles_translations: Izvezi prevoda poslovnih uloga
         export_norm: Izvozna norma
         export_occupations: Zanimanja Izvoz
@@ -870,6 +871,7 @@ sr-Latn:
         import_external_campaign_scoring: Uvoz eksterne kampanje Bodovanje
         import_factor_translations: Uvoz Faktor Prevodi
         import_factors: Faktori uvoza
+        import_interview_questions: Uvoz pitanja za intervju
         import_job_roles_translations: Uvezi prevode poslovnih uloga
         import_norm: Uvoz norma
         import_proficiency_level_translations: Uvoz prevoda na nivou stručnosti
@@ -1797,6 +1799,7 @@ sr-Latn:
       view: Prikaz
       view_all_tasks: Pogledaj sve zadatke
       view_detail: Pogledaj detalje
+      yes_delete: Da, Izbriši
     column:
       action: Akcija
       active: Aktivni
@@ -2582,11 +2585,47 @@ sr-Latn:
       aria_selected: Izabrali
   idp:
     actions: Radnje
+    ai:
+      assistant:
+        failure_fallback:
+          message: Ups! Nešto je pošlo naopako dok je prikazivao ovu poruku. Pokušajte ponovo!
+          try_again: Nisam to shvatio. Pokušaj ponovo!
+      bubbles:
+        audio:
+          question_progress: Pitanje %{current} %{count}
+      compose:
+        placeholder: Upišite svoju poruku ovde...
+      finishing:
+        hint: Naš AI asistent kreira IDP plan za vas.
+        title: Molimo sačekajte da radimo našu magiju ...
+      retake_steps:
+        chat_hint: Javite mi koje informacije želite da pružite više ispod?
+        chat_title: Želite da date više informacija?
+        start_chat: Započni ćaskanje
+        start_chat_again: Ponovo započni ćaskanje
+        upload_document: Otpremite dokument
+        upload_file: Pošalji datoteku
+      summary:
+        chat_title: Rezime uvida u ćaskanje
+        file_title: Učitani dokumenti Uvid
+        hint: ako jeste, onda ćemo kreirati IDP, inače možete ponovo preuzeti svoje odgovore
+        title: Da li ste zadovoljni rezultatima?
+        upload_file: Postavljena datoteka
+        view_chat: Pogledaj ćaskanje
+      upload:
+        description: Kliknite ili prevucite datoteke u ovu oblast da biste otpremili
+        drop: Bacite datoteku ovde
+        title: Otpremite datoteke
+      welcome:
+        text: Spremni da zacrtate svoj rast jornei? Počnimo!
+        title: Zdravo, ja sam vaš asistent za razvoj
     behavioral: Bihejvioralno
     board: Tablu
+    changes_saved_to_plan: Promene sačuvane u planu
     comment_details:
       add_comment: Dodaj komentar
       add_comment_placeholder: Dodajte komentar...
+      add_comments: Dodaj komentare
       add_reply_placeholder: Dodaj odgovor...
       go_to_skill: Idi na veštinu
     comments:
@@ -2608,11 +2647,15 @@ sr-Latn:
       sort_by_date: Sortiraj po datumu
       you: Vi
     convert_to_draft: Pretvori u nacrt
+    delete_skill: Da li ste sigurni da želite da izbrišete veštinu jer će izbrisati i sve povezane razvojne akcije?
     details: Detalji
     development_actions:
       action_private: Da
       action_public: Ne
       add_development_action: Dodaj razvojnu akciju
+      add_development_actions_from_below_options: Dodajte razvojne akcije iz odozdo opcija.
+      add_development_actions_modal_title: Biblioteka razvojnih akcija za %{skillName}
+      add_from_library: Dodaj iz biblioteke
       all: Sve
       approved: Odobrio
       board_view:
@@ -2620,17 +2663,32 @@ sr-Latn:
         in_progress: U toku
         not_started: Nije započeto
       completion: Završetka
+      create_custom_development_action_title: Kreirajte sopstvenu razvojnu akciju za %{skillName}
+      create_development_actions_with_ai: Kreirajte razvojne akcije sa AI za %{skillName}
+      create_from_ai: Kreirajte iz AI
       create_my_own: Kreiraj svoj
+      custom: Prilagođene
+      custom_da_description: Kreirajte prilagođenu razvojnu akciju za rešavanje jedinstvenih razvojnih potreba.
       date_range: Datum početka - Datum završetka
+      edit_plan_to_add_development_actions: Izmeni plan i da dodate razvojne akcije.
+      enter_development_action_description: Unesite opis razvojne akcije
+      enter_development_action_title: Unesite naslov razvojne akcije
       generate_by_ai: Generišite AI
       generate_more: Generišite više
       generating_development_actions: Generisanje razvojnih akcija ...
+      generative_ai: Generativna AI
+      generative_ai_description: Pustite AI generisati prilagođenu razvojnu akciju samo za vas
       heading: Razvojne akcije
+      idp_library: IDP biblioteka
+      idp_library_description: Izaberite dokazanu razvojnu akciju iz naše stručne biblioteke.
       incomplete_error: Nepotpune razvojne akcije
       incomplete_error_message: Neke razvojne akcije su nepotpune. Molimo vas da ih popunite pre nego što pošaljete IDP.
       incomplete_warning: Nepotpune razvojne akcije
       incomplete_warning_message: Neke razvojne akcije su nepotpune. Da li ste sigurni da želite da označite svoj IDP kompletan?
+      info_popover_title: Različite vrste razvojnih akcija
       learning_from_others: Učenje od drugih
+      learning_from_others_label: Učenje od drugih
+      learning_on_the_job_label: Učenje na poslu
       manage_skills: Upravljajte veštinama
       marathon: Maraton
       mark_as_complete: Označi kao kompletno
@@ -2640,19 +2698,26 @@ sr-Latn:
       private: Privatni
       publish_plan: Objavi plan
       remove: Uklonite
+      save_plan: Sačuvaj plan
       skill: Veљtina
       sprint: Sprint
       start_plan: Početni plan
       structured_learning: Strukturirano učenje
+      structured_learning_label: Kolaborativno učenje
       submit_plan: Pošalji plan
+      success: Uspešno završene razvojne akcije
       write_here: Pišite ovde...
+    direct_reportee_details: Direktni izveštavači Detalj
     edit_plan: Uredi plan
+    edit_plan_and_add_skills: Uredite plan i kliknite na Upravljanje veštinama da biste dodali veštine.
     edit_progress: Uredi napredak
+    fetching_skill_gap_report: Izveštaj o prazninama u veštinama ...
     initial_steps:
       add_skill_group_description: Na osnovu vaših rezultata procene, evo nekih od oblasti prednosti i razvoja za vas. Izaberite veštine koje želite da dalje razvijate kao deo vašeg razvojnog plana.
       add_skill_group_title: Istraživanje vaših %{category} veština
       add_skills: Dodati
       add_skills_step: Dodajte veštine
+      back: Povratak
       continue_to_rate_skills: Nastavite da ocenjujete veštine
       getting_started: Koraci
       less_skills: Pokažite manje veština
@@ -2680,6 +2745,8 @@ sr-Latn:
         categories: Kategorije
       save_skills: Sačuvaj veštine
     new_comments: Novi komentar(i)
+    no_skills_added: Još uvek nemate dodane veštine.
+    no_skills_added_by_reportee: Reportee još nije dodao veštine.
     pdf:
       approval_status: Status odobrenja
       cover:
@@ -2776,14 +2843,21 @@ sr-Latn:
         required: Odgovor na pitanje je potreban
       max_words: Maks reči
       min_words: Minimalne reči
+      no_answer_provided: Još uvek nema odgovora
       no_reflective_questions: Nema dostupnih refleksivnih pitanja
+      optional: "(Opciono)"
       title: Refleksivna pitanja
       update_failed: Došlo je do greške tokom ažuriranja
       updated_successfully: Vaši odgovori su uspešno ažurirani
+      word_limit: Mora biti između %{min} i %{max} reči
       words: Reиi
+    remove_skill: Ukloni veštinu
     skill_gap_report:
+      download: Preuzmite izveštaj o jazu u veštinama
       title: Izveštaj o jazu u veštinama
+    skills_updated: Veštine ažurirane u Planu
     status: Status
+    suggestions: Predloge
     technical: Tehnički
     user_idp_status:
       approved: Odobrio
@@ -3943,9 +4017,14 @@ sr-Latn:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: Označi kao završeno
+          success_message: Procena %{name} je označena kao završena
         reset_progress:
           name: Resetovanje napretka
           success_message: Procena %{name} je spreman za uređivanje
+      mark_as_completed:
+        content: Da li ste sigurni da želite da označite kao završen "%{name}"?
       push_test_webhook:
         copy_request_data_success: Rquest Korisni teret uspešno kopiran u ostavu.
         copy_response_body_success: Telo odgovora uspešno kopirano u klipbord.

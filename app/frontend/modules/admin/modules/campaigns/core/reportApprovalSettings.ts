@@ -15,6 +15,11 @@ export const ReportApprovalSettingsTR = t.intersection([
     approversNotRequired: t.boolean,
     approversCanEdit: t.boolean,
     doNotSendNotifications: t.boolean,
+    sendDigestEmails: t.boolean,
+    digestFrequency: t.union([t.string, t.null]),
+    digestWeekdays: t.array(t.number),
+    digestTime: t.union([t.string, t.null]),
+    digestTimezone: t.union([t.string, t.undefined]),
     campaign: t.type({
       id: t.string,
       type: t.string,

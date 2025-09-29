@@ -291,6 +291,7 @@ ja:
             manage: 管理
             title: ワークショップ
             view: 表示
+            view_recordings: 録画の表示
     ai_artifacts:
       artifact_results: アーティファクトの結果
       code: コード
@@ -368,6 +369,7 @@ ja:
       created_successfully: AIアシスタントが正常に作成されました。
       errors:
         cannot_delete_in_use: AI アシスタントの「%{name}」は使用中であるため、削除できません。
+        one_click_idp_assistance_not_enabled: AI を活用した IDP 支援は、現在のプランでは利用できません。管理者にお問い合わせください。
       form:
         add_output_schema_key: 出力スキーマ・キーの追加
         dependencies: 依存関係
@@ -590,6 +592,7 @@ ja:
         enable_back: 戻るボタンを有効にする
         enable_progress: プログレスバーを有効にする
         enable_save: 保存ボタンを有効にする
+        enable_select_main_factor: 因子を主因子として選択
         enable_single_question_page: 1ページに1つの質問を表示する
         enable_single_question_page_confirm: これで、ページごとのブロックのランダム性が1に更新される。
         enable_timer: タイマーを有効にする
@@ -1012,12 +1015,29 @@ ja:
           approvers: 承認者
           approvers_can_edit: 承認者は編集できる
           approvers_not_required: 承認者 不要
+          digest_frequency:
+            daily: 日毎
+            form_label: ダイジェスト周波数
+            weekdays: 平日
+            weekly: ウィークリー
+          digest_time: ダイジェスト時間
+          digest_timezone: ダイジェスト タイムゾーン
+          digest_weekdays:
+            form_label: ダイジェスト 平日
+            friday: 金曜日
+            monday: 月曜日
+            saturday: 土曜日
+            sunday: 日曜日
+            thursday: 木曜日
+            tuesday: 火曜日
+            wednesday: 水曜日
           do_not_send_notifications: 通知を送信しない
           modal_title: レポート承認設定
           qc_users: QCユーザー
           remove_modal_success: 'レポート ID: %{reportId} の承認設定が正常に削除されました。 '
           remove_modal_text: 'レポートID: %{reportId}のこの設定を本当に削除しますか?'
           report: レポート
+          send_digest_emails: ダイジェストメールの送信
           settings: 設定
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ ja:
       form:
         active_notice: キャンペーンステータスは、選択した終了日にクローズに自動的に変更されます
         campaign: キャンペーン
+        copy_factors: コピー係数
         inactive_notice: キャンペーンのステータスは、選択した開始日に自動的にアクティブに変更されます
         instruction: これは、キャンペーンの作成中にのみ有効にできます
         name: 名称
@@ -2230,6 +2251,7 @@ ja:
         remove_confirm: テンプレートを削除するには、以下のテキストボックスに現在のテンプレート名を入力してください。
         success: "%{idpName}は正常に削除されました。"
       add_idp_template: IDPテンプレートの追加
+      ai_assistant: AIアシスタント
       ai_assisted_idp_enabled: AIアシストIDP対応
       ai_enabled: AI対応
       ai_settings: AI設定
@@ -2240,7 +2262,26 @@ ja:
       background_image: 背景画像
       behavioral_skills: 行動スキル
       client_skills: クライアント・スキル
+      delete_skill: スキルは、接続されているすべての開発アクションも削除されるため、スキルを削除してもよろしいですか?
       details_updated: IDP詳細の更新に成功
+      development_actions:
+        add_from_library: ライブラリから追加
+        completion: 完了
+        create_development_actions_with_ai: AI for %{skillName} を使用した開発アクションの作成
+        create_from_ai: AIから作成
+        create_my_own: 自分で作成する
+        custom: 習慣
+        date_range: 開始日 - 終了日
+        edit_plan_to_add_development_actions: 計画を編集し、開発アクションを追加します。
+        errors:
+          invalid_learning_style: "「%{learning_style}」は有効な学習スタイルではありません。有効なオプションは次のとおりです%{valid_styles}"
+          learning_style_blank: 学習スタイルを空白にすることはできません
+        generate_by_ai: AIによる生成
+        generate_more: さらに生成
+        heading: スキル/開発アクション
+        manage_skills: スキルの管理
+        no_development_actions: 開発アクションはありません
+      document_ai_assistant: ドキュメント分析AIアシスタント
       edit_template: IDPテンプレートの編集
       enter_tag_or_skills_error: 少なくとも1つのタグまたはスキルを選択する
       enter_template_description: 説明
@@ -2263,6 +2304,8 @@ ja:
       global_skills: グローバル・スキル
       idp: アイディーピー
       idp_template: IDPテンプレートの追加
+      interview_questions: 面接の質問
+      interview_questions_updated: 面接の質問が正常に更新されました。
       intro_message: 導入メッセージ
       intro_message_hint: 紹介メッセージを変更するには、まず IDP テンプレートを保存してこれらの設定を有効にしてください。
       intro_message_success: 紹介メッセージが正常に保存されました
@@ -2274,6 +2317,7 @@ ja:
         mercer_only: マーサーのロゴのみ
         none: ロゴなし
       logo_type_label: ロゴタイプ
+      no_interview_questions_selected: 面接の質問は選択されていません
       no_reflection_questions_selected: 選択された振り返りの質問はありません
       none: なし
       one_click_idp_enabled: ワンクリックIDP有効
@@ -2282,7 +2326,16 @@ ja:
       reflection_questions_hint: 振り返りの質問を変更するには、まず IDP テンプレートを保存して、これらの設定を有効にしてください。
       reflection_questions_updated: リフレクション・クエスチョンが正常に更新されました。
       remove: 削除
+      remove_skill: スキルの削除
+      revert_skill_to_public:
+        errors:
+          skill_already_public: スキルは既に公開されています
+          skill_not_found: スキルが見つかりません
+        success:
+          base_message: スキル「%{skill_name}」がマネージャーに表示されるようになりました
+          with_approval: "%{base_message} IDP プランが承認のために提出されている"
       select_by_tags: タグで選ぶ
+      select_interview_question: 入力を開始して質問を検索して選択します
       select_reflection_question: 検索するために入力を開始し、質問を選択する
       select_skill_gap_report: スキル・ギャップ・レポートを選択
       select_specific_skills: 特定のスキルを選択する
@@ -2308,12 +2361,14 @@ ja:
       subtitle_text: 字幕テキスト
       tab:
         development_actions: 開発アクション
+        interview_questions: 面接の質問
         reflection_questions: 振り返りの質問
         settings: 設定
         templates: テンプレート
       technical_skills: テクニカル・スキル
       template_details: テンプレート詳細
       title_text: タイトルテキスト
+      update_interview_questions: 面接の質問を更新する
       update_reflection_questions: アップデートに関する質問
     idp_setting:
       manager_approves_idp: マネージャーがIDPを承認
@@ -2515,6 +2570,35 @@ ja:
         skillvue:
           api_key_present: APIキーがすでに他のプロジェクトに存在する
       view_all_schedules: すべてのMettlのスケジュールを見る
+    interview_questions:
+      delete_confirmation: この面接の質問を削除してもよろしいですか?
+      description: 記述
+      export:
+        action: 輸出面接の質問
+        details: ファイルの詳細
+        failure_msg: ファイルのエクスポート中にエラーが発生しました。
+        success_msg: 面接の質問のエクスポートが進行中です。通知で状況をご確認ください。
+      form:
+        description: 記述
+        mandatory: 必須
+        question: 質問
+        question_type: 質問の種類
+        question_type_audio: オーディオ
+        question_type_video: ビデオ
+        time_limit: 制限時間(秒)
+        title: インタビューの質問
+      import:
+        action: 面接の質問をインポートする
+        errors:
+          invalid_required_column_format: 無効な必須列値の形式%{row}
+          invalid_required_type_format: 無効な QuestionType 列値の形式%{row}
+          invalid_time_limit_column_format: 無効な時間制限列の値の形式%{row}
+          missing_description: 説明コンテンツの欠落%{row}
+          missing_question: 質問コンテンツの欠落%{row}
+          save_failed: 失敗した%{message}の保存
+        failure_msg: ファイルのインポート中にエラーが発生しました。
+        success_msg: 面接の質問のインポートが進行中です。通知で状況をご確認ください。
+      question: 質問
     invited_subject:
       add_btn: 主題の追加
       assessment_center: アセスメントセンター
@@ -3185,7 +3269,9 @@ ja:
         dp_consent_version: 政策バージョン
         errors:
           cannot_disable_while_campaign_enabled: このプロジェクトの1つまたは複数のキャンペーンでビデオ通話録音が有効になっているため、無効にできません。
+          min_retention: 1日未満にすることはできません
           policy_version_format: 整数のみ使用可
+          required: 必須
         mask_identity_for_examus: エグザムス・プロテクターのマスクデータ
         mask_identity_for_hogan: ホーガンのマスクデータ
         mask_identity_for_iiht: IIHTのマスクデータ
@@ -3325,9 +3411,12 @@ ja:
         code: コード
         code_constraint: コードは小文字で始まり、小文字、数字、アンダースコアのみを含むことができる。
         delete: 削除
+        description: 形容
+        description_alias: 説明/エイリアス
         import_factors: 輸入要因
         invalid_factor_params: 無効なキャンペーン要因パラメータ形式
         name: 名称
+        name_alias: 名前/エイリアス
         no_boundary_space: 名前の先頭または末尾にスペースを使用することはできません。
         too_many_factors: キャンペーン要因を %{count} 個以上作成できません。
         tools: ツール
@@ -3346,6 +3435,19 @@ ja:
       property_panel:
         add_new_condition: 新しい条件を追加する
         apply_color_label: 次に、次の色を適用します。
+        custom_factor_fields:
+          percentage: 百分率
+          questions_attempted: 試行
+          questions_correct: そうです
+          questions_incorrect: 間違った
+          questions_not_attempted: 未試行
+          questions_partial_correct: 部分的に正しい
+          total_questions: トータル
+        custom_factor_placeholder: カスタム係数フィールドの選択
+        factor_value_type:
+          custom: 習慣
+          default: デフォルト
+          label: 因子値タイプ
         graph_condition_types:
           default: デフォルト
           graph_value: グラフ値
@@ -3355,6 +3457,7 @@ ja:
         manage_graph_value_condition: グラフ値の条件を管理する
         manage_styles_condition: スタイルの管理条件
         missing_value: 欠損値
+        pie_semi_circle: 半円
         predicates:
           equal_to: 等しい
           greater_than: より大きい
@@ -3438,6 +3541,7 @@ ja:
         translations: 翻訳
       title: レポート設定
     reports:
+      broken_image_url: 画像のURLを確認して、もう一度インポートをお試しください
       bulk_marked_as_done: 完了として一括マーク
       bulk_upload:
         choose_file: ファイルを選択
@@ -3607,16 +3711,19 @@ ja:
         campaign_assessment_group: アセスメント・センター・グループ
         campaign_name: キャンペーン名
         duration: 期間
+        link_to_view_recordings: 録画を表示するためのリンク
         managers: マネージャー
         meeting_link: ミーティングリンク
         name: 名称
         participants: 参加者
         prework: プレワーク
+        recording_date: 録音日
         resource_link: リンク
         resource_name: 名称
         schedule_time: スケジュール時間
         scheduling_status: スケジューリング状況
         seats: 座席
+        serial_no: シリアル番号
         start_time: 日時
         subject: テーマ
         title: タイトル
@@ -3641,6 +3748,7 @@ ja:
         managers: センターマネージャー
         none: なし
         not_allowed: 不可
+        recording_enabled: 録音が有効
         remaining: 残席
         scheduling_lead_time: リードタイムのスケジューリング
         scheduling_tooltip: ユーザは%{date}までのスロットを予約できる。
@@ -3704,6 +3812,7 @@ ja:
         activities: 活動内容
         assessment_center: アセスメント・センター
         invites: 招待
+        recordings: 録音
         resources: リソース
         subjects: 対象
     scoring:
@@ -4144,6 +4253,15 @@ ja:
           other: その他
           qualification: 資格
           technical: テクニカル
+      move_question:
+        cancel: キャンセル
+        move: 動く
+        moveAfter: 後を移動
+        moveBefore: 前に移動
+        moveQuestion: '移動の質問: %{question}'
+        position: 立場
+        selectTargetQuestion: 対象質問の選択
+        title: 質問の移動
       property_panel:
         add_n_a_option: N/Aオプションを追加
         allow_content_copy: コンテンツのコピーを許可する
@@ -4187,6 +4305,18 @@ ja:
         question_description: 行の説明
         validation_response_type: バリデーション・レスポンス・タイプ
         voice_dictation: 音声ディクテーション
+      question_info_bar:
+        add_display_logic: 表示ロジックの追加
+        add_skip_logic: スキップロジックの追加
+        are_you_sure_to_delete_this_question: この質問を削除してもよろしいですか?
+        default_choices: デフォルトの選択肢
+        delete_question: 質問の削除
+        delete_the_question: 質問を削除する
+        move_question: 質問の移動
+        randomization: 無作為 化
+        save_as_a_template: テンプレートとして保存
+        this_question_has_default_choices: この質問にはデフォルトの選択肢があります
+        this_question_has_randomization: この質問にはランダム化があります
     table:
       entries:
         selected:

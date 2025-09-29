@@ -8,7 +8,10 @@ class CommunicationEmailMailer < ApplicationMailer
     @resource = recipient
 
     user_locale = recipient&.locale || I18n.default_locale
-    @is_rtl = user_locale.to_s == 'ar'
+    template_has_ar = @communication_email.communication.
+                      body(locale: :ar, fallback: false).
+                      present?
+    @is_rtl = user_locale.to_s == 'ar' && template_has_ar
 
     I18n.with_locale(user_locale) do
       prepare_and_send_email
@@ -161,7 +164,7 @@ class CommunicationEmailMailer < ApplicationMailer
   end
 
   def accept_invitation_qrcode
-    return unless communication.body.include?('{{{user_link_qrcode}}}')
+    return unless communication.body&.include?('{{{user_link_qrcode}}}')
 
     png_file = RQRCode::QRCode.new(accept_invitation_url).as_png(:size => 600)
     attachments.inline['activation-qrcode.png'] = png_file.to_blob

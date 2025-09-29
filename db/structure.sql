@@ -5649,7 +5649,12 @@ CREATE TABLE public.report_approval_settings (
     approvers_not_required boolean DEFAULT false,
     do_not_send_notifications boolean DEFAULT false,
     allow_bulk_approve boolean DEFAULT false,
-    allow_qc_bulk_submit boolean DEFAULT false
+    allow_qc_bulk_submit boolean DEFAULT false,
+    send_digest_emails boolean DEFAULT false NOT NULL,
+    digest_frequency character varying DEFAULT 'daily'::character varying,
+    digest_time time without time zone DEFAULT '21:00:00'::time without time zone,
+    digest_weekdays integer[] DEFAULT '{}'::integer[],
+    digest_timezone character varying DEFAULT 'Asia/Dubai'::character varying
 );
 
 
@@ -18473,11 +18478,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250915111321'),
 ('20250917104111'),
 ('20250917090000'),
+('20250914210724'),
 ('20250911053831'),
 ('20250910080315'),
 ('20250909133040'),
 ('20250909093543'),
 ('20250908030102'),
+('20250905055920'),
 ('20250904112108'),
 ('20250901091203'),
 ('20250901084702'),

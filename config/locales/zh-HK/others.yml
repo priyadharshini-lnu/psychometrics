@@ -195,9 +195,11 @@ zh-HK:
       operations:
         bulk_generate_user_campaign_ai_artifact_results: 批量生成活動 AI 成品結果
         copy_as_template_or_campaign: 複製活動作為範本
+        export_interview_questions: 出口面試問題
         export_job_roles_translations: 匯出工作角色翻譯
         export_proficiency_levels: 出口能力等級
         import_assessment_translations: 匯入評量翻譯
+        import_interview_questions: 導入面試問題
         import_job_roles_translations: 匯入工作角色翻譯
         import_proficiency_level_translations: 進口能力等級翻譯
         import_skill_rater_taxonomies: 匯入技能評核員分類標準
@@ -615,9 +617,11 @@ zh-HK:
       unresolve: 未解決
       update: 更新
       upload: 上載
+      upload_file: 上傳檔案
       verify: 驗證
       view_all_tasks: 檢視所有任務
       view_detail: 檢視詳細內容
+      yes_delete: 是，刪除
     column:
       action: 操作
       ai_assistant: AI助手
@@ -914,11 +918,47 @@ zh-HK:
     'yes': 是
   idp:
     actions: 操作
+    ai:
+      assistant:
+        failure_fallback:
+          message: 哎呀！顯示此訊息時發生問題。請再試一次！
+          try_again: 我不明白這一點。再試一次！
+      bubbles:
+        audio:
+          question_progress: "%{count}問題%{current}"
+      compose:
+        placeholder: 在這裡輸入您的訊息...
+      finishing:
+        hint: 我們的人工智能助手正在為您創建 IDP 計劃。
+        title: 請稍等，我們正在施展我們的魔法......
+      retake_steps:
+        chat_hint: 讓我知道您想提供更多資訊嗎？
+        chat_title: 您想提供更多信息嗎？
+        start_chat: 開始聊天
+        start_chat_again: 重新開始聊天
+        upload_document: 上傳文件
+        upload_file: 上傳檔案
+      summary:
+        chat_title: 聊天洞察摘要
+        file_title: 上傳的文件見解
+        hint: 如果是，那麼我們將創建您的 IDP，否則您可以重新回答
+        title: 你對結果滿意嗎？
+        upload_file: 上傳的檔案
+        view_chat: 查看聊天
+      upload:
+        description: 按一下或拖曳檔案至此區域以上傳
+        drop: 將檔案拖放到此處
+        title: 上傳檔案
+      welcome:
+        text: 準備好繪製你的成長喬恩了嗎？讓我們開始吧！
+        title: 您好，我是你們的開發助理
     behavioral: 行為
     board: 看板
+    changes_saved_to_plan: 儲存至計劃的變更
     comment_details:
       add_comment: 新增評論
       add_comment_placeholder: 新增評論...
+      add_comments: 新增註解
       add_reply_placeholder: 新增回覆...
       go_to_skill: 查看技能
     comments:
@@ -940,11 +980,15 @@ zh-HK:
       sort_by_date: 按日期排序
       you: 您
     convert_to_draft: 轉換為草稿
+    delete_skill: 您確定要刪除技能，因為它也會刪除所有連接的開發動作嗎？
     details: 詳情
     development_actions:
       action_private: 是
       action_public: 否
       add_development_action: 添加發展行動
+      add_development_actions_from_below_options: 從下面的選項添加開發動作。
+      add_development_actions_modal_title: 適用於%{skillName}的開發動作程式庫
+      add_from_library: 從庫新增
       all: 全部
       approved: 已批准
       board_view:
@@ -952,13 +996,28 @@ zh-HK:
         in_progress: 進行中
         not_started: 未開始
       completion: 完成度
+      create_custom_development_action_title: 為%{skillName}創建我自己的開發行動
+      create_development_actions_with_ai: 使用 AI 建立開發動作 for %{skillName}
+      create_from_ai: 從 AI 創建
       create_my_own: 建立我自己的
+      custom: 習慣
+      custom_da_description: 建立自訂開發動作，以解決獨特的開發需求。
       date_range: 開始日期 - 結束日期
+      edit_plan_to_add_development_actions: 編輯計劃，並新增開發動作。
+      enter_development_action_description: 輸入開發動作描述
+      enter_development_action_title: 輸入開發動作標題
       generate_by_ai: 通過AI生成
       generate_more: 生成更多
       generating_development_actions: 正在生成發展行動...
+      generative_ai: 生成式人工智慧
+      generative_ai_description: 讓 AI 為您量身打造的開發動作
       heading: 發展行動
+      idp_library: IDP 圖書館
+      idp_library_description: 從我們專家策劃的庫中選擇經過驗證的開發動作。
+      info_popover_title: 不同類型的開發動作
       learning_from_others: 向他人學習
+      learning_from_others_label: 向他人學習
+      learning_on_the_job_label: 在工作中學習
       manage_skills: 管理技能
       marathon: 馬拉松
       no_development_actions: 沒有發展行動
@@ -967,17 +1026,24 @@ zh-HK:
       private: 私人
       publish_plan: 发布计划
       remove: 移除
+      save_plan: 保存計劃
       skill: 技能
       sprint: 衝刺
       structured_learning: 結構化學習
+      structured_learning_label: 協作學習
       submit_plan: 提交計劃
+      success: 發展行動順利完成
       write_here: 在此處寫入...
+    direct_reportee_details: 直接報告者詳細資料
+    edit_plan_and_add_skills: 編輯計劃，然後按一下管理技能以新增技能。
     edit_progress: 編輯進度
+    fetching_skill_gap_report: 獲取技能差距報告...
     initial_steps:
       add_skill_group_description: 基於你的評估結果，以下是你的一些優勢和發展領域。選擇你想作為發展計劃一部分進一步發展的技能。
       add_skill_group_title: 探索你的%{category}技能
       add_skills: 添加
       add_skills_step: 添加技能
+      back: 後面
       continue_to_rate_skills: 繼續評定技能
       getting_started: 入門
       less_skills: 顯示較少技能
@@ -1003,6 +1069,8 @@ zh-HK:
       graphs:
         categories: 類別
       save_skills: 保存技能
+    no_skills_added: 您尚未新增任何技能。
+    no_skills_added_by_reportee: 被舉報人尚未添加技能。
     pdf:
       approval_status: 審批狀態
       cover:
@@ -1120,14 +1188,21 @@ zh-HK:
         required: 需要回答問題
       max_words: 最大字數
       min_words: 最小字數
+      no_answer_provided: 尚未提供答案
       no_reflective_questions: 沒有反思性問題
+      optional: "（選用）"
       title: 反思問題
       update_failed: 更新期間發生錯誤
       updated_successfully: 您的答案已成功更新
+      word_limit: 必須介於 %{min} 到 %{max} 個字之間
       words: 詞彙
+    remove_skill: 移除技能
     skill_gap_report:
+      download: 下載技能差距報告
       title: 技能差距報告
+    skills_updated: 計劃中更新的技能
     status: 狀態
+    suggestions: 建議
     technical: 技術
     user_idp_status:
       approved: 已批准
@@ -1591,6 +1666,13 @@ zh-HK:
       first_name: 名字
       last_name: 姓氏
   user_assessments:
+    modals:
+      actions:
+        mark_as_completed:
+          name: 標示為已完成
+          success_message: 評量%{name}標示為已完成
+      mark_as_completed:
+        content: 您確定要標記為已完成的“%{name}”嗎？
     redirect: 您會被重新導向到第三方網站進行此評估。 如果您要開始評估，請按一下繼續。
     status:
       in_progress: 進行中

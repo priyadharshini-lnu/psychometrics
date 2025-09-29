@@ -291,6 +291,7 @@ hr:
             manage: Upravljanje
             title: Radionicama
             view: Pregled
+            view_recordings: Pogledajte snimke
     ai_artifacts:
       artifact_results: Rezultati artefakata
       code: Zakonik
@@ -368,6 +369,7 @@ hr:
       created_successfully: AI asistent je uspješno stvoren.
       errors:
         cannot_delete_in_use: Nije moguće izbrisati AI Assistant '%{name}' jer se koristi.
+        one_click_idp_assistance_not_enabled: Pomoć IDP-a pokretana umjetnom inteligencijom nije dostupna s vašim trenutnim planom. Obratite se administratoru.
       form:
         add_output_schema_key: Dodaj ključ izlazne sheme
         dependencies: Ovisnosti
@@ -590,6 +592,7 @@ hr:
         enable_back: Omogući gumb za povratak
         enable_progress: Omogući traku napretka
         enable_save: Omogući gumb za spremanje
+        enable_select_main_factor: Odabir čimbenika kao glavnog čimbenika
         enable_single_question_page: Prikaži jedno pitanje po stranici
         enable_single_question_page_confirm: Ovo će ažurirati nasumičan redoslijed blokova po stranici na 1. Jeste li sigurni?
         enable_timer: Omogući mjerač vremena
@@ -1012,12 +1015,29 @@ hr:
           approvers: Odobritelji
           approvers_can_edit: Odobravatelji mogu uređivati
           approvers_not_required: Odobravatelji nisu potrebni
+          digest_frequency:
+            daily: Dnevni
+            form_label: Učestalost digesta
+            weekdays: Radnim danom
+            weekly: Tjedni
+          digest_time: Vrijeme probave
+          digest_timezone: Vremenska zona sažetka
+          digest_weekdays:
+            form_label: Digest Radnim danima
+            friday: Petak
+            monday: Ponedjeljak
+            saturday: Subota
+            sunday: Nedjelja
+            thursday: Četvrtak
+            tuesday: Utorak
+            wednesday: Srijeda
           do_not_send_notifications: Ne šalji e-poštu korisnicima[QC, odobravatelji i obavijest o odobrenju]
           modal_title: Postavke odobrenja izvješća
           qc_users: Korisnici QC-a
           remove_modal_success: 'Postavka odobrenja za ID izvješća: %{reportId} uspješno je izbrisana '
           remove_modal_text: 'Jeste li sigurni da želite izbrisati tu postavku za ID izvješća: %{reportId}?'
           report: Izvješće
+          send_digest_emails: Slanje sažetaka e-pošte
           settings: Postavke
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ hr:
       form:
         active_notice: Status kampanje automatski će se promijeniti u zatvoreni na odabrani krajnji datum
         campaign: Kampanja
+        copy_factors: Faktori kopiranja
         inactive_notice: Status kampanje automatski će se promijeniti u aktivni na odabrani datum početka
         instruction: To može biti omogućeno samo tijekom stvaranja kampanje
         name: Ime
@@ -2230,6 +2251,7 @@ hr:
         remove_confirm: Unesite trenutni naziv predloška naveden u nastavku u tekstni okvir da biste uklonili predložak
         success: "%{idpName} uspješno je uklonjen."
       add_idp_template: Dodajte IDP predložak
+      ai_assistant: AI pomoćnik
       ai_assisted_idp_enabled: Omogućeno AI potpomognuto IDP
       ai_enabled: Omogućena umjetna inteligencija
       ai_settings: Postavke umjetne inteligencije
@@ -2240,7 +2262,26 @@ hr:
       background_image: Pozadinska slika
       behavioral_skills: Vještine ponašanja
       client_skills: Vještine klijenata
+      delete_skill: Jeste li sigurni da želite izbrisati vještinu jer će izbrisati i sve povezane razvojne akcije?
       details_updated: Detalji IDP-a su uspješno ažurirani
+      development_actions:
+        add_from_library: Dodavanje iz medijateke
+        completion: Završetak
+        create_development_actions_with_ai: Kreirajte razvojne akcije pomoću umjetne inteligencije za %{skillName}
+        create_from_ai: Stvaranje iz umjetne inteligencije
+        create_my_own: Stvorite vlastiti
+        custom: Običaj
+        date_range: Datum početka - Datum završetka
+        edit_plan_to_add_development_actions: Uredi plan i dodati razvojne radnje.
+        errors:
+          invalid_learning_style: "'%{learning_style}' nije valjan stil učenja. Važeće opcije su: %{valid_styles}"
+          learning_style_blank: Stil učenja ne može biti prazan
+        generate_by_ai: Generirajte umjetnom inteligencijom
+        generate_more: Generirati više
+        heading: Vještine/razvojne mjere
+        manage_skills: Upravljanje vještinama
+        no_development_actions: Nemate razvojne akcije
+      document_ai_assistant: AI pomoćnik za analizu dokumenata
       edit_template: Uredi predložak IDP-a
       enter_tag_or_skills_error: Odaberite barem jednu oznaku ili vještinu
       enter_template_description: Opis
@@ -2263,6 +2304,8 @@ hr:
       global_skills: Globalne vještine
       idp: IDP
       idp_template: Dodajte IDP predložak
+      interview_questions: Pitanja za intervju
+      interview_questions_updated: Pitanja za intervju uspješno su ažurirana.
       intro_message: Uvodna poruka
       intro_message_hint: Da biste izmijenili uvodnu poruku, prvo spremite predložak IDP-a kako biste omogućili ove postavke.
       intro_message_success: Uvodna poruka je uspješno spremljena
@@ -2274,6 +2317,7 @@ hr:
         mercer_only: Samo logotip Mercer
         none: Bez logotipa
       logo_type_label: Vrsta logotipa
+      no_interview_questions_selected: Nisu odabrana pitanja za intervju
       no_reflection_questions_selected: Nisu odabrana pitanja za razmišljanje
       none: Nijedan
       one_click_idp_enabled: Omogućen IDP jednim klikom
@@ -2282,7 +2326,16 @@ hr:
       reflection_questions_hint: Da biste izmijenili pitanja za razmišljanje, prvo spremite predložak IDP-a da biste omogućili ove postavke.
       reflection_questions_updated: Pitanja za razmišljanje uspješno su ažurirana.
       remove: Odstraniti
+      remove_skill: Ukloni vještinu
+      revert_skill_to_public:
+        errors:
+          skill_already_public: Vještina je već javna
+          skill_not_found: Vještina nije pronađena
+        success:
+          base_message: Vještina '%{skill_name}' sada je vidljiva vašem menadžeru
+          with_approval: "%{base_message} i vaš IDP plan je predan na odobrenje"
       select_by_tags: Odaberi po oznakama
+      select_interview_question: Počnite tipkati za pretraživanje i odabir pitanja
       select_reflection_question: Počnite tipkati za pretraživanje i odabir pitanja
       select_skill_gap_report: Odaberite izvješće o nedostatku vještina
       select_specific_skills: Odaberite specifične vještine
@@ -2308,12 +2361,14 @@ hr:
       subtitle_text: Tekst titlova
       tab:
         development_actions: Razvojne akcije
+        interview_questions: Pitanja za intervju
         reflection_questions: Pitanja za razmišljanje
         settings: Postavkama
         templates: Predlošci
       technical_skills: Tehničke vještine
       template_details: Pojedinosti o predlošku
       title_text: Tekst naslova
+      update_interview_questions: Ažurirajte pitanja za intervju
       update_reflection_questions: Ažurirajte pitanja za razmišljanje
     idp_setting:
       manager_approves_idp: Upravitelj odobrava IDP
@@ -2515,6 +2570,35 @@ hr:
         skillvue:
           api_key_present: API ključ je već prisutan u drugom projektu
       view_all_schedules: Pogledajte sve rasporede tvrtke Mettl
+    interview_questions:
+      delete_confirmation: Jeste li sigurni da želite izbrisati ovo pitanje za intervju?
+      description: Opis
+      export:
+        action: Izvoz pitanja za intervju
+        details: Pojedinosti o datoteci
+        failure_msg: Pogreška prilikom izvoza datoteke.
+        success_msg: Izvoz pitanja za intervju u tijeku. Provjerite status u obavijestima.
+      form:
+        description: Opis
+        mandatory: Obavezan
+        question: Pitanje
+        question_type: Vrsta pitanja
+        question_type_audio: Audio
+        question_type_video: Video
+        time_limit: Vremensko ograničenje (s)
+        title: Pitanje za intervju
+      import:
+        action: Uvezite pitanja za intervju
+        errors:
+          invalid_required_column_format: Nevažeći Obvezni oblik vrijednosti stupca %{row}
+          invalid_required_type_format: Nevažeći oblik vrijednosti stupca QuestionType %{row}
+          invalid_time_limit_column_format: Nevažeći format vrijednosti stupca vremenskog ograničenja %{row}
+          missing_description: Nedostaje opis sadržaja %{row}
+          missing_question: Sadržaj pitanja koji nedostaje %{row}
+          save_failed: Spremanje nije uspjelo %{message}
+        failure_msg: Pogreška prilikom uvoza datoteke.
+        success_msg: Uvoz pitanja za intervju u tijeku. Provjerite status u obavijestima.
+      question: Pitanje
     invited_subject:
       add_btn: Dodavanje ispitanika
       assessment_center: 'Centar za procjenu:'
@@ -3181,7 +3265,9 @@ hr:
         dp_consent_version: Verzija pravila
         errors:
           cannot_disable_while_campaign_enabled: Nije moguće onemogućiti snimanje video poziva jer je omogućeno za jednu ili više kampanja u ovom projektu
+          min_retention: Ne može biti kraće od 1 dana
           policy_version_format: Dopušteni su samo cijeli brojevi
+          required: Potreban
         mask_identity_for_examus: Podaci o maski za Examus Proctoring
         mask_identity_for_hogan: Podaci o maski za Hogana
         mask_identity_for_iiht: Podaci o maski za IIHT
@@ -3321,9 +3407,12 @@ hr:
         code: Zakonik
         code_constraint: Kôd mora započeti malim slovom i može sadržavati samo mala slova, brojeve i podvlake
         delete: Izbrisati
+        description: Opis
+        description_alias: Opis / pseudonim
         import_factors: Čimbenici uvoza
         invalid_factor_params: Nevažeći format parametara faktora kampanje
         name: Ime
+        name_alias: Ime / pseudonim
         no_boundary_space: Ime ne može započeti ili završiti razmakom
         too_many_factors: Ne može se izraditi više od %{count} faktora kampanje
         tools: Alati
@@ -3342,6 +3431,19 @@ hr:
       property_panel:
         add_new_condition: Dodavanje novog uvjeta
         apply_color_label: 'Zatim nanesite sljedeću boju:'
+        custom_factor_fields:
+          percentage: Postotak
+          questions_attempted: Pokušaj
+          questions_correct: Ispravan
+          questions_incorrect: Pogrešan
+          questions_not_attempted: Nije pokušano
+          questions_partial_correct: Djelomično ispravno
+          total_questions: Ukupan
+        custom_factor_placeholder: Odabir prilagođenih polja faktora
+        factor_value_type:
+          custom: Običaj
+          default: Propust
+          label: Vrsta vrijednosti faktora
         graph_condition_types:
           default: Propust
           graph_value: Vrijednost grafikona
@@ -3351,6 +3453,7 @@ hr:
         manage_graph_value_condition: Upravljanje uvjetom vrijednosti grafikona
         manage_styles_condition: Uvjet upravljanja stilovima
         missing_value: Nedostajuća vrijednost
+        pie_semi_circle: Polukrug
         predicates:
           equal_to: Jednako
           greater_than: Veće od
@@ -3434,6 +3537,7 @@ hr:
         translations: Prijevodi
       title: Postavke izvješća
     reports:
+      broken_image_url: Provjerite URL slike i pokušajte ponovno uvesti
       bulk_marked_as_done: Skupno označeno kao gotovo
       bulk_upload:
         choose_file: Odaberite Datoteka
@@ -3603,16 +3707,19 @@ hr:
         campaign_assessment_group: Grupa centra za procjenu
         campaign_name: Naziv kampanje
         duration: Trajanje
+        link_to_view_recordings: Veza za prikaz snimaka
         managers: Menadžeri
         meeting_link: Veza za sastanak
         name: Ime
         participants: Sudionici
         prework: Priprema
+        recording_date: Datum snimanja
         resource_link: Povezati
         resource_name: Ime
         schedule_time: Vrijeme rasporeda
         scheduling_status: Status zakazivanja
         seats: Sjedala
+        serial_no: Serijski broj
         start_time: Datum i vrijeme
         subject: Ispitanik
         title: Naslov
@@ -3637,6 +3744,7 @@ hr:
         managers: Voditelji centara
         none: Nijedan
         not_allowed: Nije dopušteno
+        recording_enabled: Snimanje omogućeno
         remaining: Preostala mjesta
         scheduling_lead_time: Zakazivanje vremena isporuke
         scheduling_tooltip: Korisnik bi mogao rezervirati termin do %{date}
@@ -3697,6 +3805,7 @@ hr:
         activities: Aktivnosti
         assessment_center: Centar za procjenu
         invites: Poziva
+        recordings: Snimke
         resources: Resursi
         subjects: Ispitanici
     scoring:
@@ -4132,6 +4241,15 @@ hr:
           other: Ostalo
           qualification: Kvalifikacija
           technical: Tehnički
+      move_question:
+        cancel: Otkazati
+        move: Micati
+        moveAfter: Pomakni se nakon
+        moveBefore: Premjesti prije
+        moveQuestion: 'Pitanje za premještanje: %{question}'
+        position: Pozicija
+        selectTargetQuestion: Odaberite ciljno pitanje
+        title: Premjesti pitanje
       property_panel:
         add_n_a_option: Dodaj opciju N/A
         allow_content_copy: Dopusti kopiranje sadržaja
@@ -4175,6 +4293,18 @@ hr:
         question_description: Opisi redaka
         validation_response_type: Vrsta odgovora na provjeru valjanosti
         voice_dictation: Glasovno diktiranje
+      question_info_bar:
+        add_display_logic: Dodavanje logike prikaza
+        add_skip_logic: Dodavanje logike preskakanja
+        are_you_sure_to_delete_this_question: Jeste li sigurni da želite izbrisati ovo pitanje?
+        default_choices: Zadani izbori
+        delete_question: Izbriši pitanje
+        delete_the_question: Brisanje pitanja
+        move_question: Premjesti pitanje
+        randomization: Poslučajenje
+        save_as_a_template: Spremi kao predložak
+        this_question_has_default_choices: Ovo pitanje ima zadane izbore
+        this_question_has_randomization: Ovo pitanje ima randomizaciju
     table:
       entries:
         selected: Odabran 1 redak

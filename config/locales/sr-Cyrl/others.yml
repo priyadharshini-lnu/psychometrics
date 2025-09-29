@@ -156,7 +156,9 @@ sr-Cyrl:
       operations:
         bulk_generate_user_campaign_ai_artifact_results: Булк Генерате Цампаигн АИ Артифацт Резултати
         copy_as_template_or_campaign: Копирај кампању као шаблон
+        export_interview_questions: Питања за интервју за извоз
         import_assessment_translations: Увоз Процена Преводи
+        import_interview_questions: Увоз питања за интервју
         import_skill_rater_taxonomies: Увоз таксономија процењивача вештина
       statuses:
         in_progress: У току
@@ -536,9 +538,11 @@ sr-Cyrl:
       unresolve: Нерешено
       update: Ажурирање
       upload: Отпреми
+      upload_file: Пошаљи датотеку
       verify: Верификуј
       view_all_tasks: Прикажи све задатке
       view_detail: Виев Детаил
+      yes_delete: Да , Избриши
     column:
       action: Акција
       ai_assistant: АИ помоћник
@@ -824,11 +828,47 @@ sr-Cyrl:
     'yes': Да
   idp:
     actions: Акције
+    ai:
+      assistant:
+        failure_fallback:
+          message: Упс! Нешто је пошло наопако док је приказивао ову поруку. Покушајте поново!
+          try_again: Нисам то схватио. Покушај поново!
+      bubbles:
+        audio:
+          question_progress: Питање ИНТЕРПОЛАТИОН_ВАР_0 ИНТЕРПОЛАТИОН_ВАР_1
+      compose:
+        placeholder: Упишите своју поруку овде...
+      finishing:
+        hint: Наш АИ асистент креира ИДП план за вас.
+        title: Молимо сачекајте да радимо нашу магију ...
+      retake_steps:
+        chat_hint: Јавите ми које информације желите да пружите више испод?
+        chat_title: Желите да дате више информација?
+        start_chat: Започни ћаскање
+        start_chat_again: Поново започни ћаскање
+        upload_document: Отпремите документ
+        upload_file: Пошаљи датотеку
+      summary:
+        chat_title: Резиме увида у ћаскање
+        file_title: Учитани документи Увид
+        hint: ако јесте, онда ћемо креирати ИДП, иначе можете поново преузети своје одговоре
+        title: Да ли сте задовољни резултатима?
+        upload_file: Постављена датотека
+        view_chat: Погледај ћаскање
+      upload:
+        description: Кликните или превуците датотеке у ову област да бисте отпремили
+        drop: Баците датотеку овде
+        title: Отпремите датотеке
+      welcome:
+        text: Спремни да зацртате свој раст јорнеи? Почнимо!
+        title: Здраво , ја сам ваш асистент за развој
     behavioral: Понашајно
     board: Табла
+    changes_saved_to_plan: Промене сачуване у плану
     comment_details:
       add_comment: Додај коментар
       add_comment_placeholder: Додај коментар...
+      add_comments: Додај коментаре
       add_reply_placeholder: Додај одговор...
       go_to_skill: Иди на вештину
     comments:
@@ -850,11 +890,15 @@ sr-Cyrl:
       sort_by_date: Сортирај по датуму
       you: Ви
     convert_to_draft: Претвори у нацрт
+    delete_skill: Да ли сте сигурни да желите да избришете вештину јер ће избрисати и све повезане развојне акције?
     details: Детаљи
     development_actions:
       action_private: Да
       action_public: Не
       add_development_action: Додај акцију развоја
+      add_development_actions_from_below_options: Додајте развојне акције из одоздо опција.
+      add_development_actions_modal_title: Библиотека развојних акција за ИНТЕРПОЛАТИОН_ВАР_0
+      add_from_library: Додај из библиотеке
       all: Све
       approved: Одобрено
       board_view:
@@ -862,17 +906,32 @@ sr-Cyrl:
         in_progress: У току
         not_started: Није започето
       completion: Завршетак
+      create_custom_development_action_title: Креирајте сопствену развојну акцију за ИНТЕРПОЛАТИОН_ВАР_0
+      create_development_actions_with_ai: Креирајте развојне акције са АИ за ИНТЕРПОЛАТИОН_ВАР_0
+      create_from_ai: Креирајте из АИ
       create_my_own: Креирај своју
+      custom: Прилагођене
+      custom_da_description: Креирајте прилагођену развојну акцију за решавање јединствених развојних потреба.
       date_range: Датум почетка - Датум завршетка
+      edit_plan_to_add_development_actions: Измени план и да додате развојне акције.
+      enter_development_action_description: Унесите опис развојне акције
+      enter_development_action_title: Унесите наслов развојне акције
       generate_by_ai: Генериши помоћу АИ
       generate_more: Генериши још
       generating_development_actions: Генерисање акција развоја...
+      generative_ai: Генеративна АИ
+      generative_ai_description: Пустите АИ генерисати прилагођену развојну акцију само за вас
       heading: Акције развоја
+      idp_library: ИДП библиотека
+      idp_library_description: Изаберите доказану развојну акцију из наше стручне библиотеке.
       incomplete_error: Недовршене акције развоја
       incomplete_error_message: Неке акције развоја нису завршене. Молимо вас да их завршите пре слања ИДП-а.
       incomplete_warning: Недовршене акције развоја
       incomplete_warning_message: Неке акције развоја нису завршене. Да ли сте сигурни да желите да означите свој ИДП као завршен?
+      info_popover_title: Различите врсте развојних акција
       learning_from_others: Учење од других
+      learning_from_others_label: Учење од других
+      learning_on_the_job_label: Учење на послу
       manage_skills: Управљај вештинама
       marathon: Маратон
       mark_as_complete: Означи као завршено
@@ -882,19 +941,26 @@ sr-Cyrl:
       private: Приватно
       publish_plan: Објави план
       remove: Уклони
+      save_plan: Сачувај план
       skill: Вештина
       sprint: Спринт
       start_plan: Започни план
       structured_learning: Структурирано учење
+      structured_learning_label: Колаборативно учење
       submit_plan: Пошаљи план
+      success: Успешно завршене развојне акције
       write_here: Пишите овде...
+    direct_reportee_details: Директни извештавачи Детаљ
     edit_plan: Измени план
+    edit_plan_and_add_skills: Уредите план и кликните на Управљање вештинама да бисте додали вештине.
     edit_progress: Уреди напредак
+    fetching_skill_gap_report: Извештај о празнинама у вештинама ...
     initial_steps:
       add_skill_group_description: На основу резултата процене, ово су неке од ваших снага и области за развој. Изаберите вештине које желите да развијате као део свог плана развоја.
       add_skill_group_title: Истраживање ваших %{category} вештина
       add_skills: Додај
       add_skills_step: Додај вештине
+      back: Повратак
       continue_to_rate_skills: Настави са оцењивањем вештина
       getting_started: Почетак
       less_skills: Прикажи мање вештина
@@ -922,6 +988,8 @@ sr-Cyrl:
         categories: Категорије
       save_skills: Сачувај вештине
     new_comments: Нови коментар(и)
+    no_skills_added: Још увек немате додане вештине.
+    no_skills_added_by_reportee: Репортее још није додао вештине.
     pdf:
       cover:
         fields:
@@ -935,6 +1003,15 @@ sr-Cyrl:
         technical: Технички
       statuses:
         draft: Нацрт
+      summary:
+        ai_count: Генеративна АИ
+        collaborative_learn: Колаборативно учење
+        custom: Прилагођене
+        custom_count: Прилагођене
+        generated_ai: Генеративна АИ
+        learn_on_job: Учење на послу
+        lib_count: ИДП библиотека
+        library: ИДП библиотека
     plan: План
     reflective_questions:
       already_completed: ИДП је већ завршен, сада не можете одговарати на питања.
@@ -946,14 +1023,21 @@ sr-Cyrl:
         required: Одговор на питање је обавезан
       max_words: Максимум речи
       min_words: Минимум речи
+      no_answer_provided: Још увек нема одговора
       no_reflective_questions: Без рефлексивних питања
+      optional: "(Опционо)"
       title: Рефлексивна питања
       update_failed: Дошло је до грешке при ажурирању
       updated_successfully: Ваши одговори су успешно ажурирани
+      word_limit: Мора бити између ИНТЕРПОЛАТИОН_ВАР_0 и ИНТЕРПОЛАТИОН_ВАР_1 речи
       words: Речи
+    remove_skill: Уклони вештину
     skill_gap_report:
+      download: Преузмите извештај о јазу у вештинама
       title: Извештај о јазу у вештинама
+    skills_updated: Вештине ажуриране у Плану
     status: Статус
+    suggestions: Предлоге
     technical: Техничко
     user_idp_status:
       approved: Одобрено
@@ -1416,6 +1500,13 @@ sr-Cyrl:
       first_name: Име
       last_name: Презиме
   user_assessments:
+    modals:
+      actions:
+        mark_as_completed:
+          name: Означи као завршено
+          success_message: Процена ИНТЕРПОЛАТИОН_ВАР_0 је означена као завршена
+      mark_as_completed:
+        content: Да ли сте сигурни да желите да означите као завршен "ИНТЕРПОЛАТИОН_ВАР_0"?
     redirect: Бићете преусмерени на сајт треће стране за ову процену. Кликните на дугме „Настави“ ако желите да започнете процену.
     status:
       in_progress: У току

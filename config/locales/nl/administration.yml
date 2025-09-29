@@ -291,6 +291,7 @@ nl:
             manage: Beheer
             title: Workshops
             view: Bekijk
+            view_recordings: Opnames bekijken
     ai_artifacts:
       artifact_results: Artefact resultaten
       code: Code
@@ -368,6 +369,7 @@ nl:
       created_successfully: AI Assistant is succesvol aangemaakt.
       errors:
         cannot_delete_in_use: Kan AI Assistant '%{name}' niet verwijderen omdat deze wordt gebruikt.
+        one_click_idp_assistance_not_enabled: AI-aangedreven IDP-assistentie is niet beschikbaar met uw huidige abonnement. Neem dan contact op met de beheerder.
       form:
         add_output_schema_key: Uitvoerschema sleutel toevoegen
         dependencies: Afhankelijkheden
@@ -590,6 +592,7 @@ nl:
         enable_back: Terugknop inschakelen
         enable_progress: Voortgangsbalk inschakelen
         enable_save: Knop opslaan inschakelen
+        enable_select_main_factor: Selecteer een factor als hoofdfactor
         enable_single_question_page: Toon één vraag per pagina
         enable_single_question_page_confirm: Dit zal de blok randomisatie per pagina bijwerken naar 1. Weet je het zeker?
         enable_timer: Timer inschakelen
@@ -1012,12 +1015,29 @@ nl:
           approvers: Goedkeurders
           approvers_can_edit: Goedkeurders kunnen bewerken
           approvers_not_required: Goedkeurders Niet vereist
+          digest_frequency:
+            daily: Dagelijks
+            form_label: Digest Frequentie
+            weekdays: Weekdagen
+            weekly: Wekelijks
+          digest_time: Tijd verteren
+          digest_timezone: Tijdzone digesteren
+          digest_weekdays:
+            form_label: Samenvattingen van weekdagen(en)
+            friday: Vrijdag
+            monday: Maandag
+            saturday: Zaterdag
+            sunday: Zondag
+            thursday: Donderdag
+            tuesday: Dinsdag
+            wednesday: Woensdag
           do_not_send_notifications: Geen meldingen verzenden
           modal_title: Instellingen voor goedkeuring van rapporten
           qc_users: QC gebruikers
           remove_modal_success: 'Goedkeuringsinstelling voor rapport id: %{reportId} is succesvol verwijderd'
           remove_modal_text: 'Weet je zeker dat je deze instelling wilt verwijderen voor rapport id: %{reportId}?'
           report: Rapporteer
+          send_digest_emails: Digest e-mails verzenden
           settings: Instellingen
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ nl:
       form:
         active_notice: Campagnestatus wordt automatisch gewijzigd in gesloten op de geselecteerde einddatum
         campaign: Campagne
+        copy_factors: Kopieer factoren
         inactive_notice: Campagnestatus wordt automatisch gewijzigd in Active op de geselecteerde startdatum
         instruction: Dit kan alleen worden ingeschakeld tijdens het maken van campagne
         name: Naam
@@ -2230,6 +2251,7 @@ nl:
         remove_confirm: Voer de huidige sjabloonnaam hieronder in het tekstvak in om de sjabloon te verwijderen
         success: "%{idpName} is succesvol verwijderd."
       add_idp_template: IDP-sjabloon toevoegen
+      ai_assistant: AI-assistent
       ai_assisted_idp_enabled: AI-ondersteund IDP
       ai_enabled: AI ingeschakeld
       ai_settings: AI-instellingen
@@ -2240,7 +2262,26 @@ nl:
       background_image: Achtergrondafbeelding
       behavioral_skills: Gedragsvaardigheden
       client_skills: Vaardigheden voor klanten
+      delete_skill: Weet je zeker dat je vaardigheid wilt verwijderen omdat dan ook alle verbonden ontwikkelingsacties worden verwijderd?
       details_updated: IDP Details succesvol bijgewerkt
+      development_actions:
+        add_from_library: Toevoegen uit bibliotheek
+        completion: Voltooiing
+        create_development_actions_with_ai: Ontwikkelacties maken met AI voor %{skillName}
+        create_from_ai: Creëer vanuit AI
+        create_my_own: Maak mijn eigen
+        custom: Gewoonte
+        date_range: Startdatum - Einddatum
+        edit_plan_to_add_development_actions: Plan bewerken en ontwikkelingsacties toevoegen.
+        errors:
+          invalid_learning_style: "'%{learning_style}' is geen geldige leerstijl. Geldige opties zijn: %{valid_styles}"
+          learning_style_blank: Leerstijl mag niet leeg zijn
+        generate_by_ai: Genereren door AI
+        generate_more: Genereer meer
+        heading: Acties op het gebied van vaardigheden/ontwikkeling
+        manage_skills: Vaardigheden beheren
+        no_development_actions: Je hebt geen ontwikkelingsacties
+      document_ai_assistant: AI-assistent voor documentanalyse
       edit_template: IDP-sjabloon bewerken
       enter_tag_or_skills_error: Selecteer minstens één tag of vaardigheid
       enter_template_description: Beschrijving
@@ -2263,6 +2304,8 @@ nl:
       global_skills: Wereldwijde vaardigheden
       idp: IDP
       idp_template: IDP-sjabloon toevoegen
+      interview_questions: Interview Vragen
+      interview_questions_updated: Sollicitatievragen zijn succesvol bijgewerkt.
       intro_message: Introbericht
       intro_message_hint: Om het introductiebericht te kunnen wijzigen, moet u eerst de IDP-sjabloon opslaan om deze instellingen in te schakelen.
       intro_message_success: Introbericht succesvol opgeslagen
@@ -2274,6 +2317,7 @@ nl:
         mercer_only: Alleen Mercer-logo
         none: Zonder logo's
       logo_type_label: Type logo
+      no_interview_questions_selected: Geen interviewvragen geselecteerd
       no_reflection_questions_selected: Geen reflectievragen geselecteerd
       none: Geen
       one_click_idp_enabled: Eén klik IDP ingeschakeld
@@ -2282,7 +2326,16 @@ nl:
       reflection_questions_hint: Om de reflectievragen aan te passen, moet je de IDP-sjabloon eerst opslaan om deze instellingen te activeren.
       reflection_questions_updated: Reflectievragen succesvol bijgewerkt.
       remove: Verwijder
+      remove_skill: Vaardigheid verwijderen
+      revert_skill_to_public:
+        errors:
+          skill_already_public: Vaardigheid is al openbaar
+          skill_not_found: Vaardigheid niet gevonden
+        success:
+          base_message: Vaardigheid '%{skill_name}' is nu zichtbaar voor je manager
+          with_approval: "%{base_message} en uw IDP-plan is ter goedkeuring ingediend"
       select_by_tags: Selecteer op tags
+      select_interview_question: Begin met typen om vraag te zoeken en te selecteren
       select_reflection_question: Begin te typen om te zoeken en selecteer de vraag
       select_skill_gap_report: Selecteer rapport over vaardigheidskloof
       select_specific_skills: Selecteer specifieke vaardigheden
@@ -2308,12 +2361,14 @@ nl:
       subtitle_text: Ondertitel tekst
       tab:
         development_actions: Ontwikkelingsacties
+        interview_questions: Interview Vragen
         reflection_questions: Reflectie vragen
         settings: Instellingen
         templates: Sjablonen
       technical_skills: Technische vaardigheden
       template_details: Sjabloon Details
       title_text: Titel tekst
+      update_interview_questions: Sollicitatievragen bijwerken
       update_reflection_questions: Update Reflectievragen
     idp_setting:
       manager_approves_idp: Manager keurt IDP goed
@@ -2515,6 +2570,35 @@ nl:
         skillvue:
           api_key_present: API-sleutel is al aanwezig in ander project
       view_all_schedules: Bekijk alle Mettl schema's
+    interview_questions:
+      delete_confirmation: Weet je zeker dat je deze interviewvraag wilt verwijderen?
+      description: Beschrijving
+      export:
+        action: Sollicitatievragen exporteren
+        details: Bestand Details
+        failure_msg: Fout bij het exporteren van het bestand.
+        success_msg: Exporteren van interviewvragen in uitvoering. Controleer de status in de meldingen.
+      form:
+        description: Beschrijving
+        mandatory: Verplicht
+        question: Vraag
+        question_type: Soort vraag
+        question_type_audio: Audio
+        question_type_video: Video
+        time_limit: Tijdslimiet (sec)
+        title: Interview vraag
+      import:
+        action: Interviewvragen importeren
+        errors:
+          invalid_required_column_format: Ongeldig Verplichte kolomwaarde-opmaak %{row}
+          invalid_required_type_format: Ongeldige QuestionType-kolomwaarde-indeling %{row}
+          invalid_time_limit_column_format: Ongeldige tijdslimiet kolomwaarde-indeling %{row}
+          missing_description: Ontbrekende beschrijving inhoud %{row}
+          missing_question: Ontbrekende vraaginhoud %{row}
+          save_failed: Mislukte %{message} opslaan
+        failure_msg: Fout bij het importeren van het bestand.
+        success_msg: Importeren van interviewvragen in uitvoering. Controleer de status in de meldingen.
+      question: Vraag
     invited_subject:
       add_btn: Onderwerp toevoegen
       assessment_center: 'Beoordelingscentrum:'
@@ -3185,7 +3269,9 @@ nl:
         dp_consent_version: Beleidsversie
         errors:
           cannot_disable_while_campaign_enabled: Kan opnemen van videogesprekken niet uitschakelen omdat dit is ingeschakeld voor een of meer campagnes in dit project
+          min_retention: Mag niet korter zijn dan 1 dag
           policy_version_format: Alleen gehele getallen zijn toegestaan
+          required: Vereist
         mask_identity_for_examus: Maskergegevens voor Examus Proctoring
         mask_identity_for_hogan: Maskergegevens voor Hogan
         mask_identity_for_iiht: Maskergegevens voor IIHT
@@ -3325,9 +3411,12 @@ nl:
         code: Code
         code_constraint: De code moet beginnen met een kleine letter en mag alleen kleine letters, cijfers en underscores bevatten
         delete: Verwijder
+        description: Beschrijving
+        description_alias: Beschrijving / Alias
         import_factors: Importfactoren
         invalid_factor_params: Formaat campagnefactoren ongeldig
         name: Naam
+        name_alias: Naam / Alias
         no_boundary_space: Naam kan niet beginnen of eindigen met een spatie
         too_many_factors: Kan niet meer dan %{count} campagnefactoren maken
         tools: Gereedschap
@@ -3346,6 +3435,19 @@ nl:
       property_panel:
         add_new_condition: Nieuwe conditie toevoegen
         apply_color_label: 'Breng vervolgens de volgende kleur aan:'
+        custom_factor_fields:
+          percentage: Percentage
+          questions_attempted: Geprobeerd
+          questions_correct: Juist
+          questions_incorrect: Onjuist
+          questions_not_attempted: Niet geprobeerd
+          questions_partial_correct: Gedeeltelijk correct
+          total_questions: Totaal
+        custom_factor_placeholder: Selecteer aangepaste factorvelden
+        factor_value_type:
+          custom: Gewoonte
+          default: Verstek
+          label: Type factorwaarde
         graph_condition_types:
           default: Verstek
           graph_value: Grafiek waarde
@@ -3355,6 +3457,7 @@ nl:
         manage_graph_value_condition: De voorwaarde van de grafiekwaarde beheren
         manage_styles_condition: Conditie van stijlen beheren
         missing_value: Ontbrekende waarde
+        pie_semi_circle: Halve cirkel
         predicates:
           equal_to: Gelijk aan
           greater_than: Groter dan
@@ -3438,6 +3541,7 @@ nl:
         translations: Translations
       title: Rapportinstellingen
     reports:
+      broken_image_url: Controleer de URL van uw afbeelding en probeer opnieuw te importeren
       bulk_marked_as_done: Bulk Gemarkeerd als Gereed
       bulk_upload:
         choose_file: Kies bestand
@@ -3607,16 +3711,19 @@ nl:
         campaign_assessment_group: Assessment Center Groep
         campaign_name: Naam campagne
         duration: Duur
+        link_to_view_recordings: Link om opnames te bekijken
         managers: Mangers
         meeting_link: Bijeenkomst Link
         name: Naam
         participants: Deelnemers
         prework: Voorwerk
+        recording_date: Opnamedatum
         resource_link: Link
         resource_name: Naam
         schedule_time: Tijd plannen
         scheduling_status: Planningsstatus
         seats: Zetels
+        serial_no: Serienummer
         start_time: Datum en tijd
         subject: Onderwerp
         title: Titel
@@ -3641,6 +3748,7 @@ nl:
         managers: Managers
         none: Geen
         not_allowed: Niet toegestaan
+        recording_enabled: Opname ingeschakeld
         remaining: Resterende plaatsen
         scheduling_lead_time: Doorlooptijd planning
         scheduling_tooltip: De gebruiker kan een slot boeken tot %{date}
@@ -3704,6 +3812,7 @@ nl:
         activities: Activiteiten
         assessment_center: Beoordelingscentrum
         invites: Nodigt  uit
+        recordings: Opnamen
         resources: Bronnen
         subjects: Onderwerpen
     scoring:
@@ -4144,6 +4253,15 @@ nl:
           other: Andere
           qualification: Kwalificatie
           technical: Technisch
+      move_question:
+        cancel: Annuleren
+        move: Bewegen
+        moveAfter: Verplaatsen na
+        moveBefore: Verplaatsen voor
+        moveQuestion: 'Verplaatsing vraag: %{question}'
+        position: Positie
+        selectTargetQuestion: Selecteer Doelvraag
+        title: Vraag verplaatsen
       property_panel:
         add_n_a_option: N.v.t.-optie toevoegen
         allow_content_copy: Inhoud kopiëren toestaan
@@ -4187,6 +4305,18 @@ nl:
         question_description: Rij beschrijvingen
         validation_response_type: Type validatiereactie
         voice_dictation: Spraak dicteren
+      question_info_bar:
+        add_display_logic: Weergavelogica toevoegen
+        add_skip_logic: Logica voor overslaan toevoegen
+        are_you_sure_to_delete_this_question: Weet u zeker dat u deze vraag verwijdert?
+        default_choices: Standaard keuzes
+        delete_question: Vraag verwijderen
+        delete_the_question: De vraag verwijderen
+        move_question: Vraag verplaatsen
+        randomization: Randomisatie
+        save_as_a_template: Opslaan als sjabloon
+        this_question_has_default_choices: Deze vraag heeft standaardkeuzes
+        this_question_has_randomization: Deze vraag heeft randomisatie
     table:
       entries:
         selected:
