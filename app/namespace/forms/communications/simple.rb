@@ -28,6 +28,52 @@ module Forms
       property :selected_assessment_ids, type: Types::Params::Array, default: []
       property :cc_user_ids, type: Types::Params::Array, default: []
 
+      property :delivery_start_date, type: Types::Params::Date | Types::Params::Nil
+      property :delivery_end_date, type: Types::Params::Date | Types::Params::Nil
+      property :delivery_time_of_day, type: Types::Params::Time | Types::Params::Nil
+      property :delivery_timezone, type: Types::Params::String | Types::Params::Nil
+      property :delivery_frequency, type: Types::Params::String | Types::Params::Nil
+      property :delivery_weekdays, type: Types::Params::Array, default: []
+
+      validates :delivery_start_date, :delivery_end_date, :delivery_time_of_day, :delivery_timezone,
+                :delivery_frequency, presence: true, if: :assessment_center_booking_summary?
+      validate :validate_end_date_after_start_date, if: :assessment_center_booking_summary?
+      validate :validate_weekdays_presence, if: :assessment_center_booking_summary?
+      validate :validate_delivery_start_date_not_in_past, if: :assessment_center_booking_summary?
+
+      def validate_delivery_start_date_not_in_past
+        return if delivery_start_date.blank?
+
+        if delivery_start_date < Time.zone.today
+          errors.add(:delivery_start_date, :in_past,
+                     message: I18n.t('administration.communications.form.error_msgs.delivery_start_date_in_past'))
+        end
+      end
+
+      def assessment_center_booking_summary?
+        kind == 'assessment_center_booking_summary'
+      end
+
+      def validate_end_date_after_start_date
+        return if delivery_start_date.blank? || delivery_end_date.blank?
+
+        if delivery_end_date < delivery_start_date
+          errors.add(:delivery_end_date, :after,
+                     message: I18n.t(
+                       'administration.communications.form.error_msgs.delivery_end_date_after_start_date'
+                     ))
+        end
+      end
+
+      def validate_weekdays_presence
+        return unless delivery_frequency == 'specific_weekdays'
+
+        if delivery_weekdays.blank? || delivery_weekdays.compact_blank.empty?
+          errors.add(:delivery_weekdays,
+                     I18n.t('administration.communications.form.error_msgs.delivery_weekdays_required'))
+        end
+      end
+
       validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client, presence: true
 
       validates :owner_id, :owner, presence: true, allow_nil: true

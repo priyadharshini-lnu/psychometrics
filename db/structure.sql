@@ -2721,7 +2721,13 @@ CREATE TABLE public.communications (
     updated_by_id bigint,
     assessment_completion_status_code character varying,
     delivery_delay_hours integer,
-    campaign_assessment_group_id bigint
+    campaign_assessment_group_id bigint,
+    delivery_start_date date,
+    delivery_end_date date,
+    delivery_time_of_day time without time zone,
+    delivery_timezone character varying,
+    delivery_frequency character varying,
+    delivery_weekdays character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -18464,6 +18470,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250915111321'),
 ('20250917104111'),
 ('20250917090000'),
 ('20250911053831'),

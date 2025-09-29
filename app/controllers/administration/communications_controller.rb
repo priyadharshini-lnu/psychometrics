@@ -216,8 +216,10 @@ module Administration
         :delivery_interval_number, :delivery_interval_period,
         :project_id, :campaign_id, :sub_campaign_id,
         :kind, :delivery_at, :stop_reminder, :stop_reminder_datetime,
-        :locale, :campaign_assessment_group_id, :assessment_selection,
-        user_ids: [], selected_assessment_ids: [], cc_user_ids: []
+        :locale, :campaign_assessment_group_id, :assessment_selection, :delivery_start_date, :delivery_end_date,
+        :delivery_time_of_day, :delivery_timezone, :delivery_frequency,
+        user_ids: [], selected_assessment_ids: [], cc_user_ids: [],
+        delivery_weekdays: []
       )
     end
 
