@@ -291,6 +291,7 @@ zh-Hant:
             manage: 管理
             title: 工作坊
             view: 檢視
+            view_recordings: 查看錄音
     ai_artifacts:
       artifact_results: 神器結果
       code: 法典
@@ -368,6 +369,7 @@ zh-Hant:
       created_successfully: AI Assistant 已成功建立。
       errors:
         cannot_delete_in_use: 無法刪除 AI 助理「%{name}」，因為它正在使用中。
+        one_click_idp_assistance_not_enabled: 您目前的計劃不提供人工智慧驅動的 IDP 協助。請聯絡管理員。
       form:
         add_output_schema_key: 新增輸出模式金鑰
         dependencies: 依賴
@@ -590,6 +592,7 @@ zh-Hant:
         enable_back: 啟用後退按鈕
         enable_progress: 啟用進度列
         enable_save: 啟用儲存按鈕
+        enable_select_main_factor: 選擇一個因素作為主要因素
         enable_single_question_page: 每頁顯示一個問題
         enable_single_question_page_confirm: 這會將每頁的區塊隨機化更新為 1，您確定嗎？
         enable_timer: 啟用計時器
@@ -1012,12 +1015,29 @@ zh-Hant:
           approvers: 批准人
           approvers_can_edit: 批准人可以編輯
           approvers_not_required: 不需要批准人
+          digest_frequency:
+            daily: 㫟
+            form_label: 消化頻率
+            weekdays: 平日
+            weekly: 每週
+          digest_time: 消化時間
+          digest_timezone: 摘要時區
+          digest_weekdays:
+            form_label: 文摘平日
+            friday: 星期五
+            monday: 星期一
+            saturday: 星期六
+            sunday: 星期日
+            thursday: 星期四
+            tuesday: 星期二
+            wednesday: 星期三
           do_not_send_notifications: 不要傳送通知
           modal_title: 報告核准設定
           qc_users: QC 使用者
           remove_modal_success: '報告 ID 的核准設定：%{reportId} 已成功刪除 '
           remove_modal_text: 您確定要刪除報告 ID 的此設定：%{reportId}？
           report: 報告
+          send_digest_emails: 發送摘要電子郵件
           settings: 設定
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ zh-Hant:
       form:
         active_notice: 廣告系列狀態將自動更改為在選定的結束日期關閉
         campaign: 活動
+        copy_factors: 複製因素
         inactive_notice: 廣告系列狀態將在選定的開始日期自動更改為活動
         instruction: 這只能在創建廣告系列時啟用
         name: 名稱
@@ -2230,6 +2251,7 @@ zh-Hant:
         remove_confirm: 在文字方塊中輸入以下的目前範本名稱，即可移除範本
         success: "%{idpName} 已成功移除。"
       add_idp_template: 新增 IDP 範本
+      ai_assistant: AI助手
       ai_assisted_idp_enabled: AI 輔助 IDP 啟用
       ai_enabled: 啟用 AI
       ai_settings: AI 設定
@@ -2240,7 +2262,26 @@ zh-Hant:
       background_image: 背景圖片
       behavioral_skills: 行為技巧
       client_skills: 客戶技能
+      delete_skill: 您確定要刪除技能，因為它也會刪除所有連接的開發動作嗎？
       details_updated: IDP 詳細資料已成功更新
+      development_actions:
+        add_from_library: 從庫新增
+        completion: 完成
+        create_development_actions_with_ai: 使用 AI 建立開發動作 for %{skillName}
+        create_from_ai: 從 AI 創建
+        create_my_own: 創建我自己的
+        custom: 習慣
+        date_range: 開始日期 - 結束日期
+        edit_plan_to_add_development_actions: 編輯計劃，並新增開發動作。
+        errors:
+          invalid_learning_style: "「%{learning_style}」不是一種有效的學習方式。有效選項為：%{valid_styles}"
+          learning_style_blank: 學習風格不能空白
+        generate_by_ai: 由 AI 生成
+        generate_more: 產生更多
+        heading: 技能/發展行動
+        manage_skills: 管理技能
+        no_development_actions: 您沒有開發動作
+      document_ai_assistant: 文件分析 AI 助理
       edit_template: 編輯 IDP 範本
       enter_tag_or_skills_error: 選擇至少一個標籤或技能
       enter_template_description: 說明
@@ -2263,6 +2304,8 @@ zh-Hant:
       global_skills: 全球技能
       idp: IDP
       idp_template: 新增 IDP 範本
+      interview_questions: 面試問題
+      interview_questions_updated: 面試問題更新成功。
       intro_message: 介紹訊息
       intro_message_hint: 若要修改介紹訊息，請先儲存 IDP 範本以啟用這些設定。
       intro_message_success: 簡介資訊已成功保存
@@ -2274,6 +2317,7 @@ zh-Hant:
         mercer_only: 僅 Mercer 標誌
         none: 無標誌
       logo_type_label: 標誌類型
+      no_interview_questions_selected: 未選擇面試問題
       no_reflection_questions_selected: 未選擇反思問題
       none: 無
       one_click_idp_enabled: 啟用一鍵式 IDP
@@ -2282,7 +2326,16 @@ zh-Hant:
       reflection_questions_hint: 若要修改反思問題，請先儲存 IDP 模版，以啟用這些設定。
       reflection_questions_updated: 反思問題已成功更新。
       remove: 移除
+      remove_skill: 移除技能
+      revert_skill_to_public:
+        errors:
+          skill_already_public: 技能已經公開
+          skill_not_found: 未找到技能
+        success:
+          base_message: 技能「%{skill_name}」現在對您的經理可見
+          with_approval: "%{base_message}，您的 IDP 計劃已提交批准"
       select_by_tags: 依標籤選擇
+      select_interview_question: 開始輸入以搜尋並選擇問題
       select_reflection_question: 開始打字搜尋並選擇問題
       select_skill_gap_report: 選擇技能差距報告
       select_specific_skills: 選擇特定技能
@@ -2308,12 +2361,14 @@ zh-Hant:
       subtitle_text: 字幕文字
       tab:
         development_actions: 發展行動
+        interview_questions: 面試問題
         reflection_questions: 反思問題
         settings: 設定
         templates: 範本
       technical_skills: 技術技能
       template_details: 範本詳細資訊
       title_text: 標題文字
+      update_interview_questions: 更新面試問題
       update_reflection_questions: 更新反思問題
     idp_setting:
       manager_approves_idp: 經理核准 IDP
@@ -2515,6 +2570,35 @@ zh-Hant:
         skillvue:
           api_key_present: API 金鑰已存在於其他專案中
       view_all_schedules: 檢視所有 Mettl 時刻表
+    interview_questions:
+      delete_confirmation: 你確定要刪除這個面試問題嗎？
+      description: 描述
+      export:
+        action: 出口面試問題
+        details: 檔案詳細資料
+        failure_msg: 匯出檔案時出錯。
+        success_msg: 正在匯出面試問題。請檢查通知中的狀態。
+      form:
+        description: 描述
+        mandatory: 命令的
+        question: 鞫
+        question_type: 問題類型
+        question_type_audio: 音訊
+        question_type_video: 視頻
+        time_limit: 時限（秒）
+        title: 面試問題
+      import:
+        action: 導入面試問題
+        errors:
+          invalid_required_column_format: 無效的必要資料行值格式%{row}
+          invalid_required_type_format: 無效的 QuestionType 資料行值格式%{row}
+          invalid_time_limit_column_format: 無效的「時間限制」欄值格式%{row}
+          missing_description: 缺少描述內容%{row}
+          missing_question: 遺漏的問題內容%{row}
+          save_failed: 儲存失敗的%{message}
+        failure_msg: 匯入檔案時出錯。
+        success_msg: 正在導入面試問題。請檢查通知中的狀態。
+      question: 鞫
     invited_subject:
       add_btn: 新增主題
       assessment_center: 評估中心：
@@ -3185,7 +3269,9 @@ zh-Hant:
         dp_consent_version: 政策版本
         errors:
           cannot_disable_while_campaign_enabled: 無法停用視訊通話錄影，因為此專案中的一個或多個活動已啟用此功能
+          min_retention: 不能少於 1 天
           policy_version_format: 只允許使用整數
+          required: 必要
         mask_identity_for_examus: Examus Proctoring 的掩模資料
         mask_identity_for_hogan: Hogan 的面具資料
         mask_identity_for_iiht: IIHT 的遮罩資料
@@ -3325,9 +3411,12 @@ zh-Hant:
         code: 代碼
         code_constraint: 代碼必須以小楷字母開頭，且只能包含小楷字母、數字和底線
         delete: 刪除
+        description: 描述
+        description_alias: 描述/別名
         import_factors: 進口因素
         invalid_factor_params: 活動因素參數格式無效
         name: 名稱
+        name_alias: 姓名/別名
         no_boundary_space: 名稱不能以空格開始或結束
         too_many_factors: 無法建立超過 %{count} 的活動因素
         tools: 工具
@@ -3346,6 +3435,19 @@ zh-Hant:
       property_panel:
         add_new_condition: 新增條件
         apply_color_label: 然後應用以下顏色：
+        custom_factor_fields:
+          percentage: 百分比
+          questions_attempted: 嘗試過
+          questions_correct: 對
+          questions_incorrect: 䡁
+          questions_not_attempted: 未嘗試
+          questions_partial_correct: 部分正確
+          total_questions: 總
+        custom_factor_placeholder: 選取自訂因素欄位
+        factor_value_type:
+          custom: 習慣
+          default: 預設
+          label: 因素值類型
         graph_condition_types:
           default: 預設
           graph_value: 圖形值
@@ -3355,6 +3457,7 @@ zh-Hant:
         manage_graph_value_condition: 管理圖形值條件
         manage_styles_condition: 管理樣式條件
         missing_value: 遺漏值
+        pie_semi_circle: 半圓形
         predicates:
           equal_to: 等於
           greater_than: 大於
@@ -3438,6 +3541,7 @@ zh-Hant:
         translations: 翻譯
       title: 報告設定
     reports:
+      broken_image_url: 請驗證您的圖像 URL，然後再次嘗試匯入
       bulk_marked_as_done: 大量標記為已完成
       bulk_upload:
         choose_file: 選擇檔案
@@ -3607,16 +3711,19 @@ zh-Hant:
         campaign_assessment_group: 評估中心小組
         campaign_name: 活動名稱
         duration: 時間長度
+        link_to_view_recordings: 查看錄音的連結
         managers: 管理員
         meeting_link: 會議連結
         name: 名稱
         participants: 參與者
         prework: 前期工作
+        recording_date: 錄製日期
         resource_link: 連結
         resource_name: 名稱
         schedule_time: 排程時間
         scheduling_status: 排程狀態
         seats: 座椅
+        serial_no: 序號
         start_time: 日期與時間
         subject: 主題
         title: 標題
@@ -3641,6 +3748,7 @@ zh-Hant:
         managers: 中心經理
         none: 無
         not_allowed: 不允許
+        recording_enabled: 已啟用錄製
         remaining: 剩餘座位
         scheduling_lead_time: 排程前置時間
         scheduling_tooltip: 使用者可預約時段至 %{date}
@@ -3704,6 +3812,7 @@ zh-Hant:
         activities: 活動
         assessment_center: 評估中心
         invites: 邀請
+        recordings: 錄音
         resources: 資源
         subjects: 主題
     scoring:
@@ -4144,6 +4253,15 @@ zh-Hant:
           other: 其他
           qualification: 資格
           technical: 技術
+      move_question:
+        cancel: 銷
+        move: 搬
+        moveAfter: 移動後
+        moveBefore: 移動之前
+        moveQuestion: 移動問題：%{question}
+        position: 位
+        selectTargetQuestion: 選擇目標問題
+        title: 移動問題
       property_panel:
         add_n_a_option: 新增不適用選項
         allow_content_copy: 允許內容複製
@@ -4187,6 +4305,18 @@ zh-Hant:
         question_description: 行描述
         validation_response_type: 驗證回應類型
         voice_dictation: 語音聽寫
+      question_info_bar:
+        add_display_logic: 新增顯示邏輯
+        add_skip_logic: 新增略過邏輯
+        are_you_sure_to_delete_this_question: 你確定刪除這個問題嗎？
+        default_choices: 預設選擇
+        delete_question: 刪除問題
+        delete_the_question: 刪除問題
+        move_question: 移動問題
+        randomization: 隨機化
+        save_as_a_template: 另存為模板
+        this_question_has_default_choices: 此問題有預設選項
+        this_question_has_randomization: 這個問題有隨機性
     table:
       entries:
         selected:

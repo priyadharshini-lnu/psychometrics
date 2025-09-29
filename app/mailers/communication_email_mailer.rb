@@ -8,7 +8,10 @@ class CommunicationEmailMailer < ApplicationMailer
     @resource = recipient
 
     user_locale = recipient&.locale || I18n.default_locale
-    @is_rtl = user_locale.to_s == 'ar'
+    template_has_ar = @communication_email.communication.
+                      body(locale: :ar, fallback: false).
+                      present?
+    @is_rtl = user_locale.to_s == 'ar' && template_has_ar
 
     I18n.with_locale(user_locale) do
       prepare_and_send_email

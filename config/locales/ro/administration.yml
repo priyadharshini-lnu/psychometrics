@@ -291,6 +291,7 @@ ro:
             manage: Acțiuni
             title: Ateliere
             view: Vedere
+            view_recordings: Vizualizați înregistrările
     ai_artifacts:
       artifact_results: Rezultatele artefactelor
       code: Cod
@@ -368,6 +369,7 @@ ro:
       created_successfully: AI Assistant a fost creat cu succes.
       errors:
         cannot_delete_in_use: Nu se poate șterge AI Assistant "%{name}" deoarece este utilizat.
+        one_click_idp_assistance_not_enabled: Asistența pentru IDP bazată pe inteligență artificială nu este disponibilă cu planul dvs. Vă rugăm să contactați administratorul.
       form:
         add_output_schema_key: Adăugați cheia schemei de ieșire
         dependencies: Dependențe
@@ -590,6 +592,7 @@ ro:
         enable_back: Activați butonul Înapoi
         enable_progress: Activați bara de progres
         enable_save: Activați butonul de salvare
+        enable_select_main_factor: Selectați un factor ca factor principal
         enable_single_question_page: Afișează o întrebare pe pagină
         enable_single_question_page_confirm: Acest lucru va actualiza randomizarea blocurilor pe pagină la 1. Eşti sigur?
         enable_timer: Activați cronometrul
@@ -1012,12 +1015,29 @@ ro:
           approvers: Aprobatori
           approvers_can_edit: Aprobatorii pot edita
           approvers_not_required: Aprobatori nu sunt necesari
+          digest_frequency:
+            daily: Zilnic
+            form_label: Frecvența digestiei
+            weekdays: Zile lucrătoare
+            weekly: Săptămânal
+          digest_time: Timp de rezumare
+          digest_timezone: Fus orar Digest
+          digest_weekdays:
+            form_label: Rezumați zilele săptămânii
+            friday: Vineri
+            monday: Luni
+            saturday: Sâmbătă
+            sunday: Duminică
+            thursday: Joi
+            tuesday: Marți
+            wednesday: Miercuri
           do_not_send_notifications: Nu trimiteți e-mailuri utilizatorilor [QC, Aprobatori și notificare de aprobare]
           modal_title: Setări de aprobare a rapoartelor
           qc_users: Utilizatori QC
           remove_modal_success: 'Setarea de aprobare pentru codul raportului: %{reportId} a fost ștearsă cu succes'
           remove_modal_text: 'Sigur doriți să ștergeți această setare pentru codul raportului: %{reportId}?'
           report: Raport
+          send_digest_emails: Trimiteți e-mailuri de rezumat
           settings: Setări
       assessors:
         spoof:
@@ -1037,6 +1057,7 @@ ro:
       form:
         active_notice: Starea campaniei se va schimba automat la închisă la data de încheiere selectată
         campaign: Campanie
+        copy_factors: Factori de copiere
         inactive_notice: Starea campaniei se va schimba automat la Active la data de început selectată
         instruction: Această opțiune poate fi activată doar în timpul creării campaniei.
         name: Nume
@@ -2230,6 +2251,7 @@ ro:
         remove_confirm: Introduceți numele șablonului curent de mai jos în caseta de text pentru a elimina șablonul
         success: "%{idpName} a fost eliminat cu succes."
       add_idp_template: Adăugați șablon IDP
+      ai_assistant: Asistent AI
       ai_assisted_idp_enabled: IA asistată IDP activată
       ai_enabled: AI activat
       ai_settings: Setări AI
@@ -2240,7 +2262,26 @@ ro:
       background_image: Imagine de fundal
       behavioral_skills: Abilități comportamentale
       client_skills: Abilitățile clientului
+      delete_skill: Sunteți sigur că doriți să ștergeți abilitatea, deoarece va șterge și toate acțiunile de dezvoltare conectate?
       details_updated: Detalii IDP actualizate cu succes
+      development_actions:
+        add_from_library: Adăugați din bibliotecă
+        completion: Terminare
+        create_development_actions_with_ai: Creați acțiuni de dezvoltare cu AI for %{skillName}
+        create_from_ai: Creați din AI
+        create_my_own: Creează-mi propriul
+        custom: Obicei
+        date_range: Data de început - Data de încheiere
+        edit_plan_to_add_development_actions: Editați planul și adăugați acțiuni de dezvoltare.
+        errors:
+          invalid_learning_style: '"%{learning_style}" nu este un stil de învățare valid. Opțiunile valide sunt: %{valid_styles}'
+          learning_style_blank: Stilul de învățare nu poate fi gol
+        generate_by_ai: Generați prin AI
+        generate_more: Generați mai mult
+        heading: Competențe/Acțiuni de dezvoltare
+        manage_skills: Gestionați abilitățile
+        no_development_actions: Nu aveți acțiuni de dezvoltare
+      document_ai_assistant: Asistent AI pentru analiza documentelor
       edit_template: Editați șablonul IDP
       enter_tag_or_skills_error: Selectați cel puțin o etichetă sau abilitate
       enter_template_description: Descriere
@@ -2263,6 +2304,8 @@ ro:
       global_skills: Competențe globale
       idp: IDP
       idp_template: Adăugați șablon IDP
+      interview_questions: Întrebări de interviu
+      interview_questions_updated: Întrebările interviului au fost actualizate cu succes.
       intro_message: Mesaj introductiv
       intro_message_hint: Pentru a modifica mesajul introductiv, salvați mai întâi șablonul IDP pentru a activa aceste setări.
       intro_message_success: Mesaj introductiv salvat cu succes
@@ -2274,6 +2317,7 @@ ro:
         mercer_only: Numai logo-ul Mercer
         none: Fără logo-uri
       logo_type_label: Tip logo
+      no_interview_questions_selected: Nicio întrebare de interviu selectată
       no_reflection_questions_selected: Nu s-a selectat nicio întrebare de reflecție
       none: Niciunul
       one_click_idp_enabled: Un clic IDP activat
@@ -2282,7 +2326,16 @@ ro:
       reflection_questions_hint: Pentru a modifica întrebările de reflecție, vă rugăm să salvați mai întâi șablonul IDP pentru a activa aceste setări.
       reflection_questions_updated: Întrebări de reflecție actualizate cu succes.
       remove: Depărta
+      remove_skill: Eliminați abilitatea
+      revert_skill_to_public:
+        errors:
+          skill_already_public: Skill este deja publică
+          skill_not_found: Abilitate negăsită
+        success:
+          base_message: Abilitatea "%{skill_name}" este acum vizibilă pentru managerul dvs.
+          with_approval: "%{base_message} și planul IDP a fost trimis spre aprobare"
       select_by_tags: Selectează după etichete
+      select_interview_question: Începeți să tastați pentru a căuta și selectați întrebarea
       select_reflection_question: Începeți să tastați pentru a căuta și selectați întrebarea
       select_skill_gap_report: Selectează raportul privind decalajul de competențe
       select_specific_skills: Selectați abilități specifice
@@ -2308,12 +2361,14 @@ ro:
       subtitle_text: Textul subtitrării
       tab:
         development_actions: Acțiune de dezvoltare
+        interview_questions: Întrebări de interviu
         reflection_questions: Întrebări de reflecție
         settings: Setări
         templates: Şabloane
       technical_skills: Abilități tehnice
       template_details: Detalii șablon
       title_text: Textul titlului
+      update_interview_questions: Actualizați întrebările interviului
       update_reflection_questions: Actualizați întrebările de reflecție
     idp_setting:
       manager_approves_idp: Managerul aprobă IDP
@@ -2515,6 +2570,35 @@ ro:
         skillvue:
           api_key_present: Cheia API este deja prezentă în alte proiecte
       view_all_schedules: Vezi toate programele Mettl
+    interview_questions:
+      delete_confirmation: Sunteți sigur că doriți să ștergeți această întrebare de interviu?
+      description: Descriere
+      export:
+        action: Exportați întrebările interviului
+        details: Detalii fișier
+        failure_msg: Eroare la exportul fișierului.
+        success_msg: Exportul întrebărilor de interviu în curs. Vă rugăm să verificați starea în notificări.
+      form:
+        description: Descriere
+        mandatory: Obligatoriu
+        question: Întrebare
+        question_type: Tip de întrebare
+        question_type_audio: Audio
+        question_type_video: Video
+        time_limit: Limită de timp (sec)
+        title: Întrebarea interviului
+      import:
+        action: Importați întrebări de interviu
+        errors:
+          invalid_required_column_format: Format de valoare de coloană obligatoriu nevalid %{row}
+          invalid_required_type_format: Formatul valorii coloanei QuestionType nevalid %{row}
+          invalid_time_limit_column_format: Formatul valorii coloanei limită de timp nevalidă %{row}
+          missing_description: Lipsește conținutul descrierii %{row}
+          missing_question: Conținutul întrebării lipsă %{row}
+          save_failed: Salvarea a eșuat %{message}
+        failure_msg: Eroare la importul fișierului.
+        success_msg: Importul întrebărilor de interviu în curs. Vă rugăm să verificați starea în notificări.
+      question: Întrebare
     invited_subject:
       add_btn: Adaugă subiect
       assessment_center: 'Centrul de evaluare:'
@@ -3181,7 +3265,9 @@ ro:
         dp_consent_version: Versiunea politicii
         errors:
           cannot_disable_while_campaign_enabled: Nu se poate dezactiva înregistrarea apelurilor video deoarece este activată pentru una sau mai multe campanii din acest proiect
+          min_retention: Nu poate fi mai mică de 1 zi
           policy_version_format: Sunt permise doar numerele întregi
+          required: Necesar
         mask_identity_for_examus: Date despre măști pentru supravegherea examenului
         mask_identity_for_hogan: Date despre măști pentru Hogan
         mask_identity_for_iiht: Date despre mască pentru IIHT
@@ -3321,9 +3407,12 @@ ro:
         code: Cod
         code_constraint: Codul trebuie să înceapă cu litere mici și poate conține doar litere mici, cifre și liniuțe de subliniere
         delete: Șterge
+        description: Descriere
+        description_alias: Descriere / Alias
         import_factors: Factori de import
         invalid_factor_params: Formatul parametrilor factorilor de campanie nevalidi
         name: Nume
+        name_alias: Nume / Alias
         no_boundary_space: Numele nu poate începe sau se termina cu un spațiu
         too_many_factors: Nu se pot crea mai mult de %{count} factori de campanie
         tools: Instrumente
@@ -3342,6 +3431,19 @@ ro:
       property_panel:
         add_new_condition: Adăugați o nouă condiție
         apply_color_label: 'Apoi aplicați următoarea culoare:'
+        custom_factor_fields:
+          percentage: Procent
+          questions_attempted: Încercat
+          questions_correct: Corect
+          questions_incorrect: Incorect
+          questions_not_attempted: Nu s-a încercat
+          questions_partial_correct: Parțial corect
+          total_questions: Total
+        custom_factor_placeholder: Selectați câmpuri de factor personalizate
+        factor_value_type:
+          custom: Obicei
+          default: Implicit
+          label: Tipul valorii factorului
         graph_condition_types:
           default: Implicit
           graph_value: Valoarea graficului
@@ -3351,6 +3453,7 @@ ro:
         manage_graph_value_condition: Gestionați condiția valorii graficului
         manage_styles_condition: Gestionarea stării stilurilor
         missing_value: Valoare lipsă
+        pie_semi_circle: Semicerc
         predicates:
           equal_to: Egal cu
           greater_than: Mai mare decât
@@ -3434,6 +3537,7 @@ ro:
         translations: Traduceri
       title: Setările raportului
     reports:
+      broken_image_url: Vă rugăm să verificați adresa URL a imaginii și să încercați să importați din nou
       bulk_marked_as_done: În bloc marcat ca terminat
       bulk_upload:
         choose_file: Alege fișier
@@ -3603,16 +3707,19 @@ ro:
         campaign_assessment_group: Grupul centrului de evaluare
         campaign_name: Numele campaniei
         duration: Durată
+        link_to_view_recordings: Link pentru vizualizarea înregistrărilor
         managers: Manageri
         meeting_link: Link întâlnire
         name: Nume
         participants: Participanţii
         prework: Prework
+        recording_date: Data înregistrării
         resource_link: Legătură
         resource_name: Nume
         schedule_time: Timp de programare
         scheduling_status: Starea programării
         seats: Locuri
+        serial_no: Nr. de serie
         start_time: Data și ora
         subject: Subiect
         title: Titlu
@@ -3637,6 +3744,7 @@ ro:
         managers: Manageri de centru
         none: Niciunul
         not_allowed: Nu este permis
+        recording_enabled: Înregistrare activată
         remaining: Locuri rămase
         scheduling_lead_time: Programarea timpului de livrare
         scheduling_tooltip: Utilizatorul ar putea rezerva un slot până la %{date}
@@ -3697,6 +3805,7 @@ ro:
         activities: Activităţi
         assessment_center: Centrul de evaluare
         invites: Invită
+        recordings: Înregistrări
         resources: Resurse
         subjects: Utilizatori
     scoring:
@@ -4132,6 +4241,15 @@ ro:
           other: Altele
           qualification: Calificare
           technical: Tehnic
+      move_question:
+        cancel: Anula
+        move: Muta
+        moveAfter: Mutare după
+        moveBefore: Mutați-vă înainte
+        moveQuestion: 'Mutați întrebarea: %{question}'
+        position: Poziție
+        selectTargetQuestion: Selectați întrebarea țintă
+        title: Mutați întrebarea
       property_panel:
         add_n_a_option: Adăugați o opțiune N/A
         allow_content_copy: Permiteți copierea conținutului
@@ -4175,6 +4293,18 @@ ro:
         question_description: Descrieri ale rândurilor
         validation_response_type: Tip de răspuns de validare
         voice_dictation: Dictare vocală
+      question_info_bar:
+        add_display_logic: Adăugați logica de afișare
+        add_skip_logic: Adăugați logica de sărire
+        are_you_sure_to_delete_this_question: Sunteți sigur că ștergeți această întrebare?
+        default_choices: Opțiuni implicite
+        delete_question: Ștergeți întrebarea
+        delete_the_question: Ștergeți întrebarea
+        move_question: Mutați întrebarea
+        randomization: Randomizare
+        save_as_a_template: Salvați ca șablon
+        this_question_has_default_choices: Această întrebare are opțiuni implicite
+        this_question_has_randomization: Această întrebare are randomizare
     table:
       entries:
         selected: 1 rând selectat

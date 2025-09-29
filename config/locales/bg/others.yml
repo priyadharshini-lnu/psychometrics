@@ -839,6 +839,7 @@ bg:
         export_development_actions: Действия за развитие на износа
         export_dimension_as_json: JSON за експортиране на измерения
         export_factor_translations: Експортни фактори за преводи
+        export_interview_questions: Въпроси за интервю за експортиране
         export_job_roles_translations: Експортирайте преводите на работните роли
         export_norm: Норма за износ
         export_occupations: Износ на професии
@@ -864,6 +865,7 @@ bg:
         import_external_campaign_scoring: Импортиране на оценка на външни кампании
         import_factor_translations: Импортиране на факторни преводи
         import_factors: Фактори за внос
+        import_interview_questions: Импортиране на въпроси за интервю
         import_job_roles_translations: Импортирайте преведените работни роли
         import_norm: Норма за внос
         import_proficiency_level_translations: Импортиране на преводи на ниво на владеене
@@ -1787,6 +1789,7 @@ bg:
       view: Изглед
       view_all_tasks: Прегледайте всички задачи
       view_detail: Прегледайте детайлите
+      yes_delete: Да, изтриване
     column:
       action: Действие
       active: Активен
@@ -2564,11 +2567,47 @@ bg:
       aria_selected: Избран
   idp:
     actions: Действия
+    ai:
+      assistant:
+        failure_fallback:
+          message: Опа! Нещо се обърка, докато показвах това съобщение. Моля, опитайте отново!
+          try_again: Не разбрах това. Опитайте отново!
+      bubbles:
+        audio:
+          question_progress: Въпрос %{current} от %{count}
+      compose:
+        placeholder: Въведете съобщението си тук...
+      finishing:
+        hint: Нашият AI асистент създава план за IDP за вас.
+        title: Моля, чакайте, правим нашата магия...
+      retake_steps:
+        chat_hint: Кажете ми каква информация искате да предоставите по-долу?
+        chat_title: Искате да дадете повече информация?
+        start_chat: Стартиране на чат
+        start_chat_again: Започнете чат отново
+        upload_document: Качване на документ
+        upload_file: Качване на файл
+      summary:
+        chat_title: Резюме на Chat Insight
+        file_title: Информация за качени документи
+        hint: ако отговорът е "да", ние ще създадем вашето вътрешно разселено лице в противен случай можете да превземете отговорите си
+        title: Доволни ли сте от резултатите?
+        upload_file: Качен файл
+        view_chat: Преглед на чата
+      upload:
+        description: Щракнете или плъзнете файлове в тази област, за да качите
+        drop: Пуснете файла тук
+        title: Качване на файлове
+      welcome:
+        text: Готови ли сте да начертаете дневника си за растеж? Да започваме!
+        title: Здравейте, аз съм вашият асистент за разработка
     behavioral: Поведенчески
     board: Съвет
+    changes_saved_to_plan: Промени, запазени в плана
     comment_details:
       add_comment: Добави коментар
       add_comment_placeholder: Добави коментар...
+      add_comments: Добавяне на коментари
       add_reply_placeholder: Добави отговор...
       go_to_skill: Отидете на умението
     comments:
@@ -2590,11 +2629,15 @@ bg:
       sort_by_date: Сортиране по дата
       you: Ти
     convert_to_draft: Конвертиране в чернова
+    delete_skill: Сигурни ли сте, че искате да изтриете умението, защото то ще изтрие и всички свързани действия за разработка?
     details: Подробности
     development_actions:
       action_private: Да
       action_public: Не
       add_development_action: Добавяне на действие за развитие
+      add_development_actions_from_below_options: Добавете действия за разработка от опциите по-долу.
+      add_development_actions_modal_title: Библиотека с действия за развитие за %{skillName}
+      add_from_library: Добавяне от библиотеката
       all: Цял
       approved: Одобрен
       board_view:
@@ -2602,17 +2645,32 @@ bg:
         in_progress: В процес на изпълнение
         not_started: Не е започнато
       completion: Завършване
+      create_custom_development_action_title: Създайте мое собствено действие за разработка за %{skillName}
+      create_development_actions_with_ai: Създавайте действия за развитие с AI за %{skillName}
+      create_from_ai: Създавайте от AI
       create_my_own: Създай свой собствен
+      custom: Обичай
+      custom_da_description: Създайте персонализирано действие за разработка, за да отговорите на уникалните нужди за разработка.
       date_range: Начална дата - Крайна дата
+      edit_plan_to_add_development_actions: Редактиране на плана и добавяне на действия за разработка.
+      enter_development_action_description: Въведете описание на действието за разработка
+      enter_development_action_title: Въведете заглавието на действието за разработка
       generate_by_ai: Генериране от AI
       generate_more: Генерирайте повече
       generating_development_actions: Генериране на действия за развитие...
+      generative_ai: Генеративен AI
+      generative_ai_description: Позволете на AI да генерира персонализирано действие за разработка само за вас
       heading: Действия за развитие
+      idp_library: Библиотека на IDP
+      idp_library_description: Изберете доказано действие за разработка от нашата подбрана от експерти библиотека.
       incomplete_error: Незавършени действия за развитие
       incomplete_error_message: Някои действия за развитие са непълни. Моля, попълнете ги, преди да изпратите IDP.
       incomplete_warning: Незавършени действия за развитие
       incomplete_warning_message: Някои действия за развитие са непълни. Сигурни ли сте, че искате да маркирате IDP като завършен?
+      info_popover_title: Различни видове действия за развитие
       learning_from_others: Учене от другите
+      learning_from_others_label: Да се учим от другите
+      learning_on_the_job_label: Учене на работното място
       manage_skills: Управление на уменията
       marathon: Маратон
       mark_as_complete: Маркиране като завършено
@@ -2622,19 +2680,26 @@ bg:
       private: Редник
       publish_plan: Публикуване на план
       remove: Махам
+      save_plan: Запазване на плана
       skill: Умение
       sprint: Спринт
       start_plan: Стартов план
       structured_learning: Структурирано обучение
+      structured_learning_label: Съвместно обучение
       submit_plan: Изпрати план
+      success: Дейностите за развитие приключиха успешно
       write_here: Пишете тук...
+    direct_reportee_details: Подробности за преките докладвани
     edit_plan: Редактиране на плана
+    edit_plan_and_add_skills: Редактирайте План и щракнете върху Управление на уменията, за да добавите умения.
     edit_progress: Редактиране на напредъка
+    fetching_skill_gap_report: Извличане на доклад за пропуски в уменията...
     initial_steps:
       add_skill_group_description: Въз основа на резултатите от вашата оценка, ето някои от областите на силни страни и развитие за вас. Изберете уменията, които искате да развиете допълнително, като част от вашия план за развитие.
       add_skill_group_title: Изследване на вашите умения %{category}
       add_skills: Добавям
       add_skills_step: Добавете умения
+      back: Гръб
       continue_to_rate_skills: Продължете да оценявате уменията
       getting_started: Първи стъпки
       less_skills: Показване на по-малко умения
@@ -2662,6 +2727,8 @@ bg:
         categories: Категории
       save_skills: Запазване на умения
     new_comments: Нов коментар(и)
+    no_skills_added: Все още нямате добавени умения.
+    no_skills_added_by_reportee: Reportee все още не е добавил умения.
     pdf:
       approval_status: Статус на одобрение
       cover:
@@ -2780,14 +2847,21 @@ bg:
         required: Отговорът на въпроса е необходим
       max_words: Максимален брой думи
       min_words: Малко думи
+      no_answer_provided: Все още няма отговор
       no_reflective_questions: Без отразяващи въпроси
+      optional: "(По избор)"
       title: Въпроси за размисъл
       update_failed: Възникна грешка по време на актуализацията
       updated_successfully: Вашите отговори са актуализирани успешно
+      word_limit: Трябва да е между %{min} и %{max} думи
       words: Думи
+    remove_skill: Премахване на умение
     skill_gap_report:
+      download: Изтеглете доклада за пропуски в уменията
       title: Доклад за пропуските в уменията
+    skills_updated: Умения, актуализирани в плана
     status: Статус
+    suggestions: Предложения
     technical: Технически
     user_idp_status:
       approved: Одобрен
@@ -3947,9 +4021,14 @@ bg:
   user_assessments:
     modals:
       actions:
+        mark_as_completed:
+          name: Маркиране като завършено
+          success_message: Оценяването %{name} се отбелязва като завършено
         reset_progress:
           name: Нулиране на напредъка
           success_message: Оценката %{name} е готова за редактиране
+      mark_as_completed:
+        content: Сигурни ли сте, че искате да маркирате като завършен "%{name}"?
       push_test_webhook:
         copy_request_data_success: Полезното съдържание на Rquest се копира успешно в клипборда.
         copy_response_body_success: Тялото на отговора е копирано успешно в клипборда.

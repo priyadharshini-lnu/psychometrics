@@ -6,6 +6,8 @@ class ReportApprovalSetting < ApplicationRecord
   belongs_to :campaign
   belongs_to :report
 
+  enum :digest_frequency, { daily: 'daily', weekly: 'weekly', weekdays: 'weekdays' }
+
   scope :for_user, lambda { |user_id|
     where(
       'qc_user_ids @> :user_id OR approver_user_ids @> :user_id OR approval_notification_user_ids @> :user_id',
