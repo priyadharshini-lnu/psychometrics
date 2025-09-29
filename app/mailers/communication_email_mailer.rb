@@ -164,7 +164,7 @@ class CommunicationEmailMailer < ApplicationMailer
   end
 
   def accept_invitation_qrcode
-    return unless communication.body.include?('{{{user_link_qrcode}}}')
+    return unless communication.body&.include?('{{{user_link_qrcode}}}')
 
     png_file = RQRCode::QRCode.new(accept_invitation_url).as_png(:size => 600)
     attachments.inline['activation-qrcode.png'] = png_file.to_blob
