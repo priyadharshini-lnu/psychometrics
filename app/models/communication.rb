@@ -7,6 +7,7 @@ class Communication < ApplicationRecord
 
   audited
   include OwnerValidations
+  include RecurringScheduling
 
   WORKSHOP_COMMUNICATION_KINDS = %w[
     workshop_invite workshop_invite_reminder workshop_booked workshop_upcoming_reminder
@@ -54,7 +55,7 @@ class Communication < ApplicationRecord
     workshop_invite: 4, workshop_invite_reminder: 5,  workshop_booked: 6, workshop_upcoming_reminder: 7,
     workshop_cancelled: 8, workshop_completed: 9, magic_link_email: 10, report_available: 11, idp_template_assigned: 12,
     idp_template_approved: 13, idp_template_rejected: 14, development_action_deadline_missed: 15,
-    idp_deadline_missed: 16
+    idp_deadline_missed: 16, assessment_center_booking_summary: 17
   }
 
   enum :delivery_rule, { send_now: 0, specific_datetime: 1, not_started: 2, not_competed: 3, in_progress: 4 }
@@ -64,6 +65,7 @@ class Communication < ApplicationRecord
   before_create -> { self.last_ran_at ||= Time.zone.now }, if: :new_assignment_recipients?
   after_commit :send_email_now, on: :create
   after_create_commit ::Callbacks::Models::Communications::CreateSendEmailJob.new
+  after_create_commit :schedule_assessment_center_booking_summary_emails, if: :assessment_center_booking_summary?
 
   # SCOPES
   scope :invitation_for_end_level_id, ->(end_level_id) { where(kind: 'invitation').where(end_level_id: end_level_id) }
@@ -189,5 +191,9 @@ class Communication < ApplicationRecord
     return unless other? && send_now?
 
     emails_creating
+  end
+
+  def schedule_assessment_center_booking_summary_emails
+    schedule_repeated_emails(job: Communications::AssessmentCenterBookingSummaryJob, last_run_date: nil)
   end
 end
