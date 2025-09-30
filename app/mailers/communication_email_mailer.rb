@@ -22,8 +22,17 @@ class CommunicationEmailMailer < ApplicationMailer
 
   private
 
+  def communication
+    @communication_email.communication
+  end
+
+  def project
+    recipient&.project || communication&.project
+  end
+
   def prepare_and_send_email
     attach_ical
+    attach_booking_summary_excel if communication.kind == 'assessment_center_booking_summary'
     data = build_template_data
     body_content = process_body_content
     @body = Mustache.render(replace_new_piped_texts(body_content), data)
@@ -31,6 +40,14 @@ class CommunicationEmailMailer < ApplicationMailer
 
     Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{@body}")
     send_configured_email(subject)
+  end
+
+  def attach_booking_summary_excel
+    excel_package = Communications::Export::AssessmentCenterBookingSummary.generate(communication)
+    attachments['assessment_center_booking_summary.xlsx'] = {
+      mime_type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      content: excel_package.to_stream.read
+    }
   end
 
   def build_template_data
@@ -51,7 +68,7 @@ class CommunicationEmailMailer < ApplicationMailer
 
   def process_body_content
     body_content = Mobility.with_locale(I18n.locale) do
-      @communication_email.communication.body
+      communication.body
     end
 
     return body_content unless @is_rtl && body_content.present?
@@ -72,7 +89,7 @@ class CommunicationEmailMailer < ApplicationMailer
 
   def build_subject(data)
     subject_content = Mobility.with_locale(I18n.locale) do
-      @communication_email.communication.subject
+      communication.subject
     end
 
     Mustache.render(
@@ -82,8 +99,8 @@ class CommunicationEmailMailer < ApplicationMailer
   end
 
   def send_configured_email(subject)
-    smtp_setting = recipient.project.smtp_setting
-    cc_emails = @communication_email.communication.cc_users.pluck(:email)
+    smtp_setting = project&.smtp_setting
+    cc_emails = communication.cc_users.pluck(:email)
 
     send_email(
       recipient,
@@ -136,18 +153,18 @@ class CommunicationEmailMailer < ApplicationMailer
   def accept_invitation_url
     @accept_invitation_url ||=
       if recipient.invitation_accepted?
-        options = { domain: Settings.domain, subdomain: recipient.project.subdomain }
+        options = { domain: Settings.domain, subdomain: project.subdomain }
         url_for([:root, options])
       else
         token = create_raw_invitation_token
         options = { id: @recipient_id, invitation_token: token, domain: Settings.domain,
-                    subdomain: recipient.project.subdomain }
+                    subdomain: project.subdomain }
         url_for([:accept, recipient.role_scope, :invitation, options])
       end
   end
 
   def accept_invitation_qrcode
-    return unless @communication_email.communication.body&.include?('{{{user_link_qrcode}}}')
+    return unless communication.body&.include?('{{{user_link_qrcode}}}')
 
     png_file = RQRCode::QRCode.new(accept_invitation_url).as_png(:size => 600)
     attachments.inline['activation-qrcode.png'] = png_file.to_blob
