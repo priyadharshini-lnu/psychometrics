@@ -37,7 +37,7 @@ class ScheduledDigestEmailsJob < ApplicationJob
   private
 
   def due_for_digest?(setting)
-    return false unless setting.digest_emails_enabled_at.present?
+    return false if setting.digest_emails_enabled_at.blank?
 
     now         = Time.current.in_time_zone(setting.digest_timezone)
     last_sent   = setting.last_digest_sent_at
