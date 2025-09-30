@@ -61,7 +61,7 @@ export const Schema = {
   type: 'development_actions',
   relationships: {
     project: {
-      type: 'projects',
+      type: 'clients',
     },
     skills: {
       type: 'skills',
