@@ -46,6 +46,7 @@ const DevelopmentActionList: React.FC<PropsFromRedux> = ({ openModal }) => {
     apiConfig: {
       include: ['project', 'skills'],
       include_meta: ['permissions'],
+      include_resource_meta: ['permissions'],
       filter: projectIdFilter,
     },
   }

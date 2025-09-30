@@ -101,7 +101,7 @@ const Dropdown: React.FC<DropDownProps> = ({ reflectionQuestion, openModal, setC
     menu={
       {
         items: [
-          reflectionQuestion && {
+          reflectionQuestion && reflectionQuestion.meta.permissions.edit && {
             key: 'edit',
             label: (
               <Button
@@ -114,7 +114,7 @@ const Dropdown: React.FC<DropDownProps> = ({ reflectionQuestion, openModal, setC
                 {I18n.t('common.actions.edit')}
               </Button>),
           },
-          reflectionQuestion.allowDelete && {
+          reflectionQuestion.allowDelete && reflectionQuestion.meta.permissions.remove && {
             key: 'delete',
             label: (
               <Button

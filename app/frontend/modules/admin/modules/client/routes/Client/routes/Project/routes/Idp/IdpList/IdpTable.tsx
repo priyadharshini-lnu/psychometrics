@@ -137,10 +137,14 @@ const getActionMenuProps = ({
   publish,
 }: ActionMenuData): MenuProps => {
   const menuItems = [
-    { key: 'edit', label: I18n.t('common.actions.edit') },
-    idp.status === 'draft' ? { key: 'publish', label: I18n.t('common.actions.publish') } : null,
-    idp.status === 'published' ? { key: 'unpublish', label: I18n.t('common.actions.unpublish') } : null,
-    { key: 'remove', label: I18n.t('common.actions.remove') },
+    idp.meta.permissions.edit && { key: 'edit', label: I18n.t('common.actions.edit') },
+    idp.meta.permissions.publish && idp.status === 'draft' ? {
+      key: 'publish', label: I18n.t('common.actions.publish'),
+    } : null,
+    idp.meta.permissions.unpublish && idp.status === 'published' ? {
+      key: 'unpublish', label: I18n.t('common.actions.unpublish'),
+    } : null,
+    idp.meta.permissions.remove && { key: 'remove', label: I18n.t('common.actions.remove') },
   ]
 
   const handleMenuClick = ({ key }) => {

@@ -109,6 +109,14 @@ export const IdpTR = t.intersection([
       AssistantTR,
       t.undefined,
     ]),
+    meta: t.type({
+      permissions: t.type({
+        edit: t.boolean,
+        remove: t.boolean,
+        publish: t.boolean,
+        unpublish: t.boolean,
+      }),
+    }),
   })])
 
 export const IntroMessageTR = t.type({

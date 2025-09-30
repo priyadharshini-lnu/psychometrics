@@ -96,6 +96,20 @@ module Api
       end
     end
 
+    def meta_details
+      {
+        permissions: lambda {
+          GetPermissionsHash.call!(
+            Api::Administration::IdpTemplatePolicy,
+            context[:user],
+            @model,
+            %w[create],
+            { project_id: params[:project_id] }
+          )
+        }
+      }
+    end
+
     private
 
     def set_user_idp_plan

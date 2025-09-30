@@ -68,10 +68,14 @@ export const ReflectionQuestionsFilter: React.FC = () => {
         onClick={handleToolAction}
         permissions={resource.meta.permissions}
       />
-      <Button type="primary" disabled={tableLoading} onClick={handleCreateActionModal}>
-        <PlusOutlined />
-        {I18n.t('common.actions.create')}
-      </Button>
+      {
+        resource.meta.permissions?.create && (
+          <Button type="primary" disabled={tableLoading} onClick={handleCreateActionModal}>
+            <PlusOutlined />
+            {I18n.t('common.actions.create')}
+          </Button>
+        )
+      }
     </Resource.Filter>
   )
 }

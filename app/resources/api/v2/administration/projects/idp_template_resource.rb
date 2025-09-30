@@ -21,6 +21,27 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
 
   ransack_filters %i[filterable_fields status_eq]
 
+  def meta_details
+    {
+      permissions: lambda {
+        GetPermissionsHash.call!(
+          Api::Administration::IdpTemplatePolicy,
+          context[:user],
+          @model,
+          [
+            %w[edit update],
+            %w[remove destroy],
+            %w[publish update],
+            %w[unpublish update]
+          ],
+          {
+            project_id: @model.project_id
+          }
+        )
+      }
+    }
+  end
+
   def self.updatable_fields(_)
     super + %i[translations]
   end

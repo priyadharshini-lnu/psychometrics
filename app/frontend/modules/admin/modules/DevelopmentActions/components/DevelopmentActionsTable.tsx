@@ -133,7 +133,7 @@ interface ActionMenuData {
 
 const getActionsMenuProps = ({ developmentAction, openModal }: ActionMenuData):MenuProps => {
   const menuItems = [
-    developmentAction && {
+    developmentAction.meta.permissions.edit && {
       key: 'edit',
       label: (
         <Button

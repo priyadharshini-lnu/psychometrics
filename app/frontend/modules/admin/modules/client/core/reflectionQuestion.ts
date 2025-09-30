@@ -15,6 +15,12 @@ export const ReflectionQuestionTR = t.intersection([
     minWords: t.union([t.number, t.null]),
     maxWords: t.union([t.number, t.null]),
     updatedAt: t.union([t.string, t.null]),
+    meta: t.type({
+      permissions: t.type({
+        edit: t.boolean,
+        remove: t.boolean,
+      }),
+    }),
   })])
 
 export type ReflectionQuestion = t.TypeOf<typeof ReflectionQuestionTR>
