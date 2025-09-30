@@ -32,15 +32,9 @@ module Imports
         if errors.blank?
           user_results.each do |user_result|
             user_result.save!
-            user_report = UserReport.find_by(
-              user_id: user_result.user_assessment.subject_id,
-              campaign_id: campaign.id
-            )
-
-            set_approval_status_for_user_report(user_report) if user_report
 
             if user_result.completed?
-              ::UsersResults::Recompute.call!(user_result, user_result.user)
+              ::UserAssessments::SaveScoresWithCallbacks.call!(user_result.user_assessment, user_result.user)
             end
           end
         end
@@ -198,12 +192,6 @@ module Imports
           campaign_id: campaign.id,
           assessment_id: assessment.id
         )
-      end
-
-      def set_approval_status_for_user_report(user_report)
-        return user_report.update_attribute(:approval_status, :approved) unless user_report.has_approval_workflow?
-
-        user_report.start_approval! if user_report.all_assessments_are_scored?
       end
 
       def parse_norm_data(norm_name, assessment_id)
