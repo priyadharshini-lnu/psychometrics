@@ -39,14 +39,29 @@ module Forms
                 :delivery_frequency, presence: true, if: :assessment_center_booking_summary?
       validate :validate_end_date_after_start_date, if: :assessment_center_booking_summary?
       validate :validate_weekdays_presence, if: :assessment_center_booking_summary?
-      validate :validate_delivery_start_date_not_in_past, if: :assessment_center_booking_summary?
+      validate :validate_delivery_start_datetime_not_in_past, if: :assessment_center_booking_summary?
 
-      def validate_delivery_start_date_not_in_past
-        return if delivery_start_date.blank?
+      def validate_delivery_start_datetime_not_in_past
+        return if delivery_start_date.blank? || delivery_time_of_day.blank?
 
-        if delivery_start_date < Time.zone.today
+        tz = ActiveSupport::TimeZone[delivery_timezone] || Time.zone
+        start_datetime = tz.local(
+          delivery_start_date.year,
+          delivery_start_date.month,
+          delivery_start_date.day,
+          delivery_time_of_day.hour,
+          delivery_time_of_day.min
+        )
+
+        return unless start_datetime < Time.current
+
+        today = Date.current
+        if delivery_start_date < today
           errors.add(:delivery_start_date, :in_past,
                      message: I18n.t('administration.communications.form.error_msgs.delivery_start_date_in_past'))
+        elsif delivery_start_date == today
+          errors.add(:delivery_time_of_day, :in_past,
+                     message: I18n.t('administration.communications.form.error_msgs.delivery_time_in_past'))
         end
       end
 

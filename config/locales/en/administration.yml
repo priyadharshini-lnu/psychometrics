@@ -1758,6 +1758,7 @@ en:
         error_msgs:
           delivery_end_date_after_start_date: must be after start date
           delivery_start_date_in_past: cannot be in the past
+          delivery_time_in_past: cannot be in the past
           delivery_weekdays_required: must select at least one weekday
         idp_deadline_missed: IDP Deadline Missed
         idp_template_approved: IDP Approved
