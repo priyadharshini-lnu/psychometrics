@@ -9,6 +9,8 @@ class ReportApprovalSetting < ApplicationRecord
   enum :digest_frequency, { daily: 'daily', weekly: 'weekly', weekdays: 'weekdays' }
   enum :digest_delivery_mode, { immediate: 'immediate', scheduled: 'scheduled' }, prefix: :digest_delivery
 
+  before_save :set_digest_emails_enabled_at, if: :will_save_change_to_send_digest_emails?
+
   scope :for_user, lambda { |user_id|
     where(
       'qc_user_ids @> :user_id OR approver_user_ids @> :user_id OR approval_notification_user_ids @> :user_id',
@@ -59,5 +61,15 @@ class ReportApprovalSetting < ApplicationRecord
       qc_statuses: %i[pending_qc qc_in_progress change_requested],
       all_statuses: %i[pending_qc qc_in_progress change_requested qc_completed]
     )
+  end
+
+  private
+
+  def set_digest_emails_enabled_at
+    if send_digest_emails_changed?(from: false, to: true)
+      self.digest_emails_enabled_at = Time.current
+    elsif send_digest_emails_changed?(from: true, to: false)
+      self.digest_emails_enabled_at = nil
+    end
   end
 end

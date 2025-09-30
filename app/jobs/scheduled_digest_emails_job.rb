@@ -37,6 +37,8 @@ class ScheduledDigestEmailsJob < ApplicationJob
   private
 
   def due_for_digest?(setting)
+    return false unless setting.digest_emails_enabled_at.present?
+
     now         = Time.current.in_time_zone(setting.digest_timezone)
     last_sent   = setting.last_digest_sent_at
     target_time = now.change(
@@ -70,8 +72,7 @@ class ScheduledDigestEmailsJob < ApplicationJob
     if setting.last_digest_sent_at.present?
       setting.last_digest_sent_at..Time.current
     else
-      # fallback: all history until now
-      Time.zone.at(0)..Time.current
+      setting.digest_emails_enabled_at..Time.current
     end
   end
 
