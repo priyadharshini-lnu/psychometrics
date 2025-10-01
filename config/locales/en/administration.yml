@@ -1707,6 +1707,7 @@ en:
         update_button: Update Translation
       form:
         all: All
+        assessment_center_booking_summary: Assessment Center Booking Summary
         assessment_completion_status_code: Assessment Completion Status Code
         assessment_completion_status_code_hint: If a completion code is specified, it will only be sent if the user's assessment has this completion status code.
         body_mustache: |
@@ -1726,6 +1727,8 @@ en:
         custom: Custom
         delivery_at: Delivery at (GST)
         delivery_delay_hours: Delivery delay (hours)
+        delivery_end_date: Delivery End Date
+        delivery_frequency: Delivery Frequency
         delivery_interval: Delivery Interval
         delivery_interval_number: Delivery Interval Number
         delivery_interval_period: Delivery Interval Period
@@ -1736,7 +1739,16 @@ en:
           not_started: If assessment is not started
           send_now: Send now
           specific_datetime: Send at
+        delivery_start_date: Delivery Start Date
+        delivery_time_of_day: Delivery Time of Day
+        delivery_timezone: Delivery Time Zone
+        delivery_weekdays: Delivery Weekdays
         development_action_deadline_missed: Development Action Deadline Missed
+        error_msgs:
+          delivery_end_date_after_start_date: must be after start date
+          delivery_start_date_in_past: cannot be in the past
+          delivery_time_in_past: cannot be in the past
+          delivery_weekdays_required: must select at least one weekday
         idp_deadline_missed: IDP Deadline Missed
         idp_template_approved: IDP Approved
         idp_template_assigned: IDP Assigned
@@ -1817,15 +1829,21 @@ en:
         client: 'Client:'
         communication_type: 'Communication type:'
         delivery_rule: 'Delivery rule:'
+        end_date: 'End Date:'
         every_interval: Every %{interval}
+        frequency: 'Frequency:'
         owner: 'Owner:'
         project: 'Project:'
         recipients: 'Recipients:'
         specific_datetime: 'Send at:'
+        start_date: 'Start Date:'
         stop_reminder_datetime: End date for reminders (GST)
         sub_campaign: 'Sub Campaign:'
         subject: 'Subject:'
+        time_of_day: 'Time of Day:'
+        timezone: 'Timezone:'
         users: 'Users:'
+        weekdays: 'Weekdays:'
       sidebar:
         copy: Copy Communication
         destroy: Delete Communication

@@ -4,15 +4,11 @@ module Administration
   module Campaigns
     class UserPolicy < Administration::BasePolicy
       def index?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :view, project_id: project_id, campaign_id: campaign_id
-        ) || @user.is?(:assessor)
+        has_permission?(:campaigns, :view)
       end
 
       def show?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :view, project_id: project_id, campaign_id: campaign_id
-        ) || @user.is?(:assessor)
+        has_permission?(:campaigns, :view)
       end
 
       def create?
