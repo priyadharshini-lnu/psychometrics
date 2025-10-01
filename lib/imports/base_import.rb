@@ -7,7 +7,7 @@ module Imports
     include ActiveModel::Model
     extend ActiveModel::Naming
 
-    attr_accessor :file
+    attr_accessor :file, :owner_country
 
     validates :file, presence: true, file_size: { less_than_or_equal_to: 4.megabytes }
   end
