@@ -20,10 +20,10 @@ export const ResourcesTabs = ({
   return (
     <Tabs defaultActiveKey={tab} className={styles.tabs} onChange={setTab}>
       <TabPane tab={I18n.t('frontend.assessment')} key="assessment">
-        {tab === 'assessment' && children}
+        {children}
       </TabPane>
       <TabPane tab={I18n.t('frontend.background_reading')} key="resources">
-        {tab === 'resources' && <ResourceList assessment={assessment} {...props} />}
+        <ResourceList assessment={assessment} {...props} />
       </TabPane>
     </Tabs>
   )
