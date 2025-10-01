@@ -102,7 +102,8 @@ module ReportApprovals
 
       user_report.update!(
         approver_user_id: current_user.id,
-        approved_at: Time.current
+        approved_at: Time.current,
+        approval_status_updated_at: Time.current
       )
     end
 
@@ -117,7 +118,8 @@ module ReportApprovals
 
       user_report.update!(
         qc_user_id: current_user.id,
-        qc_at: Time.current
+        qc_at: Time.current,
+        approval_status_updated_at: Time.current
       )
     end
 

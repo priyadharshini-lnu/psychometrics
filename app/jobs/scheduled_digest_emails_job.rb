@@ -5,32 +5,7 @@ class ScheduledDigestEmailsJob < ApplicationJob
     ReportApprovalSetting.where(send_digest_emails: true, digest_delivery_mode: 'scheduled').find_each do |setting|
       next unless due_for_digest?(setting)
 
-      reports = setting.report.user_reports.where(
-        approval_status_updated_at: after_last_digest(setting)
-      )
-
-      next if reports.empty?
-
-      qc_completed = reports.where(approval_status: 'qc_completed').pluck(:id)
-      approved     = reports.where(approval_status: 'approved').pluck(:id)
-
-      if qc_completed.any?
-        SendDigestEmailsJob.perform_later(
-          qc_completed,
-          setting.campaign_id,
-          setting.report_id,
-          'qc_completed'
-        )
-      end
-
-      if approved.any?
-        SendDigestEmailsJob.perform_later(
-          approved,
-          setting.campaign_id,
-          setting.report_id,
-          'approved'
-        )
-      end
+      ::ReportApprovals::DigestEmailSender.send_for(setting)
     end
   end
 
@@ -65,19 +40,6 @@ class ScheduledDigestEmailsJob < ApplicationJob
   end
 
   def due_now?(now, target_time)
-    now >= target_time && now < target_time + 10.minutes
-  end
-
-  def after_last_digest(setting)
-    if setting.last_digest_sent_at.present?
-      [setting.last_digest_sent_at, setting.digest_emails_enabled_at].max..Time.current
-      setting.last_digest_sent_at..Time.current
-    else
-      setting.digest_emails_enabled_at..Time.current
-    end
-  end
-
-  def in_time_window?(now, target_time)
     now >= target_time && now < target_time + 10.minutes
   end
 end

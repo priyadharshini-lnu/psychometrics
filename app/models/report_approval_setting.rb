@@ -10,6 +10,7 @@ class ReportApprovalSetting < ApplicationRecord
   enum :digest_delivery_mode, { immediate: 'immediate', scheduled: 'scheduled' }, prefix: :digest_delivery
 
   before_save :set_digest_emails_enabled_at, if: :will_save_change_to_send_digest_emails?
+  after_commit :trigger_cleanup_email, if: :digest_delivery_mode_or_enabled_changed?
 
   scope :for_user, lambda { |user_id|
     where(
@@ -65,11 +66,20 @@ class ReportApprovalSetting < ApplicationRecord
 
   private
 
+  def digest_delivery_mode_or_enabled_changed?
+    saved_change_to_digest_delivery_mode? || saved_change_to_send_digest_emails?
+  end
+
+  def trigger_cleanup_email
+    if (saved_change_to_digest_delivery_mode? && digest_delivery_mode_previously_was == 'scheduled') ||
+       (saved_change_to_send_digest_emails? && send_digest_emails_previously_was == true && !send_digest_emails)
+      ::ReportApprovals::DigestEmailSender.send_for(self)
+    end
+  end
+
   def set_digest_emails_enabled_at
     if send_digest_emails_changed?(from: false, to: true)
       self.digest_emails_enabled_at = Time.current
-    elsif send_digest_emails_changed?(from: true, to: false)
-      self.digest_emails_enabled_at = nil
     end
   end
 end
