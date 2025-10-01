@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Typography,
+  Button, Flex, Typography, Popconfirm,
 } from 'antd'
 import { Bubble } from '@ant-design/x'
 import {
@@ -31,10 +31,19 @@ export const RetakeSteps = ({ onAction }) => (
               <MessageOutlined className={styles.icon} />
             </div>
             <Typography.Text strong>{I18n.t('idp.ai.retake_steps.start_chat')}</Typography.Text>
-            <Button type="primary" size="small" onClick={() => onAction('retakeChat')}>
-              {I18n.t('idp.ai.retake_steps.start_chat_again')}
-              <RightOutlined />
-            </Button>
+            <Popconfirm
+              overlayStyle={{ zIndex: 9999 }}
+              title={I18n.t('idp.ai.reset_confirmation')}
+              onConfirm={() => onAction('retakeChat')}
+              okText={I18n.t('common.actions.yes')}
+              cancelText={I18n.t('common.actions.no')}
+            >
+              <Button type="primary" size="small">
+                {I18n.t('idp.ai.retake_steps.start_chat_again')}
+                <RightOutlined />
+              </Button>
+            </Popconfirm>
+
           </Flex>
           <Flex vertical align="center" gap={12}>
             <div className={styles.iconContainer} style={{ background: '#75c895' }}>

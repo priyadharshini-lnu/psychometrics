@@ -156,7 +156,7 @@ export const AIChat = () => {
     url: '/ai_assisted_idp_chats/ask',
     data: {},
     pollingInterval: 3,
-    numberOfTimesToPoll: 40,
+    numberOfTimesToPoll: 30,
     responseType: AsyncChatTR,
   })
 
@@ -164,7 +164,7 @@ export const AIChat = () => {
     url: '/ai_assisted_idp_chats/upload_document',
     data: {},
     pollingInterval: 3,
-    numberOfTimesToPoll: 40,
+    numberOfTimesToPoll: 30,
     responseType: AsyncChatTR,
   })
 
@@ -202,21 +202,31 @@ export const AIChat = () => {
       setMessages(prev => [...prev, parseAssistantMessage(content)])
     } finally {
       setRequestProcessing(false)
+      if (status === 'completed') {
+        setStatus('confirmation')
+      }
+    }
+  }
+
+  const parseContent = (content) => {
+    try {
+      return humps.camelizeKeys(JSON.parse(content.split('\n')[0]))
+    } catch {
+      return null
     }
   }
 
   const parseAssistantMessage = (content) => {
     // We need to ensure that even if for some reason content is not object, we let the user re-try
     // Using ASSISTANT_FAILURE_FALLBACK_CONTENT to handle such cases
-
     const messageContent = (typeof content === 'object')
       ? {
-        component: content.component,
         message: content.message,
+        component: content.component,
         suggestions: content.suggestions || [],
         data: content.data || {},
       }
-      : ASSISTANT_FAILURE_FALLBACK_CONTENT
+      : parseContent(content) || ASSISTANT_FAILURE_FALLBACK_CONTENT
 
     return messageContent
   }
@@ -251,19 +261,24 @@ export const AIChat = () => {
   useEffect(() => {
     scrollToBottom()
     if (messages.length > 0) {
-      if (messages[messages.length - 1].component === 'RequestDocument') {
+      const lastMessage = messages[messages.length - 1]
+      if (lastMessage.component === 'RequestDocument') {
         setStatus('document_upload')
       }
-      if (messages[messages.length - 1].component === 'Summary') {
+      if (lastMessage.component === 'Summary') {
         setStatus('confirmation')
       }
-      if (messages[messages.length - 1].suggestions) {
-        setSuggestions(messages[messages.length - 1].suggestions || [])
+      if (lastMessage.suggestions) {
+        setSuggestions(lastMessage.suggestions || [])
       }
-      if (messages[messages.length - 1].component === 'IdpCreated') {
+      if (lastMessage.component === 'IdpCreated') {
         // Update the status in Redux store to draft before navigating
         dispatch(setUserIdpPlanStatus(USER_IDP_PLAN_STATUS.DRAFT))
         navigate('/idp/my_plan')
+        return
+      }
+      if (status === 'completed' && lastMessage.component !== 'UserMessage') {
+        setStatus('confirmation')
       }
     }
   }, [messages])
@@ -276,17 +291,11 @@ export const AIChat = () => {
     fetchMessages().then(({ response }) => {
       const { messages: fetchedMessages, error: aiSessionError } = response
       const messages = fetchedMessages.map((msg) => {
-        try {
-          return {
-            ...humps.camelizeKeys(JSON.parse(msg.content.split('\n')[0])),
-            role: msg.role,
-          }
-        } catch {
-          return {
-            message: msg.content,
-            role: msg.role,
-          }
-        }
+        const content = parseContent(msg.content)
+        return ({
+          ...(content || { message: msg.content }),
+          role: msg.role,
+        })
       })
 
       if (aiSessionError) {
@@ -335,6 +344,10 @@ export const AIChat = () => {
     if (action === 'changeAnswers') {
       addUserMessage('No')
       // setMessages(prev => [...prev, { component: 'RetakeSteps' }])
+    }
+
+    if (action === 'retakeChat') {
+      handleReset()
     }
   }
 
