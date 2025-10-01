@@ -66,7 +66,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
 
   return (
     <Flex vertical>
-      <Flex vertical={isMobile} className="mt-0 mb-4" flex={1} justify="space-between">
+      <Flex gap={8} vertical={isMobile} className="mt-0 mb-4" flex={1} justify="space-between">
         <Space>
           {showBackButton && (
             <BackButton
@@ -77,7 +77,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
             {I18n.t('idp.initial_steps.add_skills_step')}
           </Typography.Title>
         </Space>
-        <Flex justify="center" align="center">
+        <Flex gap={8} vertical={isMobile} justify="end" align="end">
           {skillGapReportAvailable && (
             <Spin spinning={isSkillGapReportLoading}>
               <DownloadButton

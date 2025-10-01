@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {
   Avatar, Button, Flex, Typography, Empty,
 } from 'antd'
 import { map, filter } from 'lodash'
 import { v4 as uuidv4 } from 'uuid'
-import { useMedia } from 'use-media'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { MediaQueryContext } from '~/glint'
 import { Separator } from '~/components/IdpShared/Separator'
 import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard'
 import {
@@ -53,9 +53,9 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
   const [selectedSkill, setSelectedSkill] = useState<SkillWithDevelopmentActions | null>(null)
   const [isCreateCustomDevelopmentActionModalOpen, setIsCreateCustomDevelopmentActionModalOpen] = useState(false)
-  const isTablet = useMedia({
-    maxWidth: 768,
-  })
+
+  const { isMobile, isTablet, isDesktop } = useContext(MediaQueryContext)
+
 
   const selectedDevelopmentActionIds = map(
     filter(selectedSkill?.developmentActions ?? [], 'developmentActionId'),
@@ -176,7 +176,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
 
   return (
     <>
-      {!isTablet && categories.length ? (
+      {!(isTablet || isDesktop) && categories.length ? (
         <Flex vertical gap={4} className="ps-8 pe-8 pt-4">
           <Flex
             flex={1}
@@ -206,7 +206,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
           />
         </Flex>
       ) : null}
-      <Flex vertical gap={8} className="ps-8 pe-8 pt-2">
+      <Flex vertical gap={8} className={isMobile ? '' : 'ps-8 pe-8 pt-2'}>
         {categories.length === 0 && (
           <Flex justify="center" align="center" className="p-4 mt-2">
             <Empty description="" style={{ marginLeft: '-2rem' }} />
@@ -265,12 +265,14 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         open={isAddDevelopmentActionModalOpen}
         selectedDevelopmentActionIds={selectedDevelopmentActionIds as (string | number)[]}
         isDALoading={isDALoading}
+        wrapClassName={styles.developmentActionModal}
       />
       <CreateCustomDevelopmentActionModal
         open={isCreateCustomDevelopmentActionModalOpen}
         onCreateCustomDevelopmentAction={handleCreateCustomDevelopmentAction}
         onCancel={handleCancel}
         skillName={selectedSkill?.name as string}
+        wrapClassName={styles.developmentActionModal}
       />
       <AIGeneratedDevelopmentActionsModal
         open={isAIGeneratedDevelopmentActionsModalOpen}
@@ -278,6 +280,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         skill={selectedSkill}
         onAddDevelopmentAction={handleAddAIGeneratedDevelopmentAction}
         selectedAIGeneratedDevelopmentActions={selectedAIGeneratedDevelopmentActions}
+        wrapClassName={styles.developmentActionModal}
       />
     </>
 

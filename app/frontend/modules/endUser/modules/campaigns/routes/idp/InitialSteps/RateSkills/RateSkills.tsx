@@ -52,15 +52,31 @@ export const RateSkillsComponent = ({
       dataIndex: 'name',
       key: 'name',
       width: isMobile ? 'initial' : '50%',
-      render: name => (
-        <Typography.Text
-          style={{ fontWeight: 500 }}
-        >
-          {name}
-        </Typography.Text>
+      render: (name, skill) => (
+        <Flex gap={8} vertical>
+          <Typography.Text
+            style={{ fontWeight: 500 }}
+          >
+            {name}
+          </Typography.Text>
+          {isMobile && (
+            <Flex align="center">
+              <Avatar
+                size={32}
+                src={renderSkillTypeIcon(skill.skillType)}
+                style={{ marginRight: '4px' }}
+              />
+              <Typography.Text
+                className="fs-14"
+              >
+                {`${I18n.t(`idp.${skill.skillType}`)}`}
+              </Typography.Text>
+            </Flex>
+          )}
+        </Flex>
       ),
     },
-    {
+    ...(!isMobile ? [{
       title: 'Skill Type',
       dataIndex: 'skillType',
       key: 'skillType',
@@ -77,15 +93,16 @@ export const RateSkillsComponent = ({
             {`${I18n.t(`idp.${skill.skillType}`)}`}
           </Typography.Text>
         </Flex>
-
       ),
-    },
+    }] : []),
     {
-      title: I18n.t('idp.initial_steps.rating_column_header'),
+      title: <Flex justify="end">{I18n.t('idp.initial_steps.rating_column_header')}</Flex>,
       dataIndex: 'initialRating',
       key: 'initialRating',
       render: (rating, skill) => (
-        <Rate onChange={(val) => { handleRatingChange({ ...skill, initialRating: val }) }} value={rating} />
+        <Flex justify="end">
+          <Rate onChange={(val) => { handleRatingChange({ ...skill, initialRating: val }) }} value={rating} />
+        </Flex>
       ),
     },
   ]
@@ -95,14 +112,14 @@ export const RateSkillsComponent = ({
   }, [selectedSkills])
   return (
     <>
-      <Flex className="mb-4" flex={1} justify="space-between">
+      <Flex vertical={isMobile} className="mb-4" flex={1} justify="space-between">
         <Space>
           <BackButton
             onPrev={prev}
           />
           <Title level={3} className="mb-0 mt-0">{I18n.t('idp.initial_steps.rate_skills_title')}</Title>
         </Space>
-        <Flex justify="center" align="center">
+        <Flex justify="end" align="center">
           <ButtonWithArrow
             loading={isSubmittingPlan}
             label={I18n.t('idp.initial_steps.next')}

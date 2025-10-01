@@ -1,5 +1,5 @@
 import React, {
-  useEffect, useState, useRef,
+  useEffect, useState, useRef, useContext,
 } from 'react'
 import {
   Flex, Typography, Empty, Checkbox,
@@ -9,6 +9,9 @@ import { includes, uniqBy } from 'lodash'
 import { Separator } from '../../Separator'
 import { DevelopmentAction } from '../Types'
 import styles from './DevelopmentActionsList.less'
+import {
+  MediaQueryContext,
+} from '~/glint'
 import { developmentActionLearningStylesConfig } from '../Constants'
 
 type Props = {
@@ -25,6 +28,8 @@ const DevelopmentActionsList: React.FC<Props> = ({
   setSelectedDA,
 }) => {
   const listRef = useRef<HTMLDivElement | null>(null)
+
+  const { isMobile } = useContext(MediaQueryContext)
 
   const [selectedDAIds, setSelectedDAIds] = useState<number[]>(selectedDA.map(da => Number(da.id)))
 
@@ -69,6 +74,7 @@ const DevelopmentActionsList: React.FC<Props> = ({
                 <Flex
                   gap={16}
                   data-id={developmentAction.id ?? index}
+                  vertical={isMobile}
                 >
                   <Flex vertical flex={1}>
                     {developmentAction.name ? (

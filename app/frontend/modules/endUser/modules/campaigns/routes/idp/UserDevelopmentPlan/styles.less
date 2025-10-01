@@ -3,6 +3,13 @@
     :global(.ant-tabs-nav-wrap) {
       padding-left: 0.5rem;
     }
+
+    @media (max-width:768px) {
+      & :global(.ant-tabs-extra-content) {
+        flex: 1;
+        align-self: flex-end;
+      }
+    }
 }
 
 .cancelBtn {
@@ -12,4 +19,16 @@
 .tabContainer {
   padding: 16px 24px 0 24px;
   overflow-y: auto;
+}
+
+@media (max-width:768px) {
+  .tab-container {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-container {
+    padding: 0;
+  }
 }

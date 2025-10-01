@@ -214,7 +214,7 @@ const MyPlanComponent = ({
   })
 
   const operations = (
-    <Flex gap={8}>
+    <Flex gap={8} flex={1} justify="end">
       <Dropdown menu={menu} trigger={['click']}>
         <Tooltip title={I18n.t('common.actions.download')}>
           <Button loading={asyncLoading} icon={<DownloadOutlined />}>

@@ -2664,6 +2664,7 @@ en:
       add_development_actions_from_below_options: Add Development Actions from below options.
       add_development_actions_modal_title: Development Actions Library for %{skillName}
       add_from_library: Add from Library
+      add_more: Add More Development Actions
       all: All
       approved: Approved
       board_view:
@@ -2678,6 +2679,7 @@ en:
       custom: Custom
       custom_da_description: Create a custom development action to address unique development needs.
       date_range: Start Date - End Date
+      edit_da_progress: Edit Development Action Progress
       edit_plan_to_add_development_actions: Edit Plan and to add Development Actions.
       enter_development_action_description: Enter Development Action Description
       enter_development_action_title: Enter Development Action Title

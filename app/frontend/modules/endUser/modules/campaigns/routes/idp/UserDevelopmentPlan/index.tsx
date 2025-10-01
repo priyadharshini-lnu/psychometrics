@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import {
-  useEffect, useState, useMemo, useRef,
+  useEffect, useState, useMemo, useRef, useContext,
 } from 'react'
 import {
   Tabs, Typography, Button,
@@ -18,11 +18,10 @@ import {
 import cs from 'classnames'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { useMedia } from 'use-media'
 import { MessageOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DownloadButton } from '~/components/IdpShared/DownloadButton'
 import { useSearchSkills } from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/AddSkills/useSearchSkills'
-import { PageLoadSpinner } from '~/glint'
+import { PageLoadSpinner, MediaQueryContext } from '~/glint'
 import { Comments } from '~/components/IdpShared/Comments'
 import { SkillGapReportTab }
   from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/SkillGapReport/SkillGapReportTab'
@@ -62,6 +61,7 @@ import { groupSkillsBySkillType } from './utils'
 import { USER_IDP_PLAN_STATUS, STATUS_COLORS, SKILL_TYPE } from '~/components/IdpShared/constants'
 import { ListView } from '~/modules/endUser/modules/campaigns/routes/idp/ReflectiveQuestions'
 import { Filters } from '~/components/IdpShared/Comments/Types'
+
 
 const { I18n } = window
 
@@ -140,9 +140,8 @@ const UserDevelopmentPlanComponent = ({
   oneClickIdpEnabled,
 }: Props) => {
   const { tab: paramTab } = useParams() as {tab: string}
-  const isMobile = useMedia({
-    maxWidth: 768,
-  })
+
+  const { isMobile, isTablet, isDesktop } = useContext(MediaQueryContext)
 
   const [tab, setTab] = useState(paramTab)
   const [isCommentsDrawerOpen, setIsCommentsDrawerOpen] = useState(false)
@@ -205,7 +204,6 @@ const UserDevelopmentPlanComponent = ({
     if (paramTab !== tab) {
       setTab(paramTab)
     }
-    // changeTab(paramTab)
   }, [paramTab])
 
   useEffect(() => {
@@ -336,11 +334,20 @@ const UserDevelopmentPlanComponent = ({
   }
 
   const handleScrollToSkill = (resourceId: string) => {
-    const skillElement = containerRef.current?.querySelector(`#skill-${resourceId}`)
+    const skillElement:HTMLElement = containerRef.current?.querySelector(`#skill-${resourceId}`) as HTMLElement
     if (isMobile) {
       setIsCommentsDrawerOpen(false)
-    }
-    if (skillElement) {
+      setTimeout(() => {
+        if (skillElement) {
+          skillElement.style.backgroundColor = 'var(--ant-primary-1)'
+          skillElement.style.transition = 'background-color 0.8s'
+          setTimeout(() => {
+            skillElement.style.backgroundColor = ''
+          }, 2000)
+          skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      }, 400)
+    } else if (skillElement) {
       skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
       setTimeout(() => {
         showCommentsForSkillId(resourceId)
@@ -353,7 +360,7 @@ const UserDevelopmentPlanComponent = ({
   }
 
   const enhancedOperations = (
-    <Flex gap={8}>
+    <Flex className={(isTablet || isDesktop) ? 'mt-4 mb-4' : ''} justify="end" gap={8}>
       {tab === 'skill_gap_report' ? (
         skillGapReportAvailable && skillGapReportData && (
           <DownloadButton
@@ -569,7 +576,7 @@ const UserDevelopmentPlanComponent = ({
   ]
 
   const headerContent = header || (
-    <Row align="middle" justify="center" className="mt-2 mb-2 ps-6 pe-6">
+    <Row align="middle" justify="center" className={cs('mt-2 mb-2', isMobile ? '' : 'ps-6 pe-6')}>
       <Col flex="auto">
         <Space>
           <Typography.Title level={4} style={{ margin: 0 }}>
@@ -629,8 +636,10 @@ const UserDevelopmentPlanComponent = ({
               className={styles.userIdpPlan}
               tabBarStyle={{
                 marginBottom: 0,
-                padding: '0 24px',
+                padding: isMobile ? '0' : '0 24px',
                 boxShadow: '0 2px 2px var(--shadow-color)',
+                flexWrap: 'wrap',
+                flexDirection: isMobile ? 'column' : 'row',
               }}
             />
           </>

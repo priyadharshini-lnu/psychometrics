@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import {
   Steps, Layout, Spin, Flex,
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import cs from 'classnames'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
 import { GettingStart } from './GettingStart'
 import { SkillGapReportStep } from './SkillGapReport'
@@ -19,6 +20,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import styles from './Steps.less'
 import { useAppSelector } from '~/modules/endUser/store/hooks'
 import { getReflectiveQuestions } from '~/modules/endUser/modules/campaigns/core/idp/idpPlanRtk'
+import { MediaQueryContext } from '~/glint'
 
 const { I18n } = window
 
@@ -55,6 +57,9 @@ const InitialStepsComponent = ({
   const navigate = useNavigate()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+
+  const { isMobile, isTablet, isDesktop } = useContext(MediaQueryContext)
+
 
   const reflectionQuestions = useAppSelector(getReflectiveQuestions)
 
@@ -152,11 +157,15 @@ const InitialStepsComponent = ({
     <IdpPageLayoutWrapper>
       {isLoading ? <Flex className="h-full" align="center"><Spin size="large" /></Flex>
         : (
-          <Layout.Content className={styles.pageContent}>
+          <Layout.Content className={cs(styles.pageContent, isMobile && styles['padding-0'])}>
             <div className="pt-4 mb-4">
               <Steps
+                direction="horizontal"
+                responsive={false}
                 current={currentStep === -1 ? 0 : currentStep}
-                items={visibleSteps.map(({ title }) => ({ title }))}
+                items={isMobile || isTablet || isDesktop ? visibleSteps.map(() => ({ title: '' }))
+                  : visibleSteps.map(({ title }) => ({ title }))
+                  }
               />
             </div>
             {paramStep === STEPS.gettingStarted && (

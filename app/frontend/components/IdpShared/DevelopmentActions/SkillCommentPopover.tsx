@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   Button,
   Popover,
@@ -10,6 +10,7 @@ import {
 
 import { Comments } from '~/components/IdpShared/Comments'
 import { useSkillComments } from './useSkillsComments'
+import { MediaQueryContext, BottomSheet } from '~/glint'
 
 const { I18n } = window
 
@@ -35,6 +36,8 @@ export const SkillCommentsPopover: React.FC<SkillCommentPopoverProps> = ({
     totalCount,
   } = useSkillComments(skillId)
 
+  const { isMobile } = useContext(MediaQueryContext)
+
   const content = (
     <Comments
       comments={comments || []}
@@ -55,6 +58,19 @@ export const SkillCommentsPopover: React.FC<SkillCommentPopoverProps> = ({
       }}
     />
   )
+
+  if (isMobile) {
+    return (
+      <>
+        <Button
+          type="text"
+          icon={<MessageOutlined />}
+          onClick={() => handleToggleComments(skillId)}
+        />
+        <BottomSheet isOpen={selectedSkillId === skillId}>{content}</BottomSheet>
+      </>
+    )
+  }
 
   return (
     <Popover
