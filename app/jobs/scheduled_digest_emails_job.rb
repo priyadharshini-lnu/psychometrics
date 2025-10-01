@@ -70,6 +70,7 @@ class ScheduledDigestEmailsJob < ApplicationJob
 
   def after_last_digest(setting)
     if setting.last_digest_sent_at.present?
+      [setting.last_digest_sent_at, setting.digest_emails_enabled_at].max..Time.current
       setting.last_digest_sent_at..Time.current
     else
       setting.digest_emails_enabled_at..Time.current
