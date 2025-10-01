@@ -14,12 +14,15 @@ module AI
                     'Must be a valid numerical ID of the skills available in the IDP template.'
 
         param :development_actions,
-              desc: 'Array of development actions for this skill.' \
-                    'Each action can be either existing (with ONLY development_action_id) or ' \
-                    'custom (must include ALL of the following attributes: name, description, learning_style).' \
-                    'Example: [{"development_action_id": 456}, ' \
-                    '{"name": "Project Ownership", "description": "Take on the project with around 5 people and lead the effort", "learning_style": "on_the_job"}].' \
+              desc: 'Array of development actions for this skill. ' \
+                    'Each action can be either existing (with development_action_id) or ' \
+                    'custom (with name, description, learning_style). ' \
+                    'Each action can optionally include a reason field if instructed. ' \
+                    'Example: [{"development_action_id": 456, "reason": "Addresses feedback gap"}, ' \
+                    '{"name": "Project Ownership", "description": "Lead 5-person project", "learning_style": "on_the_job", "reason": "Builds leadership skills"}]. ' \
                     'Allowed learning_style values: "on_the_job", "structured_learning", "learning_from_others".'
+        param :reason,
+              desc: 'Optional reason explaining why this skill and its development actions are being added to the IDP plan if instructed.'
 
         private_attr_reader :user_idp_plan
 
@@ -27,7 +30,7 @@ module AI
           @user_idp_plan = user_idp_plan
         end
 
-        def execute(skill_id:, development_actions:)
+        def execute(skill_id:, development_actions:, reason: nil)
           development_actions = parse_development_actions(development_actions)
 
           validate_params!(skill_id, development_actions)
@@ -40,6 +43,7 @@ module AI
 
           add_development_actions(user_idp_skill, development_actions_params)
 
+          add_assistant_response_to_checkpoint(skill_id, development_actions, reason)
           build_success_response(skill_id, user_idp_skill, development_actions_params)
         rescue ValidationError, JSON::ParserError => e
           { error: e.message }
@@ -216,6 +220,18 @@ module AI
             actions_count: development_actions_params.length,
             status: @user_idp_plan.status
           }
+        end
+
+        def ai_assisted_idp_session
+          @ai_assisted_idp_session ||= user_idp_plan.ai_assisted_idp_session
+        end
+
+        def add_assistant_response_to_checkpoint(skill_id, development_actions, reason)
+          ai_assisted_idp_session.add_skill_to_checkpoint!(
+            skill_id: skill_id,
+            reason: reason,
+            development_actions: development_actions
+          )
         end
       end
     end

@@ -15,6 +15,7 @@ describe AI::Tools::Idp::AddSkillToPlan do
   end
   let(:idp_template) { create(:idp_template, :published, project: project, skill_settings: skill_settings) }
   let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }
+  let!(:ai_session) { create(:assisted_user_idp_session, assistable: user_idp_plan) }
 
   before do
     project.project_feature&.update(global_skills: true)
@@ -66,6 +67,21 @@ describe AI::Tools::Idp::AddSkillToPlan do
 
         expect(user_idp_plan.user_idp_development_actions.count).to eq(1)
         expect(user_idp_plan.user_idp_development_actions.first.development_action_id).to eq(development_action1.id)
+      end
+
+      it 'saves skill addition to AI session checkpoint' do
+        reason = 'Added to address leadership gap identified in assessment'
+
+        subject.execute(skill_id: skill1.id, development_actions: development_actions, reason: reason)
+
+        ai_session.reload
+        expect(ai_session.checkpoint).to be_present
+        expect(ai_session.checkpoint.length).to eq(1)
+
+        checkpoint_entry = ai_session.checkpoint.first
+        expect(checkpoint_entry['skill_id']).to eq(skill1.id)
+        expect(checkpoint_entry['reason']).to eq(reason)
+        expect(checkpoint_entry['development_actions']).to eq(development_actions)
       end
     end
 
