@@ -15144,6 +15144,52 @@
                   },
                   "required": [],
                   "nullable": false
+                },
+                "one_click_ai_assistant": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "description": "Must be equal to assistants",
+                          "nullable": false
+                        },
+                        "id": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [],
+                      "nullable": true
+                    }
+                  },
+                  "required": [],
+                  "nullable": false
+                },
+                "document_analysis_ai_assistant": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "description": "Must be equal to assistants",
+                          "nullable": false
+                        },
+                        "id": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [],
+                      "nullable": true
+                    }
+                  },
+                  "required": [],
+                  "nullable": false
                 }
               },
               "required": [],
@@ -15860,6 +15906,52 @@
                 },
                 "required": [],
                 "nullable": false
+              },
+              "one_click_ai_assistant": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "description": "Must be equal to assistants",
+                        "nullable": false
+                      },
+                      "id": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [],
+                    "nullable": true
+                  }
+                },
+                "required": [],
+                "nullable": false
+              },
+              "document_analysis_ai_assistant": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "description": "Must be equal to assistants",
+                        "nullable": false
+                      },
+                      "id": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [],
+                    "nullable": true
+                  }
+                },
+                "required": [],
+                "nullable": false
               }
             },
             "required": [],
@@ -16408,10 +16500,6 @@
             "attributes": {
               "type": "object",
               "properties": {
-                "allow_global_skills": {
-                  "type": "boolean",
-                  "nullable": true
-                },
                 "manager_approves_idp": {
                   "type": "boolean",
                   "nullable": true
@@ -16537,10 +16625,6 @@
           "attributes": {
             "type": "object",
             "properties": {
-              "allow_global_skills": {
-                "type": "boolean",
-                "nullable": true
-              },
               "manager_approves_idp": {
                 "type": "boolean",
                 "nullable": true

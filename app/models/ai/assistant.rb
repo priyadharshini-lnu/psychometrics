@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AI::Assistant < ApplicationRecord
-  audited
+  audited only: %i[name user_prompt system_prompt assistant_type model_id]
 
   include RansackSearchableFields
 

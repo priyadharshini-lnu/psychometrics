@@ -21,6 +21,21 @@ module Api
           render json: { error: e.message }, status: :unprocessable_entity
         end
 
+        def revisions
+          assistant = ::AI::Assistant.find(params[:id])
+
+          audits = assistant.audits.limit(10).reorder(created_at: :desc)
+
+          jsonapi_render json: audits,
+                         options: {
+                           resource: Api::V2::Administration::AI::AssistantRevisionResource
+                         }
+        rescue ActiveRecord::RecordNotFound
+          render json: { error: 'Assistant not found' }, status: :not_found
+        rescue StandardError => e
+          render json: { error: e.message }, status: :unprocessable_entity
+        end
+
         def policy_class
           Api::Administration::AI::AssistantPolicy
         end

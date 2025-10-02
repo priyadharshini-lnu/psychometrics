@@ -388,6 +388,12 @@ en:
         system_prompt: System Prompt
         type: Type
         user_prompt: User Prompt
+      revisions:
+        name: Name
+        system_prompt: System Propmpt
+        title: Revisions of AI Assistant
+        user_prompt: User Prompt
+        version: Version
       selector:
         choose_artifact: Choose AI Artifact
         choose_schema_key: Choose Schema Key

@@ -1,0 +1,138 @@
+/* eslint-disable prefer-destructuring */
+import React, { useState, useEffect } from 'react'
+import {
+  Flex, Button, Typography, Modal, Card,
+} from 'antd'
+import { EyeOutlined, EditOutlined } from '@ant-design/icons'
+import cs from 'classnames'
+import { SafeHTML } from '~/components/SafeHTML'
+import { useResources } from '~/hooks/useResources/useResources'
+import '~/libs/htmldiff.cjs'
+import {
+  AiAssistantTR, AIAssistantRevisionTR, AIAssistantRevision,
+} from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
+import styles from './styles.less'
+
+type Props = {
+  aiAssistantId: string
+  onSelect: (data: { name?: string; systemPrompt?: string; userPrompt?: string }) => void
+}
+
+const { I18n } = window
+
+const fixTags = s1 => s1.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+
+const getDiff = (changes) => {
+  if (typeof changes === 'string') {
+    return htmldiff('', fixTags(changes))
+  }
+
+  return htmldiff(fixTags(changes[0]), fixTags(changes[1] || ''))
+}
+
+export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect }: Props) => {
+  const config = {
+    basePath: '/ai',
+    responseType: AiAssistantTR,
+  }
+  const resource = useResources('assistants', config)
+
+  const [list, setList] = useState<AIAssistantRevision[]>([])
+  const [showDiff, setShowDiff] = useState<AIAssistantRevision | null>(null)
+
+  useEffect(() => {
+    resource.memberAction({
+      id: aiAssistantId,
+      action: 'revisions',
+      method: 'get',
+      responseType: AIAssistantRevisionTR,
+    }).then((response: AIAssistantRevision[]) => {
+      setList(response)
+    })
+  }, [])
+
+  const editRevision = (revision) => {
+    const { name, systemPrompt, userPrompt } = revision.changes
+    const values: { name?: string; systemPrompt?: string; userPrompt?: string } = {}
+    if (name) {
+      values.name = name[1]
+    }
+    if (systemPrompt) {
+      values.systemPrompt = systemPrompt[1]
+    }
+    if (userPrompt) {
+      values.userPrompt = userPrompt[1]
+    }
+    onSelect(values)
+  }
+
+  const revisionName = revision => `${I18n.t('administration.ai_assistants.revisions.version')
+  } ${
+    revision.version
+  } - ${
+    new Date(revision.createdAt).toLocaleString()}`
+
+  return (
+    <Flex vertical>
+      {list.map(revision => (
+        <Flex key={revision.id} justify="space-between" align="center" style={{ marginBottom: '12px' }} gap={8}>
+          <Typography.Text>
+            {revisionName(revision)}
+          </Typography.Text>
+          <Flex gap={4}>
+            <Button type="link" icon={<EyeOutlined />} onClick={() => setShowDiff(revision)} />
+            <Button icon={<EditOutlined />} onClick={() => editRevision(revision)} />
+          </Flex>
+        </Flex>
+      ))}
+
+      <Modal
+        open={!!showDiff}
+        onOk={() => setShowDiff(null)}
+        onClose={() => setShowDiff(null)}
+        onCancel={() => setShowDiff(null)}
+        closable
+        width="80vw"
+        title={showDiff && revisionName(showDiff)}
+      >
+
+        {showDiff && (
+          <>
+            {showDiff.changes.name
+              && (
+                <Card title={I18n.t('administration.ai_assistants.revisions.name')}>
+                  <SafeHTML
+                    className={cs(styles.editor, { [styles.diff]: showDiff })}
+                    html={getDiff(showDiff.changes.name)}
+                    config="adminRichText"
+                  />
+                </Card>
+              )}
+
+            {showDiff.changes.userPrompt
+              && (
+                <Card title={I18n.t('administration.ai_assistants.revisions.user_prompt')}>
+                  <SafeHTML
+                    className={cs(styles.editor, { [styles.diff]: showDiff })}
+                    html={getDiff(showDiff.changes.userPrompt)}
+                    config="adminRichText"
+                  />
+                </Card>
+              )}
+
+            {showDiff.changes.systemPrompt
+              && (
+                <Card title={I18n.t('administration.ai_assistants.revisions.system_prompt')}>
+                  <SafeHTML
+                    className={cs(styles.editor, { [styles.diff]: showDiff })}
+                    html={getDiff(showDiff.changes.systemPrompt)}
+                    config="adminRichText"
+                  />
+                </Card>
+              )}
+          </>
+        )}
+      </Modal>
+    </Flex>
+  )
+}

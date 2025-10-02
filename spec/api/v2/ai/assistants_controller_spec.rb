@@ -412,5 +412,47 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
         end
       end
     end
+
+    path '/ai/assistants/{id}/revisions' do
+      get 'Revisions of AI Response' do
+        operationId 'AIAssistantRevisions'
+        description 'Get AI revisions of the AI assistant'
+        tags 'AI Assistants'
+        consumes 'application/vnd.api+json'
+        produces 'application/json'
+        security [basic: []]
+        parameter name: :id, in: :path, type: :string, required: true
+
+        response '200', 'Revisions response' do
+          let(:id) { assistant_id }
+
+          before do
+            # Create some audits for the assistant
+            assistant = AI::Assistant.find(id)
+            2.times do |i|
+              assistant.update(name: "Revision #{i + 1}")
+            end
+          end
+
+          run_test! do |response|
+            expect(response.status).to eq(200)
+            data = JSON.parse(response.body)
+            expect(data).to have_key('data')
+            expect(data['data']).to be_an(Array)
+            expect(data['data'].size).to be >= 2
+
+            revision = data['data'].first
+            expect(revision).to have_key('id')
+            expect(revision).to have_key('type')
+            expect(revision['type']).to eq('assistant_revisions')
+            expect(revision).to have_key('attributes')
+            expect(revision['attributes']).to have_key('action')
+            expect(revision['attributes']['action']).to eq('create')
+            expect(revision['attributes']).to have_key('changes')
+            expect(revision['attributes']['changes']).to have_key('name')
+          end
+        end
+      end
+    end
   end
 end

@@ -1609,6 +1609,7 @@ as: :simulation_progress_notification
               jsonapi_relationships
               member do
                 post :generate
+                get :revisions
               end
             end
           end
