@@ -32,8 +32,9 @@ module Imports
         if errors.blank?
           user_results.each do |user_result|
             user_result.save!
+
             if user_result.completed?
-              ::UsersResults::Recompute.call!(user_result, user_result.user)
+              ::UserAssessments::SaveScoresWithCallbacks.call!(user_result.user_assessment, user_result.user)
             end
           end
         end
