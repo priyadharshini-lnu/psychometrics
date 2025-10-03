@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import {
   Modal, Button, Form, Input, Select, Alert,
 } from 'antd'
 import { CheckOutlined, LoadingOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import debounce from 'lodash/debounce'
 import { useResources } from '~/hooks/useResources'
 import { getFeatures } from '~/core/config'
 import { getCategory } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
@@ -31,21 +32,50 @@ function CreateSubjectModal ({
   const [formErrors, setFormErrors] = useState([])
   const [autocompletedUser, setAutocompletedUser] = useState('')
 
+  const [jobRoleFilter, setJobRoleFilter] = useState('')
+  const {
+    data: jobRoles = [],
+    fetch: fetchJobRoles,
+    isLoading: fetchingJobRoles,
+  } = useResources('job_roles', {
+    apiConfig: {
+      project_id: projectId,
+      filter: {
+        name_or_code_cont: jobRoleFilter,
+      },
+    },
+  })
+
+  const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled
+
+  const debouncedFetchJobRoles = useCallback(
+    debounce((value) => {
+      setJobRoleFilter(value)
+      fetchJobRoles({
+        apiConfig: {
+          project_id: projectId,
+          filter: {
+            name_or_code_cont: value,
+          },
+        },
+      })
+    }, 300),
+    [projectId, fetchJobRoles],
+  )
+
   useEffect(() => () => {
     clearForm()
   }, [])
 
-  const {
-    data: jobRoles = [],
-    fetch: fetchJobRoles,
-  } = useResources(`job_roles?project_id=${projectId}`)
-
   useEffect(() => {
-    if (!isSkillRater) return
-    fetchJobRoles()
-  }, [])
+    if (skillRaterEnabled && isSkillRater) {
+      debouncedFetchJobRoles('')
+    }
+  }, [skillRaterEnabled, isSkillRater, projectId])
 
-  const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled
+  const onJobRoleSearch = (value) => {
+    debouncedFetchJobRoles(value)
+  }
 
   const onSelectUser = (user) => {
     const data = JSON.parse(user)
@@ -182,7 +212,14 @@ function CreateSubjectModal ({
               name="currentJobRole"
               label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.current_job_role')}
             >
-              <Select allowClear>
+              <Select
+                allowClear
+                showSearch
+                filterOption={false}
+                notFoundContent={fetchingJobRoles ? <LoadingOutlined /> : null}
+                onSearch={onJobRoleSearch}
+                onFocus={() => debouncedFetchJobRoles('')}
+              >
                 {jobRoles.map(role => (
                   <Select.Option key={role.id} value={role.name}>
                     {role.name}
@@ -195,7 +232,14 @@ function CreateSubjectModal ({
               name="targetJobRole"
               label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.target_job_role')}
             >
-              <Select allowClear>
+              <Select
+                allowClear
+                showSearch
+                filterOption={false}
+                notFoundContent={fetchingJobRoles ? <LoadingOutlined /> : null}
+                onSearch={onJobRoleSearch}
+                onFocus={() => debouncedFetchJobRoles('')}
+              >
                 {jobRoles.map(role => (
                   <Select.Option key={role.id} value={role.name}>
                     {role.name}

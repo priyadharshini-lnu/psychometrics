@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import {
   Modal, Button, Form, Input, Select,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import debounce from 'lodash/debounce'
 import { isSuperAdmin } from '~/core/currentUser'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 import { getFeatures } from '~/core/config'
@@ -32,17 +33,41 @@ function UserEditModal ({
 }) {
   const { campaignId, projectId } = useParams()
   const [errors, setErrors] = useState(null)
+  const [jobRoleFilter, setJobRoleFilter] = useState('')
   const {
     data: jobRoles = [],
     fetch: fetchJobRoles,
-  } = useResources(`job_roles?project_id=${projectId}`)
+    isLoading: fetchingJobRoles,
+  } = useResources('job_roles', {
+    apiConfig: {
+      project_id: projectId,
+      filter: {
+        name_or_code_cont: jobRoleFilter,
+      },
+    },
+  })
   const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled
+
+  const debouncedFetchJobRoles = useCallback(
+    debounce((value) => {
+      setJobRoleFilter(value)
+      fetchJobRoles({
+        apiConfig: {
+          project_id: projectId,
+          filter: {
+            name_or_code_cont: value,
+          },
+        },
+      })
+    }, 300),
+    [projectId, fetchJobRoles],
+  )
 
   useEffect(() => {
     if (skillRaterEnabled) {
-      fetchJobRoles()
+      debouncedFetchJobRoles('')
     }
-  }, [skillRaterEnabled])
+  }, [skillRaterEnabled, projectId])
 
   useEffect(() => {
     if (!jobRoles.length) return
@@ -68,6 +93,14 @@ function UserEditModal ({
 
   const handleSelectChange = (name, value) => {
     update(name, value)
+  }
+
+  const handleJobRoleSearch = (value) => {
+    debouncedFetchJobRoles(value)
+  }
+
+  const handleJobRoleFocus = () => {
+    debouncedFetchJobRoles('')
   }
 
   const handleSave = () => {
@@ -131,6 +164,11 @@ function UserEditModal ({
                 onChange={value => handleSelectChange('currentJobRole', value)}
                 placeholder="Select current job role"
                 allowClear
+                showSearch
+                filterOption={false}
+                notFoundContent={fetchingJobRoles ? <LoadingOutlined /> : null}
+                onSearch={handleJobRoleSearch}
+                onFocus={handleJobRoleFocus}
               >
                 {jobRoles.map(role => (
                   <Option key={role.id} value={role.id}>
@@ -146,6 +184,11 @@ function UserEditModal ({
                 onChange={value => handleSelectChange('targetJobRole', value)}
                 placeholder="Select target job role"
                 allowClear
+                showSearch
+                filterOption={false}
+                notFoundContent={fetchingJobRoles ? <LoadingOutlined /> : null}
+                onSearch={handleJobRoleSearch}
+                onFocus={handleJobRoleFocus}
               >
                 {jobRoles.map(role => (
                   <Option key={role.id} value={role.id}>
