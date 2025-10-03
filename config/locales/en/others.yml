@@ -907,6 +907,8 @@ en:
     bulk_download_reports:
       content:
         title: Links to download reports
+      errors:
+        no_plans: No active IDP plans found
     close: Close
     details: Details
     errors: Errors
