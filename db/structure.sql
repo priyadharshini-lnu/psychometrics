@@ -5146,7 +5146,7 @@ ALTER SEQUENCE public.privacy_setting_translations_id_seq OWNED BY public.privac
 
 CREATE TABLE public.privacy_settings (
     id bigint NOT NULL,
-    privacy_consent boolean DEFAULT false,
+    privacy_consent boolean DEFAULT true,
     custom_privacy_policy_version integer,
     custom_privacy_consent_text text,
     privacy_link_text character varying,
@@ -18475,9 +18475,10 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20250915111321'),
+('20251001034346'),
 ('20250917104111'),
 ('20250917090000'),
+('20250915111321'),
 ('20250914210724'),
 ('20250911053831'),
 ('20250910080315'),
