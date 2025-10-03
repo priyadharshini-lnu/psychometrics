@@ -94,5 +94,92 @@ describe EndUser::SkillsController, type: :controller do
         expect(behavioral_skills.length).to be <= Skill::SAMPLES_PER_SKILL_TYPE
       end
     end
+
+    context 'with client tag search' do
+      let!(:technical_skill1) { create(:skill, name: 'Ruby', skill_type: 'technical', project: project) }
+      let!(:technical_skill2) { create(:skill, name: 'Python', skill_type: 'technical', project: project) }
+      let!(:technical_skill3) { create(:skill, name: 'JavaScript', skill_type: 'technical', project: project) }
+
+      let!(:behavioral_skill1) { create(:skill, name: 'Leadership', skill_type: 'behavioral', project: project) }
+      let!(:behavioral_skill2) { create(:skill, name: 'Communication', skill_type: 'behavioral', project: project) }
+
+      before do
+        allow(Current).to receive(:user).and_return(user)
+        technical_skill1.add_tag('backend').save
+        technical_skill2.add_tag('backend').save
+        technical_skill3.add_tag('frontend').save
+        behavioral_skill1.add_tag('soft_skill').save
+        behavioral_skill2.add_tag('soft_skill').save
+
+        idp_template.update!(
+          project: project,
+          technical_client_skill_settings: 'selected',
+          behavioral_client_skill_settings: 'selected',
+          technical_client_tags: %w[backend],
+          behavioural_client_tags: %w[soft_skill]
+        )
+      end
+
+      it 'returns tagged skills' do
+        get :index, params: { filters: { name_cont: 'rub' } }
+
+        parsed_response = response.parsed_body
+
+        expect(parsed_response).not_to be_empty
+        expect(parsed_response[0]['name']).to eq('Ruby')
+      end
+
+      it 'returns empty for not matched' do
+        get :index, params: { filters: { name_cont: 'java' } }
+
+        parsed_response = response.parsed_body
+        expect(parsed_response).to be_empty
+      end
+    end
+
+    context 'with global tag search' do
+      let!(:technical_skill1) { create(:skill, name: 'Ruby', skill_type: 'technical', project: nil) }
+      let!(:technical_skill2) { create(:skill, name: 'Python', skill_type: 'technical', project: nil) }
+      let!(:technical_skill3) { create(:skill, name: 'JavaScript', skill_type: 'technical', project: nil) }
+
+      let!(:behavioral_skill1) { create(:skill, name: 'Leadership', skill_type: 'behavioral', project: nil) }
+      let!(:behavioral_skill2) { create(:skill, name: 'Communication', skill_type: 'behavioral', project: nil) }
+
+      before do
+        project.project_feature.update!(global_skills: true)
+        allow(Current).to receive(:user).and_return(user)
+        technical_skill1.add_tag('backend').save
+        technical_skill2.add_tag('backend').save
+        technical_skill3.add_tag('frontend').save
+        behavioral_skill1.add_tag('soft_skill').save
+        behavioral_skill2.add_tag('soft_skill').save
+
+        idp_template.update!(
+          project: project,
+          technical_client_skill_settings: 'none',
+          behavioral_client_skill_settings: 'none',
+          technical_global_skill_settings: 'selected',
+          behavioral_global_skill_settings: 'selected',
+          technical_global_tags: %w[backend],
+          behavioural_global_tags: %w[soft_skill]
+        )
+      end
+
+      it 'returns tagged skills' do
+        get :index, params: { filters: { name_cont: 'rub' } }
+
+        parsed_response = response.parsed_body
+
+        expect(parsed_response).not_to be_empty
+        expect(parsed_response[0]['name']).to eq('Ruby')
+      end
+
+      it 'returns empty for not matched' do
+        get :index, params: { filters: { name_cont: 'java' } }
+
+        parsed_response = response.parsed_body
+        expect(parsed_response).to be_empty
+      end
+    end
   end
 end
