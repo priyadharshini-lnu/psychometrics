@@ -197,9 +197,9 @@ const MyPlanComponent = ({
         const config = {
           message: I18n.t('jobs.threesixty.reports.download.message'),
           description: <SafeHTML html={
-            I18n.t('jobs.threesixty.reports.download.description', { url: response.responseData })}
+            I18n.t('idp.download.description', { url: response.responseData })}
           />,
-          duration: 0,
+          duration: 10 * 60 * 1000, // 10 minutes,
         }
         const type = response.type || 'success'
         notification[type](config)
