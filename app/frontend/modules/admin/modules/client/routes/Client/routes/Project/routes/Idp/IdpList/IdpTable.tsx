@@ -46,7 +46,7 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
     resource.updateResource({ id: idp.id, status }).then(() => {
       message.success(I18n.t('administration.idp.status_updated'))
     }).catch((error) => {
-      message.error(error?.base?.[0]?.title)
+      message.error(error?.skillsId?.title || error?.base?.[0]?.title)
     })
   }
 

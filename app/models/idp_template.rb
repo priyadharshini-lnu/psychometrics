@@ -53,6 +53,7 @@ class IdpTemplate < ApplicationRecord
   validates :technical_client_skill_settings, inclusion: VALID_SKILL_SETTINGS, allow_blank: true
 
   validate :skills_or_tags_must_be_present_if_selected
+  validate :skills_on_publishinng, if: :persisted?
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name status]
@@ -149,5 +150,16 @@ class IdpTemplate < ApplicationRecord
         errors.add(attribute, error)
       end
     end
+  end
+
+  def skills_on_publishinng
+    if status_published? && skills.empty? && !skill_settings_enabled?
+      errors.add(:skills, I18n.t('administration.idp.errors.skills_required_on_publishing'))
+    end
+  end
+
+  def skill_settings_enabled?
+    behavioral_client_skill_settings == 'all' || technical_client_skill_settings == 'all' ||
+      behavioral_global_skill_settings == 'all' || technical_global_skill_settings == 'all'
   end
 end
