@@ -111,6 +111,7 @@ ignore_unused:
   - 'administration.navigation.factors.*'
   - 'administration.navigation.occupations.*'
   - 'administration.campaign_templates.list.*'
+  - 'administration.campaigns.assessment_reports.report_approval.*'
   - 'administration.dimensions.list.*'
   - 'administration.norms.list.*'
   - 'administration.factors.list.*'

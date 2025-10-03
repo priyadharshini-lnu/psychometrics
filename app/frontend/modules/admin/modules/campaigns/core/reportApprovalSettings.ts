@@ -19,7 +19,7 @@ export const ReportApprovalSettingsTR = t.intersection([
     digestFrequency: t.union([t.string, t.null]),
     digestWeekdays: t.array(t.number),
     digestTime: t.union([t.string, t.null]),
-    digestTimezone: t.union([t.string, t.undefined]),
+    digestTimezone: t.union([t.string, t.null]),
     campaign: t.type({
       id: t.string,
       type: t.string,

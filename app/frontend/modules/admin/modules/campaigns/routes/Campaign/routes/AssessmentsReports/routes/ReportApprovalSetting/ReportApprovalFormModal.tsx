@@ -38,6 +38,7 @@ type FormValueObj = {
   approversCanEdit: boolean,
   doNotSendNotifications: boolean,
   sendDigestEmails: boolean,
+  digestDeliveryMode: string,
   digestFrequency: string,
   digestWeekdays: number[],
   digestTime:string,
@@ -59,6 +60,9 @@ const showDigestToggle = (form) => {
 }
 
 const showDigestOptions = form => showDigestToggle(form) && form.getFieldValue('sendDigestEmails')
+
+const showDigestSchedulingOptions = form => showDigestOptions(form)
+                                            && form.getFieldValue('digestDeliveryMode') === 'scheduled'
 
 export const ReportApprovalFormModal: React.FC<Props> = ({
   reportApprovalSettings,
@@ -87,6 +91,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     approverUserIds: getUserIds(reportApprovalSettings.approvers),
     approvalNotificationUserIds: getUserIds(reportApprovalSettings.approvalNotificationUsers),
     digestTime: reportApprovalSettings.digestTime ? dayjs(reportApprovalSettings.digestTime, 'hh:mm A') : null,
+    digestTimezone: reportApprovalSettings.digestTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
   } : reportApprovalSettings
 
   const reportOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'report', reports)
@@ -150,10 +155,13 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           approversCanEdit: formValuesObj.approversCanEdit || false,
           doNotSendNotifications: formValuesObj.doNotSendNotifications || false,
           sendDigestEmails: formValuesObj.doNotSendNotifications ? false : formValuesObj.sendDigestEmails || false,
+          digestDeliveryMode: formValuesObj.sendDigestEmails ? formValuesObj.digestDeliveryMode : null,
           digestFrequency: formValuesObj.sendDigestEmails ? formValuesObj.digestFrequency : null,
           digestWeekdays: formValuesObj.sendDigestEmails && formValuesObj.digestFrequency !== 'daily'
             ? formValuesObj.digestWeekdays : [],
           digestTime: formValuesObj.sendDigestEmails ? dayjs(formValuesObj.digestTime).format('HH:mm:ss') : null,
+          digestTimezone: formValuesObj.sendDigestEmails
+            ? formValuesObj.digestTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone : null,
         }
       }}
     >
@@ -250,7 +258,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                     </div>
                   </Space>
 
-                  {showDigestToggle(form) && isDigestEmailsEnabled && (
+                  {isDigestEmailsEnabled && showDigestToggle(form) && (
                     <Space align="center">
                       <Form.Item
                         name="sendDigestEmails"
@@ -264,7 +272,32 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       </div>
                     </Space>
                   )}
-                  {showDigestOptions(form) && isDigestEmailsEnabled && (
+
+                  {isDigestEmailsEnabled && showDigestOptions(form) && (
+                    <Form.Item
+                      name="digestDeliveryMode"
+                      label={I18n.t(
+                        'administration.campaigns.assessment_reports.report_approval.digest_delivery_mode.form_label',
+                      )}
+                      rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
+                    >
+                      <Select>
+                        <Option value="immediate">
+                          {I18n.t(
+                            'administration.campaigns.assessment_reports'
+                            + '.report_approval.digest_delivery_mode.immediate',
+                          )}
+                        </Option>
+                        <Option value="scheduled">
+                          {I18n.t(
+                            'administration.campaigns.assessment_reports'
+                            + '.report_approval.digest_delivery_mode.scheduled',
+                          )}
+                        </Option>
+                      </Select>
+                    </Form.Item>
+                  )}
+                  {isDigestEmailsEnabled && showDigestSchedulingOptions(form) && (
                     <>
                       <Form.Item
                         name="digestFrequency"
@@ -349,12 +382,11 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                         label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_time')}
                         rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
                       >
-                        <TimePicker format="hh:mm A" use12Hours minuteStep={15} />
+                        <TimePicker format="hh:mm A" use12Hours />
                       </Form.Item>
                       <Form.Item
                         name="digestTimezone"
                         label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_timezone')}
-                        rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
                       >
                         <TimeZoneSelect value="" onChange={() => {}} />
 
