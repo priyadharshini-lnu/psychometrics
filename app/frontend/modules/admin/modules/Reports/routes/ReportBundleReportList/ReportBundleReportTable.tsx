@@ -44,6 +44,7 @@ export const ReportBundleReportTable: React.FC = () => (
       render={(_, reportBundleReport) => (
         <Dropdown reportBundleReport={reportBundleReport} />
       )}
+      width={100}
     />
   </Resource.Table>
 )

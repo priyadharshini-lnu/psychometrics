@@ -122,6 +122,7 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
                 }
             />
           )}
+          width={100}
         />
       </Resource.Table>
       <Modals modals={MODALS} />

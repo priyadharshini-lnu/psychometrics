@@ -88,6 +88,7 @@ export const SmsHistoriesList = () => {
                 openDrawer={openDrawer}
               />
             )}
+            width={100}
           />
         </Resource.Table>
       </Resource>

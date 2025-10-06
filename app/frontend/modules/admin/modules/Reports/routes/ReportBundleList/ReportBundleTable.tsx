@@ -56,6 +56,7 @@ export const ReportBundleTable: React.FC<Props> = ({
           toggleModal={toggleModal}
         />
       )}
+      width={100}
     />
   </Resource.Table>
 )

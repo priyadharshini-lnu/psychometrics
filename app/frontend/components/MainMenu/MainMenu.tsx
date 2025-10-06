@@ -106,15 +106,7 @@ const MainMenuComponent:FC<Props> = ({
       </>
     )
     : (
-      <Layout.Sider
-        id="top_sidebar"
-        className={styles.sider}
-        width={SIDEBAR_WIDTH}
-        theme="light"
-        collapsed={collapsed}
-        collapsedWidth={55}
-        onCollapse={() => triggerCollapse()}
-      >
+      <>
         <Button
           onClick={() => triggerCollapse()}
           className={styles.trigger}
@@ -122,8 +114,19 @@ const MainMenuComponent:FC<Props> = ({
           type="link"
           icon={collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
         />
-        {menu}
-      </Layout.Sider>
+        <Layout.Sider
+          id="top_sidebar"
+          className={styles.sider}
+          width={SIDEBAR_WIDTH}
+          theme="light"
+          collapsed={collapsed}
+          collapsedWidth={55}
+          onCollapse={() => triggerCollapse()}
+        >
+          {menu}
+        </Layout.Sider>
+      </>
+
     )
 }
 

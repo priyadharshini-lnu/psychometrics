@@ -152,6 +152,7 @@ const ReportTableCompnent: React.FC<Props> = ({
               }}
             />
           )}
+          width={100}
         />
       </Resource.Table>
       <Modals modals={MODALS} />

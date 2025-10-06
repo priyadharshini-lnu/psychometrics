@@ -129,6 +129,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
             removeCampaignTemplate={handleRemoveCampaignTemplate}
           />
         )}
+        width={100}
       />
     </Resource.Table>
   )

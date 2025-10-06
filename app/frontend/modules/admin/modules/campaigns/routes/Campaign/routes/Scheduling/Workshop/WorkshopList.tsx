@@ -111,7 +111,7 @@ export const WorkshopList: React.FC = () => {
           <Resource.Column<Workshop>
             title={I18n.t('common.column.action')}
             id="action"
-            width="3%"
+            width={100}
             render={(_, workshop) => <Menu workshop={workshop} />}
           />
         </Resource.Table>

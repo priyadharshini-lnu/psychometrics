@@ -7,6 +7,7 @@ import { Layout as AdminLayout } from '~/modules/admin/Layout'
 import store from '~/modules/admin/store'
 import { Schema } from '~/libs/jsonApi/schema'
 import { DefaultAntThemeWrapper } from '~/glint'
+import './style.less'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,

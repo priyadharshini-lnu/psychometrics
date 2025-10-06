@@ -23,10 +23,10 @@ html lang="en"
       .page-content
         - unless request.path =~ /\/admin\/meet\//
           = render partial: 'top_sidebar'
-        .page-content-wrap
-          .row
-            #flash-messages.col-md-12
+        #flash-messages-container
+          #flash-messages.col-md-12
               = flash_messages
+        .page-content-wrap
           = yield
     /! START PRELOADS
     = audio_tag('administration/alert.mp3', preload: 'auto', id: 'audio-alert')
