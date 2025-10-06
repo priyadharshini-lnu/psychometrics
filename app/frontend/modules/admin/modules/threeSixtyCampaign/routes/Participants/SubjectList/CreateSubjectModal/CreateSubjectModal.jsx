@@ -91,11 +91,25 @@ function CreateSubjectModal ({
   }
 
   const handleSubmit = async (values) => {
+    // Validate for whitespace before submitting
+    const trimmedValues = {
+      ...values,
+      email: values.email?.trim(),
+      firstName: values.firstName?.trim(),
+      lastName: values.lastName?.trim(),
+    }
+
+    // Check if required fields are just whitespace
+    if (!trimmedValues.email || !trimmedValues.firstName || !trimmedValues.lastName) {
+      form.validateFields()
+      return
+    }
+
     setLoading(true)
     setFormErrors([])
 
     try {
-      await createAll(campaignId, [values])
+      await createAll(campaignId, [trimmedValues])
       closeModal()
     } catch (error) {
       setFormErrors([error.message || I18n.t('common.errors.something_wrong')])
@@ -148,26 +162,35 @@ function CreateSubjectModal ({
         form={form}
         layout="vertical"
         onFinish={handleSubmit}
+        validateTrigger={['onBlur', 'onChange', 'onFinish']}
       >
         <Form.Item
           name="email"
           label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email')}
           rules={[
             {
-              required: true,
-              message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email_is_required'),
-            },
-            {
-              type: 'email',
-              message: I18n.t(
-                'administration.threesixty_campaigns.menu.participants.subjects.please_enter_valid_email',
-              ),
+              validator: async (_, value) => {
+                if (!value || !value.trim()) {
+                  throw new Error(
+                    I18n.t('administration.threesixty_campaigns.menu.participants.subjects.can_not_be_blank'),
+                  )
+                }
+                if (value.trim() && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                  throw new Error(
+                    I18n.t('administration.threesixty_campaigns.menu.participants.subjects.is_invalid'),
+                  )
+                }
+              },
             },
           ]}
+          validateFirst
         >
           <UserAutocomplete
             value={autocompletedUser}
-            onChange={setAutocompletedUser}
+            onChange={(value) => {
+              setAutocompletedUser(value)
+              form.validateFields(['email'])
+            }}
             onSelect={onSelectUser}
             source="users"
             users={autocompletedUsers}
@@ -180,10 +203,18 @@ function CreateSubjectModal ({
         <Form.Item
           name="firstName"
           label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name')}
-          rules={[{
-            required: true,
-            message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name_is_required'),
-          }]}
+          rules={[
+            {
+              validator: async (_, value) => {
+                if (!value || !value.trim()) {
+                  throw new Error(
+                    I18n.t('administration.threesixty_campaigns.menu.participants.subjects.can_not_be_blank'),
+                  )
+                }
+              },
+            },
+          ]}
+          validateFirst
         >
           <Input />
         </Form.Item>
@@ -191,10 +222,18 @@ function CreateSubjectModal ({
         <Form.Item
           name="lastName"
           label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name')}
-          rules={[{
-            required: true,
-            message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name_is_required'),
-          }]}
+          rules={[
+            {
+              validator: async (_, value) => {
+                if (!value || !value.trim()) {
+                  throw new Error(
+                    I18n.t('administration.threesixty_campaigns.menu.participants.subjects.can_not_be_blank'),
+                  )
+                }
+              },
+            },
+          ]}
+          validateFirst
         >
           <Input />
         </Form.Item>

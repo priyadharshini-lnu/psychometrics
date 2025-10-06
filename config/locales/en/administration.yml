@@ -4606,6 +4606,8 @@ en:
             title: Options
           subjects:
             add_subjects: Add Subjects
+            can_not_be_blank: can't be blank
+            is_invalid: is invalid
             current_job_role: Current Job Role
             email: Email
             email_is_required: Email is required
