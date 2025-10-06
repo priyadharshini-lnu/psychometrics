@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::LicenseResource < Api::V2::Administration::BaseResource
   attributes :number, :overuse_number, :used_number, :client_id, :start_date, :end_date,
-             :report_family_id, :disabled, :type, :enabled
+             :report_family_id, :disabled, :type, :enabled, :is_project_specific
 
   has_one :client
   has_one :report_family

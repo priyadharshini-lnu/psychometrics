@@ -149,6 +149,15 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
           >
             <Switch />
           </Form.Item>
+
+          <Form.Item
+            name="is_project_specific"
+            label={I18n.t('licenses.project_specific_license')}
+            initialValue
+            valuePropName="checked"
+          >
+            <Switch />
+          </Form.Item>
         </>
       )}
     </ResourceFormModal>

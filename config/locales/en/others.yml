@@ -3091,6 +3091,7 @@ en:
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
     number: Number
     overuse_number: Over use allowance
+    project_specific_license: Project Specific License
     report_family: Report bundle
     start_date: Start date
     title: License
