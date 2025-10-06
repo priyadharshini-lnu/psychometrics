@@ -162,28 +162,20 @@ function CreateSubjectModal ({
         form={form}
         layout="vertical"
         onFinish={handleSubmit}
-        validateTrigger={['onBlur', 'onChange', 'onFinish']}
+        validateTrigger={['onChange', 'onFinish']}
       >
         <Form.Item
           name="email"
           label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email')}
           rules={[
             {
-              validator: async (_, value) => {
-                if (!value || !value.trim()) {
-                  throw new Error(
-                    I18n.t('administration.threesixty_campaigns.menu.participants.subjects.can_not_be_blank'),
-                  )
-                }
-                if (value.trim() && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                  throw new Error(
-                    I18n.t('administration.threesixty_campaigns.menu.participants.subjects.is_invalid'),
-                  )
-                }
-              },
+              required: true,
+            },
+            {
+              type: 'email',
+              message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.is_invalid'),
             },
           ]}
-          validateFirst
         >
           <UserAutocomplete
             value={autocompletedUser}
@@ -205,16 +197,9 @@ function CreateSubjectModal ({
           label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name')}
           rules={[
             {
-              validator: async (_, value) => {
-                if (!value || !value.trim()) {
-                  throw new Error(
-                    I18n.t('administration.threesixty_campaigns.menu.participants.subjects.can_not_be_blank'),
-                  )
-                }
-              },
+              required: true,
             },
           ]}
-          validateFirst
         >
           <Input />
         </Form.Item>
@@ -224,16 +209,9 @@ function CreateSubjectModal ({
           label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name')}
           rules={[
             {
-              validator: async (_, value) => {
-                if (!value || !value.trim()) {
-                  throw new Error(
-                    I18n.t('administration.threesixty_campaigns.menu.participants.subjects.can_not_be_blank'),
-                  )
-                }
-              },
+              required: true,
             },
           ]}
-          validateFirst
         >
           <Input />
         </Form.Item>
