@@ -46,6 +46,27 @@ export const UserReportTR = t.type({
   external_report: t.boolean,
 })
 
+export const UserRecordingTR = t.type({
+  id: t.number,
+  externalId: t.string,
+  recordingDate: t.string,
+  recordingUrl: t.string,
+  assessmentCenterDateAndTime: t.union([t.string, t.null]),
+  assessors: t.array(
+    t.type({
+      id: t.union([t.string, t.number]),
+      email: t.string,
+    }),
+  ),
+  participants: t.array(
+    t.type({
+      id: t.union([t.string, t.number]),
+      email: t.string,
+    }),
+  ),
+})
+
+export type UserRecording = t.TypeOf<typeof UserRecordingTR>
 export type UserAssessment = t.TypeOf<typeof UserAssessmentTR>
 export type UserReport = t.TypeOf<typeof UserReportTR>
 
@@ -65,6 +86,7 @@ export interface State {
   mainReportId: null | number
   assessorResponses: {[id:number]: Result[]}
   canModerateScore: boolean,
+  userRecordings: null | UserRecording[];
 }
 
 const defaultState: State = {
@@ -77,11 +99,13 @@ const defaultState: State = {
   mainReportId: null,
   loaded: false,
   canModerateScore: false,
+  userRecordings: [],
 }
 
 const FETCH_LEAD_ASSESSMENT = 'assessors/evaluating/FETCH_LEAD_ASSESSMENT'
 const FETCH_ASSESSOR_ASSESSMENTS = 'assessors/evaluating/FETCH_ASSESSOR_ASSESSMENTS'
 const FETCH_ASSESSOR_ASSESSMENT = 'assessors/evaluating/FETCH_ASSESSOR_ASSESSMENT'
+export const FETCH_RECORDINGS = 'assessors/evaluating/FETCH_RECORDINGS'
 export const FETCH_REPORTS = 'assessors/evaluating/FETCH_REPORTS'
 
 export type FetchLeadAssessmentsType = ApiActionResponse<{
@@ -106,6 +130,9 @@ type FetchType = ApiActionResponse<{
   results: Result[]
 }>
 
+type FetchRecordingsType = ApiActionResponse<{
+  userRecordings: UserRecording[]
+}>
 
 export const fetchLeadAssessment = (parsedCampaignId: number, userId: number) => ({
   type: FETCH_LEAD_ASSESSMENT,
@@ -147,6 +174,14 @@ export const fetchAssessorAssessment = (parsedCampaignId: number, userId: number
   assessmentId,
 })
 
+export const fetchRecordings = (parsedCampaignId: number, userId: number) => ({
+  type: FETCH_RECORDINGS,
+  request: {
+    method: 'get',
+    url: `/assessors/campaigns/${parsedCampaignId}/score_moderations/${userId}/recordings`,
+    body: {},
+  },
+})
 
 const HANDLERS = {
   [FETCH_LEAD_ASSESSMENT]: (state: State, { response }: FetchLeadAssessmentsType) => ({
@@ -171,6 +206,10 @@ const HANDLERS = {
     assessorForms: { ...state.assessorForms, [assessmentId]: response.assessment },
     assessorResponses: { ...state.assessorResponses, [assessmentId]: response.results },
   }),
+  [FETCH_RECORDINGS]: (state: State, { response }: FetchRecordingsType) => ({
+    ...state,
+    userRecordings: response.userRecordings,
+  }),
 }
 
 export const assessorCanModerateScore = state => state.canModerateScore
@@ -181,5 +220,6 @@ export const getAssessorResults = (state, assessmentId) => _.get(
   state.assessorResponses, [assessmentId],
 )
 export const getCurrentAssessorForm = state => state.evaluation.currentAssessorFormId
+export const getRecordings = state => state.userRecordings
 
 export default createReducer(HANDLERS, defaultState)

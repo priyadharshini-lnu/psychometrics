@@ -38,5 +38,9 @@ module MeetingRooms
     def participants
       Array(user_assessment.subject).compact
     end
+
+    def assessment_center_date_and_time
+      user_assessment.schedule_time || user_assessment.linked_assessor_user_assessment&.schedule_time
+    end
   end
 end

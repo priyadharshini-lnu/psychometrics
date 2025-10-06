@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import { Button, Tabs, Space } from 'antd'
-import { CloseOutlined } from '@ant-design/icons'
+import { CloseOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import cs from 'classnames'
 import ScoringTable from './ScoringTable'
@@ -16,6 +16,7 @@ import { ProfileIcon } from './icons/Profile'
 import { ReportsIcon } from './icons/Reports'
 import { getLeadAssessorResult } from '../../core/scoreModerate'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import { Recordings } from './Recordings'
 
 const items = [
   {
@@ -33,6 +34,10 @@ const items = [
   {
     key: 'assessorEvaluations',
     icon: <AssessorEvaluationsIcon />,
+  },
+  {
+    key: 'recordings',
+    icon: <VideoCameraOutlined style={{ fontSize: 25 }} />,
   },
 ]
 
@@ -90,6 +95,7 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult, canModerat
             {tab === 'overallScoring' && <OverallScoring header={tabHeader} refresh={refreshTab} />}
             {tab === 'reports' && <Reports header={tabHeader} />}
             {tab === 'assessorEvaluations' && <AssessorEvaluations header={tabHeader} />}
+            {tab === 'recordings' && <Recordings header={tabHeader} />}
           </>
         )}
         <div className={cs(styles.menu, { [styles.inactiveTab]: tab === undefined })}>

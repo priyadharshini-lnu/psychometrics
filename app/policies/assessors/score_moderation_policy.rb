@@ -18,6 +18,10 @@ module Assessors
       @user.is?(:assessor) && lead_assessor?
     end
 
+    def recordings?
+      @user.is?(:assessor) && lead_assessor?
+    end
+
     def lead_assessor?
       Users::GetLeadAssessor.call!(@extra[:campaign], @record)&.id == @user.id
     end

@@ -39,6 +39,7 @@ import { getFeatures } from '~/core/config'
 import CreateHoganCredentialsModal from './CreateHoganCredentialsModal'
 import ReportsLanguageSelectionModal from '~/modules/admin/components/ReportsLanguageSelectionModal'
 import DownloadIndividualReportModal from '~/components/DownloadIndividualReportModal'
+import { Recordings } from './Recordings'
 
 const { I18n } = window
 
@@ -188,6 +189,13 @@ export const UserDetails: React.FC<Props> = ({
       key: 'idp',
       label: I18n.t('assessments_reports.menu.idp'),
       children: <Idp />,
+    })
+  }
+  if (user.permissions.viewRecordings) {
+    tabs.push({
+      key: 'recordings',
+      label: I18n.t('assessments_reports.menu.recordings'),
+      children: <Recordings />,
     })
   }
 

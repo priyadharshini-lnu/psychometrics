@@ -230,6 +230,7 @@ export interface UserDetails {
     remove: boolean
     bulkDownload: boolean
     viewWorkshopDetails: boolean
+    viewRecordings: boolean
   }
   manager: {
     id: number | null

@@ -99,6 +99,7 @@ module Administration
           'toggle_status',
           'bulk_download',
           'view_workshop_details',
+          'view_recordings',
           %w[remove destroy]
         ],
         {

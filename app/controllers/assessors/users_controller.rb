@@ -35,6 +35,8 @@ class Assessors::UsersController < Administration::BaseController
       relationship: Relationship.assessor_relationship, assessment: { category: :assessor_form }
     ).group_by(&:assessment_id)
 
+    recordings = ::MeetingRecordings::GetUserRecordings.call!(@user, params[:campaign_id], current_user)
+
     user_reports = UserReport.assessor_report_for_campaign(params[:campaign_id]).where(user_id: @user.id)
     serialized_user_assessments = grouped_user_assessments.map do |_key, user_assessments|
       Administration::Assessors::UserAssessmentSerializer.new(
@@ -48,6 +50,10 @@ class Assessors::UsersController < Administration::BaseController
     serialized_user_reports = Panko::ArraySerializer.new(
       user_reports, each_serializer: Administration::Assessors::UserReportSerializer
     ).to_a
+    serialized_user_recordings = Panko::ArraySerializer.new(
+      recordings,
+      each_serializer: Administration::MeetingRecordingSerializer
+    ).to_a
     render json: {
       user: Administration::Assessors::UserSerializer.new(
         context: {
@@ -57,7 +63,8 @@ class Assessors::UsersController < Administration::BaseController
         }
       ).serialize(@user),
       user_assessments: serialized_user_assessments,
-      user_reports: serialized_user_reports
+      user_reports: serialized_user_reports,
+      user_recordings: serialized_user_recordings
     }
   end
 

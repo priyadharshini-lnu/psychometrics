@@ -34,5 +34,9 @@ module MeetingRooms
     def participants
       workshop.workshop_subjects.includes(:user).map(&:user)
     end
+
+    def assessment_center_date_and_time
+      workshop.formatted_start_time
+    end
   end
 end

@@ -6,34 +6,24 @@ import {
   Tooltip,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { ConnectedProps, connect } from 'react-redux'
+import dayjs from '~/utils/dayjs'
 import { Resource } from '~/modules/admin/components/Resource'
-import { get as getCurrentUser } from '~/core/currentUser'
-import { WorkshopRecordingTR } from '~/modules/admin/modules/campaigns/core/workshopRecording'
+import { UserRecordingTR } from './userRecordings'
 
 const { I18n } = window
 
-const connector = connect(state => ({
-  currentUser: getCurrentUser(state),
-}), {})
-
-type PropsFromRedux = ConnectedProps<typeof connector>
-
-export const RecordingsComponent: React.FC<PropsFromRedux> = () => {
+export const RecordingsComponent = () => {
   const { id, campaignId } = useParams() as { id: string, campaignId: string }
 
   const config = {
     trackUrl: true,
-    responseType: WorkshopRecordingTR,
-    basePath: `campaigns/${campaignId}/workshops/${id}/`,
-    apiConfig: {
-      include_meta: ['permissions'],
-    },
+    responseType: UserRecordingTR,
+    basePath: `campaigns/${campaignId}/subjects/${id}/`,
   }
 
   return (
     <>
-      <Resource config={config} name="workshop_recordings">
+      <Resource config={config} name="meeting_recordings">
         <RecordingsTable />
       </Resource>
     </>
@@ -51,8 +41,19 @@ const RecordingsTable = () => (
       />
       <Resource.Column
         title={I18n.t('administration.scheduling.columns.recording_date')}
-        id="recording_date"
+        id="recordingDate"
         width="5%"
+      />
+      <Resource.Column
+        title={I18n.t('administration.scheduling.columns.assessment_center_date_and_time')}
+        id="assessmentCenterDateAndTime"
+        width="5%"
+        render={({ assessmentCenterDateAndTime }) => {
+          if (!assessmentCenterDateAndTime) return null
+          const date = dayjs(assessmentCenterDateAndTime).format('YYYY-MM-DD')
+          const time = dayjs(assessmentCenterDateAndTime).format('HH:mm A')
+          return `${date} ${time}`
+        }}
       />
       <Resource.Column
         title={I18n.t('administration.scheduling.columns.assessor')}
@@ -131,8 +132,6 @@ const RecordingUrlColumn: React.FC<{
 }> = ({ recordingUrl, recordingDate, serialNo }) => {
   const [open, setOpen] = useState(false)
 
-  if (!recordingUrl) return <span>NA</span>
-
   return (
     <>
       <Space>
@@ -158,4 +157,4 @@ const RecordingUrlColumn: React.FC<{
 }
 
 
-export const Recordings = connector(RecordingsComponent)
+export const Recordings = RecordingsComponent

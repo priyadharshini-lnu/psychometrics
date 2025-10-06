@@ -678,6 +678,7 @@ en:
         no_results: There are no any answered questions
         other_reports: Other Reports
         overall_scoring: Overall Scoring
+        recordings: Recordings
         refresh: Refresh
         reports: Reports
         reports_count: "%{count} Reports"
@@ -3741,6 +3742,7 @@ en:
       campaign_participants: Campaign participants
       columns:
         activity: Activity
+        assessment_center_date_and_time: Assessment center date and time
         assessor: Assessor
         assessors: Assessors
         attendance: Attendance

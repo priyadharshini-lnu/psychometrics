@@ -118,6 +118,7 @@ Rails.application.routes.draw do
           get :assessor_assessments
           get :reports
           get :assessment_with_results
+          get :recordings
         end
       end
     end
@@ -1385,6 +1386,10 @@ as: :simulation_progress_notification
               jsonapi_resources :workshop_resources
               jsonapi_resources :workshop_recordings, only: %i[index]
               jsonapi_resources :campaign_assessments, only: %i[index]
+            end
+
+            resources :subjects, only: [] do
+              resources :meeting_recordings, only: %i[index], module: :subjects
             end
 
             jsonapi_resources :campaign_assessments, only: %i[index]
