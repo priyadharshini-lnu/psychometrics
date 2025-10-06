@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AI::Tools::Idp::DocumentAnalyzer do
+describe AI::Tools::Idp::AttachmentAnalysis do
   subject { described_class.new(user_idp_plan, current_user, ai_assistant) }
 
   let(:current_user) { create(:user) }
@@ -127,7 +127,8 @@ describe AI::Tools::Idp::DocumentAnalyzer do
             current_user,
             'Document is a resume',
             chat: ai_assistant_chat.with_assistant_context,
-            chat_params: { with: 'https://example.com/document.pdf', service: :openai_response_api }
+            chat_params: { with: 'https://example.com/document.pdf', service: :openai_response_api },
+            ignore_user_prompt: nil
           )
         end
       end
@@ -164,9 +165,10 @@ describe AI::Tools::Idp::DocumentAnalyzer do
 
           result = subject.execute(context: 'Document is a resume')
 
+          expected_error = 'Something went wrong while processing your request. Please contact your administrator.'
           expect(ai_assisted_doc_summary_session.reload.status).to eq('failed')
-          expect(ai_assisted_doc_summary_session.reload.error).to eq(error_message)
-          expect(result).to eq({ error: error_message })
+          expect(ai_assisted_doc_summary_session.reload.error).to eq(expected_error)
+          expect(result).to eq({ error: expected_error })
         end
       end
     end
@@ -174,7 +176,7 @@ describe AI::Tools::Idp::DocumentAnalyzer do
     context 'when IdpDocumentNotFoundError is raised during execution' do
       before do
         allow(subject).to receive(:validate_user_idp_document_exists!).and_raise(
-          AI::Tools::Idp::DocumentAnalyzer::IdpDocumentNotFoundError, 'Document not found'
+          AI::Tools::Idp::AttachmentAnalysis::IdpDocumentNotFoundError, 'Document not found'
         )
       end
 

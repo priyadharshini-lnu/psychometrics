@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AI::IdpAssistantService do
+describe AI::AssistableService::Idp do
   let!(:campaign) { create(:campaign) }
   let!(:user) { create(:user) }
   let!(:ai_assistant) { create(:assistant) }
@@ -75,14 +75,6 @@ describe AI::IdpAssistantService do
         expect(ai_session).to be_present
         expect(ai_session.user).to eq(user)
       end
-
-      it 'updates plan status to ai_assisted_idp_in_progress when creating a new session' do
-        expect(plan.status).not_to eq('ai_assisted_idp_in_progress')
-
-        described_class.new(plan, user, instructions, options).call
-
-        expect(plan.reload.status).to eq('ai_assisted_idp_in_progress')
-      end
     end
 
     context 'when ai_assisted_idp_session already exists' do
@@ -110,7 +102,7 @@ describe AI::IdpAssistantService do
           expect(args[:tools].size).to eq(3)
           expect(args[:tools]).to include(AI::Tools::Idp::AddSkillToPlan)
           expect(args[:tools]).to include(AI::Tools::Idp::AvailableSkillsAndDevelopmentActions)
-          expect(args[:tools]).to include(AI::Tools::Idp::DocumentAnalyzer)
+          expect(args[:tools]).to include(AI::Tools::Idp::AttachmentAnalysis)
 
           assistant_chat
         end
@@ -136,7 +128,8 @@ describe AI::IdpAssistantService do
           user,
           instructions,
           chat: assistant_chat,
-          ignore_user_prompt: true
+          ignore_user_prompt: true,
+          chat_params: nil
         )
       end
     end

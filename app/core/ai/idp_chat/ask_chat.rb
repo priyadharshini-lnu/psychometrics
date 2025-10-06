@@ -5,7 +5,7 @@ module AI::IdpChat
     def call
       params = context[:params]
 
-      AI::IdpAssistantService.call(plan, current_user, params['message'], start_new_chat: params['restart_chat']) do
+      AI::AssistableService::Idp.call(plan, current_user, params['message'], start_new_chat: params['restart_chat']) do
         on(:ok) do |response|
           async_response.response_data = response
         end
