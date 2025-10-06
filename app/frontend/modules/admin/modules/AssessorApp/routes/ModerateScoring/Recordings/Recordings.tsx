@@ -9,7 +9,7 @@ import {
   Skeleton,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import dayjs from '~/utils/dayjs'
+import { DateTimeWithZone } from '~/glint'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import styles from './styles.less'
 import { isRequestInProgress } from '~/core/request'
@@ -74,9 +74,7 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
                 key="assessmentCenterDateAndTime"
                 render={({ assessmentCenterDateAndTime }) => {
                   if (!assessmentCenterDateAndTime) return null
-                  const date = dayjs(assessmentCenterDateAndTime).format('YYYY-MM-DD')
-                  const time = dayjs(assessmentCenterDateAndTime).format('HH:mm A')
-                  return `${date} ${time}`
+                  return <DateTimeWithZone dateString={assessmentCenterDateAndTime} />
                 }}
               />
               <Column
