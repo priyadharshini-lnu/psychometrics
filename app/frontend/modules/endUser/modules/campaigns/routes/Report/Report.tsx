@@ -74,6 +74,7 @@ const ReportComponent = ({
           clearInterval(interval)
           const config = {
             message: response.message,
+            // deepcode ignore DOMXSS: We are using SafeHTML component to sanitize the HTML
             description: <SafeHTML html={response.description} />,
             duration: 0,
           }

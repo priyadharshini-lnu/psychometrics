@@ -54,6 +54,7 @@ const MeetingRoom = ({ fetchMeeting }: Props) => {
   return (
     <div style={{ width: '100%', height: 'calc(100vh - 50px)', marginTop: '50px' }}>
       <Suspense fallback={<h3>Still Loading…</h3>}>
+        {/* deepcode ignore OR: We are using sanitized url from our own backend */}
         {token && url && (<Meet token={token} url={url} />)}
       </Suspense>
     </div>

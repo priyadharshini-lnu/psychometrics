@@ -28,6 +28,8 @@ const ImportExternalScoringModalComponent: React.FC<Props> = ({
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState([])
 
+  const parsedCampaignId = parseInt(campaignId, 10)
+
   const handleUpload = () => {
     if (!file) return
 
@@ -83,8 +85,9 @@ const ImportExternalScoringModalComponent: React.FC<Props> = ({
         )}
         <div className="mbl" style={{ fontSize: '16px' }}>
           <a
-            href={`
-            /api/v2/administration/campaigns/${campaignId}/campaign_user_scorings/import_external_scorings_sample_file`
+            href={
+              // eslint-disable-next-line max-len
+              `/api/v2/administration/campaigns/${parsedCampaignId}/campaign_user_scorings/import_external_scorings_sample_file`
             }
             target="_blank"
             rel="noopener noreferrer"

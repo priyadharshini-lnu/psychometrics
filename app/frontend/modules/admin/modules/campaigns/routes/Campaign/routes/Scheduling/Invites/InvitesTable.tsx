@@ -32,7 +32,7 @@ export const InvitesTable = () => {
   const { modal, message } = App.useApp()
 
   const openForm = () => {
-    navigate(`${location.pathname}/add_invite`)
+    navigate('add_invite')
   }
 
   const handleEdit = (workshopInvite: WorkshopInvite) => {

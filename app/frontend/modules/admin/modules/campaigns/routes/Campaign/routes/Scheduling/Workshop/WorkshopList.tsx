@@ -25,7 +25,7 @@ export const WorkshopList: React.FC = () => {
   const location = useLocation()
 
   const openForm = () => {
-    navigate(`${location.pathname}/new`)
+    navigate('new')
   }
 
   const config = {
@@ -124,7 +124,7 @@ const MenuComponent = ({ workshop, setData }) => {
   const navigate = useNavigate()
   const copy = () => {
     setData(workshop)
-    navigate(`${location.pathname}/new`)
+    navigate('new')
   }
   const { resource } = useResourceContext<Workshop>()
 
