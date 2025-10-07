@@ -53,16 +53,6 @@ const getOptionsFromApprovalSettings = (reportApprovalSettings, dataKey, fetched
 
 const getUserIds = users => users.map(user => user.id)
 
-const showDigestToggle = (form) => {
-  const allowBulk = form.getFieldValue('allowQcBulkSubmit') || form.getFieldValue('allowBulkApprove')
-  const noNotifications = !form.getFieldValue('doNotSendNotifications')
-  return allowBulk && noNotifications
-}
-
-const showDigestOptions = form => showDigestToggle(form) && form.getFieldValue('sendDigestEmails')
-
-const showDigestSchedulingOptions = form => showDigestOptions(form)
-                                            && form.getFieldValue('digestDeliveryMode') === 'scheduled'
 
 export const ReportApprovalFormModal: React.FC<Props> = ({
   reportApprovalSettings,
@@ -127,6 +117,17 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
 
   const features = useSelector((state: RootState) => getFeatures(state))
   const isDigestEmailsEnabled = features?.digest_emails_enabled
+
+  const allowBulkSubmit = Form.useWatch('allowQcBulkSubmit', form)
+  const allowBulkApprove = Form.useWatch('allowBulkApprove', form)
+  const doNotSendNotifications = Form.useWatch('doNotSendNotifications', form)
+  const sendDigestEmails = Form.useWatch('sendDigestEmails', form)
+  const digestDeliveryMode = Form.useWatch('digestDeliveryMode', form)
+  const digestFrequency = Form.useWatch('digestFrequency', form)
+
+  const showDigestToggle = (allowBulkSubmit || allowBulkApprove) && !doNotSendNotifications
+  const showDigestOptions = showDigestToggle && sendDigestEmails
+  const showDigestSchedulingOptions = showDigestOptions && digestDeliveryMode === 'scheduled'
 
   return (
     <ResourceFormModal
@@ -258,7 +259,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                     </div>
                   </Space>
 
-                  {isDigestEmailsEnabled && showDigestToggle(form) && (
+                  {isDigestEmailsEnabled && showDigestToggle && (
                     <Space align="center">
                       <Form.Item
                         name="sendDigestEmails"
@@ -273,13 +274,13 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                     </Space>
                   )}
 
-                  {isDigestEmailsEnabled && showDigestOptions(form) && (
+                  {isDigestEmailsEnabled && showDigestOptions && (
                     <Form.Item
                       name="digestDeliveryMode"
                       label={I18n.t(
                         'administration.campaigns.assessment_reports.report_approval.digest_delivery_mode.form_label',
                       )}
-                      rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
+                      rules={[{ required: sendDigestEmails }]}
                     >
                       <Select>
                         <Option value="immediate">
@@ -297,14 +298,14 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       </Select>
                     </Form.Item>
                   )}
-                  {isDigestEmailsEnabled && showDigestSchedulingOptions(form) && (
+                  {isDigestEmailsEnabled && showDigestSchedulingOptions && (
                     <>
                       <Form.Item
                         name="digestFrequency"
                         label={I18n.t(
                           'administration.campaigns.assessment_reports.report_approval.digest_frequency.form_label',
                         )}
-                        rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
+                        rules={[{ required: sendDigestEmails }]}
                       >
                         <Select>
                           <Option value="daily">
@@ -324,20 +325,20 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                           </Option>
                         </Select>
                       </Form.Item>
-                      {['weekly', 'weekdays'].includes(form.getFieldValue('digestFrequency')) && (
+                      {['weekly', 'weekdays'].includes(digestFrequency) && (
                         <Form.Item
                           name="digestWeekdays"
                           label={I18n.t(
                             'administration.campaigns.assessment_reports.report_approval.digest_weekdays.form_label',
                           )}
                           rules={[{
-                            required: form.getFieldValue('sendDigestEmails')
-                          && ['weekly', 'weekdays'].includes(form.getFieldValue('digestFrequency')),
+                            required: sendDigestEmails
+                          && ['weekly', 'weekdays'].includes(digestFrequency),
                           }]}
                         >
                           <Select
                             mode="multiple"
-                            maxCount={form.getFieldValue('digestFrequency') === 'weekly' ? 1 : 7}
+                            maxCount={digestFrequency === 'weekly' ? 1 : 7}
                           >
                             <Option value={0}>
                               {I18n.t(
@@ -380,7 +381,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Form.Item
                         name="digestTime"
                         label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_time')}
-                        rules={[{ required: form.getFieldValue('sendDigestEmails') }]}
+                        rules={[{ required: sendDigestEmails }]}
                       >
                         <TimePicker format="hh:mm A" use12Hours />
                       </Form.Item>
