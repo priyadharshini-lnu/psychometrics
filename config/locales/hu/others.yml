@@ -2508,6 +2508,7 @@ hu:
       update_success: Az SMS meghívó frissítése sikeresen megtörtént
     sms_records:
       create_success: Az SMS-feladat ütemezése sikeresen megtörtént
+    starting_in: Kezdő
     test_webhook:
       create_success: A webhook teszt sikeres.
       success: Siker
@@ -3046,7 +3047,7 @@ hu:
     users:
       account_disable: Fiókját inaktivitás miatt letiltották
       warning: Fiókját hamarosan letiltjuk inaktivitás miatt
-  maintenance_message: A világítótorony ütemezett karbantartás miatt leáll a(z) %{start_date} órán, és %{duration} órán keresztül nem lesz elérhető
+  maintenance_message: A világítótorony %{start_date}-án ütemezett karbantartás miatt leáll, és %{duration} nem lesz elérhető
   maintenance_submessage: Kérjük, frissítse az oldalt a karbantartás befejezése után. A rendszer átirányítja a bejelentkezési oldalra
   my: M
   myself: Magam

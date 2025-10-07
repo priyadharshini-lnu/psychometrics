@@ -1,0 +1,43 @@
+- if show_maintenance_alert?
+  #maintenance-alert-banner style="color: #fff;width: 100%;padding: 10px;font-size: 14px;background: #fa8c16; text-align: center;"
+    span#maintenance-message = t('maintenance_message', **maintenance_time_frame)
+    span#maintenance-countdown style="margin-left: 10px; font-weight: bold;"
+
+  javascript [nonce=content_security_policy_nonce]:
+    (function() {
+      const maintenanceStartTime = #{maintenance_start_date.to_i * 1000};
+      const countdownElement = document.getElementById('maintenance-countdown');
+      const messageElement = document.getElementById('maintenance-message');
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const timeUntilMaintenance = maintenanceStartTime - now;
+
+        // If maintenance time has passed, reload the page
+        if (timeUntilMaintenance <= 0) {
+          location.reload();
+          return;
+        }
+
+        // Show countdown only if less than 5 minutes remaining
+        const twoMinutesInMs = 5 * 60 * 1000;
+        if (timeUntilMaintenance <= twoMinutesInMs) {
+          const minutes = Math.floor(timeUntilMaintenance / (1000 * 60));
+          const seconds = Math.floor((timeUntilMaintenance % (1000 * 60)) / 1000);
+
+          countdownElement.innerHTML = `- ${I18n.t('frontend.starting_in')} ${minutes}:${seconds.toString().padStart(2, '0')}`;
+          countdownElement.style.display = 'inline';
+        } else {
+          countdownElement.style.display = 'none';
+        }
+      }
+
+      // Update countdown immediately and then every second
+      updateCountdown();
+      const intervalId = setInterval(updateCountdown, 1000);
+
+      // Clean up interval when page unloads
+      window.addEventListener('beforeunload', function() {
+        clearInterval(intervalId);
+      });
+    })();

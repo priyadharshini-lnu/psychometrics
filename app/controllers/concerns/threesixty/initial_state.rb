@@ -52,9 +52,6 @@ module Threesixty::InitialState
         },
         agileAssetsUrl: Settings.agile_config.asset_url,
         features: feature_flags,
-        maintenance: {
-          remainingTime: remaining_maintenance_time
-        },
         lighthousePrivacyUrl: Settings.privacy_url,
         privacyPolicyVersion: @current_project.current_privacy_policy_version,
         customPrivacyConsentText: custom_privacy_consent_text,

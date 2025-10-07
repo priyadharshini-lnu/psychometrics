@@ -2506,6 +2506,7 @@ en-US:
       update_success: SMS Invite was updated successfully
     sms_records:
       create_success: SMS job was scheduled successfully
+    starting_in: Starting in
     test_webhook:
       create_success: Webhook test successful.
       success: Success
@@ -3066,7 +3067,7 @@ en-US:
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity
-  maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
+  maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration}
   maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
   my: My
   myself: Myself

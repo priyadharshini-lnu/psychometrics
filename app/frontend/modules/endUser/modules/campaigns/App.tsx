@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { notification, theme } from 'antd'
+import { theme } from 'antd'
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
@@ -26,24 +25,10 @@ const px2rem = px2remTransformer({
 })
 
 function App () {
-  const { config: { maintenance: { remainingTime }, design } } = store.getState()
+  const { config: { design } } = store.getState()
   const { token } = useToken()
   useWindowInnerSize(document.documentElement)
   const primaryColor = design.primary_color || DEFAULT_PRIMARY_COLOR
-
-  useEffect(() => {
-    if (remainingTime && remainingTime > 0) {
-      setTimeout(() => {
-        notification.warning({
-          message: I18n.t('frontend.maintenance.notification'),
-          duration: 15,
-        })
-        setTimeout(() => {
-          location.reload()
-        }, 60000)
-      }, (remainingTime - 40) * 1000)
-    }
-  }, [])
 
   return (
     <Provider store={store}>
