@@ -10,7 +10,7 @@ import { Separator } from '~/components/IdpShared/Separator'
 import dayjs from '~/utils/dayjs'
 import styles from './DevelopmentActionLandscapeCard.less'
 import { DevelopmentAction } from '~/components/IdpShared/DevelopmentActions/Types'
-import { developmentActionLearningStylesConfig, sourceTypeConfig, DevelopmentActionSourceType }
+import { developmentActionLearningStylesConfig, sourceTypeConfig }
   from '~/components/IdpShared/DevelopmentActions/Constants'
 
 
@@ -265,15 +265,13 @@ const Card = ({
             }}
             className="p-3"
           >
-            {developmentAction.sourceType !== DevelopmentActionSourceType.AI_GENERATED ? (
-              <Typography.Title
-                level={5}
-                className="mt-0"
-                ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
-              >
-                {developmentAction.name}
-              </Typography.Title>
-            ) : null}
+            <Typography.Title
+              level={5}
+              className="mt-0"
+              ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+            >
+              {developmentAction.name}
+            </Typography.Title>
             <Typography.Paragraph
               ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
             >

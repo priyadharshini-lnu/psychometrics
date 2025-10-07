@@ -3,7 +3,7 @@
 module Api
   class V2::Administration::UserIdpDevelopmentActionsController < Api::V2::Administration::BaseController
     skip_before_action :enforce_geo_restriction
-    before_action :load_skill!, only: %i[generate_by_ai]
+    before_action :load_user_idp_skill!, only: %i[generate_by_ai]
 
     validate_crud_requests Api::V2::UserIdpDevelopmentAction::Schema
     validates_request_schema :bulk_update, -> { Api::V2::UserIdpDevelopmentAction::BulkUpdateContract.new }
@@ -25,13 +25,18 @@ module Api
     end
 
     def generate_by_ai
-      generated_actions = DevelopmentActions::GenerativeService.new(@skill, ai_generate_service_params).call!
-      render json: { data: { id: @skill.id, attributes: { generated_actions: generated_actions } } }, status: :ok
-    rescue DevelopmentActions::GenerativeService::RegenerateLimitReachedError => e
-      render json: { errors: [e.message] }, status: 422
-    rescue DevelopmentActions::GenerativeService::GenerativeServiceError => e
-      Rails.logger.error(e.message)
-      render json: { errors: [I18n.t('common.errors.something_wrong')] }, status: 422
+      generative_service = DevelopmentActions::GenerativeService.new(@user_idp_skill, current_user,
+                                                                     ai_generate_service_params)
+
+      generative_service.
+        on(:ok) do |generated_actions|
+          render json: { data: { id: @user_idp_skill.skill_id, attributes: { generated_actions: generated_actions } } },
+                 status: :ok
+        end.
+        on(:error) do |error_message|
+          render json: { errors: [error_message] }, status: 422
+        end.
+        call
     end
 
     private
@@ -57,16 +62,15 @@ module Api
       )
     end
 
-    def load_skill!
-      @skill = ::Skill.find(ai_generate_service_params[:skill_id])
+    def load_user_idp_skill!
+      @user_idp_skill = ::UserIdpSkill.find(ai_generate_service_params[:user_idp_skill_id])
     end
 
     def ai_generate_service_params
       params.require(:data).require(:attributes).permit(
-        :skill_id,
+        :user_idp_skill_id,
         :lang,
-        :generate_more,
-        generated_actions: %i[description learning_style]
+        :generate_more
       )
     end
   end

@@ -369,7 +369,9 @@ en:
       created_successfully: AI Assistant was created successfully.
       errors:
         cannot_delete_in_use: Cannot delete AI Assistant '%{name}' because it is being used.
+        development_actions_assistance_not_enabled: AI-powered development actions generation is not available. Please contact administrator.
         one_click_idp_assistance_not_enabled: AI-powered IDP assistance is not available with your current plan. Please contact administrator.
+        platform_assistant_already_exists: Only 1 assistant of type %{type} is allowed on the platform.
       form:
         add_output_schema_key: Add Output Schema Key
         dependencies: Dependencies

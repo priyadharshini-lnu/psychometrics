@@ -2284,6 +2284,8 @@ en:
       body:
         error: Email body has incorrect pipetext.
   errors:
+    ai_assistant:
+      max_generation_limit: Maximum generation limit exceeded, contact your administration.
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
     equal_to_current_password: must be different than the current password.

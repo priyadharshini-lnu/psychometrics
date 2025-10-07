@@ -7,6 +7,7 @@ class UserIdpSkill < ApplicationRecord
   belongs_to :skill
   has_one :user, through: :user_idp_plan
   has_many :user_idp_development_actions, dependent: :destroy
+  has_many :development_actions, through: :skill
   validates :initial_rating, numericality: { greater_than: 0, less_than_or_equal_to: MAX_RATING }, allow_blank: true
 
   scope :private_skills, -> { where(private: true) }

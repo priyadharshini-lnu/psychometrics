@@ -130,8 +130,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     onAddDevelopmentAction?.(developmentActions.reduce((acc, developmentAction) => {
       const uniqueId = uuidv4()
       acc[uniqueId] = {
-        description: developmentAction.description,
-        learningStyle: developmentAction.learningStyle,
+        ...developmentAction,
         sourceType: DevelopmentActionSourceType.AI_GENERATED,
         id: uniqueId,
         developmentActionId: developmentAction.id,
