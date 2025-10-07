@@ -9,6 +9,7 @@ class BaseController < ActionController::Base
   protect_from_forgery with: :exception
   add_flash_types :notice, :error, :success
 
+  prepend_before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
   prepend_before_action :authenticate_user!, unless: -> { try(:skip_authentication?) }
   prepend_before_action :set_client_by_subdomain
   before_action :set_current_attributes
@@ -18,6 +19,10 @@ class BaseController < ActionController::Base
 
   rescue_from Rack::Timeout::RequestTimeoutException, with: :timeout
   rescue_from ActionController::InvalidAuthenticityToken, with: :handle_invalid_authenticity_token
+
+  def redirect_to_maintenance
+    redirect_to maintenance_url
+  end
 
   def change_password_required_path_for(_)
     if current_user.is?(:regular)

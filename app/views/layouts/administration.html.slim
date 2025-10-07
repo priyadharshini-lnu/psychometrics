@@ -18,6 +18,7 @@ html lang="en"
     = vite_react_refresh_tag
 
   body#administration class=(I18n.locale == :ar ? 'rtl' : 'ltr' ) data-locale="#{@selected_locale || params[:lang] || I18n.locale}"
+    = render 'shared/maintenance_alert_banner'
     .page-container
       = render partial: 'left_sidebar'
       .page-content

@@ -2,6 +2,7 @@
 
 class MaintenanceController < ApplicationController
   layout 'maintenance'
+  skip_before_action :set_client_by_subdomain
   skip_before_action :redirect_to_maintenance
 
   def index

@@ -2498,6 +2498,7 @@ ja:
       update_success: SMS Inviteは正常に更新されました。
     sms_records:
       create_success: SMSジョブが正常にスケジュールされました
+    starting_in: で開始
     test_webhook:
       create_success: Webhookテスト成功。
       success: 成功
@@ -3058,7 +3059,7 @@ ja:
     users:
       account_disable: アカウントが無効になっています
       warning: アカウントが無効のため、すぐに無効になります。
-  maintenance_message: ライトハウスは、%{start_date}日に定期メンテナンスのためダウンし、%{duration}時間利用できなくなります。
+  maintenance_message: 灯台は%{start_date}の定期メンテナンスのため停止し、%{duration}利用できなくなります
   maintenance_submessage: メンテナンス終了後、ページを更新してください。 ログインページにリダイレクトされます。
   my: 私の
   myself: 私自身

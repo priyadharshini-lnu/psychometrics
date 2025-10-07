@@ -67,7 +67,8 @@ module ApplicationHelper
   end
 
   def show_maintenance_alert?
-    return false unless maintenance_start_date
+    return false if maintenance_start_date.nil? || maintenance_end_date.nil?
+    return false if Time.current > maintenance_end_date
 
     maintenance_subdomains.empty? || maintenance_subdomains.include?(current_project&.subdomain)
   end
@@ -96,9 +97,11 @@ module ApplicationHelper
   end
 
   def maintenance_time_frame
+    duration_minutes = ENV.fetch('MAINTENANCE_DURATION', 0).to_i
+    formatted_duration = distance_of_time_in_words(0, duration_minutes.minutes)
     {
       start_date: maintenance_start_date.utc.strftime('%B %d, %Y at %l:%M%p GMT'), # October 30, 2021 at 3:30pm GST
-      duration: duration
+      duration: formatted_duration
     }
   end
 

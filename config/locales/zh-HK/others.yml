@@ -906,6 +906,7 @@ zh-HK:
       message_after_timeout: 您的會話已超時，請重新登入。
       time_remaining: 剩餘時間
       title: 會話超時警告
+    starting_in: 從
     update: 更新
     upload: 上載
     workshop_invited_subjects:
@@ -1238,6 +1239,7 @@ zh-HK:
       subject: Lighthouse 的登入連結
     powered_by:
       text: Powered by Lighthouse.
+  maintenance_message: 燈塔將在%{start_date}進行定期維護，並且%{duration}無法使用
   navigation:
     logout: 登出
   norms:

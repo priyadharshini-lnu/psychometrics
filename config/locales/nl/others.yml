@@ -2503,6 +2503,7 @@ nl:
       update_success: SMS Uitnodiging is succesvol bijgewerkt
     sms_records:
       create_success: SMS-taak is met succes gepland
+    starting_in: Vanaf
     test_webhook:
       create_success: Webhook test geslaagd.
       success: Succes
@@ -3041,7 +3042,7 @@ nl:
     users:
       account_disable: Je account is uitgeschakeld wegens inactiviteit
       warning: Je account wordt binnenkort uitgeschakeld wegens inactiviteit
-  maintenance_message: Lighthouse zal niet beschikbaar zijn voor gepland onderhoud op %{start_date} en zal niet beschikbaar zijn voor %{duration} uur
+  maintenance_message: Lighthouse zal niet beschikbaar zijn voor gepland onderhoud aan %{start_date} en zal niet beschikbaar zijn voor %{duration}
   maintenance_submessage: Vernieuw de pagina nadat het onderhoud is voltooid. U wordt doorgestuurd naar de inlogpagina
   my: Mijn
   myself: Ikzelf

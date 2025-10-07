@@ -2508,6 +2508,7 @@ sk:
       update_success: SMS pozvánka bola úspešne aktualizovaná
     sms_records:
       create_success: Úloha SMS bola úspešne naplánovaná
+    starting_in: Počnúc rokom
     test_webhook:
       create_success: Test webhooku bol úspešný.
       success: Úspech
@@ -3068,7 +3069,7 @@ sk:
     users:
       account_disable: Váš účet bol deaktivovaný z dôvodu nečinnosti
       warning: Váš účet bude čoskoro deaktivovaný z dôvodu nečinnosti
-  maintenance_message: Maják bude mimo prevádzky kvôli plánovanej údržbe na %{start_date} a nebude k dispozícii %{duration} hodín
+  maintenance_message: Maják bude %{start_date} mimo prevádzky pre plánovanú údržbu a nebude k dispozícii pre %{duration}
   maintenance_submessage: Po dokončení údržby obnovte stránku. Budete presmerovaní na prihlasovaciu stránku
   my: Môj
   myself: Seba
