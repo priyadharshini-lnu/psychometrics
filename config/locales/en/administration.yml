@@ -4606,7 +4606,6 @@ en:
             title: Options
           subjects:
             add_subjects: Add Subjects
-            is_invalid: is invalid
             current_job_role: Current Job Role
             email: Email
             email_is_required: Email is required

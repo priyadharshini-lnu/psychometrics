@@ -162,7 +162,6 @@ function CreateSubjectModal ({
         form={form}
         layout="vertical"
         onFinish={handleSubmit}
-        validateTrigger={['onChange', 'onFinish']}
       >
         <Form.Item
           name="email"
@@ -173,7 +172,7 @@ function CreateSubjectModal ({
             },
             {
               type: 'email',
-              message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.is_invalid'),
+              message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.please_enter_valid_email'),
             },
           ]}
         >
