@@ -2988,12 +2988,8 @@ cs:
           proficiency: Znalost importu
           translations: Překlady pro dovozce
         errors:
-          by_skill_exists: 'Řádek %{row_number}: ProficiencyLevel ''by_skill'' již existuje pro tento projekt a dovednost'
           by_skill_missing: 'Řádek %{row_number}: Projekt a dovednost musí být přítomny pro typ ''by_skill'''
-          by_skill_type_exists: 'Řádek %{row_number}: ProficiencyLevel ''''by_skill_type'''' již existuje pro tento projekt a typ dovednosti'
           by_skill_type_missing: 'Řádek %{row_number}: Typ projektu a dovednosti musí být přítomen pro typ ''''by_skill_type'''''
-          default_global_exists: 'Řádek %{row_number}: Již existuje ''''výchozí'''' úroveň ProficiencyLevel na globální úrovni'
-          default_project_exists: 'Řádek %{row_number}: Již existuje ''''výchozí'''' ProficiencyLevel na úrovni projektu'
           invalid_csv_format: 'Nesprávný formát CSV: %{message}'
           invalid_proficiency_type: 'Řádek %{row_number}: Neplatný nebo chybějící ProficiencyType'
           invalid_skill_type: 'Řádek %{row_number}: Neplatný typ dovednosti "%{skill_type}". Platné typy jsou: %{valid_types}'

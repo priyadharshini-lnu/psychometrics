@@ -2988,7 +2988,6 @@ pl:
           proficiency: Biegłość w imporcie
           translations: Tłumaczenia biegłości importowej
         errors:
-          by_skill_exists: 'Wiersz %{row_number}: Poziom biegłości "by_skill" już istnieje dla tego projektu i umiejętności'
           by_skill_missing: 'Wiersz %{row_number}: Projekt i umiejętność muszą być obecne dla typu "by_skill"'
           invalid_csv_format: 'Nieprawidłowy format CSV: %{message}'
           invalid_proficiency_type: 'Wiersz %{row_number}: Nieprawidłowy lub brakujący ProficiencyType'

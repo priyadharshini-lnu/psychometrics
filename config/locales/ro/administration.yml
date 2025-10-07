@@ -2988,7 +2988,6 @@ ro:
           proficiency: Competența de import
           translations: Traduceri de competență de import
         errors:
-          by_skill_exists: 'Rândul %{row_number}: Există deja un nivel de competență "by_skill" pentru acest proiect și abilitate'
           by_skill_missing: 'Rândul %{row_number}: Proiectul și Skill trebuie să fie prezente pentru tipul "by_skill"'
           invalid_csv_format: 'Format CSV nevalid: %{message}'
           invalid_proficiency_type: 'Rândul %{row_number}: ProficiencyType nevalid sau lipsă'

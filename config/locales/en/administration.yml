@@ -3025,12 +3025,12 @@ en:
           proficiency: Import Proficiency
           translations: Import Proficiency Translations
         errors:
-          by_skill_exists: 'Row %{row_number}: A ''by_skill'' ProficiencyLevel already exists for this project and skill'
+          by_skill_exists_id_missing: 'Row %{row_number}: A proficiency level for skill ''%{name}'' already exists. Please provide the ID to update it.'
           by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
-          by_skill_type_exists: 'Row %{row_number}: A ''''by_skill_type'''' ProficiencyLevel already exists for this project and skill type'
+          by_skill_type_exists_id_missing: 'Row %{row_number}: A proficiency level for skill type ''%{skill_type}'' already exists. Please provide the ID to update it.'
           by_skill_type_missing: 'Row %{row_number}: Project and Skill Type must be present for ''''by_skill_type'''' type'
-          default_global_exists: 'Row %{row_number}: A global-level ''default'' ProficiencyLevel already exists'
-          default_project_exists: 'Row %{row_number}: A project-level ''default'' ProficiencyLevel already exists'
+          default_global_exists_id_missing: 'Row %{row_number}: A global-level ''default'' ProficiencyLevel already exists. Please provide the ID to update it.'
+          default_project_exists_id_missing: 'Row %{row_number}: A project-level ''default'' ProficiencyLevel already exists. Please provide the ID to update it.'
           invalid_csv_format: 'Invalid CSV format: %{message}'
           invalid_proficiency_type: 'Row %{row_number}: Invalid or missing ProficiencyType'
           invalid_skill_type: 'Row %{row_number}: Invalid skill type "%{skill_type}". Valid types are: %{valid_types}'

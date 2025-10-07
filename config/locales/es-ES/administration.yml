@@ -2988,12 +2988,8 @@ es-ES:
           proficiency: Capacidad de importación
           translations: Importar Traducciones Proficiency
         errors:
-          by_skill_exists: 'Fila %{row_number}: Ya existe un ProficiencyLevel ''by_skill'' para este proyecto y habilidad.'
           by_skill_missing: 'Fila %{row_number}: Project y Skill deben estar presentes para el tipo ''by_skill'
-          by_skill_type_exists: 'Fila %{row_number}: Ya existe un ProficiencyLevel ''''by_skill_type'''' para este proyecto y tipo de habilidad'
           by_skill_type_missing: 'Fila %{row_number}: Project y Skill Type deben estar presentes para el tipo ''''by_skill_type'
-          default_global_exists: 'Fila %{row_number}: Ya existe un ProficiencyLevel ''''predeterminado'''' de nivel global.'
-          default_project_exists: 'Fila %{row_number}: Ya existe un ProficiencyLevel ''''por defecto'''' a nivel de proyecto.'
           invalid_csv_format: 'Formato CSV no válido: %{message}'
           invalid_proficiency_type: 'Fila %{row_number}: ProficiencyType inválido o faltante'
           invalid_skill_type: 'Fila %{row_number}: Tipo de habilidad no válido "%{skill_type}". Los tipos válidos son: %{valid_types}'

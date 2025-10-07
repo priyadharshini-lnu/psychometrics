@@ -2988,12 +2988,8 @@ it:
           proficiency: Competenza nell'importazione
           translations: Importazione di traduzioni di competenza
         errors:
-          by_skill_exists: 'Riga %{row_number}: Esiste già un livello di competenza ''by_skill'' per questo progetto e per questa competenza.'
           by_skill_missing: 'Riga %{row_number}: Il progetto e la competenza devono essere presenti per il tipo ''by_skill''.'
-          by_skill_type_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''by_skill_type'''' per questo progetto e per questo tipo di abilità.'
           by_skill_type_missing: 'Riga %{row_number}: Il progetto e il tipo di competenza devono essere presenti per il tipo ''''by_skill_type''''.'
-          default_global_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel di livello globale ''''predefinito''''.'
-          default_project_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''predefinito'''' a livello di progetto.'
           invalid_csv_format: 'Formato CSV non valido: %{message}'
           invalid_proficiency_type: 'Riga %{row_number}: Tipo di competenza non valido o mancante'
           invalid_skill_type: 'Riga %{row_number}: Tipo di abilità non valida "%{skill_type}". I tipi validi sono: %{valid_types}'

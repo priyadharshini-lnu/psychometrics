@@ -2988,7 +2988,6 @@ vi:
           proficiency: Thành thạo nhập khẩu
           translations: Bản dịch thành thạo nhập khẩu
         errors:
-          by_skill_exists: 'Hàng %{row_number}: Mức độ thông thạo ''by_skill'' đã tồn tại cho dự án và kỹ năng này'
           by_skill_missing: 'Hàng %{row_number}: Dự án và Kỹ năng phải có đối với loại ''by_skill'''
           invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
           invalid_proficiency_type: 'Hàng %{row_number}: Không hợp lệ hoặc thiếu ProficiencyType'

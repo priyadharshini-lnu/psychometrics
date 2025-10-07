@@ -2993,7 +2993,6 @@ en-US:
           proficiency: Import Proficiency
           translations: Import Proficiency Translations
         errors:
-          by_skill_exists: 'Row %{row_number}: A ''by_skill'' ProficiencyLevel already exists for this project and skill'
           by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
           invalid_csv_format: 'Invalid CSV format: %{message}'
           invalid_proficiency_type: 'Row %{row_number}: Invalid or missing ProficiencyType'

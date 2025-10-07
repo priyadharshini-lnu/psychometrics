@@ -2988,12 +2988,8 @@ pt:
           proficiency: Proficiência em importação
           translations: Traduções de Proficiência em Importação
         errors:
-          by_skill_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''by_skill'' para este projeto e competência'
           by_skill_missing: 'Linha %{row_number}: O projeto e a competência têm de estar presentes para o tipo ''by_skill'
-          by_skill_type_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''''by_skill_type'''' para este projeto e tipo de competência'
           by_skill_type_missing: 'Linha %{row_number}: O projeto e o tipo de competência têm de estar presentes para o tipo ''''by_skill_type'''''
-          default_global_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''''predefinido'''' a nível global'
-          default_project_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel "predefinido" ao nível do projeto'
           invalid_csv_format: 'Formato CSV inválido: %{message}'
           invalid_proficiency_type: 'Linha %{row_number}: ProficiencyType inválido ou em falta'
           invalid_skill_type: 'Linha %{row_number}: Tipo de competência inválido "%{skill_type}". Os tipos válidos são: %{valid_types}'

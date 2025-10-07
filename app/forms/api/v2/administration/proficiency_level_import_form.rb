@@ -111,13 +111,11 @@ module Api
             return
           end
 
-          # Check for existing proficiency level with this skill
-          if ::ProficiencyLevel.exists?(proficiency_type: 'by_skill',
-                                        project_id: project_id,
-                                        skill_id: skill.id)
+          if row['ID'].blank? && ::ProficiencyLevel.exists?(proficiency_type: 'by_skill', project_id: project_id,
+                                                            skill_id: skill.id)
             errors.add(:base,
-                       I18n.t('administration.proficiency_levels.import.errors.by_skill_exists',
-                              row_number: row_number))
+                       I18n.t('administration.proficiency_levels.import.errors.by_skill_exists_id_missing',
+                              row_number: row_number, name: skill_name))
           end
         end
 
@@ -142,27 +140,26 @@ module Api
             return
           end
 
-          if ::ProficiencyLevel.exists?(proficiency_type: 'by_skill_type',
-                                        project_id: project_id,
-                                        skill_type: skill_type)
+          if row['ID'].blank? && ::ProficiencyLevel.exists?(proficiency_type: 'by_skill_type', project_id: project_id,
+                                                            skill_type: skill_type)
             errors.add(:base,
-                       I18n.t('administration.proficiency_levels.import.errors.by_skill_type_exists',
-                              row_number: row_number))
+                       I18n.t('administration.proficiency_levels.import.errors.by_skill_type_exists_id_missing',
+                              row_number: row_number, skill_type: skill_type))
           end
         end
 
-        def validate_default_row(_row, row_number)
+        def validate_default_row(row, row_number)
           if project_id.nil?
             # Check for existing global default proficiency
-            if ::ProficiencyLevel.exists?(proficiency_type: 'default', project_id: nil)
+            if row['ID'].blank? && ::ProficiencyLevel.exists?(proficiency_type: 'default', project_id: nil)
               errors.add(:base,
-                         I18n.t('administration.proficiency_levels.import.errors.default_global_exists',
+                         I18n.t('administration.proficiency_levels.import.errors.default_global_exists_id_missing',
                                 row_number: row_number))
             end
-          elsif ::ProficiencyLevel.exists?(proficiency_type: 'default', project_id: project_id)
+          elsif row['ID'].blank? && ::ProficiencyLevel.exists?(proficiency_type: 'default', project_id: project_id)
             # Check for project-specific default proficiency
             errors.add(:base,
-                       I18n.t('administration.proficiency_levels.import.errors.default_project_exists',
+                       I18n.t('administration.proficiency_levels.import.errors.default_project_exists_id_missing',
                               row_number: row_number))
           end
         end

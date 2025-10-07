@@ -2988,7 +2988,6 @@ bg:
           proficiency: Умения за импортиране
           translations: Импортиране на преводи за умения
         errors:
-          by_skill_exists: 'Ред %{row_number}: Ниво на владеене "by_skill" вече съществува за този проект и умение'
           by_skill_missing: 'Ред %{row_number}: Проектът и умението трябва да присъстват за тип ''by_skill'''
           invalid_csv_format: 'Невалиден CSV формат: %{message}'
           invalid_proficiency_type: 'Ред %{row_number}: Невалиден или липсващ ProficiencyType'

@@ -2988,12 +2988,8 @@ zh:
           proficiency: 进口能力
           translations: 进口能力翻译
         errors:
-          by_skill_exists: 行 %{row_number}：此项目和技能已存在 "by_skill "熟练等级
           by_skill_missing: 行 %{row_number}：by_skill "类型必须有项目和技能
-          by_skill_type_exists: 行 %{row_number}：此项目和技能类型已存在"'by_skill_type'"熟练等级
           by_skill_type_missing: 行 %{row_number}：by_skill_type''类型必须有项目和技能类型
-          default_global_exists: 行 %{row_number}：已存在全局级别的 "默认 "熟练等级
-          default_project_exists: 行 %{row_number}：已存在项目级别的 "默认 "熟练级别
           invalid_csv_format: CSV 格式无效： %{message}
           invalid_proficiency_type: 行 %{row_number}：无效或缺少 ProficiencyType
           invalid_skill_type: '行 %{row_number}: 无效技能类型 "%{skill_type}"。有效类型为: %{valid_types}'

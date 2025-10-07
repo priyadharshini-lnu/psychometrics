@@ -2988,7 +2988,6 @@ sk:
           proficiency: Odbornosť importu
           translations: Import prekladov odbornosti
         errors:
-          by_skill_exists: 'Riadok %{row_number}: Pre tento projekt a zručnosť už existuje úroveň "by_skill"'
           by_skill_missing: 'Riadok %{row_number}: Projekt a zručnosť musia byť prítomné pre typ "by_skill"'
           invalid_csv_format: 'Neplatný formát CSV: %{message}'
           invalid_proficiency_type: 'Riadok %{row_number}: Neplatný alebo chýbajúci ProficiencyType'

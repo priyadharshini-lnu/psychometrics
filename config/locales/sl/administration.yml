@@ -2988,7 +2988,6 @@ sl:
           proficiency: Znanje uvoza
           translations: Uvoz prevodov strokovnosti
         errors:
-          by_skill_exists: 'Vrstica %{row_number}: Za ta projekt in spretnost že obstaja raven strokovnosti ''by_skill'''
           by_skill_missing: 'Vrstica %{row_number}: Projekt in spretnost morata biti prisotna za vrsto »by_skill«'
           invalid_csv_format: 'Neveljavna oblika zapisa CSV: %{message}'
           invalid_proficiency_type: 'Vrstica %{row_number}: Neveljavna ali manjka ProficiencyType'

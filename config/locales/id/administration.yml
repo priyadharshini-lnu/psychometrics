@@ -2988,7 +2988,6 @@ id:
           proficiency: Kemahiran Impor
           translations: Terjemahan Kemahiran Impor
         errors:
-          by_skill_exists: 'Baris %{row_number}: Tingkat Kecakapan ''by_skill'' sudah ada untuk proyek dan keterampilan ini'
           by_skill_missing: 'Baris %{row_number}: Proyek dan Keterampilan harus ada untuk jenis ''by_skill'''
           invalid_csv_format: 'Format CSV tidak valid: %{message}'
           invalid_proficiency_type: 'Baris %{row_number}: Tidak valid atau tidak ada ProficiencyType'

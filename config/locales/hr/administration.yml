@@ -2988,7 +2988,6 @@ hr:
           proficiency: Vještina uvoza
           translations: Uvoz prijevoda stručnosti
         errors:
-          by_skill_exists: 'Redak %{row_number}: Razina znanja ''by_skill'' već postoji za ovaj projekt i vještinu'
           by_skill_missing: 'Redak %{row_number}: Projekt i vještina moraju biti prisutni za vrstu ''by_skill'''
           invalid_csv_format: 'Nevažeći CSV format: %{message}'
           invalid_proficiency_type: 'Redak %{row_number}: Nevažeći ili nedostaje ProficiencyType'

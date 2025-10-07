@@ -2988,12 +2988,8 @@ nl:
           proficiency: Importvaardigheden
           translations: Vertalingen importeren
         errors:
-          by_skill_exists: 'Rij %{row_number}: Er bestaat al een ''by_skill'' ProficiencyLevel voor dit project en deze vaardigheid'
           by_skill_missing: 'Rij %{row_number}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
-          by_skill_type_exists: 'Rij %{row_number}: Er bestaat al een ''''by_skill_type'''' ProficiencyLevel voor dit project en vaardigheidstype'
           by_skill_type_missing: 'Rij %{row_number}: Project en Skill Type moeten aanwezig zijn voor ''''by_skill_type'''' type'
-          default_global_exists: 'Rij %{row_number}: Er bestaat al een globaal niveau ''''standaard'''' ProficiencyLevel'
-          default_project_exists: 'Rij %{row_number}: Er bestaat al een ''''standaard'''' ProficiencyLevel op projectniveau'
           invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
           invalid_proficiency_type: 'Rij %{row_number}: Ongeldig of ontbrekend ProficiencyType'
           invalid_skill_type: 'Rij %{row_number}: Ongeldig vaardigheidstype "%{skill_type}". Geldige types zijn: %{valid_types}'

@@ -2988,7 +2988,6 @@ th:
           proficiency: ความเชี่ยวชาญในการนําเข้า
           translations: นําเข้าการแปลความสามารถ
         errors:
-          by_skill_exists: 'แถว %{row_number}: ระดับความเชี่ยวชาญ ''by_skill'' มีอยู่แล้วสําหรับโครงการและทักษะนี้'
           by_skill_missing: 'แถว %{row_number}: ต้องมีโครงการและทักษะสําหรับประเภท ''by_skill'''
           invalid_csv_format: 'รูปแบบ CSV ไม่ถูกต้อง: %{message}'
           invalid_proficiency_type: 'แถว %{row_number}: ProficiencyType ไม่ถูกต้องหรือขาดหายไป'
