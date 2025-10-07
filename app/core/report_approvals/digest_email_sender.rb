@@ -3,7 +3,7 @@
 module ReportApprovals
   class DigestEmailSender
     def self.send_for(setting)
-      return if settings.do_not_send_notifications
+      return if setting.do_not_send_notifications
 
       reports = setting.report.user_reports.where(
         approval_status_updated_at: after_last_digest(setting)
