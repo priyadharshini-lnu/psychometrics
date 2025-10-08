@@ -12,6 +12,11 @@ module DevelopmentActions
     end
 
     def call
+      unless service_enabled?
+        return broadcast(:error,
+                         I18n.t('administration.ai_assistants.errors.development_actions_assistance_not_enabled'))
+      end
+
       if generate_more
         # Always call assistable service when generating more
         call_assistable_service
@@ -27,6 +32,10 @@ module DevelopmentActions
     end
 
     private
+
+    def service_enabled?
+      assistant_service.assistable_enabled?
+    end
 
     def call_assistable_service
       assistant_service.

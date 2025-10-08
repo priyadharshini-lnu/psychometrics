@@ -36,6 +36,10 @@ module AI
         broadcast(:error, e.message)
       end
 
+      def assistable_enabled?
+        assistant.present?
+      end
+
       private
 
       def handle_assistant_service_error(error_message, error = nil)
@@ -74,10 +78,6 @@ module AI
 
       def session_model
         AI::AssistedUserDevelopmentActionsSession
-      end
-
-      def assistable_enabled?
-        assistant.present?
       end
 
       def prompt_data
