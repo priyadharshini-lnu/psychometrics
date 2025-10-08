@@ -16,6 +16,7 @@ import { ReportApprovalSettings } from '~/modules/admin/modules/campaigns/core/r
 import TimeZoneSelect from '~/components/TimeZoneSelect'
 import dayjs from '~/utils/dayjs'
 import { getFeatures } from '~/core/config'
+import { camelizeKeys } from '~/utils/object'
 
 const { Option } = Select
 const { I18n } = window
@@ -113,16 +114,23 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
   )
 
   const features = useSelector((state: RootState) => getFeatures(state))
-  const isDigestEmailsEnabled = features?.digest_emails_enabled
+  const isDigestEmailsEnabled = camelizeKeys(features)?.digestEmailsEnabled ?? false
 
-  const allowBulkSubmit = Form.useWatch('allowQcBulkSubmit', form)
+  const allowQcBulkSubmit = Form.useWatch('allowQcBulkSubmit', form)
+                            ?? reportApprovalSettingsFormData?.allowQcBulkSubmit ?? false
   const allowBulkApprove = Form.useWatch('allowBulkApprove', form)
+                            ?? reportApprovalSettingsFormData?.allowBulkApprove ?? false
   const doNotSendNotifications = Form.useWatch('doNotSendNotifications', form)
+                            ?? reportApprovalSettingsFormData?.doNotSendNotifications ?? false
   const sendDigestEmails = Form.useWatch('sendDigestEmails', form)
+                            ?? reportApprovalSettingsFormData?.sendDigestEmails ?? false
   const digestDeliveryMode = Form.useWatch('digestDeliveryMode', form)
+                            ?? reportApprovalSettingsFormData?.digestDeliveryMode
   const digestFrequency = Form.useWatch('digestFrequency', form)
+                            ?? reportApprovalSettingsFormData?.digestFrequency
 
-  const showDigestToggle = (allowBulkSubmit || allowBulkApprove) && !doNotSendNotifications
+
+  const showDigestToggle = (allowQcBulkSubmit || allowBulkApprove) && !doNotSendNotifications
   const showDigestOptions = showDigestToggle && sendDigestEmails
   const showDigestSchedulingOptions = showDigestOptions && digestDeliveryMode === 'scheduled'
 
