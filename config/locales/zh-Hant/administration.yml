@@ -1970,15 +1970,8 @@ zh-Hant:
         success_msg: 匯出開發動作正在進行中，請檢查通知中的狀態。
         title: 出口
         translation_details: 詳細資訊
-      export_actions:
-        development_action_translations_title: 出口發展行動翻譯
-        development_actions_title: 出口發展行動
       export_development_action_translations: 以專案為基礎的發展行動翻譯
-      export_development_action_translations_project: 以專案為基礎的發展行動翻譯
       export_development_actions: 基於專案的發展行動
-      export_development_actions_project: 基於專案的發展行動
-      export_global_development_actions: 全球發展行動
-      export_global_development_actions_translations: 全球發展行動翻譯
       form:
         available_languages: 可用語言
         client_placeholder: 選擇客戶

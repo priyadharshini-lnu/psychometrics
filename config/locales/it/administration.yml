@@ -1970,15 +1970,8 @@ it:
         success_msg: L'esportazione delle azioni di sviluppo è in corso. Controllare lo stato nelle notifiche.
         title: Esporta
         translation_details: Dettagli
-      export_actions:
-        development_action_translations_title: Azioni di sviluppo delle esportazioni Traduzioni
-        development_actions_title: Azioni di sviluppo delle esportazioni
       export_development_action_translations: Azione di sviluppo Traduzioni basate sul progetto
-      export_development_action_translations_project: Azione di sviluppo Traduzioni basate sul progetto
       export_development_actions: Azioni di sviluppo basate sul progetto
-      export_development_actions_project: Azioni di sviluppo basate sul progetto
-      export_global_development_actions: Azioni di sviluppo globale
-      export_global_development_actions_translations: Traduzioni dell'Azione per lo sviluppo globale
       form:
         available_languages: Lingue disponibili
         client_placeholder: Selezionare un cliente

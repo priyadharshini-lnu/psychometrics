@@ -1970,15 +1970,8 @@ sk:
         success_msg: Export prebiehajúcich vývojových akcií. Skontrolujte stav v upozorneniach.
         title: Vývoz
         translation_details: Detaily
-      export_actions:
-        development_action_translations_title: Export Preklady vývojových akcií
-        development_actions_title: Exportné rozvojové akcie
       export_development_action_translations: Preklady vývojových akcií
-      export_development_action_translations_project: Vývojové akcie Preklady na základe projektu
       export_development_actions: Rozvojové akcie
-      export_development_actions_project: Rozvojové akcie na základe projektu
-      export_global_development_actions: Globálne rozvojové opatrenia
-      export_global_development_actions_translations: Preklady globálnych rozvojových akcií
       form:
         available_languages: Dostupné jazyky
         client_placeholder: Vyberte klienta

@@ -2,119 +2,74 @@ import React from 'react'
 import {
   Button, MenuProps, Typography,
 } from 'antd'
-import {
-  FilterFilled,
-} from '@ant-design/icons'
-import { useParams } from 'react-router'
 import { MenuItem } from '~/interfaces/Antd'
 import { TagList } from '~/modules/admin/components/Resource/TagList'
 import { DevelopmentAction } from '~/modules/admin/modules/client/core/developmentAction'
-import { useResourceContext, Resource } from '~/modules/admin/components/Resource'
+import { Resource } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import { ProjectFilter } from '~/components/ProjectFilter'
-import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
 const { I18n } = window
 
 type Props = {
   openModal: (developmentAction?: DevelopmentAction) => void,
 }
-export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => {
-  const { projectId } = useParams()
-
-  const { resource } = useResourceContext<DevelopmentAction>()
-
-  const filter = resource.getAppliedFiltersFromURL()
-
-  const isProjectFilterApplied = (filter?.global || filter?.project_id_eq) ?? false
-
-  const { DEFAULT_PRIMARY_COLOR } = constants
-
-  return (
-    <Resource.Table pagination>
-      <Resource.Column<DevelopmentAction>
-        title={I18n.t('common.column.id')}
-        id="id"
-        sorter
-        render={skill => (
-          skill.id
-        )}
-        width={200}
-      />
-      <Resource.Column<DevelopmentAction>
-        title={I18n.t('common.column.name')}
-        id="name"
-        render={developmentAction => <Typography.Text>{developmentAction.name}</Typography.Text>}
-        sorter
-      />
-      <Resource.Column<DevelopmentAction>
-        title={I18n.t('common.column.description')}
-        id="description"
-        render={developmentAction => <Typography.Text>{developmentAction.description}</Typography.Text>}
-        sorter
-      />
-      <Resource.Column<DevelopmentAction>
-        title={I18n.t('common.column.skills')}
-        id="skills"
-        render={(_, developmentAction) => (
-          <>
-            <TagList
-              initialTags={developmentAction.skills?.map(s => s.name) as string[]}
-              config={{
-                editable: false,
-              }}
-            />
-          </>
-        )}
-        width={200}
-      />
-      {!projectId && (
-        <Resource.Column<DevelopmentAction>
-          title={I18n.t('common.column.project')}
-          id="project.name"
-          render={developmentAction => (developmentAction.project?.id ? (
-            <Typography.Link
-              copyable
-              href={`/admin/projects/${developmentAction.project?.id}/new_campaigns?filters[statusEq]=active`}
-              target="_blank"
-            >
-              {developmentAction.project?.name}
-            </Typography.Link>
-          ) : null)}
-          width={200}
-          sorter
-          filterDropdown={() => (
-            <ProjectFilter />
-          )}
-          filterIcon={() => (
-            <FilterFilled style={{
-              color: isProjectFilterApplied
-                ? DEFAULT_PRIMARY_COLOR : undefined,
+export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => (
+  <Resource.Table pagination>
+    <Resource.Column<DevelopmentAction>
+      title={I18n.t('common.column.id')}
+      id="id"
+      sorter
+      render={skill => (
+        skill.id
+      )}
+      width={200}
+    />
+    <Resource.Column<DevelopmentAction>
+      title={I18n.t('common.column.name')}
+      id="name"
+      render={developmentAction => <Typography.Text>{developmentAction.name}</Typography.Text>}
+      sorter
+    />
+    <Resource.Column<DevelopmentAction>
+      title={I18n.t('common.column.description')}
+      id="description"
+      render={developmentAction => <Typography.Text>{developmentAction.description}</Typography.Text>}
+      sorter
+    />
+    <Resource.Column<DevelopmentAction>
+      title={I18n.t('common.column.skills')}
+      id="skills"
+      render={(_, developmentAction) => (
+        <>
+          <TagList
+            initialTags={developmentAction.skills?.map(s => s.name) as string[]}
+            config={{
+              editable: false,
             }}
-            />
-          )}
+          />
+        </>
+      )}
+      width={200}
+    />
+    <Resource.Column<DevelopmentAction>
+      title={I18n.t('common.column.updated_at')}
+      id="updated_at"
+      width={200}
+      sorter
+    />
+    <Resource.Column<DevelopmentAction>
+      title={I18n.t('common.column.action')}
+      id="action"
+      render={(_, developmentAction) => (
+        <Dropdown
+          developmentAction={developmentAction}
+          openModal={openModal}
         />
       )}
-      <Resource.Column<DevelopmentAction>
-        title={I18n.t('common.column.updated_at')}
-        id="updated_at"
-        width={200}
-        sorter
-      />
-      <Resource.Column<DevelopmentAction>
-        title={I18n.t('common.column.action')}
-        id="action"
-        render={(_, developmentAction) => (
-          <Dropdown
-            developmentAction={developmentAction}
-            openModal={openModal}
-          />
-        )}
-        width={100}
-      />
-    </Resource.Table>
-  )
-}
+      width={100}
+    />
+  </Resource.Table>
+)
 
 type DropDownProps = {
     developmentAction: DevelopmentAction,

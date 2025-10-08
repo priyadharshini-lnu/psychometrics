@@ -1970,15 +1970,8 @@ de:
         success_msg: Der Export von Entwicklungsmaßnahmen ist im Gange. Bitte überprüfen Sie den Status in den Benachrichtigungen.
         title: Exportieren
         translation_details: Einzelheiten
-      export_actions:
-        development_action_translations_title: Maßnahmen zur Exportentwicklung Übersetzungen
-        development_actions_title: Maßnahmen zur Exportentwicklung
       export_development_action_translations: Entwicklung Aktion Übersetzungen auf Basis des Projekts
-      export_development_action_translations_project: Entwicklung Aktion Übersetzungen auf Basis des Projekts
       export_development_actions: Entwicklungsmaßnahmen auf der Grundlage des Projekts
-      export_development_actions_project: Entwicklungsmaßnahmen auf der Grundlage des Projekts
-      export_global_development_actions: Globale Entwicklungsmaßnahmen
-      export_global_development_actions_translations: Globale Entwicklungsmaßnahmen Übersetzungen
       form:
         available_languages: Verfügbare Sprachen
         client_placeholder: Wählen Sie einen Kunden

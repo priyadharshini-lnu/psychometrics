@@ -1970,15 +1970,8 @@ pl:
         success_msg: Eksport działań rozwojowych w toku. Sprawdź status w powiadomieniach.
         title: Eksport
         translation_details: Szczegóły
-      export_actions:
-        development_action_translations_title: Tłumaczenia Export Development Actions
-        development_actions_title: Działania na rzecz rozwoju eksportu
       export_development_action_translations: Tłumaczenia działań rozwojowych
-      export_development_action_translations_project: Tłumaczenia działań rozwojowych na podstawie projektu
       export_development_actions: Działania rozwojowe
-      export_development_actions_project: Działania rozwojowe w oparciu o projekt
-      export_global_development_actions: Globalne działania na rzecz rozwoju
-      export_global_development_actions_translations: Tłumaczenia działań na rzecz globalnego rozwoju
       form:
         available_languages: Dostępne języki
         client_placeholder: Wybierz klienta

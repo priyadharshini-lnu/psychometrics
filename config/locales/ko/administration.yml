@@ -1970,15 +1970,8 @@ ko:
         success_msg: 개발 작업 내보내기가 진행 중입니다. 알림에서 상태를 확인하세요.
         title: 내보내기
         translation_details: 세부 정보
-      export_actions:
-        development_action_translations_title: 개발 작업 내보내기 번역
-        development_actions_title: 수출 개발 작업
       export_development_action_translations: 프로젝트 기반 개발 작업 번역
-      export_development_action_translations_project: 프로젝트 기반 개발 작업 번역
       export_development_actions: 프로젝트 기반 개발 작업
-      export_development_actions_project: 프로젝트 기반 개발 작업
-      export_global_development_actions: 글로벌 개발 활동
-      export_global_development_actions_translations: 글로벌 개발 활동 번역
       form:
         available_languages: 사용 가능한 언어
         client_placeholder: 클라이언트 선택

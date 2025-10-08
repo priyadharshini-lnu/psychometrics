@@ -1970,15 +1970,8 @@ bg:
         success_msg: Текущи действия за развитие на износа. Моля, проверете статуса в известията.
         title: Износ
         translation_details: Подробности
-      export_actions:
-        development_action_translations_title: Дейности за развитие на износа Преводи
-        development_actions_title: Действия за развитие на износа
       export_development_action_translations: Преводи за действие за развитие
-      export_development_action_translations_project: Развойна дейност Преводи въз основа на проект
       export_development_actions: Действия за развитие
-      export_development_actions_project: Действия за развитие въз основа на проект
-      export_global_development_actions: Действия за глобално развитие
-      export_global_development_actions_translations: Глобални преводи за действие за развитие
       form:
         available_languages: Налични езици
         client_placeholder: Изберете клиент

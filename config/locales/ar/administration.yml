@@ -1970,15 +1970,8 @@ ar:
         success_msg: جاري تصدير إجراءات التطوير. يرجى التحقق من الحالة في الإشعارات.
         title: تصدير
         translation_details: التفاصيل
-      export_actions:
-        development_action_translations_title: ترجمات إجراءات تنمية الصادرات
-        development_actions_title: إجراءات تنمية الصادرات
       export_development_action_translations: ترجمات العمل الإنمائي
-      export_development_action_translations_project: ترجمات العمل الإنمائي على أساس المشروع
       export_development_actions: تصدير إجراءات التطوير بناءً على المشروع
-      export_development_actions_project: إجراءات التنمية على أساس المشروع
-      export_global_development_actions: تصدير إجراءات التطوير العالمية
-      export_global_development_actions_translations: ترجمات العمل الإنمائي العالمي
       form:
         available_languages: اللغات المتاحة
         client_placeholder: اختر عميل

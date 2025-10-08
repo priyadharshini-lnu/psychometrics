@@ -1970,15 +1970,8 @@ es-ES:
         success_msg: Exportación de las acciones de desarrollo en curso. Por favor, compruebe el estado en las notificaciones.
         title: Exportar
         translation_details: Detalles
-      export_actions:
-        development_action_translations_title: Acciones de desarrollo de las exportaciones Traducciones
-        development_actions_title: Acciones de desarrollo de las exportaciones
       export_development_action_translations: Acción de desarrollo Traducciones basadas en el proyecto
-      export_development_action_translations_project: Acción de desarrollo Traducciones basadas en el proyecto
       export_development_actions: Acciones de desarrollo basadas en el proyecto
-      export_development_actions_project: Acciones de desarrollo basadas en el proyecto
-      export_global_development_actions: Acciones globales de desarrollo
-      export_global_development_actions_translations: Traducciones de Global Development Action
       form:
         available_languages: Idiomas disponibles
         client_placeholder: Seleccione un cliente

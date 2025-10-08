@@ -1970,15 +1970,8 @@ cs:
         success_msg: Probíhá export vývojových akcí. Zkontrolujte prosím stav v oznámeních.
         title: Export
         translation_details: Podrobnosti na
-      export_actions:
-        development_action_translations_title: Akce pro rozvoj exportu Překlady
-        development_actions_title: Akce na rozvoj vývozu
       export_development_action_translations: Vývojová akce Překlady na základě projektu
-      export_development_action_translations_project: Vývojová akce Překlady na základě projektu
       export_development_actions: Rozvojové akce na základě projektu
-      export_development_actions_project: Rozvojové akce na základě projektu
-      export_global_development_actions: Globální rozvojové akce
-      export_global_development_actions_translations: Překlady globální rozvojové akce
       form:
         available_languages: Dostupné jazyky
         client_placeholder: Výběr klienta

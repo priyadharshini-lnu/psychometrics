@@ -1970,15 +1970,8 @@ sr-Latn:
         success_msg: Izvoz razvojnih akcija u toku. Molimo Vas da proverite status u obaveštenjima.
         title: Izvoz
         translation_details: Detalji
-      export_actions:
-        development_action_translations_title: Izvezi prevode razvojne akcije
-        development_actions_title: Izvezi razvojne akcije
       export_development_action_translations: Prevodi razvojnih akcija
-      export_development_action_translations_project: Prevodi razvojnih akcija zasnovani na projektu
       export_development_actions: Razvojne akcije
-      export_development_actions_project: Razvojne akcije zasnovane na projektu
-      export_global_development_actions: Globalne razvojne akcije
-      export_global_development_actions_translations: Prevodi globalnih razvojnih akcija
       form:
         available_languages: Dostupni jezici
         client_placeholder: Izaberite klijenta

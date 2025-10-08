@@ -1970,15 +1970,8 @@ zh:
         success_msg: 导出开发操作正在进行中，请查看通知中的状态。
         title: 导出
         translation_details: 详细信息
-      export_actions:
-        development_action_translations_title: 出口发展行动 翻译
-        development_actions_title: 出口发展行动
       export_development_action_translations: 基于项目的发展行动翻译
-      export_development_action_translations_project: 基于项目的发展行动翻译
       export_development_actions: 基于项目的发展行动
-      export_development_actions_project: 基于项目的发展行动
-      export_global_development_actions: 全球发展行动
-      export_global_development_actions_translations: 全球发展行动 翻译
       form:
         available_languages: 可用语言
         client_placeholder: 选择客户

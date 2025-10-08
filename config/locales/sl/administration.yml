@@ -1970,15 +1970,8 @@ sl:
         success_msg: Izvoz razvojnih ukrepov v teku. Preverite stanje v obvestilih.
         title: Izvoz
         translation_details: Podrobnosti
-      export_actions:
-        development_action_translations_title: Izvoz prevodov razvojnih akcij
-        development_actions_title: Izvozni razvojni ukrepi
       export_development_action_translations: Prevodi razvojnih ukrepov
-      export_development_action_translations_project: Razvojne akcije Prevodi na podlagi projekta
       export_development_actions: Razvojni ukrepi
-      export_development_actions_project: Razvojne akcije na podlagi projekta
-      export_global_development_actions: Globalni razvojni ukrepi
-      export_global_development_actions_translations: Prevodi globalnih razvojnih ukrepov
       form:
         available_languages: Razpoložljivi jeziki
         client_placeholder: Izberite odjemalca

@@ -53,34 +53,32 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
 
   const exportMenuItems:MenuItem[] = []
 
-  if (permissions?.export) {
+  if (permissions?.export && params.projectId) {
     exportMenuItems.push({
       key: 'export_development_action',
-      label: params.projectId ? I18n.t('administration.development_actions.export_development_actions')
-        : I18n.t('administration.development_actions.export_development_actions_project'),
+      label: I18n.t('administration.development_actions.export_development_actions'),
     })
   }
 
 
-  if (permissions?.exportTranslations) {
+  if (permissions?.exportTranslations && params.projectId) {
     exportMenuItems.push({
       key: 'export_development_action_translations',
-      label: params.projectId ? I18n.t('administration.development_actions.export_development_action_translations')
-        : I18n.t('administration.development_actions.export_development_action_translations_project'),
+      label: I18n.t('administration.development_actions.export_development_action_translations'),
     })
   }
 
   if (permissions?.exportGlobal && !params.projectId) {
     exportMenuItems.push({
       key: 'export_global_development_actions',
-      label: I18n.t('administration.development_actions.export_global_development_actions'),
+      label: I18n.t('administration.development_actions.export_development_actions'),
     })
   }
 
   if (permissions?.exportGlobalTranslations && !params.projectId) {
     exportMenuItems.push({
       key: 'export_global_development_actions_translations',
-      label: I18n.t('administration.development_actions.export_global_development_actions_translations'),
+      label: I18n.t('administration.development_actions.export_development_action_translations'),
     })
   }
 

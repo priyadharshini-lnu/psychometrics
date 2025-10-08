@@ -1970,15 +1970,8 @@ id:
         success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung. Silakan periksa status di notifikasi.
         title: Ekspor
         translation_details: Rincian
-      export_actions:
-        development_action_translations_title: Ekspor Pengembangan Tindakan Terjemahan
-        development_actions_title: Aksi Pengembangan Ekspor
       export_development_action_translations: Terjemahan Tindakan Pengembangan
-      export_development_action_translations_project: Terjemahan Tindakan Pengembangan berdasarkan Proyek
       export_development_actions: Tindakan Pengembangan
-      export_development_actions_project: Tindakan Pengembangan Berdasarkan Proyek
-      export_global_development_actions: Aksi Pembangunan Global
-      export_global_development_actions_translations: Terjemahan Aksi Pembangunan Global
       form:
         available_languages: Bahasa yang Tersedia
         client_placeholder: Pilih Klien

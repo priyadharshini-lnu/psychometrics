@@ -1970,15 +1970,8 @@ ja:
         success_msg: 開発アクションのエクスポートが進行中です。 通知でステータスを確認してください。
         title: 輸出
         translation_details: 詳細
-      export_actions:
-        development_action_translations_title: 輸出開発アクション 翻訳
-        development_actions_title: 輸出開発アクション
       export_development_action_translations: プロジェクトに基づく開発行為翻訳
-      export_development_action_translations_project: プロジェクトに基づく開発行為翻訳
       export_development_actions: プロジェクトに基づく開発アクション
-      export_development_actions_project: プロジェクトに基づく開発アクション
-      export_global_development_actions: グローバル開発アクション
-      export_global_development_actions_translations: グローバル開発アクションの翻訳
       form:
         available_languages: 利用可能な言語
         client_placeholder: クライアントの選択

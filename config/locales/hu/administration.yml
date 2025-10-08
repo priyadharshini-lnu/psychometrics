@@ -1972,15 +1972,8 @@ hu:
         success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása. Kérjük, ellenőrizze az állapotot az értesítésekben.
         title: Exportál
         translation_details: Részletek
-      export_actions:
-        development_action_translations_title: Fejlesztési Tevékenységek Fordításainak exportálása
-        development_actions_title: Fejlesztési tevékenységek exportálása
       export_development_action_translations: Fejlesztési tevékenység fordításai
-      export_development_action_translations_project: Fejlesztési tevékenység fordításai projekt alapján
       export_development_actions: Fejlesztési tevékenységek
-      export_development_actions_project: Projektalapú fejlesztési tevékenységek
-      export_global_development_actions: Globális fejlesztési tevékenységek
-      export_global_development_actions_translations: Globális fejlesztési tevékenység fordításai
       form:
         available_languages: Elérhető nyelvek
         client_placeholder: Ügyfél kiválasztása
