@@ -1,4 +1,4 @@
-\restrict us6WDbBwbFdUWoee21FEpDO6fp2H6wiXyRFawWYJ7mAfOsPdLXEKCZqVpOIF6H5
+\restrict OjothhYUN5bIfiAGsan0Czj1djzLbvUh4GsCOH2sSvkcKCeSeEsRfQ5EPxV8ehu
 
 -- Dumped from database version 14.19 (Homebrew)
 -- Dumped by pg_dump version 14.19 (Homebrew)
@@ -4349,8 +4349,7 @@ CREATE TABLE public.licenses (
     report_family_id integer,
     disabled boolean DEFAULT false,
     type integer DEFAULT 0,
-    is_project_specific boolean DEFAULT false NOT NULL,
-    project_ids integer[] DEFAULT '{}'::integer[]
+    is_project_specific boolean DEFAULT false NOT NULL
 );
 
 
@@ -5426,6 +5425,41 @@ CREATE SEQUENCE public.project_features_id_seq
 --
 
 ALTER SEQUENCE public.project_features_id_seq OWNED BY public.project_features.id;
+
+
+--
+-- Name: project_licenses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_licenses (
+    id bigint NOT NULL,
+    project_id bigint NOT NULL,
+    license_id bigint NOT NULL,
+    enabled boolean DEFAULT false,
+    usage_limit integer DEFAULT 0 NOT NULL,
+    used_number integer DEFAULT 0 NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: project_licenses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_licenses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_licenses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_licenses_id_seq OWNED BY public.project_licenses.id;
 
 
 --
@@ -9422,6 +9456,13 @@ ALTER TABLE ONLY public.project_features ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: project_licenses id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses ALTER COLUMN id SET DEFAULT nextval('public.project_licenses_id_seq'::regclass);
+
+
+--
 -- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11105,6 +11146,14 @@ ALTER TABLE ONLY public.project_assessments
 
 ALTER TABLE ONLY public.project_features
     ADD CONSTRAINT project_features_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_licenses project_licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses
+    ADD CONSTRAINT project_licenses_pkey PRIMARY KEY (id);
 
 
 --
@@ -14069,6 +14118,27 @@ CREATE UNIQUE INDEX index_project_features_on_project_id ON public.project_featu
 
 
 --
+-- Name: index_project_licenses_on_license_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_licenses_on_license_id ON public.project_licenses USING btree (license_id);
+
+
+--
+-- Name: index_project_licenses_on_license_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_project_licenses_on_license_id_and_project_id ON public.project_licenses USING btree (license_id, project_id);
+
+
+--
+-- Name: index_project_licenses_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_licenses_on_project_id ON public.project_licenses USING btree (project_id);
+
+
+--
 -- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16692,6 +16762,14 @@ ALTER TABLE ONLY public.campaign_factors
 
 
 --
+-- Name: project_licenses fk_rails_67e6a7fdac; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses
+    ADD CONSTRAINT fk_rails_67e6a7fdac FOREIGN KEY (license_id) REFERENCES public.licenses(id);
+
+
+--
 -- Name: user_idp_comments fk_rails_67fb1b4907; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17057,6 +17135,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.user_report_events
     ADD CONSTRAINT fk_rails_899d2b3ded FOREIGN KEY (initiator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: project_licenses fk_rails_89ca2fa15c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses
+    ADD CONSTRAINT fk_rails_89ca2fa15c FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -18479,13 +18565,16 @@ ALTER TABLE ONLY public.users
 -- PostgreSQL database dump complete
 --
 
-\unrestrict us6WDbBwbFdUWoee21FEpDO6fp2H6wiXyRFawWYJ7mAfOsPdLXEKCZqVpOIF6H5
+\unrestrict OjothhYUN5bIfiAGsan0Czj1djzLbvUh4GsCOH2sSvkcKCeSeEsRfQ5EPxV8ehu
 
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20251006093756'),
+('20251007225856'),
+('20251007225411'),
 ('20251001034346'),
+('20250930153016'),
+('20250924140546'),
 ('20250917104111'),
 ('20250917090000'),
 ('20250915111321'),
@@ -19399,3 +19488,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+
