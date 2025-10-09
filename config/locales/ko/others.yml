@@ -2491,6 +2491,7 @@ ko:
       update_success: SMS 초대가 성공적으로 업데이트되었습니다
     sms_records:
       create_success: SMS 작업이 성공적으로 예약되었습니다
+    starting_in: 시작
     test_webhook:
       create_success: 웹훅 테스트 성공.
       success: 성공
@@ -3029,7 +3030,7 @@ ko:
     users:
       account_disable: 활동이 없어 계정이 비활성화되었습니다
       warning: 활동이 없어 곧 계정이 비활성화됩니다
-  maintenance_message: 라이트하우스가 %{start_date}에 예정된 유지 관리를 위해 다운되며 %{duration}시간 동안 사용할 수 없습니다
+  maintenance_message: 등대는 %{start_date} 예정된 유지 보수를 위해 다운되며 %{duration} 동안 사용할 수 없습니다
   maintenance_submessage: 점검이 완료된 후 페이지를 새로고침하세요. 로그인 페이지로 리디렉션됩니다
   my: My
   myself: 내 자신

@@ -1970,15 +1970,8 @@ zh-Hant:
         success_msg: 匯出開發動作正在進行中，請檢查通知中的狀態。
         title: 出口
         translation_details: 詳細資訊
-      export_actions:
-        development_action_translations_title: 出口發展行動翻譯
-        development_actions_title: 出口發展行動
       export_development_action_translations: 以專案為基礎的發展行動翻譯
-      export_development_action_translations_project: 以專案為基礎的發展行動翻譯
       export_development_actions: 基於專案的發展行動
-      export_development_actions_project: 基於專案的發展行動
-      export_global_development_actions: 全球發展行動
-      export_global_development_actions_translations: 全球發展行動翻譯
       form:
         available_languages: 可用語言
         client_placeholder: 選擇客戶
@@ -2988,12 +2981,8 @@ zh-Hant:
           proficiency: 進口能力
           translations: 進口能力翻譯
         errors:
-          by_skill_exists: 行 %{row_number}：此專案與技能已有 'by_skill' ProficiencyLevel。
           by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
-          by_skill_type_exists: 行 %{row_number}：此專案和技能類型已有''by_skill_type''ProficiencyLevel。
           by_skill_type_missing: 行 %{row_number}：by_skill_type'' 類型的專案和技能類型必須存在
-          default_global_exists: 行 %{row_number}：全局層級的'「預設」'ProficiencyLevel已經存在
-          default_project_exists: 行 %{row_number}：專案層級的 '「預設」 ProficiencyLevel 已經存在
           invalid_csv_format: 無效的 CSV 格式：%{message}。
           invalid_proficiency_type: 行 %{row_number}：無效或遺失 ProficiencyType
           invalid_skill_type: '行 %{row_number}: 無效的技能類型 "%{skill_type}"。有效的類型是：%{valid_types}'

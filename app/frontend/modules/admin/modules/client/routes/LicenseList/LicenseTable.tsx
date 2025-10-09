@@ -36,28 +36,30 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         title={I18n.t('common.column.id')}
         id="id"
         dataIndex="id"
-        width={30}
+        width={150}
+      />
+      <Resource.Column<License>
+        title={I18n.t('licenses.report_family')}
+        id="report_family_id"
+        dataIndex={['reportFamily', 'name']}
+        width={300}
       />
       <Resource.Column<License>
         title={I18n.t('licenses.enabled')}
         id="disabledStatus"
         dataIndex="disabled"
-        width={30}
+        width={100}
         render={(_, { id, enabled }) => (
           <Switch checked={enabled} onChange={value => resource.updateResource({ id, enabled: value })} />
         )
         }
       />
       <Resource.Column<License>
-        title={I18n.t('licenses.report_family')}
-        id="report_family_id"
-        dataIndex={['reportFamily', 'name']}
-      />
-      <Resource.Column<License>
         title={I18n.t('licenses.type')}
         id="type"
         dataIndex="type"
         render={(_, { type }) => I18n.t(`licenses.types.${type}`)}
+        width={300}
       />
       <Resource.Column<License>
         title={I18n.t('licenses.used_number')}
@@ -67,6 +69,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
           used: usedNumber - usedOveruseNumber(usedNumber, number),
           total: number,
         })}
+        width={300}
       />
       <Resource.Column<License>
         title={I18n.t('licenses.overuse_number')}
@@ -76,18 +79,21 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
           used: usedOveruseNumber(usedNumber, number),
           total: overuseNumber,
         })}
+        width={300}
       />
       <Resource.Column<License>
         title={I18n.t('licenses.start_date')}
         id="start_date"
         dataIndex="startDate"
         sorter
+        width={300}
       />
       <Resource.Column<License>
         title={I18n.t('licenses.end_date')}
         id="end_date"
         dataIndex="endDate"
         sorter
+        width={300}
       />
       {isSuperAdmin(currentUser)
           && (
@@ -106,6 +112,8 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
                   }
                 />
               )}
+              width={100}
+              fixed="right"
             />
           )}
     </Resource.Table>

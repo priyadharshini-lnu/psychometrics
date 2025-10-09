@@ -5,7 +5,8 @@ module AI
     class Factory
       TYPE_CONFIGURATIONS = {
         'content_writer' => ContentWriter,
-        'idp_assistant' => IdpAssistant
+        'idp_assistant' => IdpAssistant,
+        'development_actions_assistant' => DevelopmentActionsAssistant
       }.freeze
 
       def self.for(assistant)

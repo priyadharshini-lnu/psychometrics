@@ -5,10 +5,9 @@ import _ from 'lodash'
 import {
   Row, Typography, Col, Space, App,
 } from 'antd'
-import { useParams, useNavigate, useLocation } from 'react-router-dom'
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
-import qs from 'qs'
 import Tour from '@rc-component/tour'
 import { CheckCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
@@ -60,9 +59,8 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   requestCancelBooking, requestForCancelInProgress, cancelInProgress,
 }) => {
   const { message } = App.useApp()
-  const location = useLocation()
   const tourRef = useRef<HTMLDivElement>(null)
-  const queryString = qs.parse(location.search.substring(1))
+  const [searchParams, setSearchParams] = useSearchParams()
   const [requestCancellation, setRequestrequestCancellation] = useState<boolean>(false)
   const [bookingDetails, setbookingDetails] = useState<null | SingleBooking >(null)
   const { inviteOrBookingId } = useParams() as { inviteOrBookingId: string }
@@ -133,8 +131,10 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   )
 
   const handleAddToCalendarClick = () => {
-    if (queryString.tour === 'true') {
-      navigate(location.pathname)
+    if (searchParams.get('tour') === 'true') {
+      const newSearchParams = new URLSearchParams(searchParams)
+      newSearchParams.delete('tour')
+      setSearchParams(newSearchParams, { replace: true })
     }
   }
 
@@ -215,27 +215,29 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
         </div>
       </Row>
       {
-        queryString.tour === 'true' && (
-          <Tour
-            defaultCurrent={0}
-            open
-            steps={[
-              {
-                arrow: true,
-                title: I18n.t('frontend.bookings.add_to_calendar'),
-                description: I18n.t('frontend.bookings.add_to_calendar_tour_description'),
-                target: tourRef.current,
-                mask: true,
-                closeIcon: true,
-                placement: 'topRight',
-              },
-            ]}
-            onClose={() => {
-              navigate(location.pathname)
+       searchParams.get('tour') === 'true' && (
+         <Tour
+           defaultCurrent={0}
+           open
+           steps={[
+             {
+               arrow: true,
+               title: I18n.t('frontend.bookings.add_to_calendar'),
+               description: I18n.t('frontend.bookings.add_to_calendar_tour_description'),
+               target: tourRef.current,
+               mask: true,
+               closeIcon: true,
+               placement: 'topRight',
+             },
+           ]}
+           onClose={() => {
+             const newSearchParams = new URLSearchParams(searchParams)
+             newSearchParams.delete('tour')
+             setSearchParams(newSearchParams, { replace: true })
+           }
             }
-            }
-          />
-        )
+         />
+       )
       }
     </Space>
   )

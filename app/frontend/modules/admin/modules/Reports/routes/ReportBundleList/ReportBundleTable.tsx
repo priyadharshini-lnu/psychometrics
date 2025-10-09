@@ -28,6 +28,7 @@ export const ReportBundleTable: React.FC<Props> = ({
           {reportBundle.id}
         </Link>
       )}
+      width={150}
     />
     <Resource.Column<ReportBundle>
       title={I18n.t('common.column.name')}
@@ -56,6 +57,7 @@ export const ReportBundleTable: React.FC<Props> = ({
           toggleModal={toggleModal}
         />
       )}
+      width={100}
     />
   </Resource.Table>
 )

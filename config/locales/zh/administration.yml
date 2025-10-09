@@ -1970,15 +1970,8 @@ zh:
         success_msg: 导出开发操作正在进行中，请查看通知中的状态。
         title: 导出
         translation_details: 详细信息
-      export_actions:
-        development_action_translations_title: 出口发展行动 翻译
-        development_actions_title: 出口发展行动
       export_development_action_translations: 基于项目的发展行动翻译
-      export_development_action_translations_project: 基于项目的发展行动翻译
       export_development_actions: 基于项目的发展行动
-      export_development_actions_project: 基于项目的发展行动
-      export_global_development_actions: 全球发展行动
-      export_global_development_actions_translations: 全球发展行动 翻译
       form:
         available_languages: 可用语言
         client_placeholder: 选择客户
@@ -2988,12 +2981,8 @@ zh:
           proficiency: 进口能力
           translations: 进口能力翻译
         errors:
-          by_skill_exists: 行 %{row_number}：此项目和技能已存在 "by_skill "熟练等级
           by_skill_missing: 行 %{row_number}：by_skill "类型必须有项目和技能
-          by_skill_type_exists: 行 %{row_number}：此项目和技能类型已存在"'by_skill_type'"熟练等级
           by_skill_type_missing: 行 %{row_number}：by_skill_type''类型必须有项目和技能类型
-          default_global_exists: 行 %{row_number}：已存在全局级别的 "默认 "熟练等级
-          default_project_exists: 行 %{row_number}：已存在项目级别的 "默认 "熟练级别
           invalid_csv_format: CSV 格式无效： %{message}
           invalid_proficiency_type: 行 %{row_number}：无效或缺少 ProficiencyType
           invalid_skill_type: '行 %{row_number}: 无效技能类型 "%{skill_type}"。有效类型为: %{valid_types}'

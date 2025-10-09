@@ -36,13 +36,16 @@ export const ReflectionQuestionTable: React.FC<Props> = () => {
           render={skill => (
             skill.id
           )}
-          width={200}
+          width={100}
+          fixed="left"
         />
         <Resource.Column<ReflectionQuestion>
           title={I18n.t('administration.reflection_questions.question')}
           id="question"
           render={item => <Typography.Text copyable>{item.question}</Typography.Text>}
           sorter
+          width={300}
+          fixed="left"
         />
         <Resource.Column<ReflectionQuestion>
           title={I18n.t('administration.reflection_questions.form.min_words')}

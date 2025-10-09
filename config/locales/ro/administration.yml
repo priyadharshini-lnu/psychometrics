@@ -1970,15 +1970,8 @@ ro:
         success_msg: Exportul acțiunilor de dezvoltare în curs de desfășurare. Vă rugăm să verificați starea în notificări.
         title: Exportați
         translation_details: Detalii
-      export_actions:
-        development_action_translations_title: Exportați Acțiuni de Dezvoltare Traduceri
-        development_actions_title: Acțiune de dezvoltare a exporturilor
       export_development_action_translations: Traduceri pentru acțiuni de dezvoltare
-      export_development_action_translations_project: Traduceri de actiuni de dezvoltare bazate pe proiect
       export_development_actions: Acțiune de dezvoltare
-      export_development_actions_project: Acțiune de dezvoltare bazate pe proiect
-      export_global_development_actions: Acțiune de dezvoltare globală
-      export_global_development_actions_translations: Traduceri Acțiuni Globale pentru Dezvoltare
       form:
         available_languages: Limbi disponibile
         client_placeholder: Selectați un client
@@ -2988,7 +2981,6 @@ ro:
           proficiency: Competența de import
           translations: Traduceri de competență de import
         errors:
-          by_skill_exists: 'Rândul %{row_number}: Există deja un nivel de competență "by_skill" pentru acest proiect și abilitate'
           by_skill_missing: 'Rândul %{row_number}: Proiectul și Skill trebuie să fie prezente pentru tipul "by_skill"'
           invalid_csv_format: 'Format CSV nevalid: %{message}'
           invalid_proficiency_type: 'Rândul %{row_number}: ProficiencyType nevalid sau lipsă'

@@ -69,7 +69,8 @@ const AdminRolesList: React.FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.action')}
           id="actions"
           key="actions"
-          width="2%"
+          width={100}
+          fixed="right"
           render={role => (
             <ConditionalDropdown
               menu={

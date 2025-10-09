@@ -16,7 +16,7 @@ module Workshops
     private
 
     def all_recordings
-      workshop_recordings + assessment_recordings
+      (workshop_recordings + assessment_recordings).sort_by(&:id)
     end
 
     def workshop_recordings

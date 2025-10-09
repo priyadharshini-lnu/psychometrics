@@ -1970,15 +1970,8 @@ nl:
         success_msg: Het exporteren van ontwikkelingsacties is bezig. Controleer de status in de meldingen.
         title: Exporteer
         translation_details: Details
-      export_actions:
-        development_action_translations_title: Exportontwikkelingsacties Vertalingen
-        development_actions_title: Acties voor exportontwikkeling
       export_development_action_translations: Ontwikkeling Actie Vertalingen gebaseerd op Project
-      export_development_action_translations_project: Ontwikkeling Actie Vertalingen gebaseerd op Project
       export_development_actions: Ontwikkelingsacties op basis van project
-      export_development_actions_project: Ontwikkelingsacties op basis van project
-      export_global_development_actions: Wereldwijde ontwikkelingsacties
-      export_global_development_actions_translations: Global Development Action Vertalingen
       form:
         available_languages: Beschikbare talen
         client_placeholder: Selecteer een klant
@@ -2988,12 +2981,8 @@ nl:
           proficiency: Importvaardigheden
           translations: Vertalingen importeren
         errors:
-          by_skill_exists: 'Rij %{row_number}: Er bestaat al een ''by_skill'' ProficiencyLevel voor dit project en deze vaardigheid'
           by_skill_missing: 'Rij %{row_number}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
-          by_skill_type_exists: 'Rij %{row_number}: Er bestaat al een ''''by_skill_type'''' ProficiencyLevel voor dit project en vaardigheidstype'
           by_skill_type_missing: 'Rij %{row_number}: Project en Skill Type moeten aanwezig zijn voor ''''by_skill_type'''' type'
-          default_global_exists: 'Rij %{row_number}: Er bestaat al een globaal niveau ''''standaard'''' ProficiencyLevel'
-          default_project_exists: 'Rij %{row_number}: Er bestaat al een ''''standaard'''' ProficiencyLevel op projectniveau'
           invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
           invalid_proficiency_type: 'Rij %{row_number}: Ongeldig of ontbrekend ProficiencyType'
           invalid_skill_type: 'Rij %{row_number}: Ongeldig vaardigheidstype "%{skill_type}". Geldige types zijn: %{valid_types}'

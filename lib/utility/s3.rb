@@ -10,15 +10,14 @@ module Utility
         endpoint: nil
       )
 
-      s3_object = s3_client.get_object_attributes(
-        bucket: bucket,
-        key: s3key,
-        object_attributes: %w[Checksum ObjectSize]
-      )
+      digest = Digest::MD5.new
+      resp = s3_client.get_object(bucket: bucket, key: s3key) do |chunk|
+        digest.update(chunk)
+      end
 
       {
-        byte_size: s3_object.object_size,
-        checksum: s3_object.checksum.checksum_crc64nvme
+        byte_size: resp.content_length,
+        checksum: Base64.strict_encode64(digest.digest)
       }
     end
   end

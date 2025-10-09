@@ -67,6 +67,7 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           title={I18n.t('administration.skills.columns.skill_group')}
           id="skillGroupId"
           render={skill => <Typography.Text>{skill.skillGroup?.name}</Typography.Text>}
+          minWidth={200}
           sorter
         />
         <Resource.Column<Skill>

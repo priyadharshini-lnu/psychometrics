@@ -1970,15 +1970,8 @@ pt:
         success_msg: Acções de desenvolvimento de exportação em curso. Verifique o estado nas notificações.
         title: Exportação
         translation_details: Detalhes
-      export_actions:
-        development_action_translations_title: Acções de desenvolvimento das exportações Traduções
-        development_actions_title: Acções de desenvolvimento das exportações
       export_development_action_translations: Ação de desenvolvimento Traduções baseadas no projeto
-      export_development_action_translations_project: Ação de desenvolvimento Traduções baseadas no projeto
       export_development_actions: Acções de desenvolvimento baseadas no projeto
-      export_development_actions_project: Acções de desenvolvimento baseadas no projeto
-      export_global_development_actions: Acções de desenvolvimento global
-      export_global_development_actions_translations: Traduções da Ação para o Desenvolvimento Global
       form:
         available_languages: Idiomas disponíveis
         client_placeholder: Selecionar um cliente
@@ -2988,12 +2981,8 @@ pt:
           proficiency: Proficiência em importação
           translations: Traduções de Proficiência em Importação
         errors:
-          by_skill_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''by_skill'' para este projeto e competência'
           by_skill_missing: 'Linha %{row_number}: O projeto e a competência têm de estar presentes para o tipo ''by_skill'
-          by_skill_type_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''''by_skill_type'''' para este projeto e tipo de competência'
           by_skill_type_missing: 'Linha %{row_number}: O projeto e o tipo de competência têm de estar presentes para o tipo ''''by_skill_type'''''
-          default_global_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel ''''predefinido'''' a nível global'
-          default_project_exists: 'Linha %{row_number}: Já existe um ProficiencyLevel "predefinido" ao nível do projeto'
           invalid_csv_format: 'Formato CSV inválido: %{message}'
           invalid_proficiency_type: 'Linha %{row_number}: ProficiencyType inválido ou em falta'
           invalid_skill_type: 'Linha %{row_number}: Tipo de competência inválido "%{skill_type}". Os tipos válidos são: %{valid_types}'

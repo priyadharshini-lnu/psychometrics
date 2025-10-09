@@ -1,7 +1,7 @@
 import {
   Button,
 } from 'antd'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { CheckCircleFilled } from '@ant-design/icons'
 import styles from './Form.less'
 
@@ -9,10 +9,9 @@ const { I18n } = window
 
 export const SuccessPage = () => {
   const navigate = useNavigate()
-  const location = useLocation()
 
   const next = () => {
-    navigate(location.pathname.replace(/(\/add_invite|\/new)$/, ''))
+    navigate('..', { relative: 'path' })
   }
 
   return (

@@ -710,7 +710,7 @@ GEM
       activesupport (>= 3.0.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (2.2.18)
+    rack (2.2.19)
     rack-contrib (2.5.0)
       rack (< 4)
     rack-proxy (0.7.7)
@@ -1098,6 +1098,7 @@ PLATFORMS
   x86_64-darwin-21
   x86_64-darwin-22
   x86_64-darwin-24
+  x86_64-darwin-25
   x86_64-linux
 
 DEPENDENCIES
@@ -1206,7 +1207,7 @@ DEPENDENCIES
   psych (= 3.3.2)
   puma (~> 5.6.9)
   pundit (~> 2.1.1)
-  rack (~> 2.2.18)
+  rack (~> 2.2.19)
   rack-timeout (~> 0.4.2)
   rails (~> 7.1.2)
   rails-controller-testing (~> 1.0.4)

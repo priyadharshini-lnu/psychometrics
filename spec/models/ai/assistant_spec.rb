@@ -7,6 +7,42 @@ RSpec.describe AI::Assistant, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of(:model_id) }
+
+    describe 'type specific validation for platform level assistants' do
+      context 'when creating a development_actions_assistant' do
+        it 'allows creation of the first development_actions_assistant' do
+          assistant = build(:assistant, assistant_type: 'development_actions_assistant')
+          expect(assistant).to be_valid
+        end
+
+        it 'prevents creation of a second development_actions_assistant through type-specific validation' do
+          create(:assistant, assistant_type: 'development_actions_assistant')
+          duplicate_assistant = build(:assistant, assistant_type: 'development_actions_assistant')
+
+          expect(duplicate_assistant).not_to be_valid
+          expect(duplicate_assistant.errors[:assistant_type]).to include(
+            I18n.t('administration.ai_assistants.errors.platform_assistant_already_exists',
+                   type: 'development_actions_assistant')
+          )
+        end
+
+        it 'allows updating an existing development_actions_assistant' do
+          assistant = create(:assistant, assistant_type: 'development_actions_assistant')
+          assistant.name = 'Updated Name'
+
+          expect(assistant).to be_valid
+        end
+      end
+
+      context 'when creating non-platform level assistants' do
+        it 'allows multiple assistants of other types' do
+          create(:assistant, assistant_type: 'content_writer')
+          duplicate_assistant = build(:assistant, assistant_type: 'content_writer')
+
+          expect(duplicate_assistant).to be_valid
+        end
+      end
+    end
   end
 
   describe '#for_user' do

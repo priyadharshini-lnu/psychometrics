@@ -38,6 +38,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
         title={I18n.t('common.column.id')}
         id="id"
         sorter
+        width={100}
       />
       <Resource.Column<CampaignTemplate>
         title={I18n.t('common.column.name')}
@@ -129,6 +130,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
             removeCampaignTemplate={handleRemoveCampaignTemplate}
           />
         )}
+        width={100}
       />
     </Resource.Table>
   )

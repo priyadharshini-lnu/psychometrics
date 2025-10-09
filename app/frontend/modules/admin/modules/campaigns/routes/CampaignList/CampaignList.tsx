@@ -157,6 +157,7 @@ const CampaignListComponent: React.FC<Props> = ({
             pagination={false}
             scroll={{ x: 'max-content' }}
             loading={isLoading}
+            sticky={{ offsetHeader: 50 }}
           >
             <Column
               title={I18n.t('administration.campaigns.listing.id')}
@@ -165,6 +166,7 @@ const CampaignListComponent: React.FC<Props> = ({
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
+              width={100}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.name')}
@@ -183,6 +185,7 @@ const CampaignListComponent: React.FC<Props> = ({
                   )}
                 </div>
               )}
+              minWidth={150}
             />
             <Column
               title={I18n.t('administration.dates.start')}
@@ -191,6 +194,7 @@ const CampaignListComponent: React.FC<Props> = ({
               sortOrder={getSortOrder('startDate')}
               render={({ startDate }) => (startDate ? dayjs(startDate).format('L LT') : ' - ')
               }
+              minWidth={150}
             />
             <Column
               title={I18n.t('administration.dates.end')}
@@ -199,6 +203,7 @@ const CampaignListComponent: React.FC<Props> = ({
               sortOrder={getSortOrder('endDate')}
               render={({ endDate }) => (endDate ? dayjs(endDate).format('L LT') : ' - ')
               }
+              minWidth={150}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.status')}
@@ -210,6 +215,7 @@ const CampaignListComponent: React.FC<Props> = ({
                 value: status,
               }))}
               filteredValue={getFilteredValue('statusEq')}
+              minWidth={100}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.type')}
@@ -221,6 +227,7 @@ const CampaignListComponent: React.FC<Props> = ({
                 value: type,
               }))}
               filteredValue={getFilteredValue('type')}
+              minWidth={100}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.assessments')}
@@ -228,16 +235,19 @@ const CampaignListComponent: React.FC<Props> = ({
               render={({ assessments }) => (
                 <ResourcesTag resources={assessments} />
               )}
+              minWidth={150}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.reports')}
               key="reports"
               render={({ reports }) => <ResourcesTag resources={reports} />}
+              minWidth={150}
             />
             <Column
               title={I18n.t('administration.campaigns.actions')}
               key="action"
               fixed={windowWidth > 800 ? 'right' : undefined}
+              width={100}
               render={campaign => (
                 <ConditionalDropdown
                   menu={

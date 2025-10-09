@@ -65,6 +65,7 @@ export const APIKeysTable: React.FC<Props> = ({ openModal }) => (
           openModal={openModal}
         />
       )}
+      width={100}
     />
   </Resource.Table>
 )
