@@ -54,13 +54,14 @@ export const WorkshopList: React.FC = () => {
           <Resource.Column<Workshop>
             title={I18n.t('common.column.id')}
             id="id"
-            width="3%"
             sorter
+            minWidth={100}
+            fixed="left"
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.name')}
             id="name"
-            width="20%"
+            minWidth={150}
             render={(_, { id, name }) => (
               <Link to={`${id}`} state={{ search: location.search }}>
                 {name}
@@ -71,27 +72,27 @@ export const WorkshopList: React.FC = () => {
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.start_time')}
             id="startTime"
-            width="15%"
+            minWidth={150}
             render={(_, { startTime }) => <DateTimeWithZone dateString={startTime} />}
             sorter
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.campaign_assessment_group')}
             id="campaignAssessmentGroup.name"
-            width="10%"
+            width={300}
             render={(_, { campaignAssessmentGroup }) => (campaignAssessmentGroup ? campaignAssessmentGroup.name : '-')
             }
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.duration')}
             id="duration"
-            width="10%"
+            width={100}
             render={(_, { duration }) => secondsToDayHoursAndMinutes(duration)}
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.seats')}
             id="duration"
-            width="10%"
+            minWidth={100}
             render={(_, { totalSeats, bookedSeats }) => `${bookedSeats}/${totalSeats}`}
           />
           <Resource.Column<Workshop>
@@ -100,6 +101,7 @@ export const WorkshopList: React.FC = () => {
             render={(_, { workshopManagers }) => (
               <ResourcesTag resources={workshopManagers} />
             )}
+            minWidth={150}
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.assessors')}
@@ -107,12 +109,14 @@ export const WorkshopList: React.FC = () => {
             render={(_, { workshopAssessors }) => (
               <ResourcesTag resources={workshopAssessors} />
             )}
+            minWidth={150}
           />
           <Resource.Column<Workshop>
             title={I18n.t('common.column.action')}
             id="action"
             width={100}
             render={(_, workshop) => <Menu workshop={workshop} />}
+            fixed="right"
           />
         </Resource.Table>
       </Resource>

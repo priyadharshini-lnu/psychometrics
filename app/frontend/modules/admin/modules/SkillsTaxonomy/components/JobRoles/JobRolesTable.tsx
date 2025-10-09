@@ -66,6 +66,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
               {jobRole.name}
             </Typography.Link>
           )}
+          minWidth={200}
           sorter
         />
 
@@ -77,6 +78,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
               <Typography.Text>{jobRole.code}</Typography.Text>
             </div>
           )}
+          minWidth={150}
           sorter
         />
 
@@ -84,6 +86,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
           title={I18n.t('administration.job_role.column.job_group')}
           id="jobGroupId"
           render={jobRole => <Typography.Text>{jobRole.jobGroup?.name}</Typography.Text>}
+          minWidth={150}
           sorter
         />
 

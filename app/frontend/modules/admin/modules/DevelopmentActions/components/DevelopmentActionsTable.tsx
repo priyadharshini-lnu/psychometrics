@@ -22,13 +22,14 @@ export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => (
       render={skill => (
         skill.id
       )}
-      width={200}
+      width={150}
     />
     <Resource.Column<DevelopmentAction>
       title={I18n.t('common.column.name')}
       id="name"
       render={developmentAction => <Typography.Text>{developmentAction.name}</Typography.Text>}
       sorter
+      minWidth={200}
     />
     <Resource.Column<DevelopmentAction>
       title={I18n.t('common.column.description')}

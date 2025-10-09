@@ -58,7 +58,7 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
           title={I18n.t('common.column.id')}
           dataIndex="id"
           id="id"
-          width={200}
+          width={100}
           sorter
           sortOrder={getSortOrder('id')}
         />

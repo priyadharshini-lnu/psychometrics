@@ -46,27 +46,32 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             id="id"
             dataIndex="id"
             sorter
+            width={150}
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.active')}
             id="status"
             dataIndex="status"
             render={(_, licenseUsage) => <ActiveSwitch licenseUsage={licenseUsage} />}
+            width={100}
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.campaign_name')}
             id="campaign_name"
             dataIndex={['extras', 'campaignName']}
+            width={300}
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.subject_name')}
             id="subject_name"
             dataIndex={['extras', 'subjectName']}
+            width={300}
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.subject_email')}
             id="subject_email"
             dataIndex={['extras', 'subjectEmail']}
+            width={300}
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('common.column.created_at')}
@@ -76,6 +81,7 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             render={createdAt => (
               dayjs(createdAt).format('lll')
             )}
+            width={150}
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.status_updated_at')}
@@ -85,11 +91,13 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             render={statusUpdatedAt => (
               statusUpdatedAt ? dayjs(statusUpdatedAt).format('lll') : null
             )}
+            minWidth={200}
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.status_updated_by')}
             id="status_updated_by_id"
             dataIndex={['statusUpdatedBy', 'name']}
+            width={300}
           />
         </Resource.Table>
       </Resource>

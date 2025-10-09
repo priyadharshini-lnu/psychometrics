@@ -55,11 +55,13 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
           id="id"
           sorter
           sortOrder={getSortOrder('id')}
+          width={150}
         />
         <Resource.Column<Norm>
           id="disabled"
           title={I18n.t('common.column.active')}
           render={norm => <ActiveSwitch norm={norm} updateResource={updateResource} />}
+          width={100}
         />
         <Resource.Column<Norm>
           title={`${I18n.t('common.column.name')}`}

@@ -113,10 +113,12 @@ export const InvitesTable = () => {
           <Resource.Column<WorkshopInvite>
             title={I18n.t('administration.assessment_center.invite.center_group')}
             id="campaignAssessmentGroupName"
+            minWidth={300}
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('administration.assessment_center.invite.subjects.title')}
             id="subjectsCount"
+            minWidth={100}
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('common.column.action')}
@@ -130,6 +132,8 @@ export const InvitesTable = () => {
                 }
               />
             )}
+            width={100}
+            fixed="right"
           />
         </Resource.Table>
         <Modals modals={MODALS} />
