@@ -172,7 +172,9 @@ function CreateSubjectModal ({
             },
             {
               type: 'email',
-              message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.please_enter_valid_email'),
+              message: I18n.t(
+                'administration.threesixty_campaigns.menu.participants.subjects.please_enter_valid_email'
+              ),
             },
           ]}
         >
