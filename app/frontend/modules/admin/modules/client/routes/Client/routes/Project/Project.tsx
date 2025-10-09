@@ -189,7 +189,7 @@ const Project: FC<Props> = ({
   menuItems.push({
     key: 'licenses',
     icon: <SolutionOutlined />,
-    label: I18n.t('administration.breadcrumbs.users'),
+    label: I18n.t('administration.breadcrumbs.licenses'),
   })
 
 

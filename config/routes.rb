@@ -1225,6 +1225,9 @@ as: :simulation_progress_notification
             jsonapi_resources :report_families_reports
           end
           jsonapi_resources :projects, only: :show do
+            member do
+              get :licenses
+            end
             jsonapi_resources :idp_templates, only: %i[index create update destroy show],
               controller: 'projects/idp_templates' do
                 post :uploads, on: :member
@@ -1325,6 +1328,7 @@ as: :simulation_progress_notification
             jsonapi_resources :registration_settings, only: %i[index update]
             jsonapi_resources :mettl_schedule_records
             jsonapi_resources :project_features, only: %i[index update]
+            # jsonapi_resources :project_licenses, controller: 'projects/licenses', only: %i[index show create update destroy]
 
             jsonapi_resources :assessments do
               scope module: :assessments do

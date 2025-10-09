@@ -38,7 +38,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         dataIndex="id"
         width={30}
       />
-      <Resource.Column<License>
+      {/* <Resource.Column<License>
         title={I18n.t('licenses.enabled')}
         id="disabledStatus"
         dataIndex="disabled"
@@ -47,7 +47,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
           <Switch checked={enabled} onChange={value => resource.updateResource({ id, enabled: value })} />
         )
         }
-      />
+      /> */}
       <Resource.Column<License>
         title={I18n.t('licenses.report_family')}
         id="report_family_id"
@@ -68,7 +68,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
           total: number,
         })}
       />
-      <Resource.Column<License>
+      {/* <Resource.Column<License>
         title={I18n.t('licenses.overuse_number')}
         id="overuse_number"
         dataIndex="overuseNumber"
@@ -76,7 +76,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
           used: usedOveruseNumber(usedNumber, number),
           total: overuseNumber,
         })}
-      />
+      /> */}
       <Resource.Column<License>
         title={I18n.t('licenses.start_date')}
         id="start_date"
@@ -89,7 +89,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         dataIndex="endDate"
         sorter
       />
-      {isSuperAdmin(currentUser)
+      {/* {isSuperAdmin(currentUser)
           && (
             <Resource.Column<License>
               title={I18n.t('common.column.action')}
@@ -107,7 +107,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
                 />
               )}
             />
-          )}
+          )} */}
     </Resource.Table>
   )
 }
