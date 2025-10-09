@@ -202,9 +202,11 @@ Rails.application.routes.draw do
         end
         resources :sheet_rows, concerns: :sheet_row_management
 
-        resources :stats, only: %i[index] do
+        resources :stats, only: [] do
           collection do
+            post :index
             post :timeseries
+            get :datasheet_filter_options
           end
         end
 

@@ -11,6 +11,10 @@ module Administration
       has_permission?(:campaigns, :view_stats)
     end
 
+    def datasheet_filter_options?
+      has_permission?(:campaigns, :view_stats)
+    end
+
     def show?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :view, campaign_id: record.id
