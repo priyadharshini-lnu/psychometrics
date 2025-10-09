@@ -91,11 +91,25 @@ function CreateSubjectModal ({
   }
 
   const handleSubmit = async (values) => {
+    // Validate for whitespace before submitting
+    const trimmedValues = {
+      ...values,
+      email: values.email?.trim(),
+      firstName: values.firstName?.trim(),
+      lastName: values.lastName?.trim(),
+    }
+
+    // Check if required fields are just whitespace
+    if (!trimmedValues.email || !trimmedValues.firstName || !trimmedValues.lastName) {
+      form.validateFields()
+      return
+    }
+
     setLoading(true)
     setFormErrors([])
 
     try {
-      await createAll(campaignId, [values])
+      await createAll(campaignId, [trimmedValues])
       closeModal()
     } catch (error) {
       setFormErrors([error.message || I18n.t('common.errors.something_wrong')])
@@ -155,7 +169,6 @@ function CreateSubjectModal ({
           rules={[
             {
               required: true,
-              message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email_is_required'),
             },
             {
               type: 'email',
@@ -167,7 +180,10 @@ function CreateSubjectModal ({
         >
           <UserAutocomplete
             value={autocompletedUser}
-            onChange={setAutocompletedUser}
+            onChange={(value) => {
+              setAutocompletedUser(value)
+              form.validateFields(['email'])
+            }}
             onSelect={onSelectUser}
             source="users"
             users={autocompletedUsers}
@@ -180,10 +196,11 @@ function CreateSubjectModal ({
         <Form.Item
           name="firstName"
           label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name')}
-          rules={[{
-            required: true,
-            message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name_is_required'),
-          }]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -191,10 +208,11 @@ function CreateSubjectModal ({
         <Form.Item
           name="lastName"
           label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name')}
-          rules={[{
-            required: true,
-            message: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name_is_required'),
-          }]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
         >
           <Input />
         </Form.Item>

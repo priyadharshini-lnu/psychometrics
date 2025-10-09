@@ -4603,12 +4603,9 @@ en:
             add_subjects: Add Subjects
             current_job_role: Current Job Role
             email: Email
-            email_is_required: Email is required
             first_name: First Name
-            first_name_is_required: First name is required
             import_subjects: Import Subjects
             last_name: Last Name
-            last_name_is_required: Last name is required
             locale: Locale
             please_enter_valid_email: Please enter a valid email
             target_job_role: Target Job Role
