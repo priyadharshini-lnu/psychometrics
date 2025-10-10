@@ -37,9 +37,9 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def preview
-    @translations = ::Translation.to_hash_for_assessment(resource.id, user_locale,
+    @translations = ::Translation.to_hash_for_assessment(resource.id, params[:assessmentLang],
                                                          translations_migrated: resource.translations_migrated?)
-    @available_translations = ::Translation.available_translation_for_assessment(resource.id)
+    @available_translations = resource.available_languages
     render layout: 'empty'
   end
 
