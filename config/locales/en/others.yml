@@ -2622,6 +2622,7 @@ en:
       summary:
         chat_title: Chat Insight Summary
         file_title: Uploaded Documents Insights
+        gap_report_title: Skill Gap Report Analysis
         hint: if yes then we will create your IDP otherwise you can retake your answers
         title: Are you satisfied with results?
         upload_file: Uploaded File

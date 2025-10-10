@@ -148,9 +148,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT id,
-    name,
-    category
+ SELECT assessments.id,
+    assessments.name,
+    assessments.category
    FROM public.assessments;
 
 
@@ -173,10 +173,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT id,
-    campaign_id,
-    name,
-    "position"
+ SELECT campaign_factor_groups.id,
+    campaign_factor_groups.campaign_id,
+    campaign_factor_groups.name,
+    campaign_factor_groups."position"
    FROM public.campaign_factor_groups;
 
 
@@ -296,9 +296,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT id,
-    name,
-    project_id
+ SELECT campaigns.id,
+    campaigns.name,
+    campaigns.project_id
    FROM public.campaigns;
 
 
@@ -418,8 +418,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT id,
-    name
+ SELECT factors.id,
+    factors.name
    FROM public.factors;
 
 
@@ -740,11 +740,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT id,
-    project_id,
-    first_name,
-    last_name,
-    email
+ SELECT users.id,
+    users.project_id,
+    users.first_name,
+    users.last_name,
+    users.email
    FROM public.users;
 
 
@@ -3908,7 +3908,8 @@ CREATE TABLE public.idp_templates (
     one_click_idp_enabled boolean DEFAULT false NOT NULL,
     one_click_ai_assistant_id bigint,
     skill_source_preference integer DEFAULT 0,
-    document_analysis_ai_assistant_id bigint
+    document_analysis_ai_assistant_id bigint,
+    skill_gap_report_analysis_ai_assistant_id bigint
 );
 
 
@@ -4675,13 +4676,13 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT id,
-    factor_id,
-    user_assessment_id,
-    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((scores ->> 'score'::text))::double precision AS score,
-    ((scores ->> 'zscore'::text))::double precision AS zscore,
-    ((scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT user_assessment_factor_scores.id,
+    user_assessment_factor_scores.factor_id,
+    user_assessment_factor_scores.user_assessment_id,
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -12004,6 +12005,13 @@ CREATE INDEX idx_on_resource_id_resource_type_76c375ea65 ON public.resource_hoga
 
 
 --
+-- Name: idx_on_skill_gap_report_analysis_ai_assistant_id_2a87d39fe6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_skill_gap_report_analysis_ai_assistant_id_2a87d39fe6 ON public.idp_templates USING btree (skill_gap_report_analysis_ai_assistant_id);
+
+
+--
 -- Name: idx_on_user_assessment_id_cb9cc55a9e; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15773,6 +15781,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: idp_templates fk_rails_0a97b8b97a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_templates
+    ADD CONSTRAINT fk_rails_0a97b8b97a FOREIGN KEY (skill_gap_report_analysis_ai_assistant_id) REFERENCES public.ai_assistants(id);
+
+
+--
 -- Name: workshop_resources fk_rails_0b9b541d1c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18475,6 +18491,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251003104731'),
 ('20251001034346'),
 ('20250917104111'),
 ('20250917090000'),
@@ -19389,4 +19406,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

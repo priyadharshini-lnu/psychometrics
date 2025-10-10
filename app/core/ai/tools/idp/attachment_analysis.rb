@@ -69,7 +69,7 @@ module AI
         end
 
         def existing_summary_session
-          @existing_summary_session ||= user_idp_document.ai_assisted_user_document_summary
+          @existing_summary_session ||= user_idp_document_attachment&.ai_assisted_user_document_summary
         end
       end
     end

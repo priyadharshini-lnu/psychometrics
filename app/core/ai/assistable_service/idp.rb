@@ -3,6 +3,8 @@
 module AI
   module AssistableService
     class Idp < Base
+      class ServiceConfigurationError < StandardError; end
+
       def initialize(plan, current_user, instructions = nil, options = {})
         super(plan, current_user, instructions, options.merge(ignore_user_prompt: true))
       end
@@ -12,6 +14,8 @@ module AI
           return broadcast(:error,
                            I18n.t('administration.ai_assistants.errors.one_click_idp_assistance_not_enabled'))
         end
+
+        validate_assistant_tools_configuration!
 
         mark_session_in_progress!
 
@@ -23,6 +27,8 @@ module AI
             handle_assistant_service_error(error_message, error)
           end.
           call
+      rescue ServiceConfigurationError => e
+        handle_assistant_service_error(e.message, e)
       end
 
       private
@@ -55,9 +61,17 @@ module AI
       def assistant_tools
         [
           AI::Tools::Idp::AttachmentAnalysis.new(assistable, current_user, document_analysis_assistant),
+          AI::Tools::Idp::SkillGapReportAnalysis.new(assistable, current_user, skill_gap_report_analysis_assistant),
           AI::Tools::Idp::AddSkillToPlan.new(assistable),
           AI::Tools::Idp::AvailableSkillsAndDevelopmentActions.new(idp_template)
         ]
+      end
+
+      def validate_assistant_tools_configuration!
+        unless document_analysis_assistant && skill_gap_report_analysis_assistant
+          raise ServiceConfigurationError,
+                I18n.t('administration.ai_assistants.errors.development_actions_assistance_not_enabled')
+        end
       end
 
       def session_model
@@ -70,6 +84,10 @@ module AI
 
       def document_analysis_assistant
         @document_analysis_assistant ||= idp_template.document_analysis_ai_assistant
+      end
+
+      def skill_gap_report_analysis_assistant
+        @skill_gap_report_analysis_assistant ||= idp_template.skill_gap_report_analysis_ai_assistant
       end
 
       def mark_assistable_in_progress!
@@ -90,18 +108,18 @@ module AI
       def plan_dependency
         <<~CONTEXT
           <user_idp_document>
-            <filename>#{user_idp_document.filename}</filename>
+            <filename>#{user_idp_document_attachment&.filename}</filename>
             <document_analysis_status>#{ai_assisted_user_document_summary&.status}</document_analysis_status>
           </user_idp_document>
         CONTEXT
       end
 
-      def user_idp_document
-        @user_idp_document ||= assistable.user_document
+      def user_idp_document_attachment
+        @user_idp_document_attachment ||= assistable.user_document&.attachment
       end
 
       def ai_assisted_user_document_summary
-        @ai_assisted_user_document_summary ||= user_idp_document.ai_assisted_user_document_summary
+        @ai_assisted_user_document_summary ||= user_idp_document_attachment&.ai_assisted_user_document_summary
       end
     end
   end

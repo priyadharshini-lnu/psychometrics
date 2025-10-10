@@ -126,6 +126,13 @@ class UserIdpPlan < ApplicationRecord
     idp_template.report
   end
 
+  def user_skill_gap_report
+    user.user_reports.find_by(
+      campaign_id: campaign_id,
+      report_id: idp_template.report_id
+    )&.user_report_pdf
+  end
+
   def report_name_for_download
     "#{user.email}_idp_report_#{user.id}.pdf"
   end

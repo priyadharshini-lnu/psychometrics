@@ -20,6 +20,7 @@ module AI
         **Summary Component Schema:**
         When selecting `Summary` component, the `data` object must include:
         - `document_summary`: EXACT tool response from document analysis tool (empty string if not called).
+        - `skill_gap_report_analysis`: EXACT tool response from skill gap report analysis tool (empty string if not called).
         - `chat_summary`: Generated chat analysis (markdown allowed)
         - Summary component by default will ask user to proceed for plan creation
       SCHEMA_CONTEXT
@@ -54,6 +55,9 @@ module AI
           CORRECT: Return complete analysis as received.
           INCORRECT: "Based on the analysis, I can see.."
           INCORRECT: "The key insights from this document are..."
+        DESC
+        string :skill_gap_report_analysis, description: <<~DESC
+          Complete unmodified analysis from skill gap report analysis tool. Do not interpret or condense the analysis - return verbatim.
         DESC
         string :chat_summary, description: 'Summary of the chat interaction with user (markdown allowed)'
         string :file_name,

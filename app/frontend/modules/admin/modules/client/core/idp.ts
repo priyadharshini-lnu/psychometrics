@@ -95,6 +95,7 @@ export const IdpTR = t.intersection([
     skillSourcePreference: t.string,
     oneClickAiAssistantId: t.union([OneClickAIAssistantTR, t.undefined]),
     documentAnalysisAiAssistantId: t.union([DocumentAnalysisAiAssistantTR, t.undefined]),
+    skillGapReportAnalysisAiAssistantId: t.union([DocumentAnalysisAiAssistantTR, t.undefined]),
     skills: t.union([
       t.array(SkillTR),
       t.undefined]),
@@ -106,6 +107,10 @@ export const IdpTR = t.intersection([
       t.undefined,
     ]),
     documentAnalysisAiAssistant: t.union([
+      AssistantTR,
+      t.undefined,
+    ]),
+    skillGapReportAnalysisAiAssistant: t.union([
       AssistantTR,
       t.undefined,
     ]),
@@ -147,6 +152,9 @@ export const Schema = {
       type: 'assistants',
     },
     document_analysis_ai_assistant: {
+      type: 'assistants',
+    },
+    skill_gap_report_analysis_ai_assistant: {
       type: 'assistants',
     },
   },

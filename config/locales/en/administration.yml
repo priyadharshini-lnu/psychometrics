@@ -2376,6 +2376,7 @@ en:
       self_rating: Enable Self Rating
       show_reflections: Show Reflections
       skill_gap_report: Skill Gap Report
+      skill_gap_report_ai_assistant: Skill Gap Report Analysis Assistant
       skill_source_preference: Skill Source
       skill_sources:
         from_ai: From General AI Knowledge
