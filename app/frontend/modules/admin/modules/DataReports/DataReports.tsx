@@ -52,6 +52,7 @@ export const DataReports: React.FC<{}> = () => {
         id="id"
         title={I18n.t('common.column.id')}
         sorter
+        width={150}
       />
       <Resource.Column<DataReport>
         id="name"
@@ -72,6 +73,7 @@ export const DataReports: React.FC<{}> = () => {
         title={I18n.t('administration.data_reports.columns.last_updated_by')}
         dataIndex={['lastUpdatedBy', 'email']}
         key="user_email"
+        minWidth={200}
       />
       <Resource.Column<DataReport>
         id="lastUpdateBy"
@@ -79,6 +81,7 @@ export const DataReports: React.FC<{}> = () => {
         dataIndex={['updatedAt']}
         render={text => formatedDate(text)}
         key="lastUpdateBy"
+        width={150}
       />
       <Resource.Column<DataReport>
         id="actions"
@@ -89,6 +92,8 @@ export const DataReports: React.FC<{}> = () => {
             {(I18n.t('common.actions.edit'))}
           </Button>
         )}
+        fixed="right"
+        width={100}
       />
 
     </Resource.Table>

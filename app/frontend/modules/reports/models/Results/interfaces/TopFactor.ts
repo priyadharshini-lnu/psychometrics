@@ -4,6 +4,16 @@ export enum TopFactorType {
   SubFactor = 3,
 }
 
+export interface JobRole {
+  included: boolean
+  expected_proficiency?: number
+}
+
+export interface JobRoles {
+  current_job_role?: JobRole
+  target_job_role?: JobRole
+}
+
 export default interface TopFactor {
   meanRawScore: number
   meanNormScore: number
@@ -11,4 +21,5 @@ export default interface TopFactor {
   alias: string
   description: string
   icon: string
+  jobRoles?: JobRoles
 }

@@ -30,3 +30,9 @@ export const STATUS_COLORS = {
   in_progress: 'blue',
   completed: 'purple',
 }
+
+
+export enum SKILL_TYPE {
+  TECHNICAL = 'technical',
+  BEHAVIORAL = 'behavioral',
+}

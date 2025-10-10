@@ -40,9 +40,10 @@
       li.list-group-item
         strong.mrs = t('.assessment')
         = @communication.assessment.name
+
     li.list-group-item
       strong.mrs = t('.recipients')
-      = @communication.recipients_i18n
+      = render_selected_recipient_users(@communication) || @communication.recipients_i18n
     - if @communication.selected_recipients?
       li.list-group-item
         strong.mrs = t('.users')
@@ -71,7 +72,30 @@
         li.list-group-item
           strong.mrs = t('.stop_reminder_datetime')
           = "#{I18n.l(@communication.stop_reminder_datetime, format: :short)} (GST)"
-
+    - if @communication.delivery_start_date
+      li.list-group-item
+        strong.mrs = t('.start_date')
+        = @communication.delivery_start_date
+    - if @communication.delivery_end_date
+      li.list-group-item
+        strong.mrs = t('.end_date')
+        = @communication.delivery_end_date
+    - if @communication.delivery_time_of_day
+      li.list-group-item
+        strong.mrs = t('.time_of_day')
+        = @communication.delivery_time_of_day
+    - if @communication.delivery_timezone
+      li.list-group-item
+        strong.mrs = t('.timezone')
+        = @communication.delivery_timezone
+    - if @communication.delivery_frequency
+      li.list-group-item
+        strong.mrs = t('.frequency')
+        = @communication.delivery_frequency
+    - if @communication.delivery_weekdays && @communication.delivery_weekdays.any?
+      li.list-group-item
+        strong.mrs = t('.weekdays')
+        = @communication.delivery_weekdays.join(', ')
     li.list-group-item
       strong.mrs = t('.subject')
       - if @available_locales.length > 1

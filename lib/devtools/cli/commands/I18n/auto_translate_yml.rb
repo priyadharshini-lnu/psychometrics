@@ -89,7 +89,7 @@ module Devtools
 
           # Step 2: Run auto_translate_xlsx to translate new strings
           def run_auto_translate_xlsx(changes_file)
-            cli_log "\n\nStep 2: Translating new strings with DeepL..."
+            cli_log "\n\nStep 2: Translating new strings with AI..."
             translated_output = File.join(tmp_dir, "auto_translated_#{current_time_stamp}.xlsx")
             @temp_files[:translated] = translated_output
 

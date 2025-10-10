@@ -3,6 +3,10 @@
 .box {
   padding: @space-4;
   margin-top: 16px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 }
 
 .pageContent {
@@ -12,6 +16,10 @@
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 }
 
 .detailsPageContent {
@@ -20,6 +28,7 @@
   flex-direction: column;
   flex: 1 1 auto;
   height: calc(100vh - 100px);
+  overflow-x: hidden;
 }
 
 .avatar {

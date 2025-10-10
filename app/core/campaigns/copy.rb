@@ -54,6 +54,8 @@ module Campaigns
         new_cag.save!
         new_campaign.campaign_assessments.where(campaign_assessment_group_id: cag.id).
           update_all(campaign_assessment_group_id: new_cag.id)
+        new_campaign.campaign_assessor_assessments.where(campaign_assessment_group_id: cag.id).
+          update_all(campaign_assessment_group_id: new_cag.id)
         new_campaign.campaign_assessment_groups << new_cag
       end
     end

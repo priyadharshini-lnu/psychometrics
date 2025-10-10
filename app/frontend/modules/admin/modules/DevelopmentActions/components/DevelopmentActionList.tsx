@@ -5,14 +5,14 @@ import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { DevelopmentActionTR, DevelopmentAction } from '~/modules/admin/modules/client/core/developmentAction'
 import { Resource } from '~/modules/admin/components/Resource'
-import { DevelopmentActionsFormModal } from '../DevelopmentActionsFormModal'
-import { DevelopmentActionsExportModal } from '../DevelopmentActionsExportModal'
-import { DevelopmentActionsTable } from '../DevelopmentActionsTable'
-import { DevelopmentActionsFilter } from '../DevelopmentActionsFilter'
-import { DevelopmentActionsImportModal } from '../DevelopmentActionsImportModal'
+import { DevelopmentActionsFormModal } from './DevelopmentActionsFormModal'
+import { DevelopmentActionsExportModal } from './DevelopmentActionsExportModal'
+import { DevelopmentActionsTable } from './DevelopmentActionsTable'
+import { DevelopmentActionsFilter } from './DevelopmentActionsFilter'
+import { DevelopmentActionsImportModal } from './DevelopmentActionsImportModal'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
-const connecter = connect(
+const connector = connect(
   () => ({
   }),
   {
@@ -20,7 +20,7 @@ const connecter = connect(
   },
 )
 
-type PropsFromRedux = ConnectedProps<typeof connecter>
+type PropsFromRedux = ConnectedProps<typeof connector>
 
 const MODALS = {
   DevelopmentActionsFormModal,
@@ -33,10 +33,14 @@ const { I18n } = window
 const DevelopmentActionList: React.FC<PropsFromRedux> = ({ openModal }) => {
   const { projectId: projectIdParam } = useParams()
 
-  let projectIdFilter
+  let filter
   if (projectIdParam) {
-    projectIdFilter = {
+    filter = {
       project_id_eq: projectIdParam,
+    }
+  } else {
+    filter = {
+      global: true,
     }
   }
 
@@ -44,9 +48,10 @@ const DevelopmentActionList: React.FC<PropsFromRedux> = ({ openModal }) => {
     trackUrl: true,
     responseType: DevelopmentActionTR,
     apiConfig: {
-      include: ['project', 'skills'],
+      include: ['skills'],
       include_meta: ['permissions'],
-      filter: projectIdFilter,
+      filter,
+      include_resource_meta: ['permissions'],
     },
   }
 
@@ -79,4 +84,4 @@ const DevelopmentActionList: React.FC<PropsFromRedux> = ({ openModal }) => {
   )
 }
 
-export default connecter(DevelopmentActionList)
+export default connector(DevelopmentActionList)

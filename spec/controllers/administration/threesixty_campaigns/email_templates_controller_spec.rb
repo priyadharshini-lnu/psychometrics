@@ -4,7 +4,11 @@ require 'rails_helper'
 
 RSpec.describe Administration::ThreesixtyCampaigns::EmailTemplatesController, type: :controller do
   let!(:client) { create(:tenancy) }
-  let!(:template) { create(:threesixty_email_template, content: 'En', subject: 'Sub') }
+  let!(:campaign) { create(:campaign, project: client) }
+  let!(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
+  let!(:template) do
+    create(:threesixty_email_template, content: 'En', subject: 'Sub', threesixty_campaign: threesixty_campaign)
+  end
   let(:current_user) { create(:superadmin) }
 
   before(:each) { login_user(current_user) }
@@ -17,7 +21,7 @@ RSpec.describe Administration::ThreesixtyCampaigns::EmailTemplatesController, ty
 
     get :show, params: {
       locales: %w[en ar],
-      threesixty_campaign_id: template.threesixty_campaign_id,
+      threesixty_campaign_id: threesixty_campaign.id,
       id: template.id
     }, as: :json
 

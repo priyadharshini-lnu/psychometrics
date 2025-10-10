@@ -23,9 +23,7 @@ html dir=dir lang="#{I18n.locale}"
     = vite_react_refresh_tag
 
   body.end-user class=(I18n.locale == :ar ? 'rtl' : 'ltr' )  data-locale="#{I18n.locale}"
-    - if show_maintenance_alert?
-      div style="color: #fff;width: 100%;padding: 10px;font-size: 14px;background: #fa8c16; text-align: center;"
-        = t('maintenance_message', **maintenance_time_frame)
+    = render 'shared/maintenance_alert_banner'
     = yield
     / #notification-center-container
     / = vite_javascript_tag 'notification_center.jsx'

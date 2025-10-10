@@ -907,6 +907,8 @@ de:
     bulk_download_reports:
       content:
         title: Links zum Herunterladen von Berichten
+      errors:
+        no_plans: Keine aktiven IDP-Pläne gefunden
     close: Schließen Sie
     details: Einzelheiten
     errors: Fehler
@@ -919,6 +921,14 @@ de:
     super_admin:
       errors:
         data_processing_disabled: Die Datenverarbeitung ist deaktiviert.
+  ai:
+    errors:
+      bad_request_invalid_input: Ihre Anfrage konnte aufgrund ungültiger Eingaben nicht bearbeitet werden. Bitte überprüfen Sie Ihre Anfrage und versuchen Sie es erneut.
+      generic: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte wenden Sie sich an Ihren Administrator.
+      rate_limit_exceeded: Der Service erfährt derzeit eine hohe Nachfrage. Bitte warten Sie einen Moment und versuchen Sie es erneut.
+      server_error: Der KI-Dienst ist vorübergehend nicht verfügbar. Bitte versuchen Sie es in wenigen Augenblicken erneut.
+      service_overloaded: Der KI-Dienst ist derzeit überlastet. Bitte warten Sie einen Moment und versuchen Sie es erneut.
+      service_unavailable: Der KI-Dienst wird derzeit gewartet. Bitte versuchen Sie es später erneut.
   anonym:
     close: Schließen Sie
     continue: Weiter
@@ -1178,6 +1188,7 @@ de:
       assessments_and_reports: Beurteilungen und Berichte
       idp: IDP
       manage: Verwalten Sie
+      recordings: Aufnahmen
       report_approval: Einstellungen für die Berichtsgenehmigung
       sequencing: Sequenzierung
     report_approval:
@@ -2197,6 +2208,8 @@ de:
       not_uniq_variable: variable '%{value}' neu definiert in Zeile Nummer %{row}
       project_assessments:
         should_be_greater_than_zero: Die Gültigkeit des Ergebnisses sollte größer als 0 Tage sein
+      project_feature:
+        global_skills_not_enabled_on_client: Um Global Skills für dieses Projekt zu aktivieren, aktivieren Sie diese bitte unter Feature Flags in den Client-Einstellungen.
       report_approval_settings:
         report_exists: Die Einstellung zur Berichtsgenehmigung für diesen Bericht ist bereits vorhanden.
         validates_admins: Admins haben keinen Zugriff auf die Kampagne.
@@ -2269,6 +2282,8 @@ de:
       body:
         error: Der Text der E-Mail ist nicht korrekt.
   errors:
+    ai_assistant:
+      max_generation_limit: Maximales Erzeugungslimit überschritten, wenden Sie sich an Ihre Verwaltung.
     assessments:
       timed_out: Sie können an der Bewertung %{assessment_name} nicht mehr teilnehmen, da die Zeit abgelaufen ist.
     equal_to_current_password: muss sich vom aktuellen Passwort unterscheiden.
@@ -2520,6 +2535,7 @@ de:
       update_success: SMS-Einladung wurde erfolgreich aktualisiert
     sms_records:
       create_success: SMS-Auftrag wurde erfolgreich geplant
+    starting_in: Ab
     test_webhook:
       create_success: Webhook-Test erfolgreich.
       success: Erfolg
@@ -2592,6 +2608,8 @@ de:
       finishing:
         hint: Unser KI-Assistent erstellt für Sie einen IDP-Plan.
         title: Bitte warten Sie, wir zaubern...
+      reset_chat: Chat zurücksetzen
+      reset_confirmation: Sind Sie sicher, dass Sie diesen Chat verwerfen und neu anfangen möchten?
       retake_steps:
         chat_hint: Lassen Sie mich wissen, welche Informationen Sie weiter unten bereitstellen möchten.
         chat_title: Sie möchten weitere Informationen geben?
@@ -2599,9 +2617,27 @@ de:
         start_chat_again: Chat erneut starten
         upload_document: Dokument hochladen
         upload_file: Datei hochladen
+      start_page:
+        ai_assisted:
+          button: KI-gestützte Binnenvertriebene
+          description: Ein interaktiver, konversationsgesteuerter Ablauf, bei dem Sie den Plan gemeinsam mit der KI in mehreren Schritten erstellen.
+          option_1: Persönlichere Ergebnisse
+          option_2: Möglichkeiten zur Selbstreflexion
+          option_3: Besser für berufliche Übergänge
+          title: KI-gestützte Binnenvertriebene
+        one_click:
+          button: KI-IDP mit einem Klick
+          description: Die KI erledigt die ganze schwere Arbeit - sie scannt Ihre Daten sofort und erstellt einen vollständigen Entwicklungsplan.
+          option_1: Schnellste Option (5 Minuten)
+          option_2: Gut für vielbeschäftigte Berufstätige
+          option_3: Vollständig editierbar nach der Generierung
+          title: 1-Klick-KI-IDP
+        sub_title: Lassen Sie uns eine maßgeschneiderte Weiterbildungsstrategie erstellen, die auf Ihren Karrierewunsch abgestimmt ist und von KI geleitet wird
+        title: Erstellen Sie Ihren individuellen Entwicklungsplan
       summary:
         chat_title: Chat Insight Zusammenfassung
         file_title: Einblicke in hochgeladene Dokumente
+        gap_report_title: Analyse des Skill-Gap-Berichts
         hint: Wenn ja, erstellen wir Ihren IDP, andernfalls können Sie Ihre Antworten wiederholen
         title: Sind Sie mit den Ergebnissen zufrieden?
         upload_file: Hochgeladene Datei
@@ -2650,6 +2686,7 @@ de:
       add_development_actions_from_below_options: Fügen Sie Entwicklungsaktionen aus den folgenden Optionen hinzu.
       add_development_actions_modal_title: Bibliothek für Entwicklungsmaßnahmen für %{skillName}
       add_from_library: Aus Bibliothek hinzufügen
+      add_more: Hinzufügen weiterer Entwicklungsaktionen
       all: Alle
       approved: Genehmigt
       board_view:
@@ -2664,6 +2701,7 @@ de:
       custom: Gewohnheit
       custom_da_description: Erstellen Sie eine benutzerdefinierte Entwicklungsaktion, um individuelle Entwicklungsanforderungen zu erfüllen.
       date_range: Startdatum - Enddatum
+      edit_da_progress: Fortschritt der Entwicklungsaktion bearbeiten
       edit_plan_to_add_development_actions: Bearbeiten Sie den Plan, und fügen Sie Entwicklungsaktionen hinzu.
       enter_development_action_description: Beschreibung der Entwicklungsmaßnahme eingeben
       enter_development_action_title: Titel der Entwicklungsmaßnahme eingeben
@@ -3081,7 +3119,7 @@ de:
     users:
       account_disable: Ihr Konto wurde aufgrund von Inaktivität deaktiviert
       warning: Ihr Konto wird demnächst wegen Inaktivität deaktiviert werden
-  maintenance_message: Lighthouse wird wegen geplanter Wartungsarbeiten am %{start_date} heruntergefahren und für %{duration} Stunden nicht verfügbar sein
+  maintenance_message: Lighthouse wird am %{start_date} wegen planmäßiger Wartungsarbeiten ausfallen und für %{duration} nicht zur Verfügung stehen
   maintenance_submessage: Bitte aktualisieren Sie die Seite nach Abschluss der Wartungsarbeiten. Sie werden dann zur Login-Seite weitergeleitet
   my: Meine
   myself: Ich selbst

@@ -18,8 +18,30 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
   has_many :skills, through: :idp_template_skills, class_name: 'Skill'
   has_one :one_click_ai_assistant, class_name: 'AI::Assistant'
   has_one :document_analysis_ai_assistant, class_name: 'AI::Assistant'
+  has_one :skill_gap_report_analysis_ai_assistant, class_name: 'AI::Assistant'
 
   ransack_filters %i[filterable_fields status_eq]
+
+  def meta_details
+    {
+      permissions: lambda {
+        GetPermissionsHash.call!(
+          Api::Administration::IdpTemplatePolicy,
+          context[:user],
+          @model,
+          [
+            %w[edit update],
+            %w[remove destroy],
+            %w[publish update],
+            %w[unpublish update]
+          ],
+          {
+            project_id: @model.project_id
+          }
+        )
+      }
+    }
+  end
 
   def self.updatable_fields(_)
     super + %i[translations]

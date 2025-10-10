@@ -2,8 +2,7 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
 import {
-  InputNumber, Row, Col, Radio, Checkbox, Slider,
-  Input, Space,
+  InputNumber, Row, Col, Radio, Checkbox, Slider, Input, Space,
 } from 'antd'
 import _ from 'lodash'
 import Select from 'react-select'
@@ -17,9 +16,10 @@ import ScoreRangeList from './ScoreRangeList'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import PropertyFilter from '~/modules/reports/components/PropertyFilter'
 import PaginationOptions from '~/modules/reports/components/PaginationOptions'
-
+import { RenderJobFactorModes, RenderSkillTypeModes } from '../../Properties'
 
 const ALL_FACTORS = 'All Factors'
+const { I18n } = window
 
 class Properties extends Component {
   static propTypes = {
@@ -68,9 +68,18 @@ class Properties extends Component {
     const assessmentId = model.assessment_id
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
-    const factors = _.map(AppStore.factors[dimensionId], this.factor)
-    factors.unshift({ id: ALL_FACTORS, alias: ALL_FACTORS })
-    return factors
+    let factors = AppStore.factors[dimensionId] || []
+
+    const { skillType } = model.props
+
+    // Apply skillType filtering if skillType is selected i.e Skill type
+    if (skillType && skillType.length > 0) {
+      factors = factors.filter(factor => skillType.includes(factor.skill_type))
+    }
+
+    const mappedFactors = _.map(factors, this.factor)
+    mappedFactors.unshift({ id: ALL_FACTORS, alias: ALL_FACTORS })
+    return mappedFactors
   }
 
   factor = f => ({ id: f.id, alias: `${(f.alias || f.name)?.substring(0, 24)}` })
@@ -110,6 +119,14 @@ class Properties extends Component {
     })
   }
 
+  changeSkillType = (value) => {
+    this.updateAll((module) => {
+      module.props.skillType = value
+      const factors = this.collectFactors()
+      module.props.source = { factors }
+    })
+  }
+
   changeStyle = (propName, e) => {
     this.updateAll((module) => {
       module.props[propName] = e.currentTarget.value
@@ -125,6 +142,18 @@ class Properties extends Component {
   changeBenchmarkLabel = (e) => {
     this.updateAll((module) => {
       module.props.benchmarksLabel = e.currentTarget.value
+    })
+  }
+
+  changeCurrentJobProficiencyLabel = (e) => {
+    this.updateAll((module) => {
+      module.props.currentJobProficiencyLabel = e.currentTarget.value
+    })
+  }
+
+  changeTargetJobProficiencyLabel = (e) => {
+    this.updateAll((module) => {
+      module.props.targetJobProficiencyLabel = e.currentTarget.value
     })
   }
 
@@ -191,6 +220,7 @@ class Properties extends Component {
             getOptionLabel={opt => opt.alias}
             autoFocus={false}
             isMulti
+            style={{ width: '100%' }}
             onChange={this.factorSelect}
           />
         </div>
@@ -273,37 +303,113 @@ class Properties extends Component {
     const { modules } = this.props
     const model = modules[0]
     const { props: { mode } } = model
+    const assessmentId = model.assessment_id
+    const assessment = _.find(AppStore.assessments, { id: assessmentId })
 
     const options = [
-      { label: 'Header', prop: 'showHeader', default: false },
       {
-        label: 'Rank',
+        label: I18n.t('administration.report_builder.property_panel.table_options.header'),
+        prop: 'showHeader',
+        default: false,
+      },
+      {
+        label: I18n.t('administration.report_builder.property_panel.table_options.rank'),
         prop: 'showRankOrder',
         default: false,
         disabled: mode === 'orderedFactors',
       },
-      { label: 'Score', prop: 'showScore', default: false },
-      { label: 'Name', prop: 'showName', default: false },
-      { label: 'Description', prop: 'showDescription', default: false },
-      { label: 'Strengths & Blindspots', prop: 'showStrengthsBlindspots', default: false },
-      { label: 'Icons', prop: 'showIcons', default: false },
-      { label: 'Label', prop: 'showLabel', default: false },
-      { label: 'Border', prop: 'showBorder', default: false },
-      { label: 'Show benchmark score', prop: 'showBenchmarks', default: false },
+      {
+        label: I18n.t('administration.report_builder.property_panel.table_options.score'),
+        prop: 'showScore',
+        default: false,
+      },
+      {
+        label: I18n.t('administration.report_builder.property_panel.table_options.name'),
+        prop: 'showName',
+        default: false,
+      },
+      {
+        label: I18n.t('administration.report_builder.property_panel.table_options.description'),
+        prop: 'showDescription',
+        default: false,
+      },
+      {
+        label: I18n.t('administration.report_builder.property_panel.table_options.strengths_blindspots'),
+        prop: 'showStrengthsBlindspots',
+        default: false,
+      },
+      {
+        label: I18n.t('administration.report_builder.property_panel.table_options.icons'),
+        prop: 'showIcons',
+        default: false,
+      },
+      {
+        label: I18n.t('administration.report_builder.property_panel.table_options.label'),
+        prop: 'showLabel',
+        default: false,
+      },
+      {
+        label: I18n.t('administration.report_builder.property_panel.table_options.border'),
+        prop: 'showBorder',
+        default: false,
+      },
+      {
+        label: I18n.t('administration.report_builder.property_panel.table_options.show_benchmark_score'),
+        prop: 'showBenchmarks',
+        default: false,
+        input: {
+          placeholder: 'Benchmark label',
+          value: model.props.benchmarksLabel,
+          onChange: this.changeBenchmarkLabel,
+        },
+      },
+      ...(assessment?.isSkillRater ? [
+        {
+          label: I18n.t('administration.report_builder.property_panel.table_options.show_current_proficiency'),
+          prop: 'showCurrentJobProficiency',
+          default: false,
+          input: {
+            placeholder: 'Current Proficiency label',
+            value: model.props.currentJobProficiencyLabel,
+            onChange: this.changeCurrentJobProficiencyLabel,
+          },
+        },
+        {
+          label: I18n.t('administration.report_builder.property_panel.table_options.show_target_proficiency'),
+          prop: 'showTargetJobProficiency',
+          default: false,
+          input: {
+            placeholder: 'Target Proficiency label',
+            value: model.props.targetJobProficiencyLabel,
+            onChange: this.changeTargetJobProficiencyLabel,
+          },
+        },
+      ] : []),
     ]
 
     return (
       options.map((option, i) => (
-        <label className={styles.inputLabel} key={i}>
-          <input
-            className="mrs"
-            type="checkbox"
-            checked={!option.disabled && _.get(model.props, option.prop, option.default)}
-            onChange={e => this.setProp(option.prop, e)}
-            disabled={option.disabled && option.disabled}
-          />
-          {option.label}
-        </label>
+        <div key={i}>
+          <label className={styles.inputLabel}>
+            <input
+              className="mrs"
+              type="checkbox"
+              checked={!option.disabled && _.get(model.props, option.prop, option.default)}
+              onChange={e => this.setProp(option.prop, e)}
+              disabled={option.disabled && option.disabled}
+            />
+            {option.label}
+          </label>
+          {option.input && _.get(model.props, option.prop, option.default) && (
+            <div className="ml-4 mt-2 mb-2">
+              <Input
+                placeholder={option.input.placeholder}
+                value={option.input.value}
+                onChange={option.input.onChange}
+              />
+            </div>
+          )}
+        </div>
       ))
     )
   }
@@ -328,6 +434,8 @@ class Properties extends Component {
         <div className={styles.modes}>
           <span className={styles.label}>Modes</span>
           {this.renderTableModes()}
+          <RenderJobFactorModes modules={modules} />
+          <RenderSkillTypeModes modules={modules} callback={this.changeSkillType} />
         </div>
         {this.renderTopFactors()}
         {mode === 'topFactors' && (
@@ -407,16 +515,6 @@ class Properties extends Component {
         <div className="margin-top-10">
           <div className={cs(styles.label, 'mbm mtl')}>Show Elements</div>
           {this.renderTableOptions()}
-          {model.props.showBenchmarks && (
-            <div>
-              <Input
-                placeholder="Benchmark label"
-                value={model.props.benchmarksLabel}
-                onChange={this.changeBenchmarkLabel}
-              />
-            </div>
-          )}
-
         </div>
         <hr className={styles.divider} />
         <div>

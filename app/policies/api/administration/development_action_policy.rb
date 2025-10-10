@@ -4,39 +4,39 @@ module Api
   module Administration
     class DevelopmentActionPolicy < ::Api::Administration::BasePolicy
       def index?
-        has_permission?('development_actions', 'view', project_id: project_id)
+        has_permission?('development_actions', 'view')
       end
 
       def create?
-        has_permission?('development_actions', 'manage', project_id: project_id)
+        has_permission?('development_actions', 'manage')
       end
 
       def update?
-        has_permission?('development_actions', 'manage', project_id: project_id)
+        has_permission?('development_actions', 'manage')
       end
 
       def destroy?
-        has_permission?('development_actions', 'manage', project_id: project_id)
+        has_permission?('development_actions', 'manage')
       end
 
       def show?
-        has_permission?('development_actions', 'view', project_id: project_id)
+        has_permission?('development_actions', 'view')
       end
 
       def import?
-        has_permission?('development_actions', 'import', project_id: project_id)
+        has_permission?('development_actions', 'import')
       end
 
       def export?
-        has_permission?('development_actions', 'export', project_id: project_id)
+        has_permission?('development_actions', 'export')
       end
 
       def import_translations?
-        has_permission?('development_actions', 'import_translations', project_id: project_id)
+        has_permission?('development_actions', 'import_translations')
       end
 
       def export_translations?
-        has_permission?('development_actions', 'export_translations', project_id: project_id)
+        has_permission?('development_actions', 'export_translations')
       end
 
       def import_global?

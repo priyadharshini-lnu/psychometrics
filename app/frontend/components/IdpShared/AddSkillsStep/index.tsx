@@ -66,7 +66,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
 
   return (
     <Flex vertical>
-      <Flex vertical={isMobile} className="mt-0 mb-4" flex={1} justify="space-between">
+      <Flex gap={8} vertical={isMobile} className="mt-0 mb-4" flex={1} justify="space-between">
         <Space>
           {showBackButton && (
             <BackButton
@@ -77,7 +77,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
             {I18n.t('idp.initial_steps.add_skills_step')}
           </Typography.Title>
         </Space>
-        <Flex justify="center" align="center">
+        <Flex gap={8} vertical={isMobile} justify="end" align="end">
           {skillGapReportAvailable && (
             <Spin spinning={isSkillGapReportLoading}>
               <DownloadButton
@@ -102,16 +102,11 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
         </Flex>
       </Flex>
       <Separator className="mb-4 mt-0" />
-      {isSkillsLoading ? (
-        <div className="flex justify-center items-center h-100">
-          <Spin />
-        </div>
-      )
-        : (
-          <Row gutter={[24, 24]} className="mt-6">
-            <Col>
-              <Space size={24} className="w-100" direction="vertical">
-                {
+      <Spin spinning={isSkillsLoading}>
+        <Row gutter={[24, 24]} className="mt-6">
+          <Col>
+            <Space size={24} className="w-100" direction="vertical">
+              {
             skillTypes.map((skillType, index) => (
               <Flex vertical key={skillType.skillType}>
                 <SkillsGroupCard
@@ -130,10 +125,10 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
               </Flex>
             ))
           }
-              </Space>
-            </Col>
-          </Row>
-        )}
+            </Space>
+          </Col>
+        </Row>
+      </Spin>
     </Flex>
   )
 }

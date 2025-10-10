@@ -45,10 +45,9 @@ export const AIGeneratedDevelopmentActions: FC<AIGeneratedDevelopmentActionsProp
       method: 'post',
       action: '/generate_by_ai/',
       body: {
-        skill_id: skill.skillId,
+        user_idp_skill_id: skill.id, // skill here is user_idp_skill
         lang: 'en',
         generate_more,
-        generated_actions: generatedDA[skill?.skillId] ?? [],
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }).then((data:any) => {

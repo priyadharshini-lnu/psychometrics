@@ -57,7 +57,7 @@ module Idp::DevelopmentAction
       return unless start_date_time.match?(DATE_TIME_FORMAT)
 
       parsed_date = DateTime.strptime(start_date_time, '%Y-%m-%d %H:%M')
-      if parsed_date < DateTime.current
+      if parsed_date < Time.current.to_date
         errors.add(:start_date_time, I18n.t('administration.validations.idp.start_date_cannot_be_in_past'))
       end
     end
@@ -67,7 +67,7 @@ module Idp::DevelopmentAction
       return unless end_date_time.match?(DATE_TIME_FORMAT)
 
       parsed_date = DateTime.strptime(end_date_time, '%Y-%m-%d %H:%M')
-      if parsed_date < DateTime.current
+      if parsed_date < Time.current.to_date
         errors.add(:end_date_time, I18n.t('administration.validations.idp.end_date_cannot_be_in_past'))
       end
     end

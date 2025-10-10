@@ -24,8 +24,20 @@ const INPUT_TYPE_LIST: BuilderModel['props']['formTypes'] = [
   { name: 'Input' },
   { name: 'TextArea' },
   { name: 'Checkbox' },
-  { name: 'Select', optionList: ['Option1', 'Option2'] },
-  { name: 'MultiSelect', optionList: ['Option1', 'Option2'] },
+  {
+    name: 'Select',
+    optionList: {
+      option1: 'Option 1',
+      option2: 'Option 2',
+    },
+  },
+  {
+    name: 'MultiSelect',
+    optionList: {
+      option1: 'Option 1',
+      option2: 'Option 2',
+    },
+  },
   { name: 'Date', dateFormat: DateFormat['DD-MM-YYYY'] },
 ]
 

@@ -56,8 +56,8 @@ const UserAssessment: React.FC<Props> = ({
     <Card
       loading={!loaded}
       title={_.get(subjectForm, ['assessment', 'name'], 'Loading...')}
-      bordered={false}
-      bodyStyle={bodyStyles}
+      variant="borderless"
+      styles={{ body: bodyStyles }}
       className={styles.card}
       extra={loaded && (
         <div>

@@ -165,6 +165,7 @@ const SkillsForm = ({
                     categorizedSkills={categorizedSkills}
                     skillType="behavioral"
                     type="Global"
+                    projectId={projectId}
                     form={form}
                   />
                   <SkillsAndTagsSelection
@@ -182,6 +183,7 @@ const SkillsForm = ({
                     categorizedSkills={categorizedSkills}
                     skillType="technical"
                     type="Global"
+                    projectId={projectId}
                     form={form}
                   />
                   <SkillsAndTagsSelection

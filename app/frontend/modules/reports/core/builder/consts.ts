@@ -6,3 +6,17 @@ export const PAGE_SIZES = [
   { width: 1169, height: 827, label: 'A4 - Landscape (1169x827)' },
 ]
 export const BASE_FONT_SIZE = 14
+
+const { I18n } = window
+
+export const SKILL_TYPES = [
+  { label: I18n.t('administration.report_builder.property_panel.skill_types.technical'), value: 'technical' },
+  { label: I18n.t('administration.report_builder.property_panel.skill_types.behavioral'), value: 'behavioral' },
+  { label: I18n.t('administration.report_builder.property_panel.skill_types.qualification'), value: 'qualification' },
+  { label: I18n.t('administration.report_builder.property_panel.skill_types.other'), value: 'other' },
+]
+
+export const JOB_ROLE_OPTIONS = [
+  { label: I18n.t('administration.report_builder.property_panel.job_roles.current'), value: 'currentJobFactors' },
+  { label: I18n.t('administration.report_builder.property_panel.job_roles.target'), value: 'targetJobFactors' },
+]

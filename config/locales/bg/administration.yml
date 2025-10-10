@@ -369,7 +369,9 @@ bg:
       created_successfully: AI Assistant е създаден успешно.
       errors:
         cannot_delete_in_use: Не може да се изтрие AI Assistant '%{name}', защото се използва.
+        development_actions_assistance_not_enabled: Генерирането на действия за развитие, задвижвано от ИИ, не е налично. Моля, свържете се с администратора.
         one_click_idp_assistance_not_enabled: Помощ за IDP, задвижвана от AI, не е налична с текущия ви план. Моля, свържете се с администратора.
+        platform_assistant_already_exists: На платформата е разрешен само 1 асистент от тип %{type}.
       form:
         add_output_schema_key: Добавяне на ключ на изходната схема
         dependencies: Зависимости
@@ -388,6 +390,13 @@ bg:
         system_prompt: Системна подкана
         type: Тип
         user_prompt: Потребителска подкана
+      revisions:
+        load: Зареждане във формата
+        name: Име
+        system_prompt: Система Propmpt
+        title: Ревизии на AI Assistant
+        user_prompt: Подкана за потребителя
+        version: Версия
       selector:
         choose_artifact: Изберете AI артефакт
         choose_schema_key: Изберете ключ на схемата
@@ -406,6 +415,12 @@ bg:
       form:
         description: Описание
         title: Ключ за приложно-програмен интерфейс
+    assessment_builder:
+      form:
+        display_label: Въведете етикета на дисплея
+        label_required: Задължителен е етикет
+        value: Стойност
+        value_required: Изисква се стойност
     assessment_center:
       cancel_confirmation:
         message: Сигурни ли сте, че искате да отхвърлите напредъка на формуляра?
@@ -666,6 +681,7 @@ bg:
         no_results: Няма отговори на въпроси
         other_reports: Други доклади
         overall_scoring: Общо оценяване
+        recordings: Записи
         refresh: Опреснявам
         reports: Доклади
         reports_count: "%{count} Доклади"
@@ -1203,10 +1219,15 @@ bg:
       client_features: Характеристики на клиента
       form:
         ai_assistants: AI асистенти
+        ai_assistants_disabled_by_client: AI Assistants е деактивиран от клиента
         ai_assisted_idp: Подпомагано от AI IDP
+        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP изисква функцията AI Assistants да бъде активирана
         global_skills: Глобални умения
+        global_skills_requires_idp: За да активирате Global Skills за този проект, моля, активирайте го под Флагове на функциите в настройките на клиента.
         idp: IDP
+        idp_disabled_by_client: IDP е деактивиран от клиента
         sms_notification: SMS известяване
+        sms_notification_disabled_by_client: SMS известяването е деактивирано от клиента
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1728,7 @@ bg:
         update_button: Актуализиране на превода
       form:
         all: Цял
+        assessment_center_booking_summary: Резюме на резервациите в центъра за оценяване
         assessment_completion_status_code: Код на състоянието на завършване на оценяването
         assessment_completion_status_code_hint: Ако е посочен код за завършване, той ще бъде изпратен само ако оценяването на потребителя има този код на състоянието на завършване.
         body_mustache: |-
@@ -1726,6 +1748,8 @@ bg:
         custom: Потребителски
         delivery_at: Доставка при (GST)
         delivery_delay_hours: Забавяне на доставката (часове)
+        delivery_end_date: Крайна дата на доставка
+        delivery_frequency: Честота на доставка
         delivery_interval: Интервал на доставка
         delivery_interval_number: Номер на интервала на доставка
         delivery_interval_period: Период на интервала на доставка
@@ -1736,7 +1760,16 @@ bg:
           not_started: Ако оценяването не започне
           send_now: Изпрати сега
           specific_datetime: Изпрати на
+        delivery_start_date: Начална дата на доставката
+        delivery_time_of_day: Време за доставка на деня
+        delivery_timezone: Часова зона за доставка
+        delivery_weekdays: Доставка през делничните дни
         development_action_deadline_missed: Пропуснат е крайният срок за действие за развитие
+        error_msgs:
+          delivery_end_date_after_start_date: трябва да е след началната дата
+          delivery_start_date_in_past: не може да бъде в миналото
+          delivery_time_in_past: не може да бъде в миналото
+          delivery_weekdays_required: трябва да изберете поне един делничен ден
         idp_deadline_missed: Краен срок за IDP е пропуснат
         idp_template_approved: Одобрен от IDP
         idp_template_assigned: Назначен IDP
@@ -1817,15 +1850,21 @@ bg:
         client: 'Клиент:'
         communication_type: 'Тип комуникация:'
         delivery_rule: 'Правило за доставка:'
+        end_date: 'Крайна дата:'
         every_interval: Всеки %{interval}
+        frequency: 'Честота:'
         owner: 'Собственик:'
         project: 'Проект:'
         recipients: 'Получатели:'
         specific_datetime: 'Изпратете на:'
+        start_date: 'Начална дата:'
         stop_reminder_datetime: Крайна дата за напомняния (GST)
         sub_campaign: 'Подкампания:'
         subject: 'Предмет:'
+        time_of_day: 'Време на деня:'
+        timezone: 'Часова зона:'
         users: 'Потребители:'
+        weekdays: 'Седмицата:'
       sidebar:
         copy: Копиране на комуникацията
         destroy: Изтриване на комуникацията
@@ -1970,15 +2009,8 @@ bg:
         success_msg: Текущи действия за развитие на износа. Моля, проверете статуса в известията.
         title: Износ
         translation_details: Подробности
-      export_actions:
-        development_action_translations_title: Дейности за развитие на износа Преводи
-        development_actions_title: Действия за развитие на износа
       export_development_action_translations: Преводи за действие за развитие
-      export_development_action_translations_project: Развойна дейност Преводи въз основа на проект
       export_development_actions: Действия за развитие
-      export_development_actions_project: Действия за развитие въз основа на проект
-      export_global_development_actions: Действия за глобално развитие
-      export_global_development_actions_translations: Глобални преводи за действие за развитие
       form:
         available_languages: Налични езици
         client_placeholder: Изберете клиент
@@ -2290,6 +2322,7 @@ bg:
       enter_template_name_error: Задължително е име на шаблона
       errors:
         cannot_update_progress_plan_completed: Не може да се актуализира напредъкът, тъй като планът за ИДП е завършен
+        skills_required_on_publishing: Моля, изберете умения, преди да публикувате шаблон.
         update: Актуализацията не е разрешена, тъй като шаблонът за IDP вече е свързан с потребителски IDP план. Промените във външния вид са запазени.
       fields:
         assigned_data: Присвоени данни
@@ -2343,6 +2376,7 @@ bg:
       self_rating: Активиране на самооценка
       show_reflections: Показване на размисли
       skill_gap_report: Доклад за пропуските в уменията
+      skill_gap_report_ai_assistant: Асистент за анализ на отчети за пропуски в умения
       skill_source_preference: Източник на умения
       skill_sources:
         from_ai: От общите познания за AI
@@ -2371,7 +2405,6 @@ bg:
       update_interview_questions: Актуализирайте въпросите за интервю
       update_reflection_questions: Актуализиране на въпроси за размисъл
     idp_setting:
-      allow_global_skills: Позволете на глобални умения
       manager_approves_idp: Мениджърът одобрява IDP
       manager_can_edit_idp: Мениджърът може да редактира IDP
       require_all_development_actions_complete: Изискване за завършване на всички действия за разработка
@@ -2989,7 +3022,6 @@ bg:
           proficiency: Умения за импортиране
           translations: Импортиране на преводи за умения
         errors:
-          by_skill_exists: 'Ред %{row_number}: Ниво на владеене "by_skill" вече съществува за този проект и умение'
           by_skill_missing: 'Ред %{row_number}: Проектът и умението трябва да присъстват за тип ''by_skill'''
           invalid_csv_format: 'Невалиден CSV формат: %{message}'
           invalid_proficiency_type: 'Ред %{row_number}: Невалиден или липсващ ProficiencyType'
@@ -3029,6 +3061,8 @@ bg:
       tools:
         workshop_status_export: Износ на статус на сервиза
         workshop_status_export_success: Износът на състоянието на работилницата беше планиран успешно.
+    project_features:
+      project_features: Характеристики на проекта
     project_participants:
       cancel: Отмени
       column_actions: Действия
@@ -3451,6 +3485,9 @@ bg:
         graph_value_condition_not_supported_msg: Условията за стойност на графиката не се поддържат за този тип графика. Понастоящем тази опция е налична само за типовете графики по-долу.
         graph_value_conditions_title: Условия на стойността на графиката
         if_graph_value_is: 'Ако стойността на графиката е:'
+        job_roles:
+          current: Текущи фактори за работа
+          target: Целеви фактори за работа
         manage_graph_value_condition: Управление на условието на стойността на графиката
         manage_styles_condition: Управление на състоянието на стиловете
         missing_value: Липсваща стойност
@@ -3465,6 +3502,26 @@ bg:
         prefixes:
           and: И
           or: ИЛИ
+        skill_type_label: Филтриране по тип умение
+        skill_type_placeholder: Изберете тип умение
+        skill_types:
+          behavioral: Поведенчески
+          other: Друг
+          qualification: Квалификация
+          technical: Технически
+        table_options:
+          border: Граница
+          description: Описание
+          header: Заглавка
+          icons: Икони
+          label: Етикет
+          name: Име
+          rank: Ранк
+          score: Резултат
+          show_benchmark_score: Показване на сравнителен резултат
+          show_current_proficiency: Показване на текущи умения
+          show_target_proficiency: Показване на целеви умения
+          strengths_blindspots: Силни страни и слепи точки
         text_condition_type: 'Тип условие на текста:'
     report_families:
       create:
@@ -3700,6 +3757,7 @@ bg:
       campaign_participants: Участници в кампанията
       columns:
         activity: Активност
+        assessment_center_date_and_time: Дата и час на центъра за оценяване
         assessor: Оценител
         assessors: Оценители
         attendance: Присъствие
@@ -4556,6 +4614,7 @@ bg:
             import_subjects: Теми за внос
             last_name: Презиме
             locale: Място
+            please_enter_valid_email: Моля, въведете валиден имейл
             target_job_role: Целева роля
             title: Субекти
           title: Участниците

@@ -1,3 +1,5 @@
+@import '~/styles/antv4.variable.less';
+
 .card {
   position: relative;
   padding: 1rem;
@@ -53,6 +55,7 @@
   max-height: 60vh;
   overflow-y: auto;
   position: relative;
+  overflow-x: hidden;
 
   & :global(.ant-checkbox-label) {
     width: 100%;
@@ -60,6 +63,10 @@
 
   & :global(.ant-checkbox) {
     align-self: baseline;
+  }
+
+  @media (max-width: @screen-sm) {
+    max-height: 70vh;
   }
 }
 .card_selected {

@@ -11,5 +11,5 @@ export interface Condition {
 
 export interface Field {
   name: string,
-  optionList: string[]
+  optionList: string[] | { [key: string]: string }
 }

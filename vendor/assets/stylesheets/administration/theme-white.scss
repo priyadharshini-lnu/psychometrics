@@ -2350,6 +2350,8 @@ label.valid {
   padding: 8px 15px;
   border-bottom: 1px solid #E9E9E9;
   line-height: 20px;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 .dropdown-menu > li:last-child > a {
   border-bottom: 0px;

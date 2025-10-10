@@ -100,6 +100,7 @@ module Administration
         audit! :request_changes, resource, campaign: resource.campaign
         old_user_report_status = resource.approval_status
         resource.request_changes!
+        resource.remove_all_report_pdfs!
         create_event(old_user_report_status)
         render json: { status: resource.approval_status }
       end
@@ -118,6 +119,7 @@ module Administration
         audit! :remove_approval, resource, campaign: resource.campaign
         old_user_report_status = resource.approval_status
         resource.remove_approval!
+        resource.remove_all_report_pdfs!
         create_event(old_user_report_status)
         render json: { status: resource.approval_status }
       end

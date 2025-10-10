@@ -53,11 +53,13 @@ const EndPage: FC<Props> = ({
   const navigate = useNavigate()
   const { userAssessmentId } = useParams() as { userAssessmentId: string }
 
+  const parsedUserAssessmentId = parseInt(userAssessmentId, 10)
+
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     params.delete('read')
     params.delete('edit')
-    navigate(`${location.pathname}?${params.toString()}`, { replace: true })
+    navigate(`?${params.toString()}`, { replace: true })
   }, [])
 
   const { user_assessment_id } = dbResult
@@ -98,7 +100,7 @@ const EndPage: FC<Props> = ({
                  }
                   </Typography.Title>
                 )}
-                <a href={`${dashboardUrl}?user_assessment_id=${userAssessmentId}`}>
+                <a href={`${dashboardUrl}?user_assessment_id=${parsedUserAssessmentId}`}>
                   {I18n.t('assessments.actions.goto_dashboard', { locale: I18n.uiLocale })}
                 </a>
               </>

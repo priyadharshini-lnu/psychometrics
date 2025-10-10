@@ -6,7 +6,7 @@ RSpec.describe AdminJobSteps::BulkDownloadIdpReports::DownloadJob, type: :job do
   describe '#perform' do
     let(:owner) { create(:user) }
     let(:campaign) { create(:campaign) }
-    let(:user_idp_plans) { create_list(:user_idp_plan, 3, campaign: campaign) }
+    let!(:user_idp_plans) { create_list(:user_idp_plan, 3, campaign: campaign, active: true) }
     let(:parent_job_record) { create(:admin_job_record, owner: owner, data: { campaign_id: campaign.id }) }
     let(:job_record) do
       create(:admin_job_record, owner: owner, data: { campaign_id: campaign.id }, parent_job_id: parent_job_record.id)

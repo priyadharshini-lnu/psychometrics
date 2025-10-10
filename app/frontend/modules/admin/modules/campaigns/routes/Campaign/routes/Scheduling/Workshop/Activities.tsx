@@ -85,6 +85,7 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
           <Resource.Column
             id="id"
             width="3%"
+            title={I18n.t('common.column.id')}
           />
           <Resource.Column<WorkshopUserAcitivity>
             title={I18n.t('administration.scheduling.columns.subject')}

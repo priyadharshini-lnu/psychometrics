@@ -369,7 +369,9 @@ ja:
       created_successfully: AIアシスタントが正常に作成されました。
       errors:
         cannot_delete_in_use: AI アシスタントの「%{name}」は使用中であるため、削除できません。
+        development_actions_assistance_not_enabled: AI を活用した開発アクションの生成は利用できません。管理者にお問い合わせください。
         one_click_idp_assistance_not_enabled: AI を活用した IDP 支援は、現在のプランでは利用できません。管理者にお問い合わせください。
+        platform_assistant_already_exists: プラットフォームにはタイプ %{type} のアシスタントが 1 人しか許可されていません。
       form:
         add_output_schema_key: 出力スキーマ・キーの追加
         dependencies: 依存関係
@@ -388,6 +390,13 @@ ja:
         system_prompt: システムプロンプト
         type: タイプ
         user_prompt: ユーザープロンプト
+      revisions:
+        load: フォームにロード
+        name: 名前
+        system_prompt: システム仕様
+        title: AIアシスタントの改訂
+        user_prompt: ユーザープロンプト
+        version: バージョン
       selector:
         choose_artifact: AI アーティファクトを選択する
         choose_schema_key: スキーマキーの選択
@@ -406,6 +415,12 @@ ja:
       form:
         description: 説明
         title: APIキー
+    assessment_builder:
+      form:
+        display_label: 表示ラベルの入力
+        label_required: ラベルは必須です
+        value: 価値
+        value_required: 値が必要です
     assessment_center:
       cancel_confirmation:
         message: 本当にフォームの進行状況を破棄しますか？
@@ -666,6 +681,7 @@ ja:
         no_results: 回答済みの質問はありません
         other_reports: その他のレポート
         overall_scoring: 総合得点
+        recordings: 録音
         refresh: リフレッシュ
         reports: レポート
         reports_count: "%{count} 件のレポート"
@@ -1203,10 +1219,15 @@ ja:
       client_features: クライアントの特徴
       form:
         ai_assistants: AIアシスタント
+        ai_assistants_disabled_by_client: AI アシスタントはクライアントによって無効になっています
         ai_assisted_idp: AIアシストIDP
+        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP では、AI アシスタント機能を有効にする必要があります
         global_skills: グローバル・スキル
+        global_skills_requires_idp: このプロジェクトでグローバルスキルを有効にするには、クライアント設定の [機能フラグ] で有効にしてください。
         idp: アイディーピー
+        idp_disabled_by_client: IDP はクライアントによって無効になっています
         sms_notification: SMS通知
+        sms_notification_disabled_by_client: SMS 通知はクライアントによって無効になっています
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1728,7 @@ ja:
         update_button: 翻訳を更新
       form:
         all: すべて
+        assessment_center_booking_summary: アセスメントセンター予約概要
         assessment_completion_status_code: 評価完了ステータスコード
         assessment_completion_status_code_hint: 完了コードが指定された場合、ユーザーの評価がこの完了ステータスコードを持つ場合にのみ送信されます。
         body_mustache: |
@@ -1726,6 +1748,8 @@ ja:
         custom: カスタム
         delivery_at: 配送料（GST）
         delivery_delay_hours: 配達遅延（時間）
+        delivery_end_date: 配信終了日
+        delivery_frequency: 配信頻度
         delivery_interval: 配達間隔
         delivery_interval_number: 配達間隔番号
         delivery_interval_period: 配達間隔
@@ -1736,7 +1760,16 @@ ja:
           not_started: 評価が開始されない場合
           send_now: 今すぐ送信
           specific_datetime: 送信先
+        delivery_start_date: 配信開始日
+        delivery_time_of_day: 配達時間
+        delivery_timezone: 配送タイムゾーン
+        delivery_weekdays: 平日配送
         development_action_deadline_missed: 開発アクションの期限切れ
+        error_msgs:
+          delivery_end_date_after_start_date: 開始日より後である必要があります
+          delivery_start_date_in_past: 過去にはあり得ない
+          delivery_time_in_past: 過去にはあり得ない
+          delivery_weekdays_required: 少なくとも 1 つの平日を選択する必要があります
         idp_deadline_missed: IDPの締切に間に合わず
         idp_template_approved: IDP承認
         idp_template_assigned: 割り当てられたIDP
@@ -1817,15 +1850,21 @@ ja:
         client: クライアント
         communication_type: 通信タイプ：
         delivery_rule: 配達規則：
+        end_date: '終了日:'
         every_interval: すべての%{interval}
+        frequency: 周波数：
         owner: オーナー
         project: プロジェクト
         recipients: 受賞者
         specific_datetime: で送る：
+        start_date: 開始日：
         stop_reminder_datetime: リマインダーの終了日（GST）
         sub_campaign: サブキャンペーン
         subject: 件名
+        time_of_day: '時間帯:'
+        timezone: 'タイムゾーン:'
         users: ユーザー
+        weekdays: 平日：
       sidebar:
         copy: コピー・コミュニケーション
         destroy: コミュニケーション削除
@@ -1970,15 +2009,8 @@ ja:
         success_msg: 開発アクションのエクスポートが進行中です。 通知でステータスを確認してください。
         title: 輸出
         translation_details: 詳細
-      export_actions:
-        development_action_translations_title: 輸出開発アクション 翻訳
-        development_actions_title: 輸出開発アクション
       export_development_action_translations: プロジェクトに基づく開発行為翻訳
-      export_development_action_translations_project: プロジェクトに基づく開発行為翻訳
       export_development_actions: プロジェクトに基づく開発アクション
-      export_development_actions_project: プロジェクトに基づく開発アクション
-      export_global_development_actions: グローバル開発アクション
-      export_global_development_actions_translations: グローバル開発アクションの翻訳
       form:
         available_languages: 利用可能な言語
         client_placeholder: クライアントの選択
@@ -2290,6 +2322,7 @@ ja:
       enter_template_name_error: テンプレート名は必須
       errors:
         cannot_update_progress_plan_completed: IDP計画が完了したため、進捗状況を更新できない
+        skills_required_on_publishing: テンプレートを公開する前にスキルを選択してください。
         update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
       fields:
         assigned_data: 割り当てデータ
@@ -2343,6 +2376,7 @@ ja:
       self_rating: 自己評価を有効にする
       show_reflections: ショー・リフレクションズ
       skill_gap_report: スキル・ギャップ・レポート
+      skill_gap_report_ai_assistant: スキルギャップレポート分析アシスタント
       skill_source_preference: スキルソース
       skill_sources:
         from_ai: 一般的なAI知識から
@@ -2371,7 +2405,6 @@ ja:
       update_interview_questions: 面接の質問を更新する
       update_reflection_questions: アップデートに関する質問
     idp_setting:
-      allow_global_skills: グローバルスキルの習得
       manager_approves_idp: マネージャーがIDPを承認
       manager_can_edit_idp: マネージャーはIDPを編集できる
       require_all_development_actions_complete: すべての開発行為の完了を要求する
@@ -2989,12 +3022,8 @@ ja:
           proficiency: 輸入能力
           translations: 輸入技能翻訳
         errors:
-          by_skill_exists: 行 %{row_number}：by_skill'ProficiencyLevelは、このプロジェクトとスキルに既に存在します。
           by_skill_missing: 行 %{row_number}：by_skill'タイプでは、プロジェクトとスキルが存在する必要があります。
-          by_skill_type_exists: 行 %{row_number}：このプロジェクトとスキル・タイプには ''by_skill_type'' ProficiencyLevel が既に存在します。
           by_skill_type_missing: 行 %{row_number}：by_skill_type''タイプにはプロジェクトとスキル・タイプが存在する必要があります。
-          default_global_exists: 行 %{row_number}：グローバル・レベルの ''default'' ProficiencyLevel が既に存在します。
-          default_project_exists: 行 %{row_number}：プロジェクト・レベルの ''default'' ProficiencyLevel が既に存在します。
           invalid_csv_format: '無効な CSV 形式: %{message} です。'
           invalid_proficiency_type: 行 %{row_number}：ProficiencyTypeが無効または見つかりません。
           invalid_skill_type: '行%{row_number}: 無効なスキルタイプ "%{skill_type}".有効なタイプは%{valid_types}'
@@ -3033,6 +3062,8 @@ ja:
       tools:
         workshop_status_export: ワークショップ状況エクスポート
         workshop_status_export_success: ワークショップのステータス エクスポートは正常にスケジュールされました。
+    project_features:
+      project_features: プロジェクトの特徴
     project_participants:
       cancel: キャンセル
       column_actions: 行動
@@ -3455,6 +3486,9 @@ ja:
         graph_value_condition_not_supported_msg: グラフ値条件は、このグラフタイプではサポートされていません。このオプションは現在、以下のグラフタイプでのみ使用できます。
         graph_value_conditions_title: グラフ値の条件
         if_graph_value_is: 'グラフ値が次の場合:'
+        job_roles:
+          current: 現在の仕事の要因
+          target: ターゲットジョブ要因
         manage_graph_value_condition: グラフ値の条件を管理する
         manage_styles_condition: スタイルの管理条件
         missing_value: 欠損値
@@ -3469,6 +3503,26 @@ ja:
         prefixes:
           and: そして
           or: 又は
+        skill_type_label: スキルタイプによるフィルタ
+        skill_type_placeholder: スキルの種類を選択
+        skill_types:
+          behavioral: 行動
+          other: 他
+          qualification: 資格
+          technical: テクニカル
+        table_options:
+          border: 境
+          description: 形容
+          header: ヘッダ
+          icons: アイコン
+          label: ラベル
+          name: 名前
+          rank: 位
+          score: スコア
+          show_benchmark_score: ベンチマークスコアを表示
+          show_current_proficiency: 現在の習熟度を表示する
+          show_target_proficiency: ターゲット習熟度の表示
+          strengths_blindspots: 強みと盲点
         text_condition_type: 'テキスト条件タイプ:'
     report_families:
       create:
@@ -3704,6 +3758,7 @@ ja:
       campaign_participants: キャンペーン参加者
       columns:
         activity: アクティビティ
+        assessment_center_date_and_time: アセスメントセンターの日時
         assessor: アセッサ
         assessors: アセッサ
         attendance: 出席
@@ -4573,6 +4628,7 @@ ja:
             import_subjects: 輸入対象
             last_name: ラストネーム
             locale: ロケール
+            please_enter_valid_email: 有効なメールアドレスを入力してください
             target_job_role: 目標職務
             title: 対象
           title: 参加者

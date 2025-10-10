@@ -148,9 +148,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT id,
-    name,
-    category
+ SELECT assessments.id,
+    assessments.name,
+    assessments.category
    FROM public.assessments;
 
 
@@ -173,10 +173,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT id,
-    campaign_id,
-    name,
-    "position"
+ SELECT campaign_factor_groups.id,
+    campaign_factor_groups.campaign_id,
+    campaign_factor_groups.name,
+    campaign_factor_groups."position"
    FROM public.campaign_factor_groups;
 
 
@@ -296,9 +296,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT id,
-    name,
-    project_id
+ SELECT campaigns.id,
+    campaigns.name,
+    campaigns.project_id
    FROM public.campaigns;
 
 
@@ -418,8 +418,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT id,
-    name
+ SELECT factors.id,
+    factors.name
    FROM public.factors;
 
 
@@ -740,11 +740,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT id,
-    project_id,
-    first_name,
-    last_name,
-    email
+ SELECT users.id,
+    users.project_id,
+    users.first_name,
+    users.last_name,
+    users.email
    FROM public.users;
 
 
@@ -2721,7 +2721,13 @@ CREATE TABLE public.communications (
     updated_by_id bigint,
     assessment_completion_status_code character varying,
     delivery_delay_hours integer,
-    campaign_assessment_group_id bigint
+    campaign_assessment_group_id bigint,
+    delivery_start_date date,
+    delivery_end_date date,
+    delivery_time_of_day time without time zone,
+    delivery_timezone character varying,
+    delivery_frequency character varying,
+    delivery_weekdays character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -3902,7 +3908,8 @@ CREATE TABLE public.idp_templates (
     one_click_idp_enabled boolean DEFAULT false NOT NULL,
     one_click_ai_assistant_id bigint,
     skill_source_preference integer DEFAULT 0,
-    document_analysis_ai_assistant_id bigint
+    document_analysis_ai_assistant_id bigint,
+    skill_gap_report_analysis_ai_assistant_id bigint
 );
 
 
@@ -4669,13 +4676,13 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT id,
-    factor_id,
-    user_assessment_id,
-    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((scores ->> 'score'::text))::double precision AS score,
-    ((scores ->> 'zscore'::text))::double precision AS zscore,
-    ((scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT user_assessment_factor_scores.id,
+    user_assessment_factor_scores.factor_id,
+    user_assessment_factor_scores.user_assessment_id,
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -5140,7 +5147,7 @@ ALTER SEQUENCE public.privacy_setting_translations_id_seq OWNED BY public.privac
 
 CREATE TABLE public.privacy_settings (
     id bigint NOT NULL,
-    privacy_consent boolean DEFAULT false,
+    privacy_consent boolean DEFAULT true,
     custom_privacy_policy_version integer,
     custom_privacy_consent_text text,
     privacy_link_text character varying,
@@ -5377,6 +5384,42 @@ CREATE SEQUENCE public.project_assessments_id_seq
 --
 
 ALTER SEQUENCE public.project_assessments_id_seq OWNED BY public.project_assessments.id;
+
+
+--
+-- Name: project_features; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_features (
+    id bigint NOT NULL,
+    project_id integer,
+    sms_notification boolean DEFAULT false NOT NULL,
+    ai_assistants boolean DEFAULT false NOT NULL,
+    ai_assisted_idp boolean DEFAULT false NOT NULL,
+    global_skills boolean DEFAULT false NOT NULL,
+    idp boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: project_features_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_features_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_features_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_features_id_seq OWNED BY public.project_features.id;
 
 
 --
@@ -9369,6 +9412,13 @@ ALTER TABLE ONLY public.project_assessments ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: project_features id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_features ALTER COLUMN id SET DEFAULT nextval('public.project_features_id_seq'::regclass);
+
+
+--
 -- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11047,6 +11097,14 @@ ALTER TABLE ONLY public.project_assessments
 
 
 --
+-- Name: project_features project_features_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_features
+    ADD CONSTRAINT project_features_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: question_recoding question_recoding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11947,6 +12005,13 @@ CREATE INDEX idx_on_reflection_question_id_fcc1b0bca7 ON public.reflection_quest
 --
 
 CREATE INDEX idx_on_resource_id_resource_type_76c375ea65 ON public.resource_hogan_credentials USING btree (resource_id, resource_type);
+
+
+--
+-- Name: idx_on_skill_gap_report_analysis_ai_assistant_id_2a87d39fe6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_skill_gap_report_analysis_ai_assistant_id_2a87d39fe6 ON public.idp_templates USING btree (skill_gap_report_analysis_ai_assistant_id);
 
 
 --
@@ -14001,6 +14066,13 @@ CREATE INDEX index_project_assessments_on_project_id ON public.project_assessmen
 
 
 --
+-- Name: index_project_features_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_project_features_on_project_id ON public.project_features USING btree (project_id);
+
+
+--
 -- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15712,6 +15784,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: idp_templates fk_rails_0a97b8b97a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_templates
+    ADD CONSTRAINT fk_rails_0a97b8b97a FOREIGN KEY (skill_gap_report_analysis_ai_assistant_id) REFERENCES public.ai_assistants(id);
+
+
+--
 -- Name: workshop_resources fk_rails_0b9b541d1c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -15829,6 +15909,14 @@ ALTER TABLE ONLY public.privacy_settings
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT fk_rails_1805bc3762 FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: project_features fk_rails_18513d9b92; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_features
+    ADD CONSTRAINT fk_rails_18513d9b92 FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -18408,7 +18496,11 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20250930153016'),
 ('20250924140546'),
+('20251003104731'),
+('20251001034346'),
 ('20250917104111'),
+('20250917090000'),
+('20250915111321'),
 ('20250914210724'),
 ('20250911053831'),
 ('20250910080315'),
@@ -18428,6 +18520,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250821160001'),
 ('20250821122411'),
 ('20250821102225'),
+('20250821055720'),
 ('20250820163652'),
 ('20250807144839'),
 ('20250807141543'),
@@ -19318,4 +19411,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

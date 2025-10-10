@@ -32,7 +32,7 @@ module Campaigns
     def ai_assistants_feature_enabled?
       platform_feature_enabled = Settings.features[:ai_assistant_enabled]
 
-      platform_feature_enabled && campaign.client.client_feature.ai_assistants
+      platform_feature_enabled && campaign.project.project_feature_enabled?(:ai_assistants)
     end
   end
 end

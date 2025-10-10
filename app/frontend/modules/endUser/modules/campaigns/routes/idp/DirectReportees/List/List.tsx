@@ -1,5 +1,5 @@
 import {
-  FC, useEffect, useCallback, useState,
+  FC, useEffect, useCallback, useState, useContext,
 } from 'react'
 import {
   Typography, Avatar, Table, Tag,
@@ -10,12 +10,12 @@ import {
 } from 'antd'
 import { Link, useSearchParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import cs from 'classnames'
 import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import { BoxWithShadow } from '~/glint'
+import { BoxWithShadow, MediaQueryContext } from '~/glint'
 import styles from '../DirectReportees.less'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { STATUS_COLORS } from '~/components/IdpShared/constants'
-
 import {
   fetchDirectReportees,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
@@ -47,53 +47,6 @@ interface User {
 
 const DEFAULT_PAGE_SIZE = 25
 
-const columns = [
-  {
-    title: I18n.t('idp.users'),
-    key: 'user',
-    render (item: User) {
-      return (
-        <div className={styles.userInfo}>
-          <Avatar className={styles.avatar} src={item.user.photo} alt={item.user.firstName} icon={<UserOutlined />} />
-          <div className={styles.title}>
-            <div className={styles.name}>
-              {`${item.user.firstName} ${item.user.lastName}`}
-              {!!item.unreadCommentsCount && (
-                <Tooltip title={I18n.t('idp.new_comments')}>
-                  <Badge dot={!!item.unreadCommentsCount} />
-                </Tooltip>
-              )}
-            </div>
-            <div className={styles.email}>
-              {item.user.email}
-            </div>
-          </div>
-        </div>
-      )
-    },
-  },
-  {
-    title: I18n.t('idp.status'),
-    key: 'status',
-    width: 200,
-    render (item:User) {
-      return (
-        <Tag color={STATUS_COLORS[item.status]}>{I18n.t(`idp.user_idp_status.${item.status}`)}</Tag>
-      )
-    },
-  },
-  {
-    title: I18n.t('idp.actions'),
-    width: 200,
-    render (item:User) {
-      return (
-        <Link to={`/idp/direct_reportees/${item.user.id}`}>
-          {I18n.t('idp.details')}
-        </Link>
-      )
-    },
-  },
-]
 
 export const Component: FC<PropsFromRedux> = ({
   directReportees,
@@ -103,6 +56,70 @@ export const Component: FC<PropsFromRedux> = ({
   const [searchParams, setSearchParams] = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
   const page = parseInt(searchParams.get('page') || '1', 10)
+
+  const { isMobile } = useContext(MediaQueryContext)
+
+
+  const columns = [
+    {
+      title: I18n.t('idp.users'),
+      key: 'user',
+      render (item: User) {
+        return (
+          <div className={styles.userInfo}>
+            <Avatar
+              className={cs(styles.avatar, 'mb-2')}
+              src={item.user.photo}
+              alt={item.user.firstName}
+              icon={<UserOutlined />}
+            />
+            <div className={styles.title}>
+              <div className={cs(styles.name, 'mb-2')}>
+                {`${item.user.firstName} ${item.user.lastName}`}
+                {!!item.unreadCommentsCount && (
+                  <Tooltip title={I18n.t('idp.new_comments')}>
+                    <Badge dot={!!item.unreadCommentsCount} />
+                  </Tooltip>
+                )}
+              </div>
+              <div className={cs(styles.email, 'mb-2')}>
+                {item.user.email}
+              </div>
+              <Tag color={STATUS_COLORS[item.status]}>
+                {I18n.t(`idp.user_idp_status.${item.status}`)}
+              </Tag>
+            </div>
+          </div>
+        )
+      },
+    },
+    ...(!isMobile ? [
+      {
+        title: I18n.t('idp.status'),
+        key: 'status',
+        width: 200,
+        render (item: User) {
+          return (
+            <Tag color={STATUS_COLORS[item.status]}>
+              {I18n.t(`idp.user_idp_status.${item.status}`)}
+            </Tag>
+          )
+        },
+      },
+    ] : []),
+    {
+      title: I18n.t('idp.actions'),
+      width: 50,
+      className: isMobile ? 'vertical-align-bottom' : '',
+      render (item:User) {
+        return (
+          <Link to={`/idp/direct_reportees/${item.user.id}`}>
+            {I18n.t('idp.details')}
+          </Link>
+        )
+      },
+    },
+  ]
 
   const handleTableChange = useCallback((pagination) => {
     setSearchParams({ page: pagination.current })

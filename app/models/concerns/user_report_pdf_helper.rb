@@ -62,6 +62,17 @@ module UserReportPdfHelper
     save!
   end
 
+  def remove_all_report_pdfs!
+    remove_all_pdfs_async
+    update!(status: :not_prepared)
+  end
+
+  def remove_all_pdfs_async
+    user_report_pdfs.each do |pdf|
+      pdf.pdf_file.purge_later if pdf.pdf_file.attached?
+    end
+  end
+
   def remove_pdf_and_update_status!
     return unless prepared?
 

@@ -28,6 +28,10 @@ module Api
           @user.is?(:superadmin)
         end
 
+        def revisions?
+          @user.is?(:superadmin)
+        end
+
         class Scope < Scope
           def resolve
             return scope if @user.is?(:superadmin)

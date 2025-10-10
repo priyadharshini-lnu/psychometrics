@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import {
-  useState, FC,
+  useState, FC, useContext,
 } from 'react'
 import {
   Typography, Flex, Button, Space,
@@ -21,7 +21,7 @@ import {
   saveUserIdpDevelopmentActions,
   fetchUserIdpComments,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
-import { DirectionalNavigateBackIcon } from '~/glint'
+import { DirectionalNavigateBackIcon, MediaQueryContext } from '~/glint'
 import styles from '../DirectReportees.less'
 import { CheckCircleOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import UserDevelopmentPlan from '../../UserDevelopmentPlan'
@@ -61,6 +61,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
   const [editMode, setEditMode] = useState(false)
   const [isUpdating, setIsUpdating] = useState(false)
   const { managerApprovesIdp, managerCanEditIdp } = idpSettings
+  const { isMobile } = useContext(MediaQueryContext)
 
   const isPlanEditable = [
     USER_IDP_PLAN_STATUS.PENDING_APPROVAL,
@@ -146,10 +147,10 @@ const DirectReportDetailsComponent: FC<Props> = ({
     <Flex
       align="center"
       justify="space-between"
-      className="p-5 pt-2"
+      className={isMobile ? 'p-0' : 'p-5 pt-2'}
     >
       <Flex vertical gap={4} flex={1}>
-        <Flex className={`${styles.heading}`} flex={1} justify="space-between">
+        <Flex vertical={isMobile} className={`${styles.heading}`} flex={1} justify="space-between">
           <Space>
             <DirectionalNavigateBackIcon
               onClick={() => navigate('/idp/direct_reportees')}
@@ -161,7 +162,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
               {I18n.t('idp.direct_reportee_details')}
             </Typography.Title>
           </Space>
-          <Space>
+          <Space className="self-end mb-2">
             <Tag color={STATUS_COLORS[status]}>
               {I18n.t(`idp.user_idp_status.${status}`)}
             </Tag>

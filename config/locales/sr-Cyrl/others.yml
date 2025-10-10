@@ -162,8 +162,19 @@ sr-Cyrl:
         import_skill_rater_taxonomies: Увоз таксономија процењивача вештина
       statuses:
         in_progress: У току
+    bulk_download_reports:
+      errors:
+        no_plans: Није пронађен активан ИДП планови
     no_notifications: Нема обавештења
   administration: Администрација
+  ai:
+    errors:
+      bad_request_invalid_input: Ваш захтев није могао бити обрађен због неважећег уноса. Проверите свој захтев и покушајте поново.
+      generic: Нешто је пошло наопако приликом обраде вашег захтева. Молимо Вас да контактирате свог администратора.
+      rate_limit_exceeded: Услуга тренутно доживљава велику потражњу. Сачекајте тренутак и покушајте поново.
+      server_error: АИ услуга је привремено недоступна. Покушајте поново за неколико тренутака.
+      service_overloaded: АИ услуга је тренутно преоптерећена. Сачекајте тренутак и покушајте поново.
+      service_unavailable: АИ сервис је тренутно у одржавању. Покушајте поново касније.
   anonym:
     close: Затвори
     continue: Настави
@@ -258,6 +269,8 @@ sr-Cyrl:
   assessments_reports:
     add_group_form:
       require_previous_groups_completion_for_booking: Потребно је завршити све претходне групе пре резервације
+    menu:
+      recordings: Снимке
   auth:
     current_password: Тренутна лозинка
     current_password_placeholder: Унесите тренутну лозинку
@@ -658,6 +671,8 @@ sr-Cyrl:
         only_global_skills_allowed: Одабране вештине морају бити глобалне вештине.
         skills_not_belong_to_project: Одабране вештине морају да припадају наведеном пројекту.
         skills_required: Изаберите бар једну вештину.
+      project_feature:
+        global_skills_not_enabled_on_client: Да бисте омогућили Глобал Скиллс за овај пројекат, активирајте га под Феатуре Флагс у подешавањима клијента.
       update_workshop:
         bookings_exist: Није могуће изменити распоред јер су учесници већ резервисали овај термин.
       user_idp_plan:
@@ -672,6 +687,8 @@ sr-Cyrl:
       subject_name: Име субјекта
       subject_relationship: Однос са субјектом
   errors:
+    ai_assistant:
+      max_generation_limit: Максимална граница генерације прекорачена, обратите се својој администрацији.
     assessments:
       timed_out: Нећете моћи да полажете %{assessment_name} тест јер је истекао.
     equal_to_current_password: мора бити различита од тренутне лозинке.
@@ -816,6 +833,7 @@ sr-Cyrl:
       message_after_timeout: Ваша сесија је истекла, молимо вас да се поново пријавите.
       time_remaining: Преостало време
       title: Упозорење о временском ограничењу сесије
+    starting_in: Полазећи од
     update: Ажурирање
     upload: Отпреми
     workshop_invited_subjects:
@@ -841,6 +859,8 @@ sr-Cyrl:
       finishing:
         hint: Наш АИ асистент креира ИДП план за вас.
         title: Молимо сачекајте да радимо нашу магију ...
+      reset_chat: Поништи ћаскање
+      reset_confirmation: Да ли сте сигурни да желите да одбаците овај разговор и започнете ново?
       retake_steps:
         chat_hint: Јавите ми које информације желите да пружите више испод?
         chat_title: Желите да дате више информација?
@@ -848,9 +868,27 @@ sr-Cyrl:
         start_chat_again: Поново започни ћаскање
         upload_document: Отпремите документ
         upload_file: Пошаљи датотеку
+      start_page:
+        ai_assisted:
+          button: АИ уз помоћ ИДП
+          description: Интерактивни ток вођен разговором у којем заједно креирате план са АИ у више корака.
+          option_1: Више персонализованих резултата
+          option_2: Могућности саморефлексије
+          option_3: Боље за транзицију у каријери
+          title: АИ -уз помоћ ИДП
+        one_click:
+          button: Један клик АИ ИДП
+          description: АИ обавља сав тежак посао - тренутно скенира ваше податке и генерише комплетан план развоја.
+          option_1: Најбржа опција (5 минута)
+          option_2: Добро за запослене професионалце
+          option_3: Потпуно уређивати након генерације
+          title: КСНУМКС -Цлицк АИ ИДП
+        sub_title: Хајде да креирамо прилагођени јорнеи за усавршавање мапиран на вашу тежњу у каријери и вођен АИ
+        title: Креирајте свој индивидуални план развоја
       summary:
         chat_title: Резиме увида у ћаскање
         file_title: Учитани документи Увид
+        gap_report_title: Анализа извештаја о јазу у вештинама
         hint: ако јесте, онда ћемо креирати ИДП, иначе можете поново преузети своје одговоре
         title: Да ли сте задовољни резултатима?
         upload_file: Постављена датотека
@@ -899,6 +937,7 @@ sr-Cyrl:
       add_development_actions_from_below_options: Додајте развојне акције из одоздо опција.
       add_development_actions_modal_title: Библиотека развојних акција за ИНТЕРПОЛАТИОН_ВАР_0
       add_from_library: Додај из библиотеке
+      add_more: Додајте још развојних акција
       all: Све
       approved: Одобрено
       board_view:
@@ -913,6 +952,7 @@ sr-Cyrl:
       custom: Прилагођене
       custom_da_description: Креирајте прилагођену развојну акцију за решавање јединствених развојних потреба.
       date_range: Датум почетка - Датум завршетка
+      edit_da_progress: Уреди напредак у развоју
       edit_plan_to_add_development_actions: Измени план и да додате развојне акције.
       enter_development_action_description: Унесите опис развојне акције
       enter_development_action_title: Унесите наслов развојне акције
@@ -1076,6 +1116,7 @@ sr-Cyrl:
       subject: Линк за пријаву на Lighthouse
     powered_by:
       text: Powered by Lighthouse.
+  maintenance_message: Светионик ће бити доле за планирано одржавање на ИНТЕРПОЛАТИОН_ВАР_0 и да ће бити недоступан за ИНТЕРПОЛАТИОН_ВАР_1
   navigation:
     logout: Одјавите се
   norms:

@@ -190,7 +190,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
             </Space>
           )}
           id="id"
-          width="3%"
+          width={100}
           render={subject => (
             <Space>
               {!UNACTIONABLE_SCHEDULING_STATUSES.includes(subject.schedulingStatus)
@@ -235,15 +235,18 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
         <Resource.Column<WorkshopSubject>
           title={I18n.t('administration.scheduling.columns.prework')}
           id="preworks"
+          minWidth={100}
         />
         <Resource.Column<WorkshopSubject>
           title={I18n.t('administration.scheduling.columns.activity')}
           id="workshopActivities"
+          minWidth={100}
         />
         <Resource.Column<WorkshopSubject>
           title={I18n.t('administration.scheduling.columns.attendance')}
           id="attended"
           render={subject => <ActiveSwitch subject={subject} />}
+          minWidth={100}
         />
         <Resource.Column<WorkshopSubject>
           title={I18n.t('administration.scheduling.attendance_status.column_name')}
@@ -253,6 +256,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
               {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
             </Tag>
           )}
+          minWidth={150}
         />
         <Resource.Column<WorkshopSubject>
           title={I18n.t('administration.scheduling.columns.scheduling_status')}
@@ -262,6 +266,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
               {I18n.t(`administration.scheduling.scheduling_statuses.${schedulingStatus}`)}
             </Tag>
           )}
+          minWidth={150}
         />
         <Resource.Column<WorkshopSubject>
           title={I18n.t('common.column.action')}
@@ -279,6 +284,8 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
               }
             />
           )}
+          width={100}
+          fixed="right"
         />
       </Resource.Table>
       {openForm && (

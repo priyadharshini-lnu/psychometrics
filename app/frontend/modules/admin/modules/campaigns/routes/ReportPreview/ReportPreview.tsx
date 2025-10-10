@@ -103,7 +103,7 @@ export default function ReportPreview ({
 
   const onChangeView = ({ key }) => {
     params.set('skip_logic', `${key === 'all'}`)
-    navigate(`${location.pathname}?${params.toString()}`, { replace: true })
+    navigate(`?${params.toString()}`, { replace: true })
   }
 
   const onReportDownloadClick = () => {

@@ -54,7 +54,9 @@ const IDPDetailsForm = ({
       fields: {
         skills: ['id', 'name', 'skill_type', 'project_id'],
       },
-      include: ['skills', 'report', 'one_click_ai_assistant', 'document_analysis_ai_assistant'],
+      include: ['skills', 'report', 'one_click_ai_assistant', 'document_analysis_ai_assistant',
+        'skill_gap_report_analysis_ai_assistant',
+      ],
     },
   }
 
@@ -124,6 +126,9 @@ const IDPDetailsForm = ({
         documentAnalysisAiAssistant: values.documentAnalysisAiAssistantId
           ? { id: values.documentAnalysisAiAssistantId, type: 'assistants' }
           : undefined,
+        skillGapReportAnalysisAiAssistant: values.skillGapReportAnalysisAiAssistantId
+          ? { id: values.skillGapReportAnalysisAiAssistantId, type: 'assistants' }
+          : undefined,
       }
 
       try {
@@ -168,6 +173,7 @@ const IDPDetailsForm = ({
         aiAssistedIdpEnabled: idp.aiAssistedIdpEnabled,
         oneClickAiAssistantId: idp.oneClickAiAssistant?.id,
         documentAnalysisAiAssistantId: idp.documentAnalysisAiAssistant?.id,
+        skillGapReportAnalysisAiAssistantId: idp.skillGapReportAnalysisAiAssistant?.id,
         oneClickIdpEnabled: idp.oneClickIdpEnabled,
         skillSourcePreference: idp.skillSourcePreference,
         ...skills,
@@ -205,9 +211,18 @@ const IDPDetailsForm = ({
       return documentAssistants
     }
 
-    return idp.documentAnalysisAiAssistant
+    if (idp.skillGapReportAnalysisAiAssistant
+      && documentAssistants.find(d => idp.skillGapReportAnalysisAiAssistant?.id === d.id)) {
+      return documentAssistants
+    }
+
+    const docAnalysis = idp.documentAnalysisAiAssistant
       ? [...documentAssistants, idp.documentAnalysisAiAssistant]
       : documentAssistants
+
+    return idp.skillGapReportAnalysisAiAssistant
+      ? [...docAnalysis, idp.skillGapReportAnalysisAiAssistant]
+      : docAnalysis
   }
 
   return (
@@ -306,6 +321,25 @@ const IDPDetailsForm = ({
                     <Form.Item
                       name="documentAnalysisAiAssistantId"
                       label={I18n.t('administration.idp.document_ai_assistant')}
+                    >
+                      <Select
+                        showSearch
+                        onSearch={(value) => {
+                          fetchDocumentAssistants({
+                            apiConfig: { filter: { filterable_fields: value } },
+                          })
+                        }}
+                        notFoundContent={isDocumentAssistantsLoading('fetch') ? <Spin size="small" /> : null}
+                        filterOption={false}
+                      >
+                        {getDocumentAssistants().map(({ id, name }) => (
+                          <Select.Option key={id} value={id}>{name}</Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      name="skillGapReportAnalysisAiAssistantId"
+                      label={I18n.t('administration.idp.skill_gap_report_ai_assistant')}
                     >
                       <Select
                         showSearch

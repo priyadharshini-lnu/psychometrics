@@ -18,15 +18,16 @@ html lang="en"
     = vite_react_refresh_tag
 
   body#administration class=(I18n.locale == :ar ? 'rtl' : 'ltr' ) data-locale="#{@selected_locale || params[:lang] || I18n.locale}"
+    = render 'shared/maintenance_alert_banner'
     .page-container
       = render partial: 'left_sidebar'
       .page-content
         - unless request.path =~ /\/admin\/meet\//
           = render partial: 'top_sidebar'
-        .page-content-wrap
-          .row
-            #flash-messages.col-md-12
+        #flash-messages-container
+          #flash-messages.col-md-12
               = flash_messages
+        .page-content-wrap
           = yield
     /! START PRELOADS
     = audio_tag('administration/alert.mp3', preload: 'auto', id: 'audio-alert')

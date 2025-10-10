@@ -10,6 +10,7 @@ import { Privacy } from './Privacy'
 import { Registration } from './Registration'
 import { Assessments } from './Assessments'
 import { MettlScheduleRecords } from './MettlScheduleRecords'
+import { Features } from './Features'
 
 export const routes = [
   {
@@ -59,5 +60,9 @@ export const routes = [
   {
     path: '/assessments',
     component: <Assessments />,
+  },
+  {
+    path: '/features',
+    component: <Features />,
   },
 ]

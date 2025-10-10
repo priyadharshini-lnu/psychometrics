@@ -1,4 +1,6 @@
-.manage-skills-btn {
+@import "~/styles/antv4.variable.less";
+
+.manageSkillsBtn {
   align-self: center;
   margin-bottom: 1rem;
   position: fixed;
@@ -6,4 +8,37 @@
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
   border-color: var(--ant-primary-color);
   color: var(--ant-primary-color);
+}
+
+.developmentActionModal {
+  & > :global(.ant-modal) {
+
+    @media screen and (max-width: @screen-sm) {
+      height: 100vh;
+      inset: 0;
+    }
+
+      & > div {
+        height: 100%;
+
+        & > :global(.ant-modal-content) {
+          height: 100%;
+        }
+      }
+    }
+  & :global(.ant-modal-title) {
+    max-width: 80%;
+  }
+
+  @media screen and (max-width: @screen-sm) {
+     & :global(.ant-radio-group) {
+        display: flex;
+        max-width: 100%;
+        overflow-x: scroll;
+
+    & :global(.ant-radio-button-wrapper) {
+        min-width: fit-content;
+    }
+    }
+  }
 }

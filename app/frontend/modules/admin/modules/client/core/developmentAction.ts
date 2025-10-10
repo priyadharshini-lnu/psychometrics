@@ -53,6 +53,11 @@ export const DevelopmentActionTR = t.intersection([
       t.array(t.string),
       t.undefined,
     ]),
+    meta: t.type({
+      permissions: t.type({
+        edit: t.boolean,
+      }),
+    }),
   })])
 
 export type DevelopmentAction = t.TypeOf<typeof DevelopmentActionTR>
@@ -61,7 +66,7 @@ export const Schema = {
   type: 'development_actions',
   relationships: {
     project: {
-      type: 'projects',
+      type: 'clients',
     },
     skills: {
       type: 'skills',

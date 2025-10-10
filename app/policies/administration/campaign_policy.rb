@@ -11,6 +11,10 @@ module Administration
       has_permission?(:campaigns, :view_stats)
     end
 
+    def datasheet_filter_options?
+      has_permission?(:campaigns, :view_stats)
+    end
+
     def show?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :view, campaign_id: record.id
@@ -267,7 +271,7 @@ module Administration
     end
 
     def view_ai_artifacts?
-      client.feature_enabled?(:ai_assistants) && @user.is?(:superadmin)
+      client.project_feature_enabled?(:ai_assistants) && @user.is?(:superadmin)
     end
 
     class Scope < Scope

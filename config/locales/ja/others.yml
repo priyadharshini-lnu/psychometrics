@@ -907,6 +907,8 @@ ja:
     bulk_download_reports:
       content:
         title: レポートのダウンロード
+      errors:
+        no_plans: アクティブな IDP プランが見つかりませんでした
     close: 閉じる
     details: 詳細
     errors: エラー
@@ -919,6 +921,14 @@ ja:
     super_admin:
       errors:
         data_processing_disabled: データ処理は無効。
+  ai:
+    errors:
+      bad_request_invalid_input: 入力が無効なため、リクエストを処理できませんでした。ご希望をご確認の上、再度お試しください。
+      generic: リクエストの処理中に問題が発生しました。管理者にお問い合わせください。
+      rate_limit_exceeded: このサービスは現在、高い需要を経験しています。しばらく待ってから、もう一度お試しください。
+      server_error: AIサービスは一時的に利用できません。しばらくしてからもう一度お試しください。
+      service_overloaded: 現在、AI サービスが過負荷になっています。しばらく待ってから、もう一度お試しください。
+      service_unavailable: AIサービスは現在メンテナンス中です。しばらくしてからもう一度やり直してください。
   anonym:
     close: 閉じる
     continue: 続行
@@ -1178,6 +1188,7 @@ ja:
       assessments_and_reports: アセスメント＆レポート
       idp: アイディーピー
       manage: 管理
+      recordings: 録音
       report_approval: レポート承認設定
       sequencing: シーケンス
     report_approval:
@@ -2178,6 +2189,8 @@ ja:
       not_uniq_variable: 変数 '%{value}' が行番号 %{row} で再定義されました。
       project_assessments:
         should_be_greater_than_zero: 結果の有効期限は0日以上でなければならない。
+      project_feature:
+        global_skills_not_enabled_on_client: このプロジェクトでグローバルスキルを有効にするには、クライアント設定の [機能フラグ] で有効にしてください。
       report_approval_settings:
         report_exists: このレポートの承認設定はすでに存在します。
         validates_admins: 管理者はキャンペーンにアクセスできません。
@@ -2247,6 +2260,8 @@ ja:
       body:
         error: メール本文のパイプテキストが正しくありません。
   errors:
+    ai_assistant:
+      max_generation_limit: 最大生成制限を超えました。管理者にお問い合わせください。
     assessments:
       timed_out: "%{assessment_name}評価はタイムアウトしたため、受けることはできません。"
     equal_to_current_password: は現在のパスワードとは異なるものでなければならない。
@@ -2498,6 +2513,7 @@ ja:
       update_success: SMS Inviteは正常に更新されました。
     sms_records:
       create_success: SMSジョブが正常にスケジュールされました
+    starting_in: で開始
     test_webhook:
       create_success: Webhookテスト成功。
       success: 成功
@@ -2570,6 +2586,8 @@ ja:
       finishing:
         hint: 私たちのAIアシスタントがあなたのためにIDPプランを作成しています。
         title: 待ってください、私たちは魔法をかけています...
+      reset_chat: チャットのリセット
+      reset_confirmation: このチャットを破棄して、新しいチャットを始めてよろしいですか?
       retake_steps:
         chat_hint: 以下でさらに提供したい情報を教えてください。
         chat_title: もっと詳しい情報を提供したいですか?
@@ -2577,9 +2595,27 @@ ja:
         start_chat_again: チャットを再開
         upload_document: ドキュメントのアップロード
         upload_file: ファイルのアップロード
+      start_page:
+        ai_assisted:
+          button: AI支援IDP
+          description: 複数のステップで AI と計画を共同作成する対話型の会話主導のフロー。
+          option_1: よりパーソナライズされた結果
+          option_2: 内省の機会
+          option_3: キャリアの転換に最適
+          title: AI支援IDP
+        one_click:
+          button: ワンクリック AI IDP
+          description: AI がすべての面倒な作業を行います - データを即座にスキャンし、完全な開発計画を生成します。
+          option_1: 最速オプション (5 分)
+          option_2: 忙しいプロフェッショナルにおすすめ
+          option_3: 生成後に完全に編集可能
+          title: 1-クリック AI IDP
+        sub_title: あなたのキャリアの願望に合わせてマッピングされ、AI によって導かれるカスタマイズされたスキルアップ ジョニーを作成しましょう
+        title: 個別開発計画の作成
       summary:
         chat_title: チャットインサイトの概要
         file_title: アップロードされたドキュメントの洞察
+        gap_report_title: スキルギャップレポート分析
         hint: "「はい」の場合は、IDP を作成しますが、それ以外の場合は回答を再取得できます"
         title: 結果に満足していますか?
         upload_file: アップロードされたファイル
@@ -2628,6 +2664,7 @@ ja:
       add_development_actions_from_below_options: 以下のオプションから開発アクションを追加します。
       add_development_actions_modal_title: "%{skillName}用開発アクションライブラリ"
       add_from_library: ライブラリから追加
+      add_more: 開発アクションの追加
       all: すべて
       approved: 承認済み
       board_view:
@@ -2642,6 +2679,7 @@ ja:
       custom: 習慣
       custom_da_description: 独自の開発ニーズに対応するカスタム開発アクションを作成します。
       date_range: 開始日 - 終了日
+      edit_da_progress: 開発アクションの進行状況の編集
       edit_plan_to_add_development_actions: 計画を編集し、開発アクションを追加します。
       enter_development_action_description: 開発アクションの説明を入力します
       enter_development_action_title: 開発アクションタイトルの入力
@@ -3058,7 +3096,7 @@ ja:
     users:
       account_disable: アカウントが無効になっています
       warning: アカウントが無効のため、すぐに無効になります。
-  maintenance_message: ライトハウスは、%{start_date}日に定期メンテナンスのためダウンし、%{duration}時間利用できなくなります。
+  maintenance_message: 灯台は%{start_date}の定期メンテナンスのため停止し、%{duration}利用できなくなります
   maintenance_submessage: メンテナンス終了後、ページを更新してください。 ログインページにリダイレクトされます。
   my: 私の
   myself: 私自身

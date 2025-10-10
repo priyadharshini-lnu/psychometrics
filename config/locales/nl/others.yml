@@ -907,6 +907,8 @@ nl:
     bulk_download_reports:
       content:
         title: Koppelingen om rapporten te downloaden
+      errors:
+        no_plans: Geen actieve IDP-plannen gevonden
     close: Sluit
     details: Details
     errors: Fouten
@@ -919,6 +921,14 @@ nl:
     super_admin:
       errors:
         data_processing_disabled: Gegevensverwerking is uitgeschakeld.
+  ai:
+    errors:
+      bad_request_invalid_input: Uw aanvraag kon niet worden verwerkt vanwege ongeldige invoer. Controleer uw verzoek en probeer het opnieuw.
+      generic: Er is iets misgegaan tijdens het verwerken van uw aanvraag. Neem contact op met uw beheerder.
+      rate_limit_exceeded: Er is momenteel veel vraag naar de dienst. Wacht even en probeer het opnieuw.
+      server_error: De AI-service is tijdelijk niet beschikbaar. Probeer het over enkele ogenblikken opnieuw.
+      service_overloaded: De AI-service is momenteel overbelast. Wacht even en probeer het opnieuw.
+      service_unavailable: De AI-service is momenteel in onderhoud. Probeer het later opnieuw.
   anonym:
     close: Sluit
     continue: Ga verder
@@ -1173,6 +1183,7 @@ nl:
       assessments_and_reports: Beoordelingen en rapporten
       idp: IDP
       manage: Beheer
+      recordings: Opnamen
       report_approval: Instellingen voor goedkeuring van rapporten
       sequencing: Sequencing
     report_approval:
@@ -2183,6 +2194,8 @@ nl:
       not_uniq_variable: variabele '%{value}' geherdefinieerd op regelnummer %{row}
       project_assessments:
         should_be_greater_than_zero: De geldigheidsduur van het resultaat moet groter zijn dan 0 dagen
+      project_feature:
+        global_skills_not_enabled_on_client: Om Global Skills voor dit project in te schakelen, activeert u het onder Functievlaggen in de klantinstellingen.
       report_approval_settings:
         report_exists: Er bestaat al een goedkeuringsinstelling voor dit rapport.
         validates_admins: Admins hebben geen toegang tot de campagne.
@@ -2252,6 +2265,8 @@ nl:
       body:
         error: E-mail bevat onjuiste pipetekst.
   errors:
+    ai_assistant:
+      max_generation_limit: Maximale productielimiet overschreden, neem contact op met uw administratie.
     assessments:
       timed_out: Je kunt de %{assessment_name} beoordeling niet doen omdat deze is uitgetimed.
     equal_to_current_password: moet anders zijn dan het huidige wachtwoord.
@@ -2503,6 +2518,7 @@ nl:
       update_success: SMS Uitnodiging is succesvol bijgewerkt
     sms_records:
       create_success: SMS-taak is met succes gepland
+    starting_in: Vanaf
     test_webhook:
       create_success: Webhook test geslaagd.
       success: Succes
@@ -2575,6 +2591,8 @@ nl:
       finishing:
         hint: Onze AI-assistent maakt een IDP-plan voor u.
         title: Even geduld, we doen onze magie...
+      reset_chat: Chat resetten
+      reset_confirmation: Weet je zeker dat je deze chat wilt weggooien en opnieuw wilt beginnen?
       retake_steps:
         chat_hint: Laat me hieronder weten welke informatie je meer wilt geven?
         chat_title: Wilt u meer informatie geven?
@@ -2582,9 +2600,27 @@ nl:
         start_chat_again: Start de chat opnieuw
         upload_document: Document uploaden
         upload_file: Bestand uploaden
+      start_page:
+        ai_assisted:
+          button: AI-ondersteunde IDP
+          description: Een interactieve, gespreksgestuurde flow waarbij je in meerdere stappen het plan co-creëert met AI.
+          option_1: Meer gepersonaliseerde resultaten
+          option_2: Mogelijkheden tot zelfreflectie
+          option_3: Beter voor loopbaanovergangen
+          title: AI-ondersteunde IDP
+        one_click:
+          button: AI IDP met één klik
+          description: 'AI doet al het zware werk: het scant direct uw gegevens en genereert een compleet ontwikkelingsplan.'
+          option_1: Snelste optie (5 minuten)
+          option_2: Goed voor drukke professionals
+          option_3: Volledig bewerkbaar na generatie
+          title: 1-klik AI IDP
+        sub_title: Laten we een op maat gemaakte bijscholingscampagne maken die is afgestemd op uw carrièreambitie en wordt geleid door AI
+        title: Maak uw individuele ontwikkelingsplan
       summary:
         chat_title: Samenvatting van Chat Insight
         file_title: Inzichten in geüploade documenten
+        gap_report_title: Analyse van het rapport over vaardigheidstekorten
         hint: zo ja, dan zullen we uw IDP aanmaken, anders kunt u uw antwoorden opnieuw opnemen
         title: Ben je tevreden met de resultaten?
         upload_file: Geüpload bestand
@@ -2633,6 +2669,7 @@ nl:
       add_development_actions_from_below_options: Voeg ontwikkelingsacties toe via onderstaande opties.
       add_development_actions_modal_title: Bibliotheek met ontwikkelingsacties voor %{skillName}
       add_from_library: Toevoegen uit bibliotheek
+      add_more: Voeg meer ontwikkelingsacties toe
       all: Alle
       approved: Goedgekeurd
       board_view:
@@ -2647,6 +2684,7 @@ nl:
       custom: Gewoonte
       custom_da_description: Maak een aangepaste ontwikkelingsactie om aan unieke ontwikkelingsbehoeften te voldoen.
       date_range: Startdatum - Einddatum
+      edit_da_progress: Voortgang ontwikkelingsactie bewerken
       edit_plan_to_add_development_actions: Plan bewerken en ontwikkelingsacties toevoegen.
       enter_development_action_description: Voer de beschrijving van de ontwikkelingsactie in
       enter_development_action_title: Voer de titel van de ontwikkelingsactie in
@@ -3041,7 +3079,7 @@ nl:
     users:
       account_disable: Je account is uitgeschakeld wegens inactiviteit
       warning: Je account wordt binnenkort uitgeschakeld wegens inactiviteit
-  maintenance_message: Lighthouse zal niet beschikbaar zijn voor gepland onderhoud op %{start_date} en zal niet beschikbaar zijn voor %{duration} uur
+  maintenance_message: Lighthouse zal niet beschikbaar zijn voor gepland onderhoud aan %{start_date} en zal niet beschikbaar zijn voor %{duration}
   maintenance_submessage: Vernieuw de pagina nadat het onderhoud is voltooid. U wordt doorgestuurd naar de inlogpagina
   my: Mijn
   myself: Ikzelf

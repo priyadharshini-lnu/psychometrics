@@ -38,9 +38,9 @@ export const UserInfoCard: FC<SubjectCardProps> = ({
 
   return (
     <Card
-      bordered={bordered}
+      variant={bordered ? 'outlined' : 'borderless'}
       className={cs({ [styles.userInfoCard]: true, [styles.transparent]: transparent })}
-      bodyStyle={{ padding: '1rem' }}
+      styles={{ body: { padding: '1rem' } }}
     >
       {onRemove ? (
         <Button

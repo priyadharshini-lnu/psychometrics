@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import {
-  Form, Select, Radio, FormInstance,
+  Form, Select, Radio, FormInstance, Badge,
 } from 'antd'
 import debounce from 'lodash/debounce'
 import {
@@ -13,6 +13,11 @@ const { I18n } = window
 const { Option } = Select
 
 type Skill = Pick<SkillType, 'id' | 'name'>;
+interface Tag {
+  id: string;
+  name: string;
+  taggingsCount: number;
+}
 
 export const SkillsOption = {
   NONE: 'none',
@@ -38,7 +43,7 @@ type Props = {
 const SkillsAndTagsSelection = ({
   skillType, type, projectId, form, categorizedSkills,
 }:Props) => {
-  const { fetch: fetchSkillsTag, data: skillsByTagSearchData } = useResources<Skill>('tags_search',
+  const { fetch: fetchSkillsTag, data: skillsByTagSearchData } = useResources<Tag>('tags_search',
     { basePath: 'skills' })
   const { fetch: fetchSpecificSkills, data: specificSkillsSearchData } = useResources<Skill>('skills')
   const settingPrefix = `${skillType}${type}`
@@ -51,13 +56,20 @@ const SkillsAndTagsSelection = ({
         skill_type_in: skillType,
       }
 
-      if (projectId) {
-        filter.project_id_eq = projectId
-      } else if (isSpecific) {
+      if (type === 'Global') {
         filter.global = 'true'
+      } else if (projectId) {
+        filter.project_id_eq = projectId
       }
+
       if (query.length < 3) return
-      isSpecific ? fetchSpecificSkills({ apiConfig: { filter } }) : fetchSkillsTag({ apiConfig: { filter } })
+
+      const apiConfig: { filter: filterType; query?: { project_id: string } } = { filter }
+      if (type === 'Global' && projectId) {
+        apiConfig.query = { project_id: projectId }
+      }
+
+      isSpecific ? fetchSpecificSkills({ apiConfig }) : fetchSkillsTag({ apiConfig })
     }, 300),
     [skillType],
   )
@@ -118,7 +130,11 @@ const SkillsAndTagsSelection = ({
               filterOption={false}
             >
               {skillsByTagSearchData.map(tag => (
-                <Option key={tag.id} value={tag.name}>{tag.name}</Option>
+                <Option key={tag.id} value={tag.name}>
+                  {tag.name}
+                  {' '}
+                  <Badge color="volcano" overflowCount={99} offset={[0, -2]} count={tag.taggingsCount} size="small" />
+                </Option>
               ))}
             </Select>
           </Form.Item>

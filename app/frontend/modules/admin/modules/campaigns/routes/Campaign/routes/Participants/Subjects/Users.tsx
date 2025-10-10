@@ -191,7 +191,8 @@ const UserList: React.FC<Props> = ({
             onChange={onTableChange}
             loading={isLoadingUsers}
             pagination={false}
-            scroll={{ x: 1500 }}
+            scroll={{ x: 'max-content' }}
+            sticky={{ offsetHeader: 50 }}
           >
             <Column
               title={I18n.t('administration.campaigns.users.id')}
@@ -204,7 +205,7 @@ const UserList: React.FC<Props> = ({
                   {id}
                 </Link>
               )}
-              width={80}
+              width={100}
             />
             <Column
               title={I18n.t('administration.campaigns.users.is_active')}
@@ -233,6 +234,7 @@ const UserList: React.FC<Props> = ({
                   </Tooltip>
                 )
               }
+              width={100}
             />
             <Column
               title={I18n.t('administration.campaigns.users.name')}
@@ -252,6 +254,7 @@ const UserList: React.FC<Props> = ({
               dataIndex="startedAt"
               sorter
               sortOrder={getSortOrder('campaignUsersStartedAt')}
+              width={200}
             />
             <Column
               title={I18n.t('administration.dates.completed')}
@@ -259,6 +262,7 @@ const UserList: React.FC<Props> = ({
               dataIndex="completedAt"
               sorter
               sortOrder={getSortOrder('campaignUsersCompletedAt')}
+              width={200}
             />
             <Column
               title={I18n.t('administration.campaigns.users.created_by')}
@@ -285,6 +289,7 @@ const UserList: React.FC<Props> = ({
                   {I18n.t(`frontend.campaign.users.completion_statuses.${completionStatus}`)}
                 </Tag>
               )}
+              width={200}
             />
             <Column
               title={I18n.t('common.column.status')}
@@ -303,7 +308,7 @@ const UserList: React.FC<Props> = ({
               )}
             />
             <Column
-              title={I18n.t('administration.campaigns.actions')}
+              title={I18n.t('common.column.action')}
               key="action"
               fixed={windowWidth > 800 ? 'right' : undefined}
               render={(user: User) => (
@@ -334,6 +339,7 @@ const UserList: React.FC<Props> = ({
                   )}
                 />
               )}
+              width={100}
             />
           </Table>
         </Col>

@@ -90,6 +90,18 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
     }
   end
 
+  def recordings
+    authorize(user, nil, campaign: campaign, policy_class: Assessors::ScoreModerationPolicy)
+
+    user_recordings = ::MeetingRecordings::GetUserRecordings.call!(user, campaign.id, current_user)
+    serialized_user_recordings = Panko::ArraySerializer.new(
+      user_recordings,
+      each_serializer: Administration::MeetingRecordingSerializer
+    ).to_a
+
+    render json: { userRecordings: serialized_user_recordings }
+  end
+
   private
 
   def serializer_results(user_assessments)

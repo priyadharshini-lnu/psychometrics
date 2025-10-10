@@ -17,9 +17,7 @@ module Api
             Administration::IdpSettingPolicy,
             context[:user],
             @model,
-            [
-              'manage_global_skills'
-            ],
+            [],
             {
               project_id: params.dig(:filter, :project_id_eq)
             }

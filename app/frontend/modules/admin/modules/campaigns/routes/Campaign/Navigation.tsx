@@ -27,11 +27,11 @@ const Link = ({ route, children }) => (
 )
 
 const menuItems = (permissions: Campaign['permissions'], basePath: string): MenuItem[] => [
-  {
+  permissions.viewCampaign ? {
     key: 'participants',
     label: <Link route={`${basePath}/participants`}>{I18n.t('administration.navigation.participants')}</Link>,
     icon: <UserOutlined />,
-  },
+  } : null,
   permissions.viewWorkshops ? {
     key: 'scheduling',
     label:

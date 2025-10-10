@@ -2,8 +2,8 @@ import { useState } from 'react'
 import {
   Avatar, Button, Flex, Typography, Empty,
 } from 'antd'
-import _ from 'lodash'
-import { EditOutlined } from '@ant-design/icons'
+import { map, filter } from 'lodash'
+import { PlusOutlined } from '@ant-design/icons'
 import { v4 as uuidv4 } from 'uuid'
 import { useMedia } from 'use-media'
 import { Separator } from '~/components/IdpShared/Separator'
@@ -20,6 +20,7 @@ import { AddDevelopmentActionModal } from '~/components/IdpShared/DevelopmentAct
 import { AIGeneratedDevelopmentActions } from './AIGeneratedDevelopmentActions'
 import { renderSkillTypeIcon } from '~/components/IdpShared/utils'
 import { DevelopmentActionSourceType } from '~/components/IdpShared/DevelopmentActions/Constants'
+import styles from './DevelopmentActionListView.less'
 
 const { I18n } = window
 
@@ -54,13 +55,12 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
     maxWidth: 768,
   })
 
-  const selectedDevelopmentActionIds = _.map(
-    _.filter(selectedSkill?.developmentActions ?? [], 'developmentActionId'),
+  const selectedDevelopmentActionIds = map(
+    filter(selectedSkill?.developmentActions ?? [], 'developmentActionId'),
     'developmentActionId',
   )
 
-  // TODO: Use AI related flag here
-  const selectedAIGeneratedDevelopmentActions = _.filter(selectedSkill?.developmentActions ?? [],
+  const selectedAIGeneratedDevelopmentActions = filter(selectedSkill?.developmentActions ?? [],
     'customAction')
 
   const handleCancel = () => {
@@ -125,8 +125,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
     onAddDevelopmentAction?.(developmentActions.reduce((acc, developmentAction) => {
       const uniqueId = uuidv4()
       acc[uniqueId] = {
-        description: developmentAction.description,
-        learningStyle: developmentAction.learningStyle,
+        ...developmentAction,
         id: uniqueId,
         sourceType: DevelopmentActionSourceType.AI_GENERATED,
         developmentActionId: developmentAction.id,
@@ -249,15 +248,8 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
         {editMode ? (
           <Button
             onClick={() => onAddMoreSkills()}
-            icon={<EditOutlined />}
-            style={{
-              alignSelf: 'center',
-              marginBottom: '1rem',
-              position: 'fixed',
-              bottom: '0',
-              boxShadow: 'box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);',
-              border: '1px solid',
-            }}
+            icon={<PlusOutlined />}
+            className={styles.manageSkillsBtn}
           >
             {I18n.t('administration.idp.development_actions.manage_skills')}
           </Button>

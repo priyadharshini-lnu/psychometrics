@@ -24,6 +24,7 @@ type ManualProps = {
   open: boolean,
   skill: UserIdpSkill | null
   selectedAIGeneratedDevelopmentActions: Partial< AvailableDevelopmentActions | DevelopmentAction>[]
+  wrapClassName?: string;
 }
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & ManualProps
@@ -43,6 +44,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
   generateDevelopmentActionsByAI,
   skill,
   selectedAIGeneratedDevelopmentActions,
+  wrapClassName,
 }) => {
   const [isLoading, setIsLoading] = useState(false)
   const developmentActions = skill?.skillId ? generatedDevelopmentActions[skill.skillId] ?? [] : []
@@ -55,7 +57,6 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
       generateDevelopmentActionsByAI({
         userIdpSkillId: skill.id as number,
         generateMore,
-        generatedActions: developmentActions,
         lang: I18n.locale,
       }).catch((error) => {
         message.error(error || I18n.t('common.errors.something_wrong'))
@@ -118,6 +119,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
         </Flex>,
       ]}
       width={800}
+      wrapClassName={wrapClassName}
     >
       <Spin spinning={isLoading} tip={I18n.t('idp.development_actions.generating_development_actions')} size="large">
         <Flex

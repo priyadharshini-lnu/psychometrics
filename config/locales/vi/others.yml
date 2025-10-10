@@ -907,6 +907,8 @@ vi:
     bulk_download_reports:
       content:
         title: Liên kết để tải báo cáo xuống
+      errors:
+        no_plans: Không tìm thấy kế hoạch IDP đang hoạt động
     close: Đóng
     details: Chi tiết
     errors: Lỗi
@@ -919,6 +921,14 @@ vi:
     super_admin:
       errors:
         data_processing_disabled: Xử lý dữ liệu bị vô hiệu hóa.
+  ai:
+    errors:
+      bad_request_invalid_input: Yêu cầu của bạn không thể được xử lý do đầu vào không hợp lệ. Vui lòng kiểm tra yêu cầu của bạn và thử lại.
+      generic: Đã xảy ra sự cố trong khi xử lý yêu cầu của bạn. Vui lòng liên hệ với quản trị viên của bạn.
+      rate_limit_exceeded: Dịch vụ hiện đang có nhu cầu cao. Vui lòng đợi một chút và thử lại.
+      server_error: Dịch vụ AI tạm thời không khả dụng. Vui lòng thử lại sau giây lát.
+      service_overloaded: Dịch vụ AI hiện đang quá tải. Vui lòng đợi một chút và thử lại.
+      service_unavailable: Dịch vụ AI hiện đang được bảo trì. Vui lòng thử lại sau.
   anonym:
     close: Đóng
     continue: Tiếp tục
@@ -1173,6 +1183,7 @@ vi:
       assessments_and_reports: Đánh giá & Báo cáo
       idp: IDP
       manage: Điều khiển
+      recordings: Ghi
       report_approval: Cài đặt phê duyệt báo cáo
       sequencing: Trình tự
     report_approval:
@@ -2182,6 +2193,8 @@ vi:
       not_uniq_variable: biến '%{value}' được định nghĩa lại trên số dòng %{row}
       project_assessments:
         should_be_greater_than_zero: Hiệu lực của kết quả phải lớn hơn 0 ngày
+      project_feature:
+        global_skills_not_enabled_on_client: Để kích hoạt Kỹ năng toàn cầu cho dự án này, vui lòng kích hoạt nó trong Cờ tính năng trong cài đặt ứng dụng.
       report_approval_settings:
         report_exists: Cài đặt phê duyệt báo cáo cho báo cáo này đã tồn tại.
         validates_admins: Quản trị viên không có quyền truy cập vào chiến dịch.
@@ -2251,6 +2264,8 @@ vi:
       body:
         error: Nội dung email có văn bản đường ống không chính xác.
   errors:
+    ai_assistant:
+      max_generation_limit: Vượt quá giới hạn phát tối đa, hãy liên hệ với ban quản trị của bạn.
     assessments:
       timed_out: Bạn sẽ không thể làm bài đánh giá %{assessment_name} vì thời gian làm bài đã hết.
     equal_to_current_password: Phải khác với mật khẩu hiện tại.
@@ -2502,6 +2517,7 @@ vi:
       update_success: Lời mời SMS đã được cập nhật thành công
     sms_records:
       create_success: Công việc SMS đã được lên lịch thành công
+    starting_in: Bắt đầu từ
     test_webhook:
       create_success: Kiểm tra webhook thành công.
       success: Sự thành công
@@ -2574,6 +2590,8 @@ vi:
       finishing:
         hint: Trợ lý AI của chúng tôi đang tạo kế hoạch IDP cho bạn.
         title: Xin hãy chờ đợi, chúng tôi đang làm điều kỳ diệu của mình...
+      reset_chat: Đặt lại trò chuyện
+      reset_confirmation: Bạn có chắc chắn muốn loại bỏ cuộc trò chuyện này và bắt đầu lại không?
       retake_steps:
         chat_hint: Hãy cho tôi biết bạn muốn cung cấp thêm thông tin nào?
         chat_title: Bạn muốn cung cấp thêm thông tin?
@@ -2581,9 +2599,27 @@ vi:
         start_chat_again: Bắt đầu lại trò chuyện
         upload_document: Tải lên tài liệu
         upload_file: Tải lên tệp
+      start_page:
+        ai_assisted:
+          button: IDP hỗ trợ AI
+          description: Một quy trình tương tác dựa trên cuộc trò chuyện, nơi bạn đồng tạo kế hoạch với AI trong nhiều bước.
+          option_1: Kết quả được cá nhân hóa hơn
+          option_2: Cơ hội tự phản ánh
+          option_3: Tốt hơn cho quá trình chuyển đổi nghề nghiệp
+          title: IDP được hỗ trợ bởi AI
+        one_click:
+          button: Một cú nhấp chuột AI IDP
+          description: AI thực hiện tất cả các công việc nặng nhọc - quét dữ liệu của bạn ngay lập tức và tạo ra một kế hoạch phát triển hoàn chỉnh.
+          option_1: Tùy chọn nhanh nhất (5 phút)
+          option_2: Tốt cho các chuyên gia bận rộn
+          option_3: Hoàn toàn có thể chỉnh sửa sau khi tạo
+          title: 1-Click AI IDP
+        sub_title: Hãy tạo một jorney nâng cao kỹ năng tùy chỉnh được ánh xạ theo nguyện vọng nghề nghiệp của bạn và được hướng dẫn bởi AI
+        title: Tạo kế hoạch phát triển cá nhân của bạn
       summary:
         chat_title: Tóm tắt thông tin chi tiết về trò chuyện
         file_title: Thông tin chi tiết về tài liệu đã tải lên
+        gap_report_title: Phân tích báo cáo khoảng cách kỹ năng
         hint: nếu có thì chúng tôi sẽ tạo IDP của bạn, nếu không bạn có thể lấy lại câu trả lời của mình
         title: Bạn có hài lòng với kết quả không?
         upload_file: Tệp đã tải lên
@@ -2632,6 +2668,7 @@ vi:
       add_development_actions_from_below_options: Thêm Hành động phát triển từ các tùy chọn bên dưới.
       add_development_actions_modal_title: Thư viện hành động phát triển cho %{skillName}
       add_from_library: Thêm từ Thư viện
+      add_more: Thêm các hành động phát triển khác
       all: Tất cả
       approved: Chấp thuận
       board_view:
@@ -2646,6 +2683,7 @@ vi:
       custom: Phong tục
       custom_da_description: Tạo hành động phát triển tùy chỉnh để giải quyết các nhu cầu phát triển riêng.
       date_range: Ngày bắt đầu - Ngày kết thúc
+      edit_da_progress: Chỉnh sửa tiến độ hành động phát triển
       edit_plan_to_add_development_actions: Chỉnh sửa Kế hoạch và thêm Hành động Phát triển.
       enter_development_action_description: Nhập mô tả hành động phát triển
       enter_development_action_title: Nhập Tiêu đề Hành động Phát triển
@@ -3062,7 +3100,7 @@ vi:
     users:
       account_disable: Tài khoản của bạn đã bị vô hiệu hóa do không hoạt động
       warning: Tài khoản của bạn sẽ sớm bị vô hiệu hóa do không hoạt động
-  maintenance_message: Lighthouse sẽ ngừng hoạt động để bảo trì theo lịch trình trên %{start_date} và sẽ không khả dụng trong %{duration} giờ
+  maintenance_message: Ngọn hải đăng sẽ ngừng hoạt động để bảo trì theo lịch trình vào %{start_date} và sẽ không hoạt động trong %{duration}
   maintenance_submessage: Vui lòng làm mới trang sau khi bảo trì hoàn tất. Bạn sẽ được chuyển hướng đến trang đăng nhập
   my: Của tôi
   myself: Bản thân mình

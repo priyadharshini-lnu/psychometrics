@@ -1,3 +1,5 @@
+@import "~/styles/spacing.less";
+
 .list {
   list-style: none;
   padding: 0;
@@ -55,6 +57,17 @@
 .dropdown {
   margin: 0 8px;
   padding: 0 8px;
+}
+
+.editIcon:global(.anticon-edit) {
+  margin-left: @space-1;
+  cursor: pointer;
+  color: var(--ant-primary-color);
+  flex: 1
+}
+
+.checkIcon:global(.anticon-check) {
+  color: var(--ant-primary-color);
 }
 
 .editableOptionText:global(.ant-typography-edit-content) {

@@ -51,6 +51,7 @@ module Administration
 
       def update
         resource.update!(resource_params)
+        audit! :update, resource, payload: resource_params, campaign: threesixty_campaign.campaign
         if resource_params[:report_release_status] == 'released' ||
            resource_params[:report_approval_status] == 'approved'
           ::Threesixty::Emails::Send.call!(
@@ -70,6 +71,7 @@ module Administration
           subject: resource,
           remove_license_usage: remove_license_usage
         )
+        audit! :delete, resource, payload: params, campaign: threesixty_campaign.campaign
         render json: :ok
       end
 

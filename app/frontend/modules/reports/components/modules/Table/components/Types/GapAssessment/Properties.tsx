@@ -12,6 +12,8 @@ import PaginationOptions from '~/modules/reports/components/PaginationOptions'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 import { FactorsList } from './dataSources/FactorList'
 import { QuestionList } from './dataSources/QuestionList'
+import { RenderJobFactorModes, RenderSkillTypeModes } from '../../Properties'
+import AppStore from '~/modules/reports/store/AppStore'
 
 const { I18n } = window
 
@@ -67,11 +69,45 @@ export const Properties: FC<Props> = ({ modules }) => {
     })
   }
 
+  const collectFactors = () => {
+    const model = modules[0]
+    const dimensionId = AppStore.getAssessmentById(assessment_id)?.dimensionId ?? ''
+    let allFactors = AppStore.factors?.[dimensionId] ?? []
+
+    const { skillType } = model.props
+
+    // Apply skillType filtering if skillType is selected i.e Skill type
+    if (skillType && skillType.length > 0) {
+      allFactors = allFactors.filter(factor => skillType.includes(factor.skill_type))
+    }
+
+    const mappedFactors = allFactors.map(factor => factor.id)
+    return mappedFactors
+  }
+
+  const changeSkillType = (value) => {
+    modules.forEach((model) => {
+      if (!value || value.length === 0) {
+        model.props.skillType = undefined
+        model.props.factorIds = []
+      } else {
+        model.props.skillType = value
+        const factorIds = collectFactors()
+        model.props.factorIds = factorIds
+      }
+      model.update()
+    })
+  }
+
   return (
     <Space direction="vertical" size="small">
       <SourceTypeButtonGroup model={model} onChange={onChange} />
+
       {sourceType === 'Factor' && (
         <>
+          <RenderJobFactorModes modules={modules} />
+          <RenderSkillTypeModes modules={modules} callback={changeSkillType} />
+
           <HintCheckbox
             label="All Factors"
             checked={!!allFactors}

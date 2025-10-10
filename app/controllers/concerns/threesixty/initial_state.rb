@@ -52,15 +52,11 @@ module Threesixty::InitialState
         },
         agileAssetsUrl: Settings.agile_config.asset_url,
         features: feature_flags,
-        maintenance: {
-          remainingTime: remaining_maintenance_time
-        },
         lighthousePrivacyUrl: Settings.privacy_url,
         privacyPolicyVersion: @current_project.current_privacy_policy_version,
         customPrivacyConsentText: custom_privacy_consent_text,
         showBookings: show_bookings?,
         idp: {
-          allowGlobalSkills: @idp_setting&.allow_global_skills || false,
           managerApprovesIdp: @idp_setting&.manager_approves_idp || false,
           managerCanEditIdp: @idp_setting&.manager_can_edit_idp || false,
           requireAllDevelopmentActionsComplete: @idp_setting&.require_all_development_actions_complete || false
