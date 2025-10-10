@@ -4,6 +4,7 @@ import reduce from 'lodash/reduce'
 import meanBy from 'lodash/meanBy'
 import isEmpty from 'lodash/isEmpty'
 import cs from 'classnames'
+import { JobRoles } from '~/modules/reports/models/Results/interfaces'
 import { ColumnData, ColumnsHeaderData } from '~/modules/reports/core/interfaces/TableColumn'
 import {
   GapType, PropertiesModel, TableStyleType, PreviewModel,
@@ -106,6 +107,8 @@ interface Props {
   model: PreviewModel
   paginationContext: PageData | null
   style?: CSSProperties & { fontColor: string }
+  includesCurrentJob?: boolean
+  includesTargetJob?: boolean
 }
 
 const Factor: FC<Props> = ({
@@ -124,6 +127,8 @@ const Factor: FC<Props> = ({
   model,
   paginationContext,
   style,
+  includesCurrentJob,
+  includesTargetJob,
 }) => {
   const tableColumns = _.get(model, 'props.tableColumns.Factor')
   || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Factor') || {} as ColumnData
@@ -224,9 +229,30 @@ const Factor: FC<Props> = ({
     }))
   }
 
-  // If no factors are selected, by default consider all factors
-  const providedFactorIds = factorIds && factorIds.length > 0 ? factorIds : getAllFactors()
+  let providedFactorIds: number[]
 
+  if (includesCurrentJob || includesTargetJob) {
+    const dimensionId = AppStore.getAssessmentById(assessment_id)?.dimensionId ?? ''
+    let allFactors: Array<{ id: number; name: string; job_roles: JobRoles }> = AppStore.factors?.[dimensionId] ?? []
+
+    allFactors = allFactors.filter((factor) => {
+      const currentJobIncluded = !includesCurrentJob || factor?.job_roles?.current_job_role?.included === true
+      const targetJobIncluded = !includesTargetJob || factor?.job_roles?.target_job_role?.included === true
+      return currentJobIncluded && targetJobIncluded
+    })
+
+    // If specific factors are selected, intersect them with job-role filtered factors
+    if (factorIds && factorIds.length > 0) {
+      providedFactorIds = allFactors
+        .filter(factor => factorIds.includes(factor.id))
+        .map(factor => factor.id)
+    } else {
+      providedFactorIds = allFactors.map(factor => factor.id)
+    }
+  } else {
+  // No job role filtering needed, no factors are selected, by default consider all factors
+    providedFactorIds = factorIds && factorIds.length > 0 ? factorIds : getAllFactors()
+  }
 
   const [positiveGaps, negativeGaps] = ResultStore.realResults
     ? calculateGaps(assessment_id, leftFilter, rightFilter, providedFactorIds)

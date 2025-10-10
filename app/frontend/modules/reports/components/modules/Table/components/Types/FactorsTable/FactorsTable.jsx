@@ -211,7 +211,14 @@ class FactorsTable extends Component {
     const scoreRangeMax = _.get(props, ['scoreRangeMax'], Infinity)
     const factorIds = (props.allFactors ? AppStore.factorsByAssessmentId(module.assessment_id) : sourceFactors)
       .map(f => f.id)
+
+    const { skill_rater: isSkillRater } = assessments[module.assessment_id] || {}
+
     if (ResultStore.realResults) {
+      // Determine job role filtering parameters
+      const includesCurrentJob = props.currentJobFactors
+      const includesTargetJob = props.targetJobFactors
+
       if (props.mode === 'topFactors') {
         const { category } = assessments[module.assessment_id]
         const relationship = category === 'assessor_form' ? 'assessor' : 'individual'
@@ -220,17 +227,23 @@ class FactorsTable extends Component {
           TopFactorType.Any, scoreRangeMin, scoreRangeMax, relationship,
         )
       } else {
-        const factorData = ResultStore.results[module.assessment_id].getTopFactors(0, factorIds.length, factorIds, TopFactorType.Any)
+        const factorData = ResultStore.results[module.assessment_id].getTopFactors(
+          0, factorIds.length, factorIds, TopFactorType.Any, undefined, undefined, undefined,
+          isSkillRater ? includesCurrentJob : undefined,
+          isSkillRater ? includesTargetJob : undefined,
+        )
         this.factorsData = _.sortBy(factorData, f => factorIds.indexOf(f.id))
       }
     } else {
       // eslint-disable-next-line no-lonely-if
-      if (props.mode === 'topFactors') {
+      if (props.mode === 'topFactors' || props.currentJobFactors || props.targetJobFactors) {
         this.factorsData = this.getMockData(sourceFactors, props.maxPosition - props.minPosition + 1)
       } else {
         this.factorsData = this.getMockData(sourceFactors, factorIds.length)
       }
     }
+
+
     if (props.reverseOrder && props.mode === 'topFactors') {
       this.factorsData.reverse()
     }
@@ -338,7 +351,7 @@ class FactorsTable extends Component {
           showDescription, showIcons, showStrengthsBlindspots, showScore, showName, showLabel,
           scoreProgressColor, scoreBackgroundColor, maxScoreValue, scorePosition = 'inline',
           scoreDisplay = 'circular', scoreRanges = [], scoreLineColor, scoreBulletColor, precision,
-          showScoreText, scoreBulletGraphHeight, showBenchmarks,
+          showScoreText, scoreBulletGraphHeight, showBenchmarks, showCurrentJobProficiency, showTargetJobProficiency,
         } = model.props
 
         const startRank = reverseOrder ? Math.max(1, factors.length - maxPosition + 1) : minPosition
@@ -478,6 +491,22 @@ class FactorsTable extends Component {
                 {benchmarkScores[factor.id] ? parseFloat(benchmarkScores[factor.id]).toFixed(precision) : ''}
               </td>
             ) : null}
+
+            {showCurrentJobProficiency ? (
+              <td className={cs(styles.score)}>
+                {factor?.jobRoles?.current_job_role?.expected_proficiency !== null
+                  ? factor.jobRoles?.current_job_role?.expected_proficiency?.toFixed(precision)
+                  : ''}
+              </td>
+            ) : null}
+
+            {showTargetJobProficiency ? (
+              <td className={cs(styles.score)}>
+                {factor?.jobRoles?.target_job_role?.expected_proficiency !== null
+                  ? factor.jobRoles?.target_job_role?.expected_proficiency?.toFixed(precision)
+                  : ''}
+              </td>
+            ) : null}
           </tr>
         )
       })
@@ -517,6 +546,12 @@ class FactorsTable extends Component {
           )) : null}
           {model.props.showBenchmarks
             ? <th className={styles.benchmarks} scope="col">{model.props.benchmarksLabel}</th>
+            : null}
+          {model.props.showCurrentJobProficiency
+            ? <th className={styles.benchmarks} scope="col">{model.props.currentJobProficiencyLabel}</th>
+            : null}
+          {model.props.showTargetJobProficiency
+            ? <th className={styles.benchmarks} scope="col">{model.props.targetJobProficiencyLabel}</th>
             : null}
         </tr>
       </thead>

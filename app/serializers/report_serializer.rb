@@ -71,7 +71,7 @@ class ReportSerializer < Panko::Serializer
   def factors
     object_assessment_ids = object.assessment_ids
     factors = Factor.where(dimension_id: object.dimension_ids).
-              includes(:factors_sub_factors, :translations, icon_attachment: :blob).
+              includes(:factors_sub_factors, :translations, icon_attachment: :blob, skill: :job_roles).
               order(name: :asc)
 
     question_ids = FactorsScoring.factor_question_ids(object_assessment_ids)
@@ -84,7 +84,8 @@ class ReportSerializer < Panko::Serializer
         context: {
           question_ids: question_ids,
           report_id: object.id,
-          alias: aliases
+          alias: aliases,
+          campaign_user: context[:campaign_user]
         }
       ).to_a
     end

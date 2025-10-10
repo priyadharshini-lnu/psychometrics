@@ -59,6 +59,7 @@ _.extend(AppStore.prototype, {
       dimensionId: assessment.dimension_id,
       factors: assessment.factors,
       campaignFactorsList: assessment.campaign_factors_list,
+      isSkillRater: assessment.skill_rater,
     }))
     _.each(data.factors, (factors, dimensionId) => {
       this.factors[dimensionId] = _.sortBy(factors, 'name')
