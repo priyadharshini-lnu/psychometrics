@@ -203,9 +203,12 @@ export default class Result<ExternalScoring = unknown> {
     minValue?,
     maxValue?,
     relationship?,
+    includesCurrentJob?: boolean,
+    includesTargetJob?: boolean,
   ): TopFactor[] => GetTopFactors.run(
     from, to, factorIds, factorType, this.resultsByFilter,
     this.dimensionId, minValue ?? -Infinity, maxValue ?? Infinity, relationship,
+    includesCurrentJob, includesTargetJob,
   )
 
   getTopCampaignFactors = (

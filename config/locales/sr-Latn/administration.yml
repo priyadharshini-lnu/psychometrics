@@ -1970,15 +1970,8 @@ sr-Latn:
         success_msg: Izvoz razvojnih akcija u toku. Molimo Vas da proverite status u obaveštenjima.
         title: Izvoz
         translation_details: Detalji
-      export_actions:
-        development_action_translations_title: Izvezi prevode razvojne akcije
-        development_actions_title: Izvezi razvojne akcije
       export_development_action_translations: Prevodi razvojnih akcija
-      export_development_action_translations_project: Prevodi razvojnih akcija zasnovani na projektu
       export_development_actions: Razvojne akcije
-      export_development_actions_project: Razvojne akcije zasnovane na projektu
-      export_global_development_actions: Globalne razvojne akcije
-      export_global_development_actions_translations: Prevodi globalnih razvojnih akcija
       form:
         available_languages: Dostupni jezici
         client_placeholder: Izaberite klijenta
@@ -2371,7 +2364,6 @@ sr-Latn:
       update_interview_questions: Ažurirajte pitanja za intervju
       update_reflection_questions: Ažurirajte pitanja o refleksiji
     idp_setting:
-      allow_global_skills: Dozvolite globalne veštine
       manager_approves_idp: Menadžer odobrava IDP
       manager_can_edit_idp: Menadžer može da uređuje IDP
       require_all_development_actions_complete: Zahtevajte da sve razvojne akcije budu završene
@@ -2989,7 +2981,6 @@ sr-Latn:
           proficiency: Uvezi stručnosti
           translations: Uvezi prevode stručnosti
         errors:
-          by_skill_exists: 'Red %{row_number}: Za ovaj projekat i veštinu već postoji nivo znanja "by_skill"'
           by_skill_missing: 'Red %{row_number}: Projekat i veština moraju biti prisutni za tip ''by_skill'''
           invalid_csv_format: 'Nevažeći CSV format: %{message}'
           invalid_proficiency_type: 'Red %{row_number}: Nevažeći ili nedostaje tip stručnosti'

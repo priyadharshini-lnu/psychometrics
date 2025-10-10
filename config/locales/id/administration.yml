@@ -1970,15 +1970,8 @@ id:
         success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung. Silakan periksa status di notifikasi.
         title: Ekspor
         translation_details: Rincian
-      export_actions:
-        development_action_translations_title: Ekspor Pengembangan Tindakan Terjemahan
-        development_actions_title: Aksi Pengembangan Ekspor
       export_development_action_translations: Terjemahan Tindakan Pengembangan
-      export_development_action_translations_project: Terjemahan Tindakan Pengembangan berdasarkan Proyek
       export_development_actions: Tindakan Pengembangan
-      export_development_actions_project: Tindakan Pengembangan Berdasarkan Proyek
-      export_global_development_actions: Aksi Pembangunan Global
-      export_global_development_actions_translations: Terjemahan Aksi Pembangunan Global
       form:
         available_languages: Bahasa yang Tersedia
         client_placeholder: Pilih Klien
@@ -2371,7 +2364,6 @@ id:
       update_interview_questions: Perbarui Pertanyaan Wawancara
       update_reflection_questions: Perbarui Pertanyaan Refleksi
     idp_setting:
-      allow_global_skills: Izinkan Keterampilan Global
       manager_approves_idp: Manajer menyetujui IDP
       manager_can_edit_idp: Manajer dapat mengedit IDP
       require_all_development_actions_complete: Mengharuskan semua tindakan pengembangan selesai
@@ -2989,7 +2981,6 @@ id:
           proficiency: Kemahiran Impor
           translations: Terjemahan Kemahiran Impor
         errors:
-          by_skill_exists: 'Baris %{row_number}: Tingkat Kecakapan ''by_skill'' sudah ada untuk proyek dan keterampilan ini'
           by_skill_missing: 'Baris %{row_number}: Proyek dan Keterampilan harus ada untuk jenis ''by_skill'''
           invalid_csv_format: 'Format CSV tidak valid: %{message}'
           invalid_proficiency_type: 'Baris %{row_number}: Tidak valid atau tidak ada ProficiencyType'

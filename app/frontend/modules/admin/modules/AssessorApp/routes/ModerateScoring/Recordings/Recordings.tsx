@@ -1,0 +1,186 @@
+/* eslint-disable max-len */
+import React, { useEffect, useState } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import {
+  Table, Row, Col, Button,
+  Space,
+  Tooltip,
+  Modal,
+  Skeleton,
+} from 'antd'
+import { useParams } from 'react-router-dom'
+import { DateTimeWithZone } from '~/glint'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import styles from './styles.less'
+import { isRequestInProgress } from '~/core/request'
+import { getRecordings, FETCH_RECORDINGS, fetchRecordings } from '../../../core/scoreModerate'
+
+
+export type PropsFromRedux = ConnectedProps<typeof connector>
+
+const connector = connect((state: RootState) => ({
+  userRecordings: getRecordings(state.assessors.scoreModerate),
+  loading: isRequestInProgress(state, FETCH_RECORDINGS),
+}), {
+  fetchRecordings,
+})
+
+interface Props extends ConnectedProps<typeof connector> {
+  header: (title: string) => React.ReactNode
+}
+
+const { Column } = Table
+const { I18n } = window
+
+const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }) => {
+  let parsedCampaignId
+  let parsedUserId
+
+  const { campaignId, userId } = useParams<{ campaignId?: string, userId?: string }>()
+  if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
+  if (userId) { parsedUserId = parseInt(userId, 10) }
+
+  useEffect(() => {
+    fetchRecordings(parsedCampaignId, parsedUserId)
+  }, [])
+
+  if (!userRecordings) {
+    return (
+      <div className={styles.sidebar}>
+        <Skeleton active />
+      </div>
+    )
+  }
+
+  return (
+    <>
+      <div className={styles.sidebar} style={{ minWidth: 700, overflowX: 'auto' }}>
+        {header(I18n.t('administration.assessor.moderate_score.recordings'))}
+        <Row>
+          <Col span={24}>
+            <Table className="mtm mbl" rowKey="id" dataSource={userRecordings} pagination={false} scroll={{ x: 900 }}>
+              <Column
+                title={I18n.t('administration.scheduling.columns.serial_no')}
+                dataIndex="id"
+                key="id"
+              />
+              <Column
+                title={I18n.t('administration.scheduling.columns.recording_date')}
+                key="recordingDate"
+                dataIndex="recordingDate"
+              />
+              <Column
+                title={I18n.t('administration.scheduling.columns.assessment_center_date_and_time')}
+                key="assessmentCenterDateAndTime"
+                render={({ assessmentCenterDateAndTime }) => {
+                  if (!assessmentCenterDateAndTime) return null
+                  return <DateTimeWithZone dateString={assessmentCenterDateAndTime} />
+                }}
+              />
+              <Column
+                title={I18n.t('administration.scheduling.columns.assessor')}
+                key="assessors"
+                render={({ assessors }) => {
+                  if (!assessors || assessors.length === 0) return null
+                  const maxShown = 1
+                  const shown = assessors.slice(0, maxShown)
+                  const hidden = assessors.slice(maxShown)
+                  const emails = assessors.map(assessor => assessor.email).join(', ')
+                  return (
+                    <Tooltip title={emails}>
+                      <span>
+                        {shown.map(assessor => assessor.email).join(', ')}
+                        {hidden.length > 0 && (
+                          <>{`+ ${hidden.length}`}</>
+                        )}
+                      </span>
+                    </Tooltip>
+                  )
+                }}
+              />
+              <Column
+                title={I18n.t('administration.scheduling.columns.participants')}
+                key="participants"
+                render={({ participants }) => {
+                  if (!participants || participants.length === 0) return null
+                  const maxShown = 1
+                  const shown = participants.slice(0, maxShown)
+                  const hidden = participants.slice(maxShown)
+                  const emails = participants.map(participant => participant.email).join(', ')
+                  return (
+                    <Tooltip title={emails}>
+                      <span>
+                        {shown.map(participant => participant.email).join(', ')}
+                        {hidden.length > 0 && (
+                          <>{`+ ${hidden.length}`}</>
+                        )}
+                      </span>
+                    </Tooltip>
+                  )
+                }}
+              />
+              <Column
+                title={I18n.t('administration.scheduling.columns.link_to_view_recordings')}
+                key="recording_url"
+                width="5%"
+                render={({ recordingUrl, recordingDate, id }) => (
+                  <RecordingUrlColumn
+                    recordingUrl={recordingUrl}
+                    recordingDate={recordingDate}
+                    serialNo={id}
+                  />
+                )}
+              />
+            </Table>
+          </Col>
+        </Row>
+      </div>
+    </>
+  )
+}
+
+const RecordingPlayer: React.FC<{ url: string }> = ({ url }) => (
+  <video
+    src={url}
+    controls
+    controlsList="nodownload"
+    style={{ width: '100%' }}
+    onContextMenu={e => e.preventDefault()}
+  />
+)
+
+const RecordingUrlColumn: React.FC<{
+  recordingUrl: string
+  recordingDate: string
+  serialNo: number | string
+}> = ({ recordingUrl, recordingDate, serialNo }) => {
+  const [open, setOpen] = useState(false)
+
+  if (!recordingUrl) return <span>NA</span>
+
+  return (
+    <>
+      <Space>
+        <Button
+          type="link"
+          onClick={() => setOpen(true)}
+        >
+          View recording
+        </Button>
+      </Space>
+      <Modal
+        open={open}
+        onCancel={() => setOpen(false)}
+        footer={null}
+        width={800}
+        title={`Recording #${serialNo} - ${recordingDate}`}
+        destroyOnClose
+      >
+        <RecordingPlayer url={recordingUrl} />
+      </Modal>
+    </>
+  )
+}
+
+
+export default connector(Recordings)

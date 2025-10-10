@@ -25,7 +25,18 @@ const Select: React.FC<Props> = ({
   return (
     <div className={styles.selectContainer}>
       <BaseSelect showArrow className={styles.formSelect} mode={multi ? MULTIPLE : undefined}>
-        {optionList?.map((option: string, i: number) => (<Option key={i} value={option}>{option}</Option>))}
+        {Array.isArray(optionList)
+          ? optionList?.map((option, i: number) => (
+            <Option key={i} value={option}>
+              {option}
+            </Option>
+          ))
+          : Object.entries(optionList || {}).map(([key, value]) => (
+            <Option key={key} value={key}>
+              {value}
+            </Option>
+          ))
+        }
       </BaseSelect>
       <Dropdown
         className={styles.dropdown}

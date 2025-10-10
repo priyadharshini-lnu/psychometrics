@@ -2512,6 +2512,7 @@ pl:
       update_success: Zaproszenie SMS zostało pomyślnie zaktualizowane
     sms_records:
       create_success: Zadanie SMS zostało zaplanowane pomyślnie
+    starting_in: Już za
     test_webhook:
       create_success: Test elementu webhook powiódł się.
       success: Sukces
@@ -3072,7 +3073,7 @@ pl:
     users:
       account_disable: Twoje konto zostało wyłączone z powodu braku aktywności
       warning: Twoje konto zostanie wkrótce wyłączone z powodu braku aktywności
-  maintenance_message: Lighthouse nie będzie dostępny z powodu zaplanowanej konserwacji w %{start_date} i będzie niedostępny przez %{duration} godzin
+  maintenance_message: Latarnia morska nie będzie dostępna z powodu zaplanowanych prac konserwacyjnych w dniu %{start_date} i będzie niedostępna przez %{duration}
   maintenance_submessage: Odśwież stronę po zakończeniu konserwacji. Zostaniesz przekierowany na stronę logowania
   my: Mój
   myself: Siebie

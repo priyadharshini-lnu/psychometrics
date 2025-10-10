@@ -2512,6 +2512,7 @@ id:
       update_success: SMS Invite berhasil diperbarui
     sms_records:
       create_success: Pekerjaan SMS berhasil dijadwalkan
+    starting_in: Mulai dari
     test_webhook:
       create_success: Tes webhook berhasil.
       success: Keberhasilan
@@ -3072,7 +3073,7 @@ id:
     users:
       account_disable: Akun Anda telah dinonaktifkan karena tidak aktif
       warning: Akun Anda akan segera dinonaktifkan karena tidak aktif
-  maintenance_message: Mercusuar akan mati untuk pemeliharaan terjadwal pada %{start_date} dan tidak akan tersedia selama %{duration} jam
+  maintenance_message: Mercusuar akan mati untuk pemeliharaan terjadwal pada %{start_date} dan tidak akan tersedia untuk %{duration}
   maintenance_submessage: Silakan segarkan halaman setelah pemeliharaan selesai. Anda akan diarahkan ke halaman login
   my: Saya
   myself: Diriku

@@ -93,8 +93,8 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
               <Card
                 title={(<ProfileCardTitle />)}
                 className={styles.profileCard}
-                bordered={false}
-                headStyle={{ paddingBlock: '1rem' }}
+                variant="borderless"
+                styles={{ header: { paddingBlock: '1rem' } }}
               >
                 <ProfileCompletion
                   title={isProfileComplete

@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, useState, useEffect } from 'react'
 import 'froala-editor/css/froala_style.min.css'
 import 'froala-editor/css/froala_editor.pkgd.min.css'
 import FroalaEditor from 'react-froala-wysiwyg'
@@ -9,6 +9,7 @@ import 'froala-editor/js/plugins.pkgd.min'
 function Editor ({
   content, handleContentChange, readOnly = false, maxCharacterLimit = null, maxWordLimit = null,
 }, ref) {
+  const [isInitialized, setIsInitialized] = useState(false)
   const config = {
     iconsTemplate: 'font_awesome',
     pluginsEnabled: [
@@ -64,9 +65,21 @@ function Editor ({
     // config.wordCounterMax = maxWordLimit
   }
 
+  useEffect(() => {
+    async function initPlugins () {
+      // Refer: https://github.com/froala/react-froala-wysiwyg/issues/410#issuecomment-2627465406
+      // Import  Froala Editor plugin lazily;
+      await import('froala-editor/js/plugins.pkgd.min')
+      setIsInitialized(true)
+    }
+    if (!isInitialized) {
+      initPlugins()
+    }
+  })
+
   return (
     <div className="classname">
-      <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
+      {isInitialized && <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />}
     </div>
   )
 }

@@ -33,7 +33,7 @@ module Administration
 
       def send_sms?
         project = Project.find_by(id: project_id)
-        can_manage_sms_invites? && project&.client&.sms_notification?
+        can_manage_sms_invites? && project&.sms_notification?
       end
 
       def search?

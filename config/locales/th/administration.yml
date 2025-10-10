@@ -1970,15 +1970,8 @@ th:
         success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่ โปรดตรวจสอบสถานะในการแจ้งเตือน
         title: ส่งออก
         translation_details: รายละเอียด
-      export_actions:
-        development_action_translations_title: ส่งออกการดําเนินการพัฒนาการแปล
-        development_actions_title: การดําเนินการพัฒนาการส่งออก
       export_development_action_translations: การแปลการดําเนินการเพื่อการพัฒนา
-      export_development_action_translations_project: การแปลการดําเนินการเพื่อการพัฒนาตามโครงการ
       export_development_actions: การดําเนินการพัฒนา
-      export_development_actions_project: การดําเนินการพัฒนาตามโครงการ
-      export_global_development_actions: การดําเนินการเพื่อการพัฒนาระดับโลก
-      export_global_development_actions_translations: การแปลการดําเนินการเพื่อการพัฒนาระดับโลก
       form:
         available_languages: ภาษาที่ใช้ได้
         client_placeholder: เลือกลูกค้า
@@ -2371,7 +2364,6 @@ th:
       update_interview_questions: อัปเดตคําถามสัมภาษณ์
       update_reflection_questions: อัปเดตคําถามสะท้อน
     idp_setting:
-      allow_global_skills: อนุญาตทักษะระดับโลก
       manager_approves_idp: ผู้จัดการอนุมัติ IDP
       manager_can_edit_idp: ผู้จัดการสามารถแก้ไข IDP ได้
       require_all_development_actions_complete: กําหนดให้การดําเนินการพัฒนาทั้งหมดเสร็จสมบูรณ์
@@ -2989,7 +2981,6 @@ th:
           proficiency: ความเชี่ยวชาญในการนําเข้า
           translations: นําเข้าการแปลความสามารถ
         errors:
-          by_skill_exists: 'แถว %{row_number}: ระดับความเชี่ยวชาญ ''by_skill'' มีอยู่แล้วสําหรับโครงการและทักษะนี้'
           by_skill_missing: 'แถว %{row_number}: ต้องมีโครงการและทักษะสําหรับประเภท ''by_skill'''
           invalid_csv_format: 'รูปแบบ CSV ไม่ถูกต้อง: %{message}'
           invalid_proficiency_type: 'แถว %{row_number}: ProficiencyType ไม่ถูกต้องหรือขาดหายไป'

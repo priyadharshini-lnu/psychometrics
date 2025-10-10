@@ -33,7 +33,7 @@ export const UngroupedAssessmentContainer: FC<Props> = ({
           title={I18n.t('assessments_reports.sequencing.ungrouped_assessments')}
           loading={isLoading}
           size="small"
-          bodyStyle={{ backgroundColor: '#f0f0f0' }}
+          styles={{ body: { backgroundColor: '#f0f0f0' } }}
         >
           <SortableContext items={items} strategy={horizontalListSortingStrategy} id="ungrouped">
             {count !== 0 ? (

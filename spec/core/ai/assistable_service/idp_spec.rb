@@ -2,12 +2,15 @@
 
 require 'rails_helper'
 
-describe AI::IdpAssistantService do
+describe AI::AssistableService::Idp do
   let!(:campaign) { create(:campaign) }
   let!(:user) { create(:user) }
   let!(:ai_assistant) { create(:assistant) }
+  let!(:doc_ai_assistant) { create(:assistant) }
+  let!(:skill_gap_ai_assistant) { create(:assistant) }
   let!(:idp_template) do
-    create(:idp_template, project: campaign.project, one_click_idp_enabled: true, one_click_ai_assistant: ai_assistant)
+    create(:idp_template, project: campaign.project, one_click_idp_enabled: true, one_click_ai_assistant: ai_assistant,
+      document_analysis_ai_assistant: doc_ai_assistant, skill_gap_report_analysis_ai_assistant: skill_gap_ai_assistant)
   end
   let!(:instructions) { 'Hello' }
   let!(:plan) { create(:user_idp_plan, user: user, idp_template: idp_template, campaign: campaign) }
@@ -63,6 +66,38 @@ describe AI::IdpAssistantService do
       end
     end
 
+    context 'when doc anaylise assistant tool are not configured properly' do
+      before do
+        idp_template.update!(document_analysis_ai_assistant: nil)
+      end
+
+      it 'returns an error with the correct translation' do
+        result = described_class.call(plan, user, instructions, options)
+        allow(AI::AssistantService).to receive(:new)
+
+        expect(result[:error]).to eq(
+          I18n.t('ai.errors.generic')
+        )
+        expect(AI::AssistantService).not_to have_received(:new)
+      end
+    end
+
+    context 'when gap report anaylise assistant tools are not configured properly' do
+      before do
+        idp_template.update!(skill_gap_report_analysis_ai_assistant: nil)
+      end
+
+      it 'returns an error with the correct translation' do
+        result = described_class.call(plan, user, instructions, options)
+        allow(AI::AssistantService).to receive(:new)
+
+        expect(result[:error]).to eq(
+          I18n.t('ai.errors.generic')
+        )
+        expect(AI::AssistantService).not_to have_received(:new)
+      end
+    end
+
     context 'when ai_assisted_idp_session does not exist' do
       include_context 'assistant service mocking'
 
@@ -74,14 +109,6 @@ describe AI::IdpAssistantService do
         ai_session = plan.reload.ai_assisted_idp_session
         expect(ai_session).to be_present
         expect(ai_session.user).to eq(user)
-      end
-
-      it 'updates plan status to ai_assisted_idp_in_progress when creating a new session' do
-        expect(plan.status).not_to eq('ai_assisted_idp_in_progress')
-
-        described_class.new(plan, user, instructions, options).call
-
-        expect(plan.reload.status).to eq('ai_assisted_idp_in_progress')
       end
     end
 
@@ -107,10 +134,11 @@ describe AI::IdpAssistantService do
 
         allow(assistant_chat).to receive(:with_assistant_context) do |args|
           expect(args[:tools]).to be_an(Array)
-          expect(args[:tools].size).to eq(3)
+          expect(args[:tools].size).to eq(4)
           expect(args[:tools]).to include(AI::Tools::Idp::AddSkillToPlan)
           expect(args[:tools]).to include(AI::Tools::Idp::AvailableSkillsAndDevelopmentActions)
-          expect(args[:tools]).to include(AI::Tools::Idp::DocumentAnalyzer)
+          expect(args[:tools]).to include(AI::Tools::Idp::SkillGapReportAnalysis)
+          expect(args[:tools]).to include(AI::Tools::Idp::AttachmentAnalysis)
 
           assistant_chat
         end
@@ -136,7 +164,8 @@ describe AI::IdpAssistantService do
           user,
           instructions,
           chat: assistant_chat,
-          ignore_user_prompt: true
+          ignore_user_prompt: true,
+          chat_params: nil
         )
       end
     end
@@ -173,8 +202,52 @@ describe AI::IdpAssistantService do
       it 'marks session as failed and broadcasts error' do
         result = described_class.call(plan, user, instructions, options)
 
-        expect_session_status(session, 'failed', 'AI service failed')
-        expect(result[:error]).to eq('AI service failed')
+        expected_message = I18n.t('ai.errors.generic')
+        expect_session_status(session, 'failed', expected_message)
+        expect(result[:error]).to eq(expected_message)
+
+        # Verify metadata is saved
+        session.reload
+        expect(session.meta).to include('error' => 'AI service failed')
+        expect(session.meta).to include('error_class')
+      end
+    end
+
+    context 'when start_new_chat flag is passed' do
+      include_context 'assistant service mocking'
+
+      let!(:existing_session) { create_existing_session }
+      let(:original_chat) { existing_session.ai_assistant_chat }
+      let(:new_chat) { ai_assistant.for_user(user) }
+      let(:options) { { start_new_chat: true } }
+
+      before do
+        allow(ai_assistant).to receive(:for_user).and_return(new_chat)
+      end
+
+      it 'creates a new chat for the existing session' do
+        described_class.new(plan, user, instructions, options).call
+
+        expect(plan.reload.ai_assisted_idp_session.ai_assistant_chat).to eq(new_chat)
+        expect(plan.reload.ai_assisted_idp_session.ai_assistant_chat).not_to eq(original_chat)
+      end
+    end
+
+    context 'when start_new_chat flag is not passed' do
+      include_context 'assistant service mocking'
+
+      let!(:existing_session) { create_existing_session }
+      let(:original_chat) { existing_session.ai_assistant_chat }
+      let(:options) { {} }
+
+      before do
+        allow(original_chat).to receive(:with_assistant_context).and_return(original_chat)
+      end
+
+      it 'uses the existing chat without creating a new one' do
+        described_class.new(plan, user, instructions, options).call
+
+        expect(plan.reload.ai_assisted_idp_session.ai_assistant_chat).to eq(original_chat)
       end
     end
   end

@@ -197,9 +197,9 @@ const MyPlanComponent = ({
         const config = {
           message: I18n.t('jobs.threesixty.reports.download.message'),
           description: <SafeHTML html={
-            I18n.t('jobs.threesixty.reports.download.description', { url: response.responseData })}
+            I18n.t('idp.download.description', { url: response.responseData })}
           />,
-          duration: 0,
+          duration: 10 * 60 * 1000, // 10 minutes,
         }
         const type = response.type || 'success'
         notification[type](config)
@@ -214,7 +214,7 @@ const MyPlanComponent = ({
   })
 
   const operations = (
-    <Flex gap={8}>
+    <Flex gap={8} flex={1} justify="end">
       <Dropdown menu={menu} trigger={['click']}>
         <Tooltip title={I18n.t('common.actions.download')}>
           <Button loading={asyncLoading} icon={<DownloadOutlined />}>

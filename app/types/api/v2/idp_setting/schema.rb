@@ -10,7 +10,6 @@ module Api
 
         def self.attributes(_attribute, _)
           proc do
-            optional(:allow_global_skills).maybe(:bool)
             optional(:manager_approves_idp).maybe(:bool)
             optional(:manager_can_edit_idp).maybe(:bool)
           end

@@ -1970,15 +1970,8 @@ it:
         success_msg: L'esportazione delle azioni di sviluppo è in corso. Controllare lo stato nelle notifiche.
         title: Esporta
         translation_details: Dettagli
-      export_actions:
-        development_action_translations_title: Azioni di sviluppo delle esportazioni Traduzioni
-        development_actions_title: Azioni di sviluppo delle esportazioni
       export_development_action_translations: Azione di sviluppo Traduzioni basate sul progetto
-      export_development_action_translations_project: Azione di sviluppo Traduzioni basate sul progetto
       export_development_actions: Azioni di sviluppo basate sul progetto
-      export_development_actions_project: Azioni di sviluppo basate sul progetto
-      export_global_development_actions: Azioni di sviluppo globale
-      export_global_development_actions_translations: Traduzioni dell'Azione per lo sviluppo globale
       form:
         available_languages: Lingue disponibili
         client_placeholder: Selezionare un cliente
@@ -2371,7 +2364,6 @@ it:
       update_interview_questions: Aggiorna le domande dell'intervista
       update_reflection_questions: Domande di riflessione sull'aggiornamento
     idp_setting:
-      allow_global_skills: Consentire competenze globali
       manager_approves_idp: Il manager approva l'IDP
       manager_can_edit_idp: Il gestore può modificare l'IDP
       require_all_development_actions_complete: Richiedere il completamento di tutte le azioni di sviluppo
@@ -2989,12 +2981,8 @@ it:
           proficiency: Competenza nell'importazione
           translations: Importazione di traduzioni di competenza
         errors:
-          by_skill_exists: 'Riga %{row_number}: Esiste già un livello di competenza ''by_skill'' per questo progetto e per questa competenza.'
           by_skill_missing: 'Riga %{row_number}: Il progetto e la competenza devono essere presenti per il tipo ''by_skill''.'
-          by_skill_type_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''by_skill_type'''' per questo progetto e per questo tipo di abilità.'
           by_skill_type_missing: 'Riga %{row_number}: Il progetto e il tipo di competenza devono essere presenti per il tipo ''''by_skill_type''''.'
-          default_global_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel di livello globale ''''predefinito''''.'
-          default_project_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''predefinito'''' a livello di progetto.'
           invalid_csv_format: 'Formato CSV non valido: %{message}'
           invalid_proficiency_type: 'Riga %{row_number}: Tipo di competenza non valido o mancante'
           invalid_skill_type: 'Riga %{row_number}: Tipo di abilità non valida "%{skill_type}". I tipi validi sono: %{valid_types}'

@@ -4,15 +4,11 @@ module Administration
   module Campaigns
     class UserPolicy < Administration::BasePolicy
       def index?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :view, project_id: project_id, campaign_id: campaign_id
-        ) || @user.is?(:assessor)
+        has_permission?(:campaigns, :view)
       end
 
       def show?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :view, project_id: project_id, campaign_id: campaign_id
-        ) || @user.is?(:assessor)
+        has_permission?(:campaigns, :view)
       end
 
       def create?
@@ -139,6 +135,12 @@ module Administration
 
       def webhook_payload?
         has_permission?(:project_settings, :webhooks, project_id: project_id)
+      end
+
+      def view_recordings?
+        @user.is?(:superadmin) || @user.has_permission?(
+          :workshops, :view_recordings, project_id: project_id, campaign_id: campaign_id
+        ) || @user.is?(:assessor)
       end
 
       private

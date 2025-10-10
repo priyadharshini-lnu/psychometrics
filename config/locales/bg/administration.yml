@@ -1970,15 +1970,8 @@ bg:
         success_msg: Текущи действия за развитие на износа. Моля, проверете статуса в известията.
         title: Износ
         translation_details: Подробности
-      export_actions:
-        development_action_translations_title: Дейности за развитие на износа Преводи
-        development_actions_title: Действия за развитие на износа
       export_development_action_translations: Преводи за действие за развитие
-      export_development_action_translations_project: Развойна дейност Преводи въз основа на проект
       export_development_actions: Действия за развитие
-      export_development_actions_project: Действия за развитие въз основа на проект
-      export_global_development_actions: Действия за глобално развитие
-      export_global_development_actions_translations: Глобални преводи за действие за развитие
       form:
         available_languages: Налични езици
         client_placeholder: Изберете клиент
@@ -2371,7 +2364,6 @@ bg:
       update_interview_questions: Актуализирайте въпросите за интервю
       update_reflection_questions: Актуализиране на въпроси за размисъл
     idp_setting:
-      allow_global_skills: Позволете на глобални умения
       manager_approves_idp: Мениджърът одобрява IDP
       manager_can_edit_idp: Мениджърът може да редактира IDP
       require_all_development_actions_complete: Изискване за завършване на всички действия за разработка
@@ -2989,7 +2981,6 @@ bg:
           proficiency: Умения за импортиране
           translations: Импортиране на преводи за умения
         errors:
-          by_skill_exists: 'Ред %{row_number}: Ниво на владеене "by_skill" вече съществува за този проект и умение'
           by_skill_missing: 'Ред %{row_number}: Проектът и умението трябва да присъстват за тип ''by_skill'''
           invalid_csv_format: 'Невалиден CSV формат: %{message}'
           invalid_proficiency_type: 'Ред %{row_number}: Невалиден или липсващ ProficiencyType'

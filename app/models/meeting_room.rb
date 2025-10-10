@@ -31,6 +31,10 @@ class MeetingRoom < ApplicationRecord
     "::MeetingRooms::#{meetable_type}".safe_constantize.new(meetable).participants
   end
 
+  def assessment_center_date_and_time
+    "::MeetingRooms::#{meetable_type}".safe_constantize.new(meetable).assessment_center_date_and_time
+  end
+
   private
 
   def create_room

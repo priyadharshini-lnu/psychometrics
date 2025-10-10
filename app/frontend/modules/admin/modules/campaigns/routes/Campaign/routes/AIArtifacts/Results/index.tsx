@@ -58,14 +58,17 @@ export const Result = () => {
             name: item.user.data.attributes.name,
             artifacts: item.artifactsResults.data.reduce((acc, artifactResultData) => {
               const artifactResult = artifactResultData.attributes
+              const artifactName = artifactResult.artifact.name
 
-              acc[artifactResult.artifact.name] = {}
-              acc[artifactResult.artifact.name].results = artifactResult.results
-              acc[artifactResult.artifact.name].error = artifactResult.error
-              acc[artifactResult.artifact.name].generatedAt = artifactResult.generatedAt
-              acc[artifactResult.artifact.name].id = artifactResult.artifact.id
-              acc[artifactResult.artifact.name].parsedDependencies = artifactResult.parsedDependencies
-              return acc
+              const artifactData = {
+                results: artifactResult.results,
+                error: artifactResult.error,
+                generatedAt: artifactResult.generatedAt,
+                id: artifactResult.artifact.id,
+                parsedDependencies: artifactResult.parsedDependencies,
+              }
+
+              return { ...acc, [artifactName]: artifactData }
             }, {}),
             generatedAt: item.generatedAt,
           })

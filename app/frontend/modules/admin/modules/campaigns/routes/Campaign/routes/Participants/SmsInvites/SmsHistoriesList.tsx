@@ -39,45 +39,53 @@ export const SmsHistoriesList = () => {
             id="id"
             sorter
             dataIndex="id"
+            width={100}
           />
           <Resource.Column<SmsHistory>
             title={I18n.t('administration.sms_histories.columns.mobile_no')}
             id="mobileNo"
             dataIndex="mobileNo"
+            minWidth={100}
           />
           <Resource.Column<SmsHistory>
             title={I18n.t('administration.sms_histories.columns.first_name')}
             id="firstName"
             dataIndex="firstName"
             sorter
+            minWidth={100}
           />
           <Resource.Column<SmsHistory>
             title={I18n.t('administration.sms_histories.columns.last_name')}
             id="lastName"
             dataIndex="lastName"
             sorter
+            minWidth={100}
           />
           <Resource.Column<SmsHistory>
             title={I18n.t('administration.sms_histories.columns.segment_length')}
             id="segmentLength"
             dataIndex="segmentLength"
+            minWidth={100}
           />
           <Resource.Column<SmsHistory>
             title={I18n.t('administration.sms_histories.columns.price')}
             id="price"
             dataIndex="price"
             render={price => I18n.toCurrency(price)}
+            minWidth={100}
           />
           <Resource.Column<SmsHistory>
             title={I18n.t('administration.sms_histories.columns.sent_at')}
             id="createdAt"
             dataIndex="createdAt"
             sorter
+            minWidth={100}
           />
           <Resource.Column<SmsHistory>
             title={I18n.t('common.column.status')}
             id="status"
             render={({ status }) => I18n.t(`administration.sms_histories.statuses.${status}`)}
+            minWidth={100}
           />
           <Resource.Column<SmsHistory>
             title={I18n.t('common.column.action')}
@@ -88,6 +96,8 @@ export const SmsHistoriesList = () => {
                 openDrawer={openDrawer}
               />
             )}
+            width={100}
+            fixed="right"
           />
         </Resource.Table>
       </Resource>

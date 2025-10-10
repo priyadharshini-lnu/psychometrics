@@ -1,7 +1,7 @@
 import { FC, useState, useContext } from 'react'
 import { includes, debounce } from 'lodash'
 import {
-  Space, Avatar, Typography, Select, Row, Col, Flex,
+  Avatar, Typography, Select, Row, Col, Flex,
   Spin,
 } from 'antd'
 import cs from 'classnames'
@@ -64,7 +64,7 @@ export const SkillsGroupCard: FC<Props> = ({
 
   return (
     <>
-      <Space>
+      <Flex gap={4}>
         <Avatar
           size={64}
           src={renderSkillTypeIcon(skillType.skillType)}
@@ -72,8 +72,8 @@ export const SkillsGroupCard: FC<Props> = ({
           // API changes not available yet
           // src={skillCategory.iconUrl}
         />
-        <div>
-          <Title className="mb-0" level={4}>
+        <section style={{ flex: 1 }}>
+          <Title className="mb-0 mt-0" level={4}>
             {I18n.t('idp.initial_steps.add_skill_group_title', { category: I18n.t(`idp.${skillType.skillType}`) })}
           </Title>
           <Paragraph>
@@ -81,13 +81,13 @@ export const SkillsGroupCard: FC<Props> = ({
             {/* {skillCategory.description} */}
             {I18n.t('idp.initial_steps.add_skill_group_description')}
           </Paragraph>
-        </div>
-      </Space>
+        </section>
+      </Flex>
       <Title level={5}>{I18n.t('idp.initial_steps.select_skills')}</Title>
       <Flex gap={4} wrap>
         {selectedSkills.filter(skill => skill.skillType === skillType.skillType).map(skill => (
           <div
-            className={styles['skill-btn']}
+            className={styles.skillBtn}
             key={skill.id}
           >
             <span style={{ marginRight: '4px' }}>
@@ -136,17 +136,19 @@ export const SkillsGroupCard: FC<Props> = ({
         </Col>
       </Row>
       <Flex wrap gap={4} className="mb-4">
-        <Flex align="center">
-          <strong>{I18n.t('idp.suggestions')}</strong>
-        </Flex>
+        {skillType.skills.length > 0 && (
+          <Flex align="center">
+            <strong>{I18n.t('idp.suggestions')}</strong>
+          </Flex>
+        )}
         {skillType.skills.map(skill => (
           <div
             role="button"
             tabIndex={0}
-            className={cs(styles['skill-btn'],
+            className={cs(styles.skillBtn,
               includes(selectedSkills.map(s => Number(s.skillId)),
-                Number(skill.id)) ? styles['skill-btn-suggestion-selected']
-                : styles['skill-btn-suggestion'])}
+                Number(skill.id)) ? styles.skillBtnSuggestionSelected
+                : styles.skillBtnSuggestion)}
             key={skill.id}
             onClick={() => {
               if (includes(selectedSkills.map(s => Number(s.skillId)), Number(skill.id))) {

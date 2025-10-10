@@ -7,6 +7,7 @@ import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces
 import { createReducer } from '~/utils/redux'
 import { UserAssessmentTR } from './userAssessments'
 import { UserReportTR } from './userReports'
+import { UserRecordingTR } from './userRecordings'
 
 const UserTR = t.type({
   id: t.number,
@@ -37,6 +38,7 @@ const FetchSingleTR = t.type({
   user: SingleUserTR,
   userAssessments: t.array(UserAssessmentTR),
   userReports: t.array(UserReportTR),
+  userRecordings: t.array(UserRecordingTR),
 })
 export type FetchSingle = t.TypeOf<typeof FetchSingleTR>
 

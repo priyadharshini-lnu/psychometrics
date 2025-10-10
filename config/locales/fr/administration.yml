@@ -1970,15 +1970,8 @@ fr:
         success_msg: L'exportation des actions de développement est en cours. Veuillez vérifier l'état d'avancement dans les notifications.
         title: Exportation
         translation_details: Détails
-      export_actions:
-        development_action_translations_title: Actions de développement des exportations Traductions
-        development_actions_title: Actions de développement des exportations
       export_development_action_translations: Action de développement Traductions basées sur le projet
-      export_development_action_translations_project: Action de développement Traductions basées sur le projet
       export_development_actions: Actions de développement basées sur le projet
-      export_development_actions_project: Actions de développement basées sur le projet
-      export_global_development_actions: Actions de développement global
-      export_global_development_actions_translations: Action mondiale pour le développement Traductions
       form:
         available_languages: Verfügbare Sprachen
         client_placeholder: Sélectionner un client
@@ -2371,7 +2364,6 @@ fr:
       update_interview_questions: Mettre à jour les questions d’entretien
       update_reflection_questions: Questions de réflexion sur la mise à jour
     idp_setting:
-      allow_global_skills: Permettre des compétences globales
       manager_approves_idp: Le gestionnaire approuve le PDI
       manager_can_edit_idp: Le gestionnaire peut modifier l'IDP
       require_all_development_actions_complete: Exiger que toutes les actions de développement soient achevées
@@ -2989,12 +2981,8 @@ fr:
           proficiency: Compétence en matière d'importation
           translations: Traductions de la compétence en matière d'importation
         errors:
-          by_skill_exists: 'Ligne %{row_number} : Un niveau de compétence "by_skill" existe déjà pour ce projet et cette compétence.'
           by_skill_missing: 'Ligne %{row_number} : Le projet et la compétence doivent être présents pour le type "by_skill".'
-          by_skill_type_exists: 'Ligne %{row_number} : Un niveau de compétence ''''par_type'''' existe déjà pour ce projet et ce type de compétence.'
           by_skill_type_missing: 'Ligne %{row_number} : Le projet et le type de compétence doivent être présents pour le type "by_skill_type".'
-          default_global_exists: 'Ligne %{row_number} : Un niveau de compétence global ''''par défaut'''' existe déjà.'
-          default_project_exists: 'Ligne %{row_number} : Un niveau de compétence ''''par défaut'''' au niveau du projet existe déjà.'
           invalid_csv_format: 'Format CSV non valide : %{message}'
           invalid_proficiency_type: 'Ligne %{row_number} : Type de compétence non valide ou manquant'
           invalid_skill_type: 'Ligne %{row_number} : Type de compétence non valide "%{skill_type}". Les types valides sont : %{valid_types}'

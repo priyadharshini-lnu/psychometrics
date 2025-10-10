@@ -2497,6 +2497,7 @@ cs:
       update_success: Pozvánka SMS byla úspěšně aktualizována
     sms_records:
       create_success: Úloha SMS byla úspěšně naplánována
+    starting_in: Počínaje
     test_webhook:
       create_success: Test webhooku proběhl úspěšně.
       success: Úspěch
@@ -3057,7 +3058,7 @@ cs:
     users:
       account_disable: Váš účet byl zablokován z důvodu nečinnosti
       warning: Váš účet bude brzy deaktivován z důvodu nečinnosti
-  maintenance_message: Lighthouse bude dne %{start_date} odstaven z důvodu plánované údržby a bude nedostupný po dobu %{duration} hodin
+  maintenance_message: Lighthouse bude v %{start_date} odstaven z důvodu plánované údržby a nebude k dispozici pro %{duration}
   maintenance_submessage: Po dokončení údržby prosím obnovte stránku. Budete přesměrováni na přihlašovací stránku
   my: Moje
   myself: Já sám

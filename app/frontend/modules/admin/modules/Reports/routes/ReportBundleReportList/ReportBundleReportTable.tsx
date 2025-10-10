@@ -17,11 +17,14 @@ export const ReportBundleReportTable: React.FC = () => (
       title={I18n.t('common.column.id')}
       id="reportId"
       sorter
+      fixed="left"
+      minWidth={100}
     />
     <Resource.Column<ReportBundleReport>
       title={I18n.t('common.column.name')}
       id="name"
-      width={400}
+      fixed="left"
+      minWidth={400}
     />
     <Resource.Column<ReportBundleReport>
       title={I18n.t('common.column.package_id')}
@@ -44,6 +47,7 @@ export const ReportBundleReportTable: React.FC = () => (
       render={(_, reportBundleReport) => (
         <Dropdown reportBundleReport={reportBundleReport} />
       )}
+      width={100}
     />
   </Resource.Table>
 )

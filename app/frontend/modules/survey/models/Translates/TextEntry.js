@@ -20,7 +20,15 @@ class TextEntry extends BaseTranslate {
       return this.question.props.contactList[extraData.index]
     }
     if (/^formOptionText/.test(field)) {
-      return this.question.props.formTypes[extraData.typeIndex].optionList[extraData.i]
+      const { optionList } = this.question.props.formTypes[extraData.typeIndex]
+      if (Array.isArray(optionList)) {
+        const option = optionList[extraData.i]
+        return option
+      }
+      const entries = Object.entries(optionList || {})
+      if (entries[extraData.i]) {
+        return entries[extraData.i][1]
+      }
     }
   }
 

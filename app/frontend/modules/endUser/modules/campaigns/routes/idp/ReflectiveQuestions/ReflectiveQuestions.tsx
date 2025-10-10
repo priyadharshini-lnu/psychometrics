@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { FC, useState } from 'react'
+import { FC, useState, useContext } from 'react'
 import {
   Typography, Layout, Button, Flex,
   message, Space, Form, Empty,
@@ -9,7 +9,9 @@ import {
 } from 'react-redux'
 import cs from 'classnames'
 import { Separator } from '~/components/IdpShared/Separator'
-import { PageLoadSpinner, ButtonWithArrow, BackButton } from '~/glint'
+import {
+  PageLoadSpinner, ButtonWithArrow, BackButton, MediaQueryContext,
+} from '~/glint'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import styles from './ReflectiveQuestions.less'
 import Editor from './Editor'
@@ -37,6 +39,8 @@ export const ReflectiveQuestions: FC<Props> = ({
   const {
     reflectionQuestions, validateAnswer, updateReflectionQuestions, onChange, answers, errors,
   } = useReflectiveQuestions()
+
+  const { isMobile } = useContext(MediaQueryContext)
 
 
   const [currentReflectionQuestionIndex, setCurrentReflectionQuestionIndex] = useState(0)
@@ -75,7 +79,7 @@ export const ReflectiveQuestions: FC<Props> = ({
   const currentReflectionQuestion = reflectionQuestions[currentReflectionQuestionIndex]
   return (
     <Layout.Content className={styles.pageContent}>
-      <Flex className="mb-4" justify="space-between" align="middle" gap={0}>
+      <Flex gap={4} vertical={isMobile} className="mb-4" justify="space-between" align="middle">
         <Space>
           <BackButton
             onPrev={prev}
@@ -86,11 +90,10 @@ export const ReflectiveQuestions: FC<Props> = ({
         </Space>
 
         {showSkip && (
-          <Space>
+          <Space className="self-end">
             <div className="flex justify-center">
               <ButtonWithArrow
                 label={I18n.t('idp.reflective_questions.answer_later')}
-                type="primary"
                 onClick={() => onSkip?.()}
               />
             </div>
@@ -101,7 +104,7 @@ export const ReflectiveQuestions: FC<Props> = ({
         className="mb-4 mt-0"
       />
 
-      <div className={cs(styles.questionsBox, 'mt-4')}>
+      <div className={cs(styles.questionsBox, 'mt-4', isMobile && 'mb-8')}>
         <Space direction="vertical" size="large" style={{ width: '100%' }}>
           <ReflectiveQuestion
             key={currentReflectionQuestion.id}

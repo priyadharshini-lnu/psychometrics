@@ -230,6 +230,8 @@ export default {
     defaultProps: {
       FactorsTable: {
         benchmarksLabel: 'Benchmark Score',
+        currentJobProficiencyLabel: 'Current Proficiency',
+        targetJobProficiencyLabel: 'Target Proficiency',
         precision: null,
         scoreRangeMin: null,
         scoreRangeMax: null,

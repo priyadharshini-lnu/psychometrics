@@ -1970,15 +1970,8 @@ ko:
         success_msg: 개발 작업 내보내기가 진행 중입니다. 알림에서 상태를 확인하세요.
         title: 내보내기
         translation_details: 세부 정보
-      export_actions:
-        development_action_translations_title: 개발 작업 내보내기 번역
-        development_actions_title: 수출 개발 작업
       export_development_action_translations: 프로젝트 기반 개발 작업 번역
-      export_development_action_translations_project: 프로젝트 기반 개발 작업 번역
       export_development_actions: 프로젝트 기반 개발 작업
-      export_development_actions_project: 프로젝트 기반 개발 작업
-      export_global_development_actions: 글로벌 개발 활동
-      export_global_development_actions_translations: 글로벌 개발 활동 번역
       form:
         available_languages: 사용 가능한 언어
         client_placeholder: 클라이언트 선택
@@ -2371,7 +2364,6 @@ ko:
       update_interview_questions: 면접 질문 업데이트
       update_reflection_questions: 반영 질문 업데이트
     idp_setting:
-      allow_global_skills: 글로벌 스킬 허용
       manager_approves_idp: 관리자가 IDP를 승인합니다
       manager_can_edit_idp: 관리자가 IDP를 편집할 수 있습니다
       require_all_development_actions_complete: 모든 개발 작업이 완료되어야 함
@@ -2989,12 +2981,8 @@ ko:
           proficiency: 가져오기 숙련도
           translations: 숙련도 번역 가져오기
         errors:
-          by_skill_exists: '행 %{row_number}: 이 프로젝트 및 스킬에 대해 ''by_skill'' 숙련도 레벨이 이미 존재합니다.'
           by_skill_missing: '행 %{row_number}: ''by_skill'' 유형에 대해 프로젝트와 스킬이 있어야 합니다.'
-          by_skill_type_exists: '행 %{row_number}: 이 프로젝트 및 스킬 유형에 대한 ''''by_skill_type'''' 숙련도 수준이 이미 존재합니다.'
           by_skill_type_missing: '행 %{row_number}: ''''by_skill_type'''' 유형에는 프로젝트 및 스킬 유형이 있어야 합니다.'
-          default_global_exists: '행 %{row_number}: 글로벌 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
-          default_project_exists: '행 %{row_number}: 프로젝트 수준의 ''''기본'''' 숙련도 수준이 이미 존재합니다.'
           invalid_csv_format: '잘못된 CSV 형식: %{message}'
           invalid_proficiency_type: '행 %{row_number}: 잘못되었거나 누락된 숙련도 유형입니다.'
           invalid_skill_type: '행 %{row_number}: 잘못된 스킬 유형 "%{skill_type}". 유효한 유형은 다음과 같습니다: %{valid_types}'

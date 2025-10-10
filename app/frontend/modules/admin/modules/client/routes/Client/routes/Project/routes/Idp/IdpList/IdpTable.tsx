@@ -46,7 +46,7 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
     resource.updateResource({ id: idp.id, status }).then(() => {
       message.success(I18n.t('administration.idp.status_updated'))
     }).catch((error) => {
-      message.error(error?.base?.[0]?.title)
+      message.error(error?.skillsId?.title || error?.base?.[0]?.title)
     })
   }
 
@@ -58,7 +58,7 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
           title={I18n.t('common.column.id')}
           dataIndex="id"
           id="id"
-          width={200}
+          width={100}
           sorter
           sortOrder={getSortOrder('id')}
         />
@@ -137,10 +137,14 @@ const getActionMenuProps = ({
   publish,
 }: ActionMenuData): MenuProps => {
   const menuItems = [
-    { key: 'edit', label: I18n.t('common.actions.edit') },
-    idp.status === 'draft' ? { key: 'publish', label: I18n.t('common.actions.publish') } : null,
-    idp.status === 'published' ? { key: 'unpublish', label: I18n.t('common.actions.unpublish') } : null,
-    { key: 'remove', label: I18n.t('common.actions.remove') },
+    idp.meta.permissions.edit && { key: 'edit', label: I18n.t('common.actions.edit') },
+    idp.meta.permissions.publish && idp.status === 'draft' ? {
+      key: 'publish', label: I18n.t('common.actions.publish'),
+    } : null,
+    idp.meta.permissions.unpublish && idp.status === 'published' ? {
+      key: 'unpublish', label: I18n.t('common.actions.unpublish'),
+    } : null,
+    idp.meta.permissions.remove && { key: 'remove', label: I18n.t('common.actions.remove') },
   ]
 
   const handleMenuClick = ({ key }) => {

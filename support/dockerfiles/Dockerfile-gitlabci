@@ -1,4 +1,4 @@
-FROM circleci/ruby:3.1.2
+FROM circleci/ruby:3.4.6
 
 # node installations command expect to run as root
 USER root

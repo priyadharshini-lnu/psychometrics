@@ -74,7 +74,8 @@ export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
             title={I18n.t('common.column.action')}
             id="actions"
             key="actions"
-            width="2%"
+            width={100}
+            fixed="right"
             render={workshopResource => (
               <ConditionalDropdown
                 menu={

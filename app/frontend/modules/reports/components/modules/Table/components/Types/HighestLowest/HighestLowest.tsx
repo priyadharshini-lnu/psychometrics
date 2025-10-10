@@ -19,6 +19,7 @@ export const HighestLowest: FC<Props> = ({ model, insertPaginationPage, preview 
     props: {
       sourceType, filter, factorIds, questionsChoices, sections = TableSectionsType.ALL,
       tableStyle = TableStyleType.UNSTYLED, hideValues = false, noOfItems, scoreCutoff, style,
+      currentJobFactors, targetJobFactors,
     },
     assessment_id,
   } = model
@@ -37,7 +38,6 @@ export const HighestLowest: FC<Props> = ({ model, insertPaginationPage, preview 
   const { paginationContext } = useModulePagination(
     model, `[data-table="${model.id}"]`, PaginationContext, insertPaginationPage, preview,
   )
-
 
   if (sourceType === 'Question') {
     return (
@@ -62,6 +62,8 @@ export const HighestLowest: FC<Props> = ({ model, insertPaginationPage, preview 
       assessment_id={assessment_id}
       filterId={filter}
       factorIds={factorIds}
+      includesCurrentJob={currentJobFactors}
+      includesTargetJob={targetJobFactors}
       sections={sections}
       tableStyle={tableStyle}
       hideValues={hideValues}

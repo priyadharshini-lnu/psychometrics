@@ -35,6 +35,8 @@ module Threesixty
           user.update!(subject.except(:password, :locale, :current_job_role, :target_job_role))
           user.user_profile.update!(locale: subject[:locale])
           @existing_subjects_whose_password_not_changed << user if subject[:password].present?
+          AuditLogModule.audit!(:assign_existing_subject, user, campaign: threesixty_campaign.campaign,
+                                payload: subject, user: @current_user)
           user
         else
           new_user = ::Users::Regular.create!(

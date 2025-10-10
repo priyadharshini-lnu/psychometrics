@@ -49,17 +49,16 @@ export const Panel: React.FC<Props> = ({
         expandIconPosition="end"
         expandIcon={() => (collapsible ? <DownOutlined /> : null)}
         bordered={false}
-      >
-        <Collapse.Panel
-          header={(
+        items={[{
+          key: '1',
+          label: (
             <PanelTitle
               title={title}
               description={description}
               additionalDetails={showSidebarForAdditionalDetails ? undefined : additionalDetails}
             />
-          )}
-          key="1"
-          extra={(
+          ),
+          extra: (
             <>
               {additionalDetails && showSidebarForAdditionalDetails
               && (
@@ -82,19 +81,22 @@ export const Panel: React.FC<Props> = ({
                 </div>
               ) : null}
             </>
-          )}
-          className={cs({ [styles.nonCollapsiblePanel]: !collapsible })}
-        >
-          <Divider plain className={styles.divider} />
-          {children}
-          {footer && (
+          ),
+          className: cs({ [styles.nonCollapsiblePanel]: !collapsible }),
+          children: (
             <>
               <Divider plain className={styles.divider} />
-              {footer}
+              {children}
+              {footer && (
+                <>
+                  <Divider plain className={styles.divider} />
+                  {footer}
+                </>
+              )}
             </>
-          )}
-        </Collapse.Panel>
-      </Collapse>
+          ),
+        }]}
+      />
     </div>
   )
 }

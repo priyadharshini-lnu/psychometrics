@@ -1970,15 +1970,8 @@ sl:
         success_msg: Izvoz razvojnih ukrepov v teku. Preverite stanje v obvestilih.
         title: Izvoz
         translation_details: Podrobnosti
-      export_actions:
-        development_action_translations_title: Izvoz prevodov razvojnih akcij
-        development_actions_title: Izvozni razvojni ukrepi
       export_development_action_translations: Prevodi razvojnih ukrepov
-      export_development_action_translations_project: Razvojne akcije Prevodi na podlagi projekta
       export_development_actions: Razvojni ukrepi
-      export_development_actions_project: Razvojne akcije na podlagi projekta
-      export_global_development_actions: Globalni razvojni ukrepi
-      export_global_development_actions_translations: Prevodi globalnih razvojnih ukrepov
       form:
         available_languages: Razpoložljivi jeziki
         client_placeholder: Izberite odjemalca
@@ -2371,7 +2364,6 @@ sl:
       update_interview_questions: Posodobite vprašanja za intervju
       update_reflection_questions: Posodabljanje vprašanj za razmislek
     idp_setting:
-      allow_global_skills: Omogočite globalne spretnosti
       manager_approves_idp: Upravitelj odobri IDP
       manager_can_edit_idp: Upravitelj lahko ureja IDP
       require_all_development_actions_complete: Zahtevajte dokončanje vseh razvojnih ukrepov
@@ -2989,7 +2981,6 @@ sl:
           proficiency: Znanje uvoza
           translations: Uvoz prevodov strokovnosti
         errors:
-          by_skill_exists: 'Vrstica %{row_number}: Za ta projekt in spretnost že obstaja raven strokovnosti ''by_skill'''
           by_skill_missing: 'Vrstica %{row_number}: Projekt in spretnost morata biti prisotna za vrsto »by_skill«'
           invalid_csv_format: 'Neveljavna oblika zapisa CSV: %{message}'
           invalid_proficiency_type: 'Vrstica %{row_number}: Neveljavna ali manjka ProficiencyType'

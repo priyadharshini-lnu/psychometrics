@@ -22,7 +22,7 @@ export const GapAssessment: FC<Props> = ({ model, insertPaginationPage, preview 
     props: {
       sourceType, filter, factorIds, questionsChoices, gapType = GapType.ALL, hideValues = false,
       noOfItems, gapCutoff, precision, allFactors, tableStyle = TableStyleType.UNSTYLED, style,
-      hideLeftFilter, hideRightFilter,
+      hideLeftFilter, hideRightFilter, currentJobFactors, targetJobFactors,
     },
     assessment_id,
   } = model
@@ -58,6 +58,8 @@ export const GapAssessment: FC<Props> = ({ model, insertPaginationPage, preview 
           hideRightFilter={hideRightFilter}
           tableStyle={tableStyle}
           factorIds={factorIds}
+          includesCurrentJob={currentJobFactors}
+          includesTargetJob={targetJobFactors}
           hideValues={hideValues}
           noOfItems={noOfItems}
           gapCutoff={gapCutoff}

@@ -2502,6 +2502,7 @@ vi:
       update_success: Lời mời SMS đã được cập nhật thành công
     sms_records:
       create_success: Công việc SMS đã được lên lịch thành công
+    starting_in: Bắt đầu từ
     test_webhook:
       create_success: Kiểm tra webhook thành công.
       success: Sự thành công
@@ -3062,7 +3063,7 @@ vi:
     users:
       account_disable: Tài khoản của bạn đã bị vô hiệu hóa do không hoạt động
       warning: Tài khoản của bạn sẽ sớm bị vô hiệu hóa do không hoạt động
-  maintenance_message: Lighthouse sẽ ngừng hoạt động để bảo trì theo lịch trình trên %{start_date} và sẽ không khả dụng trong %{duration} giờ
+  maintenance_message: Ngọn hải đăng sẽ ngừng hoạt động để bảo trì theo lịch trình vào %{start_date} và sẽ không hoạt động trong %{duration}
   maintenance_submessage: Vui lòng làm mới trang sau khi bảo trì hoàn tất. Bạn sẽ được chuyển hướng đến trang đăng nhập
   my: Của tôi
   myself: Bản thân mình

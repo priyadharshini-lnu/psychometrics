@@ -62,6 +62,9 @@ module Administration
         permissions['accessReflectionQuestions'] = Api::Administration::ReflectionQuestionPolicy.new(
           object, ReflectionQuestion, project_id: context[:project_id]
         ).index?
+        permissions['manageProjectFeatureFlags'] = Api::Administration::ProjectFeaturePolicy.new(
+          object, ProjectFeature, project_id: context[:project_id]
+        ).index?
         permissions['viewDatasheets'] = Administration::DatasheetPolicy.new(
           object, Datasheet, project_id: context[:project_id], campaign_id: context[:campaign_id]
         ).index?

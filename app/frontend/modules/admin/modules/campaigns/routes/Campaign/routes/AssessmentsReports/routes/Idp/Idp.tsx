@@ -75,7 +75,7 @@ export const Idp = () => {
         })}
         storeManager={{ form }}
       >
-        {() => (
+        {({ status }) => (
           <>
             <Form.Item
               name="idpTemplateId"
@@ -102,7 +102,7 @@ export const Idp = () => {
                 {I18n.t('idp_templates.auto_assign')}
               </Checkbox>
             </Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" loading={status === 'saving'}>
               {I18n.t('idp_templates.save_and_assign')}
             </Button>
           </>

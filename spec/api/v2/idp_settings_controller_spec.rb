@@ -29,7 +29,6 @@ describe Api::V2::Administration::IdpSettingsController, swagger_doc: 'v2/swagge
         run_test! do |response|
           data = JSON.parse(response.body)['data'].first
           expect(data).to have_key('id')
-          expect(data).to have_attribute(:allow_global_skills).with_value(false)
           expect(data).to have_attribute(:manager_approves_idp).with_value(false)
           expect(data).to have_attribute(:manager_can_edit_idp).with_value(false)
           expect(data).to have_relationship(:project).
@@ -58,7 +57,6 @@ describe Api::V2::Administration::IdpSettingsController, swagger_doc: 'v2/swagge
           data: {
             id: '770',
             attributes: {
-              allow_global_skills: false,
               manager_approves_idp: false,
               manager_can_edit_idp: false
             },
@@ -78,7 +76,6 @@ describe Api::V2::Administration::IdpSettingsController, swagger_doc: 'v2/swagge
             'idp_settings',
             {
               id: idp_setting.id.to_s,
-              allow_global_skills: true,
               manager_approves_idp: true,
               manager_can_edit_idp: true
             },
@@ -89,35 +86,10 @@ describe Api::V2::Administration::IdpSettingsController, swagger_doc: 'v2/swagge
         run_test! do |response|
           data = JSON.parse(response.body)['data']
           expect(data).to have_key('id')
-          expect(data).to have_attribute(:allow_global_skills).with_value(true)
           expect(data).to have_attribute(:manager_approves_idp).with_value(true)
           expect(data).to have_attribute(:manager_can_edit_idp).with_value(true)
           expect(data).to have_relationship(:project).
             with_data({ 'id' => project.id.to_s, 'type' => 'projects' })
-        end
-      end
-
-      response '422', 'Unprocessable Entity' do
-        before { sign_in(client_admin) }
-        let(:setting_id) { idp_setting.id }
-        let(:body) do
-          jsonapi_resource_request(
-            'idp_settings',
-            {
-              id: idp_setting.id.to_s,
-              allow_global_skills: true
-            }
-          )
-        end
-
-        run_test! do |response|
-          errors = JSON.parse(response.body)['errors']
-          expect(errors).to include(
-            hash_including(
-              'title' => 'not allowed to change',
-              'source' => { 'pointer' => '/data/attributes/allow_global_skills' }
-            )
-          )
         end
       end
     end

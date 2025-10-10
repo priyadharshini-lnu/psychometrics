@@ -2,8 +2,16 @@ import { AutoComplete, Input } from 'antd'
 import userPresenter from '~/presenters/user'
 
 export default function UserAutocomplete ({
-  users, search, onSelect, url, placeholder, source, value, onChange,
+  users, search, onSelect, url, placeholder, source, value, onChange, searchOnChange = false,
 }) {
+  const handleChange = (value) => {
+    onChange(value)
+    // Search as user types only if searchOnChange is enabled
+    if (searchOnChange && value && value.length > 0) {
+      search(url, source, value)
+    }
+  }
+
   return (
     <AutoComplete
       dataSource={users.map(user => ({
@@ -12,11 +20,15 @@ export default function UserAutocomplete ({
       }))}
       autoFocus
       value={value}
-      onChange={value => onChange(value)}
+      onChange={handleChange}
       placeholder={placeholder}
       onSelect={onSelect}
     >
-      <Input.Search onSearch={value => search(url, source, value)} />
+      {searchOnChange ? (
+        <Input />
+      ) : (
+        <Input.Search onSearch={value => search(url, source, value)} />
+      )}
     </AutoComplete>
   )
 }

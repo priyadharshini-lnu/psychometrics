@@ -42,17 +42,18 @@ const SkillAliasesList: React.FC<Props> = ({ openModal }) => {
         <Resource.Column<SkillAlias>
           title={I18n.t('administration.settings.skill_aliases.alias')}
           id="name"
+          width={300}
         />
         <Resource.Column<SkillAlias>
           title={I18n.t('administration.settings.skill_aliases.skill')}
           id="skill"
           render={({ skill }) => skill.name}
+          width={300}
         />
         <Resource.Column<SkillAlias>
           title={I18n.t('common.column.action')}
           id="actions"
           key="actions"
-          width="2%"
           render={skillAlias => (
             <ConditionalDropdown
               menu={
@@ -63,6 +64,8 @@ const SkillAliasesList: React.FC<Props> = ({ openModal }) => {
               }
             />
           )}
+          width={100}
+          fixed="right"
         />
       </Resource.Table>
       <Modals modals={{ SkillAliasForm }} />

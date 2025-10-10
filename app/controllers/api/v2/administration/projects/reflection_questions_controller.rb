@@ -13,6 +13,7 @@ module Api
             context[:user],
             @model,
             %w[
+              create
               index
               import
               export
@@ -21,6 +22,12 @@ module Api
           )
         }
       }
+    end
+
+    def context
+      super.merge(
+        project_id: project_id
+      )
     end
 
     def project_id

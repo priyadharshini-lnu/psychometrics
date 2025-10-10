@@ -103,6 +103,7 @@ export const RequestsTable = () => {
           id="action"
           title={I18n.t('common.column.action')}
           render={(_, workshopInvitedSubject) => <ActionButtons workshopInvitedSubject={workshopInvitedSubject} />}
+          width={100}
         />
       </Resource.Table>
     </Resource>

@@ -30,6 +30,7 @@ export const ReflectionQuestions: React.FC = () => {
     basePath: `projects/${projectId}/`,
     apiConfig: {
       include_meta: ['permissions'],
+      include_resource_meta: ['permissions'],
       filter: projectIdFilter,
     },
   }

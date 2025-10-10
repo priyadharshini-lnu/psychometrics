@@ -76,7 +76,7 @@ export const UserActiveIdpTemplateTR = t.type({
   status: t.string,
   skillGapReportId: t.number,
   skillGapReportAvailable: t.boolean,
-  oneClickIdpEnabled: t.boolean,
+  oneClickIdpEnabled: t.union([t.undefined, t.boolean]),
 })
 
 const IDPUserTR = t.type({

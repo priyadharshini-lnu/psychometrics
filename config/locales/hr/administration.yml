@@ -1970,15 +1970,8 @@ hr:
         success_msg: Izvoz razvojnih radnji u tijeku. Provjerite status u obavijestima.
         title: Izvoz
         translation_details: Detalji
-      export_actions:
-        development_action_translations_title: Izvoz Razvojne akcije Prijevodi
-        development_actions_title: Izvozne razvojne akcije
       export_development_action_translations: Prijevodi razvojnih akcija
-      export_development_action_translations_project: Razvoj Status Prijevodi na temelju projekta
       export_development_actions: Razvojne akcije
-      export_development_actions_project: Razvojne akcije temeljene na projektu
-      export_global_development_actions: Globalne razvojne akcije
-      export_global_development_actions_translations: Prijevodi globalne razvojne akcije
       form:
         available_languages: Dostupni jezici
         client_placeholder: Odaberite klijenta
@@ -2371,7 +2364,6 @@ hr:
       update_interview_questions: Ažurirajte pitanja za intervju
       update_reflection_questions: Ažurirajte pitanja za razmišljanje
     idp_setting:
-      allow_global_skills: Omogućite globalne vještine
       manager_approves_idp: Upravitelj odobrava IDP
       manager_can_edit_idp: Upravitelj može uređivati IDP
       require_all_development_actions_complete: Zahtijevajte dovršetak svih razvojnih radnji
@@ -2989,7 +2981,6 @@ hr:
           proficiency: Vještina uvoza
           translations: Uvoz prijevoda stručnosti
         errors:
-          by_skill_exists: 'Redak %{row_number}: Razina znanja ''by_skill'' već postoji za ovaj projekt i vještinu'
           by_skill_missing: 'Redak %{row_number}: Projekt i vještina moraju biti prisutni za vrstu ''by_skill'''
           invalid_csv_format: 'Nevažeći CSV format: %{message}'
           invalid_proficiency_type: 'Redak %{row_number}: Nevažeći ili nedostaje ProficiencyType'

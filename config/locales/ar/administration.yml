@@ -1970,15 +1970,8 @@ ar:
         success_msg: جاري تصدير إجراءات التطوير. يرجى التحقق من الحالة في الإشعارات.
         title: تصدير
         translation_details: التفاصيل
-      export_actions:
-        development_action_translations_title: ترجمات إجراءات تنمية الصادرات
-        development_actions_title: إجراءات تنمية الصادرات
       export_development_action_translations: ترجمات العمل الإنمائي
-      export_development_action_translations_project: ترجمات العمل الإنمائي على أساس المشروع
       export_development_actions: تصدير إجراءات التطوير بناءً على المشروع
-      export_development_actions_project: إجراءات التنمية على أساس المشروع
-      export_global_development_actions: تصدير إجراءات التطوير العالمية
-      export_global_development_actions_translations: ترجمات العمل الإنمائي العالمي
       form:
         available_languages: اللغات المتاحة
         client_placeholder: اختر عميل
@@ -2371,7 +2364,6 @@ ar:
       update_interview_questions: تحديث أسئلة المقابلة
       update_reflection_questions: تحديث أسئلة التأملات
     idp_setting:
-      allow_global_skills: Allow Global Skills
       manager_approves_idp: Manager approves IDP
       manager_can_edit_idp: Manager can edit IDP
       require_all_development_actions_complete: اشتراط اكتمال جميع إجراءات التطوير
@@ -2989,12 +2981,8 @@ ar:
           proficiency: كفاءة الاستيراد
           translations: استيراد ترجمات الكفاءة في الترجمة
         errors:
-          by_skill_exists: 'الصف %{row_number}: مستوى الكفاءة ''حسب_المهارة'' موجود بالفعل لهذا المشروع والمهارة'
           by_skill_missing: 'الصف %{row_number}: يجب أن يكون المشروع والمهارة موجودين لنوع "حسب_المهارة'
-          by_skill_type_exists: 'الصف %{row_number}: مستوى الكفاءة "حسب_النوع" موجود بالفعل لهذا المشروع ونوع المهارة'
           by_skill_type_missing: 'الصف %{row_number}: يجب أن يكون نوع المشروع ونوع المهارة موجودين لنوع "حسب_النوع'
-          default_global_exists: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على المستوى العام موجود بالفعل'
-          default_project_exists: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل'
           invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
           invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
           invalid_skill_type: 'الصف %{row_number}: نوع المهارة غير صالح "<x>skill_type</x>". الأنواع الصالحة هي: %{valid_types}'

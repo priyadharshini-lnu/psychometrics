@@ -3,6 +3,7 @@ import {
   Select, Space, Typography, Checkbox,
 } from 'antd'
 
+import AppStore from '~/modules/reports/store/AppStore'
 import { PropertiesModel, TableSectionsType, TableStyleType } from '~/modules/reports/interfaces/tables/HighestLowest'
 
 import PropertyFilter from '~/modules/reports/components/PropertyFilter'
@@ -11,6 +12,7 @@ import { FactorsList } from './dataSources/FactorList'
 import { QuestionList } from './dataSources/QuestionList'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 import PaginationOptions from '~/modules/reports/components/PaginationOptions'
+import { RenderJobFactorModes, RenderSkillTypeModes } from '../../Properties'
 
 const TABLE_SECTIONS_OPTIONS = [
   {
@@ -59,15 +61,52 @@ export const Properties: FC<Props> = ({ modules }) => {
     })
   }
 
+  const collectFactors = () => {
+    const model = modules[0]
+    const dimensionId = AppStore.getAssessmentById(assessment_id)?.dimensionId ?? ''
+    let allFactors = AppStore.factors?.[dimensionId] ?? []
+
+    const { skillType } = model.props
+
+    // Apply skillType filtering if skillType is selected i.e Skill type
+    if (skillType && skillType.length > 0) {
+      allFactors = allFactors.filter(factor => skillType.includes(factor.skill_type))
+    }
+
+    const mappedFactors = allFactors.map(factor => factor.id)
+    return mappedFactors
+  }
+
+  const changeSkillType = (value) => {
+    modules.forEach((model) => {
+      if (!value || value.length === 0) {
+        model.props.skillType = undefined
+        model.props.factorIds = []
+      } else {
+        model.props.skillType = value
+        const factorIds = collectFactors()
+        model.props.factorIds = factorIds
+      }
+      model.update()
+    })
+  }
+
   return (
     <Space direction="vertical" size="small">
       <SourceTypeButtonGroup model={model} onChange={onChange} />
+
+
       {sourceType === 'Factor' && (
-        <FactorsList
-          assessmentId={assessment_id}
-          value={factorIds}
-          onChange={onChange}
-        />
+        <>
+          <RenderJobFactorModes modules={modules} />
+          <RenderSkillTypeModes modules={modules} callback={changeSkillType} />
+
+          <FactorsList
+            assessmentId={assessment_id}
+            value={factorIds}
+            onChange={onChange}
+          />
+        </>
       )}
       {sourceType === 'Question' && (
         <QuestionList

@@ -20,7 +20,22 @@ export const AiAssistantTR = t.intersection([
   }),
 ])
 
+export const AIAssistantRevisionTR = t.type({
+  id: t.string,
+  auditId: t.number,
+  createdAt: t.string,
+  action: t.string,
+  version: t.number,
+  userId: t.union([t.number, t.null]),
+  changes: t.type({
+    name: t.array(t.union([t.string, t.null])),
+    userPrompt: t.array(t.union([t.string, t.null])),
+    systemPrompt: t.array(t.union([t.string, t.null])),
+  }),
+})
+
 export type AiAssistant = t.TypeOf<typeof AiAssistantTR>
+export type AIAssistantRevision = t.TypeOf<typeof AIAssistantRevisionTR>
 
 export const Schema = {
   type: 'assistants',

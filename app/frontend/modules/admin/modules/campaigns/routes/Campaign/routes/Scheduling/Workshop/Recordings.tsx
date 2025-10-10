@@ -131,6 +131,8 @@ const RecordingUrlColumn: React.FC<{
 }> = ({ recordingUrl, recordingDate, serialNo }) => {
   const [open, setOpen] = useState(false)
 
+  if (!recordingUrl) return <span>NA</span>
+
   return (
     <>
       <Space>

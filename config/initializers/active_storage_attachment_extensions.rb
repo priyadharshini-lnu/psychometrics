@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module BlobAIAssistanceExtensions
+module AttachmentAIAssistanceExtensions
   extend ActiveSupport::Concern
 
   included do
@@ -13,9 +13,9 @@ module BlobAIAssistanceExtensions
 end
 
 Rails.application.config.to_prepare do
-  unless ActiveStorage::Blob.included_modules.include?(BlobAIAssistanceExtensions)
-    ActiveSupport.on_load(:active_storage_blob) do
-      include BlobAIAssistanceExtensions
+  unless ActiveStorage::Attachment.included_modules.include?(AttachmentAIAssistanceExtensions)
+    ActiveSupport.on_load(:active_storage_attachment) do
+      include AttachmentAIAssistanceExtensions
     end
   end
 end

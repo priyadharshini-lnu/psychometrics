@@ -313,17 +313,15 @@ module Devtools
 
             begin
               with_retry(max_attempts: 3, delay: 2) do
-                protected_text = protect_interpolation_variables(text)
-
-                # Use tag handling with ignore_tags parameter
-                translation = DeepL.translate(
-                  protected_text,
-                  'EN',
-                  target_language,
-                  tag_handling: 'xml',
-                  ignore_tags: ['x']
+                translator = TranslateString.new
+                translator.call(
+                  string: text,
+                  target_language: target_language,
+                  source_language: 'en',
+                  preserve_formatting: true,
+                  translation_provider: 'microsoft',
+                  no_log: false
                 )
-                restore_interpolation_variables(translation.text)
               end
             rescue StandardError => e
               handle_translation_error(e, target_language)
@@ -337,18 +335,6 @@ module Devtools
               variables << match[0]
             end
             variables
-          end
-
-          def protect_interpolation_variables(text)
-            # Replace %{variable} with <x>%{variable}</x> for each variable
-            text.gsub(/%\{[^}]+\}/) do |match|
-              "<x>#{match}</x>"
-            end
-          end
-
-          def restore_interpolation_variables(text)
-            # Remove the <x> and </x> tags while keeping the %{variable} intact
-            text.gsub(/<x>(%\{[^}]+\})<\/x>/, '\1') # rubocop:disable Style/RegexpLiteral
           end
 
           def with_retry(max_attempts: 3, delay: 2)
@@ -369,18 +355,7 @@ module Devtools
           end
 
           def handle_translation_error(error, target_language)
-            message = "Warning: Failed to translate text to #{target_language}"
-
-            case error
-              when DeepL::LimitExceededError
-                cli_log "#{message}: API limit exceeded. Consider upgrading your DeepL plan."
-              when DeepL::AuthorizationError
-                cli_log "#{message}: Invalid authentication. Check your DEEPL_AUTH_KEY environment variable."
-              when DeepL::ConnectionError
-                cli_log "#{message}: Connection error. Check your internet connection."
-              else
-                cli_log "#{message}: #{error.message}"
-            end
+            cli_log "Warning: Failed to translate text to #{target_language}. Error: #{error.message}"
           end
 
           def generate_output_path

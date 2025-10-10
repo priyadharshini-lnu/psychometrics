@@ -36,7 +36,7 @@ export const InterviewQuestionTable: React.FC<Props> = () => {
           render={skill => (
             skill.id
           )}
-          width={200}
+          width={10}
         />
         <Resource.Column<InterviewQuestion>
           title={I18n.t('administration.interview_questions.question')}

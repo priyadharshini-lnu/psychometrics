@@ -12,6 +12,17 @@ class Module extends BaseTableTranslate {
       description: 'Description',
       strengthsBlindspots: 'Strengths & Blindspots',
     }
+
+    if (this.module.props.benchmarksLabel) {
+      result.benchmarksLabel = this.module.props.benchmarksLabel
+    }
+    if (this.module.props.currentJobProficiencyLabel) {
+      result.currentJobProficiencyLabel = this.module.props.currentJobProficiencyLabel
+    }
+    if (this.module.props.targetJobProficiencyLabel) {
+      result.targetJobProficiencyLabel = this.module.props.targetJobProficiencyLabel
+    }
+
     if (this.module.props.textConditions) {
       _.each(this.module.props.textConditions, (condition, i) => {
         this.textFields.forEach((field) => {

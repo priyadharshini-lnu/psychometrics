@@ -15,6 +15,11 @@ describe AI::Tools::Idp::AddSkillToPlan do
   end
   let(:idp_template) { create(:idp_template, :published, project: project, skill_settings: skill_settings) }
   let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }
+  let!(:ai_session) { create(:assisted_user_idp_session, assistable: user_idp_plan) }
+
+  before do
+    project.project_feature&.update(global_skills: true)
+  end
 
   let!(:skill1) { create(:skill, name: 'Leadership', skill_type: 'behavioral', project: nil) }
   let!(:skill2) { create(:skill, name: 'Communication', skill_type: 'behavioral', project: nil) }
@@ -62,6 +67,21 @@ describe AI::Tools::Idp::AddSkillToPlan do
 
         expect(user_idp_plan.user_idp_development_actions.count).to eq(1)
         expect(user_idp_plan.user_idp_development_actions.first.development_action_id).to eq(development_action1.id)
+      end
+
+      it 'saves skill addition to AI session checkpoint' do
+        reason = 'Added to address leadership gap identified in assessment'
+
+        subject.execute(skill_id: skill1.id, development_actions: development_actions, reason: reason)
+
+        ai_session.reload
+        expect(ai_session.checkpoint).to be_present
+        expect(ai_session.checkpoint.length).to eq(1)
+
+        checkpoint_entry = ai_session.checkpoint.first
+        expect(checkpoint_entry['skill_id']).to eq(skill1.id)
+        expect(checkpoint_entry['reason']).to eq(reason)
+        expect(checkpoint_entry['development_actions']).to eq(development_actions)
       end
     end
 
@@ -416,6 +436,45 @@ describe AI::Tools::Idp::AddSkillToPlan do
         expect(result[:actions_count]).to eq(0)
         expect(user_idp_plan.user_idp_skills.count).to eq(1)
         expect(user_idp_plan.user_idp_development_actions.count).to eq(0)
+      end
+    end
+  end
+
+  describe 'retry behavior with disabled error raising' do
+    context 'when maximum retry attempts are exceeded' do
+      it 'returns error hash instead of raising MaximumRetryAttemptsExceededError' do
+        tool_instance = described_class.new(user_idp_plan)
+
+        max_retries = described_class.max_retries
+        # Use invalid development_actions that will cause JSON::ParserError during processing
+        invalid_development_actions = 'invalid_actions'
+
+        (1..max_retries).each do |_attempt|
+          result = tool_instance.execute(skill_id: skill1.id, development_actions: invalid_development_actions)
+
+          expect(result).to be_a(Hash)
+          expect(result).to have_key(:error)
+          expect(result[:error]).to be_a(String)
+        end
+
+        final_result = tool_instance.execute(skill_id: skill1.id, development_actions: invalid_development_actions)
+
+        expect(final_result).to be_a(Hash)
+        expect(final_result).to have_key(:error)
+        expect(final_result[:error]).to include('exceeded maximum retry attempts')
+        expect(final_result[:error]).to include(described_class.name)
+        expect(final_result[:error]).to include((max_retries + 1).to_s)
+      end
+
+      it 'does not raise MaximumRetryAttemptsExceededError exception' do
+        tool_instance = described_class.new(user_idp_plan)
+        invalid_development_actions = 'invalid_actions'
+
+        (1..(described_class.max_retries + 1)).each do |_attempt|
+          expect do
+            tool_instance.execute(skill_id: skill1.id, development_actions: invalid_development_actions)
+          end.not_to raise_error
+        end
       end
     end
   end

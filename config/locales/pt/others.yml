@@ -2516,6 +2516,7 @@ pt:
       update_success: O Convite SMS foi atualizado com sucesso
     sms_records:
       create_success: A tarefa SMS foi agendada com êxito
+    starting_in: Começando em
     test_webhook:
       create_success: Teste de webhook bem sucedido.
       success: Sucesso
@@ -3082,7 +3083,7 @@ pt:
     users:
       account_disable: A sua conta foi desactivada devido a inatividade
       warning: A sua conta será desactivada em breve devido a inatividade
-  maintenance_message: O Lighthouse estará inativo para manutenção programada em %{start_date} e estará indisponível durante %{duration} horas
+  maintenance_message: O Lighthouse ficará inativo para manutenção programada em %{start_date} e não estará disponível para %{duration}
   maintenance_submessage: Após a conclusão da manutenção, actualize a página e será redireccionado para a página de início de sessão
   my: O meu
   myself: Eu próprio

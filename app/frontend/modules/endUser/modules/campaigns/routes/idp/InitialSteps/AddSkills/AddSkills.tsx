@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { connect } from 'react-redux'
-import { uniqBy, groupBy, map } from 'lodash'
+import {
+  uniqBy, map, debounce,
+} from 'lodash'
 import { message } from 'antd'
 import { Skill } from '~/components/IdpShared/DevelopmentActions'
 import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
+import { SKILL_TYPE } from '~/components/IdpShared/constants'
 import {
   fetchIdpSkills,
   saveUserIdpSkills,
@@ -50,22 +53,45 @@ const AddSkillsComponent = ({
     const userIdpSkill = skills.map(skill => ({
       ...skill,
       skillId: skill.id,
+      isLocal: true,
     }))
 
     setSelectedSkills(uniqBy([...selectedSkills, ...userIdpSkill], 'skillId'))
   }
 
+  const debouncedSaveSkills = useMemo(() => debounce((userIdpSkills) => {
+    setIsSkillsLoading(true)
+    saveUserIdpSkills(
+      userIdpSkills,
+    ).then(() => {
+      fetchIdpSkills().then(({ response }) => {
+        setSkills(response)
+      }).finally(() => {
+        setIsSkillsLoading(false)
+      })
+    })
+  }, 400),
+  [])
+
   const handleDeselectSkill = (skillId) => {
-    setSelectedSkills(selectedSkills.filter(userIdpSkill => userIdpSkill.id !== skillId
-      && userIdpSkill.skillId !== skillId))
+    const deletedSkill = selectedSkills.find(skill => (skill.id === skillId))
+    const userIdpSkills = selectedSkills.filter(userIdpSkill => userIdpSkill.id !== skillId
+      && userIdpSkill.skillId !== skillId)
+    setSelectedSkills(userIdpSkills)
+    // eslint-disable-next-line no-prototype-builtins
+    if (!deletedSkill?.hasOwnProperty('isLocal')) { debouncedSaveSkills(userIdpSkills) }
   }
 
-  const skillTypes = map(groupBy(skills, 'skillType'), (skills, skillType) => ({
-    skillType,
-    skills,
-  }))
 
-  const handleFinishAddinSkill = () => {
+  const skillTypes = [{
+    skillType: SKILL_TYPE.BEHAVIORAL,
+    skills: skills.filter(skill => (skill.skillType === SKILL_TYPE.BEHAVIORAL)),
+  }, {
+    skillType: SKILL_TYPE.TECHNICAL,
+    skills: skills.filter(skill => (skill.skillType === SKILL_TYPE.TECHNICAL)),
+  }]
+
+  const handleFinishAddingSkill = () => {
     setIsSubmitting(true)
 
     saveUserIdpSkills(selectedSkills).then(() => {
@@ -101,22 +127,24 @@ const AddSkillsComponent = ({
 
 
   return (
-    <AddSkillsStep
-      addSkillButtonText={
+    <>
+      <AddSkillsStep
+        addSkillButtonText={
         selfRatingEnabled ? I18n.t('idp.initial_steps.continue_to_rate_skills') : I18n.t('idp.initial_steps.next')}
-      onAddSkill={handleAddSkill}
-      selectedSkills={selectedSkills}
-      skillTypes={skillTypes}
-      onDeselectSkill={handleDeselectSkill}
-      onFinishAddSkill={handleFinishAddinSkill}
-      isSubmitting={isSubmittingPlan || isSubmitting}
-      searchSkillResource={searchSkillResource}
-      skillGapReportData={skillGapReportData}
-      prev={prev}
-      isSkillGapReportLoading={isSkillGapReportLoading}
-      skillGapReportAvailable={skillGapReportAvailable}
-      isSkillsLoading={isSkillsLoading}
-    />
+        onAddSkill={handleAddSkill}
+        selectedSkills={selectedSkills}
+        skillTypes={skillTypes}
+        onDeselectSkill={handleDeselectSkill}
+        onFinishAddSkill={handleFinishAddingSkill}
+        isSubmitting={isSubmittingPlan || isSubmitting}
+        searchSkillResource={searchSkillResource}
+        skillGapReportData={skillGapReportData}
+        prev={prev}
+        isSkillGapReportLoading={isSkillGapReportLoading}
+        skillGapReportAvailable={skillGapReportAvailable}
+        isSkillsLoading={isSkillsLoading}
+      />
+    </>
   )
 }
 

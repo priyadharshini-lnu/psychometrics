@@ -38,7 +38,8 @@ module Facades
       end
 
       def show_recipients?
-        return false if workshop_communication? || project_level_email? || form.kind == 'report_available'
+        return false if workshop_communication? || project_level_email? || form.kind == 'report_available' ||
+                        form.kind == 'assessment_center_booking_summary'
 
         form.end_level_id.present?
       end
@@ -48,7 +49,7 @@ module Facades
       end
 
       def cc_users
-        fetch_cc_users
+        fetch_admin_users
       end
 
       def show_cc_users?
@@ -68,7 +69,9 @@ module Facades
 
         form.kind.present? &&
           %w[new_users new_assignment].exclude?(form.recipients) &&
-          form.kind != 'completion' && form.kind != 'report_available'
+          form.kind != 'completion' &&
+          form.kind != 'report_available' &&
+          form.kind != 'assessment_center_booking_summary'
       end
 
       def show_assessments?
@@ -124,6 +127,10 @@ module Facades
         'owner-resettable client-resettable project-resettable campaign-resettable sub_campaign-resettable'
       end
 
+      def admin_recipients_behavior
+        'owner-resettable client-resettable project-resettable campaign-resettable sub_campaign-resettable'
+      end
+
       def assessment_center_group_behavior
         'communication-changeable sub_campaign_id owner-resettable client-resettable project-resettable ' \
           'campaign-resettable'
@@ -151,6 +158,14 @@ module Facades
 
       def show_assessment_multiselect?
         show_assessment_selection? && form.assessment_selection == 'selected'
+      end
+
+      def show_delivery_schedule_config?
+        form.kind == 'assessment_center_booking_summary'
+      end
+
+      def admin_recipients
+        fetch_admin_users
       end
 
       private
@@ -208,7 +223,7 @@ module Facades
         form.kind&.to_sym
       end
 
-      def fetch_cc_users
+      def fetch_admin_users
         return [] if form.end_level_id.blank?
 
         User.distinct.

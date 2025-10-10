@@ -1970,15 +1970,8 @@ ja:
         success_msg: 開発アクションのエクスポートが進行中です。 通知でステータスを確認してください。
         title: 輸出
         translation_details: 詳細
-      export_actions:
-        development_action_translations_title: 輸出開発アクション 翻訳
-        development_actions_title: 輸出開発アクション
       export_development_action_translations: プロジェクトに基づく開発行為翻訳
-      export_development_action_translations_project: プロジェクトに基づく開発行為翻訳
       export_development_actions: プロジェクトに基づく開発アクション
-      export_development_actions_project: プロジェクトに基づく開発アクション
-      export_global_development_actions: グローバル開発アクション
-      export_global_development_actions_translations: グローバル開発アクションの翻訳
       form:
         available_languages: 利用可能な言語
         client_placeholder: クライアントの選択
@@ -2371,7 +2364,6 @@ ja:
       update_interview_questions: 面接の質問を更新する
       update_reflection_questions: アップデートに関する質問
     idp_setting:
-      allow_global_skills: グローバルスキルの習得
       manager_approves_idp: マネージャーがIDPを承認
       manager_can_edit_idp: マネージャーはIDPを編集できる
       require_all_development_actions_complete: すべての開発行為の完了を要求する
@@ -2989,12 +2981,8 @@ ja:
           proficiency: 輸入能力
           translations: 輸入技能翻訳
         errors:
-          by_skill_exists: 行 %{row_number}：by_skill'ProficiencyLevelは、このプロジェクトとスキルに既に存在します。
           by_skill_missing: 行 %{row_number}：by_skill'タイプでは、プロジェクトとスキルが存在する必要があります。
-          by_skill_type_exists: 行 %{row_number}：このプロジェクトとスキル・タイプには ''by_skill_type'' ProficiencyLevel が既に存在します。
           by_skill_type_missing: 行 %{row_number}：by_skill_type''タイプにはプロジェクトとスキル・タイプが存在する必要があります。
-          default_global_exists: 行 %{row_number}：グローバル・レベルの ''default'' ProficiencyLevel が既に存在します。
-          default_project_exists: 行 %{row_number}：プロジェクト・レベルの ''default'' ProficiencyLevel が既に存在します。
           invalid_csv_format: '無効な CSV 形式: %{message} です。'
           invalid_proficiency_type: 行 %{row_number}：ProficiencyTypeが無効または見つかりません。
           invalid_skill_type: '行%{row_number}: 無効なスキルタイプ "%{skill_type}".有効なタイプは%{valid_types}'

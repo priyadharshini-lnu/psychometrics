@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import _ from 'lodash'
 import { Modal } from 'react-bootstrap'
+import { Alert } from 'antd'
 import { v4 as uuid } from 'uuid'
 import ConditionList from './ConditionList'
 import Condition from '../../../models/QuestionCondition'
@@ -88,11 +89,27 @@ export class CustomValidation extends Component {
 
   renderConditions (validation, key) {
     const { errors } = this.state
+    const { allowEditConditions } = this.props
     return (
       <div className={styles.panel} key={key}>
-        <div className={`btn fa fa-close ${styles.remove}`} onClick={() => this.removeValidation(validation)} />
-        <div>Validation will pass if the following condition is met:</div>
-        <ConditionList validation={validation} {...this.props} />
+        {allowEditConditions
+          ? (
+            <>
+              <div className={`btn fa fa-close ${styles.remove}`} onClick={() => this.removeValidation(validation)} />
+              <div>Validation will pass if the following condition is met:</div>
+              <ConditionList validation={validation} {...this.props} />
+            </>
+          )
+          : (
+            <Alert
+              showIcon
+              className="pt-1 pb-1 mt-3"
+              type="warning"
+              message="Conditions cannot be edited since you are not editing in default language."
+            />
+          )
+        }
+
         <div className={`${styles.errMessage} ${errors.includes(validation.uuid) ? styles.error : ''}`}>
           Type an error message to display on failure:
         </div>
@@ -108,6 +125,7 @@ export class CustomValidation extends Component {
 
   render () {
     const { validations } = this.state
+    const { allowEditConditions } = this.props
     return (
       <Modal show bsSize="lg" keyboard={false}>
         <Header>
@@ -115,9 +133,14 @@ export class CustomValidation extends Component {
         </Header>
         <Body>
           {validations && validations.map((validation, i) => this.renderConditions(validation, i))}
-          <div className={styles.constrols}>
-            <button className="btn btn-success" onClick={this.addValidation}>Add Validation</button>
-          </div>
+          {
+            allowEditConditions
+          && (
+            <div className={styles.constrols}>
+              <button className="btn btn-success" onClick={this.addValidation}>Add Validation</button>
+            </div>
+          )
+          }
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>

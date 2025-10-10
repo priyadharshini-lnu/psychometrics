@@ -19,7 +19,7 @@ const RemoveIdTemplate: React.FC<OwnProps> = ({
     removeIdp(idp.id).then(() => {
       message.info(I18n.t('administration.idp.actions.success', { idpName: idp.name }))
     }).catch((error) => {
-      message.error(error)
+      message.error(error?.base?.[0]?.title)
     })
     close()
   }

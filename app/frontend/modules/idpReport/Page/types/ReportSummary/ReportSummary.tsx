@@ -11,6 +11,8 @@ import customIcon from '../../../assets/Custom.svg'
 import libIcon from '../../../assets/IDPLibrary.svg'
 import { useAppSelector } from '~/modules/idpReport/hooks/redux'
 import { useI18n } from '~/modules/idpReport/I18nContext'
+import { DevelopmentActionSourceType } from '~/components/IdpShared/DevelopmentActions/Constants'
+
 
 const COLORS = {
   blue: '#009DE0',
@@ -133,7 +135,7 @@ const ReportSummary = ({ rtl }) => {
   const skills = idp.user_idp_skills
 
   const das = _.flatten(skills.map(skill => skill.user_idp_development_actions))
-  const daTypes = _.groupBy(das, 'type')
+  const daTypes = _.groupBy(das, 'source_type')
 
   const chunks = _.chunk(skills, 6)
 
@@ -168,23 +170,26 @@ const ReportSummary = ({ rtl }) => {
                     <Flex className={styles.count} justify="space-between">
                       <Flex vertical gap={16}>
                         <div className={styles.label}>{I18n.t('idp.pdf.summary.custom_count')}</div>
-                        <div className={styles.num}>{daTypes.custom_action?.length || 0}</div>
+                        <div className={styles.num}>{daTypes[DevelopmentActionSourceType.CUSTOM]?.length || 0}</div>
                       </Flex>
-                      <img src={customIcon} className={styles.icon} />
+                      <img src={customIcon} className={cs(styles.icon, 'self-start')} />
                     </Flex>
                     <Flex className={styles.count} justify="space-between">
                       <Flex vertical gap={16}>
                         <div className={styles.label}>{I18n.t('idp.pdf.summary.ai_count')}</div>
-                        <div className={styles.num}>{daTypes.ai_generated?.length || 0}</div>
+                        <div className={styles.num}>
+                          {daTypes[DevelopmentActionSourceType.AI_GENERATED]?.length
+                        || 0}
+                        </div>
                       </Flex>
-                      <img src={aiIcon} className={styles.icon} />
+                      <img src={aiIcon} className={cs(styles.icon, 'self-start')} />
                     </Flex>
                     <Flex className={styles.count} justify="space-between">
                       <Flex vertical gap={16}>
                         <div className={styles.label}>{I18n.t('idp.pdf.summary.lib_count')}</div>
-                        <div className={styles.num}>{daTypes.library?.length || 0}</div>
+                        <div className={styles.num}>{daTypes[DevelopmentActionSourceType.PLATFORM]?.length || 0}</div>
                       </Flex>
-                      <img src={libIcon} className={styles.icon} />
+                      <img src={libIcon} className={cs(styles.icon, 'self-start')} />
                     </Flex>
                   </Flex>
                 </Flex>

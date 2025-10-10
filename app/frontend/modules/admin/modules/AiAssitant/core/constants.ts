@@ -18,6 +18,10 @@ export const ASSISTANT_TYPES = {
     id: 'assistant_tool',
     name: 'Assistant Tool',
   },
+  development_actions_assistant: {
+    id: 'development_actions_assistant',
+    name: 'Development Actions Assistant',
+  },
 }
 
 export const DEPENDENCY_TYPES = {

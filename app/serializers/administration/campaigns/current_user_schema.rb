@@ -67,6 +67,7 @@ module Administration
             required(:accessProjectDevelopmentActions).filled(:bool?)
             required(:accessIdpTemplates).filled(:bool?)
             required(:accessReflectionQuestions).filled(:bool?)
+            required(:manageProjectFeatureFlags).filled(:bool?)
             required(:accessProjectTaxonomy).filled(:bool?)
             required(:viewDatasheets).filled(:bool?)
             required(:manageDatasheets).filled(:bool?)

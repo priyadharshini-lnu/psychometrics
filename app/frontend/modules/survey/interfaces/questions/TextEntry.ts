@@ -21,7 +21,7 @@ interface Props {
   choicesTexts: Array<string>
   formTypes: Array<{
     name: 'Input' | 'TextArea' | 'Checkbox' | 'Select' | 'MultiSelect' | 'Date'
-    optionList?: string[]
+    optionList?: string[] | { [key: string]: string }
     dateFormat?: DateFormat
   }>
   allowDictation: boolean

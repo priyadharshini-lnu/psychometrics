@@ -158,7 +158,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                   </Flex>
                 </Radio.Group>
               </Form.Item>
-              <Card className="p-4" bodyStyle={{ padding: 0 }}>
+              <Card className="p-4" styles={{ body: { padding: 0 } }}>
                 <Form.Item
                   name="background"
                   label={I18n.t('administration.idp.background_image')}
@@ -187,7 +187,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                   </Form.Item>
                 )}
               </Card>
-              <Card className="p-4" bodyStyle={{ padding: 0 }}>
+              <Card className="p-4" styles={{ body: { padding: 0 } }}>
                 <Form.Item
                   name="clientLogo"
                   label={I18n.t('administration.idp.logo_image')}

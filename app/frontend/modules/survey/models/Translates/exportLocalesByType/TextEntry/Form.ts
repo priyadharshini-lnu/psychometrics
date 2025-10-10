@@ -13,10 +13,21 @@ const Form = ({ choices, choicesTexts, formTypes = [] }, result: object): object
 }
 
 // eslint-disable-next-line arrow-body-style
-const extendByOptionsLocales = (optionList: string[], typeIndex: number, result: object): object => {
+const extendByOptionsLocales = (
+  optionList: string[] | { [key: string]: string },
+  typeIndex: number,
+  result: object,
+): object => {
+  if (Array.isArray(optionList)) {
   // eslint-disable-next-line arrow-body-style
-  return optionList.reduce((res: object, option: string, i: number) => {
-    return { ...res, [`formOptionText${typeIndex}_${i}`]: option }
+    return optionList.reduce((res: object, option: string, i: number) => {
+      return { ...res, [`formOptionText${typeIndex}_${i}`]: option }
+    }, result)
+  }
+  const entries = Object.entries(optionList || {})
+  // eslint-disable-next-line arrow-body-style
+  return entries.reduce((res: object, [, value], i: number) => {
+    return { ...res, [`formOptionText${typeIndex}_${i}`]: value }
   }, result)
 }
 

@@ -17,6 +17,8 @@ const IdpList: React.FC = () => {
       },
       reports: ['name'],
       include: ['report'],
+      include_meta: ['permissions'],
+      include_resource_meta: ['permissions'],
     },
   }
 

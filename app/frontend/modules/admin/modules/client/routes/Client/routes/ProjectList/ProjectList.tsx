@@ -122,6 +122,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
         pagination={false}
         scroll={{ x: 'max-content' }}
         rowKey={row => row.id}
+        sticky={{ offsetHeader: 50 }}
       >
         <Column
           title={I18n.t('common.column.id')}
@@ -130,6 +131,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
           key="id"
           sorter
           sortOrder={getSortOrder('id')}
+          width={100}
         />
         <Column
           title={I18n.t('common.column.details')}
@@ -198,12 +200,14 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
           dataIndex="number"
           sorter
           sortOrder={getSortOrder('number')}
+          minWidth={200}
         />
 
         <Column
           title={I18n.t('common.column.created_by')}
           key="created_by"
           render={project => project.creator?.name}
+          minWidth={150}
         />
 
         <Column
@@ -212,12 +216,14 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
           dataIndex="createdAt"
           sorter
           sortOrder={getSortOrder('created_at')}
+          minWidth={150}
         />
 
         <Column
           title={I18n.t('common.column.modified_by')}
           key="modified_by"
           render={project => project.modifier?.name}
+          minWidth={150}
         />
 
         <Column
@@ -226,6 +232,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
           dataIndex="updatedAt"
           sorter
           sortOrder={getSortOrder('updated_at')}
+          minWidth={150}
         />
 
         {client?.meta?.permissions?.canManageProject && (
@@ -243,6 +250,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
                 }
               />
             )}
+            width={100}
           />
         )}
       </Table>

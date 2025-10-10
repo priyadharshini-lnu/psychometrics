@@ -15,6 +15,24 @@ class Api::V2::Administration::DevelopmentActionResource < Api::V2::Administrati
     filterable_fields
   ]
 
+  def meta_details
+    {
+      permissions: lambda {
+        GetPermissionsHash.call!(
+          Api::Administration::DevelopmentActionPolicy,
+          context[:user],
+          @model,
+          [
+            %w[edit update]
+          ],
+          {
+            project_id: context[:project_id]
+          }
+        )
+      }
+    }
+  end
+
   def created_at
     @model.decorate.created_at
   end

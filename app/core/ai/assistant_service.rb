@@ -18,7 +18,7 @@ module AI
       # TODO: Add license check
       broadcast(:ok, response)
     rescue RubyLLM::Error, AI::Services::OpenaiResponseApi::Error => e
-      broadcast(:error, e.message)
+      broadcast(:error, e.message, e)
     end
 
     private
