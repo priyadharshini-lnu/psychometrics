@@ -369,7 +369,9 @@ zh-Hant:
       created_successfully: AI Assistant 已成功建立。
       errors:
         cannot_delete_in_use: 無法刪除 AI 助理「%{name}」，因為它正在使用中。
+        development_actions_assistance_not_enabled: 無法產生 AI 驅動的開發動作。請聯絡管理員。
         one_click_idp_assistance_not_enabled: 您目前的計劃不提供人工智慧驅動的 IDP 協助。請聯絡管理員。
+        platform_assistant_already_exists: 平台上只允許 1 名 %{type} 型助理。
       form:
         add_output_schema_key: 新增輸出模式金鑰
         dependencies: 依賴
@@ -388,6 +390,13 @@ zh-Hant:
         system_prompt: 系統提示
         type: 類型
         user_prompt: 使用者提示
+      revisions:
+        load: 載入成型
+        name: 名字
+        system_prompt: 系統規劃
+        title: AI助理的修訂
+        user_prompt: 使用者提示
+        version: 版本
       selector:
         choose_artifact: 選擇 AI 神器
         choose_schema_key: 選擇結構描述索引鍵
@@ -406,6 +415,12 @@ zh-Hant:
       form:
         description: 說明
         title: api 鑰匙
+    assessment_builder:
+      form:
+        display_label: 輸入顯示標籤
+        label_required: 需要標籤
+        value: 價
+        value_required: 值是必填的
     assessment_center:
       cancel_confirmation:
         message: 您確定要捨棄表單進度嗎？
@@ -666,6 +681,7 @@ zh-Hant:
         no_results: 沒有任何已回答的問題
         other_reports: 其他報告
         overall_scoring: 整體評分
+        recordings: 錄音
         refresh: 刷新
         reports: 報告
         reports_count: "%{count} 報告"
@@ -1203,10 +1219,15 @@ zh-Hant:
       client_features: 客戶特色
       form:
         ai_assistants: AI 助理
+        ai_assistants_disabled_by_client: AI 助理被用戶端停用
         ai_assisted_idp: AI 協助的 IDP
+        ai_assisted_idp_requires_ai_assistants: AI 輔助 IDP 需要啟用 AI 助理功能
         global_skills: 全球技能
+        global_skills_requires_idp: 若要啟用此專案的全域技能，請在用戶端設定中的功能旗標下啟用它。
         idp: IDP
+        idp_disabled_by_client: 客戶端禁用了IDP
         sms_notification: 簡訊通知
+        sms_notification_disabled_by_client: 用戶端已停用簡訊通知
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1728,7 @@ zh-Hant:
         update_button: 更新翻譯
       form:
         all: 全部
+        assessment_center_booking_summary: 評估中心預約摘要
         assessment_completion_status_code: 評估完成狀態代碼
         assessment_completion_status_code_hint: 如果指定了完成代碼，則只有在使用者的評估具有此完成狀態代碼時才會傳送。
         body_mustache: |
@@ -1726,6 +1748,8 @@ zh-Hant:
         custom: 自訂
         delivery_at: 運費 (GST)
         delivery_delay_hours: 交貨延遲（小時）
+        delivery_end_date: 交貨結束日期
+        delivery_frequency: 送貨頻率
         delivery_interval: 交貨間隔
         delivery_interval_number: 交貨間隔號碼
         delivery_interval_period: 交貨週期
@@ -1736,7 +1760,16 @@ zh-Hant:
           not_started: 如果未開始評估
           send_now: 立即發送
           specific_datetime: 發送至
+        delivery_start_date: 交貨開始日期
+        delivery_time_of_day: 送貨時間
+        delivery_timezone: 送貨時區
+        delivery_weekdays: 平日送貨
         development_action_deadline_missed: 錯過發展行動截止期限
+        error_msgs:
+          delivery_end_date_after_start_date: 必須在開始日期之後
+          delivery_start_date_in_past: 不能是過去的
+          delivery_time_in_past: 不能是過去的
+          delivery_weekdays_required: 必須選擇至少一個工作日
         idp_deadline_missed: IDP 期限已過
         idp_template_approved: IDP 核准
         idp_template_assigned: 指派的 IDP
@@ -1817,15 +1850,21 @@ zh-Hant:
         client: 客戶：
         communication_type: 通訊類型：
         delivery_rule: 交貨規則：
+        end_date: 結束日期：
         every_interval: 每 %{interval}
+        frequency: 頻率：
         owner: 業主：
         project: 專案：
         recipients: 收件人：
         specific_datetime: 發送至
+        start_date: 開始日期：
         stop_reminder_datetime: 提醒的結束日期 (GST)
         sub_campaign: 子活動：
         subject: 主題
+        time_of_day: 一天中的時間：
+        timezone: 時區：
         users: 使用者：
+        weekdays: 平日：
       sidebar:
         copy: 複製通訊
         destroy: 刪除通訊
@@ -2283,6 +2322,7 @@ zh-Hant:
       enter_template_name_error: 模板名稱為必填項目
       errors:
         cannot_update_progress_plan_completed: 無法更新進度，因為 IDP 計劃已完成
+        skills_required_on_publishing: 請在發布模板之前選擇技能。
         update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。
       fields:
         assigned_data: 指定資料
@@ -2336,6 +2376,7 @@ zh-Hant:
       self_rating: 啟用自我評級
       show_reflections: 展覽反思
       skill_gap_report: 技能差距報告
+      skill_gap_report_ai_assistant: 技能差距報告分析助手
       skill_source_preference: 技能來源
       skill_sources:
         from_ai: 來自一般人工智慧知識
@@ -3021,6 +3062,8 @@ zh-Hant:
       tools:
         workshop_status_export: 工場狀態匯出
         workshop_status_export_success: 工作坊狀態匯出排程成功。
+    project_features:
+      project_features: 項目特色
     project_participants:
       cancel: 取消
       column_actions: 行動
@@ -3443,6 +3486,9 @@ zh-Hant:
         graph_value_condition_not_supported_msg: 此圖形型別不支援圖形值條件。此選項目前僅適用於以下圖表型別。
         graph_value_conditions_title: 圖形值條件
         if_graph_value_is: 如果圖形值為：
+        job_roles:
+          current: 目前的工作因素
+          target: 目標工作因素
         manage_graph_value_condition: 管理圖形值條件
         manage_styles_condition: 管理樣式條件
         missing_value: 遺漏值
@@ -3457,6 +3503,26 @@ zh-Hant:
         prefixes:
           and: 和
           or: 或
+        skill_type_label: 按技能類型篩選
+        skill_type_placeholder: 選擇技能類型
+        skill_types:
+          behavioral: 行為的
+          other: 他
+          qualification: 資格
+          technical: 專門的
+        table_options:
+          border: 邊
+          description: 描述
+          header: 標頭
+          icons: 圖示
+          label: 標籤
+          name: 名字
+          rank: 排
+          score: 二十
+          show_benchmark_score: 顯示基準分數
+          show_current_proficiency: 顯示當前熟練程度
+          show_target_proficiency: 顯示目標熟練程度
+          strengths_blindspots: 優勢與盲點
         text_condition_type: 文字條件類型：
     report_families:
       create:
@@ -3692,6 +3758,7 @@ zh-Hant:
       campaign_participants: 活動參與者
       columns:
         activity: 活動
+        assessment_center_date_and_time: 評估中心日期和時間
         assessor: 評稅員
         assessors: 評估員
         attendance: 出席率
@@ -4561,6 +4628,7 @@ zh-Hant:
             import_subjects: 進口主題
             last_name: 姓
             locale: 語言環境
+            please_enter_valid_email: 請輸入有效的電子郵件
             target_job_role: 目標工作角色
             title: 主題
           title: 參與者

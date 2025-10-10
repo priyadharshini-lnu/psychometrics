@@ -369,7 +369,9 @@ cs:
       created_successfully: AI Assistant byl úspěšně vytvořen.
       errors:
         cannot_delete_in_use: Nelze odstranit AI Assistant '%{name}', protože je používán.
+        development_actions_assistance_not_enabled: Generování vývojových akcí využívajících umělou inteligenci není k dispozici. Obraťte se prosím na administrátora.
         one_click_idp_assistance_not_enabled: Asistence poskytovatele identity s umělou inteligencí není u vašeho aktuálního plánu k dispozici. Obraťte se prosím na administrátora.
+        platform_assistant_already_exists: Na platformě je povolen pouze 1 asistent typu %{type}.
       form:
         add_output_schema_key: Přidání klíče výstupního schématu
         dependencies: Závislosti
@@ -388,6 +390,13 @@ cs:
         system_prompt: Systémová výzva
         type: Typ
         user_prompt: Výzva pro uživatele
+      revisions:
+        load: Načtení do formuláře
+        name: Jméno
+        system_prompt: Systém Propmpt
+        title: Revize nástroje AI Assistant
+        user_prompt: Uživatelská výzva
+        version: Verze
       selector:
         choose_artifact: Výběr artefaktu AI
         choose_schema_key: Volba klíče schématu
@@ -406,6 +415,12 @@ cs:
       form:
         description: Popis
         title: klíč api
+    assessment_builder:
+      form:
+        display_label: Zadejte popisek displeje
+        label_required: Štítek je povinný
+        value: Hodnota
+        value_required: Hodnota je povinná
     assessment_center:
       cancel_confirmation:
         message: Jste si jisti, že chcete průběh formuláře zahodit?
@@ -666,6 +681,7 @@ cs:
         no_results: Neexistují žádné zodpovězené otázky
         other_reports: Další zprávy
         overall_scoring: Celkové bodování
+        recordings: Nahrávky
         refresh: Obnovit
         reports: Zprávy
         reports_count: "%{count} Zprávy"
@@ -1203,10 +1219,15 @@ cs:
       client_features: Funkce klienta
       form:
         ai_assistants: Asistenti AI
+        ai_assistants_disabled_by_client: AI Assistants je klientem deaktivován
         ai_assisted_idp: IDP s asistencí AI
+        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vyžaduje povolení funkce AI Assistants
         global_skills: Globální dovednosti
+        global_skills_requires_idp: Chcete-li pro tento projekt povolit Global Skills, aktivujte jej v části Příznaky funkcí v nastavení klienta.
         idp: IDP
+        idp_disabled_by_client: Poskytovatel identity je zakázán klientem
         sms_notification: Upozornění SMS
+        sms_notification_disabled_by_client: SMS notifikace je zakázána klientem
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1728,7 @@ cs:
         update_button: Aktualizovat překlad
       form:
         all: Všechny
+        assessment_center_booking_summary: Shrnutí rezervací v hodnotícím centru
         assessment_completion_status_code: Kód stavu dokončení hodnocení
         assessment_completion_status_code_hint: Pokud je zadán kód dokončení, bude odeslán pouze v případě, že hodnocení uživatele má tento kód stavu dokončení.
         body_mustache: |
@@ -1726,6 +1748,8 @@ cs:
         custom: Vlastní
         delivery_at: Dodání na (GST)
         delivery_delay_hours: Zpoždění dodávky (v hodinách)
+        delivery_end_date: Datum ukončení dodávky
+        delivery_frequency: Frekvence dodávek
         delivery_interval: Interval dodání
         delivery_interval_number: Číslo intervalu dodání
         delivery_interval_period: Období intervalu dodání
@@ -1736,7 +1760,16 @@ cs:
           not_started: Pokud není hodnocení zahájeno
           send_now: Odeslat nyní
           specific_datetime: Odeslat na adresu
+        delivery_start_date: Datum zahájení dodávky
+        delivery_time_of_day: Dodací lhůta dne
+        delivery_timezone: Časové pásmo doručení
+        delivery_weekdays: Doručení v pracovní dny
         development_action_deadline_missed: Zmeškání lhůty pro vývojové akce
+        error_msgs:
+          delivery_end_date_after_start_date: musí být po datu zahájení
+          delivery_start_date_in_past: nemůže být v minulosti
+          delivery_time_in_past: nemůže být v minulosti
+          delivery_weekdays_required: musí být vybrán alespoň jeden den v týdnu
         idp_deadline_missed: Zmeškaný termín IDP
         idp_template_approved: Schválený IDP
         idp_template_assigned: Přidělený IDP
@@ -1817,15 +1850,21 @@ cs:
         client: 'Klient:'
         communication_type: 'Typ komunikace:'
         delivery_rule: 'Pravidlo doručování:'
+        end_date: 'Datum ukončení:'
         every_interval: Každý %{interval}
+        frequency: 'Frekvence:'
         owner: 'Majitel:'
         project: 'Projekt:'
         recipients: 'Příjemci:'
         specific_datetime: 'Odeslat na adresu:'
+        start_date: 'Datum zahájení:'
         stop_reminder_datetime: Datum ukončení upomínek (GST)
         sub_campaign: 'Dílčí kampaň:'
         subject: 'Předmět: Zpracování informací o projektu, který se uskutečnil v roce 2012, a o jeho výsledcích:'
+        time_of_day: 'Denní doba:'
+        timezone: 'Časové pásmo:'
         users: 'Uživatelé:'
+        weekdays: 'Všední dny:'
       sidebar:
         copy: Kopírovat komunikaci
         destroy: Odstranit komunikaci
@@ -2283,6 +2322,7 @@ cs:
       enter_template_name_error: Název šablony je povinný
       errors:
         cannot_update_progress_plan_completed: Nelze aktualizovat pokrok, protože plán IDP byl dokončen.
+        skills_required_on_publishing: Před publikováním šablony si prosím vyberte dovednosti.
         update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele.
       fields:
         assigned_data: Přiřazená data
@@ -2336,6 +2376,7 @@ cs:
       self_rating: Povolit vlastní hodnocení
       show_reflections: Zobrazit reflexe
       skill_gap_report: Zpráva o nedostatku dovedností
+      skill_gap_report_ai_assistant: Asistent pro analýzu zpráv o mezerách v dovednostech
       skill_source_preference: Zdroj dovedností
       skill_sources:
         from_ai: Z obecných znalostí umělé inteligence
@@ -3021,6 +3062,8 @@ cs:
       tools:
         workshop_status_export: Export stavu dílny
         workshop_status_export_success: Workshop Status Export byl úspěšně naplánován.
+    project_features:
+      project_features: Vlastnosti projektu
     project_participants:
       cancel: Zrušit
       column_actions: Akce
@@ -3443,6 +3486,9 @@ cs:
         graph_value_condition_not_supported_msg: Podmínky hodnoty grafu nejsou pro tento typ grafu podporovány. Tato možnost je v současné době k dispozici pouze pro níže uvedené typy grafů.
         graph_value_conditions_title: Podmínky hodnoty grafu
         if_graph_value_is: 'Pokud je hodnota grafu:'
+        job_roles:
+          current: Současné faktory práce
+          target: Cílové pracovní faktory
         manage_graph_value_condition: Správa podmínky hodnoty grafu
         manage_styles_condition: Podmínka správy stylů
         missing_value: Chybějící hodnota
@@ -3457,6 +3503,26 @@ cs:
         prefixes:
           and: A
           or: NEBO
+        skill_type_label: Filtrovat podle typu schopnosti
+        skill_type_placeholder: Vyberte typ dovednosti
+        skill_types:
+          behavioral: Behaviorální
+          other: Jiný
+          qualification: Kvalifikace
+          technical: Technický
+        table_options:
+          border: Hranice
+          description: Popis
+          header: Záhlaví
+          icons: Ikony
+          label: Označit
+          name: Jméno
+          rank: Hodnost
+          score: Partitura
+          show_benchmark_score: Zobrazit srovnávací skóre
+          show_current_proficiency: Ukázat aktuální znalosti
+          show_target_proficiency: Zobrazit cílovou úroveň znalostí
+          strengths_blindspots: Silné stránky a slepá místa
         text_condition_type: 'Typ textové podmínky:'
     report_families:
       create:
@@ -3692,6 +3758,7 @@ cs:
       campaign_participants: Účastníci kampaně
       columns:
         activity: Aktivita
+        assessment_center_date_and_time: Datum a čas v hodnotícím centru
         assessor: Posuzovatel
         assessors: Posuzovatelé
         attendance: Docházka
@@ -4561,6 +4628,7 @@ cs:
             import_subjects: Importované předměty
             last_name: Příjmení
             locale: Lokalita
+            please_enter_valid_email: Zadejte prosím platný e-mail
             target_job_role: Cílová pracovní role
             title: Předměty
           title: Účastníci

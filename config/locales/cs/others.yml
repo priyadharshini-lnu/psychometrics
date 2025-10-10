@@ -907,6 +907,8 @@ cs:
     bulk_download_reports:
       content:
         title: Odkazy ke stažení zpráv
+      errors:
+        no_plans: Nebyly nalezeny žádné aktivní plány IDP
     close: Zavřít
     details: Podrobnosti na
     errors: Chyby
@@ -919,6 +921,14 @@ cs:
     super_admin:
       errors:
         data_processing_disabled: Zpracování dat je zakázáno.
+  ai:
+    errors:
+      bad_request_invalid_input: Váš požadavek nemohl být zpracován z důvodu neplatného zadání. Zkontrolujte prosím svůj požadavek a zkuste to znovu.
+      generic: Při zpracování vašeho požadavku se něco pokazilo. Obraťte se na svého správce.
+      rate_limit_exceeded: O službu je v současné době velký zájem. Chvíli počkejte a zkuste to znovu.
+      server_error: Služba AI je dočasně nedostupná. Zkuste to prosím znovu za několik okamžiků.
+      service_overloaded: Služba AI je v současné době přetížená. Chvíli počkejte a zkuste to znovu.
+      service_unavailable: Služba AI v současné době probíhá údržba. Zkuste to prosím znovu později.
   anonym:
     close: Zavřít
     continue: Pokračovat
@@ -1176,6 +1186,7 @@ cs:
       assessments_and_reports: Hodnocení a zprávy
       idp: IDP
       manage: Správa
+      recordings: Nahrávky
       report_approval: Nastavení schvalování zpráv
       sequencing: Sekvencování
     report_approval:
@@ -2177,6 +2188,8 @@ cs:
       not_uniq_variable: proměnná '%{value}' nadefinována na řádku číslo %{row}
       project_assessments:
         should_be_greater_than_zero: Platnost výsledku by měla být delší než 0 dní
+      project_feature:
+        global_skills_not_enabled_on_client: Chcete-li pro tento projekt povolit Global Skills, aktivujte jej v části Příznaky funkcí v nastavení klienta.
       report_approval_settings:
         report_exists: Nastavení schválení zprávy pro tuto zprávu již existuje.
         validates_admins: Správci nemají ke kampani přístup.
@@ -2246,6 +2259,8 @@ cs:
       body:
         error: Tělo e-mailu obsahuje nesprávný pipetext.
   errors:
+    ai_assistant:
+      max_generation_limit: Překročen maximální limit výroby, obraťte se na svou správu.
     assessments:
       timed_out: Hodnocení uživatele %{assessment_name} nebude možné provést, protože vypršel časový limit.
     equal_to_current_password: musí být jiné než aktuální heslo.
@@ -2570,6 +2585,8 @@ cs:
       finishing:
         hint: Náš AI asistent pro vás vytvoří IDP plán.
         title: Počkejte prosím, děláme naše kouzla...
+      reset_chat: Obnovit chat
+      reset_confirmation: Opravdu chcete tento chat zahodit a začít nový?
       retake_steps:
         chat_hint: Dejte mi vědět, jaké informace chcete poskytnout níže?
         chat_title: Chcete poskytnout více informací?
@@ -2577,9 +2594,27 @@ cs:
         start_chat_again: Zahájit chat znovu
         upload_document: Nahrát dokument
         upload_file: Nahrát soubor
+      start_page:
+        ai_assisted:
+          button: Poskytovatel identity s pomocí umělé inteligence
+          description: Interaktivní tok řízený konverzací, kde spoluvytváříte plán s umělou inteligencí v několika krocích.
+          option_1: Více personalizované výsledky
+          option_2: Možnosti sebereflexe
+          option_3: Lepší pro kariérní přechody
+          title: Poskytovatel identity s pomocí umělé inteligence
+        one_click:
+          button: AI IDP jedním kliknutím
+          description: Umělá inteligence udělá všechnu těžkou práci – okamžitě skenuje vaše data a generuje kompletní plán vývoje.
+          option_1: Nejrychlejší možnost (5 minut)
+          option_2: Vhodné pro zaneprázdněné profesionály
+          option_3: Po vygenerování plně upravitelné
+          title: 1-click AI IDP 1-click
+        sub_title: Vytvořme si přizpůsobený kurz pro zvyšování kvalifikace namapovaný na vaši kariérní aspiraci a řízený umělou inteligencí
+        title: Vytvořte si svůj individuální plán rozvoje
       summary:
         chat_title: Souhrn funkce Chat Insight
         file_title: Nahrané dokumenty Insights
+        gap_report_title: Analýza zpráv o mezerách v dovednostech
         hint: pokud ano, vytvoříme vašeho IDP, jinak si můžete své odpovědi vzít znovu
         title: Jste spokojeni s výsledky?
         upload_file: Nahraný soubor
@@ -2628,6 +2663,7 @@ cs:
       add_development_actions_from_below_options: Přidejte akce vývoje z níže uvedených možností.
       add_development_actions_modal_title: Knihovna vývojových akcí pro %{skillName}
       add_from_library: Přidat z knihovny
+      add_more: Přidání dalších vývojových akcí
       all: Vše
       approved: Schváleno
       board_view:
@@ -2642,6 +2678,7 @@ cs:
       custom: Zvyk
       custom_da_description: Vytvořte vlastní vývojovou akci, která řeší jedinečné potřeby vývoje.
       date_range: Datum zahájení - Datum ukončení
+      edit_da_progress: Upravit průběh vývojářské akce
       edit_plan_to_add_development_actions: Upravit plán a přidat akce vývoje.
       enter_development_action_description: Zadejte popis vývojové akce
       enter_development_action_title: Zadejte název vývojové akce

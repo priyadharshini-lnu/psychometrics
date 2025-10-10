@@ -369,7 +369,9 @@ hu:
       created_successfully: Az AI Assistant sikeresen létrejött.
       errors:
         cannot_delete_in_use: Nem lehet törölni az AI Assistant "%{name}" fájlt, mert használatban van.
+        development_actions_assistance_not_enabled: A mesterséges intelligenciával működő fejlesztési műveletek generálása nem érhető el. Kérjük, forduljon az adminisztrátorhoz.
         one_click_idp_assistance_not_enabled: A mesterséges intelligencia által vezérelt IDP-segítség nem érhető el a jelenlegi csomaggal. Kérjük, forduljon az adminisztrátorhoz.
+        platform_assistant_already_exists: Csak 1 %{type} típusú asszisztens tartózkodhat a platformon.
       form:
         add_output_schema_key: Kimeneti séma kulcs hozzáadása
         dependencies: Függőségek
@@ -388,6 +390,13 @@ hu:
         system_prompt: Rendszerkérés
         type: Típus
         user_prompt: Felhasználói kérés
+      revisions:
+        load: Betöltés űrlapra
+        name: Név
+        system_prompt: Rendszer támogatása
+        title: Az AI Assistant felülvizsgálatai
+        user_prompt: Felhasználói kérés
+        version: Verzió
       selector:
         choose_artifact: AI-összetevő kiválasztása
         choose_schema_key: Sémakulcs kiválasztása
@@ -406,6 +415,12 @@ hu:
       form:
         description: Leírás
         title: API-kulcs
+    assessment_builder:
+      form:
+        display_label: Adja meg a kijelző címkéjét
+        label_required: Címke szükséges
+        value: Érték
+        value_required: Érték szükséges
     assessment_center:
       cancel_confirmation:
         message: Biztos benne, hogy elveti az űrlap eddig kitöltött részeit?
@@ -666,6 +681,7 @@ hu:
         no_results: Nincsenek megválaszolt kérdések
         other_reports: Egyéb jelentések
         overall_scoring: Összesített pontozás
+        recordings: Felvételek
         refresh: Frissít
         reports: Jelentések
         reports_count: "%{count} Jelentések"
@@ -1203,10 +1219,15 @@ hu:
       client_features: Ügyfélfunkciók
       form:
         ai_assistants: AI-asszisztensek
+        ai_assistants_disabled_by_client: Az AI Assistants le van tiltva az ügyfél által
         ai_assisted_idp: AI által támogatott IDP
+        ai_assisted_idp_requires_ai_assistants: Az AI-asszisztált IDP-hez engedélyezni kell az AI Assistants funkciót
         global_skills: Globális készségek
+        global_skills_requires_idp: A globális képességek engedélyezéséhez ehhez a projekthez aktiválja azt a kliens beállításainak Funkciójelzők alatt.
         idp: IDP
+        idp_disabled_by_client: Az ügyfél letiltja az IDP-t
         sms_notification: SMS-értesítés
+        sms_notification_disabled_by_client: Az SMS-értesítést az ügyfél letiltja
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1709,6 +1730,7 @@ hu:
         update_button: Fordítás frissítése
       form:
         all: Összes
+        assessment_center_booking_summary: Assessment Center foglalási összefoglaló
         assessment_completion_status_code: Értékelés befejezési állapotkódja
         assessment_completion_status_code_hint: Ha meg van adva befejezési kód, azt csak akkor küldi el a rendszer, ha a felhasználó értékelése rendelkezik ezzel a befejezési állapotkóddal.
         body_mustache: |-
@@ -1728,6 +1750,8 @@ hu:
         custom: Custom
         delivery_at: Szállítás (GST)
         delivery_delay_hours: Szállítási késedelem (óra)
+        delivery_end_date: Szállítás befejezési dátuma
+        delivery_frequency: Szállítási gyakoriság
         delivery_interval: Szállítási intervallum
         delivery_interval_number: Szállítási intervallum száma
         delivery_interval_period: Szállítási időintervallum
@@ -1738,7 +1762,16 @@ hu:
           not_started: Ha az értékelés nem indul el
           send_now: Küldés most
           specific_datetime: Küldés
+        delivery_start_date: Szállítás kezdő dátuma
+        delivery_time_of_day: Szállítási idő
+        delivery_timezone: Szállítási időzóna
+        delivery_weekdays: Szállítás hétköznapokon
         development_action_deadline_missed: A fejlesztési művelet határideje lejárt
+        error_msgs:
+          delivery_end_date_after_start_date: a kezdő dátum után kell lennie
+          delivery_start_date_in_past: nem lehet a múltban
+          delivery_time_in_past: nem lehet a múltban
+          delivery_weekdays_required: legalább egy hétköznapot ki kell választania
         idp_deadline_missed: Az IDP határideje lejárt
         idp_template_approved: IDP jóváhagyva
         idp_template_assigned: IDP hozzárendelve
@@ -1819,15 +1852,21 @@ hu:
         client: 'Ügyfél:'
         communication_type: 'Közlemény típusa:'
         delivery_rule: 'Szállítási szabály:'
+        end_date: 'Befejezés dátuma:'
         every_interval: Minden %{interval}
+        frequency: 'Frekvencia:'
         owner: 'Tulajdonos:'
         project: 'Projekt:'
         recipients: 'Címzettek:'
         specific_datetime: 'Küldés:'
+        start_date: 'Kezdő dátum:'
         stop_reminder_datetime: Emlékeztetők záró dátuma (GST)
         sub_campaign: 'Alkampány:'
         subject: 'Tárgy:'
+        time_of_day: 'Napszak:'
+        timezone: 'Időzóna:'
         users: 'Felhasználók:'
+        weekdays: 'Hétköznap:'
       sidebar:
         copy: Közlemény másolása
         destroy: Közlemény törlése
@@ -2285,6 +2324,7 @@ hu:
       enter_template_name_error: A sablon neve kötelező
       errors:
         cannot_update_progress_plan_completed: Nem lehet frissíteni az előrehaladást, mivel a belsőépítészeti terv már elkészült.
+        skills_required_on_publishing: Kérjük, válassza ki a készségeket a sablon közzététele előtt.
         update: A frissítés nem engedélyezett, mert az IDP-sablon már társítva van egy felhasználói IDP-csomaghoz. A megjelenés változásai mentésre kerültek.
       fields:
         assigned_data: Hozzárendelt adatok
@@ -2338,6 +2378,7 @@ hu:
       self_rating: Önértékelés engedélyezése
       show_reflections: Reflexiók megjelenítése
       skill_gap_report: Valamilyen készség hiányáról szóló jelentés kiválasztása
+      skill_gap_report_ai_assistant: Készséghiány-jelentéselemző asszisztens
       skill_source_preference: Készség forrása
       skill_sources:
         from_ai: Az általános mesterséges intelligencia ismeretekből
@@ -3022,6 +3063,8 @@ hu:
       tools:
         workshop_status_export: Workshop állapotának exportálása
         workshop_status_export_success: A workshop állapotának exportálása sikeresen ütemezésre került.
+    project_features:
+      project_features: A projekt jellemzői
     project_participants:
       cancel: Mégse
       column_actions: Műveletek
@@ -3444,6 +3487,9 @@ hu:
         graph_value_condition_not_supported_msg: A gráférték-feltételek nem támogatottak ennél a gráftípusnál. Ez a lehetőség jelenleg csak az alábbi gráftípusok esetében érhető el.
         graph_value_conditions_title: Grafikonérték feltételei
         if_graph_value_is: 'Ha a grafikon értéke:'
+        job_roles:
+          current: Jelenlegi munkaköri tényezők
+          target: Cél munkaköri tényezők
         manage_graph_value_condition: Grafikonérték-feltétel kezelése
         manage_styles_condition: Stílusok feltételének kezelése
         missing_value: Hiányzó érték
@@ -3458,6 +3504,26 @@ hu:
         prefixes:
           and: ÉS
           or: VAGY
+        skill_type_label: Szűrés képességtípus szerint
+        skill_type_placeholder: Szakértelem típusának kiválasztása
+        skill_types:
+          behavioral: Viselkedési
+          other: Más
+          qualification: Minősítés
+          technical: Műszaki
+        table_options:
+          border: Határ
+          description: Leírás
+          header: Fejléc
+          icons: Ikonok
+          label: Címke
+          name: Név
+          rank: Rang
+          score: Pontszám
+          show_benchmark_score: Teljesítményteszt pontszám megjelenítése
+          show_current_proficiency: Aktuális jártasság megjelenítése
+          show_target_proficiency: Céljártasság megjelenítése
+          strengths_blindspots: Erősségek és vakfoltok
         text_condition_type: 'Szövegfeltétel típusa:'
     report_families:
       create:
@@ -3693,6 +3759,7 @@ hu:
       campaign_participants: A kampány résztvevői
       columns:
         activity: Tevékenység
+        assessment_center_date_and_time: Az értékelőközpont dátuma és időpontja
         assessor: Értékelő
         assessors: Értékelők
         attendance: Részvétel
@@ -4549,6 +4616,7 @@ hu:
             import_subjects: Témák importálása
             last_name: Vezetéknév
             locale: Színhely
+            please_enter_valid_email: Kérjük, adjon meg egy érvényes e-mail címet
             target_job_role: Cél munkakör
             title: Tantárgyak
           title: Résztvevők

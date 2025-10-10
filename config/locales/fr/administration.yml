@@ -369,7 +369,9 @@ fr:
       created_successfully: L'assistant AI a été créé avec succès.
       errors:
         cannot_delete_in_use: Impossible de supprimer l’assistant IA %{name}' car il est utilisé.
+        development_actions_assistance_not_enabled: La génération d’actions de développement alimentée par l’IA n’est pas disponible. Veuillez contacter l’administrateur.
         one_click_idp_assistance_not_enabled: L’assistance IDP alimentée par l’IA n’est pas disponible avec votre plan actuel. Veuillez contacter l’administrateur.
+        platform_assistant_already_exists: Un seul assistant de type %{type} est autorisé sur la plateforme.
       form:
         add_output_schema_key: Ajouter une clé de schéma de sortie
         dependencies: Dépendances
@@ -388,6 +390,13 @@ fr:
         system_prompt: Invite du système
         type: Type
         user_prompt: Invite de l'utilisateur
+      revisions:
+        load: Chargement sur formulaire
+        name: Nom
+        system_prompt: Proposition du système
+        title: Révisions de l’assistant IA
+        user_prompt: Invite de l’utilisateur
+        version: Version
       selector:
         choose_artifact: Choisissez AI Artifact
         choose_schema_key: Choisissez la clé de schéma
@@ -406,6 +415,12 @@ fr:
       form:
         description: Description
         title: clé api
+    assessment_builder:
+      form:
+        display_label: Saisir l’étiquette d’affichage
+        label_required: L’étiquette est requise
+        value: Valeur
+        value_required: La valeur est requise
     assessment_center:
       cancel_confirmation:
         message: Êtes-vous sûr de vouloir supprimer la progression du formulaire ?
@@ -666,6 +681,7 @@ fr:
         no_results: Il n'y a pas de réponse aux questions
         other_reports: Autres rapports
         overall_scoring: Note globale
+        recordings: Enregistrements
         refresh: Rafraîchir
         reports: Rapports
         reports_count: "%{count} Rapports"
@@ -1203,10 +1219,15 @@ fr:
       client_features: Caractéristiques du client
       form:
         ai_assistants: Assistants IA
+        ai_assistants_disabled_by_client: AI Assistants est désactivé par le client
         ai_assisted_idp: AI assistée PDI
+        ai_assisted_idp_requires_ai_assistants: L’IDP assisté par l’IA nécessite l’activation de la fonctionnalité d’assistants IA
         global_skills: Compétences globales
+        global_skills_requires_idp: Pour activer les compétences globales pour ce projet, veuillez l’activer sous Feature Flags dans les paramètres du client.
         idp: PDI
+        idp_disabled_by_client: L’IDP est désactivé par le client
         sms_notification: Notification par SMS
+        sms_notification_disabled_by_client: La notification par SMS est désactivée par le client
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1728,7 @@ fr:
         update_button: Mettre à jour la traduction
       form:
         all: Tous
+        assessment_center_booking_summary: Résumé de la réservation du centre d’évaluation
         assessment_completion_status_code: Code du statut d'achèvement de l'évaluation
         assessment_completion_status_code_hint: Si un code d'achèvement est spécifié, il ne sera envoyé que si l'évaluation de l'utilisateur a ce code d'achèvement.
         body_mustache: |
@@ -1726,6 +1748,8 @@ fr:
         custom: Sur mesure
         delivery_at: Livraison à (GST)
         delivery_delay_hours: Délai de livraison (heures)
+        delivery_end_date: Date de fin de la livraison
+        delivery_frequency: Fréquence de livraison
         delivery_interval: Intervalle de livraison
         delivery_interval_number: Numéro de l'intervalle de livraison
         delivery_interval_period: Période d'intervalle de livraison
@@ -1736,7 +1760,16 @@ fr:
           not_started: Si l'évaluation n'est pas entamée
           send_now: Envoyer
           specific_datetime: Envoyer à
+        delivery_start_date: Date de début de la livraison
+        delivery_time_of_day: Heure de livraison de la journée
+        delivery_timezone: Fuseau horaire de livraison
+        delivery_weekdays: Livraison en semaine
         development_action_deadline_missed: Dépassement du délai pour les actions de développement
+        error_msgs:
+          delivery_end_date_after_start_date: doit être postérieure à la date d’entrée en fonction
+          delivery_start_date_in_past: ne peut pas être dans le passé
+          delivery_time_in_past: ne peut pas être dans le passé
+          delivery_weekdays_required: doit sélectionner au moins un jour de la semaine
         idp_deadline_missed: L'échéance de l'IDP n'a pas été respectée
         idp_template_approved: PDI approuvé
         idp_template_assigned: IDP assigné
@@ -1817,15 +1850,21 @@ fr:
         client: 'Client :'
         communication_type: 'Type de communication :'
         delivery_rule: 'Règle de livraison :'
+        end_date: 'Date de fin :'
         every_interval: Tous les %{interval}
+        frequency: 'Fréquence:'
         owner: 'Propriétaire :'
         project: 'Projet :'
         recipients: 'Récipiendaires :'
         specific_datetime: 'Envoyer à :'
+        start_date: 'Date de mise en œuvre :'
         stop_reminder_datetime: Date de fin des rappels (TPS)
         sub_campaign: 'Sous-campagne :'
         subject: 'Sujet :'
+        time_of_day: 'Heure de la journée :'
+        timezone: 'Fuseau horaire :'
         users: 'Utilisateurs :'
+        weekdays: 'Semaine:'
       sidebar:
         copy: Communication par copie
         destroy: Supprimer la communication
@@ -2283,6 +2322,7 @@ fr:
       enter_template_name_error: Le nom du modèle est obligatoire
       errors:
         cannot_update_progress_plan_completed: Impossible de mettre à jour l'état d'avancement car le plan IDP a été achevé.
+        skills_required_on_publishing: Veuillez choisir vos compétences avant de publier un modèle.
         update: La mise à jour n'est pas autorisée car le modèle IDP est déjà associé à un plan IDP utilisateur.
       fields:
         assigned_data: Données attribuées
@@ -2336,6 +2376,7 @@ fr:
       self_rating: Activer l'auto-évaluation
       show_reflections: Montrer les réflexions
       skill_gap_report: Rapport sur les lacunes en matière de compétences
+      skill_gap_report_ai_assistant: Assistant d’analyse des rapports sur les écarts de compétences
       skill_source_preference: Source de la compétence
       skill_sources:
         from_ai: De la connaissance générale de l’IA
@@ -3021,6 +3062,8 @@ fr:
       tools:
         workshop_status_export: Exportation du statut de l'atelier
         workshop_status_export_success: Statut de l'atelier L'exportation a été programmée avec succès.
+    project_features:
+      project_features: Caractéristiques du projet
     project_participants:
       cancel: Annuler
       column_actions: Actions
@@ -3443,6 +3486,9 @@ fr:
         graph_value_condition_not_supported_msg: Les conditions de valeur de graphique ne sont pas prises en charge pour ce type de graphique. Cette option n’est actuellement disponible que pour les types de graphiques ci-dessous.
         graph_value_conditions_title: Conditions de valeur du graphique
         if_graph_value_is: 'Si la valeur du graphique est :'
+        job_roles:
+          current: Facteurs liés à l’emploi actuel
+          target: Facteurs d’emploi ciblés
         manage_graph_value_condition: Gérer la condition de valeur du graphique
         manage_styles_condition: Gérer la condition des styles
         missing_value: Valeur manquante
@@ -3457,6 +3503,26 @@ fr:
         prefixes:
           and: ET
           or: OU
+        skill_type_label: Filtrer par type de compétence
+        skill_type_placeholder: Sélectionner le type de compétence
+        skill_types:
+          behavioral: Comportemental
+          other: Autre
+          qualification: Qualification
+          technical: Technique
+        table_options:
+          border: Frontière
+          description: Description
+          header: En-tête
+          icons: Icônes
+          label: Étiquette
+          name: Nom
+          rank: Rang
+          score: Score
+          show_benchmark_score: Afficher le score de référence
+          show_current_proficiency: Montrer les compétences actuelles
+          show_target_proficiency: Montrer la compétence cible
+          strengths_blindspots: Forces et angles morts
         text_condition_type: 'Type de condition de texte :'
     report_families:
       create:
@@ -3692,6 +3758,7 @@ fr:
       campaign_participants: Participants à la campagne
       columns:
         activity: Activité
+        assessment_center_date_and_time: Date et heure du centre d’évaluation
         assessor: Assesseur
         assessors: Évaluateurs
         attendance: Présence
@@ -4561,6 +4628,7 @@ fr:
             import_subjects: Sujets d'importation
             last_name: Nom de famille
             locale: Localité
+            please_enter_valid_email: Veuillez saisir une adresse e-mail valide
             target_job_role: Rôle professionnel cible
             title: Thèmes
           title: Les participants

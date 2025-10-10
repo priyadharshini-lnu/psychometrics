@@ -369,7 +369,9 @@ ar:
       created_successfully: تم إنشاء مساعد الذكاء الاصطناعي بنجاح.
       errors:
         cannot_delete_in_use: لا يمكن حذف "%{name}" الذكاء الاصطناعي Assistant لأنه قيد الاستخدام.
+        development_actions_assistance_not_enabled: لا يتوفر إنشاء إجراءات التطوير المدعومة بالذكاء الذكاء الاصطناعي. يرجى الاتصال بالمسؤول.
         one_click_idp_assistance_not_enabled: مساعدة IDP المدعومة بالذكاء الذكاء الاصطناعي غير متوفرة مع خطتك الحالية. يرجى الاتصال بالمسؤول.
+        platform_assistant_already_exists: يسمح بمساعد واحد فقط من النوع %{type} على المنصة.
       form:
         add_output_schema_key: إضافة مفتاح مخطط الإخراج
         dependencies: التبعيات
@@ -388,6 +390,13 @@ ar:
         system_prompt: موجه النظام
         type: النوع
         user_prompt: موجه المستخدم
+      revisions:
+        load: تحميل إلى الشكل
+        name: اسم
+        system_prompt: نظام Propmpt
+        title: مراجعات مساعد الذكاء الاصطناعي
+        user_prompt: موجه المستخدم
+        version: الإصدار
       selector:
         choose_artifact: اختر قطعة الذكاء الاصطناعي
         choose_schema_key: اختر مفتاح المخطط
@@ -406,6 +415,12 @@ ar:
       form:
         description: الوصف
         title: مفتاح API
+    assessment_builder:
+      form:
+        display_label: أدخل ملصق العرض
+        label_required: التسمية مطلوبة
+        value: قيمة
+        value_required: القيمة مطلوبة
     assessment_center:
       cancel_confirmation:
         message: هل أنت متأكد أنك تريد تجاهل تقدم النموذج؟
@@ -666,6 +681,7 @@ ar:
         no_results: لا توجد أي أسئلة مجابة
         other_reports: تقارير أخرى
         overall_scoring: التقييم العام
+        recordings: التسجيلات
         refresh: تحديث
         reports: التقارير
         reports_count: "%{count} تقارير"
@@ -1203,10 +1219,15 @@ ar:
       client_features: ميزات العميل
       form:
         ai_assistants: مساعدو الذكاء الاصطناعي
+        ai_assistants_disabled_by_client: تم تعطيل مساعدي الذكاء الاصطناعي بواسطة العميل
         ai_assisted_idp: المشردون داخلياً بمساعدة الذكاء الاصطناعي
+        ai_assisted_idp_requires_ai_assistants: يتطلب IDP المدعوم من الذكاء الاصطناعي تمكين ميزة مساعدي الذكاء الاصطناعي
         global_skills: المهارات العالمية
+        global_skills_requires_idp: لتمكين المهارات العالمية لهذا المشروع ، يرجى تنشيطه ضمن علامات الميزات في إعدادات العميل.
         idp: IDP
+        idp_disabled_by_client: تم تعطيل IDP بواسطة العميل
         sms_notification: إشعار الرسائل النصية القصيرة
+        sms_notification_disabled_by_client: تم تعطيل إشعار الرسائل القصيرة من قبل العميل
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1728,7 @@ ar:
         update_button: تحديث الترجمة
       form:
         all: الكل
+        assessment_center_booking_summary: ملخص حجز مركز التقييم
         assessment_completion_status_code: رمز حالة إكمال التقييم
         assessment_completion_status_code_hint: إذا تم تحديد رمز إكمال، سيتم الإرسال فقط إذا كان تقييم المستخدم يحتوي على رمز حالة الإكمال هذا.
         body_mustache: |-
@@ -1726,6 +1748,8 @@ ar:
         custom: مخصص
         delivery_at: التسليم في (GST)
         delivery_delay_hours: تأخير التسليم (بالساعات)
+        delivery_end_date: تاريخ انتهاء التسليم
+        delivery_frequency: تردد التسليم
         delivery_interval: فترة التسليم
         delivery_interval_number: رقم الفاصل الزمني للتسليم
         delivery_interval_period: الفترة الزمنية للتسليم
@@ -1736,7 +1760,16 @@ ar:
           not_started: إذا لم يبدأ التقييم
           send_now: إرسال الآن
           specific_datetime: الإرسال في
+        delivery_start_date: تاريخ بدء التسليم
+        delivery_time_of_day: وقت التسليم من اليوم
+        delivery_timezone: المنطقة الزمنية للتسليم
+        delivery_weekdays: التوصيل خلال أيام الأسبوع
         development_action_deadline_missed: فوات الموعد النهائي للعمل التطويري
+        error_msgs:
+          delivery_end_date_after_start_date: يجب أن يكون بعد تاريخ البدء
+          delivery_start_date_in_past: لا يمكن أن يكون في الماضي
+          delivery_time_in_past: لا يمكن أن يكون في الماضي
+          delivery_weekdays_required: يجب تحديد يوم واحد على الأقل من أيام الأسبوع
         idp_deadline_missed: فوات الموعد النهائي للمشردين داخلياً
         idp_template_approved: تم اعتماد IDP
         idp_template_assigned: تم تعيين IDP
@@ -1817,15 +1850,21 @@ ar:
         client: 'العميل:'
         communication_type: 'نوع الاتصال:'
         delivery_rule: 'قاعدة التسليم:'
+        end_date: 'تاريخ الانتهاء:'
         every_interval: كل %{interval}
+        frequency: 'تردد:'
         owner: 'المالك:'
         project: 'المشروع:'
         recipients: 'المستلمون:'
         specific_datetime: 'الإرسال في:'
+        start_date: 'تاريخ البدء:'
         stop_reminder_datetime: تاريخ انتهاء التذكيرات (GST)
         sub_campaign: 'الحملة الفرعية:'
         subject: 'الموضوع:'
+        time_of_day: 'الوقت من اليوم:'
+        timezone: 'المنطقة الزمنية:'
         users: 'المستخدمون:'
+        weekdays: 'ايام الاسبوع:'
       sidebar:
         copy: نسخ الاتصال
         destroy: حذف الاتصال
@@ -2283,6 +2322,7 @@ ar:
       enter_template_name_error: Template name is required
       errors:
         cannot_update_progress_plan_completed: لا يمكن تحديث التقدم المحرز لأن خطة IDP قد اكتملت
+        skills_required_on_publishing: يرجى اختيار المهارات قبل نشر القالب.
         update: غير مسموح بالتحديث لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم.
       fields:
         assigned_data: البيانات المعينة
@@ -2336,6 +2376,7 @@ ar:
       self_rating: Enable Self Rating
       show_reflections: عرض الانعكاسات
       skill_gap_report: Skill Gap Report
+      skill_gap_report_ai_assistant: مساعد تحليل تقرير فجوة المهارات
       skill_source_preference: مصدر المهارة
       skill_sources:
         from_ai: من المعرفة العامة الذكاء الاصطناعي
@@ -3021,6 +3062,8 @@ ar:
       tools:
         workshop_status_export: Workshop Status Export
         workshop_status_export_success: Workshop Status Export was scheduled successfully.
+    project_features:
+      project_features: مميزات المشروع
     project_participants:
       cancel: إلغاء
       column_actions: الإجراءات
@@ -3443,6 +3486,9 @@ ar:
         graph_value_condition_not_supported_msg: شروط قيمة الرسم البياني غير مدعومة لهذا النوع من الرسم البياني. هذا الخيار متاح حاليا فقط لأنواع الرسوم البيانية أدناه.
         graph_value_conditions_title: شروط قيمة الرسم البياني
         if_graph_value_is: 'إذا كانت قيمة الرسم البياني هي:'
+        job_roles:
+          current: عوامل الوظيفة الحالية
+          target: عوامل الوظيفة المستهدفة
         manage_graph_value_condition: إدارة شرط قيمة الرسم البياني
         manage_styles_condition: إدارة حالة الأنماط
         missing_value: القيمة المفقودة
@@ -3457,6 +3503,26 @@ ar:
         prefixes:
           and: و
           or: أو
+        skill_type_label: تصفية حسب نوع المهارة
+        skill_type_placeholder: حدد نوع المهارة
+        skill_types:
+          behavioral: السلوكيه
+          other: آخر
+          qualification: تأهيل
+          technical: تقني
+        table_options:
+          border: حد
+          description: وصف
+          header: راس
+          icons: الرموز
+          label: تسميه
+          name: اسم
+          rank: رتبة
+          score: نقاط
+          show_benchmark_score: عرض النتيجة المعيارية
+          show_current_proficiency: إظهار الكفاءة الحالية
+          show_target_proficiency: إظهار الكفاءة المستهدفة
+          strengths_blindspots: نقاط القوة والنقاط العمياء
         text_condition_type: 'نوع شرط النص:'
     report_families:
       create:
@@ -3692,6 +3758,7 @@ ar:
       campaign_participants: Campaign participants
       columns:
         activity: Activity
+        assessment_center_date_and_time: تاريخ ووقت مركز التقييم
         assessor: Assessor
         assessors: Assessors
         attendance: Attendance
@@ -4561,6 +4628,7 @@ ar:
             import_subjects: مواضيع الاستيراد
             last_name: اسم العائلة
             locale: موقع
+            please_enter_valid_email: الرجاء إدخال بريد إلكتروني صالح
             target_job_role: الدور الوظيفي المستهدف
             title: الموضوعات
           title: Participants
