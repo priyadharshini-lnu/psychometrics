@@ -2619,6 +2619,23 @@ en:
         start_chat_again: Start Chat Again
         upload_document: Upload document
         upload_file: Upload File
+      start_page:
+        ai_assisted:
+          button: AI Assisted IDP
+          description: An interactive conversation-driven flow where you co-create the plan with AI in multiple steps.
+          option_1: More personalized results
+          option_2: Self-reflection opportunities
+          option_3: Better for career transitions
+          title: AI-Assisted IDP
+        one_click:
+          button: One click AI IDP
+          description: AI does all the heavy lifting - instantly scanning your data and generating a complete development plan.
+          option_1: Fastest Option (5 minutes)
+          option_2: Good for busy professionals
+          option_3: Fully editable after generation
+          title: 1-Click AI IDP
+        sub_title: Let's create a customized upskilling jorney mapped to your career aspiration and guided by AI
+        title: Create Your Individual Development Plan
       summary:
         chat_title: Chat Insight Summary
         file_title: Uploaded Documents Insights
