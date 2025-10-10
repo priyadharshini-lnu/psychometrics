@@ -545,13 +545,13 @@ class FactorsTable extends Component {
             <th key={i} className={styles.filter} scope="col">{filter.name}</th>
           )) : null}
           {model.props.showBenchmarks
-            ? <th className={styles.benchmarks} scope="col">{model.props.benchmarksLabel}</th>
+            ? <th className={styles.benchmarks} scope="col">{I18nStore.tModule(model, 'benchmarksLabel') || model.props.benchmarksLabel}</th>
             : null}
           {model.props.showCurrentJobProficiency
-            ? <th className={styles.benchmarks} scope="col">{model.props.currentJobProficiencyLabel}</th>
+            ? <th className={styles.benchmarks} scope="col">{I18nStore.tModule(model, 'currentJobProficiencyLabel') || model.props.currentJobProficiencyLabel}</th>
             : null}
           {model.props.showTargetJobProficiency
-            ? <th className={styles.benchmarks} scope="col">{model.props.targetJobProficiencyLabel}</th>
+            ? <th className={styles.benchmarks} scope="col">{I18nStore.tModule(model, 'targetJobProficiencyLabel') || model.props.targetJobProficiencyLabel}</th>
             : null}
         </tr>
       </thead>

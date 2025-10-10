@@ -357,33 +357,59 @@ class Properties extends Component {
         label: I18n.t('administration.report_builder.property_panel.table_options.show_benchmark_score'),
         prop: 'showBenchmarks',
         default: false,
+        input: {
+          placeholder: 'Benchmark label',
+          value: model.props.benchmarksLabel,
+          onChange: this.changeBenchmarkLabel,
+        },
       },
       ...(assessment?.isSkillRater ? [
         {
           label: I18n.t('administration.report_builder.property_panel.table_options.show_current_proficiency'),
           prop: 'showCurrentJobProficiency',
           default: false,
+          input: {
+            placeholder: 'Current Proficiency label',
+            value: model.props.currentJobProficiencyLabel,
+            onChange: this.changeCurrentJobProficiencyLabel,
+          },
         },
         {
           label: I18n.t('administration.report_builder.property_panel.table_options.show_target_proficiency'),
           prop: 'showTargetJobProficiency',
           default: false,
+          input: {
+            placeholder: 'Target Proficiency label',
+            value: model.props.targetJobProficiencyLabel,
+            onChange: this.changeTargetJobProficiencyLabel,
+          },
         },
       ] : []),
     ]
 
     return (
       options.map((option, i) => (
-        <label className={styles.inputLabel} key={i}>
-          <input
-            className="mrs"
-            type="checkbox"
-            checked={!option.disabled && _.get(model.props, option.prop, option.default)}
-            onChange={e => this.setProp(option.prop, e)}
-            disabled={option.disabled && option.disabled}
-          />
-          {option.label}
-        </label>
+        <div key={i}>
+          <label className={styles.inputLabel}>
+            <input
+              className="mrs"
+              type="checkbox"
+              checked={!option.disabled && _.get(model.props, option.prop, option.default)}
+              onChange={e => this.setProp(option.prop, e)}
+              disabled={option.disabled && option.disabled}
+            />
+            {option.label}
+          </label>
+          {option.input && _.get(model.props, option.prop, option.default) && (
+            <div className="ml-4 mt-2 mb-2">
+              <Input
+                placeholder={option.input.placeholder}
+                value={option.input.value}
+                onChange={option.input.onChange}
+              />
+            </div>
+          )}
+        </div>
       ))
     )
   }
@@ -489,34 +515,6 @@ class Properties extends Component {
         <div className="margin-top-10">
           <div className={cs(styles.label, 'mbm mtl')}>Show Elements</div>
           {this.renderTableOptions()}
-          {model.props.showBenchmarks && (
-            <div>
-              <Input
-                placeholder="Benchmark label"
-                value={model.props.benchmarksLabel}
-                onChange={this.changeBenchmarkLabel}
-              />
-            </div>
-          )}
-          {model.props.showCurrentJobProficiency && (
-            <div className="mt-4">
-              <Input
-                placeholder="Current Proficiency label"
-                value={model.props.currentJobProficiencyLabel}
-                onChange={this.changeCurrentJobProficiencyLabel}
-              />
-            </div>
-          )}
-          {model.props.showTargetJobProficiency && (
-            <div className="mt-4">
-              <Input
-                placeholder="Target Proficiency label"
-                value={model.props.targetJobProficiencyLabel}
-                onChange={this.changeTargetJobProficiencyLabel}
-              />
-            </div>
-          )}
-
         </div>
         <hr className={styles.divider} />
         <div>
