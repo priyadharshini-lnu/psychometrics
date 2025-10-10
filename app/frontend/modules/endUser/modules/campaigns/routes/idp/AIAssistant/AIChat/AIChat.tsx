@@ -223,7 +223,7 @@ export const AIChat = () => {
       ? {
         message: content.message,
         component: content.component,
-        suggestions: content.suggestions || [],
+        suggestions: (content.component !== 'AssistantMessage') ? [] : content.suggestions || [],
         data: content.data || {},
       }
       : parseContent(content) || ASSISTANT_FAILURE_FALLBACK_CONTENT
@@ -292,8 +292,10 @@ export const AIChat = () => {
       const { messages: fetchedMessages, error: aiSessionError } = response
       const messages = fetchedMessages.map((msg) => {
         const content = parseContent(msg.content)
+        const message = parseAssistantMessage(content || { message: msg.content })
         return ({
-          ...(content || { message: msg.content }),
+          // ...(content || { message: msg.content }),
+          ...message,
           role: msg.role,
         })
       })
@@ -348,6 +350,10 @@ export const AIChat = () => {
 
     if (action === 'retakeChat') {
       handleReset()
+    }
+
+    if (action === 'retakeDocument') {
+      addUserMessage('I want to upload a different document.')
     }
   }
 

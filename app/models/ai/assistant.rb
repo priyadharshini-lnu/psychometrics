@@ -66,6 +66,10 @@ class AI::Assistant < ApplicationRecord
     end
   end
 
+  def assigned_to_idp_template?
+    IdpTemplate.exists?(['one_click_ai_assistant_id = ? OR document_analysis_ai_assistant_id = ?', id, id])
+  end
+
   private
 
   def create_chat_for_user(user)

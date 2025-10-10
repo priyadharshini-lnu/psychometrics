@@ -30,6 +30,14 @@
   border-color: @light-gray-border;
 }
 
+.attachement {
+  width: 50%;
+
+  > :global(.ant-attachment-list-card-content) {
+    flex-direction: column-reverse;
+  }
+}
+
 
 .retakeSteps {
   padding: @space-8;

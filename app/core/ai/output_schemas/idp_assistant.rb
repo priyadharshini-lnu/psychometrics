@@ -56,6 +56,8 @@ module AI
           INCORRECT: "The key insights from this document are..."
         DESC
         string :chat_summary, description: 'Summary of the chat interaction with user (markdown allowed)'
+        string :file_name,
+               description: 'Name of the uploaded document file by the user, should be blank if no document uploaded'
       end
     end
   end

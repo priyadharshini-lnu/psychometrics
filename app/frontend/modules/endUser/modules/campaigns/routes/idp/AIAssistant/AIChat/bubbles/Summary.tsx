@@ -49,12 +49,17 @@ export const Summary = ({
             {data.documentSummary}
           </ReactMarkdown>
         </Card>
-        <Card className={styles.card} styles={{ body: { width: '100%' } }}>
-          <Flex vertical justify="space-between" flex={1}>
-            <Typography.Text strong>{I18n.t('idp.ai.summary.upload_file')}</Typography.Text>
-            <Attachments.FileCard item={{ uid: '123', name: 'File uploaded.pdf' }} />
-          </Flex>
-        </Card>
+        {data.fileName && (
+          <Card className={styles.card} styles={{ body: { width: '100%' } }}>
+            <Flex vertical justify="space-between" flex={1}>
+              <Typography.Text strong>{I18n.t('idp.ai.summary.upload_file')}</Typography.Text>
+              <Attachments.FileCard
+                className={styles.attachement}
+                item={{ uid: '123', name: data.fileName }}
+              />
+            </Flex>
+          </Card>
+        )}
         <Divider />
         <Flex vertical justify="center" align="center" gap={16} className={styles.completionBubble}>
           <Flex vertical justify="center" align="center">

@@ -391,6 +391,7 @@ en:
         type: Type
         user_prompt: User Prompt
       revisions:
+        load: Load to form
         name: Name
         system_prompt: System Propmpt
         title: Revisions of AI Assistant
