@@ -2,13 +2,16 @@ import React from 'react'
 import {
   Form, DatePicker, InputNumber, Select, Spin,
   Switch,
+  Button,
+  Input
 } from 'antd'
 import dayjs from '~/utils/dayjs'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
-import { ReportFamily, ReportFamilyTR } from '../../core/reportFamilies'
-import { License, LicenseTypes } from '../../core/licenses'
+import { ReportFamily, ReportFamilyTR } from '../../../../../../core/reportFamilies'
+import { License, LicenseTypes } from '../../../../../../core/licenses'
+import { useParams } from 'react-router-dom'
 
 const { I18n } = window
 
@@ -18,50 +21,26 @@ interface Props {
 }
 
 interface LicenseFormValues extends Omit<License, 'startDate' | 'endDate'> {
-  startDate: dayjs.Dayjs
-  endDate: dayjs.Dayjs
+  usageLimit: number
 }
 
 export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
   const { resource } = useResourceContext()
-  const {
-    data: reportFamilies, fetch: fetchReportFamilies, isLoading: isReportFamilyLoading,
-  } = useResources<ReportFamily>(
-    'report_families',
-    {
-      responseType: ReportFamilyTR,
-      apiConfig: {
-        fields: { report_families: ['id', 'name'] },
-      },
-    },
-  )
-  const reportFamilyOpts = license?.reportFamily ? reportFamilies.concat(license.reportFamily) : reportFamilies
-
-  const datePicketDateFormat = 'DD MMMM YYYY'
-  const requestResponseDateFormat = 'YYYY-MM-DD'
-  const licenseResource = license ? {
-    ...license,
-    startDate: dayjs(license.startDate, requestResponseDateFormat),
-    endDate: dayjs(license.endDate, requestResponseDateFormat),
-  } : undefined
+  const { projectId } = useParams() as { projectId: string }
 
   return (
     <ResourceFormModal
-      resourceName="licenses"
-      readableResourceName={I18n.t('licenses.title')}
+      resourceName="project_licenses"
+      readableResourceName="Project License"
       showSuccessMessages
       close={close}
-      resource={licenseResource}
+      // resource={licenseResource}
       scrollToFirstError
       modalProps={{ width: 620 }}
-      transformValues={(values: LicenseFormValues) => (
-        {
-          ...values,
-          startDate: values.startDate.format(requestResponseDateFormat),
-          endDate: values.endDate.format(requestResponseDateFormat),
-        })
-
-      }
+      transformValues={(values: LicenseFormValues) => ({
+        ...values,
+        license_id: license?.id,
+      })}
       request={{
         createResource: resource.createResource,
         updateResource: resource.updateResource,
@@ -69,76 +48,14 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
     >
       {({ form }) => (
         <>
-          <Form.Item
-            name="type"
-            label={I18n.t('licenses.type')}
-            rules={[{ required: true }]}
-          >
-            <Select showSearch disabled={!!license}>
-              {LicenseTypes.map(type => (
-                <Select.Option key={type} value={type}>
-                  { I18n.t(`licenses.types.${type}`) }
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-
-          { form.getFieldValue('type') === 'common' && (
-            <Form.Item
-              name="reportFamilyId"
-              label={I18n.t('licenses.report_family')}
-              rules={[{ required: form.getFieldValue('type') === 'common' }]}
-            >
-              <Select
-                showSearch
-                disabled={!!license}
-                onSearch={(value) => {
-                  fetchReportFamilies({
-                    apiConfig: { fields: { report_families: ['id', 'name'] }, filter: { name_cont: value } },
-                  })
-                }}
-                notFoundContent={isReportFamilyLoading('fetch') ? <Spin size="small" /> : null}
-                filterOption={false}
-              >
-                {reportFamilyOpts.map(({ id, name }) => (
-                  <Select.Option key={id} value={id}>
-                    {name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-          )}
+              <Input disabled={true} value={license?.reportFamily?.name} />
 
           <Form.Item
-            name="number"
+            name="usage_limit"
             label={I18n.t('licenses.number')}
             rules={[{ required: true }]}
           >
             <InputNumber style={{ width: '25%' }} />
-          </Form.Item>
-
-          <Form.Item
-            name="overuseNumber"
-            label={I18n.t('licenses.overuse_number')}
-            rules={[{ required: true }]}
-          >
-            <InputNumber style={{ width: '25%' }} />
-          </Form.Item>
-
-          <Form.Item
-            name="startDate"
-            label={I18n.t('licenses.start_date')}
-            rules={[{ required: true }]}
-          >
-            <DatePicker style={{ width: '25%' }} format={datePicketDateFormat} />
-          </Form.Item>
-
-          <Form.Item
-            name="endDate"
-            label={I18n.t('licenses.end_date')}
-            rules={[{ required: true }]}
-          >
-            <DatePicker style={{ width: '25%' }} format={datePicketDateFormat} />
           </Form.Item>
 
           <Form.Item

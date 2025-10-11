@@ -49,30 +49,7 @@ module Api
       params[:id]
     end
 
-    def licenses
-      records = client.licenses
-                      .where(is_project_specific: true)
-                      .includes(:report_family)
 
-      page_number = (params.dig(:page, :number) || 1).to_i
-      page_size   = (params.dig(:page, :size)   || 25).to_i
-
-      paginated = records.page(page_number).per(page_size)
-
-      resources = paginated.map { |r| Api::V2::Administration::LicenseResource.new(r, context) }
-
-      serializer = JSONAPI::ResourceSerializer.new(
-        Api::V2::Administration::LicenseResource,
-        include: ['report_family']
-      )
-
-      render json: serializer.serialize_to_hash(resources).merge(
-        meta: {
-          record_count: records.count,
-          page_count: (records.count / page_size.to_f).ceil
-        }
-      )
-    end
 
 
     private
