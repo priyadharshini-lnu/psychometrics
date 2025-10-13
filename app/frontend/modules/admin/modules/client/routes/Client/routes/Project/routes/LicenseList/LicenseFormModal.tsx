@@ -48,7 +48,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
     >
       {({ form }) => (
         <>
-              <Input disabled={true} value={license?.reportFamily?.name} />
+          <Input disabled={true} value={license?.reportFamily?.name} />
 
           <Form.Item
             name="usage_limit"

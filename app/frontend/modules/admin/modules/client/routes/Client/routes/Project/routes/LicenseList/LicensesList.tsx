@@ -20,15 +20,12 @@ const connecter = connect(
   (state: RootState) => ({
     project: state.project,
   }),
-  {
-    fetchProject, openModal
-  },
 )
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-const LicenseList: React.FC<Props> = ({ openModal }) => {
+const LicenseList: React.FC<Props> = () => {
   const { projectId } = useParams() as { projectId: string }
   const config = {
     trackUrl: true,

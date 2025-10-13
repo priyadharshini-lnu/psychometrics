@@ -8,7 +8,6 @@ import { License } from '~/modules/admin/modules/client/core/licenses'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { UpdateResource } from '~/hooks/useResources/interfaces'
-import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 
@@ -27,7 +26,7 @@ type Props = PropsFromRedux
 const ClientLicensesTableComponent: React.FC<Props> = ({
   openModal,
 }) => {
-  const { resource } = useResourceContext<License>()
+  // const { resource } = useResourceContext<License>()
 
   return (
     <Resource.Table pagination>
@@ -44,6 +43,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         width={30}
         render={(_, license) => (
           <Switch
+            checked={license.projectLicenseDetails?.enabled ?? false}
             onClick={(checked, e) => {
               e.stopPropagation()
               openModal('LicenseFormModal', { license })
@@ -67,10 +67,10 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         title={I18n.t('licenses.used_number')}
         id="used_number"
         dataIndex="usedNumber"
-        render={(_, { usedNumber, number }) => I18n.t('licenses.used_out_of', {
-          used: usedNumber - usedOveruseNumber(usedNumber, number),
-          total: number,
-        })}
+        render={(_, { projectLicenseDetails }) => projectLicenseDetails ? I18n.t('licenses.used_out_of', {
+          used: projectLicenseDetails.usedNumber,
+          total: projectLicenseDetails.usageLimit,
+        }) : '-'}
       />
       <Resource.Column<License>
         title={I18n.t('licenses.start_date')}
