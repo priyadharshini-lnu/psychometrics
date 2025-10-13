@@ -2520,6 +2520,7 @@ de:
       update_success: SMS-Einladung wurde erfolgreich aktualisiert
     sms_records:
       create_success: SMS-Auftrag wurde erfolgreich geplant
+    starting_in: Ab
     test_webhook:
       create_success: Webhook-Test erfolgreich.
       success: Erfolg
@@ -3081,7 +3082,7 @@ de:
     users:
       account_disable: Ihr Konto wurde aufgrund von Inaktivität deaktiviert
       warning: Ihr Konto wird demnächst wegen Inaktivität deaktiviert werden
-  maintenance_message: Lighthouse wird wegen geplanter Wartungsarbeiten am %{start_date} heruntergefahren und für %{duration} Stunden nicht verfügbar sein
+  maintenance_message: Lighthouse wird am %{start_date} wegen planmäßiger Wartungsarbeiten ausfallen und für %{duration} nicht zur Verfügung stehen
   maintenance_submessage: Bitte aktualisieren Sie die Seite nach Abschluss der Wartungsarbeiten. Sie werden dann zur Login-Seite weitergeleitet
   my: Meine
   myself: Ich selbst

@@ -2508,6 +2508,7 @@ bg:
       update_success: SMS Invite беше актуализиран успешно
     sms_records:
       create_success: SMS задачата беше планирана успешно
+    starting_in: Започвайки в
     test_webhook:
       create_success: Тестът на Webhook е успешен.
       success: Успех
@@ -3068,7 +3069,7 @@ bg:
     users:
       account_disable: Вашият акаунт е деактивиран поради неактивност
       warning: Акаунтът ви скоро ще бъде деактивиран поради неактивност
-  maintenance_message: Lighthouse ще бъде изключен за планирана поддръжка на %{start_date} и няма да бъде достъпен за %{duration} часа
+  maintenance_message: Lighthouse ще бъде изключен за планирана поддръжка на %{start_date} и няма да бъде на разположение за %{duration}
   maintenance_submessage: Моля, опреснете страницата след приключване на поддръжката. Ще бъдете пренасочени към страницата за вход
   my: Мой
   myself: Себе си

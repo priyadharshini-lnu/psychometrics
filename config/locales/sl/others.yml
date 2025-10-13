@@ -2504,6 +2504,7 @@ sl:
       update_success: SMS Invite je bil uspešno posodobljen
     sms_records:
       create_success: Opravilo SMS je bilo uspešno načrtovano
+    starting_in: Začetek v
     test_webhook:
       create_success: Preskus spletnega kavlja je bil uspešen.
       success: Uspeh
@@ -3064,7 +3065,7 @@ sl:
     users:
       account_disable: Vaš račun je onemogočen zaradi nedejavnosti
       warning: Vaš račun bo kmalu onemogočen zaradi nedejavnosti
-  maintenance_message: Svetilnik ne bo deloval zaradi načrtovanega vzdrževanja na %{start_date} in ne bo na voljo za %{duration} ur
+  maintenance_message: Svetilnik bo %{start_date} zaradi načrtovanega vzdrževanja in ne bo na voljo za %{duration}
   maintenance_submessage: Prosimo, osvežite stran po končanem vzdrževanju. Preusmerjeni boste na stran za prijavo
   my: Moj
   myself: Sam
