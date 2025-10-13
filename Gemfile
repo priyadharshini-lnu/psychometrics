@@ -5,7 +5,7 @@ ruby '3.4.6'
 
 gem 'bootsnap',                   '~> 1.18.0', require: false
 gem 'bundler',                    '~> 2.3.17'
-gem 'rack',                       '~> 2.2.19'
+gem 'rack',                       '~> 2.2.20'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'faraday',                    '~> 1.10.0'
