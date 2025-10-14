@@ -1227,7 +1227,7 @@ en:
         ai_assisted_idp: AI Assisted IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP requires AI Assistants feature to be enabled
         global_skills: Global Skills
-        global_skills_requires_idp: To enable Global Skills for this project, please activate it under Feature Flags in the client settings.
+        global_skills_disabled_by_client: Global Skills is disabled by client
         idp: IDP
         idp_disabled_by_client: IDP is disabled by client
         sms_notification: SMS Notification

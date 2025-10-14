@@ -1223,7 +1223,6 @@ hr:
         ai_assisted_idp: IDP potpomognut umjetnom inteligencijom
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahtijeva omogućavanje značajke AI Assistants
         global_skills: Globalne vještine
-        global_skills_requires_idp: Da biste omogućili globalne vještine za ovaj projekt, aktivirajte ga pod Zastavice značajki u postavkama klijenta.
         idp: IDP
         idp_disabled_by_client: IDP je onemogućen od strane klijenta
         sms_notification: SMS obavijest

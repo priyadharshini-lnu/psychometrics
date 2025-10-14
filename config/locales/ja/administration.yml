@@ -1223,7 +1223,6 @@ ja:
         ai_assisted_idp: AIアシストIDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP では、AI アシスタント機能を有効にする必要があります
         global_skills: グローバル・スキル
-        global_skills_requires_idp: このプロジェクトでグローバルスキルを有効にするには、クライアント設定の [機能フラグ] で有効にしてください。
         idp: アイディーピー
         idp_disabled_by_client: IDP はクライアントによって無効になっています
         sms_notification: SMS通知

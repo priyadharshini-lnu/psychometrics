@@ -1223,7 +1223,6 @@ bg:
         ai_assisted_idp: Подпомагано от AI IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP изисква функцията AI Assistants да бъде активирана
         global_skills: Глобални умения
-        global_skills_requires_idp: За да активирате Global Skills за този проект, моля, активирайте го под Флагове на функциите в настройките на клиента.
         idp: IDP
         idp_disabled_by_client: IDP е деактивиран от клиента
         sms_notification: SMS известяване

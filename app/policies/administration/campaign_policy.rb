@@ -271,7 +271,7 @@ module Administration
     end
 
     def view_ai_artifacts?
-      client.project_feature_enabled?(:ai_assistants) && @user.is?(:superadmin)
+      record.project.project_feature_enabled?(:ai_assistants) && @user.is?(:superadmin)
     end
 
     class Scope < Scope

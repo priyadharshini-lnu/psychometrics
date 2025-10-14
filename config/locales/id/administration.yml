@@ -1223,7 +1223,6 @@ id:
         ai_assisted_idp: IDP yang Dibantu AI
         ai_assisted_idp_requires_ai_assistants: IDP Berbantuan AI memerlukan fitur Asisten AI untuk diaktifkan
         global_skills: Keterampilan Global
-        global_skills_requires_idp: Untuk mengaktifkan Keterampilan Global untuk proyek ini, aktifkan di bawah Bendera Fitur di pengaturan klien.
         idp: IDP
         idp_disabled_by_client: IDP dinonaktifkan oleh klien
         sms_notification: Notifikasi SMS

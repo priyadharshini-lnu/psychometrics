@@ -1223,7 +1223,6 @@ it:
         ai_assisted_idp: AI Assistito IDP
         ai_assisted_idp_requires_ai_assistants: L'IDP assistito dall'intelligenza artificiale richiede l'abilitazione della funzione Assistenti all'intelligenza artificiale
         global_skills: Competenze globali
-        global_skills_requires_idp: Per abilitare le competenze globali per questo progetto, attivarle in Flag di funzionalità nelle impostazioni del client.
         idp: IDP
         idp_disabled_by_client: L'IDP è disabilitato dal client
         sms_notification: Notifica via SMS

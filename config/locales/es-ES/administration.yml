@@ -1223,7 +1223,6 @@ es-ES:
         ai_assisted_idp: AI PDI asistido
         ai_assisted_idp_requires_ai_assistants: El IDP asistido por IA requiere que la función de asistentes de IA esté habilitada
         global_skills: Habilidades globales
-        global_skills_requires_idp: Para habilitar las habilidades globales para este proyecto, actívelo en Feature Flags en la configuración del cliente.
         idp: PDI
         idp_disabled_by_client: El cliente deshabilita el IDP
         sms_notification: Notificación por SMS

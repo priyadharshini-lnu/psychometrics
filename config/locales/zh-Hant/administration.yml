@@ -1223,7 +1223,6 @@ zh-Hant:
         ai_assisted_idp: AI 協助的 IDP
         ai_assisted_idp_requires_ai_assistants: AI 輔助 IDP 需要啟用 AI 助理功能
         global_skills: 全球技能
-        global_skills_requires_idp: 若要啟用此專案的全域技能，請在用戶端設定中的功能旗標下啟用它。
         idp: IDP
         idp_disabled_by_client: 客戶端禁用了IDP
         sms_notification: 簡訊通知

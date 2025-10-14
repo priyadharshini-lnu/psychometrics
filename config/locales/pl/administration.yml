@@ -1223,7 +1223,6 @@ pl:
         ai_assisted_idp: Dostawca tożsamości wspomagany przez sztuczną inteligencję
         ai_assisted_idp_requires_ai_assistants: Usługa AI Assisted IDP wymaga włączenia funkcji AI Assistants
         global_skills: Umiejętności globalne
-        global_skills_requires_idp: Aby włączyć umiejętności globalne dla tego projektu, aktywuj je w sekcji Flagi funkcji w ustawieniach klienta.
         idp: PRI
         idp_disabled_by_client: Dostawca tożsamości jest wyłączony przez klienta
         sms_notification: Powiadomienie SMS

@@ -1223,7 +1223,6 @@ ko:
         ai_assisted_idp: AI 지원 IDP
         ai_assisted_idp_requires_ai_assistants: AI 지원 IDP를 사용하려면 AI 어시스턴트 기능을 활성화해야 합니다.
         global_skills: 글로벌 기술
-        global_skills_requires_idp: 이 프로젝트에 대해 글로벌 스킬을 활성화하려면 클라이언트 세팅의 피처 플래그(Feature Flags) 에서 활성화하세요.
         idp: IDP
         idp_disabled_by_client: 클라이언트에서 IDP를 사용하지 않도록 설정했습니다.
         sms_notification: SMS 알림

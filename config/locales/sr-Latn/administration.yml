@@ -1223,7 +1223,6 @@ sr-Latn:
         ai_assisted_idp: AI asistirani IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva da AI Assistants funkcija bude omogućena
         global_skills: Globalne veštine
-        global_skills_requires_idp: Da biste omogućili Global Skills za ovaj projekat, aktivirajte ga pod Feature Flags u podešavanjima klijenta.
         idp: IDP
         idp_disabled_by_client: IDP je onemogućen od strane klijenta
         sms_notification: SMS obaveštenje

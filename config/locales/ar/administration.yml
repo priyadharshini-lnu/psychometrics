@@ -1223,7 +1223,6 @@ ar:
         ai_assisted_idp: المشردون داخلياً بمساعدة الذكاء الاصطناعي
         ai_assisted_idp_requires_ai_assistants: يتطلب IDP المدعوم من الذكاء الاصطناعي تمكين ميزة مساعدي الذكاء الاصطناعي
         global_skills: المهارات العالمية
-        global_skills_requires_idp: لتمكين المهارات العالمية لهذا المشروع ، يرجى تنشيطه ضمن علامات الميزات في إعدادات العميل.
         idp: IDP
         idp_disabled_by_client: تم تعطيل IDP بواسطة العميل
         sms_notification: إشعار الرسائل النصية القصيرة

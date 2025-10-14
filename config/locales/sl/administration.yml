@@ -1223,7 +1223,6 @@ sl:
         ai_assisted_idp: IDP s pomočjo AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva, da je omogočena funkcija AI Assistants
         global_skills: Globalne spretnosti
-        global_skills_requires_idp: Če želite omogočiti globalne spretnosti za ta projekt, jih aktivirajte v nastavitvah odjemalca v razdelku Zastavice funkcij.
         idp: IDP
         idp_disabled_by_client: IDP je onemogočen s strani odjemalca
         sms_notification: SMS obvestilo

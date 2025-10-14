@@ -1223,7 +1223,6 @@ sk:
         ai_assisted_idp: IDP s pomocou AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vyžaduje povolenie funkcie AI Assistants
         global_skills: Globálne zručnosti
-        global_skills_requires_idp: Ak chcete povoliť globálne zručnosti pre tento projekt, aktivujte si ich v časti Príznaky funkcií v nastaveniach klienta.
         idp: IDP
         idp_disabled_by_client: IDP je zakázaný klientom
         sms_notification: SMS upozornenie

@@ -1223,7 +1223,6 @@ hu:
         ai_assisted_idp: AI által támogatott IDP
         ai_assisted_idp_requires_ai_assistants: Az AI-asszisztált IDP-hez engedélyezni kell az AI Assistants funkciót
         global_skills: Globális készségek
-        global_skills_requires_idp: A globális képességek engedélyezéséhez ehhez a projekthez aktiválja azt a kliens beállításainak Funkciójelzők alatt.
         idp: IDP
         idp_disabled_by_client: Az ügyfél letiltja az IDP-t
         sms_notification: SMS-értesítés

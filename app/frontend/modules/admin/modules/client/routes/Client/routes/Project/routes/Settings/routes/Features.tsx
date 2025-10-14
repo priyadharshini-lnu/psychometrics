@@ -35,7 +35,6 @@ export const Features: React.FC = () => {
   const { projectId } = useParams() as { projectId: string }
   const [form] = Form.useForm()
   const aiAssistants = Form.useWatch('aiAssistants', form)
-  const idp = Form.useWatch('idp', form)
 
   // First fetch project data to get clientId
   const {
@@ -130,14 +129,17 @@ export const Features: React.FC = () => {
     if (!clientFeatures.idp) {
       form.setFieldsValue({
         idp: false,
-        globalSkills: false,
       })
-    } else if (!idp) {
+    }
+  }, [clientFeatures.idp])
+
+  useEffect(() => {
+    if (!clientFeatures.globalSkills) {
       form.setFieldsValue({
         globalSkills: false,
       })
     }
-  }, [clientFeatures.idp, idp])
+  }, [clientFeatures.globalSkills])
 
   const isFetchLoading = isLoading('fetch')
 
@@ -148,7 +150,7 @@ export const Features: React.FC = () => {
       aiAssistants: !clientFeatures.aiAssistants ? false : values.aiAssistants || false,
       aiAssistedIdp: (!clientFeatures.aiAssistants || !values.aiAssistants) ? false : values.aiAssistedIdp || false,
       idp: !clientFeatures.idp ? false : values.idp || false,
-      globalSkills: (!clientFeatures.idp || !values.idp) ? false : values.globalSkills || false,
+      globalSkills: !clientFeatures.globalSkills ? false : values.globalSkills || false,
     }
     return {
       ...transformedValues,
@@ -235,12 +237,12 @@ export const Features: React.FC = () => {
                   name="globalSkills"
                   label={I18n.t('administration.client_features.form.global_skills')}
                   help={
-                    (!clientFeatures.idp || !idp)
-                      ? I18n.t('administration.client_features.form.global_skills_requires_idp')
+                    !clientFeatures.globalSkills
+                      ? I18n.t('administration.client_features.form.global_skills_disabled_by_client')
                       : undefined
                   }
                 >
-                  <Switch disabled={!clientFeatures.idp || !idp} />
+                  <Switch disabled={!clientFeatures.globalSkills} />
                 </Form.Item>
                 <Button
                   type="primary"

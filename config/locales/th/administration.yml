@@ -1223,7 +1223,6 @@ th:
         ai_assisted_idp: AI ช่วยเหลือ IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP ต้องการคุณสมบัติ AI Assistants เพื่อเปิดใช้งาน
         global_skills: ทักษะระดับโลก
-        global_skills_requires_idp: หากต้องการเปิดใช้งานทักษะระดับโลกสําหรับโปรเจ็กต์นี้ โปรดเปิดใช้งานภายใต้ Feature Flags ในการตั้งค่าไคลเอ็นต์
         idp: ผู้พลัดถิ่นภายในประเทศ
         idp_disabled_by_client: IDP ถูกปิดใช้งานโดยลูกค้า
         sms_notification: การแจ้งเตือนทาง SMS

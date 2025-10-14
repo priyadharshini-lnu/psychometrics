@@ -1223,7 +1223,6 @@ nl:
         ai_assisted_idp: AI Geassisteerde IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vereist dat de functie AI Assistants is ingeschakeld
         global_skills: Wereldwijde vaardigheden
-        global_skills_requires_idp: Om Global Skills voor dit project in te schakelen, activeert u het onder Functievlaggen in de klantinstellingen.
         idp: IDP
         idp_disabled_by_client: IDP is uitgeschakeld door de client
         sms_notification: SMS-melding

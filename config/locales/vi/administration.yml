@@ -1223,7 +1223,6 @@ vi:
         ai_assisted_idp: IDP hỗ trợ AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP yêu cầu bật tính năng Trợ lý AI
         global_skills: Kỹ năng toàn cầu
-        global_skills_requires_idp: Để kích hoạt Kỹ năng toàn cầu cho dự án này, vui lòng kích hoạt nó trong Cờ tính năng trong cài đặt ứng dụng.
         idp: IDP
         idp_disabled_by_client: IDP bị vô hiệu hóa bởi khách hàng
         sms_notification: Thông báo SMS

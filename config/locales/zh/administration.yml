@@ -1223,7 +1223,6 @@ zh:
         ai_assisted_idp: AI 援助的境内流离失所者
         ai_assisted_idp_requires_ai_assistants: AI 辅助 IDP 需要启用 AI 助手功能
         global_skills: 全球技能
-        global_skills_requires_idp: 要为此项目启用全局技能，请在客户端设置中的 功能标志（Feature Flags） 下激活它。
         idp: IDP
         idp_disabled_by_client: 客户端禁用 IDP
         sms_notification: 短信通知
