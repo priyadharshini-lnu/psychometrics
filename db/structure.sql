@@ -5655,7 +5655,10 @@ CREATE TABLE public.report_approval_settings (
     digest_frequency character varying DEFAULT 'daily'::character varying,
     digest_time time without time zone DEFAULT '21:00:00'::time without time zone,
     digest_weekdays integer[] DEFAULT '{}'::integer[],
-    digest_timezone character varying DEFAULT 'Asia/Dubai'::character varying
+    digest_timezone character varying DEFAULT 'Asia/Dubai'::character varying,
+    digest_delivery_mode character varying DEFAULT 'immediate'::character varying,
+    last_digest_sent_at timestamp(6) without time zone,
+    digest_emails_enabled_at timestamp(6) without time zone
 );
 
 
@@ -18491,6 +18494,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20250930153016'),
+('20250924140546'),
 ('20251003104731'),
 ('20251001034346'),
 ('20250917104111'),

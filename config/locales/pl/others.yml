@@ -907,6 +907,8 @@ pl:
     bulk_download_reports:
       content:
         title: Łącza do pobierania raportów
+      errors:
+        no_plans: Nie znaleziono aktywnych planów IDP
     close: Zamykać
     details: Szczegóły
     errors: Błędy
@@ -919,6 +921,14 @@ pl:
     super_admin:
       errors:
         data_processing_disabled: Przetwarzanie danych jest wyłączone.
+  ai:
+    errors:
+      bad_request_invalid_input: Twoje żądanie nie może zostać przetworzone z powodu nieprawidłowych danych wejściowych. Sprawdź swoje żądanie i spróbuj ponownie.
+      generic: Coś poszło nie tak podczas przetwarzania Twojego żądania. Skontaktuj się z administratorem.
+      rate_limit_exceeded: Usługa cieszy się obecnie dużym zainteresowaniem. Poczekaj chwilę i spróbuj ponownie.
+      server_error: Usługa AI jest tymczasowo niedostępna. Spróbuj ponownie za kilka chwil.
+      service_overloaded: Usługa AI jest obecnie przeciążona. Poczekaj chwilę i spróbuj ponownie.
+      service_unavailable: Usługa AI jest obecnie w trakcie konserwacji. Spróbuj ponownie później.
   anonym:
     close: Zamknij
     continue: Kontynuuj
@@ -1173,6 +1183,7 @@ pl:
       assessments_and_reports: Oceny i raporty
       idp: IDP
       manage: Zarządzać
+      recordings: Nagrania
       report_approval: Ustawienia zatwierdzania raportów
       sequencing: Sekwencjonowanie
     report_approval:
@@ -2192,6 +2203,8 @@ pl:
       not_uniq_variable: Zmienna '%{value}' zdefiniowana na nowo w wierszu o numerze %{row}
       project_assessments:
         should_be_greater_than_zero: Ważność wyniku powinna być większa niż 0 dni
+      project_feature:
+        global_skills_not_enabled_on_client: Aby włączyć umiejętności globalne dla tego projektu, aktywuj je w sekcji Flagi funkcji w ustawieniach klienta.
       report_approval_settings:
         report_exists: Ustawienie zatwierdzania raportu dla tego raportu już istnieje.
         validates_admins: Administratorzy nie mają dostępu do kampanii.
@@ -2261,6 +2274,8 @@ pl:
       body:
         error: Treść wiadomości e-mail zawiera nieprawidłowy potok.
   errors:
+    ai_assistant:
+      max_generation_limit: Przekroczono maksymalny limit generacji, skontaktuj się z administracją.
     assessments:
       timed_out: Nie będziesz mógł wziąć udziału w ocenie %{assessment_name}, ponieważ upłynął limit czasu.
     equal_to_current_password: musi być inne niż bieżące hasło.
@@ -2585,6 +2600,8 @@ pl:
       finishing:
         hint: Nasz asystent AI tworzy dla Ciebie plan IDP.
         title: Proszę, czekaj, robimy naszą magię...
+      reset_chat: Zresetuj czat
+      reset_confirmation: Czy na pewno chcesz odrzucić ten czat i zacząć nowy?
       retake_steps:
         chat_hint: Daj mi znać, jakie informacje chcesz podać poniżej?
         chat_title: Chcesz podać więcej informacji?
@@ -2592,9 +2609,27 @@ pl:
         start_chat_again: Rozpocznij czat ponownie
         upload_document: Prześlij dokument
         upload_file: Prześlij plik
+      start_page:
+        ai_assisted:
+          button: Dostawca tożsamości wspomagany przez sztuczną inteligencję
+          description: Interaktywny przepływ oparty na konwersacji, w którym współtworzysz plan za pomocą sztucznej inteligencji w wielu krokach.
+          option_1: Bardziej spersonalizowane wyniki
+          option_2: Możliwości autorefleksji
+          option_3: Lepsze rozwiązanie dla osób zmieniających karierę zawodową
+          title: Wspomagany przez sztuczną inteligencję IDP
+        one_click:
+          button: Dostawca tożsamości AI jednym kliknięciem
+          description: Sztuczna inteligencja wykonuje całą ciężką pracę - natychmiast skanuje dane i generuje kompletny plan rozwoju.
+          option_1: Najszybsza opcja (5 minut)
+          option_2: Dobre dla zapracowanych profesjonalistów
+          option_3: W pełni edytowalny po wygenerowaniu
+          title: Dostawca tożsamości AI z 1 kliknięciem
+        sub_title: Stwórzmy spersonalizowany program podnoszenia kwalifikacji, dopasowany do Twoich aspiracji zawodowych i prowadzony przez sztuczną inteligencję
+        title: Stwórz swój indywidualny plan rozwoju
       summary:
         chat_title: Podsumowanie funkcji Chat Insight
         file_title: Statystyki przesłanych dokumentów
+        gap_report_title: Analiza raportu o brakach w umiejętnościach
         hint: jeśli tak, utworzymy Twój IDP, w przeciwnym razie możesz ponownie uzyskać odpowiedzi
         title: Czy jesteś zadowolony z efektów?
         upload_file: Przesłany plik
@@ -2643,6 +2678,7 @@ pl:
       add_development_actions_from_below_options: Dodaj akcje programistyczne z poniższych opcji.
       add_development_actions_modal_title: Biblioteka działań rozwojowych dla %{skillName}
       add_from_library: Dodaj z biblioteki
+      add_more: Dodaj więcej akcji programistycznych
       all: Wszystkie
       approved: Zatwierdzone
       board_view:
@@ -2657,6 +2693,7 @@ pl:
       custom: Zwyczaj
       custom_da_description: Utwórz niestandardową akcję programistyczną, aby zaspokoić unikatowe potrzeby programistyczne.
       date_range: Data rozpoczęcia - Data zakończenia
+      edit_da_progress: Edytowanie postępu działań programistycznych
       edit_plan_to_add_development_actions: Edytuj plan i dodaj działania rozwojowe.
       enter_development_action_description: Wprowadź opis działania programistycznego
       enter_development_action_title: Wprowadź tytuł działania rozwojowego

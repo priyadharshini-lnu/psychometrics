@@ -913,6 +913,8 @@ sr-Latn:
     bulk_download_reports:
       content:
         title: Linkovi za preuzimanje izveštaja
+      errors:
+        no_plans: Nije pronađen aktivan IDP planovi
     close: Zatvorite
     details: Detalji
     errors: Greške
@@ -925,6 +927,14 @@ sr-Latn:
     super_admin:
       errors:
         data_processing_disabled: Obrada podataka je onemogućena.
+  ai:
+    errors:
+      bad_request_invalid_input: Vaš zahtev nije mogao biti obrađen zbog nevažećeg unosa. Proverite svoj zahtev i pokušajte ponovo.
+      generic: Nešto je pošlo naopako prilikom obrade vašeg zahteva. Molimo Vas da kontaktirate svog administratora.
+      rate_limit_exceeded: Usluga trenutno doživljava veliku potražnju. Sačekajte trenutak i pokušajte ponovo.
+      server_error: AI usluga je privremeno nedostupna. Pokušajte ponovo za nekoliko trenutaka.
+      service_overloaded: AI usluga je trenutno preopterećena. Sačekajte trenutak i pokušajte ponovo.
+      service_unavailable: AI servis je trenutno u održavanju. Pokušajte ponovo kasnije.
   anonym:
     close: Zatvori
     continue: Nastavi
@@ -1183,6 +1193,7 @@ sr-Latn:
       assessments_and_reports: Procene i izveštaji
       idp: IDP
       manage: Upravljanje
+      recordings: Snimke
       report_approval: Podešavanja odobrenja izveštaja
       sequencing: Sekvenciranje
     report_approval:
@@ -2206,6 +2217,8 @@ sr-Latn:
       not_uniq_variable: promenljiva '%{value}' redefinisana na broju linije %{row}
       project_assessments:
         should_be_greater_than_zero: Validnost rezultata treba da bude veća od 0 dana
+      project_feature:
+        global_skills_not_enabled_on_client: Da biste omogućili Global Skills za ovaj projekat, aktivirajte ga pod Feature Flags u podešavanjima klijenta.
       report_approval_settings:
         report_exists: Postavka odobrenja izveštaja za ovaj izveštaj već postoji.
         validates_admins: Administratori nemaju pristup kampanji.
@@ -2275,6 +2288,8 @@ sr-Latn:
       body:
         error: Telo e-pošte ima netačan pipetekt.
   errors:
+    ai_assistant:
+      max_generation_limit: Maksimalna granica generacije prekoračena, obratite se svojoj administraciji.
     assessments:
       timed_out: Nećete moći da preuzmete procenu %{assessment_name} jer je isteklo vreme.
     equal_to_current_password: mora biti drugačija od trenutne lozinke.
@@ -2526,6 +2541,7 @@ sr-Latn:
       update_success: SMS poziv je uspešno ažuriran
     sms_records:
       create_success: SMS posao je uspešno zakazan
+    starting_in: Polazeći od
     test_webhook:
       create_success: Vebhook test je uspešan.
       success: Uspeh
@@ -2598,6 +2614,8 @@ sr-Latn:
       finishing:
         hint: Naš AI asistent kreira IDP plan za vas.
         title: Molimo sačekajte da radimo našu magiju ...
+      reset_chat: Poništi ćaskanje
+      reset_confirmation: Da li ste sigurni da želite da odbacite ovaj razgovor i započnete novo?
       retake_steps:
         chat_hint: Javite mi koje informacije želite da pružite više ispod?
         chat_title: Želite da date više informacija?
@@ -2605,9 +2623,27 @@ sr-Latn:
         start_chat_again: Ponovo započni ćaskanje
         upload_document: Otpremite dokument
         upload_file: Pošalji datoteku
+      start_page:
+        ai_assisted:
+          button: AI uz pomoć IDP
+          description: Interaktivni tok vođen razgovorom u kojem zajedno kreirate plan sa AI u više koraka.
+          option_1: Više personalizovanih rezultata
+          option_2: Mogućnosti samorefleksije
+          option_3: Bolje za tranziciju u karijeri
+          title: AI-uz pomoć IDP
+        one_click:
+          button: Jedan klik AI IDP
+          description: AI obavlja sav težak posao - trenutno skenira vaše podatke i generiše kompletan plan razvoja.
+          option_1: Najbrža opcija (5 minuta)
+          option_2: Dobro za zaposlene profesionalce
+          option_3: Potpuno uređivati nakon generacije
+          title: KSNUMKS-Click AI IDP
+        sub_title: Hajde da kreiramo prilagođeni jornei za usavršavanje mapiran na vašu težnju u karijeri i vođen AI
+        title: Kreirajte svoj individualni plan razvoja
       summary:
         chat_title: Rezime uvida u ćaskanje
         file_title: Učitani dokumenti Uvid
+        gap_report_title: Analiza izveštaja o jazu u veštinama
         hint: ako jeste, onda ćemo kreirati IDP, inače možete ponovo preuzeti svoje odgovore
         title: Da li ste zadovoljni rezultatima?
         upload_file: Postavljena datoteka
@@ -2656,6 +2692,7 @@ sr-Latn:
       add_development_actions_from_below_options: Dodajte razvojne akcije iz odozdo opcija.
       add_development_actions_modal_title: Biblioteka razvojnih akcija za %{skillName}
       add_from_library: Dodaj iz biblioteke
+      add_more: Dodajte još razvojnih akcija
       all: Sve
       approved: Odobrio
       board_view:
@@ -2670,6 +2707,7 @@ sr-Latn:
       custom: Prilagođene
       custom_da_description: Kreirajte prilagođenu razvojnu akciju za rešavanje jedinstvenih razvojnih potreba.
       date_range: Datum početka - Datum završetka
+      edit_da_progress: Uredi napredak u razvoju
       edit_plan_to_add_development_actions: Izmeni plan i da dodate razvojne akcije.
       enter_development_action_description: Unesite opis razvojne akcije
       enter_development_action_title: Unesite naslov razvojne akcije

@@ -369,7 +369,9 @@ th:
       created_successfully: ผู้ช่วย AI ถูกสร้างขึ้นสำเร็จแล้ว
       errors:
         cannot_delete_in_use: ไม่สามารถลบ AI Assistant '%{name}' ได้เนื่องจากมีการใช้งานอยู่
+        development_actions_assistance_not_enabled: การสร้างการดําเนินการพัฒนาที่ขับเคลื่อนด้วย AI ไม่พร้อมใช้งาน โปรดติดต่อผู้ดูแลระบบ
         one_click_idp_assistance_not_enabled: ความช่วยเหลือ IDP ที่ขับเคลื่อนด้วย AI ไม่สามารถใช้ได้กับแผนปัจจุบันของคุณ โปรดติดต่อผู้ดูแลระบบ
+        platform_assistant_already_exists: อนุญาตให้มีผู้ช่วยประเภท %{type} เพียง 1 คนบนแพลตฟอร์ม
       form:
         add_output_schema_key: เพิ่มคีย์แบบแผนเอาต์พุต
         dependencies: การพึ่งพา
@@ -388,6 +390,13 @@ th:
         system_prompt: คำสั่งของระบบ
         type: ประเภท
         user_prompt: คำสั่งของผู้ใช้
+      revisions:
+        load: โหลดตามแบบฟอร์ม
+        name: ชื่อ
+        system_prompt: ระบบ Propmpt
+        title: การแก้ไข AI Assistant
+        user_prompt: พรอมต์ผู้ใช้
+        version: เวอร์ชัน
       selector:
         choose_artifact: เลือก AI Artifact
         choose_schema_key: เลือกคีย์สคีมา
@@ -406,6 +415,12 @@ th:
       form:
         description: คำอธิบาย
         title: กุญแจ API
+    assessment_builder:
+      form:
+        display_label: ป้อนป้ายกํากับที่แสดง
+        label_required: ต้องมีฉลาก
+        value: ค่า
+        value_required: ต้องระบุค่า
     assessment_center:
       cancel_confirmation:
         message: คุณแน่ใจหรือไม่ว่าต้องการละทิ้งความคืบหน้าของแบบฟอร์ม?
@@ -666,6 +681,7 @@ th:
         no_results: ไม่มีคําถามตอบ
         other_reports: รายงานอื่นๆ
         overall_scoring: คะแนนโดยรวม
+        recordings: บันทึก
         refresh: ฟื้นฟู
         reports: รายงาน
         reports_count: "%{count} รายงาน"
@@ -1203,10 +1219,14 @@ th:
       client_features: คุณสมบัติลูกค้า
       form:
         ai_assistants: ผู้ช่วย AI
+        ai_assistants_disabled_by_client: ผู้ช่วย AI ถูกปิดใช้งานโดยไคลเอ็นต์
         ai_assisted_idp: AI ช่วยเหลือ IDP
+        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP ต้องการคุณสมบัติ AI Assistants เพื่อเปิดใช้งาน
         global_skills: ทักษะระดับโลก
         idp: ผู้พลัดถิ่นภายในประเทศ
+        idp_disabled_by_client: IDP ถูกปิดใช้งานโดยลูกค้า
         sms_notification: การแจ้งเตือนทาง SMS
+        sms_notification_disabled_by_client: การแจ้งเตือนทาง SMS ถูกปิดใช้งานโดยไคลเอ็นต์
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1727,7 @@ th:
         update_button: อัปเดตการแปล
       form:
         all: ทั้งหมด
+        assessment_center_booking_summary: สรุปการจองศูนย์ประเมิน
         assessment_completion_status_code: รหัสสถานะการประเมินเสร็จสิ้น
         assessment_completion_status_code_hint: หากมีการระบุรหัสการกรอกข้อมูลให้เสร็จสมบูรณ์ ระบบจะส่งก็ต่อเมื่อการประเมินของผู้ใช้มีรหัสสถานะการเสร็จสมบูรณ์นี้เท่านั้น
         body_mustache: |-
@@ -1726,6 +1747,8 @@ th:
         custom: กำหนดเอง
         delivery_at: จัดส่งที่ (GST)
         delivery_delay_hours: ความล่าช้าในการจัดส่ง (ชั่วโมง)
+        delivery_end_date: วันที่สิ้นสุดการจัดส่ง
+        delivery_frequency: ความถี่ในการจัดส่ง
         delivery_interval: ระยะเวลาการส่งมอบ
         delivery_interval_number: จำนวนช่วงเวลาการส่งมอบ
         delivery_interval_period: ช่วงเวลาการส่งมอบ
@@ -1736,7 +1759,16 @@ th:
           not_started: หากการประเมินไม่ได้เริ่ม
           send_now: ส่งเดี๋ยวนี้
           specific_datetime: ส่งที่
+        delivery_start_date: วันที่เริ่มต้นการจัดส่ง
+        delivery_time_of_day: เวลาจัดส่งของวัน
+        delivery_timezone: เขตเวลาจัดส่ง
+        delivery_weekdays: จัดส่งวันธรรมดา
         development_action_deadline_missed: พลาดกําหนดเวลาการดําเนินการเพื่อการพัฒนา
+        error_msgs:
+          delivery_end_date_after_start_date: ต้องอยู่หลังวันที่เริ่มต้น
+          delivery_start_date_in_past: ไม่สามารถเป็นอดีตได้
+          delivery_time_in_past: ไม่สามารถเป็นอดีตได้
+          delivery_weekdays_required: ต้องเลือกอย่างน้อยหนึ่งวันธรรมดา
         idp_deadline_missed: พลาดกําหนดเวลา IDP
         idp_template_approved: IDP ได้รับการอนุมัติ
         idp_template_assigned: IDP ที่ได้รับมอบหมาย
@@ -1817,15 +1849,21 @@ th:
         client: 'ลูกค้า:'
         communication_type: 'ประเภทการสื่อสาร:'
         delivery_rule: 'กฎการจัดส่ง:'
+        end_date: 'วันที่สิ้นสุด:'
         every_interval: ทุก %{interval}
+        frequency: 'ความถี่:'
         owner: 'เจ้าของ:'
         project: 'โครงการ:'
         recipients: 'รับ:'
         specific_datetime: 'ส่งที่:'
+        start_date: 'วันที่เริ่มต้น:'
         stop_reminder_datetime: วันที่สิ้นสุดการช่วยเตือน (GST)
         sub_campaign: 'แคมเปญย่อย:'
         subject: 'ชื่อเรื่อง:'
+        time_of_day: 'ช่วงเวลาของวัน:'
+        timezone: 'เขตเวลา:'
         users: 'ผู้เข้าร่วม:'
+        weekdays: 'วันธรรมดา:'
       sidebar:
         copy: คัดลอกการสื่อสาร
         destroy: ลบการสื่อสาร
@@ -2283,6 +2321,7 @@ th:
       enter_template_name_error: ต้องระบุชื่อเทมเพลต
       errors:
         cannot_update_progress_plan_completed: ไม่สามารถอัปเดตความคืบหน้าได้เนื่องจากแผน IDP ได้เสร็จสิ้นแล้ว
+        skills_required_on_publishing: โปรดเลือกทักษะก่อนเผยแพร่เทมเพลต
         update: ไม่อนุญาตให้อัปเดตเนื่องจากเทมเพลต IDP เชื่อมโยงกับแผน IDP ของผู้ใช้อยู่แล้ว การเปลี่ยนแปลงรูปลักษณ์ถูกบันทึกไว้
       fields:
         assigned_data: ข้อมูลที่ได้รับมอบหมาย
@@ -2336,6 +2375,7 @@ th:
       self_rating: เปิดใช้งานการให้คะแนนตนเอง
       show_reflections: แสดงภาพสะท้อน
       skill_gap_report: รายงานช่องว่างทักษะ
+      skill_gap_report_ai_assistant: ผู้ช่วยวิเคราะห์รายงานช่องว่างทักษะ
       skill_source_preference: แหล่งที่มาของทักษะ
       skill_sources:
         from_ai: จากความรู้ทั่วไป AI
@@ -3020,6 +3060,8 @@ th:
       tools:
         workshop_status_export: การส่งออกสถานะการประชุมเชิงปฏิบัติการ
         workshop_status_export_success: ตั้งเวลาการส่งออกสถานะเวิร์กชอปเรียบร้อยแล้ว
+    project_features:
+      project_features: คุณสมบัติของโครงการ
     project_participants:
       cancel: ยกเลิก
       column_actions: การดําเนินการ
@@ -3442,6 +3484,9 @@ th:
         graph_value_condition_not_supported_msg: เงื่อนไขค่ากราฟไม่ได้รับการสนับสนุนสําหรับกราฟประเภทนี้ ขณะนี้ตัวเลือกนี้ใช้ได้กับประเภทกราฟด้านล่างเท่านั้น
         graph_value_conditions_title: เงื่อนไขค่ากราฟ
         if_graph_value_is: 'ถ้าค่ากราฟเป็น:'
+        job_roles:
+          current: ปัจจัยงานปัจจุบัน
+          target: ปัจจัยงานเป้าหมาย
         manage_graph_value_condition: จัดการเงื่อนไขค่ากราฟ
         manage_styles_condition: จัดการเงื่อนไขสไตล์
         missing_value: ค่าที่หายไป
@@ -3456,6 +3501,26 @@ th:
         prefixes:
           and: และ
           or: หรือ
+        skill_type_label: กรองตามประเภททักษะ
+        skill_type_placeholder: เลือกประเภททักษะ
+        skill_types:
+          behavioral: พฤติกรรม
+          other: อื่นๆ
+          qualification: คุณสมบัติ
+          technical: ทางเทคนิค
+        table_options:
+          border: ชายแดน
+          description: คำอธิบาย
+          header: หัว ข้อ
+          icons: ไอ คอน
+          label: ฉลาก
+          name: ชื่อ
+          rank: ยศ
+          score: คะแนน
+          show_benchmark_score: แสดงคะแนนเกณฑ์มาตรฐาน
+          show_current_proficiency: แสดงความเชี่ยวชาญในปัจจุบัน
+          show_target_proficiency: แสดงความเชี่ยวชาญเป้าหมาย
+          strengths_blindspots: จุดแข็งและจุดบอด
         text_condition_type: 'ประเภทเงื่อนไขข้อความ:'
     report_families:
       create:
@@ -3691,6 +3756,7 @@ th:
       campaign_participants: ผู้เข้าร่วมแคมเปญ
       columns:
         activity: กิจกรรม
+        assessment_center_date_and_time: วันและเวลาของศูนย์ประเมิน
         assessor: ผู้ประเมิน
         assessors: ผู้ประเมิน
         attendance: การเข้าร่วม
@@ -4547,6 +4613,7 @@ th:
             import_subjects: นำเข้าหัวข้อ
             last_name: นามสกุล
             locale: สถานที่เกิดเหตุ
+            please_enter_valid_email: โปรดป้อนอีเมลที่ถูกต้อง
             target_job_role: บทบาทงานเป้าหมาย
             title: หัวข้อ
           title: ผู้เข้าร่วม

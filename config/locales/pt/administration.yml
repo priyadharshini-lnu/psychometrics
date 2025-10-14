@@ -369,7 +369,9 @@ pt:
       created_successfully: O Assistente de IA foi criado com êxito.
       errors:
         cannot_delete_in_use: Não é possível excluir o AI Assistant '%{name}' porque ele está sendo usado.
+        development_actions_assistance_not_enabled: A geração de ações de desenvolvimento baseadas em IA não está disponível. Entre em contato com o administrador.
         one_click_idp_assistance_not_enabled: A assistência de IDP com inteligência artificial não está disponível com seu plano atual. Entre em contato com o administrador.
+        platform_assistant_already_exists: Apenas 1 assistente do tipo %{type} é permitido na plataforma.
       form:
         add_output_schema_key: Adicionar chave de esquema de saída
         dependencies: Dependências
@@ -388,6 +390,13 @@ pt:
         system_prompt: Prompt do sistema
         type: Tipo
         user_prompt: Prompt do utilizador
+      revisions:
+        load: Carregar para formar
+        name: Nome
+        system_prompt: Propriedade do sistema
+        title: Revisões do AI Assistant
+        user_prompt: Prompt do usuário
+        version: Versão
       selector:
         choose_artifact: Escolha o artefato de IA
         choose_schema_key: Escolha a chave do esquema
@@ -406,6 +415,12 @@ pt:
       form:
         description: Descrição
         title: chave da API
+    assessment_builder:
+      form:
+        display_label: Insira o rótulo de exibição
+        label_required: O rótulo é obrigatório
+        value: Valor
+        value_required: O valor é necessário
     assessment_center:
       cancel_confirmation:
         message: Tem a certeza de que pretende eliminar o progresso do formulário?
@@ -666,6 +681,7 @@ pt:
         no_results: Não há nenhuma pergunta respondida
         other_reports: Outros relatórios
         overall_scoring: Pontuação global
+        recordings: Gravações
         refresh: Atualizar
         reports: Relatórios
         reports_count: relatórios %{count}
@@ -1203,10 +1219,14 @@ pt:
       client_features: Caraterísticas do cliente
       form:
         ai_assistants: Assistentes de IA
+        ai_assistants_disabled_by_client: Os assistentes de IA são desativados pelo cliente
         ai_assisted_idp: PDI assistida por IA
+        ai_assisted_idp_requires_ai_assistants: O IDP assistido por IA requer que o recurso AI Assistants seja ativado
         global_skills: Competências globais
         idp: PDI
+        idp_disabled_by_client: O IDP é desativado pelo cliente
         sms_notification: Notificação por SMS
+        sms_notification_disabled_by_client: A notificação por SMS é desativada pelo cliente
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1727,7 @@ pt:
         update_button: Atualizar tradução
       form:
         all: Todos
+        assessment_center_booking_summary: Resumo da reserva do centro de avaliação
         assessment_completion_status_code: Código do estado de conclusão da avaliação
         assessment_completion_status_code_hint: Se for especificado um código de conclusão, este só será enviado se a avaliação do utilizador tiver este código de estado de conclusão.
         body_mustache: |
@@ -1726,6 +1747,8 @@ pt:
         custom: Personalizado
         delivery_at: Entrega em (GST)
         delivery_delay_hours: Prazo de entrega (horas)
+        delivery_end_date: Data de término da entrega
+        delivery_frequency: Frequência de entrega
         delivery_interval: Intervalo de entrega
         delivery_interval_number: Número do intervalo de entrega
         delivery_interval_period: Período de intervalo de entrega
@@ -1736,7 +1759,16 @@ pt:
           not_started: Se a avaliação não for iniciada
           send_now: Enviar agora
           specific_datetime: Enviar para
+        delivery_start_date: Data de início da entrega
+        delivery_time_of_day: Tempo de entrega do dia
+        delivery_timezone: Fuso horário de entrega
+        delivery_weekdays: Entrega durante a semana
         development_action_deadline_missed: Prazo de ação de desenvolvimento não cumprido
+        error_msgs:
+          delivery_end_date_after_start_date: deve ser posterior à data de início
+          delivery_start_date_in_past: não pode estar no passado
+          delivery_time_in_past: não pode estar no passado
+          delivery_weekdays_required: deve selecionar pelo menos um dia da semana
         idp_deadline_missed: Prazo do PDI não cumprido
         idp_template_approved: PDI aprovado
         idp_template_assigned: IDP Atribuído
@@ -1817,15 +1849,21 @@ pt:
         client: 'Cliente:'
         communication_type: 'Tipo de comunicação:'
         delivery_rule: 'Regra de entrega:'
+        end_date: 'Data de término:'
         every_interval: A cada %{interval}
+        frequency: 'Frequência:'
         owner: 'Proprietário:'
         project: 'Projeto:'
         recipients: 'Beneficiários:'
         specific_datetime: 'Enviar para:'
+        start_date: 'Data de início:'
         stop_reminder_datetime: Data de fim dos avisos (GST)
         sub_campaign: 'Subcampanha:'
         subject: 'Assunto:'
+        time_of_day: 'Hora do dia:'
+        timezone: 'Fuso horário:'
         users: 'Utilizadores:'
+        weekdays: 'Semana:'
       sidebar:
         copy: Comunicação de cópias
         destroy: Eliminar a comunicação
@@ -2283,6 +2321,7 @@ pt:
       enter_template_name_error: O nome do modelo é obrigatório
       errors:
         cannot_update_progress_plan_completed: Não é possível atualizar os progressos porque o plano PDI já foi concluído
+        skills_required_on_publishing: Escolha as habilidades antes de publicar um modelo.
         update: Atualização não permitida porque o modelo IDP já está associado a um plano IDP do utilizador.
       fields:
         assigned_data: Dados atribuídos
@@ -2336,6 +2375,7 @@ pt:
       self_rating: Ativar a auto-classificação
       show_reflections: Mostrar reflexões
       skill_gap_report: Relatório de défice de competências
+      skill_gap_report_ai_assistant: Assistente de Análise de Relatório de Lacunas de Habilidades
       skill_source_preference: Fonte de habilidade
       skill_sources:
         from_ai: Do conhecimento geral de IA
@@ -3021,6 +3061,8 @@ pt:
       tools:
         workshop_status_export: Exportação do estado do seminário
         workshop_status_export_success: Estado do workshop A exportação foi agendada com êxito.
+    project_features:
+      project_features: Recursos do projeto
     project_participants:
       cancel: Cancelar
       column_actions: Acções
@@ -3443,6 +3485,9 @@ pt:
         graph_value_condition_not_supported_msg: As condições de valor do gráfico não são suportadas para este tipo de gráfico. No momento, essa opção está disponível apenas para os tipos de gráfico abaixo.
         graph_value_conditions_title: Condições de valor do gráfico
         if_graph_value_is: 'Se o valor do gráfico for:'
+        job_roles:
+          current: Fatores de trabalho atuais
+          target: Fatores de trabalho alvo
         manage_graph_value_condition: Gerenciar condição de valor do gráfico
         manage_styles_condition: Gerenciar condição de estilos
         missing_value: Valor ausente
@@ -3457,6 +3502,26 @@ pt:
         prefixes:
           and: E
           or: OU
+        skill_type_label: Filtrar por tipo de habilidade
+        skill_type_placeholder: Selecione o tipo de habilidade
+        skill_types:
+          behavioral: Comportamental
+          other: Outro
+          qualification: Qualificação
+          technical: Técnico
+        table_options:
+          border: Fronteira
+          description: Descrição
+          header: Cabeçalho
+          icons: Ícones
+          label: Etiqueta
+          name: Nome
+          rank: Classificar
+          score: Pontuação
+          show_benchmark_score: Mostrar pontuação de referência
+          show_current_proficiency: Mostrar proficiência atual
+          show_target_proficiency: Mostrar proficiência no alvo
+          strengths_blindspots: Pontos fortes e pontos cegos
         text_condition_type: 'Tipo de condição de texto:'
     report_families:
       create:
@@ -3692,6 +3757,7 @@ pt:
       campaign_participants: Participantes na campanha
       columns:
         activity: Atividade
+        assessment_center_date_and_time: Data e hora do centro de avaliação
         assessor: Assessor
         assessors: Avaliadores
         attendance: Presença
@@ -4561,6 +4627,7 @@ pt:
             import_subjects: Assuntos de importação
             last_name: Último nome
             locale: Localidade
+            please_enter_valid_email: Por favor, insira um e-mail válido
             target_job_role: Função profissional alvo
             title: Temas
           title: Participantes

@@ -369,7 +369,9 @@ ro:
       created_successfully: AI Assistant a fost creat cu succes.
       errors:
         cannot_delete_in_use: Nu se poate șterge AI Assistant "%{name}" deoarece este utilizat.
+        development_actions_assistance_not_enabled: Generarea de acțiuni de dezvoltare bazate pe inteligență artificială nu este disponibilă. Vă rugăm să contactați administratorul.
         one_click_idp_assistance_not_enabled: Asistența pentru IDP bazată pe inteligență artificială nu este disponibilă cu planul dvs. Vă rugăm să contactați administratorul.
+        platform_assistant_already_exists: Pe platformă este permis doar 1 asistent de tip %{type}.
       form:
         add_output_schema_key: Adăugați cheia schemei de ieșire
         dependencies: Dependențe
@@ -388,6 +390,13 @@ ro:
         system_prompt: Solicitare de sistem
         type: Tip
         user_prompt: Solicitarea utilizatorului
+      revisions:
+        load: Încărcați la formular
+        name: Nume
+        system_prompt: Propmpt de sistem
+        title: Revizuiri ale AI Assistant
+        user_prompt: Solicitare utilizator
+        version: Versiune
       selector:
         choose_artifact: Alegeți artefactul AI
         choose_schema_key: Alegeți cheia de schemă
@@ -406,6 +415,12 @@ ro:
       form:
         description: Descriere
         title: Cheie API
+    assessment_builder:
+      form:
+        display_label: Introduceți eticheta de afișare
+        label_required: Eticheta este necesară
+        value: Valoare
+        value_required: Valoarea este necesară
     assessment_center:
       cancel_confirmation:
         message: Sunteți sigur că doriți să renunțați la progresul formularului?
@@ -666,6 +681,7 @@ ro:
         no_results: Nu există întrebări la care să se răspundă
         other_reports: Alte rapoarte
         overall_scoring: Punctaj general
+        recordings: Înregistrări
         refresh: Împrospăta
         reports: Rapoarte
         reports_count: "%{count} Rapoarte"
@@ -1203,10 +1219,14 @@ ro:
       client_features: Caracteristicile clientului
       form:
         ai_assistants: Asistenți AI
+        ai_assistants_disabled_by_client: AI Assistants este dezactivat de client
         ai_assisted_idp: IDP asistat de AI
+        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP necesită activarea funcției AI Assistants
         global_skills: Competențe globale
         idp: IDP
+        idp_disabled_by_client: IDP este dezactivat de client
         sms_notification: Notificare SMS
+        sms_notification_disabled_by_client: Notificarea prin SMS este dezactivată de client
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1727,7 @@ ro:
         update_button: Actualizați traducere
       form:
         all: Toți
+        assessment_center_booking_summary: Rezumatul rezervării Assessment Center
         assessment_completion_status_code: Cod de stare de finalizare a evaluării
         assessment_completion_status_code_hint: Dacă este specificat un cod de completare, acesta va fi trimis numai dacă evaluarea utilizatorului are acest cod de stare de finalizare.
         body_mustache: |-
@@ -1726,6 +1747,8 @@ ro:
         custom: Personalizat
         delivery_at: Livrare la (GST)
         delivery_delay_hours: Întârziere de livrare (ore)
+        delivery_end_date: Data de încheiere a livrării
+        delivery_frequency: Frecvența de livrare
         delivery_interval: Interval de livrare
         delivery_interval_number: Numărul intervalului de livrare
         delivery_interval_period: Perioada intervalului de livrare
@@ -1736,7 +1759,16 @@ ro:
           not_started: Dacă evaluarea nu este începută
           send_now: Trimite acum
           specific_datetime: Trimite la
+        delivery_start_date: Data de începere a livrării
+        delivery_time_of_day: Ora de livrare a zilei
+        delivery_timezone: Fus orar de livrare
+        delivery_weekdays: Livrare în zilele lucrătoare
         development_action_deadline_missed: Termenul limită al acțiunii de dezvoltare a fost ratat
+        error_msgs:
+          delivery_end_date_after_start_date: trebuie să fie după data de începere
+          delivery_start_date_in_past: nu poate fi în trecut
+          delivery_time_in_past: nu poate fi în trecut
+          delivery_weekdays_required: trebuie să selecteze cel puțin o zi lucrătoare
         idp_deadline_missed: Termenul limită pentru IDP ratat
         idp_template_approved: Aprobat de IDP
         idp_template_assigned: IDP atribuit
@@ -1817,15 +1849,21 @@ ro:
         client: 'Client:'
         communication_type: 'Tip de comunicare:'
         delivery_rule: 'Regula de livrare:'
+        end_date: 'Data de încheiere:'
         every_interval: Fiecare %{interval}
+        frequency: 'Frecvență:'
         owner: 'Proprietar:'
         project: 'Proiect:'
         recipients: 'Destinatari:'
         specific_datetime: 'Trimite la:'
+        start_date: 'Data de începere:'
         stop_reminder_datetime: Data de încheiere a mementourilor (GST)
         sub_campaign: 'Subcampanie:'
         subject: 'Subiect:'
+        time_of_day: 'Ora din zi:'
+        timezone: 'Fus orar:'
         users: 'Utilizatorii:'
+        weekdays: 'Zile lucrătoare:'
       sidebar:
         copy: Copiați comunicarea
         destroy: Ștergeți comunicarea
@@ -2283,6 +2321,7 @@ ro:
       enter_template_name_error: Numele șablonului este obligatoriu
       errors:
         cannot_update_progress_plan_completed: Nu se poate actualiza progresul deoarece planul IDP a fost finalizat
+        skills_required_on_publishing: Vă rugăm să alegeți abilitățile înainte de a publica un șablon.
         update: Actualizarea nu este permisă, deoarece șablonul IDP este deja asociat cu un plan IDP al utilizatorului. Modificările de aspect au fost salvate.
       fields:
         assigned_data: Date atribuite
@@ -2336,6 +2375,7 @@ ro:
       self_rating: Activați autoevaluarea
       show_reflections: Afișați reflecții
       skill_gap_report: Raport privind decalajul de competențe
+      skill_gap_report_ai_assistant: Asistent de analiză a raportului Skill Gap
       skill_source_preference: Sursa abilităților
       skill_sources:
         from_ai: Din cunoștințe generale de inteligență artificială
@@ -3020,6 +3060,8 @@ ro:
       tools:
         workshop_status_export: Exportul stării atelierului
         workshop_status_export_success: Exportul de stare a atelierului a fost programat cu succes.
+    project_features:
+      project_features: Caracteristicile proiectului
     project_participants:
       cancel: Anulați
       column_actions: Acțiuni
@@ -3442,6 +3484,9 @@ ro:
         graph_value_condition_not_supported_msg: Condițiile de valoare a graficului nu sunt acceptate pentru acest tip de grafic. Această opțiune este disponibilă în prezent numai pentru tipurile de grafic de mai jos.
         graph_value_conditions_title: Condiții de valoare grafică
         if_graph_value_is: 'Dacă valoarea graficului este:'
+        job_roles:
+          current: Factorii actuali ai locului de muncă
+          target: Factorii țintă ai locului de muncă
         manage_graph_value_condition: Gestionați condiția valorii graficului
         manage_styles_condition: Gestionarea stării stilurilor
         missing_value: Valoare lipsă
@@ -3456,6 +3501,26 @@ ro:
         prefixes:
           and: ȘI
           or: SAU
+        skill_type_label: Filtrați după tipul de abilitate
+        skill_type_placeholder: Selectați tipul de abilitate
+        skill_types:
+          behavioral: Comportamentale
+          other: Alt
+          qualification: Calificare
+          technical: Tehnic
+        table_options:
+          border: Frontieră
+          description: Descriere
+          header: Antet
+          icons: Pictograme
+          label: Etichetă
+          name: Nume
+          rank: Rang
+          score: Scor
+          show_benchmark_score: Afișați scorul de referință
+          show_current_proficiency: Arată competența actuală
+          show_target_proficiency: Arată competența țintă
+          strengths_blindspots: Puncte forte și puncte oarbe
         text_condition_type: 'Tip de condiție text:'
     report_families:
       create:
@@ -3691,6 +3756,7 @@ ro:
       campaign_participants: Participanții la campanie
       columns:
         activity: Activitate
+        assessment_center_date_and_time: Data și ora centrului de evaluare
         assessor: Evaluator
         assessors: Evaluatori
         attendance: Prezenţă
@@ -4547,6 +4613,7 @@ ro:
             import_subjects: Utilizatori de import
             last_name: Nume de familie
             locale: Setări regionale
+            please_enter_valid_email: Vă rugăm să introduceți un e-mail valid
             target_job_role: Rol de post țintă
             title: Utilizatori
           title: Participanţii

@@ -14,6 +14,7 @@ module UserReports
       approval_notification_user_ids.each do |user_id|
         ::ReportApproving::ApprovalNotificationDigestMailer.notify(@report_ids, user_id).deliver_later
       end
+      @approval_settings.update!(last_digest_sent_at: Time.current)
     end
   end
 end

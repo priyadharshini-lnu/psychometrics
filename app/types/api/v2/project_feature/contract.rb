@@ -8,7 +8,7 @@ module Api
         schema Api::V2::ProjectFeature::Schema.update_request
 
         rule(data: { attributes: :global_skills }) do
-          return unless values.dig(:data, :attributes, :global_skills) == true
+          next unless values.dig(:data, :attributes, :global_skills) == true
 
           project_feature_id = values.dig(:data, :id)
 

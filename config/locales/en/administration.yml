@@ -1031,6 +1031,10 @@ en:
           approvers: Approvers
           approvers_can_edit: Approvers Can Edit
           approvers_not_required: Approvers Not Required
+          digest_delivery_mode:
+            form_label: Digest Delivery Mode
+            immediate: Immediate - Send whenever there is a bulk submission
+            scheduled: Scheduled - Send a digest email at a scheduled time
           digest_frequency:
             daily: Daily
             form_label: Digest Frequency
@@ -1223,7 +1227,7 @@ en:
         ai_assisted_idp: AI Assisted IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP requires AI Assistants feature to be enabled
         global_skills: Global Skills
-        global_skills_requires_idp: To enable Global Skills for this project, please activate it under Feature Flags in the client settings.
+        global_skills_disabled_by_client: Global Skills is disabled by client
         idp: IDP
         idp_disabled_by_client: IDP is disabled by client
         sms_notification: SMS Notification

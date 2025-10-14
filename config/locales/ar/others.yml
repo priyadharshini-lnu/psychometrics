@@ -931,6 +931,8 @@ ar:
     bulk_download_reports:
       content:
         title: روابط لتنزيل التقارير
+      errors:
+        no_plans: لم يتم العثور على خطط آي دي بي نشطة
     close: غلق
     details: التفاصيل
     errors: اخطاء
@@ -943,6 +945,14 @@ ar:
     super_admin:
       errors:
         data_processing_disabled: تم تعطيل معالجة البيانات.
+  ai:
+    errors:
+      bad_request_invalid_input: تعذر معالجة طلبك بسبب إدخال غير صالح. يرجى التحقق من طلبك والمحاولة مرة أخرى.
+      generic: حدث خطأ ما أثناء معالجة طلبك. يرجى الاتصال بالمسؤول.
+      rate_limit_exceeded: تشهد الخدمة حاليا طلبا مرتفعا. يرجى الانتظار لحظة والمحاولة مرة أخرى.
+      server_error: خدمة الذكاء الاصطناعي غير متوفرة مؤقتا. يرجى المحاولة مرة أخرى في غضون لحظات قليلة.
+      service_overloaded: خدمة الذكاء الاصطناعي مثقلة حاليا. يرجى الانتظار لحظة والمحاولة مرة أخرى.
+      service_unavailable: خدمة الذكاء الاصطناعي قيد الصيانة حاليا. يرجى المحاولة مرة أخرى لاحقا.
   anonym:
     close: يغلق
     continue: استمرار
@@ -1201,6 +1211,7 @@ ar:
       assessments_and_reports: التقييمات والتقارير
       idp: آي دي بي
       manage: أدار
+      recordings: التسجيلات
       report_approval: إعدادات الموافقة على التقارير
       sequencing: التسلسل
     report_approval:
@@ -2225,6 +2236,8 @@ ar:
       not_uniq_variable: المتغير "%{value}" المعاد تعريفه على رقم السطر %{row}
       project_assessments:
         should_be_greater_than_zero: يجب أن تكون صلاحية النتيجة أكبر من 0 يوم
+      project_feature:
+        global_skills_not_enabled_on_client: لتمكين المهارات العالمية لهذا المشروع ، يرجى تنشيطه ضمن علامات الميزات في إعدادات العميل.
       report_approval_settings:
         report_exists: إعداد الموافقة على التقرير لهذا التقرير موجود بالفعل.
         validates_admins: لا يمكن للمشرفين الوصول إلى الحملة.
@@ -2294,6 +2307,8 @@ ar:
       body:
         error: يحتوي نص البريد الإلكتروني على نص غير صحيح.
   errors:
+    ai_assistant:
+      max_generation_limit: تم تجاوز الحد الأقصى للتوليد ، اتصل بإدارتك.
     assessments:
       timed_out: لن تتمكن من إجراء تقييم %{assessment_name} نظرًا لانتهاء المهلة المحددة له.
     equal_to_current_password: يجب أن تكون مختلفة عن كلمة المرور الحالية.
@@ -2618,6 +2633,8 @@ ar:
       finishing:
         hint: يقوم مساعد الذكاء الاصطناعي لدينا بإنشاء خطة IDP من أجلك.
         title: يرجى الانتظار نحن نقوم بسحرنا ...
+      reset_chat: إعادة تعيين الدردشة
+      reset_confirmation: هل أنت متأكد من أنك تريد تجاهل هذه الدردشة والبدء من جديد؟
       retake_steps:
         chat_hint: اسمحوا لي أن أعرف ما هي المعلومات التي تريد تقديمها أكثر أدناه؟
         chat_title: هل تريد تقديم المزيد من المعلومات؟
@@ -2625,9 +2642,27 @@ ar:
         start_chat_again: بدء الدردشة مرة أخرى
         upload_document: تحميل المستند
         upload_file: تحميل الملف
+      start_page:
+        ai_assisted:
+          button: IDP بمساعدة الذكاء الاصطناعي
+          description: تدفق تفاعلي قائم على المحادثة حيث يمكنك المشاركة في إنشاء الخطة مع الذكاء الاصطناعي في خطوات متعددة.
+          option_1: نتائج أكثر تخصيصا
+          option_2: فرص التأمل الذاتي
+          option_3: أفضل للتحولات المهنية
+          title: IDP بمساعدة الذكاء الاصطناعي
+        one_click:
+          button: بنقرة واحدة الذكاء الاصطناعي IDP
+          description: يقوم الذكاء الاصطناعي بكل المهام الثقيلة - مسح بياناتك ضوئيا على الفور وإنشاء خطة تطوير كاملة.
+          option_1: الخيار الأسرع (5 دقائق)
+          option_2: جيد للمحترفين المشغولين
+          option_3: قابل للتحرير بالكامل بعد الجيل
+          title: 1-انقر فوق الذكاء الاصطناعي IDP
+        sub_title: دعنا ننشئ برنامجا مخصصا لرفع المهارات تم تعيينه وفقا لطموحك الوظيفي ومسترشدا بالذكاء الذكاء الاصطناعي
+        title: ضع خطة التطوير الفردية الخاصة بك
       summary:
         chat_title: ملخص رؤى الدردشة
         file_title: رؤى المستندات التي تم تحميلها
+        gap_report_title: تحليل تقرير فجوة المهارات
         hint: إذا كانت الإجابة بنعم ، فسنقوم بإنشاء IDP الخاص بك وإلا يمكنك استعادة إجاباتك
         title: هل أنت راض عن النتائج؟
         upload_file: الملف الذي تم تحميله
@@ -2676,6 +2711,7 @@ ar:
       add_development_actions_from_below_options: أضف إجراءات التطوير من الخيارات أدناه.
       add_development_actions_modal_title: مكتبة إجراءات التطوير %{skillName}
       add_from_library: إضافة من المكتبة
+      add_more: إضافة المزيد من إجراءات التطوير
       all: الكل
       approved: موافق عليه
       board_view:
@@ -2690,6 +2726,7 @@ ar:
       custom: تقليد
       custom_da_description: قم بإنشاء إجراء تطوير مخصص لتلبية احتياجات التطوير الفريدة.
       date_range: تاريخ البداية - تاريخ النهاية
+      edit_da_progress: تحرير تقدم إجراءات التطوير
       edit_plan_to_add_development_actions: تحرير الخطة وإضافة إجراءات التطوير.
       enter_development_action_description: أدخل وصف إجراءات التطوير
       enter_development_action_title: أدخل عنوان العمل التنموي
