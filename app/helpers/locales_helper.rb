@@ -23,4 +23,9 @@ module LocalesHelper
 
     javascript_include_tag "administration/i18n/#{lang}.js" if lang && lang != I18n.locale.to_s
   end
+
+  def load_report_builder_translation_file
+    lang = params[:lang] || Report.find_by(id: params[:id]).default_language
+    javascript_include_tag "administration/i18n/#{lang}.js" if lang && lang != I18n.locale.to_s
+  end
 end
