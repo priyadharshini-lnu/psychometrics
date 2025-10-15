@@ -9,8 +9,16 @@ module Api
 
           def index
             records = client.licenses.
-                      where(is_project_specific: true).
-                      includes(:report_family, :project_licenses)
+                      includes(:report_family, :project_licenses).
+                      left_joins(:project_licenses)
+            records = if params[:filter]&.key?(:project_specific)
+                        records.where(licenses: { is_project_specific: true })
+                      else
+                        records.where(
+                          'licenses.is_project_specific = false OR project_licenses.id IS NOT NULL'
+                        ).distinct
+                      end
+
             page_number = (params.dig(:page, :number) || 1).to_i
             page_size   = (params.dig(:page, :size)   || 25).to_i
 

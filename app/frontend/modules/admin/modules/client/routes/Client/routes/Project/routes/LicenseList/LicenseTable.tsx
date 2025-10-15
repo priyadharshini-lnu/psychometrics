@@ -26,32 +26,9 @@ type Props = PropsFromRedux
 const ClientLicensesTableComponent: React.FC<Props> = ({
   openModal,
 }) => {
-  // const { resource } = useResourceContext<License>()
 
   return (
     <Resource.Table pagination>
-      <Resource.Column<License>
-        title={I18n.t('common.column.id')}
-        id="id"
-        dataIndex="id"
-        width={30}
-      />
-      <Resource.Column<License>
-        title={I18n.t('licenses.enabled')}
-        id="disabledStatus"
-        dataIndex="disabled"
-        width={30}
-        render={(_, license) => (
-          <Switch
-            checked={license.projectLicenseDetails?.enabled ?? false}
-            onClick={(checked, e) => {
-              e.stopPropagation()
-              openModal('LicenseFormModal', { license })
-            }}
-          />
-        )}
-      />
-
       <Resource.Column<License>
         title={I18n.t('licenses.report_family')}
         id="report_family_id"
@@ -67,10 +44,13 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         title={I18n.t('licenses.used_number')}
         id="used_number"
         dataIndex="usedNumber"
-        render={(_, { projectLicenseDetails }) => projectLicenseDetails ? I18n.t('licenses.used_out_of', {
+        render={(_, { usedNumber, number, projectLicenseDetails }) => projectLicenseDetails ? I18n.t('licenses.used_out_of', {
           used: projectLicenseDetails.usedNumber,
           total: projectLicenseDetails.usageLimit,
-        }) : '-'}
+        }) : I18n.t('licenses.used_out_of', {
+          used: usedNumber - usedOveruseNumber(usedNumber, number),
+          total: number,
+        })}
       />
       <Resource.Column<License>
         title={I18n.t('licenses.start_date')}
