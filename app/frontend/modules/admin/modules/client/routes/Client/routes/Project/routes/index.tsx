@@ -52,6 +52,6 @@ export const routes = [
   },
   {
     path: '/licenses',
-    component: <LicenseList />
-  }
+    component: <LicenseList />,
+  },
 ]

@@ -24,7 +24,7 @@ export const LicenseTR = t.type({
       usageLimit: t.number,
       usedNumber: t.number,
     }),
-    t.null
+    t.null,
   ]),
 })
 export const LicenseTypes = [

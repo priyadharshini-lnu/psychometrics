@@ -14,7 +14,6 @@ import Modals from '~/modules/admin/components/Modals'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { LicenseFormModal } from './LicenseFormModal'
 import { ClientLicensesTable } from './LicenseTable'
-import { fetchSingle as fetchProject } from '~/modules/admin/modules/client/core/projects'
 
 const { I18n } = window
 
@@ -30,7 +29,7 @@ const connecter = connect(
   }),
   {
     openModal,
-  }
+  },
 )
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
@@ -53,7 +52,7 @@ const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
   return (
     <>
       <Resource config={config} name="licenses">
-        <Resource.Filter placeholder={I18n.t('common.actions.search')} name="report_family_name_cont" hideSearch={true}>
+        <Resource.Filter placeholder={I18n.t('common.actions.search')} name="report_family_name_cont" hideSearch>
           {isSuperAdmin(currentUser)
               && (
                 <Button
