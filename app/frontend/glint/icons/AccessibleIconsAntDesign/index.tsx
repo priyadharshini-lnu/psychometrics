@@ -24,6 +24,8 @@ import Icon, {
   AppstoreOutlined as AntdAppstoreOutlined,
   ArrowLeftOutlined as AntdArrowLeftOutlined,
   ArrowRightOutlined as AntdArrowRightOutlined,
+  ArrowUpOutlined as AntdArrowUpOutlined,
+  ArrowDownOutlined as AntdArrowDownOutlined,
   LeftOutlined as AntdLeftOutlined,
   RightOutlined as AntdRightOutlined,
   DownloadOutlined as AntdDownloadOutlined,
@@ -51,6 +53,7 @@ import Icon, {
   WarningOutlined as AntdWarningOutlined,
   ToolOutlined as AntdToolOutlined,
   CloudDownloadOutlined as AntdCloudDownloadOutlined,
+  FilterOutlined as AntdFilterOutlined,
   FilterFilled as AntdFilterFilled,
   PlusCircleOutlined as AntdPlusCircleOutlined,
   MinusCircleOutlined as AntdMinusCircleOutlined,
@@ -121,3 +124,6 @@ export const PlusCircleOutlined = withAccessibilityProps(AntdPlusCircleOutlined)
 export const MinusCircleOutlined = withAccessibilityProps(AntdMinusCircleOutlined)
 export const MessageOutlined = withAccessibilityProps(AntdMessageOutlined)
 export const WarningFilled = withAccessibilityProps(AntWarningFilled)
+export const FilterOutlined = withAccessibilityProps(AntdFilterOutlined)
+export const ArrowUpOutlined = withAccessibilityProps(AntdArrowUpOutlined)
+export const ArrowDownOutlined = withAccessibilityProps(AntdArrowDownOutlined)
