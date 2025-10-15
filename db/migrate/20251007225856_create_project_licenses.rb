@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProjectLicenses < ActiveRecord::Migration[7.1]
   def change
     create_table :project_licenses do |t|
@@ -8,7 +10,7 @@ class CreateProjectLicenses < ActiveRecord::Migration[7.1]
       t.integer :used_number, default: 0, null: false
       t.timestamps
 
-      t.index [:license_id, :project_id], unique: true
+      t.index %i[license_id project_id], unique: true
     end
   end
 end
