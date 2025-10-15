@@ -2,7 +2,7 @@
 
 module Licenses
   class Use < BaseCommand
-    private_attr_accessor :campaign, :user, :report, :report_family, :client
+    private_attr_accessor :campaign, :user, :report, :report_family, :client, :project
 
     def initialize(campaign, user, report, report_family_id)
       @campaign = campaign
@@ -10,6 +10,7 @@ module Licenses
       @report = report
       @report_family = ReportFamily.find(report_family_id)
       @client = campaign.client
+      @project = campaign.project
     end
 
     def call
@@ -19,13 +20,26 @@ module Licenses
 
       license = licenses.detect(&:enough_licenses?)
 
-      if license
-        license_usage = license.license_usages.create!(campaign: campaign, client: client, user: user)
-        return broadcast :ok, license_usage
+      unless license
+        raise Licenses::NotEnoughError,
+              I18n.t('licenses.not_enough_license', client_name: client.name, report_name: report.name)
       end
 
-      raise Licenses::NotEnoughError,
-            I18n.t('licenses.not_enough_license', client_name: client.name, report_name: report.name)
+      if license.is_project_specific?
+        project_license = ProjectLicense.find_by(
+          project_id: campaign.project_id,
+          license_id: license.id
+        )
+
+        unless project_license&.enabled? && project_license.enough_licenses?
+          raise Licenses::NotEnoughError,
+                I18n.t('licenses.project_limit_reached')
+        end
+      end
+
+      license_usage = license.license_usages.create!(campaign: campaign, client: client, user: user, project: project,
+                                                     project_license: project_license)
+      broadcast :ok, license_usage
     end
   end
 end

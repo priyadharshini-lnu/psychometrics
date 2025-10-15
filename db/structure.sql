@@ -1,4 +1,4 @@
-\restrict OjothhYUN5bIfiAGsan0Czj1djzLbvUh4GsCOH2sSvkcKCeSeEsRfQ5EPxV8ehu
+\restrict fML11jSUBcAYRhbdsLcPQLe773cQWy73VGmWri9qLm4zfAvccVaKSiFPRstJbfc
 
 -- Dumped from database version 14.19 (Homebrew)
 -- Dumped by pg_dump version 14.19 (Homebrew)
@@ -4309,7 +4309,9 @@ CREATE TABLE public.license_usages (
     proctoring_credits_credited integer,
     proctoring_session_duration integer,
     consumer_id bigint,
-    consumer_type character varying
+    consumer_type character varying,
+    project_id bigint,
+    project_license_id bigint
 );
 
 
@@ -13733,6 +13735,20 @@ CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING b
 
 
 --
+-- Name: index_license_usages_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_project_id ON public.license_usages USING btree (project_id);
+
+
+--
+-- Name: index_license_usages_on_project_license_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_project_license_id ON public.license_usages USING btree (project_license_id);
+
+
+--
 -- Name: index_license_usages_on_registration_code_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16250,6 +16266,14 @@ ALTER TABLE ONLY public.client_features
 
 
 --
+-- Name: license_usages fk_rails_3268c52319; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_3268c52319 FOREIGN KEY (project_license_id) REFERENCES public.project_licenses(id);
+
+
+--
 -- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18226,6 +18250,14 @@ ALTER TABLE ONLY public.communications_assessments
 
 
 --
+-- Name: license_usages fk_rails_e622a076e5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_e622a076e5 FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_idp_skills fk_rails_e822374aec; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18565,11 +18597,12 @@ ALTER TABLE ONLY public.users
 -- PostgreSQL database dump complete
 --
 
-\unrestrict OjothhYUN5bIfiAGsan0Czj1djzLbvUh4GsCOH2sSvkcKCeSeEsRfQ5EPxV8ehu
+\unrestrict fML11jSUBcAYRhbdsLcPQLe773cQWy73VGmWri9qLm4zfAvccVaKSiFPRstJbfc
 
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251012210205'),
 ('20251007225856'),
 ('20251007225411'),
 ('20251001034346'),
