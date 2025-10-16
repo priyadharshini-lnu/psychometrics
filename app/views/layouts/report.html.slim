@@ -9,6 +9,7 @@ html
     = stylesheet_link_tag    'administration', media: 'all'
     = javascript_include_tag 'administration'
     = javascript_include_tag "administration/i18n/#{load_translation_file}.js"
+    = load_report_builder_translation_file
     = render 'layouts/pys_global_state'
     = render 'layouts/favicons'
     = vite_client_tag
