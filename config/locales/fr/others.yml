@@ -3288,19 +3288,19 @@ fr:
         gap: Écart
         hide_left_filter: Masquer le filtre de gauche
         hide_right_filter: Masquer le filtre de droite
-        item: Indicateur
+        item: Comportement
         negative_gap: Écarts négatifs
-        no_negative_gaps: Il n'y a pas de lacunes négatives
-        no_positive_gaps: Il n'y a pas de lacunes positives
-        positive_gap: Lacunes positives
+        no_negative_gaps: Il n’y a aucun écart négatif
+        no_positive_gaps: Il n’y a aucun écart positif
+        positive_gap: Écarts positifs
         rank: Rang
         scoring_category: Compétence
       highest_lowest:
         bottom_5: EN BAS 5
         category: Catégorie
-        highest_scores: Scores les plus élevés
-        item: Indicateur
-        lowest_scores: Notes les plus basses
+        highest_scores: Résultats les plus élevés
+        item: Comportement
+        lowest_scores: Résultats les plus bas
         mean_score: Score moyen
         rank: Rang
         scoring_category: Compétence
@@ -3321,7 +3321,7 @@ fr:
         question_name: Questions
       single_value_cluster:
         competency: Compétence
-        developmental_rating: Évaluation du développement
+        developmental_rating: Opportunité de développement
         questions: Questions
       strength_clusters:
         index_sub_factors_considered: Sous-facteurs de l'indice Thriving qui ont été pris en compte pour obtenir votre score final pour l'environnement de travail %{workstyle}
@@ -3343,10 +3343,10 @@ fr:
         statistic: Statistiques
         value: Valeur
       three_sixty_report_summary:
-        completed: Terminé
-        footnote: "* Exclu en raison de l'exigence d'un seuil minimum"
-        invited: Sur invitation
-        relationships: Les relations
+        completed: Complété
+        footnote: "* Exclus en raison du seuil minimum requis"
+        invited: Invité
+        relationships: Relations
         total: Total
       video_response:
         no_results: Aucune vidéo enregistrée
