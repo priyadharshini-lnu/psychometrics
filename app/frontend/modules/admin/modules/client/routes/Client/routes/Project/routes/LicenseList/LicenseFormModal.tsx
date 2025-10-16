@@ -62,7 +62,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close }) => {
         <>
           <Form.Item
             name="license_id"
-            label={I18n.t('licenses.project_specific')}
+            label={I18n.t('licenses.report_family')}
             rules={[{ required: true }]}
           >
             <Select
