@@ -40,7 +40,7 @@ class LicenseUsage < ApplicationRecord
                                               name: license.decorate.display_name)
     end
 
-    if project.present?
+    if license.is_project_specific? && project.present?
       project_license = license.project_licenses.enabled.find_by!(project: project)
       project_license&.increment!(:used_number)
     end

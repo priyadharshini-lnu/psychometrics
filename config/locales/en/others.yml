@@ -778,6 +778,10 @@ en:
           attributes:
             base:
               max_takes_limit_reached: Limit reached for maximum takes
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Cannot allot more than available licnses
         register:
           attributes:
             mobile_number:

@@ -24,6 +24,7 @@ module Licenses
         raise Licenses::NotEnoughError,
               I18n.t('licenses.not_enough_license', client_name: client.name, report_name: report.name)
       end
+      project_license = nil
 
       if license.is_project_specific?
         project_license = ProjectLicense.find_by(
