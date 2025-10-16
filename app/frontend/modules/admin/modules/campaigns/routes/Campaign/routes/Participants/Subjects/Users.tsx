@@ -240,6 +240,7 @@ const UserList: React.FC<Props> = ({
               title={I18n.t('administration.campaigns.users.name')}
               key="fullName"
               dataIndex="fullName"
+              width={200}
             />
             <Column
               title={I18n.t('administration.campaigns.users.email')}
@@ -247,6 +248,7 @@ const UserList: React.FC<Props> = ({
               sorter
               sortOrder={getSortOrder('email')}
               dataIndex="email"
+              width={200}
             />
             <Column
               title={I18n.t('administration.dates.started')}
@@ -268,11 +270,13 @@ const UserList: React.FC<Props> = ({
               title={I18n.t('administration.campaigns.users.created_by')}
               key="createdBy"
               dataIndex="createdBy"
+              width={200}
             />
             <Column
               title={I18n.t('administration.campaigns.users.updated_by')}
               key="updatedBy"
               dataIndex="updatedBy"
+              width={200}
             />
             <Column
               title={I18n.t('administration.campaigns.users.completion_status')}
@@ -306,6 +310,7 @@ const UserList: React.FC<Props> = ({
                   {I18n.t(`campaign_users.details.statuses.${status}`)}
                 </Tag>
               )}
+              width={200}
             />
             <Column
               title={I18n.t('common.column.action')}
