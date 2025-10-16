@@ -922,11 +922,10 @@ workflows:
   maxmind_update:
     triggers:
       - schedule:
-          cron: "0 0 * * *"  # Daily at midnight UTC
+          cron: "0 0 * * 1-5"  # Monday–Friday at 00:00 UTC
           filters:
             branches:
               only:
                 - develop
-
     jobs:
       - maxmind_db_update

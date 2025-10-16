@@ -2,7 +2,7 @@
 
 require 'maxminddb'
 
-DB_PATH = Rails.root.join('db/GeoLite2-Country.mmdb')
+DB_PATH = Rails.root.join('db/maxmind/GeoLite2-Country.mmdb')
 
 begin
   Rails.application.config.ip_database = MaxMindDB.new(DB_PATH)
