@@ -2006,7 +2006,6 @@ zh:
         details: 文件详情
         failure_msg: 导出翻译时出错
         success_msg: 导出开发操作正在进行中，请查看通知中的状态。
-        title: 导出
         translation_details: 详细信息
       export_development_action_translations: 基于项目的发展行动翻译
       export_development_actions: 基于项目的发展行动

@@ -1779,7 +1779,6 @@ sr-Latn:
       download: Preuzimanje
       edit: Uredi
       export: Izvoz
-      filter: Filter
       filter_by_tags: Filtriraj po oznakama
       go_back: Vrati se
       import: Uvoz
@@ -1909,7 +1908,6 @@ sr-Latn:
       download: Preuzmi
       enabled: Omogućen
       file: Datoteke
-      global_import: Da li je globalni uvoz?
       minutes: Minuta
       na: N/A
       none: Niko

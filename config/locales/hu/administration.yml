@@ -2008,7 +2008,6 @@ hu:
         details: Fájl részletei
         failure_msg: Hiba a fordítások exportálása során
         success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása. Kérjük, ellenőrizze az állapotot az értesítésekben.
-        title: Exportál
         translation_details: Részletek
       export_development_action_translations: Fejlesztési tevékenység fordításai
       export_development_actions: Fejlesztési tevékenységek

@@ -2006,7 +2006,6 @@ ko:
         details: 파일 세부 정보
         failure_msg: 번역 내보내기 중 오류 발생
         success_msg: 개발 작업 내보내기가 진행 중입니다. 알림에서 상태를 확인하세요.
-        title: 내보내기
         translation_details: 세부 정보
       export_development_action_translations: 프로젝트 기반 개발 작업 번역
       export_development_actions: 프로젝트 기반 개발 작업

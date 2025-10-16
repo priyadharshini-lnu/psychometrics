@@ -2006,7 +2006,6 @@ id:
         details: Rincian File
         failure_msg: Kesalahan saat mengekspor terjemahan
         success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung. Silakan periksa status di notifikasi.
-        title: Ekspor
         translation_details: Rincian
       export_development_action_translations: Terjemahan Tindakan Pengembangan
       export_development_actions: Tindakan Pengembangan

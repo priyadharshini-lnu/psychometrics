@@ -1769,7 +1769,6 @@ nl:
       download: Downloaden
       edit: Bewerk
       export: Exporteer
-      filter: Filter
       filter_by_tags: Filter op tags
       go_back: Terug
       import: Importeren
@@ -1899,7 +1898,6 @@ nl:
       download: Downloaden
       enabled: Ingeschakeld
       file: Bestand
-      global_import: Is Global Import?
       minutes: Notulen
       na: N.V.T
       none: Geen

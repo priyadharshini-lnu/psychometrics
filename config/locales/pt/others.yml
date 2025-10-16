@@ -1782,7 +1782,6 @@ pt:
       download: Baixar
       edit: Editar
       export: Exportação
-      filter: Filtrar
       filter_by_tags: Filtrar por etiquetas
       go_back: Volta
       import: Importação
@@ -1912,7 +1911,6 @@ pt:
       download: Descarregar
       enabled: Habilitado
       file: Ficheiro
-      global_import: A importação global?
       minutes: Minutos
       na: N/A
       none: Nenhum

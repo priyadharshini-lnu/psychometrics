@@ -2006,7 +2006,6 @@ sk:
         details: Podrobnosti o súbore
         failure_msg: Chyba pri exporte prekladov
         success_msg: Export prebiehajúcich vývojových akcií. Skontrolujte stav v upozorneniach.
-        title: Vývoz
         translation_details: Detaily
       export_development_action_translations: Preklady vývojových akcií
       export_development_actions: Rozvojové akcie

@@ -2006,7 +2006,6 @@ pl:
         details: Szczegóły pliku
         failure_msg: Błąd podczas eksportowania tłumaczeń
         success_msg: Eksport działań rozwojowych w toku. Sprawdź status w powiadomieniach.
-        title: Eksport
         translation_details: Szczegóły
       export_development_action_translations: Tłumaczenia działań rozwojowych
       export_development_actions: Działania rozwojowe

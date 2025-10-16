@@ -2007,7 +2007,6 @@ en-US:
         details: File Details
         failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress. Please check the status in the notifications.
-        title: Export
         translation_details: Details
       export_development_action_translations: Development Action Translations
       export_development_actions: Development Actions

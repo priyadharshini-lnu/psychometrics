@@ -2006,7 +2006,6 @@ cs:
         details: Podrobnosti o souboru
         failure_msg: Chyba při exportu překladů
         success_msg: Probíhá export vývojových akcí. Zkontrolujte prosím stav v oznámeních.
-        title: Export
         translation_details: Podrobnosti na
       export_development_action_translations: Vývojová akce Překlady na základě projektu
       export_development_actions: Rozvojové akce na základě projektu

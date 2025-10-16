@@ -2006,7 +2006,6 @@ ar:
         details: تفاصيل الملف
         failure_msg: خطأ أثناء تصدير الترجمات
         success_msg: جاري تصدير إجراءات التطوير. يرجى التحقق من الحالة في الإشعارات.
-        title: تصدير
         translation_details: التفاصيل
       export_development_action_translations: ترجمات العمل الإنمائي
       export_development_actions: تصدير إجراءات التطوير بناءً على المشروع

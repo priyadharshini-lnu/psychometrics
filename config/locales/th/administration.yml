@@ -2006,7 +2006,6 @@ th:
         details: รายละเอียดไฟล์
         failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
         success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่ โปรดตรวจสอบสถานะในการแจ้งเตือน
-        title: ส่งออก
         translation_details: รายละเอียด
       export_development_action_translations: การแปลการดําเนินการเพื่อการพัฒนา
       export_development_actions: การดําเนินการพัฒนา

@@ -1776,7 +1776,6 @@ hr:
       download: Preuzimanje
       edit: Urediti
       export: Izvoz
-      filter: Filtar
       filter_by_tags: Filtriraj prema oznakama
       go_back: Vrati se
       import: Uvoz
@@ -1906,7 +1905,6 @@ hr:
       download: Preuzeti
       enabled: Omogućen
       file: Datoteka
-      global_import: Je li globalni uvoz?
       minutes: Minuta
       na: N/A
       none: Nijedan

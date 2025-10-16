@@ -2006,7 +2006,6 @@ bg:
         details: Подробности за файла
         failure_msg: Грешка при експортиране на преводи
         success_msg: Текущи действия за развитие на износа. Моля, проверете статуса в известията.
-        title: Износ
         translation_details: Подробности
       export_development_action_translations: Преводи за действие за развитие
       export_development_actions: Действия за развитие

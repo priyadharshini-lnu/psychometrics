@@ -198,8 +198,8 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       {!developmentActionCards.length ? (
         <Flex vertical>
           <Flex wrap align="center" className="border-b-1 pt-3 pb-3">
-            <Empty description="" style={!isTablet ? { marginLeft: '-2rem' } : {}} />
-            <Flex vertical align="start" style={!isTablet ? { marginLeft: '-2rem' } : {}}>
+            <Empty description="" style={!isTablet ? { marginInlineStart: '-2rem' } : {}} />
+            <Flex vertical align="start" style={!isTablet ? { marginInlineStart: '-2rem' } : {}}>
               <strong className="ta-s">
                 {I18n.t('idp.development_actions.no_development_actions')}
               </strong>
@@ -511,7 +511,7 @@ const Card = ({
         className="border-b-1"
         vertical={isTablet || isDesktop}
         style={isTablet || isDesktop ? {
-          borderLeft:
+          borderInlineStart:
               `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
         } : {}}
       >
@@ -530,7 +530,7 @@ const Card = ({
           <div
             className="p-3"
             style={!(isTablet || isDesktop) ? {
-              borderLeft:
+              borderInlineStart:
               `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
             } : {}}
           >

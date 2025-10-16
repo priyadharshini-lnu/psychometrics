@@ -2006,7 +2006,6 @@ de:
         details: Datei-Details
         failure_msg: Fehler beim Exportieren von Übersetzungen
         success_msg: Der Export von Entwicklungsmaßnahmen ist im Gange. Bitte überprüfen Sie den Status in den Benachrichtigungen.
-        title: Exportieren
         translation_details: Einzelheiten
       export_development_action_translations: Entwicklung Aktion Übersetzungen auf Basis des Projekts
       export_development_actions: Entwicklungsmaßnahmen auf der Grundlage des Projekts

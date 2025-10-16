@@ -89,8 +89,8 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
       {!developmentActionCards.length ? (
         <Flex vertical>
           <Flex align="center" className="border-b-1 pt-3 pb-3">
-            <Empty description="" style={{ marginLeft: '-2rem' }} />
-            <Flex vertical align="start" style={{ marginLeft: '-2rem' }}>
+            <Empty description="" style={{ marginInlineStart: '-2rem' }} />
+            <Flex vertical align="start" style={{ marginInlineStart: '-2rem' }}>
               <strong className="ta-s">
                 {I18n.t('administration.idp.development_actions.no_development_actions')}
               </strong>

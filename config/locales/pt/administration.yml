@@ -2006,7 +2006,6 @@ pt:
         details: Detalhes do ficheiro
         failure_msg: Erro ao exportar traduções
         success_msg: Acções de desenvolvimento de exportação em curso. Verifique o estado nas notificações.
-        title: Exportação
         translation_details: Detalhes
       export_development_action_translations: Ação de desenvolvimento Traduções baseadas no projeto
       export_development_actions: Acções de desenvolvimento baseadas no projeto

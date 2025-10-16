@@ -1769,7 +1769,6 @@ ro:
       download: Descărca
       edit: Editați
       export: Exportați
-      filter: Filtru
       filter_by_tags: Filtrează după etichete
       go_back: Întoarce-te
       import: Importa
@@ -1899,7 +1898,6 @@ ro:
       download: Descărcare
       enabled: Activat
       file: Fișier
-      global_import: Este import global?
       minutes: Minute
       na: N/A
       none: Niciunul

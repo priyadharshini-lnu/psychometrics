@@ -1781,7 +1781,6 @@ cs:
       download: Stáhnout
       edit: Upravit
       export: Export
-      filter: Filtr
       filter_by_tags: Filtrovat podle značek
       go_back: Vrať se
       import: Import
@@ -1911,7 +1910,6 @@ cs:
       download: Stáhnout
       enabled: Zpřístupněný
       file: Soubor
-      global_import: Je globální import?
       minutes: Zápis
       na: Neznámé
       none: Žádné

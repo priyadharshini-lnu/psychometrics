@@ -2006,7 +2006,6 @@ ja:
         details: ファイル詳細
         failure_msg: 翻訳のエクスポート時のエラー
         success_msg: 開発アクションのエクスポートが進行中です。 通知でステータスを確認してください。
-        title: 輸出
         translation_details: 詳細
       export_development_action_translations: プロジェクトに基づく開発行為翻訳
       export_development_actions: プロジェクトに基づく開発アクション

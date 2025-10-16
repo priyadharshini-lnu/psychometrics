@@ -1769,7 +1769,6 @@ sk:
       download: Stiahnuť
       edit: Upraviť
       export: Vývoz
-      filter: Filter
       filter_by_tags: Filtrovať podľa značiek
       go_back: Vráť sa
       import: Import
@@ -1899,7 +1898,6 @@ sk:
       download: Stiahnite si
       enabled: Povolené
       file: Súbor
-      global_import: Je globálny dovoz?
       minutes: Zápis
       na: NEUPLATŇUJE SA
       none: Žiadny

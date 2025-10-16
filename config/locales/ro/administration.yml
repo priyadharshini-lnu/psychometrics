@@ -2006,7 +2006,6 @@ ro:
         details: Detalii fișier
         failure_msg: Eroare la exportul traducerilor
         success_msg: Exportul acțiunilor de dezvoltare în curs de desfășurare. Vă rugăm să verificați starea în notificări.
-        title: Exportați
         translation_details: Detalii
       export_development_action_translations: Traduceri pentru acțiuni de dezvoltare
       export_development_actions: Acțiune de dezvoltare

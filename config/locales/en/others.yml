@@ -1781,7 +1781,6 @@ en:
       download: Download
       edit: Edit
       export: Export
-      filter: Filter
       filter_by_tags: Filter by tags
       go_back: Go Back
       import: Import
@@ -1913,7 +1912,6 @@ en:
       download: Download
       enabled: Enabled
       file: File
-      global_import: Is Global Import?
       minutes: Minutes
       na: N/A
       none: None

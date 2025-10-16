@@ -2006,7 +2006,6 @@ sr-Latn:
         details: Detalji o datoteci
         failure_msg: Greška prilikom izvoza prevoda
         success_msg: Izvoz razvojnih akcija u toku. Molimo Vas da proverite status u obaveštenjima.
-        title: Izvoz
         translation_details: Detalji
       export_development_action_translations: Prevodi razvojnih akcija
       export_development_actions: Razvojne akcije

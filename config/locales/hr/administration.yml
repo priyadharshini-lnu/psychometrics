@@ -2006,7 +2006,6 @@ hr:
         details: Pojedinosti o datoteci
         failure_msg: Pogreška prilikom izvoza prijevoda
         success_msg: Izvoz razvojnih radnji u tijeku. Provjerite status u obavijestima.
-        title: Izvoz
         translation_details: Detalji
       export_development_action_translations: Prijevodi razvojnih akcija
       export_development_actions: Razvojne akcije
