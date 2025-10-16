@@ -19,6 +19,11 @@ module Api
                         ).distinct
                       end
 
+            if params[:filter]&.key?(:report_name)
+              search_term = "%#{params[:filter][:report_name]}%"
+              records = records.joins(:report_family).where('report_families.name ILIKE ?', search_term)
+            end
+
             page_number = (params.dig(:page, :number) || 1).to_i
             page_size   = (params.dig(:page, :size)   || 25).to_i
 

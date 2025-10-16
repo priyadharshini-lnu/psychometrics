@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Form, InputNumber, Select, Spin, Switch,
 } from 'antd'
@@ -38,6 +38,10 @@ export const LicenseFormModal: React.FC<Props> = ({ close }) => {
     },
   )
 
+  useEffect(() => {
+    fetchLicenses()
+  }, [])
+
   return (
     <ResourceFormModal
       resourceName="project_licenses"
@@ -67,8 +71,8 @@ export const LicenseFormModal: React.FC<Props> = ({ close }) => {
                 fetchLicenses({
                   apiConfig: {
                     filter: {
-                      is_project_specific_true: 'true',
-                      number_cont: value,
+                      project_specific: 'true',
+                      report_name: value,
                     },
                     include: ['report_family'],
                   },
