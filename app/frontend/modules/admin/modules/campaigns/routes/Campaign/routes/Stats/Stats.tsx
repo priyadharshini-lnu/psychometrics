@@ -200,6 +200,7 @@ const StatsComponent: React.FC<Props> = ({
                 showCheckedStrategy={TreeSelect.SHOW_CHILD}
                 treeData={dataSheetColumnsTreeData}
                 placeholder="Select Available Data Sheet Columns"
+                dropdownMatchSelectWidth={false}
                 value={Object.entries(selectedDataSheetColumns).flatMap(([originalKey, values]) => {
                   const lowerKey = originalKey.toLowerCase()
                   return values.map(val => (val === null
