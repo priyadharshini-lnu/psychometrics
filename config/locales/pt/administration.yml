@@ -4627,7 +4627,6 @@ pt:
             import_subjects: Assuntos de importação
             last_name: Último nome
             locale: Localidade
-            please_enter_valid_email: Por favor, insira um e-mail válido
             target_job_role: Função profissional alvo
             title: Temas
           title: Participantes

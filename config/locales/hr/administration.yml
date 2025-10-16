@@ -4613,7 +4613,6 @@ hr:
             import_subjects: Uvezi ispitanike
             last_name: Prezime
             locale: Poprište
-            please_enter_valid_email: Unesite valjanu e-poštu
             target_job_role: Ciljana radna uloga
             title: Ispitanici
           title: Sudionici

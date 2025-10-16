@@ -4613,7 +4613,6 @@ sl:
             import_subjects: Uvozni predmeti
             last_name: Priimek
             locale: Locale
-            please_enter_valid_email: Prosimo, vnesite veljaven e-poštni naslov
             target_job_role: Ciljna delovna vloga
             title: Predmeti
           title: Udeleženci

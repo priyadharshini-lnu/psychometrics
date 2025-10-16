@@ -4613,7 +4613,6 @@ th:
             import_subjects: นำเข้าหัวข้อ
             last_name: นามสกุล
             locale: สถานที่เกิดเหตุ
-            please_enter_valid_email: โปรดป้อนอีเมลที่ถูกต้อง
             target_job_role: บทบาทงานเป้าหมาย
             title: หัวข้อ
           title: ผู้เข้าร่วม

@@ -4627,7 +4627,6 @@ ko:
             import_subjects: 주제 가져오기
             last_name: 성
             locale: 로캘
-            please_enter_valid_email: 유효한 이메일을 입력하세요.
             target_job_role: 대상 직무 역할
             title: 주제
           title: 참가자

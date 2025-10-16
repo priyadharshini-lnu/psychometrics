@@ -169,12 +169,11 @@ function CreateSubjectModal ({
           rules={[
             {
               required: true,
+              message: I18n.t('validations.blank'),
             },
             {
               type: 'email',
-              message: I18n.t(
-                'administration.threesixty_campaigns.menu.participants.subjects.please_enter_valid_email',
-              ),
+              message: I18n.t('validations.email'),
             },
           ]}
         >
@@ -199,6 +198,8 @@ function CreateSubjectModal ({
           rules={[
             {
               required: true,
+              whitespace: true,
+              message: I18n.t('validations.blank'),
             },
           ]}
         >
@@ -211,6 +212,8 @@ function CreateSubjectModal ({
           rules={[
             {
               required: true,
+              whitespace: true,
+              message: I18n.t('validations.blank'),
             },
           ]}
         >
