@@ -2,6 +2,7 @@
 
 class AI::AssistantRequest < ApplicationRecord
   include ActiveStorageAttachable
+
   self.table_name = 'ai_assistant_requests'
 
   acts_as_message(

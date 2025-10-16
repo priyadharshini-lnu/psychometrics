@@ -82,7 +82,7 @@ module Administration
       end
 
       def relationship_params
-        params.require(:relationship).permit(:name)
+        params.expect(relationship: [:name])
       end
 
       def pundit_authorize

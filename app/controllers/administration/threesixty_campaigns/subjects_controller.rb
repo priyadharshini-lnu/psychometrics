@@ -184,11 +184,11 @@ module Administration
       end
 
       def evaluation_status_params
-        params.require(:subject).permit(:status, selected_ids: [], excluded_ids: [])
+        params.expect(subject: [:status, { selected_ids: [], excluded_ids: [] }])
       end
 
       def resource_params
-        params.require(:subject).permit(:report_release_status, :report_approval_status, :evaluation_status)
+        params.expect(subject: %i[report_release_status report_approval_status evaluation_status])
       end
 
       def validate_and_add_subjects_from_csv(file_path)

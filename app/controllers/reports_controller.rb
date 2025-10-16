@@ -4,6 +4,7 @@
 # Cause user no more need to view report
 class ReportsController < ApplicationController
   include AuthenticateByToken
+
   # Turn off normally auth
   skip_before_action :authenticate_user!
   # Turn on auth by token

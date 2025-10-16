@@ -4,6 +4,7 @@ module EndUser
   class UserIdpPlansController < ApplicationController
     include AsyncRequestHandler
     include UserReports::IdpReportGeneration
+
     skip_before_action :authenticate_user!, only: [:pdf_preview]
 
     before_action :load_user_idp_plan, only: %i[show update update_reflection_questions download pdf_preview]
@@ -118,7 +119,7 @@ module EndUser
     end
 
     def update_params
-      params.require(:user_idp_plan).permit(:status)
+      params.expect(user_idp_plan: [:status])
     end
   end
 end

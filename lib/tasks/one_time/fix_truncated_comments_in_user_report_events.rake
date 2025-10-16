@@ -83,7 +83,7 @@ namespace :one_time do
       return
     end
 
-    if matching_logs.count == 1
+    if matching_logs.one?
       matching_logs.first
     else
       matching_logs.min_by { |log| (log.created_at - event.created_at).abs }

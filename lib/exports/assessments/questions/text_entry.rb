@@ -5,6 +5,7 @@ module Exports
     module Questions
       class TextEntry < Base
         include ImportExportConst
+
         # FROM:
         #   [{
         #     "index": 0,

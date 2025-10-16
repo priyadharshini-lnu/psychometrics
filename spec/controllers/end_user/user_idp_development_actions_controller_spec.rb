@@ -61,7 +61,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       expect(parsed_result['meta']['record_count']).to eq(2)
 
       available_actions = parsed_result['data']
-      expect(available_actions.map { |a| a['id'] }).to match_array([development_action1.id, development_action2.id])
+      expect(available_actions.pluck('id')).to match_array([development_action1.id, development_action2.id])
       expect(available_actions.first['name']).to eq(development_action1.name)
       expect(available_actions.first['description']).to eq(development_action1.description)
       expect(available_actions.first['learning_style']).to eq(development_action1.learning_style)

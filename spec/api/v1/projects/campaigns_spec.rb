@@ -41,8 +41,8 @@ describe 'New Campaigns' do
         run_test! do |response|
           campaigns = JSON.parse(response.body)
           expect(campaigns.length).to eq(3)
-          expect(campaigns.map { |c| c['id'] }).to match_array(project_campaigns.map(&:id))
-          expect(campaigns.map { |c| c['id'] }).not_to include(other_campaign.id)
+          expect(campaigns.pluck('id')).to match_array(project_campaigns.map(&:id))
+          expect(campaigns.pluck('id')).not_to include(other_campaign.id)
         end
       end
 
@@ -75,7 +75,7 @@ describe 'New Campaigns' do
         run_test! do |response|
           campaigns = JSON.parse(response.body)
           expect(campaigns.length).to eq(2)
-          campaign_ids = campaigns.map { |c| c['id'] }
+          campaign_ids = campaigns.pluck('id')
           expect(campaign_ids).to include(active_campaign.id, closed_campaign.id)
           expect(campaign_ids).not_to include(inactive_campaign.id)
         end

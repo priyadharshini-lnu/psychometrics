@@ -4,6 +4,7 @@ module Threesixty
   class ReportsController < ApplicationController
     include AuthenticateByToken
     include ::Threesixty::InitialState
+
     layout 'layouts/end_user'
     before_action :set_campaign
     before_action :set_user_report

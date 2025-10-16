@@ -73,11 +73,11 @@ module Administration
       end
 
       def option_params
-        params.require(:option).permit(reports: {}, participants: {}, messages: {})
+        params.expect(option: [reports: {}, participants: {}, messages: {}])
       end
 
       def language_params
-        params.require(:languages).permit(:default_language, available_languages: [])
+        params.expect(languages: [:default_language, { available_languages: [] }])
       end
 
       def load_campaign_report!

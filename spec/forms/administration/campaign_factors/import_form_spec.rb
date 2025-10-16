@@ -73,7 +73,7 @@ RSpec.describe Administration::CampaignFactors::ImportForm do
     end
 
     it 'validates campaign factors count' do
-      create_list(:report_campaign_factor, (described_class::MAX_CAMPAIGN_FACTORS - 1), report: report)
+      create_list(:report_campaign_factor, described_class::MAX_CAMPAIGN_FACTORS - 1, report: report)
       file = valid_excel_file
       form = described_class.new(file: file, resource_class: 'Report', resource_id: report_id)
       expect(form.valid?).to be false # 299 existing campaign factors + 2 new campaign factor

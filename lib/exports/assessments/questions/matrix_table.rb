@@ -5,6 +5,7 @@ module Exports
     module Questions
       class MatrixTable < Base
         include ImportExportConst
+
         # Parse RESULT data for XLSX
         def self.result(user_result, question, scoring = false, export_with_labels = false)
           # IF: answer can contain any data (string, number and etc.)

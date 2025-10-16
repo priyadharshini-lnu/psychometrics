@@ -23,7 +23,7 @@ class Api::V2::Administration::CampaignAssessorAssessmentResource < Api::V2::Adm
     @model.campaign_assessment_group&.name
   end
 
-  def assessment_id
+  def assessment_id # rubocop:disable Lint/DuplicateMethods
     assessment.id.to_s
   end
 

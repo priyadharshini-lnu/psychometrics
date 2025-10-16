@@ -105,7 +105,7 @@ describe Api::V2::Administration::Campaigns::AIArtifactsController, swagger_doc:
 
         run_test! do |response|
           data = JSON.parse(response.body)['data']
-          ids = data.map { |artifact| artifact['id'] }
+          ids = data.pluck('id')
           expect(ids.include?(other_ai_artifact.id.to_s)).to be false
         end
       end
@@ -304,7 +304,7 @@ describe Api::V2::Administration::Campaigns::AIArtifactsController, swagger_doc:
           expect(d['attributes']['dependencies_attributes']['questions'].length).to eq(2)
 
           questions_data = d['attributes']['dependencies_attributes']['questions']
-          question_ids = questions_data.map { |q| q['id'] }
+          question_ids = questions_data.pluck('id')
           expect(question_ids).to contain_exactly(question1.id.to_s, question2.id.to_s)
 
           question1_data = questions_data.find { |q| q['id'] == question1.id.to_s }
@@ -481,7 +481,7 @@ describe Api::V2::Administration::Campaigns::AIArtifactsController, swagger_doc:
           expect(d['attributes']['dependencies_attributes']['questions'].length).to eq(2)
 
           questions_data = d['attributes']['dependencies_attributes']['questions']
-          question_ids = questions_data.map { |q| q['id'] }
+          question_ids = questions_data.pluck('id')
           expect(question_ids).to contain_exactly(question1.id.to_s, question2.id.to_s)
 
           updated_artifact = AI::CampaignArtifact.find(id)
@@ -620,7 +620,7 @@ describe Api::V2::Administration::Campaigns::AIArtifactsController, swagger_doc:
           expect(d['attributes']['dependencies_attributes']['campaign_factors'].length).to eq(2)
 
           factors_data = d['attributes']['dependencies_attributes']['campaign_factors']
-          factor_ids = factors_data.map { |f| f['id'] }
+          factor_ids = factors_data.pluck('id')
           expect(factor_ids).to contain_exactly(campaign_factor1.id, campaign_factor2.id)
 
           # Verify dependencies were created in database
@@ -668,7 +668,7 @@ describe Api::V2::Administration::Campaigns::AIArtifactsController, swagger_doc:
           expect(d['attributes']['dependencies_attributes']['sheet_columns'].length).to eq(2)
 
           columns_data = d['attributes']['dependencies_attributes']['sheet_columns']
-          column_ids = columns_data.map { |c| c['id'] }
+          column_ids = columns_data.pluck('id')
           expect(column_ids).to contain_exactly(sheet_column1.id, sheet_column2.id)
 
           # Verify dependencies were created in database

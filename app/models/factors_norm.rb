@@ -90,7 +90,7 @@ class FactorsNorm < ApplicationRecord
 
     factor_norm = (props || []).sort_by { |n| n['score_from'].to_f }
 
-    prop = factor_norm.detect { |n| n['score_from'].to_f <= score && n['score_to'].to_f >= score }
+    prop = factor_norm.detect { |n| score.between?(n['score_from'].to_f, n['score_to'].to_f) }
 
     # Converts level to index
     normed_result = LEVELS.index(prop&.dig('level'))

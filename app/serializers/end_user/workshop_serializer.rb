@@ -3,6 +3,7 @@
 module EndUser
   class WorkshopSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
+
     attributes :id, :start_time, :duration, :completion_status, :attendance_status, :attended,
                :preworks, :activities, :meeting_link
     delegate :attendance_status, :completion_status, :attended, to: :workshop_subject

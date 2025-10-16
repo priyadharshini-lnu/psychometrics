@@ -3,6 +3,7 @@
 module EndUser
   class CampaignSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
+
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
                :is_timed_campaign, :campaigns_count, :user_reports_available,

@@ -140,7 +140,7 @@ module EndUser
     end
 
     def progress_params
-      params.require(:user_idp_development_action).permit(:id, :progress)
+      params.expect(user_idp_development_action: %i[id progress])
     end
 
     def load_user_idp_skill!

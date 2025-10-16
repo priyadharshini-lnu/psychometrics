@@ -42,7 +42,7 @@ module Administration
       end
 
       def import_params
-        params.require(:import).permit(:file, :resource_id)
+        params.expect(import: %i[file resource_id])
       end
 
       # Authorisation user

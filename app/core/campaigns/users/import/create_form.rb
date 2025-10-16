@@ -37,7 +37,7 @@ module Campaigns
         end
 
         def active
-          super.nil? ? true : super
+          super.nil? || super
         end
 
         private

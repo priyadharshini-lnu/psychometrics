@@ -5,6 +5,7 @@ module EndUser
     include ::Threesixty::InitialState
     include SetLocale
     include AuthenticateAnonymousUser
+
     layout 'layouts/end_user'
 
     protect_from_forgery with: :exception

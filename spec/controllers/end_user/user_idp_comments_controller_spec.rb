@@ -157,9 +157,9 @@ RSpec.describe EndUser::UserIdpCommentsController, type: :controller do
         expect(comment1_data).not_to be_nil
 
         expect(comment1_data['replies'].size).to eq(2)
-        expect(comment1_data['replies'].map { |r| r['id'] }).to include(reply1.id, reply2.id)
+        expect(comment1_data['replies'].pluck('id')).to include(reply1.id, reply2.id)
         expect(comment1_data['replies'].map { |r| r['created_by']['id'] }).to include(user.id, manager.id)
-        expect(comment1_data['replies'].map { |r| r['content'] }).to include(reply1.content, reply2.content)
+        expect(comment1_data['replies'].pluck('content')).to include(reply1.content, reply2.content)
 
         expect(comment1.reload.read_by_user_ids).to include(user.id)
         expect(reply1.reload.read_by_user_ids).to include(user.id)

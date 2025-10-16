@@ -5,6 +5,7 @@ module Imports
     module Questions
       class MatrixTable
         include ImportExportConst
+
         # Parse RESULT data for XLSX
         def self.build_answers(data, question, duration, use_scoring = false, _assign) # rubocop:disable Metrics/PerceivedComplexity
           return nil if data.compact.blank?

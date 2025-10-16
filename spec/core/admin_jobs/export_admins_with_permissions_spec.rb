@@ -58,7 +58,7 @@ RSpec.describe AdminJobs::ExportAdminsWithPermissions, type: :job do
 
       described_class.call!(job_record)
       csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
-      exported_emails = csv.map { |row| row[1] }.drop(1)
+      exported_emails = csv.pluck(1).drop(1)
 
       expect(exported_emails).to match_array(campaign_admins_emails)
     end
@@ -74,7 +74,7 @@ RSpec.describe AdminJobs::ExportAdminsWithPermissions, type: :job do
 
       described_class.call!(job_record)
       csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
-      exported_emails = csv.map { |row| row[1] }.drop(1)
+      exported_emails = csv.pluck(1).drop(1)
 
       expect(exported_emails).to match_array(campaign_admins_emails)
     end
@@ -107,7 +107,7 @@ RSpec.describe AdminJobs::ExportAdminsWithPermissions, type: :job do
 
       described_class.call!(job_record)
       csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
-      exported_emails = csv.map { |row| row[1] }.drop(1)
+      exported_emails = csv.pluck(1).drop(1)
 
       expect(exported_emails).to match_array(expected_admins_emails)
     end
@@ -131,7 +131,7 @@ RSpec.describe AdminJobs::ExportAdminsWithPermissions, type: :job do
 
       described_class.call!(job_record)
       csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
-      exported_emails = csv.map { |row| row[1] }.drop(1)
+      exported_emails = csv.pluck(1).drop(1)
 
       expect(exported_emails).to match_array(expected_admins_emails)
     end
@@ -169,7 +169,7 @@ RSpec.describe AdminJobs::ExportAdminsWithPermissions, type: :job do
 
       described_class.call!(job_record)
       csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
-      exported_emails = csv.map { |row| row[1] }.drop(1)
+      exported_emails = csv.pluck(1).drop(1)
 
       expect(exported_emails).to match_array(expected_admins_emails)
     end

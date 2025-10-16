@@ -4,6 +4,7 @@ class CampaignOptions < ApplicationRecord
   audited
 
   extend Mobility
+
   belongs_to :campaign
 
   translates :instructions, :description

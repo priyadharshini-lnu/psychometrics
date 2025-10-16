@@ -301,7 +301,7 @@ module Administration
 
         scope.where(
           'id IN (?) OR project_id IN (?)',
-          permitted_campaign_ids, (permitted_client_admin_project_ids + permitted_project_admin_project_ids)
+          permitted_campaign_ids, permitted_client_admin_project_ids + permitted_project_admin_project_ids
         )
       end
     end

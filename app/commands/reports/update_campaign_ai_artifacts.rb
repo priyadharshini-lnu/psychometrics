@@ -76,7 +76,8 @@ module Reports
 
       Reports::CampaignAIArtifact.import(
         artifacts,
-        on_duplicate_key_update: { conflict_target: %i[code report_id], columns: %i[name ai_assistant_id] }
+        on_duplicate_key_update: { conflict_target: %i[code report_id], columns: %i[name ai_assistant_id] },
+        validate: false
       )
     end
 

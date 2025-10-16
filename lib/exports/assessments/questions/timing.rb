@@ -5,6 +5,7 @@ module Exports
     module Questions
       class Timing < Base
         include ImportExportConst
+
         FIELDS = %w[firstClick lastClick pageSubmit clickCount].freeze
 
         # Parse RESULT data for XLSX

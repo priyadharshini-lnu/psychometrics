@@ -58,8 +58,8 @@ module PortableData
 
       # Determines the type of action (created/updated/deleted) based on old and new values
       def determine_action_type(old_val, new_val)
-        return 'Added' if old_val.nil? && (new_val.is_a?(Hash) && new_val[:id].present?)
-        return 'Deleted' if new_val.nil? && (old_val.is_a?(Hash) && old_val[:id].present?)
+        return 'Added' if old_val.nil? && new_val.is_a?(Hash) && new_val[:id].present?
+        return 'Deleted' if new_val.nil? && old_val.is_a?(Hash) && old_val[:id].present?
 
         'Updated'
       end

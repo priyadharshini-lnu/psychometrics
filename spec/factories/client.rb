@@ -61,7 +61,7 @@ FactoryBot.define do
 
     factory :project_with_sms_notification, parent: :project do
       after(:create) do |project|
-        project.client.client_feature.update(sms_notification: true) if project.client&.client_feature
+        project.client.client_feature&.update(sms_notification: true)
         project.project_feature&.update(sms_notification: true)
       end
     end

@@ -10,6 +10,7 @@ unless defined?(Rails)
 
   module I18nCsvTasks
     include ::I18n::Tasks::Command::Collection
+
     cmd :csv_export, desc: 'export translations to CSV'
     def csv_export(_opts = {})
       translations_by_path = {}

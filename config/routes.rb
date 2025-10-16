@@ -1162,7 +1162,7 @@ as: :simulation_progress_notification
           resources :campaigns, only: %i[show create update] do
             get :assessments_reports, on: :member, action_name: 'get_assessments_reports'
             put :assessments_reports, on: :member
-            resources :users, only: %i[indexs] do
+            resources :users, only: %i[index] do
               put :assessments_reports, on: :member
               get :results, on: :member
             end
@@ -1338,7 +1338,7 @@ as: :simulation_progress_notification
               end
             end
             jsonapi_resources :threesixty_campaigns do
-              jsonapi_resource :report_approval_setting, only: %i[index create update destroy]
+              jsonapi_resource :report_approval_setting, only: %i[create update destroy]
               post :create_campaign, on: :collection
               post :convert_to_template, on: :member
               post :copy_as_template, on: :member

@@ -9,7 +9,7 @@ module Api
         schema Api::V2::WorkshopInvite::Schema.create_request
 
         rule(data: { attributes: :workshop_ids }) do
-          if value.count.zero?
+          if value.none?
             key.failure(:filled?)
           end
         end

@@ -7,8 +7,8 @@ Rswag::Ui.configure do |c|
   # NOTE: If you're using rspec-api to expose Swagger files (under swagger_root) as JSON endpoints,
   # then the list below should correspond to the relative paths for those endpoints
 
-  c.swagger_endpoint '/api-docs/v1/swagger.json', 'Lighthouse REST API v1'
-  c.swagger_endpoint '/api-docs/v2/swagger.json', 'Lighthouse JSON API V2 Docs'
+  c.openapi_endpoint '/api-docs/v1/swagger.json', 'Lighthouse REST API v1'
+  c.openapi_endpoint '/api-docs/v2/swagger.json', 'Lighthouse JSON API V2 Docs'
 end
 
 # Patch the CSP header to allow the RapiDoc to load
