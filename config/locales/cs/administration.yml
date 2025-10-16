@@ -2006,7 +2006,6 @@ cs:
         details: Podrobnosti o souboru
         failure_msg: Chyba při exportu překladů
         success_msg: Probíhá export vývojových akcí. Zkontrolujte prosím stav v oznámeních.
-        title: Export
         translation_details: Podrobnosti na
       export_development_action_translations: Vývojová akce Překlady na základě projektu
       export_development_actions: Rozvojové akce na základě projektu
@@ -4627,7 +4626,6 @@ cs:
             import_subjects: Importované předměty
             last_name: Příjmení
             locale: Lokalita
-            please_enter_valid_email: Zadejte prosím platný e-mail
             target_job_role: Cílová pracovní role
             title: Předměty
           title: Účastníci

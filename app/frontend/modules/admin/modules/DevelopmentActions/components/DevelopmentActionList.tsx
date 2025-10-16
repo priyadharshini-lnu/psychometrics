@@ -6,7 +6,6 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import { DevelopmentActionTR, DevelopmentAction } from '~/modules/admin/modules/client/core/developmentAction'
 import { Resource } from '~/modules/admin/components/Resource'
 import { DevelopmentActionsFormModal } from './DevelopmentActionsFormModal'
-import { DevelopmentActionsExportModal } from './DevelopmentActionsExportModal'
 import { DevelopmentActionsTable } from './DevelopmentActionsTable'
 import { DevelopmentActionsFilter } from './DevelopmentActionsFilter'
 import { DevelopmentActionsImportModal } from './DevelopmentActionsImportModal'
@@ -25,7 +24,6 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 const MODALS = {
   DevelopmentActionsFormModal,
   DevelopmentActionsImportModal,
-  DevelopmentActionsExportModal,
 }
 
 const { I18n } = window

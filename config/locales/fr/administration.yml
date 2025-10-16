@@ -2006,7 +2006,6 @@ fr:
         details: Détails du dossier
         failure_msg: Erreur lors de l'exportation des traductions
         success_msg: L'exportation des actions de développement est en cours. Veuillez vérifier l'état d'avancement dans les notifications.
-        title: Exportation
         translation_details: Détails
       export_development_action_translations: Action de développement Traductions basées sur le projet
       export_development_actions: Actions de développement basées sur le projet
@@ -4627,7 +4626,6 @@ fr:
             import_subjects: Sujets d'importation
             last_name: Nom de famille
             locale: Localité
-            please_enter_valid_email: Veuillez saisir une adresse e-mail valide
             target_job_role: Rôle professionnel cible
             title: Thèmes
           title: Les participants

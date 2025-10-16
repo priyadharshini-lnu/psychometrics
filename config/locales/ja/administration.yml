@@ -2006,7 +2006,6 @@ ja:
         details: ファイル詳細
         failure_msg: 翻訳のエクスポート時のエラー
         success_msg: 開発アクションのエクスポートが進行中です。 通知でステータスを確認してください。
-        title: 輸出
         translation_details: 詳細
       export_development_action_translations: プロジェクトに基づく開発行為翻訳
       export_development_actions: プロジェクトに基づく開発アクション
@@ -4627,7 +4626,6 @@ ja:
             import_subjects: 輸入対象
             last_name: ラストネーム
             locale: ロケール
-            please_enter_valid_email: 有効なメールアドレスを入力してください
             target_job_role: 目標職務
             title: 対象
           title: 参加者

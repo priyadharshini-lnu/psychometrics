@@ -2006,7 +2006,6 @@ es-ES:
         details: Detalles del expediente
         failure_msg: Error al exportar traducciones
         success_msg: Exportación de las acciones de desarrollo en curso. Por favor, compruebe el estado en las notificaciones.
-        title: Exportar
         translation_details: Detalles
       export_development_action_translations: Acción de desarrollo Traducciones basadas en el proyecto
       export_development_actions: Acciones de desarrollo basadas en el proyecto
@@ -4627,7 +4626,6 @@ es-ES:
             import_subjects: Temas de importación
             last_name: Apellido
             locale: Local
-            please_enter_valid_email: Ingrese un correo electrónico válido
             target_job_role: Rol de trabajo objetivo
             title: Temas
           title: Participantes

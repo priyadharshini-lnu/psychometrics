@@ -1769,7 +1769,6 @@ it:
       download: Scarica
       edit: Modifica
       export: Esporta
-      filter: Filtro
       filter_by_tags: Filtrare per tag
       go_back: Indietro
       import: Importazione
@@ -1899,7 +1898,6 @@ it:
       download: Scarica
       enabled: Abilitato
       file: File
-      global_import: L'importazione globale?
       minutes: Verbale
       na: N/D
       none: Nessuno

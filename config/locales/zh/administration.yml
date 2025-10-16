@@ -2006,7 +2006,6 @@ zh:
         details: 文件详情
         failure_msg: 导出翻译时出错
         success_msg: 导出开发操作正在进行中，请查看通知中的状态。
-        title: 导出
         translation_details: 详细信息
       export_development_action_translations: 基于项目的发展行动翻译
       export_development_actions: 基于项目的发展行动
@@ -4627,7 +4626,6 @@ zh:
             import_subjects: 进口主题
             last_name: 姓氏
             locale: 地点
-            please_enter_valid_email: 请输入有效的电子邮件
             target_job_role: 目标工作角色
             title: 主题
           title: 参与者

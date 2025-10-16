@@ -1766,7 +1766,6 @@ th:
       download: ดาวน์โหลด
       edit: แก้ไข
       export: ส่งออก
-      filter: กรอง
       filter_by_tags: กรองตามแท็ก
       go_back: ย้อนกลับ
       import: นําเข้า
@@ -1896,7 +1895,6 @@ th:
       download: ดาวน์โหลด
       enabled: เปิด
       file: แฟ้ม
-      global_import: นําเข้าทั่วโลกหรือไม่?
       minutes: รายงานการประชุม
       na: ไม่มีข้อมูล
       none: ไม่มีใคร

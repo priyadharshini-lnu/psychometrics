@@ -2006,7 +2006,6 @@ it:
         details: Dettagli del file
         failure_msg: Errore durante l'esportazione delle traduzioni
         success_msg: L'esportazione delle azioni di sviluppo è in corso. Controllare lo stato nelle notifiche.
-        title: Esporta
         translation_details: Dettagli
       export_development_action_translations: Azione di sviluppo Traduzioni basate sul progetto
       export_development_actions: Azioni di sviluppo basate sul progetto
@@ -4627,7 +4626,6 @@ it:
             import_subjects: Importazione di soggetti
             last_name: Cognome
             locale: Locale
-            please_enter_valid_email: Inserisci un indirizzo e-mail valido
             target_job_role: Ruolo lavorativo di destinazione
             title: Partecipanti
           title: Partecipanti

@@ -2007,7 +2007,6 @@ en-US:
         details: File Details
         failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress. Please check the status in the notifications.
-        title: Export
         translation_details: Details
       export_development_action_translations: Development Action Translations
       export_development_actions: Development Actions
@@ -4622,7 +4621,6 @@ en-US:
             import_subjects: Import Subjects
             last_name: Last Name
             locale: Locale
-            please_enter_valid_email: Please enter a valid email
             target_job_role: Target Job Role
             title: Subjects
           title: Participants

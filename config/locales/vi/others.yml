@@ -1763,7 +1763,6 @@ vi:
       download: Tải xuống
       edit: Biên tập
       export: Xuất khẩu
-      filter: Bộ lọc
       filter_by_tags: Lọc theo thẻ
       go_back: Quay lại
       import: Nhập khẩu
@@ -1893,7 +1892,6 @@ vi:
       download: Tải về
       enabled: Kích hoạt
       file: Tệp
-      global_import: Nhập khẩu toàn cầu có phải không?
       minutes: Biên bản
       na: Không có
       none: Không ai

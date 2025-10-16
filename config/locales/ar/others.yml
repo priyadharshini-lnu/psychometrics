@@ -1806,7 +1806,6 @@ ar:
       download: تحميل
       edit: تعديل
       export: تصدير
-      filter: راووق
       filter_by_tags: التصفية حسب العلامات
       go_back: الرجوع للخلف
       import: استورد
@@ -1936,7 +1935,6 @@ ar:
       download: تحميل
       enabled: تمكين
       file: ملف
-      global_import: هل الاستيراد العالمي؟
       minutes: محضر
       na: N / A
       none: اي

@@ -2006,7 +2006,6 @@ nl:
         details: Bestand Details
         failure_msg: Fout bij het exporteren van vertalingen
         success_msg: Het exporteren van ontwikkelingsacties is bezig. Controleer de status in de meldingen.
-        title: Exporteer
         translation_details: Details
       export_development_action_translations: Ontwikkeling Actie Vertalingen gebaseerd op Project
       export_development_actions: Ontwikkelingsacties op basis van project
@@ -4627,7 +4626,6 @@ nl:
             import_subjects: Invoer Onderwerpen
             last_name: Achternaam
             locale: Lokaal
-            please_enter_valid_email: Voer een geldig e-mailadres in
             target_job_role: Doel Functierol
             title: Onderwerpen
           title: Deelnemers

@@ -78,12 +78,18 @@ const DevelopmentAction = ({ developmentAction }) => {
           <div className={styles.date}>
             {I18n.t('idp.pdf.idp.start_date')}
             {' '}
-            <strong>{dayjs(developmentAction.start_date_time).format('DD MMM YYYY')}</strong>
+            {developmentAction.start_date_time
+              ? <strong>{dayjs(developmentAction.start_date_time).format('DD MMM YYYY')}</strong>
+              : null
+            }
           </div>
           <div className={styles.date}>
             {I18n.t('idp.pdf.idp.end_date')}
             {' '}
-            <strong>{dayjs(developmentAction.end_date_time).format('DD MMM YYYY')}</strong>
+            {developmentAction.end_date_time
+              ? <strong>{dayjs(developmentAction.end_date_time).format('DD MMM YYYY')}</strong>
+              : null
+            }
           </div>
         </Flex>
         <Flex gap={12} align="center">

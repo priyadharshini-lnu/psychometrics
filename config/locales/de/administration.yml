@@ -2006,7 +2006,6 @@ de:
         details: Datei-Details
         failure_msg: Fehler beim Exportieren von Übersetzungen
         success_msg: Der Export von Entwicklungsmaßnahmen ist im Gange. Bitte überprüfen Sie den Status in den Benachrichtigungen.
-        title: Exportieren
         translation_details: Einzelheiten
       export_development_action_translations: Entwicklung Aktion Übersetzungen auf Basis des Projekts
       export_development_actions: Entwicklungsmaßnahmen auf der Grundlage des Projekts
@@ -4627,7 +4626,6 @@ de:
             import_subjects: Themen importieren
             last_name: Nachname
             locale: Schauplatz
-            please_enter_valid_email: Bitte geben Sie eine gültige E-Mail-Adresse ein
             target_job_role: Zielberufsrolle
             title: Themen
           title: Teilnehmer

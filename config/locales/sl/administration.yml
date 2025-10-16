@@ -2006,7 +2006,6 @@ sl:
         details: Podrobnosti o datoteki
         failure_msg: Napaka pri izvažanju prevodov
         success_msg: Izvoz razvojnih ukrepov v teku. Preverite stanje v obvestilih.
-        title: Izvoz
         translation_details: Podrobnosti
       export_development_action_translations: Prevodi razvojnih ukrepov
       export_development_actions: Razvojni ukrepi
@@ -4613,7 +4612,6 @@ sl:
             import_subjects: Uvozni predmeti
             last_name: Priimek
             locale: Locale
-            please_enter_valid_email: Prosimo, vnesite veljaven e-poštni naslov
             target_job_role: Ciljna delovna vloga
             title: Predmeti
           title: Udeleženci

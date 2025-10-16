@@ -1773,7 +1773,6 @@ pl:
       download: Pobierać
       edit: Edytuj
       export: Eksport
-      filter: Filtr
       filter_by_tags: Filtrowanie według tagów
       go_back: Przejdź wstecz
       import: Import
@@ -1903,7 +1902,6 @@ pl:
       download: Pobierz
       enabled: Włączone
       file: Plik
-      global_import: Czy jest to import globalny?
       minutes: Protokół
       na: NIE DOTYCZY
       none: Żaden

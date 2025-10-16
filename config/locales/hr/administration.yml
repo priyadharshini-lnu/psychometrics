@@ -2006,7 +2006,6 @@ hr:
         details: Pojedinosti o datoteci
         failure_msg: Pogreška prilikom izvoza prijevoda
         success_msg: Izvoz razvojnih radnji u tijeku. Provjerite status u obavijestima.
-        title: Izvoz
         translation_details: Detalji
       export_development_action_translations: Prijevodi razvojnih akcija
       export_development_actions: Razvojne akcije
@@ -4613,7 +4612,6 @@ hr:
             import_subjects: Uvezi ispitanike
             last_name: Prezime
             locale: Poprište
-            please_enter_valid_email: Unesite valjanu e-poštu
             target_job_role: Ciljana radna uloga
             title: Ispitanici
           title: Sudionici

@@ -2006,7 +2006,6 @@ zh-Hant:
         details: 檔案詳細資料
         failure_msg: 匯出翻譯時發生錯誤
         success_msg: 匯出開發動作正在進行中，請檢查通知中的狀態。
-        title: 出口
         translation_details: 詳細資訊
       export_development_action_translations: 以專案為基礎的發展行動翻譯
       export_development_actions: 基於專案的發展行動
@@ -4627,7 +4626,6 @@ zh-Hant:
             import_subjects: 進口主題
             last_name: 姓
             locale: 語言環境
-            please_enter_valid_email: 請輸入有效的電子郵件
             target_job_role: 目標工作角色
             title: 主題
           title: 參與者

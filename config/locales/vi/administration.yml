@@ -2006,7 +2006,6 @@ vi:
         details: Chi tiết tệp
         failure_msg: Lỗi khi xuất bản dịch
         success_msg: Xuất các hành động phát triển đang được tiến hành. Vui lòng kiểm tra trạng thái trong thông báo.
-        title: Xuất khẩu
         translation_details: Chi tiết
       export_development_action_translations: Bản dịch hành động phát triển
       export_development_actions: Hành động phát triển
@@ -4613,7 +4612,6 @@ vi:
             import_subjects: Nhập chủ đề
             last_name: Họ
             locale: Locale
-            please_enter_valid_email: Vui lòng nhập email hợp lệ
             target_job_role: Vai trò công việc mục tiêu
             title: Chủ đề
           title: Tham gia

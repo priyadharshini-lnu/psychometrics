@@ -1779,7 +1779,6 @@ zh:
       download: 下载
       edit: 编辑
       export: 导出
-      filter: 滤波器
       filter_by_tags: 按标签筛选
       go_back: 回去
       import: 进口
@@ -1909,7 +1908,6 @@ zh:
       download: 下载
       enabled: 启用
       file: 文件
-      global_import: 全球进口是什么？
       minutes: 分钟
       na: 不适用
       none: 无

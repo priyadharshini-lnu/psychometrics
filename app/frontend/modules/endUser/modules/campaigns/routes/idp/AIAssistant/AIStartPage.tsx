@@ -52,6 +52,7 @@ export const AIStartPageComponent = ({ fetchUserIdpPlan }) => {
                 block
                 type="primary"
                 onClick={() => navigate('/idp/ai_assistant/chat')}
+                style={{ maxWidth: 300 }}
               >
                 {I18n.t('common.actions.continue')}
               </Button>

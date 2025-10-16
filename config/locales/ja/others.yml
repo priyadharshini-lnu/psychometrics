@@ -1782,7 +1782,6 @@ ja:
       download: ダウンロード
       edit: 編集
       export: 輸出
-      filter: フィルター
       filter_by_tags: タグで絞り込む
       go_back: 戻ってください
       import: 輸入
@@ -1912,7 +1911,6 @@ ja:
       download: ダウンロード
       enabled: 有効
       file: ファイル
-      global_import: グローバル・インポート？
       minutes: 議事録
       na: 該当なし
       none: なし

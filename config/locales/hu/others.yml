@@ -1769,7 +1769,6 @@ hu:
       download: Letöltés
       edit: Szerkesztés
       export: Kivitel
-      filter: Szűrő
       filter_by_tags: Szűrés címkék szerint
       go_back: Menj vissza
       import: Importál
@@ -1899,7 +1898,6 @@ hu:
       download: Letöltés
       enabled: Engedélyezve
       file: Fájl
-      global_import: Globális import?
       minutes: Jegyzőkönyv
       na: N/A
       none: Egyik sem

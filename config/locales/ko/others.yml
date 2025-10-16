@@ -1769,7 +1769,6 @@ ko:
       download: 다운로드
       edit: 편집
       export: 내보내기
-      filter: 필터
       filter_by_tags: 태그별로 필터링
       go_back: 돌아 가
       import: 가져오기
@@ -1899,7 +1898,6 @@ ko:
       download: 다운로드
       enabled: 사용
       file: 파일
-      global_import: 글로벌 가져오기란 무엇인가요?
       minutes: 분
       na: N/A
       none: 없음

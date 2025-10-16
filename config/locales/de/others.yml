@@ -1783,7 +1783,6 @@ de:
       download: Herunterladen
       edit: Bearbeiten
       export: Exportieren
-      filter: Filter
       filter_by_tags: Nach Tags filtern
       go_back: Zurück
       import: Importieren
@@ -1913,7 +1912,6 @@ de:
       download: Herunterladen
       enabled: Ermöglichte
       file: Datei
-      global_import: Ist Global Import?
       minutes: Protokoll
       na: K.A
       none: Keine

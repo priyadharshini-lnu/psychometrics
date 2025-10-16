@@ -1769,7 +1769,6 @@ fr:
       download: Télécharger
       edit: Editer
       export: Exportation
-      filter: Filtre
       filter_by_tags: Filtrer par tags
       go_back: Retour
       import: Importation
@@ -1899,7 +1898,6 @@ fr:
       download: Télécharger
       enabled: Activé
       file: Fichier
-      global_import: Est-ce que Global Import ?
       minutes: Procès-verbal
       na: N/A
       none: Aucun

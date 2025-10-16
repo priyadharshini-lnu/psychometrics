@@ -1773,7 +1773,6 @@ id:
       download: Mengunduh
       edit: Sunting
       export: Ekspor
-      filter: Saringan
       filter_by_tags: Filter berdasarkan tag
       go_back: Kembali
       import: Mengimpor
@@ -1903,7 +1902,6 @@ id:
       download: Unduh
       enabled: Diaktifkan
       file: Arsip
-      global_import: Apakah Impor Global?
       minutes: Menit
       na: N/A
       none: Tidak

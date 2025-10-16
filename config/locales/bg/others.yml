@@ -1769,7 +1769,6 @@ bg:
       download: Свалям
       edit: Редактирайте
       export: Износ
-      filter: Филтър
       filter_by_tags: Филтриране по тагове
       go_back: Върни се назад
       import: Внос
@@ -1899,7 +1898,6 @@ bg:
       download: Изтеглете
       enabled: Разрешено
       file: Файл
-      global_import: Глобален внос ли е?
       minutes: Минути
       na: Не е налично
       none: Никой

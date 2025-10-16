@@ -1769,7 +1769,6 @@ zh-Hant:
       download: 下載
       edit: 編輯
       export: 出口
-      filter: 濾波器
       filter_by_tags: 依標籤篩選
       go_back: 回去
       import: 進口
@@ -1899,7 +1898,6 @@ zh-Hant:
       download: 下載
       enabled: 已啟用
       file: 檔案
-      global_import: 全球進口？
       minutes: 分鐘
       na: 不適用
       none: 無
