@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
-import { License, LicenseTR } from '../../../../../../core/licenses'
+import { License, LicenseTR } from '~/modules/admin/modules/client/core/licenses'
 
 const { I18n } = window
 
