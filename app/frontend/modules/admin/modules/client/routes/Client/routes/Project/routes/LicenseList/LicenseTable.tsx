@@ -1,12 +1,22 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import { Resource } from '~/modules/admin/components/Resource'
+import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { License } from '~/modules/admin/modules/client/core/licenses'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { get as getCurrentUser } from '~/core/currentUser'
+
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { UpdateResource } from 'hooks/useResources/interfaces'
+import { MenuProps } from 'antd'
+import { Link, useParams } from 'react-router-dom'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { LicenseFormModal } from './LicenseFormModal'
+import Modals from '~/modules/admin/components/Modals'
 
 const { I18n } = window
+const MODALS = {
+  LicenseFormModal,
+}
 
 const connecter = connect(
   (state: RootState) => ({
@@ -20,8 +30,17 @@ const connecter = connect(
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-const ClientLicensesTableComponent: React.FC<Props> = () => (
-  <Resource.Table pagination>
+const ClientLicensesTableComponent: React.FC<Props> = ({
+  currentUser
+}) => {
+
+  const { resource } = useResourceContext<License>()
+  const { projectId } = useParams() as { projectId: string }
+  // debugger;
+
+  return (
+  <>
+    <Resource.Table pagination>
     <Resource.Column<License>
       title={I18n.t('licenses.report_family')}
       id="report_family_id"
@@ -59,40 +78,62 @@ const ClientLicensesTableComponent: React.FC<Props> = () => (
       dataIndex="endDate"
       sorter
     />
+    {isSuperAdmin(currentUser)
+          && (
+            <Resource.Column<License>
+              title={I18n.t('common.column.action')}
+              id="actions"
+              key="actions"
+              render={license => (
+                <ConditionalDropdown
+                  menu={
+                    getActionsMenuProps({
+                      license,
+                      openModal,
+                      updateResource: resource.updateResource,
+                      projectId,
+                    })
+                  }
+                />
+              )}
+            />
+          )}
   </Resource.Table>
-)
+  <Modals modals={MODALS} />
+  </>
+)}
 
-// interface ActionMenuData {
-//   license: License
-//   updateResource: UpdateResource<License>
-//   openModal: (modalName: string, modalProps: unknown) => void
-// }
+interface ActionMenuData {
+  license: License
+  updateResource: UpdateResource<License>
+  openModal: (modalName: string, modalProps?: unknown) => void
+  projectId: string
+}
 
-// const getActionsMenuProps = ({
-//   license, updateResource, openModal,
-// }: ActionMenuData): MenuProps => {
-//   const menuItems = [
-//     { key: 'edit', label: I18n.t('common.actions.edit') },
-//     {
-//       key: 'show',
-//       label: (
-//         <Link to={`${license.id}/license_usages`}>
-//           {I18n.t('license_usage.usage_overview')}
-//         </Link>
-//       ),
-//     },
-//   ]
+const getActionsMenuProps = ({
+  license, updateResource, openModal, projectId
+}: ActionMenuData): MenuProps => {
+  const menuItems = [
+    { key: 'edit', label: I18n.t('common.actions.edit') },
+    {
+      key: 'show',
+      label: (
+        <Link to={`${license.id}/license_usages?filter[project_id_eq]=${projectId}`}>
+          {I18n.t('license_usage.usage_overview')}
+        </Link>
+      ),
+    },
+  ]
 
-//   const handleMenuClick = ({ key }) => {
-//     if (key === 'edit') {
-//       return openModal('LicenseFormModal', {
-//         updateLicense: updateResource, license,
-//       })
-//     }
-//   }
+  const handleMenuClick = ({ key }) => {
+    console.log("Handle menu click fired with key:", key);
+    if (key === 'edit') {
+      return openModal('LicenseFormModal', { license })
+    }
+  }
 
-//   return ({ items: menuItems, onClick: handleMenuClick })
-// }
+  return ({ items: menuItems, onClick: handleMenuClick })
+}
 
 function usedOveruseNumber (used: number, total: number): number {
   return total >= used ? 0 : used - total
