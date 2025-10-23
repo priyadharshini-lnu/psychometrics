@@ -43,8 +43,8 @@ describe AdminJobs::Base do
       expect(test_class_three.steps.length).to eq(0)
 
       # Steps should contain the correct data
-      expect(test_class_one.steps.map { |s| s[:name] }).to eq(%i[step1 step2])
-      expect(test_class_two.steps.map { |s| s[:name] }).to eq(%i[step_a step_b])
+      expect(test_class_one.steps.pluck(:name)).to eq(%i[step1 step2])
+      expect(test_class_two.steps.pluck(:name)).to eq(%i[step_a step_b])
     end
 
     it 'should not share steps arrays between classes' do
@@ -64,8 +64,8 @@ describe AdminJobs::Base do
 
       expect(instance1.steps.length).to eq(2)
       expect(instance2.steps.length).to eq(2)
-      expect(instance1.steps.map { |s| s[:name] }).to eq(%i[step1 step2])
-      expect(instance2.steps.map { |s| s[:name] }).to eq(%i[step_a step_b])
+      expect(instance1.steps.pluck(:name)).to eq(%i[step1 step2])
+      expect(instance2.steps.pluck(:name)).to eq(%i[step_a step_b])
     end
   end
 end

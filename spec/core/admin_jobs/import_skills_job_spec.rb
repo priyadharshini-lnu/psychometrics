@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe AdminJobs::ImportSkillsJob do
   include ActiveJob::TestHelper
+
   let(:client) { create(:tenancy) }
   let(:project) { Project.find(create(:project, client: client).id) }
   let(:skill) { create(:skill, project: project) }
@@ -171,12 +172,12 @@ describe AdminJobs::ImportSkillsJob do
     end
 
     it 'has the correct step names' do
-      step_names = described_class.steps.map { |s| s[:name] }
+      step_names = described_class.steps.pluck(:name)
       expect(step_names).to eq(%i[import generate_embeddings])
     end
 
     it 'has the correct step classes' do
-      step_classes = described_class.steps.map { |s| s[:klass] }
+      step_classes = described_class.steps.pluck(:klass)
       expect(step_classes).to eq([
         AdminJobSteps::ImportSkills::ImportJob,
         AdminJobSteps::ImportSkills::GenerateEmbeddingsJob
