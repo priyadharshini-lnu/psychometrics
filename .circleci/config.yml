@@ -842,7 +842,9 @@ workflows:
           name: approve_sami
           type: approval
           requires:
-            - deploy_lhksa_staging
+            - build_image_staging
+            - vitest
+            - rspec
       - oci_oke_deploy:
           name: deploy_sami
           release-name: sami
@@ -861,7 +863,9 @@ workflows:
           name: approve_uae_production
           type: approval
           requires:
-            - deploy_lhksa_staging
+            - build_image_staging
+            - vitest
+            - rspec
       - azure_aks_deploy:
           name: deploy_aks_uae_production
           release-name: lighthouse
