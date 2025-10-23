@@ -97,4 +97,23 @@ describe AdminJobs::BulkDownloadIdpReports do
       end.to raise_error(AdminJob::AlreadyExistsError)
     end
   end
+
+  describe 'steps configuration' do
+    it 'should have exactly 2 steps defined' do
+      expect(described_class.steps.length).to eq(2)
+    end
+
+    it 'should have the correct step names' do
+      step_names = described_class.steps.map { |s| s[:name] }
+      expect(step_names).to eq(%i[generate download])
+    end
+
+    it 'should have the correct step classes' do
+      step_classes = described_class.steps.map { |s| s[:klass] }
+      expect(step_classes).to eq([
+        AdminJobSteps::BulkDownloadIdpReports::GenerateJob,
+        AdminJobSteps::BulkDownloadIdpReports::DownloadJob
+      ])
+    end
+  end
 end

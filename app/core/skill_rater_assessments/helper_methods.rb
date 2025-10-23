@@ -56,6 +56,7 @@ module SkillRaterAssessments
       skill.description = definition
       skill.skill_type = skill_type.downcase
       skill.skill_group = skill_group
+      skill.skip_embedding_generation! # Skip individual embedding generation during bulk import
       skill.save!
       skill
     end

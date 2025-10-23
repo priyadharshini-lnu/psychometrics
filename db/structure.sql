@@ -73,6 +73,20 @@ COMMENT ON EXTENSION tablefunc IS 'functions that manipulate whole tables, inclu
 
 
 --
+-- Name: vector; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION vector; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION vector IS 'vector data type and ivfflat and hnsw access methods';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -8046,6 +8060,39 @@ ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
 
 
 --
+-- Name: vector_embeddings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.vector_embeddings (
+    id bigint NOT NULL,
+    embedding public.vector(512),
+    resource_type character varying NOT NULL,
+    resource_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: vector_embeddings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.vector_embeddings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: vector_embeddings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.vector_embeddings_id_seq OWNED BY public.vector_embeddings.id;
+
+
+--
 -- Name: webhook_event_logs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -9958,6 +10005,13 @@ ALTER TABLE ONLY public.users_results ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: vector_embeddings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.vector_embeddings ALTER COLUMN id SET DEFAULT nextval('public.vector_embeddings_id_seq'::regclass);
+
+
+--
 -- Name: webhook_event_logs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11726,6 +11780,14 @@ ALTER TABLE ONLY public.users
 
 ALTER TABLE ONLY public.users_results
     ADD CONSTRAINT users_results_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: vector_embeddings vector_embeddings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.vector_embeddings
+    ADD CONSTRAINT vector_embeddings_pkey PRIMARY KEY (id);
 
 
 --
@@ -15333,6 +15395,20 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: index_vector_embeddings_on_embedding; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_vector_embeddings_on_embedding ON public.vector_embeddings USING hnsw (embedding public.vector_cosine_ops);
+
+
+--
+-- Name: index_vector_embeddings_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_vector_embeddings_on_resource ON public.vector_embeddings USING btree (resource_type, resource_id);
+
+
+--
 -- Name: index_webhook_event_logs_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -18494,10 +18570,12 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20250930153016'),
-('20250924140546'),
+('20251015075724'),
+('20251006071723'),
 ('20251003104731'),
 ('20251001034346'),
+('20250930153016'),
+('20250924140546'),
 ('20250917104111'),
 ('20250917090000'),
 ('20250915111321'),

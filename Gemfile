@@ -279,3 +279,6 @@ gem 'ruby_llm-schema', '~> 0.1.6'
 
 # Pure Ruby GeoIP2 MaxMind DB reader
 gem 'maxminddb'
+
+# For storing and querying vector embeddings in Postgres
+gem 'neighbor'

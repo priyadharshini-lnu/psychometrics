@@ -634,6 +634,8 @@ GEM
     multipart-post (2.4.1)
     mustache (1.1.1)
     mutex_m (0.3.0)
+    neighbor (0.6.0)
+      activerecord (>= 7.1)
     nenv (0.3.0)
     net-imap (0.5.9)
       date
@@ -1203,6 +1205,7 @@ DEPENDENCIES
   mini_magick (~> 4.11.0)
   mobility (~> 1.2.9)
   mustache (~> 1.1.1)
+  neighbor
   nkf
   oci (~> 2.20.0)
   ostruct (~> 0.6.1)

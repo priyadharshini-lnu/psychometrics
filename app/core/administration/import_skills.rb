@@ -11,31 +11,43 @@ module Administration
       begin
         csv_data = CsvFileParser.call!(@file)
       rescue Errors::DownloadFailedError => e
-        raise Errors::ImportError, e.message
+        return broadcast(:error, e.message)
       end
 
-      ActiveRecord::Base.transaction do
-        process_csv_data(csv_data)
+      begin
+        imported_skill_ids = []
+        ActiveRecord::Base.transaction do
+          imported_skill_ids = process_csv_data(csv_data)
+        end
+        broadcast(:ok, imported_skill_ids)
+      rescue Errors::ImportError => e
+        broadcast(:error, e.message)
       end
-      true
     end
 
     private
 
     def process_csv_data(csv_data)
       headers = csv_data.shift
+      imported_skill_ids = []
 
       csv_data.each.with_index(2) do |row, line_number|
         row_data = headers.zip(row).to_h
-        process_row(row_data, line_number)
+        skill = process_row(row_data, line_number)
+        imported_skill_ids << skill.id if skill
       end
+
+      imported_skill_ids
     end
 
     def process_row(row, line_number)
       skill = initialize_skill(row)
       assign_skill_attributes(skill, row)
 
+      # Skipping embedding generation during bulk import, doing batch generation instead
+      skill.skip_embedding_generation!
       skill.save!
+      skill
     rescue ActiveRecord::RecordInvalid => e
       raise Errors::ImportError, I18n.t(
         'administration.skills.errors.import.save_failed',
