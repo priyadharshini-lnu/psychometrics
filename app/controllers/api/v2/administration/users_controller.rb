@@ -113,7 +113,7 @@ module Api
     end
 
     def verify_recaptcha_or_redirect
-      return if Settings.features.disable_recaptcha
+      return if SkipRecaptcha.call!(request)
 
       attrs = params.dig(:data, :attributes)
 

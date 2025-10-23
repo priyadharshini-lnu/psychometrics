@@ -40,6 +40,7 @@ platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
 generative_ai_service: <%= ENV.fetch('GENERATIVE_AI_SERVICE', 'azure_openai') %>
 cloud_functions_service: <%= ENV.fetch('CLOUD_FUNCTION_SERVICE', 'aws') %>
 timezone_tip: ' (GST)'
+skip_recaptcha_for_ips: <%= ENV.fetch('SKIP_RECAPTCHA_FOR_IPS', '').split(',').map(&:strip) %>
 react_dev:
   reports: false
   assessments: false
