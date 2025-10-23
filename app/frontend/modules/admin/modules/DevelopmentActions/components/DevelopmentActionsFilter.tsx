@@ -95,22 +95,12 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
     if (action === 'export_development_action') {
       if (projectIdParam) {
         handleDevelopmentActionExport(Number(projectIdParam))
-      } else {
-        openModal('DevelopmentActionsExportModal', {
-          handleExport: handleDevelopmentActionExport,
-          title: I18n.t('administration.development_actions.export_actions.development_actions_title'),
-        })
       }
     }
 
     if (action === 'export_development_action_translations') {
       if (projectIdParam) {
         handleDevelopmentActionTranslationExport(Number(projectIdParam))
-      } else {
-        openModal('DevelopmentActionsExportModal', {
-          handleExport: handleDevelopmentActionTranslationExport,
-          title: I18n.t('administration.development_actions.export_actions.development_action_translations_title'),
-        })
       }
     }
 
@@ -153,10 +143,14 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
         onClick={handleToolAction}
         permissions={resource.meta.permissions}
       />
-      <Button type="primary" disabled={tableLoading} onClick={handleCreateDevelopmentActionModal}>
-        <PlusOutlined />
-        {I18n.t('common.actions.create')}
-      </Button>
+      {
+        resource.meta.permissions?.create && (
+          <Button type="primary" disabled={tableLoading} onClick={handleCreateDevelopmentActionModal}>
+            <PlusOutlined />
+            {I18n.t('common.actions.create')}
+          </Button>
+        )
+      }
     </Resource.Filter>
   )
 }

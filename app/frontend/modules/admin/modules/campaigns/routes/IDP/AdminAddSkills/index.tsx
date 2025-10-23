@@ -1,9 +1,10 @@
 import { useEffect, useState, useMemo } from 'react'
-import _ from 'lodash'
+import { uniqBy, map } from 'lodash'
 import {
   useParams,
 } from 'react-router-dom'
 import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
+import { SKILL_TYPE } from '~/components/IdpShared/constants'
 import { useResources } from '~/hooks/useResources'
 import { useSearchSkills } from './useSearchSkills'
 import { UserIdpSkills } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
@@ -27,7 +28,7 @@ export const AdminAddSkills = ({
 
   const searchSkillResource = useSearchSkills(idpTemplateId)
 
-  const { projectId } = useParams()
+  const { projectId, idpPlanId } = useParams()
 
   const {
     fetch: fetchIdpSkillDetails,
@@ -57,8 +58,8 @@ export const AdminAddSkills = ({
         //   size: 25,
         // },
         filter: {
-          by_idp_template_id: idpTemplateId as string,
           project_id_eq: projectId as string,
+          available_skills_by_plan_id: idpPlanId as string,
         },
         include: ['development_actions'],
       },
@@ -75,17 +76,25 @@ export const AdminAddSkills = ({
       skillId: skill.id,
     }))
 
-    setSelectedSkills(_.uniqBy([...selectedSkills, ...userIdpSkill], 'skillId'))
+    setSelectedSkills(uniqBy([...selectedSkills, ...userIdpSkill], 'skillId'))
   }
+
 
   const handleDeselectSkill = (skillId) => {
-    setSelectedSkills(selectedSkills.filter((userIdpSkill:UserIdpSkills) => Number(userIdpSkill.skillId) !== skillId))
+    const userIdpSkills = selectedSkills.filter(
+      (userIdpSkill:UserIdpSkills) => Number(userIdpSkill.skillId) !== skillId,
+    )
+    setSelectedSkills(userIdpSkills)
   }
 
-  const skillTypes = _.map(_.groupBy(skills, 'skillType'), (skills, skillType) => ({
-    skillType,
-    skills,
-  }))
+  const skillTypes = [{
+    skillType: SKILL_TYPE.BEHAVIORAL,
+    skills: skills.filter(skill => (skill.skillType === SKILL_TYPE.BEHAVIORAL)),
+  }, {
+    skillType: SKILL_TYPE.TECHNICAL,
+    skills: skills.filter(skill => (skill.skillType === SKILL_TYPE.TECHNICAL)),
+  }]
+
 
   const handleFinishAddinSkill = () => {
     next(selectedSkills)
@@ -93,7 +102,7 @@ export const AdminAddSkills = ({
 
   useEffect(() => {
     setSelectedSkills(
-      _.map(normalizedUserIdpSkills, (userIdpSkill:UserIdpSkills) => ({ ...userIdpSkill, skillId: userIdpSkill.id })),
+      map(normalizedUserIdpSkills, (userIdpSkill:UserIdpSkills) => ({ ...userIdpSkill, skillId: userIdpSkill.id })),
     )
   }, [normalizedUserIdpSkills, skills])
 
@@ -111,5 +120,6 @@ export const AdminAddSkills = ({
       prev={prev}
       isSkillsLoading={isSkillsLoading}
     />
+
   )
 }

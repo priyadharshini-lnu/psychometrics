@@ -7,7 +7,6 @@ import { BotLoading } from './BotLoading'
 import { InterviewCompleted } from './InterviewCompleted'
 import { Summary } from './Summary'
 import { RetakeSteps } from './RetakeSteps'
-import { Error } from './Error'
 
 export default {
   UserMessage,
@@ -19,5 +18,4 @@ export default {
   InterviewCompleted,
   Summary,
   RetakeSteps,
-  Error,
 }

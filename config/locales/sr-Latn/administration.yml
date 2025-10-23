@@ -369,7 +369,9 @@ sr-Latn:
       created_successfully: AI asistent je uspešno kreiran.
       errors:
         cannot_delete_in_use: Ne mogu izbrisati AI Assistant '%{name}' jer se koristi.
+        development_actions_assistance_not_enabled: Generisanje razvojnih akcija koje pokreće AI nije dostupno. Molimo Vas da kontaktirate administratora.
         one_click_idp_assistance_not_enabled: AI-povered IDP pomoć nije dostupna sa vašim trenutnim planom. Molimo Vas da kontaktirate administratora.
+        platform_assistant_already_exists: Na platformi je dozvoljen samo 1 asistent tipa %{type}.
       form:
         add_output_schema_key: Dodaj izlazni ključ šeme
         dependencies: Zavisnosti
@@ -388,6 +390,13 @@ sr-Latn:
         system_prompt: Sistem prompt
         type: Tip
         user_prompt: Korisnička uputstva
+      revisions:
+        load: Učitaj u formu
+        name: Ime
+        system_prompt: Sistemski propmpt
+        title: Revizije AI Assistant-a
+        user_prompt: Korisnički poziv
+        version: Verzija
       selector:
         choose_artifact: Izaberite AI artefakt
         choose_schema_key: Izaberite ključ šeme
@@ -406,6 +415,12 @@ sr-Latn:
       form:
         description: Opis
         title: API ključ
+    assessment_builder:
+      form:
+        display_label: Unesite oznaku ekrana
+        label_required: Oznaka je obavezna
+        value: Vrednost
+        value_required: Vrednost je potrebna
     assessment_center:
       cancel_confirmation:
         message: Da li ste sigurni da želite da odbacite formu napretka?
@@ -666,6 +681,7 @@ sr-Latn:
         no_results: Nema odgovora na pitanja
         other_reports: Ostali izveštaji
         overall_scoring: Ukupno bodovanje
+        recordings: Snimke
         refresh: Osveži
         reports: Izveštaji
         reports_count: "%{count} Izveštaji"
@@ -1203,10 +1219,14 @@ sr-Latn:
       client_features: Karakteristike klijenta
       form:
         ai_assistants: AI asistenti
+        ai_assistants_disabled_by_client: AI asistenti je onemogućen od strane klijenta
         ai_assisted_idp: AI asistirani IDP
+        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva da AI Assistants funkcija bude omogućena
         global_skills: Globalne veštine
         idp: IDP
+        idp_disabled_by_client: IDP je onemogućen od strane klijenta
         sms_notification: SMS obaveštenje
+        sms_notification_disabled_by_client: SMS obaveštenje je onemogućeno od strane klijenta
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1727,7 @@ sr-Latn:
         update_button: Ažuriraj prevod
       form:
         all: Sve
+        assessment_center_booking_summary: Pregled rezervacije Centra za procenu
         assessment_completion_status_code: Kod statusa završetka procene
         assessment_completion_status_code_hint: Ako je naveden kod za završetak, on će biti poslat samo ako procena korisnika ima ovaj status kod završetka.
         body_mustache: |-
@@ -1726,6 +1747,8 @@ sr-Latn:
         custom: Prilagođeno
         delivery_at: Isporuka na (GST)
         delivery_delay_hours: Kašnjenje isporuke (sati)
+        delivery_end_date: Datum završetka isporuke
+        delivery_frequency: Frekvencija isporuke
         delivery_interval: Interval isporuke
         delivery_interval_number: Broj intervala isporuke
         delivery_interval_period: Period intervala isporuke
@@ -1736,7 +1759,16 @@ sr-Latn:
           not_started: Ako procena nije započeta
           send_now: Pošalji odmah
           specific_datetime: Pošalji na
+        delivery_start_date: Datum početka isporuke
+        delivery_time_of_day: Vreme isporuke dana
+        delivery_timezone: Vremenska zona isporuke
+        delivery_weekdays: Isporuka Radnim danima
         development_action_deadline_missed: Propušten rok za razvojnu akciju
+        error_msgs:
+          delivery_end_date_after_start_date: Mora biti posle datuma početka
+          delivery_start_date_in_past: ne može biti u prošlosti
+          delivery_time_in_past: ne može biti u prošlosti
+          delivery_weekdays_required: mora da izabere najmanje jedan radni dan
         idp_deadline_missed: Propušten rok za IDP
         idp_template_approved: IDP Odobren
         idp_template_assigned: IDP Dodeljen
@@ -1817,15 +1849,21 @@ sr-Latn:
         client: 'Klijent:'
         communication_type: 'Tip komunikacije:'
         delivery_rule: 'Pravilo isporuke:'
+        end_date: 'Datum završetka:'
         every_interval: Svaki %{interval}
+        frequency: 'Frekvenciju:'
         owner: 'Vlasnik:'
         project: 'Projekat:'
         recipients: 'Primaoci:'
         specific_datetime: 'Pošalji na:'
+        start_date: 'Datum početka:'
         stop_reminder_datetime: Datum završetka za podsetnike (GST)
         sub_campaign: 'Pod-kampanja:'
         subject: 'Subjekat:'
+        time_of_day: 'Doba dana:'
+        timezone: 'Vremenska zona:'
         users: 'Korisnici:'
+        weekdays: 'Radnim danima:'
       sidebar:
         copy: Kopiraj komunikaciju
         destroy: Izbriši komunikaciju
@@ -1968,17 +2006,9 @@ sr-Latn:
         details: Detalji o datoteci
         failure_msg: Greška prilikom izvoza prevoda
         success_msg: Izvoz razvojnih akcija u toku. Molimo Vas da proverite status u obaveštenjima.
-        title: Izvoz
         translation_details: Detalji
-      export_actions:
-        development_action_translations_title: Izvezi prevode razvojne akcije
-        development_actions_title: Izvezi razvojne akcije
       export_development_action_translations: Prevodi razvojnih akcija
-      export_development_action_translations_project: Prevodi razvojnih akcija zasnovani na projektu
       export_development_actions: Razvojne akcije
-      export_development_actions_project: Razvojne akcije zasnovane na projektu
-      export_global_development_actions: Globalne razvojne akcije
-      export_global_development_actions_translations: Prevodi globalnih razvojnih akcija
       form:
         available_languages: Dostupni jezici
         client_placeholder: Izaberite klijenta
@@ -2290,6 +2320,7 @@ sr-Latn:
       enter_template_name_error: Naziv šablona je obavezan
       errors:
         cannot_update_progress_plan_completed: Ne možete ažurirati napredak jer je IDP plan već završen
+        skills_required_on_publishing: Molimo vas da izaberete veštine pre objavljivanja šablona.
         update: Ažuriranje nije dozvoljeno jer je IDP šablon već povezan sa korisničkim IDP planom. Promene izgleda su sačuvane.
       fields:
         assigned_data: Dodeljeni podaci
@@ -2343,6 +2374,7 @@ sr-Latn:
       self_rating: Omogući samoocenjivanje
       show_reflections: Pokaži razmišljanja
       skill_gap_report: Izveštaj o jazu u veštinama
+      skill_gap_report_ai_assistant: Pomoćnik za analizu izveštaja o jazu veština
       skill_source_preference: Izvor veštine
       skill_sources:
         from_ai: Iz opšteg AI znanja
@@ -2371,7 +2403,6 @@ sr-Latn:
       update_interview_questions: Ažurirajte pitanja za intervju
       update_reflection_questions: Ažurirajte pitanja o refleksiji
     idp_setting:
-      allow_global_skills: Dozvolite globalne veštine
       manager_approves_idp: Menadžer odobrava IDP
       manager_can_edit_idp: Menadžer može da uređuje IDP
       require_all_development_actions_complete: Zahtevajte da sve razvojne akcije budu završene
@@ -2989,7 +3020,6 @@ sr-Latn:
           proficiency: Uvezi stručnosti
           translations: Uvezi prevode stručnosti
         errors:
-          by_skill_exists: 'Red %{row_number}: Za ovaj projekat i veštinu već postoji nivo znanja "by_skill"'
           by_skill_missing: 'Red %{row_number}: Projekat i veština moraju biti prisutni za tip ''by_skill'''
           invalid_csv_format: 'Nevažeći CSV format: %{message}'
           invalid_proficiency_type: 'Red %{row_number}: Nevažeći ili nedostaje tip stručnosti'
@@ -3029,6 +3059,8 @@ sr-Latn:
       tools:
         workshop_status_export: Izvoz statusa radionice
         workshop_status_export_success: Izvoz statusa radionice je uspešno zakazan.
+    project_features:
+      project_features: Karakteristike projekta
     project_participants:
       cancel: Otkaži
       column_actions: Radnje
@@ -3451,6 +3483,9 @@ sr-Latn:
         graph_value_condition_not_supported_msg: Uslovi vrednosti grafa nisu podržani za ovaj tip grafikona. Ova opcija je trenutno dostupna samo za tipove grafikona ispod.
         graph_value_conditions_title: Uslovi vrednosti grafikona
         if_graph_value_is: 'Ako je vrednost grafikona:'
+        job_roles:
+          current: Trenutni faktori posla
+          target: Ciljni faktori posla
         manage_graph_value_condition: Upravljajte uslovom vrednosti grafikona
         manage_styles_condition: Upravljanje stilovima stanje
         missing_value: Nedostajuća vrednost
@@ -3465,6 +3500,26 @@ sr-Latn:
         prefixes:
           and: I
           or: ILI
+        skill_type_label: Filtriraj po vrsti veštine
+        skill_type_placeholder: Izaberite vrstu veštine
+        skill_types:
+          behavioral: Bihevioralni
+          other: Drugi
+          qualification: Kvalifikacije
+          technical: Tehničke
+        table_options:
+          border: Granice
+          description: Opis
+          header: Zaglavlje
+          icons: Ikone
+          label: Oznaku
+          name: Ime
+          rank: Иin
+          score: Rezultat
+          show_benchmark_score: Pokaži benčmark rezultat
+          show_current_proficiency: Pokaži trenutnu stručnost
+          show_target_proficiency: Pokaži stručnost cilja
+          strengths_blindspots: Prednosti i slepe tačke
         text_condition_type: 'Tekst Uslov Tip:'
     report_families:
       create:
@@ -3700,6 +3755,7 @@ sr-Latn:
       campaign_participants: Učesnici kampanje
       columns:
         activity: Aktivnost
+        assessment_center_date_and_time: Datum i vreme centra za procenu
         assessor: Procenjivač
         assessors: Ocenjivači
         attendance: Prisustvo

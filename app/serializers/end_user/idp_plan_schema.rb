@@ -11,6 +11,7 @@ module EndUser
         required(:status).filled(:str?, included_in?: UserIdpPlan.statuses.keys)
         required(:skill_gap_report_available).filled(:bool?)
         required(:self_rating_enabled).filled(:bool?)
+        required(:one_click_idp_enabled).filled(:bool?)
         required(:user).hash(IdpUserSchema.schema(context, options))
         required(:unread_comments_count).filled(:int?)
         required(:instructions).maybe do

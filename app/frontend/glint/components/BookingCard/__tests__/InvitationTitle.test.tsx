@@ -17,7 +17,7 @@ test('TimeZone selection should return value as expected', async () => {
       />
     </div>,
   )
-  const selectedElement = screen.queryByText('Asia/Kolkata')
+  const selectedElement = screen.queryByText('(GMT+05:30) Asia/Kolkata')
   expect(selectedElement).toBeInTheDocument()
   const searchBox = screen.getByRole('combobox')
   await act(async () => {

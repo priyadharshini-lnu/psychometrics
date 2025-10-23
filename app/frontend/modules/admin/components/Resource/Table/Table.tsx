@@ -53,6 +53,7 @@ export const Table: FC<Props> = ({
       expandable={expandable}
       onChange={resource.handleTableChange}
       columns={columns}
+      sticky={{ offsetHeader: 50 }}
     />
   )
 

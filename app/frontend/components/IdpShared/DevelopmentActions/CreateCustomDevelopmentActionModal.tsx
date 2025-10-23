@@ -20,6 +20,7 @@ type Props = {
   onCreateCustomDevelopmentAction: (name: string,
     description: string, learningStyle: string) => void
   skillName: string
+  wrapClassName?: string;
 }
 
 export const CreateCustomDevelopmentActionModal = ({
@@ -27,6 +28,7 @@ export const CreateCustomDevelopmentActionModal = ({
   onCancel,
   onCreateCustomDevelopmentAction,
   skillName,
+  wrapClassName,
 }: Props) => {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
@@ -46,6 +48,7 @@ export const CreateCustomDevelopmentActionModal = ({
       okButtonProps={{ icon: <PlusOutlined /> }}
       cancelText={I18n.t('common.actions.cancel')}
       width={800}
+      wrapClassName={wrapClassName}
       maskClosable={false}
       footer={(
         <Flex justify="flex-end" flex={1} gap={12}>

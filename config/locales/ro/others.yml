@@ -907,6 +907,8 @@ ro:
     bulk_download_reports:
       content:
         title: Linkuri pentru a descărca rapoartele
+      errors:
+        no_plans: Nu s-au găsit planuri IDP active
     close: Închide
     details: Detalii
     errors: Erori
@@ -919,6 +921,14 @@ ro:
     super_admin:
       errors:
         data_processing_disabled: Prelucrarea datelor este dezactivată.
+  ai:
+    errors:
+      bad_request_invalid_input: Solicitarea dvs. nu a putut fi procesată din cauza introducerii nevalide. Vă rugăm să verificați cererea și să încercați din nou.
+      generic: Ceva nu a mers bine în timpul procesării solicitării. Vă rugăm să contactați administratorul.
+      rate_limit_exceeded: Serviciul se confruntă în prezent cu o cerere mare. Vă rugăm să așteptați un moment și să încercați din nou.
+      server_error: Serviciul AI este temporar indisponibil. Vă rugăm să încercați din nou în câteva momente.
+      service_overloaded: Serviciul AI este în prezent supraîncărcat. Vă rugăm să așteptați un moment și să încercați din nou.
+      service_unavailable: Serviciul AI este în prezent în întreținere. Vă rugăm să încercați din nou mai târziu.
   anonym:
     close: Închidere
     continue: Continuați
@@ -1173,6 +1183,7 @@ ro:
       assessments_and_reports: Evaluări și rapoarte
       idp: IDP
       manage: Acțiuni
+      recordings: Înregistrări
       report_approval: Setări de aprobare a rapoartelor
       sequencing: Secvenţiere
     report_approval:
@@ -1758,7 +1769,6 @@ ro:
       download: Descărca
       edit: Editați
       export: Exportați
-      filter: Filtru
       filter_by_tags: Filtrează după etichete
       go_back: Întoarce-te
       import: Importa
@@ -1888,7 +1898,6 @@ ro:
       download: Descărcare
       enabled: Activat
       file: Fișier
-      global_import: Este import global?
       minutes: Minute
       na: N/A
       none: Niciunul
@@ -2188,6 +2197,8 @@ ro:
       not_uniq_variable: Variabila '%{value}' redefinită pe numărul de linie %{row}
       project_assessments:
         should_be_greater_than_zero: Valabilitatea rezultatului trebuie să fie mai mare de 0 zile
+      project_feature:
+        global_skills_not_enabled_on_client: Pentru a activa abilitățile globale pentru acest proiect, vă rugăm să îl activați sub Feature Flags în setările clientului.
       report_approval_settings:
         report_exists: Setarea de aprobare a raportului pentru acest raport există deja.
         validates_admins: Administratorii nu au acces la campanie.
@@ -2257,6 +2268,8 @@ ro:
       body:
         error: Corpul e-mailului are un text incorect.
   errors:
+    ai_assistant:
+      max_generation_limit: Limita maximă de generare depășită, contactați administrația.
     assessments:
       timed_out: Nu veți putea efectua evaluarea %{assessment_name}, deoarece timpul a expirat.
     equal_to_current_password: trebuie să fie diferită de parola curentă.
@@ -2508,6 +2521,7 @@ ro:
       update_success: SMS Invite a fost actualizat cu succes
     sms_records:
       create_success: Lucrarea SMS a fost programată cu succes
+    starting_in: Începând din
     test_webhook:
       create_success: Testul Webhook a avut succes.
       success: Succes
@@ -2580,6 +2594,8 @@ ro:
       finishing:
         hint: Asistentul nostru AI creează un plan IDP pentru dvs.
         title: Vă rugăm să așteptați, ne facem magia...
+      reset_chat: Resetați chat-ul
+      reset_confirmation: Ești sigur că vrei să renunți la acest chat și să începi de la capăt?
       retake_steps:
         chat_hint: Spuneți-mi ce informații doriți să furnizați mai jos?
         chat_title: Doriți să oferiți mai multe informații?
@@ -2587,9 +2603,27 @@ ro:
         start_chat_again: Începe din nou chatul
         upload_document: Încărcați documentul
         upload_file: Încărcați fișierul
+      start_page:
+        ai_assisted:
+          button: IDP asistat de AI
+          description: Un flux interactiv bazat pe conversație în care co-creați planul cu AI în mai mulți pași.
+          option_1: Rezultate mai personalizate
+          option_2: Oportunități de auto-reflecție
+          option_3: Mai bine pentru tranzițiile de carieră
+          title: IDP asistat de inteligență artificială
+        one_click:
+          button: IDP AI cu un singur clic
+          description: AI face toată munca grea - scanează instantaneu datele și generează un plan complet de dezvoltare.
+          option_1: Cea mai rapidă opțiune (5 minute)
+          option_2: Bun pentru profesioniștii ocupați
+          option_3: Complet editabil după generare
+          title: IDP AI cu 1 clic
+        sub_title: Să creăm un jorney personalizat de perfecționare, adaptat aspirației tale de carieră și ghidat de AI
+        title: Creați-vă planul individual de dezvoltare
       summary:
         chat_title: Rezumatul Chat Insight
         file_title: Informații despre documentele încărcate
+        gap_report_title: Analiza raportului Skill Gap
         hint: dacă da, atunci vă vom crea IDP-ul, altfel vă puteți relua răspunsurile
         title: Sunteți mulțumit de rezultate?
         upload_file: Fișier încărcat
@@ -2638,6 +2672,7 @@ ro:
       add_development_actions_from_below_options: Adăugați acțiuni de dezvoltare din opțiunile de mai jos.
       add_development_actions_modal_title: Biblioteca de acțiuni de dezvoltare pentru %{skillName}
       add_from_library: Adăugați din bibliotecă
+      add_more: Adăugați mai multe acțiuni de dezvoltare
       all: Toți
       approved: Aprobat
       board_view:
@@ -2652,6 +2687,7 @@ ro:
       custom: Obicei
       custom_da_description: Creați o acțiune de dezvoltare personalizată pentru a răspunde nevoilor unice de dezvoltare.
       date_range: Data de începere - Data de sfârșit
+      edit_da_progress: Editați progresul acțiunii de dezvoltare
       edit_plan_to_add_development_actions: Editați planul și adăugați acțiuni de dezvoltare.
       enter_development_action_description: Introduceți descrierea acțiunii de dezvoltare
       enter_development_action_title: Introduceți titlul acțiunii de dezvoltare

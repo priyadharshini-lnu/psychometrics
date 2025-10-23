@@ -52,10 +52,9 @@ export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
   const [invites, setInvites] = useState<Invite[]|[]>([])
   const [bookings, setBookings] = useState<Booking[] | []>([])
   const navigate = useNavigate()
-  const location = useLocation()
 
   const handleClickInvite = (id: number) => {
-    navigate(`${location.pathname}/${id}/details?type=invite`)
+    navigate(`${id}/details?type=invite`)
   }
 
   const tabItems = [

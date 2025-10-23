@@ -3,7 +3,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td = resource.decorate.projects
   td = resource.decorate.campaigns
   td = resource.campaign_assessment_group.present? ? resource.campaign_assessment_group.name : "N/A"
-  td = resource.subject
+  td.subject-column = resource.subject
   td = resource.decorate.kind
   td = render_selected_recipient_users(resource) || resource.recipients
   td = resource.delivery_rule_i18n

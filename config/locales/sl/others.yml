@@ -907,6 +907,8 @@ sl:
     bulk_download_reports:
       content:
         title: Povezave za prenos poročil
+      errors:
+        no_plans: Ni bilo najdenih aktivnih načrtov IDP
     close: Blizu
     details: Podrobnosti
     errors: Napake
@@ -919,6 +921,14 @@ sl:
     super_admin:
       errors:
         data_processing_disabled: Obdelava podatkov je onemogočena.
+  ai:
+    errors:
+      bad_request_invalid_input: Vaše zahteve ni bilo mogoče obdelati zaradi neveljavnega vnosa. Preverite svojo zahtevo in poskusite znova.
+      generic: Med obdelavo vaše zahteve je prišlo do napake. Obrnite se na skrbnika.
+      rate_limit_exceeded: Storitev trenutno doživlja veliko povpraševanje. Počakajte trenutek in poskusite znova.
+      server_error: Storitev AI začasno ni na voljo. Prosimo, poskusite znova čez nekaj trenutkov.
+      service_overloaded: Storitev AI je trenutno preobremenjena. Počakajte trenutek in poskusite znova.
+      service_unavailable: Storitev AI je trenutno v vzdrževanju. Poskusite znova pozneje.
   anonym:
     close: Zapri
     continue: Nadaljuj
@@ -1173,6 +1183,7 @@ sl:
       assessments_and_reports: Ocenjevanja in poročila
       idp: IDP
       manage: Upravljanje
+      recordings: Posnetkov
       report_approval: Nastavitve odobritve poročila
       sequencing: Zaporedja
     report_approval:
@@ -1884,7 +1895,6 @@ sl:
       download: Prenesi
       enabled: Omogočeno
       file: Datoteka
-      global_import: Je globalni uvoz?
       minutes: Minut
       na: NI RELEVANTNO
       none: Nobena
@@ -2184,6 +2194,8 @@ sl:
       not_uniq_variable: spremenljivka '%{value}' na novo določena v vrstici številka %{row}
       project_assessments:
         should_be_greater_than_zero: Veljavnost rezultata mora biti daljša od 0 dni
+      project_feature:
+        global_skills_not_enabled_on_client: Če želite omogočiti globalne spretnosti za ta projekt, jih aktivirajte v nastavitvah odjemalca v razdelku Zastavice funkcij.
       report_approval_settings:
         report_exists: Nastavitev odobritve poročila za to poročilo že obstaja.
         validates_admins: Skrbniki nimajo dostopa do oglaševalske akcije.
@@ -2253,6 +2265,8 @@ sl:
       body:
         error: Telo e-pošte ima napačen tekst cevi.
   errors:
+    ai_assistant:
+      max_generation_limit: Presežena je največja omejitev generacije, se obrnite na svojo upravo.
     assessments:
       timed_out: Ocenjevanja %{assessment_name} ne boste mogli opraviti, ker je čas potekel.
     equal_to_current_password: mora biti drugačno od trenutnega gesla.
@@ -2577,6 +2591,8 @@ sl:
       finishing:
         hint: Naš AI pomočnik ustvarja načrt IDP za vas.
         title: Prosim, počakajte, delamo svojo čarovnijo ...
+      reset_chat: Ponastavi klepet
+      reset_confirmation: Ste prepričani, da želite zavreči ta klepet in začeti znova?
       retake_steps:
         chat_hint: Sporočite mi, katere informacije želite navesti spodaj?
         chat_title: Želite podati več informacij?
@@ -2584,9 +2600,27 @@ sl:
         start_chat_again: Znova začnite klepet
         upload_document: Naloži dokument
         upload_file: Naloži datoteko
+      start_page:
+        ai_assisted:
+          button: IDP s pomočjo AI
+          description: Interaktivni potek, ki temelji na pogovoru, kjer načrt soustvarjate z umetno inteligenco v več korakih.
+          option_1: Bolj prilagojeni rezultati
+          option_2: Priložnosti za samorefleksijo
+          option_3: Boljše za poklicne prehode
+          title: IDP s pomočjo AI
+        one_click:
+          button: En klik AI IDP
+          description: AI opravi vse težke naloge - takoj skenira vaše podatke in ustvari popoln razvojni načrt.
+          option_1: Najhitrejša možnost (5 minut)
+          option_2: Dobro za zaposlene strokovnjake
+          option_3: Popolno urejanje po generaciji
+          title: 1-klik AI IDP
+        sub_title: Ustvarimo prilagojeno izpopolnjevanje, ki bo prilagojeno vašim kariernim težnjam in ga bo vodila umetna inteligenca
+        title: Ustvarite svoj individualni razvojni načrt
       summary:
         chat_title: Povzetek vpogleda v klepet
         file_title: Vpogledi v naložene dokumente
+        gap_report_title: Analiza poročila o vrzeli v spretnostih
         hint: če je odgovor pritrdilen, bomo ustvarili vašega IDP, sicer lahko ponovno vzamete svoje odgovore
         title: Ste zadovoljni z rezultati?
         upload_file: Naložena datoteka
@@ -2635,6 +2669,7 @@ sl:
       add_development_actions_from_below_options: Dodajte razvojna dejanja iz spodnjih možnosti.
       add_development_actions_modal_title: Knjižnica razvojnih ukrepov za %{skillName}
       add_from_library: Dodajanje iz knjižnice
+      add_more: Dodajanje več razvojnih ukrepov
       all: Prikaže vse
       approved: Odobreno
       board_view:
@@ -2649,6 +2684,7 @@ sl:
       custom: Običaj
       custom_da_description: Ustvarite razvojno dejanje po meri za zadovoljevanje edinstvenih razvojnih potreb.
       date_range: Začetni datum - končni datum
+      edit_da_progress: Uredi napredek razvojnega dejanja
       edit_plan_to_add_development_actions: Uredi načrt in dodaj razvojna dejanja.
       enter_development_action_description: Vnesite opis razvojnega ukrepa
       enter_development_action_title: Vnesite naslov razvojnega ukrepa

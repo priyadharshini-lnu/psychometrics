@@ -19,6 +19,7 @@ type Props = {
   selectedDevelopmentActionIds: (string | number)[],
   isDALoading?: boolean;
   skillName: string;
+  wrapClassName?: string;
 }
 
 const tabs = [
@@ -36,6 +37,7 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
   selectedDevelopmentActionIds,
   isDALoading = false,
   skillName,
+  wrapClassName,
 }) => {
   const [selectedTab, setSelectedTab] = useState('all')
 
@@ -91,6 +93,7 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
           overflow: 'hidden',
         },
       }}
+      wrapClassName={wrapClassName}
       maskClosable={false}
       footer={(
         <Flex justify="flex-end" flex={1} gap={12}>

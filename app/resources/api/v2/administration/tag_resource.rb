@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::TagResource < Api::V2::Administration::BaseResource
   model_name 'ActsAsTaggableOn::Tag'
-  attributes :name
+  attributes :name, :taggings_count
 
   ransack_filters %i[name_cont]
 

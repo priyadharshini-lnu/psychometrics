@@ -57,7 +57,6 @@ module Threesixty::InitialState
         customPrivacyConsentText: custom_privacy_consent_text,
         showBookings: show_bookings?,
         idp: {
-          allowGlobalSkills: @idp_setting&.allow_global_skills || false,
           managerApprovesIdp: @idp_setting&.manager_approves_idp || false,
           managerCanEditIdp: @idp_setting&.manager_can_edit_idp || false,
           requireAllDevelopmentActionsComplete: @idp_setting&.require_all_development_actions_complete || false

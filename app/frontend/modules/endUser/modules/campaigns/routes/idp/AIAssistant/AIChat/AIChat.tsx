@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Space, Typography,
+  Button, Flex, Space, Typography, Popconfirm,
 } from 'antd'
 import {
   Attachments, Sender, Welcome, Prompts,
@@ -32,12 +32,40 @@ import { useSpeechToText } from '~/hooks/useSpeechToText'
 
 const { I18n } = window
 
+export type AIChatMessageContent = {
+  component?: string,
+  message: string | { file: File }
+  data?: {
+  documentSummary?: string
+  chatSummary?: string
+  }
+  role?: string
+  suggestions?: string[]
+  error?: string
+}
+
+export type AIChatMessage = {
+  id: number
+  role: string
+  content: string
+  createdAt: string
+}
+
+export type AIAssistedIDPSession = {
+  error?: string | null
+  messages: AIChatMessage[]
+  meta?: Record<string, unknown> | null
+  checkpoint?: string | null
+  status: string
+}
+
 interface BubbleProps {
   content: {
     component?: string,
     message?: string | { file: File }
     data?: { [key: string]: string }
     role?: string
+    error?: string
   },
   onAction?: (action: string) => void,
   isCurrent?: boolean,
@@ -48,13 +76,22 @@ export const Bubble: FC<BubbleProps> = ({
   content, onAction, isCurrent, status,
 }) => {
   const {
-    component, message, data, role,
+    component, message, data, role, error,
   } = content
 
   const bubbleType = role === 'user' ? 'UserMessage' : 'AssistantMessage'
   const Bubble = BubbleTypes[component || bubbleType] || BubbleTypes.AssistantMessage
 
-  return <Bubble message={message} data={data} onAction={onAction} isCurrent={isCurrent} status={status} />
+  return (
+    <Bubble
+      message={message}
+      data={data}
+      onAction={onAction}
+      isCurrent={isCurrent}
+      status={status}
+      error={error}
+    />
+  )
 }
 
 export const AsyncChatTR = t.type({
@@ -73,9 +110,7 @@ export const AsyncChatTR = t.type({
 
 export const AIChat = () => {
   const [status, setStatus] = useState<'chat' | 'document_upload' | 'interview' | 'confirmation' | 'completed'>('chat')
-  const [messages, setMessages] = useState<{
-    component: string, suggestions?: string[], message?: string | { file: File }, role?: string
-  }[]>([])
+  const [messages, setMessages] = useState<AIChatMessageContent[]>([])
   const [userPrompt, setUserPrompt] = useState('')
   const [requestProcessing, setRequestProcessing] = useState(false)
   const [suggestions, setSuggestions] = useState<string[]>([])
@@ -83,6 +118,7 @@ export const AIChat = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [recording, setRecording] = useState(false)
+  const [resetChat, setResetChat] = useState(false)
 
   const changeValue = (value:string) => {
     setUserPrompt(value)
@@ -104,7 +140,7 @@ export const AIChat = () => {
       method: 'get',
       url: '/ai_assisted_idp_chats',
     },
-  }) as unknown as Promise<{ response: {role: string, content: string}[] }>
+  }) as unknown as Promise<{ response: AIAssistedIDPSession }>
 
   const { startDictation, stopDictation } = useSpeechToText({
     value: userPrompt, onChange: changeValue, fetchPresignUrl: fetchAwsSpeechTextPresignedUrl,
@@ -120,7 +156,7 @@ export const AIChat = () => {
     url: '/ai_assisted_idp_chats/ask',
     data: {},
     pollingInterval: 3,
-    numberOfTimesToPoll: 40,
+    numberOfTimesToPoll: 30,
     responseType: AsyncChatTR,
   })
 
@@ -128,34 +164,69 @@ export const AIChat = () => {
     url: '/ai_assisted_idp_chats/upload_document',
     data: {},
     pollingInterval: 3,
-    numberOfTimesToPoll: 40,
+    numberOfTimesToPoll: 30,
     responseType: AsyncChatTR,
   })
+
+
+  const handleErrorResponse = (content) => {
+    // Add error attribute to last message
+    setMessages((prevMessages) => {
+      const updatedMessages = [...prevMessages]
+
+      if (updatedMessages.length > 0) {
+        updatedMessages[updatedMessages.length - 1] = {
+          ...updatedMessages[updatedMessages.length - 1],
+          error: content.message || I18n.t('idp.ai.errors.generic'),
+        }
+      }
+      return updatedMessages
+    })
+  }
 
   const sendMessage = async (message) => {
     setRequestProcessing(true)
     try {
-      const response = await askRequest.makeAsyncRequest({ message })
+      const response = await askRequest.makeAsyncRequest({ message, restart_chat: resetChat })
+      setResetChat(false)
       const { content } = response.responseData
+
+      const isErrorResponse = typeof content === 'object' && content?.component === 'Error'
+
+      // When we receive an error response, it means the last user message was not processed correctly
+      // So we add the error message to the last user message bubble
+      if (isErrorResponse) {
+        return handleErrorResponse(content)
+      }
 
       setMessages(prev => [...prev, parseAssistantMessage(content)])
     } finally {
       setRequestProcessing(false)
+      if (status === 'completed') {
+        setStatus('confirmation')
+      }
+    }
+  }
+
+  const parseContent = (content) => {
+    try {
+      return humps.camelizeKeys(JSON.parse(content.split('\n')[0]))
+    } catch {
+      return null
     }
   }
 
   const parseAssistantMessage = (content) => {
     // We need to ensure that even if for some reason content is not object, we let the user re-try
     // Using ASSISTANT_FAILURE_FALLBACK_CONTENT to handle such cases
-
     const messageContent = (typeof content === 'object')
       ? {
-        component: content.component,
         message: content.message,
-        suggestions: content.suggestions || [],
+        component: content.component,
+        suggestions: (content.component !== 'AssistantMessage') ? [] : content.suggestions || [],
         data: content.data || {},
       }
-      : ASSISTANT_FAILURE_FALLBACK_CONTENT
+      : parseContent(content) || ASSISTANT_FAILURE_FALLBACK_CONTENT
 
     return messageContent
   }
@@ -190,19 +261,24 @@ export const AIChat = () => {
   useEffect(() => {
     scrollToBottom()
     if (messages.length > 0) {
-      if (messages[messages.length - 1].component === 'RequestDocument') {
+      const lastMessage = messages[messages.length - 1]
+      if (lastMessage.component === 'RequestDocument') {
         setStatus('document_upload')
       }
-      if (messages[messages.length - 1].component === 'Summary') {
+      if (lastMessage.component === 'Summary') {
         setStatus('confirmation')
       }
-      if (messages[messages.length - 1].suggestions) {
-        setSuggestions(messages[messages.length - 1].suggestions || [])
+      if (lastMessage.suggestions) {
+        setSuggestions(lastMessage.suggestions || [])
       }
-      if (messages[messages.length - 1].component === 'IdpCreated') {
+      if (lastMessage.component === 'IdpCreated') {
         // Update the status in Redux store to draft before navigating
         dispatch(setUserIdpPlanStatus(USER_IDP_PLAN_STATUS.DRAFT))
         navigate('/idp/my_plan')
+        return
+      }
+      if (status === 'completed' && lastMessage.component !== 'UserMessage') {
+        setStatus('confirmation')
       }
     }
   }, [messages])
@@ -211,21 +287,27 @@ export const AIChat = () => {
     askRequest.startPolling()?.then(({ responseData: { content } }) => {
       setMessages(prev => [...prev, parseAssistantMessage(content)])
     })
-
+    setRequestProcessing(true)
     fetchMessages().then(({ response }) => {
-      const messages = response.map((msg) => {
-        try {
-          return {
-            ...humps.camelizeKeys(JSON.parse(msg.content)),
-            role: msg.role,
-          }
-        } catch {
-          return {
-            message: msg.content,
-            role: msg.role,
-          }
-        }
+      const { messages: fetchedMessages, error: aiSessionError } = response
+      const messages = fetchedMessages.map((msg) => {
+        const content = parseContent(msg.content)
+        const message = parseAssistantMessage(content || { message: msg.content })
+        return ({
+          // ...(content || { message: msg.content }),
+          ...message,
+          role: msg.role,
+        })
       })
+
+      if (aiSessionError) {
+        messages[messages.length - 1] = {
+          ...messages[messages.length - 1],
+          error: aiSessionError,
+        }
+      }
+
+      setRequestProcessing(false)
       setMessages(messages)
       scrollToBottom(false)
     })
@@ -235,6 +317,13 @@ export const AIChat = () => {
       setStatus('chat')
     }
   }, [])
+
+  const handleReset = () => {
+    setResetChat(true)
+    setMessages([])
+    setStatus('chat')
+    setSuggestions([])
+  }
 
   const onAction = (action) => {
     if (action === 'scroll') {
@@ -257,6 +346,14 @@ export const AIChat = () => {
     if (action === 'changeAnswers') {
       addUserMessage('No')
       // setMessages(prev => [...prev, { component: 'RetakeSteps' }])
+    }
+
+    if (action === 'retakeChat') {
+      handleReset()
+    }
+
+    if (action === 'retakeDocument') {
+      addUserMessage('I want to upload a different document.')
     }
   }
 
@@ -347,6 +444,26 @@ export const AIChat = () => {
                   {I18n.t('common.actions.go_back')}
                 </Button>
               </Space>
+            )}
+            extra={(
+              messages.length > 0 && !resetChat ? (
+                <Popconfirm
+                  disabled={requestProcessing}
+                  overlayStyle={{ zIndex: 9999 }}
+                  title={I18n.t('idp.ai.reset_confirmation')}
+                  onConfirm={() => handleReset()}
+                  okText={I18n.t('common.actions.yes')}
+                  cancelText={I18n.t('common.actions.no')}
+                >
+                  <Button
+                    type="text"
+                    disabled={requestProcessing}
+                    danger
+                  >
+                    {I18n.t('idp.ai.reset_chat')}
+                  </Button>
+                </Popconfirm>
+              ) : null
             )}
           />
           <Flex gap="middle" vertical className={styles.messages}>

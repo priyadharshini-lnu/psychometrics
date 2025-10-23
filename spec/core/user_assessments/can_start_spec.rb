@@ -11,6 +11,7 @@ describe UserAssessments::CanStart do
   it 'returns false' do
     user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
       assessment, campaign: campaign)
+    user.project.privacy_setting.privacy_consent = false
 
     expect(described_class.call!(user_assessment, user, {})).to eq(false)
   end
@@ -18,7 +19,6 @@ describe UserAssessments::CanStart do
   it 'returns true if privacy contest required' do
     user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
       assessment, campaign: campaign)
-    user.project.privacy_setting.privacy_consent = true
 
     expect(described_class.call!(user_assessment, user, {})).to eq(true)
   end
@@ -35,6 +35,7 @@ describe UserAssessments::CanStart do
     assessment.extra = { enable_audio_check: true }
     user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
       assessment, campaign: campaign)
+    user.project.privacy_setting.privacy_consent = false
 
     expect(described_class.call!(user_assessment, user, { 'checking_wizard.audio' => true })).to eq(false)
   end

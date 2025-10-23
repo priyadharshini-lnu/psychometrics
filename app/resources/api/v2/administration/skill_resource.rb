@@ -46,15 +46,6 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
     super + %i[project.name]
   end
 
-  def self.records(opts = {})
-    project_id = opts.dig(:context, :filter, :project_id_eq)
-    all_skills_filter = opts.dig(:context, :filter, :all_skills)
-
-    scope = super
-    scope = scope.where(project_id: nil) if project_id.nil? && all_skills_filter.nil?
-    scope.includes(:translations)
-  end
-
   def allowed_proficiency_levels
     result = Skills::GetProficiencyLevel.call(@model)
     proficiency_level = result[:ok][:proficiency_level]
@@ -69,12 +60,12 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
   ransack_filters %i[
     name_cont
     skill_type_in
-    project_id_eq
     global
     all_skills
     filterable_fields
     by_idp_template_id
     filter_by_skill_type
+    project_id_eq
     available_skills_by_plan_id
   ]
 end

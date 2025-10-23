@@ -4,7 +4,7 @@ module Reports
   class AssessmentSerializer < Panko::Serializer
     attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules,
                :dimension_id, :factors, :factor_scoring_counters, :blocks, :factor_benchmark_scores,
-               :campaign_factors_list
+               :campaign_factors_list, :skill_rater
 
     def blocks
       blocks = object.blocks.
@@ -58,6 +58,10 @@ module Reports
         return external_assessment.factors.flatten.map(&:to_h)
       end
       []
+    end
+
+    def skill_rater
+      object.skill_rater?
     end
 
     def locale

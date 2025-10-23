@@ -49,6 +49,8 @@ const Project: FC<Props> = ({
   const [isProjectLoaded, setIsProjectLoaded] = useState(false)
   const { idpEnabled, skillRaterEnabled } = camelizeKeys(features)
 
+  const parsedProjectId = parseInt(projectId, 10)
+
   useEffect(() => {
     fetchProject(parseInt(projectId, 10)).then(() => {
       setIsProjectLoaded(true)
@@ -56,7 +58,7 @@ const Project: FC<Props> = ({
   }, [])
 
   const handleOnSelect = ({ key }) => {
-    navigate(`${settings.urlPrefix}/${projectId}/${key}`)
+    navigate(`${settings.urlPrefix}/${parsedProjectId}/${key}`)
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {

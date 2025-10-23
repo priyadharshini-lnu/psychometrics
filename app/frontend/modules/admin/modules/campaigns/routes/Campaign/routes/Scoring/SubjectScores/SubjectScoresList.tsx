@@ -280,10 +280,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
         <Flex className="pls" justify="center" align="center">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
           <span className="mlm">
-            {I18n.t('common.text.total')}
-            :
-            {' '}
-            {meta.recordCount}
+            {`${I18n.t('common.text.total')}: ${meta.recordCount}`}
           </span>
         </Flex>
         <Flex gap={8}>
@@ -345,6 +342,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
                 pagination={false}
                 scroll={{ x: 'max-content' }}
                 loading={isLoading('fetch')}
+                sticky={{ offsetHeader: 50 }}
               />
               )}
             disableHeader
@@ -398,6 +396,7 @@ function createSortedTableColumns (
           title: factor.name,
           dataIndex: `${factor.id}`,
           key: `${factor.id}`,
+          width: getTextWidth(factor.name),
           sorter: true,
           sortOrder: getSortOrder(`${factor.id}`),
           className: cs(factorIndex === 0 ? styles.columnBorderStart : null,
@@ -457,6 +456,7 @@ function createSortedTableColumns (
         }
         return null
       },
+      width: 200,
     },
     {
       title: I18n.t('administration.scoring.subject_list.finalized_date'),
@@ -470,6 +470,7 @@ function createSortedTableColumns (
         }
         return null
       },
+      width: 200,
     },
     {
       title: I18n.t('administration.scoring.subject_list.finalized'),
@@ -500,6 +501,7 @@ function createSortedTableColumns (
         }
         return (campaignScoresFinalized ? <CheckOutlined className={styles.icon} /> : null)
       },
+      width: 200,
     },
     {
       title: I18n.t('administration.scoring.subject_list.actions'),
@@ -597,4 +599,15 @@ const bulkActionDetails = (action: string) => {
     title: I18n.t('administration.scoring.subject_list.bulk_rescore'),
     content: I18n.t('administration.scoring.subject_list.bulk_rescore_confirm'),
   }
+}
+
+const getTextWidth = (text: string): number => {
+  const canvas = document.createElement('canvas')
+  const context = canvas.getContext('2d')
+  if (!context) return 100
+
+  const width = context.measureText(text).width + 96 // add padding
+  canvas.remove() // Clean up the canvas element
+
+  return width
 }

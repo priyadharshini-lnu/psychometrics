@@ -75,8 +75,8 @@ const LeadAssessorAssessment: React.FC<Props> = ({
   return (
     <Card
       loading={!loaded}
-      bordered={false}
-      bodyStyle={bodyStyles}
+      variant="borderless"
+      styles={{ body: bodyStyles }}
     >
       <Content className="fluid-container">
         {loaded && (

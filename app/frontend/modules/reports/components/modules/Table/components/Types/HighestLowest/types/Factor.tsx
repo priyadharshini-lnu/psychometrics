@@ -2,6 +2,7 @@ import { CSSProperties, FC } from 'react'
 
 import cs from 'classnames'
 import _ from 'lodash'
+import { JobRoles } from '~/modules/reports/models/Results/interfaces'
 import { PreviewModel, TableSectionsType, TableStyleType } from '~/modules/reports/interfaces/tables/HighestLowest'
 import { ColumnsHeaderData, ColumnData } from '~/modules/reports/core/interfaces/TableColumn'
 
@@ -40,11 +41,14 @@ interface Props {
   model: PreviewModel
   paginationContext: PageData | null
   style?: CSSProperties & { fontColor: string }
+  includesCurrentJob?: boolean
+  includesTargetJob?: boolean
 }
 
 const FactorType: FC<Props> = ({
   assessment_id, filterId, factorIds, sections, tableStyle, hideValues, noOfItems, scoreCutoff,
-  model, paginationContext, style,
+  model, paginationContext, style, includesCurrentJob,
+  includesTargetJob,
 }) => {
   const tableColumns = _.get(model, 'props.tableColumns.Factor')
       || _.get(DefaultTableColumns[model.props.type]?.defaultTableColumns(I18nStore), 'Factor') || {} as ColumnData
@@ -99,8 +103,33 @@ const FactorType: FC<Props> = ({
     }))
   }
 
-  // If no factors are selected, by default consider all factors
-  const providedFactorIds = factorIds && factorIds.length > 0 ? factorIds : getAllFactors()
+
+  let providedFactorIds: number[]
+
+  if (includesCurrentJob || includesTargetJob) {
+    const dimensionId = AppStore.getAssessmentById(assessment_id)?.dimensionId ?? ''
+    let allFactors: Array<{ id: number; name: string; job_roles: JobRoles }> = AppStore.factors?.[dimensionId] ?? []
+
+    // If job role factors are selected, filter the data with appropriate job role
+    allFactors = allFactors.filter((factor) => {
+      const currentJobIncluded = !includesCurrentJob || factor?.job_roles?.current_job_role?.included === true
+      const targetJobIncluded = !includesTargetJob || factor?.job_roles?.target_job_role?.included === true
+      return currentJobIncluded && targetJobIncluded
+    })
+
+
+    // If specific factors are selected, intersect them with job-role filtered factors
+    if (factorIds && factorIds.length > 0) {
+      providedFactorIds = allFactors
+        .filter(factor => factorIds?.includes(factor.id))
+        .map(factor => factor.id)
+    } else {
+      providedFactorIds = allFactors.map(factor => factor.id)
+    }
+  } else {
+    // No job role filtering needed, use original logic
+    providedFactorIds = factorIds && factorIds.length > 0 ? factorIds : getAllFactors()
+  }
 
   const [highestFactors, lowestFactors] = ResultStore.realResults
     ? calculateHighestLowest(assessment_id, filterId, providedFactorIds)

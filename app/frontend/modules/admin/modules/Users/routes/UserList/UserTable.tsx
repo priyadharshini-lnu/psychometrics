@@ -97,6 +97,7 @@ export const UserTableComponent: React.FC<Props> = ({
           openResetPasswordModal={user => openModal('ResetPasswordModal', { user })}
         />
       )}
+      width={100}
     />
   </Resource.Table>
 )

@@ -180,7 +180,7 @@ module Api
         end
 
         def project_id
-          super || params.dig(:filter, :project_id_eq)
+          super || params.dig(:filter, :project_id_eq) || params.dig(:query, :project_id)
         end
 
         def context

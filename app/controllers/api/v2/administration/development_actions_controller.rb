@@ -27,6 +27,7 @@ module Api
             context[:user],
             @model,
             %w[
+              create
               index
               import
               export
@@ -45,6 +46,12 @@ module Api
 
     def project_id
       params[:project_id] || project&.id || params.dig(:filter, :project_id_eq)
+    end
+
+    def context
+      super.merge(
+        project_id: project_id
+      )
     end
 
     def import

@@ -369,7 +369,9 @@ it:
       created_successfully: L'assistente AI è stato creato con successo.
       errors:
         cannot_delete_in_use: Impossibile eliminare AI Assistant '%{name}' perché è in uso.
+        development_actions_assistance_not_enabled: La generazione di azioni di sviluppo basate sull'intelligenza artificiale non è disponibile. Contattare l'amministratore.
         one_click_idp_assistance_not_enabled: L'assistenza IDP basata sull'intelligenza artificiale non è disponibile con il tuo piano attuale. Contattare l'amministratore.
+        platform_assistant_already_exists: Sulla piattaforma è consentito solo 1 assistente di tipo %{type}.
       form:
         add_output_schema_key: Aggiungere la chiave dello schema di output
         dependencies: Dipendenze
@@ -388,6 +390,13 @@ it:
         system_prompt: Prompt del sistema
         type: Tipo
         user_prompt: Prompt dell'utente
+      revisions:
+        load: Caricare per formare
+        name: Nome
+        system_prompt: Sistema Propmpt
+        title: Revisioni di AI Assistant
+        user_prompt: Prompt dell'utente
+        version: Versione
       selector:
         choose_artifact: Scegli l'artefatto AI
         choose_schema_key: Scegli la chiave dello schema
@@ -406,6 +415,12 @@ it:
       form:
         description: Descrizione
         title: chiave api
+    assessment_builder:
+      form:
+        display_label: Inserisci l'etichetta del display
+        label_required: L'etichetta è obbligatoria
+        value: Valore
+        value_required: Il valore è obbligatorio
     assessment_center:
       cancel_confirmation:
         message: Si è sicuri di voler scartare l'avanzamento del modulo?
@@ -666,6 +681,7 @@ it:
         no_results: Non ci sono domande con risposta
         other_reports: Altri rapporti
         overall_scoring: Punteggio complessivo
+        recordings: Registrazioni
         refresh: Aggiornare
         reports: Report
         reports_count: "%{count} Report"
@@ -1203,10 +1219,14 @@ it:
       client_features: Caratteristiche del cliente
       form:
         ai_assistants: Assistenti AI
+        ai_assistants_disabled_by_client: AI Assistants è disabilitato dal client
         ai_assisted_idp: AI Assistito IDP
+        ai_assisted_idp_requires_ai_assistants: L'IDP assistito dall'intelligenza artificiale richiede l'abilitazione della funzione Assistenti all'intelligenza artificiale
         global_skills: Competenze globali
         idp: IDP
+        idp_disabled_by_client: L'IDP è disabilitato dal client
         sms_notification: Notifica via SMS
+        sms_notification_disabled_by_client: La notifica SMS è disabilitata dal client
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1727,7 @@ it:
         update_button: Aggiorna traduzione
       form:
         all: Tutti
+        assessment_center_booking_summary: Riepilogo delle prenotazioni del Centro valutazioni
         assessment_completion_status_code: Codice di stato di completamento della valutazione
         assessment_completion_status_code_hint: Se si specifica un codice di completamento, questo verrà inviato solo se la valutazione dell'utente ha questo codice di stato di completamento.
         body_mustache: |
@@ -1726,6 +1747,8 @@ it:
         custom: Personalizzato
         delivery_at: Consegna a (GST)
         delivery_delay_hours: Ritardo nella consegna (ore)
+        delivery_end_date: Data di fine consegna
+        delivery_frequency: Frequenza di consegna
         delivery_interval: Intervallo di consegna
         delivery_interval_number: Intervallo di consegna Numero
         delivery_interval_period: Intervallo di consegna Periodo
@@ -1736,7 +1759,16 @@ it:
           not_started: Se la valutazione non viene avviata
           send_now: Invia ora
           specific_datetime: Inviare a
+        delivery_start_date: Data di inizio della consegna
+        delivery_time_of_day: Orario di consegna del giorno
+        delivery_timezone: Fuso orario di consegna
+        delivery_weekdays: Consegna nei giorni feriali
         development_action_deadline_missed: Scadenza dell'azione di sviluppo non rispettata
+        error_msgs:
+          delivery_end_date_after_start_date: deve essere successivo alla data di inizio
+          delivery_start_date_in_past: non può essere nel passato
+          delivery_time_in_past: non può essere nel passato
+          delivery_weekdays_required: deve selezionare almeno un giorno della settimana
         idp_deadline_missed: Scadenza IDP non rispettata
         idp_template_approved: IDP Approvati
         idp_template_assigned: IDP Assegnato
@@ -1817,15 +1849,21 @@ it:
         client: 'Cliente:'
         communication_type: 'Tipo di comunicazione:'
         delivery_rule: 'Regola di consegna:'
+        end_date: 'Data di fine:'
         every_interval: Ogni %{interval}
+        frequency: 'Frequenza:'
         owner: 'Proprietario:'
         project: 'Progetto:'
         recipients: 'Destinatari:'
         specific_datetime: 'Inviare a:'
+        start_date: 'Data di inizio:'
         stop_reminder_datetime: Data di scadenza dei solleciti (GST)
         sub_campaign: 'Sottocampagna:'
         subject: 'Oggetto:'
+        time_of_day: 'Ora del giorno:'
+        timezone: 'Fuso orario:'
         users: 'Utenti:'
+        weekdays: 'Giorni feriali:'
       sidebar:
         copy: Copiare la comunicazione
         destroy: Cancellare la comunicazione
@@ -1968,17 +2006,9 @@ it:
         details: Dettagli del file
         failure_msg: Errore durante l'esportazione delle traduzioni
         success_msg: L'esportazione delle azioni di sviluppo è in corso. Controllare lo stato nelle notifiche.
-        title: Esporta
         translation_details: Dettagli
-      export_actions:
-        development_action_translations_title: Azioni di sviluppo delle esportazioni Traduzioni
-        development_actions_title: Azioni di sviluppo delle esportazioni
       export_development_action_translations: Azione di sviluppo Traduzioni basate sul progetto
-      export_development_action_translations_project: Azione di sviluppo Traduzioni basate sul progetto
       export_development_actions: Azioni di sviluppo basate sul progetto
-      export_development_actions_project: Azioni di sviluppo basate sul progetto
-      export_global_development_actions: Azioni di sviluppo globale
-      export_global_development_actions_translations: Traduzioni dell'Azione per lo sviluppo globale
       form:
         available_languages: Lingue disponibili
         client_placeholder: Selezionare un cliente
@@ -2290,6 +2320,7 @@ it:
       enter_template_name_error: Il nome del modello è obbligatorio
       errors:
         cannot_update_progress_plan_completed: Non è possibile aggiornare lo stato di avanzamento perché il piano IDP è stato completato.
+        skills_required_on_publishing: Scegli le competenze prima di pubblicare un modello.
         update: Aggiornamento non consentito perché il modello IDP è già associato a un piano IDP utente.
       fields:
         assigned_data: Dati assegnati
@@ -2343,6 +2374,7 @@ it:
       self_rating: Abilita l'autovalutazione
       show_reflections: Mostra Riflessioni
       skill_gap_report: Rapporto sul divario di competenze
+      skill_gap_report_ai_assistant: Assistente all'analisi del rapporto sulle lacune di competenze
       skill_source_preference: Fonte di abilità
       skill_sources:
         from_ai: Da Conoscenza generale dell'intelligenza artificiale
@@ -2371,7 +2403,6 @@ it:
       update_interview_questions: Aggiorna le domande dell'intervista
       update_reflection_questions: Domande di riflessione sull'aggiornamento
     idp_setting:
-      allow_global_skills: Consentire competenze globali
       manager_approves_idp: Il manager approva l'IDP
       manager_can_edit_idp: Il gestore può modificare l'IDP
       require_all_development_actions_complete: Richiedere il completamento di tutte le azioni di sviluppo
@@ -2989,12 +3020,8 @@ it:
           proficiency: Competenza nell'importazione
           translations: Importazione di traduzioni di competenza
         errors:
-          by_skill_exists: 'Riga %{row_number}: Esiste già un livello di competenza ''by_skill'' per questo progetto e per questa competenza.'
           by_skill_missing: 'Riga %{row_number}: Il progetto e la competenza devono essere presenti per il tipo ''by_skill''.'
-          by_skill_type_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''by_skill_type'''' per questo progetto e per questo tipo di abilità.'
           by_skill_type_missing: 'Riga %{row_number}: Il progetto e il tipo di competenza devono essere presenti per il tipo ''''by_skill_type''''.'
-          default_global_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel di livello globale ''''predefinito''''.'
-          default_project_exists: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''predefinito'''' a livello di progetto.'
           invalid_csv_format: 'Formato CSV non valido: %{message}'
           invalid_proficiency_type: 'Riga %{row_number}: Tipo di competenza non valido o mancante'
           invalid_skill_type: 'Riga %{row_number}: Tipo di abilità non valida "%{skill_type}". I tipi validi sono: %{valid_types}'
@@ -3033,6 +3060,8 @@ it:
       tools:
         workshop_status_export: Esporta dello stato dell'officina
         workshop_status_export_success: Stato del workshop L'esportazione è stata pianificata con successo.
+    project_features:
+      project_features: Caratteristiche del progetto
     project_participants:
       cancel: Annullamento
       column_actions: Azioni
@@ -3455,6 +3484,9 @@ it:
         graph_value_condition_not_supported_msg: Le condizioni del valore del grafico non sono supportate per questo tipo di grafico. Questa opzione è attualmente disponibile solo per i seguenti tipi di grafico.
         graph_value_conditions_title: Condizioni del valore del grafico
         if_graph_value_is: 'Se il valore del grafico è:'
+        job_roles:
+          current: Fattori di lavoro attuali
+          target: Fattori di lavoro target
         manage_graph_value_condition: Gestire la condizione del valore del grafico
         manage_styles_condition: Gestire la condizione degli stili
         missing_value: Valore mancante
@@ -3469,6 +3501,26 @@ it:
         prefixes:
           and: E
           or: O
+        skill_type_label: Filtra per tipo di abilità
+        skill_type_placeholder: Seleziona il tipo di abilità
+        skill_types:
+          behavioral: Comportamentale
+          other: Altro
+          qualification: Qualificazione
+          technical: Tecnico
+        table_options:
+          border: Confine
+          description: Descrizione
+          header: Intestazione
+          icons: Icone
+          label: Etichetta
+          name: Nome
+          rank: Rango
+          score: Punteggio
+          show_benchmark_score: Mostra il punteggio del benchmark
+          show_current_proficiency: Mostra competenza attuale
+          show_target_proficiency: Mostra competenza target
+          strengths_blindspots: Punti di forza e punti ciechi
         text_condition_type: 'Tipo di condizione del testo:'
     report_families:
       create:
@@ -3704,6 +3756,7 @@ it:
       campaign_participants: Partecipanti alla campagna
       columns:
         activity: Campagne
+        assessment_center_date_and_time: Data e ora dell'Assessment center
         assessor: Valutatore
         assessors: Valutatori
         attendance: Presenza

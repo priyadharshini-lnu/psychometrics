@@ -38,7 +38,12 @@ export const Select: FC<Props> = ({
     return (
       <select className="form-control" value={condition.value} onChange={changeValue}>
         {!condition.predicate && <option />}
-        {_.map(field.optionList, value => (<option key={value} value={value}>{value}</option>))}
+        {_.map(field.optionList, (option, key) => {
+          if (typeof option === 'string' && !Array.isArray(field.optionList)) {
+            return <option key={key} value={key}>{option}</option>
+          }
+          return <option key={String(option)} value={String(option)}>{String(option)}</option>
+        })}
       </select>
     )
   }

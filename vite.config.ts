@@ -85,6 +85,7 @@ export default defineConfig({
         if (path.endsWith('/styles/global.less')) { return false }
         if (path.endsWith('/styles/common.less')) { return false }
         if (path.endsWith('/styles/utils.less')) { return false }
+        if (path.endsWith('/admin/style.less')) { return false }
 
         if (path.endsWith('less') && !path.includes('node_modules')) {
           return true

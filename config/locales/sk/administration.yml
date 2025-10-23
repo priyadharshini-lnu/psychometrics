@@ -369,7 +369,9 @@ sk:
       created_successfully: AI Assistant bol úspešne vytvorený.
       errors:
         cannot_delete_in_use: Nie je možné odstrániť AI Assistant "%{name}", pretože sa používa.
+        development_actions_assistance_not_enabled: Generovanie vývojových akcií poháňaných umelou inteligenciou nie je k dispozícii. Obráťte sa na správcu.
         one_click_idp_assistance_not_enabled: Pomoc IDP s umelou inteligenciou nie je k dispozícii s vaším aktuálnym plánom. Obráťte sa na správcu.
+        platform_assistant_already_exists: Na platforme je povolený iba 1 asistent typu %{type}.
       form:
         add_output_schema_key: Pridanie kľúča výstupnej schémy
         dependencies: Závislosti
@@ -388,6 +390,13 @@ sk:
         system_prompt: Systémová výzva
         type: Typ
         user_prompt: Výzva používateľa
+      revisions:
+        load: Načítať do formulára
+        name: Meno
+        system_prompt: Systémový propmpt
+        title: Revízie AI Assistant
+        user_prompt: Výzva používateľa
+        version: Verzia
       selector:
         choose_artifact: Výber artefaktu AI
         choose_schema_key: Výber kľúča schémy
@@ -406,6 +415,12 @@ sk:
       form:
         description: Popis
         title: Kľúč API
+    assessment_builder:
+      form:
+        display_label: Zadajte štítok displeja
+        label_required: Štítok je povinný
+        value: Hodnota
+        value_required: Hodnota je povinná
     assessment_center:
       cancel_confirmation:
         message: Naozaj chcete zahodiť postup formulára?
@@ -666,6 +681,7 @@ sk:
         no_results: Neexistujú žiadne zodpovedané otázky
         other_reports: Ďalšie správy
         overall_scoring: Celkové skóre
+        recordings: Nahrávky
         refresh: Občerstviť
         reports: Správy
         reports_count: "%{count} Prehľady"
@@ -1203,10 +1219,14 @@ sk:
       client_features: Funkcie klienta
       form:
         ai_assistants: Asistenti AI
+        ai_assistants_disabled_by_client: AI Assistants je zakázaný klientom
         ai_assisted_idp: IDP s pomocou AI
+        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vyžaduje povolenie funkcie AI Assistants
         global_skills: Globálne zručnosti
         idp: IDP
+        idp_disabled_by_client: IDP je zakázaný klientom
         sms_notification: SMS upozornenie
+        sms_notification_disabled_by_client: SMS notifikácia je zakázaná klientom
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1727,7 @@ sk:
         update_button: Aktualizácia prekladu
       form:
         all: Všetko
+        assessment_center_booking_summary: Súhrn rezervácií v hodnotiacom centre
         assessment_completion_status_code: Kód stavu dokončenia hodnotenia
         assessment_completion_status_code_hint: Ak je zadaný kód dokončenia, odošle sa iba vtedy, ak hodnotenie používateľa obsahuje tento kód stavu dokončenia.
         body_mustache: |-
@@ -1726,6 +1747,8 @@ sk:
         custom: Vlastné
         delivery_at: Doručenie za (GST)
         delivery_delay_hours: Meškanie doručenia (hodiny)
+        delivery_end_date: Dátum ukončenia dodávky
+        delivery_frequency: Frekvencia doručenia
         delivery_interval: Interval dodania
         delivery_interval_number: Číslo intervalu dodania
         delivery_interval_period: Obdobie intervalu dodania
@@ -1736,7 +1759,16 @@ sk:
           not_started: Ak sa hodnotenie nezačne
           send_now: Odoslať
           specific_datetime: Odoslať na
+        delivery_start_date: Dátum začiatku doručenia
+        delivery_time_of_day: Dodacia lehota dňa
+        delivery_timezone: Dodacie časové pásmo
+        delivery_weekdays: Doručenie v pracovných dňoch
         development_action_deadline_missed: Termín rozvojových opatrení zmeškaný
+        error_msgs:
+          delivery_end_date_after_start_date: musí byť po dátume začatia
+          delivery_start_date_in_past: nemôže byť v minulosti
+          delivery_time_in_past: nemôže byť v minulosti
+          delivery_weekdays_required: musí vybrať aspoň jeden deň v týždni.
         idp_deadline_missed: Termín IDP zmeškaný
         idp_template_approved: Schválené IDP
         idp_template_assigned: Pridelený IDP
@@ -1817,15 +1849,21 @@ sk:
         client: 'Klient:'
         communication_type: 'Typ komunikácie:'
         delivery_rule: 'Dodacie pravidlo:'
+        end_date: 'Dátum ukončenia:'
         every_interval: Každý %{interval}
+        frequency: 'Frekvencia:'
         owner: 'Vlastník:'
         project: 'Projekt:'
         recipients: 'Príjemcov:'
         specific_datetime: 'Poslať na:'
+        start_date: 'Dátum začiatku:'
         stop_reminder_datetime: Dátum ukončenia pripomienok (GST)
         sub_campaign: 'Čiastková kampaň:'
         subject: 'Predmet:'
+        time_of_day: 'Denná doba:'
+        timezone: 'Časové pásmo:'
         users: 'Používateľov:'
+        weekdays: 'Vo všedné dni:'
       sidebar:
         copy: Kopírovať komunikáciu
         destroy: Odstrániť komunikáciu
@@ -1968,17 +2006,9 @@ sk:
         details: Podrobnosti o súbore
         failure_msg: Chyba pri exporte prekladov
         success_msg: Export prebiehajúcich vývojových akcií. Skontrolujte stav v upozorneniach.
-        title: Vývoz
         translation_details: Detaily
-      export_actions:
-        development_action_translations_title: Export Preklady vývojových akcií
-        development_actions_title: Exportné rozvojové akcie
       export_development_action_translations: Preklady vývojových akcií
-      export_development_action_translations_project: Vývojové akcie Preklady na základe projektu
       export_development_actions: Rozvojové akcie
-      export_development_actions_project: Rozvojové akcie na základe projektu
-      export_global_development_actions: Globálne rozvojové opatrenia
-      export_global_development_actions_translations: Preklady globálnych rozvojových akcií
       form:
         available_languages: Dostupné jazyky
         client_placeholder: Vyberte klienta
@@ -2290,6 +2320,7 @@ sk:
       enter_template_name_error: Názov šablóny je povinný
       errors:
         cannot_update_progress_plan_completed: Nemožno aktualizovať pokrok, pretože plán IDP bol dokončený
+        skills_required_on_publishing: Pred zverejnením šablóny si vyberte zručnosti.
         update: Aktualizácia nie je povolená, pretože šablóna IDP je už priradená k plánu IDP používateľa. Zmeny vzhľadu boli uložené.
       fields:
         assigned_data: Priradené údaje
@@ -2343,6 +2374,7 @@ sk:
       self_rating: Povoliť vlastné hodnotenie
       show_reflections: Zobraziť odrazy
       skill_gap_report: Správa o nedostatku zručností
+      skill_gap_report_ai_assistant: Asistent analýzy správ o medzerách v zručnostiach
       skill_source_preference: Zdroj zručností
       skill_sources:
         from_ai: Zo všeobecných znalostí o umelej inteligencii
@@ -2371,7 +2403,6 @@ sk:
       update_interview_questions: Aktualizácia otázok na pohovore
       update_reflection_questions: Otázka na reflexiu aktualizácie
     idp_setting:
-      allow_global_skills: Umožnite globálne zručnosti
       manager_approves_idp: Manažér schvaľuje IDP
       manager_can_edit_idp: Manažér môže upravovať IDP
       require_all_development_actions_complete: Vyžadovať dokončenie všetkých vývojových akcií
@@ -2989,7 +3020,6 @@ sk:
           proficiency: Odbornosť importu
           translations: Import prekladov odbornosti
         errors:
-          by_skill_exists: 'Riadok %{row_number}: Pre tento projekt a zručnosť už existuje úroveň "by_skill"'
           by_skill_missing: 'Riadok %{row_number}: Projekt a zručnosť musia byť prítomné pre typ "by_skill"'
           invalid_csv_format: 'Neplatný formát CSV: %{message}'
           invalid_proficiency_type: 'Riadok %{row_number}: Neplatný alebo chýbajúci ProficiencyType'
@@ -3029,6 +3059,8 @@ sk:
       tools:
         workshop_status_export: Export stavu dielne
         workshop_status_export_success: Export stavu workshopu bol úspešne naplánovaný.
+    project_features:
+      project_features: Funkcie projektu
     project_participants:
       cancel: Zrušiť
       column_actions: Akcie
@@ -3451,6 +3483,9 @@ sk:
         graph_value_condition_not_supported_msg: Podmienky hodnoty grafu nie sú pre tento typ grafu podporované. Táto možnosť je momentálne dostupná len pre nižšie uvedené typy grafov.
         graph_value_conditions_title: Podmienky hodnoty grafu
         if_graph_value_is: 'Ak je hodnota grafu:'
+        job_roles:
+          current: Aktuálne pracovné faktory
+          target: Cieľové pracovné faktory
         manage_graph_value_condition: Spravovanie podmienky hodnoty grafu
         manage_styles_condition: Podmienka Správa štýlov
         missing_value: Chýbajúca hodnota
@@ -3465,6 +3500,26 @@ sk:
         prefixes:
           and: A
           or: ALEBO
+        skill_type_label: Filtrovať podľa typu zručnosti
+        skill_type_placeholder: Vyberte typ zručnosti
+        skill_types:
+          behavioral: Behaviorálne
+          other: Iný
+          qualification: Kvalifikácia
+          technical: Technický
+        table_options:
+          border: Hranica
+          description: Popis
+          header: Hlavička
+          icons: Ikony
+          label: Štítok
+          name: Meno
+          rank: Rad
+          score: Skóre
+          show_benchmark_score: Zobraziť skóre benchmarku
+          show_current_proficiency: Zobraziť aktuálnu odbornosť
+          show_target_proficiency: Zobraziť cieľovú odbornosť
+          strengths_blindspots: Silné stránky a slepé miesta
         text_condition_type: 'Typ textovej podmienky:'
     report_families:
       create:
@@ -3700,6 +3755,7 @@ sk:
       campaign_participants: Účastníci kampane
       columns:
         activity: Aktivita
+        assessment_center_date_and_time: Dátum a čas hodnotiaceho centra
         assessor: Hodnotiteľ
         assessors: Hodnotiteľov
         attendance: Účasť

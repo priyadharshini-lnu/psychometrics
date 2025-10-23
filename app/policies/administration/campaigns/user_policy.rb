@@ -137,6 +137,12 @@ module Administration
         has_permission?(:project_settings, :webhooks, project_id: project_id)
       end
 
+      def view_recordings?
+        @user.is?(:superadmin) || @user.has_permission?(
+          :workshops, :view_recordings, project_id: project_id, campaign_id: campaign_id
+        ) || @user.is?(:assessor)
+      end
+
       private
 
       def can_mange_campaign_users?

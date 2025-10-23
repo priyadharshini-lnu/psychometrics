@@ -14,6 +14,9 @@ interface Props {
   hideValues: boolean
   noOfItems: number | null
   scoreCutoff: number | null
+  skillType?: string[]
+  currentJobFactors?: boolean
+  targetJobFactors?: boolean
 }
 
 export enum TableSectionsType {

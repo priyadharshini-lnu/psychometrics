@@ -369,7 +369,9 @@ en:
       created_successfully: AI Assistant was created successfully.
       errors:
         cannot_delete_in_use: Cannot delete AI Assistant '%{name}' because it is being used.
+        development_actions_assistance_not_enabled: AI-powered development actions generation is not available. Please contact administrator.
         one_click_idp_assistance_not_enabled: AI-powered IDP assistance is not available with your current plan. Please contact administrator.
+        platform_assistant_already_exists: Only 1 assistant of type %{type} is allowed on the platform.
       form:
         add_output_schema_key: Add Output Schema Key
         dependencies: Dependencies
@@ -388,6 +390,13 @@ en:
         system_prompt: System Prompt
         type: Type
         user_prompt: User Prompt
+      revisions:
+        load: Load to form
+        name: Name
+        system_prompt: System Propmpt
+        title: Revisions of AI Assistant
+        user_prompt: User Prompt
+        version: Version
       selector:
         choose_artifact: Choose AI Artifact
         choose_schema_key: Choose Schema Key
@@ -406,6 +415,12 @@ en:
       form:
         description: Description
         title: api key
+    assessment_builder:
+      form:
+        display_label: Enter display label
+        label_required: Label is required
+        value: Value
+        value_required: Value is required
     assessment_center:
       cancel_confirmation:
         message: Are you sure you want to discard the form progress?
@@ -666,6 +681,7 @@ en:
         no_results: There are no any answered questions
         other_reports: Other Reports
         overall_scoring: Overall Scoring
+        recordings: Recordings
         refresh: Refresh
         reports: Reports
         reports_count: "%{count} Reports"
@@ -1015,6 +1031,10 @@ en:
           approvers: Approvers
           approvers_can_edit: Approvers Can Edit
           approvers_not_required: Approvers Not Required
+          digest_delivery_mode:
+            form_label: Digest Delivery Mode
+            immediate: Immediate - Send whenever there is a bulk submission
+            scheduled: Scheduled - Send a digest email at a scheduled time
           digest_frequency:
             daily: Daily
             form_label: Digest Frequency
@@ -1203,10 +1223,15 @@ en:
       client_features: Client Features
       form:
         ai_assistants: AI Assistants
+        ai_assistants_disabled_by_client: AI Assistants is disabled by client
         ai_assisted_idp: AI Assisted IDP
+        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP requires AI Assistants feature to be enabled
         global_skills: Global Skills
+        global_skills_disabled_by_client: Global Skills is disabled by client
         idp: IDP
+        idp_disabled_by_client: IDP is disabled by client
         sms_notification: SMS Notification
+        sms_notification_disabled_by_client: SMS Notification is disabled by client
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1986,17 +2011,9 @@ en:
         details: File Details
         failure_msg: Error while exporting translations
         success_msg: Exporting development actions in progress. Please check the status in the notifications.
-        title: Export
         translation_details: Details
-      export_actions:
-        development_action_translations_title: Export Development Actions Translations
-        development_actions_title: Export Development Actions
       export_development_action_translations: Development Action Translations
-      export_development_action_translations_project: Development Action Translations based on Project
       export_development_actions: Development Actions
-      export_development_actions_project: Development Actions Based on Project
-      export_global_development_actions: Global Development Actions
-      export_global_development_actions_translations: Global Development Action Translations
       form:
         available_languages: Available Languages
         client_placeholder: Select a Client
@@ -2308,6 +2325,7 @@ en:
       enter_template_name_error: Template name is required
       errors:
         cannot_update_progress_plan_completed: Cannot update progress because the IDP plan has been completed
+        skills_required_on_publishing: Please choose skills before publishing a template.
         update: Update not allowed because the IDP template is already associated with a user IDP plan.
       fields:
         assigned_data: Assigned Data
@@ -2361,6 +2379,7 @@ en:
       self_rating: Enable Self Rating
       show_reflections: Show Reflections
       skill_gap_report: Skill Gap Report
+      skill_gap_report_ai_assistant: Skill Gap Report Analysis Assistant
       skill_source_preference: Skill Source
       skill_sources:
         from_ai: From General AI Knowledge
@@ -2389,7 +2408,6 @@ en:
       update_interview_questions: Update Interview Questions
       update_reflection_questions: Update Reflection Questions
     idp_setting:
-      allow_global_skills: Allow Global Skills
       manager_approves_idp: Manager approves IDP
       manager_can_edit_idp: Manager can edit IDP
       require_all_development_actions_complete: Require all development actions complete
@@ -3007,12 +3025,12 @@ en:
           proficiency: Import Proficiency
           translations: Import Proficiency Translations
         errors:
-          by_skill_exists: 'Row %{row_number}: A ''by_skill'' ProficiencyLevel already exists for this project and skill'
+          by_skill_exists_id_missing: 'Row %{row_number}: A proficiency level for skill ''%{name}'' already exists. Please provide the ID to update it.'
           by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
-          by_skill_type_exists: 'Row %{row_number}: A ''''by_skill_type'''' ProficiencyLevel already exists for this project and skill type'
+          by_skill_type_exists_id_missing: 'Row %{row_number}: A proficiency level for skill type ''%{skill_type}'' already exists. Please provide the ID to update it.'
           by_skill_type_missing: 'Row %{row_number}: Project and Skill Type must be present for ''''by_skill_type'''' type'
-          default_global_exists: 'Row %{row_number}: A global-level ''default'' ProficiencyLevel already exists'
-          default_project_exists: 'Row %{row_number}: A project-level ''default'' ProficiencyLevel already exists'
+          default_global_exists_id_missing: 'Row %{row_number}: A global-level ''default'' ProficiencyLevel already exists. Please provide the ID to update it.'
+          default_project_exists_id_missing: 'Row %{row_number}: A project-level ''default'' ProficiencyLevel already exists. Please provide the ID to update it.'
           invalid_csv_format: 'Invalid CSV format: %{message}'
           invalid_proficiency_type: 'Row %{row_number}: Invalid or missing ProficiencyType'
           invalid_skill_type: 'Row %{row_number}: Invalid skill type "%{skill_type}". Valid types are: %{valid_types}'
@@ -3051,6 +3069,8 @@ en:
       tools:
         workshop_status_export: Workshop Status Export
         workshop_status_export_success: Workshop Status Export was scheduled successfully.
+    project_features:
+      project_features: Project Features
     project_participants:
       cancel: Cancel
       column_actions: Actions
@@ -3473,6 +3493,9 @@ en:
         graph_value_condition_not_supported_msg: Graph Value Conditions are not supported for this graph type. This option is currently available only for below Graph types.
         graph_value_conditions_title: Graph value conditions
         if_graph_value_is: 'If Graph Value is:'
+        job_roles:
+          current: Current Job Factors
+          target: Target Job Factors
         manage_graph_value_condition: Manage graph value condition
         manage_styles_condition: Manage styles condition
         missing_value: Missing Value
@@ -3487,6 +3510,26 @@ en:
         prefixes:
           and: AND
           or: OR
+        skill_type_label: Filter by Skill Type
+        skill_type_placeholder: Select skill type
+        skill_types:
+          behavioral: Behavioral
+          other: Other
+          qualification: Qualification
+          technical: Technical
+        table_options:
+          border: Border
+          description: Description
+          header: Header
+          icons: Icons
+          label: Label
+          name: Name
+          rank: Rank
+          score: Score
+          show_benchmark_score: Show benchmark score
+          show_current_proficiency: Show Current Proficiency
+          show_target_proficiency: Show Target Proficiency
+          strengths_blindspots: Strengths & Blindspots
         text_condition_type: 'Text Condition Type:'
     report_families:
       create:
@@ -3722,6 +3765,7 @@ en:
       campaign_participants: Campaign participants
       columns:
         activity: Activity
+        assessment_center_date_and_time: Assessment center date and time
         assessor: Assessor
         assessors: Assessors
         attendance: Attendance

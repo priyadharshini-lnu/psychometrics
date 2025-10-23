@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 
-const DevelopmentActionList = lazy(() => import('../components/DevelopmentActionList/DevelopmentActionList'))
+const DevelopmentActionList = lazy(() => import('../components/DevelopmentActionList'))
 const DevelopmentActionRoutes = [
   {
     path: 'development_actions/*',

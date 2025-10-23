@@ -6,7 +6,7 @@ import {
   Spin,
 } from 'antd'
 import {
-  useParams, useNavigate, useLocation,
+  useParams, useNavigate,
 } from 'react-router-dom'
 import { GettingStart } from './GettingStartStep'
 import { SkillGapReportStep } from './SkillGapReportStep'
@@ -22,11 +22,14 @@ export const InitialStepsComponent = () => {
   const [currentStep, setCurrentStep] = useState(STEPS.gettingStarted)
   const [isLoading, setIsLoading] = useState(true)
 
-  const { idpPlanId } = useParams()
+  const {
+    idpPlanId, projectId, campaignId, userId,
+  } = useParams()
+
   const { step: paramStep } = useParams()
   const navigate = useNavigate()
-  const location = useLocation()
-  const currentPath = location.pathname
+  // eslint-disable-next-line max-len
+  const currentPath = `/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/subjects/${userId}/idp/${idpPlanId}`
 
 
   const {
@@ -65,12 +68,12 @@ export const InitialStepsComponent = () => {
     if (!userIdpPlanData) { return }
 
     if (userIdpPlanData?.status !== USER_IDP_PLAN_STATUS.NOT_STARTED) {
-      navigate(`${currentPath.split('step')[0]}plan`)
+      navigate(`${currentPath}/plan`)
     }
 
     if (paramStep === STEPS.skillGapReport && userIdpPlanData && !userIdpPlanData?.skillGapReportAvailable) {
       setCurrentStep(STEPS.gettingStarted)
-      navigate(`${currentPath.split('step')[0]}step/getting_started`)
+      navigate(`${currentPath}/step/getting_started`)
     }
   }, [userIdpPlanData])
 
@@ -95,27 +98,27 @@ export const InitialStepsComponent = () => {
   const handleNextForGettingStartedStep = () => {
     if (!userIdpPlanData?.skillGapReportAvailable) {
       setCurrentStep(STEPS.addSkills)
-      navigate(`${currentPath.split('step')[0]}step/add_skills`)
+      navigate(`${currentPath}/step/add_skills`)
     } else {
       setCurrentStep(STEPS.skillGapReport)
-      navigate(`${currentPath.split('step')[0]}step/skill_gap_report`)
+      navigate(`${currentPath}/step/skill_gap_report`)
     }
   }
 
   const handleNextForSkillGapReportStep = () => {
     setCurrentStep(STEPS.addSkills)
-    navigate(`${currentPath.split('step')[0]}step/add_skills`)
+    navigate(`${currentPath}/step/add_skills`)
   }
 
   const handlePrevForSkillGapReportStep = () => {
-    navigate(`${currentPath.split('step')[0]}step/getting_started`)
+    navigate(`${currentPath}/step/getting_started`)
   }
 
   const handlePrevForAddSkillsStep = () => {
     if (userIdpPlanData?.skillGapReportAvailable) {
-      navigate(`${currentPath.split('step')[0]}step/skill_gap_report`)
+      navigate(`${currentPath}/step/skill_gap_report`)
     } else {
-      navigate(`${currentPath.split('step')[0]}step/getting_started`)
+      navigate(`${currentPath}/step/getting_started`)
     }
   }
 
@@ -143,7 +146,7 @@ export const InitialStepsComponent = () => {
       ...skillPayload,
     }).then(() => {
       setIsLoading(false)
-      navigate(`${currentPath.split('step')[0]}plan`)
+      navigate(`${currentPath}/plan`)
     })
   }
 

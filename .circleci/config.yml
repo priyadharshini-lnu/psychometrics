@@ -12,7 +12,7 @@ executors:
   tte-executor-full:
     docker:
       - &docker_image
-        image: talententerprise/tte:ruby-3.4.2-node-18.16.1-lua-5.4
+        image: talententerprise/tte:ruby-3.4.6-node-18.16.1-lua-5.4
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -635,6 +635,22 @@ jobs:
           name: Zeitwerk check
           command: |
             bundle exec rake zeitwerk:check
+  maxmind_db_update:
+    executor: tte-executor
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: Configure Git
+          command: |
+            git config --global user.name "CircleCI Bot"
+            git config --global user.email "circleci-maxmind-bot@noreply.com"
+            git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "git@github.com:"
+      - gh/setup:
+          token: GITHUB_TOKEN
+      - run:
+          name: Update MaxMind Database
+          command: .circleci/scripts/update_maxmind_db.sh
 
 orbs:
   aws-cli: circleci/aws-cli@4.1.2
@@ -646,6 +662,7 @@ orbs:
   kubernetes: circleci/kubernetes@2.0.0
   helm: circleci/helm@3.1.0
   ggshield: gitguardian/ggshield@volatile
+  gh: circleci/github-cli@2.7.1
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
@@ -852,3 +869,14 @@ workflows:
             branches:
               only:
                 - master
+  maxmind_update:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"  # Daily at midnight UTC
+          filters:
+            branches:
+              only:
+                - develop
+
+    jobs:
+      - maxmind_db_update

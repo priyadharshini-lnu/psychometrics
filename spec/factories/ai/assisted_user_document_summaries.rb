@@ -6,11 +6,11 @@ FactoryBot.define do
     association :ai_assistant_chat, factory: :assistant_chat
 
     transient do
-      document_blob { nil }
+      document_attachment { nil }
     end
 
-    assistable { document_blob }
-    assistable_type { 'ActiveStorage::Blob' }
+    assistable { document_attachment }
+    assistable_type { 'ActiveStorage::Attachment' }
 
     trait :completed do
       status { :completed }

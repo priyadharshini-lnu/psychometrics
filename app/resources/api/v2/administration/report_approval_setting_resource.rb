@@ -4,7 +4,7 @@ class Api::V2::Administration::ReportApprovalSettingResource < Api::V2::Administ
   attributes :qc_user_ids, :approver_user_ids, :approval_notification_user_ids, :qcs, :approvers,
              :approval_notification_users, :approvers_can_edit, :approvers_not_required,
              :do_not_send_notifications, :allow_bulk_approve, :allow_qc_bulk_submit, :send_digest_emails,
-             :digest_frequency, :digest_weekdays, :digest_time, :digest_timezone
+             :digest_delivery_mode, :digest_frequency, :digest_weekdays, :digest_time, :digest_timezone
 
   has_one :campaign
   has_one :report

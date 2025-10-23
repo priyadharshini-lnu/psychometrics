@@ -118,6 +118,7 @@ Rails.application.routes.draw do
           get :assessor_assessments
           get :reports
           get :assessment_with_results
+          get :recordings
         end
       end
     end
@@ -201,9 +202,11 @@ Rails.application.routes.draw do
         end
         resources :sheet_rows, concerns: :sheet_row_management
 
-        resources :stats, only: %i[index] do
+        resources :stats, only: [] do
           collection do
+            post :index
             post :timeseries
+            get :datasheet_filter_options
           end
         end
 
@@ -1323,6 +1326,7 @@ as: :simulation_progress_notification
 
             jsonapi_resources :registration_settings, only: %i[index update]
             jsonapi_resources :mettl_schedule_records
+            jsonapi_resources :project_features, only: %i[index update]
 
             jsonapi_resources :assessments do
               scope module: :assessments do
@@ -1384,6 +1388,10 @@ as: :simulation_progress_notification
               jsonapi_resources :workshop_resources
               jsonapi_resources :workshop_recordings, only: %i[index]
               jsonapi_resources :campaign_assessments, only: %i[index]
+            end
+
+            resources :subjects, only: [] do
+              resources :meeting_recordings, only: %i[index], module: :subjects
             end
 
             jsonapi_resources :campaign_assessments, only: %i[index]
@@ -1608,6 +1616,7 @@ as: :simulation_progress_notification
               jsonapi_relationships
               member do
                 post :generate
+                get :revisions
               end
             end
           end

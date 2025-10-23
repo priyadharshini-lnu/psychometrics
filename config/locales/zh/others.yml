@@ -907,6 +907,8 @@ zh:
     bulk_download_reports:
       content:
         title: 下载报告的链接
+      errors:
+        no_plans: 未找到有效的 IDP 计划
     close: 关闭
     details: 详细信息
     errors: 错误
@@ -919,6 +921,14 @@ zh:
     super_admin:
       errors:
         data_processing_disabled: 数据处理被禁用。
+  ai:
+    errors:
+      bad_request_invalid_input: 由于输入无效，无法处理您的请求。请检查您的请求并重试。
+      generic: 处理您的请求时出现问题。请联系您的管理员。
+      rate_limit_exceeded: 该服务目前需求量很大。请稍等片刻，然后重试。
+      server_error: AI服务暂时不可用。请稍后重试。
+      service_overloaded: AI 服务当前过载。请稍等片刻，然后重试。
+      service_unavailable: 该 AI 服务目前正在维护中。请稍后重试。
   anonym:
     close: 关闭
     continue: 继续
@@ -1176,6 +1186,7 @@ zh:
       assessments_and_reports: 评估与报告
       idp: IDP
       manage: 管理
+      recordings: 录音
       report_approval: 报告审批设置
       sequencing: 测序
     report_approval:
@@ -1768,7 +1779,6 @@ zh:
       download: 下载
       edit: 编辑
       export: 导出
-      filter: 滤波器
       filter_by_tags: 按标签筛选
       go_back: 回去
       import: 进口
@@ -1898,7 +1908,6 @@ zh:
       download: 下载
       enabled: 启用
       file: 文件
-      global_import: 全球进口是什么？
       minutes: 分钟
       na: 不适用
       none: 无
@@ -2175,6 +2184,8 @@ zh:
       not_uniq_variable: 变量"%{value}"在第 %{row} 行重新定义
       project_assessments:
         should_be_greater_than_zero: 结果有效期应大于 0 天
+      project_feature:
+        global_skills_not_enabled_on_client: 要为此项目启用全局技能，请在客户端设置中的 功能标志（Feature Flags） 下激活它。
       report_approval_settings:
         report_exists: 该报告的报告审批设置已经存在。
         validates_admins: 管理员无法访问活动。
@@ -2244,6 +2255,8 @@ zh:
       body:
         error: 电子邮件正文中的管道文本不正确。
   errors:
+    ai_assistant:
+      max_generation_limit: 超出最大生成限制，请联系您的管理部门。
     assessments:
       timed_out: 由于 %{assessment_name} 测评超时，您将无法参加该评估。
     equal_to_current_password: 必须与当前密码不同。
@@ -2568,6 +2581,8 @@ zh:
       finishing:
         hint: 我们的人工智能助手正在为您创建 IDP 计划。
         title: 请稍等，我们正在施展我们的魔法......
+      reset_chat: 重置聊天
+      reset_confirmation: 您确定要放弃此聊天并重新开始吗？
       retake_steps:
         chat_hint: 让我知道您想提供更多信息？
         chat_title: 您想提供更多信息吗？
@@ -2575,9 +2590,27 @@ zh:
         start_chat_again: 重新开始聊天
         upload_document: 上传文档
         upload_file: 上传文件
+      start_page:
+        ai_assisted:
+          button: 人工智能辅助 IDP
+          description: 交互式对话驱动的流程，您可以通过多个步骤与 AI 共同创建计划。
+          option_1: 更个性化的结果
+          option_2: 自我反省的机会
+          option_3: 更适合职业转型
+          title: 人工智能辅助的 IDP
+        one_click:
+          button: 一键式AI IDP
+          description: 人工智能完成所有繁重的工作 - 立即扫描您的数据并生成完整的开发计划。
+          option_1: 最快选项（5 分钟）
+          option_2: 适合忙碌的专业人士
+          option_3: 生成后完全可编辑
+          title: 一键式 AI IDP
+        sub_title: 让我们创建一个定制的技能提升乔尼，映射到您的职业抱负并由人工智能指导
+        title: 制定您的个人发展计划
       summary:
         chat_title: 聊天洞察摘要
         file_title: 上传的文档见解
+        gap_report_title: 技能差距报告分析
         hint: 如果是，那么我们将创建您的 IDP，否则您可以重新回答
         title: 你对结果满意吗？
         upload_file: 上传的文件
@@ -2626,6 +2659,7 @@ zh:
       add_development_actions_from_below_options: 从下面的选项添加开发作。
       add_development_actions_modal_title: "%{skillName}开发作库"
       add_from_library: 从库添加
+      add_more: 添加更多开发作
       all: 全部
       approved: 批准
       board_view:
@@ -2640,6 +2674,7 @@ zh:
       custom: 习惯
       custom_da_description: 创建自定义开发作以满足独特的开发需求。
       date_range: 开始日期 - 结束日期
+      edit_da_progress: 编辑开发作进度
       edit_plan_to_add_development_actions: 编辑计划并添加开发作。
       enter_development_action_description: 输入开发作描述
       enter_development_action_title: 输入开发作标题

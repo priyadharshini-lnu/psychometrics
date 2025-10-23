@@ -23,7 +23,7 @@ interface QuestionProps {
 
 export interface FormType {
   name: string
-  optionList?: string[]
+  optionList?: string[] | { [key: string]: string }
 }
 
 interface ModuleConfig {

@@ -39,3 +39,10 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
+
+.subject-column {
+    max-width: 150px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}

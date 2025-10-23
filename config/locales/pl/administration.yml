@@ -369,7 +369,9 @@ pl:
       created_successfully: Asystent AI został pomyślnie utworzony.
       errors:
         cannot_delete_in_use: Nie można usunąć Asystenta AI "%{name}", ponieważ jest on używany.
+        development_actions_assistance_not_enabled: Generowanie akcji programistycznych opartych na sztucznej inteligencji nie jest dostępne. Prosimy o kontakt z administratorem.
         one_click_idp_assistance_not_enabled: Pomoc IDP oparta na sztucznej inteligencji nie jest dostępna w ramach bieżącego planu. Prosimy o kontakt z administratorem.
+        platform_assistant_already_exists: Na platformie może przebywać tylko 1 asystent typu %{type}.
       form:
         add_output_schema_key: Dodaj klucz schematu wyjściowego
         dependencies: Zależności
@@ -388,6 +390,13 @@ pl:
         system_prompt: Monit systemowy
         type: Typ
         user_prompt: Monit użytkownika
+      revisions:
+        load: Załaduj do formy
+        name: Nazwa
+        system_prompt: Propmpt systemu
+        title: Wersje Asystenta AI
+        user_prompt: Monit użytkownika
+        version: Wersja
       selector:
         choose_artifact: Wybierz artefakt AI
         choose_schema_key: Wybierz klucz schematu
@@ -406,6 +415,12 @@ pl:
       form:
         description: Opis
         title: Klucz API
+    assessment_builder:
+      form:
+        display_label: Wprowadź etykietę wyświetlaną
+        label_required: Etykieta jest wymagana
+        value: Wartość
+        value_required: Wartość jest wymagana
     assessment_center:
       cancel_confirmation:
         message: Czy na pewno chcesz odrzucić postęp w wypełnianiu?
@@ -666,6 +681,7 @@ pl:
         no_results: Nie ma odpowiedzi na żadne pytania
         other_reports: Inne raporty
         overall_scoring: Ogólna punktacja
+        recordings: Nagrania
         refresh: Odświeżyć
         reports: Raporty
         reports_count: "%{count} Raporty"
@@ -1203,10 +1219,14 @@ pl:
       client_features: Funkcje klienta
       form:
         ai_assistants: Asystenci AI
+        ai_assistants_disabled_by_client: Asystenci AI są wyłączeni przez klienta
         ai_assisted_idp: Dostawca tożsamości wspomagany przez sztuczną inteligencję
+        ai_assisted_idp_requires_ai_assistants: Usługa AI Assisted IDP wymaga włączenia funkcji AI Assistants
         global_skills: Umiejętności globalne
         idp: PRI
+        idp_disabled_by_client: Dostawca tożsamości jest wyłączony przez klienta
         sms_notification: Powiadomienie SMS
+        sms_notification_disabled_by_client: Powiadomienia SMS są wyłączone przez klienta
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1727,7 @@ pl:
         update_button: Aktualizuj tłumaczenie
       form:
         all: Cały
+        assessment_center_booking_summary: Podsumowanie rezerwacji w Assessment Center
         assessment_completion_status_code: Kod stanu ukończenia oceny
         assessment_completion_status_code_hint: Jeśli zostanie określony kod ukończenia, zostanie on wysłany tylko wtedy, gdy ocena użytkownika ma ten kod stanu ukończenia.
         body_mustache: |-
@@ -1726,6 +1747,8 @@ pl:
         custom: Niestandardowe
         delivery_at: Dostawa po cenie (GST)
         delivery_delay_hours: Opóźnienie dostawy (godziny)
+        delivery_end_date: Data zakończenia dostawy
+        delivery_frequency: Częstotliwość dostaw
         delivery_interval: Interwał dostawy
         delivery_interval_number: Numer interwału dostawy
         delivery_interval_period: Okres między dostawami
@@ -1736,7 +1759,16 @@ pl:
           not_started: Jeśli ocena nie zostanie rozpoczęta
           send_now: Wyślij teraz
           specific_datetime: Wyślij na
+        delivery_start_date: Data rozpoczęcia dostawy
+        delivery_time_of_day: Pora dostawy
+        delivery_timezone: Strefa czasowa dostawy
+        delivery_weekdays: Dostawa w dni powszednie
         development_action_deadline_missed: Przekroczony termin działań rozwojowych
+        error_msgs:
+          delivery_end_date_after_start_date: Musi być po dacie rozpoczęcia
+          delivery_start_date_in_past: nie może być w przeszłości
+          delivery_time_in_past: nie może być w przeszłości
+          delivery_weekdays_required: należy wybrać co najmniej jeden dzień tygodnia
         idp_deadline_missed: Nie dotrzymano terminu IDP
         idp_template_approved: Zatwierdzony przez IDP
         idp_template_assigned: Przypisany IDP
@@ -1817,15 +1849,21 @@ pl:
         client: 'Klient:'
         communication_type: 'Typ komunikacji:'
         delivery_rule: 'Zasada dostawy:'
+        end_date: 'Data zakończenia:'
         every_interval: Co %{interval}
+        frequency: 'Częstotliwość:'
         owner: 'Właściciel:'
         project: 'Projekt:'
         recipients: 'Adresatów:'
         specific_datetime: 'Wyślij na:'
+        start_date: 'Data rozpoczęcia:'
         stop_reminder_datetime: Data zakończenia przypomnień (GST)
         sub_campaign: 'Kampania podrzędna:'
         subject: 'Temat:'
+        time_of_day: 'Pora dnia:'
+        timezone: 'Strefa czasowa:'
         users: 'Użytkowników:'
+        weekdays: 'Dni powszednie:'
       sidebar:
         copy: Kopiowanie komunikacji
         destroy: Usuń komunikację
@@ -1968,17 +2006,9 @@ pl:
         details: Szczegóły pliku
         failure_msg: Błąd podczas eksportowania tłumaczeń
         success_msg: Eksport działań rozwojowych w toku. Sprawdź status w powiadomieniach.
-        title: Eksport
         translation_details: Szczegóły
-      export_actions:
-        development_action_translations_title: Tłumaczenia Export Development Actions
-        development_actions_title: Działania na rzecz rozwoju eksportu
       export_development_action_translations: Tłumaczenia działań rozwojowych
-      export_development_action_translations_project: Tłumaczenia działań rozwojowych na podstawie projektu
       export_development_actions: Działania rozwojowe
-      export_development_actions_project: Działania rozwojowe w oparciu o projekt
-      export_global_development_actions: Globalne działania na rzecz rozwoju
-      export_global_development_actions_translations: Tłumaczenia działań na rzecz globalnego rozwoju
       form:
         available_languages: Dostępne języki
         client_placeholder: Wybierz klienta
@@ -2290,6 +2320,7 @@ pl:
       enter_template_name_error: Nazwa szablonu jest wymagana
       errors:
         cannot_update_progress_plan_completed: Nie można zaktualizować postępów, ponieważ plan IDP został ukończony.
+        skills_required_on_publishing: Wybierz umiejętności przed opublikowaniem szablonu.
         update: Aktualizacja nie jest dozwolona, ponieważ szablon dostawcy tożsamości jest już skojarzony z planem dostawcy tożsamości użytkownika. Zmiany wyglądu zostały zapisane.
       fields:
         assigned_data: Przypisane dane
@@ -2343,6 +2374,7 @@ pl:
       self_rating: Włącz samoocenę
       show_reflections: Pokaż odbicia
       skill_gap_report: Raport o brakach w umiejętnościach
+      skill_gap_report_ai_assistant: Asystent analizy raportu o brakach w umiejętnościach
       skill_source_preference: Źródło umiejętności
       skill_sources:
         from_ai: Z ogólnej wiedzy na temat sztucznej inteligencji
@@ -2371,7 +2403,6 @@ pl:
       update_interview_questions: Aktualizuj pytania do rozmowy kwalifikacyjnej
       update_reflection_questions: Aktualizuj pytania do refleksji
     idp_setting:
-      allow_global_skills: Zezwalaj na umiejętności globalne
       manager_approves_idp: Menedżer zatwierdza dostawcę tożsamości
       manager_can_edit_idp: Menedżer może edytować dostawcę tożsamości
       require_all_development_actions_complete: Wymagaj ukończenia wszystkich akcji programistycznych
@@ -2989,7 +3020,6 @@ pl:
           proficiency: Biegłość w imporcie
           translations: Tłumaczenia biegłości importowej
         errors:
-          by_skill_exists: 'Wiersz %{row_number}: Poziom biegłości "by_skill" już istnieje dla tego projektu i umiejętności'
           by_skill_missing: 'Wiersz %{row_number}: Projekt i umiejętność muszą być obecne dla typu "by_skill"'
           invalid_csv_format: 'Nieprawidłowy format CSV: %{message}'
           invalid_proficiency_type: 'Wiersz %{row_number}: Nieprawidłowy lub brakujący ProficiencyType'
@@ -3029,6 +3059,8 @@ pl:
       tools:
         workshop_status_export: Eksport statusu warsztatu
         workshop_status_export_success: Eksport statusu warsztatu został zaplanowany pomyślnie.
+    project_features:
+      project_features: Cechy projektu
     project_participants:
       cancel: Anuluj
       column_actions: Akcje
@@ -3451,6 +3483,9 @@ pl:
         graph_value_condition_not_supported_msg: Warunki wartości wykresu nie są obsługiwane dla tego typu wykresu. Ta opcja jest obecnie dostępna tylko dla poniższych typów wykresów.
         graph_value_conditions_title: Warunki wartości wykresu
         if_graph_value_is: 'Jeśli wartość wykresu wynosi:'
+        job_roles:
+          current: Aktualne czynniki związane z pracą
+          target: Docelowe czynniki pracy
         manage_graph_value_condition: Zarządzanie warunkiem wartości wykresu
         manage_styles_condition: Zarządzanie warunkiem stylów
         missing_value: Brakująca wartość
@@ -3465,6 +3500,26 @@ pl:
         prefixes:
           and: I
           or: LUB
+        skill_type_label: Filtruj według typu umiejętności
+        skill_type_placeholder: Wybierz typ umiejętności
+        skill_types:
+          behavioral: Behawioralne
+          other: Inny
+          qualification: Kwalifikacja
+          technical: Techniczny
+        table_options:
+          border: Granica
+          description: Opis
+          header: Nagłówek
+          icons: Ikony
+          label: Etykieta
+          name: Nazwa
+          rank: Ranga
+          score: Wynik
+          show_benchmark_score: Pokaż wynik testu porównawczego
+          show_current_proficiency: Pokaż aktualną biegłość
+          show_target_proficiency: Pokaż biegłość docelową
+          strengths_blindspots: Mocne strony i słabe punkty
         text_condition_type: 'Typ warunku tekstowego:'
     report_families:
       create:
@@ -3700,6 +3755,7 @@ pl:
       campaign_participants: Uczestnicy kampanii
       columns:
         activity: Aktywność
+        assessment_center_date_and_time: Data i godzina oceny zintegrowanej
         assessor: Asesor
         assessors: Asesorów
         attendance: Frekwencja

@@ -4,6 +4,7 @@ module AI
   module Tools
     class CampaignArtifactResultManager < AI::Tools::Base
       interrupt_on_success_with_signal
+      raise_error_on_maximum_retry
       max_retry_attempts 2
 
       # rubocop:disable Layout/LineLength

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import {
-  useEffect, useState, useMemo, useRef,
+  useEffect, useState, useMemo, useRef, useContext,
 } from 'react'
 import {
   Tabs, Typography, Button,
@@ -12,16 +12,16 @@ import {
   Splitter,
   Flex,
   Badge,
-  Drawer, Tooltip, Spin,
+  Drawer, Tooltip,
+  Spin,
 } from 'antd'
 import cs from 'classnames'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { useMedia } from 'use-media'
 import { MessageOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DownloadButton } from '~/components/IdpShared/DownloadButton'
 import { useSearchSkills } from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/AddSkills/useSearchSkills'
-import { PageLoadSpinner } from '~/glint'
+import { PageLoadSpinner, MediaQueryContext } from '~/glint'
 import { Comments } from '~/components/IdpShared/Comments'
 import { SkillGapReportTab }
   from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/SkillGapReport/SkillGapReportTab'
@@ -58,9 +58,10 @@ import {
 } from '../DevelopmentActionsFlow/DevelopmentActionListView'
 import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
 import { groupSkillsBySkillType } from './utils'
-import { USER_IDP_PLAN_STATUS, STATUS_COLORS } from '~/components/IdpShared/constants'
+import { USER_IDP_PLAN_STATUS, STATUS_COLORS, SKILL_TYPE } from '~/components/IdpShared/constants'
 import { ListView } from '~/modules/endUser/modules/campaigns/routes/idp/ReflectiveQuestions'
 import { Filters } from '~/components/IdpShared/Comments/Types'
+
 
 const { I18n } = window
 
@@ -139,9 +140,8 @@ const UserDevelopmentPlanComponent = ({
   oneClickIdpEnabled,
 }: Props) => {
   const { tab: paramTab } = useParams() as {tab: string}
-  const isMobile = useMedia({
-    maxWidth: 768,
-  })
+
+  const { isMobile, isTablet, isDesktop } = useContext(MediaQueryContext)
 
   const [tab, setTab] = useState(paramTab)
   const [isCommentsDrawerOpen, setIsCommentsDrawerOpen] = useState(false)
@@ -152,6 +152,7 @@ const UserDevelopmentPlanComponent = ({
 
   const [isLoading, setIsLoading] = useState(false)
   const [isDALoading, setIsDALoading] = useState(false)
+  const [isSkillsLoading, setIsSkillsLoading] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -171,10 +172,13 @@ const UserDevelopmentPlanComponent = ({
 
   const searchSkillResource = useSearchSkills()
 
-  const skillTypes = _.map(_.groupBy(allSkills, 'skillType'), (skills, skillType) => ({
-    skillType,
-    skills,
-  }))
+  const skillTypes = [{
+    skillType: SKILL_TYPE.BEHAVIORAL,
+    skills: allSkills.filter(skill => (skill.skillType === SKILL_TYPE.BEHAVIORAL)),
+  }, {
+    skillType: SKILL_TYPE.TECHNICAL,
+    skills: allSkills.filter(skill => (skill.skillType === SKILL_TYPE.TECHNICAL)),
+  }]
 
   const changeTab = (tab: string) => {
     setTab(tab)
@@ -200,7 +204,6 @@ const UserDevelopmentPlanComponent = ({
     if (paramTab !== tab) {
       setTab(paramTab)
     }
-    // changeTab(paramTab)
   }, [paramTab])
 
   useEffect(() => {
@@ -247,6 +250,7 @@ const UserDevelopmentPlanComponent = ({
     const userIdpSkills = skills.map(skill => ({
       ...skill,
       skillId: skill.id,
+      isLocal: true,
     }))
     setSelectedSkills([...selectedSkills, ...userIdpSkills])
   }
@@ -266,9 +270,27 @@ const UserDevelopmentPlanComponent = ({
       })
   }
 
+  const debouncedSaveSkills = useMemo(() => _.debounce((userIdpSkills) => {
+    setIsSkillsLoading(true)
+    saveUserIdpSkills(
+      userIdpSkills, null, idpUserId,
+    ).then(() => {
+      fetchIdpSkills().then(({ response }) => {
+        setAllSkills(response)
+      }).finally(() => {
+        setIsSkillsLoading(false)
+      })
+    })
+  }, 400),
+  [idpUserId, saveUserIdpSkills])
+
   const handleDeselectSkill = (skillId) => {
-    setSelectedSkills(selectedSkills.filter(userIdpSkill => userIdpSkill.id !== skillId
-      && userIdpSkill.skillId !== skillId))
+    const deletedSkill = selectedSkills.find(skill => (skill.id === skillId))
+    const userIdpSkills = selectedSkills.filter(userIdpSkill => userIdpSkill.id !== skillId
+      && userIdpSkill.skillId !== skillId)
+    setSelectedSkills(userIdpSkills)
+    // eslint-disable-next-line no-prototype-builtins
+    if (!deletedSkill?.hasOwnProperty('isLocal')) { debouncedSaveSkills(userIdpSkills) }
   }
 
   const handleUpdateDevelopmentActionProgress = (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => {
@@ -312,11 +334,20 @@ const UserDevelopmentPlanComponent = ({
   }
 
   const handleScrollToSkill = (resourceId: string) => {
-    const skillElement = containerRef.current?.querySelector(`#skill-${resourceId}`)
+    const skillElement:HTMLElement = containerRef.current?.querySelector(`#skill-${resourceId}`) as HTMLElement
     if (isMobile) {
       setIsCommentsDrawerOpen(false)
-    }
-    if (skillElement) {
+      setTimeout(() => {
+        if (skillElement) {
+          skillElement.style.backgroundColor = 'var(--ant-primary-1)'
+          skillElement.style.transition = 'background-color 0.8s'
+          setTimeout(() => {
+            skillElement.style.backgroundColor = ''
+          }, 2000)
+          skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      }, 400)
+    } else if (skillElement) {
       skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
       setTimeout(() => {
         showCommentsForSkillId(resourceId)
@@ -329,7 +360,7 @@ const UserDevelopmentPlanComponent = ({
   }
 
   const enhancedOperations = (
-    <Flex gap={8}>
+    <Flex className={(isTablet || isDesktop) ? 'mt-4 mb-4' : ''} justify="end" gap={8}>
       {tab === 'skill_gap_report' ? (
         skillGapReportAvailable && skillGapReportData && (
           <DownloadButton
@@ -408,7 +439,7 @@ const UserDevelopmentPlanComponent = ({
   const developmentActionViews = isMobile ? (
     <>
       <div
-        className={styles['tab-container']}
+        className={styles.tabContainer}
         style={{
           height: '100%',
         }}
@@ -454,7 +485,7 @@ const UserDevelopmentPlanComponent = ({
       }}
     >
       <Splitter.Panel
-        className={styles['tab-container']}
+        className={styles.tabContainer}
         style={{
           maxHeight: `calc(100vh - (220px + ${headerHeight}px))`,
         }}
@@ -505,7 +536,7 @@ const UserDevelopmentPlanComponent = ({
           children:
         <Flex
           justify="center"
-          className={styles['tab-container']}
+          className={styles.tabContainer}
           style={{
             maxHeight: `calc(100vh - (220px + ${headerHeight}px))`,
           }}
@@ -527,7 +558,7 @@ const UserDevelopmentPlanComponent = ({
           <Flex
             vertical
             align="start"
-            className={styles['tab-container']}
+            className={styles.tabContainer}
             style={{
               maxHeight: 'calc(100vh - 220px)',
             }}
@@ -545,7 +576,7 @@ const UserDevelopmentPlanComponent = ({
   ]
 
   const headerContent = header || (
-    <Row align="middle" justify="center" className="mt-2 mb-2 ps-6 pe-6">
+    <Row align="middle" justify="center" className={cs('mt-2 mb-2', isMobile ? '' : 'ps-6 pe-6')}>
       <Col flex="auto">
         <Space>
           <Typography.Title level={4} style={{ margin: 0 }}>
@@ -564,18 +595,18 @@ const UserDevelopmentPlanComponent = ({
     return (
       <Flex
         vertical
-        className={styles['tab-container']}
+        className={styles.tabContainer}
         style={{
           maxHeight: '100%',
         }}
       >
         <Button
           onClick={() => setShowAddSkill(false)}
-          className={cs(styles['cancel-btn'], 'mb-4')}
+          className={cs(styles.cancelBtn, 'mb-4')}
         >
           {I18n.t('common.actions.cancel')}
         </Button>
-        <Spin spinning={isLoading}>
+        <Spin spinning={isSkillsLoading}>
           <AddSkillsStep
             addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
             skillTypes={skillTypes}
@@ -588,7 +619,6 @@ const UserDevelopmentPlanComponent = ({
             skillGapReportData={null}
           />
         </Spin>
-
       </Flex>
     )
   }
@@ -603,11 +633,13 @@ const UserDevelopmentPlanComponent = ({
               tabBarExtraContent={tab !== 'reflective_questions' ? enhancedOperations : null}
               items={tabItems}
               activeKey={tab}
-              className={styles['user-idp-plan']}
+              className={styles.userIdpPlan}
               tabBarStyle={{
                 marginBottom: 0,
-                padding: '0 24px',
+                padding: isMobile ? '0' : '0 24px',
                 boxShadow: '0 2px 2px var(--shadow-color)',
+                flexWrap: 'wrap',
+                flexDirection: isMobile ? 'column' : 'row',
               }}
             />
           </>

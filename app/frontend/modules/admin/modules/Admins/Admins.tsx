@@ -113,7 +113,7 @@ const AdminsComponent: React.FC<Props> = ({
 
   const tableLoading = isLoading('fetch')
 
-  const { pathname, search } = useLocation()
+  const { search } = useLocation()
   const searchParams = new URLSearchParams(search)
   const drawerMode = searchParams.get(DRAWER_SEARCH_PARAMS.MODE) as DrawerMode
   const drawerAdminId = searchParams.get(
@@ -137,7 +137,7 @@ const AdminsComponent: React.FC<Props> = ({
 
     params.set(DRAWER_SEARCH_PARAMS.MODE, mode)
 
-    return `${pathname}?${params.toString()}`
+    return `?${params.toString()}`
   }
 
   const handleEditAdminClick = (id: Admin['id']) => {
@@ -179,7 +179,7 @@ const AdminsComponent: React.FC<Props> = ({
     searchParams.delete(DRAWER_SEARCH_PARAMS.MODE)
     searchParams.delete(DRAWER_SEARCH_PARAMS.ADMIN_ID)
 
-    navigate(`${pathname}?${searchParams.toString()}`)
+    navigate(`?${searchParams.toString()}`)
   }
 
   const handleAddAdminClick = () => {

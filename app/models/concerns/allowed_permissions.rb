@@ -19,6 +19,7 @@ module AllowedPermissions
       assessments
       privacy_settings
       idp
+      feature_flags
     ],
     'audit_reports' => %w[user_report_events admin_permissions],
     'registration_settings' => %w[

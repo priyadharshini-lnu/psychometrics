@@ -99,6 +99,7 @@ module Administration
           'toggle_status',
           'bulk_download',
           'view_workshop_details',
+          'view_recordings',
           %w[remove destroy]
         ],
         {
@@ -133,7 +134,7 @@ module Administration
     end
 
     def campaign_user
-      object.campaign_users.find { |cu| cu.campaign_id == campaign.id }
+      CampaignUser.find_by(user_id: object.id, campaign_id: campaign.id)
     end
   end
 end

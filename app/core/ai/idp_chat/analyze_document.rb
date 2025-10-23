@@ -3,12 +3,9 @@
 module AI::IdpChat
   class AnalyzeDocument < AsyncResponseRequest::AsyncRequestHandler
     def call
-      # call AI::IDPAssistantService.chat
-      #
-
       file_name = context[:meta][:file_name]
 
-      AI::IdpAssistantService.call(plan, current_user, "Uploaded file #{file_name}") do
+      AI::AssistableService::Idp.call(plan, current_user, "Uploaded file #{file_name}") do
         on(:ok) do |response|
           async_response.response_data = response
         end

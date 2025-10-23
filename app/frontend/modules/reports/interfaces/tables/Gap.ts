@@ -20,6 +20,9 @@ interface Props {
   gapCutoff: number | null
   precision?: number
   allFactors?: boolean
+  skillType?: string[]
+  currentJobFactors?: boolean
+  targetJobFactors?: boolean
 }
 
 export enum GapType {

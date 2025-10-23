@@ -15,6 +15,8 @@ export default {
     minValue = -Infinity,
     maxValue = Infinity,
     relationship = 'individual',
+    includesCurrentJob?: boolean,
+    includesTargetJob?: boolean,
   ): TopFactor[] => {
     if (!resultsByFilter[relationship]) { return [] }
     const filtered = _.pick(resultsByFilter[relationship].scoring, factorIds)
@@ -25,14 +27,27 @@ export default {
         || (factorType === TopFactorType.SubFactor && isSubFactor)
         || (factorType === TopFactorType.Factor && !isSubFactor)
       if (factorData && isValidFactorType) {
-        return [...factors, {
+        const factor: TopFactor = {
           meanRawScore: Utils.nanFallback(_.round(_.meanBy(d.results, 'value'), 2)),
           meanNormScore: Utils.nanFallback(_.round(_.meanBy(d.results, 'norm'), 2)),
           id: parseInt(factorId, 10),
           alias: d.name,
           description: factorData.description,
           icon: factorData.icon,
-        }]
+          jobRoles: factorData?.job_roles || undefined,
+        }
+
+        // Apply job role filtering if specified
+        if (includesCurrentJob || includesTargetJob) {
+          const currentJobIncluded = !includesCurrentJob || factor.jobRoles?.current_job_role?.included === true
+          const targetJobIncluded = !includesTargetJob || factor.jobRoles?.target_job_role?.included === true
+
+          if (!(currentJobIncluded && targetJobIncluded)) {
+            return factors
+          }
+        }
+
+        return [...factors, factor]
       }
       return factors
     }, [])

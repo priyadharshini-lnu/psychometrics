@@ -907,6 +907,8 @@ pt:
     bulk_download_reports:
       content:
         title: Ligações para descarregar relatórios
+      errors:
+        no_plans: Nenhum plano IDP ativo encontrado
     close: Fechar
     details: Detalhes
     errors: Erros
@@ -919,6 +921,14 @@ pt:
     super_admin:
       errors:
         data_processing_disabled: O processamento de dados está desativado.
+  ai:
+    errors:
+      bad_request_invalid_input: Sua solicitação não pôde ser processada devido a uma entrada inválida. Verifique sua solicitação e tente novamente.
+      generic: Algo deu errado durante o processamento de sua solicitação. Entre em contato com seu administrador.
+      rate_limit_exceeded: O serviço está atualmente em alta demanda. Aguarde um momento e tente novamente.
+      server_error: O serviço de IA está temporariamente indisponível. Tente novamente em alguns instantes.
+      service_overloaded: O serviço de IA está sobrecarregado no momento. Aguarde um momento e tente novamente.
+      service_unavailable: O serviço de IA está atualmente em manutenção. Por favor, tente novamente mais tarde.
   anonym:
     close: Fechar
     continue: Continuar
@@ -1177,6 +1187,7 @@ pt:
       assessments_and_reports: Avaliações e relatórios
       idp: PDI
       manage: Gerenciar
+      recordings: Gravações
       report_approval: Configurações de aprovação de relatório
       sequencing: Sequenciação
     report_approval:
@@ -1771,7 +1782,6 @@ pt:
       download: Baixar
       edit: Editar
       export: Exportação
-      filter: Filtrar
       filter_by_tags: Filtrar por etiquetas
       go_back: Volta
       import: Importação
@@ -1901,7 +1911,6 @@ pt:
       download: Descarregar
       enabled: Habilitado
       file: Ficheiro
-      global_import: A importação global?
       minutes: Minutos
       na: N/A
       none: Nenhum
@@ -2196,6 +2205,8 @@ pt:
       not_uniq_variable: variável '%{value}' redefinida na linha número %{row}
       project_assessments:
         should_be_greater_than_zero: A validade do resultado deve ser superior a 0 dias
+      project_feature:
+        global_skills_not_enabled_on_client: Para habilitar as Habilidades Globais para este projeto, ative-o em Sinalizadores de Recursos nas configurações do cliente.
       report_approval_settings:
         report_exists: Já existe uma definição de aprovação de relatório para este relatório.
         validates_admins: Os administradores não têm acesso à campanha.
@@ -2265,6 +2276,8 @@ pt:
       body:
         error: O corpo do e-mail tem um pipetexto incorreto.
   errors:
+    ai_assistant:
+      max_generation_limit: Limite máximo de geração excedido, entre em contato com sua administração.
     assessments:
       timed_out: Não é possível efetuar a avaliação %{assessment_name} porque o tempo limite foi ultrapassado.
     equal_to_current_password: deve ser diferente da palavra-passe atual.
@@ -2589,6 +2602,8 @@ pt:
       finishing:
         hint: Nosso assistente de IA está criando um plano IDP para você.
         title: Por favor, espere, estamos fazendo nossa mágica...
+      reset_chat: Redefinir bate-papo
+      reset_confirmation: Tem certeza de que deseja descartar este bate-papo e começar de novo?
       retake_steps:
         chat_hint: Deixe-me saber quais informações você deseja fornecer mais abaixo?
         chat_title: Você quer dar mais informações?
@@ -2596,9 +2611,27 @@ pt:
         start_chat_again: Iniciar o bate-papo novamente
         upload_document: Carregar documento
         upload_file: Carregar arquivo
+      start_page:
+        ai_assisted:
+          button: PDI assistido por IA
+          description: Um fluxo interativo orientado por conversas em que você cocria o plano com a IA em várias etapas.
+          option_1: Resultados mais personalizados
+          option_2: Oportunidades de autorreflexão
+          option_3: Melhor para transições de carreira
+          title: IDP assistido por IA
+        one_click:
+          button: IDP AI com um clique
+          description: A IA faz todo o trabalho pesado - verificando instantaneamente seus dados e gerando um plano de desenvolvimento completo.
+          option_1: Opção mais rápida (5 minutos)
+          option_2: Bom para profissionais ocupados
+          option_3: Totalmente editável após a geração
+          title: IDP AI com 1 clique
+        sub_title: Vamos criar uma jornada de qualificação personalizada mapeada para sua aspiração de carreira e guiada por IA
+        title: Crie seu plano de desenvolvimento individual
       summary:
         chat_title: Resumo do Chat Insight
         file_title: Insights de documentos carregados
+        gap_report_title: Análise do Relatório de Lacunas de Habilidades
         hint: se sim, então criaremos seu IDP, caso contrário, você pode refazer suas respostas
         title: Você está satisfeito com os resultados?
         upload_file: Arquivo carregado
@@ -2647,6 +2680,7 @@ pt:
       add_development_actions_from_below_options: Adicione ações de desenvolvimento nas opções abaixo.
       add_development_actions_modal_title: Biblioteca de ações de desenvolvimento para %{skillName}
       add_from_library: Adicionar da biblioteca
+      add_more: Adicionar mais ações de desenvolvimento
       all: Todos
       approved: Aprovado
       board_view:
@@ -2661,6 +2695,7 @@ pt:
       custom: Costume
       custom_da_description: Crie uma ação de desenvolvimento personalizada para atender às necessidades de desenvolvimento exclusivas.
       date_range: Data de início - Data de fim
+      edit_da_progress: Editar progresso da ação de desenvolvimento
       edit_plan_to_add_development_actions: Edite o plano e adicione ações de desenvolvimento.
       enter_development_action_description: Insira a descrição da ação de desenvolvimento
       enter_development_action_title: Digite o título da ação de desenvolvimento

@@ -13,9 +13,13 @@ module AdminJobs
     end
 
     def records_for_export
-      DevelopmentAction.where(owner_type: 'Client', owner_id: record.data['project_id']).
-        includes(:translations).
-        order(:id)
+      project_id = record.data['project_id']
+      scope = if project_id.present?
+                DevelopmentAction.where(owner_type: 'Client', owner_id: project_id)
+              else
+                DevelopmentAction.where(owner_id: nil)
+              end
+      scope.includes(:translations).order(:id)
     end
 
     def data_row(development_action)

@@ -25,7 +25,10 @@ module Api
 
         def self.relationships(_)
           [
-            { name: :project, resource: :projects, relationship: :one, required: false },
+            {
+              name: :project, resource: :clients, relationship: :one, required: false,
+              foreign_key: :owner_id, class_name: 'Client'
+            },
             { name: :skills, resource: :skills, relationship: :many, required: false, allowed_blank: true }
           ]
         end

@@ -1,17 +1,21 @@
 # frozen_string_literal: true
 
 # STI model for AI-assisted document summarization sessions.
-# Uses ActiveStorage::Blob as assistable to directly reference specific files.
+# Uses ActiveStorage::Attachment as assistable to reference files with context.
 #
 class AI::AssistedUserDocumentSummary < AI::AssistedUserSession
   alias_attribute :summary, :checkpoint
 
-  validates :assistable_type, inclusion: { in: ['ActiveStorage::Blob'] }
+  validates :assistable_type, inclusion: { in: ['ActiveStorage::Attachment'] }
 
   before_save :set_content_checksum
 
-  def file
+  def attachment
     assistable
+  end
+
+  def file
+    attachment&.blob
   end
 
   def filename
@@ -25,6 +29,6 @@ class AI::AssistedUserDocumentSummary < AI::AssistedUserSession
   private
 
   def set_content_checksum
-    self.content_checksum = file.checksum
+    self.content_checksum = file&.checksum
   end
 end

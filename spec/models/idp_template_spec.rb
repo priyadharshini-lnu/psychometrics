@@ -96,6 +96,11 @@ RSpec.describe IdpTemplate, type: :model do
     let!(:project) { Project.find(create(:project).id) }
     let!(:idp_template) { create(:idp_template, project: project) }
 
+    before do
+      # Enable global skills feature for the project
+      project.project_feature&.update(global_skills: true)
+    end
+
     let!(:global_technical_skill) { create(:skill, skill_type: 'technical', project: nil) }
     let!(:global_behavioral_skill) { create(:skill, skill_type: 'behavioral', project: nil) }
     let!(:client_technical_skill) { create(:skill, skill_type: 'technical', project: project) }

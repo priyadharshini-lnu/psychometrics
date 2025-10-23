@@ -77,14 +77,26 @@ module Api
 
       class Scope < BasePolicy::Scope
         def resolve
+          scope = super.includes(:translations)
           return scope if @user.superadmin?
 
-          accessible_project_ids = []
-          accessible_project_ids.concat(@user.client_admin_project_ids)
-          accessible_project_ids.concat(@user.project_admin_client_ids)
-          accessible_project_ids.concat(@user.campaign_admin_campaigns.map(&:project_id))
+          permitted_client_admin_project_ids = @user.client_admin_project_ids.select do |project_id|
+            @user.has_permission?(:skills, :view, project_id: project_id)
+          end
 
-          if @user.has_permission?(:skills, :view) && @user.has_permission?(:skills, :manage)
+          permitted_project_admin_project_ids = @user.project_admin_client_ids.select do |project_id|
+            @user.has_permission?(:skills, :view, project_id: project_id)
+          end
+
+          permitted_campaign_admin_project_ids = @user.campaign_admin_campaigns.select do |campaign|
+            @user.has_permission?(:skills, :view, project_id: campaign.project_id)
+          end
+
+          accessible_project_ids = permitted_client_admin_project_ids +
+                                   permitted_project_admin_project_ids +
+                                   permitted_campaign_admin_project_ids
+
+          if ProjectFeature.exists?(global_skills: true, project_id: accessible_project_ids)
             scope.where(project_id: [nil, *accessible_project_ids])
           else
             scope.where(project_id: accessible_project_ids)

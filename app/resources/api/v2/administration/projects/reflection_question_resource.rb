@@ -12,6 +12,20 @@ class Api::V2::Administration::Projects::ReflectionQuestionResource < Api::V2::A
     BaseDecorator.decorate(@model).updated_at
   end
 
+  def meta_details
+    {
+      permissions: lambda {
+        GetPermissionsHash.call!(
+          Api::Administration::ReflectionQuestionPolicy,
+          context[:user],
+          @model,
+          [%w[edit update], %w[remove destroy]],
+          { project_id: @model.project_id }
+        )
+      }
+    }
+  end
+
   def self.records(opts)
     Api::Administration::ReflectionQuestionPolicy::Scope.new(
       opts[:context][:user],

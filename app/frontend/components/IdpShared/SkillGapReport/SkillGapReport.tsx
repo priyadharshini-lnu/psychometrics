@@ -36,7 +36,7 @@ export const SkillGapReport = ({
 
   return (
     <>
-      <Flex vertical={isMobile} className="mt-4 mb-4" flex={1} justify="space-between">
+      <Flex gap={8} vertical={isMobile} className="mt-4 mb-4" flex={1} justify="space-between">
         <Space>
           <BackButton
             onPrev={prev}
@@ -48,7 +48,7 @@ export const SkillGapReport = ({
             {I18n.t('idp.initial_steps.skill_gap_report')}
           </Typography.Title>
         </Space>
-        <Flex justify="center" align="center">
+        <Flex gap={8} vertical={isMobile} justify="end" align="end">
           {extraContent}
           <ButtonWithArrow
             label="Add Skills"

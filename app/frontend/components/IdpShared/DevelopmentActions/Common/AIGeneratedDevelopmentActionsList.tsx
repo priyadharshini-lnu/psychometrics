@@ -81,7 +81,6 @@ const AIGeneratedDevelopmentActionsList: React.FC<Props> = ({
                   includes(selectedDA.map(da => da.description),
                     developmentAction.description),
               })}
-              key={index}
             >
               <Checkbox
                 value={developmentAction.description}

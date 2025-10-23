@@ -907,6 +907,8 @@ id:
     bulk_download_reports:
       content:
         title: Tautan untuk mengunduh laporan
+      errors:
+        no_plans: Tidak ada paket IDP aktif yang ditemukan
     close: Tutup
     details: Rincian
     errors: Kesalahan
@@ -919,6 +921,14 @@ id:
     super_admin:
       errors:
         data_processing_disabled: Pemrosesan data dinonaktifkan.
+  ai:
+    errors:
+      bad_request_invalid_input: Permintaan Anda tidak dapat diproses karena input yang tidak valid. Silakan periksa permintaan Anda dan coba lagi.
+      generic: Ada yang tidak beres saat memproses permintaan Anda. Silakan hubungi administrator Anda.
+      rate_limit_exceeded: Layanan ini saat ini mengalami permintaan yang tinggi. Harap tunggu sebentar dan coba lagi.
+      server_error: Layanan AI untuk sementara tidak tersedia. Silakan coba lagi dalam beberapa saat.
+      service_overloaded: Layanan AI saat ini kelebihan beban. Harap tunggu sebentar dan coba lagi.
+      service_unavailable: Layanan AI saat ini sedang dalam pemeliharaan. Silakan coba lagi nanti.
   anonym:
     close: Tutup
     continue: Lanjutkan
@@ -1176,6 +1186,7 @@ id:
       assessments_and_reports: Penilaian & Laporan
       idp: IDP
       manage: Kelola
+      recordings: Rekaman
       report_approval: Pengaturan Persetujuan Laporan
       sequencing: Urutan
     report_approval:
@@ -1762,7 +1773,6 @@ id:
       download: Mengunduh
       edit: Sunting
       export: Ekspor
-      filter: Saringan
       filter_by_tags: Filter berdasarkan tag
       go_back: Kembali
       import: Mengimpor
@@ -1892,7 +1902,6 @@ id:
       download: Unduh
       enabled: Diaktifkan
       file: Arsip
-      global_import: Apakah Impor Global?
       minutes: Menit
       na: N/A
       none: Tidak
@@ -2192,6 +2201,8 @@ id:
       not_uniq_variable: variabel '%{value}' didefinisikan ulang pada nomor baris %{row}
       project_assessments:
         should_be_greater_than_zero: Validitas hasil harus lebih besar dari 0 hari
+      project_feature:
+        global_skills_not_enabled_on_client: Untuk mengaktifkan Keterampilan Global untuk proyek ini, aktifkan di bawah Bendera Fitur di pengaturan klien.
       report_approval_settings:
         report_exists: Pengaturan persetujuan laporan untuk laporan ini sudah ada.
         validates_admins: Admin tidak memiliki akses ke kampanye.
@@ -2261,6 +2272,8 @@ id:
       body:
         error: Isi email memiliki teks pipa yang salah.
   errors:
+    ai_assistant:
+      max_generation_limit: Batas pembuatan maksimum terlampaui, hubungi administrasi Anda.
     assessments:
       timed_out: Anda tidak akan dapat mengambil penilaian %{assessment_name} karena waktunya telah habis.
     equal_to_current_password: Kata sandi baru harus berbeda dari kata sandi saat ini.
@@ -2585,6 +2598,8 @@ id:
       finishing:
         hint: Asisten AI kami membuat rencana IDP untuk Anda.
         title: Silakan tunggu kami melakukan keajaiban kami ...
+      reset_chat: Setel Ulang Obrolan
+      reset_confirmation: Apakah Anda yakin ingin membuang obrolan ini dan memulai yang baru?
       retake_steps:
         chat_hint: Beri tahu saya informasi apa yang ingin Anda berikan lebih lanjut di bawah ini?
         chat_title: Anda ingin memberikan informasi lebih lanjut?
@@ -2592,9 +2607,27 @@ id:
         start_chat_again: Mulai Obrolan Lagi
         upload_document: Unggah dokumen
         upload_file: Unggah File
+      start_page:
+        ai_assisted:
+          button: IDP yang Dibantu AI
+          description: Alur interaktif yang digerakkan oleh percakapan di mana Anda membuat rencana bersama dengan AI dalam beberapa langkah.
+          option_1: Hasil yang lebih dipersonalisasi
+          option_2: Peluang refleksi diri
+          option_3: Lebih baik untuk transisi karier
+          title: IDP yang Dibantu AI
+        one_click:
+          button: IDP AI satu klik
+          description: AI melakukan semua pekerjaan berat - langsung memindai data Anda dan menghasilkan rencana pengembangan yang lengkap.
+          option_1: Opsi Tercepat (5 menit)
+          option_2: Cocok untuk profesional yang sibuk
+          option_3: Dapat diedit sepenuhnya setelah generasi
+          title: IDP AI 1-Klik
+        sub_title: Mari buat jorney peningkatan keterampilan yang disesuaikan yang dipetakan dengan aspirasi karir Anda dan dipandu oleh AI
+        title: Buat Rencana Pengembangan Individu Anda
       summary:
         chat_title: Ringkasan Wawasan Obrolan
         file_title: Wawasan Dokumen yang Diunggah
+        gap_report_title: Analisis Laporan Kesenjangan Keterampilan
         hint: jika ya maka kami akan membuat IDP Anda jika tidak, Anda dapat mengambil kembali jawaban Anda
         title: Apakah Anda puas dengan hasilnya?
         upload_file: File yang Diunggah
@@ -2643,6 +2676,7 @@ id:
       add_development_actions_from_below_options: Tambahkan Tindakan Pengembangan dari opsi di bawah ini.
       add_development_actions_modal_title: Perpustakaan Tindakan Pengembangan untuk %{skillName}
       add_from_library: Tambahkan dari Perpustakaan
+      add_more: Tambahkan Lebih Banyak Tindakan Pengembangan
       all: Semua
       approved: Disetujui
       board_view:
@@ -2657,6 +2691,7 @@ id:
       custom: Adat
       custom_da_description: Buat tindakan pengembangan khusus untuk memenuhi kebutuhan pengembangan yang unik.
       date_range: Tanggal Mulai - Tanggal Akhir
+      edit_da_progress: Mengedit Kemajuan Tindakan Pengembangan
       edit_plan_to_add_development_actions: Edit Rencana dan untuk menambahkan Tindakan Pengembangan.
       enter_development_action_description: Masukkan Deskripsi Tindakan Pengembangan
       enter_development_action_title: Masukkan Judul Tindakan Pengembangan

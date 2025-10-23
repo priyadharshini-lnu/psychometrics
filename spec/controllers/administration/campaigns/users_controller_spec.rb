@@ -105,6 +105,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'remove' => true,
         'toggle_status' => true,
         'bulk_download' => true,
+        'view_recordings' => true,
         'view_workshop_details' => true
       },
       'manager' => {},

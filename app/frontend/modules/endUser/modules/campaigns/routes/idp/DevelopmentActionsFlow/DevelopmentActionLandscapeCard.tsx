@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {
   Rate, Progress, ConfigProvider, Button, Slider, Flex, Typography, DatePicker,
   message,
   Tooltip, Empty, Modal, Popover, Switch, Tag,
   Divider,
 } from 'antd'
-import useMedia from 'use-media'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   DeleteOutlined, EditOutlined, PlusOutlined, InfoCircleOutlined, WarningFilled,
 } from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  MediaQueryContext,
+} from '~/glint'
 import dayjs from '~/utils/dayjs'
 import {
   updateUserIdpSkill,
@@ -83,6 +85,9 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
 
   const [isPrivateSkill, setPrivateSkill] = useState(isPrivate)
 
+  const { isTablet, isDesktop } = useContext(MediaQueryContext)
+
+
   const [openSkillDeletionModal, setOpenSkillDeletionModal] = useState(false)
   const handleRatingChange = (rating) => {
     updateUserIdpSkill(userIdpSkillId, { initialRating: rating }, idpUser.id).catch((error) => {
@@ -108,8 +113,8 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
 
   const header = (
     <Flex>
-      <Flex gap={4}>
-        <h4 className="m-0 me-1">{name}</h4>
+      <Flex vertical={isTablet || isDesktop} gap={4} align={isTablet || isDesktop ? 'start' : 'center'}>
+        <h4 className="m-0 me-1 mt-2">{name}</h4>
         {
         selfRatingEnabled
         && (
@@ -117,6 +122,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
             disabled={!editMode}
             onChange={handleRatingChange}
             defaultValue={finalRating || initialRating}
+            className="mt-2"
           />
         )
       }
@@ -127,10 +133,20 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
               unCheckedChildren="Public"
               value={isPrivateSkill}
               onChange={updateSkillPrivacy}
-              className="ms-4"
+              className={cs('mt-2', isTablet ? '' : 'ms-4')}
+              style={{
+                width: '80px',
+              }}
             />
           ) : (
-            isPrivateSkill && <Tag color="var(--ant-primary-color)">Private</Tag>
+            isPrivateSkill && (
+              <Tag
+                className={isTablet || isDesktop ? 'self-start' : 'self-start'}
+                color="var(--ant-primary-color)"
+              >
+                Private
+              </Tag>
+            )
           ))}
       </Flex>
     </Flex>
@@ -158,7 +174,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
         <Flex gap={12}>
           {header}
         </Flex>
-        <Flex>
+        <Flex className="self-start">
           <SkillCommentsPopover
             skillId={userIdpSkillId.toString()}
             skillName={name}
@@ -181,9 +197,9 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       </Flex>
       {!developmentActionCards.length ? (
         <Flex vertical>
-          <Flex align="center" className="border-b-1 pt-3 pb-3">
-            <Empty description="" style={{ marginLeft: '-2rem' }} />
-            <Flex vertical align="start" style={{ marginLeft: '-2rem' }}>
+          <Flex wrap align="center" className="border-b-1 pt-3 pb-3">
+            <Empty description="" style={!isTablet ? { marginInlineStart: '-2rem' } : {}} />
+            <Flex vertical align="start" style={!isTablet ? { marginInlineStart: '-2rem' } : {}}>
               <strong className="ta-s">
                 {I18n.t('idp.development_actions.no_development_actions')}
               </strong>
@@ -205,29 +221,55 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
                     )}
                     content={<DevelopmentActionInfoPopover />}
                   >
-                    <Button
-                      style={{
-                        height: '1.6rem',
-                      }}
-                      type="link"
-                      className="p-0"
-                      icon={<InfoCircleOutlined />}
-                    />
+                    {!(isTablet || isDesktop) && (
+                      <Button
+                        style={{
+                          height: '1.4rem',
+                          width: '1rem',
+                        }}
+                        type="link"
+                        className="p-0 mb-1"
+                        icon={<InfoCircleOutlined />}
+                      />
+                    )}
                   </Popover>
                 </Flex>
               )}
             </Flex>
           </Flex>
-          <Divider className="mb-4 mt-0" />
+          <Divider className="mb-0 mt-0" />
         </Flex>
       ) : developmentActionCards}
       {editMode ? (
-        <Flex gap={64}>
+        <Flex className="mt-4" gap={isTablet ? 8 : 64} vertical={isTablet} justify="start">
+          {isTablet && (
+            <Flex>
+              <Typography.Text>{I18n.t('idp.development_actions.add_more')}</Typography.Text>
+              <Popover
+                placement="bottom"
+                title={(
+                  <span className="p-4">
+                    {I18n.t('idp.development_actions.info_popover_title')}
+                  </span>
+                    )}
+                content={<DevelopmentActionInfoPopover />}
+              >
+                <Button
+                  style={{
+                    height: '1.6rem',
+                  }}
+                  type="link"
+                  className="p-0"
+                  icon={<InfoCircleOutlined />}
+                />
+              </Popover>
+            </Flex>
+          )}
           <Button
             type="link"
             icon={<PlusOutlined />}
             onClick={onShowCustomDevelopmentAction}
-            className="p-0"
+            className="p-0 self-start"
           >
             {I18n.t('idp.development_actions.create_my_own')}
           </Button>
@@ -235,7 +277,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
             type="link"
             icon={<PlusOutlined />}
             onClick={onAddDevelopmentAction}
-            className="p-0"
+            className="p-0 self-start"
           >
             {I18n.t('idp.development_actions.add_from_library')}
           </Button>
@@ -243,7 +285,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
             type="link"
             icon={<PlusOutlined />}
             onClick={onShowAIGeneratedDevelopmentActions}
-            className="p-0"
+            className="p-0 self-start"
           >
             {I18n.t('idp.development_actions.create_from_ai')}
           </Button>
@@ -262,7 +304,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
         <Flex vertical align="center">
           <WarningFilled
             alt="Warning"
-            className={cs(styles['warning-icon'], 'mb-2')}
+            className={cs(styles.warningIcon, 'mb-2')}
           />
           <strong className="ta-c">
             {I18n.t('idp.delete_skill')}
@@ -277,6 +319,9 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
 const DateRange = ({ developmentAction, editMode, onDateRangeChange }) => {
   const { startDateTime, endDateTime } = developmentAction
   const format = 'DD MMM YYYY'
+
+  const { isTablet } = useContext(MediaQueryContext)
+
   if (editMode) {
     return (
       <Flex flex={1} vertical>
@@ -288,6 +333,7 @@ const DateRange = ({ developmentAction, editMode, onDateRangeChange }) => {
           format={format}
           disabledDate={current => current && current < dayjs().startOf('day')}
           onChange={onDateRangeChange}
+          showTime={isTablet}
         />
       </Flex>
     )
@@ -315,9 +361,9 @@ const Card = ({
 }) => {
   const [editableProgress, setEditableProgress] = useState(developmentAction.progress)
   const [editing, setEditing] = useState(false)
-  const isTablet = useMedia({
-    maxWidth: 768,
-  })
+
+  const { isTablet, isDesktop } = useContext(MediaQueryContext)
+
 
   const handleDateRangeChange = (dates: [dayjs.Dayjs, dayjs.Dayjs] | undefined) => {
     const [start, end] = dates || []
@@ -359,12 +405,13 @@ const Card = ({
       flex={1}
       className={cs(
         {
-          'p-3': !isTablet,
-          'pb-2': isTablet,
+          'p-3 pe-0': !(isTablet || isDesktop),
+          'pb-2': isTablet || isDesktop,
         },
       )}
+      vertical={isTablet || isDesktop}
     >
-      {isTablet ? (
+      {isTablet || isDesktop ? (
         <Flex flex={1} className={styles.label}>
           {I18n.t('idp.development_actions.completion')}
         </Flex>
@@ -380,16 +427,20 @@ const Card = ({
             <Progress
               percent={editableProgress}
               className="mt-1"
+              style={isTablet || isDesktop ? { width: '80%' } : {}}
             />
           )}
           {
-            editMode && !editing && canEditProgress ? (
-              <Button
-                type="default"
-                className="border-none mb-1"
-                icon={<EditOutlined />}
-                onClick={handleEditClick}
-              />
+            !editMode && !editing && canEditProgress ? (
+              <Tooltip title={I18n.t('idp.development_actions.edit_da_progress')}>
+                <Button
+                  type="default"
+                  className="border-none mb-1"
+                  icon={<EditOutlined />}
+                  onClick={handleEditClick}
+                />
+              </Tooltip>
+
             ) : null}
         </Flex>
         {editing && (
@@ -458,25 +509,30 @@ const Card = ({
         align="stretch"
         justify="space-between"
         className="border-b-1"
-        vertical={isTablet}
+        vertical={isTablet || isDesktop}
+        style={isTablet || isDesktop ? {
+          borderInlineStart:
+              `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
+        } : {}}
       >
         <Flex
           flex={1}
           className={cs(
             {
-              'p-3': !isTablet,
-              'pb-2': isTablet,
+              'p-3': !(isTablet || isDesktop),
+              'pb-2': isTablet || isDesktop,
             },
           )}
           justify="space-between"
           align="center"
+
         >
           <div
-            style={{
-              borderLeft:
-              `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
-            }}
             className="p-3"
+            style={!(isTablet || isDesktop) ? {
+              borderInlineStart:
+              `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
+            } : {}}
           >
             <Typography.Title
               level={5}
@@ -493,21 +549,25 @@ const Card = ({
             <Flex>
               {developmentAction.learningStyle
                 ? (
-                  <Flex gap={4} align="center">
-                    <img
-                      src={developmentActionLearningStylesConfig[developmentAction.learningStyle].logo}
-                    />
-                    <strong>
-                      {`${developmentActionLearningStylesConfig[developmentAction.learningStyle].duration}%`}
+                  <Flex vertical={isTablet || isDesktop} gap={4} align="center">
+                    <Flex align="center" className="me-4">
+                      <img
+                        src={developmentActionLearningStylesConfig[developmentAction.learningStyle].logo}
+                      />
+                      <strong>
+                        {`${developmentActionLearningStylesConfig[developmentAction.learningStyle].duration}%`}
                                                             &nbsp;
-                    </strong>
-                    <Typography.Text
-                      className="font-normal"
-                      type="secondary"
-                    >
-                      {developmentActionLearningStylesConfig[developmentAction.learningStyle].text}
-                    </Typography.Text>
-                    <Flex gap={4} className="ms-4" align="center">
+                      </strong>
+                      <Typography.Text
+                        className="font-normal"
+                        type="secondary"
+
+                      >
+                        {developmentActionLearningStylesConfig[developmentAction.learningStyle].text}
+                      </Typography.Text>
+                    </Flex>
+
+                    <Flex gap={4} align="center" className={cs(isTablet || isDesktop ? 'self-start' : '', 'ms-2')}>
                       <img
                         src={sourceTypeConfig[developmentAction.sourceType].icon}
                         style={{
@@ -527,16 +587,23 @@ const Card = ({
             </Flex>
           </div>
         </Flex>
-        <Flex flex={1} vertical={isTablet}>
+        <Flex flex={1} vertical={isTablet || isDesktop} className={isTablet || isDesktop ? 'p-4 pt-0 pe-0' : ''}>
           <Flex
             flex={1}
             justify="flex-start"
             className={cs(
-              'pt-4',
+              isTablet || isDesktop ? 'mb-4' : 'pt-4',
             )}
+            vertical={isTablet || isDesktop}
           >
-            {isTablet ? (
-              <Flex flex={1} className={styles.label}>
+            {isTablet || isDesktop ? (
+              <Flex
+                flex={1}
+                className={cs(
+                  isTablet || isDesktop ? 'mb-1' : '',
+                  styles.label,
+                )}
+              >
                 {I18n.t('idp.development_actions.date_range')}
               </Flex>
             ) : null}

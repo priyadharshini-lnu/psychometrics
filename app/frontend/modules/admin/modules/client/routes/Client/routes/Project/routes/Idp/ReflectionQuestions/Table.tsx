@@ -36,13 +36,16 @@ export const ReflectionQuestionTable: React.FC<Props> = () => {
           render={skill => (
             skill.id
           )}
-          width={200}
+          width={100}
+          fixed="left"
         />
         <Resource.Column<ReflectionQuestion>
           title={I18n.t('administration.reflection_questions.question')}
           id="question"
           render={item => <Typography.Text copyable>{item.question}</Typography.Text>}
           sorter
+          width={300}
+          fixed="left"
         />
         <Resource.Column<ReflectionQuestion>
           title={I18n.t('administration.reflection_questions.form.min_words')}
@@ -101,7 +104,7 @@ const Dropdown: React.FC<DropDownProps> = ({ reflectionQuestion, openModal, setC
     menu={
       {
         items: [
-          reflectionQuestion && {
+          reflectionQuestion && reflectionQuestion.meta.permissions.edit && {
             key: 'edit',
             label: (
               <Button
@@ -114,7 +117,7 @@ const Dropdown: React.FC<DropDownProps> = ({ reflectionQuestion, openModal, setC
                 {I18n.t('common.actions.edit')}
               </Button>),
           },
-          reflectionQuestion.allowDelete && {
+          reflectionQuestion.allowDelete && reflectionQuestion.meta.permissions.remove && {
             key: 'delete',
             label: (
               <Button
