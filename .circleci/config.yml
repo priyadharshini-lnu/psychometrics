@@ -798,6 +798,13 @@ workflows:
           context: psychometrics-prod-deployment
           requires:
             - approve_heroku_production
+      - hold:
+          name: approve_ksa_staging
+          type: approval
+          requires:
+            - build_image_staging
+            - vitest
+            - rspec
       - oci_oke_deploy:
           name: deploy_lhksa_staging
           release-name: lhksa
@@ -806,9 +813,7 @@ workflows:
           chart-folder: /home/circleci/project/charts/ksa
           context: lhksa-staging
           requires:
-            - build_image_staging
-            - vitest
-            - rspec
+            - approve_ksa_staging
           filters:
             branches:
               only:
@@ -817,7 +822,9 @@ workflows:
           name: approve_ksa_production
           type: approval
           requires:
-            - deploy_lhksa_staging
+            - build_image_staging
+            - vitest
+            - rspec
       - oci_oke_deploy:
           name: deploy_lhksa_production
           release-name: lhksa
