@@ -1031,6 +1031,10 @@ pt:
           approvers: Aprovadores
           approvers_can_edit: Os aprovadores podem editar
           approvers_not_required: Aprovadores Não Necessário
+          digest_delivery_mode:
+            form_label: Modo de entrega de resumo
+            immediate: Imediato - Enviar sempre que houver um envio em massa
+            scheduled: Agendado - Envie um e-mail de resumo em um horário agendado
           digest_frequency:
             daily: Diário
             form_label: Frequência de digestão
@@ -1223,6 +1227,7 @@ pt:
         ai_assisted_idp: PDI assistida por IA
         ai_assisted_idp_requires_ai_assistants: O IDP assistido por IA requer que o recurso AI Assistants seja ativado
         global_skills: Competências globais
+        global_skills_disabled_by_client: A Global Skills é desativada pelo cliente
         idp: PDI
         idp_disabled_by_client: O IDP é desativado pelo cliente
         sms_notification: Notificação por SMS
@@ -3020,8 +3025,12 @@ pt:
           proficiency: Proficiência em importação
           translations: Traduções de Proficiência em Importação
         errors:
+          by_skill_exists_id_missing: 'Linha %{row_number}: Já existe um nível de proficiência para a habilidade ''''%{name}''''. Forneça o ID para atualizá-lo.'
           by_skill_missing: 'Linha %{row_number}: O projeto e a competência têm de estar presentes para o tipo ''by_skill'
+          by_skill_type_exists_id_missing: 'Linha %{row_number}: Já existe um nível de proficiência para o tipo de habilidade ''''%{skill_type}''''. Forneça o ID para atualizá-lo.'
           by_skill_type_missing: 'Linha %{row_number}: O projeto e o tipo de competência têm de estar presentes para o tipo ''''by_skill_type'''''
+          default_global_exists_id_missing: 'Linha %{row_number}: Já existe um nível de proficiência "padrão" de nível global. Forneça o ID para atualizá-lo.'
+          default_project_exists_id_missing: 'Linha %{row_number}: Já existe um nível de proficiência "padrão" no nível do projeto. Forneça o ID para atualizá-lo.'
           invalid_csv_format: 'Formato CSV inválido: %{message}'
           invalid_proficiency_type: 'Linha %{row_number}: ProficiencyType inválido ou em falta'
           invalid_skill_type: 'Linha %{row_number}: Tipo de competência inválido "%{skill_type}". Os tipos válidos são: %{valid_types}'

@@ -1031,6 +1031,10 @@ sr-Latn:
           approvers: Odobravači
           approvers_can_edit: Odobravači mogu da menjaju
           approvers_not_required: Odobravači nisu potrebni
+          digest_delivery_mode:
+            form_label: Digest Režim isporuke
+            immediate: Odmah - Pošalji kad god postoji masovno podnošenje
+            scheduled: Zakazano - Pošaljite digest e-poštu u zakazano vreme
           digest_frequency:
             daily: Svakodnevno
             form_label: Digest Frekvencija
@@ -1223,6 +1227,7 @@ sr-Latn:
         ai_assisted_idp: AI asistirani IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva da AI Assistants funkcija bude omogućena
         global_skills: Globalne veštine
+        global_skills_disabled_by_client: Global Skills je onemogućen od strane klijenta
         idp: IDP
         idp_disabled_by_client: IDP je onemogućen od strane klijenta
         sms_notification: SMS obaveštenje
@@ -3020,7 +3025,11 @@ sr-Latn:
           proficiency: Uvezi stručnosti
           translations: Uvezi prevode stručnosti
         errors:
+          by_skill_exists_id_missing: 'Red %{row_number}: Nivo stručnosti za veštine ''''%{name}'''' već postoji. Molimo vas da navedete ID da biste ga ažurirali.'
           by_skill_missing: 'Red %{row_number}: Projekat i veština moraju biti prisutni za tip ''by_skill'''
+          by_skill_type_exists_id_missing: 'Red %{row_number}: Nivo stručnosti za tip veštine ''''%{skill_type}'''' već postoji. Molimo vas da navedete ID da biste ga ažurirali.'
+          default_global_exists_id_missing: 'Row %{row_number}: Globalni nivo ''''default'''' ProficiencyLevel već postoji. Molimo vas da navedete ID da biste ga ažurirali.'
+          default_project_exists_id_missing: 'Row %{row_number}: ProficiencyLevel na nivou projekta već postoji. Molimo vas da navedete ID da biste ga ažurirali.'
           invalid_csv_format: 'Nevažeći CSV format: %{message}'
           invalid_proficiency_type: 'Red %{row_number}: Nevažeći ili nedostaje tip stručnosti'
           invalid_skill_type: '[SR-LATN] Row %{row_number}: Invalid skill type "%{skill_type}". Valid types are: %{valid_types}'

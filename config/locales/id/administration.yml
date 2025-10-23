@@ -1031,6 +1031,10 @@ id:
           approvers: Pemberi persetujuan
           approvers_can_edit: Pemberi Persetujuan Dapat Mengedit
           approvers_not_required: Pemberi Persetujuan Tidak Diperlukan
+          digest_delivery_mode:
+            form_label: Mode Pengiriman Intisari
+            immediate: Segera - Kirim setiap kali ada pengiriman massal
+            scheduled: Terjadwal - Mengirim email ringkasan pada waktu yang dijadwalkan
           digest_frequency:
             daily: Harian
             form_label: Frekuensi Digest
@@ -1223,6 +1227,7 @@ id:
         ai_assisted_idp: IDP yang Dibantu AI
         ai_assisted_idp_requires_ai_assistants: IDP Berbantuan AI memerlukan fitur Asisten AI untuk diaktifkan
         global_skills: Keterampilan Global
+        global_skills_disabled_by_client: Keterampilan Global dinonaktifkan oleh klien
         idp: IDP
         idp_disabled_by_client: IDP dinonaktifkan oleh klien
         sms_notification: Notifikasi SMS
@@ -3020,7 +3025,11 @@ id:
           proficiency: Kemahiran Impor
           translations: Terjemahan Kemahiran Impor
         errors:
+          by_skill_exists_id_missing: 'Baris %{row_number}: Tingkat kemahiran untuk keterampilan ''''%{name}'''' sudah ada. Harap berikan ID untuk memperbaruinya.'
           by_skill_missing: 'Baris %{row_number}: Proyek dan Keterampilan harus ada untuk jenis ''by_skill'''
+          by_skill_type_exists_id_missing: 'Baris %{row_number}: Tingkat kemahiran untuk jenis keterampilan ''''%{skill_type}'''' sudah ada. Harap berikan ID untuk memperbaruinya.'
+          default_global_exists_id_missing: 'Baris %{row_number}: Tingkat Kecakapan ''''default'''' tingkat global sudah ada. Harap berikan ID untuk memperbaruinya.'
+          default_project_exists_id_missing: 'Baris %{row_number}: Tingkat Kecakapan ''''default'''' tingkat proyek sudah ada. Harap berikan ID untuk memperbaruinya.'
           invalid_csv_format: 'Format CSV tidak valid: %{message}'
           invalid_proficiency_type: 'Baris %{row_number}: Tidak valid atau tidak ada ProficiencyType'
           invalid_skill_type: 'Baris %{row_number}: Jenis keterampilan yang tidak valid "%{skill_type}". Jenis yang valid adalah: %{valid_types}'

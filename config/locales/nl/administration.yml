@@ -1031,6 +1031,10 @@ nl:
           approvers: Goedkeurders
           approvers_can_edit: Goedkeurders kunnen bewerken
           approvers_not_required: Goedkeurders Niet vereist
+          digest_delivery_mode:
+            form_label: Digest Leveringsmodus
+            immediate: Onmiddellijk - Verzenden wanneer er een bulkinzending is
+            scheduled: Gepland - Stuur een digest-e-mail op een gepland tijdstip
           digest_frequency:
             daily: Dagelijks
             form_label: Digest Frequentie
@@ -1223,6 +1227,7 @@ nl:
         ai_assisted_idp: AI Geassisteerde IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vereist dat de functie AI Assistants is ingeschakeld
         global_skills: Wereldwijde vaardigheden
+        global_skills_disabled_by_client: Global Skills is uitgeschakeld door de klant
         idp: IDP
         idp_disabled_by_client: IDP is uitgeschakeld door de client
         sms_notification: SMS-melding
@@ -3020,8 +3025,12 @@ nl:
           proficiency: Importvaardigheden
           translations: Vertalingen importeren
         errors:
+          by_skill_exists_id_missing: 'Rij %{row_number}: Er bestaat al een vaardigheidsniveau voor vaardigheid ''''%{name}''. Geef de ID op om deze bij te werken.'
           by_skill_missing: 'Rij %{row_number}: Project en Vaardigheid moeten aanwezig zijn voor ''by_skill'' type'
+          by_skill_type_exists_id_missing: 'Rij %{row_number}: Er bestaat al een vaardigheidsniveau voor vaardigheidstype ''''%{skill_type}''''. Geef de ID op om deze bij te werken.'
           by_skill_type_missing: 'Rij %{row_number}: Project en Skill Type moeten aanwezig zijn voor ''''by_skill_type'''' type'
+          default_global_exists_id_missing: 'Rij %{row_number}: Er bestaat al een ''''standaard'''' ProficiencyLevel op mondiaal niveau. Geef de ID op om deze bij te werken.'
+          default_project_exists_id_missing: 'Rij %{row_number}: Er bestaat al een ''''standaard'''' ProficiencyLevel op projectniveau. Geef de ID op om deze bij te werken.'
           invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
           invalid_proficiency_type: 'Rij %{row_number}: Ongeldig of ontbrekend ProficiencyType'
           invalid_skill_type: 'Rij %{row_number}: Ongeldig vaardigheidstype "%{skill_type}". Geldige types zijn: %{valid_types}'

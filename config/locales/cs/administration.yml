@@ -1031,6 +1031,10 @@ cs:
           approvers: Schvalovatelé
           approvers_can_edit: Schvalovatelé mohou upravovat
           approvers_not_required: Schvalovatelé nejsou vyžadováni
+          digest_delivery_mode:
+            form_label: Režim doručení Digest
+            immediate: Okamžité – Odeslat při každém hromadném odeslání
+            scheduled: Naplánováno – Odeslání e-mailu s přehledem v naplánovaný čas
           digest_frequency:
             daily: Denně
             form_label: Frekvence rozkladu
@@ -1223,6 +1227,7 @@ cs:
         ai_assisted_idp: IDP s asistencí AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vyžaduje povolení funkce AI Assistants
         global_skills: Globální dovednosti
+        global_skills_disabled_by_client: Globální dovednosti jsou klientem zakázány
         idp: IDP
         idp_disabled_by_client: Poskytovatel identity je zakázán klientem
         sms_notification: Upozornění SMS
@@ -3020,8 +3025,12 @@ cs:
           proficiency: Znalost importu
           translations: Překlady pro dovozce
         errors:
+          by_skill_exists_id_missing: 'Řádek %{row_number}: Úroveň odbornosti pro dovednost ''''%{name}'''' již existuje. Pro aktualizaci zadejte ID.'
           by_skill_missing: 'Řádek %{row_number}: Projekt a dovednost musí být přítomny pro typ ''by_skill'''
+          by_skill_type_exists_id_missing: 'Řádek %{row_number}: Úroveň odbornosti pro typ dovednosti ''''%{skill_type}'''' již existuje. Pro aktualizaci zadejte ID.'
           by_skill_type_missing: 'Řádek %{row_number}: Typ projektu a dovednosti musí být přítomen pro typ ''''by_skill_type'''''
+          default_global_exists_id_missing: 'Řádek %{row_number}: Globální úroveň,,default'''' úrovně odbornosti již existuje. Pro aktualizaci zadejte ID.'
+          default_project_exists_id_missing: 'Řádek %{row_number}: ''''Výchozí'''' úroveň odbornosti na úrovni projektu již existuje. Pro aktualizaci zadejte ID.'
           invalid_csv_format: 'Nesprávný formát CSV: %{message}'
           invalid_proficiency_type: 'Řádek %{row_number}: Neplatný nebo chybějící ProficiencyType'
           invalid_skill_type: 'Řádek %{row_number}: Neplatný typ dovednosti "%{skill_type}". Platné typy jsou: %{valid_types}'

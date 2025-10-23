@@ -1031,6 +1031,10 @@ pl:
           approvers: Osoby zatwierdzające
           approvers_can_edit: Osoby zatwierdzające mogą edytować
           approvers_not_required: Osoby zatwierdzające nie są wymagane
+          digest_delivery_mode:
+            form_label: Tryb dostarczania skrótu
+            immediate: Natychmiastowe — wysyłaj za każdym razem, gdy nastąpi przesłanie zbiorcze
+            scheduled: Zaplanowane — wyślij wiadomość e-mail z podsumowaniem w zaplanowanym czasie
           digest_frequency:
             daily: Codzienny
             form_label: Częstotliwość trawienia
@@ -1223,6 +1227,7 @@ pl:
         ai_assisted_idp: Dostawca tożsamości wspomagany przez sztuczną inteligencję
         ai_assisted_idp_requires_ai_assistants: Usługa AI Assisted IDP wymaga włączenia funkcji AI Assistants
         global_skills: Umiejętności globalne
+        global_skills_disabled_by_client: Umiejętności globalne są wyłączone przez klienta
         idp: PRI
         idp_disabled_by_client: Dostawca tożsamości jest wyłączony przez klienta
         sms_notification: Powiadomienie SMS
@@ -3020,7 +3025,11 @@ pl:
           proficiency: Biegłość w imporcie
           translations: Tłumaczenia biegłości importowej
         errors:
+          by_skill_exists_id_missing: 'Rząd %{row_number}: Poziom zaawansowania umiejętności "%{name}" już istnieje. Podaj identyfikator, aby go zaktualizować.'
           by_skill_missing: 'Wiersz %{row_number}: Projekt i umiejętność muszą być obecne dla typu "by_skill"'
+          by_skill_type_exists_id_missing: 'Wiersz %{row_number}: Poziom zaawansowania dla typu umiejętności "%{skill_type}" już istnieje. Podaj identyfikator, aby go zaktualizować.'
+          default_global_exists_id_missing: 'Wiersz %{row_number}: Poziom biegłości na poziomie globalnym już istnieje. Podaj identyfikator, aby go zaktualizować.'
+          default_project_exists_id_missing: 'Wiersz %{row_number}: "Domyślny" poziom biegłości na poziomie projektu już istnieje. Podaj identyfikator, aby go zaktualizować.'
           invalid_csv_format: 'Nieprawidłowy format CSV: %{message}'
           invalid_proficiency_type: 'Wiersz %{row_number}: Nieprawidłowy lub brakujący ProficiencyType'
           invalid_skill_type: 'Wiersz %{row_number}: Nieprawidłowy typ umiejętności "%{skill_type}". Prawidłowe typy to: %{valid_types}'

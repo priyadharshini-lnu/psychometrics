@@ -2730,6 +2730,8 @@ id:
       success: Tindakan Pengembangan berhasil diselesaikan
       write_here: Tulis di sini...
     direct_reportee_details: Detail Bawahan Langsung
+    download:
+      description: 'Untuk mengunduh laporan, silakan ikuti tautan: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Tautan hanya berlaku selama 10 menit'
     edit_plan: Edit Paket
     edit_plan_and_add_skills: Edit Rencana dan klik Kelola Keterampilan untuk menambahkan Keterampilan.
     edit_progress: Edit Kemajuan

@@ -2723,6 +2723,8 @@ sl:
       success: Razvojni ukrepi uspešno zaključeni
       write_here: Pišite tukaj ...
     direct_reportee_details: Podrobnosti o neposrednih poročalcih
+    download:
+      description: 'Za prenos poročila sledite povezavi: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Povezava velja samo 10 minut'
     edit_plan: Urejanje načrta
     edit_plan_and_add_skills: Uredite načrt in kliknite Upravljanje veščin, da dodate spretnosti.
     edit_progress: Urejanje napredka

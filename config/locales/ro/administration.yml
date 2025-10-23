@@ -1031,6 +1031,10 @@ ro:
           approvers: Aprobatori
           approvers_can_edit: Aprobatorii pot edita
           approvers_not_required: Aprobatori nu sunt necesari
+          digest_delivery_mode:
+            form_label: Modul de livrare a rezumatului
+            immediate: Imediat - Trimite ori de câte ori există o trimitere în bloc
+            scheduled: Programat - Trimiteți un e-mail de rezumat la o oră programată
           digest_frequency:
             daily: Zilnic
             form_label: Frecvența digestiei
@@ -1223,6 +1227,7 @@ ro:
         ai_assisted_idp: IDP asistat de AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP necesită activarea funcției AI Assistants
         global_skills: Competențe globale
+        global_skills_disabled_by_client: Global Skills este dezactivat de client
         idp: IDP
         idp_disabled_by_client: IDP este dezactivat de client
         sms_notification: Notificare SMS
@@ -3020,7 +3025,11 @@ ro:
           proficiency: Competența de import
           translations: Traduceri de competență de import
         errors:
+          by_skill_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență pentru abilitățile "%{name}". Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
           by_skill_missing: 'Rândul %{row_number}: Proiectul și Skill trebuie să fie prezente pentru tipul "by_skill"'
+          by_skill_type_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență pentru tipul de abilitate "%{skill_type}". Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
+          default_global_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență "implicit" la nivel global. Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
+          default_project_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență "implicit" la nivel de proiect. Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
           invalid_csv_format: 'Format CSV nevalid: %{message}'
           invalid_proficiency_type: 'Rândul %{row_number}: ProficiencyType nevalid sau lipsă'
           invalid_skill_type: 'Rândul %{row_number}: Tip de competență invalid "%{skill_type}". Tipurile valabile sunt: %{valid_types}'

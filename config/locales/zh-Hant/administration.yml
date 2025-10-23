@@ -1031,6 +1031,10 @@ zh-Hant:
           approvers: 批准人
           approvers_can_edit: 批准人可以編輯
           approvers_not_required: 不需要批准人
+          digest_delivery_mode:
+            form_label: 摘要傳遞模式
+            immediate: 立即 - 每當有大量提交時發送
+            scheduled: 排程 — 在排程時間傳送摘要電子郵件
           digest_frequency:
             daily: 㫟
             form_label: 消化頻率
@@ -1223,6 +1227,7 @@ zh-Hant:
         ai_assisted_idp: AI 協助的 IDP
         ai_assisted_idp_requires_ai_assistants: AI 輔助 IDP 需要啟用 AI 助理功能
         global_skills: 全球技能
+        global_skills_disabled_by_client: 客戶禁用了全局技能
         idp: IDP
         idp_disabled_by_client: 客戶端禁用了IDP
         sms_notification: 簡訊通知
@@ -3020,8 +3025,12 @@ zh-Hant:
           proficiency: 進口能力
           translations: 進口能力翻譯
         errors:
+          by_skill_exists_id_missing: 第 %{row_number} 行：技能「%{name}」的熟練程度已經存在。請提供 ID 進行更新。
           by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
+          by_skill_type_exists_id_missing: 第 %{row_number} 列：技能類型「%{skill_type}」的熟練程度已經存在。請提供 ID 進行更新。
           by_skill_type_missing: 行 %{row_number}：by_skill_type'' 類型的專案和技能類型必須存在
+          default_global_exists_id_missing: 列 %{row_number}：全域層級「預設」ProficiencyLevel 已存在。請提供 ID 進行更新。
+          default_project_exists_id_missing: 資料列 %{row_number}：專案層級「預設」 ProficiencyLevel 已存在。請提供 ID 進行更新。
           invalid_csv_format: 無效的 CSV 格式：%{message}。
           invalid_proficiency_type: 行 %{row_number}：無效或遺失 ProficiencyType
           invalid_skill_type: '行 %{row_number}: 無效的技能類型 "%{skill_type}"。有效的類型是：%{valid_types}'

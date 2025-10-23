@@ -2724,6 +2724,8 @@ fr:
       success: Actions de développement menées à bien
       write_here: Écrivez ici...
     direct_reportee_details: Détail des rapports directs
+    download:
+      description: 'Pour télécharger le rapport, veuillez suivre le lien : <a href=''''%{url}'''' target=''''_blank''''>Télécharger</a>. Le lien n’est valable que pendant 10 minutes'
     edit_plan: Modifier le plan
     edit_plan_and_add_skills: Modifiez le plan et cliquez sur Gérer les compétences pour ajouter des compétences.
     edit_progress: Modifier l'état d'avancement

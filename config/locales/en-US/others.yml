@@ -2724,6 +2724,8 @@ en-US:
       success: Development Actions completed successfully
       write_here: Write here...
     direct_reportee_details: Direct Reportees Detail
+    download:
+      description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>. Link is only valid for 10 minutes'
     edit_plan: Edit Plan
     edit_plan_and_add_skills: Edit Plan and and click on Manage Skills to add Skills.
     edit_progress: Edit Progress

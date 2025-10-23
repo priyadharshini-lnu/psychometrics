@@ -2703,6 +2703,8 @@ zh-Hant:
       success: 發展行動順利完成
       write_here: 寫在這裡...
     direct_reportee_details: 直接報告者詳細資料
+    download:
+      description: 要下載報告，請點擊以下鏈接：<a href=''%{url}'' target=''_blank''>下載</a>。連結有效期僅為 10 分鐘
     edit_plan: 編輯計劃
     edit_plan_and_add_skills: 編輯計劃，然後按一下管理技能以新增技能。
     edit_progress: 編輯進度

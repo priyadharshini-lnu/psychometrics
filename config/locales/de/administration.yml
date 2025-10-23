@@ -1031,6 +1031,10 @@ de:
           approvers: Genehmiger
           approvers_can_edit: Genehmigende können bearbeiten
           approvers_not_required: Genehmigende nicht erforderlich
+          digest_delivery_mode:
+            form_label: Übermittlungsmodus für Digests
+            immediate: Sofort - Senden, wenn eine Massenübermittlung vorliegt
+            scheduled: Geplant - Senden Sie eine Digest-E-Mail zu einem geplanten Zeitpunkt
           digest_frequency:
             daily: Täglich
             form_label: Häufigkeit der Digests
@@ -1223,6 +1227,7 @@ de:
         ai_assisted_idp: AI-unterstützte IDP
         ai_assisted_idp_requires_ai_assistants: Für AI Assisted IDP muss die Funktion AI Assistants aktiviert sein
         global_skills: Globale Fertigkeiten
+        global_skills_disabled_by_client: Global Skills ist vom Client deaktiviert
         idp: IDP
         idp_disabled_by_client: IDP wird vom Client deaktiviert
         sms_notification: SMS-Benachrichtigung
@@ -3020,8 +3025,12 @@ de:
           proficiency: Importkenntnisse
           translations: Proficiency-Übersetzungen importieren
         errors:
+          by_skill_exists_id_missing: 'Zeile %{row_number}: Eine Fertigkeitsstufe für die Fertigkeit ''''%{name}'''' existiert bereits. Bitte geben Sie die ID an, um sie zu aktualisieren.'
           by_skill_missing: 'Zeile %{row_number}: Projekt und Fertigkeit müssen für den Typ ''by_skill'' vorhanden sein'
+          by_skill_type_exists_id_missing: 'Zeile %{row_number}: Eine Kompetenzstufe für den Fertigkeitstyp ''''%{skill_type}'''' existiert bereits. Bitte geben Sie die ID an, um sie zu aktualisieren.'
           by_skill_type_missing: 'Zeile %{row_number}: Projekt und Fertigkeitstyp müssen für den Typ ''''by_skill_type'''' vorhanden sein'
+          default_global_exists_id_missing: 'Zeile %{row_number}: Ein ''''default'''' ProficiencyLevel auf globaler Ebene ist bereits vorhanden. Bitte geben Sie die ID an, um sie zu aktualisieren.'
+          default_project_exists_id_missing: 'Zeile %{row_number}: Ein ''''default'''' ProficiencyLevel auf Projektebene ist bereits vorhanden. Bitte geben Sie die ID an, um sie zu aktualisieren.'
           invalid_csv_format: 'Ungültiges CSV-Format: %{message}'
           invalid_proficiency_type: 'Zeile %{row_number}: Ungültiger oder fehlender ProficiencyType'
           invalid_skill_type: 'Zeile %{row_number}: Ungültiger Fertigkeitstyp "%{skill_type}". Gültige Typen sind: %{valid_types}'

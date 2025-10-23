@@ -1031,6 +1031,10 @@ es-ES:
           approvers: Aprobadores
           approvers_can_edit: Los aprobadores pueden editar
           approvers_not_required: Aprobadores No necesarios
+          digest_delivery_mode:
+            form_label: Modo de entrega de resumen
+            immediate: 'Inmediato: envíe cada vez que haya un envío masivo'
+            scheduled: 'Programado: envíe un correo electrónico de resumen a una hora programada'
           digest_frequency:
             daily: Diario
             form_label: Frecuencia de digestión
@@ -1223,6 +1227,7 @@ es-ES:
         ai_assisted_idp: AI PDI asistido
         ai_assisted_idp_requires_ai_assistants: El IDP asistido por IA requiere que la función de asistentes de IA esté habilitada
         global_skills: Habilidades globales
+        global_skills_disabled_by_client: El cliente desactiva Global Skills
         idp: PDI
         idp_disabled_by_client: El cliente deshabilita el IDP
         sms_notification: Notificación por SMS
@@ -3020,8 +3025,12 @@ es-ES:
           proficiency: Capacidad de importación
           translations: Importar Traducciones Proficiency
         errors:
+          by_skill_exists_id_missing: 'Fila %{row_number}: Ya existe un nivel de competencia para la habilidad ''''%{name}''''. Proporcione la identificación para actualizarla.'
           by_skill_missing: 'Fila %{row_number}: Project y Skill deben estar presentes para el tipo ''by_skill'
+          by_skill_type_exists_id_missing: 'Fila %{row_number}: Ya existe un nivel de competencia para el tipo de habilidad ''''%{skill_type}''''. Proporcione la identificación para actualizarla.'
           by_skill_type_missing: 'Fila %{row_number}: Project y Skill Type deben estar presentes para el tipo ''''by_skill_type'
+          default_global_exists_id_missing: 'Fila %{row_number}: Ya existe un nivel de competencia ''''predeterminado'''' a nivel global. Proporcione la identificación para actualizarla.'
+          default_project_exists_id_missing: 'Fila %{row_number}: Ya existe un nivel de competencia ''''predeterminado'''' a nivel de proyecto. Proporcione la identificación para actualizarla.'
           invalid_csv_format: 'Formato CSV no válido: %{message}'
           invalid_proficiency_type: 'Fila %{row_number}: ProficiencyType inválido o faltante'
           invalid_skill_type: 'Fila %{row_number}: Tipo de habilidad no válido "%{skill_type}". Los tipos válidos son: %{valid_types}'
