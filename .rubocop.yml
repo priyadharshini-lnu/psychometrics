@@ -54,6 +54,9 @@ AvoidActiveRecordInMigrations:
 Layout/CaseIndentation:
   IndentOneStep: true
 
+Rails/EnvLocal:
+  Enabled: false
+
 Layout/DotPosition:
   EnforcedStyle: trailing
 

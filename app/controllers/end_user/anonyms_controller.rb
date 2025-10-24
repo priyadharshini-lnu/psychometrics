@@ -133,7 +133,9 @@ module EndUser
         value: cookie_payload.to_json,
         domain: request.host,
         path: '/',
-        expires: 1.hour.from_now
+        expires: 1.hour.from_now,
+        secure: !(Rails.env.test? || Rails.env.development?),
+        httponly: !(Rails.env.test? || Rails.env.development?)
       }
     end
 
