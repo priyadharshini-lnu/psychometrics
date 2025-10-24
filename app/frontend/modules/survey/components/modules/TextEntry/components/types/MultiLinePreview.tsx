@@ -2,12 +2,14 @@ import {
   ChangeEvent, FC, useRef, useState,
 } from 'react'
 import { Row, Col } from 'antd'
+import { useSelector } from 'react-redux'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
 import useForceUpdate from '~/hooks/useUpdate'
 import { TextEntryCounter } from '~/modules/survey/components/modules/TextEntry/components/TextEntryCounter'
 import { SpeechToTextInput } from '~/modules/survey/components/modules/TextEntry/components/SpeechToTextInput'
+import { AppStore } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 interface Props {
   model: PreviewModel
@@ -135,9 +137,15 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
 }) => {
   const rows = type === 'MultiLine' ? 3 : 6
   const inputRef = useRef<HTMLTextAreaElement>(null)
-
+  const enableCopyContent = useSelector(
+    ({ preview }: AppStore) => preview.extraOptions?.enable_copy_content,
+  )
   if (focus && inputRef.current) {
     inputRef.current.focus()
+  }
+
+  const handleCopyContentEvents = (e) => {
+    !enableCopyContent && e.preventDefault()
   }
 
   return (
@@ -153,6 +161,9 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
       id={`question-${questionId}`}
       ref={inputRef}
       aria-labelledby={questionTextId}
+      onContextMenu={handleCopyContentEvents}
+      onCopy={handleCopyContentEvents}
+      onCut={handleCopyContentEvents}
     />
   )
 }

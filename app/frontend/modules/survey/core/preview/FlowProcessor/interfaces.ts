@@ -181,7 +181,9 @@ export interface DefaultState {
   evaluationSessionId: string | null
   invalidSession: boolean
   answersSaved: boolean
-  extraOptions: {}
+  extraOptions: {
+    enable_copy_content?: boolean
+  }
 }
 
 export interface MediaResponse {

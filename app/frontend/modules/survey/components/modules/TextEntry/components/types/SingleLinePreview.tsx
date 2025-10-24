@@ -4,11 +4,13 @@ import {
 import {
   Input, Row, Col, InputRef,
 } from 'antd'
+import { useSelector } from 'react-redux'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
 import useForceUpdate from '~/hooks/useUpdate'
 import { TextEntryCounter } from '~/modules/survey/components/modules/TextEntry/components/TextEntryCounter'
+import { AppStore } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 interface Props {
   model: PreviewModel
@@ -25,6 +27,9 @@ const SingleLinePreview: FC<Props> = ({
 }) => {
   const inputRef = useRef<InputRef>(null)
   const forceUpdate = useForceUpdate()
+  const enableCopyContent = useSelector(
+    ({ preview }: AppStore) => preview.extraOptions?.enable_copy_content,
+  )
   const {
     result,
     props: { type },
@@ -50,6 +55,10 @@ const SingleLinePreview: FC<Props> = ({
     }
   }
 
+  const handleCopyContentEvents = (e) => {
+    !enableCopyContent && e.preventDefault()
+  }
+
   const value = (result.answers[0] && result.answers[0].value) || ''
   return (
     <div>
@@ -66,6 +75,9 @@ const SingleLinePreview: FC<Props> = ({
             type={type === 'SingleLine' ? 'text' : 'password'}
             ref={inputRef}
             aria-labelledby={questionTextId}
+            onContextMenu={handleCopyContentEvents}
+            onCopy={handleCopyContentEvents}
+            onCut={handleCopyContentEvents}
           />
         </Col>
       </Row>
