@@ -38,7 +38,7 @@ module AdminJobs
     end
 
     def generate_title_link
-      if record.data['is_threesixty']
+      if record.data['is_threesixty'] || user_reports.blank?
         {
           href: "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/participants/subjects/",
           label: "#{campaign.name} Reports"
@@ -52,6 +52,8 @@ module AdminJobs
     end
 
     def generate_details
+      return [] if user_reports.blank?
+
       [
         [I18n.t('administration.users.user'), user.decorate.full_name],
         [I18n.t('administration.reports.name'), user_reports.map { |cr| cr.report.name }.join(', ')]
@@ -59,21 +61,21 @@ module AdminJobs
     end
 
     def valid?
-      campaign.present? && user_reports.present? && user.present?
+      campaign.present?
     end
 
     private
 
     def user_reports
       @user_reports ||= if record.data['is_threesixty']
-                          campaign.user_reports.where(id: record.data['ids']).with_pdf_attachments
+                          campaign.user_reports.where(id: record.data['ids']).preload_pdf_attachments
                         else
                           common_campaign_user_reports
                         end
     end
 
     def common_campaign_user_reports
-      user_reports = campaign.user_reports.includes(:report).where(id: record.data['ids']).with_pdf_attachments
+      user_reports = campaign.user_reports.includes(:report).where(id: record.data['ids']).preload_pdf_attachments
 
       selected_reports = record.data['selected_reports'] || {}
 
