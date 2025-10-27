@@ -12,13 +12,14 @@ const { I18n } = window
 
 interface Props {
   close(): void,
+  license: License
 }
 
 interface LicenseFormValues extends Omit<License, 'startDate' | 'endDate'> {
   usageLimit: number
 }
 
-export const LicenseFormModal: React.FC<Props> = ({ close }) => {
+export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
   const { resource } = useResourceContext()
   const { projectId } = useParams() as { projectId: string }
 
@@ -38,6 +39,13 @@ export const LicenseFormModal: React.FC<Props> = ({ close }) => {
     },
   )
 
+  const licenseResource = license ? {
+    ...license,
+    license_id: license.id,
+    usage_limit: license.projectLicenseDetails?.usageLimit,
+    enabled: license.projectLicenseDetails?.enabled,
+  } : undefined
+
   useEffect(() => {
     fetchLicenses()
   }, [])
@@ -48,6 +56,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close }) => {
       readableResourceName="Project License"
       showSuccessMessages
       close={close}
+      resource={licenseResource}
       scrollToFirstError
       modalProps={{ width: 620 }}
       transformValues={(values: LicenseFormValues) => ({
@@ -67,6 +76,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close }) => {
           >
             <Select
               showSearch
+              disabled={!!license}
               onSearch={(value) => {
                 fetchLicenses({
                   apiConfig: {

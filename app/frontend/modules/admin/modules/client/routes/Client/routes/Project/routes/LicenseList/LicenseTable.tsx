@@ -83,7 +83,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
                     getActionsMenuProps({
                       license,
                       openModal,
-                      updateResource: resource.updateResource,
+                      // updateResource: resource.updateResource,
                       projectId,
                     })
                   }
@@ -106,16 +106,19 @@ const getActionsMenuProps = ({
   license, openModal, projectId,
 }: ActionMenuData): MenuProps => {
   const menuItems = [
-    { key: 'edit', label: I18n.t('common.actions.edit') },
     {
       key: 'show',
       label: (
-        <Link to={`${license.id}/license_usages?filter[project_id_eq]=${projectId}`}>
+        <Link to={`${license.id}/usage?filter[project_id_eq]=${projectId}`}>
           {I18n.t('license_usage.usage_overview')}
         </Link>
       ),
     },
   ]
+  license.projectLicenseDetails && menuItems.push({
+    key: 'edit',
+    label: I18n.t('common.actions.edit'),
+  })
 
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
