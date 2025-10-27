@@ -605,6 +605,7 @@ nl:
         disable_continue_to_dashboard: Knop "Doorgaan naar dashboard" uitschakelen
         disable_nav_btn: Navigatie terugknop uitschakelen
         enable_back: Terugknop inschakelen
+        enable_copy_content: Kopieer inhoud inschakelen
         enable_progress: Voortgangsbalk inschakelen
         enable_save: Knop opslaan inschakelen
         enable_select_main_factor: Selecteer een factor als hoofdfactor

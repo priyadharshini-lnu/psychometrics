@@ -605,6 +605,7 @@ hr:
         disable_continue_to_dashboard: Onemogući gumb "Nastavi na nadzornu ploču"
         disable_nav_btn: Onemogući gumb za navigaciju povrataka
         enable_back: Omogući gumb za povratak
+        enable_copy_content: Omogućivanje kopiranja sadržaja
         enable_progress: Omogući traku napretka
         enable_save: Omogući gumb za spremanje
         enable_select_main_factor: Odabir čimbenika kao glavnog čimbenika

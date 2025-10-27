@@ -605,6 +605,7 @@ sr-Latn:
         disable_continue_to_dashboard: Onemogući dugme "Nastavi na kontrolnu tablu"
         disable_nav_btn: Onemogući dugme za povratak navigacije
         enable_back: Omogući dugme za povratak
+        enable_copy_content: Omogućite kopiranje sadržaja
         enable_progress: Omogući traku napretka
         enable_save: Omogući dugme za sačuvavanje
         enable_select_main_factor: Izaberite faktor kao glavni faktor

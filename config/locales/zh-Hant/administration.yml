@@ -605,6 +605,7 @@ zh-Hant:
         disable_continue_to_dashboard: 停用「繼續到儀表板」按鈕
         disable_nav_btn: 停用導航返回按鈕
         enable_back: 啟用後退按鈕
+        enable_copy_content: 啟用複製內容
         enable_progress: 啟用進度列
         enable_save: 啟用儲存按鈕
         enable_select_main_factor: 選擇一個因素作為主要因素

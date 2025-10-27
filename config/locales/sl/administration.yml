@@ -605,6 +605,7 @@ sl:
         disable_continue_to_dashboard: Onemogoči gumb »Nadaljuj na nadzorno ploščo«
         disable_nav_btn: Onemogoči gumb za navigacijo nazaj
         enable_back: Gumb »Omogoči nazaj«
+        enable_copy_content: Omogočanje kopiranja vsebine
         enable_progress: Omogočanje vrstice napredovanja
         enable_save: Gumb »Omogoči shranjevanje«
         enable_select_main_factor: Izbira dejavnika kot glavnega dejavnika

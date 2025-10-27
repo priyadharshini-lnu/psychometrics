@@ -605,6 +605,7 @@ ro:
         disable_continue_to_dashboard: Dezactivați butonul "Continuați la tabloul de bord"
         disable_nav_btn: Dezactivați butonul de navigare înapoi
         enable_back: Activați butonul Înapoi
+        enable_copy_content: Activarea copierii conținutului
         enable_progress: Activați bara de progres
         enable_save: Activați butonul de salvare
         enable_select_main_factor: Selectați un factor ca factor principal

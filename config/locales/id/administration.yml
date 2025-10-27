@@ -605,6 +605,7 @@ id:
         disable_continue_to_dashboard: Nonaktifkan tombol "Lanjutkan ke Dasbor"
         disable_nav_btn: Nonaktifkan Tombol Navigasi Kembali
         enable_back: Aktifkan tombol kembali
+        enable_copy_content: Mengaktifkan konten salinan
         enable_progress: Aktifkan bar kemajuan
         enable_save: Aktifkan tombol simpan
         enable_select_main_factor: Pilih faktor sebagai faktor utama

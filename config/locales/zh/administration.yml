@@ -605,6 +605,7 @@ zh:
         disable_continue_to_dashboard: 禁用 "继续到仪表板 "按钮
         disable_nav_btn: 禁用导航返回按钮
         enable_back: 启用返回按钮
+        enable_copy_content: 启用复制内容
         enable_progress: 启用进度条
         enable_save: 启用保存按钮
         enable_select_main_factor: 选择一个因子作为主因子

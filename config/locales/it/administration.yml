@@ -605,6 +605,7 @@ it:
         disable_continue_to_dashboard: Disabilita il pulsante "Continua al cruscotto"
         disable_nav_btn: Disattivare il pulsante Indietro della navigazione
         enable_back: Abilita il pulsante Indietro
+        enable_copy_content: Abilita copia contenuto
         enable_progress: Abilita la barra di avanzamento
         enable_save: Abilita il pulsante di salvataggio
         enable_select_main_factor: Seleziona un fattore come fattore principale

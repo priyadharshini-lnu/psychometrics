@@ -605,6 +605,7 @@ ko:
         disable_continue_to_dashboard: '"대시보드로 계속" 버튼 비활성화'
         disable_nav_btn: 탐색 뒤로 버튼 비활성화
         enable_back: 뒤로 가기 버튼 활성화
+        enable_copy_content: 콘텐츠 복사 활성화
         enable_progress: 진행률 표시줄 활성화
         enable_save: 저장 버튼 활성화
         enable_select_main_factor: 주요인으로 요인 선택
