@@ -28,7 +28,9 @@ module AdminJobs
         campaign_user.schedule_start_date,
         campaign_user.schedule_end_date,
         user.decorate.created_at,
-        user.manager_email
+        user.manager_email,
+        campaign_user.current_job_role&.name,
+        campaign_user.target_job_role&.name
       ]
 
       profile_fields.each do |field|

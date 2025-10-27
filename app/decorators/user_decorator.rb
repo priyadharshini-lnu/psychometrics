@@ -163,7 +163,9 @@ class UserDecorator < BaseDecorator
         User.human_attribute_name('schedule_start_date'),
         User.human_attribute_name('schedule_end_date'),
         User.human_attribute_name('created_at'),
-        User.human_attribute_name('manager_email')
+        User.human_attribute_name('manager_email'),
+        User.human_attribute_name('current_job_role'),
+        User.human_attribute_name('target_job_role')
       ]
     end
   end

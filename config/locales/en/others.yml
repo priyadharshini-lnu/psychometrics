@@ -389,6 +389,8 @@ en:
               inclusion: Please select the correct norm type
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} not found"
             email:
               user_exists_in_campaign: User with this email id already exists in the campaign
               user_exists_in_project: User with this email id already exists in the project
@@ -408,6 +410,8 @@ en:
               invalid_datetime: is invalid
             schedule_start_date:
               invalid_datetime: is invalid
+            target_job_role:
+              not_found: "%{name} not found"
         user_assessment:
           subject_and_assessment_exists: Assessment and subject pair already exists
         user_idp_development_action:
