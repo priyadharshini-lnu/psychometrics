@@ -47,10 +47,10 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         />
         <Resource.Column<License>
           title={I18n.t('licenses.project_specific')}
-          id="disabledStatus"
-          dataIndex="disabled"
+          id="sProjectSpecific"
+          dataIndex="sProjectSpecific"
           width={30}
-          render={(_, { id, isProjectSpecific }) => (
+          render={(_, { isProjectSpecific }) => (
             <Switch checked={isProjectSpecific} disabled={true} />
           )
           }
