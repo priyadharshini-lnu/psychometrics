@@ -5,7 +5,7 @@ module Api
     module Administration
       module Projects
         class LicensesController < Api::V2::Administration::BaseController
-          skip_before_action :jsonapi_request_handling, only: [:index]
+          skip_before_action :jsonapi_request_handling, only: %i[index]
 
           def index
             records = client.licenses.
@@ -67,11 +67,26 @@ module Api
             end
           end
 
+          def update
+            model.update!(license_params.except(:license_id))
+
+            license = model.license
+            render json: JSONAPI::ResourceSerializer.
+              new(Api::V2::Administration::LicenseResource, include: %w[report_family project_license]).
+              serialize_to_hash(
+                Api::V2::Administration::LicenseResource.new(license, context.merge(project: project))
+              ), status: :ok
+          end
+
           def context
             super.merge(
               project: project,
               client: client
             )
+          end
+
+          def model
+            @model ||= ::ProjectLicense.find_by(id: params[:id]) || super
           end
 
           private

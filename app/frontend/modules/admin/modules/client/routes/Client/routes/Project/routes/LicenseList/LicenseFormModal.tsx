@@ -41,6 +41,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
 
   const licenseResource = license ? {
     ...license,
+    id: license.projectLicenseDetails?.id ?? license.id,
     license_id: license.id,
     usage_limit: license.projectLicenseDetails?.usageLimit,
     enabled: license.projectLicenseDetails?.enabled,
