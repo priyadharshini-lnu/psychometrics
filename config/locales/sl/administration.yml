@@ -1031,6 +1031,10 @@ sl:
           approvers: Potrjevalce
           approvers_can_edit: Potrjevalci lahko urejajo
           approvers_not_required: Odobritve niso potrebne
+          digest_delivery_mode:
+            form_label: Način dostave povzetka
+            immediate: Takojšnje - Pošljite vsakič, ko pride do množične oddaje
+            scheduled: Načrtovano – pošljite e-poštno sporočilo s povzetkom ob načrtovanem času
           digest_frequency:
             daily: Dnevno
             form_label: Pogostost izvlečka
@@ -1223,6 +1227,7 @@ sl:
         ai_assisted_idp: IDP s pomočjo AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva, da je omogočena funkcija AI Assistants
         global_skills: Globalne spretnosti
+        global_skills_disabled_by_client: Global Skills je onemogočen po stranki
         idp: IDP
         idp_disabled_by_client: IDP je onemogočen s strani odjemalca
         sms_notification: SMS obvestilo
@@ -3020,7 +3025,11 @@ sl:
           proficiency: Znanje uvoza
           translations: Uvoz prevodov strokovnosti
         errors:
+          by_skill_exists_id_missing: 'Vrstica %{row_number}: Raven znanja za spretnost ''''%{name}'''' že obstaja. Prosimo, navedite ID, da ga posodobite.'
           by_skill_missing: 'Vrstica %{row_number}: Projekt in spretnost morata biti prisotna za vrsto »by_skill«'
+          by_skill_type_exists_id_missing: 'Vrstica %{row_number}: Raven strokovnosti za vrsto spretnosti ''''%{skill_type}'''' že obstaja. Prosimo, navedite ID, da ga posodobite.'
+          default_global_exists_id_missing: 'Vrstica %{row_number}: »privzeta« ProficiencyLevel na globalni ravni že obstaja. Prosimo, navedite ID, da ga posodobite.'
+          default_project_exists_id_missing: 'Vrstica %{row_number}: ''''privzeta'''' ProficiencyLevel na ravni projekta že obstaja. Prosimo, navedite ID, da ga posodobite.'
           invalid_csv_format: 'Neveljavna oblika zapisa CSV: %{message}'
           invalid_proficiency_type: 'Vrstica %{row_number}: Neveljavna ali manjka ProficiencyType'
           invalid_skill_type: 'Vrstica %{row_number}: Nepravilna vrsta spretnosti "%{skill_type}". Veljavni tipi so: %{valid_types}'

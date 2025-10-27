@@ -2713,6 +2713,8 @@ zh:
       success: 开发行动成功完成
       write_here: 在此处写入...
     direct_reportee_details: 直接报告者详细信息
+    download:
+      description: 要下载报告，请点击以下链接：<a href=''%{url}'' target=''_blank''>下载</a>。链接仅在 10 分钟内有效
     edit_plan: 编辑计划
     edit_plan_and_add_skills: 编辑计划，然后单击管理技能以添加技能。
     edit_progress: 编辑进度

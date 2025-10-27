@@ -36,7 +36,10 @@ module Threesixty
           if threesixty_campaign.assessment
             campaign.campaign_assessments.create(assessment_id: threesixty_campaign.assessment_id)
           end
-          campaign.campaign_reports.create(report_id: threesixty_campaign.report_id) if threesixty_campaign.report
+          if threesixty_campaign.report
+            campaign.campaign_reports.create(report_id: threesixty_campaign.report_id,
+                                             default_language: threesixty_campaign.report.default_language)
+          end
           threesixty_campaign
         end
 

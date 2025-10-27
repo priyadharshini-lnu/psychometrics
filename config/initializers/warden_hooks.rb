@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-Warden::Manager.after_authentication do |user, env, _opts|
-  request = Rack::Request.new(env.request.env)
+Warden::Manager.after_authentication do |user, auth, _opts|
+  request = auth.request
   if request.env['action_dispatch.request.unsigned_session_cookie']['saml_auth'].blank?
     AuditLogModule.audit! :sign_in,
                           user,
@@ -9,7 +9,8 @@ Warden::Manager.after_authentication do |user, env, _opts|
                           payload: { email: user.email },
                           project: user.project,
                           outcome: 'successful',
-                          request_details: { ip: request.ip, request_id: request.env['action_dispatch.request_id'] },
+                          request_details: { ip: request.remote_ip,
+                                             request_id: request.env['action_dispatch.request_id'] },
                           interface_details: { user_agent: request.user_agent }
   end
 end
@@ -21,7 +22,8 @@ end
 
 # Hook is added to show last login success or failure time to the user
 Warden::Manager.after_set_user do |user, auth, _opts|
-  session = auth.request.session
+  request = auth.request
+  session = request.session
   flash = session.dig(:flash, 'flashes')
   notice = flash&.dig('notice')
 
@@ -50,7 +52,7 @@ end
 
 # Tracks last_unsuccessful_attempt for a user
 Warden::Manager.before_failure do |env, _opts|
-  request = Rack::Request.new(env)
+  request = ActionDispatch::Request.new(env)
 
   url = env['HTTP_HOST'] || env['SERVER_NAME']
   subdomain =  url.split('.').first
@@ -62,7 +64,7 @@ Warden::Manager.before_failure do |env, _opts|
 end
 
 Warden::Manager.before_failure do |env, opts|
-  request = Rack::Request.new(env)
+  request = ActionDispatch::Request.new(env)
   email = request.params.dig('user', 'email')
   next if email.blank?
 
@@ -74,21 +76,25 @@ Warden::Manager.before_failure do |env, opts|
                           record_type: 'User',
                           payload: { email: email },
                           outcome: 'failed',
-                          request_details: { ip: request.ip, request_id: request.env['action_dispatch.request_id'] },
+                          request_details: {
+                            ip: request.remote_ip, request_id: request.env['action_dispatch.request_id']
+                          },
                           interface_details: { user_agent: request.user_agent },
                           failure_reason: reason
   end
 end
 
-Warden::Manager.before_logout do |user, env, _opts|
+Warden::Manager.before_logout do |user, auth, _opts|
   # This hook is called twice. Second time the user is nil, so skipping adding audit log for second time.
   next if user.blank?
 
-  request = Rack::Request.new(env.request.env)
+  request = auth.request
 
   AuditLogModule.audit! :sign_out, user,
                         user: user,
                         payload: { email: user.email },
-                        request_details: { ip: request.ip, request_id: request.env['action_dispatch.request_id'] },
+                        request_details: {
+                          ip: request.remote_ip, request_id: request.env['action_dispatch.request_id']
+                        },
                         interface_details: { user_agent: request.user_agent }
 end

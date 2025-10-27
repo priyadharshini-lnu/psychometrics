@@ -2730,6 +2730,8 @@ pl:
       success: Działania rozwojowe zakończone sukcesem
       write_here: Pisz tutaj...
     direct_reportee_details: Szczegółowe informacje o bezpośrednich podwładnych
+    download:
+      description: 'Aby pobrać raport, kliknij link: <a href=''''%{url}'''' target=''''_blank''''>Pobierz</a>. Link jest ważny tylko przez 10 minut'
     edit_plan: Edytuj plan
     edit_plan_and_add_skills: Edytuj plan i kliknij Zarządzaj umiejętnościami, aby dodać umiejętności.
     edit_progress: Edytuj postęp

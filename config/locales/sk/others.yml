@@ -2726,6 +2726,8 @@ sk:
       success: Úspešne ukončené rozvojové akcie
       write_here: Napíšte sem...
     direct_reportee_details: Podrobnosti o priamych hlásiteľoch
+    download:
+      description: 'Ak si chcete stiahnuť správu, kliknite na odkaz: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Odkaz je platný len 10 minút'
     edit_plan: Upraviť plán
     edit_plan_and_add_skills: Upraviť plán a kliknutím na Spravovať zručnosti pridajte zručnosti.
     edit_progress: Upraviť pokrok

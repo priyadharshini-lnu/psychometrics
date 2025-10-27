@@ -1031,6 +1031,10 @@ vi:
           approvers: Người phê duyệt
           approvers_can_edit: Người phê duyệt có thể chỉnh sửa
           approvers_not_required: Không yêu cầu người phê duyệt
+          digest_delivery_mode:
+            form_label: Chế độ phân phối thông báo
+            immediate: Ngay lập tức - Gửi bất cứ khi nào có gửi hàng loạt
+            scheduled: Đã lên lịch - Gửi email thông báo vào thời gian đã lên lịch
           digest_frequency:
             daily: Nhật báo
             form_label: Tần số tiêu hóa
@@ -1223,6 +1227,7 @@ vi:
         ai_assisted_idp: IDP hỗ trợ AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP yêu cầu bật tính năng Trợ lý AI
         global_skills: Kỹ năng toàn cầu
+        global_skills_disabled_by_client: Kỹ năng toàn cầu bị vô hiệu hóa bởi khách hàng
         idp: IDP
         idp_disabled_by_client: IDP bị vô hiệu hóa bởi khách hàng
         sms_notification: Thông báo SMS
@@ -3020,7 +3025,11 @@ vi:
           proficiency: Thành thạo nhập khẩu
           translations: Bản dịch thành thạo nhập khẩu
         errors:
+          by_skill_exists_id_missing: 'Hàng %{row_number}: Mức độ thành thạo cho kỹ năng ''''%{name}'''' đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
           by_skill_missing: 'Hàng %{row_number}: Dự án và Kỹ năng phải có đối với loại ''by_skill'''
+          by_skill_type_exists_id_missing: 'Hàng %{row_number}: Mức độ thành thạo cho loại kỹ năng ''''%{skill_type}'''' đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
+          default_global_exists_id_missing: 'Hàng %{row_number}: ProficiencyLevel "mặc định" cấp toàn cầu đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
+          default_project_exists_id_missing: 'Hàng %{row_number}: ProficiencyLevel "mặc định" cấp dự án đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
           invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
           invalid_proficiency_type: 'Hàng %{row_number}: Không hợp lệ hoặc thiếu ProficiencyType'
           invalid_skill_type: 'Dòng %{row_number}: Loại kỹ năng không hợp lệ "%{skill_type}". Các loại hợp lệ là: %{valid_types}'

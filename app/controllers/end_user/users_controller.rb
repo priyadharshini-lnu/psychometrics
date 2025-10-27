@@ -159,7 +159,7 @@ class EndUser::UsersController < ApplicationController
   end
 
   def verify_recaptcha_or_redirect
-    return if Settings.features.disable_recaptcha
+    return if SkipRecaptcha.call!(request)
 
     unless verify_recaptcha(response: params[:recaptcha_token])
       render json: { errors: [{ detail: I18n.t('sessions.errors.recaptcha') }] }, status: 422 and return

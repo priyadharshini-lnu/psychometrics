@@ -29,6 +29,8 @@ module Administration
               payload: params.merge(@user_report.details_to_log)
           end
           format.pdf do
+            selected_locale = params[:lang] || @user_report.report.default_language
+            I18n.locale = selected_locale
             @pdf_export = true
             audit! :download_report_pdf, @user_report, campaign: threesixty_campaign.campaign,
               payload: params.merge(@user_report.details_to_log)

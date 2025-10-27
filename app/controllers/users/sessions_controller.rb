@@ -51,7 +51,7 @@ module Users
     end
 
     def verify_recaptcha_or_redirect
-      return if Settings.features.disable_recaptcha
+      return if SkipRecaptcha.call!(request)
 
       @current_project = GetProjectBySubdomain.call!(request.subdomain)
       return unless @current_project&.security_setting&.enable_recaptcha

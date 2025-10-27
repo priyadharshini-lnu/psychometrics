@@ -61,7 +61,7 @@ module Administration
       private
 
       def verify_recaptcha_or_redirect
-        return if Settings.features.disable_recaptcha
+        return if SkipRecaptcha.call!(request)
 
         unless verify_recaptcha(response: params[:recaptcha_token])
           flash[:alert] = I18n.t('administration.administrator.sessions.errors.recaptcha')

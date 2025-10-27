@@ -2709,6 +2709,8 @@ ko:
       success: 개발 작업이 성공적으로 완료되었습니다.
       write_here: 여기에 쓰기...
     direct_reportee_details: 직접 보고자 세부 정보
+    download:
+      description: 보고서를 다운로드하려면 <a href=''%{url}'' target=''_blank''>Download.</a> 링크는 10분 동안만 유효합니다.
     edit_plan: 계획 편집
     edit_plan_and_add_skills: 계획을 편집하고 스킬 관리를 클릭하여 스킬을 추가합니다.
     edit_progress: 진행 상황 편집

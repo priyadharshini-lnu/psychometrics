@@ -1031,6 +1031,10 @@ sk:
           approvers: Schvaľovateľov
           approvers_can_edit: Schvaľovatelia môžu upravovať
           approvers_not_required: Schvaľovatelia nie sú povinní
+          digest_delivery_mode:
+            form_label: Režim doručenia súhrnu
+            immediate: Okamžite - Odoslať vždy, keď dôjde k hromadnému odoslaniu
+            scheduled: Naplánované – odoslanie súhrnného e-mailu v naplánovanom čase
           digest_frequency:
             daily: Denne
             form_label: Frekvencia Digest
@@ -1223,6 +1227,7 @@ sk:
         ai_assisted_idp: IDP s pomocou AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vyžaduje povolenie funkcie AI Assistants
         global_skills: Globálne zručnosti
+        global_skills_disabled_by_client: Globálne zručnosti sú zakázané klientom
         idp: IDP
         idp_disabled_by_client: IDP je zakázaný klientom
         sms_notification: SMS upozornenie
@@ -3020,7 +3025,11 @@ sk:
           proficiency: Odbornosť importu
           translations: Import prekladov odbornosti
         errors:
+          by_skill_exists_id_missing: 'Riadok %{row_number}: Úroveň odbornosti pre zručnosti "%{name}" už existuje. Ak chcete aktualizovať, uveďte ID.'
           by_skill_missing: 'Riadok %{row_number}: Projekt a zručnosť musia byť prítomné pre typ "by_skill"'
+          by_skill_type_exists_id_missing: 'Riadok %{row_number}: Úroveň odbornosti pre typ zručnosti ''''%{skill_type}'''' už existuje. Ak chcete aktualizovať, uveďte ID.'
+          default_global_exists_id_missing: 'Riadok %{row_number}: Predvolená úroveň ProficiencyLevel na globálnej úrovni už existuje. Ak chcete aktualizovať, uveďte ID.'
+          default_project_exists_id_missing: 'Riadok %{row_number}: Predvolená úroveň ProficiencyLevel na úrovni projektu už existuje. Ak chcete aktualizovať, uveďte ID.'
           invalid_csv_format: 'Neplatný formát CSV: %{message}'
           invalid_proficiency_type: 'Riadok %{row_number}: Neplatný alebo chýbajúci ProficiencyType'
           invalid_skill_type: 'Riadok %{row_number}: Neplatný typ zručnosti "%{skill_type}". Platné typy sú: %{valid_types}'

@@ -2721,6 +2721,8 @@ nl:
       success: Ontwikkelingsacties succesvol afgerond
       write_here: Schrijf hier...
     direct_reportee_details: Details van directe verslaggevers
+    download:
+      description: 'Volg de link om het rapport te downloaden: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link is slechts 10 minuten geldig'
     edit_plan: Plan bewerken
     edit_plan_and_add_skills: Bewerk Plan en en klik op Vaardigheden beheren om Vaardigheden toe te voegen.
     edit_progress: Vooruitgang bewerken

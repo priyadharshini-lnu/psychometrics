@@ -1031,6 +1031,10 @@ ja:
           approvers: 承認者
           approvers_can_edit: 承認者は編集できる
           approvers_not_required: 承認者 不要
+          digest_delivery_mode:
+            form_label: ダイジェスト配信モード
+            immediate: 即時 - 一括送信があるたびに送信します
+            scheduled: スケジュール済み - スケジュールされた時刻にダイジェストメールを送信します
           digest_frequency:
             daily: 日毎
             form_label: ダイジェスト周波数
@@ -1223,6 +1227,7 @@ ja:
         ai_assisted_idp: AIアシストIDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP では、AI アシスタント機能を有効にする必要があります
         global_skills: グローバル・スキル
+        global_skills_disabled_by_client: グローバルスキルがクライアントによって無効になっている
         idp: アイディーピー
         idp_disabled_by_client: IDP はクライアントによって無効になっています
         sms_notification: SMS通知
@@ -3020,8 +3025,12 @@ ja:
           proficiency: 輸入能力
           translations: 輸入技能翻訳
         errors:
+          by_skill_exists_id_missing: 行%{row_number}:スキル「%{name}」の習熟度レベルがすでに存在します。更新するには ID を入力してください。
           by_skill_missing: 行 %{row_number}：by_skill'タイプでは、プロジェクトとスキルが存在する必要があります。
+          by_skill_type_exists_id_missing: '行 %{row_number}: スキル タイプ ''''%{skill_type}'''' の習熟度レベルがすでに存在します。更新するには ID を入力してください。'
           by_skill_type_missing: 行 %{row_number}：by_skill_type''タイプにはプロジェクトとスキル・タイプが存在する必要があります。
+          default_global_exists_id_missing: '行 %{row_number}: グローバル レベルの ''''default'''' ProficiencyLevel がすでに存在します。更新するには ID を入力してください。'
+          default_project_exists_id_missing: '行%{row_number}: プロジェクトレベルの「デフォルト」の ProficiencyLevel がすでに存在します。更新するには ID を入力してください。'
           invalid_csv_format: '無効な CSV 形式: %{message} です。'
           invalid_proficiency_type: 行 %{row_number}：ProficiencyTypeが無効または見つかりません。
           invalid_skill_type: '行%{row_number}: 無効なスキルタイプ "%{skill_type}".有効なタイプは%{valid_types}'

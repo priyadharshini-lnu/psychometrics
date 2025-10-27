@@ -2721,6 +2721,8 @@ it:
       success: Azioni di sviluppo completate con successo
       write_here: Scrivi qui...
     direct_reportee_details: Dettagli Reportee Diretti
+    download:
+      description: 'Per scaricare il rapporto, segui il link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Il link è valido solo per 10 minuti'
     edit_plan: Modifica piano
     edit_plan_and_add_skills: Modifica piano e fai clic su Gestisci competenze per aggiungere competenze.
     edit_progress: Modifica dei progressi

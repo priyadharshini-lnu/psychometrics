@@ -1031,6 +1031,10 @@ th:
           approvers: ผู้อนุมัติ
           approvers_can_edit: ผู้อนุมัติสามารถแก้ไขได้
           approvers_not_required: ไม่จําเป็นต้องมีผู้อนุมัติ
+          digest_delivery_mode:
+            form_label: โหมดการจัดส่ง Digest
+            immediate: ทันที - ส่งทุกครั้งที่มีการส่งจํานวนมาก
+            scheduled: กําหนดการ - ส่งอีเมลสรุปตามเวลาที่กําหนดไว้
           digest_frequency:
             daily: ทุกวัน
             form_label: ความถี่ย่อย
@@ -1223,6 +1227,7 @@ th:
         ai_assisted_idp: AI ช่วยเหลือ IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP ต้องการคุณสมบัติ AI Assistants เพื่อเปิดใช้งาน
         global_skills: ทักษะระดับโลก
+        global_skills_disabled_by_client: Global Skills ถูกปิดใช้งานโดยลูกค้า
         idp: ผู้พลัดถิ่นภายในประเทศ
         idp_disabled_by_client: IDP ถูกปิดใช้งานโดยลูกค้า
         sms_notification: การแจ้งเตือนทาง SMS
@@ -3020,7 +3025,11 @@ th:
           proficiency: ความเชี่ยวชาญในการนําเข้า
           translations: นําเข้าการแปลความสามารถ
         errors:
+          by_skill_exists_id_missing: 'แถวที่ %{row_number}: ระดับความชํานาญสําหรับทักษะ ''''%{name}'''' มีอยู่แล้ว โปรดระบุ ID เพื่ออัปเดต'
           by_skill_missing: 'แถว %{row_number}: ต้องมีโครงการและทักษะสําหรับประเภท ''by_skill'''
+          by_skill_type_exists_id_missing: 'แถวที่ %{row_number}: ระดับความชํานาญสําหรับชนิดทักษะ ''''%{skill_type}'''' มีอยู่แล้ว โปรดระบุ ID เพื่ออัปเดต'
+          default_global_exists_id_missing: 'แถวที่ %{row_number}: มี ProficiencyLevel "ค่าเริ่มต้น" ระดับสากลอยู่แล้ว โปรดระบุ ID เพื่ออัปเดต'
+          default_project_exists_id_missing: 'แถวที่ %{row_number}: ProficiencyLevel ''''ค่าเริ่มต้น'''' ระดับโปรเจ็กต์มีอยู่แล้ว โปรดระบุ ID เพื่ออัปเดต'
           invalid_csv_format: 'รูปแบบ CSV ไม่ถูกต้อง: %{message}'
           invalid_proficiency_type: 'แถว %{row_number}: ProficiencyType ไม่ถูกต้องหรือขาดหายไป'
           invalid_skill_type: 'แถว %{row_number}: ประเภททักษะไม่ถูกต้อง "%{skill_type}". ประเภทที่ใช้งานได้คือ: %{valid_types}'

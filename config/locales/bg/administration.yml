@@ -1031,6 +1031,10 @@ bg:
           approvers: Одобряващи
           approvers_can_edit: Одобряващите могат да редактират
           approvers_not_required: Не се изискват одобряващи
+          digest_delivery_mode:
+            form_label: Режим на доставка на дайджест
+            immediate: Незабавно - Изпращане винаги, когато има групово подаване
+            scheduled: Планирано - Изпращане на дайджест имейл в планирано време
           digest_frequency:
             daily: Ежедневен
             form_label: Честота на смилане
@@ -1223,6 +1227,7 @@ bg:
         ai_assisted_idp: Подпомагано от AI IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP изисква функцията AI Assistants да бъде активирана
         global_skills: Глобални умения
+        global_skills_disabled_by_client: Global Skills е деактивиран от клиента
         idp: IDP
         idp_disabled_by_client: IDP е деактивиран от клиента
         sms_notification: SMS известяване
@@ -3020,7 +3025,11 @@ bg:
           proficiency: Умения за импортиране
           translations: Импортиране на преводи за умения
         errors:
+          by_skill_exists_id_missing: 'Ред %{row_number}: Вече съществува ниво на владеене на уменията "%{name}". Моля, посочете идентификатора, за да го актуализирате.'
           by_skill_missing: 'Ред %{row_number}: Проектът и умението трябва да присъстват за тип ''by_skill'''
+          by_skill_type_exists_id_missing: 'Ред %{row_number}: Вече съществува ниво на владеене за тип умение "%{skill_type}". Моля, посочете идентификатора, за да го актуализирате.'
+          default_global_exists_id_missing: 'Ред %{row_number}: Вече съществува ниво на "подразбиране" на глобално ниво. Моля, посочете идентификатора, за да го актуализирате.'
+          default_project_exists_id_missing: 'Ред %{row_number}: Вече съществува ниво на квалификация "по подразбиране" на ниво проект. Моля, посочете идентификатора, за да го актуализирате.'
           invalid_csv_format: 'Невалиден CSV формат: %{message}'
           invalid_proficiency_type: 'Ред %{row_number}: Невалиден или липсващ ProficiencyType'
           invalid_skill_type: 'Ред %{row_number}: Невалиден тип умение "<x>skill_type</x>". Валидните типове са: %{valid_types}'

@@ -1031,6 +1031,10 @@ ar:
           approvers: الموافقون
           approvers_can_edit: يمكن للموافقين التعديل
           approvers_not_required: الموافقة غير مطلوبة
+          digest_delivery_mode:
+            form_label: وضع تسليم الملخص
+            immediate: فوري - أرسل كلما كان هناك إرسال مجمع
+            scheduled: مجدول - إرسال بريد إلكتروني ملخص في وقت مجدول
           digest_frequency:
             daily: يومي
             form_label: تردد الملخص
@@ -1223,6 +1227,7 @@ ar:
         ai_assisted_idp: المشردون داخلياً بمساعدة الذكاء الاصطناعي
         ai_assisted_idp_requires_ai_assistants: يتطلب IDP المدعوم من الذكاء الاصطناعي تمكين ميزة مساعدي الذكاء الاصطناعي
         global_skills: المهارات العالمية
+        global_skills_disabled_by_client: يتم تعطيل المهارات العالمية من قبل العميل
         idp: IDP
         idp_disabled_by_client: تم تعطيل IDP بواسطة العميل
         sms_notification: إشعار الرسائل النصية القصيرة
@@ -3020,8 +3025,12 @@ ar:
           proficiency: كفاءة الاستيراد
           translations: استيراد ترجمات الكفاءة في الترجمة
         errors:
+          by_skill_exists_id_missing: 'الصف %{row_number}: يوجد بالفعل مستوى إتقان للمهارة "%{name}". يرجى تقديم المعرف لتحديثه.'
           by_skill_missing: 'الصف %{row_number}: يجب أن يكون المشروع والمهارة موجودين لنوع "حسب_المهارة'
+          by_skill_type_exists_id_missing: 'الصف %{row_number}: يوجد بالفعل مستوى كفاءة لنوع المهارة "%{skill_type}". يرجى تقديم المعرف لتحديثه.'
           by_skill_type_missing: 'الصف %{row_number}: يجب أن يكون نوع المشروع ونوع المهارة موجودين لنوع "حسب_النوع'
+          default_global_exists_id_missing: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على المستوى العالمي موجود بالفعل. يرجى تقديم المعرف لتحديثه.'
+          default_project_exists_id_missing: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل. يرجى تقديم المعرف لتحديثه.'
           invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
           invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
           invalid_skill_type: 'الصف %{row_number}: نوع المهارة غير صالح "<x>skill_type</x>". الأنواع الصالحة هي: %{valid_types}'

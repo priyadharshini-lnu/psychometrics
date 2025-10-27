@@ -1031,6 +1031,10 @@ hr:
           approvers: Odobritelji
           approvers_can_edit: Odobravatelji mogu uređivati
           approvers_not_required: Odobravatelji nisu potrebni
+          digest_delivery_mode:
+            form_label: Način isporuke sažetka
+            immediate: Odmah - Pošaljite kad god postoji skupno slanje
+            scheduled: Zakazano – slanje e-pošte sažetka u zakazano vrijeme
           digest_frequency:
             daily: Dnevni
             form_label: Učestalost digesta
@@ -1223,6 +1227,7 @@ hr:
         ai_assisted_idp: IDP potpomognut umjetnom inteligencijom
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahtijeva omogućavanje značajke AI Assistants
         global_skills: Globalne vještine
+        global_skills_disabled_by_client: Klijent onemogućuje globalne vještine
         idp: IDP
         idp_disabled_by_client: IDP je onemogućen od strane klijenta
         sms_notification: SMS obavijest
@@ -3020,7 +3025,11 @@ hr:
           proficiency: Vještina uvoza
           translations: Uvoz prijevoda stručnosti
         errors:
+          by_skill_exists_id_missing: 'Redak %{row_number}: Razina stručnosti za vještinu ''''%{name}'''' već postoji. Navedite ID da biste ga ažurirali.'
           by_skill_missing: 'Redak %{row_number}: Projekt i vještina moraju biti prisutni za vrstu ''by_skill'''
+          by_skill_type_exists_id_missing: 'Red %{row_number}: Razina stručnosti za vrstu vještine ''''%{skill_type}'''' već postoji. Navedite ID da biste ga ažurirali.'
+          default_global_exists_id_missing: 'Redak %{row_number}: ''''default'''' ProficiencyLevel na globalnoj razini već postoji. Navedite ID da biste ga ažurirali.'
+          default_project_exists_id_missing: 'Redak %{row_number}: ''''default'''' ProficiencyLevel na razini projekta već postoji. Navedite ID da biste ga ažurirali.'
           invalid_csv_format: 'Nevažeći CSV format: %{message}'
           invalid_proficiency_type: 'Redak %{row_number}: Nevažeći ili nedostaje ProficiencyType'
           invalid_skill_type: '[HR] Row %{row_number}: Invalid skill type "%{skill_type}". Valid types are: %{valid_types}'

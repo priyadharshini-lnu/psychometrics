@@ -1031,6 +1031,10 @@ fr:
           approvers: Approbateurs
           approvers_can_edit: Les approbateurs peuvent modifier
           approvers_not_required: Approbateurs non requis
+          digest_delivery_mode:
+            form_label: Mode de livraison du résumé
+            immediate: 'Immédiat : envoyer chaque fois qu’il y a une soumission en bloc'
+            scheduled: 'Programmé : envoi d’un e-mail de synthèse à une heure programmée.'
           digest_frequency:
             daily: Quotidien
             form_label: Fréquence de digestion
@@ -1223,6 +1227,7 @@ fr:
         ai_assisted_idp: AI assistée PDI
         ai_assisted_idp_requires_ai_assistants: L’IDP assisté par l’IA nécessite l’activation de la fonctionnalité d’assistants IA
         global_skills: Compétences globales
+        global_skills_disabled_by_client: Global Skills est désactivé par le client
         idp: PDI
         idp_disabled_by_client: L’IDP est désactivé par le client
         sms_notification: Notification par SMS
@@ -3020,8 +3025,12 @@ fr:
           proficiency: Compétence en matière d'importation
           translations: Traductions de la compétence en matière d'importation
         errors:
+          by_skill_exists_id_missing: 'Rangée %{row_number} : Il existe déjà un niveau de compétence pour la compétence ''''%{name}''''. Veuillez fournir l’ID pour le mettre à jour.'
           by_skill_missing: 'Ligne %{row_number} : Le projet et la compétence doivent être présents pour le type "by_skill".'
+          by_skill_type_exists_id_missing: 'Ligne %{row_number} : Il existe déjà un niveau de compétence pour le type de compétence ''''%{skill_type}''''. Veuillez fournir l’ID pour le mettre à jour.'
           by_skill_type_missing: 'Ligne %{row_number} : Le projet et le type de compétence doivent être présents pour le type "by_skill_type".'
+          default_global_exists_id_missing: 'Ligne %{row_number} : Il existe déjà un niveau de compétence « par défaut » global. Veuillez fournir l’ID pour le mettre à jour.'
+          default_project_exists_id_missing: 'Ligne %{row_number} : Un niveau de compétence « par défaut » au niveau du projet existe déjà. Veuillez fournir l’ID pour le mettre à jour.'
           invalid_csv_format: 'Format CSV non valide : %{message}'
           invalid_proficiency_type: 'Ligne %{row_number} : Type de compétence non valide ou manquant'
           invalid_skill_type: 'Ligne %{row_number} : Type de compétence non valide "%{skill_type}". Les types valides sont : %{valid_types}'
