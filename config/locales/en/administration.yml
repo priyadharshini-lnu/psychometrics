@@ -3790,6 +3790,7 @@ en:
         start_time: Date & Time
         subject: Subject
         title: Title
+        view_recording: View Recording
       errors:
         assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
         date_required: Please select a date
