@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { MenuProps } from 'antd'
+import { MenuProps, Switch } from 'antd'
 import { Link, useParams } from 'react-router-dom'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -44,6 +44,16 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
           id="type"
           dataIndex="type"
           render={(_, { type }) => I18n.t(`licenses.types.${type}`)}
+        />
+        <Resource.Column<License>
+          title={I18n.t('licenses.project_specific')}
+          id="disabledStatus"
+          dataIndex="disabled"
+          width={30}
+          render={(_, { id, isProjectSpecific }) => (
+            <Switch checked={isProjectSpecific} disabled={true} />
+          )
+          }
         />
         <Resource.Column<License>
           title={I18n.t('licenses.used_number')}

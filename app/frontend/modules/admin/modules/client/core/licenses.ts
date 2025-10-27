@@ -11,6 +11,7 @@ export const LicenseTR = t.type({
   disabled: t.boolean,
   enabled: t.boolean,
   type: t.string,
+  isProjectSpecific: t.boolean,
   reportFamily: t.union([
     t.type({
       id: t.string,

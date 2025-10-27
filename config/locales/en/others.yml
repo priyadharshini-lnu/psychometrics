@@ -3096,6 +3096,7 @@ en:
     number: Number
     overuse_number: Over use allowance
     project_limit_reached: Usage limit reached for project, please contact administrator
+    project_specific: Project Specific
     project_specific_license: Project Specific License
     report_family: Report bundle
     start_date: Start date
