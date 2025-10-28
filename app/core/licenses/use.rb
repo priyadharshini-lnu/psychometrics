@@ -39,7 +39,12 @@ module Licenses
       end
 
       license_usage = license.license_usages.create!(campaign: campaign, client: client, user: user, project: project,
-                                                     project_license: project_license)
+                                                     project_license: project_license,
+                                                     extras: {
+                                                       subject_name: @user.name,
+                                                       campaign_name: @campaign.name,
+                                                       subject_email: @user.email
+                                                     })
       broadcast :ok, license_usage
     end
   end
