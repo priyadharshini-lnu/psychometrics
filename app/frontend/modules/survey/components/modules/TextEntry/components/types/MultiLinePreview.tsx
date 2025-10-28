@@ -137,7 +137,7 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
 }) => {
   const rows = type === 'MultiLine' ? 3 : 6
   const inputRef = useRef<HTMLTextAreaElement>(null)
-  const enableCopyContent = useSelector(
+  const isCopyContentEnabled = useSelector(
     ({ preview }: AppStore) => preview.extraOptions?.enable_copy_content,
   )
   if (focus && inputRef.current) {
@@ -145,7 +145,9 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
   }
 
   const handleCopyContentEvents = (e) => {
-    !enableCopyContent && e.preventDefault()
+    if (!isCopyContentEnabled) {
+      e.preventDefault()
+    }
   }
 
   return (

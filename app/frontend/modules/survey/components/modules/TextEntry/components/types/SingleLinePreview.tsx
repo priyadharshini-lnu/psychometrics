@@ -27,7 +27,7 @@ const SingleLinePreview: FC<Props> = ({
 }) => {
   const inputRef = useRef<InputRef>(null)
   const forceUpdate = useForceUpdate()
-  const enableCopyContent = useSelector(
+  const isCopyContentEnabled = useSelector(
     ({ preview }: AppStore) => preview.extraOptions?.enable_copy_content,
   )
   const {
@@ -56,7 +56,9 @@ const SingleLinePreview: FC<Props> = ({
   }
 
   const handleCopyContentEvents = (e) => {
-    !enableCopyContent && e.preventDefault()
+    if (!isCopyContentEnabled) {
+      e.preventDefault()
+    }
   }
 
   const value = (result.answers[0] && result.answers[0].value) || ''
