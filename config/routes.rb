@@ -1325,7 +1325,11 @@ as: :simulation_progress_notification
             jsonapi_resources :registration_settings, only: %i[index update]
             jsonapi_resources :mettl_schedule_records
             jsonapi_resources :project_features, only: %i[index update]
-            jsonapi_resources :licenses, controller: 'projects/licenses', as: :project_licenses
+            jsonapi_resources :licenses, controller: 'projects/licenses', as: :project_licenses do
+              member do
+                get :license_usages
+              end
+            end
 
             jsonapi_resources :assessments do
               scope module: :assessments do

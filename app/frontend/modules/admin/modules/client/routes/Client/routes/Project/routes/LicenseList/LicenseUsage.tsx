@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { connect, ConnectedProps } from 'react-redux'
+import { connect, ConnectedProps, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Radio, Space, Switch } from 'antd'
 import dayjs from '~/utils/dayjs'
@@ -22,16 +22,16 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const LicenseUsageComponent: React.FC<Props> = () => {
-  const { clientId, licenseId } = useParams() as { clientId: string, licenseId: string}
+  const { projectId, licenseId } = useParams() as { projectId: string, licenseId: string}
 
   const config = {
     trackUrl: true,
     responseType: LicenseUsageTR,
-    basePath: `clients/${clientId}/licenses/${licenseId}`,
+    basePath: `projects/${projectId}/licenses/${licenseId}`,
     apiConfig: {
       include: ['user', 'status_updated_by'],
       include_meta: ['permissions', 'report_family_name'],
-      fields: { users: ['id', 'name'] },
+      // fields: { users: ['id', 'name'] },
     },
   }
 

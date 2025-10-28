@@ -78,6 +78,31 @@ module Api
               ), status: :ok
           end
 
+          def license_usages
+            license_id = params[:id]
+            project_id = params[:project_id]
+            records = ::LicenseUsage.where(license_id: license_id, project_id: project_id)
+
+            page_number = (params.dig(:page, :number) || 1).to_i
+            page_size   = (params.dig(:page, :size)   || 25).to_i
+
+            paginated = records.page(page_number).per(page_size)
+
+            resources = paginated.map { |r| Api::V2::Administration::LicenseUsageResource.new(r, context) }
+
+            serializer = JSONAPI::ResourceSerializer.new(
+              Api::V2::Administration::LicenseUsageResource,
+              include: %w[user status_updated_by]
+            )
+
+            render json: serializer.serialize_to_hash(resources).merge(
+              meta: {
+                record_count: records.count,
+                page_count: (records.count / page_size.to_f).ceil
+              }
+            )
+          end
+
           def context
             super.merge(
               project: project,

@@ -19,6 +19,10 @@ module Api
         can_manage_licenses?
       end
 
+      def license_usages?
+        can_manage_licenses?
+      end
+
       private
 
       def can_manage_licenses?
