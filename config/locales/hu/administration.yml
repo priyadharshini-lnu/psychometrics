@@ -605,6 +605,7 @@ hu:
         disable_continue_to_dashboard: Tiltsa le a "Tovább az irányítópultra" gombot
         disable_nav_btn: Tiltsa le a Vissza navigációs gombot
         enable_back: Vissza gomb engedélyezése
+        enable_copy_content: Tartalom másolásának engedélyezése
         enable_progress: Folyamatjelző sáv engedélyezése
         enable_save: Mentés engedélyezése gomb
         enable_select_main_factor: Válasszon ki egy tényezőt fő tényezőként

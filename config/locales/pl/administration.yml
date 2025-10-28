@@ -605,6 +605,7 @@ pl:
         disable_continue_to_dashboard: Wyłącz przycisk "Przejdź do pulpitu nawigacyjnego"
         disable_nav_btn: Wyłącz przycisk nawigacji Wstecz
         enable_back: Włącz przycisk Wstecz
+        enable_copy_content: Włącz kopiowanie zawartości
         enable_progress: Włącz pasek postępu
         enable_save: Włącz przycisk zapisywania
         enable_select_main_factor: Wybieranie czynnika jako czynnika głównego

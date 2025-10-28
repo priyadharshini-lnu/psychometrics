@@ -605,6 +605,7 @@ sk:
         disable_continue_to_dashboard: Zakázať tlačidlo "Pokračovať na palubnú dosku"
         disable_nav_btn: Zakázať navigačné tlačidlo Späť
         enable_back: Povoliť tlačidlo Späť
+        enable_copy_content: Povolenie kopírovania obsahu
         enable_progress: Zapnutie indikátora priebehu
         enable_save: Povoliť tlačidlo Uložiť
         enable_select_main_factor: Vyberte faktor ako hlavný faktor

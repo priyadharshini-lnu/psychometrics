@@ -605,6 +605,7 @@ ar:
         disable_continue_to_dashboard: تعطيل زر "متابعة إلى لوحة التحكم"
         disable_nav_btn: تعطيل زر التنقل للخلف
         enable_back: تمكين زر الرجوع
+        enable_copy_content: تمكين نسخ المحتوى
         enable_progress: تمكين شريط التقدم
         enable_save: تمكين زر الحفظ
         enable_select_main_factor: حدد عاملا كعامل رئيسي

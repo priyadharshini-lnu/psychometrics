@@ -605,6 +605,7 @@ pt:
         disable_continue_to_dashboard: Desativar o botão "Continuar para o painel de controlo
         disable_nav_btn: Desativar o botão de retrocesso da navegação
         enable_back: Ativar o botão de retrocesso
+        enable_copy_content: Habilitar conteúdo de cópia
         enable_progress: Ativar a barra de progresso
         enable_save: Ativar o botão de Salvar
         enable_select_main_factor: Selecione um fator como fator principal

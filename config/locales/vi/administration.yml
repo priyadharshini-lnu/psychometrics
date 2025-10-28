@@ -605,6 +605,7 @@ vi:
         disable_continue_to_dashboard: Tắt nút "Tiếp tục đến bảng điều khiển"
         disable_nav_btn: Tắt nút quay lại điều hướng
         enable_back: Bật nút quay lại
+        enable_copy_content: Cho phép sao chép nội dung
         enable_progress: Bật thanh tiến trình
         enable_save: Bật nút lưu
         enable_select_main_factor: Chọn một yếu tố làm yếu tố chính
