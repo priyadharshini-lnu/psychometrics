@@ -15,7 +15,7 @@ module Api
                         records.where(licenses: { is_project_specific: true })
                       else
                         records.where(
-                          'licenses.is_project_specific = false OR project_licenses.id IS NOT NULL'
+                          'licenses.is_project_specific = false OR project_licenses.project_id = ?', project.id
                         ).distinct
                       end
 
