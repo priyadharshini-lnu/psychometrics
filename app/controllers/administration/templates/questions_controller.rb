@@ -121,16 +121,16 @@ module Administration
       end
 
       def resource_params
-        params.require(:resource).permit(:name, :owner_id, assign_to_assessment_ids: [])
+        params.expect(resource: [:name, :owner_id, { assign_to_assessment_ids: [] }])
       end
 
       def question_params
-        permitted_params = params.require(:question).permit(
-          :id, :block_id, :name, :position, :type, :display_logic, :template_id, :save_as_template,
-          props: {},
-          validation: {},
-          required_validation: {},
-          skip_logic: []
+        permitted_params = params.expect(
+          question: [:id, :block_id, :name, :position, :type, :display_logic, :template_id, :save_as_template,
+                     { props: {},
+                       validation: {},
+                       required_validation: {},
+                       skip_logic: [] }]
         )
 
         if permitted_params[:props].present?

@@ -125,8 +125,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
     onAddDevelopmentAction?.(developmentActions.reduce((acc, developmentAction) => {
       const uniqueId = uuidv4()
       acc[uniqueId] = {
-        description: developmentAction.description,
-        learningStyle: developmentAction.learningStyle,
+        ...developmentAction,
         id: uniqueId,
         sourceType: DevelopmentActionSourceType.AI_GENERATED,
         developmentActionId: developmentAction.id,

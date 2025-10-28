@@ -148,6 +148,7 @@ export const WorkshopPage: FC = () => {
         <>
           {workshop.meetingLink ? (
             <Space>
+              {/* deepcode ignore DOMXSS: We are using sanitized url from our own backend */}
               <a href={workshop.meetingLink} target="_blank" rel="noreferrer">
                 {I18n.t('administration.scheduling.info.join_meeting')}
               </a>

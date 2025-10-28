@@ -8,6 +8,7 @@ module Integrations
     attribute :password, String
 
     validates :tenant_id, :tenancy_name, :user, presence: true
+    # deepcode ignore WeakPassword: <saving passwords shared by external provider>
     validates :password, presence: true, if: -> { context.integration.nil? }
     validate :unique_tenant_id
     validate :unique_tenancy_name

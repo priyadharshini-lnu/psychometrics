@@ -316,7 +316,7 @@ module AI
       def ruby_llm_config
         @ruby_llm_config ||= begin
           provider_config = Settings.ai_providers.find { |provider| provider['model_id'] == assistant_chat.model.id }
-          context = provider_config&.dig('context').to_h || {}
+          context = provider_config&.dig('context').to_h
 
           config_class = Struct.new(*context.keys.map(&:to_sym), :openai_use_system_role, keyword_init: true)
           config = config_class.new(**context.transform_keys(&:to_sym))

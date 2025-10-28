@@ -36,7 +36,7 @@ class BlockSerializer < Panko::Serializer
     return object.props unless object.props && object.props['staticContent']
 
     if (translation_props = context.dig(:translations, 'block', object.id, 'props'))
-      object.props = Utility::Hash.deep_merge(object.props, (translation_props || {}))
+      object.props = Utility::Hash.deep_merge(object.props, translation_props || {})
     end
 
     static_content =

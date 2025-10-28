@@ -369,7 +369,9 @@ id:
       created_successfully: Asisten AI berhasil dibuat.
       errors:
         cannot_delete_in_use: Tidak dapat menghapus '%{name}' Asisten AI karena sedang digunakan.
+        development_actions_assistance_not_enabled: Pembuatan tindakan pengembangan bertenaga AI tidak tersedia. Silakan hubungi administrator.
         one_click_idp_assistance_not_enabled: Bantuan IDP bertenaga AI tidak tersedia dengan paket Anda saat ini. Silakan hubungi administrator.
+        platform_assistant_already_exists: Hanya 1 asisten tipe %{type} yang diperbolehkan di platform.
       form:
         add_output_schema_key: Tambahkan Kunci Skema Keluaran
         dependencies: Ketergantungan
@@ -388,6 +390,13 @@ id:
         system_prompt: Prompt Sistem
         type: Jenis
         user_prompt: Permintaan Pengguna
+      revisions:
+        load: Muat ke formulir
+        name: Nama
+        system_prompt: Sistem Propmpt
+        title: Revisi AI Assistant
+        user_prompt: Permintaan Pengguna
+        version: Versi
       selector:
         choose_artifact: Pilih Artefak AI
         choose_schema_key: Pilih Kunci Skema
@@ -406,6 +415,12 @@ id:
       form:
         description: Deskripsi
         title: Kunci API
+    assessment_builder:
+      form:
+        display_label: Masukkan label tampilan
+        label_required: Label diperlukan
+        value: Nilai
+        value_required: Nilai diperlukan
     assessment_center:
       cancel_confirmation:
         message: Apakah Anda yakin ingin membuang progress formulir?
@@ -666,6 +681,7 @@ id:
         no_results: Tidak ada pertanyaan yang terjawab
         other_reports: Laporan Lainnya
         overall_scoring: Skor Keseluruhan
+        recordings: Rekaman
         refresh: Refresh
         reports: Laporan
         reports_count: "%{count} Laporan"
@@ -1015,6 +1031,10 @@ id:
           approvers: Pemberi persetujuan
           approvers_can_edit: Pemberi Persetujuan Dapat Mengedit
           approvers_not_required: Pemberi Persetujuan Tidak Diperlukan
+          digest_delivery_mode:
+            form_label: Mode Pengiriman Intisari
+            immediate: Segera - Kirim setiap kali ada pengiriman massal
+            scheduled: Terjadwal - Mengirim email ringkasan pada waktu yang dijadwalkan
           digest_frequency:
             daily: Harian
             form_label: Frekuensi Digest
@@ -1203,10 +1223,15 @@ id:
       client_features: Fitur Klien
       form:
         ai_assistants: Asisten AI
+        ai_assistants_disabled_by_client: Asisten AI dinonaktifkan oleh klien
         ai_assisted_idp: IDP yang Dibantu AI
+        ai_assisted_idp_requires_ai_assistants: IDP Berbantuan AI memerlukan fitur Asisten AI untuk diaktifkan
         global_skills: Keterampilan Global
+        global_skills_disabled_by_client: Keterampilan Global dinonaktifkan oleh klien
         idp: IDP
+        idp_disabled_by_client: IDP dinonaktifkan oleh klien
         sms_notification: Notifikasi SMS
+        sms_notification_disabled_by_client: Pemberitahuan SMS dinonaktifkan oleh klien
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1732,7 @@ id:
         update_button: Perbarui Terjemahan
       form:
         all: Semua
+        assessment_center_booking_summary: Ringkasan Pemesanan Pusat Penilaian
         assessment_completion_status_code: Kode Status Penyelesaian Penilaian
         assessment_completion_status_code_hint: Jika kode penyelesaian ditentukan, kode tersebut hanya akan dikirim jika penilaian pengguna memiliki kode status penyelesaian ini.
         body_mustache: |-
@@ -1726,6 +1752,8 @@ id:
         custom: Kustom
         delivery_at: Pengiriman di (GST)
         delivery_delay_hours: Penundaan pengiriman (jam)
+        delivery_end_date: Tanggal Akhir Pengiriman
+        delivery_frequency: Frekuensi Pengiriman
         delivery_interval: Interval Pengiriman
         delivery_interval_number: Nomor Interval Pengiriman
         delivery_interval_period: Periode Interval Pengiriman
@@ -1736,7 +1764,16 @@ id:
           not_started: Jika penilaian tidak dimulai
           send_now: Kirim sekarang
           specific_datetime: Kirim di
+        delivery_start_date: Tanggal Mulai Pengiriman
+        delivery_time_of_day: Waktu Pengiriman Hari
+        delivery_timezone: Zona Waktu Pengiriman
+        delivery_weekdays: Pengiriman Hari Kerja
         development_action_deadline_missed: Tenggat Waktu Aksi Pembangunan Terlewatkan
+        error_msgs:
+          delivery_end_date_after_start_date: harus setelah tanggal mulai
+          delivery_start_date_in_past: tidak bisa di masa lalu
+          delivery_time_in_past: tidak bisa di masa lalu
+          delivery_weekdays_required: harus memilih setidaknya satu hari kerja
         idp_deadline_missed: Batas Waktu IDP Terlewatkan
         idp_template_approved: IDP Disetujui
         idp_template_assigned: IDP Ditugaskan
@@ -1817,15 +1854,21 @@ id:
         client: 'Klien:'
         communication_type: 'Jenis komunikasi:'
         delivery_rule: 'Aturan pengiriman:'
+        end_date: 'Tanggal Berakhir:'
         every_interval: Setiap %{interval}
+        frequency: 'Frekuensi:'
         owner: 'Pemilik:'
         project: 'Proyek:'
         recipients: 'Penerima:'
         specific_datetime: 'Kirim di:'
+        start_date: 'Tanggal Mulai:'
         stop_reminder_datetime: Tanggal akhir untuk pengingat (GST)
         sub_campaign: 'Sub Kampanye:'
         subject: 'Subyek:'
+        time_of_day: 'Waktu:'
+        timezone: 'Zona waktu:'
         users: 'Pengguna:'
+        weekdays: 'Hari kerja:'
       sidebar:
         copy: Salin Komunikasi
         destroy: Hapus Komunikasi
@@ -1968,17 +2011,9 @@ id:
         details: Rincian File
         failure_msg: Kesalahan saat mengekspor terjemahan
         success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung. Silakan periksa status di notifikasi.
-        title: Ekspor
         translation_details: Rincian
-      export_actions:
-        development_action_translations_title: Ekspor Pengembangan Tindakan Terjemahan
-        development_actions_title: Aksi Pengembangan Ekspor
       export_development_action_translations: Terjemahan Tindakan Pengembangan
-      export_development_action_translations_project: Terjemahan Tindakan Pengembangan berdasarkan Proyek
       export_development_actions: Tindakan Pengembangan
-      export_development_actions_project: Tindakan Pengembangan Berdasarkan Proyek
-      export_global_development_actions: Aksi Pembangunan Global
-      export_global_development_actions_translations: Terjemahan Aksi Pembangunan Global
       form:
         available_languages: Bahasa yang Tersedia
         client_placeholder: Pilih Klien
@@ -2290,6 +2325,7 @@ id:
       enter_template_name_error: Nama template diperlukan
       errors:
         cannot_update_progress_plan_completed: Tidak dapat memperbarui kemajuan karena rencana IDP telah selesai
+        skills_required_on_publishing: Silakan pilih keterampilan sebelum menerbitkan template.
         update: Pembaruan tidak diizinkan karena templat IDP sudah dikaitkan dengan paket IDP pengguna. Perubahan tampilan telah disimpan.
       fields:
         assigned_data: Data yang Ditetapkan
@@ -2343,6 +2379,7 @@ id:
       self_rating: Aktifkan Peringkat Mandiri
       show_reflections: Tampilkan Refleksi
       skill_gap_report: Laporan Kesenjangan Keterampilan
+      skill_gap_report_ai_assistant: Asisten Analisis Laporan Kesenjangan Keterampilan
       skill_source_preference: Sumber Keterampilan
       skill_sources:
         from_ai: Dari Pengetahuan AI Umum
@@ -2988,8 +3025,11 @@ id:
           proficiency: Kemahiran Impor
           translations: Terjemahan Kemahiran Impor
         errors:
-          by_skill_exists: 'Baris %{row_number}: Tingkat Kecakapan ''by_skill'' sudah ada untuk proyek dan keterampilan ini'
+          by_skill_exists_id_missing: 'Baris %{row_number}: Tingkat kemahiran untuk keterampilan ''''%{name}'''' sudah ada. Harap berikan ID untuk memperbaruinya.'
           by_skill_missing: 'Baris %{row_number}: Proyek dan Keterampilan harus ada untuk jenis ''by_skill'''
+          by_skill_type_exists_id_missing: 'Baris %{row_number}: Tingkat kemahiran untuk jenis keterampilan ''''%{skill_type}'''' sudah ada. Harap berikan ID untuk memperbaruinya.'
+          default_global_exists_id_missing: 'Baris %{row_number}: Tingkat Kecakapan ''''default'''' tingkat global sudah ada. Harap berikan ID untuk memperbaruinya.'
+          default_project_exists_id_missing: 'Baris %{row_number}: Tingkat Kecakapan ''''default'''' tingkat proyek sudah ada. Harap berikan ID untuk memperbaruinya.'
           invalid_csv_format: 'Format CSV tidak valid: %{message}'
           invalid_proficiency_type: 'Baris %{row_number}: Tidak valid atau tidak ada ProficiencyType'
           invalid_skill_type: 'Baris %{row_number}: Jenis keterampilan yang tidak valid "%{skill_type}". Jenis yang valid adalah: %{valid_types}'
@@ -3028,6 +3068,8 @@ id:
       tools:
         workshop_status_export: Ekspor Status Bengkel
         workshop_status_export_success: Ekspor Status Lokakarya berhasil dijadwalkan.
+    project_features:
+      project_features: Fitur Proyek
     project_participants:
       cancel: Membatalkan
       column_actions: Tindakan
@@ -3450,6 +3492,9 @@ id:
         graph_value_condition_not_supported_msg: Kondisi Nilai Grafik tidak didukung untuk jenis grafik ini. Opsi ini saat ini hanya tersedia untuk jenis Grafik di bawah ini.
         graph_value_conditions_title: Kondisi nilai grafik
         if_graph_value_is: 'Jika Nilai Grafik adalah:'
+        job_roles:
+          current: Faktor Pekerjaan Saat Ini
+          target: Faktor Target Pekerjaan
         manage_graph_value_condition: Mengelola kondisi nilai grafik
         manage_styles_condition: Kelola kondisi gaya
         missing_value: Nilai yang hilang
@@ -3464,6 +3509,26 @@ id:
         prefixes:
           and: DAN
           or: ATAU
+        skill_type_label: Filter berdasarkan Jenis Keterampilan
+        skill_type_placeholder: Pilih jenis keterampilan
+        skill_types:
+          behavioral: Perilaku
+          other: Lain
+          qualification: Kualifikasi
+          technical: Teknis
+        table_options:
+          border: Batas
+          description: Deskripsi
+          header: Header
+          icons: Ikon
+          label: Label
+          name: Nama
+          rank: Pangkat
+          score: Skor
+          show_benchmark_score: Tampilkan skor benchmark
+          show_current_proficiency: Tampilkan Kemahiran Saat Ini
+          show_target_proficiency: Tampilkan Kemahiran Target
+          strengths_blindspots: Kekuatan & Titik Buta
         text_condition_type: 'Jenis Kondisi Teks:'
     report_families:
       create:
@@ -3699,6 +3764,7 @@ id:
       campaign_participants: Peserta kampanye
       columns:
         activity: Aktivitas
+        assessment_center_date_and_time: Tanggal dan waktu pusat penilaian
         assessor: Penilai
         assessors: Asesor
         attendance: Jumlah penonton

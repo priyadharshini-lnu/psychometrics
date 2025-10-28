@@ -62,11 +62,13 @@ const ReportTableCompnent: React.FC<Props> = ({
             )
               : <span className={styles.id}>{report.id}</span>
           )}
+          minWidth={100}
         />
         <Resource.Column<Report>
           id="disabled"
           title={I18n.t('common.column.active')}
           render={report => <ActiveSwitch report={report} />}
+          minWidth={100}
         />
         <Resource.Column<Report>
           title={I18n.t('common.column.icon')}
@@ -102,7 +104,6 @@ const ReportTableCompnent: React.FC<Props> = ({
           id="assessments_id"
           filteredValue={assessmentsFilteredValue}
           filterDropdown={AssessmentsFilterDropdown}
-          width={100}
           render={report => (
             <Avatar.Group max={{ count: 2 }}>
               {report.assessments.map(assessment => (
@@ -115,6 +116,7 @@ const ReportTableCompnent: React.FC<Props> = ({
               ))}
             </Avatar.Group>
           )}
+          minWidth={150}
         />
         <Resource.Column<Report>
           title={I18n.t('common.column.provider')}

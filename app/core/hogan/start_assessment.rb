@@ -8,6 +8,7 @@ module Hogan
       end
 
       transaction do
+        user_assessment.update!(started_at: Time.zone.now) if user_assessment.started_at.nil?
         user_assessment.in_progress!
         add_hogan_participant
         add_participant_assessment

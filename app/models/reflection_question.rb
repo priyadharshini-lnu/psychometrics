@@ -2,6 +2,7 @@
 
 class ReflectionQuestion < ApplicationRecord
   include Mobility
+
   translates :question
 
   belongs_to :project

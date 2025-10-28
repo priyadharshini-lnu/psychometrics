@@ -1,9 +1,8 @@
 import {
   Avatar, Badge, Button, Flex, Tooltip, Typography,
 } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
 import { UserIdpComment } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
-import { ArrowRightOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ArrowRightOutlined, CheckOutlined, UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { getUserName, formatDate } from './Utils'
 import { useCurrentUser } from '~/hooks/useCurrentUser'
 import styles from './Comments.less'

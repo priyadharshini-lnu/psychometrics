@@ -8,6 +8,8 @@ class AI::AssistedUserSession < ApplicationRecord
   belongs_to :assistable, polymorphic: true
   belongs_to :ai_assistant_chat, class_name: 'AI::AssistantChat'
 
+  has_many :messages, class_name: 'AI::AssistantRequest', through: :ai_assistant_chat
+
   enum :status, { default: 0, in_progress: 1, completed: 2, failed: 3 }
 
   validates :user, presence: true

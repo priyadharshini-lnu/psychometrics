@@ -907,6 +907,8 @@ ko:
     bulk_download_reports:
       content:
         title: 보고서 다운로드 링크
+      errors:
+        no_plans: 활성 IDP 플랜을 찾을 수 없습니다.
     close: 닫기
     details: 세부 정보
     errors: 오류
@@ -919,6 +921,14 @@ ko:
     super_admin:
       errors:
         data_processing_disabled: 데이터 처리가 비활성화됩니다.
+  ai:
+    errors:
+      bad_request_invalid_input: 잘못된 입력으로 인해 요청을 처리할 수 없습니다. 요청을 확인하고 다시 시도하십시오.
+      generic: 요청을 처리하는 동안 문제가 발생했습니다. 관리자에게 문의하십시오.
+      rate_limit_exceeded: 이 서비스는 현재 수요가 높습니다. 잠시 기다렸다가 다시 시도하십시오.
+      server_error: AI 서비스를 일시적으로 사용할 수 없습니다. 잠시 후에 다시 시도하십시오.
+      service_overloaded: 현재 AI 서비스가 과부하되었습니다. 잠시 기다렸다가 다시 시도하십시오.
+      service_unavailable: AI 서비스는 현재 유지 보수 중입니다. 나중에 다시 시도하십시오.
   anonym:
     close: 닫기
     continue: 계속하기
@@ -1173,6 +1183,7 @@ ko:
       assessments_and_reports: 평가 및 보고서
       idp: IDP
       manage: 관리
+      recordings: 녹음
       report_approval: 보고서 승인 설정
       sequencing: 시퀀싱
     report_approval:
@@ -1758,7 +1769,6 @@ ko:
       download: 다운로드
       edit: 편집
       export: 내보내기
-      filter: 필터
       filter_by_tags: 태그별로 필터링
       go_back: 돌아 가
       import: 가져오기
@@ -1888,7 +1898,6 @@ ko:
       download: 다운로드
       enabled: 사용
       file: 파일
-      global_import: 글로벌 가져오기란 무엇인가요?
       minutes: 분
       na: N/A
       none: 없음
@@ -2171,6 +2180,8 @@ ko:
       not_uniq_variable: 행 번호 %{value}에서 변수 '%{row}'이(가) 재정의되었습니다
       project_assessments:
         should_be_greater_than_zero: 결과 유효 기간은 0일 이상이어야 합니다
+      project_feature:
+        global_skills_not_enabled_on_client: 이 프로젝트에 대해 글로벌 스킬을 활성화하려면 클라이언트 세팅의 피처 플래그(Feature Flags) 에서 활성화하세요.
       report_approval_settings:
         report_exists: 이 보고서에 대한 보고서 승인 설정이 이미 존재합니다.
         validates_admins: 관리자는 캠페인에 액세스할 수 없습니다.
@@ -2240,6 +2251,8 @@ ko:
       body:
         error: 이메일 본문에 잘못된 파이펫 텍스트가 있습니다.
   errors:
+    ai_assistant:
+      max_generation_limit: 최대 생성 제한을 초과한 경우 관리자에게 문의하십시오.
     assessments:
       timed_out: 시간이 초과되었으므로 %{assessment_name} 평가에 응시할 수 없습니다.
     equal_to_current_password: 는 현재 비밀번호와 달라야 합니다.
@@ -2491,6 +2504,7 @@ ko:
       update_success: SMS 초대가 성공적으로 업데이트되었습니다
     sms_records:
       create_success: SMS 작업이 성공적으로 예약되었습니다
+    starting_in: 시작
     test_webhook:
       create_success: 웹훅 테스트 성공.
       success: 성공
@@ -2563,6 +2577,8 @@ ko:
       finishing:
         hint: 우리의 AI 비서가 당신을 위해 IDP 계획을 만들고 있습니다.
         title: 잠깐만 기다려주세요, 우리는 마법을 부리고 있습니다...
+      reset_chat: 채팅 재설정
+      reset_confirmation: 이 채팅을 버리고 새로 시작하시겠습니까?
       retake_steps:
         chat_hint: 어떤 정보를 더 제공하고 싶은지 알려주세요.
         chat_title: 더 많은 정보를 제공하고 싶으신가요?
@@ -2570,9 +2586,27 @@ ko:
         start_chat_again: 채팅 다시 시작
         upload_document: 문서 업로드
         upload_file: 파일 업로드
+      start_page:
+        ai_assisted:
+          button: AI 지원 IDP
+          description: 여러 단계로 AI와 함께 계획을 공동 생성하는 대화형 대화 기반 흐름입니다.
+          option_1: 더 개인화된 결과
+          option_2: 자기 성찰의 기회
+          option_3: 경력 전환에 더 적합
+          title: AI 지원 IDP
+        one_click:
+          button: 원클릭 AI IDP
+          description: AI는 데이터를 즉시 스캔하고 완전한 개발 계획을 생성하는 등 모든 힘든 작업을 수행합니다.
+          option_1: 가장 빠른 옵션(5분)
+          option_2: 바쁜 직장인에게 적합
+          option_3: 생성 후 완전히 편집 가능
+          title: 1-클릭 AI IDP
+        sub_title: 귀하의 경력 열망에 매핑되고 AI가 안내하는 맞춤형 기술 향상 조니를 만들어 봅시다
+        title: 개별 개발 계획 수립
       summary:
         chat_title: Chat Insight 요약
         file_title: 업로드된 문서 인사이트
+        gap_report_title: 기술 격차 보고서 분석
         hint: 그렇다면 IDP를 생성하지 않으면 답변을 다시 받을 수 있습니다.
         title: 결과에 만족하십니까?
         upload_file: 업로드된 파일
@@ -2621,6 +2655,7 @@ ko:
       add_development_actions_from_below_options: 아래 옵션에서 개발 작업을 추가합니다.
       add_development_actions_modal_title: "%{skillName}용 개발 작업 라이브러리"
       add_from_library: 라이브러리에서 추가
+      add_more: 더 많은 개발 작업 추가
       all: 모두
       approved: 승인됨
       board_view:
@@ -2635,6 +2670,7 @@ ko:
       custom: 관습
       custom_da_description: 고유한 개발 요구 사항을 해결하기 위해 사용자 지정 개발 작업을 만듭니다.
       date_range: 시작 날짜 - 종료 날짜
+      edit_da_progress: 개발 작업 진행률 편집
       edit_plan_to_add_development_actions: 계획을 편집하고 개발 작업을 추가합니다.
       enter_development_action_description: 개발 작업 설명 입력
       enter_development_action_title: 개발 작업 제목 입력
@@ -2673,6 +2709,8 @@ ko:
       success: 개발 작업이 성공적으로 완료되었습니다.
       write_here: 여기에 쓰기...
     direct_reportee_details: 직접 보고자 세부 정보
+    download:
+      description: 보고서를 다운로드하려면 <a href=''%{url}'' target=''_blank''>Download.</a> 링크는 10분 동안만 유효합니다.
     edit_plan: 계획 편집
     edit_plan_and_add_skills: 계획을 편집하고 스킬 관리를 클릭하여 스킬을 추가합니다.
     edit_progress: 진행 상황 편집
@@ -3029,7 +3067,7 @@ ko:
     users:
       account_disable: 활동이 없어 계정이 비활성화되었습니다
       warning: 활동이 없어 곧 계정이 비활성화됩니다
-  maintenance_message: 라이트하우스가 %{start_date}에 예정된 유지 관리를 위해 다운되며 %{duration}시간 동안 사용할 수 없습니다
+  maintenance_message: 등대는 %{start_date} 예정된 유지 보수를 위해 다운되며 %{duration} 동안 사용할 수 없습니다
   maintenance_submessage: 점검이 완료된 후 페이지를 새로고침하세요. 로그인 페이지로 리디렉션됩니다
   my: My
   myself: 내 자신

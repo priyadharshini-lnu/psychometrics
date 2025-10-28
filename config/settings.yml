@@ -40,6 +40,7 @@ platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
 generative_ai_service: <%= ENV.fetch('GENERATIVE_AI_SERVICE', 'azure_openai') %>
 cloud_functions_service: <%= ENV.fetch('CLOUD_FUNCTION_SERVICE', 'aws') %>
 timezone_tip: ' (GST)'
+skip_recaptcha_for_ips: <%= ENV.fetch('SKIP_RECAPTCHA_FOR_IPS', '').split(',').map(&:strip) %>
 react_dev:
   reports: false
   assessments: false
@@ -1101,6 +1102,7 @@ providers:
           - 53750F89-D185-4A0A-B6F4-C4676F50AC48
           - 11409F66-8129-4451-BD3F-909E4D66F779
           - F23AB95C-492A-44C9-A601-39C1B2B1E1E8
+          - C7F53313-B80F-4C24-B5ED-EA5EF7D27E65
         report_ids:
           - 0FB7FC8B-9E26-4FB7-AAA3-27CB1CFC5C10
           - 65789477-C495-4AFE-9087-1A9402E8BF5C
@@ -1167,6 +1169,7 @@ providers:
           - D290BBB1-85D7-4F02-9F92-EF721AADDB4B
           - 01D900C6-C2E4-4893-8059-F3CA3E91177B
           - 99DA0D59-D2F8-4FB1-958C-F75D3FE74356
+          - E44BE7FD-636E-4CCE-8EB3-F3720A4B4DC4
         report_ids:
           - 2D3459D6-BC5C-4F15-82B7-8AD312A7CF46
       - id: DF3FE097-4394-4BEF-8ABC-EAF36B0FBE0E
@@ -1321,6 +1324,7 @@ providers:
           - A0D314F2-C9FC-4400-A322-FBF77781B789
           - D3B327C6-EEB7-4CDE-AD40-FC45896E3DDA
           - C5C50E25-7610-4703-A46D-FD4A3E628545
+          - 5FC302E6-953B-44F7-B78B-B78C1325E433
 
         report_ids:
           - 0B623B16-D4CC-4992-B560-7584348D49E8
@@ -2159,9 +2163,15 @@ providers:
       - id: A0D314F2-C9FC-4400-A322-FBF77781B789
         name: Individual Contributors (US, IA, 2021)
       - id: D3B327C6-EEB7-4CDE-AD40-FC45896E3DDA
-        name: Senior Managers &amp; Executives (UK, IA, 2017)
+        name: Senior Managers & Executives (UK, IA, 2017)
       - id: C5C50E25-7610-4703-A46D-FD4A3E628545
         name: Graduates (UK, IA, 2009)
+      - id: E44BE7FD-636E-4CCE-8EB3-F3720A4B4DC4
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Professionals & Managers(AUS,IA,2021)
+      - id: C7F53313-B80F-4C24-B5ED-EA5EF7D27E65
+        name: Wave Professional Styles V4 - Professionals & Managers(AUS,IA,2021)
+      - id: 5FC302E6-953B-44F7-B78B-B78C1325E433
+        name: Wave Professional Styles V4 - SeniorManagers & Executives(AUS,IA,2021)
 
     reports:
       - id: 2D96B504-98BD-4872-BD03-F93493CEFA21
@@ -2319,6 +2329,13 @@ ai_providers:
       openai_api_key: <%= ENV.fetch('AZURE_OPENAI_API_KEY', nil) %>
       openai_api_base: <%= ENV.fetch('AZURE_OPENAI_API_BASE_ENDPOINT', nil) %>
 available_ai_providers: <%= ENV.fetch('AVAILABLE_AI_PROVIDERS', nil) %>
+
+ai_embedding_provider:
+  provider: <%= ENV.fetch('EMBEDDING_PROVIDER', 'azure_openai') %>
+  model: <%= ENV.fetch('EMBEDDING_MODEL', 'text-embedding-3-large') %>
+  api_key: <%= ENV.fetch('EMBEDDING_API_KEY', nil) %>
+  api_endpoint: <%= ENV.fetch('EMBEDDING_API_ENDPOINT', nil) %>
+
 
 # Default SMTP throttling limits used when a project has no SMTP setting
 smtp_default:

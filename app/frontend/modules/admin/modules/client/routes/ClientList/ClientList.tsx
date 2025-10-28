@@ -86,6 +86,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
         scroll={{ x: 'max-content' }}
         loading={tableLoading}
         onChange={handleTableChange}
+        sticky={{ offsetHeader: 50 }}
       >
         <Column
           title={I18n.t('common.column.id')}
@@ -94,6 +95,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
           fixed={windowWidth > 800 ? 'left' : undefined}
           sorter
           sortOrder={getSortOrder('id')}
+          width={100}
         />
         <Column
           title={I18n.t('common.column.name')}
@@ -104,17 +106,20 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
           render={({ name, id }) => (
             <Link to={`/admin/clients/${id}/projects`}>{name}</Link>
           )}
+          minWidth={300}
         />
         <Column
           title={I18n.t('administration.clients.columns.type')}
           dataIndex="type"
           render={(_, client: Client) => I18n.t(`activerecord.attributes.client.types.${client.type}`)}
           key="type"
+          minWidth={100}
         />
         <Column
           title={I18n.t('administration.clients.columns.country')}
           dataIndex="country"
           key="county"
+          minWidth={100}
         />
         <Column
           title={I18n.t('administration.clients.columns.year')}
@@ -122,11 +127,13 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
           key="year"
           sorter
           sortOrder={getSortOrder('year')}
+          minWidth={100}
         />
         <Column
           title={I18n.t('administration.clients.columns.project_manager')}
           dataIndex={['projectManager', 'name']}
           key="project_manager"
+          minWidth={150}
         />
         <Column
           title={I18n.t('common.column.action')}
@@ -147,6 +154,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
               }
             />
           )}
+          width={100}
         />
       </Table>
       <Pagination

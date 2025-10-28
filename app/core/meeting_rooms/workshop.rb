@@ -36,7 +36,7 @@ module MeetingRooms
     end
 
     def assessment_center_date_and_time
-      workshop.formatted_start_time
+      workshop.start_time
     end
   end
 end

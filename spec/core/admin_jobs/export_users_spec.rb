@@ -29,6 +29,8 @@ RSpec.describe AdminJobs::ExportUsers, type: :job do
       'Schedule end date',
       'Created Date',
       'Manager email',
+      'Current job role',
+      'Target job role',
       'age',
       'gender',
       'locale'
@@ -53,6 +55,8 @@ RSpec.describe AdminJobs::ExportUsers, type: :job do
       campaign_user.schedule_end_date,
       user.decorate.created_at,
       user.manager_email,
+      nil,
+      nil,
       '1',
       'female',
       'MyString'

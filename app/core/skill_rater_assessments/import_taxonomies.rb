@@ -4,13 +4,14 @@ module SkillRaterAssessments
   class ImportTaxonomies < BaseCommand
     include HelperMethods
 
-    attr_reader :file_path, :project
+    attr_reader :file_path, :project, :imported_skill_ids
 
     FIRST_DATA_ROW = 2
 
     def initialize(file_path:, project:)
       @file_path = file_path
       @project = project
+      @imported_skill_ids = []
     end
 
     def call
@@ -21,6 +22,7 @@ module SkillRaterAssessments
         import_job_role_skills
         import_global_proficiency_levels if project.present?
       end
+      broadcast(:ok, imported_skill_ids)
     end
 
     private
@@ -90,12 +92,14 @@ module SkillRaterAssessments
         skill_definition = row[find_header_index(skill_headers, 'Skill Definition')]
         skill_type = row[find_header_index(skill_headers, 'Skill Type')]
 
-        find_or_create_skill(
+        skill = find_or_create_skill(
           skill_name,
           skill_definition,
           skill_type,
           skill_group
         )
+
+        imported_skill_ids << skill.id
       end
     end
 

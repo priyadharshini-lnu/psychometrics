@@ -1,5 +1,5 @@
 import React, {
-  useMemo, useState, useEffect, useRef,
+  useMemo, useState, useEffect, useRef, useContext,
 } from 'react'
 import type { CollapseProps } from 'antd'
 import cs from 'classnames'
@@ -13,17 +13,8 @@ import {
   Dropdown,
   MenuProps,
   Spin,
-  Pagination,
+  Pagination, Tag, Badge,
 } from 'antd'
-import {
-  CheckOutlined,
-  CloseOutlined,
-  PlusOutlined,
-  ArrowUpOutlined,
-  ArrowDownOutlined,
-  MoreOutlined,
-  DeleteOutlined,
-} from '@ant-design/icons'
 
 import { UserIdpComment } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import styles from './Comments.less'
@@ -32,6 +23,19 @@ import { useFilters } from './useFilters'
 import { CustomSender } from './CustomSender'
 import { CommentItemHeader } from './CommentItemHeader'
 import { CommentItemContent } from './CommentItemContent'
+import {
+  CheckOutlined,
+  CloseOutlined,
+  PlusOutlined,
+  ArrowUpOutlined,
+  ArrowDownOutlined,
+  FilterOutlined,
+  DeleteOutlined,
+  FilterFilled,
+} from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  MediaQueryContext,
+} from '~/glint'
 
 const { I18n } = window
 
@@ -44,6 +48,7 @@ export interface CommentsProps {
   onUnresolveComment: (commentId: string) => void
   onScrollToSkill?: (resourceId: string) => void
   onClose?: () => void
+  onTagClear?: () => void
   onCollapseChange?: (commentId: string) => void
   onFetchComments: (filters: Filters, pagination: PaginationParams) => void
   title?: string
@@ -56,6 +61,7 @@ export interface CommentsProps {
   openFirstComment?: boolean
   keyPrefix?: string
   pageSize?: number
+  filteredSkillId?: string
 }
 
 export const Comments: React.FC<CommentsProps> = ({
@@ -79,20 +85,28 @@ export const Comments: React.FC<CommentsProps> = ({
   openFirstComment = false,
   keyPrefix,
   pageSize = 20,
+  onTagClear,
+  filteredSkillId,
 }) => {
   const [showAddComment, setShowAddComment] = useState(false)
   const [comment, setComment] = useState('')
   const [reply, setReply] = useState('')
-  const { filters, handleMenuClick } = useFilters()
+  const { filters, handleMenuClick, resetFilters } = useFilters()
   const [currentPage, setCurrentPage] = useState(1)
   const scrollableAreaRef = useRef<HTMLDivElement>(null)
 
   const showPagination = useMemo(() => totalCount && totalCount > pageSize, [totalCount, pageSize])
 
+  const { isTablet } = useContext(MediaQueryContext)
+
   useEffect(() => {
     onFetchComments(filters, { page: 1, pageSize })
     setCurrentPage(1)
   }, [filters, pageSize])
+
+  useEffect(() => {
+    resetFilters()
+  }, [filteredSkillId])
 
   const handleAddCommentClick = () => {
     setShowAddComment(true)
@@ -219,7 +233,9 @@ export const Comments: React.FC<CommentsProps> = ({
       key: keyPrefix ? `${keyPrefix}-${comment.id}` : comment.id,
       label: commentHeader,
       children: commentContent,
-      className: cs(styles.commentItem, comment.resolvedAt ? styles.commentItemResolved : styles.commentItemUnresolved),
+      className: cs(
+        styles.commentItem, comment.resolvedAt ? styles.commentItemResolved : styles.commentItemUnresolved,
+      ),
       showArrow: false,
       styles: {
         header: {
@@ -235,7 +251,7 @@ export const Comments: React.FC<CommentsProps> = ({
   return (
     <Flex
       vertical
-      className={`${styles.comments_container} ${className || ''}`}
+      className={`${styles.commentsContainer} ${className || ''}`}
       style={style}
     >
       <div className={styles.header}>
@@ -245,16 +261,19 @@ export const Comments: React.FC<CommentsProps> = ({
               <Typography.Title level={5} className={`${styles.headerTitle} m-0`}>
                 {title}
               </Typography.Title>
-              {totalCount && totalCount > 0 && (
+              {totalCount && totalCount > 0 ? (
                 <Typography.Text type="secondary" className={styles.headerTitleCount}>
                   { `(${totalCount})`}
                 </Typography.Text>
-              )}
+              ) : null}
             </Flex>
             {subtitle && (
-              <Typography.Text type="secondary" className={styles.headerSubtitle}>
-                {subtitle}
-              </Typography.Text>
+              isTablet ? <Typography.Text type="secondary">{subtitle}</Typography.Text>
+                : (
+                  <Tag closeIcon onClose={onTagClear} className={styles.headerSubtitle}>
+                    {subtitle}
+                  </Tag>
+                )
             )}
           </Flex>
 
@@ -279,7 +298,11 @@ export const Comments: React.FC<CommentsProps> = ({
                 <Button
                   type="text"
                   size="small"
-                  icon={<MoreOutlined />}
+                  icon={Object.keys(filters).length > 2 ? (
+                    <Badge dot>
+                      <FilterFilled />
+                    </Badge>
+                  ) : <FilterOutlined />}
                   style={{ fontSize: '1.125rem' }}
                 />
               </Tooltip>
@@ -346,7 +369,7 @@ export const Comments: React.FC<CommentsProps> = ({
                   accordion
                   onChange={handleCollapseChange}
                   items={collapseItems}
-                  style={{ backgroundColor: 'transparent' }}
+                  style={{ backgroundColor: 'transparent', height: '100%' }}
                   defaultActiveKey={openFirstComment ? `${keyPrefix}-${comments[0]?.id}` : undefined}
                 />
               )}

@@ -6,7 +6,12 @@ export { type default as ScoringByQuestion } from './ScoringByQuestion'
 export { type default as QuestionScoringObject } from './QuestionScoringObject'
 export { type default as EmbeddedData } from './EmbeddedData'
 export { type default as UsersScoring } from './UsersScoring'
-export { type default as TopFactor, TopFactorType } from './TopFactor'
+export {
+  type default as TopFactor,
+  TopFactorType,
+  type JobRole,
+  type JobRoles,
+} from './TopFactor'
 export { type default as AverageFactor } from './AverageFactor'
 export { type default as OccupationFactor } from './OccupationFactor'
 export { type default as UserReportData } from './UserReportData'

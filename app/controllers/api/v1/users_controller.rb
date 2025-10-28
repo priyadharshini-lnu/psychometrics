@@ -126,7 +126,7 @@ module Api
       end
 
       def user_params
-        params.require(:user).permit(:email, :first_name, :last_name, :password)
+        params.expect(user: %i[email first_name last_name password])
       end
 
       def search_params

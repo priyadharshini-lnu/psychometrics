@@ -21,7 +21,11 @@ const { I18n } = window
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-interface OwnProps { campaignId: string, status: boolean[] }
+interface OwnProps {
+  campaignId: string,
+  status: boolean[],
+  selectedDataSheetColumns: Record<string, (string | number | null)[]>
+}
 type Props = PropsFromRedux & OwnProps
 
 const connector = connect((state: RootState) => ({
@@ -36,14 +40,16 @@ const DEFAULT_RANGE: [dayjs.Dayjs, dayjs.Dayjs] = [
 ]
 
 const TimeseriesComponent: React.FC<Props> = ({
-  timeseries, status, fetchTimeseries, campaignId, timezone,
+  timeseries, status, fetchTimeseries, campaignId, timezone, selectedDataSheetColumns,
 }) => {
   const [range, setRange] = useState<[dayjs.Dayjs, dayjs.Dayjs]>(DEFAULT_RANGE)
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
   useEffect(() => {
-    if (range[0] && range[1]) fetchTimeseries(campaignId, range as [dayjs.Dayjs, dayjs.Dayjs], status)
-  }, [range, timezone, status])
+    if (range[0] && range[1]) {
+      fetchTimeseries(campaignId, range as [dayjs.Dayjs, dayjs.Dayjs], status, selectedDataSheetColumns)
+    }
+  }, [range, timezone, status, selectedDataSheetColumns])
   useEffect(() => {
     const start = dayjs().tz(timezone).subtract(1, 'week').startOf('week') as unknown as dayjs.Dayjs
     const end = dayjs().tz(timezone).subtract(1, 'week').endOf('week') as unknown as dayjs.Dayjs

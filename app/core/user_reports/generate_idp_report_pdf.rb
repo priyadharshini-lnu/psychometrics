@@ -57,7 +57,7 @@ module UserReports
 
     def report_file_name
       @report_file_name ||=
-        "#{user.email}_idp_report#{options[:include_reflective_questions] ? '_rq' : ''}.pdf"
+        "#{user.email}_idp_report#{'_rq' if options[:include_reflective_questions]}.pdf"
     end
 
     def report_directory

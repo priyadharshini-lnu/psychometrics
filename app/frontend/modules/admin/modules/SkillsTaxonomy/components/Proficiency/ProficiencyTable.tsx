@@ -99,6 +99,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
             .map(([key, value]) => ({ text: key, value }))
         }
         filteredValue={resource.getFilteredValue('proficiency_type_in') as string[]}
+        width={200}
       />
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('administration.proficiency_levels.fields.skill_name')}
@@ -109,6 +110,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
           </div>
         )}
         sorter
+        width={300}
       />
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('administration.proficiency_levels.fields.skill_type')}
@@ -122,6 +124,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
             }
           </Typography.Text>
         )}
+        width={200}
         sorter
         filters={
           Object.values(convertEnumToObject(SkillTypeEnum))

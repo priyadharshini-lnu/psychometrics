@@ -3,6 +3,7 @@
 module Administration
   class ReportsController < Administration::BaseController
     include Archivable
+
     skip_before_action :enforce_geo_restriction
     # Turn off normally auth
     skip_before_action :authenticate_user!

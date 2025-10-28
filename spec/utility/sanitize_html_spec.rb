@@ -7,6 +7,6 @@ RSpec.describe Utility::SanitizeHtml do
 
   it 'sanitizes html' do
     sanitized_html = described_class.process(html)
-    expect(sanitized_html).to eq("<div>\n<b>Bold Text</b>(\"XSS\")\n</div>")
+    expect(sanitized_html).to eq('<div><b>Bold Text</b>("XSS")</div>')
   end
 end

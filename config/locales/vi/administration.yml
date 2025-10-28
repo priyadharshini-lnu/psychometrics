@@ -369,7 +369,9 @@ vi:
       created_successfully: Trợ lý AI đã được tạo thành công.
       errors:
         cannot_delete_in_use: Không thể xóa AI Assistant '%{name}' vì nó đang được sử dụng.
+        development_actions_assistance_not_enabled: Không có khả năng tạo hành động phát triển do AI cung cấp. Vui lòng liên hệ với quản trị viên.
         one_click_idp_assistance_not_enabled: Hỗ trợ IDP do AI cung cấp không khả dụng với gói hiện tại của bạn. Vui lòng liên hệ với quản trị viên.
+        platform_assistant_already_exists: Chỉ có 1 trợ lý loại %{type} được phép trên nền tảng.
       form:
         add_output_schema_key: Thêm khóa lược đồ đầu ra
         dependencies: Phụ thuộc
@@ -388,6 +390,13 @@ vi:
         system_prompt: Nhắc nhở hệ thống
         type: Loại
         user_prompt: Nhắc nhở người dùng
+      revisions:
+        load: Tải vào biểu mẫu
+        name: Tên
+        system_prompt: Hệ thống Propmpt
+        title: Các bản sửa đổi của Trợ lý AI
+        user_prompt: Lời nhắc người dùng
+        version: Phiên bản
       selector:
         choose_artifact: Chọn AI Artifact
         choose_schema_key: Chọn Schema Key
@@ -406,6 +415,12 @@ vi:
       form:
         description: Sự miêu tả
         title: Khóa API
+    assessment_builder:
+      form:
+        display_label: Nhập nhãn hiển thị
+        label_required: Nhãn là bắt buộc
+        value: Giá trị
+        value_required: Giá trị là bắt buộc
     assessment_center:
       cancel_confirmation:
         message: Bạn có chắc chắn muốn loại bỏ tiến trình biểu mẫu không?
@@ -666,6 +681,7 @@ vi:
         no_results: Không có bất kỳ câu hỏi nào được trả lời
         other_reports: Các báo cáo khác
         overall_scoring: Điểm tổng thể
+        recordings: Ghi
         refresh: Làm tươi
         reports: Báo cáo
         reports_count: "%{count} báo cáo"
@@ -1015,6 +1031,10 @@ vi:
           approvers: Người phê duyệt
           approvers_can_edit: Người phê duyệt có thể chỉnh sửa
           approvers_not_required: Không yêu cầu người phê duyệt
+          digest_delivery_mode:
+            form_label: Chế độ phân phối thông báo
+            immediate: Ngay lập tức - Gửi bất cứ khi nào có gửi hàng loạt
+            scheduled: Đã lên lịch - Gửi email thông báo vào thời gian đã lên lịch
           digest_frequency:
             daily: Nhật báo
             form_label: Tần số tiêu hóa
@@ -1203,10 +1223,15 @@ vi:
       client_features: Tính năng khách hàng
       form:
         ai_assistants: Trợ lý AI
+        ai_assistants_disabled_by_client: Trợ lý AI bị vô hiệu hóa bởi khách hàng
         ai_assisted_idp: IDP hỗ trợ AI
+        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP yêu cầu bật tính năng Trợ lý AI
         global_skills: Kỹ năng toàn cầu
+        global_skills_disabled_by_client: Kỹ năng toàn cầu bị vô hiệu hóa bởi khách hàng
         idp: IDP
+        idp_disabled_by_client: IDP bị vô hiệu hóa bởi khách hàng
         sms_notification: Thông báo SMS
+        sms_notification_disabled_by_client: Thông báo SMS bị vô hiệu hóa bởi khách hàng
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1707,6 +1732,7 @@ vi:
         update_button: Cập nhật bản dịch
       form:
         all: Tất cả
+        assessment_center_booking_summary: Tóm tắt đặt chỗ của Trung tâm Đánh giá
         assessment_completion_status_code: Mã trạng thái hoàn thành đánh giá
         assessment_completion_status_code_hint: Nếu mã hoàn thành được chỉ định, mã đó sẽ chỉ được gửi nếu bài đánh giá của người dùng có mã trạng thái hoàn thành này.
         body_mustache: |-
@@ -1726,6 +1752,8 @@ vi:
         custom: Tùy chỉnh
         delivery_at: Giao hàng tại (GST)
         delivery_delay_hours: Giao hàng chậm trễ (giờ)
+        delivery_end_date: Ngày kết thúc giao hàng
+        delivery_frequency: Tần suất giao hàng
         delivery_interval: Thời gian giao hàng
         delivery_interval_number: Số khoảng thời gian giao hàng
         delivery_interval_period: Thời gian giao hàng
@@ -1736,7 +1764,16 @@ vi:
           not_started: Nếu đánh giá không được bắt đầu
           send_now: Gửi ngay
           specific_datetime: Gửi tại
+        delivery_start_date: Ngày bắt đầu giao hàng
+        delivery_time_of_day: Thời gian giao hàng trong ngày
+        delivery_timezone: Múi giờ giao hàng
+        delivery_weekdays: Giao hàng ngày trong tuần
         development_action_deadline_missed: Thời hạn hành động phát triển bị bỏ lỡ
+        error_msgs:
+          delivery_end_date_after_start_date: Phải sau ngày bắt đầu
+          delivery_start_date_in_past: không thể là quá khứ
+          delivery_time_in_past: không thể là quá khứ
+          delivery_weekdays_required: phải chọn ít nhất một ngày trong tuần
         idp_deadline_missed: Hạn chót IDP bị bỏ lỡ
         idp_template_approved: IDP đã được phê duyệt
         idp_template_assigned: IDP được chỉ định
@@ -1817,15 +1854,21 @@ vi:
         client: 'Khách hàng:'
         communication_type: 'Loại giao tiếp:'
         delivery_rule: 'Quy tắc giao hàng:'
+        end_date: 'Ngày kết thúc:'
         every_interval: Mỗi %{interval}
+        frequency: 'Tần số:'
         owner: 'Chủ nhân:'
         project: 'Dự án:'
         recipients: 'Nhận:'
         specific_datetime: 'Gửi tại:'
+        start_date: 'Ngày bắt đầu:'
         stop_reminder_datetime: Ngày kết thúc lời nhắc (GST)
         sub_campaign: 'Chiến dịch phụ:'
         subject: 'Chủ đề:'
+        time_of_day: 'Thời gian trong ngày:'
+        timezone: 'Múi giờ:'
         users: 'Người dùng:'
+        weekdays: 'Các ngày trong tuần:'
       sidebar:
         copy: Sao chép thông tin liên lạc
         destroy: Xóa thông tin liên lạc
@@ -1968,17 +2011,9 @@ vi:
         details: Chi tiết tệp
         failure_msg: Lỗi khi xuất bản dịch
         success_msg: Xuất các hành động phát triển đang được tiến hành. Vui lòng kiểm tra trạng thái trong thông báo.
-        title: Xuất khẩu
         translation_details: Chi tiết
-      export_actions:
-        development_action_translations_title: Bản dịch hành động phát triển xuất khẩu
-        development_actions_title: Hành động phát triển xuất khẩu
       export_development_action_translations: Bản dịch hành động phát triển
-      export_development_action_translations_project: Bản dịch hành động phát triển dựa trên dự án
       export_development_actions: Hành động phát triển
-      export_development_actions_project: Hành động phát triển dựa trên dự án
-      export_global_development_actions: Hành động phát triển toàn cầu
-      export_global_development_actions_translations: Bản dịch Hành động Phát triển Toàn cầu
       form:
         available_languages: Ngôn ngữ có sẵn
         client_placeholder: Chọn một khách hàng
@@ -2290,6 +2325,7 @@ vi:
       enter_template_name_error: Tên mẫu là bắt buộc
       errors:
         cannot_update_progress_plan_completed: Không thể cập nhật tiến độ vì kế hoạch IDP đã hoàn thành.
+        skills_required_on_publishing: Vui lòng chọn kỹ năng trước khi xuất bản mẫu.
         update: Không được phép cập nhật vì mẫu IDP đã được liên kết với gói IDP của người dùng. Các thay đổi về ngoại hình đã được lưu.
       fields:
         assigned_data: Dữ liệu được chỉ định
@@ -2343,6 +2379,7 @@ vi:
       self_rating: Bật tự đánh giá
       show_reflections: Hiển thị phản chiếu
       skill_gap_report: Báo cáo khoảng cách kỹ năng
+      skill_gap_report_ai_assistant: Trợ lý phân tích báo cáo khoảng cách kỹ năng
       skill_source_preference: Nguồn kỹ năng
       skill_sources:
         from_ai: Từ kiến thức AI chung
@@ -2988,8 +3025,11 @@ vi:
           proficiency: Thành thạo nhập khẩu
           translations: Bản dịch thành thạo nhập khẩu
         errors:
-          by_skill_exists: 'Hàng %{row_number}: Mức độ thông thạo ''by_skill'' đã tồn tại cho dự án và kỹ năng này'
+          by_skill_exists_id_missing: 'Hàng %{row_number}: Mức độ thành thạo cho kỹ năng ''''%{name}'''' đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
           by_skill_missing: 'Hàng %{row_number}: Dự án và Kỹ năng phải có đối với loại ''by_skill'''
+          by_skill_type_exists_id_missing: 'Hàng %{row_number}: Mức độ thành thạo cho loại kỹ năng ''''%{skill_type}'''' đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
+          default_global_exists_id_missing: 'Hàng %{row_number}: ProficiencyLevel "mặc định" cấp toàn cầu đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
+          default_project_exists_id_missing: 'Hàng %{row_number}: ProficiencyLevel "mặc định" cấp dự án đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
           invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
           invalid_proficiency_type: 'Hàng %{row_number}: Không hợp lệ hoặc thiếu ProficiencyType'
           invalid_skill_type: 'Dòng %{row_number}: Loại kỹ năng không hợp lệ "%{skill_type}". Các loại hợp lệ là: %{valid_types}'
@@ -3028,6 +3068,8 @@ vi:
       tools:
         workshop_status_export: Xuất trạng thái xưởng
         workshop_status_export_success: Xuất trạng thái xưởng đã được lên lịch thành công.
+    project_features:
+      project_features: Tính năng dự án
     project_participants:
       cancel: Hủy
       column_actions: Hành động
@@ -3450,6 +3492,9 @@ vi:
         graph_value_condition_not_supported_msg: Điều kiện giá trị đồ thị không được hỗ trợ cho loại biểu đồ này. Tùy chọn này hiện chỉ khả dụng cho các loại Đồ thị bên dưới.
         graph_value_conditions_title: Điều kiện giá trị đồ thị
         if_graph_value_is: 'Nếu Giá trị đồ thị là:'
+        job_roles:
+          current: Các yếu tố công việc hiện tại
+          target: Các yếu tố công việc mục tiêu
         manage_graph_value_condition: Quản lý điều kiện giá trị đồ thị
         manage_styles_condition: Quản lý điều kiện kiểu
         missing_value: Giá trị bị thiếu
@@ -3464,6 +3509,26 @@ vi:
         prefixes:
           and: VÀ
           or: HOẶC
+        skill_type_label: Lọc theo loại kỹ năng
+        skill_type_placeholder: Chọn loại kỹ năng
+        skill_types:
+          behavioral: Hành vi
+          other: Khác
+          qualification: Trình độ chuyên môn
+          technical: Kỹ thuật
+        table_options:
+          border: Biên giới
+          description: Sự miêu tả
+          header: Tiêu đề
+          icons: Biểu tượng
+          label: Nhãn
+          name: Tên
+          rank: Cấp
+          score: Điểm
+          show_benchmark_score: Hiển thị điểm chuẩn
+          show_current_proficiency: Thể hiện trình độ hiện tại
+          show_target_proficiency: Thể hiện trình độ mục tiêu
+          strengths_blindspots: Điểm mạnh & Điểm mù
         text_condition_type: 'Loại điều kiện văn bản:'
     report_families:
       create:
@@ -3699,6 +3764,7 @@ vi:
       campaign_participants: Người tham gia chiến dịch
       columns:
         activity: Hoạt động
+        assessment_center_date_and_time: Ngày giờ của trung tâm đánh giá
         assessor: Giám định viên
         assessors: Đánh giá viên
         attendance: Tham dự

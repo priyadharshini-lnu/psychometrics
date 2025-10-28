@@ -34,9 +34,8 @@ const TYPE_ICONS = {
 export const Skill = ({ skill, developmentActions }) => {
   const das = _.groupBy(developmentActions, da => da.learning_style)
   const I18n = useI18n()
-
   return (
-    <div className={styles.skill}>
+    <div className={styles.skill} data-skill-id={skill.id}>
       <Flex vertical gap={16}>
         <Flex className={styles.header} justify="space-between" align="center">
           <h2 className={styles.title}>
@@ -67,10 +66,11 @@ const DevelopmentAction = ({ developmentAction }) => {
   const customIcon = TYPE_ICONS[developmentAction.source_type]
 
   return (
-    <Flex className={styles.developAction} align="center">
+    <Flex className={styles.developAction} align="center" data-development-action-id={developmentAction.id}>
+
       <div className={cs(styles.description)} style={{ borderColor: color }}>
-        {developmentAction.source_type === DevelopmentActionSourceType.AI_GENERATED
-          ? developmentAction.description : developmentAction.name}
+        <div className={styles.name}>{developmentAction.name}</div>
+        {developmentAction.description}
       </div>
 
       <Flex vertical flex={1} gap={8}>
@@ -78,12 +78,18 @@ const DevelopmentAction = ({ developmentAction }) => {
           <div className={styles.date}>
             {I18n.t('idp.pdf.idp.start_date')}
             {' '}
-            <strong>{dayjs(developmentAction.start_date_time).format('DD MMM YYYY')}</strong>
+            {developmentAction.start_date_time
+              ? <strong>{dayjs(developmentAction.start_date_time).format('DD MMM YYYY')}</strong>
+              : null
+            }
           </div>
           <div className={styles.date}>
             {I18n.t('idp.pdf.idp.end_date')}
             {' '}
-            <strong>{dayjs(developmentAction.end_date_time).format('DD MMM YYYY')}</strong>
+            {developmentAction.end_date_time
+              ? <strong>{dayjs(developmentAction.end_date_time).format('DD MMM YYYY')}</strong>
+              : null
+            }
           </div>
         </Flex>
         <Flex gap={12} align="center">

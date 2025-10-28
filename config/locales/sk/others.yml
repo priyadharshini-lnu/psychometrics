@@ -907,6 +907,8 @@ sk:
     bulk_download_reports:
       content:
         title: Odkazy na stiahnutie prehľadov
+      errors:
+        no_plans: Nenašli sa žiadne aktívne plány IDP
     close: Zavrieť
     details: Detaily
     errors: Chyby
@@ -919,6 +921,14 @@ sk:
     super_admin:
       errors:
         data_processing_disabled: Spracovanie údajov je zakázané.
+  ai:
+    errors:
+      bad_request_invalid_input: Vašu žiadosť nebolo možné spracovať z dôvodu neplatného zadania. Skontrolujte svoju žiadosť a skúste to znova.
+      generic: Pri spracovaní vašej žiadosti sa vyskytla chyba. Obráťte sa na svojho správcu.
+      rate_limit_exceeded: Služba je v súčasnosti veľmi žiadaná. Počkajte chvíľu a skúste to znova.
+      server_error: Služba AI je dočasne nedostupná. Skúste to znova o chvíľu.
+      service_overloaded: Služba AI je momentálne preťažená. Počkajte chvíľu a skúste to znova.
+      service_unavailable: Služba AI je momentálne v údržbe. Skúste to znova neskôr.
   anonym:
     close: Zatvoriť
     continue: Pokračovať
@@ -1173,6 +1183,7 @@ sk:
       assessments_and_reports: Hodnotenia a správy
       idp: IDP
       manage: Ovládať
+      recordings: Nahrávky
       report_approval: Nastavenia schválenia zostavy
       sequencing: Sekvencovaní
     report_approval:
@@ -1758,7 +1769,6 @@ sk:
       download: Stiahnuť
       edit: Upraviť
       export: Vývoz
-      filter: Filter
       filter_by_tags: Filtrovať podľa značiek
       go_back: Vráť sa
       import: Import
@@ -1888,7 +1898,6 @@ sk:
       download: Stiahnite si
       enabled: Povolené
       file: Súbor
-      global_import: Je globálny dovoz?
       minutes: Zápis
       na: NEUPLATŇUJE SA
       none: Žiadny
@@ -2188,6 +2197,8 @@ sk:
       not_uniq_variable: premenná '%{value}' predefinovaná na linke číslo %{row}
       project_assessments:
         should_be_greater_than_zero: Platnosť výsledku by mala byť dlhšia ako 0 dní
+      project_feature:
+        global_skills_not_enabled_on_client: Ak chcete povoliť globálne zručnosti pre tento projekt, aktivujte si ich v časti Príznaky funkcií v nastaveniach klienta.
       report_approval_settings:
         report_exists: Nastavenie schválenia zostavy pre túto zostavu už existuje.
         validates_admins: Správcovia nemajú prístup ku kampani.
@@ -2257,6 +2268,8 @@ sk:
       body:
         error: Telo e-mailu obsahuje nesprávny text kanála.
   errors:
+    ai_assistant:
+      max_generation_limit: Po prekročení maximálneho limitu generácie kontaktujte svoju administratívu.
     assessments:
       timed_out: Hodnotenie %{assessment_name} nemôžete vykonať, pretože jeho čas vypršal.
     equal_to_current_password: sa musí líšiť od aktuálneho hesla.
@@ -2508,6 +2521,7 @@ sk:
       update_success: SMS pozvánka bola úspešne aktualizovaná
     sms_records:
       create_success: Úloha SMS bola úspešne naplánovaná
+    starting_in: Počnúc rokom
     test_webhook:
       create_success: Test webhooku bol úspešný.
       success: Úspech
@@ -2580,6 +2594,8 @@ sk:
       finishing:
         hint: Náš asistent AI pre vás vytvára plán IDP.
         title: Prosím, počkajte, robíme naše kúzlo...
+      reset_chat: Obnoviť chat
+      reset_confirmation: Naozaj chcete tento chat zahodiť a začať odznova?
       retake_steps:
         chat_hint: Dajte mi vedieť, aké informácie chcete poskytnúť nižšie?
         chat_title: Chcete poskytnúť viac informácií?
@@ -2587,9 +2603,27 @@ sk:
         start_chat_again: Začnite znova rozprávať
         upload_document: Nahrať dokument
         upload_file: Nahrať súbor
+      start_page:
+        ai_assisted:
+          button: IDP s podporou AI
+          description: Interaktívny postup riadený konverzáciou, v ktorom spoluvytvárate plán pomocou AI vo viacerých krokoch.
+          option_1: Personalizovanejšie výsledky
+          option_2: Príležitosti na sebareflexiu
+          option_3: Lepšie pre kariérne zmeny
+          title: IDP s podporou AI
+        one_click:
+          button: Jedno kliknutie AI IDP
+          description: AI robí všetku ťažkú prácu - okamžite skenuje vaše údaje a generuje kompletný plán vývoja.
+          option_1: Najrýchlejšia možnosť (5 minút)
+          option_2: Vhodné pre zaneprázdnených profesionálov
+          option_3: Plne upraviteľné po vygenerovaní
+          title: 1-kliknutie AI IDP
+        sub_title: Poďme vytvoriť prispôsobený zvyšovanie kvalifikácie zmapovaný podľa vašich kariérnych ambícií a vedený umelou inteligenciou
+        title: Vytvorte si svoj individuálny plán rozvoja
       summary:
         chat_title: Súhrn štatistík chatu
         file_title: Prehľady nahraných dokumentov
+        gap_report_title: Analýza správy o medzerách v zručnostiach
         hint: ak áno, vytvoríme vaše IDP, inak môžete svoje odpovede prevziať znova
         title: Ste spokojní s výsledkami?
         upload_file: Nahraný súbor
@@ -2638,6 +2672,7 @@ sk:
       add_development_actions_from_below_options: Pridajte vývojové akcie z nižšie uvedených možností.
       add_development_actions_modal_title: Knižnica vývojových akcií pre %{skillName}
       add_from_library: Pridanie z knižnice
+      add_more: Pridanie ďalších vývojových akcií
       all: Všetko
       approved: Schválený
       board_view:
@@ -2652,6 +2687,7 @@ sk:
       custom: Zvyk
       custom_da_description: Vytvorte vlastnú vývojovú akciu na riešenie jedinečných vývojových potrieb.
       date_range: Dátum začiatku - Dátum ukončenia
+      edit_da_progress: Upraviť priebeh vývojovej akcie
       edit_plan_to_add_development_actions: Upraviť plán a pridať vývojové akcie.
       enter_development_action_description: Zadajte popis vývojovej akcie
       enter_development_action_title: Zadajte názov vývojovej akcie
@@ -2690,6 +2726,8 @@ sk:
       success: Úspešne ukončené rozvojové akcie
       write_here: Napíšte sem...
     direct_reportee_details: Podrobnosti o priamych hlásiteľoch
+    download:
+      description: 'Ak si chcete stiahnuť správu, kliknite na odkaz: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Odkaz je platný len 10 minút'
     edit_plan: Upraviť plán
     edit_plan_and_add_skills: Upraviť plán a kliknutím na Spravovať zručnosti pridajte zručnosti.
     edit_progress: Upraviť pokrok
@@ -3068,7 +3106,7 @@ sk:
     users:
       account_disable: Váš účet bol deaktivovaný z dôvodu nečinnosti
       warning: Váš účet bude čoskoro deaktivovaný z dôvodu nečinnosti
-  maintenance_message: Maják bude mimo prevádzky kvôli plánovanej údržbe na %{start_date} a nebude k dispozícii %{duration} hodín
+  maintenance_message: Maják bude %{start_date} mimo prevádzky pre plánovanú údržbu a nebude k dispozícii pre %{duration}
   maintenance_submessage: Po dokončení údržby obnovte stránku. Budete presmerovaní na prihlasovaciu stránku
   my: Môj
   myself: Seba

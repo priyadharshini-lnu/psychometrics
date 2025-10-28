@@ -191,7 +191,8 @@ test('getTopFactors(from, to, factorIds, subfactors)', () => {
             "icon": "/uploads/factor/icon/2335/2015_AGILE_icons-RECEPTIVE.png",
             "id": 2335,
             "meanNormScore": 3,
-            "meanRawScore": 2.33
+            "meanRawScore": 2.33,
+            "jobRoles": undefined
         },
         {
             "alias": "Resourceful (2)",
@@ -199,7 +200,8 @@ test('getTopFactors(from, to, factorIds, subfactors)', () => {
             "icon": "/uploads/factor/icon/2337/2015_AGILE_icons-RESOURCEFUL.png",
             "id": 2337,
             "meanNormScore": 0,
-            "meanRawScore": 4
+            "meanRawScore": 4,
+            "jobRoles": undefined
         }
     ])
     expect(res.getTopFactors(1, 3, [2335, 2336, 2337], TopFactorType.SubFactor)).toStrictEqual([])
@@ -216,7 +218,8 @@ test('getTopSubFactors(from, to, factorId)', () => {
             "icon": null,
             "id": 2379,
             "meanNormScore": 5,
-            "meanRawScore": 4
+            "meanRawScore": 4,
+            "jobRoles": undefined
         },
         {
             "alias": "2342_sub_2",
@@ -224,7 +227,8 @@ test('getTopSubFactors(from, to, factorId)', () => {
             "icon": null,
             "id": 2380,
             "meanNormScore": 2,
-            "meanRawScore": 3
+            "meanRawScore": 3,
+            "jobRoles": undefined
         }
     ])
 })
@@ -239,7 +243,8 @@ test('getTopFactorByRank(rank)', () => {
         "icon": null,
         "id": 2379,
         "meanNormScore": 5,
-        "meanRawScore": 4
+        "meanRawScore": 4,
+        "jobRoles": undefined
     })
 })
 

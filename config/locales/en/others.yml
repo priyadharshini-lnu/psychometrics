@@ -389,6 +389,8 @@ en:
               inclusion: Please select the correct norm type
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} not found"
             email:
               user_exists_in_campaign: User with this email id already exists in the campaign
               user_exists_in_project: User with this email id already exists in the project
@@ -408,6 +410,8 @@ en:
               invalid_datetime: is invalid
             schedule_start_date:
               invalid_datetime: is invalid
+            target_job_role:
+              not_found: "%{name} not found"
         user_assessment:
           subject_and_assessment_exists: Assessment and subject pair already exists
         user_idp_development_action:
@@ -1789,7 +1793,6 @@ en:
       download: Download
       edit: Edit
       export: Export
-      filter: Filter
       filter_by_tags: Filter by tags
       go_back: Go Back
       import: Import
@@ -1921,7 +1924,6 @@ en:
       download: Download
       enabled: Enabled
       file: File
-      global_import: Is Global Import?
       minutes: Minutes
       na: N/A
       none: None
@@ -2292,6 +2294,8 @@ en:
       body:
         error: Email body has incorrect pipetext.
   errors:
+    ai_assistant:
+      max_generation_limit: Maximum generation limit exceeded, contact your administration.
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
     equal_to_current_password: must be different than the current password.
@@ -2543,6 +2547,7 @@ en:
       update_success: SMS Invite was updated successfully
     sms_records:
       create_success: SMS job was scheduled successfully
+    starting_in: Starting in
     test_webhook:
       create_success: Webhook test successful.
       success: Success
@@ -2624,9 +2629,27 @@ en:
         start_chat_again: Start Chat Again
         upload_document: Upload document
         upload_file: Upload File
+      start_page:
+        ai_assisted:
+          button: AI Assisted IDP
+          description: An interactive conversation-driven flow where you co-create the plan with AI in multiple steps.
+          option_1: More personalized results
+          option_2: Self-reflection opportunities
+          option_3: Better for career transitions
+          title: AI-Assisted IDP
+        one_click:
+          button: One click AI IDP
+          description: AI does all the heavy lifting - instantly scanning your data and generating a complete development plan.
+          option_1: Fastest Option (5 minutes)
+          option_2: Good for busy professionals
+          option_3: Fully editable after generation
+          title: 1-Click AI IDP
+        sub_title: Let's create a customized upskilling jorney mapped to your career aspiration and guided by AI
+        title: Create Your Individual Development Plan
       summary:
         chat_title: Chat Insight Summary
         file_title: Uploaded Documents Insights
+        gap_report_title: Skill Gap Report Analysis
         hint: if yes then we will create your IDP otherwise you can retake your answers
         title: Are you satisfied with results?
         upload_file: Uploaded File
@@ -3182,7 +3205,7 @@ en:
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity
-  maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
+  maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration}
   maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
   my: My
   myself: Myself

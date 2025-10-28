@@ -24,7 +24,8 @@ export class Dashboard extends Component {
     fetch(id, lang).then(({ response }) => {
       const normalizedData = normalize(response, schema)
       AppStore.init(response)
-      const currentLocale = new URLSearchParams(window.location.search).get('lang') || undefined
+      const currentLocale = new URLSearchParams(window.location.search).get('lang')
+          || response?.default_language?.code || undefined
       if (!_.isEmpty(response.locales)) {
         I18nStore.locales = response.locales
       }

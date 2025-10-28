@@ -81,7 +81,7 @@ describe EndUser::SkillsController, type: :controller do
 
         expect(response).to have_http_status(:ok)
 
-        skill_types = parsed_response.map { |s| s['skill_type'] }.uniq
+        skill_types = parsed_response.pluck('skill_type').uniq
         expect(skill_types).to match_array(%w[technical behavioral])
 
         technical_skills = parsed_response.select { |s| s['skill_type'] == 'technical' }

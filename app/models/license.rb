@@ -5,7 +5,7 @@ class License < ApplicationRecord
 
   self.inheritance_column = :_type_disabled
 
-  belongs_to :client, counter_cache: true
+  belongs_to :client, counter_cache: :licenses_count
   belongs_to :report_family
   has_many :license_usages # on delete cascade
   has_many :project_licenses, dependent: :destroy

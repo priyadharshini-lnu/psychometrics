@@ -3,7 +3,7 @@
 module EndUser
   class UserIdpDevelopmentActionsController < ApplicationController
     append_before_action :pundit_authorize
-    before_action :load_skill!, only: %i[generate_by_ai available_development_actions]
+    before_action :load_user_idp_skill!, only: %i[generate_by_ai available_development_actions]
 
     def index
       user_idp_development_action = user_idp_plan.user_idp_development_actions.includes(:development_action)
@@ -45,7 +45,7 @@ module EndUser
 
     def available_development_actions
       serialized_avaialable_development_actions = Panko::ArraySerializer.new(
-        @skill.development_actions,
+        @user_idp_skill.development_actions,
         each_serializer: EndUser::AvailableDevelopmentActionSerializer
       ).to_a
 
@@ -84,14 +84,17 @@ module EndUser
     end
 
     def generate_by_ai
-      generated_actions = DevelopmentActions::GenerativeService.new(@skill, ai_generate_service_params).call!
+      generative_service = DevelopmentActions::GenerativeService.new(@user_idp_skill, current_user,
+                                                                     ai_generate_service_params)
 
-      render json: { data: generated_actions }, status: :ok
-    rescue DevelopmentActions::GenerativeService::RegenerateLimitReachedError => e
-      render json: { errors: [e.message] }, status: 422
-    rescue DevelopmentActions::GenerativeService::GenerativeServiceError => e
-      Rails.logger.error(e.message) # logging because this shouldn't concern end user
-      render json: { errors: [I18n.t('common.errors.something_wrong')] }, status: 422
+      generative_service.
+        on(:ok) do |generated_actions|
+          render json: { data: generated_actions, skill_id: @user_idp_skill.skill_id }, status: :ok
+        end.
+        on(:error) do |error_message|
+          render json: { errors: [error_message] }, status: 422
+        end.
+        call
     end
 
     private
@@ -137,11 +140,11 @@ module EndUser
     end
 
     def progress_params
-      params.require(:user_idp_development_action).permit(:id, :progress)
+      params.expect(user_idp_development_action: %i[id progress])
     end
 
-    def load_skill!
-      @skill = user.user_idp_skills.includes(:skill).find(params[:user_idp_skill_id]).skill
+    def load_user_idp_skill!
+      @user_idp_skill = user.user_idp_skills.includes(:skill).find(params[:user_idp_skill_id])
     end
 
     def ai_generate_service_params

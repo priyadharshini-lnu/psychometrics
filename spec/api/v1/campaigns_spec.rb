@@ -188,7 +188,7 @@ assessments and reports.'
           user = JSON.parse(response.body)
           expect(user).to have_key('first_name')
           expect(user).to have_key('last_name')
-          expect(user['campaigns'].map { |c| c['id'] }).to contain_exactly(campaign.id, campaign_two.id)
+          expect(user['campaigns'].pluck('id')).to contain_exactly(campaign.id, campaign_two.id)
         end
       end
 
@@ -226,7 +226,7 @@ assessments and reports.'
 
           expect(user).to have_key('first_name')
           expect(user).to have_key('last_name')
-          expect(user['campaigns'].map { |c| c['id'] }).to contain_exactly(campaign.id, campaign_two.id)
+          expect(user['campaigns'].pluck('id')).to contain_exactly(campaign.id, campaign_two.id)
 
           expect(campaign_user.active).to eq campaigns[0]['active']
           expect(campaign_user.schedule_start_date).to eq schedule_start_date
@@ -314,7 +314,7 @@ assessments and reports.'
           expect(campaigns.first['id']).to eq 1111
           expect(campaigns.first).to have_key('created_at')
           expect(campaigns.first).to have_key('updated_at')
-          expect(campaigns.map { |c| c['id'] }).not_to include(@other_campaign.id)
+          expect(campaigns.pluck('id')).not_to include(@other_campaign.id)
         end
       end
     end

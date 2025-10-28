@@ -27,15 +27,15 @@ module MeetingRecordings
     end
 
     def admin_recordings
-      workshop_recordings + assessment_recordings
+      (workshop_recordings + assessment_recordings).sort_by(&:id)
     end
 
     def assessor_recordings
-      assessor_workshop_recordings + assessor_assessment_recordings
+      (assessor_workshop_recordings + assessor_assessment_recordings).sort_by(&:id)
     end
 
     def lead_assessor_recordings
-      workshop_recordings + assessment_recordings
+      (workshop_recordings + assessment_recordings).sort_by(&:id)
     end
 
     def workshops

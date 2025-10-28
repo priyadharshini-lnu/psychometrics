@@ -37,7 +37,9 @@ export const Bar: React.FC<Props> = ({
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
   const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
-  const { hideEmptyColumns, hideZeroValueColumns } = model.props
+  const {
+    hideEmptyColumns, hideZeroValueColumns, currentJobFactors, targetJobFactors, skillType,
+  } = model.props
 
   useEffect(() => {
     renderChart()
@@ -78,10 +80,42 @@ export const Bar: React.FC<Props> = ({
       return null
     }
 
+    if (currentJobFactors || targetJobFactors) {
+      factors = factors.filter((factor) => {
+        // Case 1: Both current and target job factors are enabled
+        if (currentJobFactors && targetJobFactors) {
+          const currentJobIncluded = factor?.job_roles?.current_job_role?.included === true
+          const targetJobIncluded = factor?.job_roles?.target_job_role?.included === true
+          return currentJobIncluded && targetJobIncluded
+        }
+
+        // Case 2: Only current job factors are enabled
+        if (currentJobFactors) {
+          return factor?.job_roles?.current_job_role?.included === true
+        }
+
+        // Case 3: Only target job factors are enabled
+        if (targetJobFactors) {
+          return factor?.job_roles?.target_job_role?.included === true
+        }
+        return true
+      })
+
+      if (skillType && skillType.length !== 0) {
+        const sourceFactors = model.getSourceModel()
+        if (sourceFactors && Array.isArray(sourceFactors)) {
+          const sourceFactorIds = sourceFactors?.map(factor => factor.id)
+          factors = factors
+            .filter(factor => sourceFactorIds.includes(factor.id))
+        }
+      }
+    }
+
     const sourceType = model.getSourceType()
     const isCustomFactor = sourceType === 'Factor' && model.props.source.subType === 'custom'
-    const sourceModel: SourceModel = model.getSourceModel()
-    if (sourceType === 'EmbeddedData' && !sourceModel.name) {
+    const sourceModel: SourceModel | Factor[] = currentJobFactors || targetJobFactors ? factors : model.getSourceModel()
+
+    if (sourceType === 'EmbeddedData' && !Array.isArray(sourceModel) && !sourceModel.name) {
       return null
     }
     const data = isCustomFactor ? Series.CustomFactorValueFields : Series[sourceType]

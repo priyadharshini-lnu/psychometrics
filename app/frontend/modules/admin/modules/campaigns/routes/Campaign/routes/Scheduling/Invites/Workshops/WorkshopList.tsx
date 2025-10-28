@@ -58,6 +58,7 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
             id="remove"
             title={I18n.t('common.actions.remove')}
             render={(_, workshop) => <RemoveWorkshop campaignId={campaignId} inviteId={inviteId} workshop={workshop} />}
+            width={100}
           />
         </Resource.Table>
         <Modals modals={{ WorkshopAddFormModal }} />

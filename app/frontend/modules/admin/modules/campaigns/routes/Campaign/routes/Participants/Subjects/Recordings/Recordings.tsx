@@ -6,7 +6,7 @@ import {
   Tooltip,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import dayjs from '~/utils/dayjs'
+import { DateTimeWithZone } from '~/glint'
 import { Resource } from '~/modules/admin/components/Resource'
 import { UserRecordingTR } from './userRecordings'
 
@@ -50,9 +50,7 @@ const RecordingsTable = () => (
         width="5%"
         render={({ assessmentCenterDateAndTime }) => {
           if (!assessmentCenterDateAndTime) return null
-          const date = dayjs(assessmentCenterDateAndTime).format('YYYY-MM-DD')
-          const time = dayjs(assessmentCenterDateAndTime).format('HH:mm A')
-          return `${date} ${time}`
+          return <DateTimeWithZone dateString={assessmentCenterDateAndTime} />
         }}
       />
       <Resource.Column

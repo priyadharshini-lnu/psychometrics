@@ -7,7 +7,12 @@ module AdminJobs
 
     private_attr_reader :record, :owner, :stage
 
-    class_attribute :steps, default: []
+    class_attribute :steps, default: [], instance_writer: false
+
+    def self.inherited(subclass)
+      super
+      subclass.steps = []
+    end
 
     def initialize(record, stage = nil)
       @record = record

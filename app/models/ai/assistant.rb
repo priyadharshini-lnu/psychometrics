@@ -22,7 +22,8 @@ class AI::Assistant < ApplicationRecord
   enum :assistant_type, {
     content_writer: 0,
     idp_assistant: 1,
-    assistant_tool: 2
+    assistant_tool: 2,
+    development_actions_assistant: 3
   }
 
   enum :status, {
@@ -63,6 +64,10 @@ class AI::Assistant < ApplicationRecord
 
       config.default_model = model_id
     end
+  end
+
+  def assigned_to_idp_template?
+    IdpTemplate.exists?(['one_click_ai_assistant_id = ? OR document_analysis_ai_assistant_id = ?', id, id])
   end
 
   private

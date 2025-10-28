@@ -47,7 +47,7 @@ RSpec.describe UserIdpPlanSerializer do
     it 'excludes private skills from serialization' do
       result = serializer.serialize(user_idp_plan)
       expect(result['user_idp_skills'].count).to eq(1)
-      skill_names = result['user_idp_skills'].map { |s| s['name'] }
+      skill_names = result['user_idp_skills'].pluck('name')
       expect(skill_names).to include('Public Skill')
       expect(skill_names).not_to include('Private Skill')
     end
@@ -56,7 +56,7 @@ RSpec.describe UserIdpPlanSerializer do
       result = serializer.serialize(user_idp_plan)
 
       public_skill_data = result['user_idp_skills'].first
-      development_action_ids = public_skill_data['user_idp_development_actions'].map { |da| da['id'] }
+      development_action_ids = public_skill_data['user_idp_development_actions'].pluck('id')
 
       expect(development_action_ids).to include(public_development_action.id)
       expect(development_action_ids).not_to include(private_action_on_public_skill.id)
@@ -67,7 +67,7 @@ RSpec.describe UserIdpPlanSerializer do
 
       all_development_action_ids = result['user_idp_skills'].
                                    flat_map { |s| s['user_idp_development_actions'] }.
-                                   map { |da| da['id'] }
+                                   pluck('id')
 
       expect(all_development_action_ids).to include(public_development_action.id)
       expect(all_development_action_ids).not_to include(private_development_action.id)

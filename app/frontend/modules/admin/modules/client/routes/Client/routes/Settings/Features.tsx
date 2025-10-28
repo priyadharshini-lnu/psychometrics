@@ -22,7 +22,6 @@ export const Features: React.FC = () => {
   const { clientId } = useParams() as { clientId: string }
   const [form] = Form.useForm()
   const aiAssistants = Form.useWatch('aiAssistants', form)
-  const idp = Form.useWatch('idp', form)
   const {
     data: featuresData,
     fetch: fetchFeature,
@@ -56,21 +55,13 @@ export const Features: React.FC = () => {
     }
   }, [aiAssistants])
 
-  useEffect(() => {
-    if (!idp) {
-      form.setFieldsValue({
-        globalSkills: false,
-      })
-    }
-  }, [idp])
-
   const transformValues = (values) => {
     const transformedValues = {
       ...values,
       smsNotification: values.smsNotification || false,
       aiAssistants: values.aiAssistants || false,
       aiAssistedIdp: !values.aiAssistants ? false : values.aiAssistedIdp || false,
-      globalSkills: !values.idp ? false : values.globalSkills || false,
+      globalSkills: values.globalSkills || false,
       idp: values.idp || false,
     }
     return {
@@ -137,9 +128,8 @@ export const Features: React.FC = () => {
                 <Form.Item
                   name="globalSkills"
                   label={I18n.t('administration.client_features.form.global_skills')}
-                  help={!idp ? I18n.t('administration.client_features.form.global_skills_requires_idp') : undefined}
                 >
-                  <Switch disabled={!idp} />
+                  <Switch />
                 </Form.Item>
                 <Button
                   type="primary"

@@ -140,7 +140,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :dimension_id, :owner_id, :norm_type)
+    params.expect(resource: %i[name dimension_id owner_id norm_type])
   end
 
   def editor_params

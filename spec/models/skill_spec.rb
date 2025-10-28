@@ -9,6 +9,7 @@ RSpec.describe Skill, type: :model do
   it { should have_many(:job_roles).through(:skills_job_roles) }
   it { should have_many(:skills_development_actions).dependent(:destroy) }
   it { should have_many(:development_actions).through(:skills_development_actions) }
+  it { should have_one(:vector_embedding).dependent(:destroy) }
 
   # Enum tests
   it { should define_enum_for(:skill_type).with_values(behavioral: 0, technical: 1, other: 2, qualification: 3) }
@@ -104,6 +105,129 @@ RSpec.describe Skill, type: :model do
       skill.tag_list.add('project-specific')
       skill.save
       expect(skill.taggings.first.tenant).to eq(project.id.to_s)
+    end
+  end
+
+  describe 'embedding generation' do
+    let(:embedding_vector) { Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.1) }
+
+    before do
+      stub_wisper_publisher('AI::EmbeddingService', :call, :ok, [embedding_vector])
+    end
+
+    describe '#embedding_text_previously_changed?' do
+      it 'returns true when name was changed in last save' do
+        skill = create(:skill, name: 'Leadership', description: 'Leading teams effectively')
+        skill.name = 'New Leadership'
+        skill.save!
+        expect(skill.send(:embedding_text_previously_changed?)).to be true
+      end
+
+      it 'returns true when description was changed in last save' do
+        skill = create(:skill, name: 'Leadership', description: 'Leading teams effectively')
+        skill.description = 'New description'
+        skill.save!
+        expect(skill.send(:embedding_text_previously_changed?)).to be true
+      end
+
+      it 'returns true when skill_type was changed in last save' do
+        skill = create(:skill, name: 'Leadership', description: 'Leading teams effectively')
+        skill.skill_type = :technical
+        skill.save!
+        expect(skill.send(:embedding_text_previously_changed?)).to be true
+      end
+
+      it 'returns true when skill_group_id was changed in last save' do
+        skill = create(:skill, name: 'Leadership', description: 'Leading teams effectively')
+        skill_group = create(:skill_group)
+        skill.skill_group = skill_group
+        skill.save!
+        expect(skill.send(:embedding_text_previously_changed?)).to be true
+      end
+
+      it 'returns true for new records' do
+        new_skill = build(:skill, name: 'New Skill')
+        new_skill.save!
+        expect(new_skill.send(:embedding_text_previously_changed?)).to be true
+      end
+
+      it 'returns false when no relevant fields changed' do
+        skill = create(:skill, name: 'Leadership', description: 'Leading teams effectively')
+        skill.created_at = 1.day.ago
+        skill.save!
+        expect(skill.send(:embedding_text_previously_changed?)).to be false
+      end
+    end
+
+    describe 'after_save callback' do
+      it 'schedules VectorEmbeddingGenerationJob when embedding text changes' do
+        expect(VectorEmbeddingGenerationJob).to receive(:perform_later)
+
+        create(:skill, name: 'New Skill', description: 'New Description')
+      end
+
+      it 'schedules VectorEmbeddingGenerationJob when name is updated' do
+        skill = create(:skill, name: 'Original Name')
+
+        expect(VectorEmbeddingGenerationJob).to receive(:perform_later).with(skill)
+
+        skill.update!(name: 'Updated Name')
+      end
+
+      it 'does not schedule job when skip_embedding_generation is set' do
+        expect(VectorEmbeddingGenerationJob).not_to receive(:perform_later)
+
+        skill = build(:skill, name: 'Test Skill')
+        skill.skip_embedding_generation!
+        skill.save!
+      end
+    end
+  end
+
+  describe '#embedding_text' do
+    let(:skill_group) { create(:skill_group, name: 'Technical Skills') }
+    let(:skill) do
+      create(:skill,
+             name: 'Ruby Programming',
+             description: 'Expert in Ruby language',
+             skill_type: :technical,
+             skill_group: skill_group)
+    end
+
+    before do
+      skill.tag_list.add('ruby', 'programming', 'backend')
+      skill.save!
+    end
+
+    it 'includes all relevant fields in embedding text' do
+      embedding_text = skill.embedding_text
+      expect(embedding_text).to include('Ruby Programming')
+      expect(embedding_text).to include('Expert in Ruby language')
+      expect(embedding_text).to include('Technical')
+      expect(embedding_text).to include('Technical Skills')
+      expect(embedding_text).to include('ruby')
+      expect(embedding_text).to include('programming')
+      expect(embedding_text).to include('backend')
+    end
+
+    it 'handles missing optional fields gracefully' do
+      minimal_skill = create(:skill, name: 'Simple Skill', description: nil, skill_type: :technical)
+      embedding_text = minimal_skill.embedding_text
+      expect(embedding_text).to include('Simple Skill')
+      expect(embedding_text).to include('Technical')
+      expect(embedding_text).not_to include('Description:')
+      expect(embedding_text).not_to include('Group:')
+      expect(embedding_text).not_to include('Tags:')
+    end
+
+    it 'excludes empty tags' do
+      skill_without_tags = create(:skill, name: 'No Tags Skill', description: 'A skill without tags',
+        skill_type: :technical)
+      embedding_text = skill_without_tags.embedding_text
+      expect(embedding_text).to include('No Tags Skill')
+      expect(embedding_text).to include('A skill without tags')
+      expect(embedding_text).to include('Technical')
+      expect(embedding_text).not_to include('Tags:')
     end
   end
 end

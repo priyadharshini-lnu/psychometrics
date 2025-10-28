@@ -28,10 +28,20 @@ module Api
 
           jsonapi_render json: audits,
                          options: {
-                           resource: Api::V2::Administration::AI::AssistantRevisionResource
+                           resource: Api::V2::Administration::AI::AssistantRevisionResource,
+                           paginate: false
                          }
         rescue ActiveRecord::RecordNotFound
           render json: { error: 'Assistant not found' }, status: :not_found
+        rescue StandardError => e
+          render json: { error: e.message }, status: :unprocessable_entity
+        end
+
+        def destroy
+          assistant = ::AI::Assistant.find(params[:id])
+          return super unless assistant.assigned_to_idp_template?
+
+          render json: { error: 'Cannot delete assistant assigned to an IDP template' }, status: :unprocessable_entity
         rescue StandardError => e
           render json: { error: e.message }, status: :unprocessable_entity
         end

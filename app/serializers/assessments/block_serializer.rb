@@ -12,7 +12,7 @@ module Assessments
 
       return object.props unless translations
 
-      Utility::Hash.deep_merge(object.props, (translations['props'] || {}))
+      Utility::Hash.deep_merge(object.props, translations['props'] || {})
     end
 
     def questions

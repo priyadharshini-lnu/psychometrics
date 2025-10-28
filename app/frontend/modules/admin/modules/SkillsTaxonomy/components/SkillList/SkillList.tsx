@@ -34,7 +34,6 @@ const { I18n } = window
 
 const SkillList: React.FC<PropsFromRedux> = ({ features, openModal }) => {
   const { projectId: projectIdParam } = useParams()
-
   let skillFilters: Record<string, string>
   if (projectIdParam) {
     skillFilters = {

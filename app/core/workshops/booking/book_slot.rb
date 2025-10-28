@@ -12,7 +12,7 @@ module Workshops
         @params = params
       end
 
-      # rubocop:disable Rails/TransactionExitStatement, Lint/UnreachableCode
+      # rubocop:disable Lint/UnreachableCode
       def call
         WorkshopInvite.transaction do
           @workshop_subject = create_workshop_subject
@@ -29,7 +29,7 @@ module Workshops
 
         broadcast(:ok)
       end
-      # rubocop:enable Rails/TransactionExitStatement, Lint/UnreachableCode
+      # rubocop:enable Lint/UnreachableCode
 
       private
 

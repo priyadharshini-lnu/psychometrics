@@ -53,7 +53,7 @@ RSpec.describe AdminJobs::ExportOccupations, type: :job do
       expect(data_row[3]).to eq(user.email)
       expect(data_row[4]).to eq(assessment.id)
 
-      occupation_scores = row.occupations.map { |score| score['value'] }
+      occupation_scores = row.occupations.pluck('value')
       expect(data_row[AdminJobs::ExportOccupations::HEADER_COLUMNS.size, occupation_scores.size]).
         to eq(occupation_scores)
       expect(data_row.last(15)).to include('Occupation1', 0.7, 3, 'Occupation2', 0.5, 1)

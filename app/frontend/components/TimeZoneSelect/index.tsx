@@ -10,12 +10,12 @@ interface Props extends SelectProps {
 }
 
 const TimeZoneSelect: React.FC<Props> = ({
-  value = Intl.DateTimeFormat().resolvedOptions().timeZone,
+  value,
   onChange,
   ...props
 }) => {
-  const [selectedTimeZone, setSelectedTimeZone] = useState(value)
-  const timezoneOptions = useTimezones()
+  const [selectedTimeZone, setSelectedTimeZone] = useState<string>()
+  const timezoneOptions = useTimezones(value)
 
   useEffect(() => {
     setSelectedTimeZone(value)
@@ -23,7 +23,7 @@ const TimeZoneSelect: React.FC<Props> = ({
 
   const handleChange = (tz) => {
     setSelectedTimeZone(tz)
-    onChange && onChange(tz)
+    onChange?.(tz)
   }
 
   return (
@@ -32,10 +32,15 @@ const TimeZoneSelect: React.FC<Props> = ({
       showSearch
       value={selectedTimeZone}
       onChange={handleChange}
-      filterOption={(input, option) => (option?.key.toLowerCase().indexOf(input.toLowerCase()) >= 0)}
+      filterOption={(input, option) => option?.key?.toLowerCase().includes(input.toLowerCase())
+      }
       {...props}
     >
-      {timezoneOptions.map(option => <Option key={option.value} value={option.value}>{option.label}</Option>)}
+      {timezoneOptions.map(option => (
+        <Option key={option.value} value={option.value}>
+          {option.label}
+        </Option>
+      ))}
     </Select>
   )
 }

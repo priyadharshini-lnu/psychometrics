@@ -42,6 +42,9 @@ interface Props extends TextCondition {
   rounded: boolean
   reverse: boolean
   customFactorValueFields?: string[]
+  currentJobFactors?: boolean
+  targetJobFactors?: boolean
+  skillType?: string[]
 }
 
 export type TextCondition = {

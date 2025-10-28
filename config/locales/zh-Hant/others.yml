@@ -907,6 +907,8 @@ zh-Hant:
     bulk_download_reports:
       content:
         title: 下載報告的連結
+      errors:
+        no_plans: 未找到有效的 IDP 計劃
     close: 關閉
     details: 詳細資訊
     errors: 錯誤
@@ -919,6 +921,14 @@ zh-Hant:
     super_admin:
       errors:
         data_processing_disabled: 資料處理已停用。
+  ai:
+    errors:
+      bad_request_invalid_input: 由於輸入無效，無法處理您的請求。請檢查您的要求並重試。
+      generic: 處理您的請求時發生問題。請聯絡您的管理員。
+      rate_limit_exceeded: 該服務目前需求量很大。請稍等片刻，再試一次。
+      server_error: AI 服務暫時無法使用。請稍後再試。
+      service_overloaded: AI 服務目前已過載。請稍等片刻，再試一次。
+      service_unavailable: 該 AI 服務目前正在維護中。請稍後再試。
   anonym:
     close: 關閉
     continue: 繼續
@@ -1173,6 +1183,7 @@ zh-Hant:
       assessments_and_reports: 評估與報告
       idp: IDP
       manage: 管理
+      recordings: 錄音
       report_approval: 報告核准設定
       sequencing: 排序
     report_approval:
@@ -1758,7 +1769,6 @@ zh-Hant:
       download: 下載
       edit: 編輯
       export: 出口
-      filter: 濾波器
       filter_by_tags: 依標籤篩選
       go_back: 回去
       import: 進口
@@ -1888,7 +1898,6 @@ zh-Hant:
       download: 下載
       enabled: 已啟用
       file: 檔案
-      global_import: 全球進口？
       minutes: 分鐘
       na: 不適用
       none: 無
@@ -2165,6 +2174,8 @@ zh-Hant:
       not_uniq_variable: 變數 '%{value}' 在行號 %{row} 上重新定義
       project_assessments:
         should_be_greater_than_zero: 結果有效期應大於 0 天
+      project_feature:
+        global_skills_not_enabled_on_client: 若要啟用此專案的全域技能，請在用戶端設定中的功能旗標下啟用它。
       report_approval_settings:
         report_exists: 此報告的報告核准設定已經存在。
         validates_admins: 管理員無權存取活動。
@@ -2234,6 +2245,8 @@ zh-Hant:
       body:
         error: 電子郵件正文的管道文字不正確。
   errors:
+    ai_assistant:
+      max_generation_limit: 已超過產生上限，請聯絡您的管理部門。
     assessments:
       timed_out: 您將無法參加 %{assessment_name} 評估，因為它已超時。
     equal_to_current_password: 必須與目前的密碼不同。
@@ -2485,6 +2498,7 @@ zh-Hant:
       update_success: SMS 邀請已成功更新
     sms_records:
       create_success: SMS 工作排程成功
+    starting_in: 從
     test_webhook:
       create_success: Webhook 測試成功。
       success: 成功
@@ -2557,6 +2571,8 @@ zh-Hant:
       finishing:
         hint: 我們的人工智能助手正在為您創建 IDP 計劃。
         title: 請稍等，我們正在施展我們的魔法......
+      reset_chat: 重置聊天
+      reset_confirmation: 您確定要放棄此聊天並重新開始嗎？
       retake_steps:
         chat_hint: 讓我知道您想提供更多資訊嗎？
         chat_title: 您想提供更多信息嗎？
@@ -2564,9 +2580,27 @@ zh-Hant:
         start_chat_again: 重新開始聊天
         upload_document: 上傳文件
         upload_file: 上傳檔案
+      start_page:
+        ai_assisted:
+          button: AI 輔助 IDP
+          description: 互動式對話驅動流程，您可以透過多個步驟與 AI 共同建立計劃。
+          option_1: 更個人化的結果
+          option_2: 自我反省的機會
+          option_3: 更適合職業轉型
+          title: 人工智慧輔助的國內流離失所者
+        one_click:
+          button: 一鍵AI IDP
+          description: AI 會完成所有繁重的工作 - 立即掃描您的資料並產生完整的開發計劃。
+          option_1: 最快選項（5 分鐘）
+          option_2: 適合忙碌的專業人士
+          option_3: 生成後完全可編輯
+          title: 一鍵式 AI IDP
+        sub_title: 讓我們創建一個根據您的職業抱負並由人工智慧指導的客製化技能提升喬尼
+        title: 制定您的個人發展計劃
       summary:
         chat_title: 聊天洞察摘要
         file_title: 上傳的文件見解
+        gap_report_title: 技能差距報告分析
         hint: 如果是，那麼我們將創建您的 IDP，否則您可以重新回答
         title: 你對結果滿意嗎？
         upload_file: 上傳的檔案
@@ -2615,6 +2649,7 @@ zh-Hant:
       add_development_actions_from_below_options: 從下面的選項添加開發動作。
       add_development_actions_modal_title: 適用於%{skillName}的開發動作程式庫
       add_from_library: 從庫新增
+      add_more: 新增更多開發動作
       all: 全部
       approved: 已核准
       board_view:
@@ -2629,6 +2664,7 @@ zh-Hant:
       custom: 習慣
       custom_da_description: 建立自訂開發動作，以解決獨特的開發需求。
       date_range: 開始日期 - 結束日期
+      edit_da_progress: 編輯開發動作進度
       edit_plan_to_add_development_actions: 編輯計劃，並新增開發動作。
       enter_development_action_description: 輸入開發動作描述
       enter_development_action_title: 輸入開發動作標題
@@ -2667,6 +2703,8 @@ zh-Hant:
       success: 發展行動順利完成
       write_here: 寫在這裡...
     direct_reportee_details: 直接報告者詳細資料
+    download:
+      description: 要下載報告，請點擊以下鏈接：<a href=''%{url}'' target=''_blank''>下載</a>。連結有效期僅為 10 分鐘
     edit_plan: 編輯計劃
     edit_plan_and_add_skills: 編輯計劃，然後按一下管理技能以新增技能。
     edit_progress: 編輯進度

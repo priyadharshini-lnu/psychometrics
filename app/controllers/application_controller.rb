@@ -3,10 +3,10 @@
 class ApplicationController < BaseController
   include AuthenticateAnonymousUser
   include ActiveStorage::SetCurrent
+
   layout :layout_by_resource
 
   # Authentication user/manager
-  before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
   around_action :set_mobility_locale
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -39,10 +39,6 @@ class ApplicationController < BaseController
 
   def inside_sso_iframe?
     session[:sso].try(:[], 'display') == 'iframe'
-  end
-
-  def redirect_to_maintenance
-    redirect_to maintenance_url
   end
 
   def redirect_to_ae_domain

@@ -907,6 +907,8 @@ en-US:
     bulk_download_reports:
       content:
         title: Links to download reports
+      errors:
+        no_plans: No active IDP plans found
     close: Close
     details: Details
     errors: Errors
@@ -919,6 +921,14 @@ en-US:
     super_admin:
       errors:
         data_processing_disabled: Data processing is disabled.
+  ai:
+    errors:
+      bad_request_invalid_input: Your request could not be processed due to invalid input. Please check your request and try again.
+      generic: Something went wrong while processing your request. Please contact your administrator.
+      rate_limit_exceeded: The service is currently experiencing high demand. Please wait a moment and try again.
+      server_error: The AI service is temporarily unavailable. Please try again in a few moments.
+      service_overloaded: The AI service is currently overloaded. Please wait a moment and try again.
+      service_unavailable: The AI service is currently under maintenance. Please try again later.
   anonym:
     close: Close
     continue: Continue
@@ -1173,6 +1183,7 @@ en-US:
       assessments_and_reports: Assessments & Reports
       idp: IDP
       manage: Manage
+      recordings: Recordings
       report_approval: Report Approval Settings
       sequencing: Sequencing
     report_approval:
@@ -1756,7 +1767,6 @@ en-US:
       download: Download
       edit: Edit
       export: Export
-      filter: Filter
       filter_by_tags: Filter by tags
       go_back: Go Back
       import: Import
@@ -1886,7 +1896,6 @@ en-US:
       download: Download
       enabled: Enabled
       file: File
-      global_import: Is Global Import?
       minutes: Minutes
       na: N/A
       none: None
@@ -2257,6 +2266,8 @@ en-US:
       body:
         error: Email body has incorrect pipetext.
   errors:
+    ai_assistant:
+      max_generation_limit: Maximum generation limit exceeded, contact your administration.
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
     equal_to_current_password: must be different than the current password.
@@ -2508,6 +2519,7 @@ en-US:
       update_success: SMS Invite was updated successfully
     sms_records:
       create_success: SMS job was scheduled successfully
+    starting_in: Starting in
     test_webhook:
       create_success: Webhook test successful.
       success: Success
@@ -2580,6 +2592,8 @@ en-US:
       finishing:
         hint: Our AI assistant is creating IDP plan for you.
         title: Please wait we are doing our magic…
+      reset_chat: Reset Chat
+      reset_confirmation: Are you sure you want to discard this chat and start new?
       retake_steps:
         chat_hint: Let me know what information you want to provide more bellow?
         chat_title: You want to give more information?
@@ -2587,9 +2601,27 @@ en-US:
         start_chat_again: Start Chat Again
         upload_document: Upload document
         upload_file: Upload File
+      start_page:
+        ai_assisted:
+          button: AI Assisted IDP
+          description: An interactive conversation-driven flow where you co-create the plan with AI in multiple steps.
+          option_1: More personalized results
+          option_2: Self-reflection opportunities
+          option_3: Better for career transitions
+          title: AI-Assisted IDP
+        one_click:
+          button: One click AI IDP
+          description: AI does all the heavy lifting - instantly scanning your data and generating a complete development plan.
+          option_1: Fastest Option (5 minutes)
+          option_2: Good for busy professionals
+          option_3: Fully editable after generation
+          title: 1-Click AI IDP
+        sub_title: Let's create a customized upskilling jorney mapped to your career aspiration and guided by AI
+        title: Create Your Individual Development Plan
       summary:
         chat_title: Chat Insight Summary
         file_title: Uploaded Documents Insights
+        gap_report_title: Skill Gap Report Analysis
         hint: if yes then we will create your IDP otherwise you can retake your answers
         title: Are you satisfied with results?
         upload_file: Uploaded File
@@ -2638,6 +2670,7 @@ en-US:
       add_development_actions_from_below_options: Add Development Actions from below options.
       add_development_actions_modal_title: Development Actions Library for %{skillName}
       add_from_library: Add from Library
+      add_more: Add More Development Actions
       all: All
       approved: Approved
       board_view:
@@ -2652,6 +2685,7 @@ en-US:
       custom: Custom
       custom_da_description: Create a custom development action to address unique development needs.
       date_range: Start Date - End Date
+      edit_da_progress: Edit Development Action Progress
       edit_plan_to_add_development_actions: Edit Plan and to add Development Actions.
       enter_development_action_description: Enter Development Action Description
       enter_development_action_title: Enter Development Action Title
@@ -2690,6 +2724,8 @@ en-US:
       success: Development Actions completed successfully
       write_here: Write here...
     direct_reportee_details: Direct Reportees Detail
+    download:
+      description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>. Link is only valid for 10 minutes'
     edit_plan: Edit Plan
     edit_plan_and_add_skills: Edit Plan and and click on Manage Skills to add Skills.
     edit_progress: Edit Progress
@@ -3068,7 +3104,7 @@ en-US:
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity
-  maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
+  maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration}
   maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
   my: My
   myself: Myself

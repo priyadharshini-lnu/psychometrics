@@ -884,6 +884,8 @@ es-ES:
     bulk_download_reports:
       content:
         title: Enlaces para descargar informes
+      errors:
+        no_plans: No se encontraron planes activos para desplazados internos
     close: Cerrar
     details: Detalles
     errors: Errores
@@ -896,6 +898,14 @@ es-ES:
     super_admin:
       errors:
         data_processing_disabled: El procesamiento de datos está desactivado.
+  ai:
+    errors:
+      bad_request_invalid_input: Su solicitud no se pudo procesar debido a una entrada no válida. Verifique su solicitud e inténtelo de nuevo.
+      generic: Algo salió mal al procesar su solicitud. Póngase en contacto con su administrador.
+      rate_limit_exceeded: El servicio está experimentando actualmente una gran demanda. Espere un momento e inténtelo de nuevo.
+      server_error: El servicio de IA no está disponible temporalmente. Por favor, inténtelo de nuevo en unos momentos.
+      service_overloaded: El servicio de IA está actualmente sobrecargado. Espere un momento e inténtelo de nuevo.
+      service_unavailable: El servicio de IA está actualmente en mantenimiento. Inténtalo de nuevo más tarde.
   anonym:
     close: Cerrar
     continue: Continuar
@@ -1155,6 +1165,7 @@ es-ES:
       assessments_and_reports: Evaluaciones e informes
       idp: PDI
       manage: Gestión
+      recordings: Grabaciones
       report_approval: Configuración de la aprobación de informes
       sequencing: Agrupación
     report_approval:
@@ -1857,7 +1868,6 @@ es-ES:
       download: Descargar
       enabled: Habilitado
       file: Archivo
-      global_import: "¿Es Global Import?"
       minutes: Actas
       na: N/A
       none: Ninguno
@@ -2146,6 +2156,8 @@ es-ES:
       not_uniq_variable: variable '%{value}' redefinida en la línea número %{row}
       project_assessments:
         should_be_greater_than_zero: La validez de los resultados debe ser superior a 0 días
+      project_feature:
+        global_skills_not_enabled_on_client: Para habilitar las habilidades globales para este proyecto, actívelo en Feature Flags en la configuración del cliente.
       report_approval_settings:
         report_exists: La configuración de aprobación de informes para este informe ya existe.
         validates_admins: Los administradores no tienen acceso a la campaña.
@@ -2213,6 +2225,8 @@ es-ES:
       body:
         error: El cuerpo del correo electrónico tiene un pipetext incorrecto.
   errors:
+    ai_assistant:
+      max_generation_limit: Límite máximo de generación superado, comuníquese con su administración.
     assessments:
       timed_out: No podrás realizar la evaluación %{assessment_name} porque se ha agotado el tiempo de espera.
     equal_to_current_password: debe ser diferente de la contraseña actual.
@@ -2462,6 +2476,7 @@ es-ES:
       update_success: La invitación por SMS se ha actualizado correctamente
     sms_records:
       create_success: La tarea SMS se ha programado correctamente
+    starting_in: A partir de
     test_webhook:
       create_success: Prueba de webhook realizada con éxito.
       success: Éxito
@@ -2534,6 +2549,8 @@ es-ES:
       finishing:
         hint: Nuestro asistente de IA está creando un plan IDP para usted.
         title: Por favor, espera, estamos haciendo nuestra magia...
+      reset_chat: Restablecer chat
+      reset_confirmation: "¿Estás seguro de que quieres descartar este chat y empezar de nuevo?"
       retake_steps:
         chat_hint: Hágame saber qué información desea proporcionar más a continuación.
         chat_title: "¿Quieres dar más información?"
@@ -2541,9 +2558,27 @@ es-ES:
         start_chat_again: Iniciar chat de nuevo
         upload_document: Subir documento
         upload_file: Subir archivo
+      start_page:
+        ai_assisted:
+          button: IDP asistido por IA
+          description: Un flujo interactivo basado en conversaciones en el que se co-crea el plan con IA en varios pasos.
+          option_1: Resultados más personalizados
+          option_2: Oportunidades de autorreflexión
+          option_3: Mejor para las transiciones de carrera
+          title: IDP asistido por IA
+        one_click:
+          button: IDP de IA con un clic
+          description: 'La IA hace todo el trabajo pesado: escanea instantáneamente sus datos y genera un plan de desarrollo completo.'
+          option_1: Opción más rápida (5 minutos)
+          option_2: Bueno para profesionales ocupados
+          option_3: Totalmente editable después de la generación
+          title: IDP de IA con 1 clic
+        sub_title: Creemos un viaje de mejora de habilidades personalizado mapeado a su aspiración profesional y guiado por IA
+        title: Crea tu plan de desarrollo individual
       summary:
         chat_title: Resumen de Chat Insight
         file_title: Información sobre documentos cargados
+        gap_report_title: Análisis del informe de brechas de habilidades
         hint: en caso afirmativo, crearemos su IDP, de lo contrario, puede volver a tomar sus respuestas
         title: "¿Está satisfecho con los resultados?"
         upload_file: Archivo subido
@@ -2592,6 +2627,7 @@ es-ES:
       add_development_actions_from_below_options: Agregue acciones de desarrollo desde las siguientes opciones.
       add_development_actions_modal_title: Biblioteca de acciones de desarrollo para %{skillName}
       add_from_library: Agregar desde la biblioteca
+      add_more: Agregar más acciones de desarrollo
       all: Todos
       approved: Aprobado
       board_view:
@@ -2606,6 +2642,7 @@ es-ES:
       custom: Costumbre
       custom_da_description: Cree una acción de desarrollo personalizada para abordar necesidades de desarrollo únicas.
       date_range: Fecha de Inicio - Fecha de Finalización
+      edit_da_progress: Editar el progreso de la acción de desarrollo
       edit_plan_to_add_development_actions: Edite Plan y agregue Acciones de Desarrollo.
       enter_development_action_description: Ingrese la descripción de la acción de desarrollo
       enter_development_action_title: Ingrese el título de la acción de desarrollo
@@ -2644,6 +2681,8 @@ es-ES:
       success: Acciones de desarrollo completadas con éxito
       write_here: Escriba aquí...
     direct_reportee_details: Detalle de los reportados directos
+    download:
+      description: 'Para descargar el informe, siga el enlace: <a href=''''%{url}'''' target=''''_blank''''>Descargar</a>. El enlace solo es válido por 10 minutos'
     edit_plan: Editar plan
     edit_plan_and_add_skills: Edite el plan y haga clic en Administrar habilidades para agregar habilidades.
     edit_progress: Editar progreso
@@ -2993,7 +3032,7 @@ es-ES:
     users:
       account_disable: Su cuenta ha sido desactivada por inactividad
       warning: Su cuenta será desactivada en breve debido a la inactividad
-  maintenance_message: Lighthouse estará fuera de servicio por mantenimiento programado el %{start_date} y no estará disponible durante %{duration} horas
+  maintenance_message: Lighthouse estará fuera de servicio por mantenimiento programado el %{start_date} y no estará disponible durante %{duration}
   maintenance_submessage: Una vez finalizado el mantenimiento, actualice la página y será redirigido a la página de inicio de sesión
   my: Mi
   myself: Yo mismo

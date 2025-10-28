@@ -3,6 +3,7 @@
 class Assessors::UsersResultsController < Administration::BaseController
   skip_before_action :enforce_geo_restriction
   include UsersResults::ControllerConcern
+
   skip_after_action :verify_authorized, only: %i[upload_callback scoring]
 
   def set_user_result

@@ -5,19 +5,19 @@ ruby '3.4.6'
 
 gem 'bootsnap',                   '~> 1.18.0', require: false
 gem 'bundler',                    '~> 2.3.17'
-gem 'rack',                       '~> 2.2.18'
+gem 'rack',                       '~> 2.2.20'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'faraday',                    '~> 1.10.0'
-gem 'jbuilder',                   '~> 2.10.0'
+gem 'jbuilder',                   '~> 2.12.0'
 gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.2.2'
 # gem 'newrelic_rpm',               '~> 9.2', '>= 9.2.2', group: 'production'
 gem 'panko_serializer', '~> 0.8.3'
 gem 'pg',                         '~> 1.4'
 gem 'puma',                       '~> 5.6.9'
-gem 'rails',                      '~> 7.1.2'
-gem 'rails-i18n',                 '~> 7.0'
+gem 'rails',                      '~> 8.0.0'
+gem 'rails-i18n',                 '~> 8.0'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'sprockets-rails'
 gem 'terser', '~> 1.1.11' if ENV.fetch('DISABLE_TERSER', 'false') == 'false'
@@ -25,7 +25,7 @@ gem 'vite_rails'
 gem 'vite_ruby'
 
 ### Authentication and authorization
-gem 'devise',                     '~> 4.9.3'
+gem 'devise',                     '~> 4.9.4'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.9'
 gem 'devise-passwordless',        '~> 1.0.1'
@@ -61,7 +61,7 @@ gem 'kaminari', git: 'https://github.com/kaminari/kaminari', branch: 'master'
 gem 'breadcrumbs_on_rails',       '~> 4.1.0'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
-gem 'ransack',                    '~> 4.1.1'
+gem 'ransack',                    '~> 4.2'
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.5'
 
@@ -99,7 +99,7 @@ gem 'roo', '~> 2.9'
 gem 'acts_as_list', '~> 1.0.2'
 
 # Gem for implementing tagging functionality in Rails models
-gem 'acts-as-taggable-on', '~> 10.0'
+gem 'acts-as-taggable-on', '~> 12.0'
 
 ### add fake destroying logic for models
 
@@ -108,7 +108,8 @@ gem 'sentry-rails', '~> 5.15.2'
 gem 'sentry-sidekiq', '~> 5.15.2'
 
 # DSL for activerecord
-gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'tte-master'
+# TODO: Remove this temporary workaround once bump_to_3.0 is merged into tte-master
+gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'bump_to_3.0'
 
 # Cloning ActiveRecord object
 gem 'deep_cloneable', '~> 3.2'
@@ -117,7 +118,7 @@ gem 'active_storage_base64', '~> 2.0'
 gem 'active_storage_svg_sanitizer', git: 'https://github.com/TheTalentEnterprise/active_storage_svg_sanitizer'
 gem 'active_storage_validations', '~> 1.0.3'
 gem 'ancestry', '~> 3.0.0'
-gem 'audited', '~> 5.4.2'
+gem 'audited', '~> 5.6'
 gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'
@@ -140,7 +141,7 @@ gem 'dry-validation', '~> 1.10'
 gem 'jsonpath', '~> 1.1.2'
 gem 'mobility', '~> 1.2.9'
 gem 'reform-rails', '~> 0.2.3'
-gem 'validates_timeliness', '7.0.0.beta2' # TODO: upgrade when released non-beta
+gem 'validates_timeliness', '~> 8.0'
 gem 'virtus', '~> 1.0.5'
 
 gem 'csv-safe'
@@ -164,11 +165,11 @@ gem 'date_validator', '~> 0.12.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils'
 gem 'rlua', git: 'https://github.com/TheTalentEnterprise/rlua', branch: 'tte-master'
-gem 'rswag-api', '~> 2.11.0'
-gem 'rswag-ui', '~> 2.11.0'
+gem 'rswag-api', '~> 2.16.0'
+gem 'rswag-ui', '~> 2.16.0'
 gem 'tty-progressbar', '~> 0.10.1', require: false
 
-gem 'activerecord-import', '~> 1.5.0'
+gem 'activerecord-import', '~> 1.7.0'
 gem 'possessive', '~> 1.0.1'
 
 gem 'addressable', '~> 2.7'
@@ -211,7 +212,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bullet', '~> 7.1.3'
+  gem 'bullet', '~> 8.0'
   gem 'listen', '~> 3.7.1'
   gem 'spring-watcher-listen', '~> 2.1.0'
 
@@ -234,7 +235,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'
   gem 'rubocop-faker'
-  gem 'shoulda-matchers', '~> 4.3.0'
+  gem 'shoulda-matchers', '~> 6.0'
   gem 'simplecov', '~> 0.22.0'
   gem 'timecop', '~> 0.9.1'
   gem 'webmock', '~> 3.14.0'
@@ -278,3 +279,6 @@ gem 'ruby_llm-schema', '~> 0.1.6'
 
 # Pure Ruby GeoIP2 MaxMind DB reader
 gem 'maxminddb'
+
+# For storing and querying vector embeddings in Postgres
+gem 'neighbor'

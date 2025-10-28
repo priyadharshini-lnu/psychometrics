@@ -178,7 +178,7 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :owner_id, :occupations_enabled, :innovation_styles_enabled)
+    params.expect(resource: %i[name owner_id occupations_enabled innovation_styles_enabled])
   end
 
   def import_params

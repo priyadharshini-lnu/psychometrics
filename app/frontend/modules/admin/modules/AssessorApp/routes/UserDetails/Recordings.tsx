@@ -8,7 +8,7 @@ import {
   Tooltip,
   Modal,
 } from 'antd'
-import dayjs from '~/utils/dayjs'
+import { DateTimeWithZone } from '~/glint'
 import { getCurrent } from '~/modules/admin/modules/AssessorApp/core/users'
 import { get as getUserRecordings } from '~/modules/admin/modules/AssessorApp/core/userRecordings'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -30,7 +30,7 @@ const { I18n } = window
 
 const Recordings: React.FC<Props> = ({ userRecordings }) => (
   <>
-    <div className="pl">
+    <div>
       <Row>
         <Col span={24}>
           <Table className="mtm mbl" rowKey="id" dataSource={userRecordings} pagination={false}>
@@ -49,9 +49,7 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => (
               key="assessmentCenterDateAndTime"
               render={({ assessmentCenterDateAndTime }) => {
                 if (!assessmentCenterDateAndTime) return null
-                const date = dayjs(assessmentCenterDateAndTime).format('YYYY-MM-DD')
-                const time = dayjs(assessmentCenterDateAndTime).format('HH:mm A')
-                return `${date} ${time}`
+                return <DateTimeWithZone dateString={assessmentCenterDateAndTime} />
               }}
             />
             <Column

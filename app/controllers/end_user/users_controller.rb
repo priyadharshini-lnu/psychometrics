@@ -2,6 +2,7 @@
 
 class EndUser::UsersController < ApplicationController
   include ::Threesixty::InitialState
+
   layout 'layouts/end_user'
   before_action :skip_policy_scope
   before_action :set_locale, except: %i[change_locale]
@@ -158,7 +159,7 @@ class EndUser::UsersController < ApplicationController
   end
 
   def verify_recaptcha_or_redirect
-    return if Settings.features.disable_recaptcha
+    return if SkipRecaptcha.call!(request)
 
     unless verify_recaptcha(response: params[:recaptcha_token])
       render json: { errors: [{ detail: I18n.t('sessions.errors.recaptcha') }] }, status: 422 and return

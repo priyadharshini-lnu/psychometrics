@@ -1,4 +1,5 @@
 import { TableColumn } from '../core/interfaces/TableColumn'
+import { JobRoles } from '../models/Results/interfaces'
 
 export interface BaseProps<Type = ''> {
   type: Type extends 'Table'
@@ -26,6 +27,7 @@ export interface BaseProps<Type = ''> {
 export interface Factor {
   id: number
   name: string
+  job_roles: JobRoles
 }
 
 type TypeTables = 'GapAssessment' | 'Competencies'

@@ -99,7 +99,6 @@ export interface UserIdpComment {
 interface GenerateDevelopmentActionsByAIPayload {
   userIdpSkillId: number;
   generateMore: boolean;
-  generatedActions: DevelopmentAction[];
   lang?: string;
 }
 
@@ -418,11 +417,14 @@ export const HANDLERS = {
     availableDevelopmentActions: _.keyBy(action.response.data, 'id'),
   }),
   [GENERATE_DEVELOPMENT_ACTIONS_BY_AI]: (state, action) => {
-    const generatedDevelopmentActions = _.groupBy(action.response.data, 'skillId')
+    const { skillId, data: generatedDevelopmentActions } = action.response
 
     return {
       ...state,
-      AIGeneratedDevelopmentActions: { ...state.AIGeneratedDevelopmentActions, ...generatedDevelopmentActions },
+      AIGeneratedDevelopmentActions: {
+        ...state.AIGeneratedDevelopmentActions,
+        [skillId]: generatedDevelopmentActions,
+      },
     }
   },
   [UPDATE_DEVELOPMENT_ACTION]: (state, action) => {

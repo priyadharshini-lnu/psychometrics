@@ -31,7 +31,7 @@ module Hogan
       user_assessment.attach_hogan_credential(existing_hogan_credential)
 
       if status == 'Completed'
-        user_assessment.complete!
+        user_assessment.complete! unless user_assessment.completed?
         Hogan::HandleAssessmentCompletion.call!(user_assessment) if user_assessment.completed?
       end
     end

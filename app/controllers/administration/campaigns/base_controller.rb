@@ -4,6 +4,7 @@ module Administration
   module Campaigns
     class BaseController < Administration::Projects::BaseController
       include Administration::Clients
+
       before_action :ensure_campaign
 
       def campaign

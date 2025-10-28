@@ -907,6 +907,8 @@ fr:
     bulk_download_reports:
       content:
         title: Liens pour télécharger les rapports
+      errors:
+        no_plans: Aucun plan IDP actif trouvé
     close: Fermer
     details: Détails
     errors: Erreurs
@@ -919,6 +921,14 @@ fr:
     super_admin:
       errors:
         data_processing_disabled: Le traitement des données est désactivé.
+  ai:
+    errors:
+      bad_request_invalid_input: Votre demande n’a pas pu être traitée en raison d’une saisie non valide. Veuillez vérifier votre demande et réessayer.
+      generic: Un problème s’est produit lors du traitement de votre demande. Veuillez contacter votre administrateur.
+      rate_limit_exceeded: Le service connaît actuellement une forte demande. Veuillez patienter un moment et réessayer.
+      server_error: Le service d’IA est temporairement indisponible. Veuillez réessayer dans quelques instants.
+      service_overloaded: Le service d’IA est actuellement surchargé. Veuillez patienter un moment et réessayer.
+      service_unavailable: Le service d’IA est actuellement en cours de maintenance. Veuillez réessayer plus tard.
   anonym:
     close: Fermer
     continue: Continuer
@@ -1173,6 +1183,7 @@ fr:
       assessments_and_reports: Évaluations et rapports
       idp: PDI
       manage: Gérer
+      recordings: Enregistrements
       report_approval: Paramètres d'approbation des rapports
       sequencing: Séquençage
     report_approval:
@@ -1758,7 +1769,6 @@ fr:
       download: Télécharger
       edit: Editer
       export: Exportation
-      filter: Filtre
       filter_by_tags: Filtrer par tags
       go_back: Retour
       import: Importation
@@ -1888,7 +1898,6 @@ fr:
       download: Télécharger
       enabled: Activé
       file: Fichier
-      global_import: Est-ce que Global Import ?
       minutes: Procès-verbal
       na: N/A
       none: Aucun
@@ -2183,6 +2192,8 @@ fr:
       not_uniq_variable: variable '%{value}' redéfinie sur la ligne numéro %{row}
       project_assessments:
         should_be_greater_than_zero: La validité du résultat doit être supérieure à 0 jour
+      project_feature:
+        global_skills_not_enabled_on_client: Pour activer les compétences globales pour ce projet, veuillez l’activer sous Feature Flags dans les paramètres du client.
       report_approval_settings:
         report_exists: Le paramètre d'approbation du rapport existe déjà pour ce rapport.
         validates_admins: Les administrateurs n'ont pas accès à la campagne.
@@ -2255,6 +2266,8 @@ fr:
       body:
         error: Le corps de l'e-mail contient un texte incorrect.
   errors:
+    ai_assistant:
+      max_generation_limit: Limite maximale de production dépassée, contactez votre administration.
     assessments:
       timed_out: Vous ne pourrez pas passer l'évaluation %{assessment_name} car elle a dépassé le temps imparti.
     equal_to_current_password: doit être différent du mot de passe actuel.
@@ -2506,6 +2519,7 @@ fr:
       update_success: L'invitation par SMS a été mise à jour avec succès
     sms_records:
       create_success: Le job SMS a été programmé avec succès
+    starting_in: À partir de
     test_webhook:
       create_success: Test du webhook réussi.
       success: Succès
@@ -2578,6 +2592,8 @@ fr:
       finishing:
         hint: Notre assistant IA crée pour vous un plan IDP.
         title: S’il vous plaît, attendez, nous faisons notre magie...
+      reset_chat: Réinitialiser le chat
+      reset_confirmation: Êtes-vous sûr de vouloir abandonner ce chat et recommencer ?
       retake_steps:
         chat_hint: Faites-moi savoir quelles informations vous souhaitez fournir plus ci-dessous ?
         chat_title: Vous souhaitez donner plus d’informations ?
@@ -2585,9 +2601,27 @@ fr:
         start_chat_again: Redémarrer le chat
         upload_document: Télécharger le document
         upload_file: Télécharger le fichier
+      start_page:
+        ai_assisted:
+          button: IDP assisté par l’IA
+          description: Il s’agit d’un flux interactif axé sur la conversation dans lequel vous co-créez le plan avec l’IA en plusieurs étapes.
+          option_1: Des résultats plus personnalisés
+          option_2: Possibilités d’autoréflexion
+          option_3: Mieux pour les transitions de carrière
+          title: IDP assisté par l’IA
+        one_click:
+          button: Fournisseur d’identité IA en un clic
+          description: 'L’IA fait tout le gros du travail : elle analyse instantanément vos données et génère un plan de développement complet.'
+          option_1: Option la plus rapide (5 minutes)
+          option_2: Bon pour les professionnels occupés
+          option_3: Entièrement modifiable après génération
+          title: IDP IA en 1 clic
+        sub_title: Créons un jorney de perfectionnement personnalisé, adapté à vos aspirations professionnelles et guidé par l’IA
+        title: Créez votre plan de développement individuel
       summary:
         chat_title: Résumé de Chat Insight
         file_title: Informations sur les documents téléchargés
+        gap_report_title: Analyse du rapport sur les écarts de compétences
         hint: si oui alors nous créerons votre IDP sinon vous pourrez reprendre vos réponses
         title: Êtes-vous satisfait des résultats ?
         upload_file: Fichier téléchargé
@@ -2636,6 +2670,7 @@ fr:
       add_development_actions_from_below_options: Ajoutez des actions de développement à partir des options ci-dessous.
       add_development_actions_modal_title: Bibliothèque d’actions de développement pour %{skillName}
       add_from_library: Ajouter à partir de la bibliothèque
+      add_more: Ajouter d’autres actions de développement
       all: Tous
       approved: Approuvé
       board_view:
@@ -2650,6 +2685,7 @@ fr:
       custom: Coutume
       custom_da_description: Créez une action de développement personnalisée pour répondre à des besoins de développement uniques.
       date_range: Date de début - Date de fin
+      edit_da_progress: Modifier l’avancement de l’action de développement
       edit_plan_to_add_development_actions: Modifier le plan et ajouter des actions de développement.
       enter_development_action_description: Entrez la description de l’action de développement
       enter_development_action_title: Entrez le titre de l’action de développement
@@ -2688,6 +2724,8 @@ fr:
       success: Actions de développement menées à bien
       write_here: Écrivez ici...
     direct_reportee_details: Détail des rapports directs
+    download:
+      description: 'Pour télécharger le rapport, veuillez suivre le lien : <a href=''''%{url}'''' target=''''_blank''''>Télécharger</a>. Le lien n’est valable que pendant 10 minutes'
     edit_plan: Modifier le plan
     edit_plan_and_add_skills: Modifiez le plan et cliquez sur Gérer les compétences pour ajouter des compétences.
     edit_progress: Modifier l'état d'avancement
@@ -3072,7 +3110,7 @@ fr:
     users:
       account_disable: Votre compte a été désactivé pour cause d'inactivité
       warning: Votre compte sera bientôt désactivé pour cause d'inactivité
-  maintenance_message: Lighthouse sera arrêté pour maintenance programmée le %{start_date} et sera indisponible pendant %{duration} heures
+  maintenance_message: Le phare sera en panne pour des travaux d’entretien programmés le %{start_date} et ne sera pas disponible pour %{duration}
   maintenance_submessage: Veuillez rafraîchir la page une fois la maintenance terminée. Vous serez redirigé vers la page de connexion
   my: Mon
   myself: Moi-même
@@ -3287,19 +3325,19 @@ fr:
         gap: Écart
         hide_left_filter: Masquer le filtre de gauche
         hide_right_filter: Masquer le filtre de droite
-        item: Indicateur
+        item: Comportement
         negative_gap: Écarts négatifs
-        no_negative_gaps: Il n'y a pas de lacunes négatives
-        no_positive_gaps: Il n'y a pas de lacunes positives
-        positive_gap: Lacunes positives
+        no_negative_gaps: Il n’y a aucun écart négatif
+        no_positive_gaps: Il n’y a aucun écart positif
+        positive_gap: Écarts positifs
         rank: Rang
         scoring_category: Compétence
       highest_lowest:
         bottom_5: EN BAS 5
         category: Catégorie
-        highest_scores: Scores les plus élevés
-        item: Indicateur
-        lowest_scores: Notes les plus basses
+        highest_scores: Résultats les plus élevés
+        item: Comportement
+        lowest_scores: Résultats les plus bas
         mean_score: Score moyen
         rank: Rang
         scoring_category: Compétence
@@ -3320,7 +3358,7 @@ fr:
         question_name: Questions
       single_value_cluster:
         competency: Compétence
-        developmental_rating: Évaluation du développement
+        developmental_rating: Opportunité de développement
         questions: Questions
       strength_clusters:
         index_sub_factors_considered: Sous-facteurs de l'indice Thriving qui ont été pris en compte pour obtenir votre score final pour l'environnement de travail %{workstyle}
@@ -3342,10 +3380,10 @@ fr:
         statistic: Statistiques
         value: Valeur
       three_sixty_report_summary:
-        completed: Terminé
-        footnote: "* Exclu en raison de l'exigence d'un seuil minimum"
-        invited: Sur invitation
-        relationships: Les relations
+        completed: Complété
+        footnote: "* Exclus en raison du seuil minimum requis"
+        invited: Invité
+        relationships: Relations
         total: Total
       video_response:
         no_results: Aucune vidéo enregistrée

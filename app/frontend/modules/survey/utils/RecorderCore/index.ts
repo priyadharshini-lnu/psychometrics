@@ -93,6 +93,7 @@ export class RecorderCore {
     this.stop()
 
     const audioFile = new Promise((resolve, reject) => {
+      // deepcode ignore InsufficientPostmessageValidation: Web workers uses same origin - browser enforces this
       this.worker.addEventListener('message', ({ data }) => {
         if (data.command === 'wav-delivered') {
           resolve(data.blob)

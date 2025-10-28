@@ -109,7 +109,7 @@ module Administration
         form = ::Threesixty::Subjects::ImportFileForm.from_params(params).
                with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
-          validate_and_add_subjects_from_csv(form.file.path)
+          validate_and_add_subjects_from_csv(form.file)
         else
           render json: { errors: form.errors.messages }, status: 400
         end
@@ -184,11 +184,11 @@ module Administration
       end
 
       def evaluation_status_params
-        params.require(:subject).permit(:status, selected_ids: [], excluded_ids: [])
+        params.expect(subject: [:status, { selected_ids: [], excluded_ids: [] }])
       end
 
       def resource_params
-        params.require(:subject).permit(:report_release_status, :report_approval_status, :evaluation_status)
+        params.expect(subject: %i[report_release_status report_approval_status evaluation_status])
       end
 
       def validate_and_add_subjects_from_csv(file_path)
@@ -206,9 +206,9 @@ module Administration
         end
       end
 
-      def subjects_from_csv(file_path)
-        csv = CSV.read(file_path, encoding: 'bom|utf-8', headers: true)
-        csv.map { |row| row.to_h.symbolize_keys }
+      def subjects_from_csv(file)
+        csv_result = ::CsvFileParser.call!(file, headers: :first_row)
+        csv_result.map { |row| row.to_h.symbolize_keys }
       end
     end
   end

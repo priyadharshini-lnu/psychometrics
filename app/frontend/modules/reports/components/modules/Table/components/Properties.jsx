@@ -4,9 +4,11 @@ import AssessmentProperties from '~/modules/reports/components/modules/CommonPro
 import AppStore from '~/modules/reports/store/AppStore'
 import clearAfterAssessmentChange from '~/modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
 import ModuleConfigs from '~/modules/reports/consts/ModuleConfigs'
+import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 import { PropTypes as PropertyVies } from './Types'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import styles from './TableModule.less'
+import { SKILL_TYPES, JOB_ROLE_OPTIONS } from '~/modules/reports/core/builder/consts'
 
 const { I18n } = window
 
@@ -30,6 +32,68 @@ const TABLE_TYPE_OPTIONS = [
   { value: 'InnovationStyles', label: 'Innovation Styles' },
   { value: 'CampaignFactorsTable', label: 'Campaign Factors' },
 ]
+
+export const RenderJobFactorModes = ({ modules }) => {
+  const model = modules[0]
+  const assessmentId = model.assessment_id
+  const assessment = _.find(AppStore.assessments, { id: assessmentId })
+
+  if (!assessment?.isSkillRater) return null
+
+  return (
+    <div>
+      {JOB_ROLE_OPTIONS.map((option, i) => (
+        <label
+          className={styles.inputLabel}
+          key={i}
+        >
+          <input
+            className="mrs"
+            type="checkbox"
+            name="job-factors"
+            value={option.value}
+            checked={model.props[option.value]}
+            onChange={e => changeJobFactors(e, modules)}
+          />
+          {option.label}
+        </label>
+      ))}
+    </div>
+  )
+}
+
+const changeJobFactors = (e, modules) => {
+  const { value, checked } = e.currentTarget
+  modules.forEach((model) => {
+    model.props[value] = checked
+    model.update()
+  })
+}
+
+
+export const RenderSkillTypeModes = ({ modules, callback }) => {
+  const model = modules[0]
+  const assessmentId = model.assessment_id
+  const assessment = _.find(AppStore.assessments, { id: assessmentId })
+
+  if (!assessment?.isSkillRater) return null
+
+  return (
+    <>
+      <span className={styles.label}>{I18n.t('administration.report_builder.property_panel.skill_type_label')}</span>
+      <Select
+        name="skill-type-select"
+        mode="multiple"
+        placeholder={I18n.t('administration.report_builder.property_panel.skill_type_placeholder')}
+        value={getValue(SKILL_TYPES, _.result(model, 'props.skillType', 'Select skill type'))}
+        allowClear
+        className="w-100 mb-4"
+        options={SKILL_TYPES}
+        onChange={value => callback(value)}
+      />
+    </>
+  )
+}
 
 const Properties = ({ modules }) => {
   const model = modules[0]

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserIdpSkillSerializer < Panko::Serializer
-  attributes :name, :description, :initial_rating, :final_rating, :skill_type, :user_idp_development_actions
+  attributes :id, :name, :description, :initial_rating, :final_rating, :skill_type, :user_idp_development_actions
 
   delegate :skill, to: :object
   delegate :name, :description, :skill_type, to: :skill, allow_nil: true

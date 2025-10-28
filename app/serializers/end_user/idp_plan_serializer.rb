@@ -12,7 +12,7 @@ module EndUser
     private
 
     def user_idp_skills
-      skills = object.user_idp_skills.includes(:skill)
+      skills = object.user_idp_skills.includes(skill: :translations)
       filtered_skills = viewing_as_manager? ? skills.public_skills : skills
 
       Panko::ArraySerializer.new(
@@ -23,7 +23,10 @@ module EndUser
     end
 
     def user_idp_development_actions
-      development_actions = object.user_idp_development_actions.includes(:development_action, :user_idp_skill)
+      development_actions = object.user_idp_development_actions.includes(
+        :user_idp_skill,
+        development_action: %i[translations image_attachment]
+      )
       filtered_actions = viewing_as_manager? ? development_actions.with_public_skills : development_actions
 
       Panko::ArraySerializer.new(

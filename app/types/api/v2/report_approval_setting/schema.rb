@@ -28,6 +28,7 @@ module Api
             attribute[:approvers_not_required].filled(:bool?)
             attribute[:do_not_send_notifications].filled(:bool?)
             optional(:send_digest_emails).filled(:bool?)
+            optional(:digest_delivery_mode).maybe(:string)
             optional(:digest_frequency).maybe(:string)
             optional(:digest_time).maybe(:string)
             optional(:digest_timezone).maybe(:string)

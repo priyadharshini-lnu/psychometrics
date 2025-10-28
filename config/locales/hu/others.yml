@@ -907,6 +907,8 @@ hu:
     bulk_download_reports:
       content:
         title: Linkek a jelentések letöltéséhez
+      errors:
+        no_plans: Nem található aktív IDP-terv
     close: Bezár
     details: Részletek
     errors: Hibák
@@ -919,6 +921,14 @@ hu:
     super_admin:
       errors:
         data_processing_disabled: Az adatfeldolgozás le van tiltva.
+  ai:
+    errors:
+      bad_request_invalid_input: A kérést érvénytelen bevitel miatt nem lehetett feldolgozni. Kérjük, ellenőrizze kérését, és próbálja újra.
+      generic: Valami hiba történt a kérés feldolgozása során. Forduljon a rendszergazdához.
+      rate_limit_exceeded: A szolgáltatás jelenleg nagy keresletet tapasztal. Kérjük, várjon egy pillanatot, és próbálja újra.
+      server_error: Az AI-szolgáltatás átmenetileg nem érhető el. Kérjük, próbálja újra néhány pillanat múlva.
+      service_overloaded: Az AI-szolgáltatás jelenleg túlterhelt. Kérjük, várjon egy pillanatot, és próbálja újra.
+      service_unavailable: Az AI szolgáltatás jelenleg karbantartás alatt áll. Kérjük, próbálja újra később.
   anonym:
     close: Zárja be a
     continue: Folytatás
@@ -1173,6 +1183,7 @@ hu:
       assessments_and_reports: Értékelések és jelentések
       idp: IDP
       manage: Kezel
+      recordings: Felvételek
       report_approval: Jelentés jóváhagyási beállításai
       sequencing: Szekvencia
     report_approval:
@@ -1758,7 +1769,6 @@ hu:
       download: Letöltés
       edit: Szerkesztés
       export: Kivitel
-      filter: Szűrő
       filter_by_tags: Szűrés címkék szerint
       go_back: Menj vissza
       import: Importál
@@ -1888,7 +1898,6 @@ hu:
       download: Letöltés
       enabled: Engedélyezve
       file: Fájl
-      global_import: Globális import?
       minutes: Jegyzőkönyv
       na: N/A
       none: Egyik sem
@@ -2188,6 +2197,8 @@ hu:
       not_uniq_variable: "'%{value}' változó újradefiniálva a(z) %{row} sorszámon"
       project_assessments:
         should_be_greater_than_zero: Az eredmény érvényességének 0 napnál hosszabbnak kell lennie
+      project_feature:
+        global_skills_not_enabled_on_client: A globális képességek engedélyezéséhez ehhez a projekthez aktiválja azt a kliens beállításainak Funkciójelzők alatt.
       report_approval_settings:
         report_exists: A jelentés jelentés-jóváhagyási beállítása már létezik.
         validates_admins: Az adminisztrátorok nem férhetnek hozzá a kampányhoz.
@@ -2257,6 +2268,8 @@ hu:
       body:
         error: Az e-mail törzse helytelen pipetextet tartalmaz.
   errors:
+    ai_assistant:
+      max_generation_limit: Túllépte a maximális generációs korlátot, forduljon a rendszergazdához.
     assessments:
       timed_out: Nem tudja elvégezni a %{assessment_name} értékelést, mivel lejárt az idő.
     equal_to_current_password: nem lehet azonos az aktuális jelszóval.
@@ -2508,6 +2521,7 @@ hu:
       update_success: Az SMS meghívó frissítése sikeresen megtörtént
     sms_records:
       create_success: Az SMS-feladat ütemezése sikeresen megtörtént
+    starting_in: Kezdő
     test_webhook:
       create_success: A webhook teszt sikeres.
       success: Siker
@@ -2580,6 +2594,8 @@ hu:
       finishing:
         hint: AI-asszisztensünk IDP-tervet készít az Ön számára.
         title: Kérlek, várj, csináljuk a varázslatunkat...
+      reset_chat: Csevegés visszaállítása
+      reset_confirmation: Biztos benne, hogy el akarja dobni ezt a csevegést, és újat akar kezdeni?
       retake_steps:
         chat_hint: Tudassa velem, milyen információkat szeretne megadni az alábbiakban?
         chat_title: További információt szeretne adni?
@@ -2587,9 +2603,27 @@ hu:
         start_chat_again: Indítsa újra a csevegést
         upload_document: Dokumentum feltöltése
         upload_file: Fájl feltöltése
+      start_page:
+        ai_assisted:
+          button: AI által támogatott IDP
+          description: Interaktív, beszélgetésvezérelt folyamat, amelyben több lépésben közösen hozhatja létre a tervet az AI-val.
+          option_1: Személyre szabottabb eredmények
+          option_2: Önreflexió lehetőségek
+          option_3: Jobb a karrierváltáshoz
+          title: AI-vel támogatott IDP
+        one_click:
+          button: Egy kattintással AI IDP
+          description: A mesterséges intelligencia elvégzi az összes nehezét - azonnal átvizsgálja az adatokat, és teljes fejlesztési tervet készít.
+          option_1: Leggyorsabb lehetőség (5 perc)
+          option_2: Elfoglalt szakembereknek jó
+          option_3: Generálás után teljesen szerkeszthető
+          title: 1 kattintásos AI IDP
+        sub_title: Hozzunk létre egy testreszabott továbbképzési jorney-t, amely az Ön karriertörekvéseihez igazodik, és a mesterséges intelligencia irányítja
+        title: Készítse el egyéni fejlesztési tervét
       summary:
         chat_title: A Chat Insight összefoglalója
         file_title: Feltöltött dokumentumok betekintése
+        gap_report_title: Készséghiány-jelentés elemzése
         hint: ha igen, akkor létrehozzuk az IDP-t, különben újra felveheti a válaszokat
         title: Elégedett az eredménnyel?
         upload_file: Feltöltött fájl
@@ -2638,6 +2672,7 @@ hu:
       add_development_actions_from_below_options: Fejlesztési műveletek hozzáadása az alábbi lehetőségekből.
       add_development_actions_modal_title: Fejlesztési műveletek könyvtára %{skillName}
       add_from_library: Hozzáadás a könyvtárból
+      add_more: További fejlesztési műveletek hozzáadása
       all: Összes
       approved: Jóváhagyott
       board_view:
@@ -2652,6 +2687,7 @@ hu:
       custom: Szokás
       custom_da_description: Hozzon létre egy egyéni fejlesztési műveletet az egyedi fejlesztési igények kielégítésére.
       date_range: Kezdő dátum - Záró dátum
+      edit_da_progress: Fejlesztési művelet előrehaladásának szerkesztése
       edit_plan_to_add_development_actions: Terv szerkesztése és fejlesztési műveletek hozzáadása.
       enter_development_action_description: Adja meg a fejlesztési művelet leírását
       enter_development_action_title: Adja meg a fejlesztési művelet címét
@@ -2690,6 +2726,8 @@ hu:
       success: Sikeresen lezárult fejlesztési tevékenységek
       write_here: Írj ide...
     direct_reportee_details: Közvetlen beosztottak részletei
+    download:
+      description: 'A jelentés letöltéséhez kövesse a következő linket: <a href=''''%{url}'''' target=''''_blank''''>Letöltés</a>. A link csak 10 percig érvényes'
     edit_plan: Terv szerkesztése
     edit_plan_and_add_skills: Szerkessze a tervet, majd kattintson a Készségek kezelése gombra a készségek hozzáadásához.
     edit_progress: Haladás szerkesztése
@@ -3046,7 +3084,7 @@ hu:
     users:
       account_disable: Fiókját inaktivitás miatt letiltották
       warning: Fiókját hamarosan letiltjuk inaktivitás miatt
-  maintenance_message: A világítótorony ütemezett karbantartás miatt leáll a(z) %{start_date} órán, és %{duration} órán keresztül nem lesz elérhető
+  maintenance_message: A világítótorony %{start_date}-án ütemezett karbantartás miatt leáll, és %{duration} nem lesz elérhető
   maintenance_submessage: Kérjük, frissítse az oldalt a karbantartás befejezése után. A rendszer átirányítja a bejelentkezési oldalra
   my: M
   myself: Magam

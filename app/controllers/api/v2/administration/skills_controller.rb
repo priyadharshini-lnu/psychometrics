@@ -192,11 +192,11 @@ module Api
         private
 
         def search_params
-          s_params = params.require(:filter).permit(
-            :project_id_eq,
-            :skill_type_in,
-            :name_cont,
-            :available_skills_by_plan_id
+          s_params = params.expect(
+            filter: %i[project_id_eq
+                       skill_type_in
+                       name_cont
+                       available_skills_by_plan_id]
           ).to_h
 
           s_params[:skill_type_in] = s_params[:skill_type_in]&.split(',')&.map(&:strip)

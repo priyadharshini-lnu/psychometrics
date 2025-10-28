@@ -13,7 +13,7 @@ module Reports
       # rubocop:disable Metrics/BlockLength
       action :change_filters do |data, _current_user, report|
         map_filters = report.filters.all.group_by(&:id)
-        new_ids     = data['filters'].map { |f| f['id'] }
+        new_ids     = data['filters'].pluck('id')
         old_ids     = map_filters.keys
         removed_ids = old_ids - new_ids
         # clear unused filters

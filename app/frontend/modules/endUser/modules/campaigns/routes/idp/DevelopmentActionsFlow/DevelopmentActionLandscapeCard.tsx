@@ -8,7 +8,7 @@ import {
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  DeleteOutlined, EditOutlined, PlusOutlined, InfoCircleOutlined, WarningFilled,
+  DeleteOutlined, EditOutlined, PlusOutlined, InfoCircleOutlined, WarningFilled, MessageOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   MediaQueryContext,
@@ -23,7 +23,6 @@ import styles from './DevelopmentActionLandscapeCard.less'
 import { DevelopmentAction, SkillWithDevelopmentActions, UserIdpSkill } from
   '~/components/IdpShared/DevelopmentActions/Types'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { SkillCommentsPopover } from '~/components/IdpShared/DevelopmentActions/SkillCommentPopover'
 import { developmentActionLearningStylesConfig, sourceTypeConfig }
   from '~/components/IdpShared/DevelopmentActions/Constants'
 import { DevelopmentActionInfoPopover } from './DevelopmentActionInfoPopover'
@@ -58,6 +57,7 @@ type SkillCardProps = PropsFromRedux & SkillWithDevelopmentActions & {
   onShowCustomDevelopmentAction?: ()=> void
   onShowAIGeneratedDevelopmentActions?: ()=> void
   isPrivate: boolean
+  setSkillForComment:(skillDetails: { skillId: string; skillName: string; } | null)=> void
 }
 
 const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
@@ -79,6 +79,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   userIdpSkills,
   onShowCustomDevelopmentAction,
   onShowAIGeneratedDevelopmentActions,
+  setSkillForComment,
 }) => {
   const [toggleSkillPrivacy] = useToggleSkillPrivacyMutation()
   const isCurrentUserIDPUser = currentUser.id === idpUser.id
@@ -114,7 +115,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   const header = (
     <Flex>
       <Flex vertical={isTablet || isDesktop} gap={4} align={isTablet || isDesktop ? 'start' : 'center'}>
-        <h4 className="m-0 me-1 mt-2">{name}</h4>
+        <h4 className="m-0 ms-1 me-1 mt-2">{name}</h4>
         {
         selfRatingEnabled
         && (
@@ -175,9 +176,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           {header}
         </Flex>
         <Flex className="self-start">
-          <SkillCommentsPopover
-            skillId={userIdpSkillId.toString()}
-            skillName={name}
+          <Button
+            type="text"
+            onClick={() => setSkillForComment({ skillId: userIdpSkillId.toString(), skillName: name })}
+            icon={<MessageOutlined />}
           />
           {editMode && (
             <Tooltip title={I18n.t('idp.remove_skill')}>
@@ -198,8 +200,8 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       {!developmentActionCards.length ? (
         <Flex vertical>
           <Flex wrap align="center" className="border-b-1 pt-3 pb-3">
-            <Empty description="" style={!isTablet ? { marginLeft: '-2rem' } : {}} />
-            <Flex vertical align="start" style={!isTablet ? { marginLeft: '-2rem' } : {}}>
+            <Empty description="" style={!isTablet ? { marginInlineStart: '-2rem' } : {}} />
+            <Flex vertical align="start" style={!isTablet ? { marginInlineStart: '-2rem' } : {}}>
               <strong className="ta-s">
                 {I18n.t('idp.development_actions.no_development_actions')}
               </strong>
@@ -511,7 +513,7 @@ const Card = ({
         className="border-b-1"
         vertical={isTablet || isDesktop}
         style={isTablet || isDesktop ? {
-          borderLeft:
+          borderInlineStart:
               `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
         } : {}}
       >
@@ -530,7 +532,7 @@ const Card = ({
           <div
             className="p-3"
             style={!(isTablet || isDesktop) ? {
-              borderLeft:
+              borderInlineStart:
               `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
             } : {}}
           >

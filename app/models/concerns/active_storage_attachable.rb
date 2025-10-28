@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Naming/PredicatePrefix
+
 module ActiveStorageAttachable
   extend ActiveSupport::Concern
 
@@ -69,7 +71,6 @@ module ActiveStorageAttachable
   end
 
   # rubocop:disable Metrics/BlockLength
-  # rubocop:disable Naming/PredicateName
   class_methods do
     def has_one_attachment(
       attribute,

@@ -19,6 +19,23 @@ module AI
         raise NotImplementedError, "#{self.class} must implement #call"
       end
 
+      def session
+        @session ||= begin
+          session_record = session_model.find_or_initialize_by(
+            assistable: assistable,
+            user: current_user
+          )
+
+          if start_new_chat || session_record.new_record?
+            chat = assistant.for_user(current_user, contextual_information: assistant_context)
+            session_record.ai_assistant_chat = chat
+            session_record.save!
+          end
+
+          session_record
+        end
+      end
+
       private
 
       def assistant
@@ -66,23 +83,6 @@ module AI
 
       def assisted_session_chat
         @assisted_session_chat ||= session.ai_assistant_chat
-      end
-
-      def session
-        @session ||= begin
-          session_record = session_model.find_or_initialize_by(
-            assistable: assistable,
-            user: current_user
-          )
-
-          if start_new_chat || session_record.new_record?
-            chat = assistant.for_user(current_user, contextual_information: assistant_context)
-            session_record.ai_assistant_chat = chat
-            session_record.save! if session_record.new_record?
-          end
-
-          session_record
-        end
       end
     end
   end

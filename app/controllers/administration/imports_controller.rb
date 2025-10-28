@@ -34,7 +34,7 @@ class Administration::ImportsController < Administration::BaseController
   private
 
   def import_params
-    params.require(:import).permit(:file, :owner_id)
+    params.expect(import: %i[file owner_id])
   end
 
   def pundit_authorize

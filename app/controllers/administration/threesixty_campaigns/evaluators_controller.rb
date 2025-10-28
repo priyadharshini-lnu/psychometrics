@@ -62,7 +62,7 @@ module Administration
         form = ::Threesixty::Evaluators::ImportFileForm.from_params(params).
                with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
-          evaluators = evaluators_from_csv(form.file.path)
+          evaluators = evaluators_from_csv(form.file)
           validate_and_add_evaluators(evaluators: evaluators)
         else
           render json: { errors: form.errors.messages }, status: 400
@@ -109,9 +109,9 @@ module Administration
         end
       end
 
-      def evaluators_from_csv(file_path)
-        csv = CSV.read(file_path, encoding: 'bom|utf-8', headers: true)
-        csv.map { |row| row.to_h.symbolize_keys }
+      def evaluators_from_csv(file)
+        csv_result = ::CsvFileParser.call!(file, headers: :first_row)
+        csv_result.map { |row| row.to_h.symbolize_keys }
       end
     end
   end

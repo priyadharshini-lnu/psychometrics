@@ -57,7 +57,6 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
       generateDevelopmentActionsByAI({
         userIdpSkillId: skill.id as number,
         generateMore,
-        generatedActions: developmentActions,
         lang: I18n.locale,
       }).catch((error) => {
         message.error(error || I18n.t('common.errors.something_wrong'))

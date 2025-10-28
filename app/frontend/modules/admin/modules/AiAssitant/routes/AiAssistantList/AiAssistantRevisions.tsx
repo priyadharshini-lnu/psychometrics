@@ -1,7 +1,7 @@
 /* eslint-disable prefer-destructuring */
 import React, { useState, useEffect } from 'react'
 import {
-  Flex, Button, Typography, Modal, Card,
+  Flex, Button, Typography, Modal, Card, Tooltip,
 } from 'antd'
 import { EyeOutlined, EditOutlined } from '@ant-design/icons'
 import cs from 'classnames'
@@ -81,7 +81,9 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
           </Typography.Text>
           <Flex gap={4}>
             <Button type="link" icon={<EyeOutlined />} onClick={() => setShowDiff(revision)} />
-            <Button icon={<EditOutlined />} onClick={() => editRevision(revision)} />
+            <Tooltip title={I18n.t('administration.ai_assistants.revisions.load')}>
+              <Button icon={<EditOutlined />} onClick={() => editRevision(revision)} />
+            </Tooltip>
           </Flex>
         </Flex>
       ))}

@@ -13,7 +13,7 @@ class QuestionSerializer < Panko::Serializer
     return object.props unless object.props['questionText']
 
     if (translation_props = context.dig(:translations, 'question', object.id, 'props'))
-      object.props = Utility::Hash.deep_merge(object.props, (translation_props || {}))
+      object.props = Utility::Hash.deep_merge(object.props, translation_props || {})
     end
 
     object.props.merge(
@@ -26,7 +26,7 @@ class QuestionSerializer < Panko::Serializer
     return {} unless object.validation
 
     if (translation_props = context.dig(:translations, 'question', object.id, 'validation'))
-      object.validation = Utility::Hash.deep_merge(object.validation, (translation_props || {}))
+      object.validation = Utility::Hash.deep_merge(object.validation, translation_props || {})
     end
 
     object.validation

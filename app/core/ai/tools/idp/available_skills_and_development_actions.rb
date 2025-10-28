@@ -4,35 +4,56 @@ module AI
   module Tools
     module Idp
       class AvailableSkillsAndDevelopmentActions < AI::Tools::Base
-        description 'Fetches available skills and development actions to be used while creating ' \
-                    'an Individual Development Plan (IDP) from the IDP Template.'
+        description 'Search for skills that needs to be added to user development plan using AI-powered ' \
+                    'semantic similarity matching. Returns skills ranked by relevance with all ' \
+                    'their associated expert curated development actions available on the platform.'
 
-        param :page,
-              desc: 'Page number for pagination. Default value is set to 1. e.g. 1'
+        param :query_text,
+              desc: 'Personalized skill search query based on prior user interaction and analysis. ' \
+                    'Formulate a targeted search for skills that align with the user\'s specific development ' \
+                    'needs, current competencies, role requirements, and identified gaps. Include multiple ' \
+                    'related skills and contextual information from the user analysis. ' \
+                    'Examples: "advanced Python programming and system architecture for senior backend developer ' \
+                    'transitioning to tech lead", "stakeholder communication and strategic planning for product ' \
+                    'manager with technical background moving to director level", "data storytelling and ' \
+                    'executive presentation skills for analyst seeking promotion to senior consultant"'
+        param :limit,
+              desc: 'Maximum number of top skills to return against the semantic search. Default is 10. Maximum is 10.'
 
         private_attr_reader :idp_template
-
-        DEFAULT_PAGE_SIZE = 100
 
         def initialize(idp_template)
           @idp_template = idp_template
         end
 
-        def execute(page: 1)
-          page_number = [page.to_i, 1].max
+        def execute(query_text:, limit: 10)
+          result_limit = [limit.to_i, 10].min
+          query_by_similarity_service = Skills::EmbeddingQuery.new(
+            template_skills,
+            query_text:,
+            limit: result_limit
+          )
 
-          {
-            skills: fetch_skills_with_development_actions(page_number, DEFAULT_PAGE_SIZE),
-            meta: meta_info(page_number, DEFAULT_PAGE_SIZE)
-          }
+          query_by_similarity_service.
+            on(:ok) do |query_result|
+              return {
+                skills: format_skills_with_development_actions(query_result),
+                meta: meta_info(query_result)
+              }
+            end.
+            on(:error) do |error_message|
+              return { error: error_message }
+            end.
+            call
+        rescue StandardError => e
+          Rails.logger.error("Error in #{self.class.name}: #{e.message}")
+          { error: 'An unexpected error occurred while processing the request. Contact administration' }
         end
 
         private
 
-        def fetch_skills_with_development_actions(page, per_page)
-          skills = available_skills.order(:skill_type, :name).page(page).per(per_page)
-
-          skills.map do |skill|
+        def format_skills_with_development_actions(query_result)
+          query_result.map do |skill|
             {
               id: skill.id,
               name: skill.name,
@@ -60,25 +81,21 @@ module AI
           end
         end
 
-        def meta_info(page, per_page)
-          total_skills = available_skills.count
-          total_pages = (total_skills.to_f / per_page).ceil
-          skills_by_type = available_skills.group(:skill_type).count
+        def meta_info(query_result)
+          all_skills = query_result
+          result_count = all_skills.size
+          skills_by_type = all_skills.group_by(&:skill_type).transform_values(&:count)
 
           {
-            total_skills: total_skills,
-            skills_by_type: skills_by_type,
-            pagination: {
-              current_page: page,
-              total_pages: total_pages,
-              next_page: page < total_pages ? page + 1 : nil
-            }
+            result_count: result_count,
+            query_result_by_type: skills_by_type,
+            total_skills_in_template: template_skills.count
           }
         end
 
-        def available_skills
-          @available_skills ||= idp_template.available_skills.
-                                includes(:development_actions)
+        def template_skills
+          @template_skills ||= idp_template.available_skills.with_embeddings.
+                               includes(:development_actions)
         end
       end
     end

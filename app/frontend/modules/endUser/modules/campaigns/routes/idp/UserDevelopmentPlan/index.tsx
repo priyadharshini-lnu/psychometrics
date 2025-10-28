@@ -22,7 +22,7 @@ import { MessageOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DownloadButton } from '~/components/IdpShared/DownloadButton'
 import { useSearchSkills } from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/AddSkills/useSearchSkills'
 import { PageLoadSpinner, MediaQueryContext } from '~/glint'
-import { Comments } from '~/components/IdpShared/Comments'
+import { Comments, CommentsForSkill } from '~/components/IdpShared/Comments'
 import { SkillGapReportTab }
   from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/SkillGapReport/SkillGapReportTab'
 import styles from './styles.less'
@@ -154,6 +154,8 @@ const UserDevelopmentPlanComponent = ({
   const [isDALoading, setIsDALoading] = useState(false)
   const [isSkillsLoading, setIsSkillsLoading] = useState(false)
 
+  const [skillForComment, setSkillForComment] = useState<
+  { skillId: string, skillName: string } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   // Comments state - only isCommentsLoading is managed internally
@@ -233,6 +235,12 @@ const UserDevelopmentPlanComponent = ({
       })
     }
   }, [showAddSkill])
+
+  useEffect(() => {
+    if (skillForComment && !isMobile) {
+      setIsCommentsDrawerOpen(true)
+    }
+  }, [skillForComment])
 
   const handleAddDevelopmentAction = (developmentActionsObj) => {
     addDevelopmentActionInPlan(developmentActionsObj)
@@ -337,22 +345,22 @@ const UserDevelopmentPlanComponent = ({
     const skillElement:HTMLElement = containerRef.current?.querySelector(`#skill-${resourceId}`) as HTMLElement
     if (isMobile) {
       setIsCommentsDrawerOpen(false)
-      setTimeout(() => {
-        if (skillElement) {
-          skillElement.style.backgroundColor = 'var(--ant-primary-1)'
-          skillElement.style.transition = 'background-color 0.8s'
-          setTimeout(() => {
-            skillElement.style.backgroundColor = ''
-          }, 2000)
-          skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        }
-      }, 400)
     } else if (skillElement) {
       skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
       setTimeout(() => {
         showCommentsForSkillId(resourceId)
       }, 400)
     }
+    setTimeout(() => {
+      if (skillElement) {
+        skillElement.style.backgroundColor = 'var(--ant-primary-1)'
+        skillElement.style.transition = 'background-color 0.8s'
+        setTimeout(() => {
+          skillElement.style.backgroundColor = ''
+        }, 2000)
+        skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    }, 400)
   }
 
   if (!status) {
@@ -382,7 +390,12 @@ const UserDevelopmentPlanComponent = ({
                   backgroundColor: isCommentsDrawerOpen ? '#0B0B0B' : 'transparent',
                   color: isCommentsDrawerOpen ? 'white' : 'inherit',
                 }}
-                onClick={() => setIsCommentsDrawerOpen(!isCommentsDrawerOpen)}
+                onClick={() => {
+                  setIsCommentsDrawerOpen(!isCommentsDrawerOpen)
+                  if (isCommentsDrawerOpen) {
+                    setSkillForComment(null)
+                  }
+                }}
               />
             </Tooltip>
 
@@ -455,24 +468,36 @@ const UserDevelopmentPlanComponent = ({
             onShowAvailableDevelopmentAction={handleShowAvailableDevelopmentAction}
             onAddMoreSkills={handleAddMoreSkill}
             isDALoading={isDALoading}
+            setSkillForComment={setSkillForComment}
           />
         </div>
       </div>
       {isMobile && (
-        <Drawer
-          title={null}
-          placement="right"
-          closable={false}
-          open={isCommentsDrawerOpen}
-          width="100%"
-          styles={{
-            body: {
-              padding: 0,
-            },
-          }}
-        >
-          {commentsComponent}
-        </Drawer>
+        skillForComment ? (
+          <CommentsForSkill
+            skillForComment={skillForComment}
+            onClose={() => {
+              setSkillForComment(null); setIsCommentsDrawerOpen(false)
+            }}
+            onScrollToSkill={handleScrollToSkill}
+          />
+        )
+          : (
+            <Drawer
+              title={null}
+              placement="right"
+              closable={false}
+              open={isCommentsDrawerOpen}
+              width="100%"
+              styles={{
+                body: {
+                  padding: 0,
+                },
+              }}
+            >
+              {commentsComponent}
+            </Drawer>
+          )
       )}
     </>
   ) : (
@@ -502,6 +527,7 @@ const UserDevelopmentPlanComponent = ({
             onAddMoreSkills={handleAddMoreSkill}
             isDALoading={isDALoading}
             isViewingReportee={currentUser.id !== idpUserId}
+            setSkillForComment={setSkillForComment}
           />
         </div>
       </Splitter.Panel>
@@ -512,11 +538,19 @@ const UserDevelopmentPlanComponent = ({
           size={commentsPanelSize}
           className="flex flex-column"
           style={{
-            overflowY: 'auto',
+            overflowY: 'hidden',
             maxHeight: `calc(100vh - (220px + ${headerHeight}px))`,
           }}
         >
-          {commentsComponent}
+          {skillForComment ? (
+            <CommentsForSkill
+              skillForComment={skillForComment}
+              onClose={() => {
+                setSkillForComment(null); setIsCommentsDrawerOpen(false)
+              }}
+              onScrollToSkill={handleScrollToSkill}
+            />
+          ) : commentsComponent}
         </Splitter.Panel>
       )}
     </Splitter>

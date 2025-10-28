@@ -35,6 +35,7 @@ type SkillsContainerProps = {
   onAddMoreSkills: () => void;
   isDALoading: boolean;
   isViewingReportee?:boolean
+  setSkillForComment: (skillDetails: { skillId: string; skillName: string; } | null) => void
 }
 
 export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
@@ -48,6 +49,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   onUpdateDevelopmentActionProgress,
   isDALoading,
   isViewingReportee = false,
+  setSkillForComment,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
   const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
@@ -130,8 +132,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     onAddDevelopmentAction?.(developmentActions.reduce((acc, developmentAction) => {
       const uniqueId = uuidv4()
       acc[uniqueId] = {
-        description: developmentAction.description,
-        learningStyle: developmentAction.learningStyle,
+        ...developmentAction,
         sourceType: DevelopmentActionSourceType.AI_GENERATED,
         id: uniqueId,
         developmentActionId: developmentAction.id,
@@ -169,6 +170,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
         userIdpSkillId={skill.id as number}
         isPrivate={skill.private}
+        setSkillForComment={setSkillForComment}
         {...skill}
       />
     ))
@@ -241,7 +243,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
                   {I18n.t(`idp.${category.skillType.toLowerCase()}`)}
                 </Typography.Title>
               </Flex>
-              <Flex gap={12} vertical>
+              <Flex vertical>
                 {renderCards(category.skills)}
               </Flex>
             </Flex>

@@ -78,6 +78,20 @@ COMMENT ON EXTENSION tablefunc IS 'functions that manipulate whole tables, inclu
 
 
 --
+-- Name: vector; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION vector; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION vector IS 'vector data type and ivfflat and hnsw access methods';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -3913,7 +3927,8 @@ CREATE TABLE public.idp_templates (
     one_click_idp_enabled boolean DEFAULT false NOT NULL,
     one_click_ai_assistant_id bigint,
     skill_source_preference integer DEFAULT 0,
-    document_analysis_ai_assistant_id bigint
+    document_analysis_ai_assistant_id bigint,
+    skill_gap_report_analysis_ai_assistant_id bigint
 );
 
 
@@ -5697,7 +5712,10 @@ CREATE TABLE public.report_approval_settings (
     digest_frequency character varying DEFAULT 'daily'::character varying,
     digest_time time without time zone DEFAULT '21:00:00'::time without time zone,
     digest_weekdays integer[] DEFAULT '{}'::integer[],
-    digest_timezone character varying DEFAULT 'Asia/Dubai'::character varying
+    digest_timezone character varying DEFAULT 'Asia/Dubai'::character varying,
+    digest_delivery_mode character varying DEFAULT 'immediate'::character varying,
+    last_digest_sent_at timestamp(6) without time zone,
+    digest_emails_enabled_at timestamp(6) without time zone
 );
 
 
@@ -8085,6 +8103,39 @@ ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
 
 
 --
+-- Name: vector_embeddings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.vector_embeddings (
+    id bigint NOT NULL,
+    embedding public.vector(512),
+    resource_type character varying NOT NULL,
+    resource_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: vector_embeddings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.vector_embeddings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: vector_embeddings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.vector_embeddings_id_seq OWNED BY public.vector_embeddings.id;
+
+
+--
 -- Name: webhook_event_logs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10004,6 +10055,13 @@ ALTER TABLE ONLY public.users_results ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: vector_embeddings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.vector_embeddings ALTER COLUMN id SET DEFAULT nextval('public.vector_embeddings_id_seq'::regclass);
+
+
+--
 -- Name: webhook_event_logs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11783,6 +11841,14 @@ ALTER TABLE ONLY public.users_results
 
 
 --
+-- Name: vector_embeddings vector_embeddings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.vector_embeddings
+    ADD CONSTRAINT vector_embeddings_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: webhook_event_logs webhook_event_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12059,6 +12125,13 @@ CREATE INDEX idx_on_reflection_question_id_fcc1b0bca7 ON public.reflection_quest
 --
 
 CREATE INDEX idx_on_resource_id_resource_type_76c375ea65 ON public.resource_hogan_credentials USING btree (resource_id, resource_type);
+
+
+--
+-- Name: idx_on_skill_gap_report_analysis_ai_assistant_id_2a87d39fe6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_skill_gap_report_analysis_ai_assistant_id_2a87d39fe6 ON public.idp_templates USING btree (skill_gap_report_analysis_ai_assistant_id);
 
 
 --
@@ -15415,6 +15488,20 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: index_vector_embeddings_on_embedding; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_vector_embeddings_on_embedding ON public.vector_embeddings USING hnsw (embedding public.vector_cosine_ops);
+
+
+--
+-- Name: index_vector_embeddings_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_vector_embeddings_on_resource ON public.vector_embeddings USING btree (resource_type, resource_id);
+
+
+--
 -- Name: index_webhook_event_logs_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15863,6 +15950,14 @@ ALTER TABLE ONLY public.skills_development_actions
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT fk_rails_09d354f20c FOREIGN KEY (modified_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: idp_templates fk_rails_0a97b8b97a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_templates
+    ADD CONSTRAINT fk_rails_0a97b8b97a FOREIGN KEY (skill_gap_report_analysis_ai_assistant_id) REFERENCES public.ai_assistants(id);
 
 
 --
@@ -18605,6 +18700,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251012210205'),
 ('20251007225856'),
 ('20251007225411'),
+('20251015075724'),
+('20251006071723'),
+('20251003104731'),
 ('20251001034346'),
 ('20250930153016'),
 ('20250924140546'),
@@ -19521,4 +19619,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

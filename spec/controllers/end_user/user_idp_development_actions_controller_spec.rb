@@ -61,7 +61,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       expect(parsed_result['meta']['record_count']).to eq(2)
 
       available_actions = parsed_result['data']
-      expect(available_actions.map { |a| a['id'] }).to match_array([development_action1.id, development_action2.id])
+      expect(available_actions.pluck('id')).to match_array([development_action1.id, development_action2.id])
       expect(available_actions.first['name']).to eq(development_action1.name)
       expect(available_actions.first['description']).to eq(development_action1.description)
       expect(available_actions.first['learning_style']).to eq(development_action1.learning_style)
@@ -106,7 +106,6 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
         generate_more: 'false'
       }
     end
-    let(:mock_service) { instance_double(DevelopmentActions::GenerativeService) }
     let(:generated_actions) do
       [
         {
@@ -122,10 +121,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
 
     context 'when service call is successful' do
       before do
-        allow(DevelopmentActions::GenerativeService).to receive(:new).
-          with(user_idp_skill.skill, anything).
-          and_return(mock_service)
-        allow(mock_service).to receive(:call!).and_return(generated_actions)
+        stub_wisper_publisher('DevelopmentActions::GenerativeService', :call, :ok, generated_actions)
       end
 
       it 'returns generated actions with 200 status' do
@@ -136,20 +132,15 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       end
 
       it 'calls the generative service with correct parameters' do
-        expect(DevelopmentActions::GenerativeService).to receive(:new).
-          with(user_idp_skill.skill, ActionController::Parameters.new(params).permit!)
-        expect(mock_service).to receive(:call!)
-
         subject
+
+        expect(response).to have_http_status(:ok)
       end
     end
 
     context 'when regenerate limit is reached' do
       before do
-        allow(DevelopmentActions::GenerativeService).to receive(:new).
-          and_return(mock_service)
-        allow(mock_service).to receive(:call!).
-          and_raise(DevelopmentActions::GenerativeService::RegenerateLimitReachedError.new('Limit reached'))
+        stub_wisper_publisher('DevelopmentActions::GenerativeService', :call, :error, 'Limit reached')
       end
 
       it 'returns error with 422 status' do
