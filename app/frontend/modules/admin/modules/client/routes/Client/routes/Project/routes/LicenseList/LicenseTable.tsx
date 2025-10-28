@@ -49,7 +49,6 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
           title={I18n.t('licenses.project_specific')}
           id="sProjectSpecific"
           dataIndex="sProjectSpecific"
-          width={30}
           render={(_, { isProjectSpecific }) => (
             <Switch checked={isProjectSpecific} disabled={true} />
           )
