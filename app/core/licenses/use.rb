@@ -34,7 +34,7 @@ module Licenses
 
         unless project_license&.enabled? && project_license.enough_licenses?
           raise Licenses::NotEnoughError,
-                I18n.t('licenses.project_limit_reached')
+                I18n.t('licenses.project_limit_reached', license_name: license.report_family.name)
         end
       end
 
