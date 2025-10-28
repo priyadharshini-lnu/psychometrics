@@ -856,6 +856,10 @@ workflows:
             - build_image_staging
             - vitest
             - rspec
+          filters:
+            branches:
+              only:
+                - master
       - oci_oke_deploy:
           name: deploy_lhksa_staging
           release-name: lhksa
@@ -876,6 +880,10 @@ workflows:
             - build_image_staging
             - vitest
             - rspec
+          filters:
+            branches:
+              only:
+                - master
       - oci_oke_deploy:
           name: deploy_lhksa_production
           release-name: lhksa
@@ -896,6 +904,10 @@ workflows:
             - build_image_staging
             - vitest
             - rspec
+          filters:
+            branches:
+              only:
+                - master
       - oci_oke_deploy:
           name: deploy_sami
           release-name: sami
@@ -917,6 +929,10 @@ workflows:
             - build_image_staging
             - vitest
             - rspec
+          filters:
+            branches:
+              only:
+                - master
       - azure_aks_deploy:
           name: deploy_aks_uae_production
           release-name: lighthouse
