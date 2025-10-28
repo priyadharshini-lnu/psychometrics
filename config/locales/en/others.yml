@@ -782,6 +782,10 @@ en:
           attributes:
             base:
               exceeds_available: Cannot allot more than available licnses
+            usage_limit:
+              less_than_used_number: Cannot reduce usage limit below used number of licenses.
+            used_number:
+              overused: Cannot allot more than available licenses.
         register:
           attributes:
             mobile_number:
