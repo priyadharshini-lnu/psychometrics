@@ -334,8 +334,17 @@ class Client < ApplicationRecord
     slice(:name, :subdomain)
   end
 
-  def usable_license_id
-    active_licenses.select(&:enough_licenses?).pluck(:id)
+  def usable_license_id(project = nil)
+    scope = active_licenses.select(&:enough_licenses?)
+    return scope.pluck(:id) if project.blank?
+
+    license_ids = scope.map(&:id)
+    License.
+      left_outer_joins(:project_licenses).
+      where(id: license_ids).
+      where('licenses.is_project_specific = FALSE OR project_licenses.project_id = ?', project.id).
+      distinct.
+      pluck(:id)
   end
 
   def hogan_provider

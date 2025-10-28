@@ -182,11 +182,18 @@ module Administration
       end
 
       def report_families
-        report_families = License.where(id: client.usable_license_id).includes(:report_family).
-                          filter_map(&:report_family).uniq.sort_by { |r| r[:name] }
+        project = Campaign.find(params[:new_campaign_id]).project
 
-        render json: Panko::ArraySerializer.new(report_families,
-                                                each_serializer: Administration::ReportFamilySerializer).to_a
+        report_families = License.where(id: client.usable_license_id(project)).
+                          includes(:report_family).
+                          filter_map(&:report_family).
+                          uniq.
+                          sort_by { |r| r[:name] }
+
+        render json: Panko::ArraySerializer.new(
+          report_families,
+          each_serializer: Administration::ReportFamilySerializer
+        ).to_a
       end
 
       def regenerate
