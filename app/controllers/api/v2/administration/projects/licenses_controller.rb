@@ -58,7 +58,9 @@ module Api
                   Api::V2::Administration::LicenseResource.new(license, context.merge(project: project))
                 ), status: :created
             else
-              render json: { errors: form.errors.full_messages.map { |msg| { detail: msg } } }, status: :unprocessable_entity
+              render json: { errors: form.errors.full_messages.map do |msg|
+                { detail: msg }
+              end }, status: :unprocessable_entity
             end
           end
 
@@ -74,7 +76,7 @@ module Api
                 serialize_to_hash(
                   Api::V2::Administration::LicenseResource.new(license, context.merge(project: project))
                 ),
-                       status: :ok
+                     status: :ok
             else
               render json: {
                 errors: form.errors.full_messages.map { |msg| { detail: msg } }
