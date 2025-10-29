@@ -4,34 +4,12 @@ class ProjectLicense < ApplicationRecord
   belongs_to :project
   belongs_to :license
 
-  validates :usage_limit, numericality: { greater_than_or_equal_to: 0 }
   validates :used_number, numericality: { greater_than_or_equal_to: 0 }
-  validate :cannot_reduce_below_used_number
-  validate :used_number_validation
-  validate :cannot_allot_more_than_available
 
   scope :enabled, -> { where(enabled: true) }
   scope :disabled, -> { where(enabled: false) }
 
   def enough_licenses?
     usage_limit > used_number
-  end
-
-  private
-
-  def used_number_validation
-    errors.add(:used_number, :overused) if used_number > usage_limit
-  end
-
-  def cannot_allot_more_than_available
-    if usage_limit > license.number
-      errors.add(:usage_limit, :exceeds_available)
-    end
-  end
-
-  def cannot_reduce_below_used_number
-    if usage_limit_changed? && usage_limit < used_number
-      errors.add(:usage_limit, :less_than_used_number)
-    end
   end
 end

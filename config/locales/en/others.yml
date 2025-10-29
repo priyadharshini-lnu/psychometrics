@@ -786,7 +786,13 @@ en:
           attributes:
             base:
               exceeds_available: Cannot allot more than available licenses
+            enabled:
+              in_use: cannot be disabled because it is already in use
+            license_id:
+              already_present: is already present for this project
             usage_limit:
+              cant_be_less_than_used: can't be set below the current usage count of %{used_count}
+              cant_be_more_than_available: can't be more than the available limit on the license (%{usage_limit})
               exceeds_available: Cannot be more than available licenses
               less_than_used_number: Cannot be less than number of licenses used
             used_number:

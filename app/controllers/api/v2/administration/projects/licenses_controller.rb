@@ -44,17 +44,12 @@ module Api
             )
           end
 
-          # TODO: Update this to use license_params and strong params
           def create
-            project_license = ::ProjectLicense.new(
-              project: project,
-              license_id: params.dig(:data, :attributes, :license_id),
-              usage_limit: params.dig(:data, :attributes, :usage_limit),
-              enabled: params.dig(:data, :attributes, :enabled)
+            form = ::Api::V2::Administration::Projects::LicenseForm.new(
+              license_params.to_h.merge(project: project)
             )
 
-            if project_license.save
-              # fetch the license with project license details
+            if (project_license = form.save)
               license = project_license.license
 
               render json: JSONAPI::ResourceSerializer.
@@ -63,12 +58,15 @@ module Api
                   Api::V2::Administration::LicenseResource.new(license, context.merge(project: project))
                 ), status: :created
             else
-              render json: { errors: project_license.errors.full_messages }, status: :unprocessable_entity
+              render json: { errors: form.errors.full_messages.map { |msg| { detail: msg } } }, status: :unprocessable_entity
             end
           end
 
           def update
-            if model.update(license_params.except(:license_id))
+            form = ::Api::V2::Administration::Projects::LicenseForm.from_model(model)
+            form.attributes = license_params.except(:license_id).to_h.merge(project_license: model)
+
+            if form.save
               license = model.license
 
               render json: JSONAPI::ResourceSerializer.
@@ -76,10 +74,10 @@ module Api
                 serialize_to_hash(
                   Api::V2::Administration::LicenseResource.new(license, context.merge(project: project))
                 ),
-                     status: :ok
+                       status: :ok
             else
               render json: {
-                errors: model.errors.full_messages.map { |msg| { detail: msg } }
+                errors: form.errors.full_messages.map { |msg| { detail: msg } }
               }, status: :unprocessable_entity
             end
           end
