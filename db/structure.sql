@@ -1,8 +1,3 @@
-\restrict fML11jSUBcAYRhbdsLcPQLe773cQWy73VGmWri9qLm4zfAvccVaKSiFPRstJbfc
-
--- Dumped from database version 14.19 (Homebrew)
--- Dumped by pg_dump version 14.19 (Homebrew)
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -18692,15 +18687,13 @@ ALTER TABLE ONLY public.users
 -- PostgreSQL database dump complete
 --
 
-\unrestrict fML11jSUBcAYRhbdsLcPQLe773cQWy73VGmWri9qLm4zfAvccVaKSiFPRstJbfc
-
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251015075724'),
 ('20251012210205'),
 ('20251007225856'),
 ('20251007225411'),
-('20251015075724'),
 ('20251006071723'),
 ('20251003104731'),
 ('20251001034346'),
@@ -19619,3 +19612,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+
