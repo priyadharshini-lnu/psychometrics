@@ -19,7 +19,6 @@ module Api
 
           validate :uniqueness_of_license_per_project, unless: :update?
           validate :cannot_reduce_below_used_number, if: :update?
-          validate :used_number_validation, if: :update?
           validate :cannot_allot_more_than_available
 
           def save
@@ -54,16 +53,6 @@ module Api
 
             if used_count.positive? && usage_limit < used_count
               errors.add(:usage_limit, :cant_be_less_than_used, used_count: used_count)
-            end
-          end
-
-          def used_number_validation
-            return if enabled
-
-            used_count = project_license.used_number
-
-            if used_count.positive?
-              errors.add(:enabled, :in_use)
             end
           end
 

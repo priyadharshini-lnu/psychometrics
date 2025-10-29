@@ -786,8 +786,6 @@ en:
           attributes:
             base:
               exceeds_available: Cannot allot more than available licenses
-            enabled:
-              in_use: cannot be disabled because it is already in use
             license_id:
               already_present: is already present for this project
             usage_limit:
