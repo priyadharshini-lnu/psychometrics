@@ -88,7 +88,8 @@ module Threesixty
           results: results,
           piped_text_context: context[:piped_text_context],
           user_results: context[:user_results],
-          lang: context[:lang]
+          lang: context[:lang],
+          campaign_user: object.campaign_user
         }
       ).serialize(context[:report] || object.report)
     end
