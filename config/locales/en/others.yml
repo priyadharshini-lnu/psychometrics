@@ -785,11 +785,12 @@ en:
         project_license:
           attributes:
             base:
-              exceeds_available: Cannot allot more than available licnses
+              exceeds_available: Cannot allot more than available licenses
             usage_limit:
-              less_than_used_number: Cannot reduce usage limit below used number of licenses.
+              exceeds_available: Cannot be more than available licenses
+              less_than_used_number: Cannot be less than number of licenses used
             used_number:
-              overused: Cannot allot more than available licenses.
+              overused: Cannot be more than available licenses.
         register:
           attributes:
             mobile_number:

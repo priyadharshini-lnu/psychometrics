@@ -68,14 +68,20 @@ module Api
           end
 
           def update
-            model.update!(license_params.except(:license_id))
+            if model.update(license_params.except(:license_id))
+              license = model.license
 
-            license = model.license
-            render json: JSONAPI::ResourceSerializer.
-              new(Api::V2::Administration::LicenseResource, include: %w[report_family project_license]).
-              serialize_to_hash(
-                Api::V2::Administration::LicenseResource.new(license, context.merge(project: project))
-              ), status: :ok
+              render json: JSONAPI::ResourceSerializer.
+                new(Api::V2::Administration::LicenseResource, include: %w[report_family project_license]).
+                serialize_to_hash(
+                  Api::V2::Administration::LicenseResource.new(license, context.merge(project: project))
+                ),
+                     status: :ok
+            else
+              render json: {
+                errors: model.errors.full_messages.map { |msg| { detail: msg } }
+              }, status: :unprocessable_entity
+            end
           end
 
           def license_usages

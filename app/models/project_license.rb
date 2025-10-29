@@ -6,8 +6,8 @@ class ProjectLicense < ApplicationRecord
 
   validates :usage_limit, numericality: { greater_than_or_equal_to: 0 }
   validates :used_number, numericality: { greater_than_or_equal_to: 0 }
-  validate :used_number_validation
   validate :cannot_reduce_below_used_number
+  validate :used_number_validation
   validate :cannot_allot_more_than_available
 
   scope :enabled, -> { where(enabled: true) }
@@ -25,8 +25,7 @@ class ProjectLicense < ApplicationRecord
 
   def cannot_allot_more_than_available
     if usage_limit > license.number
-      raise Licenses::NotEnoughError,
-            I18n.t('activerecord.errors.models.project_license.attributes.base.exceeds_available')
+      errors.add(:usage_limit, :exceeds_available)
     end
   end
 
