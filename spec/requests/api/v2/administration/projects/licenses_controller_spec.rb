@@ -152,6 +152,55 @@ describe Api::V2::Administration::Projects::LicensesController, swagger_doc: 'v2
           expect(project_license.enabled).to be_falsey
         end
       end
+
+      response '422', 'Cannot set usage_limit greater than parent license number' do
+        let!(:parent_license) { create(:license, client: client, number: 5, is_project_specific: true) }
+        let!(:project_license) do
+          create(:project_license, license: parent_license, project: project, usage_limit: 2, used_number: 0)
+        end
+
+        let(:params) do
+          {
+            data: {
+              type: 'licenses',
+              id: project_license.id.to_s,
+              attributes: {
+                usage_limit: 10
+              }
+            }
+          }
+        end
+
+        run_test! do |response|
+          expect(response).to have_http_status(:unprocessable_entity)
+          body = JSON.parse(response.body)
+          expect(body['errors']).to be_present
+        end
+      end
+
+      response '422', 'Cannot reduce usage_limit below used number' do
+        let!(:project_license) do
+          create(:project_license, license: license, project: project, usage_limit: 5, used_number: 4)
+        end
+
+        let(:params) do
+          {
+            data: {
+              type: 'licenses',
+              id: project_license.id.to_s,
+              attributes: {
+                usage_limit: 2
+              }
+            }
+          }
+        end
+
+        run_test! do |response|
+          expect(response).to have_http_status(:unprocessable_entity)
+          body = JSON.parse(response.body)
+          expect(body['errors']).to be_present
+        end
+      end
     end
   end
 end
