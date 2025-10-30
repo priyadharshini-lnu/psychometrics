@@ -148,6 +148,10 @@ module Api
           def license_params
             params.require(:data).require(:attributes).permit(:usage_limit, :enabled, :license_id)
           end
+
+          def policy_class
+            ::Administration::ProjectLicensePolicy
+          end
         end
       end
     end

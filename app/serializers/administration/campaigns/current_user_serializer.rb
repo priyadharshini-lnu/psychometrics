@@ -71,6 +71,12 @@ module Administration
         permissions['manageDatasheets'] = Administration::DatasheetPolicy.new(
           object, Datasheet, project_id: context[:project_id], campaign_id: context[:campaign_id]
         ).manage?
+        permissions['viewProjectLicenses'] = Administration::ProjectLicensePolicy.new(
+          object, ProjectLicense, project_id: context[:project_id], campaign_id: context[:campaign_id]
+        ).index?
+        permissions['manageProjectLicenses'] = Administration::ProjectLicensePolicy.new(
+          object, ProjectLicense, project_id: context[:project_id], campaign_id: context[:campaign_id]
+        ).create?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
 

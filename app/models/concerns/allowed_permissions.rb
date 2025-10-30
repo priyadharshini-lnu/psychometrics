@@ -7,7 +7,7 @@ module AllowedPermissions
 
   CLIENT_ADMIN_PERMISSIONS = {
     'clients' => %w[view view_licenses export_data_report],
-    'projects' => %w[view manage manage_admins manage_users],
+    'projects' => %w[view manage manage_admins manage_users view_licenses manage_licenses],
     'users' => ['reset_password'],
     'project_settings' => %w[
       design
@@ -87,7 +87,7 @@ module AllowedPermissions
 
   PROJECT_ADMIN_PERMISSIONS = {
     'clients' => ['view'],
-    'projects' => %w[view manage_users],
+    'projects' => %w[view manage_users view_licenses manage_licenses],
     'users' => ['reset_password'],
     'project_settings' => %w[
       design

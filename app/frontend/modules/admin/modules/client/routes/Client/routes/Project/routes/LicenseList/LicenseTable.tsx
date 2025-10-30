@@ -78,26 +78,23 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
           dataIndex="endDate"
           sorter
         />
-        {isSuperAdmin(currentUser)
-          && (
-            <Resource.Column<License>
-              title={I18n.t('common.column.action')}
-              id="actions"
-              key="actions"
-              render={license => (
-                <ConditionalDropdown
-                  menu={
-                    getActionsMenuProps({
-                      license,
-                      openModal,
-                      // updateResource: resource.updateResource,
-                      projectId,
-                    })
-                  }
-                />
-              )}
+        <Resource.Column<License>
+          title={I18n.t('common.column.action')}
+          id="actions"
+          key="actions"
+          render={license => (
+            <ConditionalDropdown
+              menu={
+                getActionsMenuProps({
+                  license,
+                  openModal,
+                  projectId,
+                  currentUser,
+                })
+              }
             />
           )}
+        />
       </Resource.Table>
     </>
   )
@@ -107,10 +104,11 @@ interface ActionMenuData {
   license: License
   openModal: (modalName: string, modalProps?: unknown) => void
   projectId: string
+  currentUser: any
 }
 
 const getActionsMenuProps = ({
-  license, openModal,
+  license, openModal, currentUser
 }: ActionMenuData): MenuProps => {
   const menuItems = [
     {
@@ -122,7 +120,7 @@ const getActionsMenuProps = ({
       ),
     },
   ]
-  license.projectLicenseDetails && menuItems.push({
+  license.projectLicenseDetails && currentUser.permissions.manageProjectLicenses && menuItems.push({
     key: 'edit',
     label: I18n.t('common.actions.edit'),
   })

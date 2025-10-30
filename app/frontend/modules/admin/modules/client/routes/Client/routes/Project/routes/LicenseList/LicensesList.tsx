@@ -47,13 +47,12 @@ const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
       // fields: { report_families: ['id', 'name'] },
     },
   }
-  // debugger;
 
   return (
     <>
       <Resource config={config} name="licenses">
         <Resource.Filter placeholder={I18n.t('common.actions.search')} name="report_family_name_cont" hideSearch>
-          {isSuperAdmin(currentUser)
+          {(currentUser.permissions.manageProjectLicenses)
               && (
                 <Button
                   type="primary"

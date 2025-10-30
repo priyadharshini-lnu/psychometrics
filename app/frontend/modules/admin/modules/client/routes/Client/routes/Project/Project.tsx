@@ -188,11 +188,13 @@ const Project: FC<Props> = ({
     )
   }
 
-  menuItems.push({
-    key: 'licenses',
-    icon: <SolutionOutlined />,
-    label: I18n.t('administration.breadcrumbs.licenses'),
-  })
+  if (currentUser.permissions.viewProjectLicenses) {
+    menuItems.push({
+      key: 'licenses',
+      icon: <SolutionOutlined />,
+      label: I18n.t('administration.breadcrumbs.licenses'),
+    })
+  }
 
 
   return (
