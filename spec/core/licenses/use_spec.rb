@@ -7,10 +7,11 @@ describe Licenses::Use do
   let(:client) { campaign.client }
   let(:user) { create(:user) }
   let(:report) { create(:report) }
-  let(:report_family_id) { report.report_families.first.id }
+  let(:report_family) { report.report_families.first }
+  let(:report_family_id) { report_family.id }
 
   it 'use license when enough licenses are present' do
-    license = create(:license, report_family_id: report_family_id, client: client,
+    license = create(:license, report_family: report_family, client: client,
       start_date: 2.days.ago, end_date: 2.days.since, number: 2)
     allow_any_instance_of(Licenses::FetchQuery).to receive(:query).and_return([license])
 
@@ -25,12 +26,13 @@ describe Licenses::Use do
     allow_any_instance_of(Licenses::FetchQuery).to receive(:query).and_return([])
 
     expect { described_class.call(campaign, user, report, report_family_id) }.to raise_error(
-      Licenses::NotEnoughError, "'#{client.name}' does not have enough licenses for '#{report.name}'"
+      Licenses::NotEnoughError, I18n.t('licenses.not_enough_license', client_name: client.name,
+report_name: report.name)
     )
   end
 
   it 'returns error if license is present but they are expired' do
-    expired_license = create(:license, report_family_id: report_family_id, client: client, start_date: 3.days.ago,
+    expired_license = create(:license, report_family: report_family, client: client, start_date: 3.days.ago,
       end_date: 2.days.ago, number: 2)
     allow_any_instance_of(Licenses::FetchQuery).to receive(:query).and_return([expired_license])
 
@@ -42,14 +44,18 @@ describe Licenses::Use do
   context 'with project license' do
     let(:project) { create(:project) }
     let(:campaign) { create(:campaign, project: project) }
-    let(:license) { create(:license, report_family: report_family, client: client, is_project_specific: true, number: 2) }
+    let(:license) do
+      create(:license, report_family: report_family, client: client, is_project_specific: true, number: 2)
+    end
 
     before do
       allow_any_instance_of(Licenses::FetchQuery).to receive(:query).and_return([license])
     end
 
     context 'when project has enough licenses' do
-      let!(:project_license) { create(:project_license, license: license, project: project, usage_limit: 1, used_number: 0) }
+      let!(:project_license) do
+        create(:project_license, license: license, project: project, usage_limit: 1, used_number: 0)
+      end
 
       it 'uses license' do
         license_usage = described_class.call!(campaign, user, report, report_family_id)
@@ -63,7 +69,9 @@ describe Licenses::Use do
     end
 
     context 'when project does not have enough licenses' do
-      let!(:project_license) { create(:project_license, license: license, project: project, usage_limit: 1, used_number: 1) }
+      let!(:project_license) do
+        create(:project_license, license: license, project: project, usage_limit: 1, used_number: 1)
+      end
 
       it 'returns error' do
         expect { described_class.call(campaign, user, report, report_family_id) }.to raise_error(
@@ -73,7 +81,9 @@ describe Licenses::Use do
     end
 
     context 'when project license is disabled' do
-      let!(:project_license) { create(:project_license, license: license, project: project, usage_limit: 1, used_number: 0, enabled: false) }
+      let!(:project_license) do
+        create(:project_license, license: license, project: project, usage_limit: 1, used_number: 0, enabled: false)
+      end
 
       it 'returns error' do
         expect { described_class.call(campaign, user, report, report_family_id) }.to raise_error(

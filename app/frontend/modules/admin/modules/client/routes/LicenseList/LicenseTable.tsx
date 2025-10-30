@@ -66,7 +66,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         id="sProjectSpecific"
         dataIndex="sProjectSpecific"
         render={(_, { isProjectSpecific }) => (
-          <Switch checked={isProjectSpecific} disabled={true} />
+          <Switch checked={isProjectSpecific} disabled />
         )
         }
       />

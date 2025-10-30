@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { MenuProps, Switch } from 'antd'
 import { Link, useParams } from 'react-router-dom'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { Resource } from '~/modules/admin/components/Resource'
 import { License } from '~/modules/admin/modules/client/core/licenses'
 import { openModal } from '~/modules/admin/core/ui/modals'
 
@@ -27,9 +27,7 @@ type Props = PropsFromRedux
 const ClientLicensesTableComponent: React.FC<Props> = ({
   currentUser, openModal,
 }) => {
-  const { resource } = useResourceContext<License>()
   const { projectId } = useParams() as { projectId: string }
-  // debugger;
 
   return (
     <>
@@ -50,7 +48,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
           id="sProjectSpecific"
           dataIndex="sProjectSpecific"
           render={(_, { isProjectSpecific }) => (
-            <Switch checked={isProjectSpecific} disabled={true} />
+            <Switch checked={isProjectSpecific} disabled />
           )
           }
         />
@@ -112,7 +110,7 @@ interface ActionMenuData {
 }
 
 const getActionsMenuProps = ({
-  license, openModal, projectId,
+  license, openModal,
 }: ActionMenuData): MenuProps => {
   const menuItems = [
     {

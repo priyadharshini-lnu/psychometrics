@@ -58,5 +58,5 @@ export const routes = [
   {
     path: '/licenses/:licenseId/license_usages',
     component: <LicenseUsage />,
-  }
+  },
 ]

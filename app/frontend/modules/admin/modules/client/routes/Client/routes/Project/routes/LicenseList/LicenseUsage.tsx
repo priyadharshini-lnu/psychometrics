@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { connect, ConnectedProps, useSelector } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Radio, Space, Switch } from 'antd'
 import dayjs from '~/utils/dayjs'
