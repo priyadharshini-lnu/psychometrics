@@ -8,47 +8,9 @@ module Api
           skip_before_action :jsonapi_request_handling, only: %i[index]
 
           def index
-            records = client.licenses.
-                      includes(:report_family, :project_licenses).
-                      left_joins(:project_licenses)
-            records = if params[:filter]&.key?(:project_specific)
-                        records.where(licenses: { is_project_specific: true })
-                      else
-                        records.where(
-                          'licenses.is_project_specific = false OR project_licenses.project_id = ?', project.id
-                        ).distinct
-                      end
-
-            if params[:filter]&.key?(:report_name)
-              search_term = params[:filter][:report_name].downcase
-              matching_enum_keys = ::License.types.keys.select { |k| k.downcase.include?(search_term) }
-
-              records = records.left_joins(:report_family).
-                        where(
-                          'report_families.name ILIKE ? OR licenses.type IN (?)',
-                          "%#{search_term}%",
-                          ::License.types.values_at(*matching_enum_keys)
-                        )
-            end
-
-            page_number = (params.dig(:page, :number) || 1).to_i
-            page_size   = (params.dig(:page, :size)   || 25).to_i
-
-            paginated = records.page(page_number).per(page_size)
-
-            resources = paginated.map { |r| Api::V2::Administration::LicenseResource.new(r, context) }
-
-            serializer = JSONAPI::ResourceSerializer.new(
-              Api::V2::Administration::LicenseResource,
-              include: %w[report_family project_license]
-            )
-
-            render json: serializer.serialize_to_hash(resources).merge(
-              meta: {
-                record_count: records.count,
-                page_count: (records.count / page_size.to_f).ceil
-              }
-            )
+            records = filtered_licenses
+            paginated = paginate(records)
+            render json: serialized_licenses(paginated, records)
           end
 
           def create
@@ -57,17 +19,9 @@ module Api
             )
 
             if (project_license = form.save)
-              license = project_license.license
-
-              render json: JSONAPI::ResourceSerializer.
-                new(Api::V2::Administration::LicenseResource, include: %w[report_family project_license]).
-                serialize_to_hash(
-                  Api::V2::Administration::LicenseResource.new(license, context.merge(project: project))
-                ), status: :created
+              render_license(project_license.license, :created)
             else
-              render json: { errors: form.errors.full_messages.map do |msg|
-                { detail: msg }
-              end }, status: :unprocessable_entity
+              render_errors(form)
             end
           end
 
@@ -76,58 +30,108 @@ module Api
             form.attributes = license_params.except(:license_id).to_h.merge(project_license: model)
 
             if form.save
-              license = model.license
-
-              render json: JSONAPI::ResourceSerializer.
-                new(Api::V2::Administration::LicenseResource, include: %w[report_family project_license]).
-                serialize_to_hash(
-                  Api::V2::Administration::LicenseResource.new(license, context.merge(project: project))
-                ),
-                     status: :ok
+              render_license(model.license, :ok)
             else
-              render json: {
-                errors: form.errors.full_messages.map { |msg| { detail: msg } }
-              }, status: :unprocessable_entity
+              render_errors(form)
             end
           end
 
           def license_usages
-            license_id = params[:id]
-            project_id = params[:project_id]
-            records = ::LicenseUsage.where(license_id: license_id, project_id: project_id)
-
-            page_number = (params.dig(:page, :number) || 1).to_i
-            page_size   = (params.dig(:page, :size)   || 25).to_i
-
-            paginated = records.page(page_number).per(page_size)
-
-            resources = paginated.map { |r| Api::V2::Administration::LicenseUsageResource.new(r, context) }
-
-            serializer = JSONAPI::ResourceSerializer.new(
+            records = ::LicenseUsage.where(license_id: params[:id], project_id: params[:project_id])
+            paginated = paginate(records)
+            render json: serialize_resources(
+              paginated,
               Api::V2::Administration::LicenseUsageResource,
-              include: %w[user status_updated_by]
+              include: %w[user status_updated_by],
+              total_count: records.count
             )
+          end
 
-            render json: serializer.serialize_to_hash(resources).merge(
+          private
+
+          def filtered_licenses
+            records = base_licenses_scope
+            records = filter_by_project_specific(records)
+            filter_by_report_name(records)
+
+          end
+
+          def base_licenses_scope
+            client.licenses.
+              includes(:report_family, :project_licenses).
+              left_joins(:project_licenses)
+          end
+
+          def filter_by_project_specific(records)
+            if params.dig(:filter, :project_specific)
+              records.where(licenses: { is_project_specific: true })
+            else
+              records.where(
+                'licenses.is_project_specific = false OR project_licenses.project_id = ?', project.id
+              ).distinct
+            end
+          end
+
+          def filter_by_report_name(records)
+            return records unless params.dig(:filter, :report_name)
+
+            search_term = params[:filter][:report_name].downcase
+            matching_enum_keys = ::License.types.keys.select { |k| k.downcase.include?(search_term) }
+
+            records.left_joins(:report_family).where(
+              'report_families.name ILIKE ? OR licenses.type IN (?)',
+              "%#{search_term}%",
+              ::License.types.values_at(*matching_enum_keys)
+            )
+          end
+
+          def paginate(scope)
+            page_number = (params.dig(:page, :number) || 1).to_i
+            page_size = (params.dig(:page, :size) || 25).to_i
+            scope.page(page_number).per(page_size)
+          end
+
+          def serialized_licenses(paginated, full_scope)
+            serialize_resources(
+              paginated,
+              Api::V2::Administration::LicenseResource,
+              include: %w[report_family project_license],
+              total_count: full_scope.count
+            )
+          end
+
+          def serialize_resources(paginated, resource_class, include:, total_count:)
+            resources = paginated.map { |r| resource_class.new(r, context) }
+            serializer = JSONAPI::ResourceSerializer.new(resource_class, include: include)
+
+            serializer.serialize_to_hash(resources).merge(
               meta: {
-                record_count: records.count,
-                page_count: (records.count / page_size.to_f).ceil
+                record_count: total_count,
+                page_count: (total_count / paginated.limit_value.to_f).ceil
               }
             )
           end
 
+          def render_license(license, status)
+            render json: JSONAPI::ResourceSerializer.
+              new(Api::V2::Administration::LicenseResource, include: %w[report_family project_license]).
+              serialize_to_hash(
+                Api::V2::Administration::LicenseResource.new(license, context.merge(project: project))
+              ), status: status
+          end
+
+          def render_errors(form)
+            render json: { errors: form.errors.full_messages.map { |msg| { detail: msg } } },
+                   status: :unprocessable_entity
+          end
+
           def context
-            super.merge(
-              project: project,
-              client: client
-            )
+            super.merge(project: project, client: client)
           end
 
           def model
             @model ||= ::ProjectLicense.find_by(id: params[:id]) || super
           end
-
-          private
 
           def project
             @project ||= Project.find(params[:project_id])
