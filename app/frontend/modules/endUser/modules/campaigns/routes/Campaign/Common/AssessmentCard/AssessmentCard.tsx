@@ -31,7 +31,7 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 
 import styles from './styles.less'
-import { isProctored } from '~/utils/isProctored'
+import { useIsProctored } from '~/hooks/useProctoringState'
 
 const { I18n } = window
 const { useToken } = theme
@@ -79,6 +79,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     },
   },
 }) => {
+  const { isProctored } = useIsProctored()
   const {
     status, assessmentIconUrl, assessmentName, completionPercent, completionReason, id,
     timing, meetingLink, meetingTime, scheduleTime, workshopActivityDuration,
@@ -175,7 +176,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const handleStartCampaignActivities = () => {
     const needToBeginOrContinueCampaign = canBeginCampaign || canContinueCampaign
     if (
-      (proctoringEnabledOnWorkshopActivity && isProctored()) || !isWorkshopActivity || !needToBeginOrContinueCampaign
+      (proctoringEnabledOnWorkshopActivity && isProctored) || !isWorkshopActivity || !needToBeginOrContinueCampaign
     ) {
       return navigateToAssessment()
     }
