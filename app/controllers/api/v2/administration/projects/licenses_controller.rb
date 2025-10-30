@@ -53,7 +53,6 @@ module Api
             records = base_licenses_scope
             records = filter_by_project_specific(records)
             filter_by_report_name(records)
-
           end
 
           def base_licenses_scope
