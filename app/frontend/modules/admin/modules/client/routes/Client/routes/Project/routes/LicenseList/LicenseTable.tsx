@@ -6,7 +6,8 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { Resource } from '~/modules/admin/components/Resource'
 import { License } from '~/modules/admin/modules/client/core/licenses'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { User } from '~/modules/admin/modules/client/core/users'
+import User from '~/modules/admin/modules/campaigns/interfaces/User'
+
 
 import { get as getCurrentUser } from '~/core/currentUser'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -15,7 +16,7 @@ const { I18n } = window
 
 const connector = connect(
   (state: RootState) => ({
-    currentUser: getCurrentUser(state),
+    currentUser: getCurrentUser(state) as User
   }),
   {
     openModal,
