@@ -22,12 +22,13 @@ class Page extends Component {
 
   componentDidMount () {
     const path = location.pathname.match('threesixty_campaigns/(.*)/evaluations')
+    const { preview } = this.props
     if (path) {
       const { fetchCampaignOptions } = this.props
       fetchCampaignOptions(parseInt(path[1], 10))
     }
 
-    if (this.ref) {
+    if (this.ref && !preview.extraOptions?.enable_copy_content) {
       this.ref.addEventListener('copy', this.disableCopyHandler)
       this.ref.addEventListener('cut', this.disableCopyHandler)
       this.ref.addEventListener('contextmenu', this.disableCopyHandler)

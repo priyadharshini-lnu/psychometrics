@@ -62,9 +62,11 @@ export class PaginationContext {
         this.needPagination = true
         secondLevel.forEach((rowElement, index) => {
           const maxHeight = (this.pages.length > 1 ? secondPageHeight : contentHeight)
-
           const rect = rowElement.getBoundingClientRect()
-          const expectedHeight = currentPageHeight + rect.height
+          // If this is the first row for this filter on this page, add filter header height
+          const isFirstRowOnPage = !page.resultIndexes[filterId] || page.resultIndexes[filterId].length === 0
+          const additionalHeight = isFirstRowOnPage ? filterHeight : 0
+          const expectedHeight = currentPageHeight + additionalHeight + rect.height
           if (_.isEmpty(page.resultIndexes)) {
             page.filterId = [filterId]
             page.resultIndexes = { [filterId]: [index] }
@@ -72,6 +74,7 @@ export class PaginationContext {
             return
           }
           if (expectedHeight > maxHeight) {
+            // Start a new page and add the row to it (with filter header)
             page = {
               filterId: [filterId],
               resultIndexes: { [filterId]: [index] },
@@ -81,12 +84,13 @@ export class PaginationContext {
 
             currentPageHeight = filterHeight + rect.height
           } else {
+            // Add row to current page
             if (!page.filterId.includes(filterId)) {
               page.filterId.push(filterId)
             }
             page.resultIndexes[filterId] = page.resultIndexes[filterId] || []
             page.resultIndexes[filterId].push(index)
-            currentPageHeight += rect.height
+            currentPageHeight += (additionalHeight + rect.height)
           }
         })
       } else {

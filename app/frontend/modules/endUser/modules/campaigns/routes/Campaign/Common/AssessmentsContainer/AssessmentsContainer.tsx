@@ -14,7 +14,7 @@ import { BreakCard } from './BreakCard'
 import { Statuses, UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 import { DirectionalNavigateBackIcon, ViewsContainer, DirectionalArrowIcon } from '~/glint'
 import styles from './AssessmentsContainer.less'
-import { isProctored } from '~/utils/isProctored'
+import { useIsProctored } from '~/hooks/useProctoringState'
 
 const { Title } = Typography
 const { I18n } = window
@@ -63,6 +63,7 @@ export const AssessmentsContainer = ({
   campaignNotStarted,
   canNotStartPrework,
 }) => {
+  const { isProctored } = useIsProctored()
   const [joinMeetingWorkshopData, setJoinMeetingWorkshopData] = useState({})
   const { search } = useLocation()
   const navigate = useNavigate()
@@ -170,7 +171,7 @@ export const AssessmentsContainer = ({
                   const bookingStartTimeMomentObj = dayjs(workshop?.startTime)
                   canJoinMeeting = currentTime.isAfter(bookingStartTimeMomentObj) || joinMeetingWorkshopData[group.id]
                   proctoringMsgOnWorkshop = getProctoringMsgOnWorkshop(
-                    campaign.campaignOptions || {}, canNotStartWorkshopActivity,
+                    campaign.campaignOptions || {}, canNotStartWorkshopActivity, isProctored,
                   )
                   if (workshop?.closed) return
                   if (workshopCompleted) {
@@ -326,11 +327,11 @@ export const AssessmentsContainer = ({
   )
 }
 
-const getProctoringMsgOnWorkshop = (campaignOptions, canNotStartWorkshopActivity) => {
+const getProctoringMsgOnWorkshop = (campaignOptions, canNotStartWorkshopActivity, isProctored) => {
   if (!campaignOptions.proctoringEnabled) return null
 
   if (!campaignOptions.proctoringEnabledOnWorkshopActivity) {
-    if (isProctored()) {
+    if (isProctored) {
       return I18n.t('campaign_assessment.not_allow_msg_proctoring_workshop_activity')
     } if (!canNotStartWorkshopActivity) {
       return I18n.t('campaign_assessment.allow_msg_proctoring_workshop_activity')

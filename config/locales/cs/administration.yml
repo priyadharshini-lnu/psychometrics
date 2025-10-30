@@ -605,6 +605,7 @@ cs:
         disable_continue_to_dashboard: Zakázat tlačítko "Pokračovat na ovládací panel"
         disable_nav_btn: Zakázat navigační tlačítko Zpět
         enable_back: Povolit tlačítko zpět
+        enable_copy_content: Povolení kopírování obsahu
         enable_progress: Povolit ukazatel průběhu
         enable_save: Povolit tlačítko pro uložení
         enable_select_main_factor: Vyberte faktor jako hlavní faktor

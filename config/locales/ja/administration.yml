@@ -605,6 +605,7 @@ ja:
         disable_continue_to_dashboard: ダッシュボードに進む」ボタンを無効にする
         disable_nav_btn: ナビゲーションの戻るボタンを無効にする
         enable_back: 戻るボタンを有効にする
+        enable_copy_content: コンテンツのコピーを有効にする
         enable_progress: プログレスバーを有効にする
         enable_save: 保存ボタンを有効にする
         enable_select_main_factor: 因子を主因子として選択

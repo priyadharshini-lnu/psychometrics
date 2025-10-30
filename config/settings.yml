@@ -344,6 +344,15 @@ providers:
         assessment_ids:
           - HPI
           - MVPI
+      - id: EcHPIHDSMVPIHPTR
+        name: Hogan High Potential Talent Report
+        norm_id: Global2023
+        language_id: en
+        default_assessment_id: HPI
+        assessment_ids:
+          - HPI
+          - HDS
+          - MVPI
       - id: EcJUDCJUDVJUDAJR
         name: Judgement Report
         norm_id: Global2023

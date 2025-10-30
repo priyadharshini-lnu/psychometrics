@@ -605,6 +605,7 @@ de:
         disable_continue_to_dashboard: Schaltfläche "Weiter zum Dashboard" deaktivieren
         disable_nav_btn: Navigation deaktivieren Zurück-Taste
         enable_back: Zurück-Taste aktivieren
+        enable_copy_content: Kopieren von Inhalten aktivieren
         enable_progress: Fortschrittsbalken einschalten
         enable_save: Schaltfläche "Speichern" aktivieren
         enable_select_main_factor: Wählen Sie einen Faktor als Hauptfaktor aus

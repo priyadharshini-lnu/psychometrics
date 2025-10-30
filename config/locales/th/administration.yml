@@ -605,6 +605,7 @@ th:
         disable_continue_to_dashboard: ปิดใช้งานปุ่ม "ดําเนินการต่อไปยังแดชบอร์ด"
         disable_nav_btn: ปิดใช้งานปุ่มนำทางย้อนกลับ
         enable_back: เปิดใช้งานปุ่มย้อนกลับ
+        enable_copy_content: เปิดใช้งานการคัดลอกเนื้อหา
         enable_progress: เปิดใช้งานแถบความคืบหน้า
         enable_save: เปิดใช้งานปุ่มบันทึก
         enable_select_main_factor: เลือกปัจจัยเป็นปัจจัยหลัก

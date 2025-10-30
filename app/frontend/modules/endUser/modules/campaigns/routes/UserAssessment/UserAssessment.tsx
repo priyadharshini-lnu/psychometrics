@@ -20,7 +20,7 @@ import {
 import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { isProctored } from '~/utils/isProctored'
+import { useIsProctored } from '~/hooks/useProctoringState'
 import { Notification } from '~/glint/components/CountdownTimer'
 import {
   PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon, FontsizeModifier,
@@ -79,6 +79,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   validateSession,
   progress,
 }) => {
+  const { isProctored, proctoringCheckInProgress } = useIsProctored()
   const params = useParams() as Params
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
@@ -95,12 +96,14 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
 
   if (isMobile) { progressBarProps = { type: 'circle', style: { width: '80vw' } } }
 
-  const needsProctoring = proctoringEnabled && !prework && !isProctored()
+  if (proctoringEnabled && proctoringCheckInProgress) { return <PageContentSkeleton /> }
+
+  const needsProctoring = proctoringEnabled && !prework && !isProctored
   if (needsProctoring) {
     navigate(`/campaigns/${campaignId}`)
   }
 
-  const enableBackButton = !extraOptions.disable_navigation_back && (!isProctored() || proctoringEnabled)
+  const enableBackButton = !extraOptions.disable_navigation_back && (!isProctored || proctoringEnabled)
   const notificationDurations: Notification[] = [
     { timeRemaining: 3600, type: 'info' },
     { timeRemaining: 1800, type: 'warning' },

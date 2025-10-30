@@ -605,6 +605,7 @@ en:
         disable_continue_to_dashboard: Disable "Continue to Dashboard" Button
         disable_nav_btn: Disable Navigation Back Button
         enable_back: Enable back button
+        enable_copy_content: Enable copy content
         enable_progress: Enable progress bar
         enable_save: Enable save button
         enable_select_main_factor: Select a factor as main factor

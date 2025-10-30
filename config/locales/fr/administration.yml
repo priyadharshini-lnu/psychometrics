@@ -605,6 +605,7 @@ fr:
         disable_continue_to_dashboard: Désactiver le bouton "Continuer vers le tableau de bord
         disable_nav_btn: Désactiver le bouton de navigation arrière
         enable_back: Activer le bouton de retour
+        enable_copy_content: Activer la copie de contenu
         enable_progress: Activer la barre de progression
         enable_save: Activer le bouton d'enregistrement
         enable_select_main_factor: Sélectionnez un facteur comme facteur principal

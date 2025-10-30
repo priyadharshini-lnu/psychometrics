@@ -4,6 +4,7 @@ import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import _ from 'lodash'
 import {
   Row, Col, Alert, Button, Result, Typography, Space, App,
+  Skeleton,
 } from 'antd'
 import cs from 'classnames'
 import {
@@ -24,7 +25,7 @@ import {
 import { acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
 
 import { SafeHTML } from '~/components/SafeHTML'
-import { isProctored } from '~/utils/isProctored'
+import { useIsProctored } from '~/hooks/useProctoringState'
 import { ProgressStatus, DirectionalArrowIcon, MediaQueryContext } from '~/glint'
 import { CampaignPageHeader } from './CampaignPageHeader'
 import { AssessmentsContainer } from './AssessmentsContainer'
@@ -79,7 +80,8 @@ const CommonComponent: FC<CommonComponentProps> = ({
   } = campaign
 
   const dispatch = useDispatch()
-  const needsProctoring = proctoringEnabled && !isProctored()
+  const { isProctored, proctoringCheckInProgress } = useIsProctored()
+  const needsProctoring = proctoringEnabled && !isProctored
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
   // TODO: We can check completion_status here. Also need to take care for assessment timed_out status when we add it
@@ -105,7 +107,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
   const campaignClosedForUser = campaignClosed
     || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
   const disableWorkshopActivityBasedOnProctoringSetting = proctoringEnabledOnWorkshopActivity
-    ? needsProctoring : isProctored()
+    ? needsProctoring : isProctored
 
   const canNotStartPrework = campaignClosedForUser || campaignUser.status === 'completed'
   const canNotStartAssessment = needsProctoring
@@ -239,6 +241,8 @@ const CommonComponent: FC<CommonComponentProps> = ({
     </Row>
   )
 
+  if (proctoringEnabled && proctoringCheckInProgress) { return <Skeleton /> }
+
   return (
     <>
       {asyncLoading && <PageContentSkeleton />}
@@ -309,7 +313,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                               </Button>
                             </>
                           )}
-                          {campaign.practiceCampaign && hasStartedCampaign && !isProctored() && (
+                          {campaign.practiceCampaign && hasStartedCampaign && !isProctored && (
                             <>
                               <Title className={styles.beginText} level={4}>
                                 {I18n.t('campaign.restart_practice')}

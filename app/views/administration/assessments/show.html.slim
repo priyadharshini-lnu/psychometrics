@@ -8,7 +8,27 @@ javascript [nonce=content_security_policy_nonce]:
   I18n.availableLocales = #{(@current_project&.available_locales || Settings.enduser_locales).to_json.html_safe}
   x_navigation_minimize('close');
   window.WEBSPELLCHECKER_CONFIG = {
-      autoSearch: true,
-      autoDestroy: true,
-      serviceId: '7VTqCWMdsxJbLgr',
-    }
+    "autoSearch": true,
+    "autoDestroy": true,
+    "autocorrect": true,
+    "autocomplete": true,
+    "serviceId": "hvt7qyVB9RFBHdL",
+    "serviceProtocol": "https",
+    "servicePort": "443",
+    "serviceHost": "svc.webspellchecker.net",
+    "servicePath": "api",
+    "globalBadge": false,
+    "proofreadDialogContainer": ".wproofreader-sidebar",
+    "lang": "auto",
+    "theme": "default",
+    "localization": "#{I18n.locale}",
+    "enableBadgeButton": true,
+    "enableLanguagesInBadgeButton": true,
+    "actionItems": [
+        "toggle",
+        "proofreadDialog"
+    ],
+    "settingsSections": [
+        "languages"
+    ]
+  }

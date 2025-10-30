@@ -40,18 +40,18 @@ unless Rails.env.test?
         :self, :unsafe_eval, 'https://chatwoot.tte-work.com',
         'https://svc.webspellchecker.net', Settings.oac.base_embed_url,
         'https://consent.trustarc.com', 'https://www.google.com',
-        'https://www.gstatic.com'
+        'https://www.gstatic.com', 'https://svc.webspellchecker.net'
       ].compact
       script_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
 
       style_src = [
-        :self, :unsafe_inline, Settings.oac.base_embed_url
+        :self, :unsafe_inline, Settings.oac.base_embed_url, 'https://svc.webspellchecker.net'
       ].compact
       style_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
       style_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
 
       font_src = [
-        :self, :data, Settings.oac.base_embed_url, 'https://consent.trustarc.com'
+        :self, :data, Settings.oac.base_embed_url, 'https://consent.trustarc.com', 'https://svc.webspellchecker.net'
       ].compact
       font_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
       font_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
@@ -61,7 +61,7 @@ unless Rails.env.test?
         'https://consent-reporting.trustarc.com', 'https://consent.trustarc.com',
         'https://*.sentry.io',
         'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint,
-        'https://www.google.com', 'https://www.gstatic.com'
+        'https://www.google.com', 'https://www.gstatic.com', 'https://svc.webspellchecker.net'
       ].compact
       connect_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
       connect_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
