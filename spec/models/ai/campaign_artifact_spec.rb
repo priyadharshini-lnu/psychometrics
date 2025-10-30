@@ -164,6 +164,23 @@ RSpec.describe AI::CampaignArtifact, type: :model do
 
         expect(AI::CampaignArtifactDependency.where(id: dependency_ids).count).to eq(0)
       end
+
+      it 'destroys all associated artifact results' do
+        user1 = create(:user)
+        user2 = create(:user)
+
+        # Create artifact results for the campaign artifact
+        artifact_result1 = create(:campaign_ai_artifact_result, campaign_ai_artifact: campaign_artifact, user: user1)
+        artifact_result2 = create(:campaign_ai_artifact_result, campaign_ai_artifact: campaign_artifact, user: user2)
+
+        result_ids = [artifact_result1.id, artifact_result2.id]
+
+        expect(AI::CampaignArtifactResult.where(id: result_ids).count).to eq(2)
+
+        campaign_artifact.destroy!
+
+        expect(AI::CampaignArtifactResult.where(id: result_ids).count).to eq(0)
+      end
     end
   end
 end

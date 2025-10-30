@@ -8,7 +8,12 @@ module Api
         validate_crud_requests Api::V2::AI::Assistant::Schema
 
         def generate
-          result = ::AI::AssistantService.call(params[:id], current_user, params.dig(:data, :attributes, :prompt))
+          result = ::AI::AssistantService.call(
+            params[:id],
+            current_user,
+            params.dig(:data, :attributes, :prompt),
+            params: {} # Ignore default params required by assistables for the playground generate
+          )
           if result[:ok]
             response = result[:ok]
             render json: { id: params[:id], attributes: response }, status: :ok

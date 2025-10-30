@@ -69,11 +69,14 @@ export const AiAssistantPlayground: React.FC = () => {
       body: {
         prompt,
       },
-    }).then((response: { attributes: { message: string } }) => {
+    }).then((response: { attributes: { message: string | object } }) => {
+      const { message } = response.attributes
+      const displayText = typeof message === 'string' ? message : JSON.stringify(message, null, 2)
+
       setMessages(msgs => [
         ...msgs,
         {
-          text: response.attributes.message,
+          text: displayText,
           isUser: false,
         },
       ])

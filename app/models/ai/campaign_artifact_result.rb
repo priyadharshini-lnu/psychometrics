@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
-class AI::CampaignArtifactResult < ApplicationRecord
-  self.table_name = 'campaign_ai_artifact_results'
+# STI model for AI-assisted artifact results sessions.
+class AI::CampaignArtifactResult < AI::AssistedUserSession
+  validates :assistable_type, inclusion: { in: ['AI::CampaignArtifact'] }
+  validates :user_id, uniqueness: { scope: %i[assistable_id assistable_type] }
 
-  belongs_to :user
-  belongs_to :campaign_ai_artifact, class_name: 'AI::CampaignArtifact'
+  belongs_to :campaign_ai_artifact, class_name: 'AI::CampaignArtifact', foreign_key: :assistable_id
   has_many :assistant_output_schema_keys, through: :campaign_ai_artifact, source: :assistant_output_schema_keys
+
+  alias_attribute :results, :checkpoint
+  alias_attribute :parsed_dependencies, :meta
 
   before_save :reset_error, if: :results_changed?
 
@@ -13,9 +17,10 @@ class AI::CampaignArtifactResult < ApplicationRecord
 
   def schema_keys_result
     schema_keys = assistant_output_schema_keys.pluck(:key, :key_type).to_h
+    results_hash = results || {}
 
     schema_keys.map do |key, key_type|
-      { key: key, value: results[key.to_s], type: key_type }
+      { key: key, value: results_hash[key.to_s], type: key_type }
     end
   end
 
@@ -24,6 +29,10 @@ class AI::CampaignArtifactResult < ApplicationRecord
     current_keys = (results || {}).keys
 
     original_keys.sort != current_keys.sort
+  end
+
+  def campaign_ai_artifact_id
+    assistable_id
   end
 
   private

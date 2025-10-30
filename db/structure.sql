@@ -1754,41 +1754,6 @@ ALTER SEQUENCE public.campaign_ai_artifact_dependencies_id_seq OWNED BY public.c
 
 
 --
--- Name: campaign_ai_artifact_results; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.campaign_ai_artifact_results (
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    campaign_ai_artifact_id bigint NOT NULL,
-    error text,
-    results jsonb DEFAULT '{}'::jsonb NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    parsed_dependencies text
-);
-
-
---
--- Name: campaign_ai_artifact_results_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.campaign_ai_artifact_results_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: campaign_ai_artifact_results_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.campaign_ai_artifact_results_id_seq OWNED BY public.campaign_ai_artifact_results.id;
-
-
---
 -- Name: campaign_ai_artifacts; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8752,13 +8717,6 @@ ALTER TABLE ONLY public.campaign_ai_artifact_dependencies ALTER COLUMN id SET DE
 
 
 --
--- Name: campaign_ai_artifact_results id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaign_ai_artifact_results ALTER COLUMN id SET DEFAULT nextval('public.campaign_ai_artifact_results_id_seq'::regclass);
-
-
---
 -- Name: campaign_ai_artifacts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10324,14 +10282,6 @@ ALTER TABLE ONLY public.bulk_reports
 
 ALTER TABLE ONLY public.campaign_ai_artifact_dependencies
     ADD CONSTRAINT campaign_ai_artifact_dependencies_pkey PRIMARY KEY (id);
-
-
---
--- Name: campaign_ai_artifact_results campaign_ai_artifact_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaign_ai_artifact_results
-    ADD CONSTRAINT campaign_ai_artifact_results_pkey PRIMARY KEY (id);
 
 
 --
@@ -11951,13 +11901,6 @@ CREATE INDEX idx_on_campaign_ai_artifact_id_aaea21b6d6 ON public.campaign_ai_art
 
 
 --
--- Name: idx_on_campaign_ai_artifact_id_user_id_e6019df2d3; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX idx_on_campaign_ai_artifact_id_user_id_e6019df2d3 ON public.campaign_ai_artifact_results USING btree (campaign_ai_artifact_id, user_id);
-
-
---
 -- Name: idx_on_campaign_assessment_group_id_b2579ac76b; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12585,20 +12528,6 @@ CREATE INDEX index_bulk_reports_on_user_id ON public.bulk_reports USING btree (u
 --
 
 CREATE INDEX index_campaign_ai_artifact_dependencies_on_dependency ON public.campaign_ai_artifact_dependencies USING btree (dependency_type, dependency_id);
-
-
---
--- Name: index_campaign_ai_artifact_results_on_campaign_ai_artifact_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_campaign_ai_artifact_results_on_campaign_ai_artifact_id ON public.campaign_ai_artifact_results USING btree (campaign_ai_artifact_id);
-
-
---
--- Name: index_campaign_ai_artifact_results_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_campaign_ai_artifact_results_on_user_id ON public.campaign_ai_artifact_results USING btree (user_id);
 
 
 --
@@ -17604,14 +17533,6 @@ ALTER TABLE ONLY public.norms
 
 
 --
--- Name: campaign_ai_artifact_results fk_rails_b521fdef07; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaign_ai_artifact_results
-    ADD CONSTRAINT fk_rails_b521fdef07 FOREIGN KEY (user_id) REFERENCES public.users(id);
-
-
---
 -- Name: privacy_links fk_rails_b70067b747; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18164,14 +18085,6 @@ ALTER TABLE ONLY public.assessments_reports
 
 
 --
--- Name: campaign_ai_artifact_results fk_rails_e04a43ba55; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaign_ai_artifact_results
-    ADD CONSTRAINT fk_rails_e04a43ba55 FOREIGN KEY (campaign_ai_artifact_id) REFERENCES public.campaign_ai_artifacts(id);
-
-
---
 -- Name: user_saved_filters fk_rails_e25c5bac06; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18570,6 +18483,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251029073341'),
 ('20251015075724'),
 ('20251006071723'),
 ('20251003104731'),
