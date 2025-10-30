@@ -1,6 +1,7 @@
 import cs from 'classnames'
 import { useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
+import _ from 'lodash'
 import {
   CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,
 } from '~/modules/admin/constants/campaignFactors'
@@ -26,7 +27,7 @@ export const OverallScoring = ({ header, refresh }) => {
       include: ['campaign_factors'],
       fields: {
         campaign_factor_groups: ['name', 'campaign_factors'],
-        campaign_factors: ['name', 'output_type'],
+        campaign_factors: ['name', 'output_type', 'position'],
       },
       page: {
         size: CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,
@@ -74,7 +75,7 @@ export const OverallScoring = ({ header, refresh }) => {
           {factorGroups.map(group => (
             <div className={styles.group} key={group.id}>
               <div className={styles.groupTitle}>{group.name}</div>
-              {group.campaignFactors.map(factor => (
+              {_.sortBy(group.campaignFactors, 'position').map(factor => (
                 <div
                   className={cs(styles.factor, { [styles.string]: factor.outputType === OutputType.string })}
                   key={factor.id}
