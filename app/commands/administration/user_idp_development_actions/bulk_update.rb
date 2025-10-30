@@ -187,7 +187,7 @@ module Administration
           progress: action_data[:progress],
           start_date_time: action_data[:start_date_time],
           end_date_time: action_data[:end_date_time],
-          private: action_data[:private]
+          private: action_data[:private] || false
         )
       end
 
