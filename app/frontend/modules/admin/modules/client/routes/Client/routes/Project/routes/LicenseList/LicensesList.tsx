@@ -11,7 +11,7 @@ import { LicenseTR } from '~/modules/admin/modules/client/core/licenses'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
-import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { get as getCurrentUser } from '~/core/currentUser'
 import { LicenseFormModal } from './LicenseFormModal'
 import { ClientLicensesTable } from './LicenseTable'
 
