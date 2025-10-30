@@ -20,8 +20,15 @@ module Api
                       end
 
             if params[:filter]&.key?(:report_name)
-              search_term = "%#{params[:filter][:report_name]}%"
-              records = records.joins(:report_family).where('report_families.name ILIKE ?', search_term)
+              search_term = params[:filter][:report_name].downcase
+              matching_enum_keys = ::License.types.keys.select { |k| k.downcase.include?(search_term) }
+
+              records = records.left_joins(:report_family).
+                        where(
+                          'report_families.name ILIKE ? OR licenses.type IN (?)',
+                          "%#{search_term}%",
+                          ::License.types.values_at(*matching_enum_keys)
+                        )
             end
 
             page_number = (params.dig(:page, :number) || 1).to_i

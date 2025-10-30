@@ -7,6 +7,7 @@ import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
 import { License, LicenseTR } from '~/modules/admin/modules/client/core/licenses'
+import dayjs from 'dayjs'
 
 const { I18n } = window
 
@@ -38,6 +39,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
       },
     },
   )
+  // debugger;
 
   const licenseResource = license ? {
     ...license,
@@ -92,11 +94,20 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
               notFoundContent={isLicensesLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {projectSpecificLicenses.map(({ id, reportFamily }) => (
+              {projectSpecificLicenses.map(({id, reportFamily, startDate, endDate, type}) => {
+                const hasReportFamilyName = !!reportFamily?.name;
+                const formattedStartDate = dayjs(startDate).format('DD MMM YYYY')
+                const formattedEndDate = dayjs(endDate).format('DD MMM YYYY')
+                const label = hasReportFamilyName
+                  ? reportFamily.name
+                  : `${type} (${formattedStartDate} – ${formattedEndDate})`;
+
+                return (
                 <Select.Option key={id} value={id}>
-                  {`${reportFamily?.name || 'N/A'}`}
+                  {label}
                 </Select.Option>
-              ))}
+              )
+              })}
             </Select>
           </Form.Item>
 
