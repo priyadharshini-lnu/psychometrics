@@ -57,14 +57,29 @@ report_name: report.name)
         create(:project_license, license: license, project: project, usage_limit: 1, used_number: 0)
       end
 
-      it 'uses license' do
+      it 'uses license and returns a LicenseUsage with correct associations' do
         license_usage = described_class.call!(campaign, user, report, report_family_id)
 
+        expect(license_usage).to be_present
         expect(license_usage.license_id).to eq(license.id)
         expect(license_usage.user_id).to eq(user.id)
         expect(license_usage.client_id).to eq(campaign.client.id)
         expect(license_usage.project_id).to eq(project.id)
+        expect(license_usage.campaign_id).to eq(campaign.id)
         expect(license_usage.project_license_id).to eq(project_license.id)
+      end
+
+      it 'creates a LicenseUsage record tied to the project_license with correct references' do
+        described_class.call!(campaign, user, report, report_family_id)
+
+        license_usage = LicenseUsage.last
+        expect(license_usage).to be_present
+        expect(license_usage.project_license_id).to eq(project_license.id)
+        expect(license_usage.project_id).to eq(project.id)
+        expect(license_usage.user_id).to eq(user.id)
+        expect(license_usage.campaign_id).to eq(campaign.id)
+        expect(license_usage.client_id).to eq(campaign.client.id)
+        expect(license_usage.license_id).to eq(license.id)
       end
     end
 
