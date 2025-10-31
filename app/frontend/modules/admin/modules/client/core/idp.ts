@@ -64,7 +64,12 @@ const PermissionTR = t.type({
 })
 
 const MetaTR = t.union([
-  t.type({ permissions: PermissionTR }),
+  t.type({
+    permissions: PermissionTR,
+    projectFeatures: t.type({
+      globalSkills: t.boolean,
+    }),
+  }),
   t.undefined,
 ])
 

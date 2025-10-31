@@ -20,7 +20,11 @@ module Api
         end
 
         def tags_search
-          scoped_skills = Api::Administration::SkillPolicy::Scope.new(current_user, ::Skill).resolve
+          scoped_skills = Api::Administration::SkillPolicy::Scope.new(
+            current_user,
+            ::Skill,
+            project_id: project_id
+          ).resolve
 
           all = params.dig(:filter, :all) == 'true'
 
