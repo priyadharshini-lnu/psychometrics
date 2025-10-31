@@ -108,8 +108,7 @@ gem 'sentry-rails', '~> 5.15.2'
 gem 'sentry-sidekiq', '~> 5.15.2'
 
 # DSL for activerecord
-# TODO: Remove this temporary workaround once bump_to_3.0 is merged into tte-master
-gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'bump_to_3.0'
+gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'master'
 
 # Cloning ActiveRecord object
 gem 'deep_cloneable', '~> 3.2'

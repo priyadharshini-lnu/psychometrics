@@ -7,8 +7,8 @@ GIT
 
 GIT
   remote: https://github.com/TheTalentEnterprise/baby_squeel
-  revision: d41f45c7c91e075761373c8e2a14b1c385bc1de8
-  branch: bump_to_3.0
+  revision: 64f64012f7bb9049d88bbc5401733e429802beea
+  branch: master
   specs:
     baby_squeel (3.0.0)
       activerecord (>= 7.1.5, < 8.1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/TheTalentEnterprise/two_factor_authentication
-  revision: 850e0a19acb298a7d483d94dbe887b95b513bbf7
+  revision: 5f27cb01a50f3779f2140fca62bdef9d39930271
   branch: fix_deprecated_methods
   specs:
     two_factor_authentication (2.2.0)
