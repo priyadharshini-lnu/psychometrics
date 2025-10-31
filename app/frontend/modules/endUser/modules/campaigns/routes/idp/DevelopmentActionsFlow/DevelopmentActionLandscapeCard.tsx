@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react'
 import {
-  Rate, Progress, ConfigProvider, Button, Slider, Flex, Typography, DatePicker,
+  Progress, ConfigProvider, Button, Slider, Flex, Typography, DatePicker, Popover,
   message,
-  Tooltip, Empty, Modal, Popover, Switch, Tag,
-  Divider,
+  Tooltip, Empty, Switch, Tag,
+  Divider, Modal,
 } from 'antd'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
@@ -11,6 +11,7 @@ import {
   DeleteOutlined, EditOutlined, PlusOutlined, InfoCircleOutlined, WarningFilled, MessageOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
+  AccessibleRating,
   MediaQueryContext,
 } from '~/glint'
 import dayjs from '~/utils/dayjs'
@@ -121,7 +122,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
         {
         selfRatingEnabled
         && (
-          <Rate
+          <AccessibleRating
             disabled={!editMode}
             onChange={handleRatingChange}
             defaultValue={finalRating || initialRating}
@@ -135,6 +136,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
               checkedChildren="Private"
               unCheckedChildren="Public"
               value={isPrivateSkill}
+              aria-label={I18n.t('idp.development_actions.toggle_skill_privacy')}
               onChange={updateSkillPrivacy}
               className={cs('mt-2', isTablet ? '' : 'ms-4')}
               style={{
@@ -144,10 +146,11 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           ) : (
             isPrivateSkill && (
               <Tag
-                className={isTablet || isDesktop ? 'self-start' : 'self-start'}
+                className={isTablet || isDesktop ? 'self-start' : 'self-end mb-1'}
                 color="var(--ant-primary-color)"
+                aria-label={I18n.t('idp.skill_status', { name })}
               >
-                Private
+                {I18n.t('idp.private')}
               </Tag>
             )
           ))}
@@ -168,7 +171,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   ))
 
   return (
-    <Flex vertical id={`skill-${userIdpSkillId}`}>
+    <Flex
+      vertical
+      id={`skill-${userIdpSkillId}`}
+    >
       <Flex
         justify="space-between"
         className="pt-3 pb-3 border-b-1"
@@ -189,6 +195,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
                 type="default"
                 shape="circle"
                 icon={<DeleteOutlined />}
+                aria-label={I18n.t('idp.remove_skill_from_plan')}
                 danger
                 className="self-end justify-self-end"
                 onClick={() => {
@@ -202,7 +209,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       {!developmentActionCards.length ? (
         <Flex vertical>
           <Flex wrap align="center" className="border-b-1 pt-3 pb-3">
-            <Empty description="" style={!isTablet ? { marginInlineStart: '-2rem' } : {}} />
+            <Empty aria-hidden="true" description="" style={!isTablet ? { marginInlineStart: '-2rem' } : {}} />
             <Flex vertical align="start" style={!isTablet ? { marginInlineStart: '-2rem' } : {}}>
               <strong className="ta-s">
                 {I18n.t('idp.development_actions.no_development_actions')}
@@ -223,9 +230,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
                         {I18n.t('idp.development_actions.info_popover_title')}
                       </span>
                     )}
+                    trigger={['click', 'hover']}
                     content={<DevelopmentActionInfoPopover />}
                   >
-                    {!(isTablet || isDesktop) && (
+                    {!(isTablet || isDesktop) ? (
                       <Button
                         style={{
                           height: '1.4rem',
@@ -234,8 +242,9 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
                         type="link"
                         className="p-0 mb-1"
                         icon={<InfoCircleOutlined />}
+                        aria-label={I18n.t('idp.development_actions.show_development_action_information')}
                       />
-                    )}
+                    ) : <></>}
                   </Popover>
                 </Flex>
               )}
@@ -257,6 +266,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
                   </span>
                     )}
                 content={<DevelopmentActionInfoPopover />}
+                trigger="click"
               >
                 <Button
                   style={{
@@ -300,6 +310,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       <Modal
         open={openSkillDeletionModal}
         title=""
+        onCancel={() => setOpenSkillDeletionModal(false)}
         footer={() => (
           <>
             <Button onClick={() => setOpenSkillDeletionModal(false)}>{I18n.t('common.actions.cancel')}</Button>
@@ -330,7 +341,7 @@ const DateRange = ({ developmentAction, editMode, onDateRangeChange }) => {
 
   if (editMode) {
     return (
-      <Flex flex={1} vertical>
+      <Flex flex={1} vertical className="me-4">
         <RangePicker
           defaultValue={[
             startDateTime ? dayjs(startDateTime) : null,
@@ -411,8 +422,8 @@ const Card = ({
       flex={1}
       className={cs(
         {
-          'p-3 pe-0': !(isTablet || isDesktop),
-          'pb-2': isTablet || isDesktop,
+          'mb-4': isTablet || isDesktop,
+          'mt-6': !(isTablet || isDesktop),
         },
       )}
       vertical={isTablet || isDesktop}
@@ -432,7 +443,6 @@ const Card = ({
           {!editing && (
             <Progress
               percent={editableProgress}
-              className="mt-1"
               style={isTablet || isDesktop ? { width: '80%' } : {}}
             />
           )}
@@ -442,6 +452,7 @@ const Card = ({
                 <Button
                   type="default"
                   className="border-none mb-1"
+                  aria-label={I18n.t('idp.development_actions.edit_development_action_progress')}
                   icon={<EditOutlined />}
                   onClick={handleEditClick}
                 />
@@ -500,7 +511,7 @@ const Card = ({
                   shape="circle"
                   icon={<DeleteOutlined />}
                   danger
-                  className="self-end justify-self-end"
+                  className={cs('self-end justify-self-end ', !(isTablet || isDesktop) ? 'mb-4' : '')}
                 />
               </Tooltip>
             )
@@ -510,7 +521,9 @@ const Card = ({
   )
 
   return (
-    <Flex vertical>
+    <Flex
+      vertical
+    >
       <Flex
         align="stretch"
         justify="space-between"
@@ -531,7 +544,6 @@ const Card = ({
           )}
           justify="space-between"
           align="center"
-
         >
           <div
             className="p-3"
@@ -542,13 +554,15 @@ const Card = ({
           >
             <Typography.Title
               level={5}
-              className="mt-0"
+              className="mt-0 mb-0"
               ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+              aria-label={I18n.t('idp.development_actions.development_action_name')}
             >
               {developmentAction.name}
             </Typography.Title>
             <Typography.Paragraph
               ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+              aria-label={I18n.t('idp.development_actions.development_action_description')}
             >
               {developmentAction.description || developmentAction.customAction}
             </Typography.Paragraph>
@@ -556,8 +570,14 @@ const Card = ({
               {developmentAction.learningStyle
                 ? (
                   <Flex vertical={isTablet || isDesktop} gap={4} align="center">
-                    <Flex align="center" className="me-4">
+                    <Flex
+                      aria-label={I18n.t('idp.development_actions.development_action_learning_style')}
+                      align="center"
+                      className="me-4"
+                    >
                       <img
+                        aria-hidden="true"
+                        alt=""
                         src={developmentActionLearningStylesConfig[developmentAction.learningStyle].logo}
                       />
                       <strong>
@@ -580,6 +600,8 @@ const Card = ({
                           width: '1.5rem',
                           height: '1.5rem',
                         }}
+                        aria-hidden="true"
+                        alt=""
                       />
                       <Typography.Text
                         className="font-normal"
@@ -593,14 +615,14 @@ const Card = ({
             </Flex>
           </div>
         </Flex>
-        <Flex flex={1} vertical={isTablet || isDesktop} className={isTablet || isDesktop ? 'p-4 pt-0 pe-0' : ''}>
+        <Flex flex={1} vertical={isTablet || isDesktop} className={isTablet || isDesktop ? 'ps-4' : ''}>
           <Flex
             flex={1}
             justify="flex-start"
-            className={cs(
-              isTablet || isDesktop ? 'mb-4' : 'pt-4',
-            )}
             vertical={isTablet || isDesktop}
+            className={cs(
+              isTablet || isDesktop ? 'mb-4' : 'mt-6',
+            )}
           >
             {isTablet || isDesktop ? (
               <Flex

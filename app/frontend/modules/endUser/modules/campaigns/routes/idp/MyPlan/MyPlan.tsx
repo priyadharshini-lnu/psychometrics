@@ -4,8 +4,9 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import cs from 'classnames'
 import { filteredDevelopmentActions } from '../UserDevelopmentPlan/utils'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 import { getIdpSettings } from '~/modules/endUser/core/config'
@@ -23,6 +24,7 @@ import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import styles from './MyPlan.less'
 import { DownloadOutlined, DownOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
+import { MediaQueryContext } from '~/glint'
 
 const { I18n } = window
 
@@ -79,6 +81,9 @@ const MyPlanComponent = ({
   const [editMode, setEditMode] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const { tab: paramTab } = useParams() as {tab: string}
+
+  const { isMobile } = useContext(MediaQueryContext)
+
 
   const { requireAllDevelopmentActionsComplete, managerApprovesIdp } = idpConfig
 
@@ -217,7 +222,11 @@ const MyPlanComponent = ({
     <Flex gap={8} flex={1} justify="end">
       <Dropdown menu={menu} trigger={['click']}>
         <Tooltip title={I18n.t('common.actions.download')}>
-          <Button loading={asyncLoading} icon={<DownloadOutlined />}>
+          <Button
+            aria-label={I18n.t('idp.download_plan')}
+            loading={asyncLoading}
+            icon={<DownloadOutlined />}
+          >
             <Space>
               <DownOutlined />
             </Space>
@@ -278,7 +287,7 @@ const MyPlanComponent = ({
 
   return (
     <IdpPageLayoutWrapper>
-      <Flex className={styles.pageContent}>
+      <Flex className={cs(styles.pageContent, !isMobile ? 'overflow-y-hidden' : '')}>
         <Spin spinning={isLoading}>
           <UserDevelopmentPlan
             idpUserId={currentUser.id}

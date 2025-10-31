@@ -385,6 +385,7 @@ const UserDevelopmentPlanComponent = ({
             <Tooltip title={I18n.t('idp.comment_details.add_comments')}>
               <Button
                 color="default"
+                aria-label={I18n.t('idp.add_comments')}
                 icon={<MessageOutlined />}
                 style={{
                   backgroundColor: isCommentsDrawerOpen ? '#0B0B0B' : 'transparent',
@@ -595,13 +596,10 @@ const UserDevelopmentPlanComponent = ({
             className={styles.tabContainer}
             style={{
               maxHeight: 'calc(100vh - 220px)',
+              overflowY: 'auto',
             }}
           >
             <ListView />
-            <div style={{
-              minHeight: '200px',
-            }}
-            />
           </Flex>,
           },
         ]
@@ -619,7 +617,13 @@ const UserDevelopmentPlanComponent = ({
         </Space>
       </Col>
       <Col>
-        <Tag className="me-0" color={STATUS_COLORS[status]}>{I18n.t(`idp.user_idp_status.${status}`)}</Tag>
+        <Tag
+          aria-label={I18n.t('idp.plan_status', { status: I18n.t(`idp.user_idp_status.${status}`) })}
+          className="me-0"
+          color={STATUS_COLORS[status]}
+        >
+          {I18n.t(`idp.user_idp_status.${status}`)}
+        </Tag>
       </Col>
     </Row>
   )
@@ -629,9 +633,11 @@ const UserDevelopmentPlanComponent = ({
     return (
       <Flex
         vertical
-        className={styles.tabContainer}
+        className={cs(styles.tabContainer, 'p-4')}
         style={{
-          maxHeight: '100%',
+          maxHeight: 'calc(100vh - 116px)',
+          overflowY: 'auto',
+          overflowX: 'hidden',
         }}
       >
         <Button
@@ -640,7 +646,7 @@ const UserDevelopmentPlanComponent = ({
         >
           {I18n.t('common.actions.cancel')}
         </Button>
-        <Spin spinning={isSkillsLoading}>
+        <Spin spinning={isSkillsLoading} style={{ maxHeight: '100%', overflowY: 'auto' }}>
           <AddSkillsStep
             addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
             skillTypes={skillTypes}

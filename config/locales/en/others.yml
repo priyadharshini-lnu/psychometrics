@@ -2599,6 +2599,7 @@ en:
       aria_selected: Selected
   idp:
     actions: Actions
+    add_comments: Add Comments
     ai:
       assistant:
         failure_fallback:
@@ -2663,14 +2664,23 @@ en:
       add_reply_placeholder: Add a reply...
       go_to_skill: Go to skill
     comments:
+      clear_comments_for_skill: Clear comments for skill
       close: Close
+      comment_content: Comment content
+      comment_for_skill: Comment for skill
+      commented_at: Commented at
+      commented_by: Commented by
       comments: Comments
       filter_comments: Filter comments
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
+      mark_comment_as_resolved: Mark this comment as resolved
       replied: Replied
+      replied_at: Replied at
+      replied_by: Replied by
       replies: Replies
       reply: Reply
+      reply_content: Reply content
       resolve: Resolve
       resolved: Resolved
       resolved_message: This comment has been resolved and replies are disabled.
@@ -2679,8 +2689,13 @@ en:
       show_only_unread: Show only unread
       show_only_unresolved: Show only unresolved
       sort_by_date: Sort by date
+      total_comments_count: Total comments count
+      total_count: Total number of comments
+      unread_replies_count: Unread replies count
+      view_or_add: View or add comments for %{skillName}
       you: You
     convert_to_draft: Convert to Draft
+    current_step: Current Step %{step}
     delete_skill: Are you sure you want to delete skill because it will delete all the connected development actions as well?
     details: Details
     development_actions:
@@ -2691,6 +2706,7 @@ en:
       add_development_actions_modal_title: Development Actions Library for %{skillName}
       add_from_library: Add from Library
       add_more: Add More Development Actions
+      add_selected_development_actions: Add Selected Development Actions
       all: All
       approved: Approved
       board_view:
@@ -2705,10 +2721,14 @@ en:
       custom: Custom
       custom_da_description: Create a custom development action to address unique development needs.
       date_range: Start Date - End Date
+      development_action_learning_style: Development Action Learning Style
+      development_action_name: Development Action Description
       edit_da_progress: Edit Development Action Progress
-      edit_plan_to_add_development_actions: Edit Plan and to add Development Actions.
+      edit_development_action_progress: Edit Development Action Progress
+      edit_plan_to_add_development_actions: Edit Plan to add Development Actions.
       enter_development_action_description: Enter Development Action Description
       enter_development_action_title: Enter Development Action Title
+      filter_development_actions: Filter Development Actions
       generate_by_ai: Generate by AI
       generate_more: Generate More
       generating_development_actions: Generating development actions...
@@ -2725,6 +2745,7 @@ en:
       learning_from_others: Learning from others
       learning_from_others_label: Learning from Others
       learning_on_the_job_label: Learning on the job
+      loading_development_actions: Loading Development Actions
       manage_skills: Manage Skills
       marathon: Marathon
       mark_as_complete: Mark as Complete
@@ -2736,6 +2757,7 @@ en:
       publish_plan: Publish Plan
       remove: Remove Development Action
       save_plan: Save Plan
+      show_development_action_information: Show Development Action information
       skill: Skill
       sprint: Sprint
       start_plan: Start Plan
@@ -2744,15 +2766,18 @@ en:
       submit_plan: Submit Plan
       success: Development Actions completed successfully
       three: 3
+      toggle_skill_privacy: Toggle Skill Privacy
       two: 2
       write_here: Write here...
     direct_reportee_details: Direct Reportees Detail
     download:
       description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>. Link is only valid for 10 minutes'
+    download_plan: Download Plan
     edit_plan: Edit Plan
     edit_plan_and_add_skills: Edit Plan and click on Manage Skills to add Skills.
     edit_progress: Edit Progress
     fetching_skill_gap_report: Fetching Skill Gaps Report...
+    go_to_previous_step: Go to Previous Step
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills
@@ -2777,6 +2802,7 @@ en:
       skill_column_header: Skill
       skill_gap_report: Skill Gap Report
     list: List
+    loader_icon: Loader icon
     manage_plan: Manage Plan
     mark_as_complete: Mark as Complete
     mark_as_incomplete: Mark as Incomplete
@@ -2896,10 +2922,16 @@ en:
         skills_count: Skills Count
         title: Report Summary
     plan: Plan
+    plan_status: Plan Status %{status}
+    private: Private
     reflective_questions:
       already_completed: The IDP has already been completed, you cannot answer the questions now.
+      answer: Answer
       answer_later: Answer Later
+      answer_limit: Answer must be between %{min} and %{max} words
       answer_placeholder: Write your answer here...
+      cancel_edited_answer: Cancel Edited Answer
+      edit_answer: Edit Answer
       errors:
         max_words: The answer allows a maximum %{count} words
         min_words: The answer requires at least %{count} words
@@ -2909,18 +2941,29 @@ en:
       no_answer_provided: No answer provided yet
       no_reflective_questions: No reflective questions available
       optional: "(Optional)"
+      question: Question
+      required: This question is required
+      save_edited_answer: Save Edited Answer
       title: Reflective Questions
       update_failed: An error occurred during the update
       updated_successfully: Your answers have been updated successfully
       word_limit: Must be between %{min} and %{max} words
       words: Words
     remove_skill: Remove Skill
+    remove_skill_from_plan: Remove skill %{name} from plan
+    report_preview: Report Preview
+    search_and_select_skills_of_skill_type: Search and select %{skillType} skills
+    select_skills_of_skill_type: Select %{skillType} skills
+    selected_skills_of_skill_type: Selected %{skillType} skills
     skill_gap_report:
+      content: Skill Gap Report Content
       download: Download Skill Gap Report
       title: Skill Gap Report
+    skill_status: Skill %{name} is private
     skills_updated: Skills updated in the Plan
     status: Status
     suggestions: Suggestions
+    suggestions_for_skill_type: Suggestions for %{skillType} skills
     technical: Technical
     user_idp_status:
       approved: Approved

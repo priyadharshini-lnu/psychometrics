@@ -8,6 +8,7 @@ import { ModuleOverrides } from './ModuleOverrides'
 import useForceUpdate from '~/hooks/useUpdate'
 import PaginationPage from '~/modules/reports/models/PaginationPage'
 
+const { I18n } = window
 const applyPagination = (pages, module, pagination) => {
   const page = pages.find(page => page.id === module.page.page.id)
   const index = pages.findIndex(page => page.id === module.page.page.id) + 1
@@ -51,7 +52,11 @@ const Preview = ({
   const visiblePages = visiblePagesRef.current
 
   return (
-    <div style={{ position: 'relative', direction: 'ltr' }}>
+    <div
+      role="region"
+      aria-label={I18n.t('idp.report_preview')}
+      style={{ position: 'relative', direction: 'ltr' }}
+    >
       {visiblePages.map((page, i) => (
         <Page
           model={page}
