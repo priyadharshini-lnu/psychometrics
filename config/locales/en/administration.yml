@@ -3501,6 +3501,7 @@ en:
         add_new_condition: Add new condition
         apply_color_label: 'Then apply the following color:'
         custom_factor_fields:
+          default_score: Score
           percentage: Percentage
           questions_attempted: Attempted
           questions_correct: Correct
