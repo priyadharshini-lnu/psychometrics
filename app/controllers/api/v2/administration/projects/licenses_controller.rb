@@ -37,7 +37,7 @@ module Api
           end
 
           def license_usages
-            records = ::LicenseUsage.where(license_id: params[:id], project_id: params[:project_id])
+            records = filtered_license_usages
             paginated = paginate(records)
             render json: serialize_resources(
               paginated,
@@ -48,6 +48,13 @@ module Api
           end
 
           private
+
+          def filtered_license_usages
+            records = ::LicenseUsage.where(license_id: params[:id], project_id: params[:project_id])
+            return records unless params.dig(:filter, :status_eq)
+
+            records.where(status: params[:filter][:status_eq])
+          end
 
           def filtered_licenses
             records = base_licenses_scope

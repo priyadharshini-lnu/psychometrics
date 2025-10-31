@@ -44,7 +44,6 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             title={I18n.t('common.column.id')}
             id="id"
             dataIndex="id"
-            sorter
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.active')}
@@ -75,20 +74,6 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             render={createdAt => (
               dayjs(createdAt).format('lll')
             )}
-          />
-          <Resource.Column<LicenseUsage>
-            title={I18n.t('license_usage.status_updated_at')}
-            id="status_updated_at"
-            dataIndex="statusUpdatedAt"
-            sorter
-            render={statusUpdatedAt => (
-              statusUpdatedAt ? dayjs(statusUpdatedAt).format('lll') : null
-            )}
-          />
-          <Resource.Column<LicenseUsage>
-            title={I18n.t('license_usage.status_updated_by')}
-            id="status_updated_by_id"
-            dataIndex={['statusUpdatedBy', 'name']}
           />
         </Resource.Table>
       </Resource>
