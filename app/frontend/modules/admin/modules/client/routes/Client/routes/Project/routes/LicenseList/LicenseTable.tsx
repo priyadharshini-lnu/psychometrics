@@ -16,7 +16,7 @@ const { I18n } = window
 
 const connector = connect(
   (state: RootState) => ({
-    currentUser: getCurrentUser(state) as User
+    currentUser: getCurrentUser(state) as User,
   }),
   {
     openModal,
