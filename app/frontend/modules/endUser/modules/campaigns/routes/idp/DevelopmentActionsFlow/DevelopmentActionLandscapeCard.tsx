@@ -39,6 +39,7 @@ const connector = connect((state: RootState) => ({
   idpUser: state.campaigns.idp.user,
   currentUser: state.currentUser,
   userIdpSkills: state.campaigns.idp.userIdpSkills,
+  aiAssistantsEnabled: state.config.idp.aiAssistants,
 }),
 {
   updateUserIdpSkill,
@@ -80,6 +81,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   onShowCustomDevelopmentAction,
   onShowAIGeneratedDevelopmentActions,
   setSkillForComment,
+  aiAssistantsEnabled,
 }) => {
   const [toggleSkillPrivacy] = useToggleSkillPrivacyMutation()
   const isCurrentUserIDPUser = currentUser.id === idpUser.id
@@ -283,14 +285,16 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           >
             {I18n.t('idp.development_actions.add_from_library')}
           </Button>
-          <Button
-            type="link"
-            icon={<PlusOutlined />}
-            onClick={onShowAIGeneratedDevelopmentActions}
-            className="p-0 self-start"
-          >
-            {I18n.t('idp.development_actions.create_from_ai')}
-          </Button>
+          {aiAssistantsEnabled && (
+            <Button
+              type="link"
+              icon={<PlusOutlined />}
+              onClick={onShowAIGeneratedDevelopmentActions}
+              className="p-0 self-start"
+            >
+              {I18n.t('idp.development_actions.create_from_ai')}
+            </Button>
+          )}
         </Flex>
       ) : null}
       <Modal

@@ -34,6 +34,7 @@ type DevelopmentActionListViewProps = {
   onAddMoreSkills: () => void;
   onRemoveDevelopmentAction: (developmentAction: DevelopmentAction) => void
   onRemoveSkill: (skillId:number) => void
+  aiAssistantsEnabled: boolean
 }
 
 export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps> = ({
@@ -46,6 +47,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
   onRemoveDevelopmentAction,
   onUpdateDevelopmentAction,
   onRemoveSkill,
+  aiAssistantsEnabled,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
   const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
@@ -167,6 +169,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
         name={skill.name}
         userIdpSkillId={skill.id as number}
         onRemoveSkill={onRemoveSkill}
+        aiAssistantsEnabled={aiAssistantsEnabled}
       />
     ))
   }
@@ -269,14 +272,15 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
         onCancel={handleCancel}
         skillName={selectedSkill?.name as string}
       />
-      <AIGeneratedDevelopmentActions
-        open={isAIGeneratedDevelopmentActionsModalOpen}
-        onCancel={() => setIsAIGeneratedDevelopmentActionsModalOpen(false)}
-        skill={selectedSkill as SkillWithDevelopmentActions}
-        onAddDevelopmentAction={handleAddAIGeneratedDevelopmentAction}
-        selectedAIGeneratedDevelopmentActions={selectedAIGeneratedDevelopmentActions as DevelopmentAction[]}
-      />
+      {aiAssistantsEnabled && (
+        <AIGeneratedDevelopmentActions
+          open={isAIGeneratedDevelopmentActionsModalOpen}
+          onCancel={() => setIsAIGeneratedDevelopmentActionsModalOpen(false)}
+          skill={selectedSkill as SkillWithDevelopmentActions}
+          onAddDevelopmentAction={handleAddAIGeneratedDevelopmentAction}
+          selectedAIGeneratedDevelopmentActions={selectedAIGeneratedDevelopmentActions as DevelopmentAction[]}
+        />
+      )}
     </>
-
   )
 }
