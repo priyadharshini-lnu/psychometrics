@@ -3,6 +3,7 @@
 module EndUser
   class UserReportSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
+
     attributes :id, :report_name, :status, :user_access, :user_id, :pdf_url, :require_approval, :poster_url, :pdf_urls
 
     def poster_url

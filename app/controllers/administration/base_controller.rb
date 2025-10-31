@@ -6,6 +6,7 @@ module Administration
     include GeoRestriction
     include Administration::Policies
     include Administration::Helpers
+
     layout 'administration'
 
     before_action :set_locale

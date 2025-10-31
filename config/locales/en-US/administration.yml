@@ -605,6 +605,7 @@ en-US:
         disable_continue_to_dashboard: Disable "Continue to Dashboard" Button
         disable_nav_btn: Disable Navigation Back Button
         enable_back: Enable back button
+        enable_copy_content: Enable copy content
         enable_progress: Enable progress bar
         enable_save: Enable save button
         enable_select_main_factor: Select a factor as main factor
@@ -1031,6 +1032,10 @@ en-US:
           approvers: Approvers
           approvers_can_edit: Approvers Can Edit
           approvers_not_required: Approvers Not Required
+          digest_delivery_mode:
+            form_label: Digest Delivery Mode
+            immediate: Immediate - Send whenever there is a bulk submission
+            scheduled: Scheduled - Send a digest email at a scheduled time
           digest_frequency:
             daily: Daily
             form_label: Digest Frequency
@@ -2303,7 +2308,7 @@ en-US:
         create_my_own: Create my own
         custom: Custom
         date_range: Start Date - End Date
-        edit_plan_to_add_development_actions: Edit Plan and to add Development Actions.
+        edit_plan_to_add_development_actions: Edit Plan to add Development Actions.
         errors:
           invalid_learning_style: "'%{learning_style}' is not a valid learning style. Valid options are: %{valid_styles}"
           learning_style_blank: Learning style can't be blank
@@ -3021,7 +3026,11 @@ en-US:
           proficiency: Import Proficiency
           translations: Import Proficiency Translations
         errors:
+          by_skill_exists_id_missing: 'Row %{row_number}: A proficiency level for skill ''''%{name}'''' already exists. Please provide the ID to update it.'
           by_skill_missing: 'Row %{row_number}: Project and Skill must be present for ''by_skill'' type'
+          by_skill_type_exists_id_missing: 'Row %{row_number}: A proficiency level for skill type ''''%{skill_type}'''' already exists. Please provide the ID to update it.'
+          default_global_exists_id_missing: 'Row %{row_number}: A global-level ''''default'''' ProficiencyLevel already exists. Please provide the ID to update it.'
+          default_project_exists_id_missing: 'Row %{row_number}: A project-level ''''default'''' ProficiencyLevel already exists. Please provide the ID to update it.'
           invalid_csv_format: 'Invalid CSV format: %{message}'
           invalid_proficiency_type: 'Row %{row_number}: Invalid or missing ProficiencyType'
           invalid_skill_type: 'Row %{row_number}: Invalid skill type "%{skill_type}". Valid types are: %{valid_types}'
@@ -3138,15 +3147,40 @@ en-US:
             no_auth:
               label: None
               value: no_auth
+            oauth:
+              label: OAuth
+              value: oauth
+          client_credentials:
+            label: Client Credentials
+            value: client_credentials
+          client_id:
+            label: Client ID
+            name: oauth_client_id
+            required: Client ID is required
+          client_secret:
+            label: Client Secret
+            name: oauth_client_secret
+            required: Client secret is required
           description:
             label: Description
             name: description
+          grant_type:
+            label: Grant Type
+            name: oauth_grant_type
           include_locales:
             label: Include Translations
             name: include_locales
+          oauth_scope:
+            label: Scope
+            name: oauth_scope
+            required: Scope is required
           password:
             label: Password
             name: password
+          token_url:
+            label: Token URL
+            name: oauth_token_url
+            required: Token URL is required
           topics:
             label: Events
             list:
@@ -3466,6 +3500,7 @@ en-US:
         add_new_condition: Add new condition
         apply_color_label: 'Then apply the following color:'
         custom_factor_fields:
+          default_score: Score
           percentage: Percentage
           questions_attempted: Attempted
           questions_correct: Correct
@@ -3501,6 +3536,7 @@ en-US:
         prefixes:
           and: AND
           or: OR
+        prevent_value_overlap: Prevent value overlap
         skill_type_label: Filter by Skill Type
         skill_type_placeholder: Select skill type
         skill_types:
@@ -3781,6 +3817,7 @@ en-US:
         start_time: Date & Time
         subject: Subject
         title: Title
+        view_recording: View Recording
       errors:
         assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
         date_required: Please select a date

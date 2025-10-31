@@ -37,7 +37,6 @@ protocol: <%= ENV["APP_PROTOCOL"] || 'http' %>
 asset_host: <%= ENV["ASSET_HOST"] %>
 file_host: <%= ENV["FILE_HOST"] %>
 platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
-generative_ai_service: <%= ENV.fetch('GENERATIVE_AI_SERVICE', 'azure_openai') %>
 cloud_functions_service: <%= ENV.fetch('CLOUD_FUNCTION_SERVICE', 'aws') %>
 timezone_tip: ' (GST)'
 skip_recaptcha_for_ips: <%= ENV.fetch('SKIP_RECAPTCHA_FOR_IPS', '').split(',').map(&:strip) %>
@@ -343,6 +342,15 @@ providers:
         default_assessment_id: HPI
         assessment_ids:
           - HPI
+          - MVPI
+      - id: EcHPIHDSMVPIHPTR
+        name: Hogan High Potential Talent Report
+        norm_id: Global2023
+        language_id: en
+        default_assessment_id: HPI
+        assessment_ids:
+          - HPI
+          - HDS
           - MVPI
       - id: EcJUDCJUDVJUDAJR
         name: Judgement Report
@@ -2323,12 +2331,24 @@ ai_providers:
   - model_id: <%= ENV.fetch('AZURE_OPENAI_MODEL', 'gpt-4o') %>
     name: GPT-4o
     description: "GPT-4o by openai on Azure"
-    data_processing_locations: ""
-    data_at_rest_location: ""
     context:
       openai_api_key: <%= ENV.fetch('AZURE_OPENAI_API_KEY', nil) %>
       openai_api_base: <%= ENV.fetch('AZURE_OPENAI_API_BASE_ENDPOINT', nil) %>
+  - model_id: cohere.command-a
+    name: 'Cohere Command A'
+    description: "Cohere Command A by Cohere from OCI"
+    custom_provider: oci
+    context:
+      oci_model_id: <%= ENV.fetch('OCI_COHERE_COMMAND_A_MODEL_ID', nil) %>
+      oci_generative_ai_api_base: <%= ENV.fetch('OCI_GENERATIVE_AI_API_BASE', nil) %>
 available_ai_providers: <%= ENV.fetch('AVAILABLE_AI_PROVIDERS', nil) %>
+
+ai_embedding_provider:
+  provider: <%= ENV.fetch('EMBEDDING_PROVIDER', 'azure_openai') %>
+  model: <%= ENV.fetch('EMBEDDING_MODEL', 'text-embedding-3-large') %>
+  api_key: <%= ENV.fetch('EMBEDDING_API_KEY', nil) %>
+  api_endpoint: <%= ENV.fetch('EMBEDDING_API_ENDPOINT', nil) %>
+
 
 # Default SMTP throttling limits used when a project has no SMTP setting
 smtp_default:

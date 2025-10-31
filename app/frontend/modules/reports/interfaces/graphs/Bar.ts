@@ -29,6 +29,7 @@ interface Props extends TextCondition {
   hideEmptyColumns: boolean
   hideZeroValueColumns: boolean
   showValues: boolean
+  preventValueOverlap: boolean
   xAxisLinesHide: boolean
   yAxisLinesHide: boolean
   xAxisLabelHide: boolean
@@ -42,6 +43,9 @@ interface Props extends TextCondition {
   rounded: boolean
   reverse: boolean
   customFactorValueFields?: string[]
+  currentJobFactors?: boolean
+  targetJobFactors?: boolean
+  skillType?: string[]
 }
 
 export type TextCondition = {

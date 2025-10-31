@@ -216,6 +216,10 @@ ignore_unused:
   - 'administration.users.spoof.successfully'
   - 'errors.*'
   - 'administration'
+  - idp.history.added_da.*
+  - idp.history.removed_da.*
+  - idp.history.modified_da.*
+
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:

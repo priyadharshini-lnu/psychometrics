@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Button,
-  Space,
+  Button,
   Tooltip,
   Modal,
   Skeleton,
+  Space,
+  Typography,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { DateTimeWithZone } from '~/glint'
@@ -29,7 +30,6 @@ interface Props extends ConnectedProps<typeof connector> {
   header: (title: string) => React.ReactNode
 }
 
-const { Column } = Table
 const { I18n } = window
 
 const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }) => {
@@ -53,89 +53,41 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
   }
 
   return (
-    <>
-      <div className={styles.sidebar} style={{ minWidth: 700, overflowX: 'auto' }}>
-        {header(I18n.t('administration.assessor.moderate_score.recordings'))}
-        <Row>
-          <Col span={24}>
-            <Table className="mtm mbl" rowKey="id" dataSource={userRecordings} pagination={false} scroll={{ x: 900 }}>
-              <Column
-                title={I18n.t('administration.scheduling.columns.serial_no')}
-                dataIndex="id"
-                key="id"
-              />
-              <Column
-                title={I18n.t('administration.scheduling.columns.recording_date')}
-                key="recordingDate"
-                dataIndex="recordingDate"
-              />
-              <Column
-                title={I18n.t('administration.scheduling.columns.assessment_center_date_and_time')}
-                key="assessmentCenterDateAndTime"
-                render={({ assessmentCenterDateAndTime }) => {
-                  if (!assessmentCenterDateAndTime) return null
-                  return <DateTimeWithZone dateString={assessmentCenterDateAndTime} />
-                }}
-              />
-              <Column
-                title={I18n.t('administration.scheduling.columns.assessor')}
-                key="assessors"
-                render={({ assessors }) => {
-                  if (!assessors || assessors.length === 0) return null
-                  const maxShown = 1
-                  const shown = assessors.slice(0, maxShown)
-                  const hidden = assessors.slice(maxShown)
-                  const emails = assessors.map(assessor => assessor.email).join(', ')
-                  return (
-                    <Tooltip title={emails}>
-                      <span>
-                        {shown.map(assessor => assessor.email).join(', ')}
-                        {hidden.length > 0 && (
-                          <>{`+ ${hidden.length}`}</>
-                        )}
-                      </span>
-                    </Tooltip>
-                  )
-                }}
-              />
-              <Column
-                title={I18n.t('administration.scheduling.columns.participants')}
-                key="participants"
-                render={({ participants }) => {
-                  if (!participants || participants.length === 0) return null
-                  const maxShown = 1
-                  const shown = participants.slice(0, maxShown)
-                  const hidden = participants.slice(maxShown)
-                  const emails = participants.map(participant => participant.email).join(', ')
-                  return (
-                    <Tooltip title={emails}>
-                      <span>
-                        {shown.map(participant => participant.email).join(', ')}
-                        {hidden.length > 0 && (
-                          <>{`+ ${hidden.length}`}</>
-                        )}
-                      </span>
-                    </Tooltip>
-                  )
-                }}
-              />
-              <Column
-                title={I18n.t('administration.scheduling.columns.link_to_view_recordings')}
-                key="recording_url"
-                width="5%"
-                render={({ recordingUrl, recordingDate, id }) => (
-                  <RecordingUrlColumn
-                    recordingUrl={recordingUrl}
-                    recordingDate={recordingDate}
-                    serialNo={id}
-                  />
-                )}
-              />
-            </Table>
-          </Col>
-        </Row>
+    <div className={styles.sidebar}>
+      {header(I18n.t('administration.assessor.moderate_score.recordings'))}
+      <div className={styles.content}>
+        <Space direction="vertical" style={{ width: '100%' }}>
+          {userRecordings.map(recording => (
+            <div className={styles.group} key={recording.id}>
+              <div className={styles.groupTitle}>
+                <DateTimeWithZone dateString={recording.assessmentCenterDateAndTime} />
+              </div>
+              <div className={styles.groupColumn}>
+                <Typography.Text strong>
+                  {I18n.t('administration.scheduling.columns.assessor')}
+                  {': '}
+                </Typography.Text>
+                <ContactList contacts={recording.assessors} />
+              </div>
+              <div className={styles.groupColumn}>
+                <Typography.Text strong>
+                  {I18n.t('administration.scheduling.columns.participants')}
+                  {': '}
+                </Typography.Text>
+                <ContactList contacts={recording.participants} />
+              </div>
+              <div>
+                <RecordingUrlColumn
+                  recordingUrl={recording.recordingUrl}
+                  recordingDate={recording.recordingDate}
+                  serialNo={recording.id}
+                />
+              </div>
+            </div>
+          ))}
+        </Space>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -160,14 +112,13 @@ const RecordingUrlColumn: React.FC<{
 
   return (
     <>
-      <Space>
-        <Button
-          type="link"
-          onClick={() => setOpen(true)}
-        >
-          View recording
-        </Button>
-      </Space>
+      <Button
+        style={{ padding: '0px' }}
+        type="link"
+        onClick={() => setOpen(true)}
+      >
+        {I18n.t('administration.scheduling.columns.view_recording')}
+      </Button>
       <Modal
         open={open}
         onCancel={() => setOpen(false)}
@@ -182,5 +133,22 @@ const RecordingUrlColumn: React.FC<{
   )
 }
 
+const ContactList: React.FC<{ contacts: Array<{ name: string, email: string }> }> = ({ contacts }) => {
+  if (!contacts || contacts.length === 0) return null
+  const maxShown = 1
+  const shown = contacts.slice(0, maxShown)
+  const hidden = contacts.slice(maxShown)
+  const emails = contacts.map(a => a.email).join(', ')
+  return (
+    <Tooltip title={emails}>
+      <span>
+        {shown.map(contact => contact.email).join(', ')}
+        {hidden.length > 0 && (
+          <>{`+ ${hidden.length}`}</>
+        )}
+      </span>
+    </Tooltip>
+  )
+}
 
 export default connector(Recordings)

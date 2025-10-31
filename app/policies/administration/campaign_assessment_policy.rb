@@ -27,9 +27,10 @@ module Administration
     end
 
     def normalize_factor_scores?
-      has_permission?(:results, :normalize_factor_scores) && (
-        @record.is_a?(CampaignAssessment) && @record&.normalize_factor_scores?
-      )
+      has_permission?(
+        :results,
+        :normalize_factor_scores
+      ) && @record.is_a?(CampaignAssessment) && @record&.normalize_factor_scores?
     end
 
     def update_assessor_form?

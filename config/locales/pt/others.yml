@@ -389,6 +389,8 @@ pt:
               inclusion: Selecionar o tipo de norma correto
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} não encontrado"
             email:
               user_exists_in_campaign: O utilizador com este ID de correio eletrónico já existe na campanha
               user_exists_in_project: O utilizador com este ID de correio eletrónico já existe no projeto
@@ -408,6 +410,8 @@ pt:
               invalid_datetime: é inválido
             schedule_start_date:
               invalid_datetime: é inválido
+            target_job_role:
+              not_found: "%{name} não encontrado"
         user_assessment:
           subject_and_assessment_exists: A avaliação e o par de disciplinas já existem
         user_idp_development_action:
@@ -2589,6 +2593,7 @@ pt:
       aria_selected: Selecionado
   idp:
     actions: Acções
+    add_comments: Adicionar comentários
     ai:
       assistant:
         failure_fallback:
@@ -2653,14 +2658,23 @@ pt:
       add_reply_placeholder: Adicionar resposta...
       go_to_skill: Ir para habilidade
     comments:
+      clear_comments_for_skill: Comentários claros para habilidade
       close: Fechar
+      comment_content: Como fazer o conteúdo
+      comment_for_skill: Comentário para habilidade
+      commented_at: Comentado em
+      commented_by: Comentado por
       comments: Comentários
       filter_comments: Filtrar comentários
       mark_as_resolved: Marcar como resolvido
       mark_as_unresolved: Marcar como não resolvido
+      mark_comment_as_resolved: Marcar este comentário como resolvido
       replied: Respondido
+      replied_at: Respondido em
+      replied_by: Respondido por
       replies: Respostas
       reply: Responder
+      reply_content: Conteúdo da resposta
       resolve: Resolver
       resolved: Resolvido
       resolved_message: Este comentário foi resolvido e as respostas estão desativadas.
@@ -2669,8 +2683,13 @@ pt:
       show_only_unread: Mostrar apenas não lidos
       show_only_unresolved: Mostrar apenas não resolvidos
       sort_by_date: Ordenar por data
+      total_comments_count: Contagem total de comentários
+      total_count: Número total de comentários
+      unread_replies_count: Contagem de respostas não lidas
+      view_or_add: Exibir ou adicionar comentários para %{skillName}
       you: Você
     convert_to_draft: Converter em rascunho
+    current_step: Etapa atual %{step}
     delete_skill: Tem certeza de que deseja excluir a habilidade porque ela também excluirá todas as ações de desenvolvimento conectadas?
     details: Detalhes
     development_actions:
@@ -2681,6 +2700,7 @@ pt:
       add_development_actions_modal_title: Biblioteca de ações de desenvolvimento para %{skillName}
       add_from_library: Adicionar da biblioteca
       add_more: Adicionar mais ações de desenvolvimento
+      add_selected_development_actions: Adicionar ações de desenvolvimento selecionadas
       all: Todos
       approved: Aprovado
       board_view:
@@ -2695,10 +2715,15 @@ pt:
       custom: Costume
       custom_da_description: Crie uma ação de desenvolvimento personalizada para atender às necessidades de desenvolvimento exclusivas.
       date_range: Data de início - Data de fim
+      development_action_learning_style: Estilo de Aprendizagem de Ação de Desenvolvimento
+      development_action_name: Descrição da Ação de Desenvolvimento
+      discard_draft: Descartar rascunho
       edit_da_progress: Editar progresso da ação de desenvolvimento
+      edit_development_action_progress: Editar progresso da ação de desenvolvimento
       edit_plan_to_add_development_actions: Edite o plano e adicione ações de desenvolvimento.
       enter_development_action_description: Insira a descrição da ação de desenvolvimento
       enter_development_action_title: Digite o título da ação de desenvolvimento
+      filter_development_actions: Filtrar Ações de Desenvolvimento
       generate_by_ai: Gerar por IA
       generate_more: Gerar mais
       generating_development_actions: Geração de acções de desenvolvimento...
@@ -2715,6 +2740,7 @@ pt:
       learning_from_others: Aprender com os outros
       learning_from_others_label: Aprendendo com os outros
       learning_on_the_job_label: Aprendendo no trabalho
+      loading_development_actions: Carregando ações de desenvolvimento
       manage_skills: Gerenciar competências
       marathon: Maratona
       mark_as_complete: Marcar como Concluído
@@ -2725,6 +2751,7 @@ pt:
       publish_plan: Publicar plano
       remove: Remover
       save_plan: Salvar plano
+      show_development_action_information: Mostrar informações da Ação de Desenvolvimento
       skill: Habilidade
       sprint: Sprint
       start_plan: Iniciar Plano
@@ -2732,12 +2759,31 @@ pt:
       structured_learning_label: Aprendizagem colaborativa
       submit_plan: Apresentar plano
       success: Ações de desenvolvimento concluídas com sucesso
+      toggle_skill_privacy: Alternar privacidade da habilidade
       write_here: Escreva aqui...
     direct_reportee_details: Detalhe dos subordinados diretos
+    download:
+      description: 'Para baixar o relatório, siga o link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. O link é válido apenas por 10 minutos'
+    download_plan: Plano de download
     edit_plan: Editar plano
     edit_plan_and_add_skills: Edite o plano e clique em Gerenciar habilidades para adicionar habilidades.
     edit_progress: Editar o progresso
     fetching_skill_gap_report: Buscando o Relatório de Lacunas de Habilidades...
+    go_to_previous_step: Ir para a etapa anterior
+    history:
+      added_da:
+        one: Ação de desenvolvimento adicionada
+        other: Ações de desenvolvimento adicionadas
+      changes:
+        end_date: Data de término de %{from} a %{to}
+        progress: Progresso de %{from} para %{to}
+        start_date: Data de início de %{from} a %{to}
+      modified_da:
+        one: Ação de Desenvolvimento Modificada
+        other: Ações de desenvolvimento modificadas
+      removed_da:
+        one: Ação de desenvolvimento removida
+        other: Ações de desenvolvimento removidas
     initial_steps:
       add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
       add_skill_group_title: Explorar as suas competências de %{category}
@@ -2762,6 +2808,7 @@ pt:
       skill_column_header: Habilidade
       skill_gap_report: Relatório de défice de competências
     list: Lista
+    loader_icon: Ícone do carregador
     manage_plan: Gerenciar plano
     mark_as_complete: Marcar como concluído
     mark_as_incomplete: Marcar como incompleto
@@ -2887,10 +2934,16 @@ pt:
         skills_count: Contagem de Competências
         title: Resumo do Relatório
     plan: Plano
+    plan_status: Status do plano %{status}
+    private: Privado
     reflective_questions:
       already_completed: O PDI já foi concluído, não pode responder às perguntas agora.
+      answer: Responder
       answer_later: Responder mais tarde
+      answer_limit: A resposta deve estar entre %{min} e %{max} palavras
       answer_placeholder: Escreve aqui a tua resposta...
+      cancel_edited_answer: Cancelar resposta editada
+      edit_answer: Editar resposta
       errors:
         max_words: A resposta permite um máximo de %{count} palavras
         min_words: A resposta requer pelo menos %{count} palavras
@@ -2900,24 +2953,37 @@ pt:
       no_answer_provided: Nenhuma resposta fornecida ainda
       no_reflective_questions: Sem perguntas reflexivas
       optional: "(Opcional)"
+      question: Pergunta
+      required: Esta pergunta é obrigatória
+      save_edited_answer: Salvar resposta editada
       title: Perguntas de reflexão
       update_failed: Ocorreu um erro durante a atualização
       updated_successfully: As suas respostas foram actualizadas com sucesso
       word_limit: Deve estar entre %{min} e %{max} palavras
       words: Palavras
     remove_skill: Remover habilidade
+    remove_skill_from_plan: Remover %{name} de habilidade do plano
+    report_preview: Visualização do relatório
+    search_and_select_skills_of_skill_type: Pesquise e selecione %{skillType} habilidades
+    select_skills_of_skill_type: Selecione %{skillType} habilidades
+    selected_skills_of_skill_type: Habilidades %{skillType} selecionadas
     skill_gap_report:
+      content: Conteúdo do Relatório de Lacunas de Habilidades
       download: Baixe o Relatório de Lacunas de Habilidades
       title: Relatório de défice de competências
+    skill_status: A habilidade %{name} é privada
     skills_updated: Habilidades atualizadas no Plano
     status: Estado
     suggestions: Sugestões
+    suggestions_for_skill_type: Sugestões para %{skillType} habilidades
     technical: Técnica
     user_idp_status:
       approved: Aprovado
       completed: Concluída |
+      completion_not_started: Conclusão não iniciada
       draft: Projeto
       in_progress: Em curso
+      in_review: Em revisão
       not_started: Não iniciado
       pending_approval: Pendente
       rejected: Rejeitado
@@ -4239,6 +4305,9 @@ pt:
       EntityTooLarge: O tamanho do arquivo deverá ser menor que %{maxFileSize} MB
       WrongFileType: 'O tipo de arquivo deve ser um dos seguintes: %{allowedFileTypes}'
     idp:
+      can_not_complete_without_approval_and_in_progress: Você não pode concluir seu PDI até que seu gerente o aprove e você o tenha marcado como 'Em andamento'.
+      can_not_start_without_approval: Você não pode começar a trabalhar em seu PDI até que seu gerente o aprove.
+      no_previous_approved_plan: Nenhum plano IDP aprovado anteriormente encontrado.
       reflective_questions_required: Respostas a perguntas reflexivas são necessárias para o IDP
       status_not_permitted: não é permitido pelo utilizador.
       status_not_permitted_by_manager: O Manager não pode atualizar o status quando o plano está no estado '%{status}'.

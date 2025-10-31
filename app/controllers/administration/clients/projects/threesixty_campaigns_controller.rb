@@ -5,6 +5,7 @@ module Administration
     module Projects
       class ThreesixtyCampaignsController < Administration::ThreesixtyCampaigns::BaseController
         include Administration::Clients
+
         before_action :ensure_project
         prepend_before_action :set_resource_class
         before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive export_results]
@@ -116,7 +117,7 @@ module Administration
         private
 
         def campaign_params
-          params.require(:resource).permit(:name)
+          params.expect(resource: [:name])
         end
 
         def threesixty_campaign_params

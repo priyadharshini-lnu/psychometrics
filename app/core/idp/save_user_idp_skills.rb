@@ -2,11 +2,12 @@
 
 module Idp
   class SaveUserIdpSkills < BaseCommand
-    private_attr_accessor :user_idp_plan, :skills_form
+    private_attr_accessor :user_idp_plan, :skills_form, :current_user
 
-    def initialize(user_idp_plan, skills_form)
+    def initialize(user_idp_plan, skills_form, current_user)
       @user_idp_plan = user_idp_plan
       @skills_form = skills_form
+      @current_user = current_user
     end
 
     def call
@@ -34,14 +35,17 @@ module Idp
     end
 
     def remove_user_idp_skills_not_part_of_plan(skills)
-      existing_idp_skill_ids = skills.pluck(:id)
+      existing_ids = skills.pluck(:id)
+      skills_to_remove = user_idp_plan.user_idp_skills.where.not(id: existing_ids)
 
       if skills_form.skill_type.present?
-        user_idp_plan.user_idp_skills.
-          where.not(id: existing_idp_skill_ids).joins(:skill).
-          where(skills: { skill_type: skills_form.skill_type }).destroy_all
+        skills_to_remove = skills_to_remove.joins(:skill).where(skills: { skill_type: skills_form.skill_type })
+      end
+
+      if user_idp_plan.pre_submission?
+        skills_to_remove.destroy_all
       else
-        user_idp_plan.user_idp_skills.where.not(id: existing_idp_skill_ids).destroy_all
+        skills_to_remove.find_each { |skill| skill.soft_delete!(current_user) }
       end
     end
   end

@@ -23,6 +23,7 @@ export const RateSkillIcon = (props) => {
         width: width || '1.5em',
         ...style,
       }}
+      aria-hidden="true"
     />
   )
 }

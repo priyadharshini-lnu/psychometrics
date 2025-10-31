@@ -48,7 +48,7 @@ module Api
         end
 
         def single_subscription
-          if context&.project && context.project.webhooks.count > 1
+          if context&.project&.webhooks&.many?
             errors.add(:webhook, I18n.t('errors.webhooks.multiple_webhook_error'))
           end
         end

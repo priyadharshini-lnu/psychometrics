@@ -605,6 +605,7 @@ sl:
         disable_continue_to_dashboard: Onemogoči gumb »Nadaljuj na nadzorno ploščo«
         disable_nav_btn: Onemogoči gumb za navigacijo nazaj
         enable_back: Gumb »Omogoči nazaj«
+        enable_copy_content: Omogočanje kopiranja vsebine
         enable_progress: Omogočanje vrstice napredovanja
         enable_save: Gumb »Omogoči shranjevanje«
         enable_select_main_factor: Izbira dejavnika kot glavnega dejavnika
@@ -1031,6 +1032,10 @@ sl:
           approvers: Potrjevalce
           approvers_can_edit: Potrjevalci lahko urejajo
           approvers_not_required: Odobritve niso potrebne
+          digest_delivery_mode:
+            form_label: Način dostave povzetka
+            immediate: Takojšnje - Pošljite vsakič, ko pride do množične oddaje
+            scheduled: Načrtovano – pošljite e-poštno sporočilo s povzetkom ob načrtovanem času
           digest_frequency:
             daily: Dnevno
             form_label: Pogostost izvlečka
@@ -1223,6 +1228,7 @@ sl:
         ai_assisted_idp: IDP s pomočjo AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva, da je omogočena funkcija AI Assistants
         global_skills: Globalne spretnosti
+        global_skills_disabled_by_client: Global Skills je onemogočen po stranki
         idp: IDP
         idp_disabled_by_client: IDP je onemogočen s strani odjemalca
         sms_notification: SMS obvestilo
@@ -3020,7 +3026,11 @@ sl:
           proficiency: Znanje uvoza
           translations: Uvoz prevodov strokovnosti
         errors:
+          by_skill_exists_id_missing: 'Vrstica %{row_number}: Raven znanja za spretnost ''''%{name}'''' že obstaja. Prosimo, navedite ID, da ga posodobite.'
           by_skill_missing: 'Vrstica %{row_number}: Projekt in spretnost morata biti prisotna za vrsto »by_skill«'
+          by_skill_type_exists_id_missing: 'Vrstica %{row_number}: Raven strokovnosti za vrsto spretnosti ''''%{skill_type}'''' že obstaja. Prosimo, navedite ID, da ga posodobite.'
+          default_global_exists_id_missing: 'Vrstica %{row_number}: »privzeta« ProficiencyLevel na globalni ravni že obstaja. Prosimo, navedite ID, da ga posodobite.'
+          default_project_exists_id_missing: 'Vrstica %{row_number}: ''''privzeta'''' ProficiencyLevel na ravni projekta že obstaja. Prosimo, navedite ID, da ga posodobite.'
           invalid_csv_format: 'Neveljavna oblika zapisa CSV: %{message}'
           invalid_proficiency_type: 'Vrstica %{row_number}: Neveljavna ali manjka ProficiencyType'
           invalid_skill_type: 'Vrstica %{row_number}: Nepravilna vrsta spretnosti "%{skill_type}". Veljavni tipi so: %{valid_types}'
@@ -3137,15 +3147,40 @@ sl:
             no_auth:
               label: Nobena
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAUTH
+          client_credentials:
+            label: Poverilnice odjemalca
+            value: client_credentials
+          client_id:
+            label: ID stranke
+            name: oauth_client_id
+            required: ID stranke je obvezen
+          client_secret:
+            label: Skrivnost stranke
+            name: oauth_client_secret
+            required: Skrivnost odjemalca je obvezna
           description:
             label: Opis
             name: opis
+          grant_type:
+            label: Vrsta nepovratnih sredstev
+            name: oauth_grant_type
           include_locales:
             label: Vključi prevode
             name: include_locales
+          oauth_scope:
+            label: Obseg
+            name: oauth_scope
+            required: Področje uporabe je potrebno
           password:
             label: Geslo
             name: geslo
+          token_url:
+            label: URL žetona
+            name: oauth_token_url
+            required: URL žetona je obvezen
           topics:
             label: Dogodkov
             list:
@@ -3465,6 +3500,7 @@ sl:
         add_new_condition: Dodajanje novega pogoja
         apply_color_label: 'Nato uporabite naslednjo barvo:'
         custom_factor_fields:
+          default_score: Partitura
           percentage: Odstotek
           questions_attempted: Poskus
           questions_correct: Pravilen
@@ -3500,6 +3536,7 @@ sl:
         prefixes:
           and: IN
           or: ALI
+        prevent_value_overlap: Preprečevanje prekrivanja vrednosti
         skill_type_label: Filtriraj po vrsti spretnosti
         skill_type_placeholder: Izberite vrsto spretnosti
         skill_types:
@@ -3780,6 +3817,7 @@ sl:
         start_time: Datum in ura
         subject: Predmet
         title: Naslov
+        view_recording: Ogled posnetka
       errors:
         assessor_already_assigned: Ocenjevalec, ki je že dodeljen tej oceni. Izberite drugega ocenjevalca ali ocenjevalca.
         date_required: Prosimo, izberite datum

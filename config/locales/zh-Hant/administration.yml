@@ -605,6 +605,7 @@ zh-Hant:
         disable_continue_to_dashboard: 停用「繼續到儀表板」按鈕
         disable_nav_btn: 停用導航返回按鈕
         enable_back: 啟用後退按鈕
+        enable_copy_content: 啟用複製內容
         enable_progress: 啟用進度列
         enable_save: 啟用儲存按鈕
         enable_select_main_factor: 選擇一個因素作為主要因素
@@ -1031,6 +1032,10 @@ zh-Hant:
           approvers: 批准人
           approvers_can_edit: 批准人可以編輯
           approvers_not_required: 不需要批准人
+          digest_delivery_mode:
+            form_label: 摘要傳遞模式
+            immediate: 立即 - 每當有大量提交時發送
+            scheduled: 排程 — 在排程時間傳送摘要電子郵件
           digest_frequency:
             daily: 㫟
             form_label: 消化頻率
@@ -1223,6 +1228,7 @@ zh-Hant:
         ai_assisted_idp: AI 協助的 IDP
         ai_assisted_idp_requires_ai_assistants: AI 輔助 IDP 需要啟用 AI 助理功能
         global_skills: 全球技能
+        global_skills_disabled_by_client: 客戶禁用了全局技能
         idp: IDP
         idp_disabled_by_client: 客戶端禁用了IDP
         sms_notification: 簡訊通知
@@ -3020,8 +3026,12 @@ zh-Hant:
           proficiency: 進口能力
           translations: 進口能力翻譯
         errors:
+          by_skill_exists_id_missing: 第 %{row_number} 行：技能「%{name}」的熟練程度已經存在。請提供 ID 進行更新。
           by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
+          by_skill_type_exists_id_missing: 第 %{row_number} 列：技能類型「%{skill_type}」的熟練程度已經存在。請提供 ID 進行更新。
           by_skill_type_missing: 行 %{row_number}：by_skill_type'' 類型的專案和技能類型必須存在
+          default_global_exists_id_missing: 列 %{row_number}：全域層級「預設」ProficiencyLevel 已存在。請提供 ID 進行更新。
+          default_project_exists_id_missing: 資料列 %{row_number}：專案層級「預設」 ProficiencyLevel 已存在。請提供 ID 進行更新。
           invalid_csv_format: 無效的 CSV 格式：%{message}。
           invalid_proficiency_type: 行 %{row_number}：無效或遺失 ProficiencyType
           invalid_skill_type: '行 %{row_number}: 無效的技能類型 "%{skill_type}"。有效的類型是：%{valid_types}'
@@ -3138,15 +3148,40 @@ zh-Hant:
             no_auth:
               label: 無
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAuauth
+          client_credentials:
+            label: 用戶端認證
+            value: client_credentials
+          client_id:
+            label: 用戶端 ID
+            name: oauth_client_id
+            required: 需要客戶端 ID
+          client_secret:
+            label: 用戶端密碼
+            name: oauth_client_secret
+            required: 需要用戶端密碼
           description:
             label: 說明
             name: 描述
+          grant_type:
+            label: 撥款類型
+            name: oauth_grant_type
           include_locales:
             label: 包含翻譯
             name: include_locales
+          oauth_scope:
+            label: 範圍
+            name: oauth_scope
+            required: 範圍是必填項
           password:
             label: 密碼
             name: 密碼
+          token_url:
+            label: 權杖 URL
+            name: oauth_token_url
+            required: 需要權杖 URL
           topics:
             label: 活動
             list:
@@ -3466,6 +3501,7 @@ zh-Hant:
         add_new_condition: 新增條件
         apply_color_label: 然後應用以下顏色：
         custom_factor_fields:
+          default_score: 二十
           percentage: 百分比
           questions_attempted: 嘗試過
           questions_correct: 對
@@ -3501,6 +3537,7 @@ zh-Hant:
         prefixes:
           and: 和
           or: 或
+        prevent_value_overlap: 防止值重疊
         skill_type_label: 按技能類型篩選
         skill_type_placeholder: 選擇技能類型
         skill_types:
@@ -3781,6 +3818,7 @@ zh-Hant:
         start_time: 日期與時間
         subject: 主題
         title: 標題
+        view_recording: 查看錄音
       errors:
         assessor_already_assigned: 已為此評估指派評估員。 請選擇其他評估或評估員。
         date_required: 請選擇日期

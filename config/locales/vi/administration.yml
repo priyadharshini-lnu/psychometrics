@@ -605,6 +605,7 @@ vi:
         disable_continue_to_dashboard: Tắt nút "Tiếp tục đến bảng điều khiển"
         disable_nav_btn: Tắt nút quay lại điều hướng
         enable_back: Bật nút quay lại
+        enable_copy_content: Cho phép sao chép nội dung
         enable_progress: Bật thanh tiến trình
         enable_save: Bật nút lưu
         enable_select_main_factor: Chọn một yếu tố làm yếu tố chính
@@ -1031,6 +1032,10 @@ vi:
           approvers: Người phê duyệt
           approvers_can_edit: Người phê duyệt có thể chỉnh sửa
           approvers_not_required: Không yêu cầu người phê duyệt
+          digest_delivery_mode:
+            form_label: Chế độ phân phối thông báo
+            immediate: Ngay lập tức - Gửi bất cứ khi nào có gửi hàng loạt
+            scheduled: Đã lên lịch - Gửi email thông báo vào thời gian đã lên lịch
           digest_frequency:
             daily: Nhật báo
             form_label: Tần số tiêu hóa
@@ -1223,6 +1228,7 @@ vi:
         ai_assisted_idp: IDP hỗ trợ AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP yêu cầu bật tính năng Trợ lý AI
         global_skills: Kỹ năng toàn cầu
+        global_skills_disabled_by_client: Kỹ năng toàn cầu bị vô hiệu hóa bởi khách hàng
         idp: IDP
         idp_disabled_by_client: IDP bị vô hiệu hóa bởi khách hàng
         sms_notification: Thông báo SMS
@@ -3020,7 +3026,11 @@ vi:
           proficiency: Thành thạo nhập khẩu
           translations: Bản dịch thành thạo nhập khẩu
         errors:
+          by_skill_exists_id_missing: 'Hàng %{row_number}: Mức độ thành thạo cho kỹ năng ''''%{name}'''' đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
           by_skill_missing: 'Hàng %{row_number}: Dự án và Kỹ năng phải có đối với loại ''by_skill'''
+          by_skill_type_exists_id_missing: 'Hàng %{row_number}: Mức độ thành thạo cho loại kỹ năng ''''%{skill_type}'''' đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
+          default_global_exists_id_missing: 'Hàng %{row_number}: ProficiencyLevel "mặc định" cấp toàn cầu đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
+          default_project_exists_id_missing: 'Hàng %{row_number}: ProficiencyLevel "mặc định" cấp dự án đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
           invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
           invalid_proficiency_type: 'Hàng %{row_number}: Không hợp lệ hoặc thiếu ProficiencyType'
           invalid_skill_type: 'Dòng %{row_number}: Loại kỹ năng không hợp lệ "%{skill_type}". Các loại hợp lệ là: %{valid_types}'
@@ -3137,15 +3147,40 @@ vi:
             no_auth:
               label: Không ai
               value: no_auth
+            oauth:
+              label: OAuth
+              value: oauth
+          client_credentials:
+            label: Thông tin đăng nhập khách hàng
+            value: client_credentials
+          client_id:
+            label: ID khách hàng
+            name: oauth_client_id
+            required: ID khách hàng là bắt buộc
+          client_secret:
+            label: Bí mật khách hàng
+            name: oauth_client_secret
+            required: Bí mật khách hàng là bắt buộc
           description:
             label: Sự miêu tả
             name: sự miêu tả
+          grant_type:
+            label: Loại tài trợ
+            name: oauth_grant_type
           include_locales:
             label: Bao gồm bản dịch
             name: include_locales
+          oauth_scope:
+            label: Phạm vi
+            name: oauth_scope
+            required: Phạm vi là bắt buộc
           password:
             label: Mật khẩu
             name: mật khẩu
+          token_url:
+            label: URL mã thông báo
+            name: oauth_token_url
+            required: URL mã thông báo là bắt buộc
           topics:
             label: Sự kiện
             list:
@@ -3465,6 +3500,7 @@ vi:
         add_new_condition: Thêm điều kiện mới
         apply_color_label: 'Sau đó áp dụng màu sau:'
         custom_factor_fields:
+          default_score: Điểm
           percentage: Tỷ lệ phần trăm
           questions_attempted: Cố gắng
           questions_correct: Đúng
@@ -3500,6 +3536,7 @@ vi:
         prefixes:
           and: VÀ
           or: HOẶC
+        prevent_value_overlap: Ngăn chặn trùng lặp giá trị
         skill_type_label: Lọc theo loại kỹ năng
         skill_type_placeholder: Chọn loại kỹ năng
         skill_types:
@@ -3780,6 +3817,7 @@ vi:
         start_time: Ngày giờ
         subject: Chủ đề
         title: Tiêu đề
+        view_recording: Xem bản ghi
       errors:
         assessor_already_assigned: Người đánh giá đã được chỉ định cho bài đánh giá này. Vui lòng chọn một đánh giá hoặc đánh giá khác.
         date_required: Vui lòng chọn ngày

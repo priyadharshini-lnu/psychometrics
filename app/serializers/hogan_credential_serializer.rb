@@ -2,6 +2,7 @@
 
 class HoganCredentialSerializer < Panko::Serializer
   include Rails.application.routes.url_helpers
+
   attributes :url, :user_id, :password, :unique_id, :first_name, :last_name, :language_id,
              :direct_assessment_id, :display_informed_consent, :return_url
 

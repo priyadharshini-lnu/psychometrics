@@ -605,6 +605,7 @@ fr:
         disable_continue_to_dashboard: Désactiver le bouton "Continuer vers le tableau de bord
         disable_nav_btn: Désactiver le bouton de navigation arrière
         enable_back: Activer le bouton de retour
+        enable_copy_content: Activer la copie de contenu
         enable_progress: Activer la barre de progression
         enable_save: Activer le bouton d'enregistrement
         enable_select_main_factor: Sélectionnez un facteur comme facteur principal
@@ -1031,6 +1032,10 @@ fr:
           approvers: Approbateurs
           approvers_can_edit: Les approbateurs peuvent modifier
           approvers_not_required: Approbateurs non requis
+          digest_delivery_mode:
+            form_label: Mode de livraison du résumé
+            immediate: 'Immédiat : envoyer chaque fois qu’il y a une soumission en bloc'
+            scheduled: 'Programmé : envoi d’un e-mail de synthèse à une heure programmée.'
           digest_frequency:
             daily: Quotidien
             form_label: Fréquence de digestion
@@ -1223,6 +1228,7 @@ fr:
         ai_assisted_idp: AI assistée PDI
         ai_assisted_idp_requires_ai_assistants: L’IDP assisté par l’IA nécessite l’activation de la fonctionnalité d’assistants IA
         global_skills: Compétences globales
+        global_skills_disabled_by_client: Global Skills est désactivé par le client
         idp: PDI
         idp_disabled_by_client: L’IDP est désactivé par le client
         sms_notification: Notification par SMS
@@ -3020,8 +3026,12 @@ fr:
           proficiency: Compétence en matière d'importation
           translations: Traductions de la compétence en matière d'importation
         errors:
+          by_skill_exists_id_missing: 'Rangée %{row_number} : Il existe déjà un niveau de compétence pour la compétence ''''%{name}''''. Veuillez fournir l’ID pour le mettre à jour.'
           by_skill_missing: 'Ligne %{row_number} : Le projet et la compétence doivent être présents pour le type "by_skill".'
+          by_skill_type_exists_id_missing: 'Ligne %{row_number} : Il existe déjà un niveau de compétence pour le type de compétence ''''%{skill_type}''''. Veuillez fournir l’ID pour le mettre à jour.'
           by_skill_type_missing: 'Ligne %{row_number} : Le projet et le type de compétence doivent être présents pour le type "by_skill_type".'
+          default_global_exists_id_missing: 'Ligne %{row_number} : Il existe déjà un niveau de compétence « par défaut » global. Veuillez fournir l’ID pour le mettre à jour.'
+          default_project_exists_id_missing: 'Ligne %{row_number} : Un niveau de compétence « par défaut » au niveau du projet existe déjà. Veuillez fournir l’ID pour le mettre à jour.'
           invalid_csv_format: 'Format CSV non valide : %{message}'
           invalid_proficiency_type: 'Ligne %{row_number} : Type de compétence non valide ou manquant'
           invalid_skill_type: 'Ligne %{row_number} : Type de compétence non valide "%{skill_type}". Les types valides sont : %{valid_types}'
@@ -3138,15 +3148,40 @@ fr:
             no_auth:
               label: Aucun
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAuth
+          client_credentials:
+            label: Informations d’identification du client
+            value: client_credentials
+          client_id:
+            label: Client ID
+            name: oauth_client_id
+            required: L’identifiant du client est requis
+          client_secret:
+            label: Client Secret
+            name: oauth_client_secret
+            required: La clé secrète client est requise
           description:
             label: Description
             name: description
+          grant_type:
+            label: Type de subvention
+            name: oauth_grant_type
           include_locales:
             label: Inclure les traductions
             name: include_locales
+          oauth_scope:
+            label: Portée
+            name: oauth_scope
+            required: La portée est requise
           password:
             label: Mot de passe
             name: mot de passe
+          token_url:
+            label: URL du jeton
+            name: oauth_token_url
+            required: L’URL du jeton est requise
           topics:
             label: Evénements
             list:
@@ -3466,6 +3501,7 @@ fr:
         add_new_condition: Ajouter une nouvelle condition
         apply_color_label: 'Appliquez ensuite la couleur suivante :'
         custom_factor_fields:
+          default_score: Score
           percentage: Pourcentage
           questions_attempted: Tenté
           questions_correct: C’est bien ça
@@ -3501,6 +3537,7 @@ fr:
         prefixes:
           and: ET
           or: OU
+        prevent_value_overlap: Éviter le chevauchement des valeurs
         skill_type_label: Filtrer par type de compétence
         skill_type_placeholder: Sélectionner le type de compétence
         skill_types:
@@ -3781,6 +3818,7 @@ fr:
         start_time: Date et heure
         subject: Sujet
         title: Titre
+        view_recording: Voir l’enregistrement
       errors:
         assessor_already_assigned: L'évaluateur est déjà affecté à cette évaluation. Veuillez sélectionner une autre évaluation ou un autre évaluateur.
         date_required: Veuillez sélectionner une date

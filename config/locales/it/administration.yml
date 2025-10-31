@@ -605,6 +605,7 @@ it:
         disable_continue_to_dashboard: Disabilita il pulsante "Continua al cruscotto"
         disable_nav_btn: Disattivare il pulsante Indietro della navigazione
         enable_back: Abilita il pulsante Indietro
+        enable_copy_content: Abilita copia contenuto
         enable_progress: Abilita la barra di avanzamento
         enable_save: Abilita il pulsante di salvataggio
         enable_select_main_factor: Seleziona un fattore come fattore principale
@@ -1031,6 +1032,10 @@ it:
           approvers: Approvatori
           approvers_can_edit: Gli approvatori possono modificare
           approvers_not_required: Approvatori non necessari
+          digest_delivery_mode:
+            form_label: Modalità di recapito digest
+            immediate: 'Immediato: invia ogni volta che si verifica un invio in blocco'
+            scheduled: 'Pianificato: invia un messaggio di posta elettronica digest a un''ora pianificata'
           digest_frequency:
             daily: Quotidiano
             form_label: Frequenza digest
@@ -1223,6 +1228,7 @@ it:
         ai_assisted_idp: AI Assistito IDP
         ai_assisted_idp_requires_ai_assistants: L'IDP assistito dall'intelligenza artificiale richiede l'abilitazione della funzione Assistenti all'intelligenza artificiale
         global_skills: Competenze globali
+        global_skills_disabled_by_client: Le competenze globali sono disabilitate dal client
         idp: IDP
         idp_disabled_by_client: L'IDP è disabilitato dal client
         sms_notification: Notifica via SMS
@@ -3020,8 +3026,12 @@ it:
           proficiency: Competenza nell'importazione
           translations: Importazione di traduzioni di competenza
         errors:
+          by_skill_exists_id_missing: 'Riga %{row_number}: Esiste già un livello di competenza per l''abilità ''''%{name}''''. Si prega di fornire l''ID per aggiornarlo.'
           by_skill_missing: 'Riga %{row_number}: Il progetto e la competenza devono essere presenti per il tipo ''by_skill''.'
+          by_skill_type_exists_id_missing: 'Riga %{row_number}: Esiste già un livello di competenza per il tipo di abilità ''''%{skill_type}''''. Si prega di fornire l''ID per aggiornarlo.'
           by_skill_type_missing: 'Riga %{row_number}: Il progetto e il tipo di competenza devono essere presenti per il tipo ''''by_skill_type''''.'
+          default_global_exists_id_missing: 'Riga %{row_number}: Esiste già un livello di competenza ''''predefinito'''' a livello globale. Si prega di fornire l''ID per aggiornarlo.'
+          default_project_exists_id_missing: 'Riga %{row_number}: Esiste già un ProficiencyLevel ''''predefinito'''' a livello di progetto. Si prega di fornire l''ID per aggiornarlo.'
           invalid_csv_format: 'Formato CSV non valido: %{message}'
           invalid_proficiency_type: 'Riga %{row_number}: Tipo di competenza non valido o mancante'
           invalid_skill_type: 'Riga %{row_number}: Tipo di abilità non valida "%{skill_type}". I tipi validi sono: %{valid_types}'
@@ -3138,15 +3148,40 @@ it:
             no_auth:
               label: Nessuno
               value: no_auth
+            oauth:
+              label: OAuth
+              value: oauth
+          client_credentials:
+            label: Credenziali client
+            value: client_credentials
+          client_id:
+            label: ID cliente
+            name: oauth_client_id
+            required: L'ID client è obbligatorio
+          client_secret:
+            label: Segreto client
+            name: oauth_client_secret
+            required: Il segreto client è obbligatorio
           description:
             label: Descrizione
             name: descrizione
+          grant_type:
+            label: Tipo di sovvenzione
+            name: oauth_grant_type
           include_locales:
             label: Includere le traduzioni
             name: include_locali
+          oauth_scope:
+            label: Portata
+            name: oauth_scope
+            required: L'ambito è obbligatorio
           password:
             label: Password
             name: password
+          token_url:
+            label: Token URL
+            name: oauth_token_url
+            required: L'URL del token è obbligatorio
           topics:
             label: Eventi
             list:
@@ -3466,6 +3501,7 @@ it:
         add_new_condition: Aggiungi nuova condizione
         apply_color_label: 'Quindi applicare il seguente colore:'
         custom_factor_fields:
+          default_score: Punteggio
           percentage: Percentuale
           questions_attempted: Tentato
           questions_correct: Corretto
@@ -3501,6 +3537,7 @@ it:
         prefixes:
           and: E
           or: O
+        prevent_value_overlap: Evitare la sovrapposizione dei valori
         skill_type_label: Filtra per tipo di abilità
         skill_type_placeholder: Seleziona il tipo di abilità
         skill_types:
@@ -3781,6 +3818,7 @@ it:
         start_time: Data e ora
         subject: Oggetto
         title: Titolo
+        view_recording: Visualizza registrazione
       errors:
         assessor_already_assigned: Il valutatore è già assegnato a questa valutazione. Selezionare un'altra valutazione o un altro valutatore.
         date_required: Selezionare una data

@@ -28,7 +28,7 @@ module Administration
         @errors << I18n.t('administration.proficiency_levels.import.errors.invalid_csv_format', message: e.message)
       end
 
-      @errors.empty? ? true : @errors
+      @errors.empty? || @errors
     end
 
     private

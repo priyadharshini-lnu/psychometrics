@@ -6,7 +6,7 @@ module AI
       # Default parameters for Development Actions Assistant
       def default_params
         {
-          response_format: { type: 'json_object' },
+          response_format: { type: 'json_schema' },
           max_tokens: 1500
         }
       end

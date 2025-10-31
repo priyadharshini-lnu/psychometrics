@@ -77,7 +77,7 @@ module Api
           end
 
           rule('filter') do
-            if values[:filter].present? && (values[:filter][:all] == 'true' && values[:filter][:project_id_eq].present?)
+            if values[:filter].present? && values[:filter][:all] == 'true' && values[:filter][:project_id_eq].present?
               key.failure(I18n.t('administration.skills.errors.search.all_and_project_id_mutually_exclusive'))
             end
           end

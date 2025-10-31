@@ -151,7 +151,14 @@ const ReflectiveQuestion = ({
       </Space>
       <Typography.Text strong>
         {question.question}
-        {question.mandatory && <span className={cs(styles.mandatory, 'mlx')}>*</span>}
+        {question.mandatory && (
+          <span
+            aria-label={I18n.t('idp.reflective_questions.required')}
+            className={cs(styles.mandatory, 'mlx')}
+          >
+            *
+          </span>
+        )}
       </Typography.Text>
       <Form.Item
         validateStatus="error"
@@ -161,8 +168,14 @@ const ReflectiveQuestion = ({
         <Editor content={value} handleContentChange={onChange} readOnly={status === USER_IDP_PLAN_STATUS.COMPLETED} />
       </Form.Item>
 
-      <Flex justify="start" className="mb-4">
-        {I18n.t('idp.reflective_questions.word_limit', { min: question.minWords, max: question.maxWords })}
+      <Flex
+        aria-label={I18n.t('idp.reflective_questions.answer_limit', { min: question.minWords, max: question.maxWords })}
+        justify="start"
+        className="mb-4"
+      >
+        <span aria-hidden="true">
+          {I18n.t('idp.reflective_questions.word_limit', { min: question.minWords, max: question.maxWords })}
+        </span>
       </Flex>
     </Space>
   </Flex>

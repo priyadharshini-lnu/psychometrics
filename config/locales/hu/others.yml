@@ -389,6 +389,8 @@ hu:
               inclusion: Kérjük, válassza ki a megfelelő normatípust
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} nem található"
             email:
               user_exists_in_campaign: Az ezzel az e-mail-azonosítóval rendelkező felhasználó már létezik a kampányban
               user_exists_in_project: Az ezzel az e-mail-azonosítóval rendelkező felhasználó már létezik a projektben
@@ -408,6 +410,8 @@ hu:
               invalid_datetime: érvénytelen
             schedule_start_date:
               invalid_datetime: érvénytelen
+            target_job_role:
+              not_found: "%{name} nem található"
         user_assessment:
           subject_and_assessment_exists: Az értékelés és a tárgypár már létezik
         user_idp_development_action:
@@ -2581,6 +2585,7 @@ hu:
       aria_selected: Kiválasztott
   idp:
     actions: Műveletek
+    add_comments: Megjegyzések hozzáadása
     ai:
       assistant:
         failure_fallback:
@@ -2645,14 +2650,23 @@ hu:
       add_reply_placeholder: Válasz hozzáadása...
       go_to_skill: Tovább a képességhez
     comments:
+      clear_comments_for_skill: Egyértelmű megjegyzések a szakértelemhez
       close: Bezár
+      comment_content: Hogyan kell tartalmat adni
+      comment_for_skill: Megjegyzés a szakértelemhez
+      commented_at: 'Hozzászólt:'
+      commented_by: Hozzászólt
       comments: Megjegyzések
       filter_comments: Megjegyzések szűrése
       mark_as_resolved: Megjelölés megoldottként
       mark_as_unresolved: Megjelölés feloldatlanként
+      mark_comment_as_resolved: A megjegyzés megjelölése megoldottként
       replied: Válaszolt
+      replied_at: 'Megválaszolta a következőt:'
+      replied_by: 'Válaszolt:'
       replies: Válasz
       reply: Válasz
+      reply_content: Válasz tartalma
       resolve: Megfejt
       resolved: Megoldani
       resolved_message: Ez a megjegyzés megoldódott, és a válaszok le vannak tiltva.
@@ -2661,8 +2675,13 @@ hu:
       show_only_unread: Csak olvasatlan megjelenítése
       show_only_unresolved: Csak a feloldatlan megjelenítése
       sort_by_date: Rendezés dátum szerint
+      total_comments_count: Összes hozzászólás száma
+      total_count: Hozzászólások száma összesen
+      unread_replies_count: Az olvasatlan válaszok számítanak
+      view_or_add: Megjegyzések megtekintése vagy hozzáadása %{skillName}
       you: Te
     convert_to_draft: Konvertálás piszkozatra
+    current_step: Aktuális lépés %{step}
     delete_skill: Biztos benne, hogy törölni akarja a képességet, mert az az összes kapcsolódó fejlesztési műveletet is törli?
     details: Részletek
     development_actions:
@@ -2673,6 +2692,7 @@ hu:
       add_development_actions_modal_title: Fejlesztési műveletek könyvtára %{skillName}
       add_from_library: Hozzáadás a könyvtárból
       add_more: További fejlesztési műveletek hozzáadása
+      add_selected_development_actions: Kijelölt fejlesztési műveletek hozzáadása
       all: Összes
       approved: Jóváhagyott
       board_view:
@@ -2687,10 +2707,15 @@ hu:
       custom: Szokás
       custom_da_description: Hozzon létre egy egyéni fejlesztési műveletet az egyedi fejlesztési igények kielégítésére.
       date_range: Kezdő dátum - Záró dátum
+      development_action_learning_style: Fejlesztési akció tanulási stílus
+      development_action_name: Fejlesztési akció leírása
+      discard_draft: Vázlat elvetése
       edit_da_progress: Fejlesztési művelet előrehaladásának szerkesztése
+      edit_development_action_progress: Fejlesztési művelet előrehaladásának szerkesztése
       edit_plan_to_add_development_actions: Terv szerkesztése és fejlesztési műveletek hozzáadása.
       enter_development_action_description: Adja meg a fejlesztési művelet leírását
       enter_development_action_title: Adja meg a fejlesztési művelet címét
+      filter_development_actions: Fejlesztési műveletek szűrése
       generate_by_ai: AI által generált
       generate_more: Generáljon többet
       generating_development_actions: Fejlesztési akciók generálása...
@@ -2707,6 +2732,7 @@ hu:
       learning_from_others: Tanulás másoktól
       learning_from_others_label: Tanulás másoktól
       learning_on_the_job_label: Tanulás a munkahelyen
+      loading_development_actions: Fejlesztési tevékenységek betöltése
       manage_skills: Készségek kezelése
       marathon: Maraton
       mark_as_complete: Megjelölés befejezettként
@@ -2717,6 +2743,7 @@ hu:
       publish_plan: Közzétételi terv
       remove: Eltávolít
       save_plan: Csomag mentése
+      show_development_action_information: Fejlesztési akció információk megjelenítése
       skill: Készség
       sprint: Vágtázik
       start_plan: Csomag indítása
@@ -2724,12 +2751,31 @@ hu:
       structured_learning_label: Kollaboratív tanulás
       submit_plan: Terv benyújtása
       success: Sikeresen lezárult fejlesztési tevékenységek
+      toggle_skill_privacy: Toggle Skill Privacy
       write_here: Írj ide...
     direct_reportee_details: Közvetlen beosztottak részletei
+    download:
+      description: 'A jelentés letöltéséhez kövesse a következő linket: <a href=''''%{url}'''' target=''''_blank''''>Letöltés</a>. A link csak 10 percig érvényes'
+    download_plan: Terv letöltése
     edit_plan: Terv szerkesztése
     edit_plan_and_add_skills: Szerkessze a tervet, majd kattintson a Készségek kezelése gombra a készségek hozzáadásához.
     edit_progress: Haladás szerkesztése
     fetching_skill_gap_report: Képzettségi hiányosságokról szóló jelentés...
+    go_to_previous_step: Ugrás az előző lépésre
+    history:
+      added_da:
+        one: Hozzáadott fejlesztési intézkedés
+        other: Hozzáadott fejlesztési intézkedések
+      changes:
+        end_date: 'Záró dátum: %{from}-tól %{to}-ig'
+        progress: Előrehaladás %{from}-tól %{to} ig
+        start_date: Kezdő dátum %{from}-tól %{to}-ig
+      modified_da:
+        one: Módosított fejlesztési művelet
+        other: Módosított fejlesztési műveletek
+      removed_da:
+        one: Eltávolított fejlesztési akció
+        other: Eltávolított fejlesztési intézkedések
     initial_steps:
       add_skill_group_description: Az értékelési eredmények alapján íme néhány erősségi és fejlesztési terület az Ön számára. Válassza ki azokat a készségeket, amelyeket tovább szeretne fejleszteni a fejlesztési terv részeként.
       add_skill_group_title: "%{category} képességeinek felfedezése"
@@ -2754,6 +2800,7 @@ hu:
       skill_column_header: Készség
       skill_gap_report: Készséghiány-jelentés
     list: Lista
+    loader_icon: Betöltő ikon
     manage_plan: Terv kezelése
     mark_as_complete: Megjelölés befejezettként
     mark_as_incomplete: Megjelölés befejezetlenként
@@ -2851,10 +2898,16 @@ hu:
         skills_count: Készségek száma
         title: Jelentés összefoglalója
     plan: Terv
+    plan_status: Terv állapota %{status}
+    private: Privát
     reflective_questions:
       already_completed: Az IDP már elkészült, a kérdésekre most nem tud válaszolni.
+      answer: Válasz
       answer_later: Válasz később
+      answer_limit: A válasznak %{min} és %{max} szó között kell lennie
       answer_placeholder: Írja ide a válaszát...
+      cancel_edited_answer: Szerkesztett válasz megszakítása
+      edit_answer: Válasz szerkesztése
       errors:
         max_words: A válasz legfeljebb %{count} szót enged meg
         min_words: A válaszhoz legalább %{count} szó szükséges
@@ -2864,24 +2917,37 @@ hu:
       no_answer_provided: Még nincs válasz
       no_reflective_questions: Nincsenek reflektív kérdések
       optional: "(Nem kötelező)"
+      question: Kérdés
+      required: Ez a kérdés kötelező
+      save_edited_answer: Szerkesztett válasz mentése
       title: Reflektív kérdések
       update_failed: Hiba történt a frissítés során
       updated_successfully: Válaszait sikeresen frissítettük
       word_limit: "%{min} és %{max} szó között kell lennie"
       words: Szöveg
     remove_skill: Képesség eltávolítása
+    remove_skill_from_plan: Szakértelem %{name} eltávolítása a csomagból
+    report_preview: Jelentés előnézete
+    search_and_select_skills_of_skill_type: Keressen és válasszon %{skillType} készségeket
+    select_skills_of_skill_type: Válasszon %{skillType} készségeket
+    selected_skills_of_skill_type: Válogatott %{skillType} készségek
     skill_gap_report:
+      content: Készséghiány-jelentés tartalma
       download: Töltse le a készséghiány-jelentést
       title: Készséghiány-jelentés
+    skill_status: A készség %{name} magánjellegű
     skills_updated: A tervben frissített készségek
     status: Állapot
     suggestions: Javaslatok
+    suggestions_for_skill_type: Javaslatok %{skillType} készségekre
     technical: Műszaki
     user_idp_status:
       approved: Jóváhagyott
       completed: Befejezett
+      completion_not_started: A befejezés nem kezdődött el
       draft: Piszkozat
       in_progress: Folyamatban
+      in_review: Áttekintés alatt
       not_started: Nincs elindítva
       pending_approval: Jóváhagyásra vár
       rejected: Elutasította
@@ -4203,6 +4269,9 @@ hu:
       EntityTooLarge: A fájl méretének kevesebbnek kell lennie, mint %{maxFileSize} MB
       WrongFileType: A fájltípusnak a következő %{allowedFileTypes} típusok egyikének kell lennie
     idp:
+      can_not_complete_without_approval_and_in_progress: Nem töltheti ki az IDP-t, amíg a menedzsere jóvá nem hagyja, és Ön "Folyamatban" -ként jelölte meg.
+      can_not_start_without_approval: Nem kezdhet el dolgozni az IDP-n, amíg a menedzsere jóvá nem hagyja.
+      no_previous_approved_plan: Nem találtak korábban jóváhagyott IDP-tervet.
       reflective_questions_required: Az IDP-hez válaszok szükségesek a reflektív kérdésekre
       status_not_permitted: a felhasználó nem engedélyezi.
       status_not_permitted_by_manager: A kezelő nem tudja frissíteni az állapotot, ha a csomag "%{status}" állapotban van.

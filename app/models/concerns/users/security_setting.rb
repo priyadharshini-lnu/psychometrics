@@ -6,6 +6,7 @@ module Users
 
     # rubocop:disable Metrics/BlockLength
     included do
+      # file deepcode ignore WeakPassword: <password_complexity handles this>
       validates :password, presence: { if: :password_required? }
       validates :password, confirmation: { if: :password_required? }
       validates :password, repeats_in_password: true, if: :restrict_sequences?

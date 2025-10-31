@@ -121,9 +121,15 @@ class Properties extends Component {
 
   changeSkillType = (value) => {
     this.updateAll((module) => {
-      module.props.skillType = value
-      const factors = this.collectFactors()
-      module.props.source = { factors }
+      module.props.allFactors = false
+      if (!value || value.length === 0) {
+        module.props.skillType = []
+        module.props.source = { factors: [] }
+      } else {
+        module.props.skillType = value
+        const factors = this.collectFactors()
+        module.props.source = { factors }
+      }
     })
   }
 
@@ -159,6 +165,7 @@ class Properties extends Component {
 
   changeAll = () => {
     this.updateAll((module) => {
+      module.props.skillType = []
       module.props.allFactors = !module.props.allFactors
     })
   }
@@ -210,20 +217,22 @@ class Properties extends Component {
             'When unchecked, only selected factors will be displayed.',
           ]}
         />
-        <div>
-          <span className={styles.label}>Factors</span>
-          <Select
-            name="form-field-name"
-            value={getValue(this.collectFactors(), _.result(model, 'props.source.factors', 'Choose factor'))}
-            options={this.collectFactors()}
-            getOptionValue={opt => opt.id}
-            getOptionLabel={opt => opt.alias}
-            autoFocus={false}
-            isMulti
-            style={{ width: '100%' }}
-            onChange={this.factorSelect}
-          />
-        </div>
+        {!model.props.allFactors && !(model.props.skillType && model.props.skillType.length > 0) && (
+          <div>
+            <span className={styles.label}>Factors</span>
+            <Select
+              name="form-field-name"
+              value={getValue(this.collectFactors(), _.result(model, 'props.source.factors', 'Choose factor'))}
+              options={this.collectFactors()}
+              getOptionValue={opt => opt.id}
+              getOptionLabel={opt => opt.alias}
+              autoFocus={false}
+              isMulti
+              style={{ width: '100%' }}
+              onChange={this.factorSelect}
+            />
+          </div>
+        )}
       </Space>
     )
   }

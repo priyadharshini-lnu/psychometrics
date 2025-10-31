@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe UserAssessments::GetUrl do
   include Rails.application.routes.url_helpers
+
   let(:user) { create(:user, :with_project_membership) }
   let(:campaign_user) { create(:campaign_user, user: user) }
   let(:campaign) { campaign_user.campaign }

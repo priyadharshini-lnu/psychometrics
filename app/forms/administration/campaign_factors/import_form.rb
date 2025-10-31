@@ -143,7 +143,7 @@ module Administration
       end
 
       def data_rows
-        @data_rows ||= parsed_file[FIRST_DATA_ROW - 1..] || []
+        @data_rows ||= parsed_file[(FIRST_DATA_ROW - 1)..] || []
       end
 
       def parsed_file

@@ -45,6 +45,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
   const syncTimeoutChannel = useMemo(() => new BroadcastChannel(SYNC_TIMEOUT_CHANNEL), [])
 
   useEffect(() => {
+    // deepcode ignore InsufficientPostmessageValidation: BroadcastChannel is inherently same-origin
     syncTimeoutChannel.addEventListener('message', (msgEvent) => {
       const { userId, nextTimeout } = msgEvent.data
       if (userId && nextTimeout && (currentNextTimeout[userId] !== nextTimeout)) {

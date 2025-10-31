@@ -3,6 +3,7 @@
 module Administration
   class ClientsController < Administration::BaseController
     include Administration::Clients
+
     skip_before_action :enforce_geo_restriction
     prepend_before_action :set_resource_class
     before_action :set_resource, only: %i[show edit update destroy sidebar toggle_status copy archive]
@@ -119,8 +120,8 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :subdomain, :year, :number, :country, :type,
-                                       :project_manager_id)
+      params.expect(resource: %i[name subdomain year number country type
+                                 project_manager_id])
     end
 
     def init_collections

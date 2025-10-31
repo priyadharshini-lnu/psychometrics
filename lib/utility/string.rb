@@ -42,5 +42,11 @@ module Utility
 
       value.match?(::RegexConstants::CSV_INJECTION_PREFIX_PATTERN) ? value[1..] : value
     end
+
+    def self.mask_secret(key)
+      return nil if key.blank?
+
+      key.length > 4 ? "#{'*' * (key.length - 4)}#{key[-4..]}" : key
+    end
   end
 end

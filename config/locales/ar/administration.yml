@@ -605,6 +605,7 @@ ar:
         disable_continue_to_dashboard: تعطيل زر "متابعة إلى لوحة التحكم"
         disable_nav_btn: تعطيل زر التنقل للخلف
         enable_back: تمكين زر الرجوع
+        enable_copy_content: تمكين نسخ المحتوى
         enable_progress: تمكين شريط التقدم
         enable_save: تمكين زر الحفظ
         enable_select_main_factor: حدد عاملا كعامل رئيسي
@@ -1031,6 +1032,10 @@ ar:
           approvers: الموافقون
           approvers_can_edit: يمكن للموافقين التعديل
           approvers_not_required: الموافقة غير مطلوبة
+          digest_delivery_mode:
+            form_label: وضع تسليم الملخص
+            immediate: فوري - أرسل كلما كان هناك إرسال مجمع
+            scheduled: مجدول - إرسال بريد إلكتروني ملخص في وقت مجدول
           digest_frequency:
             daily: يومي
             form_label: تردد الملخص
@@ -1223,6 +1228,7 @@ ar:
         ai_assisted_idp: المشردون داخلياً بمساعدة الذكاء الاصطناعي
         ai_assisted_idp_requires_ai_assistants: يتطلب IDP المدعوم من الذكاء الاصطناعي تمكين ميزة مساعدي الذكاء الاصطناعي
         global_skills: المهارات العالمية
+        global_skills_disabled_by_client: يتم تعطيل المهارات العالمية من قبل العميل
         idp: IDP
         idp_disabled_by_client: تم تعطيل IDP بواسطة العميل
         sms_notification: إشعار الرسائل النصية القصيرة
@@ -3020,8 +3026,12 @@ ar:
           proficiency: كفاءة الاستيراد
           translations: استيراد ترجمات الكفاءة في الترجمة
         errors:
+          by_skill_exists_id_missing: 'الصف %{row_number}: يوجد بالفعل مستوى إتقان للمهارة "%{name}". يرجى تقديم المعرف لتحديثه.'
           by_skill_missing: 'الصف %{row_number}: يجب أن يكون المشروع والمهارة موجودين لنوع "حسب_المهارة'
+          by_skill_type_exists_id_missing: 'الصف %{row_number}: يوجد بالفعل مستوى كفاءة لنوع المهارة "%{skill_type}". يرجى تقديم المعرف لتحديثه.'
           by_skill_type_missing: 'الصف %{row_number}: يجب أن يكون نوع المشروع ونوع المهارة موجودين لنوع "حسب_النوع'
+          default_global_exists_id_missing: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على المستوى العالمي موجود بالفعل. يرجى تقديم المعرف لتحديثه.'
+          default_project_exists_id_missing: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل. يرجى تقديم المعرف لتحديثه.'
           invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
           invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
           invalid_skill_type: 'الصف %{row_number}: نوع المهارة غير صالح "<x>skill_type</x>". الأنواع الصالحة هي: %{valid_types}'
@@ -3138,15 +3148,40 @@ ar:
             no_auth:
               label: None
               value: no_auth
+            oauth:
+              label: أوث
+              value: قسم
+          client_credentials:
+            label: بيانات اعتماد العميل
+            value: client_credentials
+          client_id:
+            label: معرف العميل
+            name: oauth_client_id
+            required: مطلوب معرف العميل
+          client_secret:
+            label: سر العميل
+            name: oauth_client_secret
+            required: سر العميل مطلوب
           description:
             label: Description
             name: description
+          grant_type:
+            label: نوع المنحة
+            name: oauth_grant_type
           include_locales:
             label: Include Translations
             name: include_locales
+          oauth_scope:
+            label: نطاق
+            name: oauth_scope
+            required: النطاق مطلوب
           password:
             label: Password
             name: password
+          token_url:
+            label: عنوان URL للرمز المميز
+            name: oauth_token_url
+            required: عنوان URL للرمز المميز مطلوب
           topics:
             label: Events
             list:
@@ -3466,6 +3501,7 @@ ar:
         add_new_condition: إضافة شرط جديد
         apply_color_label: 'ثم قم بتطبيق اللون التالي:'
         custom_factor_fields:
+          default_score: نقاط
           percentage: النسبه المئويه
           questions_attempted: محاوله
           questions_correct: صحيح
@@ -3501,6 +3537,7 @@ ar:
         prefixes:
           and: و
           or: أو
+        prevent_value_overlap: منع تداخل القيمة
         skill_type_label: تصفية حسب نوع المهارة
         skill_type_placeholder: حدد نوع المهارة
         skill_types:
@@ -3781,6 +3818,7 @@ ar:
         start_time: Date & Time
         subject: Subject
         title: Title
+        view_recording: عرض التسجيل
       errors:
         assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
         date_required: Please select a date

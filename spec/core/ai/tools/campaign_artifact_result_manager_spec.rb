@@ -4,8 +4,13 @@ require 'rails_helper'
 
 describe AI::Tools::CampaignArtifactResultManager do
   subject do
-    described_class.new(artifact, user, save_results: save_results, parsed_dependencies: audit_data,
-   masked_data_resolutions: resolution_mapping)
+    described_class.new(
+      artifact, user,
+      save_results: save_results,
+      parsed_dependencies: audit_data,
+      masked_data_resolutions: resolution_mapping,
+      chat: ai_assistant_chat
+    )
   end
 
   let(:user) { create(:user, first_name: 'John', last_name: 'Doe', email: 'john@example.com') }
@@ -23,6 +28,7 @@ describe AI::Tools::CampaignArtifactResultManager do
   let(:save_results) { false }
   let(:audit_data) { 'This is audit data for what was sent to LLM' }
   let(:resolution_mapping) { {} }
+  let(:ai_assistant_chat) { create(:assistant_chat, ai_assistant: assistant_with_schema, user: user) }
 
   describe '#execute' do
     context 'without masked_data_resolutions' do
@@ -69,7 +75,7 @@ describe AI::Tools::CampaignArtifactResultManager do
       let(:results_json) { '{"summary": "Test summary to save"}' }
 
       it 'creates a result record with resolved data and audit information' do
-        expect(artifact).to receive(:validate_results_schema).and_return([])
+        expect(artifact).to receive(:validate_results_schema).and_return([]).at_least(:once)
 
         expect do
           subject.execute(results: results_json)
@@ -195,6 +201,7 @@ describe AI::Tools::CampaignArtifactResultManager do
         expect(artifact).to receive_message_chain(:results,
                                                   :find_or_initialize_by).with(user: user).and_return(artifact_result)
         expect(artifact_result).to receive(:results=)
+        expect(artifact_result).to receive(:ai_assistant_chat=)
         expect(artifact_result).to receive(:parsed_dependencies=)
         expect(artifact_result).to receive(:save!).and_raise(ActiveRecord::RecordInvalid.new(user))
 

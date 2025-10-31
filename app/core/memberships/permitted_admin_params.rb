@@ -37,14 +37,19 @@ module Memberships
     end
 
     def permitted_attributes_for_create
-      [user_attributes: [USER_PARAMETERS], grants_attributes: [GRANT_PARAMETERS].flatten]
+      [user_attributes: USER_PARAMETERS, grants_attributes: GRANT_PARAMETERS]
     end
 
     def permitted_attributes_for_update
       if @user.is?(:superadmin, :client_admin, :project_admin) && @resource.user.is?(:campaign_admin)
-        [user_attributes: [UPDATE_USER_PARAMETERS], grants_attributes: [GRANT_PARAMETERS].flatten]
+        [
+          user_attributes: UPDATE_USER_PARAMETERS,
+          grants_attributes: GRANT_PARAMETERS
+        ]
       else
-        [user_attributes: [UPDATE_USER_PARAMETERS]]
+        [
+          user_attributes: UPDATE_USER_PARAMETERS
+        ]
       end
     end
   end

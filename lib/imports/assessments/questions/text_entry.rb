@@ -5,6 +5,7 @@ module Imports
     module Questions
       class TextEntry
         include ImportExportConst
+
         # FROM:
         #   ['Value']
         # TO:

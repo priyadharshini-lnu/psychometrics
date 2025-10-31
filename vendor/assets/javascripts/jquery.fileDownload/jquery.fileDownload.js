@@ -1,5 +1,5 @@
 ﻿/*
-* jQuery File Download Plugin v1.4.2 
+* jQuery File Download Plugin v1.4.2
 *
 * http://www.johnculviner.com
 *
@@ -120,7 +120,7 @@ $.extend({
             //It is recommended that on the server, htmlentity decoding is done irrespective.
             //
             encodeHTMLEntities: true
-            
+
         }, options);
 
         var deferred = new $.Deferred();
@@ -204,7 +204,7 @@ $.extend({
                 }
 
                 settings.failCallback(responseHtml, url);
-                
+
                 deferred.reject(responseHtml, url);
             }
         };
@@ -324,7 +324,7 @@ $.extend({
                 internalCallbacks.onSuccess(fileUrl);
 
                 //remove the cookie and iframe
-                document.cookie = settings.cookieName + "=; expires=" + new Date(1000).toUTCString() + "; path=" + settings.cookiePath;
+                document.cookie = settings.cookieName + "=; expires=" + new Date(1000).toUTCString() + "; path=" + settings.cookiePath + "; secure";
 
                 cleanUp(false);
 
@@ -403,7 +403,7 @@ $.extend({
                         }
                     }
                 }
-                
+
                 //iframe cleanup appears to randomly cause the download to fail
                 //not doing it seems better than failure...
                 //if ($iframe) {

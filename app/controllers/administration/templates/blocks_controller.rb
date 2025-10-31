@@ -130,20 +130,20 @@ module Administration
       end
 
       def resource_params
-        params.require(:resource).permit(:name, :owner_id, assign_to_assessment_ids: [])
+        params.expect(resource: [:name, :owner_id, { assign_to_assessment_ids: [] }])
       end
 
       def block_params
-        params.require(:block).permit(
-          :id, :name, :position, :template_id, :save_as_template, :block_type,
-          props: {},
-          questions: [
-            :id, :block_id, :name, :position, :type, :display_logic, :save_as_template, :template_id,
-            { props: {},
-              validation: {},
-              required_validation: {},
-              skip_logic: [] }
-          ]
+        params.expect(
+          block: [:id, :name, :position, :template_id, :save_as_template, :block_type,
+                  { props: {},
+                    questions: [
+                      :id, :block_id, :name, :position, :type, :display_logic, :save_as_template, :template_id,
+                      { props: {},
+                        validation: {},
+                        required_validation: {},
+                        skip_logic: [] }
+                    ] }]
         )
       end
     end

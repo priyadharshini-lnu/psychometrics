@@ -18,7 +18,7 @@ module Api
     private
 
     def user_availability_date_params
-      params.require(:user_availability_date).permit(:start_date, :end_date, :timezone)
+      params.expect(user_availability_date: %i[start_date end_date timezone])
     end
   end
 end

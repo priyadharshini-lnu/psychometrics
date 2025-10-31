@@ -19,7 +19,7 @@ module Administration
       @user = ::Users::AdminProfileUpdate.call!(@form, current_user)
       @form.errors.merge!(@user.errors)
       if @form.errors.blank?
-        audit! :update_profile, @user, payload: params.require(:user).permit(:first_name, :last_name, :email)
+        audit! :update_profile, @user, payload: params.expect(user: %i[first_name last_name email])
         if password_change?
           sign_out(current_user)
           return redirect_to root_path, notice: t('users.password_change_success')
@@ -42,9 +42,9 @@ module Administration
         params[:user].delete(:password)
         params[:user].delete(:password_confirmation)
       end
-      params.require(:user).permit(
-        :first_name, :last_name, :email,
-        :password, :password_confirmation, :weekly_license_stats, :change_password, :current_password
+      params.expect(
+        user: %i[first_name last_name email
+                 password password_confirmation weekly_license_stats change_password current_password]
       ).merge(id: current_user.id)
     end
 

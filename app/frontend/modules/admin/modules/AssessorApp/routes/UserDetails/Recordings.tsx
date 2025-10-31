@@ -30,7 +30,7 @@ const { I18n } = window
 
 const Recordings: React.FC<Props> = ({ userRecordings }) => (
   <>
-    <div className="pl">
+    <div>
       <Row>
         <Col span={24}>
           <Table className="mtm mbl" rowKey="id" dataSource={userRecordings} pagination={false}>

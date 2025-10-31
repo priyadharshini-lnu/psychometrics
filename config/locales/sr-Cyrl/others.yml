@@ -33,6 +33,12 @@ sr-Cyrl:
             file:
               duplicate_value: 'ИНТЕРПОЛАТИОН_ВАР_0 , ред ИНТЕРПОЛАТИОН_ВАР_1: Дупликат вредности ИНТЕРПОЛАТИОН_ВАР_2 за ИНТЕРПОЛАТИОН_ВАР_3'
               missing_value: 'ИНТЕРПОЛАТИОН_ВАР_0 , ред ИНТЕРПОЛАТИОН_ВАР_1: Недостаје вредност за ИНТЕРПОЛАТИОН_ВАР_2'
+        user:
+          attributes:
+            current_job_role:
+              not_found: ИНТЕРПОЛАТИОН _ВАР _0 није пронађен
+            target_job_role:
+              not_found: ИНТЕРПОЛАТИОН _ВАР _0 није пронађен
   activerecord:
     attributes:
       assessment:
@@ -846,6 +852,7 @@ sr-Cyrl:
     'yes': Да
   idp:
     actions: Акције
+    add_comments: Додај коментаре
     ai:
       assistant:
         failure_fallback:
@@ -910,14 +917,23 @@ sr-Cyrl:
       add_reply_placeholder: Додај одговор...
       go_to_skill: Иди на вештину
     comments:
+      clear_comments_for_skill: Јасни коментари за вештину
       close: Затвори
+      comment_content: Како да садржај
+      comment_for_skill: Коментар за вештину
+      commented_at: Коментарисао на
+      commented_by: Коментар од стране
       comments: Коментари
       filter_comments: Филтрирај коментаре
       mark_as_resolved: Означи као решено
       mark_as_unresolved: Означи као нерешено
+      mark_comment_as_resolved: Означите овај коментар као решен
       replied: Одговорено
+      replied_at: Одговорио у
+      replied_by: Одговорио
       replies: Одговори
       reply: Одговори
+      reply_content: Одговор на садржај
       resolve: Реши
       resolved: Решено
       resolved_message: Овај коментар је решен и одговори су онемогућени.
@@ -926,8 +942,13 @@ sr-Cyrl:
       show_only_unread: Прикажи само непрочитане
       show_only_unresolved: Прикажи само нерешене
       sort_by_date: Сортирај по датуму
+      total_comments_count: Укупан број коментара
+      total_count: Укупан број коментара
+      unread_replies_count: Број непрочитаних одговора
+      view_or_add: Погледај или додај коментаре за ИНТЕРПОЛАТИОН_ВАР_0
       you: Ви
     convert_to_draft: Претвори у нацрт
+    current_step: Тренутни корак ИНТЕРПОЛАТИОН_ВАР_0
     delete_skill: Да ли сте сигурни да желите да избришете вештину јер ће избрисати и све повезане развојне акције?
     details: Детаљи
     development_actions:
@@ -938,6 +959,7 @@ sr-Cyrl:
       add_development_actions_modal_title: Библиотека развојних акција за ИНТЕРПОЛАТИОН_ВАР_0
       add_from_library: Додај из библиотеке
       add_more: Додајте још развојних акција
+      add_selected_development_actions: Додајте изабране развојне акције
       all: Све
       approved: Одобрено
       board_view:
@@ -952,10 +974,15 @@ sr-Cyrl:
       custom: Прилагођене
       custom_da_description: Креирајте прилагођену развојну акцију за решавање јединствених развојних потреба.
       date_range: Датум почетка - Датум завршетка
+      development_action_learning_style: Развој Акција Стил учења
+      development_action_name: Опис развојне акције
+      discard_draft: Одбаци нацрт
       edit_da_progress: Уреди напредак у развоју
+      edit_development_action_progress: Уреди напредак у развоју
       edit_plan_to_add_development_actions: Измени план и да додате развојне акције.
       enter_development_action_description: Унесите опис развојне акције
       enter_development_action_title: Унесите наслов развојне акције
+      filter_development_actions: Филтрирајте развојне акције
       generate_by_ai: Генериши помоћу АИ
       generate_more: Генериши још
       generating_development_actions: Генерисање акција развоја...
@@ -972,6 +999,7 @@ sr-Cyrl:
       learning_from_others: Учење од других
       learning_from_others_label: Учење од других
       learning_on_the_job_label: Учење на послу
+      loading_development_actions: Учитавање развојних акција
       manage_skills: Управљај вештинама
       marathon: Маратон
       mark_as_complete: Означи као завршено
@@ -982,6 +1010,7 @@ sr-Cyrl:
       publish_plan: Објави план
       remove: Уклони
       save_plan: Сачувај план
+      show_development_action_information: Покажи информације о акцији развоја
       skill: Вештина
       sprint: Спринт
       start_plan: Започни план
@@ -989,12 +1018,31 @@ sr-Cyrl:
       structured_learning_label: Колаборативно учење
       submit_plan: Пошаљи план
       success: Успешно завршене развојне акције
+      toggle_skill_privacy: Српскохрватски / српскохрватски
       write_here: Пишите овде...
     direct_reportee_details: Директни извештавачи Детаљ
+    download:
+      description: 'Да бисте преузели извештај, пратите линк: < а хреф =''''ИНТЕРПОЛАТИОН_ВАР_0'''' таргет =''''_бланк''''> Довнлоад </а>. Веза важи само 10 минута'
+    download_plan: План за преузимање
     edit_plan: Измени план
     edit_plan_and_add_skills: Уредите план и кликните на Управљање вештинама да бисте додали вештине.
     edit_progress: Уреди напредак
     fetching_skill_gap_report: Извештај о празнинама у вештинама ...
+    go_to_previous_step: Иди на претходни корак
+    history:
+      added_da:
+        one: Додатна развојна акција
+        other: Додатне развојне акције
+      changes:
+        end_date: Датум завршетка од ИНТЕРПОЛАТИОН_ВАР_0 до ИНТЕРПОЛАТИОН_ВАР_1
+        progress: Напредак од ИНТЕРПОЛАТИОН_ВАР_0 до ИНТЕРПОЛАТИОН_ВАР_1
+        start_date: Датум почетка од ИНТЕРПОЛАТИОН_ВАР_0 до ИНТЕРПОЛАТИОН_ВАР_1
+      modified_da:
+        one: Модификована развојна акција
+        other: Модификоване развојне акције
+      removed_da:
+        one: Уклоњена развојна акција
+        other: Уклоњене развојне акције
     initial_steps:
       add_skill_group_description: На основу резултата процене, ово су неке од ваших снага и области за развој. Изаберите вештине које желите да развијате као део свог плана развоја.
       add_skill_group_title: Истраживање ваших %{category} вештина
@@ -1019,6 +1067,7 @@ sr-Cyrl:
       skill_column_header: Вештина
       skill_gap_report: Извештај о јазу у вештинама
     list: Листа
+    loader_icon: Икона утоваривача
     manage_plan: Управљај планом
     mark_as_complete: Означи као завршено
     mark_as_incomplete: Означи као недовршено
@@ -1043,6 +1092,7 @@ sr-Cyrl:
         technical: Технички
       statuses:
         draft: Нацрт
+        pending_approval: У прегледу
       summary:
         ai_count: Генеративна АИ
         collaborative_learn: Колаборативно учење
@@ -1053,10 +1103,16 @@ sr-Cyrl:
         lib_count: ИДП библиотека
         library: ИДП библиотека
     plan: План
+    plan_status: План Статус ИНТЕРПОЛАТИОН_ВАР_0
+    private: Приватни
     reflective_questions:
       already_completed: ИДП је већ завршен, сада не можете одговарати на питања.
+      answer: Одговорити
       answer_later: Одговори касније
+      answer_limit: Одговор мора бити између ИНТЕРПОЛАТИОН_ВАР_0 и ИНТЕРПОЛАТИОН_ВАР_1 речи
       answer_placeholder: Напишите свој одговор овде...
+      cancel_edited_answer: Откажи измењени одговор
+      edit_answer: Уреди одговор
       errors:
         max_words: Одговор може имати највише %{count} речи
         min_words: Одговор мора имати најмање %{count} речи
@@ -1066,24 +1122,37 @@ sr-Cyrl:
       no_answer_provided: Још увек нема одговора
       no_reflective_questions: Без рефлексивних питања
       optional: "(Опционо)"
+      question: Питање
+      required: Ово питање је потребно
+      save_edited_answer: Сачувај уређен одговор
       title: Рефлексивна питања
       update_failed: Дошло је до грешке при ажурирању
       updated_successfully: Ваши одговори су успешно ажурирани
       word_limit: Мора бити између ИНТЕРПОЛАТИОН_ВАР_0 и ИНТЕРПОЛАТИОН_ВАР_1 речи
       words: Речи
     remove_skill: Уклони вештину
+    remove_skill_from_plan: Уклоните вештине ИНТЕРПОЛАТИОН_ВАР_0 из плана
+    report_preview: Преглед извештаја
+    search_and_select_skills_of_skill_type: Претражите и изаберите ИНТЕРПОЛАТИОН_ВАР_0 вештине
+    select_skills_of_skill_type: Изаберите ИНТЕРПОЛАТИОН_ВАР_0 вештине
+    selected_skills_of_skill_type: Одабране ИНТЕРПОЛАТИОН_ВАР_0 вештине
     skill_gap_report:
+      content: Садржај извештаја о јазу у вештинама
       download: Преузмите извештај о јазу у вештинама
       title: Извештај о јазу у вештинама
+    skill_status: Вештина ИНТЕРПОЛАТИОН_ВАР_0 је приватна
     skills_updated: Вештине ажуриране у Плану
     status: Статус
     suggestions: Предлоге
+    suggestions_for_skill_type: Предлози за ИНТЕРПОЛАТИОН_ВАР_0 вештине
     technical: Техничко
     user_idp_status:
       approved: Одобрено
       completed: Завршено
+      completion_not_started: Завршетак није започео
       draft: Нацрт
       in_progress: У току
+      in_review: У прегледу
       not_started: Није започето
       pending_approval: Чека одобрење
       rejected: Одбијено
@@ -1599,6 +1668,10 @@ sr-Cyrl:
     file_upload:
       EntityTooLarge: Величина датотеке треба да буде мања од %{maxFileSize} MB
       WrongFileType: Тип датотеке треба да буде један од следећих %{allowedFileTypes}
+    idp:
+      can_not_complete_without_approval_and_in_progress: Не можете да завршите ИДП док ваш менаџер не одобри и ви сте га означили као "У току".
+      can_not_start_without_approval: Не можете почети да радите на вашем ИДП-у док га ваш менаџер не одобри.
+      no_previous_approved_plan: Није пронађен претходни одобрени план ИДП-а.
     issue: Проблем
     least: Молимо вас да одговорите на најмање %{min} одговора.
     least_hotspot: Молимо вас да одговорите на најмање %{min} одговора.

@@ -605,6 +605,7 @@ hu:
         disable_continue_to_dashboard: Tiltsa le a "Tovább az irányítópultra" gombot
         disable_nav_btn: Tiltsa le a Vissza navigációs gombot
         enable_back: Vissza gomb engedélyezése
+        enable_copy_content: Tartalom másolásának engedélyezése
         enable_progress: Folyamatjelző sáv engedélyezése
         enable_save: Mentés engedélyezése gomb
         enable_select_main_factor: Válasszon ki egy tényezőt fő tényezőként
@@ -1031,6 +1032,10 @@ hu:
           approvers: Jóváhagyók
           approvers_can_edit: A jóváhagyók szerkeszthetik
           approvers_not_required: Nincs szükség jóváhagyókra
+          digest_delivery_mode:
+            form_label: Kivonat kézbesítési mód
+            immediate: Azonnali – Küldés tömeges beküldés esetén
+            scheduled: Ütemezett – Kivonatoló e-mail küldése ütemezett időpontban
           digest_frequency:
             daily: Mindennapi
             form_label: Emésztési gyakoriság
@@ -1223,6 +1228,7 @@ hu:
         ai_assisted_idp: AI által támogatott IDP
         ai_assisted_idp_requires_ai_assistants: Az AI-asszisztált IDP-hez engedélyezni kell az AI Assistants funkciót
         global_skills: Globális készségek
+        global_skills_disabled_by_client: A globális képességeket az ügyfél letiltja
         idp: IDP
         idp_disabled_by_client: Az ügyfél letiltja az IDP-t
         sms_notification: SMS-értesítés
@@ -3022,7 +3028,11 @@ hu:
           proficiency: Szakértelem importálása
           translations: Szakértelem fordításainak importálása
         errors:
+          by_skill_exists_id_missing: '%{row_number}. sor: A "%{name}" készség jártassági szintje már létezik. Kérjük, adja meg az azonosítót a frissítéshez.'
           by_skill_missing: '%{row_number} sor: A projektnek és a készségnek jelen kell lennie a "by_skill" típushoz'
+          by_skill_type_exists_id_missing: '%{row_number}. sor: A "%{skill_type}" képzettségtípus jártassági szintje már létezik. Kérjük, adja meg az azonosítót a frissítéshez.'
+          default_global_exists_id_missing: '%{row_number}. sor: Már létezik egy globális szintű "alapértelmezett" ProficiencyLevel. Kérjük, adja meg az azonosítót a frissítéshez.'
+          default_project_exists_id_missing: '%{row_number}. sor: Már létezik egy projektszintű "alapértelmezett" ProficiencyLevel. Kérjük, adja meg az azonosítót a frissítéshez.'
           invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
           invalid_proficiency_type: 'A(z) %{row_number} sor: Érvénytelen vagy hiányzó ProficiencyType'
           invalid_skill_type: 'Sor %{row_number}: Érvénytelen képességtípus "%{skill_type}". Az érvényes típusok a következők: %{valid_types}'
@@ -3139,15 +3149,40 @@ hu:
             no_auth:
               label: Egyik sem
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAuth
+          client_credentials:
+            label: Ügyfél hitelesítő adatai
+            value: client_credentials
+          client_id:
+            label: Ügyfél-azonosító
+            name: oauth_client_id
+            required: Ügyfél-azonosító szükséges
+          client_secret:
+            label: Titkos ügyfélkód
+            name: oauth_client_secret
+            required: Titkos ügyfélkód szükséges
           description:
             label: Leírás
             name: leírás
+          grant_type:
+            label: Támogatás típusa
+            name: oauth_grant_type
           include_locales:
             label: Fordítások belefoglalása
             name: include_locales
+          oauth_scope:
+            label: Kiterjedés
+            name: oauth_scope
+            required: Hatókör szükséges
           password:
             label: Jelszó
             name: jelszó
+          token_url:
+            label: Jogkivonat URL-címe
+            name: oauth_token_url
+            required: A jogkivonat URL-címe kötelező
           topics:
             label: Események
             list:
@@ -3467,6 +3502,7 @@ hu:
         add_new_condition: Új feltétel hozzáadása
         apply_color_label: 'Ezután alkalmazza a következő színt:'
         custom_factor_fields:
+          default_score: Pontszám
           percentage: Százalék
           questions_attempted: Kísérlet
           questions_correct: Helyes
@@ -3502,6 +3538,7 @@ hu:
         prefixes:
           and: ÉS
           or: VAGY
+        prevent_value_overlap: Értékátfedés megakadályozása
         skill_type_label: Szűrés képességtípus szerint
         skill_type_placeholder: Szakértelem típusának kiválasztása
         skill_types:
@@ -3782,6 +3819,7 @@ hu:
         start_time: Dátum és idő
         subject: Tárgy
         title: Cím
+        view_recording: Felvétel megtekintése
       errors:
         assessor_already_assigned: Az értékeléshez már van hozzárendelt értékelő. Kérjük, válasszon másik értékelést vagy értékelőt.
         date_required: Kérjük, válasszon egy dátumot

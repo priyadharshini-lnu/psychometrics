@@ -2,6 +2,7 @@
 
 class RegistrationCodeSerializer < Panko::Serializer
   include Rails.application.routes.url_helpers
+
   attributes :id, :code, :name, :total_count, :use_count, :start_date, :end_date, :disabled, :url,
              :restricted_domains, :permissions
 

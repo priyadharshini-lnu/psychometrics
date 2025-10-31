@@ -64,6 +64,7 @@ export const Properties: FC<Props> = ({ modules }) => {
 
   const changeAll = () => {
     modules.forEach((model) => {
+      model.props.skillType = []
       model.props.allFactors = !allFactors
       model.update()
     })
@@ -87,8 +88,9 @@ export const Properties: FC<Props> = ({ modules }) => {
 
   const changeSkillType = (value) => {
     modules.forEach((model) => {
+      model.props.allFactors = false
       if (!value || value.length === 0) {
-        model.props.skillType = undefined
+        model.props.skillType = []
         model.props.factorIds = []
       } else {
         model.props.skillType = value
@@ -117,7 +119,7 @@ export const Properties: FC<Props> = ({ modules }) => {
               'When unchecked, only selected factors will be displayed.',
             ]}
           />
-          {!allFactors && (
+          {!allFactors && !(model.props.skillType && model.props.skillType.length > 0) && (
             <FactorsList
               assessmentId={assessment_id}
               value={factorIds}

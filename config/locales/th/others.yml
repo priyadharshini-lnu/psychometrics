@@ -389,6 +389,8 @@ th:
               inclusion: โปรดเลือกประเภทบรรทัดฐานที่ถูกต้อง
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} ไม่พบ"
             email:
               user_exists_in_campaign: ผู้ใช้ที่มีรหัสอีเมลนี้มีอยู่ในแคมเปญอยู่แล้ว
               user_exists_in_project: ผู้ใช้ที่มีรหัสอีเมลนี้มีอยู่ในโครงการแล้ว
@@ -408,6 +410,8 @@ th:
               invalid_datetime: ไม่ถูกต้อง
             schedule_start_date:
               invalid_datetime: ไม่ถูกต้อง
+            target_job_role:
+              not_found: "%{name} ไม่พบ"
         user_assessment:
           subject_and_assessment_exists: การประเมินและคู่วิชามีอยู่แล้ว
         user_idp_development_action:
@@ -2578,6 +2582,7 @@ th:
       aria_selected: เลือก
   idp:
     actions: การดําเนินการ
+    add_comments: เพิ่มความคิดเห็น
     ai:
       assistant:
         failure_fallback:
@@ -2642,14 +2647,23 @@ th:
       add_reply_placeholder: เพิ่มการตอบกลับ...
       go_to_skill: ไปที่ทักษะ
     comments:
+      clear_comments_for_skill: ความคิดเห็นที่ชัดเจนสําหรับทักษะ
       close: ปิด
+      comment_content: วิธีการเนื้อหา
+      comment_for_skill: ความคิดเห็นสําหรับทักษะ
+      commented_at: แสดงความคิดเห็นที่
+      commented_by: แสดงความเห็นโดย
       comments: ความ คิด เห็น
       filter_comments: กรองความคิดเห็น
       mark_as_resolved: ทําเครื่องหมายว่าได้รับการแก้ไขแล้ว
       mark_as_unresolved: ทําเครื่องหมายว่ายังไม่ได้รับการแก้ไข
+      mark_comment_as_resolved: ทําเครื่องหมายความคิดเห็นนี้ว่าได้รับการแก้ไขแล้ว
       replied: ตอบกลับ
+      replied_at: ตอบที่
+      replied_by: ตอบโดย
       replies: ตอบกลับ
       reply: ตอบ
+      reply_content: ตอบเนื้อหา
       resolve: แก้ปัญหา
       resolved: แก้ไข
       resolved_message: ความคิดเห็นนี้ได้รับการแก้ไขแล้วและการตอบกลับถูกปิดใช้งาน
@@ -2658,8 +2672,13 @@ th:
       show_only_unread: แสดงเฉพาะยังไม่ได้อ่าน
       show_only_unresolved: แสดงเฉพาะที่ยังไม่ได้รับการแก้ไข
       sort_by_date: จัดเรียงตามวันที่
+      total_comments_count: จํานวนความคิดเห็นทั้งหมด
+      total_count: จํานวนความคิดเห็นทั้งหมด
+      unread_replies_count: นับการตอบกลับที่ยังไม่ได้อ่าน
+      view_or_add: ดูหรือเพิ่มความคิดเห็นสําหรับ %{skillName}
       you: ท่าน
     convert_to_draft: แปลงเป็นแบบร่าง
+    current_step: ขั้นตอนปัจจุบัน %{step}
     delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะเพราะมันจะลบการดําเนินการพัฒนาที่เชื่อมต่อทั้งหมดด้วย?
     details: รายละเอียด
     development_actions:
@@ -2670,6 +2689,7 @@ th:
       add_development_actions_modal_title: ไลบรารีการดําเนินการเพื่อการพัฒนาสําหรับ %{skillName}
       add_from_library: เพิ่มจากห้องสมุด
       add_more: เพิ่มการดําเนินการพัฒนาเพิ่มเติม
+      add_selected_development_actions: เพิ่มการดําเนินการการพัฒนาที่เลือก
       all: ทั้งหมด
       approved: อนุมัติ
       board_view:
@@ -2684,10 +2704,15 @@ th:
       custom: ธรรมเนียม
       custom_da_description: สร้างการดําเนินการพัฒนาแบบกําหนดเองเพื่อตอบสนองความต้องการในการพัฒนาที่ไม่เหมือนใคร
       date_range: วันที่เริ่มต้น - วันที่สิ้นสุด
+      development_action_learning_style: รูปแบบการเรียนรู้การดําเนินการพัฒนา
+      development_action_name: คําอธิบายการดําเนินการเพื่อการพัฒนา
+      discard_draft: ทิ้งร่าง
       edit_da_progress: แก้ไขความคืบหน้าของการดําเนินการพัฒนา
+      edit_development_action_progress: แก้ไขความคืบหน้าของการดําเนินการพัฒนา
       edit_plan_to_add_development_actions: แก้ไขแผนและเพิ่มการดําเนินการเพื่อการพัฒนา
       enter_development_action_description: ป้อนคําอธิบายการดําเนินการเพื่อการพัฒนา
       enter_development_action_title: ป้อนชื่อการดําเนินการเพื่อการพัฒนา
+      filter_development_actions: การดําเนินการพัฒนาตัวกรอง
       generate_by_ai: สร้างโดย AI
       generate_more: สร้างมากขึ้น
       generating_development_actions: การสร้างการดําเนินการเพื่อการพัฒนา...
@@ -2704,6 +2729,7 @@ th:
       learning_from_others: เรียนรู้จากผู้อื่น
       learning_from_others_label: เรียนรู้จากผู้อื่น
       learning_on_the_job_label: เรียนรู้ในการทํางาน
+      loading_development_actions: กําลังโหลดการดําเนินการพัฒนา
       manage_skills: จัดการทักษะ
       marathon: มาราธอน
       mark_as_complete: ทําเครื่องหมายว่าเสร็จสมบูรณ์
@@ -2714,6 +2740,7 @@ th:
       publish_plan: เผยแพร่แผน
       remove: ถอด
       save_plan: บันทึกแผน
+      show_development_action_information: แสดงข้อมูลการดําเนินการเพื่อการพัฒนา
       skill: ทักษะ
       sprint: วิ่ง
       start_plan: เริ่มแผน
@@ -2721,12 +2748,31 @@ th:
       structured_learning_label: การเรียนรู้ร่วมกัน
       submit_plan: ส่งแผน
       success: การดําเนินการพัฒนาเสร็จสมบูรณ์
+      toggle_skill_privacy: สลับความเป็นส่วนตัวของทักษะ
       write_here: เขียนที่นี่...
     direct_reportee_details: รายละเอียดผู้รายงานโดยตรง
+    download:
+      description: 'หากต้องการดาวน์โหลดรายงาน โปรดไปที่ลิงค์: <a href=''''%{url}'''' target=''''_blank''''>ดาวน์โหลด</a> ลิงค์ใช้ได้เพียง 10 นาทีเท่านั้น'
+    download_plan: ดาวน์โหลดแผน
     edit_plan: แก้ไขแผน
     edit_plan_and_add_skills: แก้ไขแผนและคลิกที่จัดการทักษะเพื่อเพิ่มทักษะ
     edit_progress: แก้ไขความคืบหน้า
     fetching_skill_gap_report: การดึงรายงานช่องว่างของทักษะ...
+    go_to_previous_step: ไปที่ขั้นตอนก่อนหน้า
+    history:
+      added_da:
+        one: เพิ่มการดําเนินการพัฒนา
+        other: เพิ่มการดําเนินการพัฒนา
+      changes:
+        end_date: วันที่สิ้นสุดตั้งแต่ %{from} ถึง %{to}
+        progress: ความคืบหน้าจาก %{from} เป็น %{to}
+        start_date: วันที่เริ่มต้นตั้งแต่ %{from} ถึง %{to}
+      modified_da:
+        one: การดําเนินการพัฒนาที่ปรับเปลี่ยน
+        other: การดําเนินการพัฒนาที่แก้ไข
+      removed_da:
+        one: ลบการดําเนินการพัฒนา
+        other: การดําเนินการการพัฒนาที่ลบออก
     initial_steps:
       add_skill_group_description: จากผลการประเมินของคุณต่อไปนี้คือจุดแข็งและการพัฒนาสําหรับคุณ เลือกทักษะที่คุณต้องการพัฒนาเพิ่มเติมโดยเป็นส่วนหนึ่งของแผนการพัฒนาของคุณ
       add_skill_group_title: สํารวจทักษะ %{category} ของคุณ
@@ -2751,6 +2797,7 @@ th:
       skill_column_header: ทักษะ
       skill_gap_report: รายงานช่องว่างทักษะ
     list: รายการ
+    loader_icon: ไอคอน Loader
     manage_plan: จัดการแผน
     mark_as_complete: ทําเครื่องหมายว่าเสร็จสมบูรณ์
     mark_as_incomplete: ทําเครื่องหมายว่าไม่สมบูรณ์
@@ -2870,10 +2917,16 @@ th:
         skills_count: จํานวนทักษะ
         title: สรุปรายงาน
     plan: แผน
+    plan_status: สถานะแผน %{status}
+    private: ส่วนตัว
     reflective_questions:
       already_completed: IDP ได้ดำเนินการเสร็จสิ้นแล้ว คุณไม่สามารถตอบคำถามได้ในขณะนี้
+      answer: ตอบ
       answer_later: ตอบในภายหลัง
+      answer_limit: คําตอบต้องอยู่ระหว่าง %{min} ถึง %{max} คํา
       answer_placeholder: เขียนคําตอบของคุณที่นี่...
+      cancel_edited_answer: ยกเลิกคําตอบที่แก้ไขแล้ว
+      edit_answer: แก้ไขคําตอบ
       errors:
         max_words: คําตอบอนุญาตให้มีคํา %{count} สูงสุด
         min_words: คําตอบต้องใช้คําอย่างน้อย %{count}
@@ -2883,24 +2936,37 @@ th:
       no_answer_provided: ยังไม่มีคําตอบ
       no_reflective_questions: ไม่มีคำถามสะท้อน
       optional: "(ไม่บังคับ)"
+      question: ปัญหา
+      required: คําถามนี้จําเป็น
+      save_edited_answer: บันทึกคําตอบที่แก้ไข
       title: คําถามไตร่ตรอง
       update_failed: เกิดข้อผิดพลาดในระหว่างการอัปเดต
       updated_successfully: คําตอบของคุณอัปเดตเรียบร้อยแล้ว
       word_limit: ต้องอยู่ระหว่าง %{min} ถึง %{max} คํา
       words: นิรุกติ
     remove_skill: ลบสกิลออก
+    remove_skill_from_plan: ลบ %{name} ทักษะออกจากแผน
+    report_preview: ตัวอย่างรายงาน
+    search_and_select_skills_of_skill_type: ค้นหาและเลือกทักษะ %{skillType}
+    select_skills_of_skill_type: เลือกทักษะ %{skillType}
+    selected_skills_of_skill_type: ทักษะ %{skillType} ที่เลือก
     skill_gap_report:
+      content: เนื้อหารายงานช่องว่างทักษะ
       download: ดาวน์โหลดรายงานช่องว่างทักษะ
       title: รายงานช่องว่างทักษะ
+    skill_status: "%{name} ทักษะเป็นส่วนตัว"
     skills_updated: ทักษะที่อัปเดตในแผน
     status: สถานะ
     suggestions: คำ แนะ นำ
+    suggestions_for_skill_type: คําแนะนําสําหรับทักษะ %{skillType}
     technical: เทคนิค
     user_idp_status:
       approved: อนุมัติ
       completed: เสร็จสมบูรณ์
+      completion_not_started: ยังไม่เริ่มเสร็จสมบูรณ์
       draft: ร่าง
       in_progress: อยู่ระหว่างดําเนินการ
+      in_review: ในการตรวจสอบ
       not_started: ยังไม่ได้เริ่มต้น
       pending_approval: รอการอนุมัติ
       rejected: ถูก ปฏิเสธ
@@ -4222,6 +4288,9 @@ th:
       EntityTooLarge: ขนาดไฟล์ควรน้อยกว่า %{maxFileSize} MB
       WrongFileType: ประเภทไฟล์ควรเป็นหนึ่งใน %{allowedFileTypes} ต่อไปนี้
     idp:
+      can_not_complete_without_approval_and_in_progress: คุณไม่สามารถกรอก IDP ของคุณให้ครบถ้วนได้จนกว่าผู้จัดการของคุณจะอนุมัติและคุณได้ทําเครื่องหมายเป็น 'อยู่ระหว่างดําเนินการ'
+      can_not_start_without_approval: คุณไม่สามารถเริ่มทํางานกับ IDP ได้จนกว่าผู้จัดการของคุณจะอนุมัติ
+      no_previous_approved_plan: ไม่พบแผน IDP ที่ได้รับอนุมัติก่อนหน้านี้
       reflective_questions_required: จําเป็นต้องมีคําตอบสําหรับคําถามไตร่ตรองสําหรับ IDP
       status_not_permitted: ไม่ได้รับอนุญาตจากผู้ใช้
       status_not_permitted_by_manager: ผู้จัดการไม่สามารถอัปเดตสถานะเมื่อแผนอยู่ในสถานะ '%{status}'

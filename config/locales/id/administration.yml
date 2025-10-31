@@ -605,6 +605,7 @@ id:
         disable_continue_to_dashboard: Nonaktifkan tombol "Lanjutkan ke Dasbor"
         disable_nav_btn: Nonaktifkan Tombol Navigasi Kembali
         enable_back: Aktifkan tombol kembali
+        enable_copy_content: Mengaktifkan konten salinan
         enable_progress: Aktifkan bar kemajuan
         enable_save: Aktifkan tombol simpan
         enable_select_main_factor: Pilih faktor sebagai faktor utama
@@ -1031,6 +1032,10 @@ id:
           approvers: Pemberi persetujuan
           approvers_can_edit: Pemberi Persetujuan Dapat Mengedit
           approvers_not_required: Pemberi Persetujuan Tidak Diperlukan
+          digest_delivery_mode:
+            form_label: Mode Pengiriman Intisari
+            immediate: Segera - Kirim setiap kali ada pengiriman massal
+            scheduled: Terjadwal - Mengirim email ringkasan pada waktu yang dijadwalkan
           digest_frequency:
             daily: Harian
             form_label: Frekuensi Digest
@@ -1223,6 +1228,7 @@ id:
         ai_assisted_idp: IDP yang Dibantu AI
         ai_assisted_idp_requires_ai_assistants: IDP Berbantuan AI memerlukan fitur Asisten AI untuk diaktifkan
         global_skills: Keterampilan Global
+        global_skills_disabled_by_client: Keterampilan Global dinonaktifkan oleh klien
         idp: IDP
         idp_disabled_by_client: IDP dinonaktifkan oleh klien
         sms_notification: Notifikasi SMS
@@ -3020,7 +3026,11 @@ id:
           proficiency: Kemahiran Impor
           translations: Terjemahan Kemahiran Impor
         errors:
+          by_skill_exists_id_missing: 'Baris %{row_number}: Tingkat kemahiran untuk keterampilan ''''%{name}'''' sudah ada. Harap berikan ID untuk memperbaruinya.'
           by_skill_missing: 'Baris %{row_number}: Proyek dan Keterampilan harus ada untuk jenis ''by_skill'''
+          by_skill_type_exists_id_missing: 'Baris %{row_number}: Tingkat kemahiran untuk jenis keterampilan ''''%{skill_type}'''' sudah ada. Harap berikan ID untuk memperbaruinya.'
+          default_global_exists_id_missing: 'Baris %{row_number}: Tingkat Kecakapan ''''default'''' tingkat global sudah ada. Harap berikan ID untuk memperbaruinya.'
+          default_project_exists_id_missing: 'Baris %{row_number}: Tingkat Kecakapan ''''default'''' tingkat proyek sudah ada. Harap berikan ID untuk memperbaruinya.'
           invalid_csv_format: 'Format CSV tidak valid: %{message}'
           invalid_proficiency_type: 'Baris %{row_number}: Tidak valid atau tidak ada ProficiencyType'
           invalid_skill_type: 'Baris %{row_number}: Jenis keterampilan yang tidak valid "%{skill_type}". Jenis yang valid adalah: %{valid_types}'
@@ -3137,15 +3147,40 @@ id:
             no_auth:
               label: Tidak
               value: no_auth
+            oauth:
+              label: OAuth
+              value: Oauth
+          client_credentials:
+            label: Kredensial Klien
+            value: client_credentials
+          client_id:
+            label: ID Klien
+            name: oauth_client_id
+            required: ID Klien diperlukan
+          client_secret:
+            label: Rahasia Klien
+            name: oauth_client_secret
+            required: Rahasia klien diperlukan
           description:
             label: Deskripsi
             name: deskripsi
+          grant_type:
+            label: Jenis Hibah
+            name: oauth_grant_type
           include_locales:
             label: Sertakan Terjemahan
             name: include_locales
+          oauth_scope:
+            label: Ruang lingkup
+            name: oauth_scope
+            required: Ruang lingkup diperlukan
           password:
             label: Kata sandi
             name: kata sandi
+          token_url:
+            label: Token URL
+            name: oauth_token_url
+            required: URL token diperlukan
           topics:
             label: Peristiwa
             list:
@@ -3465,6 +3500,7 @@ id:
         add_new_condition: Tambahkan kondisi baru
         apply_color_label: 'Kemudian oleskan warna berikut:'
         custom_factor_fields:
+          default_score: Skor
           percentage: Persentase
           questions_attempted: Berusaha
           questions_correct: Benar
@@ -3500,6 +3536,7 @@ id:
         prefixes:
           and: DAN
           or: ATAU
+        prevent_value_overlap: Mencegah tumpang tindih nilai
         skill_type_label: Filter berdasarkan Jenis Keterampilan
         skill_type_placeholder: Pilih jenis keterampilan
         skill_types:
@@ -3780,6 +3817,7 @@ id:
         start_time: Tanggal & Waktu
         subject: Subyek
         title: Titel
+        view_recording: Lihat Rekaman
       errors:
         assessor_already_assigned: Penilai sudah ditugaskan untuk penilaian ini. Silakan pilih penilaian atau penilai lain.
         date_required: Silakan pilih tanggal

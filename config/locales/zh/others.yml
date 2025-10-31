@@ -389,6 +389,8 @@ zh:
               inclusion: 请选择正确的标准类型
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name}未找到"
             email:
               user_exists_in_campaign: 活动中已经存在使用此电子邮件 ID 的用户
               user_exists_in_project: 项目中已经存在使用此电子邮件 ID 的用户
@@ -408,6 +410,8 @@ zh:
               invalid_datetime: 无效
             schedule_start_date:
               invalid_datetime: 无效
+            target_job_role:
+              not_found: "%{name}未找到"
         user_assessment:
           subject_and_assessment_exists: 评估和科目配对已经存在
         user_idp_development_action:
@@ -2568,6 +2572,7 @@ zh:
       aria_selected: 精选
   idp:
     actions: 行动
+    add_comments: 添加注释
     ai:
       assistant:
         failure_fallback:
@@ -2632,14 +2637,23 @@ zh:
       add_reply_placeholder: 添加回复...
       go_to_skill: 查看技能
     comments:
+      clear_comments_for_skill: 清晰的技能评论
       close: 关闭
+      comment_content: 如何满足
+      comment_for_skill: 技能评论
+      commented_at: 评论于
+      commented_by: 评论者
       comments: 评论
       filter_comments: 筛选评论
       mark_as_resolved: 标记为已解决
       mark_as_unresolved: 标记为未解决
+      mark_comment_as_resolved: 将此注释标记为已解决
       replied: 已回复
+      replied_at: 回复于
+      replied_by: 回复者
       replies: 回复
       reply: 回复
+      reply_content: 回复内容
       resolve: 解决
       resolved: 已解决
       resolved_message: 此评论已解决，回复已禁用。
@@ -2648,8 +2662,13 @@ zh:
       show_only_unread: 只显示未读
       show_only_unresolved: 只显示未解决
       sort_by_date: 按日期排序
+      total_comments_count: 评论总数
+      total_count: 评论总数
+      unread_replies_count: 未读回复计数
+      view_or_add: 查看或添加%{skillName}的评论
       you: 您
     convert_to_draft: 轉換為草稿
+    current_step: 当前步骤 %{step}
     delete_skill: 您是否确定要删除技能，因为它也会删除所有连接的开发作？
     details: 详细信息
     development_actions:
@@ -2660,6 +2679,7 @@ zh:
       add_development_actions_modal_title: "%{skillName}开发作库"
       add_from_library: 从库添加
       add_more: 添加更多开发作
+      add_selected_development_actions: 添加选定的开发作
       all: 全部
       approved: 批准
       board_view:
@@ -2674,10 +2694,15 @@ zh:
       custom: 习惯
       custom_da_description: 创建自定义开发作以满足独特的开发需求。
       date_range: 开始日期 - 结束日期
+      development_action_learning_style: 发展行动学习风格
+      development_action_name: 开发行动说明
+      discard_draft: 丢弃草稿
       edit_da_progress: 编辑开发作进度
+      edit_development_action_progress: 编辑开发作进度
       edit_plan_to_add_development_actions: 编辑计划并添加开发作。
       enter_development_action_description: 输入开发作描述
       enter_development_action_title: 输入开发作标题
+      filter_development_actions: 筛选开发作
       generate_by_ai: 人工智能生成
       generate_more: 生成更多
       generating_development_actions: 生成发展行动...
@@ -2694,6 +2719,7 @@ zh:
       learning_from_others: 向他人学习
       learning_from_others_label: 向他人学习
       learning_on_the_job_label: 在工作中学习
+      loading_development_actions: 加载开发作
       manage_skills: 管理技能
       marathon: 马拉松
       mark_as_complete: 标记为完成
@@ -2704,6 +2730,7 @@ zh:
       publish_plan: 发布计划
       remove: 移除
       save_plan: 保存计划
+      show_development_action_information: 显示开发作信息
       skill: 技能
       sprint: 冲刺
       start_plan: 开始计划
@@ -2711,12 +2738,31 @@ zh:
       structured_learning_label: 协作学习
       submit_plan: 提交计划
       success: 开发行动成功完成
+      toggle_skill_privacy: 切换技能隐私
       write_here: 在此处写入...
     direct_reportee_details: 直接报告者详细信息
+    download:
+      description: 要下载报告，请点击以下链接：<a href=''%{url}'' target=''_blank''>下载</a>。链接仅在 10 分钟内有效
+    download_plan: 下载计划
     edit_plan: 编辑计划
     edit_plan_and_add_skills: 编辑计划，然后单击管理技能以添加技能。
     edit_progress: 编辑进度
     fetching_skill_gap_report: 获取技能差距报告...
+    go_to_previous_step: 转到上一步
+    history:
+      added_da:
+        one: 添加了开发作
+        other: 添加了开发作
+      changes:
+        end_date: 结束日期从 %{from} 到 %{to}
+        progress: 从%{from}到%{to}的进展
+        start_date: 开始日期从 %{from} 到 %{to}
+      modified_da:
+        one: 修改后的开发行动
+        other: 修改后的开发作
+      removed_da:
+        one: 已删除的开发作
+        other: 删除的开发作
     initial_steps:
       add_skill_group_description: 根据你的评估结果，以下是你的一些优势和发展领域。 选择你希望进一步发展的技能，作为你发展计划的一部分。
       add_skill_group_title: 探索您的 %{category} 技能
@@ -2741,6 +2787,7 @@ zh:
       skill_column_header: 技能
       skill_gap_report: 技能差距报告
     list: 列表
+    loader_icon: 加载器图标
     manage_plan: 管理计划
     mark_as_complete: 标记为完成
     mark_as_incomplete: 標記為不完整
@@ -2866,10 +2913,16 @@ zh:
         skills_count: 技能数量
         title: 报告摘要
     plan: 计划
+    plan_status: 计划状态%{status}
+    private: 私人
     reflective_questions:
       already_completed: IDP 已经完成，现在不能回答问题。
+      answer: 答
       answer_later: 稍后回答
+      answer_limit: 答案必须在 %{min} 到 %{max} 个单词之间
       answer_placeholder: 在此写下您的答案...
+      cancel_edited_answer: 取消已编辑的答案
+      edit_answer: 编辑答案
       errors:
         max_words: 答案最多允许 %{count} 字数
         min_words: 答案至少需要 %{count} 字数
@@ -2879,24 +2932,37 @@ zh:
       no_answer_provided: 尚未提供答案
       no_reflective_questions: 沒有反思性問題
       optional: "（可选）"
+      question: 问题
+      required: 这个问题是必填的
+      save_edited_answer: 保存已编辑的答案
       title: 思考题
       update_failed: 更新过程中出现错误
       updated_successfully: 您的答案已成功更新
       word_limit: 必须介于 %{min} 到 %{max} 个单词之间
       words: 字数
     remove_skill: 移除技能
+    remove_skill_from_plan: 从计划中删除技能%{name}
+    report_preview: 报告预览
+    search_and_select_skills_of_skill_type: 搜索并选择%{skillType}技能
+    select_skills_of_skill_type: 选择%{skillType}技能
+    selected_skills_of_skill_type: 精选%{skillType}技能
     skill_gap_report:
+      content: 技能差距报告内容
       download: 下载技能差距报告
       title: 技能差距报告
+    skill_status: 技能%{name}是私有的
     skills_updated: 计划中更新的技能
     status: 现状
     suggestions: 建议
+    suggestions_for_skill_type: "%{skillType}技能建议"
     technical: 技术
     user_idp_status:
       approved: 批准
       completed: 完成
+      completion_not_started: 完成未开始
       draft: 草案
       in_progress: 进行中
+      in_review: 审查中
       not_started: 未开始
       pending_approval: 待定
       rejected: 拒绝
@@ -4218,6 +4284,9 @@ zh:
       EntityTooLarge: 文件大小应小于 %{maxFileSize} MB
       WrongFileType: 文件类型应为以下之一 %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: 在您的经理批准并将其标记为“进行中”之前，您无法完成您的 IDP。
+      can_not_start_without_approval: 在您的经理批准之前，您无法开始处理您的 IDP。
+      no_previous_approved_plan: 未找到以前批准的 IDP 计划。
       reflective_questions_required: IDP 需要回答反思性问题
       status_not_permitted: 用户不允许。
       status_not_permitted_by_manager: 当计划处于“%{status}”状态时，Manager 无法更新状态。

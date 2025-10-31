@@ -242,7 +242,7 @@ workshop_invite: create(:workshop_invite, campaign: campaign, campaign_assessmen
 
     expect(csv.size).to eq(3)
 
-    user_ids_in_csv = csv[1..].map { |row| row[0] }
+    user_ids_in_csv = csv[1..].pluck(0)
     expect(user_ids_in_csv).to include(active_user.id.to_s, inactive_user.id.to_s)
   end
 

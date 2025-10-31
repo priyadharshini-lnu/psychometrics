@@ -11,7 +11,9 @@ module Threesixty
       attribute :current_job_role, String
       attribute :target_job_role, String
 
+      # deepcode ignore WeakPassword: <security settings concern validate_password_length already handles this>
       validates :password, length: { within: Devise.password_length }, allow_blank: true
+      # deepcode ignore WeakPassword: <This is custom settings on Ui to enforce strong password>
       validates :password, allow_blank: true, strong_password: true, if: :enable_strong_password?
       validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
       validates :email, :first_name, :last_name, presence: true

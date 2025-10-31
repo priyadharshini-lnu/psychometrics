@@ -80,15 +80,15 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :description, :full_description, :potential_areas_of_study,
-                                       :key_career_tracks,
-                                       :high_school_entry_roles, :diploma_qualification,
-                                       :bachelors_or_masters_qualification,
-                                       :icon, :purge_icon, :work_environment, :alternative_icon,
-                                       :purge_alternative_icon,
-                                       :indicative_roles_image, :purge_indicative_roles_image,
-                                       :key_career_tracks_image,
-                                       :purge_key_career_tracks_image, :color)
+      params.expect(resource: %i[name description full_description potential_areas_of_study
+                                 key_career_tracks
+                                 high_school_entry_roles diploma_qualification
+                                 bachelors_or_masters_qualification
+                                 icon purge_icon work_environment alternative_icon
+                                 purge_alternative_icon
+                                 indicative_roles_image purge_indicative_roles_image
+                                 key_career_tracks_image
+                                 purge_key_career_tracks_image color])
     end
   end
 end

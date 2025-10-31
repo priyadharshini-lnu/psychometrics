@@ -10,7 +10,7 @@ describe EndUser::UserIdpSkillsController, type: :controller do
   let!(:skill2) { create(:skill, name: 'abc 2') }
   let!(:idp_template) { create(:idp_template) }
   let!(:idp_template_skill) { create(:idp_template_skill, idp_template: idp_template, skill: skill) }
-  let!(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }
+  let!(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template, approval_status: :draft) }
   let!(:user_idp_skill) { create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: skill, initial_rating: 2) }
   let!(:user_idp_skill2) { create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: skill2) }
   before(:each) do
@@ -140,7 +140,7 @@ describe EndUser::UserIdpSkillsController, type: :controller do
     context 'with manager approval enabled' do
       before do
         user_idp_plan.campaign.project.idp_setting.update!(manager_approves_idp: true)
-        user_idp_plan.update!(status: :draft)
+        user_idp_plan.update!(approval_status: :draft)
       end
 
       it 'includes requires_approval flag when reverting from draft' do

@@ -16,7 +16,7 @@ module LocalesHelper
   def load_report_translation_file(params)
     return unless params[:all]
 
-    data = params[:all].match(%r{/user_reports/(\d+)})
+    data = params[:all].match(%r{/user_reports|user_idp_reports/(\d+)})
     return unless data
 
     lang = params[:report_lang] || UserReport.find_by(id: data[1])&.report&.default_language

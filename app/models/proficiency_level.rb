@@ -2,6 +2,7 @@
 
 class ProficiencyLevel < ApplicationRecord
   extend Mobility
+
   translates :level_definition
 
   belongs_to :project, class_name: 'Client', optional: true

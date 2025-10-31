@@ -3,7 +3,7 @@ import { Skill, DevelopmentAction } from 'components/IdpShared/DevelopmentAction
 import _ from 'lodash'
 import ApiAction from 'interfaces/ApiAction'
 import * as t from 'io-ts'
-import { getRequestQuery, updateUserIdpSkillComments } from './utils'
+import { getRequestQuery, normalizePlanChanges, updateUserIdpSkillComments } from './utils'
 import { FetchSkillGapsResponse } from
   '~/modules/endUser/modules/campaigns/core/idp/idpForm'
 
@@ -33,6 +33,8 @@ const MARK_COMMENT_RESOLVED = 'IDP/MY_PLAN/MARK_COMMENT_RESOLVED'
 const MARK_COMMENT_UNRESOLVED = 'IDP/MY_PLAN/MARK_COMMENT_UNRESOLVED'
 const SHOW_COMMENTS_FOR_SKILL_ID = 'IDP/MY_PLAN/SHOW_COMMENTS_FOR_SKILL_ID'
 const FETCH_SKILL_GAPS_REPORT = 'IDP/MY_PLAN/FETCH_SKILL_GAPS_REPORT'
+const FETCH_PLAN_CHANGES = 'IDP/MY_PLAN/FETCH_PLAN_CHANGES'
+const REVERT_TO_LAST_APPROVED = 'IDP/MY_PLAN/REVERT_TO_LAST_APPROVED'
 
 export const AsyncDownloadTR = t.type({
   status: t.string,
@@ -50,6 +52,9 @@ export const AsyncDownloadTR = t.type({
 
 interface UserIdpPlan {
   status: string | null;
+  canRevertToLastApproved: boolean;
+  approvalStatus: string | null;
+  completionStatus: string | null;
   selfRatingEnabled: boolean;
   oneClickIdpEnabled: boolean;
   skillGapReportAvailable: boolean | null;
@@ -67,6 +72,7 @@ interface UserIdpPlan {
   userIdpCommentsBySkillIdTotalCount: Record<string, number>;
   introMessage: string;
   skillGapReportData:FetchSkillGapsResponse | null
+  planChanges: {}
 }
 
 export interface UserIdpComment {
@@ -311,6 +317,22 @@ export const fetchUserIdpPlan = (userId: string):ApiAction<{data:UserIdpPlan}> =
   },
 })
 
+export const fetchUserIdpPlanChanges = (userId: string):ApiAction<{}> => ({
+  type: FETCH_PLAN_CHANGES,
+  request: {
+    url: `/user_idp_plans/${userId}/plan_changes`,
+  },
+})
+
+export const revertToApprovedIdpPlan = (userId: string):ApiAction<{}> => ({
+  type: REVERT_TO_LAST_APPROVED,
+  request: {
+    method: 'post',
+    url: `/user_idp_plans/${userId}/revert_to_last_approved`,
+  },
+})
+
+
 export const updateUserIdpPlan = (userId: string, status: UserIdpPlanStatus) => ({
   type: UPDATE_USER_IDP_PLAN,
   request: {
@@ -386,6 +408,9 @@ export const HANDLERS = {
       userIdpDevelopmentActions,
       userIdpSkills,
       status: userIdpPlan.status,
+      canRevertToLastApproved: userIdpPlan.canRevertToLastApproved,
+      approvalStatus: userIdpPlan.approvalStatus,
+      completionStatus: userIdpPlan.completionStatus,
       skillGapReportAvailable: userIdpPlan.skillGapReportAvailable,
       selfRatingEnabled: userIdpPlan.selfRatingEnabled,
       oneClickIdpEnabled: userIdpPlan.oneClickIdpEnabled,
@@ -686,12 +711,21 @@ export const HANDLERS = {
     ...state,
     skillGapReportData: action.response,
   }),
+
+  [FETCH_PLAN_CHANGES]: (state, action) => ({
+    ...state,
+    ...normalizePlanChanges(action.response, state),
+    planChanges: action.response,
+  }),
 }
 
 export const defaultState: UserIdpPlan = {
   directReportees: [],
   AIGeneratedDevelopmentActions: {},
   status: null,
+  approvalStatus: null,
+  completionStatus: null,
+  canRevertToLastApproved: false,
   selfRatingEnabled: false,
   oneClickIdpEnabled: false,
   skillGapReportAvailable: null,
@@ -707,6 +741,7 @@ export const defaultState: UserIdpPlan = {
   userIdpCommentsBySkillId: {},
   userIdpCommentsBySkillIdTotalCount: {},
   skillGapReportData: null,
+  planChanges: {},
 }
 
 export default function reducer (state = defaultState, action) {

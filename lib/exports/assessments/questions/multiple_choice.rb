@@ -5,6 +5,7 @@ module Exports
     module Questions
       class MultipleChoice < Base
         include ImportExportConst
+
         # FROM:
         #   [{
         #     "index": 0,

@@ -55,6 +55,7 @@ export const UserIdpPlanTR = t.type({
   active: t.boolean,
   creatorId: t.union([t.number, t.string]),
   status: t.string,
+  approvalStatus: t.string,
   skillGapReportId: t.number,
   skillGapReportAvailable: t.boolean,
   skills: t.array(SkillsTR),

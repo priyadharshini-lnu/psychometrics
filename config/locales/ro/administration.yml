@@ -605,6 +605,7 @@ ro:
         disable_continue_to_dashboard: Dezactivați butonul "Continuați la tabloul de bord"
         disable_nav_btn: Dezactivați butonul de navigare înapoi
         enable_back: Activați butonul Înapoi
+        enable_copy_content: Activarea copierii conținutului
         enable_progress: Activați bara de progres
         enable_save: Activați butonul de salvare
         enable_select_main_factor: Selectați un factor ca factor principal
@@ -1031,6 +1032,10 @@ ro:
           approvers: Aprobatori
           approvers_can_edit: Aprobatorii pot edita
           approvers_not_required: Aprobatori nu sunt necesari
+          digest_delivery_mode:
+            form_label: Modul de livrare a rezumatului
+            immediate: Imediat - Trimite ori de câte ori există o trimitere în bloc
+            scheduled: Programat - Trimiteți un e-mail de rezumat la o oră programată
           digest_frequency:
             daily: Zilnic
             form_label: Frecvența digestiei
@@ -1223,6 +1228,7 @@ ro:
         ai_assisted_idp: IDP asistat de AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP necesită activarea funcției AI Assistants
         global_skills: Competențe globale
+        global_skills_disabled_by_client: Global Skills este dezactivat de client
         idp: IDP
         idp_disabled_by_client: IDP este dezactivat de client
         sms_notification: Notificare SMS
@@ -3020,7 +3026,11 @@ ro:
           proficiency: Competența de import
           translations: Traduceri de competență de import
         errors:
+          by_skill_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență pentru abilitățile "%{name}". Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
           by_skill_missing: 'Rândul %{row_number}: Proiectul și Skill trebuie să fie prezente pentru tipul "by_skill"'
+          by_skill_type_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență pentru tipul de abilitate "%{skill_type}". Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
+          default_global_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență "implicit" la nivel global. Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
+          default_project_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență "implicit" la nivel de proiect. Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
           invalid_csv_format: 'Format CSV nevalid: %{message}'
           invalid_proficiency_type: 'Rândul %{row_number}: ProficiencyType nevalid sau lipsă'
           invalid_skill_type: 'Rândul %{row_number}: Tip de competență invalid "%{skill_type}". Tipurile valabile sunt: %{valid_types}'
@@ -3137,15 +3147,40 @@ ro:
             no_auth:
               label: Niciunul
               value: no_auth
+            oauth:
+              label: OAuth
+              value: Oauth
+          client_credentials:
+            label: Acreditări client
+            value: client_credentials
+          client_id:
+            label: Client ID
+            name: oauth_client_id
+            required: ID-ul clientului este necesar
+          client_secret:
+            label: Secretul clientului
+            name: oauth_client_secret
+            required: Secretul clientului este obligatoriu
           description:
             label: Descriere
             name: descriere
+          grant_type:
+            label: Tip de grant
+            name: oauth_grant_type
           include_locales:
             label: Includeți traduceri
             name: include_locales
+          oauth_scope:
+            label: Aplicare
+            name: oauth_scope
+            required: Domeniul de aplicare este necesar
           password:
             label: Parolă
             name: parolă
+          token_url:
+            label: Adresa URL a tokenului
+            name: oauth_token_url
+            required: Adresa URL a tokenului este obligatorie
           topics:
             label: Evenimente
             list:
@@ -3465,6 +3500,7 @@ ro:
         add_new_condition: Adăugați o nouă condiție
         apply_color_label: 'Apoi aplicați următoarea culoare:'
         custom_factor_fields:
+          default_score: Scor
           percentage: Procent
           questions_attempted: Încercat
           questions_correct: Corect
@@ -3500,6 +3536,7 @@ ro:
         prefixes:
           and: ȘI
           or: SAU
+        prevent_value_overlap: Preveniți suprapunerea valorilor
         skill_type_label: Filtrați după tipul de abilitate
         skill_type_placeholder: Selectați tipul de abilitate
         skill_types:
@@ -3780,6 +3817,7 @@ ro:
         start_time: Data și ora
         subject: Subiect
         title: Titlu
+        view_recording: Vizualizați înregistrarea
       errors:
         assessor_already_assigned: Evaluator deja desemnat pentru această evaluare. Vă rugăm să selectați o altă evaluare sau evaluator.
         date_required: Vă rugăm să selectați o dată

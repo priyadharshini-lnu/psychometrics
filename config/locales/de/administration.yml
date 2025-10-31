@@ -605,6 +605,7 @@ de:
         disable_continue_to_dashboard: Schaltfläche "Weiter zum Dashboard" deaktivieren
         disable_nav_btn: Navigation deaktivieren Zurück-Taste
         enable_back: Zurück-Taste aktivieren
+        enable_copy_content: Kopieren von Inhalten aktivieren
         enable_progress: Fortschrittsbalken einschalten
         enable_save: Schaltfläche "Speichern" aktivieren
         enable_select_main_factor: Wählen Sie einen Faktor als Hauptfaktor aus
@@ -1031,6 +1032,10 @@ de:
           approvers: Genehmiger
           approvers_can_edit: Genehmigende können bearbeiten
           approvers_not_required: Genehmigende nicht erforderlich
+          digest_delivery_mode:
+            form_label: Übermittlungsmodus für Digests
+            immediate: Sofort - Senden, wenn eine Massenübermittlung vorliegt
+            scheduled: Geplant - Senden Sie eine Digest-E-Mail zu einem geplanten Zeitpunkt
           digest_frequency:
             daily: Täglich
             form_label: Häufigkeit der Digests
@@ -1223,6 +1228,7 @@ de:
         ai_assisted_idp: AI-unterstützte IDP
         ai_assisted_idp_requires_ai_assistants: Für AI Assisted IDP muss die Funktion AI Assistants aktiviert sein
         global_skills: Globale Fertigkeiten
+        global_skills_disabled_by_client: Global Skills ist vom Client deaktiviert
         idp: IDP
         idp_disabled_by_client: IDP wird vom Client deaktiviert
         sms_notification: SMS-Benachrichtigung
@@ -3020,8 +3026,12 @@ de:
           proficiency: Importkenntnisse
           translations: Proficiency-Übersetzungen importieren
         errors:
+          by_skill_exists_id_missing: 'Zeile %{row_number}: Eine Fertigkeitsstufe für die Fertigkeit ''''%{name}'''' existiert bereits. Bitte geben Sie die ID an, um sie zu aktualisieren.'
           by_skill_missing: 'Zeile %{row_number}: Projekt und Fertigkeit müssen für den Typ ''by_skill'' vorhanden sein'
+          by_skill_type_exists_id_missing: 'Zeile %{row_number}: Eine Kompetenzstufe für den Fertigkeitstyp ''''%{skill_type}'''' existiert bereits. Bitte geben Sie die ID an, um sie zu aktualisieren.'
           by_skill_type_missing: 'Zeile %{row_number}: Projekt und Fertigkeitstyp müssen für den Typ ''''by_skill_type'''' vorhanden sein'
+          default_global_exists_id_missing: 'Zeile %{row_number}: Ein ''''default'''' ProficiencyLevel auf globaler Ebene ist bereits vorhanden. Bitte geben Sie die ID an, um sie zu aktualisieren.'
+          default_project_exists_id_missing: 'Zeile %{row_number}: Ein ''''default'''' ProficiencyLevel auf Projektebene ist bereits vorhanden. Bitte geben Sie die ID an, um sie zu aktualisieren.'
           invalid_csv_format: 'Ungültiges CSV-Format: %{message}'
           invalid_proficiency_type: 'Zeile %{row_number}: Ungültiger oder fehlender ProficiencyType'
           invalid_skill_type: 'Zeile %{row_number}: Ungültiger Fertigkeitstyp "%{skill_type}". Gültige Typen sind: %{valid_types}'
@@ -3138,15 +3148,40 @@ de:
             no_auth:
               label: Keine
               value: keine_auth
+            oauth:
+              label: OAuth
+              value: OAuth
+          client_credentials:
+            label: Client-Anmeldeinformationen
+            value: client_credentials
+          client_id:
+            label: Client-ID
+            name: oauth_client_id
+            required: Client-ID ist erforderlich
+          client_secret:
+            label: Geheimer Clientschlüssel
+            name: oauth_client_secret
+            required: Geheimer Clientschlüssel ist erforderlich
           description:
             label: Beschreibung
             name: beschreibung
+          grant_type:
+            label: Art der Förderung
+            name: oauth_grant_type
           include_locales:
             label: Übersetzungen einbeziehen
             name: einschließen_Ortschaften
+          oauth_scope:
+            label: Umfang
+            name: oauth_scope
+            required: Der Umfang ist erforderlich
           password:
             label: Passwort
             name: passwort
+          token_url:
+            label: Token-URL
+            name: oauth_token_url
+            required: Token-URL ist erforderlich
           topics:
             label: Veranstaltungen
             list:
@@ -3466,6 +3501,7 @@ de:
         add_new_condition: Neue Bedingung hinzufügen
         apply_color_label: 'Tragen Sie dann die folgende Farbe auf:'
         custom_factor_fields:
+          default_score: Punktzahl
           percentage: Prozentsatz
           questions_attempted: Versucht
           questions_correct: Richtig
@@ -3501,6 +3537,7 @@ de:
         prefixes:
           and: UND
           or: ODER
+        prevent_value_overlap: Verhindern von Wertüberlappungen
         skill_type_label: Filtern nach Skill-Typ
         skill_type_placeholder: Skill-Typ auswählen
         skill_types:
@@ -3781,6 +3818,7 @@ de:
         start_time: Datum und Uhrzeit
         subject: Thema
         title: Titel
+        view_recording: Aufzeichnung anzeigen
       errors:
         assessor_already_assigned: Dieser Beurteilung ist bereits ein Beurteiler zugewiesen. Bitte wählen Sie eine andere Beurteilung oder einen anderen Beurteiler aus.
         date_required: Bitte wählen Sie ein Datum

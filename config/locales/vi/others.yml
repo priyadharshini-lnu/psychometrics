@@ -389,6 +389,8 @@ vi:
               inclusion: Vui lòng chọn đúng loại định mức
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} không tìm thấy"
             email:
               user_exists_in_campaign: Người dùng có id email này đã tồn tại trong chiến dịch
               user_exists_in_project: Người dùng có id email này đã tồn tại trong dự án
@@ -408,6 +410,8 @@ vi:
               invalid_datetime: không hợp lệ
             schedule_start_date:
               invalid_datetime: không hợp lệ
+            target_job_role:
+              not_found: "%{name} không tìm thấy"
         user_assessment:
           subject_and_assessment_exists: Đánh giá và cặp môn học đã tồn tại
         user_idp_development_action:
@@ -2575,6 +2579,7 @@ vi:
       aria_selected: Chọn
   idp:
     actions: Hành động
+    add_comments: Thêm bình luận
     ai:
       assistant:
         failure_fallback:
@@ -2639,14 +2644,23 @@ vi:
       add_reply_placeholder: Thêm câu trả lời...
       go_to_skill: Đi đến kỹ năng
     comments:
+      clear_comments_for_skill: Nhận xét rõ ràng cho kỹ năng
       close: Đóng
+      comment_content: Cách nội dung
+      comment_for_skill: Nhận xét kỹ năng
+      commented_at: Bình luận tại
+      commented_by: Bình luận bởi
       comments: Ý kiến
       filter_comments: Lọc bình luận
       mark_as_resolved: Đánh dấu là đã giải quyết
       mark_as_unresolved: Đánh dấu là chưa được giải quyết
+      mark_comment_as_resolved: Đánh dấu nhận xét này là đã giải quyết
       replied: Trả lời
+      replied_at: Trả lời tại
+      replied_by: Trả lời bởi
       replies: Trả lời
       reply: Trả lời
+      reply_content: Nội dung trả lời
       resolve: Giải quyết
       resolved: Giải quyết
       resolved_message: Nhận xét này đã được giải quyết và các câu trả lời bị vô hiệu hóa.
@@ -2655,8 +2669,13 @@ vi:
       show_only_unread: Chỉ hiển thị chưa đọc
       show_only_unresolved: Chỉ hiển thị chưa được giải quyết
       sort_by_date: Sắp xếp theo ngày
+      total_comments_count: Tổng số bình luận
+      total_count: Tổng số bình luận
+      unread_replies_count: Số câu trả lời chưa đọc
+      view_or_add: Xem hoặc thêm nhận xét cho %{skillName}
       you: Mày
     convert_to_draft: Chuyển đổi sang bản nháp
+    current_step: Bước hiện tại %{step}
     delete_skill: Bạn có chắc chắn muốn xóa kỹ năng vì nó cũng sẽ xóa tất cả các hành động phát triển được kết nối không?
     details: Chi tiết
     development_actions:
@@ -2667,6 +2686,7 @@ vi:
       add_development_actions_modal_title: Thư viện hành động phát triển cho %{skillName}
       add_from_library: Thêm từ Thư viện
       add_more: Thêm các hành động phát triển khác
+      add_selected_development_actions: Thêm các hành động phát triển đã chọn
       all: Tất cả
       approved: Chấp thuận
       board_view:
@@ -2681,10 +2701,15 @@ vi:
       custom: Phong tục
       custom_da_description: Tạo hành động phát triển tùy chỉnh để giải quyết các nhu cầu phát triển riêng.
       date_range: Ngày bắt đầu - Ngày kết thúc
+      development_action_learning_style: Phong cách học tập hành động phát triển
+      development_action_name: Mô tả hành động phát triển
+      discard_draft: Loại bỏ bản nháp
       edit_da_progress: Chỉnh sửa tiến độ hành động phát triển
+      edit_development_action_progress: Chỉnh sửa tiến độ hành động phát triển
       edit_plan_to_add_development_actions: Chỉnh sửa Kế hoạch và thêm Hành động Phát triển.
       enter_development_action_description: Nhập mô tả hành động phát triển
       enter_development_action_title: Nhập Tiêu đề Hành động Phát triển
+      filter_development_actions: Lọc các hành động phát triển
       generate_by_ai: Tạo bằng AI
       generate_more: Tạo thêm
       generating_development_actions: Tạo ra các hành động phát triển...
@@ -2701,6 +2726,7 @@ vi:
       learning_from_others: Học hỏi từ những người khác
       learning_from_others_label: Học hỏi từ những người khác
       learning_on_the_job_label: Học hỏi trong công việc
+      loading_development_actions: Đang tải các hành động phát triển
       manage_skills: Quản lý kỹ năng
       marathon: Marathon
       mark_as_complete: Đánh dấu là hoàn thành
@@ -2711,6 +2737,7 @@ vi:
       publish_plan: Xuất bản kế hoạch
       remove: Triệt
       save_plan: Kế hoạch tiết kiệm
+      show_development_action_information: Hiển thị thông tin Hành động Phát triển
       skill: Kỹ năng
       sprint: Chạy nước rút
       start_plan: Bắt đầu kế hoạch
@@ -2718,12 +2745,31 @@ vi:
       structured_learning_label: Học tập hợp tác
       submit_plan: Gửi kế hoạch
       success: Các hành động phát triển đã hoàn thành thành công
+      toggle_skill_privacy: Chuyển đổi quyền riêng tư của kỹ năng
       write_here: Viết ở đây...
     direct_reportee_details: Chi tiết người được báo cáo trực tiếp
+    download:
+      description: 'Để tải xuống báo cáo, vui lòng theo liên kết: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link chỉ có giá trị trong 10 phút'
+    download_plan: Tải xuống gói
     edit_plan: Chỉnh sửa kế hoạch
     edit_plan_and_add_skills: Chỉnh sửa Kế hoạch và nhấp vào Quản lý Kỹ năng để thêm Kỹ năng.
     edit_progress: Chỉnh sửa tiến độ
     fetching_skill_gap_report: Tìm nạp báo cáo khoảng cách kỹ năng...
+    go_to_previous_step: Chuyển đến bước trước
+    history:
+      added_da:
+        one: Thêm hành động phát triển
+        other: Đã thêm các hành động phát triển
+      changes:
+        end_date: Ngày kết thúc từ %{from} đến %{to}
+        progress: Tiến trình từ %{from} đến %{to}
+        start_date: Ngày bắt đầu từ %{from} đến %{to}
+      modified_da:
+        one: Hành động phát triển được sửa đổi
+        other: Hành động phát triển được sửa đổi
+      removed_da:
+        one: Đã xóa hành động phát triển
+        other: Đã xóa các hành động phát triển
     initial_steps:
       add_skill_group_description: Dựa trên kết quả đánh giá của bạn, đây là một số lĩnh vực thế mạnh và sự phát triển dành cho bạn. Chọn các kỹ năng bạn muốn phát triển hơn nữa như một phần của kế hoạch phát triển của bạn.
       add_skill_group_title: Khám phá các kỹ năng %{category} của bạn
@@ -2748,6 +2794,7 @@ vi:
       skill_column_header: Kỹ năng
       skill_gap_report: Báo cáo khoảng cách kỹ năng
     list: Danh sách
+    loader_icon: Biểu tượng Loader
     manage_plan: Quản lý kế hoạch
     mark_as_complete: Đánh dấu là hoàn thành
     mark_as_incomplete: Đánh dấu là chưa hoàn thành
@@ -2867,10 +2914,16 @@ vi:
         skills_count: Số kỹ năng
         title: Tóm tắt báo cáo
     plan: Kế hoạch
+    plan_status: Trạng thái kế hoạch %{status}
+    private: Tư
     reflective_questions:
       already_completed: IDP đã được hoàn thành, bạn không thể trả lời các câu hỏi lúc này.
+      answer: Trả lời
       answer_later: Trả lời sau
+      answer_limit: Câu trả lời phải nằm trong khoảng từ %{min} đến %{max} từ
       answer_placeholder: Viết câu trả lời của bạn ở đây...
+      cancel_edited_answer: Hủy câu trả lời đã chỉnh sửa
+      edit_answer: Chỉnh sửa câu trả lời
       errors:
         max_words: Câu trả lời cho phép tối đa %{count} từ
         min_words: Câu trả lời yêu cầu ít nhất %{count} từ
@@ -2880,24 +2933,37 @@ vi:
       no_answer_provided: Chưa có câu trả lời nào được cung cấp
       no_reflective_questions: Không có câu hỏi phản ánh
       optional: "(Tùy chọn)"
+      question: Câu hỏi
+      required: Câu hỏi này là bắt buộc
+      save_edited_answer: Lưu câu trả lời đã chỉnh sửa
       title: Những Câu Hỏi Suy Ngẫm
       update_failed: Đã xảy ra lỗi trong quá trình cập nhật
       updated_successfully: Câu trả lời của bạn đã được cập nhật thành công
       word_limit: Phải nằm trong khoảng từ %{min} đến %{max} từ
       words: Từ
     remove_skill: Loại bỏ kỹ năng
+    remove_skill_from_plan: Loại bỏ %{name} kỹ năng khỏi kế hoạch
+    report_preview: Xem trước báo cáo
+    search_and_select_skills_of_skill_type: Tìm kiếm và lựa chọn kỹ năng %{skillType}
+    select_skills_of_skill_type: Chọn kỹ năng %{skillType}
+    selected_skills_of_skill_type: Kỹ năng %{skillType} chọn lọc
     skill_gap_report:
+      content: Nội dung báo cáo khoảng cách kỹ năng
       download: Tải xuống Báo cáo Khoảng cách Kỹ năng
       title: Báo cáo khoảng cách kỹ năng
+    skill_status: Kỹ năng %{name} là riêng tư
     skills_updated: Các kỹ năng được cập nhật trong Kế hoạch
     status: Tình trạng
     suggestions: Gợi ý
+    suggestions_for_skill_type: Gợi ý kỹ năng %{skillType}
     technical: Kỹ thuật
     user_idp_status:
       approved: Chấp thuận
       completed: Hoàn thành
+      completion_not_started: Hoàn thành chưa bắt đầu
       draft: Dự thảo
       in_progress: Đang tiến hành
+      in_review: Đang xem xét
       not_started: Chưa bắt đầu
       pending_approval: Đang chờ phê duyệt
       rejected: Bị từ chối
@@ -4219,6 +4285,9 @@ vi:
       EntityTooLarge: Kích thước tệp phải nhỏ hơn %{maxFileSize} MB
       WrongFileType: Loại tệp phải là một trong những loại sau %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Bạn không thể hoàn thành IDP của mình cho đến khi người quản lý của bạn phê duyệt và bạn đã đánh dấu nó là 'Đang tiến hành'.
+      can_not_start_without_approval: Bạn không thể bắt đầu làm việc với IDP của mình cho đến khi người quản lý của bạn phê duyệt.
+      no_previous_approved_plan: Không tìm thấy chương trình IDP được phê duyệt trước đó.
       reflective_questions_required: Câu trả lời cho các câu hỏi phản ánh là bắt buộc đối với IDP
       status_not_permitted: không được người dùng cho phép.
       status_not_permitted_by_manager: Người quản lý không thể cập nhật trạng thái khi kế hoạch ở trạng thái '%{status}'.

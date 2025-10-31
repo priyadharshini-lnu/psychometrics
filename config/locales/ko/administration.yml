@@ -605,6 +605,7 @@ ko:
         disable_continue_to_dashboard: '"대시보드로 계속" 버튼 비활성화'
         disable_nav_btn: 탐색 뒤로 버튼 비활성화
         enable_back: 뒤로 가기 버튼 활성화
+        enable_copy_content: 콘텐츠 복사 활성화
         enable_progress: 진행률 표시줄 활성화
         enable_save: 저장 버튼 활성화
         enable_select_main_factor: 주요인으로 요인 선택
@@ -1031,6 +1032,10 @@ ko:
           approvers: 승인자
           approvers_can_edit: 승인자가 편집 가능
           approvers_not_required: 승인자 필요 없음
+          digest_delivery_mode:
+            form_label: 다이제스트 전달 모드
+            immediate: 즉시 - 대량 제출이 있을 때마다 보내기
+            scheduled: 예약됨 - 예약된 시간에 다이제스트 이메일 보내기
           digest_frequency:
             daily: 매일
             form_label: 다이제스트 주파수
@@ -1223,6 +1228,7 @@ ko:
         ai_assisted_idp: AI 지원 IDP
         ai_assisted_idp_requires_ai_assistants: AI 지원 IDP를 사용하려면 AI 어시스턴트 기능을 활성화해야 합니다.
         global_skills: 글로벌 기술
+        global_skills_disabled_by_client: 클라이언트에 의해 글로벌 스킬이 비활성화됨
         idp: IDP
         idp_disabled_by_client: 클라이언트에서 IDP를 사용하지 않도록 설정했습니다.
         sms_notification: SMS 알림
@@ -3020,8 +3026,12 @@ ko:
           proficiency: 가져오기 숙련도
           translations: 숙련도 번역 가져오기
         errors:
+          by_skill_exists_id_missing: '행 %{row_number}: 스킬 ''''%{name}''''에 대한 숙련도 수준이 이미 존재합니다. 업데이트하려면 ID를 제공하십시오.'
           by_skill_missing: '행 %{row_number}: ''by_skill'' 유형에 대해 프로젝트와 스킬이 있어야 합니다.'
+          by_skill_type_exists_id_missing: '행 %{row_number}: 기술 유형 ''''%{skill_type}''''에 대한 숙련도 수준이 이미 존재합니다. 업데이트하려면 ID를 제공하십시오.'
           by_skill_type_missing: '행 %{row_number}: ''''by_skill_type'''' 유형에는 프로젝트 및 스킬 유형이 있어야 합니다.'
+          default_global_exists_id_missing: '행 %{row_number}: 전역 수준의 ''''기본'''' ProficiencyLevel이 이미 존재합니다. 업데이트하려면 ID를 제공하십시오.'
+          default_project_exists_id_missing: '행 %{row_number}: 프로젝트 수준 ''''기본'''' ProficiencyLevel이 이미 존재합니다. 업데이트하려면 ID를 제공하십시오.'
           invalid_csv_format: '잘못된 CSV 형식: %{message}'
           invalid_proficiency_type: '행 %{row_number}: 잘못되었거나 누락된 숙련도 유형입니다.'
           invalid_skill_type: '행 %{row_number}: 잘못된 스킬 유형 "%{skill_type}". 유효한 유형은 다음과 같습니다: %{valid_types}'
@@ -3138,15 +3148,40 @@ ko:
             no_auth:
               label: 없음
               value: no_auth
+            oauth:
+              label: OAuth
+              value: 오인증
+          client_credentials:
+            label: 클라이언트 자격 증명
+            value: client_credentials
+          client_id:
+            label: 클라이언트 ID
+            name: oauth_client_id
+            required: 클라이언트 ID가 필요합니다.
+          client_secret:
+            label: 클라이언트 암호
+            name: oauth_client_secret
+            required: 클라이언트 암호가 필요합니다.
           description:
             label: 설명
             name: 설명
+          grant_type:
+            label: 보조금 유형
+            name: oauth_grant_type
           include_locales:
             label: 번역 포함
             name: 포함_로컬
+          oauth_scope:
+            label: 범위
+            name: oauth_scope
+            required: 범위가 필요합니다.
           password:
             label: 비밀번호
             name: 비밀번호
+          token_url:
+            label: 토큰 URL
+            name: oauth_token_url
+            required: 토큰 URL이 필요합니다.
           topics:
             label: 이벤트
             list:
@@ -3466,6 +3501,7 @@ ko:
         add_new_condition: 새 조건 추가
         apply_color_label: 그런 다음 다음 색상을 적용합니다.
         custom_factor_fields:
+          default_score: 점수
           percentage: 백분율
           questions_attempted: 시도
           questions_correct: 맞는
@@ -3501,6 +3537,7 @@ ko:
         prefixes:
           and: 그리고
           or: 또는
+        prevent_value_overlap: 값 중복 방지
         skill_type_label: 스킬 유형별 필터링
         skill_type_placeholder: 스킬 유형 선택
         skill_types:
@@ -3781,6 +3818,7 @@ ko:
         start_time: 날짜 및 시간
         subject: 제목
         title: 제목
+        view_recording: 녹화 보기
       errors:
         assessor_already_assigned: 이 평가에 이미 평가자가 배정되었습니다. 다른 평가 또는 평가자를 선택하십시오.
         date_required: 날짜를 선택하세요

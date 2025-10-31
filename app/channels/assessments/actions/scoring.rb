@@ -4,6 +4,7 @@ module Assessments
   module Actions
     module Scoring
       extend Actions::Action
+
       action :fetch do |data, _current_user, assessment|
         factors = FactorsScoring.where(assessment_id: assessment.id, factor_id: data['factor_id'])
         Panko::ArraySerializer.new(

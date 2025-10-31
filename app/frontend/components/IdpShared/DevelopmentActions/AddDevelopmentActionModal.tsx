@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import {
   Flex, Radio, Modal, Input, Spin,
-  Typography,
+  Typography, Button,
 } from 'antd'
+import { CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   ButtonWithArrow, BoxWithShadow,
 } from '~/glint'
@@ -46,6 +47,8 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
   const [selectedDA, setSelectedDA] = useState<DevelopmentAction[]>([])
 
   const [searchTerm, setSearchTerm] = useState('')
+
+  const btnRef = useRef<HTMLButtonElement | null>(null)
 
   const handleAddAction = (developmentAction: Partial<DevelopmentAction[]>) => {
     onAddAction(developmentAction)
@@ -93,7 +96,16 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
           overflow: 'hidden',
         },
       }}
+      destroyOnClose
+      focusTriggerAfterClose
+      getContainer={document.querySelector('#endUserContainer') as HTMLElement}
+      closeIcon={<Button style={{ border: 'none' }} ref={btnRef} icon={<CloseOutlined />} />}
       wrapClassName={wrapClassName}
+      afterOpenChange={(isOpen) => {
+        if (isOpen && btnRef && btnRef?.current) {
+          btnRef?.current?.focus()
+        }
+      }}
       maskClosable={false}
       footer={(
         <Flex justify="flex-end" flex={1} gap={12}>
@@ -109,7 +121,11 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
       )}
     >
       <Flex vertical gap={18}>
-        <Radio.Group value={selectedTab} onChange={handleTabChange}>
+        <Radio.Group
+          aria-label={I18n.t('idp.development_actions.filter_development_actions')}
+          value={selectedTab}
+          onChange={handleTabChange}
+        >
           {tabs.map(tab => (
             <Radio.Button
               style={{
@@ -132,8 +148,14 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
         />
         <BoxWithShadow>
           {isDALoading ? (
-            <Flex justify="center" align="center" style={{ height: '200px' }}>
-              <Spin />
+            <Flex
+              aria-live="polite"
+              aria-label={I18n.t('idp.development_actions.loading_development_actions')}
+              justify="center"
+              align="center"
+              style={{ height: '200px' }}
+            >
+              <Spin aria-hidden="true" />
             </Flex>
           ) : (
             <DevelopmentActionsList

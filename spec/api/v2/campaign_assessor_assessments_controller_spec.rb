@@ -137,7 +137,8 @@ subject_assessor_assessments" do
         end
         let!(:campaign_assessment) do
           create(:campaign_assessment, campaign: campaign,
-              campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id)
+            assessment: linked_assessment,
+            campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id)
         end
         let!(:relationship) { create(:relationship, name: 'Assessor', type: :global) }
         let!(:self_relationship) { create(:relationship, name: 'Self', type: :global) }

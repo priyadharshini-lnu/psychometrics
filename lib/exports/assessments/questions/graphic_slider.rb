@@ -5,6 +5,7 @@ module Exports
     module Questions
       class GraphicSlider < Base
         include ImportExportConst
+
         # FROM:
         #   [{"value": 5}]
         # TO:

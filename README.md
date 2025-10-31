@@ -16,7 +16,7 @@ Bundler version: 2.3.17
 
 Node version: 18.16.*
 
-Database: PostgresSql@14
+Database: PostgresSql@14 (Also [install pgvector extension](docs/pgvector_integration.md))
 
 prevent bundle secure warnings with
 
