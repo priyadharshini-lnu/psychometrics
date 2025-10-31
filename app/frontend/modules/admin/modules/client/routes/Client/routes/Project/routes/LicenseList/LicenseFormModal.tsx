@@ -3,7 +3,7 @@ import {
   Form, InputNumber, Select, Spin, Switch,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import dayjs from 'dayjs'
+import dayjs from '~/utils/dayjs'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
