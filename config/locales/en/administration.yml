@@ -3148,15 +3148,40 @@ en:
             no_auth:
               label: None
               value: no_auth
+            oauth:
+              label: OAuth
+              value: oauth
+          client_credentials:
+            label: Client Credentials
+            value: client_credentials
+          client_id:
+            label: Client ID
+            name: oauth_client_id
+            required: Client ID is required
+          client_secret:
+            label: Client Secret
+            name: oauth_client_secret
+            required: Client secret is required
           description:
             label: Description
             name: description
+          grant_type:
+            label: Grant Type
+            name: oauth_grant_type
           include_locales:
             label: Include Translations
             name: include_locales
+          oauth_scope:
+            label: Scope
+            name: oauth_scope
+            required: Scope is required
           password:
             label: Password
             name: password
+          token_url:
+            label: Token URL
+            name: oauth_token_url
+            required: Token URL is required
           topics:
             label: Events
             list:

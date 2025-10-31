@@ -8191,7 +8191,14 @@ CREATE TABLE public.webhook_subscriptions (
     encrypted_api_key_iv character varying,
     api_key_header character varying,
     rate_limit integer DEFAULT 60 NOT NULL,
-    rate_limit_period integer DEFAULT 1 NOT NULL
+    rate_limit_period integer DEFAULT 1 NOT NULL,
+    oauth_grant_type character varying,
+    oauth_token_url character varying,
+    encrypted_oauth_client_id character varying,
+    encrypted_oauth_client_id_iv character varying,
+    encrypted_oauth_client_secret character varying,
+    encrypted_oauth_client_secret_iv character varying,
+    oauth_scope character varying
 );
 
 
@@ -18607,6 +18614,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251024030039'),
 ('20251027054548'),
 ('20251027054547'),
 ('20251029073341'),
