@@ -16,6 +16,20 @@ describe AI::AssistableService::Idp do
   let!(:plan) { create(:user_idp_plan, user: user, idp_template: idp_template, campaign: campaign) }
   let(:options) { {} }
 
+  let(:ai_provider_config) do
+    {
+      'model_id' => 'gpt-4o-mini',
+      'name' => 'OpenAI GPT-4o Mini',
+      'context' => {
+        'openai_api_key' => 'test-api-key'
+      }
+    }
+  end
+
+  before do
+    allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+  end
+
   shared_context 'assistant service mocking' do
     let(:assistant_service_instance) { instance_double(AI::AssistantService) }
 

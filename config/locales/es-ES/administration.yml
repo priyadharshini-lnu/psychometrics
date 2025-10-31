@@ -3509,7 +3509,7 @@ es-ES:
           less_than_or_equal: Menor o igual que
           not_equal_to: No es igual a
         prefixes:
-          and: Y
+          and: "Y"
           or: O
         skill_type_label: Filtrar por tipo de habilidad
         skill_type_placeholder: Seleccionar tipo de habilidad

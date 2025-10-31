@@ -254,7 +254,7 @@ gem 'xml-simple', '~> 1.1.5'
 # required for azure
 gem 'sidekiq_alive', '~> 2.1.4'
 
-gem 'psych', '3.3.2'
+gem 'psych', '~> 5.0'
 
 gem 'pry', '~> 0.14.2'
 
@@ -265,14 +265,14 @@ gem 'syslog'
 gem 'syslog-logger', '~> 1.6'
 
 # TO handle authentication with Oracle
-gem 'oci', '~> 2.20.0'
+gem 'oci', '~> 2.22.0'
 
 # Sidekiq queue concurrency control
 gem 'sidekiq-throttled', '~> 1.5.2'
 
 gem 'recaptcha', require: 'recaptcha/rails'
 # To integrate with LLMs
-gem 'ruby_llm', '~> 1.6.3'
+gem 'ruby_llm', '~> 1.7.1'
 
 # TO handle structured data in LLM responses
 gem 'ruby_llm-schema', '~> 0.1.6'

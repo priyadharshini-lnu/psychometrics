@@ -8,7 +8,11 @@ module AI
       ALLOWED_DEPENDENCIES = %w[datasheet assessments campaign_factors].freeze
 
       def default_params
-        {}
+        # Content writer should always use tool for the response
+        {
+          tool_choice: 'required',
+          max_tokens: 2000
+        }
       end
 
       # Content Writer uses dynamic output schema from database

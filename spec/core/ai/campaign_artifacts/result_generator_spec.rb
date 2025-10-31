@@ -15,6 +15,20 @@ describe AI::CampaignArtifacts::ResultGenerator do
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let(:current_user) { create(:user) }
 
+  let(:ai_provider_config) do
+    {
+      'model_id' => 'gpt-4o-mini',
+      'name' => 'OpenAI GPT-4o Mini',
+      'context' => {
+        'openai_api_key' => 'test-api-key'
+      }
+    }
+  end
+
+  before do
+    allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+  end
+
   shared_context 'assistant chat setup' do
     let(:assistant_chat) { create(:assistant_chat, ai_assistant: ai_assistant, user: current_user) }
 

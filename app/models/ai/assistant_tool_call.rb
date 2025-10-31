@@ -2,10 +2,16 @@
 
 class AI::AssistantToolCall < ApplicationRecord
   self.table_name = 'ai_assistant_tool_calls'
-
   acts_as_tool_call(
-    message_class: 'AI::AssistantRequest',
-    message_foreign_key: 'ai_assistant_request_id',
-    result_foreign_key: 'ai_assistant_tool_call_id'
+    message: :ai_assistant_request,
+    message_class: 'AI::AssistantRequest'
   )
+
+  belongs_to :ai_assistant_request,
+             class_name: 'AI::AssistantRequest'
+
+  has_one :result,
+          class_name: 'AI::AssistantRequest',
+          foreign_key: 'ai_assistant_tool_call_id',
+          dependent: :nullify
 end
