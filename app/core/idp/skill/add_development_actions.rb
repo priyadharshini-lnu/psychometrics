@@ -3,12 +3,13 @@
 module Idp
   module Skill
     class AddDevelopmentActions < BaseCommand
-      private_attr_accessor :user_idp_plan, :user_idp_skill, :development_actions_params
+      private_attr_accessor :user_idp_plan, :user_idp_skill, :development_actions_params, :current_user
 
-      def initialize(user_idp_plan, user_idp_skill, development_actions_params)
+      def initialize(user_idp_plan, user_idp_skill, development_actions_params, current_user)
         @user_idp_plan = user_idp_plan
         @user_idp_skill = user_idp_skill
         @development_actions_params = development_actions_params
+        @current_user = current_user
       end
 
       def call
@@ -30,14 +31,23 @@ module Idp
       private
 
       def cleanup_removed_development_actions_for_skill
-        user_idp_plan.user_idp_development_actions.
-          where(user_idp_skill_id: user_idp_skill.id).
-          where.not(
-            development_action_id: development_actions_params.
-              filter_map { |dap| dap['development_action_id'] }
-          ).
-          where.not(id: development_actions_params.filter_map { |dap| dap['id'] }).
-          destroy_all
+        actions_to_remove = user_idp_plan.user_idp_development_actions.
+                            where(user_idp_skill_id: user_idp_skill.id).
+                            where.not(
+                              development_action_id: development_actions_params.
+                                filter_map { |dap| dap['development_action_id'] }
+                            ).
+                            where.not(
+                              id: development_actions_params.filter_map { |dap| dap['id'] }
+                            )
+
+        if user_idp_plan.pre_submission?
+          actions_to_remove.destroy_all
+        else
+          actions_to_remove.find_each do |user_idp_development_action|
+            user_idp_development_action.soft_delete!(current_user)
+          end
+        end
       end
 
       def update_or_create_development_action(development_action_params)

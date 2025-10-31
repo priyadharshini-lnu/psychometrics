@@ -91,11 +91,12 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
   describe 'PUT update' do
     context 'when status update is successful' do
       before do
-        user_idp_plan.update(status: 'in_progress')
+        user_idp_plan.update(completion_status: 'in_progress', approval_status: 'approved')
       end
       let(:status) { 'completed' }
       it 'returns ok and updates status' do
-        put :update, params: { user_id: user.id, user_idp_plan: { status: status } }
+        put :update, params: { user_id: user.id, status: status }
+
         expect(response).to have_http_status(:ok)
         expect(response.parsed_body).to eq({ 'status' => status })
       end

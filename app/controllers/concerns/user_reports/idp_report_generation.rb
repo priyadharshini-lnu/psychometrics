@@ -18,7 +18,8 @@ module UserReports::IdpReportGeneration
         template: IdpTemplateSerializer.new.serialize(resource.idp_template),
         user_idp: UserIdpPlanSerializer.new(
           context: {
-            reflection_answers: user_reflection_question_answers
+            reflection_answers: user_reflection_question_answers,
+            without_deleted: true
           }
         ).serialize(resource)
       }

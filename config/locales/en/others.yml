@@ -2723,6 +2723,7 @@ en:
       date_range: Start Date - End Date
       development_action_learning_style: Development Action Learning Style
       development_action_name: Development Action Description
+      discard_draft: Discard Draft
       edit_da_progress: Edit Development Action Progress
       edit_development_action_progress: Edit Development Action Progress
       edit_plan_to_add_development_actions: Edit Plan to add Development Actions.
@@ -2778,6 +2779,20 @@ en:
     edit_progress: Edit Progress
     fetching_skill_gap_report: Fetching Skill Gaps Report...
     go_to_previous_step: Go to Previous Step
+    history:
+      added_da:
+        one: Added Development Action
+        other: Added Development Actions
+      changes:
+        end_date: End Date from %{from} to %{to}
+        progress: Progress from %{from} to %{to}
+        start_date: Start Date from %{from} to %{to}
+      modified_da:
+        one: Modified Development Action
+        other: Modified Development Actions
+      removed_da:
+        one: Removed Development Action
+        other: Removed Development Actions
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills
@@ -2968,8 +2983,10 @@ en:
     user_idp_status:
       approved: Approved
       completed: Completed
+      completion_not_started: Completion Not Started
       draft: Draft
       in_progress: In Progress
+      in_review: In Review
       not_started: Not Started
       pending_approval: Pending Approval
       rejected: Rejected
@@ -4358,6 +4375,9 @@ en:
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: You cannot complete your IDP until your manager approves it and you have marked it as 'In Progress'.
+      can_not_start_without_approval: You cannot start working on your IDP until your manager approves it.
+      no_previous_approved_plan: No previous approved IDP plan found.
       reflective_questions_required: Answers to reflective questions are required for IDP
       status_not_permitted: is not permitted by the user.
       status_not_permitted_by_manager: Manager cannot update status when plan is in '%{status}' state.

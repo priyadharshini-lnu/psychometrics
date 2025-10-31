@@ -17,6 +17,14 @@ class EndUser::UserIdpPlanPolicy < BasePolicy
     @record == @current_user || @record.manager == @current_user
   end
 
+  def plan_changes?
+    @record == @current_user || @record.manager == @current_user
+  end
+
+  def revert_to_last_approved?
+    @record == @current_user && (@record.active_user_idp_plan&.draft? || @record.active_user_idp_plan&.rejected?)
+  end
+
   def update_reflection_questions?
     @record == @current_user
   end

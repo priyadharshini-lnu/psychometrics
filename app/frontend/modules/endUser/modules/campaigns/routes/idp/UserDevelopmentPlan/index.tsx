@@ -46,6 +46,7 @@ import {
   addUserIdpCommentReply,
   showCommentsForSkillId,
   markCommentUnresolved,
+  fetchUserIdpPlanChanges,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -93,6 +94,7 @@ const connector = connect((state: RootState) => ({
   addUserIdpCommentReply,
   showCommentsForSkillId,
   markCommentUnresolved,
+  fetchUserIdpPlanChanges,
 })
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -132,6 +134,7 @@ const UserDevelopmentPlanComponent = ({
   markCommentUnresolved,
   addUserIdpCommentReply,
   showCommentsForSkillId,
+  fetchUserIdpPlanChanges,
   unreadCommentsCount,
   header,
   skillGapReportAvailable,
@@ -195,6 +198,7 @@ const UserDevelopmentPlanComponent = ({
     setIsLoading(true)
     fetchUserIdpPlan(idpUserId).then(({ response }) => {
       setSelectedSkills(response.data.userIdpSkills)
+      fetchUserIdpPlanChanges(idpUserId)
       setIsLoading(false)
     }).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))

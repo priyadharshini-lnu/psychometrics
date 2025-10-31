@@ -64,8 +64,8 @@ const DirectReportDetailsComponent: FC<Props> = ({
   const { isMobile } = useContext(MediaQueryContext)
 
   const isPlanEditable = [
-    USER_IDP_PLAN_STATUS.PENDING_APPROVAL,
     USER_IDP_PLAN_STATUS.REJECTED,
+    USER_IDP_PLAN_STATUS.IN_REVIEW,
   ].includes(status)
 
   const canNotModifyApprovalState = [
@@ -99,25 +99,41 @@ const DirectReportDetailsComponent: FC<Props> = ({
     <>
       {(!editMode && managerApprovesIdp) ? (
         <>
-          <Button
-            type="default"
-            onClick={() => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.REJECTED)}
-            loading={isUpdating}
-            disabled={status === USER_IDP_PLAN_STATUS.REJECTED || canNotModifyApprovalState}
-          >
-            {status === USER_IDP_PLAN_STATUS.REJECTED
-              ? I18n.t('idp.user_idp_status.rejected') : I18n.t('common.actions.reject')}
-          </Button>
-          <Button
-            type="primary"
-            onClick={() => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.APPROVED)}
-            loading={isUpdating}
-            disabled={status === USER_IDP_PLAN_STATUS.APPROVED || canNotModifyApprovalState}
-            icon={status === USER_IDP_PLAN_STATUS.APPROVED && <CheckCircleOutlined style={{ color: '#52c41a' }} />}
-          >
-            {status === USER_IDP_PLAN_STATUS.APPROVED
-              ? I18n.t('idp.user_idp_status.approved') : I18n.t('common.actions.approve')}
-          </Button>
+          { status === USER_IDP_PLAN_STATUS.PENDING_APPROVAL
+
+          && (
+            <Button
+              type="default"
+              onClick={() => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.IN_REVIEW)}
+              loading={isUpdating}
+            >
+              Start Review
+            </Button>
+          )}
+          {status === USER_IDP_PLAN_STATUS.IN_REVIEW
+          && (
+            <>
+              <Button
+                type="default"
+                onClick={() => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.REJECTED)}
+                loading={isUpdating}
+                disabled={status === USER_IDP_PLAN_STATUS.REJECTED || canNotModifyApprovalState}
+              >
+                {status === USER_IDP_PLAN_STATUS.REJECTED
+                  ? I18n.t('idp.user_idp_status.rejected') : I18n.t('common.actions.reject')}
+              </Button>
+              <Button
+                type="primary"
+                onClick={() => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.APPROVED)}
+                loading={isUpdating}
+                disabled={status === USER_IDP_PLAN_STATUS.APPROVED || canNotModifyApprovalState}
+                icon={status === USER_IDP_PLAN_STATUS.APPROVED && <CheckCircleOutlined style={{ color: '#52c41a' }} />}
+              >
+                {status === USER_IDP_PLAN_STATUS.APPROVED
+                  ? I18n.t('idp.user_idp_status.approved') : I18n.t('common.actions.approve')}
+              </Button>
+            </>
+          )}
         </>
       ) : null}
 

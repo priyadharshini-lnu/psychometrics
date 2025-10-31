@@ -9,7 +9,7 @@ import Page from '../../Page'
 import techicalIcon from '../../../assets/Technical.svg'
 import { Skill } from './DevelopmentAction'
 import { useI18n } from '~/modules/idpReport/I18nContext'
-import { useSkillPagination, getPaginatedSkills } from './useSkillPagination'
+import { useSkillPagination, getPaginatedSkills, Pagination } from './useSkillPagination'
 
 const { I18n } = window
 I18n.locale = document.body.getAttribute('data-locale')
@@ -25,7 +25,7 @@ const Technical = ({ skills, rtl, status }) => {
   return (
     <>
       {_.map(pages.length ? pages : [0], (page) => {
-        const selectedSkills = page ? getPaginatedSkills(skills, page as { [skillId: string]: string[] }) : skills
+        const selectedSkills = page ? getPaginatedSkills(skills, page as Pagination) : skills
 
         return (
           <Page rtl={rtl}>

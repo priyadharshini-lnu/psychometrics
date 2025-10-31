@@ -43,7 +43,7 @@ module Idp
       campaign = user_idp_plan.campaign
 
       return false unless campaign.project.idp_setting.manager_approves_idp?
-      return false if user_idp_plan.not_started? || user_idp_plan.draft?
+      return false if user_idp_plan.completion_status_not_started? || user_idp_plan.draft?
 
       true
     end
@@ -51,11 +51,14 @@ module Idp
     def trigger_approval_flow!
       user_idp_plan = user_idp_skill.user_idp_plan
 
-      case user_idp_plan.status
-        when 'approved', 'in_progress', 'completed'
-          user_idp_plan.update!(status: :pending_approval)
-        when 'rejected'
-          user_idp_plan.submit_for_approval!
+      case user_idp_plan.approval_status
+        when 'approved', 'rejected'
+          user_idp_plan.update!(approval_status: :pending_approval)
+      end
+
+      case user_idp_plan.completion_status
+        when 'in_progress', 'completed'
+          user_idp_plan.update!(completion_status: :not_started) if user_idp_plan.approved?
       end
     end
 

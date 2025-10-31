@@ -7,7 +7,17 @@ module EndUser
 
     skip_before_action :authenticate_user!, only: [:pdf_preview]
 
-    before_action :load_user_idp_plan, only: %i[show update update_reflection_questions download pdf_preview]
+    before_action :load_user_idp_plan, only: %i[
+      show
+      update
+      update_reflection_questions
+      download
+      pdf_preview
+      update_approval_status
+      plan_changes
+      revert_to_last_approved
+    ]
+
     before_action :load_skill_gap_report_status, only: %i[show]
 
     def summary
@@ -32,6 +42,33 @@ module EndUser
       else
         render json: { errors: [I18n.t('idp_templates.errors.user_idp_template_not_found')] }, status: :not_found
       end
+    end
+
+    def plan_changes
+      authorize(user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
+
+      diff = Idp::IdpPlan::CalculateDiff.call!(@user_idp_plan, current_user)
+      render json: { user_id: @user_idp_plan.user_id, plan_id: @user_idp_plan.id, diff: diff }
+    end
+
+    def revert_to_last_approved
+      authorize(user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
+
+      last_approved_version = @user_idp_plan.versions.where(
+        "object ->> 'approval_status' = ?", 'approved'
+      ).last
+
+      unless last_approved_version
+        return render json: { error: I18n.t('idp.user_idp_plans.errors.no_previous_approved_plan') },
+                      status: :unprocessable_entity
+      end
+
+      refied_last_approved_version = @user_idp_plan.safe_reify(
+        last_approved_version, has_many: true, mark_for_destruction: true
+      )
+
+      refied_last_approved_version.save!
+      render json: { status: @user_idp_plan.status }
     end
 
     def update
@@ -119,7 +156,7 @@ module EndUser
     end
 
     def update_params
-      params.expect(user_idp_plan: [:status])
+      params.permit(:status, :note)
     end
   end
 end
