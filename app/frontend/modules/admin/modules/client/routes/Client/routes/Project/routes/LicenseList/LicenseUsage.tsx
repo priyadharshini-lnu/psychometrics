@@ -31,7 +31,6 @@ const LicenseUsageComponent: React.FC<Props> = () => {
     apiConfig: {
       include: ['user', 'status_updated_by'],
       include_meta: ['permissions', 'report_family_name'],
-      // fields: { users: ['id', 'name'] },
     },
   }
 
@@ -141,7 +140,7 @@ const ActiveSwitch: React.FC<{ licenseUsage: LicenseUsage }> = ({ licenseUsage }
         resource.memberAction({
           id: licenseUsage.id,
           action: 'toggle_status',
-          method: 'patch', // TODO: investigate, launching POST instead of PATCH/PUT
+          method: 'patch',
           updateStore: true,
         })
       }}

@@ -27,10 +27,6 @@ module Api
         has_permission?(:workshops, :export_status, project_id: project_id)
       end
 
-      def licenses?
-        true
-      end
-
       class Scope < BasePolicy::Scope
         def resolve
           ::Administration::ClientPolicy::Scope.new(
