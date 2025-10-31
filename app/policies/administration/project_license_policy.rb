@@ -14,5 +14,10 @@ module Administration
     def update?
       @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_licenses)
     end
+
+    def license_usages?
+      @user.is?(:superadmin) || @user.has_grant?(:projects,
+                                                 :view_licenses) || @user.has_grant?(:projects, :manage_licenses)
+    end
   end
 end
