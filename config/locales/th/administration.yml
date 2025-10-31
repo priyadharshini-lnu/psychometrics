@@ -3147,15 +3147,40 @@ th:
             no_auth:
               label: ไม่มีใคร
               value: no_auth
+            oauth:
+              label: OAuth
+              value: โอออธ
+          client_credentials:
+            label: ข้อมูลประจําตัวของลูกค้า
+            value: client_credentials
+          client_id:
+            label: รหัสไคลเอ็นต์
+            name: oauth_client_id
+            required: ต้องระบุรหัสไคลเอ็นต์
+          client_secret:
+            label: ข้อมูลลับของไคลเอ็นต์
+            name: oauth_client_secret
+            required: จําเป็นต้องมีข้อมูลลับของไคลเอ็นต์
           description:
             label: คำอธิบาย
             name: คำอธิบาย
+          grant_type:
+            label: ประเภทการให้ทุน
+            name: oauth_grant_type
           include_locales:
             label: รวมคําแปล
             name: include_locales
+          oauth_scope:
+            label: ขอบเขต
+            name: oauth_scope
+            required: ต้องมีขอบเขต
           password:
             label: รหัสผ่าน
             name: รหัสผ่าน
+          token_url:
+            label: URL โทเค็น
+            name: oauth_token_url
+            required: ต้องระบุ URL โทเค็น
           topics:
             label: กิจกรรม
             list:
@@ -3475,6 +3500,7 @@ th:
         add_new_condition: เพิ่มเงื่อนไขใหม่
         apply_color_label: 'จากนั้นใช้สีต่อไปนี้:'
         custom_factor_fields:
+          default_score: คะแนน
           percentage: อัตราร้อยละ
           questions_attempted: พยายาม
           questions_correct: ถูกต้อง
@@ -3510,6 +3536,7 @@ th:
         prefixes:
           and: และ
           or: หรือ
+        prevent_value_overlap: ป้องกันการทับซ้อนของค่า
         skill_type_label: กรองตามประเภททักษะ
         skill_type_placeholder: เลือกประเภททักษะ
         skill_types:
@@ -3790,6 +3817,7 @@ th:
         start_time: วันที่ & เวลา
         subject: ชื่อเรื่อง
         title: ชื่อเรื่อง
+        view_recording: View การบันทึก
       errors:
         assessor_already_assigned: ผู้ประเมินได้รับมอบหมายให้ทําการประเมินนี้แล้ว โปรดเลือกการประเมินหรือผู้ประเมินอื่น
         date_required: โปรดเลือกวันที่

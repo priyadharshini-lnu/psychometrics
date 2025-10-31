@@ -3148,15 +3148,40 @@ ko:
             no_auth:
               label: 없음
               value: no_auth
+            oauth:
+              label: OAuth
+              value: 오인증
+          client_credentials:
+            label: 클라이언트 자격 증명
+            value: client_credentials
+          client_id:
+            label: 클라이언트 ID
+            name: oauth_client_id
+            required: 클라이언트 ID가 필요합니다.
+          client_secret:
+            label: 클라이언트 암호
+            name: oauth_client_secret
+            required: 클라이언트 암호가 필요합니다.
           description:
             label: 설명
             name: 설명
+          grant_type:
+            label: 보조금 유형
+            name: oauth_grant_type
           include_locales:
             label: 번역 포함
             name: 포함_로컬
+          oauth_scope:
+            label: 범위
+            name: oauth_scope
+            required: 범위가 필요합니다.
           password:
             label: 비밀번호
             name: 비밀번호
+          token_url:
+            label: 토큰 URL
+            name: oauth_token_url
+            required: 토큰 URL이 필요합니다.
           topics:
             label: 이벤트
             list:
@@ -3476,6 +3501,7 @@ ko:
         add_new_condition: 새 조건 추가
         apply_color_label: 그런 다음 다음 색상을 적용합니다.
         custom_factor_fields:
+          default_score: 점수
           percentage: 백분율
           questions_attempted: 시도
           questions_correct: 맞는
@@ -3511,6 +3537,7 @@ ko:
         prefixes:
           and: 그리고
           or: 또는
+        prevent_value_overlap: 값 중복 방지
         skill_type_label: 스킬 유형별 필터링
         skill_type_placeholder: 스킬 유형 선택
         skill_types:
@@ -3791,6 +3818,7 @@ ko:
         start_time: 날짜 및 시간
         subject: 제목
         title: 제목
+        view_recording: 녹화 보기
       errors:
         assessor_already_assigned: 이 평가에 이미 평가자가 배정되었습니다. 다른 평가 또는 평가자를 선택하십시오.
         date_required: 날짜를 선택하세요

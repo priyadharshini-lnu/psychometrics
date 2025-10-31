@@ -3147,15 +3147,40 @@ sl:
             no_auth:
               label: Nobena
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAUTH
+          client_credentials:
+            label: Poverilnice odjemalca
+            value: client_credentials
+          client_id:
+            label: ID stranke
+            name: oauth_client_id
+            required: ID stranke je obvezen
+          client_secret:
+            label: Skrivnost stranke
+            name: oauth_client_secret
+            required: Skrivnost odjemalca je obvezna
           description:
             label: Opis
             name: opis
+          grant_type:
+            label: Vrsta nepovratnih sredstev
+            name: oauth_grant_type
           include_locales:
             label: Vključi prevode
             name: include_locales
+          oauth_scope:
+            label: Obseg
+            name: oauth_scope
+            required: Področje uporabe je potrebno
           password:
             label: Geslo
             name: geslo
+          token_url:
+            label: URL žetona
+            name: oauth_token_url
+            required: URL žetona je obvezen
           topics:
             label: Dogodkov
             list:
@@ -3475,6 +3500,7 @@ sl:
         add_new_condition: Dodajanje novega pogoja
         apply_color_label: 'Nato uporabite naslednjo barvo:'
         custom_factor_fields:
+          default_score: Partitura
           percentage: Odstotek
           questions_attempted: Poskus
           questions_correct: Pravilen
@@ -3510,6 +3536,7 @@ sl:
         prefixes:
           and: IN
           or: ALI
+        prevent_value_overlap: Preprečevanje prekrivanja vrednosti
         skill_type_label: Filtriraj po vrsti spretnosti
         skill_type_placeholder: Izberite vrsto spretnosti
         skill_types:
@@ -3790,6 +3817,7 @@ sl:
         start_time: Datum in ura
         subject: Predmet
         title: Naslov
+        view_recording: Ogled posnetka
       errors:
         assessor_already_assigned: Ocenjevalec, ki je že dodeljen tej oceni. Izberite drugega ocenjevalca ali ocenjevalca.
         date_required: Prosimo, izberite datum

@@ -389,6 +389,8 @@ nl:
               inclusion: Selecteer het juiste normtype
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} niet gevonden"
             email:
               user_exists_in_campaign: Gebruiker met dit e-mailadres bestaat al in de campagne
               user_exists_in_project: Gebruiker met dit e-mailadres bestaat al in het project
@@ -408,6 +410,8 @@ nl:
               invalid_datetime: is ongeldig
             schedule_start_date:
               invalid_datetime: is ongeldig
+            target_job_role:
+              not_found: "%{name} niet gevonden"
         user_assessment:
           subject_and_assessment_exists: Er bestaat al een beoordelings- en vakkenpaar
         user_idp_development_action:
@@ -2576,6 +2580,7 @@ nl:
       aria_selected: Geselecteerd
   idp:
     actions: Acties
+    add_comments: Opmerkingen toevoegen
     ai:
       assistant:
         failure_fallback:
@@ -2640,14 +2645,23 @@ nl:
       add_reply_placeholder: Antwoord toevoegen...
       go_to_skill: Ga naar vaardigheid
     comments:
+      clear_comments_for_skill: Duidelijke opmerkingen voor vaardigheid
       close: Sluiten
+      comment_content: Hoe inhoud
+      comment_for_skill: Reageer voor vaardigheid
+      commented_at: Becommentarieerd op
+      commented_by: Becommentarieerd door
       comments: Opmerkingen
       filter_comments: Opmerkingen filteren
       mark_as_resolved: Markeren als opgelost
       mark_as_unresolved: Markeren als onopgelost
+      mark_comment_as_resolved: Deze opmerking markeren als opgelost
       replied: Beantwoord
+      replied_at: Gereageerd op
+      replied_by: Beantwoord door
       replies: Antwoorden
       reply: Antwoorden
+      reply_content: Inhoud beantwoorden
       resolve: Oplossen
       resolved: Opgelost
       resolved_message: Deze opmerking is opgelost en antwoorden zijn uitgeschakeld.
@@ -2656,8 +2670,13 @@ nl:
       show_only_unread: Alleen ongelezen tonen
       show_only_unresolved: Alleen onopgeloste tonen
       sort_by_date: Sorteren op datum
+      total_comments_count: Totaal aantal reacties
+      total_count: Totaal aantal reacties
+      unread_replies_count: Ongelezen antwoorden tellen mee
+      view_or_add: Opmerkingen voor %{skillName} weergeven of toevoegen
       you: Jij
     convert_to_draft: Converteren naar concept
+    current_step: Huidige stap %{step}
     delete_skill: Weet je zeker dat je vaardigheid wilt verwijderen omdat dan ook alle verbonden ontwikkelingsacties worden verwijderd?
     details: Details
     development_actions:
@@ -2668,6 +2687,7 @@ nl:
       add_development_actions_modal_title: Bibliotheek met ontwikkelingsacties voor %{skillName}
       add_from_library: Toevoegen uit bibliotheek
       add_more: Voeg meer ontwikkelingsacties toe
+      add_selected_development_actions: Geselecteerde ontwikkelingsacties toevoegen
       all: Alle
       approved: Goedgekeurd
       board_view:
@@ -2682,10 +2702,15 @@ nl:
       custom: Gewoonte
       custom_da_description: Maak een aangepaste ontwikkelingsactie om aan unieke ontwikkelingsbehoeften te voldoen.
       date_range: Startdatum - Einddatum
+      development_action_learning_style: Ontwikkeling Actie Leerstijl
+      development_action_name: Beschrijving van de ontwikkelingsactie
+      discard_draft: Ontwerp weggooien
       edit_da_progress: Voortgang ontwikkelingsactie bewerken
+      edit_development_action_progress: Voortgang ontwikkelingsactie bewerken
       edit_plan_to_add_development_actions: Plan bewerken en ontwikkelingsacties toevoegen.
       enter_development_action_description: Voer de beschrijving van de ontwikkelingsactie in
       enter_development_action_title: Voer de titel van de ontwikkelingsactie in
+      filter_development_actions: Filter ontwikkelingsacties
       generate_by_ai: Genereren door AI
       generate_more: Meer genereren
       generating_development_actions: Ontwikkelingsacties genereren...
@@ -2702,6 +2727,7 @@ nl:
       learning_from_others: Leren van anderen
       learning_from_others_label: Leren van anderen
       learning_on_the_job_label: Leren op de werkvloer
+      loading_development_actions: Ontwikkelingsacties laden
       manage_skills: Vaardigheden beheren
       marathon: Marathon
       mark_as_complete: Markeren als voltooid
@@ -2712,6 +2738,7 @@ nl:
       publish_plan: Plan publiceren
       remove: Verwijder
       save_plan: Abonnement opslaan
+      show_development_action_information: Toon informatie over ontwikkelingsacties
       skill: Vaardigheid
       sprint: Sprint
       start_plan: Start Plan
@@ -2719,14 +2746,31 @@ nl:
       structured_learning_label: Samenwerkend leren
       submit_plan: Plan indienen
       success: Ontwikkelingsacties succesvol afgerond
+      toggle_skill_privacy: Schakel Skill Privacy in
       write_here: Schrijf hier...
     direct_reportee_details: Details van directe verslaggevers
     download:
       description: 'Volg de link om het rapport te downloaden: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link is slechts 10 minuten geldig'
+    download_plan: Abonnement downloaden
     edit_plan: Plan bewerken
     edit_plan_and_add_skills: Bewerk Plan en en klik op Vaardigheden beheren om Vaardigheden toe te voegen.
     edit_progress: Vooruitgang bewerken
     fetching_skill_gap_report: Rapport over lacunes in vaardigheden ophalen...
+    go_to_previous_step: Ga naar de vorige stap
+    history:
+      added_da:
+        one: Ontwikkelingsactie toegevoegd
+        other: Ontwikkelingsacties toegevoegd
+      changes:
+        end_date: Einddatum van %{from} tot %{to}
+        progress: Voortgang van %{from} naar %{to}
+        start_date: Startdatum van %{from} tot %{to}
+      modified_da:
+        one: Gewijzigde ontwikkelingsactie
+        other: Gewijzigde ontwikkelingsacties
+      removed_da:
+        one: Verwijderde ontwikkelingsactie
+        other: Verwijderde ontwikkelingsacties
     initial_steps:
       add_skill_group_description: Op basis van de resultaten van je assessment zijn hier een aantal sterke punten en ontwikkelingsgebieden voor jou. Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
       add_skill_group_title: Je %{category} vaardigheden verkennen
@@ -2751,6 +2795,7 @@ nl:
       skill_column_header: Vaardigheid
       skill_gap_report: Rapport over vaardigheidskloof
     list: Lijst
+    loader_icon: Pictogram van de lader
     manage_plan: Plan beheren
     mark_as_complete: Markeer als voltooid
     mark_as_incomplete: Markeren als onvolledig
@@ -2848,10 +2893,16 @@ nl:
         skills_count: Vaardigheden tellen
         title: Samenvatting van het rapport
     plan: Plan
+    plan_status: Plan Status %{status}
+    private: Privé
     reflective_questions:
       already_completed: De IDP is al voltooid, u kunt de vragen nu niet beantwoorden.
+      answer: Antwoorden
       answer_later: Later antwoorden
+      answer_limit: Het antwoord moet tussen %{min} en %{max} woorden liggen
       answer_placeholder: Schrijf hier je antwoord...
+      cancel_edited_answer: Geannuleerd bewerkt antwoord
+      edit_answer: Antwoord bewerken
       errors:
         max_words: Het antwoord staat een maximum van %{count} woorden toe
         min_words: Het antwoord vereist ten minste %{count} woorden
@@ -2861,24 +2912,37 @@ nl:
       no_answer_provided: Nog geen antwoord gegeven
       no_reflective_questions: Geen reflectieve vragen
       optional: "(Optioneel)"
+      question: Vraag
+      required: Deze vraag is verplicht
+      save_edited_answer: Bewerkt antwoord opslaan
       title: Reflectieve vragen
       update_failed: Er is een fout opgetreden tijdens de update
       updated_successfully: Uw antwoorden zijn met succes bijgewerkt
       word_limit: Moet tussen %{min} en %{max} woorden liggen
       words: Woorden
     remove_skill: Vaardigheid verwijderen
+    remove_skill_from_plan: Vaardigheids %{name} uit plan verwijderen
+    report_preview: Voorbeeld van rapport
+    search_and_select_skills_of_skill_type: Zoek en selecteer %{skillType} vaardigheden
+    select_skills_of_skill_type: Selecteer %{skillType} vaardigheden
+    selected_skills_of_skill_type: Geselecteerde %{skillType} vaardigheden
     skill_gap_report:
+      content: Inhoud van het rapport over vaardigheidskloof
       download: Download het rapport over vaardigheidstekorten
       title: Rapport over vaardigheidskloof
+    skill_status: Vaardigheid %{name} privé is
     skills_updated: Vaardigheden bijgewerkt in het plan
     status: Status
     suggestions: Suggesties
+    suggestions_for_skill_type: Suggesties voor %{skillType} vaardigheden
     technical: Technisch
     user_idp_status:
       approved: Goedgekeurd
       completed: Volbracht
+      completion_not_started: Oplevering niet gestart
       draft: Ontwerp
       in_progress: In uitvoering
+      in_review: In recensie
       not_started: Niet gestart
       pending_approval: In afwachting van
       rejected: Afgekeurd
@@ -4200,6 +4264,9 @@ nl:
       EntityTooLarge: De bestandsgrootte moet kleiner zijn dan %{maxFileSize} MB
       WrongFileType: Het bestandstype moet een van de volgende %{allowedFileTypes} zijn
     idp:
+      can_not_complete_without_approval_and_in_progress: U kunt uw IDP pas voltooien als uw manager deze goedkeurt en u deze hebt gemarkeerd als 'In uitvoering'.
+      can_not_start_without_approval: U kunt pas aan uw IDP gaan werken als uw manager deze goedkeurt.
+      no_previous_approved_plan: Geen eerder goedgekeurd IDP-plan gevonden.
       reflective_questions_required: Antwoorden op reflectieve vragen zijn vereist voor IDP
       status_not_permitted: is niet toegestaan door de gebruiker.
       status_not_permitted_by_manager: De manager kan de status niet bijwerken wanneer het abonnement de status '%{status}' heeft.

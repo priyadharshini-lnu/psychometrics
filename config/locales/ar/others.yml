@@ -389,6 +389,8 @@ ar:
               inclusion: يرجى تحديد نوع المعيار الصحيح
         user:
           attributes:
+            current_job_role:
+              not_found: لم يتم العثور على %{name}
             email:
               user_exists_in_campaign: المستخدم الذي يحمل معرف البريد الإلكتروني هذا موجود بالفعل في الحملة
               user_exists_in_project: المستخدم الذي لديه معرف البريد الإلكتروني هذا موجود بالفعل في المشروع
@@ -408,6 +410,8 @@ ar:
               invalid_datetime: غير صالح
             schedule_start_date:
               invalid_datetime: غير صالح
+            target_job_role:
+              not_found: لم يتم العثور على %{name}
         user_assessment:
           subject_and_assessment_exists: التقييم وزوج الموضوع موجودان بالفعل
         user_idp_development_action:
@@ -2618,6 +2622,7 @@ ar:
       aria_selected: المحدد
   idp:
     actions: الإجراءات
+    add_comments: أضف تعليقات
     ai:
       assistant:
         failure_fallback:
@@ -2682,14 +2687,23 @@ ar:
       add_reply_placeholder: إضافة رد...
       go_to_skill: الذهاب إلى المهارة
     comments:
+      clear_comments_for_skill: تعليقات واضحة للمهارة
       close: إغلاق
+      comment_content: كيفية المحتوى
+      comment_for_skill: التعليق على المهارة
+      commented_at: في
+      commented_by: ب
       comments: تعليقات
       filter_comments: تصفية التعليقات
       mark_as_resolved: حل
       mark_as_unresolved: حل
+      mark_comment_as_resolved: ضع علامة على هذا التعليق على أنه تم حله
       replied: تم الرد
+      replied_at: أجاب في
+      replied_by: رد من قبل
       replies: ردود
       reply: رد
+      reply_content: الرد على المحتوى
       resolve: حل
       resolved: محلول
       resolved_message: تم حل هذا التعليق وتم تعطيل الردود.
@@ -2698,8 +2712,13 @@ ar:
       show_only_unread: إظهار الغير مقروء
       show_only_unresolved: إظهار الغير محلولة
       sort_by_date: ترتيب حسب التاريخ
+      total_comments_count: إجمالي عدد التعليقات
+      total_count: إجمالي عدد التعليقات
+      unread_replies_count: يتم احتساب الردود غير المقروءة
+      view_or_add: عرض تعليقات أو إضافتها %{skillName}
       you: أنت
     convert_to_draft: تحويل إلى مسودة
+    current_step: الخطوة الحالية %{step}
     delete_skill: هل أنت متأكد من أنك تريد حذف المهارة لأنها ستحذف جميع إجراءات التطوير المتصلة أيضا؟
     details: التفاصيل
     development_actions:
@@ -2710,6 +2729,7 @@ ar:
       add_development_actions_modal_title: مكتبة إجراءات التطوير %{skillName}
       add_from_library: إضافة من المكتبة
       add_more: إضافة المزيد من إجراءات التطوير
+      add_selected_development_actions: إضافة إجراءات تطوير محددة
       all: الكل
       approved: موافق عليه
       board_view:
@@ -2724,10 +2744,15 @@ ar:
       custom: تقليد
       custom_da_description: قم بإنشاء إجراء تطوير مخصص لتلبية احتياجات التطوير الفريدة.
       date_range: تاريخ البداية - تاريخ النهاية
+      development_action_learning_style: أسلوب التعلم العملي التنموي
+      development_action_name: وصف الإجراءات الإنمائية
+      discard_draft: تجاهل المسودة
       edit_da_progress: تحرير تقدم إجراءات التطوير
+      edit_development_action_progress: تحرير تقدم إجراءات التطوير
       edit_plan_to_add_development_actions: تحرير الخطة وإضافة إجراءات التطوير.
       enter_development_action_description: أدخل وصف إجراءات التطوير
       enter_development_action_title: أدخل عنوان العمل التنموي
+      filter_development_actions: إجراءات تطوير التصفية
       generate_by_ai: توليد بواسطة الذكاء الاصطناعي
       generate_more: توليد المزيد
       generating_development_actions: جاري توليد إجراءات التطوير...
@@ -2744,6 +2769,7 @@ ar:
       learning_from_others: التعلم من الآخرين
       learning_from_others_label: التعلم من الآخرين
       learning_on_the_job_label: التعلم أثناء العمل
+      loading_development_actions: تحميل إجراءات التطوير
       manage_skills: إدارة المهارات
       marathon: ماراثون
       mark_as_complete: وضع علامة مكتمل
@@ -2754,6 +2780,7 @@ ar:
       publish_plan: نشر الخطة
       remove: إزالة
       save_plan: حفظ الخطة
+      show_development_action_information: إظهار معلومات إجراءات التطوير
       skill: مهارة
       sprint: سباق قصير
       start_plan: بدء الخطة
@@ -2761,14 +2788,31 @@ ar:
       structured_learning_label: التعلم التعاوني
       submit_plan: تقديم الخطة
       success: إجراءات التطوير المنجزة بنجاح
+      toggle_skill_privacy: تبديل خصوصية المهارة
       write_here: اكتب هنا...
     direct_reportee_details: تفاصيل المبلغين المباشرين
     download:
       description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''''%{url}'''' target = '''' _blank'''' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
+    download_plan: تحميل الخطة
     edit_plan: تعديل الخطة
     edit_plan_and_add_skills: قم بتحرير الخطة وانقر فوق إدارة المهارات لإضافة المهارات.
     edit_progress: تحرير التقدم
     fetching_skill_gap_report: تقرير جلب فجوات المهارات ...
+    go_to_previous_step: انتقل إلى الخطوة السابقة
+    history:
+      added_da:
+        one: إجراءات إنمائية مضافة
+        other: إجراءات التطوير المضافة
+      changes:
+        end_date: تاريخ الانتهاء من %{from} إلى %{to}
+        progress: التقدم من %{from} إلى %{to}
+        start_date: تاريخ البدء من %{from} إلى %{to}
+      modified_da:
+        one: إجراءات التنمية المعدلة
+        other: إجراءات التطوير المعدلة
+      removed_da:
+        one: إجراءات التطوير التي تمت إزالتها
+        other: إجراءات التطوير التي تمت إزالتها
     initial_steps:
       add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
       add_skill_group_title: استكشاف مهار %{category} اتك في
@@ -2793,6 +2837,7 @@ ar:
       skill_column_header: المهارة
       skill_gap_report: تقرير فجوة المهارات
     list: قائمة
+    loader_icon: أيقونة اللودر
     manage_plan: إدارة الخطة
     mark_as_complete: وضع علامة على أنها كاملة
     mark_as_incomplete: وضع علامة على أنها غير مكتملة
@@ -2912,10 +2957,16 @@ ar:
         skills_count: عدد المهارات
         title: ملخص التقرير
     plan: خطة
+    plan_status: حالة الباقة %{status}
+    private: عسكري
     reflective_questions:
       already_completed: لقد تم الانتهاء من IDP بالفعل، ولا يمكنك الإجابة عن الأسئلة الآن.
+      answer: جواب
       answer_later: أجب لاحقًا
+      answer_limit: يجب أن تكون الإجابة بين %{min} و %{max} كلمة
       answer_placeholder: اكتب إجابتك هنا...
+      cancel_edited_answer: إلغاء الإجابة المعدلة
+      edit_answer: تعديل الإجابة
       errors:
         max_words: تسمح الإجابة بحد أقصى %{count} الكلمات
         min_words: تتطلب الإجابة ما لا يقل عن %{count} الكلمات
@@ -2925,24 +2976,37 @@ ar:
       no_answer_provided: لم يتم تقديم إجابة حتى الآن
       no_reflective_questions: لا توجد أسئلة عاكسة
       optional: "(اختياري)"
+      question: سؤال
+      required: هذا السؤال مطلوب
+      save_edited_answer: حفظ الإجابة المعدلة
       title: أسئلة تأملية
       update_failed: حدث خطأ أثناء التحديث
       updated_successfully: تم تحديث إجاباتك بنجاح
       word_limit: يجب أن تكون بين %{min} و %{max} كلمة
       words: الكلمات
     remove_skill: إزالة المهارة
+    remove_skill_from_plan: إزالة %{name} المهارة من الخطة
+    report_preview: معاينة التقرير
+    search_and_select_skills_of_skill_type: ابحث وحدد مهارات %{skillType}
+    select_skills_of_skill_type: حدد مهارات %{skillType}
+    selected_skills_of_skill_type: مهارات %{skillType} المختارة
     skill_gap_report:
+      content: محتوى تقرير فجوة المهارات
       download: تنزيل تقرير فجوة المهارات
       title: تقرير فجوة المهارات
+    skill_status: "%{name} المهارة خاصة"
     skills_updated: المهارات المحدثة في الخطة
     status: الحالة
     suggestions: اقتراحات
+    suggestions_for_skill_type: اقتراحات لمهارات %{skillType}
     technical: اِصطِلاحِيّ
     user_idp_status:
       approved: تمت الموافقة
       completed: اكمال
+      completion_not_started: لم يبدأ الانتهاء
       draft: مسودة
       in_progress: قيد التنفيذ
+      in_review: قيد المراجعة
       not_started: لم يبدأ
       pending_approval: قيد الموافقة
       rejected: نبيذ
@@ -4267,6 +4331,9 @@ ar:
       EntityTooLarge: يجب أن يكون حجم الملف أقل من %{maxFileSize} ميغابايت
       WrongFileType: يجب أن يكون نوع الملف أحد %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: لا يمكنك إكمال موفر الهوية الخاص بك حتى يوافق عليه مديرك وتقوم بوضع علامة عليه على أنه "قيد التقدم".
+      can_not_start_without_approval: لا يمكنك البدء في العمل على موفر الهوية الخاص بك حتى يوافق عليه مديرك.
+      no_previous_approved_plan: لم يتم العثور على خطة IDP معتمدة سابقا.
       reflective_questions_required: مطلوب إجابات على الأسئلة العاكسة ل IDP
       status_not_permitted: غير مسموح به من قبل المستخدم.
       status_not_permitted_by_manager: يتعذر على المدير تحديث الحالة عندما تكون الخطة في حالة "%{status}".

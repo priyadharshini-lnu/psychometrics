@@ -389,6 +389,8 @@ en-US:
               inclusion: Please select the correct norm type
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} not found"
             email:
               user_exists_in_campaign: User with this email id already exists in the campaign
               user_exists_in_project: User with this email id already exists in the project
@@ -408,6 +410,8 @@ en-US:
               invalid_datetime: is invalid
             schedule_start_date:
               invalid_datetime: is invalid
+            target_job_role:
+              not_found: "%{name} not found"
         user_assessment:
           subject_and_assessment_exists: Assessment and subject pair already exists
         user_idp_development_action:
@@ -2579,6 +2583,7 @@ en-US:
       aria_selected: Selected
   idp:
     actions: Actions
+    add_comments: Add Comments
     ai:
       assistant:
         failure_fallback:
@@ -2643,14 +2648,23 @@ en-US:
       add_reply_placeholder: Add a reply...
       go_to_skill: Go to skill
     comments:
+      clear_comments_for_skill: Clear comments for skill
       close: Close
+      comment_content: How to content
+      comment_for_skill: Comment for skill
+      commented_at: Commented at
+      commented_by: Commented by
       comments: Comments
       filter_comments: Filter comments
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
+      mark_comment_as_resolved: Mark this comment as resolved
       replied: Replied
+      replied_at: Replied at
+      replied_by: Replied by
       replies: Replies
       reply: Reply
+      reply_content: Reply content
       resolve: Resolve
       resolved: Resolved
       resolved_message: This comment has been resolved and replies are disabled.
@@ -2659,8 +2673,13 @@ en-US:
       show_only_unread: Show only unread
       show_only_unresolved: Show only unresolved
       sort_by_date: Sort by date
+      total_comments_count: Total comments count
+      total_count: Total number of comments
+      unread_replies_count: Unread replies count
+      view_or_add: View or add comments for %{skillName}
       you: You
     convert_to_draft: Convert to Draft
+    current_step: Current Step %{step}
     delete_skill: Are you sure you want to delete skill because it will delete all the connected development actions as well?
     details: Details
     development_actions:
@@ -2671,6 +2690,7 @@ en-US:
       add_development_actions_modal_title: Development Actions Library for %{skillName}
       add_from_library: Add from Library
       add_more: Add More Development Actions
+      add_selected_development_actions: Add Selected Development Actions
       all: All
       approved: Approved
       board_view:
@@ -2685,10 +2705,15 @@ en-US:
       custom: Custom
       custom_da_description: Create a custom development action to address unique development needs.
       date_range: Start Date - End Date
+      development_action_learning_style: Development Action Learning Style
+      development_action_name: Development Action Description
+      discard_draft: Discard Draft
       edit_da_progress: Edit Development Action Progress
+      edit_development_action_progress: Edit Development Action Progress
       edit_plan_to_add_development_actions: Edit Plan to add Development Actions.
       enter_development_action_description: Enter Development Action Description
       enter_development_action_title: Enter Development Action Title
+      filter_development_actions: Filter Development Actions
       generate_by_ai: Generate by AI
       generate_more: Generate More
       generating_development_actions: Generating development actions...
@@ -2705,6 +2730,7 @@ en-US:
       learning_from_others: Learning from others
       learning_from_others_label: Learning from Others
       learning_on_the_job_label: Learning on the job
+      loading_development_actions: Loading Development Actions
       manage_skills: Manage Skills
       marathon: Marathon
       mark_as_complete: Mark as Complete
@@ -2715,6 +2741,7 @@ en-US:
       publish_plan: Publish Plan
       remove: Remove
       save_plan: Save Plan
+      show_development_action_information: Show Development Action information
       skill: Skill
       sprint: Sprint
       start_plan: Start Plan
@@ -2722,14 +2749,31 @@ en-US:
       structured_learning_label: Collaborative Learning
       submit_plan: Submit Plan
       success: Development Actions completed successfully
+      toggle_skill_privacy: Toggle Skill Privacy
       write_here: Write here...
     direct_reportee_details: Direct Reportees Detail
     download:
       description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>. Link is only valid for 10 minutes'
+    download_plan: Download Plan
     edit_plan: Edit Plan
     edit_plan_and_add_skills: Edit Plan and and click on Manage Skills to add Skills.
     edit_progress: Edit Progress
     fetching_skill_gap_report: Fetching Skill Gaps Report...
+    go_to_previous_step: Go to Previous Step
+    history:
+      added_da:
+        one: Added Development Action
+        other: Added Development Actions
+      changes:
+        end_date: End Date from %{from} to %{to}
+        progress: Progress from %{from} to %{to}
+        start_date: Start Date from %{from} to %{to}
+      modified_da:
+        one: Modified Development Action
+        other: Modified Development Actions
+      removed_da:
+        one: Removed Development Action
+        other: Removed Development Actions
     initial_steps:
       add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
       add_skill_group_title: Exploring Your %{category} Skills
@@ -2754,6 +2798,7 @@ en-US:
       skill_column_header: Skill
       skill_gap_report: Skill Gap Report
     list: List
+    loader_icon: Loader icon
     manage_plan: Manage Plan
     mark_as_complete: Mark as Complete
     mark_as_incomplete: Mark as Incomplete
@@ -2873,10 +2918,16 @@ en-US:
         skills_count: Skills Count
         title: Report Summary
     plan: Plan
+    plan_status: Plan Status %{status}
+    private: Private
     reflective_questions:
       already_completed: The IDP has already been completed, you cannot answer the questions now.
+      answer: Answer
       answer_later: Answer Later
+      answer_limit: Answer must be between %{min} and %{max} words
       answer_placeholder: Write your answer here...
+      cancel_edited_answer: Cancel Edited Answer
+      edit_answer: Edit Answer
       errors:
         max_words: The answer allows a maximum %{count} words
         min_words: The answer requires at least %{count} words
@@ -2886,24 +2937,37 @@ en-US:
       no_answer_provided: No answer provided yet
       no_reflective_questions: No Reflective Questions available
       optional: "(Optional)"
+      question: Question
+      required: This question is required
+      save_edited_answer: Save Edited Answer
       title: Reflective Questions
       update_failed: An error occurred during the update
       updated_successfully: Your answers have been updated successfully
       word_limit: Must be between %{min} and %{max} words
       words: Words
     remove_skill: Remove Skill
+    remove_skill_from_plan: Remove skill %{name} from plan
+    report_preview: Report Preview
+    search_and_select_skills_of_skill_type: Search and select %{skillType} skills
+    select_skills_of_skill_type: Select %{skillType} skills
+    selected_skills_of_skill_type: Selected %{skillType} skills
     skill_gap_report:
+      content: Skill Gap Report Content
       download: Download Skill Gap Report
       title: Skill Gap Report
+    skill_status: Skill %{name} is private
     skills_updated: Skills updated in the Plan
     status: Status
     suggestions: Suggestions
+    suggestions_for_skill_type: Suggestions for %{skillType} skills
     technical: Technical
     user_idp_status:
       approved: Approved
       completed: Completed
+      completion_not_started: Completion Not Started
       draft: Draft
       in_progress: In Progress
+      in_review: In Review
       not_started: Not Started
       pending_approval: Pending Approval
       rejected: Rejected
@@ -4220,6 +4284,9 @@ en-US:
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: You cannot complete your IDP until your manager approves it and you have marked it as 'In Progress'.
+      can_not_start_without_approval: You cannot start working on your IDP until your manager approves it.
+      no_previous_approved_plan: No previous approved IDP plan found.
       reflective_questions_required: Answers to reflective questions are required for IDP
       status_not_permitted: is not permitted by the user.
       status_not_permitted_by_manager: Manager cannot update status when plan is in '%{status}' state.
