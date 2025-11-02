@@ -5,6 +5,8 @@ module Api
     module Administration
       module Projects
         class LicensesController < Api::V2::Administration::BaseController
+          skip_before_action :jsonapi_request_handling, only: %i[index]
+
           def index
             records = filtered_licenses
             paginated = paginate(records)
@@ -15,8 +17,8 @@ module Api
             form = ::Api::V2::Administration::Projects::LicenseForm.new(
               license_params.to_h.merge(project: project)
             )
-
-            if (project_license = form.save)
+            if form.valid?
+              project_license = ::Projects::Licenses::Create.call!(form, project)
               render_license(project_license.license, :created)
             else
               render_errors(form)
@@ -26,9 +28,9 @@ module Api
           def update
             form = ::Api::V2::Administration::Projects::LicenseForm.from_model(model)
             form.attributes = license_params.except(:license_id).to_h.merge(project_license: model)
-
-            if form.save
-              render_license(model.license, :ok)
+            if form.valid?
+              project_license = ::Projects::Licenses::Update.call!(form, model)
+              render_license(project_license.license, :ok)
             else
               render_errors(form)
             end

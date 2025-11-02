@@ -23,6 +23,20 @@ RSpec.describe Api::V2::Administration::Projects::LicenseForm, type: :model do
       expect(form.valid?).to be_falsey
       expect(form.errors[:usage_limit]).to be_present
     end
+
+    it 'is valid for a proper create (usage_limit <= parent number and unique)' do
+      form = described_class.new(project: project, license_id: license.id, usage_limit: 3, enabled: true)
+
+      expect(form.valid?).to be_truthy
+      expect(form.errors).to be_empty
+    end
+
+    it 'is valid for create when usage_limit is nil (no explicit limit)' do
+      form = described_class.new(project: project, license_id: license.id, usage_limit: nil, enabled: true)
+
+      expect(form.valid?).to be_truthy
+      expect(form.errors).to be_empty
+    end
   end
 
   describe 'update validations' do
@@ -33,6 +47,25 @@ RSpec.describe Api::V2::Administration::Projects::LicenseForm, type: :model do
 
       expect(form.valid?).to be_falsey
       expect(form.errors[:usage_limit]).to be_present
+    end
+
+    it 'is valid when updating usage_limit but keeping it >= used number' do
+      project_license = create(:project_license, project: project, license: license, usage_limit: 5, used_number: 3)
+      form = described_class.from_model(project_license)
+      form.attributes = { usage_limit: 4, project_license: project_license }
+
+      expect(form.valid?).to be_truthy
+      expect(form.errors).to be_empty
+    end
+
+    it 'is valid when updating other attributes (e.g. enabled) without changing usage_limit' do
+      project_license = create(:project_license, project: project, license: license, usage_limit: 5, used_number: 3,
+enabled: true)
+      form = described_class.from_model(project_license)
+      form.attributes = { enabled: false, project_license: project_license }
+
+      expect(form.valid?).to be_truthy
+      expect(form.errors).to be_empty
     end
   end
 end

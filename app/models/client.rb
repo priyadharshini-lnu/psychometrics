@@ -64,6 +64,7 @@ class Client < ApplicationRecord
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) },
            through: :memberships, source: :user
   # Licenses
+  has_many :project_licenses, dependent: :destroy, foreign_key: :project_id
   has_many :license_usages, dependent: :destroy
   has_many :licenses, inverse_of: :client, dependent: :destroy
   has_many :active_licenses, -> { active }, class_name: 'License'

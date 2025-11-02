@@ -21,17 +21,6 @@ module Api
           validate :cannot_reduce_below_used_number, if: :update?
           validate :cannot_allot_more_than_available
 
-          def save
-            return false unless valid?
-
-            if update?
-              project_license.update(attributes.slice(:usage_limit, :enabled))
-              project_license
-            else
-              ::ProjectLicense.create(attributes.slice(:project, :license_id, :usage_limit, :enabled))
-            end
-          end
-
           def update?
             project_license.present?
           end
