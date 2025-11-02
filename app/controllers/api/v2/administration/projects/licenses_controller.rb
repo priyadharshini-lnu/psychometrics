@@ -5,8 +5,6 @@ module Api
     module Administration
       module Projects
         class LicensesController < Api::V2::Administration::BaseController
-          skip_before_action :jsonapi_request_handling, only: %i[index]
-
           def index
             records = filtered_licenses
             paginated = paginate(records)
@@ -156,8 +154,13 @@ module Api
             params.require(:data).require(:attributes).permit(:usage_limit, :enabled, :license_id)
           end
 
-          def policy_class
-            ::Administration::ProjectLicensePolicy
+          def pundit_authorize
+            authorize(
+              model || model_class,
+              nil,
+              policy_class: Api::Administration::Projects::LicensePolicy,
+              project_id: params[:project_id]
+            )
           end
         end
       end

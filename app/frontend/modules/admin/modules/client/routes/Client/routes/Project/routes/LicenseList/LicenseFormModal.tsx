@@ -39,7 +39,6 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
       },
     },
   )
-  // debugger;
 
   const licenseResource = license ? {
     ...license,
