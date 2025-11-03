@@ -17,7 +17,7 @@ const { I18n } = window
 const connector = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state) as User,
-    clientId: state.project.clientId
+    clientId: state.project.clientId,
   }),
   {
     openModal,
@@ -28,7 +28,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const ClientLicensesTableComponent: React.FC<Props> = ({
-  currentUser, openModal, clientId
+  currentUser, openModal, clientId,
 }) => {
   const { projectId } = useParams() as { projectId: string }
 
@@ -113,7 +113,7 @@ interface ActionMenuData {
 }
 
 const getActionsMenuProps = ({
-  license, openModal, currentUser, clientId, projectId
+  license, openModal, currentUser, clientId, projectId,
 }: ActionMenuData): MenuProps => {
   const menuItems = [
     {

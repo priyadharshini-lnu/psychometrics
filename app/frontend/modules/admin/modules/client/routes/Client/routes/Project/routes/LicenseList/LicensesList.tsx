@@ -46,7 +46,7 @@ const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
       include_meta: ['permissions'],
       filter: {
         for_project: projectId,
-      }
+      },
     },
   }
 
