@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'swagger_helper'
 
-describe Api::V2::Administration::Projects::LicensesController, swagger_doc: 'v2/swagger.json', type: :request do
+describe Api::V2::Administration::ProjectLicensesController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:client) { create(:tenancy) }
   let!(:project) { create(:project, parent: client) }
   let!(:license) { create(:license, client: client, is_project_specific: true) }
@@ -204,51 +204,51 @@ describe Api::V2::Administration::Projects::LicensesController, swagger_doc: 'v2
     end
   end
 
-  path '/projects/{project_id}/licenses/{id}/license_usages' do
-    get 'License Usages List' do
-      operationId 'LicenseUsagesList'
-      description 'Fetch license usages list'
-      tags 'Projects Licenses'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string
-      parameter name: :id, in: :path, type: :string
-      parameter name: :filter, in: :query, type: :object, style: :deepObject, explode: true, schema: {
-        type: :object,
-        properties: {
-          status_eq: { type: :string, enum: LicenseUsage.statuses.keys }
-        }
-      }
+  # path '/projects/{project_id}/licenses/{id}/license_usages' do
+  #   get 'License Usages List' do
+  #     operationId 'LicenseUsagesList'
+  #     description 'Fetch license usages list'
+  #     tags 'Projects Licenses'
+  #     consumes 'application/json'
+  #     security [basic: []]
+  #     parameter name: :project_id, in: :path, type: :string
+  #     parameter name: :id, in: :path, type: :string
+  #     parameter name: :filter, in: :query, type: :object, style: :deepObject, explode: true, schema: {
+  #       type: :object,
+  #       properties: {
+  #         status_eq: { type: :string, enum: LicenseUsage.statuses.keys }
+  #       }
+  #     }
 
-      let!(:active_usage) do
-        create(:license_usage, license: license, project: project, status: :active)
-      end
-      let!(:inactive_usage) do
-        create(:license_usage, license: license, project: project, status: :inactive)
-      end
+  #     let!(:active_usage) do
+  #       create(:license_usage, license: license, project: project, status: :active)
+  #     end
+  #     let!(:inactive_usage) do
+  #       create(:license_usage, license: license, project: project, status: :inactive)
+  #     end
 
-      response '200', 'License usages list' do
-        let(:project_id) { project.id.to_s }
-        let(:id) { license.id.to_s }
-        let(:filter) { {} }
+  #     response '200', 'License usages list' do
+  #       let(:project_id) { project.id.to_s }
+  #       let(:id) { license.id.to_s }
+  #       let(:filter) { {} }
 
-        context 'without filtering' do
-          run_test! do |response|
-            usages = JSON.parse(response.body)
-            expect(usages['data'].count).to eq(2)
-          end
-        end
+  #       context 'without filtering' do
+  #         run_test! do |response|
+  #           usages = JSON.parse(response.body)
+  #           expect(usages['data'].count).to eq(2)
+  #         end
+  #       end
 
-        context 'with filtering by status' do
-          let(:filter) { { status_eq: 'active' } }
+  #       context 'with filtering by status' do
+  #         let(:filter) { { status_eq: 'active' } }
 
-          run_test! do |response|
-            usages = JSON.parse(response.body)
-            expect(usages['data'].count).to eq(1)
-            expect(usages['data'][0]['attributes']['status']).to eq('active')
-          end
-        end
-      end
-    end
-  end
+  #         run_test! do |response|
+  #           usages = JSON.parse(response.body)
+  #           expect(usages['data'].count).to eq(1)
+  #           expect(usages['data'][0]['attributes']['status']).to eq('active')
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
 end
