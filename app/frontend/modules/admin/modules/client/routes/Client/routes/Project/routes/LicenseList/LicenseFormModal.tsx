@@ -33,9 +33,8 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
     {
       responseType: LicenseTR,
       apiConfig: {
-        fields: { licenses: ['id', 'number', 'report_family'] },
         include: ['report_family'],
-        filter: { project_specific: 'true' },
+        filter: { is_project_specific_eq: 'true' },
       },
     },
   )
@@ -54,7 +53,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
 
   return (
     <ResourceFormModal
-      resourceName="project_licenses"
+      resourceName="licenses"
       readableResourceName="Project License"
       showSuccessMessages
       close={close}
@@ -83,8 +82,8 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
                 fetchLicenses({
                   apiConfig: {
                     filter: {
-                      project_specific: 'true',
-                      report_name: value,
+                      is_project_specific_eq: 'true',
+                      report_name_or_type_cont: value,
                     },
                     include: ['report_family'],
                   },

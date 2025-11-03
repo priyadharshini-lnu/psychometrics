@@ -42,7 +42,11 @@ const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
     responseType: LicenseTR,
     basePath: `projects/${projectId}`,
     apiConfig: {
+      include: ['report_family'],
       include_meta: ['permissions'],
+      filter: {
+        for_project: projectId,
+      }
     },
   }
 
