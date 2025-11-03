@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import {
-  Rate, Progress, ConfigProvider, Button, Slider, Flex, Typography, DatePicker,
-  message,
+  Progress, ConfigProvider, Button, Slider, Flex, Typography, DatePicker,
+  message, Space,
   Tooltip, Empty, Modal, Popover, Switch, Tag,
   Divider,
 } from 'antd'
@@ -11,6 +11,7 @@ import {
   DeleteOutlined, EditOutlined, PlusOutlined, InfoCircleOutlined, WarningFilled, MessageOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
+  AccessibleRating,
   MediaQueryContext,
 } from '~/glint'
 import dayjs from '~/utils/dayjs'
@@ -29,6 +30,9 @@ import { DevelopmentActionInfoPopover } from './DevelopmentActionInfoPopover'
 import {
   useToggleSkillPrivacyMutation,
 } from '~/modules/endUser/modules/campaigns/core/idp/api'
+import { ChangeStatus } from './ChangeStatus'
+import { ChangeHistory } from './ChangeHistory'
+import { PlanChangeStatus } from '../../../core/idp/utils'
 
 const { RangePicker } = DatePicker
 
@@ -39,6 +43,7 @@ const connector = connect((state: RootState) => ({
   idpUser: state.campaigns.idp.user,
   currentUser: state.currentUser,
   userIdpSkills: state.campaigns.idp.userIdpSkills,
+  aiAssistantsEnabled: state.config.idp.aiAssistants,
 }),
 {
   updateUserIdpSkill,
@@ -66,6 +71,8 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   initialRating,
   finalRating,
   userIdpSkillId,
+  changeStatus,
+  changeHistory,
   developmentActions,
   editMode,
   onAddDevelopmentAction,
@@ -80,6 +87,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   onShowCustomDevelopmentAction,
   onShowAIGeneratedDevelopmentActions,
   setSkillForComment,
+  aiAssistantsEnabled,
 }) => {
   const [toggleSkillPrivacy] = useToggleSkillPrivacyMutation()
   const isCurrentUserIDPUser = currentUser.id === idpUser.id
@@ -87,7 +95,6 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   const [isPrivateSkill, setPrivateSkill] = useState(isPrivate)
 
   const { isTablet, isDesktop } = useContext(MediaQueryContext)
-
 
   const [openSkillDeletionModal, setOpenSkillDeletionModal] = useState(false)
   const handleRatingChange = (rating) => {
@@ -115,11 +122,15 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   const header = (
     <Flex>
       <Flex vertical={isTablet || isDesktop} gap={4} align={isTablet || isDesktop ? 'start' : 'center'}>
-        <h4 className="m-0 ms-1 me-1 mt-2">{name}</h4>
+        <h4
+          className={cs('m-0 ms-1 me-1 mt-2', { [styles.stroke]: changeStatus === PlanChangeStatus.REMOVED })}
+        >
+          {name}
+        </h4>
         {
         selfRatingEnabled
         && (
-          <Rate
+          <AccessibleRating
             disabled={!editMode}
             onChange={handleRatingChange}
             defaultValue={finalRating || initialRating}
@@ -127,12 +138,16 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           />
         )
       }
+        {changeStatus && (
+          <ChangeStatus className="self-end" status={changeStatus} />
+        )}
         {isCurrentUserIDPUser && (
           editMode ? (
             <Switch
               checkedChildren="Private"
               unCheckedChildren="Public"
               value={isPrivateSkill}
+              aria-label={I18n.t('idp.development_actions.toggle_skill_privacy')}
               onChange={updateSkillPrivacy}
               className={cs('mt-2', isTablet ? '' : 'ms-4')}
               style={{
@@ -142,10 +157,11 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           ) : (
             isPrivateSkill && (
               <Tag
-                className={isTablet || isDesktop ? 'self-start' : 'self-start'}
+                className={isTablet || isDesktop ? 'self-start' : 'self-end mb-1'}
                 color="var(--ant-primary-color)"
+                aria-label={I18n.t('idp.skill_status', { name })}
               >
-                Private
+                {I18n.t('idp.private')}
               </Tag>
             )
           ))}
@@ -156,17 +172,21 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   const developmentActionCards = developmentActions.map(developmentAction => (
     <Card
       key={developmentAction.id}
-      editMode={editMode}
+      editMode={editMode && changeStatus !== PlanChangeStatus.REMOVED}
       developmentAction={developmentAction}
       onUpdateDevelopmentAction={onUpdateDevelopmentAction}
       onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
       onRemoveDevelopmentAction={removeDevelopmentActionFromPlan}
-      canEditProgress={isCurrentUserIDPUser}
+      canEditProgress={isCurrentUserIDPUser && changeStatus !== PlanChangeStatus.REMOVED}
+      skillChangeStatus={changeStatus}
     />
   ))
 
   return (
-    <Flex vertical id={`skill-${userIdpSkillId}`}>
+    <Flex
+      vertical
+      id={`skill-${userIdpSkillId}`}
+    >
       <Flex
         justify="space-between"
         className="pt-3 pb-3 border-b-1"
@@ -181,12 +201,13 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
             onClick={() => setSkillForComment({ skillId: userIdpSkillId.toString(), skillName: name })}
             icon={<MessageOutlined />}
           />
-          {editMode && (
+          {editMode && changeStatus !== PlanChangeStatus.REMOVED && (
             <Tooltip title={I18n.t('idp.remove_skill')}>
               <Button
                 type="default"
                 shape="circle"
                 icon={<DeleteOutlined />}
+                aria-label={I18n.t('idp.remove_skill_from_plan')}
                 danger
                 className="self-end justify-self-end"
                 onClick={() => {
@@ -197,10 +218,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           )}
         </Flex>
       </Flex>
-      {!developmentActionCards.length ? (
+      {changeStatus !== PlanChangeStatus.REMOVED && !developmentActionCards.length ? (
         <Flex vertical>
           <Flex wrap align="center" className="border-b-1 pt-3 pb-3">
-            <Empty description="" style={!isTablet ? { marginInlineStart: '-2rem' } : {}} />
+            <Empty aria-hidden="true" description="" style={!isTablet ? { marginInlineStart: '-2rem' } : {}} />
             <Flex vertical align="start" style={!isTablet ? { marginInlineStart: '-2rem' } : {}}>
               <strong className="ta-s">
                 {I18n.t('idp.development_actions.no_development_actions')}
@@ -221,9 +242,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
                         {I18n.t('idp.development_actions.info_popover_title')}
                       </span>
                     )}
+                    trigger={['click', 'hover']}
                     content={<DevelopmentActionInfoPopover />}
                   >
-                    {!(isTablet || isDesktop) && (
+                    {!(isTablet || isDesktop) ? (
                       <Button
                         style={{
                           height: '1.4rem',
@@ -232,8 +254,9 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
                         type="link"
                         className="p-0 mb-1"
                         icon={<InfoCircleOutlined />}
+                        aria-label={I18n.t('idp.development_actions.show_development_action_information')}
                       />
-                    )}
+                    ) : <></>}
                   </Popover>
                 </Flex>
               )}
@@ -242,7 +265,8 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           <Divider className="mb-0 mt-0" />
         </Flex>
       ) : developmentActionCards}
-      {editMode ? (
+      {changeHistory && (<ChangeHistory changeHistory={changeHistory} />)}
+      {editMode && changeStatus !== PlanChangeStatus.REMOVED ? (
         <Flex className="mt-4" gap={isTablet ? 8 : 64} vertical={isTablet} justify="start">
           {isTablet && (
             <Flex>
@@ -255,6 +279,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
                   </span>
                     )}
                 content={<DevelopmentActionInfoPopover />}
+                trigger="click"
               >
                 <Button
                   style={{
@@ -283,19 +308,22 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           >
             {I18n.t('idp.development_actions.add_from_library')}
           </Button>
-          <Button
-            type="link"
-            icon={<PlusOutlined />}
-            onClick={onShowAIGeneratedDevelopmentActions}
-            className="p-0 self-start"
-          >
-            {I18n.t('idp.development_actions.create_from_ai')}
-          </Button>
+          {aiAssistantsEnabled && (
+            <Button
+              type="link"
+              icon={<PlusOutlined />}
+              onClick={onShowAIGeneratedDevelopmentActions}
+              className="p-0 self-start"
+            >
+              {I18n.t('idp.development_actions.create_from_ai')}
+            </Button>
+          )}
         </Flex>
       ) : null}
       <Modal
         open={openSkillDeletionModal}
         title=""
+        onCancel={() => setOpenSkillDeletionModal(false)}
         footer={() => (
           <>
             <Button onClick={() => setOpenSkillDeletionModal(false)}>{I18n.t('common.actions.cancel')}</Button>
@@ -326,7 +354,7 @@ const DateRange = ({ developmentAction, editMode, onDateRangeChange }) => {
 
   if (editMode) {
     return (
-      <Flex flex={1} vertical>
+      <Flex flex={1} vertical className="me-4">
         <RangePicker
           defaultValue={[
             startDateTime ? dayjs(startDateTime) : null,
@@ -360,6 +388,7 @@ const Card = ({
   editMode,
   onRemoveDevelopmentAction,
   canEditProgress,
+  skillChangeStatus,
 }) => {
   const [editableProgress, setEditableProgress] = useState(developmentAction.progress)
   const [editing, setEditing] = useState(false)
@@ -402,13 +431,16 @@ const Card = ({
     setEditableProgress(developmentAction.progress)
   }
 
+  const isDeleted = skillChangeStatus === PlanChangeStatus.REMOVED
+   || developmentAction.changeStatus === PlanChangeStatus.REMOVED
+
   const progress = (
     <Flex
       flex={1}
       className={cs(
         {
-          'p-3 pe-0': !(isTablet || isDesktop),
-          'pb-2': isTablet || isDesktop,
+          'mb-4': isTablet || isDesktop,
+          'mt-6': !(isTablet || isDesktop),
         },
       )}
       vertical={isTablet || isDesktop}
@@ -428,7 +460,6 @@ const Card = ({
           {!editing && (
             <Progress
               percent={editableProgress}
-              className="mt-1"
               style={isTablet || isDesktop ? { width: '80%' } : {}}
             />
           )}
@@ -438,6 +469,7 @@ const Card = ({
                 <Button
                   type="default"
                   className="border-none mb-1"
+                  aria-label={I18n.t('idp.development_actions.edit_development_action_progress')}
                   icon={<EditOutlined />}
                   onClick={handleEditClick}
                 />
@@ -488,7 +520,7 @@ const Card = ({
           </Flex>
         )}
         {
-            editMode && (
+            editMode && !isDeleted && (
               <Tooltip title={I18n.t('idp.development_actions.remove')}>
                 <Button
                   onClick={() => onRemoveDevelopmentAction(developmentAction)}
@@ -496,7 +528,7 @@ const Card = ({
                   shape="circle"
                   icon={<DeleteOutlined />}
                   danger
-                  className="self-end justify-self-end"
+                  className={cs('self-end justify-self-end ', !(isTablet || isDesktop) ? 'mb-4' : '')}
                 />
               </Tooltip>
             )
@@ -504,9 +536,10 @@ const Card = ({
       </Flex>
     </Flex>
   )
-
   return (
-    <Flex vertical>
+    <Flex
+      vertical
+    >
       <Flex
         align="stretch"
         justify="space-between"
@@ -527,7 +560,6 @@ const Card = ({
           )}
           justify="space-between"
           align="center"
-
         >
           <div
             className="p-3"
@@ -536,15 +568,26 @@ const Card = ({
               `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
             } : {}}
           >
-            <Typography.Title
-              level={5}
-              className="mt-0"
-              ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
-            >
-              {developmentAction.name}
-            </Typography.Title>
+            <Space align="start">
+              <Typography.Title
+                level={5}
+                className={cs('mt-0 mb-0', { [styles.stroke]: isDeleted })}
+                ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+                aria-label={I18n.t('idp.development_actions.development_action_name')}
+
+              >
+                {developmentAction.name}
+
+              </Typography.Title>
+              {developmentAction.changeStatus && (
+                <ChangeStatus status={developmentAction.changeStatus} />
+              )}
+            </Space>
             <Typography.Paragraph
               ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+              className={cs({ [styles.stroke]: isDeleted })}
+              aria-label={I18n.t('idp.development_actions.development_action_description')}
+
             >
               {developmentAction.description || developmentAction.customAction}
             </Typography.Paragraph>
@@ -552,8 +595,14 @@ const Card = ({
               {developmentAction.learningStyle
                 ? (
                   <Flex vertical={isTablet || isDesktop} gap={4} align="center">
-                    <Flex align="center" className="me-4">
+                    <Flex
+                      aria-label={I18n.t('idp.development_actions.development_action_learning_style')}
+                      align="center"
+                      className="me-4"
+                    >
                       <img
+                        aria-hidden="true"
+                        alt=""
                         src={developmentActionLearningStylesConfig[developmentAction.learningStyle].logo}
                       />
                       <strong>
@@ -576,6 +625,8 @@ const Card = ({
                           width: '1.5rem',
                           height: '1.5rem',
                         }}
+                        aria-hidden="true"
+                        alt=""
                       />
                       <Typography.Text
                         className="font-normal"
@@ -586,17 +637,18 @@ const Card = ({
                   </Flex>
                 )
                 : null}
+
             </Flex>
           </div>
         </Flex>
-        <Flex flex={1} vertical={isTablet || isDesktop} className={isTablet || isDesktop ? 'p-4 pt-0 pe-0' : ''}>
+        <Flex flex={1} vertical={isTablet || isDesktop} className={isTablet || isDesktop ? 'ps-4' : ''}>
           <Flex
             flex={1}
             justify="flex-start"
-            className={cs(
-              isTablet || isDesktop ? 'mb-4' : 'pt-4',
-            )}
             vertical={isTablet || isDesktop}
+            className={cs(
+              isTablet || isDesktop ? 'mb-4' : 'mt-6',
+            )}
           >
             {isTablet || isDesktop ? (
               <Flex
@@ -612,12 +664,13 @@ const Card = ({
             <DateRange
               onDateRangeChange={handleDateRangeChange}
               developmentAction={developmentAction}
-              editMode={editMode}
+              editMode={editMode && !isDeleted}
             />
           </Flex>
           {progress}
         </Flex>
       </Flex>
+
     </Flex>
   )
 }

@@ -12,6 +12,11 @@ export const WebhookTR = t.type({
   topics: t.array(t.string),
   authType: t.string,
   username: t.union([t.string, t.undefined, t.null]),
+  oauthGrantType: t.union([t.string, t.undefined, t.null]),
+  oauthTokenUrl: t.union([t.string, t.undefined, t.null]),
+  oauthClientId: t.union([t.string, t.undefined, t.null]),
+  oauthClientSecret: t.union([t.string, t.undefined, t.null]),
+  oauthScope: t.union([t.string, t.undefined, t.null]),
 })
 
 export const PushWebhookReponseTR = t.type({

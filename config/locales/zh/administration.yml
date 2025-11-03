@@ -605,6 +605,7 @@ zh:
         disable_continue_to_dashboard: 禁用 "继续到仪表板 "按钮
         disable_nav_btn: 禁用导航返回按钮
         enable_back: 启用返回按钮
+        enable_copy_content: 启用复制内容
         enable_progress: 启用进度条
         enable_save: 启用保存按钮
         enable_select_main_factor: 选择一个因子作为主因子
@@ -3147,15 +3148,40 @@ zh:
             no_auth:
               label: 无
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAuauth
+          client_credentials:
+            label: 客户端凭据
+            value: client_credentials
+          client_id:
+            label: 客户端 ID
+            name: oauth_client_id
+            required: 需要客户端 ID
+          client_secret:
+            label: 客户端密码
+            name: oauth_client_secret
+            required: 客户端密码是必需的
           description:
             label: 说明
             name: 描述
+          grant_type:
+            label: 赠款类型
+            name: oauth_grant_type
           include_locales:
             label: 包括翻译
             name: include_locales
+          oauth_scope:
+            label: 范围
+            name: oauth_scope
+            required: 范围是必需的
           password:
             label: 密码
             name: 暗号
+          token_url:
+            label: 令牌网址
+            name: oauth_token_url
+            required: 令牌 URL 是必填项
           topics:
             label: 活动
             list:
@@ -3475,6 +3501,7 @@ zh:
         add_new_condition: 添加新条件
         apply_color_label: 然后应用以下颜色：
         custom_factor_fields:
+          default_score: 得分
           percentage: 百分比
           questions_attempted: 企图
           questions_correct: 正确
@@ -3510,6 +3537,7 @@ zh:
         prefixes:
           and: 和
           or: 或
+        prevent_value_overlap: 防止值重叠
         skill_type_label: 按技能类型筛选
         skill_type_placeholder: 选择技能类型
         skill_types:
@@ -3790,6 +3818,7 @@ zh:
         start_time: 日期和时间
         subject: 主题
         title: 标题
+        view_recording: 查看录制
       errors:
         assessor_already_assigned: 已为该评估指派评估员，请选择其他评估或评估员。
         date_required: 请选择日期

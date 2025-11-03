@@ -20,6 +20,18 @@ module Api
 
     private
 
+    def meta_details
+      project = @model.project
+      {
+        features: lambda {
+          {
+            ai_assistants: project.client.feature_enabled?(:ai_assistants) &&
+              project.project_feature_enabled?(:ai_assistants)
+          }
+        }
+      }
+    end
+
     def user_idp_plan_params
       params.require(:data).require(:attributes).permit(:user_id, :idp_template_id, :campaign_id, :creator_id,
                                                         :overwrite)

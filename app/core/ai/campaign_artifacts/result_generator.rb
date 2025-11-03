@@ -58,10 +58,10 @@ module AI
 
       def generate_artifact_result!
         assistant_service = AI::AssistantService.new(
-          campaign_ai_artifact.ai_assistant_id,
+          campaign_artifact_assistant.id,
           current_user,
           parsed_dependencies,
-          tools: content_writer_tools
+          chat: chat_with_context
         )
 
         assistant_service.
@@ -98,6 +98,7 @@ module AI
 
       def handle_artifact_result_error(error_message)
         unless test_mode?
+          artifact_result.ai_assistant_chat = campaign_artifact_assistant_chat
           artifact_result.error = error_message
           artifact_result.save!
         end
@@ -119,7 +120,8 @@ module AI
         [AI::Tools::CampaignArtifactResultManager.new(
           campaign_ai_artifact, user,
           save_results: save_results,
-          parsed_dependencies: parsed_dependencies
+          parsed_dependencies: parsed_dependencies,
+          chat: campaign_artifact_assistant_chat
         )]
       end
 
@@ -136,6 +138,18 @@ module AI
         parsed_dependencies_changed = artifact_result.parsed_dependencies != campaign_instructions_and_dependencies
 
         schema_keys_changed || parsed_dependencies_changed
+      end
+
+      def campaign_artifact_assistant
+        @campaign_artifact_assistant ||= campaign_ai_artifact.ai_assistant
+      end
+
+      def campaign_artifact_assistant_chat
+        @campaign_artifact_assistant_chat ||= campaign_artifact_assistant.for_user(current_user)
+      end
+
+      def chat_with_context
+        campaign_artifact_assistant_chat.with_tools(*content_writer_tools)
       end
     end
   end

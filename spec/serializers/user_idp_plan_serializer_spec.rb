@@ -42,7 +42,7 @@ RSpec.describe UserIdpPlanSerializer do
   end
 
   describe 'PDF generation serialization' do
-    let(:serializer) { described_class.new }
+    let(:serializer) { described_class.new(context: { without_deleted: true }) }
 
     it 'excludes private skills from serialization' do
       result = serializer.serialize(user_idp_plan)

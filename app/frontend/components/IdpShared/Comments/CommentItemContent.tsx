@@ -1,7 +1,7 @@
 import {
   Avatar, Divider, Flex, List, Space, Spin, Typography,
 } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
+import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { UserIdpComment } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { getUserName, formatDate } from './Utils'
 import { CustomSender } from './CustomSender'
@@ -57,20 +57,27 @@ export const CommentItemContent = ({
                     <Flex vertical>
                       <Flex gap={12}>
                         <Typography.Text style={{ fontSize: '0.75rem' }}>
+                          <span className="sr-only">
+                            {I18n.t('idp.comments.replied_by')}
+                          </span>
                           {replyUserName}
                         </Typography.Text>
                         <Typography.Text type="secondary" style={{ fontSize: '0.75rem' }}>
                           <Flex align="center" gap={4}>
                             <span>{I18n.t('idp.comments.replied')}</span>
-                            <span>{formatDate(reply.createdAt)}</span>
+                            <span aria-label={I18n.t('idp.comments.replied_at')}>{formatDate(reply.createdAt)}</span>
                           </Flex>
                         </Typography.Text>
                       </Flex>
-                      <Typography.Text style={{
-                        fontSize: '0.875rem',
-                        fontWeight: '500',
-                      }}
+                      <Typography.Text
+                        style={{
+                          fontSize: '0.875rem',
+                          fontWeight: '500',
+                        }}
                       >
+                        <span className="sr-only">
+                          {I18n.t('idp.comments.reply_content')}
+                        </span>
                         {reply.content}
                       </Typography.Text>
                     </Flex>

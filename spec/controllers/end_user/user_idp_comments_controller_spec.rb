@@ -9,7 +9,7 @@ RSpec.describe EndUser::UserIdpCommentsController, type: :controller do
   let!(:another_user) { create(:user, project: manager.project) }
   let!(:campaign) { create(:campaign, project: manager.project) }
   let!(:user_idp_plan) do
-    create(:user_idp_plan, user: user, campaign: campaign, active: true, status: :pending_approval)
+    create(:user_idp_plan, user: user, campaign: campaign, active: true, approval_status: :pending_approval)
   end
   let!(:campaign_user) { create(:campaign_user, user: user, campaign: campaign, active: true) }
   let!(:resource) { create(:user_idp_skill) }

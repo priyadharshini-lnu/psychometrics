@@ -9,7 +9,10 @@ class AI::CampaignArtifact < ApplicationRecord
   belongs_to :campaign
 
   has_many :results,
-           class_name: 'AI::CampaignArtifactResult', foreign_key: 'campaign_ai_artifact_id', dependent: :destroy
+           -> { where(type: 'AI::CampaignArtifactResult') },
+           as: :assistable,
+           class_name: 'AI::CampaignArtifactResult',
+           dependent: :destroy
   has_many :assistant_output_schema_keys, through: :ai_assistant, source: :assistant_output_schema_keys
   has_many :dependencies, class_name: 'AI::CampaignArtifactDependency',
             foreign_key: 'campaign_ai_artifact_id', dependent: :destroy

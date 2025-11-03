@@ -209,6 +209,15 @@ const SettingsModalComponent = ({
             />
           </Col>
         )}
+        <Col span={24}>
+          <Space>
+            <Switch
+              value={extra.enable_copy_content}
+              onChange={value => updateExtraOptions('enable_copy_content', value)}
+            />
+            {I18n.t('administration.assessments.settings.enable_copy_content')}
+          </Space>
+        </Col>
       </Row>
     </Modal>
   )

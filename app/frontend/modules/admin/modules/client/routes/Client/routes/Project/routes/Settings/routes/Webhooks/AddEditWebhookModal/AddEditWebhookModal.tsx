@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import {
   Form, Input, InputNumber, Space, Checkbox, Radio, Switch, Row, Col,
-  Typography,
+  Typography, Select,
 } from 'antd'
+import { EditOutlined, CloseOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
@@ -27,6 +28,8 @@ export const AddEditWebhookModal: React.FC<Props> = ({
 }) => {
   const { projectId } = useParams() as { projectId: string }
   const [authType, setAuthType] = useState(webhook?.authType || 'no_auth')
+  const [isEditingClientId, setIsEditingClientId] = useState(!webhook)
+  const [isEditingClientSecret, setIsEditingClientSecret] = useState(!webhook)
 
   const handleAuthTypeChange = (e) => {
     setAuthType(e.target.value)
@@ -62,7 +65,10 @@ export const AddEditWebhookModal: React.FC<Props> = ({
           updateResource: updateWebhook,
         }}
         formProps={{
-          initialValues: { rateLimit: 60, rateLimitPeriod: 1 },
+          initialValues: {
+            rateLimit: 60,
+            rateLimitPeriod: 1,
+          },
         }}
       >
         {() => (
@@ -164,6 +170,13 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                 >
                   {I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.label')}
                 </Radio>
+                <Radio
+                  value={
+                    I18n.t('administration.project_tabs.webhooks.form.auth_type.oauth.value')
+                  }
+                >
+                  {I18n.t('administration.project_tabs.webhooks.form.auth_type.oauth.label')}
+                </Radio>
               </Radio.Group>
             </Form.Item>
 
@@ -208,6 +221,139 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                 </Form.Item>
               </>
             )}
+
+            {authType === I18n.t('administration.project_tabs.webhooks.form.auth_type.oauth.value') && (
+              <>
+                <Form.Item
+                  name={I18n.t('administration.project_tabs.webhooks.form.grant_type.name')}
+                  label={I18n.t('administration.project_tabs.webhooks.form.grant_type.label')}
+                  initialValue={I18n.t('administration.project_tabs.webhooks.form.client_credentials.value')}
+                  rules={[{ required: true }]}
+                >
+                  <Select
+                    placeholder="Select grant type"
+                    defaultValue={I18n.t('administration.project_tabs.webhooks.form.client_credentials.label')}
+                  >
+                    <Select.Option
+                      value={I18n.t('administration.project_tabs.webhooks.form.client_credentials.value')}
+                    >
+                      {I18n.t(
+                        'administration.project_tabs.webhooks.form.client_credentials.label',
+                      )}
+                    </Select.Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  name={I18n.t('administration.project_tabs.webhooks.form.token_url.name')}
+                  label={I18n.t('administration.project_tabs.webhooks.form.token_url.label')}
+                  initialValue={webhook?.oauthTokenUrl}
+                  rules={[{
+                    required: true,
+                    message: I18n.t('administration.project_tabs.webhooks.form.token_url.required'),
+                  }]}
+                >
+                  <Input />
+                </Form.Item>
+                {!webhook || isEditingClientId ? (
+                  <Form.Item
+                    name={I18n.t('administration.project_tabs.webhooks.form.client_id.name')}
+                    label={I18n.t('administration.project_tabs.webhooks.form.client_id.label')}
+                    rules={[{
+                      required: true,
+                      message: I18n.t('administration.project_tabs.webhooks.form.client_id.required'),
+                    }]}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <Input.Password
+                        style={{ flex: 1 }}
+                        autoFocus={webhook !== undefined}
+                      />
+                      {webhook && (
+                        <CloseOutlined
+                          className="cursor-pointer ms-8"
+                          onClick={() => {
+                            setIsEditingClientId(false)
+                          }}
+                        />
+                      )}
+                    </div>
+                  </Form.Item>
+                ) : (
+                  <Form.Item
+                    label={I18n.t('administration.project_tabs.webhooks.form.client_id.label')}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <Input
+                        disabled
+                        value={webhook?.oauthClientId ?? ''}
+                        style={{ flex: 1 }}
+                      />
+                      <EditOutlined
+                        className="cursor-pointer ms-8"
+                        onClick={() => {
+                          setIsEditingClientId(true)
+                        }}
+                      />
+                    </div>
+                  </Form.Item>
+                )}
+                {!webhook || isEditingClientSecret ? (
+                  <Form.Item
+                    name={I18n.t('administration.project_tabs.webhooks.form.client_secret.name')}
+                    label={I18n.t('administration.project_tabs.webhooks.form.client_secret.label')}
+                    rules={[{
+                      required: true,
+                      message: I18n.t('administration.project_tabs.webhooks.form.client_secret.required'),
+                    }]}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <Input.Password
+                        style={{ flex: 1 }}
+                        autoFocus={webhook !== undefined}
+                      />
+                      {webhook && (
+                        <CloseOutlined
+                          className="cursor-pointer ms-8"
+                          onClick={() => {
+                            setIsEditingClientSecret(false)
+                          }}
+                        />
+                      )}
+                    </div>
+                  </Form.Item>
+                ) : (
+                  <Form.Item
+                    label={I18n.t('administration.project_tabs.webhooks.form.client_secret.label')}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <Input
+                        disabled
+                        value={webhook?.oauthClientId ?? ''}
+                        style={{ flex: 1 }}
+                      />
+                      <EditOutlined
+                        className="cursor-pointer ms-8"
+                        onClick={() => {
+                          setIsEditingClientSecret(true)
+                        }}
+                      />
+                    </div>
+                  </Form.Item>
+                )}
+                <Form.Item
+                  name={I18n.t('administration.project_tabs.webhooks.form.oauth_scope.name')}
+                  label={I18n.t('administration.project_tabs.webhooks.form.oauth_scope.label')}
+                  initialValue={webhook?.oauthScope}
+                  rules={[{
+                    required: true,
+                    message: I18n.t('administration.project_tabs.webhooks.form.oauth_scope.required'),
+                  }]}
+                >
+                  <Input />
+                </Form.Item>
+              </>
+            )}
+
           </>
         )}
       </ResourceFormModal>

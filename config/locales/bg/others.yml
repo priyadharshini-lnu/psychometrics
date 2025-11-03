@@ -389,6 +389,8 @@ bg:
               inclusion: Моля, изберете правилния тип норма
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} не е намерен"
             email:
               user_exists_in_campaign: Потребител с този имейл идентификатор вече съществува в кампанията
               user_exists_in_project: Потребител с този имейл идентификатор вече съществува в проекта
@@ -408,6 +410,8 @@ bg:
               invalid_datetime: е невалиден
             schedule_start_date:
               invalid_datetime: е невалиден
+            target_job_role:
+              not_found: "%{name} не е намерен"
         user_assessment:
           subject_and_assessment_exists: Оценяването и двойката предмети вече съществуват
         user_idp_development_action:
@@ -2581,6 +2585,7 @@ bg:
       aria_selected: Избран
   idp:
     actions: Действия
+    add_comments: Добавяне на коментари
     ai:
       assistant:
         failure_fallback:
@@ -2645,14 +2650,23 @@ bg:
       add_reply_placeholder: Добави отговор...
       go_to_skill: Отидете на умението
     comments:
+      clear_comments_for_skill: Ясни коментари за умения
       close: Затварям
+      comment_content: Как да се задоволи
+      comment_for_skill: Коментирайте за умения
+      commented_at: Коментиран в
+      commented_by: Коментиран от
       comments: Коментари
       filter_comments: Филтриране на коментарите
       mark_as_resolved: Маркиране като разрешено
       mark_as_unresolved: Маркиране като неразрешено
+      mark_comment_as_resolved: Маркирайте този коментар като разрешен
       replied: Отговори
+      replied_at: Отговори на
+      replied_by: Отговорено от
       replies: Отговори
       reply: Отговор
+      reply_content: Отговор на съдържание
       resolve: Разрешите
       resolved: Решен
       resolved_message: Този коментар е разрешен и отговорите са деактивирани.
@@ -2661,8 +2675,13 @@ bg:
       show_only_unread: Показване само на непрочетени
       show_only_unresolved: Показване само на неразрешените
       sort_by_date: Сортиране по дата
+      total_comments_count: Общ брой коментари
+      total_count: Общ брой коментари
+      unread_replies_count: Броят се непрочетените отговори
+      view_or_add: Преглед или добавяне на коментари за %{skillName}
       you: Ти
     convert_to_draft: Конвертиране в чернова
+    current_step: Текуща стъпка %{step}
     delete_skill: Сигурни ли сте, че искате да изтриете умението, защото то ще изтрие и всички свързани действия за разработка?
     details: Подробности
     development_actions:
@@ -2673,6 +2692,7 @@ bg:
       add_development_actions_modal_title: Библиотека с действия за развитие за %{skillName}
       add_from_library: Добавяне от библиотеката
       add_more: Добавяне на още действия за разработка
+      add_selected_development_actions: Добавяне на избрани действия за разработка
       all: Цял
       approved: Одобрен
       board_view:
@@ -2687,10 +2707,15 @@ bg:
       custom: Обичай
       custom_da_description: Създайте персонализирано действие за разработка, за да отговорите на уникалните нужди за разработка.
       date_range: Начална дата - Крайна дата
+      development_action_learning_style: Развитие Действие Стил на учене
+      development_action_name: Описание на действието за развитие
+      discard_draft: Изхвърляне на чернова
       edit_da_progress: Редактиране на напредъка на действието в разработката
+      edit_development_action_progress: Редактиране на напредъка на действието в разработката
       edit_plan_to_add_development_actions: Редактиране на плана и добавяне на действия за разработка.
       enter_development_action_description: Въведете описание на действието за разработка
       enter_development_action_title: Въведете заглавието на действието за разработка
+      filter_development_actions: Действия за разработване на филтри
       generate_by_ai: Генериране от AI
       generate_more: Генерирайте повече
       generating_development_actions: Генериране на действия за развитие...
@@ -2707,6 +2732,7 @@ bg:
       learning_from_others: Учене от другите
       learning_from_others_label: Да се учим от другите
       learning_on_the_job_label: Учене на работното място
+      loading_development_actions: Зареждане на действия за разработка
       manage_skills: Управление на уменията
       marathon: Маратон
       mark_as_complete: Маркиране като завършено
@@ -2717,6 +2743,7 @@ bg:
       publish_plan: Публикуване на план
       remove: Махам
       save_plan: Запазване на плана
+      show_development_action_information: Показване на информация за действие за развитие
       skill: Умение
       sprint: Спринт
       start_plan: Стартов план
@@ -2724,14 +2751,31 @@ bg:
       structured_learning_label: Съвместно обучение
       submit_plan: Изпрати план
       success: Дейностите за развитие приключиха успешно
+      toggle_skill_privacy: Превключване на поверителността на уменията
       write_here: Пишете тук...
     direct_reportee_details: Подробности за преките докладвани
     download:
       description: 'За да изтеглите отчета, моля, последвайте връзката: <a href=''''%{url}'''' target=''''_blank''''>Изтегляне</a>. Връзката е валидна само за 10 минути'
+    download_plan: Изтегляне на план
     edit_plan: Редактиране на плана
     edit_plan_and_add_skills: Редактирайте План и щракнете върху Управление на уменията, за да добавите умения.
     edit_progress: Редактиране на напредъка
     fetching_skill_gap_report: Извличане на доклад за пропуски в уменията...
+    go_to_previous_step: Към предишната стъпка
+    history:
+      added_da:
+        one: Добавено действие за разработка
+        other: Добавени действия за развитие
+      changes:
+        end_date: Крайна дата от %{from} до %{to}
+        progress: Напредък от %{from} до %{to}
+        start_date: Начална дата от %{from} до %{to}
+      modified_da:
+        one: Модифицирано действие за развитие
+        other: Модифицирани действия за развитие
+      removed_da:
+        one: Премахнато действие за разработка
+        other: Премахнати действия за разработка
     initial_steps:
       add_skill_group_description: Въз основа на резултатите от вашата оценка, ето някои от областите на силни страни и развитие за вас. Изберете уменията, които искате да развиете допълнително, като част от вашия план за развитие.
       add_skill_group_title: Изследване на вашите умения %{category}
@@ -2756,6 +2800,7 @@ bg:
       skill_column_header: Умение
       skill_gap_report: Доклад за пропуските в уменията
     list: Списък
+    loader_icon: Икона на зареждане
     manage_plan: Управление на плана
     mark_as_complete: Маркиране като завършено
     mark_as_incomplete: Маркирайте като незавършен
@@ -2875,10 +2920,16 @@ bg:
         skills_count: Брой умения
         title: Резюме на доклада
     plan: План
+    plan_status: Състояние на плана %{status}
+    private: Редник
     reflective_questions:
       already_completed: Индивидуалният план за развитие вече е попълнен, не можете да отговарите на въпросите сега.
+      answer: Отговор
       answer_later: Отговорете по-късно
+      answer_limit: Отговорът трябва да бъде между %{min} и %{max} думи
       answer_placeholder: Напишете отговора си тук...
+      cancel_edited_answer: Отмяна на редактиран отговор
+      edit_answer: Редактиране на отговора
       errors:
         max_words: Отговорът позволява максимум %{count} думи
         min_words: Отговорът изисква поне %{count} думи
@@ -2888,24 +2939,37 @@ bg:
       no_answer_provided: Все още няма отговор
       no_reflective_questions: Без отразяващи въпроси
       optional: "(По избор)"
+      question: Въпрос
+      required: Този въпрос е задължителен
+      save_edited_answer: Запазване на редактирания отговор
       title: Въпроси за размисъл
       update_failed: Възникна грешка по време на актуализацията
       updated_successfully: Вашите отговори са актуализирани успешно
       word_limit: Трябва да е между %{min} и %{max} думи
       words: Думи
     remove_skill: Премахване на умение
+    remove_skill_from_plan: Премахване на %{name} умения от плана
+    report_preview: Преглед на доклада
+    search_and_select_skills_of_skill_type: Търсете и изберете уменията %{skillType}
+    select_skills_of_skill_type: Изберете %{skillType} умения
+    selected_skills_of_skill_type: Избрани %{skillType} умения
     skill_gap_report:
+      content: Съдържание на доклада за пропуски в уменията
       download: Изтеглете доклада за пропуски в уменията
       title: Доклад за пропуските в уменията
+    skill_status: Уменията %{name} са частни
     skills_updated: Умения, актуализирани в плана
     status: Статус
     suggestions: Предложения
+    suggestions_for_skill_type: Предложения за %{skillType} умения
     technical: Технически
     user_idp_status:
       approved: Одобрен
       completed: Завършен
+      completion_not_started: Завършването не е започнало
       draft: Чернова
       in_progress: В процес на изпълнение
+      in_review: В преглед
       not_started: Не е започнато
       pending_approval: Очаква се одобрение
       rejected: Отхвърлени
@@ -4227,6 +4291,9 @@ bg:
       EntityTooLarge: Размерът на файла трябва да е по-малък от %{maxFileSize} MB
       WrongFileType: Типът на файла трябва да е един от следните %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Не можете да попълните своя IDP, докато вашият мениджър не го одобри и не го маркирате като "В процес на изпълнение".
+      can_not_start_without_approval: Не можете да започнете да работите с вашия IDP, докато вашият мениджър не го одобри.
+      no_previous_approved_plan: Не е открит предишен одобрен план за вътрешно разселени лица.
       reflective_questions_required: За IDP са необходими отговори на въпроси за размисъл
       status_not_permitted: не е разрешено от потребителя.
       status_not_permitted_by_manager: Мениджърът не може да актуализира състоянието, когато планът е в състояние "%{status}".

@@ -605,6 +605,7 @@ bg:
         disable_continue_to_dashboard: Деактивирайте бутона "Продължи към таблото за управление"
         disable_nav_btn: Деактивирайте бутона за връщане към навигацията
         enable_back: Активиране на бутона за връщане назад
+        enable_copy_content: Активиране на копиране на съдържание
         enable_progress: Активиране на лентата за напредъка
         enable_save: Активиране на бутона за запазване
         enable_select_main_factor: Изберете фактор като основен фактор
@@ -3146,15 +3147,40 @@ bg:
             no_auth:
               label: Никой
               value: no_auth
+            oauth:
+              label: ОАут
+              value: oauth
+          client_credentials:
+            label: Идентификационни данни за клиенти
+            value: client_credentials
+          client_id:
+            label: ИД на клиента
+            name: oauth_client_id
+            required: Изисква се клиентски идентификатор
+          client_secret:
+            label: Тайната на клиента
+            name: oauth_client_secret
+            required: Изисква се клиентска тайна
           description:
             label: Описание
             name: описание
+          grant_type:
+            label: Вид на безвъзмездна помощ
+            name: oauth_grant_type
           include_locales:
             label: Включете преводи
             name: include_locales
+          oauth_scope:
+            label: Обхват
+            name: oauth_scope
+            required: Необходим е обхват
           password:
             label: Парола
             name: парола
+          token_url:
+            label: URL адрес на токен
+            name: oauth_token_url
+            required: Изисква се URL адрес на маркера
           topics:
             label: Събития
             list:
@@ -3474,6 +3500,7 @@ bg:
         add_new_condition: Добавяне на ново условие
         apply_color_label: 'След това нанесете следния цвят:'
         custom_factor_fields:
+          default_score: Резултат
           percentage: Процент
           questions_attempted: Опит
           questions_correct: Точно така
@@ -3509,6 +3536,7 @@ bg:
         prefixes:
           and: И
           or: ИЛИ
+        prevent_value_overlap: Предотвратяване на припокриване на стойности
         skill_type_label: Филтриране по тип умение
         skill_type_placeholder: Изберете тип умение
         skill_types:
@@ -3789,6 +3817,7 @@ bg:
         start_time: Дата и час
         subject: Предмет
         title: Заглавие
+        view_recording: Преглед на записа
       errors:
         assessor_already_assigned: Оценител, който вече е назначен за тази оценка. Моля, изберете друг оценител или оценител.
         date_required: Моля, изберете дата

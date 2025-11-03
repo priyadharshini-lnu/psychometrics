@@ -389,6 +389,8 @@ cs:
               inclusion: Vyberte správný typ normy
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} nenalezeno"
             email:
               user_exists_in_campaign: Uživatel s tímto e-mailovým ID již v kampani existuje
               user_exists_in_project: Uživatel s tímto e-mailovým ID již v projektu existuje
@@ -408,6 +410,8 @@ cs:
               invalid_datetime: je neplatný
             schedule_start_date:
               invalid_datetime: je neplatný
+            target_job_role:
+              not_found: "%{name} nenalezeno"
         user_assessment:
           subject_and_assessment_exists: Hodnocení a dvojice předmětů již existuje
         user_idp_development_action:
@@ -2570,6 +2574,7 @@ cs:
       aria_selected: Vybrané stránky
   idp:
     actions: Akce
+    add_comments: Přidat komentáře
     ai:
       assistant:
         failure_fallback:
@@ -2634,14 +2639,23 @@ cs:
       add_reply_placeholder: Přidat odpověď...
       go_to_skill: Přejít na dovednost
     comments:
+      clear_comments_for_skill: Jasné komentáře pro dovednost
       close: Zavřít
+      comment_content: Jak na obsah
+      comment_for_skill: Komentář pro dovednost
+      commented_at: Komentované na
+      commented_by: Přidal komentář
       comments: Komentáře
       filter_comments: Filtrovat komentáře
       mark_as_resolved: Označit jako vyřešené
       mark_as_unresolved: Označit jako nevyřešené
+      mark_comment_as_resolved: Označit tento komentář jako vyřešený
       replied: Odpovězeno
+      replied_at: Odpovězeno dne
+      replied_by: Odpověděl
       replies: Odpovědi
       reply: Odpovědět
+      reply_content: Odpovědět na obsah
       resolve: Vyřešit
       resolved: Vyřešeno
       resolved_message: Tento komentář byl vyřešen a odpovědi jsou zakázány.
@@ -2650,8 +2664,13 @@ cs:
       show_only_unread: Zobrazit nepřečtené
       show_only_unresolved: Zobrazit pouze nevyřešené
       sort_by_date: Seřadit podle data
+      total_comments_count: Celkový počet komentářů
+      total_count: Celkový počet komentářů
+      unread_replies_count: Počet nepřečtených odpovědí
+      view_or_add: Zobrazení nebo přidání komentářů k %{skillName}
       you: Vy
     convert_to_draft: Převést na koncept
+    current_step: Aktuální krok %{step}
     delete_skill: Opravdu chcete odstranit dovednost, protože tím odstraníte i všechny související vývojové akce?
     details: Podrobnosti
     development_actions:
@@ -2662,6 +2681,7 @@ cs:
       add_development_actions_modal_title: Knihovna vývojových akcí pro %{skillName}
       add_from_library: Přidat z knihovny
       add_more: Přidání dalších vývojových akcí
+      add_selected_development_actions: Přidání vybraných vývojových akcí
       all: Vše
       approved: Schváleno
       board_view:
@@ -2676,10 +2696,15 @@ cs:
       custom: Zvyk
       custom_da_description: Vytvořte vlastní vývojovou akci, která řeší jedinečné potřeby vývoje.
       date_range: Datum zahájení - Datum ukončení
+      development_action_learning_style: Rozvojový akční styl učení
+      development_action_name: Popis vývojových akcí
+      discard_draft: Zahodit koncept
       edit_da_progress: Upravit průběh vývojářské akce
+      edit_development_action_progress: Upravit průběh vývojářské akce
       edit_plan_to_add_development_actions: Upravit plán a přidat akce vývoje.
       enter_development_action_description: Zadejte popis vývojové akce
       enter_development_action_title: Zadejte název vývojové akce
+      filter_development_actions: Akce vývoje filtru
       generate_by_ai: Vygenerovat pomocí AI
       generate_more: Vygenerovat více
       generating_development_actions: Generování rozvojových akcí...
@@ -2696,6 +2721,7 @@ cs:
       learning_from_others: Učení od ostatních
       learning_from_others_label: Učíme se od ostatních
       learning_on_the_job_label: Učení za pochodu
+      loading_development_actions: Načítání vývojových akcí
       manage_skills: Spravovat dovednosti
       marathon: Maraton
       mark_as_complete: Označit jako dokončené
@@ -2706,6 +2732,7 @@ cs:
       publish_plan: Publikovat plán
       remove: Odstranit
       save_plan: Plán úspor
+      show_development_action_information: Zobrazit informace o vývojových akcích
       skill: Dovednost
       sprint: Sprint
       start_plan: Zahájit plán
@@ -2713,14 +2740,31 @@ cs:
       structured_learning_label: Kolaborativní učení
       submit_plan: Odeslat plán
       success: Vývojářské akce byly úspěšně dokončeny
+      toggle_skill_privacy: Toggle Skill Ochrana osobních údajů
       write_here: Pište zde...
     direct_reportee_details: Detail přímých reportérů
     download:
       description: 'Zprávu si můžete stáhnout pomocí následujícího odkazu: <a href=''''%{url}'''' target=''''_blank''''>Stáhnout</a>. Odkaz je platný pouze po dobu 10 minut'
+    download_plan: Stáhnout plán
     edit_plan: Upravit plán
     edit_plan_and_add_skills: Upravit plán a kliknutím na možnost Spravovat dovednosti přidejte dovednosti.
     edit_progress: Upravit pokrok
     fetching_skill_gap_report: Zpráva o načítání mezer v dovednostech...
+    go_to_previous_step: Přejít na předchozí krok
+    history:
+      added_da:
+        one: Přidána vývojová akce
+        other: Přidané akce vývoje
+      changes:
+        end_date: Datum ukončení od %{from} do %{to}
+        progress: Postup od %{from} k %{to}
+        start_date: Datum zahájení od %{from} do %{to}
+      modified_da:
+        one: Upravená vývojová akce
+        other: Upravené vývojové akce
+      removed_da:
+        one: Odebrána vývojová akce
+        other: Odebrané akce vývoje
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností
@@ -2745,6 +2789,7 @@ cs:
       skill_column_header: Dovednost
       skill_gap_report: Zpráva o mezerách v dovednostech
     list: Seznam
+    loader_icon: Ikona nástroje Loader
     manage_plan: Spravovat plán
     mark_as_complete: Označit jako dokončené
     mark_as_incomplete: Označit jako nedokončené
@@ -2864,10 +2909,16 @@ cs:
         skills_count: Počet dovedností
         title: Shrnutí zprávy
     plan: Plán
+    plan_status: Stav plánu %{status}
+    private: Soukromý
     reflective_questions:
       already_completed: IDP již byl dokončen, nyní nemůžete na otázky odpovídat.
+      answer: Odpověď
       answer_later: Odpověď Později
+      answer_limit: Odpověď musí být mezi %{min} a %{max} slovy
       answer_placeholder: Napište sem svou odpověď...
+      cancel_edited_answer: Zrušit upravenou odpověď
+      edit_answer: Upravit odpověď
       errors:
         max_words: Odpověď umožňuje maximálně %{count} slov
         min_words: Odpověď vyžaduje alespoň %{count} slov
@@ -2877,24 +2928,37 @@ cs:
       no_answer_provided: Zatím nebyla poskytnuta žádná odpověď
       no_reflective_questions: Žádné reflektivní otázky
       optional: "(Volitelné)"
+      question: Otázka
+      required: Tato otázka je povinná
+      save_edited_answer: Uložit upravenou odpověď
       title: Reflektivní otázky
       update_failed: Během aktualizace došlo k chybě
       updated_successfully: Vaše odpovědi byly úspěšně aktualizovány
       word_limit: Musí být mezi %{min} a %{max} slovy
       words: Slova
     remove_skill: Odebrat dovednost
+    remove_skill_from_plan: Odebrání %{name} dovedností z plánu
+    report_preview: Náhled sestavy
+    search_and_select_skills_of_skill_type: Vyhledávání a výběr dovedností %{skillType}
+    select_skills_of_skill_type: Vyberte %{skillType} dovednosti
+    selected_skills_of_skill_type: Vybrané %{skillType} dovednosti
     skill_gap_report:
+      content: Obsah zprávy o mezerách v dovednostech
       download: Stáhněte si zprávu o nedostatku dovedností
       title: Zpráva o nedostatku dovedností
+    skill_status: Dovednost %{name} je soukromá
     skills_updated: Dovednosti aktualizované v plánu
     status: Stav
     suggestions: Návrhy
+    suggestions_for_skill_type: Návrhy pro %{skillType} dovednosti
     technical: Technická stránka
     user_idp_status:
       approved: Schváleno
       completed: Hotový
+      completion_not_started: Kompletace nebyla zahájena
       draft: Návrh
       in_progress: Probíhá
+      in_review: V recenzi
       not_started: Nezahájeno
       pending_approval: Čeká se na
       rejected: Odmítnutý
@@ -4216,6 +4280,9 @@ cs:
       EntityTooLarge: Soubor musí být menší než %{maxFileSize} MB
       WrongFileType: Typ souboru by měl být jeden z následujících %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Svého poskytovatele identity nemůžete dokončit, dokud jej váš manažer neschválí a nevy jej označíte jako "Probíhá".
+      can_not_start_without_approval: Na svém IDP nemůžete začít pracovat, dokud jej váš manažer neschválí.
+      no_previous_approved_plan: Nebyl nalezen žádný předchozí schválený plán IDP.
       reflective_questions_required: Pro IDP jsou vyžadovány odpovědi na reflektivní otázky
       status_not_permitted: není povoleno uživatelem.
       status_not_permitted_by_manager: Manažer nemůže aktualizovat stav, pokud je plán ve stavu %{status}.

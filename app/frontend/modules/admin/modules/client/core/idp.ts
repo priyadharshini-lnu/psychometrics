@@ -56,6 +56,23 @@ export const IdpListItemTR = t.type({
   ]),
 })
 
+const PermissionTR = t.type({
+  edit: t.union([t.boolean, t.undefined]),
+  remove: t.union([t.boolean, t.undefined]),
+  publish: t.union([t.boolean, t.undefined]),
+  unpublish: t.union([t.boolean, t.undefined]),
+})
+
+const MetaTR = t.union([
+  t.type({
+    permissions: PermissionTR,
+    projectFeatures: t.type({
+      globalSkills: t.boolean,
+    }),
+  }),
+  t.undefined,
+])
+
 export const IdpTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
@@ -110,18 +127,11 @@ export const IdpTR = t.intersection([
       AssistantTR,
       t.undefined,
     ]),
+    meta: t.union([MetaTR, t.undefined]),
     skillGapReportAnalysisAiAssistant: t.union([
       AssistantTR,
       t.undefined,
     ]),
-    meta: t.type({
-      permissions: t.type({
-        edit: t.boolean,
-        remove: t.boolean,
-        publish: t.boolean,
-        unpublish: t.boolean,
-      }),
-    }),
   })])
 
 export const IntroMessageTR = t.type({

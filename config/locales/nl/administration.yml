@@ -605,6 +605,7 @@ nl:
         disable_continue_to_dashboard: Knop "Doorgaan naar dashboard" uitschakelen
         disable_nav_btn: Navigatie terugknop uitschakelen
         enable_back: Terugknop inschakelen
+        enable_copy_content: Kopieer inhoud inschakelen
         enable_progress: Voortgangsbalk inschakelen
         enable_save: Knop opslaan inschakelen
         enable_select_main_factor: Selecteer een factor als hoofdfactor
@@ -3147,15 +3148,40 @@ nl:
             no_auth:
               label: Geen
               value: geen_auth
+            oauth:
+              label: OAuth
+              value: oauth
+          client_credentials:
+            label: Inloggegevens van de klant
+            value: client_credentials
+          client_id:
+            label: Klant-ID
+            name: oauth_client_id
+            required: Client-ID is vereist
+          client_secret:
+            label: Geheim van de klant
+            name: oauth_client_secret
+            required: Klantgeheim is vereist
           description:
             label: Beschrijving
             name: beschrijving
+          grant_type:
+            label: Soort subsidie
+            name: oauth_grant_type
           include_locales:
             label: Vertalingen opnemen
             name: include_locales
+          oauth_scope:
+            label: Draagwijdte
+            name: oauth_scope
+            required: Reikwijdte is vereist
           password:
             label: Wachtwoord
             name: wachtwoord
+          token_url:
+            label: Token-URL
+            name: oauth_token_url
+            required: Token-URL is vereist
           topics:
             label: Evenementen
             list:
@@ -3475,6 +3501,7 @@ nl:
         add_new_condition: Nieuwe conditie toevoegen
         apply_color_label: 'Breng vervolgens de volgende kleur aan:'
         custom_factor_fields:
+          default_score: Partituur
           percentage: Percentage
           questions_attempted: Geprobeerd
           questions_correct: Juist
@@ -3510,6 +3537,7 @@ nl:
         prefixes:
           and: EN
           or: OF
+        prevent_value_overlap: Overlapping van waarden voorkomen
         skill_type_label: Filter op vaardigheidstype
         skill_type_placeholder: Selecteer vaardigheidstype
         skill_types:
@@ -3790,6 +3818,7 @@ nl:
         start_time: Datum en tijd
         subject: Onderwerp
         title: Titel
+        view_recording: Opname bekijken
       errors:
         assessor_already_assigned: Selecteer een andere beoordeling of beoordelaar.
         date_required: Selecteer een datum

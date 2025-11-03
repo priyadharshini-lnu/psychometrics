@@ -13,7 +13,7 @@ RSpec.describe Idp::DeadlineNotificationJob, type: :job do
              user: user,
              campaign_id: campaign.id,
              idp_template: idp_template,
-             status: :approved,
+             approval_status: :approved,
              end_date: 1.day.ago)
     end
     let!(:user_idp_development_action) { create(:user_idp_development_action, user_idp_plan: user_idp_plan) }

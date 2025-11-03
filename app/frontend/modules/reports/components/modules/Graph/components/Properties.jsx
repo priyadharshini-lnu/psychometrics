@@ -189,6 +189,14 @@ const Properties = ({
           Show Values
         </label>
       </div>
+      <label style={{ fontWeight: 'normal' }}>
+        <input
+          type="checkbox"
+          checked={model.props.preventValueOverlap || false}
+          onChange={e => checkboxHandler('preventValueOverlap', e)}
+        />
+        {I18n.t('administration.report_builder.property_panel.prevent_value_overlap')}
+      </label>
     </div>
   )
 }

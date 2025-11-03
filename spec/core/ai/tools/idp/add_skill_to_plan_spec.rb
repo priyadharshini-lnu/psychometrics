@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe AI::Tools::Idp::AddSkillToPlan do
-  subject { described_class.new(user_idp_plan) }
+  subject { described_class.new(user_idp_plan, user) }
 
   let(:user) { create(:user) }
   let!(:client) { create(:tenancy) }
@@ -49,10 +49,10 @@ describe AI::Tools::Idp::AddSkillToPlan do
       end
 
       it 'changes the plan status to draft' do
-        user_idp_plan.update!(status: :not_started)
+        user_idp_plan.update!(approval_status: :not_started)
         expect do
           subject.execute(skill_id: skill1.id, development_actions: development_actions)
-        end.to change { user_idp_plan.reload.status }.to('draft')
+        end.to change { user_idp_plan.reload.approval_status }.to('draft')
       end
 
       it 'creates user_idp_skill for the specified skill' do
@@ -378,7 +378,7 @@ describe AI::Tools::Idp::AddSkillToPlan do
         # Verify skill1's old action is replaced with new custom action
         updated_skill1_actions = user_idp_plan.user_idp_development_actions.
                                  joins(:user_idp_skill).
-                                 where(user_idp_skills: { skill_id: skill1.id })
+                                 where(user_idp_skills: { skill_id: skill1.id }).not_deleted
         expect(updated_skill1_actions.count).to eq(1)
 
         new_action = updated_skill1_actions.first.development_action
@@ -443,7 +443,7 @@ describe AI::Tools::Idp::AddSkillToPlan do
   describe 'retry behavior with disabled error raising' do
     context 'when maximum retry attempts are exceeded' do
       it 'returns error hash instead of raising MaximumRetryAttemptsExceededError' do
-        tool_instance = described_class.new(user_idp_plan)
+        tool_instance = described_class.new(user_idp_plan, user)
 
         max_retries = described_class.max_retries
         # Use invalid development_actions that will cause JSON::ParserError during processing
@@ -467,7 +467,7 @@ describe AI::Tools::Idp::AddSkillToPlan do
       end
 
       it 'does not raise MaximumRetryAttemptsExceededError exception' do
-        tool_instance = described_class.new(user_idp_plan)
+        tool_instance = described_class.new(user_idp_plan, user)
         invalid_development_actions = 'invalid_actions'
 
         (1..(described_class.max_retries + 1)).each do |_attempt|

@@ -12,7 +12,7 @@ describe AdminJobs::BulkDownloadIdpReports do
   let(:idp_template) { create(:idp_template) }
   let(:idp_user) { create(:user) }
   let!(:user_idp_plan) do
-    create(:user_idp_plan, user: idp_user, idp_template: idp_template, active: true, status: 'draft',
+    create(:user_idp_plan, user: idp_user, idp_template: idp_template, active: true, approval_status: 'draft',
             campaign_id: campaign.id)
   end
 

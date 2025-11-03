@@ -13,6 +13,20 @@ describe AI::AssistableService::DevelopmentActions do
   let!(:development_action2) { create(:development_action, name: 'Team Building', skills: [skill]) }
   let(:options) { {} }
 
+  let(:ai_provider_config) do
+    {
+      'model_id' => 'gpt-4o-mini',
+      'name' => 'OpenAI GPT-4o Mini',
+      'context' => {
+        'openai_api_key' => 'test-api-key'
+      }
+    }
+  end
+
+  before do
+    allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+  end
+
   shared_context 'assistant service mocking' do
     let(:assistant_service_instance) { instance_double(AI::AssistantService) }
 

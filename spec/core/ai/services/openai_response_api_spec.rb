@@ -171,5 +171,31 @@ RSpec.describe AI::Services::OpenaiResponseApi, type: :service do
         )
       end
     end
+
+    context 'when RubyLLM error middleware converts HTTP errors' do
+      context 'HTTP 400 Bad Request' do
+        before do
+          allow(mock_connection).to receive(:post) do
+            raise RubyLLM::BadRequestError.new(nil, 'Bad request')
+          end
+        end
+
+        it 'converts HTTP 400 to RubyLLM::BadRequestError' do
+          expect { service.call }.to raise_error(RubyLLM::BadRequestError, 'Bad request')
+        end
+      end
+
+      context 'HTTP 429 Rate Limited' do
+        before do
+          allow(mock_connection).to receive(:post) do
+            raise RubyLLM::RateLimitError.new(nil, 'Rate limit exceeded')
+          end
+        end
+
+        it 'converts HTTP 429 to RubyLLM::RateLimitError' do
+          expect { service.call }.to raise_error(RubyLLM::RateLimitError, 'Rate limit exceeded')
+        end
+      end
+    end
   end
 end
