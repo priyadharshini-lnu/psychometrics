@@ -26,7 +26,7 @@ class LicenseUsage < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id subject_name campaign_name subject_email status]
+    %w[id subject_name campaign_name subject_email status project_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)

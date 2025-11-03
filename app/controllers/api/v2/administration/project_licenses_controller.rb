@@ -4,8 +4,8 @@ module Api
   module V2
     module Administration
       class ProjectLicensesController < Api::V2::Administration::BaseController
-
         skip_before_action :jsonapi_request_handling, only: %i[create update]
+
         def create
           form = ::Api::V2::Administration::Projects::LicenseForm.new(
             license_params.to_h.merge(project: project)
@@ -29,43 +29,7 @@ module Api
           end
         end
 
-        def license_usages
-          records = filtered_license_usages
-          paginated = paginate(records)
-          render json: serialize_resources(
-            paginated,
-            Api::V2::Administration::LicenseUsageResource,
-            include: %w[user status_updated_by],
-            total_count: records.count
-          )
-        end
-
         private
-
-        def filtered_license_usages
-          records = ::LicenseUsage.where(license_id: params[:id], project_id: params[:project_id])
-          return records unless params.dig(:filter, :status_eq)
-
-          records.where(status: params[:filter][:status_eq])
-        end
-
-        def paginate(scope)
-          page_number = (params.dig(:page, :number) || 1).to_i
-          page_size = (params.dig(:page, :size) || 25).to_i
-          scope.page(page_number).per(page_size)
-        end
-
-        def serialize_resources(paginated, resource_class, include:, total_count:)
-          resources = paginated.map { |r| resource_class.new(r, context) }
-          serializer = JSONAPI::ResourceSerializer.new(resource_class, include: include)
-
-          serializer.serialize_to_hash(resources).merge(
-            meta: {
-              record_count: total_count,
-              page_count: (total_count / paginated.limit_value.to_f).ceil
-            }
-          )
-        end
 
         def render_license(license, status)
           render json: JSONAPI::ResourceSerializer.

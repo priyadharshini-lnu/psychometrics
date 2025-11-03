@@ -17,6 +17,7 @@ const { I18n } = window
 const connector = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state) as User,
+    clientId: state.project.clientId
   }),
   {
     openModal,
@@ -27,7 +28,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const ClientLicensesTableComponent: React.FC<Props> = ({
-  currentUser, openModal,
+  currentUser, openModal, clientId
 }) => {
   const { projectId } = useParams() as { projectId: string }
 
@@ -92,6 +93,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
                   openModal,
                   projectId,
                   currentUser,
+                  clientId,
                 })
               }
             />
@@ -107,16 +109,17 @@ interface ActionMenuData {
   openModal: (modalName: string, modalProps?: unknown) => void
   projectId: string
   currentUser: User
+  clientId: number
 }
 
 const getActionsMenuProps = ({
-  license, openModal, currentUser,
+  license, openModal, currentUser, clientId, projectId
 }: ActionMenuData): MenuProps => {
   const menuItems = [
     {
       key: 'show',
       label: (
-        <Link to={`${license.id}/license_usages`}>
+        <Link to={`/admin/clients/${clientId}/licenses/${license.id}/license_usages?filter[project_id]=${projectId}`}>
           {I18n.t('license_usage.usage_overview')}
         </Link>
       ),
