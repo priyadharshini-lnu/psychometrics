@@ -58,7 +58,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         <Resource.Column<License>
           title={I18n.t('licenses.project_usage')}
           id="usage_limit"
-          render={(_, { usedNumber, number, projectLicenseDetails }) => (projectLicenseDetails
+          render={(_, { projectLicenseDetails }) => (projectLicenseDetails
             ? I18n.t('licenses.used_out_of', {
               used: projectLicenseDetails.usedNumber,
               total: projectLicenseDetails.usageLimit,
@@ -73,7 +73,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
               used: usedNumber - usedOveruseNumber(usedNumber, number),
               total: number,
             })
-            )}
+          )}
         />
         <Resource.Column<License>
           title={I18n.t('licenses.start_date')}
