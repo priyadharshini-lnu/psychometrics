@@ -48,7 +48,7 @@ module Administration
                             includes(:development_action)
         cleanup_orphaned_development_actions(records_to_delete)
 
-        UserIdpDevelopmentAction.where(user_idp_plan_id: user_idp_plan_id).delete_all
+        UserIdpDevelopmentAction.where(user_idp_plan_id: user_idp_plan_id).destroy_all
       end
 
       def process_development_actions_by_skill
@@ -86,23 +86,24 @@ module Administration
                             with_public_skills.
                             where(id: ids_to_delete).
                             includes(:development_action)
+
         cleanup_orphaned_development_actions(records_to_delete)
+        records_to_delete.destroy_all
       end
 
       def delete_unretained_development_actions(user_idp_skill_id, development_actions_to_upsert)
         retained_ids = development_actions_to_upsert.filter_map { |action| action[:id].presence }
 
         records_to_delete = UserIdpDevelopmentAction.
+                            with_public_skills.
                             where(user_idp_skill_id: user_idp_skill_id, user_idp_plan_id: user_idp_plan_id).
                             where.not(id: retained_ids).
                             includes(:development_action)
-        cleanup_orphaned_development_actions(records_to_delete)
 
-        UserIdpDevelopmentAction.
-          with_public_skills.
-          where(user_idp_skill_id: user_idp_skill_id, user_idp_plan_id: user_idp_plan_id).
-          where.not(id: retained_ids).
-          delete_all
+        return if records_to_delete.empty?
+
+        cleanup_orphaned_development_actions(records_to_delete)
+        records_to_delete.destroy_all
       end
 
       def cleanup_orphaned_development_actions(records_to_delete)
@@ -187,7 +188,7 @@ module Administration
           progress: action_data[:progress],
           start_date_time: action_data[:start_date_time],
           end_date_time: action_data[:end_date_time],
-          private: action_data[:private]
+          private: action_data[:private] || false
         )
       end
 

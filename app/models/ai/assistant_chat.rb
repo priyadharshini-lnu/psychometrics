@@ -2,19 +2,16 @@
 
 class AI::AssistantChat < ApplicationRecord
   self.table_name = 'ai_assistant_chats'
-
-  acts_as_chat(
-    message_class: 'AI::AssistantRequest',
-    tool_call_class: 'AI::AssistantToolCall'
-  )
-
-  validates :model_id, presence: true
+  acts_as_chat messages: :messages, message_class: 'AI::AssistantRequest', model: :ai_model_registry, model_class: 'AI::ModelRegistry'
 
   belongs_to :ai_assistant, class_name: 'AI::Assistant'
   belongs_to :user, class_name: 'User'
+
   has_many :messages,
            -> { order(created_at: :asc) },
-           class_name: 'AI::AssistantRequest', foreign_key: 'ai_assistant_chat_id', dependent: :destroy
+           class_name: 'AI::AssistantRequest',
+           foreign_key: 'ai_assistant_chat_id',
+           dependent: :destroy
 
   # Override the ask method to support custom service
   # This is required till https://github.com/crmne/ruby_llm/pull/325 is merged and released
@@ -27,6 +24,8 @@ class AI::AssistantChat < ApplicationRecord
   end
 
   def with_assistant_context(options = {})
+    self.assume_model_exists = provider_config['custom_provider'].present?
+
     to_llm.with_context(ai_assistant.ruby_llm_context)
 
     if ai_assistant.has_ruby_llm_schema?
@@ -44,7 +43,29 @@ class AI::AssistantChat < ApplicationRecord
     self
   end
 
+  # Overriding to_llm to set assume_model_exists flag
+  # Original at lib/ruby_llm/active_record/chat_methods.rb#78
+  def to_llm
+    model_record = model_association
+    @chat ||= (context || RubyLLM).chat(
+      model: model_record.model_id,
+      provider: model_record.provider.to_sym,
+      assume_model_exists: assume_model_exists || false
+    )
+    @chat.reset_messages!
+
+    messages_association.each do |msg|
+      @chat.add_message(msg.to_llm)
+    end
+
+    setup_persistence_callbacks
+  end
+
   private
+
+  def provider_config
+    @provider_config ||= ai_assistant.ai_provider_for_model
+  end
 
   def ask_with_response_api(message, with: nil, persist_attachment: false, &)
     # Create LLM chat object first (more efficient)
@@ -78,7 +99,7 @@ class AI::AssistantChat < ApplicationRecord
 
   def persist_response_message(llm_message)
     messages.create!(
-      llm_message.to_h.slice(:role, :content, :model_id, :input_tokens, :output_tokens)
+      llm_message.to_h.slice(:role, :content, :input_tokens, :output_tokens)
     )
   end
 end

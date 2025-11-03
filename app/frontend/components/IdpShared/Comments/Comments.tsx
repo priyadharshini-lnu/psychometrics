@@ -159,7 +159,8 @@ export const Comments: React.FC<CommentsProps> = ({
             {I18n.t('idp.comments.sort_by_date')}
           </span>
           <Flex align="center" gap={4}>
-            {filters.sortOrder === 'asc' ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+            {filters.sortOrder === 'asc' ? <ArrowUpOutlined />
+              : <ArrowDownOutlined />}
           </Flex>
         </Flex>
       ),
@@ -263,17 +264,36 @@ export const Comments: React.FC<CommentsProps> = ({
               </Typography.Title>
               {totalCount && totalCount > 0 ? (
                 <Typography.Text type="secondary" className={styles.headerTitleCount}>
+                  <span className="sr-only">
+                    {I18n.t('idp.comments.total_count')}
+                  </span>
                   { `(${totalCount})`}
                 </Typography.Text>
               ) : null}
             </Flex>
             {subtitle && (
-              isTablet ? <Typography.Text type="secondary">{subtitle}</Typography.Text>
-                : (
-                  <Tag closeIcon onClose={onTagClear} className={styles.headerSubtitle}>
-                    {subtitle}
-                  </Tag>
-                )
+              <>
+                <span className="sr-only">
+                  {I18n.t('idp.comments.comment_for_skill')}
+                </span>
+                {isTablet
+                  ? <Typography.Text type="secondary">{subtitle}</Typography.Text>
+                  : (
+                    <Tag
+                      closeIcon={(
+                        <CloseOutlined
+                          tabIndex={0}
+                          aria-label={I18n.t('idp.comments.clear_comments_for_skill')}
+                          style={{ fontSize: '0.75rem' }}
+                        />
+                      )}
+                      onClose={onTagClear}
+                      className={styles.headerSubtitle}
+                    >
+                      {subtitle}
+                    </Tag>
+                  )}
+              </>
             )}
           </Flex>
 
@@ -283,6 +303,7 @@ export const Comments: React.FC<CommentsProps> = ({
                 <Button
                   size="small"
                   icon={<PlusOutlined />}
+                  aria-label={I18n.t('idp.comment_details.add_comment')}
                   onClick={handleAddCommentClick}
                   className="me-2"
                   style={{ fontSize: '1.125rem' }}
@@ -304,6 +325,7 @@ export const Comments: React.FC<CommentsProps> = ({
                     </Badge>
                   ) : <FilterOutlined />}
                   style={{ fontSize: '1.125rem' }}
+                  aria-label={I18n.t('idp.comments.filter_comments')}
                 />
               </Tooltip>
             </Dropdown>
@@ -315,6 +337,7 @@ export const Comments: React.FC<CommentsProps> = ({
                   onClick={onClose}
                   icon={<CloseOutlined />}
                   style={{ fontSize: '1.125rem' }}
+                  aria-label={I18n.t('idp.comments.close')}
                 />
               </Tooltip>
             )}

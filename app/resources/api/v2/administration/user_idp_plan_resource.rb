@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::UserIdpPlanResource < Api::V2::Administration::BaseResource
-  attributes :user_id, :idp_template_id, :campaign_id, :active, :creator_id, :status, :skill_gap_report_id,
-             :skill_gap_report_available, :instructions
+  attributes :user_id, :idp_template_id, :campaign_id, :active, :creator_id, :skill_gap_report_id,
+             :skill_gap_report_available, :instructions, :status, :approval_status
 
   has_one :idp_template
 

@@ -21,6 +21,7 @@ import workshop from '~/modules/endUser/modules/campaigns/core/workshops'
 import config from './config'
 import flash from '~/core/flash'
 import errors from '~/core/errors'
+import proctoring from '~/core/proctoring'
 
 const rootReducer = () => combineReducers({
   campaigns: combineReducers({
@@ -51,6 +52,7 @@ const rootReducer = () => combineReducers({
   connection,
   liveChat: () => ({}),
   [idpApi.reducerPath]: idpApi.reducer,
+  proctoring,
 })
 
 export type RootState = ReturnType<ReturnType<typeof rootReducer>>

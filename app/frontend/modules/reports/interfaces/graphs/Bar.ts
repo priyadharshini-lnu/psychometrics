@@ -29,6 +29,7 @@ interface Props extends TextCondition {
   hideEmptyColumns: boolean
   hideZeroValueColumns: boolean
   showValues: boolean
+  preventValueOverlap: boolean
   xAxisLinesHide: boolean
   yAxisLinesHide: boolean
   xAxisLabelHide: boolean

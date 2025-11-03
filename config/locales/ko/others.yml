@@ -389,6 +389,8 @@ ko:
               inclusion: 올바른 규범 유형을 선택하세요
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} 찾을 수 없습니다."
             email:
               user_exists_in_campaign: 이 이메일 ID를 가진 사용자가 캠페인에 이미 존재합니다
               user_exists_in_project: 이 이메일 ID를 가진 사용자가 프로젝트에 이미 존재합니다
@@ -408,6 +410,8 @@ ko:
               invalid_datetime: 가 유효하지 않습니다
             schedule_start_date:
               invalid_datetime: 가 유효하지 않습니다
+            target_job_role:
+              not_found: "%{name} 찾을 수 없습니다."
         user_assessment:
           subject_and_assessment_exists: 평가 및 과목 쌍이 이미 존재합니다
         user_idp_development_action:
@@ -2564,6 +2568,7 @@ ko:
       aria_selected: 선택됨
   idp:
     actions: 작업
+    add_comments: 주석 추가
     ai:
       assistant:
         failure_fallback:
@@ -2628,14 +2633,23 @@ ko:
       add_reply_placeholder: 답글 추가...
       go_to_skill: 스킬로 이동
     comments:
+      clear_comments_for_skill: 기술에 대한 주석 지우기
       close: 닫기
+      comment_content: 콘텐츠 방법
+      comment_for_skill: 스킬에 대한 코멘트
+      commented_at: 댓글 달기
+      commented_by: 댓글 작성자
       comments: 댓글
       filter_comments: 댓글 필터
       mark_as_resolved: 해결됨으로 표시
       mark_as_unresolved: 미해결로 표시
+      mark_comment_as_resolved: 이 댓글을 해결됨으로 표시
       replied: 답글 작성됨
+      replied_at: 에 답장했습니다.
+      replied_by: 답변자
       replies: 답글
       reply: 답글
+      reply_content: 답장 내용
       resolve: 해결
       resolved: 해결됨
       resolved_message: 이 댓글이 해결되었으며 답글이 비활성화되었습니다.
@@ -2644,8 +2658,13 @@ ko:
       show_only_unread: 읽지 않은 것만 표시
       show_only_unresolved: 미해결만 표시
       sort_by_date: 날짜순 정렬
+      total_comments_count: 총 댓글 수
+      total_count: 총 댓글 수
+      unread_replies_count: 읽지 않은 답글은 계산됩니다.
+      view_or_add: "%{skillName}에 대한 댓글 보기 또는 추가"
       you: 당신
     convert_to_draft: 초안으로 변환
+    current_step: 현재 단계 %{step}
     delete_skill: 연결된 모든 개발 작업도 삭제되므로 스킬을 삭제하시겠습니까?
     details: 세부 정보
     development_actions:
@@ -2656,6 +2675,7 @@ ko:
       add_development_actions_modal_title: "%{skillName}용 개발 작업 라이브러리"
       add_from_library: 라이브러리에서 추가
       add_more: 더 많은 개발 작업 추가
+      add_selected_development_actions: 선택한 개발 작업 추가
       all: 모두
       approved: 승인됨
       board_view:
@@ -2670,10 +2690,15 @@ ko:
       custom: 관습
       custom_da_description: 고유한 개발 요구 사항을 해결하기 위해 사용자 지정 개발 작업을 만듭니다.
       date_range: 시작 날짜 - 종료 날짜
+      development_action_learning_style: 개발 행동 학습 스타일
+      development_action_name: 개발 작업 설명
+      discard_draft: 초안 삭제
       edit_da_progress: 개발 작업 진행률 편집
+      edit_development_action_progress: 개발 작업 진행률 편집
       edit_plan_to_add_development_actions: 계획을 편집하고 개발 작업을 추가합니다.
       enter_development_action_description: 개발 작업 설명 입력
       enter_development_action_title: 개발 작업 제목 입력
+      filter_development_actions: 개발 작업 필터링
       generate_by_ai: AI로 생성
       generate_more: 더 많은 생성
       generating_development_actions: 개발 작업 생성...
@@ -2690,6 +2715,7 @@ ko:
       learning_from_others: 다른 사람에게서 배우기
       learning_from_others_label: 다른 사람들로부터 배우기
       learning_on_the_job_label: 직장에서의 학습
+      loading_development_actions: 개발 작업 로드
       manage_skills: 스킬 관리
       marathon: 마라톤
       mark_as_complete: 완료로 표시
@@ -2700,6 +2726,7 @@ ko:
       publish_plan: 게시 계획
       remove: 제거
       save_plan: 요금제 저장
+      show_development_action_information: 개발 작업 정보 표시
       skill: 스킬
       sprint: 스프린트
       start_plan: 계획 시작
@@ -2707,14 +2734,31 @@ ko:
       structured_learning_label: 협업 학습
       submit_plan: 계획 제출
       success: 개발 작업이 성공적으로 완료되었습니다.
+      toggle_skill_privacy: Toggle 스킬 개인 정보 보호
       write_here: 여기에 쓰기...
     direct_reportee_details: 직접 보고자 세부 정보
     download:
       description: 보고서를 다운로드하려면 <a href=''%{url}'' target=''_blank''>Download.</a> 링크는 10분 동안만 유효합니다.
+    download_plan: 플랜 다운로드
     edit_plan: 계획 편집
     edit_plan_and_add_skills: 계획을 편집하고 스킬 관리를 클릭하여 스킬을 추가합니다.
     edit_progress: 진행 상황 편집
     fetching_skill_gap_report: 기술 격차 보고서 가져오기...
+    go_to_previous_step: 이전 단계로 이동
+    history:
+      added_da:
+        one: 개발 작업 추가
+        other: 개발 작업 추가
+      changes:
+        end_date: 종료 날짜 %{from}에서 %{to}
+        progress: "%{from}에서 %{to}로의 진행"
+        start_date: 시작 날짜 %{from}에서 %{to}
+      modified_da:
+        one: 수정된 개발 작업
+        other: 수정된 개발 작업
+      removed_da:
+        one: 제거된 개발 작업
+        other: 제거된 개발 작업
     initial_steps:
       add_skill_group_description: 평가 결과에 따라 강점과 개발이 필요한 영역은 다음과 같습니다. 개발 계획의 일부로 더 발전시키고 싶은 기술을 선택하세요.
       add_skill_group_title: "%{category} 기술 탐색"
@@ -2739,6 +2783,7 @@ ko:
       skill_column_header: 스킬
       skill_gap_report: 기술 격차 보고서
     list: 목록
+    loader_icon: 로더 아이콘
     manage_plan: 계획 관리
     mark_as_complete: 완료로 표시
     mark_as_incomplete: 미완료로 표시
@@ -2836,10 +2881,16 @@ ko:
         skills_count: 스킬 수
         title: 보고서 요약
     plan: 계획
+    plan_status: 플랜 상태 %{status}
+    private: 민간의
     reflective_questions:
       already_completed: IDP가 이미 완료되었으므로 지금은 질문에 답변할 수 없습니다.
+      answer: 대답
       answer_later: 나중에 대답
+      answer_limit: 답변은 %{min}단어에서 %{max}단어 사이여야 합니다.
       answer_placeholder: 여기에 답변을 작성하십시오 ...
+      cancel_edited_answer: 편집된 답변 취소
+      edit_answer: 답변 편집
       errors:
         max_words: 답변은 최대 %{count}단어를 허용합니다
         min_words: 답변에는 최소 %{count}개의 단어가 필요합니다
@@ -2849,24 +2900,37 @@ ko:
       no_answer_provided: 아직 답변이 제공되지 않았습니다.
       no_reflective_questions: 성찰 질문 없음
       optional: "(선택 사항)"
+      question: 질문
+      required: 이 질문은 필수입니다.
+      save_edited_answer: 편집된 답변 저장
       title: 성찰적 질문
       update_failed: 업데이트하는 동안 오류가 발생했습니다.
       updated_successfully: 답변이 성공적으로 업데이트되었습니다.
       word_limit: "%{min}단어와 %{max}단어 사이여야 합니다."
       words: 가사
     remove_skill: 스킬 제거
+    remove_skill_from_plan: 계획에서 스킬 %{name} 제거
+    report_preview: 보고서 미리보기
+    search_and_select_skills_of_skill_type: "%{skillType} 스킬 검색 및 선택"
+    select_skills_of_skill_type: "%{skillType} 기술 선택"
+    selected_skills_of_skill_type: 선택된 %{skillType} 기술
     skill_gap_report:
+      content: 기술 격차 보고서 콘텐츠
       download: 기술 격차 보고서 다운로드
       title: 기술 격차 보고서
+    skill_status: 스킬 %{name}는 비공개입니다.
     skills_updated: 계획에서 업데이트된 기술
     status: 상태
     suggestions: 제안
+    suggestions_for_skill_type: "%{skillType} 스킬에 대한 제안"
     technical: 기술
     user_idp_status:
       approved: 승인됨
       completed: 완료
+      completion_not_started: 완료가 시작되지 않음
       draft: 초안
       in_progress: 진행 중
+      in_review: 검토 중
       not_started: 시작되지 않음
       pending_approval: 보류 중
       rejected: 거부
@@ -4188,6 +4252,9 @@ ko:
       EntityTooLarge: 파일 크기는 %{maxFileSize}MB 미만이어야 합니다
       WrongFileType: 파일 유형은 다음 %{allowedFileTypes} 중 하나이어야 합니다
     idp:
+      can_not_complete_without_approval_and_in_progress: 관리자가 IDP를 승인하고 '진행 중'으로 표시할 때까지 IDP를 완료할 수 없습니다.
+      can_not_start_without_approval: 관리자가 승인할 때까지 IDP 작업을 시작할 수 없습니다.
+      no_previous_approved_plan: 이전에 승인된 IDP 계획을 찾을 수 없습니다.
       reflective_questions_required: IDP에는 성찰적 질문에 대한 답변이 필요합니다.
       status_not_permitted: 사용자가 허용하지 않습니다.
       status_not_permitted_by_manager: 관리자가 계획이 '%{status}' 상태인 경우 상태를 업데이트할 수 없습니다.

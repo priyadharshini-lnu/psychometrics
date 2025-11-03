@@ -14,6 +14,8 @@ gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.2.2'
 # gem 'newrelic_rpm',               '~> 9.2', '>= 9.2.2', group: 'production'
 gem 'panko_serializer', '~> 0.8.3'
+gem 'paper_trail'
+gem 'paper_trail-association_tracking'
 gem 'pg',                         '~> 1.4'
 gem 'puma',                       '~> 5.6.9'
 gem 'rails',                      '~> 8.0.0'
@@ -108,8 +110,7 @@ gem 'sentry-rails', '~> 5.15.2'
 gem 'sentry-sidekiq', '~> 5.15.2'
 
 # DSL for activerecord
-# TODO: Remove this temporary workaround once bump_to_3.0 is merged into tte-master
-gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'bump_to_3.0'
+gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'master'
 
 # Cloning ActiveRecord object
 gem 'deep_cloneable', '~> 3.2'
@@ -124,6 +125,7 @@ gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'
 gem 'browser', '~> 5.3.1'
 gem 'fog-aws', '~> 3.5.2'
+gem 'hashids', '~> 1.0.5'
 gem 'image_processing', '~> 1.2'
 gem 'inky-rb', '~> 1.4.2.1', require: 'inky'
 gem 'mini_magick', '~> 4.11.0'
@@ -133,8 +135,6 @@ gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', git: 'https://github.com/TheTalentEnterprise/rectify.git', branch: 'tte-master'
 gem 'sidekiq', '~> 6.5.12'
-
-gem 'hashids', '~> 1.0.5'
 
 gem 'dry-swagger', '~> 0.7.2'
 gem 'dry-validation', '~> 1.10'
@@ -254,7 +254,7 @@ gem 'xml-simple', '~> 1.1.5'
 # required for azure
 gem 'sidekiq_alive', '~> 2.1.4'
 
-gem 'psych', '3.3.2'
+gem 'psych', '~> 5.0'
 
 gem 'pry', '~> 0.14.2'
 
@@ -265,14 +265,14 @@ gem 'syslog'
 gem 'syslog-logger', '~> 1.6'
 
 # TO handle authentication with Oracle
-gem 'oci', '~> 2.20.0'
+gem 'oci', '~> 2.22.0'
 
 # Sidekiq queue concurrency control
 gem 'sidekiq-throttled', '~> 1.5.2'
 
 gem 'recaptcha', require: 'recaptcha/rails'
 # To integrate with LLMs
-gem 'ruby_llm', '~> 1.6.3'
+gem 'ruby_llm', '~> 1.7.1'
 
 # TO handle structured data in LLM responses
 gem 'ruby_llm-schema', '~> 0.1.6'

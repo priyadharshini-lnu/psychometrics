@@ -14,6 +14,7 @@ import { AddSkillsStep } from '~/components/IdpShared/AddSkillsStep'
 import { groupSkillsBySkillType }
   from '~/modules/endUser/modules/campaigns/routes/idp/MyPlan/utils'
 import { useResources } from '~/hooks/useResources'
+import { BaseMeta } from '~/hooks/useResources/interfaces'
 import {
   UserIdpPlan, UserIdpDevelopmentActions, IdpSkills, UserIdpSkills,
 } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
@@ -28,6 +29,10 @@ import styles from './Plan.less'
 const { I18n } = window
 
 type UserIdpDevelopmentActionPayloadType = UserIdpDevelopmentActions & {_destroy?: boolean }
+
+interface UserIdpMeta extends BaseMeta {
+  features?: { aiAssistants: boolean }
+}
 
 export const Plan = () => {
   const [showAddSkill, setShowAddSkill] = useState(false)
@@ -45,12 +50,13 @@ export const Plan = () => {
   const [tab, setTab] = useState(paramTab || 'list')
 
   const {
-    data: userIdpPlanData, fetchSingle: fetchUserIdpPlan, updateResource: updatePlan,
-  } = useResources<UserIdpPlan>(
+    data: userIdpPlanData, fetchSingle: fetchUserIdpPlan, updateResource: updatePlan, meta,
+  } = useResources<UserIdpPlan, UserIdpMeta>(
     'user_idp_plans',
     {
       apiConfig: {
         include: ['idp_template', 'user_idp_development_actions', 'user_idp_skills'],
+        include_meta: ['*'],
       },
     },
   )
@@ -390,7 +396,6 @@ export const Plan = () => {
     skills: allSkills.filter(skill => (skill.skillType === SKILL_TYPE.TECHNICAL)),
   }]
 
-
   const plan = showAddSkill ? (
     <Flex
       vertical
@@ -439,6 +444,7 @@ export const Plan = () => {
             onShowAvailableDevelopmentAction={handleShowAvailableDevelopmentAction}
             onAddMoreSkills={handleAddMoreSkill}
             onRemoveSkill={onRemoveSkillFromPlan}
+            aiAssistantsEnabled={meta?.features?.aiAssistants || false}
           />
         </Tabs.TabPane>
         {userIdpPlanData[0]?.skillGapReportAvailable && (

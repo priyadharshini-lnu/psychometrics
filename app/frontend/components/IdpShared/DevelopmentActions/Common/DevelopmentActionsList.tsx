@@ -94,6 +94,7 @@ const DevelopmentActionsList: React.FC<Props> = ({
                     </Typography.Paragraph>
                     <Flex gap={4} align="center">
                       <img
+                        aria-hidden="true"
                         src={developmentActionLearningStylesConfig[developmentAction.learningStyle].logo}
                       />
                       <strong>
@@ -109,7 +110,7 @@ const DevelopmentActionsList: React.FC<Props> = ({
                   </Flex>
                   {developmentAction.image ? (
                     <Flex>
-                      <img src={developmentAction.image} className={styles.image} />
+                      <img aria-hidden="true" src={developmentAction.image} className={styles.image} />
                     </Flex>
                   ) : null}
                 </Flex>
@@ -121,7 +122,7 @@ const DevelopmentActionsList: React.FC<Props> = ({
           ))}
         </Checkbox.Group>
       ) : (
-        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        <Empty aria-hidden="true" image={Empty.PRESENTED_IMAGE_SIMPLE} />
       )}
     </Flex>
   )

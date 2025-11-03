@@ -10,7 +10,7 @@ module AI
       @current_user = current_user
       @options = options
       @chat = options[:chat]
-      @chat_params = options[:chat_params] || {}
+      @chat_params = options[:chat_params] || {} # Parameters for the request api service
       @ignore_user_prompt = options[:ignore_user_prompt] || false
     end
 
@@ -36,7 +36,8 @@ module AI
 
     def create_new_chat
       tools = options[:tools] || []
-      assistant.for_user(current_user, tools: tools)
+      params = options[:params] # Params for the requests
+      assistant.for_user(current_user, tools: tools, params: params)
     end
 
     def user_prompt

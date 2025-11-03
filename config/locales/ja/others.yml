@@ -389,6 +389,8 @@ ja:
               inclusion: 正しいノルムタイプを選択してください
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name}見つかりません"
             email:
               user_exists_in_campaign: このメールIDを持つユーザーはすでにキャンペーンに存在しています。
               user_exists_in_project: このメールIDを持つユーザーはプロジェクトに既に存在する
@@ -408,6 +410,8 @@ ja:
               invalid_datetime: 無効
             schedule_start_date:
               invalid_datetime: 無効
+            target_job_role:
+              not_found: "%{name}見つかりません"
         user_assessment:
           subject_and_assessment_exists: 評価と教科のペアはすでに存在する
         user_idp_development_action:
@@ -2571,6 +2575,7 @@ ja:
       aria_selected: 厳選された
   idp:
     actions: 行動
+    add_comments: コメントの追加
     ai:
       assistant:
         failure_fallback:
@@ -2635,14 +2640,23 @@ ja:
       add_reply_placeholder: 返信を追加...
       go_to_skill: スキルに移動する
     comments:
+      clear_comments_for_skill: スキルのコメントをクリア
       close: 閉じる
+      comment_content: コンテンツの方法
+      comment_for_skill: スキルのコメント
+      commented_at: コメント
+      commented_by: コメント者
       comments: コメント
       filter_comments: コメントをフィルター
       mark_as_resolved: 解決済みとしてマーク
       mark_as_unresolved: 未解決としてマーク
+      mark_comment_as_resolved: このコメントを解決済みとしてマークします
       replied: 返信済み
+      replied_at: '返信日:'
+      replied_by: 返信者
       replies: 返信
       reply: 返信
+      reply_content: 返信内容
       resolve: 解決
       resolved: 解決済み
       resolved_message: このコメントは解決され、返信は無効になりました。
@@ -2651,8 +2665,13 @@ ja:
       show_only_unread: 未読のみ表示
       show_only_unresolved: 未解決のみ表示
       sort_by_date: 日付順に並べ替え
+      total_comments_count: コメントの合計数
+      total_count: コメントの総数
+      unread_replies_count: 未読の返信はカウントされます
+      view_or_add: "%{skillName}のコメントを表示または追加する"
       you: あなた
     convert_to_draft: ドラフトに変換
+    current_step: 現在のステップ %{step}
     delete_skill: スキルは、接続されているすべての開発アクションも削除されるため、スキルを削除してもよろしいですか?
     details: 詳細
     development_actions:
@@ -2663,6 +2682,7 @@ ja:
       add_development_actions_modal_title: "%{skillName}用開発アクションライブラリ"
       add_from_library: ライブラリから追加
       add_more: 開発アクションの追加
+      add_selected_development_actions: 選択した開発アクションの追加
       all: すべて
       approved: 承認済み
       board_view:
@@ -2677,10 +2697,15 @@ ja:
       custom: 習慣
       custom_da_description: 独自の開発ニーズに対応するカスタム開発アクションを作成します。
       date_range: 開始日 - 終了日
+      development_action_learning_style: 開発アクション学習スタイル
+      development_action_name: 開発アクションの説明
+      discard_draft: ドラフトを破棄
       edit_da_progress: 開発アクションの進行状況の編集
+      edit_development_action_progress: 開発アクションの進行状況の編集
       edit_plan_to_add_development_actions: 計画を編集し、開発アクションを追加します。
       enter_development_action_description: 開発アクションの説明を入力します
       enter_development_action_title: 開発アクションタイトルの入力
+      filter_development_actions: 開発アクションのフィルター処理
       generate_by_ai: AIによる生成
       generate_more: さらに増やす
       generating_development_actions: 開発アクションの生成...
@@ -2697,6 +2722,7 @@ ja:
       learning_from_others: 他者から学ぶ
       learning_from_others_label: 他者から学ぶ
       learning_on_the_job_label: 仕事で学ぶ
+      loading_development_actions: 開発アクションのロード
       manage_skills: スキルの管理
       marathon: マラソン
       mark_as_complete: 完了としてマークする
@@ -2707,6 +2733,7 @@ ja:
       publish_plan: 計画の公開
       remove: 削除
       save_plan: プランを保存
+      show_development_action_information: 開発アクション情報を表示する
       skill: スキル
       sprint: スプリント
       start_plan: スタートプラン
@@ -2714,14 +2741,31 @@ ja:
       structured_learning_label: 共同学習
       submit_plan: プランを提出
       success: 開発アクションが正常に完了しました
+      toggle_skill_privacy: スキルのプライバシーを切り替える
       write_here: ここに記入してください...
     direct_reportee_details: 直属の報告者詳細
     download:
       description: 'レポートをダウンロードするには、リンクをたどってください: <a href=''''%{url}'''' target=''''_blank''''>ダウンロード</a>。リンクは10分間のみ有効です'
+    download_plan: ダウンロードプラン
     edit_plan: プランの編集
     edit_plan_and_add_skills: "[プラン]を編集し、[スキルの管理]をクリックしてスキルを追加します。"
     edit_progress: 編集プログレス
     fetching_skill_gap_report: スキルギャップレポートの取得...
+    go_to_previous_step: 前のステップに進む
+    history:
+      added_da:
+        one: 開発アクションの追加
+        other: 追加された開発アクション
+      changes:
+        end_date: 終了日 %{from} から %{to}
+        progress: "%{from}から%{to}への進捗"
+        start_date: 開始日を%{from}から%{to}まで
+      modified_da:
+        one: 修正された開発アクション
+        other: 変更された開発アクション
+      removed_da:
+        one: 削除された開発アクション
+        other: 削除された開発アクション
     initial_steps:
       add_skill_group_description: アセスメント結果に基づき、あなたの強みと伸ばすべき分野をご紹介します。 開発プランの一環として、さらに伸ばしたいスキルを選んでください。
       add_skill_group_title: "%{category}スキルを探る"
@@ -2746,6 +2790,7 @@ ja:
       skill_column_header: スキル
       skill_gap_report: スキル・ギャップ・レポート
     list: リスト
+    loader_icon: ローダーアイコン
     manage_plan: 計画の管理
     mark_as_complete: 完了としてマーク
     mark_as_incomplete: 未完了としてマークする
@@ -2865,10 +2910,16 @@ ja:
         skills_count: スキル数
         title: レポート概要
     plan: 計画
+    plan_status: プランステータス%{status}
+    private: プライベート
     reflective_questions:
       already_completed: IDPはすでに完成しているので、今質問に答えることはできない。
+      answer: 答える
       answer_later: 回答は後ほど
+      answer_limit: 回答は%{min}語から%{max}語の間である必要があります
       answer_placeholder: 答えをここに書いてください
+      cancel_edited_answer: 編集済み回答のキャンセル
+      edit_answer: 回答の編集
       errors:
         max_words: 答えは最大%{count}語です。
         min_words: 答えには少なくとも %{count} 語が必要です。
@@ -2878,24 +2929,37 @@ ja:
       no_answer_provided: まだ回答はありません
       no_reflective_questions: 反省的な質問はありません
       optional: "(オプション)"
+      question: 質問
+      required: この質問は必須です
+      save_edited_answer: 編集した回答を保存
       title: 反省的な質問
       update_failed: アップデート中にエラーが発生しました。
       updated_successfully: 回答が更新されました
       word_limit: "%{min} 語から %{max} 語の間にある必要があります"
       words: 言葉
     remove_skill: スキルの削除
+    remove_skill_from_plan: プランからスキル%{name}を削除する
+    report_preview: レポートプレビュー
+    search_and_select_skills_of_skill_type: "%{skillType}スキルを検索して選択する"
+    select_skills_of_skill_type: "%{skillType}スキルの選択"
+    selected_skills_of_skill_type: 選択された%{skillType}スキル
     skill_gap_report:
+      content: スキルギャップレポートの内容
       download: スキルギャップレポートのダウンロード
       title: スキル・ギャップ・レポート
+    skill_status: スキル%{name}は非公開です
     skills_updated: プランで更新されたスキル
     status: ステータス
     suggestions: 提案
+    suggestions_for_skill_type: "%{skillType}スキルの提案"
     technical: テクニカル
     user_idp_status:
       approved: 承認済み
       completed: 完了
+      completion_not_started: 完了が開始されていません
       draft: ドラフト
       in_progress: 進行中で
+      in_review: レビュー中
       not_started: 未開始
       pending_approval: 申請中
       rejected: 拒否
@@ -4217,6 +4281,9 @@ ja:
       EntityTooLarge: ファイルサイズは%{maxFileSize}MB未満にしてください
       WrongFileType: ファイルタイプは次のいずれかにしてください：%{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: IDPは、上司が承認し、「進行中」としてマークするまで完了できません。
+      can_not_start_without_approval: マネージャーが承認するまで、IDP の作業を開始することはできません。
+      no_previous_approved_plan: 以前に承認されたIDPプランは見つかりませんでした。
       reflective_questions_required: IDPには、内省的な質問への回答が必要です
       status_not_permitted: ユーザーが許可していない。
       status_not_permitted_by_manager: マネージャは、プランが '%{status}' 状態の場合、ステータスを更新できません。

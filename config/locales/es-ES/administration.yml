@@ -605,6 +605,7 @@ es-ES:
         disable_continue_to_dashboard: Desactivar el botón "Continuar con el panel de control
         disable_nav_btn: Desactivar el botón Atrás de navegación
         enable_back: Activar el botón Atrás
+        enable_copy_content: Habilitar la copia de contenido
         enable_progress: Activar la barra de progreso
         enable_save: Activar el botón de Salvar
         enable_select_main_factor: Seleccionar un factor como factor principal
@@ -3147,15 +3148,40 @@ es-ES:
             no_auth:
               label: Ninguno
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAUTH
+          client_credentials:
+            label: Credenciales de cliente
+            value: client_credentials
+          client_id:
+            label: ID de cliente
+            name: oauth_client_id
+            required: Se requiere ID de cliente
+          client_secret:
+            label: Secreto de cliente
+            name: oauth_client_secret
+            required: Se requiere secreto de cliente
           description:
             label: Descripción
             name: descripción
+          grant_type:
+            label: Tipo de subvención
+            name: oauth_grant_type
           include_locales:
             label: Incluir traducciones
             name: incluir_locales
+          oauth_scope:
+            label: Alcance
+            name: oauth_scope
+            required: Se requiere alcance
           password:
             label: Contraseña
             name: contraseña
+          token_url:
+            label: Token URL
+            name: oauth_token_url
+            required: Se requiere la URL del token
           topics:
             label: Eventos
             list:
@@ -3475,6 +3501,7 @@ es-ES:
         add_new_condition: Agregar nueva condición
         apply_color_label: 'Luego aplique el siguiente color:'
         custom_factor_fields:
+          default_score: Puntuación
           percentage: Porcentaje
           questions_attempted: Intento
           questions_correct: Correcto
@@ -3508,8 +3535,9 @@ es-ES:
           less_than_or_equal: Menor o igual que
           not_equal_to: No es igual a
         prefixes:
-          and: Y
+          and: "Y"
           or: O
+        prevent_value_overlap: Evitar la superposición de valores
         skill_type_label: Filtrar por tipo de habilidad
         skill_type_placeholder: Seleccionar tipo de habilidad
         skill_types:
@@ -3790,6 +3818,7 @@ es-ES:
         start_time: Fecha y hora
         subject: Asunto
         title: Título
+        view_recording: Ver grabación
       errors:
         assessor_already_assigned: Evaluador ya asignado a esta evaluación. Por favor, seleccione otra evaluación o evaluador.
         date_required: Seleccione una fecha

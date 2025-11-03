@@ -37,7 +37,7 @@ describe Idp::Skill::AddDevelopmentActions do
       end
 
       it 'creates the development action association successfully' do
-        described_class.call!(user_idp_plan, user_idp_skill1, development_actions_params)
+        described_class.call!(user_idp_plan, user_idp_skill1, development_actions_params, user)
 
         expect(user_idp_plan.user_idp_development_actions.count).to eq(1)
 
@@ -62,7 +62,7 @@ describe Idp::Skill::AddDevelopmentActions do
       end
 
       it 'creates ai_generated development action and association' do
-        described_class.call!(user_idp_plan, user_idp_skill1, development_actions_params)
+        described_class.call!(user_idp_plan, user_idp_skill1, development_actions_params, user)
 
         expect(user_idp_plan.user_idp_development_actions.count).to eq(1)
 
@@ -83,7 +83,7 @@ describe Idp::Skill::AddDevelopmentActions do
       it 'defaults source_type to custom when not provided' do
         development_actions_params[0].delete('source_type')
 
-        described_class.call!(user_idp_plan, user_idp_skill1, development_actions_params)
+        described_class.call!(user_idp_plan, user_idp_skill1, development_actions_params, user)
 
         custom_action = user_idp_plan.user_idp_development_actions.first.development_action
         expect(custom_action.source_type).to eq('custom')
@@ -107,7 +107,7 @@ describe Idp::Skill::AddDevelopmentActions do
       end
 
       it 'creates both existing and custom development actions' do
-        described_class.call!(user_idp_plan, user_idp_skill1, development_actions_params)
+        described_class.call!(user_idp_plan, user_idp_skill1, development_actions_params, user)
 
         expect(user_idp_plan.user_idp_development_actions.count).to eq(2)
 
@@ -157,7 +157,7 @@ describe Idp::Skill::AddDevelopmentActions do
         # Verify initial state
         expect(user_idp_plan.user_idp_development_actions.where(user_idp_skill: user_idp_skill1).count).to eq(2)
 
-        described_class.call!(user_idp_plan, user_idp_skill1, new_development_actions_params)
+        described_class.call!(user_idp_plan, user_idp_skill1, new_development_actions_params, user)
 
         # Verify old actions for skill1 are removed
         expect(user_idp_plan.user_idp_development_actions.where(user_idp_skill: user_idp_skill1).count).to eq(1)
@@ -216,7 +216,7 @@ describe Idp::Skill::AddDevelopmentActions do
         expect(user_idp_plan.user_idp_development_actions.where(user_idp_skill: user_idp_skill2).count).to eq(1)
         expect(user_idp_plan.user_idp_development_actions.where(user_idp_skill: user_idp_skill3).count).to eq(1)
 
-        described_class.call!(user_idp_plan, user_idp_skill1, new_skill1_actions)
+        described_class.call!(user_idp_plan, user_idp_skill1, new_skill1_actions, user)
 
         # Verify total count remains the same (1 removed from skill1, 1 added to skill1)
         expect(user_idp_plan.user_idp_development_actions.count).to eq(3)
@@ -262,7 +262,7 @@ describe Idp::Skill::AddDevelopmentActions do
       it 'clears all development actions for the skill' do
         expect(user_idp_plan.user_idp_development_actions.where(user_idp_skill: user_idp_skill1).count).to eq(1)
 
-        described_class.call!(user_idp_plan, user_idp_skill1, [])
+        described_class.call!(user_idp_plan, user_idp_skill1, [], user)
         expect(user_idp_plan.user_idp_development_actions.where(user_idp_skill: user_idp_skill1).count).to eq(0)
         expect(UserIdpDevelopmentAction.find_by(id: existing_action.id)).to be_nil
       end
@@ -283,7 +283,7 @@ describe Idp::Skill::AddDevelopmentActions do
       end
 
       it 'correctly sets start and end times' do
-        described_class.call!(user_idp_plan, user_idp_skill1, development_actions_params)
+        described_class.call!(user_idp_plan, user_idp_skill1, development_actions_params, user)
 
         action_record = user_idp_plan.user_idp_development_actions.first
         expect(action_record.start_date_time.strftime('%Y-%m-%d %H:%M')).to eq(start_time)

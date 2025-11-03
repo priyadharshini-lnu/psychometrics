@@ -7,10 +7,16 @@ class UserIdpSkillSerializer < Panko::Serializer
   delegate :name, :description, :skill_type, to: :skill, allow_nil: true
 
   def user_idp_development_actions
+    development_actions = object.user_idp_development_actions.where(private: false)
+    development_actions = development_actions.not_deleted if without_deleted
     Panko::ArraySerializer.new(
-      object.user_idp_development_actions.where(private: false),
+      development_actions,
       each_serializer: UserIdpDevelopmentActionSerializer,
       context: context
     ).to_a
+  end
+
+  def without_deleted
+    context[:without_deleted] || false
   end
 end

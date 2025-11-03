@@ -1047,6 +1047,10 @@ as: :simulation_progress_notification
           put :update_reflection_questions
           post :download
           get :pdf_preview
+          put :update_approval_status
+          put :update_completion_status
+          get :plan_changes
+          post :revert_to_last_approved
         end
         collection do
           get :summary

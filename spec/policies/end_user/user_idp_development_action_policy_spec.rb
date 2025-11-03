@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe EndUser::UserIdpDevelopmentActionPolicy do
   let(:manager) { create(:user) }
   let(:user) { create(:user, manager: manager) }
-  let(:user_idp_plan) { create(:user_idp_plan, user: user, status: 'draft', active: true) }
+  let(:user_idp_plan) { create(:user_idp_plan, user: user, approval_status: 'draft', active: true) }
   let(:project) { user_idp_plan.campaign.project }
   let!(:another_user) { create(:user, project: manager.project) }
 
@@ -62,7 +62,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionPolicy do
       subject { described_class.new(policy_context(user), user, extra_params) }
 
       context 'with editable status' do
-        before { user_idp_plan.update(status: :draft) }
+        before { user_idp_plan.update(approval_status: :draft) }
 
         it 'allows access' do
           expect(subject.public_send(policy_method)).to be_truthy
@@ -70,7 +70,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionPolicy do
       end
 
       context 'with non-editable status' do
-        before { user_idp_plan.update(status: :approved) }
+        before { user_idp_plan.update(approval_status: :approved) }
 
         it 'denies access' do
           expect(subject.public_send(policy_method)).to be_falsey
@@ -82,7 +82,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionPolicy do
       subject { described_class.new(policy_context(manager), user, extra_params) }
 
       context 'with manager editable status' do
-        before { user_idp_plan.update(status: :pending_approval) }
+        before { user_idp_plan.update(approval_status: :in_review) }
 
         it 'allows access' do
           expect(subject.public_send(policy_method)).to be_truthy
@@ -90,7 +90,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionPolicy do
       end
 
       context 'with non-manager editable status' do
-        before { user_idp_plan.update(status: :approved) }
+        before { user_idp_plan.update(approval_status: :approved) }
 
         it 'denies access' do
           expect(subject.public_send(policy_method)).to be_falsey
@@ -100,7 +100,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionPolicy do
       context 'when manager_can_edit_idp is false' do
         before do
           project.idp_setting.update(manager_can_edit_idp: false)
-          user_idp_plan.update(status: :pending_approval)
+          user_idp_plan.update(approval_status: :pending_approval)
         end
 
         it 'denies access' do

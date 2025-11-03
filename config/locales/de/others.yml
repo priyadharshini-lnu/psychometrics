@@ -389,6 +389,8 @@ de:
               inclusion: Bitte wählen Sie die richtige Normart aus
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} nicht gefunden"
             email:
               user_exists_in_campaign: Benutzer mit dieser E-Mail-ID ist bereits in der Kampagne vorhanden
               user_exists_in_project: Benutzer mit dieser E-Mail-Adresse existiert bereits im Projekt
@@ -408,6 +410,8 @@ de:
               invalid_datetime: ist ungültig
             schedule_start_date:
               invalid_datetime: ist ungültig
+            target_job_role:
+              not_found: "%{name} nicht gefunden"
         user_assessment:
           subject_and_assessment_exists: Bewertung und Themenpaar bereits vorhanden
         user_idp_development_action:
@@ -2593,6 +2597,7 @@ de:
       aria_selected: Ausgewählte
   idp:
     actions: Aktionen
+    add_comments: Kommentare hinzufügen
     ai:
       assistant:
         failure_fallback:
@@ -2657,14 +2662,23 @@ de:
       add_reply_placeholder: Antwort hinzufügen...
       go_to_skill: Fähigkeit anzeigen
     comments:
+      clear_comments_for_skill: Klare Kommentare für Skill
       close: Schließen
+      comment_content: Wie man Inhalte erstellt
+      comment_for_skill: Kommentar für skill
+      commented_at: Kommentiert am
+      commented_by: Kommentiert von
       comments: Kommentare
       filter_comments: Kommentare filtern
       mark_as_resolved: Als gelöst markieren
       mark_as_unresolved: Als ungelöst markieren
+      mark_comment_as_resolved: Diesen Kommentar als gelöst markieren
       replied: Beantwortet
+      replied_at: Beantwortet am
+      replied_by: Beantwortet von
       replies: Antworten
       reply: Antworten
+      reply_content: Inhalt antworten
       resolve: Lösen
       resolved: Gelöst
       resolved_message: Dieser Kommentar wurde gelöst und Antworten sind deaktiviert.
@@ -2673,8 +2687,13 @@ de:
       show_only_unread: Nur ungelesene anzeigen
       show_only_unresolved: Nur ungelöste anzeigen
       sort_by_date: Nach Datum sortieren
+      total_comments_count: Gesamtzahl der Kommentare
+      total_count: Gesamtzahl der Kommentare
+      unread_replies_count: Anzahl ungelesener Antworten
+      view_or_add: Anzeigen oder Hinzufügen von Kommentaren für %{skillName}
       you: Du
     convert_to_draft: In Entwurf konvertieren
+    current_step: Aktueller Schritt %{step}
     delete_skill: Sind Sie sicher, dass Sie den Skill löschen möchten, da dadurch auch alle verbundenen Entwicklungsaktionen gelöscht werden?
     details: Einzelheiten
     development_actions:
@@ -2685,6 +2704,7 @@ de:
       add_development_actions_modal_title: Bibliothek für Entwicklungsmaßnahmen für %{skillName}
       add_from_library: Aus Bibliothek hinzufügen
       add_more: Hinzufügen weiterer Entwicklungsaktionen
+      add_selected_development_actions: Hinzufügen ausgewählter Entwicklungsaktionen
       all: Alle
       approved: Genehmigt
       board_view:
@@ -2699,10 +2719,15 @@ de:
       custom: Gewohnheit
       custom_da_description: Erstellen Sie eine benutzerdefinierte Entwicklungsaktion, um individuelle Entwicklungsanforderungen zu erfüllen.
       date_range: Startdatum - Enddatum
+      development_action_learning_style: Entwicklung Action Lernstil
+      development_action_name: Beschreibung der Entwicklungsmaßnahme
+      discard_draft: Entwurf verwerfen
       edit_da_progress: Fortschritt der Entwicklungsaktion bearbeiten
+      edit_development_action_progress: Fortschritt der Entwicklungsaktion bearbeiten
       edit_plan_to_add_development_actions: Bearbeiten Sie den Plan, und fügen Sie Entwicklungsaktionen hinzu.
       enter_development_action_description: Beschreibung der Entwicklungsmaßnahme eingeben
       enter_development_action_title: Titel der Entwicklungsmaßnahme eingeben
+      filter_development_actions: Filtern von Entwicklungsaktionen
       generate_by_ai: Generieren durch AI
       generate_more: Mehr generieren
       generating_development_actions: Generierung von Entwicklungsmaßnahmen...
@@ -2719,6 +2744,7 @@ de:
       learning_from_others: Von anderen lernen
       learning_from_others_label: Von anderen lernen
       learning_on_the_job_label: Lernen am Arbeitsplatz
+      loading_development_actions: Laden von Entwicklungsaktionen
       manage_skills: Fertigkeiten managen
       marathon: Marathon
       mark_as_complete: Als abgeschlossen markieren
@@ -2729,6 +2755,7 @@ de:
       publish_plan: Plan veröffentlichen
       remove: Entfernen
       save_plan: Plan speichern
+      show_development_action_information: Informationen zu Entwicklungsmaßnahmen anzeigen
       skill: Fertigkeit
       sprint: Sprint
       start_plan: Plan starten
@@ -2736,14 +2763,31 @@ de:
       structured_learning_label: Kollaboratives Lernen
       submit_plan: Plan einreichen
       success: Entwicklungsmaßnahmen erfolgreich abgeschlossen
+      toggle_skill_privacy: Toggle Skill Datenschutz
       write_here: Hier schreiben...
     direct_reportee_details: Detail der direkt unterstellten Mitarbeiter
     download:
       description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Der Link ist nur 10 Minuten gültig'
+    download_plan: Plan herunterladen
     edit_plan: Plan bearbeiten
     edit_plan_and_add_skills: Plan bearbeiten und klicken Sie auf Fertigkeiten verwalten, um Fertigkeiten hinzuzufügen.
     edit_progress: Fortschritt bearbeiten
     fetching_skill_gap_report: Bericht über Qualifikationslücken abrufen...
+    go_to_previous_step: Gehe zum vorherigen Schritt
+    history:
+      added_da:
+        one: Zusätzliche Entwicklungsmaßnahmen
+        other: Hinzugefügte Entwicklungsaktionen
+      changes:
+        end_date: Enddatum von %{from} bis %{to}
+        progress: Fortschritt von %{from} zu %{to}
+        start_date: Startdatum von %{from} bis %{to}
+      modified_da:
+        one: Modifizierte Entwicklungsmaßnahme
+        other: Modifizierte Entwicklungsmaßnahmen
+      removed_da:
+        one: Entwicklungsmaßnahme entfernt
+        other: Entfernte Entwicklungsaktionen
     initial_steps:
       add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
       add_skill_group_title: Erkunden Sie Ihre %{category}-Fähigkeiten
@@ -2768,6 +2812,7 @@ de:
       skill_column_header: Fertigkeit
       skill_gap_report: Bericht über das Qualifikationsdefizit
     list: Liste
+    loader_icon: Loader-Symbol
     manage_plan: Plan verwalten
     mark_as_complete: Als abgeschlossen markieren
     mark_as_incomplete: Als unvollständig markieren
@@ -2888,10 +2933,16 @@ de:
         skills_count: Anzahl der Kompetenzen
         title: Berichtszusammenfassung
     plan: Plan
+    plan_status: Planstatus %{status}
+    private: Privat
     reflective_questions:
       already_completed: Der IDP ist bereits abgeschlossen, Sie können die Fragen jetzt nicht mehr beantworten.
+      answer: Antwort
       answer_later: Antwort später
+      answer_limit: Die Antwort muss zwischen %{min} und %{max} Wörtern liegen
       answer_placeholder: Schreiben Sie Ihre Antwort hier...
+      cancel_edited_answer: Bearbeitete Antwort abbrechen
+      edit_answer: Antwort bearbeiten
       errors:
         max_words: Die Antwort erlaubt maximal %{count} Wörter
         min_words: Die Antwort erfordert mindestens %{count} Wörter
@@ -2901,24 +2952,37 @@ de:
       no_answer_provided: Noch keine Antwort gegeben
       no_reflective_questions: Keine reflektierenden Fragen
       optional: "(Fakultativ)"
+      question: Frage
+      required: Diese Frage ist erforderlich
+      save_edited_answer: Bearbeitete Antwort speichern
       title: Reflektierende Fragen
       update_failed: Während der Aktualisierung ist ein Fehler aufgetreten
       updated_successfully: Ihre Antworten wurden erfolgreich aktualisiert
       word_limit: Muss zwischen %{min} und %{max} Wörtern stehen
       words: Wörter
     remove_skill: Skill entfernen
+    remove_skill_from_plan: Entfernen von Skill-%{name} aus dem Plan
+    report_preview: Vorschau des Berichts
+    search_and_select_skills_of_skill_type: Suchen und wählen Sie %{skillType} Skills aus
+    select_skills_of_skill_type: Wählen Sie %{skillType} Skills aus
+    selected_skills_of_skill_type: Ausgewählte %{skillType} Fertigkeiten
     skill_gap_report:
+      content: Inhalt des Berichts über Qualifikationslücken
       download: Bericht zur Qualifikationslücke herunterladen
       title: Bericht über das Qualifikationsdefizit
+    skill_status: Skill %{name} ist privat
     skills_updated: Im Plan aktualisierte Fertigkeiten
     status: Status
     suggestions: Anregungen
+    suggestions_for_skill_type: Vorschläge für %{skillType} Fähigkeiten
     technical: Technisch
     user_idp_status:
       approved: Genehmigt
       completed: Abgeschlossen
+      completion_not_started: Fertigstellung nicht gestartet
       draft: Entwurf
       in_progress: Im Gange
+      in_review: Im Rückblick
       not_started: Nicht gestartet
       pending_approval: Anhängig
       rejected: Zurückgewiesen
@@ -4240,6 +4304,9 @@ de:
       EntityTooLarge: Die Dateigröße sollte weniger als %{maxFileSize} MB betragen
       WrongFileType: Der Dateityp sollte einer der folgenden %{allowedFileTypes} sein
     idp:
+      can_not_complete_without_approval_and_in_progress: Sie können Ihren IDP erst abschließen, wenn Ihr Vorgesetzter ihn genehmigt hat und Sie ihn als "In Bearbeitung" markiert haben.
+      can_not_start_without_approval: Sie können erst mit der Arbeit an Ihrem IDP beginnen, wenn Ihr Vorgesetzter ihn genehmigt hat.
+      no_previous_approved_plan: Kein zuvor genehmigter IDP-Plan gefunden.
       reflective_questions_required: Antworten auf reflektierende Fragen sind für IDP erforderlich
       status_not_permitted: ist vom Nutzer nicht gestattet.
       status_not_permitted_by_manager: Der Manager kann den Status nicht aktualisieren, wenn sich der Plan im Status "%{status}" befindet.

@@ -7,7 +7,7 @@ describe Idp::Queries::ManagersWithUnreadCommentsQuery do
   let!(:user) { create(:user, manager_id: manager.id) }
   let!(:campaign) { create(:campaign, project: manager.project) }
   let!(:user_idp_plan) do
-    create(:user_idp_plan, user: user, campaign: campaign, active: true, status: :pending_approval)
+    create(:user_idp_plan, user: user, campaign: campaign, active: true, approval_status: :pending_approval)
   end
 
   let(:recent_comments_timeframe) { 1.hour.ago..Time.current }

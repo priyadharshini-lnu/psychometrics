@@ -142,7 +142,7 @@ export const InitialStepsComponent = () => {
       campaignId: planPayload.campaignId.toString(),
       active: planPayload.active,
       creatorId: planPayload.creatorId.toString(),
-      status: USER_IDP_PLAN_STATUS.DRAFT,
+      approvalStatus: USER_IDP_PLAN_STATUS.DRAFT,
       ...skillPayload,
     }).then(() => {
       setIsLoading(false)

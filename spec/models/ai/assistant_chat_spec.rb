@@ -5,6 +5,20 @@ require 'rails_helper'
 RSpec.describe AI::AssistantChat, type: :model do
   subject(:assistant_chat) { build(:assistant_chat) }
 
+  let(:ai_provider_config) do
+    {
+      'model_id' => 'gpt-4o-mini',
+      'name' => 'OpenAI GPT-4o Mini',
+      'context' => {
+        'openai_api_key' => 'test-api-key'
+      }
+    }
+  end
+
+  before do
+    allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+  end
+
   describe '#ask' do
     let(:user) { create(:user) }
     let(:assistant) { create(:assistant) }
@@ -92,7 +106,6 @@ RSpec.describe AI::AssistantChat, type: :model do
 
         assistant_message = chat.messages.where(role: 'assistant').last
         expect(assistant_message.content).to eq('AI Response')
-        expect(assistant_message.model_id).to eq('gpt-4o')
         expect(assistant_message.input_tokens).to eq(10)
         expect(assistant_message.output_tokens).to eq(20)
       end

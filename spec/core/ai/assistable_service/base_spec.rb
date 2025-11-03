@@ -12,6 +12,20 @@ describe AI::AssistableService::Base do
   let(:instructions) { 'Test instructions' }
   let(:options) { {} }
 
+  let(:ai_provider_config) do
+    {
+      'model_id' => 'gpt-4o-mini',
+      'name' => 'OpenAI GPT-4o Mini',
+      'context' => {
+        'openai_api_key' => 'test-api-key'
+      }
+    }
+  end
+
+  before do
+    allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+  end
+
   # Create a concrete test class since Base is abstract
   let(:test_service_class) do
     assistant_instance = ai_assistant

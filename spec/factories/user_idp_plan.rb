@@ -6,7 +6,6 @@ FactoryBot.define do
     campaign
     idp_template
     creator { user }
-    status { 0 }
 
     trait :with_skills do
       after(:create) do |user_idp_plan|

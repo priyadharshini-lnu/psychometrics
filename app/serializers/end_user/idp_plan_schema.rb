@@ -8,7 +8,10 @@ module EndUser
       Dry::Schema.JSON do
         config.validate_keys = true
 
-        required(:status).filled(:str?, included_in?: UserIdpPlan.statuses.keys)
+        required(:status).filled(
+          :str?,
+          included_in?: UserIdpPlan.approval_statuses.keys + UserIdpPlan.completion_statuses.keys
+        )
         required(:skill_gap_report_available).filled(:bool?)
         required(:self_rating_enabled).filled(:bool?)
         required(:one_click_idp_enabled).filled(:bool?)

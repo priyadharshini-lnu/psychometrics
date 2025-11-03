@@ -13,7 +13,7 @@ import {
   getSecondaryLogoAltText,
 } from '~/modules/endUser/modules/campaigns/core/project'
 import lighthouseLogo from '~/assets/tte-logo-no-text-raster.png'
-import { isProctored } from '~/utils/isProctored'
+import { useIsProctored } from '~/hooks/useProctoringState'
 
 import { PageFooter } from '~/glint'
 import styles from './styles.less'
@@ -39,9 +39,8 @@ const FooterComponent: FC<PropsFromRedux> = ({
   projectName,
   secondaryLogoAltText,
 }) => {
-  if (isProctored()) {
-    return null
-  }
+  const { isProctored } = useIsProctored()
+  if (isProctored) { return null }
 
   return (
     <PageFooter

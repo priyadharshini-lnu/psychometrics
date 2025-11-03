@@ -1,5 +1,7 @@
 import { Sender } from '@ant-design/x'
-import { SendOutlined } from '@ant-design/icons'
+import {
+  SendOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 export const CustomSender = ({
   ...props

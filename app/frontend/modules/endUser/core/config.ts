@@ -21,6 +21,7 @@ export const defaultState = {
     managerApprovesIdp: false,
     managerCanEditIdp: false,
     requireAllDevelopmentActionsComplete: false,
+    aiAssistants: false,
   },
   design: {
     primary_color: null,

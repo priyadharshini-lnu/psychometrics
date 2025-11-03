@@ -69,6 +69,7 @@ export const SkillsGroupCard: FC<Props> = ({
           size={64}
           src={renderSkillTypeIcon(skillType.skillType)}
           alt=""
+          aria-hidden="true"
           // API changes not available yet
           // src={skillCategory.iconUrl}
         />
@@ -83,8 +84,17 @@ export const SkillsGroupCard: FC<Props> = ({
           </Paragraph>
         </section>
       </Flex>
-      <Title level={5}>{I18n.t('idp.initial_steps.select_skills')}</Title>
-      <Flex gap={4} wrap>
+      <Title
+        aria-label={I18n.t('idp.select_skills_of_skill_type', { skillType: I18n.t(`idp.${skillType.skillType}`) })}
+        level={5}
+      >
+        {I18n.t('idp.initial_steps.select_skills')}
+      </Title>
+      <Flex
+        aria-label={I18n.t('idp.selected_skills_of_skill_type', { skillType: I18n.t(`idp.${skillType.skillType}`) })}
+        gap={4}
+        wrap
+      >
         {selectedSkills.filter(skill => skill.skillType === skillType.skillType).map(skill => (
           <div
             className={styles.skillBtn}
@@ -112,6 +122,8 @@ export const SkillsGroupCard: FC<Props> = ({
         <Col xs={{ span: 24 }} sm={{ span: 16 }}>
           <Select
             className="w-100"
+            aria-label={I18n.t('idp.search_and_select_skills_of_skill_type',
+              { skillType: I18n.t(`idp.${skillType.skillType}`) })}
             placeholder={I18n.t('idp.initial_steps.select_skills_placeholder')}
             showSearch
             onSearch={handleSkillSearch}
@@ -138,7 +150,12 @@ export const SkillsGroupCard: FC<Props> = ({
       <Flex wrap gap={4} className="mb-4">
         {skillType.skills.length > 0 && (
           <Flex align="center">
-            <strong>{I18n.t('idp.suggestions')}</strong>
+            <strong
+              role="region"
+              aria-label={I18n.t('idp.suggestions_for_skill_type', { skillType: I18n.t(`idp.${skillType.skillType}`) })}
+            >
+              {I18n.t('idp.suggestions')}
+            </strong>
           </Flex>
         )}
         {skillType.skills.map(skill => (

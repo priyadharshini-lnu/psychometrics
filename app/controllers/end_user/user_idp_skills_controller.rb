@@ -16,7 +16,7 @@ class EndUser::UserIdpSkillsController < ApplicationController
   def save_skills
     skills_form = ::Idp::SaveUserIdpSkillsForm.new(skills_params).with_context(user: user)
 
-    ::Idp::SaveUserIdpSkills.call(user_idp_plan, skills_form) do
+    ::Idp::SaveUserIdpSkills.call(user_idp_plan, skills_form, current_user) do
       on(:ok) do |skills|
         render json: {
           data: ::Panko::ArraySerializer.new(

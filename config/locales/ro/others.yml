@@ -389,6 +389,8 @@ ro:
               inclusion: Vă rugăm să selectați tipul corect de normă
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} nu a fost găsit"
             email:
               user_exists_in_campaign: Utilizatorul cu acest ID de e-mail există deja în campanie
               user_exists_in_project: Utilizatorul cu acest ID de e-mail există deja în proiect
@@ -408,6 +410,8 @@ ro:
               invalid_datetime: este nevalidă
             schedule_start_date:
               invalid_datetime: este nevalidă
+            target_job_role:
+              not_found: "%{name} nu a fost găsit"
         user_assessment:
           subject_and_assessment_exists: Evaluarea și perechea de subiecte există deja
         user_idp_development_action:
@@ -2581,6 +2585,7 @@ ro:
       aria_selected: Selectat
   idp:
     actions: Acțiuni
+    add_comments: Adaugă comentarii
     ai:
       assistant:
         failure_fallback:
@@ -2645,14 +2650,23 @@ ro:
       add_reply_placeholder: Adaugă un răspuns...
       go_to_skill: Mergi la abilitate
     comments:
+      clear_comments_for_skill: Comentarii clare pentru îndemânare
       close: Închide
+      comment_content: Cum să conțineți
+      comment_for_skill: Comentariu pentru îndemânare
+      commented_at: Comentat la
+      commented_by: Comentat de
       comments: Comentarii
       filter_comments: Filtrarea comentariilor
       mark_as_resolved: Marcați ca rezolvat
       mark_as_unresolved: Marcați ca nerezolvat
+      mark_comment_as_resolved: Marcați acest comentariu ca rezolvat
       replied: Răspuns
+      replied_at: A răspuns la
+      replied_by: Răspuns de
       replies: Răspunsurile
       reply: Răspunde
+      reply_content: Răspuns conținut
       resolve: Rezolva
       resolved: Rezolvată
       resolved_message: Acest comentariu a fost rezolvat și răspunsurile sunt dezactivate.
@@ -2661,8 +2675,13 @@ ro:
       show_only_unread: Afișează doar necitit
       show_only_unresolved: Afișează doar nerezolvat
       sort_by_date: Sortează după dată
+      total_comments_count: Numărul total de comentarii
+      total_count: Numărul total de comentarii
+      unread_replies_count: Numărul de răspunsuri necitite
+      view_or_add: Vizualizați sau adăugați comentarii pentru %{skillName}
       you: Tu
     convert_to_draft: Conversie în ciornă
+    current_step: Pasul curent %{step}
     delete_skill: Sunteți sigur că doriți să ștergeți abilitatea, deoarece va șterge și toate acțiunile de dezvoltare conectate?
     details: Detalii
     development_actions:
@@ -2673,6 +2692,7 @@ ro:
       add_development_actions_modal_title: Biblioteca de acțiuni de dezvoltare pentru %{skillName}
       add_from_library: Adăugați din bibliotecă
       add_more: Adăugați mai multe acțiuni de dezvoltare
+      add_selected_development_actions: Adăugați acțiuni de dezvoltare selectate
       all: Toți
       approved: Aprobat
       board_view:
@@ -2687,10 +2707,15 @@ ro:
       custom: Obicei
       custom_da_description: Creați o acțiune de dezvoltare personalizată pentru a răspunde nevoilor unice de dezvoltare.
       date_range: Data de începere - Data de sfârșit
+      development_action_learning_style: Dezvoltare Acțiune Stil de învățare
+      development_action_name: Descrierea acțiunii de dezvoltare
+      discard_draft: Aruncați schița
       edit_da_progress: Editați progresul acțiunii de dezvoltare
+      edit_development_action_progress: Editați progresul acțiunii de dezvoltare
       edit_plan_to_add_development_actions: Editați planul și adăugați acțiuni de dezvoltare.
       enter_development_action_description: Introduceți descrierea acțiunii de dezvoltare
       enter_development_action_title: Introduceți titlul acțiunii de dezvoltare
+      filter_development_actions: Acțiuni de dezvoltare a filtrelor
       generate_by_ai: Generați prin AI
       generate_more: Generează mai mult
       generating_development_actions: Generarea de acțiuni de dezvoltare...
@@ -2707,6 +2732,7 @@ ro:
       learning_from_others: Învățând de la alții
       learning_from_others_label: Învățarea de la alții
       learning_on_the_job_label: Învățarea la locul de muncă
+      loading_development_actions: Încărcarea acțiunilor de dezvoltare
       manage_skills: Gestionați abilitățile
       marathon: Maraton
       mark_as_complete: Marcați ca finalizat
@@ -2717,6 +2743,7 @@ ro:
       publish_plan: Publicați planul
       remove: Depărta
       save_plan: Salvați planul
+      show_development_action_information: Afișați informațiile despre acțiunile de dezvoltare
       skill: Îndemânare
       sprint: Sprint
       start_plan: Începeți planul
@@ -2724,14 +2751,31 @@ ro:
       structured_learning_label: Învățare colaborativă
       submit_plan: Trimiteți planul
       success: Acțiuni de dezvoltare finalizate cu succes
+      toggle_skill_privacy: Comutați confidențialitatea abilităților
       write_here: Scrie aici...
     direct_reportee_details: Detalii raportoare directe
     download:
       description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Linkul este valabil doar 10 minute'
+    download_plan: Descărcați planul
     edit_plan: Editați planul
     edit_plan_and_add_skills: Editați planul și faceți clic pe Gestionați abilitățile pentru a adăuga abilități.
     edit_progress: Editați progres
     fetching_skill_gap_report: Raport de preluare a lacunelor de abilități...
+    go_to_previous_step: Mergeți la pasul anterior
+    history:
+      added_da:
+        one: Acțiune de dezvoltare adăugată
+        other: Acțiuni de dezvoltare adăugate
+      changes:
+        end_date: Data de încheiere de la %{from} la %{to}
+        progress: Progresul de la %{from} la %{to}
+        start_date: Data de începere de la %{from} până la %{to}
+      modified_da:
+        one: Acțiune de dezvoltare modificată
+        other: Acțiuni de dezvoltare modificate
+      removed_da:
+        one: Acțiune de dezvoltare eliminată
+        other: Acțiuni de dezvoltare eliminate
     initial_steps:
       add_skill_group_description: Pe baza rezultatelor evaluării dvs., iată câteva dintre domeniile de puncte forte și dezvoltare pentru dvs. Alegeți abilitățile pe care doriți să le dezvoltați în continuare ca parte a planului de dezvoltare.
       add_skill_group_title: Explorarea abilităților %{category}
@@ -2756,6 +2800,7 @@ ro:
       skill_column_header: Îndemânare
       skill_gap_report: Raport privind decalajul de competențe
     list: Listă
+    loader_icon: Pictograma încărcătorului
     manage_plan: Gestionați planul
     mark_as_complete: Marcați ca finalizat
     mark_as_incomplete: Marcați ca incomplet
@@ -2875,10 +2920,16 @@ ro:
         skills_count: Abilitățile contează
         title: Rezumatul raportului
     plan: Plan
+    plan_status: Starea planului %{status}
+    private: Privat
     reflective_questions:
       already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
+      answer: Răspunde
       answer_later: Răspuns mai târziu
+      answer_limit: Răspunsul trebuie să fie între %{min} și %{max} cuvinte
       answer_placeholder: Scrie-ți răspunsul aici...
+      cancel_edited_answer: Anulează răspunsul editat
+      edit_answer: Editează răspunsul
       errors:
         max_words: Răspunsul permite un maxim %{count} cuvinte
         min_words: Răspunsul necesită cel puțin %{count} cuvinte
@@ -2888,24 +2939,37 @@ ro:
       no_answer_provided: Nu s-a dat încă niciun răspuns
       no_reflective_questions: Fără întrebări reflexive
       optional: "(Opțional)"
+      question: Întrebare
+      required: Această întrebare este obligatorie
+      save_edited_answer: Salvați răspunsul editat
       title: Întrebări reflexive
       update_failed: A apărut o eroare în timpul actualizării
       updated_successfully: Răspunsurile dumneavoastră au fost actualizate cu succes
       word_limit: Trebuie să fie între %{min} și %{max} cuvinte
       words: Cuvinte
     remove_skill: Eliminați abilitatea
+    remove_skill_from_plan: Eliminați %{name} de abilități din plan
+    report_preview: Previzualizare raport
+    search_and_select_skills_of_skill_type: Căutați și selectați abilitățile %{skillType}
+    select_skills_of_skill_type: Selectați %{skillType} abilități
+    selected_skills_of_skill_type: Abilități %{skillType} selectate
     skill_gap_report:
+      content: Conținutul raportului privind lacunele de competențe
       download: Descărcați raportul privind lacunele de competențe
       title: Raport privind decalajul de competențe
+    skill_status: Skill %{name} este privat
     skills_updated: Competențe actualizate în plan
     status: Stare
     suggestions: Sugestii
+    suggestions_for_skill_type: Sugestii pentru abilitățile %{skillType}
     technical: Tehnic
     user_idp_status:
       approved: Aprobat
       completed: Completat
+      completion_not_started: Finalizarea nu a început
       draft: Proiect
       in_progress: În curs de desfășurare
+      in_review: În recenzie
       not_started: Neînceput
       pending_approval: În așteptarea aprobării
       rejected: Respins
@@ -4227,6 +4291,9 @@ ro:
       EntityTooLarge: Dimensiunea fișierului trebuie să fie mai mică de %{maxFileSize} MB
       WrongFileType: Tipul de fișier trebuie să fie unul dintre următoarele %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Nu puteți finaliza IDP-ul până când managerul nu îl aprobă și nu l-ați marcat ca "În curs".
+      can_not_start_without_approval: Nu puteți începe să lucrați la IDP până când managerul nu îl aprobă.
+      no_previous_approved_plan: Nu s-a găsit niciun plan IDP aprobat anterior.
       reflective_questions_required: Răspunsurile la întrebările reflexive sunt necesare pentru IDP
       status_not_permitted: nu este permis de utilizator.
       status_not_permitted_by_manager: Managerul nu poate actualiza starea atunci când planul este în starea "%{status}".

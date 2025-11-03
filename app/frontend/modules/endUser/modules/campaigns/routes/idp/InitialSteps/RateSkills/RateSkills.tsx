@@ -1,12 +1,14 @@
 import { useState, useContext, useEffect } from 'react'
 import {
-  Typography, Table, Rate, Space, Avatar, TableColumnsType, Flex,
+  Typography, Table, Space, Avatar, TableColumnsType, Flex,
 } from 'antd'
 import { connect } from 'react-redux'
 import cs from 'classnames'
 import { Separator } from '~/components/IdpShared/Separator'
 import { renderSkillTypeIcon } from '~/components/IdpShared/utils'
-import { ButtonWithArrow, MediaQueryContext, BackButton } from '~/glint'
+import {
+  ButtonWithArrow, MediaQueryContext, BackButton, AccessibleRating,
+} from '~/glint'
 import {
   updateUserIdpSkill,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
@@ -52,6 +54,11 @@ export const RateSkillsComponent = ({
       dataIndex: 'name',
       key: 'name',
       width: isMobile ? 'initial' : '50%',
+      onHeaderCell: () => (
+        {
+          scope: 'col',
+        }
+      ),
       render: (name, skill) => (
         <Flex gap={8} vertical>
           <Typography.Text
@@ -65,6 +72,7 @@ export const RateSkillsComponent = ({
                 size={32}
                 src={renderSkillTypeIcon(skill.skillType)}
                 style={{ marginRight: '4px' }}
+                aria-hidden="true"
               />
               <Typography.Text
                 className="fs-14"
@@ -80,12 +88,18 @@ export const RateSkillsComponent = ({
       title: 'Skill Type',
       dataIndex: 'skillType',
       key: 'skillType',
+      onHeaderCell: () => (
+        {
+          scope: 'col',
+        }
+      ),
       render: (_, skill) => (
         <Flex align="center">
           <Avatar
             size={32}
             src={renderSkillTypeIcon(skill.skillType)}
             style={{ marginRight: '4px' }}
+            aria-hidden="true"
           />
           <Typography.Text
             className="fs-14"
@@ -99,9 +113,17 @@ export const RateSkillsComponent = ({
       title: <Flex justify="end">{I18n.t('idp.initial_steps.rating_column_header')}</Flex>,
       dataIndex: 'initialRating',
       key: 'initialRating',
+      onHeaderCell: () => (
+        {
+          scope: 'col',
+        }
+      ),
       render: (rating, skill) => (
         <Flex justify="end">
-          <Rate onChange={(val) => { handleRatingChange({ ...skill, initialRating: val }) }} value={rating} />
+          <AccessibleRating
+            onChange={(val) => { handleRatingChange({ ...skill, initialRating: val }) }}
+            value={rating}
+          />
         </Flex>
       ),
     },

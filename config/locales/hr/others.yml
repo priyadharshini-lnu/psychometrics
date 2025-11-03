@@ -395,6 +395,8 @@ hr:
               inclusion: Odaberite ispravnu vrstu norme
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} nije pronađeno"
             email:
               user_exists_in_campaign: Korisnik s ovim ID-om e-pošte već postoji u kampanji
               user_exists_in_project: Korisnik s ovim ID-om e-pošte već postoji u projektu
@@ -414,6 +416,8 @@ hr:
               invalid_datetime: je nevažeća
             schedule_start_date:
               invalid_datetime: je nevažeća
+            target_job_role:
+              not_found: "%{name} nije pronađeno"
         user_assessment:
           subject_and_assessment_exists: Par procjena i ispitanik već postoje
         user_idp_development_action:
@@ -2596,6 +2600,7 @@ hr:
       aria_selected: Odabrani
   idp:
     actions: Statusi
+    add_comments: Dodajte komentare
     ai:
       assistant:
         failure_fallback:
@@ -2660,14 +2665,23 @@ hr:
       add_reply_placeholder: Dodajte odgovor...
       go_to_skill: Idi na vještinu
     comments:
+      clear_comments_for_skill: Jasni komentari za vještinu
       close: Blizak
+      comment_content: Kako sadržaj
+      comment_for_skill: Komentar za vještinu
+      commented_at: Komentirano na
+      commented_by: Komentirao
       comments: Komentari
       filter_comments: Filtriranje komentara
       mark_as_resolved: Označi kao riješeno
       mark_as_unresolved: Označi kao neriješeno
+      mark_comment_as_resolved: Označite ovaj komentar kao riješen
       replied: Odgovorio
+      replied_at: Odgovorio na
+      replied_by: Odgovorio
       replies: Odgovori
       reply: Odgovor
+      reply_content: Sadržaj odgovora
       resolve: Riješiti
       resolved: Riješen
       resolved_message: Ovaj komentar je riješen i odgovori su onemogućeni.
@@ -2676,8 +2690,13 @@ hr:
       show_only_unread: Prikaži samo nepročitano
       show_only_unresolved: Prikaži samo neriješeno
       sort_by_date: Sortiraj po datumu
+      total_comments_count: Ukupan broj komentara
+      total_count: Ukupan broj komentara
+      unread_replies_count: Broj nepročitanih odgovora
+      view_or_add: Prikaz ili dodavanje komentara za %{skillName}
       you: Ti
     convert_to_draft: Pretvori u skicu
+    current_step: Trenutni korak %{step}
     delete_skill: Jeste li sigurni da želite izbrisati vještinu jer će izbrisati i sve povezane razvojne akcije?
     details: Detalji
     development_actions:
@@ -2688,6 +2707,7 @@ hr:
       add_development_actions_modal_title: Biblioteka razvojnih akcija za %{skillName}
       add_from_library: Dodavanje iz medijateke
       add_more: Dodajte još razvojnih radnji
+      add_selected_development_actions: Dodavanje odabranih razvojnih radnji
       all: Sve
       approved: Odobren
       board_view:
@@ -2702,10 +2722,15 @@ hr:
       custom: Običaj
       custom_da_description: Stvorite prilagođenu razvojnu akciju za rješavanje jedinstvenih razvojnih potreba.
       date_range: Datum početka - Datum završetka
+      development_action_learning_style: Razvojna akcija Stil učenja
+      development_action_name: Opis razvojne akcije
+      discard_draft: Odbaci skicu
       edit_da_progress: Uredi napredak razvojne akcije
+      edit_development_action_progress: Uredi napredak razvojne akcije
       edit_plan_to_add_development_actions: Uredi plan i dodati razvojne radnje.
       enter_development_action_description: Unesite opis razvojne akcije
       enter_development_action_title: Unesite naslov razvojne akcije
+      filter_development_actions: Filtriranje razvojnih radnji
       generate_by_ai: Generirajte pomoću umjetne inteligencije
       generate_more: Generirajte više
       generating_development_actions: Generiranje razvojnih akcija...
@@ -2722,6 +2747,7 @@ hr:
       learning_from_others: Učenje od drugih
       learning_from_others_label: Učimo od drugih
       learning_on_the_job_label: Učenje na poslu
+      loading_development_actions: Učitavanje razvojnih radnji
       manage_skills: Upravljajte vještinama
       marathon: Maraton
       mark_as_complete: Označi kao dovršeno
@@ -2732,6 +2758,7 @@ hr:
       publish_plan: Objavi plan
       remove: Odstraniti
       save_plan: Spremi plan
+      show_development_action_information: Prikaži informacije o razvojnoj akciji
       skill: Vještina
       sprint: Trčanje
       start_plan: Početni plan
@@ -2739,14 +2766,31 @@ hr:
       structured_learning_label: Suradničko učenje
       submit_plan: Pošalji plan
       success: Razvojne akcije uspješno završene
+      toggle_skill_privacy: Toggle Vještina Privatnost
       write_here: Napišite ovdje...
     direct_reportee_details: Detalji izravnih izvješćivanja
     download:
       description: 'Da biste preuzeli izvješće, slijedite poveznicu: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link vrijedi samo 10 minuta'
+    download_plan: Preuzmite plan
     edit_plan: Uredi plan
     edit_plan_and_add_skills: Uredite plan i kliknite na Upravljanje vještinama da biste dodali vještine.
     edit_progress: Uredi napredak
     fetching_skill_gap_report: Izvješće o nedostacima u vještinama...
+    go_to_previous_step: Idite na prethodni korak
+    history:
+      added_da:
+        one: Dodatna razvojna akcija
+        other: Dodatne razvojne akcije
+      changes:
+        end_date: Datum završetka od %{from} do %{to}
+        progress: Napredak od %{from}. do %{to}
+        start_date: Datum početka od %{from} do %{to}
+      modified_da:
+        one: Izmijenjena razvojna akcija
+        other: Izmijenjene razvojne akcije
+      removed_da:
+        one: Uklonjena razvojna akcija
+        other: Uklonjene razvojne radnje
     initial_steps:
       add_skill_group_description: Na temelju rezultata vaše procjene, evo nekih od područja snaga i razvoja za vas. Odaberite vještine koje želite dalje razvijati kao dio svog razvojnog plana.
       add_skill_group_title: Istraživanje vaših vještina %{category}
@@ -2771,6 +2815,7 @@ hr:
       skill_column_header: Vještina
       skill_gap_report: Izvješće o nedostatku vještina
     list: Popis
+    loader_icon: Ikona učitavača
     manage_plan: Upravljanje planom
     mark_as_complete: Označi kao dovršeno
     mark_as_incomplete: Označi kao nepotpuno
@@ -2890,10 +2935,16 @@ hr:
         skills_count: Broj vještina
         title: Sažetak izvješća
     plan: Plan
+    plan_status: Status plana %{status}
+    private: Privatan
     reflective_questions:
       already_completed: IDP je već završen, više ne možete odgovarati na pitanja.
+      answer: Odgovor
       answer_later: Odgovorite kasnije
+      answer_limit: Odgovor mora biti između %{min} i %{max} riječi
       answer_placeholder: Ovdje napišite svoj odgovor...
+      cancel_edited_answer: Otkaži uređeni odgovor
+      edit_answer: Uredi odgovor
       errors:
         max_words: Odgovor dopušta maksimalno %{count} riječi
         min_words: Za odgovor je potrebno najmanje %{count} riječi
@@ -2903,24 +2954,37 @@ hr:
       no_answer_provided: Još nema odgovora
       no_reflective_questions: Nema reflektivnih pitanja
       optional: "(Nije obavezno)"
+      question: Pitanje
+      required: Ovo je pitanje potrebno
+      save_edited_answer: Spremi uređeni odgovor
       title: Pitanja za razmišljanje
       update_failed: Tijekom ažuriranja je došlo do pogreške
       updated_successfully: Vaši su odgovori uspješno ažurirani
       word_limit: Mora biti između %{min} i %{max} riječi
       words: Riječi
     remove_skill: Ukloni vještinu
+    remove_skill_from_plan: Uklanjanje vještina %{name} iz plana
+    report_preview: Pregled izvješća
+    search_and_select_skills_of_skill_type: Pretraživanje i odabir %{skillType} vještina
+    select_skills_of_skill_type: Odaberite %{skillType} vještine
+    selected_skills_of_skill_type: Odabrane %{skillType} vještine
     skill_gap_report:
+      content: Sadržaj izvješća o nedostatku vještina
       download: Preuzmite izvješće o nedostatku vještina
       title: Izvješće o nedostatku vještina
+    skill_status: Vještina %{name} je privatna
     skills_updated: Vještine ažurirane u Planu
     status: Status
     suggestions: Prijedlozi
+    suggestions_for_skill_type: Prijedlozi za %{skillType} vještine
     technical: Tehnički
     user_idp_status:
       approved: Odobreno
       completed: Završeno
+      completion_not_started: Dovršetak nije započeo
       draft: Nacrt
       in_progress: U tijeku
+      in_review: U pregledu
       not_started: Nije pokrenuto
       pending_approval: Čeka se odobrenje
       rejected: Odbijeno
@@ -4242,6 +4306,9 @@ hr:
       EntityTooLarge: Veličina datoteke mora biti manja od %{maxFileSize} MB
       WrongFileType: Vrsta datoteke treba biti jedna od sljedećih %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Ne možete dovršiti svoj IDP dok ga vaš menadžer ne odobri i dok ga ne označite kao 'U tijeku'.
+      can_not_start_without_approval: Ne možete početi raditi na svom IDP-u dok ga vaš menadžer ne odobri.
+      no_previous_approved_plan: Nije pronađen prethodno odobreni plan IDP-a.
       reflective_questions_required: Odgovori na samoreflektirajuća pitanja potrebni su za IDP
       status_not_permitted: nije dopušteno od strane korisnika.
       status_not_permitted_by_manager: Upravitelj ne može ažurirati status kada je plan u stanju '%{status}'.

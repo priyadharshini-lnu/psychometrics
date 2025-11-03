@@ -6,7 +6,7 @@ describe Idp::BulkGenerate do
   let(:manager) { create(:user) }
   let(:idp_user) { create(:user, manager: manager) }
   let(:idp_template) { create(:idp_template) }
-  let(:user_idp_plan) { create(:user_idp_plan, user: idp_user, idp_template: idp_template, status: 'draft') }
+  let(:user_idp_plan) { create(:user_idp_plan, user: idp_user, idp_template: idp_template, approval_status: 'draft') }
   let(:job_record) { create(:admin_job_record, owner: manager, data: { ids: [user_idp_plan.id], lang: 'en' }) }
 
   it 'calls Idp::Generate for each user_idp_plan' do

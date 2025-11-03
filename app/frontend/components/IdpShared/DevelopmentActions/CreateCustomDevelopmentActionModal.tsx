@@ -1,8 +1,8 @@
 import {
-  Flex, Input, Modal, Select,
+  Flex, Input, Select, Modal, Button,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { CloseOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DEVELOPMENT_ACTION_LEARNING_STYLE, developmentActionLearningStylesConfig } from './Constants'
 import {
   ButtonWithArrow,
@@ -33,6 +33,8 @@ export const CreateCustomDevelopmentActionModal = ({
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [learningStyle, setLearningStyle] = useState(DEVELOPMENT_ACTION_LEARNING_STYLE[0])
+  const btnRef = useRef<HTMLButtonElement | null>(null)
+
   const handleCreateCustomDevelopmentAction = () => {
     onCreateCustomDevelopmentAction(name, description, learningStyle)
     setName('')
@@ -46,10 +48,16 @@ export const CreateCustomDevelopmentActionModal = ({
       onCancel={onCancel}
       okText={I18n.t('common.actions.add')}
       okButtonProps={{ icon: <PlusOutlined /> }}
+      closeIcon={<Button style={{ border: 'none' }} ref={btnRef} icon={<CloseOutlined />} />}
       cancelText={I18n.t('common.actions.cancel')}
       width={800}
       wrapClassName={wrapClassName}
       maskClosable={false}
+      afterOpenChange={(isOpen) => {
+        if (isOpen && btnRef && btnRef?.current) {
+          btnRef?.current?.focus()
+        }
+      }}
       footer={(
         <Flex justify="flex-end" flex={1} gap={12}>
           <ButtonWithArrow
@@ -73,6 +81,7 @@ export const CreateCustomDevelopmentActionModal = ({
                 <Option key={learningStyle} value={learningStyle}>
                   <Flex align="center">
                     <img
+                      aria-hidden="true"
                       src={developmentActionLearningStylesConfig[learningStyle].logo}
                       alt={I18n.t(`idp.development_actions.${learningStyle}`)}
                       style={{ marginRight: 8, width: '2rem' }}

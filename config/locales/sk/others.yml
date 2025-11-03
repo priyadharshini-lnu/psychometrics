@@ -389,6 +389,8 @@ sk:
               inclusion: Vyberte správny typ normy
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} sa nenašiel"
             email:
               user_exists_in_campaign: Používateľ s týmto e-mailovým ID už v kampani existuje
               user_exists_in_project: Používateľ s týmto e-mailovým ID už v projekte existuje
@@ -408,6 +410,8 @@ sk:
               invalid_datetime: je neplatné
             schedule_start_date:
               invalid_datetime: je neplatné
+            target_job_role:
+              not_found: "%{name} sa nenašiel"
         user_assessment:
           subject_and_assessment_exists: Hodnotenie a dvojica predmetov už existujú
         user_idp_development_action:
@@ -2581,6 +2585,7 @@ sk:
       aria_selected: Vybraný
   idp:
     actions: Akcie
+    add_comments: Pridať komentáre
     ai:
       assistant:
         failure_fallback:
@@ -2645,14 +2650,23 @@ sk:
       add_reply_placeholder: Pridať odpoveď...
       go_to_skill: Prejsť na zručnosť
     comments:
+      clear_comments_for_skill: Jasné komentáre pre zručnosti
       close: Zavrieť
+      comment_content: Ako obsahovať
+      comment_for_skill: Komentár pre zručnosť
+      commented_at: Komentované na
+      commented_by: Komentoval
       comments: Komentáre
       filter_comments: Filtrovať komentáre
       mark_as_resolved: Označiť ako vyriešené
       mark_as_unresolved: Označiť ako nevyriešené
+      mark_comment_as_resolved: Označiť tento komentár ako vyriešený
       replied: Odpovedal
+      replied_at: Odpovedal na
+      replied_by: Odpovedal
       replies: Odpovede
       reply: Odpoveď
+      reply_content: Obsah odpovede
       resolve: Vyriešiť
       resolved: Vyriešený
       resolved_message: Tento komentár bol vyriešený a odpovede sú zakázané.
@@ -2661,8 +2675,13 @@ sk:
       show_only_unread: Zobraziť iba neprečítané
       show_only_unresolved: Zobraziť iba nevyriešené
       sort_by_date: Zoradiť podľa dátumu
+      total_comments_count: Celkový počet komentárov
+      total_count: Celkový počet pripomienok
+      unread_replies_count: Počítajú sa neprečítané odpovede
+      view_or_add: Zobrazenie alebo pridanie komentárov k %{skillName}
       you: Vy
     convert_to_draft: Konvertovať na koncept
+    current_step: Aktuálny krok %{step}
     delete_skill: Naozaj chcete odstrániť zručnosť, pretože sa tým odstránia aj všetky súvisiace vývojové akcie?
     details: Detaily
     development_actions:
@@ -2673,6 +2692,7 @@ sk:
       add_development_actions_modal_title: Knižnica vývojových akcií pre %{skillName}
       add_from_library: Pridanie z knižnice
       add_more: Pridanie ďalších vývojových akcií
+      add_selected_development_actions: Pridanie vybraných vývojových akcií
       all: Všetko
       approved: Schválený
       board_view:
@@ -2687,10 +2707,15 @@ sk:
       custom: Zvyk
       custom_da_description: Vytvorte vlastnú vývojovú akciu na riešenie jedinečných vývojových potrieb.
       date_range: Dátum začiatku - Dátum ukončenia
+      development_action_learning_style: Rozvojový štýl učenia sa
+      development_action_name: Popis vývojovej akcie
+      discard_draft: Zrušiť koncept
       edit_da_progress: Upraviť priebeh vývojovej akcie
+      edit_development_action_progress: Upraviť priebeh vývojovej akcie
       edit_plan_to_add_development_actions: Upraviť plán a pridať vývojové akcie.
       enter_development_action_description: Zadajte popis vývojovej akcie
       enter_development_action_title: Zadajte názov vývojovej akcie
+      filter_development_actions: Filtrovanie vývojových akcií
       generate_by_ai: Generovanie pomocou AI
       generate_more: Generovať viac
       generating_development_actions: Generovanie rozvojových akcií...
@@ -2707,6 +2732,7 @@ sk:
       learning_from_others: Učenie sa od druhých
       learning_from_others_label: Učme sa od druhých
       learning_on_the_job_label: Učenie sa v práci
+      loading_development_actions: Načítavanie vývojových akcií
       manage_skills: Spravujte zručnosti
       marathon: Maratón
       mark_as_complete: Označiť ako dokončené
@@ -2717,6 +2743,7 @@ sk:
       publish_plan: Plán publikovania
       remove: Odstrániť
       save_plan: Uložiť plán
+      show_development_action_information: Zobraziť informácie o vývojových akciách
       skill: Schopnosť
       sprint: Šprint
       start_plan: Štartovací plán
@@ -2724,14 +2751,31 @@ sk:
       structured_learning_label: Kolaboratívne učenie
       submit_plan: Odoslať plán
       success: Úspešne ukončené rozvojové akcie
+      toggle_skill_privacy: Prepnúť súkromie zručností
       write_here: Napíšte sem...
     direct_reportee_details: Podrobnosti o priamych hlásiteľoch
     download:
       description: 'Ak si chcete stiahnuť správu, kliknite na odkaz: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Odkaz je platný len 10 minút'
+    download_plan: Stiahnuť plán
     edit_plan: Upraviť plán
     edit_plan_and_add_skills: Upraviť plán a kliknutím na Spravovať zručnosti pridajte zručnosti.
     edit_progress: Upraviť pokrok
     fetching_skill_gap_report: Správa o medzerách v zručnostiach...
+    go_to_previous_step: Prejsť na predchádzajúci krok
+    history:
+      added_da:
+        one: Pridaná vývojová akcia
+        other: Pridané vývojové akcie
+      changes:
+        end_date: Dátum ukončenia od %{from} do %{to}
+        progress: Postup z %{from} do %{to}
+        start_date: Dátum začiatku od %{from} do %{to}
+      modified_da:
+        one: Modifikované vývojové opatrenie
+        other: Upravené vývojové akcie
+      removed_da:
+        one: Odstránená vývojová akcia
+        other: Odstránené vývojové akcie
     initial_steps:
       add_skill_group_description: Na základe výsledkov vášho hodnotenia uvádzame niektoré z oblastí silných stránok a rozvoja pre vás. Vyberte si zručnosti, ktoré chcete ďalej rozvíjať ako súčasť svojho plánu rozvoja.
       add_skill_group_title: Preskúmanie vašich zručností %{category}
@@ -2756,6 +2800,7 @@ sk:
       skill_column_header: Schopnosť
       skill_gap_report: Správa o nedostatku zručností
     list: Zoznam
+    loader_icon: Ikona nakladača
     manage_plan: Spravovať plán
     mark_as_complete: Označiť ako dokončené
     mark_as_incomplete: Označiť ako neúplné
@@ -2875,10 +2920,16 @@ sk:
         skills_count: Počet zručností
         title: Zhrnutie správy
     plan: Plán
+    plan_status: Stav plánu %{status}
+    private: Súkromný
     reflective_questions:
       already_completed: IDP už bol dokončený, teraz nemôžete odpovedať na otázky.
+      answer: Odpoveď
       answer_later: Odpovedať neskôr
+      answer_limit: Odpoveď musí byť medzi %{min} a %{max} slovami
       answer_placeholder: Napíšte svoju odpoveď sem...
+      cancel_edited_answer: Zrušiť upravenú odpoveď
+      edit_answer: Upraviť odpoveď
       errors:
         max_words: Odpoveď umožňuje maximálne %{count} slov
         min_words: Odpoveď vyžaduje aspoň %{count} slov
@@ -2888,24 +2939,37 @@ sk:
       no_answer_provided: Zatiaľ nebola poskytnutá žiadna odpoveď
       no_reflective_questions: Žiadne reflexné otázky
       optional: "(Voliteľné)"
+      question: Otázka
+      required: Táto otázka je povinná
+      save_edited_answer: Uložiť upravenú odpoveď
       title: Reflexívne otázky
       update_failed: Počas aktualizácie sa vyskytla chyba
       updated_successfully: Vaše odpovede boli úspešne aktualizované
       word_limit: Musí byť medzi %{min} a %{max} slovami
       words: Slová
     remove_skill: Odstrániť zručnosť
+    remove_skill_from_plan: Odstránenie %{name} zručností z plánu
+    report_preview: Ukážka zostavy
+    search_and_select_skills_of_skill_type: Vyhľadajte a vyberte %{skillType} zručnosti
+    select_skills_of_skill_type: Vyberte %{skillType} zručnosti
+    selected_skills_of_skill_type: Vybrané %{skillType} zručnosti
     skill_gap_report:
+      content: Obsah správy o medzerách v zručnostiach
       download: Stiahnite si správu o medzerách v zručnostiach
       title: Správa o nedostatku zručností
+    skill_status: Zručnosti %{name} sú súkromné
     skills_updated: Zručnosti aktualizované v pláne
     status: Stav
     suggestions: Návrhy
+    suggestions_for_skill_type: Návrhy na %{skillType} zručnosti
     technical: Technické
     user_idp_status:
       approved: Schválený
       completed: Dokončený
+      completion_not_started: Dokončenie sa nezačalo
       draft: Načrtnúť
       in_progress: Prebieha
+      in_review: V recenzii
       not_started: Nezačalo sa
       pending_approval: Čaká sa na schválenie
       rejected: Zamietnuté
@@ -4224,6 +4288,9 @@ sk:
       EntityTooLarge: Veľkosť súboru by mala byť menšia ako %{maxFileSize} MB
       WrongFileType: Typ súboru by mal byť jeden z nasledujúcich %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: IDP nemôžete dokončiť, kým ho váš manažér neschváli a neoznačíte ho ako "Prebieha".
+      can_not_start_without_approval: Na svojom IDP nemôžete začať pracovať, kým ho neschváli váš manažér.
+      no_previous_approved_plan: Nenašiel sa žiadny predchádzajúci schválený plán IDP.
       reflective_questions_required: Odpovede na reflexívne otázky sú potrebné pre IDP
       status_not_permitted: nie je používateľom povolené.
       status_not_permitted_by_manager: Správca nemôže aktualizovať stav, keď je plán v stave %{status}.

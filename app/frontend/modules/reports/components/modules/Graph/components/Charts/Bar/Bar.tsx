@@ -41,6 +41,8 @@ export const Bar: React.FC<Props> = ({
     hideEmptyColumns, hideZeroValueColumns, currentJobFactors, targetJobFactors, skillType,
   } = model.props
 
+  const { preventValueOverlap } = model.props
+
   useEffect(() => {
     renderChart()
   })
@@ -186,6 +188,10 @@ export const Bar: React.FC<Props> = ({
             options3d: get3DOptions(),
             animation,
             rtl: isRTL,
+            ...(preventValueOverlap && {
+              marginTop: model.props.graphicalPosition === 'Vertical' && 20,
+              marginRight: model.props.graphicalPosition === 'Horizontal' && 20,
+            }),
           },
           animation,
           legend: {
@@ -207,6 +213,10 @@ export const Bar: React.FC<Props> = ({
               dataLabels: {
                 enabled: !!model.props.showValues,
                 format,
+                ...(preventValueOverlap && {
+                  overflow: 'allow',
+                  crop: false,
+                }),
               },
             },
             column: {
@@ -220,6 +230,11 @@ export const Bar: React.FC<Props> = ({
           yAxis: {
             reversed: reversedY,
             opposite: oppositeY,
+            ...(preventValueOverlap && {
+              maxPadding: 0.2,
+              endOnTick: false,
+              startOnTick: false,
+            }),
           },
           series,
         },
