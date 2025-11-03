@@ -17,12 +17,6 @@ module Api
         def update?
           @user.has_permission?(:projects, :manage_licenses, project_id: project_id)
         end
-
-        def license_usages?
-          @user.has_permission?(:projects, :manage_licenses,
-                                project_id: project_id) || @user.has_permission?(:projects, :view_licenses,
-                                                                                 project_id: project_id)
-        end
       end
     end
   end

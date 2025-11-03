@@ -24,7 +24,6 @@ module Licenses
         raise Licenses::NotEnoughError,
               I18n.t('licenses.not_enough_license', client_name: client.name, report_name: report.name)
       end
-      project_license = nil
 
       if license.is_project_specific?
         project_license = ProjectLicense.find_by(
@@ -32,7 +31,7 @@ module Licenses
           license_id: license.id
         )
 
-        unless project_license&.enabled? && project_license.enough_licenses?
+        unless project_license&.enabled? && project_license?.enough_licenses?
           raise Licenses::NotEnoughError,
                 I18n.t('licenses.project_limit_reached', license_name: license.report_family.name)
         end
