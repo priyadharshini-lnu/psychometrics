@@ -8,6 +8,7 @@ const settings = {
     [4, 'pearson'],
     [6, 'mettl'],
     [7, 'skillvue'],
+    [8, 'yoodli'],
   ],
 }
 

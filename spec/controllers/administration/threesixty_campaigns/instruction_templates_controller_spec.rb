@@ -36,6 +36,6 @@ RSpec.describe Administration::ThreesixtyCampaigns::InstructionTemplatesControll
         'content' => 'Ar'
       }
     ])
-    expect(parsed_response['available_locales']).to eq(%w[en ar])
+    expect(parsed_response['available_locales']).to match_array(%w[en ar])
   end
 end

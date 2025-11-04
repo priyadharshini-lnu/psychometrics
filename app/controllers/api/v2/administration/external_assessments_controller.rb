@@ -23,6 +23,8 @@ module Api
           render_json_api_response(simulation_assessments(search))
         when 'skillvue'
           render_json_api_response(skillvue_assessments(search))
+        when 'yoodli'
+          render_json_api_response(yoodli_assessments(search))
       end
     end
 
@@ -79,6 +81,12 @@ module Api
 
     def skillvue_assessments(search)
       SkillvueAssessment.filterable_fields(search).
+        where(project_id: params[:filter][:project_id_eq]).
+        map { |a| { id: a.product_id, name: a.name } }
+    end
+
+    def yoodli_assessments(search)
+      YoodliAssessment.filterable_fields(search).
         where(project_id: params[:filter][:project_id_eq]).
         map { |a| { id: a.product_id, name: a.name } }
     end

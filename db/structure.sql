@@ -3978,6 +3978,43 @@ ALTER SEQUENCE public.licenses_id_seq OWNED BY public.licenses.id;
 
 
 --
+-- Name: lti_oauth2_access_tokens; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.lti_oauth2_access_tokens (
+    id bigint NOT NULL,
+    token_hash character varying NOT NULL,
+    project_id bigint,
+    integration_id character varying,
+    scope character varying,
+    expires_at timestamp(6) without time zone NOT NULL,
+    last_used_at timestamp(6) without time zone,
+    revoked boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: lti_oauth2_access_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.lti_oauth2_access_tokens_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: lti_oauth2_access_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.lti_oauth2_access_tokens_id_seq OWNED BY public.lti_oauth2_access_tokens.id;
+
+
+--
 -- Name: media_responses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4952,7 +4989,8 @@ CREATE TABLE public.privacy_settings (
     mask_identity_for_skillvue boolean DEFAULT false,
     allow_video_call_recording boolean DEFAULT false NOT NULL,
     enable_video_call_recording_for_all_new_campaigns boolean DEFAULT false NOT NULL,
-    video_call_recording_expiry_in_seconds integer
+    video_call_recording_expiry_in_seconds integer,
+    mask_identity_for_yoodli boolean DEFAULT false
 );
 
 
@@ -8574,6 +8612,71 @@ ALTER SEQUENCE public.workshops_id_seq OWNED BY public.workshops.id;
 
 
 --
+-- Name: yoodli_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.yoodli_assessments (
+    id bigint NOT NULL,
+    product_id character varying NOT NULL,
+    name character varying NOT NULL,
+    project_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: yoodli_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.yoodli_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: yoodli_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.yoodli_assessments_id_seq OWNED BY public.yoodli_assessments.id;
+
+
+--
+-- Name: yoodli_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.yoodli_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    email character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: yoodli_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.yoodli_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: yoodli_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.yoodli_user_assessments_id_seq OWNED BY public.yoodli_user_assessments.id;
+
+
+--
 -- Name: active_storage_attachments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9264,6 +9367,13 @@ ALTER TABLE ONLY public.license_usages ALTER COLUMN id SET DEFAULT nextval('publ
 --
 
 ALTER TABLE ONLY public.licenses ALTER COLUMN id SET DEFAULT nextval('public.licenses_id_seq'::regclass);
+
+
+--
+-- Name: lti_oauth2_access_tokens id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.lti_oauth2_access_tokens ALTER COLUMN id SET DEFAULT nextval('public.lti_oauth2_access_tokens_id_seq'::regclass);
 
 
 --
@@ -10128,6 +10238,20 @@ ALTER TABLE ONLY public.workshops ALTER COLUMN id SET DEFAULT nextval('public.wo
 
 
 --
+-- Name: yoodli_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_assessments ALTER COLUMN id SET DEFAULT nextval('public.yoodli_assessments_id_seq'::regclass);
+
+
+--
+-- Name: yoodli_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.yoodli_user_assessments_id_seq'::regclass);
+
+
+--
 -- Name: active_storage_attachments active_storage_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10933,6 +11057,14 @@ ALTER TABLE ONLY public.license_usages
 
 ALTER TABLE ONLY public.licenses
     ADD CONSTRAINT licenses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: lti_oauth2_access_tokens lti_oauth2_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.lti_oauth2_access_tokens
+    ADD CONSTRAINT lti_oauth2_access_tokens_pkey PRIMARY KEY (id);
 
 
 --
@@ -11933,6 +12065,22 @@ ALTER TABLE ONLY public.workshop_subjects
 
 ALTER TABLE ONLY public.workshops
     ADD CONSTRAINT workshops_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: yoodli_assessments yoodli_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_assessments
+    ADD CONSTRAINT yoodli_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: yoodli_user_assessments yoodli_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_user_assessments
+    ADD CONSTRAINT yoodli_user_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -13847,6 +13995,41 @@ CREATE INDEX index_licenses_on_client_id_and_report_family_id ON public.licenses
 
 
 --
+-- Name: index_lti_oauth2_access_tokens_on_expires_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lti_oauth2_access_tokens_on_expires_at ON public.lti_oauth2_access_tokens USING btree (expires_at);
+
+
+--
+-- Name: index_lti_oauth2_access_tokens_on_integration_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lti_oauth2_access_tokens_on_integration_id ON public.lti_oauth2_access_tokens USING btree (integration_id);
+
+
+--
+-- Name: index_lti_oauth2_access_tokens_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lti_oauth2_access_tokens_on_project_id ON public.lti_oauth2_access_tokens USING btree (project_id);
+
+
+--
+-- Name: index_lti_oauth2_access_tokens_on_project_id_and_expires_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lti_oauth2_access_tokens_on_project_id_and_expires_at ON public.lti_oauth2_access_tokens USING btree (project_id, expires_at);
+
+
+--
+-- Name: index_lti_oauth2_access_tokens_on_token_hash; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_lti_oauth2_access_tokens_on_token_hash ON public.lti_oauth2_access_tokens USING btree (token_hash);
+
+
+--
 -- Name: index_media_responses_on_question_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15758,6 +15941,27 @@ CREATE INDEX index_workshops_on_campaign_id ON public.workshops USING btree (cam
 
 
 --
+-- Name: index_yoodli_assessments_on_product_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_yoodli_assessments_on_product_id_and_project_id ON public.yoodli_assessments USING btree (product_id, project_id);
+
+
+--
+-- Name: index_yoodli_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_yoodli_assessments_on_project_id ON public.yoodli_assessments USING btree (project_id);
+
+
+--
+-- Name: index_yoodli_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_yoodli_user_assessments_on_user_assessment_id ON public.yoodli_user_assessments USING btree (user_assessment_id);
+
+
+--
 -- Name: membership_columns_uniq_index; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16539,6 +16743,14 @@ ALTER TABLE ONLY public.campaign_reports
 
 
 --
+-- Name: yoodli_user_assessments fk_rails_41044cc377; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_user_assessments
+    ADD CONSTRAINT fk_rails_41044cc377 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+
+
+--
 -- Name: communications fk_rails_41c5e93ac9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16731,6 +16943,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: yoodli_assessments fk_rails_524e020c38; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_assessments
+    ADD CONSTRAINT fk_rails_524e020c38 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: workshop_assessors fk_rails_524f182ee9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16760,6 +16980,14 @@ ALTER TABLE ONLY public.sms_records
 
 ALTER TABLE ONLY public.workshop_invited_subjects
     ADD CONSTRAINT fk_rails_592e1c2e7f FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: lti_oauth2_access_tokens fk_rails_5aa1c20c50; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.lti_oauth2_access_tokens
+    ADD CONSTRAINT fk_rails_5aa1c20c50 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -18697,6 +18925,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251027145358'),
 ('20251029094535'),
 ('20251029094056'),
 ('20251029073341'),
@@ -18714,6 +18943,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251008144510'),
 ('20251006071723'),
 ('20251003104731'),
+('20251014070912'),
+('20251006101155'),
+('20251006100719'),
 ('20251001034346'),
 ('20250930153016'),
 ('20250924140546'),

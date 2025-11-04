@@ -2564,6 +2564,13 @@ en:
         details: Details
         name: Integration Name
       details:
+        client_id: Client ID
+        deployment_id: Deployment ID
+        platform_access_token_url: Platform Access Token URL
+        platform_authentication_request_url: Platform Authentication Request URL
+        platform_host_name: Platform Host Name
+        platform_id: Platform ID
+        platform_public_keyset_url: Platform Public Keyset URL
         provider: Provider Name
         webhookUrl: Webhook URL
         webhookUrls: Webhook URLs
@@ -2594,11 +2601,16 @@ en:
         skillvue:
           apiKey: API Key
           apiKeyRequired: API key is required
+        yoodli:
+          keyset_url: Keyset URL
+          launch_url: Launch URL
+          login_url: Login URL
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Tenancy name is already present in other project
@@ -2608,6 +2620,24 @@ en:
         skillvue:
           api_key_present: API key is already present in other project
       view_all_schedules: View All Mettl Schedules
+      yoodli_assessments:
+        add_assessment: Add Yoodli Assessment
+        columns:
+          actions: Actions
+          created_at: Created At
+          name: Assessment Name
+          product_id: Product ID
+        delete_confirm: Are you sure you want to delete this Yoodli assessment?
+        edit_assessment: Edit Yoodli Assessment
+        manage_catalog: Manage Yoodli Assessments
+        messages:
+          create_success: Yoodli assessment '%{name}' was created successfully
+          delete_success: Yoodli assessment was deleted successfully
+          update_success: Yoodli assessment '%{name}' was updated successfully
+        placeholders:
+          name: Enter assessment name
+          product_id: Enter product ID
+        search: Search
     interview_questions:
       delete_confirmation: Are you sure you want to delete this Interview Question?
       description: Descripton
@@ -3344,6 +3374,7 @@ en:
         mask_identity_for_pearson: Mask data for Pearson
         mask_identity_for_saville: Mask data for Saville
         mask_identity_for_skillvue: Mask data for Skillvue
+        mask_identity_for_yoodli: Mask data for Yoodli
         privacy_link: Enable Privacy Link
         privacy_link_label: Privacy Link
         privacy_link_placeholder: Enter Privacy Link

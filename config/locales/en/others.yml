@@ -422,6 +422,10 @@ en:
               inclusion: must be a boolean
             start_date_time:
               invalid_datetime: is invalid
+        yoodli:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +456,7 @@ en:
           simulation: Simulation
           skillvue: Skillvue
           threesixty: 360 Campaign
+          yoodli: Yoodli
         category: Category
         created_at: Created Date
         description: Description
@@ -469,6 +474,7 @@ en:
           saville: Saville Assessment
           simulation: Simulation Assessment
           skillvue: Skillvue Assessment
+          yoodli: Yoodli Assessment
         updated_at: Modified Date
       assign:
         completed_at: Completion Date
@@ -1030,6 +1036,7 @@ en:
         saville_assessment_name: Saville assessment Name
         simulation_assessment_name: Simulation Assessment Name
         skillvue_assessment_name: Skillvue Assessment Name
+        yoodli_assessment_name: Yoodli Assessment Name
       translations_migrated: Translation Migrated
     create: Create
     dashboard: Dashboard
@@ -1071,6 +1078,7 @@ en:
         simulation: Simulation
         skillvue: Skillvue
         threesixty: 360 Campaign
+        yoodli: Yoodli
       status:
         finished: Finished
         in_progress: In Progress
@@ -1083,6 +1091,7 @@ en:
         saville: Saville Assessment
         simulation: Simulation Assessment
         skillvue: Skillvue Assessment
+        yoodli: Yoodli Assessment
     flow:
       end_assessment_modal:
         custom_message: Custom end of assessment message
@@ -1469,6 +1478,8 @@ en:
       skillvue_email_id: Skillvue Candidate Email ID
       skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Universal link
+      yoodli_email_id: Yoodli Candidate Email ID
+      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl Schedule Name
       title: Assessment Details
@@ -1932,6 +1943,7 @@ en:
       hide: Hide
       view: View
     validations:
+      required: This field is required
       select_locale: Please Select Some locale(s)
       should_be_whole_number: should be a whole number
   confirmation:
@@ -2235,6 +2247,7 @@ en:
       uniq?: should be unique
       uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}
       uniq_skillvue: This Skillvue assessment is already present in the system. ID of this assessment is %{id}
+      uniq_yoodli: This Yoodli assessment is already present in the system. ID of this assessment is %{id}
       update_workshop:
         bookings_exist: Cannot modify the schedule as participants have already booked this time slot.
         less_than_booked: The total seats must be greater than booked
@@ -3185,6 +3198,34 @@ en:
       threesixty: Threesixty
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Client ID is required
+          invalid: Client ID does not match the registered tool identifier
+          validation_failed: Client ID validation failed
+        login_hint:
+          assessment_completed: User assessment is already completed
+          blank: Login hint is required
+          invalid_user_assessment: Login hint does not reference a valid user assessment
+        lti_deployment_id:
+          not_found: Deployment ID does not reference a valid integration
+        nonce:
+          blank: Nonce is required
+        redirect_uri:
+          blank: Redirect URI is required
+          has_fragment: Redirect URI must not contain a fragment
+          https_required: Redirect URI must use HTTPS in production
+          invalid_format: Redirect URI must be a valid URI format
+          missing_host: Redirect URI must include a host
+          scheme_not_allowed: Redirect URI must use HTTP or HTTPS protocol
+        response_type:
+          blank: Response type is required
+          invalid: Response type must be 'id_token'
+        scope:
+          blank: Scope is required
+          invalid: Scope must be 'openid'
   mailer:
     copyright:
       text: Lighthouse. All rights reserved
@@ -3430,10 +3471,12 @@ en:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Load from Mettl
       load_from_pearson: Load from Pearson
       load_from_skillvue: Load from Skillvue
+      load_from_yoodli: Load from Yoodli
       none_external: None - Use report builder
     language: Report Language
     language_updated: Report Language was updated successfully

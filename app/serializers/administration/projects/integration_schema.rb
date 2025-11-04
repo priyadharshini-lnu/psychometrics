@@ -25,6 +25,10 @@ module Administration
           optional(:skillvue_integration_details).maybe do
             hash(Administration::Projects::Integrations::SkillvueIntegrationSchema.schema(_, _))
           end
+
+          optional(:yoodli_integration_details).maybe do
+            hash(Administration::Projects::Integrations::YoodliIntegrationSchema.schema(_, _))
+          end
         end
       end
     end

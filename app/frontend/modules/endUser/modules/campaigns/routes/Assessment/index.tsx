@@ -6,6 +6,7 @@ import { PrivacyConsent } from './PrivacyConsent'
 import { LanguageSelection } from './LanguageSelection'
 import { HoganStep } from './HoganStep'
 import { ExternalAssessment } from './ExternalAssessment'
+import { LTIAssessment } from './LTIAssessment'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import {
   fetchUserAssessment,
@@ -75,6 +76,16 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
         onCancel={backToCampaign}
         userAssessmentId={userAssessmentData.id}
         userAssessmentUrl={userAssessmentData.url}
+      />
+    )
+  }
+
+  if (userAssessmentData.type === 'Assessments::Yoodli') {
+    return (
+      <LTIAssessment
+        onCancel={backToCampaign}
+        userAssessmentId={userAssessmentId}
+        userAssessmentUrl={assessmentUrl(userAssessmentData, locale || I18n.currentLocale())}
       />
     )
   }
