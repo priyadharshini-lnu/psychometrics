@@ -1477,6 +1477,7 @@ en:
       export_occupations_job_scheduled: Occupations Export job was scheduled successfully
       export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job was scheduled successfully
       external_results_export_scheduled: External Assessment export job was scheduled successfully
+      no_participants_selected: Please select at least one participant to proceed.
       norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
       normalize_factor_scores_scheduled: Normalizing factor scores job was scheduled successfully.
       raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully
@@ -1621,6 +1622,7 @@ en:
       report_bundle_placeholder: Select a report bundle
     messages:
       bulk_download_error: Bulk download is limited to 1000 report files. If you have selected many langauges, please reduce it.
+      bulk_download_no_reports: No reports found. Please generate the reports before downloading.
       bulk_download_successful: Bulk report download job was scheduled successfully
       export_report_data_scheduled: Report data export job was scheduled successfully
     modals:

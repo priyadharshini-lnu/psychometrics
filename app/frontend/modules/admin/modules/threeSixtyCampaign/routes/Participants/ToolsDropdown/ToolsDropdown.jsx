@@ -178,6 +178,11 @@ export default function ToolsDropdown ({
   }
 
   const handleRegenerateReports = (campaignId) => {
+    if (!selectedUserReportIds || selectedUserReportIds.length === 0) {
+      message.warning(I18n.t('campaign_assessment.messages.no_participants_selected'), 5)
+      return
+    }
+
     if (reportAvailableLanguages.length === 0) {
       modal.confirm({
         title: I18n.t('campaign_assessment.modals.regenerate.title'),
@@ -215,6 +220,11 @@ export default function ToolsDropdown ({
   }
 
   const handleBulkDownloads = () => {
+    if (!selectedUserReportIds || selectedUserReportIds.length === 0) {
+      message.warning(I18n.t('campaign_assessment.messages.no_participants_selected'), 5)
+      return
+    }
+
     if (reportAvailableLanguages.length === 0) {
       bulkDownloads(campaignId, [reportDefaultLanguage], selectedUserReportIds)
         .then(() => {
