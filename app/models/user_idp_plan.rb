@@ -77,9 +77,6 @@ class UserIdpPlan < ApplicationRecord
 
   after_create :schedule_idp_assigned_notification
   after_update :update_completed_at, if: :saved_change_to_completion_status?
-  after_commit :schedule_idp_status_notification,
-               if: proc { saved_change_to_approval_status? && (approved? || rejected?) },
-               on: [:update]
 
   alias report_pdfs idp_report_pdfs
 
@@ -117,6 +114,7 @@ class UserIdpPlan < ApplicationRecord
         destroy_soft_deleted_skills_and_actions
       end
       update(review_note: note) if to == :rejected
+      schedule_idp_status_notification(to) if %i[approved rejected].include?(to)
     end
 
     after_transition do |_from, _to, _event, *_|
@@ -233,14 +231,20 @@ class UserIdpPlan < ApplicationRecord
     )
   end
 
-  def schedule_idp_status_notification
-    notification_kind = approved? ? :idp_template_approved : :idp_template_rejected
+  def schedule_idp_status_notification(status)
+    notification_kind = if status == :approved
+                          :idp_template_approved
+                        elsif status == :rejected
+                          :idp_template_rejected
+                        end
+
     return if communication_emails.joins(:communication).
               exists?(communications: { kind: notification_kind })
 
     communication = Communication.order(:created_at).
                     where(kind: notification_kind, campaign_id: campaign_id).
                     last
+
     return unless communication
 
     communication.create_communication_email_with_resources(
