@@ -2638,7 +2638,7 @@ hr:
           option_2: Dobro za zaposlene profesionalce
           option_3: Potpuno uređivanje nakon generiranja
           title: AI IDP s 1 klikom
-        sub_title: Izradimo prilagođeni jorney za usavršavanje mapiran prema vašim težnjama u karijeri i vođen umjetnom inteligencijom
+        sub_title: Izradimo prilagođeno putovanje za usavršavanje mapirano prema vašim težnjama u karijeri i vođeno umjetnom inteligencijom
         title: Izradite svoj individualni razvojni plan
       summary:
         chat_title: Sažetak uvida u chat
@@ -2653,7 +2653,7 @@ hr:
         drop: Ispustite datoteku ovdje
         title: Prijenos datoteka
       welcome:
-        text: Jeste li spremni zacrtati svoj rast jorney? Počnimo!
+        text: Jeste li spremni zacrtati svoje putovanje rasta? Počnimo!
         title: Pozdrav, ja sam vaš razvojni asistent
     behavioral: Bihevioralne
     board: Odbor

@@ -2623,7 +2623,7 @@ hu:
           option_2: Elfoglalt szakembereknek jó
           option_3: Generálás után teljesen szerkeszthető
           title: 1 kattintásos AI IDP
-        sub_title: Hozzunk létre egy testreszabott továbbképzési jorney-t, amely az Ön karriertörekvéseihez igazodik, és a mesterséges intelligencia irányítja
+        sub_title: Hozzunk létre egy testreszabott továbbképzési utazást, amely az Ön karriertörekvéseihez igazodik, és a mesterséges intelligencia irányítja
         title: Készítse el egyéni fejlesztési tervét
       summary:
         chat_title: A Chat Insight összefoglalója
@@ -2638,7 +2638,7 @@ hu:
         drop: Dobja ide a fájlt
         title: Fájlok feltöltése
       welcome:
-        text: Készen állsz a növekedésed feltérképezésére jorney? Kezdjük!
+        text: Készen állsz a növekedési utazásod feltérképezésére? Kezdjük!
         title: Helló, én vagyok a fejlesztési asszisztensed
     behavioral: Viselkedési
     board: Beszáll

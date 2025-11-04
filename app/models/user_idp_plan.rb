@@ -107,6 +107,9 @@ class UserIdpPlan < ApplicationRecord
     state :approved do
       event :draft, transitions_to: :draft, if: ->(ua) { ua.completion_status != 'completed' }
     end
+    state :ai_assisted_idp_in_progress do
+      event :draft, transitions_to: :draft
+    end
 
     on_transition do |_from, to, _event, note = nil, *_|
       if to == :approved

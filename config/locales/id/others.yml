@@ -2627,7 +2627,7 @@ id:
           option_2: Cocok untuk profesional yang sibuk
           option_3: Dapat diedit sepenuhnya setelah generasi
           title: IDP AI 1-Klik
-        sub_title: Mari buat jorney peningkatan keterampilan yang disesuaikan yang dipetakan dengan aspirasi karir Anda dan dipandu oleh AI
+        sub_title: Mari buat perjalanan peningkatan keterampilan yang disesuaikan yang dipetakan dengan aspirasi karir Anda dan dipandu oleh AI
         title: Buat Rencana Pengembangan Individu Anda
       summary:
         chat_title: Ringkasan Wawasan Obrolan
@@ -2642,7 +2642,7 @@ id:
         drop: Jatuhkan file di sini
         title: Unggah file
       welcome:
-        text: Siap untuk memetakan pertumbuhan Anda jorney? Mari kita mulai!
+        text: Siap untuk memetakan perjalanan pertumbuhan Anda? Mari kita mulai!
         title: Halo, saya asisten pengembangan Anda
     behavioral: Perilaku
     board: Papan

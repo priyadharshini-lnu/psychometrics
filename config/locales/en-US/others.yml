@@ -2621,7 +2621,7 @@ en-US:
           option_2: Good for busy professionals
           option_3: Fully editable after generation
           title: 1-Click AI IDP
-        sub_title: Let's create a customized upskilling jorney mapped to your career aspiration and guided by AI
+        sub_title: Let's create a customized upskilling journey mapped to your career aspiration and guided by AI
         title: Create Your Individual Development Plan
       summary:
         chat_title: Chat Insight Summary
@@ -2636,7 +2636,7 @@ en-US:
         drop: Drop file here
         title: Upload files
       welcome:
-        text: Ready to chart your growth jorney? Let's begin!
+        text: Ready to chart your growth journey? Let's begin!
         title: Hello, I'm your development assistant
     behavioral: Behavioral
     board: Board

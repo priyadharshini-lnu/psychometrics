@@ -2642,7 +2642,7 @@ pl:
         drop: Upuść plik tutaj
         title: Przesyłanie plików
       welcome:
-        text: Gotowy, aby nakreślić swój jorney wzrostu? Zaczynamy!
+        text: Gotowy, aby nakreślić swoją podróż wzrostu? Zaczynamy!
         title: Cześć, jestem Twoim asystentem ds. rozwoju
     behavioral: Zachowanie
     board: Tablica
