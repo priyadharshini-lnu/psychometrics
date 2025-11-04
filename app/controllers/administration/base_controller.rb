@@ -51,6 +51,19 @@ module Administration
       I18n.locale = cookies[:locale].presence || I18n.default_locale
     end
 
+    def project_flags
+      match = params[:all]&.match(%r{projects/(\d+)})
+      return {} unless match
+
+      project_id = match[1]
+      project = Project.includes(:project_feature, client: :client_feature).find_by(id: project_id)
+      return {} unless project
+
+      {
+        idpEnabled: project.client.feature_enabled?(:idp) && project.project_feature_enabled?(:idp)
+      }
+    end
+
     def init_state
       return unless request.format.html?
 
@@ -70,7 +83,9 @@ module Administration
         config: {
           availableLocales: I18n.available_locales,
           features: feature_flags,
-          availableAiProviders: Settings.available_ai_providers.to_s.delete("'[]").split(',').map(&:strip).compact_blank
+          availableAiProviders: Settings.available_ai_providers.to_s.
+                    delete("'[]").split(',').map(&:strip).compact_blank,
+          project: project_flags
         }
       }
     end

@@ -31,6 +31,7 @@ const connecter = connect(
   (state: RootState) => ({
     currentUser: state.currentUser,
     features: getFeatures(state),
+    projectIdpEnabled: state.config.project.idpEnabled,
   }),
   {
     fetchProject,
@@ -41,7 +42,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const Project: FC<Props> = ({
-  currentUser, fetchProject, features,
+  currentUser, fetchProject, features, projectIdpEnabled,
 }) => {
   const { projectId } = useParams() as { projectId: string }
   const navigate = useNavigate()
@@ -139,6 +140,7 @@ const Project: FC<Props> = ({
   }
 
   const canShowIdpTab = () => {
+    if (!projectIdpEnabled) return false
     if (isSuperAdmin(currentUser)) return true
 
     const permissions = [
