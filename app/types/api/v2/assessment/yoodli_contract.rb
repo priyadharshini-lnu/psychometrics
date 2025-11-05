@@ -15,7 +15,7 @@ module Api
           next key.failure(:filled?) unless value
 
           project_id = values.dig(:data, :relationships, :project, :data, :id)
-          assessments = YoodliAssessment.where(project_id: project_id)
+          assessments = ::YoodliAssessment.where(project_id: project_id)
           key.failure(:not_in_the_list?) unless assessments.exists?(product_id: value)
         end
 
