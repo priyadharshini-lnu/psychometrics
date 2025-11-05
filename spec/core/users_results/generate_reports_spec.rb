@@ -10,12 +10,12 @@ describe UsersResults::GenerateReports do
     user_result = create(:users_result, subject: user, evaluator: user, assessment: assessment)
 
     create(:user_assessment,
-           campaign: campaign, assessment: assessment, subject: user, evaluator: user, users_result: user_result)
+           campaign: campaign, assessment: assessment, subject: user, evaluator: user,
+           users_result: user_result, status: :completed, score_calculated: true)
 
     user_report = create(:user_report, campaign: campaign, report_id: assessment.reports.first.id, user: user)
 
     expect(UserReports::GenerateAndSavePdfJob).to receive(:perform_later).with(user_report, user)
-
     described_class.call!(user_result, user)
   end
 
@@ -25,6 +25,7 @@ describe UsersResults::GenerateReports do
     user = build(:user)
 
     allow(user_result).to receive(:user_reports).and_return(user_reports)
+    allow_any_instance_of(UserReport).to receive(:all_assessments_are_scored?).and_return(true)
 
     expect(UserReports::GenerateAndSavePdfJob).to_not receive(:perform_later).with(user_reports[0], user)
     expect(UserReports::GenerateAndSavePdfJob).to receive(:perform_later).with(user_reports[1], user)
@@ -38,8 +39,9 @@ describe UsersResults::GenerateReports do
     user_report = create(:user_report, campaign: campaign, report: assessment.reports[0], user: user)
     create(:report_approval_setting, campaign: campaign, report: user_report.report)
     user_result = create(:users_result, campaign: campaign, subject: user, evaluator: user)
+
     create(:user_assessment, campaign: campaign, assessment: assessment, subject: user,
-           evaluator: user, users_result: user_result)
+           evaluator: user, users_result: user_result, status: :completed, score_calculated: true)
 
     expect(user_report.approval_status).to eq('not_ready')
     described_class.call!(user_result, user)

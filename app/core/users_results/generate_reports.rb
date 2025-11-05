@@ -14,6 +14,8 @@ module UsersResults
       user_result.user_reports.each do |user_report|
         next if options[:exceptUserReportIds]&.include?(user_report.id)
 
+        next unless user_report.all_assessments_are_scored?
+
         if user_report.has_approval_workflow?
           if user_report.threesixty?
             user_report.start_approval! if user_report.threesixty_subject.evaluation_status_completed?
