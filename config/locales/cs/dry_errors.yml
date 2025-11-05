@@ -1,0 +1,114 @@
+---
+cs:
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: Špatný formát subdomény.
+        reserved_subdomain: Subdoména %{value} je rezervována
+        uniq_subdomain: Subdoména by měla být jedinečná.
+      add_manager:
+        cannot_be_self: Uživatel nemůže být přiřazen jako svůj vlastní správce
+        manager_not_found: Správce nenalezen nebo není součástí stejného projektu
+        user_not_found: Uživatel nebyl nalezen nebo není součástí stejného projektu
+      admin:
+        already_added: Admin s již přidaným e-mailem.
+      already_assigned?: Toto hodnocení nelze propojit - je již přiřazeno k '%{linked_assessor_form_name}'.
+      already_invited: Tento uživatel již existuje v hodnotícím centru, které se pokoušíte přidat.
+      assessor_assessment:
+        already_added: Assessor Assessment již byl přidán do kampaně.
+        lead_already_added: Do kampaně lze přidat pouze jedno hodnocení hlavního hodnotitele.
+      campaign_factor:
+        code_already_exists: Faktor se stejným kódem již existuje.
+        invalid_lua_name: by měl být platný název proměnné lua
+        limit_exceeded: Dosáhli jste maximálního limitu faktorů kampaně %{limit}.
+        name_already_exists: Faktor se stejným názvem již existuje.
+        rank_not_allowed: Zařadit lze pouze faktory s výstupním typem numerickým.
+      campaign_factor_group:
+        group_already_exists: Skupina se stejným názvem již existuje.
+        last_factor_group: Nelze odstranit poslední skupinu faktorů kampaně.
+      campaign_idps:
+        idp_template_not_published: Tato šablona IDP dosud není zveřejněna, zveřejněte ji před přiřazením kampaně.
+      cant_be_deleted: Tento záznam nelze smazat
+      client_feature:
+        ai_assisted_idp_feature_error: Nemůže to být pravda, pokud je funkce asistentů ai zakázána
+      create_superadmin:
+        uniq_email: E-mail by měl být uniq.
+      development_actions:
+        only_global_skills_allowed: Vybrané dovednosti musí být globální.
+        skills_not_belong_to_project: Vybrané dovednosti musí patřit k zadanému projektu.
+        skills_required: Vyberte alespoň jednu dovednost.
+      exceeded_subjects_count: Na jednu pozvánku můžete přidat pouze %{count} subjektů
+      filled?: nemůže být prázdný
+      idp_template:
+        content_required: Pro pokyny je vyžadován obsah
+        tag_or_skill_required: Vyberte prosím buď štítek nebo dovednost, když je vybrána možnost "Vybráno".
+      invalid_name: jako platné znaky jsou povoleny pouze abeceda, číslo, mezera, pomlčka a tečka
+      invalid_value: neplatný příkaz '%{value}' na řádku číslo %{row}
+      job_roles:
+        unique_within_job_group: Pracovní role se stejným názvem již existuje.
+      json?: Měl by to být platný JSON
+      key?: nemůže být prázdný
+      match_regexp?: neplatná hodnota
+      mettl_schedule_record_create:
+        uniq_schedule_name: Název plánu by měl být jedinečný
+      missed?: nemůže být prázdný
+      not_allowed?: není dovoleno měnit
+      not_in_the_list?: předána neplatná hodnota
+      not_uniq_variable: proměnná '%{value}' nadefinována na řádku číslo %{row}
+      project_assessments:
+        should_be_greater_than_zero: Platnost výsledku by měla být delší než 0 dní
+      project_feature:
+        global_skills_not_enabled_on_client: Chcete-li pro tento projekt povolit Global Skills, aktivujte jej v části Příznaky funkcí v nastavení klienta.
+      report_approval_settings:
+        report_exists: Nastavení schválení zprávy pro tuto zprávu již existuje.
+        validates_admins: Správci nemají ke kampani přístup.
+      report_families_reports:
+        report_exists: Tato zpráva je již součástí balíčku zpráv
+      size?: velikost by měla být menší než %{size}
+      skill:
+        already_added: Dovednost se stejným jménem již byla přidána.
+      skill_alias:
+        unique_alias: Alias by měl být jedinečný
+        unique_skill: Dovednost by měla být jedinečná
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Dovednost a pracovní role musí patřit ke stejnému projektu nebo být globální.
+        unique_mappings: Mapování se stejnou dovedností a pracovní rolí již existuje.
+      uniq: Toto posouzení Mettl je již v systému přítomno. ID tohoto posouzení je %{id}
+      uniq?: by měly být jedinečné
+      uniq_simulation: Toto posouzení simulace je již v systému přítomno. ID tohoto posouzení je %{id}
+      uniq_skillvue: Toto hodnocení dovedností je již v systému obsaženo. ID tohoto hodnocení je %{id}
+      update_workshop:
+        bookings_exist: Časový rozvrh nelze změnit, protože účastníci si tento časový úsek již rezervovali.
+        less_than_booked: Celkový počet míst musí být větší než rezervovaný
+      user_availability_date:
+        overlaps_date: Překrývá jinou dostupnost %{range}
+        overlaps_time: Překrývá interval %{interval}
+        start_date_should_be_less: Datum zahájení by mělo být kratší než datum ukončení
+        start_time_should_be_less: Čas zahájení by měl být kratší než čas ukončení
+      user_idp_plan:
+        idp_template_already_assigned_to_user: Tato šablona Idp je již přiřazena tomuto uživateli a je aktivní
+        idp_template_not_published: Tato šablona IDP dosud není zveřejněna, zveřejněte ji před přiřazením uživateli.
+      user_saved_filters:
+        limit_exceeded: Můžete mít pouze %{limit} uložených filtrů, pokud chcete přidat další, laskavě uložené filtry odstraňte.
+        unique_name: Filtr se stejným názvem již existuje.
+      workshop_invited_subject_create:
+        already_exists: Předmět již ve výzvě existuje.
+      workshop_subject_create:
+        already_exists: Předmět již v tomto středisku hodnocení existuje.
+        part_of_other_workshop: Subjekt je již účastníkem '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Pro tento seminář nejsou k dispozici žádná volná místa.
+        scheduling_lead_time_passed: Čas pro plánování vypršel, předmět nelze znovu zapsat.
+        workshop_subject_not_found: Předmět semináře nebyl nalezen
+      workshops:
+        no_available_assessor_slots: Žádné volné sloty pro hodnotitele %{assessor}
+        no_available_manager_slots: Pro manažera nejsou k dispozici žádné sloty %{manager}
+    users:
+      registrations:
+        new:
+          register: Registrace
+          sign_in: Přihlásit se
+      sessions:
+        new:
+          register: Registrace
+          sign_in: Přihlásit se
