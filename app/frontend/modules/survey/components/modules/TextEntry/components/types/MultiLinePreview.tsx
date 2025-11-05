@@ -33,7 +33,7 @@ const MultiLinePreview: FC<Props> = ({
   questionTextId,
 }) => {
   const {
-    props: { type, allowDictation },
+    props: { type, allowDictation, allowContentCopy: allowContentCopyOnQuestion },
     id: questionId,
     result,
   } = model
@@ -93,6 +93,7 @@ const MultiLinePreview: FC<Props> = ({
                 questionId={questionId}
                 focus={focus}
                 questionTextId={questionTextId}
+                allowContentCopyOnQuestion={allowContentCopyOnQuestion}
               />
             </SpeechToTextInput>
           ) : (
@@ -105,6 +106,7 @@ const MultiLinePreview: FC<Props> = ({
               questionId={questionId}
               focus={focus}
               questionTextId={questionTextId}
+              allowContentCopyOnQuestion={allowContentCopyOnQuestion}
             />
           )}
         </Col>
@@ -123,6 +125,7 @@ interface MultiLineTextAreaProps {
   questionId: number
   focus?:boolean
   questionTextId: string
+  allowContentCopyOnQuestion?: boolean
 }
 
 const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
@@ -134,10 +137,11 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
   questionId,
   focus,
   questionTextId,
+  allowContentCopyOnQuestion,
 }) => {
   const rows = type === 'MultiLine' ? 3 : 6
   const inputRef = useRef<HTMLTextAreaElement>(null)
-  const isCopyContentEnabled = useSelector(
+  const isCopyContentEnabledOnAssessment = useSelector(
     ({ preview }: AppStore) => preview.extraOptions?.enable_copy_content,
   )
   if (focus && inputRef.current) {
@@ -145,7 +149,13 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
   }
 
   const handleCopyContentEvents = (e) => {
-    if (!isCopyContentEnabled) {
+    if (!isCopyContentEnabledOnAssessment && !allowContentCopyOnQuestion) {
+      e.preventDefault()
+    }
+  }
+
+  const handleConextMenu = (e) => {
+    if (!isCopyContentEnabledOnAssessment) {
       e.preventDefault()
     }
   }
@@ -163,7 +173,7 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
       id={`question-${questionId}`}
       ref={inputRef}
       aria-labelledby={questionTextId}
-      onContextMenu={handleCopyContentEvents}
+      onContextMenu={handleConextMenu}
       onCopy={handleCopyContentEvents}
       onCut={handleCopyContentEvents}
     />
