@@ -47,7 +47,9 @@ class UserReport < ApplicationRecord
   enum :status, { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 
   after_commit :schedule_report_available_notification,
-               if: proc { status_previously_changed? && status == 'prepared' },
+               if: proc {
+                 (status_previously_changed? || saved_change_to_user_access?) && can_notify_report_availablity?
+               },
                on: [:update]
 
   scope :for_assessment, lambda { |assessment_id|
@@ -219,11 +221,22 @@ class UserReport < ApplicationRecord
     }
   end
 
-  def schedule_report_available_notification
-    return unless user_access?
-    return if communication_emails.joins(:communication).
-              exists?(communications: { kind: :report_available })
+  def report_available_for_end_user?
+    status == 'prepared' && user_access == true
+  end
 
+  def report_available_email_already_sent?
+    communication_emails.joins(:communication).exists?(communications: { kind: :report_available })
+  end
+
+  def can_notify_report_availablity?
+    return false unless report_available_for_end_user?
+    return false if report_available_email_already_sent?
+
+    true
+  end
+
+  def schedule_report_available_notification
     communication = Communication.order(:created_at).where(kind: :report_available, campaign_id: campaign_id).last
     return unless communication
 

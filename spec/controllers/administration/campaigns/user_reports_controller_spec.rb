@@ -171,9 +171,50 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   end
 
   describe 'PATCH toggle_user_access' do
-    it 'toggles user_report status' do
-      patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
-      expect(response).to have_http_status(:success)
+    context 'with basic functionality' do
+      it 'successfully toggles user access and returns success status' do
+        patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context 'notification scheduling' do
+      context 'when report status is prepared' do
+        it 'schedules notification when user access is enabled' do
+          user_report.update(user_access: false, status: 'prepared')
+
+          expect_any_instance_of(UserReport).to receive(:schedule_report_available_notification).and_call_original
+
+          patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+          expect(response).to have_http_status(:success)
+          expect(user_report.reload.user_access).to be_truthy
+        end
+
+        it 'does not schedule notification when user access is disabled' do
+          user_report.update(user_access: true, status: 'prepared')
+
+          expect_any_instance_of(UserReport).not_to receive(:schedule_report_available_notification)
+
+          patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+          expect(response).to have_http_status(:success)
+          expect(user_report.reload.user_access).to be_falsy
+        end
+      end
+
+      context 'when report status is not prepared' do
+        it 'does not schedule notification regardless of user access change' do
+          user_report.update(user_access: false, status: 'not_prepared')
+
+          expect_any_instance_of(UserReport).not_to receive(:schedule_report_available_notification)
+
+          patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+          expect(response).to have_http_status(:success)
+          expect(user_report.reload.user_access).to be_truthy
+        end
+      end
     end
   end
 

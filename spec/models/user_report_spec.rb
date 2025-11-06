@@ -92,6 +92,18 @@ RSpec.describe UserReport, type: :model do
         expect(communication_email.campaign_user).to eq(campaign_user)
         expect(communication_email.communication_email_resources.first.resource).to eq(user_report)
       end
+
+      context 'when user_access is set to true' do
+        before { user_report.update!(user_access: false, status: 'prepared') }
+
+        it 'creates communication emails' do
+          communication
+          expect(user_report).to receive(:schedule_report_available_notification).and_call_original
+          user_report.update!(user_access: true)
+
+          expect(CommunicationEmail.count).to eq(1)
+        end
+      end
     end
 
     context 'when status changes to prepared but no communication exists' do
