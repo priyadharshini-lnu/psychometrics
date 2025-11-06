@@ -144,7 +144,7 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
             setSearchTerm(e.target.value)
           }}
           value={searchTerm}
-          placeholder="Search Development Actions"
+          placeholder={I18n.t('idp.development_actions.search_development_actions')}
         />
         <BoxWithShadow>
           {isDALoading ? (

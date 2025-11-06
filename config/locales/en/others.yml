@@ -2760,6 +2760,7 @@ en:
       publish_plan: Publish Plan
       remove: Remove Development Action
       save_plan: Save Plan
+      search_development_actions: Search Development Actions
       show_development_action_information: Show Development Action information
       skill: Skill
       sprint: Sprint
@@ -2941,6 +2942,7 @@ en:
     plan: Plan
     plan_status: Plan Status %{status}
     private: Private
+    public: Public
     reflective_questions:
       already_completed: The IDP has already been completed, you cannot answer the questions now.
       answer: Answer
@@ -2992,6 +2994,7 @@ en:
       not_started: Not Started
       pending_approval: Pending Approval
       rejected: Rejected
+      start_review: Start Review
     users: Users
     with_reflection_questions: With Reflection Questions
     without_reflection_questions: Without Reflection Questions

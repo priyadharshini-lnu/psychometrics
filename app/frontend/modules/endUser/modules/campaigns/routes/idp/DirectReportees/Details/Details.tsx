@@ -107,7 +107,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
               onClick={() => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.IN_REVIEW)}
               loading={isUpdating}
             >
-              Start Review
+              {I18n.t('idp.user_idp_status.start_review')}
             </Button>
           )}
           {status === USER_IDP_PLAN_STATUS.IN_REVIEW

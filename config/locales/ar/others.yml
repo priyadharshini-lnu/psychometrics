@@ -2780,6 +2780,7 @@ ar:
       publish_plan: نشر الخطة
       remove: إزالة
       save_plan: حفظ الخطة
+      search_development_actions: إجراءات تطوير البحث
       show_development_action_information: إظهار معلومات إجراءات التطوير
       skill: مهارة
       sprint: سباق قصير
@@ -2959,6 +2960,7 @@ ar:
     plan: خطة
     plan_status: حالة الباقة %{status}
     private: عسكري
+    public: عام
     reflective_questions:
       already_completed: لقد تم الانتهاء من IDP بالفعل، ولا يمكنك الإجابة عن الأسئلة الآن.
       answer: جواب
