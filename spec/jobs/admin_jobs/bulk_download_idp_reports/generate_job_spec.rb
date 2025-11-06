@@ -6,14 +6,16 @@ RSpec.describe AdminJobSteps::BulkDownloadIdpReports::GenerateJob, type: :job do
   describe '#perform' do
     let(:owner) { create(:user) }
     let(:campaign) { create(:campaign) }
-    let!(:user_idp_plans) { create_list(:user_idp_plan, 3, campaign: campaign) }
+    let!(:user) { create(:user) }
+    let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+    let!(:user_idp_plans) { create(:user_idp_plan, campaign: campaign, user: user) }
     let(:job_record) { create(:admin_job_record, owner: owner, data: { campaign_id: campaign.id }) }
     let(:job) { described_class.new }
 
     context 'when successful' do
       it 'updates job status and calls BulkGenerate service' do
         expect(Idp::BulkGenerate).to receive(:call).with(
-          user_idp_plans: user_idp_plans,
+          user_idp_plans: [user_idp_plans],
           current_user: job_record.owner,
           job_record: job_record
         )
