@@ -17,7 +17,7 @@ import styles from './styles.less'
 
 const { I18n } = window
 
-const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job, read }) => {
+const AdminJob: React.FC<{ job: AdminJobI, read: (id: number) => void }> = ({ job, read }) => {
   const [expanded, setExpanded] = useState(false)
   const errorMessages = _.clone(job.errorMessages) || []
   if (job.exception) errorMessages.push(job.exception)
@@ -79,7 +79,7 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
                 </div>
               ))}
             </>
-)}
+          )}
         />
       )}
       {expanded && job.content && (
@@ -111,7 +111,7 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
 export default AdminJob
 
 
-const More: React.FC<{expanded: boolean, onClick: () => void}> = ({ expanded, onClick }) => (
+const More: React.FC<{ expanded: boolean, onClick: () => void }> = ({ expanded, onClick }) => (
   <div onClick={onClick}>
     <Space>
       {expanded ? (

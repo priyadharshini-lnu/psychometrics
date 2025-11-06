@@ -764,11 +764,6 @@ zh:
       user: 用户
       user_agent: 用户代理
     back: 返回
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: <p>您确定要注销吗？</p> <p>如果要继续工作，请按 "否"；如果要注销当前用户，请按 "是"。</p>
-          title: "<strong>注销</strong>？"
     block_settings:
       modal:
         add_layer: 添加图层
@@ -1684,7 +1679,6 @@ zh:
             title: 存档<strong>%{name}</strong>?
           enable:
             title: 取消存档<strong>%{name}</strong>?
-      tenancies: 客户平台
       threesixty_campaign: 三六零运动
       toggle_status:
         successfully: 客户平台 %{name} 已成功更新。
@@ -2781,8 +2775,6 @@ zh:
       occupations: 职业
       options: 选项
       participants: 参与者
-      profile: 简介
-      profile_details: 详细信息
       project_admins: 项目管理员
       question_center: 问题中心
       registration_codes: 注册码

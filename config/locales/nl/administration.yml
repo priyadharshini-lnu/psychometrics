@@ -764,11 +764,6 @@ nl:
       user: Gebruiker
       user_agent: Gebruikersagent
     back: Terug
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Weet je zeker dat je wilt uitloggen?</p> <p>Druk op Nee als je verder wilt werken. Druk op Ja om de huidige gebruiker uit te loggen.</p>"
-          title: "<strong>Afmelden</strong>?"
     block_settings:
       modal:
         add_layer: Laag toevoegen
@@ -1684,7 +1679,6 @@ nl:
             title: Archief <strong>%{name}</strong>?
           enable:
             title: Unarchive <strong>%{name}</strong>?
-      tenancies: Huurcontracten voor klanten
       threesixty_campaign: Campagne Drieënzestig
       toggle_status:
         successfully: Client Tenancy %{name} is succesvol bijgewerkt.
@@ -2781,8 +2775,6 @@ nl:
       occupations: Beroepen
       options: Opties
       participants: Deelnemers
-      profile: Profiel
-      profile_details: Details
       project_admins: Projectbeheerders
       question_center: Vragencentrum
       registration_codes: Registratiecodes

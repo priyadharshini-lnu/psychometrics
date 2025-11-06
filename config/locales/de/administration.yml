@@ -764,11 +764,6 @@ de:
       user: Benutzer
       user_agent: Benutzer-Agent
     back: Zurück
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Sind Sie sicher, dass Sie sich abmelden wollen?</p> <p>Drücken Sie Nein, wenn Sie die Arbeit fortsetzen möchten. Drücken Sie Ja, um den aktuellen Benutzer abzumelden.</p>"
-          title: "<strong>Abmelden</strong>?"
     block_settings:
       modal:
         add_layer: Ebene hinzufügen
@@ -1684,7 +1679,6 @@ de:
             title: Archiv <strong>%{name}</strong>?
           enable:
             title: Archivierung aufheben <strong>%{name}</strong>?
-      tenancies: Kunden-Mietverhältnisse
       threesixty_campaign: Threesixty-Kampagne
       toggle_status:
         successfully: Kundenmietvertrag %{name} wurde erfolgreich aktualisiert.
@@ -2781,8 +2775,6 @@ de:
       occupations: Berufe
       options: Optionen
       participants: Teilnehmer
-      profile: Profil
-      profile_details: Einzelheiten
       project_admins: Projektadministratoren
       question_center: Fragen-Center
       registration_codes: Registrierungscodes

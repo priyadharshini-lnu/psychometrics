@@ -764,11 +764,6 @@ it:
       user: Utente
       user_agent: Agente utente
     back: Indietro
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Siete sicuri di voler effettuare il logout?</p> <p>Premere No se si desidera continuare a lavorare. Premere Sì per disconnettere l'utente corrente.</p>"
-          title: "<strong>Disconnettersi</strong>?"
     block_settings:
       modal:
         add_layer: Aggiungi strato
@@ -1684,7 +1679,6 @@ it:
             title: Archivio <strong>%{name}</strong>?
           enable:
             title: Disarchiviare <strong>%{name}</strong>?
-      tenancies: Clienti
       threesixty_campaign: Campagna Threesixty
       toggle_status:
         successfully: Il contratto di locazione del cliente %{name} è stato aggiornato con successo.
@@ -2781,8 +2775,6 @@ it:
       occupations: Occupazioni
       options: Opzioni
       participants: Partecipanti
-      profile: Profilo
-      profile_details: Dettagli
       project_admins: Amministratori di progetto
       question_center: Centro domande
       registration_codes: Codici di registrazione

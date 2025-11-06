@@ -764,11 +764,6 @@ ro:
       user: Utilizator
       user_agent: Agent utilizator
     back: Spate
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Sigur doriți să vă deconectați?</p> <p>Apăsați Nu dacă doriți să continuați lucrul. Apăsați Da pentru a deconecta utilizatorul curent.</p>"
-          title: Deconectare?<strong></strong>
     block_settings:
       modal:
         add_layer: Adăugare strat
@@ -1684,7 +1679,6 @@ ro:
             title: Arhiva <strong>%{name}</strong> ?
           enable:
             title: Dezarhivează <strong>%{name}</strong> ?
-      tenancies: Clienți
       threesixty_campaign: Campania Threesixty
       toggle_status:
         successfully: Client Tenancy %{name} a fost actualizat cu succes.
@@ -2781,8 +2775,6 @@ ro:
       occupations: Ocupaţii
       options: Opțiuni
       participants: Participanţii
-      profile: Profil
-      profile_details: Detalii
       project_admins: Administratori de proiect
       question_center: Centrul de întrebări
       registration_codes: Coduri de înregistrare

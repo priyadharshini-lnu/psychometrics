@@ -764,11 +764,6 @@ fr:
       user: Utilisateur
       user_agent: Agent utilisateur
     back: Retour
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Êtes-vous sûr de vouloir vous déconnecter ?</p> <p>Appuyez sur Non si vous voulez continuer à travailler. Appuyez sur Oui pour déconnecter l'utilisateur actuel.</p>"
-          title: "<strong>Se déconnecter</strong>?"
     block_settings:
       modal:
         add_layer: Ajouter un calque
@@ -1684,7 +1679,6 @@ fr:
             title: Archive <strong>%{name}</strong>?
           enable:
             title: Désarchiver <strong>%{name}</strong>?
-      tenancies: Baux des clients
       threesixty_campaign: Campagne Threesixty
       toggle_status:
         successfully: Le bail du client %{name} a été mis à jour avec succès.
@@ -2781,8 +2775,6 @@ fr:
       occupations: Professions
       options: Options
       participants: Les participants
-      profile: Profil
-      profile_details: Détails
       project_admins: Administrateurs de projets
       question_center: Centre de questions
       registration_codes: Codes d'enregistrement

@@ -764,11 +764,6 @@ th:
       user: ผู้ใช้
       user_agent: ตัวแทนผู้ใช้
     back: ย้อนกลับ
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?</p> <p>กด No หากคุณต้องการทํางานต่อ กด Yes เพื่อออกจากระบบผู้ใช้ปัจจุบัน</p>"
-          title: ออกจาก <strong>ระบบ</strong> ?
     block_settings:
       modal:
         add_layer: เพิ่มเลเยอร์
@@ -1684,7 +1679,6 @@ th:
             title: เก็บถาวร <strong>%{name}</strong> ?
           enable:
             title: ยกเลิกการเก็บถาวร <strong>%{name}</strong> ?
-      tenancies: บัญชีลูกค้า
       threesixty_campaign: แคมเปญ Threesixty
       toggle_status:
         successfully: พื้นที่เช่าของลูกค้า %{name} อัปเดตเรียบร้อยแล้ว
@@ -2781,8 +2775,6 @@ th:
       occupations: อาชีพ
       options: ตัวเลือก
       participants: ผู้เข้าร่วม
-      profile: โปรไฟล์
-      profile_details: รายละเอียด
       project_admins: ผู้ดูแลระบบโครงการ
       question_center: ศูนย์คําถาม
       registration_codes: รหัสการลงทะเบียน

@@ -40,14 +40,27 @@ type Params = {
 type Props = PropsFromRedux
 
 export default function ReportPreview ({
-  userReport, fetchReport, download, downloadInProgress,
-  features, asyncDownload, clearUseReportDetails, startQC,
-  sendToReview, abortQC, approveReport, requestChanges, removeApproval,
+  userReport,
+  fetchReport,
+  download,
+  downloadInProgress,
+  features,
+  asyncDownload,
+  clearUseReportDetails,
+  startQC,
+  sendToReview,
+  abortQC,
+  approveReport,
+  requestChanges,
+  removeApproval,
 }: Props) {
   const [pages, setPages] = useState([])
   const location = useLocation()
   const navigate = useNavigate()
-  const { campaignId, id } = useParams() as Params
+  const {
+    campaignId,
+    id,
+  } = useParams() as Params
   const { message } = App.useApp()
   const params = new URLSearchParams(location.search)
 
@@ -68,13 +81,19 @@ export default function ReportPreview ({
   const reportIsLoaded = (): boolean | undefined => (userReport && userReport.loaded)
 
   const renderReportPreview = () => {
-    if (!reportIsLoaded()) { return null }
+    if (!reportIsLoaded()) {
+      return null
+    }
 
     const {
       report: {
         default_language: defaultLanguage,
         locales,
-      }, report, results, user, campaign,
+      },
+      report,
+      results,
+      user,
+      campaign,
     } = userReport
 
     const selectedLanguage = lang ? {
@@ -111,21 +130,34 @@ export default function ReportPreview ({
       asyncDownload(parsedCampaignId, parsedId, { reportLang: lang })
       message.success(I18n.t('user_reports.messages.async_generation'))
     } else {
-      download(parsedCampaignId, parsedId, { skipLogic, reportLang: lang })
+      download(parsedCampaignId, parsedId, {
+        skipLogic,
+        reportLang: lang,
+      })
     }
   }
 
   const actions = () => {
     const menuItems = [
-      { key: 'subject', label: I18n.t('common.text.subject') },
-      { key: 'all', label: I18n.t('common.text.all_pages') },
+      {
+        key: 'subject',
+        label: I18n.t('common.text.subject'),
+      },
+      {
+        key: 'all',
+        label: I18n.t('common.text.all_pages'),
+      },
     ]
     const actionList = [
-      <Dropdown menu={{ items: menuItems, onClick: onChangeView }}>
+      <Dropdown menu={{
+        items: menuItems,
+        onClick: onChangeView,
+      }}
+      >
         <Button>
           <Space>
             {I18n.t('common.text.view_as')}
-            {skipLogic ? I18n.t('common.text.all_pages') : I18n.t('common.text.subject') }
+            {skipLogic ? I18n.t('common.text.all_pages') : I18n.t('common.text.subject')}
             <DownOutlined />
           </Space>
         </Button>
@@ -135,7 +167,7 @@ export default function ReportPreview ({
     if (userReport.requireApproval) {
       if ((userReport.approvalStatus === ApprovalStatuses.PendingQC
           || userReport.approvalStatus === ApprovalStatuses.ChangeRequested)
-          && userReport.permissions.startQc) {
+        && userReport.permissions.startQc) {
         actionList.unshift(
           <Button
             type="primary"
@@ -237,7 +269,7 @@ export default function ReportPreview ({
           }}
           crumbs={[{
             link: () => '/admin',
-            label: () => I18n.t('administration.clients.tenancies'),
+            label: () => I18n.t('administration.clients.clients'),
           }, {
             link: state => `/admin/clients/${state.client.id}/projects`,
             label: state => state.client.name,

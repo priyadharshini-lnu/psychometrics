@@ -42,7 +42,8 @@ export const Client: FC<Props> = ({ currentUser }) => {
   }
 
   const {
-    fetchSingle, getResource,
+    fetchSingle,
+    getResource,
   } = useResources<ClientType>(
     'clients',
     {
@@ -55,7 +56,11 @@ export const Client: FC<Props> = ({ currentUser }) => {
   const client = getResource(clientId)
 
   useEffect(() => {
-    fetchSingle({ id: clientId, responseType: ClientTR, apiConfig: baseApiConfig })
+    fetchSingle({
+      id: clientId,
+      responseType: ClientTR,
+      apiConfig: baseApiConfig,
+    })
   }, [clientId])
 
   const handleOnSelect = ({ key }) => {
@@ -109,7 +114,11 @@ export const Client: FC<Props> = ({ currentUser }) => {
     }
   }
   const menuItems: MenuItem[] = [
-    { key: 'projects', icon: <ShopOutlined />, label: I18n.t('administration.breadcrumbs.projects') },
+    {
+      key: 'projects',
+      icon: <ShopOutlined />,
+      label: I18n.t('administration.breadcrumbs.projects'),
+    },
   ]
 
   isSuperAdmin(currentUser) && menuItems.push({
@@ -155,7 +164,7 @@ export const Client: FC<Props> = ({ currentUser }) => {
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.clients.tenancies'),
+            label: () => I18n.t('administration.clients.clients'),
           },
           {
             link: state => `/admin/clients/${state.client.id}/projects`,

@@ -764,11 +764,6 @@ cs:
       user: Uživatel
       user_agent: Uživatelský agent
     back: Zpět
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Určitě se chcete odhlásit?</p> <p>Stiskněte Ne, pokud chcete pokračovat v práci. Stiskněte Ano pro odhlášení aktuálního uživatele.</p>"
-          title: "<strong>Odhlásit se</strong>?"
     block_settings:
       modal:
         add_layer: Přidat vrstvu
@@ -1684,7 +1679,6 @@ cs:
             title: Archiv <strong>%{name}</strong>?
           enable:
             title: Odarchivovat <strong>%{name}</strong>?
-      tenancies: Nájemní smlouvy klientů
       threesixty_campaign: Kampaň Threesixty
       toggle_status:
         successfully: Klientská nájemní smlouva %{name} byla úspěšně aktualizována.
@@ -2781,8 +2775,6 @@ cs:
       occupations: Povolání
       options: Možnosti
       participants: Účastníci
-      profile: Profil
-      profile_details: Podrobnosti na
       project_admins: Správci projektů
       question_center: Centrum otázek
       registration_codes: Registrační kódy

@@ -40,12 +40,16 @@ const connecter = connect(
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
-interface Meta extends BaseMeta{
+
+interface Meta extends BaseMeta {
   countries: string[]
   types: string[]
 }
 
-const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
+const ClientList: React.FC<Props> = ({
+  openModal,
+  currentUser,
+}) => {
   const [countries, setCoutries] = useState<Meta['countries']>([])
   const [types, setTypes] = useState<Meta['types']>([])
   const { width: windowWidth } = useWindowSize()
@@ -55,8 +59,19 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
     include_resource_meta: ['permissions'],
   }
   const {
-    data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
-    currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource,
+    data,
+    meta,
+    fetch,
+    isLoading,
+    getSortOrder,
+    handleTableChange,
+    changePage,
+    currentPage,
+    pageSize,
+    changeFilter,
+    getFilteredValue,
+    updateResource,
+    removeResource,
     createResource,
     requests,
   } = useResources<Client, Meta>(
@@ -70,10 +85,11 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
   useEffect(() => {
     fetch({
       apiConfig: _.merge(baseApiConfig, { include_meta: ['countries', 'types'] }),
-    }).then(({ meta }) => {
-      setCoutries(meta.countries)
-      setTypes(meta.types)
     })
+      .then(({ meta }) => {
+        setCoutries(meta.countries)
+        setTypes(meta.types)
+      })
   }, [])
   const tableLoading = isLoading('fetch')
 
@@ -103,7 +119,10 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
           width="auto"
           sorter
           sortOrder={getSortOrder('name')}
-          render={({ name, id }) => (
+          render={({
+            name,
+            id,
+          }) => (
             <Link to={`/admin/clients/${id}/projects`}>{name}</Link>
           )}
           minWidth={300}
@@ -172,21 +191,27 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
       <Search
         placeholder={I18n.t('common.actions.search')}
         value={getFilteredValue('filterable_fields')}
-        onChange={({ target: { value } }) => { changeFilter('filterable_fields', value) }}
+        onChange={({ target: { value } }) => {
+          changeFilter('filterable_fields', value)
+        }}
       />
       {isSuperAdmin(currentUser)
-          && (
-            <Button
-              type="primary"
-              disabled={tableLoading}
-              onClick={() => {
-                openModal('ClientFormModal', { addClient: createResource, types, countries })
-              }}
-            >
-              <PlusOutlined />
-              {I18n.t('frontend.clients.actions.create.create_client')}
-            </Button>
-          )}
+        && (
+          <Button
+            type="primary"
+            disabled={tableLoading}
+            onClick={() => {
+              openModal('ClientFormModal', {
+                addClient: createResource,
+                types,
+                countries,
+              })
+            }}
+          >
+            <PlusOutlined />
+            {I18n.t('frontend.clients.actions.create.create_client')}
+          </Button>
+        )}
     </Space>
   )
 
@@ -196,7 +221,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.clients.tenancies'),
+            label: () => I18n.t('administration.clients.clients'),
           },
         ]}
       />
@@ -212,6 +237,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
     </>
   )
 }
+
 interface ActionMenuData {
   client: Client
   countries: Meta['countries'],
@@ -223,11 +249,24 @@ interface ActionMenuData {
 }
 
 const getActionMenuProps = ({
-  client, countries, types, updateResource, removeResource, openModal, isSuperAdmin,
+  client,
+  countries,
+  types,
+  updateResource,
+  removeResource,
+  openModal,
+  isSuperAdmin,
 }: ActionMenuData): MenuProps => {
-  const { id, name, meta } = client
+  const {
+    id,
+    name,
+    meta,
+  } = client
   const menuItems = [
-    isSuperAdmin && { key: 'edit', label: I18n.t('common.actions.edit') },
+    isSuperAdmin && {
+      key: 'edit',
+      label: I18n.t('common.actions.edit'),
+    },
     meta.permissions.viewLicenses && {
       key: 'licenses',
       label: (
@@ -241,15 +280,25 @@ const getActionMenuProps = ({
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       return openModal('ClientFormModal', {
-        updateClient: updateResource, types, countries, client,
+        updateClient: updateResource,
+        types,
+        countries,
+        client,
       })
     }
     if (key === 'remove') {
-      return openModal('RemoveClientModal', { id, name, removeResource })
+      return openModal('RemoveClientModal', {
+        id,
+        name,
+        removeResource,
+      })
     }
   }
 
-  return ({ items: _.compact(menuItems), onClick: handleMenuClick })
+  return ({
+    items: _.compact(menuItems),
+    onClick: handleMenuClick,
+  })
 }
 
 export default connecter(ClientList)

@@ -764,11 +764,6 @@ pl:
       user: Użytkownik
       user_agent: Klient użytkownika
     back: Wstecz
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Czy na pewno chcesz się wylogować?</p> <p>Naciśnij Nie, jeśli chcesz kontynuować pracę. Naciśnij Tak, aby wylogować bieżącego użytkownika.</p>"
-          title: "<strong>Wylogować się</strong> ?"
     block_settings:
       modal:
         add_layer: Dodaj warstwę
@@ -1684,7 +1679,6 @@ pl:
             title: Archiwum <strong>%{name}</strong> ?
           enable:
             title: Przywróć z archiwum <strong>%{name}</strong> ?
-      tenancies: Umowy najmu dla klientów
       threesixty_campaign: Kampania Threesixty
       toggle_status:
         successfully: Dzierżawa klienta %{name} została pomyślnie zaktualizowana.
@@ -2781,8 +2775,6 @@ pl:
       occupations: Zawodów
       options: Opcje
       participants: Uczestników
-      profile: Profil
-      profile_details: Szczegóły
       project_admins: Administratorzy projektu
       question_center: Centrum pytań
       registration_codes: Kody rejestracyjne

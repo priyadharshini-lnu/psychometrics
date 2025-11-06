@@ -764,11 +764,6 @@ id:
       user: Pengguna
       user_agent: Agen Pengguna
     back: Kembali
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Apakah Anda yakin ingin keluar?</p> <p>Tekan Tidak jika Anda ingin melanjutkan pekerjaan. Tekan Ya untuk keluar dari pengguna saat ini.</p>"
-          title: "<strong>Keluar ?</strong>"
     block_settings:
       modal:
         add_layer: Tambahkan Lapisan
@@ -1684,7 +1679,6 @@ id:
             title: Arsip <strong>%{name}</strong> ?
           enable:
             title: Membatalkan arsip <strong>%{name}</strong> ?
-      tenancies: Klien Pengguna
       threesixty_campaign: Kampanye Threesixty
       toggle_status:
         successfully: Klien Pengguna %{name} berhasil diperbarui.
@@ -2781,8 +2775,6 @@ id:
       occupations: Pekerjaan
       options: Pilihan
       participants: Peserta
-      profile: Profil
-      profile_details: Rincian
       project_admins: Admin Proyek
       question_center: Pusat Pertanyaan
       registration_codes: Kode pendaftaran

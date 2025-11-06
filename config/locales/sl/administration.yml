@@ -764,11 +764,6 @@ sl:
       user: Uporabnik
       user_agent: Uporabniški posrednik
     back: Hrbet
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Ste prepričani, da se želite odjaviti?</p> <p>Izberite »Ne«, če želite nadaljevati z delom. Izberite »Da«, če želite odjaviti trenutnega uporabnika.</p>"
-          title: "<strong>Se želite odjaviti</strong> ?"
     block_settings:
       modal:
         add_layer: Dodajanje plasti
@@ -1684,7 +1679,6 @@ sl:
             title: Arhiv <strong>%{name}</strong> ?
           enable:
             title: Odstranitev <strong>arhiva %{name}</strong> ?
-      tenancies: Spletno okolje naročnika
       threesixty_campaign: Kampanja Threesixty
       toggle_status:
         successfully: Najem odjemalca %{name} je bil uspešno posodobljen.
@@ -2781,8 +2775,6 @@ sl:
       occupations: Poklicev
       options: Možnosti
       participants: Udeleženci
-      profile: Profil
-      profile_details: Podrobnosti
       project_admins: Skrbniki projekta
       question_center: Središče za vprašanja
       registration_codes: Registracijske kode

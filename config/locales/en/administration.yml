@@ -764,11 +764,6 @@ en:
       user: User
       user_agent: User Agent
     back: Back
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>"
-          title: Log <strong>Out</strong> ?
     block_settings:
       modal:
         add_layer: Add Layer
@@ -1244,6 +1239,7 @@ en:
         archived: Archived
         disable: Archive
         enable: Unarchive
+      clients: Clients
       columns:
         country: Country
         project_manager: Project Manager
@@ -1684,7 +1680,6 @@ en:
             title: Archive <strong>%{name}</strong> ?
           enable:
             title: Unarchive <strong>%{name}</strong> ?
-      tenancies: Client Tenancies
       threesixty_campaign: Threesixty Campaign
       toggle_status:
         successfully: Client Tenancy %{name} was updated successfully.
@@ -2277,6 +2272,10 @@ en:
           accesssheet_manage: Accesssheet Manage
           accesssheet_settings: Accesssheet Settings
           accesssheet_view: Accesssheet View
+    header:
+      logout:
+        content: Press Cancel if you want to continue work. Press Ok to logout current user.
+        title: Are you sure you want to logout.
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2798,8 +2797,10 @@ en:
       campaign_templates: Campaign Templates
       change_password: Change Password
       client_admins: Client Admins
-      clients: Client Tenancies
+      clients: Clients
       communication_center: Communication Center
+      configuration: Configuration
+      content: Content
       dashboard: Dashboard
       data_reports: Data Reports
       development_actions: Development Actions
@@ -2807,12 +2808,11 @@ en:
       factors: Factors
       innovation_styles: Innovation Styles
       libraries: Media Library
+      logout: Logout
       norms: Norms
       occupations: Occupations
       options: Options
       participants: Participants
-      profile: Profile
-      profile_details: Details
       project_admins: Project Admins
       question_center: Question Center
       registration_codes: Registration codes

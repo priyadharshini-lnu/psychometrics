@@ -41,20 +41,26 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const Project: FC<Props> = ({
-  currentUser, fetchProject, features,
+  currentUser,
+  fetchProject,
+  features,
 }) => {
   const { projectId } = useParams() as { projectId: string }
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const [isProjectLoaded, setIsProjectLoaded] = useState(false)
-  const { idpEnabled, skillRaterEnabled } = camelizeKeys(features)
+  const {
+    idpEnabled,
+    skillRaterEnabled,
+  } = camelizeKeys(features)
 
   const parsedProjectId = parseInt(projectId, 10)
 
   useEffect(() => {
-    fetchProject(parseInt(projectId, 10)).then(() => {
-      setIsProjectLoaded(true)
-    })
+    fetchProject(parseInt(projectId, 10))
+      .then(() => {
+        setIsProjectLoaded(true)
+      })
   }, [])
 
   const handleOnSelect = ({ key }) => {
@@ -148,7 +154,11 @@ const Project: FC<Props> = ({
   }
 
   const menuItems: MenuItem[] = [
-    { key: 'new_campaigns', icon: <ShopOutlined />, label: I18n.t('common.model.campaigns') },
+    {
+      key: 'new_campaigns',
+      icon: <ShopOutlined />,
+      label: I18n.t('common.model.campaigns'),
+    },
   ]
   currentUser.permissions.viewDatasheets && menuItems.push({
     key: 'datasheet',
@@ -200,7 +210,7 @@ const Project: FC<Props> = ({
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.clients.tenancies'),
+            label: () => I18n.t('administration.clients.clients'),
           },
           {
             link: state => `/admin/clients/${state.client.id}/projects`,

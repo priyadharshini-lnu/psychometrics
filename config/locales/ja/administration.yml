@@ -764,11 +764,6 @@ ja:
       user: ユーザー
       user_agent: ユーザーエージェント
     back: バック
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>本当にログアウトしますか？</p> <p>作業を続行する場合は「いいえ」を押してください。 現在のユーザーをログアウトする場合は「はい」を押してください。</p>"
-          title: "<strong>ログアウト</strong>？"
     block_settings:
       modal:
         add_layer: レイヤーを追加
@@ -1684,7 +1679,6 @@ ja:
             title: アーカイブ<strong>%{name}</strong>?
           enable:
             title: アーカイブ解除<strong>%{name}</strong>?
-      tenancies: 顧客契約
       threesixty_campaign: スリーシックスティ・キャンペーン
       toggle_status:
         successfully: クライアント・テナンシー %{name} が正常に更新されました。
@@ -2781,8 +2775,6 @@ ja:
       occupations: 職業
       options: オプション
       participants: 参加者
-      profile: プロフィール
-      profile_details: 詳細
       project_admins: プロジェクト管理者
       question_center: 質問センター
       registration_codes: 登録コード

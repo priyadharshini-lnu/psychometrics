@@ -764,11 +764,6 @@ sr-Latn:
       user: Korisnik
       user_agent: Korisnički agent
     back: Povratak
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Da li ste sigurni da želite da se odjavite?</p> <p>Pritisnite Ne ako želite da nastavite sa radom. Pritisnite da da odjavite trenutnog korisnika.</p>"
-          title: Odjaviti <strong>se</strong> ?
     block_settings:
       modal:
         add_layer: Dodaj sloj
@@ -1684,7 +1679,6 @@ sr-Latn:
             title: Arhiva <strong>%{name}</strong> ?
           enable:
             title: Izvadi iz arhive <strong>%{name}</strong> ?
-      tenancies: Klijentski prostor
       threesixty_campaign: 360 kampanja
       toggle_status:
         successfully: Zakup klijenta %{name} je uspešno ažuriran.
@@ -2781,8 +2775,6 @@ sr-Latn:
       occupations: Zanimanja
       options: Opcije
       participants: Učesnici
-      profile: Profil
-      profile_details: Detalji
       project_admins: Administratori projekta
       question_center: Centar za pitanja
       registration_codes: Registracioni kodovi

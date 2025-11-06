@@ -764,11 +764,6 @@ en-US:
       user: User
       user_agent: User Agent
     back: Back
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>"
-          title: Log <strong>Out</strong> ?
     block_settings:
       modal:
         add_layer: Add Layer
@@ -1684,7 +1679,6 @@ en-US:
             title: Archive <strong>%{name}</strong> ?
           enable:
             title: Unarchive <strong>%{name}</strong> ?
-      tenancies: Client Tenancies
       threesixty_campaign: Threesixty Campaign
       toggle_status:
         successfully: Client Tenancy %{name} was updated successfully.
@@ -2781,8 +2775,6 @@ en-US:
       occupations: Occupations
       options: Options
       participants: Participants
-      profile: Profile
-      profile_details: Details
       project_admins: Project Admins
       question_center: Question Center
       registration_codes: Registration codes

@@ -764,11 +764,6 @@ bg:
       user: Потребител
       user_agent: Потребителски агент
     back: Назад
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Сигурни ли сте, че искате да излезете?</p> <p>Натиснете Не, ако искате да продължите работата. Натиснете Да, за да излезете от текущия потребител.</p>"
-          title: "<strong>Излизане</strong> ?"
     block_settings:
       modal:
         add_layer: Добавяне на слой
@@ -1684,7 +1679,6 @@ bg:
             title: Архив <strong>%{name}</strong> ?
           enable:
             title: Разархивиране <strong>%{name}</strong> ?
-      tenancies: Наеми на клиенти
       threesixty_campaign: Кампания на Threesixty
       toggle_status:
         successfully: Клиентът Tenancy %{name} беше актуализиран успешно.
@@ -2781,8 +2775,6 @@ bg:
       occupations: Професии
       options: Опции
       participants: Участниците
-      profile: Профил
-      profile_details: Подробности
       project_admins: Администратори на проекти
       question_center: Център за въпроси
       registration_codes: Регистрационни кодове

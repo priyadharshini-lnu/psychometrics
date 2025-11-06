@@ -764,11 +764,6 @@ hu:
       user: Felhasználó
       user_agent: Felhasználói ágens
     back: Vissza
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Biztosan ki akar jelentkezni?</p> <p>Nyomja meg a Nem gombot, ha folytatni szeretné a munkát. Nyomja meg az Igen gombot az aktuális felhasználó kijelentkeztetéséhez.</p>"
-          title: "<strong>Kijelentkezés</strong> ?"
     block_settings:
       modal:
         add_layer: Réteg hozzáadása
@@ -1686,7 +1681,6 @@ hu:
             title: Archiválja a % <strong>%{name}</strong> fájlt ?
           enable:
             title: "% <strong>%{name}</strong> archiválásának megszüntetése?"
-      tenancies: Ügyfélcsoportok
       threesixty_campaign: 360 fokos kampány
       toggle_status:
         successfully: A(z) %{name} ügyfél bérleti jog frissítése sikeresen megtörtént.
@@ -2783,8 +2777,6 @@ hu:
       occupations: Foglalkozások
       options: Beállítások
       participants: Résztvevők
-      profile: Profil
-      profile_details: Részletek
       project_admins: Projektadminisztrátorok
       question_center: Kérdésközpont
       registration_codes: Regisztrációs kódok

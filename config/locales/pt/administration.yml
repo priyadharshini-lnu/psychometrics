@@ -764,11 +764,6 @@ pt:
       user: Utilizador
       user_agent: Agente do utilizador
     back: Voltar
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Tem a certeza de que pretende terminar a sessão?</p> <p>Prima Não se quiser continuar a trabalhar. Prima Sim para terminar a sessão do utilizador atual.</p>"
-          title: "<strong>Terminar</strong> sessão ?"
     block_settings:
       modal:
         add_layer: Adicionar camada
@@ -1684,7 +1679,6 @@ pt:
             title: Arquivo <strong>%{name}</strong>?
           enable:
             title: Desarquivar <strong>%{name}</strong>?
-      tenancies: Clientes
       threesixty_campaign: Campanha Threesixty
       toggle_status:
         successfully: O arrendamento do cliente %{name} foi atualizado com êxito.
@@ -2781,8 +2775,6 @@ pt:
       occupations: Profissões
       options: Opções
       participants: Participantes
-      profile: Perfil
-      profile_details: Detalhes
       project_admins: Administradores de projectos
       question_center: Centro de perguntas
       registration_codes: Códigos de registo

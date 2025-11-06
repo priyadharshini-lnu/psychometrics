@@ -764,11 +764,6 @@ ar:
       user: المستخدم
       user_agent: وكيل المستخدم
     back: رجوع
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>هل أنت متأكد أنك تريد تسجيل الخروج؟</p> <p>اضغط على لا إذا كنت تريد متابعة العمل. اضغط على نعم لتسجيل الخروج.</p>"
-          title: تسجيل <strong>الخروج</strong>؟
     block_settings:
       modal:
         add_layer: إضافة طبقة
@@ -1684,7 +1679,6 @@ ar:
             title: أرشفة <strong>%{name}</strong>؟
           enable:
             title: إلغاء أرشفة <strong>%{name}</strong>؟
-      tenancies: عقود العملاء
       threesixty_campaign: حملة 360
       toggle_status:
         successfully: تم تحديث إيجار العميل %{name} بنجاح.
@@ -2781,8 +2775,6 @@ ar:
       occupations: المهن
       options: الخيارات
       participants: المشاركون
-      profile: الملف الشخصي
-      profile_details: تفاصيل الملف الشخصي
       project_admins: مسؤولو المشاريع
       question_center: مركز الأسئلة
       registration_codes: رموز التسجيل

@@ -764,11 +764,6 @@ zh-Hant:
       user: 使用者
       user_agent: 使用者代理
     back: 返回
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>您確定要登出嗎？</p> <p>如果要繼續工作，請按 No（否）；如果要登出目前的使用者，請按 Yes（是）。</p>"
-          title: "<strong>登出</strong>?"
     block_settings:
       modal:
         add_layer: 新增圖層
@@ -1684,7 +1679,6 @@ zh-Hant:
             title: 存檔<strong>%{name}</strong>?
           enable:
             title: 解除存檔<strong>%{name}</strong>?
-      tenancies: 客戶租約
       threesixty_campaign: Threesixty 活動
       toggle_status:
         successfully: 客戶租約 %{name} 已成功更新。
@@ -2781,8 +2775,6 @@ zh-Hant:
       occupations: 職業
       options: 選項
       participants: 參與者
-      profile: 簡介
-      profile_details: 詳細資訊
       project_admins: 專案管理員
       question_center: 問題中心
       registration_codes: 註冊碼

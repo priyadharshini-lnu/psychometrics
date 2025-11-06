@@ -764,11 +764,6 @@ sk:
       user: Užívateľ
       user_agent: Používateľský agent
     back: Chrbát
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Naozaj sa chcete odhlásiť?</p> <p>Ak chcete pokračovať v práci, stlačte tlačidlo Nie. Stlačením tlačidla Áno odhlásite aktuálneho používateľa.</p>"
-          title: "<strong>Odhlásiť</strong> sa ?"
     block_settings:
       modal:
         add_layer: Pridať vrstvu
@@ -1684,7 +1679,6 @@ sk:
             title: Archív <strong>%{name}</strong> ?
           enable:
             title: Zrušiť archiváciu <strong>%{name}</strong> ?
-      tenancies: Prenájom klientov
       threesixty_campaign: Kampaň Threesixty
       toggle_status:
         successfully: Klientsky nájom %{name} bol úspešne aktualizovaný.
@@ -2781,8 +2775,6 @@ sk:
       occupations: Povolania
       options: Možnosti
       participants: Účastníkov
-      profile: Profil
-      profile_details: Detaily
       project_admins: Správcovia projektov
       question_center: Centrum otázok
       registration_codes: Registračné kódy

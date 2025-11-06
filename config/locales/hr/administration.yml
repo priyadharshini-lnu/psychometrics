@@ -764,11 +764,6 @@ hr:
       user: Korisnik
       user_agent: Korisnički agent
     back: Natrag
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Jeste li sigurni da se želite odjaviti?</p> <p>Pritisnite Ne ako želite nastaviti s radom. Pritisnite Da za odjavu trenutnog korisnika.</p>"
-          title: "<strong>Odjaviti</strong> se ?"
     block_settings:
       modal:
         add_layer: Dodaj sloj
@@ -1684,7 +1679,6 @@ hr:
             title: Arhiva <strong>%{name}</strong> ?
           enable:
             title: Poništiti arhiviranje <strong>%{name}</strong> ?
-      tenancies: Klijenti
       threesixty_campaign: Kampanja višesmjerne procjene
       toggle_status:
         successfully: Klijenti %{name} uspješno je ažuriran.
@@ -2781,8 +2775,6 @@ hr:
       occupations: Zanimanja
       options: Mogućnosti
       participants: Sudionici
-      profile: Profil
-      profile_details: Detalji
       project_admins: Administratori projekta
       question_center: Centar za pitanja
       registration_codes: Registracijski kodovi

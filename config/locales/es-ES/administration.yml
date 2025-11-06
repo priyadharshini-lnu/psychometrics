@@ -764,11 +764,6 @@ es-ES:
       user: Usuario
       user_agent: Agente de usuario
     back: Volver
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>¿Está seguro de que desea cerrar la sesión?</p> <p>Pulse No si desea continuar trabajando. Pulse Sí para cerrar la sesión del usuario actual.</p>"
-          title: "<strong>Cerrar</strong> sesión ?"
     block_settings:
       modal:
         add_layer: Añadir capa
@@ -1684,7 +1679,6 @@ es-ES:
             title: Archivar <strong>%{name}</strong>?
           enable:
             title: Desarchivar <strong>%{name}</strong>?
-      tenancies: Clientes
       threesixty_campaign: Campaña Threesixty
       toggle_status:
         successfully: La tenencia del cliente %{name} se ha actualizado correctamente.
@@ -2781,8 +2775,6 @@ es-ES:
       occupations: Ocupaciones
       options: Opciones
       participants: Participantes
-      profile: Perfil
-      profile_details: Detalles
       project_admins: Administradores de proyectos
       question_center: Centro de preguntas
       registration_codes: Códigos de registro
