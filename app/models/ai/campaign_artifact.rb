@@ -34,6 +34,15 @@ class AI::CampaignArtifact < ApplicationRecord
 
   accepts_nested_attributes_for :dependencies, allow_destroy: true
 
+  scope :filterable_fields, lambda { |search_term|
+    search_term = search_term.to_s
+
+    where(
+      "#{table_name}.id::text ILIKE :q OR #{table_name}.name ILIKE :q OR #{table_name}.code ILIKE :q",
+      q: "%#{search_term}%"
+    )
+  }
+
   def validate_results_schema(results)
     errors = []
 
@@ -41,6 +50,10 @@ class AI::CampaignArtifact < ApplicationRecord
     validate_results_types(results, errors)
 
     errors
+  end
+
+  def self.ransackable_scopes(_)
+    %i[filterable_fields]
   end
 
   private
