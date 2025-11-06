@@ -1,0 +1,114 @@
+---
+hu:
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: Rossz aldomain formátum.
+        reserved_subdomain: A(z) %{value} altartomány le van foglalva
+        uniq_subdomain: Az altartománynak egyedinek kell lennie.
+      add_manager:
+        cannot_be_self: A felhasználó nem jelölhető ki saját menedzserként
+        manager_not_found: A menedzser nem található, vagy nem része ugyanannak a projektnek
+        user_not_found: A felhasználó nem található, vagy nem része ugyanannak a projektnek
+      admin:
+        already_added: Rendszergazda már hozzáadott e-mail-címmel.
+      already_assigned?: Nem lehet összekapcsolni ezt az értékelést - már hozzá van rendelve a(z) %{linked_assessor_form_name}'-hoz.
+      already_invited: Ez a felhasználó már létezik a hozzáadni kívánt értékelőközpontban.
+      assessor_assessment:
+        already_added: Értékelő értékelés már hozzáadva a kampányhoz.
+        lead_already_added: Csak egy vezető értékelői értékelés adható hozzá a kampányhoz.
+      campaign_factor:
+        code_already_exists: Már létezik egy azonos kódú tényező.
+        invalid_lua_name: érvényes LUA változónévnek kell lennie
+        limit_exceeded: Elérte a(z) %{limit} kampánytényezők maximális korlátját.
+        name_already_exists: Már létezik egy azonos nevű tényező.
+        rank_not_allowed: Csak a numerikus kimeneti típusú tényezők rangsorolhatók.
+      campaign_factor_group:
+        group_already_exists: Már létezik azonos nevű csoport.
+        last_factor_group: Nem lehet törölni az utolsó kampánytényező-csoportot.
+      campaign_idps:
+        idp_template_not_published: Ezt az IDP sablont még nem teszik közzé, kérjük, tegye közzé, mielőtt a kampányba hozzárendelné.
+      cant_be_deleted: Ez a rekord nem törölhető
+      client_feature:
+        ai_assisted_idp_feature_error: Nem lehet igaz, ha az AI asszisztensek funkció le van tiltva
+      create_superadmin:
+        uniq_email: Az e-mailnek uniq-nak kell lennie.
+      development_actions:
+        only_global_skills_allowed: A kiválasztott készségeknek globális készségeknek kell lenniük.
+        skills_not_belong_to_project: A kiválasztott készségeknek a megadott projekthez kell tartozniuk.
+        skills_required: Kérjük, válasszon ki legalább egy készséget.
+      exceeded_subjects_count: Meghívónként csak %{count} témát adhat hozzá
+      filled?: Nem lehet üres
+      idp_template:
+        content_required: Az utasításokhoz tartalom szükséges
+        tag_or_skill_required: Kérjük, válasszon ki egy címkét vagy egy képességet, amikor a "Kiválasztva" opciót választja.
+      invalid_name: csak az ábécé, a szám, a szóközök, a kötőjel és a pont használható érvényes karakterként
+      invalid_value: Érvénytelen "%{value}" utasítás a(z) %{row} sorszámon
+      job_roles:
+        unique_within_job_group: Ugyanilyen nevű munkakör már létezik.
+      json?: Érvényes JSON-nak kell lennie
+      key?: Nem lehet üres
+      match_regexp?: érvénytelen érték
+      mettl_schedule_record_create:
+        uniq_schedule_name: Az ütemezés nevének egyedinek kell lennie
+      missed?: Nem lehet üres
+      not_allowed?: nem szabad megváltoztatni
+      not_in_the_list?: érvénytelen érték átadva
+      not_uniq_variable: "'%{value}' változó újradefiniálva a(z) %{row} sorszámon"
+      project_assessments:
+        should_be_greater_than_zero: Az eredmény érvényességének 0 napnál hosszabbnak kell lennie
+      project_feature:
+        global_skills_not_enabled_on_client: A globális képességek engedélyezéséhez ehhez a projekthez aktiválja azt a kliens beállításainak Funkciójelzők alatt.
+      report_approval_settings:
+        report_exists: A jelentés jelentés-jóváhagyási beállítása már létezik.
+        validates_admins: Az adminisztrátorok nem férhetnek hozzá a kampányhoz.
+      report_families_reports:
+        report_exists: Ez a jelentés már része a jelentéscsomagnak
+      size?: a méretnek kisebbnek kell lennie %{size}
+      skill:
+        already_added: Az azonos nevű készség már hozzáadva.
+      skill_alias:
+        unique_alias: Az álnévnek egyedinek kell lennie
+        unique_skill: A készségnek egyedinek kell lennie
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: A készségnek és a munkakörnek ugyanahhoz a projekthez kell tartoznia, vagy globálisnak kell lennie.
+        unique_mappings: Már létezik egy azonos készséggel és munkakörrel rendelkező leképezés.
+      uniq: 'Ez a Mettl-értékelés már jelen van a rendszerben. Az értékelés azonosítója: %{id}'
+      uniq?: egyedinek kell lennie
+      uniq_simulation: 'Ez a szimulációs értékelés már jelen van a rendszerben. Az értékelés azonosítója: %{id}'
+      uniq_skillvue: Ez a Skillvue-értékelés már jelen van a rendszerben. Az értékelés azonosítója %{id}
+      update_workshop:
+        bookings_exist: A menetrendet nem lehet módosítani, mivel a résztvevők már lefoglalták ezt az időpontot.
+        less_than_booked: Az összes ülőhelynek nagyobbnak kell lennie, mint amennyit lefoglaltak
+      user_availability_date:
+        overlaps_date: 'Átfedésben van egy másik rendelkezésre állás: %{range}'
+        overlaps_time: Átfedések intervalluma %{interval}
+        start_date_should_be_less: A kezdő dátumnak rövidebbnek kell lennie, mint a záró dátumnak
+        start_time_should_be_less: A kezdési időpontnak rövidebbnek kell lennie, mint a befejezési időpontnak
+      user_idp_plan:
+        idp_template_already_assigned_to_user: Ez az idp-sablon már hozzá van rendelve ehhez a felhasználóhoz, és aktív
+        idp_template_not_published: Ezt az IDP sablont még nem teszik közzé, kérjük, tegye közzé, mielőtt hozzárendelné a felhasználót.
+      user_saved_filters:
+        limit_exceeded: Csak %{limit} mentett szűrők lehetnek, kérjük, töröld a mentett szűrőket, hogy továbbiakat adj hozzá.
+        unique_name: Már létezik egy azonos nevű szűrő.
+      workshop_invited_subject_create:
+        already_exists: A tárgy már létezik a meghívóban.
+      workshop_subject_create:
+        already_exists: A tantárgy már létezik ebben az értékelési központban.
+        part_of_other_workshop: Az alany már résztvevője a(z) '%{workshop_name}'-nek.
+      workshop_subject_re_enroll:
+        no_seats_available: Erre a workshopra nincs szabad hely.
+        scheduling_lead_time_passed: Az ütemezési határidő lejárt, a tantárgyat nem lehet újra beiratkozni.
+        workshop_subject_not_found: Workshop tárgya nem található
+      workshops:
+        no_available_assessor_slots: Nincs szabad hely a(z) %{assessor}
+        no_available_manager_slots: Nincs szabad hely a(z) %{manager} menedzser számára
+    users:
+      registrations:
+        new:
+          register: Regisztráció
+          sign_in: Bejelentkezés
+      sessions:
+        new:
+          register: Regisztráció
+          sign_in: Bejelentkezés

@@ -1,0 +1,22 @@
+---
+sr-Cyrl:
+  dry_errors:
+    errors:
+      add_manager:
+        cannot_be_self: Корисник не може бити постављен као свој менаџер
+      campaign_idps:
+        idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кампање.
+      development_actions:
+        only_global_skills_allowed: Одабране вештине морају бити глобалне вештине.
+        skills_not_belong_to_project: Одабране вештине морају да припадају наведеном пројекту.
+        skills_required: Изаберите бар једну вештину.
+      project_feature:
+        global_skills_not_enabled_on_client: Да бисте омогућили Глобал Скиллс за овај пројекат, активирајте га под Феатуре Флагс у подешавањима клијента.
+      update_workshop:
+        bookings_exist: Није могуће изменити распоред јер су учесници већ резервисали овај термин.
+      user_idp_plan:
+        idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кориснику.
+      workshop_subject_re_enroll:
+        no_seats_available: Нема слободних места за ову радионицу.
+        scheduling_lead_time_passed: Време за заказивање је истекло, не можете поново пријавити учесника.
+        workshop_subject_not_found: Учесник радионице није пронађен

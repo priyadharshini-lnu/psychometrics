@@ -1,0 +1,114 @@
+---
+bg:
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: Грешен формат на поддомейна.
+        reserved_subdomain: Поддомейнът %{value} е запазен
+        uniq_subdomain: Поддомейнът трябва да бъде уникален.
+      add_manager:
+        cannot_be_self: Потребителят не може да бъде назначен като свой собствен мениджър
+        manager_not_found: Мениджърът не е намерен или не е част от един и същ проект
+        user_not_found: Потребител не е намерен или не е част от един и същ проект
+      admin:
+        already_added: Администратор с вече добавен имейл.
+      already_assigned?: Не може да се свърже тази оценка - тя вече е присвоена на "%{linked_assessor_form_name}".
+      already_invited: Този потребител вече съществува в центъра за оценяване, който се опитвате да добавите.
+      assessor_assessment:
+        already_added: Оценката на оценителя вече е добавена към кампанията.
+        lead_already_added: Към кампанията може да се добави само една оценка на потенциален оценител.
+      campaign_factor:
+        code_already_exists: Фактор със същия код вече съществува.
+        invalid_lua_name: трябва да е валидно име на променлива lua
+        limit_exceeded: Достигнали сте максималния лимит от %{limit} фактори на кампанията.
+        name_already_exists: Фактор със същото име вече съществува.
+        rank_not_allowed: Могат да се класират само фактори с изходен тип число.
+      campaign_factor_group:
+        group_already_exists: Група със същото име вече съществува.
+        last_factor_group: Не може да се изтрие последната група фактори на кампанията.
+      campaign_idps:
+        idp_template_not_published: Този шаблон на IDP все още не е публикуван, моля, публикувайте го преди да присвоите в кампания.
+      cant_be_deleted: Този запис не може да бъде изтрит
+      client_feature:
+        ai_assisted_idp_feature_error: Не може да е вярно, ако функцията за AI асистенти е деактивирана
+      create_superadmin:
+        uniq_email: Имейлът трябва да е uniq.
+      development_actions:
+        only_global_skills_allowed: Избраните умения трябва да са глобални.
+        skills_not_belong_to_project: Избраните умения трябва да принадлежат към посочения проект.
+        skills_required: Моля, изберете поне едно умение.
+      exceeded_subjects_count: Можете да добавяте само %{count} теми на покана
+      filled?: не може да бъде празен
+      idp_template:
+        content_required: Съдържанието е необходимо за инструкции
+        tag_or_skill_required: Моля, изберете етикет или умение, когато изберете опцията "Избрано".
+      invalid_name: Само азбука, число, интервали, тире и точка са разрешени като валиден знак
+      invalid_value: невалидно изявление "%{value}" на номер на ред %{row}
+      job_roles:
+        unique_within_job_group: Вече съществува роля за работа със същото име.
+      json?: Трябва да е валиден JSON
+      key?: не може да бъде празен
+      match_regexp?: невалидна стойност
+      mettl_schedule_record_create:
+        uniq_schedule_name: Името на графика трябва да е уникално
+      missed?: не може да бъде празен
+      not_allowed?: не е позволено да се променя
+      not_in_the_list?: предадена невалидна стойност
+      not_uniq_variable: променлива '%{value}' е предефинирана на номер на ред %{row}
+      project_assessments:
+        should_be_greater_than_zero: Валидността на резултата трябва да бъде по-голяма от 0 дни
+      project_feature:
+        global_skills_not_enabled_on_client: За да активирате Global Skills за този проект, моля, активирайте го под Флагове на функциите в настройките на клиента.
+      report_approval_settings:
+        report_exists: Настройката за одобрение на отчета за този отчет вече съществува.
+        validates_admins: Администраторите нямат достъп до кампанията.
+      report_families_reports:
+        report_exists: Този отчет вече е част от Report Bundle
+      size?: размерът трябва да бъде по-малък %{size}
+      skill:
+        already_added: Умение със същото име вече е добавено.
+      skill_alias:
+        unique_alias: Псевдонимът трябва да е уникален
+        unique_skill: Умението трябва да е уникално
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Умението и работната роля трябва да принадлежат към един и същ проект или да са глобални.
+        unique_mappings: Вече съществува картографиране със същото умение и длъжностна роля.
+      uniq: Тази оценка на Mettl вече присъства в системата. ИД на тази оценка е %{id}
+      uniq?: трябва да бъде уникална
+      uniq_simulation: Тази оценка на симулацията вече присъства в системата. ИД на тази оценка е %{id}
+      uniq_skillvue: Тази оценка на уменията вече е налична в системата. ID на тази оценка е %{id}
+      update_workshop:
+        bookings_exist: Не може да се промени графикът, тъй като участниците вече са резервирали този времеви интервал.
+        less_than_booked: Общият брой места трябва да е по-голям от резервирания
+      user_availability_date:
+        overlaps_date: Припокрива друга наличност %{range}
+        overlaps_time: Интервал на припокриване %{interval}
+        start_date_should_be_less: Началната дата трябва да е по-малка от крайната дата
+        start_time_should_be_less: Началният час трябва да е по-малък от крайния час
+      user_idp_plan:
+        idp_template_already_assigned_to_user: Този шаблон за IDP вече е приет към този потребител и е активен
+        idp_template_not_published: Този шаблон на IDP все още не е публикуван, моля, публикувайте го, преди да зададете на потребителя.
+      user_saved_filters:
+        limit_exceeded: Можете да имате само %{limit} запазени филтри, моля, изтрийте запазените филтри, за да добавите още.
+        unique_name: Вече съществува филтър със същото име.
+      workshop_invited_subject_create:
+        already_exists: Темата вече съществува в поканата.
+      workshop_subject_create:
+        already_exists: Субектът вече съществува в този център за оценяване.
+        part_of_other_workshop: Субектът вече е участник в "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: Няма свободни места за този семинар.
+        scheduling_lead_time_passed: Времето за планиране е изтекло, не можете да запишете отново предмета.
+        workshop_subject_not_found: Темата на семинара не е намерена
+      workshops:
+        no_available_assessor_slots: Няма свободни места за оценител %{assessor}
+        no_available_manager_slots: Няма свободни слотове за мениджър %{manager}
+    users:
+      registrations:
+        new:
+          register: Регистрирайте се
+          sign_in: Влизане
+      sessions:
+        new:
+          register: Регистрирайте се
+          sign_in: Влизане

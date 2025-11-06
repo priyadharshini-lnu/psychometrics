@@ -1,0 +1,114 @@
+---
+ko:
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: 하위 도메인 형식이 잘못되었습니다.
+        reserved_subdomain: 하위 도메인 %{value}이 예약되었습니다
+        uniq_subdomain: 하위 도메인은 고유해야 합니다.
+      add_manager:
+        cannot_be_self: 사용자는 자신을 매니저로 지정할 수 없습니다
+        manager_not_found: 관리자를 찾을 수 없거나 동일한 프로젝트에 속하지 않음
+        user_not_found: 사용자를 찾을 수 없거나 동일한 프로젝트에 속하지 않은 사용자
+      admin:
+        already_added: 이메일이 이미 추가된 관리자입니다.
+      already_assigned?: 이 평가를 연결할 수 없습니다. 이 평가는 이미 '%{linked_assessor_form_name}'에 할당되어 있습니다.
+      already_invited: 이 사용자는 추가하려는 평가 센터에 이미 존재합니다.
+      assessor_assessment:
+        already_added: 평가자 평가는 이미 캠페인에 추가되었습니다.
+        lead_already_added: 캠페인에는 리드 평가자 평가를 하나만 추가할 수 있습니다.
+      campaign_factor:
+        code_already_exists: 동일한 코드를 가진 요소가 이미 존재합니다.
+        invalid_lua_name: 는 유효한 루아 변수 이름이어야 합니다
+        limit_exceeded: 캠페인 계수의 최대 한도 %{limit}에 도달했습니다.
+        name_already_exists: 같은 이름의 요소가 이미 존재합니다.
+        rank_not_allowed: 출력 유형이 숫자인 요소만 순위를 매길 수 있습니다.
+      campaign_factor_group:
+        group_already_exists: 같은 이름의 그룹이 이미 존재합니다.
+        last_factor_group: 마지막 캠페인 요소 그룹을 삭제할 수 없습니다.
+      campaign_idps:
+        idp_template_not_published: 이 IDP 템플릿은 아직 게시되지 않았습니다. 캠페인에 할당하기 전에 게시하십시오.
+      cant_be_deleted: 이 레코드는 삭제할 수 없습니다.
+      client_feature:
+        ai_assisted_idp_feature_error: AI 어시스턴트 기능이 비활성화된 경우 true일 수 없습니다.
+      create_superadmin:
+        uniq_email: 이메일은 고유해야 합니다.
+      development_actions:
+        only_global_skills_allowed: 선택한 스킬은 글로벌 스킬이어야 합니다.
+        skills_not_belong_to_project: 선택한 스킬은 지정된 프로젝트에 속해야 합니다.
+        skills_required: 스킬을 하나 이상 선택해 주세요.
+      exceeded_subjects_count: 초대당 %{count}명의 피사체만 추가할 수 있습니다
+      filled?: 비어있을 수 없습니다
+      idp_template:
+        content_required: 지침에는 내용이 필요합니다
+        tag_or_skill_required: 선택됨 옵션을 선택할 때 태그 또는 기술을 선택하십시오.
+      invalid_name: 알파벳, 숫자, 공백, 대시 및 점만 유효한 문자로 허용됩니다
+      invalid_value: 줄 번호 %{value}에 잘못된 문 '%{row}'이 있습니다
+      job_roles:
+        unique_within_job_group: 같은 이름의 직무 역할이 이미 존재합니다.
+      json?: 유효한 JSON이어야 합니다
+      key?: 비어있을 수 없습니다
+      match_regexp?: 유효하지 않은 값
+      mettl_schedule_record_create:
+        uniq_schedule_name: 일정 이름은 고유해야 합니다
+      missed?: 비어있을 수 없습니다
+      not_allowed?: 변경할 수 없습니다
+      not_in_the_list?: 잘못된 값이 전달되었습니다
+      not_uniq_variable: 행 번호 %{value}에서 변수 '%{row}'이(가) 재정의되었습니다
+      project_assessments:
+        should_be_greater_than_zero: 결과 유효 기간은 0일 이상이어야 합니다
+      project_feature:
+        global_skills_not_enabled_on_client: 이 프로젝트에 대해 글로벌 스킬을 활성화하려면 클라이언트 세팅의 피처 플래그(Feature Flags) 에서 활성화하세요.
+      report_approval_settings:
+        report_exists: 이 보고서에 대한 보고서 승인 설정이 이미 존재합니다.
+        validates_admins: 관리자는 캠페인에 액세스할 수 없습니다.
+      report_families_reports:
+        report_exists: 이 보고서는 이미 보고서 번들의 일부입니다
+      size?: 크기는 %{size}보다 작아야 합니다
+      skill:
+        already_added: 같은 이름의 스킬이 이미 추가되었습니다.
+      skill_alias:
+        unique_alias: 별칭은 고유해야 합니다
+        unique_skill: 스킬은 고유해야 합니다
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: 스킬과 직무는 동일한 프로젝트에 속하거나 글로벌한 것이어야 합니다.
+        unique_mappings: 동일한 스킬과 직무 역할을 가진 매핑이 이미 존재합니다.
+      uniq: 이 Mettl 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다
+      uniq?: 고유해야 합니다
+      uniq_simulation: 이 시뮬레이션 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다
+      uniq_skillvue: 이 스킬뷰 평가는 이미 시스템에 존재합니다. 이 평가의 ID는 %{id}입니다.
+      update_workshop:
+        bookings_exist: 참가자가 이미 이 시간대를 예약했으므로 일정을 수정할 수 없습니다.
+        less_than_booked: 총 좌석 수가 예약된 좌석 수보다 많아야 합니다
+      user_availability_date:
+        overlaps_date: 다른 가용성 %{range}와 겹침
+        overlaps_time: 겹침 간격 %{interval}
+        start_date_should_be_less: 시작 날짜는 종료 날짜보다 작아야 합니다
+        start_time_should_be_less: 시작 시간은 종료 시간보다 짧아야 합니다
+      user_idp_plan:
+        idp_template_already_assigned_to_user: 이 Idp 템플릿은 이미 이 사용자에게 할당되어 있으며 활성화되어 있습니다
+        idp_template_not_published: 이 IDP 템플릿은 아직 게시되지 않았습니다. 사용자에게 할당하기 전에 게시하십시오.
+      user_saved_filters:
+        limit_exceeded: "%{limit} 개의 필터만 저장할 수 있으며, 더 추가하려면 저장된 필터를 삭제해 주세요."
+        unique_name: 같은 이름의 필터가 이미 존재합니다.
+      workshop_invited_subject_create:
+        already_exists: 초대장에 제목이 이미 존재합니다.
+      workshop_subject_create:
+        already_exists: 이 평가 센터에 과목이 이미 존재합니다.
+        part_of_other_workshop: 주체가 이미 '%{workshop_name}'의 참가자입니다.
+      workshop_subject_re_enroll:
+        no_seats_available: 이 워크숍에는 좌석이 없습니다.
+        scheduling_lead_time_passed: 스케줄링 리드 타임 이 지나면 주제를 다시 등록할 수 없습니다.
+        workshop_subject_not_found: 워크샵 주제를 찾을 수 없습니다.
+      workshops:
+        no_available_assessor_slots: 평가자 %{assessor}에 사용할 수 있는 슬롯이 없습니다
+        no_available_manager_slots: 관리자 %{manager}에게 사용 가능한 슬롯이 없습니다
+    users:
+      registrations:
+        new:
+          register: 등록하기
+          sign_in: 로그인
+      sessions:
+        new:
+          register: 등록하기
+          sign_in: 로그인
