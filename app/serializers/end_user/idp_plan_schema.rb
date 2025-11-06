@@ -17,6 +17,9 @@ module EndUser
         required(:one_click_idp_enabled).filled(:bool?)
         required(:user).hash(IdpUserSchema.schema(context, options))
         required(:unread_comments_count).filled(:int?)
+        required(:completion_status).filled(:str?)
+        required(:approval_status).filled(:str?)
+        required(:can_revert_to_last_approved).filled(:bool?)
         required(:instructions).maybe do
           hash do
             optional(:content).filled(:str?)

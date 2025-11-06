@@ -213,6 +213,12 @@ class UserIdpPlan < ApplicationRecord
     "private/projects/#{campaign.project_id}/user_idp_plans/#{id}/#{attribute_name}/#{filename}"
   end
 
+  def pending_initial_review
+    return false unless pending_approval?
+
+    versions.where("object->>'approval_status' IN (?)", %w[in_review rejected approved]).none?
+  end
+
   private
 
   def update_completed_at
