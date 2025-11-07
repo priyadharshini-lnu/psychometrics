@@ -159,6 +159,16 @@ module Api
           render json: :ok
         end
 
+        def generate_embedding
+          AdminJob.call(
+            :generate_embedding_skills,
+            {},
+            current_user
+          )
+
+          render json: :ok
+        end
+
         def meta_details
           {
             permissions: lambda {
@@ -176,6 +186,7 @@ module Api
                   export_global
                   import_global_translations
                   export_global_translations
+                  generate_embedding
                 ],
                 { project_id: context[:project_id] }
               )

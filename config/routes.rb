@@ -1585,6 +1585,7 @@ as: :simulation_progress_notification
             post :export_global, on: :collection
             post :import_global_translations, on: :collection
             post :export_global_translations, on: :collection
+            post :generate_embedding, on: :collection
           end
 
           jsonapi_resources :development_actions do

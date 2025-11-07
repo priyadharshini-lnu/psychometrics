@@ -863,6 +863,7 @@ en:
         export_user_report_events: Export User Report Events
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
+        generate_embedding_skills: Generate Embedding for Skills
         import_accesssheet: Import Accessheet
         import_assessment_questions: Import Assessment Questions
         import_assessment_translations: Import Assessment Translations
