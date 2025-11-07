@@ -132,6 +132,7 @@ export const normalizePlanChangesForSummary = (planChanges) => {
   skillsDiff.created.forEach((skill) => {
     summarisedPlanChanges[skill.name] = {
       changeStatus: PlanChangeStatus.ADDED,
+      actions: [],
     }
   })
 
@@ -172,12 +173,13 @@ export const normalizePlanChangesForSummary = (planChanges) => {
   skillsDiff.deleted.forEach((action) => {
     summarisedPlanChanges[action.name] = {
       changeStatus: PlanChangeStatus.REMOVED,
+      actions: [],
     }
   })
 
   actionsDiff.created.forEach((action) => {
     summarisedPlanChanges[action.skillName] = {
-      changeStatus: PlanChangeStatus.ADDED,
+      changeStatus: PlanChangeStatus.EDITED,
       actions: [
         ...(summarisedPlanChanges[action.skillName]?.actions || []),
         { ...action, changeStatus: PlanChangeStatus.ADDED },
@@ -187,7 +189,7 @@ export const normalizePlanChangesForSummary = (planChanges) => {
 
   actionsDiff.deleted.forEach((action) => {
     summarisedPlanChanges[action.skillName] = {
-      changeStatus: PlanChangeStatus.REMOVED,
+      changeStatus: PlanChangeStatus.EDITED,
       actions: [
         ...(summarisedPlanChanges[action.skillName]?.actions || []),
         { ...action, changeStatus: PlanChangeStatus.REMOVED },

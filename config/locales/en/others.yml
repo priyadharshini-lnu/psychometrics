@@ -2547,6 +2547,7 @@ en:
         title: Hello, I'm your development assistant
     behavioral: Behavioral
     board: Board
+    change_history: Change History
     changes_saved_to_plan: Changes saved to the plan
     comment_details:
       add_comment: Add Comment

@@ -6,7 +6,7 @@ import styles from './ChangeHistory.less'
 const { I18n } = window
 export const ChangeHistory = ({ changeHistory }) => (
   <Flex className="ms-4" vertical>
-    <Typography.Title level={5}>Change History</Typography.Title>
+    <Typography.Title level={5}>{I18n.t('idp.change_history')}</Typography.Title>
 
     <ul className="ps-4">
       {changeHistory?.updatedDA && changeHistory?.updatedDA.length && (

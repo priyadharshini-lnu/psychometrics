@@ -2567,6 +2567,7 @@ ar:
         title: مرحبا، أنا مساعد التطوير الخاص بك
     behavioral: سلوكية
     board: اللوحة
+    change_history: تغيير التاريخ
     changes_saved_to_plan: التغييرات المحفوظة على الخطة
     comment_details:
       add_comment: إضافة تعليق
