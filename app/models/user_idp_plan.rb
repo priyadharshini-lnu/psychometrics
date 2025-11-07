@@ -9,7 +9,7 @@ class UserIdpPlan < ApplicationRecord
 
   has_paper_trail if: proc { |plan|
     (plan.approval_status_changed? &&
-      %w[approved pending_approval].include?(plan.approval_status)) ||
+      %w[approved pending_approval rejected].include?(plan.approval_status)) ||
       %w[pending_approval in_review draft].include?(plan.approval_status)
   }
 

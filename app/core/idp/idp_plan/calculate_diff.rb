@@ -37,9 +37,15 @@ module Idp::IdpPlan
     def determine_statuses_to_compare
       return if current_user_manager? && plan.draft?
 
-      return ['approved', plan.approval_status] if plan.pending_approval? || plan.in_review?
+      last_finalized_status = plan.versions.where(
+        "object ->> 'approval_status' IN (?)", %w[rejected approved]
+      ).last&.object&.dig('approval_status')
 
-      ['approved', plan.approval_status] if !current_user_manager? && plan.draft?
+      return unless last_finalized_status
+
+      return [last_finalized_status, plan.approval_status] if plan.pending_approval? || plan.in_review?
+
+      [last_finalized_status, plan.approval_status] if !current_user_manager? && plan.draft?
     end
 
     def current_user_manager?
